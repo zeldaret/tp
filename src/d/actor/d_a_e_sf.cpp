@@ -36,6 +36,34 @@ enum E_sf_RES_File_ID {
     /* 0x17 */ BMDR_SF_SWORDB,
 };
 
+enum Joint {
+    /* 0x00 */ JNT_WORLD_ROOT,
+    /* 0x01 */ JNT_BACKBONE1,
+    /* 0x02 */ JNT_BACKBONE2,
+    /* 0x03 */ JNT_NECK,
+    /* 0x04 */ JNT_HEAD,
+    /* 0x05 */ JNT_CHIN,
+    /* 0x06 */ JNT_SHOULDERL,
+    /* 0x07 */ JNT_ARML1,
+    /* 0x08 */ JNT_HANDL1,
+    /* 0x09 */ JNT_HANDL2,
+    /* 0x0A */ JNT_SHOULDERPADL,
+    /* 0x0B */ JNT_SHOULDERR,
+    /* 0x0C */ JNT_ARMR1,
+    /* 0x0D */ JNT_HANDR1,
+    /* 0x0E */ JNT_HANDR2,
+    /* 0x0F */ JNT_SHOULDERPADR,
+    /* 0x10 */ JNT_WAIST,
+    /* 0x11 */ JNT_LEGL1,
+    /* 0x12 */ JNT_LEGL2,
+    /* 0x13 */ JNT_FOOTL1,
+    /* 0x14 */ JNT_FOOTL2,
+    /* 0x15 */ JNT_LEGR1,
+    /* 0x16 */ JNT_LEGR2,
+    /* 0x17 */ JNT_FOOTR1,
+    /* 0x18 */ JNT_FOOTR2,
+};
+
 enum Action {
     /* 0x00 */ ACTION_NORMAL,
     /* 0x03 */ ACTION_FIGHT_RUN = 0x3,
@@ -146,10 +174,10 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
         if (i_this != NULL) {
             MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
 
-            if (jntNo == 4) {
-                cMtx_YrotM(*calc_mtx, i_this->field_0x6b0 + i_this->field_0x6b8);
-                cMtx_XrotM(*calc_mtx, i_this->field_0x6b2);
-                cMtx_ZrotM(*calc_mtx, -i_this->field_0x6b6);
+            if (jntNo == JNT_HEAD) {
+                cMtx_YrotM(*calc_mtx, i_this->mHeadAngleY + i_this->mHeadBobAngleY);
+                cMtx_XrotM(*calc_mtx, i_this->mHeadAngleX);
+                cMtx_ZrotM(*calc_mtx, -i_this->mHeadAngleZ);
             }
 
             model->setAnmMtx(jntNo, *calc_mtx);
@@ -187,7 +215,7 @@ static int daE_SF_Draw(e_sf_class* i_this) {
     g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
 
     J3DModelData* modelData = model->getModelData();
-    s16 color = i_this->field_0x6a6;
+    s16 color = i_this->mColor;
     for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
         J3DMaterial* matNode_p = modelData->getMaterialNodePointer(i);
         if (i == 0) {
@@ -299,7 +327,7 @@ static int pl_check(e_sf_class* i_this, f32 i_distance, s16 param_3) {
     }
 
     for (int i = 0; i <= 2; i++) {
-        if (i_this->field_0x970[i].ChkCoHit()) {
+        if (i_this->mCcSphs[i].ChkCoHit()) {
             return 2;
         }
     }
@@ -342,7 +370,7 @@ static void e_sf_normal(e_sf_class* i_this) {
                     }
                 }
 
-                i_this->field_0x5d0 = a_this->current.angle.y + y_offset;
+                i_this->mAngleYOffset = a_this->current.angle.y + y_offset;
                 anm_init(i_this, BCK_SF_WALK01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
                 i_this->mActionPhase = NORMAL_PHASE_WAIT;
                 i_this->mTimers[0] = cM_rndF(100.0f) + 100.0f;
@@ -353,7 +381,7 @@ static void e_sf_normal(e_sf_class* i_this) {
         
         case NORMAL_PHASE_WAIT:
             target = l_HIO.move_spd;
-            cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5d0, 8, 0x400);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleYOffset, 8, 0x400);
 
             if (i_this->mTimers[0] == 0 || (i_this->mTimers[1] == 0 && way_bg_check(i_this, 200.0f, 50.0f))) {
                 i_this->mActionPhase = NORMAL_PHASE_WALK;
@@ -371,7 +399,7 @@ static void e_sf_normal(e_sf_class* i_this) {
     cLib_addCalc2(&a_this->speedF, target, 1.0f, 3.0f);
 
     BOOL isOto = fopAcM_otoCheck(a_this, 2000.0f);
-    if (((i_this->mFrameCounter & 0xF) == 0 || isOto) && (isOto || pl_check(i_this, i_this->field_0x694, angle) != 0)) {
+    if (((i_this->mFrameCounter & 0xF) == 0 || isOto) && (isOto || pl_check(i_this, i_this->mRecognizeDist, angle) != 0)) {
         i_this->mAction = ACTION_FIGHT_RUN;
         i_this->mActionPhase = FIGHT_RUN_PHASE_NEG_10;
         i_this->mTimers[0] = 60;
@@ -390,12 +418,12 @@ static void e_sf_drawback(e_sf_class* i_this) {
             a_this->speedF = KREG_F(4) + -5.0f;
             i_this->mInvulnerabilityTimer = 10;
             i_this->mSound.startCreatureVoice(Z2SE_EN_SF_V_DRAWBACK, -1);
-            i_this->field_0x5d0 = player->shape_angle.y + 0x8000;
+            i_this->mAngleYOffset = player->shape_angle.y + 0x8000;
             break;
         
         case DRAWBACK_PHASE_END:
             a_this->onHeadLockFlg();
-            cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5d0, 4, 0x400);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleYOffset, 4, 0x400);
             cLib_addCalc0(&a_this->speedF, 1.0f, KREG_F(5) + 0.1f);
 
             if (i_this->mpModelMorf->isStop()) {
@@ -479,7 +507,7 @@ static void e_sf_fight_run(e_sf_class* i_this) {
         cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngleY, 4, 0x800);
     }
 
-    if (pl_check(i_this, i_this->field_0x694 + 50.0f, 0x7FFF) == 0 && i_this->mTimers[0] == 0) {
+    if (pl_check(i_this, i_this->mRecognizeDist + 50.0f, 0x7FFF) == 0 && i_this->mTimers[0] == 0) {
         i_this->mAction = ACTION_NORMAL;
         i_this->mActionPhase = PHASE_INIT;
         i_this->mTimers[0] = cM_rndF(50.0f) + 50.0f;
@@ -731,7 +759,7 @@ static void e_sf_crash(e_sf_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
     for (int i = 0; i < 3; i++) {
-        i_this->field_0x970[i].SetTgType(0x400020);
+        i_this->mCcSphs[i].SetTgType(0x400020);
     }
 
     i_this->mStts.Init(0xFF, 0, a_this);
@@ -780,7 +808,7 @@ static void e_sf_crash(e_sf_class* i_this) {
                 }
 
                 for (int i = 0; i < 3; i++) {
-                    i_this->field_0x970[i].SetTgType(0xD8FBFDFF);
+                    i_this->mCcSphs[i].SetTgType(0xD8FBFDFF);
                 }
 
                 i_this->mStts.Init(200, 0, a_this);
@@ -949,8 +977,8 @@ static void damage_check(e_sf_class* i_this) {
     }
 
     for (int i = 0; i <= 2; i++) {
-        if (i_this->field_0x970[i].ChkTgHit()) {
-            i_this->mAtInfo.mpCollider = i_this->field_0x970[i].GetTgHitObj();
+        if (i_this->mCcSphs[i].ChkTgHit()) {
+            i_this->mAtInfo.mpCollider = i_this->mCcSphs[i].GetTgHitObj();
             cc_at_check(a_this, &i_this->mAtInfo);
 
             if (i_this->mAtInfo.mHitType == 0x10) {
@@ -964,12 +992,12 @@ static void damage_check(e_sf_class* i_this) {
                     i_this->mInvulnerabilityTimer = 6;
                 }
             } else {
-                s8 bVar1 = false;
-                s8 bVar2 = false;
+                s8 unkFlag1 = false;
+                s8 unkFlag2 = false;
 
                 if (i_this->field_0x6ad != 0) {
                     i_this->field_0x6ad = 0;
-                    bVar2 = true;
+                    unkFlag2 = true;
                 }
 
                 if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOMB) || (daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_HEAD_JUMP || i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_IRON_BALL))) {
@@ -984,7 +1012,7 @@ static void damage_check(e_sf_class* i_this) {
                     }
 
                     crash_eff(i_this);
-                    bVar1 = true;
+                    unkFlag1 = true;
                 }
 
                 if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_UNK)) {
@@ -996,7 +1024,7 @@ static void damage_check(e_sf_class* i_this) {
                     i_this->mInvulnerabilityTimer = 6;
                 }
 
-                if (a_this->health <= 0 || bVar1 || bVar2) {
+                if (a_this->health <= 0 || unkFlag1 || unkFlag2) {
                     i_this->mAction = ACTION_CRASH;
                     i_this->mActionPhase = PHASE_INIT;
                     a_this->health = 0;
@@ -1004,7 +1032,7 @@ static void damage_check(e_sf_class* i_this) {
                     i_this->mAction = ACTION_S_DAMAGE;
                     i_this->mActionPhase = PHASE_INIT;
                     i_this->field_0x6c4 = TREG_F(0) + 25.0f;
-                    i_this->field_0x6c8 = i_this->mAtInfo.mHitDirection.y;
+                    i_this->mHitDirectionY = i_this->mAtInfo.mHitDirection.y;
 
                     if (i_this->arg3 != 0xFF) {
                         if (daPy_getPlayerActorClass()->getCutCount() >= 4) {
@@ -1027,7 +1055,7 @@ static void damage_check(e_sf_class* i_this) {
     for (int i = 0; i <= 2; i++) {
         if (a_this->health <= 1) {
             a_this->health = 0;
-            i_this->field_0x970[i].SetTgHitMark(CcG_Tg_UNK_MARK_3);
+            i_this->mCcSphs[i].SetTgHitMark(CcG_Tg_UNK_MARK_3);
         }
     }
 }
@@ -1042,11 +1070,11 @@ static void action(e_sf_class* i_this) {
     i_this->mPlayerDistanceXZ = fopAcM_searchPlayerDistanceXZ(a_this);
     i_this->mPlayerAngleY = fopAcM_searchPlayerAngleY(a_this);
     i_this->mPlayerAngleX = fopAcM_searchPlayerAngleX(a_this);
-    i_this->field_0x694 = l_HIO.p_recognize_dist_m;
+    i_this->mRecognizeDist = l_HIO.p_recognize_dist_m;
     damage_check(i_this);
-    s8 sVar1 = 0;
-    s8 sVar2 = 0;
-    s16 sVar3 = 0xFF;
+    s8 unkFlag1 = 0;
+    s8 isLinkSearch = 0;
+    s16 colorTarget = 0xFF;
     a_this->offHeadLockFlg();
 
     switch (i_this->mAction) {
@@ -1056,82 +1084,82 @@ static void action(e_sf_class* i_this) {
 
         case ACTION_FIGHT_RUN:
             e_sf_fight_run(i_this);
-            sVar1 = 1;
-            sVar2 = 1;
+            unkFlag1 = 1;
+            isLinkSearch = 1;
             break;
 
         case ACTION_ATTACK_0:
             e_sf_attack_0(i_this);
-            sVar1 = 1;
-            sVar2 = 1;
+            unkFlag1 = 1;
+            isLinkSearch = 1;
             break;
 
         case ACTION_ATTACK:
             e_sf_attack(i_this);
-            sVar1 = 1;
-            sVar2 = 1;
+            unkFlag1 = 1;
+            isLinkSearch = 1;
             break;
 
         case ACTION_GUARD:
             if (e_sf_guard(i_this) != 0) {
-                sVar1 = 1;
+                unkFlag1 = 1;
             }
             
-            sVar2 = 1;
+            isLinkSearch = 1;
             break;
 
         case ACTION_DRAWBACK:
             e_sf_drawback(i_this);
-            sVar2 = 1;
+            isLinkSearch = 1;
             break;
 
         case ACTION_S_DAMAGE:
             e_sf_s_damage(i_this);
-            sVar2 = 1;
+            isLinkSearch = 1;
             break;
 
         case ACTION_CRASH:
             e_sf_crash(i_this);
-            sVar3 = 0;
+            colorTarget = 0;
             i_this->field_0x6ae = -1;
             break;
 
         case ACTION_GETUP:
-            sVar3 = e_sf_getup(i_this);
+            colorTarget = e_sf_getup(i_this);
             i_this->field_0x6ae = -1;
             break;
 
         case ACTION_CRASHWAIT:
             e_sf_crashwait(i_this);
-            sVar3 = 0;
+            colorTarget = 0;
             i_this->field_0x6ae = -1;
             break;
 
         case ACTION_SITWAIT:
-            sVar3 = e_sf_sitwait(i_this);
+            colorTarget = e_sf_sitwait(i_this);
             i_this->field_0x6ae = -1;
             break;
     }
 
-    if (sVar2) {
+    if (isLinkSearch) {
         i_this->mSound.setLinkSearch(true);
     } else {
         i_this->mSound.setLinkSearch(false);
     }
 
-    cLib_addCalcAngleS2(&i_this->field_0x6a6, sVar3, 1, 4);
+    cLib_addCalcAngleS2(&i_this->mColor, colorTarget, 1, 4);
 
-    if (i_this->arg3 != 0xFF && sVar1 && i_this->mPlayerAngleX < 0x1000 && i_this->mPlayerAngleX > -0x1000 && player_way_check(i_this)) {
-        u32 sVar8;
+    if (i_this->arg3 != 0xFF && unkFlag1 && i_this->mPlayerAngleX < 0x1000 && i_this->mPlayerAngleX > -0x1000 && player_way_check(i_this)) {
+        u32 uVar1;
         if (i_this->arg3 == 0 && cM_rndF(1.0f) < 0.2f) {
-            sVar8 = 0x3FF;
+            uVar1 = 0x3FF;
         } else {
-            sVar8 = 0x3FF;
+            uVar1 = 0x3FF;
         }
 
         if (i_this->mPlayerDistanceXZ < l_HIO.defense_recognize_range) {
-            int iVar1 = (cc_pl_cut_bit_get() & sVar8);
-            if (iVar1 != 0) {
+            int cutBit = (cc_pl_cut_bit_get() & uVar1);
+            if (cutBit != 0) {
                 i_this->mAction = ACTION_GUARD;
                 i_this->mActionPhase = PHASE_INIT;
                 i_this->mTimers[0] = 0;
@@ -1147,7 +1175,7 @@ static void action(e_sf_class* i_this) {
     if (i_this->field_0x6c0) {
         cMtx_YrotS(*calc_mtx, i_this->field_0x6e4.y);
 
-        if (i_this->field_0x718 == 0) {
+        if (i_this->mUnkTimer1 == 0) {
             spcc.z = i_this->field_0x6c0;
         } else {
             spcc.z = 0.0f;
@@ -1183,7 +1211,7 @@ static void action(e_sf_class* i_this) {
         spcc.x = 0.0f;
         spcc.y = 0.0f;
         spcc.z = -i_this->field_0x6c4;
-        cMtx_YrotS(*calc_mtx, i_this->field_0x6c8);
+        cMtx_YrotS(*calc_mtx, i_this->mHitDirectionY);
         MtxPosition(&spcc, &spd8);
         a_this->current.pos += spd8;
         cLib_addCalc0(&i_this->field_0x6c4, 1.0f, TREG_F(12) + 7.0f);
@@ -1194,7 +1222,7 @@ static void action(e_sf_class* i_this) {
     if (i_this->field_0x6ae > 0) {
         if (i_this->field_0x6ae == 5) {
             if ((i_this->mFrameCounter & 0xF) == 0 && cM_rndF(1.0f) < 0.3f) {
-                i_this->field_0x6ba = cM_rndFX(2500.0f);
+                i_this->mTargetHeadBobAngleY = cM_rndFX(2500.0f);
             }
         } else {
             if (i_this->field_0x6ae == 1) {
@@ -1205,47 +1233,47 @@ static void action(e_sf_class* i_this) {
                 spcc = player->eyePos - a_this->current.pos;
             }
             spcc.y += -(TREG_F(2) + 150.0f) * l_HIO.basic_size;
-            s16 sVar4 = cM_atan2s(spcc.x, spcc.z) - a_this->shape_angle.y;
-            s16 sVar5 = a_this->shape_angle.x + cM_atan2s(spcc.y, JMAFastSqrt(spcc.x * spcc.x + spcc.z * spcc.z));
+            s16 targetAngleY = cM_atan2s(spcc.x, spcc.z) - a_this->shape_angle.y;
+            s16 targetAngleZ = a_this->shape_angle.x + cM_atan2s(spcc.y, JMAFastSqrt(spcc.x * spcc.x + spcc.z * spcc.z));
 
-            if (sVar4 > 10000) {
-                sVar4 = 10000;
-            } else if (sVar4 < -10000) {
-                sVar4 = -10000;
+            if (targetAngleY > 10000) {
+                targetAngleY = 10000;
+            } else if (targetAngleY < -10000) {
+                targetAngleY = -10000;
             }
 
-            if (sVar5 > 10000) {
-                sVar5 = 10000;
-            } else if (sVar5 < -10000) {
-                sVar5 = -10000;
+            if (targetAngleZ > 10000) {
+                targetAngleZ = 10000;
+            } else if (targetAngleZ < -10000) {
+                targetAngleZ = -10000;
             }
 
-            cLib_addCalcAngleS2(&i_this->field_0x6b0, (s16)sVar4, 2, 0x1000);
-            cLib_addCalcAngleS2(&i_this->field_0x6b6, (s16)sVar5, 2, 0x1000);
+            cLib_addCalcAngleS2(&i_this->mHeadAngleY, (s16)targetAngleY, 2, 0x1000);
+            cLib_addCalcAngleS2(&i_this->mHeadAngleZ, (s16)targetAngleZ, 2, 0x1000);
         }
 
-        i_this->field_0x6ba = 0;
+        i_this->mTargetHeadBobAngleY = 0;
     } else {
-        cLib_addCalcAngleS2(&i_this->field_0x6b0, 0, 2, 0x1000);
-        cLib_addCalcAngleS2(&i_this->field_0x6b6, 0, 2, 0x1000);
-        i_this->field_0x6ba = 0;
+        cLib_addCalcAngleS2(&i_this->mHeadAngleY, 0, 2, 0x1000);
+        cLib_addCalcAngleS2(&i_this->mHeadAngleZ, 0, 2, 0x1000);
+        i_this->mTargetHeadBobAngleY = 0;
     }
 
-    cLib_addCalcAngleS2(&i_this->field_0x6b8, i_this->field_0x6ba, 4, 0x400);
+    cLib_addCalcAngleS2(&i_this->mHeadBobAngleY, i_this->mTargetHeadBobAngleY, 4, 0x400);
 
     if (i_this->field_0x6ae >= 0) {
         if ((i_this->mFrameCounter & 0x1F) == 0 && cM_rndF(1.0f) < 0.5f) {
-            i_this->field_0x6b4 = cM_rndFX(4000.0f);
+            i_this->mTargetHeadAngleX = cM_rndFX(4000.0f);
         }
     } else {
-        i_this->field_0x6b4 = 0;
+        i_this->mTargetHeadAngleX = 0;
     }
 
-    cLib_addCalcAngleS2(&i_this->field_0x6b2, i_this->field_0x6b4, 4, 0x400);
+    cLib_addCalcAngleS2(&i_this->mHeadAngleX, i_this->mTargetHeadAngleX, 4, 0x400);
 
     if (i_this->field_0x6bc != 0) {
         i_this->field_0x6bc--;
-        i_this->field_0x6b8 = (BREG_F(18) + 200.0f) * (i_this->field_0x6bc * cM_ssin(i_this->field_0x6bc * (BREG_S(5) + 12000)));
+        i_this->mHeadBobAngleY = (BREG_F(18) + 200.0f) * (i_this->field_0x6bc * cM_ssin(i_this->field_0x6bc * (BREG_S(5) + 12000)));
     }
 
     if (i_this->field_0x6f6) {
@@ -1258,7 +1286,7 @@ static void action(e_sf_class* i_this) {
             s16 sVar7 = 0;
             f32 fVar1 = 100.0f;
 
-            MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(2), *calc_mtx);
+            MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(JNT_BACKBONE2), *calc_mtx);
             spcc.set(0.0f, 0.0f, 0.0f);
             MtxPosition(&spcc, &pos);
             pos.y += 100.0f;
@@ -1307,7 +1335,7 @@ static void action(e_sf_class* i_this) {
         spcc.set(0.0f, 0.0f, 0.0f);
 
         static int foot_idx[2] = {
-            0x14, 0x18,
+            JNT_FOOTL2, JNT_FOOTR2,
         };
 
         for (int i = 0; i < 2; i++) {
@@ -1512,15 +1540,15 @@ static int daE_SF_Execute(e_sf_class* i_this) {
         i_this->mInvulnerabilityTimer--;
     }
 
-    if (i_this->field_0x718 != 0) {
-        i_this->field_0x718--;
+    if (i_this->mUnkTimer1 != 0) {
+        i_this->mUnkTimer1--;
     }
 
-    if (i_this->field_0x71a != 0) {
-        i_this->field_0x71a--;
+    if (i_this->mUnkTimer2 != 0) {
+        i_this->mUnkTimer2--;
     }
 
-    i_this->field_0x6ac = 1;
+    i_this->mCoSetBitFlag = 1;
     action(i_this);
     mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y, a_this->current.pos.z);
     mDoMtx_stack_c::XrotM(i_this->field_0x6ea.x);
@@ -1545,37 +1573,37 @@ static int daE_SF_Execute(e_sf_class* i_this) {
         sp50 += sp5c;
     }
 
-    MTXCopy(model->getAnmMtx(4), *calc_mtx);
+    MTXCopy(model->getAnmMtx(JNT_HEAD), *calc_mtx);
     sp2c.set(KREG_F(12) + -20.0f, KREG_F(13) + -30.0f, KREG_F(14));
     MtxPosition(&sp2c, &a_this->eyePos);
-    i_this->field_0x970[0].SetC(a_this->eyePos + sp50);
-    i_this->field_0x970[0].SetR(l_HIO.basic_size * 30.0f);
+    i_this->mCcSphs[0].SetC(a_this->eyePos + sp50);
+    i_this->mCcSphs[0].SetR(l_HIO.basic_size * 30.0f);
     a_this->attention_info.position = a_this->eyePos;
     a_this->attention_info.position.y += BREG_F(7) + 80.0f;
 
-    MTXCopy(model->getAnmMtx(2), *calc_mtx);
+    MTXCopy(model->getAnmMtx(JNT_BACKBONE2), *calc_mtx);
     sp2c.set(BREG_F(11), BREG_F(12), BREG_F(13));
     MtxPosition(&sp2c, &sp38);
-    i_this->field_0x970[1].SetC(sp38 + sp50);
-    i_this->field_0x970[1].SetR(l_HIO.basic_size * 35.0f);
+    i_this->mCcSphs[1].SetC(sp38 + sp50);
+    i_this->mCcSphs[1].SetR(l_HIO.basic_size * 35.0f);
     
-    MTXCopy(model->getAnmMtx(0x10), *calc_mtx);
+    MTXCopy(model->getAnmMtx(JNT_WAIST), *calc_mtx);
     sp2c.set(BREG_F(14) + 30.0f, BREG_F(15), BREG_F(16));
     MtxPosition(&sp2c, &sp38);
-    i_this->field_0x970[2].SetC(sp38 + sp50);
-    i_this->field_0x970[2].SetR(l_HIO.basic_size * 35.0f);
+    i_this->mCcSphs[2].SetC(sp38 + sp50);
+    i_this->mCcSphs[2].SetR(l_HIO.basic_size * 35.0f);
 
     for (int i = 0; i <= 2; i++) {
-        if (i_this->field_0x6ac != 0) {
-            i_this->field_0x970[i].OnCoSetBit();
+        if (i_this->mCoSetBitFlag != 0) {
+            i_this->mCcSphs[i].OnCoSetBit();
         } else {
-            i_this->field_0x970[i].OffCoSetBit();
+            i_this->mCcSphs[i].OffCoSetBit();
         }
-        dComIfG_Ccsp()->Set(&i_this->field_0x970[i]);
+        dComIfG_Ccsp()->Set(&i_this->mCcSphs[i]);
     }
 
     if (i_this->mSwordModel != NULL) {
-        MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(0xD), *calc_mtx);
+        MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(JNT_HANDR1), *calc_mtx);
         i_this->mSwordModel->setBaseTRMtx(*calc_mtx);
 
         if (i_this->mHitCheckFlag) {
@@ -1599,7 +1627,7 @@ static int daE_SF_Execute(e_sf_class* i_this) {
     }
 
     if (i_this->arg3 != 0xFF) {
-        MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(8), *calc_mtx);
+        MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(JNT_HANDL1), *calc_mtx);
         i_this->mShieldModel->setBaseTRMtx(*calc_mtx);
     }
 
@@ -1613,19 +1641,19 @@ static int daE_SF_Execute(e_sf_class* i_this) {
     dComIfG_Ccsp()->Set(&i_this->mAtSph);
 
     if (i_this->field_0x6ab != 0) {
-        MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(8), *calc_mtx);
+        MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(JNT_HANDL1), *calc_mtx);
         sp2c.set(JREG_F(5), JREG_F(6) + 40.0f, JREG_F(7));
         MtxPosition(&sp2c, &sp38);
-        i_this->field_0xe50.SetC(sp38);
-        i_this->field_0xe50.SetR((JREG_F(8) + 50.0f) * l_HIO.basic_size);
+        i_this->mTateSph.SetC(sp38);
+        i_this->mTateSph.SetR((JREG_F(8) + 50.0f) * l_HIO.basic_size);
         i_this->field_0x6ab = 0;
 
-        if (i_this->field_0x71a == 0 && i_this->field_0xe50.ChkTgHit()) {
-            i_this->field_0x71a = 15;
+        if (i_this->mUnkTimer2 == 0 && i_this->mTateSph.ChkTgHit()) {
+            i_this->mUnkTimer2 = 15;
             dScnPly_c::setPauseTimer(3);
 
             if (i_this->arg3 == 1) {
-                i_this->mAtInfo.mpCollider = i_this->field_0xe50.GetTgHitObj();
+                i_this->mAtInfo.mpCollider = i_this->mTateSph.GetTgHitObj();
                 at_power_check(&i_this->mAtInfo);
 
                 if (i_this->mAtInfo.mAttackPower <= 10) {
@@ -1646,24 +1674,24 @@ static int daE_SF_Execute(e_sf_class* i_this) {
                     for (int i = 0; i <= 1; i++) {
                         JPABaseEmitter* emitter = dComIfGp_particle_set(p_name[i], &a_this->current.pos, &a_this->shape_angle, &scale);
                         if (emitter != NULL) {
-                            MTXCopy(i_this->mShieldModel->getAnmMtx(0), *calc_mtx);
+                            MTXCopy(i_this->mShieldModel->getAnmMtx(JNT_WORLD_ROOT), *calc_mtx);
                             emitter->setGlobalRTMatrix(*calc_mtx);
                         }
                     }
 
                     i_this->mSound.startCreatureSound(Z2SE_OBJ_WOODSHIELD_BREAK, 0, -1);
                 } else {
-                    def_se_set(&i_this->mSound, i_this->field_0xe50.GetTgHitObj(), 0x29, 0);
+                    def_se_set(&i_this->mSound, i_this->mTateSph.GetTgHitObj(), 0x29, 0);
                 }
             } else {
-                def_se_set(&i_this->mSound, i_this->field_0xe50.GetTgHitObj(), 0x28, 0);
+                def_se_set(&i_this->mSound, i_this->mTateSph.GetTgHitObj(), 0x28, 0);
             }
         }
     } else {
-        i_this->field_0xe50.SetC(sp38 + sp5c);
+        i_this->mTateSph.SetC(sp38 + sp5c);
     }
 
-    dComIfG_Ccsp()->Set(&i_this->field_0xe50);
+    dComIfG_Ccsp()->Set(&i_this->mTateSph);
 
     demo_camera(i_this);
     a_this->attention_info.flags |= fopAc_AttnFlag_UNK_0x200000;
@@ -1848,14 +1876,14 @@ static cPhs__Step daE_SF_Create(fopAc_ac_c* a_this) {
         };
 
         for (int i = 0; i <= 2; i++) {
-            i_this->field_0x970[i].Set(cc_sph_src);
-            i_this->field_0x970[i].SetStts(&i_this->mStts);
+            i_this->mCcSphs[i].Set(cc_sph_src);
+            i_this->mCcSphs[i].SetStts(&i_this->mStts);
         }
 
         i_this->mAtSph.Set(at_sph_src);
         i_this->mAtSph.SetStts(&i_this->mStts);
-        i_this->field_0xe50.Set(tate_sph_src);
-        i_this->field_0xe50.SetStts(&i_this->mStts);
+        i_this->mTateSph.Set(tate_sph_src);
+        i_this->mTateSph.SetStts(&i_this->mStts);
 
         i_this->mFrameCounter = (int)cM_rndF(65535.0f) & 0xFF00;
         i_this->mSound.init(&a_this->current.pos, &a_this->eyePos, 3, 1);
