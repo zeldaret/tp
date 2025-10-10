@@ -2115,7 +2115,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_mirror_chain"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_sand"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_screw"),
-    ActorRel(NonMatching, "d_a_obj_mirror_table"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mirror_table"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_msima"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mvstair"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_myogan"),
