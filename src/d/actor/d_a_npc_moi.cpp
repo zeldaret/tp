@@ -454,8 +454,8 @@ BOOL daNpc_Moi_c::isDelete() {
 /* 80A74D8C-80A7513C 000F2C 03B0+00 1/1 0/0 0/0 .text            reset__11daNpc_Moi_cFv */
 void daNpc_Moi_c::reset() {
     int iVar8;
-    csXyz cStack_80;
     cXyz cStack_30;
+    csXyz cStack_80;
 
     int iVar1 = (u8*)&field_0x1670 - (u8*)&field_0x1610;
     if (mpMatAnm[0] != NULL) {
@@ -489,13 +489,13 @@ void daNpc_Moi_c::reset() {
         break;
     case TYPE_2:
         if (daNpcT_chkEvtBit(0xcd)) {
+            JUT_ASSERT(1932, 0 != mPath.getPathInfo());
             iVar8 = g_Counter.mCounter0 % mPath.getNumPnts();
             cStack_30 = mPath.getPntPos(iVar8);
             setPos(cStack_30);
             mPath.setIdx(iVar8);
-            mPath.setNextIdx(mPath.getNumPnts());
-            u16 path_idx = mPath.getIdx();
-            cStack_30 = mPath.getPntPos(path_idx);
+            mPath.setNextIdx();
+            cStack_30 = mPath.getPntPos(mPath.getIdx());
             cStack_80.y = cLib_targetAngleY(&current.pos, &cStack_30);
         }
         field_0x1666 = 1;
@@ -1576,8 +1576,7 @@ int daNpc_Moi_c::cutConversationWithUri(int param_1) {
             setPos(cStack_34);
             mPath.setIdx(0);
             mPath.setNextIdx(mPath.getNumPnts());
-            u16 path_idx = mPath.getIdx();
-            cStack_34 = mPath.getPntPos(path_idx);
+            cStack_34 = mPath.getPntPos(mPath.getIdx());
             setAngle(cLib_targetAngleY(&current.pos, &cStack_34));
             break;
         case 2:
@@ -1638,8 +1637,7 @@ int daNpc_Moi_c::cutFindWolf(int param_1) {
             mPath.offReverse();
             mPath.setIdx(0);
             mPath.setNextIdx(mPath.getNumPnts());
-            u16 path_idx = mPath.getIdx();
-            cStack_30 = mPath.getPntPos(path_idx);
+            cStack_30 = mPath.getPntPos(mPath.getIdx());
             field_0x1664 = fopAcM_searchPlayerAngleY(this);
             setAngle(field_0x1664);
             mPlayerActorMngr.entry(daPy_getPlayerActorClass());
