@@ -46,6 +46,10 @@ public:
     /* 80BA6690 */ void setRoomNo();
     /* 80BA66D4 */ void setMtx();
     /* 80BA674C */ void setSe();
+
+    void setAnmPlaySpeed(f32 i_playspeed) {
+        mAnmPlaySpeed = i_playspeed;
+    }
 };
 
 STATIC_ASSERT(sizeof(daObj_AutoMata_c) == 0xb38);
