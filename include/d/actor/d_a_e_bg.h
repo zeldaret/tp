@@ -52,8 +52,8 @@ private:
     /* 0x5BC */ Z2CreatureEnemy mCreatureSound;
     /* 0x660 */ cXyz field_0x660;
     /* 0x66C */ u32 mBgId;
-    /* 0x670 */ s32 mActionMode;
-    /* 0x674 */ s32 mMoveMode;
+    /* 0x670 */ s32 mAction;
+    /* 0x674 */ s32 mActionPhase;
     /* 0x678 */ u32 mShadowKey;
     /* 0x67C */ u8 field_0x67c[0x684 - 0x67C];
     /* 0x684 */ f32 field_0x684;

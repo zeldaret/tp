@@ -7,7 +7,6 @@
 
 #include "d/actor/d_a_e_bg.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/actor/d_a_e_df.h"
 #include "d/actor/d_a_mg_rod.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_bomb.h"
@@ -15,6 +14,73 @@
 #include "d/d_drawlist.h"
 #include "d/d_s_play.h"
 #include "f_op/f_op_camera_mng.h"
+
+enum E_bg_RES_File_ID {
+    /* BCK */
+    /* 0x5 */ BCK_BG_BOMPOSE = 0x5,
+    /* 0x6 */ BCK_BG_DAMAGE,
+    /* 0x7 */ BCK_BG_NORMALPOSE,
+
+    /* BMDR */
+    /* 0xA */ BMDR_BG = 0xA,
+
+    /* BRK */
+    /* 0xD */ BRK_BG_DEATH = 0xD,
+};
+
+enum Action {
+    /* 0x0 */ ACTION_BORN,
+    /* 0x1 */ ACTION_SWIM,
+    /* 0x2 */ ACTION_ATTACK,
+    /* 0x3 */ ACTION_DAMAGE,
+    /* 0x4 */ ACTION_BOMB,
+    /* 0x5 */ ACTION_BIRTH,
+    /* 0x6 */ ACTION_HOOK,
+    /* 0x7 */ ACTION_EAT,
+};
+
+enum Action_Phase {
+    /* 0x0 */ PHASE_INIT,
+
+    /* executeBorn */
+    /* 0x1 */ BORN_PHASE_1,
+    /* 0x2 */ BORN_PHASE_2,
+    /* 0x3 */ BORN_PHASE_END,
+    
+    /* executeSwim */
+    /* 0x1 */ SWIM_PHASE_1 = 0x1,
+    /* 0x2 */ SWIM_PHASE_2,
+    /* 0x3 */ SWIM_PHASE_END,
+
+    /* executeAttack */
+    /* 0xA */ ATTACK_PHASE_10 = 0xA,
+    /* 0x1 */ ATTACK_PHASE_1 = 0x1,
+    /* 0x2 */ ATTACK_PHASE_2,
+    /* 0x3 */ ATTACK_PHASE_3,
+    /* 0x4 */ ATTACK_PHASE_4,
+    /* 0x5 */ ATTACK_PHASE_END,
+
+    /* executeDamage */
+    /* 0x1 */ DAMAGE_PHASE_END = 0x1,
+
+    /* executeBomb */
+    /* 0x1 */ BOMB_PHASE_1 = 0x1,
+    /* 0x2 */ BOMB_PHASE_END,
+
+    /* executeBirth */
+    /* 0x1 */ BIRTH_PHASE_1 = 0x1,
+    /* 0x2 */ BIRTH_PHASE_2,
+    /* 0x3 */ BIRTH_PHASE_3,
+    /* 0x4 */ BIRTH_PHASE_END,
+
+    /* executeEat */
+    /* 0x1 */ EAT_PHASE_1 = 0x1,
+    /* 0x2 */ EAT_PHASE_2,
+    /* 0x3 */ EAT_PHASE_3,
+    /* 0x5 */ EAT_PHASE_5 = 0x5,
+    /* 0x6 */ EAT_PHASE_6,
+    /* 0x7 */ EAT_PHASE_END,
+};
 
 /* 8068580C-8068585C 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__12daE_BG_HIO_cFv */
 daE_BG_HIO_c::daE_BG_HIO_c() {
@@ -126,7 +192,7 @@ int daE_BG_c::draw() {
 
     mpBrkAnm->entry(model->getModelData());
 
-    if ((mActionMode == 3 || mActionMode == 4) && field_0x694 != 0) {
+    if ((mAction == 3 || mAction == 4) && field_0x694 != 0) {
         J3DGXColorS10 color;
         color.r = 32.0f - fabsf(cM_scos(field_0x698) * 30.0f);
         color.g = 0;
@@ -158,16 +224,16 @@ static int daE_BG_Draw(daE_BG_c* i_this) {
 }
 
 /* 80685B70-80685C14 000450 00A4+00 2/2 0/0 0/0 .text            setBck__8daE_BG_cFiUcff */
-void daE_BG_c::setBck(int param_0, u8 param_1, f32 param_2, f32 param_3) {
-    mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_BG", param_0), param_1, param_2,
-        param_3, 0.0f, -1.0f);
+void daE_BG_c::setBck(int i_index, u8 i_attr, f32 i_morf, f32 i_rate) {
+    mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_BG", i_index), i_attr, i_morf,
+        i_rate, 0.0f, -1.0f);
 }
 
 /* 80685C14-80685C2C 0004F4 0018+00 7/7 0/0 0/0 .text            setActionMode__8daE_BG_cFii */
 void daE_BG_c::setActionMode(int i_action, int i_mode) {
-    if (mActionMode != i_action) {
-        mActionMode = i_action;
-        mMoveMode = i_mode;
+    if (mAction != i_action) {
+        mAction = i_action;
+        mActionPhase = i_mode;
     }
 }
 
@@ -210,9 +276,9 @@ void daE_BG_c::damage_check() {
         mSphere.ClrTgHit();
         mCreatureSound.startCreatureVoice(Z2SE_EN_BG_V_DAMAGE, -1);
         if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
-            setActionMode(6, 0);
+            setActionMode(ACTION_HOOK, 0);
         } else {
-            setActionMode(3, 0);
+            setActionMode(ACTION_DAMAGE, 0);
         }
     }
 }
@@ -220,11 +286,11 @@ void daE_BG_c::damage_check() {
 /* 80685DBC-80685F04 00069C 0148+00 1/1 0/0 0/0 .text            setSparkEffect__8daE_BG_cFv */
 void daE_BG_c::setSparkEffect() {
     static u16 enemyBombID[5] = {
-        0x0A0D,
-        0x0A0E,
-        0x0A0F,
-        0x0A10,
-        0x0A11,
+        ID_ZM_J_BOMBINSECTSPARK00,
+        ID_ZM_J_BOMBINSECTSPARK01,
+        ID_ZM_J_BOMBINSECTSPARK02,
+        ID_ZM_J_BOMBINSECTSPARK03,
+        ID_ZM_J_BOMBINSECTSPARK04,
     };
 
     mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(1));
@@ -263,12 +329,12 @@ static daE_BG_HIO_c l_HIO;
 void daE_BG_c::executeBorn() {
     dBgS_GndChk gndChk;
     cXyz currentWithOffset;
-    switch (mMoveMode) {
-    case 0: {
+    switch (mActionPhase) {
+    case PHASE_INIT: {
         field_0x6ac = 0;
         field_0x6af = 1;
         mBgId = 0xffffffff;
-        mMoveMode = 1;
+        mActionPhase = BORN_PHASE_1;
         field_0x68f = 0;
         attention_info.flags = 0;
 
@@ -278,7 +344,7 @@ void daE_BG_c::executeBorn() {
         gndChk.SetPos(&currentWithOffset);
         current.pos.y = dComIfG_Bgsp().GroundCross(&gndChk);
     }
-    case 1: {
+    case BORN_PHASE_1: {
         if (field_0x68c != 0xff) {
             if (dComIfGs_isSwitch(field_0x68c, fopAcM_GetRoomNo(this))) {
                 return;
@@ -288,17 +354,15 @@ void daE_BG_c::executeBorn() {
         if (mBgId == 0xffffffff) {
             if (fopAcM_searchPlayerDistance(this) < 500.0f) {
                 field_0x68f = l_HIO.mJumpTime;
-                mMoveMode = 2;
+                mActionPhase = BORN_PHASE_2;
             }
-        } else {
-            if (fopAcM_SearchByID(mBgId) == NULL) {
-                mBgId = 0xffffffff;
-            }
+        } else if (fopAcM_SearchByID(mBgId) == NULL) {
+            mBgId = 0xffffffff;
         }
 
         break;
     }
-    case 2: {
+    case BORN_PHASE_2: {
         if (field_0x68c != 0xff) {
             if (dComIfGs_isSwitch(field_0x68c, fopAcM_GetRoomNo(this))) {
                 return;
@@ -308,12 +372,12 @@ void daE_BG_c::executeBorn() {
         if (field_0x68f == 0) {
             mBgId = fopAcM_createChild(PROC_E_BG, fopAcM_GetID(this), 0xffffff02, &current.pos,
                                            fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
-            mMoveMode = 3;
+            mActionPhase = BORN_PHASE_END;
         }
 
         break;
     }
-    case 3: {
+    case BORN_PHASE_END: {
         if (field_0x68c != 0xff) {
             if (dComIfGs_isSwitch(field_0x68c, fopAcM_GetRoomNo(this))) {
                 return;
@@ -321,7 +385,7 @@ void daE_BG_c::executeBorn() {
         }
 
         if (fopAcM_SearchByID(mBgId) != NULL) {
-            mMoveMode = 1;
+            mActionPhase = 1;
         }
 
         break;
@@ -342,28 +406,28 @@ void daE_BG_c::executeSwim() {
                 if (daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
                     if (field_0x684 != -G_CM3D_F_INF) {
                         if (daPy_getPlayerActorClass()->current.pos.y < field_0x684 - 20.0f) {
-                            setActionMode(2, 0);
+                            setActionMode(ACTION_ATTACK, 0);
                             return;
                         }
                     } else {
-                        setActionMode(2, 0);
+                        setActionMode(ACTION_ATTACK, 0);
                         return;
                     }
                 } else if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
-                    setActionMode(2, 0);
+                    setActionMode(ACTION_ATTACK, 0);
                     return;
                 }
             }
         }
 
         if (search_esa() != NULL) {
-            setActionMode(7, 0);
+            setActionMode(ACTION_EAT, 0);
             return;
         }
     }
 
-    switch (mMoveMode) {
-    case 0: {
+    switch (mActionPhase) {
+    case PHASE_INIT: {
         field_0x660.y = home.pos.y + cM_rndFX(500.0f);
         if (field_0x684 != -G_CM3D_F_INF && field_0x660.y > field_0x684 - 50.0f) {
             field_0x660.y = field_0x684 - 50.0f;
@@ -380,9 +444,9 @@ void daE_BG_c::executeSwim() {
 
         field_0x68f = cM_rndFX(20.0f) + 90.0f;
 
-        mMoveMode = 1;
+        mActionPhase = SWIM_PHASE_1;
     }
-    case 1: {
+    case SWIM_PHASE_1: {
         field_0x6ac = field_0x69a - shape_angle.y;
 
         cLib_addCalcAngleS(&shape_angle.y, field_0x69a, 0x10, 0x400, 0x100);
@@ -393,11 +457,11 @@ void daE_BG_c::executeSwim() {
 
         field_0x6a0 = 0x2000;
         if (abs((s16)(shape_angle.y - field_0x69a)) < 0x800) {
-            mMoveMode = 2;
+            mActionPhase = SWIM_PHASE_2;
         }
         break;
     }
-    case 2: {
+    case SWIM_PHASE_2: {
         field_0x6ac = field_0x69a - shape_angle.y;
 
         cLib_addCalcAngleS(&shape_angle.y, field_0x69a, 0x10, 0x400, 0x100);
@@ -410,22 +474,22 @@ void daE_BG_c::executeSwim() {
         cLib_addCalcAngleS(&field_0x6a0, 0xc00, 8, 0x400, 0x100);
 
         if (speed.y > 0.0f && field_0x684 != -G_CM3D_F_INF && current.pos.y > field_0x684 - 50.0f) {
-            mMoveMode = 3;
+            mActionPhase = SWIM_PHASE_END;
         }
 
         if (current.pos.abs(home.pos) > l_HIO.mSwimRange) {
             if (abs((s16)(cLib_targetAngleY(&current.pos, &home.pos) - field_0x69a)) > 0x2000) {
-                mMoveMode = 3;
+                mActionPhase = SWIM_PHASE_END;
             }
         }
 
         if (field_0x68f == 0) {
-            mMoveMode = 3;
+            mActionPhase = SWIM_PHASE_END;
         }
 
         break;
     }
-    case 3: {
+    case SWIM_PHASE_END: {
         field_0x6ac = field_0x69a - shape_angle.y;
         cLib_addCalcAngleS(&shape_angle.y, field_0x69a, 0x10, 0x400, 0x100);
         cLib_addCalcAngleS(&shape_angle.x, 0, 0x10, 0x400, 0x100);
@@ -435,7 +499,7 @@ void daE_BG_c::executeSwim() {
         cLib_chaseF(&speed.y, cM_ssin(shape_angle.x), 0.1f);
 
         if (speed.abs() <= 2.0f) {
-            mMoveMode = 0;
+            mActionPhase = 0;
         }
 
         break;
@@ -461,15 +525,15 @@ void daE_BG_c::executeAttack() {
     field_0x6a2 = nREG_S(0) + 0xc00;
     field_0x69c += field_0x6a0;
 
-    if (mMoveMode <= 2) {
+    if (mActionPhase <= 2) {
         if (daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
             if (field_0x684 != -G_CM3D_F_INF && playerPos.y >= field_0x684 - 20.0f) {
-                setActionMode(1, 0);
+                setActionMode(ACTION_SWIM, 0);
                 return;
             }
         } else {
             if (!dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
-                setActionMode(1, 0);
+                setActionMode(ACTION_SWIM, 0);
                 return;
             }
         }
@@ -477,13 +541,13 @@ void daE_BG_c::executeAttack() {
         if (current.pos.abs(home.pos) > l_HIO.mAttackRange ||
              fopAcM_searchPlayerDistance(this) > l_HIO.mPlayerSearchDistance)
         {
-            setActionMode(1, 0);
+            setActionMode(ACTION_SWIM, 0);
             return;
         }
     }
 
-    switch (mMoveMode) {
-    case 0:
+    switch (mActionPhase) {
+    case PHASE_INIT:
         field_0x6ac = fopAcM_searchPlayerAngleY(this) - shape_angle.y;
 
         cLib_addCalcAngleS(&field_0x6a0, 0x2400, 8, 0x400, 0x100);
@@ -495,7 +559,7 @@ void daE_BG_c::executeAttack() {
 
         if (!dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
             if (daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
-                mMoveMode = 1;
+                mActionPhase = ATTACK_PHASE_1;
                 field_0x69a = cM_rndFX(8192.0f);
             }
         }
@@ -503,7 +567,7 @@ void daE_BG_c::executeAttack() {
         if (mAtSphere.ChkAtHit()) {
             fopAc_ac_c* hitActor = dCc_GetAc(mAtSphere.GetAtHitObj()->GetAc());
             if (fopAcM_GetName(hitActor) == PROC_ALINK) {
-                mMoveMode = 10;
+                mActionPhase = ATTACK_PHASE_10;
                 field_0x68f = 30;
                 speedF = cM_rndFX(1.0f) + -5.0f;
                 shape_angle.x = 0x1800;
@@ -511,7 +575,7 @@ void daE_BG_c::executeAttack() {
             }
         }
         break;
-    case 10:
+    case ATTACK_PHASE_10:
         field_0x6a2 = nREG_S(0) + 0x1000;
 
         cLib_addCalcAngleS(&field_0x6a0, 0x1000, 8, 0x400, 0x100);
@@ -522,11 +586,11 @@ void daE_BG_c::executeAttack() {
         cLib_chaseF(&speed.y, 0.0f, 1.0f);
 
         if (field_0x68f == 0) {
-            mMoveMode = 0;
+            mActionPhase = PHASE_INIT;
         }
 
         break;
-    case 1:
+    case ATTACK_PHASE_1:
         field_0x6a2 = nREG_S(0) + 0xc00;
         unkShort1 = field_0x69a + fopCamM_GetAngleY(camera);
         unkXyz1 = playerPos;
@@ -565,7 +629,7 @@ void daE_BG_c::executeAttack() {
         }
 
         if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
-            mMoveMode = 0;
+            mActionPhase = PHASE_INIT;
             break;
         }
 
@@ -577,22 +641,20 @@ void daE_BG_c::executeAttack() {
         if (dComIfGp_getAttention()->LockonTruth() &&
             dComIfGp_getAttention()->LockonTarget(0) == this) {
             unkFlag1 = true;
-        } else {
-            if ((s16)cLib_distanceAngleS(unkShort1, fopAcM_searchPlayerAngleY(this)) > 0x6800) {
-                if (current.pos.abs(unkXyz1) < 200.0f) {
-                    unkFlag1 = true;
-                } else if (mObjAcch.ChkWallHit()) {
-                    unkFlag1 = true;
-                }
+        } else if ((s16)cLib_distanceAngleS(unkShort1, fopAcM_searchPlayerAngleY(this)) > 0x6800) {
+            if (current.pos.abs(unkXyz1) < 200.0f) {
+                unkFlag1 = true;
+            } else if (mObjAcch.ChkWallHit()) {
+                unkFlag1 = true;
             }
         }
 
         if (unkFlag1) {
-            mMoveMode = 2;
+            mActionPhase = ATTACK_PHASE_2;
             field_0x68f = 30;
         }
         break;
-    case 2:
+    case ATTACK_PHASE_2:
         unkXyz1 = playerPos;
         unkXyz1.y += 200.0f;
 
@@ -606,16 +668,14 @@ void daE_BG_c::executeAttack() {
         cLib_chaseF(&speed.y, 0.0f, 1.0f);
 
         if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
-            mMoveMode = 0;
-        } else {
-            if (field_0x68f == 0) {
-                mMoveMode = 3;
-                field_0x68f = 10;
-                field_0x6a0 = 0x2000;
-            }
+            mActionPhase = PHASE_INIT;
+        } else if (field_0x68f == 0) {
+            mActionPhase = ATTACK_PHASE_3;
+            field_0x68f = 10;
+            field_0x6a0 = 0x2000;
         }
         break;
-    case 3:
+    case ATTACK_PHASE_3:
         field_0x6b0 = 0x01;
         field_0x6a2 = nREG_S(0) + 0x1000;
 
@@ -633,12 +693,12 @@ void daE_BG_c::executeAttack() {
         cLib_chaseF(&speed.y, 0.0f, 1.0f);
 
         if (field_0x68f == 0) {
-            mMoveMode = 4;
+            mActionPhase = ATTACK_PHASE_4;
             field_0x68f = 60;
         }
 
         break;
-    case 4:
+    case ATTACK_PHASE_4:
         field_0x6b0 = 1;
         field_0x6a2 = nREG_S(0) + 0x1000;
 
@@ -658,7 +718,7 @@ void daE_BG_c::executeAttack() {
         if (mAtSphere.ChkAtHit()) {
             fopAc_ac_c* hitActor = dCc_GetAc(mAtSphere.GetAtHitObj()->GetAc());
             if (fopAcM_GetName(hitActor) == PROC_ALINK) {
-                mMoveMode = 5;
+                mActionPhase = ATTACK_PHASE_END;
                 field_0x68f = 30;
 
                 speedF = -5.0f;
@@ -670,12 +730,12 @@ void daE_BG_c::executeAttack() {
             }
         }
         if (field_0x68f == 0) {
-            mMoveMode = 0;
+            mActionPhase = PHASE_INIT;
             field_0x690 = 200;
         }
 
         break;
-    case 5:
+    case ATTACK_PHASE_END:
         unkXyz1 = playerPos;
         unkXyz1.y += 100.0f;
 
@@ -689,7 +749,7 @@ void daE_BG_c::executeAttack() {
         cLib_chaseF(&speed.y, 0.0f, 1.0f);
 
         if (field_0x68f == 0) {
-            mMoveMode = 0;
+            mActionPhase = PHASE_INIT;
             field_0x690 = 200;
         }
 
@@ -703,8 +763,8 @@ void daE_BG_c::executeAttack() {
 void daE_BG_c::executeDamage() {
     field_0x694 = 160;
 
-    switch (mMoveMode) {
-    case 0:
+    switch (mActionPhase) {
+    case PHASE_INIT:
         field_0x6ac = field_0x6a2 = 0;
 
         mSphere.OffTgSetBit();
@@ -712,16 +772,16 @@ void daE_BG_c::executeDamage() {
 
         attention_info.flags = 0;
 
-        setBck(6, 0, 3.0f, 1.0f);
+        setBck(BCK_BG_DAMAGE, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
 
-        mMoveMode = 1;
+        mActionPhase = DAMAGE_PHASE_END;
 
         current.angle.y = mAtInfo.mHitDirection.y + 0x8000;
 
         speedF = 10.0f;
         field_0x69a = 0x1000;
         speed.y = 0.0f;
-    case 1:
+    case DAMAGE_PHASE_END:
         cLib_chaseF(&field_0x688, 0.0f, 5.0f);
 
         shape_angle.y += field_0x69a;
@@ -740,7 +800,7 @@ void daE_BG_c::executeDamage() {
         }
 
         if (mpMorfSO->isStop()) {
-            setActionMode(4, 0);
+            setActionMode(ACTION_BOMB, PHASE_INIT);
         }
 
         mpBrkAnm->play();
@@ -784,23 +844,23 @@ bool daE_BG_c::setBombCarry(int param_0) {
 
 /* 80687DEC-80687FC4 0026CC 01D8+00 1/1 0/0 0/0 .text            executeBomb__8daE_BG_cFv */
 void daE_BG_c::executeBomb() {
-    switch (mMoveMode) {
-    case 0:
+    switch (mActionPhase) {
+    case PHASE_INIT:
         mSphere.OnTgSetBit();
 
         field_0x6ac = field_0x6a2 = 0;
 
-        setBck(5, 2, 3.0f, 1.0f);
+        setBck(BCK_BG_BOMPOSE, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
 
-        mMoveMode = 1;
-    case 1:
+        mActionPhase = BOMB_PHASE_1;
+    case BOMB_PHASE_1:
         field_0x694 = 0xa0;
 
         shape_angle.y += field_0x69a;
         shape_angle.x += field_0x69a;
 
         if (mObjAcch.ChkGroundHit()) {
-            mMoveMode = 2;
+            mActionPhase = BOMB_PHASE_END;
             speed.y = 1.0f;
         } else {
             cLib_chaseAngleS(&field_0x69a, 0x100, 0x80);
@@ -814,7 +874,7 @@ void daE_BG_c::executeBomb() {
         cLib_chaseF(&speedF, 0.0f, 0.2f);
 
         break;
-    case 2:
+    case BOMB_PHASE_END:
         shape_angle.y += field_0x69a;
 
         if (mObjAcch.ChkGroundHit()) {
@@ -850,11 +910,11 @@ void daE_BG_c::executeBirth() {
     field_0x6a2 = 0xc00;
     field_0x69c += field_0x6a0;
 
-    switch (mMoveMode) {
-    case 0:
+    switch (mActionPhase) {
+    case PHASE_INIT:
         mAtSphere.OffAtSetBit();
 
-        mMoveMode = 1;
+        mActionPhase = BIRTH_PHASE_1;
 
         field_0x688 = -100.0f;
         field_0x68f = 30;
@@ -868,7 +928,7 @@ void daE_BG_c::executeBirth() {
         mCreatureSound.startCreatureSound(Z2SE_EN_BG_SANDSMOKE, 0, -1);
 
         break;
-    case 1:
+    case BIRTH_PHASE_1:
         field_0x6b0 = 1;
 
         if (setBombCarry(0)) {
@@ -878,12 +938,12 @@ void daE_BG_c::executeBirth() {
         cLib_chaseF(&field_0x688, -40.0f, 5.0f);
 
         if (field_0x68f == 0) {
-            mMoveMode = 2;
+            mActionPhase = BIRTH_PHASE_2;
             field_0x68f = 0x1e;
         }
 
         break;
-    case 2:
+    case BIRTH_PHASE_2:
         field_0x6b0 = 1;
 
         if (setBombCarry(0)) {
@@ -892,7 +952,7 @@ void daE_BG_c::executeBirth() {
 
         cLib_chaseF(&field_0x688, 0.0f, 1.0f);
         if (field_0x68f == 0) {
-            mMoveMode = 3;
+            mActionPhase = BIRTH_PHASE_3;
             field_0x688 = 0.0f;
             speed.y = 10.0f;
 
@@ -902,7 +962,7 @@ void daE_BG_c::executeBirth() {
         }
 
         break;
-    case 3:
+    case BIRTH_PHASE_3:
         cLib_chaseF(&speed.y, 0.0f, 0.2f);
         cLib_addCalcAngleS(&field_0x6a0, 0x1000, 0x10, 0x200, 0x100);
 
@@ -915,7 +975,7 @@ void daE_BG_c::executeBirth() {
 
             if (speed.y <= 0.0f) {
                 field_0x68f = 0x0f;
-                mMoveMode = 4;
+                mActionPhase = BIRTH_PHASE_END;
                 gravity = 0.0f;
                 maxFallSpeed = -40.0f;
                 speed.y = 0.0f;
@@ -924,20 +984,20 @@ void daE_BG_c::executeBirth() {
         }
 
         break;
-    case 4:
+    case BIRTH_PHASE_END:
         cLib_addCalcAngleS(&field_0x6a0, 0x800, 8, 0x400, 0x100);
 
         cLib_chaseAngleS(&shape_angle.y, fopAcM_searchPlayerAngleY(this), 0x100);
         cLib_chaseAngleS(&shape_angle.x, 0, 0x100);
 
         if (field_0x68f == 0) {
-            setActionMode(2, 0);
+            setActionMode(ACTION_ATTACK, 0);
         }
     }
 
-    if (mMoveMode >= 1 && mMoveMode <= 3) {
-        mParticle2 = dComIfGp_particle_set(mParticle2, 0x84c4, &home.pos, &shape_angle, 0);
-        mParticle3 = dComIfGp_particle_set(mParticle3, 0x84c5, &home.pos, &shape_angle, 0);
+    if (mActionPhase >= 1 && mActionPhase <= 3) {
+        mParticle2 = dComIfGp_particle_set(mParticle2, dPa_RM(ID_ZF_S_BGSAND00_SMOKE), &home.pos, &shape_angle, 0);
+        mParticle3 = dComIfGp_particle_set(mParticle3, dPa_RM(ID_ZF_S_BGSAND01_SPLASH), &home.pos, &shape_angle, 0);
     }
 }
 
@@ -954,7 +1014,7 @@ void daE_BG_c::executeHook() {
 void daE_BG_c::executeEat() {
     fopAc_ac_c* rod = search_esa();
     if (rod == 0) {
-        setActionMode(1, 0);
+        setActionMode(ACTION_SWIM, PHASE_INIT);
         return;
     }
 
@@ -963,8 +1023,8 @@ void daE_BG_c::executeEat() {
     field_0x6a2 = nREG_S(0) + 0xc00;
     field_0x69c += field_0x6a0;
 
-    switch (this->mMoveMode) {
-    case 0:
+    switch (this->mActionPhase) {
+    case PHASE_INIT:
         field_0x660.y = rodPos.y + cM_rndFX(100.0f);
         if (field_0x684 != -G_CM3D_F_INF && field_0x660.y > field_0x684 - 50.0f) {
             field_0x660.y = field_0x684 - 50.0f;
@@ -980,8 +1040,9 @@ void daE_BG_c::executeEat() {
         field_0x660.z = (cM_rndF(100.0f) + 200.0f) * cM_scos(field_0x69a);
 
         field_0x68f = cM_rndFX(10.0f) + 30.0f;
-        mMoveMode = 1;
-    case 1:
+        mActionPhase = EAT_PHASE_1;
+        // fallthrough
+    case EAT_PHASE_1:
         field_0x6ac = field_0x69a - shape_angle.y;
         cLib_addCalcAngleS(&shape_angle.y, field_0x69a, 0x10, 0x400, 0x100);
         cLib_addCalcAngleS(&shape_angle.x, 0, 0x10, 0x400, 0x100);
@@ -992,8 +1053,9 @@ void daE_BG_c::executeEat() {
         field_0x6a0 = 0x2000;
 
         if (abs((s16)(shape_angle.y - field_0x69a)) < 0x800) {
-            mMoveMode = 2;
+            mActionPhase = EAT_PHASE_2;
         }
+        // fallthrough
     case 2:
         field_0x6ac = field_0x69a - shape_angle.y;
         cLib_addCalcAngleS(&shape_angle.y, field_0x69a, 0x10, 0x400, 0x100);
@@ -1005,15 +1067,15 @@ void daE_BG_c::executeEat() {
         cLib_addCalcAngleS(&field_0x6a0, 0xc00, 8, 0x400, 0x100);
 
         if (field_0x660.abs(current.pos) < 50.0f) {
-            mMoveMode = 3;
+            mActionPhase = EAT_PHASE_3;
         }
 
         if (field_0x68f == 0) {
-            mMoveMode = 3;
+            mActionPhase = EAT_PHASE_3;
         }
 
         break;
-    case 3:
+    case EAT_PHASE_3:
         field_0x6ac = field_0x69a - shape_angle.y;
         cLib_addCalcAngleS(&shape_angle.y, field_0x69a, 0x10, 0x400,
                            0x100);
@@ -1023,13 +1085,13 @@ void daE_BG_c::executeEat() {
         cLib_chaseF(&speed.y, cM_ssin(shape_angle.x), 0.1f);
         if (speed.abs() <= 2.0f) {
             if (rodPos.abs(current.pos) < 100.0f) {
-                mMoveMode = 5;
+                mActionPhase = EAT_PHASE_5;
             } else {
-                mMoveMode = 0;
+                mActionPhase = PHASE_INIT;
             }
         }
         break;
-    case 5:
+    case EAT_PHASE_5:
         field_0x6ac = targetAngleY - shape_angle.y;
 
         cLib_addCalcAngleS(&field_0x6a0, 0x800, 8, 0x400, 0x100);
@@ -1041,9 +1103,10 @@ void daE_BG_c::executeEat() {
         cLib_chaseF(&speed.y, cM_ssin(shape_angle.x), 0.1f);
 
         if (abs((s16)(shape_angle.y - targetAngleY)) < 0x800) {
-            mMoveMode = 6;
+            mActionPhase = EAT_PHASE_6;
         }
-    case 6:
+        // fallthrough
+    case EAT_PHASE_6:
         field_0x6ac = targetAngleY - shape_angle.y;
         cLib_addCalcAngleS(&field_0x6a0, 0x2400, 8, 0x400, 0x100);
         cLib_addCalcAngleS(&shape_angle.y, targetAngleY, 0x10, 0x400, 0x100);
@@ -1053,12 +1116,12 @@ void daE_BG_c::executeEat() {
         cLib_chaseF(&speed.y, cM_ssin(shape_angle.x) * 2.0f, 0.5f);
 
         if (rodPos.abs(current.pos) < 30.0f) {
-            mMoveMode = 7;
+            mActionPhase = EAT_PHASE_END;
             field_0x68f = cM_rndF(30.0f) + 60.0f;
         }
 
         break;
-    case 7:
+    case EAT_PHASE_END:
         field_0x6ac = targetAngleY - shape_angle.y;
 
         cLib_addCalcAngleS(&field_0x6a0, 0x2000, 8, 0x400, 0x100);
@@ -1076,12 +1139,12 @@ void daE_BG_c::executeEat() {
         }
 
         if (rodPos.abs(current.pos) > 70.0f && !speed.abs()) {
-            mMoveMode = 5;
+            mActionPhase = EAT_PHASE_5;
 
             field_0x68f = cM_rndF(30.0f) + 30.0f;
 
             if (cM_rnd() < 0.3f) {
-                mMoveMode = 0;
+                mActionPhase = PHASE_INIT;
             }
         }
 
@@ -1097,36 +1160,36 @@ void daE_BG_c::action() {
     field_0x6b0 = 0;
     BOOL isAttacking = FALSE;
 
-    switch (this->mActionMode) {
-    case 0:
+    switch (this->mAction) {
+    case ACTION_BORN:
         executeBorn();
         break;
-    case 1:
+    case ACTION_SWIM:
         executeSwim();
         break;
-    case 2:
+    case ACTION_ATTACK:
         executeAttack();
         isAttacking = TRUE;
         break;
-    case 3:
+    case ACTION_DAMAGE:
         executeDamage();
         break;
-    case 4:
+    case ACTION_BOMB:
         executeBomb();
         break;
-    case 5:
+    case ACTION_BIRTH:
         executeBirth();
         break;
-    case 6:
+    case ACTION_HOOK:
         executeHook();
         break;
-    case 7:
+    case ACTION_EAT:
         executeEat();
         break;
     }
 
     mCreatureSound.setLinkSearch(isAttacking);
-    if (mActionMode != 0 && mActionMode != 3) {
+    if (mAction != 0 && mAction != 3) {
         dBgS_LinChk linChk;
         linChk.Set(&dComIfGp_getCamera(0)->lookat.eye, &attention_info.position, this);
         if (dComIfG_Bgsp().LineCross(&linChk)) {
@@ -1431,11 +1494,11 @@ int daE_BG_c::create() {
         }
 
         if (field_0x68d == 1) {
-            setActionMode(0, 0);
+            setActionMode(ACTION_BORN, 0);
         } else if (field_0x68d == 0x02) {
-            setActionMode(5, 0);
+            setActionMode(ACTION_BIRTH, 0);
         } else {
-            setActionMode(1, 0);
+            setActionMode(ACTION_SWIM, 0);
         }
 
         onWolfNoLock();
