@@ -14,7 +14,7 @@
  */
 class daObjMirrorTable_c : public fopAc_ac_c {
 public:
-    /* 80C99938 */ int createHeap();
+    /* 80C99938 */ inline int createHeap();
     /* 80C99F7C */ inline bool isSwitch();
     inline void checkOnPanel();
     /* 80C9A298 */ int draw();
