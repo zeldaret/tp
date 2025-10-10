@@ -105,7 +105,7 @@ u16 cc_pl_cut_bit_get() {
     } else if (player_p->getCutType() == daPy_py_c::CUT_TYPE_FINISH_VERTICAL) {
         bit = 0x40;
     } else if (player_p->getCutType() == daPy_py_c::CUT_TYPE_TURN_RIGHT ||
-               player_p->getCutType() == 9 || player_p->getCutType() == 43 ||
+               player_p->getCutType() == 9 || player_p->getCutType() == daPy_py_c::CUT_TYPE_HORSE_TURN ||
                player_p->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT)
     {
         bit = 0x80;
@@ -115,7 +115,7 @@ u16 cc_pl_cut_bit_get() {
         bit = 0x800;
     } else if (player_p->getCutType() == daPy_py_c::CUT_TYPE_JUMP) {
         bit = 0x100;
-    } else if (player_p->getCutType() == 40 || player_p->getCutType() == 41) {
+    } else if (player_p->getCutType() == daPy_py_c::CUT_TYPE_UNK_28 || player_p->getCutType() == daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
         bit = 0x400;
     }
 
