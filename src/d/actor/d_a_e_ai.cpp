@@ -9,6 +9,49 @@
 
 #include "f_op/f_op_actor_enemy.h"
 
+enum E_ai_RES_File_ID {
+    /* BCK */
+    /* 0x05 */ BCK_AI_ATTACK = 0x5,
+    /* 0x06 */ BCK_AI_ATTACK_DOWN,
+    /* 0x07 */ BCK_AI_ATTACK_UP,
+    /* 0x08 */ BCK_AI_DIE_ATTACK,
+    /* 0x09 */ BCK_AI_MOVE,
+    /* 0x0A */ BCK_AI_SHOCK,
+
+    /* BMDR */
+    /* 0x0D */ BMDR_AI = 0xD,
+
+    /* BRK */
+    /* 0x10 */ BRK_AI_DAMAGE = 0x10,
+    /* 0x11 */ BRK_AI_MOVE,
+    /* 0x12 */ BRK_AI_START,
+    /* 0x13 */ BRK_AI_STOP,
+};
+
+enum Action_Phase {
+    /* 0x0 */ PHASE_INIT,
+    
+    /* e_ai_damage */
+    /* 0x1 */ DAMAGE_PHASE_END,
+
+    /* e_ai_attack */
+    /* 0x1 */ ATTACK_PHASE_HAMMER_HIT = 0x1,
+    /* 0x2 */ ATTACK_PHASE_END,
+
+    /* e_ai_move */
+    /* 0x1 */ MOVE_PHASE_END = 0x1,
+
+    /* e_ai_wait */
+    /* 0x1 */ WAIT_PHASE_BRK_START = 0x1,
+    /* 0x2 */ WAIT_PHASE_2,
+    /* 0x3 */ WAIT_PHASE_BRK_MOVE,
+    /* 0xA */ WAIT_PHASE_10 = 0xA,
+
+    /* e_ai_return */
+    /* 0x1 */ RETURN_PHASE_END = 0x1,
+
+};
+
 class daE_AI_HIO_c : public JORReflexible {
 public:
     /* 8067916C */ daE_AI_HIO_c();
@@ -274,8 +317,8 @@ void e_ai_class::damage_check() {
                 m_action = ACTION_DAMAGE;
 
                 field_0x692 = 0;
-                m_mode = 0;
-                dComIfGp_particle_set(0x81D7, &current.pos, &shape_angle, NULL);
+                m_actionPhase = PHASE_INIT;
+                dComIfGp_particle_set(dPa_RM(ID_ZI_S_AI_COREHIT_B), &current.pos, &shape_angle, NULL);
                 field_0x6ba = 200;
                 m_atInfo.mHitStatus = 2;
                 m_hitCount = 3;
@@ -292,9 +335,9 @@ void e_ai_class::damage_check() {
                         m_action = ACTION_DAMAGE;
 
                         field_0x692 = 0;
-                        m_mode = 0;
+                        m_actionPhase = PHASE_INIT;
                         hitstun_time = 5;
-                        dComIfGp_particle_set(0x81D7, &current.pos, &shape_angle, NULL);
+                        dComIfGp_particle_set(dPa_RM(ID_ZI_S_AI_COREHIT_B), &current.pos, &shape_angle, NULL);
                         field_0x6ba = 200;
                         m_timers[2] = 0;
                         m_atInfo.mHitStatus = 2;
@@ -302,19 +345,19 @@ void e_ai_class::damage_check() {
                     } else {
                         hitstun_time = 3;
                         m_hitCount++;
-                        dComIfGp_particle_set(0x81D6, &current.pos, &shape_angle, NULL);
+                        dComIfGp_particle_set(dPa_RM(ID_ZI_S_AI_COREHIT_A), &current.pos, &shape_angle, NULL);
 
                         if (m_hitCount >= 2) {
                             m_ccCyl.SetTgHitMark(CcG_Tg_UNK_MARK_3);
                         }
 
-                        if (m_action == ACTION_WAIT && m_mode == 1) {
-                            m_mode = 3;
-                            m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", 0x12), 1, 0, 1.0f, 0, -1);
-                            field_0x5cc = 0x12;
-                        } else if (field_0x5cc == 0x11) {
-                            m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", 0x10), 1, 0, 1.0f, 0, -1);
-                            field_0x5cc = 0x10;
+                        if (m_action == ACTION_WAIT && m_actionPhase == WAIT_PHASE_BRK_START) {
+                            m_actionPhase = WAIT_PHASE_BRK_MOVE;
+                            m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", BRK_AI_START), 1, 0, 1.0f, 0, -1);
+                            m_currentBrkAnm = BRK_AI_START;
+                        } else if (m_currentBrkAnm == BRK_AI_MOVE) {
+                            m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", BRK_AI_DAMAGE), 1, 0, 1.0f, 0, -1);
+                            m_currentBrkAnm = BRK_AI_DAMAGE;
                         }
 
                         field_0x6ba = 15;
@@ -324,13 +367,13 @@ void e_ai_class::damage_check() {
 
                 dScnPly_c::setPauseTimer(hitstun_time);
             } else if (tg_hit_obj->ChkAtType(AT_TYPE_BOMB) || tg_hit_obj->ChkAtType(AT_TYPE_IRON_BALL) || (tg_hit_obj->ChkAtType(AT_TYPE_NORMAL_SWORD) && field_0xd28 == 1)) {
-                if (m_action == ACTION_WAIT && m_mode == 1) {
-                    m_mode = 3;
-                    m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", 0x12), 1, 0, 1.0f, 0, -1);
-                    field_0x5cc = 0x12;
+                if (m_action == ACTION_WAIT && m_actionPhase == WAIT_PHASE_BRK_START) {
+                    m_actionPhase = WAIT_PHASE_BRK_MOVE;
+                    m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", BRK_AI_START), 1, 0, 1.0f, 0, -1);
+                    m_currentBrkAnm = BRK_AI_START;
                     m_sound.startCreatureSound(Z2SE_EN_AI_AWAKE, 0, -1);
                 } else {
-                    anm_init(10, 5.0f, 0, 1.0f);
+                    anm_init(BCK_AI_SHOCK, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                     field_0x692 = 1;
                     m_action = ACTION_DAMAGE;
                     speedF = 0.0f;
@@ -363,7 +406,7 @@ void e_ai_class::e_ai_damage() {
         switch (field_0x694) {
         case 0:
             if (m_acch.ChkGroundHit()) {
-                anm_init(8, 5.0f, 0, 1.0f + yREG_F(0));
+                anm_init(BCK_AI_DIE_ATTACK, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f + yREG_F(0));
                 speed.y = 40.0f + TREG_F(10);
                 field_0x694 = 1;
             }
@@ -388,32 +431,32 @@ void e_ai_class::e_ai_damage() {
             break;
         }
 
-        switch (m_mode) {
-        case 0:
-            m_mode = 1;
+        switch (m_actionPhase) {
+        case PHASE_INIT:
+            m_actionPhase = DAMAGE_PHASE_END;
             m_timers[1] = 70;
             gravity = -20.0f + TREG_F(11);
             break;
-        case 1:
+        case DAMAGE_PHASE_END:
             if (m_timers[0] == 0) {
                 m_timers[0] = 5.0f + cM_rndF(10.0f);
 
                 if (cM_rndF(1.0f) < 0.5f) {
-                    field_0x6a8 = 0x800;
+                    m_targetAngleY = 0x800;
                 } else {
-                    field_0x6a8 = -0x800;
+                    m_targetAngleY = -0x800;
                 }
 
                 m_sound.startCreatureVoice(Z2SE_EN_AI_V_MOGAKU, -1);
             }
 
             speedF = 0.5f * l_HIO.movement_speed;
-            current.angle.y += field_0x6a8;
+            current.angle.y += m_targetAngleY;
             shape_angle.z = (2000.0f + TREG_F(16)) * cM_ssin(m_lifetime * (TREG_S(7) + 6000));
 
             if (m_timers[1] == 0) {
                 m_sound.startCreatureSound(Z2SE_EN_AI_FLASH, 0, -1);
-                mpEmitter = dComIfGp_particle_set(0x81ED, &current.pos, &tevStr, &shape_angle, NULL);
+                mpEmitter = dComIfGp_particle_set(dPa_RM(ID_ZI_S_AI_FLASH_A), &current.pos, &tevStr, &shape_angle, NULL);
                 mpEmitter->becomeImmortalEmitter();
                 m_timers[1] = 1000;
                 m_timers[2] = 56;
@@ -440,9 +483,9 @@ void e_ai_class::e_ai_damage() {
     case 1:
         if (m_modelMorf->isStop() && m_timers[0] == 0) {
             m_action = ACTION_MOVE;
-            anm_init(7, 1.0f, 0, 1.0f);
+            anm_init(BCK_AI_ATTACK_UP, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             m_modelMorf->setFrame(25.0f);
-            m_mode = 1;
+            m_actionPhase = 1;
             field_0x694 = 0;
             field_0x696 = 0;
         }
@@ -453,20 +496,20 @@ void e_ai_class::e_ai_damage() {
 /* 8067A2CC-8067A54C 00124C 0280+00 1/1 0/0 0/0 .text            e_ai_attack__10e_ai_classFv */
 void e_ai_class::e_ai_attack() {
     speedF = 0.0f;
-    cLib_addCalcAngleS2(&current.angle.y, field_0x6a8 + TREG_S(4) + 4000, 2, 0x400);
+    cLib_addCalcAngleS2(&current.angle.y, m_targetAngleY + TREG_S(4) + 4000, 2, 0x400);
 
-    switch (m_mode) {
-    case 0:
+    switch (m_actionPhase) {
+    case PHASE_INIT:
         if (m_timers[0] == 0) {
-            anm_init(6, 0.5f, 0, 1.0f);
+            anm_init(BCK_AI_ATTACK_DOWN, 0.5f, J3DFrameCtrl::EMode_NONE, 1.0f);
             m_sound.startCreatureVoice(Z2SE_EN_AI_V_HAMMER, -1);
             m_sound.startCreatureSound(Z2SE_EN_AI_HAMMER, 0, -1);
-            m_mode = 1;
+            m_actionPhase = ATTACK_PHASE_HAMMER_HIT;
         } else {
-            cLib_addCalcAngleS2(&current.angle.y, field_0x6a8 + TREG_S(4) + 4000, 1, 0x800);
+            cLib_addCalcAngleS2(&current.angle.y, m_targetAngleY + TREG_S(4) + 4000, 1, 0x800);
         }
         break;
-    case 1:
+    case ATTACK_PHASE_HAMMER_HIT:
         field_0x67c = 1;
         if ((int)m_modelMorf->getFrame() == 4) {
             m_sound.startCreatureSound(Z2SE_EN_AI_HAMMER_HIT, 0, -1);
@@ -475,7 +518,7 @@ void e_ai_class::e_ai_attack() {
         }
 
         if (m_modelMorf->isStop()) {
-            m_mode = 2;
+            m_actionPhase = ATTACK_PHASE_END;
 
             if (m_hitCount == 0) {
                 m_timers[0] = 30;
@@ -486,15 +529,15 @@ void e_ai_class::e_ai_attack() {
             }
         }
         return;
-    case 2:
+    case ATTACK_PHASE_END:
         m_ccAtSph.OffAtSetBit();
         field_0x67c = 1;
 
         if (m_timers[0] == 0) {
             m_ccAtSph.OnAtSetBit();
-            anm_init(9, 15.0f, 2, 0.0f);
+            anm_init(BCK_AI_MOVE, 15.0f, J3DFrameCtrl::EMode_LOOP, 0.0f);
             m_action = ACTION_MOVE;
-            m_mode = 0;
+            m_actionPhase = 0;
             field_0x694 = 0;
             field_0x696 = 0;
         }
@@ -504,9 +547,9 @@ void e_ai_class::e_ai_attack() {
 
 /* 8067A54C-8067AA48 0014CC 04FC+00 1/1 0/0 0/0 .text            e_ai_move__10e_ai_classFv */
 void e_ai_class::e_ai_move() {
-    if ((field_0x5cc == 0x10 || field_0x5cc == 0x12) && m_brk->isStop()) {
-        m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", 0x11), 1, 2, 1.0f, 0, -1);
-        field_0x5cc = 0x11;
+    if ((m_currentBrkAnm == BRK_AI_DAMAGE || m_currentBrkAnm == BRK_AI_START) && m_brk->isStop()) {
+        m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", BRK_AI_MOVE), 1, 2, 1.0f, 0, -1);
+        m_currentBrkAnm = BRK_AI_MOVE;
     }
 
     if (m_timers[2] != 0) {
@@ -547,9 +590,9 @@ void e_ai_class::e_ai_move() {
             m_sound.startCreatureSound(Z2SE_EN_AI_DOSU, 0, -1);
             fopAcM_effSmokeSet1(&field_0xd2c, &field_0xd34, &current.pos, &shape_angle, 1.0f + TREG_F(9), &tevStr, 1);
 
-            if (m_playerDist > l_HIO.pl_recognition_distance && current.pos.absXZ(home.pos) > 100.0f * field_0x5ba) {
+            if (m_playerDist > l_HIO.pl_recognition_distance && current.pos.absXZ(home.pos) > 100.0f * arg0) {
                 field_0x694 = 0;
-                m_mode = 0;
+                m_actionPhase = 0;
                 m_action = ACTION_RETURN;
                 return;
             }
@@ -557,17 +600,17 @@ void e_ai_class::e_ai_move() {
         break;
     }
 
-    switch (m_mode) {
-    case 0:
-        if (m_anm != 7) {
-            anm_init(7, 0.5f, 0, 1.0f);
+    switch (m_actionPhase) {
+    case PHASE_INIT:
+        if (m_anm != BCK_AI_ATTACK_UP) {
+            anm_init(BCK_AI_ATTACK_UP, 0.5f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
-        m_mode = 1;
+        m_actionPhase = MOVE_PHASE_END;
         break;
-    case 1:
+    case MOVE_PHASE_END:
         if (field_0x694 == 1) {
-            field_0x6a8 = m_angleToPlayer;
-            cLib_addCalcAngleS2(&current.angle.y, field_0x6a8, ((yREG_S(0) + 16) / (m_hitCount + 1)), 0x800);
+            m_targetAngleY = m_angleToPlayer;
+            cLib_addCalcAngleS2(&current.angle.y, m_targetAngleY, ((yREG_S(0) + 16) / (m_hitCount + 1)), 0x800);
 
             if (m_playerDist > l_HIO.attack_range_2) {
                 speedF = l_HIO.movement_speed;
@@ -576,7 +619,7 @@ void e_ai_class::e_ai_move() {
 
         if (m_modelMorf->isStop() && pl_check(l_HIO.attack_range_2, 0x7FFF)) {
             m_action = ACTION_ATTACK;
-            m_mode = 0;
+            m_actionPhase = PHASE_INIT;
             m_timers[0] = 4;
         }
         break;
@@ -585,36 +628,36 @@ void e_ai_class::e_ai_move() {
 
 /* 8067AA48-8067ACA0 0019C8 0258+00 1/1 0/0 0/0 .text            e_ai_wait__10e_ai_classFv */
 void e_ai_class::e_ai_wait() {
-    switch (m_mode) {
-    case 0:
-        anm_init(9, 5.0f, 2, 0.0f);
-        m_mode = 1;
+    switch (m_actionPhase) {
+    case PHASE_INIT:
+        anm_init(BCK_AI_MOVE, 5.0f, J3DFrameCtrl::EMode_LOOP, 0.0f);
+        m_actionPhase = WAIT_PHASE_BRK_START;
         break;
-    case 1:
+    case WAIT_PHASE_BRK_START:
         if (pl_check(l_HIO.pl_recognition_distance, 0x5000)) {
-            m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", 0x12), 1, 0, 1.0f, 0, -1);
-            field_0x5cc = 0x12;
-            m_mode = 3;
+            m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", BRK_AI_START), 1, 0, 1.0f, 0, -1);
+            m_currentBrkAnm = BRK_AI_START;
+            m_actionPhase = WAIT_PHASE_BRK_MOVE;
         }
         break;
-    case 2:
+    case WAIT_PHASE_2:
         if (m_modelMorf->isStop()) {
-            m_mode = 0;
+            m_actionPhase = PHASE_INIT;
         }
         break;
-    case 3:
+    case WAIT_PHASE_BRK_MOVE:
         if (m_brk->isStop()) {
             m_action = ACTION_MOVE;
-            m_mode = 0;
+            m_actionPhase = PHASE_INIT;
             m_timers[2] = 50;
             m_sound.startCreatureSound(Z2SE_EN_AI_AWAKE, 0, -1);
-            m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", 0x11), 1, 2, 1.0f, 0, -1);
-            field_0x5cc = 0x11;
+            m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", BRK_AI_MOVE), 1, 2, 1.0f, 0, -1);
+            m_currentBrkAnm = BRK_AI_MOVE;
         }
         break;
-    case 10:
+    case WAIT_PHASE_10:
         if (m_brk->isStop()) {
-            m_mode = 1;
+            m_actionPhase = WAIT_PHASE_BRK_START;
         }
         break;
     }
@@ -622,42 +665,42 @@ void e_ai_class::e_ai_wait() {
 
 /* 8067ACA0-8067B024 001C20 0384+00 1/1 0/0 0/0 .text            e_ai_return__10e_ai_classFv */
 void e_ai_class::e_ai_return() {
-    switch (m_mode) {
-    case 0:
+    switch (m_actionPhase) {
+    case PHASE_INIT:
         if (m_acch.ChkGroundHit()) {
             if (m_timers[1] == 0) {
                 speed.y = 25.0f + TREG_F(0);
-                m_mode = 1;
+                m_actionPhase = RETURN_PHASE_END;
             }
             speedF = 0.0f;
         }
         break;
-    case 1:
+    case RETURN_PHASE_END:
         if (current.pos.absXZ(home.pos) > 50.0f) {
             speedF = l_HIO.movement_speed;
-            field_0x6a8 = cLib_targetAngleY(&current.pos, &home.pos);
-            cLib_addCalcAngleS2(&current.angle.y, field_0x6a8, 2, 0x500);
+            m_targetAngleY = cLib_targetAngleY(&current.pos, &home.pos);
+            cLib_addCalcAngleS2(&current.angle.y, m_targetAngleY, 2, 0x500);
         } else {
             speedF = 0.0f;
-            field_0x6a8 = home.angle.y;
-            cLib_chaseAngleS(&current.angle.y, field_0x6a8, 0x300);
+            m_targetAngleY = home.angle.y;
+            cLib_chaseAngleS(&current.angle.y, m_targetAngleY, 0x300);
         }
 
         if (home.angle.y == current.angle.y && m_acch.ChkGroundHit()) {
-            m_mode = 10;
+            m_actionPhase = WAIT_PHASE_10;
             m_action = ACTION_WAIT;
-            anm_init(9, 5.0f, 2, 0.0f);
-            m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", 0x13), 1, 0, 1.0f, 0, -1);
-            field_0x5cc = 0x13;
+            anm_init(BCK_AI_MOVE, 5.0f, J3DFrameCtrl::EMode_LOOP, 0.0f);
+            m_brk->init(m_modelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", BRK_AI_STOP), 1, 0, 1.0f, 0, -1);
+            m_currentBrkAnm = BRK_AI_STOP;
         }
 
         if (m_acch.ChkGroundHit()) {
-            if ((m_playerDist < l_HIO.pl_recognition_distance || m_ccCyl.ChkTgHit()) && field_0x5cc != 0x13) {
+            if ((m_playerDist < l_HIO.pl_recognition_distance || m_ccCyl.ChkTgHit()) && m_currentBrkAnm != BRK_AI_STOP) {
                 m_action = ACTION_MOVE;
             }
 
             speedF = 0.0f;
-            m_mode = 0;
+            m_actionPhase = PHASE_INIT;
 
             if (m_hitCount == 0) {
                 m_timers[1] = 30;
@@ -884,10 +927,10 @@ static int daE_AI_Delete(e_ai_class* i_this) {
 
 /* 8067B6F0-8067B87C 002670 018C+00 1/1 0/0 0/0 .text            CreateHeap__10e_ai_classFv */
 int e_ai_class::CreateHeap() {
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_AI", 0xD);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_AI", BMDR_AI);
     JUT_ASSERT(1703, modelData != NULL);
 
-    m_modelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_AI", 9), 2, 1.0f, 0, -1, &m_sound, 0, 0x11000084);
+    m_modelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_AI", BCK_AI_MOVE), 2, 1.0f, 0, -1, &m_sound, 0, 0x11000084);
     if (m_modelMorf == NULL || m_modelMorf->getModel() == NULL) {
         return 0;
     }
@@ -897,7 +940,7 @@ int e_ai_class::CreateHeap() {
         return 0;
     }
 
-    J3DAnmTevRegKey* brk_p = (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", 0x12);
+    J3DAnmTevRegKey* brk_p = (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_AI", BRK_AI_START);
     if (!m_brk->init(m_modelMorf->getModel()->getModelData(), brk_p, 1, 0, 0.0f, 0, -1)) {
         return 0;
     }
@@ -917,7 +960,7 @@ int e_ai_class::Create() {
     int phase_state = dComIfG_resLoad(&m_phase, "E_AI");
     if (phase_state == cPhs_COMPLEATE_e) {
         OS_REPORT("E_AI PARAM %x\n", fopAcM_GetParam(this));
-        field_0x5ba = fopAcM_GetParam(this);
+        arg0 = fopAcM_GetParam(this);
 
         m_swbit = fopAcM_GetParam(this) >> 0x10;
         if (m_swbit != 0xFF && dComIfGs_isSwitch(m_swbit, fopAcM_GetRoomNo(this))) {
@@ -957,7 +1000,7 @@ int e_ai_class::Create() {
         m_sound.init(&current.pos, &eyePos, 3, 1);
         m_atInfo.mpSound = &m_sound;
 
-        l_HIO.home_distance = 100.0f * field_0x5ba;
+        l_HIO.home_distance = 100.0f * arg0;
         gravity = -10.0f;
 
         daE_AI_Execute(this);
