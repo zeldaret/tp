@@ -193,6 +193,79 @@ enum daB_GND_ACTION {
     ACTION_END = 22,
 };
 
+enum Action_Phase {
+    /* 0x0 */ PHASE_INIT,
+
+    /* b_gnd_h_wait */
+    /*  -1 */ H_WAIT_PHASE_INIT_BGM = -1,
+    /* 0x1 */ H_WAIT_PHASE_EXECUTE = 0x1,
+    /* 0x2 */ H_WAIT_PHASE_END,
+
+    /* b_gnd_h_wait2 */
+    /* 0x1 */ H_WAIT2_PHASE_WAIT = 0x1,
+    /* 0x2 */ H_WAIT2_PHASE_END,
+
+    /* b_gnd_h_run_a */
+    /* 0x01 */ H_RUN_A_PHASE_RUN = 0x1,
+    /* 0x02 */ H_RUN_A_PHASE_2,
+    /* 0x03 */ H_RUN_A_PHASE_RATTACK02_A,
+    /* 0x04 */ H_RUN_A_PHASE_RATTACK02_B,
+    /* 0x05 */ H_RUN_A_PHASE_RATTACK02_C,
+    /* 0x06 */ H_RUN_A_PHASE_6,
+    /* 0x07 */ H_RUN_A_PHASE_RDAMEGE01_A,
+    /* 0x08 */ H_RUN_A_PHASE_RDAMEGE01_B,
+    /* 0x09 */ H_RUN_A_PHASE_RRETURN,
+    /* 0x0A */ H_RUN_A_PHASE_10,
+    /* 0x0B */ H_RUN_A_PHASE_RDAMEGE02,
+    /* 0x0C */ H_RUN_A_PHASE_12,
+    /* 0x14 */ H_RUN_A_PHASE_RBRAKE = 0x14,
+    /* 0x15 */ H_RUN_A_PHASE_END,
+
+    /* b_gnd_h_run_p */
+    /* 0x1 */ H_RUN_P_PHASE_RUN = 0x1,
+    /* 0x2 */ H_RUN_P_PHASE_2,
+    /* 0x3 */ H_RUN_P_PHASE_RATTACK01_A,
+    /* 0x4 */ H_RUN_P_PHASE_RATTACK01_D,
+    /* 0x5 */ H_RUN_P_PHASE_RATTACK01_B_C,
+    /* 0x6 */ H_RUN_P_PHASE_END,
+
+    /* b_gnd_h_jump */
+    /* 0x1 */ H_JUMP_PHASE_JUMP_MIDDLE = 0x1,
+    /* 0x2 */ H_JUMP_PHASE_JUMP_END,
+    /* 0x3 */ H_JUMP_PHASE_END,
+
+    /* b_gnd_h_end */
+    /* 0x1 */ H_END_PHASE_1 = 0x1,
+    /* 0x2 */ H_END_PHASE_2,
+    /* 0x3 */ H_END_PHASE_3,
+
+    /* b_gnd_g_wait */
+    /* 0x1 */ G_WAIT_PHASE_EXECUTE = 0x1,
+    /* 0x2 */ G_WAIT_PHASE_ATTACK,
+    /* 0x3 */ G_WAIT_PHASE_RESET,
+    /* 0x5 */ G_WAIT_PHASE_WAIT02 = 0x5,
+    /* 0x6 */ G_WAIT_PHASE_6,
+
+    /* b_gnd_g_attack */
+    /* 0x01 */ ATTACK_PHASE_1 = 0x1,
+    /* 0x02 */ ATTACK_PHASE_2,
+    /* 0x03 */ ATTACK_PHASE_3,
+    /* 0x04 */ ATTACK_PHASE_4,
+    /* 0x05 */ ATTACK_PHASE_5,
+    /* 0x06 */ ATTACK_PHASE_6,
+    /* 0x07 */ ATTACK_PHASE_7,
+    /* 0x08 */ ATTACK_PHASE_8,
+    /* 0x09 */ ATTACK_PHASE_9,
+    /* 0x0A */ ATTACK_PHASE_10,
+    /* 0x0B */ ATTACK_PHASE_11,
+    /* 0x0C */ ATTACK_PHASE_12,
+    /* 0x0D */ ATTACK_PHASE_13,
+    /* 0x0F */ ATTACK_PHASE_15 = 0xF,
+    /* 0x10 */ ATTACK_PHASE_16,
+    /* 0x11 */ ATTACK_PHASE_17,
+    /* 0x12 */ ATTACK_PHASE_18,
+ };
+
 static u8 l_initHIO;
 
 /* 805F4A4C-805F4A94 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__13daB_GND_HIO_cFv */
@@ -588,25 +661,28 @@ static void b_gnd_h_wait(b_gnd_class* i_this) {
     f32 player_distxz = i_this->mPlayerDistXZ;
     s16 player_angle = i_this->mPlayerAngleY;
 
-    switch (i_this->mMoveMode) {
-    case -1:
+    switch (i_this->mActionPhase) {
+    case H_WAIT_PHASE_INIT_BGM:
         Z2GetAudioMgr()->bgmStart(0x200005D, 0, 0);
-    case 0:
-        anm_init(i_this, B_GND_BCK_EGND_RWAIT, 10.0f, 2, 1.0f);
-        h_anm_init(i_this, B_HG_BCK_HG_WAIT, 10.0f, 2, 1.0f);
-        i_this->mMoveMode = 1;
-    case 1:
-        if (i_this->field_0xc44[0] == 0) {
-            i_this->mMoveMode = 2;
+        // fallthrough
+    case PHASE_INIT:
+        anm_init(i_this, B_GND_BCK_EGND_RWAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        h_anm_init(i_this, B_HG_BCK_HG_WAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        i_this->mActionPhase = H_WAIT_PHASE_EXECUTE;
+        // fallthrough
+    case H_WAIT_PHASE_EXECUTE:
+        if (i_this->mTimers[0] == 0) {
+            i_this->mActionPhase = H_WAIT_PHASE_END;
         }
         break;
-    case 2:
+
+    case H_WAIT_PHASE_END:
         cLib_addCalcAngleS2(&a_this->current.angle.y, player_angle, 8, 0x200);
         
         s16 angle_diff = player_angle - a_this->current.angle.y;
         if (angle_diff < 0x800 && angle_diff > -0x800) {
-            i_this->mActionMode = ACTION_HWAIT_2;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_HWAIT_2;
+            i_this->mActionPhase = PHASE_INIT;
         }
     }
 
@@ -624,8 +700,8 @@ static void b_gnd_h_wait2(b_gnd_class* i_this) {
     s16 player_angle = i_this->mPlayerAngleY;
     int h_anm_frame = i_this->mpHorseMorf->getFrame();
     
-    switch (i_this->mMoveMode) {
-    case 0:
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
         if (i_this->mGakeChkType != 0) {
             i_this->field_0x5cc = a_this->current.angle.y + 0x8000;
         } else if (cM_rndF(1.0f) < 0.5f) {
@@ -635,34 +711,36 @@ static void b_gnd_h_wait2(b_gnd_class* i_this) {
         }
 
         if ((s16)(i_this->field_0x5cc - a_this->current.angle.y) > 0) {
-            anm_init(i_this, B_GND_BCK_EGND_RINANAKI02L, 3.0f, 0, 1.0f);
-            h_anm_init(i_this, B_HG_BCK_HG_STANDTURNL, 3.0f, 0, 1.0f);
+            anm_init(i_this, B_GND_BCK_EGND_RINANAKI02L, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            h_anm_init(i_this, B_HG_BCK_HG_STANDTURNL, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             OS_REPORT(" GND TURN L\n");
         } else {
-            anm_init(i_this, B_GND_BCK_EGND_RINANAKI02R, 3.0f, 0, 1.0f);
-            h_anm_init(i_this, B_HG_BCK_HG_STANDTURNR, 3.0f, 0, 1.0f);
+            anm_init(i_this, B_GND_BCK_EGND_RINANAKI02R, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            h_anm_init(i_this, B_HG_BCK_HG_STANDTURNR, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             OS_REPORT(" GND TURN R\n");
         }
 
-        i_this->mMoveMode = 1;
+        i_this->mActionPhase = H_WAIT2_PHASE_WAIT;
         i_this->field_0xc68 = 0x100;
-    case 1:
+        // fallthrough
+    case H_WAIT2_PHASE_WAIT:
         if (h_anm_frame >= 12) {
             cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5cc, 4, i_this->field_0xc68);
             cLib_addCalcAngleS2(&i_this->field_0xc68, 0x400, 1, 0x80);
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            anm_init(i_this, B_GND_BCK_EGND_RWAIT, 10.0f, 2, 1.0f);
-            h_anm_init(i_this, B_HG_BCK_HG_WAIT, 10.0f, 2, 1.0f);
-            i_this->mMoveMode = 2;
+            anm_init(i_this, B_GND_BCK_EGND_RWAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            h_anm_init(i_this, B_HG_BCK_HG_WAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            i_this->mActionPhase = H_WAIT2_PHASE_END;
         }
         break;
+
     case 2:
         if (player_distxz < 4000.0f || player_distxz > 7500.0f) {
-            i_this->mActionMode = ACTION_HRUN_P;
-            i_this->mMoveMode = 0;
-            i_this->field_0xc44[3] = 100;
+            i_this->mAction = ACTION_HRUN_P;
+            i_this->mActionPhase = 0;
+            i_this->mTimers[3] = 100;
         }
     }
 
@@ -701,16 +779,16 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     s16 spE = 0x80;
     cXyz sp74, sp68;
 
-    switch (i_this->mMoveMode) {
-    case 0:
-    case 1: {
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
+    case H_RUN_A_PHASE_RUN: {
         if (i_this->mAnmID != B_GND_BCK_EGND_RRUN) {
-            anm_init(i_this, B_GND_BCK_EGND_RRUN, 5.0f, 2, 1.0f);
-            h_anm_init(i_this, B_HG_BCK_HG_RUN, 5.0f, 2, 1.0f);
+            anm_init(i_this, B_GND_BCK_EGND_RRUN, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            h_anm_init(i_this, B_HG_BCK_HG_RUN, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mPlaySpeed = 1.0f;
         }
 
-        i_this->mMoveMode = 2;
+        i_this->mActionPhase = H_RUN_A_PHASE_2;
         i_this->field_0xc68 = 0;
         
         int sp28 = 0;
@@ -725,46 +803,51 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
         }
 
         i_this->field_0xc60 = sp28;
-        i_this->field_0xc44[2] = cM_rndF(100.0f) + 100.0f;
+        i_this->mTimers[2] = cM_rndF(100.0f) + 100.0f;
     }
-    case 2:
-        if (i_this->field_0xc44[2] == 0 && sp9) {
-            i_this->mMoveMode = 3;
-        } else if (player_distxz > 5000.0f && i_this->field_0xc44[3] == 0) {
+    // fallthrough
+    case H_RUN_A_PHASE_2:
+        if (i_this->mTimers[2] == 0 && sp9) {
+            i_this->mActionPhase = H_RUN_A_PHASE_RATTACK02_A;
+        } else if (player_distxz > 5000.0f && i_this->mTimers[3] == 0) {
             if (sp2C) {
-                i_this->mMoveMode = 20;
-                i_this->field_0xc44[0] = 10;
+                i_this->mActionPhase = H_RUN_A_PHASE_RBRAKE;
+                i_this->mTimers[0] = 10;
             } else {
-                i_this->mActionMode = ACTION_HRUN_P;
-                i_this->mMoveMode = 0;
-                i_this->field_0xc44[3] = 100;
+                i_this->mAction = ACTION_HRUN_P;
+                i_this->mActionPhase = PHASE_INIT;
+                i_this->mTimers[3] = 100;
             }
         }
 
         i_this->field_0xc6a = 1;
         break;
-    case 3:
-        anm_init(i_this, B_GND_BCK_EGND_RATTACK02_A, 3.0f, 0, 1.0f);
-        i_this->mMoveMode = 4;
+
+    case H_RUN_A_PHASE_RATTACK02_A:
+        anm_init(i_this, B_GND_BCK_EGND_RATTACK02_A, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        i_this->mActionPhase = H_RUN_A_PHASE_RATTACK02_B;
         i_this->field_0x1e0f = 1;
         i_this->field_0x1e10 = 0.0f;
-    case 4:
+        // fallthrough
+    case H_RUN_A_PHASE_RATTACK02_B:
         if (i_this->mpModelMorf->isStop()) {
-            anm_init(i_this, B_GND_BCK_EGND_RATTACK02_B, 3.0f, 2, 1.0f);
-            i_this->field_0xc44[0] = 20;
-            i_this->mMoveMode = 5;
+            anm_init(i_this, B_GND_BCK_EGND_RATTACK02_B, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            i_this->mTimers[0] = 20;
+            i_this->mActionPhase = H_RUN_A_PHASE_RATTACK02_C;
         }
         break;
-    case 5:
-        if (i_this->field_0xc44[0] == 0) {
-            anm_init(i_this, B_GND_BCK_EGND_RATTACK02_C, 3.0f, 0, 1.0f);
-            i_this->mMoveMode = 6;
-            i_this->field_0xc44[0] = 15;
+
+    case H_RUN_A_PHASE_RATTACK02_C:
+        if (i_this->mTimers[0] == 0) {
+            anm_init(i_this, B_GND_BCK_EGND_RATTACK02_C, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            i_this->mActionPhase = H_RUN_A_PHASE_6;
+            i_this->mTimers[0] = 15;
             i_this->mGndSound.startCreatureVoice(Z2SE_EN_GND_V_ATTACK02C, -1);
         }
         break;
-    case 6:
-        if (i_this->field_0xc44[0] == 1) {
+
+    case H_RUN_A_PHASE_6:
+        if (i_this->mTimers[0] == 1) {
             i_this->field_0x1e50.y = a_this->shape_angle.y + 0x4000;
             i_this->field_0x1e50.x = 0;
             i_this->field_0x1e0f = 2;
@@ -773,66 +856,75 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mMoveMode = 2;
-            i_this->field_0xc44[2] = cM_rndF(100.0f) + 100.0f;
+            i_this->mActionPhase = H_RUN_A_PHASE_2;
+            i_this->mTimers[2] = cM_rndF(100.0f) + 100.0f;
         }
         break;
-    case 7:
+
+    case H_RUN_A_PHASE_RDAMEGE01_A:
         if (i_this->mHorseAnmID != B_HG_BCK_HG_RUN) {
-            h_anm_init(i_this, B_HG_BCK_HG_RUN, 5.0f, 2, 1.0f);
+            h_anm_init(i_this, B_HG_BCK_HG_RUN, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
-        anm_init(i_this, B_GND_BCK_EGND_RDAMEGE01_A, 1.0f, 0, 1.0f);
-        i_this->mMoveMode = 8;
-        i_this->field_0xc44[0] = 300;
-    case 8:
+
+        anm_init(i_this, B_GND_BCK_EGND_RDAMEGE01_A, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        i_this->mActionPhase = H_RUN_A_PHASE_RDAMEGE01_B;
+        i_this->mTimers[0] = 300;
+        // fallthrough
+    case H_RUN_A_PHASE_RDAMEGE01_B:
         i_this->field_0x1e08 = 10;
 
         if (i_this->mpModelMorf->isStop()) {
-            anm_init(i_this, B_GND_BCK_EGND_RDAMEGE01_B, 2.0f, 2, 1.0f);
+            anm_init(i_this, B_GND_BCK_EGND_RDAMEGE01_B, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mGndSound.startCreatureVoice(Z2SE_EN_GND_V_DAMAGE01, -1);
-            i_this->mMoveMode = 9;
+            i_this->mActionPhase = H_RUN_A_PHASE_RRETURN;
         }
         break;
-    case 9:
+
+    case H_RUN_A_PHASE_RRETURN:
         i_this->field_0x1e08 = 10;
-        if (i_this->field_0xc44[0] == 0) {
-            anm_init(i_this, B_GND_BCK_EGND_RRETURN, 3.0f, 0, 1.0f);
-            i_this->mMoveMode = 10;
+        if (i_this->mTimers[0] == 0) {
+            anm_init(i_this, B_GND_BCK_EGND_RRETURN, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            i_this->mActionPhase = H_RUN_A_PHASE_10;
         }
         break;
-    case 10:
+
+    case H_RUN_A_PHASE_10:
         i_this->mDamageInvulnerabilityTimer = 10;
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mMoveMode = 0;
+            i_this->mActionPhase = PHASE_INIT;
         }
         break;
-    case 11:
+
+    case H_RUN_A_PHASE_RDAMEGE02:
         if (sp10 > 0) {
             anm_init(i_this, B_GND_BCK_EGND_RDAMEGE02L, 2.0f, 0, 1.0f);
         } else {
             anm_init(i_this, B_GND_BCK_EGND_RDAMEGE02R, 2.0f, 0, 1.0f);
         }
-        i_this->mMoveMode = 12;
-    case 12:
+        i_this->mActionPhase = H_RUN_A_PHASE_12;
+        // fallthrough
+    case H_RUN_A_PHASE_12:
         i_this->mDamageInvulnerabilityTimer = 10;
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mMoveMode = 0;
+            i_this->mActionPhase = 0;
         }
         break;
-    case 20:
+
+    case H_RUN_A_PHASE_RBRAKE:
         speed_target = l_HIO.field_0xc;
         speed_step = 2.0f;
-        if (i_this->field_0xc44[0] == 0) {
-            i_this->mMoveMode = 21;
+        if (i_this->mTimers[0] == 0) {
+            i_this->mActionPhase = H_RUN_A_PHASE_END;
             anm_init(i_this, B_GND_BCK_EGND_RBRAKE, 3.0f, 0, 1.0f);
             h_anm_init(i_this, B_HG_BCK_HG_STOP, 3.0f, 0, 1.0f);
         }
 
         i_this->field_0xc6a = 1;
         break;
-    case 21:
+
+    case H_RUN_A_PHASE_END:
         speed_step = 2.0f;
         if (a_this->speedF > 15.0f) {
             i_this->field_0xc6a = 2;
@@ -840,12 +932,12 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
         }
 
         if (a_this->speedF < 2.0f) {
-            i_this->mActionMode = ACTION_HWAIT_2;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_HWAIT_2;
+            i_this->mActionPhase = PHASE_INIT;
         }
     }
 
-    if (i_this->mMoveMode < 20) {
+    if (i_this->mActionPhase < H_RUN_A_PHASE_RBRAKE) {
         sp8C = b_path[i_this->field_0xc60] - a_this->current.pos;
 
         var_f30 = JMAFastSqrt(sp8C.x * sp8C.x + sp8C.z * sp8C.z);
@@ -866,7 +958,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
         }
 
         i_this->field_0x5cc = cM_atan2s(sp8C.x, sp8C.z);
-        if (i_this->field_0x1e0a >= 1 && i_this->mMoveMode <= 2) {
+        if (i_this->field_0x1e0a >= 1 && i_this->mActionPhase <= H_RUN_A_PHASE_2) {
             var_f30 = (var_f30 - 800.0f) * (AREG_F(8) + 2.0f);
             if (var_f30 > 7000.0f) {
                 var_f30 = 7000.0f;
@@ -1002,47 +1094,52 @@ static void b_gnd_h_run_p(b_gnd_class* i_this) {
         var_f28 = 400.0f;
     }
 
-    switch (i_this->mMoveMode) {
-    case 0:
-    case 1:
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
+    case H_RUN_P_PHASE_RUN:
         if (i_this->mAnmID != B_GND_BCK_EGND_RRUN) {
             i_this->mPlaySpeed = 1.0f;
-            anm_init(i_this, B_GND_BCK_EGND_RRUN, 5.0f, 2, 1.0f);
-            h_anm_init(i_this, B_HG_BCK_HG_RUN, 5.0f, 2, 1.0f);
+            anm_init(i_this, B_GND_BCK_EGND_RRUN, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            h_anm_init(i_this, B_HG_BCK_HG_RUN, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
         i_this->field_0xc68 = 0;
-        i_this->mMoveMode = 2;
+        i_this->mActionPhase = H_RUN_P_PHASE_2;
         break;
-    case 2:
+
+    case H_RUN_P_PHASE_2:
         var_r27 = TRUE;
         if (player_distxz < var_f28 + 1700.0f) {
-            i_this->mMoveMode = 3;
+            i_this->mActionPhase = H_RUN_P_PHASE_RATTACK01_A;
         }
         break;
-    case 3:
-        anm_init(i_this, B_GND_BCK_EGND_RATTACK01_A, 3.0f, 0, 1.0f);
-        i_this->mMoveMode = 4;
-    case 4:
+
+    case H_RUN_P_PHASE_RATTACK01_A:
+        anm_init(i_this, B_GND_BCK_EGND_RATTACK01_A, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        i_this->mActionPhase = H_RUN_P_PHASE_RATTACK01_D;
+        // fallthrough
+    case H_RUN_P_PHASE_RATTACK01_D:
         var_r27 = TRUE;
         if (player_distxz < var_f28 + 550.0f || i_this->mpModelMorf->isStop()) {
-            anm_init(i_this, B_GND_BCK_EGND_RATTACK01_D, 2.0f, 2, 1.0f);
-            i_this->mMoveMode = 5;
+            anm_init(i_this, B_GND_BCK_EGND_RATTACK01_D, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            i_this->mActionPhase = H_RUN_P_PHASE_RATTACK01_B_C;
         }
         break;
-    case 5:
+
+    case H_RUN_P_PHASE_RATTACK01_B_C:
         var_r27 = TRUE;
         if (player_distxz < var_f28 + 550.0f) {
             if (angle_diff < 0 || !sp9) {
-                anm_init(i_this, B_GND_BCK_EGND_RATTACK01_C, 2.0f, 0, 1.0f);
+                anm_init(i_this, B_GND_BCK_EGND_RATTACK01_C, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else {
-                anm_init(i_this, B_GND_BCK_EGND_RATTACK01_B, 2.0f, 0, 1.0f);
+                anm_init(i_this, B_GND_BCK_EGND_RATTACK01_B, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             }
 
-            i_this->mMoveMode = 6;
+            i_this->mActionPhase = H_RUN_P_PHASE_END;
         }
         break;
-    case 6:
+
+    case H_RUN_P_PHASE_END:
         var_r27 = TRUE;
         i_this->field_0xc77 = 1;
 
@@ -1097,8 +1194,8 @@ static void b_gnd_h_run_p(b_gnd_class* i_this) {
         speed_target = l_HIO.field_0xc;
     }
 
-    if ((!var_r27 && i_this->field_0xc44[3] == 0) || i_this->mGakeChkType != 0) {
-        i_this->mActionMode = ACTION_HRUN_A;
+    if ((!var_r27 && i_this->mTimers[3] == 0) || i_this->mGakeChkType != 0) {
+        i_this->mAction = ACTION_HRUN_A;
 
         if (i_this->mGakeChkType == 2) {
             i_this->field_0xc72 = 40;
@@ -1110,8 +1207,8 @@ static void b_gnd_h_run_p(b_gnd_class* i_this) {
             i_this->field_0xc74 = a_this->shape_angle.y + 0x8000;
         }
 
-        i_this->mMoveMode = 0;
-        i_this->field_0xc44[3] = 100;
+        i_this->mActionPhase = PHASE_INIT;
+        i_this->mTimers[3] = 100;
     }
 
     i_this->field_0xc6a = 1;
@@ -1141,36 +1238,40 @@ static void b_gnd_h_run_p(b_gnd_class* i_this) {
 static void b_gnd_h_jump(b_gnd_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    switch (i_this->mMoveMode) {
-    case 0:
-        i_this->mMoveMode = 1;
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
+        i_this->mActionPhase = H_JUMP_PHASE_JUMP_MIDDLE;
         anm_init(i_this, B_GND_BCK_EGND_RJUMP_START, 2.0f, 0, 1.0f);
         h_anm_init(i_this, B_HG_BCK_HG_JUMP_START, 2.0f, 0, 1.0f);
         a_this->speed.y = 55.0f;
         break;
-    case 1:
+
+    case H_JUMP_PHASE_JUMP_MIDDLE:
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mMoveMode = 2;
+            i_this->mActionPhase = H_JUMP_PHASE_JUMP_END;
             anm_init(i_this, B_GND_BCK_EGND_RJUMP_MIDDLE, 2.0f, 0, 1.0f);
             h_anm_init(i_this, B_HG_BCK_HG_JUMP_MIDDLE, 2.0f, 0, 1.0f);
         }
         break;
-    case 2:
+
+    case H_JUMP_PHASE_JUMP_END:
         if (i_this->mAcch.ChkGroundHit()) {
-            i_this->mMoveMode = 3;
+            i_this->mActionPhase = 3;
             anm_init(i_this, B_GND_BCK_EGND_RJUMP_END, 2.0f, 0, 1.0f);
             h_anm_init(i_this, B_HG_BCK_HG_JUMP_END, 2.0f, 0, 1.0f);
             i_this->field_0x2699 = 1;
         }
         break;
-    case 3:
+
+    case H_JUMP_PHASE_END:
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = i_this->field_0xb00;
-            i_this->mMoveMode = 0;
+            i_this->mAction = i_this->field_0xb00;
+            i_this->mActionPhase = PHASE_INIT;
             i_this->mPlaySpeed = 1.5f;
             anm_init(i_this, B_GND_BCK_EGND_RRUN, 2.0f, 2, 1.5f);
             h_anm_init(i_this, B_HG_BCK_HG_RUN, 2.0f, 2, 1.5f);
         }
+        break;
     }
 }
 
@@ -1181,12 +1282,12 @@ static void b_gnd_h_end(b_gnd_class* i_this) {
     int h_anm_frame = i_this->mpHorseMorf->getFrame();
     i_this->mDamageInvulnerabilityTimer = 10;
 
-    switch (i_this->mMoveMode) {
-    case 0:
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
         Z2GetAudioMgr()->bgmStop(30, 0);
-        i_this->mMoveMode = 1;
-        h_anm_init(i_this, B_HG_BCK_HG_DOWN, 3.0f, 0, 1.0f);
-        anm_init(i_this, B_GND_BCK_EGND_RDOWN, 2.0f, 0, 1.0f);
+        i_this->mActionPhase = H_END_PHASE_1;
+        h_anm_init(i_this, B_HG_BCK_HG_DOWN, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, B_GND_BCK_EGND_RDOWN, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mGndSound.startCreatureVoice(Z2SE_EN_GND_V_DOWN, -1);
 
         a_this->speedF = 50.0f;
@@ -1199,7 +1300,8 @@ static void b_gnd_h_end(b_gnd_class* i_this) {
         i_this->mDemoCamMode = 30;
         a_this->health = 100;
         i_this->field_0x1e0a = 0;
-    case 1:
+        // fallthrough
+    case H_END_PHASE_1:
         if (i_this->mDemoCamMode < 33 && h_anm_frame == 30) {
             i_this->mpModelMorf->setFrame(0.0f);
             i_this->mpHorseMorf->setFrame(0.0f);
@@ -1209,21 +1311,22 @@ static void b_gnd_h_end(b_gnd_class* i_this) {
             } else {
                 i_this->mDemoCamMode = 34;
                 i_this->mDemoCamTimer = 0;
-                i_this->mMoveMode = 2;
+                i_this->mActionPhase = H_END_PHASE_2;
             }
         }
         break;
-    case 2:
+
+    case H_END_PHASE_2:
         if (i_this->mDemoCamMode < 34) {
             if (h_anm_frame == 57) {
                 cXyz eff_size(4.0f, 4.0f, 4.0f);
-                dComIfGp_particle_set(0x8C21, &a_this->current.pos, &a_this->shape_angle, &eff_size);   
+                dComIfGp_particle_set(dPa_RM(ID_ZI_S_EGND_DOWNSMOKE_B), &a_this->current.pos, &a_this->shape_angle, &eff_size);   
             }
                 
             if (h_anm_frame >= 62) {
                 cLib_addCalc0(&a_this->speedF, 1.0f, 1.2f);
                 cLib_addCalcAngleS2(&a_this->shape_angle.y, a_this->current.angle.y + 0x1000, 8, 130);
-                i_this->field_0x2688 = dComIfGp_particle_set(i_this->field_0x2688, 0x8b9a, 
+                i_this->field_0x2688 = dComIfGp_particle_set(i_this->field_0x2688, dPa_RM(ID_ZI_S_EGND_DOWNSMOKE_A),
                                                         &i_this->current.pos, 0, 0);
                 if (a_this->speedF > 14.0f) {
                     i_this->mGndSound.startCreatureSoundLevel(Z2SE_EN_HG_SLIP, 0, -1);
@@ -1239,7 +1342,8 @@ static void b_gnd_h_end(b_gnd_class* i_this) {
             a_this->speedF = 0.0f;
             a_this->current.pos.x = 1000.0f;
         }
-    case 3:
+        // fallthrough
+    case H_END_PHASE_3:
     default:
         break;
     }
@@ -1256,98 +1360,103 @@ static void b_gnd_g_wait(b_gnd_class* i_this) {
     dmg_rod_class* mgrod_p = (dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD);
 
     if (mgrod_p != NULL && mgrod_p->action != 0) {
-        if (i_this->mMoveMode < 5 && i_this->mPlayerDistXZ < 600.0f) {
-            i_this->mMoveMode = 5;
-            i_this->field_0xc44[0] = 10;
+        if (i_this->mActionPhase < G_WAIT_PHASE_WAIT02 && i_this->mPlayerDistXZ < 600.0f) {
+            i_this->mActionPhase = G_WAIT_PHASE_WAIT02;
+            i_this->mTimers[0] = 10;
         }
-    } else if (i_this->mMoveMode == 5) {
-        i_this->mMoveMode = 6;
-        i_this->field_0xc44[0] = 40;
+    } else if (i_this->mActionPhase == G_WAIT_PHASE_WAIT02) {
+        i_this->mActionPhase = 6;
+        i_this->mTimers[0] = 40;
     }
 
-    switch (i_this->mMoveMode) {
-    case 0:
-        i_this->mMoveMode = 1;
-        anm_init(i_this, B_GND_BCK_EGND_WALK, 15.0f, 2, 1.0f);
-        i_this->field_0xc44[0] = cM_rndF(100.0f) + 200.0f;
-    case 1:
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
+        i_this->mActionPhase = G_WAIT_PHASE_EXECUTE;
+        anm_init(i_this, B_GND_BCK_EGND_WALK, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        i_this->mTimers[0] = cM_rndF(100.0f) + 200.0f;
+        // fallthrough
+    case G_WAIT_PHASE_EXECUTE:
         speed_target = 4.3f;
 
         if (i_this->mPlayerDistXZ < 500.0f) {
-            i_this->mMoveMode = 2;
-            anm_init(i_this, B_GND_BCK_EGND_WAIT02, 10.0f, 2, 1.0f);
-            i_this->field_0xc44[0] = cM_rndF(50.0f) + 30.0f;
-        } else if (i_this->field_0xc44[0] == 1) {
+            i_this->mActionPhase = G_WAIT_PHASE_ATTACK;
+            anm_init(i_this, B_GND_BCK_EGND_WAIT02, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            i_this->mTimers[0] = cM_rndF(50.0f) + 30.0f;
+        } else if (i_this->mTimers[0] == 1) {
             if (i_this->mPlayerDistXZ < 800.0f && cM_rndF(1.0f) < 0.3f) {
-                i_this->mActionMode = ACTION_ATTACK;
-                i_this->mMoveMode = 10;
+                i_this->mAction = ACTION_ATTACK;
+                i_this->mActionPhase = 10;
             } else {
-                i_this->mActionMode = ACTION_JUMP;
-                i_this->mMoveMode = 0;
+                i_this->mAction = ACTION_JUMP;
+                i_this->mActionPhase = PHASE_INIT;
             }
         }
         break;
-    case 2:
-        if (i_this->field_0xc44[8] != 0) {
+
+    case G_WAIT_PHASE_ATTACK:
+        if (i_this->mTimers[8] != 0) {
             if (i_this->mPlayerDistXZ < 300.0f) {
-                i_this->field_0xc44[8] = 0;
+                i_this->mTimers[8] = 0;
             }
 
-            if (i_this->field_0xc44[8] == 1) {
-                i_this->mActionMode = ACTION_ATTACK;
-                i_this->mMoveMode = 10;
+            if (i_this->mTimers[8] == 1) {
+                i_this->mAction = ACTION_ATTACK;
+                i_this->mActionPhase = 10;
             }
         } else {
             if (i_this->mPlayerDistXZ > 650.0f) {
-                i_this->mMoveMode = 0;
+                i_this->mActionPhase = PHASE_INIT;
             }
 
             if (i_this->mPlayerDistXZ > 550.0f) {
-                i_this->mActionMode = ACTION_ATTACK;
+                i_this->mAction = ACTION_ATTACK;
                 if (cM_rndF(1.0f) < 0.5f) {
-                    i_this->mMoveMode = 10;
+                    i_this->mActionPhase = 10;
                 } else {
-                    i_this->mMoveMode = 15;
+                    i_this->mActionPhase = 15;
                 }
             } else if (i_this->mPlayerDistXZ < 150.0f) {
-                i_this->mActionMode = ACTION_ATTACK;
-                i_this->mMoveMode = 4;
-            } else if (i_this->field_0xc44[0] == 0) {
-                i_this->mActionMode = ACTION_ATTACK;
+                i_this->mAction = ACTION_ATTACK;
+                i_this->mActionPhase = 4;
+            } else if (i_this->mTimers[0] == 0) {
+                i_this->mAction = ACTION_ATTACK;
                 if (i_this->mPlayerDistXZ < 300.0f) {
                     if (cM_rndF(1.0f) < 0.5f) {
-                        i_this->mMoveMode = 0;
+                        i_this->mActionPhase = 0;
                     } else {
-                        i_this->mMoveMode = 8;
+                        i_this->mActionPhase = 8;
                     }
                 } else {
-                    i_this->mMoveMode = 2;
+                    i_this->mActionPhase = 2;
                 }
             }
         }
         break;
-    case 3:
+
+    case G_WAIT_PHASE_RESET:
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mMoveMode = 0;
+            i_this->mActionPhase = PHASE_INIT;
         }
         break;
-    case 5:
-        if (i_this->field_0xc44[0] == 1) {
-            anm_init(i_this, B_GND_BCK_EGND_WAIT02, 10.0f, 2, 1.0f);
+
+    case G_WAIT_PHASE_WAIT02:
+        if (i_this->mTimers[0] == 1) {
+            anm_init(i_this, B_GND_BCK_EGND_WAIT02, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
-        if (i_this->field_0xc44[0] == 0) {
+        if (i_this->mTimers[0] == 0) {
             angle_step = 0;
         }
 
         i_this->field_0xc7d = 2;
         i_this->field_0xc80 = mgrod_p->hook_pos;
         break;
-    case 6:
+
+    case G_WAIT_PHASE_6:
         angle_step = 0;
         i_this->field_0xc5a = 10;
-        if (i_this->field_0xc44[0] == 0) {
-            i_this->mMoveMode = 0;
+        if (i_this->mTimers[0] == 0) {
+            i_this->mActionPhase = PHASE_INIT;
         }
     }
 
@@ -1363,7 +1472,7 @@ static void b_gnd_g_wait(b_gnd_class* i_this) {
         i_this->field_0x26c2 = 2500.0f * cM_ssin(i_this->mCounter * 5000);
     }
 
-    if (i_this->mActionMode != ACTION_WAIT && mant_p->field_0x3969 == 2) {
+    if (i_this->mAction != ACTION_WAIT && mant_p->field_0x3969 == 2) {
         mant_p->field_0x3969 = 1;
     }
 }
@@ -1381,9 +1490,9 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
     mant_class* mant_p = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
 
     BOOL spC = true;
-    switch (i_this->mMoveMode) {
-    case 0:
-        i_this->mMoveMode = 1;
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
+        i_this->mActionPhase = 1;
         anm_init(i_this, B_GND_BCK_EGND_ATTACKA, 3.0f, 0, 1.0f);
         break;
     case 1:
@@ -1407,12 +1516,12 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 0;
         }
         break;
     case 2:
-        i_this->mMoveMode = 3;
+        i_this->mActionPhase = 3;
         anm_init(i_this, B_GND_BCK_EGND_ATTACKB, 3.0f, 0, 1.0f);
         break;
     case 3:
@@ -1437,12 +1546,12 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 0;
         }
         break;
     case 4:
-        i_this->mMoveMode = 5;
+        i_this->mActionPhase = 5;
         anm_init(i_this, B_GND_BCK_EGND_ATTACKD, 3.0f, 0, 1.0f);
         break;
     case 5:
@@ -1461,12 +1570,12 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 0;
         }
         break;
     case 6:
-        i_this->mMoveMode = 7;
+        i_this->mActionPhase = 7;
         anm_init(i_this, B_GND_BCK_EGND_ATTACKF, 5.0f, 0, 1.0f);
         break;
     case 7:
@@ -1495,12 +1604,12 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 0;
         }
         break;
     case 8:
-        i_this->mMoveMode = 9;
+        i_this->mActionPhase = 9;
         anm_init(i_this, B_GND_BCK_EGND_ATTACKG, 3.0f, 0, 1.0f);
         break;
     case 9:
@@ -1519,13 +1628,13 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 0;
         }
         break;
     case 10:
         anm_init(i_this, B_GND_BCK_EGND_ATTACKC_A, 3.0f, 0, 1.0f);
-        i_this->mMoveMode = 11;
+        i_this->mActionPhase = 11;
         i_this->mDamageInvulnerabilityTimer = 10;
         break;
     case 11:
@@ -1543,8 +1652,8 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         }
 
         anm_init(i_this, B_GND_BCK_EGND_ATTACKC_B, 0.0f, 2, 1.0f);
-        i_this->mMoveMode = 12;
-        i_this->field_0xc44[0] = 50;
+        i_this->mActionPhase = 12;
+        i_this->mTimers[0] = 50;
     case 12:
         spC = false;
         i_this->mDamageInvulnerabilityTimer = 10;
@@ -1560,9 +1669,9 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
             i_this->field_0x2740 = 1;
         }
 
-        if (i_this->field_0xc44[0] == 0 || i_this->mPlayerDistXZ < 450.0f) {
+        if (i_this->mTimers[0] == 0 || i_this->mPlayerDistXZ < 450.0f) {
             anm_init(i_this, B_GND_BCK_EGND_ATTACKC_C, 1.0f, 0, 1.0f);
-            i_this->mMoveMode = 13;
+            i_this->mActionPhase = 13;
         }
         break;
     case 13:
@@ -1595,24 +1704,24 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 0;
         }
 
         if (anm_frame < 28 && player->checkMasterSwordEquip()) {
             dComIfGp_setDoStatusForce(107, 0);
             i_this->field_0x2740 = 1;
             if (cc_pl_cut_bit_get() == 0x100 && player->speed.y < 0.0f) {
-                i_this->mActionMode = ACTION_TUBA;
-                i_this->mMoveMode = 0;
+                i_this->mAction = ACTION_TUBA;
+                i_this->mActionPhase = 0;
             }
         }
         break;
     case 15:
         anm_init(i_this, B_GND_BCK_EGND_ATTACKE_A, speed_step, 0, 1.0f);
-        i_this->mMoveMode = 16;
+        i_this->mActionPhase = 16;
         i_this->mDamageInvulnerabilityTimer = 10;
-        i_this->field_0xc44[0] = 11;
+        i_this->mTimers[0] = 11;
         break;
     case 16:
         i_this->mDamageInvulnerabilityTimer = 10;
@@ -1627,11 +1736,11 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
             }
         }
 
-        if (i_this->field_0xc44[0] != 0)
+        if (i_this->mTimers[0] != 0)
             break;
 
         anm_init(i_this, B_GND_BCK_EGND_ATTACKE_B, 1.0f, 0, 1.0f);
-        i_this->mMoveMode = 17;
+        i_this->mActionPhase = 17;
     case 17:
         spC = false;
         i_this->mDamageInvulnerabilityTimer = 10;
@@ -1649,7 +1758,7 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         
         if (i_this->mpModelMorf->isStop()) {
             anm_init(i_this, B_GND_BCK_EGND_ATTACKE_C2, 1.0f, 0, 1.0f);
-            i_this->mMoveMode = 18;
+            i_this->mActionPhase = 18;
         }
         break;
     case 18:
@@ -1660,8 +1769,8 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 0;
         }
     }
 
@@ -1680,9 +1789,9 @@ static void b_gnd_g_defence(b_gnd_class* i_this) {
 
     cc_pl_cut_bit_get();
 
-    switch (i_this->mMoveMode) {
+    switch (i_this->mActionPhase) {
     case 0:
-        i_this->mMoveMode = 1;
+        i_this->mActionPhase = 1;
 
         if (cM_rndF(1.0) < 0.5f) {
             if (i_this->field_0xc7b & 1) {
@@ -1697,14 +1806,14 @@ static void b_gnd_g_defence(b_gnd_class* i_this) {
         }
 
         i_this->mGndSound.startCreatureVoice(Z2SE_EN_GND_V_DEFENCE, -1);
-        i_this->field_0xc44[0] = 20;
+        i_this->mTimers[0] = 20;
         i_this->field_0xc7a = 0;
         break;
     case 1:
     case 2:
-        if (i_this->mMoveMode == 1) {
-            if (i_this->field_0xc44[0] == 0 && daPy_getPlayerActorClass()->getCutAtFlg()) {
-                i_this->mMoveMode = 2;
+        if (i_this->mActionPhase == 1) {
+            if (i_this->mTimers[0] == 0 && daPy_getPlayerActorClass()->getCutAtFlg()) {
+                i_this->mActionPhase = 2;
                 i_this->field_0xc7b++;
     
                 if (cM_rndF(1.0) < 0.5f) {
@@ -1722,15 +1831,15 @@ static void b_gnd_g_defence(b_gnd_class* i_this) {
                 i_this->mGndSound.startCreatureVoice(Z2SE_EN_GND_V_DEFENCE, -1);
     
                 if (i_this->mAcch.ChkWallHit()) {
-                    i_this->mActionMode = ACTION_JUMP;
-                    i_this->mMoveMode = 0;
+                    i_this->mAction = ACTION_JUMP;
+                    i_this->mActionPhase = 0;
                 } else if ((i_this->field_0xc7a >= 3 || cM_rndF(0.1f)) && cM_rndF(1.0f) < 0.35f) {
-                    i_this->mActionMode = ACTION_JUMP;
-                    i_this->mMoveMode = 0;
+                    i_this->mAction = ACTION_JUMP;
+                    i_this->mActionPhase = 0;
                 }
             }
         } else if (!daPy_getPlayerActorClass()->getCutAtFlg()) {
-            i_this->mMoveMode = 1;
+            i_this->mActionPhase = 1;
         }
 
         if (anm_frame < 10) {
@@ -1746,19 +1855,19 @@ static void b_gnd_g_defence(b_gnd_class* i_this) {
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 0;
         }
         break;
     case 5:
-        if (i_this->field_0xc44[0] != 0) {
+        if (i_this->mTimers[0] != 0) {
             a_this->current.angle.y += 0x1800;
             i_this->field_0xeb0 = 30.0f;
             mant_p->field_0x395c = 1.2f;
         } else {
             i_this->field_0x2698 = 1;
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 3;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 3;
             anm_init(i_this, B_GND_BCK_EGND_CHOUHATU, 10.0f, 0, 1.0f);
         }
 
@@ -1786,10 +1895,10 @@ static int b_gnd_g_jump(b_gnd_class* i_this) {
     int sp10 = 1;
     mant_class* mant_p = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
 
-    switch (i_this->mMoveMode) {
+    switch (i_this->mActionPhase) {
     case 0:
         anm_init(i_this, B_GND_BCK_EGND_JUMP_A, 2.0f, 0, 1.0f);
-        i_this->mMoveMode = 1;
+        i_this->mActionPhase = 1;
         i_this->mDamageInvulnerabilityTimer = 100;
         break;
     case 1:
@@ -1798,7 +1907,7 @@ static int b_gnd_g_jump(b_gnd_class* i_this) {
         }
 
         anm_init(i_this, B_GND_BCK_EGND_JUMP_B, 0.0f, 2, 1.0f);
-        i_this->mMoveMode = 2;
+        i_this->mActionPhase = 2;
 
         if (i_this->mPlayerDistXZ > 500.0f) {
             a_this->speedF = cM_rndF(10.0f) + 30.0f;
@@ -1818,11 +1927,11 @@ static int b_gnd_g_jump(b_gnd_class* i_this) {
 
         if (i_this->mAcch.ChkGroundHit()) {
             if (i_this->mPlayerDistXZ < 400.0f) {
-                i_this->mActionMode = ACTION_ATTACK;
-                i_this->mMoveMode = 6;
+                i_this->mAction = ACTION_ATTACK;
+                i_this->mActionPhase = 6;
             } else {
-                i_this->mActionMode = ACTION_ATTACK;
-                i_this->mMoveMode = 3;
+                i_this->mAction = ACTION_ATTACK;
+                i_this->mActionPhase = 3;
                 anm_init(i_this, B_GND_BCK_EGND_ATTACKB, 3.0f, 0, 1.0f);
                 i_this->mpModelMorf->setFrame(10.0f);
             }
@@ -1840,16 +1949,16 @@ static int b_gnd_g_jump(b_gnd_class* i_this) {
         cLib_addCalcAngleS2(&a_this->shape_angle.y, i_this->mPlayerAngleY, 2, 0x600);
         a_this->current.angle.y = a_this->shape_angle.y;
 
-        if (i_this->field_0xc44[0] == 0) {
-            i_this->mActionMode = ACTION_ATTACK;
+        if (i_this->mTimers[0] == 0) {
+            i_this->mAction = ACTION_ATTACK;
             if (i_this->mPlayerDistXZ < 150.0f) {
-                i_this->mMoveMode = 4;
+                i_this->mActionPhase = 4;
             } else if (i_this->mPlayerDistXZ < 300.0f) {
-                i_this->mMoveMode = 0;
+                i_this->mActionPhase = 0;
             } else if (cM_rndF(1.0f) < 0.5f) {
-                i_this->mMoveMode = 2;
+                i_this->mActionPhase = 2;
             } else {
-                i_this->mMoveMode = 10;
+                i_this->mActionPhase = 10;
             }
         }
         break;
@@ -1858,8 +1967,8 @@ static int b_gnd_g_jump(b_gnd_class* i_this) {
             anm_init(i_this, B_GND_BCK_EGND_WAIT02, 10.0f, 2, 1.0f);
         }
 
-        if (i_this->field_0xc44[0] == 0) {
-            i_this->mMoveMode = 4;
+        if (i_this->mTimers[0] == 0) {
+            i_this->mActionPhase = 4;
         }
     }
 
@@ -1872,7 +1981,7 @@ static void b_gnd_g_side(b_gnd_class* i_this) {
     mant_class* mant_p = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
     i_this->mDamageInvulnerabilityTimer = 10;
 
-    switch (i_this->mMoveMode) {
+    switch (i_this->mActionPhase) {
     case 0:
         if (cM_rndF(1.0f) < 0.5f) {
             anm_init(i_this, B_GND_BCK_EGND_SIDEJUMP_LA, 2.0f, 0, 1.0f);
@@ -1884,7 +1993,7 @@ static void b_gnd_g_side(b_gnd_class* i_this) {
 
         a_this->speedF = 30.0f;
         a_this->speed.y = 30.0f;
-        i_this->mMoveMode = 1;
+        i_this->mActionPhase = 1;
         mant_p->field_0x395c = 1.0f;
         break;
     case 1:
@@ -1897,7 +2006,7 @@ static void b_gnd_g_side(b_gnd_class* i_this) {
                 anm_init(i_this, B_GND_BCK_EGND_SIDEJUMP_RB, 1.0f, 0, 1.0f);
             }
 
-            i_this->mMoveMode = 2;
+            i_this->mActionPhase = 2;
             i_this->field_0x2698 = 1;
             i_this->mGndSound.startCreatureSound(Z2SE_EN_GND_LAND, 0, -1);
         }
@@ -1907,20 +2016,20 @@ static void b_gnd_g_side(b_gnd_class* i_this) {
 
         if (i_this->mpModelMorf->isStop()) {
             if (i_this->mPlayerDistXZ < 500.0f) {
-                i_this->mActionMode = ACTION_ATTACK;
+                i_this->mAction = ACTION_ATTACK;
                 if (i_this->mPlayerDistXZ < 300.0f) {
-                    i_this->mMoveMode = 6;
+                    i_this->mActionPhase = 6;
                 } else {
-                    i_this->mMoveMode = 3;
+                    i_this->mActionPhase = 3;
                     anm_init(i_this, B_GND_BCK_EGND_ATTACKB, 3.0f, 0, 1.0f);
                     i_this->mpModelMorf->setFrame(10.0f);
                 }
             } else {
-                i_this->mActionMode = ACTION_WAIT;
+                i_this->mAction = ACTION_WAIT;
                 if (cM_rndF(1.0f) < 0.5f) {
-                    i_this->mMoveMode = 0;
+                    i_this->mActionPhase = 0;
                 } else {
-                    i_this->mMoveMode = 3;
+                    i_this->mActionPhase = 3;
                     anm_init(i_this, B_GND_BCK_EGND_CHOUHATU, 10.0f, 0, 1.0f);
                 }
             }
@@ -1936,10 +2045,10 @@ static void b_gnd_g_tuba(b_gnd_class* i_this) {
     mant_class* mant_p = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
     i_this->mDamageInvulnerabilityTimer = 10;
 
-    switch (i_this->mMoveMode) {
+    switch (i_this->mActionPhase) {
     case 0:
         anm_init(i_this, B_GND_BCK_EGND_TUBAZERI_A, 5.0f, 2, 1.0f);
-        i_this->mMoveMode = 1;
+        i_this->mActionPhase = 1;
         mant_p->field_0x395c = 1.5f;
         i_this->mDemoCamMode = 50;
         a_this->speedF = 0.0f;
@@ -1957,9 +2066,9 @@ static void b_gnd_g_damage(b_gnd_class* i_this) {
     int anm_frame = i_this->mpModelMorf->getFrame();
     mant_class* mant_p = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
 
-    switch (i_this->mMoveMode) {
+    switch (i_this->mActionPhase) {
     case 0:
-        i_this->mMoveMode = 1;
+        i_this->mActionPhase = 1;
         if (cM_rndF(1.0f) < 0.5f) {
             anm_init(i_this, B_GND_BCK_EGND_DAMAGE_A, 3.0f, 0, 1.0f);
         } else {
@@ -1978,8 +2087,8 @@ static void b_gnd_g_damage(b_gnd_class* i_this) {
         }
 
         i_this->mDamageInvulnerabilityTimer = 15;
-        i_this->mActionMode = ACTION_WAIT;
-        i_this->mMoveMode = 0;
+        i_this->mAction = ACTION_WAIT;
+        i_this->mActionPhase = 0;
         i_this->field_0x1e0a = 0;
         i_this->field_0xc7c = 0;
     }
@@ -1999,7 +2108,7 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
     mant_class* mant_p = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
     i_this->mDamageInvulnerabilityTimer = 10;
 
-    switch(i_this->mMoveMode) {
+    switch(i_this->mActionPhase) {
     case 0:
         i_this->field_0x1e0c++;
         if (i_this->field_0x1e0c >= 3) {
@@ -2010,7 +2119,7 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
         }
 
         a_this->current.angle.y = i_this->mPlayerAngleY + 0x8000;
-        i_this->mMoveMode = 1;
+        i_this->mActionPhase = 1;
         
         mant_p->field_0x395c = 1.0f;
 
@@ -2054,8 +2163,8 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
 
         if (i_this->mAnmID == B_GND_BCK_EGND_DOWN) {
             anm_init(i_this, B_GND_BCK_EGND_DOWNWAIT, 3.0f, 2, 1.0f);
-            i_this->mMoveMode = 2;
-            i_this->field_0xc44[0] = 200;
+            i_this->mActionPhase = 2;
+            i_this->mTimers[0] = 200;
 
             if (daPy_getPlayerActorClass()->checkMasterSwordEquip()) {
                 e_this->onDownFlg();
@@ -2063,26 +2172,26 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
             return;
         }
 
-        i_this->mActionMode = ACTION_WAIT;
-        i_this->mMoveMode = 0;
+        i_this->mAction = ACTION_WAIT;
+        i_this->mActionPhase = 0;
         a_this->current.angle.y = a_this->shape_angle.y;
         return;
     case 2:
         mant_p->field_0x3965 = 1;
         if (daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_DOWN) {
             i_this->mDemoCamMode = 60;
-            i_this->mActionMode = ACTION_END;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_END;
+            i_this->mActionPhase = 0;
             Z2GetAudioMgr()->bgmStop(30, 0);
         }
 
-        if (i_this->field_0xc44[0] != 0 && daPy_getPlayerActorClass()->checkMasterSwordEquip()) {
+        if (i_this->mTimers[0] != 0 && daPy_getPlayerActorClass()->checkMasterSwordEquip()) {
             return;
         }
 
         anm_init(i_this, B_GND_BCK_EGND_DOWNUP, 3.0f, 0, 1.0f);
         a_this->current.angle.y = a_this->shape_angle.y;
-        i_this->mMoveMode = 3;
+        i_this->mActionPhase = 3;
         e_this->offDownFlg();
     case 3:
         if (anm_frame <= 10) {
@@ -2093,8 +2202,8 @@ static void b_gnd_g_down(b_gnd_class* i_this) {
         }
 
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 0;
         }
     }
 }
@@ -2105,7 +2214,7 @@ static void b_gnd_g_end(b_gnd_class* i_this) {
     mant_class* mant_p = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
     mant_p->field_0x3965 = 1;
 
-    if (i_this->mMoveMode == 0) {
+    if (i_this->mActionPhase == 0) {
         return;
     }
 }
@@ -2144,8 +2253,8 @@ static void damage_check(b_gnd_class* i_this) {
                 if (i_this->health <= 0 || (i_this->field_0x1e0a >= 3 && daPy_getPlayerActorClass()->getCutCount() >= 4)) {
                     hit_down = TRUE;
                 } else {
-                    i_this->mActionMode = ACTION_DAMAGE;
-                    i_this->mMoveMode = 0;
+                    i_this->mAction = ACTION_DAMAGE;
+                    i_this->mActionPhase = 0;
                     i_this->field_0x2698 = 1;
 
                     if (i_this->mAtInfo.mHitStatus != 0) {
@@ -2185,8 +2294,8 @@ static void damage_check(b_gnd_class* i_this) {
                 dComIfGp_setHitMark(hitmark, a_this, &ato, NULL, &hitmark_size, 0);
 
                 if (hit_down) {
-                    i_this->mActionMode = ACTION_DOWN;
-                    i_this->mMoveMode = 0;
+                    i_this->mAction = ACTION_DOWN;
+                    i_this->mActionPhase = 0;
                     i_this->mDamageInvulnerabilityTimer = 10;
                     i_this->field_0xc7c = 0;
                     dScnPly_c::setPauseTimer(7);
@@ -2403,12 +2512,12 @@ static void h_damage_check(b_gnd_class* i_this) {
                     i_this->mDamageInvulnerabilityTimer = 30;
 
                     if (i_this->health <= 0) {
-                        i_this->mActionMode = ACTION_HEND;
-                        i_this->mMoveMode = 0;
+                        i_this->mAction = ACTION_HEND;
+                        i_this->mActionPhase = 0;
                         fpcM_Search(s_fkdel_sub, i_this);
                         i_this->field_0x1e0a = 0;
                     } else {
-                        i_this->mMoveMode = 11;
+                        i_this->mActionPhase = 11;
                         OS_REPORT(" GND PIYO DAM %d\n", i_this->field_0x1e0a);
                     }
 
@@ -2423,8 +2532,8 @@ static void h_damage_check(b_gnd_class* i_this) {
                         i_this->field_0x1e10 = 0.0f;
                     }
 
-                    i_this->mActionMode = ACTION_HRUN_A;
-                    i_this->mMoveMode = 7;
+                    i_this->mAction = ACTION_HRUN_A;
+                    i_this->mActionPhase = 7;
                     var_r27 = true;
                     break;
                 }
@@ -2445,8 +2554,8 @@ static void h_damage_check(b_gnd_class* i_this) {
                             i_this->field_0x1e10 = 0.0f;
                         }
 
-                        i_this->mActionMode = ACTION_HRUN_A;
-                        i_this->mMoveMode = 7;
+                        i_this->mAction = ACTION_HRUN_A;
+                        i_this->mActionPhase = 7;
                         var_r27 = true;
                         break;
                     }
@@ -2498,7 +2607,7 @@ static void action(b_gnd_class* i_this) {
     i_this->field_0xc7d = 1;
     i_this->field_0x2740 = 0;
 
-    switch (i_this->mActionMode) {
+    switch (i_this->mAction) {
     case ACTION_HWAIT_1:
         b_gnd_h_wait(i_this);
         break;
@@ -2563,8 +2672,8 @@ static void action(b_gnd_class* i_this) {
         dScnKy_env_light_c* kankyo = dKy_getEnvlight();
         kankyo->field_0x12cc = 1;
 
-        i_this->mActionMode = ACTION_WAIT;
-        i_this->mMoveMode = 0;
+        i_this->mAction = ACTION_WAIT;
+        i_this->mActionPhase = 0;
         i_this->mDrawHorse = FALSE;
         i_this->speedF = 0.0f;
 
@@ -2590,8 +2699,8 @@ static void action(b_gnd_class* i_this) {
     }
 
     if (mDoCPd_c::getTrigZ(PAD_2)) {
-        i_this->mActionMode = ACTION_HEND;
-        i_this->mMoveMode = 0;
+        i_this->mAction = ACTION_HEND;
+        i_this->mActionPhase = 0;
         i_this->mDrawHorse = TRUE;
         fpcM_Search(s_fkdel_sub, i_this);
     }
@@ -2613,9 +2722,9 @@ static void action(b_gnd_class* i_this) {
 
     if (i_this->mDrawHorse) {
         if (can_hjump && saku_jump_check(i_this)) {
-            i_this->field_0xb00 = i_this->mActionMode;
-            i_this->mActionMode = ACTION_HJUMP;
-            i_this->mMoveMode = 0;
+            i_this->field_0xb00 = i_this->mAction;
+            i_this->mAction = ACTION_HJUMP;
+            i_this->mActionPhase = 0;
         }
     } else {
         if (!daPy_py_c::checkMasterSwordEquip()) {
@@ -2662,16 +2771,16 @@ static void action(b_gnd_class* i_this) {
             if ((cut_type != 0 || sp28 != 0) && (sp28 != 0 || i_this->mPlayerDistXZ < pl_at_check_range + 380.0f)) {
                 if (sp28 == 2 || (sp28 == 1 && cM_rndF(1.0f) < 0.5f) || cut_type == 0x100) {
                     if (sp28 == 2 && i_this->mPlayerDistXZ > 700.0f && cM_rndF(1.0f) < 0.5f) {
-                        i_this->mActionMode = ACTION_JUMP;
-                        i_this->mMoveMode = 0;
+                        i_this->mAction = ACTION_JUMP;
+                        i_this->mActionPhase = 0;
                     } else {
-                        i_this->mActionMode = ACTION_SIDE;
-                        i_this->mMoveMode = 0;
+                        i_this->mAction = ACTION_SIDE;
+                        i_this->mActionPhase = 0;
                         i_this->mDamageInvulnerabilityTimer = 15;
                     }
                 } else {
-                    i_this->mActionMode = ACTION_DEFENCE;
-                    i_this->mMoveMode = 0;
+                    i_this->mAction = ACTION_DEFENCE;
+                    i_this->mActionPhase = 0;
                     i_this->mDamageInvulnerabilityTimer = 15;
                     i_this->field_0xc79 = 1;
                 }
@@ -2951,15 +3060,15 @@ static void demo_camera(b_gnd_class* i_this) {
 
         i_this->mDemoCamCenterTarget.set(0.0f, 0.0f, 0.0f);
         i_this->mDemoCamCenterSpd.set(0.0f, 0.0f, 0.0f);
-        i_this->field_0xc44[9] = 0;
+        i_this->mTimers[9] = 0;
         Z2GetAudioMgr()->setDemoName("force_start");
         break;
     case 31:
     case 32:
     case 33:
         if (i_this->mDemoCamMode < 33) {
-            if (i_this->field_0xc44[9] == 0) {
-                i_this->field_0xc44[9] = (s16)(cM_rndF(10.0f) + 5.0f);
+            if (i_this->mTimers[9] == 0) {
+                i_this->mTimers[9] = (s16)(cM_rndF(10.0f) + 5.0f);
                 i_this->mDemoCamCenterSpd.x = cM_rndFX(40.0f);
                 i_this->mDemoCamCenterSpd.y = cM_rndFX(40.0f);
                 i_this->mDemoCamCenterSpd.z = cM_rndFX(40.0f);
@@ -3006,7 +3115,7 @@ static void demo_camera(b_gnd_class* i_this) {
             if (i_this->mDemoCamTimer == 160) {
                 i_this->mDemoCamMode = 35;
                 i_this->mDemoCamTimer = 0;
-                i_this->mMoveMode = 3;
+                i_this->mActionPhase = 3;
                 Z2GetAudioMgr()->bgmStreamPrepare(0x2000063);
                 Z2GetAudioMgr()->bgmStreamPlay();
             }
@@ -3285,10 +3394,10 @@ static void demo_camera(b_gnd_class* i_this) {
         }
 
         if (i_this->mDemoCamTimer == 410) {
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 2;
-            i_this->field_0xc44[0] = cM_rndF(50.0f) + 30.0f;
-            i_this->field_0xc44[8] = 100;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 2;
+            i_this->mTimers[0] = cM_rndF(50.0f) + 30.0f;
+            i_this->mTimers[8] = 100;
 
             sp8 = true;
             dComIfGs_onOneZoneSwitch(15, -1);
@@ -3370,8 +3479,8 @@ static void demo_camera(b_gnd_class* i_this) {
 
             i_this->mGndSound.startCreatureExtraSoundLevel(Z2SE_EN_GND_TUBAZERI_EFF, 0 , -1);
 
-            if (i_this->field_0xc44[3] == 0) {
-                i_this->field_0xc44[3] = (s16)(cM_rndF(10.0f) + 3.0f);
+            if (i_this->mTimers[3] == 0) {
+                i_this->mTimers[3] = (s16)(cM_rndF(10.0f) + 3.0f);
                 i_this->mDemoCamCenterTarget.x = cM_rndFX(20.0f);
                 i_this->mDemoCamCenterTarget.y = cM_rndFX(20.0f);
                 i_this->mDemoCamCenterTarget.z = cM_rndFX(20.0f);
@@ -3413,26 +3522,26 @@ static void demo_camera(b_gnd_class* i_this) {
             Z2GetAudioMgr()->changeBgmStatus(3);
         } else if (i_this->mTubazeriPushValue < -0.4f) {
             i_this->mGndSound.startCreatureVoiceLevel(Z2SE_EN_GND_V_TUBAZERI_B, -1);
-            if (i_this->mAnmID != B_GND_BCK_EGND_TUBAZERI_B && i_this->field_0xc44[2] == 0) {
+            if (i_this->mAnmID != B_GND_BCK_EGND_TUBAZERI_B && i_this->mTimers[2] == 0) {
                 anm_init(i_this, B_GND_BCK_EGND_TUBAZERI_B, 3.0f, 2, 1.0f);
                 daPy_getPlayerActorClass()->changeDemoMode(89, 1, 0, 0);
-                i_this->field_0xc44[2] = 30;
+                i_this->mTimers[2] = 30;
                 Z2GetAudioMgr()->changeBgmStatus(4);
             }
         } else if (i_this->mTubazeriPushValue > 0.4f) {
             i_this->mGndSound.startCreatureVoiceLevel(Z2SE_EN_GND_V_TUBAZERI_C, -1);
-            if (i_this->mAnmID != B_GND_BCK_EGND_TUBAZERI_C && i_this->field_0xc44[2] == 0) {
+            if (i_this->mAnmID != B_GND_BCK_EGND_TUBAZERI_C && i_this->mTimers[2] == 0) {
                 anm_init(i_this, B_GND_BCK_EGND_TUBAZERI_C, 3.0f, 2, 1.0f);
                 daPy_getPlayerActorClass()->changeDemoMode(89, 2, 0, 0);
-                i_this->field_0xc44[2] = 30;
+                i_this->mTimers[2] = 30;
                 Z2GetAudioMgr()->changeBgmStatus(5);
             }
         } else {
             i_this->mGndSound.startCreatureVoiceLevel(Z2SE_EN_GND_V_TUBAZERI_A, -1);
-            if (i_this->mAnmID != B_GND_BCK_EGND_TUBAZERI_A && i_this->field_0xc44[2] == 0) {
+            if (i_this->mAnmID != B_GND_BCK_EGND_TUBAZERI_A && i_this->mTimers[2] == 0) {
                 anm_init(i_this, B_GND_BCK_EGND_TUBAZERI_A, 3.0f, 2, 1.0f);
                 daPy_getPlayerActorClass()->changeDemoMode(89, 0, 0, 0);
-                i_this->field_0xc44[2] = 30;
+                i_this->mTimers[2] = 30;
                 Z2GetAudioMgr()->changeBgmStatus(6);
             }
         }
@@ -3440,8 +3549,8 @@ static void demo_camera(b_gnd_class* i_this) {
     case 52:
         i_this->field_0xc70 = 20;
         if (i_this->mpModelMorf->isStop()) {
-            i_this->mActionMode = ACTION_ATTACK;
-            i_this->mMoveMode = 2;
+            i_this->mAction = ACTION_ATTACK;
+            i_this->mActionPhase = 2;
             i_this->mDemoCamMode = 53;
             i_this->mDemoCamTimer = 0;
         }
@@ -3497,9 +3606,9 @@ static void demo_camera(b_gnd_class* i_this) {
 
         if (i_this->mDemoCamTimer >= 43) {
             sp8 = true;
-            i_this->mActionMode = ACTION_JUMP;
-            i_this->mMoveMode = 5;
-            i_this->field_0xc44[0] = 50;
+            i_this->mAction = ACTION_JUMP;
+            i_this->mActionPhase = 5;
+            i_this->mTimers[0] = 50;
             i_this->field_0xc7c = 1;
         }
         break;
@@ -3932,8 +4041,8 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
             dScnKy_env_light_c* kankyo = dKy_getEnvlight();
             kankyo->field_0x12cc = 1;
 
-            i_this->mActionMode = ACTION_WAIT;
-            i_this->mMoveMode = 0;
+            i_this->mAction = ACTION_WAIT;
+            i_this->mActionPhase = 0;
             i_this->mDrawHorse = FALSE;
             a_this->speedF = 0.0f;
 
@@ -3964,8 +4073,8 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
     i_this->mCounter++;
 
     for (int i = 0; i < 10; i++) {
-        if (i_this->field_0xc44[i] != 0) {
-            i_this->field_0xc44[i]--;
+        if (i_this->mTimers[i] != 0) {
+            i_this->mTimers[i]--;
         }
     }
 
@@ -4966,8 +5075,8 @@ static int daB_GND_Create(fopAc_ac_c* a_this) {
         i_this->mCoCyl.Set(co_cyl_src);
         i_this->mCoCyl.SetStts(&i_this->mGndCcStts);
 
-        i_this->mActionMode = ACTION_HWAIT_1;
-        i_this->mMoveMode = -1;
+        i_this->mAction = ACTION_HWAIT_1;
+        i_this->mActionPhase = -1;
         i_this->mDrawHorse = TRUE;
 
         dKy_tevstr_init(&i_this->mSwordTevstr, fopAcM_GetRoomNo(a_this), -1);

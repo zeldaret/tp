@@ -23,7 +23,8 @@ struct b_gm_foot {
  *
  * @details Temple of Time dungeon boss.
  *
- */
+*/
+
 class b_gm_class : public fopEn_enemy_c {
 public:
     /* 0x05AC */ request_of_phase_process_class mPhase;

@@ -15,7 +15,7 @@
  * 
  * @details Hyrule Castle dungeon boss.
  * 
- */
+*/
  
 struct g_himo_s {
     /* 0x0 */ cXyz field_0x0[16];
@@ -32,7 +32,7 @@ public:
 
     /* 0x05AC */ request_of_phase_process_class mPhaseReq;
     /* 0x05B4 */ request_of_phase_process_class mHorsePhaseReq;
-    /* 0x05BC */ s16 mMoveMode;
+    /* 0x05BC */ s16 mActionPhase;
     /* 0x05BE */ u8 field_0x5be;
     /* 0x05C0 */ cXyz field_0x5c0;
     /* 0x05CC */ s16 field_0x5cc;
@@ -60,7 +60,7 @@ public:
     /* 0x0772 */ s16 field_0x772;
     /* 0x0774 */ dKy_tevstr_c mSwordTevstr;
     /* 0x0AFC */ s16 mCounter;
-    /* 0x0AFE */ s16 mActionMode;
+    /* 0x0AFE */ s16 mAction;
     /* 0x0B00 */ s16 field_0xb00;
     /* 0x0B02 */ u8 field_0xB02[0x0B94 - 0x0B02];
     /* 0x0B94 */ J3DModel* mpMantShadowModel[36];
@@ -72,7 +72,7 @@ public:
     /* 0x0C38 */ f32 mPlayerDistXZ;
     /* 0x0C3C */ s16 mPlayerAngleY;
     /* 0x0C40 */ u32 mShadowID;
-    /* 0x0C44 */ s16 field_0xc44[10];
+    /* 0x0C44 */ s16 mTimers[10];
     /* 0x0C58 */ s16 mDamageInvulnerabilityTimer;
     /* 0x0C5A */ s16 field_0xc5a;
     /* 0x0C5C */ s16 mHorseLegRot;
