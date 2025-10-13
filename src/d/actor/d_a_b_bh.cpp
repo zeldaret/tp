@@ -367,7 +367,7 @@ static void b_bh_bombeat(b_bh_class* i_this) {
             bh[1 - i_this->mID]->mTimers[0] = 0;
             bh[1 - i_this->mID]->health = 0;
             bq_p->mDemoMode = 1;
-            bq_p->field_0x123c = i_this->mID;
+            bq_p->mBabaHandID = i_this->mID;
         }
         break;
     case BOMBEAT_PHASE_EATWAIT:
@@ -1057,7 +1057,7 @@ static void damage_check(b_bh_class* i_this) {
                     b_bq_class* bq_p = (b_bq_class*)fopAcM_SearchByID(a_this->parentActorID);
                     if (bq_p->field_0x6fd == 0) {
                         bq_p->mDemoMode = 20;
-                        bq_p->field_0x123c = i_this->mID;
+                        bq_p->mBabaHandID = i_this->mID;
                         bq_p->field_0x6fd = 1;
                     }
                 }
