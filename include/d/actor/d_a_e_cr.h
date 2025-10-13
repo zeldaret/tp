@@ -13,19 +13,20 @@
  * 
  * @details 
  * 
- */
+*/
+
 class e_cr_class {
 public:
     /* 0x000 */ fopEn_enemy_c enemy;
     /* 0x5AC */ request_of_phase_process_class phase;
-    /* 0x5B4 */ u8 field_0x5b4;
-    /* 0x5B5 */ u8 field_0x5b5;
+    /* 0x5B4 */ u8 arg0;
+    /* 0x5B5 */ u8 arg1;
     /* 0x5B8 */ mDoExt_McaMorfSO* modelMorf;
     /* 0x5BC */ Z2CreatureEnemy sound;
     /* 0x660 */ int anm;
     /* 0x664 */ s16 lifetime;
     /* 0x666 */ s16 action;
-    /* 0x668 */ s16 mode;
+    /* 0x668 */ s16 actionPhase;
     /* 0x66A */ u8 field_0x66A[0x678 - 0x66A];
     /* 0x678 */ s16 angle_target;
     /* 0x67A */ u8 field_0x67A[0x67C - 0x67A];

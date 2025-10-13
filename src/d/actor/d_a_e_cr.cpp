@@ -9,6 +9,43 @@
 #include "d/d_cc_d.h"
 #include "f_op/f_op_actor_enemy.h"
 
+enum E_cr_RES_File_ID {
+    /* BCK */
+    /* 0x4 */ BCK_CR_CHANCE = 0x4,
+    /* 0x5 */ BCK_CR_CHANCE_WAIT,
+    /* 0x6 */ BCK_CR_DAMAGE,
+    /* 0x7 */ BCK_CR_DIE1,
+    /* 0x8 */ BCK_CR_DIE2,
+    /* 0x9 */ BCK_CR_RUN,
+
+    /* BMDR */
+    /* 0xC */ BMDR_CE = 0xC,
+    /* 0xD */ BMDR_CR,
+};
+
+enum daE_CR_ACTION {
+    ACTION_MOVE,
+    ACTION_S_DAMAGE = 9,
+    ACTION_DAMAGE,
+};
+
+enum Action_Phase {
+    /* 0x0 */ PHASE_INIT,
+
+    /* e_cr_move */
+    /* 0x1 */ MOVE_PHASE_1,
+    /* 0x2 */ MOVE_PHASE_2,
+    /* 0x3 */ MOVE_PHASE_END,
+
+    /* e_cr_s_damage */
+    /* 0x1 */ S_DAMAGE_PHASE_CHANCE_WAIT = 0x1,
+    /* 0x2 */ S_DAMAGE_PHASE_END,
+
+    /* e_cr_damage */
+    /* 0x1 */ DAMAGE_PHASE_DIE = 0x1,
+    /* 0x2 */ DAMAGE_PHASE_END,
+};
+
 class daE_CR_HIO_c : public JORReflexible {
 public:
     /* 8069800C */ daE_CR_HIO_c();
@@ -20,12 +57,6 @@ public:
     /* 0x08 */ f32 base_size;
     /* 0x0C */ f32 move_speed;
     /* 0x10 */ f32 pl_search_range;
-};
-
-enum daE_CR_ACTION {
-    ACTION_MOVE,
-    ACTION_S_DAMAGE = 9,
-    ACTION_DAMAGE,
 };
 
 /* 8069800C-80698044 0000EC 0038+00 1/1 0/0 0/0 .text            __ct__12daE_CR_HIO_cFv */
@@ -137,7 +168,7 @@ static void damage_check(e_cr_class* a_this) {
             }
 
             actor->current.angle.y = a_this->atInfo.mHitDirection.y;
-            a_this->mode = 0;
+            a_this->actionPhase = 0;
         }
 
         if (actor->health <= 10) {
@@ -183,18 +214,18 @@ static void e_cr_move(e_cr_class* a_this) {
     int anm_frame = a_this->modelMorf->getFrame();
     f32 move_speed_target = 0.0f;
 
-    switch (a_this->mode) {
-    case 0:
-        anm_init(a_this, 9, 3.0f, 2, 1.0f);
+    switch (a_this->actionPhase) {
+    case PHASE_INIT:
+        anm_init(a_this, BCK_CR_RUN, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         a_this->timers[0] = 30.0f + cM_rndF(60.0f);
-        a_this->mode = 1;
+        a_this->actionPhase = MOVE_PHASE_1;
         break;
-    case 1:
+    case MOVE_PHASE_1:
         move_speed_target = l_HIO.move_speed;
 
         if (a_this->timers[0] == 0 && (anm_frame == 0 || anm_frame == 4)) {
             a_this->timers[0] = 50.0f + cM_rndF(100.0f);
-            a_this->mode = 2;
+            a_this->actionPhase = MOVE_PHASE_2;
             a_this->modelMorf->setPlaySpeed(0.0f);
         }
 
@@ -209,20 +240,20 @@ static void e_cr_move(e_cr_class* a_this) {
             a_this->timers[1] = 10.0f + cM_rndF(5.0f);
         }
         break;
-    case 2:
+    case MOVE_PHASE_2:
         a_this->field_0x690 = 1;
         if (a_this->timers[0] == 0) {
             a_this->modelMorf->setPlaySpeed(1.0f);
             a_this->timers[0] = 30.0f + cM_rndF(60.0f);
-            a_this->mode = 1;
+            a_this->actionPhase = MOVE_PHASE_1;
         }
         break;
-    case 3:
+    case MOVE_PHASE_END:
         move_speed_target = l_HIO.move_speed;
 
         if (a_this->timers[0] == 0 && (anm_frame == 0 || anm_frame == 4)) {
             a_this->timers[0] = 50.0f + cM_rndF(100.0f);
-            a_this->mode = 2;
+            a_this->actionPhase = MOVE_PHASE_2;
             a_this->modelMorf->setPlaySpeed(0.0f);
         }
 
@@ -250,9 +281,9 @@ static void e_cr_move(e_cr_class* a_this) {
     cLib_addCalc2(&actor->speedF, move_speed_target, 1.0f, 0.5f * l_HIO.move_speed);
     cLib_addCalcAngleS2(&actor->shape_angle.y, actor->current.angle.y, 4, 0x2000);
 
-    if (a_this->mode < 3 && pl_check(a_this, l_HIO.pl_search_range, 0x7FFF)) {
-        a_this->mode = 3;
-        anm_init(a_this, 9, 3.0f, 2, 1.0f);
+    if (a_this->actionPhase < MOVE_PHASE_END && pl_check(a_this, l_HIO.pl_search_range, 0x7FFF)) {
+        a_this->actionPhase = MOVE_PHASE_END;
+        anm_init(a_this, BCK_CR_RUN, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         a_this->timers[0] = 20.0f + cM_rndF(15.0f);
         a_this->timers[3] = 15;
     }
@@ -262,23 +293,23 @@ static void e_cr_move(e_cr_class* a_this) {
 static void e_cr_s_damage(e_cr_class* a_this) {
     fopAc_ac_c* actor = &a_this->enemy;
 
-    switch (a_this->mode) {
-    case 0:
-        anm_init(a_this, 4, 2.0f, 0, 1.0f);
-        a_this->mode = 1;
+    switch (a_this->actionPhase) {
+    case PHASE_INIT:
+        anm_init(a_this, BCK_CR_CHANCE, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        a_this->actionPhase = S_DAMAGE_PHASE_CHANCE_WAIT;
         actor->speedF = -25.0f;
         break;
-    case 1:
+    case S_DAMAGE_PHASE_CHANCE_WAIT:
         if (a_this->modelMorf->isStop()) {
-            anm_init(a_this, 5, 1.0f, 2, 1.0f);
+            anm_init(a_this, BCK_CR_CHANCE_WAIT, 1.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             a_this->timers[0] = 50.0f + cM_rndF(30.0f);
-            a_this->mode = 2;
+            a_this->actionPhase = S_DAMAGE_PHASE_END;
         }
         break;
-    case 2:
+    case S_DAMAGE_PHASE_END:
         if (a_this->timers[0] == 0) {
             a_this->action = ACTION_MOVE;
-            a_this->mode = 0;
+            a_this->actionPhase = PHASE_INIT;
         }
         break;
     }
@@ -292,31 +323,31 @@ static void e_cr_damage(e_cr_class* a_this) {
 
     a_this->invulnerabilityTimer = 6;
 
-    switch (a_this->mode) {
-    case 0:
-        anm_init(a_this, 6, 2.0f, 2, 1.0f);
-        a_this->mode = 1;
+    switch (a_this->actionPhase) {
+    case PHASE_INIT:
+        anm_init(a_this, BCK_CR_DAMAGE, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        a_this->actionPhase = DAMAGE_PHASE_DIE;
         actor->speed.y = 38.0f + cM_rndF(8.0f);
         actor->speedF = -30.0f;
         a_this->field_0x68e = cM_rndFX(1000.0f);
         break;
-    case 1:
+    case DAMAGE_PHASE_DIE:
         if (a_this->acch.ChkGroundHit()) {
             actor->speed.y = 25.0f;
             actor->speedF *= 0.5f;
 
             if (cM_rndF(1.0f) < 0.5f) {
-                anm_init(a_this, 7, 15.0f, 0, 1.0f);
+                anm_init(a_this, BCK_CR_DIE1, 15.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else {
-                anm_init(a_this, 8, 15.0f, 0, 1.0f);
+                anm_init(a_this, BCK_CR_DIE2, 15.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             }
 
-            a_this->mode = 2;
+            a_this->actionPhase = DAMAGE_PHASE_END;
             a_this->timers[0] = 40;
             fopAcM_effSmokeSet2(&a_this->field_0xa48, &a_this->field_0xa4c, &actor->current.pos, &actor->shape_angle, 1.0f + NREG_F(18), &actor->tevStr);
         }
         break;
-    case 2:
+    case DAMAGE_PHASE_END:
         if (a_this->acch.ChkGroundHit()) {
             cLib_addCalc0(&actor->speedF, 1.0f, 5.0f);
             cLib_addCalcAngleS2(&a_this->field_0x68e, 0, 1, 100);
@@ -505,8 +536,8 @@ static int daE_CR_Create(fopAc_ac_c* i_this) {
     int phase_state = dComIfG_resLoad(&a_this->phase, "E_CR");
     if (phase_state == cPhs_COMPLEATE_e) {
         OS_REPORT("E_CR PARAM %x\n", fopAcM_GetParam(a_this));
-        a_this->field_0x5b4 = fopAcM_GetParam(i_this);
-        a_this->field_0x5b5 = (fopAcM_GetParam(i_this) & 0xF00) >> 8;
+        a_this->arg0 = fopAcM_GetParam(i_this);
+        a_this->arg1 = (fopAcM_GetParam(i_this) & 0xF00) >> 8;
     
         OS_REPORT("E_CR//////////////E_CR SET 1 !!\n");
         if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x1340)) {
