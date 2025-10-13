@@ -208,7 +208,7 @@ static daPillar_c* search_hasira(e_mk_class* i_this) {
 /* 80714874-807148FC 000834 0088+00 1/1 0/0 0/0 .text            s_d_sub__FPvPv */
 static void* s_d_sub(void* i_actor, void* i_data) {
     if (((fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_DB) && static_cast<e_db_class*>(i_actor)->action == 10)
-          && (static_cast<e_db_class*>(i_actor)->mode >= 1 && target_info_count < 20)) {
+          && (static_cast<e_db_class*>(i_actor)->action_phase >= 1 && target_info_count < 20)) {
         target_info[target_info_count] = i_actor;
         target_info_count++;
     }
