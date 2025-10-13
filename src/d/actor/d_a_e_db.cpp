@@ -10,19 +10,32 @@
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_actor_enemy.h"
 
-class daE_DB_HIO_c : public JORReflexible {
-public:
-    /* 8069AAEC */ daE_DB_HIO_c();
-    /* 806A13D8 */ virtual ~daE_DB_HIO_c() {}
+enum E_db_RES_File_ID {
+    /* BCK */
+    /* 0x05 */ BCK_DB_APPEAR = 0x5,
+    /* 0x06 */ BCK_DB_ATTACK,
+    /* 0x07 */ BCK_DB_BITE,
+    /* 0x08 */ BCK_DB_CHANCE1,
+    /* 0x09 */ BCK_DB_CHANCE2,
+    /* 0x0A */ BCK_DB_CHANCE3,
+    /* 0x0B */ BCK_DB_DAMAGE,
+    /* 0x0C */ BCK_DB_DAMAGE2,
+    /* 0x0D */ BCK_DB_DEFAULTPOSE,
+    /* 0x0E */ BCK_DB_DIE,
+    /* 0x0F */ BCK_DB_ESCAPE,
+    /* 0x10 */ BCK_DB_FREE,
+    /* 0x11 */ BCK_DB_REVIVE,
+    /* 0x12 */ BCK_DB_WAIT,
+    /* 0x13 */ BCK_DL_SHAKE1,
+    /* 0x14 */ BCK_DL_SHAKE2,
 
-    void genMessage(JORMContext*);
+    /* BMDR */
+    /* 0x17 */ BMDR_DB = 0x17,
+    /* 0x18 */ BMDR_DL,
+    /* 0x19 */ BMDR_DT,
 
-    /* 0x04 */ s8 id;
-    /* 0x08 */ f32 base_size;
-    /* 0x0C */ f32 flower_size;
-    /* 0x10 */ f32 appear_size;
-    /* 0x14 */ s16 roof_reappear_interval;
-    /* 0x16 */ s16 attack_freq;
+    /* TEXTURE */
+    /* 0x1C */ TEXTURE_DB_STALK = 0x1C,
 };
 
 enum daE_DB_ACTION {
@@ -40,6 +53,81 @@ enum daE_DB_ACTION {
 
     ACTION_ESCAPE = 20,
     ACTION_E_DEAD,
+};
+
+enum Action_Phase {
+    /* 0x0 */ PHASE_INIT,
+
+    /* e_db_stay */
+    /* 0x1 */ STAY_PHASE_DEFAULTPOSE,
+    /* 0x2 */ STAY_PHASE_2,
+    /* 0x5 */ STAY_PHASE_END = 0x5,
+
+    /* e_db_appear */
+    /* 0x1 */ APPEAR_PHASE_END = 0x1,
+
+    /* e_db_appear_v */
+    /* 0x1 */ APPEAR_V_PHASE_END = 0x1,
+
+    /* e_db_wait */
+    /*  -1 */ WAIT_PHASE_NEG_1 = -1,
+    /* 0x0 */ WAIT_PHASE_WAIT,
+    /* 0x1 */ WAIT_PHASE_END,
+
+    /* e_db_roof */
+    /* 0x1 */ ROOF_PHASE_END = 0x1,
+
+    /* e_db_attack */
+    /* 0x1 */ ATTACK_PHASE_ATTACK = 0x1,
+    /* 0x2 */ ATTACK_PHASE_2,
+    /* 0x3 */ ATTACK_PHASE_WAIT,
+    /* 0x5 */ ATTACK_PHASE_BITING = 0x5,
+
+    /* e_db_attack_s */
+    /* 0x1 */ ATTACK_S_PHASE_END = 0x1,
+
+    /* e_db_chance */
+    /* 0x1 */ CHANCE_PHASE_1 = 0x1,
+    /* 0x2 */ CHANCE_PHASE_END,
+
+    /* e_db_s_damage */
+    /* 0x1 */ S_DAMAGE_PHASE_END = 0x1,
+
+    /* e_db_damage */
+    /* 0x1 */ DAMAGE_PHASE_1 = 0x1,
+    /* 0x2 */ DAMAGE_PHASE_END,
+
+    /* e_db_escape */
+    /* 0x01 */ ESCAPE_PHASE_EXECUTE = 0x1,
+    /* 0x02 */ ESCAPE_PHASE_2,
+    /* 0x03 */ ESCAPE_PHASE_3,
+    /* 0x0A */ ESCAPE_PHASE_DAMAGE = 0xA,
+    /* 0x0B */ ESCAPE_PHASE_END_DAMAGE,
+    /* 0x0F */ ESCAPE_PHASE_AT_SET = 0xF,
+    /* 0x14 */ ESCAPE_PHASE_BITING = 0x14,
+    /* 0x15 */ ESCAPE_PHASE_END_BITING,
+    /* 0x32 */ ESCAPE_PHASE_DIE = 0x32,
+
+    /* e_db_e_dead */
+    /* 0x1 */ E_DEAD_PHASE_1 = 0x1,
+    /* 0x2 */ E_DEAD_PHASE_2,
+    /* 0x3 */ E_DEAD_PHASE_DIE,
+    /* 0x4 */ E_DEAD_PHASE_DELETE,
+};
+
+class daE_DB_HIO_c : public JORReflexible {
+public:
+    /* 8069AAEC */ daE_DB_HIO_c();
+    /* 806A13D8 */ virtual ~daE_DB_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 id;
+    /* 0x08 */ f32 base_size;
+    /* 0x0C */ f32 flower_size;
+    /* 0x10 */ f32 appear_size;
+    /* 0x14 */ s16 roof_reappear_interval;
+    /* 0x16 */ s16 attack_freq;
 };
 
 /* 8069AAEC-8069AB34 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__12daE_DB_HIO_cFv */
@@ -78,13 +166,13 @@ static int daE_DB_Draw(e_db_class* i_this) {
     J3DModel* model = i_this->modelMorf->getModel();
     g_env_light.setLightTevColorType_MAJI(model, &actor->tevStr);
 
-    if (i_this->field_0x852 != 0) {
+    if (i_this->death_flag != 0) {
         J3DModelData* modelData = model->getModelData();
         for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
             J3DMaterial* material = modelData->getMaterialNodePointer(i);
-            material->getTevColor(0)->r = i_this->field_0x854;
-            material->getTevColor(0)->g = i_this->field_0x854;
-            material->getTevColor(0)->b = i_this->field_0x854;
+            material->getTevColor(0)->r = i_this->death_color;
+            material->getTevColor(0)->g = i_this->death_color;
+            material->getTevColor(0)->b = i_this->death_color;
         }
     }
 
@@ -104,13 +192,13 @@ static int daE_DB_Draw(e_db_class* i_this) {
         if (i_this->thornModel[i] != NULL) {
             g_env_light.setLightTevColorType_MAJI(i_this->thornModel[i], &actor->tevStr);
 
-            if (i_this->field_0x852 != 0) {
+            if (i_this->death_flag != 0) {
                 J3DModelData* modelData = i_this->thornModel[i]->getModelData();
                 for (u16 j = 0; j < modelData->getMaterialNum(); j++) {
                     J3DMaterial* material = modelData->getMaterialNodePointer(j);
-                    material->getTevColor(0)->r = i_this->field_0x854;
-                    material->getTevColor(0)->g = i_this->field_0x854;
-                    material->getTevColor(0)->b = i_this->field_0x854;
+                    material->getTevColor(0)->r = i_this->death_color;
+                    material->getTevColor(0)->g = i_this->death_color;
+                    material->getTevColor(0)->b = i_this->death_color;
                 }
             }
 
@@ -152,7 +240,7 @@ static void damage_check(e_db_class* i_this) {
             } else {
                 i_this->invulnerabilityTimer = 6;
                 i_this->action = ACTION_S_DAMAGE;
-                i_this->mode = 0;
+                i_this->action_phase = 0;
 
                 i_this->field_0x680 = player->shape_angle.y;
                 i_this->field_0x1238 = 10;
@@ -180,7 +268,7 @@ static void damage_check(e_db_class* i_this) {
                             f32 var_f31 = actor->current.pos.x - i_this->atInfo.mpActor->current.pos.x;
                             f32 var_f30 = actor->current.pos.z - i_this->atInfo.mpActor->current.pos.z;
                             i_this->field_0x680 = cM_atan2s(-var_f31, -var_f30);
-                            i_this->mode = 0;
+                            i_this->action_phase = 0;
                             return;
                         }
 
@@ -205,27 +293,27 @@ static void damage_check(e_db_class* i_this) {
                 if (i_this->action == ACTION_ESCAPE) {
                     i_this->field_0x858 = 60.0f;
                     i_this->field_0x85c = i_this->atInfo.mHitDirection.y;
-                    i_this->mode = 10;
+                    i_this->action_phase = 10;
                 } else {
                     i_this->action = ACTION_S_DAMAGE;
-                    i_this->mode = 0;
+                    i_this->action_phase = 0;
                     i_this->field_0x680 = player->shape_angle.y;
                 }
             } else if (i_this->action < ACTION_ESCAPE) {
                 i_this->action = ACTION_S_DAMAGE;
-                i_this->mode = 0;
+                i_this->action_phase = 0;
                 i_this->field_0x680 = i_this->atInfo.mHitDirection.y;
                 actor->health = 30;
             } else if (i_this->action == ACTION_ESCAPE) {
                 if (actor->health <= 0) {
                     i_this->field_0x680 = i_this->atInfo.mHitDirection.y;
-                    i_this->mode = 0;
+                    i_this->action_phase = 0;
                     i_this->action = ACTION_E_DEAD;
                     return;
                 } else {
                     i_this->field_0x858 = 60.0f;
                     i_this->field_0x85c = i_this->atInfo.mHitDirection.y;
-                    i_this->mode = 10;
+                    i_this->action_phase = 10;
                 }
             }
         }
@@ -239,11 +327,11 @@ static void damage_check(e_db_class* i_this) {
             if (i_this->action == ACTION_ESCAPE) {
                 i_this->field_0x858 = 30.0f;
                 i_this->field_0x85c = -player->shape_angle.y;
-                i_this->mode = 10;
+                i_this->action_phase = 10;
                 actor->speed.y = 5.0f;
             } else {
                 i_this->action = ACTION_ESCAPE;
-                i_this->mode = 0;
+                i_this->action_phase = 0;
                 i_this->field_0x84e = 5000;
                 i_this->field_0x850 = 0;
                 actor->speedF = 0.0f;
@@ -284,31 +372,31 @@ static void e_db_stay(e_db_class* i_this) {
     cXyz sp14;
     i_this->invulnerabilityTimer = 15;
 
-    switch (i_this->mode) {
-    case 0:
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
         i_this->field_0x674.y = 0.0f;
         /* fallthrough */
-    case 1:
-        anm_init(i_this, 0xD, 10.0f, 0, 1.0f);
-        if (leaf_anm_init(i_this, 0x14, 10.0f, 2, 0.0f)) {
-            i_this->mode = 5;
-            i_this->field_0x68c = 0.0f;
+    case STAY_PHASE_DEFAULTPOSE:
+        anm_init(i_this, BCK_DB_DEFAULTPOSE, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        if (leaf_anm_init(i_this, BCK_DL_SHAKE2, 10.0f, J3DFrameCtrl::EMode_LOOP, 0.0f)) {
+            i_this->action_phase = STAY_PHASE_END;
+            i_this->step_scale = 0.0f;
             i_this->timers[0] = 50;
         }
         break;
-    case 2:
+    case STAY_PHASE_2:
         if (i_this->field_0x850 != 0) {
             i_this->field_0x674.y = -170.0f;
         } else {
             i_this->field_0x674.y = 170.0f;
         }
-        i_this->mode = 1;
+        i_this->action_phase = STAY_PHASE_DEFAULTPOSE;
         break;
-    case 5:
-        cLib_addCalc2(&actor->current.pos.x, actor->home.pos.x, 0.2f, 10.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.y, actor->home.pos.y + i_this->field_0x674.y, 0.2f, 10.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.z, actor->home.pos.z, 0.2f, 10.0f * i_this->field_0x68c);
-        cLib_addCalc2(&i_this->field_0x68c, 1.0f, 1.0f, 0.1f);
+    case STAY_PHASE_END:
+        cLib_addCalc2(&actor->current.pos.x, actor->home.pos.x, 0.2f, 10.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.y, actor->home.pos.y + i_this->field_0x674.y, 0.2f, 10.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.z, actor->home.pos.z, 0.2f, 10.0f * i_this->step_scale);
+        cLib_addCalc2(&i_this->step_scale, 1.0f, 1.0f, 0.1f);
 
         sp14 = actor->current.pos - actor->home.pos;
         sp14.y = 0.0f;
@@ -331,7 +419,7 @@ static void e_db_stay(e_db_class* i_this) {
             } else {
                 i_this->action = ACTION_APPEAR;
             }
-            i_this->mode = 0;
+            i_this->action_phase = PHASE_INIT;
         }
         break;
     }
@@ -342,11 +430,11 @@ static void e_db_appear(e_db_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
     int anm_frame = i_this->modelMorf->getFrame();
 
-    switch (i_this->mode) {
-    case 0:
-        anm_init(i_this, 5, 10.0f, 0, 1.0f);
-        leaf_anm_init(i_this, 0x13, 10.0f, 2, 1.0f);
-        i_this->mode = 1;
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
+        anm_init(i_this, BCK_DB_APPEAR, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        leaf_anm_init(i_this, BCK_DL_SHAKE1, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        i_this->action_phase = APPEAR_PHASE_END;
 
         i_this->field_0x674.x = actor->home.pos.x + cM_rndFX(100.0f);
         i_this->field_0x674.z = actor->home.pos.z + cM_rndFX(100.0f);
@@ -356,24 +444,24 @@ static void e_db_appear(e_db_class* i_this) {
             i_this->field_0x674.y = 170.0f + actor->home.pos.y + cM_rndFX(50.0f);
         }
 
-        i_this->field_0x68c = 0.2f;
+        i_this->step_scale = 0.2f;
         i_this->sound.startCreatureSound(Z2SE_EN_DB_GRASS, 0, -1);
         i_this->sound.startCreatureSound(Z2SE_EN_DB_APPEAR, 0, -1);
         break;
-    case 1:
+    case APPEAR_PHASE_END:
         if (anm_frame >= 15 && anm_frame <= 35) {
             i_this->field_0x1239 = 2;
         }
 
         i_this->field_0xb14 = 1;
-        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 0.1f, 30.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 0.1f, 30.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 0.1f, 30.0f * i_this->field_0x68c);
-        cLib_addCalc2(&i_this->field_0x68c, 1.0f, 1.0f, 0.05f);
+        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 0.1f, 30.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 0.1f, 30.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 0.1f, 30.0f * i_this->step_scale);
+        cLib_addCalc2(&i_this->step_scale, 1.0f, 1.0f, 0.05f);
 
         if (i_this->modelMorf->isStop()) {
             i_this->action = ACTION_WAIT;
-            i_this->mode = 0;
+            i_this->action_phase = PHASE_INIT;
         }
         break;
     }
@@ -397,27 +485,27 @@ static void e_db_appear_v(e_db_class* i_this) {
     cXyz spC;
     f32 temp_f31 = 60.0f + TREG_F(17);
 
-    switch (i_this->mode) {
-    case 0:
-        anm_init(i_this, 5, 5.0f, 0, 1.0f);
-        leaf_anm_init(i_this, 0x13, 5.0f, 2, 1.0f);
-        i_this->mode = 1;
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
+        anm_init(i_this, BCK_DB_APPEAR, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        leaf_anm_init(i_this, BCK_DL_SHAKE1, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        i_this->action_phase = APPEAR_V_PHASE_END;
         i_this->timers[0] = JREG_S(6) + 30;
-        i_this->field_0x68c = 0.0f;
+        i_this->step_scale = 0.0f;
         i_this->modelMorf->setFrame(15.0f);
         /* fallthrough */
-    case 1:
+    case APPEAR_V_PHASE_END:
         spC.x = temp_f31 * cM_ssin(i_this->counter * (TREG_S(0) + 1200));
         spC.z = temp_f31 * cM_scos(i_this->counter * (TREG_S(2) + 1500));
 
-        cLib_addCalc2(&actor->current.pos.x, actor->home.pos.x + spC.x, 0.1f, 40.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.z, actor->home.pos.z + spC.z, 0.1f, 40.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.y, actor->home.pos.y - (400.0f + JREG_F(18)), 0.5f, 40.0f * i_this->field_0x68c);
-        cLib_addCalc2(&i_this->field_0x68c, 1.0f, 1.0f, 0.2f + JREG_F(5));
+        cLib_addCalc2(&actor->current.pos.x, actor->home.pos.x + spC.x, 0.1f, 40.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.z, actor->home.pos.z + spC.z, 0.1f, 40.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.y, actor->home.pos.y - (400.0f + JREG_F(18)), 0.5f, 40.0f * i_this->step_scale);
+        cLib_addCalc2(&i_this->step_scale, 1.0f, 1.0f, 0.2f + JREG_F(5));
 
         if (i_this->timers[0] == 0) {
             i_this->action = ACTION_WAIT;
-            i_this->mode = 0;
+            i_this->action_phase = PHASE_INIT;
             i_this->field_0x848 = 0.0f;
         }
         break;
@@ -439,10 +527,10 @@ static void e_db_wait(e_db_class* i_this) {
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_WAIT, -1);
     }
 
-    switch (i_this->mode) {
-    case -1:
+    switch (i_this->action_phase) {
+    case WAIT_PHASE_NEG_1:
         if (i_this->modelMorf->isStop()) {
-            i_this->mode = 0;
+            i_this->action_phase = WAIT_PHASE_WAIT;
         } else {
             cXyz sp3C(0.0f, 90.0f, -100.0f);
             cXyz sp30;
@@ -455,10 +543,10 @@ static void e_db_wait(e_db_class* i_this) {
             cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 0.3f, 30.0f);
             break;
         }
-    case 0:
-        anm_init(i_this, 0x12, 10.0f, 2, 1.0f);
-        leaf_anm_init(i_this, 0x14, 10.0f, 2, 1.0f);
-        i_this->mode = 1;
+    case WAIT_PHASE_WAIT:
+        anm_init(i_this, BCK_DB_WAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        leaf_anm_init(i_this, BCK_DL_SHAKE2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        i_this->action_phase = WAIT_PHASE_END;
 
         if (i_this->arg2 == 1) {
             i_this->timers[1] = 30.0f + cM_rndF(20.0f);
@@ -468,7 +556,7 @@ static void e_db_wait(e_db_class* i_this) {
 
         i_this->timers[0] = 0;
         break;
-    case 1:
+    case WAIT_PHASE_END:
         if (i_this->timers[0] == 0) {
             i_this->timers[0] = 10.0f + cM_rndF(30.0f);
             i_this->field_0x674.x = actor->home.pos.x + cM_rndFX(100.0f);
@@ -480,25 +568,25 @@ static void e_db_wait(e_db_class* i_this) {
                 i_this->field_0x674.y = 170.0f + actor->home.pos.y + cM_rndFX(50.0f);
             }
 
-            i_this->field_0x68c = 0.0f;
+            i_this->step_scale = 0.0f;
         }
 
         sp48.x = temp_f31 * cM_ssin(i_this->counter * (TREG_S(0) + 1900));
         sp48.y = temp_f31 * cM_ssin(i_this->counter * (TREG_S(1) + 2200));
         sp48.z = temp_f31 * cM_scos(i_this->counter * (TREG_S(2) + 2000));
 
-        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x + sp48.x, 0.1f, 20.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z + sp48.z, 0.1f, 20.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y + sp48.y, 0.1f, 20.0f * i_this->field_0x68c);
-        cLib_addCalc2(&i_this->field_0x68c, 1.0f, 1.0f, 0.05f);
+        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x + sp48.x, 0.1f, 20.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z + sp48.z, 0.1f, 20.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y + sp48.y, 0.1f, 20.0f * i_this->step_scale);
+        cLib_addCalc2(&i_this->step_scale, 1.0f, 1.0f, 0.05f);
 
         if (i_this->arg3 != 1 && !pl_check(i_this, 100.0f + i_this->pl_search_range)) {
             i_this->action = ACTION_STAY;
-            i_this->mode = 2;
+            i_this->action_phase = STAY_PHASE_2;
             i_this->sound.startCreatureSound(Z2SE_EN_DB_HIKKOMU, 0, -1);
         } else if (!daPy_getPlayerActorClass()->getDkCaught() && !daPy_getPlayerActorClass()->getDkCaught2() && i_this->timers[1] == 0 && pl_check(i_this, 700.0f)) {
             i_this->action = ACTION_ATTACK;
-            i_this->mode = 0;
+            i_this->action_phase = PHASE_INIT;
         }
         break;
     }
@@ -527,12 +615,12 @@ static void e_db_mk_roof(e_db_class* i_this) {
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_WAIT, -1);
     }
 
-    switch (i_this->mode) {
-    case 0:
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
         if (i_this->timers[0] == 0) {
-            anm_init(i_this, 0x12, 10.0f, 2, 1.0f);
-            leaf_anm_init(i_this, 0x14, 10.0f, 2, 1.0f);
-            i_this->mode = 1;
+            anm_init(i_this, BCK_DB_WAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            leaf_anm_init(i_this, BCK_DL_SHAKE2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            i_this->action_phase = ROOF_PHASE_END;
             i_this->timers[1] = 50.0f + cM_rndF(50.0f);
             i_this->timers[0] = 0;
             i_this->size = l_HIO.appear_size;
@@ -540,21 +628,21 @@ static void e_db_mk_roof(e_db_class* i_this) {
             i_this->size = l_HIO.flower_size;
         }
         break;
-    case 1:
+    case ROOF_PHASE_END:
         if (i_this->timers[0] == 0) {
             i_this->timers[0] = 10.0f + cM_rndF(30.0f);
             i_this->field_0x674.x = actor->home.pos.x + cM_rndFX(70.0f);
             i_this->field_0x674.z = actor->home.pos.z + cM_rndFX(70.0f);
             i_this->field_0x674.y = (actor->home.pos.y - 250.0f) + BREG_F(1);
-            i_this->field_0x68c = 0.0f;
+            i_this->step_scale = 0.0f;
         }
 
         spC.x = temp_f31 * cM_ssin(i_this->counter * (TREG_S(0) + 1900));
         spC.z = temp_f31 * cM_scos(i_this->counter * (TREG_S(2) + 2000));
-        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x + spC.x, 0.1f, 20.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z + spC.z, 0.1f, 20.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 0.1f, 20.0f * i_this->field_0x68c);
-        cLib_addCalc2(&i_this->field_0x68c, 1.0f, 1.0f, 0.05f);
+        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x + spC.x, 0.1f, 20.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z + spC.z, 0.1f, 20.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 0.1f, 20.0f * i_this->step_scale);
+        cLib_addCalc2(&i_this->step_scale, 1.0f, 1.0f, 0.05f);
         break;
     }
 
@@ -575,20 +663,20 @@ static void e_db_attack(e_db_class* i_this) {
         spA = (s16)cM_atan2s(sp78.y, JMAFastSqrt(SQUARE(sp78.x) + SQUARE(sp78.z)));
     }
 
-    switch (i_this->mode) {
-    case 0:
-        i_this->mode = 1;
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
+        i_this->action_phase = ATTACK_PHASE_ATTACK;
         i_this->timers[0] = 17;
-        i_this->field_0x68c = 0.0f;
+        i_this->step_scale = 0.0f;
         i_this->field_0xb15 = 0;
 
         i_this->sound.startCreatureSound(Z2SE_EN_DB_GRASS, 0, -1);
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_ATTACK, -1);
 
-        leaf_anm_init(i_this, 0x13, 5.0f, 2, 1.0f);
-        anm_init(i_this, 6, 5.0f, 0, 1.0f);
+        leaf_anm_init(i_this, BCK_DL_SHAKE1, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        anm_init(i_this, BCK_DB_ATTACK, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         /* fallthrough */
-    case 1:
+    case ATTACK_PHASE_ATTACK:
         if (i_this->field_0x850 != 0) {
             cLib_addCalcAngleS2(&actor->shape_angle.y, (i_this->angle_to_player + 0x8000), 8, 0x800);
             sp78.x = 0.0f;
@@ -605,13 +693,13 @@ static void e_db_attack(e_db_class* i_this) {
         MtxPosition(&sp78, &sp6C);
         i_this->field_0x674 = actor->home.pos + sp6C;
 
-        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 0.1f, 20.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 0.1f, 20.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 0.1f, 20.0f * i_this->field_0x68c);
-        cLib_addCalc2(&i_this->field_0x68c, 1.0f, 1.0f, 0.1f);
+        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 0.1f, 20.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 0.1f, 20.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 0.1f, 20.0f * i_this->step_scale);
+        cLib_addCalc2(&i_this->step_scale, 1.0f, 1.0f, 0.1f);
 
         if (i_this->timers[0] == 0) {
-            i_this->mode = 2;
+            i_this->action_phase = ATTACK_PHASE_2;
             i_this->timers[1] = 10;
 
             if (i_this->field_0x850 != 0) {
@@ -635,7 +723,7 @@ static void e_db_attack(e_db_class* i_this) {
             actor->speed.x = fabsf(i_this->field_0x674.x - actor->current.pos.x);
             actor->speed.y = fabsf(i_this->field_0x674.y - actor->current.pos.y);
             actor->speed.z = fabsf(i_this->field_0x674.z - actor->current.pos.z);
-            i_this->field_0x68c = 0.0f;
+            i_this->step_scale = 0.0f;
 
             i_this->atSph.StartCAt(actor->current.pos);
 
@@ -650,38 +738,38 @@ static void e_db_attack(e_db_class* i_this) {
             i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_BITE, -1);
         }
         break;
-    case 2:
+    case ATTACK_PHASE_2:
         if (i_this->timers[1] != 0) {
             i_this->field_0xb14 = 1;
         }
 
-        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 0.8f, actor->speed.x * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 0.8f, actor->speed.z * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 0.8f, actor->speed.y * i_this->field_0x68c);
-        cLib_addCalc2(&i_this->field_0x68c, 0.2f, 1.0f, 0.05f);
+        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 0.8f, actor->speed.x * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 0.8f, actor->speed.z * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 0.8f, actor->speed.y * i_this->step_scale);
+        cLib_addCalc2(&i_this->step_scale, 0.2f, 1.0f, 0.05f);
         cLib_addCalcAngleS2(&actor->shape_angle.z, i_this->field_0x860, 2, 0x2000);
 
         if (!daPy_getPlayerActorClass()->getDkCaught() && !daPy_getPlayerActorClass()->getDkCaught2() && i_this->atSph.ChkAtHit() && player == dCc_GetAc(i_this->atSph.GetAtHitObj()->GetAc())) {
             OS_REPORT("E_DB//////////////AT  SET 1 !!\n");
-            i_this->mode = 5;
-            i_this->field_0x68c = 20.0f;
-            anm_init(i_this, 7, 2.0f, 2, 1.0f);
+            i_this->action_phase = ATTACK_PHASE_BITING;
+            i_this->step_scale = 20.0f;
+            anm_init(i_this, BCK_DB_BITE, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->timers[0] = 120;
 
             daPy_getPlayerActorClass()->setDkCaught(actor);
             dComIfGp_getVibration().StartShock(6, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
         } else if (i_this->modelMorf->isStop()) {
-            i_this->mode = 3;
+            i_this->action_phase = ATTACK_PHASE_WAIT;
             i_this->timers[0] = 0;
         }
         break;
-    case 3:
+    case ATTACK_PHASE_WAIT:
         if (i_this->timers[0] == 0) {
             i_this->action = ACTION_WAIT;
-            i_this->mode = 0;
+            i_this->action_phase = PHASE_INIT;
         }
         break;
-    case 5:
+    case ATTACK_PHASE_BITING:
         i_this->field_0x851 = 1;
         i_this->sound.startCreatureVoiceLevel(Z2SE_EN_DB_V_BITING, -1);
         i_this->ccSph.OffCoSetBit();
@@ -732,14 +820,14 @@ static void e_db_attack(e_db_class* i_this) {
                 i_this->field_0x674.y += 80.0f + JREG_F(8);
             }
 
-            cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 1.0f, i_this->field_0x68c);
-            cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 1.0f, i_this->field_0x68c);
-            cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 1.0f, i_this->field_0x68c);
-            cLib_addCalc2(&i_this->field_0x68c, 200.0f, 1.0f, 10.0f);
+            cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 1.0f, i_this->step_scale);
+            cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 1.0f, i_this->step_scale);
+            cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 1.0f, i_this->step_scale);
+            cLib_addCalc2(&i_this->step_scale, 200.0f, 1.0f, 10.0f);
         } else {
             i_this->action = ACTION_WAIT;
-            i_this->mode = -1;
-            anm_init(i_this, 0x10, 2.0f, 0, 1.0f);
+            i_this->action_phase = WAIT_PHASE_NEG_1;
+            anm_init(i_this, BCK_DB_FREE, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_RELEASE, -1);
             i_this->field_0x858 = 20.0f;
             i_this->field_0x85c = actor->shape_angle.y;
@@ -775,30 +863,30 @@ static void e_db_attack_s(e_db_class* i_this) {
     sp28 = temp_r28->eyePos - actor->current.pos;
     s16 temp_r27 = (s16)cM_atan2s(sp28.y, JMAFastSqrt(SQUARE(sp28.x) + SQUARE(sp28.z)));
 
-    switch (i_this->mode) {
-    case 0:
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
         i_this->sound.startCreatureSound(Z2SE_EN_DB_GRASS, 0, -1);
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_ATTACK, -1);
 
-        leaf_anm_init(i_this, 0x13, 5.0f, 2, 1.0f);
-        anm_init(i_this, 6, 5.0f, 0, 1.0f);
+        leaf_anm_init(i_this, BCK_DL_SHAKE1, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        anm_init(i_this, BCK_DB_ATTACK, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->atSph.StartCAt(actor->current.pos);
 
         i_this->timers[0] = YREG_S(7) + 15;
-        i_this->field_0x68c = 0.0f;
-        i_this->mode = 1;
+        i_this->step_scale = 0.0f;
+        i_this->action_phase = ATTACK_S_PHASE_END;
         /* fallthrough */
-    case 1:
+    case ATTACK_S_PHASE_END:
         i_this->field_0x674 = temp_r28->eyePos;
-        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 0.8f, 50.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 0.8f, 50.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 0.8f, 50.0f * i_this->field_0x68c);
-        cLib_addCalc2(&i_this->field_0x68c, 1.0f, 1.0f, 0.3f);
+        cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 0.8f, 50.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 0.8f, 50.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 0.8f, 50.0f * i_this->step_scale);
+        cLib_addCalc2(&i_this->step_scale, 1.0f, 1.0f, 0.3f);
 
         sp28 = actor->current.pos - actor->home.pos;
         if (i_this->timers[0] == 0 || sp28.abs() > 400.0f + YREG_F(17)) {
-            i_this->action = 3;
-            i_this->mode = 0;
+            i_this->action = ACTION_WAIT;
+            i_this->action_phase = WAIT_PHASE_WAIT;
         }
         break;
     }
@@ -816,49 +904,49 @@ static void e_db_chance(e_db_class* i_this) {
     cXyz sp14;
     f32 temp_f31 = 60.0f + TREG_F(17);
 
-    switch (i_this->mode) {
-    case 0:
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
         if (i_this->field_0x850 != 0) {
-            anm_init(i_this, 0xA, 5.0f, 2, 1.0f);
+            anm_init(i_this, BCK_DB_CHANCE3, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         } else {
-            anm_init(i_this, 9, 5.0f, 2, 1.0f);
+            anm_init(i_this, BCK_DB_CHANCE2, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
-        leaf_anm_init(i_this, 0x14, 5.0f, 2, 1.0f);
-        i_this->mode = 1;
+        leaf_anm_init(i_this, BCK_DL_SHAKE2, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        i_this->action_phase = CHANCE_PHASE_1;
         i_this->timers[0] = 60;
-        i_this->field_0x68c = 0.0f;
+        i_this->step_scale = 0.0f;
         /* fallthrough */
-    case 1:
+    case CHANCE_PHASE_1:
         sp14.x = temp_f31 * cM_ssin(i_this->counter * (TREG_S(0) + 900));
         sp14.z = temp_f31 * cM_scos(i_this->counter * (TREG_S(2) + 1000));
 
-        cLib_addCalc2(&actor->current.pos.x, actor->home.pos.x + sp14.x, 0.1f, 20.0f * i_this->field_0x68c);
-        cLib_addCalc2(&actor->current.pos.z, actor->home.pos.z + sp14.z, 0.1f, 20.0f * i_this->field_0x68c);
+        cLib_addCalc2(&actor->current.pos.x, actor->home.pos.x + sp14.x, 0.1f, 20.0f * i_this->step_scale);
+        cLib_addCalc2(&actor->current.pos.z, actor->home.pos.z + sp14.z, 0.1f, 20.0f * i_this->step_scale);
 
         if (i_this->field_0x850 != 0) {
-            cLib_addCalc2(&actor->current.pos.y, actor->home.pos.y - (230.0f + TREG_F(18)), 0.1f, 20.0f * i_this->field_0x68c);
+            cLib_addCalc2(&actor->current.pos.y, actor->home.pos.y - (230.0f + TREG_F(18)), 0.1f, 20.0f * i_this->step_scale);
         } else {
-            cLib_addCalc2(&actor->current.pos.y, 230.0f + actor->home.pos.y + TREG_F(18), 0.1f, 20.0f * i_this->field_0x68c);
+            cLib_addCalc2(&actor->current.pos.y, 230.0f + actor->home.pos.y + TREG_F(18), 0.1f, 20.0f * i_this->step_scale);
         }
 
-        cLib_addCalc2(&i_this->field_0x68c, 1.0f, 1.0f, 0.1f);
+        cLib_addCalc2(&i_this->step_scale, 1.0f, 1.0f, 0.1f);
 
         if (i_this->timers[0] <= 50 && i_this->timers[0] >= 10) {
             i_this->sound.startCreatureSoundLevel(Z2SE_EN_DB_V_FAINT, 0, -1);
         }
 
         if (i_this->timers[0] == 0) {
-            i_this->mode++;
-            anm_init(i_this, 0x11, 3.0f, 0, 1.0f);
-            leaf_anm_init(i_this, 0x13, 3.0f, 2, 1.0f);
+            i_this->action_phase++;
+            anm_init(i_this, BCK_DB_REVIVE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            leaf_anm_init(i_this, BCK_DL_SHAKE1, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->sound.startCreatureSound(Z2SE_EN_DB_GRASS, 0, -1);
         }
         break;
-    case 2:
+    case CHANCE_PHASE_END:
         if (i_this->modelMorf->isStop()) {
             i_this->action = ACTION_WAIT;
-            i_this->mode = 0;
+            i_this->action_phase = WAIT_PHASE_WAIT;
             i_this->field_0x848 = 0.0f;
         }
         break;
@@ -878,10 +966,10 @@ static void e_db_s_damage(e_db_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
     cXyz sp10;
 
-    switch (i_this->mode) {
-    case 0:
-        anm_init(i_this, 0xB, 3.0f, 0, 1.0f);
-        leaf_anm_init(i_this, 0x13, 3.0f, 2, 0.0f);
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
+        anm_init(i_this, BCK_DB_DAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        leaf_anm_init(i_this, BCK_DL_SHAKE1, 3.0f, J3DFrameCtrl::EMode_LOOP, 0.0f);
         i_this->sound.startCreatureSound(Z2SE_EN_DB_GRASS, 0, -1);
 
         if (i_this->field_0x850 != 0) {
@@ -894,11 +982,11 @@ static void e_db_s_damage(e_db_class* i_this) {
         sp10.y = 15.0f;
         sp10.z = -50.0f + TREG_F(16);
         MtxPosition(&sp10, &actor->speed);
-        i_this->mode = 1;
+        i_this->action_phase = S_DAMAGE_PHASE_END;
         i_this->timers[0] = 10;
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_DAMAGE_S, -1);
         break;
-    case 1:
+    case S_DAMAGE_PHASE_END:
         actor->current.pos += actor->speed;
         sp10.x = actor->current.pos.x - actor->home.pos.x;
         sp10.z = actor->current.pos.z - actor->home.pos.z;
@@ -913,7 +1001,7 @@ static void e_db_s_damage(e_db_class* i_this) {
 
         if (i_this->timers[0] == 0) {
             i_this->action = ACTION_CHANCE;
-            i_this->mode = 0;
+            i_this->action_phase = 0;
         }
         break;
     }
@@ -930,10 +1018,10 @@ static void e_db_damage(e_db_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
     cXyz sp1C;
 
-    switch (i_this->mode) {
+    switch (i_this->action_phase) {
     case 0:
-        anm_init(i_this, 0xB, 3.0f, 0, 1.0f);
-        leaf_anm_init(i_this, 0x13, 3.0f, 2, 0.0f);
+        anm_init(i_this, BCK_DB_DAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        leaf_anm_init(i_this, BCK_DL_SHAKE1, 3.0f, J3DFrameCtrl::EMode_LOOP, 0.0f);
         i_this->sound.startCreatureSound(Z2SE_EN_DB_GRASS, 0, -1);
         cMtx_YrotS(*calc_mtx, i_this->field_0x680);
 
@@ -951,18 +1039,18 @@ static void e_db_damage(e_db_class* i_this) {
         }
         MtxPosition(&sp1C, &actor->speed);
 
-        i_this->mode = 1;
+        i_this->action_phase = DAMAGE_PHASE_1;
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_DAMAGE, -1);
         break;
-    case 1:
+    case DAMAGE_PHASE_1:
         sp1C = actor->current.pos - actor->home.pos;
         if (sp1C.abs() > (450.0f + TREG_F(15))) {
             actor->current.pos = actor->old.pos;
             actor->speed.x *= -0.1f;
             actor->speed.z *= -0.1f;
-            i_this->mode++;
+            i_this->action_phase++;
         }
-    case 2:
+    case DAMAGE_PHASE_END:
         s16 var_r27;
         if (i_this->arg0 == 2) {
             var_r27 = 0;
@@ -995,7 +1083,7 @@ static void e_db_damage(e_db_class* i_this) {
                 i_this->action = ACTION_WAIT;
             }
 
-            i_this->mode = 0;
+            i_this->action_phase = PHASE_INIT;
         }
     }
 }
@@ -1248,28 +1336,28 @@ static s8 e_db_escape(e_db_class* i_this) {
     s8 spC = 2;
     s8 spB = 1;
 
-    switch (i_this->mode) {
-    case 0:
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
         spC = 1;
         i_this->field_0x840 = 25.0f + TREG_F(8);
         if (i_this->acch.ChkGroundHit()) {
             actor->speed.y = 20.0f;
-            i_this->mode = 1;
-            anm_init(i_this, 0xF, 10.0f, 2, 1.0f);
+            i_this->action_phase = ESCAPE_PHASE_EXECUTE;
+            anm_init(i_this, BCK_DB_ESCAPE, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->atSph.StartCAt(actor->current.pos);
             i_this->timers[0] = 200.0f + cM_rndF(100.0f);
             fopAcM_effSmokeSet1(&i_this->field_0x1258, &i_this->field_0x125c, &actor->current.pos, &actor->shape_angle, 1.0f + NREG_F(18), &actor->tevStr, 1);
         }
         break;
-    case 1:
+    case ESCAPE_PHASE_EXECUTE:
         cLib_addCalcAngleS2(&actor->shape_angle.y, i_this->angle_to_player, 8, 0x400);
 
         if (i_this->timers[0] == 0 && i_this->arg0 == 0) {
-            i_this->mode = 2;
+            i_this->action_phase = ESCAPE_PHASE_2;
         } else if (i_this->timers[1] == 0) {
             s16 sp12 = i_this->angle_to_player - actor->shape_angle.y;
             if (sp12 < 0x1000 && sp12 > -0x1000 && player_distance < (300.0f + KREG_F(7)) && !daPy_getPlayerActorClass()->getDkCaught() && !daPy_getPlayerActorClass()->getDkCaught2()) {
-                i_this->mode = 15;
+                i_this->action_phase = ESCAPE_PHASE_AT_SET;
                 i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_BITE, -1);
 
                 if (cM_rndF(1.0f) < 0.5f) {
@@ -1285,19 +1373,19 @@ static s8 e_db_escape(e_db_class* i_this) {
             }
         }
         break;
-    case 2:
+    case ESCAPE_PHASE_2:
         sp60 = actor->home.pos - actor->current.pos;
         sp60.y = 0.0f;
         cLib_addCalcAngleS2(&actor->shape_angle.y, cM_atan2s(sp60.x, sp60.z), 8, 0x800);
 
         if (sp60.abs() < 100.0f) {
-            i_this->mode = 3;
+            i_this->action_phase = ESCAPE_PHASE_3;
             i_this->timers[0] = 25;
-            leaf_anm_init(i_this, 0x13, 10.0f, 2, 1.0f);
+            leaf_anm_init(i_this, BCK_DL_SHAKE1, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->sound.startCreatureSound(Z2SE_EN_DB_GRASS, 0, -1);
         }
         break;
-    case 3:
+    case ESCAPE_PHASE_3:
         spC = 0;
         cLib_addCalc0(&i_this->field_0x840, 1.0f, 1.0f);
         cLib_addCalc2(&actor->current.pos.x, actor->home.pos.x, 0.2f, fabsf(actor->speed.x));
@@ -1306,23 +1394,23 @@ static s8 e_db_escape(e_db_class* i_this) {
 
         if (i_this->timers[0] == 0) {
             i_this->action = ACTION_APPEAR;
-            i_this->mode = 0;
+            i_this->action_phase = PHASE_INIT;
             actor->health = 30;
             i_this->atInfo.field_0x18 = 45;
         }
         break;
-    case 10:
-        anm_init(i_this, 0xB, 3.0f, 0, 1.0f);
-        i_this->mode = 11;
+    case ESCAPE_PHASE_DAMAGE:
+        anm_init(i_this, BCK_DB_DAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        i_this->action_phase = ESCAPE_PHASE_END_DAMAGE;
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_DAMAGE, -1);
         break;
-    case 11:
+    case ESCAPE_PHASE_END_DAMAGE:
         if (i_this->modelMorf->isStop()) {
-            i_this->mode = 1;
-            anm_init(i_this, 0xF, 5.0f, 2, 1.0f);
+            i_this->action_phase = ESCAPE_PHASE_EXECUTE;
+            anm_init(i_this, BCK_DB_ESCAPE, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
-    case 15:
+    case ESCAPE_PHASE_AT_SET:
         spC = 1;
         if (i_this->field_0x860 == 0) {
             if (cM_rndF(1.0f) < 0.5f) {
@@ -1341,28 +1429,28 @@ static s8 e_db_escape(e_db_class* i_this) {
             i_this->field_0xb14 = 2;
             if (!daPy_getPlayerActorClass()->getDkCaught() && !daPy_getPlayerActorClass()->getDkCaught2() && i_this->atSph.ChkAtHit() && !i_this->atSph.ChkAtShieldHit()) {
                 OS_REPORT("E_DB//////////////AT  SET 1 %d !!\n", daPy_getPlayerActorClass()->getDkCaught2());
-                i_this->mode = 20;
-                i_this->field_0x68c = 15.0f;
+                i_this->action_phase = ESCAPE_PHASE_BITING;
+                i_this->step_scale = 15.0f;
                 i_this->timers[0] = 120;
 
                 daPy_getPlayerActorClass()->onDkCaught2();
                 OS_REPORT("E_DB//////////////AT  SET 2 %d !!\n", daPy_getPlayerActorClass()->getDkCaught2());
 
                 i_this->field_0x85e = actor->shape_angle.y - player->shape_angle.y;
-                anm_init(i_this, 7, 2.0f, 2, 1.0f);
+                anm_init(i_this, BCK_DB_BITE, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
                 break;
             }
         }
         
         if (i_this->acch.ChkGroundHit()) {
-            i_this->mode = 1;
+            i_this->action_phase = ESCAPE_PHASE_EXECUTE;
             i_this->timers[1] = 30;
-            anm_init(i_this, 0xF, 10.0f, 2, 1.0f);
+            anm_init(i_this, BCK_DB_ESCAPE, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             actor->speedF = 7.5f;
             fopAcM_effSmokeSet1(&i_this->field_0x1258, &i_this->field_0x125c, &actor->current.pos, &actor->shape_angle, 1.0f + NREG_F(18), &actor->tevStr, 1);
         }
         break;
-    case 20:
+    case ESCAPE_PHASE_BITING:
         i_this->field_0x851 = 1;
         i_this->sound.startCreatureVoiceLevel(Z2SE_EN_DB_V_BITING, -1);
         spD = 0;
@@ -1390,17 +1478,17 @@ static s8 e_db_escape(e_db_class* i_this) {
             i_this->field_0x674 += player->current.pos;
 
             cLib_addCalcAngleS2(&actor->shape_angle.y, sp10, 2, 0x2000);
-            cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 1.0f, i_this->field_0x68c);
-            cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 1.0f, i_this->field_0x68c);
-            cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 1.0f, i_this->field_0x68c);
-            cLib_addCalc2(&i_this->field_0x68c, 200.0f, 1.0f, 10.0f);
+            cLib_addCalc2(&actor->current.pos.x, i_this->field_0x674.x, 1.0f, i_this->step_scale);
+            cLib_addCalc2(&actor->current.pos.z, i_this->field_0x674.z, 1.0f, i_this->step_scale);
+            cLib_addCalc2(&actor->current.pos.y, i_this->field_0x674.y, 1.0f, i_this->step_scale);
+            cLib_addCalc2(&i_this->step_scale, 200.0f, 1.0f, 10.0f);
 
             cLib_addCalcAngleS2(&actor->shape_angle.z, i_this->field_0x860 + (2000.0f + KREG_F(17)) * cM_ssin(i_this->counter * (KREG_S(0) + 12000)), 2, 0x2000);
             cLib_addCalcAngleS2(&actor->shape_angle.x, 0, 2, 0x800);
         } else {
-            i_this->mode = 21;
+            i_this->action_phase = ESCAPE_PHASE_END_BITING;
             i_this->timers[1] = 30;
-            anm_init(i_this, 0x10, 2.0f, 0, 1.0f);
+            anm_init(i_this, BCK_DB_FREE, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_RELEASE, -1);
 
             if (i_this->acch.ChkWallHit()) {
@@ -1414,13 +1502,13 @@ static s8 e_db_escape(e_db_class* i_this) {
             spC = 1;
         }
         break;
-    case 21:
+    case ESCAPE_PHASE_END_BITING:
         if (i_this->modelMorf->isStop()) {
-            anm_init(i_this, 0xF, 10.0f, 2, 1.0f);
-            i_this->mode = 1;
+            anm_init(i_this, BCK_DB_ESCAPE, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            i_this->action_phase = ESCAPE_PHASE_EXECUTE;
         }
         break;
-    case 50:
+    case ESCAPE_PHASE_DIE:
         spB = 0;
         spC = 0;
         spD = 0;
@@ -1500,10 +1588,10 @@ static s8 e_db_escape(e_db_class* i_this) {
     }
 
     if (spB != 0 && (actor->current.pos.y - 35.0f) + TREG_F(8) < temp_f30) {
-        i_this->mode = 50;
-        anm_init(i_this, 0xE, 20.0f, 0, 1.0f);
+        i_this->action_phase = ESCAPE_PHASE_DIE;
+        anm_init(i_this, BCK_DB_DIE, 20.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_DEATH, -1);
-        i_this->field_0x852 = 1;
+        i_this->death_flag = 1;
         daPy_getPlayerActorClass()->onEnemyDead();
 
         i_this->invulnerabilityTimer = 200;
@@ -1551,8 +1639,8 @@ static void e_db_e_dead(e_db_class* i_this) {
     sp30.SetPos(&sp24);
     f32 temp_f30 = dComIfG_Bgsp().GroundCross(&sp30);
 
-    switch (i_this->mode) {
-    case 0:
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
         i_this->field_0x840 = 25.0f + TREG_F(8);
         cMtx_YrotS(*calc_mtx, i_this->field_0x680);
         sp24.x = 0.0f;
@@ -1560,22 +1648,22 @@ static void e_db_e_dead(e_db_class* i_this) {
         sp24.z = -40.0f;
         MtxPosition(&sp24, &actor->speed);
 
-        anm_init(i_this, 0xC, 3.0f, 2, 1.0f);
-        i_this->mode = 1;
+        anm_init(i_this, BCK_DB_DAMAGE2, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        i_this->action_phase = E_DEAD_PHASE_1;
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_DEATH, -1);
-        i_this->field_0x852 = 1;
+        i_this->death_flag = 1;
         daPy_getPlayerActorClass()->onEnemyDead();
         break;
-    case 1:
+    case E_DEAD_PHASE_1:
         if (i_this->acch.ChkWallHit()) {
             actor->speed.x *= -0.3f;
             actor->speed.z *= -0.3f;
-            i_this->mode = 2;
+            i_this->action_phase = E_DEAD_PHASE_2;
         }
-    case 2:
+    case E_DEAD_PHASE_2:
         if (i_this->acch.ChkGroundHit()) {
             actor->speed.y = 20.0f;
-            i_this->mode = 3;
+            i_this->action_phase = E_DEAD_PHASE_DIE;
             i_this->timers[0] = 50;
             actor->speed.x *= 0.2f;
             actor->speed.z *= 0.2f;
@@ -1589,15 +1677,15 @@ static void e_db_e_dead(e_db_class* i_this) {
             fopAcM_effSmokeSet1(&i_this->field_0x1258, &i_this->field_0x125c, &actor->current.pos, &actor->shape_angle, 1.0f + NREG_F(18), &actor->tevStr, 1);
         }
         break;
-    case 3:
-    case 4:
+    case E_DEAD_PHASE_DIE:
+    case E_DEAD_PHASE_DELETE:
         if (i_this->acch.ChkGroundHit()) {
             actor->speed.z = 0.0f;
             actor->speed.x = 0.0f;
 
-            if (i_this->mode == 3) {
-                anm_init(i_this, 0xE, 10.0f, 0, 1.0f);
-                i_this->mode = 4;
+            if (i_this->action_phase == E_DEAD_PHASE_DIE) {
+                anm_init(i_this, BCK_DB_DIE, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+                i_this->action_phase = E_DEAD_PHASE_DELETE;
             }
         }
 
@@ -1613,10 +1701,10 @@ static void e_db_e_dead(e_db_class* i_this) {
                 i_this->field_0x674 = actor->home.pos;
                 i_this->size = 0.0f;
                 i_this->action = ACTION_MK_ROOF;
-                i_this->mode = 0;
+                i_this->action_phase = PHASE_INIT;
                 i_this->timers[0] = l_HIO.roof_reappear_interval;
                 actor->health = 30;
-                i_this->field_0x852 = 0;
+                i_this->death_flag = 0;
                 return;
             }
 
@@ -1647,10 +1735,10 @@ static void e_db_e_dead(e_db_class* i_this) {
 
     if (((actor->current.pos.y - 35.0f) + TREG_F(8)) < temp_f30) {
         i_this->action = ACTION_ESCAPE;
-        i_this->mode = 50;
-        anm_init(i_this, 0xE, 20.0f, 0, 1.0f);
+        i_this->action_phase = ESCAPE_PHASE_DIE;
+        anm_init(i_this, BCK_DB_DIE, 20.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_DEATH, -1);
-        i_this->field_0x852 = 1;
+        i_this->death_flag = 1;
         daPy_getPlayerActorClass()->onEnemyDead();
 
         i_this->invulnerabilityTimer = 200;
@@ -1902,9 +1990,9 @@ static void eff_set(e_db_class* i_this, int param_1) {
                 sp8.y = fopAcM_gc_c::getGroundY();
             }
 
-            i_this->field_0x124c = dComIfGp_particle_set(i_this->field_0x124c, 0x81DD, &sp8, NULL, NULL);
+            i_this->field_0x124c = dComIfGp_particle_set(i_this->field_0x124c, dPa_RM(ID_ZI_S_DB_YODAPOTA_A), &sp8, NULL, NULL);
         } else if (i_this->field_0x1239 == 2) {
-            i_this->field_0x1248 = dComIfGp_particle_set(i_this->field_0x1248, 0x81C2, &actor->current.pos, NULL, NULL);
+            i_this->field_0x1248 = dComIfGp_particle_set(i_this->field_0x1248, dPa_RM(ID_ZI_S_DB_YODABURU_A), &actor->current.pos, NULL, NULL);
             
             JPABaseEmitter* pemitter = dComIfGp_particle_getEmitter(i_this->field_0x1248);
             if (pemitter != NULL) {
@@ -1912,7 +2000,7 @@ static void eff_set(e_db_class* i_this, int param_1) {
                 pemitter->setGlobalRTMatrix(*calc_mtx);
             }
         } else if (i_this->field_0x1239 == 3) {
-            i_this->field_0x1250 = dComIfGp_particle_set(i_this->field_0x1250, 0x81C3, &actor->current.pos, NULL, NULL);
+            i_this->field_0x1250 = dComIfGp_particle_set(i_this->field_0x1250, dPa_RM(ID_ZI_S_DB_YODAHIT_A), &actor->current.pos, NULL, NULL);
             
             JPABaseEmitter* pemitter = dComIfGp_particle_getEmitter(i_this->field_0x1250);
             if (pemitter != NULL) {
@@ -2031,8 +2119,8 @@ static int daE_DB_Execute(e_db_class* i_this) {
     dComIfG_Ccsp()->Set(&i_this->atSph);
     eff_set(i_this, 0);
 
-    if (i_this->field_0x852 != 0) {
-        cLib_addCalc2(&i_this->field_0x854, -20.0f, 1.0f, 0.4f);
+    if (i_this->death_flag != 0) {
+        cLib_addCalc2(&i_this->death_color, -20.0f, 1.0f, 0.4f);
     }
 
     return 1;
@@ -2213,7 +2301,7 @@ static int daE_DB_Create(fopAc_ac_c* i_this) {
 
         if (a_this->arg0 == 1) {
             a_this->action = ACTION_MK_ROOF;
-            a_this->mode = 0;
+            a_this->action_phase = 0;
             i_this->current.angle.x = -0x8000;
             i_this->shape_angle.x = -0x8000;
             a_this->field_0x850 = 1;

@@ -13,7 +13,8 @@
  * 
  * @details 
  * 
- */
+*/
+
 class e_db_class {
 public:
     /* 0x0000 */ fopEn_enemy_c enemy;
@@ -28,14 +29,14 @@ public:
     /* 0x0664 */ u32 shadowId;
     /* 0x0668 */ s16 counter;
     /* 0x066A */ s16 action;
-    /* 0x066C */ s16 mode;
+    /* 0x066C */ s16 action_phase;
     /* 0x0670 */ f32 pl_search_range;
     /* 0x0674 */ cXyz field_0x674;
     /* 0x0680 */ s16 field_0x680;
     /* 0x0682 */ u8 field_0x682[0x0684 - 0x0682];
     /* 0x0684 */ s16 angle_to_player;
     /* 0x0688 */ f32 dist_to_player;
-    /* 0x068C */ f32 field_0x68c;
+    /* 0x068C */ f32 step_scale;
     /* 0x0690 */ f32 size;
     /* 0x0694 */ s16 timers[3];
     /* 0x069A */ s16 invulnerabilityTimer;
@@ -52,8 +53,8 @@ public:
     /* 0x084E */ s16 field_0x84e;
     /* 0x0850 */ s8 field_0x850;
     /* 0x0851 */ s8 field_0x851;
-    /* 0x0852 */ s8 field_0x852;
-    /* 0x0854 */ f32 field_0x854;
+    /* 0x0852 */ s8 death_flag;
+    /* 0x0854 */ f32 death_color;
     /* 0x0858 */ f32 field_0x858;
     /* 0x085C */ s16 field_0x85c;
     /* 0x085E */ s16 field_0x85e;
