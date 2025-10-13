@@ -13,16 +13,17 @@
  * 
  * @details 
  * 
- */
+*/
+
 class e_bs_class {
 public:
     /* 0x000 */ fopEn_enemy_c enemy;
     /* 0x5AC */ request_of_phase_process_class phase;
-    /* 0x5B4 */ s16 mode;
+    /* 0x5B4 */ s16 action_phase;
     /* 0x5B6 */ u8 prm0;
     /* 0x5B7 */ u8 prm1;
     /* 0x5B8 */ u8 field_0x5B8[0x5C8 - 0x5B8];
-    /* 0x5C8 */ s16 field_0x5c8;
+    /* 0x5C8 */ s16 target_angle_y;
     /* 0x5CC */ mDoExt_McaMorfSO* modelMorf;
     /* 0x5D0 */ int anm;
     /* 0x5D4 */ mDoExt_McaMorf* weponModelMorf;
@@ -44,12 +45,12 @@ public:
     /* 0x6A8 */ s8 field_0x6a8;
     /* 0x6AA */ s16 field_0x6aa;
     /* 0x6AC */ s16 head_rot_y;
-    /* 0x6AE */ s16 field_0x6ae;
+    /* 0x6AE */ s16 target_head_rot_y;
     /* 0x6B0 */ s16 head_rot_z;
     /* 0x6B2 */ s16 field_0x6b2;
     /* 0x6B4 */ s16 field_0x6b4;
     /* 0x6B8 */ f32 field_0x6b8;
-    /* 0x6BC */ s16 field_0x6bc;
+    /* 0x6BC */ s16 hit_direction_y;
     /* 0x6BE */ u8 field_0x6BE[0x6C8 - 0x6BE];
     /* 0x6C8 */ cXyz field_0x6c8;
     /* 0x6D4 */ u8 field_0x6D4[0x6D8 - 0x6D4];
