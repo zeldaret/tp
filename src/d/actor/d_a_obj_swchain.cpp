@@ -1,9 +1,9 @@
 /**
  * @file d_a_obj_swchain.cpp
- * 
-*/
+ *
+ */
 
-#include "d/dolzel_rel.h" // IWYU pragma: keep
+#include "d/dolzel_rel.h"  // IWYU pragma: keep
 
 #ifdef DEBUG
 #include "d/d_debug_viewer.h"
@@ -67,37 +67,44 @@ daObjSwChain_HIO_c::daObjSwChain_HIO_c() {
 
 void daObjSwChain_HIO_c::genMessage(JORMContext* ctx) {
     // Chain Switch
-    ctx->genLabel("チェーンスイッチ",0,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genLabel("チェーンスイッチ", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Gravity
-    ctx->genSlider("重力",&mGravity,-100.0f,-1.0f,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("重力", &mGravity, -100.0f, -1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Tension
-    ctx->genSlider("張力",&mTension,0.0f,20.0f,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("張力", &mTension, 0.0f, 20.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Tension (Boots Equipped)
-    ctx->genSlider("張力（ブーツ装備）",&mTensionBootsEquipped,0.0f,20.0f,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("張力（ブーツ装備）", &mTensionBootsEquipped, 0.0f, 20.0f, 0, NULL, 0xffff,
+                   0xffff, 0x200, 0x18);
     // Tension (Wolf)
-    ctx->genSlider("張力（狼）",&mTensionWolf,0.0f,20.0f,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("張力（狼）", &mTensionWolf, 0.0f, 20.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // SWITCH ON Tension
-    ctx->genSlider("ＳＷＯＮの張力",&mSwitchOnTension,0.0f,20.0f,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ＳＷＯＮの張力", &mSwitchOnTension, 0.0f, 20.0f, 0, NULL, 0xffff, 0xffff, 0x200,
+                   0x18);
     // SWITCH ON Time
-    ctx->genSlider("ＳＷＯＮの時間",&mSwitchOnTime,0,64.0f,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ＳＷＯＮの時間", &mSwitchOnTime, 0, 64.0f, 0, NULL, 0xffff, 0xffff, 0x200,
+                   0x18);
     // -- Normal --
-    ctx->genLabel("-- ノーマル --",0,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genLabel("-- ノーマル --", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Return Speed
-    ctx->genSlider("戻る速度",&mReturnSpeed,0.0f,50.0f,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("戻る速度", &mReturnSpeed, 0.0f, 50.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // -- With Chandelier --
-    ctx->genLabel("-- シャンデリア付き --",0,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genLabel("-- シャンデリア付き --", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Return Speed・High
-    ctx->genSlider("戻る速度・高速",&mReturnSpeedHigh,0.0f,50.0f,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("戻る速度・高速", &mReturnSpeedHigh, 0.0f, 50.0f, 0, NULL, 0xffff, 0xffff, 0x200,
+                   0x18);
     // Return Speed・Low
-    ctx->genSlider("戻る速度・低速",&mReturnSpeedLow,0.0f,50.0f,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("戻る速度・低速", &mReturnSpeedLow, 0.0f, 50.0f, 0, NULL, 0xffff, 0xffff, 0x200,
+                   0x18);
     // Process Stop
-    ctx->genCheckBox("処理停止",&mProcessStop,'\x01',0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genCheckBox("処理停止", &mProcessStop, '\x01', 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Clawshot Related
-    ctx->genLabel("-- フックショット関係 --",0,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genLabel("-- フックショット関係 --", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Reaction Angle Display
-    ctx->genCheckBox("反応角度表示",&mReactionAngleDisplay,'\x01',0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genCheckBox("反応角度表示", &mReactionAngleDisplay, '\x01', 0, NULL, 0xffff, 0xffff, 0x200,
+                     0x18);
     // Clawshot Reaction Angle
-    ctx->genSlider("フックショット反応角度",&mReactionAngle,0,0x7fff,0,NULL,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("フックショット反応角度", &mReactionAngle, 0, 0x7fff, 0, NULL, 0xffff, 0xffff,
+                   0x200, 0x18);
 }
 
 static daObjSwChain_HIO_c l_HIO;
@@ -112,15 +119,15 @@ static int CheckCreateHeap(fopAc_ac_c* a_this) {
 
 /* 80CF86D8-80CF8768 000098 0090+00 2/2 0/0 0/0 .text            GetActorName__FR13cBgS_PolyInfo */
 static s16 GetActorName(cBgS_PolyInfo& param_0) {
-  if (dComIfG_Bgsp().ChkPolySafe(param_0)) {
-    if (dComIfG_Bgsp().ChkMoveBG_NoDABg(param_0)) {
-      if (dComIfG_Bgsp().GetActorPointer(param_0)) {
-        return fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(param_0));
-      }
+    if (dComIfG_Bgsp().ChkPolySafe(param_0)) {
+        if (dComIfG_Bgsp().ChkMoveBG_NoDABg(param_0)) {
+            if (dComIfG_Bgsp().GetActorPointer(param_0)) {
+                return fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(param_0));
+            }
+        }
     }
-  }
 
-  return PROC_Obj_SwChain;
+    return PROC_Obj_SwChain;
 }
 
 /* 80CFB798-80CFB79C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
@@ -129,27 +136,27 @@ static char* l_arcName = "P_Chain";
 /* 80CFB79C-80CFB7DC 000004 0040+00 1/1 0/0 0/0 .data            l_sph_src */
 static dCcD_SrcSph l_sph_src = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0x4000, 0x11}, 0x58}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x0}, {0x4000, 0x11}, 0x58}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},              // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},              // mGObjTg
+        {0x0},                                           // mGObjCo
+    },                                                   // mObjInf
     {
-        {{0.0f, 0.0f, 0.0f}, 50.0f} // mSph
-    } // mSphAttr
+        {{0.0f, 0.0f, 0.0f}, 50.0f}  // mSph
+    }  // mSphAttr
 };
 
 /* 80CFB7DC-80CFB81C 000044 0040+00 1/1 0/0 0/0 .data            l_sph_srcCo */
 static dCcD_SrcSph l_sph_srcCo = {
     {
-        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x10}, 0x49}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
+        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x10}, 0x49}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},           // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},           // mGObjTg
+        {0x0},                                        // mGObjCo
+    },                                                // mObjInf
     {
-        {{0.0f, 0.0f, 0.0f}, 50.0f} // mSph
-    } // mSphAttr
+        {{0.0f, 0.0f, 0.0f}, 50.0f}  // mSph
+    }  // mSphAttr
 };
 
 /* 80CF8768-80CF89C0 000128 0258+00 1/1 0/0 0/0 .text            Create__14daObjSwChain_cFv */
@@ -160,14 +167,15 @@ int daObjSwChain_c::Create() {
     mSph2.Set(l_sph_srcCo);
     mSph2.SetStts(&mStts);
     mAcchCir.SetWall(0.0f, 40.0f);
-    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), &current.angle, &shape_angle);
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+              fopAcM_GetSpeed_p(this), &current.angle, &shape_angle);
     fopAcM_setCullSizeSphere(this, home.pos.x, home.pos.y, home.pos.z, (field_0xa65 + 1) * 35.0f);
-    cXyz cStack_3c(0.0f,0.0f,50.0f);
+    cXyz cStack_3c(0.0f, 0.0f, 50.0f);
     cXyz cStack_48;
     cXyz cStack_54;
 
     mDoMtx_stack_c::YrotS(shape_angle.y);
-    mDoMtx_stack_c::multVec(&cStack_3c,&cStack_48);
+    mDoMtx_stack_c::multVec(&cStack_3c, &cStack_48);
 
     getChainBasePos(&field_0xa74->field_0x34);
     cStack_54 = field_0xa74->field_0x34;
@@ -182,7 +190,7 @@ int daObjSwChain_c::Create() {
             p_chain->field_0x34 = cStack_54 + cStack_48;
             cStack_54 = p_chain->field_0x34;
         }
-        
+
         p_chain++;
     }
 
@@ -198,7 +206,7 @@ int daObjSwChain_c::Create() {
             field_0xa69 = 0x14;
         }
     }
-    
+
     return 1;
 }
 
@@ -208,7 +216,7 @@ int daObjSwChain_c::CreateHeap() {
 
     if (field_0xa74 == NULL) {
         return 0;
-    } 
+    }
 
     chain_s* p_chain = field_0xa74;
     for (int i = 0; i < field_0xa65 + 1; i++, p_chain++) {
@@ -218,15 +226,15 @@ int daObjSwChain_c::CreateHeap() {
         p_chain->field_0x4c = 0;
     }
 
-    J3DModelData* modelData = (J3DModelData *)dComIfG_getObjectRes(l_arcName,4);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
     JUT_ASSERT(532, modelData != 0);
-    mpModel = mDoExt_J3DModel__create(modelData,0x80000,0x11000084);
-    
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+
     if (mpModel == NULL) {
         return 0;
     }
 
-    mChainModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName,3);
+    mChainModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 3);
     JUT_ASSERT(545, mChainModelData != 0);
 
     return 1;
@@ -276,7 +284,7 @@ int daObjSwChain_c::create1st() {
         return cPhs_ERROR_e;
     }
 #endif
-    
+
 #ifdef DEBUG
     if (field_0xa66 > field_0xa65) {
         // Chain Switch: Argument 3 > Argument 1 !
@@ -289,11 +297,11 @@ int daObjSwChain_c::create1st() {
     if (phase == cPhs_COMPLEATE_e) {
         u32 size = 0x4000;
         size |= 0x80000000;
-        
+
         if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, size)) {
             return cPhs_ERROR_e;
-        } 
-        
+        }
+
         if (!Create()) {
             return cPhs_ERROR_e;
         }
@@ -314,21 +322,21 @@ int daObjSwChain_c::execute() {
         return 1;
     }
 #endif
-    
+
     field_0xa9c = 0;
 
-    if (getSwbit2() != 0xff &&!fopAcM_isSwitch(this,getSwbit2())) {
-            field_0xa6c = 1;
+    if (getSwbit2() != 0xff && !fopAcM_isSwitch(this, getSwbit2())) {
+        field_0xa6c = 1;
     } else {
         field_0xa6c = 0;
     }
-    
+
     chain_count_control();
     chain_s* unused = field_0xa74;
     chain_control();
     chain_s* iVar1 = &field_0xa74[field_0xa65];
 
-    if (!field_0xa6c && daPy_py_c::setFmChainPos(this,&iVar1->field_0x34, field_0xa63)) {
+    if (!field_0xa6c && daPy_py_c::setFmChainPos(this, &iVar1->field_0x34, field_0xa63)) {
         mCarry = 1;
         eyePos = home.pos;
     } else {
@@ -340,7 +348,6 @@ int daObjSwChain_c::execute() {
         daPy_py_c::setPlayerSe(Z2SE_AL_GRAB_CHAIN);
     }
 
-    
     if (fopAcM_checkHookCarryNow(this)) {
         field_0xa61 = 1;
         if (field_0xa64 >= field_0xa66 && field_0xa9e == 0) {
@@ -350,7 +357,7 @@ int daObjSwChain_c::execute() {
         field_0xa61 = 0;
         current.pos = iVar1->field_0x34;
     }
-    
+
     chain_control2();
     setTension();
     setChainMtx();
@@ -368,7 +375,7 @@ int daObjSwChain_c::execute() {
             cXyz cStack_8c;
             cStack_8c = cStack_80 - field_0xa74[getTopChainNo()].field_0x34;
             cStack_8c.normalizeZP();
-            
+
             switch (fopAcM_GetRoomNo(this)) {
             case 4:
             case 6:
@@ -398,59 +405,60 @@ int daObjSwChain_c::execute() {
             }
         }
 
-            if (field_0xa6c == 0) {
-                daPy_py_c* player = daPy_getPlayerActorClass();
-                cXyz pos = (player->current.pos - home.pos);
-                s16 abs_tmp = pos.atan2sX_Z() - shape_angle.y;
+    if (field_0xa6c == 0) {
+        daPy_py_c* player = daPy_getPlayerActorClass();
+        cXyz pos = (player->current.pos - home.pos);
+        s16 abs_tmp = pos.atan2sX_Z() - shape_angle.y;
 #ifdef DEBUG
-                if (abs(abs_tmp) < l_HIO.mReactionAngle) {
+        if (abs(abs_tmp) < l_HIO.mReactionAngle) {
 #else
-                if (abs(abs_tmp) < 0xe74) {
+        if (abs(abs_tmp) < 0xe74) {
 #endif
-                    chain_s* chain_p2 = &field_0xa74[field_0xa65];
-                    mSph1.SetC(chain_p2->field_0x34);
-                    dComIfG_Ccsp()->Set(&mSph1);
-                }
-            }
-        
-        if (mCarry != 0) {
-            cXyz local_a4;
-            cXyz cStack_b0(current.pos);
-            mAcch.CrrPos(dComIfG_Bgsp());
-            local_a4 = current.pos - cStack_b0;
-            current.pos = cStack_b0;
-            
-            if (mSph2.ChkCoHit()) {
-                cXyz* move_pos = mStts.GetCCMoveP();
-                if (move_pos != NULL) {
-                    local_a4 += *move_pos;
-                }
-            }
+            chain_s* chain_p2 = &field_0xa74[field_0xa65];
+            mSph1.SetC(chain_p2->field_0x34);
+            dComIfG_Ccsp()->Set(&mSph1);
+        }
+    }
 
-            mStts.ClrCcMove();
-            mSph2.ClrCoHit();
-            
-            daPy_getPlayerActorClass()->setGrabCollisionOffset(local_a4.x, local_a4.z, 0);
-            mSph2.SetC(current.pos);
-            dComIfG_Ccsp()->Set(&mSph2);
-        }
-    
-        field_0xa9d = mCarry;
-#ifdef DEBUG
-        if (l_HIO.field_0x42 != 0) {
-            if (l_HIO.field_0x44 == getChainID()) {
-                dDbVw_Report(0x28,200, "Num<%d>Len<%.2f>", getCurrentChainNum(), getCurrentChainLength());
-                if (checkTight() != 0) {
-                    dDbVw_Report(0x28,100,"TENSION!");
-                }
+    if (mCarry != 0) {
+        cXyz local_a4;
+        cXyz cStack_b0(current.pos);
+        mAcch.CrrPos(dComIfG_Bgsp());
+        local_a4 = current.pos - cStack_b0;
+        current.pos = cStack_b0;
+
+        if (mSph2.ChkCoHit()) {
+            cXyz* move_pos = mStts.GetCCMoveP();
+            if (move_pos != NULL) {
+                local_a4 += *move_pos;
             }
-            
-            dDbVw_Report(0x28,0xd4,"SeenAngY   <%x>",fopAcM_seenPlayerAngleY(this));
-            dDbVw_Report(0x28,0xe0,"SearchAngY <%x>",fopAcM_searchPlayerAngleY(this));
-            dDbVw_Report(0x28,0xec,"toShapeAngY<%x>",fopAcM_toPlayerShapeAngleY(this));
         }
+
+        mStts.ClrCcMove();
+        mSph2.ClrCoHit();
+
+        daPy_getPlayerActorClass()->setGrabCollisionOffset(local_a4.x, local_a4.z, 0);
+        mSph2.SetC(current.pos);
+        dComIfG_Ccsp()->Set(&mSph2);
+    }
+
+    field_0xa9d = mCarry;
+#ifdef DEBUG
+    if (l_HIO.field_0x42 != 0) {
+        if (l_HIO.field_0x44 == getChainID()) {
+            dDbVw_Report(0x28, 200, "Num<%d>Len<%.2f>", getCurrentChainNum(),
+                         getCurrentChainLength());
+            if (checkTight() != 0) {
+                dDbVw_Report(0x28, 100, "TENSION!");
+            }
+        }
+
+        dDbVw_Report(0x28, 0xd4, "SeenAngY   <%x>", fopAcM_seenPlayerAngleY(this));
+        dDbVw_Report(0x28, 0xe0, "SearchAngY <%x>", fopAcM_searchPlayerAngleY(this));
+        dDbVw_Report(0x28, 0xec, "toShapeAngY<%x>", fopAcM_toPlayerShapeAngleY(this));
+    }
 #endif
-    
+
     return 1;
 }
 
@@ -544,27 +552,25 @@ static int daObjSwChain_Create(fopAc_ac_c* a_this) {
 /* ############################################################################################## */
 /* 80CFB81C-80CFB83C -00001 0020+00 1/0 0/0 0/0 .data            l_daObjSwChain_Method */
 static actor_method_class l_daObjSwChain_Method = {
-    (process_method_func)daObjSwChain_Create,
-    (process_method_func)daObjSwChain_Delete,
-    (process_method_func)daObjSwChain_Execute,
-    0,
+    (process_method_func)daObjSwChain_Create,  (process_method_func)daObjSwChain_Delete,
+    (process_method_func)daObjSwChain_Execute, 0,
     (process_method_func)daObjSwChain_Draw,
 };
 
 /* 80CFB83C-80CFB86C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_SwChain */
 extern actor_process_profile_definition g_profile_Obj_SwChain = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_Obj_SwChain,       // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daObjSwChain_c), // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  615,                    // mPriority
-  &l_daObjSwChain_Method, // sub_method
-  0x000C0000,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_Obj_SwChain,        // mProcName
+    &g_fpcLf_Method.base,    // sub_method
+    sizeof(daObjSwChain_c),  // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    615,                     // mPriority
+    &l_daObjSwChain_Method,  // sub_method
+    0x000C0000,              // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

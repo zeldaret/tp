@@ -1,10 +1,10 @@
 #ifndef D_A_OBJ_SWCHAIN_H
 #define D_A_OBJ_SWCHAIN_H
 
-#include "f_op/f_op_actor_mng.h"
-#include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_model.h"
+#include "f_op/f_op_actor_mng.h"
 
 /**
  * @ingroup actors-objects
@@ -45,20 +45,20 @@ public:
     /* 80CFB5E8 */ int _delete();
 
     u8 getSwbit() { return fopAcM_GetParamBit(this, 0, 8); }
-    u8 getSwbit2() { return (mHookshotLength & 0xff00) >> 8;}
-    u8 getChainNum() { return fopAcM_GetParamBit(this,8,8); }
-    u8 getOutNum() { return fopAcM_GetParamBit(this,16,8); }
+    u8 getSwbit2() { return (mHookshotLength & 0xff00) >> 8; }
+    u8 getChainNum() { return fopAcM_GetParamBit(this, 8, 8); }
+    u8 getOutNum() { return fopAcM_GetParamBit(this, 16, 8); }
     u8 getChainID() { return fopAcM_GetParamBit(this, 28, 4); }
     u8 getHookShotLength() { return mHookshotLength; }
     int getCurrentChainNum() { return field_0xa64; }
     f32 getCurrentChainLength() {
         chain_s* chain_p = &field_0xa74[field_0xa65 - field_0xa64 + 1];
-        return (getCurrentChainNum() - 1) * 35.0f + field_0xa74[0].field_0x34.abs(chain_p->field_0x34);
+        return (getCurrentChainNum() - 1) * 35.0f +
+               field_0xa74[0].field_0x34.abs(chain_p->field_0x34);
     }
     BOOL checkDispEmphasis() { return fopAcM_isSwitch(this, getSwbit()) == FALSE; }
     bool checkCarry() { return mCarry == 1; }
     void setRatioForChandelier(f32 ratio) { mRatio = ratio; }
-
 
     /* 80C665A4 */ BOOL checkTight() {
         if (mCarry != 0 && (home.roomNo == 4 || home.roomNo == 6) && field_0xa64 >= field_0xa69 &&
@@ -115,13 +115,12 @@ private:
     /* 0xA9C */ u8 field_0xa9c;
     /* 0xA9D */ u8 field_0xa9d;
     /* 0xA9E */ u8 field_0xa9e;
-    /* 0xA9F */ u8 field_0xa9f[0xaa0-0xa9f];
+    /* 0xA9F */ u8 field_0xa9f[0xaa0 - 0xa9f];
 #ifdef DEBUG
     /* 0xAA0 */ u8 field_0xaa0[0xc];
 #endif
 };
 
 STATIC_ASSERT(sizeof(daObjSwChain_c) == 0xaa0);
-
 
 #endif /* D_A_OBJ_SWCHAIN_H */
