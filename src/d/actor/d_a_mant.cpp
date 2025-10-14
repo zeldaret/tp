@@ -9,7 +9,6 @@
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "d/actor/d_a_b_gnd.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 
 /* 80862D40-80866D40 000020 4000+00 2/1 0/0 0/0 .data            l_Egnd_mantTEX */
 #include "assets/l_Egnd_mantTEX.h"
@@ -299,9 +298,11 @@ void daMant_packet_c::draw() {
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
 
     GXColor local_84 = {1, 0, 0, 0};
-    GXSetTevColor(GX_TEVREG0, local_84);
+    GXColor local_85 = local_84;
+    GXSetTevColor(GX_TEVREG0, local_85);
     GXColor local_8c = {1, 0, 0, 0};
-    GXSetTevKColor(GX_KCOLOR0, local_8c);
+    GXColor local_8d = local_8c;
+    GXSetTevKColor(GX_KCOLOR0, local_8d);
 
     GXSetTevKColorSel(GX_TEVSTAGE0, GX_TEV_KCSEL_K0);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_KONST, GX_CC_TEXC, GX_CC_RASC, GX_CC_C0);
@@ -335,9 +336,11 @@ void daMant_packet_c::draw() {
     GXLoadTexObj(&GStack_74, GX_TEXMAP0);
 
     GXColor local_94 = {0, 0, 0, 0};
-    GXSetTevColor(GX_TEVREG0, local_94);
+    GXColor local_95 = local_94;
+    GXSetTevColor(GX_TEVREG0, local_95);
     GXColor local_9c = {0, 0, 0, 0};
-    GXSetTevKColor(GX_KCOLOR0, local_9c);
+    GXColor local_9d = local_9c;
+    GXSetTevKColor(GX_KCOLOR0, local_9d);
 
     GXSetCullMode(GX_CULL_FRONT);
     GXLoadPosMtxImm(this->mMtx2, GX_PNMTX0);
@@ -382,7 +385,7 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
 
     if (gndActor->mDrawHorse != 0) {
         bVar2 = TRUE;
-        local_158 = gndActor->field_0x1fb8;
+        local_158 = gndActor->mHorseBodySphCenter;
     } else if (i_this->field_0x3966 != 0) {
         local_158 = i_this->field_0x3928[0] + ((i_this->field_0x3928[1] - i_this->field_0x3928[0]) * 0.5f);
         local_158.y += -60.0f;
