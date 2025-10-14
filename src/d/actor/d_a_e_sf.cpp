@@ -1750,7 +1750,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     };
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_sf", wepon_data[i_this->mType]);
-    JUT_ASSERT(2752, modelData != 0);
+    JUT_ASSERT(2752, modelData != NULL);
     
     i_this->mSwordModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mSwordModel == NULL) {
@@ -1762,7 +1762,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     };
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_sf", tate_data[i_this->arg3]);
-    JUT_ASSERT(2762, modelData != 0);
+    JUT_ASSERT(2762, modelData != NULL);
 
     i_this->mShieldModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mShieldModel == NULL) {

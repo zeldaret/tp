@@ -25,7 +25,7 @@ public:
     /* 0x5B9 */ u8 arg3;
     /* 0x5BC */ int mSwBit;
     /* 0x5C0 */ s8 field_0x5c0;
-    /* 0x5C4 */ cXyz unused_cXyz;
+    /* 0x5C4 */ cXyz field_5c4;
     /* 0x5D0 */ s16 mAngleYOffset;
     /* 0x5D4 */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x5D8 */ int mAnm;
@@ -42,7 +42,7 @@ public:
     /* 0x69C */ s16 mTimers[4];
     /* 0x6A4 */ s16 mInvulnerabilityTimer;
     /* 0x6A6 */ s16 mColor;
-    /* 0x6A8 */ u8 unused_u8;
+    /* 0x6A8 */ u8 field_0x6a8;
     /* 0x6A9 */ s8 mHitCheckFlag;
     /* 0x6AA */ s8 field_0x6aa;
     /* 0x6AB */ s8 field_0x6ab;
@@ -60,7 +60,7 @@ public:
     /* 0x6C4 */ f32 field_0x6c4;
     /* 0x6C8 */ s16 mHitDirectionY;
     /* 0x6CA */ u8 field_0x6ca[0x6d4 - 0x6ca];
-    /* 0x6D4 */ cXyz unused_cXyz2;
+    /* 0x6D4 */ cXyz field_0x6d4;
     /* 0x6E0 */ u8 field_0x6e0[0x6e4 - 0x6e0];
     /* 0x6E4 */ csXyz field_0x6e4;
     /* 0x6EA */ csXyz field_0x6ea;
@@ -68,8 +68,8 @@ public:
     /* 0x6F6 */ s8 field_0x6f6;
     /* 0x6F8 */ cXyz field_0x6f8;
     /* 0x704 */ u8 field_0x704[0x708 - 0x704];
-    /* 0x708 */ csXyz unused_csXyz;
-    /* 0x70E */ csXyz unused_csXyz2;
+    /* 0x708 */ csXyz field_0x708;
+    /* 0x70E */ csXyz field_0x70e;
     /* 0x714 */ u8 field_0x714[0x718 - 0x714];
     /* 0x718 */ s16 mUnkTimer1;
     /* 0x71A */ s16 mUnkTimer2;
