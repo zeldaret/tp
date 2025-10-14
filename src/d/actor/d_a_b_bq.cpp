@@ -745,7 +745,7 @@ static void b_bq_damage(b_bq_class* i_this) {
         Z2GetAudioMgr()->changeBgmStatus(1);
     }
 
-    MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(YREG_S(0) + JNT_CORE_6), mDoMtx_stack_c::get());
+    MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(YREG_S(0) + (int)JNT_CORE_6), mDoMtx_stack_c::get());
     cXyz sp44;
     mDoMtx_stack_c::multVecZero(&sp44);
 
