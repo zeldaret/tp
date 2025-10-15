@@ -201,11 +201,9 @@ int daObjSwChain_c::Create() {
     if (fopAcM_GetRoomNo(this) == 4) {
         field_0xa67 = 0x14;
         field_0xa69 = 0x14;
-    } else {
-        if (fopAcM_GetRoomNo(this) == 6) {
-            field_0xa67 = 0x14;
-            field_0xa69 = 0x14;
-        }
+    } else if (fopAcM_GetRoomNo(this) == 6) {
+        field_0xa67 = 0x14;
+        field_0xa69 = 0x14;
     }
 
     return 1;
