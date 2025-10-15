@@ -74,6 +74,49 @@ enum B_oh_RES_File_ID {
     /* 0x39 */ BTP_AL_FOIFINISH = 0x39,
 };
 
+enum Action_Phase {
+    /* 0x0 */ PHASE_INIT,
+
+    /* core_start */
+    /* 0x1 */ CORE_START_PHASE_1,
+    /* 0x2 */ CORE_START_PHASE_2,
+    /* 0x3 */ CORE_START_PHASE_3,
+
+    /* core_hand_move */
+    /* 0x1 */ CORE_HAND_MOVE_PHASE_1 = 0x1,
+    /* 0x2 */ CORE_HAND_MOVE_PHASE_2,
+
+    /* bombfishset */
+    /* 0x1 */ BOMBFISHSET_PHASE_EXECUTE = 0x1,
+
+    /* core_hook */
+    /* 0x1 */ CORE_HOOK_PHASE_1 = 0x1,
+
+    /* core_chance */
+    /* 0x1 */ CORE_CHANCE_PHASE_1 = 0x1,
+    /* 0x2 */ CORE_CHANCE_PHASE_END,
+
+    /* core_end */
+    /* 0x1 */ CORE_END_PHASE_1 = 0x1,
+    /* 0x2 */ CORE_END_PHASE_2,
+
+    /* fish_normal */
+    /* 0x1 */ FISH_NORMAL_PHASE_1 = 0x1,
+    /* 0x2 */ FISH_NORMAL_PHASE_2,
+    /* 0xA */ FISH_NORMAL_PHASE_10 = 0xA,
+
+    /* fish_vacume */
+    /* 0x1 */ FISH_VACUME_PHASE_OPENMOUTHWAIT = 0x1,
+    /* 0x2 */ FISH_VACUME_PHASE_2,
+    /* 0x3 */ FISH_VACUME_PHASE_EAT_PLAYER,
+
+    /* fish_end */
+    /* 0x1 */ FISH_END_PHASE_1 = 0x1,
+    /* 0x2 */ FISH_END_PHASE_2,
+    /* 0x3 */ FISH_END_PHASE_HIT_WALL,
+    /* 0xA */ FISH_END_PHASE_END = 0xA,
+};
+
 class daB_OB_HIO_c {
 public:
 public:
@@ -421,35 +464,37 @@ static void core_start(b_ob_class* i_this) {
 
     i_this->mDistToPlayer = fopAcM_searchPlayerDistance(i_this);
 
-    switch (i_this->mMode) {
-    case 0:
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
         if (i_this->mTimers[0] == 0) {
             b_oh_class* tentacle =
                 (b_oh_class*)fopAcM_SearchByID(i_this->mTentacleActorIDs[i_this->mCoreHandNo]);
             if (tentacle != NULL) {
-                i_this->mMode = 1;
+                i_this->mActionPhase = CORE_START_PHASE_1;
                 i_this->field_0x478c = 0;
 
-                anm_init(i_this, BCK_OI_APPEAR, 0.0f, 0, 0.0f);
+                anm_init(i_this, BCK_OI_APPEAR, 0.0f, J3DFrameCtrl::EMode_NONE, 0.0f);
                 a_this->home.pos.y = (i_this->field_0x47a0 - 200.0f) + KREG_F(11);
                 a_this->current.pos.y = a_this->home.pos.y - 500.0f;
             }
         }
         break;
-    case 1:
+
+    case CORE_START_PHASE_1:
 #ifdef DEBUG
         if (mDoCPd_c::getTrigY(PAD_2)) {
-            i_this->mMode = 2;
+            i_this->mActionPhase = CORE_START_PHASE_2;
             i_this->mDemoAction = 30;
         }
 #endif
 
         if (i_this->mDistToPlayer < 1600.0f) {
-            i_this->mMode = 2;
+            i_this->mActionPhase = CORE_START_PHASE_2;
             i_this->mDemoAction = 30;
         }
         break;
-    case 2: {
+
+    case CORE_START_PHASE_2: {
         b_oh_class* tentacle =
             (b_oh_class*)fopAcM_SearchByID(i_this->mTentacleActorIDs[i_this->mCoreHandNo]);
         MTXCopy(tentacle->mpMorf->getModel()->getAnmMtx(i_this->field_0x478c),
@@ -506,12 +551,13 @@ static void core_start(b_ob_class* i_this) {
                 i_this->field_0x4790 *= -1;
                 i_this->mTimers[0] = 110;
             } else if (i_this->field_0x478c <= tentacle->field_0xca8) {
-                i_this->mMode = 3;
+                i_this->mActionPhase = CORE_START_PHASE_3;
             }
         }
         break;
     }
-    case 3:
+
+    case CORE_START_PHASE_3:
         break;
     }
 
@@ -524,8 +570,8 @@ static void core_hand_move(b_ob_class* i_this) {
     cXyz sp38;
     cXyz sp44;
 
-    switch (i_this->mMode) {
-    case 0:
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
         if (i_this->mTimers[0] == 0) {
             b_oh_class* tentacle =
                 (b_oh_class*)fopAcM_SearchByID(i_this->mTentacleActorIDs[i_this->mCoreHandNo]);
@@ -535,16 +581,17 @@ static void core_hand_move(b_ob_class* i_this) {
                     i_this->mCoreHandNo -= 8;
                 }
             } else {
-                i_this->mMode = 1;
+                i_this->mActionPhase = CORE_HAND_MOVE_PHASE_1;
                 i_this->field_0x478c = tentacle->field_0xca8;
             }
         }
         break;
-    case 1: {
+
+    case CORE_HAND_MOVE_PHASE_1: {
         b_oh_class* tentacle =
             (b_oh_class*)fopAcM_SearchByID(i_this->mTentacleActorIDs[i_this->mCoreHandNo]);
         if (tentacle == NULL || (tentacle != NULL && tentacle->mAction == OH_ACTION_END)) {
-            i_this->mMode = 0;
+            i_this->mActionPhase = PHASE_INIT;
             return;
         }
 
@@ -588,18 +635,19 @@ static void core_hand_move(b_ob_class* i_this) {
             if (i_this->field_0x478c >= 29) {
                 i_this->field_0x4790 *= -1;
             } else if (i_this->field_0x478c <= tentacle->field_0xca8) {
-                i_this->mMode = 2;
+                i_this->mActionPhase = CORE_HAND_MOVE_PHASE_2;
             }
         }
 
-        cLib_addCalc0(&i_this->field_0x479c, 1.0f, 10.0f);
+        cLib_addCalc0(&i_this->mPosTransY, 1.0f, 10.0f);
         break;
     }
-    case 2:
-        cLib_addCalc2(&i_this->field_0x479c, -200.0f, 1.0f, 10.0f);
+
+    case CORE_HAND_MOVE_PHASE_2:
+        cLib_addCalc2(&i_this->mPosTransY, -200.0f, 1.0f, 10.0f);
 
         if (i_this->mTimers[0] == 0) {
-            i_this->mMode = 0;
+            i_this->mActionPhase = PHASE_INIT;
             i_this->field_0x478c = 0;
             i_this->field_0x4790 = 1;
 
@@ -650,10 +698,10 @@ static void bombfishset(b_ob_class* i_this) {
     cXyz pos;
     i_this->mHitIFrameTimer = 20;
 
-    switch (i_this->mMode) {
-    case 0:
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
         anm_init(i_this, BCK_OI_WAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 3.0f);
-        i_this->mMode = 1;
+        i_this->mActionPhase = BOMBFISHSET_PHASE_EXECUTE;
 
         if (a_this->field_0x567 == 0 && i_this->mDemoAction == 0) {
             i_this->mDemoAction = 60;
@@ -662,7 +710,8 @@ static void bombfishset(b_ob_class* i_this) {
 
         i_this->mTimers[0] = 150;
         break;
-    case 1:
+
+    case BOMBFISHSET_PHASE_EXECUTE:
         if (i_this->mTimers[0] < 100 && !(i_this->mTimers[0] & 15)) {
             bf_ct = 0;
             fpcM_Search(s_bf_sub, i_this);
@@ -686,7 +735,7 @@ static void bombfishset(b_ob_class* i_this) {
             }
 
             i_this->mAction = OB_ACTION_CORE_HAND_MOVE;
-            i_this->mMode = 0;
+            i_this->mActionPhase = PHASE_INIT;
             anm_init(i_this, BCK_OI_WAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
@@ -698,19 +747,20 @@ static void core_hook(b_ob_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     i_this->mHitIFrameTimer = 20;
 
-    switch (i_this->mMode) {
-    case 0:
-        i_this->mMode = 1;
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
+        i_this->mActionPhase = CORE_HOOK_PHASE_1;
         a_this->speedF = 0.0f;
         i_this->mTimers[0] = 3;
         break;
-    case 1:
+
+    case CORE_HOOK_PHASE_1:
         break;
     }
 
     if (i_this->mTimers[0] == 0 && !fopAcM_checkHookCarryNow(a_this)) {
         i_this->mAction = OB_ACTION_CORE_CHANCE;
-        i_this->mMode = 0;
+        i_this->mActionPhase = PHASE_INIT;
     }
 
     a_this->shape_angle.z += 0xA00;
@@ -723,8 +773,8 @@ static int core_chance(b_ob_class* i_this) {
     cXyz sp74;
     int var_r30 = 1;
 
-    switch (i_this->mMode) {
-    case 0:
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
         a_this->current.angle.x = 0;
         a_this->speedF = 0.0f;
         a_this->speed.y = 0.0f;
@@ -732,16 +782,17 @@ static int core_chance(b_ob_class* i_this) {
         sp68.x = a_this->home.pos.x - a_this->current.pos.x;
         sp68.z = a_this->home.pos.z - a_this->current.pos.z;
         if (JMAFastSqrt(sp68.x * sp68.x + sp68.z * sp68.z) < (NREG_F(4) + 500.0f)) {
-            i_this->mMode = 2;
+            i_this->mActionPhase = CORE_CHANCE_PHASE_END;
         } else {
-            i_this->mMode = 1;
+            i_this->mActionPhase = CORE_CHANCE_PHASE_1;
             i_this->mTimers[0] = 150;
         }
         break;
-    case 1:
+
+    case CORE_CHANCE_PHASE_1:
         if (i_this->mAcch.ChkGroundHit()) {
             if (i_this->mTimers[0] == 0) {
-                i_this->mMode = 2;
+                i_this->mActionPhase = CORE_CHANCE_PHASE_END;
             } else {
                 a_this->speed.y = VREG_F(1) + cM_rndF(10.0f) + 10.0f + 10.0f;
                 a_this->current.angle.y = cM_rndF(0x10000);
@@ -754,7 +805,8 @@ static int core_chance(b_ob_class* i_this) {
             cLib_addCalc2(&a_this->speedF, 6.0f, 1.0f, 1.0f);
         }
         break;
-    case 2:
+
+    case CORE_CHANCE_PHASE_END:
         i_this->mHitIFrameTimer = 20;
         var_r30 = 2;
 
@@ -784,20 +836,20 @@ static int core_chance(b_ob_class* i_this) {
         if (sp68.abs() < 100.0f) {
             if (i_this->field_0x4744 != 0) {
                 i_this->mAction = OB_ACTION_CORE_END;
-                i_this->mMode = 0;
+                i_this->mActionPhase = PHASE_INIT;
             } else {
                 if (i_this->field_0x5d13 && i_this->mDemoAction == 0) {
                     i_this->mAction = OB_ACTION_BOMBFISH_SET;
-                    i_this->mMode = 0;
+                    i_this->mActionPhase = PHASE_INIT;
                     i_this->field_0x5d13 = 1;
                 } else {
                     i_this->mAction = OB_ACTION_CORE_HAND_MOVE;
-                    i_this->mMode = 0;
+                    i_this->mActionPhase = PHASE_INIT;
                 }
 
                 i_this->field_0x478c = 0;
                 i_this->field_0x4790 = 1;
-                i_this->field_0x479c = -200.0f;
+                i_this->mPosTransY = -200.0f;
 
                 i_this->mCoreHandNo += (cM_rndF(7.0f) + 1.0f);
                 if (i_this->mCoreHandNo >= 8) {
@@ -819,21 +871,22 @@ static void core_end(b_ob_class* i_this) {
     i_this->mHitIFrameTimer = 10;
 
     cXyz particle_pos;
-    switch (i_this->mMode) {
-    case 0:
-        i_this->mMode = 1;
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
+        i_this->mActionPhase = CORE_END_PHASE_1;
         a_this->gravity = 0.0f;
         i_this->mDemoAction = 20;
-        i_this->field_0x479c = -1000.0f;
+        i_this->mPosTransY = -1000.0f;
         anm_init(i_this, BCK_OI_TENTACLE_END, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
 
         particle_pos.set(0.0f, 0.0f, 0.0f);
         dComIfGp_particle_set(dPa_RM(ID_ZI_S_OI_ISO_DISAPP_A), &particle_pos, NULL, NULL);
         mDoAud_seStart(Z2SE_EN_OI_DEMO_APPEAR2, NULL, 0, 0);
         break;
-    case 1:
+
+    case CORE_END_PHASE_1:
         if (frame == 100) {
-            dComIfGp_getVibration().StartQuake(3, 31, cXyz(0.0f, 1.0f, 0.0f));
+            dComIfGp_getVibration().StartQuake(VIBMODE_Q_POWER3, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
 
         if (frame >= 100) {
@@ -841,13 +894,14 @@ static void core_end(b_ob_class* i_this) {
         }
 
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
-            i_this->mMode = 2;
+            i_this->mActionPhase = CORE_END_PHASE_2;
             i_this->mTimers[0] = 120;
             dComIfGp_getVibration().StopQuake(31);
             a_this->home.pos.y = i_this->field_0x47a0 - 900.0f;
         }
         break;
-    case 2:
+
+    case CORE_END_PHASE_2:
         if (i_this->mTimers[0] == 60) {
             for (int i = 0; i < 8; i++) {
                 fopAc_ac_c* tentacle = fopAcM_SearchByID(i_this->mTentacleActorIDs[i]);
@@ -859,7 +913,7 @@ static void core_end(b_ob_class* i_this) {
             i_this->field_0x5ce4 = WREG_F(11) + 6.0f;
 
             if (i_this->mTimers[0] == 50) {
-                dComIfGp_getVibration().StartQuake(4, 31, cXyz(0.0f, 1.0f, 0.0f));
+                dComIfGp_getVibration().StartQuake(VIBMODE_S_POWER4, 31, cXyz(0.0f, 1.0f, 0.0f));
             }
         }
 
@@ -878,7 +932,7 @@ static void core_end(b_ob_class* i_this) {
             a_this->shape_angle.x = -0x4000;
 
             i_this->mAction = OB_ACTION_FISH_NORMAL;
-            i_this->mMode = 1;
+            i_this->mActionPhase = 1;
 
             i_this->mMoveAngle.y = a_this->current.angle.y;
             i_this->mMoveAngle.x = -0x4000;
@@ -955,7 +1009,7 @@ static void core_action(b_ob_class* i_this) {
         }
     }
 
-    if (attn_ON && i_this->field_0x479c > -1.0f && a_this->eyePos.y >= a_this->home.pos.y) {
+    if (attn_ON && i_this->mPosTransY > -1.0f && a_this->eyePos.y >= a_this->home.pos.y) {
         fopAcM_OnStatus(a_this, 0);
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
@@ -1005,12 +1059,11 @@ static void core_action(b_ob_class* i_this) {
     }
 }
 
-/* 80612CC8-80612ED4 002848 020C+00 1/1 0/0 0/0 .text            core_damage_check__FP10b_ob_class
- */
+/* 80612CC8-80612ED4 002848 020C+00 1/1 0/0 0/0 .text            core_damage_check__FP10b_ob_class */
 static void core_damage_check(b_ob_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    if (fopAcM_CheckStatus(a_this, 0x100000)) {
+    if (fopAcM_CheckStatus(a_this, fopAcM_STATUS_HOOK_CARRY_NOW)) {
         i_this->field_0x5d38 =
             dComIfGp_particle_set(i_this->field_0x5d38, dPa_RM(ID_ZI_S_OI_ISO_COREHIT_B), &a_this->current.pos, NULL, NULL);
     }
@@ -1025,7 +1078,7 @@ static void core_damage_check(b_ob_class* i_this) {
 
         if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
             i_this->mAction = OB_ACTION_CORE_HOOK;
-            i_this->mMode = 0;
+            i_this->mActionPhase = 0;
             i_this->mSound.startCreatureSound(Z2SE_EN_OI_CORE_PULLOUT, 0, -1);
             dComIfGs_onOneZoneSwitch(7, -1);
         } else {
@@ -1046,8 +1099,7 @@ static void core_damage_check(b_ob_class* i_this) {
     }
 }
 
-/* 80612ED4-806131A8 002A54 02D4+00 1/1 0/0 0/0 .text            fish_damage_check__FP10b_ob_class
- */
+/* 80612ED4-806131A8 002A54 02D4+00 1/1 0/0 0/0 .text            fish_damage_check__FP10b_ob_class */
 static void fish_damage_check(b_ob_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
@@ -1072,7 +1124,7 @@ static void fish_damage_check(b_ob_class* i_this) {
 
                 if (i_this->mAction != OB_ACTION_FISH_NORMAL) {
                     i_this->mAction = OB_ACTION_FISH_NORMAL;
-                    i_this->mMode = 0;
+                    i_this->mActionPhase = PHASE_INIT;
                     OS_REPORT("B_OB HOOK VAC OFF !!\n");
                 }
             }
@@ -1089,7 +1141,7 @@ static void fish_damage_check(b_ob_class* i_this) {
             }
 
             i_this->field_0x5d38 = 0;
-            dComIfGp_getVibration().StartShock(5, 31, cXyz(0.0f, 1.0f, 0.0f));
+            dComIfGp_getVibration().StartShock(VIBMODE_S_POWER5, 31, cXyz(0.0f, 1.0f, 0.0f));
             i_this->mHangHitCount++;
             dComIfGs_onOneZoneSwitch(9, -1);
 
@@ -1188,8 +1240,8 @@ static int fish_normal(b_ob_class* i_this) {
         cXyz(1000.0f, 2000.0f, -1000.0f),
     };
 
-    switch (i_this->mMode) {
-    case 0:
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
         if (in_opening_demo) {
             i_this->mTargetMovePos = a_this->home.pos + sdemo_p[i_this->mDemoMovePosIdx];
             i_this->mDemoMovePosIdx++;
@@ -1214,10 +1266,10 @@ static int fish_normal(b_ob_class* i_this) {
             i_this->mMoveAngle.x = -0x1000;
         }
 
-        i_this->mMode = 1;
-        i_this->field_0x476a = 0;
+        i_this->mActionPhase = FISH_NORMAL_PHASE_1;
+        i_this->mMoveAngleStep = 0;
         /* fallthrough */
-    case 1: {
+    case FISH_NORMAL_PHASE_1: {
         if (in_opening_demo && i_this->mTimers[0] > 60) {
             ret = 4;
         }
@@ -1241,20 +1293,21 @@ static int fish_normal(b_ob_class* i_this) {
         if (i_this->mTimers[0] == 0 && y_diff <= 0x100 && y_diff >= (s16)-0x100 &&
             x_diff <= 0x100 && x_diff >= (s16)-0x100)
         {
-            i_this->mMode = 0;
+            i_this->mActionPhase = PHASE_INIT;
             i_this->field_0x47b4++;
         }
 
         if (!player_hang_on && i_this->field_0x47b4 >= 3 && pl_check(i_this, 5000.0f, 0x2000)) {
-            i_this->mMode = 2;
+            i_this->mActionPhase = FISH_NORMAL_PHASE_2;
             i_this->mTimers[0] = cM_rndF(50.0f) + 200.0f;
             i_this->field_0x47b4 = 0;
-            i_this->field_0x476a = 0;
+            i_this->mMoveAngleStep = 0;
             i_this->mTimers[4] = 30;
         }
         break;
     }
-    case 2:
+
+    case FISH_NORMAL_PHASE_2:
         ret = 1;
         i_this->mTargetMovePos.x = player->current.pos.x;
 
@@ -1275,7 +1328,7 @@ static int fish_normal(b_ob_class* i_this) {
             i_this->mTimers[4] == 0 && pl_check(i_this, BREG_F(17) + 3000.0f, 0x3000))
         {
             i_this->mAction = OB_ACTION_FISH_VACUME;
-            i_this->mMode = 0;
+            i_this->mActionPhase = PHASE_INIT;
             moveSW2 = true;
             return 1;
         }
@@ -1283,7 +1336,7 @@ static int fish_normal(b_ob_class* i_this) {
         if (player_hang_on || daPy_getPlayerActorClass()->checkEquipHeavyBoots() ||
             !pl_check(i_this, 10000.0f, 0x3000) || i_this->mTimers[0] == 0)
         {
-            i_this->mMode = 1;
+            i_this->mActionPhase = FISH_NORMAL_PHASE_1;
 
             if (dist_to_ground < l_HIO.mBodySize * (ZREG_F(8) + 1200.0f)) {
                 i_this->mMoveAngle.x = -0x2000;
@@ -1294,25 +1347,26 @@ static int fish_normal(b_ob_class* i_this) {
             }
         }
         break;
-    case 10:
+
+    case FISH_NORMAL_PHASE_10:
         ret = 1;
         i_this->mMoveAngle.y += 0x200;
-        i_this->field_0x476a = 0x200;
+        i_this->mMoveAngleStep = 0x200;
         i_this->mMoveAngle.x = -0x1000;
 
         if (i_this->mTimers[2] == 0) {
-            i_this->mMode = 1;
+            i_this->mActionPhase = FISH_NORMAL_PHASE_1;
         }
         break;
     }
 
-    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mMoveAngle.y, 0x10, i_this->field_0x476a);
-    cLib_addCalcAngleS2(&a_this->current.angle.x, i_this->mMoveAngle.x, 0x10, i_this->field_0x476a);
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mMoveAngle.y, 0x10, i_this->mMoveAngleStep);
+    cLib_addCalcAngleS2(&a_this->current.angle.x, i_this->mMoveAngle.x, 0x10, i_this->mMoveAngleStep);
 
     if (in_opening_demo) {
-        cLib_addCalcAngleS2(&i_this->field_0x476a, 0x100, 1, 2);
+        cLib_addCalcAngleS2(&i_this->mMoveAngleStep, 0x100, 1, 2);
     } else {
-        cLib_addCalcAngleS2(&i_this->field_0x476a, 0x180, 1, 8);
+        cLib_addCalcAngleS2(&i_this->mMoveAngleStep, 0x180, 1, 8);
     }
 
     cLib_addCalc0(&i_this->mSuiBrkFrame, 1.0f, 0.5f);
@@ -1338,10 +1392,10 @@ static int fish_normal(b_ob_class* i_this) {
             if (i_this->mTimers[2] != 0) {
                 if (i_this->mHangFinishCount >= 3) {
                     i_this->mAction = OB_ACTION_FISH_END;
-                    i_this->mMode = 0;
+                    i_this->mActionPhase = PHASE_INIT;
                     i_this->mDemoAction = 40;
                 } else {
-                    i_this->mMode = 10;
+                    i_this->mActionPhase = FISH_NORMAL_PHASE_10;
                     i_this->mTimers[2] = 80;
                 }
             }
@@ -1396,20 +1450,22 @@ static int fish_vacume(b_ob_class* i_this) {
     cXyz sp3C;
     int var_r30 = 0;
 
-    switch (i_this->mMode) {
-    case 0:
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
         anm_init(i_this, BCK_OI_OPENMOUTH, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
-        i_this->mMode = 1;
-        i_this->field_0x476a = 0;
+        i_this->mActionPhase = FISH_VACUME_PHASE_OPENMOUTHWAIT;
+        i_this->mMoveAngleStep = 0;
         break;
-    case 1:
+
+    case FISH_VACUME_PHASE_OPENMOUTHWAIT:
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
             anm_init(i_this, BCK_OI_OPENMOUTHWAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
-            i_this->mMode = 2;
+            i_this->mActionPhase = FISH_VACUME_PHASE_2;
             i_this->mTimers[0] = 200;
         }
         break;
-    case 2:
+
+    case FISH_VACUME_PHASE_2:
         i_this->mMoveAngle.y = i_this->mYAngleToPlayer;
         i_this->mMoveAngle.x = 0;
         var_r30 = 1;
@@ -1419,7 +1475,7 @@ static int fish_vacume(b_ob_class* i_this) {
 
         if (i_this->mTimers[0] == 0) {
             i_this->mAction = OB_ACTION_FISH_NORMAL;
-            i_this->mMode = 0;
+            i_this->mActionPhase = PHASE_INIT;
         } else if ((a_this->eyePos - player->current.pos).abs() > (KREG_F(11) + 150.0f) &&
                    i_this->mTimers[0] < 100)
         {
@@ -1427,11 +1483,12 @@ static int fish_vacume(b_ob_class* i_this) {
                 pl_check(i_this, 3000.0f, 0x4000))
             {
                 i_this->mDemoAction = 10;
-                i_this->mMode = 3;
+                i_this->mActionPhase = FISH_VACUME_PHASE_EAT_PLAYER;
             }
         }
         break;
-    case 3:
+
+    case FISH_VACUME_PHASE_EAT_PLAYER:
         if (i_this->mDemoActionTimer < 30) {
             var_r30 = 1;
         }
@@ -1446,7 +1503,7 @@ static int fish_vacume(b_ob_class* i_this) {
                 i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_V_THROWUP, -1);
             } else if (i_this->mAnmID == BCK_OI_THROWUP) {
                 i_this->mAction = OB_ACTION_FISH_NORMAL;
-                i_this->mMode = 0;
+                i_this->mActionPhase = PHASE_INIT;
             }
         }
         break;
@@ -1459,9 +1516,9 @@ static int fish_vacume(b_ob_class* i_this) {
         cLib_addCalc0(&i_this->mSuiBrkFrame, 1.0f, 0.5f);
     }
 
-    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mMoveAngle.y, 0x10, i_this->field_0x476a);
-    cLib_addCalcAngleS2(&a_this->current.angle.x, i_this->mMoveAngle.x, 0x10, i_this->field_0x476a);
-    cLib_addCalcAngleS2(&i_this->field_0x476a, 0x180, 1, 8);
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mMoveAngle.y, 0x10, i_this->mMoveAngleStep);
+    cLib_addCalcAngleS2(&a_this->current.angle.x, i_this->mMoveAngle.x, 0x10, i_this->mMoveAngleStep);
+    cLib_addCalcAngleS2(&i_this->mMoveAngleStep, 0x180, 1, 8);
     cLib_addCalc2(&i_this->field_0x5d04, 0.0f, 1.0f, 0.05f);
     return 2;
 }
@@ -1475,9 +1532,9 @@ static int fish_end(b_ob_class* i_this) {
     f32 speed_f = 100.0f;
     s16 angleX_max_step = 0x300;
 
-    switch (i_this->mMode) {
-    case 0:
-        i_this->mMode = 1;
+    switch (i_this->mActionPhase) {
+    case PHASE_INIT:
+        i_this->mActionPhase = FISH_END_PHASE_1;
         i_this->mTargetMovePos.set(0.0f, -16000.0f, 6500.0f);
         i_this->mTimers[0] = 100;
         i_this->field_0x5d04 = KREG_F(8) + 1.5f;
@@ -1485,25 +1542,27 @@ static int fish_end(b_ob_class* i_this) {
         i_this->field_0x5dd8 = 3;
         anm_init(i_this, BCK_OI_LASTDAMAGE, 0.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         break;
-    case 1:
+
+    case FISH_END_PHASE_1:
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
             anm_init(i_this, BCK_OI_SWIMWAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
         if (i_this->mTimers[0] == 0) {
-            i_this->mMode = 2;
+            i_this->mActionPhase = FISH_END_PHASE_2;
             i_this->mTargetMovePos.set(0.0f, -19000.0f, -6500.0f);
             i_this->mTimers[0] = 150;
             i_this->mDemoCamEye.set(-6000.0f, -22000.0f, 2000.0f);
             anm_init(i_this, BCK_OI_LASTDAMAGE, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
         break;
-    case 2:
+
+    case FISH_END_PHASE_2:
         sp68.set(VREG_F(0) + -1325.0f, -24000.0f, VREG_F(1) + 9178.0f);
         player->setPlayerPosAndAngle(&sp68, VREG_S(1) + 10000, 0);
 
         if (i_this->mTimers[0] == 0) {
-            i_this->mMode = 3;
+            i_this->mActionPhase = FISH_END_PHASE_HIT_WALL;
             i_this->mTargetMovePos.set(0.0f, TREG_F(14) + -23550.0f, 10200.0f);
             i_this->mTimers[0] = 120;
             i_this->mDemoCamEye.set(2130.0f, -23071.0f, 7383.0f);
@@ -1513,13 +1572,14 @@ static int fish_end(b_ob_class* i_this) {
             anm_init(i_this, BCK_OI_LASTDAMAGE, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
         break;
-    case 3:
+
+    case FISH_END_PHASE_HIT_WALL:
         if (i_this->mAcch.ChkWallHit() && i_this->mTimers[0] == 0) {
             anm_init(i_this, BCK_OI_DEAD, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
-            dComIfGp_getVibration().StartShock(8, 31, cXyz(0.0f, 1.0f, 0.0f));
+            dComIfGp_getVibration().StartShock(VIBMODE_S_POWER8, 31, cXyz(0.0f, 1.0f, 0.0f));
             mDoAud_seStart(Z2SE_OBJ_BOMB_EXPLODE, NULL, 0, 0);
 
-            i_this->mMode = 10;
+            i_this->mActionPhase = FISH_END_PHASE_END;
             i_this->field_0x5ce4 = WREG_F(14) + 20.0f;
             i_this->mTimers[0] = 0;
             a_this->current.angle.x = 0x1000;
@@ -1545,7 +1605,8 @@ static int fish_end(b_ob_class* i_this) {
             speed_f = 0.0f;
         }
         break;
-    case 10:
+
+    case FISH_END_PHASE_END:
         cLib_addCalc2(&a_this->current.pos.x, i_this->mTargetMovePos.x, 0.1f, 10.0f);
         cLib_addCalc2(&a_this->current.pos.y, VREG_F(7) + -23550.0f, 0.1f, 10.0f);
         cLib_addCalc2(&a_this->current.pos.z, (VREG_F(8) + 9128.0f) - 500.0f, 0.1f, 10.0f);
@@ -1806,15 +1867,13 @@ static void fish_move(b_ob_class* i_this) {
             if (i >= 1) {
                 var_r22 = XREG_S(0) + 4;
                 var_r17_2 = 0;
+            } else if (i_this->field_0x47b0 == 100) {
+                var_r17_2 = cM_ssin(i_this->field_0x47b0 * 3000) * JREG_F(15);
             } else {
-                if (i_this->field_0x47b0 == 100) {
-                    var_r17_2 = cM_ssin(i_this->field_0x47b0 * 3000) * JREG_F(15);
-                } else {
-                    var_r17_2 =
-                        i_this->field_0x47b0 * cM_ssin(i_this->field_0x4750 * 3000) * (JREG_F(12) + 170.0f);
-                    if (i_this->field_0x47b0 != 0) {
-                        i_this->field_0x47b0--;
-                    }
+                var_r17_2 =
+                    i_this->field_0x47b0 * cM_ssin(i_this->field_0x4750 * 3000) * (JREG_F(12) + 170.0f);
+                if (i_this->field_0x47b0 != 0) {
+                    i_this->field_0x47b0--;
                 }
             }
 
@@ -2001,9 +2060,9 @@ static void fish_move(b_ob_class* i_this) {
     mDoMtx_stack_c::XrotM(temp_r15_2);
     mDoMtx_stack_c::YrotM(temp_r16_2);
 
-    i_this->field_0x4740 = cM_ssin(i_this->field_0x4750 * 1000) * 9.5f + 9.5f;
+    i_this->mCoreMorfFrame = cM_ssin(i_this->field_0x4750 * 1000) * 9.5f + 9.5f;
     i_this->mpCoreMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpCoreMorf->setFrame(i_this->field_0x4740);
+    i_this->mpCoreMorf->setFrame(i_this->mCoreMorfFrame);
     i_this->mpCoreMorf->modelCalc();
 
     i_this->mCoreSph.SetC(sp90);
@@ -2015,18 +2074,18 @@ static void fish_move(b_ob_class* i_this) {
 /* 806158E0-806159C4 005460 00E4+00 1/1 0/0 0/0 .text            cam_3d_morf__FP10b_ob_classf */
 static void cam_3d_morf(b_ob_class* i_this, f32 i_scale) {
     cLib_addCalc2(&i_this->mDemoCamCenter.x, i_this->mDemoCamCenterTarget.x, i_scale,
-                  i_this->field_0x5cc0 * i_this->field_0x5cd0);
+                  i_this->field_0x5cc0 * i_this->mBaseDemoCamStepScale);
     cLib_addCalc2(&i_this->mDemoCamCenter.y, i_this->mDemoCamCenterTarget.y, i_scale,
-                  i_this->field_0x5cc4 * i_this->field_0x5cd0);
+                  i_this->field_0x5cc4 * i_this->mBaseDemoCamStepScale);
     cLib_addCalc2(&i_this->mDemoCamCenter.z, i_this->mDemoCamCenterTarget.z, i_scale,
-                  i_this->field_0x5cc8 * i_this->field_0x5cd0);
+                  i_this->field_0x5cc8 * i_this->mBaseDemoCamStepScale);
 
     cLib_addCalc2(&i_this->mDemoCamEye.x, i_this->mDemoCamEyeTarget.x, i_scale,
-                  i_this->field_0x5cb4 * i_this->field_0x5cd0);
+                  i_this->field_0x5cb4 * i_this->mBaseDemoCamStepScale);
     cLib_addCalc2(&i_this->mDemoCamEye.y, i_this->mDemoCamEyeTarget.y, i_scale,
-                  i_this->field_0x5cb8 * i_this->field_0x5cd0);
+                  i_this->field_0x5cb8 * i_this->mBaseDemoCamStepScale);
     cLib_addCalc2(&i_this->mDemoCamEye.z, i_this->mDemoCamEyeTarget.z, i_scale,
-                  i_this->field_0x5cbc * i_this->field_0x5cd0);
+                  i_this->field_0x5cbc * i_this->mBaseDemoCamStepScale);
 }
 
 /* 806159C4-80615A10 005544 004C+00 1/1 0/0 0/0 .text            s_hasidel_sub__FPvPv */
@@ -2059,7 +2118,7 @@ static void demo_camera(b_ob_class* i_this) {
     case 1:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFEF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -2067,7 +2126,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->mDemoAction = 2;
         i_this->mDemoActionTimer = 0;
         i_this->mDemoCamFovy = 55.0f;
-        i_this->field_0x5cd0 = 0.0f;
+        i_this->mBaseDemoCamStepScale = 0.0f;
         camera->mCamera.SetTrimSize(3);
 
         daPy_getPlayerActorClass()->changeOriginalDemo();
@@ -2088,11 +2147,11 @@ static void demo_camera(b_ob_class* i_this) {
         /* fallthrough */
     case 2:
         cLib_addCalc2(&i_this->mDemoCamCenter.x, player->current.pos.x, 0.3f,
-                      i_this->field_0x5cd0 * 200.0f);
+                      i_this->mBaseDemoCamStepScale * 200.0f);
         cLib_addCalc2(&i_this->mDemoCamCenter.y, player->current.pos.y + 150.0f, 0.3f,
-                      i_this->field_0x5cd0 * 200.0f);
+                      i_this->mBaseDemoCamStepScale * 200.0f);
         cLib_addCalc2(&i_this->mDemoCamCenter.z, player->current.pos.z, 0.3f,
-                      i_this->field_0x5cd0 * 200.0f);
+                      i_this->mBaseDemoCamStepScale * 200.0f);
 
         cMtx_YrotS(*calc_mtx, i_this->field_0x5ce0);
 
@@ -2108,10 +2167,10 @@ static void demo_camera(b_ob_class* i_this) {
 
         sp64 += tentacle->current.pos;
 
-        cLib_addCalc2(&i_this->mDemoCamEye.x, sp64.x, 0.1f, i_this->field_0x5cd0 * 200.0f);
-        cLib_addCalc2(&i_this->mDemoCamEye.y, sp64.y, 0.1f, i_this->field_0x5cd0 * 200.0f);
-        cLib_addCalc2(&i_this->mDemoCamEye.z, sp64.z, 0.1f, i_this->field_0x5cd0 * 200.0f);
-        cLib_addCalc2(&i_this->field_0x5cd0, 1.0f, 1.0f, TREG_F(7) + 0.1f);
+        cLib_addCalc2(&i_this->mDemoCamEye.x, sp64.x, 0.1f, i_this->mBaseDemoCamStepScale * 200.0f);
+        cLib_addCalc2(&i_this->mDemoCamEye.y, sp64.y, 0.1f, i_this->mBaseDemoCamStepScale * 200.0f);
+        cLib_addCalc2(&i_this->mDemoCamEye.z, sp64.z, 0.1f, i_this->mBaseDemoCamStepScale * 200.0f);
+        cLib_addCalc2(&i_this->mBaseDemoCamStepScale, 1.0f, 1.0f, TREG_F(7) + 0.1f);
 
         MTXCopy(tentacle->mpMorf->getModel()->getAnmMtx(29), mDoMtx_stack_c::get());
 
@@ -2134,6 +2193,7 @@ static void demo_camera(b_ob_class* i_this) {
             player->setPlayerPosAndAngle(&tentacle->field_0x1f68, &tentacle->field_0x1f74);
         }
         break;
+
     case 3:
         player->setPlayerPosAndAngle(&a_this->home.pos, &tentacle->field_0x1f74);
 
@@ -2147,13 +2207,13 @@ static void demo_camera(b_ob_class* i_this) {
         cLib_addCalc2(&i_this->field_0x5cdc, 1000.0f, 0.2f, 10.0f);
 
         sp64 += tentacle->current.pos;
-        cLib_addCalc2(&i_this->mDemoCamEye.x, sp64.x, 0.1f, i_this->field_0x5cd0 * 200.0f);
-        cLib_addCalc2(&i_this->mDemoCamEye.y, sp64.y, 0.1f, i_this->field_0x5cd0 * 200.0f);
-        cLib_addCalc2(&i_this->mDemoCamEye.z, sp64.z, 0.1f, i_this->field_0x5cd0 * 200.0f);
-        cLib_addCalc2(&i_this->field_0x5cd0, 1.0f, 1.0f, TREG_F(7) + 0.1f);
+        cLib_addCalc2(&i_this->mDemoCamEye.x, sp64.x, 0.1f, i_this->mBaseDemoCamStepScale * 200.0f);
+        cLib_addCalc2(&i_this->mDemoCamEye.y, sp64.y, 0.1f, i_this->mBaseDemoCamStepScale * 200.0f);
+        cLib_addCalc2(&i_this->mDemoCamEye.z, sp64.z, 0.1f, i_this->mBaseDemoCamStepScale * 200.0f);
+        cLib_addCalc2(&i_this->mBaseDemoCamStepScale, 1.0f, 1.0f, TREG_F(7) + 0.1f);
 
         if (!(i_this->field_0x4750 & 15)) {
-            dComIfGp_getVibration().StartShock(4, 31, cXyz(0.0f, 1.0f, 0.0f));
+            dComIfGp_getVibration().StartShock(VIBMODE_S_POWER4, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
 
         if (i_this->mAnmID == BCK_OI_EAT && i_this->mBodyParts[0].mpMorf->checkFrame(153.0f)) {
@@ -2169,6 +2229,7 @@ static void demo_camera(b_ob_class* i_this) {
             daPy_getPlayerActorClass()->changeDemoMode(1, 0, 0, 0);
         }
         break;
+
     case 4:
         cLib_addCalc2(&i_this->mDemoCamCenter.x, player->current.pos.x, 0.4f, 300.0f);
         cLib_addCalc2(&i_this->mDemoCamCenter.y, player->current.pos.y, 0.4f, 300.0f);
@@ -2181,6 +2242,7 @@ static void demo_camera(b_ob_class* i_this) {
             i_this->field_0x4794 = 100;
         }
         break;
+
     case 10:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFEF, 0);
@@ -2192,7 +2254,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->mDemoAction = 11;
         i_this->mDemoActionTimer = 0;
         i_this->mDemoCamFovy = 55.0f;
-        i_this->field_0x5cd0 = 0.0f;
+        i_this->mBaseDemoCamStepScale = 0.0f;
         camera->mCamera.SetTrimSize(3);
 
         daPy_getPlayerActorClass()->changeOriginalDemo();
@@ -2233,10 +2295,10 @@ static void demo_camera(b_ob_class* i_this) {
 
         if (i_this->mDemoActionTimer < 75) {
             if (!(i_this->field_0x4750 & 7)) {
-                dComIfGp_getVibration().StartShock(1, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
+                dComIfGp_getVibration().StartShock(VIBMODE_S_POWER1, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
             }
         } else if (i_this->mDemoActionTimer < 146 && !(i_this->field_0x4750 & 15)) {
-            dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
+            dComIfGp_getVibration().StartShock(VIBMODE_S_POWER4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
         }
 
         if (i_this->mDemoActionTimer >= 138) {
@@ -2283,6 +2345,7 @@ static void demo_camera(b_ob_class* i_this) {
         }
         break;
     }
+
     case 20:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
@@ -2294,7 +2357,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->mDemoAction = 21;
         i_this->mDemoActionTimer = 0;
         i_this->mDemoCamFovy = 55.0f;
-        i_this->field_0x5cd0 = 0.0f;
+        i_this->mBaseDemoCamStepScale = 0.0f;
         camera->mCamera.SetTrimSize(3);
 
         daPy_getPlayerActorClass()->changeOriginalDemo();
@@ -2306,7 +2369,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->mDemoCamEye.x = -473.0f;
         i_this->mDemoCamEye.y = -23869.0f;
         i_this->mDemoCamEye.z = -1581.0f;
-        i_this->field_0x5cd0 = 0;
+        i_this->mBaseDemoCamStepScale = 0;
 
         Z2GetAudioMgr()->bgmStop(30, 0);
         Z2GetAudioMgr()->subBgmStart(Z2BGM_BOSS_OCTAEEL_D02);
@@ -2325,8 +2388,8 @@ static void demo_camera(b_ob_class* i_this) {
 
         if (i_this->mDemoActionTimer > KREG_S(6) + 320) {
             cLib_addCalc2(&i_this->mDemoCamCenter.y, KREG_F(12) + -23169.0f, 0.1f,
-                          i_this->field_0x5cd0 * 40.0f);
-            cLib_addCalc2(&i_this->field_0x5cd0, 1.0f, 1.0f, KREG_F(7) + 0.02f);
+                          i_this->mBaseDemoCamStepScale * 40.0f);
+            cLib_addCalc2(&i_this->mBaseDemoCamStepScale, 1.0f, 1.0f, KREG_F(7) + 0.02f);
         }
 
         if (i_this->mDemoActionTimer < KREG_S(7) + 430) {
@@ -2386,6 +2449,7 @@ static void demo_camera(b_ob_class* i_this) {
             Z2GetAudioMgr()->bgmStart(Z2BGM_BOSS_OCTAEEL_1, 0, 0);
         }
         break;
+
     case 30:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
@@ -2397,7 +2461,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->mDemoAction = 31;
         i_this->mDemoActionTimer = 0;
         i_this->mDemoCamFovy = 55.0f;
-        i_this->field_0x5cd0 = 0.0f;
+        i_this->mBaseDemoCamStepScale = 0.0f;
         camera->mCamera.SetTrimSize(3);
 
         daPy_getPlayerActorClass()->changeOriginalDemo();
@@ -2432,12 +2496,12 @@ static void demo_camera(b_ob_class* i_this) {
         }
 
         if (i_this->mDemoActionTimer >= 90 && i_this->mDemoActionTimer <= 260) {
-            cLib_addCalc2(&i_this->mDemoCamFovy, 30.0f, 0.2f, i_this->field_0x5cd0);
+            cLib_addCalc2(&i_this->mDemoCamFovy, 30.0f, 0.2f, i_this->mBaseDemoCamStepScale);
         } else {
-            cLib_addCalc2(&i_this->mDemoCamFovy, 55.0f, 0.2f, i_this->field_0x5cd0);
+            cLib_addCalc2(&i_this->mDemoCamFovy, 55.0f, 0.2f, i_this->mBaseDemoCamStepScale);
         }
 
-        cLib_addCalc2(&i_this->field_0x5cd0, 1.0f, 1.0f, 0.05f);
+        cLib_addCalc2(&i_this->mBaseDemoCamStepScale, 1.0f, 1.0f, 0.05f);
 
         if (i_this->mDemoActionTimer == 390) {
             tentacle = (b_oh_class*)fopAcM_SearchByID(i_this->mTentacleActorIDs[1]);
@@ -2488,9 +2552,9 @@ static void demo_camera(b_ob_class* i_this) {
             dComIfGp_particle_set(dPa_RM(ID_ZI_S_OI_ISO_APP_A), &sp58, NULL, NULL);
             dComIfGp_getVibration().StartQuake(3, 31, cXyz(0.0f, 1.0f, 0.0f));
 
-            i_this->field_0x5cd0 = 0;
+            i_this->mBaseDemoCamStepScale = 0;
             i_this->mAction = 1;
-            i_this->mMode = 0;
+            i_this->mActionPhase = 0;
 
             for (int i = 1; i < 7; i++) {
                 tentacle = (b_oh_class*)fopAcM_SearchByID(i_this->mTentacleActorIDs[i]);
@@ -2502,6 +2566,7 @@ static void demo_camera(b_ob_class* i_this) {
             i_this->mZoneSwTimer = 0;
         }
         break;
+
     case 32:
         if (i_this->mDemoActionTimer >= 30) {
             if (i_this->mDemoActionTimer == 30) {
@@ -2514,13 +2579,13 @@ static void demo_camera(b_ob_class* i_this) {
                 i_this->field_0x5cc0 = std::fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
                 i_this->field_0x5cc4 = std::fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
                 i_this->field_0x5cc8 = std::fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
-                i_this->field_0x5cd0 = 0.0f;
+                i_this->mBaseDemoCamStepScale = 0.0f;
 
                 daPy_getPlayerActorClass()->changeDemoMode(0x17, 0, 0, 0);
             }
 
             cam_3d_morf(i_this, BREG_F(17) + 0.1f);
-            cLib_addCalc2(&i_this->field_0x5cd0, BREG_F(18) + 0.04f, 1.0f, BREG_F(19) + 0.0005f);
+            cLib_addCalc2(&i_this->mBaseDemoCamStepScale, BREG_F(18) + 0.04f, 1.0f, BREG_F(19) + 0.0005f);
         }
 
         cLib_addCalc2(&a_this->home.pos.y, i_this->field_0x47a0, 1.0f, 2.0f);
@@ -2554,10 +2619,11 @@ static void demo_camera(b_ob_class* i_this) {
             Z2GetAudioMgr()->bgmStart(Z2BGM_BOSS_OCTAEEL_0, 0, 0);
         }
         break;
+
     case 40:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -2565,7 +2631,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->mDemoAction = 41;
         i_this->mDemoActionTimer = 0;
         i_this->mDemoCamFovy = 55.0f;
-        i_this->field_0x5cd0 = 0.0f;
+        i_this->mBaseDemoCamStepScale = 0.0f;
         camera->mCamera.SetTrimSize(3);
 
         daPy_getPlayerActorClass()->changeOriginalDemo();
@@ -2642,7 +2708,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->field_0x5cc0 = std::fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
         i_this->field_0x5cc4 = std::fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
         i_this->field_0x5cc8 = std::fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
-        i_this->field_0x5cd0 = 0.0f;
+        i_this->mBaseDemoCamStepScale = 0.0f;
 
         i_this->mDemoAction = 46;
         i_this->mDemoActionTimer = 0;
@@ -2664,7 +2730,7 @@ static void demo_camera(b_ob_class* i_this) {
 
         if (i_this->mDemoActionTimer > 0) {
             cam_3d_morf(i_this, BREG_F(17) + 0.05f);
-            cLib_addCalc2(&i_this->field_0x5cd0, BREG_F(18) + 0.002f, 1.0f, BREG_F(19) + 0.0001f);
+            cLib_addCalc2(&i_this->mBaseDemoCamStepScale, BREG_F(18) + 0.002f, 1.0f, BREG_F(19) + 0.0001f);
         }
 
         if (i_this->mDemoActionTimer != 400) {
@@ -2708,15 +2774,16 @@ static void demo_camera(b_ob_class* i_this) {
             i_this->field_0x5cc0 = std::fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
             i_this->field_0x5cc4 = std::fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
             i_this->field_0x5cc8 = std::fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
-            i_this->field_0x5cd0 = 0.0f;
+            i_this->mBaseDemoCamStepScale = 0.0f;
 
             i_this->mDemoAction = 48;
             i_this->mDemoActionTimer = 0;
         }
         break;
+
     case 48:
         if (i_this->mDemoActionTimer >= 60) {
-            i_this->field_0x5cd0 = 0.02f;
+            i_this->mBaseDemoCamStepScale = 0.02f;
             cam_3d_morf(i_this, BREG_F(17) + 0.1f);
 
             if (!(i_this->mDemoActionTimer & 3)) {
@@ -2777,15 +2844,16 @@ static void demo_camera(b_ob_class* i_this) {
             i_this->mDemoCamEye.set(-4820.0f, -18600.0f, -510.0f);
             i_this->mDemoCamCenter.set(-2630.0f, -21620.0f, 4900.0f);
             i_this->mDemoCamFovy = 45.0f;
-            i_this->field_0x5cd0 = 0.0f;
+            i_this->mBaseDemoCamStepScale = 0.0f;
 
             i_this->mSound.startCreatureSound(Z2SE_EN_BOSS_CONVERGE, 0, 0);
         }
         break;
+
     case 49:
         if (i_this->mDemoActionTimer >= 100) {
-            cLib_addCalc2(&i_this->mDemoCamFovy, 30.0f, 0.2f, i_this->field_0x5cd0);
-            cLib_addCalc2(&i_this->field_0x5cd0, 1.0f, 1.0f, 0.05f);
+            cLib_addCalc2(&i_this->mDemoCamFovy, 30.0f, 0.2f, i_this->mBaseDemoCamStepScale);
+            cLib_addCalc2(&i_this->mBaseDemoCamStepScale, 1.0f, 1.0f, 0.05f);
         }
 
         if (i_this->mDemoActionTimer == 100) {
@@ -2847,10 +2915,11 @@ static void demo_camera(b_ob_class* i_this) {
             }
         }
         break;
+
     case 50:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.onCondition(2);
+            a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -2858,7 +2927,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->mDemoAction = 51;
         i_this->mDemoActionTimer = 0;
         i_this->mDemoCamFovy = 55.0f;
-        i_this->field_0x5cd0 = 0.0f;
+        i_this->mBaseDemoCamStepScale = 0.0f;
         camera->mCamera.SetTrimSize(3);
 
         daPy_getPlayerActorClass()->changeOriginalDemo();
@@ -2914,6 +2983,7 @@ static void demo_camera(b_ob_class* i_this) {
                 daPy_getPlayerActorClass()->changeDemoMode(1, 0, 0, 0);
             }
         }
+        /* fallthrough */
     case 52:
         if (i_this->mDemoActionTimer == 0) {
             i_this->mDemoCamCenter = i_this->field_0x5cec;
@@ -2924,8 +2994,8 @@ static void demo_camera(b_ob_class* i_this) {
         }
 
         if (i_this->mDemoActionTimer > 25) {
-            cLib_addCalc2(&i_this->mDemoCamFovy, 40.0f, 0.05f, i_this->field_0x5cd0);
-            cLib_addCalc2(&i_this->field_0x5cd0, 1.0f, 1.0f, 0.05f);
+            cLib_addCalc2(&i_this->mDemoCamFovy, 40.0f, 0.05f, i_this->mBaseDemoCamStepScale);
+            cLib_addCalc2(&i_this->mBaseDemoCamStepScale, 1.0f, 1.0f, 0.05f);
         }
 
         if (i_this->mDemoAction == 52 && i_this->mBodyParts[0].mpMorf->isStop()) {
@@ -2935,6 +3005,7 @@ static void demo_camera(b_ob_class* i_this) {
             i_this->field_0x4794 = 100;
         }
         break;
+
     case 60:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
@@ -2946,7 +3017,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->mDemoAction = 61;
         i_this->mDemoActionTimer = 0;
         i_this->mDemoCamFovy = 40.0f;
-        i_this->field_0x5cd0 = 0.0f;
+        i_this->mBaseDemoCamStepScale = 0.0f;
         camera->mCamera.SetTrimSize(3);
 
         daPy_getPlayerActorClass()->changeOriginalDemo();
@@ -3149,7 +3220,7 @@ static int daB_OB_Execute(b_ob_class* i_this) {
         cLib_addCalcAngleS2(&a_this->shape_angle.y, a_this->current.angle.y, 2, 0x400);
         cLib_addCalcAngleS2(&a_this->shape_angle.x, a_this->current.angle.x, 2, 0x400);
 
-        mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y + i_this->field_0x479c,
+        mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y + i_this->mPosTransY,
                                a_this->current.pos.z);
         mDoMtx_stack_c::YrotM(a_this->shape_angle.y);
         mDoMtx_stack_c::XrotM(a_this->shape_angle.x);
@@ -3158,8 +3229,8 @@ static int daB_OB_Execute(b_ob_class* i_this) {
         mDoMtx_stack_c::scaleM(0.9f, 1.1f, 0.9f);
         mDoMtx_stack_c::ZrotM(-a_this->shape_angle.z);
 
-        i_this->field_0x4740 = cM_ssin(i_this->field_0x4750 * 1000) * 9.5f + 9.5f;
-        i_this->mpCoreMorf->setFrame(i_this->field_0x4740);
+        i_this->mCoreMorfFrame = cM_ssin(i_this->field_0x4750 * 1000) * 9.5f + 9.5f;
+        i_this->mpCoreMorf->setFrame(i_this->mCoreMorfFrame);
         i_this->mpCoreMorf->modelCalc();
 
         i_this->mpCoreMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());

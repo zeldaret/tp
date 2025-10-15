@@ -287,7 +287,7 @@ static void attack(b_oh_class* i_this) {
 
                                 if (boss->mAction != OB_ACTION_CORE_HAND_MOVE) {
                                     boss->mAction = OB_ACTION_CORE_HAND_MOVE;
-                                    boss->mMode = 0;
+                                    boss->mActionPhase = 0;
                                     boss->mCoreAnm = BCK_OI_WAIT;
                                     boss->mCoreAnmMode = J3DFrameCtrl::EMode_LOOP;
                                 }
