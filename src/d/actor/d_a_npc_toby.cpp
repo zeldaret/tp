@@ -251,13 +251,13 @@ static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[100] = {
 };
 
 enum NPC_TOBY_CUTS {
-    CUT_NONE,
-    CUT_TOBY_HOUSE_FIRE,
-    CUT_TALKTO_ONESELF,
-    CUT_REPAIR_SCANNON,
-    CUT_SCANNON,
-    CUT_CONVERSATION_ABOUT_SCANNON,
-    CUT_CONVERSATION_ABOUT_ZRA,
+    CUT_NONE = 0,
+    CUT_TOBY_HOUSE_FIRE = 1,
+    CUT_TALKTO_ONESELF = 2,
+    CUT_REPAIR_SCANNON = 3,
+    CUT_SCANNON = 4,
+    CUT_CONVERSATION_ABOUT_SCANNON = 5,
+    CUT_CONVERSATION_ABOUT_ZRA = 6,
 };
 
 /* 80B25434-80B25450 -00001 001C+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_Toby_c */
@@ -935,6 +935,39 @@ int daNpc_Toby_c::drawDbgInfo() {
     return FALSE;
 }
 
+#if DEBUG
+// I have 0 clue what these are about, but I saw them in npc_moir as well.
+static s16 dummy_lit_122993(int sel) {
+    const s16 arr[2] = {0x00C8, 0x00FF};
+    return arr[sel];
+}
+
+static s16 dummy_lit_122996(int sel) {
+    const s16 arr[2] = {0xC800, 0x00FF};
+    return arr[sel];
+}
+
+static s16 dummy_lit_122999(int sel) {
+    const s16 arr[2] = {0x8080, 0x80A0};
+    return arr[sel];
+}
+
+static s16 dummy_lit_123002(int sel) {
+    const s16 arr[2] = {0x8080, 0x80A0};
+    return arr[sel];
+}
+
+static s16 dummy_lit_123016(int sel) {
+    const s16 arr[2] = {0x4190, 0x0000};
+    return arr[sel];
+}
+
+static s16 dummy_lit_123017(int sel) {
+    const s16 arr[2] = {0x4110, 0x0000};
+    return arr[sel];
+}
+#endif
+
 /* 80B20434-80B2050C 001ED4 00D8+00 1/0 0/0 0/0 .text            drawOtherMdl__12daNpc_Toby_cFv */
 void daNpc_Toby_c::drawOtherMdl() {
     J3DModel* model = mpMorf[0]->getModel();
@@ -1473,88 +1506,420 @@ int daNpc_Toby_c::cutRepairSCannon(int arg0) {
     return retval;
 }
 
-/* ############################################################################################## */
-/* 80B24B4C-80B24B54 000168 0008+00 0/0 0/0 0/0 .rodata          @5658 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5658[8] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x80B24B4C, &lit_5658);
-#pragma pop
-
-/* 80B24B54-80B24B58 000170 0004+00 0/2 0/0 0/0 .rodata          @5751 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5751 = 1000.0f;
-COMPILER_STRIP_GATE(0x80B24B54, &lit_5751);
-#pragma pop
-
-/* 80B24B58-80B24B5C 000174 0004+00 0/1 0/0 0/0 .rodata          @5752 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5752 = 1600.0f;
-COMPILER_STRIP_GATE(0x80B24B58, &lit_5752);
-#pragma pop
-
-/* 80B24B5C-80B24B60 000178 0004+00 0/1 0/0 0/0 .rodata          @5753 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5753 = 11.0f / 20.0f;
-COMPILER_STRIP_GATE(0x80B24B5C, &lit_5753);
-#pragma pop
-
 /* 80B215B4-80B219F4 003054 0440+00 1/0 0/0 0/0 .text            cutSCannon__12daNpc_Toby_cFi */
-int daNpc_Toby_c::cutSCannon(int param_0) {
-    // NONMATCHING
+int daNpc_Toby_c::cutSCannon(int arg0) {
+    cXyz work;
+    csXyz my_svec;
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    int timer_val = 0;
+    f32 reg_f31 = 0.0f;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "timer");
+    if (param_p != NULL) {
+        timer_val = *param_p;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+        case 0:
+            if (daNpcT_getPlayerInfoFromPlayerList(40, fopAcM_GetRoomNo(this), &work, &my_svec)) {
+                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, my_svec.y, 0);
+                dComIfGp_evmng_setGoal(&work);
+            }
+
+            break;
+
+        case 1:
+            initTalk(mFlowNodeNo, NULL);
+            break;
+
+        case 2:
+            mMotionSeqMngr.setNo(15, 4.0f, 0, 0);
+            reg_f31 = 1000.0f;
+            work.set(0.0f, 100.0f, reg_f31);
+            mDoMtx_stack_c::YrotS(home.angle.y + 0x1000);
+            mDoMtx_stack_c::multVec(&work, &work);
+            field_0x0FE8 = home.pos + work;
+            mEventTimer = timer_val;
+            break;
+
+        case 3:
+            mHide = 1;
+            field_0x1001 = 1;
+            break;
+
+        case 4:
+            mEventTimer = 0;
+            break;
+
+        case 5:
+            mEventTimer = timer_val;
+            break;
+        }
+    }
+
+    int sp10[2] = {-1, -1};
+    int sp8 = 0;
+    switch (prm_val) {
+    case 0:
+        mJntAnm.lookPlayer(0);
+        retval = 1;
+        break;
+
+    case 1:
+        mJntAnm.lookPlayer(0);
+        if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+            retval = 1;
+        }
+
+        break;
+
+    case 2:
+    case 4:
+        mJntAnm.lookPlayer(0);
+        if (prm_val == 4) {
+            mJntAnm.lookNone(0);
+        }
+
+        if (1600.0f < current.pos.abs2(field_0x0FE8)) {
+            cLib_addCalcAngleS2(&current.angle.y, cLib_targetAngleY(&current.pos, &field_0x0FE8), 4, 0x400);
+            shape_angle.y = current.angle.y;
+            mCurAngle.y = shape_angle.y;
+            cLib_chaseF(&speedF, 5.0f, 0.55f);
+        } else {
+            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+            speedF = 0.0f;
+            speed.setall(0.0f);
+            retval = 1;
+        }
+
+        if (cLib_calcTimer(&mEventTimer) == 0) {
+            retval = 1;
+        }
+
+        break;
+
+    case 5:
+        if (cLib_calcTimer(&mEventTimer) == 0) {
+            retval = 1;
+        }
+
+        break;
+
+    case 3:
+        retval = 1;
+        break;
+    }
+
+    return retval;
 }
-
-/* ############################################################################################## */
-/* 80B24B60-80B24B68 00017C 0008+00 0/1 0/0 0/0 .rodata          @5783 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5783[8] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x80B24B60, &lit_5783);
-#pragma pop
-
-/* 80B24B8C-80B24B8C 0001A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80B24C42 = "send";
-#pragma pop
 
 /* 80B219F4-80B22434 003494 0A40+00 3/0 0/0 0/0 .text
  * cutConversationAboutSCannon__12daNpc_Toby_cFi                */
-int daNpc_Toby_c::cutConversationAboutSCannon(int param_0) {
-    // NONMATCHING
+int daNpc_Toby_c::cutConversationAboutSCannon(int arg0) {
+    fopAc_ac_c* actor_p = NULL;
+    cXyz work;
+    cXyz sp_0x5C;
+    csXyz my_svec;
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    int timer_val = 0;
+    int msgNo_val = 0;
+    int send_val = 0;
+    f32 reg_f31 = 0.0f;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "timer");
+    if (param_p != NULL) {
+        timer_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "msgNo");
+    if (param_p != NULL) {
+        msgNo_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "send");
+    if (param_p != NULL) {
+        send_val = *param_p;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+        case 0:
+            daNpcT_offTmpBit(0xB);
+            daNpcT_offTmpBit(0xC);
+            initTalk(mFlowNodeNo, NULL);
+            break;
+
+        case 1:
+            mEventTimer = timer_val;
+            break;
+
+        case 2:
+            initTalk(mFlowNodeNo, NULL);
+            break;
+
+        case 4:
+            mFaceMotionSeqMngr.setNo(0x10, 0.0f, 1, 0);
+            mMotionSeqMngr.setNo(0xF, 0.0f, 1, 0);
+            reg_f31 = -300.0f;
+            actor_p = getOtherTobyP(5);
+            JUT_ASSERT(3042, NULL != actor_p);
+            field_0x0FE8 = actor_p->current.pos;
+            setAngle(actor_p->shape_angle.y);
+            work.set(0.0f, 100.0f, reg_f31);
+            mDoMtx_stack_c::YrotS(actor_p->shape_angle.y);
+            mDoMtx_stack_c::multVec(&work, &work);
+            work += actor_p->current.pos;
+            setPos(work);
+            if (daNpcT_getPlayerInfoFromPlayerList(55, fopAcM_GetRoomNo(this), &work, &my_svec)) {
+                dComIfGp_evmng_setGoal(&work);
+                sp_0x5C.set(0.0f, 100.0f, reg_f31);
+                mDoMtx_stack_c::YrotS(my_svec.y);
+                mDoMtx_stack_c::multVec(&sp_0x5C, &sp_0x5C);
+                work += sp_0x5C;
+                mGndChk.SetPos(&work);
+                work.y = dComIfG_Bgsp().GroundCross(&mGndChk);
+                JUT_ASSERT(3064, -G_CM3D_F_INF != work.y);
+                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, my_svec.y, 0);
+            }
+
+            initTalk(mFlowNodeNo, NULL);
+            break;
+
+        case 7:
+            mPlayerAngle = fopAcM_searchPlayerAngleY(this);
+            break;
+
+        case 8:
+            mMotionSeqMngr.setNo(0xF, 4.0f, 0, 0);
+            reg_f31 = -1000.0f;
+            actor_p = getOtherTobyP(5);
+            JUT_ASSERT(3088, NULL != actor_p);
+            work.set(0.0f, 100.0f, reg_f31);
+            mDoMtx_stack_c::YrotS(actor_p->shape_angle.y);
+            mDoMtx_stack_c::multVec(&work, &work);
+            field_0x0FE8 = actor_p->current.pos + work;
+            mEventTimer = timer_val;
+            break;
+
+        case 9:
+            mFaceMotionSeqMngr.setNo(0x10, 0.0f, 1, 0);
+            mMotionSeqMngr.setNo(0, 0.0f, 1, 0);
+            setPos(home.pos);
+            setAngle(home.angle.y);
+            speedF = 0.0f;
+            speed.setall(0.0f);
+            break;
+
+        case 10:
+            mEventTimer = 0;
+            break;
+
+        case 20:
+            mEventTimer = timer_val;
+            break;
+        }
+    }
+
+    int sp28[2] = {-1, -1};
+    int sp10 = 0;
+
+    switch (prm_val) {
+    case 0:
+        mJntAnm.lookPlayer(0);
+        if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+            retval = 1;
+        }
+
+        break;
+
+    case 1:
+        actor_p = mActorMngr[2].getActorP();
+        if (actor_p != NULL) {
+            mJntAnm.lookPos(&actor_p->current.pos, 0);
+            dComIfGp_getEvent().setPt2(actor_p);
+        } else {
+            mJntAnm.lookNone(0);
+        }
+
+        if (cLib_calcTimer(&mEventTimer) == 0) {
+            retval = 1;
+        }
+
+        break;
+
+    case 2:
+        mJntAnm.lookPlayer(0);
+        sp28[0] = msgNo_val;
+        if (talkProc(sp28, 0, NULL, 0) != 0) {
+            if (msgNo_val != 0) {
+                retval = 1;
+            } else if (mFlow.checkEndFlow()) {
+                retval = 1;
+            }
+        }
+
+        break;
+
+    case 3:
+        mJntAnm.lookPlayer(0);
+        if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+            retval = 1;
+        }
+
+        break;
+
+    case 4:
+        actor_p = mActorMngr[2].getActorP();
+        if (actor_p != NULL) {
+            field_0xd6c = actor_p->current.pos;
+            field_0xd6c.y += 600.0f;
+            mJntAnm.lookPos(&field_0xd6c, 0);
+            dComIfGp_getEvent().setPt2(actor_p);
+        } else {
+            mJntAnm.lookNone(0);
+        }
+        /* fallthrough */
+    case 8:
+    case 10:
+        mJntAnm.lookPlayer(0);
+        if (prm_val == 10) {
+            mJntAnm.lookNone(0);
+        }
+
+        if (1600.0f < current.pos.abs2(field_0x0FE8)) {
+            cLib_addCalcAngleS2(&current.angle.y, cLib_targetAngleY(&current.pos, &field_0x0FE8), 4, 0x400);
+            shape_angle.y = current.angle.y;
+            mCurAngle.y = shape_angle.y;
+            cLib_chaseF(&speedF, 5.0f, 0.55f);
+        } else {
+            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+            speedF = 0.0f;
+            speed.setall(0.0f);
+            retval = 1;
+        }
+
+        if ((prm_val == 8 || prm_val == 10) && cLib_calcTimer(&mEventTimer) == 0) {
+            retval = 1;
+        }
+
+        break;
+
+    case 5:
+    case 6:
+        sp28[0] = msgNo_val;
+        field_0xe26 = 0;
+        if (talkProc(sp28, send_val, NULL, 0) != 0) {
+            if ((s32) msgNo_val != 0) {
+                retval = 1;
+            } else if (mFlow.checkEndFlow()) {
+                retval = 1;
+            }
+        }
+
+        break;
+
+    case 7:
+        mJntAnm.lookPlayer(0);
+        if (mPlayerAngle != mCurAngle.y) {
+            step(mPlayerAngle, -1, -1, 15, 0);
+        }
+
+        shape_angle.y = mPlayerAngle;
+        if (talkProc(NULL, 0, NULL, 0)) {
+            int itemNo;
+            int eventId = mFlow.getEventId(&itemNo);
+            switch (eventId) {
+            case 19:
+                mEvtNo = CUT_REPAIR_SCANNON;
+                evtChange();
+                break;
+            default:
+                if (mFlow.checkEndFlow()) {
+                    retval = 1;
+                }
+            }
+        }
+
+        break;
+
+    case 20:
+        if (cLib_calcTimer(&mEventTimer) == 0) {
+            retval = 1;
+        }
+
+        break;
+    }
+
+    return retval;
 }
 
-/* ############################################################################################## */
-/* 80B24B68-80B24B6C 000184 0004+00 0/1 0/0 0/0 .rodata          @6037 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6037 = -300.0f;
-COMPILER_STRIP_GATE(0x80B24B68, &lit_6037);
-#pragma pop
-
-/* 80B24B6C-80B24B70 000188 0004+00 0/0 0/0 0/0 .rodata          @6038 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6038 = -1000.0f;
-COMPILER_STRIP_GATE(0x80B24B6C, &lit_6038);
-#pragma pop
-
-/* 80B24B70-80B24B78 00018C 0008+00 1/1 0/0 0/0 .rodata          @6056 */
-SECTION_RODATA static u8 const lit_6056[8] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x80B24B70, &lit_6056);
-
 /* 80B22434-80B22614 003ED4 01E0+00 1/0 0/0 0/0 .text cutConversationAboutZra__12daNpc_Toby_cFi */
-int daNpc_Toby_c::cutConversationAboutZra(int param_0) {
-    // NONMATCHING
+int daNpc_Toby_c::cutConversationAboutZra(int arg0) {
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    int timer_val = 0; // unused.
+    int msgNo_val = 0;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "timer");
+    if (param_p != NULL) {
+        timer_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "msgNo");
+    if (param_p != NULL) {
+        msgNo_val = *param_p;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+        case 0:
+            initTalk(mFlowNodeNo, NULL);
+            break;
+        case 1:
+            break;
+        }
+    }
+
+    int sp8[2] = {-1, -1};
+    switch (prm_val) {
+    case 0:
+    case 1:
+        mJntAnm.lookPlayer(0);
+        if (prm_val == 0) {
+            mJntAnm.lookNone(0);
+        }
+
+        sp8[0] = msgNo_val;
+        if (talkProc(sp8, 0, NULL, 0) != 0) {
+            if (msgNo_val != 0) {
+                retval = 1;
+            } else if (mFlow.checkEndFlow()) {
+                retval = 1;
+            }
+        }
+
+        break;
+    }
+
+    return retval;
 }
 
 /* 80B22614-80B226B0 0040B4 009C+00 5/5 0/0 0/0 .text            chkAttnZra__12daNpc_Toby_cFv */
@@ -1640,57 +2005,6 @@ static int daNpc_Toby_Draw(void* i_this) {
 static int daNpc_Toby_IsDelete(void* i_this) {
     return true;
 }
-
-extern "C" void cutConversationAboutSCannon__12daNpc_Toby_cFi();
-/* 80B255C8-80B2561C -00001 0054+00 1/1 0/0 0/0 .data            @6040 */
-SECTION_DATA static void* lit_6040[21] = {
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x498),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x504),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x5E0),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x660),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x6CC),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x8F4),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x8F4),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x944),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x7B8),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA24),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x7B8),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA24),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA24),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA24),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA24),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA24),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA24),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA24),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA24),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA24),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0xA10),
-};
-
-/* 80B2561C-80B25670 -00001 0054+00 1/1 0/0 0/0 .data            @6039 */
-SECTION_DATA static void* lit_6039[21] = {
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x118),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x13C),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x144),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x158),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x30C),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x328),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x3D0),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x458),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x468),
-    (void*)(((char*)cutConversationAboutSCannon__12daNpc_Toby_cFi) + 0x464),
-};
 
 /* 80B25670-80B25690 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Toby_MethodTable */
 static actor_method_class daNpc_Toby_MethodTable = {

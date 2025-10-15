@@ -477,6 +477,9 @@ public:
     void setIdx(int i_idx) { mIdx = i_idx; }
 
     const int getIdx() { return mIdx; }
+#if VERSION != VERSION_SHIELD_DEBUG
+    const u16 get_u16_Idx() { return mIdx; }
+#endif
 
     dPath* getPathInfo() { return mPathInfo; }
 
