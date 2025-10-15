@@ -170,7 +170,7 @@ int daObjSwChain_c::Create() {
     mAcchCir.SetWall(0.0f, 40.0f);
     mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
               fopAcM_GetSpeed_p(this), &current.angle, &shape_angle);
-    fopAcM_setCullSizeSphere(this, home.pos.x, home.pos.y, home.pos.z, (field_0xa65 + 1) * 35.0f);
+    fopAcM_setCullSizeSphere(this, home.pos.x, home.pos.y, home.pos.z, (mChainNum + 1) * 35.0f);
     cXyz cStack_3c(0.0f, 0.0f, 50.0f);
     cXyz cStack_48;
     cXyz cStack_54;
@@ -183,7 +183,7 @@ int daObjSwChain_c::Create() {
 
     chain_s* p_chain = field_0xa74;
 
-    for (int i = 0; i < field_0xa65 + 1; i++) {
+    for (int i = 0; i < mChainNum + 1; i++) {
         if (i < getTopChainNo()) {
             p_chain->field_0x34 = home.pos;
             cStack_54 = p_chain->field_0x34;
@@ -211,14 +211,14 @@ int daObjSwChain_c::Create() {
 
 /* 80CF89C0-80CF8B00 000380 0140+00 1/1 0/0 0/0 .text            CreateHeap__14daObjSwChain_cFv */
 int daObjSwChain_c::CreateHeap() {
-    field_0xa74 = new chain_s[field_0xa65 + 1];
+    field_0xa74 = new chain_s[mChainNum + 1];
 
     if (field_0xa74 == NULL) {
         return 0;
     }
 
     chain_s* p_chain = field_0xa74;
-    for (int i = 0; i < field_0xa65 + 1; i++, p_chain++) {
+    for (int i = 0; i < mChainNum + 1; i++, p_chain++) {
         p_chain->field_0x34.setall(0.0f);
         p_chain->field_0x40.setall(0);
         p_chain->field_0x48 = 0.0f;
@@ -262,22 +262,22 @@ int daObjSwChain_c::create1st() {
     }
 
     // missing instructions
-    field_0xa65 = getChainNum() & 1 ? getChainNum() : getChainNum() + 1;
+    mChainNum = getChainNum() & 1 ? getChainNum() : getChainNum() + 1;
 
-    field_0xa66 = getHookShotLength();
-    field_0xa64 = getOutNum();
-    field_0xa63 = getChainID();
+    mHookShotLength = getHookShotLength();
+    mCurrentChainNum = getOutNum();
+    mChainID = getChainID();
 
 #ifdef DEBUG
-    if (field_0xa63 != 0 && field_0xa63 != 1 && field_0xa63 != 2 && field_0xa63 != 3) {
+    if (mChainID != 0 && mChainID != 1 && mChainID != 2 && mChainID != 3) {
         // Chain Switch: Chain ID value is abnormal <%d>
-        OS_REPORT_ERROR("チェーンスイッチ：鎖の番号が異常値です<%d>\n", field_0xa63);
+        OS_REPORT_ERROR("チェーンスイッチ：鎖の番号が異常値です<%d>\n", mChainID);
         return cPhs_ERROR_e;
     }
 #endif
 
 #ifdef DEBUG
-    if (field_0xa64 > field_0xa65) {
+    if (mCurrentChainNum > mChainNum) {
         // Chain Switch: Argument 2 > Argument 1 !
         OS_REPORT_ERROR("チェーンスイッチ：引数２＞引数１になっています！\n");
         return cPhs_ERROR_e;
@@ -285,7 +285,7 @@ int daObjSwChain_c::create1st() {
 #endif
 
 #ifdef DEBUG
-    if (field_0xa66 > field_0xa65) {
+    if (mHookShotLength > mChainNum) {
         // Chain Switch: Argument 3 > Argument 1 !
         OS_REPORT_ERROR("チェーンスイッチ：引数３＞引数１になっています！\n");
         return cPhs_ERROR_e;
@@ -333,9 +333,9 @@ int daObjSwChain_c::execute() {
     chain_count_control();
     chain_s* unused = field_0xa74;
     chain_control();
-    chain_s* iVar1 = &field_0xa74[field_0xa65];
+    chain_s* iVar1 = &field_0xa74[mChainNum];
 
-    if (!field_0xa6c && daPy_py_c::setFmChainPos(this, &iVar1->field_0x34, field_0xa63)) {
+    if (!field_0xa6c && daPy_py_c::setFmChainPos(this, &iVar1->field_0x34, mChainID)) {
         mCarry = 1;
         eyePos = home.pos;
     } else {
@@ -349,7 +349,7 @@ int daObjSwChain_c::execute() {
 
     if (fopAcM_checkHookCarryNow(this)) {
         field_0xa61 = 1;
-        if (field_0xa64 >= field_0xa66 && field_0xa9e == 0) {
+        if (mCurrentChainNum >= mHookShotLength && field_0xa9e == 0) {
             fopAcM_cancelHookCarryNow(this);
         }
     } else {
@@ -362,14 +362,14 @@ int daObjSwChain_c::execute() {
     setChainMtx();
     field_0xa6b = 0;
     cXyz cStack_68(field_0xa74[getTopChainNo()].field_0x34);
-    cXyz cStack_74(field_0xa74[field_0xa65].field_0x34);
+    cXyz cStack_74(field_0xa74[mChainNum].field_0x34);
     f32 fVar15 = cStack_74.abs(cStack_68);
 #ifdef DEBUG
-    if (fVar15 < (l_HIO.field_0x0c * (field_0xa64 - 2)) || mCarry == 0)
+    if (fVar15 < (l_HIO.field_0x0c * (mCurrentChainNum - 2)) || mCarry == 0)
 #else
-    if (fVar15 < (35.0f * (field_0xa64 - 2)) || mCarry == 0)
+    if (fVar15 < (35.0f * (mCurrentChainNum - 2)) || mCarry == 0)
 #endif
-        if (field_0xa64 > getOutNum() && mRatio != 0.0f) {
+        if (mCurrentChainNum > getOutNum() && mRatio != 0.0f) {
             cXyz cStack_80(field_0xa74[0].field_0x34);
             cXyz cStack_8c;
             cStack_8c = cStack_80 - field_0xa74[getTopChainNo()].field_0x34;
@@ -378,7 +378,7 @@ int daObjSwChain_c::execute() {
             switch (fopAcM_GetRoomNo(this)) {
             case 4:
             case 6:
-                if (field_0xa64 > field_0xa69) {
+                if (mCurrentChainNum > field_0xa69) {
 #ifdef DEBUG
                     iVar1->field_0x34 += cStack_8c * l_HIO.mReturnSpeedHigh;
 #else
@@ -413,7 +413,7 @@ int daObjSwChain_c::execute() {
 #else
         if (abs(abs_tmp) < 0xe74) {
 #endif
-            chain_s* chain_p2 = &field_0xa74[field_0xa65];
+            chain_s* chain_p2 = &field_0xa74[mChainNum];
             mSph1.SetC(chain_p2->field_0x34);
             dComIfG_Ccsp()->Set(&mSph1);
         }

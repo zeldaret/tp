@@ -50,9 +50,9 @@ public:
     u8 getOutNum() { return fopAcM_GetParamBit(this, 16, 8); }
     u8 getChainID() { return fopAcM_GetParamBit(this, 28, 4); }
     u8 getHookShotLength() { return mHookshotLength; }
-    int getCurrentChainNum() { return field_0xa64; }
+    int getCurrentChainNum() { return mCurrentChainNum; }
     f32 getCurrentChainLength() {
-        chain_s* chain_p = &field_0xa74[field_0xa65 - field_0xa64 + 1];
+        chain_s* chain_p = &field_0xa74[mChainNum - mCurrentChainNum + 1];
         return (getCurrentChainNum() - 1) * 35.0f +
                field_0xa74[0].field_0x34.abs(chain_p->field_0x34);
     }
@@ -61,19 +61,19 @@ public:
     void setRatioForChandelier(f32 ratio) { mRatio = ratio; }
 
     /* 80C665A4 */ BOOL checkTight() {
-        if (mCarry != 0 && (home.roomNo == 4 || home.roomNo == 6) && field_0xa64 >= field_0xa69 &&
+        if (mCarry != 0 && (home.roomNo == 4 || home.roomNo == 6) && mCurrentChainNum >= field_0xa69 &&
             field_0xa9c == 0)
         {
             daPy_py_c* player = daPy_getPlayerActorClass();
-            chain_s* swChain = &field_0xa74[field_0xa65] - field_0xa64 + 1;
+            chain_s* swChain = &field_0xa74[mChainNum] - mCurrentChainNum + 1;
             cXyz cStack_54;
             cXyz cStack_60;
             cStack_54 = swChain->field_0x34;
-            cStack_60 = field_0xa74[field_0xa65].field_0x34;
+            cStack_60 = field_0xa74[mChainNum].field_0x34;
             f32 dVar10 = cStack_60.abs(cStack_54);
             f32 dVar13 = (field_0xa67 - 2) * 35.0f;
             cXyz local_6c;
-            cXyz cStack_78 = field_0xa74[0].field_0x34 - field_0xa74[field_0xa65].field_0x34;
+            cXyz cStack_78 = field_0xa74[0].field_0x34 - field_0xa74[mChainNum].field_0x34;
             local_6c.x = player->getSpeedF() * cM_ssin(player->current.angle.y);
             local_6c.z = player->getSpeedF() * cM_scos(player->current.angle.y);
             if (cStack_78.inprodXZ(local_6c) < 0.0f && dVar10 > dVar13 - 35.0f) {
@@ -98,10 +98,10 @@ private:
     /* 0xA60 */ u8 field_0xa60;
     /* 0xA60 */ u8 field_0xa61;
     /* 0xA62 */ u8 mCarry;
-    /* 0xA63 */ u8 field_0xa63;
-    /* 0xA64 */ u8 field_0xa64;
-    /* 0xA65 */ u8 field_0xa65;
-    /* 0xA66 */ u8 field_0xa66;
+    /* 0xA63 */ u8 mChainID;
+    /* 0xA64 */ u8 mCurrentChainNum;
+    /* 0xA65 */ u8 mChainNum;
+    /* 0xA66 */ u8 mHookShotLength;
     /* 0xA67 */ u8 field_0xa67;
     /* 0xA68 */ u8 field_0xa68;
     /* 0xA69 */ u8 field_0xa69;
