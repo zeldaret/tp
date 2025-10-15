@@ -694,8 +694,8 @@ static void henna_ride(npc_henna_class* i_this) {
 static void action(npc_henna_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
-    cXyz unkXyz1;
-    cXyz unkXyz2;
+    cXyz mae;
+    cXyz ato;
 
     i_this->field_0x61c = fopAcM_searchPlayerDistance(actor);
     i_this->field_0x620 = fopAcM_searchPlayerAngleY(actor);
@@ -789,14 +789,14 @@ static void action(npc_henna_class* i_this) {
     s16 unkTarget1Limit = 10000 + BREG_F(1);
     if (i_this->field_0x70d == 10 || (i_this->field_0x70d == 1 && i_this->field_0x61c < 700.0f)) {
         if (i_this->field_0x70c != 0) {
-            unkXyz1 = unkActor1->eyePos - actor->eyePos;
-            unkXyz1.y += i_this->field_0x72c * (20.0f + TREG_F(5)) + TREG_F(2);
+            mae = unkActor1->eyePos - actor->eyePos;
+            mae.y += i_this->field_0x72c * (20.0f + TREG_F(5)) + TREG_F(2);
         } else {
-            unkXyz1 = unkActor1->eyePos - actor->current.pos;
+            mae = unkActor1->eyePos - actor->current.pos;
             if (i_this->field_0x7e1 == 0) {
-                unkXyz1.y += -150.0f + TREG_F(1);
+                mae.y += -150.0f + TREG_F(1);
             } else {
-                unkXyz1.y += 0.0f + TREG_F(2);
+                mae.y += 0.0f + TREG_F(2);
             }
         }
         s16 angle = actor->shape_angle.y - i_this->field_0x620;
@@ -806,7 +806,7 @@ static void action(npc_henna_class* i_this) {
                 -cM_atan2s(unkXyz1.y, JMAFastSqrt(unkXyz1.x * unkXyz1.x + unkXyz1.z * unkXyz1.z));
         }
     } else if (i_this->field_0x70d == 2 || i_this->field_0x70d == 3) {
-        unkXyz1 = i_this->field_0x720 - actor->current.pos;
+        mae = i_this->field_0x720 - actor->current.pos;
         unkTarget1 = cM_atan2s(unkXyz1.x, unkXyz1.z) - actor->shape_angle.y;
         unkTarget2 =
             -cM_atan2s(unkXyz1.y, JMAFastSqrt(unkXyz1.x * unkXyz1.x + unkXyz1.z * unkXyz1.z));
@@ -1015,7 +1015,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
     f32 unkFloat1;
     s16 unkShort1;
     s32 unkInt1;
-    s32 unkInt2;
+    s32 hour;
     u32 unkIntArr1[8];
     u32 unkIntArr2[1];
     s8 unkBool1 = FALSE;
@@ -1522,8 +1522,8 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                 case 8:
                     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
                     if (kankyo->raincnt == 0) {
-                        unkInt2 = kankyo->daytime / 15.0f;
-                        if (unkInt2 < 8 || unkInt2 > 16) {
+                        hour = kankyo->daytime / 15.0f;
+                        if (hour < 8 || hour > 16) {
                             i_this->mMsgFlow.init(actor, 0x371, 0, NULL);
                         } else {
                             i_this->mMsgFlow.init(actor, 0x346, 0, NULL);
@@ -2290,28 +2290,28 @@ static void* s_boat_sub(void* param_0, void* param_1) {
 static void env_control(npc_henna_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     fopAc_ac_c* a_this = &i_this->actor;
-    cXyz unkXyz1;
-    cXyz unkXyz2;
+    cXyz mae;
+    cXyz ato;
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-    camera_class* unusedCamera = dComIfGp_getCamera(0);
+    camera_class* camera = dComIfGp_getCamera(0);
 
-    unkXyz1.x = -2591.0f - player->current.pos.x;
-    unkXyz1.z = -6742.0f - player->current.pos.z;
-    unkXyz1.y = JMAFastSqrt(unkXyz1.x * unkXyz1.x + unkXyz1.z * unkXyz1.z);
-    f32 unkTargetVal;
-    if (unkXyz1.y < 3500.0f) {
-        unkTargetVal = (3500.0f - unkXyz1.y) * 0.045f + 180.0f;
-        if (unkTargetVal > 210.0f) {
-            unkTargetVal = 210.0f;
+    mae.x = -2591.0f - player->current.pos.x;
+    mae.z = -6742.0f - player->current.pos.z;
+    mae.y = JMAFastSqrt(unkXyz1.x * unkXyz1.x + unkXyz1.z * unkXyz1.z);
+    f32 rain;
+    if (mae.y < 3500.0f) {
+        rain = (3500.0f - unkXyz1.y) * 0.045f + 180.0f;
+        if (rain > 210.0f) {
+            rain = 210.0f;
         }
     } else {
-        unkTargetVal = 180.0f;
+        rain = 180.0f;
     }
     if (kankyo->raincnt != 0) {
-        unkTargetVal += kankyo->raincnt * 0.7f;
+        rain += kankyo->raincnt * 0.7f;
     }
-    if (unkTargetVal > 250.0f) {
-        unkTargetVal = 250.0f;
+    if (rain > 250.0f) {
+        rain = 250.0f;
     }
 
     if (lbl_82_bss_289 != 0) {
@@ -2354,8 +2354,8 @@ static void env_control(npc_henna_class* i_this) {
 static int daNpc_Henna_Execute(npc_henna_class* i_this) {
     fopAc_ac_c* unusedPlayer = dComIfGp_getPlayer(0);
 
-    cXyz unkXyz1;
-    cXyz unkXyz2;
+    cXyz mae;
+    cXyz ato;
 
     env_control(i_this);
     if (i_this->field_0x70a != 0) {
@@ -2555,12 +2555,12 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
     if (i_this->field_0x7e1 == 0) {
         camera_class* camera = dComIfGp_getCamera(0);
 
-        unkXyz1.x = camera->lookat.center.x - camera->lookat.eye.x;
-        unkXyz1.z = camera->lookat.center.z - camera->lookat.eye.z;
+        mae.x = camera->lookat.center.x - camera->lookat.eye.x;
+        mae.z = camera->lookat.center.z - camera->lookat.eye.z;
         s16 cameraYaw = cM_atan2s(unkXyz1.x, unkXyz1.z);
 
-        unkXyz1.x = i_this->actor.current.pos.x - camera->lookat.eye.x;
-        unkXyz1.z = i_this->actor.current.pos.z - camera->lookat.eye.z;
+        mae.x = i_this->actor.current.pos.x - camera->lookat.eye.x;
+        mae.z = i_this->actor.current.pos.z - camera->lookat.eye.z;
         s16 selfYawToLookAt = cM_atan2s(unkXyz1.x, unkXyz1.z);
 
         s16 unkDiff = selfYawToLookAt - cameraYaw;
@@ -2600,11 +2600,11 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
 
         cMtx_YrotS(*calc_mtx, i_this->actor.shape_angle.y + lightAngle * 0xb6);
 
-        unkXyz1.x = 0.0f;
-        unkXyz1.y = 200.0f + BREG_F(10);
-        unkXyz1.z = 500.0f + BREG_F(11);
+        mae.x = 0.0f;
+        mae.y = 200.0f + BREG_F(10);
+        mae.z = 500.0f + BREG_F(11);
         MtxPosition(&unkXyz1, &unkXyz2);
-        unkXyz2 += i_this->actor.current.pos;
+        ato += i_this->actor.current.pos;
         dKy_BossLight_set(&unkXyz2, &lightColor, lightDist, 0);
     }
     return 1;
@@ -2821,18 +2821,18 @@ static int daNpc_Henna_Create(fopAc_ac_c* i_this) {
             if (fopAcM_GetRoomNo(i_this) == 4 &&
                 strcmp(dComIfGp_getStartStageName(), "T_MUKAO") == 0)
             {
-                cXyz unkXyz1;
-                cXyz unkXyz2;
-                csXyz unkSxyz1(0.0f, 0.0f, 0.0f);
+                cXyz mae;
+                cXyz ato;
+                csXyz angl(0.0f, 0.0f, 0.0f);
                 s32 createParams;
                 for (s32 i = 0; i < 50; i++) {
                     createParams = (s32)(cM_rndFX(5.0f) + 30.0f) << 8 | 0x5;
                     mDoMtx_YrotS(*calc_mtx, cM_rndF(65536.0f));
-                    unkXyz2.x = 0.0f;
-                    unkXyz2.y = cM_rndFX(50.0f) + -160.0f;
-                    unkXyz2.z = cM_rndF(2300.0f);
+                    ato.x = 0.0f;
+                    ato.y = cM_rndFX(50.0f) + -160.0f;
+                    ato.z = cM_rndF(2300.0f);
                     MtxPosition(&unkXyz2, &unkXyz1);
-                    unkSxyz1.y = cM_rndF(65536.0f);
+                    angl.y = cM_rndF(65536.0f);
                     fopAcM_create(PROC_MG_FISH, createParams, &unkXyz1, fopAcM_GetRoomNo(i_this),
                                   &unkSxyz1, NULL, -1);
                 }
