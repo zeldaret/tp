@@ -1,9 +1,10 @@
 #ifndef D_A_OBJ_SWCHAIN_H
 #define D_A_OBJ_SWCHAIN_H
 
-#include "f_op/f_op_actor_mng.h"
-#include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_model.h"
+#include "f_op/f_op_actor_mng.h"
 
 /**
  * @ingroup actors-objects
@@ -20,15 +21,17 @@ public:
         /* 80CF8B00 */ ~chain_s();
         /* 80CF8B3C */ chain_s();
 
-        /* 0x00 */ u8 field_0x00[0x34 - 0x00];
-        /* 0x00 */ cXyz field_0x34;
-        /* 0x00 */ u8 field_0x40[0x50 - 0x40];
+        /* 0x00 */ dMdl_obj_c mModel;
+        /* 0x34 */ cXyz field_0x34;
+        /* 0x40 */ csXyz field_0x40;
+        /* 0x48 */ f32 field_0x48;
+        /* 0x4C */ u8 field_0x4c;
     };
 
-    /* 80CF8768 */ void Create();
-    /* 80CF89C0 */ void CreateHeap();
-    /* 80CF8B48 */ void create1st();
-    /* 80CF8ED0 */ void execute();
+    /* 80CF8768 */ int Create();
+    /* 80CF89C0 */ int CreateHeap();
+    /* 80CF8B48 */ int create1st();
+    /* 80CF8ED0 */ int execute();
     /* 80CF94E4 */ void getChainBasePos(cXyz*);
     /* 80CF9500 */ void chain_control();
     /* 80CF99C0 */ void chain_control2();
@@ -36,13 +39,23 @@ public:
     /* 80CFA124 */ void setChainMtx();
     /* 80CFA4A8 */ void chain_count_control();
     /* 80CFAD50 */ void setTension();
-    /* 80CFB450 */ void getTopChainNo();
+    /* 80CFB450 */ int getTopChainNo();
     /* 80CFB464 */ void checkPlayerPull();
-    /* 80CFB53C */ void draw();
-    /* 80CFB5E8 */ void _delete();
+    /* 80CFB53C */ int draw();
+    /* 80CFB5E8 */ int _delete();
 
     u8 getSwbit() { return fopAcM_GetParamBit(this, 0, 8); }
+    u8 getSwbit2() { return (mHookshotLength & 0xff00) >> 8; }
+    u8 getChainNum() { return fopAcM_GetParamBit(this, 8, 8); }
+    u8 getOutNum() { return fopAcM_GetParamBit(this, 16, 8); }
     u8 getChainID() { return fopAcM_GetParamBit(this, 28, 4); }
+    u8 getHookShotLength() { return mHookshotLength; }
+    int getCurrentChainNum() { return field_0xa64; }
+    f32 getCurrentChainLength() {
+        chain_s* chain_p = &field_0xa74[field_0xa65 - field_0xa64 + 1];
+        return (getCurrentChainNum() - 1) * 35.0f +
+               field_0xa74[0].field_0x34.abs(chain_p->field_0x34);
+    }
     BOOL checkDispEmphasis() { return fopAcM_isSwitch(this, getSwbit()) == FALSE; }
     bool checkCarry() { return mCarry == 1; }
     void setRatioForChandelier(f32 ratio) { mRatio = ratio; }
@@ -71,7 +84,19 @@ public:
     }
 
 private:
-    /* 0x568 */ u8 field_0x568[0xa62 - 0x568];
+    /* 0x568 */ request_of_phase_process_class mPhase;
+    /* 0x570 */ J3DModel* mpModel;
+    /* 0x574 */ J3DModelData* mChainModelData;
+    /* 0x578 */ dMdl_c mModel;
+    /* 0x598 */ dCcD_Stts mStts;
+    /* 0x5D4 */ dCcD_Sph mSph1;
+    /* 0x70C */ dCcD_Sph mSph2;
+    /* 0x844 */ dBgS_ObjAcch mAcch;
+    /* 0xA1C */ dBgS_AcchCir mAcchCir;
+    /* 0xA5C */ u16 mHookshotLength;
+    /* 0xA5E */ u16 field_0xa5e;
+    /* 0xA60 */ u8 field_0xa60;
+    /* 0xA60 */ u8 field_0xa61;
     /* 0xA62 */ u8 mCarry;
     /* 0xA63 */ u8 field_0xa63;
     /* 0xA64 */ u8 field_0xa64;
@@ -80,14 +105,22 @@ private:
     /* 0xA67 */ u8 field_0xa67;
     /* 0xA68 */ u8 field_0xa68;
     /* 0xA69 */ u8 field_0xa69;
-    /* 0xA6A */ u8 field_0xa6a[0xa74 - 0xa6a];
-    /* 0xA6A */ chain_s* field_0xa74;
-    /* 0xA6A */ u8 field_0xa78[0xa98 - 0xa78];
+    /* 0xA6A */ u8 field_0xa6a;
+    /* 0xA6A */ u8 field_0xa6b;
+    /* 0xA6C */ u8 field_0xa6c;
+    /* 0xA6D */ u8 field_0xa6d[0xa74 - 0xa6d];
+    /* 0xA74 */ chain_s* field_0xa74;
+    /* 0xA78 */ u8 field_0xa78[0xa98 - 0xa78];
     /* 0xA98 */ f32 mRatio;
     /* 0xA9C */ u8 field_0xa9c;
+    /* 0xA9D */ u8 field_0xa9d;
+    /* 0xA9E */ u8 field_0xa9e;
+    /* 0xA9F */ u8 field_0xa9f[0xaa0 - 0xa9f];
+#ifdef DEBUG
+    /* 0xAA0 */ u8 field_0xaa0[0xc];
+#endif
 };
 
 STATIC_ASSERT(sizeof(daObjSwChain_c) == 0xaa0);
-
 
 #endif /* D_A_OBJ_SWCHAIN_H */
