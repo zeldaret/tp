@@ -1520,9 +1520,9 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                     i_this->mMsgFlow.init(actor, 0x33e, 0, NULL);
                     break;
                 case 8:
-                    dScnKy_env_light_c* light = dKy_getEnvlight();
-                    if (light->raincnt == 0) {
-                        unkInt2 = light->daytime / 15.0f;
+                    dScnKy_env_light_c* kankyo = dKy_getEnvlight();
+                    if (kankyo->raincnt == 0) {
+                        unkInt2 = kankyo->daytime / 15.0f;
                         if (unkInt2 < 8 || unkInt2 > 16) {
                             i_this->mMsgFlow.init(actor, 0x371, 0, NULL);
                         } else {
@@ -2292,7 +2292,7 @@ static void env_control(npc_henna_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     cXyz unkXyz1;
     cXyz unkXyz2;
-    dScnKy_env_light_c* light = dKy_getEnvlight();
+    dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     camera_class* unusedCamera = dComIfGp_getCamera(0);
 
     unkXyz1.x = -2591.0f - player->current.pos.x;
@@ -2307,8 +2307,8 @@ static void env_control(npc_henna_class* i_this) {
     } else {
         unkTargetVal = 180.0f;
     }
-    if (light->raincnt != 0) {
-        unkTargetVal += light->raincnt * 0.7f;
+    if (kankyo->raincnt != 0) {
+        unkTargetVal += kankyo->raincnt * 0.7f;
     }
     if (unkTargetVal > 250.0f) {
         unkTargetVal = 250.0f;
@@ -2320,13 +2320,13 @@ static void env_control(npc_henna_class* i_this) {
         cLib_addCalc2(&i_this->field_0x738, unkTargetVal, 1.0f, 0.01f);
     }
 
-    light->field_0x1300 = i_this->field_0x738;
+    kankyo->field_0x1300 = i_this->field_0x738;
 
     u32 counter = (u16)g_Counter.mCounter0;
     u16 mask = 0x1fff;
 
     f32 unkFloat1 = 0.3f;
-    if (light->fishing_hole_season == 2) {
+    if (kankyo->fishing_hole_season == 2) {
         mask = 0x1fff;
         unkFloat1 = 0.6f;
     }
@@ -2334,19 +2334,19 @@ static void env_control(npc_henna_class* i_this) {
     if ((counter & mask) == 0 && cM_rndF(1.0f) < unkFloat1) {
         OS_REPORT(" FISHING WETHER: %d\n", cDmr_FishingWether);
         if (cDmr_FishingWether == 0) {
-            light->wether = 1;
+            kankyo->wether = 1;
         } else if (cDmr_FishingWether == 1) {
-            if (light->fishing_hole_season == 2) {
-                light->wether = 3;
-            } else if (light->fishing_hole_season == 4) {
-                light->wether = 6;
+            if (kankyo->fishing_hole_season == 2) {
+                kankyo->wether = 3;
+            } else if (kankyo->fishing_hole_season == 4) {
+                kankyo->wether = 6;
             } else {
-                light->wether = 2;
+                kankyo->wether = 2;
             }
         } else if (cDmr_FishingWether == 2 || cDmr_FishingWether == 3 || cDmr_FishingWether == 6) {
-            light->wether = 0;
+            kankyo->wether = 0;
         }
-        cDmr_FishingWether = light->wether;
+        cDmr_FishingWether = kankyo->wether;
     }
 }
 
@@ -2773,13 +2773,13 @@ static int daNpc_Henna_Create(fopAc_ac_c* i_this) {
                           NULL, -1);
             return loadResult;
         } else {
-            dScnKy_env_light_c* light = dKy_getEnvlight();
+            dScnKy_env_light_c* kankyo = dKy_getEnvlight();
             if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
                 a_this->mAction = 0x3c;
                 a_this->mDemoMode = 100;
                 lbl_82_bss_90 = 1;
                 cXyz npcDfPos;
-                if (light->fishing_hole_season == 3) {
+                if (kankyo->fishing_hole_season == 3) {
                     fopAc_ac_c* player = dComIfGp_getPlayer(0);
                     npcDfPos.set(player->current.pos.x, player->current.pos.y + 700.0f,
                                  player->current.pos.z);
@@ -2841,14 +2841,14 @@ static int daNpc_Henna_Create(fopAc_ac_c* i_this) {
             }
             a_this->mBoatId = -1;
             csXyz unkXyz1;
-            if (light->fishing_hole_season != 4 && cDmr_FishingWether == 6) {
+            if (kankyo->fishing_hole_season != 4 && cDmr_FishingWether == 6) {
                 cDmr_FishingWether = 0;
-            } else if (light->fishing_hole_season == 4 &&
+            } else if (kankyo->fishing_hole_season == 4 &&
                        (cDmr_FishingWether == 2 || cDmr_FishingWether == 3))
             {
                 cDmr_FishingWether = 0;
             }
-            light->wether = cDmr_FishingWether;
+            kankyo->wether = cDmr_FishingWether;
             lbl_82_bss_289 = 1;
             daNpc_Henna_Execute(a_this);
             lbl_82_bss_289 = 0;
