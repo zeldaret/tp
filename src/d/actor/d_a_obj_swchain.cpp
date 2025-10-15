@@ -41,6 +41,7 @@ public:
     /* 0x44 */ u8 field_0x44;
     /* 0x45 */ u8 mReactionAngleDisplay;
 };
+
 daObjSwChain_HIO_c::daObjSwChain_HIO_c() {
     mGravity = -6.0f;
     field_0x0c = 35.0f;
