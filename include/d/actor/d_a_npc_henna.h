@@ -18,7 +18,7 @@ class npc_henna_class {
 public:
     /* 0x0   */ fopEn_enemy_c actor;
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ u8 field_0x5b4;
+    /* 0x5B4 */ u8 arg0;
     /* 0x5B5 */ s8 field_0x5b5;
     /* 0x5B6 */ s8 field_0x5b6;
     /* 0x5B8 */ s16 mIsTalking;
@@ -50,8 +50,8 @@ public:
     /* 0x698 */ f32 anm_speed;
     /* 0x69C */ f32 field_0x69c;
     /* 0x6A0 */ s16 field_0x6a0;
-    /* 0x6A2 */ s16 mAction;
-    /* 0x6A4 */ s16 mMoveMode;
+    /* 0x6A2 */ s16 action;
+    /* 0x6A4 */ s16 move_mode;
     /* 0x6A6 */ s16 field_0x6a6;
     /* 0x6A8 */ u8 field_0x6a8[0x6ac - 0x6a8];
     /* 0x6AC */ f32 field_0x6ac;
@@ -84,9 +84,9 @@ public:
     /* 0x730 */ f32 field_0x730;
     /* 0x734 */ u8 field_0x734;
     /* 0x738 */ f32 field_0x738;
-    /* 0x73C */ s16 mTimer[10];
+    /* 0x73C */ s16 timer[10];
     /* 0x750 */ s16 field_0x750;
-    /* 0x752 */ s16 mDemoMode;
+    /* 0x752 */ s16 cam_mode;
     /* 0x754 */ s16 field_0x754;
     /* 0x756 */ u16 field_0x756;
     /* 0x758 */ s16 field_0x758;
@@ -112,7 +112,7 @@ public:
     /* 0x7C8 */ u8 field_0x7c8[0x7cc - 0x7c8];
     /* 0x7CC */ u32 field_0x7cc;
     /* 0x7D0 */ u8 field_0x7d0[0x7d4 - 0x7d0];
-    /* 0x7D4 */ u8 field_0x7d4;
+    /* 0x7D4 */ u8 demo_timer;
     /* 0x7D5 */ u8 field_0x7d5;
     /* 0x7D6 */ u8 field_0x7d6;
     /* 0x7D7 */ u8 field_0x7d7;
