@@ -476,8 +476,8 @@ static void henna_ride(npc_henna_class* i_this) {
     stickMag = JMAFastSqrt(stickX * stickX + stickY * stickY);
     stickAngle = (s16)cM_atan2s(stickX, stickY);
 
-    cXyz scale;
-    cXyz unkXyz_3c;
+    cXyz mae;
+    cXyz ato;
 
     switch (i_this->mMoveMode) {
     case 0:
@@ -531,10 +531,10 @@ static void henna_ride(npc_henna_class* i_this) {
             if (i_this->field_0x710 == 0) {
                 i_this->field_0x710 = cM_rndF(100.0f) + 90.0f;
                 cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
-                scale.x = cM_rndFX(200.0f);
-                scale.y = 0.0f;
-                scale.z = 100.0f;
-                MtxPosition(&scale, &i_this->field_0x714);
+                mae.x = cM_rndFX(200.0f);
+                mae.y = 0.0f;
+                mae.z = 100.0f;
+                MtxPosition(&mae, &i_this->field_0x714);
                 i_this->field_0x714 += actor->current.pos;
             } else {
                 i_this->field_0x710--;
@@ -553,10 +553,10 @@ static void henna_ride(npc_henna_class* i_this) {
             }
         } else if (lrl->action == 1) {
             cMtx_YrotS(*calc_mtx, player->getFishingRodAngleY());
-            scale.x = 0.0f;
-            scale.y = 0.0f;
-            scale.z = 2000.0f;
-            MtxPosition(&scale, &i_this->field_0x720);
+            mae.x = 0.0f;
+            mae.y = 0.0f;
+            mae.z = 2000.0f;
+            MtxPosition(&mae, &i_this->field_0x720);
             i_this->field_0x720 += player->eyePos;
         } else if (lrl->action == 3 || lrl->action == 4 || lrl->action == 5) {
             i_this->field_0x720 = lrl->actor.current.pos;
@@ -586,13 +586,13 @@ static void henna_ride(npc_henna_class* i_this) {
                         if (i_this->field_0x660 > 0x14) {
                             cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
                             if ((i_this->field_0x6a0 & 0x80) != 0) {
-                                scale.x = 100.0f;
+                                mae.x = 100.0f;
                             } else {
-                                scale.x = -100.0f;
+                                mae.x = -100.0f;
                             }
-                            scale.y = 0.0f;
-                            scale.z = -200.0f;
-                            MtxPosition(&scale, &i_this->field_0x720);
+                            mae.y = 0.0f;
+                            mae.z = -200.0f;
+                            MtxPosition(&mae, &i_this->field_0x720);
                             i_this->field_0x720 += actor->current.pos;
                             i_this->field_0x70d = 3;
                             i_this->field_0x70e = 5000;
@@ -616,11 +616,11 @@ static void henna_ride(npc_henna_class* i_this) {
                     }
                     i_this->mpMorf->setPlaySpeed(stickMagAdj);
                     MTXCopy(i_this->mpModel->getBaseTRMtx(), *calc_mtx);
-                    scale.x = 0.0f;
-                    scale.y = 0.0f;
-                    scale.z = -100.0f + VREG_F(8);
-                    MtxPosition(&scale, &unkXyz_3c);
-                    unkXyz_3c.y = lrl->field_0x590;
+                    mae.x = 0.0f;
+                    mae.y = 0.0f;
+                    mae.z = -100.0f + VREG_F(8);
+                    MtxPosition(&mae, &ato);
+                    ato.y = lrl->field_0x590;
                     f32 unkFloat1;
                     if (i_this->mAnmResIndex == 7) {
                         unkFloat1 = 22.0f;
@@ -628,7 +628,7 @@ static void henna_ride(npc_henna_class* i_this) {
                         unkFloat1 = 2.0f;
                     }
                     if (i_this->mpMorf->checkFrame(unkFloat1) != FALSE) {
-                        fopKyM_createWpillar(&unkXyz_3c, 0.6f + VREG_F(10), 0);
+                        fopKyM_createWpillar(&ato, 0.6f + VREG_F(10), 0);
                     }
                 }
             }
@@ -660,25 +660,25 @@ static void henna_ride(npc_henna_class* i_this) {
 
         if (i_this->mAnmResIndex == 30) {
             cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
-            scale.x = JREG_F(7) - 80.0f;
-            scale.y = 0.0f;
-            scale.z = 0.0f;
-            MtxPosition(&scale, &unkXyz_3c);
-            i_this->field_0x720 += unkXyz_3c;
+            mae.x = JREG_F(7) - 80.0f;
+            mae.y = 0.0f;
+            mae.z = 0.0f;
+            MtxPosition(&mae, &ato);
+            i_this->field_0x720 += ato;
         }
 
         if (dComIfGp_checkPlayerStatus0(0, 0x2000) != 0) {
-            camera_class* camera_0c = dComIfGp_getCamera(0);
+            camera_class* camera = dComIfGp_getCamera(0);
 
             cXyz vecToPlayer;
-            vecToPlayer = actor->eyePos - camera_0c->lookat.eye;
-            scale = camera_0c->lookat.center - camera_0c->lookat.eye;
+            vecToPlayer = actor->eyePos - camera->lookat.eye;
+            mae = camera->lookat.center - camera->lookat.eye;
 
-            s16 yaw = (s16)cM_atan2s(scale.x, scale.z);
+            s16 yaw = (s16)cM_atan2s(mae.x, mae.z);
             yaw -= (s16)cM_atan2s(vecToPlayer.x, vecToPlayer.z);
             if (yaw < 0x400 && yaw > -0x400) {
-                s16 pitch = (s16)-cM_atan2s(scale.y, JMAFastSqrt(scale.x * scale.x +
-                                                                     scale.z * scale.z));
+                s16 pitch = (s16)-cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x +
+                                                                     mae.z * mae.z));
                 pitch -= (s16)-cM_atan2s(vecToPlayer.y, JMAFastSqrt(vecToPlayer.x * vecToPlayer.x +
                                                                     vecToPlayer.z * vecToPlayer.z));
                 if (pitch < 0x400 && pitch > -0x400 && i_this->mTimer[3] == 0) {
@@ -801,15 +801,15 @@ static void action(npc_henna_class* i_this) {
         }
         s16 angle = actor->shape_angle.y - i_this->field_0x620;
         if (i_this->field_0x7e1 != 0 || (angle < 0x4000 && angle > -0x4000)) {
-            unkTarget1 = cM_atan2s(unkXyz1.x, unkXyz1.z) - actor->shape_angle.y;
+            unkTarget1 = cM_atan2s(mae.x, mae.z) - actor->shape_angle.y;
             unkTarget2 =
-                -cM_atan2s(unkXyz1.y, JMAFastSqrt(unkXyz1.x * unkXyz1.x + unkXyz1.z * unkXyz1.z));
+                -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z));
         }
     } else if (i_this->field_0x70d == 2 || i_this->field_0x70d == 3) {
         mae = i_this->field_0x720 - actor->current.pos;
-        unkTarget1 = cM_atan2s(unkXyz1.x, unkXyz1.z) - actor->shape_angle.y;
+        unkTarget1 = cM_atan2s(mae.x, mae.z) - actor->shape_angle.y;
         unkTarget2 =
-            -cM_atan2s(unkXyz1.y, JMAFastSqrt(unkXyz1.x * unkXyz1.x + unkXyz1.z * unkXyz1.z));
+            -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z));
         if (i_this->field_0x70d == 2) {
             unkTarget1Limit = 15000;
         } else {
@@ -867,8 +867,8 @@ static void demo_camera(npc_henna_class* i_this) {
     camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* unused2 = dComIfGp_getCamera(0);
 
-    cXyz unkXyz1;
-    cXyz unkXyz2;
+    cXyz mae;
+    cXyz ato;
     cXyz unkXyz3;
     cXyz unkXyz4;
 
@@ -2297,10 +2297,10 @@ static void env_control(npc_henna_class* i_this) {
 
     mae.x = -2591.0f - player->current.pos.x;
     mae.z = -6742.0f - player->current.pos.z;
-    mae.y = JMAFastSqrt(unkXyz1.x * unkXyz1.x + unkXyz1.z * unkXyz1.z);
+    mae.y = JMAFastSqrt(mae.x * mae.x + mae.z * mae.z);
     f32 rain;
     if (mae.y < 3500.0f) {
-        rain = (3500.0f - unkXyz1.y) * 0.045f + 180.0f;
+        rain = (3500.0f - mae.y) * 0.045f + 180.0f;
         if (rain > 210.0f) {
             rain = 210.0f;
         }
@@ -2429,7 +2429,7 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
         mDoMtx_stack_c::YrotM((s16)i_this->actor.shape_angle.y);
         mDoMtx_stack_c::transM(0.0f, i_this->field_0x72c, i_this->field_0x730);
     }
-    mDoMtx_stack_c::scaleM(l_HIO.field_0x8, l_HIO.field_0x8, l_HIO.field_0x8);
+    mDoMtx_stack_c::maeM(l_HIO.field_0x8, l_HIO.field_0x8, l_HIO.field_0x8);
 
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
@@ -2557,15 +2557,15 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
 
         mae.x = camera->lookat.center.x - camera->lookat.eye.x;
         mae.z = camera->lookat.center.z - camera->lookat.eye.z;
-        s16 cameraYaw = cM_atan2s(unkXyz1.x, unkXyz1.z);
+        s16 cameraYaw = cM_atan2s(mae.x, mae.z);
 
         mae.x = i_this->actor.current.pos.x - camera->lookat.eye.x;
         mae.z = i_this->actor.current.pos.z - camera->lookat.eye.z;
-        s16 selfYawToLookAt = cM_atan2s(unkXyz1.x, unkXyz1.z);
+        s16 selfYawToLookAt = cM_atan2s(mae.x, mae.z);
 
         s16 unkDiff = selfYawToLookAt - cameraYaw;
         if (i_this->mDemoMode == 0 && (unkDiff > 0x4000 || unkDiff < -0x4000) &&
-            JMAFastSqrt(unkXyz1.x * unkXyz1.x + unkXyz1.z * unkXyz1.z) > AREG_F(11) + 500.0f)
+            JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) > AREG_F(11) + 500.0f)
         {
             i_this->field_0x694 = 1;
         }
@@ -2603,9 +2603,9 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
         mae.x = 0.0f;
         mae.y = 200.0f + BREG_F(10);
         mae.z = 500.0f + BREG_F(11);
-        MtxPosition(&unkXyz1, &unkXyz2);
+        MtxPosition(&mae, &ato);
         ato += i_this->actor.current.pos;
-        dKy_BossLight_set(&unkXyz2, &lightColor, lightDist, 0);
+        dKy_BossLight_set(&ato, &lightColor, lightDist, 0);
     }
     return 1;
 }
@@ -2831,16 +2831,16 @@ static int daNpc_Henna_Create(fopAc_ac_c* i_this) {
                     ato.x = 0.0f;
                     ato.y = cM_rndFX(50.0f) + -160.0f;
                     ato.z = cM_rndF(2300.0f);
-                    MtxPosition(&unkXyz2, &unkXyz1);
+                    MtxPosition(&ato, &mae);
                     angl.y = cM_rndF(65536.0f);
-                    fopAcM_create(PROC_MG_FISH, createParams, &unkXyz1, fopAcM_GetRoomNo(i_this),
+                    fopAcM_create(PROC_MG_FISH, createParams, &mae, fopAcM_GetRoomNo(i_this),
                                   &unkSxyz1, NULL, -1);
                 }
                 fopAcM_create(PROC_NPC_NE, 0xffffff01, &i_this->home.pos, fopAcM_GetRoomNo(i_this),
                               NULL, NULL, -1);
             }
             a_this->mBoatId = -1;
-            csXyz unkXyz1;
+            csXyz mae;
             if (kankyo->fishing_hole_season != 4 && cDmr_FishingWether == 6) {
                 cDmr_FishingWether = 0;
             } else if (kankyo->fishing_hole_season == 4 &&
