@@ -460,7 +460,7 @@ int daNpc_Toby_c::ctrlJointCallBack(J3DJoint* i_joint, int i_int) {
     if (i_int == 0) {
         J3DModel* model = j3dSys.getModel();
         daNpc_Toby_c* i_this = reinterpret_cast<daNpc_Toby_c*>(model->getUserArea());
-        if (i_this != 0) {
+        if (i_this != NULL) {
             i_this->ctrlJoint(i_joint, model);
         }
     }
@@ -847,7 +847,7 @@ void daNpc_Toby_c::beforeMove() {
         fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
     }
 
-    if (checkHide() || mNoDraw != 0) {
+    if (checkHide() || mNoDraw) {
         attention_info.flags = 0;
     }
 }
@@ -1154,7 +1154,7 @@ int daNpc_Toby_c::cutTobyHouseFire(int arg0) {
         break;
 
     case 3: 
-        if (mMotionSeqMngr.getNo() != 0x13) {
+        if (mMotionSeqMngr.getNo() != 19) {
             mpMorf[0]->setPlaySpeed(field_0x0FF8);
             mBckAnm.setPlaySpeed(field_0x0FF8);
             mBtpAnm.setPlaySpeed(field_0x0FF8);
@@ -1265,8 +1265,8 @@ int daNpc_Toby_c::cutTalkToOneself(int arg0) {
 
     case 2:
         sp18[0] = msgNo_val;
-        if (talkProc(sp18, 0, NULL, 0) != 0) {
-            if (msgNo_val != 0) {
+        if (talkProc(sp18, 0, NULL, 0)) {
+            if (msgNo_val) {
                 retval = 1;
             } else if (mFlow.checkEndFlow()) {
                 retval = 1;
@@ -1671,8 +1671,8 @@ int daNpc_Toby_c::cutConversationAboutSCannon(int arg0) {
             break;
 
         case 4:
-            mFaceMotionSeqMngr.setNo(0x10, 0.0f, 1, 0);
-            mMotionSeqMngr.setNo(0xF, 0.0f, 1, 0);
+            mFaceMotionSeqMngr.setNo(16, 0.0f, TRUE, 0);
+            mMotionSeqMngr.setNo(15, 0.0f, TRUE, 0);
             reg_f31 = -300.0f;
             actor_p = getOtherTobyP(5);
             JUT_ASSERT(3042, NULL != actor_p);
@@ -1703,7 +1703,7 @@ int daNpc_Toby_c::cutConversationAboutSCannon(int arg0) {
             break;
 
         case 8:
-            mMotionSeqMngr.setNo(0xF, 4.0f, 0, 0);
+            mMotionSeqMngr.setNo(15, 4.0f, 0, 0);
             reg_f31 = -1000.0f;
             actor_p = getOtherTobyP(5);
             JUT_ASSERT(3088, NULL != actor_p);
@@ -1715,7 +1715,7 @@ int daNpc_Toby_c::cutConversationAboutSCannon(int arg0) {
             break;
 
         case 9:
-            mFaceMotionSeqMngr.setNo(0x10, 0.0f, 1, 0);
+            mFaceMotionSeqMngr.setNo(16, 0.0f, 1, 0);
             mMotionSeqMngr.setNo(0, 0.0f, 1, 0);
             setPos(home.pos);
             setAngle(home.angle.y);
@@ -1763,8 +1763,8 @@ int daNpc_Toby_c::cutConversationAboutSCannon(int arg0) {
     case 2:
         mJntAnm.lookPlayer(0);
         sp28[0] = msgNo_val;
-        if (talkProc(sp28, 0, NULL, 0) != 0) {
-            if (msgNo_val != 0) {
+        if (talkProc(sp28, 0, NULL, 0)) {
+            if (msgNo_val) {
                 retval = 1;
             } else if (mFlow.checkEndFlow()) {
                 retval = 1;
@@ -1821,8 +1821,8 @@ int daNpc_Toby_c::cutConversationAboutSCannon(int arg0) {
     case 6:
         sp28[0] = msgNo_val;
         field_0xe26 = 0;
-        if (talkProc(sp28, send_val, NULL, 0) != 0) {
-            if ((s32) msgNo_val != 0) {
+        if (talkProc(sp28, send_val, NULL, 0)) {
+            if (msgNo_val) {
                 retval = 1;
             } else if (mFlow.checkEndFlow()) {
                 retval = 1;
@@ -1908,8 +1908,8 @@ int daNpc_Toby_c::cutConversationAboutZra(int arg0) {
         }
 
         sp8[0] = msgNo_val;
-        if (talkProc(sp8, 0, NULL, 0) != 0) {
-            if (msgNo_val != 0) {
+        if (talkProc(sp8, 0, NULL, 0)) {
+            if (msgNo_val) {
                 retval = 1;
             } else if (mFlow.checkEndFlow()) {
                 retval = 1;
@@ -1930,49 +1930,324 @@ int daNpc_Toby_c::chkAttnZra() {
             && !dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this)));
 }
 
-/* ############################################################################################## */
-/* 80B24B78-80B24B7C 000194 0004+00 0/1 0/0 0/0 .rodata          @6337 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6337 = 2000.0f;
-COMPILER_STRIP_GATE(0x80B24B78, &lit_6337);
-#pragma pop
-
-/* 80B24B7C-80B24B80 000198 0004+00 0/1 0/0 0/0 .rodata          @6338 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6338 = 90.0f;
-COMPILER_STRIP_GATE(0x80B24B7C, &lit_6338);
-#pragma pop
-
 /* 80B226B0-80B22D98 004150 06E8+00 2/0 0/0 0/0 .text            wait__12daNpc_Toby_cFPv */
-int daNpc_Toby_c::wait(void* param_0) {
-    // NONMATCHING
+int daNpc_Toby_c::wait(void*) {
+    switch (mMode) {
+    case 0:
+    case 1:
+        if (mStagger.checkStagger() == 0) {
+            if (field_0x0FF4 == 0) {
+                if (mType == 1 && daNpcT_chkEvtBit(0xEF)) {
+                    mFaceMotionSeqMngr.setNo(12, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(11, -1.0f, 0, 0);
+                } else if (chkAttnZra()) {
+                    mFaceMotionSeqMngr.setNo(16, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(6, -1.0f, 0, 0);
+                } else {
+                    mFaceMotionSeqMngr.setNo(16, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                }
+            }
+
+            mMode = 2;
+        }
+        /* fallthrough */
+    case 2:
+        if (mType == 4 && mHide == 0) {
+            mEvtNo = CUT_SCANNON;
+            field_0xe33 = true;
+        }
+
+        if (mStagger.checkStagger()) {
+            break;
+        }
+
+        if (field_0x0FF4) {
+            if (cLib_calcTimer(&field_0x0FF4) == 0) {
+                mMode = 1;
+            }
+        }
+
+        if (mTwilight == false && mHide == 0 && daPy_py_c::checkNowWolf()) {
+            cXyz att_pos = getAttnPos(daPy_getPlayerActorClass());
+            if (field_0x1000) {
+                if (chkPointInArea(att_pos, attention_info.position,
+                                   2000.0f, 300.0f, -300.0f, mCurAngle.y) == FALSE) {
+                    mFaceMotionSeqMngr.setNo(16, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                    field_0x1000 = 0;
+                } else if (mMotionSeqMngr.getNo() == 24) {
+                    if (mMotionSeqMngr.getStepNo() < 2) {
+                        cLib_chaseS(&current.angle.y, fopAcM_searchPlayerAngleY(this), 0x1000);
+                        shape_angle.y = current.angle.y;
+                        mCurAngle.y = shape_angle.y;
+                    } else if (mMotionSeqMngr.getStepNo() > 2) {
+                        mSound.startCreatureVoiceLevel(Z2SE_TOBY_V_BURUBURU, -1);
+                    }
+                }
+            } else {
+                if (chkPointInArea(att_pos, attention_info.position, 1000.0f, 300.0f, -300.0f, mCurAngle.y)) {
+                    if (chkActorInSight(daPy_getPlayerActorClass(), 90.0f, mCurAngle.y)) {
+                        mFaceMotionSeqMngr.setNo(15, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(24, -1.0f, 0, 0);
+                        mSound.startCreatureVoice(Z2SE_TOBY_V_SURPRISE, -1);
+                        field_0x1000 = 1;
+                    }
+                }
+            }
+        } else if (field_0x1000) {
+            mFaceMotionSeqMngr.setNo(16, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+            field_0x1000 = 0;
+        }
+
+        if (field_0x1000) {
+            attention_info.flags = 0;
+        } else {
+            if (chkAttnZra()) {
+                mPlayerActorMngr.remove();
+            }
+
+            if (mPlayerActorMngr.getActorP() != NULL && mTwilight == false) {
+                int reg_r28 = 1;
+                mJntAnm.lookPlayer(0);
+                if (chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y) == FALSE) {
+                    mJntAnm.lookNone(0);
+                    reg_r28 = 0;
+                }
+
+                if (mType == 0 && reg_r28 == 0) {
+                    mPlayerActorMngr.remove();
+                    if (home.angle.y == mCurAngle.y) {
+                        mMode = 1;
+                    }
+                } else if (!srchPlayerActor() && home.angle.y == mCurAngle.y) {
+                    mMode = 1;
+                }
+            } else {
+                mJntAnm.lookNone(0);
+                if (home.angle.y != mCurAngle.y) {
+                    if (field_0xe34) {
+                        if (step(home.angle.y, 0x10, 0x14, 0xF, 0)) {
+                            mMode = 1;
+                        }
+                    } else {
+                        setAngle(home.angle.y);
+                        mMode = 1;
+                    }
+
+                    attention_info.flags = 0;
+                } else {
+                    srchPlayerActor();
+                }
+            }
+
+            switch (mJntAnm.getMode()) {
+            case 0:
+                break;
+            }
+        }
+
+        break;
+
+    case 3:
+        break;
+    }
+
+    return 1;
 }
 
 /* 80B22D98-80B22FAC 004838 0214+00 1/0 0/0 0/0 .text            walk__12daNpc_Toby_cFPv */
-int daNpc_Toby_c::walk(void* param_0) {
-    // NONMATCHING
+int daNpc_Toby_c::walk(void*) {
+    switch (mMode) {
+    case 0:
+    case 1:
+        if (mStagger.checkStagger() == 0) {
+            mFaceMotionSeqMngr.setNo(0x10, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(0xF, -1.0f, 0, 0);
+            mAcch.SetWallNone();
+            mMode = 2;
+        }
+        /* fallthrough */
+    case 2:
+        if (mStagger.checkStagger() == 0) {
+            cXyz work;
+            JUT_ASSERT(3620, 0 != mPath.getPathInfo());
+            int dst_pos_h = mPath.getDstPosH(current.pos, &work, mPath.getNumPnts(), 2);
+            calcSpeedAndAngle(work, dst_pos_h, 4, 0x800);
+            if (dst_pos_h && cM3d_IsZero(speedF)) {
+                home.angle.y = 0x4000;
+                if (home.angle.y == mCurAngle.y) {
+                    mPlayerActorMngr.entry(daPy_getPlayerActorClass());
+                    field_0x0FFE = 1;
+                } else {
+                    step(home.angle.y, 16, 20, 15, 0);
+                }
+            }
+
+            mJntAnm.lookNone(0);
+        }
+
+        attention_info.flags = 0;
+        break;
+
+    case 3:
+        mAcch.ClrWallNone();
+        break;
+    }
+
+    return 1;
 }
 
 /* 80B22FAC-80B23344 004A4C 0398+00 3/0 0/0 0/0 .text            play__12daNpc_Toby_cFPv */
 int daNpc_Toby_c::play(void* param_0) {
-    // NONMATCHING
+    daObj_AutoMata_c* actor_p = (daObj_AutoMata_c*) mActorMngr[1].getActorP();
+    int reg_r29 = 1;
+    if (actor_p != NULL) {
+        actor_p->setCoNone();
+    }
+
+    switch (mMode) {
+    case 0:
+    case 1:
+        if (mStagger.checkStagger() == 0) {
+            mFaceMotionSeqMngr.setNo(9, 0.0f, 0, 0);
+            mMotionSeqMngr.setNo(19, 0.0f, 0, 0);
+            mSound.startCreatureVoice(Z2SE_TOBY_V_BOOT, -1);
+            field_0x0FF8 = 1.0f;
+            if (actor_p != NULL) {
+                actor_p->setAnm(0, 1);
+                actor_p->setAnmPlaySpeed(0.0f);
+                reg_r29 = 0;
+            }
+            mMode = 2;
+        }
+
+    case 2:
+        if (mStagger.checkStagger() == 0) {
+            if (mMotionSeqMngr.getNo() == 19) {
+                if (mMotionSeqMngr.checkEndSequence()) {
+                    mFaceMotionSeqMngr.setNo(6, 0.0f, 0, 0);
+                    mMotionSeqMngr.setNo(16, 0.0f, 0, 0);
+                    field_0x0FFC = mMorfLoops;
+                    field_0x0FF8 = 1.0f;
+                }
+
+                reg_r29 = 0;
+            } else if (mMotionSeqMngr.getNo() == 16) {
+                if (mMotionSeqMngr.checkEndSequence()) {
+                    mFaceMotionSeqMngr.setNo(7, 0.0f, 0, 0);
+                    mMotionSeqMngr.setNo(17, 0.0f, 0, 0);
+                    field_0x0FFC = mMorfLoops;
+                    field_0x0FF8 = mpHIO->m.field_0x94;
+                    if (actor_p != NULL) {
+                        actor_p->setAnm(1, 1);
+                        actor_p->setAnmPlaySpeed(0.0f);
+                        reg_r29 = 0;
+                    }
+                }
+            } else if (field_0x0FFC != mMorfLoops) {
+                cLib_chaseF(&field_0x0FF8, mpHIO->m.performance_speed, mpHIO->m.speedup_performance);
+                if (mMotionSeqMngr.getNo() != 0x12) {
+                    if (mpHIO->m.field_0x98 <= field_0x0FF8) {
+                        mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(18, -1.0f, 0, 0);
+                    }
+                }
+
+                mpMorf[0]->setPlaySpeed(field_0x0FF8);
+                mBckAnm.setPlaySpeed(field_0x0FF8);
+                mBtpAnm.setPlaySpeed(field_0x0FF8);
+            }
+
+            if (actor_p != NULL && reg_r29) {
+                actor_p->setAnmPlaySpeed(mpMorf[0]->getPlaySpeed());
+            }
+
+            field_0x0FFC = mMorfLoops;
+            mJntAnm.lookNone(0);
+        }
+
+        attention_info.flags = 0;
+        break;
+
+    case 3:
+        break;
+    }
+
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80B24B80-80B24B8C 00019C 000C+00 0/1 0/0 0/0 .rodata          @6541 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_6541[12] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x80B24B80, &lit_6541);
-#pragma pop
-
 /* 80B23344-80B23628 004DE4 02E4+00 3/0 0/0 0/0 .text            talk__12daNpc_Toby_cFPv */
-int daNpc_Toby_c::talk(void* param_0) {
-    // NONMATCHING
+int daNpc_Toby_c::talk(void*) {
+    switch (mMode) {
+    case 0:
+    case 1:
+        if (mStagger.checkStagger() == 0) {
+#if VERSION != VERSION_SHIELD_DEBUG
+            if (chkAttnZra()) {
+                mFaceMotionSeqMngr.setNo(16, -1.0f, TRUE, mFaceMotionSeqMngr.getOffset());
+                mMotionSeqMngr.setNo(20, -1.0f, TRUE, mMotionSeqMngr.getOffset());
+            }
+#endif
+
+            if (mPreItemNo == fpcNm_ITEM_RAFRELS_MEMO) {
+                initTalk(2, NULL);
+            } else {
+                initTalk(mFlowNodeNo, NULL);
+            }
+
+            field_0x0FF4 = 0;
+            mMode = 2;
+        }
+        /* fallthrough */
+    case 2:
+        if (mStagger.checkStagger() == 0) {
+            if (mTwilight || mPlayerAngle == mCurAngle.y) {
+                int spC[3] = {-1, -1, -1};
+                if (mPreItemNo == fpcNm_ITEM_RAFRELS_MEMO) {
+                    spC[0] = 0x1420;
+                    spC[1] = 0x142D;
+                }
+
+                if (talkProc(spC, FALSE, NULL, FALSE)) {
+                    int sp8;
+                    int evt_id = mFlow.getEventId(&sp8);
+                    switch (evt_id) {
+                    case 19:
+                        mEvtNo = CUT_REPAIR_SCANNON;
+                        evtChange();
+                        break;
+
+                    default:
+                        if (mFlow.checkEndFlow()) {
+                            mPlayerActorMngr.entry(daPy_getPlayerActorClass());
+                            dComIfGp_event_reset();
+                            mMode = 3;
+                        } else {
+                            daPy_getPlayerActorClass()->changeOriginalDemo();
+                            daPy_getPlayerActorClass()->changeDemoMode(6, 0, 1, 0);
+                        }
+                    }
+                }
+
+                mJntAnm.lookPlayer(0);
+                if (mTwilight) {
+                    mJntAnm.lookNone(0);
+                }
+            } else {
+                mJntAnm.lookPlayer(0);
+                step(mPlayerAngle, 16, 20, 15, 0);
+            }
+        }
+
+        break;
+
+    case 3:
+        break;
+    }
+
+    return 0;
 }
 
 #if DEBUG
