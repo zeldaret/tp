@@ -186,13 +186,44 @@ int daNpc_Gnd_c::create() {
     return rv;
 }
 
-/* 809BE54C-809BE550 0000AC 0004+00 3/5 0/0 0/0 .rodata          @4331 */
-SECTION_RODATA static f32 const lit_4331 = 1.0f;
-COMPILER_STRIP_GATE(0x809BE54C, &lit_4331);
-
 /* 809BB9D4-809BBC70 0004B4 029C+00 1/1 0/0 0/0 .text            CreateHeap__11daNpc_Gnd_cFv */
 int daNpc_Gnd_c::CreateHeap() {
-    // NONMATCHING
+    J3DModelData* mdlData_p = NULL;
+    J3DModel* model = NULL;
+    int bmdIdx = 0;
+    int res_name_idx = l_bmdData[bmdIdx][1];
+    int my_bmd = l_bmdData[bmdIdx][0];
+    mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[res_name_idx], my_bmd));
+    JUT_ASSERT(433, 0 != mdlData_p);
+
+    u32 sp_0x24 = 0x11020285;
+    mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x24);
+    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
+        mpMorf[0]->stopZelAnime();
+        mpMorf[0] = NULL;
+    }
+
+    if (mpMorf[0] == NULL) {
+        return 0;
+    }
+
+    model = mpMorf[0]->getModel();
+    for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
+        mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
+    }
+
+    model->setUserArea((uintptr_t)this);
+    for (int idx = 0; idx < 2; ++idx) {
+        mpMatAnm[idx] = new daNpcT_MatAnm_c();
+        if (mpMatAnm[idx] == NULL) {
+            return 0;
+        }
+    }
+
+    if (setFaceMotionAnm(0, false) && setMotionAnm(0, 0.0f, FALSE)) {
+        return 1;
+    }
+
     return 0;
 }
 
@@ -278,7 +309,15 @@ int daNpc_Gnd_c::isDelete() {
 
 /* 809BC028-809BC168 000B08 0140+00 1/1 0/0 0/0 .text            reset__11daNpc_Gnd_cFv */
 void daNpc_Gnd_c::reset() {
-    // NONMATCHING
+    initialize();
+    memset(&field_0xF84, 0, (u8*)&field_0xF9C - (u8*)&field_0xF84);
+    for (int idx = 0; idx < 2; ++idx) {
+        if (mpMatAnm[idx] != NULL) {
+            mpMatAnm[idx]->initialize();
+        }
+    }
+
+    setAngle(home.angle.y);
 }
 
 /* 809BC168-809BC1F4 000C48 008C+00 1/0 0/0 0/0 .text            afterJntAnm__11daNpc_Gnd_cFi */
