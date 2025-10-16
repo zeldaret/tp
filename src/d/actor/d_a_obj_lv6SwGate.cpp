@@ -176,6 +176,7 @@ void daLv6SwGate_c::moveGate() {
         /* DALV6SWGATE_C_MODE_CLOSE */ &daLv6SwGate_c::modeClose,
         /* DALV6SWGATE_C_MODE_BREAK */ &daLv6SwGate_c::modeBreak,
     };
+    
     u8 oldIsSwitch = mIsSwitch;
     mIsSwitch = isSwitch();
     if (mIsSwitch != oldIsSwitch) {
