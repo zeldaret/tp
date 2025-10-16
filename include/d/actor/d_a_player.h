@@ -1248,6 +1248,9 @@ public:
     }
 
     BOOL checkInsectRelease() { return checkResetFlg1(RFLG1_UNK_100); }
+
+    void onChainForcePull() { onEndResetFlg1(ERFLG1_UNK_100000); }
+    void onChainPullEnd() { onEndResetFlg1(ERFLG1_UNK_2000000); } 
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);
