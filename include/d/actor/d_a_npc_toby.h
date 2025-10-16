@@ -8,8 +8,8 @@ struct daNpc_Toby_HIOParam {
     /* 0x00 */ daNpcT_HIOParam common;
     /* 0x8C */ f32 performance_speed;
     /* 0x90 */ f32 speedup_performance;
-    /* 0x94 */ f32 field_0x94;
-    /* 0x98 */ f32 field_0x98;
+    /* 0x94 */ f32 init_play_speed;
+    /* 0x98 */ f32 switching_speed;
 };
 
 class daNpc_Toby_Param_c {
@@ -145,7 +145,7 @@ private:
     /* 0x0FC0 */ daNpcT_Path_c mPath;
     /* 0x0FE8 */ cXyz field_0x0FE8;
     /* 0x0FF4 */ int field_0x0FF4;
-    /* 0x0FF8 */ f32 field_0x0FF8;
+    /* 0x0FF8 */ f32 mPlaySpeed;
     /* 0x0FFC */ u16 field_0x0FFC;
     /* 0x0FFE */ u8 field_0x0FFE;
     /* 0x0FFF */ u8 field_0x0FFF;

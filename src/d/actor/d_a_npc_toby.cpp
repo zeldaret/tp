@@ -14,8 +14,6 @@
 #include "d/d_msg_object.h"
 #include "d/actor/d_a_obj_scannon.h"
 
-#include "dol2asm.h"
-
 /* ############################################################################################## */
 /* 80B249E4-80B24A80 000000 009C+00 15/15 0/0 0/0 .rodata          m__18daNpc_Toby_Param_c */
 const daNpc_Toby_HIOParam daNpc_Toby_Param_c::m = {
@@ -92,10 +90,10 @@ void daNpc_Toby_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
             sprintf(msg_buffer + len, "%d,   \t//  演奏加速\n", m.speedup_performance);
             len = strlen(msg_buffer);
             // initial speed of performance:
-            sprintf(msg_buffer + len, "%d,   \t//  演奏初速\n", m.field_0x94);
+            sprintf(msg_buffer + len, "%d,   \t//  演奏初速\n", m.init_play_speed);
             len = strlen(msg_buffer);
             // switching speed:
-            sprintf(msg_buffer + len, "%d,   \t//  切り替え速度\n", m.field_0x98);
+            sprintf(msg_buffer + len, "%d,   \t//  切り替え速度\n", m.switching_speed);
             len = strlen(msg_buffer);
             aJStack_910.writeData(msg_buffer, len);
             aJStack_910.close();
@@ -114,9 +112,9 @@ void daNpc_Toby_HIO_c::genMessage(JORMContext* ctext) {
     // playing speed up:
     ctext->genSlider("演奏加速        ", &m.speedup_performance, 0.0f, 16.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
     // playing initial velocity:
-    ctext->genSlider("演奏初速        ", &m.field_0x94, 1.0f, 16.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("演奏初速        ", &m.init_play_speed, 1.0f, 16.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
     // switching speed:
-    ctext->genSlider("切り替え速度    ", &m.field_0x98, 0.0f, 16.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("切り替え速度    ", &m.switching_speed, 0.0f, 16.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
     // export file:
     ctext->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
 }
@@ -1000,8 +998,8 @@ bool daNpc_Toby_c::afterSetFaceMotionAnm(int arg0, int, f32, int) {
         break;
     case 7:
         mAnmFlags &= ~(ANM_PAUSE_BCK | ANM_PAUSE_BTP);
-        mBckAnm.setPlaySpeed(field_0x0FF8);
-        mBtpAnm.setPlaySpeed(field_0x0FF8);
+        mBckAnm.setPlaySpeed(mPlaySpeed);
+        mBtpAnm.setPlaySpeed(mPlaySpeed);
         break;
     }
 
@@ -1019,11 +1017,11 @@ bool daNpc_Toby_c::afterSetMotionAnm(int arg0, int, f32, int) {
         mpMorf[0]->setPlaySpeed(0.0f);
         break;
     case 8:
-        mpMorf[0]->setPlaySpeed(field_0x0FF8);
+        mpMorf[0]->setPlaySpeed(mPlaySpeed);
         break;
     case 9:
         mAnmFlags &= 0xFFFFFFFE;
-        mpMorf[0]->setPlaySpeed(field_0x0FF8);
+        mpMorf[0]->setPlaySpeed(mPlaySpeed);
         break;
     }
 
@@ -1130,10 +1128,10 @@ int daNpc_Toby_c::cutTobyHouseFire(int arg0) {
             break;
 
         case 3:
-            mpMorf[0]->setPlaySpeed(field_0x0FF8);
-            mBtkAnm.setPlaySpeed(field_0x0FF8);
-            mBckAnm.setPlaySpeed(field_0x0FF8);
-            mBtpAnm.setPlaySpeed(field_0x0FF8);
+            mpMorf[0]->setPlaySpeed(mPlaySpeed);
+            mBtkAnm.setPlaySpeed(mPlaySpeed);
+            mBckAnm.setPlaySpeed(mPlaySpeed);
+            mBtpAnm.setPlaySpeed(mPlaySpeed);
             break;
 
         case 4:
@@ -1155,9 +1153,9 @@ int daNpc_Toby_c::cutTobyHouseFire(int arg0) {
 
     case 3: 
         if (mMotionSeqMngr.getNo() != 19) {
-            mpMorf[0]->setPlaySpeed(field_0x0FF8);
-            mBckAnm.setPlaySpeed(field_0x0FF8);
-            mBtpAnm.setPlaySpeed(field_0x0FF8);
+            mpMorf[0]->setPlaySpeed(mPlaySpeed);
+            mBckAnm.setPlaySpeed(mPlaySpeed);
+            mBtpAnm.setPlaySpeed(mPlaySpeed);
             ((daObj_AutoMata_c*)atmt_p)->setAnmPlaySpeed(mpMorf[0]->getPlaySpeed());
             retval = 1;
         }
@@ -2114,7 +2112,7 @@ int daNpc_Toby_c::play(void* param_0) {
             mFaceMotionSeqMngr.setNo(9, 0.0f, 0, 0);
             mMotionSeqMngr.setNo(19, 0.0f, 0, 0);
             mSound.startCreatureVoice(Z2SE_TOBY_V_BOOT, -1);
-            field_0x0FF8 = 1.0f;
+            mPlaySpeed = 1.0f;
             if (actor_p != NULL) {
                 actor_p->setAnm(0, 1);
                 actor_p->setAnmPlaySpeed(0.0f);
@@ -2130,7 +2128,7 @@ int daNpc_Toby_c::play(void* param_0) {
                     mFaceMotionSeqMngr.setNo(6, 0.0f, 0, 0);
                     mMotionSeqMngr.setNo(16, 0.0f, 0, 0);
                     field_0x0FFC = mMorfLoops;
-                    field_0x0FF8 = 1.0f;
+                    mPlaySpeed = 1.0f;
                 }
 
                 reg_r29 = 0;
@@ -2139,7 +2137,7 @@ int daNpc_Toby_c::play(void* param_0) {
                     mFaceMotionSeqMngr.setNo(7, 0.0f, 0, 0);
                     mMotionSeqMngr.setNo(17, 0.0f, 0, 0);
                     field_0x0FFC = mMorfLoops;
-                    field_0x0FF8 = mpHIO->m.field_0x94;
+                    mPlaySpeed = mpHIO->m.init_play_speed;
                     if (actor_p != NULL) {
                         actor_p->setAnm(1, 1);
                         actor_p->setAnmPlaySpeed(0.0f);
@@ -2147,17 +2145,17 @@ int daNpc_Toby_c::play(void* param_0) {
                     }
                 }
             } else if (field_0x0FFC != mMorfLoops) {
-                cLib_chaseF(&field_0x0FF8, mpHIO->m.performance_speed, mpHIO->m.speedup_performance);
+                cLib_chaseF(&mPlaySpeed, mpHIO->m.performance_speed, mpHIO->m.speedup_performance);
                 if (mMotionSeqMngr.getNo() != 0x12) {
-                    if (mpHIO->m.field_0x98 <= field_0x0FF8) {
+                    if (mpHIO->m.switching_speed <= mPlaySpeed) {
                         mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
                         mMotionSeqMngr.setNo(18, -1.0f, 0, 0);
                     }
                 }
 
-                mpMorf[0]->setPlaySpeed(field_0x0FF8);
-                mBckAnm.setPlaySpeed(field_0x0FF8);
-                mBtpAnm.setPlaySpeed(field_0x0FF8);
+                mpMorf[0]->setPlaySpeed(mPlaySpeed);
+                mBckAnm.setPlaySpeed(mPlaySpeed);
+                mBtpAnm.setPlaySpeed(mPlaySpeed);
             }
 
             if (actor_p != NULL && reg_r29) {
