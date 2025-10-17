@@ -159,7 +159,7 @@ void daL7ODR_c::pl_walk() {
                 field_0x898 = 2.0f;
                 
                 dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-                kankyo->field_0x12cc = 1;
+                kankyo->wether = 1;
                 field_0x888++;
             }
         } else if (field_0x888 == 2) {

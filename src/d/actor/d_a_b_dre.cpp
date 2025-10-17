@@ -262,7 +262,7 @@ void daB_DRE_c::CamAction2() {
         if (mTimers[0] == 0) {
             SetAnm(mpModelMorf, 0x38, 0, 5.0f, 1.0f);
             dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-            kankyo->field_0x12cc = 2;
+            kankyo->wether = 2;
             mDrMode++;
             mCameraMode++;
         }
@@ -580,7 +580,7 @@ void daB_DRE_c::DrAction() {
             mAnm = 0x1F;
 
             dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-            kankyo->field_0x12cc = 0;
+            kankyo->wether = 0;
 
             mHideModel = true;
             mDrMode++;

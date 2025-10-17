@@ -2612,7 +2612,7 @@ static void lure_catch(dmg_rod_class* i_this) {
         }
 
         if (henna != NULL && sp8 == 2) {
-            henna->field_0x6a4 = 10;
+            henna->move_mode = 10;
         }
 
         daAlink_getAlinkActorClass()->changeFishGetFace(sp8);
@@ -2849,7 +2849,7 @@ static void lure_heart(dmg_rod_class* i_this) {
 
         dComIfGp_setMesgBgmOn();
         if (henna != NULL) {
-            henna->field_0x6a4 = 10;
+            henna->move_mode = 10;
             henna->field_0x688 = 1;
         }
     }
@@ -3541,7 +3541,7 @@ static void uki_ready(dmg_rod_class* i_this) {
     cLib_addCalc2(&i_this->field_0xf64, -30.0f + ZREG_F(1), 1.0f, 0.5f + BREG_F(14));
     cLib_addCalc2(&i_this->field_0xf68, -(20.0f + AREG_F(10)), 1.0f, 0.02f * (20.0f + AREG_F(10)));
 
-    if (i_this->timers[0] != 0 || dComIfGp_event_runCheck() != 0 || i_this->play_cam_mode >= 1000 || (henna != NULL && henna->field_0x752 != 0) || dComIfGp_checkPlayerStatus0(0, 0x100000)) {
+    if (i_this->timers[0] != 0 || dComIfGp_event_runCheck() != 0 || i_this->play_cam_mode >= 1000 || (henna != NULL && henna->cam_mode != 0) || dComIfGp_checkPlayerStatus0(0, 0x100000)) {
         return;
     }
 
@@ -4015,7 +4015,7 @@ static void uki_catch(dmg_rod_class* i_this) {
                 }
 
                 if (henna != NULL) {
-                    henna->field_0x6a4 = 30;
+                    henna->move_mode = 30;
                 }
             } else if (mgfish->mCaughtType == MG_CATCH_SP) {
                 i_this->msgflow.init(actor, 0x1397, 0, NULL);
@@ -5658,7 +5658,7 @@ static void play_camera_u(dmg_rod_class* i_this) {
             camera->mCamera.SetTrimSize(0);
 
             if (dMsgObject_getSelectCursorPos() != 0) {
-                henna->field_0x752 = 300;
+                henna->cam_mode = 300;
             }
         }
         break;
