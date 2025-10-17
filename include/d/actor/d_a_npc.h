@@ -478,6 +478,7 @@ public:
 
     const int getIdx() { return mIdx; }
 #if VERSION != VERSION_SHIELD_DEBUG
+    // fakematch inline to fix daNpcT_Path_c::chkPassed1
     const u16 get_u16_Idx() { return mIdx; }
 #endif
 
