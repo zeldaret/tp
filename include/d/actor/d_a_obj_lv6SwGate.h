@@ -18,9 +18,6 @@ public:
     /* 80C74004 */ void setBaseMtx();
     /* 80C74158 */ int CreateHeap();
     /* 80C7429C */ int create();
-    int getSw() { return fopAcM_GetParamBit(this, 0, 8); }
-    int getSwState() { return fopAcM_GetParamBit(this, 12, 4); }
-    int getSw2() { return fopAcM_GetParamBit(this, 16, 8); }
     /* 80C74720 */ u8 isSwitch();
     /* 80C7476C */ int Execute(Mtx**);
     /* 80C74A3C */ void moveGate();
@@ -34,6 +31,10 @@ public:
     /* 80C74E40 */ void modeBreak();
     /* 80C7524C */ int Draw();
     /* 80C752F8 */ int Delete();
+
+    int getSw() { return fopAcM_GetParamBit(this, 0, 8); }
+    int getSwState() { return fopAcM_GetParamBit(this, 12, 4); }
+    int getSw2() { return fopAcM_GetParamBit(this, 16, 8); }
 
     static const dCcD_SrcGObjInf mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;
@@ -59,18 +60,7 @@ public:
     /* 80C73F0C */
     daLv6SwGate_HIO_c();
 
-#if DEBUG
-    virtual void genMessage(JORMContext* context)
-    {
-        context->genLabel("--- 開く ---", 0, 0, 0, -1, -1, 0x200, 0x18);
-        context->genSlider("速度", &this->mSpeed, 0.1f, 100.f, 0, NULL, -1, -1, 0x200, 0x18);
-        context->genLabel("\n--- 閉まる ---", 0, 0, 0, -1, -1, 0x200, 0x18);
-        context->genSlider("最大速度", &this->mMaximumSpeed, 0.1f, 100.f, 0, NULL, -1, -1, 0x200, 0x18);
-        context->genSlider("加速度", &this->mAcceleration, 0.1f, 100.f, 0, NULL, -1, -1, 0x200, 0x18);
-        context->genLabel("\n------", 0, 0, 0, -1, -1, 0x200, 0x18);
-        context->genSlider("移動量", &this->mMovementAmount, 0.1f, 100.f, 0, NULL, -1, -1, 0x200, 0x18);
-    }
-#endif
+    void genMessage(JORMContext*);
 
     /* 0x8  */ float mSpeed;
     /* 0xC  */ float mMaximumSpeed;

@@ -9,19 +9,33 @@
 #include "d/actor/d_a_obj_lv6SwGate.h"
 
 daLv6SwGate_HIO_c::daLv6SwGate_HIO_c() {
-    mSpeed = 15.f;
-    mMaximumSpeed = 30.f;
-    mAcceleration = 15.f;
-    mMovementAmount = 275.f;
+    mSpeed = 15.0f;
+    mMaximumSpeed = 30.0f;
+    mAcceleration = 15.0f;
+    mMovementAmount = 275.0f;
     unk18 = 3;
 }
+
+#if DEBUG
+void daLv6SwGate_HIO_c::genMessage(JORMContext* context)
+{
+    context->genLabel("--- 開く ---", 0, 0, 0, -1, -1, 0x200, 0x18);
+    context->genSlider("速度", &this->mSpeed, 0.1f, 100.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genLabel("\n--- 閉まる ---", 0, 0, 0, -1, -1, 0x200, 0x18);
+    context->genSlider("最大速度", &this->mMaximumSpeed, 0.1f, 100.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("加速度", &this->mAcceleration, 0.1f, 100.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genLabel("\n------", 0, 0, 0, -1, -1, 0x200, 0x18);
+    context->genSlider("移動量", &this->mMovementAmount, 0.1f, 100.0f, 0, NULL, -1, -1, 0x200, 0x18);
+}
+#endif
 
 /* 80C75754-80C7576C 000014 0018+00 4/4 0/0 0/0 .bss             l_HIO */
 static daLv6SwGate_HIO_c l_HIO;
 
 /* 80C75530-80C75560 00000C 0030+00 1/1 0/0 0/0 .rodata          mCcDObjInfo__13daLv6SwGate_c */
 const dCcD_SrcGObjInf daLv6SwGate_c::mCcDObjInfo = {
-    {0, {{0, 0, 0}, {0x400, 0x11}, {0x79}}}, {1, 0, 0, 0, 0}, {0xA, 0, 0, 0, 0}, {0}};
+    {0, {{0, 0, 0}, {0x400, 0x11}, {0x79}}}, {1, 0, 0, 0, 0}, {0xA, 0, 0, 0, 0}, {0}
+};
 
 /* 80C755B8-80C755FC 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__13daLv6SwGate_c */
 dCcD_SrcCyl daLv6SwGate_c::mCcDCyl = {mCcDObjInfo};
@@ -33,13 +47,13 @@ static cull_box l_cull_box = {-1200.0f, -300.0f, -100.0f, 1200.0f, 300.0f, 100.0
 void daLv6SwGate_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
-    mDoMtx_stack_c::transM(-150.f - mMovementAmount, 0.f, 0.f);
+    mDoMtx_stack_c::transM(-150.0f - mMovementAmount, 0.0f, 0.0f);
     mModel1->setBaseScale(scale);
     mModel1->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y + 0x8000, shape_angle.z);
-    mDoMtx_stack_c::transM(-150.f - mMovementAmount, 0.f, 0.f);
+    mDoMtx_stack_c::transM(-150.0f - mMovementAmount, 0.0f, 0.0f);
     mModel2->setBaseScale(scale);
     mModel2->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mMtx);
@@ -51,17 +65,17 @@ int daLv6SwGate_c::CreateHeap() {
     JUT_ASSERT(273, modelData != NULL);
     mModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 
-    if (!mModel1) {
+    if (mModel1 == NULL) {
         return FALSE;
     }
     modelData = (J3DModelData*)dComIfG_getObjectRes("L6SwGate", 4);
     JUT_ASSERT(284, modelData != NULL);
     mModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-    if (!mModel2) {
+    if (mModel2 == NULL) {
         return FALSE;
     }
     mpBgW = new dBgW();
-    if (mpBgW && !mpBgW->Set((cBgD_t*)dComIfG_getObjectRes("L6SwGate", 7), 0x1, &mMtx)) {
+    if (mpBgW != NULL && !mpBgW->Set((cBgD_t*)dComIfG_getObjectRes("L6SwGate", 7), 0x1, &mMtx)) {
         mpBgW->SetCrrFunc(dBgS_MoveBGProc_TypicalRotY);
     } else {
         mpBgW = NULL;
@@ -101,7 +115,7 @@ int daLv6SwGate_c::create() {
         }
         mUnderylingSwitch = getSw();
         mIsSwitch = isSwitch();
-        mMovementAmount = 0.f;
+        mMovementAmount = 0.0f;
         if (mIsSwitch) {
             mMovementAmount = l_HIO.mMovementAmount;
         }
@@ -133,28 +147,28 @@ int daLv6SwGate_c::Execute(Mtx** i_pMTx) {
         }
     }
     for (int i = 0; i < 6; i++) {
-        cXyz p(-150.f - mMovementAmount + 120.f - i * (55.f + oREG_F(2)), 0.f, 0.f);
+        cXyz p(-150.0f - mMovementAmount + 120.0f - i * (55.0f + oREG_F(2)), 0.0f, 0.0f);
         mDoMtx_stack_c::ZXYrotS(shape_angle.x, shape_angle.y, shape_angle.z);
         mDoMtx_stack_c::multVec(&p, &p);
         p += current.pos;
-        mCcDCyls[i].SetR(30.f + oREG_F(0));
-        mCcDCyls[i].SetH(300.f + oREG_F(1));
+        mCcDCyls[i].SetR(30.0f + oREG_F(0));
+        mCcDCyls[i].SetH(300.0f + oREG_F(1));
         mCcDCyls[i].SetC(p);
         dComIfG_Ccsp()->Set(&mCcDCyls[i]);
     }
     for (int i = 0; i < 6; i++) {
-        cXyz p(-150.f - mMovementAmount + 120.f - i * (55.f + oREG_F(3)), 0.f, 0.f);
+        cXyz p(-150.0f - mMovementAmount + 120.0f - i * (55.0f + oREG_F(3)), 0.0f, 0.0f);
         mDoMtx_stack_c::ZXYrotS(shape_angle.x, shape_angle.y + 0x8000, shape_angle.z);
         mDoMtx_stack_c::multVec(&p, &p);
         p += current.pos;
-        mCcDCyls[i + 6].SetR(30.f + oREG_F(0));
-        mCcDCyls[i + 6].SetH(300.f + oREG_F(1));
+        mCcDCyls[i + 6].SetR(30.0f + oREG_F(0));
+        mCcDCyls[i + 6].SetH(300.0f + oREG_F(1));
         mCcDCyls[i + 6].SetC(p);
         dComIfG_Ccsp()->Set(&mCcDCyls[i + 6]);
     }
     *i_pMTx = &mModel1->getBaseTRMtx();
     setBaseMtx();
-    if (mpBgW) {
+    if (mpBgW != NULL) {
         mpBgW->Move();
     }
     return TRUE;
@@ -206,7 +220,7 @@ void daLv6SwGate_c::init_modeOpen() {
 
 /* 80C74B64-80C74C7C 000D44 0118+00 1/0 0/0 0/0 .text            modeOpen__13daLv6SwGate_cFv */
 void daLv6SwGate_c::modeOpen() {
-    f32 calc = cLib_addCalc(&mMovementAmount, l_HIO.mMovementAmount, 0.1f, l_HIO.mSpeed, 5.f);
+    f32 calc = cLib_addCalc(&mMovementAmount, l_HIO.mMovementAmount, 0.1f, l_HIO.mSpeed, 5.0f);
     mDoAud_seStartLevel(Z2SE_OBJ_L6_SW_GATE_OP_MV, &current.pos, 0,
                         dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     if (calc == 0.0f) {
@@ -219,14 +233,14 @@ void daLv6SwGate_c::modeOpen() {
 /* 80C74C7C-80C74C94 000E5C 0018+00 1/1 0/0 0/0 .text            init_modeClose__13daLv6SwGate_cFv
  */
 void daLv6SwGate_c::init_modeClose() {
-    fopAcM_SetSpeedF(this, 0.f);
+    fopAcM_SetSpeedF(this, 0.0f);
     mMode = DALV6SWGATE_C_MODE_CLOSE;
 }
 
 /* 80C74C94-80C74DBC 000E74 0128+00 1/0 0/0 0/0 .text            modeClose__13daLv6SwGate_cFv */
 void daLv6SwGate_c::modeClose() {
     int unused = cLib_chaseF(&speedF, l_HIO.mMaximumSpeed, l_HIO.mAcceleration);
-    f32 calc = cLib_addCalc(&mMovementAmount, 0.f, 1.0f, fopAcM_GetSpeedF(this), 5.f);
+    f32 calc = cLib_addCalc(&mMovementAmount, 0.0f, 1.0f, fopAcM_GetSpeedF(this), 5.0f);
     mDoAud_seStartLevel(Z2SE_OBJ_L6_SW_GATE_CL_MV, &current.pos, 0,
                         dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     if (calc == 0.0f) {
@@ -240,13 +254,13 @@ void daLv6SwGate_c::modeClose() {
  */
 void daLv6SwGate_c::init_modeBreak() {
     OS_REPORT("== break! ==\n");
-    mDoAud_seStart(0x8021f, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mDoAud_seStart(Z2SE_OBJ_TRAP_BREAK, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     mMode = DALV6SWGATE_C_MODE_BREAK;
 }
 
 /* 80C74E40-80C7524C 001020 040C+00 1/0 0/0 0/0 .text            modeBreak__13daLv6SwGate_cFv */
 void daLv6SwGate_c::modeBreak() {
-    cXyz p(-150.f - mMovementAmount, 0.f, 0.f);
+    cXyz p(-150.0f - mMovementAmount, 0.0f, 0.0f);
     mDoMtx_stack_c::ZXYrotS(shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::multVec(&p, &p);
     p += current.pos;
@@ -255,7 +269,7 @@ void daLv6SwGate_c::modeBreak() {
     dComIfGp_particle_set(0x8B7B, &p, &shape_angle, 0);
     dComIfGp_particle_set(0x8B7C, &p, &shape_angle, 0);
     dComIfGp_particle_set(0x8B7D, &p, &shape_angle, 0);
-    p.set(-150.f - mMovementAmount, 0.f, 0.f);
+    p.set(-150.0f - mMovementAmount, 0.0f, 0.0f);
     csXyz shapeAngle(shape_angle);
     shapeAngle.y += 0x8000;
     mDoMtx_stack_c::ZXYrotS(shapeAngle.x, shapeAngle.y, shapeAngle.z);
@@ -286,7 +300,7 @@ int daLv6SwGate_c::Draw() {
 /* 80C752F8-80C75360 0014D8 0068+00 1/0 0/0 0/0 .text            Delete__13daLv6SwGate_cFv */
 int daLv6SwGate_c::Delete() {
     dComIfG_resDelete(&mPhase, "L6SwGate");
-    if (mpBgW && mpBgW->ChkUsed()) {
+    if (mpBgW != NULL && mpBgW->ChkUsed()) {
         dComIfG_Bgsp().Release(mpBgW);
     }
 #if DEBUG
@@ -308,7 +322,7 @@ static int daLv6SwGate_Execute(daLv6SwGate_c* i_this) {
 
 /* 80C753AC-80C753CC 00158C 0020+00 1/0 0/0 0/0 .text daLv6SwGate_Delete__FP13daLv6SwGate_c */
 static int daLv6SwGate_Delete(daLv6SwGate_c* i_this) {
-    int id = fopAcM_GetID(i_this);
+    fpc_ProcID id = fopAcM_GetID(i_this);
     return i_this->MoveBGDelete();
 }
 
@@ -316,14 +330,16 @@ static int daLv6SwGate_Delete(daLv6SwGate_c* i_this) {
  */
 static int daLv6SwGate_Create(fopAc_ac_c* i_this) {
     daLv6SwGate_c* this_gate = (daLv6SwGate_c*)i_this;
-    int id = fopAcM_GetID(i_this);
+    fpc_ProcID id = fopAcM_GetID(i_this);
     return this_gate->create();
 }
 
 /* 80C75674-80C75694 -00001 0020+00 1/0 0/0 0/0 .data            l_daLv6SwGate_Method */
 static actor_method_class l_daLv6SwGate_Method = {
-    (process_method_func)daLv6SwGate_Create,  (process_method_func)daLv6SwGate_Delete,
-    (process_method_func)daLv6SwGate_Execute, 0,
+    (process_method_func)daLv6SwGate_Create,  
+    (process_method_func)daLv6SwGate_Delete,
+    (process_method_func)daLv6SwGate_Execute, 
+    NULL,
     (process_method_func)daLv6SwGate_Draw,
 };
 
