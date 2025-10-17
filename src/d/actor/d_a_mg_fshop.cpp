@@ -1755,7 +1755,7 @@ static int daFshop_Execute(fshop_class* param_1) {
                     henna->actor.health = 2;
                 }
                 
-                henna->field_0x752 = 0x49;
+                henna->cam_mode = 0x49;
                 henna->field_0x754 = 0;
                 henna->field_0x7b9 = 0;
                 param_1->field_0x567 = 2;
@@ -1775,9 +1775,9 @@ static int daFshop_Execute(fshop_class* param_1) {
 
                             if (bVar5) {
                                 henna->actor.health = 3;
-                                henna->field_0x752 = 0x49;
+                                henna->cam_mode = 0x49;
                             } else {
-                                henna->field_0x752 = 0x4c;
+                                henna->cam_mode = 0x4c;
                             }
                             henna->field_0x754 = 0;
                             henna->field_0x7b9 = 0;

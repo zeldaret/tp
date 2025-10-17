@@ -130,9 +130,3 @@ dMdl_c* dMdl_mng_c::entry(J3DModelData* i_modelData, u16 i_materialId, int i_roo
     dKy_tevstr_c* tevstr = dComIfGp_roomControl_getTevStr(i_roomNo);
     return m_myObj->entry(i_modelData, i_materialId, tevstr);
 }
-
-/* 8009C930-8009C964 097270 0034+00 1/1 0/0 0/0 .text            __ct__6dMdl_cFv */
-dMdl_c::dMdl_c() {
-    mpModelData = NULL;
-    mMaterialId = 0;
-}

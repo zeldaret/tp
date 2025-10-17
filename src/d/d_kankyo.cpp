@@ -1248,19 +1248,19 @@ static void envcolor_init() {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
         !strcmp(dComIfGp_getStartStageName(), "R_SP127"))
     {
-        if (g_env_light.field_0x12cc >= 7) {
+        if (g_env_light.wether >= 7) {
             g_env_light.mColpatWeather = 2;
-        } else if (g_env_light.field_0x12cc != 0) {
+        } else if (g_env_light.wether != 0) {
             g_env_light.mColpatWeather = 1;
         }
     } else if (!strcmp(dComIfGp_getStartStageName(), "D_MN07A")) {
-        if (g_env_light.field_0x12cc == 1) {
+        if (g_env_light.wether == 1) {
             g_env_light.mColpatWeather = 1;
-        } else if (g_env_light.field_0x12cc == 2) {
+        } else if (g_env_light.wether == 2) {
             g_env_light.mColpatWeather = 2;
         }
     } else {
-        g_env_light.field_0x12cc = 0;
+        g_env_light.wether = 0;
     }
 
     g_env_light.base_raincnt = 0;
@@ -1359,7 +1359,7 @@ void dKy_clear_game_init() {
     g_env_light.darktime_week = 0;
     g_env_light.fishing_hole_season = 0;
     g_env_light.field_0x130a = 0;
-    g_env_light.field_0x12cc = 0;
+    g_env_light.wether = 0;
     g_env_light.staffroll_next_timer = 0;
 }
 
