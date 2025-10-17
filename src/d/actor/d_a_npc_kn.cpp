@@ -2340,7 +2340,6 @@ static void* s_subEnd6(void* i_actor, void* i_other) {
 
 /* 80A2FC80-80A30398 005360 0718+00 1/0 0/0 0/0 .text teach06_superJumpWait__10daNpc_Kn_cFPv */
 int daNpc_Kn_c::teach06_superJumpWait(void* param_0) {
-    // NONMATCHING - value comparison not getting optimized
     switch (mMode) {
     case 0:
     case 1:
@@ -2427,7 +2426,7 @@ int daNpc_Kn_c::teach06_superJumpWait(void* param_0) {
             }
         } else {
             if (field_0x15bd == 2 &&
-                (cut_type != daPy_py_c::CUT_TYPE_LARGE_JUMP && cut_type != daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH))
+                !(cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP || cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH))
             {
                 mEvtNo = 22;
                 fpcM_Search(s_subEnd6, this);
@@ -2765,7 +2764,6 @@ static void* s_subEnd7(void* i_actor, void* i_other) {
 
 /* 80A31028-80A315D0 006708 05A8+00 1/0 0/0 0/0 .text teach07_superTurnAttackWait__10daNpc_Kn_cFPv
  */
-// NONMATCHING - value comparison not getting optimized
 int daNpc_Kn_c::teach07_superTurnAttackWait(void* param_0) {
     switch (mMode) {
     case 0:
@@ -2837,7 +2835,9 @@ int daNpc_Kn_c::teach07_superTurnAttackWait(void* param_0) {
                     mSound.startCollisionSE(Z2SE_HIT_SWORD, 0x28);
                 }
             }
-        } else if (field_0x15bd == 2 && cut_type != daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT && cut_type != daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT) {
+        } else if (field_0x15bd == 2 &&
+            !(cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT || cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT))
+        {
             mEvtNo = 0x19;
             fpcM_Search(s_subEnd7, this);
             break;
