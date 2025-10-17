@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_DSP_H_
 #define _DOLPHIN_DSP_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/dsp.h>
+#else
 #include <dolphin/os.h>
 
 #ifdef __cplusplus
@@ -54,4 +57,5 @@ DSPTaskInfo* __DSPGetCurrentTask(void);
 }
 #endif
 
+#endif
 #endif

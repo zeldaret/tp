@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSUTF_H_
 #define _DOLPHIN_OSUTF_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSUtf.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -20,4 +23,5 @@ u32 OSSJIStoUTF32(u16 sjis);
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_OSUTF_H_

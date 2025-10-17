@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSL2_H_
 #define _DOLPHIN_OSL2_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSL2.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -17,4 +20,5 @@ void L2SetWriteThrough(BOOL writeThrough);
 }
 #endif
 
+#endif
 #endif

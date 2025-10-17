@@ -1,6 +1,9 @@
-#ifndef GFGEOMETRY_H
-#define GFGEOMETRY_H
+#ifndef _DOLPHIN_GF_GFGEOMETRY_H_
+#define _DOLPHIN_GF_GFGEOMETRY_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gf/GFGeometry.h>
+#else
 #include <dolphin/gx.h>
 
 #define GF_GEN_MODE(nTexGens, nChans, nTevs, cm, nInds) \
@@ -38,4 +41,5 @@ static inline void GFWriteXFCmd(u16 addr, u32 val) {
 
 void GFSetGenMode2(u8 nTexGens, u8 nChans, u8 nTevs, u8 nInds, GXCullMode cm);
 
-#endif /* GFGEOMETRY_H */
+#endif
+#endif /* _DOLPHIN_GF_GFGEOMETRY_H_ */

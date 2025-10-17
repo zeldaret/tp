@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXTEXTURE_H_
 #define _DOLPHIN_GX_GXTEXTURE_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXTexture.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
 
@@ -49,4 +52,5 @@ void GXInitTexObjMaxAniso(GXTexObj* obj, GXAnisotropy max_aniso);
 }
 #endif
 
+#endif
 #endif

@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_TYPES_H_
 #define _DOLPHIN_TYPES_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/types.h>
+#else
 typedef signed   char          s8;
 typedef unsigned char          u8;
 typedef signed   short int     s16;
@@ -55,4 +58,5 @@ typedef unsigned int uint;
 
 #include "stddef.h"
 
+#endif
 #endif

@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_VITYPES_H_
 #define _DOLPHIN_VITYPES_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/vi/vitypes.h>
+#else
 #include <dolphin/types.h>
 
 #define VI_TVMODE(format, interlace)  (((format) << 2) + (interlace))
@@ -38,4 +41,5 @@ typedef enum {
 
 typedef void (*VIRetraceCallback)(u32 retraceCount);
 
+#endif
 #endif

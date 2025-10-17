@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_DVD_H_
 #define _DOLPHIN_DVD_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/dvd.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -233,4 +236,5 @@ void DVDDumpWaitingQueue(void);
 }
 #endif
 
+#endif
 #endif

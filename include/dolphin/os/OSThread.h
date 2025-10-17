@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSTHREAD_H_
 #define _DOLPHIN_OSTHREAD_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSThread.h>
+#else
 #include <dolphin/os/OSContext.h>
 
 #ifdef __cplusplus
@@ -109,4 +112,5 @@ OSSwitchThreadCallback OSSetSwitchThreadCallback(OSSwitchThreadCallback callback
 }
 #endif
 
+#endif
 #endif
