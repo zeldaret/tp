@@ -1753,7 +1753,7 @@ void daTbox_c::setBaseMtx() {
     mDoMtx_stack_c::transM(0.0f, -50.0f, 0.0f);
 
     if (field_0x9fc != 0) {
-        mpModel->setBaseTRMtx(field_0xa00);
+        mpModel->setBaseTRMtx(mDrawMtx);
     } else {
         mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
