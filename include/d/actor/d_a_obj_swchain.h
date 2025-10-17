@@ -13,20 +13,16 @@
  *
  * @details
  *
- */
+*/
+
 class daObjSwChain_c : public fopAc_ac_c {
 public:
     struct chain_s {
-    public:
-        /* 80CF8B00 */ ~chain_s();
-        /* 80CF8B3C */ chain_s();
-
         /* 0x00 */ dMdl_obj_c mModel;
         /* 0x34 */ cXyz field_0x34;
         /* 0x40 */ csXyz field_0x40;
         /* 0x48 */ f32 field_0x48;
         /* 0x4C */ u8 field_0x4c;
-        /* 0x4D */ u8 field_0x4d[0x50 - 0x4d];
     };
 
     /* 80CF8768 */ int Create();
@@ -112,7 +108,6 @@ private:
     /* 0xA6D */ u8 field_0xa6d;
     /* 0xA6E */ s16 field_0xa6e;
     /* 0xA70 */ s16 field_0xa70;
-    /* 0xA72 */ u8 field_0xa72[0xa74 - 0xa72];
     /* 0xA74 */ chain_s* mChains;
     /* 0xA78 */ cXyz field_0xa78;
     /* 0xA84 */ u8 field_0xa84[0xa90 - 0xa84];
@@ -122,7 +117,6 @@ private:
     /* 0xA9C */ u8 field_0xa9c;
     /* 0xA9D */ u8 field_0xa9d;
     /* 0xA9E */ u8 field_0xa9e;
-    /* 0xA9F */ u8 field_0xa9f[0xaa0 - 0xa9f];
 #ifdef DEBUG
     /* 0xAA0 */ cXyz field_0xac0;
 #endif

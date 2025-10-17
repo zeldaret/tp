@@ -1,7 +1,7 @@
 /**
  * @file d_a_obj_swchain.cpp
  *
- */
+*/
 
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
@@ -11,7 +11,6 @@
 #include "d/actor/d_a_obj_swchain.h"
 #include "d/d_cc_d.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 
 #ifdef DEBUG
 class daObjSwChain_HIO_c : public mDoHIO_entry_c {
@@ -239,14 +238,7 @@ int daObjSwChain_c::CreateHeap() {
     return 1;
 }
 
-/* 80CF8B00-80CF8B3C 0004C0 003C+00 1/1 0/0 0/0 .text            __dt__Q214daObjSwChain_c7chain_sFv */
-daObjSwChain_c::chain_s::~chain_s() {}
-
-/* 80CF8B3C-80CF8B48 0004FC 000C+00 1/1 0/0 0/0 .text            __ct__Q214daObjSwChain_c7chain_sFv */
-daObjSwChain_c::chain_s::chain_s() {}
-
 /* 80CF8B48-80CF8DD0 000508 0288+00 1/1 0/0 0/0 .text            create1st__14daObjSwChain_cFv */
-// NONMATCHING
 int daObjSwChain_c::create1st() {
     fopAcM_SetupActor(this, daObjSwChain_c);
 
@@ -259,8 +251,14 @@ int daObjSwChain_c::create1st() {
         field_0xa60 = 1;
     }
 
-    // missing instructions
-    mChainNum = getChainNum() & 1 ? getChainNum() : getChainNum() + 1;
+    u32 uVar1 = getChainNum();
+    u8 uVar2 = (uVar1 >> 31);
+    if (((uVar1 & 1) ^ uVar2) - uVar2 != 0) {
+        uVar1 = getChainNum();
+    } else {
+        uVar1 = getChainNum() + 1;
+    }
+    mChainNum = uVar1;
 
     mHookShotLength = getHookShotLength();
     mOutNum = getOutNum();
@@ -312,7 +310,6 @@ int daObjSwChain_c::create1st() {
 }
 
 /* 80CF8ED0-80CF94E4 000890 0614+00 1/1 0/0 0/0 .text            execute__14daObjSwChain_cFv */
-// NONMATCHING - regalloc / instruction ordering
 int daObjSwChain_c::execute() {
 #ifdef DEBUG
     if (l_HIO.mProcessStop) {
@@ -331,14 +328,14 @@ int daObjSwChain_c::execute() {
     chain_count_control();
     chain_s* unused = mChains;
     chain_control();
-    chain_s* iVar1 = &mChains[mChainNum];
+    chain_s* chains_p = &mChains[mChainNum];
 
-    if (!field_0xa6c && daPy_py_c::setFmChainPos(this, &iVar1->field_0x34, mChainID)) {
+    if (!field_0xa6c && daPy_py_c::setFmChainPos(this, &chains_p->field_0x34, mChainID)) {
         mCarry = 1;
         eyePos = home.pos;
     } else {
         mCarry = 0;
-        eyePos = iVar1->field_0x34;
+        eyePos = chains_p->field_0x34;
     }
 
     if (field_0xa9d == 0 && mCarry != 0 || field_0xa9d != 0 && mCarry == 0) {
@@ -352,7 +349,7 @@ int daObjSwChain_c::execute() {
         }
     } else {
         field_0xa61 = 0;
-        current.pos = iVar1->field_0x34;
+        current.pos = chains_p->field_0x34;
     }
 
     chain_control2();
@@ -369,8 +366,8 @@ int daObjSwChain_c::execute() {
 #endif
         if (mOutNum > getOutNum() && mRatio != 0.0f) {
             cXyz cStack_80(mChains[0].field_0x34);
-            cXyz cStack_8c;
-            cStack_8c = cStack_80 - mChains[getTopChainNo()].field_0x34;
+            chains_p = &mChains[getTopChainNo()];
+            cXyz cStack_8c = cStack_80 - chains_p->field_0x34;
             cStack_8c.normalizeZP();
 
             switch (fopAcM_GetRoomNo(this)) {
@@ -378,41 +375,40 @@ int daObjSwChain_c::execute() {
             case 6:
                 if (mOutNum > field_0xa69) {
 #ifdef DEBUG
-                    iVar1->field_0x34 += cStack_8c * l_HIO.mReturnSpeedHigh;
+                    chains_p->field_0x34 += cStack_8c * l_HIO.mReturnSpeedHigh;
 #else
-                    iVar1->field_0x34 += cStack_8c * 30.0f;
+                    chains_p->field_0x34 += cStack_8c * 30.0f;
 #endif
                     // mistake?
                     field_0xa6b = 1;
                     field_0xa6b = 1;
                 } else {
 #ifdef DEBUG
-                    iVar1->field_0x34 += cStack_8c * l_HIO.mReturnSpeedLow;
+                    chains_p->field_0x34 += cStack_8c * l_HIO.mReturnSpeedLow;
 #else
-                    iVar1->field_0x34 += cStack_8c * 15.0f;
+                    chains_p->field_0x34 += cStack_8c * 15.0f;
 #endif
                 }
                 break;
             default:
 #ifdef DEBUG
-                iVar1->field_0x34 += cStack_8c * l_HIO.mReturnSpeed;
+                chains_p->field_0x34 += cStack_8c * l_HIO.mReturnSpeed;
 #else
-                iVar1->field_0x34 += cStack_8c * 2.0f;
+                chains_p->field_0x34 += cStack_8c * 2.0f;
 #endif
             }
         }
 
     if (field_0xa6c == 0) {
-        daPy_py_c* player = daPy_getPlayerActorClass();
-        cXyz pos = (player->current.pos - home.pos);
+        cXyz pos = (daPy_getPlayerActorClass()->current.pos - home.pos);
         s16 abs_tmp = pos.atan2sX_Z() - shape_angle.y;
 #ifdef DEBUG
         if (abs(abs_tmp) < l_HIO.mReactionAngle) {
 #else
         if (abs(abs_tmp) < 0xe74) {
 #endif
-            chain_s* chain_p2 = &mChains[mChainNum];
-            mSph1.SetC(chain_p2->field_0x34);
+            chains_p = &mChains[mChainNum];
+            mSph1.SetC(chains_p->field_0x34);
             dComIfG_Ccsp()->Set(&mSph1);
         }
     }
@@ -817,7 +813,6 @@ void daObjSwChain_c::setChainMtx() {
 
 /* 80CFA4A8-80CFAD50 001E68 08A8+00 1/1 0/0 0/0 .text            chain_count_control__14daObjSwChain_cFv */
 void daObjSwChain_c::chain_count_control() {
-    // NONMATCHING
     daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();
     chain_s* chains_p = &mChains[getTopChainNo()];
     int iVar1;
@@ -899,7 +894,8 @@ void daObjSwChain_c::chain_count_control() {
 
     u32 bVar1 = daPy_getPlayerActorClass()->checkBootsOrArmorHeavy();
     if ((roomNo == 4 || roomNo == 6) && mOutNum == field_0xa67) {
-        chains_p[getTopChainNo()].field_0x34 = chains_p->field_0x34;
+        chain_s* topChain_p = &mChains[getTopChainNo()];
+        topChain_p->field_0x34 = mChains->field_0x34;
         if (
             (!bVar1 && pow >
             #ifdef DEBUG
@@ -931,7 +927,8 @@ void daObjSwChain_c::chain_count_control() {
             field_0xa68 = 0;
         }
     } else if (mOutNum == mChainNum) {
-        chains_p[getTopChainNo()].field_0x34 = chains_p->field_0x34;
+        chain_s* topChain_p = &mChains[getTopChainNo()];
+        topChain_p->field_0x34 = mChains->field_0x34;
         if (
             (!daPy_getPlayerActorClass()->checkBootsOrArmorHeavy() && pow > 
             #ifdef DEBUG
@@ -995,14 +992,12 @@ void daObjSwChain_c::chain_count_control() {
 
 /* 80CFAD50-80CFB450 002710 0700+00 1/1 0/0 0/0 .text            setTension__14daObjSwChain_cFv */
 void daObjSwChain_c::setTension() {
-    // NONMATCHING
     f32 fVar1 = pow;
     field_0xa6a = 0;
     pow = 0.0f;
 
     if (mCarry == 0 && field_0xa61 == 0) {
-        field_0xa70 = 0;
-        field_0xa6e = 0;
+        field_0xa6e = field_0xa70 = 0;
     } else {
         int roomNo = fopAcM_GetRoomNo(this);
         daPy_py_c* player = daPy_getPlayerActorClass();
@@ -1011,14 +1006,22 @@ void daObjSwChain_c::setTension() {
         spbc = home.pos;
         spc8 = mChains[mChainNum].field_0x34;
         f32 len = spc8.abs(spbc);
-        f32 max = (mChainNum - 2) *
+        
+        f32 max =         
         #ifdef DEBUG
-            l_HIO.field_0xc;
+            l_HIO.field_0xc
         #else
-            35.0f;
+            35.0f
         #endif
+            * (mChainNum - 2);
+
         if (roomNo == 4 || roomNo == 6) {
-            max = field_0xa67 + AREG_S(0) + -1;
+            max = (field_0xa67 + AREG_S(0) + -1) *
+            #ifdef DEBUG
+                l_HIO.field_0xc;
+            #else
+                35.0f;
+            #endif
         }
         
         if (field_0xa61 != 0) {
@@ -1030,13 +1033,13 @@ void daObjSwChain_c::setTension() {
                 if ((fVar1 == 0.0f && len > max + 20.0f + KREG_F(3)) || (fVar1 != 0.0f && len > max + KREG_F(3))) {
                     cXyz spd4;
                     f32 fVar4 = player->getSpeedF();
-                    spd4.x = (fVar4 * cM_ssin(player->current.angle.y));
-                    f32 fVar5 = cM_scos(player->current.angle.y);
+                    spd4.x = fVar4 * cM_ssin(player->current.angle.y);
+                    f32 fVar5 = fVar4 * cM_scos(player->current.angle.y);
                     spd4.x *= KREG_F(6) + 1.0f;
-                    spd4.z = fVar4 * fVar5 * (KREG_F(6) + 1.0f);
+                    spd4.z = fVar5 * (KREG_F(6) + 1.0f);
                     pow = std::sqrt(spd4.x * spd4.x + spd4.z * spd4.z);
 
-                    if (checkPlayerPull() && roomNo != 4 && roomNo != 6 && mOutNum == mChainNum || (roomNo == 4 || roomNo == 6) && field_0xa67 == mChainNum) {
+                    if (checkPlayerPull() && (roomNo != 4 && roomNo != 6 && mOutNum == mChainNum || (roomNo == 4 || roomNo == 6) && field_0xa67 == mChainNum)) {
                         player->onChainPullEnd();
                     } 
                 } else {
@@ -1044,18 +1047,18 @@ void daObjSwChain_c::setTension() {
                 }
 
                 cXyz spe0(mChains->field_0x34 - mChains[mChainNum].field_0x34);
-                player->setOutPower(pow, cM_atan2s(spe0.x, spe0.x), 0);
+                player->setOutPower(pow, cM_atan2s(spe0.x, spe0.z), 0);
                 #ifdef DEBUG
                 if (l_HIO.field_0x41 != 0) {
-                    f32 pl_spd = player->getSpeedF();
-                    dDbVw_Report(40, 260, "len<%.2f>max<%.2f>pow<%.2f>pl_spd<%.2f>", len, max, pow, pl_spd);
+                    dDbVw_Report(40, 260, "len<%.2f>max<%.2f>pow<%.2f>pl_spd<%.2f>", len, max, pow, player->getSpeedF());
                 }
                 #endif
             } else if ((roomNo == 4 || roomNo == 6) && mOutNum >= field_0xa69 - 1 && checkPlayerPull() && (fVar1 != 0.0f || len > max)) {
                 cXyz spec;
                 spec.x = player->getSpeedF() * cM_ssin(player->current.angle.y);
-                spec.x *= KREG_F(4) + 0.70000005f;
-                spec.z = player->getSpeedF() * cM_scos(player->current.angle.y) * (KREG_F(4) + 0.70000005f);
+                spec.z = player->getSpeedF() * cM_scos(player->current.angle.y);
+                spec.x *= (KREG_F(4) + 0.70000005f);
+                spec.z *= (KREG_F(4) + 0.70000005f);
                 pow = std::sqrt(spec.x * spec.x + spec.z * spec.z);
                 player->setOutPower(pow, player->current.angle.y + 0x7FFF, 0);
                 field_0xa6a = 1;
@@ -1069,21 +1072,23 @@ void daObjSwChain_c::setTension() {
                         13.0f;
                     #endif
             } else {
-                if (player->checkBootsOrArmorHeavy()) {
-                    fVar1 = 
+                f32 fVar7;
+                if (daPy_getPlayerActorClass()->checkBootsOrArmorHeavy()) {
+                    fVar7 = 
                     #ifdef DEBUG
                         l_HIO.mTensionBootsEquipped;
                     #else
                         2.1f;
                     #endif
                 } else {
-                    fVar1 = 
+                    fVar7 = 
                     #ifdef DEBUG
                         l_HIO.mTension;
                     #else
                         15.0f;
                     #endif
                 }
+                fVar1 = fVar7;
             }
 
             fVar1 = 1.0f - std::fabs(pow / fVar1);
@@ -1096,21 +1101,85 @@ void daObjSwChain_c::setTension() {
     }
 }
 
-/* 80CFB450-80CFB464 002E10 0014+00 8/8 0/0 0/0 .text            getTopChainNo__14daObjSwChain_cFv
- */
+/* 80CFB450-80CFB464 002E10 0014+00 8/8 0/0 0/0 .text            getTopChainNo__14daObjSwChain_cFv */
 int daObjSwChain_c::getTopChainNo() {
-    // NONMATCHING
+    return mChainNum - mOutNum + 1;
 }
 
-/* 80CFB464-80CFB53C 002E24 00D8+00 1/1 0/0 0/0 .text            checkPlayerPull__14daObjSwChain_cFv
- */
+/* 80CFB464-80CFB53C 002E24 00D8+00 1/1 0/0 0/0 .text            checkPlayerPull__14daObjSwChain_cFv */
 BOOL daObjSwChain_c::checkPlayerPull() {
-    // NONMATCHING
+    daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();
+    cXyz sp2c;
+    cXyz sp38(mChains->field_0x34 - mChains[mChainNum].field_0x34);
+
+    sp2c.x = player->getSpeedF() * cM_ssin(player->current.angle.y);
+    sp2c.z = player->getSpeedF() * cM_scos(player->current.angle.y);
+
+    if (mCarry != 0 && sp38.inprodXZ(sp2c) < 0.0f) {
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 /* 80CFB53C-80CFB5E8 002EFC 00AC+00 1/1 0/0 0/0 .text            draw__14daObjSwChain_cFv */
 int daObjSwChain_c::draw() {
-    // NONMATCHING
+    g_env_light.settingTevStruct(0, &home.pos, &tevStr);
+    
+    chain_s* chains_p = &mChains[getTopChainNo()];
+    for (int i = 0; i < mOutNum - 1; i++, chains_p++) {
+        mModel.entryObj(&chains_p->mModel);
+    }
+
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    mDoExt_modelUpdateDL(mpModel);
+
+    #ifdef DEBUG
+    if (l_HIO.field_0x41 != 0) {
+        cXyz sp2c;
+        mDoMtx_stack_c::YrotS(shape_angle.y);
+        mDoMtx_stack_c::multVec(&cXyz::BaseZ, &sp2c);
+        sp2c *= 200.0f;
+        sp2c += home.pos;
+        sp2c.y += 10.0f;
+        dDbVw_drawArrowOpa(home.pos, sp2c, (GXColor) {0, 0xFF, 0, 0xFF}, 1, 12);
+
+        int iVar1 = l_HIO.field_0x3e;
+        if (iVar1 >= 0) {
+            if (iVar1 > mChainNum) {
+                iVar1 = mChainNum;
+            }
+
+            cXyz& i_pos = mChains[iVar1].field_0x34;
+            dDbVw_drawSphereOpa(i_pos, 30.0f, (GXColor) {0xFF, 0xFF, 0xFF, 0xFF}, 1);
+        } else if (iVar1 == -2) {
+            chains_p = mChains;
+            for (int i = 0; i < mChainNum; i++, chains_p++) {
+                dDbVw_drawSphereOpa(chains_p[1].field_0x34, 10.0f, (GXColor) {0xFF, 0xFF, 0xFF, 0xFF}, 1);
+            }
+        }
+
+        dDbVw_drawCircleOpa(home.pos, l_HIO.field_0xc * (mChainNum - 2), (GXColor) {0xFF, 0xFF, 0xFF, 0xFF}, 1, 12);
+    }
+
+    cXyz i_start, i_end;
+    if (l_HIO.mReactionAngleDisplay != 0) {
+        i_start = home.pos;
+        i_end.set(0.0f, 0.0f, KREG_F(19) + 1000.0f);
+        mDoMtx_stack_c::transS(home.pos);
+        mDoMtx_stack_c::YrotM(shape_angle.y + l_HIO.mReactionAngle);
+        mDoMtx_stack_c::multVec(&i_end, &i_end);
+        dDbVw_drawLineOpa(i_start, i_end, (GXColor) {0xFF, 0, 0, 0xFF}, 1, 12);
+
+        i_end.set(0.0f, 0.0f, KREG_F(19) + 1000.0f);
+        mDoMtx_stack_c::transS(home.pos);
+        mDoMtx_stack_c::YrotM(shape_angle.y - l_HIO.mReactionAngle);
+        mDoMtx_stack_c::multVec(&i_end, &i_end);
+        dDbVw_drawLineOpa(i_start, i_end, (GXColor) {0xFF, 0, 0, 0xFF}, 1, 12);
+    }
+    #endif
+
+    return 1;
 }
 
 /* 80CFB5E8-80CFB61C 002FA8 0034+00 1/1 0/0 0/0 .text            _delete__14daObjSwChain_cFv */
@@ -1122,31 +1191,29 @@ int daObjSwChain_c::_delete() {
     return 1;
 }
 
-/* 80CFB61C-80CFB63C 002FDC 0020+00 1/0 0/0 0/0 .text daObjSwChain_Draw__FP14daObjSwChain_c */
+/* 80CFB61C-80CFB63C 002FDC 0020+00 1/0 0/0 0/0 .text            daObjSwChain_Draw__FP14daObjSwChain_c */
 static int daObjSwChain_Draw(daObjSwChain_c* i_this) {
     return i_this->draw();
 }
 
-/* 80CFB63C-80CFB65C 002FFC 0020+00 1/0 0/0 0/0 .text daObjSwChain_Execute__FP14daObjSwChain_c */
+/* 80CFB63C-80CFB65C 002FFC 0020+00 1/0 0/0 0/0 .text            daObjSwChain_Execute__FP14daObjSwChain_c */
 static int daObjSwChain_Execute(daObjSwChain_c* i_this) {
     return i_this->execute();
 }
 
-/* 80CFB65C-80CFB67C 00301C 0020+00 1/0 0/0 0/0 .text daObjSwChain_Delete__FP14daObjSwChain_c */
+/* 80CFB65C-80CFB67C 00301C 0020+00 1/0 0/0 0/0 .text            daObjSwChain_Delete__FP14daObjSwChain_c */
 static int daObjSwChain_Delete(daObjSwChain_c* i_this) {
     fpc_ProcID unused = fopAcM_GetID(i_this);
     return i_this->_delete();
 }
 
-/* 80CFB67C-80CFB69C 00303C 0020+00 1/0 0/0 0/0 .text            daObjSwChain_Create__FP10fopAc_ac_c
- */
+/* 80CFB67C-80CFB69C 00303C 0020+00 1/0 0/0 0/0 .text            daObjSwChain_Create__FP10fopAc_ac_c */
 static int daObjSwChain_Create(fopAc_ac_c* a_this) {
     daObjSwChain_c* i_this = (daObjSwChain_c*)a_this;
     fpc_ProcID unused = fopAcM_GetID(a_this);
-    return i_this->Create();
+    return i_this->create1st();
 }
 
-/* ############################################################################################## */
 /* 80CFB81C-80CFB83C -00001 0020+00 1/0 0/0 0/0 .data            l_daObjSwChain_Method */
 static actor_method_class l_daObjSwChain_Method = {
     (process_method_func)daObjSwChain_Create,  (process_method_func)daObjSwChain_Delete,

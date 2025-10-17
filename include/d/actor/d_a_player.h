@@ -1249,7 +1249,7 @@ public:
 
     BOOL checkInsectRelease() { return checkResetFlg1(RFLG1_UNK_100); }
 
-    void onChainForcePull() { onEndResetFlg1(ERFLG1_UNK_100000); }
+    void onChainForcePull() { onEndResetFlg1(ERFLG1_UNK_1000000); }
     void onChainPullEnd() { onEndResetFlg1(ERFLG1_UNK_2000000); } 
 };
 
