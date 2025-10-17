@@ -1653,9 +1653,7 @@ void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount)
     static char arcName[22];
 
     int msgGroup = dStage_stagInfo_GetMsgGroup(dComIfGp_getStage()->getStagInfo());
-    #if VERSION == VERSION_GCN_USA
-    sprintf(arcName, "/res/Msgus/bmgres%d.arc", msgGroup);
-    #elif VERSION == VERSION_GCN_PAL
+    #if VERSION == VERSION_GCN_PAL
     switch (dComIfGs_getPalLanguage()) {
     case dSv_player_config_c::LANGAUGE_GERMAN:
         sprintf(arcName, "/res/Msgde/bmgres%d.arc", msgGroup);
@@ -1672,6 +1670,8 @@ void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount)
     default:
         sprintf(arcName, "/res/Msguk/bmgres%d.arc", msgGroup);
     }
+    #else
+    sprintf(arcName, "/res/Msgus/bmgres%d.arc", msgGroup);
     #endif
 
     *p_arcMount = mDoDvdThd_mountXArchive_c::create(arcName, 0, JKRArchive::MOUNT_MEM, NULL);

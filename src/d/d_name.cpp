@@ -289,18 +289,22 @@ void dName_c::_move() {
             backSpace();
         }
     } else if (mDoCPd_c::getTrigStart(PAD_1)) {
-        u8 sel_menu;
         #if VERSION == VERSION_GCN_PAL
-        sel_menu = MENU_EIGO;
-        #else
-        sel_menu = MENU_END;
-        #endif
-        if ((mSelProc != PROC_MENU_SELECT || mSelMenu != sel_menu) &&
+        if ((mSelProc != PROC_MENU_SELECT || mSelMenu != MENU_EIGO) &&
             (mSelProc == PROC_MENU_SELECT || mSelProc == PROC_MOJI_SELECT))
         {
+        #else
+        if ((mSelProc != PROC_MENU_SELECT || mSelMenu != MENU_END) &&
+            (mSelProc == PROC_MENU_SELECT || mSelProc == PROC_MOJI_SELECT))
+        {
+        #endif
             mDoAud_seStart(Z2SE_SY_CURSOR_OPTION, 0, 0, 0);
             mPrevSelMenu = mSelMenu;
-            mSelMenu = sel_menu;
+            #if VERSION == VERSION_GCN_PAL
+            mSelMenu = MENU_EIGO;
+            #else
+            mSelMenu = MENU_END;
+            #endif
 
             switch (mSelProc) {
             case PROC_MOJI_SELECT:
@@ -673,19 +677,20 @@ void dName_c::setMoji(int moji) {
 void dName_c::setNameText() {
     for (int i = 0; i < 8; i++) {
         if (mChrInfo[i].field_0x3 != 0) {
-            u8 character;
-            #if VERSION == VERSION_GCN_PAL
-            character = (u8)mChrInfo[i].mCharacter & 0xFF;
-            #else
-            character = (u8)mChrInfo[i].mCharacter;
-            #endif
             sprintf(mNameText[i],
                     "\x1b"
                     "CD\x1b"
                     "CR\x1b"
                     "CC[000000]\x1bGM[0]%c\x1bHM\x1b"
                     "CC[ffffff]\x1bGM[0]%c",
-                    character, character);
+                    #if VERSION == VERSION_GCN_PAL
+                    (u8)mChrInfo[i].mCharacter & 0xFF,
+                    (u8)mChrInfo[i].mCharacter & 0xFF
+                    #else
+                    (u8)mChrInfo[i].mCharacter,
+                    (u8)mChrInfo[i].mCharacter
+                    #endif
+            );
         }
     }
 }
@@ -790,13 +795,11 @@ void dName_c::MenuSelect() {
             MenuSelectAnmInit();
             mSelProc = PROC_MENU_SEL_ANM2;
         } else if (mDoCPd_c::getTrigA(PAD_1)) {
-            u8 sel_menu;
             #if VERSION == VERSION_GCN_PAL
-            sel_menu = MENU_EIGO;
+            if (mSelMenu == MENU_EIGO) {
             #else
-            sel_menu = MENU_END;
+            if (mSelMenu == MENU_END) {
             #endif
-            if (mSelMenu == sel_menu) {
                 if (nameCheck() != 0) {
                     mDoAud_seStart(Z2SE_SY_NAME_OK, NULL, 0, 0);
                 } else {
@@ -807,13 +810,11 @@ void dName_c::MenuSelect() {
             }
             menuAbtnSelect();
         } else if (mDoCPd_c::getTrigStart(PAD_1)) {
-            u8 sel_menu;
             #if VERSION == VERSION_GCN_PAL
-            sel_menu = MENU_EIGO;
+            if (mSelMenu == MENU_EIGO) {
             #else
-            sel_menu = MENU_END;
+            if (mSelMenu == MENU_END) {
             #endif
-            if (mSelMenu == sel_menu) {
                 if (nameCheck() != 0) {
                     mDoAud_seStart(Z2SE_SY_NAME_OK, NULL, 0, 0);
                 } else {
