@@ -32,10 +32,10 @@ public:
     inline int create();
     /* 80BE2A70 */ inline int CreateHeap();
 
-    /* 80BE2AE8 */ int Create();
-    /* 80BE2B30 */ int Execute(Mtx**);
-    /* 80BE2E9C */ int Draw();
-    /* 80BE2F40 */ int Delete();
+    /* 80BE2AE8 */ inline int Create();
+    /* 80BE2B30 */ inline int Execute(Mtx**);
+    /* 80BE2E9C */ inline int Draw();
+    /* 80BE2F40 */ inline int Delete();
 
     /* 0x5A0 */ f32 mRideOscillationSpeed;
     /* 0x5A4 */ f32 mRideIntensity; 
