@@ -148,7 +148,7 @@ int daObj_AutoMata_c::Execute() {
         mAnmPlaySpeed = 0.0f;
         setSe();
         setMtx();
-        if (field_0xb31 == 0) {
+        if (mCoNone == 0) {
             cStack_28.set(0.0f, 40.0f, 0.0f);
             mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
             mDoMtx_stack_c::multVec(&cStack_28, &sphCenter);
@@ -164,7 +164,7 @@ int daObj_AutoMata_c::Execute() {
         mCyl.ClrCoHit();
         attention_info.flags = 0;
         eyePos = attention_info.position = current.pos;
-        field_0xb31 = 0;
+        mCoNone = 0;
         return 1;
     } 
     return 0;

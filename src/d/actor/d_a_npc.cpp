@@ -461,12 +461,18 @@ int daNpcT_Path_c::getDstPosH(cXyz i_pnt, cXyz* o_pos_p, int i_idx, int param_3)
 
 /* 80146188-801464D8 140AC8 0350+00 2/2 0/0 2/2 .text            chkPassed1__13daNpcT_Path_cF4cXyzi
  */
-// NONMATCHING one instruction order swap
 int daNpcT_Path_c::chkPassed1(cXyz i_pnt, int i_num) {
-    cXyz prev_pos, cur_pos, next_pos;
+    cXyz prev_pos;
+    cXyz cur_pos;
+    cXyz next_pos;
     cXyz sp5C;
 
+#if VERSION != VERSION_SHIELD_DEBUG
+    // FIXME: fakematch. I literally don't know how else to get this to match....
+    u16 cur_idx = get_u16_Idx();
+#else
     u16 cur_idx = getIdx();
+#endif
     u16 prev_idx, next_idx;
     prev_idx = next_idx = cur_idx;
 
@@ -543,7 +549,7 @@ int daNpcT_Path_c::chkPassed2(cXyz i_pnt, cXyz* param_2, int i_num, int param_4)
     cXyz h_startTan;
     cXyz h_endTan;
 
-    u16 cur_idx = (u16)getIdx();
+    u16 cur_idx = getIdx();
     u16 sp10;
     u16 prev_idx;
     u16 next_idx;
@@ -1794,11 +1800,17 @@ int daNpcT_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 }
 
 /* 8014997C-80149BB4 1442BC 0238+00 1/0 1/0 58/0 .text            evtProc__8daNpcT_cFv */
-// NONMATCHING loads dComIfG_gameInfo twice
 BOOL daNpcT_c::evtProc() {
     BOOL ret = FALSE;
 
-    if (dComIfGp_event_runCheck() != 0) {
+#if VERSION != VERSION_SHIELD_DEBUG
+        // TODO: gameInfo fake match to force reuse of pointer
+        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+        if (play->getEvent().runCheck())
+#else
+        if (dComIfGp_event_runCheck())
+#endif
+        {
         if (eventInfo.checkCommandTalk()) {
             if (!checkChangeEvt()) {
                 evtTalk();
@@ -1807,7 +1819,11 @@ BOOL daNpcT_c::evtProc() {
         } else if (eventInfo.checkCommandDemoAccrpt()
                         && dComIfGp_getEventManager().endCheck(mEvtId)) {
             if (evtEndProc()) {
+#if VERSION != VERSION_SHIELD_DEBUG
+                play->getEvent().reset();
+#else
                 dComIfGp_event_reset();
+#endif
                 mEvtId = -1;
             }
         } else {

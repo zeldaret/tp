@@ -440,6 +440,7 @@ public:
     /* 80145C74 */ int setPathInfo(u8, s8, u8);
     /* 80145D2C */ int setNextPathInfo(s8, u8);
     /* 80145DA0 */ void reverse();
+    void setNextIdx() { setNextIdx(getNumPnts()); }
     /* 80145DD0 */ int setNextIdx(int);
     int getDstPos(cXyz i_pnt, cXyz* o_pos_p) {
         return getDstPos(i_pnt, o_pos_p, getNumPnts());
@@ -460,7 +461,9 @@ public:
 
     Vec getPntPos(int i_idx) { return mPathInfo->m_points[i_idx].m_position; }
 
-    u8 getArg0() { return mPathInfo->m_points[mIdx].mArg0; }
+    int getArg0() { return mPathInfo->m_points[mIdx].mArg0; }
+    int getArg1() { return mPathInfo->m_points[mIdx].mArg1; }
+    int getArg2() { return mPathInfo->m_points[mIdx].mArg2; }
 
     int chkClose() {
         BOOL rt = dPath_ChkClose(mPathInfo);
@@ -473,7 +476,11 @@ public:
 
     void setIdx(int i_idx) { mIdx = i_idx; }
 
-    const u16 getIdx() { return mIdx; }
+    const int getIdx() { return mIdx; }
+#if VERSION != VERSION_SHIELD_DEBUG
+    // fakematch inline to fix daNpcT_Path_c::chkPassed1
+    const u16 get_u16_Idx() { return mIdx; }
+#endif
 
     dPath* getPathInfo() { return mPathInfo; }
 
@@ -791,6 +798,7 @@ void daNpcT_offTmpBit(u32 i_idx);
 void daNpcT_onTmpBit(u32 i_idx);
 BOOL daNpcT_chkTmpBit(u32 i_idx);
 void daNpcT_onEvtBit(u32 i_idx);
+void daNpcT_offEvtBit(u32 i_idx);
 BOOL daNpcT_chkTmpBit(u32 i_idx);
 BOOL daNpcT_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz* o_spawnPos,
                                         csXyz* o_angle);
