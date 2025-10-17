@@ -758,7 +758,7 @@ static void action(npc_henna_class* i_this) {
     if (i_this->field_0x7e1 == 0) {
         i_this->field_0x6c4 = 0;
     } else {
-        player = fopAcM_SearchByID(i_this->mBoatId);
+        player = fopAcM_SearchByID(i_this->boat_id);
         if (player != NULL) {
             cLib_addCalcAngleS2(&i_this->field_0x6c4, player->shape_angle.z * (-0.75f + ZREG_F(0)),
                                 4, 500.0f + ZREG_F(0));
@@ -891,7 +891,7 @@ static void demo_camera(npc_henna_class* i_this) {
             daPy_getPlayerActorClass()->changeDemoMode(4, 3, 0, 0);
             i_this->action = 20;
             i_this->move_mode = 0;
-            boat = (daCanoe_c*)fopAcM_SearchByID(i_this->mBoatId);
+            boat = (daCanoe_c*)fopAcM_SearchByID(i_this->boat_id);
             if (boat != NULL) {
                 unkXyz4.set(-2815.0f, boat->current.pos.y, 4603.0f);
                 boat->setPosAndAngle(&unkXyz4, 0x76d9);
@@ -2392,9 +2392,9 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
 
     i_this->field_0x692 = 0;
 
-    if (i_this->mBoatId == -1) {
+    if (i_this->boat_id == -1) {
         base_process_class* boat = fpcM_Search(s_boat_sub, i_this);
-        i_this->mBoatId = fopAcM_GetID(boat);
+        i_this->boat_id = fopAcM_GetID(boat);
     }
 
     lrl = (dmg_rod_class*)fpcM_Search(s_rod_sub, i_this);
@@ -2411,7 +2411,7 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
 
     J3DModel* model = i_this->mpMorf->getModel();
     if (i_this->field_0x7e1 != 0) {
-        daCanoe_c* boat = (daCanoe_c*)fopAcM_SearchByID(i_this->mBoatId);
+        daCanoe_c* boat = (daCanoe_c*)fopAcM_SearchByID(i_this->boat_id);
         if (boat != NULL) {
             MTXCopy(model->getAnmMtx(2), mDoMtx_stack_c::get());
             mDoMtx_stack_c::multVecZero(&i_this->actor.current.pos);
@@ -2502,7 +2502,7 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
         mDoMtx_stack_c::XrotM(VREG_S(1) - 20000);
         mDoMtx_stack_c::ZrotM(i_this->field_0x690);
     } else {
-        daCanoe_c* boat = (daCanoe_c*)fopAcM_SearchByID(i_this->mBoatId);
+        daCanoe_c* boat = (daCanoe_c*)fopAcM_SearchByID(i_this->boat_id);
         if (boat != NULL) {
             MTXCopy(boat->getModelMtx(), mDoMtx_stack_c::get());
             mDoMtx_stack_c::YrotM(VREG_S(3) - 17314);
@@ -2616,7 +2616,7 @@ static bool daNpc_Henna_IsDelete(npc_henna_class* param_0) {
 
 /* 805492AC-80549300 00648C 0054+00 1/0 0/0 0/0 .text daNpc_Henna_Delete__FP15npc_henna_class */
 static int daNpc_Henna_Delete(npc_henna_class* i_this) {
-    dComIfG_resDelete(&i_this->mPhase, "Henna");
+    dComIfG_resDelete(&i_this->phase, "Henna");
     if (i_this->hio_init != 0) {
         l_HIOInit = 0;
     }
@@ -2712,14 +2712,14 @@ static int daNpc_Henna_Create(fopAc_ac_c* i_this) {
     fopAcM_SetupActor(i_this, npc_henna_class);
     npc_henna_class* a_this = (npc_henna_class*)i_this;
 
-    cPhs__Step loadResult = (cPhs__Step)dComIfG_resLoad(&a_this->mPhase, "Henna");
+    cPhs__Step loadResult = (cPhs__Step)dComIfG_resLoad(&a_this->phase, "Henna");
     if (loadResult == cPhs_COMPLEATE_e) {
         OS_REPORT("NPC_HENNA PARAM %x\n", fopAcM_GetParam(i_this));
         a_this->arg0 = fopAcM_GetParam(i_this);
         OS_REPORT("NPC_HENNA//////////////NPC_HENNA SET 1 !!\n");
         if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x4500)) {
             OS_REPORT("//////////////NPC_HENNA SET NON !!\n");
-            return 5;
+            return cPhs_ERROR_e;
         }
         OS_REPORT("//////////////NPC_HENNA SET 2 !!\n");
 
@@ -2838,7 +2838,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* i_this) {
                 fopAcM_create(PROC_NPC_NE, 0xffffff01, &i_this->home.pos, fopAcM_GetRoomNo(i_this),
                               NULL, NULL, -1);
             }
-            a_this->mBoatId = -1;
+            a_this->boat_id = -1;
             csXyz unused;
             if (kankyo->fishing_hole_season != 4 && cDmr_FishingWether == 6) {
                 cDmr_FishingWether = 0;

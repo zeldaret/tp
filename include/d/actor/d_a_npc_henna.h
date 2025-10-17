@@ -17,7 +17,7 @@
 class npc_henna_class {
 public:
     /* 0x0   */ fopEn_enemy_c actor;
-    /* 0x5AC */ request_of_phase_process_class mPhase;
+    /* 0x5AC */ request_of_phase_process_class phase;
     /* 0x5B4 */ u8 arg0;
     /* 0x5B5 */ s8 field_0x5b5;
     /* 0x5B6 */ s8 field_0x5b6;
@@ -118,9 +118,9 @@ public:
     /* 0x7D7 */ u8 field_0x7d7;
     /* 0x7D8 */ u8 field_0x7d8[0x7e1 - 0x7d8];
     /* 0x7E1 */ s8 field_0x7e1;
-    /* 0x7E4 */ fpc_ProcID mBoatId;
+    /* 0x7E4 */ fpc_ProcID boat_id;
     /* 0x7E8 */ u8 field_0x7e8[0x7f8 - 0x7e8];
-    /* 0x7F8 */ u8 field_0x7f8;
+    /* 0x7F8 */ u8 hio_init;
 };
 
 STATIC_ASSERT(sizeof(npc_henna_class) == 0x7fc);
