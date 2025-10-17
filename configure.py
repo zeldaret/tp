@@ -1913,7 +1913,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_tkc"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_tkj2"),
     ActorRel(NonMatching, "d_a_npc_tks", extra_cflags=[DANPCF_C_HACK]),
-    ActorRel(NonMatching, "d_a_npc_toby"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_toby"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_tr"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_uri"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_worm"),
@@ -2086,7 +2086,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_obj_lv6ChangeGate"), # weak func order
     ActorRel(NonMatching, "d_a_obj_lv6FurikoTrap"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_lv6Lblock"),
-    ActorRel(NonMatching, "d_a_obj_lv6SwGate"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_lv6SwGate"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_lv6SzGate"),
     ActorRel(NonMatching, "d_a_obj_lv6Tenbin"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_lv6TogeRoll"),
