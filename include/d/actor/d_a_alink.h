@@ -3828,6 +3828,8 @@ public:
 
     u16 getReadyItem() { return dComIfGp_getSelectItem(mSelectItemId); }
 
+    static u32 getOtherHeapSize() { return 0xF0A60; }
+
     static daAlink_BckData const m_mainBckShield[20];
     static daAlink_BckData const m_mainBckSword[5];
     static daAlink_BckData const m_mainBckFishing[28];

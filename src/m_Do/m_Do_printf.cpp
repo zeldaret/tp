@@ -91,6 +91,14 @@ void OSReportForceEnableOff() {
 /* 80450BA0-80450BA4 0000A0 0004+00 1/1 0/0 0/0 .sbss            __OSReport_MonopolyThread */
 static OSThread* __OSReport_MonopolyThread;
 
+#if DEBUG
+u8 print_mutex_initialized;
+u8 print_highPriority;
+u8 print_threadID;
+u8 print_callerPC;
+u8 print_callerPCLevel = 3;
+#endif
+
 /* 80450BA4-80450BA8 0000A4 0004+00 1/1 0/0 0/0 .sbss            print_counts */
 static u32 print_counts;
 

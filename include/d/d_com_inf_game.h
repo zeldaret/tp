@@ -295,6 +295,7 @@ public:
     dEvent_manager_c& getEvtManager() { return mEvtManager; }
     dAttention_c* getAttention() { return &mAttention; }
     dStage_startStage_c* getStartStage() { return &mStartStage; }
+    dSmplMdl_draw_c* getSimpleModel() { return mSimpleModel; }
 
     void setCurrentGrafPort(J2DOrthoGraph* i_graf) { mCurrentGrafPort = i_graf; }
     void setCurrentWindow(dDlst_window_c* i_window) { mCurrentWindow = i_window; }
@@ -589,6 +590,7 @@ public:
     void setExpHeap2D(void* heap) { mItemInfo.mExpHeap2D = (JKRExpHeap*)heap; }
     void setMsgExpHeap(void* heap) { mItemInfo.mMsgExpHeap = (JKRExpHeap*)heap; }
 
+    JKRArchive* getMsgDtArchive() { return mMsgDtArchive[0]; }
     JKRArchive* getMsgDtArchive(int idx) { return mMsgDtArchive[idx]; }
     JKRArchive* getMsgArchive(int idx) { return mMsgArchive[idx]; }
     JKRArchive* getMsgCommonArchive() { return mMsgCommonArchive; }
@@ -864,6 +866,10 @@ extern GXColor g_clearColor;
 extern GXColor g_whiteColor;
 extern GXColor g_saftyWhiteColor;
 
+inline void dComIfG_ct() {
+    g_dComIfG_gameInfo.ct();
+}
+
 int dComLbG_PhaseHandler(request_of_phase_process_class*, request_of_phase_process_fn*, void*);
 BOOL dComIfG_resetToOpening(scene_class* scene);
 char* dComIfG_getRoomArcName(int roomNo);
@@ -977,6 +983,10 @@ inline void* dComIfG_getObjectRes(const char* i_arcName, const char* i_resName) 
 
 inline void* dComIfG_getObjectRes(const char* i_arcName, int i_index) {
     return g_dComIfG_gameInfo.mResControl.getObjectRes(i_arcName, i_index);
+}
+
+inline void dComIfG_dumpResControl() {
+    g_dComIfG_gameInfo.mResControl.dump();
 }
 
 inline dBgS& dComIfG_Bgsp() {
@@ -1816,6 +1826,10 @@ inline void dComIfGs_removeZone(int i_zoneNo) {
     g_dComIfG_gameInfo.info.removeZone(i_zoneNo);
 }
 
+inline dSmplMdl_draw_c* dComIfGp_getSimpleModel() {
+    return g_dComIfG_gameInfo.play.getSimpleModel();
+}
+
 inline int dComIfGp_addSimpleModel(J3DModelData* i_modelData, int roomNo, u8 i_drawBG) {
     return g_dComIfG_gameInfo.play.addSimpleModel(i_modelData, roomNo, i_drawBG);
 }
@@ -2312,6 +2326,10 @@ inline JKRArchive* dComIfGp_getNameResArchive() {
 
 inline JKRArchive* dComIfGp_getDemoMsgArchive() {
     return g_dComIfG_gameInfo.play.getDemoMsgArchive();
+}
+
+inline JKRArchive* dComIfGp_getMsgDtArchive() {
+    return g_dComIfG_gameInfo.play.getMsgDtArchive();
 }
 
 inline JKRArchive* dComIfGp_getMsgDtArchive(int idx) {

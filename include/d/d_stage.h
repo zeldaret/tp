@@ -1153,6 +1153,8 @@ public:
         return cLib_onBit(mStatus[i_roomNo].mFlag, flag);
     }
 
+    static JKRExpHeap* getMemoryBlockHeap(int i_no) { return mMemoryBlock[i_no]; }
+
     static const int MEMORY_BLOCK_MAX = 19;
 
     static JKRExpHeap* mMemoryBlock[MEMORY_BLOCK_MAX];

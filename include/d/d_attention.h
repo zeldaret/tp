@@ -249,6 +249,7 @@ public:
     void runDebugDisp0();
 #endif
 
+    JKRSolidHeap* getHeap() { return heap; }
     fopAc_ac_c* getCatghTarget() { return mCatghTarget.getCatghTarget(); }
     fopAc_ac_c* getZHintTarget() { return mZHintTarget.getZHintTarget(); }
     u8 getCatchChgItem() { return mCatghTarget.getChangeItem(); }

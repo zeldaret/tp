@@ -49,6 +49,10 @@ static int fopMsg_Delete(void* i_this) {
     return ret;
 }
 
+#if DEBUG
+u8 fopMsg::MemCheck;
+#endif
+
 /* 80450CF0-80450CF8 0001F0 0004+04 1/1 0/0 0/0 .sbss            fopMsg_MSG_TYPE */
 static int fopMsg_MSG_TYPE;
 

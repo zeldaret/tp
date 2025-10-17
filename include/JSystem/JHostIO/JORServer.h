@@ -7,6 +7,9 @@
 #include "JSystem/JUtility/JUTAssert.h"
 
 void JOR_MESSAGELOOP();
+void JOR_INIT();
+void JOR_SETROOTNODE(const char*, JORReflexible*, u32, u32);
+
 u32 JORMessageBox(const char* message, const char* title, u32 style);
 
 struct JOREventCallbackListNode {
