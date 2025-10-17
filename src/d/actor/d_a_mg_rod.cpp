@@ -2612,7 +2612,7 @@ static void lure_catch(dmg_rod_class* i_this) {
         }
 
         if (henna != NULL && sp8 == 2) {
-            henna->field_0x6a4 = 10;
+            henna->move_mode = 10;
         }
 
         daAlink_getAlinkActorClass()->changeFishGetFace(sp8);
@@ -2849,7 +2849,7 @@ static void lure_heart(dmg_rod_class* i_this) {
 
         dComIfGp_setMesgBgmOn();
         if (henna != NULL) {
-            henna->field_0x6a4 = 10;
+            henna->move_mode = 10;
             henna->field_0x688 = 1;
         }
     }
@@ -4015,7 +4015,7 @@ static void uki_catch(dmg_rod_class* i_this) {
                 }
 
                 if (henna != NULL) {
-                    henna->field_0x6a4 = 30;
+                    henna->move_mode = 30;
                 }
             } else if (mgfish->mCaughtType == MG_CATCH_SP) {
                 i_this->msgflow.init(actor, 0x1397, 0, NULL);
