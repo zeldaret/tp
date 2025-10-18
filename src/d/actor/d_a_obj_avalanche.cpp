@@ -304,7 +304,7 @@ int daObjAvalanche_c::Delete() {
 /* 80BA7C0C-80BA7C6C 000DAC 0060+00 1/0 0/0 0/0 .text
  * daObjAvalanche_create1st__FP16daObjAvalanche_c               */
 static int daObjAvalanche_create1st(daObjAvalanche_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjAvalanche_c);
+    fopAcM_ct(i_this, daObjAvalanche_c);
     return i_this->create1st();
 }
 

@@ -2868,7 +2868,7 @@ void daE_PM_c::SkipChk() {
 
 /* 8074B4DC-8074B834 0096DC 0358+00 1/1 0/0 0/0 .text            Create__8daE_PM_cFv */
 cPhs__Step daE_PM_c::Create() {
-    fopAcM_SetupActor(this, daE_PM_c);
+    fopAcM_ct(this, daE_PM_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "E_PM");
 
     if (step == cPhs_COMPLEATE_e) {

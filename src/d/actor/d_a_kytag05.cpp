@@ -32,7 +32,7 @@ static int daKytag05_Delete(kytag05_class* i_this) {
 
 /* 80528A78-80528B10 000098 0098+00 1/0 0/0 0/0 .text            daKytag05_Create__FP10fopAc_ac_c */
 static int daKytag05_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, kytag05_class);
+    fopAcM_ct(i_this, kytag05_class);
     kytag05_class* a_this = static_cast<kytag05_class*>(i_this);
 
     a_this->field_0x56c = fopAcM_GetParam(a_this) >> 8;

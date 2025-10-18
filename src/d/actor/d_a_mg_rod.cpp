@@ -6234,7 +6234,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 804BA83C-804BAC0C 01133C 03D0+00 1/0 0/0 0/0 .text            dmg_rod_Create__FP10fopAc_ac_c */
 static int dmg_rod_Create(fopAc_ac_c* i_this) {
     dmg_rod_class* a_this = (dmg_rod_class*)i_this;
-    fopAcM_SetupActor(i_this, dmg_rod_class);
+    fopAcM_ct(i_this, dmg_rod_class);
 
     a_this->arg0 = fopAcM_GetParam(i_this);
     a_this->arg1 = (fopAcM_GetParam(i_this) & 0xFF00) >> 8;

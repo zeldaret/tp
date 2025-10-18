@@ -109,7 +109,7 @@ int daLv3Water2_c::CreateHeap() {
 
 /* 80C5A5E4-80C5A7FC 0002C4 0218+00 1/1 0/0 0/0 .text            create__13daLv3Water2_cFv */
 cPhs__Step daLv3Water2_c::create() {
-    fopAcM_SetupActor(this, daLv3Water2_c);
+    fopAcM_ct(this, daLv3Water2_c);
     mResourceIndex = getParam(0, 4);
 
     cPhs__Step resPhase = static_cast<cPhs__Step>(dComIfG_resLoad(&mPhase, l_resNameIdx[mResourceIndex]));

@@ -116,7 +116,7 @@ int daSwLBall_c::Create() {
 
 /* 80D4EEF8-80D4EF60 000478 0068+00 1/1 0/0 0/0 .text            create__11daSwLBall_cFv */
 int daSwLBall_c::create() {
-    fopAcM_SetupActor(this, daSwLBall_c);
+    fopAcM_ct(this, daSwLBall_c);
     if (!Create()) {
         return cPhs_ERROR_e;
     }

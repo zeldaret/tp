@@ -528,7 +528,7 @@ static int daPasserMng_Create(fopAc_ac_c* i_this) {
 
 /* 80D46768-80D467C0 0010C8 0058+00 1/1 0/0 0/0 .text            create__13daPasserMng_cFv */
 int daPasserMng_c::create() {
-    fopAcM_SetupActor(this, daPasserMng_c);
+    fopAcM_ct(this, daPasserMng_c);
     create_init();
     return cPhs_COMPLEATE_e;
 }

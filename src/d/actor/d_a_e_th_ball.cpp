@@ -1087,7 +1087,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
  */
 static int daE_TH_BALL_Create(fopAc_ac_c* a_this) {
     e_th_ball_class* i_this = (e_th_ball_class*)a_this;
-    fopAcM_SetupActor(i_this, e_th_ball_class);
+    fopAcM_ct(i_this, e_th_ball_class);
 
     int phase_state = dComIfG_resLoad(&i_this->mPhase, "E_th_ball");
     if (phase_state == cPhs_COMPLEATE_e) {

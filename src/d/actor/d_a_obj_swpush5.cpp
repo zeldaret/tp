@@ -143,7 +143,7 @@ int daObjSw5_c::CreateHeap() {
 
 /* 8059BB1C-8059BBD4 00071C 00B8+00 1/1 0/0 0/0 .text            create__10daObjSw5_cFv */
 int daObjSw5_c::create() {
-    fopAcM_SetupActor(this, daObjSw5_c);
+    fopAcM_ct(this, daObjSw5_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

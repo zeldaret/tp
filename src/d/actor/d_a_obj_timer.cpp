@@ -11,7 +11,7 @@
 
 /* 80485198-8048526C 000078 00D4+00 1/1 0/0 0/0 .text            _create__Q210daObjTimer5Act_cFv */
 int daObjTimer::Act_c::_create() {
-    fopAcM_SetupActor(this, Act_c);
+    fopAcM_ct(this, Act_c);
     fopAcM_offDraw(this);
 
     if (fopAcM_isSwitch(this, prm_get_sw2Save())) {

@@ -1951,7 +1951,7 @@ void daE_SM_c::initCoSph() {
 
 /* 80797858-80797CE0 005718 0488+00 1/1 0/0 0/0 .text            Create__8daE_SM_cFv */
 cPhs__Step daE_SM_c::Create() {
-    fopAcM_SetupActor(this, daE_SM_c);
+    fopAcM_ct(this, daE_SM_c);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, "E_SM");
     if (phase == cPhs_COMPLEATE_e) {

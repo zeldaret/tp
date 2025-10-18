@@ -671,7 +671,7 @@ static u16 const l_musiya_num[2] = {
 cPhs__Step daObjKAG_c::create() {
     u8 uVar1 = (fopAcM_GetParam(this) & 0xF00) >> 8;
 
-    fopAcM_SetupActor(this, daObjKAG_c);
+    fopAcM_ct(this, daObjKAG_c);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, "I_Kag");
     if (phase == cPhs_COMPLEATE_e) {

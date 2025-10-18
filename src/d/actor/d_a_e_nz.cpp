@@ -704,7 +704,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 /* 8072B7C4-8072BA74 001EC4 02B0+00 1/0 0/0 0/0 .text            daE_NZ_Create__FP10fopAc_ac_c */
 static int daE_NZ_Create(fopAc_ac_c* a_this) {
     e_nz_class* i_this = (e_nz_class*)a_this;
-    fopAcM_SetupActor(a_this, e_nz_class);
+    fopAcM_ct(a_this, e_nz_class);
     int phase = dComIfG_resLoad(&i_this->mPhase, "E_NZ");
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("E_NZ PARAM %x\n", fopAcM_GetParam(a_this));

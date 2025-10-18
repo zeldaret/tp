@@ -210,7 +210,7 @@ int daObjGraRock_c::CreateHeap() {
 
 /* 80C11C64-80C11EA8 000BE4 0244+00 1/1 0/0 0/0 .text            create__14daObjGraRock_cFv */
 int daObjGraRock_c::create() {
-    fopAcM_SetupActor(this, daObjGraRock_c);
+    fopAcM_ct(this, daObjGraRock_c);
     field_0x9c8 = fopAcM_GetParam(this);
     int i;
     int completedNum;

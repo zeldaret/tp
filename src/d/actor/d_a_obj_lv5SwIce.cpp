@@ -38,7 +38,7 @@ int daLv5SwIce_c::CreateHeap() {
 
 /* 80C6CB14-80C6CCE4 0002B4 01D0+00 1/1 0/0 0/0 .text            create__12daLv5SwIce_cFv */
 int daLv5SwIce_c::create() {
-    fopAcM_SetupActor(this, daLv5SwIce_c);
+    fopAcM_ct(this, daLv5SwIce_c);
 
     mSwBit1 = getSwBit1();
     if (mSwBit1 != 0xFF && fopAcM_isSwitch(this, mSwBit1)) {

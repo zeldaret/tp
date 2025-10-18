@@ -73,7 +73,7 @@ static const u16 BEAM_PARTICLE_NAME[] = {
 
 /* 80CC9910-80CC9B10 000310 0200+00 1/1 0/0 0/0 .text            create__14daSCannonCrs_cFv */
 int daSCannonCrs_c::create() {
-    fopAcM_SetupActor(this, daSCannonCrs_c);
+    fopAcM_ct(this, daSCannonCrs_c);
 
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[400])) {
         return cPhs_ERROR_e;
@@ -529,7 +529,7 @@ void daSCannonCrs_c::callMidnaBeamEmt() {
 
 /* 80CCAF20-80CCAF74 001920 0054+00 1/0 0/0 0/0 .text daSCannonCrs_create__FP14daSCannonCrs_c */
 static int daSCannonCrs_create(daSCannonCrs_c* i_this) {
-    fopAcM_SetupActor(i_this, daSCannonCrs_c);
+    fopAcM_ct(i_this, daSCannonCrs_c);
     return i_this->create();
 }
 

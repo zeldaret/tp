@@ -518,7 +518,7 @@ daNpc_zrA_c::~daNpc_zrA_c() {
 
 /* 80B79B58-80B79F38 001738 03E0+00 1/1 0/0 0/0 .text            create__11daNpc_zrA_cFv */
 cPhs__Step daNpc_zrA_c::create() {
-    fopAcM_SetupActor(this, daNpc_zrA_c);
+    fopAcM_ct(this, daNpc_zrA_c);
 
     mType = getTypeFromArgument();
     if (home.angle.x != 0xffff) {

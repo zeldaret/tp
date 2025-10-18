@@ -880,7 +880,7 @@ int daObjLv4Chan_c::Delete() {
 /* 80C66150-80C6627C 002E90 012C+00 1/0 0/0 0/0 .text daObjLv4Chan_create1st__FP14daObjLv4Chan_c
  */
 static int daObjLv4Chan_create1st(daObjLv4Chan_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjLv4Chan_c);
+    fopAcM_ct(i_this, daObjLv4Chan_c);
     return i_this->create1st();
 }
 

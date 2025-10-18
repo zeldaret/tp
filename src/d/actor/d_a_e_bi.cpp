@@ -888,7 +888,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 8068CC00-8068D080 002700 0480+00 1/0 0/0 0/0 .text            daE_BI_Create__FP10fopAc_ac_c */
 static cPhs__Step daE_BI_Create(fopAc_ac_c* a_this) {
-    fopAcM_SetupActor(a_this, e_bi_class);
+    fopAcM_ct(a_this, e_bi_class);
     e_bi_class* i_this = (e_bi_class*)a_this;
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "E_BI");

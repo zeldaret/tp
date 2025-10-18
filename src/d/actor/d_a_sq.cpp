@@ -511,7 +511,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 805A0C30-805A0FB0 0016B0 0380+00 1/0 0/0 0/0 .text            daSq_Create__FP10fopAc_ac_c */
 static cPhs__Step daSq_Create(fopAc_ac_c* i_this) {
     sq_class* _this = static_cast<sq_class*>(i_this);
-    fopAcM_SetupActor(i_this, sq_class);
+    fopAcM_ct(i_this, sq_class);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&_this->mPhaseReq, "Sq");
 
     if (step == cPhs_COMPLEATE_e) {

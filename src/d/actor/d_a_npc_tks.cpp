@@ -280,7 +280,7 @@ daNpcTks_HIOParam const daNpcTks_Param_c::m = {
 
 /* 80B14AF8-80B14ED0 0005B8 03D8+00 1/1 0/0 0/0 .text            Create__10daNpcTks_cFv */
 cPhs__Step daNpcTks_c::Create() {
-    fopAcM_SetupActor(this, daNpcTks_c);
+    fopAcM_ct(this, daNpcTks_c);
 
     if (dComIfGs_isStageBossEnemy()) {
         return cPhs_ERROR_e;

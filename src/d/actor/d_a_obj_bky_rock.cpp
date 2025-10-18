@@ -41,7 +41,7 @@ daBkyRock_c::~daBkyRock_c() {
 
 /* 80BB6C4C-80BB6D60 00048C 0114+00 1/1 0/0 0/0 .text            create__11daBkyRock_cFv */
 int daBkyRock_c::create() {
-    fopAcM_SetupActor(this, daBkyRock_c);
+    fopAcM_ct(this, daBkyRock_c);
     u8 swBit0 = getSwBit0();
     if (fopAcM_isSwitch(this, swBit0)) {
         return cPhs_ERROR_e;
@@ -441,7 +441,7 @@ void daBkyRock_c::callBombEmt(int particleNum, u16 const* particleIds) {
 /* 80BB7D50-80BB7DA4 001590 0054+00 1/0 0/0 0/0 .text            daBkyRock_create__FP11daBkyRock_c
  */
 static int daBkyRock_create(daBkyRock_c* i_this) {
-    fopAcM_SetupActor(i_this, daBkyRock_c);
+    fopAcM_ct(i_this, daBkyRock_c);
     return i_this->create();
 }
 

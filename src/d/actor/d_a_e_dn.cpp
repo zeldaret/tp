@@ -3331,7 +3331,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 static cPhs__Step daE_DN_Create(fopAc_ac_c* a_this) {
     e_dn_class* i_this = (e_dn_class*)a_this;
 
-    fopAcM_SetupActor(a_this, e_dn_class);
+    fopAcM_ct(a_this, e_dn_class);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "E_dn");
     if (phase == cPhs_COMPLEATE_e) {

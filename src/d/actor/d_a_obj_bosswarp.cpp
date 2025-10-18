@@ -170,7 +170,7 @@ int daObjBossWarp_c::CreateHeap() {
 
 /* 80579B70-80579C30 0005B0 00C0+00 1/1 0/0 0/0 .text            create__15daObjBossWarp_cFv */
 cPhs__Step daObjBossWarp_c::create() {
-    fopAcM_SetupActor(this, daObjBossWarp_c);
+    fopAcM_ct(this, daObjBossWarp_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (step == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0x18e0)) {

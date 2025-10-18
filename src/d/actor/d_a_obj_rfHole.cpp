@@ -37,7 +37,7 @@ int daRfHole_c::CreateHeap() {
 
 /* 80CB8FF8-80CB9148 000278 0150+00 1/1 0/0 0/0 .text            create__10daRfHole_cFv */
 int daRfHole_c::create() {
-    fopAcM_SetupActor(this, daRfHole_c);
+    fopAcM_ct(this, daRfHole_c);
     int rv = dComIfG_resLoad(&mPhase, "Otosiana");
     if (rv == cPhs_COMPLEATE_e) {
         if (MoveBGCreate("Otosiana", 7, dBgS_MoveBGProc_TypicalRotY, 0xb40, NULL) == cPhs_ERROR_e) {

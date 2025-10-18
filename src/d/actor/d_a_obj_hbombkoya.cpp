@@ -258,7 +258,7 @@ int daObjHBombkoya_c::Delete() {
  * daObjHBombkoya_create1st__FP16daObjHBombkoya_c               */
 // NONMATCHING - vtable issues, read more below
 static int daObjHBombkoya_create1st(daObjHBombkoya_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjHBombkoya_c);
+    fopAcM_ct(i_this, daObjHBombkoya_c);
 
     return i_this->create1st();
 }

@@ -1035,7 +1035,7 @@ static cPhs__Step daE_BA_Create(fopAc_ac_c* i_this) {
         } // mSphAttr
     };
 
-    fopAcM_SetupActor(i_this, e_ba_class);
+    fopAcM_ct(i_this, e_ba_class);
     e_ba_class* _this = (e_ba_class*)i_this;
 
     _this->mType = (fopAcM_GetParam(_this) & 0xf000) >> 12;

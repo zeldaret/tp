@@ -84,7 +84,7 @@ int daBkLeaf_c::CreateHeap() {
 
 /* 80BB63F4-80BB64A8 000394 00B4+00 1/1 0/0 0/0 .text            create__10daBkLeaf_cFv */
 int daBkLeaf_c::create() {
-    fopAcM_SetupActor(this, daBkLeaf_c);
+    fopAcM_ct(this, daBkLeaf_c);
     int retVal = dComIfG_resLoad(&mPhase, l_arcName);
     if (retVal == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0x980)) {

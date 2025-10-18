@@ -3310,7 +3310,7 @@ static int useHeapInit2(fopAc_ac_c* i_this) {
 
 /* 806389C0-80639214 009640 0854+00 1/1 0/0 0/0 .text            create__8daB_YO_cFv */
 cPhs__Step daB_YO_c::create() {
-    fopAcM_SetupActor(this, daB_YO_c);
+    fopAcM_ct(this, daB_YO_c);
     cPhs__Step step;
 
     mSwNo = fopAcM_GetParam(this) & 0xff;

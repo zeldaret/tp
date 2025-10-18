@@ -63,7 +63,7 @@ static daOptiLift_HIO_c l_HIO;
 
 /* 80C8A500-80C8A738 0002E0 0238+00 1/1 0/0 0/0 .text            create__12daOptiLift_cFv */
 int daOptiLift_c::create() {
-    fopAcM_SetupActor(this, daOptiLift_c);
+    fopAcM_ct(this, daOptiLift_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "Lv8Lift");
     if (phase_state == cPhs_COMPLEATE_e) {

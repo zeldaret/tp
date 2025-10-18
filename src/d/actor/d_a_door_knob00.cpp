@@ -155,7 +155,7 @@ int daKnob20_c::CreateInit() {
 
 /* 8045ED1C-8045EE14 00053C 00F8+00 1/1 0/0 0/0 .text            create__10daKnob20_cFv */
 int daKnob20_c::create() {
-    fopAcM_SetupActor(this, daKnob20_c);
+    fopAcM_ct(this, daKnob20_c);
     int phase = dComIfG_resLoad(&mPhase2, getAlwaysArcName());
     if (phase != cPhs_COMPLEATE_e) {
         return phase;

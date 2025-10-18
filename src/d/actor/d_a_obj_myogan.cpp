@@ -142,7 +142,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80C9F0AC-80C9F1F0 0005EC 0144+00 1/0 0/0 0/0 .text            daObj_Myogan_Create__FP10fopAc_ac_c
  */
 static int daObj_Myogan_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, obj_myogan_class);
+    fopAcM_ct(i_this, obj_myogan_class);
     obj_myogan_class* a_this = (obj_myogan_class*)i_this;
 
     int phase = dComIfG_resLoad(&a_this->mPhase, "S_YOGAN");

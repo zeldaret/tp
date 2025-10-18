@@ -82,7 +82,7 @@ int daObjDrop_c::Create() {
 
 /* 80BDFE58-80BE005C 0001F8 0204+00 1/1 0/0 0/0 .text            create__11daObjDrop_cFv */
 int daObjDrop_c::create() {
-    fopAcM_SetupActor(this, daObjDrop_c);
+    fopAcM_ct(this, daObjDrop_c);
 
     if (dComIfGs_isTbox(getSave())) {
         return cPhs_ERROR_e;

@@ -77,7 +77,7 @@ int daTkraDai_c::CreateHeap() {
 
 /* 80D07140-80D07344 0004A0 0204+00 1/1 0/0 0/0 .text            create__11daTkraDai_cFv */
 int daTkraDai_c::create() {
-    fopAcM_SetupActor(this, daTkraDai_c);
+    fopAcM_ct(this, daTkraDai_c);
 
     cPhs__Step phase = static_cast<cPhs__Step>(dComIfG_resLoad(&mPhase, "M_TakaraD"));
     if (phase == cPhs_COMPLEATE_e) {

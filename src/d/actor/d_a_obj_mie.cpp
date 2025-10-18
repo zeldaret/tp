@@ -91,7 +91,7 @@ daObj_Mie_c::~daObj_Mie_c() {
 
 /* 80C941C8-80C94398 0002E8 01D0+00 1/1 0/0 0/0 .text            create__11daObj_Mie_cFv */
 int daObj_Mie_c::create() {
-    fopAcM_SetupActor(this, daObj_Mie_c);
+    fopAcM_ct(this, daObj_Mie_c);
     mType = getType();
     int rv = dComIfG_resLoad(&mPhase, l_resNameList[l_bmdData[mType][1]]);
     if (rv == cPhs_COMPLEATE_e) {

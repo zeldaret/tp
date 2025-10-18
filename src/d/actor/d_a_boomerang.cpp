@@ -1483,7 +1483,7 @@ static dCcD_SrcCyl l_windAtCylSrc = {
 /* 804A2084-804A230C 004044 0288+00 1/1 0/0 0/0 .text            create__13daBoomerang_cFv */
 int daBoomerang_c::create() {
     fpc_ProcID id = fopAcM_GetID(this);
-    fopAcM_SetupActor(this, daBoomerang_c);
+    fopAcM_ct(this, daBoomerang_c);
 
     if (!fopAcM_entrySolidHeap(this, daBoomerang_createHeap, 0xC0D0)) {
         return cPhs_ERROR_e;

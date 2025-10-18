@@ -638,7 +638,7 @@ bool daObjARI_c::CreateChk() {
 
 /* 80BA49E8-80BA5258 002448 0870+00 1/1 0/0 0/0 .text            create__10daObjARI_cFv */
 cPhs__Step daObjARI_c::create() {
-    fopAcM_SetupActor(this, daObjARI_c);
+    fopAcM_ct(this, daObjARI_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "I_Ari");
 
     if (step == cPhs_COMPLEATE_e) {

@@ -314,7 +314,7 @@ int daObjHHASHI_c::CreateHeap() {
 
 /* 80580EA0-8058112C 001560 028C+00 1/1 0/0 0/0 .text            create__13daObjHHASHI_cFv */
 int daObjHHASHI_c::create() {
-    fopAcM_SetupActor(this, daObjHHASHI_c);
+    fopAcM_ct(this, daObjHHASHI_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
         gravity = -9.0f;

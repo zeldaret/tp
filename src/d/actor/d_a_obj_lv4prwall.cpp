@@ -292,7 +292,7 @@ int daObjLv4PRwall_c::Delete() {
 /* 80C697A4-80C69804 000B84 0060+00 1/0 0/0 0/0 .text
  * daObjLv4PRwall_create1st__FP16daObjLv4PRwall_c               */
 static int daObjLv4PRwall_create1st(daObjLv4PRwall_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjLv4PRwall_c);
+    fopAcM_ct(i_this, daObjLv4PRwall_c);
     return i_this->create1st();
 }
 

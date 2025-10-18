@@ -26,7 +26,7 @@ static char* l_myName = "EvtMsg";
 
 /* 8048CF38-8048D014 000078 00DC+00 1/1 0/0 0/0 .text            create__14daTag_EvtMsg_cFv */
 int daTag_EvtMsg_c::create() {
-    fopAcM_SetupActor(this, daTag_EvtMsg_c);
+    fopAcM_ct(this, daTag_EvtMsg_c);
 
     scale.x *= 100.0f;
     scale.y *= 100.0f;

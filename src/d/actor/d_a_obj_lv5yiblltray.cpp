@@ -583,7 +583,7 @@ int daObjYIblltray_c::Delete() {
 /* 80C70480-80C70554 001900 00D4+00 1/0 0/0 0/0 .text
  * daObjYIblltray_create1st__FP16daObjYIblltray_c               */
 static int daObjYIblltray_create1st(daObjYIblltray_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjYIblltray_c);
+    fopAcM_ct(i_this, daObjYIblltray_c);
     return i_this->create1st();
 }
 

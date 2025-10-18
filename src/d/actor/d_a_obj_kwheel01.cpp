@@ -374,7 +374,7 @@ extern actor_process_profile_definition g_profile_Obj_KWheel01 = {
 /* 80C4F4C0-80C4F540 000AC0 0080+00 1/1 0/0 0/0 .text daObjKWheel01_create1st__FP15daObjKWheel01_c
  */
 static int daObjKWheel01_create1st(daObjKWheel01_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjKWheel01_c);
+    fopAcM_ct(i_this, daObjKWheel01_c);
     return i_this->create1st();
 }
 

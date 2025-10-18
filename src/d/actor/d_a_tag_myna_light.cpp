@@ -9,7 +9,7 @@
 
 /* 80D5CB38-80D5CB9C 000078 0064+00 1/1 0/0 0/0 .text            create__17daTag_MynaLight_cFv */
 int daTag_MynaLight_c::create() {
-    fopAcM_SetupActor(this, daTag_MynaLight_c);
+    fopAcM_ct(this, daTag_MynaLight_c);
     initialize();
     return 4;
 }

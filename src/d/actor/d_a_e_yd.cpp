@@ -1407,7 +1407,7 @@ static int daE_YD_Create(fopAc_ac_c* i_this) {
         } // mSphAttr
     };
 
-    fopAcM_SetupActor(i_this, e_yd_class);
+    fopAcM_ct(i_this, e_yd_class);
     e_yd_class* a_this = (e_yd_class*)i_this;
 
     s32 loadRv = dComIfG_resLoad(&a_this->field_0x5ac, "E_yd");

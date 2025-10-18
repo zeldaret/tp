@@ -1213,7 +1213,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 806E951C-806E9900 00381C 03E4+00 1/1 0/0 0/0 .text            create__8daE_HP_cFv */
 int daE_HP_c::create() {
-    fopAcM_SetupActor(this, daE_HP_c);
+    fopAcM_ct(this, daE_HP_c);
 
     s32 loadResult = dComIfG_resLoad(&mPhaseReq, "E_HP");
     if (loadResult == cPhs_COMPLEATE_e) {

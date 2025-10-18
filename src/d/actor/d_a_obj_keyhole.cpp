@@ -732,7 +732,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80C4307C-80C434AC 001F1C 0430+00 1/0 0/0 0/0 .text daObj_Keyhole_Create__FP10fopAc_ac_c */
 static int daObj_Keyhole_Create(fopAc_ac_c* a_this) {
     obj_keyhole_class* i_this = (obj_keyhole_class*)a_this;
-    fopAcM_SetupActor(a_this, obj_keyhole_class);
+    fopAcM_ct(a_this, obj_keyhole_class);
 
     static char* arc_name[] = {
         "Obj_keyh",  "Obj_bkey", "Obj_bkey2", "Obj_bkey3", "Obj_bkey",

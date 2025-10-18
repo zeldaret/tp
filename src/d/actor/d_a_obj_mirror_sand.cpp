@@ -159,7 +159,7 @@ void daObjMirrorSand_c::create_init() {
 }
 
 int daObjMirrorSand_c::create() {
-    fopAcM_SetupActor(this, daObjMirrorSand_c);
+    fopAcM_ct(this, daObjMirrorSand_c);
 
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {

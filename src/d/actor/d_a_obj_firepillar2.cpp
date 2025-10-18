@@ -139,7 +139,7 @@ int daObjFPillar2_c::CreateHeap() {
 
 /* 80BEA228-80BEA400 0005E8 01D8+00 1/1 0/0 0/0 .text            create__15daObjFPillar2_cFv */
 int daObjFPillar2_c::create() {
-    fopAcM_SetupActor(this, daObjFPillar2_c);
+    fopAcM_ct(this, daObjFPillar2_c);
     if (mInitAngles == 0) {
         field_0x97a = home.angle.x;
         field_0x97c = home.angle.z;

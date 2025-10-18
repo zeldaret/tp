@@ -520,7 +520,7 @@ static int set_pos_check(obj_toby_class* i_this, int param_2) {
 static int daObj_Toby_Create(fopAc_ac_c* a_this) {
     static u32 const l_bmdidx[2] = {4, 5};
 
-    fopAcM_SetupActor(a_this, obj_toby_class);
+    fopAcM_ct(a_this, obj_toby_class);
     obj_toby_class* i_this = (obj_toby_class*)a_this;
     if (strcmp(dComIfGp_getStartStageName(), "D_MN07") == 0) {
         i_this->mArcName = "Obj_Tob7";

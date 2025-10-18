@@ -182,7 +182,7 @@ static int daObjIce_s_Create(fopAc_ac_c* i_this) {
 
 /* 80C212CC-80C2157C 000A0C 02B0+00 1/1 0/0 0/0 .text            create__12daObjIce_s_cFv */
 int daObjIce_s_c::create() {
-    fopAcM_SetupActor(this, daObjIce_s_c);
+    fopAcM_ct(this, daObjIce_s_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
         int dzb_id = dComIfG_getObjctResName2Index(l_arcName, "Ice_s.dzb");

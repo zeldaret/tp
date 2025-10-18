@@ -161,7 +161,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
  */
 static cPhs__Step daObj_Lbox_Create(fopAc_ac_c* i_this) {
     obj_lbox_class* a_this = static_cast<obj_lbox_class*>(i_this);
-    fopAcM_SetupActor(a_this, obj_lbox_class);
+    fopAcM_ct(a_this, obj_lbox_class);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "Obj_lbox");
 
     if (step == cPhs_COMPLEATE_e) {

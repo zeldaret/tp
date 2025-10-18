@@ -648,7 +648,7 @@ bool daObjTOMBO_c::CreateChk() {
 
 /* 80D1B174-80D1B510 002094 039C+00 1/1 0/0 0/0 .text            create__12daObjTOMBO_cFv */
 int daObjTOMBO_c::create() {
-    fopAcM_SetupActor(this, daObjTOMBO_c);
+    fopAcM_ct(this, daObjTOMBO_c);
     int phase = dComIfG_resLoad(&mPhase, "Tombo");
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("TOMBO PARAM %x\n", fopAcM_GetParam(this));

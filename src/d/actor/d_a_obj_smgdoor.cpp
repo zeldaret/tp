@@ -436,7 +436,7 @@ int daObjSmgDoor_c::Delete() {
 /* 80CDCB04-80CDCB64 001044 0060+00 1/0 0/0 0/0 .text daObjSmgDoor_create1st__FP14daObjSmgDoor_c
  */
 static int daObjSmgDoor_create1st(daObjSmgDoor_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjSmgDoor_c);
+    fopAcM_ct(i_this, daObjSmgDoor_c);
     return i_this->create1st();
 }
 

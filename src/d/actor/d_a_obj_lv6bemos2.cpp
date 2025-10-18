@@ -1194,7 +1194,7 @@ int daObjLv6Bm_c::Delete() {
 
 /* 80C81808-80C819C8 0036C8 01C0+00 1/0 0/0 0/0 .text daObjLv6Bm_create1st__FP12daObjLv6Bm_c */
 static int daObjLv6Bm_create1st(daObjLv6Bm_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjLv6Bm_c);
+    fopAcM_ct(i_this, daObjLv6Bm_c);
     return i_this->create1st();
 }
 

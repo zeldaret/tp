@@ -2235,7 +2235,7 @@ static int daDoor20_Delete(daDoor20_c* i_this) {
 
 /* 80466618-8046670C 005B58 00F4+00 1/0 0/0 0/0 .text            daDoor20_Create__FP10fopAc_ac_c */
 static int daDoor20_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, daDoor20_c);
+    fopAcM_ct(i_this, daDoor20_c);
     return static_cast<daDoor20_c*>(i_this)->create();
 }
 

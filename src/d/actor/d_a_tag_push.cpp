@@ -53,7 +53,7 @@ void* daTag_Push_c::srchActor(void* param_0, void* param_1) {
 
 /* 80490418-804904D4 0001D8 00BC+00 1/1 0/0 0/0 .text            create__12daTag_Push_cFv */
 int daTag_Push_c::create() {
-    fopAcM_SetupActor(this, daTag_Push_c);
+    fopAcM_ct(this, daTag_Push_c);
     scale.x *= 100.0f;
     scale.y *= 100.0f;
     scale.z = scale.x;

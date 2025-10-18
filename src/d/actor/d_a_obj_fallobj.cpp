@@ -413,7 +413,7 @@ int daObjFallObj_c::Delete() {
 /* 80BE4990-80BE4A04 001050 0074+00 1/0 0/0 0/0 .text daObjFallObj_create1st__FP14daObjFallObj_c
  */
 static int daObjFallObj_create1st(daObjFallObj_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjFallObj_c);
+    fopAcM_ct(i_this, daObjFallObj_c);
     return i_this->create1st();
 }
 

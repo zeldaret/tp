@@ -1474,7 +1474,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
  */
 /* 808071F4-808075CC 002AB4 03D8+00 1/0 0/0 0/0 .text            daE_YK_Create__FP10fopAc_ac_c */
 static int daE_YK_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, e_yk_class);
+    fopAcM_ct(i_this, e_yk_class);
     e_yk_class* yk = (e_yk_class*)i_this;
 
     int phase_step = dComIfG_resLoad(&yk->mPhase,"E_YK");

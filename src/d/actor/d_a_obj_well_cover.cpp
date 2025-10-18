@@ -44,7 +44,7 @@ int daObjWCover_c::CreateHeap() {
 
 /* 80D36404-80D364E0 0001E4 00DC+00 1/1 0/0 0/0 .text            create__13daObjWCover_cFv */
 int daObjWCover_c::create() {
-    fopAcM_SetupActor(this, daObjWCover_c);
+    fopAcM_ct(this, daObjWCover_c);
     if (fopAcM_isSwitch(this, getSwNo())) {
         return cPhs_ERROR_e;
     }

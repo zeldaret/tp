@@ -43,7 +43,7 @@ int daObjSMark_c::Create() {
 
 /* 8059A168-8059A25C 0001C8 00F4+00 1/1 0/0 0/0 .text            create__12daObjSMark_cFv */
 int daObjSMark_c::create() {
-    fopAcM_SetupActor(this, daObjSMark_c);
+    fopAcM_ct(this, daObjSMark_c);
 
     int phase = dComIfG_resLoad(&mpPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {

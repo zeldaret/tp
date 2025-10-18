@@ -12,7 +12,7 @@
 #include "f_pc/f_pc_manager.h"
 #include "m_Do/m_Do_hostIO.h"
 
-#define fopAcM_SetupActor(ptr, ClassName)                                                          \
+#define fopAcM_ct(ptr, ClassName)                                                          \
     if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) {                                            \
         new (ptr) ClassName();                                                                     \
         fopAcM_OnCondition(ptr, fopAcCnd_INIT_e);                                                  \

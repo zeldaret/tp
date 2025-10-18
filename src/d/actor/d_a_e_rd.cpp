@@ -7165,7 +7165,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
     e_rd_class* i_this = (e_rd_class*)a_this;
 
-    fopAcM_SetupActor(a_this, e_rd_class);
+    fopAcM_ct(a_this, e_rd_class);
 
     i_this->field_0x5b6 = fopAcM_GetParam(a_this);
     i_this->field_0x5b7 = i_this->field_0x5b6;

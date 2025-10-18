@@ -37,7 +37,7 @@ static char* l_resNameList[3] = {
 /* 80487538-80487670 000078 0138+00 1/1 0/0 0/0 .text            create__15daTag_AllMato_cFv */
 int daTag_AllMato_c::create() {
     int var_r29 = 0;
-    fopAcM_SetupActor(this, daTag_AllMato_c);
+    fopAcM_ct(this, daTag_AllMato_c);
 
     scale.x *= 100.0f;
     scale.y *= 100.0f;

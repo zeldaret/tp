@@ -473,7 +473,7 @@ void daObjStair_c::removeParticle() {
 
 /* 80C9E614-80C9E700 0015F4 00EC+00 1/0 0/0 0/0 .text daObjStair_create1st__FP12daObjStair_c */
 static int daObjStair_create1st(daObjStair_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjStair_c);
+    fopAcM_ct(i_this, daObjStair_c);
     return i_this->create1st();
 }
 

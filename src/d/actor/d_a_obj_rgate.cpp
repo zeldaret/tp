@@ -890,7 +890,7 @@ int daObjRgate_c::Delete() {
 
 /* 80CBBFA0-80CBC054 002380 00B4+00 1/0 0/0 0/0 .text daObjRgate_create1st__FP12daObjRgate_c */
 static int daObjRgate_create1st(daObjRgate_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjRgate_c);
+    fopAcM_ct(i_this, daObjRgate_c);
     return i_this->create1st();
 }
 

@@ -1850,7 +1850,7 @@ static int daE_RDB_Create(fopAc_ac_c* actor) {
     };
 
     e_rdb_class* i_this = (e_rdb_class*)actor;
-    fopAcM_SetupActor(actor, e_rdb_class);
+    fopAcM_ct(actor, e_rdb_class);
 
     int phase = dComIfG_resLoad(&i_this->mPhase, "E_rdb");
     i_this->field_0x5b6 = fopAcM_GetParam(actor);

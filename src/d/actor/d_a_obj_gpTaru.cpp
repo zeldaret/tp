@@ -83,7 +83,7 @@ const dCcD_SrcGObjInf daGpTaru_c::mCcDObjInfo = {
 
 /* 8057D33C-8057D600 00035C 02C4+00 1/1 0/0 0/0 .text            create__10daGpTaru_cFv */
 int daGpTaru_c::create() {
-    fopAcM_SetupActor(this, daGpTaru_c);
+    fopAcM_ct(this, daGpTaru_c);
 
     if (fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xFF)) {
         return cPhs_ERROR_e;

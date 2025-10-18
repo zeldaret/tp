@@ -228,7 +228,7 @@ u8 daShopItem_c::getCollisionR() {
 }
 
 int daShopItem_c::_create() {
-    fopAcM_SetupActor(this, daShopItem_c);
+    fopAcM_ct(this, daShopItem_c);
 
     mAngleX = 0;
     mAngleY = 0;

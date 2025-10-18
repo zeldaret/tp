@@ -388,7 +388,7 @@ int daZdoor_c::Delete() {
 
 /* 80D3FDCC-80D3FF18 000A0C 014C+00 1/0 0/0 0/0 .text            daZdoor_create1st__FP9daZdoor_c */
 static int daZdoor_create1st(daZdoor_c* i_this) {
-    fopAcM_SetupActor(i_this, daZdoor_c);
+    fopAcM_ct(i_this, daZdoor_c);
 
     return i_this->create1st();
 }

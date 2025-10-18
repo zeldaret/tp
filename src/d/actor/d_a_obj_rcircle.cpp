@@ -43,7 +43,7 @@ int daObjRCircle_c::createHeap() {
 
 /* 80CB8928-80CB8A28 000348 0100+00 1/1 0/0 0/0 .text            create__14daObjRCircle_cFv */
 int daObjRCircle_c::create() {
-    fopAcM_SetupActor(this, daObjRCircle_c);
+    fopAcM_ct(this, daObjRCircle_c);
     if (fopAcM_isSwitch(this, getSwBit())) {
         return cPhs_ERROR_e;
     }
@@ -112,7 +112,7 @@ void daObjRCircle_c::setModelMtx() {
 
 /* 80CB8C44-80CB8C98 000664 0054+00 1/0 0/0 0/0 .text daObjRCircle_create__FP14daObjRCircle_c */
 static int daObjRCircle_create(daObjRCircle_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjRCircle_c);
+    fopAcM_ct(i_this, daObjRCircle_c);
     return i_this->create();
 }
 

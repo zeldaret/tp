@@ -440,7 +440,7 @@ int daObjSwTurn_c::Delete() {
 
 /* 80D01F98-80D01FF8 001438 0060+00 1/0 0/0 0/0 .text daObjSwTurn_create1st__FP13daObjSwTurn_c */
 static int daObjSwTurn_create1st(daObjSwTurn_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjSwTurn_c);
+    fopAcM_ct(i_this, daObjSwTurn_c);
     return i_this->create1st();
 }
 

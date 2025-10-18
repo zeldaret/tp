@@ -923,7 +923,7 @@ int daObjVolcBom_c::Delete() {
 /* 80D26774-80D268A8 002654 0134+00 1/0 0/0 0/0 .text daObjVolcBom_create1st__FP14daObjVolcBom_c
  */
 static int daObjVolcBom_create1st(daObjVolcBom_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjVolcBom_c);
+    fopAcM_ct(i_this, daObjVolcBom_c);
     return ((daObjVolcBom_c*)i_this)->create1st();
 }
 

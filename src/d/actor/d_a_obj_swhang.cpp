@@ -189,7 +189,7 @@ int daObjSwHang_c::CreateHeap() {
 
 /* 80CFBDD0-80CFBF60 000510 0190+00 1/1 0/0 0/0 .text            create1st__13daObjSwHang_cFv */
 int daObjSwHang_c::create1st() {
-    fopAcM_SetupActor(this, daObjSwHang_c);
+    fopAcM_ct(this, daObjSwHang_c);
     mType = getType_private();
     int rv = dComIfG_resLoad(&mPhase, l_arcName[mType]);
     if (rv == cPhs_COMPLEATE_e) {
@@ -507,7 +507,7 @@ int daObjSwHang_c::Delete() {
 
 /* 80CFCE0C-80CFCF20 00154C 0114+00 1/0 0/0 0/0 .text daObjSwHang_create1st__FP13daObjSwHang_c */
 static int daObjSwHang_create1st(daObjSwHang_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjSwHang_c);
+    fopAcM_ct(i_this, daObjSwHang_c);
     return i_this->create1st();
 }
 

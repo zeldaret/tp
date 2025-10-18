@@ -432,7 +432,7 @@ static int daKytag00_Delete(kytag00_class* i_this) {
 
 /* 8046C7BC-8046C978 00111C 01BC+00 1/0 0/0 0/0 .text            daKytag00_Create__FP10fopAc_ac_c */
 static int daKytag00_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, kytag00_class);
+    fopAcM_ct(i_this, kytag00_class);
     kytag00_class* a_this = (kytag00_class*)i_this;
 
     a_this->field_0x56e = 0;

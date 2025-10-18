@@ -10,7 +10,7 @@
 
 /* 80C10BF8-80C10D48 000078 0150+00 1/1 0/0 0/0 .text            Create__14daObjGraWall_cFv */
 int daObjGraWall_c::Create() {
-    fopAcM_SetupActor(this, daObjGraWall_c);
+    fopAcM_ct(this, daObjGraWall_c);
     field_0x6e0 = fopAcM_GetParam(this);
 
     if (field_0x6e0 != 0xff) {

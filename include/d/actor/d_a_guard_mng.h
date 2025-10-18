@@ -56,7 +56,7 @@ public:
     }
 
     int create() {
-        fopAcM_SetupActor(this, daGuardMng_c);
+        fopAcM_ct(this, daGuardMng_c);
         create_init();
         return cPhs_COMPLEATE_e;
     }

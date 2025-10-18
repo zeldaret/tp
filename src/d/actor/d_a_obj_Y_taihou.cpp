@@ -399,7 +399,7 @@ int daObjYtaihou_c::Delete() {
 /* 80BA0C88-80BA0DA4 001288 011C+00 1/0 0/0 0/0 .text daObjYtaihou_create1st__FP14daObjYtaihou_c
  */
 static void daObjYtaihou_create1st(daObjYtaihou_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjYtaihou_c);
+    fopAcM_ct(i_this, daObjYtaihou_c);
     i_this->create1st();
 }
 

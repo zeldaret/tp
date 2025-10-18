@@ -64,7 +64,7 @@ int daZrTuraRc_c::CreateHeap() {
 
 /* 80D41A40-80D41D24 0002A0 02E4+00 1/1 0/0 0/0 .text            create__12daZrTuraRc_cFv */
 cPhs__Step daZrTuraRc_c::create() {
-    fopAcM_SetupActor(this, daZrTuraRc_c);
+    fopAcM_ct(this, daZrTuraRc_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, "M_DRockHn");
     if (step == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x840)) {

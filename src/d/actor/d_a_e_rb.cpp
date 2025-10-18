@@ -790,7 +790,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 8076424C-80764624 001FAC 03D8+00 1/0 0/0 0/0 .text            daE_RB_Create__FP10fopAc_ac_c */
 static int daE_RB_Create(fopAc_ac_c* i_this) {
     e_rb_class* a_this = (e_rb_class*)i_this;
-    fopAcM_SetupActor(i_this, e_rb_class);
+    fopAcM_ct(i_this, e_rb_class);
 
     int phase_state = dComIfG_resLoad(&a_this->phase, "E_rb");
     if (phase_state == cPhs_COMPLEATE_e) {

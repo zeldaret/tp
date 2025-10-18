@@ -83,7 +83,7 @@ static timer_info l_timerType[] = {
 
 /* 80D4D884-80D4D928 000144 00A4+00 1/1 0/0 0/0 .text            Create__16daStartAndGoal_cFv */
 int daStartAndGoal_c::Create() {
-    fopAcM_SetupActor(this, daStartAndGoal_c);
+    fopAcM_ct(this, daStartAndGoal_c);
 
     init();
     return cPhs_COMPLEATE_e;

@@ -59,7 +59,7 @@ static int createSolidHeap(fopAc_ac_c* i_this) {
 
 /* 80D442BC-80D4443C 00027C 0180+00 1/1 0/0 0/0 .text            Create__13daZraFreeze_cFv */
 cPhs__Step daZraFreeze_c::Create() {
-    fopAcM_SetupActor(this, daZraFreeze_c);
+    fopAcM_ct(this, daZraFreeze_c);
     field_0x5b0 = (fopAcM_GetParam(this) >> 8) & 0xff;
     field_0x5b1 = (fopAcM_GetParam(this) >> 0x10) & 0xff;
     field_0x5b2 = (fopAcM_GetParam(this) >> 0x18) & 0xff;

@@ -334,7 +334,7 @@ static int daObjLv5Key_Execute(daObjLv5Key_c* i_this) {
 
 /* 80B9C5EC-80B9C798 000CAC 01AC+00 1/1 0/0 0/0 .text            create_1st__13daObjLv5Key_cFv */
 int daObjLv5Key_c::create_1st() {
-    fopAcM_SetupActor(this, daObjLv5Key_c);
+    fopAcM_ct(this, daObjLv5Key_c);
 
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
