@@ -67,6 +67,7 @@ public:
     int setObjectRes(char const* i_arcName, void* i_archiveRes, u32 i_bufferSize, JKRHeap* i_heap);
     int setStageRes(char const* i_arcName, JKRHeap* i_heap);
     void dump();
+    void dump(char*);
     int getObjectResName2Index(char const* i_arcName, char const* i_resName);
 
     static int setRes(char const* i_arcName, dRes_info_c* i_resInfo, int i_infoNum, char const* i_path, u8 i_mountDirection, JKRHeap* i_heap);
@@ -126,6 +127,12 @@ public:
     dRes_info_c* getStageResInfo(const char* i_arcName) {
         return getResInfo(i_arcName, mStageInfo, ARRAY_SIZEU(mStageInfo));
     }
+    
+    #if DEBUG
+    void dumpTag() {
+        // TODO
+    }
+    #endif
 
     /* 0x0000 */ dRes_info_c mObjectInfo[128];
     /* 0x1200 */ dRes_info_c mStageInfo[64];

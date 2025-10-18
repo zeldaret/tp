@@ -35,7 +35,7 @@ int daLv4HsTarget_c::CreateHeap() {
 
 /* 80C5F784-80C5F85C 000244 00D8+00 1/1 0/0 0/0 .text            create__15daLv4HsTarget_cFv */
 int daLv4HsTarget_c::create() {
-    fopAcM_SetupActor(this, daLv4HsTarget_c);
+    fopAcM_ct(this, daLv4HsTarget_c);
 
     int phase = dComIfG_resLoad(&mPhase, "L4HsMato");
     if (phase == cPhs_COMPLEATE_e) {

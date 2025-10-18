@@ -67,7 +67,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
  */
 static int daE_HB_LEAF_Create(fopAc_ac_c* i_this) {
     e_hb_leaf_class* a_this = static_cast<e_hb_leaf_class*>(i_this);
-    fopAcM_SetupActor(a_this, e_hb_leaf_class);
+    fopAcM_ct(a_this, e_hb_leaf_class);
 
     int phase_state = dComIfG_resLoad(&a_this->mPhase, "E_HB");
     if (phase_state == cPhs_COMPLEATE_e) {

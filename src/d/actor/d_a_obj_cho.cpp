@@ -560,7 +560,7 @@ bool daObjCHO_c::CreateChk() {
 
 /* 80BCC01C-80BCC3C8 001DFC 03AC+00 1/1 0/0 0/0 .text            create__10daObjCHO_cFv */
 cPhs__Step daObjCHO_c::create() {
-    fopAcM_SetupActor(this, daObjCHO_c);
+    fopAcM_ct(this, daObjCHO_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, "I_Cho");
 
     if (step == cPhs_COMPLEATE_e) {

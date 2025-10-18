@@ -281,7 +281,7 @@ static int daObjLdy_Delete(daObjLdy_c* i_this) {
 }
 
 int daObjLdy_c::create() {
-    fopAcM_SetupActor(this, daObjLdy_c);
+    fopAcM_ct(this, daObjLdy_c);
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x9a0)) {

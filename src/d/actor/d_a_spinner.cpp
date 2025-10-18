@@ -57,7 +57,7 @@ static dCcD_SrcCyl l_cylSrc = {
 
 /* 804D1A70-804D1D60 0001D0 02F0+00 1/1 0/0 0/0 .text            create__11daSpinner_cFv */
 int daSpinner_c::create() {
-    fopAcM_SetupActor(this, daSpinner_c);
+    fopAcM_ct(this, daSpinner_c);
 
     if (!fopAcM_entrySolidHeap(this, daSpinner_createHeap, 0x900)) {
         return cPhs_ERROR_e;

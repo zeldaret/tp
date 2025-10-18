@@ -1932,7 +1932,7 @@ int daTbox_c::Delete() {
 
 /* 80495CFC-80495E38 0050BC 013C+00 1/0 0/0 0/0 .text            daTbox_create1st__FP8daTbox_c */
 cPhs__Step daTbox_create1st(daTbox_c* i_this) {
-    fopAcM_SetupActor(i_this, daTbox_c);
+    fopAcM_ct(i_this, daTbox_c);
     return i_this->create1st();
 }
 

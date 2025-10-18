@@ -2209,7 +2209,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 8082E730-8082ECEC 0057F0 05BC+00 1/1 0/0 0/0 .text            create__8daE_ZH_cFv */
 cPhs__Step daE_ZH_c::create() {
-    fopAcM_SetupActor(this, daE_ZH_c);
+    fopAcM_ct(this, daE_ZH_c);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, "E_ZH");
     if (phase == cPhs_COMPLEATE_e) {

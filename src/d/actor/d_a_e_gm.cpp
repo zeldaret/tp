@@ -1759,7 +1759,7 @@ static u16 const l_heapsize[4] = {
 
 /* 806D6CF0-806D71F4 005B70 0504+00 1/1 0/0 0/0 .text            create__8daE_GM_cFv */
 cPhs__Step daE_GM_c::create() {
-    fopAcM_SetupActor(this, daE_GM_c);
+    fopAcM_ct(this, daE_GM_c);
 
     mType = fopAcM_GetParam(this);
     if (mType == 0xFF) {

@@ -1775,7 +1775,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 /* 80788F88-80789418 003F48 0490+00 1/0 0/0 0/0 .text            daE_SF_Create__FP10fopAc_ac_c */
 static cPhs__Step daE_SF_Create(fopAc_ac_c* a_this) {
     e_sf_class* i_this = (e_sf_class*)a_this;
-    fopAcM_SetupActor(a_this, e_sf_class);
+    fopAcM_ct(a_this, e_sf_class);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "E_sf");
     if (phase == cPhs_COMPLEATE_e) {

@@ -1025,7 +1025,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 806ACE14-806AD0AC 002D14 0298+00 1/1 0/0 0/0 .text            create__8daE_DK_cFv */
 int daE_DK_c::create() {
-    fopAcM_SetupActor(this, daE_DK_c);
+    fopAcM_ct(this, daE_DK_c);
 
     s32 loadRes = dComIfG_resLoad(&mPhaseReq, "E_DK");
     if (loadRes == cPhs_COMPLEATE_e) {

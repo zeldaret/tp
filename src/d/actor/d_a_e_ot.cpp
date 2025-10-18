@@ -784,7 +784,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 8073C31C-8073C77C 00213C 0460+00 1/1 0/0 0/0 .text            create__8daE_OT_cFv */
 cPhs__Step daE_OT_c::create() {
-    fopAcM_SetupActor(this, daE_OT_c);
+    fopAcM_ct(this, daE_OT_c);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "E_OT");
     if (step == cPhs_COMPLEATE_e) {

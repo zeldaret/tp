@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_AXFX_H_
 #define _DOLPHIN_AXFX_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/axfx.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -193,4 +196,5 @@ void AXFXReverbStdCallback(AXFX_BUFFERUPDATE* bufferUpdate, AXFX_REVERBSTD* reve
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_AXFX_H_

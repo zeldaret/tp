@@ -4102,7 +4102,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 805C5974-805C62B0 00ABF4 093C+00 1/1 0/0 0/0 .text            create__8daB_DR_cFv */
 int daB_DR_c::create() {
-    fopAcM_SetupActor(this, daB_DR_c);
+    fopAcM_ct(this, daB_DR_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "B_DR");
     if (phase_state == cPhs_COMPLEATE_e) {

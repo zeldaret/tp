@@ -37,7 +37,7 @@ int daBsGate_c::CreateHeap() {
 
 /* 80BC2A18-80BC2B6C 000278 0154+00 1/1 0/0 0/0 .text            create__10daBsGate_cFv */
 cPhs__Step daBsGate_c::create() {
-    fopAcM_SetupActor(this, daBsGate_c);
+    fopAcM_ct(this, daBsGate_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, "S_Zgate");
     if (step == cPhs_COMPLEATE_e) {
         if (MoveBGCreate("S_Zgate", 7, dBgS_MoveBGProc_TypicalRotY, 0xf00, NULL) == cPhs_ERROR_e) {

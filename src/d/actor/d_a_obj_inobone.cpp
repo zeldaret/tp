@@ -160,7 +160,7 @@ int daObjIBone_c::CreateHeap() {
 
 /* 80C27A20-80C27BBC 0003E0 019C+00 1/1 0/0 0/0 .text            create__12daObjIBone_cFv */
 int daObjIBone_c::create() {
-    fopAcM_SetupActor(this, daObjIBone_c)
+    fopAcM_ct(this, daObjIBone_c)
 
     int result = dComIfG_resLoad(&mPhase, l_arcName);
             

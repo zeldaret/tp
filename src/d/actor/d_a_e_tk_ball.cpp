@@ -395,7 +395,7 @@ static int daE_TK_BALL_Create(fopAc_ac_c* i_this) {
         }  // mSphAttr
     };
 
-    fopAcM_SetupActor(i_this, e_tk_ball_class);
+    fopAcM_ct(i_this, e_tk_ball_class);
     e_tk_ball_class* a_this = static_cast<e_tk_ball_class*>(i_this);
 
     a_this->mType = fopAcM_GetParam(a_this);

@@ -1335,7 +1335,7 @@ int daE_GE_c::create() {
         }  // mSphAttr
     };
 
-    fopAcM_SetupActor(this, daE_GE_c);
+    fopAcM_ct(this, daE_GE_c);
 
     mSwitch = fopAcM_GetParam(this) >> 8;
     if (mSwitch != 0xFF && dComIfGs_isSwitch(mSwitch, fopAcM_GetRoomNo(this))) {

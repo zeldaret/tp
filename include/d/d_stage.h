@@ -1153,6 +1153,8 @@ public:
         return cLib_onBit(mStatus[i_roomNo].mFlag, flag);
     }
 
+    static JKRExpHeap* getMemoryBlockHeap(int i_no) { return mMemoryBlock[i_no]; }
+
     static const int MEMORY_BLOCK_MAX = 19;
 
     static JKRExpHeap* mMemoryBlock[MEMORY_BLOCK_MAX];
@@ -1426,7 +1428,7 @@ inline u32 dStage_FileList_dt_GetEnemyAppear1Flag(dStage_FileList_dt_c* p_fList)
     return p_fList->mParameters & 0x20000000;
 }
 
-inline int dStage_FileList_dt_GetBitSw(dStage_FileList_dt_c* p_fList) {
+inline u8 dStage_FileList_dt_GetBitSw(dStage_FileList_dt_c* p_fList) {
     return p_fList->mBitSw;
 }
 

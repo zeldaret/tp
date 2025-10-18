@@ -832,7 +832,7 @@ int daE_OctBg_c::CreateHeap() {
 
 /* 80739424-807397B8 003304 0394+00 1/1 0/0 0/0 .text            create__11daE_OctBg_cFv */
 int daE_OctBg_c::create() {
-    fopAcM_SetupActor(this, daE_OctBg_c);
+    fopAcM_ct(this, daE_OctBg_c);
 
     int rv = dComIfG_resLoad(&mPhase,  "E_bg");
     if (rv == cPhs_COMPLEATE_e) {

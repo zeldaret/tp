@@ -661,7 +661,7 @@ int daObjRBridge_c::Delete() {
 /* 80597920-80597A90 001B60 0170+00 1/0 0/0 0/0 .text daObjRBridge_create1st__FP14daObjRBridge_c
  */
 static int daObjRBridge_create1st(daObjRBridge_c* a_this) {
-    fopAcM_SetupActor(a_this, daObjRBridge_c);
+    fopAcM_ct(a_this, daObjRBridge_c);
     return a_this->create1st();
 }
 

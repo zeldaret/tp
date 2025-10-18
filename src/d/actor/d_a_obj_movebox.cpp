@@ -1250,7 +1250,7 @@ int daObjMovebox::Act_c::Delete() {
 }
 
 int daObjMovebox::Act_c::Mthd_Create() {
-    fopAcM_SetupActor(this, daObjMovebox::Act_c);
+    fopAcM_ct(this, daObjMovebox::Act_c);
     mType = prm_get_type();
 
     prmX_init();

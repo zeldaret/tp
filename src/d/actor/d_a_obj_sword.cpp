@@ -40,7 +40,7 @@ int daObjSword_c::Create() {
 
 /* 80CFD67C-80CFD848 00019C 01CC+00 1/1 0/0 0/0 .text            create__12daObjSword_cFv */
 cPhs__Step daObjSword_c::create() {
-    fopAcM_SetupActor(this, daObjSword_c);
+    fopAcM_ct(this, daObjSword_c);
     m_itemNo = 0x28;
     if (fopAcM_isItem(this, getItemBit())) {
         return cPhs_ERROR_e;

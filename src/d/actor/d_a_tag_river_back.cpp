@@ -24,7 +24,7 @@ int daTagRiverBack_c::Create() {
 
 /* 80D5F360-80D5F3F0 0000E0 0090+00 1/1 0/0 0/0 .text            create__16daTagRiverBack_cFv */
 int daTagRiverBack_c::create() {
-    fopAcM_SetupActor(this, daTagRiverBack_c);
+    fopAcM_ct(this, daTagRiverBack_c);
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         int result = Create();

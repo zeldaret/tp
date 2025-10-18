@@ -730,7 +730,7 @@ static daObj_TenHIO_c l_HIO;
 
 /* 80D0AF48-80D0B740 002868 07F8+00 1/1 0/0 0/0 .text            create__10daObjTEN_cFv */
 int daObjTEN_c::create() {
-    fopAcM_SetupActor(this, daObjTEN_c);
+    fopAcM_ct(this, daObjTEN_c);
     int rv = dComIfG_resLoad(&mPhase, "I_Ten");
     if (rv == cPhs_COMPLEATE_e) {
         field_0x624 = fopAcM_GetParam(this) & 0xf;

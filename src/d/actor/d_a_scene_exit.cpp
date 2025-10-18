@@ -36,7 +36,7 @@ int daScex_c::checkWork() {
 }
 
 inline int daScex_c::create() {
-    fopAcM_SetupActor(this, daScex_c);
+    fopAcM_ct(this, daScex_c);
 
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);

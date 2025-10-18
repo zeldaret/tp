@@ -99,7 +99,7 @@ int daGrdWater_c::CreateHeap() {
 
 /* 80C139E4-80C13DB0 000624 03CC+00 1/1 0/0 0/0 .text            create__12daGrdWater_cFv */
 int daGrdWater_c::create() {
-    fopAcM_SetupActor(this, daGrdWater_c);
+    fopAcM_ct(this, daGrdWater_c);
     int rv = dComIfG_resLoad(&mPhase, "Water");
     if (rv == cPhs_COMPLEATE_e) {
         if (MoveBGCreate("Water", 29, dBgS_MoveBGProc_Typical, 0x4030, NULL) == cPhs_ERROR_e) {

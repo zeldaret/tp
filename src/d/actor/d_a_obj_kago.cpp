@@ -81,7 +81,7 @@ cPhs__Step daObj_Kago_c::create() {
         0x0820, 0x0820, 0, 0x0820, 0,
     };
 
-    fopAcM_SetupActor(this, daObj_Kago_c);
+    fopAcM_ct(this, daObj_Kago_c);
 
     mType = getType();
 

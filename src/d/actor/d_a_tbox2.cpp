@@ -142,7 +142,7 @@ int daTbox2_c::CreateHeap() {
 
 /* 80496E3C-80497080 00049C 0244+00 1/1 0/0 0/0 .text            create1st__9daTbox2_cFv */
 int daTbox2_c::create1st() {
-    fopAcM_SetupActor(this, daTbox2_c);
+    fopAcM_ct(this, daTbox2_c);
     mModelType = getModelType();
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
@@ -462,7 +462,7 @@ int daTbox2_c::Delete() {
 
 /* 80497ED8-8049808C 001538 01B4+00 1/0 0/0 0/0 .text            daTbox2_create1st__FP9daTbox2_c */
 static int daTbox2_create1st(daTbox2_c* i_this) {
-    fopAcM_SetupActor(i_this, daTbox2_c);
+    fopAcM_ct(i_this, daTbox2_c);
     return i_this->create1st();
 }
 

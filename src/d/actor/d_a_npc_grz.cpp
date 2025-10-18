@@ -449,7 +449,7 @@ daNpc_Grz_HIOParam const daNpc_Grz_Param_c::m = {
 
 /* 809E8BA0-809E8E68 000880 02C8+00 1/1 0/0 0/0 .text            create__11daNpc_Grz_cFv */
 cPhs__Step daNpc_Grz_c::create() {
-    fopAcM_SetupActor(this, daNpc_Grz_c);
+    fopAcM_ct(this, daNpc_Grz_c);
 
     mType = getTypeFromParam();
     mSwNo = fopAcM_GetParam(this) >> 16;

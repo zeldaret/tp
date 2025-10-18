@@ -180,7 +180,7 @@ static int daKytag10_Delete(kytag10_class* i_this) {
 /* 80529248-805293F8 0006C8 01B0+00 1/0 0/0 0/0 .text            daKytag10_Create__FP10fopAc_ac_c */
 static int daKytag10_Create(fopAc_ac_c* i_this) {
     kytag10_class* a_this = (kytag10_class*)i_this;
-    fopAcM_SetupActor(i_this, kytag10_class);
+    fopAcM_ct(i_this, kytag10_class);
 
     u8 prm0 = fopAcM_GetParam(i_this);
     if (prm0 == 0xFF) {

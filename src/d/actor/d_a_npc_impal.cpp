@@ -112,7 +112,7 @@ daNpc_Impal_HIOParam const daNpcImpal_Param_c::m = {
 int daNpcImpal_c::Create() {
     int phase;
 
-    fopAcM_SetupActor(this, daNpcImpal_c);
+    fopAcM_ct(this, daNpcImpal_c);
 
     if ((!strcmp(dComIfGp_getStartStageName(), "F_SP128") && dComIfGs_isSaveSwitch(0x61)) ||
         (!strcmp(dComIfGp_getStartStageName(), "R_SP128") && !dComIfGs_isSaveSwitch(0x61)))

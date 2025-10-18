@@ -95,7 +95,7 @@ actionFunc daObjMasterSword_c::ActionTable[] = {
 
 /* 80C90DB8-80C90F6C 000338 01B4+00 1/1 0/0 0/0 .text            create__18daObjMasterSword_cFv */
 int daObjMasterSword_c::create() {
-    fopAcM_SetupActor(this, daObjMasterSword_c);
+    fopAcM_ct(this, daObjMasterSword_c);
 
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[getFlagNo()])) {
         return cPhs_ERROR_e;

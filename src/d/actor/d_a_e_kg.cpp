@@ -710,7 +710,7 @@ static int daE_KG_Create(fopAc_ac_c* i_this) {
         } // mSphAttr
     };
 
-    fopAcM_SetupActor(i_this, e_kg_class);
+    fopAcM_ct(i_this, e_kg_class);
     e_kg_class* a_this = (e_kg_class*) i_this;
     int phase = dComIfG_resLoad(&a_this->mPhase, "E_kg");
     if (phase == cPhs_COMPLEATE_e) {

@@ -89,6 +89,18 @@ inline JKRAramBlock *JKRMainRamToAram(u8 *buf, u32 bufSize, u32 alignedSize, JKR
     return JKRAram::mainRamToAram(buf, bufSize, alignedSize, expandSwitch, fileSize, heap, id, pSize);
 }
 
+inline u32 JKRGetAramTotalFreeSize() {
+    return JKRAram::getAramHeap()->getTotalFreeSize();
+}
+
+inline u32 JKRGetAramFreeSize() {
+    return JKRAram::getAramHeap()->getFreeSize();
+}
+
+inline u32 JKRGetAramUsedSize(u8 param_0) {
+    return JKRAram::getAramHeap()->getUsedSize(param_0);
+}
+
 // void JKRDecompressFromAramToMainRam(u32, void*, u32, u32, u32, u32*);
 
 #endif /* JKRARAM_H */

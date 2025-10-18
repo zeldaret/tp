@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSMEMORY_H_
 #define _DOLPHIN_OSMEMORY_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSMemory.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -25,4 +28,5 @@ u32 OSGetConsoleSimulatedMemSize(void);
 }
 #endif
 
+#endif
 #endif

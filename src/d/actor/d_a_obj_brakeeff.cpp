@@ -204,7 +204,7 @@ int daObj_Brakeeff_Create(fopAc_ac_c* i_this) {
 
     obj_brakeeff_class* a_this = static_cast<obj_brakeeff_class*>(i_this);
 
-    fopAcM_SetupActor(a_this, obj_brakeeff_class);
+    fopAcM_ct(a_this, obj_brakeeff_class);
 
     int res_load_result = dComIfG_resLoad(&a_this->mRequestOfPhase, "Obj_Bef");
 

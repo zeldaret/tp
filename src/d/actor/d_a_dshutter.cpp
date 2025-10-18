@@ -240,7 +240,7 @@ AUDIO_INSTANCES;
 
 /* 80467C7C-80467DF8 00085C 017C+00 1/0 0/0 0/0 .text            daDsh_Create__FP10fopAc_ac_c */
 int daDsh_c::create() {
-    fopAcM_SetupActor(this, daDsh_c);
+    fopAcM_ct(this, daDsh_c);
 
     mType = getType();
 

@@ -156,7 +156,7 @@ int daTagStatue_c::CreateHeap() {
 
 /* 805A7424-805A7514 000544 00F0+00 1/2 0/0 0/0 .text            create__13daTagStatue_cFv */
 cPhs__Step daTagStatue_c::create() {
-    fopAcM_SetupActor(this, daTagStatue_c);
+    fopAcM_ct(this, daTagStatue_c);
 
     mSkyCharacterEventBitIdIndex = fopAcM_GetParamBit(this, 8, 4);
 

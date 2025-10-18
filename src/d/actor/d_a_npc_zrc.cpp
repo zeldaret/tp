@@ -219,7 +219,7 @@ daNpc_zrC_c::~daNpc_zrC_c() {
 
 /* 80B8E03C-80B8E338 00051C 02FC+00 1/1 0/0 0/0 .text            create__11daNpc_zrC_cFv */
 cPhs__Step daNpc_zrC_c::create() {
-    fopAcM_SetupActor(this, daNpc_zrC_c);
+    fopAcM_ct(this, daNpc_zrC_c);
 
     mType = getTypeFromParam();
     if (home.angle.x != 0xffff) {

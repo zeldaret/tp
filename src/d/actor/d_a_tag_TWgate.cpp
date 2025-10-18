@@ -1034,7 +1034,7 @@ int daTagTWGate_c::CreateHeap() {
 }
 
 int daTagTWGate_c::create() {
-    fopAcM_SetupActor(this, daTagTWGate_c);
+    fopAcM_ct(this, daTagTWGate_c);
 
     mType = getType();
 

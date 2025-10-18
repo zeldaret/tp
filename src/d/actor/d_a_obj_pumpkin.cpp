@@ -183,7 +183,7 @@ daObj_Pumpkin_c::~daObj_Pumpkin_c() {
 
 /* 80CB5A04-80CB5D74 000364 0370+00 1/1 0/0 0/0 .text            create__15daObj_Pumpkin_cFv */
 int daObj_Pumpkin_c::create() {
-    fopAcM_SetupActor(this, daObj_Pumpkin_c);
+    fopAcM_ct(this, daObj_Pumpkin_c);
 
     mType = getType();
     cPhs__Step phase = (cPhs__Step) dComIfG_resLoad(&mPhaseReq, l_resNameList[l_bmdData[0][1]]);

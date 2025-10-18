@@ -218,7 +218,7 @@ static int daObjKazeNeko_Delete(daObjKazeNeko_c* i_this) {
 }
 
 inline int daObjKazeNeko_c::create() {
-    fopAcM_SetupActor(this, daObjKazeNeko_c);
+    fopAcM_ct(this, daObjKazeNeko_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
         if (fopAcM_entrySolidHeap(this, createSolidHeap, 0x2800) == 0) {

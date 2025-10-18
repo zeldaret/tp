@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSLC_H_
 #define _DOLPHIN_OSLC_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSLC.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -16,4 +19,5 @@ void LCAllocNoInvalidate(void *addr, u32 nBytes);
 }
 #endif
 
+#endif
 #endif

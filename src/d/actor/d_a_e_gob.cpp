@@ -2300,7 +2300,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 806DE69C-806DEA10 0066FC 0374+00 1/0 0/0 0/0 .text            daE_GOB_Create__FP10fopAc_ac_c */
 static int daE_GOB_Create(fopAc_ac_c* i_this) {
     e_gob_class* a_this = (e_gob_class*)i_this;
-    fopAcM_SetupActor(a_this, e_gob_class);
+    fopAcM_ct(a_this, e_gob_class);
 
     OS_REPORT("E_GOB//////////////E_GOB SET 0 !!\n");
 

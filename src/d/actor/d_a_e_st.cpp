@@ -3023,7 +3023,7 @@ static BOOL roof_initial_pos_set(e_st_class* i_this) {
 /* 807A586C-807A5CF4 007B6C 0488+00 1/0 0/0 0/0 .text            daE_ST_Create__FP10fopAc_ac_c */
 static cPhs__Step daE_ST_Create(fopAc_ac_c* a_this) {
     e_st_class* i_this = (e_st_class*)a_this;
-    fopAcM_SetupActor(a_this, e_st_class);
+    fopAcM_ct(a_this, e_st_class);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "E_st");
     if (phase == cPhs_COMPLEATE_e) {

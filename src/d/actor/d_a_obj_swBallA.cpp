@@ -165,7 +165,7 @@ int daObjSwBallA_c::CreateHeap() {
 
 /* 80CF3970-80CF3A90 0006F0 0120+00 1/1 0/0 0/0 .text            create__14daObjSwBallA_cFv */
 int daObjSwBallA_c::create() {
-    fopAcM_SetupActor(this, daObjSwBallA_c);
+    fopAcM_ct(this, daObjSwBallA_c);
     if (field_0x5c4 == 0) {
         field_0x5c4 = 1;
         field_0x5c6 = home.angle.x;

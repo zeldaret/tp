@@ -2539,7 +2539,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 806B5460-806B592C 007C40 04CC+00 1/1 0/0 0/0 .text            create__8daE_DT_cFv */
 cPhs__Step daE_DT_c::create() {
-    fopAcM_SetupActor(this, daE_DT_c);
+    fopAcM_ct(this, daE_DT_c);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase[0], "E_DT");
     if (step != cPhs_COMPLEATE_e) {

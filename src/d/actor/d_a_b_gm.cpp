@@ -2110,7 +2110,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 805F35A8-805F38E4 005D48 033C+00 1/0 0/0 0/0 .text            daB_GM_Create__FP10fopAc_ac_c */
 static int daB_GM_Create(fopAc_ac_c* i_this) {
     b_gm_class* a_this = (b_gm_class*)i_this;
-    fopAcM_SetupActor(a_this, b_gm_class);
+    fopAcM_ct(a_this, b_gm_class);
 
     int phase_state = dComIfG_resLoad(&a_this->mPhase, "B_gm");
     if (phase_state == cPhs_COMPLEATE_e) {

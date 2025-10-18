@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXVERIFY_H_
 #define _DOLPHIN_GX_GXVERIFY_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXVerify.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
 
@@ -26,4 +29,5 @@ void __GXVerifyVATImm(GXAttr attr, GXCompCnt cnt, GXCompType type, u8 frac);
 }
 #endif
 
+#endif
 #endif

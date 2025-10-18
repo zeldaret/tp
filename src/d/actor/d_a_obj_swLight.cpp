@@ -481,7 +481,7 @@ int daObjSwLight_c::Delete() {
 /* 80CF7BF0-80CF7D8C 000CD0 019C+00 1/0 0/0 0/0 .text daObjSwLight_create1st__FP14daObjSwLight_c
  */
 static int daObjSwLight_create1st(daObjSwLight_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjSwLight_c);
+    fopAcM_ct(i_this, daObjSwLight_c);
     return i_this->create1st();
 }
 

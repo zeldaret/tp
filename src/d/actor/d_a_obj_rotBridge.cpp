@@ -99,7 +99,7 @@ int daRotBridge_c::CreateHeap() {
 
 /* 80CBECBC-80CBEED4 00041C 0218+00 1/1 0/0 0/0 .text            create__13daRotBridge_cFv */
 int daRotBridge_c::create() {
-    fopAcM_SetupActor(this, daRotBridge_c);
+    fopAcM_ct(this, daRotBridge_c);
 
     mType = (fopAcM_GetParam(this) & 0xF00) >> 8;
 

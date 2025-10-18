@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GD_LIGHT_H_
 #define _DOLPHIN_GD_LIGHT_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gd/GDLight.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
 #include "global.h"
@@ -71,4 +74,5 @@ inline static u16 __GDLightID2Offset(GXLightID id) {
 }
 #endif
 
+#endif
 #endif

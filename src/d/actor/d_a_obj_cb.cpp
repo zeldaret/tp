@@ -207,7 +207,7 @@ static daObj_Cb_HIO_c l_HIO;
 
 /* 80BC5408-80BC563C 0009C8 0234+00 1/0 0/0 0/0 .text            daObj_Cb_Create__FP10fopAc_ac_c */
 static int daObj_Cb_Create(fopAc_ac_c* actor) {
-    fopAcM_SetupActor(actor, obj_cb_class);
+    fopAcM_ct(actor, obj_cb_class);
     obj_cb_class* i_this = (obj_cb_class*)actor;
     int rv = dComIfG_resLoad(&i_this->mPhase, "Obj_cb");
     if (rv == cPhs_COMPLEATE_e) {

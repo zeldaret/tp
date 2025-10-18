@@ -144,7 +144,7 @@ int daObjLife_c::__CreateHeap() {
 
 /* 804CCFE0-804CD258 000880 0278+00 1/1 0/0 0/0 .text            create__11daObjLife_cFv */
 int daObjLife_c::create() {
-    fopAcM_SetupActor(this, daObjLife_c);
+    fopAcM_ct(this, daObjLife_c);
 
     if (!mIsPrmsInit) {
         field_0x938 = home.angle.x;

@@ -457,7 +457,7 @@ daNpcAsh_Param_c::param const daNpcAsh_Param_c::m = {
 cPhs__Step daNpcAsh_c::Create() {
     cPhs__Step step;
 
-    fopAcM_SetupActor(this, daNpcAsh_c);
+    fopAcM_ct(this, daNpcAsh_c);
 
     if (!strcmp(dComIfGp_getStartStageName(), "R_SP116") && dComIfG_play_c::getLayerNo(0) == 4) {
             /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */

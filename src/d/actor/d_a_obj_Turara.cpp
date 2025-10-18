@@ -122,7 +122,7 @@ int daTurara_c::CreateHeap() {
 
 /* 80B9CED8-80B9D29C 000438 03C4+00 1/1 0/0 0/0 .text            create__10daTurara_cFv */
 int daTurara_c::create() {
-    fopAcM_SetupActor(this, daTurara_c);
+    fopAcM_ct(this, daTurara_c);
     u8 my_bit = getSwBit3();
     if (fopAcM_isSwitch(this, my_bit)) {
         return cPhs_ERROR_e;

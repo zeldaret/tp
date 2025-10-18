@@ -170,7 +170,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80C5BBD4-80C5BD48 0006D4 0174+00 1/0 0/0 0/0 .text daObj_Lv3waterB_Create__FP10fopAc_ac_c */
 static int daObj_Lv3waterB_Create(fopAc_ac_c* i_this) {
     obj_lv3WaterB_class* a_this = static_cast<obj_lv3WaterB_class*>(i_this);
-    fopAcM_SetupActor(a_this, obj_lv3WaterB_class);
+    fopAcM_ct(a_this, obj_lv3WaterB_class);
 
     int phase_state = dComIfG_resLoad(&a_this->mBWaterPhase, "L3_bwater");
     int octhibi_phase_state = dComIfG_resLoad(&a_this->mOcthibiPhase, "S_octhibi");

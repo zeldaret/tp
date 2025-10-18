@@ -104,7 +104,7 @@ const daObjTks_HIOParam daObjTks_Param_c::m = {
 
 /* 80D0F640-80D0F904 0004A0 02C4+00 1/1 0/0 0/0 .text            Create__10daObjTks_cFv */
 int daObjTks_c::Create() {
-    fopAcM_SetupActor(this, daObjTks_c);
+    fopAcM_ct(this, daObjTks_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GD_TRANSFORM_H_
 #define _DOLPHIN_GD_TRANSFORM_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gd/GDTransform.h>
+#else
 #include <dolphin/types.h>
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
@@ -53,4 +56,5 @@ void GDSetProjection(const Mtx44 mtx, GXProjectionType type);
 }
 #endif
 
+#endif
 #endif

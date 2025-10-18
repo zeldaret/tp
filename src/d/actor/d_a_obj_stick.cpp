@@ -35,7 +35,7 @@ daObj_Stick_c::~daObj_Stick_c() {
 
 /* 805993E8-805996BC 0002A8 02D4+00 1/1 0/0 0/0 .text            create__13daObj_Stick_cFv */
 int daObj_Stick_c::create() {
-    fopAcM_SetupActor(this, daObj_Stick_c);
+    fopAcM_ct(this, daObj_Stick_c);
 
     mType = getType();
     

@@ -653,7 +653,7 @@ daNpcKasiHana_HIOParam const daNpcKasiHana_Param_c::m = {
 
 /* 80A1C334-80A1C5B0 001474 027C+00 1/1 0/0 0/0 .text            Create__15daNpcKasiHana_cFv */
 cPhs__Step daNpcKasiHana_c::Create() {
-    fopAcM_SetupActor(this, daNpcKasiHana_c);
+    fopAcM_ct(this, daNpcKasiHana_c);
 
     mMessageNo = getMessageNo();
     mType = getType();

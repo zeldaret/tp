@@ -189,7 +189,7 @@ int daObjBurnBox_c::Delete() {
 /* 8046EC50-8046ED44 000630 00F4+00 1/0 0/0 0/0 .text daObjBurnBox_create1st__FP14daObjBurnBox_c
  */
 int daObjBurnBox_create1st(daObjBurnBox_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjBurnBox_c);
+    fopAcM_ct(i_this, daObjBurnBox_c);
     return i_this->create1st();
 }
 

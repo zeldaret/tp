@@ -205,7 +205,7 @@ daNpcKasiKyu_HIOParam const daNpcKasiKyu_Param_c::m = {
 
 /* 80A21E24-80A220A0 000544 027C+00 1/1 0/0 0/0 .text            Create__14daNpcKasiKyu_cFv */
 cPhs__Step daNpcKasiKyu_c::Create() {
-    fopAcM_SetupActor(this, daNpcKasiKyu_c);
+    fopAcM_ct(this, daNpcKasiKyu_c);
 
     mType = getType();
     mMessageNo = getMessageNo();

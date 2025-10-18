@@ -60,7 +60,7 @@ int daObjFPillar_c::Create() {
 
 /* 80BE9230-80BE9360 000190 0130+00 1/1 0/0 0/0 .text            create__14daObjFPillar_cFv */
 int daObjFPillar_c::create() {
-    fopAcM_SetupActor(this, daObjFPillar_c);
+    fopAcM_ct(this, daObjFPillar_c);
     int rv = Create();
     if (rv == 0) {
         return cPhs_ERROR_e;

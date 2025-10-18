@@ -3457,7 +3457,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 8060F0D0-8060F548 009A90 0478+00 1/1 0/0 0/0 .text            create__9daB_MGN_cFv */
 int daB_MGN_c::create() {
-    fopAcM_SetupActor(this, daB_MGN_c);
+    fopAcM_ct(this, daB_MGN_c);
 
     field_0xafb = fopAcM_GetParam(this);
 

@@ -65,7 +65,7 @@ daObj_AutoMata_c::~daObj_AutoMata_c() {
 
 /* 80BA5990-80BA5D2C 000390 039C+00 1/1 0/0 0/0 .text            create__16daObj_AutoMata_cFv */
 int daObj_AutoMata_c::create() {
-    fopAcM_SetupActor(this, daObj_AutoMata_c);
+    fopAcM_ct(this, daObj_AutoMata_c);
     field_0xb30 = 0;
     int rv = dComIfG_resLoad(&mPhase, l_resNameList[l_bmdData[field_0xb30][1]]);
     if (rv == cPhs_COMPLEATE_e) {

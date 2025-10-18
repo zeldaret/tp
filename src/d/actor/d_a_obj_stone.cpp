@@ -261,7 +261,7 @@ bool daObjStone_c::CreateHeap() {
 
 /* 80CE9840-80CE99D4 000840 0194+00 1/1 0/0 0/0 .text            create__12daObjStone_cFv */
 int daObjStone_c::create() {
-    fopAcM_SetupActor(this, daObjStone_c);
+    fopAcM_ct(this, daObjStone_c);
 
     mStoneType = getType();
 

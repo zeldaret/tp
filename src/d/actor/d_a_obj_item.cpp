@@ -258,7 +258,7 @@ void daItem_c::setCullInfo() {
 
 /* 8015B7D4-8015BA3C 156114 0268+00 1/1 0/0 0/0 .text            _daItem_create__8daItem_cFv */
 int daItem_c::_daItem_create() {
-    fopAcM_SetupActor(this, daItem_c);
+    fopAcM_ct(this, daItem_c);
 
     if (!field_0x95d) {
         field_0x92c = home.angle.x;

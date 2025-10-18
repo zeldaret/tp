@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_AI_H_
 #define _DOLPHIN_AI_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/ai.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -47,4 +50,5 @@ void AIReset(void);
 }
 #endif
 
+#endif
 #endif

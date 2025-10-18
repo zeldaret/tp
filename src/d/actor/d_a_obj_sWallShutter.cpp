@@ -60,7 +60,7 @@ static const int l_dzbIdx[2] = {7, 7};
 
 /* 805983C4-80598564 0002C4 01A0+00 1/1 0/0 0/0 .text            create__13daSwShutter_cFv */
 int daSwShutter_c::create() {
-    fopAcM_SetupActor(this, daSwShutter_c);
+    fopAcM_ct(this, daSwShutter_c);
 
     mModelType = getModelType();
     if (mModelType == 0xF) {

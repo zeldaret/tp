@@ -75,7 +75,7 @@ int daAmiShutter_c::CreateHeap() {
 
 /* 80BA1650-80BA182C 000270 01DC+00 1/1 0/0 0/0 .text            create__14daAmiShutter_cFv */
 cPhs__Step daAmiShutter_c::create() {
-    fopAcM_SetupActor(this, daAmiShutter_c);
+    fopAcM_ct(this, daAmiShutter_c);
     cPhs__Step phaseStep = (cPhs__Step) dComIfG_resLoad(&mPhaseReq, "S_Zami");
 
     if (phaseStep == cPhs_COMPLEATE_e) {

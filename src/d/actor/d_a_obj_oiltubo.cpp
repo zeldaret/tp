@@ -31,7 +31,7 @@ dCcD_SrcCyl daObj_Oiltubo_c::mCcDCyl = {
 
 /* 80CA6718-80CA6914 000078 01FC+00 1/1 0/0 0/0 .text            create__15daObj_Oiltubo_cFv */
 int daObj_Oiltubo_c::create() {
-    fopAcM_SetupActor(this, daObj_Oiltubo_c);
+    fopAcM_ct(this, daObj_Oiltubo_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, getResName());
     if (phase_state == cPhs_COMPLEATE_e) {

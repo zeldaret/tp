@@ -444,7 +444,7 @@ static int daObjFlag3_Create(fopAc_ac_c* i_this) {
 
 /* 80BEF95C-80BEFBC4 000F5C 0268+00 1/1 0/0 0/0 .text            create__12daObjFlag3_cFv */
 int daObjFlag3_c::create() {
-    fopAcM_SetupActor(this, daObjFlag3_c);
+    fopAcM_ct(this, daObjFlag3_c);
     s8 flagNum = (u8)shape_angle.x;
     if (flagNum <= -1 || flagNum > 99) {
         mFlagValid = false;

@@ -621,7 +621,7 @@ static u16 const l_musiya_num[2] = {
 int daObjBATTA_c::create() {
     u8 uVar9 = (fopAcM_GetParam(this) & 0xf00) >> 8;
 
-    fopAcM_SetupActor(this, daObjBATTA_c);
+    fopAcM_ct(this, daObjBATTA_c);
     int rv = dComIfG_resLoad(&mPhase, "Bat");
     if (rv == cPhs_COMPLEATE_e) {
         OS_REPORT("BATTA PARAM %x\n", fopAcM_GetParam(this));

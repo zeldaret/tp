@@ -115,7 +115,7 @@ int daBdoor_c::CreateInit() {
 
 /* 8066F8E4-8066F9D8 000544 00F4+00 1/1 0/0 0/0 .text            create__9daBdoor_cFv */
 cPhs__Step daBdoor_c::create() {
-    fopAcM_SetupActor(this, daBdoor_c);
+    fopAcM_ct(this, daBdoor_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, getArcName());
     if (step == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0xa000)) {

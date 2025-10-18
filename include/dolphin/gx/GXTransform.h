@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXTRANSFORM_H_
 #define _DOLPHIN_GX_GXTRANSFORM_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXTransform.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 
 #ifdef __cplusplus
@@ -30,5 +33,5 @@ void GXSetZScaleOffset(f32 scale, f32 offset);
 #ifdef __cplusplus
 }
 #endif
-
+#endif
 #endif

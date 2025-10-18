@@ -1927,7 +1927,7 @@ static BOOL useHeapInit(fopAc_ac_c* i_this) {
 /* 80950B30-80950F04 004FF0 03D4+00 1/0 0/0 0/0 .text            daNi_Create__FP10fopAc_ac_c */
 static int daNi_Create(fopAc_ac_c* i_this) {
     ni_class* a_this = (ni_class*)i_this;
-    fopAcM_SetupActor(a_this, ni_class);
+    fopAcM_ct(a_this, ni_class);
 
     int phase_state = dComIfG_resLoad(&a_this->mPhase, "Ni");
     if (phase_state == cPhs_COMPLEATE_e) {

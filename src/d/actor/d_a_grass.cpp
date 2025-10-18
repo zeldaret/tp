@@ -155,7 +155,7 @@ static void dGrass_Tex_Change() {}
 
 /* 8051C2B0-8051C304 000650 0054+00 1/0 0/0 0/0 .text            daGrass_create__FP9daGrass_c */
 static int daGrass_create(daGrass_c* i_this) {
-    fopAcM_SetupActor(i_this, daGrass_c);
+    fopAcM_ct(i_this, daGrass_c);
     return i_this->create();
 }
 

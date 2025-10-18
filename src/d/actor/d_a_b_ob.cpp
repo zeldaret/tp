@@ -3528,7 +3528,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80619C5C-8061A0C0 0097DC 0464+00 1/0 0/0 0/0 .text            daB_OB_Create__FP10fopAc_ac_c */
 static int daB_OB_Create(fopAc_ac_c* i_this) {
     b_ob_class* a_this = (b_ob_class*)i_this;
-    fopAcM_SetupActor(i_this, b_ob_class);
+    fopAcM_ct(i_this, b_ob_class);
 
     OS_REPORT("B_OB//////////////B_OB SET 0 !!\n");
 

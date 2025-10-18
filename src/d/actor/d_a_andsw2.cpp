@@ -119,7 +119,7 @@ daAndsw2_c::~daAndsw2_c() {}
 /* 804D6120-804D63A4 0003A0 0284+00 2/1 0/0 0/0 .text            create__10daAndsw2_cFv */
 int daAndsw2_c::create() {
     int sw = getSwbit();
-    fopAcM_SetupActor(this, daAndsw2_c);
+    fopAcM_ct(this, daAndsw2_c);
 
     switch (getType()) {
     case 0:

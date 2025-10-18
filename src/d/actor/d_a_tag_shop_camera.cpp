@@ -11,7 +11,7 @@
 
 /* 80D60898-80D608FC 000078 0064+00 1/1 0/0 0/0 .text            create__18daTag_ShopCamera_cFv */
 int daTag_ShopCamera_c::create() {
-    fopAcM_SetupActor(this, daTag_ShopCamera_c);
+    fopAcM_ct(this, daTag_ShopCamera_c);
     initialize();
     return cPhs_COMPLEATE_e;
 }

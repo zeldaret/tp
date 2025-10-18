@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSINTERRUPT_H_
 #define _DOLPHIN_OSINTERRUPT_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSInterrupt.h>
+#else
 #include <dolphin/types.h>
 #include <dolphin/os/OSException.h>
 
@@ -115,4 +118,5 @@ OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask mask);
 }
 #endif
 
+#endif
 #endif

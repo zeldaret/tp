@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSMUTEX_H_
 #define _DOLPHIN_OSMUTEX_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSMutex.h>
+#else
 #include <dolphin/os/OSThread.h>
 
 #ifdef __cplusplus
@@ -30,4 +33,5 @@ void OSSignalCond(OSCond* cond);
 }
 #endif
 
+#endif
 #endif

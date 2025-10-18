@@ -34,7 +34,7 @@ static char* l_resNameList[3] = {
 int daTag_KMsg_c::create() {
     attention_info.position = current.pos;
     eyePos = attention_info.position;
-    fopAcM_SetupActor(this, daTag_KMsg_c);
+    fopAcM_ct(this, daTag_KMsg_c);
     int rv;
     if (getType() == KMSG_TYPE_3) {
         rv = dComIfG_resLoad(&mPhase, "Lv6Gate");

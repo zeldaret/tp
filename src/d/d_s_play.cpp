@@ -88,8 +88,8 @@ static const s16 T_JOINT_dylKeyTbl[1] = {
 /* 80259440-80259468 253D80 0028+00 1/1 0/0 0/0 .text            __ct__22dScnPly_env_otherHIO_cFv */
 dScnPly_env_otherHIO_c::dScnPly_env_otherHIO_c() {
     mShadowDensity = 255.0f;
-    mLODBias = 1;
-    mDispTransCylinder = false;
+    mAdjustLODBias = 1;
+    mDisplayTransparentCyl = false;
 }
 
 void dScnPly_env_otherHIO_c::genMessage(JORMContext* ctx) {

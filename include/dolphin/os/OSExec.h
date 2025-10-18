@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSEXEC_H_
 #define _DOLPHIN_OSEXEC_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSExec.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -32,4 +35,5 @@ void OSExecl(const char* dolfile, const char* arg0, ...);
 }
 #endif
 
+#endif
 #endif

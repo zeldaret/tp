@@ -73,7 +73,7 @@ int daStairBlock_c::CreateHeap() {
 
 /* 80CE83F0-80CE85B0 000370 01C0+00 1/1 0/0 0/0 .text            create__14daStairBlock_cFv */
 int daStairBlock_c::create() {
-    fopAcM_SetupActor(this, daStairBlock_c);
+    fopAcM_ct(this, daStairBlock_c);
 
     int phase = dComIfG_resLoad(&mPhaseReq, "StaBlock");
     if (phase == cPhs_COMPLEATE_e) {

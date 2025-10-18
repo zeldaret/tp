@@ -522,7 +522,7 @@ int daObjPDtile_c::Delete() {
 
 /* 80CAC0D8-80CAC1D4 001498 00FC+00 1/0 0/0 0/0 .text daObjPDtile_create1st__FP13daObjPDtile_c */
 static int daObjPDtile_create1st(daObjPDtile_c* i_this) {
-    fopAcM_SetupActor(i_this,daObjPDtile_c);
+    fopAcM_ct(i_this,daObjPDtile_c);
     return i_this->create1st();
 }
 

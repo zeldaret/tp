@@ -191,7 +191,7 @@ inline int daObjSM_DOOR_c::CreateHeap() {
 
 /* 80CD8D4C-80CD902C 00080C 02E0+00 1/1 0/0 0/0 .text            create__14daObjSM_DOOR_cFv */
 cPhs__Step daObjSM_DOOR_c::create() {
-    fopAcM_SetupActor(this, daObjSM_DOOR_c);
+    fopAcM_ct(this, daObjSM_DOOR_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, l_arcName);
 
     if (step == cPhs_COMPLEATE_e) {

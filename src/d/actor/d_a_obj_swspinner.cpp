@@ -213,7 +213,7 @@ int daObjSwSpinner_c::Delete() {
 /* 80D009C0-80D00A20 000AC0 0060+00 1/0 0/0 0/0 .text
  * daObjSwSpinner_create1st__FP16daObjSwSpinner_c               */
 static int daObjSwSpinner_create1st(daObjSwSpinner_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjSwSpinner_c);
+    fopAcM_ct(i_this, daObjSwSpinner_c);
     return i_this->create1st();
 }
 

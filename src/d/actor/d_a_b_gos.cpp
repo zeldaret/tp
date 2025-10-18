@@ -360,7 +360,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80604E5C-80605024 000CDC 01C8+00 1/0 0/0 0/0 .text            daB_GOS_Create__FP10fopAc_ac_c */
 static int daB_GOS_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, b_gos_class);
+    fopAcM_ct(i_this, b_gos_class);
     b_gos_class* a_this = (b_gos_class*)i_this;
 
     OS_REPORT("B_GOS//////////////B_GOS SET 0 !!\n");

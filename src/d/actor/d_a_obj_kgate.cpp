@@ -1004,7 +1004,7 @@ int daObjKGate_c::Delete() {
 
 /* 8058A768-8058A81C 002768 00B4+00 1/0 0/0 0/0 .text daObjKGate_create1st__FP12daObjKGate_c */
 static int daObjKGate_create1st(daObjKGate_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjKGate_c);
+    fopAcM_ct(i_this, daObjKGate_c);
     return i_this->create1st();
 }
 

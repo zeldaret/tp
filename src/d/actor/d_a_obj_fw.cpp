@@ -252,7 +252,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 80BF28D0-80BF2AB0 000970 01E0+00 1/0 0/0 0/0 .text            daObj_Fw_Create__FP10fopAc_ac_c */
 static cPhs__Step daObj_Fw_Create(fopAc_ac_c* a_this) {
-    fopAcM_SetupActor(a_this, obj_fw_class);
+    fopAcM_ct(a_this, obj_fw_class);
     obj_fw_class* i_this = (obj_fw_class*)a_this;
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "RYUW00");

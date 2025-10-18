@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_VIFUNCS_H_
 #define _DOLPHIN_VIFUNCS_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/vi/vifuncs.h>
+#else
 #include <dolphin/types.h>
 #include <dolphin/vi/vitypes.h>
 #include <dolphin/gx/GXStruct.h>
@@ -33,4 +36,5 @@ u32 VIGetDTVStatus(void);
 }
 #endif
 
+#endif
 #endif

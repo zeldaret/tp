@@ -27,7 +27,6 @@ public:
     static u32 fetchResource_subroutine(u32, u32, u8*, u32, int);
     static u32 fetchResource_subroutine(u32, u32, JKRHeap*, int, u8**);
 
-private:
     /* 0x00 */  // vtable
     /* 0x04 */  // JKRArchive
     /* 0x64 */ JKRAramBlock* mBlock;

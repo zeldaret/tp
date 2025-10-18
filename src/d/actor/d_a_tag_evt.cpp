@@ -30,7 +30,7 @@ char* daTag_Evt_c::mEvtCutList[] = {
 
 /* 8048B918-8048B9D8 000078 00C0+00 1/1 0/0 0/0 .text            create__11daTag_Evt_cFv */
 int daTag_Evt_c::create() {
-    fopAcM_SetupActor(this, daTag_Evt_c);
+    fopAcM_ct(this, daTag_Evt_c);
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, l_resFileName);
     if (phase == cPhs_COMPLEATE_e) {
         eventInfo.setArchiveName(l_resFileName);

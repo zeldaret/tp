@@ -159,7 +159,7 @@ int daObjWStatue_c::__CreateHeap() {
 
 /* 80D3A47C-80D3A66C 0006BC 01F0+00 1/1 0/0 0/0 .text            create__14daObjWStatue_cFv */
 int daObjWStatue_c::create() {
-    fopAcM_SetupActor(this, daObjWStatue_c);
+    fopAcM_ct(this, daObjWStatue_c);
     m_itemNo = fpcNm_ITEM_WOOD_STATUE;
     if (fopAcM_isSwitch(this, getSwbit2())) {
         return cPhs_ERROR_e;

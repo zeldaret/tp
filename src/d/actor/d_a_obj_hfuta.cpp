@@ -186,7 +186,7 @@ int daObjFuta_c::Delete() {
 
 /* 80C1ED9C-80C1EDFC 0010FC 0060+00 1/0 0/0 0/0 .text daObjFuta_create1st__FP11daObjFuta_c */
 static int daObjFuta_create1st(daObjFuta_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjFuta_c);
+    fopAcM_ct(i_this, daObjFuta_c);
     return i_this->create1st();
 }
 

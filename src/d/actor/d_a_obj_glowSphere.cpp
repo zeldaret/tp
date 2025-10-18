@@ -95,7 +95,7 @@ int daGlwSph_c::CreateHeap() {
 
 /* 80BF95D4-80BF9908 000374 0334+00 1/1 0/0 0/0 .text            create__10daGlwSph_cFv */
 int daGlwSph_c::create() {
-    fopAcM_SetupActor(this, daGlwSph_c);
+    fopAcM_ct(this, daGlwSph_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "glwSphere");
     if (phase_state != cPhs_COMPLEATE_e) {

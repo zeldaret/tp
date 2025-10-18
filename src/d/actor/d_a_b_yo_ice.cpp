@@ -1047,7 +1047,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 8063D5D0-8063D8FC 003570 032C+00 1/1 0/0 0/0 .text            create__9daB_YOI_cFv */
 // data/rodata swap
 cPhs__Step daB_YOI_c::create() {
-    fopAcM_SetupActor(this, daB_YOI_c);
+    fopAcM_ct(this, daB_YOI_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "B_YO");
 
     if (step == cPhs_COMPLEATE_e) {

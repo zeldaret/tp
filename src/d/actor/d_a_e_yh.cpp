@@ -2151,7 +2151,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 /* 808034BC-808039DC 0060DC 0520+00 1/0 0/0 0/0 .text            daE_YH_Create__FP10fopAc_ac_c */
 static int daE_YH_Create(fopAc_ac_c* a_this) {
     e_yh_class* i_this = (e_yh_class*)a_this;
-    fopAcM_SetupActor(a_this, e_yh_class);
+    fopAcM_ct(a_this, e_yh_class);
     int rv = dComIfG_resLoad(&i_this->mPhase, "E_yd");
     if (rv == cPhs_COMPLEATE_e) {
         OS_REPORT("E_YH PARAM %x\n", fopAcM_GetParam(a_this));

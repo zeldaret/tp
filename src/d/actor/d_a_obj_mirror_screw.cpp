@@ -163,7 +163,7 @@ static int daObjMirrorScrew_Delete(daObjMirrorScrew_c* i_this) {
 }
 
 cPhs__Step daObjMirrorScrew_c::create() {
-    fopAcM_SetupActor(this, daObjMirrorScrew_c);
+    fopAcM_ct(this, daObjMirrorScrew_c);
     if (fopAcM_isSwitch(this, getSwitchNo()) ||
         /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])

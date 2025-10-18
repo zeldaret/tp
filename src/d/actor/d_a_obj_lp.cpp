@@ -378,7 +378,7 @@ static int set_pos_check(obj_lp_class* i_this, int param_2) {
 
 /* 80C55488-80C559C8 001368 0540+00 1/0 0/0 0/0 .text            daObj_Lp_Create__FP10fopAc_ac_c */
 static int daObj_Lp_Create(fopAc_ac_c* a_this) {
-    fopAcM_SetupActor(a_this, obj_lp_class);
+    fopAcM_ct(a_this, obj_lp_class);
     obj_lp_class* i_this = (obj_lp_class*)a_this;
 
     int phase_state = dComIfG_resLoad(&i_this->mPhase, "Obj_lp");

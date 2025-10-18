@@ -503,7 +503,7 @@ static int daMidna_createHeap(fopAc_ac_c* i_this) {
 
 /* 804BD274-804BD8B8 0010D4 0644+00 1/1 0/0 0/0 .text            create__9daMidna_cFv */
 cPhs__Step daMidna_c::create() {
-    fopAcM_SetupActor(this, daMidna_c);
+    fopAcM_ct(this, daMidna_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, l_arcName);
 
     if (step == cPhs_COMPLEATE_e) {

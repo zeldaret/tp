@@ -102,7 +102,7 @@ int daRotTrap_c::CreateHeap() {
 
 /* 80CBFAC8-80CBFC88 000308 01C0+00 1/1 0/0 0/0 .text            create__11daRotTrap_cFv */
 int daRotTrap_c::create() {
-    fopAcM_SetupActor(this, daRotTrap_c);
+    fopAcM_ct(this, daRotTrap_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "P_kama");
     if (phase_state == cPhs_COMPLEATE_e) {

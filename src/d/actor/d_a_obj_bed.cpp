@@ -28,7 +28,7 @@ daObj_Bed_c::~daObj_Bed_c() {
 
 /* 80BAD790-80BADA00 000210 0270+00 1/1 0/0 0/0 .text            create__11daObj_Bed_cFv */
 cPhs__Step daObj_Bed_c::create() {
-    fopAcM_SetupActor(this, daObj_Bed_c);
+    fopAcM_ct(this, daObj_Bed_c);
     mType = getType();
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, getResName());
     if (step == cPhs_COMPLEATE_e) {

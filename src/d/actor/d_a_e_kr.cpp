@@ -2324,7 +2324,7 @@ static int daE_Kr_Create(fopAc_ac_c* i_this) {
     e_kr_class* kr = (e_kr_class*)i_this;
 
     s32 loadResult = dComIfG_resLoad(&kr->mPhase, "E_kr");
-    fopAcM_SetupActor(i_this, e_kr_class);
+    fopAcM_ct(i_this, e_kr_class);
 
     if (loadResult == cPhs_COMPLEATE_e) {
         OS_REPORT("PARAM %x\n", fopAcM_GetParam(i_this));

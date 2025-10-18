@@ -351,7 +351,7 @@ daNpcAshB_Param_c::param const daNpcAshB_Param_c::m = {
 cPhs__Step daNpcAshB_c::Create() {
     cPhs__Step step;
 
-    fopAcM_SetupActor(this, daNpcAshB_c);
+    fopAcM_ct(this, daNpcAshB_c);
 
          /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
     if (!daNpcF_chkEvtBit(0x169)

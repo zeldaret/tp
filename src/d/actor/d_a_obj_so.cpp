@@ -1013,7 +1013,7 @@ static int daObj_So_Create(fopAc_ac_c* a_this) {
     };
 
     obj_so_class* i_this = (obj_so_class*)a_this;
-    fopAcM_SetupActor(a_this, obj_so_class);
+    fopAcM_ct(a_this, obj_so_class);
 
     int phase = dComIfG_resLoad(&i_this->mPhase, "Obj_so");
     if (phase == cPhs_COMPLEATE_e) {

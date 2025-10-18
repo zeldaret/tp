@@ -863,7 +863,7 @@ int daObjIceBlk_c::Delete() {
 
 /* 80C23E68-80C23FCC 002208 0164+00 1/0 0/0 0/0 .text daObjIceBlk_create1st__FP13daObjIceBlk_c */
 static int daObjIceBlk_create1st(daObjIceBlk_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjIceBlk_c);
+    fopAcM_ct(i_this, daObjIceBlk_c);
     return i_this->create1st();
 }
 

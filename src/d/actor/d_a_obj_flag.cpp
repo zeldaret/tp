@@ -292,7 +292,7 @@ static int daObjFlag_Delete(daObjFlag_c* param_0) {
 FlagJoint_c::~FlagJoint_c() {}
 
 inline int daObjFlag_c::create() {
-    fopAcM_SetupActor(this, daObjFlag_c);
+    fopAcM_ct(this, daObjFlag_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "FlagObj");
     if (phase_state != cPhs_COMPLEATE_e) {

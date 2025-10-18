@@ -46,7 +46,7 @@ daObj_SSItem_c::~daObj_SSItem_c() {
 
 /* 80CE6E68-80CE70CC 0002C8 0264+00 1/1 0/0 0/0 .text            create__14daObj_SSItem_cFv */
 int daObj_SSItem_c::create() {
-    fopAcM_SetupActor(this, daObj_SSItem_c);
+    fopAcM_ct(this, daObj_SSItem_c);
     field_0xB0E = getTypeFromParam();
     setFlowNodeNumber(getFlowNodeNum());
     setValueNumber(getValue());

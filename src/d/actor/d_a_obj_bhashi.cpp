@@ -395,7 +395,7 @@ int daObjBHASHI_c::CreateHeap() {
 
 /* 8057842C-805786B4 001A4C 0288+00 1/1 0/0 0/0 .text            create__13daObjBHASHI_cFv */
 int daObjBHASHI_c::create() {
-    fopAcM_SetupActor(this, daObjBHASHI_c);
+    fopAcM_ct(this, daObjBHASHI_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

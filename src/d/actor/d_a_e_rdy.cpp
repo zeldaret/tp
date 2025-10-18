@@ -4873,7 +4873,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80778D90-80779340 00D0B0 05B0+00 1/0 0/0 0/0 .text            daE_RDY_Create__FP10fopAc_ac_c */
 static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, e_rdy_class);
+    fopAcM_ct(i_this, e_rdy_class);
     e_rdy_class* _this = (e_rdy_class*)i_this;
 
     _this->field_0x5b6 = fopAcM_GetParam(_this) & 0xff;

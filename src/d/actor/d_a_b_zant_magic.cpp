@@ -251,7 +251,7 @@ static int daB_ZANTM_Delete(daB_ZANTM_c* i_this) {
 
 /* 8064FF54-806500A8 000854 0154+00 1/1 0/0 0/0 .text            create__11daB_ZANTM_cFv */
 int daB_ZANTM_c::create() {
-    fopAcM_SetupActor(this, daB_ZANTM_c);
+    fopAcM_ct(this, daB_ZANTM_c);
     OS_REPORT("B_ZANTM PARAM %x\n", fopAcM_GetParam(this));
 
     mPrm = fopAcM_GetParam(this);

@@ -925,7 +925,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 806B88E0-806B8C1C 002520 033C+00 1/1 0/0 0/0 .text            create__8daE_FB_cFv */
 cPhs__Step daE_FB_c::create() {
-    fopAcM_SetupActor(this, daE_FB_c);
+    fopAcM_ct(this, daE_FB_c);
     mType = fopAcM_GetParam(this);
     swBit0 = (fopAcM_GetParam(this) & 0xFF00) >> 8;
     swBit1 = (fopAcM_GetParam(this) & 0xFF0000) >> 16;

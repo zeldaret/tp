@@ -607,7 +607,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 8047D1D8-8047D594 001FD8 03BC+00 1/0 0/0 0/0 .text            daObj_Ito_Create__FP10fopAc_ac_c */
 static cPhs__Step daObj_Ito_Create(fopAc_ac_c* a_this) {
-    fopAcM_SetupActor(a_this, obj_ito_class);
+    fopAcM_ct(a_this, obj_ito_class);
     obj_ito_class* i_this = (obj_ito_class*)a_this;
     a_this = &i_this->actor;
 

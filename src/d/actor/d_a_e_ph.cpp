@@ -1199,7 +1199,7 @@ static int daE_PH_Execute(daE_PH_c* i_this) {
 
 /* 80741428-80741A44 0040C8 061C+00 1/1 0/0 0/0 .text            create__8daE_PH_cFv */
 int daE_PH_c::create() {
-    fopAcM_SetupActor(this, daE_PH_c);
+    fopAcM_ct(this, daE_PH_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "E_PH");
     if (phase_state == cPhs_COMPLEATE_e) {

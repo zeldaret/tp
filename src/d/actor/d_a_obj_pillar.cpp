@@ -197,7 +197,7 @@ int daPillar_c::CreateHeap() {
 
 /* 80CAF8A4-80CAFA58 000664 01B4+00 1/1 0/0 0/0 .text            create1st__10daPillar_cFv */
 int daPillar_c::create1st() {
-    fopAcM_SetupActor(this, daPillar_c);
+    fopAcM_ct(this, daPillar_c);
 
     if (!mIsPrmInit) {
         mIsPrmInit = true;
@@ -490,7 +490,7 @@ int daPillar_c::Delete() {
 /* 80CB0780-80CB0874 001540 00F4+00 1/0 0/0 0/0 .text            daPillar_create1st__FP10daPillar_c
  */
 static int daPillar_create1st(daPillar_c* i_this) {
-    fopAcM_SetupActor(i_this, daPillar_c);
+    fopAcM_ct(i_this, daPillar_c);
     return i_this->create1st();
 }
 

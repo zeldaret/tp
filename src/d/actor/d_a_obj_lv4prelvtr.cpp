@@ -106,7 +106,7 @@ int daObjPRElvtr_c::Delete() {
 /* 80C68A24-80C68A84 0004A4 0060+00 1/0 0/0 0/0 .text daObjPRElvtr_create1st__FP14daObjPRElvtr_c
  */
 static int daObjPRElvtr_create1st(daObjPRElvtr_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjPRElvtr_c);
+    fopAcM_ct(i_this, daObjPRElvtr_c);
     return i_this->create1st();
 }
 

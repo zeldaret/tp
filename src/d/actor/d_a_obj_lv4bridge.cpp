@@ -168,7 +168,7 @@ int daObjLv4Brg_c::Delete() {
 
 /* 80C62F78-80C62FF8 000778 0080+00 1/0 0/0 0/0 .text daObjLv4Brg_create1st__FP13daObjLv4Brg_c */
 static int daObjLv4Brg_create1st(daObjLv4Brg_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjLv4Brg_c);
+    fopAcM_ct(i_this, daObjLv4Brg_c);
     return i_this->create1st();
 }
 

@@ -58,7 +58,7 @@ int daLv6ChangeGate_c::CreateHeap() {
 
 /* 80C70E40-80C7106C 0002E0 022C+00 1/1 0/0 0/0 .text            create__17daLv6ChangeGate_cFv */
 int daLv6ChangeGate_c::create() {
-    fopAcM_SetupActor(this, daLv6ChangeGate_c);
+    fopAcM_ct(this, daLv6ChangeGate_c);
 
     if (getSw2() != 0xFF && fopAcM_isSwitch(this, getSw2())) {
         return cPhs_ERROR_e;

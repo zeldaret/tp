@@ -110,7 +110,7 @@ static dCcD_SrcCyl l_cylSrc = {
 
 /* 804DDBB4-804DE0C4 0002D4 0510+00 1/1 0/0 0/0 .text            create__9daCstaF_cFv */
 int daCstaF_c::create() {
-    fopAcM_SetupActor(this, daCstaF_c);
+    fopAcM_ct(this, daCstaF_c);
 
     m_type = fopAcM_GetParam(this) & 0xF;
     if (m_type >= 2) {

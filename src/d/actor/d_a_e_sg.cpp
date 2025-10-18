@@ -1200,7 +1200,7 @@ static int daE_SG_Create(fopAc_ac_c* i_this) {
     };
 
     e_sg_class* a_this = static_cast<e_sg_class*>(i_this);
-    fopAcM_SetupActor(i_this, e_sg_class);
+    fopAcM_ct(i_this, e_sg_class);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "E_sg");
 

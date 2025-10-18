@@ -5118,7 +5118,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
 
 /* 8062CD78-8062D2F0 00E278 0578+00 1/1 0/0 0/0 .text            create__8daB_TN_cFv */
 int daB_TN_c::create() {
-    fopAcM_SetupActor(this, daB_TN_c);
+    fopAcM_ct(this, daB_TN_c);
 
     mSwitchNo = fopAcM_GetParam(this);
     mType = fopAcM_GetParamBit(this, 8, 8);

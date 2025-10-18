@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSREBOOT_H_
 #define _DOLPHIN_OSREBOOT_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSReboot.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -16,4 +19,5 @@ void __OSReboot(u32 resetCode, u32 bootDol);
 }
 #endif
 
+#endif
 #endif

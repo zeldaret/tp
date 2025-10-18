@@ -35,7 +35,7 @@ static int daObjWchain_createHeap(fopAc_ac_c* i_this) {
 
 /* 80D2FFBC-80D30394 00013C 03D8+00 1/1 0/0 0/0 .text            create__13daObjWchain_cFv */
 cPhs__Step daObjWchain_c::create() {
-    fopAcM_SetupActor(this, daObjWchain_c);
+    fopAcM_ct(this, daObjWchain_c);
     mSw = fopAcM_GetParam(this) & 0xff;
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (step == cPhs_COMPLEATE_e) {

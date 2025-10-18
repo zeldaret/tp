@@ -40,7 +40,7 @@ static daSldWall_HIO_c l_HIO;
 
 /* 80C61FB8-80C620E4 000278 012C+00 1/1 0/0 0/0 .text            create__11daSldWall_cFv */
 int daSldWall_c::create() {
-    fopAcM_SetupActor(this, daSldWall_c);
+    fopAcM_ct(this, daSldWall_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "L4SldWall");
     if (phase_state == cPhs_COMPLEATE_e) {

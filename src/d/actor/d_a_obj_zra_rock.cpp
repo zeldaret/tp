@@ -81,7 +81,7 @@ int daObjZraRock_c::CreateHeap() {
 
 /* 80D450E0-80D45264 0004A0 0184+00 1/1 0/0 0/0 .text            create__14daObjZraRock_cFv */
 cPhs__Step daObjZraRock_c::create() {
-    fopAcM_SetupActor(this, daObjZraRock_c);
+    fopAcM_ct(this, daObjZraRock_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (step == cPhs_ERROR_e || step == cPhs_UNK3_e) {
         return cPhs_ERROR_e;

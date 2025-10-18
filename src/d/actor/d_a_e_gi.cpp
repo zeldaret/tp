@@ -1058,7 +1058,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 806D027C-806D0608 002EDC 038C+00 1/1 0/0 0/1 .text            create__8daE_GI_cFv */
 int daE_GI_c::create() {
-    fopAcM_SetupActor(this, daE_GI_c);
+    fopAcM_ct(this, daE_GI_c);
 
     OS_REPORT("E_GI PARAM %x\n", fopAcM_GetParam(this));
     mSwbit = fopAcM_GetParam(this);

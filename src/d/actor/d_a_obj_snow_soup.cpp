@@ -53,7 +53,7 @@ int daObjSnowSoup_c::createHeap() {
 
 /* 80CDFA3C-80CDFB70 00025C 0134+00 1/1 0/0 0/0 .text            create__15daObjSnowSoup_cFv */
 cPhs__Step daObjSnowSoup_c::create() {
-    fopAcM_SetupActor(this, daObjSnowSoup_c);
+    fopAcM_ct(this, daObjSnowSoup_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(this, l_arcName);
     if (step == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, daObjSnowSoup_c_createHeap, 0x6500)) {
@@ -186,7 +186,7 @@ void daObjSnowSoup_c::deleteSmkEmtChange(int i_state) {
 /* 80CE0180-80CE01D4 0009A0 0054+00 1/0 0/0 0/0 .text daObjSnowSoup_create__FP15daObjSnowSoup_c */
 
 static cPhs__Step daObjSnowSoup_create(daObjSnowSoup_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjSnowSoup_c);
+    fopAcM_ct(i_this, daObjSnowSoup_c);
     return i_this->create();
 }
 

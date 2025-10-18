@@ -30,7 +30,7 @@ public:
     }
 
     int create() {
-        fopAcM_SetupActor(this, daTagGra_c);
+        fopAcM_ct(this, daTagGra_c);
 
         if (getMode() == 2) {
             if (dComIfGs_isSwitch(getSwBit(),fopAcM_GetRoomNo(this))) {

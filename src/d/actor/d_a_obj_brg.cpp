@@ -1660,7 +1660,7 @@ static int daObj_Brg_Create(fopAc_ac_c* i_this) {
     br_s* part;
     int loop, sp60, brno, iter;
     int fop_id = fopAcM_GetID(i_this);
-    fopAcM_SetupActor(i_this, obj_brg_class);
+    fopAcM_ct(i_this, obj_brg_class);
 
     phase_state = dComIfG_resLoad(&a_this->mPhase, "Obj_brg");
     if (phase_state == cPhs_COMPLEATE_e) {

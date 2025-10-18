@@ -212,7 +212,7 @@ u8 const daObjSwpush::Act_c::M_op_vtx[4] = {0x0D, 0x0B, 0x0A, 0x0C};
 
 /* 80483038-80483450 0003D8 0418+00 1/1 0/0 0/0 .text Mthd_Create__Q211daObjSwpush5Act_cFv */
 cPhs__Step daObjSwpush::Act_c::Mthd_Create() {
-    fopAcM_SetupActor(this, daObjSwpush::Act_c);
+    fopAcM_ct(this, daObjSwpush::Act_c);
 
     prmZ_init();
     mType = prm_get_type();

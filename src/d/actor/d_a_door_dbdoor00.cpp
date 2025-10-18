@@ -165,7 +165,7 @@ int daDbDoor00_c::CreateInit() {
 
 /* 8045D9A8-8045DA68 0006A8 00C0+00 1/1 0/0 0/0 .text            create__12daDbDoor00_cFv */
 int daDbDoor00_c::create() {
-    fopAcM_SetupActor(this, daDbDoor00_c);
+    fopAcM_ct(this, daDbDoor00_c);
 
     int phase = dComIfG_resLoad(&mPhaseReq2, getAlwaysArcName());
     if (phase != cPhs_COMPLEATE_e) {

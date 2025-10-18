@@ -784,7 +784,7 @@ void daE_FK_c::CreateChk() {
 
 /* 806BB004-806BB324 001D64 0320+00 1/1 0/0 0/0 .text            Create__8daE_FK_cFv */
 int daE_FK_c::Create() {
-    fopAcM_SetupActor(this, daE_FK_c);
+    fopAcM_ct(this, daE_FK_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "E_fk");
     if (phase_state == cPhs_COMPLEATE_e) {

@@ -611,7 +611,7 @@ int daObjTobyHouse_c::Delete() {
 /* 80D17618-80D17678 001C58 0060+00 1/0 0/0 0/0 .text
  * daObjTobyHouse_create1st__FP16daObjTobyHouse_c               */
 static int daObjTobyHouse_create1st(daObjTobyHouse_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjTobyHouse_c);
+    fopAcM_ct(i_this, daObjTobyHouse_c);
     return i_this->create1st();
 }
 

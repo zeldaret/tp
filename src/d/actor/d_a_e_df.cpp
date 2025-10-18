@@ -683,7 +683,7 @@ static int daE_DF_Delete(daE_DF_c* i_this) {
 
 /* 806A9678-806A9930 002078 02B8+00 1/1 0/0 0/0 .text            Create__8daE_DF_cFv */
 int daE_DF_c::Create() {
-    fopAcM_SetupActor(this, daE_DF_c);
+    fopAcM_ct(this, daE_DF_c);
 
     cPhs__Step rv = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, "E_DF");
     if (rv == cPhs_COMPLEATE_e) {

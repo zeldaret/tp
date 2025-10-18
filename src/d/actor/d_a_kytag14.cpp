@@ -81,7 +81,7 @@ static int daKytag14_Delete(kytag14_class*) {
 
 /* 80529B44-80529BE0 000224 009C+00 1/0 0/0 0/0 .text            daKytag14_Create__FP10fopAc_ac_c */
 static int daKytag14_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, kytag14_class);
+    fopAcM_ct(i_this, kytag14_class);
     kytag14_class* a_this = static_cast<kytag14_class*>(i_this);
 
     a_this->mSavePoint = fopAcM_GetParam(a_this) & 0xFF;

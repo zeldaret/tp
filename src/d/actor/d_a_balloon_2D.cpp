@@ -593,7 +593,7 @@ void daBalloon2D_HIO_c::resetAddScoreSetFlag() {
 /* 80655250-80655304 001E70 00B4+00 1/0 0/0 0/0 .text daBalloon2D_create__FP13daBalloon2D_c */
 // NONMATCHING - vtable
 static int daBalloon2D_create(daBalloon2D_c* i_this) {
-    fopAcM_SetupActor(i_this, daBalloon2D_c);
+    fopAcM_ct(i_this, daBalloon2D_c);
     return i_this->create();
 }
 

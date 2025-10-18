@@ -63,7 +63,7 @@ static daL8Lift_HIO_c l_HIO;
 
 /* 80C88928-80C88C44 0002E8 031C+00 1/1 0/0 0/0 .text            create__10daL8Lift_cFv */
 int daL8Lift_c::create() {
-    fopAcM_SetupActor(this, daL8Lift_c);
+    fopAcM_ct(this, daL8Lift_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "L8Lift");
     if (phase_state == cPhs_COMPLEATE_e) {

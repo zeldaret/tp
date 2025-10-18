@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_PPCARCH
 #define _DOLPHIN_PPCARCH
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/base/PPCArch.h>
+#else
 #include "dolphin/types.h"
 
 #ifdef __cplusplus
@@ -539,4 +542,5 @@ void PMInstructions(void);
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_PPCARCH

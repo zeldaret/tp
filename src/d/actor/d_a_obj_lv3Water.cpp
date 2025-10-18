@@ -151,7 +151,7 @@ static u16 const estimateSizeTbl[] = {
 
 /* 80C58ABC-80C58D20 0003DC 0264+00 1/1 0/0 0/0 .text            create__12daLv3Water_cFv */
 int daLv3Water_c::create() {
-    fopAcM_SetupActor(this, daLv3Water_c);
+    fopAcM_ct(this, daLv3Water_c);
 
     mType = getParamType();
 

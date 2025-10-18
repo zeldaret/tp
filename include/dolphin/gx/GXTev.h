@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXTEV_H_
 #define _DOLPHIN_GX_GXTEV_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXTev.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
 
@@ -30,4 +33,5 @@ void GXSetNumTevStages(u8 nStages);
 }
 #endif
 
+#endif
 #endif

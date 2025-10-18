@@ -179,7 +179,7 @@ int daObjDigSnow_c::Delete() {
 /* 80BDD2EC-80BDD418 00070C 012C+00 1/0 0/0 0/0 .text daObjDigSnow_create1st__FP14daObjDigSnow_c
  */
 static int daObjDigSnow_create1st(daObjDigSnow_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjDigSnow_c);
+    fopAcM_ct(i_this, daObjDigSnow_c);
     return i_this->create1st();
 }
 

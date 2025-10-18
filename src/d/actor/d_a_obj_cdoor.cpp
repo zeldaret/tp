@@ -61,7 +61,7 @@ static void* daObjCdoor_searchChain(fopAc_ac_c* i_actor, void* i_this) {
 
 /* 80BC6F30-80BC7234 0001F0 0304+00 1/1 0/0 0/0 .text            create__12daObjCdoor_cFv */
 cPhs__Step daObjCdoor_c::create() {
-    fopAcM_SetupActor(this, daObjCdoor_c);
+    fopAcM_ct(this, daObjCdoor_c);
     mType = (fopAcM_GetParam(this) >> 8) & 0xf;
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName[mType]);
     if (step == cPhs_COMPLEATE_e) {

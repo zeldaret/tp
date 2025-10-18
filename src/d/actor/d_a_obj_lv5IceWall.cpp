@@ -77,7 +77,7 @@ static const int l_bmdIdx[] = {4, 5};
 
 /* 80C6B69C-80C6B924 00035C 0288+00 1/1 0/0 0/0 .text            create__11daIceWall_cFv */
 int daIceWall_c::create() {
-    fopAcM_SetupActor(this, daIceWall_c);
+    fopAcM_ct(this, daIceWall_c);
 
     mIsBreakSwBit = getSwBit1();
     mIsBreakingSwBit = getSwBit1();

@@ -141,6 +141,8 @@ public:
     fopAc_ac_c* GetActorPointer(cBgS_PolyInfo const& param_0) const { return cBgS::GetActorPointer(param_0); }
     f32 GroundCross(cBgS_GndChk* i_gndChk) { return (f32)((cBgS*)this)->GroundCross(i_gndChk); }
 
+    void ChkDeleteActorRegist(fopAc_ac_c*);
+
 #ifdef DEBUG
     /* 0x1404 */ u8 field_0x1404[0x1408 - 0x1404];
     /* 0x1408 */ dBgS_HIO m_hio;

@@ -26,10 +26,10 @@ public:
     JKRAramBlock* alloc(u32, EAllocMode);
     JKRAramBlock* allocFromHead(u32);
     JKRAramBlock* allocFromTail(u32);
-    u32 getFreeSize(void);
-    u32 getTotalFreeSize(void);
-    // u32 getUsedSize(void);
-    void dump(void);
+    u32 getFreeSize();
+    u32 getTotalFreeSize();
+    u32 getUsedSize(u8);
+    void dump();
     void free(JKRAramBlock *block) {
         delete block;
     }

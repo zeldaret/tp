@@ -933,7 +933,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 80832064-80832580 002804 051C+00 1/1 0/0 0/0 .text            create__8daE_ZM_cFv */
 cPhs__Step daE_ZM_c::create() {
-    fopAcM_SetupActor(this, daE_ZM_c);
+    fopAcM_ct(this, daE_ZM_c);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, "E_ZM");
     if (phase == cPhs_COMPLEATE_e) {

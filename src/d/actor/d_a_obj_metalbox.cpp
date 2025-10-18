@@ -51,7 +51,7 @@ int daObjMBox_c::CreateHeap() {
 
 /* 80593044-805931C4 000224 0180+00 1/1 0/0 0/0 .text            create__11daObjMBox_cFv */
 int daObjMBox_c::create() {
-    fopAcM_SetupActor(this, daObjMBox_c);
+    fopAcM_ct(this, daObjMBox_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

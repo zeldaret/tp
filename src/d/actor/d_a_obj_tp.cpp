@@ -419,7 +419,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80D1E950-80D1ECF0 001450 03A0+00 1/0 0/0 0/0 .text            daObj_Tp_Create__FP10fopAc_ac_c */
 static int daObj_Tp_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, obj_tp_class);
+    fopAcM_ct(i_this, obj_tp_class);
     obj_tp_class* tp = (obj_tp_class*)i_this;
     int rv = dComIfG_resLoad(&tp->mPhase, "Obj_tp");
     if (rv == cPhs_COMPLEATE_e) {

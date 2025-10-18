@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXDISPLIST_H_
 #define _DOLPHIN_GX_GXDISPLIST_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXDispList.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -15,4 +18,5 @@ void GXCallDisplayList(void* list, u32 nbytes);
 }
 #endif
 
+#endif
 #endif

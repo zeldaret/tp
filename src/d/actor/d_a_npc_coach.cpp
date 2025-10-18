@@ -2047,7 +2047,7 @@ static int daNpcCoach_Create(fopAc_ac_c* a_this) {
 
 /* 809A3884-809A3928 006224 00A4+00 1/1 0/0 0/0 .text            create__12daNpcCoach_cFv */
 cPhs__Step daNpcCoach_c::create() {
-    fopAcM_SetupActor(this, daNpcCoach_c);
+    fopAcM_ct(this, daNpcCoach_c);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {

@@ -98,7 +98,7 @@ int daObjCRVSTEEL_c::CreateHeap() {
 
 /* 80BD5E30-80BD6030 0002F0 0200+00 1/1 0/0 0/0 .text            create__15daObjCRVSTEEL_cFv */
 int daObjCRVSTEEL_c::create() {
-    fopAcM_SetupActor(this, daObjCRVSTEEL_c);
+    fopAcM_ct(this, daObjCRVSTEEL_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
         gravity = -9.0f;

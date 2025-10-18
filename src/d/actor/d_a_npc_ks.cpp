@@ -7304,7 +7304,7 @@ static int daNpc_Ks_Create(fopAc_ac_c* a_this) {
     };
 
     npc_ks_class* i_this = (npc_ks_class*)a_this;
-    fopAcM_SetupActor(a_this, npc_ks_class);
+    fopAcM_ct(a_this, npc_ks_class);
 
     dComIfGp_getStage()->getStagInfo();
     if (dKy_darkworld_check()) {

@@ -161,7 +161,7 @@ daObj_Gadget_c::~daObj_Gadget_c() {
 
 /* 80BF2F28-80BF3228 0002E8 0300+00 1/1 0/0 0/0 .text            create__14daObj_Gadget_cFv */
 int daObj_Gadget_c::create() {
-    fopAcM_SetupActor(this, daObj_Gadget_c);
+    fopAcM_ct(this, daObj_Gadget_c);
     field_0x9d0 = getType();
     int rv = dComIfG_resLoad(&mPhase, l_resNameList[l_bmdData[field_0x9d0][1]]);
     if (rv == cPhs_COMPLEATE_e) {

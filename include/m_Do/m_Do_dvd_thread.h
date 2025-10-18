@@ -120,6 +120,11 @@ struct mDoDvdThd {
     static OSThread l_thread;
     static mDoDvdThdStack l_threadStack;
     static mDoDvdThd_param_c l_param;
+
+    static u8 verbose;
+    static u8 DVDLogoMode;
+    static bool SyncWidthSound;
+    static u8 Report_DVDRead;
 };
 
 #endif /* M_DO_M_DO_DVD_THREAD_H */

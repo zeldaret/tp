@@ -206,7 +206,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 806531E8-80653304 000888 011C+00 1/1 0/0 0/0 .text            create__11daB_ZANTS_cFv */
 int daB_ZANTS_c::create() {
-    fopAcM_SetupActor(this, daB_ZANTS_c);
+    fopAcM_ct(this, daB_ZANTS_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "MAGNESIMA");
     if (phase_state == cPhs_COMPLEATE_e) {

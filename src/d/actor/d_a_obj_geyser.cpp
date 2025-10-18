@@ -721,7 +721,7 @@ int daObjGeyser_c::Delete() {
 
 /* 80BF8D98-80BF8E88 001EF8 00F0+00 1/0 0/0 0/0 .text daObjGeyser_create1st__FP13daObjGeyser_c */
 static int daObjGeyser_create1st(daObjGeyser_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjGeyser_c);
+    fopAcM_ct(i_this, daObjGeyser_c);
     return i_this->create1st();
 }
 

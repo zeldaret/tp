@@ -68,7 +68,7 @@ const dCcD_SrcGObjInf daTvCdlst_c::mCcDObjInfo = {
 
 /* 80B9EE34-80B9F0B4 000254 0280+00 1/1 0/0 0/0 .text            create__11daTvCdlst_cFv */
 int daTvCdlst_c::create() {
-    fopAcM_SetupActor(this, daTvCdlst_c);
+    fopAcM_ct(this, daTvCdlst_c);
     int phase = dComIfG_resLoad(&mPhaseReq,"HShokudai");
     if (phase == cPhs_COMPLEATE_e) {
         if (fopAcM_entrySolidHeap(this,createHeapCallBack,0x820) == 0) {

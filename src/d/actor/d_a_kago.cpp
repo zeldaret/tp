@@ -3822,7 +3822,7 @@ static int useHeapInit(fopAc_ac_c* param_0) {
 
 /* 808544D8-80854928 00B018 0450+00 1/1 0/0 0/0 .text            create__8daKago_cFv */
 int daKago_c::create() {
-    fopAcM_SetupActor(this, daKago_c);
+    fopAcM_ct(this, daKago_c);
 
     u32 param = (u8)fopAcM_GetParam(this);
     if ((param & 0xff) != 0xff) {

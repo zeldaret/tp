@@ -902,7 +902,7 @@ static int daB_DRE_Execute(daB_DRE_c* i_this) {
 
 /* 805CA944-805CAC3C 002F04 02F8+00 1/1 0/0 0/0 .text            create__9daB_DRE_cFv */
 int daB_DRE_c::create() {
-    fopAcM_SetupActor(this, daB_DRE_c);
+    fopAcM_ct(this, daB_DRE_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "B_DR");
     if (phase_state == cPhs_COMPLEATE_e) {

@@ -35,7 +35,7 @@ static bool daNpc_shopMaro_IsDelete(void* i_this) {
 
 /* 80AEBEB4-80AEBF04 0000D4 0050+00 1/1 0/0 0/0 .text            create__16daNpc_shopMaro_cFv */
 int daNpc_shopMaro_c::create() {
-    fopAcM_SetupActor(this, daNpc_shopMaro_c);
+    fopAcM_ct(this, daNpc_shopMaro_c);
     return cPhs_ERROR_e;
 }
 

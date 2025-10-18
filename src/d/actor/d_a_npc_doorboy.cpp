@@ -180,7 +180,7 @@ daNpcDoorBoy_HIOParam const daNpcDoorBoy_Param_c::m = {
 
 /* 809AB088-809AB320 0004E8 0298+00 1/1 0/0 0/0 .text            Create__14daNpcDoorBoy_cFv */
 cPhs__Step daNpcDoorBoy_c::Create() {
-    fopAcM_SetupActor(this, daNpcDoorBoy_c);
+    fopAcM_ct(this, daNpcDoorBoy_c);
 
     mMessageNo = (s16)getMessageNo();
 

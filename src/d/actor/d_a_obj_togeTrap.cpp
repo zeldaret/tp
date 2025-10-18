@@ -74,7 +74,7 @@ int daTogeTrap_c::CreateHeap() {
 
 /* 80D17E14-80D18008 000394 01F4+00 1/1 0/0 0/0 .text            create__12daTogeTrap_cFv */
 int daTogeTrap_c::create() {
-    fopAcM_SetupActor(this, daTogeTrap_c);
+    fopAcM_ct(this, daTogeTrap_c);
     mSwBit = getSwBit();
     if (mSwBit != 0xff &&
         fopAcM_isSwitch(this, mSwBit))

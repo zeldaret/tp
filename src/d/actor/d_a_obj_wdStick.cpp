@@ -53,7 +53,7 @@ dCcD_SrcGObjInf const daWdStick_c::mCcDObjInfo = {
 
 /* 80D31CC4-80D31F9C 000264 02D8+00 1/1 0/0 0/0 .text            create__11daWdStick_cFv */
 int daWdStick_c::create() {
-    fopAcM_SetupActor(this, daWdStick_c);
+    fopAcM_ct(this, daWdStick_c);
     int rv = dComIfG_resLoad(&mPhase, "H_Kinobou");
     if (rv == cPhs_COMPLEATE_e) {
         if (fopAcM_entrySolidHeap(this, createHeapCallBack, 0x820) == 0) {

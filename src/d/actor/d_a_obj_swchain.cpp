@@ -240,7 +240,7 @@ int daObjSwChain_c::CreateHeap() {
 
 /* 80CF8B48-80CF8DD0 000508 0288+00 1/1 0/0 0/0 .text            create1st__14daObjSwChain_cFv */
 int daObjSwChain_c::create1st() {
-    fopAcM_SetupActor(this, daObjSwChain_c);
+    fopAcM_ct(this, daObjSwChain_c);
 
     if (field_0xa60 == 0) {
         mHookshotLength = home.angle.x;

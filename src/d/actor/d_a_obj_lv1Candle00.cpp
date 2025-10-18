@@ -57,7 +57,7 @@ int daLv1Cdl00_c::CreateHeap() {
 
 /* 80C55E74-80C56110 000254 029C+00 1/1 0/0 0/0 .text            create__12daLv1Cdl00_cFv */
 cPhs__Step daLv1Cdl00_c::create() {
-    fopAcM_SetupActor(this, daLv1Cdl00_c);
+    fopAcM_ct(this, daLv1Cdl00_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "lv1cdl00");
     if (step == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x820)) {

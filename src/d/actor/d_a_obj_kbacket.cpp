@@ -65,7 +65,7 @@ daObj_KBacket_c::~daObj_KBacket_c() {
 
 /* 80586048-805863F0 0002E8 03A8+00 1/1 0/0 0/0 .text            create__15daObj_KBacket_cFv */
 int daObj_KBacket_c::create() {
-    fopAcM_SetupActor(this, daObj_KBacket_c);
+    fopAcM_ct(this, daObj_KBacket_c);
 
     field_0x9d0 = getType();
 

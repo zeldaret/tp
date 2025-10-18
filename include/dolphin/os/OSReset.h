@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSRESET_H_
 #define _DOLPHIN_OSRESET_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSReset.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -36,4 +39,5 @@ u32 OSSetBootDol(u32 dolOffset);
 }
 #endif
 
+#endif
 #endif

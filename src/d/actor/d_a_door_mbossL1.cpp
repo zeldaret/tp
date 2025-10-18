@@ -523,7 +523,7 @@ int daMBdoorL1_c::CreateInit() {
 
 /* 80673B9C-80673D98 0013DC 01FC+00 1/1 0/0 0/0 .text            create__12daMBdoorL1_cFv */
 int daMBdoorL1_c::create() {
-    fopAcM_SetupActor(this, daMBdoorL1_c);
+    fopAcM_ct(this, daMBdoorL1_c);
     int rv = dComIfG_resLoad(&mPhase1, getArcName());
     if (rv != cPhs_COMPLEATE_e) {
         return rv;

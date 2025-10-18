@@ -2512,7 +2512,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 8076010C-807607EC 007C8C 06E0+00 1/1 0/0 0/0 .text            create__8daE_PZ_cFv */
 int daE_PZ_c::create() {
-    fopAcM_SetupActor(this, daE_PZ_c);
+    fopAcM_ct(this, daE_PZ_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "E_PZ");
     if (phase_state == cPhs_COMPLEATE_e) {

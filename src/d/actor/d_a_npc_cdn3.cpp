@@ -1566,7 +1566,7 @@ SECTION_DEAD static char const* const stringBase_8097F652 =
 
 /* 8097C910-8097CC58 003CB0 0348+00 3/1 0/0 0/0 .text            create__11daNpcCdn3_cFv */
 int daNpcCdn3_c::create() {
-    fopAcM_SetupActor(this, daNpcCdn3_c);
+    fopAcM_ct(this, daNpcCdn3_c);
     mIsDarkWorld = dKy_darkworld_check();
     m_type = getType();
     mObjNum = getObjNum();

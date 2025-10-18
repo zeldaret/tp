@@ -1814,7 +1814,7 @@ static int daDemo00_Delete(daDemo00_c* i_this) {
 static int daDemo00_Create(fopAc_ac_c* a_this) {
     // NONMATCHING
     daDemo00_c* i_this = (daDemo00_c*)a_this;
-    fopAcM_SetupActor(a_this, daDemo00_c);
+    fopAcM_ct(a_this, daDemo00_c);
 
     i_this->field_0x6a2 = 0;
     i_this->mground2 = 0;

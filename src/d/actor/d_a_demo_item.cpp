@@ -481,7 +481,7 @@ static int daDitem_Delete(daDitem_c* i_this) {
 }
 
 int daDitem_c::create() {
-    fopAcM_SetupActor(this, daDitem_c);
+    fopAcM_ct(this, daDitem_c);
 
     m_itemNo = daDitem_prm::getNo(this);
 

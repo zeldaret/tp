@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSEXCEPTION_H_
 #define _DOLPHIN_OSEXCEPTION_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSException.h>
+#else
 #include <dolphin/os/OSContext.h>
 #include <dolphin/types.h>
 
@@ -58,4 +61,5 @@ __OSExceptionHandler __OSGetExceptionHandler(__OSException exception);
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_OSEXCEPTION_H_

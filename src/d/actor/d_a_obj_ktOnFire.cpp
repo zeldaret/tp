@@ -58,7 +58,7 @@ void daKtOnFire_c::setBaseMtx() {
 
 /* 8058C6D0-8058C8D0 0001B0 0200+00 1/1 0/0 0/0 .text            create__12daKtOnFire_cFv */
 int daKtOnFire_c::create() {
-    fopAcM_SetupActor(this, daKtOnFire_c);
+    fopAcM_ct(this, daKtOnFire_c);
 
     setBaseMtx();
     

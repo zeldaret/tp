@@ -876,7 +876,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
 
 /* 807D1F40-807D206C 0027E0 012C+00 1/0 0/0 0/0 .text daE_Warpappear_Create__FP10fopAc_ac_c */
 static int daE_Warpappear_Create(fopAc_ac_c* actor) {
-    fopAcM_SetupActor(actor, e_warpappear_class);
+    fopAcM_ct(actor, e_warpappear_class);
     e_warpappear_class* i_this = (e_warpappear_class*)actor;
 
     int phase = dComIfG_resLoad(&i_this->mPhase, "Kytag04");

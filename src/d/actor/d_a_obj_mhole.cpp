@@ -200,7 +200,7 @@ int daObjMHole_c::CreateHeap() {
 
 /* 80C934E0-80C93660 000700 0180+00 1/1 0/0 0/0 .text            create__12daObjMHole_cFv */
 int daObjMHole_c::create() {
-    fopAcM_SetupActor(this, daObjMHole_c);
+    fopAcM_ct(this, daObjMHole_c);
 
 
     mKind = getKind();

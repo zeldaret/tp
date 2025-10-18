@@ -51,7 +51,7 @@ int daHeavySw_c::CreateHeap() {
 
 /* 80C1CCDC-80C1CEB0 0002DC 01D4+00 1/1 0/0 0/0 .text            create__11daHeavySw_cFv */
 int daHeavySw_c::create() {
-    fopAcM_SetupActor(this, daHeavySw_c);
+    fopAcM_ct(this, daHeavySw_c);
 
     int phase = dComIfG_resLoad(&mPhaseReq, "Hswitch");
     if (phase == cPhs_COMPLEATE_e) {

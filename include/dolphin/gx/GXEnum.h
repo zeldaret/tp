@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXENUM_H_
 #define _DOLPHIN_GX_GXENUM_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXEnum.h>
+#else
 #include <dolphin/types.h>
 
 typedef u8 GXBool;
@@ -921,4 +924,5 @@ typedef enum _GXCPRegs {
     GX_CP_REG_ARRAYSTRIDE = 0xB0,  // Vertex array stride
 } GXCPRegs;
 
+#endif
 #endif

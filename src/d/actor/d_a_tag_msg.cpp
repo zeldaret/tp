@@ -32,7 +32,7 @@ daTag_Msg_c::~daTag_Msg_c() {
 
 /* 8048F878-8048F954 000118 00DC+00 1/1 0/0 0/0 .text            create__11daTag_Msg_cFv */
 int daTag_Msg_c::create() {
-    fopAcM_SetupActor(this, daTag_Msg_c);
+    fopAcM_ct(this, daTag_Msg_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, getResName());
     if (phase_state == cPhs_COMPLEATE_e) {

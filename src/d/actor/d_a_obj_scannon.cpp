@@ -97,7 +97,7 @@ static const u16 APP_PARTICLE_NAME[] = {
 
 /* 80CC6D10-80CC7124 0002F0 0414+00 1/1 0/0 0/0 .text            create__11daSCannon_cFv */
 int daSCannon_c::create() {
-    fopAcM_SetupActor(this, daSCannon_c);
+    fopAcM_ct(this, daSCannon_c);
 
     int layerNo = dComIfG_play_c::getLayerNo(0);
     if (layerNo != 1 && layerNo != 3 && layerNo != 10) {
@@ -882,7 +882,7 @@ void daSCannon_c::setCannonRepair() {
 /* 80CC8E60-80CC8EB4 002440 0054+00 1/0 0/0 0/0 .text            daSCannon_create__FP11daSCannon_c
  */
 static int daSCannon_create(daSCannon_c* i_this) {
-    fopAcM_SetupActor(i_this, daSCannon_c);
+    fopAcM_ct(i_this, daSCannon_c);
     return i_this->create();
 }
 

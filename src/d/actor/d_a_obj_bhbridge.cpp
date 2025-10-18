@@ -97,7 +97,7 @@ static int daObjBhbridge_Delete(daObjBhbridge_c* i_this) {
 static char* l_arcName = "BHBridge";
 
 inline int daObjBhbridge_c::create() {
-    fopAcM_SetupActor(this, daObjBhbridge_c);
+    fopAcM_ct(this, daObjBhbridge_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
         int dzb_id = dComIfG_getObjctResName2Index(l_arcName, "M_BHbridge.dzb");

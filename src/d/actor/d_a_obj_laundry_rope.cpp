@@ -285,7 +285,7 @@ static int daObjLndRope_Delete(daObjLndRope_c* i_this) {
 }
 
 int daObjLndRope_c::create() {
-    fopAcM_SetupActor(this, daObjLndRope_c);
+    fopAcM_ct(this, daObjLndRope_c);
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x6c0)) {

@@ -61,7 +61,7 @@ static BOOL hitCheck(daSwc00_c* i_swc) {
 
 int daSwc00_Draw(daSwc00_c* i_this) {
     fopAc_ac_c* a_this = i_this;
-    if (g_envHIO.mOther.field_0x46) {
+    if (g_envHIO.mOther.mDisplayTransparentCyl) {
         int shape = daSwc00_getShape(i_this);
         if (shape == 3) {
             GXColor local_44 = {0, 0, 0xff, 0xa0};
@@ -268,7 +268,7 @@ static inline int daSwc00_getScale(daSwc00_c* i_this) {
 /* 805A1B2C-805A1D8C 0007AC 0260+00 2/0 0/0 0/0 .text            daSwc00_Create__FP10fopAc_ac_c */
 static int daSwc00_Create(fopAc_ac_c* a_this) {
     daSwc00_c* i_this = (daSwc00_c*)a_this;
-    fopAcM_SetupActor(i_this, daSwc00_c);
+    fopAcM_ct(i_this, daSwc00_c);
     fpc_ProcID id = fopAcM_GetID(a_this);
     int sw1 = daSwc00_getSw1No(i_this);
     if (dComIfGs_isSwitch(sw1, fopAcM_GetRoomNo(a_this))) {

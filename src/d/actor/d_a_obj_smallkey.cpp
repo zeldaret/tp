@@ -151,7 +151,7 @@ int daKey_c::__CreateHeap() {
 
 /* 80CDA164-80CDA404 000A24 02A0+00 1/1 0/0 0/0 .text            create__7daKey_cFv */
 int daKey_c::create() {
-    fopAcM_SetupActor(this, daKey_c);
+    fopAcM_ct(this, daKey_c);
 
     if (!mIsPrmInit) {
         field_0x938 = home.angle.x;

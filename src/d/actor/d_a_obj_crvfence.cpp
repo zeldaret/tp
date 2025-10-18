@@ -342,7 +342,7 @@ int daObjCRVFENCE_c::CreateHeap() {
 
 /* 80BCFAE4-80BCFD6C 000EC4 0288+00 1/1 0/0 0/0 .text            create__15daObjCRVFENCE_cFv */
 cPhs__Step daObjCRVFENCE_c::create() {
-    fopAcM_SetupActor(this, daObjCRVFENCE_c);
+    fopAcM_ct(this, daObjCRVFENCE_c);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {

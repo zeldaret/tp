@@ -369,7 +369,7 @@ int daObjRotStair_c::Delete() {
 /* 80CC262C-80CC268C 00114C 0060+00 1/0 0/0 0/0 .text daObjRotStair_create1st__FP15daObjRotStair_c
  */
 static int daObjRotStair_create1st(daObjRotStair_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjRotStair_c);
+    fopAcM_ct(i_this, daObjRotStair_c);
     return i_this->create1st();
 }
 

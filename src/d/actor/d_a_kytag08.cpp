@@ -244,7 +244,7 @@ static int daKytag08_Create(fopAc_ac_c* i_this) {
     cXyz scale(1.0f, 1.0f, 1.0f);
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
-    fopAcM_SetupActor(a_this, kytag08_class);
+    fopAcM_ct(a_this, kytag08_class);
 
     int phase = dComIfG_resLoad(&a_this->mPhase, "Kytag08");
     if (phase == cPhs_COMPLEATE_e) {

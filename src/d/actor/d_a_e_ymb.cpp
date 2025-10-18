@@ -3237,7 +3237,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 80820DD0-808211BC 00ADB0 03EC+00 1/1 0/0 0/0 .text            create__9daE_YMB_cFv */
 cPhs__Step daE_YMB_c::create() {
-    fopAcM_SetupActor(this, daE_YMB_c);
+    fopAcM_ct(this, daE_YMB_c);
 
     mSwitchBit = fopAcM_GetParam(this);
     if (mSwitchBit != 0xFF) {

@@ -37,7 +37,7 @@ bool daObjProp_c::createHeap() {
 
 /* 80CB5334-80CB5408 0001D4 00D4+00 1/1 0/0 0/0 .text            create__11daObjProp_cFv */
 int daObjProp_c::create() {
-    fopAcM_SetupActor(this, daObjProp_c);
+    fopAcM_ct(this, daObjProp_c);
 
     int phase = dComIfG_resLoad(this, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
@@ -91,7 +91,7 @@ void daObjProp_c::setModelMtx() {
 
 /* 80CB5558-80CB55AC 0003F8 0054+00 1/0 0/0 0/0 .text            daObjProp_create__FP11daObjProp_c */
 static int daObjProp_create(daObjProp_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjProp_c);
+    fopAcM_ct(i_this, daObjProp_c);
     return i_this->create();
 }
 

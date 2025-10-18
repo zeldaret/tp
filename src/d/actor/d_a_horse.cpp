@@ -586,7 +586,7 @@ BOOL daHorse_c::checkEnding() {
 
 /* 80839498-80839CFC 001658 0864+00 1/1 0/0 0/0 .text            create__9daHorse_cFv */
 int daHorse_c::create() {
-    fopAcM_SetupActor(this, daHorse_c);
+    fopAcM_ct(this, daHorse_c);
 
     if (checkEnding()) {
         onStateFlg0(FLG0_UNK_8000);

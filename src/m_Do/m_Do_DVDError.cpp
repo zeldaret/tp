@@ -10,6 +10,9 @@
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_Reset.h"
 
+/* 80450C88-80450C90 000188 0008+00 0/0 2/2 0/0 .sbss            None */
+bool mDoDvdErr_initialized;
+
 /* 803DECC0-803DEFE0 00B9E0 0318+08 4/4 0/0 0/0 .bss             DvdErr_thread */
 static OSThread DvdErr_thread;
 

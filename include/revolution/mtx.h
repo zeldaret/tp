@@ -1,5 +1,5 @@
-#ifndef _DOLPHIN_MTX_H_
-#define _DOLPHIN_MTX_H_
+#ifndef _REVOLUTION_MTX_H_
+#define _REVOLUTION_MTX_H_
 
 #include <revolution/types.h>
 

@@ -27,6 +27,7 @@ public:
         void setBlendColor(GXColor i_color) { mBlendColor = i_color; }
         void setMonoColor(GXColor i_color) { mMonoColor = i_color; }
         void setMode(u8 i_mode) { mMode = i_mode; }
+        void* getBuffer() { return m_buffer; }
 
         /* 0x00 */ GXColor mBlendColor;
         /* 0x04 */ GXColor mMonoColor;
@@ -147,6 +148,15 @@ public:
     static void setWideZoomLightProjection(Mtx m) {}
     static void setFrameRate(u16 i_rate) { JFWDisplay::getManager()->setFrameRate(i_rate); }
 
+    static int getFrameBufferSize() {
+        #define RoundUp16b(x)   (u16)(((u16)(x) + 16 - 1) & ~(16 - 1))
+        return RoundUp16b(JFWDisplay::getManager()->getEfbWidth()) * JFWDisplay::getManager()->getEfbHeight() * 2;
+    }
+
+    static void* getFrameBufferMemory() {
+        return JFWDisplay::getManager()->getXfbManager()->getDisplayingXfb();
+    }
+
     // NONMATCHING - Need to define all mDoGph_gInf_c shieldD members
     static u8 isWide() {
         #if PLATFORM_WII || PLATFORM_SHIELD
@@ -183,6 +193,11 @@ public:
     static bool mAutoForcus;
 
     #if PLATFORM_WII || PLATFORM_SHIELD
+    static JKRHeap* getHeap() {
+        return m_heap;
+    }
+
+    static JKRHeap* m_heap;
     static cXyz m_nowEffPos;
     static cXyz m_oldEffPos;
     static cXyz m_oldOldEffPos;

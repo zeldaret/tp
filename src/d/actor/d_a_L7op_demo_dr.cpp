@@ -806,7 +806,7 @@ BOOL daL7ODR_c::check_start() {
 
 /* 805ADAC0-805ADCD8 002AA0 0218+00 1/1 0/0 0/0 .text            create__9daL7ODR_cFv */
 int daL7ODR_c::create() {
-    fopAcM_SetupActor(this, daL7ODR_c);
+    fopAcM_ct(this, daL7ODR_c);
     field_0x8b7 = 0;
 
     int phase_state = dComIfG_resLoad(&mPhase, "B_DR");

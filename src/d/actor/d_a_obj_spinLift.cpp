@@ -79,7 +79,7 @@ int daSpinLift_c::CreateHeap() {
 /* 80CE3F1C-80CE40FC 00025C 01E0+00 1/1 0/0 0/0 .text            create__12daSpinLift_cFv */
 int daSpinLift_c::create() {
     static const int l_dzbIdx[] = {7, 7, 7, 7, 7, 7, 7, 7, 7};
-    fopAcM_SetupActor(this, daSpinLift_c);
+    fopAcM_ct(this, daSpinLift_c);
     mModelType = getModelType();
     int phase = dComIfG_resLoad(&mPhase, l_resNameIdx[mModelType]);
 

@@ -316,7 +316,7 @@ static int daObjOnCloth_Delete(daObjOnCloth_c* i_this) {
 ClothJoint_c::~ClothJoint_c() {}
 
 cPhs__Step daObjOnCloth_c::create() {
-    fopAcM_SetupActor(this, daObjOnCloth_c);
+    fopAcM_ct(this, daObjOnCloth_c);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {

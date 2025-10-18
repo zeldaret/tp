@@ -138,7 +138,7 @@ int daNocrm_c::create() {
 
 /* 801455A8-801456A4 13FEE8 00FC+00 1/0 0/0 0/0 .text            daNocrm_create__FP9daNocrm_c */
 static int daNocrm_create(daNocrm_c* i_this) {
-    fopAcM_SetupActor(i_this, daNocrm_c);
+    fopAcM_ct(i_this, daNocrm_c);
     return i_this->create();
 }
 

@@ -50,7 +50,7 @@ static cull_box l_cull_box = {
 
 /* 80BE8328-80BE85B0 0001C8 0288+00 1/1 0/0 0/0 .text            create__13daFireWood2_cFv */
 int daFireWood2_c::create() {
-    fopAcM_SetupActor(this, daFireWood2_c);
+    fopAcM_ct(this, daFireWood2_c);
 
     setBaseMtx();
     mCcStts.Init(0xFF, 0xFF, this);

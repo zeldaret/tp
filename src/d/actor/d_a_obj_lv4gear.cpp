@@ -79,7 +79,7 @@ static int const l_heap_size[] = {0xF00, 0xF00};
 
 /* 80C68124-80C681F4 000284 00D0+00 1/1 0/0 0/0 .text            create__14daObjLv4Gear_cFv */
 int daObjLv4Gear_c::create() {
-    fopAcM_SetupActor(this, daObjLv4Gear_c);
+    fopAcM_ct(this, daObjLv4Gear_c);
 
     mType = getType();
 

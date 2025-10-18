@@ -900,7 +900,7 @@ static int daEp_Create(fopAc_ac_c* a_this) {
 
     int rv;
     ep_class* i_this = (ep_class*)a_this;
-    fopAcM_SetupActor(a_this, ep_class);
+    fopAcM_ct(a_this, ep_class);
 
     rv = dComIfG_resLoad(&i_this->mPhase, "Ep");
     if (rv == cPhs_COMPLEATE_e) {

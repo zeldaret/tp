@@ -47,7 +47,7 @@ int daObjTMoon_c::CreateHeap() {
 
 /* 80D12D0C-80D12DC0 0001EC 00B4+00 1/1 0/0 0/0 .text            create__12daObjTMoon_cFv */
 int daObjTMoon_c::create() {
-    fopAcM_SetupActor(this, daObjTMoon_c);
+    fopAcM_ct(this, daObjTMoon_c);
     int phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckCreateHeap, 0x880)) {

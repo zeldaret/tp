@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GD_INDIRECT_H_
 #define _DOLPHIN_GD_INDIRECT_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gd/GDIndirect.h>
+#else
 #include <dolphin/types.h>
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/mtx.h>
@@ -88,4 +91,5 @@ void __GDSetIndTexMask(u32 mask);
 }
 #endif
 
+#endif
 #endif

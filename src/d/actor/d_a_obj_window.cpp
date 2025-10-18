@@ -159,7 +159,7 @@ int daObjWindow_c::Delete() {
 
 /* 80D39034-80D39128 000954 00F4+00 1/0 0/0 0/0 .text daObjWindow_create1st__FP13daObjWindow_c */
 static cPhs__Step daObjWindow_create1st(daObjWindow_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjWindow_c);
+    fopAcM_ct(i_this, daObjWindow_c);
     return i_this->create1st();
 }
 

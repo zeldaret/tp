@@ -5628,7 +5628,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 807E13A8-807E1CB0 00F008 0908+00 1/0 0/0 0/0 .text            daE_WB_Create__FP10fopAc_ac_c */
 static int daE_WB_Create(fopAc_ac_c* a_this) {
-    fopAcM_SetupActor(a_this, e_wb_class);
+    fopAcM_ct(a_this, e_wb_class);
     e_wb_class* i_this = (e_wb_class*)a_this;
 
     OS_REPORT("//////////////E_WB SET 555 !!\n");

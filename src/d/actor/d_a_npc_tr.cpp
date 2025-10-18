@@ -239,7 +239,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
 
 /* 80B263E4-80B264E4 000AC4 0100+00 1/0 0/0 0/0 .text            daNPC_TR_Create__FP10fopAc_ac_c */
 static int daNPC_TR_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, npc_tr_class);
+    fopAcM_ct(i_this, npc_tr_class);
     npc_tr_class* npc_tr = (npc_tr_class*)i_this;
 
     int phase_state = dComIfG_resLoad(&npc_tr->mPhaseReq, "NPC_TR");

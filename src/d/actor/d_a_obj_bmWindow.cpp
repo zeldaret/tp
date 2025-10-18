@@ -67,7 +67,7 @@ static Vec const l_check_area[4] = {
 
 /* 80BB846C-80BB869C 00034C 0230+00 1/1 0/0 0/0 .text            create__12daBmWindow_cFv */
 int daBmWindow_c::create() {
-    fopAcM_SetupActor(this, daBmWindow_c);
+    fopAcM_ct(this, daBmWindow_c);
     if (fopAcM_isSwitch(this, (u8)fopAcM_GetParam(this))) {
         return cPhs_ERROR_e;
     }

@@ -43,7 +43,7 @@ int daFlorBoad_c::CreateHeap() {
 
 /* 80C6A7F0-80C6A9C0 0002D0 01D0+00 1/1 0/0 0/0 .text            create__12daFlorBoad_cFv */
 int daFlorBoad_c::create() {
-    fopAcM_SetupActor(this, daFlorBoad_c);
+    fopAcM_ct(this, daFlorBoad_c);
 
     mSwBit1 = getSwBit1();
     if (mSwBit1 != 0xFF && fopAcM_isSwitch(this, mSwBit1)) {

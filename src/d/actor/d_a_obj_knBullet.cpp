@@ -30,7 +30,7 @@ const static dCcD_SrcSph l_sph_src = {
 
 /* 80C47118-80C47270 000078 0158+00 1/1 0/0 0/0 .text            Create__15daObjKnBullet_cFv */
 int daObjKnBullet_c::Create() {
-    fopAcM_SetupActor(this, daObjKnBullet_c);
+    fopAcM_ct(this, daObjKnBullet_c);
 
     setBaseMtx();
     fopAcM_SetMtx(this, mMtx);

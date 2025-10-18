@@ -23,7 +23,7 @@ static u32 m_master_id = -1;
 
 /* 80D59C58-80D59DE0 000078 0188+00 1/1 0/0 0/0 .text            create__15daTagKagoFall_cFv */
 int daTagKagoFall_c::create() {
-    fopAcM_SetupActor(this, daTagKagoFall_c);
+    fopAcM_ct(this, daTagKagoFall_c);
 
     if (dComIfG_play_c::getLayerNo(0) == 13) {
         mExitID = 4;

@@ -361,7 +361,7 @@ BOOL daDr_c::check_start() {
 
 /* 805AA224-805AA42C 001064 0208+00 1/1 0/0 0/0 .text            create__6daDr_cFv */
 int daDr_c::create() {
-    fopAcM_SetupActor(this, daDr_c);
+    fopAcM_ct(this, daDr_c);
 
     int phase_state;
     if (dComIfG_play_c::getLayerNo(0) == 3) {

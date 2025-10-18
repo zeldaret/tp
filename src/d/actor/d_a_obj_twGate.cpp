@@ -128,7 +128,7 @@ static daTwGate_HIO_c l_HIO;
 
 /* 80D1FD44-80D1FF14 000384 01D0+00 1/1 0/0 0/0 .text            create__10daTwGate_cFv */
 int daTwGate_c::create() {
-    fopAcM_SetupActor(this, daTwGate_c);
+    fopAcM_ct(this, daTwGate_c);
     mGateType = getGateType();
     if (l_bmdIdx[mGateType] == -1) {
         // Twilight gate: Invalid argument.

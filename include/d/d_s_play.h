@@ -15,13 +15,17 @@ public:
     /* 0x7C */ s16 mShortReg[10];
 };
 
-class dScnPly_reg_HIO_c {
+class dScnPly_reg_HIO_c : public JORReflexible {
 public:
     /* 8025AD78 */ virtual ~dScnPly_reg_HIO_c() {}
 
-    /* 0x4 */ u8 field_0x4[0x8 - 0x4];
 #ifdef DEBUG
+    void genMessage(JORMContext*);
+
+    /* 0x4 */ s8 id;
     /* 0x8 */ dScnPly_reg_childHIO_c mChildReg[26];
+#else
+    /* 0x4 */ u8 field_0x4[0x8 - 0x4];
 #endif
 };
 
@@ -50,7 +54,7 @@ public:
     virtual void genMessage(JORMContext*);
     virtual ~dScnPly_preset_HIO_c() {}
 
-    /* 0x0004 */ u8 field_0x4;
+    /* 0x0004 */ s8 field_0x4;
     /* 0x0005 */ u8 field_0x5;
     /* 0x0006 */ u8 mPresetData[10000];
     /* 0x2716 */ u8 field_0x2716;

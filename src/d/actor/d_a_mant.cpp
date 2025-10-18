@@ -748,7 +748,7 @@ static int daMant_Delete(mant_class* i_this) {
 static int daMant_Create(fopAc_ac_c* i_this) {
     mant_class* m_this = (mant_class*)i_this;
 
-    fopAcM_SetupActor(m_this, mant_class);
+    fopAcM_ct(m_this, mant_class);
     //m_this->field_0x0570.field_0x74 = 0;
     m_this->field_0x259c = fopAcM_GetParam(i_this);
 

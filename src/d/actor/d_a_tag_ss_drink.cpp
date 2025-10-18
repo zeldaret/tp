@@ -13,7 +13,7 @@
 
 /* 80D62DB8-80D62E5C 000078 00A4+00 1/1 0/0 0/0 .text            create__15daTag_SSDrink_cFv */
 int daTag_SSDrink_c::create() {
-    fopAcM_SetupActor(this, daTag_SSDrink_c);
+    fopAcM_ct(this, daTag_SSDrink_c);
     field_0x5D2 = getTypeFromParam();
     setFlowNodeNumber(getFlowNodeNum());
     setValueNumber(getValue());

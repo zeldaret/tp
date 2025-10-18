@@ -11,7 +11,7 @@ public:
     }
 
     int create() {
-        fopAcM_SetupActor(this, daTagAssist_c);
+        fopAcM_ct(this, daTagAssist_c);
         create_init();
         return cPhs_COMPLEATE_e;
     }

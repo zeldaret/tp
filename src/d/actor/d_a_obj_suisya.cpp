@@ -80,7 +80,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80CF0310-80CF0478 000310 0168+00 1/1 0/0 0/0 .text            create__14daObj_Suisya_cFv */
 int daObj_Suisya_c::create() {
-    fopAcM_SetupActor(this, daObj_Suisya_c);
+    fopAcM_ct(this, daObj_Suisya_c);
 
     int phase = dComIfG_resLoad(&mPhase, "Obj_sui");
     if (phase == cPhs_COMPLEATE_e) {

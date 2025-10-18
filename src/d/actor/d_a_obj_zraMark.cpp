@@ -49,7 +49,7 @@ static char* l_arcName[1] = {"buoy"};
 
 /* 80D42678-80D4287C 000098 0204+00 1/1 0/0 0/0 .text            Create__14daObjZraMark_cFv */
 int daObjZraMark_c::Create() {
-    fopAcM_SetupActor(this, daObjZraMark_c);
+    fopAcM_ct(this, daObjZraMark_c);
 
     mType = getType();
 

@@ -90,7 +90,7 @@ int daObjBmSh_c::CreateHeap() {
 
 /* 80BB9CC0-80BB9DB4 0002E0 00F4+00 1/1 0/0 0/0 .text            create__11daObjBmSh_cFv */
 int daObjBmSh_c::create() {
-    fopAcM_SetupActor(this, daObjBmSh_c);
+    fopAcM_ct(this, daObjBmSh_c);
 
     if (!mIsInitialized) {
         mHomeX = home.angle.x;

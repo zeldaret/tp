@@ -26,14 +26,21 @@ public:
     u32& getUsedCountRef() { return mUsedCount; }
     u32& getTotalUsedSizeRef() { return mTotalUsedSize; }
     JKRExpHeap* getHeap() { return mHeap; }
-    void setHeap(JKRExpHeap* i_heap) { mHeap = i_heap; }
     void setHeapSize(u32 i_size) { mTargetHeapSize = i_size; }
     s32 getMaxTotalUsedSize() const { return mMaxTotalUsedSize; }
     s32 getMaxTotalFreeSize() { return mMaxTotalFreeSize; }
     const char* getName() const { return mName; }
+    const char* getJName() const { return mJName; }
     void saveRelBase() {
         mUsedCount = getUsedCount();
         mTotalUsedSize = mHeap->getTotalUsedSize();
+    }
+
+    void setHeap(JKRExpHeap* i_heap) {
+        mHeap = i_heap;
+        if (i_heap != NULL) {
+            mTargetHeapSize = i_heap->getHeapSize();
+        }
     }
 
     u32 getTargetHeapSize() const { return mTargetHeapSize; }

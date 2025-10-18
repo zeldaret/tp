@@ -45,7 +45,7 @@ static int daNpcFgd_Create(void* a_this) {
 
 /* 809BA584-809BA730 000144 01AC+00 1/1 0/0 0/0 .text            create__10daNpcFgd_cFv */
 cPhs__Step daNpcFgd_c::create() {
-    fopAcM_SetupActor(this, daNpcFgd_c);
+    fopAcM_ct(this, daNpcFgd_c);
 
     mIsDarkWorld = dKy_darkworld_check();
     m_type = getType();

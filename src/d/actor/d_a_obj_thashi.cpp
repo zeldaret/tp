@@ -222,7 +222,7 @@ int daObjTHASHI_c::CreateHeap() {
 
 /* 80D0C8B4-80D0CBC8 0006F4 0314+00 1/1 0/0 0/0 .text            create__13daObjTHASHI_cFv */
 int daObjTHASHI_c::create() {
-    fopAcM_SetupActor(this, daObjTHASHI_c);
+    fopAcM_ct(this, daObjTHASHI_c);
     int phase_state = dComIfG_resLoad(&unk11A8, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {
         unk10A0 = -9.0f;

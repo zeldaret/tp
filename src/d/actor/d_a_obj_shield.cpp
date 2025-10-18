@@ -113,7 +113,7 @@ int daItemShield_c::__CreateHeap() {
 
 /* 80CD7254-80CD7420 000874 01CC+00 1/1 0/0 0/0 .text            create__14daItemShield_cFv */
 int daItemShield_c::create() {
-    fopAcM_SetupActor(this, daItemShield_c);
+    fopAcM_ct(this, daItemShield_c);
     m_itemNo = fpcNm_ITEM_WOOD_SHIELD;
     if (fopAcM_isSwitch(this, getSwBit2())) {
         OS_REPORT("木の盾：もう取ったので出ません\n");

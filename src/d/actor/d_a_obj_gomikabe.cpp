@@ -303,7 +303,7 @@ static daObjGOMIKABE_HIO_c l_HIO;
 
 /* 80BFF164-80BFF5B4 001024 0450+00 1/1 0/0 0/0 .text            create__15daObjGOMIKABE_cFv */
 int daObjGOMIKABE_c::create() {
-    fopAcM_SetupActor(this, daObjGOMIKABE_c);
+    fopAcM_ct(this, daObjGOMIKABE_c);
 
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {

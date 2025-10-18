@@ -50,7 +50,7 @@ static GXColor color = {
 
 /* 80BCCD64-80BCD3D8 000104 0674+00 1/1 0/0 0/0 .text            create__12daObjCrope_cFv */
 int daObjCrope_c::create() {
-    fopAcM_SetupActor(this, daObjCrope_c);
+    fopAcM_ct(this, daObjCrope_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
         if (fopAcM_entrySolidHeap(this, daObjCrope_createHeap, 0x2900) == 0) {

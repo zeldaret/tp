@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXCPU2EFB_H_
 #define _DOLPHIN_GX_GXCPU2EFB_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXCpu2Efb.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 
 #ifdef __cplusplus
@@ -26,4 +29,5 @@ u32 GXDecompressZ16(u32 z16, GXZFmt16 zfmt);
 }
 #endif
 
+#endif
 #endif

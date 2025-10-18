@@ -197,7 +197,7 @@ daNpc_zrZ_c::~daNpc_zrZ_c() {
 
 /* 80B9423C-80B9453C 00055C 0300+00 1/1 0/0 0/0 .text            create__11daNpc_zrZ_cFv */
 cPhs__Step daNpc_zrZ_c::create() {
-    fopAcM_SetupActor(this, daNpc_zrZ_c);
+    fopAcM_ct(this, daNpc_zrZ_c);
 
     mType = getTypeFromParam();
     mDemoMode = getDemoMode();

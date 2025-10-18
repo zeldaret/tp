@@ -94,7 +94,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 807A707C-807A7220 00019C 01A4+00 1/0 0/0 0/0 .text            daE_ST_LINE_Create__FP10fopAc_ac_c
  */
 static int daE_ST_LINE_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, e_st_line_class);
+    fopAcM_ct(i_this, e_st_line_class);
     e_st_line_class* a_this = (e_st_line_class*)i_this;
 
     int phase_state = dComIfG_resLoad(&a_this->mPhase, "E_st");

@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSTIME_H_
 #define _DOLPHIN_OSTIME_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSTime.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -41,4 +44,5 @@ extern "C" {
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_OSTIME_H_

@@ -101,7 +101,7 @@ int daObjMirror6Pole_c::CreateHeap() {
 }
 
 int daObjMirror6Pole_c::create() {
-    fopAcM_SetupActor(this, daObjMirror6Pole_c);
+    fopAcM_ct(this, daObjMirror6Pole_c);
 
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {

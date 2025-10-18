@@ -92,7 +92,7 @@ int daObjWPndlm_c::CreateHeap() {
 int daObjWPndlm_c::create() {
     int phase;
 
-    fopAcM_SetupActor(this, daObjWPndlm_c);
+    fopAcM_ct(this, daObjWPndlm_c);
 
     phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
 

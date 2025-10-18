@@ -1149,7 +1149,7 @@ static int daE_SB_Delete(daE_SB_c* i_this) {
 
 /* 80784720-80784B58 0031C0 0438+00 1/1 0/0 0/0 .text            Create__8daE_SB_cFv */
 cPhs__Step daE_SB_c::Create() {
-    fopAcM_SetupActor(this, daE_SB_c);
+    fopAcM_ct(this, daE_SB_c);
     cPhs__Step phase = (cPhs__Step) dComIfG_resLoad(&mPhaseReq, "E_SB");
     if (phase == cPhs_COMPLEATE_e) {
         field_0x61a = fopAcM_GetParam(this);

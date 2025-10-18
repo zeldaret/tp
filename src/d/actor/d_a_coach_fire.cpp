@@ -164,7 +164,7 @@ static int daCoachFire_Delete(daCoachFire_c* i_this) {
 /* 806581C0-806582AC 0006C0 00EC+00 1/0 0/0 0/0 .text            daCoachFire_Create__FP10fopAc_ac_c
  */
 static int daCoachFire_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, daCoachFire_c);
+    fopAcM_ct(i_this, daCoachFire_c);
     static_cast<daCoachFire_c*>(i_this)->create_init();
     return cPhs_COMPLEATE_e;
 }

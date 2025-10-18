@@ -457,7 +457,7 @@ void daObjMirrorChain_c::create_init() {
 }
 
 cPhs__Step daObjMirrorChain_c::create() {
-    fopAcM_SetupActor(this, daObjMirrorChain_c);
+    fopAcM_ct(this, daObjMirrorChain_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (step == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x71b0)) {

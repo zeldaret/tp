@@ -1965,7 +1965,7 @@ int daObjBm_c::Delete() {
 
 /* 80BB2EB8-80BB3078 004C38 01C0+00 1/0 0/0 0/0 .text            daObjBm_create1st__FP9daObjBm_c */
 static int daObjBm_create1st(daObjBm_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjBm_c);
+    fopAcM_ct(i_this, daObjBm_c);
     return i_this->create1st();
 }
 

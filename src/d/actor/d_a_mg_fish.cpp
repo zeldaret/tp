@@ -3861,7 +3861,7 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
         0.708f,
     };
 
-    fopAcM_SetupActor(i_this, mg_fish_class);
+    fopAcM_ct(i_this, mg_fish_class);
 
     mg_fish_class* a_this = (mg_fish_class*)i_this;
 

@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_SEQ_H_
 #define _DOLPHIN_SEQ_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/seq.h>
+#else
 #include <dolphin/syn.h>
 
 #ifdef __cplusplus
@@ -51,4 +54,5 @@ s32 SEQGetVolume(SEQSEQUENCE* sequence);
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_SEQ_H_

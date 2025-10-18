@@ -208,7 +208,7 @@ static int daHoZelda_modelCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 808469B0-80846C4C 000B90 029C+00 1/1 0/0 0/0 .text            create__11daHoZelda_cFv */
 int daHoZelda_c::create() {
-    fopAcM_SetupActor(this, daHoZelda_c);
+    fopAcM_ct(this, daHoZelda_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

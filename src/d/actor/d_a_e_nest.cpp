@@ -989,7 +989,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80503FCC-805044AC 00312C 04E0+00 1/0 0/0 0/0 .text            daE_Nest_Create__FP10fopAc_ac_c */
 static cPhs__Step daE_Nest_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, e_nest_class);
+    fopAcM_ct(i_this, e_nest_class);
     e_nest_class* _this = static_cast<e_nest_class*>(i_this);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&_this->mPhase, "E_nest");

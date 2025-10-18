@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_PAD_H_
 #define _DOLPHIN_PAD_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/pad.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -101,4 +104,5 @@ void PADClampCircle(PADStatus* status);
 }
 #endif
 
+#endif
 #endif

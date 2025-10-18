@@ -85,7 +85,7 @@ static int createSolidHeap(fopAc_ac_c* i_this) {
 }
 
 int daObjCatDoor_c::create() {
-    fopAcM_SetupActor(this, daObjCatDoor_c);
+    fopAcM_ct(this, daObjCatDoor_c);
 
     int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

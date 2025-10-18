@@ -65,7 +65,7 @@ int daObjWSword_c::CreateHeap() {
 
 /* 80D3BB28-80D3BCA0 000228 0178+00 1/1 0/0 0/0 .text            create__13daObjWSword_cFv */
 int daObjWSword_c::create() {
-    fopAcM_SetupActor(this, daObjWSword_c);
+    fopAcM_ct(this, daObjWSword_c);
     int phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)CheckCreateHeap, 0x840)) {

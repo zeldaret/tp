@@ -2224,7 +2224,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 807EE63C-807EEB38 00703C 04FC+00 1/1 0/0 0/0 .text            create__8daE_WW_cFv */
 int daE_WW_c::create() {
-    fopAcM_SetupActor(this, daE_WW_c);
+    fopAcM_ct(this, daE_WW_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "E_WW");
     if (phase_state == cPhs_COMPLEATE_e) {

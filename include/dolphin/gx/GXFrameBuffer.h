@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXFRAMEBUFFER_H_
 #define _DOLPHIN_GX_GXFRAMEBUFFER_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXFrameBuffer.h>
+#else
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/gx/GXEnum.h>
 
@@ -63,4 +66,5 @@ f32 GXGetYScaleFactor(u16 efbHeight, u16 xfbHeight);
 }
 #endif
 
+#endif
 #endif

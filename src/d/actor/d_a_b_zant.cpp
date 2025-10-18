@@ -5573,7 +5573,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 8064E190-8064E724 010170 0594+00 1/1 0/0 0/0 .text            create__10daB_ZANT_cFv */
 int daB_ZANT_c::create() {
-    fopAcM_SetupActor(this, daB_ZANT_c);
+    fopAcM_ct(this, daB_ZANT_c);
     OS_REPORT("B_ZANT PARAM %x\n", fopAcM_GetParam(this));
 
     mSwbit = fopAcM_GetParam(this);

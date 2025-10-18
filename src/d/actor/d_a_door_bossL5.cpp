@@ -142,7 +142,7 @@ int daBdoorL5_c::CreateInit() {
 
 /* 8067106C-806711FC 0004AC 0190+00 1/1 0/0 0/0 .text            create__11daBdoorL5_cFv */
 int daBdoorL5_c::create() {
-    fopAcM_SetupActor(this, daBdoorL5_c);
+    fopAcM_ct(this, daBdoorL5_c);
     int rv = dComIfG_resLoad(&mPhase1, getArcName());
     if (rv != cPhs_COMPLEATE_e) {
         return rv;

@@ -249,7 +249,7 @@ int daObjRIVERROCK_c::CreateHeap() {
 
 /* 80CBD3C0-80CBD71C 000DE0 035C+00 1/1 0/0 0/0 .text            create__16daObjRIVERROCK_cFv */
 int daObjRIVERROCK_c::create() {
-    fopAcM_SetupActor(this, daObjRIVERROCK_c);
+    fopAcM_ct(this, daObjRIVERROCK_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
         gravity = -9.0f;

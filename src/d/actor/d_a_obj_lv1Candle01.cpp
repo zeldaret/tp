@@ -57,7 +57,7 @@ int daLv1Cdl01_c::CreateHeap() {
 
 /* 80C56E14-80C57048 000254 0234+00 1/1 0/0 0/0 .text            create__12daLv1Cdl01_cFv */
 cPhs__Step daLv1Cdl01_c::create() {
-    fopAcM_SetupActor(this, daLv1Cdl01_c);
+    fopAcM_ct(this, daLv1Cdl01_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "lv1cdl01");
     if (step == cPhs_COMPLEATE_e) {
         if (MoveBGCreate("lv1cdl01", -1, NULL, 0x820, NULL) == cPhs_ERROR_e) {

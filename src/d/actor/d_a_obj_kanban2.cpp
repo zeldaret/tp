@@ -1779,7 +1779,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 805850E8-80585458 003A68 0370+00 1/1 0/0 0/0 .text            create__15daObj_Kanban2_cFv */
 int daObj_Kanban2_c::create() {
-    fopAcM_SetupActor(this, daObj_Kanban2_c);
+    fopAcM_ct(this, daObj_Kanban2_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "Obj_kn2");
     if (phase_state == cPhs_COMPLEATE_e) {

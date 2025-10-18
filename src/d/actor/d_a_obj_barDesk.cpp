@@ -55,7 +55,7 @@ int daBarDesk_c::CreateHeap() {
 
 /* 80BA92F4-80BA94B8 000254 01C4+00 1/1 0/0 0/0 .text            create__11daBarDesk_cFv */
 cPhs__Step daBarDesk_c::create() {
-    fopAcM_SetupActor(this, daBarDesk_c);
+    fopAcM_ct(this, daBarDesk_c);
     if (fopAcM_isSwitch(this, (u8)fopAcM_GetParam(this))) {
         return cPhs_ERROR_e;
     }

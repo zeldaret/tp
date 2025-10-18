@@ -150,7 +150,7 @@ int daObjCRVLH_DW_c::CreateHeap() {
 
 /* 80BD4764-80BD49EC 0006A4 0288+00 1/1 0/0 0/0 .text            create__15daObjCRVLH_DW_cFv */
 int daObjCRVLH_DW_c::create() {
-    fopAcM_SetupActor(this, daObjCRVLH_DW_c);
+    fopAcM_ct(this, daObjCRVLH_DW_c);
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
 
     if (phase == cPhs_COMPLEATE_e) {

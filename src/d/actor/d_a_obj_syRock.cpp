@@ -116,7 +116,7 @@ dCcD_SrcGObjInf const daSyRock_c::mCcDObjInfo = {
 
 /* 80D02584-80D02930 0003C4 03AC+00 1/1 0/0 0/0 .text            create__10daSyRock_cFv */
 cPhs__Step daSyRock_c::create() {
-    fopAcM_SetupActor(this, daSyRock_c);
+    fopAcM_ct(this, daSyRock_c);
 
     if(getArg0() == TRUE) {
         mpWaterPillar = static_cast<daWtPillar_c*>(fopAcIt_Judge(searchWaterPillar, this));

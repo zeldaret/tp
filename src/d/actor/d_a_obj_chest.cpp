@@ -111,7 +111,7 @@ int daObjChest_c::CreateHeap() {
 
 /* 80BC92B0-80BC93F0 000430 0140+00 1/1 0/0 0/0 .text            create__12daObjChest_cFv */
 int daObjChest_c::create() {
-    fopAcM_SetupActor(this, daObjChest_c);
+    fopAcM_ct(this, daObjChest_c);
 
     int phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {

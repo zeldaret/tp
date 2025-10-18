@@ -1,18 +1,12 @@
 #include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_debug_viewer.h"
+#include "d/d_debug_pad.h"
 #include "d/d_com_inf_game.h"
 #include "f_ap/f_ap_game.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTReport.h"
-
-class dDebugPad_c {
-public:
-    bool Active();
-};
-
-extern dDebugPad_c dDebugPad;
 
 J3DPacket* l_drawPacketList[1000];
 int l_drawPacketListNum;

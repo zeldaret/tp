@@ -187,7 +187,7 @@ void nObjMHasu::daObjMHasu_c::setHasuCount(f32 i_count) {
 /* 80C18920-80C18974 000700 0054+00 1/0 0/0 0/0 .text
  * daObjMHasu_create1st__FPQ29nObjMHasu12daObjMHasu_c           */
 static int daObjMHasu_create1st(nObjMHasu::daObjMHasu_c* i_this) {
-    fopAcM_SetupActor(i_this, nObjMHasu::daObjMHasu_c);
+    fopAcM_ct(i_this, nObjMHasu::daObjMHasu_c);
     return i_this->create1st();
 }
 

@@ -743,7 +743,7 @@ void daObjCRVGATE_c::SetDoor() {
 
 /* 80BD28C0-80BD2BE4 0025A0 0324+00 1/1 0/0 0/0 .text            create__14daObjCRVGATE_cFv */
 int daObjCRVGATE_c::create() {
-    fopAcM_SetupActor(this, daObjCRVGATE_c);
+    fopAcM_ct(this, daObjCRVGATE_c);
     int ret = dComIfG_resLoad(&mPhaseReq, l_arcName);
 
     if (ret == cPhs_COMPLEATE_e) {

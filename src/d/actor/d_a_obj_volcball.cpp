@@ -133,7 +133,7 @@ int daObjVolcBall_c::CreateHeap() {
 
 /* 80D21E28-80D21FA8 000388 0180+00 1/1 0/0 0/0 .text            create__15daObjVolcBall_cFv */
 int daObjVolcBall_c::create() {
-    fopAcM_SetupActor(this, daObjVolcBall_c);
+    fopAcM_ct(this, daObjVolcBall_c);
 
     mIsBigVolc = checkBigVolc();
     if (mIsBigVolc == 1) {

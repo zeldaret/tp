@@ -148,7 +148,7 @@ static int daObjDust_Delete(daObjDust_c* i_this) {
 }
 
 int daObjDust_c::create() {
-    fopAcM_SetupActor(this, daObjDust_c);
+    fopAcM_ct(this, daObjDust_c);
 
     int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

@@ -303,7 +303,7 @@ void daTagLv6Gate_c::create_init() {
 
 /* 80D4FBD8-80D4FE5C 0003B8 0284+00 1/1 0/0 0/0 .text            create__14daTagLv6Gate_cFv */
 int daTagLv6Gate_c::create() {
-    fopAcM_SetupActor(this, daTagLv6Gate_c);
+    fopAcM_ct(this, daTagLv6Gate_c);
 
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
 

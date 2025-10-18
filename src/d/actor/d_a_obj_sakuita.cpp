@@ -208,7 +208,7 @@ daObjSakuita_c::~daObjSakuita_c() {
 }
 
 inline int daObjSakuita_c::create() {
-    fopAcM_SetupActor(this, daObjSakuita_c);
+    fopAcM_ct(this, daObjSakuita_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
         if (fopAcM_entrySolidHeap(this, createSolidHeap, 0x4000) == 0) {

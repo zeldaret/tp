@@ -223,7 +223,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
  */
 static int daObj_Kita_Create(fopAc_ac_c* a_this) {
     obj_kita_class* i_this = (obj_kita_class*)a_this;
-    fopAcM_SetupActor(a_this, obj_kita_class);
+    fopAcM_ct(a_this, obj_kita_class);
 
     int rv = dComIfG_resLoad(&i_this->mPhase, "Obj_kita");
     if (rv == 4) {

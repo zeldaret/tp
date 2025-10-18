@@ -373,7 +373,7 @@ int daDoorPush_c::Delete() {
 
 /* 80678DAC-80678E38 00106C 008C+00 1/0 0/0 0/0 .text daDoorPush_create1st__FP12daDoorPush_c */
 static int daDoorPush_create1st(daDoorPush_c* i_this) {
-    fopAcM_SetupActor(i_this, daDoorPush_c);
+    fopAcM_ct(i_this, daDoorPush_c);
     return i_this->create1st();
 }
 
