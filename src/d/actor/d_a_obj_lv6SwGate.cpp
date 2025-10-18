@@ -86,7 +86,7 @@ int daLv6SwGate_c::CreateHeap() {
 
 /* 80C7429C-80C744E4 00047C 0248+00 1/1 0/0 0/0 .text            create__13daLv6SwGate_cFv */
 int daLv6SwGate_c::create() {
-    fopAcM_SetupActor(this, daLv6SwGate_c);
+    fopAcM_ct(this, daLv6SwGate_c);
     if (getSw2() != 0xff && fopAcM_isSwitch(this, getSw2())) {
         return cPhs_ERROR_e;
     }
