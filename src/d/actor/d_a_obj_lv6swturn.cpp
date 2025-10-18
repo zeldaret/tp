@@ -225,7 +225,6 @@ void daObjLv6SwTurn_c::modeWait() {
             if (unk5B2 == unk5C8) {
                 unk5B2++;
             }
-            // if (unk5B4 != -1){}
         }
         if (unk5B8 != -1 && unk5CA == current.angle.y) {
             ((daPy_py_c*)dComIfGp_getPlayer(0))->onPushPullKeep();
@@ -280,9 +279,9 @@ void daObjLv6SwTurn_c::init_modeRotate() {
 void daObjLv6SwTurn_c::modeRotate() {
     unk5B0++;
 #if DEBUG
-    unk5B2 = (float)unk5B0 / (float)l_HIO.mRotationTime * (float)0x4000;
+    unk5B2 = (f32)unk5B0 / (f32)l_HIO.mRotationTime * (f32)0x4000;
 #else
-    unk5B2 = (float)unk5B0 / (float)0x5a * (float)0x4000;
+    unk5B2 = (f32)unk5B0 / (f32)0x5a * (f32)0x4000;
 #endif
     if (unk5B8 == 1) {
         unk5B2 = -unk5B2;

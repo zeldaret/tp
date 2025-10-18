@@ -47,7 +47,6 @@ public:
     /* 0x5C4 */ dBgW_Base::PushPullLabel unk5C4;
     /* 0x5C8 */ s16 unk5C8;
     /* 0x5CA */ s16 unk5CA;
-    private:
 };
 
 STATIC_ASSERT(sizeof(daObjLv6SwTurn_c) == 0x5cc);
