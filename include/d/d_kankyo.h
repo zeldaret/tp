@@ -460,7 +460,7 @@ public:
     /* 0x12C9 */ u8 dice_wether_mode;
     /* 0x12CA */ u8 dice_wether_state;
     /* 0x12CB */ u8 dice_wether_pat;
-    /* 0x12CC */ u8 field_0x12cc;
+    /* 0x12CC */ u8 wether;
     /* 0x12CD */ u8 mColPatMode;
     /* 0x12CE */ u8 mColPatModeGather;
     /* 0x12CF */ u8 mFogAdjEnable;
