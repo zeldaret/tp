@@ -3750,9 +3750,9 @@ public:
     s16 getHookshotStopTime() const { return field_0x3026; }
     bool getHookshotLeft() const { return field_0x3020 == 0; }
 
-    static int getBallModelIdx() { return 0x25; }
-    static int getBallBtkIdx() { return 0x49; }
-    static int getBallBrkIdx() { return 0x41; }
+    static u16 getBallModelIdx() { return 0x25; }
+    static u16 getBallBtkIdx() { return 0x49; }
+    static u16 getBallBrkIdx() { return 0x41; }
 
     bool checkRootTransClearMode() { return field_0x2f99 & 7; }
     bool checkRootTransZClearMode() { return field_0x2f99 & 4; }

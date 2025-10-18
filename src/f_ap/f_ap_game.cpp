@@ -584,7 +584,7 @@ void fapGm_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
         onCpuTimer();
         break;
     case 0x4000014: {
-        void* bdlData;
+        u8* bdlData;
         void* model_buffer = mDoExt_getArchiveHeap()->alloc(0x96000, 0x20);
         
         if (model_buffer == NULL) {
@@ -650,7 +650,7 @@ void fapGm_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
             if (!out_file.open(NULL, 6, "ＢＤＬファイル(*.bdl)", "bdl", NULL, new_filename)) {
                 OSReport("ＢＤＬファイルオープン失敗！！\n");
             } else {
-                bdlData = J3DModelSaverDataBase::saveBinaryDisplayList(model, J3DBinaryDisplayListSaverFlag_UNK_1, 0xC8000);
+                bdlData = (u8*)J3DModelSaverDataBase::saveBinaryDisplayList(model, J3DBinaryDisplayListSaverFlag_UNK_1, 0xC8000);
                 if (bdlData == NULL) {
                     OSReport("ＢＤＬファイル生成失敗！！\n");
                 } else {

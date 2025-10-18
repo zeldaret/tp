@@ -1428,7 +1428,7 @@ inline u32 dStage_FileList_dt_GetEnemyAppear1Flag(dStage_FileList_dt_c* p_fList)
     return p_fList->mParameters & 0x20000000;
 }
 
-inline int dStage_FileList_dt_GetBitSw(dStage_FileList_dt_c* p_fList) {
+inline u8 dStage_FileList_dt_GetBitSw(dStage_FileList_dt_c* p_fList) {
     return p_fList->mBitSw;
 }
 

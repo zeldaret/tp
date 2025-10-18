@@ -35,6 +35,10 @@
 #include "SSystem/SComponent/c_counter.h"
 #include <cstring.h>
 
+#if PLATFORM_WII || PLATFORM_SHIELD
+#include <revolution/sc.h>
+#endif
+
 class mDoMain_HIO_c : public mDoHIO_entry_c {
 public:
     void listenPropertyEvent(const JORPropertyEvent*);
@@ -900,7 +904,12 @@ void main(int argc, const char* argv[]) {
     mDoMain::sPowerOnTime = OSGetTime();
     OSReportInit();
     version_check();
+
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    mDoRst::setResetData((mDoRstData*)OSAllocFromMEM1ArenaLo(0x18, 4));
+    #else
     mDoRst::setResetData((mDoRstData*)OSAllocFromArenaLo(0x18, 4));
+    #endif
 
     if (!mDoRst::getResetData()) {
         do {
@@ -920,7 +929,19 @@ void main(int argc, const char* argv[]) {
         mDoRst::offReturnToMenu();
     }
 
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    SCInit();
+    #endif
+
     dComIfG_ct();
+
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    u32 status;
+    do {
+        status = SCCheckStatus();
+    } while (status != 0);
+    JUT_ASSERT(1785, status != 2);
+    #endif
 
     #if DEBUG
     parse_args(argc, argv);

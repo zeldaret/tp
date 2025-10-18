@@ -30,7 +30,7 @@ static inline void GXEnd(void) {
     extern GXBool __GXinBegin;
     extern void OSPanic(const char* file, int line, const char* msg, ...);
     if (!__GXinBegin) {
-        OSPanic(__FILE__, 118, "GXEnd: called without a GXBegin");
+        OSPanic(__FILE__, 127, "GXEnd: called without a GXBegin");
     }
     __GXinBegin = GX_FALSE;
 #endif

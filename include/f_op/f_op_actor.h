@@ -284,19 +284,39 @@ STATIC_ASSERT(sizeof(fopAc_ac_c) == 0x568);
 
 class fopEn_enemy_c : public fopAc_ac_c {
 public:
+    enum fopEn_flag {
+        fopEn_flag_Down            = 0x1,
+        fopEn_flag_CutDownHit      = 0x2,
+        fopEn_flag_WolfDownStart   = 0x4,
+        fopEn_flag_Dead            = 0x8,
+        fopEn_flag_WolfDownPull    = 0x10,
+        fopEn_flag_WolfDownPullEnd = 0x20,
+        fopEn_flag_WolfBiteDamage  = 0x40,
+        fopEn_flag_HeadLock        = 0x80,
+        
+        fopEn_flag_WolfNoLock      = 0x200,
+    };
+
+    enum fopEn_throwMode {
+        fopEn_throwMode_Catch      = 0x2,
+        fopEn_throwMode_Dash       = 0x4,
+        fopEn_throwMode_ThrowLeft  = 0x8,
+        fopEn_throwMode_ThrowRight = 0x10,
+    };
+
     /* 80019404 */ BOOL initBallModel();
     /* 800194FC */ bool checkBallModelDraw();
     /* 80019520 */ void setBallModelEffect(dKy_tevstr_c*);
     /* 800196A0 */ void drawBallModel(dKy_tevstr_c*);
 
-    bool checkWolfNoLock() const { return mFlags & 0x200; }
-    bool checkHeadLockFlg() const { return mFlags & 0x80; }
-    bool checkWolfBiteDamage() const { return mFlags & 0x40; }
-    bool checkWolfDownPullFlg() const { return mFlags & 0x10; }
-    bool checkDownFlg() { return mFlags & 0x1; }
-    bool checkCutDownHitFlg() const { return mFlags & 0x2; }
-    bool checkWolfDownStartFlg() const { return mFlags & 0x4; }
-    bool checkDeadFlg() const { return mFlags & 0x8; }
+    bool checkWolfNoLock() const { return mFlags & fopEn_flag_WolfNoLock; }
+    bool checkHeadLockFlg() const { return mFlags & fopEn_flag_HeadLock; }
+    bool checkWolfBiteDamage() const { return mFlags & fopEn_flag_WolfBiteDamage; }
+    bool checkWolfDownPullFlg() const { return mFlags & fopEn_flag_WolfDownPull; }
+    bool checkDownFlg() { return mFlags & fopEn_flag_Down; }
+    bool checkCutDownHitFlg() const { return mFlags & fopEn_flag_CutDownHit; }
+    bool checkWolfDownStartFlg() const { return mFlags & fopEn_flag_WolfDownStart; }
+    bool checkDeadFlg() const { return mFlags & fopEn_flag_Dead; }
     bool checkThrowMode(u8 param_1) const { return mThrowMode & param_1; }
 
     u32* getMidnaBindID(int i_idx) { return mMidnaBindID + i_idx; }
@@ -304,28 +324,28 @@ public:
     cXyz& getDownPos() { return mDownPos; }
     cXyz& getHeadLockPos() { return mHeadLockPos; }
 
-    void onCutDownHitFlg() { mFlags |= 2; }
-    void onWolfBiteDamage() { mFlags |= 0x40; }
-    void onWolfDownStartFlg() { mFlags |= 0x14; }
-    void onWolfDownPullEndFlg() { mFlags |= 0x20; }
-    void onWolfNoLock() { mFlags |= 0x200; }
-    void onDownFlg() { mFlags |= 1; }
-    void onHeadLockFlg() { mFlags |= 0x80; }
+    void onCutDownHitFlg() { mFlags |= fopEn_flag_CutDownHit; }
+    void onWolfBiteDamage() { mFlags |= fopEn_flag_WolfBiteDamage; }
+    void onWolfDownStartFlg() { mFlags |= (fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart); }
+    void onWolfDownPullEndFlg() { mFlags |= fopEn_flag_WolfDownPullEnd; }
+    void onWolfNoLock() { mFlags |= fopEn_flag_WolfNoLock; }
+    void onDownFlg() { mFlags |= fopEn_flag_Down; }
+    void onHeadLockFlg() { mFlags |= fopEn_flag_HeadLock; }
 
-    void offWolfBiteDamage() { mFlags &= ~0x40; }
-    void offCutDownHitFlg() { mFlags &= ~0x2; }
-    void offWolfDownPullFlg() { mFlags &= ~0x10; }
-    void offDownFlg() { mFlags &= ~0x17; }
-    void offWolfNoLock() { mFlags &= ~0x200; }
-    void offHeadLockFlg() { mFlags &= ~0x80; }
+    void offWolfBiteDamage() { mFlags &= ~fopEn_flag_WolfBiteDamage; }
+    void offCutDownHitFlg() { mFlags &= ~fopEn_flag_CutDownHit; }
+    void offWolfDownPullFlg() { mFlags &= ~fopEn_flag_WolfDownPull; }
+    void offDownFlg() { mFlags &= ~(fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart | fopEn_flag_CutDownHit | fopEn_flag_Down); }
+    void offWolfNoLock() { mFlags &= ~fopEn_flag_WolfNoLock; }
+    void offHeadLockFlg() { mFlags &= ~fopEn_flag_HeadLock; }
     void offThrowMode(u8 throwMode) { mThrowMode &= ~throwMode; }
 
     void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
     void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }
-    void setThrowModeCatch() { mThrowMode |= 2; }
-    void setThrowModeDash() { mThrowMode |= 4; }
-    void setThrowModeThrowRight() { mThrowMode |= 0x10; }
-    void setThrowModeThrowLeft() { mThrowMode |= 8; }
+    void setThrowModeCatch() { mThrowMode |= fopEn_throwMode_Catch; }
+    void setThrowModeDash() { mThrowMode |= fopEn_throwMode_Dash; }
+    void setThrowModeThrowRight() { mThrowMode |= fopEn_throwMode_ThrowRight; }
+    void setThrowModeThrowLeft() { mThrowMode |= fopEn_throwMode_ThrowLeft; }
     void setDownPos(const cXyz* i_pos) { mDownPos = *i_pos; }
     void setHeadLockPos(const cXyz* i_pos) { mHeadLockPos = *i_pos; }
 
@@ -337,7 +357,7 @@ public:
     /* 0x58C */ u8 field_0x58c;
     /* 0x58D */ u8 mThrowMode;
     /* 0x58E */ u16 mFlags;
-    /* 0x590 */ f32 field_0x590;
+    /* 0x590 */ f32 mAnmFrame;
     /* 0x594 */ u32 mEffectID1;
     /* 0x598 */ u32 mEffectID2;
     /* 0x59C */ u32 mMidnaBindID[3];

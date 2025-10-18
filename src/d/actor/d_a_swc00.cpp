@@ -61,7 +61,7 @@ static BOOL hitCheck(daSwc00_c* i_swc) {
 
 int daSwc00_Draw(daSwc00_c* i_this) {
     fopAc_ac_c* a_this = i_this;
-    if (g_envHIO.mOther.field_0x46) {
+    if (g_envHIO.mOther.mDisplayTransparentCyl) {
         int shape = daSwc00_getShape(i_this);
         if (shape == 3) {
             GXColor local_44 = {0, 0, 0xff, 0xa0};

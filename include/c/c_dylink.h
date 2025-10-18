@@ -23,4 +23,6 @@ BOOL cDyl_IsLinked(s16 i_ProfName);
 BOOL cDyl_Unlink(s16 i_ProfName);
 int cDyl_LinkASync(s16 i_ProfName);
 
+BOOL cCc_Check();
+
 #endif /* C_C_DYLINK_H */

@@ -693,7 +693,7 @@ s32 fopAcM_riverStream(cXyz*, s16*, f32*, f32);
 s32 fopAcM_carryOffRevise(fopAc_ac_c*);
 void fopAcM_setEffectMtx(const fopAc_ac_c*, const J3DModelData*);
 
-static const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor);
+const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor);
 
 static const fopAc_ac_c* fopAcM_findObjectCB(fopAc_ac_c const* i_actor, void* i_data);
 
@@ -708,6 +708,8 @@ void fpoAcM_relativePos(fopAc_ac_c const* i_actor, cXyz const* i_pos, cXyz* o_po
 s32 fopAcM_getWaterStream(const cXyz*, const cBgS_PolyInfo&, cXyz*, int*, int);
 s16 fopAcM_getPolygonAngle(const cBgS_PolyInfo&, s16);
 s16 fopAcM_getPolygonAngle(cM3dGPla const* param_0, s16 param_1);
+
+void fopAcM_DrawCullingBox(const fopAc_ac_c*, const GXColor&);
 
 inline void make_prm_warp_hole(u32* o_params, u8 prm1, u8 prm2, u8 prm3) {
     u32 pprm1 = (prm3 << 0x8);
@@ -823,6 +825,11 @@ inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_
     va_end(args); */
 #endif
 }
+
+void fopAcM_showAssert_f(const fopAc_ac_c*, const char*, int, const char*, ...);
+
+#define fopAcM_assert(line, actor, COND, msg) \
+    (COND) ? (void)0 : (fopAcM_showAssert_f(actor, __FILE__, line, msg));
 
 #ifdef DEBUG
 #define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg)                               \

@@ -9,6 +9,12 @@ void mDoPrintf_vprintf_Thread(char const*, va_list);
 void mDoPrintf_vprintf(const char*, va_list);
 extern "C" void mDoPrintf_VReport(const char*, va_list);
 
+extern u32 print_counts;
+extern u32 print_errors;
+extern u32 print_warings;
+extern u32 print_systems;
+extern u8 print_initialized;
+
 extern u8 print_mutex_initialized;
 extern u8 print_highPriority;
 extern u8 print_threadID;

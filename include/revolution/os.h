@@ -6,7 +6,6 @@
 #include <revolution/types.h>
 #include <revolution/gx/GXStruct.h>
 void OSReportInit(void);
-void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 void OSVAttention(const char* fmt, va_list args);
 
 #ifdef __cplusplus
@@ -97,8 +96,8 @@ void* OSGetArenaHi(void);
 void* OSGetArenaLo(void);
 void OSSetArenaHi(void* newHi);
 void OSSetArenaLo(void* newLo);
-void* OSAllocFromArenaLo(u32 size, u32 align);
-void* OSAllocFromArenaHi(u32 size, u32 align);
+void* OSAllocFromMEM1ArenaLo(u32 size, u32 align);
+void* OSAllocFromMEM1ArenaHi(u32 size, u32 align);
 
 u32 OSGetPhysicalMemSize(void);
 
@@ -204,6 +203,8 @@ __declspec(weak) void OSReportEnable(void);
 __declspec(weak) void OSReportForceEnableOff(void);
 __declspec(weak) void OSReportForceEnableOn(void);
 __declspec(weak) void OSVReport(const char* format, va_list list);
+
+__declspec(weak) void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 
 #ifdef DEBUG
 #define OS_REPORT(...) OSReport(__VA_ARGS__)
