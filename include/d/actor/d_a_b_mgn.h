@@ -14,24 +14,10 @@
  *
  * @details Hyrule Castle dungeon boss.
  *
- */
+*/
 
 class daB_MGN_c : public fopEn_enemy_c {
 public:
-    enum daB_MGN_ACTION {
-        ACTION_OPENING_e,
-        ACTION_CIRCLE_e,
-        ACTION_DASH_e,
-        ACTION_THROWN_e,
-        ACTION_DOWN_e,
-        ACTION_DOWN_DAMAGE_e,
-        ACTION_DOWN_BITE_DAMAGE_e,
-        ACTION_WARP_e,
-        ACTION_FALL_e,
-        ACTION_DEATH_e,
-        ACTION_JUMP_e,
-    };
-
     /* 8060577C */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 8060584C */ static int JointCallBack(J3DJoint*, int);
     /* 80605898 */ int draw();
@@ -89,8 +75,8 @@ public:
     /* 8060EAE0 */ int CreateHeap();
     /* 8060F0D0 */ int create();
 
-    bool isDown() { return field_0xb01 != 0; }
-    bool isAppear() { return field_0xb05 != 0; }
+    bool isDown() { return mDownFlag != 0; }
+    bool isAppear() { return mBodyCoFlag != 0; }
 
 private:
     /* 0x05AC */ request_of_phase_process_class mMgnPhase;
@@ -105,18 +91,18 @@ private:
     /* 0x0714 */ cXyz field_0x710[20];
     /* 0x0800 */ cXyz mBloodEffSize[20];
     /* 0x08F0 */ f32 field_0x8f0[20];
-    /* 0x0940 */ f32 field_0x940[20];
+    /* 0x0940 */ f32 mBloodColor[20];
     /* 0x0990 */ int mBloodEffMode[20];
     /* 0x09E0 */ Z2CreatureEnemy mSound;
-    /* 0x0A84 */ cXyz field_0xa84;
+    /* 0x0A84 */ cXyz mBackbone2Trans;
     /* 0x0A90 */ s16 field_0xa90;
     /* 0x0A92 */ s16 field_0xa92;
-    /* 0x0A94 */ u32 field_0xa94;
+    /* 0x0A94 */ u32 mShadowKey;
     /* 0x0A98 */ u16 mDamageInvulnerabilityTimer;
-    /* 0x0A9C */ int field_0xa9c;
-    /* 0x0AA0 */ int field_0xaa0;
-    /* 0x0AA4 */ int field_0xaa4;
-    /* 0x0AA8 */ int field_0xaa8;
+    /* 0x0A9C */ int mUnkTimer;
+    /* 0x0AA0 */ int mDownTimer;
+    /* 0x0AA4 */ int mBloodEffectTimer;
+    /* 0x0AA8 */ int mExitTimer;
     /* 0x0AAC */ int field_0xaac;
     /* 0x0AB0 */ cXyz mNextGdgatePos;
     /* 0x0ABC */ cXyz mDemoCamEye;
@@ -133,22 +119,22 @@ private:
     /* 0x0AF4 */ f32 mKankyoBlend;
     /* 0x0AF8 */ u8 mKankyoColMode;
     /* 0x0AF9 */ u8 mActionMode;
-    /* 0x0AFA */ u8 mMoveMode;
-    /* 0x0AFB */ u8 field_0xafb;
-    /* 0x0AFC */ u8 field_0xafc;
+    /* 0x0AFA */ u8 mActionPhase;
+    /* 0x0AFB */ u8 mSwBit;
+    /* 0x0AFC */ u8 mRightLeftFlag;
     /* 0x0AFD */ u8 field_0xafd;
     /* 0x0AFE */ u8 field_0xafe;
     /* 0x0AFF */ u8 field_0xaff;
-    /* 0x0B00 */ u8 field_0xb00;
-    /* 0x0B01 */ u8 field_0xb01;
+    /* 0x0B00 */ u8 mDownBiteDamageCounter;
+    /* 0x0B01 */ u8 mDownFlag;
     /* 0x0B02 */ u8 mGdgateNum;
-    /* 0x0B03 */ u8 field_0xb03;
+    /* 0x0B03 */ u8 mCircleActionPhaseFlag;
     /* 0x0B04 */ u8 field_0xb04;
-    /* 0x0B05 */ u8 field_0xb05;
+    /* 0x0B05 */ u8 mBodyCoFlag;
     /* 0x0B06 */ u8 field_0xb06;
     /* 0x0B07 */ u8 field_0xb07;
     /* 0x0B06 */ u8 field_0xb08;
-    /* 0x0B09 */ u8 field_0xb09;
+    /* 0x0B09 */ u8 mHeadLightEffFlag;
     /* 0x0B0A */ u8 field_0xb0a;
     /* 0x0B0B */ u8 field_0xb0b;
     /* 0x0B0C */ u8 field_0xb0c;
@@ -177,7 +163,7 @@ private:
     /* 0x2654 */ mDoExt_btkAnm* mpGdgateBtk[4];
     /* 0x2664 */ cXyz mGdgatePos[4];
     /* 0x2670 */ u8 field_0x2694[0x26a4 - 0x2694];
-    /* 0x26A4 */ u32 field_0x26a4[4];
+    /* 0x26A4 */ u32 mGdgatStartPrtcls[4];
     /* 0x26B4 */ u8 field_0x26b4[4];
     /* 0x26B8 */ u8 mGdgateStatus[4];
     /* 0x26BC */ u8 mGdgateType[4];
