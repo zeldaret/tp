@@ -35,9 +35,9 @@ private:
     /* 0x5AE  */ s16 mAngleIncrement;
     /* 0x5B0  */ s16 mAngle;
     /* 0x5B2  */ u8 mTimer;
-    /* 0x5B4  */ dCcD_Stts unk5B4;
-    /* 0x5F0  */ dCcD_Sph unk5F0[13];
-    /* 0x15C8 */ dCcD_Sph unk15C8[6];
+    /* 0x5B4  */ dCcD_Stts mCcStts;
+    /* 0x5F0  */ dCcD_Sph mCcSph1[13];
+    /* 0x15C8 */ dCcD_Sph mCcSph2[6];
 };
 
 STATIC_ASSERT(sizeof(daLv6FurikoTrap_c) == 0x1d18);

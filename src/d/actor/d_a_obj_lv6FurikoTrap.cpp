@@ -65,14 +65,14 @@ int daLv6FurikoTrap_c::create() {
         fopAcM_setCullSizeBox2(this, mModel->getModelData());
         init_modeMove();
         setBaseMtx();
-        unk5B4.Init(0xff, 0, this);
+        mCcStts.Init(0xff, 0, this);
         for (int i = 0; i < 13; i++) {
-            unk5F0[i].Set(mCcDSph);
-            unk5F0[i].SetStts(&unk5B4);
+            mCcSph1[i].Set(mCcDSph);
+            mCcSph1[i].SetStts(&mCcStts);
         }
         for (int i = 0; i < 6; i++) {
-            unk15C8[i].Set(mCcDSph);
-            unk15C8[i].SetStts(&unk5B4);
+            mCcSph2[i].Set(mCcDSph);
+            mCcSph2[i].SetStts(&mCcStts);
         }
 #if DEBUG
         l_HIO.entryHIO("振り子トラップ(Lv6)");
@@ -92,10 +92,10 @@ int daLv6FurikoTrap_c::Execute(Mtx** i_pMtx) {
         mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
         mDoMtx_stack_c::multVec(&c, &c);
         c += current.pos;
-        unk5F0[i].SetR(30.0f + oREG_F(4));
-        unk5F0[i].SetC(c);
-        dComIfG_Ccsp()->Set(&unk5F0[i]);
-        unk5F0[i].ClrAtHit();
+        mCcSph1[i].SetR(30.0f + oREG_F(4));
+        mCcSph1[i].SetC(c);
+        dComIfG_Ccsp()->Set(&mCcSph1[i]);
+        mCcSph1[i].ClrAtHit();
     }
     for (int i = 0; i < 3; i++) {
         static f32 posx[] = {383.0f, 356.0f, 329.0f};
@@ -107,15 +107,15 @@ int daLv6FurikoTrap_c::Execute(Mtx** i_pMtx) {
         mDoMtx_stack_c::multVec(&c2, &c2);
         c += current.pos;
         c2 += current.pos;
-        unk15C8[i].SetR(30.0f + oREG_F(4));
-        unk15C8[i + 3].SetR(30.0f + oREG_F(4));
-        unk15C8[i].SetC(c);
-        unk15C8[i + 3].SetC(c2);
-        dComIfG_Ccsp()->Set(&unk15C8[i]);
-        dComIfG_Ccsp()->Set(&unk15C8[i + 3]);
-        unk15C8[i].ClrAtHit();
+        mCcSph2[i].SetR(30.0f + oREG_F(4));
+        mCcSph2[i + 3].SetR(30.0f + oREG_F(4));
+        mCcSph2[i].SetC(c);
+        mCcSph2[i + 3].SetC(c2);
+        dComIfG_Ccsp()->Set(&mCcSph2[i]);
+        dComIfG_Ccsp()->Set(&mCcSph2[i + 3]);
+        mCcSph2[i].ClrAtHit();
     }
-    unk5B4.Move();
+    mCcStts.Move();
     return TRUE;
 }
 
