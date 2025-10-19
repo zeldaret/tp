@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_MIX_H_
 #define _DOLPHIN_MIX_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/mix.h>
+#else
 #include <dolphin/types.h>
 #include <dolphin/ax.h>
 
@@ -92,4 +95,5 @@ void MIXUpdateSettings(void);
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_MIX_H_

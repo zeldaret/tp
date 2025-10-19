@@ -381,7 +381,7 @@ static int daObjItaRope_Delete(daObjItaRope_c* i_this) {
 }
 
 int daObjItaRope_c::create() {
-    fopAcM_SetupActor(this, daObjItaRope_c);
+    fopAcM_ct(this, daObjItaRope_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
         field_0x635 = getJointNum() + 2;

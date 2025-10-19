@@ -86,7 +86,7 @@ static u8 const itemNo[4] = {fpcNm_ITEM_POU_FIRE1, fpcNm_ITEM_POU_FIRE2, fpcNm_I
 
 /* 80CB2A74-80CB2BB8 000214 0144+00 1/1 0/0 0/0 .text            create__10daPoFire_cFv */
 int daPoFire_c::create() {
-    fopAcM_SetupActor(this, daPoFire_c);
+    fopAcM_ct(this, daPoFire_c);
 
     int phase = dComIfG_resLoad(&mPhase, "poFire");
     if (phase != cPhs_COMPLEATE_e) {

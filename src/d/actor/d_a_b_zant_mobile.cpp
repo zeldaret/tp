@@ -458,7 +458,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80652038-806522F4 001998 02BC+00 1/1 0/0 0/0 .text            create__11daB_ZANTZ_cFv */
 int daB_ZANTZ_c::create() {
-    fopAcM_SetupActor(this, daB_ZANTZ_c);
+    fopAcM_ct(this, daB_ZANTZ_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "B_oh");
     if (phase_state == cPhs_COMPLEATE_e) {

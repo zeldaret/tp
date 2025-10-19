@@ -176,7 +176,7 @@ int daObjIceLeaf_c::CreateHeap() {
 
 /* 80C24E14-80C24F8C 000774 0178+00 1/1 0/0 0/0 .text            create__14daObjIceLeaf_cFv */
 int daObjIceLeaf_c::create() {
-    fopAcM_SetupActor(this, daObjIceLeaf_c);
+    fopAcM_ct(this, daObjIceLeaf_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

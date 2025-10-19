@@ -72,7 +72,7 @@ int daObjStopper_c::CreateHeap() {
 
 /* 80CED258-80CED440 000438 01E8+00 1/1 0/0 0/0 .text            create__14daObjStopper_cFv */
 int daObjStopper_c::create() {
-    fopAcM_SetupActor(this, daObjStopper_c);
+    fopAcM_ct(this, daObjStopper_c);
     if (!field_0x9fc) {
         field_0x9f8 = home.angle.x;
         field_0x9fa = home.angle.z;

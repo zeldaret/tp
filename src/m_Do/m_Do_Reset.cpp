@@ -109,29 +109,3 @@ void mDoRst_resetCallBack(int port, void*) {
         mDoRst::onReset();
     }
 }
-
-/* ############################################################################################## */
-/* 80450C80-80450C88 -00001 0008+00 0/0 6/6 0/0 .sbss            None */
-/* 80450C80 0001+00 data_80450C80 None */
-/* 80450C81 0007+00 data_80450C81 None */
-// most of these are probably fake
-#pragma push
-#pragma force_active on
-u8 struct_80450C7C;
-u8 struct_80450C7D;
-u8 struct_80450C7E;
-u8 struct_80450C7F;
-
-bool SyncWidthSound;
-u8 sDefaultDirection;
-
-u8 struct_80450C82;
-u8 struct_80450C83;
-u8 struct_80450C84;
-u8 struct_80450C85;
-u8 struct_80450C86;
-u8 struct_80450C87;
-#pragma pop
-
-/* 80450C88-80450C90 000188 0008+00 0/0 2/2 0/0 .sbss            None */
-bool mDoDvdErr_initialized;

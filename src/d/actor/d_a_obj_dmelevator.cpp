@@ -721,7 +721,7 @@ int daObjDmElevator_c::Delete() {
 /* 80BDF764-80BDF7D8 001EE4 0074+00 1/0 0/0 0/0 .text
  * daObjDmElevator_create1st__FP17daObjDmElevator_c             */
 static int daObjDmElevator_create1st(daObjDmElevator_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjDmElevator_c);
+    fopAcM_ct(i_this, daObjDmElevator_c);
     return i_this->create1st();
 }
 

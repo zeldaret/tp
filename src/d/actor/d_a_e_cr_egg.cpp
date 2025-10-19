@@ -173,7 +173,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
  */
 static int daE_CR_EGG_Create(fopAc_ac_c* i_this) {
     e_cr_egg_class* a_this = (e_cr_egg_class*)i_this;
-    fopAcM_SetupActor(i_this, e_cr_egg_class);
+    fopAcM_ct(i_this, e_cr_egg_class);
 
     int phase_state = dComIfG_resLoad(&a_this->phase, "E_CR");
     if (phase_state == cPhs_COMPLEATE_e) {

@@ -420,7 +420,7 @@ static int daObjYobikusa_Delete(daObjYobikusa_c* i_this) {
 }
 
 cPhs__Step daObjYobikusa_c::create() {
-    fopAcM_SetupActor(this, daObjYobikusa_c);
+    fopAcM_ct(this, daObjYobikusa_c);
 
     switch (getType()) {
     case CALL_TYPE_FLY:

@@ -168,7 +168,7 @@ int daObjGWall2_c::Delete() {
 /* ############################################################################################## */
 /* 80BF6038-80BF6098 0008D8 0060+00 1/0 0/0 0/0 .text daObjGWall2_create1st__FP13daObjGWall2_c */
 static int daObjGWall2_create1st(daObjGWall2_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjGWall2_c);
+    fopAcM_ct(i_this, daObjGWall2_c);
     return i_this->create1st();
 }
 

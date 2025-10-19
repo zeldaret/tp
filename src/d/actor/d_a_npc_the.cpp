@@ -1159,7 +1159,7 @@ static cPhs__Step daNpcThe_Create(void* i_this) {
 
 /* 80AF9358-80AF9748 001D78 03F0+00 1/1 0/0 0/0 .text            create__10daNpcThe_cFv */
 cPhs__Step daNpcThe_c::create() {
-    fopAcM_SetupActor(this, daNpcThe_c);
+    fopAcM_ct(this, daNpcThe_c);
     
     mType = getTypeFromParam();
     

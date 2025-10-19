@@ -81,7 +81,7 @@ int daZrTurara_c::CreateHeap() {
 
 /* 80D40844-80D40B1C 0003C4 02D8+00 1/1 0/0 0/0 .text            create__12daZrTurara_cFv */
 cPhs__Step daZrTurara_c::create() {
-    fopAcM_SetupActor(this, daZrTurara_c);
+    fopAcM_ct(this, daZrTurara_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, "M_DrpRock");
     if (step == cPhs_COMPLEATE_e) {
         cPhs__Step bg_step = (cPhs__Step)MoveBGCreate("M_DrpRock", 9, dBgS_MoveBGProc_TypicalRotY,

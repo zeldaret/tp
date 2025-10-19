@@ -682,7 +682,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 8067E428-8067E724 001D48 02FC+00 1/0 0/0 0/0 .text            daE_ARROW_Create__FP10fopAc_ac_c */
 static int daE_ARROW_Create(fopAc_ac_c* i_this) {
     e_arrow_class* const a_this = static_cast<e_arrow_class*>(i_this);
-    fopAcM_SetupActor(i_this, e_arrow_class);
+    fopAcM_ct(i_this, e_arrow_class);
 
     if (fopAcM_GetParam(a_this) & 0x80000000) {
         a_this->mResName = "E_rdy";

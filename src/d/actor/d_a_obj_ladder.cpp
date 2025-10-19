@@ -203,7 +203,7 @@ int daObjLadder::Act_c::Create() {
 
 /* 8058D378-8058D478 000298 0100+00 1/1 0/0 0/0 .text Mthd_Create__Q211daObjLadder5Act_cFv */
 int daObjLadder::Act_c::Mthd_Create() {
-    fopAcM_SetupActor(this, Act_c);
+    fopAcM_ct(this, Act_c);
     int phase_state = dComIfG_resLoad(&mPhase, M_arcname);
     if (phase_state == cPhs_COMPLEATE_e) {
         mType = prm_get_type();

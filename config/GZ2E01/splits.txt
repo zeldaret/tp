@@ -88,7 +88,7 @@ m_Do/m_Do_Reset.cpp:
 	.text       start:0x800155D8 end:0x800157F4
 	.text       start:0x800157F4 end:0x800157FC
 	.rodata     start:0x80374198 end:0x803741A8
-	.sbss       start:0x80450C78 end:0x80450C90
+	.sbss       start:0x80450C78 end:0x80450C80
 
 m_Do/m_Do_dvd_thread.cpp:
 	.text       start:0x800157FC end:0x8001659C
@@ -96,10 +96,12 @@ m_Do/m_Do_dvd_thread.cpp:
 	.rodata     start:0x803741A8 end:0x803743F8
 	.data       start:0x803A34A8 end:0x803A34F8
 	.bss        start:0x803DD940 end:0x803DECC0
+	.sbss       start:0x80450C80 end:0x80450C88
 
 m_Do/m_Do_DVDError.cpp:
 	.text       start:0x8001659C end:0x8001672C
 	.bss        start:0x803DECC0 end:0x803DFC20
+	.sbss       start:0x80450C88 end:0x80450C90
 
 m_Do/m_Do_MemCard.cpp:
 	.text       start:0x8001672C end:0x80017498

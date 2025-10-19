@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GD_TEXTURE_H
 #define _DOLPHIN_GD_TEXTURE_H
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gd/GDTexture.h>
+#else
 #include <dolphin/types.h>
 #include <dolphin/gx/GXEnum.h>
 
@@ -124,4 +127,5 @@ void GDLoadTlutRaw(u32 tlut_ptr_raw, u32 tmem_addr, GXTlutSize size);
 }
 #endif
 
+#endif
 #endif

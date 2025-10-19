@@ -162,7 +162,7 @@ daObj_GrA_c::~daObj_GrA_c() {
 /* 80C003CC-80C00614 0005AC 0248+00 1/1 0/0 0/0 .text            create__11daObj_GrA_cFv */
 cPhs__Step daObj_GrA_c::create() {
     int uVar1 = 0;
-    fopAcM_SetupActor(this, daObj_GrA_c);
+    fopAcM_ct(this, daObj_GrA_c);
 
     mMode = getMode();
     int i;

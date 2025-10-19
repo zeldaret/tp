@@ -12,21 +12,38 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTReport.h"
+#include "JSystem/JUtility/JUTException.h"
+#include "JSystem/JUtility/JUTProcBar.h"
+#include "JSystem/JHostIO/JORServer.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "c/c_dylink.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_logo.h"
 #include "d/d_s_menu.h"
 #include "d/d_s_play.h"
+#include "d/d_debug_pad.h"
 #include "f_ap/f_ap_game.h"
+#include "f_op/f_op_msg.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_dvd_thread.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
+#include "m_Do/m_Do_printf.h"
+#include "m_Do/m_Do_ext2.h"
 #include "SSystem/SComponent/c_counter.h"
 #include <cstring.h>
+
+#if PLATFORM_WII || PLATFORM_SHIELD
+#include <revolution/sc.h>
+#endif
+
+class mDoMain_HIO_c : public mDoHIO_entry_c {
+public:
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+};
 
 /* 800056C0-80005728 000000 0068+00 1/1 0/0 0/0 .text            version_check__Fv */
 void version_check() {
@@ -82,6 +99,10 @@ static HeapCheck* HeapCheckTable[8] = {
     &RootHeapCheck,    &SystemHeapCheck, &ZeldaHeapCheck,  &GameHeapCheck,
     &ArchiveHeapCheck, &J2dHeapCheck,    &HostioHeapCheck, &CommandHeapCheck,
 };
+
+#if DEBUG
+mDoMain_HIO_c mDoMain_HIO;
+#endif
 
 void printFrameLine() {
     OSCalendarTime calendar;
@@ -187,6 +208,10 @@ int mDoMain::e3menu_no = -1;
 /* 80450588-80450590 000008 0008+00 2/2 0/0 0/0 .sdata           None */
 u8 mHeapBriefType = 4;
 
+#if DEBUG
+static u8 memorycheck_check_frame;
+#endif
+
 /* 80450B00-80450B08 000000 0008+00 1/1 0/0 0/0 .sbss            None */
 static u8 fillcheck_check_frame;
 
@@ -200,11 +225,20 @@ OSTime mDoMain::sHungUpTime;
 /* 80450B18 0001+00 data_80450B18 None */
 static u8 mDisplayHeapSize;
 
+#if DEBUG
+static u8 mReportDisable;
+#endif
+
 /* 80450B19 0001+00 data_80450B19 None */
 static u8 mSelectHeapBar;
 
+#if DEBUG
+static u8 mVisibleHeapBar;
+static u8 mPrintFrameLine;
+#endif
+
 /* 80450B1A 0002+00 data_80450B1A None */
-static bool mCheckHeap;
+static u8 mCheckHeap;
 
 /* 80005AD8-80005D4C 000418 0274+00 1/1 0/0 0/0 .text            debugDisplay__Fv */
 void debugDisplay() {
@@ -271,6 +305,210 @@ void debugDisplay() {
 void my_genCheckBox(JORMContext* mctx, const char* label, u8* pSrc, u8 mask) {
     mctx->genCheckBox(label, pSrc, mask, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
 }
+
+#if DEBUG
+void mDoMain_HIO_c::genMessage(JORMContext* mctx) {
+    mctx->genSlider("コード破壊チェックフレーム", &memorycheck_check_frame, 0, 0xFF, 0, NULL, 0xFFFF,
+                    0xFFFF, 0x200, 0x18);
+    mctx->genButton("コード破壊チェックcheck", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("コード破壊チェックsave", 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("コード破壊チェックdiff", 2, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("デバッグフィル", &mDoMch::mDebugFill, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genSlider("ヒープ破壊チェックフレーム", &fillcheck_check_frame, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("ヒープ破壊チェック", 3, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("ヒープFree領域フィル", 4, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("浮動小数点例外を(再び)有効にする", 5, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("◎無効演算", &mDoMch::FpscrEnableBits, 0x80, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("○オーバー", &mDoMch::FpscrEnableBits, 0x40, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("△アンダー", &mDoMch::FpscrEnableBits, 0x20, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("○ゼロ除算", &mDoMch::FpscrEnableBits, 0x10, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("▲不正確  ", &mDoMch::FpscrEnableBits, 0x8, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+
+    mctx->genLabel("ソースファイル：m_Do_main.cpp", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("OSReport 表示しない", &mReportDisable, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200,
+                      0x18);
+    mctx->genCheckBox("OSReport 優先度最高", &print_highPriority, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200,
+                      0x18);
+    mctx->genCheckBox("OSReport スレッド表示", &print_threadID, 1, 0, NULL, 0xFFFF, 0xFFFF,
+                      0x200, 0x18);
+    mctx->genCheckBox("OSReport CallerPC表示", &print_callerPC, 1, 0, NULL, 0xFFFF, 0xFFFF,
+                      0x200, 0x18);
+    mctx->genSlider("レベル", &print_callerPCLevel, 3, 10, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+
+    mctx->startComboBox("簡易ヒープ表示", &mHeapBriefType, 0, NULL, 0xFFFF, 0xFFFF, 0x100, 0x1a);
+    mctx->genComboBoxItem("なし", 0);
+    mctx->genComboBoxItem("合計空き・最大空き", 1);
+    mctx->genComboBoxItem("最大使用量・ヒープサイズ元使用量", 2);
+    mctx->genComboBoxItem("使用ブロック数・元使用量", 3);
+    mctx->genComboBoxItem("相対 使用ブロック数・元使用量", 4);
+    mctx->endComboBox();
+
+    my_genCheckBox(mctx, "ヒープサイズ表示を行う", &mDisplayHeapSize, 1);
+    mctx->genCheckBox("ヒープバーを表示する", &mVisibleHeapBar, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+
+    mctx->startComboBox("ヒープバーの種類", &mSelectHeapBar, 0, NULL, 0xFFFF, 0xFFFF, 0x100, 0x1a);
+    mctx->genComboBoxItem("カレント", 0);
+    for (int i = 0; i < 8; i++) {
+        mctx->genComboBoxItem(HeapCheckTable[i]->getJName(), i + 1);
+    }
+    mctx->endComboBox();
+
+    mctx->genCheckBox("ヒープチェック", &mCheckHeap, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("フレームバー表示", &mPrintFrameLine, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+
+    mctx->startComboBox("GX警告レベル", &mDoMch::GXWarningLevel, 0, NULL, 0xFFFF, 0xFFFF, 0x100, 0x1a);
+    mctx->genComboBoxItem("エラー＆警告なし", 0);
+    mctx->genComboBoxItem("致命的なエラー", 1);
+    mctx->genComboBoxItem("中警告と全エラー", 2);
+    mctx->genComboBoxItem("すべての警告", 3);
+    mctx->endComboBox();
+
+    mctx->genButton("GX警告を１フレームだけ実行", 9, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("ダイナミックリンク状況をダンプ", 7, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("ダイナミックリンクカウンタをリセット", 8, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("ARAMヒープをダンプ", 10, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("ゲームリソースをダンプ", 11, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("RES_CONTROLをダンプ", 12, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("ルートヒープをダンプ", 13, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("システムヒープをダンプ", 14, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("ゼルダヒープをダンプ", 15, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("ゲームヒープをダンプ", 16, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("アーカイブヒープをダンプ", 17, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("J2Dヒープをダンプ", 18, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("ホストIOヒープをダンプ", 19, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genButton("コマンドヒープをダンプ", 20, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+
+    mctx->genCheckBox("ダイナミックリンク冗長表示", &DynamicModuleControlBase::verbose, 1, 0, NULL, 0xFFFF, 0xFFFF,
+                      0x200, 0x18);
+    mctx->genCheckBox("ヒープコールバック冗長表示", &mDoMch::myHeapVerbose, 1, 0, NULL, 0xFFFF, 0xFFFF,
+                      0x200, 0x18);
+    mctx->genCheckBox("ヒープコールバックチェック", &mDoMch::myHeapCallbackCheck, 1, 0, NULL, 0xFFFF, 0xFFFF,
+                      0x200, 0x18);
+    mctx->genCheckBox("mDoDvdThd::verbose冗長表示", &mDoDvdThd::verbose, 1, 0, NULL, 0xFFFF, 0xFFFF,
+                      0x200, 0x18);
+    mctx->genCheckBox("mDoDvdThd::DVDRead冗長表示", &mDoDvdThd::Report_DVDRead, 1, 0, NULL, 0xFFFF, 0xFFFF,
+                      0x200, 0x18);
+    mctx->genCheckBox("mDoDvdThd::DVDログモード", &mDoDvdThd::DVDLogoMode, 1, 0, NULL, 0xFFFF, 0xFFFF,
+                      0x200, 0x18);
+    mctx->genCheckBox("fopMsg::MemCheck ヒープチェック", &fopMsg::MemCheck, 1, 0, NULL, 0xFFFF,
+                      0xFFFF, 0x200, 0x18);
+}
+
+void mDoMain_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
+    JORMContext* mctx = attachJORMContext(8);
+    JORReflexible::listenPropertyEvent(property);
+
+    if ((u32)property->id >= 13 && (u32)property->id <= 20) {
+        int sp14 = (u32)property->id - 13;
+        HeapCheck* heapCheck = HeapCheckTable[sp14];
+        JUTReportConsole_f("\n[%sHeap]\n", heapCheck->getName());
+        heapCheck->getHeap()->dump_sort();
+    } else {
+        switch ((u32)property->id) {
+        case 0:
+            FixedMemoryCheck::checkAll();
+            break;
+        case 1:
+            FixedMemoryCheck::saveAll();
+            break;
+        case 2:
+            FixedMemoryCheck::diffAll();
+            break;
+        case 3:
+            mDoMch_HeapCheckAll();
+            break;
+        case 4:
+            mDoMch_HeapFreeFillAll();
+            break;
+        case 5: {
+            u32 fpscr = PPCMffpscr();
+            JUTException::setFPException(0);
+            JUTException::setFPException(mDoMch::FpscrEnableBits);
+            PPCMtfpscr(fpscr);
+            break;
+        }
+        case 9:
+            GXSetVerifyLevel(GX_WARN_ALL);
+            mDoMch::GXWarningExecuteFrame = TRUE;
+            break;
+        case 7: {
+            int RoomId = dComIfGp_roomControl_getStayNo();
+            JUTReportConsole_f("\nRoomId = %d\n", RoomId);
+
+            JUTReportConsole_f("\nDynamicModule\n");
+            DynamicModuleControlBase::dump();
+            break;
+        }
+        case 8:
+            DynamicModuleControlBase::resetDoLinkCount();
+            break;
+        case 10: {
+            JUTReportConsole_f("\nAramHeap\n");
+            JKRAramHeap* aramHeap = JKRAram::getAramHeap();
+            if (aramHeap != NULL) {
+                aramHeap->dump();
+            }
+            break;
+        }
+        case 11:
+            JUTReportConsole_f("\nGameResource\n");
+            g_dComIfG_gameInfo.mResControl.dump();
+            break;
+        case 12:
+            JUTReportConsole_f("\nResControl\n");
+            dComIfG_dumpResControl();
+            break;
+        case 6:
+        default:
+            if ((u8*)property->id == &mDisplayHeapSize) {
+                mctx->startUpdateNode(this);
+                mctx->endUpdateNode();
+            }
+
+            if ((u8*)property->id == &mReportDisable) {
+                if (mReportDisable == 0) {
+                    OSReportEnable();
+                } else {
+                    OSReportDisable();
+                }
+            }
+
+            if ((u8*)property->id == &mSelectHeapBar) {
+                JKRHeap* heap = NULL;
+                u32 select_heap = mSelectHeapBar - 1;
+                if (select_heap < 8) {
+                    heap = HeapCheckTable[select_heap]->getHeap();
+                }
+
+                JUTProcBar::getManager()->setWatchHeap(heap);
+            }
+
+            if ((u8*)property->id == &mVisibleHeapBar) {
+                JUTProcBar::getManager()->setVisibleHeapBar(mVisibleHeapBar);
+            }
+
+            if ((u8*)property->id == &mDoMch::GXWarningLevel) {
+                GXSetVerifyLevel((GXWarningLevel)mDoMch::GXWarningLevel);
+            }
+
+            if ((u8*)property->id == &mDoMch::mDebugFill) {
+                JKRHeap::setDefaultDebugFill(mDoMch::mDebugFill);
+
+                for (JSUTree<JKRHeap>* i = JKRGetRootHeap()->getHeapTree().getFirstChild(); i != NULL; i = i->getNextChild()) {
+                    JKRHeap* heap = i->getObject();
+                    heap->setDebugFill(mDoMch::mDebugFill);
+                }
+            }
+
+            JKRSetDebugFillNotuse(mDoMch::mDebugFillNotuse);
+            JKRSetDebugFillNew(mDoMch::mDebugFillNew);
+            JKRSetDebugFillDelete(mDoMch::mDebugFillDelete);
+        }
+    }
+
+    releaseJORMContext(mctx);
+}
+#endif
 
 /* 80005D4C-8000614C 00068C 0400+00 1/1 0/0 0/0 .text            Debug_console__FUl */
 bool Debug_console(u32 i_padNo) {
@@ -395,6 +633,12 @@ s32 LOAD_COPYDATE(void*) {
 
 /* 800061C8-8000628C 000B08 00C4+00 1/1 0/0 0/0 .text            debug__Fv */
 static void debug() {
+    #if DEBUG
+    if (mPrintFrameLine) {
+        printFrameLine();
+    }
+    #endif
+
     if (mDoMain::developmentMode) {
         if (mCheckHeap) {
             CheckHeap(PAD_3);
@@ -410,22 +654,56 @@ static void debug() {
             if ((mDoCPd_c::getGamePad(PAD_3)->getButton() & ~PAD_TRIGGER_Z) == PAD_TRIGGER_L &&
                 mDoCPd_c::getGamePad(PAD_3)->testTrigger(PAD_TRIGGER_Z))
             {
-                mHeapBriefType < 5 ? mHeapBriefType++ : mHeapBriefType = 1;
+                if (mHeapBriefType < 5) {
+                    mHeapBriefType++;
+                } else {
+                    mHeapBriefType = 1;
+                }
             }
 
             debugDisplay();
         }
 
+        #if DEBUG
+        if (!dDebugPad.Active()) {
+            Debug_console(PAD_3);
+        }
+        #else
         Debug_console(PAD_3);
+        #endif
+        
+        #if DEBUG
+        fapGm_HIO_c::startCpuTimer();
+
+        if (fapGmHIO_getHostIO()) {
+            JKRHeap* var_r30 = mDoExt_getHostIOHeap();
+            JKRHeap* var_r29 = mDoExt_setCurrentHeap(var_r30);
+            JOR_MESSAGELOOP();
+            mDoExt_setCurrentHeap(var_r29);
+        }
+
+        fapGm_HIO_c::printCpuTimer("");
+        fapGm_HIO_c::stopCpuTimer("ホストＩＯ");
+        fapGm_HIO_c::printCpuTimer("\n↑↑↑↑↑↑↑↑↑↑　ＣＰＵ時間計測終了　↑↑↑↑↑↑↑↑↑↑\n");
+        fapGm_HIO_c::offCpuTimer();
+        #endif
     }
 }
 
 /* 8000628C-80006454 000BCC 01C8+00 1/1 0/0 0/0 .text            main01__Fv */
 void main01(void) {
-    static u32 frame;
+    OS_REPORT("\x1b[m");
 
     // Setup heaps, setup exception manager, set RNG seed, setup DVDError Thread, setup Memory card Thread
     mDoMch_Create();
+
+    #if DEBUG
+    // not sure how this works. appears to be getting .text, .ctors, .dtors, and .rodata areas
+    FixedMemoryCheck::easyCreate((void*)0x80006880, (s32)0x628F40);
+    FixedMemoryCheck::easyCreate((void*)0x8062F7C0, (s32)0x224);
+    FixedMemoryCheck::easyCreate((void*)0x8062FA00, (s32)0xc);
+    FixedMemoryCheck::easyCreate((void*)0x8062FA20, (s32)0x30568);
+    #endif
 
     // setup FrameBuffer and ZBuffer, init display lists
     mDoGph_Create();
@@ -433,45 +711,25 @@ void main01(void) {
     // Setup control pad
     mDoCPd_c::create();
 
-    RootHeapCheck.setHeap((JKRExpHeap*)JKRHeap::getRootHeap());
-    if (JKRHeap::getRootHeap()) {
-        RootHeapCheck.setHeapSize(JKRHeap::getRootHeap()->getSize());
-    }
-
-    SystemHeapCheck.setHeap((JKRExpHeap*)JKRHeap::getSystemHeap());
-    if (JKRHeap::getSystemHeap()) {
-        SystemHeapCheck.setHeapSize(JKRHeap::getSystemHeap()->getSize());
-    }
-
+    RootHeapCheck.setHeap((JKRExpHeap*)JKRGetRootHeap());
+    SystemHeapCheck.setHeap((JKRExpHeap*)JKRGetSystemHeap());
     ZeldaHeapCheck.setHeap(mDoExt_getZeldaHeap());
-    if (ZeldaHeapCheck.getHeap()) {
-        ZeldaHeapCheck.setHeapSize(ZeldaHeapCheck.getHeap()->getSize());
-    }
-
     GameHeapCheck.setHeap(mDoExt_getGameHeap());
-    if (GameHeapCheck.getHeap()) {
-        GameHeapCheck.setHeapSize(GameHeapCheck.getHeap()->getSize());
-    }
-
     ArchiveHeapCheck.setHeap(mDoExt_getArchiveHeap());
-    if (ArchiveHeapCheck.getHeap()) {
-        ArchiveHeapCheck.setHeapSize(ArchiveHeapCheck.getHeap()->getSize());
-    }
-
     J2dHeapCheck.setHeap(mDoExt_getJ2dHeap());
-    if (J2dHeapCheck.getHeap()) {
-        J2dHeapCheck.setHeapSize(J2dHeapCheck.getHeap()->getSize());
-    }
-
     HostioHeapCheck.setHeap(mDoExt_getHostIOHeap());
-    if (HostioHeapCheck.getHeap()) {
-        HostioHeapCheck.setHeapSize(HostioHeapCheck.getHeap()->getSize());
-    }
-
     CommandHeapCheck.setHeap(mDoExt_getCommandHeap());
-    if (CommandHeapCheck.getHeap()) {
-        CommandHeapCheck.setHeapSize(CommandHeapCheck.getHeap()->getSize());
-    }
+
+    #if DEBUG
+    JKRHeap* var_r28 = mDoExt_getHostIOHeap();
+    JKRHeap* sp10 = mDoExt_setCurrentHeap(var_r28);
+    JOR_INIT();
+    JOR_SETROOTNODE("root", &mDoHIO_root, 4, 3);
+    mDoExt_setCurrentHeap(sp10);
+
+    var_r28->dump_sort();
+    OSReport("\x1b[36mHOSTIOヒープ残り %u Bytes\n\x1b[m", var_r28->getTotalFreeSize());
+    #endif
 
     JUTConsole* console = JFWSystem::getSystemConsole();
     console->setOutput(mDoMain::developmentMode ? JUTConsole::OUTPUT_OSR_AND_CONSOLE :
@@ -480,25 +738,70 @@ void main01(void) {
 
     mDoDvdThd_callback_c::create((mDoDvdThd_callback_func)LOAD_COPYDATE, NULL);
     fapGm_Create(); // init framework
+
+    #if DEBUG
+    mDoMain_HIO.entryHIO("メイン");
+    g_regHIO.id = mDoHIO_createChild("レジスタ", &g_regHIO);
+    g_presetHIO.field_0x4 = mDoHIO_createChild("状況ファイル", &g_presetHIO);
+    #endif
+
     fopAcM_initManager();
     mDisplayHeapSize = 0;
     cDyl_InitAsync(); // init RELs
 
-    g_mDoAud_audioHeap = JKRSolidHeap::create(0x14D800, JKRHeap::getCurrentHeap(), false);
+    #if VERSION == VERSION_SHIELD_DEBUG
+    const int audioHeapSize = 0x169000;
+    #else
+    const int audioHeapSize = 0x14D800;
+    #endif
+    g_mDoAud_audioHeap = JKRCreateSolidHeap(audioHeapSize, JKRHeap::getCurrentHeap(), false);
 
     do {
+        static u32 frame;
         frame++;
+
+        #if DEBUG
+        if (memorycheck_check_frame != 0 && frame % memorycheck_check_frame == 0) {
+            FixedMemoryCheck::checkAll();
+        }
+        #endif
+
         if (fillcheck_check_frame != 0 && frame % fillcheck_check_frame == 0) {
             mDoMch_HeapCheckAll();
         }
 
-        if (SyncWidthSound) {
-            g_mDoMemCd_control.update();
+        if (mDoDvdThd::SyncWidthSound) {
+            mDoMemCd_UpDate();
         }
 
         mDoCPd_c::read();   // read controller input
+
+        #if DEBUG
+        if (mDoMch::GXWarningExecuteFrame) {
+            GXSetVerifyLevel(GX_WARN_ALL);
+        }
+        #endif
+
         fapGm_Execute();    // handle game execution
+
+        #if DEBUG
+        if (mDoMch::GXWarningExecuteFrame) {
+            mDoMch::GXWarningExecuteFrame = 0;
+            GXSetVerifyLevel((GXWarningLevel)mDoMch::GXWarningLevel);
+        }
+        #endif
+
+        #if DEBUG
+        fapGm_HIO_c::startCpuTimer();
+        #endif
+
         mDoAud_Execute();   // handle audio execution
+
+        #if DEBUG
+        fapGm_HIO_c::printCpuTimer("");
+        fapGm_HIO_c::stopCpuTimer("オーディオ");
+        #endif
+
         debug();            // run debugger
     } while (true);
 }
@@ -595,14 +898,18 @@ static u8 mainThreadStack[32768];
 static OSThread mainThread;
 
 /* 80006454-800065D8 000D94 0184+00 0/0 1/1 0/0 .text            main */
-void main() {
+void main(int argc, const char* argv[]) {
     OSThread* current_thread = OSGetCurrentThread();
     u8* stack = mainThreadStack;
     mDoMain::sPowerOnTime = OSGetTime();
     OSReportInit();
     version_check();
-    mDoRstData* reset_data = (mDoRstData*)OSAllocFromArenaLo(0x18, 4);
-    mDoRst::setResetData(reset_data);
+
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    mDoRst::setResetData((mDoRstData*)OSAllocFromMEM1ArenaLo(0x18, 4));
+    #else
+    mDoRst::setResetData((mDoRstData*)OSAllocFromArenaLo(0x18, 4));
+    #endif
 
     if (!mDoRst::getResetData()) {
         do {
@@ -622,7 +929,23 @@ void main() {
         mDoRst::offReturnToMenu();
     }
 
-    g_dComIfG_gameInfo.ct();
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    SCInit();
+    #endif
+
+    dComIfG_ct();
+
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    u32 status;
+    do {
+        status = SCCheckStatus();
+    } while (status != 0);
+    JUT_ASSERT(1785, status != 2);
+    #endif
+
+    #if DEBUG
+    parse_args(argc, argv);
+    #endif
 
     if (mDoMain::developmentMode < 0) {
         DVDDiskID* disk_id = DVDGetCurrentDiskID();
@@ -637,9 +960,11 @@ void main() {
         }
     }
 
+    OS_REPORT("メインスレッドを作成します\n");
     s32 priority = OSGetThreadPriority(current_thread);
     OSCreateThread(&mainThread, (void*(*)(void*))main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack), priority, 0);
     OSResumeThread(&mainThread);
+    OS_REPORT("メインスレッドを起動しました <%x>\n", &mainThread);
     OSSetThreadPriority(current_thread, 0x1F);
     OSSuspendThread(current_thread);
 }

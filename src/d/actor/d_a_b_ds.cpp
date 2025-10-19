@@ -5514,7 +5514,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 805DB974-805DC1E8 010834 0874+00 1/1 0/0 0/0 .text            create__8daB_DS_cFv */
 cPhs__Step daB_DS_c::create() {
-    fopAcM_SetupActor(this, daB_DS_c);
+    fopAcM_ct(this, daB_DS_c);
 
     cPhs__Step phase_state = (cPhs__Step)dComIfG_resLoad(&mPhase, "B_DS");
     if (phase_state == cPhs_COMPLEATE_e) {

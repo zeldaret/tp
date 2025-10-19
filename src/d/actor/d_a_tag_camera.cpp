@@ -198,7 +198,7 @@ static u8 const lit_3874[12] = {
 };
 
 int daTag_Cam_c::create() {
-    fopAcM_SetupActor(this, daTag_Cam_c);
+    fopAcM_ct(this, daTag_Cam_c);
 
     if (getAreaType() == 0) {
         scale.x *= 500.0f;

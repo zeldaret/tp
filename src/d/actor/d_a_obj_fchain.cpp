@@ -33,7 +33,7 @@ static Vec const localVec = {
 
 /* 80BE6074-80BE6328 0000F4 02B4+00 1/1 0/0 0/0 .text            create__13daObjFchain_cFv */
 int daObjFchain_c::create() {
-    fopAcM_SetupActor(this, daObjFchain_c);
+    fopAcM_ct(this, daObjFchain_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     switch (rv) {
     case cPhs_COMPLEATE_e:

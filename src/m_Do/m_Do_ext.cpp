@@ -3180,7 +3180,7 @@ J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag, u3
 }
 
 /* 80450C68-80450C70 000168 0004+04 1/1 0/0 0/0 .sbss            aram_cache_size */
-static u32 aram_cache_size;
+u32 aram_cache_size;
 
 /* 80014D5C-80014D64 00F69C 0008+00 0/0 1/1 0/0 .text            mDoExt_setAraCacheSize__FUl */
 void mDoExt_setAraCacheSize(u32 size) {

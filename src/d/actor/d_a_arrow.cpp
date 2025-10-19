@@ -1180,7 +1180,7 @@ static void* daAlink_searchHorseZelda(fopAc_ac_c* param_0, void* param_1) {
 
 /* 8049D440-8049D808 0038C0 03C8+00 1/1 0/0 0/0 .text            create__9daArrow_cFv */
 cPhs__Step daArrow_c::create() {
-    fopAcM_SetupActor(this, daArrow_c);
+    fopAcM_ct(this, daArrow_c);
 
     mArrowType = fopAcM_GetParamBit(this, 8, 8);
     fopAcM_SetParam(this, (u8)fopAcM_GetParam(this));

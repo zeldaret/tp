@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXCULL_H_
 #define _DOLPHIN_GX_GXCULL_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXCull.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 
 #ifdef __cplusplus
@@ -15,4 +18,5 @@ void GXSetCoPlanar(GXBool enable);
 }
 #endif
 
+#endif
 #endif

@@ -149,7 +149,7 @@ int daTreeSh_c::Delete() {
 /* 80D1F720-80D1F7AC 000740 008C+00 1/0 0/0 0/0 .text            daTreeSh_create1st__FP10daTreeSh_c
  */
 static int daTreeSh_create1st(daTreeSh_c* i_this) {
-    fopAcM_SetupActor(i_this, daTreeSh_c);
+    fopAcM_ct(i_this, daTreeSh_c);
     return i_this->create1st();
 }
 

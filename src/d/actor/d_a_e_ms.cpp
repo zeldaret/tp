@@ -1029,7 +1029,7 @@ static int daE_MS_Create(fopAc_ac_c* actor) {
 
     e_ms_class* i_this = (e_ms_class*)actor;
 
-    fopAcM_SetupActor(i_this, e_ms_class);
+    fopAcM_ct(i_this, e_ms_class);
 
     int phase = dComIfG_resLoad(&i_this->mPhaseReq, "E_MS");
     if (phase == cPhs_COMPLEATE_e) {

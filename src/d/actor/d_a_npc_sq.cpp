@@ -334,7 +334,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80AF6F98-80AF7260 001098 02C8+00 1/0 0/0 0/0 .text            daNpc_Sq_Create__FP10fopAc_ac_c */
 static cPhs__Step daNpc_Sq_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, npc_sq_class);
+    fopAcM_ct(i_this, npc_sq_class);
     npc_sq_class* _this = static_cast<npc_sq_class*>(i_this);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&_this->mPhaseReq, "Sq");

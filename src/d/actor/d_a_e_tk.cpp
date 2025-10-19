@@ -710,7 +710,7 @@ static dCcD_SrcSph cc_sph_src = {
 
 /* 807B9DB8-807BA0C4 001CB8 030C+00 1/0 0/0 0/0 .text            daE_TK_Create__FP10fopAc_ac_c */
 static int daE_TK_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, e_tk_class);
+    fopAcM_ct(i_this, e_tk_class);
     e_tk_class* const a_this = static_cast<e_tk_class*>(i_this);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "E_tk");

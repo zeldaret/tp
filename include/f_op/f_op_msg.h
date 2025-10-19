@@ -38,4 +38,8 @@ struct msg_class {
 
 extern leafdraw_method_class g_fopMsg_Method;
 
+namespace fopMsg {
+    extern u8 MemCheck;
+}
+
 #endif /* F_OP_F_OP_MSG_H */

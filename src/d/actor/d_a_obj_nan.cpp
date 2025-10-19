@@ -679,7 +679,7 @@ static daObj_NanHIO_c l_HIO;
 /* 80CA2B68-80CA2FDC 0026A8 0474+00 1/1 0/0 0/0 .text            create__10daObjNAN_cFv */
 int daObjNAN_c::create() {
     u8 uVar6 = (fopAcM_GetParam(this) & 0xf00) >> 8;
-    fopAcM_SetupActor(this, daObjNAN_c);
+    fopAcM_ct(this, daObjNAN_c);
     int rv = dComIfG_resLoad(&mPhase, "I_Nan");
     if (rv == cPhs_COMPLEATE_e) {
         OS_REPORT("NAN PARAM %x\n", fopAcM_GetParam(this));

@@ -37,7 +37,7 @@ daObj_SSDrink_c::~daObj_SSDrink_c() {
 
 /* 80CE51C8-80CE53EC 0002C8 0224+00 1/1 0/0 0/0 .text            create__15daObj_SSDrink_cFv */
 int daObj_SSDrink_c::create() {
-    fopAcM_SetupActor(this, daObj_SSDrink_c);
+    fopAcM_ct(this, daObj_SSDrink_c);
     field_0xb0b = getTypeFromParam();
     field_0xb0a = getCapacityFromParam();
     setFlowNodeNumber(getFlowNodeNum());

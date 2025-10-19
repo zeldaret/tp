@@ -264,6 +264,22 @@ elif config.version == "RZDE01_00" or config.version == "RZDE01_02" or config.ve
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
 
+USE_REVOLUTION_SDK_VERSIONS = [
+    "RZDE01_00", # Wii USA Rev 0
+    "RZDE01_02", # Wii USA Rev 2
+    "RZDP01",    # Wii PAL
+    "RZDJ01",    # Wii JPN
+    "RZDK01",    # Wii KOR
+    "DZDE01",    # Wii USA Kiosk Demo
+    "DZDP01",    # Wii PAL Kiosk Demo
+    "Shield",    # Shield
+    "ShieldP",   # Shield Production
+    "ShieldD",   # Shield Debug
+]
+
+if config.version in USE_REVOLUTION_SDK_VERSIONS:
+    cflags_base.extend(["-D__REVOLUTION_SDK__"])
+
 # Debug flags
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers

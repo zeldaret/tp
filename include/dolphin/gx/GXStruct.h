@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXSTRUCT_H_
 #define _DOLPHIN_GX_GXSTRUCT_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXStruct.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/vi/vitypes.h>
 
@@ -72,4 +75,5 @@ typedef struct _GXVtxAttrFmtList {
 }
 #endif
 
+#endif
 #endif

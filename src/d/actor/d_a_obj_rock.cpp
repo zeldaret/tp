@@ -118,7 +118,7 @@ static dCcD_SrcSph cc_sph_src = {
  */
 static int daObj_Rock_Create(fopAc_ac_c* i_this) {
     obj_rock_class* a_this = static_cast<obj_rock_class*>(i_this);
-    fopAcM_SetupActor(a_this, obj_rock_class);
+    fopAcM_ct(a_this, obj_rock_class);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "Obj_rock");
     if (step == cPhs_COMPLEATE_e) {

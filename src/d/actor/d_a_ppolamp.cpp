@@ -167,7 +167,7 @@ void daPPolamp_c::initParam() {
 /* 80D4D140-80D4D1CC 000880 008C+00 1/0 0/0 0/0 .text            daPPolamp_create__FP11daPPolamp_c
  */
 static int daPPolamp_create(daPPolamp_c* i_this) {
-    fopAcM_SetupActor(i_this, daPPolamp_c);
+    fopAcM_ct(i_this, daPPolamp_c);
     return i_this->create();
 }
 

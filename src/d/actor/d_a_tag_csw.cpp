@@ -188,7 +188,7 @@ int daTagCsw_c::chkInsideStatueStart() {
 
 /* 80D573C0-80D576D4 000860 0314+00 1/1 0/0 0/0 .text            create__10daTagCsw_cFv */
 int daTagCsw_c::create() {
-    fopAcM_SetupActor(this, daTagCsw_c);
+    fopAcM_ct(this, daTagCsw_c);
     field_0x570 = getType();
     int rv = dComIfG_resLoad(this, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {

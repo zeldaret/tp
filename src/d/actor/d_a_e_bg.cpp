@@ -1362,7 +1362,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80689C38-8068A07C 004518 0444+00 1/1 0/0 0/0 .text            create__8daE_BG_cFv */
 int daE_BG_c::create() {
-    fopAcM_SetupActor(this, daE_BG_c);
+    fopAcM_ct(this, daE_BG_c);
 
     field_0x68d = fopAcM_GetParam(this);
     if (field_0x68d == 0xff) {

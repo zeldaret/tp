@@ -957,7 +957,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 806C0CD0-806C1208 002470 0538+00 1/1 0/0 0/0 .text            create__8daE_FZ_cFv */
 s32 daE_FZ_c::create() {
-  fopAcM_SetupActor(this,daE_FZ_c);
+  fopAcM_ct(this,daE_FZ_c);
 
   s32 phase = dComIfG_resLoad(&mPhaseReq,"E_FZ");
   if (phase == cPhs_COMPLEATE_e) {

@@ -300,7 +300,7 @@ daNpc_grC_HIOParam const daNpc_grC_Param_c::m = {
 
 /* 809CB8E0-809CBBD4 000500 02F4+00 1/1 0/0 0/0 .text            create__11daNpc_grC_cFv */
 cPhs__Step daNpc_grC_c::create() {
-    fopAcM_SetupActor(this, daNpc_grC_c);
+    fopAcM_ct(this, daNpc_grC_c);
 
     mTwilight = dKy_darkworld_check();
     mType = getTypeFromParam();

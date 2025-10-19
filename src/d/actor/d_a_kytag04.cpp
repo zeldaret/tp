@@ -262,7 +262,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 8046D59C-8046D9C8 000ABC 042C+00 1/0 0/0 0/0 .text            daKytag04_Create__FP10fopAc_ac_c */
 static int daKytag04_Create(fopAc_ac_c* i_this) {
     kytag04_class* a_this = (kytag04_class*)i_this;
-    fopAcM_SetupActor(i_this, kytag04_class);
+    fopAcM_ct(i_this, kytag04_class);
 
     a_this->mNeedDropNum = i_this->current.angle.z & 0xFF;
 

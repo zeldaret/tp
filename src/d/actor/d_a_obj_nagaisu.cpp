@@ -73,7 +73,7 @@ const dCcD_SrcCyl daObjIsuChild_c::s_CcDCyl = {
 
 /* 80C9F668-80C9F7A8 000328 0140+00 1/1 0/0 0/0 .text            create__14daObjNagaisu_cFv */
 int daObjNagaisu_c::create() {
-    fopAcM_SetupActor(this, daObjNagaisu_c);
+    fopAcM_ct(this, daObjNagaisu_c);
 
     int phase_state = dComIfG_resLoad(this, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {
@@ -318,7 +318,7 @@ void daObjIsuChild_c::callEmt() {
 
 /* 80CA0258-80CA02AC 000F18 0054+00 1/0 0/0 0/0 .text daObjNagaisu_create__FP14daObjNagaisu_c */
 static int daObjNagaisu_create(daObjNagaisu_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjNagaisu_c);
+    fopAcM_ct(i_this, daObjNagaisu_c);
     return i_this->create();
 }
 

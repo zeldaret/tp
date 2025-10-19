@@ -136,7 +136,7 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 
 /* 804863B0-804865B4 000430 0204+00 1/1 0/0 0/0 .text            create__10daSwhit0_cFv */
 int daSwhit0_c::create() {
-    fopAcM_SetupActor(this, daSwhit0_c);
+    fopAcM_ct(this, daSwhit0_c);
 
     if (argument != 0) {
         setDrawMtx();

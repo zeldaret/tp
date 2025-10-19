@@ -83,7 +83,7 @@ int daLv6SzGate_c::CreateHeap() {
 
 /* 80C75C0C-80C75DD0 00048C 01C4+00 1/1 0/0 0/0 .text            create__13daLv6SzGate_cFv */
 cPhs__Step daLv6SzGate_c::create() {
-    fopAcM_SetupActor(this, daLv6SzGate_c);
+    fopAcM_ct(this, daLv6SzGate_c);
 
     cPhs__Step phase = static_cast<cPhs__Step>(dComIfG_resLoad(&mPhase, "L6SzGate"));
     if (phase == cPhs_COMPLEATE_e) {

@@ -149,7 +149,7 @@ int daL7lowDr_c::CreateHeap() {
 
 /* 805AAD58-805AAE88 0007D8 0130+00 1/1 0/0 0/0 .text            create__11daL7lowDr_cFv */
 int daL7lowDr_c::create() {
-    fopAcM_SetupActor(this, daL7lowDr_c);
+    fopAcM_ct(this, daL7lowDr_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "L7lowDr");
     if (phase_state == cPhs_COMPLEATE_e) {

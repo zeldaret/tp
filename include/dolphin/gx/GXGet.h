@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXGET_H_
 #define _DOLPHIN_GX_GXGET_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXGet.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
 
@@ -61,4 +64,5 @@ void GXGetScissor(u32* left, u32* top, u32* wd, u32* ht);
 }
 #endif
 
+#endif
 #endif

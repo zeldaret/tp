@@ -946,7 +946,7 @@ void daObjCarry_c::setBaseMtx() {
 
 /* 8046FACC-8046FB78 000B4C 00AC+00 1/1 0/0 0/0 .text            preInit__12daObjCarry_cFv */
 int daObjCarry_c::preInit() {
-    fopAcM_SetupActor(this, daObjCarry_c);
+    fopAcM_ct(this, daObjCarry_c);
 
     if (!mInitParams) {
         mItemNo = home.angle.x;

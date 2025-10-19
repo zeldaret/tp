@@ -169,7 +169,7 @@ int daObjLv4Sand_c::Delete() {
 /* 80C6A1C0-80C6A240 0007A0 0080+00 1/0 0/0 0/0 .text daObjLv4Sand_create1st__FP14daObjLv4Sand_c
  */
 static int daObjLv4Sand_create1st(daObjLv4Sand_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjLv4Sand_c);
+    fopAcM_ct(i_this, daObjLv4Sand_c);
     return i_this->create1st();
 }
 

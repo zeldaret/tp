@@ -912,7 +912,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 8067B8E4-8067BAEC 002864 0208+00 1/1 0/0 0/0 .text            Create__10e_ai_classFv */
 int e_ai_class::Create() {
-    fopAcM_SetupActor(this, e_ai_class);
+    fopAcM_ct(this, e_ai_class);
 
     int phase_state = dComIfG_resLoad(&m_phase, "E_AI");
     if (phase_state == cPhs_COMPLEATE_e) {

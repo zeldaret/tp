@@ -100,7 +100,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
 /* 80C31808-80C31954 0003A8 014C+00 1/0 0/0 0/0 .text            daObj_Kage_Create__FP10fopAc_ac_c
  */
 static int daObj_Kage_Create(fopAc_ac_c* actor) {
-    fopAcM_SetupActor(actor, obj_kage_class);
+    fopAcM_ct(actor, obj_kage_class);
     obj_kage_class* i_this = (obj_kage_class*)actor;
 
     int phase_state = dComIfG_resLoad(&i_this->phase, "Obj_kage");

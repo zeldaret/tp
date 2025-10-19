@@ -96,6 +96,7 @@ public:
     void setCostFrame(int frame) { mCostFrame = frame; }
     void setVisible(bool visible) { mVisible = visible; }
     void setVisibleHeapBar(bool visible) { mHeapBarVisible = visible; }
+    void setWatchHeap(JKRHeap* pHeap) { mWatchHeap = pHeap; }
 
     static JUTProcBar* getManager() { return sManager; }
 

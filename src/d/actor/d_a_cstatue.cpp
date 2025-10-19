@@ -219,7 +219,7 @@ int daCstatue_c::create() {
 
     static int const heapSize[daCstatueType_N] = {4368, 2208, 4688, 6240, 6240};
 
-    fopAcM_SetupActor(this, daCstatue_c);
+    fopAcM_ct(this, daCstatue_c);
     mType = (fopAcM_GetParam(this) >> 8) & 0xf;
     if (mType == daCstatueType_Normal2) {
         mType = daCstatueType_Small;

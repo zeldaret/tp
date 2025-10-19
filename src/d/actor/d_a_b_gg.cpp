@@ -4352,7 +4352,7 @@ static int daB_GG_Delete(daB_GG_c* a_this) {
 
 /* 805EBBE4-805EC424 00D8C4 0840+00 1/1 0/0 0/0 .text            Create__8daB_GG_cFv */
 int daB_GG_c::Create() {
-    fopAcM_SetupActor(this, daB_GG_c);
+    fopAcM_ct(this, daB_GG_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "B_gg");
     if (phase_state == cPhs_COMPLEATE_e) {

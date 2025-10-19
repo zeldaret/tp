@@ -458,7 +458,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
  */
 static int daObj_Msima_Create(fopAc_ac_c* a_this) {
     obj_msima_class* i_this = (obj_msima_class*)a_this;
-    fopAcM_SetupActor(a_this, obj_msima_class);
+    fopAcM_ct(a_this, obj_msima_class);
 
     int rv = dComIfG_resLoad(&i_this->mPhase, "MAGNESIMA");
     if (rv == cPhs_COMPLEATE_e) {

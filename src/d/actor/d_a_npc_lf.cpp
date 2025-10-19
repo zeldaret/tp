@@ -279,7 +279,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80A6A650-80A6A8A4 000BD0 0254+00 1/0 0/0 0/0 .text            daNPC_LF_Create__FP10fopAc_ac_c */
 static cPhs__Step daNPC_LF_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, npc_lf_class);
+    fopAcM_ct(i_this, npc_lf_class);
     npc_lf_class* a_this = static_cast<npc_lf_class*>(i_this);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&a_this->mPhase, "NPC_LF");

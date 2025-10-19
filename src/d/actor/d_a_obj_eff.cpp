@@ -12,7 +12,7 @@
 
 /* 8057C9D8-8057CA94 000078 00BC+00 1/1 0/0 0/0 .text            _create__Q28daObjEff5Act_cFv */
 int daObjEff::Act_c::_create() {
-    fopAcM_SetupActor(this, Act_c);
+    fopAcM_ct(this, Act_c);
 
     if (daObj::PrmAbstract<Act_c::Prm_e>(this, PRM_8, PRM_0) == 3) {
         dComIfGp_particle_setColor(0x00E7, &current.pos, NULL, NULL, NULL, 0.0f, 55, NULL, &scale,

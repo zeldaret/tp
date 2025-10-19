@@ -127,7 +127,7 @@ static dPa_YkgrPcallBack YkgrCB;
 /* 805A882C-805A8A48 00048C 021C+00 1/0 0/0 0/0 .text            daYkgrCreate__FPv */
 inline int daYkgr_c::_create() {
     int uVar1 = u8((fopAcM_GetParam(this) & 0x00F00000) >> 0x14);
-    fopAcM_SetupActor(this, daYkgr_c);
+    fopAcM_ct(this, daYkgr_c);
     u8 uVar4 = (fopAcM_GetParam(this) & 0x0000FF00) >> 8;
     OS_REPORT("pathNo = %d\n", uVar4);
     if (uVar4 != 0xff) {

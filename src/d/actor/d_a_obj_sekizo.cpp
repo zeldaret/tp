@@ -26,7 +26,7 @@ static char* l_resNameList[2] = {"", "Sekizo"};
 
 /* 80CCDC0C-80CCDD00 0000EC 00F4+00 1/1 0/0 0/0 .text            create__14daObj_Sekizo_cFv */
 cPhs__Step daObj_Sekizo_c::create() {
-    fopAcM_SetupActor(this, daObj_Sekizo_c);
+    fopAcM_ct(this, daObj_Sekizo_c);
 
     field_0x5b0 = 0;
     cPhs__Step step =

@@ -171,7 +171,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
 
 /* 80BF6AE0-80BF6DB0 000840 02D0+00 1/0 0/0 0/0 .text            daObj_Gb_Create__FP10fopAc_ac_c */
 static int daObj_Gb_Create(fopAc_ac_c* actor) {
-    fopAcM_SetupActor(actor, obj_gb_class);
+    fopAcM_ct(actor, obj_gb_class);
     obj_gb_class* i_this = (obj_gb_class*)actor;
     int rv = dComIfG_resLoad(&i_this->mPhase, "Obj_gb");
     

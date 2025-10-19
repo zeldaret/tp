@@ -10,7 +10,7 @@
 
 /* 8048C4F8-8048C728 000078 0230+00 2/1 0/0 0/0 .text            create__15daTag_EvtArea_cFv */
 cPhs__Step daTag_EvtArea_c::create() {
-    fopAcM_SetupActor(this, daTag_EvtArea_c);
+    fopAcM_ct(this, daTag_EvtArea_c);
 
     switch (getType()) {
     case 0:

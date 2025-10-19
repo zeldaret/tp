@@ -723,7 +723,7 @@ bool daObjKAT_c::CreateChk() {
 
 /* 80C3BC58-80C3C4C4 0023D8 086C+00 1/1 0/0 0/0 .text            create__10daObjKAT_cFv */
 int daObjKAT_c::create() {
-    fopAcM_SetupActor(this, daObjKAT_c);
+    fopAcM_ct(this, daObjKAT_c);
 
     s32 loadResult = dComIfG_resLoad(&mPhase, "Kat");
     if (loadResult == cPhs_COMPLEATE_e) {

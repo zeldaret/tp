@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSALARM_H_
 #define _DOLPHIN_OSALARM_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSAlarm.h>
+#else
 #include <dolphin/os.h>
 
 #ifdef __cplusplus
@@ -33,4 +36,5 @@ void OSCancelAlarms(u32 tag);
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_OSALARM_H_

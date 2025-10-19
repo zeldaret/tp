@@ -94,6 +94,10 @@ public:
         offStatus(0, param_0, i_flag);
     }
 
+    static typeGroupData_c* getTypeGroupData() {
+        return mTypeGroupData;
+    }
+
     static u8 const typeToTypeGroup[17][2];
     static type_group_list mTypeGroupListAll[17];
     static typeGroupData_c* mTypeGroupData;

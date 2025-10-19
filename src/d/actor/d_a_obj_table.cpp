@@ -29,7 +29,7 @@ void daObjTable_c::setBaseMtx() {
 }
 
 int daObjTable_c::create() {
-    fopAcM_SetupActor(this, daObjTable_c);
+    fopAcM_ct(this, daObjTable_c);
 
     int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

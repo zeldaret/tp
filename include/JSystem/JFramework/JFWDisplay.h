@@ -101,6 +101,9 @@ public:
     void resetFader() { setFader(NULL); }
     JUTFader* getFader() const { return mFader; }
     void setClearColor(JUtility::TColor color) { mClearColor = color; }
+    int getEfbWidth() const { return JUTVideo::getManager()->getFbWidth(); }
+    int getEfbHeight() const { return JUTVideo::getManager()->getEfbHeight(); }
+    JUTXfb* getXfbManager() const { return mXfbManager; }
 
     static JFWDisplay* sManager;
 

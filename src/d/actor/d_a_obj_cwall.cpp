@@ -855,7 +855,7 @@ int daObjCwall_c::Delete() {
 
 /* 80BD9988-80BD9B70 003028 01E8+00 1/0 0/0 0/0 .text daObjCwall_create1st__FP12daObjCwall_c */
 static int daObjCwall_create1st(daObjCwall_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjCwall_c);
+    fopAcM_ct(i_this, daObjCwall_c);
     return i_this->create1st();
 }
 

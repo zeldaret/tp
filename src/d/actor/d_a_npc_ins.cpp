@@ -384,7 +384,7 @@ daNpcIns_HIOParam const daNpcIns_Param_c::m = {
 
 /* 80A0E660-80A0EA30 000500 03D0+00 1/1 0/0 0/0 .text            Create__10daNpcIns_cFv */
 cPhs__Step daNpcIns_c::Create() {
-    fopAcM_SetupActor(this, daNpcIns_c);
+    fopAcM_ct(this, daNpcIns_c);
 
     mType = TYPE_0;
 

@@ -608,7 +608,7 @@ int daObjWarpOBrg_c::Delete() {
 /* 80D2B6F4-80D2B768 001DB4 0074+00 1/0 0/0 0/0 .text daObjWarpOBrg_create1st__FP15daObjWarpOBrg_c
  */
 static int daObjWarpOBrg_create1st(daObjWarpOBrg_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjWarpOBrg_c);
+    fopAcM_ct(i_this, daObjWarpOBrg_c);
     return i_this->create1st();
 }
 

@@ -365,7 +365,7 @@ static int daFmtMng_Create(fopAc_ac_c* param_0) {
 
 /* 808374B4-8083750C 001FD4 0058+00 1/1 0/0 0/0 .text            create__10daFmtMng_cFv */
 int daFmtMng_c::create() {
-    fopAcM_SetupActor(this, daFmtMng_c);
+    fopAcM_ct(this, daFmtMng_c);
     create_init();
     return 4;
 }

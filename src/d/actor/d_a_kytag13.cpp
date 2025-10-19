@@ -364,7 +364,7 @@ static int daKytag13_Delete(kytag13_class* i_this) {
 /* 80860210-80860450 001090 0240+00 1/0 0/0 0/0 .text            daKytag13_Create__FP10fopAc_ac_c */
 static int daKytag13_Create(fopAc_ac_c* i_this) {
     kytag13_class* a_this = (kytag13_class*)i_this;
-    fopAcM_SetupActor(i_this, kytag13_class);
+    fopAcM_ct(i_this, kytag13_class);
 
     if (i_this->home.roomNo != dComIfGp_roomControl_getStayNo()) {
         return 0;

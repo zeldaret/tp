@@ -705,7 +705,7 @@ static BOOL useHeapIfrt(fopAc_ac_c* a_this) {
 static int daFr_Create(fopAc_ac_c* a_this) {
     fopAc_ac_c* actor = a_this;
     fr_class* i_this = (fr_class*)actor;
-    fopAcM_SetupActor(i_this, fr_class);
+    fopAcM_ct(i_this, fr_class);
 
     int phase_state = dComIfG_resLoad(&i_this->mPhase, "Fr");
     if (phase_state == cPhs_COMPLEATE_e) {

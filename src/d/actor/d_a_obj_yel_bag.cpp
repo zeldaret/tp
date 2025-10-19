@@ -68,7 +68,7 @@ f32 const daObj_YBag_Param_c::m[11] = {
 
 /* 80D3C610-80D3C898 000610 0288+00 1/1 0/0 0/0 .text            create__12daObj_YBag_cFv */
 int daObj_YBag_c::create() {
-    fopAcM_SetupActor(this, daObj_YBag_c);
+    fopAcM_ct(this, daObj_YBag_c);
     mType = getTypeFromParam();
     int successfulLoads = 0;
     int i = 0;

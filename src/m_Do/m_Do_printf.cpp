@@ -5,7 +5,7 @@
 
 #include "m_Do/m_Do_printf.h"
 #include "stdio.h"
-#include "dolphin/base/PPCArch.h"
+#include <dolphin/base/PPCArch.h>
 #include "m_Do/m_Do_ext.h"
 
 /* 80450B98-80450B9C -00001 0004+00 0/0 6/6 0/0 .sbss            None */
@@ -87,47 +87,66 @@ void OSReportForceEnableOff() {
     __OSReport_enable = false;
 }
 
-/* ############################################################################################## */
 /* 80450BA0-80450BA4 0000A0 0004+00 1/1 0/0 0/0 .sbss            __OSReport_MonopolyThread */
 static OSThread* __OSReport_MonopolyThread;
 
+#if DEBUG
+OSMutex print_mutex;
+u8 print_mutex_initialized;
+u8 print_highPriority;
+u8 print_threadID;
+u8 print_callerPC;
+u8 print_callerPCLevel = 3;
+#endif
+
 /* 80450BA4-80450BA8 0000A4 0004+00 1/1 0/0 0/0 .sbss            print_counts */
-static u32 print_counts;
+u32 print_counts;
 
 /* 80450BA8-80450BAC 0000A8 0004+00 2/2 0/0 0/0 .sbss            print_errors */
-static u32 print_errors;
+u32 print_errors;
 
 /* 80450BAC-80450BB0 0000AC 0004+00 1/1 0/0 0/0 .sbss            print_warings */
-static u32 print_warings;
+u32 print_warings;
 
 /* 80450BB0-80450BB4 0000B0 0004+00 1/1 0/0 0/0 .sbss            print_systems */
-static u32 print_systems;
+u32 print_systems;
 
 /* 80450BB4-80450BB8 -00001 0004+00 3/3 0/0 0/0 .sbss            None */
-static bool print_initialized;
+u8 print_initialized;
 
 static bool data_80450BB5;
 
 /* 800068C4-800068DC 001204 0018+00 1/1 1/1 0/0 .text            OSReportInit__Fv */
 void OSReportInit() {
-    if (print_initialized) {
-        return;
+    BOOL enabled;
+
+    if (!print_initialized) {
+        #if DEBUG
+        enabled = OSDisableInterrupts();
+        if (!print_mutex_initialized) {
+            OSInitMutex(&print_mutex);
+            print_mutex_initialized = true;
+            my_PutString("\x1b[m\x1b[33m*** OSVReport - OSInitMutex ***\n\x1b[m");
+        }
+        OSRestoreInterrupts(enabled);
+        #endif
+
+        print_initialized = true;
     }
-    print_initialized = true;
 }
 
-/* ############################################################################################## */
 /* 803DB740-803DBF40 008460 0800+00 1/1 0/0 0/0 .bss             mDoPrintf_FiberStack */
 static u8 mDoPrintf_FiberStack[2048] ALIGN_DECL(32);
 
 /* 800068DC-80006964 00121C 0088+00 1/1 0/0 0/0 .text
  * mDoPrintf_vprintf_Interrupt__FPCcP16__va_list_struct         */
 void mDoPrintf_vprintf_Interrupt(char const* fmt, va_list args) {
-    s32 interruptStatus = OSDisableInterrupts();
+    BOOL interruptStatus = OSDisableInterrupts();
     if (!data_80450BB5) {
         data_80450BB5 = true;
+        uintptr_t var_r29 = (uintptr_t)&mDoPrintf_FiberStack + sizeof(mDoPrintf_FiberStack);
         OSSwitchFiberEx((uintptr_t)fmt, (uintptr_t)args, 0, 0, (uintptr_t)vprintf,
-                        (uintptr_t)&mDoPrintf_FiberStack + sizeof(mDoPrintf_FiberStack));
+                        var_r29);
         data_80450BB5 = false;
     }
     OSRestoreInterrupts(interruptStatus);
@@ -136,7 +155,26 @@ void mDoPrintf_vprintf_Interrupt(char const* fmt, va_list args) {
 /* 80006964-80006984 0012A4 0020+00 1/1 0/0 0/0 .text
  * mDoPrintf_vprintf_Thread__FPCcP16__va_list_struct            */
 void mDoPrintf_vprintf_Thread(char const* fmt, va_list args) {
+    #if DEBUG
+    OSLockMutex(&print_mutex);
+    OSThread* thread = NULL;
+    s32 priority;
+
+    if (print_highPriority) {
+        thread = OSGetCurrentThread();
+        priority = OSGetThreadPriority(thread);
+        OSSetThreadPriority(thread, 0);
+    }
+    #endif
+
     vprintf(fmt, args);
+
+    #if DEBUG
+    if (thread != NULL) {
+        OSSetThreadPriority(thread, priority);
+    }
+    OSUnlockMutex(&print_mutex);
+    #endif
 }
 
 /* 80006984-80006A10 0012C4 008C+00 4/4 0/0 0/0 .text mDoPrintf_vprintf__FPCcP16__va_list_struct
@@ -146,12 +184,16 @@ void mDoPrintf_vprintf(char const* fmt, va_list args) {
     if (currentThread == NULL) {
         mDoPrintf_vprintf_Interrupt(fmt, args);
     } else {
+        #if DEBUG
+        mDoPrintf_vprintf_Thread(fmt, args);
+        #else
         u8* stackPtr = (u8*)OSGetStackPointer();
         if (stackPtr < (u8*)currentThread->stackEnd + 0xA00 || stackPtr > currentThread->stackBase) {
             mDoPrintf_vprintf_Interrupt(fmt, args);
         } else {
             mDoPrintf_vprintf_Thread(fmt, args);
         }
+        #endif
     }
 }
 
@@ -202,6 +244,13 @@ void OSReport_FatalError(const char* fmt, ...) {
 void OSReport_Error(const char* fmt, ...) {
     print_errors++;
     if (!__OSReport_Error_disable) {
+        #if DEBUG
+        OSThread* thread = mDoExt_GetCurrentRunningThread();
+        if (thread != NULL) {
+            OSLockMutex(&print_mutex);
+        }
+        #endif
+
         va_list args;
         va_start(args, fmt);
         OSReportForceEnableOn();
@@ -211,6 +260,12 @@ void OSReport_Error(const char* fmt, ...) {
         OSReportForceEnableOff();
         fflush(stdout);
         va_end(args);
+
+        #if DEBUG
+        if (thread != NULL) {
+            OSUnlockMutex(&print_mutex);
+        }
+        #endif
     }
 }
 
@@ -261,7 +316,8 @@ void OSPanic(const char* file, int line, const char* fmt, ...) {
         OSAttention("0x%08x:   0x%08x    0x%08x\n", p, p[0], p[1]);
     }
 
-    tmp = (u32*)0x1234567;  // ??????
+    // force a crash by writing to an invalid address
+    tmp = (u32*)0x1234567;
     *tmp = 0x1234567;
     PPCHalt();
 }

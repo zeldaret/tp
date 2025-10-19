@@ -112,7 +112,7 @@ const daNpcPray_HIOParam daNpcPray_Param_c::m = {
 
 /* 80AB3204-80AB348C 000504 0288+00 1/1 0/0 0/0 .text            Create__11daNpcPray_cFv */
 int daNpcPray_c::Create() {
-    fopAcM_SetupActor(this, daNpcPray_c);
+    fopAcM_ct(this, daNpcPray_c);
 
     mMessageNo = getMessageNo();
 

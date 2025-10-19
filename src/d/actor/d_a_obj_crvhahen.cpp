@@ -226,7 +226,7 @@ static int daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
 
 /* 80BD3DBC-80BD3F9C 000AFC 01E0+00 1/1 0/0 0/0 .text            create__15daObjCRVHAHEN_cFv */
 int daObjCRVHAHEN_c::create() {
-    fopAcM_SetupActor(this, daObjCRVHAHEN_c);
+    fopAcM_ct(this, daObjCRVHAHEN_c);
 
     
 

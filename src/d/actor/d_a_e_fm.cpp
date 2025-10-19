@@ -3691,7 +3691,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 804F9614-804F9B64 00A614 0550+00 1/0 0/0 0/0 .text            daE_FM_Create__FP10fopAc_ac_c */
 static int daE_FM_Create(fopAc_ac_c* i_this) {
     e_fm_class* a_this = (e_fm_class*)i_this;
-    fopAcM_SetupActor(a_this, e_fm_class);
+    fopAcM_ct(a_this, e_fm_class);
 
     static dCcD_SrcSph cc_sph_src = {
         {

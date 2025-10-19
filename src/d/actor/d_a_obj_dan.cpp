@@ -535,7 +535,7 @@ bool daObjDAN_c::CreateChk() {
 
 /* 80BDBCB8-80BDC170 001818 04B8+00 1/1 0/0 0/0 .text            create__10daObjDAN_cFv */
 cPhs__Step daObjDAN_c::create() {
-    fopAcM_SetupActor(this, daObjDAN_c);
+    fopAcM_ct(this, daObjDAN_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhase, "I_Dan");
 
     if (step == cPhs_COMPLEATE_e) {

@@ -162,7 +162,7 @@ struct J3DSys {
     Mtx& getModelDrawMtx(u16 no) { return mModelDrawMtx[no]; }
     J3DShapePacket* getShapePacket() { return mShapePacket; }
 
-    void setViewMtx(Mtx m) { MTXCopy(m, mViewMtx); }
+    void setViewMtx(const Mtx m) { MTXCopy(m, mViewMtx); }
 
     J3DModel* getModel() { return mModel; }
 

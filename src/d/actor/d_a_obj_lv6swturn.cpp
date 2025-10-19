@@ -347,7 +347,7 @@ int daObjLv6SwTurn_c::Delete() {
 /* 80C845D0-80C84630 000CB0 0060+00 1/0 0/0 0/0 .text
  * daObjLv6SwTurn_create1st__FP16daObjLv6SwTurn_c               */
 static int daObjLv6SwTurn_create1st(daObjLv6SwTurn_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjLv6SwTurn_c);
+    fopAcM_ct(i_this, daObjLv6SwTurn_c);
     return i_this->create1st();
 }
 

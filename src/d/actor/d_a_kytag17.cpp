@@ -34,7 +34,7 @@ static int daKytag17_Delete(kytag17_class* i_this) {
 static int daKytag17_Create(fopAc_ac_c* i_this) {
     kytag17_class* a_this = (kytag17_class*)i_this;
 
-    fopAcM_SetupActor(a_this, kytag17_class);
+    fopAcM_ct(a_this, kytag17_class);
 
     a_this->mParameters = fopAcM_GetParam(a_this);
     g_env_light.light_mask_type = a_this->mParameters;

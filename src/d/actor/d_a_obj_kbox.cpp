@@ -487,7 +487,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
  */
 static int daObj_Kbox_Create(fopAc_ac_c* a_this) {
     obj_kbox_class* i_this = (obj_kbox_class*)a_this;
-    fopAcM_SetupActor(a_this, obj_kbox_class);
+    fopAcM_ct(a_this, obj_kbox_class);
     int rv = dComIfG_resLoad(&i_this->mPhase, "Obj_kbox");
     if (rv == cPhs_COMPLEATE_e) {
         OS_REPORT("OBJ_KBOX PARAM %x\n", fopAcM_GetParam(a_this));

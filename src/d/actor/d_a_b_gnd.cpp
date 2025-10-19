@@ -4810,7 +4810,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 /* 806014B0-80601960 00CB50 04B0+00 1/0 0/0 0/0 .text            daB_GND_Create__FP10fopAc_ac_c */
 static int daB_GND_Create(fopAc_ac_c* a_this) {
     b_gnd_class* i_this = (b_gnd_class*)a_this;
-    fopAcM_SetupActor(i_this, b_gnd_class);
+    fopAcM_ct(i_this, b_gnd_class);
 
     int phase_state = dComIfG_resLoad(&i_this->mPhaseReq, "B_gnd");
     int h_phase_state = dComIfG_resLoad(&i_this->mHorsePhaseReq, "B_hg");

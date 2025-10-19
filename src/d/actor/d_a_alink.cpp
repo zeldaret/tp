@@ -4650,7 +4650,7 @@ int daAlink_c::setStartProcInit() {
 
 /* 800A5CC8-800A660C 0A0608 0944+00 1/1 0/0 0/0 .text            create__9daAlink_cFv */
 int daAlink_c::create() {
-    fopAcM_SetupActor(this, daAlink_c);
+    fopAcM_ct(this, daAlink_c);
 
     static int bgWaitFlg = 0;
 

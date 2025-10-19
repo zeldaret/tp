@@ -60,7 +60,7 @@ daObj_BouMato_c::~daObj_BouMato_c() {
 
 /* 80BBB230-80BBB558 000330 0328+00 1/1 0/0 0/0 .text            create__15daObj_BouMato_cFv */
 int daObj_BouMato_c::create() {
-    fopAcM_SetupActor(this, daObj_BouMato_c);
+    fopAcM_ct(this, daObj_BouMato_c);
     field_0xa32 = getType();
     int rv = dComIfG_resLoad(&mPhase, getResName());
     if (rv == cPhs_COMPLEATE_e) {

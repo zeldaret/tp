@@ -2709,7 +2709,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80549724-80549E40 006904 071C+00 1/0 0/0 0/0 .text            daNpc_Henna_Create__FP10fopAc_ac_c
  */
 static int daNpc_Henna_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, npc_henna_class);
+    fopAcM_ct(i_this, npc_henna_class);
     npc_henna_class* a_this = (npc_henna_class*)i_this;
 
     cPhs__Step loadResult = (cPhs__Step)dComIfG_resLoad(&a_this->phase, "Henna");

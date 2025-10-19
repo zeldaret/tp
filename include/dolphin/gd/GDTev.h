@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GD_TEV_H
 #define _DOLPHIN_GD_TEV_H
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gd/GDTev.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
 
@@ -130,4 +133,5 @@ void GDSetTevOrder(GXTevStageID evenStage, GXTexCoordID coord0, GXTexMapID map0,
 }
 #endif
 
+#endif
 #endif

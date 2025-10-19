@@ -47,7 +47,7 @@ int daLv4PoGate_c::CreateHeap() {
 
 /* 80C5FDAC-80C5FEDC 0002AC 0130+00 1/1 0/0 0/0 .text            create__13daLv4PoGate_cFv */
 int daLv4PoGate_c::create() {
-    fopAcM_SetupActor(this, daLv4PoGate_c);
+    fopAcM_ct(this, daLv4PoGate_c);
 
     int phase = dComIfG_resLoad(&mPhase, "L4R02Gate");
     if (phase == cPhs_COMPLEATE_e) {

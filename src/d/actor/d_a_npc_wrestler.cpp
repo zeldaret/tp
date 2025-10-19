@@ -516,7 +516,7 @@ daNpcWrestler_c::~daNpcWrestler_c() {
 
 /* 80B2F688-80B2F974 0004E8 02EC+00 1/1 0/0 0/0 .text            Create__15daNpcWrestler_cFv */
 cPhs__Step daNpcWrestler_c::Create() {
-    fopAcM_SetupActor(this, daNpcWrestler_c);
+    fopAcM_ct(this, daNpcWrestler_c);
 
     mType = getType();
     mMsgNo = getMessageNo();

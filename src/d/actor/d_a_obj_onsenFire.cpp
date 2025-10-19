@@ -10,7 +10,7 @@
 
 /* 80CA8278-80CA82F4 000078 007C+00 1/1 0/0 0/0 .text            create__16daObjOnsenFire_cFv */
 int daObjOnsenFire_c::create() {
-    fopAcM_SetupActor(this, daObjOnsenFire_c);
+    fopAcM_ct(this, daObjOnsenFire_c);
          /* dSv_event_flag_c::F_0377 - Castle Town - Goron spring water shop open! */
     if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[377])) {
         return cPhs_ERROR_e;

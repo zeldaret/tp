@@ -531,7 +531,7 @@ static void useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80834884-80834BA8 0018C4 0324+00 1/1 0/0 0/0 .text            create__8daE_ZS_cFv */
 int daE_ZS_c::create() {
-    fopAcM_SetupActor(this, daE_ZS_c);
+    fopAcM_ct(this, daE_ZS_c);
     int phase = dComIfG_resLoad(&mPhase, "E_ZS");
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("E_ZS PARAM %x\n", fopAcM_GetParam(this));
