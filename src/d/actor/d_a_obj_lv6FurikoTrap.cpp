@@ -54,7 +54,7 @@ int daLv6FurikoTrap_c::CreateHeap() {
 
 /* 80C72604-80C727D4 000264 01D0+00 1/1 0/0 0/0 .text            create__17daLv6FurikoTrap_cFv */
 int daLv6FurikoTrap_c::create() {
-    fopAcM_SetupActor(this, daLv6FurikoTrap_c);
+    fopAcM_ct(this, daLv6FurikoTrap_c);
     int phase = dComIfG_resLoad(&mPhase, "L6Furiko");
     if (phase == cPhs_COMPLEATE_e) {
         if (MoveBGCreate("L6Furiko", 7, dBgS_MoveBGProc_TypicalRotY, 0x2e80, NULL) == cPhs_ERROR_e)
