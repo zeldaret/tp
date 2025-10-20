@@ -94,99 +94,33 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80C164C8-80C164CC 000000 0004+00 6/6 0/0 0/0 .rodata          @3703 */
-SECTION_RODATA static f32 const lit_3703 = 240.0f;
-COMPILER_STRIP_GATE(0x80C164C8, &lit_3703);
-
-/* 80C164CC-80C164D0 000004 0004+00 0/4 0/0 0/0 .rodata          @3704 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3704[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C164CC, &lit_3704);
-#pragma pop
-
-/* 80C164D0-80C164D4 000008 0004+00 0/3 0/0 0/0 .rodata          @3705 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3705 = -30.0f;
-COMPILER_STRIP_GATE(0x80C164D0, &lit_3705);
-#pragma pop
-
-/* 80C164D4-80C164D8 00000C 0004+00 0/3 0/0 0/0 .rodata          @3706 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3706 = 1.0f;
-COMPILER_STRIP_GATE(0x80C164D4, &lit_3706);
-#pragma pop
-
-/* 80C164D8-80C164DC 000010 0004+00 0/2 0/0 0/0 .rodata          @3707 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3707 = -1.0f;
-COMPILER_STRIP_GATE(0x80C164D8, &lit_3707);
-#pragma pop
-
-/* 80C164DC-80C164E0 000014 0004+00 0/2 0/0 0/0 .rodata          @3708 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3708 = 10.0f;
-COMPILER_STRIP_GATE(0x80C164DC, &lit_3708);
-#pragma pop
-
-/* 80C164E0-80C164E4 000018 0004+00 0/2 0/0 0/0 .rodata          @3709 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3709 = 2.0f;
-COMPILER_STRIP_GATE(0x80C164E0, &lit_3709);
-#pragma pop
-
-/* 80C164E4-80C164E8 00001C 0004+00 0/1 0/0 0/0 .rodata          @3710 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3710 = 15.0f;
-COMPILER_STRIP_GATE(0x80C164E4, &lit_3710);
-#pragma pop
-
-/* 80C164E8-80C164EC 000020 0004+00 0/1 0/0 0/0 .rodata          @3711 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3711 = 512.0f;
-COMPILER_STRIP_GATE(0x80C164E8, &lit_3711);
-#pragma pop
-
-/* 80C164EC-80C164F0 000024 0004+00 0/1 0/0 0/0 .rodata          @3712 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3712 = 200.0f;
-COMPILER_STRIP_GATE(0x80C164EC, &lit_3712);
-#pragma pop
-
-/* 80C164F0-80C164F4 000028 0004+00 0/1 0/0 0/0 .rodata          @3713 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3713 = -512.0f;
-COMPILER_STRIP_GATE(0x80C164F0, &lit_3713);
-#pragma pop
-
 /* 80C1552C-80C157D4 0000EC 02A8+00 0/0 0/0 1/1 .text            BreakSet__13daObjH_Saku_cFv */
 void daObjH_Saku_c::BreakSet() {
-    // NONMATCHING
-}
+    cXyz pos(240.0f, 0.0f, -30.0f);
+    cLib_offsetPos(&pos, &current.pos, shape_angle.y, &pos);
+    dComIfGp_particle_set(0x8853, &pos, &tevStr, &shape_angle, NULL);
+    dComIfGp_particle_set(0x8854, &pos, &tevStr, &shape_angle, NULL);
+    dComIfGp_particle_set(0x8855, &pos, &tevStr, &shape_angle, NULL);
+    Z2GetAudioMgr()->seStart(Z2SE_OBJ_H_SAKU_ORERU, &pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    field_0x5a0++;
+    speedF = 10.0f;
+    speed.y = 2.0f;
+    field_0x5b0.y = 15.0f;
+    field_0x5d0.set(-0x200, cM_rndF(200.0f) + 512.0f, 0);
+    field_0x5d6.set(0x200, cM_rndF(200.0f) + -512.0f, 0);
 
-/* 80C157D4-80C15810 000394 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
+    cXyz vecTrans(0.0f, speed.y, speedF);
+    mDoMtx_stack_c::YrotS(current.angle.y);
+    mDoMtx_stack_c::multVec(&vecTrans, &vecTrans);
+    speed = vecTrans;
+    field_0x5b0 = vecTrans;
+    field_0x5c8 = 10;
+
+    if (mpBgW != NULL && mpBgW->ChkUsed()) {
+        if (dComIfG_Bgsp().Release(mpBgW)) {
+            OS_REPORT("Release Error\n");
+        }
+    }
 }
 
 /* ############################################################################################## */
@@ -369,7 +303,7 @@ SECTION_DEAD static char const* const stringBase_80C16532 = "H_Saku.bmd";
 #pragma pop
 
 /* 80C161E8-80C1629C 000DA8 00B4+00 1/0 0/0 0/0 .text            CreateHeap__13daObjH_Saku_cFv */
-void daObjH_Saku_c::CreateHeap() {
+int daObjH_Saku_c::CreateHeap() {
     // NONMATCHING
 }
 
@@ -396,23 +330,23 @@ COMPILER_STRIP_GATE(0x80C1651C, &lit_3967);
 #pragma pop
 
 /* 80C1629C-80C162F4 000E5C 0058+00 1/0 0/0 0/0 .text            Create__13daObjH_Saku_cFv */
-void daObjH_Saku_c::Create() {
+int daObjH_Saku_c::Create() {
     // NONMATCHING
 }
 
 /* 80C162F4-80C16340 000EB4 004C+00 1/0 0/0 0/0 .text            Execute__13daObjH_Saku_cFPPA3_A4_f
  */
-void daObjH_Saku_c::Execute(Mtx** param_0) {
+int daObjH_Saku_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 
 /* 80C16340-80C1641C 000F00 00DC+00 1/0 0/0 0/0 .text            Draw__13daObjH_Saku_cFv */
-void daObjH_Saku_c::Draw() {
+int daObjH_Saku_c::Draw() {
     // NONMATCHING
 }
 
 /* 80C1641C-80C16450 000FDC 0034+00 1/0 0/0 0/0 .text            Delete__13daObjH_Saku_cFv */
-void daObjH_Saku_c::Delete() {
+int daObjH_Saku_c::Delete() {
     // NONMATCHING
 }
 
