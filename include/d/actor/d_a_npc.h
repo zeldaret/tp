@@ -299,6 +299,15 @@ public:
         setDirect(i_direct);
     }
 
+    void lookAround(u8 i_direct, int i_baseTimer) {
+        if (setMode(LOOK_MODE_7, FALSE)) {
+            mTimer = 0;
+        }
+
+        mBaseTimer = i_baseTimer;
+        setDirect(i_direct);
+    }
+
     void lookAround2(u8 i_direct, int i_baseTimer) {
         if (setMode(LOOK_MODE_8, FALSE)) {
             mTimer = 0;
