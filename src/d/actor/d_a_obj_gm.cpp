@@ -154,7 +154,7 @@ static void ito_pos_set(obj_gm_class* i_this) {
 
 /* 80BFB508-80BFBA14 0004A8 050C+00 1/1 0/0 0/0 .text            bg_fix__FP12obj_gm_class */
 static void bg_fix(obj_gm_class* i_this) {
-    // NONMATCHING
+    // NONMATCHING - incorrect instruction generated at line 258
     fopAc_ac_c* a_this = (fopAc_ac_c*)&i_this->actor;
     cXyz sp28, sp34;
 
