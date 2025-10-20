@@ -1999,7 +1999,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_gb"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_geyser"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_glowSphere"),
-    ActorRel(NonMatching, "d_a_obj_gm"),
+    ActorRel(Equivalent, "d_a_obj_gm"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_goGate"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_gomikabe"),
     ActorRel(Equivalent, "d_a_obj_gra2"),  # weak function order

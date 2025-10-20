@@ -73,8 +73,8 @@ static void cut_line_calc(obj_ito_class* i_this, ito_s* param_2, int param_3) {
     cXyz sp128;
 
     if (param_2 == &i_this->field_0x103c && actor_p != NULL && actor_p->field_0x60a == 2) {
-        sp11c = *pos - actor_p->current.pos;
-        sp11c *= (XREG_F(2) + 0.0018f) * actor_p->speedF;
+        sp11c = *pos - actor_p->actor.current.pos;
+        sp11c *= (XREG_F(2) + 0.0018f) * actor_p->actor.speedF;
     }
 
     cXyz sp134;
@@ -342,14 +342,14 @@ static void action(obj_ito_class* i_this) {
 
         if (i_this->field_0x678[i].ChkCoHit()) {
             fopAc_ac_c* var_r25 = i_this->field_0x678[i].GetCoHitObj()->GetAc();
-            if (actor_p != NULL && var_r25 != actor_p) {
+            if (actor_p != NULL && var_r25 != &actor_p->actor) {
                 actor_p->field_0xae4 |= 0x4;
             }
         }
     }
 
-    if (actor_p != NULL && actor_p->field_0x567 != 0) {
-        actor_p->field_0x567 = 0;
+    if (actor_p != NULL && actor_p->actor.field_0x567 != 0) {
+        actor_p->actor.field_0x567 = 0;
         actor_p->field_0xae4 |= 2;
         cut_set(i_this, 100);
     }
@@ -430,7 +430,7 @@ static void action(obj_ito_class* i_this) {
                     i_this->field_0x1038 = 2;
                 }
 
-                a_this->current.angle = actor_p->current.angle;
+                a_this->current.angle = actor_p->actor.current.angle;
                 cMtx_YrotS(*calc_mtx, a_this->current.angle.y);
                 cMtx_XrotM(*calc_mtx, a_this->current.angle.x);
 
