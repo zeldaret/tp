@@ -1047,7 +1047,7 @@ protected:
     /* 0x992 */ s16 field_0x992;
     /* 0x994 */ s16 mTurnStartAngle;
     /* 0x996 */ s16 mTurnTargetAngle;
-    /* 0x998 */ u16 field_0x998;
+    /* 0x998 */ s16 field_0x998;
     /* 0x99C */ u32 mAnmFlags;
     /* 0x9A0 */ u32 mShadowKey;
     /* 0x9A4 */ u32 field_0x9a4;
@@ -1250,6 +1250,7 @@ BOOL daNpcF_pntVsLineSegmentLengthSquare2D(f32 i_pntX, f32 i_pntZ, f32 i_startX,
                                            f32* o_dist2);
 BOOL daNpcF_chkPassed(cXyz i_pos, dPnt* i_points, u16 i_idx, u16 i_num, BOOL i_isClosed,
                       BOOL i_isReversed);
+BOOL daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_actor_p);
 
 class daNpcF_MatAnm_c : public J3DMaterialAnm {
 private:

@@ -57,11 +57,24 @@ public:
     /* 80B495C8 */ void checkRemoveJoint(int);
     /* 80B495D8 */ void evtEndProc();
 
+    void vanish_off() {
+        field_0xf81 = 0;
+    }
+
+    void on_CoHit() {
+        field_0xe44.OnCoSetBit();
+        field_0xe44.OnTgSetBit();
+    }
+
     static char* mCutNameList[2];
     static u8 mCutList[24];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xfcc - 0x568];
+    /* 0x568 */ u8 field_0x568[0xe44 - 0x568];
+    /* 0xE44 */ dCcD_Cyl field_0xe44;
+    /* 0xF80 */ u8 field_0xf80;
+    /* 0xF81 */ u8 field_0xf81;
+    /* 0xF82 */ u8 field_0xf82[0xFCC - 0xF82];
 };
 
 STATIC_ASSERT(sizeof(daNpc_yamiS_c) == 0xfcc);
