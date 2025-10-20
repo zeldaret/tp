@@ -3,15 +3,6 @@
 
 #include "d/actor/d_a_npc.h"
 
-/**
- * @ingroup actors-npcs
- * @class daNpc_Len_c
- * @brief Renado
- *
- * @details
- *
- */
-
 struct daNpc_Len_HIOParam {
     /* 0x00 */ daNpcT_HIOParam common;
     /* 0x8C */ s16 field_0x8c;
@@ -25,6 +16,31 @@ public:
 
     static const daNpc_Len_HIOParam m;
 };
+
+#if DEBUG
+class daNpc_Len_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpc_Len_HIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+
+    daNpc_Len_HIOParam m;
+};
+
+#define NPC_LEN_HIO_CLASS daNpc_Len_HIO_c
+#else
+#define NPC_LEN_HIO_CLASS daNpc_Len_Param_c
+#endif
+
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Len_c
+ * @brief Renado
+ *
+ * @details
+ *
+ */
 
 class daNpc_Len_c : public daNpcT_c {
 public:
@@ -98,7 +114,7 @@ public:
     u8 getBitSW() { return (fopAcM_GetParam(this) & 0xff0000) >> 16; }
 
 private:
-    /* 0xE40 */ u8 field_0xe40[0xe44 - 0xe40];
+    /* 0xE40 */ NPC_LEN_HIO_CLASS* mpHIO;
     /* 0xE44 */ dCcD_Cyl mCyl;
     /* 0xF80 */ u8 mType;
     /* 0xF84 */ daNpcT_ActorMngr_c mActorMngr[4];

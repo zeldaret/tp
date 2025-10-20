@@ -197,7 +197,7 @@ int daNpc_Len_c::create() {
         reset();
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
-        mCcStts.Init(daNpc_Len_Param_c::m.common.weight, 0, this);
+        mCcStts.Init(mpHIO->m.common.weight, 0, this);
         mCyl.Set(mCcDCyl);
         mCyl.SetStts(&mCcStts);
         mCyl.SetTgHitCallback(tgHitCallBack);
@@ -397,10 +397,10 @@ void daNpc_Len_c::setParam() {
     selectAction();
     srchActors();
 
-    s16 talk_distance = daNpc_Len_Param_c::m.common.talk_distance;
-    s16 talk_angle = daNpc_Len_Param_c::m.common.talk_angle;
-    s16 attention_distance = daNpc_Len_Param_c::m.common.attention_distance;
-    s16 attention_angle = daNpc_Len_Param_c::m.common.attention_angle;
+    s16 talk_distance = mpHIO->m.common.talk_distance;
+    s16 talk_angle = mpHIO->m.common.talk_angle;
+    s16 attention_distance = mpHIO->m.common.attention_distance;
+    s16 attention_angle = mpHIO->m.common.attention_angle;
 
     switch (mType) {
     case TYPE_0:
@@ -439,28 +439,27 @@ void daNpc_Len_c::setParam() {
         daNpcT_getDistTableIdx(talk_distance, talk_angle);
     attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
-    scale.set(daNpc_Len_Param_c::m.common.scale, daNpc_Len_Param_c::m.common.scale,
-              daNpc_Len_Param_c::m.common.scale);
+    scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale, mpHIO->m.common.scale);
 
     if (mType == TYPE_5) {
         mCcStts.SetWeight(109);
     } else {
-        mCcStts.SetWeight(daNpc_Len_Param_c::m.common.weight);
+        mCcStts.SetWeight(mpHIO->m.common.weight);
     }
 
-    mCylH = daNpc_Len_Param_c::m.common.height;
-    mWallR = daNpc_Len_Param_c::m.common.width;
+    mCylH = mpHIO->m.common.height;
+    mWallR = mpHIO->m.common.width;
     if (mType == TYPE_1) {
         mCylH = 160.0f;
     }
 
-    mAttnFovY = daNpc_Len_Param_c::m.common.fov;
+    mAttnFovY = mpHIO->m.common.fov;
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(daNpc_Len_Param_c::m.common.knee_length);
-    mRealShadowSize = daNpc_Len_Param_c::m.common.real_shadow_size;
-    mExpressionMorfFrame = daNpc_Len_Param_c::m.common.expression_morf_frame;
-    mMorfFrames = daNpc_Len_Param_c::m.common.morf_frame;
-    gravity = daNpc_Len_Param_c::m.common.gravity;
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
+    mRealShadowSize = mpHIO->m.common.real_shadow_size;
+    mExpressionMorfFrame = mpHIO->m.common.expression_morf_frame;
+    mMorfFrames = mpHIO->m.common.morf_frame;
+    gravity = mpHIO->m.common.gravity;
 }
 
 /* 80A6546C-80A6556C 00122C 0100+00 1/0 0/0 0/0 .text            checkChangeEvt__11daNpc_Len_cFv */
@@ -644,7 +643,7 @@ void daNpc_Len_c::beforeMove() {
 }
 
 /* 80A69A64-80A69A68 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpc_Len_Param_c l_HIO;
+NPC_LEN_HIO_CLASS l_HIO;
 
 /* 80A65B24-80A65E28 0018E4 0304+00 1/0 0/0 0/0 .text            setAttnPos__11daNpc_Len_cFv */
 void daNpc_Len_c::setAttnPos() {
@@ -660,11 +659,11 @@ void daNpc_Len_c::setAttnPos() {
     f32 dVar5 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
 
     mJntAnm.setParam(this, mpMorf[0]->getModel(), &acStack_40, getBackboneJointNo(),
-                     getNeckJointNo(), getHeadJointNo(), l_HIO.m.common.body_angleX_min,
-                     l_HIO.m.common.body_angleX_max, l_HIO.m.common.body_angleY_min,
-                     l_HIO.m.common.body_angleY_max, l_HIO.m.common.head_angleX_min,
-                     l_HIO.m.common.head_angleX_max, l_HIO.m.common.head_angleY_min,
-                     l_HIO.m.common.head_angleY_max, l_HIO.m.common.neck_rotation_ratio, dVar5,
+                     getNeckJointNo(), getHeadJointNo(), mpHIO->m.common.body_angleX_min,
+                     mpHIO->m.common.body_angleX_max, mpHIO->m.common.body_angleY_min,
+                     mpHIO->m.common.body_angleY_max, mpHIO->m.common.head_angleX_min,
+                     mpHIO->m.common.head_angleX_max, mpHIO->m.common.head_angleY_min,
+                     mpHIO->m.common.head_angleY_max, mpHIO->m.common.neck_rotation_ratio, dVar5,
                      &cStack_4c);
 
     if (mJntAnm.getMode() == daNpcT_JntAnm_c::LOOK_MODE_7) {
@@ -685,7 +684,7 @@ void daNpc_Len_c::setAttnPos() {
         acStack_40.set(0.0f, 190.0f, 0.0f);
     } else {
         acStack_40.set(0.0f, 0.0f, 0.0f);
-        acStack_40.y = l_HIO.m.common.attention_offset;
+        acStack_40.y = mpHIO->m.common.attention_offset;
     }
 
     mDoMtx_stack_c::YrotS(mCurAngle.y);
@@ -1045,13 +1044,10 @@ int daNpc_Len_c::wait(void* param_0) {
         } else {
             switch (mType) {
             case TYPE_1:
-                if (checkStartDemo13StbEvt(this, daNpc_Len_Param_c::m.common.box_min_x,
-                                           daNpc_Len_Param_c::m.common.box_min_y,
-                                           daNpc_Len_Param_c::m.common.box_min_z,
-                                           daNpc_Len_Param_c::m.common.box_max_x,
-                                           daNpc_Len_Param_c::m.common.box_max_y,
-                                           daNpc_Len_Param_c::m.common.box_max_z,
-                                           daNpc_Len_Param_c::m.common.box_offset))
+                if (checkStartDemo13StbEvt(this, mpHIO->m.common.box_min_x,
+                                           mpHIO->m.common.box_min_y, mpHIO->m.common.box_min_z,
+                                           mpHIO->m.common.box_max_x, mpHIO->m.common.box_max_y,
+                                           mpHIO->m.common.box_max_z, mpHIO->m.common.box_offset))
                 {
                     mEvtNo = 3;
                     field_0xfec = 1;
@@ -1126,8 +1122,8 @@ int daNpc_Len_c::wait(void* param_0) {
 int daNpc_Len_c::patrol(void* param_0) {
     cXyz cStack_48;
 
-    int sVar1 = daNpc_Len_Param_c::m.field_0x8c;
-    int sVar2 = daNpc_Len_Param_c::m.field_0x8e;
+    int sVar1 = mpHIO->m.field_0x8c;
+    int sVar2 = mpHIO->m.field_0x8e;
 
     switch (mMode) {
     case 0:
@@ -1151,7 +1147,7 @@ int daNpc_Len_c::patrol(void* param_0) {
                 current.angle.y = cLib_targetAngleY(&current.pos, &cStack_48);
                 cLib_addCalcAngleS2(&shape_angle.y, current.angle.y, 8, 0x400);
                 mCurAngle.y = shape_angle.y;
-                cLib_chaseF(&speedF, daNpc_Len_Param_c::m.field_0x90, 0.55f);
+                cLib_chaseF(&speedF, mpHIO->m.field_0x90, 0.55f);
             }
 
             if (bVar8) {
