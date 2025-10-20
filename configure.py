@@ -2023,7 +2023,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_gra_rock"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_grave_stone"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_groundwater"),
-    ActorRel(NonMatching, "d_a_obj_grz_rock"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_grz_rock"),
     ActorRel(NonMatching, "d_a_obj_h_saku"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_hakai_brl"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_hakai_ftr"),
