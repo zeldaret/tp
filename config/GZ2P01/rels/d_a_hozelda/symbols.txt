@@ -106,5 +106,5 @@ __vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya
 __vt__19J3DMtxCalcNoAnmBase = .data:0x000000A0; // type:object size:0x2C scope:global
 __vt__10J3DMtxCalc = .data:0x000000CC; // type:object size:0x2C scope:global
 __vt__18daHoZelda_matAnm_c = .data:0x000000F8; // type:object size:0x10 scope:global
-lbl_263_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
-lbl_263_bss_1 = .bss:0x00000001; // type:object size:0x1 data:byte
+mEyeMoveFlg__18daHoZelda_matAnm_c = .bss:0x00000000; // type:object size:0x1 data:byte
+mMorfFrame__18daHoZelda_matAnm_c = .bss:0x00000001; // type:object size:0x1 data:byte

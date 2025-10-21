@@ -1221,22 +1221,17 @@ void dName_c::screenSet() {
         0xEF, 0xF0, 0xF1, 0xF2, 0xF3, 0xF4, 0xF6, 0x9C, 0xF9, 0xFA, 0xFB, 0xFC, 0xDF,
     };
 
-    u8* palMoji00_p = palMoji00;
-    u8* palMoji01_p = palMoji01;
-    u8* palMoji10_p = palMoji10;
-    u8* palMoji11_p = palMoji11;
-
-    for (int i = 0; i < 13; i++, palMoji11_p++, palMoji10_p++, palMoji01_p++, palMoji00_p++, idx += 5) {
-        l_mojiEisuPal_1[idx][0] = *palMoji00_p;
+    for (int i = 0; i < 13; i++, idx += 5) {
+        l_mojiEisuPal_1[idx][0] = palMoji00[i];
         l_mojiEisuPal_1[idx][1] = 0;
 
-        l_mojiEisuPal_1[idx + 1][0] = *palMoji01_p;
+        l_mojiEisuPal_1[idx + 1][0] = palMoji01[i];
         l_mojiEisuPal_1[idx + 1][1] = 0;
 
-        l_mojiEisuPal_2[idx][0] = *palMoji10_p;
+        l_mojiEisuPal_2[idx][0] = palMoji10[i];
         l_mojiEisuPal_2[idx][1] = 0;
 
-        l_mojiEisuPal_2[idx + 1][0] = *palMoji11_p;
+        l_mojiEisuPal_2[idx + 1][0] = palMoji11[i];
         l_mojiEisuPal_2[idx + 1][1] = 0;
     }
     #endif
