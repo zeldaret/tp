@@ -1395,7 +1395,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
  */
 static int daE_HZELDA_Create(fopAc_ac_c* i_this) {
     e_hzelda_class* a_this = (e_hzelda_class*)i_this;
-    fopAcM_SetupActor(a_this, e_hzelda_class);
+    fopAcM_ct(a_this, e_hzelda_class);
 
     int phase_state = dComIfG_resLoad(&a_this->mPhase, "Hzelda");
     a_this->mPrm0 = fopAcM_GetParam(i_this);

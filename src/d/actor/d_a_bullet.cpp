@@ -40,7 +40,7 @@ daBullet_c::~daBullet_c() {
 
 /* 80655B08-80655C90 0002A8 0188+00 1/1 0/0 0/0 .text            create__10daBullet_cFv */
 int daBullet_c::create() {
-    fopAcM_SetupActor(this, daBullet_c);
+    fopAcM_ct(this, daBullet_c);
     mType = getTypeFromParam();
 
     int phase_state = dComIfG_resLoad(&mPhase, getResName());

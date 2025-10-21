@@ -127,7 +127,7 @@ int daObjSwBallC_c::CreateHeap() {
 
 /* 80CF606C-80CF6120 00054C 00B4+00 1/1 0/0 0/0 .text            create__14daObjSwBallC_cFv */
 int daObjSwBallC_c::create() {
-    fopAcM_SetupActor(this, daObjSwBallC_c);
+    fopAcM_ct(this, daObjSwBallC_c);
     int res = dComIfG_resLoad(&field_0x568, l_arcName);
     if (res == cPhs_COMPLEATE_e) {
         if (fopAcM_entrySolidHeap(this, CheckCreateHeap, 0x960) == 0) {

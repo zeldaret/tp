@@ -205,7 +205,7 @@ static int daE_Ga_Create(fopAc_ac_c* i_this) {
     static const int l_bmdidx[] = {3};
 
     e_ga_class* a_this = (e_ga_class*)i_this;
-    fopAcM_SetupActor(i_this, e_ga_class);
+    fopAcM_ct(i_this, e_ga_class);
 
     int phase_state = dComIfG_resLoad(&a_this->phase, "E_Ga");
     if (phase_state == cPhs_COMPLEATE_e) {

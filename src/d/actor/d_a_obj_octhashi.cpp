@@ -320,7 +320,7 @@ int daObjOCTHASHI_c::CreateHeap() {
 
 /* 80CA5B98-80CA5EE4 001058 034C+00 1/1 0/0 0/0 .text            create__15daObjOCTHASHI_cFv */
 int daObjOCTHASHI_c::create() {
-    fopAcM_SetupActor(this, daObjOCTHASHI_c);
+    fopAcM_ct(this, daObjOCTHASHI_c);
     mPieceNum = fopAcM_GetParam(this) & 0xff;
     if (mPieceNum == 0xff) {
         mPieceNum = 0;

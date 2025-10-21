@@ -55,7 +55,7 @@ int daWtGate_c::CreateHeap() {
 
 /* 80D2BD00-80D2BE7C 000260 017C+00 1/1 0/0 0/0 .text            create__10daWtGate_cFv */
 cPhs__Step daWtGate_c::create() {
-    fopAcM_SetupActor(this, daWtGate_c);
+    fopAcM_ct(this, daWtGate_c);
 
     const cPhs__Step resPhase = static_cast<cPhs__Step>(dComIfG_resLoad(&mPhase, "S_Zsuimon"));
     if(resPhase == cPhs_COMPLEATE_e) {

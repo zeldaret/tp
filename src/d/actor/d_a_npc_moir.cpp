@@ -301,7 +301,7 @@ daNpcMoiR_c::~daNpcMoiR_c() {
 
 /* 80A7C580-80A7C978 000500 03F8+00 1/1 0/0 0/0 .text            Create__11daNpcMoiR_cFv */
 cPhs__Step daNpcMoiR_c::Create() {
-    fopAcM_SetupActor(this, daNpcMoiR_c);
+    fopAcM_ct(this, daNpcMoiR_c);
 
     if (strcmp(dComIfGp_getStartStageName(), "R_SP116") == 0 && dComIfG_play_c::getLayerNo(0) == 4) {
         if (daNpcF_chkEvtBit(0x169) /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */

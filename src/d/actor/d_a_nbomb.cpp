@@ -183,7 +183,7 @@ static int daNbomb_createHeap(fopAc_ac_c* i_this) {
 /* 804C7324-804C7B44 000644 0820+00 1/1 0/0 0/0 .text            create__9daNbomb_cFv */
 int daNbomb_c::create() {
     fopAcM_GetID(this);
-    fopAcM_SetupActor(this, daNbomb_c);
+    fopAcM_ct(this, daNbomb_c);
 
     BOOL is_octaeel_bomb = false;
 

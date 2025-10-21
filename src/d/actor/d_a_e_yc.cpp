@@ -773,7 +773,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 807F239C-807F26BC 0025BC 0320+00 1/0 0/0 0/0 .text            daE_YC_Create__FP10fopAc_ac_c */
 static cPhs__Step daE_YC_Create(fopAc_ac_c* i_this) {
     e_yc_class* _this = static_cast<e_yc_class*>(i_this);
-    fopAcM_SetupActor(i_this, e_yc_class);
+    fopAcM_ct(i_this, e_yc_class);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&_this->mPhase, "E_yc");
     if (step == cPhs_COMPLEATE_e) {

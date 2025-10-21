@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_SYN_H_
 #define _DOLPHIN_SYN_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/syn.h>
+#else
 #include <dolphin/types.h>
 #include <dolphin/ax.h>
 
@@ -169,4 +172,5 @@ u8 SYNGetMidiController(SYNSYNTH* synth, u8 midiChannel, u8 function);
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_SYN_H_

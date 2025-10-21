@@ -278,7 +278,7 @@ daNpc_grR_HIOParam const daNpc_grR_Param_c::m = {
 
 /* 809DFCE0-809DFFB8 000500 02D8+00 1/1 0/0 0/0 .text            create__11daNpc_grR_cFv */
 cPhs__Step daNpc_grR_c::create() {
-    fopAcM_SetupActor(this, daNpc_grR_c);
+    fopAcM_ct(this, daNpc_grR_c);
 
     mType = getTypeFromParam();
 

@@ -312,7 +312,7 @@ static int daObjNameplate_Delete(daObjNameplate_c* i_this) {
 }
 
 int daObjNameplate_c::create() {
-    fopAcM_SetupActor(this, daObjNameplate_c);
+    fopAcM_ct(this, daObjNameplate_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

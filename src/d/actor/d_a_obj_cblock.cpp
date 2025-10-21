@@ -147,7 +147,7 @@ static inline void dummylfunc() {
 
 /* 80BC5E98-80BC6020 000578 0188+00 1/1 0/0 0/0 .text            create__11daObjCBlk_cFv */
 int daObjCBlk_c::create() {
-    fopAcM_SetupActor(this, daObjCBlk_c);
+    fopAcM_ct(this, daObjCBlk_c);
     int rv = dComIfG_resLoad(&phase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
         rv = MoveBGCreate(l_arcName, 9, dBgS_MoveBGProc_TypicalRotY, 0x1000, NULL);

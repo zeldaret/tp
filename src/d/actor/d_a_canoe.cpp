@@ -99,7 +99,7 @@ static dCcD_SrcCyl l_cylSrc = {
 
 /* 804DA740-804DAB18 0002E0 03D8+00 1/1 0/0 0/0 .text            create__9daCanoe_cFv */
 int daCanoe_c::create() {
-    fopAcM_SetupActor(this, daCanoe_c);
+    fopAcM_ct(this, daCanoe_c);
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
              /* dSv_event_flag_c::F_0463 - Fishing Pond - Reserved for fishing */

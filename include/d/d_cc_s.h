@@ -59,6 +59,8 @@ public:
         mMass_Mng.SetAttr(radius, height, param_2, param_3);
     }
 
+    void ChkActor(fopAc_ac_c*);
+
     static bool m_mtrl_hit_tbl[64];
 
     // /* 0x0000 */ cCcS mCCcS;

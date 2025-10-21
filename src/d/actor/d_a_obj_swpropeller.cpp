@@ -142,7 +142,7 @@ int daObjSwPr_c::CreateHeap() {
 
 /* 8059A888-8059AA74 0003E8 01EC+00 1/1 0/0 0/0 .text            create__11daObjSwPr_cFv */
 int daObjSwPr_c::create() {
-    fopAcM_SetupActor(this, daObjSwPr_c);
+    fopAcM_ct(this, daObjSwPr_c);
 
     mNameArg = getNameArg();
 

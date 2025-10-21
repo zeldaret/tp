@@ -3160,7 +3160,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80A91B88-80A92118 008FA8 0590+00 1/0 0/0 0/0 .text            daNpc_Ne_Create__FP10fopAc_ac_c */
 static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
     npc_ne_class* _this = static_cast<npc_ne_class*>(i_this);
-    fopAcM_SetupActor(i_this, npc_ne_class);
+    fopAcM_ct(i_this, npc_ne_class);
 
     if (dKy_darkworld_check()) {
         _this->mResName = "Npc_net";

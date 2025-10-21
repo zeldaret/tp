@@ -437,7 +437,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
  */
 static cPhs__Step daObj_Food_Create(fopAc_ac_c* i_this) {
     obj_food_class* _this = static_cast<obj_food_class*>(i_this);
-    fopAcM_SetupActor(i_this, obj_food_class);
+    fopAcM_ct(i_this, obj_food_class);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&_this->mPhase, "Obj_fd");
     if (step == cPhs_COMPLEATE_e) {

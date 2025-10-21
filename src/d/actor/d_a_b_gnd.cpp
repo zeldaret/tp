@@ -2561,7 +2561,7 @@ static void action(b_gnd_class* i_this) {
 #ifdef DEBUG
     if (mDoCPd_c::getTrigR(PAD_2)) {
         dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-        kankyo->field_0x12cc = 1;
+        kankyo->wether = 1;
 
         i_this->mActionMode = ACTION_WAIT;
         i_this->mMoveMode = 0;
@@ -3272,7 +3272,7 @@ static void demo_camera(b_gnd_class* i_this) {
             anm_init(i_this, B_GND_BCK_EGND_KAMAE, 3.0f, 0, 1.0f);
             i_this->mGndEyeBtkNo = 5;
             Z2GetAudioMgr()->bgmStart(Z2BGM_VS_GANON_04, 0, 0);
-            kankyo->field_0x12cc = 3;
+            kankyo->wether = 3;
         }
 
         if (i_this->mDemoCamTimer == 320) {
@@ -3294,7 +3294,7 @@ static void demo_camera(b_gnd_class* i_this) {
             dComIfGs_onOneZoneSwitch(15, -1);
             dComIfGs_onSaveDunSwitch(1);
             Z2GetAudioMgr()->setDemoName("force_end");
-            kankyo->field_0x12cc = 1;
+            kankyo->wether = 1;
         }
         break;
     case 50:
@@ -3930,7 +3930,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
         i_this->mNoDrawTimer--;
         if (i_this->mNoDrawTimer == 0) {
             dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-            kankyo->field_0x12cc = 1;
+            kankyo->wether = 1;
 
             i_this->mActionMode = ACTION_WAIT;
             i_this->mMoveMode = 0;
@@ -4810,7 +4810,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 /* 806014B0-80601960 00CB50 04B0+00 1/0 0/0 0/0 .text            daB_GND_Create__FP10fopAc_ac_c */
 static int daB_GND_Create(fopAc_ac_c* a_this) {
     b_gnd_class* i_this = (b_gnd_class*)a_this;
-    fopAcM_SetupActor(i_this, b_gnd_class);
+    fopAcM_ct(i_this, b_gnd_class);
 
     int phase_state = dComIfG_resLoad(&i_this->mPhaseReq, "B_gnd");
     int h_phase_state = dComIfG_resLoad(&i_this->mHorsePhaseReq, "B_hg");

@@ -2909,7 +2909,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80756020-80756900 009BC0 08E0+00 1/0 0/0 0/0 .text            daE_PO_Create__FP10fopAc_ac_c */
 static int daE_PO_Create(fopAc_ac_c* i_act_this) {
     e_po_class* i_this = (e_po_class*)i_act_this;
-    fopAcM_SetupActor(i_act_this, e_po_class);
+    fopAcM_ct(i_act_this, e_po_class);
 
     int phase_state = dComIfG_resLoad(&i_this->mPhase, "E_PO");
     if (phase_state == cPhs_COMPLEATE_e) {

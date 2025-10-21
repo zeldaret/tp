@@ -757,7 +757,7 @@ bool daObjKABUTO_c::CreateChk() {
 
 /* 80C2D724-80C2DF60 0029A4 083C+00 1/1 0/0 0/0 .text            create__13daObjKABUTO_cFv */
 cPhs__Step daObjKABUTO_c::create() {
-    fopAcM_SetupActor(this, daObjKABUTO_c);
+    fopAcM_ct(this, daObjKABUTO_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, "Kab_m");
 
     if (step == cPhs_COMPLEATE_e) {

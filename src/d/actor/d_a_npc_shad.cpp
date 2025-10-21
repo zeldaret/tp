@@ -347,7 +347,7 @@ daNpcShad_c::~daNpcShad_c() {
 
 /* 80AD8620-80AD8B60 000500 0540+00 1/1 0/0 0/0 .text            Create__11daNpcShad_cFv */
 cPhs__Step daNpcShad_c::Create() {
-    fopAcM_SetupActor(this, daNpcShad_c);
+    fopAcM_ct(this, daNpcShad_c);
 
     if (strcmp(dComIfGp_getStartStageName(), "R_SP116") == 0 && dComIfG_play_c::getLayerNo(0) == 4) {
         if (daNpcF_chkEvtBit(0x169) && daNpcF_chkEvtBit(0x10A) && daNpcF_chkEvtBit(0x10B) && !daNpcF_chkEvtBit(0x10C)) {

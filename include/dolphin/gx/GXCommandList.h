@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXCOMMANDLIST_H_
 #define _DOLPHIN_GX_GXCOMMANDLIST_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXCommandList.h>
+#else
 #include <dolphin/types.h>
 
 #define GX_NOP                 0x00
@@ -34,4 +37,5 @@ extern u8 GXTexImage2Ids[8];
 extern u8 GXTexImage3Ids[8];
 extern u8 GXTexTlutIds[8];
 
+#endif
 #endif

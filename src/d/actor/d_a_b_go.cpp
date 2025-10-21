@@ -238,7 +238,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80603A54-80603CA0 000994 024C+00 1/0 0/0 0/0 .text            daB_GO_Create__FP10fopAc_ac_c */
 static int daB_GO_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, b_go_class);
+    fopAcM_ct(i_this, b_go_class);
     b_go_class* a_this = (b_go_class*)i_this;
 
     OS_REPORT("B_GO//////////////B_GO SET 0 !!\n");

@@ -147,7 +147,7 @@ static char* l_arcName = "V_Ice_l";
 
 /* 80C200CC-80C2030C 00074C 0240+00 1/1 0/0 0/0 .text            create__12daObjIce_l_cFv */
 int daObjIce_l_c::create() {
-    fopAcM_SetupActor(this, daObjIce_l_c);
+    fopAcM_ct(this, daObjIce_l_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {

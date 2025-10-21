@@ -205,7 +205,7 @@ daNpcKasiMich_HIOParam const daNpcKasiMich_Param_c::m = {
 
 /* 80A26624-80A268A0 000544 027C+00 1/1 0/0 0/0 .text            Create__15daNpcKasiMich_cFv */
 cPhs__Step daNpcKasiMich_c::Create() {
-    fopAcM_SetupActor(this, daNpcKasiMich_c);
+    fopAcM_ct(this, daNpcKasiMich_c);
 
     mType = getType();
     mMessageNo = getMessageNo();

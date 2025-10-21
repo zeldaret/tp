@@ -612,7 +612,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80C40AB8-80C40DE4 001798 032C+00 1/0 0/0 0/0 .text            daObj_Key_Create__FP10fopAc_ac_c */
 static int daObj_Key_Create(fopAc_ac_c* i_this) {
     obj_key_class* a_this = (obj_key_class*)i_this;
-    fopAcM_SetupActor(i_this, obj_key_class);
+    fopAcM_ct(i_this, obj_key_class);
 
     int phase_state = dComIfG_resLoad(&a_this->phase, "Obj_key");
     if (phase_state == cPhs_COMPLEATE_e) {

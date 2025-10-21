@@ -290,6 +290,38 @@ static u8 getOutFontNumberType(int param_0) {
     }
 }
 
+#if VERSION == VERSION_GCN_PAL
+static void setPlayerName(char* i_player_name, u8 param_2) {
+    if (param_2 != 0) {
+        strcpy(i_player_name, dComIfGs_getPlayerName());
+        u32 name_length = strlen(i_player_name);
+        char last = i_player_name[name_length - 1];
+        if (last == 0x73 || last == 0x53 || last == 0x7a || last == 0x5a || last == 0x78 || last == 0x58 || last == 0xdf) {
+            strcat(i_player_name, "'");
+        } else {
+            strcat(i_player_name, "s");
+        }
+    } else {
+        strcpy(i_player_name, dComIfGs_getPlayerName());
+    }
+}
+
+static void setHorseName(char* i_horse_name, u8 param_2) {
+    if (param_2 != 0) {
+        strcpy(i_horse_name, dComIfGs_getHorseName());
+        u32 name_length = strlen(i_horse_name);
+        char last = i_horse_name[name_length - 1];
+        if (last == 0x73 || last == 0x53 || last == 0x7a || last == 0x5a || last == 0x78 || last == 0x58 || last == 0xdf) {
+            strcat(i_horse_name, "'");
+        } else {
+            strcat(i_horse_name, "s");
+        }
+    } else {
+        strcpy(i_horse_name, dComIfGs_getHorseName());
+    }
+}
+#endif
+
 /* 80228ACC-80228B04 22340C 0038+00 3/3 0/0 0/0 .text            getPohNum__Fv */
 static u8 getPohNum() {
     u8 num = 0;
@@ -1472,9 +1504,23 @@ bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_siz
         char buffer[40];
         switch (i_tag & 0xFF00FFFF) {
         case MSGTAG_PLAYER_GENITIV:
+            #if VERSION == VERSION_GCN_PAL
+            if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_GERMAN) {
+                setPlayerName(buffer, 1);
+            } else {
+                setPlayerName(buffer, 0);
+            }
+            #endif
             push_word(buffer);
             return true;
         case MSGTAG_HORSE_GENITIV:
+            #if VERSION == VERSION_GCN_PAL
+            if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_GERMAN) {
+                setHorseName(buffer, 1);
+            } else {
+                setHorseName(buffer, 0);
+            }
+            #endif
             push_word(buffer);
             return true;
         case MSGTAG_MALE_ICON:
@@ -4232,10 +4278,24 @@ bool jmessage_string_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u3
         char buffer[40];
         switch (i_tag & 0xFF00FFFF) {
         case MSGTAG_PLAYER_GENITIV:
+            #if VERSION == VERSION_GCN_PAL
+            if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_GERMAN) {
+                setPlayerName(buffer, 1);
+            } else {
+                setPlayerName(buffer, 0);
+            }
+            #endif
             // @bug buffer is uninitialized
             stack_pushCurrent(buffer);
             break;
         case MSGTAG_HORSE_GENITIV:
+            #if VERSION == VERSION_GCN_PAL
+            if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_GERMAN) {
+                setHorseName(buffer, 1);
+            } else {
+                setHorseName(buffer, 0);
+            }
+            #endif
             stack_pushCurrent(buffer);
             break;
         case MSGTAG_MALE_ICON:
@@ -4861,10 +4921,24 @@ bool jmessage_string_tRenderingProcessor::do_tag(u32 i_tag, void const* i_data, 
         char buffer[40];
         switch (i_tag & 0xFF00FFFF) {
         case MSGTAG_PLAYER_GENITIV:
+            #if VERSION == VERSION_GCN_PAL
+            if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_GERMAN) {
+                setPlayerName(buffer, 1);
+            } else {
+                setPlayerName(buffer, 0);
+            }
+            #endif
             // @bug buffer is uninitialized
             push_word(buffer);
             break;
         case MSGTAG_HORSE_GENITIV:
+            #if VERSION == VERSION_GCN_PAL
+            if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_GERMAN) {
+                setHorseName(buffer, 1);
+            } else {
+                setHorseName(buffer, 0);
+            }
+            #endif
             push_word(buffer);
             break;
         case MSGTAG_MALE_ICON:

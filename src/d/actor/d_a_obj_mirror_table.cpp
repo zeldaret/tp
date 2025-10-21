@@ -403,7 +403,7 @@ static cPhs__Step daObjMirrorTable_Create(fopAc_ac_c* i_this) {
 
 /* 80C9AB30-80C9ABFC 001290 00CC+00 1/1 0/0 0/0 .text            create__18daObjMirrorTable_cFv */
 cPhs__Step daObjMirrorTable_c::create() {
-    fopAcM_SetupActor(this, daObjMirrorTable_c);
+    fopAcM_ct(this, daObjMirrorTable_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
     if (step == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0xdb50)) {

@@ -2798,7 +2798,7 @@ static int daE_MK_Create(fopAc_ac_c* i_actor) {
 
     e_mk_class* mk = (e_mk_class*)i_actor;
 
-    fopAcM_SetupActor(&mk->enemy, e_mk_class);
+    fopAcM_ct(&mk->enemy, e_mk_class);
 
     int phase = dComIfG_resLoad(&mk->mPhase, "E_mk");
     if (phase == cPhs_COMPLEATE_e) {

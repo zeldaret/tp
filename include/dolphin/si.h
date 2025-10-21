@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_SI_H_
 #define _DOLPHIN_SI_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/si.h>
+#else
 #include <dolphin/os.h>
 
 #ifdef __cplusplus
@@ -172,4 +175,5 @@ void SIControlSteering(s32 chan, u32 control, s32 level);
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_SI_H_

@@ -794,7 +794,7 @@ u8 daObjKAM_c::CreateChk() {
 
 /* 80C37AA0-80C38258 002A00 07B8+00 1/1 0/0 0/0 .text            create__10daObjKAM_cFv */
 int daObjKAM_c::create() {
-    fopAcM_SetupActor(this, daObjKAM_c);
+    fopAcM_ct(this, daObjKAM_c);
 
     s32 loadResult = dComIfG_resLoad(&mPhase, "I_Kam");
     if (loadResult == cPhs_COMPLEATE_e) {

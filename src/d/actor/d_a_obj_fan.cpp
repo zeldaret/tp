@@ -338,7 +338,7 @@ int daObjFan_c::Delete() {
 /* 80BE5A78-80BE5B2C 000EB8 00B4+00 1/0 0/0 0/0 .text            daObjFan_create1st__FP10daObjFan_c
  */
 static void daObjFan_create1st(daObjFan_c* param_0) {
-    fopAcM_SetupActor(param_0, daObjFan_c);
+    fopAcM_ct(param_0, daObjFan_c);
     param_0->create1st();
 }
 

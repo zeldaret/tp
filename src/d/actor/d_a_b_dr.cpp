@@ -3877,7 +3877,7 @@ void daB_DR_c::demo_skip(int) {
         camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
         dStage_changeScene(1, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
         Z2GetAudioMgr()->subBgmStop();
-        dKy_getEnvlight()->field_0x12cc = 1;
+        dKy_getEnvlight()->wether = 1;
 
         cDmr_SkipInfo = 1;
         dComIfGs_onZoneSwitch(0, fopAcM_GetRoomNo(this));
@@ -4102,7 +4102,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 805C5974-805C62B0 00ABF4 093C+00 1/1 0/0 0/0 .text            create__8daB_DR_cFv */
 int daB_DR_c::create() {
-    fopAcM_SetupActor(this, daB_DR_c);
+    fopAcM_ct(this, daB_DR_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "B_DR");
     if (phase_state == cPhs_COMPLEATE_e) {
@@ -4182,7 +4182,7 @@ int daB_DR_c::create() {
                 }
 
                 dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-                kankyo->field_0x12cc = 0;
+                kankyo->wether = 0;
                 return cPhs_ERROR_e;
             }
 
@@ -4307,7 +4307,7 @@ int daB_DR_c::create() {
                 setActionMode(ACTION_FLY_WAIT, 0);
                 
                 dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-                kankyo->field_0x12cc = 2;
+                kankyo->wether = 2;
             }
 
             if (arg0 == 0) {
@@ -4325,7 +4325,7 @@ int daB_DR_c::create() {
                     }
     
                     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-                    kankyo->field_0x12cc = 0;
+                    kankyo->wether = 0;
                 }
 
                 if (cDmr_SkipInfo != 0 || dComIfGs_isZoneSwitch(0, fopAcM_GetRoomNo(this)) ) {

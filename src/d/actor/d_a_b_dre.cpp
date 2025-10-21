@@ -262,7 +262,7 @@ void daB_DRE_c::CamAction2() {
         if (mTimers[0] == 0) {
             SetAnm(mpModelMorf, 0x38, 0, 5.0f, 1.0f);
             dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-            kankyo->field_0x12cc = 2;
+            kankyo->wether = 2;
             mDrMode++;
             mCameraMode++;
         }
@@ -580,7 +580,7 @@ void daB_DRE_c::DrAction() {
             mAnm = 0x1F;
 
             dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-            kankyo->field_0x12cc = 0;
+            kankyo->wether = 0;
 
             mHideModel = true;
             mDrMode++;
@@ -902,7 +902,7 @@ static int daB_DRE_Execute(daB_DRE_c* i_this) {
 
 /* 805CA944-805CAC3C 002F04 02F8+00 1/1 0/0 0/0 .text            create__9daB_DRE_cFv */
 int daB_DRE_c::create() {
-    fopAcM_SetupActor(this, daB_DRE_c);
+    fopAcM_ct(this, daB_DRE_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "B_DR");
     if (phase_state == cPhs_COMPLEATE_e) {

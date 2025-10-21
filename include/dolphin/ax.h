@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_AX_H_
 #define _DOLPHIN_AX_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/ax.h>
+#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -322,4 +325,5 @@ extern u16 axDspSlave[AX_DSP_SLAVE_LENGTH];
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_AX_H_

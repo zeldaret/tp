@@ -73,7 +73,7 @@ static u32 const l_heapSize[3] = {0x2000, 0x2000, 0x2000};
 
 /* 80C179B0-80C17AC0 000590 0110+00 1/1 0/0 0/0 .text            create__11daObjHFtr_cFv */
 int daObjHFtr_c::create() {
-    fopAcM_SetupActor(this, daObjHFtr_c);
+    fopAcM_ct(this, daObjHFtr_c);
 
     u32 nameIndex = getNameId();
     s32 loadResult = dComIfG_resLoad(this, l_arcName[nameIndex]);
@@ -207,7 +207,7 @@ void daObjHFtr_c::callEmt() {
 /* 80C17FB4-80C18008 000B94 0054+00 1/0 0/0 0/0 .text            daObjHFtr_create__FP11daObjHFtr_c
  */
 static int daObjHFtr_create(daObjHFtr_c* param_0) {
-    fopAcM_SetupActor(param_0, daObjHFtr_c);
+    fopAcM_ct(param_0, daObjHFtr_c);
     return param_0->create();
 }
 

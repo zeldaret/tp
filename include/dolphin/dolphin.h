@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_H_
 #define _DOLPHIN_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/revolution.h>
+#else
 #include <dolphin/types.h>
 #include <dolphin/os.h>
 #include <dolphin/dsp.h>
@@ -21,4 +24,5 @@
 #include <dolphin/exi.h>
 #include <dolphin/si.h>
 
+#endif
 #endif

@@ -30,6 +30,17 @@ mDoDvdThdStack mDoDvdThd::l_threadStack;
 /* 803DEC60-803DECC0 00B980 0048+18 5/6 0/0 0/0 .bss             l_param__9mDoDvdThd */
 mDoDvdThd_param_c mDoDvdThd::l_param;
 
+#if DEBUG
+u8 mDoDvdThd::verbose;
+u8 mDoDvdThd::DVDLogoMode;
+bool mDoDvdThd::SyncWidthSound;
+u8 mDoDvdThd::Report_DVDRead;
+#else
+bool mDoDvdThd::SyncWidthSound;
+#endif
+
+u8 sDefaultDirection;
+
 #pragma push
 #pragma force_active on
 static u8 padding[0x18];
@@ -111,7 +122,7 @@ void mDoDvdThd_param_c::mainLoop() {
     while (this->waitForKick() != 0) {
         while (mDoDvdThd_command_c* command = this->getFirstCommand()) {
             this->cut(command);
-            if (SyncWidthSound) {
+            if (mDoDvdThd::SyncWidthSound) {
                 JASDvd::getThreadPointer()->sendCmdMsg(cb, &command, 4);
             } else {
                 cb(&command);

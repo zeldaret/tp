@@ -726,7 +726,7 @@ static int daObj_Sw_Create(fopAc_ac_c* a_this) {
     obj_sw_class* i_this = (obj_sw_class*)a_this;
     int phase;
     u32 i_size;
-    fopAcM_SetupActor(a_this, obj_sw_class);
+    fopAcM_ct(a_this, obj_sw_class);
 
     i_this->field_0x570 = fopAcM_GetParam(a_this);
     if (i_this->field_0x570 == 0xFF) {

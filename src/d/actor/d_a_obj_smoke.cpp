@@ -33,7 +33,7 @@ int daObjSmoke_c::Create() {
 
 /* 80CDCF9C-80CDD004 00019C 0068+00 1/1 0/0 0/0 .text            create__12daObjSmoke_cFv */
 int daObjSmoke_c::create() {
-    fopAcM_SetupActor(this, daObjSmoke_c);
+    fopAcM_ct(this, daObjSmoke_c);
     if (Create() == 0) {
         return cPhs_ERROR_e;
     }

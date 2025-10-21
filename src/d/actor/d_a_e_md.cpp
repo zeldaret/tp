@@ -403,7 +403,7 @@ static int daE_MD_Execute(daE_MD_c* i_this) {
 
 /* 8070A044-8070A3CC 0012C4 0388+00 1/1 0/0 0/0 .text            create__8daE_MD_cFv */
 int daE_MD_c::create() {
-    fopAcM_SetupActor(this, daE_MD_c);
+    fopAcM_ct(this, daE_MD_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "E_MD");
     if (phase_state == cPhs_COMPLEATE_e) {

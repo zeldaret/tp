@@ -586,7 +586,7 @@ BOOL daHorse_c::checkEnding() {
 
 /* 80839498-80839CFC 001658 0864+00 1/1 0/0 0/0 .text            create__9daHorse_cFv */
 int daHorse_c::create() {
-    fopAcM_SetupActor(this, daHorse_c);
+    fopAcM_ct(this, daHorse_c);
 
     if (checkEnding()) {
         onStateFlg0(FLG0_UNK_8000);
@@ -3390,13 +3390,12 @@ int daHorse_c::setHorsePosAndAngleSubstance(cXyz const* param_0, s16 param_1) {
     mDoMtx_stack_c::transM(-sp10.x, -sp10.y, -sp10.z);
     mDoMtx_stack_c::multVec(&field_0x17a0, &field_0x17a0);
 
-    daHorseRein_c* m_rein = m_rein;
-    for (i = 0; i < 3; i++) {
-        cXyz* var_r28 = m_rein->field_0x0[0];
-        for (j = 0; j < m_rein->field_0x8[1]; j++, var_r28++) {
+    daHorseRein_c* rein_p = m_rein;
+    for (i = 0; i < 3; i++, rein_p++) {
+        cXyz* var_r28 = rein_p->field_0x0[0];
+        for (j = 0; j < rein_p->field_0x8[1]; j++, var_r28++) {
             mDoMtx_stack_c::multVec(var_r28, var_r28);
         }
-        m_rein++;
     }
 }
 

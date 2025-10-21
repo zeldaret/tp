@@ -803,7 +803,7 @@ static int daObjYOUSEI_Execute(daObjYOUSEI_c* i_this) {
 
 /* 804D111C-804D149C 002A5C 0380+00 1/1 0/0 0/0 .text            create__13daObjYOUSEI_cFv */
 int daObjYOUSEI_c::create() {
-    fopAcM_SetupActor(this, daObjYOUSEI_c);
+    fopAcM_ct(this, daObjYOUSEI_c);
 
     OS_REPORT("YOUSEI PARAM %x\n", fopAcM_GetParam(this));
     if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x1100)) {

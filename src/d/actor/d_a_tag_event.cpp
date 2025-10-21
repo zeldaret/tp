@@ -98,7 +98,7 @@ void daTag_Event_c::demoProc() {}
 
 /* 8048AF00-8048B0E4 000240 01E4+00 1/1 0/0 0/0 .text            create__13daTag_Event_cFv */
 int daTag_Event_c::create() {
-    fopAcM_SetupActor(this, daTag_Event_c);
+    fopAcM_ct(this, daTag_Event_c);
 
     int swbit = getSwbit();
     int room_no = fopAcM_GetRoomNo(this);

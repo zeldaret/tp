@@ -507,7 +507,7 @@ int daBg_c::create() {
     field_0x5f1 = 0;
 
     if (this->heap == NULL) {
-        fopAcM_SetupActor(this, daBg_c);
+        fopAcM_ct(this, daBg_c);
 
         home.roomNo = roomNo;
         current.roomNo = roomNo;

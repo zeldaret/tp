@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_AXART_H_
 #define _DOLPHIN_AXART_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/axart.h>
+#else
 #include <dolphin/types.h>
 #include <dolphin/ax.h>
 
@@ -221,4 +224,5 @@ void AXARTLpf(AXART_LPF*, AXVPB*);
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_AXART_H_

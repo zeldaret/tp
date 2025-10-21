@@ -2499,7 +2499,7 @@ static int daE_Yr_Create(fopAc_ac_c* i_this) {
     e_yr_class* yr = (e_yr_class*)i_this;
 
     s32 loadResult = dComIfG_resLoad(&yr->mPhaseReq, "E_Yr");
-    fopAcM_SetupActor(i_this, e_yr_class);
+    fopAcM_ct(i_this, e_yr_class);
 
     if (loadResult == cPhs_COMPLEATE_e) {
         // "It won't reset because it's already been defeated"

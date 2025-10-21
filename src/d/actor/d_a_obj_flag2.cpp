@@ -429,7 +429,7 @@ static int createSolidHeap(fopAc_ac_c* i_this) {
 
 /* 80BED6A0-80BED7A4 0010C0 0104+00 1/1 0/0 0/0 .text            create__12daObjFlag2_cFv */
 int daObjFlag2_c::create() {
-    fopAcM_SetupActor(this, daObjFlag2_c);
+    fopAcM_ct(this, daObjFlag2_c);
     s8 flagNum = (u8)shape_angle.x;
     if (flagNum <= -1 || flagNum > 99) {
         mFlagValid = false;

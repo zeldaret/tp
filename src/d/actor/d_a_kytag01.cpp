@@ -176,7 +176,7 @@ static int daKytag01_Delete(kytag01_class* i_this) {
 /* 808557EC-80855984 00080C 0198+00 1/0 0/0 0/0 .text            daKytag01_Create__FP10fopAc_ac_c */
 static int daKytag01_Create(fopAc_ac_c* i_this) {
     kytag01_class* a_this = (kytag01_class*)i_this;
-    fopAcM_SetupActor(i_this, kytag01_class);
+    fopAcM_ct(i_this, kytag01_class);
 
     if ((a_this->argument & 0xFF) == 2) {
         a_this->mNamiInnerRange = i_this->scale.x * 100.0f;

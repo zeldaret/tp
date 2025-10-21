@@ -260,7 +260,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80BA88C4-80BA8B30 000A04 026C+00 1/1 0/0 0/0 .text            create__15daObj_Balloon_cFv */
 int daObj_Balloon_c::create() {
-    fopAcM_SetupActor(this, daObj_Balloon_c);
+    fopAcM_ct(this, daObj_Balloon_c);
     mType = fopAcM_GetParam(this);
     if (mType == 0xFF) {
         mType = SIZE_LARGE_e;

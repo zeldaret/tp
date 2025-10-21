@@ -39,7 +39,7 @@ int daObjHBarrel_c::createHeap() {
 
 /* 80C16B08-80C16BF8 000448 00F0+00 1/1 0/0 0/0 .text            create__14daObjHBarrel_cFv */
 int daObjHBarrel_c::create() {
-    fopAcM_SetupActor(this, daObjHBarrel_c);
+    fopAcM_ct(this, daObjHBarrel_c);
 
     s32 loadResult = dComIfG_resLoad(this, l_arcName);
     if (loadResult == cPhs_COMPLEATE_e) {
@@ -187,7 +187,7 @@ void daObjHBarrel_c::callEmt() {
 
 /* 80C171F8-80C1724C 000B38 0054+00 1/0 0/0 0/0 .text daObjHBarrel_create__FP14daObjHBarrel_c */
 static int daObjHBarrel_create(daObjHBarrel_c* param_0) {
-    fopAcM_SetupActor(param_0, daObjHBarrel_c);
+    fopAcM_ct(param_0, daObjHBarrel_c);
     return param_0->create();
 }
 

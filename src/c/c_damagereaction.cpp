@@ -19,7 +19,7 @@ u8 data_80450C9B;
 u8 data_80450C9C;
 u8 data_80450C9D;
 u8 data_80450C9E;
-u8 cDmr_FishingWeather;
+u8 cDmr_FishingWether;
 
 /* 8001817C-800182A4 012ABC 0128+00 1/0 0/0 0/0 .text
  * execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle */

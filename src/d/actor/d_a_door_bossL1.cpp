@@ -346,7 +346,7 @@ int daBdoorL1_c::CreateInit() {
 
 /* 804E28E4-804E2A98 000BC4 01B4+00 1/1 0/0 0/0 .text            create__11daBdoorL1_cFv */
 int daBdoorL1_c::create() {
-    fopAcM_SetupActor(this, daBdoorL1_c);
+    fopAcM_ct(this, daBdoorL1_c);
     int rv = dComIfG_resLoad(&mPhase1, getArcName());
     if (rv != cPhs_COMPLEATE_e) {
         return rv;

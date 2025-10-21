@@ -85,7 +85,7 @@ int daItemKantera_c::__CreateHeap() {
 
 /* 80C38BB0-80C38DAC 0005B0 01FC+00 1/1 0/0 0/0 .text            create__15daItemKantera_cFv */
 int daItemKantera_c::create() {
-    fopAcM_SetupActor(this, daItemKantera_c);
+    fopAcM_ct(this, daItemKantera_c);
 
     if (field_0x937 == 0) {
         field_0x938 = home.angle.x;

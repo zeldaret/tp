@@ -92,7 +92,7 @@ int daLv2Candle_c::CreateHeap() {
 
 /* 8058E244-8058E52C 0002E4 02E8+00 1/1 0/0 0/0 .text            create__13daLv2Candle_cFv */
 cPhs__Step daLv2Candle_c::create() {
-    fopAcM_SetupActor(this, daLv2Candle_c);
+    fopAcM_ct(this, daLv2Candle_c);
     mModelType = getModelType();
     if (mModelType == 0xf) {
         mModelType = 0;

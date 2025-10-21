@@ -1052,7 +1052,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 8072218C-8072256C 0028AC 03E0+00 1/0 0/0 0/0 .text            daE_MM_Create__FP10fopAc_ac_c */
 static int daE_MM_Create(fopAc_ac_c* actor) {
-    fopAcM_SetupActor(actor, e_mm_class);
+    fopAcM_ct(actor, e_mm_class);
     e_mm_class* i_this = (e_mm_class*)actor;
 
     int phase_state = dComIfG_resLoad(&i_this->phase, "E_MM");

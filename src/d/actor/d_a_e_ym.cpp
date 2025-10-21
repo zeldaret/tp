@@ -3410,7 +3410,7 @@ void daE_YM_c::setHideType() {
 
 /* 80814BA4-80815224 00CB64 0680+00 2/1 0/0 0/0 .text            create__8daE_YM_cFv */
 int daE_YM_c::create() {
-    fopAcM_SetupActor(this, daE_YM_c);
+    fopAcM_ct(this, daE_YM_c);
 
     mType = fopAcM_GetParam(this);
     if (mType == 0xFF) {

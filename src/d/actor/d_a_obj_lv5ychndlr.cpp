@@ -354,7 +354,7 @@ int daObjYchndlr_c::Delete() {
 /* 80C6E404-80C6E518 000D24 0114+00 1/0 0/0 0/0 .text daObjYchndlr_create1st__FP14daObjYchndlr_c
  */
 static int daObjYchndlr_create1st(daObjYchndlr_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjYchndlr_c);
+    fopAcM_ct(i_this, daObjYchndlr_c);
     return i_this->create1st();
 }
 

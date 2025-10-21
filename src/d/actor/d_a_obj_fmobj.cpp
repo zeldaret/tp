@@ -78,7 +78,7 @@ static int daObj_Fmobj_Create(fopAc_ac_c* i_this_param) {
     // Fake match - debug says i_this is fake
     fopAc_ac_c* i_this = (fopAc_ac_c*)i_this_param;
     obj_fmobj_class* a_this = (obj_fmobj_class*)i_this_param;
-    fopAcM_SetupActor(i_this, obj_fmobj_class);
+    fopAcM_ct(i_this, obj_fmobj_class);
     int phase;
 
     phase = dComIfG_resLoad(&a_this->mPhase, "Obj_Fmobj");

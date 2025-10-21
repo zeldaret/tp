@@ -521,7 +521,7 @@ static void daKytag06_wether_proc(kytag06_class* i_this, u8 param_1) {
  * daKytag06_type_07_wether_Execute__FP13kytag06_class          */
 static void daKytag06_type_07_wether_Execute(kytag06_class* i_this) {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
-    daKytag06_wether_proc(i_this, env_light->field_0x12cc);
+    daKytag06_wether_proc(i_this, env_light->wether);
 }
 
 /* 808586F0-808589A4 000F70 02B4+00 1/1 0/0 0/0 .text daKytag06_type_07_Execute__FP13kytag06_class
@@ -617,7 +617,7 @@ static void daKytag06_type_06_Execute(kytag06_class* i_this) {
     dComIfGs_getTime();
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
 
-    daKytag06_wether_proc(i_this, env_light->field_0x12cc);
+    daKytag06_wether_proc(i_this, env_light->wether);
     cXyz spX;
 
     f32 current_time = dComIfGs_getTime();
@@ -682,13 +682,13 @@ static void daKytag06_type_06_Execute(kytag06_class* i_this) {
  */
 static void daKytag06_type_08_Execute(kytag06_class* i_this) {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
-    daKytag06_lv7_boss_wether_proc(i_this, env_light->field_0x12cc);
+    daKytag06_lv7_boss_wether_proc(i_this, env_light->wether);
 }
 
 /* 80858D00-80858D2C 001580 002C+00 1/1 0/0 0/0 .text            daKytag06_type_09_Execute__FP13kytag06_class */
 static void daKytag06_type_09_Execute(kytag06_class* i_this) {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
-    daKytag06_Ganon_wether_proc(i_this, env_light->field_0x12cc);
+    daKytag06_Ganon_wether_proc(i_this, env_light->wether);
 }
 
 /* 80858D2C-8085912C 0015AC 0400+00 1/1 0/0 0/0 .text            daKytag06_type_10_Execute__FP13kytag06_class */
@@ -1153,7 +1153,7 @@ static void daKytag06_type03_init(fopAc_ac_c* i_this) {
 
 /* 80859C88-80859E68 002508 01E0+00 2/0 0/0 0/0 .text            daKytag06_Create__FP10fopAc_ac_c */
 static int daKytag06_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, kytag06_class);
+    fopAcM_ct(i_this, kytag06_class);
     kytag06_class* a_this = static_cast<kytag06_class*>(i_this);
 
     a_this->mType = (fopAcM_GetParam(a_this) >> 0x18) & 0xF;

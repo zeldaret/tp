@@ -198,7 +198,7 @@ static int useHeapInit(fopAc_ac_c* i_actor) {
 /* 80D37634-80D37720 000B14 00EC+00 1/0 0/0 0/0 .text            daObj_Wflag_Create__FP10fopAc_ac_c
  */
 static int daObj_Wflag_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, obj_wflag_class);
+    fopAcM_ct(i_this, obj_wflag_class);
     int rv = dComIfG_resLoad(&((obj_wflag_class*)i_this)->mPhaseReq, "Obj_wflag");
     if (rv == cPhs_COMPLEATE_e) {
         OS_REPORT("OBJ_WFLAG PARAM %x\n", fopAcM_GetParam(i_this));

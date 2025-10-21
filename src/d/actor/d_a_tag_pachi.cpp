@@ -30,7 +30,7 @@ static dCcD_SrcCyl const l_sph_src = {
 
 /* 80D5D570-80D5D6A0 0001B0 0130+00 1/1 0/0 0/0 .text            create__11daTagPati_cFv */
 int daTagPati_c::create() {
-    fopAcM_SetupActor(this, daTagPati_c);
+    fopAcM_ct(this, daTagPati_c);
     field_0x6E0 = get_prm();
     mStts.Init(0xFF, 0xFF, this);
     mCyl.Set(l_sph_src);

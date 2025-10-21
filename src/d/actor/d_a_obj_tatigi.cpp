@@ -136,7 +136,7 @@ static int daObj_Tatigi_Create(fopAc_ac_c* a_this) {
     };
 
     obj_tatigi_class* i_this = (obj_tatigi_class*)a_this;
-    fopAcM_SetupActor(&i_this->mBase, obj_tatigi_class);
+    fopAcM_ct(&i_this->mBase, obj_tatigi_class);
 
     int rv = dComIfG_resLoad(&i_this->mPhase, "Obj_tg");
     if (rv == cPhs_COMPLEATE_e) {

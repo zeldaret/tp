@@ -122,13 +122,19 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
             const char* uVar5;
             if (i_value == 1 
                 #ifdef DEBUG
-                || (dComIfGs_getPalLanguage() == 3 && i_value == 0)
+                || (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_SPANISH && i_value == 0)
+                #elif VERSION == VERSION_GCN_PAL
+                || (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_FRENCH && i_value == 0)
                 #endif
             ) {
                 #ifdef DEBUG
                 uVar5 = entriesStr + endFrame;
             } else {
                 uVar5 = entriesStr + startFrame;
+                #elif VERSION == VERSION_GCN_PAL
+                uVar5 = pStrAttributeBlock->entries->str + startFrame;
+            } else {
+                uVar5 = pStrAttributeBlock->entries->str + endFrame;
                 #else
                 uVar5 = pStrAttributeBlock->entries->str + endFrame;
             } else {

@@ -50,7 +50,7 @@ inline void daTagLv8Gate_c::create_init() {
 }
 
 inline int daTagLv8Gate_c::create() {
-    fopAcM_SetupActor(this, daTagLv8Gate_c);
+    fopAcM_ct(this, daTagLv8Gate_c);
 
     cPhs__Step step;
          /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */

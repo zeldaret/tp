@@ -200,7 +200,7 @@ int daObjBkDoor_c::Delete() {
 
 /* 805793BC-8057941C 00071C 0060+00 1/0 0/0 0/0 .text daObjBkDoor_create1st__FP13daObjBkDoor_c */
 static int daObjBkDoor_create1st(daObjBkDoor_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjBkDoor_c);
+    fopAcM_ct(i_this, daObjBkDoor_c);
     return i_this->create1st();
 }
 

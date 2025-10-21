@@ -95,7 +95,7 @@ int daMagLiftRot_c::CreateHeap() {
 
 /* 80C8EC64-80C8EF4C 000404 02E8+00 1/1 0/0 0/0 .text            create__14daMagLiftRot_cFv */
 int daMagLiftRot_c::create() {
-    fopAcM_SetupActor(this, daMagLiftRot_c);
+    fopAcM_ct(this, daMagLiftRot_c);
 
     mType = 0;
 

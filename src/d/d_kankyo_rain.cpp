@@ -1610,7 +1610,7 @@ void cloud_shadow_move() {
                 cLib_addCalc(&g_env_light.field_0xebc, 0.3f, 0.1f, 0.01f, 0.000001f);
             }
 
-            if (g_env_light.field_0x12cc >= 3) {
+            if (g_env_light.wether >= 3) {
                 cLib_addCalc(&g_env_light.field_0xebc, 1.0f, 0.5f, 0.1f, 0.000001f);
             }
         }

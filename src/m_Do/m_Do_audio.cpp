@@ -79,7 +79,7 @@ static void mDoAud_Create() {
         l_arcCommand->destroy();
 
         mDoAud_zelAudio_c::onInitFlag();
-        SyncWidthSound = true;
+        mDoDvdThd::SyncWidthSound = true;
     }
 }
 

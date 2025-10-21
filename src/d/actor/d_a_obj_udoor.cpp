@@ -130,7 +130,7 @@ static cPhs__Step daObj_Udoor_Create(fopAc_ac_c* i_this) {
         } // mSphAttr
     };
 
-    fopAcM_SetupActor(i_this, obj_udoor_class);
+    fopAcM_ct(i_this, obj_udoor_class);
     obj_udoor_class* a_this = static_cast<obj_udoor_class*>(i_this);
     
     cPhs__Step phase_state = (cPhs__Step)dComIfG_resLoad(&a_this->mPhase, "Obj_udoor");

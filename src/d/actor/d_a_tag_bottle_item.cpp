@@ -14,7 +14,7 @@
 s32 daTag_BottleItem_c::create() {
     s32 ret;
 
-    fopAcM_SetupActor(this, daTag_BottleItem_c);
+    fopAcM_ct(this, daTag_BottleItem_c);
     setTypeFromParam();
 
     if (!isBottleItem(mBottleItemType)) {

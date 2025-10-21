@@ -43,7 +43,7 @@ int daSaidan_c::CreateHeap() {
 
 /* 80CC3F1C-80CC4054 00025C 0138+00 1/1 0/0 0/0 .text            create__10daSaidan_cFv */
 cPhs__Step daSaidan_c::create() {
-    fopAcM_SetupActor(this, daSaidan_c);
+    fopAcM_ct(this, daSaidan_c);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, "H_Saidan");
     if (step == cPhs_COMPLEATE_e) {

@@ -130,7 +130,7 @@ daNpcShoe_Param_c::param const daNpcShoe_Param_c::m = {
 cPhs__Step daNpcShoe_c::Create() {
     cPhs__Step step;
 
-    fopAcM_SetupActor(this, daNpcShoe_c);
+    fopAcM_ct(this, daNpcShoe_c);
 
     field_0xe0c = getMessageNo();
 

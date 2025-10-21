@@ -26,12 +26,19 @@
 #include "m_Do/m_Do_main.h"
 
 /* 80450BF0-80450BF4 0000F0 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 mDebugFill;
+#if DEBUG
+u8 mDoMch::mDebugFill = true;
+u8 mDoMch::mDebugFillNotuse = 0xDD;
+u8 mDoMch::mDebugFillNew = 0xF7;
+u8 mDoMch::mDebugFillDelete = 0xDD;
 
-#ifdef DEBUG
-static u8 mDebugFillNotuse;
-static u8 mDebugFillNew;
-static u8 mDebugFillDelete;
+u8 mDoMch::myHeapVerbose;
+u8 mDoMch::myHeapCallbackCheck;
+u8 mDoMch::FpscrEnableBits;
+u8 mDoMch::GXWarningLevel;
+u8 mDoMch::GXWarningExecuteFrame;
+#else
+u8 mDoMch::mDebugFill;
 #endif
 
 /* 80450BF4-80450BF8 0000F4 0004+00 1/1 0/0 0/0 .sbss            solidHeapErrors */
@@ -543,11 +550,11 @@ int mDoMch_Create() {
         OSReportDisable();
     }
 
-    JKRHeap::setDefaultDebugFill(mDebugFill);
+    JKRHeap::setDefaultDebugFill(mDoMch::mDebugFill);
     #ifdef DEBUG
-    JKRSetDebugFillNotuse(mDebugFillNotuse);
-    JKRSetDebugFillNew(mDebugFillNew);
-    JKRSetDebugFillDelete(mDebugFillDelete);
+    JKRSetDebugFillNotuse(mDoMch::mDebugFillNotuse);
+    JKRSetDebugFillNew(mDoMch::mDebugFillNew);
+    JKRSetDebugFillDelete(mDoMch::mDebugFillDelete);
     #endif
     JFWSystem::setMaxStdHeap(1);
 

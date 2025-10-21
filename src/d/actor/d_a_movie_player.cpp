@@ -3712,7 +3712,7 @@ int daMP_c::daMP_c_Draw() {
 /* 80878E60-80878EC4 006780 0064+00 1/0 0/0 0/0 .text daMP_c_Callback_Init__6daMP_cFP10fopAc_ac_c
  */
 int daMP_c::daMP_c_Callback_Init(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, daMP_c);
+    fopAcM_ct(i_this, daMP_c);
     return ((daMP_c*)i_this)->daMP_c_Init();
 }
 

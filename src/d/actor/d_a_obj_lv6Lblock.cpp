@@ -42,7 +42,7 @@ int daLv6Lblock_c::CreateHeap() {
 
 /* 80C73558-80C736C0 000258 0168+00 1/1 0/0 0/0 .text            create__13daLv6Lblock_cFv */
 int daLv6Lblock_c::create() {
-    fopAcM_SetupActor(this, daLv6Lblock_c);
+    fopAcM_ct(this, daLv6Lblock_c);
 
     int phase_state = dComIfG_resLoad(&mPhase, "L6Lblock");
     if (phase_state == cPhs_COMPLEATE_e) {

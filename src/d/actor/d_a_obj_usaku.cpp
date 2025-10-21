@@ -75,7 +75,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80D211AC-80D212D4 0002CC 0128+00 1/0 0/0 0/0 .text            daObj_Usaku_Create__FP10fopAc_ac_c
  */
 static int daObj_Usaku_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, obj_usaku_class);
+    fopAcM_ct(i_this, obj_usaku_class);
     obj_usaku_class* a_this = (obj_usaku_class*)i_this;
 
     int phase = dComIfG_resLoad(&a_this->mPhase, "Obj_usaku");

@@ -373,7 +373,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 /* 80B2EEC0-80B2F050 0010C0 0190+00 1/0 0/0 0/0 .text            daNPC_WORM_Create__FP10fopAc_ac_c
  */
 static int daNPC_WORM_Create(fopAc_ac_c* a_this) {
-    fopAcM_SetupActor(a_this, npc_worm_class);
+    fopAcM_ct(a_this, npc_worm_class);
     npc_worm_class* i_this = (npc_worm_class*)a_this;
     int rv =
         dComIfG_resLoad(&i_this->mPhase, "Alink");

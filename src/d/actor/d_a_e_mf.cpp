@@ -3193,7 +3193,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 static cPhs__Step daE_MF_Create(fopAc_ac_c* a_this) {
     e_mf_class* i_this = (e_mf_class*)a_this;
 
-    fopAcM_SetupActor(a_this, e_mf_class);
+    fopAcM_ct(a_this, e_mf_class);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "E_mf");
     if (phase == cPhs_COMPLEATE_e) {

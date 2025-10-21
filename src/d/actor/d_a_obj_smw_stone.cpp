@@ -36,7 +36,7 @@ static u8 const lit_3776[12] = {
 
 /* 80CDE614-80CDE7F8 000174 01E4+00 1/1 0/0 0/0 .text            create__12daSmWStone_cFv */
 cPhs__Step daSmWStone_c::create() {
-    fopAcM_SetupActor(this, daSmWStone_c);
+    fopAcM_ct(this, daSmWStone_c);
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(this, l_arcName);
 
     if (step == cPhs_COMPLEATE_e) {
@@ -187,7 +187,7 @@ bool daSmWStone_c::chkWlfInRange() {
 /* 80CDEE28-80CDEE7C 000988 0054+00 1/0 0/0 0/0 .text            daSmWStone_create__FP12daSmWStone_c
  */
 static cPhs__Step daSmWStone_create(daSmWStone_c* i_this) {
-    fopAcM_SetupActor(i_this, daSmWStone_c);
+    fopAcM_ct(i_this, daSmWStone_c);
     return i_this->create();
 }
 

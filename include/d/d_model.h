@@ -21,7 +21,10 @@ class dMdl_c : public J3DPacket {
 public:
     /* 8009C650 */ void create(J3DModelData*, u16, dKy_tevstr_c*);
     /* 8009C668 */ void entryObj(dMdl_obj_c*);
-    /* 8009C930 */ dMdl_c();
+    /* 8009C930 */ dMdl_c() {
+                        mpModelData = NULL;
+                        mMaterialId = 0;
+                    }
 
     /* 8009C4FC */ virtual void draw();
     /* 8009C808 */ virtual ~dMdl_c();

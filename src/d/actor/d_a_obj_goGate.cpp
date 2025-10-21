@@ -33,7 +33,7 @@ int daGoGate_c::CreateHeap() {
 
 /* 80BFD82C-80BFD984 00026C 0158+00 1/1 0/0 0/0 .text            create__10daGoGate_cFv */
 cPhs__Step daGoGate_c::create() {
-    fopAcM_SetupActor(this, daGoGate_c);
+    fopAcM_ct(this, daGoGate_c);
 
     cPhs__Step phase = static_cast<cPhs__Step>(dComIfG_resLoad(&mPhase, "P_Ggate"));
     if (phase == cPhs_COMPLEATE_e) {

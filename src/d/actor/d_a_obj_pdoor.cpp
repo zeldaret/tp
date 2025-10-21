@@ -275,7 +275,7 @@ int daObjPDoor_c::Delete() {
 
 /* 80CAAA4C-80CAAAAC 000C2C 0060+00 1/0 0/0 0/0 .text daObjPDoor_create1st__FP12daObjPDoor_c */
 static int daObjPDoor_create1st(daObjPDoor_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjPDoor_c);
+    fopAcM_ct(i_this, daObjPDoor_c);
     return i_this->create1st();
 }
 

@@ -859,7 +859,12 @@ void mDoExt_modelUpdateDL(J3DModel* i_model);
 J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag,
                                   u32 i_differedDlistFlag);
 
+extern u32 aram_cache_size;
 void mDoExt_setAraCacheSize(u32 size);
+inline u32 mDoExt_getAraCacheSize() {
+    return aram_cache_size;
+}
+
 int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id);
 void mDoExt_modelEntryDL(J3DModel* i_model);
 void mDoExt_brkAnmRemove(J3DModelData* i_modelData);

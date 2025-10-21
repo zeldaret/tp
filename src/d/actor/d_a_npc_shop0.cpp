@@ -29,7 +29,7 @@ daNpc_Shop0_c::~daNpc_Shop0_c() {
 
 /* 80AEAA10-80AEAC10 0002B0 0200+00 1/1 0/0 0/0 .text            create__13daNpc_Shop0_cFv */
 int daNpc_Shop0_c::create() {
-    fopAcM_SetupActor(this, daNpc_Shop0_c);
+    fopAcM_ct(this, daNpc_Shop0_c);
 
     int phase_step = dComIfG_resLoad(&mPhaseReq, getResName());
     if (phase_step == cPhs_COMPLEATE_e) {

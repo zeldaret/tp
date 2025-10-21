@@ -21,7 +21,7 @@ daObj_Pleaf_Param_c::params const daObj_Pleaf_Param_c::m = {0, -3.0f, 1.0f, 900.
 
 /* 80CB0F08-80CB1180 0002A8 0278+00 1/1 0/0 0/0 .text            create__13daObj_Pleaf_cFv */
 int daObj_Pleaf_c::create() {
-    fopAcM_SetupActor(this, daObj_Pleaf_c);
+    fopAcM_ct(this, daObj_Pleaf_c);
     mType = getType();
     int phase = dComIfG_resLoad(&mPhaseReq, getResName());
     if (phase == cPhs_COMPLEATE_e) {

@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_OSSEMAPHORE_H_
 #define _DOLPHIN_OSSEMAPHORE_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/os/OSSemaphore.h>
+#else
 #include <dolphin/os/OSThread.h>
 
 #ifdef __cplusplus
@@ -22,4 +25,5 @@ s32 OSGetSemaphoreCount(OSSemaphore* sem);
 }
 #endif
 
+#endif
 #endif // _DOLPHIN_OSSEMAPHORE_H_

@@ -82,7 +82,7 @@ int daObjSCannonTen_c::createHeap() {
 
 /* 80CCB66C-80CCB900 0003CC 0294+00 1/1 0/0 0/0 .text            create__17daObjSCannonTen_cFv */
 int daObjSCannonTen_c::create() {
-    fopAcM_SetupActor(this, daObjSCannonTen_c);
+    fopAcM_ct(this, daObjSCannonTen_c);
 
     int phase_state = dComIfG_resLoad(this, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e) {
@@ -501,7 +501,7 @@ void daObjSCannonTen_c::delEmtAll() {
 /* 80CCC9B8-80CCCA0C 001718 0054+00 1/0 0/0 0/0 .text
  * daObjSCannonTen_create__FP17daObjSCannonTen_c                */
 static int daObjSCannonTen_create(daObjSCannonTen_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjSCannonTen_c);
+    fopAcM_ct(i_this, daObjSCannonTen_c);
     return i_this->create();
 }
 

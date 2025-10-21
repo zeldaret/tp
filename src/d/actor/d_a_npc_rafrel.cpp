@@ -176,7 +176,7 @@ const daNpcRafrel_HIOParam daNpcRafrel_Param_c::m = {
 
 /* 80AB9A40-80AB9E3C 000500 03FC+00 1/1 0/0 0/0 .text            Create__13daNpcRafrel_cFv */
 int daNpcRafrel_c::Create() {
-    fopAcM_SetupActor(this, daNpcRafrel_c);
+    fopAcM_ct(this, daNpcRafrel_c);
 
     if (strcmp(dComIfGp_getStartStageName(), "R_SP116") == 0 && dComIfG_play_c::getLayerNo(0) == 4) {
         if (!daNpcF_chkEvtBit(0x169)) {

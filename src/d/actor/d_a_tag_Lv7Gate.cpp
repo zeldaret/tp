@@ -52,7 +52,7 @@ static int daTagLv7Gate_Create(fopAc_ac_c* i_this) {
 int daTagLv7Gate_c::create() {
     int phase;
 
-    fopAcM_SetupActor(this, daTagLv7Gate_c);
+    fopAcM_ct(this, daTagLv7Gate_c);
 
     if (fopAcM_GetPosition_p(daPy_getPlayerActorClass())->y < 7500.0f) {
         return cPhs_ERROR_e;

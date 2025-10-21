@@ -739,7 +739,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80684E24-80685224 0026A4 0400+00 1/0 0/0 0/0 .text            daE_Bee_Create__FP10fopAc_ac_c */
 static cPhs__Step daE_Bee_Create(fopAc_ac_c* i_this) {
     e_bee_class* _this = static_cast<e_bee_class*>(i_this);
-    fopAcM_SetupActor(_this, e_bee_class);
+    fopAcM_ct(_this, e_bee_class);
     
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&_this->mPhase, "E_bee");
     if (step == cPhs_COMPLEATE_e) {

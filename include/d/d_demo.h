@@ -361,7 +361,11 @@ public:
     /* 80039EEC */ static void setBranchId(u16, s16);
     /* 80039F04 */ static void reset();
 
-    static dDemo_actor_c* getActor(u8 param_0) { return m_object->getActor(param_0); }
+    static dDemo_actor_c* getActor(u8 param_0) {
+        JUT_ASSERT(546, m_object != NULL);
+        return m_object->getActor(param_0);
+    }
+
     static u32 getFrameNoMsg() { return m_frameNoMsg; }
     static s32 getMode() { return m_mode; }
     static u32 getFrame() { return m_frame; }

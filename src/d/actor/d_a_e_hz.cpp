@@ -2011,7 +2011,7 @@ int daE_HZ_c::create() {
         }  // mSphAttr
     };
 
-    fopAcM_SetupActor(this, daE_HZ_c);
+    fopAcM_ct(this, daE_HZ_c);
 
     dKy_tevstr_init(&mTevStr, home.roomNo, 0xFF);
 

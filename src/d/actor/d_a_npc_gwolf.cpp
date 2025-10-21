@@ -284,7 +284,7 @@ daNpc_GWolf_HIOParam const daNpc_GWolf_Param_c::m = {
 
 /* 809F34C0-809F37C0 000500 0300+00 1/1 0/0 0/0 .text            create__13daNpc_GWolf_cFv */
 cPhs__Step daNpc_GWolf_c::create() {
-    fopAcM_SetupActor(this, daNpc_GWolf_c);
+    fopAcM_ct(this, daNpc_GWolf_c);
 
     mType = getTypeFromParam();
     mParamMode = getModeFromParam();

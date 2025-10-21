@@ -341,7 +341,7 @@ int daObjMATO_c::mato_init() {
 
 /* 80C927AC-80C92924 000CCC 0178+00 1/1 0/0 0/0 .text            create__11daObjMATO_cFv */
 int daObjMATO_c::create() {
-    fopAcM_SetupActor(this, daObjMATO_c);
+    fopAcM_ct(this, daObjMATO_c);
 
     if (!mato_init()) {
         OS_REPORT("MATO : rale data not found!\n");

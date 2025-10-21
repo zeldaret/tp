@@ -146,7 +146,7 @@ static int useHeapInit(fopAc_ac_c* i_actor) {
 /* 80C26540-80C26880 0005A0 0340+00 1/0 0/0 0/0 .text            daObj_Ihasi_Create__FP10fopAc_ac_c
  */
 static int daObj_Ihasi_Create(fopAc_ac_c* i_actor) {
-    fopAcM_SetupActor(i_actor, obj_ihasi_class);
+    fopAcM_ct(i_actor, obj_ihasi_class);
     obj_ihasi_class* i_this = static_cast<obj_ihasi_class*>(i_actor);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&i_this->mPhaseReq, "Obj_ihasi");

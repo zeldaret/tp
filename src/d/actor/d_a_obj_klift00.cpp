@@ -487,7 +487,7 @@ int daObjKLift00_c::Delete() {
 /* 8058C050-8058C164 001190 0114+00 1/0 0/0 0/0 .text daObjKLift00_create1st__FP14daObjKLift00_c
  */
 static int daObjKLift00_create1st(daObjKLift00_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjKLift00_c);
+    fopAcM_ct(i_this, daObjKLift00_c);
     return i_this->create1st();
 }
 

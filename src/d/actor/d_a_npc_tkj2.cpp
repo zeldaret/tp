@@ -1103,7 +1103,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 80B13E68-80B1411C 003168 02B4+00 1/0 0/0 0/0 .text            daNpc_Tkj2_Create__FP10fopAc_ac_c */
 static cPhs__Step daNpc_Tkj2_Create(fopAc_ac_c* a_this) {
-    fopAcM_SetupActor(a_this, npc_tkj2_class);
+    fopAcM_ct(a_this, npc_tkj2_class);
     npc_tkj2_class* i_this = (npc_tkj2_class*)a_this;
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "Tkj2");

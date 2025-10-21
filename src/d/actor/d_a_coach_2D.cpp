@@ -345,7 +345,7 @@ void daCoach2D_c::setBrkAnime(bool param_0) {
 /* 8065764C-806576D4 000D6C 0088+00 1/0 0/0 0/0 .text            daCoach2D_create__FP11daCoach2D_c
  */
 static int daCoach2D_create(daCoach2D_c* i_this) {
-    fopAcM_SetupActor(i_this, daCoach2D_c);
+    fopAcM_ct(i_this, daCoach2D_c);
     return i_this->create();
 }
 

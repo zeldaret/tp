@@ -249,7 +249,7 @@ int daObjLv4Wall_c::Delete() {
 /* 80C61514-80C61660 000B14 014C+00 1/0 0/0 0/0 .text daObjLv4Wall_create1st__FP14daObjLv4Wall_c
  */
 static int daObjLv4Wall_create1st(daObjLv4Wall_c* i_this) {
-    fopAcM_SetupActor(i_this, daObjLv4Wall_c);
+    fopAcM_ct(i_this, daObjLv4Wall_c);
     return i_this->create1st();
 }
 

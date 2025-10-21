@@ -61,7 +61,7 @@ int daBubbPilar_c::CreateHeap() {
 
 /* 80BC35D0-80BC3848 0002D0 0278+00 1/1 0/0 0/0 .text            create__13daBubbPilar_cFv */
 int daBubbPilar_c::create() {
-    fopAcM_SetupActor(this, daBubbPilar_c);
+    fopAcM_ct(this, daBubbPilar_c);
     int rv = dComIfG_resLoad(&mPhase, "M_Crack");
     switch (rv) {
     case cPhs_COMPLEATE_e:

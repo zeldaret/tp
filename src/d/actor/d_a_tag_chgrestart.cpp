@@ -32,7 +32,7 @@ s32 daTagChgRestart_c::Create() {
 
 /* 80D567E4-80D56878 000104 0094+00 1/1 0/0 0/0 .text            create__17daTagChgRestart_cFv */
 s32 daTagChgRestart_c::create() {
-    fopAcM_SetupActor(this, daTagChgRestart_c);
+    fopAcM_ct(this, daTagChgRestart_c);
 
     if (!Create()) {
         return cPhs_ERROR_e;

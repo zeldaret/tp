@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXBUMP_H_
 #define _DOLPHIN_GX_GXBUMP_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXBump.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 
 #ifdef __cplusplus
@@ -26,4 +29,5 @@ void __GXSetIndirectMask(u32 mask);
 }
 #endif
 
+#endif
 #endif

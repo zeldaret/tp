@@ -110,7 +110,7 @@ static int daObj_Ndoor_Create(fopAc_ac_c* i_this) {
     };
 
     obj_ndoor_class* a_this = (obj_ndoor_class*)i_this;
-    fopAcM_SetupActor(i_this, obj_ndoor_class);
+    fopAcM_ct(i_this, obj_ndoor_class);
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&a_this->mPhase, "Obj_ndoor");
 
     if (phase == cPhs_COMPLEATE_e) {

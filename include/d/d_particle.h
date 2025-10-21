@@ -403,6 +403,8 @@ public:
     void draw2DmenuFore(JPADrawInfo* i_drawInfo) { draw(i_drawInfo, 17); }
     void draw2DmenuBack(JPADrawInfo* i_drawInfo) { draw(i_drawInfo, 18); }
 
+    JKRSolidHeap* getHeap() { return mHeap; }
+    JKRSolidHeap* getSceneHeap() { return m_sceneHeap; }
     JKRExpHeap* getResHeap() { return m_resHeap; }
 
     void levelAllForceOnEventMove() { field_0x210.allForceOnEventMove(); }

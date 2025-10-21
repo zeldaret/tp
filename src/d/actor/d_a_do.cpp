@@ -2452,7 +2452,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 8066E81C-8066EAE4 006BBC 02C8+00 1/0 0/0 0/0 .text            daDo_Create__FP10fopAc_ac_c */
 static cPhs__Step daDo_Create(fopAc_ac_c* i_this) {
     do_class* _this = static_cast<do_class*>(i_this);
-    fopAcM_SetupActor(i_this, do_class);
+    fopAcM_ct(i_this, do_class);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&_this->mPhase, "Do");
 

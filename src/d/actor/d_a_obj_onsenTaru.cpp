@@ -63,7 +63,7 @@ int daOnsTaru_c::CreateHeap() {
 
 /* 80CA87B4-80CA8A54 0002D4 02A0+00 1/1 0/0 0/0 .text            create__11daOnsTaru_cFv */
 int daOnsTaru_c::create() {
-    fopAcM_SetupActor(this, daOnsTaru_c);
+    fopAcM_ct(this, daOnsTaru_c);
 
     if (fopAcM_isSwitch(this, getSw())) {
         return cPhs_ERROR_e;

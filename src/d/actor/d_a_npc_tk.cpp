@@ -3276,7 +3276,7 @@ int daNPC_TK_c::create() {
         }  // mSphAttr
     };
 
-    fopAcM_SetupActor(this, daNPC_TK_c);
+    fopAcM_ct(this, daNPC_TK_c);
 
     int loadRes = dComIfG_resLoad(&mPhase, "Npc_tk");
     eventInfo.setArchiveName("Npc_tk");

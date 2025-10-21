@@ -81,7 +81,7 @@ f32 const daTogeRoll_c::mSpeed[] = {
 
 /* 80C77DBC-80C78058 00027C 029C+00 1/1 0/0 0/0 .text            create__12daTogeRoll_cFv */
 int daTogeRoll_c::create() {
-    fopAcM_SetupActor(this, daTogeRoll_c);
+    fopAcM_ct(this, daTogeRoll_c);
 
     int phase = dComIfG_resLoad(&mPhase, "togeRol");
 

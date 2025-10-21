@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_GX_GXGEOMETRY_H_
 #define _DOLPHIN_GX_GXGEOMETRY_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/gx/GXGeometry.h>
+#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
 
@@ -44,4 +47,5 @@ void GXEnableTexOffsets(GXTexCoordID coord, u8 line_enable, u8 point_enable);
 }
 #endif
 
+#endif
 #endif
