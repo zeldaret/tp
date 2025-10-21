@@ -43,6 +43,28 @@ enum Motion {
     /* 0x11 */ MOT_UNK_17 = 17,
 };
 
+/* 80A68EA4-80A68F38 000000 0094+00 9/9 0/0 0/0 .rodata          m__17daNpc_Len_Param_c */
+const daNpc_Len_HIOParam daNpc_Len_Param_c::m = {
+    230.0f, -3.0f,  1.0f,   450.0f, 255.0f, 210.0f, 35.0f, 40.0f,  0.0f,  0.0f, 15.0f,
+    -15.0f, 30.0f,  -10.0f, 30.0f,  -30.0f, 0.6f,   12.0f, 3,      6,     5,    6,
+    110.0f, 0.0f,   0.0f,   0.0f,   60,     8,      0,     0,      0,     0,    0,
+    4.0f,   -20.0f, 0.0f,   -20.0f, 20.0f,  50.0f,  20.0f, 100.0f, 0x168, 0xB4, 3.0f,
+};
+
+#if DEBUG
+daNpc_Len_HIO_c::daNpc_Len_HIO_c() {
+    m = daNpc_Len_Param_c::m;
+}
+
+void daNpc_Len_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
+    // TODO
+}
+
+void daNpc_Len_HIO_c::genMessage(JORMContext* ctext) {
+    // TODO
+}
+#endif
+
 /* 80A690A8-80A690B8 000020 0010+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[2][2] = {
     {11, 1},
@@ -156,14 +178,6 @@ daNpc_Len_c::~daNpc_Len_c() {
 
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
 }
-
-/* 80A68EA4-80A68F38 000000 0094+00 9/9 0/0 0/0 .rodata          m__17daNpc_Len_Param_c */
-const daNpc_Len_HIOParam daNpc_Len_Param_c::m = {
-    230.0f, -3.0f,  1.0f,   450.0f, 255.0f, 210.0f, 35.0f, 40.0f,  0.0f,  0.0f, 15.0f,
-    -15.0f, 30.0f,  -10.0f, 30.0f,  -30.0f, 0.6f,   12.0f, 3,      6,     5,    6,
-    110.0f, 0.0f,   0.0f,   0.0f,   60,     8,      0,     0,      0,     0,    0,
-    4.0f,   -20.0f, 0.0f,   -20.0f, 20.0f,  50.0f,  20.0f, 100.0f, 0x168, 0xB4, 3.0f,
-};
 
 /* 80A64478-80A64740 000238 02C8+00 1/1 0/0 0/0 .text            create__11daNpc_Len_cFv */
 int daNpc_Len_c::create() {
@@ -330,29 +344,60 @@ u8 daNpc_Len_c::getType() {
 BOOL daNpc_Len_c::isDelete() {
     switch (mType) {
     case TYPE_0:
-        return !daNpcT_chkEvtBit(0x3D) || daNpcT_chkEvtBit(0xA4);
+        /* dSv_event_flag_c::M_028 - Cutscene - [cutscene: 14] restore mountain spirit - Reunion
+         * with Colin et al. */
+        return !daNpcT_chkEvtBit(0x3D) ||
+               /* dSv_event_flag_c::F_0066 - Death Mountain - First saw Goron cutscene on mountain
+                  path */
+               daNpcT_chkEvtBit(0xA4);
     case TYPE_1:
         return false;
     case TYPE_2:
-        return !daNpcT_chkEvtBit(0xA4) || daNpcT_chkEvtBit(0x35);
+        /* dSv_event_flag_c::F_0066 - Death Mountain - First saw Goron cutscene on mountain path */
+        return !daNpcT_chkEvtBit(0xA4) ||
+               /* dSv_event_flag_c::M_020 - Cutscene - [cutscene: ] Colin kidnapped : ON once
+                  watched */
+               daNpcT_chkEvtBit(0x35);
     case TYPE_3:
-        return !daNpcT_chkEvtBit(0x35) || daNpcT_chkEvtBit(0x55);
+        /* dSv_event_flag_c::M_020 - Cutscene - [cutscene: ] Colin kidnapped : ON once watched */
+        return !daNpcT_chkEvtBit(0x35) ||
+               /* dSv_event_flag_c::M_052 - Main Event - Horseback battle clear */
+               daNpcT_chkEvtBit(0x55);
     case TYPE_4:
-        return !daNpcT_chkEvtBit(0x55) || daNpcT_chkEvtBit(0x40);
+        /* dSv_event_flag_c::M_052 - Main Event - Horseback battle clear */
+        return !daNpcT_chkEvtBit(0x55) ||
+               /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
+               daNpcT_chkEvtBit(0x40);
     case TYPE_5:
+        /* dSv_event_flag_c::F_288 - Cutscene - [cutscene: ] Ilia gets her memories back */
         if (daNpcT_chkEvtBit(0x120) == FALSE) {
-            return !daNpcT_chkEvtBit(0x40) || daNpcT_chkEvtBit(0x44);
+            /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
+            return !daNpcT_chkEvtBit(0x40) ||
+                   /* dSv_event_flag_c::M_035 - Cutscene - [cutscene: 35] after carriage guarding
+                      event */
+                   daNpcT_chkEvtBit(0x44);
         }
         return false;
     case TYPE_6:
+        /* dSv_event_flag_c::F_288 - Cutscene - [cutscene: ] Ilia gets her memories back */
         if (daNpcT_chkEvtBit(0x120) == FALSE) {
-            return !daNpcT_chkEvtBit(0x40) || daNpcT_chkEvtBit(0x44);
+            /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
+            return !daNpcT_chkEvtBit(0x40) ||
+                   /* dSv_event_flag_c::M_035 - Cutscene - [cutscene: 35] after carriage guarding
+                      event */
+                   daNpcT_chkEvtBit(0x44);
         }
         return false;
     case TYPE_7:
-        return !daNpcT_chkEvtBit(0x44) || daNpcT_chkEvtBit(0x108);
+        /* dSv_event_flag_c::M_035 - Cutscene - [cutscene: 35] after carriage guarding event */
+        return !daNpcT_chkEvtBit(0x44) ||
+               /* dSv_event_flag_c::F_0264 - Cutscene - Get master sword */
+               daNpcT_chkEvtBit(0x108);
     case TYPE_8:
-        return !daNpcT_chkEvtBit(0x108) || daNpcT_chkEvtBit(0x120);
+        /* dSv_event_flag_c::F_0264 - Cutscene - Get master sword */
+        return !daNpcT_chkEvtBit(0x108) ||
+               /* dSv_event_flag_c::F_288 - Cutscene - [cutscene: ] Ilia gets her memories back */
+               daNpcT_chkEvtBit(0x120);
     }
     return false;
 }
@@ -486,7 +531,8 @@ BOOL daNpc_Len_c::checkChangeEvt() {
         case TYPE_9:
             break;
         case TYPE_4:
-            if (daNpcT_chkTmpBit(0x3a)) {
+            /* dSv_event_flag_c::T_0057 - Kakariko Village (inside) - Barnes bomb shop <purchase> */
+            if (daNpcT_chkTmpBit(0x3A)) {
                 mEvtNo = 6;
             } else {
                 mEvtNo = 5;
@@ -782,7 +828,9 @@ BOOL daNpc_Len_c::checkStartDemo13StbEvt(fopAc_ac_c* i_npc_p, f32 i_box_min_x, f
                                          f32 i_box_min_z, f32 i_box_max_x, f32 i_box_max_y,
                                          f32 i_box_max_z, f32 i_box_offset) {
     if (strcmp(dComIfGp_getStartStageName(), "R_SP109") == 0 && ((daNpcT_c*)i_npc_p)->mTwilight &&
-        daPy_py_c::checkNowWolfEyeUp() && !daNpcT_chkEvtBit(0x3c) &&
+        daPy_py_c::checkNowWolfEyeUp() &&
+        /* dSv_event_flag_c::M_027 - Cutscene - [cutscene: 13] kids in the church (beast eyes) */
+        !daNpcT_chkEvtBit(0x3C) &&
         daNpcT_chkActorInScreen(i_npc_p, i_box_min_x, i_box_min_y, i_box_min_z, i_box_max_x,
                                 i_box_max_y, i_box_max_z, i_box_offset, 0))
     {
@@ -819,6 +867,8 @@ int daNpc_Len_c::cutConversationInHotel(int param_0) {
         case 0:
             mFaceMotionSeqMngr.setNo(FACE_MOT_UNK_17, -1.0f, 0, 0);
             mMotionSeqMngr.setNo(MOT_UNK_0, -1.0f, 0, 0);
+            /* dSv_event_tmp_flag_c::T_0010 - General use - General use temporary flag (flow
+             * control) A */
             daNpcT_offTmpBit(0xB);
             initTalk(mFlowNodeNo, NULL);
             break;
@@ -1052,6 +1102,8 @@ int daNpc_Len_c::wait(void* param_0) {
                     mEvtNo = 3;
                     field_0xfec = 1;
                 }
+                /* dSv_event_flag_c::M_027 - Cutscene - [cutscene: 13] kids in the church (beast
+                 * eyes) */
                 if (field_0xfec != 0 && daNpcT_chkEvtBit(0x3C) && !dComIfGp_event_runCheck()) {
                     field_0xfec = 0;
                 }
@@ -1210,6 +1262,8 @@ int daNpc_Len_c::talk(void* param_0) {
     case 1:
         if (!mStagger.checkStagger()) {
             if (field_0xfee == 0) {
+                /* dSv_event_tmp_flag_c::T_0010 - General use - General use temporary flag (flow
+                 * control) A */
                 daNpcT_offTmpBit(0xB);
             }
             if (mPreItemNo == fpcNm_ITEM_WOOD_STATUE) {
