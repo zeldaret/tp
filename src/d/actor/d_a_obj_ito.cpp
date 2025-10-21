@@ -72,7 +72,7 @@ static void cut_line_calc(obj_ito_class* i_this, ito_s* param_2, int param_3) {
     cXyz sp11c(0.0f, 0.0f, 0.0f);
     cXyz sp128;
 
-    if (param_2 == &i_this->field_0x103c && actor_p != NULL && actor_p->field_0x60a == 2) {
+    if (param_2 == &i_this->field_0x103c && actor_p != NULL && actor_p->mAction == 2) {
         sp11c = *pos - actor_p->actor.current.pos;
         sp11c *= (XREG_F(2) + 0.0018f) * actor_p->actor.speedF;
     }
@@ -89,7 +89,7 @@ static void cut_line_calc(obj_ito_class* i_this, ito_s* param_2, int param_3) {
     cXyz sp140;
     sp104.y = sp104.z = 0.0f;
 
-    if (actor_p != NULL && actor_p->field_0x60a == 1) {
+    if (actor_p != NULL && actor_p->mAction == 1) {
         bVar1 = true;
         cMtx_YrotS(*calc_mtx, actor_p->field_0x64c[0] + param_3 * (hREG_S(3) + 18000));
         sp104.x = hREG_F(8) + 2.0f;
@@ -248,7 +248,7 @@ static void action(obj_ito_class* i_this) {
         spe8 = i_this->field_0x618 - a_this->current.pos;
         i_this->field_0x624 = a_this->current.pos + (spe8 * 0.5f);
 
-        if (actor_p->field_0x60a == 0) {
+        if (actor_p->mAction == 0) {
             spe8 = actor_p->field_0x654[i_this->field_0x570] - actor_p->field_0x66c[i_this->field_0x570];
             i_this->field_0x624 += spe8 * (TREG_F(5) + 0.25f);
         }
@@ -403,7 +403,7 @@ static void action(obj_ito_class* i_this) {
             }
         }
 
-        if (i_this->field_0x570 == 0 && actor_p->field_0x60a == 2 && i_this->field_0x1038 == 0) {
+        if (i_this->field_0x570 == 0 && actor_p->mAction == 2 && i_this->field_0x1038 == 0) {
             cut_set(i_this, 100);
         }
     }

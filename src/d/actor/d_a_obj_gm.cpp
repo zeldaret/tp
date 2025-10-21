@@ -255,7 +255,7 @@ static void bg_fix(obj_gm_class* i_this) {
     }
 
     if ((i_this->field_0xae4 & 1) != 0) {
-        i_this->field_0xae4 &= 0xFE;
+        i_this->field_0xae4 &= ~1;
         i_this->mAction = 1;
         i_this->mActionMode = 0;
     }
@@ -655,7 +655,7 @@ static daObj_Gm_HIO_c l_HIO;
 
 /* 80BFCBF0-80BFD06C 001B90 047C+00 1/0 0/0 0/0 .text            daObj_Gm_Create__FP10fopAc_ac_c */
 static cPhs__Step daObj_Gm_Create(fopAc_ac_c* a_this) {
-    fopAcM_SetupActor(a_this, obj_gm_class);
+    fopAcM_ct(a_this, obj_gm_class);
     obj_gm_class* i_this = (obj_gm_class*)a_this;
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "OBJ_GM");
