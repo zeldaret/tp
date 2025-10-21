@@ -20,13 +20,84 @@
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_lib.h"
 
-class l_HIO {
-public:
-    /* 8001E098 */ ~l_HIO() {}
-};
-
 #define MAKE_ITEM_PARAMS(itemNo, itemBitNo, param_2, param_3)                                      \
     ((itemNo & 0xFF) << 0 | (itemBitNo & 0xFF) << 0x8 | param_2 << 0x10 | (param_3 & 0xF) << 0x18)
+
+namespace fopAcM {
+extern u8 HeapAdjustEntry;
+extern u8 HeapAdjustUnk;
+extern u8 HeapAdjustVerbose;
+extern u8 HeapAdjustQuiet;
+extern u8 HeapDummyCreate;
+}  // namespace fopAcM
+
+class l_HIO : public JORReflexible {
+public:
+    /* 8001E098 */ ~l_HIO() {
+        #if DEBUG
+        erase();
+        #endif
+    }
+
+    #if DEBUG
+    l_HIO() {
+        mId = -1;
+    }
+
+    void entry() {
+        if (mId < 0) {
+            mId = mDoHIO_CREATE_CHILD("アクターマネージャ", this);
+        }
+    }
+
+    void erase() {
+        if (mId >= 0) {
+            mDoHIO_DELETE_CHILD(mId);
+            mId = -1;
+        }
+    }
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+    #endif
+
+    #if DEBUG
+    /* 0x4 */ s8 mId;
+    #endif
+};
+
+#if DEBUG
+void l_HIO::genMessage(JORMContext* mctx) {
+    mctx->genLabel("アクターソリッドヒープ用プリント表示制御", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("HeapAdjustEntry(ぴったりサイズで格納しようとします)", &fopAcM::HeapAdjustEntry, 1, 0,
+                      NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("HeapAdjustVerbose(アジャストの情報を表示します)", &fopAcM::HeapAdjustVerbose, 1, 0, NULL,
+                      0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("HeapAdjustQuiet(アジャストの情報を表示しません)", &fopAcM::HeapAdjustQuiet, 1, 0, NULL,
+                      0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("HeapDummyCreate(調査のため、ダミー領域に一度格納します)", &fopAcM::HeapDummyCreate, 1,
+                      0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("mDoExt::HeapAdjustVerbose(mDoExtのほうでアジャストの情報を表示します)",
+                      &mDoExt::HeapAdjustVerbose, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genCheckBox("mDoExt::HeapAdjustQuiet(mDoExtのほうでアジャストの情報を表示しません)",
+                      &mDoExt::HeapAdjustQuiet, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+}
+
+void l_HIO::listenPropertyEvent(const JORPropertyEvent* property) {
+    JORMContext* mctx = attachJORMContext(8);
+    JORReflexible::listenPropertyEvent(property);
+
+    if ((u8*)property->id == &fopAcM::HeapDummyCreate) {
+        if (fopAcM::HeapDummyCreate) {
+            DummyCheckHeap_create();
+        } else {
+            DummyCheckHeap_destroy();
+        }
+    }
+
+    releaseJORMContext(mctx);
+}
+#endif
 
 /* 800198A4-800198C4 0141E4 0020+00 0/0 1/1 0/0 .text            fopAcM_FastCreate__FsPFPv_iPvPv */
 fopAc_ac_c* fopAcM_FastCreate(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_createData,
@@ -305,11 +376,11 @@ s32 fopAcM_callCallback(fopAc_ac_c* i_actor, heapCallbackFunc i_callback, JKRHea
 }
 
 /* 80450CC8-80450CCC -00001 0004+00 2/2 0/0 0/0 .sbss            None */
-namespace fopAcM {
-bool HeapAdjustEntry;
-bool HeapAdjustVerbose;
-bool HeapAdjustQuiet;
-}  // namespace fopAcM
+u8 fopAcM::HeapAdjustEntry;
+u8 fopAcM::HeapAdjustUnk;
+u8 fopAcM::HeapAdjustVerbose;
+u8 fopAcM::HeapAdjustQuiet;
+u8 fopAcM::HeapDummyCreate;
 
 /* 8001A1E8-8001A4B0 014B28 02C8+00 1/1 0/0 0/0 .text
  * fopAcM_entrySolidHeap___FP10fopAc_ac_cPFP10fopAc_ac_c_iUl    */
@@ -432,12 +503,12 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback
 /* 8001A4B0-8001A528 014DF0 0078+00 0/0 4/4 446/446 .text
  * fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl     */
 bool fopAcM_entrySolidHeap(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback, u32 i_size) {
-    bool var_r31 = fopAcM::HeapAdjustVerbose;
+    u8 var_r31 = fopAcM::HeapAdjustUnk;
     if (i_size & 0x80000000) {
-        fopAcM::HeapAdjustVerbose = true;
+        fopAcM::HeapAdjustUnk = true;
     }
 
-    bool var_r30 = fopAcM::HeapAdjustEntry;
+    u8 var_r30 = fopAcM::HeapAdjustEntry;
     if (i_size & 0x20000000) {
         fopAcM::HeapAdjustEntry = false;
     } else if (i_size & 0x10000000) {
@@ -445,7 +516,7 @@ bool fopAcM_entrySolidHeap(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback,
     }
 
     bool result = fopAcM_entrySolidHeap_(i_actor, i_heapCallback, i_size & 0xFFFFFF);
-    fopAcM::HeapAdjustVerbose = var_r31;
+    fopAcM::HeapAdjustUnk = var_r31;
     fopAcM::HeapAdjustEntry = var_r30;
     return result;
 }

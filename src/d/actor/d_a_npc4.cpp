@@ -1906,8 +1906,8 @@ int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2,
 }
 
 /* 80155854-80155968 150194 0114+00 0/0 0/0 1/1 .text daNpcF_chkDoBtnEqSpeak__FP10fopAc_ac_c */
-bool daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_actor_p) {
-    bool ret = FALSE;
+BOOL daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_actor_p) {
+    BOOL ret = FALSE;
 
     if (daPy_getPlayerActorClass()->checkPriActorOwn(i_actor_p)) {
         for (int i = 0; i < dComIfGp_getAttention()->GetActionCount(); i++) {

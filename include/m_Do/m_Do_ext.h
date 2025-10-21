@@ -15,6 +15,16 @@ class JKRSolidHeap;
 struct ResTIMG;
 class Z2Creature;
 
+namespace mDoExt {
+    extern u8 HeapAdjustVerbose;
+    extern u8 HeapAdjustQuiet;
+};
+
+#if DEBUG
+void DummyCheckHeap_create();
+void DummyCheckHeap_destroy();
+#endif
+
 class mDoExt_baseAnm {
 public:
     mDoExt_baseAnm() {}
