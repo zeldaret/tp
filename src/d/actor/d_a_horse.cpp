@@ -150,10 +150,8 @@ const daHorse_hio_c1 daHorse_hio_c0::m = {
 };
 
 /* 80837F2C-8083836C 0000EC 0440+00 1/1 0/0 0/0 .text            setReinPos__13daHorseRein_cFi */
-// NONMATCHING 
 void daHorseRein_c::setReinPos(int param_0) {
-    cXyz* var_r27 = &field_0x0[0][param_0];
-    var_r27++;
+    cXyz* var_r27 = &field_0x0[0][param_0] + 1;
 
     cXyz spE0 = *field_0x0[0] - *var_r27;
     spE0.normalizeZP();

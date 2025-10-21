@@ -195,5 +195,5 @@ __vt__11J3DTexNoAnm = .data:0x00000068; // type:object size:0xC scope:global
 __vt__12J3DFrameCtrl = .data:0x00000074; // type:object size:0xC scope:global
 __vt__20daMidna_McaMorfCB1_c = .data:0x00000080; // type:object size:0x10 scope:global
 __vt__16daMidna_matAnm_c = .data:0x00000090; // type:object size:0x10 scope:global
-lbl_51_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
-lbl_51_bss_1 = .bss:0x00000001; // type:object size:0x1 data:byte
+sEyeMoveFlg__16daMidna_matAnm_c = .bss:0x00000000; // type:object size:0x1 data:byte
+sMorfFrame__16daMidna_matAnm_c = .bss:0x00000001; // type:object size:0x1 data:byte

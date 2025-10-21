@@ -5720,6 +5720,12 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
     } else {
         data_804BBBD4 = 0;
     }
+    #elif VERSION == VERSION_GCN_PAL
+    if (dComIfGs_getPalLanguage() == 0) {
+        data_804BBBD4 = 2;
+    } else {
+        data_804BBBD4 = 0;
+    }
     #else
     data_804BBBD4 = 1;
     #endif
@@ -6273,6 +6279,12 @@ static int dmg_rod_Create(fopAc_ac_c* i_this) {
 
     #if VERSION == VERSION_SHIELD_DEBUG
     if (dComIfGs_getPalLanguage() == 1) {
+        data_804BBBD4 = 2;
+    } else {
+        data_804BBBD4 = 0;
+    }
+    #elif VERSION == VERSION_GCN_PAL
+    if (dComIfGs_getPalLanguage() == 0) {
         data_804BBBD4 = 2;
     } else {
         data_804BBBD4 = 0;

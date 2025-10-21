@@ -1497,15 +1497,7 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                                     pwi->SetWallAngleY(cir_index_8c, sp_14);
                                     sp_10 = true;
                                     pwi->SetWallHit();
-                                } else {
-                                    if (sp_30 > sp_3c) {
-                                        break;
-                                    }
-
-                                    if (fabsf(sp_30 - sp_3c) < 0.008f) {
-                                        break;
-                                    }
-
+                                } else if (!(sp_30 > sp_3c || fabsf(sp_30 - sp_3c) < 0.008f)) {
                                     f32 sp_1c;
                                     f32 sp_18;
                                     JUT_ASSERT(0x7e2, !(fpclassify(cx1_58) == FP_QNAN));
