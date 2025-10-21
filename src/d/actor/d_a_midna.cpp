@@ -108,8 +108,10 @@ daMidna_hio_c0::param const daMidna_hio_c0::m = {
     25.0f,
 };
 
+#if VERSION != VERSION_GCN_PAL
 bool daMidna_matAnm_c::sEyeMoveFlg;
 u8 daMidna_matAnm_c::sMorfFrame;
+#endif
 
 /* 804BC218-804BC248 000078 0030+00 2/2 0/0 0/0 .text            init__16daMidna_matAnm_cFv */
 void daMidna_matAnm_c::init() {
