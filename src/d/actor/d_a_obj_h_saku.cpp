@@ -15,9 +15,9 @@ static char* l_arcName = "H_Saku";
 void daObjH_Saku_c::BreakSet() {
     cXyz pos(240.0f, 0.0f, -30.0f);
     cLib_offsetPos(&pos, &current.pos, shape_angle.y, &pos);
-    dComIfGp_particle_set(0x8853, &pos, &tevStr, &shape_angle, NULL);
-    dComIfGp_particle_set(0x8854, &pos, &tevStr, &shape_angle, NULL);
-    dComIfGp_particle_set(0x8855, &pos, &tevStr, &shape_angle, NULL);
+    dComIfGp_particle_set(dPa_RM(ID_ZF_S_KAKURESAKU1_00), &pos, &tevStr, &shape_angle, NULL);
+    dComIfGp_particle_set(dPa_RM(ID_ZF_S_KAKURESAKU1_01), &pos, &tevStr, &shape_angle, NULL);
+    dComIfGp_particle_set(dPa_RM(ID_ZF_S_KAKURESAKU1_02), &pos, &tevStr, &shape_angle, NULL);
     Z2GetAudioMgr()->seStart(Z2SE_OBJ_H_SAKU_ORERU, &pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     field_0x5a0++;
     speedF = 10.0f;
@@ -69,7 +69,7 @@ u8 daObjH_Saku_c::SpeedSet(cXyz* param_1, cXyz* param_2, f32 param_3) {
 /* 80C161E8-80C1629C 000DA8 00B4+00 1/0 0/0 0/0 .text            CreateHeap__13daObjH_Saku_cFv */
 int daObjH_Saku_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "H_Saku.bmd");
-    JUT_ASSERT(80, modelData != 0);
+    JUT_ASSERT(80, modelData != NULL);
 
     field_0x628 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (field_0x628 == NULL) {

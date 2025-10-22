@@ -29,7 +29,8 @@ void daObjGrzRock_c::setRoomNo() {
 /* 80C14CF0-80C14DA0 000190 00B0+00 1/1 0/0 0/0 .text            setPrtcl__14daObjGrzRock_cFv */
 void daObjGrzRock_c::setPrtcl() {
     static u16 const l_prticles_id[6] = {
-        0x89C2, 0x89C3, 0x89C4, 0x89C5, 0x89C6, 0x89C7,
+        dPa_RM(ID_ZI_S_BOMBROCK_FL_BREAK_A), dPa_RM(ID_ZI_S_BOMBROCK_FL_BREAK_B), dPa_RM(ID_ZI_S_BOMBROCK_FL_BREAK_C),
+        dPa_RM(ID_ZI_S_BOMBROCK_FL_BREAK_D), dPa_RM(ID_ZI_S_BOMBROCK_FL_BREAK_E), dPa_RM(ID_ZI_S_BOMBROCK_FL_BREAK_F),
     };
 
     cXyz i_scale(0.85f, 0.85f, 0.85f);
@@ -59,7 +60,7 @@ static char* l_arcName = "grZRock";
 /* 80C14EE0-80C14F50 000380 0070+00 1/0 0/0 0/0 .text            CreateHeap__14daObjGrzRock_cFv */
 int daObjGrzRock_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(246, modelData != 0);
+    JUT_ASSERT(246, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11020084);
     if (mpModel == NULL) {
         return 0;
