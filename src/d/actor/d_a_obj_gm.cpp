@@ -42,13 +42,13 @@ static f32 weg[7] = {
 
 /* 80BFD420-80BFD430 000058 000E+02 0/1 0/0 0/0 .data            tim */
 static s16 tim[7] = {
-    0x05DC,
-    0x03E8,
-    0x04B0,
-    0x02BC,
-    0x0320,
-    0x03E8,
-    0x02BC,
+    1500,
+    1000,
+    1200,
+    700,
+    800,
+    1000,
+    700,
 };
 
 /* 80BFD430-80BFD44C 000068 001C+00 2/2 0/0 0/0 .data            spin_sp */
@@ -58,13 +58,13 @@ static f32 spin_sp[7] = {
 
 /* 80BFD44C-80BFD45C 000084 000E+02 1/1 0/0 0/0 .data            neg */
 static s16 neg[7] = {
-    0x012C,
-    0x00C8,
-    0x00FA,
-    0x0078,
-    0x0096,
-    0x00FA,
-    0x0096,
+    300,
+    200,
+    250,
+    120,
+    150,
+    250,
+    150,
 };
 
 /* 80BFD45C-80BFD478 000094 001C+00 1/1 0/0 0/0 .data            obj_size_maji */
@@ -640,7 +640,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     obj_gm_class* i_this = (obj_gm_class*)a_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("OBJ_GM", gm_obj_bmd[i_this->mType]);
-    JUT_ASSERT(1141, modelData != 0);
+    JUT_ASSERT(1141, modelData != NULL);
 
     i_this->mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mModel == NULL) {
