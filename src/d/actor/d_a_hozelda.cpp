@@ -43,8 +43,10 @@ const daHoZelda_hio_c1 daHoZelda_hio_c0::m = {
     4000.0f,
 };
 
+#if VERSION != VERSION_GCN_PAL
 bool daHoZelda_matAnm_c::mEyeMoveFlg;
 u8 daHoZelda_matAnm_c::mMorfFrame;
+#endif
 
 /* 80845EAC-80845EDC 00008C 0030+00 2/2 0/0 0/0 .text            init__18daHoZelda_matAnm_cFv */
 void daHoZelda_matAnm_c::init() {
