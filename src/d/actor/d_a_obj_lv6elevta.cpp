@@ -262,9 +262,9 @@ int daObjLv6ElevtA_c::Delete() {
 
 /* 80C83618-80C83698 000958 0080+00 1/0 0/0 0/0 .text
  * daObjLv6ElevtA_create1st__FP16daObjLv6ElevtA_c               */
-static void daObjLv6ElevtA_create1st(daObjLv6ElevtA_c* i_this) {
+static int daObjLv6ElevtA_create1st(daObjLv6ElevtA_c* i_this) {
     fopAcM_ct(i_this, daObjLv6ElevtA_c);
-    i_this->create1st();
+    return i_this->create1st();
 }
 
 /* 80C83698-80C836B8 0009D8 0020+00 1/0 0/0 0/0 .text
