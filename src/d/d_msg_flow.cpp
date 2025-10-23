@@ -2515,9 +2515,9 @@ int dMsgFlow_c::event027(mesg_flow_node_event* i_flowNode_p, fopAc_ac_c* i_speak
 // NONMATCHING regalloc
 int dMsgFlow_c::event028(mesg_flow_node_event* i_flowNode_p, fopAc_ac_c* i_speaker_p) {
     u8 pos = dComIfGs_getTmpReg(0xFBFF) - 1;
-    dMsgObject_c::setSelectCursorPos(pos);
-    u8 BombBag = dMsgObject_c::getSelectBombBagID();
-    s16 BombPrice = dMsgObject_c::getSelectBombPrice();
+    dMsgObject_setSelectCursorPos(pos);
+    u8 BombBag = dMsgObject_getSelectBombBagID();
+    s16 BombPrice = dMsgObject_getSelectBombPrice();
 
     dComIfGp_setItemRupeeCount(BombPrice);
     dComIfGs_setBombNum(BombBag, 0);

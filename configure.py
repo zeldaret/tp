@@ -748,7 +748,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_scrn_tree.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_string_base.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_string.cpp"),
-            Object(NonMatching, "d/d_msg_flow.cpp"),
+            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_flow.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01"), "d/d_name.cpp"),
             Object(NonMatching, "d/d_npc_lib.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_ovlp_fade.cpp"),
