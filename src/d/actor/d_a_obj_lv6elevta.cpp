@@ -139,8 +139,8 @@ void daObjLv6ElevtA_c::moveAngle(void* i_FoundActor) {
     }
     shape_angle = current.angle;
     mIsMoving = true;
-    Z2GetAudioMgr()->seStartLevel(JAISoundID(Z2SE_OBJ_L6_RL_FLR_MV), &current.pos, 0, 0, 1.0f, 1.0f,
-                                  -1.0f, -1.0f, 0);
+    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_L6_RL_FLR_MV, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f,
+                                  -1.0f, 0);
 }
 
 /* 80C8321C-80C83538 00055C 031C+00 1/0 0/0 0/0 .text Execute__16daObjLv6ElevtA_cFPPA3_A4_f */
@@ -230,8 +230,8 @@ int daObjLv6ElevtA_c::Execute(Mtx** i_pMtx) {
             moveAngle(found);
         }
     } else if (mIsMoving) {
-        Z2GetAudioMgr()->seStart(JAISoundID(Z2SE_OBJ_L6_RL_FLR_ST), &current.pos, 0, 0, 1.0f, 1.0f,
-                                 -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStart(Z2SE_OBJ_L6_RL_FLR_ST, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f,
+                                 -1.0f, 0);
         mIsMoving = false;
     }
 
