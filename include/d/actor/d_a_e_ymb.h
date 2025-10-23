@@ -13,7 +13,8 @@
  * 
  * @details 
  * 
- */
+*/
+
 class daE_YMB_c : public fopEn_enemy_c {
 public:
     /* 8081615C */ int ctrlJoint(J3DJoint*, J3DModel*);
