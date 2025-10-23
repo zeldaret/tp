@@ -22,11 +22,11 @@ public:
         MODE_END,
     };
 
-    // dalv4CandleTag_c() : dEvLib_callback_c(this) {}
+    dalv4CandleTag_c() : dEvLib_callback_c(this) {}
     ~dalv4CandleTag_c() {}
 
     /* 80C5D4B8 */ void setBaseMtx();
-    /* 80C5D4F0 */ cPhs__Step create();
+    /* 80C5D4F0 */ int create();
     /* 80C5D5D4 */ int Execute();
     /* 80C5D618 */ void procMain();
     /* 80C5D6D4 */ void init_modeWatch();
@@ -57,15 +57,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(dalv4CandleTag_c) == 0x58C);
-
-class dalv4CandleTag_HIO_c : public mDoHIO_entry_c {
-public:
-    /* 80C5D44C */ dalv4CandleTag_HIO_c();
-    /* 80C5D9C0 */ ~dalv4CandleTag_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    u8 mTimer;
-};
 
 #endif /* D_A_OBJ_LV4CANDLETAG_H */
