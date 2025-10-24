@@ -1,7 +1,8 @@
 #ifndef D_A_DMIDNA_H
 #define D_A_DMIDNA_H
 
-#include "d/d_com_inf_game.h"
+#include "SSystem/SComponent/c_phase.h"
+#include "f_op/f_op_actor.h"
 
 /**
  * @ingroup actors-unsorted
@@ -10,7 +11,8 @@
  *
  * @details
  *
- */
+*/
+
 class daDmidna_c : public fopAc_ac_c {
 public:
     /* 8045CED8 */ int createHeap();
@@ -19,6 +21,8 @@ public:
     /* 8045D144 */ void setMatrix();
     /* 8045D1A0 */ int execute();
     /* 8045D204 */ int draw();
+
+    inline daDmidna_c();
 
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ u8 unk_0x570[4];
