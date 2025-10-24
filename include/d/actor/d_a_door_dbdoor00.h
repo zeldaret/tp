@@ -11,7 +11,8 @@
  *
  * @details
  *
- */
+*/
+
 class daDbDoor00_c : public fopAc_ac_c {
 public:
     /* 8045D470 */ char* getAlwaysArcName();
@@ -20,6 +21,9 @@ public:
     /* 8045D4A0 */ char* getBmdArcName();
     /* 8045D4B0 */ char* getBmdName();
     /* 8045D504 */ J3DModelData* getDoorModelData();
+    #if DEBUG
+    /* 80819530 */ bool debugCheckParam();
+    #endif
     /* 8045D594 */ int CreateHeap();
     /* 8045D744 */ void calcMtx();
     /* 8045D8F4 */ int CreateInit();
@@ -41,7 +45,6 @@ public:
 
     void setAction(u8 i_action) { mAction = i_action; }
 
-// private:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ request_of_phase_process_class mPhaseReq2;
     /* 0x578 */ J3DModel* mpModel;
@@ -63,6 +66,9 @@ public:
     /* 0x5C0 */ s8 field_0x5c0;
     /* 0x5C1 */ s8 field_0x5c1;
     /* 0x5C2 */ s16 field_0x5c2;
+    #if DEBUG
+    /* 0x5CC */ u8 field_0x5cc;
+    #endif
 };
 
 STATIC_ASSERT(sizeof(daDbDoor00_c) == 0x5C4);

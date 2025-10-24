@@ -5,7 +5,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_door_dbdoor00.h"
-#include "printf.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_door_param2.h"
@@ -13,10 +12,11 @@
 /* 8045D378-8045D470 000078 00F8+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     if (param_1 == 0) {
-        u16 jointNo = i_joint->getJntNo();
+        J3DJoint* joint = i_joint;
+        int jointNo = joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
         daDbDoor00_c* area = (daDbDoor00_c*)model->getUserArea();
-        MTXCopy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
+        cMtx_copy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
         if (jointNo == area->field_0x5c0 && area->field_0x585 == 1) {
             mDoMtx_stack_c::YrotM(-area->field_0x58a);
         } else if (jointNo == area->field_0x5c1 && area->field_0x585 == 0) {
@@ -64,8 +64,7 @@ char* daDbDoor00_c::getBmdName() {
     return l_bmdName;
 }
 
-/* 8045D504-8045D574 000204 0070+00 1/1 0/0 0/0 .text            getDoorModelData__12daDbDoor00_cFv
- */
+/* 8045D504-8045D574 000204 0070+00 1/1 0/0 0/0 .text            getDoorModelData__12daDbDoor00_cFv */
 J3DModelData* daDbDoor00_c::getDoorModelData() {
     J3DModelData* res = (J3DModelData*)dComIfG_getStageRes(getBmdName());
     if (res == NULL) {
@@ -74,21 +73,53 @@ J3DModelData* daDbDoor00_c::getDoorModelData() {
     return res;
 }
 
+#if DEBUG
+bool daDbDoor00_c::debugCheckParam() {
+    bool rv = false;
+
+    if (field_0x5cc == 0) {
+        u8 frontOption = door_param2_c::getFrontOption(this);
+        u8 backOption = door_param2_c::getBackOption(this);
+        if (frontOption != 0) {
+            OS_REPORT_ERROR("両開き押しドア：表のオプション指定があります！<%d>\n", frontOption); // Double-opening push door: There are options specified on the front! <%d>
+            rv = 1;
+        }
+
+        if (backOption != 0) {
+            OS_REPORT_ERROR("両開き押しドア：裏のオプション指定があります！<%d>\n", backOption); // Double-opening push door: There is an option specified for the back! <%d>
+            rv = 1;
+        }
+
+        u8 exitNo = door_param2_c::getExitNo(this);
+        if (exitNo == 63) {
+            OS_REPORT_ERROR("両開き押しドア：シーン切り替え番号指定がありません！\n"); // Double-opening push door: No scene switch number specified!
+            rv = 1;
+        }
+
+        field_0x5cc = 1;
+    }
+
+    return rv;
+}
+#endif
+
 /* 8045D574-8045D594 000274 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
-static int CheckCreateHeap(fopAc_ac_c* i_this) {
-    return static_cast<daDbDoor00_c*>(i_this)->CreateHeap();
+static int CheckCreateHeap(fopAc_ac_c* a_this) {
+    daDbDoor00_c* i_this = (daDbDoor00_c*)a_this;
+    return i_this->CreateHeap();
 }
 
 /* 8045D594-8045D744 000294 01B0+00 1/1 0/0 0/0 .text            CreateHeap__12daDbDoor00_cFv */
 int daDbDoor00_c::CreateHeap() {
-    J3DModelData* modelData =
-        (J3DModelData*)dComIfG_getObjectRes(getAlwaysArcName(), getDummyBmdName());
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(getAlwaysArcName(), getDummyBmdName());
+    JUT_ASSERT(160, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;
     }
 
     modelData = getDoorModelData();
+    JUT_ASSERT(171, modelData != NULL);
     mpModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel2 == NULL) {
         return 0;
@@ -96,11 +127,12 @@ int daDbDoor00_c::CreateHeap() {
 
     field_0x5c0 = modelData->getJointName()->getIndex("DbDoor00_L");
     field_0x5c1 = modelData->getJointName()->getIndex("DbDoor00_R");
-    modelData = mpModel2->getModelData();
-    J3DJoint* nodePointerL = modelData->getJointNodePointer(field_0x5c0);
-    J3DJoint* nodePointerR = modelData->getJointNodePointer(field_0x5c1);
-    nodePointerL->setCallBack(nodeCallBack);
-    nodePointerR->setCallBack(nodeCallBack);
+    J3DJoint* l_joint = mpModel2->getModelData()->getJointNodePointer(field_0x5c0);
+    J3DJoint* r_joint = mpModel2->getModelData()->getJointNodePointer(field_0x5c1);
+    JUT_ASSERT(185, l_joint != NULL);
+    JUT_ASSERT(186, r_joint != NULL);
+    l_joint->setCallBack(nodeCallBack);
+    r_joint->setCallBack(nodeCallBack);
     mpModel2->setUserArea((uintptr_t)this);
 
     mpBgW = new dBgW();
@@ -108,8 +140,14 @@ int daDbDoor00_c::CreateHeap() {
     if (dzb == NULL) {
         return 0;
     }
+
     calcMtx();
-    return mpBgW->Set(dzb, 1, &mpModel->getBaseTRMtx()) != 1 ? 1 : 0;
+    bool isSet = mpBgW->Set(dzb, 1, &mpModel->getBaseTRMtx());
+    if (isSet == 1) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* 8045D744-8045D8F4 000444 01B0+00 4/4 0/0 0/0 .text            calcMtx__12daDbDoor00_cFv */
@@ -151,7 +189,12 @@ int daDbDoor00_c::CreateInit() {
         fopAcM_SetRoomNo(this, fRoomNo);
         tevStr.room_no = current.roomNo;
     }
-    dComIfG_Bgsp().Regist(mpBgW, this);
+
+    bool isRegist = dComIfG_Bgsp().Regist(mpBgW, this);
+    if (isRegist) {
+        JUT_ASSERT(277, FALSE);
+    }
+
     field_0x584 = 1;
     setAction(4);
     field_0x594 = 0x1e;
@@ -166,6 +209,12 @@ int daDbDoor00_c::CreateInit() {
 /* 8045D9A8-8045DA68 0006A8 00C0+00 1/1 0/0 0/0 .text            create__12daDbDoor00_cFv */
 int daDbDoor00_c::create() {
     fopAcM_ct(this, daDbDoor00_c);
+
+    #if DEBUG
+    if (debugCheckParam()) {
+        return cPhs_ERROR_e;
+    }
+    #endif
 
     int phase = dComIfG_resLoad(&mPhaseReq2, getAlwaysArcName());
     if (phase != cPhs_COMPLEATE_e) {
@@ -235,7 +284,7 @@ void daDbDoor00_c::demoProc() {
     switch (demoAction) {
     case 4:
         if (field_0x58c < 0xfa) {
-            field_0x58c += 0x32;
+            field_0x58c += (s16)0x32;
         }
         if (field_0x58a - field_0x58c < -0x1c71) {
             field_0x58a = -0x1c71;
@@ -251,10 +300,13 @@ void daDbDoor00_c::demoProc() {
             doorAngle = current.angle.y + 0x7fff + field_0x58a;
         }
         player->setPlayerPosAndAngle(&field_0x59c, doorAngle, 0);
+
         if (field_0x5c2 == 0) {
-            daPy_getPlayerActorClass()->onSceneChangeArea(door_param2_c::getExitNo(this), 0xff,
-                                                          NULL);
+            player = daPy_getPlayerActorClass();
+            player->onSceneChangeArea(door_param2_c::getExitNo(this), 0xff, NULL);
+            OS_REPORT("ドア：切替番号<%d>へ切替します！\n", door_param2_c::getExitNo(this)); // Door: Switching to toggle number <%d>!
         }
+
         field_0x5c2--;
     case 3:
     case 5:
@@ -262,7 +314,8 @@ void daDbDoor00_c::demoProc() {
 
     case 8:
         doorAngle = player->shape_angle.y;
-        cLib_addCalcAngleS2(&doorAngle, current.angle.y + 0x7fff, 10, 0x800);
+        s16 target = current.angle.y + 0x7fff;
+        cLib_addCalcAngleS2(&doorAngle, target, 10, 0x800);
         xyz = player->current.pos;
         xyz.x = xyz.x * 0.9f + field_0x59c.x * 0.1f;
         xyz.z = xyz.z * 0.9f + field_0x59c.z * 0.1f;
@@ -383,7 +436,11 @@ int daDbDoor00_c::execute() {
 
 /* 8045E2DC-8045E31C 000FDC 0040+00 1/1 0/0 0/0 .text            checkDraw__12daDbDoor00_cFv */
 int daDbDoor00_c::checkDraw() {
-    return dComIfGp_roomControl_checkRoomDisp(fopAcM_GetRoomNo(this)) != 0 ? 1 : 0;
+    if (dComIfGp_roomControl_checkRoomDisp(fopAcM_GetRoomNo(this))) {
+        return 1;
+    }
+
+    return 0;
 }
 
 /* 8045E31C-8045E428 00101C 010C+00 1/1 0/0 0/0 .text            draw__12daDbDoor00_cFv */
@@ -396,7 +453,7 @@ int daDbDoor00_c::draw() {
         return 1;
     }
     if (field_0x584 == 0) {
-        dComIfG_Bgsp().Regist(mpBgW, this);
+        bool isRegist = dComIfG_Bgsp().Regist(mpBgW, this);
         field_0x584 = 1;
     }
     g_env_light.settingTevStruct(16, &current.pos, &tevStr);
@@ -417,8 +474,7 @@ int daDbDoor00_c::Delete() {
     return 1;
 }
 
-/* 8045E49C-8045E4BC 00119C 0020+00 1/0 0/0 0/0 .text            daDbdoor00_Draw__FP12daDbDoor00_c
- */
+/* 8045E49C-8045E4BC 00119C 0020+00 1/0 0/0 0/0 .text            daDbdoor00_Draw__FP12daDbDoor00_c */
 static int daDbdoor00_Draw(daDbDoor00_c* i_this) {
     return i_this->draw();
 }
@@ -434,23 +490,26 @@ static int daDbdoor00_IsDelete(daDbDoor00_c* i_this) {
     return 1;
 }
 
-/* 8045E4E8-8045E50C 0011E8 0024+00 1/0 0/0 0/0 .text            daDbdoor00_Delete__FP12daDbDoor00_c
- */
+/* 8045E4E8-8045E50C 0011E8 0024+00 1/0 0/0 0/0 .text            daDbdoor00_Delete__FP12daDbDoor00_c */
 static int daDbdoor00_Delete(daDbDoor00_c* i_this) {
+    fpc_ProcID id = fopAcM_GetID(i_this);
     i_this->Delete();
     return 1;
 }
 
-/* 8045E50C-8045E52C 00120C 0020+00 1/0 0/0 0/0 .text            daDbdoor00_Create__FP10fopAc_ac_c
- */
-static int daDbdoor00_Create(fopAc_ac_c* i_this) {
-    return static_cast<daDbDoor00_c*>(i_this)->create();
+/* 8045E50C-8045E52C 00120C 0020+00 1/0 0/0 0/0 .text            daDbdoor00_Create__FP10fopAc_ac_c */
+static int daDbdoor00_Create(fopAc_ac_c* a_this) {
+    daDbDoor00_c* i_this = (daDbDoor00_c*)a_this;
+    fpc_ProcID id = fopAcM_GetID(a_this);
+    return i_this->create();
 }
 
 /* 8045E760-8045E780 -00001 0020+00 1/0 0/0 0/0 .data            l_daDbdoor00_Method */
 static actor_method_class l_daDbdoor00_Method = {
-    (process_method_func)daDbdoor00_Create,  (process_method_func)daDbdoor00_Delete,
-    (process_method_func)daDbdoor00_Execute, (process_method_func)daDbdoor00_IsDelete,
+    (process_method_func)daDbdoor00_Create, 
+    (process_method_func)daDbdoor00_Delete,
+    (process_method_func)daDbdoor00_Execute,
+    (process_method_func)daDbdoor00_IsDelete,
     (process_method_func)daDbdoor00_Draw,
 };
 
