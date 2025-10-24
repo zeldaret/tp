@@ -5,6 +5,8 @@
 #include "f_op/f_op_actor_mng.h"
 
 class dPath;
+class daPasserMng_Hio_c;
+class daPasserMng_Attr_c;
 
 /**
  * @ingroup actors-unsorted
@@ -13,7 +15,10 @@ class dPath;
  *
  * @details
  *
- */
+*/
+
+
+
 class daPasserMng_c : public fopAc_ac_c {
 public:
     /* 80D45738 */ int execute();
@@ -26,23 +31,17 @@ public:
     u8 getDetailLevel() { return argument; }
     u8 getPathID() { return fopAcM_GetParam(this); }
     u8 getIntervalTime() { return fopAcM_GetParam(this) >> 24; }
-    int getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
+    u8 getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
     u8 getEndTime() { return (fopAcM_GetParam(this) >> 16) & 0xff; }
     u8 getMaxNum() { return shape_angle.x; }
     u8 getGroupNo() { return (shape_angle.x >> 8) & 0xff; }
 
     int getTimeHour() {
-        if (dKy_darkworld_check()) {
-            return dKy_getDarktime_hour();
-        } 
-        return dKy_getdaytime_hour();
+        return (u8)dKy_darkworld_check() ? dKy_getDarktime_hour() : dKy_getdaytime_hour();
     }
 
     int getTimeMinute() {
-        if (dKy_darkworld_check()) {
-            return dKy_getDarktime_minute();
-        } 
-        return dKy_getdaytime_minute();
+        return (u8)dKy_darkworld_check() ? dKy_getDarktime_minute() : dKy_getdaytime_minute();
     }
 
     int getTime() {
@@ -50,10 +49,7 @@ public:
     }
 
     int getDayOfWeek() {
-        if (dKy_darkworld_check()) {
-            return dKy_getDarktime_week();
-        }
-        return dKy_get_dayofweek();
+        return (u8)dKy_darkworld_check() ? dKy_getDarktime_week() : dKy_get_dayofweek();
     }
 
     int getChildNum() {
@@ -68,10 +64,10 @@ public:
         return childNum;
     }
 
-    bool checkOverlapping(int param_1, int param_2) {
+    bool checkOverlapping(int param_1, u8 param_2) {
         int iVar1;
-        if ((u32)param_2 <= 6) {
-            iVar1 = (u8)param_2 - 1;
+        if (param_2 <= 6) {
+            iVar1 = param_2 - 1;
         } else {
             iVar1 = 6;
         }
@@ -83,14 +79,20 @@ public:
         return false;
     }
 
+    const daPasserMng_Attr_c& attr() {
+        return M_attr;
+    }
+
     int getLuggageParamLow(u32 param_1) {
         int paramLow;
-  
+        int rndValue;
+
         paramLow = 0;
         switch (param_1) {
         case 0:
         case 1:
-            if (cLib_getRndValue(0, 2) != 0) {
+            rndValue = cLib_getRndValue(0, 2);
+            if (rndValue != 0) {
                 paramLow = 2;
             }
             break;
@@ -99,7 +101,8 @@ public:
         case 9:
         case 10:
         case 15:
-            switch(cLib_getRndValue(0, 3)) {
+            rndValue = cLib_getRndValue(0, 3);
+            switch(rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -113,7 +116,8 @@ public:
             break;
         case 3:
         case 11:
-            switch(cLib_getRndValue(0, 2)) {
+            rndValue = cLib_getRndValue(0, 2);
+            switch(rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -126,7 +130,8 @@ public:
         case 5:
         case 12:
         case 13:
-            switch(cLib_getRndValue(0, 3)) {
+            rndValue = cLib_getRndValue(0, 3);
+            switch(rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -140,7 +145,8 @@ public:
             break;
         case 6:
         case 14:
-            switch (cLib_getRndValue(0, 2)) {
+            rndValue = cLib_getRndValue(0, 2);
+            switch (rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -150,7 +156,8 @@ public:
             }
             break;
         case 7:
-            switch (cLib_getRndValue(0, 2)) {
+            rndValue = cLib_getRndValue(0, 2);
+            switch (rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -161,7 +168,8 @@ public:
             break;
         case 0x10:
         case 0x17:
-            switch(cLib_getRndValue(0, 3)) {
+            rndValue = cLib_getRndValue(0, 3);
+            switch(rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -175,7 +183,8 @@ public:
             break;
         case 0x11:
         case 0x18:
-            switch(cLib_getRndValue(0, 3)) {
+            rndValue = cLib_getRndValue(0, 3);
+            switch(rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -189,7 +198,8 @@ public:
             break;
         case 0x12:
         case 0x19:
-            switch(cLib_getRndValue(0, 4)) {
+            rndValue = cLib_getRndValue(0, 4);
+            switch(rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -206,7 +216,8 @@ public:
             break;
         case 0x13:
         case 0x1a:
-            switch (cLib_getRndValue(0, 2)) {
+            rndValue = cLib_getRndValue(0, 2);
+            switch (rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -217,7 +228,8 @@ public:
             break;
         case 0x14:
         case 0x1b:
-            switch (cLib_getRndValue(0, 2)) {
+            rndValue = cLib_getRndValue(0, 2);
+            switch (rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -228,7 +240,8 @@ public:
             break;
         case 0x15:
         case 0x1c:
-            switch (cLib_getRndValue(0, 2)) {
+            rndValue = cLib_getRndValue(0, 2);
+            switch (rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -239,7 +252,8 @@ public:
             break;
         case 0x16:
         case 0x1d:
-            switch(cLib_getRndValue(0, 3)) {
+            rndValue = cLib_getRndValue(0, 3);
+            switch(rndValue) {
             case 0:
                 paramLow = 0;
                 break;
@@ -253,7 +267,7 @@ public:
             break;
         default:
             OS_REPORT("%s: Line.%d arg=%d\n", "d_a_passer_mng.cpp", 1049, param_1);
-            JUT_PANIC(1050, 0);
+            JUT_PANIC(1050, "0");
             break;
         }
         return paramLow << 8;
@@ -266,6 +280,8 @@ public:
 
     static Group* mGroupTbl[4];
 
+    static daPasserMng_Attr_c const M_attr;
+    static daPasserMng_Hio_c M_hio;
 private:
     /* 0x568 */ fpc_ProcID* childProcIds;
     /* 0x56C */ dPath* mPath;
@@ -280,7 +296,7 @@ private:
     /* 0x594 */ s16 field_0x594;
     /* 0x596 */ u8 field_0x596;
     /* 0x597 */ u8 field_0x597;
-    };
+};
 
 STATIC_ASSERT(sizeof(daPasserMng_c) == 0x598);
 
