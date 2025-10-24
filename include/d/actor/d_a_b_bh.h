@@ -14,7 +14,8 @@
  *
  * @details Forest Temple enemy.
  *
- */
+*/
+
 class b_bh_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;
@@ -28,17 +29,17 @@ public:
     /* 0x664 */ u8 field_0x664[0x668 - 0x664];
     /* 0x668 */ s16 field_0x668;
     /* 0x66A */ s16 mAction;
-    /* 0x66C */ s16 mMode;
+    /* 0x66C */ s16 mActionPhase;
     /* 0x66E */ u8 field_0x66E[0x674 - 0x66E];
     /* 0x674 */ cXyz field_0x674;
     /* 0x680 */ u8 field_0x680[0x684 - 0x680];
-    /* 0x684 */ s16 field_0x684;
-    /* 0x686 */ s16 field_0x686;
+    /* 0x684 */ s16 mShapeAngleYTarget;
+    /* 0x686 */ s16 mShapeAngleXTarget;
     /* 0x688 */ f32 field_0x688;
     /* 0x68C */ f32 field_0x68c;
-    /* 0x690 */ f32 field_0x690;
+    /* 0x690 */ f32 mStepScale;
     /* 0x694 */ s16 mTimers[5];
-    /* 0x69E */ s16 field_0x69e;
+    /* 0x69E */ s16 mInvulnerabilityTimer;
     /* 0x6A0 */ s8 field_0x6a0;
     /* 0x6A4 */ cXyz mBasePos;
     /* 0x6B0 */ cXyz field_0x6b0;
@@ -67,7 +68,7 @@ public:
     /* 0xA20 */ f32 field_0xa20;
     /* 0xA24 */ s8 field_0xa24;
     /* 0xA25 */ s8 field_0xa25;
-    /* 0xA26 */ csXyz field_0xa26;
+    /* 0xA26 */ csXyz mDiababaShapeAngle;
     /* 0xA2C */ s8 mAnmSeTimer;
     /* 0xA30 */ u32 mAnmSe;
     /* 0xA34 */ dCcD_Stts mColliderStts;

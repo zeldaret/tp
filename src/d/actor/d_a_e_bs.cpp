@@ -8,6 +8,58 @@
 #include "d/actor/d_a_e_bs.h"
 #include "f_op/f_op_actor_enemy.h"
 
+enum E_bs_RES_File_ID {
+    /* BCK */
+    /* 0x4 */ BCK_BS_APPEAR = 0x4,
+    /* 0x5 */ BCK_BS_ATTACK,
+    /* 0x6 */ BCK_BS_DAMAGE,
+    /* 0x7 */ BCK_BS_WAIT01,
+    /* 0x8 */ BCK_BS_WAIT02,
+    /* 0x9 */ BCK_BS_WALK,
+    /* 0xA */ BCK_SPEAR_WAIT01,
+    /* 0xB */ BCK_SPEAR_WAIT02,
+
+    /* BMDR */
+    /* 0xE */ BMDR_BS = 0xE,
+    /* 0xF */ BMDR_BS_SPEAR,
+};
+
+enum daE_BS_ACTION {
+    /* 0x0 */ ACTION_APPEAR,
+    /* 0x1 */ ACTION_NORMAL,
+    /* 0x2 */ ACTION_FIGHT_RUN,
+    /* 0x3 */ ACTION_ATTACK,
+    /* 0x4 */ ACTION_DAMAGE,
+};
+
+enum Action_Phase {
+    /* 0x0 */ PHASE_INIT,
+
+    /* e_bs_appear */
+    /* 0x1 */ APPEAR_PHASE_1,
+    /* 0x2 */ APPEAR_PHASE_END,
+
+    /* e_bs_normal */
+    /* 0x1 */ NORMAL_PHASE_1 = 0x1,
+    /* 0x2 */ NORMAL_PHASE_WALK,
+    /* 0x3 */ NORMAL_PHASE_END,
+
+    /* e_bs_fight_run */
+    /* -10 */ FIGHT_RUN_PHASE_WAIT01 = -10,
+    /*  -9 */ FIGHT_RUN_PHASE_NEG_9,
+    /* 0x0 */ FIGHT_RUN_PHASE_WALK = 0x0,
+    /* 0x1 */ FIGHT_RUN_PHASE_1,
+    /* 0x2 */ FIGHT_RUN_PHASE_2,
+    /* 0x3 */ FIGHT_RUN_PHASE_3,
+    /* 0x5 */ FIGHT_RUN_PHASE_END = 0x5,
+
+    /* e_bs_attack */
+    /* 0x1 */ ATTACK_PHASE_END = 0x1,
+
+    /* e_bs_damage */
+    /* 0x1 */ DAMAGE_PHASE_END = 0x1,
+};
+
 class daE_BS_HIO_c : public JORReflexible {
 public:
     /* 8068E12C */ daE_BS_HIO_c();
@@ -22,14 +74,6 @@ public:
     /* 0x14 */ f32 pl_recognize_dist;
     /* 0x18 */ f32 attack_start_range;
     /* 0x1C */ f32 battle_start_range;
-};
-
-enum daE_BS_ACTION {
-    ACTION_APPEAR,
-    ACTION_NORMAL,
-    ACTION_FIGHT_RUN,
-    ACTION_ATTACK,
-    ACTION_DAMAGE,
 };
 
 /* 8068E12C-8068E178 0000EC 004C+00 1/1 0/0 0/0 .text            __ct__12daE_BS_HIO_cFv */
@@ -53,10 +97,10 @@ static void anm_init(e_bs_class* i_this, int i_anm, f32 i_morf, u8 i_mode, f32 i
     i_this->modelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_BS", i_anm), i_mode, i_morf, i_speed, 0.0f, -1.0f);
     i_this->anm = i_anm;
 
-    if (i_anm == 7 || i_anm == 4 || i_anm == 9) {
-        wepon_anm_init(i_this, 10);
+    if (i_anm == BCK_BS_WAIT01 || i_anm == BCK_BS_APPEAR || i_anm == BCK_BS_WALK) {
+        wepon_anm_init(i_this, BCK_SPEAR_WAIT01);
     } else {
-        wepon_anm_init(i_this, 11);
+        wepon_anm_init(i_this, BCK_SPEAR_WAIT02);
     }
 }
 
@@ -177,31 +221,31 @@ static void e_bs_appear(e_bs_class* i_this) {
 
     i_this->invulnerabilityTimer = 5;
 
-    switch (i_this->mode) {
-    case 0:
-        anm_init(i_this, 4, 0.0f, 0, 0.0f);
-        i_this->mode = 1;
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
+        anm_init(i_this, BCK_BS_APPEAR, 0.0f, J3DFrameCtrl::EMode_NONE, 0.0f);
+        i_this->action_phase = APPEAR_PHASE_1;
         i_this->timers[0] = cM_rndF(20.0f);
         /* fallthrough */
-    case 1:
+    case APPEAR_PHASE_1:
         if (i_this->timers[0] == 0 && i_this->player_dist < i_this->appear_range) {
-            i_this->mode = 2;
+            i_this->action_phase = APPEAR_PHASE_END;
             i_this->modelMorf->setPlaySpeed(1.0f);
             actor->shape_angle.y = actor->current.angle.y = i_this->angleY_to_player;
             i_this->is_draw_shadow = TRUE;
 
             for (int i = 0; i <= 1; i++) {
-                static u16 ap_name[] = {0x81D8, 0x81D9};
+                static u16 ap_name[] = {dPa_RM(ID_ZI_S_BS_APPEAR_A), dPa_RM(ID_ZI_S_BS_APPEAR_B)};
                 dComIfGp_particle_set(ap_name[i], &actor->current.pos, &actor->shape_angle, NULL);
             }
 
             i_this->sound.startCreatureSound(Z2SE_EN_BS_APPEAR, 0, -1);
         }
         break;
-    case 2:
+    case APPEAR_PHASE_END:
         if (i_this->modelMorf->isStop()) {
             i_this->action = ACTION_FIGHT_RUN;
-            i_this->mode = 0;
+            i_this->action_phase = 0;
         }
         break;
     }
@@ -217,24 +261,24 @@ static daE_BS_HIO_c l_HIO;
 static void e_bs_normal(e_bs_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
     cXyz sp28;
-    cXyz sp1C;
+    cXyz pos;
     f32 move_speed = 0.0f;
     s16 search_angle = 0x4000;
 
-    switch (i_this->mode) {
-    case 0:
-    case 1:
-    case 2:
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
+    case NORMAL_PHASE_1:
+    case NORMAL_PHASE_WALK:
         if (i_this->timers[0] == 0) {
             s16 var_r27;
             if (way_bg_check(i_this, 200.0f, 50.0f)) {
                 var_r27 = 32768.0f + cM_rndFX(10000.0f);
                 i_this->timers[1] = 40;
             } else {
-                sp1C.x = actor->home.pos.x + cM_rndFX(600.0f);
-                sp1C.y = actor->home.pos.y;
-                sp1C.z = actor->home.pos.z + cM_rndFX(600.0f);
-                sp28 = sp1C - actor->current.pos;
+                pos.x = actor->home.pos.x + cM_rndFX(600.0f);
+                pos.y = actor->home.pos.y;
+                pos.z = actor->home.pos.z + cM_rndFX(600.0f);
+                sp28 = pos - actor->current.pos;
 
                 var_r27 = cM_atan2s(sp28.x, sp28.z) - actor->current.angle.y;
                 if (var_r27 > 0x3000) {
@@ -244,23 +288,23 @@ static void e_bs_normal(e_bs_class* i_this) {
                 }
             }
 
-            i_this->field_0x5c8 = actor->current.angle.y + var_r27;
+            i_this->target_angle_y = actor->current.angle.y + var_r27;
 
-            anm_init(i_this, 9, 5.0f, 2, 1.0f);
-            i_this->mode = 3;
+            anm_init(i_this, BCK_BS_WALK, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            i_this->action_phase = NORMAL_PHASE_END;
             i_this->timers[0] = 100.0f + cM_rndF(100.0f);
         } else {
             search_angle = 0x7000;
         }
         break;
-    case 3:
+    case NORMAL_PHASE_END:
         move_speed = l_HIO.move_speed;
-        cLib_addCalcAngleS2(&actor->current.angle.y, i_this->field_0x5c8, 8, 0x400);
+        cLib_addCalcAngleS2(&actor->current.angle.y, i_this->target_angle_y, 8, 0x400);
 
         if (i_this->timers[0] == 0 || (i_this->timers[1] == 0 && way_bg_check(i_this, 200.0f, 50.0f))) {
-            i_this->mode = 2;
+            i_this->action_phase = NORMAL_PHASE_WALK;
             i_this->timers[0] = 50.0f + cM_rndF(100.0f);
-            anm_init(i_this, 7, 10.0f, 2, 1.0f);
+            anm_init(i_this, BCK_BS_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
     }
@@ -270,7 +314,7 @@ static void e_bs_normal(e_bs_class* i_this) {
     BOOL spC = fopAcM_otoCheck(actor, 2000.0f);
     if (((i_this->counter & 15) == 0 || spC) && (spC || pl_check(i_this, i_this->pl_recognize_dist, search_angle))) {
         i_this->action = ACTION_FIGHT_RUN;
-        i_this->mode = -10;
+        i_this->action_phase = -10;
         i_this->timers[0] = 60;
     }
 }
@@ -283,73 +327,73 @@ static void e_bs_fight_run(e_bs_class* i_this) {
     f32 move_speed = 0.0f;
     int anm_frame = i_this->modelMorf->getFrame();
     
-    switch (i_this->mode) {
-    case -10:
-        anm_init(i_this, 7, 5.0f, 2, 1.0f);
+    switch (i_this->action_phase) {
+    case FIGHT_RUN_PHASE_WAIT01:
+        anm_init(i_this, BCK_BS_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->timers[1] = 15.0f + cM_rndF(10.0f);
-        i_this->mode = -9;
+        i_this->action_phase = FIGHT_RUN_PHASE_NEG_9;
         break;
-    case -9:
+    case FIGHT_RUN_PHASE_NEG_9:
         if (i_this->timers[1] == 0) {
-            i_this->mode = 0;
+            i_this->action_phase = FIGHT_RUN_PHASE_WALK;
         }
         break;
-    case 0:
-        anm_init(i_this, 9, 5.0f, 2, 2.0f + cM_rndFX(0.1f));
-        i_this->mode = 1;
+    case FIGHT_RUN_PHASE_WALK:
+        anm_init(i_this, BCK_BS_WALK, 5.0f, J3DFrameCtrl::EMode_LOOP, 2.0f + cM_rndFX(0.1f));
+        i_this->action_phase = FIGHT_RUN_PHASE_1;
         /* fallthrough */
-    case 1:
+    case FIGHT_RUN_PHASE_1:
         move_speed = l_HIO.rush_speed;
         if (i_this->player_dist < l_HIO.attack_start_range) {
-            i_this->mode = 2;
+            i_this->action_phase = FIGHT_RUN_PHASE_2;
             i_this->modelMorf->setPlaySpeed(1.5f);
         }
         break;
-    case 2:
+    case FIGHT_RUN_PHASE_2:
         move_speed = l_HIO.move_speed;
         if (i_this->player_dist > (30.0f + l_HIO.attack_start_range)) {
-            i_this->mode = 0;
+            i_this->action_phase = PHASE_INIT;
         } else if (i_this->player_dist < (l_HIO.attack_start_range - 30.0f)) {
             if (cM_rndF(1.0f) < 0.35f) {
-                i_this->mode = 3;
-                anm_init(i_this, 9, 5.0f, 2, -1.5f);
+                i_this->action_phase = FIGHT_RUN_PHASE_3;
+                anm_init(i_this, BCK_BS_WALK, 5.0f, J3DFrameCtrl::EMode_LOOP, -1.5f);
             } else {
-                i_this->mode = 5;
+                i_this->action_phase = FIGHT_RUN_PHASE_END;
                 i_this->timers[0] = 20.0f + cM_rndF(20.0f);
-                anm_init(i_this, 8, 5.0f, 2, 1.0f);
+                anm_init(i_this, BCK_BS_WAIT02, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             }
         }
         break;
-    case 3:
+    case FIGHT_RUN_PHASE_3:
         move_speed = -l_HIO.move_speed;
         if (i_this->player_dist > l_HIO.attack_start_range) {
             if (cM_rndF(1.0f) < 0.35f) {
-                i_this->mode = 2;
+                i_this->action_phase = FIGHT_RUN_PHASE_2;
             } else {
-                i_this->mode = 5;
+                i_this->action_phase = FIGHT_RUN_PHASE_END;
                 i_this->timers[0] = 20.0f + cM_rndF(20.0f);
-                anm_init(i_this, 8, 5.0f, 2, 1.0f);
+                anm_init(i_this, BCK_BS_WAIT02, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             }
         }
         break;
-    case 5:
+    case FIGHT_RUN_PHASE_END:
         if (i_this->timers[0] == 0 || i_this->player_dist > (50.0f + l_HIO.attack_start_range)) {
-            i_this->mode = 0;
+            i_this->action_phase = PHASE_INIT;
         }
         break;
     }
 
     cLib_addCalc2(&actor->speedF, move_speed, 1.0f, 3.0f);
 
-    if (i_this->mode >= 0) {
+    if (i_this->action_phase >= PHASE_INIT) {
         cLib_addCalcAngleS2(&actor->current.angle.y, i_this->angleY_to_player, 4, 0x800);
     }
 
     if (!pl_check(i_this, 50.0f + i_this->pl_recognize_dist, 0x7FFF) && i_this->timers[0] == 0) {
         i_this->action = ACTION_NORMAL;
-        i_this->mode = 0;
+        i_this->action_phase = PHASE_INIT;
         i_this->timers[0] = 50.0f + cM_rndF(50.0f);
-        anm_init(i_this, 7, 10.0f, 2, 1.0f);
+        anm_init(i_this, BCK_BS_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         return;
     }
 
@@ -359,7 +403,7 @@ static void e_bs_fight_run(e_bs_class* i_this) {
         f32 attack_chance = 0.5f;
         if (cM_rndF(1.0f) < attack_chance) {
             i_this->action = ACTION_ATTACK;
-            i_this->mode = 0;
+            i_this->action_phase = PHASE_INIT;
         }
     }
 
@@ -370,7 +414,7 @@ static void e_bs_fight_run(e_bs_class* i_this) {
 static fopAc_ac_c* at_hit_check(e_bs_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
-    if (i_this->mode >= 10) {
+    if (i_this->action_phase >= 10) {
         return NULL;
     }
 
@@ -390,12 +434,12 @@ static void e_bs_attack(e_bs_class* i_this) {
     int anm_frame = i_this->modelMorf->getFrame();
     i_this->field_0x6a8 = 1;
 
-    switch (i_this->mode) {
-    case 0:
-        anm_init(i_this, 5, 5.0f + TREG_F(14), 0, 1.0f);
-        i_this->mode = 1;
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
+        anm_init(i_this, BCK_BS_ATTACK, 5.0f + TREG_F(14), J3DFrameCtrl::EMode_NONE, 1.0f);
+        i_this->action_phase = ATTACK_PHASE_END;
         break;
-    case 1:
+    case ATTACK_PHASE_END:
         if (anm_frame < 10) {
             cLib_addCalcAngleS2(&actor->current.angle.y, i_this->angleY_to_player, 2, 0x800);
         }
@@ -409,7 +453,7 @@ static void e_bs_attack(e_bs_class* i_this) {
 
         if (i_this->modelMorf->isStop()) {
             i_this->action = ACTION_FIGHT_RUN;
-            i_this->mode = 0;
+            i_this->action_phase = FIGHT_RUN_PHASE_WALK;
         }
         break;
     }
@@ -421,7 +465,7 @@ static void e_bs_attack(e_bs_class* i_this) {
         if (at_hit_actor != NULL && fopAcM_GetName(at_hit_actor) == PROC_ALINK && daPy_getPlayerActorClass()->checkPlayerGuard()) {
             i_this->modelMorf->setPlaySpeed(0.0f);
             i_this->action = ACTION_FIGHT_RUN;
-            i_this->mode = 0;
+            i_this->action_phase = FIGHT_RUN_PHASE_WALK;
             i_this->timers[2] = 10.0f + cM_rndF(20.0f);
         }
     }
@@ -429,15 +473,15 @@ static void e_bs_attack(e_bs_class* i_this) {
 
 /* 8068F15C-8068F208 00111C 00AC+00 1/1 0/0 0/0 .text            e_bs_damage__FP10e_bs_class */
 static void e_bs_damage(e_bs_class* i_this) {
-    switch (i_this->mode) {
-    case 0:
-        anm_init(i_this, 6, 1.0f + TREG_F(14), 0, 1.0f);
-        i_this->mode = 1;
+    switch (i_this->action_phase) {
+    case PHASE_INIT:
+        anm_init(i_this, BCK_BS_DAMAGE, 1.0f + TREG_F(14), J3DFrameCtrl::EMode_NONE, 1.0f);
+        i_this->action_phase = DAMAGE_PHASE_END;
         break;
-    case 1:
+    case DAMAGE_PHASE_END:
         if (i_this->modelMorf->isStop()) {
             i_this->action = ACTION_FIGHT_RUN;
-            i_this->mode = 0;
+            i_this->action_phase = FIGHT_RUN_PHASE_WALK;
         }
         break;
     }
@@ -473,7 +517,7 @@ static void damage_check(e_bs_class* i_this) {
 
                 if (actor->health <= 0) {
                     for (int j = 0; j <= 2; j++) {
-                        static u16 ap_name[] = {0x81DA, 0x81DB, 0x81DC};
+                        static u16 ap_name[] = {dPa_RM(ID_ZI_S_BS_KONAGONA_A), dPa_RM(ID_ZI_S_BS_KONAGONA_B), dPa_RM(ID_ZI_S_BS_KONAGONA_C)};
                         dComIfGp_particle_set(ap_name[j], &actor->current.pos, &actor->shape_angle, NULL);
                     }
 
@@ -489,13 +533,13 @@ static void damage_check(e_bs_class* i_this) {
                     }
                 } else {
                     i_this->action = ACTION_DAMAGE;
-                    i_this->mode = 0;
+                    i_this->action_phase = PHASE_INIT;
 
                     i_this->sound.startCreatureVoice(Z2SE_EN_BS_V_DAMAGE, -1);
                     i_this->sound.startCreatureSound(Z2SE_EN_BS_SHAKE_BONES, 0, -1);
 
                     i_this->field_0x6b8 = 30.0f + YREG_F(0);
-                    i_this->field_0x6bc = i_this->atInfo.mHitDirection.y;
+                    i_this->hit_direction_y = i_this->atInfo.mHitDirection.y;
                     actor->speedF = 0.0f;
                 }
                 break;
@@ -597,7 +641,7 @@ static void action(e_bs_class* i_this) {
         sp54.x = 0.0f;
         sp54.y = 0.0f;
         sp54.z = -i_this->field_0x6b8;
-        cMtx_YrotS(*calc_mtx, i_this->field_0x6bc);
+        cMtx_YrotS(*calc_mtx, i_this->hit_direction_y);
         MtxPosition(&sp54, &sp48);
         actor->current.pos += sp48;
 
@@ -654,24 +698,24 @@ static void action(e_bs_class* i_this) {
 
     if (i_this->field_0x6a8 >= 0) {
         if ((i_this->counter & 31) == 0 && cM_rndF(1.0f) < 0.5f) {
-            i_this->field_0x6ae = cM_rndFX(4000.0f);
+            i_this->target_head_rot_y = cM_rndFX(4000.0f);
         }
     } else {
-        i_this->field_0x6ae = 0;
+        i_this->target_head_rot_y = 0;
     }
 
-    cLib_addCalcAngleS2(&i_this->head_rot_y, i_this->field_0x6ae, 4, 0x400);
+    cLib_addCalcAngleS2(&i_this->head_rot_y, i_this->target_head_rot_y, 4, 0x400);
 }
 
 /* 8068FA04-8068FBDC 0019C4 01D8+00 1/1 0/0 0/0 .text            anm_se_set__FP10e_bs_class */
 static void anm_se_set(e_bs_class* i_this) {
     s8 do_sound = FALSE;
 
-    if (i_this->anm == 4) {
+    if (i_this->anm == BCK_BS_APPEAR) {
         if (i_this->modelMorf->checkFrame(38.0f) || i_this->modelMorf->checkFrame(54.0f)) {
             do_sound = TRUE;
         }
-    } else if (i_this->anm == 5) {
+    } else if (i_this->anm == BCK_BS_ATTACK) {
         if (i_this->modelMorf->checkFrame(9.0f)) {
             i_this->sound.startCreatureVoice(Z2SE_EN_BS_V_ATTACK, -1);
         }
@@ -679,15 +723,15 @@ static void anm_se_set(e_bs_class* i_this) {
         if (i_this->modelMorf->checkFrame(14.0f) || i_this->modelMorf->checkFrame(29.0f)) {
             do_sound = TRUE;
         }
-    } else if (i_this->anm == 6) {
+    } else if (i_this->anm == BCK_BS_DAMAGE) {
         if (i_this->modelMorf->checkFrame(16.0f)) {
             do_sound = TRUE;
         }
-    } else if (i_this->anm == 8) {
+    } else if (i_this->anm == BCK_BS_WAIT02) {
         if (i_this->modelMorf->checkFrame(7.0f) || i_this->modelMorf->checkFrame(19.0f)) {
             do_sound = TRUE;
         }
-    } else if (i_this->anm == 9) {
+    } else if (i_this->anm == BCK_BS_WALK) {
         if (i_this->modelMorf->checkFrame(14.0f) || i_this->modelMorf->checkFrame(29.0f)) {
             do_sound = TRUE;
         }
