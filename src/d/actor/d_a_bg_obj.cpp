@@ -13,9 +13,22 @@
 #include "d/d_s_play.h"
 #include "SSystem/SComponent/c_math.h"
 
-//
-// Declarations:
-//
+/* 8045CAE4-8045CB38 000020 0054+00 4/4 0/0 0/0 .data            l_tri_src */
+static dCcD_SrcTri l_tri_src = {
+    {
+        {0, {{0, 0, 0}, {0xD8400422, 0x11}, 0}},
+        {dCcD_SE_NONE, 0, 0, 0, {0}},
+        {dCcD_SE_NONE, 0, 0, 0, {4}},
+        {0},
+    },
+    {
+        {
+            {0.0f, 0.0f, 0.0f},
+            {0.0f, 0.0f, 0.0f},
+            {0.0f, 0.0f, 0.0f},
+        },
+    },
+};
 
 /* 80459658-804596C4 000078 006C+00 2/2 0/0 0/0 .text            getBmdName__Fii */
 static const char* getBmdName(int param_0, int param_1) {
@@ -72,65 +85,97 @@ static const char* getDzbName(int param_0) {
     return l_dzbName;
 }
 
-static const char* dummy() {
-    return "spec.dat";
-}
+// static const char* dummy() {
+//     return "spec.dat";
+// }
 
-/* 804597E8-80459814 000208 002C+00 1/1 0/0 0/0 .text
- * initParticleBlock__Q29daBgObj_c11spec_data_cFPUc             */
+/* 8045CB38-8045CB3C -00001 0004+00 1/1 0/0 0/0 .data            l_specName */
+static char* l_specName = "spec.dat";
+
+/* 804597E8-80459814 000208 002C+00 1/1 0/0 0/0 .text            initParticleBlock__Q29daBgObj_c11spec_data_cFPUc */
 u8* daBgObj_c::spec_data_c::initParticleBlock(u8* i_dataPtr) {
+    if (mpParticleBlock != NULL) {
+        OS_REPORT_ERROR("パーティクルデータブロックが複数見つかりました！！\n"); // Multiple particle data blocks were found!!
+        JUT_ASSERT(340, FALSE);
+    }
+    
     mpParticleBlock = i_dataPtr;
-    mParticleNum = *(u32*)mpParticleBlock >> 4 & 0xFFFFF;
+    mParticleNum = (*(u32*)(mpParticleBlock) & 0xFFFFFF) >> 4;
 
-    return i_dataPtr + ((*(u32*)mpParticleBlock & 0xFFFFFF) + 4);
+    i_dataPtr += ((*(u32*)mpParticleBlock & 0xFFFFFF) + 4);
+    return i_dataPtr;
 }
 
-/* 80459814-80459840 000234 002C+00 1/1 0/0 0/0 .text
- * initSoundBlock__Q29daBgObj_c11spec_data_cFPUc                */
+/* 80459814-80459840 000234 002C+00 1/1 0/0 0/0 .text            initSoundBlock__Q29daBgObj_c11spec_data_cFPUc */
 u8* daBgObj_c::spec_data_c::initSoundBlock(u8* i_dataPtr) {
-    mpSoundBlock = i_dataPtr;
-    mSoundNum = *(u32*)mpSoundBlock >> 2 & 0x3FFFFF;
+    if (mpSoundBlock != NULL) {
+        OS_REPORT_ERROR("サウンドデータブロックが複数見つかりました！！\n"); // Multiple sound data blocks were found!!
+        JUT_ASSERT(362, FALSE);
+    }
 
-    return i_dataPtr + ((*(u32*)mpSoundBlock & 0xFFFFFF) + 4);
+
+    mpSoundBlock = i_dataPtr;
+    mSoundNum = ((*(u32*)mpSoundBlock) & 0xFFFFFF) >> 2;
+
+    i_dataPtr += ((*(u32*)mpSoundBlock & 0xFFFFFF) + 4);
+    return i_dataPtr;
 }
 
-/* 80459840-804598F4 000260 00B4+00 1/1 0/0 0/0 .text
- * initTexShareBlock__Q29daBgObj_c11spec_data_cFPUc             */
+/* 80459840-804598F4 000260 00B4+00 1/1 0/0 0/0 .text            initTexShareBlock__Q29daBgObj_c11spec_data_cFPUc */
 u8* daBgObj_c::spec_data_c::initTexShareBlock(u8* i_dataPtr) {
     char sp48[64];
     char sp8[64];
 
+    if (mpTexShareBlock != NULL) {
+        OS_REPORT_ERROR("テクスチャ共有ブロックが複数見つかりました！！\n"); // Multiple texture sharing blocks were found!!
+        JUT_ASSERT(384, FALSE);
+    }
+
     mpTexShareBlock = i_dataPtr;
-    mTexShareNum = i_dataPtr[4];
+    i_dataPtr += 4;
+    mTexShareNum = *i_dataPtr;
+    i_dataPtr += 4;
+
+    if (mTexShareNum == 0) {
+        OS_REPORT_ERROR("テクスチャ共有データ数が０です！\n"); // The number of texture sharing data is 0!
+        JUT_ASSERT(397, FALSE);
+    }
 
     int i = 0;
-    u8* dataPos = i_dataPtr + 8;
+    u8* dataPos = i_dataPtr;
 
     for (; i < mTexShareNum; i++) {
         strcpy(sp48, (char*)dataPos);
-        int len = strlen((char*)dataPos);
-
-        dataPos += len + 1;
+        dataPos += strlen((char*)dataPos) + 1;
         if (*dataPos != 0) {
             strcpy(sp8, (char*)dataPos);
             dataPos += strlen((char*)dataPos) + 1;
         } else if (*dataPos == 0 && dataPos[1] == 1) {
             dataPos += 2;
+        } else {
+            OS_REPORT_ERROR("被共有テクスチャモデルの設定が不正です\n"); // The shared texture model setting is invalid.
+            OS_REPORT("<%x><%x>\n", *dataPos, dataPos[1]);
+            JUT_ASSERT(458, FALSE);
         }
     }
 
     return dataPos;
 }
 
-/* 804598F4-80459904 000314 0010+00 1/1 0/0 0/0 .text
- * initFarInfoBlock__Q29daBgObj_c11spec_data_cFPUc              */
+/* 804598F4-80459904 000314 0010+00 1/1 0/0 0/0 .text            initFarInfoBlock__Q29daBgObj_c11spec_data_cFPUc */
 u8* daBgObj_c::spec_data_c::initFarInfoBlock(u8* i_dataPtr) {
+    if (mpFarInfoBlock != 0.0f) {
+        OS_REPORT_ERROR("ファー情報ブロックが複数見つかりました！！\n"); // Multiple far information blocks were found!!
+        JUT_ASSERT(475, FALSE);
+    }
+
     mpFarInfoBlock = *(f32*)(i_dataPtr + 4);
-    return i_dataPtr + 8;
+    i_dataPtr += 8;
+    OS_REPORT("ファー情報発見！<%f>\n", mpFarInfoBlock); // Far information discovered! <%f>
+    return i_dataPtr;
 }
 
-/* 80459904-80459B64 000324 0260+00 1/1 0/0 1/1 .text            Set__Q29daBgObj_c11spec_data_cFPv
- */
+/* 80459904-80459B64 000324 0260+00 1/1 0/0 1/1 .text            Set__Q29daBgObj_c11spec_data_cFPv */
 // NONMATCHING - close-ish
 bool daBgObj_c::spec_data_c::Set(void* i_ptr) {
     JUT_ASSERT(496, i_ptr != NULL);
@@ -352,11 +397,11 @@ void daBgObj_c::initAtt() {
     eyePos.y += 0.5f * box->y;
 }
 
-/* 80459D0C-80459D3C 00072C 0030+00 2/2 0/0 0/0 .text setAttentionInfo__9daBgObj_cFP10fopAc_ac_c
- */
+/* 80459D0C-80459D3C 00072C 0030+00 2/2 0/0 0/0 .text            setAttentionInfo__9daBgObj_cFP10fopAc_ac_c */
 void daBgObj_c::setAttentionInfo(fopAc_ac_c* param_0) {
-    param_0->eyePos.y += 0.5f * fopAcM_getCullSizeBoxMax(this)->y;
-    param_0->attention_info.position.y += fopAcM_getCullSizeBoxMax(this)->y;
+    Vec& cullSizeBoxMax = (Vec&)*fopAcM_getCullSizeBoxMax(this);
+    param_0->eyePos.y += 0.5f * cullSizeBoxMax.y;
+    param_0->attention_info.position.y += cullSizeBoxMax.y;
 }
 
 /* 80459D3C-80459D94 00075C 0058+00 2/2 0/0 0/0 .text            initBaseMtx__9daBgObj_cFv */
@@ -370,28 +415,26 @@ void daBgObj_c::initBaseMtx() {
 /* 80459D94-80459E04 0007B4 0070+00 2/2 0/0 0/0 .text            setBaseMtx__9daBgObj_cFv */
 void daBgObj_c::setBaseMtx() {
     for (int i = 0; i < 2; i++) {
-        if (field_0x5a8[field_0xcc8][i] != NULL) {
-            field_0x5a8[field_0xcc8][i]->setBaseTRMtx(mBgMtx);
+        if (mpModelMtx[field_0xcc8][i] != NULL) {
+            mpModelMtx[field_0xcc8][i]->setBaseTRMtx(mBgMtx);
         }
     }
 }
 
 /* 80459E04-80459F14 000824 0110+00 1/1 0/0 0/0 .text settingCullSizeBoxForCo__9daBgObj_cFi */
 void daBgObj_c::settingCullSizeBoxForCo(int param_0) {
-    J3DModel* cur_model = field_0x5a8[param_0][0];
-    if (cur_model != NULL) {
+    if (mpModelMtx[param_0][0] != NULL) {
         Vec min_transformed;
         Vec max_transformed;
 
-        J3DModelData* model_data = cur_model->mModelData;
+        J3DModelData* model_data = mpModelMtx[param_0][0]->getModelData();
         mDoMtx_stack_c::identity();
-        J3DJointTree& joint_tree = model_data->getJointTree();
         J3DJoint* joint;
-        for (u16 i = 0; i < joint_tree.getJointNum(); i++) {
-            joint = joint_tree.getJointNodePointer(i);
+        for (u16 i = 0; i < model_data->getJointNum(); i++) {
+            joint = model_data->getJointNodePointer(i);
             Mtx trans_rot_mat;
             J3DGetTranslateRotateMtx(joint->getTransformInfo(), trans_rot_mat);
-            mDoMtx_stack_c::concat(trans_rot_mat);
+            MTXConcat(mDoMtx_stack_c::get(), trans_rot_mat, mDoMtx_stack_c::get());
         }
 
         PSMTXMultVec(mDoMtx_stack_c::get(), joint->getMin(), &min_transformed);
@@ -404,15 +447,14 @@ void daBgObj_c::settingCullSizeBoxForCo(int param_0) {
     }
 }
 
-/* 80459F14-8045A0EC 000934 01D8+00 3/3 0/0 0/0 .text settingCullSizeBoxForCull__9daBgObj_cFi */
+/* 80459F14-8045A0EC 000934 01D8+00 3/3 0/0 0/0 .text            settingCullSizeBoxForCull__9daBgObj_cFi */
 void daBgObj_c::settingCullSizeBoxForCull(int param_0) {
     cXyz max(G_CM3D_F_INF, G_CM3D_F_INF, G_CM3D_F_INF);
     cXyz min(-G_CM3D_F_INF, -G_CM3D_F_INF, -G_CM3D_F_INF);
 
     for (int i = 0; i < 2; i++) {
-        J3DModel* cur_model = field_0x5a8[param_0][i];
-        if (cur_model != NULL) {
-            J3DModelData* model_data = cur_model->mModelData;
+        if (mpModelMtx[param_0][i] != NULL) {
+            J3DModelData* model_data = mpModelMtx[param_0][i]->getModelData();
             mDoMtx_stack_c::identity();
             J3DJoint* joint;
             for (u16 j = 0; j < model_data->getJointNum(); j++) {
@@ -459,7 +501,7 @@ void daBgObj_c::settingCullSizeBoxForCull(int param_0) {
 int daBgObj_c::CreateInitType0() {
     field_0xcc8 = 0;
     initBaseMtx();
-    fopAcM_SetMtx(this, field_0x5a8[field_0xcc8][0]->getBaseTRMtx());
+    fopAcM_SetMtx(this, mpModelMtx[field_0xcc8][0]->getBaseTRMtx());
     settingCullSizeBoxForCull(field_0xcc8);
 
     if (0.0f != mSpecData.mpFarInfoBlock) {
@@ -475,18 +517,18 @@ int daBgObj_c::CreateInitType1() {
         field_0xcc8 = 1;
         release(mpBgW);
         regist(mpBgW2);
-        mAction = 3;
+        setAction(3);
     } else {
         field_0xcc8 = 0;
-        mAction = 0;
+        setAction(0);
     }
 
     initBaseMtx();
 
-    if (field_0xcc8 == 1 && field_0x5a8[field_0xcc8][0] == NULL) {
-        fopAcM_SetMtx(this, field_0x5a8[0][0]->getBaseTRMtx());
+    if (field_0xcc8 == 1 && mpModelMtx[field_0xcc8][0] == NULL) {
+        fopAcM_SetMtx(this, mpModelMtx[0][0]->getBaseTRMtx());
     } else {
-        fopAcM_SetMtx(this, field_0x5a8[field_0xcc8][0]->getBaseTRMtx());
+        fopAcM_SetMtx(this, mpModelMtx[field_0xcc8][0]->getBaseTRMtx());
     }
 
     settingCullSizeBoxForCo(field_0xcc8);
@@ -510,28 +552,8 @@ int daBgObj_c::CreateInitType1() {
     return 1;
 }
 
-/* 8045CAE4-8045CB38 000020 0054+00 4/4 0/0 0/0 .data            l_tri_src */
-static dCcD_SrcTri l_tri_src = {
-    {
-        {0, {{0, 0, 0}, {0xD8400422, 0x11}, 0}},
-        {dCcD_SE_NONE, 0, 0, 0, {0}},
-        {dCcD_SE_NONE, 0, 0, 0, {4}},
-        {0},
-    },
-    {
-        {
-            {0.0f, 0.0f, 0.0f},
-            {0.0f, 0.0f, 0.0f},
-            {0.0f, 0.0f, 0.0f},
-        },
-    },
-};
-
-/* 8045CB38-8045CB3C -00001 0004+00 1/1 0/0 0/0 .data            l_specName */
-static char* l_specName = "spec.dat";
-
 /* 8045CB6C-8045CB9C 0000A8 0030+00 1/2 0/0 0/0 .data            mCreateHeapFunc__9daBgObj_c */
-createHeapFunc daBgObj_c::mCreateHeapFunc[] = {
+createHeapFunc const daBgObj_c::mCreateHeapFunc[] = {
     &daBgObj_c::CreateHeapType0,
     &daBgObj_c::CreateHeapType1,
     &daBgObj_c::CreateHeapType1,
@@ -539,7 +561,7 @@ createHeapFunc daBgObj_c::mCreateHeapFunc[] = {
 };
 
 /* 8045CBCC-8045CBFC 000108 0030+00 1/2 0/0 0/0 .data            mCreateInitFunc__9daBgObj_c */
-createInitFunc daBgObj_c::mCreateInitFunc[] = {
+createInitFunc const daBgObj_c::mCreateInitFunc[] = {
     &daBgObj_c::CreateInitType0,
     &daBgObj_c::CreateInitType1,
     &daBgObj_c::CreateInitType1,
@@ -552,7 +574,7 @@ int daBgObj_c::Create() {
 }
 
 /* 8045CC2C-8045CC5C 000168 0030+00 1/2 0/0 0/0 .data            mExecuteFunc__9daBgObj_c */
-executeFunc daBgObj_c::mExecuteFunc[] = {
+executeFunc const daBgObj_c::mExecuteFunc[] = {
     &daBgObj_c::ExecuteType0,
     &daBgObj_c::ExecuteType1,
     &daBgObj_c::ExecuteType1,
@@ -560,7 +582,7 @@ executeFunc daBgObj_c::mExecuteFunc[] = {
 };
 
 /* 8045CC98-8045CCD4 0001D4 003C+00 1/2 0/0 0/0 .data            mTgSetFunc__9daBgObj_c */
-tgSetFunc daBgObj_c::mTgSetFunc[] = {
+tgSetFunc const daBgObj_c::mTgSetFunc[] = {
     &daBgObj_c::set_tri_0, &daBgObj_c::set_tri_1, &daBgObj_c::set_cyl_0,
     &daBgObj_c::set_tri_2, &daBgObj_c::set_tri_3,
 };
@@ -571,43 +593,43 @@ int daBgObj_c::CreateHeapType0() {
         J3DModelData* modelData =
             (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), getBmdName(0, i));
         if (modelData != NULL) {
-            field_0x5a8[0][i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11001284);
-            if (field_0x5a8[0][i] == NULL) {
+            mpModelMtx[0][i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11001284);
+            if (mpModelMtx[0][i] == NULL) {
                 return 0;
             }
 
-            field_0x5b8[0][i] = NULL;
-            field_0x5c8[0][i] = NULL;
+            mpBtkAnmMtx[0][i] = NULL;
+            mpBrkAnmMtx[0][i] = NULL;
 
             J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(
                 daSetBgObj_c::getArcName(this), getBtkName(0, i));
             if (btk != NULL) {
-                field_0x5b8[0][i] = new mDoExt_btkAnm();
-                if (field_0x5b8[0][i] == NULL ||
-                    !field_0x5b8[0][i]->init(modelData, btk, TRUE, 2, 1.0f, 0, -1))
+                mpBtkAnmMtx[0][i] = new mDoExt_btkAnm();
+                if (mpBtkAnmMtx[0][i] == NULL ||
+                    !mpBtkAnmMtx[0][i]->init(modelData, btk, TRUE, 2, 1.0f, 0, -1))
                 {
                     return 0;
                 }
 
-                field_0x5b8[0][i]->setPlaySpeed(1.0f);
+                mpBtkAnmMtx[0][i]->setPlaySpeed(1.0f);
             }
 
             J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(
                 daSetBgObj_c::getArcName(this), getBrkName(0, i));
             if (brk != NULL) {
-                field_0x5c8[0][i] = new mDoExt_brkAnm();
-                if (field_0x5c8[0][i] == NULL ||
-                    !field_0x5c8[0][i]->init(modelData, brk, TRUE, 2, 1.0f, 0, -1))
+                mpBrkAnmMtx[0][i] = new mDoExt_brkAnm();
+                if (mpBrkAnmMtx[0][i] == NULL ||
+                    !mpBrkAnmMtx[0][i]->init(modelData, brk, TRUE, 2, 1.0f, 0, -1))
                 {
                     return 0;
                 }
 
-                field_0x5c8[0][i]->setPlaySpeed(1.0f);
+                mpBrkAnmMtx[0][i]->setPlaySpeed(1.0f);
             }
 
-            field_0x5a8[1][i] = NULL;
-            field_0x5b8[1][i] = NULL;
-            field_0x5c8[1][i] = NULL;
+            mpModelMtx[1][i] = NULL;
+            mpBtkAnmMtx[1][i] = NULL;
+            mpBrkAnmMtx[1][i] = NULL;
         }
     }
 
@@ -619,44 +641,44 @@ int daBgObj_c::CreateHeapType0() {
 int daBgObj_c::CreateHeapType1() {
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
-            field_0x5a8[i][j] = NULL;
-            field_0x5b8[i][j] = NULL;
-            field_0x5c8[i][j] = NULL;
+            mpModelMtx[i][j] = NULL;
+            mpBtkAnmMtx[i][j] = NULL;
+            mpBrkAnmMtx[i][j] = NULL;
 
             J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(
                 daSetBgObj_c::getArcName(this), getBmdName(i, j));
             if (modelData != NULL) {
-                field_0x5a8[i][j] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11001284);
-                if (field_0x5a8[i][j] == NULL) {
+                mpModelMtx[i][j] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11001284);
+                if (mpModelMtx[i][j] == NULL) {
                     return 0;
                 }
 
                 J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(
                     daSetBgObj_c::getArcName(this), getBtkName(i, j));
                 if (btk != NULL) {
-                    field_0x5b8[i][j] = new mDoExt_btkAnm();
-                    if (field_0x5b8[i][j] == NULL ||
-                        !field_0x5b8[i][j]->init(modelData, btk, TRUE, 2, 1.0f, 0,
+                    mpBtkAnmMtx[i][j] = new mDoExt_btkAnm();
+                    if (mpBtkAnmMtx[i][j] == NULL ||
+                        !mpBtkAnmMtx[i][j]->init(modelData, btk, TRUE, 2, 1.0f, 0,
                                                  -1))
                     {
                         return 0;
                     }
 
-                    field_0x5b8[i][j]->setPlaySpeed(1.0f);
+                    mpBtkAnmMtx[i][j]->setPlaySpeed(1.0f);
                 }
 
                 J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(
                     daSetBgObj_c::getArcName(this), getBrkName(i, j));
                 if (brk != NULL) {
-                    field_0x5c8[i][j] = new mDoExt_brkAnm();
-                    if (field_0x5c8[i][j] == NULL ||
-                        !field_0x5c8[i][j]->init(modelData, brk, TRUE, 2, 1.0f, 0,
+                    mpBrkAnmMtx[i][j] = new mDoExt_brkAnm();
+                    if (mpBrkAnmMtx[i][j] == NULL ||
+                        !mpBrkAnmMtx[i][j]->init(modelData, brk, TRUE, 2, 1.0f, 0,
                                                  -1))
                     {
                         return 0;
                     }
 
-                    field_0x5c8[i][j]->setPlaySpeed(1.0f);
+                    mpBrkAnmMtx[i][j]->setPlaySpeed(1.0f);
                 }
             }
         }
@@ -682,37 +704,48 @@ void daBgObj_c::doShareTexture() {
     char share_res_name[64];
 
     u8* spec_res_name = mSpecData.mpTexShareBlock + 8;
+    OS_REPORT("テクスチャ共有数:%d\n", mSpecData.mTexShareNum); // Number of shared textures: %d
 
     for (int i = 0; i < mSpecData.mTexShareNum; i++) {
         strcpy(res_name, (char*)spec_res_name);
         spec_res_name += strlen((char*)spec_res_name) + 1;
 
-        J3DModelData* modelData =
-            (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), res_name);
+        OS_REPORT("共有側:%s\n"); // Shared side:
+
+        J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), res_name);
+        JUT_ASSERT(1273, modelData != NULL)
 
         if (*spec_res_name != 0) {
             strcpy(share_res_name, (char*)spec_res_name);
             spec_res_name += strlen((char*)spec_res_name) + 1;
 
-            J3DModelData* shareModelData =
-                (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), share_res_name);
+            OS_REPORT("被共有側:%s\n"); // Shared with:
+
+            J3DModelData* shareModelData = (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), share_res_name);
+            JUT_ASSERT(1290, modelData != NULL);
             mDoExt_setupShareTexture(modelData, shareModelData);
         } else if (*spec_res_name == 0 && spec_res_name[1] == 1) {
+            OS_REPORT("非共有側：地形\n"); // Non-shared side: Terrain
             spec_res_name += 2;
             mDoExt_setupStageTexture(modelData);
+        } else {
+            OS_REPORT_ERROR("被共有テクスチャモデルの設定が不正です\n"); // The shared texture model setting is invalid.
+            OS_REPORT("<%x><%x>\n", *spec_res_name, spec_res_name[1]);
+            JUT_ASSERT(1310, FALSE);
         }
     }
 }
 
 /* 8045A940-8045A9E8 001360 00A8+00 1/0 0/0 0/0 .text            CreateHeap__9daBgObj_cFv */
 int daBgObj_c::CreateHeap() {
-    const char* const specName = l_specName;
-    void* spec_data_p = dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), specName);
-    if (field_0xd02 == 0) {
+    void* spec_data_p = dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), l_specName);
+    JUT_ASSERT(1329, spec_data_p != NULL);
+
+    if (mSetSpecDataFlag == 0) {
         if (!mSpecData.Set(spec_data_p)) {
             return 0;
         }
-        field_0xd02 = 1;
+        mSetSpecDataFlag = 1;
     }
 
     return (this->*mCreateHeapFunc[mSpecData.mSpecType])();
@@ -720,23 +753,19 @@ int daBgObj_c::CreateHeap() {
 
 /* 8045A9E8-8045AAF0 001408 0108+00 1/1 0/0 0/0 .text            create1st__9daBgObj_cFv */
 int daBgObj_c::create1st() {
-    if (field_0xcc9 == 0) {
+    if (mCreateFirstFlag == 0) {
         field_0xcca = home.angle.x;
         field_0xccc = home.angle.z;
-        field_0xcc9 = 1;
+        mCreateFirstFlag = 1;
 
-        home.angle.z = 0;
-        home.angle.x = 0;
-        current.angle.z = 0;
-        current.angle.x = 0;
-        shape_angle.z = 0;
-        shape_angle.x = 0;
+        home.angle.x = home.angle.z = 0;
+        current.angle.x = current.angle.z = 0;
+        shape_angle.x = shape_angle.z = 0;
     }
 
     int phase = dComIfG_resLoad(&mPhase, daSetBgObj_c::getArcName(this));
     if (phase == cPhs_COMPLEATE_e) {
-        int resnameIdx =
-            dComIfG_getObjctResName2Index(daSetBgObj_c::getArcName(this), getDzbName(0));
+        int resnameIdx = dComIfG_getObjctResName2Index(daSetBgObj_c::getArcName(this), getDzbName(0));
         phase = MoveBGCreate(daSetBgObj_c::getArcName(this), resnameIdx, NULL, 0x80022110, NULL);
 
         if (phase == cPhs_ERROR_e) {
@@ -758,7 +787,7 @@ void daBgObj_c::setColCommon() {
     if (mSpecData.field_0x16 == 1) {
         u32 tg_type = mTris[0].GetTgType();
 
-        for (int i = 0; i < field_0xcc4; i++) {
+        for (int i = 0; i < mTriNum; i++) {
             mTris[i].SetTgType(tg_type | 0x40);
         }
 
@@ -768,45 +797,50 @@ void daBgObj_c::setColCommon() {
 
 /* 8045AB80-8045ACC0 0015A0 0140+00 1/0 0/0 0/0 .text            set_tri_0__9daBgObj_cFv */
 void daBgObj_c::set_tri_0() {
-    field_0xcc4 = 2;
-    for (int i = 0; i < field_0xcc4; i++) {
+    mTriNum = 2;
+    for (int i = 0; i < mTriNum; i++) {
         mTris[i].Set(l_tri_src);
         mTris[i].SetStts(&mStts);
     }
 
+    Vec& cullSizeBoxMin = (Vec&)*fopAcM_getCullSizeBoxMin(this);
+    Vec& cullSizeBoxMax = (Vec&)*fopAcM_getCullSizeBoxMax(this);
     cXyz cull_params[4];
-    cull_params[0].set(fopAcM_getCullSizeBoxMax(this)->x, fopAcM_getCullSizeBoxMin(this)->y, 0.0f);
-    cull_params[1].set(fopAcM_getCullSizeBoxMin(this)->x, fopAcM_getCullSizeBoxMin(this)->y, 0.0f);
-    cull_params[2].set(fopAcM_getCullSizeBoxMin(this)->x, fopAcM_getCullSizeBoxMax(this)->y, 0.0f);
-    cull_params[3].set(fopAcM_getCullSizeBoxMax(this)->x, fopAcM_getCullSizeBoxMax(this)->y, 0.0f);
+    cull_params[0].set(cullSizeBoxMax.x, cullSizeBoxMin.y, 0.0f);
+    cull_params[1].set(cullSizeBoxMin.x, cullSizeBoxMin.y, 0.0f);
+    cull_params[2].set(cullSizeBoxMin.x, cullSizeBoxMax.y, 0.0f);
+    cull_params[3].set(cullSizeBoxMax.x, cullSizeBoxMax.y, 0.0f);
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(current.angle.y);
     for (int i = 0; i < (s32)(sizeof(cull_params) / sizeof(Vec)); i++) {
         mDoMtx_stack_c::multVec(&cull_params[i], &cull_params[i]);
     }
+
     mTris[0].setPos(&cull_params[0], &cull_params[1], &cull_params[2]);
     mTris[1].setPos(&cull_params[0], &cull_params[2], &cull_params[3]);
 }
 
 /* 8045ACC0-8045AE00 0016E0 0140+00 1/0 0/0 0/0 .text            set_tri_1__9daBgObj_cFv */
 void daBgObj_c::set_tri_1() {
-    field_0xcc4 = 2;
-    for (int i = 0; i < field_0xcc4; i++) {
+    mTriNum = 2;
+    for (int i = 0; i < mTriNum; i++) {
         mTris[i].Set(l_tri_src);
         mTris[i].SetStts(&mStts);
     }
 
+    Vec& cullSizeBoxMin = (Vec&)*fopAcM_getCullSizeBoxMin(this);
+    Vec& cullSizeBoxMax = (Vec&)*fopAcM_getCullSizeBoxMax(this);
     cXyz cull_bounds[4];
-    cull_bounds[0].set(fopAcM_getCullSizeBoxMax(this)->x, 0.0f, fopAcM_getCullSizeBoxMin(this)->z);
-    cull_bounds[1].set(fopAcM_getCullSizeBoxMin(this)->x, 0.0f, fopAcM_getCullSizeBoxMin(this)->z);
-    cull_bounds[2].set(fopAcM_getCullSizeBoxMin(this)->x, 0.0f, fopAcM_getCullSizeBoxMax(this)->z);
-    cull_bounds[3].set(fopAcM_getCullSizeBoxMax(this)->x, 0.0f, fopAcM_getCullSizeBoxMax(this)->z);
+    cull_bounds[0].set(cullSizeBoxMax.x, 0.0f, cullSizeBoxMin.z);
+    cull_bounds[1].set(cullSizeBoxMin.x, 0.0f, cullSizeBoxMin.z);
+    cull_bounds[2].set(cullSizeBoxMin.x, 0.0f, cullSizeBoxMax.z);
+    cull_bounds[3].set(cullSizeBoxMax.x, 0.0f, cullSizeBoxMax.z);
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(current.angle.y);
     for (int i = 0; i < (s32)(sizeof(cull_bounds) / sizeof(Vec)); i++) {
-        PSMTXMultVec(mDoMtx_stack_c::get(), &cull_bounds[i], &cull_bounds[i]);
+        mDoMtx_stack_c::multVec(&cull_bounds[i], &cull_bounds[i]);
     }
     mTris[0].setPos(&cull_bounds[0], &cull_bounds[1], &cull_bounds[2]);
     mTris[1].setPos(&cull_bounds[0], &cull_bounds[2], &cull_bounds[3]);
@@ -814,48 +848,44 @@ void daBgObj_c::set_tri_1() {
 
 /* 8045AE00-8045AE98 001820 0098+00 1/0 0/0 0/0 .text            set_cyl_0__9daBgObj_cFv */
 void daBgObj_c::set_cyl_0() {
-    field_0xcc4 = 0;
+    mTriNum = 0;
     mCyl.Set(l_cyl_src);
     mCyl.SetStts(&mStts);
 
     f32 radius;
-    if (fopAcM_getCullSizeBoxMax(this)->x > fopAcM_getCullSizeBoxMax(this)->z) {
-        radius = fopAcM_getCullSizeBoxMax(this)->x;
+    Vec& cullSizeBoxMax2 = (Vec&)*fopAcM_getCullSizeBoxMax(this);
+    Vec& cullSizeBoxMax = (Vec&)*fopAcM_getCullSizeBoxMax(this);
+    if (cullSizeBoxMax.x > cullSizeBoxMax.z) {
+        radius = cullSizeBoxMax.x;
     } else {
-        radius = fopAcM_getCullSizeBoxMax(this)->z;
+        radius = cullSizeBoxMax.z;
     }
 
     mCyl.SetC(current.pos);
-    mCyl.SetH(fopAcM_getCullSizeBoxMax(this)->y);
+    mCyl.SetH(cullSizeBoxMax.y);
     mCyl.SetR(radius);
 }
 
 /* 8045AE98-8045AFD4 0018B8 013C+00 1/0 0/0 0/0 .text            set_tri_2__9daBgObj_cFv */
 void daBgObj_c::set_tri_2() {
-    field_0xcc4 = 2;
-    for (int i = 0; i < field_0xcc4; i++) {
+    mTriNum = 2;
+    for (int i = 0; i < mTriNum; i++) {
         mTris[i].Set(l_tri_src);
         mTris[i].SetStts(&mStts);
     }
 
+    Vec& cullSizeBoxMin = (Vec&)*fopAcM_getCullSizeBoxMin(this);
+    Vec& cullSizeBoxMax = (Vec&)*fopAcM_getCullSizeBoxMax(this);
     cXyz cull_bounds[4];
-    cull_bounds[0].set(fopAcM_getCullSizeBoxMax(this)->x,
-        fopAcM_getCullSizeBoxMin(this)->y,
-        fopAcM_getCullSizeBoxMax(this)->z);
-    cull_bounds[1].set(fopAcM_getCullSizeBoxMin(this)->x,
-        fopAcM_getCullSizeBoxMin(this)->y,
-        fopAcM_getCullSizeBoxMax(this)->z);
-    cull_bounds[2].set(fopAcM_getCullSizeBoxMin(this)->x,
-        fopAcM_getCullSizeBoxMax(this)->y,
-        fopAcM_getCullSizeBoxMax(this)->z);
-    cull_bounds[3].set(fopAcM_getCullSizeBoxMax(this)->x,
-        fopAcM_getCullSizeBoxMax(this)->y,
-        fopAcM_getCullSizeBoxMax(this)->z);
+    cull_bounds[0].set(cullSizeBoxMax.x, cullSizeBoxMin.y, cullSizeBoxMax.z);
+    cull_bounds[1].set(cullSizeBoxMin.x, cullSizeBoxMin.y, cullSizeBoxMax.z);
+    cull_bounds[2].set(cullSizeBoxMin.x, cullSizeBoxMax.y, cullSizeBoxMax.z);
+    cull_bounds[3].set(cullSizeBoxMax.x, cullSizeBoxMax.y, cullSizeBoxMax.z);
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(current.angle.y);
     for (int i = 0; i < (s32)(sizeof(cull_bounds) / sizeof(Vec)); i++) {
-        PSMTXMultVec(mDoMtx_stack_c::get(), &cull_bounds[i], &cull_bounds[i]);
+        mDoMtx_stack_c::multVec(&cull_bounds[i], &cull_bounds[i]);
     }
     mTris[0].setPos(&cull_bounds[0], &cull_bounds[1], &cull_bounds[2]);
     mTris[1].setPos(&cull_bounds[0], &cull_bounds[2], &cull_bounds[3]);
@@ -863,43 +893,28 @@ void daBgObj_c::set_tri_2() {
 
 /* 8045AFD4-8045B17C 0019F4 01A8+00 1/0 0/0 0/0 .text            set_tri_3__9daBgObj_cFv */
 void daBgObj_c::set_tri_3() {
-    field_0xcc4 = 4;
-    for (int i = 0; i < field_0xcc4; i++) {
+    mTriNum = 4;
+    for (int i = 0; i < mTriNum; i++) {
         mTris[i].Set(l_tri_src);
         mTris[i].SetStts(&mStts);
     }
 
+    Vec& cullSizeBoxMin = (Vec&)*fopAcM_getCullSizeBoxMin(this);
+    Vec& cullSizeBoxMax = (Vec&)*fopAcM_getCullSizeBoxMax(this);
     cXyz cull_bounds[8];
-    cull_bounds[0].set(fopAcM_getCullSizeBoxMax(this)->x,
-        fopAcM_getCullSizeBoxMin(this)->y,
-        fopAcM_getCullSizeBoxMin(this)->z);
-    cull_bounds[1].set(fopAcM_getCullSizeBoxMin(this)->x,
-        fopAcM_getCullSizeBoxMin(this)->y,
-        fopAcM_getCullSizeBoxMin(this)->z);
-    cull_bounds[2].set(fopAcM_getCullSizeBoxMin(this)->x,
-        fopAcM_getCullSizeBoxMax(this)->y,
-        fopAcM_getCullSizeBoxMin(this)->z);
-    cull_bounds[3].set(fopAcM_getCullSizeBoxMax(this)->x,
-        fopAcM_getCullSizeBoxMax(this)->y,
-        fopAcM_getCullSizeBoxMin(this)->z);
-    cull_bounds[4].set(fopAcM_getCullSizeBoxMax(this)->x,
-        fopAcM_getCullSizeBoxMin(this)->y,
-        fopAcM_getCullSizeBoxMax(this)->z);
-    cull_bounds[5].set(fopAcM_getCullSizeBoxMin(this)->x,
-        fopAcM_getCullSizeBoxMin(this)->y,
-        fopAcM_getCullSizeBoxMax(this)->z);
-    cull_bounds[6].set(fopAcM_getCullSizeBoxMin(this)->x,
-        fopAcM_getCullSizeBoxMax(this)->y,
-        fopAcM_getCullSizeBoxMax(this)->z);
-    cull_bounds[7].set(fopAcM_getCullSizeBoxMax(this)->x,
-        fopAcM_getCullSizeBoxMax(this)->y,
-        fopAcM_getCullSizeBoxMax(this)->z);
+    cull_bounds[0].set(cullSizeBoxMax.x, cullSizeBoxMin.y, cullSizeBoxMin.z);
+    cull_bounds[1].set(cullSizeBoxMin.x, cullSizeBoxMin.y, cullSizeBoxMin.z);
+    cull_bounds[2].set(cullSizeBoxMin.x, cullSizeBoxMax.y, cullSizeBoxMin.z);
+    cull_bounds[3].set(cullSizeBoxMax.x, cullSizeBoxMax.y, cullSizeBoxMin.z);
+    cull_bounds[4].set(cullSizeBoxMax.x, cullSizeBoxMin.y, cullSizeBoxMax.z);
+    cull_bounds[5].set(cullSizeBoxMin.x, cullSizeBoxMin.y, cullSizeBoxMax.z);
+    cull_bounds[6].set(cullSizeBoxMin.x, cullSizeBoxMax.y, cullSizeBoxMax.z);
+    cull_bounds[7].set(cullSizeBoxMax.x, cullSizeBoxMax.y, cullSizeBoxMax.z);
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(current.angle.y);
     for (int i = 0; i < 8; i++) {
-        Vec* src = &cull_bounds[i];
-        mDoMtx_stack_c::multVec(src, src);
+        mDoMtx_stack_c::multVec(&cull_bounds[i], &cull_bounds[i]);
     }
     mTris[0].setPos(&cull_bounds[0], &cull_bounds[1], &cull_bounds[2]);
     mTris[1].setPos(&cull_bounds[0], &cull_bounds[2], &cull_bounds[3]);
@@ -1050,8 +1065,7 @@ BOOL daBgObj_c::checkDestroy() {
     return false;
 }
 
-/* 8045B534-8045B5E0 001F54 00AC+00 2/2 0/0 0/0 .text            checkHitAt__9daBgObj_cFP8cCcD_Obj
- */
+/* 8045B534-8045B5E0 001F54 00AC+00 2/2 0/0 0/0 .text            checkHitAt__9daBgObj_cFP8cCcD_Obj */
 BOOL daBgObj_c::checkHitAt(cCcD_Obj* i_hitObj) {
     u32 hit_flags = 0;
     u32 var_r8 = 0;
@@ -1081,7 +1095,7 @@ BOOL daBgObj_c::checkHitAt(cCcD_Obj* i_hitObj) {
 
 /* 8045B5E0-8045B7FC 002000 021C+00 1/1 0/0 0/0 .text            orderWait_tri__9daBgObj_cFv */
 void daBgObj_c::orderWait_tri() {
-    for (int i = 0; i < field_0xcc4; i++) {
+    for (int i = 0; i < mTriNum; i++) {
         if (mTris[i].ChkTgHit()) {
             if (checkHitAt(mTris[i].GetTgHitObj())) {
                 setSe();
@@ -1093,10 +1107,10 @@ void daBgObj_c::orderWait_tri() {
 
                     mDoMtx_stack_c::YrotS(-shape_angle.y);
                     mDoMtx_stack_c::multVec(&sp1C, &sp1C);
+                    cXyz sp28;
                     mDoMtx_stack_c::transS(current.pos);
                     mDoMtx_stack_c::YrotM(shape_angle.y);
 
-                    cXyz sp28;
                     if (sp1C.z > 0.0f) {
                         sp28 = cXyz(0.0, 0.0, 1.0);
                     } else {
@@ -1118,7 +1132,7 @@ void daBgObj_c::orderWait_tri() {
         }
     }
 
-    for (int i = 0; i < field_0xcc4; i++) {
+    for (int i = 0; i < mTriNum; i++) {
         dComIfG_Ccsp()->Set(&mTris[i]);
     }
 }
@@ -1209,6 +1223,10 @@ int daBgObj_c::actionOrderWait() {
         case 2:
             orderWait_cyl();
             break;
+
+        default:
+            JUT_ASSERT(2022, FALSE);
+            break;
         }
     } else if (fopAcM_isSwitch(this, daBgObj_prm::getSwBit(this))) {
         orderWait_spec();
@@ -1249,6 +1267,10 @@ int daBgObj_c::actionOrder() {
 
             fopAcM_onSwitch(this, daBgObj_prm::getSwBit(this));
             field_0xd00 = 0;
+
+            if (daBgObj_prm::getSwBit(this) == 0xFF) {
+                OS_REPORT("\x1b[43;30m地形ユニットMoveBG：スイッチ指定無し！！！\n\x1b[m");
+            }
         }
     }
 
@@ -1305,7 +1327,7 @@ int daBgObj_c::ExecuteType0() {
 
 /* 8045BED0-8045BFBC 0028F0 00EC+00 3/0 0/0 0/0 .text            ExecuteType1__9daBgObj_cFv */
 int daBgObj_c::ExecuteType1() {
-    static actionFunc l_func[] = {&daBgObj_c::actionOrderWait, &daBgObj_c::actionOrder,
+    static actionFunc const l_func[] = {&daBgObj_c::actionOrderWait, &daBgObj_c::actionOrder,
                                   &daBgObj_c::actionEvent, &daBgObj_c::actionWait};
 
     (this->*l_func[mAction])();
@@ -1322,12 +1344,12 @@ int daBgObj_c::Execute(Mtx** param_0) {
     (this->*mExecuteFunc[mSpecData.mSpecType])();
 
     for (int i = 0; i < 2; i++) {
-        if (field_0x5b8[field_0xcc8][i] != NULL) {
-            field_0x5b8[field_0xcc8][i]->play();
+        if (mpBtkAnmMtx[field_0xcc8][i] != NULL) {
+            mpBtkAnmMtx[field_0xcc8][i]->play();
         }
 
-        if (field_0x5c8[field_0xcc8][i] != NULL) {
-            field_0x5c8[field_0xcc8][i]->play();
+        if (mpBrkAnmMtx[field_0xcc8][i] != NULL) {
+            mpBrkAnmMtx[field_0xcc8][i]->play();
         }
     }
 
@@ -1340,7 +1362,7 @@ int daBgObj_c::Execute(Mtx** param_0) {
 int daBgObj_c::Draw() {
     bool bvar = true;
     for (int i = 0; i < 2; i++) {
-        if (field_0x5a8[field_0xcc8][i] != NULL) {
+        if (mpModelMtx[field_0xcc8][i] != NULL) {
             bvar = false;
         }
     }
@@ -1352,26 +1374,26 @@ int daBgObj_c::Draw() {
     g_env_light.settingTevStruct(0x20, &current.pos, &tevStr);
 
     for (int i = 0; i < 2; i++) {
-        if (field_0x5a8[field_0xcc8][i] != NULL) {
-            g_env_light.setLightTevColorType_MAJI(field_0x5a8[field_0xcc8][i], &tevStr);
+        if (mpModelMtx[field_0xcc8][i] != NULL) {
+            g_env_light.setLightTevColorType_MAJI(mpModelMtx[field_0xcc8][i], &tevStr);
         }
     }
 
     for (int i = 0; i < 2; i++) {
         dComIfGd_setListBG();
-        if (field_0x5a8[field_0xcc8][i] != NULL) {
-            indirectProc(field_0x5a8[field_0xcc8][i]);
-            dKy_bg_MAxx_proc(field_0x5a8[field_0xcc8][i]);
+        if (mpModelMtx[field_0xcc8][i] != NULL) {
+            indirectProc(mpModelMtx[field_0xcc8][i]);
+            dKy_bg_MAxx_proc(mpModelMtx[field_0xcc8][i]);
 
-            if (field_0x5b8[field_0xcc8][i] != NULL) {
-                field_0x5b8[field_0xcc8][i]->entry(field_0x5a8[field_0xcc8][i]->getModelData());
+            if (mpBtkAnmMtx[field_0xcc8][i] != NULL) {
+                mpBtkAnmMtx[field_0xcc8][i]->entry(mpModelMtx[field_0xcc8][i]->getModelData());
             }
 
-            if (field_0x5c8[field_0xcc8][i] != NULL) {
-                field_0x5c8[field_0xcc8][i]->entry(field_0x5a8[field_0xcc8][i]->getModelData());
+            if (mpBrkAnmMtx[field_0xcc8][i] != NULL) {
+                mpBrkAnmMtx[field_0xcc8][i]->entry(mpModelMtx[field_0xcc8][i]->getModelData());
             }
 
-            mDoExt_modelUpdateDL(field_0x5a8[field_0xcc8][i]);
+            mDoExt_modelUpdateDL(mpModelMtx[field_0xcc8][i]);
         }
     }
 
@@ -1380,14 +1402,14 @@ int daBgObj_c::Draw() {
     return 1;
 }
 
-/* 8045C25C-8045C2E8 002C7C 008C+00 1/1 0/0 0/0 .text            indirectProc__9daBgObj_cFP8J3DModel
- */
+/* 8045C25C-8045C2E8 002C7C 008C+00 1/1 0/0 0/0 .text            indirectProc__9daBgObj_cFP8J3DModel */
 void daBgObj_c::indirectProc(J3DModel* i_model) {
     if (i_model != NULL) {
         J3DModelData* modelData = i_model->getModelData();
 
         for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
             J3DMaterial* mat_p = modelData->getMaterialNodePointer(i);
+            JUTNameTab* mat_name_p = modelData->getMaterialName();
             mat_p->change();
             mat_p->setCullMode(0);
         }
