@@ -10,20 +10,24 @@
 #include "d/actor/d_a_midna.h"
 #include "d/d_door_param2.h"
 #include "d/actor/d_a_player.h"
-#include "d/d_com_inf_game.h"
 #include "d/d_msg_object.h"
 #include "d/d_map_path_dmap.h"
-#include "SSystem/SComponent/c_math.h"
-#include "printf.h"
 
 /* 80460B38-80460B70 000078 0038+00 1/1 0/0 0/0 .text            getStopBmdName__10daDoor20_cFv */
 char* daDoor20_c::getStopBmdName() {
-    switch (door_param2_c::getKind(this)) {
-        case 3:
-        case 11:
+    int kind = door_param2_c::getKind(this);
+    switch (kind) {
         default:
-            return "door-stop.bmd";
+        case 0:
+        case 1:
+        case 2:
+        case 9:
+        case 10:
+        case 12:
+            break;
     }
+    
+    return "door-stop.bmd";
 }
 
 /* 80460B70-80460B94 0000B0 0024+00 1/1 0/0 0/0 .text            getStopModelData__10daDoor20_cFv */
@@ -38,7 +42,8 @@ char* daDoor20_c::getAlwaysArcName() {
 
 /* 80460BA4-80460C40 0000E4 009C+00 9/8 0/0 0/0 .text            getArcName__10daDoor20_cFv */
 char* daDoor20_c::getArcName() {
-    switch (door_param2_c::getKind(this)) {
+    int kind = door_param2_c::getKind(this);
+    switch (kind) {
     default:
         return "DoorT00";
     case 1:
@@ -59,7 +64,8 @@ static char bmdName[32];
 
 /* 80460C40-80460CF0 000180 00B0+00 1/1 0/0 0/0 .text            getBmdName__10daDoor20_cFv */
 char* daDoor20_c::getBmdName() {
-    switch(door_param2_c::getKind(this)) {
+    int kind = door_param2_c::getKind(this);
+    switch(kind) {
     case 0:
     case 1:
     case 2:
@@ -82,7 +88,8 @@ char* daDoor20_c::getBtk() {
 
 /* 80460D00-80460D5C 000240 005C+00 1/0 0/0 0/0 .text            getDzbName__10daDoor20_cFv */
 char* daDoor20_c::getDzbName() {
-    switch(door_param2_c::getKind(this)) {
+    int kind = door_param2_c::getKind(this);
+    switch(kind) {
     case 0:
     case 1:
     case 2:
@@ -106,9 +113,88 @@ f32 daDoor20_c::getSize2X() {
 }
 
 /* 80460D8C-80460DAC 0002CC 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
-static int CheckCreateHeap(fopAc_ac_c* i_this) {
-    return static_cast<daDoor20_c*>(i_this)->CreateHeap();
+static int CheckCreateHeap(fopAc_ac_c* a_this) {
+    daDoor20_c* i_this = (daDoor20_c*)a_this;
+    return i_this->CreateHeap();
 }
+
+#if DEBUG
+bool daDoor20_c::debugCheckParam() {
+    // NONMATCHING
+    bool rv = false;
+    
+    if (!field_0x574) {
+        if (door_param2_c::getFRoomNo(this) == 63) {
+            OS_REPORT_ERROR("シャッター：表の部屋番号指定がありません！\n"); // Shutter: No front room number specified!
+            rv = true;
+        }
+
+        if (door_param2_c::getBRoomNo(this) == 63) {
+            OS_REPORT_ERROR("シャッター：裏の部屋番号指定がありません！\n"); // Shutter: No back room number specified!
+            rv = true;
+        }
+
+        u8 frontOption = door_param2_c::getFrontOption(this);
+        u8 backOption = door_param2_c::getBackOption(this);
+        u8 swBit = door_param2_c::getSwbit(this);
+        u8 swBit2 = door_param2_c::getSwbit2(this);
+
+        if (swBit == 0xFF) {
+            if (frontOption == 1) {
+                OS_REPORT_ERROR("シャッター：表のスイッチ指定がありません！（鉄格子）\n"); // Shutter: No switch specified on the front! (Iron bars)
+                rv = true;
+            }
+
+            if (frontOption == 2) {
+                OS_REPORT_ERROR("シャッター：表のスイッチ指定がありません！（鍵）\n"); // Shutter: No switch specified on the front! (Key)
+                rv = true;
+            }
+
+            if (frontOption == 3) {
+                OS_REPORT_ERROR("シャッター：表のスイッチ指定がありません！（全滅鉄格子）\n"); // Shutter: No switch specified on the exterior! (Total metal grille)
+                rv = true;
+            }
+        } else if (swBit >= 0x80 && frontOption == 2) {
+            OS_REPORT_ERROR("シャッター：鍵のスイッチが完全セーブではありません！\n"); // Shutter: The key switch is not fully saved!
+            rv = true;
+        }
+
+        if (swBit2 == 0xFF) {
+            if (backOption == 1) {
+                OS_REPORT_ERROR("シャッター：裏のスイッチ指定がありません！（鉄格子）\n"); // Shutter: No switch specified on the back! (Iron bars)
+                rv = true;
+            }
+
+            if (backOption == 2) {
+                OS_REPORT_ERROR("シャッター：裏のスイッチ指定がありません！（鍵）\n"); // Shutter: No back switch specified! (Key)
+                rv = true;
+            }
+
+            if (backOption == 3) {
+                OS_REPORT_ERROR("シャッター：裏のスイッチ指定がありません！（全滅鉄格子）\n"); // Shutter: No switch specified at the back! (Total destruction iron bars)
+                rv = true;
+            }
+        } else if (swBit2 >= 0x80 && backOption == 2) {
+            OS_REPORT_ERROR("シャッター：裏のスイッチ指定がありません！（全滅鉄格子）\n"); // Shutter: No switch specified at the back! (Total destruction iron grille)
+            rv = true;
+        }
+
+        if (backOption == 4 || backOption == 5) {
+            OS_REPORT_ERROR("シャッター：螺旋階段は<sdoor>を配置してください\n"); // Shutter: Please place <sdoor> on the spiral staircase
+            rv = true;
+        }
+
+        if (door_param2_c::getSwbit3(this) != 0xFF && (door_param2_c::getKind(this) == 2 || strcmp(dComIfGp_getStartStageName(), "D_MN06") == 0)) {
+            OS_REPORT_ERROR("シャッター：エフェクトSWbit未対応のドアです\n"); // Shutter: This door does not support the effect SW bit.
+            rv = true;
+        }
+
+        field_0x574 = 1;
+    }
+
+    return rv;
+}
+#endif
 
 /* 80460DAC-80461254 0002EC 04A8+00 2/1 0/0 0/0 .text            CreateHeap__10daDoor20_cFv */
 int daDoor20_c::CreateHeap() {
@@ -157,15 +243,16 @@ int daDoor20_c::CreateHeap() {
         case 1:
             anm = (J3DAnmTransform*)dComIfG_getObjectRes(getArcName(), "oj_DoorOpC.bck");
             break;
-        case 2:
+        case 2: {
             J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getStageRes(getBtk());
             JUT_ASSERT(421, pbtk != NULL);
-            field_0x5c0 = new mDoExt_btkAnm();
-            if (field_0x5c0 == NULL || !field_0x5c0->init(mModel1->getModelData(), pbtk, 1, 0, 1.0f, 0, -1)) {
+            mBtkAnm = new mDoExt_btkAnm();
+            if (mBtkAnm == NULL || !mBtkAnm->init(mModel1->getModelData(), pbtk, 1, 0, 1.0f, 0, -1)) {
                 return 0;
             }
             anm = (J3DAnmTransform*)dComIfG_getObjectRes(getArcName(), "oj_DoorOpD.bck");
             break;
+        }
         case 10:
             anm = (J3DAnmTransform*)dComIfG_getObjectRes(getArcName(), "oj_DoorOpF.bck");
             break;
@@ -188,8 +275,8 @@ int daDoor20_c::CreateHeap() {
         mDoMtx_stack_c::scaleM(1.0f, 1.4f, 1.0f);
     }
     MTXCopy(mDoMtx_stack_c::get(), field_0x5f4);
-    field_0x5c4 = new dBgW();
-    if (field_0x5c4 == 0 || field_0x5c4->Set((cBgD_t*)dComIfG_getObjectRes(getAlwaysArcName(), getDzbName()), 1, &field_0x5f4)) {
+    mpBgW = new dBgW();
+    if (mpBgW == 0 || mpBgW->Set((cBgD_t*)dComIfG_getObjectRes(getAlwaysArcName(), getDzbName()), 1, &field_0x5f4)) {
             return 0;
     }
     return 1;
@@ -319,8 +406,8 @@ int daDoor20_c::checkOpenMsgDoor(int* param_1) {
         *param_1 = 0;
         return 1;
     }
-    field_0x624.init(NULL, msgNo, NULL, NULL);
-    int rv = field_0x624.checkOpenDoor(this, param_1);
+    mMsgFlow.init(NULL, msgNo, NULL, NULL);
+    int rv = mMsgFlow.checkOpenDoor(this, param_1);
     dMsgObject_endFlowGroup();
     return rv;
 }
@@ -473,7 +560,7 @@ int daDoor20_c::openInit(int param_1) {
     openInitCom(1);
     dMapInfo_c::setNextRoomNoForMapPat0(field_0x67f);
     onFlag(1);
-    dComIfG_Bgsp().Release(field_0x5c4);
+    dComIfG_Bgsp().Release(mpBgW);
     switch (door_param2_c::getKind(this)) {
     case 0:
     case 3:
@@ -620,7 +707,7 @@ void daDoor20_c::closeInit_0() {
         }
     }
     if (door_param2_c::getKind(this) != 10) {
-        dComIfGp_particle_setPolyColor(0x8c50, field_0x6de.m_gnd, &current.pos, &tevStr,
+        dComIfGp_particle_setPolyColor(0x8c50, mBgc.m_gnd, &current.pos, &tevStr,
                                                   &shape_angle, NULL, 0, NULL, dComIfGp_roomControl_getStayNo(), 0);
     }
 }
@@ -639,7 +726,7 @@ void daDoor20_c::closeInit_1() {
 /* 80462738-804627C4 001C78 008C+00 1/1 0/0 0/0 .text            closeInit__10daDoor20_cFi */
 int daDoor20_c::closeInit(int param_1) {
     onFlag(2);
-    int rt = dComIfG_Bgsp().Regist(field_0x5c4, this);
+    int rt = dComIfG_Bgsp().Regist(mpBgW, this);
     JUT_ASSERT(1264, !rt);
     switch(door_param2_c::getKind(this)) {
     case 0:
@@ -703,7 +790,7 @@ void daDoor20_c::openInit2() {
     openInitCom(1);
     dMapInfo_c::setNextRoomNoForMapPat0(field_0x67f);
     onFlag(1);
-    dComIfG_Bgsp().Release(field_0x5c4);
+    dComIfG_Bgsp().Release(mpBgW);
     if (field_0x5f1 == 0) {
         field_0x5bc = mModel2;
     } else {
@@ -769,10 +856,10 @@ int daDoor20_c::CreateInit() {
     shape_angle.x = 0;
     current.angle.z = 0;
     current.angle.x = 0;
-    field_0x8b8.SetWall(30.0f, 30.0f);
-    field_0x6de.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
-                     &field_0x8b8, fopAcM_GetSpeed_p(this), NULL, NULL);
-    int rt = dComIfG_Bgsp().Regist(field_0x5c4, this);
+    mAcchCir.SetWall(30.0f, 30.0f);
+    mBgc.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
+                     &mAcchCir, fopAcM_GetSpeed_p(this), NULL, NULL);
+    int rt = dComIfG_Bgsp().Regist(mpBgW, this);
     JUT_ASSERT(1512, !rt);
     tevStr.room_no = current.roomNo;
     setAction(ACTION_INIT);
@@ -797,8 +884,8 @@ int daDoor20_c::CreateInit() {
         createKey();
     }
     calcMtx();
-    field_0x5c4->Move();
-    field_0x5c4->SetRoomId(door_param2_c::getFRoomNo(this));
+    mpBgW->Move();
+    mpBgW->SetRoomId(door_param2_c::getFRoomNo(this));
     switch (door_param2_c::getKind(this)) {
     case 1:
         field_0x691 = 3;
@@ -954,7 +1041,7 @@ int daDoor20_c::demoProc() {
              if (door_param2_c::isMsgDoor(this)) {
                 int msgNo = door_param2_c::getMsgNo(this);
                 if (msgNo != 0xffff) {
-                    field_0x624.init(this, msgNo, 0, NULL);
+                    mMsgFlow.init(this, msgNo, 0, NULL);
                 }
              }
              break;
@@ -969,11 +1056,11 @@ int daDoor20_c::demoProc() {
              break;
          case 27:
              fopAcM_seStart(this, Z2SE_OBJ_L8_SHTR_CREST_ON, 0);
-             field_0x5c0->setPlaySpeed(1.0f);
+             mBtkAnm->setPlaySpeed(1.0f);
              break;
          case 28:
              fopAcM_seStart(this, Z2SE_OBJ_L8_SHTR_CREST_OFF, 0);
-             field_0x5c0->setPlaySpeed(-1.0f);
+             mBtkAnm->setPlaySpeed(-1.0f);
             break;
         }
     }
@@ -1031,7 +1118,7 @@ int daDoor20_c::demoProc() {
         mDoorStop.calcMtx(this);
         break;
     case 19:
-        field_0x5c4->Move();
+        mpBgW->Move();
         field_0x5c8 = dComIfGp_roomControl_getStayNo();
         dComIfGp_evmng_cutEnd(field_0x6cc);
         break;
@@ -1087,8 +1174,8 @@ int daDoor20_c::demoProc() {
         }
         if (local_48 != 0) {
             closeEnd2();
-            if (!field_0x5c4->ChkUsed()) {
-                dComIfG_Bgsp().Regist(field_0x5c4, this);
+            if (!mpBgW->ChkUsed()) {
+                dComIfG_Bgsp().Regist(mpBgW, this);
             }
             shape_angle.y = current.angle.y;
             dComIfGp_evmng_cutEnd(field_0x6cc);
@@ -1132,8 +1219,8 @@ int daDoor20_c::demoProc() {
         }
         if (local_48 != 0) {
             closeEnd2();
-            if (!field_0x5c4->ChkUsed()) {
-                dComIfG_Bgsp().Regist(field_0x5c4, this);
+            if (!mpBgW->ChkUsed()) {
+                dComIfG_Bgsp().Regist(mpBgW, this);
             }
             shape_angle.y = current.angle.y;
             dComIfGp_evmng_cutEnd(field_0x6cc);
@@ -1148,7 +1235,7 @@ int daDoor20_c::demoProc() {
         int msgNo = door_param2_c::getMsgNo(this);
         if (door_param2_c::isMsgDoor(this) && msgNo != 0xffff) {
             dComIfGp_event_offHindFlag(1);
-            if (field_0x624.doFlow(this, NULL, 0)) {
+            if (mMsgFlow.doFlow(this, NULL, 0)) {
                 dComIfGp_evmng_cutEnd(field_0x6cc);
             }
         } else {
@@ -1157,7 +1244,7 @@ int daDoor20_c::demoProc() {
         break;
     case 27:
     case 28:
-        if (field_0x5c0->play()) {
+        if (mBtkAnm->play()) {
             dComIfGp_evmng_cutEnd(field_0x6cc);
         }
         break;
@@ -1300,7 +1387,7 @@ int daDoor20_c::execute() {
     }
     tevStr.mLightInf.r = lightInf;
     if (strcmp(dComIfGp_getStartStageName(), "D_MN05") != 0 && strcmp(dComIfGp_getStartStageName(), "D_MN04") != 0) {
-        field_0x6de.CrrPos(dComIfG_Bgsp());
+        mBgc.CrrPos(dComIfG_Bgsp());
     }
     return 1;
 }
@@ -1310,7 +1397,7 @@ int daDoor20_c::draw() {
     if (!drawCheck(0)) {
         if (field_0x5c9 == false) {
             field_0x5c9 = true;
-            dComIfG_Bgsp().Release(field_0x5c4);
+            dComIfG_Bgsp().Release(mpBgW);
         }
         deleteKey();
         return 1;
@@ -1318,7 +1405,7 @@ int daDoor20_c::draw() {
     if (field_0x5c9) {
         field_0x5c9 = false;
         if (dComIfGp_event_getDoorPartner() != this) {
-            int rt = dComIfG_Bgsp().Regist(field_0x5c4, this);
+            int rt = dComIfG_Bgsp().Regist(mpBgW, this);
             JUT_ASSERT(2407, !rt);
         }
         createKey();
@@ -1329,7 +1416,7 @@ int daDoor20_c::draw() {
     }
     calcMtx();
     if (!eventInfo.checkCommandDoor() && field_0x5c8 != dComIfGp_roomControl_getStayNo()) {
-        field_0x5c4->Move();
+        mpBgW->Move();
         field_0x5c8 = dComIfGp_roomControl_getStayNo();
     }
     g_env_light.settingTevStruct(20, &current.pos, &tevStr);
@@ -1343,8 +1430,8 @@ int daDoor20_c::draw() {
         mDoExt_modelUpdateDL(mModel2);
         mDoExt_bckAnmRemove(mModel2->getModelData());
     } else {
-        if (field_0x5c0 != 0) {
-            field_0x5c0->entry(mModel1->getModelData());
+        if (mBtkAnm != 0) {
+            mBtkAnm->entry(mModel1->getModelData());
         }
         field_0x584.entry(mModel1->getModelData());
         mDoExt_modelUpdateDL(mModel1);
@@ -1396,9 +1483,9 @@ void daDoor20_c::setDoorAngleSpec() {
 /* 804647BC-80464858 003CFC 009C+00 1/1 0/0 0/0 .text            _delete__10daDoor20_cFv */
 int daDoor20_c::_delete() {
     if (heap != NULL &&
-        field_0x5c4->ChkUsed())
+        mpBgW->ChkUsed())
     {
-        dComIfG_Bgsp().Release(field_0x5c4);
+        dComIfG_Bgsp().Release(mpBgW);
     }
     deleteKey();
     dComIfG_resDelete(&mPhase1, getAlwaysArcName());
