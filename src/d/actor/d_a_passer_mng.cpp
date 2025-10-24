@@ -30,6 +30,13 @@ public:
     /* 0xC */ daPasserMng_Attr_c mAttr;
 };
 
+#if DEBUG
+
+daPasserMng_Hio_c::daPasserMng_Hio_c() {
+    field_0x8 = 0;
+    default_set();
+}
+
 void daPasserMng_Hio_c::default_set() {
     mAttr = daPasserMng_c::M_attr;
 }
@@ -53,9 +60,9 @@ void daPasserMng_Hio_c::dt() {
 }
 
 void daPasserMng_Hio_c::genMessage(JORMContext* ctx) {
-    ctx->genLabel("§ 通行人管理パラメータ設定  §\n", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->startComboBox("NPC種類", (s16*)&mAttr.npc_type, 0, NULL, 0xFFFF, 0xFFFF, 0x100, 0x1A);
-    ctx->genComboBoxItem("ランダム", -1);
+    ctx->genLabel("§ 通行人管理パラメータ設定  §\n", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18); // § Pedestrian Management Parameter Settings §
+    ctx->startComboBox("NPC種類", (s16*)&mAttr.npc_type, 0, NULL, 0xFFFF, 0xFFFF, 0x100, 0x1A); // NPC Type
+    ctx->genComboBoxItem("ランダム", -1); // Random
     ctx->genComboBoxItem("兵士Ａ\t\t手ぶら", 0);
     ctx->genComboBoxItem("兵士Ｂ\t\t手ぶら", 1);
     ctx->genComboBoxItem("男の子Ａ\t手ぶら", 2);
@@ -220,10 +227,34 @@ daPasserMng_Attr_c const daPasserMng_c::M_attr = {
     0xFFFF,
 };
 
+#endif
+
 /* 80D45718-80D45738 000078 0020+00 1/0 0/0 0/0 .text daPasserMng_Execute__FP13daPasserMng_c */
 static int daPasserMng_Execute(daPasserMng_c* i_this) {
     return i_this->execute();
 }
+
+u8 daPasserMng_c::getMaxNum() { return shape_angle.x; }
+
+int daPasserMng_c::getChildNum() {
+    int childNum = 0;
+    fopAc_ac_c* pActor = NULL;
+    for (int i = 0; i < getMaxNum(); i++) {
+        fopAcM_SearchByID(childProcIds[i], &pActor);
+        if (pActor != NULL) {
+            childNum++;
+        }
+    }
+    return childNum;
+}
+
+int daPasserMng_c::getDayOfWeek() { return (u8)dKy_darkworld_check() ? dKy_getDarktime_week() : dKy_get_dayofweek(); }
+
+int daPasserMng_c::getTime() { return getTimeHour() * 60 + getTimeMinute(); }
+
+int daPasserMng_c::getTimeHour() { return (u8)dKy_darkworld_check() ? dKy_getDarktime_hour() : dKy_getdaytime_hour(); }
+
+int daPasserMng_c::getTimeMinute() { return (u8)dKy_darkworld_check() ? dKy_getDarktime_minute() : dKy_getdaytime_minute(); }
 
 /* 80D45738-80D4597C 000098 0244+00 1/1 0/0 0/0 .text            execute__13daPasserMng_cFv */
 // NONMATCHING - getTime regalloc
@@ -285,50 +316,213 @@ daPasserMng_c::Group* daPasserMng_c::mGroupTbl[4] = {
     (Group*)groupD,
 };
 
-/* 80D4597C-80D45E14 0002DC 0498+00 3/2 0/0 0/0 .text            getPasserParam__13daPasserMng_cFv
- */
-int daPasserMng_c::getPasserParam() {
-    u32 param = getPathID() << 16;
-    u8 groupNo = getGroupNo();
-    if (groupNo == 0xff || groupNo >= 4) {
-        // The passerby group specification is invalid.
-        OS_REPORT_ERROR("\n通行人のグループ指定が不正です！ GroupNo=%d\n\n", groupNo);
+static u32 const mPasserDataTbl[155] = {
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+    10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+    512, 513, 514, 259, 260, 261, 262, 263, 264, 265,
+    266, 267, 268, 269, 270, 271, 2064, 2065, 2066, 2067,
+    2068, 2069, 2070, 2071, 2072, 2073, 2074, 2075, 2076, 2077,
+    784, 785, 786, 787, 788, 789, 790, 791, 792, 793,
+    794, 795, 796, 797, 1027, 1028, 1029, 1030, 1031, 1032,
+    1033, 1034, 1035, 1036, 1037, 1038, 1039, 1296, 1297, 1298,
+    1299, 1300, 1301, 1302, 1303, 1304, 1305, 1306, 1307, 1308,
+    1309, 2307, 2308, 2309, 2310, 2311, 2312, 2313, 2314, 2315,
+    2316, 2317, 2318, 2319, 2563, 2564, 2565, 2566, 2567, 2568,
+    2569, 2570, 2571, 2572, 2573, 2574, 2575, 2832, 2833, 2834,
+    2835, 2836, 2837, 2838, 2839, 2840, 2841, 2842, 2843, 2844,
+    2845, 3088, 3089, 3090, 3091, 3092, 3093, 3094, 3095, 3096,
+    3097, 3098, 3099, 3100, 3101,
+};
+
+int daPasserMng_c::getLuggageParamLow(u32 param_1) {
+    int paramLow;
+    int rndValue;
+
+    paramLow = 0;
+    switch (param_1) {
+    case 0:
+    case 1:
+        rndValue = cLib_getRndValue(0, 2);
+        if (rndValue != 0) {
+            paramLow = 2;
+        }
+        break;
+    case 2:
+    case 8:
+    case 9:
+    case 10:
+    case 15:
+        rndValue = cLib_getRndValue(0, 3);
+        switch(rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 1;
+            break;
+        case 2:
+            paramLow = 4;
+            break;
+        }
+        break;
+    case 3:
+    case 11:
+        rndValue = cLib_getRndValue(0, 2);
+        switch(rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 4;
+            break;
+        }
+        break;
+    case 4:
+    case 5:
+    case 12:
+    case 13:
+        rndValue = cLib_getRndValue(0, 3);
+        switch(rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 1;
+            break;
+        case 2:
+            paramLow = 4;
+            break;
+        }
+        break;
+    case 6:
+    case 14:
+        rndValue = cLib_getRndValue(0, 2);
+        switch (rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 1;
+            break;
+        }
+        break;
+    case 7:
+        rndValue = cLib_getRndValue(0, 2);
+        switch (rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 4;
+            break;
+        }
+        break;
+    case 0x10:
+    case 0x17:
+        rndValue = cLib_getRndValue(0, 3);
+        switch(rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 8;
+            break;
+        case 2:
+            paramLow = 5;
+            break;
+        }
+        break;
+    case 0x11:
+    case 0x18:
+        rndValue = cLib_getRndValue(0, 3);
+        switch(rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 8;
+            break;
+        case 2:
+            paramLow = 5;
+            break;
+        }
+        break;
+    case 0x12:
+    case 0x19:
+        rndValue = cLib_getRndValue(0, 4);
+        switch(rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 8;
+            break;
+        case 2:
+            paramLow = 5;
+            break;
+        case 3:
+            paramLow = 3;
+            break;
+        }
+        break;
+    case 0x13:
+    case 0x1a:
+        rndValue = cLib_getRndValue(0, 2);
+        switch (rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 5;
+            break;
+        }
+        break;
+    case 0x14:
+    case 0x1b:
+        rndValue = cLib_getRndValue(0, 2);
+        switch (rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 5;
+            break;
+        }
+        break;
+    case 0x15:
+    case 0x1c:
+        rndValue = cLib_getRndValue(0, 2);
+        switch (rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 5;
+            break;
+        }
+        break;
+    case 0x16:
+    case 0x1d:
+        rndValue = cLib_getRndValue(0, 3);
+        switch(rndValue) {
+        case 0:
+            paramLow = 0;
+            break;
+        case 1:
+            paramLow = 5;
+            break;
+        case 2:
+            paramLow = 3;
+            break;
+        }
+        break;
+    default:
+        OS_REPORT("%s: Line.%d arg=%d\n", "d_a_passer_mng.cpp", 1049, param_1);
+        JUT_PANIC(1050, "0");
+        break;
     }
-    bool groupOK = false;
-    if (groupNo != 0xff && groupNo < 4) {
-        groupOK = true;
-    }
-    u32 groupInd;
-    if (groupOK) {
-        groupInd = groupNo;
-    } else {
-        groupInd = 0;
-    }
-    Group* pGroup = mGroupTbl[groupInd];
-    int iVar5;
-    do {
-        iVar5 = cLib_getRndValue(0, (int)pGroup->field_0x00);
-    } while (checkOverlapping(pGroup->field_0x04[iVar5] & 0xff, pGroup->field_0x00));
-    int uVar3 = pGroup->field_0x04[iVar5];
-    param |= uVar3;
-    int local_30;
-    if (pGroup->field_0x00 <= 6) {
-        local_30 = pGroup->field_0x00 - 1;
-    } else {
-        local_30 = 6;
-    }
-    field_0x58a[field_0x597] = pGroup->field_0x04[iVar5];
-    if (++field_0x597 >= local_30) {
-        field_0x597 = 0;
-    }
-    int luggageParam;
-    if (getDetailLevel() == 0) {
-        luggageParam = getLuggageParamHigh(pGroup->field_0x04[iVar5] & 0xff);
-    } else {
-        luggageParam = getLuggageParamLow(pGroup->field_0x04[iVar5] & 0xff);
-    }
-    param |= luggageParam;
-    return param;
+    return paramLow << 8;
 }
 
 /* 80D45E14-80D466FC 000774 08E8+00 2/1 0/0 0/0 .text getLuggageParamHigh__13daPasserMng_cFUl */
@@ -745,14 +939,99 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
     return paramLow;
 }
 
+u8 daPasserMng_c::getDetailLevel() { return argument; }
+
+bool daPasserMng_c::checkOverlapping(int param_1, u8 param_2) {
+    int iVar1 = param_2 <= 6 ? param_2 - 1 : 6;
+    
+    for (int i = 0; i < iVar1; i++) {
+        if (field_0x58a[i] == param_1) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+#if DEBUG
+daPasserMng_Attr_c& daPasserMng_c::attr() const { return M_hio.mAttr; }
+#endif
+
+u8 daPasserMng_c::getGroupNo() { return (shape_angle.x >> 8) & 0xff; }
+
+u8 daPasserMng_c::getPathID() { return fopAcM_GetParam(this); }
+
+/* 80D4597C-80D45E14 0002DC 0498+00 3/2 0/0 0/0 .text            getPasserParam__13daPasserMng_cFv */
+int daPasserMng_c::getPasserParam() {
+    u32 param = getPathID() << 16;
+
+    u8 groupNo = getGroupNo();
+    if (groupNo == 0xff || groupNo >= 4) {
+        // The passerby group specification is invalid.
+        OS_REPORT_ERROR("\n通行人のグループ指定が不正です！ GroupNo=%d\n\n", groupNo);
+    }
+
+    bool groupOK = false;
+    if (groupNo != 0xff && groupNo < 4) {
+        groupOK = true;
+    }
+
+    u32 groupInd;
+    if (groupOK) {
+        groupInd = groupNo;
+    } else {
+        groupInd = 0;
+    }
+
+    Group* pGroup = mGroupTbl[groupInd];
+    
+    #if DEBUG
+    if (attr().npc_type != -1) {
+        param |= mPasserDataTbl[attr().npc_type];
+        return param;
+    }
+    #endif
+
+    int iVar5;
+    do {
+        iVar5 = cLib_getRndValue(0, (int)pGroup->field_0x00);
+    } while (checkOverlapping(pGroup->field_0x04[iVar5] & 0xff, (u8)pGroup->field_0x00));
+
+    param |= pGroup->field_0x04[iVar5];
+    int iVar1 = pGroup->field_0x00 <= 6 ? pGroup->field_0x00 - 1 : 6;
+
+    field_0x58a[field_0x597] = pGroup->field_0x04[iVar5];
+    if (++field_0x597 >= iVar1) {
+        field_0x597 = 0;
+    }
+
+    int luggageParam;
+    if (getDetailLevel() == 0) {
+        luggageParam = getLuggageParamHigh(pGroup->field_0x04[iVar5] & 0xff);
+    } else {
+        luggageParam = getLuggageParamLow(pGroup->field_0x04[iVar5] & 0xff);
+    }
+    
+    param |= luggageParam;
+    return param;
+}
+
 /* 80D466FC-80D46704 00105C 0008+00 1/0 0/0 0/0 .text            daPasserMng_IsDelete__FP13daPasserMng_c */
 static int daPasserMng_IsDelete(daPasserMng_c* i_this) {
     return 1;
 }
 
+daPasserMng_c::~daPasserMng_c() {
+    delete [] childProcIds;
+
+    #if DEBUG
+    M_hio.dt();
+    #endif
+}
+
 /* 80D46704-80D46748 001064 0044+00 1/0 0/0 0/0 .text            daPasserMng_Delete__FP13daPasserMng_c */
 static int daPasserMng_Delete(daPasserMng_c* i_this) {
-    fopAcM_GetID(i_this);
+    fpc_ProcID id = fopAcM_GetID(i_this);
     i_this->~daPasserMng_c();
     return 1;
 }
@@ -764,12 +1043,20 @@ static int daPasserMng_Create(fopAc_ac_c* a_this) {
     return i_this->create();
 }
 
+daPasserMng_c::daPasserMng_c() {}
+
 /* 80D46768-80D467C0 0010C8 0058+00 1/1 0/0 0/0 .text            create__13daPasserMng_cFv */
 int daPasserMng_c::create() {
     fopAcM_ct(this, daPasserMng_c);
     create_init();
     return cPhs_COMPLEATE_e;
 }
+
+u8 daPasserMng_c::getEndTime() { return (fopAcM_GetParam(this) >> 16) & 0xff; }
+
+u8 daPasserMng_c::getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
+
+u8 daPasserMng_c::getIntervalTime() { return fopAcM_GetParam(this) >> 24; }
 
 /* 80D467C0-80D46B9C 001120 03DC+00 1/1 0/0 0/0 .text            create_init__13daPasserMng_cFv */
 void daPasserMng_c::create_init() {
@@ -803,9 +1090,11 @@ void daPasserMng_c::create_init() {
     } else {
         field_0x596 = 1;
     }
+
     for (int i = 0; i < 5; i++) {
         field_0x58a[i] = 0xffff;
     }
+
     field_0x597 = 0;
     if (field_0x596 != 0 || (startTime < time && endTime > time)) {
         int max;
@@ -818,32 +1107,34 @@ void daPasserMng_c::create_init() {
 
         int* arr = new int[max];
         int i = 0;
-        while (i < max) {
+        for (; i < max;) {
             int rnd = cLib_getRndValue(1, mPath->m_num - 2);
             bool bVar1 = true;
-            for (int j = 0; j < i; i++) {
+            for (int j = 0; j < i; j++) {
                 if (rnd == arr[j]) {
                     bVar1 = false;
                     break;
                 }
             }
+            
             if (bVar1) {
                 arr[i] = rnd;
                 i++;
             }
         }
+
         #ifdef DEBUG
         OS_REPORT("初期ばらまき位置 Path=%d ", getPathID());
         for (i = 0; i < max; i++) {
             OS_REPORT("%d, ", arr[i]);
         }
         #endif
+
         OS_REPORT("\n");
         for (i = 0; i < max; i++) {
             dPnt* pnti0 = dPath_GetPnt(mPath, arr[i]);
             dPnt* pnti1 = dPath_GetPnt(mPath, arr[i] + 1);
             cXyz cStack_28(pnti0->m_position);
-            // s16 sVar11 = cLib_targetAngleY(cStack_28, pnti1->m_position);
             csXyz cStack_30(endTime, cLib_targetAngleY(cStack_28, pnti1->m_position), 0);
             childProcIds[currentChildIndex] = fopAcM_createChild(npcId, fopAcM_GetID(this), getPasserParam(),
                                                        &cStack_28, fopAcM_GetRoomNo(this), &cStack_30, 0,
@@ -854,7 +1145,6 @@ void daPasserMng_c::create_init() {
     }
 }
 
-/* ############################################################################################## */
 /* 80D46DB0-80D46DD0 -00001 0020+00 1/0 0/0 0/0 .data            l_daPasserMng_Method */
 static actor_method_class l_daPasserMng_Method = {
     (process_method_func)daPasserMng_Create,
