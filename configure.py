@@ -2110,7 +2110,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_lv6bemos"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_lv6bemos2"),
     ActorRel(NonMatching, "d_a_obj_lv6egate"),
-    ActorRel(NonMatching, "d_a_obj_lv6elevta"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_lv6elevta"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_lv6swturn"),
     ActorRel(NonMatching, "d_a_obj_lv7BsGate"),
     ActorRel(NonMatching, "d_a_obj_lv7PropellerY"),
