@@ -9,7 +9,7 @@ struct daNpcShoe_HIOParam {
 
 class daNpcShoe_Param_c {
 public:
-    /* 8095D5D4 */ virtual ~daNpcShoe_Param_c() {}
+    /* 80AEA344 */ virtual ~daNpcShoe_Param_c() {}
 
     static const daNpcShoe_HIOParam m;
 };

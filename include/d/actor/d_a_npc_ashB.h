@@ -10,7 +10,7 @@ struct daNpcAshB_HIOParam {
 
 class daNpcAshB_Param_c {
 public:
-    /* 80B24978 */ virtual ~daNpcAshB_Param_c() {}
+    /* 80962078 */ virtual ~daNpcAshB_Param_c() {}
 
     static const daNpcAshB_HIOParam m;
 };

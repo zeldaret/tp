@@ -3,13 +3,87 @@
  *
  */
 
-#include "d/dolzel_rel.h" // IWYU pragma: keep
+#include "d/dolzel_rel.h"  // IWYU pragma: keep
 
 #include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_ep.h"
 #include "d/actor/d_a_npc_moi.h"
 #include "d/actor/d_a_npc_uri.h"
+
+/* 80A7AEF0-80A7AFAC 000000 00BC+00 19/19 0/0 0/0 .rodata          m__17daNpc_Moi_Param_c */
+const daNpc_Moi_HIOParam daNpc_Moi_Param_c::m = {
+    200.0f,   // attention_offset
+    -3.0f,    // gravity
+    1.0f,     // scale
+    400.0f,   // real_shadow_size
+    255.0f,   // weight
+    180.0f,   // height
+    35.0f,    // knee_length
+    30.0f,    // width
+    0.0f,     // body_angleX_max
+    0.0f,     // body_angleX_min
+    10.0f,    // body_angleY_max
+    -10.0f,   // body_angleY_min
+    30.0f,    // head_angleX_max
+    -10.0f,   // head_angleX_min
+    45.0f,    // head_angleY_max
+    -45.0f,   // head_angleY_min
+    0.6f,     // neck_rotation_ratio
+    12.0f,    // morf_frame
+    3,        // talk_distance
+    6,        // talk_angle
+    5,        // attention_distance
+    6,        // attention_angle
+    110.0f,   // fov
+    0.0f,     // search_distance
+    0.0f,     // search_height
+    0.0f,     // search_depth
+    60,       // attention_time
+    8,        // damage_time
+    0,        // face_expression
+    0,        // motion
+    0,        // look_mode
+    0,        // debug_mode_ON
+    0,        // debug_info_ON
+    4.0f,     // expression_morf_frame
+    0.0f,     // box_min_x
+    0.0f,     // box_min_y
+    0.0f,     // box_min_z
+    0.0f,     // box_max_x
+    0.0f,     // box_max_y
+    0.0f,     // box_max_z
+    0.0f,     // box_offset
+    350.0f,   // field_0x8c
+    300.0f,   // field_0x90
+    -100.0f,  // field_0x94
+    90,       // field_0x98
+    200,      // field_0x9a
+    235,      // field_0x9c
+    125,      // field_0x9e
+    0,        // field_0xa0
+    0,        // field_0xa2
+    1.0f,     // field_0xa4
+    1000.0f,  // field_0xa8
+    300.0f,   // field_0xac
+    -300.0f,  // field_0xb0
+    30.0f,    // field_0xb4
+    60.0f,    // field_0xb8
+};
+
+#if DEBUG
+daNpc_Moi_HIO_c::daNpc_Moi_HIO_c() {
+    m = daNpc_Moi_Param_c::m;
+}
+
+void daNpc_Moi_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
+    // TODO
+}
+
+void daNpc_Moi_HIO_c::genMessage(JORMContext* ctext) {
+    // TODO
+}
+#endif
 
 /* 80A7B17C-80A7B1BC 000020 0040+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[8][2] = {
@@ -193,17 +267,6 @@ daNpc_Moi_c::~daNpc_Moi_c() {
     deleteRes(l_loadResPtrnList[mType], (char const**)l_resNameList);
 }
 
-/* 80A7AEF0-80A7AFAC 000000 00BC+00 19/19 0/0 0/0 .rodata          m__17daNpc_Moi_Param_c */
-const daNpc_Moi_HIOParam daNpc_Moi_Param_c::m = {
-    200.0f, -3.0f, 1.0f,   400.0f, 255.0f, 180.0f, 35.0f, 30.0f, 0.0f, 0.0f, 10.0f,
-    -10.0f, 30.0f, -10.0f, 45.0f,  -45.0f, 0.6f,   12.0f, 3,     6,    5,    6,
-    110.0f, 0.0f,  0.0f,   0.0f,   60,     8,      0,     0,     0,    0,    0,
-    4.0f,   0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.0f,  0.0f,  0x43, 0xAF, 0x00,
-    0x00,   0x43,  0x96,   0x00,   0x00,   0xC2,   0xC8,  0x00,  0x00, 90,   200,
-    235,    125,   0,      0,      1.0f,   0x44,   0x7A,  0x00,  0x00, 0x43, 0x96,
-    0x00,   0x00,  0xC3,   0x96,   0x00,   0x00,   30.0f, 60.0f,
-};
-
 /* 80A74150-80A74474 0002F0 0324+00 1/1 0/0 0/0 .text            create__11daNpc_Moi_cFv */
 int daNpc_Moi_c::create() {
     static const int heapSize[] = {0, 0x5C70, 0x7CB0, 0x7CA0, 0x5C70, 0x5C80, 0};
@@ -234,7 +297,7 @@ int daNpc_Moi_c::create() {
         reset();
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
-        mCcStts.Init(daNpc_Moi_Param_c::m.common.weight, 0, this);
+        mCcStts.Init(mpHIO->m.common.weight, 0, this);
         for (int i = 0; i < 4; i++) {
             mCyl[i].Set(mCcDCyl);
             mCyl[i].SetStts(&mCcStts);
@@ -358,11 +421,11 @@ int daNpc_Moi_c::Draw() {
             actor->field_0x634 = field_0x1628;
             actor->current.pos = field_0x1628;
             GXColor color;
-            color.r = daNpc_Moi_Param_c::m.field_0x9c;
-            color.g = daNpc_Moi_Param_c::m.field_0x9e;
-            color.b = daNpc_Moi_Param_c::m.field_0xa0;
+            color.r = mpHIO->m.field_0x9c;
+            color.g = mpHIO->m.field_0x9e;
+            color.b = mpHIO->m.field_0xa0;
             color.a = (u8)actor->field_0x5c0;
-            dKy_BossLight_set(&field_0x1628, &color, daNpc_Moi_Param_c::m.field_0xa4, 1);
+            dKy_BossLight_set(&field_0x1628, &color, mpHIO->m.field_0xa4, 1);
         }
     }
 
@@ -535,10 +598,10 @@ void daNpc_Moi_c::setParam() {
     srchActors();
 
     int uVar5 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
-    s16 talk_distance = daNpc_Moi_Param_c::m.common.talk_distance;
-    s16 talk_angle = daNpc_Moi_Param_c::m.common.talk_angle;
-    s16 attention_distance = daNpc_Moi_Param_c::m.common.attention_distance;
-    s16 attention_angle = daNpc_Moi_Param_c::m.common.attention_angle;
+    s16 talk_distance = mpHIO->m.common.talk_distance;
+    s16 talk_angle = mpHIO->m.common.talk_angle;
+    s16 attention_distance = mpHIO->m.common.attention_distance;
+    s16 attention_angle = mpHIO->m.common.attention_angle;
 
     if (mType == TYPE_2) {
         if (field_0x166d) {
@@ -584,18 +647,17 @@ void daNpc_Moi_c::setParam() {
         attention_info.flags = uVar5;
     }
 
-    scale.set(daNpc_Moi_Param_c::m.common.scale, daNpc_Moi_Param_c::m.common.scale,
-              daNpc_Moi_Param_c::m.common.scale);
-    mCcStts.SetWeight(daNpc_Moi_Param_c::m.common.weight);
-    mCylH = daNpc_Moi_Param_c::m.common.height;
-    mWallR = daNpc_Moi_Param_c::m.common.width;
-    mAttnFovY = daNpc_Moi_Param_c::m.common.fov;
+    scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale, mpHIO->m.common.scale);
+    mCcStts.SetWeight(mpHIO->m.common.weight);
+    mCylH = mpHIO->m.common.height;
+    mWallR = mpHIO->m.common.width;
+    mAttnFovY = mpHIO->m.common.fov;
     if (mType == TYPE_2) {
         mAttnFovY = 135.0f;
     }
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(daNpc_Moi_Param_c::m.common.knee_length);
-    mRealShadowSize = daNpc_Moi_Param_c::m.common.real_shadow_size;
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
+    mRealShadowSize = mpHIO->m.common.real_shadow_size;
     if (mType == TYPE_1) {
         mRealShadowSize = 600.0f;
     } else if (mType == TYPE_2) {
@@ -604,9 +666,9 @@ void daNpc_Moi_c::setParam() {
             mRealShadowSize = 800.0f;
         }
     }
-    gravity = daNpc_Moi_Param_c::m.common.gravity;
-    mExpressionMorfFrame = daNpc_Moi_Param_c::m.common.expression_morf_frame;
-    mMorfFrames = daNpc_Moi_Param_c::m.common.morf_frame;
+    gravity = mpHIO->m.common.gravity;
+    mExpressionMorfFrame = mpHIO->m.common.expression_morf_frame;
+    mMorfFrames = mpHIO->m.common.morf_frame;
     if (mType == TYPE_3) {
         mAcch.SetGrndNone();
         mAcch.SetWallNone();
@@ -762,7 +824,7 @@ void daNpc_Moi_c::beforeMove() {
 }
 
 /* 80A7BFF4-80A7BFF8 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpc_Moi_Param_c l_HIO;
+NPC_MOI_HIO_CLASS l_HIO;
 
 /* 80A75AB8-80A75E68 001C58 03B0+00 1/0 0/0 0/0 .text            setAttnPos__11daNpc_Moi_cFv */
 void daNpc_Moi_c::setAttnPos() {
@@ -775,15 +837,15 @@ void daNpc_Moi_c::setAttnPos() {
     if (mType == 3) {
         mJntAnm.setParam(this, mpMorf[0]->getModel(), &acStack_3c, getBackboneJointNo(),
                          getNeckJointNo(), getHeadJointNo(), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-                         0.0f, 0.0f, l_HIO.m.common.neck_rotation_ratio, dVar6, NULL);
+                         0.0f, 0.0f, mpHIO->m.common.neck_rotation_ratio, dVar6, NULL);
     } else {
         mJntAnm.setParam(this, mpMorf[0]->getModel(), &acStack_3c, getBackboneJointNo(),
-                         getNeckJointNo(), getHeadJointNo(), l_HIO.m.common.body_angleX_min,
-                         l_HIO.m.common.body_angleX_max, l_HIO.m.common.body_angleY_min,
-                         l_HIO.m.common.body_angleY_max, l_HIO.m.common.head_angleX_min,
-                         l_HIO.m.common.head_angleX_max, l_HIO.m.common.head_angleY_min,
-                         l_HIO.m.common.head_angleY_max, l_HIO.m.common.neck_rotation_ratio, dVar6,
-                         NULL);
+                         getNeckJointNo(), getHeadJointNo(), mpHIO->m.common.body_angleX_min,
+                         mpHIO->m.common.body_angleX_max, mpHIO->m.common.body_angleY_min,
+                         mpHIO->m.common.body_angleY_max, mpHIO->m.common.head_angleX_min,
+                         mpHIO->m.common.head_angleX_max, mpHIO->m.common.head_angleY_min,
+                         mpHIO->m.common.head_angleY_max, mpHIO->m.common.neck_rotation_ratio,
+                         dVar6, NULL);
     }
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar6);
 
@@ -795,7 +857,7 @@ void daNpc_Moi_c::setAttnPos() {
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y + field_0xd8a.y, 1, 1.0f, 0);
 
     acStack_3c.set(0.0f, 0.0f, 0.0f);
-    acStack_3c.y = l_HIO.m.common.attention_offset;
+    acStack_3c.y = mpHIO->m.common.attention_offset;
 
     if (mType == TYPE_3) {
         acStack_3c.set(0.0f, 140.0f, -60.0f);
@@ -1052,10 +1114,10 @@ void daNpc_Moi_c::setSSlash(int param_1) {
         mSound.startCreatureVoice(JAISoundID(Z2SE_MOI_V_WOUND_SWING), -1);
     }
     field_0x1664 = fopAcM_searchPlayerAngleY(this);
-    s16 iVar3 = cM_deg2s(daNpc_Moi_Param_c::m.field_0xb8);
-    daPy_getPlayerActorClass()->setThrowDamage(
-        fopAcM_searchPlayerAngleY(this), daNpc_Moi_Param_c::m.field_0xb4 * cM_scos(iVar3),
-        daNpc_Moi_Param_c::m.field_0xb4 * cM_ssin(iVar3), 1, 0, 0);
+    s16 iVar3 = cM_deg2s(mpHIO->m.field_0xb8);
+    daPy_getPlayerActorClass()->setThrowDamage(fopAcM_searchPlayerAngleY(this),
+                                               mpHIO->m.field_0xb4 * cM_scos(iVar3),
+                                               mpHIO->m.field_0xb4 * cM_ssin(iVar3), 1, 0, 0);
     if (param_1 != 0) {
         field_0x1660 = 1;
         field_0x165c = 202;
@@ -1262,7 +1324,7 @@ int daNpc_Moi_c::injuryWalk() {
 
 /* 80A770FC-80A7772C 00329C 0630+00 2/2 0/0 0/0 .text            poise__11daNpc_Moi_cFv */
 int daNpc_Moi_c::poise() {
-    int iVar13 = daNpc_Moi_Param_c::m.field_0x98;
+    int iVar13 = mpHIO->m.field_0x98;
 
     if (field_0x1669 != 0) {
         if (field_0x166c != 0) {
@@ -1679,7 +1741,7 @@ int daNpc_Moi_c::cutFindWolf(int param_1) {
 
 /* 80A789D8-80A78E0C 004B78 0434+00 2/0 0/0 0/0 .text            wait__11daNpc_Moi_cFPv */
 int daNpc_Moi_c::wait(void* param_1) {
-    int iVar4 = daNpc_Moi_Param_c::m.field_0x98;
+    int iVar4 = mpHIO->m.field_0x98;
 
     switch (mMode) {
     case MODE_ENTER:
@@ -1793,7 +1855,7 @@ int daNpc_Moi_c::walk(void* param_1) {
 
 /* 80A78FF4-80A794C0 005194 04CC+00 1/0 0/0 0/0 .text            walkOnEggshell__11daNpc_Moi_cFPv */
 int daNpc_Moi_c::walkOnEggshell(void* param_1) {
-    int sVar1 = daNpc_Moi_Param_c::m.field_0x9a;
+    int sVar1 = mpHIO->m.field_0x9a;
 
     switch (mMode) {
     case MODE_ENTER:

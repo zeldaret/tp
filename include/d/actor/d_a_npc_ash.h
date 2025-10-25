@@ -9,7 +9,7 @@ struct daNpcAsh_HIOParam {
 
 class daNpcAsh_Param_c {
 public:
-    /* 80B24978 */ virtual ~daNpcAsh_Param_c() {}
+    /* 8095D5D4 */ virtual ~daNpcAsh_Param_c() {}
 
     static const daNpcAsh_HIOParam m;
 };
