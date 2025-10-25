@@ -1928,14 +1928,14 @@ int daAlink_c::jointControll(int param_0) {
     csXyz sp18(0, 0, 0);
     int var_r27 = 0;
 
-    mDoExt_MtxCalcOldFrame* temp = field_0x2060;
-    J3DTransformInfo* temp_r3 = temp->getOldFrameTransInfo(param_0);
-    J3DTransformInfo sp80 = *temp_r3;
+    J3DTransformInfo jointTrans;
+
+    J3DTransformInfo rootTrans = *field_0x2060->getOldFrameTransInfo(param_0);
 
     Quaternion sp50;
     Quaternion sp40;
     Quaternion sp30;
-    Quaternion sp20 = *temp->getOldFrameQuaternion(param_0);
+    Quaternion sp20 = *field_0x2060->getOldFrameQuaternion(param_0);
 
     csXyz sp10(0, 1, 2);
 
@@ -1964,7 +1964,7 @@ int daAlink_c::jointControll(int param_0) {
 
             sp18.set(field_0x3080, 0, field_0x3082);
             sp10.set(2, 1, 0);
-            sp80 = *field_0x2060->getOldFrameTransInfo(0);
+            jointTrans = *field_0x2060->getOldFrameTransInfo(0);
             var_r27 |= 2;
         } else if (param_0 == 3) {
             sp18.set((field_0x30d6 + field_0x30b2), 0, field_0x30b0);
@@ -2024,12 +2024,12 @@ int daAlink_c::jointControll(int param_0) {
         sp18.set(field_0x3080, 0, field_0x3082);
         sp10.set(2, 0, 1);
 
-        sp80 = *field_0x2060->getOldFrameTransInfo(0);
+        jointTrans = *field_0x2060->getOldFrameTransInfo(0);
         var_r27 |= 2;
         if (field_0x2f99 == 0x60) {
-            sp80.mTranslate.x -= field_0x384c->x;
-            sp80.mTranslate.y -= field_0x384c->y;
-            sp80.mTranslate.z -= field_0x384c->z;
+            jointTrans.mTranslate.x -= field_0x384c->x;
+            jointTrans.mTranslate.y -= field_0x384c->y;
+            jointTrans.mTranslate.z -= field_0x384c->z;
         }
     } else if (param_0 == 0x1B) {
         setMatrixWorldAxisRot(mpLinkModel->getAnmMtx(param_0), mFootData1[0].field_0x6, 0, 0, 1, NULL);
@@ -2102,7 +2102,7 @@ int daAlink_c::jointControll(int param_0) {
 
         J3DTransformInfo* var_r25;
         if ((var_r27 & 2)) {
-            var_r25 = &sp80;
+            var_r25 = &jointTrans;
         } else {
             var_r25 = field_0x2060->getOldFrameTransInfo(param_0);
         }
@@ -2114,7 +2114,7 @@ int daAlink_c::jointControll(int param_0) {
             spC = field_0x2060->getOldFrameQuaternion(param_0);
         }
 
-        mDoMtx_stack_c::transS(sp80.mTranslate.x, sp80.mTranslate.y, sp80.mTranslate.z);
+        mDoMtx_stack_c::transS(rootTrans.mTranslate.x, rootTrans.mTranslate.y, rootTrans.mTranslate.z);
         mDoMtx_stack_c::quatM(&sp20);
         mDoMtx_stack_c::inverse();
         cMtx_concat(temp_r26, mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
