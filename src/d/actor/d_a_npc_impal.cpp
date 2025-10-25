@@ -50,10 +50,6 @@ daNpcImpal_HIO_c::daNpcImpal_HIO_c() {
     m = daNpcImpal_Param_c::m;
 }
 
-void daNpcImpal_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
-    // TODO
-}
-
 void daNpcImpal_HIO_c::genMessage(JORMContext* ctext) {
     // TODO
 }

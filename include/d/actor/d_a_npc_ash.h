@@ -39,7 +39,6 @@ public:
  */
 class daNpcAsh_c : public daNpcF_c {
 public:
-    typedef bool (daNpcAsh_c::*ActionFn)(void*);
     typedef BOOL (daNpcAsh_c::*EventFn)(int);
 
     enum Type {
@@ -107,7 +106,7 @@ public:
     /* 809596E0 */ bool setExpressionBtp(int);
     /* 809597C0 */ void setMotionAnm(int i_idx, f32 i_morf);
     /* 80959910 */ void reset();
-    /* 80959B28 */ inline bool setAction(ActionFn);
+    /* 80959B28 */ inline bool setAction(bool (daNpcAsh_c::*)(void*));
     /* 80959BD0 */ inline bool isSneaking();
     /* 80959C40 */ bool wait_type0(void*);
     /* 8095A67C */ void setMotion(int, f32, int);
@@ -154,7 +153,7 @@ private:
     /* 0xCB0 */ fopAc_ac_c* mTalkPartner;
     /* 0xCB4 */ NPC_ASH_HIO_CLASS* mpHIO;
     /* 0xCB8 */ dCcD_Cyl mCcCyl[2];
-    /* 0xF30 */ ActionFn mpActionFn;
+    /* 0xF30 */ bool (daNpcAsh_c::*mAction)(void*);
     /* 0xF3C */ request_of_phase_process_class mPhase[2];
     /* 0xF4C */ u32 mItemPartnerId;
     /* 0xF50 */ u32 field_0xf50;  // unused
