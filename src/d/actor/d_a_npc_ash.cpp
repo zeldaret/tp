@@ -3,251 +3,62 @@
  * NPC - Ashei
  */
 
-#include "d/dolzel_rel.h" // IWYU pragma: keep
+#include "d/dolzel_rel.h"  // IWYU pragma: keep
 
-#include "d/actor/d_a_npc_ash.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/actor/d_a_npc_ash.h"
 #include "d/actor/d_a_tag_evtarea.h"
-#include "dol2asm.h"
 
-//
-// Forward References:
-//
+/* 8095D640-8095D6AC 000000 006C+00 14/14 0/0 0/0 .rodata          m__16daNpcAsh_Param_c */
+const daNpcAsh_HIOParam daNpcAsh_Param_c::m = {
+    35.0f,    // attention_offset
+    -3.0f,    // gravity
+    1.0f,     // scale
+    400.0f,   // real_shadow_size
+    255.0f,   // weight
+    200.0f,   // height
+    35.0f,    // knee_length
+    30.0f,    // width
+    0.0f,     // body_angleX_max
+    0.0f,     // body_angleX_min
+    0.0f,     // body_angleY_max
+    0.0f,     // body_angleY_min
+    30.0f,    // head_angleX_max
+    0.0f,     // head_angleX_min
+    30.0f,    // head_angleY_max
+    -30.0f,   // head_angleY_min
+    0.8f,     // neck_rotation_ratio
+    12.0f,    // morf_frame
+    3,        // talk_distance
+    6,        // talk_angle
+    5,        // attention_distance
+    6,        // attention_angle
+    120.0f,   // fov
+    500.0f,   // search_distance
+    300.0f,   // search_height
+    -300.0f,  // search_depth
+    60,       // attention_time
+    8,        // damage_time
+    0,        // face_expression
+    0,        // motion
+    0,        // look_mode
+    0,        // debug_mode_ON
+    0,        // debug_info_ON
+};
 
-extern "C" void __ct__10daNpcAsh_cFv();
-extern "C" void __dt__8dCcD_CylFv();
-extern "C" void __ct__8dCcD_CylFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10daNpcAsh_cFv();
-extern "C" void Create__10daNpcAsh_cFv();
-extern "C" void CreateHeap__10daNpcAsh_cFv();
-extern "C" void __dt__15J3DTevKColorAnmFv();
-extern "C" void __ct__15J3DTevKColorAnmFv();
-extern "C" void __dt__14J3DTevColorAnmFv();
-extern "C" void __ct__14J3DTevColorAnmFv();
-extern "C" void __dt__11J3DTexNoAnmFv();
-extern "C" void __ct__11J3DTexNoAnmFv();
-extern "C" void __dt__12J3DTexMtxAnmFv();
-extern "C" void __ct__12J3DTexMtxAnmFv();
-extern "C" void __dt__14J3DMatColorAnmFv();
-extern "C" void __ct__14J3DMatColorAnmFv();
-extern "C" void Delete__10daNpcAsh_cFv();
-extern "C" void Execute__10daNpcAsh_cFv();
-extern "C" void Draw__10daNpcAsh_cFv();
-extern "C" void ctrlJoint__10daNpcAsh_cFP8J3DJointP8J3DModel();
-extern "C" void createHeapCallBack__10daNpcAsh_cFP10fopAc_ac_c();
-extern "C" void ctrlJointCallBack__10daNpcAsh_cFP8J3DJointi();
-extern "C" void setExpressionAnm__10daNpcAsh_cFib();
-extern "C" void setExpressionBtp__10daNpcAsh_cFi();
-extern "C" void setMotionAnm__10daNpcAsh_cFif();
-extern "C" void reset__10daNpcAsh_cFv();
-extern "C" void setAction__10daNpcAsh_cFM10daNpcAsh_cFPCvPvPv_b();
-extern "C" void isSneaking__10daNpcAsh_cFv();
-extern "C" void wait_type0__10daNpcAsh_cFPv();
-extern "C" void setMotion__10daNpcAsh_cFifi();
-extern "C" void setExpression__10daNpcAsh_cFif();
-extern "C" void wait_type1__10daNpcAsh_cFPv();
-extern "C" void talk__10daNpcAsh_cFPv();
-extern "C" void demo__10daNpcAsh_cFPv();
-extern "C" void leave__10daNpcAsh_cFPv();
-extern "C" void EvCut_Introduction__10daNpcAsh_cFi();
-extern "C" void EvCut_Meeting__10daNpcAsh_cFi();
-extern "C" void EvCut_WiretapSponsor__10daNpcAsh_cFi();
-extern "C" void EvCut_WiretapEntrant__10daNpcAsh_cFi();
-extern "C" static void daNpcAsh_Create__FPv();
-extern "C" static void daNpcAsh_Delete__FPv();
-extern "C" static void daNpcAsh_Execute__FPv();
-extern "C" static void daNpcAsh_Draw__FPv();
-extern "C" static bool daNpcAsh_IsDelete__FPv();
-extern "C" void calc__11J3DTexNoAnmCFPUs();
-extern "C" void setParam__10daNpcAsh_cFv();
-extern "C" void main__10daNpcAsh_cFv();
-extern "C" void playMotion__10daNpcAsh_cFv();
-extern "C" void ctrlBtk__10daNpcAsh_cFv();
-extern "C" void setAttnPos__10daNpcAsh_cFv();
-extern "C" void lookat__10daNpcAsh_cFv();
-extern "C" bool drawDbgInfo__10daNpcAsh_cFv();
-extern "C" void func_8095CC94(void* _this, s16);
-extern "C" void __sinit_d_a_npc_ash_cpp();
-extern "C" void __dt__18daNpcF_ActorMngr_cFv();
-extern "C" void __ct__18daNpcF_ActorMngr_cFv();
-extern "C" void __dt__15daNpcF_Lookat_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__8daNpcF_cFv();
-extern "C" void __ct__8daNpcF_cFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void adjustShapeAngle__8daNpcF_cFv();
-extern "C" void setCollisions__8daNpcF_cFv();
-extern "C" void drawOtherMdls__8daNpcF_cFv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz();
-extern "C" void __dt__16daNpcAsh_Param_cFv();
-extern "C" static void func_8095D61C();
-extern "C" static void func_8095D624();
-extern "C" u8 const m__16daNpcAsh_Param_c[108];
-extern "C" extern char* const d_a_npc_ash__stringBase0;
-extern "C" u8 mEvtSeqList__10daNpcAsh_c[72];
+#if DEBUG
+daNpcAsh_HIO_c::daNpcAsh_HIO_c() {
+    m = daNpcAsh_Param_c::m;
+}
 
-//
-// External References:
-//
-
-extern "C" void changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void modelCalc__16mDoExt_McaMorfSOFv();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fpcSch_JudgeForPName__FPvPv();
-extern "C" void getLayerNo__14dComIfG_play_cFi();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGs_isStageSwitch__Fii();
-extern "C" void isSwitch__12dSv_memBit_cCFi();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void convPId__14dEvt_control_cFUi();
-extern "C" void setPtI_Id__14dEvt_control_cFUi();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMyNowCutName__16dEvent_manager_cFi();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void initialize__18daNpcF_ActorMngr_cFv();
-extern "C" void entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c();
-extern "C" void remove__18daNpcF_ActorMngr_cFv();
-extern "C" void getActorP__18daNpcF_ActorMngr_cFv();
-extern "C" void initialize__15daNpcF_MatAnm_cFv();
-extern "C" void initialize__15daNpcF_Lookat_cFv();
-extern "C" void setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz();
-extern "C" void calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii();
-extern "C" void execute__8daNpcF_cFv();
-extern "C" void draw__8daNpcF_cFiifP11_GXColorS10i();
-extern "C" void setMtx__8daNpcF_cFv();
-extern "C" void setMtx2__8daNpcF_cFv();
-extern "C" void initialize__8daNpcF_cFv();
-extern "C" void getTrnsfrmKeyAnmP__8daNpcF_cFPci();
-extern "C" void getTexPtrnAnmP__8daNpcF_cFPci();
-extern "C" void getTexSRTKeyAnmP__8daNpcF_cFPci();
-extern "C" void setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii();
-extern "C" void setBckAnm__8daNpcF_cFP15J3DAnmTransformfiiib();
-extern "C" void setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi();
-extern "C" void setBtkAnm__8daNpcF_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi();
-extern "C" void setEnvTevColor__8daNpcF_cFv();
-extern "C" void setRoomNo__8daNpcF_cFv();
-extern "C" void playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void setLookatMtx__8daNpcF_cFiPif();
-extern "C" void ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci();
-extern "C" void orderEvent__8daNpcF_cFiPcUsUsUcUs();
-extern "C" void changeEvent__8daNpcF_cFPcPcUsUs();
-extern "C" void chkActorInSight__8daNpcF_cFP10fopAc_ac_cf();
-extern "C" void chkActorInAttnArea__8daNpcF_cFP10fopAc_ac_cP10fopAc_ac_ci();
-extern "C" void initTalk__8daNpcF_cFiPP10fopAc_ac_c();
-extern "C" void talkProc__8daNpcF_cFPiiPP10fopAc_ac_c();
-extern "C" void turn__8daNpcF_cFsfi();
-extern "C" void setAngle__8daNpcF_cFs();
-extern "C" void getDistTableIdx__8daNpcF_cFii();
-extern "C" void getEvtAreaTagP__8daNpcF_cFii();
-extern "C" void daNpcF_chkEvtBit__FUl();
-extern "C" void daNpcF_chkTmpBit__FUl();
-extern "C" void daNpcF_offTmpBit__FUl();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
-extern "C" void __ct__10Z2CreatureFv();
-extern "C" void __dt__10Z2CreatureFv();
-extern "C" void init__10Z2CreatureFP3VecP3VecUcUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void getTexNo__16J3DAnmTexPatternCFUsPUs();
-extern "C" void initialize__14J3DMaterialAnmFv();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz();
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
+void daNpcAsh_HIO_c::genMessage(JORMContext* ctext) {
+    // TODO
+}
+#endif
 
 /* 8095DD4C-8095DD50 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpcAsh_Param_c l_HIO;
+NPC_ASH_HIO_CLASS l_HIO;
 
 void daNpcAsh_c::setLookMode(int i_lookMode, fopAc_ac_c* i_talkPartner) {
     if (i_lookMode != mLookMode || i_talkPartner != mTalkPartner) {
@@ -276,7 +87,7 @@ void daNpcAsh_c::searchActors() {
 
 BOOL daNpcAsh_c::chkFindPlayer() {
     BOOL ret;
-    if (!chkActorInSight(daPy_getPlayerActorClass(), daNpcAsh_Param_c::m.mAttnFovY)) {
+    if (!chkActorInSight(daPy_getPlayerActorClass(), mpHIO->m.common.fov)) {
         mActorMngr[0].remove();
         ret = false;
     } else {
@@ -326,44 +137,48 @@ bool daNpcAsh_c::step(s16 i_angY, bool i_animate) {
 
 /* 8095D9B0-8095DA88 000020 00D8+00 1/2 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[18] = {
-    {-1, 2, 0}, // <none>
-    {7, 0, 0},  // ash_f_talk_a
-    {12, 0, 1}, // ash_f_talk_b
-    {11, 0, 1}, // ash_f_silent
-    {8, 0, 1},  // ash_f_cool
-    {7, 0, 1},  // ash_f_ask
-    {9, 0, 1},  // ash_f_explain_a
-    {10, 0, 1}, // ash_f_explain_b
-    {8, 2, 0},  // ash_wait_a
-    {14, 2, 1}, // ash_wait_b
-    {15, 2, 1}, // ash_wait_c
-    {13, 0, 1}, // ash_step
-    {4, 0, 1},  // ash_cool
-    {3, 0, 1},  // ash_ask
-    {5, 0, 1},  // ash_explain_a
-    {6, 0, 1},  // ash_explain_b
-    {5, 2, 2},  // ash_bowwait
-    {4, 2, 2},  // ash_bowrun
+    {-1, 2, 0},  // <none>
+    {7, 0, 0},   // ash_f_talk_a
+    {12, 0, 1},  // ash_f_talk_b
+    {11, 0, 1},  // ash_f_silent
+    {8, 0, 1},   // ash_f_cool
+    {7, 0, 1},   // ash_f_ask
+    {9, 0, 1},   // ash_f_explain_a
+    {10, 0, 1},  // ash_f_explain_b
+    {8, 2, 0},   // ash_wait_a
+    {14, 2, 1},  // ash_wait_b
+    {15, 2, 1},  // ash_wait_c
+    {13, 0, 1},  // ash_step
+    {4, 0, 1},   // ash_cool
+    {3, 0, 1},   // ash_ask
+    {5, 0, 1},   // ash_explain_a
+    {6, 0, 1},   // ash_explain_b
+    {5, 2, 2},   // ash_bowwait
+    {4, 2, 2},   // ash_bowrun
 };
 
 /* 8095DA88-8095DA94 0000F8 000C+00 1/1 0/0 0/0 .data            l_btpGetParamList */
 static daNpc_GetParam2 l_btpGetParamList[1] = {
-    {17, 2, 0}, // ash
+    {17, 2, 0},  // ash
 };
 
 /* 8095DA94-8095DAA0 000104 000C+00 0/1 0/0 0/0 .data            l_btkGetParamList */
 static daNpc_GetParam2 l_btkGetParamList[1] = {
-    {14, 2, 0}, // ash
+    {14, 2, 0},  // ash
 };
 
 /* 8095DAA0-8095DAAC 000110 000C+00 1/0 0/0 0/0 .data            l_loadRes_ASH0 */
 static int l_loadRes_ASH0[3] = {
-    0, 1, -1,
+    0,
+    1,
+    -1,
 };
 
 /* 8095DAAC-8095DAB8 00011C 000C+00 1/0 0/0 0/0 .data            l_loadRes_ASH1 */
 static int l_loadRes_ASH1[3] = {
-    0, 2, -1,
+    0,
+    2,
+    -1,
 };
 
 /* 8095DAB8-8095DAC0 -00001 0008+00 2/2 0/0 0/0 .data            l_loadRes_list */
@@ -402,9 +217,7 @@ daNpcAsh_c::EventFn daNpcAsh_c::mEvtSeqList[6] = {
 };
 
 /* 809582EC-80958430 0000EC 0144+00 1/1 0/0 0/0 .text            __ct__10daNpcAsh_cFv */
-daNpcAsh_c::daNpcAsh_c() {
-    // NONMATCHING
-}
+daNpcAsh_c::daNpcAsh_c() {}
 
 /* 80958610-809587A0 000410 0190+00 1/0 0/0 0/0 .text            __dt__10daNpcAsh_cFv */
 daNpcAsh_c::~daNpcAsh_c() {
@@ -417,42 +230,6 @@ daNpcAsh_c::~daNpcAsh_c() {
     }
 }
 
-/* 8095D640-8095D6AC 000000 006C+00 14/14 0/0 0/0 .rodata          m__16daNpcAsh_Param_c */
-daNpcAsh_Param_c::param const daNpcAsh_Param_c::m = {
-    35.0f,      // mAttnOffsetY
-    -3.0f,      // mGravity
-    1.0f,       // mScale
-    400.0f,     // mShadowDepth
-    255.0f,     // mCcWeight
-    200.0f,     // mCylH
-    35.0f,      // mWallH
-    30.0f,      // mWallR
-    0.0f,       // mBodyUpAngle
-    0.0f,       // mBodyDownAngle
-    0.0f,       // mBodyLeftAngle
-    0.0f,       // mBodyRightAngle
-    30.0f,      // mHeadUpAngle
-    0.0f,       // mHeadDownAngle
-    30.0f,      // mHeadLeftAngle
-    -30.0f,     // mHeadRightAngle
-    0.8f,       // mNeckAngleScl
-    12.0f,      // mMorfFrames
-    3,          // mSpeakDistIdx
-    6,          // mSpeakAngleIdx
-    5,          // mTalkDistIdx
-    6,          // mTalkAngleIdx
-    120.0f,     // mAttnFovY
-    500.0f,     // mAttnRadius
-    300.0f,     // mAttnUpperY
-    -300.0f,    // mAttnLowerY
-    60,
-    8,          // mDamageTimer
-    0,          // mTestExpression
-    0,          // mTestMotion
-    0,          // mTestLookMode
-    false,      // mTest
-};
-
 /* 809587A0-80958B68 0005A0 03C8+00 1/1 0/0 0/0 .text            Create__10daNpcAsh_cFv */
 cPhs__Step daNpcAsh_c::Create() {
     cPhs__Step step;
@@ -460,10 +237,11 @@ cPhs__Step daNpcAsh_c::Create() {
     fopAcM_ct(this, daNpcAsh_c);
 
     if (!strcmp(dComIfGp_getStartStageName(), "R_SP116") && dComIfG_play_c::getLayerNo(0) == 4) {
-            /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+        /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
         if (daNpcF_chkEvtBit(0x169)
-                /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
-            && !daNpcF_chkEvtBit(0x10A)) {
+            /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+            && !daNpcF_chkEvtBit(0x10A))
+        {
             return cPhs_ERROR_e;
         }
         if (dComIfGs_isStageSwitch(0x18, 0x4b)) {
@@ -509,13 +287,13 @@ cPhs__Step daNpcAsh_c::Create() {
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
         mCreatureSound.init(&current.pos, &eyePos, 3, 1);
-        mAcchCir.SetWall(daNpcAsh_Param_c::m.mWallR, daNpcAsh_Param_c::m.mWallH);
+        mAcchCir.SetWall(mpHIO->m.common.width, mpHIO->m.common.knee_length);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mAcch.SetRoofNone();
         mAcch.SetWaterNone();
         mAcch.CrrPos(dComIfG_Bgsp());
-        mCcStts.Init((int)daNpcAsh_Param_c::m.mCcWeight, 0, this);
+        mCcStts.Init((int)mpHIO->m.common.weight, 0, this);
         mCcCyl[0].Set(daNpcF_c::mCcDCyl);
         mCcCyl[0].SetStts(&mCcStts);
         mCcCyl[0].SetTgType(0);
@@ -542,8 +320,8 @@ cPhs__Step daNpcAsh_c::Create() {
 /* 80958B68-80958F08 000968 03A0+00 1/1 0/0 0/0 .text            CreateHeap__10daNpcAsh_cFv */
 BOOL daNpcAsh_c::CreateHeap() {
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 11));
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1,
-                                  &mCreatureSound, 0x80000, 0x11020284);
+    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreatureSound,
+                                  0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->mpModel == NULL) {
         mpMorf->stopZelAnime();
         mpMorf = NULL;
@@ -566,13 +344,15 @@ BOOL daNpcAsh_c::CreateHeap() {
     mModelQuiver = NULL;
     mModelBow = NULL;
     if (mType == TYPE_CASTLE) {
-        mModelBow = mDoExt_J3DModel__create(static_cast<J3DModelData*>(
-            dComIfG_getObjectRes(l_arcNames[2], 8)), 0x80000, 0x11000084);
+        mModelBow = mDoExt_J3DModel__create(
+            static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[2], 8)), 0x80000,
+            0x11000084);
         if (mModelBow == NULL) {
             return false;
         }
-        mModelQuiver = mDoExt_J3DModel__create(static_cast<J3DModelData*>(
-            dComIfG_getObjectRes(l_arcNames[2], 9)), 0x80000, 0x11000084);
+        mModelQuiver = mDoExt_J3DModel__create(
+            static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[2], 9)), 0x80000,
+            0x11000084);
         if (mModelQuiver == NULL) {
             return false;
         }
@@ -612,7 +392,7 @@ int daNpcAsh_c::Execute() {
 /* 8095911C-80959238 000F1C 011C+00 1/1 0/0 0/0 .text            Draw__10daNpcAsh_cFv */
 int daNpcAsh_c::Draw() {
     mpMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
-    draw(false, false, daNpcAsh_Param_c::m.mShadowDepth, NULL, false);
+    draw(false, false, mpHIO->m.common.real_shadow_size, NULL, false);
 
     if (mType == TYPE_CASTLE) {
         g_env_light.setLightTevColorType_MAJI(mModelBow, &tevStr);
@@ -649,12 +429,12 @@ bool daNpcAsh_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     case 1:
     case 3:
     case 4:
-        setLookatMtx(jointNo, lookatJoints, daNpcAsh_Param_c::m.mNeckAngleScl);
+        setLookatMtx(jointNo, lookatJoints, mpHIO->m.common.neck_rotation_ratio);
         break;
     }
     i_model->setAnmMtx(jointNo, mDoMtx_stack_c::get());
     cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
-    
+
     if ((jointNo == 4 || jointNo == 12) && (mAnmFlags & ANM_PLAY_BCK)) {
         J3DAnmTransform* bckAnm = mBckAnm.getBckAnm();
         mBckAnm.changeBckOnly(mpMorf->getAnm());
@@ -783,8 +563,8 @@ void daNpcAsh_c::setMotionAnm(int i_idx, f32 i_morf) {
 
     J3DAnmTransformKey* morfAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx],
                                                     l_bckGetParamList[i_idx].fileIdx);
-    J3DAnmTextureSRTKey* btkAnm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx],
-                                                   l_btkGetParamList[0].fileIdx);
+    J3DAnmTextureSRTKey* btkAnm =
+        getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx], l_btkGetParamList[0].fileIdx);
     s32 morfAttr = l_bckGetParamList[i_idx].attr;
     s32 btkAttr = l_btkGetParamList[0].attr;
     mAnmFlags &= ~ANM_MOTION_FLAGS;
@@ -817,7 +597,7 @@ void daNpcAsh_c::reset() {
     mpActionFn = NULL;
     mLookMode = -1;
     mMode = 0;
-    gravity = daNpcAsh_Param_c::m.mGravity;
+    gravity = mpHIO->m.common.gravity;
     current.pos = home.pos;
     old.pos = current.pos;
     current.angle.set(0, home.angle.y, 0);
@@ -866,8 +646,8 @@ bool daNpcAsh_c::setAction(daNpcAsh_c::ActionFn i_actionFn) {
 
 /* 80959BD0-80959C40 0019D0 0070+00 1/1 0/0 0/0 .text            isSneaking__10daNpcAsh_cFv */
 bool daNpcAsh_c::isSneaking() {
-    if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")
-        && dComIfGp_getStartStageRoomNo() == 5 && dComIfG_play_c::getLayerNo(0) == 2)
+    if (!strcmp(dComIfGp_getStartStageName(), "R_SP116") && dComIfGp_getStartStageRoomNo() == 5 &&
+        dComIfG_play_c::getLayerNo(0) == 2)
     {
         return true;
     } else {
@@ -876,31 +656,24 @@ bool daNpcAsh_c::isSneaking() {
 }
 
 void daNpcAsh_c::playExpression() {
-    daNpcF_anmPlayData dat0 = {ANM_F_TALK_A, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat0 = {ANM_F_TALK_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1 = {ANM_F_TALK_B, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat1 = {ANM_F_TALK_B, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat1[1] = {&dat1};
-    daNpcF_anmPlayData dat2 = {ANM_F_SILENT, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat2 = {ANM_F_SILENT, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat2[1] = {&dat2};
-    daNpcF_anmPlayData dat3 = {ANM_F_COOL, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat3 = {ANM_F_COOL, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[1] = {&dat3};
-    daNpcF_anmPlayData dat4 = {ANM_F_ASK, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat4 = {ANM_F_ASK, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&dat4};
-    daNpcF_anmPlayData dat5 = {ANM_F_EXPLAIN_A, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat5 = {ANM_F_EXPLAIN_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat5[1] = {&dat5};
-    daNpcF_anmPlayData dat6 = {ANM_F_EXPLAIN_B, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat6 = {ANM_F_EXPLAIN_B, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat6[1] = {&dat6};
-    daNpcF_anmPlayData dat7 = {ANM_NONE, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat7 = {ANM_NONE, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat7[1] = {&dat7};
     daNpcF_anmPlayData** ppDat[8] = {
-        pDat0,
-        pDat1,
-        pDat2,
-        pDat3,
-        pDat4,
-        pDat5,
-        pDat6,
-        pDat7,
+        pDat0, pDat1, pDat2, pDat3, pDat4, pDat5, pDat6, pDat7,
     };
     if (mExpression >= 0 && mExpression < 8) {
         playExpressionAnm(ppDat);
@@ -909,56 +682,90 @@ void daNpcAsh_c::playExpression() {
 
 /* 8095C200-8095C520 004000 0320+00 1/1 0/0 0/0 .text            playMotion__10daNpcAsh_cFv */
 void daNpcAsh_c::playMotion() {
-    daNpcF_anmPlayData dat0 = {ANM_WAIT_A, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat0 = {ANM_WAIT_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1 = {ANM_WAIT_B, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat1 = {ANM_WAIT_B, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat1[1] = {&dat1};
-    daNpcF_anmPlayData dat2 = {ANM_WAIT_C, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat2 = {ANM_WAIT_C, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat2[1] = {&dat2};
-    daNpcF_anmPlayData dat3a = {ANM_COOL, daNpcAsh_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat3b = {ANM_WAIT_C, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat3a = {ANM_COOL, mpHIO->m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat3b = {ANM_WAIT_C, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[2] = {&dat3a, &dat3b};
-    daNpcF_anmPlayData dat4a = {ANM_ASK, daNpcAsh_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat4b = {ANM_WAIT_C, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat4a = {ANM_ASK, mpHIO->m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat4b = {ANM_WAIT_C, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[2] = {&dat4a, &dat4b};
-    daNpcF_anmPlayData dat5a = {ANM_EXPLAIN_A, daNpcAsh_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat5b = {ANM_WAIT_C, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat5a = {ANM_EXPLAIN_A, mpHIO->m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5b = {ANM_WAIT_C, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat5[2] = {&dat5a, &dat5b};
-    daNpcF_anmPlayData dat6a = {ANM_EXPLAIN_B, daNpcAsh_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat6b = {ANM_WAIT_A, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat6a = {ANM_EXPLAIN_B, mpHIO->m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat6b = {ANM_WAIT_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat6[2] = {&dat6a, &dat6b};
-    daNpcF_anmPlayData dat7 = {ANM_BOWWAIT, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat7 = {ANM_BOWWAIT, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat7[1] = {&dat7};
-    daNpcF_anmPlayData dat8 = {ANM_BOWRUN, daNpcAsh_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat8 = {ANM_BOWRUN, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat8[1] = {&dat8};
     daNpcF_anmPlayData dat9 = {ANM_STEP, 4.0f, 1};
     daNpcF_anmPlayData* pDat9[1] = {&dat9};
     daNpcF_anmPlayData** ppDat[10] = {
-        pDat0,
-        pDat1,
-        pDat2,
-        pDat3,
-        pDat4,
-        pDat5,
-        pDat6,
-        pDat7,
-        pDat8,
-        pDat9,
+        pDat0, pDat1, pDat2, pDat3, pDat4, pDat5, pDat6, pDat7, pDat8, pDat9,
     };
     if (mMotion >= 0 && mMotion < 10) {
         playMotionAnm(ppDat);
     }
 }
 
-/* 8095D878-8095D884 000238 000C+00 0/1 0/0 0/0 .rodata          @4697 */
-// somehow supposed to be part of lookat()
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4697[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8095D878, &lit_4697);
-#pragma pop
+/* 8095C9BC-8095CC8C 0047BC 02D0+00 1/1 0/0 0/0 .text            lookat__10daNpcAsh_cFv */
+void daNpcAsh_c::lookat() {
+    daPy_py_c* player = NULL;
+    J3DModel* model = mpMorf->getModel();
+
+    BOOL snap = false;
+    f32 body_angleX_min = mpHIO->m.common.body_angleX_min;
+    f32 body_angleX_max = mpHIO->m.common.body_angleX_max;
+    f32 body_angleY_min = mMotion == MOT_WAIT_A ? -15.0f : mpHIO->m.common.body_angleY_min;
+    f32 body_angleY_max = mMotion == MOT_WAIT_A ? 15.0f : mpHIO->m.common.body_angleY_max;
+    f32 head_angleX_min = mpHIO->m.common.head_angleX_min;
+    f32 head_angleX_max = mpHIO->m.common.head_angleX_max;
+    f32 head_angleY_min = mMotion == MOT_WAIT_A ? -30.0f : mpHIO->m.common.head_angleY_min;
+    f32 head_angleY_max = mMotion == MOT_WAIT_A ? 30.0f : mpHIO->m.common.head_angleY_max;
+
+    s16 angle_delta = mCurAngle.y - mOldAngle.y;
+    cXyz lookat_pos[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
+    csXyz* lookat_angle[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
+
+    switch (mLookMode) {
+    case LOOK_NONE:
+        break;
+    case LOOK_RESET:
+        snap = true;
+        break;
+    case LOOK_PLAYER:
+    case LOOK_PLAYER_TALK:
+        player = daPy_getPlayerActorClass();
+        break;
+    case LOOK_ACTOR:
+        player = (daPy_py_c*)mActorMngr[4].getActorP();
+        break;
+    case LOOK_ATTN:
+        player = (daPy_py_c*)mTalkPartner;
+        break;
+    }
+
+    if (player != NULL) {
+        mLookPos = player->attention_info.position;
+        if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK) {
+            mLookPos.y -= 40.0f;
+        }
+        mLookat.setAttnPos(&mLookPos);
+    } else {
+        mLookat.setAttnPos(NULL);
+    }
+
+    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max, 0.0f, 0.0f,
+                     0.0f, 0.0f, head_angleX_min, head_angleX_max, head_angleY_min, head_angleY_max,
+                     mCurAngle.y, lookat_pos);
+    mLookat.calc(this, model->getBaseTRMtx(), lookat_angle, snap, angle_delta, false);
+}
 
 /* 80959C40-8095A67C 001A40 0A3C+00 4/0 0/0 0/0 .text            wait_type0__10daNpcAsh_cFPv */
 bool daNpcAsh_c::wait_type0(void* param_0) {
@@ -1010,8 +817,8 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                 }
 
                 daTag_EvtArea_c* evtArea = static_cast<daTag_EvtArea_c*>(mActorMngr[5].getActorP());
-                if (evtArea != NULL
-                    && evtArea->chkPointInArea(*fopAcM_GetPosition_p(daPy_getPlayerActorClass())))
+                if (evtArea != NULL &&
+                    evtArea->chkPointInArea(*fopAcM_GetPosition_p(daPy_getPlayerActorClass())))
                 {
                     daNpcF_offTmpBit(11);
                     mOrderEvtNo = 2;
@@ -1050,8 +857,8 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
             if (mOrderEvtNo != 0) {
                 eventInfo.setArchiveName("Ash");
             }
-            orderEvent(mMapToolId, mOrderEvtNo != 0 ? l_evtNames[mOrderEvtNo] : NULL,
-                       -1, 40, -1, 1);
+            orderEvent(mMapToolId, mOrderEvtNo != 0 ? l_evtNames[mOrderEvtNo] : NULL, -1, 40, -1,
+                       1);
         }
         break;
 
@@ -1200,8 +1007,8 @@ bool daNpcAsh_c::demo(void* param_0) {
             s32 staff_id = eventManager.getMyStaffId(l_myName, NULL, 0);
             if (staff_id != -1) {
                 mStaffID = staff_id;
-                s32 eventIdx = eventManager.getMyActIdx(staff_id, l_evtNames,
-                                                        ARRAY_SIZEU(l_evtNames), 0, 0);
+                s32 eventIdx =
+                    eventManager.getMyActIdx(staff_id, l_evtNames, ARRAY_SIZEU(l_evtNames), 0, 0);
                 if (eventIdx >= 1 && eventIdx < 6) {
                     mOrderEvtNo = eventIdx;
                 }
@@ -1210,8 +1017,8 @@ bool daNpcAsh_c::demo(void* param_0) {
                 }
             }
 
-            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1
-                && eventManager.endCheck(mEventIdx))
+            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 &&
+                eventManager.endCheck(mEventIdx))
             {
                 dComIfGp_event_reset();
                 mOrderEvtNo = 0;
@@ -1307,8 +1114,8 @@ BOOL daNpcAsh_c::EvCut_Meeting(int i_staffID) {
         switch (*cutName) {
         case '0001':
         case '0002':
-            dComIfGp_setMesgCameraInfoActor(actors[0], actors[1], actors[2], actors[3],
-                                            NULL, NULL, NULL, NULL, NULL, NULL);
+            dComIfGp_setMesgCameraInfoActor(actors[0], actors[1], actors[2], actors[3], NULL, NULL,
+                                            NULL, NULL, NULL, NULL);
             initTalk(0x42e, actors);
         }
     }
@@ -1344,7 +1151,7 @@ BOOL daNpcAsh_c::EvCut_Meeting(int i_staffID) {
         setLookMode(LOOK_PLAYER, NULL);
         break;
     }
-    
+
     return false;
 }
 
@@ -1362,8 +1169,8 @@ BOOL daNpcAsh_c::EvCut_WiretapSponsor(int i_staffID) {
     if (evtMgr.getIsAddvance(i_staffID)) {
         switch (*cutName) {
         case '0001':
-            dComIfGp_setMesgCameraInfoActor(actors[0], actors[1], actors[2], actors[3],
-                                            NULL, NULL, NULL, NULL, NULL, NULL);
+            dComIfGp_setMesgCameraInfoActor(actors[0], actors[1], actors[2], actors[3], NULL, NULL,
+                                            NULL, NULL, NULL, NULL);
             initTalk(mFlowID, actors);
             break;
         }
@@ -1424,7 +1231,7 @@ BOOL daNpcAsh_c::EvCut_WiretapEntrant(int i_staffID) {
             setExpressionTalkAfter();
         }
     }
-    
+
     fopAc_ac_c* talk_partner = dComIfGp_event_getTalkPartner();
     if (talk_partner == this) {
         talk_partner = NULL;
@@ -1470,14 +1277,16 @@ void daNpcAsh_c::setParam() {
     } else {
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")) {
             attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(3, 6);
-            attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+            attention_info.distances[fopAc_attn_TALK_e] =
+                attention_info.distances[fopAc_attn_LOCK_e];
             attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(2, 6);
         } else {
-            attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcAsh_Param_c::m.mTalkDistIdx,
-                                                          daNpcAsh_Param_c::m.mTalkAngleIdx);
-            attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
-            attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcAsh_Param_c::m.mSpeakDistIdx,
-                                                          daNpcAsh_Param_c::m.mSpeakAngleIdx);
+            attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(
+                mpHIO->m.common.attention_distance, mpHIO->m.common.attention_angle);
+            attention_info.distances[fopAc_attn_TALK_e] =
+                attention_info.distances[fopAc_attn_LOCK_e];
+            attention_info.distances[fopAc_attn_SPEAK_e] =
+                getDistTableIdx(mpHIO->m.common.talk_distance, mpHIO->m.common.talk_angle);
         }
     }
 }
@@ -1497,7 +1306,6 @@ BOOL daNpcAsh_c::main() {
 }
 
 /* 8095C520-8095C5C4 004320 00A4+00 1/0 0/0 0/0 .text            ctrlBtk__10daNpcAsh_cFv */
-// NONMATCHING inlining issues
 BOOL daNpcAsh_c::ctrlBtk() {
     if (mpMatAnm != NULL) {
         mpMatAnm->setNowOffsetX(cM_ssin(mEyeAngle.y) * 0.2f * -1.0f);
@@ -1540,8 +1348,7 @@ void daNpcAsh_c::setAttnPos() {
         mEyeAngle.x = 0;
     }
 
-    attention_info.position.set(mHeadPos.x,
-                                mHeadPos.y + daNpcAsh_Param_c::m.mAttnOffsetY,
+    attention_info.position.set(mHeadPos.x, mHeadPos.y + mpHIO->m.common.attention_offset,
                                 mHeadPos.z);
 
     cXyz center;
@@ -1549,77 +1356,26 @@ void daNpcAsh_c::setAttnPos() {
     mDoMtx_stack_c::multVecZero(&center);
     center.y = current.pos.y;
     mCcCyl[0].SetC(center);
-    mCcCyl[0].SetH(daNpcAsh_Param_c::m.mCylH);
-    mCcCyl[0].SetR(daNpcAsh_Param_c::m.mWallR);
+    mCcCyl[0].SetH(mpHIO->m.common.height);
+    mCcCyl[0].SetR(mpHIO->m.common.width);
     dComIfG_Ccsp()->Set(&mCcCyl[0]);
 
-                               /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
-    if (mType == TYPE_BAR && (!daNpcF_chkEvtBit(0x169)
-                                  /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
-                              || !daNpcF_chkEvtBit(0x10A)
-                                  /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */
-                              || !daNpcF_chkEvtBit(0x10B)
-                                 /* dSv_event_flag_c::F_0268 - City in the Sky - City in the Sky clear */
-                              || daNpcF_chkEvtBit(0x10C))) {
+    /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+    if (mType == TYPE_BAR &&
+        (!daNpcF_chkEvtBit(0x169)
+         /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+         || !daNpcF_chkEvtBit(0x10A)
+         /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */
+         || !daNpcF_chkEvtBit(0x10B)
+         /* dSv_event_flag_c::F_0268 - City in the Sky - City in the Sky clear */
+         || daNpcF_chkEvtBit(0x10C)))
+    {
         center.set(3070.0f, -1150.0f, 2446.0f);
         mCcCyl[1].SetC(center);
         mCcCyl[1].SetH(170.0f);
         mCcCyl[1].SetR(60.0f);
         dComIfG_Ccsp()->Set(&mCcCyl[1]);
     }
-}
-
-/* 8095C9BC-8095CC8C 0047BC 02D0+00 1/1 0/0 0/0 .text            lookat__10daNpcAsh_cFv */
-// NONMATCHING literal issues
-void daNpcAsh_c::lookat() {
-    fopAc_ac_c* actor = NULL;
-    J3DModel* model = mpMorf->getModel();
-    BOOL snap = false;
-    f32 body_down_angle = daNpcAsh_Param_c::m.mBodyDownAngle;
-    f32 body_up_angle = daNpcAsh_Param_c::m.mBodyUpAngle;
-    f32 body_right_angle = mMotion == MOT_WAIT_A ? -15.0f : daNpcAsh_Param_c::m.mBodyRightAngle;
-    f32 body_left_angle = mMotion == MOT_WAIT_A ? 15.0f : daNpcAsh_Param_c::m.mBodyLeftAngle;
-    f32 head_down_angle = daNpcAsh_Param_c::m.mHeadDownAngle;
-    f32 head_up_angle = daNpcAsh_Param_c::m.mHeadUpAngle;
-    f32 head_right_angle = mMotion == MOT_WAIT_A ? -30.0f : daNpcAsh_Param_c::m.mHeadRightAngle;
-    f32 head_left_angle = mMotion == MOT_WAIT_A ? 30.0f : daNpcAsh_Param_c::m.mHeadLeftAngle;
-    s16 angle_delta = mCurAngle.y - mOldAngle.y;
-    cXyz lookat_pos[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
-    csXyz* lookat_angle[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
-
-    switch (mLookMode) {
-    case LOOK_NONE:
-        break;
-    case LOOK_RESET:
-        snap = true;
-        break;
-    case LOOK_PLAYER:
-    case LOOK_PLAYER_TALK:
-        actor = daPy_getPlayerActorClass();
-        break;
-    case LOOK_ACTOR:
-        actor = mActorMngr[4].getActorP();
-        break;
-    case LOOK_ATTN:
-        actor = mTalkPartner;
-        break;
-    }
-
-    if (actor != NULL) {
-        mLookPos = actor->attention_info.position;
-        if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK) {
-            mLookPos.y -= 40.0f;
-        }
-        mLookat.setAttnPos(&mLookPos);
-    } else {
-        mLookat.setAttnPos(NULL);
-    }
-
-    mLookat.setParam(body_down_angle, body_up_angle, body_right_angle, body_left_angle,
-                     0.0f, 0.0f, 0.0f, 0.0f,
-                     head_down_angle, head_up_angle, head_right_angle, head_left_angle,
-                     mCurAngle.y, lookat_pos);
-    mLookat.calc(this, model->getBaseTRMtx(), lookat_angle, snap, angle_delta, false);
 }
 
 /* 8095CC8C-8095CC94 004A8C 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__10daNpcAsh_cFv */
@@ -1629,10 +1385,8 @@ BOOL daNpcAsh_c::drawDbgInfo() {
 
 /* 8095DC04-8095DC24 -00001 0020+00 1/0 0/0 0/0 .data            daNpcAsh_MethodTable */
 static actor_method_class daNpcAsh_MethodTable = {
-    (process_method_func)daNpcAsh_Create,
-    (process_method_func)daNpcAsh_Delete,
-    (process_method_func)daNpcAsh_Execute,
-    (process_method_func)daNpcAsh_IsDelete,
+    (process_method_func)daNpcAsh_Create,  (process_method_func)daNpcAsh_Delete,
+    (process_method_func)daNpcAsh_Execute, (process_method_func)daNpcAsh_IsDelete,
     (process_method_func)daNpcAsh_Draw,
 };
 

@@ -3,248 +3,66 @@
  * NPC - Telma
  */
 
-#include "d/dolzel_rel.h" // IWYU pragma: keep
+#include "d/dolzel_rel.h"  // IWYU pragma: keep
 
-#include "d/actor/d_a_npc_the.h"
-#include "SSystem/SComponent/c_math.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "SSystem/SComponent/c_math.h"
+#include "d/actor/d_a_npc_the.h"
 #include "d/actor/d_a_tag_evtarea.h"
-#include "dol2asm.h"
 
-//
-// Forward References:
-//
+/* 80AFBE0C-80AFBE78 000000 006C+00 11/11 0/0 0/0 .rodata          m__16daNpcThe_Param_c */
+const daNpcThe_HIOParam daNpcThe_Param_c::m = {
+    220.0f,   // attention_offset
+    -3.0f,    // gravity
+    1.0f,     // scale
+    400.0f,   // real_shadow_size
+    255.0f,   // weight
+    200.0f,   // height
+    35.0f,    // knee_length
+    40.0f,    // width
+    0.0f,     // body_angleX_max
+    -20.0f,   // body_angleX_min
+    10.0f,    // body_angleY_max
+    -10.0f,   // body_angleY_min
+    30.0f,    // head_angleX_max
+    -20.0f,   // head_angleX_min
+    45.0f,    // head_angleY_max
+    -45.0f,   // head_angleY_min
+    0.6f,     // neck_rotation_ratio
+    12.0f,    // morf_frame
+    3,        // talk_distance
+    6,        // talk_angle
+    5,        // attention_distance
+    6,        // attention_angle
+    80.0f,    // fov
+    500.0f,   // search_distance
+    300.0f,   // search_height
+    -300.0f,  // search_depth
+    60,       // attention_time
+    8,        // damage_time
+    0,        // face_expression
+    0,        // motion
+    0,        // look_mode
+    0,        // debug_mode_ON
+    0,        // debug_info_ON
+};
 
-extern "C" void __ct__10daNpcThe_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10daNpcThe_cFv();
-extern "C" void ctrlJoint__10daNpcThe_cFP8J3DJointP8J3DModel();
-extern "C" void createHeapCallBack__10daNpcThe_cFP10fopAc_ac_c();
-extern "C" void __dt__15J3DTevKColorAnmFv();
-extern "C" void __ct__15J3DTevKColorAnmFv();
-extern "C" void __dt__14J3DTevColorAnmFv();
-extern "C" void __ct__14J3DTevColorAnmFv();
-extern "C" void __dt__11J3DTexNoAnmFv();
-extern "C" void __ct__11J3DTexNoAnmFv();
-extern "C" void __dt__12J3DTexMtxAnmFv();
-extern "C" void __ct__12J3DTexMtxAnmFv();
-extern "C" void __dt__14J3DMatColorAnmFv();
-extern "C" void __ct__14J3DMatColorAnmFv();
-extern "C" void ctrlJointCallBack__10daNpcThe_cFP8J3DJointi();
-extern "C" void setExpressionAnm__10daNpcThe_cFib();
-extern "C" void setExpressionBtp__10daNpcThe_cFi();
-extern "C" void setMotionAnm__10daNpcThe_cFif();
-extern "C" void wait__10daNpcThe_cFPv();
-extern "C" void setMotion__10daNpcThe_cFifi();
-extern "C" void setExpression__10daNpcThe_cFif();
-extern "C" void waitTW__10daNpcThe_cFPv();
-extern "C" void talk__10daNpcThe_cFPv();
-extern "C" void test__10daNpcThe_cFPv();
-extern "C" bool EvCut_TwResistance__10daNpcThe_cFi();
-extern "C" void EvCut_Introduction__10daNpcThe_cFi();
-extern "C" static void daNpcThe_Create__FPv();
-extern "C" void create__10daNpcThe_cFv();
-extern "C" void reset__10daNpcThe_cFv();
-extern "C" static void daNpcThe_Delete__FPv();
-extern "C" static void daNpcThe_Execute__FPv();
-extern "C" static void daNpcThe_Draw__FPv();
-extern "C" static bool daNpcThe_IsDelete__FPv();
-extern "C" void calc__11J3DTexNoAnmCFPUs();
-extern "C" void setParam__10daNpcThe_cFv();
-extern "C" void main__10daNpcThe_cFv();
-extern "C" void playMotion__10daNpcThe_cFv();
-extern "C" void playExpression__10daNpcThe_cFv();
-extern "C" void doEvent__10daNpcThe_cFv();
-extern "C" void ctrlBtk__10daNpcThe_cFv();
-extern "C" void setAttnPos__10daNpcThe_cFv();
-extern "C" void lookat__10daNpcThe_cFv();
-extern "C" bool drawDbgInfo__10daNpcThe_cFv();
-extern "C" void func_80AFB490(void* _this, s16);
-extern "C" void __sinit_d_a_npc_the_cpp();
-extern "C" void __dt__18daNpcF_ActorMngr_cFv();
-extern "C" void __ct__18daNpcF_ActorMngr_cFv();
-extern "C" void __dt__15daNpcF_Lookat_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__8daNpcF_cFv();
-extern "C" void __ct__8daNpcF_cFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void setCollisions__8daNpcF_cFv();
-extern "C" void drawOtherMdls__8daNpcF_cFv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz();
-extern "C" void adjustShapeAngle__10daNpcThe_cFv();
-extern "C" void __dt__16daNpcThe_Param_cFv();
-extern "C" static void func_80AFBDE8();
-extern "C" static void func_80AFBDF0();
-extern "C" u8 const m__16daNpcThe_Param_c[108];
-extern "C" extern char const* const d_a_npc_the__stringBase0;
-extern "C" void* mEvtCutNameList__10daNpcThe_c[4];
-extern "C" u8 mEvtCutList__10daNpcThe_c[48];
-static cPhs__Step daNpcThe_Create(void*);
-static int daNpcThe_Delete(void*);
-static int daNpcThe_Execute(void*);
-static int daNpcThe_IsDelete(void*);
-static int daNpcThe_Draw(void*);
+#if DEBUG
+daNpcThe_HIO_c::daNpcThe_HIO_c() {
+    m = daNpcThe_Param_c::m;
+}
 
-//
-// External References:
-//
+void daNpcThe_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
+    // TODO
+}
 
-extern "C" void changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs();
-extern "C" void fopAcM_createItemForPresentDemo__FPC4cXyziUciiPC5csXyzPC4cXyz();
-extern "C" void fpcSch_JudgeForPName__FPvPv();
-extern "C" void getLayerNo__14dComIfG_play_cFi();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGs_wolfeye_effect_check__Fv();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void reset__14dEvt_control_cFPv();
-extern "C" void setPtI_Id__14dEvt_control_cFUi();
-extern "C" void setObjectArchive__16dEvent_manager_cFPc();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMyNowCutName__16dEvent_manager_cFi();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWallR__12dBgS_AcchCirFf();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void initialize__18daNpcF_ActorMngr_cFv();
-extern "C" void entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c();
-extern "C" void remove__18daNpcF_ActorMngr_cFv();
-extern "C" void getActorP__18daNpcF_ActorMngr_cFv();
-extern "C" void initialize__15daNpcF_MatAnm_cFv();
-extern "C" void initialize__15daNpcF_Lookat_cFv();
-extern "C" void setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz();
-extern "C" void calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii();
-extern "C" void execute__8daNpcF_cFv();
-extern "C" void draw__8daNpcF_cFiifP11_GXColorS10i();
-extern "C" void srchAttnActor1__8daNpcF_cFPvPv();
-extern "C" void setMtx__8daNpcF_cFv();
-extern "C" void setMtx2__8daNpcF_cFv();
-extern "C" void initialize__8daNpcF_cFv();
-extern "C" void getTrnsfrmKeyAnmP__8daNpcF_cFPci();
-extern "C" void getTexPtrnAnmP__8daNpcF_cFPci();
-extern "C" void getTexSRTKeyAnmP__8daNpcF_cFPci();
-extern "C" void setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii();
-extern "C" void setBckAnm__8daNpcF_cFP15J3DAnmTransformfiiib();
-extern "C" void setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi();
-extern "C" void setBtkAnm__8daNpcF_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi();
-extern "C" void setEnvTevColor__8daNpcF_cFv();
-extern "C" void setRoomNo__8daNpcF_cFv();
-extern "C" void playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void setLookatMtx__8daNpcF_cFiPif();
-extern "C" void ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci();
-extern "C" void orderEvent__8daNpcF_cFiPcUsUsUcUs();
-extern "C" void initTalk__8daNpcF_cFiPP10fopAc_ac_c();
-extern "C" void talkProc__8daNpcF_cFPiiPP10fopAc_ac_c();
-extern "C" void step__8daNpcF_cFsiii();
-extern "C" void getDistTableIdx__8daNpcF_cFii();
-extern "C" void getEvtAreaTagP__8daNpcF_cFii();
-extern "C" void getAttnActorP__8daNpcF_cFiPFPvPv_Pvffffsii();
-extern "C" void chkFindPlayer2__8daNpcF_cFis();
-extern "C" void daNpcF_chkEvtBit__FUl();
-extern "C" void daNpcF_offTmpBit__FUl();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void getEventId__10dMsgFlow_cFPi();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
-extern "C" void __ct__10Z2CreatureFv();
-extern "C" void __dt__10Z2CreatureFv();
-extern "C" void init__10Z2CreatureFP3VecP3VecUcUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void getTexNo__16J3DAnmTexPatternCFUsPUs();
-extern "C" void initialize__14J3DMaterialAnmFv();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_cmpr();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz();
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
+void daNpcThe_HIO_c::genMessage(JORMContext* ctext) {
+    // TODO
+}
+#endif
 
 /* 80AFC67C-80AFC680 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpcThe_Param_c l_HIO;
+NPC_THE_HIO_CLASS l_HIO;
 
 /* 80AFC1F0-80AFC200 000020 0010+00 1/1 0/0 0/0 .data            l_bmdGetParamList */
 static daNpc_GetParam1 l_bmdGetParamList[2] = {
@@ -332,7 +150,10 @@ static char* l_resNames[4] = {
 
 /* 80AFC390-80AFC3A0 0001C0 0010+00 0/2 0/0 0/0 .data            l_evtGetParamList */
 static int l_evtGetParamList[4] = {
-    0, 3, 3, 0,
+    0,
+    3,
+    3,
+    0,
 };
 
 /* 80AFC3A0-80AFC3B0 -00001 0010+00 0/2 0/0 0/0 .data            l_evtNames */
@@ -365,14 +186,11 @@ int daNpcThe_c::Draw() {
     mpMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
     ActionFn action_test = &test;
     int is_test = mpActionFn == action_test;
-    return draw(is_test, false, daNpcThe_Param_c::m.mShadowDepth, NULL, false);
+    return draw(is_test, false, mpHIO->m.common.real_shadow_size, NULL, false);
 }
 
 /* 80AF76CC-80AF7850 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__10daNpcThe_cFv */
-// NONMATCHING daNpcF_c constructor needs to not be inlined
-daNpcThe_c::daNpcThe_c() {
-    /* empty function */
-}
+daNpcThe_c::daNpcThe_c() {}
 
 /* 80AF78E0-80AF7AE0 000300 0200+00 1/0 0/0 0/0 .text            __dt__10daNpcThe_cFv */
 daNpcThe_c::~daNpcThe_c() {
@@ -384,55 +202,18 @@ daNpcThe_c::~daNpcThe_c() {
     }
 }
 
-/* 80AFBE0C-80AFBE78 000000 006C+00 11/11 0/0 0/0 .rodata          m__16daNpcThe_Param_c */
-daNpcThe_Param_c::param const daNpcThe_Param_c::m = {
-    220.0f,     // mAttnOffsetY
-    -3.0f,      // mGravity
-    1.0f,       // mScale
-    400.0f,     // mShadowDepth
-    255.0f,     // mCcWeight
-    200.0f,     // mCylH
-    35.0f,      // mWallH
-    40.0f,      // mWallR
-    0.0f,       // mBodyUpAngle
-    -20.0f,     // mBodyDownAngle
-    10.0f,      // mBodyLeftAngle
-    -10.0f,     // mBodyRightAngle
-    30.0f,      // mHeadUpAngle
-    -20.0f,     // mHeadDownAngle
-    45.0f,      // mHeadLeftAngle
-    -45.0f,     // mHeadRightAngle
-    0.6f,       // mNeckAngleScl
-    12.0f,      // mMorfFrames
-    3,          // mSpeakDistIdx
-    6,          // mSpeakAngleIdx
-    5,          // mTalkDistIdx
-    6,          // mTalkAngleIdx
-    80.0f,      // mAttnFovY
-    500.0f,     // mAttnRadius
-    300.0f,     // mAttnUpperY
-    -300.0f,    // mAttnLowerY
-    60,
-    8,          // mDamageTimer
-    0,          // mTestExpression
-    0,          // mTestMotion
-    0,          // mTestLookMode
-    false,      // mTest
-};
-
 int daNpcThe_c::CreateHeap() {
     J3DModelData* model_data = NULL;
     mTwilight = dKy_darkworld_check();
     int bmd_get_idx = mTwilight ? 1 : 0;
     if (l_bmdGetParamList[bmd_get_idx].fileIdx >= 0) {
-        model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes(
-            l_resNames[l_bmdGetParamList[bmd_get_idx].arcIdx],
-            l_bmdGetParamList[bmd_get_idx].fileIdx
-        ));
+        model_data = static_cast<J3DModelData*>(
+            dComIfG_getObjectRes(l_resNames[l_bmdGetParamList[bmd_get_idx].arcIdx],
+                                 l_bmdGetParamList[bmd_get_idx].fileIdx));
     }
-    mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL, NULL, -1, 1.0f, 0, -1,
-                                  &mSound, 0x80000, 0x11020284);
-    
+    mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
+                                  0x11020284);
+
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
         mpMorf->stopZelAnime();
         mpMorf = NULL;
@@ -475,13 +256,13 @@ int daNpcThe_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     }
 
     mDoMtx_stack_c::copy(i_model->getAnmMtx(joint_no));
-    
+
     switch (joint_no) {
-        case 1:
-        case 3:
-        case 4:
-            setLookatMtx(joint_no, lookat_joints, daNpcThe_Param_c::m.mNeckAngleScl);
-            break;
+    case 1:
+    case 3:
+    case 4:
+        setLookatMtx(joint_no, lookat_joints, mpHIO->m.common.neck_rotation_ratio);
+        break;
     }
 
     i_model->setAnmMtx(joint_no, mDoMtx_stack_c::get());
@@ -723,10 +504,10 @@ void daNpcThe_c::setMotionAnm(int i_idx, f32 i_morf) {
     }
 
     if (l_btkGetParamList[0].fileIdx >= 0) {
-        anm_tex = getTexSRTKeyAnmP(l_resNames[l_btkGetParamList[0].arcIdx],
-                                   l_btkGetParamList[0].fileIdx);
+        anm_tex =
+            getTexSRTKeyAnmP(l_resNames[l_btkGetParamList[0].arcIdx], l_btkGetParamList[0].fileIdx);
     }
-    
+
     if (anm_tex != NULL) {
         if (setBtkAnm(anm_tex, mpMorf->getModel()->getModelData(), 1.0f, 2)) {
             mAnmFlags |= ANM_PAUSE_BTK | ANM_PLAY_BTK;
@@ -743,19 +524,19 @@ void daNpcThe_c::setMotionAnm(int i_idx, f32 i_morf) {
 
 /* 80AFA338-80AFA6CC 002D58 0394+00 1/1 0/0 0/0 .text            playExpression__10daNpcThe_cFv */
 void daNpcThe_c::playExpression() {
-    daNpcF_anmPlayData dat0 = {ANM_F_TALK_A, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat0 = {ANM_F_TALK_A, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData* pDat0[2] = {&dat0, NULL};
-    daNpcF_anmPlayData dat1 = {ANM_F_SMILE, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat1 = {ANM_F_SMILE, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData* pDat1[2] = {&dat1, NULL};
-    daNpcF_anmPlayData dat2 = {ANM_F_CHUCKLE, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat2 = {ANM_F_CHUCKLE, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData* pDat2[2] = {&dat2, NULL};
-    daNpcF_anmPlayData dat3 = {ANM_F_TALK_B, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat3 = {ANM_F_TALK_B, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData* pDat3[2] = {&dat3, NULL};
-    daNpcF_anmPlayData dat4 = {ANM_F_TALK_C, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat4 = {ANM_F_TALK_C, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData* pDat4[2] = {&dat4, NULL};
-    daNpcF_anmPlayData dat5 = {ANM_F_LAUGH, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat5 = {ANM_F_LAUGH, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData* pDat5[2] = {&dat5, NULL};
-    daNpcF_anmPlayData dat6 = {ANM_F_TALK_R, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat6 = {ANM_F_TALK_R, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData* pDat6[2] = {&dat6, NULL};
     daNpcF_anmPlayData dat7 = {ANM_FH_TALK_R, 0.0f, 0};
     daNpcF_anmPlayData* pDat7[2] = {&dat7, NULL};
@@ -769,23 +550,11 @@ void daNpcThe_c::playExpression() {
     daNpcF_anmPlayData* pDat11[2] = {&dat11, NULL};
     daNpcF_anmPlayData dat12 = {ANM_FH_LAUGH, 0.0f, 0};
     daNpcF_anmPlayData* pDat12[2] = {&dat12, NULL};
-    daNpcF_anmPlayData dat13 = {ANM_NONE, daNpcThe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat13 = {ANM_NONE, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat13[1] = {&dat13};
     daNpcF_anmPlayData** ppDat[14] = {
-        pDat0,
-        pDat1,
-        pDat2,
-        pDat3,
-        pDat4,
-        pDat5,
-        pDat6,
-        pDat7,
-        pDat8,
-        pDat9,
-        pDat10,
-        pDat11,
-        pDat12,
-        pDat13,
+        pDat0, pDat1, pDat2, pDat3,  pDat4,  pDat5,  pDat6,
+        pDat7, pDat8, pDat9, pDat10, pDat11, pDat12, pDat13,
     };
     if (mExpression >= 0 && mExpression < 14) {
         playExpressionAnm(ppDat);
@@ -794,56 +563,99 @@ void daNpcThe_c::playExpression() {
 
 /* 80AF9F94-80AFA338 0029B4 03A4+00 1/1 0/0 0/0 .text            playMotion__10daNpcThe_cFv */
 void daNpcThe_c::playMotion() {
-    daNpcF_anmPlayData dat0 = {ANM_WAIT_A, daNpcThe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat0 = {ANM_WAIT_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1a = {ANM_LOOK_A, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat1a = {ANM_LOOK_A, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat1b = {ANM_WAIT_LOOKING, 0.0f, 0};
     daNpcF_anmPlayData* pDat1[2] = {&dat1a, &dat1b};
-    daNpcF_anmPlayData dat2a = {ANM_TO_WAIT_B, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat2a = {ANM_TO_WAIT_B, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat2b = {ANM_WAIT_B, 0.0f, 0};
     daNpcF_anmPlayData* pDat2[2] = {&dat2a, &dat2b};
-    daNpcF_anmPlayData dat3 = {ANM_WAIT_LOOKUP, daNpcThe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat3 = {ANM_WAIT_LOOKUP, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[1] = {&dat3};
-    daNpcF_anmPlayData dat4a = {ANM_KUNE_TALK, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat4a = {ANM_KUNE_TALK, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat4b = {ANM_KUNE_WAIT_B, 0.0f, 0};
     daNpcF_anmPlayData* pDat4[2] = {&dat4a, &dat4b};
-    daNpcF_anmPlayData dat5 = {ANM_KUNE_WAIT_A, daNpcThe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat5 = {ANM_KUNE_WAIT_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat5[1] = {&dat5};
-    daNpcF_anmPlayData dat6a = {ANM_KUNE_SHISHI, daNpcThe_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat6b = {ANM_KUNE_WAIT_A, daNpcThe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat6a = {ANM_KUNE_SHISHI, mpHIO->m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat6b = {ANM_KUNE_WAIT_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat6[2] = {&dat6a, &dat6b};
-    daNpcF_anmPlayData dat7 = {ANM_WAIT_B, daNpcThe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat7 = {ANM_WAIT_B, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat7[1] = {&dat7};
-    daNpcF_anmPlayData dat8 = {ANM_KUNE_WAIT_B, daNpcThe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat8 = {ANM_KUNE_WAIT_B, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat8[1] = {&dat8};
-    daNpcF_anmPlayData dat9a = {ANM_TALK_R, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat9a = {ANM_TALK_R, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat9b = {ANM_TALKING_R, 0.0f, 0};
     daNpcF_anmPlayData* pDat9[2] = {&dat9a, &dat9b};
-    daNpcF_anmPlayData dat10a = {ANM_LOOK, daNpcThe_Param_c::m.mMorfFrames, 1};
+    daNpcF_anmPlayData dat10a = {ANM_LOOK, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat10b = {ANM_WAIT_LOOKING, 0.0f, 0};
     daNpcF_anmPlayData* pDat10[2] = {&dat10a, &dat10b};
     daNpcF_anmPlayData** ppDat[11] = {
-        pDat0,
-        pDat1,
-        pDat2,
-        pDat3,
-        pDat4,
-        pDat5,
-        pDat6,
-        pDat7,
-        pDat8,
-        pDat9,
-        pDat10,
+        pDat0, pDat1, pDat2, pDat3, pDat4, pDat5, pDat6, pDat7, pDat8, pDat9, pDat10,
     };
     if (mMotion >= 0 && mMotion < 11) {
         playMotionAnm(ppDat);
     }
 }
 
-/* 80AFC114-80AFC120 000308 000C+00 0/1 0/0 0/0 .rodata          @4676 */
-static u8 const lit_4676[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+/* 80AFB1C4-80AFB488 003BE4 02C4+00 1/1 0/0 0/0 .text            lookat__10daNpcThe_cFv */
+void daNpcThe_c::lookat() {
+    fopAc_ac_c* actor = NULL;
+    J3DModel* model = mpMorf->getModel();
+
+    BOOL snap = false;
+    f32 body_angleX_min = mpHIO->m.common.body_angleX_min;
+    f32 body_angleX_max = mpHIO->m.common.body_angleX_max;
+    f32 body_angleY_min = mpHIO->m.common.body_angleY_min;
+    f32 body_angleY_max = mpHIO->m.common.body_angleY_max;
+    f32 head_angleX_min = mpHIO->m.common.head_angleX_min;
+    f32 head_angleX_max = mpHIO->m.common.head_angleX_max;
+    f32 head_angleY_min = mpHIO->m.common.head_angleY_min;
+    f32 head_angleY_max = mpHIO->m.common.head_angleY_max;
+
+    s16 angle_delta = mCurAngle.y - mOldAngle.y;
+    cXyz lookat_pos[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
+    csXyz* lookat_angle[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
+
+    switch (mLookMode) {
+    case LOOK_RESET:
+        snap = true;
+        break;
+    case LOOK_PLAYER_TALK:
+        head_angleY_min = -80.0f;
+        head_angleY_max = 80.0f;
+        // fallthrough
+    case LOOK_PLAYER:
+        actor = daPy_getPlayerActorClass();
+        break;
+    case LOOK_ACTOR:
+        actor = fopAcM_SearchByName(PROC_NPC_ZRC);
+        break;
+    case LOOK_ATTN:
+        break;
+    }
+
+    if (actor != NULL) {
+        if (mLookMode == LOOK_ACTOR) {
+            mLookPos = actor->eyePos;
+        } else {
+            mLookPos = actor->attention_info.position;
+            if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK && mLookMode != LOOK_ATTN)
+            {
+                mLookPos.y -= 40.0f;
+            }
+        }
+        mLookat.setAttnPos(&mLookPos);
+    } else {
+        mLookat.setAttnPos(NULL);
+    }
+
+    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max, 0.0f, 0.0f,
+                     0.0f, 0.0f, head_angleX_min, head_angleX_max, head_angleY_min, head_angleY_max,
+                     mCurAngle.y, lookat_pos);
+    mLookat.calc(this, model->getBaseTRMtx(), lookat_angle, snap, angle_delta, 0);
+}
 
 /* 80AF8744-80AF8B0C 001164 03C8+00 1/0 0/0 0/0 .text            wait__10daNpcThe_cFPv */
 BOOL daNpcThe_c::wait(void* param_0) {
@@ -912,11 +724,10 @@ BOOL daNpcThe_c::wait(void* param_0) {
             }
 
             if (mCurAngle.y == home.angle.y) {
-                fopAc_ac_c* actor =
-                    getAttnActorP(mActorMngr[0].getActorP() != NULL, srchAttnActor1,
-                                  daNpcThe_Param_c::m.mAttnRadius, daNpcThe_Param_c::m.mAttnUpperY,
-                                  daNpcThe_Param_c::m.mAttnLowerY, daNpcThe_Param_c::m.mAttnFovY,
-                                  shape_angle.y, 120, 1);
+                fopAc_ac_c* actor = getAttnActorP(
+                    mActorMngr[0].getActorP() != NULL, srchAttnActor1,
+                    mpHIO->m.common.search_distance, mpHIO->m.common.search_height,
+                    mpHIO->m.common.search_depth, mpHIO->m.common.fov, shape_angle.y, 120, 1);
                 if (actor != NULL) {
                     mActorMngr[1].entry(actor);
                     setLookMode(LOOK_ATTN);
@@ -1008,12 +819,12 @@ BOOL daNpcThe_c::talk(void* param_0) {
             bvar1 = true;
         } else {
             if (mType == TYPE_KAKARIKO &&
-                (mpMorf->getAnm() == getTrnsfrmKeyAnmP(
-                    l_resNames[l_bckGetParamList[24].arcIdx], l_bckGetParamList[24].fileIdx)
-                || mpMorf->getAnm() == getTrnsfrmKeyAnmP(
-                    l_resNames[l_bckGetParamList[25].arcIdx], l_bckGetParamList[25].fileIdx)
-                || mpMorf->getAnm() == getTrnsfrmKeyAnmP(
-                    l_resNames[l_bckGetParamList[26].arcIdx], l_bckGetParamList[26].fileIdx)))
+                (mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_resNames[l_bckGetParamList[24].arcIdx],
+                                                       l_bckGetParamList[24].fileIdx) ||
+                 mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_resNames[l_bckGetParamList[25].arcIdx],
+                                                       l_bckGetParamList[25].fileIdx) ||
+                 mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_resNames[l_bckGetParamList[26].arcIdx],
+                                                       l_bckGetParamList[26].fileIdx)))
             {
                 setLookMode(LOOK_NONE);
             } else {
@@ -1045,11 +856,11 @@ BOOL daNpcThe_c::talk(void* param_0) {
                     }
                     int item_no = 0;
                     if (mFlow.getEventId(&item_no) == 1) {
-                        mItemID = fopAcM_createItemForPresentDemo(&current.pos, item_no,
-                                                                  0, -1, -1, NULL, NULL);
+                        mItemID = fopAcM_createItemForPresentDemo(&current.pos, item_no, 0, -1, -1,
+                                                                  NULL, NULL);
                         if (mItemID != -1) {
-                            s16 event_id = dComIfGp_getEventManager()
-                                .getEventIdx(this, "DEFAULT_GETITEM", 0xff);
+                            s16 event_id = dComIfGp_getEventManager().getEventIdx(
+                                this, "DEFAULT_GETITEM", 0xff);
                             dComIfGp_getEvent().reset(this);
                             fopAcM_orderChangeEventId(this, event_id, 1, 0xffff);
                             field_0x9ec = true;
@@ -1100,11 +911,11 @@ BOOL daNpcThe_c::test(void* param_0) {
 
     case 2:
         attention_info.flags = 0;
-        if (mExpression != daNpcThe_Param_c::m.mTestExpression) {
-            setExpression(daNpcThe_Param_c::m.mTestExpression, daNpcThe_Param_c::m.mMorfFrames);
+        if (mExpression != mpHIO->m.common.face_expression) {
+            setExpression(mpHIO->m.common.face_expression, mpHIO->m.common.morf_frame);
         }
-        setMotion(daNpcThe_Param_c::m.mTestMotion, daNpcThe_Param_c::m.mMorfFrames, false);
-        setLookMode(daNpcThe_Param_c::m.mTestLookMode);
+        setMotion(mpHIO->m.common.motion, mpHIO->m.common.morf_frame, false);
+        setLookMode(mpHIO->m.common.look_mode);
         break;
 
     case 3:
@@ -1160,9 +971,9 @@ static cPhs__Step daNpcThe_Create(void* i_this) {
 /* 80AF9358-80AF9748 001D78 03F0+00 1/1 0/0 0/0 .text            create__10daNpcThe_cFv */
 cPhs__Step daNpcThe_c::create() {
     fopAcM_ct(this, daNpcThe_c);
-    
+
     mType = getTypeFromParam();
-    
+
     int flow_id = home.angle.x;
     if (flow_id != 0xffff) {
         mFlowID = flow_id;
@@ -1171,10 +982,11 @@ cPhs__Step daNpcThe_c::create() {
     }
 
     if (mType == TYPE_KAKARIKO
-             /* dSv_event_flag_c::M_035 - Cutscene - [cutscene: 35] after carriage guarding event */
+        /* dSv_event_flag_c::M_035 - Cutscene - [cutscene: 35] after carriage guarding event */
         && (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])
-           /* dSv_event_flag_c::M_045 - Lakebed Temple - Lakebed Temple clear */
-        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[78]))) {
+            /* dSv_event_flag_c::M_045 - Lakebed Temple - Lakebed Temple clear */
+            || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[78])))
+    {
         return cPhs_ERROR_e;
     }
 
@@ -1215,19 +1027,19 @@ cPhs__Step daNpcThe_c::create() {
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox2(this, mpMorf->getModel()->getModelData());
         mSound.init(&current.pos, &eyePos, 3, 1);
-        mAcchCir.SetWall(daNpcThe_Param_c::m.mWallR, daNpcThe_Param_c::m.mWallH);
+        mAcchCir.SetWall(mpHIO->m.common.width, mpHIO->m.common.knee_length);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mAcch.SetRoofNone();
         mAcch.SetWaterNone();
         mAcch.CrrPos(dComIfG_Bgsp());
-        mCcStts.Init(daNpcThe_Param_c::m.mCcWeight, 0, this);
+        mCcStts.Init(mpHIO->m.common.weight, 0, this);
         mColCyl.Set(mCcDCyl);
         mColCyl.SetStts(&mCcStts);
         mColCyl.SetTgType(0);
         mColCyl.SetTgSPrm(0);
-        mColCyl.SetH(daNpcThe_Param_c::m.mCylH);
-        mColCyl.SetR(daNpcThe_Param_c::m.mWallR);
+        mColCyl.SetH(mpHIO->m.common.height);
+        mColCyl.SetR(mpHIO->m.common.width);
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
 
@@ -1288,7 +1100,6 @@ static int daNpcThe_Draw(void* i_this) {
     return static_cast<daNpcThe_c*>(i_this)->Draw();
 }
 
-
 /* 80AF99BC-80AF99C4 0023DC 0008+00 1/0 0/0 0/0 .text            daNpcThe_IsDelete__FPv */
 static int daNpcThe_IsDelete(void* i_this) {
     return 1;
@@ -1302,7 +1113,7 @@ void daNpcThe_c::setParam() {
 
     ActionFn next_action = mpNextActionFn;
     mpNextActionFn = NULL;
-    if (daNpcThe_Param_c::m.mTest) {
+    if (mpHIO->m.common.debug_mode_ON) {
         mpNextActionFn = &test;
     } else if (mTwilight) {
         mpNextActionFn = &waitTW;
@@ -1315,8 +1126,8 @@ void daNpcThe_c::setParam() {
         }
     }
 
-    int speak_angle_idx = mType == TYPE_KAKARIKO ? (s16)1 : daNpcThe_Param_c::m.mSpeakAngleIdx;
-    int talk_angle_idx = mType == TYPE_KAKARIKO ? (s16)1 : daNpcThe_Param_c::m.mTalkAngleIdx;
+    int speak_angle_idx = mType == TYPE_KAKARIKO ? (s16)1 : mpHIO->m.common.talk_angle;
+    int talk_angle_idx = mType == TYPE_KAKARIKO ? (s16)1 : mpHIO->m.common.attention_angle;
     attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     if (isSneaking()) {
         attention_info.distances[fopAc_attn_LOCK_e] = 0x4e;
@@ -1325,28 +1136,27 @@ void daNpcThe_c::setParam() {
         attention_info.flags |= fopAc_AttnFlag_UNK_0x800000;
     } else {
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")) {
-            attention_info.distances[fopAc_attn_LOCK_e]
-                = getDistTableIdx(daNpcThe_Param_c::m.mTalkDistIdx, talk_angle_idx);
-            attention_info.distances[fopAc_attn_TALK_e]
-                = attention_info.distances[fopAc_attn_LOCK_e];
-            attention_info.distances[fopAc_attn_SPEAK_e]
-                = getDistTableIdx(daNpcThe_Param_c::m.mSpeakDistIdx + 1, speak_angle_idx);
+            attention_info.distances[fopAc_attn_LOCK_e] =
+                getDistTableIdx(mpHIO->m.common.attention_distance, talk_angle_idx);
+            attention_info.distances[fopAc_attn_TALK_e] =
+                attention_info.distances[fopAc_attn_LOCK_e];
+            attention_info.distances[fopAc_attn_SPEAK_e] =
+                getDistTableIdx(mpHIO->m.common.talk_distance + 1, speak_angle_idx);
         } else {
-            attention_info.distances[fopAc_attn_LOCK_e]
-                = getDistTableIdx(daNpcThe_Param_c::m.mTalkDistIdx, talk_angle_idx);
-            attention_info.distances[fopAc_attn_TALK_e]
-                = attention_info.distances[fopAc_attn_LOCK_e];
-            attention_info.distances[fopAc_attn_SPEAK_e]
-                = getDistTableIdx(daNpcThe_Param_c::m.mSpeakDistIdx, speak_angle_idx);
+            attention_info.distances[fopAc_attn_LOCK_e] =
+                getDistTableIdx(mpHIO->m.common.attention_distance, talk_angle_idx);
+            attention_info.distances[fopAc_attn_TALK_e] =
+                attention_info.distances[fopAc_attn_LOCK_e];
+            attention_info.distances[fopAc_attn_SPEAK_e] =
+                getDistTableIdx(mpHIO->m.common.talk_distance, speak_angle_idx);
         }
     }
 
-    scale.setall(daNpcThe_Param_c::m.mScale);
-    mAcchCir.SetWallR(daNpcThe_Param_c::m.mWallR);
-    mAcchCir.SetWallH(daNpcThe_Param_c::m.mWallH);
-    gravity = daNpcThe_Param_c::m.mGravity;
+    scale.setall(mpHIO->m.common.scale);
+    mAcchCir.SetWallR(mpHIO->m.common.width);
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
+    gravity = mpHIO->m.common.gravity;
 }
-
 
 /* 80AF9CF0-80AF9F94 002710 02A4+00 1/0 0/0 0/0 .text            main__10daNpcThe_cFv */
 // NONMATCHING dComIfG_gameInfo issues
@@ -1370,9 +1180,8 @@ BOOL daNpcThe_c::main() {
         mItemID = -1;
     }
 
-    if (!daNpcThe_Param_c::m.mTest
-        && (dComIfGp_event_runCheck() == FALSE
-            || (mOrderNewEvt && dComIfGp_getEvent().isOrderOK())))
+    if (!mpHIO->m.common.debug_mode_ON &&
+        (dComIfGp_event_runCheck() == FALSE || (mOrderNewEvt && dComIfGp_getEvent().isOrderOK())))
     {
         if (mOrderEvtNo != 0 && l_resNames[l_evtGetParamList[mOrderEvtNo]] != NULL) {
             eventInfo.setArchiveName(l_resNames[l_evtGetParamList[mOrderEvtNo]]);
@@ -1421,7 +1230,8 @@ BOOL daNpcThe_c::doEvent() {
         dEvent_manager_c& event_manager = dComIfGp_getEventManager();
         if (eventInfo.checkCommandTalk()) {
             if (mTwilight) {
-                    /* dSv_event_flag_c::F_0277 - Castle Town - Hear conversation between Telma and Ilia in Telma's shop (Twilight) */
+                /* dSv_event_flag_c::F_0277 - Castle Town - Hear conversation between Telma and Ilia
+                 * in Telma's shop (Twilight) */
                 if (daNpcF_chkEvtBit(0x115)) {
                     mOrderEvtNo = 2;
                 } else {
@@ -1454,8 +1264,8 @@ BOOL daNpcThe_c::doEvent() {
                         setAction(&talk);
                     }
                 } else {
-                    s16 event_idx
-                        = dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
+                    s16 event_idx =
+                        dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
                     dComIfGp_getEvent().reset(this);
                     fopAcM_orderChangeEventId(this, event_idx, 1, 0xffff);
                 }
@@ -1484,8 +1294,9 @@ BOOL daNpcThe_c::doEvent() {
                 }
                 ret = true;
             }
-            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1
-                                                     && event_manager.endCheck(mEventIdx)) {
+            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 &&
+                event_manager.endCheck(mEventIdx))
+            {
                 dComIfGp_event_reset();
                 mOrderEvtNo = 0;
                 mEventIdx = -1;
@@ -1514,7 +1325,6 @@ BOOL daNpcThe_c::doEvent() {
 }
 
 /* 80AFADEC-80AFAEC8 00380C 00DC+00 1/0 0/0 0/0 .text            ctrlBtk__10daNpcThe_cFv */
-// NONMATCHING somehow this needs to not inline TSinCosTable<13,f32>::sinShort
 BOOL daNpcThe_c::ctrlBtk() {
     if (mpMatAnm != NULL) {
         J3DAnmTextureSRTKey* anm = NULL;
@@ -1552,7 +1362,7 @@ void daNpcThe_c::setAttnPos() {
     mDoMtx_stack_c::multVec(&vec1, &vec1);
     mHeadAngle.x = cLib_targetAngleX(&mHeadPos, &vec1);
     mHeadAngle.y = cLib_targetAngleY(&mHeadPos, &vec1);
-    
+
     cXyz* attn_pos = mLookat.getAttnPos();
     if (attn_pos != NULL) {
         cXyz vec2 = *attn_pos - eyePos;
@@ -1564,8 +1374,7 @@ void daNpcThe_c::setAttnPos() {
         mEyeAngle.x = 0;
     }
 
-    attention_info.position.set(current.pos.x,
-                                current.pos.y + daNpcThe_Param_c::m.mAttnOffsetY,
+    attention_info.position.set(current.pos.x, current.pos.y + mpHIO->m.common.attention_offset,
                                 current.pos.z);
 
     if (!mHide) {
@@ -1574,65 +1383,6 @@ void daNpcThe_c::setAttnPos() {
     }
 }
 
-/* 80AFB1C4-80AFB488 003BE4 02C4+00 1/1 0/0 0/0 .text            lookat__10daNpcThe_cFv */
-// NONMATCHING rodata problems
-void daNpcThe_c::lookat() {
-    fopAc_ac_c* actor = NULL;
-    J3DModel* model = mpMorf->getModel();
-    BOOL snap = false;
-    f32 body_down_angle = daNpcThe_Param_c::m.mBodyDownAngle;
-    f32 body_up_angle = daNpcThe_Param_c::m.mBodyUpAngle;
-    f32 body_right_angle = daNpcThe_Param_c::m.mBodyRightAngle;
-    f32 body_left_angle = daNpcThe_Param_c::m.mBodyLeftAngle;
-    f32 head_down_angle = daNpcThe_Param_c::m.mHeadDownAngle;
-    f32 head_up_angle = daNpcThe_Param_c::m.mHeadUpAngle;
-    f32 head_right_angle = daNpcThe_Param_c::m.mHeadRightAngle;
-    f32 head_left_angle = daNpcThe_Param_c::m.mHeadLeftAngle;
-    s16 angle_delta = mCurAngle.y - mOldAngle.y;
-    cXyz lookat_pos[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
-    csXyz* lookat_angle[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
-
-    switch (mLookMode) {
-    case LOOK_RESET:
-        snap = true;
-        break;
-    case LOOK_PLAYER_TALK:
-        head_right_angle = -80.0f;
-        head_left_angle = 80.0f;
-        // fallthrough
-    case LOOK_PLAYER:
-        actor = daPy_getPlayerActorClass();
-        break;
-    case LOOK_ACTOR:
-        actor = fopAcM_SearchByName(PROC_NPC_ZRC);
-        break;
-    case LOOK_ATTN:
-        break;
-    }
-
-    if (actor != NULL) {
-        if (mLookMode == LOOK_ACTOR) {
-            mLookPos = actor->eyePos;
-        } else {
-            mLookPos = actor->attention_info.position;
-            if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK && mLookMode != LOOK_ATTN)
-            {
-                mLookPos.y -= 40.0f;
-            }
-        }
-        mLookat.setAttnPos(&mLookPos);
-    } else {
-        mLookat.setAttnPos(NULL);
-    }
-
-    mLookat.setParam(body_down_angle, body_up_angle, body_right_angle, body_left_angle,
-                     0.0f, 0.0f, 0.0f, 0.0f,
-                     head_down_angle, head_up_angle, head_right_angle, head_left_angle,
-                     mCurAngle.y, lookat_pos);
-    mLookat.calc(this, model->getBaseTRMtx(), lookat_angle, snap, angle_delta, 0);
-}
-
-
 /* 80AFB488-80AFB490 003EA8 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__10daNpcThe_cFv */
 BOOL daNpcThe_c::drawDbgInfo() {
     return false;
@@ -1640,10 +1390,8 @@ BOOL daNpcThe_c::drawDbgInfo() {
 
 /* 80AFC534-80AFC554 -00001 0020+00 1/0 0/0 0/0 .data            daNpcThe_MethodTable */
 static actor_method_class daNpcThe_MethodTable = {
-    (process_method_func)daNpcThe_Create,
-    (process_method_func)daNpcThe_Delete,
-    (process_method_func)daNpcThe_Execute,
-    (process_method_func)daNpcThe_IsDelete,
+    (process_method_func)daNpcThe_Create,  (process_method_func)daNpcThe_Delete,
+    (process_method_func)daNpcThe_Execute, (process_method_func)daNpcThe_IsDelete,
     (process_method_func)daNpcThe_Draw,
 };
 

@@ -3,6 +3,33 @@
 
 #include "d/actor/d_a_npc.h"
 
+struct daNpcImpal_HIOParam {
+    /* 0x00 */ daNpcF_HIOParam common;
+    /* 0x6C */ f32 field_0x6c;
+};
+
+class daNpcImpal_Param_c {
+public:
+    /* 80A0C204 */ virtual ~daNpcImpal_Param_c() {}
+
+    static const daNpcImpal_HIOParam m;
+};
+
+#if DEBUG
+class daNpcImpal_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpcImpal_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    daNpcImpal_HIOParam m;
+};
+
+#define NPC_IMPAL_HIO_CLASS daNpcImpal_HIO_c
+#else
+#define NPC_IMPAL_HIO_CLASS daNpcImpal_Param_c
+#endif
+
 /**
  * @ingroup actors-npcs
  * @class daNpcImpal_c
@@ -77,12 +104,12 @@ public:
     /* 80A0A1E0 */ BOOL EvCut_ImpalAppear1(int);
     /* 80A0A680 */ BOOL EvCut_ImpalAppear2(int);
     /* 80A0A950 */ BOOL EvCut_CopyRod(int);
-    /* 80A0ADF8 */ void setParam();
-    /* 80A0AEA8 */ BOOL main();
-    /* 80A0B380 */ BOOL ctrlBtk();
-    /* 80A0B45C */ void setAttnPos();
-    /* 80A0B76C */ void lookat();
-    /* 80A0B94C */ BOOL drawDbgInfo();
+    /* 80A0ADF8 */ inline void setParam();
+    /* 80A0AEA8 */ inline BOOL main();
+    /* 80A0B380 */ inline BOOL ctrlBtk();
+    /* 80A0B45C */ inline void setAttnPos();
+    /* 80A0B76C */ inline void lookat();
+    /* 80A0B94C */ inline BOOL drawDbgInfo();
 
     s16 getMessageNo() { return shape_angle.x; }
     u8 getSwitchNo() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
@@ -101,7 +128,7 @@ private:
     /* 0xBD8 */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0xBDC */ daNpcF_Lookat_c mLookat;
     /* 0xC78 */ daNpcF_ActorMngr_c mActorMngr[1];
-    /* 0xC80 */ fopAc_ac_c* mpTalkPartner;
+    /* 0xC80 */ NPC_IMPAL_HIO_CLASS* mpHIO;
     /* 0xC84 */ dCcD_Cyl mCyl;
     /* 0xDC0 */ actionFunc mpActionFn;
     /* 0xDCC */ request_of_phase_process_class mPhase[1];
@@ -117,48 +144,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpcImpal_c) == 0xdec);
-
-struct daNpc_Impal_HIOParam {
-    /* 0x00 */ f32 mAttnOffsetY;
-    /* 0x04 */ f32 mGravity;
-    /* 0x08 */ f32 mScale;
-    /* 0x0C */ f32 mShadowDepth;
-    /* 0x10 */ f32 mCcWeight;
-    /* 0x14 */ f32 mCylH;
-    /* 0x18 */ f32 mWallH;
-    /* 0x1C */ f32 mWallR;
-    /* 0x20 */ f32 mBodyUpAngle;
-    /* 0x24 */ f32 mBodyDownAngle;
-    /* 0x28 */ f32 mBodyLeftAngle;
-    /* 0x2C */ f32 mBodyRightAngle;
-    /* 0x30 */ f32 mHeadUpAngle;
-    /* 0x34 */ f32 mHeadDownAngle;
-    /* 0x38 */ f32 mHeadLeftAngle;
-    /* 0x3C */ f32 mHeadRightAngle;
-    /* 0x40 */ f32 mNeckAngleScl;
-    /* 0x44 */ f32 mMorfFrames;
-    /* 0x48 */ s16 mSpeakDistIdx;
-    /* 0x4A */ s16 mSpeakAngleIdx;
-    /* 0x4C */ s16 mTalkDistIdx;
-    /* 0x4E */ s16 mTalkAngleIdx;
-    /* 0x50 */ f32 mAttnFovY;
-    /* 0x54 */ f32 mAttnRadius;
-    /* 0x58 */ f32 mAttnUpperY;
-    /* 0x5C */ f32 mAttnLowerY;
-    /* 0x60 */ s16 field_0x60;
-    /* 0x62 */ s16 mDamageTimer;
-    /* 0x64 */ s16 mTestExpression;
-    /* 0x66 */ s16 mTestMotion;
-    /* 0x68 */ s16 mTestLookMode;
-    /* 0x6A */ bool mTest;
-    /* 0x6C */ f32 field_0x6c;
-};
-
-class daNpcImpal_Param_c {
-public:
-    /* 80A0C204 */ virtual ~daNpcImpal_Param_c() {}
-
-    static daNpc_Impal_HIOParam const m;
-};
 
 #endif /* D_A_NPC_IMPAL_H */
