@@ -3,15 +3,6 @@
 
 #include "d/actor/d_a_npc.h"
 
-/**
- * @ingroup actors-npcs
- * @class daNpc_Lud_c
- * @brief Luda
- *
- * @details
- *
- */
-
 struct daNpc_Lud_HIOParam {
     /* 0x00 */ daNpcT_HIOParam common;
     /* 0x8C */ f32 play_speed;
@@ -24,6 +15,30 @@ public:
     static const daNpc_Lud_HIOParam m;
 };
 
+#if DEBUG
+class daNpc_Lud_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpc_Lud_HIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+
+    daNpc_Lud_HIOParam m;
+};
+
+#define NPC_LUD_HIO_CLASS daNpc_Lud_HIO_c
+#else
+#define NPC_LUD_HIO_CLASS daNpc_Lud_Param_c
+#endif
+
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Lud_c
+ * @brief Luda
+ *
+ * @details
+ *
+ */
 class daNpc_Lud_c : public daNpcT_c {
 public:
     typedef int (daNpc_Lud_c::*actionFunc)(void*);
@@ -101,7 +116,7 @@ public:
 
 private:
     /* 0xE40 */ mDoExt_McaMorfSO* mpBowlMorf;
-    /* 0xE44 */ u8 field_0xe44[0xe48 - 0xe44];
+    /* 0xE44 */ NPC_LUD_HIO_CLASS* mpHIO;
     /* 0xE48 */ J3DModel* mpModel[2];
     /* 0xE50 */ dCcD_Cyl mCyl;
     /* 0xF8C */ u8 mType;

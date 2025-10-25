@@ -3,6 +3,33 @@
 
 #include "d/actor/d_a_npc.h"
 
+struct daNpcShad_HIOParam {
+    /* 0x00 */ daNpcF_HIOParam common;
+    /* 0x6C */ f32 traveling_speed;  // 走行速度 (Traveling Speed)
+};
+
+class daNpcShad_Param_c : public JORReflexible {
+public:
+    /* 80AE1F70 */ virtual ~daNpcShad_Param_c() {}
+
+    static const daNpcShad_HIOParam m;
+};
+
+#if DEBUG
+class daNpcShad_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpcShad_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    daNpcShad_HIOParam m;
+};
+
+#define NPC_SHAD_HIO_CLASS daNpcShad_HIO_c
+#else
+#define NPC_SHAD_HIO_CLASS daNpcShad_Param_c
+#endif
+
 /**
  * @ingroup actors-npcs
  * @class daNpcShad_c
@@ -10,24 +37,7 @@
  *
  * @details
  *
-*/
-
-struct daNpcShad_HIOParam {
-    /* 0x00 */ daNpcF_HIOParam common;
-    /* 0x6C */ f32 traveling_speed;     // 走行速度 (Traveling Speed)
-};
-
-class daNpcShad_Param_c: public JORReflexible {
-public:
-    /* 80AE1F70 */ virtual ~daNpcShad_Param_c() {}
-
-#ifdef DEBUG
-    void genMessage(JORMContext*);
-#endif
-
-    static const daNpcShad_HIOParam m;
-};
-
+ */
 class daNpcShad_c : public daNpcF_c {
 public:
     typedef bool (daNpcShad_c::*ActionFn)(void*);
@@ -219,8 +229,10 @@ public:
                 mActorMngr[4].entry(getEvtAreaTagP(17, 0));
             }
         } else if (mMode == 1
-                     /* dSv_event_flag_c::F_0302 - Kakariko Village - Saw cutscene of Shad casting spells underneat Kakariko Village */
-                  && daNpcF_chkEvtBit(0x12E) && mActorMngr[4].getActorP() == NULL) {
+                   /* dSv_event_flag_c::F_0302 - Kakariko Village - Saw cutscene of Shad casting
+                      spells underneat Kakariko Village */
+                   && daNpcF_chkEvtBit(0x12E) && mActorMngr[4].getActorP() == NULL)
+        {
             mActorMngr[4].entry(getEvtAreaTagP(18, 0));
         }
     }
@@ -233,7 +245,7 @@ private:
     /* 0xBE4 */ daNpcF_Lookat_c mLookat;
     /* 0xC80 */ daNpcF_ActorMngr_c mActorMngr[5];
     /* 0xCA8 */ daPy_py_c* field_0xca8;
-    /* 0xCAC */ u8 field_0xcac[0xcb0 - 0xcac];
+    /* 0xCAC */ NPC_SHAD_HIO_CLASS* mpHIO;
     /* 0xCB0 */ dCcD_Cyl field_0xcb0;
     /* 0xDEC */ ActionFn mActionFn;
     /* 0xDF8 */ request_of_phase_process_class mPhases[2];

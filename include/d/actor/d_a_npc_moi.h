@@ -3,18 +3,11 @@
 
 #include "d/actor/d_a_npc.h"
 
-/**
- * @ingroup actors-npcs
- * @class daNpc_Moi_c
- * @brief Rusl
- *
- * @details
- *
- */
-
 struct daNpc_Moi_HIOParam {
     /* 0x00 */ daNpcT_HIOParam common;
-    /* 0x8C */ u8 field_0x70[12];
+    /* 0x8C */ f32 field_0x8c;
+    /* 0x90 */ f32 field_0x90;
+    /* 0x94 */ f32 field_0x94;
     /* 0x98 */ s16 field_0x98;
     /* 0x9A */ s16 field_0x9a;
     /* 0x9C */ s16 field_0x9c;
@@ -22,7 +15,9 @@ struct daNpc_Moi_HIOParam {
     /* 0xA0 */ s16 field_0xa0;
     /* 0xA2 */ s16 field_0xa2;
     /* 0xA4 */ f32 field_0xa4;
-    /* 0xA8 */ u8 field_0xa8[12];
+    /* 0xA8 */ f32 field_0xa8;
+    /* 0xAC */ f32 field_0xac;
+    /* 0xB0 */ f32 field_0xb0;
     /* 0xB4 */ f32 field_0xb4;
     /* 0xB8 */ f32 field_0xb8;
 };
@@ -34,15 +29,30 @@ public:
     static const daNpc_Moi_HIOParam m;
 };
 
-class daNpc_Moi_HIO_c
-#ifdef DEBUG
-    : public mDoHIO_entry_c
-#endif
-{
+#if DEBUG
+class daNpc_Moi_HIO_c : public mDoHIO_entry_c {
 public:
+    daNpc_Moi_HIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
     void genMessage(JORMContext*);
+
+    daNpc_Moi_HIOParam m;
 };
 
+#define NPC_MOI_HIO_CLASS daNpc_Moi_HIO_c
+#else
+#define NPC_MOI_HIO_CLASS daNpc_Moi_Param_c
+#endif
+
+/**
+ * @ingroup actors-npcs
+ * @class daNpc_Moi_c
+ * @brief Rusl
+ *
+ * @details
+ *
+ */
 class daNpc_Moi_c : public daNpcT_c {
 public:
     typedef int (daNpc_Moi_c::*cutFunc)(int);
@@ -152,7 +162,7 @@ public:
     static cutFunc mCutList[5];
 
 private:
-    /* 0x0E40 */ daNpc_Moi_HIO_c* field_0xe40;
+    /* 0x0E40 */ NPC_MOI_HIO_CLASS* mpHIO;
     /* 0x0E44 */ J3DModel* mpModel[6];
     /* 0x0E5C */ dCcD_Cyl mCyl[4];
     /* 0x134C */ dCcD_Cyl mCyl2;
