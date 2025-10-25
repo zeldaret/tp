@@ -625,10 +625,12 @@ bool daNpcAshB_c::setAction(daNpcAshB_c::ActionFn i_actionFn) {
 
 bool daNpcAshB_c::step(s16 i_targetAngle, int param_2, f32 i_rate) {
     if (mTurnMode == 0) {
-        s16 diff = i_targetAngle - mCurAngle.y;
-        if ((int)fabsf(cM_sht2d(diff)) > 40) {
-            setExpression(6, -1.0f);
-            setMotion(10, -1.0f, 0);
+        if (param_2 != 0) {
+            s16 diff = i_targetAngle - mCurAngle.y;
+            if ((int)fabsf(cM_sht2d(diff)) > 40) {
+                setExpression(6, -1.0f);
+                setMotion(10, -1.0f, 0);
+            }
         }
 
         mTurnTargetAngle = i_targetAngle;

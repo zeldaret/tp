@@ -594,7 +594,7 @@ void daNpcAsh_c::reset() {
 
     field_0xf50 = 0;
     field_0xf54 = 0;
-    mAction = NULL;
+    mpActionFn = NULL;
     mLookMode = -1;
     mMode = 0;
     gravity = mpHIO->m.common.gravity;
@@ -623,23 +623,23 @@ void daNpcAsh_c::reset() {
     }
 
     if (mType == TYPE_BAR) {
-        setAction(&daNpcAsh_c::wait_type0);
+        setAction(&wait_type0);
     } else {
-        setAction(&daNpcAsh_c::wait_type1);
+        setAction(&wait_type1);
     }
 }
 
 /* 80959B28-80959BD0 001928 00A8+00 1/1 0/0 0/0 .text
  * setAction__10daNpcAsh_cFM10daNpcAsh_cFPCvPvPv_b              */
-bool daNpcAsh_c::setAction(bool (daNpcAsh_c::*i_action)(void*)) {
+bool daNpcAsh_c::setAction(daNpcAsh_c::ActionFn i_actionFn) {
     mMode = 3;
-    if (mAction != NULL) {
-        (this->*mAction)(NULL);
+    if (mpActionFn != NULL) {
+        (this->*mpActionFn)(NULL);
     }
     mMode = 0;
-    mAction = i_action;
-    if (mAction != NULL) {
-        (this->*mAction)(NULL);
+    this->mpActionFn = i_actionFn;
+    if (mpActionFn != NULL) {
+        (this->*mpActionFn)(NULL);
     }
     return true;
 }
@@ -845,12 +845,12 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                         mOrderEvtNo = 3;
                         changeEvent(l_arcNames[0], l_evtNames[mOrderEvtNo], 1, -1);
                     } else {
-                        setAction(&daNpcAsh_c::talk);
+                        setAction(&talk);
                     }
                 }
             } else {
                 if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
-                    setAction(&daNpcAsh_c::demo);
+                    setAction(&demo);
                 }
             }
         } else {
@@ -918,7 +918,7 @@ bool daNpcAsh_c::wait_type1(void* param_0) {
 
         case 1:
             if (daNpcF_chkTmpBit(0x74)) {
-                setAction(&daNpcAsh_c::leave);
+                setAction(&leave);
             }
             break;
         }
@@ -955,7 +955,7 @@ bool daNpcAsh_c::talk(void* param_0) {
         if (field_0xf5f <= 2 || mCurAngle.y == fopAcM_searchPlayerAngleY(this)) {
             if (talkProc(NULL, 1, NULL)) {
                 mActorMngr[0].entry(daPy_getPlayerActorClass());
-                setAction(&daNpcAsh_c::wait_type0);
+                setAction(&wait_type0);
                 ret = true;
             } else {
                 s32 prev_msg_timer = mMsgTimer;
@@ -1024,18 +1024,18 @@ bool daNpcAsh_c::demo(void* param_0) {
                 mOrderEvtNo = 0;
                 mEventIdx = -1;
                 if (mType == TYPE_BAR) {
-                    setAction(&daNpcAsh_c::wait_type0);
+                    setAction(&wait_type0);
                 } else {
-                    setAction(&daNpcAsh_c::wait_type1);
+                    setAction(&wait_type1);
                 }
             }
         } else {
             mOrderEvtNo = 0;
             mEventIdx = -1;
             if (mType == TYPE_BAR) {
-                setAction(&daNpcAsh_c::wait_type0);
+                setAction(&wait_type0);
             } else {
-                setAction(&daNpcAsh_c::wait_type1);
+                setAction(&wait_type1);
             }
         }
         break;
@@ -1293,8 +1293,8 @@ void daNpcAsh_c::setParam() {
 
 /* 8095BF6C-8095C200 003D6C 0294+00 1/0 0/0 0/0 .text            main__10daNpcAsh_cFv */
 BOOL daNpcAsh_c::main() {
-    if (mAction != NULL) {
-        (this->*mAction)(NULL);
+    if (mpActionFn != NULL) {
+        (this->*mpActionFn)(NULL);
     }
     if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk() && mItemPartnerId != -1) {
         dComIfGp_event_setItemPartnerId(mItemPartnerId);

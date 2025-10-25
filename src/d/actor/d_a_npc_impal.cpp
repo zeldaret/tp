@@ -733,7 +733,7 @@ bool daNpcImpal_c::wait(void* param_0) {
                 if ((u8)daPy_getPlayerActorClass()->checkCopyRodEquip()) {
                     f32 player_dist =
                         (daPy_getPlayerActorClass()->current.pos - current.pos).absXZ();
-                    if (player_dist < mpHIO->m.field_0x6c) {
+                    if (player_dist < daNpcImpal_Param_c::m.field_0x6c) {
                         daNpcF_offTmpBit(0xb);
                         daNpcF_offTmpBit(0xc);
                         mOrderEvtNo = 3;
