@@ -1324,7 +1324,7 @@ int daNpc_Moi_c::injuryWalk() {
 
 /* 80A770FC-80A7772C 00329C 0630+00 2/2 0/0 0/0 .text            poise__11daNpc_Moi_cFv */
 int daNpc_Moi_c::poise() {
-    int iVar13 = mpHIO->m.field_0x98;
+    int iVar13 = daNpc_Moi_Param_c::m.field_0x98;
 
     if (field_0x1669 != 0) {
         if (field_0x166c != 0) {
