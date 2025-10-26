@@ -128,8 +128,8 @@ int daTenbin_c::create() {
         field_0x650 = -1;
         field_0x5BC = 0.0f;
         field_0x5C0 = 0.0f;
-        mfield_0xFallAmt1 = 0.0f;
-        mfield_0xFallAmt2 = 0.0f;
+        mUnkFallAmt1 = 0.0f;
+        mUnkFallAmt2 = 0.0f;
         field_0x5D4.x = 0;
         field_0x5D4.y = 0;
         field_0x5D4.z = 0;
@@ -272,8 +272,8 @@ void daTenbin_c::init_modeWait() {
 void daTenbin_c::modeWait() {
     balanceCheck();
     if (mWaitTime == 0) {
-        f32 v1 = cLib_addCalc(&field_0x5BC, mfield_0xFallAmt1, 0.4f, 8.0f, 0.1f);
-        f32 v2 = cLib_addCalc(&field_0x5C0, mfield_0xFallAmt2, 0.4f, 8.0f, 0.1f);
+        f32 v1 = cLib_addCalc(&field_0x5BC, mUnkFallAmt1, 0.4f, 8.0f, 0.1f);
+        f32 v2 = cLib_addCalc(&field_0x5C0, mUnkFallAmt2, 0.4f, 8.0f, 0.1f);
         if (v1 != 0.0f || v2 != 0.0f) {
             mDoAud_seStartLevel(Z2SE_OBJ_L6_BALANCE_MV, &current.pos, 0,
                                 dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
@@ -304,14 +304,14 @@ void daTenbin_c::modeWait() {
 void daTenbin_c::balanceCheck() {
     if (field_0x5B6 != field_0x5B2 || field_0x5B8 != field_0x5B4) {
         if (field_0x5B2 == field_0x5B4) {
-            mfield_0xFallAmt1 = 0.0f;
-            mfield_0xFallAmt2 = 0.0f;
+            mUnkFallAmt1 = 0.0f;
+            mUnkFallAmt2 = 0.0f;
         } else if (field_0x5B2 > field_0x5B4) {
-            mfield_0xFallAmt1 = -l_HIO.mFallAmount;
-            mfield_0xFallAmt2 = l_HIO.mFallAmount;
+            mUnkFallAmt1 = -l_HIO.mFallAmount;
+            mUnkFallAmt2 = l_HIO.mFallAmount;
         } else if (field_0x5B2 < field_0x5B4) {
-            mfield_0xFallAmt1 = l_HIO.mFallAmount;
-            mfield_0xFallAmt2 = -l_HIO.mFallAmount;
+            mUnkFallAmt1 = l_HIO.mFallAmount;
+            mUnkFallAmt2 = -l_HIO.mFallAmount;
         }
         mWaitTime = l_HIO.mWaitTime;
         mShakeStrength = 0.0f;

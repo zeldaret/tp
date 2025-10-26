@@ -38,8 +38,8 @@ private:
     /* 0x5B8 */ u16 field_0x5B8;
     /* 0x5BC */ f32 field_0x5BC;
     /* 0x5C0 */ f32 field_0x5C0;
-    /* 0x5C4 */ f32 mfield_0xFallAmt1;
-    /* 0x5C8 */ f32 mfield_0xFallAmt2;
+    /* 0x5C4 */ f32 mUnkFallAmt1;
+    /* 0x5C8 */ f32 mUnkFallAmt2;
     /* 0x5CC */ u8 mWaitTime;
     /* 0x5D0 */ int field_0x5D0;
     /* 0x5D4 */ csXyz field_0x5D4;
