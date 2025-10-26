@@ -23,7 +23,7 @@ daTenbin_HIO_c::daTenbin_HIO_c() {
     mShakeDamping = 0.06f;
     mXZMaximumChange = 5.0f;
     mXZMinimumChange = 1.0f;
-    unk2C = 90.0f;
+    field_0x2C = 90.0f;
     mYAmplitude = 30.0f;
     mMovementStrength = 10.0f;
     mRotationDamping = 0.01f;
@@ -66,19 +66,19 @@ static daTenbin_HIO_c l_HIO;
 void daTenbin_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
-    mDoMtx_stack_c::transM(l_HIO.mPlateSpacing, unk5BC, 0.0f);
+    mDoMtx_stack_c::transM(l_HIO.mPlateSpacing, field_0x5BC, 0.0f);
     mDoMtx_stack_c::ZXYrotM(0, cM_deg2s(l_HIO.mPlateYAngle), 0);
-    mDoMtx_stack_c::ZXYrotM(unk5D4.x, unk5D4.y, unk5D4.z);
-    mDoMtx_stack_c::transM(unk5F4.x, unk5F4.y, unk5F4.z);
+    mDoMtx_stack_c::ZXYrotM(field_0x5D4.x, field_0x5D4.y, field_0x5D4.z);
+    mDoMtx_stack_c::transM(field_0x5F4.x, field_0x5F4.y, field_0x5F4.z);
     mModel1->setBaseScale(scale);
     mModel1->setBaseTRMtx(mDoMtx_stack_c::get());
-    MTXCopy(mDoMtx_stack_c::get(), unk620);
+    MTXCopy(mDoMtx_stack_c::get(), field_0x620);
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
-    mDoMtx_stack_c::transM(-l_HIO.mPlateSpacing, unk5C0, 0.0f);
+    mDoMtx_stack_c::transM(-l_HIO.mPlateSpacing, field_0x5C0, 0.0f);
     mDoMtx_stack_c::ZXYrotM(0, cM_deg2s(l_HIO.mPlateYAngle), 0);
-    mDoMtx_stack_c::ZXYrotM(unk5D4.x, unk5D4.y, unk5D4.z);
-    mDoMtx_stack_c::transM(unk5F4.x, unk5F4.y, unk5F4.z);
+    mDoMtx_stack_c::ZXYrotM(field_0x5D4.x, field_0x5D4.y, field_0x5D4.z);
+    mDoMtx_stack_c::transM(field_0x5F4.x, field_0x5F4.y, field_0x5F4.z);
     mModel2->setBaseScale(scale);
     mModel2->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
@@ -99,7 +99,7 @@ int daTenbin_c::CreateHeap() {
         return FALSE;
     }
     mdBgW = new dBgW();
-    if (mdBgW != NULL && !mdBgW->Set((cBgD_t*)dComIfG_getObjectRes("L6Tenbin", 8), 1, &unk620)) {
+    if (mdBgW != NULL && !mdBgW->Set((cBgD_t*)dComIfG_getObjectRes("L6Tenbin", 8), 1, &field_0x620)) {
         mdBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
     } else {
         mdBgW = NULL;
@@ -121,35 +121,35 @@ int daTenbin_c::create() {
                               l_cull_box.max.x, l_cull_box.max.y, l_cull_box.max.y);
         mpBgW->SetRideCallback(rideCallBackLeft);
         mdBgW->SetRideCallback(rideCallBackRight);
-        unk5B2 = 0;
-        unk5B4 = 0;
-        unk5B6 = 0;
-        unk5B8 = 0;
-        unk650 = -1;
-        unk5BC = 0.0f;
-        unk5C0 = 0.0f;
-        mUnkFallAmt1 = 0.0f;
-        mUnkFallAmt2 = 0.0f;
-        unk5D4.x = 0;
-        unk5D4.y = 0;
-        unk5D4.z = 0;
+        field_0x5B2 = 0;
+        field_0x5B4 = 0;
+        field_0x5B6 = 0;
+        field_0x5B8 = 0;
+        field_0x650 = -1;
+        field_0x5BC = 0.0f;
+        field_0x5C0 = 0.0f;
+        mfield_0xFallAmt1 = 0.0f;
+        mfield_0xFallAmt2 = 0.0f;
+        field_0x5D4.x = 0;
+        field_0x5D4.y = 0;
+        field_0x5D4.z = 0;
         mShakeStrength = 0.0f;
-        unk5F4.x = 0.0f;
-        unk5F4.y = 0.0f;
-        unk5F4.z = 0.0f;
+        field_0x5F4.x = 0.0f;
+        field_0x5F4.y = 0.0f;
+        field_0x5F4.z = 0.0f;
         mMovementStrength = 0.0f;
         mZAmplitude = 0.0f;
         mXAmplitude = 0.0f;
         mShakeDamping = 0.0f;
         mXZMaximumChange = 0.0f;
         mXZMinimumChange = 0.0f;
-        unk600 = 0.0f;
+        field_0x600 = 0.0f;
         mYAmplitude = 0.0f;
         mRotationDamping = 0.0f;
         mYMaximumChange = 0.0f;
         mYMinimumChange = 0.0f;
-        unk618 = true;
-        unk5D0 = 0;
+        field_0x618 = true;
+        field_0x5D0 = 0;
         setBaseMtx();
         if (mdBgW != NULL) {
             dComIfG_Bgsp().Regist(mdBgW, this);
@@ -172,28 +172,28 @@ void daTenbin_c::rideCallBackRight(dBgW* i_dBgW, fopAc_ac_c* i_act1, fopAc_ac_c*
     daPy_py_c* player = dComIfGp_getLinkPlayer();
     if (fopAcM_GetName(i_act2) == PROC_SPINNER) {
         if (player->checkSpinnerRide()) {
-            i_tenbin->unk5B2 += 2;
+            i_tenbin->field_0x5B2 += 2;
         }
     }
     if (fopAcM_GetName(i_act2) == PROC_ALINK && dComIfGp_checkPlayerStatus0(0, 0x100) == 0) {
-        i_tenbin->unk5B2 += 2;
+        i_tenbin->field_0x5B2 += 2;
         if (player->checkBootsOrArmorHeavy()) {
-            i_tenbin->unk5B2 += 60000;
+            i_tenbin->field_0x5B2 += 60000;
         }
         if (player->getGrabActorID() != -1) {
             fopAc_ac_c* found = fopAcM_SearchByID(player->getGrabActorID());
             if (fopAcM_GetName(found) == PROC_CSTATUE) {
-                i_tenbin->unk5B2++;
-                i_tenbin->unk650 = fopAcM_GetID(found);
+                i_tenbin->field_0x5B2++;
+                i_tenbin->field_0x650 = fopAcM_GetID(found);
             }
         }
     }
     if (fopAcM_GetName(i_act2) == PROC_CSTATUE) {
         daCstatue_c* i_statue = (daCstatue_c*)i_act2;
         if (i_statue->checkNormalType()) {
-            i_tenbin->unk5B2 += 4;
-        } else if (fopAcM_GetID(i_statue) != i_tenbin->unk650) {
-            i_tenbin->unk5B2++;
+            i_tenbin->field_0x5B2 += 4;
+        } else if (fopAcM_GetID(i_statue) != i_tenbin->field_0x650) {
+            i_tenbin->field_0x5B2++;
         }
     }
 }
@@ -206,28 +206,28 @@ void daTenbin_c::rideCallBackLeft(dBgW* i_dBgW, fopAc_ac_c* i_act1, fopAc_ac_c* 
     daPy_py_c* player = dComIfGp_getLinkPlayer();
     if (fopAcM_GetName(i_act2) == PROC_SPINNER) {
         if (player->checkSpinnerRide()) {
-            i_tenbin->unk5B4 += 2;
+            i_tenbin->field_0x5B4 += 2;
         }
     }
     if (fopAcM_GetName(i_act2) == PROC_ALINK && dComIfGp_checkPlayerStatus0(0, 0x100) == 0) {
-        i_tenbin->unk5B4 += 2;
+        i_tenbin->field_0x5B4 += 2;
         if (player->checkEquipHeavyBoots()) {
-            i_tenbin->unk5B4 += 60000;
+            i_tenbin->field_0x5B4 += 60000;
         }
         if (player->getGrabActorID() != -1) {
             fopAc_ac_c* found = fopAcM_SearchByID(player->getGrabActorID());
             if (fopAcM_GetName(found) == PROC_CSTATUE) {
-                i_tenbin->unk5B4++;
-                i_tenbin->unk650 = fopAcM_GetID(found);
+                i_tenbin->field_0x5B4++;
+                i_tenbin->field_0x650 = fopAcM_GetID(found);
             }
         }
     }
     if (fopAcM_GetName(i_act2) == PROC_CSTATUE) {
         daCstatue_c* i_statue = (daCstatue_c*)i_act2;
         if (i_statue->checkNormalType()) {
-            i_tenbin->unk5B4 += 4;
-        } else if (fopAcM_GetID(i_statue) != i_tenbin->unk650) {
-            i_tenbin->unk5B4++;
+            i_tenbin->field_0x5B4 += 4;
+        } else if (fopAcM_GetID(i_statue) != i_tenbin->field_0x650) {
+            i_tenbin->field_0x5B4++;
         }
     }
 }
@@ -243,9 +243,9 @@ int daTenbin_c::Execute(Mtx** i_pMtx) {
     if (mdBgW != NULL) {
         mdBgW->Move();
     }
-    unk5B2 = 0;
-    unk5B4 = 0;
-    unk650 = -1;
+    field_0x5B2 = 0;
+    field_0x5B4 = 0;
+    field_0x650 = -1;
     return TRUE;
 }
 
@@ -255,12 +255,12 @@ void daTenbin_c::procMain() {
     static const func_call mode_proc[] = {&daTenbin_c::modeWait};
     (this->*mode_proc[mMode])();
     // casts here are necessary to match debug
-    unk5D4.z = mShakeStrength * cM_scos(unk5D0 * (s16)cM_deg2s(mZAmplitude));
-    unk5D4.x = mShakeStrength * cM_ssin(unk5D0 * (s16)cM_deg2s(mXAmplitude));
+    field_0x5D4.z = mShakeStrength * cM_scos(field_0x5D0 * (s16)cM_deg2s(mZAmplitude));
+    field_0x5D4.x = mShakeStrength * cM_ssin(field_0x5D0 * (s16)cM_deg2s(mXAmplitude));
     cLib_addCalc(&mShakeStrength, 0.0f, mShakeDamping, mXZMaximumChange, mXZMinimumChange);
-    unk5F4.y = mMovementStrength * cM_ssin(unk5D0 * (s16)cM_deg2s(mYAmplitude));
+    field_0x5F4.y = mMovementStrength * cM_ssin(field_0x5D0 * (s16)cM_deg2s(mYAmplitude));
     cLib_addCalc(&mMovementStrength, 0.0f, mRotationDamping, mYMaximumChange, mYMinimumChange);
-    unk5D0++;
+    field_0x5D0++;
 }
 
 /* 80C77464-80C77470 000C64 000C+00 1/1 0/0 0/0 .text            init_modeWait__10daTenbin_cFv */
@@ -272,13 +272,13 @@ void daTenbin_c::init_modeWait() {
 void daTenbin_c::modeWait() {
     balanceCheck();
     if (mWaitTime == 0) {
-        f32 v1 = cLib_addCalc(&unk5BC, mUnkFallAmt1, 0.4f, 8.0f, 0.1f);
-        f32 v2 = cLib_addCalc(&unk5C0, mUnkFallAmt2, 0.4f, 8.0f, 0.1f);
+        f32 v1 = cLib_addCalc(&field_0x5BC, mfield_0xFallAmt1, 0.4f, 8.0f, 0.1f);
+        f32 v2 = cLib_addCalc(&field_0x5C0, mfield_0xFallAmt2, 0.4f, 8.0f, 0.1f);
         if (v1 != 0.0f || v2 != 0.0f) {
             mDoAud_seStartLevel(Z2SE_OBJ_L6_BALANCE_MV, &current.pos, 0,
                                 dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
         }
-        if (v1 == 0.0f && v2 == 0.0f && mShakeStrength == 0.0f && !unk618) {
+        if (v1 == 0.0f && v2 == 0.0f && mShakeStrength == 0.0f && !field_0x618) {
             mDoAud_seStart(Z2SE_OBJ_L6_BALANCE_ST, &current.pos, 0,
                            dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
             mShakeStrength = l_HIO.mShakeStrength;
@@ -288,35 +288,35 @@ void daTenbin_c::modeWait() {
             mXZMaximumChange = l_HIO.mXZMaximumChange;
             mXZMinimumChange = l_HIO.mXZMinimumChange;
             mMovementStrength = l_HIO.mMovementStrength;
-            unk600 = l_HIO.unk2C;
+            field_0x600 = l_HIO.field_0x2C;
             mYAmplitude = l_HIO.mYAmplitude;
             mRotationDamping = l_HIO.mRotationDamping;
             mYMaximumChange = l_HIO.mYMaximumChange;
             mYMinimumChange = l_HIO.mYMinimumChange;
-            unk618 = true;
+            field_0x618 = true;
         }
     }
-    unk5B6 = unk5B2;
-    unk5B8 = unk5B4;
+    field_0x5B6 = field_0x5B2;
+    field_0x5B8 = field_0x5B4;
 }
 
 /* 80C77668-80C7772C 000E68 00C4+00 1/1 0/0 0/0 .text            balanceCheck__10daTenbin_cFv */
 void daTenbin_c::balanceCheck() {
-    if (unk5B6 != unk5B2 || unk5B8 != unk5B4) {
-        if (unk5B2 == unk5B4) {
-            mUnkFallAmt1 = 0.0f;
-            mUnkFallAmt2 = 0.0f;
-        } else if (unk5B2 > unk5B4) {
-            mUnkFallAmt1 = -l_HIO.mFallAmount;
-            mUnkFallAmt2 = l_HIO.mFallAmount;
-        } else if (unk5B2 < unk5B4) {
-            mUnkFallAmt1 = l_HIO.mFallAmount;
-            mUnkFallAmt2 = -l_HIO.mFallAmount;
+    if (field_0x5B6 != field_0x5B2 || field_0x5B8 != field_0x5B4) {
+        if (field_0x5B2 == field_0x5B4) {
+            mfield_0xFallAmt1 = 0.0f;
+            mfield_0xFallAmt2 = 0.0f;
+        } else if (field_0x5B2 > field_0x5B4) {
+            mfield_0xFallAmt1 = -l_HIO.mFallAmount;
+            mfield_0xFallAmt2 = l_HIO.mFallAmount;
+        } else if (field_0x5B2 < field_0x5B4) {
+            mfield_0xFallAmt1 = l_HIO.mFallAmount;
+            mfield_0xFallAmt2 = -l_HIO.mFallAmount;
         }
         mWaitTime = l_HIO.mWaitTime;
         mShakeStrength = 0.0f;
         mMovementStrength = 0.0f;
-        unk618 = false;
+        field_0x618 = false;
     }
     if (mWaitTime != 0) {
         mWaitTime--;
