@@ -96,8 +96,8 @@ public:
     /* 80464858 */ int createKey();
     /* 80464AE4 */ int deleteKey();
     /* 80464B3C */ int adjoinPlayer();
-    /* 80464BD8 */ int frontCheckOld();
-    /* 80464C68 */ int frontCheck();
+    /* 80464BD8 */ u8 frontCheckOld();
+    /* 80464C68 */ u8 frontCheck();
     /* 80464CEC */ int drawCheck(int);
     /* 80464E18 */ int checkExecute();
     /* 80464EC4 */ void startDemoProc();
