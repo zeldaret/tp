@@ -734,7 +734,7 @@ bool daNpcAshB_c::wait(void* param_0) {
                         u8 preitemno = dComIfGp_event_getPreItemNo();
                         if (preitemno == fpcNm_ITEM_ASHS_SCRIBBLING) {
                             mFlowID = 504;
-                            setAction(&wait);
+                            setAction(&talk);
                         } else {
                             s16 evt_idx =
                                 dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
@@ -743,12 +743,12 @@ bool daNpcAshB_c::wait(void* param_0) {
                         }
                     }
                 } else {
-                    setAction(&wait);
+                    setAction(&talk);
                 }
             } else {
                 int mystaffid = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
                 if (mystaffid != -1) {
-                    setAction(&wait);
+                    setAction(&demo);
                 }
             }
         } else {
@@ -950,26 +950,27 @@ BOOL daNpcAshB_c::EvCut_Appear(int i_staffID) {
 
     if (evtMgr.getIsAddvance(i_staffID)) {
         switch (*cut_name) {
-        // '0001', '0003', etc. wouldn't match?
-        case 0x30303031:
+        case '0001':
+            break;
+        case '0002':
             setLookMode(LOOK_ACTOR);
             break;
-        case 0x30303033:
+        case '0003':
             setLookMode(LOOK_PLAYER);
             mTurnMode = 0;
             break;
-        case 0x30303034:
-        case 0x30303036:
-        case 0x30303037:
-        case 0x30303039:
+        case '0004':
+        case '0006':
+        case '0007':
+        case '0009':
             initTalk(mFlowID, NULL);
             break;
-        case 0x30303035:
+        case '0005':
             setExpression(6, 0.0f);
             setMotion(2, -1.0f, false);
             mMsgTimer = 0;
             break;
-        case 0x30303038:
+        case '0008':
             local_30[0] = 0;
             if (mFlow.getEventId(local_30) == 1) {
                 mItemPartnerId =
@@ -982,10 +983,10 @@ BOOL daNpcAshB_c::EvCut_Appear(int i_staffID) {
     }
 
     switch (*cut_name) {
-    case 0x30303031:
-    case 0x30303032:
+    case '0001':
+    case '0002':
         return TRUE;
-    case 0x30303033:
+    case '0003':
         if (step(fopAcM_searchPlayerAngleY(this), 1, 20.0f) != 0) {
             setLookMode(2);
             setMotion(0, -1.0f, 0);
@@ -993,15 +994,15 @@ BOOL daNpcAshB_c::EvCut_Appear(int i_staffID) {
             return TRUE;
         }
         break;
-    case 0x30303034:
-    case 0x30303036:
-    case 0x30303037:
-    case 0x30303039:
+    case '0004':
+    case '0006':
+    case '0007':
+    case '0009':
         if (talkProc(NULL, TRUE, NULL)) {
             return TRUE;
         }
         break;
-    case 0x30303035:
+    case '0005':
         if (mMotionPhase > 1) {
             mpMorf->getModel()->getModelData()->getMaterialNodePointer(4)->getShape()->hide();
             return TRUE;
@@ -1015,7 +1016,7 @@ BOOL daNpcAshB_c::EvCut_Appear(int i_staffID) {
             }
         }
         break;
-    case 0x30303038:
+    case '0008':
         field_0x9eb = true;
         return TRUE;
     }
