@@ -1,12 +1,72 @@
 /**
  * @file d_a_npc_lud.cpp
  *
-*/
+ */
 
-#include "d/dolzel_rel.h" // IWYU pragma: keep
+#include "d/dolzel_rel.h"  // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_len.h"
 #include "d/actor/d_a_npc_lud.h"
+
+/* 80A6FD7C-80A6FE0C 000000 0090+00 10/10 0/0 0/0 .rodata          m__17daNpc_Lud_Param_c */
+const daNpc_Lud_HIOParam daNpc_Lud_Param_c::m = {
+    160.0f,  // attention_offset
+    -3.0f,   // gravity
+    1.0f,    // scale
+    400.0f,  // real_shadow_size
+    255.0f,  // weight
+    150.0f,  // height
+    35.0f,   // knee_length
+    30.0f,   // width
+    0.0f,    // body_angleX_max
+    0.0f,    // body_angleX_min
+    30.0f,   // body_angleY_max
+    -30.0f,  // body_angleY_min
+    30.0f,   // head_angleX_max
+    -10.0f,  // head_angleX_min
+    45.0f,   // head_angleY_max
+    -45.0f,  // head_angleY_min
+    0.6f,    // neck_rotation_ratio
+    12.0f,   // morf_frame
+    3,       // talk_distance
+    6,       // talk_angle
+    5,       // attention_distance
+    6,       // attention_angle
+    110.0f,  // fov
+    0.0f,    // search_distance
+    0.0f,    // search_height
+    0.0f,    // search_depth
+    60,      // attention_time
+    8,       // damage_time
+    0,       // face_expression
+    0,       // motion
+    0,       // look_mode
+    0,       // debug_mode_ON
+    0,       // debug_info_ON
+    4.0f,    // expression_morf_frame
+    -15.0f,  // box_min_x
+    0.0f,    // box_min_y
+    -15.0f,  // box_min_z
+    15.0f,   // box_max_x
+    40.0f,   // box_max_y
+    15.0f,   // box_max_z
+    90.0f,   // box_offset
+    1.0f,    // play_speed
+};
+
+#if DEBUG
+daNpc_Lud_HIO_c::daNpc_Lud_HIO_c() {
+    m = daNpc_Lud_Param_c::m;
+}
+
+void daNpc_Lud_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
+    // TODO
+}
+
+void daNpc_Lud_HIO_c::genMessage(JORMContext* ctext) {
+    // TODO
+}
+#endif
 
 enum Type {
     /* 0x0 */ TYPE_0,
@@ -200,14 +260,6 @@ daNpc_Lud_c::~daNpc_Lud_c() {
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
 }
 
-/* 80A6FD7C-80A6FE0C 000000 0090+00 10/10 0/0 0/0 .rodata          m__17daNpc_Lud_Param_c */
-const daNpc_Lud_HIOParam daNpc_Lud_Param_c::m = {
-    160.0f, -3.0f,  1.0f,   400.0f, 255.0f, 150.0f, 35.0f, 30.0f, 0.0f, 0.0f, 30.0f,
-    -30.0f, 30.0f,  -10.0f, 45.0f,  -45.0f, 0.6f,   12.0f, 3,     6,    5,    6,
-    110.0f, 0.0f,   0.0f,   0.0f,   60,     8,      0,     0,     0,    0,    0,
-    4.0f,   -15.0f, 0.0f,   -15.0f, 15.0f,  40.0f,  15.0f, 90.0f, 1.0f,
-};
-
 /* 80A6ACF4-80A6AFA8 000234 02B4+00 1/1 0/0 0/0 .text            create__11daNpc_Lud_cFv */
 int daNpc_Lud_c::create() {
     static int const heapSize[9] = {
@@ -239,7 +291,7 @@ int daNpc_Lud_c::create() {
         reset();
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
-        mCcStts.Init(daNpc_Lud_Param_c::m.common.weight, 0, this);
+        mCcStts.Init(mpHIO->m.common.weight, 0, this);
         mCyl.Set(mCcDCyl);
         mCyl.SetStts(&mCcStts);
         mCyl.SetTgHitCallback(tgHitCallBack);
@@ -485,10 +537,10 @@ void daNpc_Lud_c::setParam() {
     selectAction();
     srchActors();
 
-    s16 talk_distance = daNpc_Lud_Param_c::m.common.talk_distance;
-    s16 talk_angle = daNpc_Lud_Param_c::m.common.talk_angle;
-    s16 attention_distance = daNpc_Lud_Param_c::m.common.attention_distance;
-    s16 attention_angle = daNpc_Lud_Param_c::m.common.attention_angle;
+    s16 talk_distance = mpHIO->m.common.talk_distance;
+    s16 talk_angle = mpHIO->m.common.talk_angle;
+    s16 attention_distance = mpHIO->m.common.attention_distance;
+    s16 attention_angle = mpHIO->m.common.attention_angle;
 
     switch (mType) {
     case TYPE_0:
@@ -518,24 +570,23 @@ void daNpc_Lud_c::setParam() {
         daNpcT_getDistTableIdx(talk_distance, talk_angle);
     attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
-    scale.set(daNpc_Lud_Param_c::m.common.scale, daNpc_Lud_Param_c::m.common.scale,
-              daNpc_Lud_Param_c::m.common.scale);
-    mCcStts.SetWeight(daNpc_Lud_Param_c::m.common.weight);
-    mCylH = daNpc_Lud_Param_c::m.common.height;
-    mWallR = daNpc_Lud_Param_c::m.common.width;
+    scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale, mpHIO->m.common.scale);
+    mCcStts.SetWeight(mpHIO->m.common.weight);
+    mCylH = mpHIO->m.common.height;
+    mWallR = mpHIO->m.common.width;
     if (mTwilight) {
         mCylH = 120.0f;
     }
-    mAttnFovY = daNpc_Lud_Param_c::m.common.fov;
+    mAttnFovY = mpHIO->m.common.fov;
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(daNpc_Lud_Param_c::m.common.knee_length);
-    mRealShadowSize = daNpc_Lud_Param_c::m.common.real_shadow_size;
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
+    mRealShadowSize = mpHIO->m.common.real_shadow_size;
     if (mType == TYPE_4 || mType == TYPE_5 || mType == TYPE_6) {
         mRealShadowSize = 500.0f;
     }
-    mExpressionMorfFrame = daNpc_Lud_Param_c::m.common.expression_morf_frame;
-    mMorfFrames = daNpc_Lud_Param_c::m.common.morf_frame;
-    gravity = daNpc_Lud_Param_c::m.common.gravity;
+    mExpressionMorfFrame = mpHIO->m.common.expression_morf_frame;
+    mMorfFrames = mpHIO->m.common.morf_frame;
+    gravity = mpHIO->m.common.gravity;
 }
 
 /* 80A6BD44-80A6BE6C 001284 0128+00 1/0 0/0 0/0 .text            checkChangeEvt__11daNpc_Lud_cFv */
@@ -680,7 +731,7 @@ void daNpc_Lud_c::beforeMove() {
 }
 
 /* 80A70B64-80A70B68 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpc_Lud_Param_c l_HIO;
+NPC_LUD_HIO_CLASS l_HIO;
 
 /* 80A6C3A8-80A6C8EC 0018E8 0544+00 1/0 0/0 0/0 .text            setAttnPos__11daNpc_Lud_cFv */
 void daNpc_Lud_c::setAttnPos() {
@@ -697,23 +748,23 @@ void daNpc_Lud_c::setAttnPos() {
 
     if (mType == TYPE_4 || mType == TYPE_5 || mType == TYPE_6) {
         mJntAnm.setParam(this, mpMorf[0]->getModel(), &cStack_70, getBackboneJointNo(),
-                         getNeckJointNo(), getHeadJointNo(), l_HIO.m.common.body_angleX_min,
-                         l_HIO.m.common.body_angleX_max, 0.0f, 0.0f, l_HIO.m.common.head_angleX_min,
-                         l_HIO.m.common.head_angleX_max, l_HIO.m.common.head_angleY_min,
-                         l_HIO.m.common.head_angleY_max, l_HIO.m.common.neck_rotation_ratio, dVar8,
-                         NULL);
+                         getNeckJointNo(), getHeadJointNo(), mpHIO->m.common.body_angleX_min,
+                         mpHIO->m.common.body_angleX_max, 0.0f, 0.0f,
+                         mpHIO->m.common.head_angleX_min, mpHIO->m.common.head_angleX_max,
+                         mpHIO->m.common.head_angleY_min, mpHIO->m.common.head_angleY_max,
+                         mpHIO->m.common.neck_rotation_ratio, dVar8, NULL);
     } else {
         mJntAnm.setParam(this, mpMorf[0]->getModel(), &cStack_70, getBackboneJointNo(),
-                         getNeckJointNo(), getHeadJointNo(), l_HIO.m.common.body_angleX_min,
-                         l_HIO.m.common.body_angleX_max, l_HIO.m.common.body_angleY_min,
-                         l_HIO.m.common.body_angleY_max, l_HIO.m.common.head_angleX_min,
-                         l_HIO.m.common.head_angleX_max, l_HIO.m.common.head_angleY_min,
-                         l_HIO.m.common.head_angleY_max, l_HIO.m.common.neck_rotation_ratio, dVar8,
-                         NULL);
+                         getNeckJointNo(), getHeadJointNo(), mpHIO->m.common.body_angleX_min,
+                         mpHIO->m.common.body_angleX_max, mpHIO->m.common.body_angleY_min,
+                         mpHIO->m.common.body_angleY_max, mpHIO->m.common.head_angleX_min,
+                         mpHIO->m.common.head_angleX_max, mpHIO->m.common.head_angleY_min,
+                         mpHIO->m.common.head_angleY_max, mpHIO->m.common.neck_rotation_ratio,
+                         dVar8, NULL);
     }
 
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar8);
-    mpMorf[0]->setPlaySpeed(l_HIO.m.play_speed);
+    mpMorf[0]->setPlaySpeed(mpHIO->m.play_speed);
     setMtx();
 
     if (mpBowlMorf != NULL) {
@@ -746,7 +797,7 @@ void daNpc_Lud_c::setAttnPos() {
         mDoMtx_stack_c::multVec(&cStack_70, &attention_info.position);
     } else {
         cStack_70.set(0.0f, 0.0f, 0.0f);
-        cStack_70.y = l_HIO.m.common.attention_offset;
+        cStack_70.y = mpHIO->m.common.attention_offset;
         mDoMtx_stack_c::YrotS(mCurAngle.y);
         mDoMtx_stack_c::multVec(&cStack_70, &cStack_70);
         attention_info.position = current.pos + cStack_70;
@@ -1309,13 +1360,10 @@ int daNpc_Lud_c::wait(void* param_0) {
             fopAc_ac_c* actor_p = (daNpc_Len_c*)mActorMngr[2].getActorP();
             if (actor_p != NULL &&
                 ((daNpc_Len_c*)actor_p)
-                    ->checkStartDemo13StbEvt(this, daNpc_Lud_Param_c::m.common.box_min_x,
-                                             daNpc_Lud_Param_c::m.common.box_min_y,
-                                             daNpc_Lud_Param_c::m.common.box_min_z,
-                                             daNpc_Lud_Param_c::m.common.box_max_x,
-                                             daNpc_Lud_Param_c::m.common.box_max_y,
-                                             daNpc_Lud_Param_c::m.common.box_max_z,
-                                             daNpc_Lud_Param_c::m.common.box_offset))
+                    ->checkStartDemo13StbEvt(this, mpHIO->m.common.box_min_x,
+                                             mpHIO->m.common.box_min_y, mpHIO->m.common.box_min_z,
+                                             mpHIO->m.common.box_max_x, mpHIO->m.common.box_max_y,
+                                             mpHIO->m.common.box_max_z, mpHIO->m.common.box_offset))
             {
                 mEvtNo = 2;
                 field_0xfd5 = 1;
