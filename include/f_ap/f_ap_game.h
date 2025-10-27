@@ -139,6 +139,22 @@ inline u8 fapGmHIO_getHostIO() {
     return g_HIO.mUsingHostIO;
 }
 
+inline void fapGmHIO_set2Ddraw(u8 param_0) {
+    g_HIO.mDisplay2D = param_0;
+}
+
+inline u8 fapGmHIO_get2Ddraw() {
+    return g_HIO.mDisplay2D;
+}
+
+inline void fapGmHIO_offPrint() {
+    g_HIO.mDisplayPrint &= (u8)~0x1;
+}
+
+inline void fapGmHIO_onPrint() {
+    g_HIO.mDisplayPrint |= (u8)0x1;
+}
+
 struct fapGm_dataMem {
     enum HeapType_e {
         HeapType_Error_e,

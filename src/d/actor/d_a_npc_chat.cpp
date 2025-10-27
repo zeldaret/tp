@@ -3023,7 +3023,7 @@ BOOL daNpcChat_c::searchGroup() {
 
 /* 80982C10-80982D20 0024B0 0110+00 3/2 0/0 0/0 .text            appearTimeCheck__11daNpcChat_cFv */
 BOOL daNpcChat_c::appearTimeCheck() {
-    int time = (dKy_darkworld_check() & 0xFF) ? dKy_getDarktime_hour() : dKy_getdaytime_hour();
+    int time = dKy_darkworld_check() ? dKy_getDarktime_hour() : dKy_getdaytime_hour();
     BOOL rv = FALSE;
 
     switch (mTalkGroupNo) {
@@ -3949,7 +3949,7 @@ bool daNpcChat_c::wait(void* param_1) {
             }
 
             if (
-                (dKy_darkworld_check() & 0xFF) == 0 && daPy_py_c::checkNowWolf() &&
+                dKy_darkworld_check() == 0 && daPy_py_c::checkNowWolf() &&
                 fopAcM_searchPlayerDistanceXZ2(this) < std::pow(500.0, 2.0) || mFear
             ) {
                 setAction(&daNpcChat_c::fear);

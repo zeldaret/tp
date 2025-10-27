@@ -362,11 +362,10 @@ static int phase_01(dScnPly_c* i_this) {
         mDoAud_setInDarkness(false);
     }
 
-    s8 start_room = dComIfGp_getStartStageRoomNo();
-    int layer = dComIfG_play_c::getLayerNo_common(dComIfGp_getStartStageName(), start_room,
-                                                  dComIfGp_getStartStageLayer());
-
-    mDoAud_setSceneName(dComIfGp_getStartStageName(), start_room, layer);
+    mDoAud_setSceneName(dComIfGp_getStartStageName(),
+                        dComIfGp_getStartStageRoomNo(),
+                        dComIfG_play_c::getLayerNo_common(dComIfGp_getStartStageName(), dComIfGp_getStartStageRoomNo(),
+                                                                 dComIfGp_getStartStageLayer()));
 
     if (!mDoAud_load1stDynamicWave()) {
         return cPhs_INIT_e;

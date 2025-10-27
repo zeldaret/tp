@@ -69,6 +69,11 @@
                          height);                                                                  \
     }
 
+#define DEFINE_UPDATE_COMBO_BOX(T)                                                                 \
+    void updateComboBox(u32 mode, T* pSrc, u32 param_2) {                                          \
+        updateSelectorSub(mode, (uintptr_t)pSrc, *pSrc, param_2);                                  \
+    }
+
 #define DEFINE_UPDATE_SLIDER(T)                                                                    \
     void updateSlider(u32 mode, T* pSrc, T rangeMin, T rangeMax, u32 param_5) {                    \
         updateSliderSub(mode, (uintptr_t)pSrc, *pSrc, rangeMin, rangeMax, param_5);                \
@@ -236,6 +241,8 @@ public:
     DEFINE_START_COMBO_BOX(s32, jhostio::EKind_32B)
 
     DEFINE_START_COMBO_BOX_ID(int, JORPropertyEvent::EKind_ValueID)
+
+    DEFINE_UPDATE_COMBO_BOX(u8)
 
     void endComboBox() { endSelectorSub(); }
 

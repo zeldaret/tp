@@ -23,4 +23,6 @@ extern u8 cDmr_FishingWether;
 extern u8 data_80450CA0;
 extern JPTraceParticleCallBack4 JPTracePCB4;
 
+void debug_actor_create();
+
 #endif /* C_C_DAMAGEREACTION_H */

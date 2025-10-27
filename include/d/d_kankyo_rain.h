@@ -40,6 +40,9 @@ void dKyr_shstar_init();
 void dKyr_star_move();
 void dKyr_shstar_move();
 void vrkumo_move();
+
+class camera_class;
 void dKyr_get_vectle_calc(cXyz* param_0, cXyz* param_1, cXyz* param_2);
+void dKy_set_eyevect_calc2(camera_class* i_camera, Vec* o_out, f32 param_2, f32 param_3);
 
 #endif /* D_KANKYO_D_KANKYO_RAIN_H */
