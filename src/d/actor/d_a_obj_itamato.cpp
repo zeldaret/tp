@@ -268,7 +268,7 @@ int daObj_ItaMato_c::Execute() {
                         if (dComIfGp_getAttention()->GetLockonList(0) != NULL) {
                             if (dComIfGp_getAttention()->LockonTruth()) {
                                 if (this == dComIfGp_getAttention()->GetLockonList(0)->getActor()) {
-                                    i_no |= (u8)0x80;
+                                    i_no |= 0x80;
                                 }
                             }
                         }
