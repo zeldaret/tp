@@ -30,7 +30,6 @@ public:
     void getJntAngle(csXyz* angle, int idx) { *angle = jnt_angle[idx]; }
     
     /* 0x574 */ csXyz jnt_angle[3];
-    /* 0x586 */ u8 field_0x586[0x588 - 0x586];
     /* 0x588 */ J3DModel* model;
     /* 0x58C */ f32 field_0x58c[3];
     /* 0x598 */ f32 field_0x598[3];

@@ -457,7 +457,7 @@ static void action(obj_hb_class* i_this) {
         fopAc_ac_c* actor_p = at_power_check(&i_this->mAtInfo);
         i_this->field_0x6b0 = 0;
         
-        if (i_this->mAtInfo.mHitType == 1) {
+        if (i_this->mAtInfo.mHitType == HIT_TYPE_LINK_NORMAL_ATTACK) {
             if (daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_TURN_RIGHT || daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_UNK_9) {
                 a_this->speedF = WREG_F(16) + cM_rndF(10.0f) + 40.0f;
                 i_this->field_0x690 = cM_rndF(2000.0f) + 5500.0f;
@@ -467,7 +467,7 @@ static void action(obj_hb_class* i_this) {
                 i_this->field_0x690 = cM_rndFX(3000.0f);
                 i_this->field_0x688 = NREG_F(10) + 4000.0f;
             }
-        } else if (i_this->mAtInfo.mHitType == 2) {
+        } else if (i_this->mAtInfo.mHitType == HIT_TYPE_BOMB) {
             fopAcM_createDisappear(a_this, &a_this->current.pos, 7, 0, a_this->field_0x564);
             i_this->field_0x6b1 = 1;
         } else {
