@@ -226,6 +226,10 @@ inline void fopAcM_OffStatus(fopAc_ac_c* i_actor, u32 flag) {
     i_actor->actor_status &= ~flag;
 }
 
+inline void fopAcM_SetStatusMap(fopAc_ac_c* i_actor, u32 flag) {
+    /* empty function */
+}
+
 inline fopAc_ac_c* fopAcM_Search(fopAcIt_JudgeFunc i_judgeFunc, void* i_process) {
     return (fopAc_ac_c*)fopAcIt_Judge(i_judgeFunc, i_process);
 }
