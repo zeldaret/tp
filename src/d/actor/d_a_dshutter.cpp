@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_dshutter.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/d_s_play.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 /* 80467F7C-80467F88 -00001 000C+00 2/2 0/0 0/0 .data            l_arcName */
@@ -16,8 +17,27 @@ static char* l_arcName[] = {
     "S_lv7saku",
 };
 
+#if DEBUG
+void daDsh_c::Hio_c::genMessage(JORMContext* ctx) {
+    ctx->genSlider("オープン加速", &open_acceleration, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("オープン速度", &open_spd, -100.0f, 0.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("オープンバウンド可速度", &open_bound_max_spd, -100.0f, 0.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("オープンバウンド率", &open_bound_rate, -1.0f, 0.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("オープン振動時間", &open_vibration_time, 0, 200, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("クローズ加速", &close_acceleration, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("クローズ速度", &close_spd, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("クローズバウンド可速度", &close_bound_max_spd, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("クローズバウンド率", &close_bound_rate, -1.0f, 0.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("クローズ振動時間", &close_vibration_time, 0, 200, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+}
+#endif
+
 /* 80467498-8046751C 000078 0084+00 1/1 0/0 0/0 .text            __dt__7daDsh_cFv */
-daDsh_c::~daDsh_c() {}
+daDsh_c::~daDsh_c() {
+    #if DEBUG
+    mHIO.removeHIO();
+    #endif
+}
 
 /* 80467F04-80467F10 000000 000C+00 2/2 0/0 0/0 .rodata          l_bmd */
 static int const l_bmd[] = {
@@ -29,7 +49,7 @@ static int const l_bmd[] = {
 /* 8046751C-8046759C 0000FC 0080+00 1/0 0/0 0/0 .text            CreateHeap__7daDsh_cFv */
 int daDsh_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_bmd[mType]);
-
+    JUT_ASSERT(146, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;
@@ -64,7 +84,11 @@ void daDsh_c::setMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
     mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    #if DEBUG
+    cMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
+    #else
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+    #endif
 }
 
 /* 80467708-8046772C 0002E8 0024+00 5/5 0/0 0/0 .text setAction__7daDsh_cFPQ27daDsh_c8action_c */
@@ -130,8 +154,10 @@ int daDsh_c::initOpen() {
 
     if (water_check && fopAcM_wt_c::getWaterY() > fopAcM_gc_c::getGroundY()) {
         fopAcM_seStart(this, Z2SE_OBJ_SW_FENCE_DWN_WTR, 0);
+        OS_REPORT("下りる柵：開くＳＥ（水有り）\n"); // Descending Fence: Opening SE (with water)
     } else {
         fopAcM_seStart(this, Z2SE_OBJ_SW_FENCE_DOWN, 0);
+        OS_REPORT("下りる柵：開くＳＥ（水無し）\n"); // Descending fence: Opening SE (no water)
     }
 
     return 1;
@@ -143,7 +169,7 @@ static daDsh_c::action_c l_closeWaitAction(&daDsh_c::initCloseWait, &daDsh_c::ex
 /* 80467988-80467A64 000568 00DC+00 1/0 0/0 0/0 .text            executeOpen__7daDsh_cFv */
 int daDsh_c::executeOpen() {
     if (mTiltTime != 0) {
-        current.pos.y = home.pos.y + cM_rndFX(2.0f);
+        current.pos.y = home.pos.y + cM_rndFX(IREG_F(10) + 2.0f);
     } else {
         cLib_chaseF(&speed.y, getOpenSpeed(), gravity);
         current.pos.y += speed.y;
@@ -154,7 +180,7 @@ int daDsh_c::executeOpen() {
 
             if (speed.y < getOpenBoundSpeed()) {
                 speed.y *= getOpenBoundRatio();
-                gravity = 8.0f;
+                gravity = IREG_F(11) + 8.0f;
             } else {
                 setAction(&l_closeWaitAction);
             }
@@ -194,7 +220,7 @@ int daDsh_c::initClose() {
 /* 80467B04-80467BE0 0006E4 00DC+00 1/0 0/0 0/0 .text            executeClose__7daDsh_cFv */
 int daDsh_c::executeClose() {
     if (mTiltTime != 0) {
-        current.pos.y = (home.pos.y - OPEN_SIZE) + cM_rndFX(2.0f);
+        current.pos.y = (home.pos.y - OPEN_SIZE) + cM_rndFX(IREG_F(10) + 2.0f);
     } else {
         cLib_chaseF(&speed.y, getCloseSpeed(), gravity);
         current.pos.y += speed.y;
@@ -204,7 +230,7 @@ int daDsh_c::executeClose() {
 
             if (speed.y > getCloseBoundSpeed()) {
                 speed.y *= getCloseBoundRatio();
-                gravity = 8.0f;
+                gravity = IREG_F(11) + 8.0f;
             } else {
                 setAction(&l_openWaitAction);
             }
@@ -248,24 +274,34 @@ int daDsh_c::create() {
 
     int phase = mResLoader.load(l_resName, NULL);
     if (phase == cPhs_COMPLEATE_e) {
-        phase = MoveBGCreate(l_arcName[mType], l_dzb[mType], dBgS_MoveBGProc_Typical,
-                             l_heap_size[mType], NULL);
+        phase = MoveBGCreate(l_arcName[mType], l_dzb[mType], dBgS_MoveBGProc_Typical, l_heap_size[mType], NULL);
         if (phase == cPhs_ERROR_e) {
-            phase = cPhs_ERROR_e;
-        } else {
-            mSw = getSw();
-
-            setAction(dComIfGs_isSwitch(mSw, fopAcM_GetHomeRoomNo(this)) ? &l_closeWaitAction : &l_openWaitAction);
-            setMtx();
-            fopAcM_SetMtx(this, model->getBaseTRMtx());
+            return cPhs_ERROR_e;
         }
+
+        mSw = getSw();
+        daDsh_c::action_c* action;
+        if (fopAcM_isSwitch(this, mSw)) {
+            action = &l_closeWaitAction;
+        } else {
+            action = &l_openWaitAction;
+        }
+        setAction(action);
+
+        setMtx();
+        fopAcM_SetMtx(this, model->getBaseTRMtx());
+
+        #if DEBUG
+        mHIO.entryHIO("鉄壁ドア"); // Ironclad door
+        #endif
     }
 
     return phase;
 }
 
-static int daDsh_Create(fopAc_ac_c* i_this) {
-    return static_cast<daDsh_c*>(i_this)->create();
+static int daDsh_Create(fopAc_ac_c* a_this) {
+    daDsh_c* i_this = (daDsh_c*)a_this;
+    return i_this->create();
 }
 
 /* 80467FF0-80468010 -00001 0020+00 1/0 0/0 0/0 .data            l_daDsh_Method */
