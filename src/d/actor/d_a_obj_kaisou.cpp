@@ -46,7 +46,11 @@ int daObjKaisou_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     }
 
     i_model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
+    #if DEBUG
     cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+    #else
+    MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+    #endif
     return 1;
 }
 
