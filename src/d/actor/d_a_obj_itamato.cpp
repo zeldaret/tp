@@ -16,8 +16,6 @@ struct daObj_ItaMato_HIOParam {
     /* 0x08 */ f32 scale;
     /* 0x0C */ f32 real_shadow_size;
     /* 0x10 */ f32 shake_pow;
-
-    daObj_ItaMato_HIOParam& operator=(const daObj_ItaMato_HIOParam& other);
 };
 
 class daObj_ItaMato_Param_c {
@@ -58,17 +56,8 @@ daObj_ItaMato_HIO_c::daObj_ItaMato_HIO_c() {
     mAttr = daObj_ItaMato_Param_c::m;
 }
 
-daObj_ItaMato_HIOParam& daObj_ItaMato_HIOParam::operator=(const daObj_ItaMato_HIOParam& other) {
-    attn_offset = other.attn_offset;
-    gravity = other.gravity;
-    scale = other.scale;
-    real_shadow_size = other.real_shadow_size;
-    shake_pow = other.shake_pow;
-    return *this;
-}
-
 void daObj_ItaMato_HIO_c::listenPropertyEvent(const JORPropertyEvent* i_event) {
-    char buffer[2008];
+    char buffer[2000];
     size_t len;
     JORReflexible::listenPropertyEvent(i_event);
     JORFile jorFile;
@@ -76,7 +65,7 @@ void daObj_ItaMato_HIO_c::listenPropertyEvent(const JORPropertyEvent* i_event) {
     switch (reinterpret_cast<u32>(i_event->id)) {
         case 0x40000002:
             if (jorFile.open(6, "すべてのファイル(*.*)", NULL, NULL, NULL)) {
-                memset(buffer, 0, 2000);
+                memset(buffer, 0, sizeof(buffer));
                 len = 0;
                 sprintf(buffer + len, "%.3ff,\t//  注目オフセット\n", mAttr.attn_offset);
                 len = strlen(buffer);
@@ -204,25 +193,6 @@ cPhs__Step daObj_ItaMato_c::create() {
     return phase;
 }
 
-// u8 daObj_ItaMato_c::getBitSW2() { return (fopAcM_GetParam(this) & 0xFF0000) >> 16; }
-
-// u8 daObj_ItaMato_c::getBitSW() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
-
-// inline int daObj_ItaMato_c::getNo() {
-//     u8 var_r31 = fopAcM_GetParam(this) & 0xFF;
-
-//     int no;
-//     if (var_r31 == 0xFF) {
-//         no = -1;
-//     } else {
-//         no = var_r31;
-//     }
-
-//     return no;
-// }
-
-// inline int daObj_ItaMato_c::getType() { return 0; }
-
 /* 80C29CD8-80C29DAC 0008D8 00D4+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_ItaMato_cFv */
 int daObj_ItaMato_c::CreateHeap() {
     J3DModelData* modelData = NULL;
@@ -298,7 +268,7 @@ int daObj_ItaMato_c::Execute() {
                         if (dComIfGp_getAttention()->GetLockonList(0) != NULL) {
                             if (dComIfGp_getAttention()->LockonTruth()) {
                                 if (this == dComIfGp_getAttention()->GetLockonList(0)->getActor()) {
-                                    i_no |= 0x80;
+                                    i_no |= (u8)0x80;
                                 }
                             }
                         }
@@ -421,20 +391,19 @@ int daObj_ItaMato_c::createHeapCallBack(fopAc_ac_c* a_this) {
 
 /* 80C2A5F0-80C2A620 0011F0 0030+00 1/1 0/0 0/0 .text            tgHitCallBack__15daObj_ItaMato_cFP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
 void daObj_ItaMato_c::tgHitCallBack(fopAc_ac_c* param_1, dCcD_GObjInf* param_2, fopAc_ac_c* param_3, dCcD_GObjInf* param_4) {
+    daObj_ItaMato_c* i_this = (daObj_ItaMato_c*)param_1;
     u8 cutType = 0;
 
     if (param_3 != NULL) {
         if (fopAcM_GetProfName(param_3) == PROC_ALINK) {
             cutType = ((daPy_py_c*)param_3)->getCutType();
         } else {
-            cutType = 1;
+            cutType = daPy_py_c::CUT_TYPE_NM_VERTICAL;
         }
     }
 
-    ((daObj_ItaMato_c*)param_1)->setCutType(cutType);
+    i_this->setCutType(cutType);
 }
-
-// void daObj_ItaMato_c::setCutType(u8 i_cutType) { mCutType = i_cutType; }
 
 /* 80C2A620-80C2A630 001220 0010+00 3/3 0/0 0/0 .text            getResName__15daObj_ItaMato_cFv */
 const char* daObj_ItaMato_c::getResName() {

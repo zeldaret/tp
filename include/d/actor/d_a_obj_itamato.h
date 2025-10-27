@@ -79,7 +79,7 @@ public:
         return no;
     }
 
-    int getType() { return 0; }
+    u8 getType() { return 0; }
 
     void setCutType(u8 i_cutType) { mCutType = i_cutType; }
 

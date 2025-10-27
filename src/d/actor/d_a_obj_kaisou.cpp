@@ -46,7 +46,7 @@ int daObjKaisou_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     }
 
     i_model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
-    MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+    cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     return 1;
 }
 
@@ -68,7 +68,7 @@ static char* l_arcName = "M_kaisou";
 
 int daObjKaisou_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "M_kaisou.bmd");
-    JUT_ASSERT(174, modelData != 0);
+    JUT_ASSERT(174, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;
@@ -79,12 +79,15 @@ int daObjKaisou_c::CreateHeap() {
 
 /* 80C342D4-80C3434C 0002F4 0078+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* a_this) {
-    return static_cast<daObjKaisou_c*>(a_this)->CreateHeap();
+    daObjKaisou_c* i_this = (daObjKaisou_c*)a_this;
+    return i_this->CreateHeap();
 }
 
 /* 80C3434C-80C3436C 00036C 0020+00 1/0 0/0 0/0 .text            daObjKaisou_Create__FP10fopAc_ac_c */
 static int daObjKaisou_Create(fopAc_ac_c* a_this) {
-    return static_cast<daObjKaisou_c*>(a_this)->create();
+    daObjKaisou_c* i_this = (daObjKaisou_c*)a_this;
+    fpc_ProcID id = fopAcM_GetID(a_this);
+    return i_this->create();
 }
 
 /* 80C3436C-80C34390 00038C 0024+00 1/0 0/0 0/0 .text daObjKaisou_Delete__FP13daObjKaisou_c */
