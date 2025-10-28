@@ -562,8 +562,8 @@ void dGrass_packet_c::draw() {
     }
 
 #if DEBUG
-    if (g_kankyoHIO.field_0x69c != 0.0f) {
-        var_f29 = g_kankyoHIO.field_0x69c;
+    if (g_kankyoHIO.navy.grass_shine_value != 0.0f) {
+        var_f29 = g_kankyoHIO.navy.grass_shine_value;
     }
 #endif
 
@@ -598,8 +598,8 @@ void dGrass_packet_c::draw() {
             }
 
 #if DEBUG
-            if (g_kankyoHIO.field_0x06d != 0) {
-                sp48 = g_kankyoHIO.field_0x79b;
+            if (g_kankyoHIO.light.m_HOSTIO_setting != 0) {
+                sp48 = g_kankyoHIO.dungeonLight.usedLights;
             }
 #endif
 
@@ -665,10 +665,10 @@ void dGrass_packet_c::draw() {
                 GXColor sp38;
 
 #if DEBUG
-                if (g_kankyoHIO.field_0x698) {
-                    sp38.r = g_kankyoHIO.field_0x694 * 2;
-                    sp38.g = g_kankyoHIO.field_0x695 * 2;
-                    sp38.b = g_kankyoHIO.field_0x696 * 2;
+                if (g_kankyoHIO.navy.grass_adjust_ON) {
+                    sp38.r = g_kankyoHIO.navy.grass_ambcol.r * 2;
+                    sp38.g = g_kankyoHIO.navy.grass_ambcol.g * 2;
+                    sp38.b = g_kankyoHIO.navy.grass_ambcol.b * 2;
                 } else {
 #endif
                     sp38.r = (var_r29->m_addCol & 0x1F) * 2;

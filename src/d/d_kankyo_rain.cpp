@@ -56,7 +56,7 @@ static void dKy_set_eyevect_calc(camera_class* i_camera, Vec* o_out, f32 param_2
 
 /* 8005B830-8005B92C 056170 00FC+00 6/6 0/0 0/0 .text
  * dKy_set_eyevect_calc2__FP12camera_classP3Vecff               */
-static void dKy_set_eyevect_calc2(camera_class* i_camera, Vec* o_out, f32 param_2, f32 param_3) {
+void dKy_set_eyevect_calc2(camera_class* i_camera, Vec* o_out, f32 param_2, f32 param_3) {
     cXyz calc;
     DOUBLE_POS pos;
 
@@ -1890,10 +1890,10 @@ void vrkumo_move() {
         if (filelist != NULL) {
             sp2C = dStage_FileList_dt_SeaLevel(filelist);
             #ifdef DEBUG
-            if (g_kankyoHIO.field_0x0b4) {
-                sp2C = g_kankyoHIO.field_0x0b8;
+            if (g_kankyoHIO.vrbox.field_0x14) {
+                sp2C = g_kankyoHIO.vrbox.m_horizonHeight;
             } else {
-                g_kankyoHIO.field_0x0b8 = sp2C;
+                g_kankyoHIO.vrbox.m_horizonHeight = sp2C;
             }
             #endif
         }
@@ -4662,10 +4662,10 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
         }
 
 #ifdef DEBUG
-        if (g_kankyoHIO.field_0x0b4) {
-            sp70 = g_kankyoHIO.field_0x0b8;
+        if (g_kankyoHIO.vrbox.field_0x14) {
+            sp70 = g_kankyoHIO.vrbox.m_horizonHeight;
         } else {
-            g_kankyoHIO.field_0x0b8 = sp70;
+            g_kankyoHIO.vrbox.m_horizonHeight = sp70;
         }
 #endif
 
@@ -4752,8 +4752,8 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                     static f32 howa_loop_cnt = 0.0f;
 
 #ifdef DEBUG
-                    spAC = g_kankyoHIO.field_0x3f4;
-                    spA8 = g_kankyoHIO.field_0x3f8;
+                    spAC = g_kankyoHIO.navy.cloud_sunny_size;
+                    spA8 = g_kankyoHIO.navy.cloud_cloudy_size;
 #else
                     spAC = 0.6f;
                     spA8 = 0.84f;

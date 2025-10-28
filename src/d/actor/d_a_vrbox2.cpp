@@ -101,10 +101,10 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
     }
 
 #ifdef DEBUG
-    if (g_kankyoHIO.field_0x0b4 != 0) {
-        var_f31 = g_kankyoHIO.field_0x0b8;
+    if (g_kankyoHIO.vrbox.field_0x14 != 0) {
+        var_f31 = g_kankyoHIO.vrbox.m_horizonHeight;
     } else {
-        g_kankyoHIO.field_0x0b8 = var_f31;
+        g_kankyoHIO.vrbox.m_horizonHeight = var_f31;
     }
 #endif
 

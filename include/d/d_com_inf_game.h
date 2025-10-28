@@ -2151,6 +2151,10 @@ inline void dComIfGs_revSwitch(int i_no, int i_roomNo) {
     g_dComIfG_gameInfo.info.revSwitch(i_no, i_roomNo);
 }
 
+inline s8 dComIfGs_Grass_hide_Check() {
+    return g_dComIfG_gameInfo.field_0x1ddfc;
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
@@ -3404,6 +3408,22 @@ inline void dComIfGp_setMesgCameraAttrInfo(int param_1) {
 
 inline dComIfG_MesgCamInfo_c* dComIfGp_getMesgCameraInfo() {
     return g_dComIfG_gameInfo.play.getMesgCamInfo();
+}
+
+inline int dComIfGp_getStageEnvrNumInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getEnvrNumInfo();
+}
+
+inline int dComIfGp_getStagePselectNumInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getPselectNumInfo();
+}
+
+inline int dComIfGp_getStagePaletteNumInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getPaletteNumInfo();
+}
+
+inline int dComIfGp_getStageVrboxcolNumInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getVrboxcolNumInfo();
 }
 
 inline int dComIfGp_roomControl_getStayNo() {

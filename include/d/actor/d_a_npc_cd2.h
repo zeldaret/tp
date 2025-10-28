@@ -370,7 +370,7 @@ public:
     /* 0xAC0 */ s16 field_0xac0;
     /* 0xAC2 */ s16 field_0xac2;
     /* 0xAC4 */ s16 field_0xac4;
-    /* 0xAC6 */ bool mIsDarkWorld;
+    /* 0xAC6 */ u8 mIsDarkWorld;
 };
 
 #endif /* A_NPC_D_A_NPC_CD2_H */
