@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_carry.h"
+#include "d/d_a_obj.h"
 #include "d/actor/d_a_player.h"
 #include <cmath.h>
 #include "d/d_com_inf_game.h"
@@ -20,6 +21,27 @@
 #include "d/d_lib.h"
 #include "d/d_debug_viewer.h"
 #include "f_op/f_op_kankyo_mng.h"
+
+#if DEBUG
+
+static char* l_node_name[14] = {
+    "小壷",
+    "大壷",
+    "小さい木箱",
+    "鉄玉",
+    "樽",
+    "ドクロ",
+    "ボックリの実",
+    "小壷・赤茶色",
+    "光の玉（Ａ）",
+    "光の玉（Ｂ）",
+    "大壷・青色",
+    "Ｌｖ８用テスト玉",
+    "Ｌｖ８用小壷",
+    "Ｌｖ８用大壷",
+};
+
+#endif
 
 /* 8047990C-80479A24 000000 0118+00 29/29 0/0 0/0 .rodata          l_cyl_info */
 static const cM3dGCylS l_cyl_info[] = {
@@ -751,6 +773,121 @@ static dJntColData_c kibako_jc_data = {1, 1, 0, 45.0f, kibako_jv_offset};
 /* 8047A71C-8047A728 -00001 000C+00 1/1 0/0 0/0 .data            taru_jc_data */
 static dJntColData_c taru_jc_data = {1, 1, 0, 45.0f, taru_jv_offset};
 
+#if DEBUG
+
+daObj_HIO_c::daObj_HIO_c(int i_type) {
+    field_0x9c = 0;
+    type = i_type;
+    dt = daObjCarry_c::mData[type];
+}
+
+void daObj_HIO_c::entry() {
+    if (field_0x9c == 0) {
+        daObj::HioThrow_c::init(this, l_node_name[type]);
+    }
+
+    field_0x9c++;
+}
+
+void daObj_HIO_c::remove() {
+    field_0x9c--;
+    if (field_0x9c == 0) {
+        daObj::HioThrow_c::clean(this);
+    }
+}
+
+void daObj_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genLabel("--持ち上げＯＢＪ--", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel(l_node_name[type], 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("【 移動性能 】", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("重力", &dt.m_gravity, -40.0f, 0.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("垂直速度反射係数", &dt.m_velocityReflCoeffY, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("水平速度反射係数", &dt.m_velocityReflCoeffXZ, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("転がり角度", &dt.m_rollAngle, 1, 89, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("摩擦", &dt.m_friction, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("傾斜の影響", &dt.m_slopeInfluence, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("【 投げ性能 】", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("鉛直初速度", &dt.m_throwInitSpeedY, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("水平初速度", &dt.m_throwInitSpeedXZ, 0.0f, 200.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("狼・鉛直初速度", &dt.m_wolfThrowInitSpeedY, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("狼・水平初速度", &dt.m_wolfThrowInitSpeedXZ, 0.0f, 200.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("浮力", &dt.m_Buoyancy, 0.0f, 40.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("-- 壷系のみ --", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("風の影響率", &dt.m_urnWindEffRatio, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("回転係数", &dt.m_urnRotateFactor, 0, 500, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+}
+
+daObj_HIO_common_c::daObj_HIO_common_c() {
+    field_0x4 = 0;
+    field_0x5 = 0;
+    field_0x6 = 0;
+    field_0x10 = 0.75f;
+    field_0x14 = 100.0f;
+    field_0xb = 25;
+    field_0xc = 15;
+    field_0x7 = 0;
+    field_0x8 = 0;
+    field_0x9 = 0;
+    field_0x1d = 0;
+    field_0x20 = cXyz(1.0f, 1.0f, 1.0f);
+    field_0x1c = 0;
+    field_0x18 = 0.05f;
+    field_0x2c[0] = (GXColor){0x00, 0x3C, 0x8C, 0xFF};
+    field_0x2c[1] = (GXColor){0x8C, 0xD2, 0xFF, 0xFF};
+    field_0x34 = (GXColorS10){0x82, 0xC8, 0xFA, 0xFF};
+}
+
+void daObj_HIO_common_c::entry() {
+    if (field_0x4 == 0) {
+        daObj::HioThrow_c::init(this, "共通テスト用"); // For the common test
+    }
+
+    field_0x4++;
+}
+
+void daObj_HIO_common_c::remove() {
+    field_0x4--;
+    if (field_0x4 == 0) {
+        daObj::HioThrow_c::clean(this);
+    }
+}
+
+void daObj_HIO_common_c::genMessage(JORMContext* ctx) {
+    ctx->genLabel("持ち上げＯＢＪ共通のテスト用", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genCheckBox("ここの機能ＯＮ", &field_0x5, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genCheckBox("ＢＧヒット破壊無し", &field_0x6, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("水抵抗", &field_0x10, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("水中最高速度", &field_0x14, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genCheckBox("Draw Stop", &field_0x7, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genCheckBox("ExecStop", &field_0x8, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genCheckBox("破壊時のアイテム指定有効", &field_0x9, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("アイテム番号", &field_0xa, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("--ボックリの実--", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("変化するフレーム", &field_0xb, 1, 100, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("変化開始時間（落ちてから）", &field_0xc, 0, 100, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("-- 鉄玉 --", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("砲撃・水平速度反射係数", &field_0x18, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genCheckBox("スケール調整", &field_0x1d, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("スケール", &field_0x20.x, 0.1f, 5.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("-- 光の玉 --", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("  cc_ball ", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("カラレジ１Ｒ", &field_0x34.r, -0x400, 0x3FF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("カラレジ１Ｇ", &field_0x34.g, -0x400, 0x3FF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("カラレジ１Ｂ", &field_0x34.b, -0x400, 0x3FF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("カラレジ１Ａ", &field_0x34.a, -0x400, 0x3FF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("コンレジ１Ｒ", &field_0x2c[0].r, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("コンレジ１Ｇ", &field_0x2c[0].g, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("コンレジ１Ｂ", &field_0x2c[0].b, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("コンレジ１Ａ", &field_0x2c[0].a, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("  aa_hikari ", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("コンレジ１Ｒ", &field_0x2c[1].r, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("コンレジ１Ｇ", &field_0x2c[1].g, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("コンレジ１Ｂ", &field_0x2c[1].b, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("コンレジ１Ａ", &field_0x2c[1].a, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+}
+
+#endif
+
 /* 8046EFF8-8046F2F4 000078 02FC+00 1/1 0/0 0/0 .text            bound__FP4cXyzRC13cBgS_PolyInfof */
 static f32 bound(cXyz* param_0, const cBgS_PolyInfo& param_1, f32 param_2) {
     cM3dGPla plane;
@@ -768,15 +905,13 @@ static f32 bound(cXyz* param_0, const cBgS_PolyInfo& param_1, f32 param_2) {
     }
 }
 
-/* 8046F33C-8046F340 0003BC 0004+00 1/0 0/0 0/0 .text
- * TgHitCallBackBase__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-static void TgHitCallBackBase(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf,
-                              fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf) {}
+/* 8046F33C-8046F340 0003BC 0004+00 1/0 0/0 0/0 .text            TgHitCallBackBase__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
+static void TgHitCallBackBase(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf, fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf) {
+    daObjCarry_c* objCarry = (daObjCarry_c*)i_tgActor;
+}
 
-/* 8046F340-8046F3E0 0003C0 00A0+00 1/0 0/0 0/0 .text
- * TgHitCallBackBokkuri__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-static void TgHitCallBackBokkuri(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf,
-                                 fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf) {
+/* 8046F340-8046F3E0 0003C0 00A0+00 1/0 0/0 0/0 .text            TgHitCallBackBokkuri__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
+static void TgHitCallBackBokkuri(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf, fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf) {
     daObjCarry_c* objCarry = (daObjCarry_c*)i_tgActor;
     if (objCarry != NULL && i_atActor != NULL && i_atObjInf->ChkAtType(AT_TYPE_SHIELD_ATTACK) &&
         fopAcM_IsActor(i_atActor) && fopAcM_GetName(i_atActor) == PROC_ALINK)
@@ -787,13 +922,12 @@ static void TgHitCallBackBokkuri(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf
     }
 }
 
-/* 8046F3E0-8046F3E4 000460 0004+00 1/0 0/0 0/0 .text
- * CoHitCallBackBase__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-static void CoHitCallBackBase(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
-                              fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {}
+/* 8046F3E0-8046F3E4 000460 0004+00 1/0 0/0 0/0 .text            CoHitCallBackBase__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
+static void CoHitCallBackBase(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA, fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {
+    daObjCarry_c* objCarry = (daObjCarry_c*)i_coActorA;
+}
 
-/* 8046F3E4-8046F4AC 000464 00C8+00 1/0 0/0 0/0 .text
- * CoHitCallBackBokkuri__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
+/* 8046F3E4-8046F4AC 000464 00C8+00 1/0 0/0 0/0 .text            CoHitCallBackBokkuri__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
 static void CoHitCallBackBokkuri(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
                                  fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {
     daObjCarry_c* objCarry = (daObjCarry_c*)i_coActorA;
@@ -873,8 +1007,9 @@ static void* s_setB_sub(void* i_actor, void* i_data) {
 }
 
 /* 8046F684-8046F6A4 000704 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
-static int CheckCreateHeap(fopAc_ac_c* i_this) {
-    return ((daObjCarry_c*)i_this)->CreateHeap();
+static int CheckCreateHeap(fopAc_ac_c* a_this) {
+    daObjCarry_c* i_this = (daObjCarry_c*)a_this;
+    return i_this->CreateHeap();
 }
 
 /* 8046F6A4-8046F6BC 000724 0018+00 40/40 0/0 0/0 .text            data__12daObjCarry_cFv */
@@ -901,8 +1036,7 @@ BOOL daObjCarry_c::checkFlag(u8 i_flag) {
 void daObjCarry_c::initBaseMtx() {
     mRotAxis = cXyz::Zero;
     mRotation = 0;
-    field_0xd3c = ZeroQuat;
-    field_0xd4c = field_0xd3c;
+    field_0xd4c = field_0xd3c = ZeroQuat;
     setBaseMtx();
 }
 
@@ -917,6 +1051,7 @@ void daObjCarry_c::setBaseMtx() {
     }
 
     if (mType == TYPE_BOKKURI) {
+        daPy_py_c* player = daPy_getPlayerActorClass();
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y + data().field_0x28, current.pos.z);
         mDoMtx_stack_c::transM(0.0f, scale.x * data().field_0x2c, 0.0f);
         mDoMtx_stack_c::concat(rot_mtx);
@@ -951,12 +1086,9 @@ int daObjCarry_c::preInit() {
     if (!mInitParams) {
         mItemNo = home.angle.x;
         field_0xd18 = home.angle.z;
-        home.angle.z = 0;
-        home.angle.x = 0;
-        current.angle.z = 0;
-        current.angle.x = 0;
-        shape_angle.z = 0;
-        shape_angle.x = 0;
+        home.angle.x = home.angle.z = 0;
+        current.angle.x = current.angle.z = 0;
+        shape_angle.x = shape_angle.z = 0;
         mOnMoveBG = checkOnMoveBg();
         mInitParams = true;
     }
@@ -1028,8 +1160,7 @@ BOOL daObjCarry_c::checkCarryWolf() {
     return FALSE;
 }
 
-/* 804700B4-804700F0 001134 003C+00 1/1 0/0 0/0 .text            checkCarryOneHand__12daObjCarry_cFv
- */
+/* 804700B4-804700F0 001134 003C+00 1/1 0/0 0/0 .text            checkCarryOneHand__12daObjCarry_cFv */
 BOOL daObjCarry_c::checkCarryOneHand() {
     if (mType == TYPE_TSUBO   ||
         mType == TYPE_DOKURO  ||
@@ -1081,7 +1212,8 @@ int daObjCarry_c::Create() {
     }
 
     fopAcM_SetCullSize(this, fopAc_CULLSPHERE_CUSTOM_e);
-    fopAcM_setCullSizeSphere(this, data().m_cullsph_min_x, data().m_cullsph_min_y, data().m_cullsph_min_z, mpModel->getModelData()->getJointNodePointer(0)->getRadius() * data().scale);
+    J3DJoint* jointNodeP = mpModel->getModelData()->getJointNodePointer(0);
+    fopAcM_setCullSizeSphere(this, data().m_cullsph_min_x, data().m_cullsph_min_y, data().m_cullsph_min_z, jointNodeP->getRadius() * data().scale);
 
     cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     attention_info.distances[fopAc_attn_CARRY_e] = data().m_carry_attn_dist;
@@ -1097,18 +1229,21 @@ int daObjCarry_c::Create() {
     field_0xd70 = cM_rndF(100.0f);
     field_0xd04 = field_0xd70;
 
+    u32 tg_type;
     if (checkBreakWolfAttack()) {
-        mCyl.SetTgType(mCyl.GetTgType() | 0x20000000);
+        tg_type = mCyl.GetTgType();
+        mCyl.SetTgType(tg_type | 0x20000000);
     }
 
-    u32 tg_type = mCyl.GetTgType();
+    tg_type = mCyl.GetTgType();
     if (!checkCarryBoomerang()) {
         mCyl.SetTgType(tg_type & ~0x10000);
     }
 
     if (checkCarryHookshot()) {
         fopAcM_OnStatus(this, 0x80000);
-        mCyl.SetTgType(mCyl.GetTgType() | 0x4000);
+        tg_type = mCyl.GetTgType();
+        mCyl.SetTgType(tg_type | 0x4000);
     }
 
     if (checkCarryWolf()) {
@@ -1120,7 +1255,8 @@ int daObjCarry_c::Create() {
     }
 
     if (mType == TYPE_TSUBO || mType == TYPE_OOTSUBO || mType == TYPE_TSUBO_2 || mType == TYPE_AOTSUBO) {
-        mCyl.SetTgType(mCyl.GetTgType() | 0x2000000);
+        tg_type = mCyl.GetTgType();
+        mCyl.SetTgType(tg_type | 0x2000000);
     }
 
     if (mType != TYPE_TSUBO && mType != TYPE_TSUBO_2 && mType != TYPE_TSUBO_S && mType != TYPE_OOTSUBO && mType != TYPE_AOTSUBO && mType != TYPE_TSUBO_B) {
@@ -1163,8 +1299,7 @@ int daObjCarry_c::Create() {
     return 1;
 }
 
-/* 804705DC-80470650 00165C 0074+00 3/0 0/0 0/0 .text            CreateInit_tsubo__12daObjCarry_cFv
- */
+/* 804705DC-80470650 00165C 0074+00 3/0 0/0 0/0 .text            CreateInit_tsubo__12daObjCarry_cFv */
 int daObjCarry_c::CreateInit_tsubo() {
     if (!checkCrashRoll()) {
         mCanCrashRoll = true;
@@ -1179,15 +1314,13 @@ int daObjCarry_c::CreateInit_tsubo() {
     return 1;
 }
 
-/* 80470650-80470674 0016D0 0024+00 3/0 0/0 0/0 .text            CreateInit_ootubo__12daObjCarry_cFv
- */
+/* 80470650-80470674 0016D0 0024+00 3/0 0/0 0/0 .text            CreateInit_ootubo__12daObjCarry_cFv */
 int daObjCarry_c::CreateInit_ootubo() {
     mode_init_wait();
     return 1;
 }
 
-/* 80470674-804706D4 0016F4 0060+00 1/0 0/0 0/0 .text            CreateInit_kibako__12daObjCarry_cFv
- */
+/* 80470674-804706D4 0016F4 0060+00 1/0 0/0 0/0 .text            CreateInit_kibako__12daObjCarry_cFv */
 int daObjCarry_c::CreateInit_kibako() {
     if (!mJntCol.init(this, &kibako_jc_data, mpModel, 1)) {
         return 0;
@@ -1197,7 +1330,7 @@ int daObjCarry_c::CreateInit_kibako() {
     return 1;
 }
 
-/* 804706D4-804707E0 001754 010C+00 1/0 0/0 0/0 .text CreateInit_ironball__12daObjCarry_cFv */
+/* 804706D4-804707E0 001754 010C+00 1/0 0/0 0/0 .text            CreateInit_ironball__12daObjCarry_cFv */
 int daObjCarry_c::CreateInit_ironball() {
     if (chkSaveFlag()) {
         u8 l_saveID = getSaveID();
@@ -1213,6 +1346,8 @@ int daObjCarry_c::CreateInit_ironball() {
         if (chkSttsFlag(l_saveID, 1)) {
             mDraw = true;
         }
+
+        OS_REPORT("\x1b[33m鉄玉ID<%d>:Pos(%.2f,%.2f,%.2f)にセット\n\x1b[m", l_saveID, current.pos.x, current.pos.y, current.pos.z);
     }
 
     mAcch.SetLink();
@@ -1220,13 +1355,13 @@ int daObjCarry_c::CreateInit_ironball() {
 
     mode_init_wait();
 
-    mCyl.SetAtType(mCyl.GetAtType() | AT_TYPE_IRON_BALL);
+    u32 tg_type = mCyl.GetAtType();
+    mCyl.SetAtType(tg_type | AT_TYPE_IRON_BALL);
     mCyl.SetAtSe(6);
     return 1;
 }
 
-/* 804707E0-80470840 001860 0060+00 1/0 0/0 0/0 .text            CreateInit_taru__12daObjCarry_cFv
- */
+/* 804707E0-80470840 001860 0060+00 1/0 0/0 0/0 .text            CreateInit_taru__12daObjCarry_cFv */
 int daObjCarry_c::CreateInit_taru() {
     if (!mJntCol.init(this, &taru_jc_data, mpModel, 1)) {
         return 0;
@@ -1236,14 +1371,13 @@ int daObjCarry_c::CreateInit_taru() {
     return 1;
 }
 
-/* 80470840-80470890 0018C0 0050+00 1/0 0/0 0/0 .text            CreateInit_dokuro__12daObjCarry_cFv
- */
+/* 80470840-80470890 0018C0 0050+00 1/0 0/0 0/0 .text            CreateInit_dokuro__12daObjCarry_cFv */
 int daObjCarry_c::CreateInit_dokuro() {
     mode_init_wait();
     return fopAcM_isSwitch(this, getSwbit()) == FALSE ? TRUE : FALSE;
 }
 
-/* 80470890-804709DC 001910 014C+00 1/0 0/0 0/0 .text CreateInit_bokkuri__12daObjCarry_cFv */
+/* 80470890-804709DC 001910 014C+00 1/0 0/0 0/0 .text            CreateInit_bokkuri__12daObjCarry_cFv */
 int daObjCarry_c::CreateInit_bokkuri() {
     mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_0);
     mCyl.OnTgNoHitMark();
@@ -3272,7 +3406,7 @@ void daObjCarry_c::bg_check() {
                 cXyz sp94(speed);
                 cXyz sp88(speed);
 
-                f32 var_f31 = data().field_0x14;
+                f32 var_f31 = data().m_velocityReflCoeffXZ;
                 if (mCannon) {
                     var_f31 = 0.05f;
                 }
@@ -3320,8 +3454,8 @@ void daObjCarry_c::bg_check() {
         f32 temp_f30 = field_0xd1c.y;
 
         if (speed.abs() > 1.0f) {
-            f32 var_f29 = data().field_0x14;
-            f32 var_f28 = data().field_0x10;
+            f32 var_f29 = data().m_velocityReflCoeffXZ;
+            f32 var_f28 = data().m_velocityReflCoeffY;
 
             switch (dComIfG_Bgsp().GetPolyAtt0(mAcch.m_gnd)) {
             case 3:

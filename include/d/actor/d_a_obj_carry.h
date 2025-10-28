@@ -7,13 +7,24 @@
 #include "d/d_cc_d.h"
 #include "d/d_jnt_col.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjCarry_c
+ * @brief Carryable Object
+ *
+ * @details This is a multi-use class for carryable objects.
+ * It's used by: small and large blue pot, small and large red pot, box, cannon ball, barrel, skull,
+ * deku nut, Sols, small and large Twilight pots.
+ *
+*/
+
 struct daObjCarry_dt_t {
     /* 0x00 */ f32 m_throwInitSpeedY;
     /* 0x04 */ f32 m_throwInitSpeedXZ;
     /* 0x08 */ f32 m_wolfThrowInitSpeedY;
     /* 0x0C */ f32 m_wolfThrowInitSpeedXZ;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
+    /* 0x10 */ f32 m_velocityReflCoeffY;
+    /* 0x14 */ f32 m_velocityReflCoeffXZ;
     /* 0x18 */ f32 m_gravity;
     /* 0x1C */ f32 m_Buoyancy;
     /* 0x20 */ f32 m_urnWindEffRatio;
@@ -51,16 +62,45 @@ struct daObjCarry_dt_t {
     /* 0x90 */ u32 m_heapSize;
 };
 
-/**
- * @ingroup actors-objects
- * @class daObjCarry_c
- * @brief Carryable Object
- *
- * @details This is a multi-use class for carryable objects.
- * It's used by: small and large blue pot, small and large red pot, box, cannon ball, barrel, skull,
- * deku nut, Sols, small and large Twilight pots.
- *
- */
+class daObj_HIO_c : public JORReflexible {
+public:
+    daObj_HIO_c(int);
+    void entry();
+    void remove();
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ u8 type;
+    /* 0x08 */ daObjCarry_dt_t dt;
+    /* 0x9C */ s8 field_0x9c;
+};
+
+class daObj_HIO_common_c : public JORReflexible {
+public:
+    daObj_HIO_common_c();
+    void entry();
+    void remove();
+    void genMessage(JORMContext*);
+
+private:
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 field_0x5;
+    /* 0x06 */ u8 field_0x6;
+    /* 0x07 */ u8 field_0x7;
+    /* 0x08 */ u8 field_0x8;
+    /* 0x09 */ u8 field_0x9;
+    /* 0x0A */ u8 field_0xa;
+    /* 0x0B */ u8 field_0xb;
+    /* 0x0C */ u8 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ u8 field_0x1c;
+    /* 0x1D */ u8 field_0x1d;
+    /* 0x20 */ cXyz field_0x20;
+    /* 0x2C */ J3DGXColor field_0x2c[2];
+    /* 0x34 */ J3DGXColorS10 field_0x34;
+};
+
 class daObjCarry_c : public fopAc_ac_c {
 public:
     enum {
@@ -107,7 +147,7 @@ public:
     /* 80031D38 */ static void savePos(int, cXyz);
     /* 80031D64 */ static void onSttsFlag(int, u8);
     /* 80031D78 */ static void offSttsFlag(int, u8);
-    /* 80031D8C */ static u8 chkSttsFlag(int, u8);
+    /* 80031D8C */ static bool chkSttsFlag(int, u8);
     /* 80031DAC */ static void setRoomNo(int, s8);
     /* 80031DB8 */ static s8 getRoomNo(int);
     /* 8046F6A4 */ const daObjCarry_dt_t& data();
@@ -258,11 +298,11 @@ public:
 
     s32 getType() { return mType; }
     u8 getSwbit() { return fopAcM_GetParamBit(this, 6, 8); }
-    u32 getSwbit2() { return fopAcM_GetParamBit(this, 14, 8); }
+    u8 getSwbit2() { return fopAcM_GetParamBit(this, 14, 8); }
     s8 getRoomNo() { return fopAcM_GetParamBit(this, 0, 6); }
 
-    u32 checkOnMoveBg() { return ~((field_0xd18 >> 0xc) & 1); }
-    u32 checkCrashRoll() { return field_0xd18 >> 6 & 1; }
+    u8 checkOnMoveBg() { return ~((field_0xd18 >> 0xc) & 1); }
+    u8 checkCrashRoll() { return field_0xd18 >> 6 & 1; }
     u8 getItemNo() { return mItemNo; }
     u8 getItemBit() { return mItemNo >> 8; }
     u8 getItemType() { return field_0xd18 & 1; }
@@ -407,7 +447,7 @@ public:
     /* 0xE27 */ u8 field_0xe27;
 
 private:
-    u16 getType_private() { return field_0xd18 >> 1 & 0x1f; }
+    u8 getType_private() { return field_0xd18 >> 1 & 0x1f; }
 };
 
 STATIC_ASSERT(sizeof(daObjCarry_c) == 0xE28);
