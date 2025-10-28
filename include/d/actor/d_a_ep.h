@@ -54,8 +54,8 @@ class ep_class : public fopAc_ac_c {
         /* 0x05E8 */ cXyz field_0x5e8;
         /* 0x05F4 */ cXyz field_0x5f4;
         /* 0x0600 */ u8 field_0x600;
-        /* 0x0601 */ u8 field_0x601;
-        /* 0x0602 */ u8 field_0x602;
+        /* 0x0601 */ bool field_0x601;
+        /* 0x0602 */ bool field_0x602;
         /* 0x0603 */ u8 field_0x603[0x609 - 0x603];
         /* 0x0609 */ u8 field_0x609;
         /* 0x060A */ u8 field_0x60a;

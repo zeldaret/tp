@@ -281,12 +281,7 @@ int daDsh_c::create() {
 
         mSw = getSw();
         daDsh_c::action_c* action;
-        if (fopAcM_isSwitch(this, mSw)) {
-            action = &l_closeWaitAction;
-        } else {
-            action = &l_openWaitAction;
-        }
-        setAction(action);
+        setAction(dComIfGs_isSwitch(mSw, fopAcM_GetHomeRoomNo(this)) ? &l_closeWaitAction : &l_openWaitAction);
 
         setMtx();
         fopAcM_SetMtx(this, model->getBaseTRMtx());
