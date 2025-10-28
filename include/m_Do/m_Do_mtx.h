@@ -343,7 +343,7 @@ public:
      * Copies a given matrix `m` to the `now` matrix
      * @param m The source matrix to copy
      */
-    static void copy(const Mtx m) { MTXCopy(m, now); }
+    static void copy(const Mtx m) { PSMTXCopy(m, now); }
 
     static void rotAxisRadS(const Vec* axis, f32 rad) {
         MTXRotAxisRad(now, axis, rad);
