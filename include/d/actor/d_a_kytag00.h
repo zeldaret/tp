@@ -10,7 +10,8 @@
  *
  * @details
  *
- */
+*/
+
 class kytag00_class : public fopAc_ac_c {
 public:
     /* 0x568 */ u8 field_0x568[0x56C - 0x568];
