@@ -9,8 +9,7 @@
 #include "d/actor/d_a_npc.h"
 #include "d/d_com_inf_game.h"
 
-/* 8046CB58-8046CFE8 000078 0490+00 1/0 0/0 0/0 .text            daKytag04_Draw__FP13kytag04_class
- */
+/* 8046CB58-8046CFE8 000078 0490+00 1/0 0/0 0/0 .text            daKytag04_Draw__FP13kytag04_class */
 static int daKytag04_Draw(kytag04_class* i_this) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     camera_class* camera = dComIfGp_getCamera(0);
@@ -200,8 +199,7 @@ static int daKytag04_IsDelete(kytag04_class* i_this) {
     return 1;
 }
 
-/* 8046D35C-8046D474 00087C 0118+00 1/0 0/0 0/0 .text            daKytag04_Delete__FP13kytag04_class
- */
+/* 8046D35C-8046D474 00087C 0118+00 1/0 0/0 0/0 .text            daKytag04_Delete__FP13kytag04_class */
 static int daKytag04_Delete(kytag04_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "Kytag04");
 
