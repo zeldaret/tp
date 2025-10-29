@@ -1,7 +1,7 @@
 /**
  * @file d_a_obj_carry.cpp
  * @brief Actor - Various carriable objects
- */
+*/
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
@@ -967,6 +967,27 @@ static void* s_swA_sub(void* i_actor, void* i_data) {
 /* 8047B1D8-8047B1DC 000000 0004+00 3/3 0/0 0/0 .bss             l_sw_id */
 static int l_sw_id;
 
+#if DEBUG
+daObj_HIO_c daObjCarry_c::mHIO[14] = {
+    daObj_HIO_c(0),
+    daObj_HIO_c(1),
+    daObj_HIO_c(2),
+    daObj_HIO_c(3),
+    daObj_HIO_c(4),
+    daObj_HIO_c(5),
+    daObj_HIO_c(6),
+    daObj_HIO_c(7),
+    daObj_HIO_c(8),
+    daObj_HIO_c(9),
+    daObj_HIO_c(10),
+    daObj_HIO_c(11),
+    daObj_HIO_c(12),
+    daObj_HIO_c(13),
+};
+
+static daObj_HIO_common_c l_HIO;
+#endif
+
 /* 8046F52C-8046F59C 0005AC 0070+00 2/2 0/0 0/0 .text            s_sw_sub__FPvPv */
 static void* s_sw_sub(void* i_actor, void* i_data) {
     daObjSwBallB_c* swball = (daObjSwBallB_c*)i_actor;
@@ -1076,6 +1097,15 @@ void daObjCarry_c::setBaseMtx() {
     }
 
     mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+
+    #if DEBUG
+    if (l_HIO.field_0x1d != 0) {
+        scale.x = l_HIO.field_0x20.x;
+        scale.y = l_HIO.field_0x20.x;
+        scale.z = l_HIO.field_0x20.x;
+    }
+    #endif
+
     mpModel->setBaseScale(scale);
 }
 
@@ -1374,7 +1404,13 @@ int daObjCarry_c::CreateInit_taru() {
 /* 80470840-80470890 0018C0 0050+00 1/0 0/0 0/0 .text            CreateInit_dokuro__12daObjCarry_cFv */
 int daObjCarry_c::CreateInit_dokuro() {
     mode_init_wait();
-    return fopAcM_isSwitch(this, getSwbit()) == FALSE ? TRUE : FALSE;
+
+    if (fopAcM_isSwitch(this, getSwbit())) {
+        OS_REPORT("ドクロ：スイッチＯＮなので出ません！<%d>\n", getSwbit()); // Skull: The switch is ON, so it won't appear!
+        return FALSE;
+    }
+
+    return TRUE;
 }
 
 /* 80470890-804709DC 001910 014C+00 1/0 0/0 0/0 .text            CreateInit_bokkuri__12daObjCarry_cFv */
@@ -1383,15 +1419,17 @@ int daObjCarry_c::CreateInit_bokkuri() {
     mCyl.OnTgNoHitMark();
 
     field_0xd76 = 0;
-    field_0xd79 = 3;
+    mBokkuriExecProcMode = 3;
     field_0xd7a = 100;
 
     mSound.init(&current.pos, 1);
 
-    switch (getSetType()) {
+    u8 setType = getSetType();
+    switch (setType) {
     case 0:
         mode_init_wait();
         break;
+
     case 1:
         field_0xd76 = 255;
         speedF = 15.0f;
@@ -1399,19 +1437,23 @@ int daObjCarry_c::CreateInit_bokkuri() {
         scale.set(1.0f, 1.0f, 1.0f);
         mode_init_dbDrop(1);
         break;
+
     case 2:
         fopAcM_OnCarryType(this, fopAcM_CARRY_TYPE_1);
         field_0xdb0 = 1;
         field_0xd7a = 0;
         mode_init_wait();
         break;
+
     case 3:
         fopAcM_OnCarryType(this, fopAcM_CARRY_TYPE_1);
         field_0xd76 = 255;
         field_0xd7a = 0;
         mode_init_growth();
         break;
+
     default:
+        OS_REPORT_ERROR("ボックリの実：初期状態設定が異常です\n"); // Bokkuri Fruit: The initial state settings are abnormal
         mode_init_wait();
     }
 
@@ -1479,31 +1521,32 @@ int daObjCarry_c::CreateHeap() {
 int daObjCarry_c::create() {
     preInit();
 
-#ifdef DEBUG
-    if (prm_chk_type_lightball() && strcmp(dComIfGp_getStartStageName(), "T_ENE02") == 0) {
-        goto next;
+    #if DEBUG
+    if (!prm_chk_type_lightball() || strcmp(dComIfGp_getStartStageName(), "T_ENE02") != 0) {
+    #endif
+
+        int create_phase = cPhs_NEXT_e;
+
+        switch (mType) {
+        case TYPE_BALL_S:
+            create_phase = (cPhs__Step)checkCreate_LightBallA();
+            break;
+        case TYPE_BALL_S_2:
+            create_phase = (cPhs__Step)checkCreate_LightBallB();
+            break;
+        case TYPE_LV8_BALL:
+            create_phase = (cPhs__Step)checkCreate_Lv8Ball();
+            break;
+        }
+
+        if (create_phase != cPhs_NEXT_e) {
+            return create_phase;
+        }
+
+    #if DEBUG
     }
-#endif
+    #endif
 
-    int create_phase = cPhs_NEXT_e;
-
-    switch (mType) {
-    case TYPE_BALL_S:
-        create_phase = (cPhs__Step)checkCreate_LightBallA();
-        break;
-    case TYPE_BALL_S_2:
-        create_phase = (cPhs__Step)checkCreate_LightBallB();
-        break;
-    case TYPE_LV8_BALL:
-        create_phase = (cPhs__Step)checkCreate_Lv8Ball();
-        break;
-    }
-
-    if (create_phase != cPhs_NEXT_e) {
-        return create_phase;
-    }
-
-next:
     int phase_state = dComIfG_resLoad(&mPhaseReq, getArcName());
     if (phase_state == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, data().m_heapSize)) {
@@ -1513,6 +1556,11 @@ next:
         if (!Create()) {
             return cPhs_ERROR_e;
         }
+
+        #if DEBUG
+        mHIO[mType].entry();
+        l_HIO.entry();
+        #endif
     }
 
     return phase_state;
@@ -1869,6 +1917,12 @@ void daObjCarry_c::resetIconPosForLightBallB() {
 /* 804718E8-8047233C 002968 0A54+00 1/1 0/0 0/0 .text            execute__12daObjCarry_cFv */
 // NONMATCHING - sp10 supposed to have an extra copy on the stack
 int daObjCarry_c::execute() {
+    #if DEBUG
+    if (l_HIO.field_0x8 != 0) {
+        return 1;
+    }
+    #endif
+
     mRecover = 0;
 
     if (prm_chk_type_ironball()) {
@@ -2012,7 +2066,7 @@ int daObjCarry_c::execute() {
         }
     }
 
-    field_0xd1c = speed;
+    mInitSpeed = speed;
     field_0xd04++;
 
     cc_damage_proc_call();
@@ -2045,7 +2099,7 @@ int daObjCarry_c::execute() {
     attention_info.position.z = current.pos.z;
     eyePos = attention_info.position;
 
-    field_0xda9 = fopAcM_checkCarryNow(this);
+    mCarryNowFlag = fopAcM_checkCarryNow(this);
     field_0xdac = mCyl.ChkCoHit();
     field_0xdad = mAcch.ChkWaterIn();
 
@@ -2114,6 +2168,33 @@ BOOL daObjCarry_c::checkCulling() {
 
 /* 80472460-80472730 0034E0 02D0+00 1/1 0/0 0/0 .text            draw__12daObjCarry_cFv */
 int daObjCarry_c::draw() {
+    #if DEBUG
+    if (l_HIO.field_0x7 != 0) {
+        return 1;
+    }
+
+    if (KREG_S(7) == 10000) {
+        if (getRoomNo() != 63) {
+            dDbVw_drawSphereOpa(current.pos, 60.0f, (GXColor){0x00, 0x00, 0xFF, 0xFF}, 1);
+        }
+
+        cXyz sp40(0.0f, 100.0f, 0.0f);
+        cXyz sp4c, sp58;
+        sp4c = current.pos;
+        sp58 = sp40;
+        s16 sVar1 = KREG_S(0);
+        Quaternion quat;
+        quat.w = KREG_F(20) * cM_ssin(sVar1);
+        quat.x = KREG_F(21) * cM_ssin(sVar1);
+        quat.y = KREG_F(22) * cM_ssin(sVar1);
+        quat.z = cM_scos(sVar1);
+        mDoMtx_stack_c::quatS(&quat);
+        mDoMtx_stack_c::multVec(&sp58, &sp58);
+        sp58 += current.pos;
+        dDbVw_drawLineOpa(sp4c, sp58, (GXColor){0xFF, 0xFF, 0xFF, 0xFF}, 1, 12);
+    }
+    #endif
+
     if (checkCulling()) {
         return 1;
     }
@@ -2137,6 +2218,17 @@ int daObjCarry_c::draw() {
             J3DGXColorS10* tev_color = material->getTevColor(1);
 
             if (strcmp(nametab->getName(i), "cc_ball") == 0) {
+                #if DEBUG
+                tev_color->r = l_HIO.field_0x34.r;
+                tev_color->g = l_HIO.field_0x34.g;
+                tev_color->b = l_HIO.field_0x34.b;
+                tev_color->a = l_HIO.field_0x34.a;
+
+                tev_kcolor->r = l_HIO.field_0x2c[0].r;
+                tev_kcolor->g = l_HIO.field_0x2c[0].g;
+                tev_kcolor->b = l_HIO.field_0x2c[0].b;
+                tev_kcolor->a = l_HIO.field_0x2c[0].a;
+                #else
                 tev_color->r = 0x82;
                 tev_color->g = 0xC8;
                 tev_color->b = 0xFA;
@@ -2146,11 +2238,19 @@ int daObjCarry_c::draw() {
                 tev_kcolor->g = 0x3C;
                 tev_kcolor->b = 0x8C;
                 tev_kcolor->a = 0xFF;
+                #endif
             } else if (strcmp(nametab->getName(i), "aa_hikari") == 0) {
+                #if DEBUG
+                tev_kcolor->r = l_HIO.field_0x2c[1].r;
+                tev_kcolor->g = l_HIO.field_0x2c[1].g;
+                tev_kcolor->b = l_HIO.field_0x2c[1].b;
+                tev_kcolor->a = l_HIO.field_0x2c[1].a;
+                #else
                 tev_kcolor->r = 0x8C;
                 tev_kcolor->g = 0xD2;
                 tev_kcolor->b = 0xFF;
                 tev_kcolor->a = 0xFF;
+                #endif
             }
         }
     }
@@ -2184,22 +2284,19 @@ void daObjCarry_c::debugDraw() {
         cXyz end = current.pos + (mRotAxis.norm() * 100.0f);
         end.y += 35.0f;
 
-        GXColor color = {0xFF, 0xFF, 0xFF, 0xFF};
-        dDbVw_drawLineOpa(start, end, color, TRUE, 12);
+        dDbVw_drawLineOpa(start, end, (GXColor){0xFF, 0xFF, 0xFF, 0xFF}, TRUE, 12);
     }
 
     if (KREG_S(8) == 20000) {
         cXyz start(daPy_getPlayerActorClass()->current.pos);
         cXyz end(home.pos);
-        GXColor color = {0xFF, 0xFF, 0xFF, 0xFF};
-        dDbVw_drawLineOpa(start, end, color, TRUE, 12);
+        dDbVw_drawLineOpa(start, end, (GXColor){0xFF, 0xFF, 0xFF, 0xFF}, TRUE, 12);
     }
 
     if (KREG_S(8) == 20001) {
         cXyz start(daPy_getPlayerActorClass()->current.pos);
         cXyz end(home.pos);
-        GXColor color = {0xFF, 0x00, 0x00, 0xFF};
-        dDbVw_drawLineOpa(start, end, color, TRUE, 12);
+        dDbVw_drawLineOpa(start, end, (GXColor){0xFF, 0x00, 0x00, 0xFF}, TRUE, 12);
     }
 
     if (KREG_S(7) == 4000) {
@@ -2224,7 +2321,8 @@ void daObjCarry_c::debugDraw() {
         cXyz sp68;
 
         int sp28;
-        if (fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp68, &sp28, 0)) {
+        s32 waterStream = fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp68, &sp28, 0);
+        if (waterStream) {
             cXyz sp5C = sp68 * 100.0f;
             sp5C += current.pos;
             dDbVw_drawArrowOpa(current.pos, sp5C, color, TRUE, 12);
@@ -2324,6 +2422,12 @@ int daObjCarry_c::_delete() {
     }
 
     dComIfG_resDelete(&mPhaseReq, getArcName());
+
+    #if DEBUG
+    mHIO[mType].remove();
+    l_HIO.remove();
+    #endif
+
     return 1;
 }
 
@@ -2359,7 +2463,7 @@ void daObjCarry_c::crr_pos() {
         }
     }
 
-    field_0xd08 = current.pos - sp20;
+    mGrabCollisionOffset = current.pos - sp20;
 
     if (dComIfG_Bgsp().ChkMoveBG_NoDABg(mAcch.m_gnd) && mOnMoveBG) {
         var_r29 = false;
@@ -2502,11 +2606,11 @@ void daObjCarry_c::mode_proc_call() {
                     if (player->setForceGrab(this, 0, 1)) {
                         mode_init_carry();
                         fopAcM_cancelHookCarryNow(this);
-                        field_0xda9 = 1;
+                        mCarryNowFlag = 1;
                     }
                 }
             }
-        } else if (field_0xda9 == 0) {
+        } else if (mCarryNowFlag == 0) {
             mode_init_carry();
         }
 
@@ -2557,7 +2661,9 @@ int daObjCarry_c::mode_proc_wait() {
     } else {
         if (mCanCrashRoll) {
             daPy_py_c* player = dComIfGp_getLinkPlayer();
-            if (player->current.pos.absXZ(current.pos) < (500.0f + KREG_F(9)) && (player->checkFrontRollCrash() || player->checkWolfAttackReverse())) {
+            f32 fVar1 = player->current.pos.absXZ(current.pos);
+            f32 fVar2 = KREG_F(9) + 500.0f;
+            if (fVar1 < fVar2 && (player->checkFrontRollCrash() || player->checkWolfAttackReverse())) {
                 do_crash_roll = true;
                 mCanCrashRoll = false;
             }
@@ -2579,7 +2685,7 @@ int daObjCarry_c::mode_proc_wait() {
     }
 
     if (do_crash_roll) {
-        speedF = 30.0f + KREG_F(8);
+        speedF = KREG_F(8) + 30.0f;
         mode_init_walk(0);
         return 1;
     }
@@ -2618,9 +2724,15 @@ void daObjCarry_c::mode_init_walk(u8 unused) {
 
 /* 804737CC-80473ED8 00484C 070C+00 1/0 0/0 0/0 .text            mode_proc_walk__12daObjCarry_cFv */
 int daObjCarry_c::mode_proc_walk() {
+    #if DEBUG
+    bool gnd_hit = mAcch.ChkGroundHit();
+    bool gnd_landing = mAcch.ChkGroundLanding();
+    bool gnd_away = mAcch.ChkGroundAway();
+    #else
     bool gnd_hit = mAcch.ChkGroundHit() != 0;
     bool gnd_landing = mAcch.ChkGroundLanding() != 0;
     bool gnd_away = mAcch.ChkGroundAway() != 0;
+    #endif
 
     if (gnd_hit) {
         field_0xcec = current.pos.y;
@@ -2791,8 +2903,7 @@ void daObjCarry_c::mode_init_carry() {
     mMode = MODE_CARRY;
 }
 
-/* 804741A8-80474448 005228 02A0+00 1/0 0/0 0/0 .text            mode_proc_carry__12daObjCarry_cFv
- */
+/* 804741A8-80474448 005228 02A0+00 1/0 0/0 0/0 .text            mode_proc_carry__12daObjCarry_cFv */
 int daObjCarry_c::mode_proc_carry() {
     daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();
 
@@ -2806,13 +2917,13 @@ int daObjCarry_c::mode_proc_carry() {
         if (mCyl.ChkCoHit()) {
             cXyz* cc_move_p = mStts.GetCCMoveP();
             if (cc_move_p != NULL) {
-                field_0xd08 += *cc_move_p;
+                mGrabCollisionOffset += *cc_move_p;
             }
         }
 
         mStts.ClrCcMove();
         mCyl.ClrCoHit();
-        player->setGrabCollisionOffset(field_0xd08.x, field_0xd08.z, NULL);
+        player->setGrabCollisionOffset(mGrabCollisionOffset.x, mGrabCollisionOffset.z, NULL);
     }
 
     if (!fopAcM_checkCarryNow(this)) {
@@ -2951,8 +3062,7 @@ void daObjCarry_c::mode_init_float() {
     mMode = MODE_FLOAT;
 }
 
-/* 80474734-80474A08 0057B4 02D4+00 1/0 0/0 0/0 .text            mode_proc_float__12daObjCarry_cFv
- */
+/* 80474734-80474A08 0057B4 02D4+00 1/0 0/0 0/0 .text            mode_proc_float__12daObjCarry_cFv */
 int daObjCarry_c::mode_proc_float() {
     field_0xdc4++;
     gravity = 0.0f;
@@ -2961,7 +3071,8 @@ int daObjCarry_c::mode_proc_float() {
     f32 speed_target;
 
     int spC = 0;
-    if (fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp34, &spC, 0)) {
+    s32 waterStream = fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp34, &spC, 0);
+    if (waterStream) {
         s16 sp8 = cM_atan2s(sp34.x, sp34.z);
 
         cXyz sp28(speedF * cM_ssin(current.angle.y), 0.0f, speedF * cM_scos(current.angle.y));
@@ -3048,7 +3159,8 @@ int daObjCarry_c::mode_proc_sink() {
     cXyz sp24;
     f32 speed_target;
     int sp8 = 0;
-    if (fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp24, &sp8, 0)) {
+    s32 waterStream = fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp24, &sp8, 0);
+    if (waterStream) {
         s16 var_r27 = cM_atan2s(sp24.x, sp24.z);
 
         cXyz sp18(speedF * cM_ssin(current.angle.y), 0.0f, speedF * cM_scos(current.angle.y));
@@ -3155,8 +3267,12 @@ void daObjCarry_c::mode_init_boomCarry() {
     fopAcM_SetMaxFallSpeed(this, -100.0f);
 
     mStts.SetWeight(data().m_colliderWeight);
+    #if DEBUG
+    mBoomerangMove.initOffset(&current.pos, mCyl.GetTgHitGObj());
+    #else
     mCyl.GetTgHitGObj();
     mBoomerangMove.initOffset(&current.pos);
+    #endif
 
     if (field_0xdb0 == 1) {
         field_0xdb0 = 0;
@@ -3198,13 +3314,12 @@ void daObjCarry_c::mode_init_growth() {
     field_0xdb0 = 1;
 
     scale.setall(0.0f);
-    field_0xd79 = 2;
+    mBokkuriExecProcMode = 2;
     mStts.SetWeight(data().m_colliderWeight);
     mMode = MODE_GROWTH;
 }
 
-/* 804750C8-8047515C 006148 0094+00 1/0 0/0 0/0 .text            mode_proc_growth__12daObjCarry_cFv
- */
+/* 804750C8-8047515C 006148 0094+00 1/0 0/0 0/0 .text            mode_proc_growth__12daObjCarry_cFv */
 int daObjCarry_c::mode_proc_growth() {
     f32 sp8 = scale.x;
     f32 temp_f31 = cLib_addCalc(&sp8, data().scale, 0.05f, 0.1f, 0.01f);
@@ -3240,7 +3355,7 @@ void daObjCarry_c::mode_init_dbDrop(u8 param_0) {
     gravity = calc_gravity();
 
     field_0xd75 = 1;
-    field_0xd79 = 0;
+    mBokkuriExecProcMode = 0;
     mMode = MODE_DB_DROP;
 }
 
@@ -3267,8 +3382,12 @@ void daObjCarry_c::mode_init_hookCarry() {
     fopAcM_SetMaxFallSpeed(this, -100.0f);
     mStts.SetWeight(data().m_colliderWeight);
 
+    #if DEBUG
+    mBoomerangMove.initOffset(&current.pos, mCyl.GetTgHitGObj());
+    #else
     mCyl.GetTgHitGObj();
     mBoomerangMove.initOffset(&current.pos);
+    #endif
 
     if (prm_chk_type_ironball()) {
         mAcch.ClrIronBall();
@@ -3352,8 +3471,7 @@ void daObjCarry_c::mode_init_resetLightBall() {
     mMode = MODE_RESET_LIGHTBALL;
 }
 
-/* 80475598-80475618 006618 0080+00 1/0 0/0 0/0 .text mode_proc_resetLightBall__12daObjCarry_cFv
- */
+/* 80475598-80475618 006618 0080+00 1/0 0/0 0/0 .text            mode_proc_resetLightBall__12daObjCarry_cFv */
 int daObjCarry_c::mode_proc_resetLightBall() {
     if (cLib_chaseF(&scale.x, 1.0f, 0.05f)) {
         field_0xcf3 = 10;
@@ -3369,12 +3487,14 @@ int daObjCarry_c::mode_proc_resetLightBall() {
 
 /* 80475618-8047567C 006698 0064+00 1/1 0/0 0/0 .text            chkSinkAll__12daObjCarry_cFv */
 BOOL daObjCarry_c::chkSinkAll() {
-    return mAcch.m_wtr.GetHeight() > current.pos.y + data().field_0x2c * 2.0f;
+    f32 height = mAcch.m_wtr.GetHeight();
+    return height > current.pos.y + data().field_0x2c * 2.0f;
 }
 
 /* 8047567C-804756D4 0066FC 0058+00 3/3 0/0 0/0 .text            chkWaterLineIn__12daObjCarry_cFv */
 BOOL daObjCarry_c::chkWaterLineIn() {
-    return mAcch.m_wtr.GetHeight() > current.pos.y + data().field_0x24;
+    f32 height = mAcch.m_wtr.GetHeight();
+    return height > current.pos.y + data().field_0x24;
 }
 
 /* 804756D4-8047573C 006754 0068+00 2/2 0/0 0/0 .text            chkSinkObj__12daObjCarry_cFv */
@@ -3402,13 +3522,17 @@ void daObjCarry_c::bg_check() {
 
         if (var_f27 < 0.0f) {
             if (speed.abs() > 8.0f) {
-                f32 sp30 = field_0xd1c.y;
+                f32 sp30 = mInitSpeed.y;
                 cXyz sp94(speed);
                 cXyz sp88(speed);
 
                 f32 var_f31 = data().m_velocityReflCoeffXZ;
                 if (mCannon) {
+                    #if DEBUG
+                    var_f31 = l_HIO.field_0x18;
+                    #else
                     var_f31 = 0.05f;
+                    #endif
                 }
 
                 switch (dComIfG_Bgsp().GetPolyAtt0(mAcchCir)) {
@@ -3451,7 +3575,7 @@ void daObjCarry_c::bg_check() {
     }
 
     if (gnd_landing) {
-        f32 temp_f30 = field_0xd1c.y;
+        f32 temp_f30 = mInitSpeed.y;
 
         if (speed.abs() > 1.0f) {
             f32 var_f29 = data().m_velocityReflCoeffXZ;
@@ -3467,7 +3591,7 @@ void daObjCarry_c::bg_check() {
                     var_f29 = 0.2f;
                     var_f28 = 0.2f;
 
-                    if (std::fabs(field_0xd1c.y) > 10.0f) {
+                    if (std::fabs(mInitSpeed.y) > 10.0f) {
                         cXyz sp70(0.9f + KREG_F(10), 0.9f + KREG_F(10), 0.9f + KREG_F(10));
                         dComIfGp_particle_setPolyColor(0x881F, mAcch.m_gnd, &current.pos, &tevStr, &current.angle, &sp70, 0, NULL, -1, NULL);
                         dComIfGp_particle_setPolyColor(0x8820, mAcch.m_gnd, &current.pos, &tevStr, &current.angle, &sp70, 0, NULL, -1, NULL);
@@ -3475,7 +3599,7 @@ void daObjCarry_c::bg_check() {
                 }
                 break;
             default:
-                if (mType == TYPE_IRON_BALL && std::fabs(field_0xd1c.y) > 10.0f) {
+                if (mType == TYPE_IRON_BALL && std::fabs(mInitSpeed.y) > 10.0f) {
                     cXyz sp64(0.9f + KREG_F(10), 0.9f + KREG_F(10), 0.9f + KREG_F(10));
                     dComIfGp_particle_setPolyColor(0xE7, mAcch.m_gnd, &current.pos, &tevStr, &current.angle, &sp64, 0, NULL, -1, NULL);
                 }
@@ -3602,7 +3726,7 @@ void daObjCarry_c::bg_check() {
     sp34.y = mAcch.m_wtr.GetHeight();
 
     if (water_hit && sp34.y > current.pos.y && (mMode == MODE_FLOAT || (mMode == MODE_SINK && !chkSinkAll()) || (mMode == MODE_WAIT && gnd_hit) || (mMode == MODE_WALK && gnd_hit) || (mMode == MODE_CARRY && water_in && !chkSinkAll()))) {
-        fopAcM_effHamonSet(&field_0xdd4, &sp34, 1.0f, 0.1f);
+        fopAcM_effHamonSet(&mHamonPrtcl, &sp34, 1.0f, 0.1f);
     }
 
     if (mType == TYPE_IRON_BALL && roof_hit && gnd_hit) {
@@ -3614,15 +3738,16 @@ void daObjCarry_c::bg_check() {
     field_0xe0d = wall_hit;
 }
 
-/* 80476618-80476764 007698 014C+00 2/2 0/0 0/0 .text check_bg_damage_proc_base__12daObjCarry_cFv
- */
+/* 80476618-80476764 007698 014C+00 2/2 0/0 0/0 .text            check_bg_damage_proc_base__12daObjCarry_cFv */
 bool daObjCarry_c::check_bg_damage_proc_base() {
     bool gnd_landing = mAcch.ChkGroundLanding();
     bool wall_hit = mAcch.ChkWallHit();
     bool var_r30 = false;
+    int polyAtt0 = 16;
 
     if (gnd_landing) {
-        var_r30 = dComIfG_Bgsp().GetPolyAtt0(mAcch.m_gnd) != 3;
+        polyAtt0 = dComIfG_Bgsp().GetPolyAtt0(mAcch.m_gnd);
+        var_r30 = polyAtt0 != 3;
     }
 
     if (mMode == MODE_DROP) {
@@ -3650,7 +3775,7 @@ bool daObjCarry_c::check_bg_damage_proc_base() {
     return 0;
 }
 
-/* 80476764-804767C4 0077E4 0060+00 7/4 0/0 0/0 .text bg_damage_proc_kotubo__12daObjCarry_cFv */
+/* 80476764-804767C4 0077E4 0060+00 7/4 0/0 0/0 .text            bg_damage_proc_kotubo__12daObjCarry_cFv */
 bool daObjCarry_c::bg_damage_proc_kotubo() {
     bool rt = check_bg_damage_proc_base();
     if (rt) {
@@ -3661,32 +3786,36 @@ bool daObjCarry_c::bg_damage_proc_kotubo() {
     return rt;
 }
 
-/* 804767C4-804767E4 007844 0020+00 3/0 0/0 0/0 .text bg_damage_proc_ootubo__12daObjCarry_cFv */
+/* 804767C4-804767E4 007844 0020+00 3/0 0/0 0/0 .text            bg_damage_proc_ootubo__12daObjCarry_cFv */
 bool daObjCarry_c::bg_damage_proc_ootubo() {
-    return bg_damage_proc_kotubo();
+    bool proc_kotubo = bg_damage_proc_kotubo();
+    return proc_kotubo;
 }
 
-/* 804767E4-80476804 007864 0020+00 1/0 0/0 0/0 .text bg_damage_proc_kibako__12daObjCarry_cFv */
+/* 804767E4-80476804 007864 0020+00 1/0 0/0 0/0 .text            bg_damage_proc_kibako__12daObjCarry_cFv */
 bool daObjCarry_c::bg_damage_proc_kibako() {
-    return bg_damage_proc_kotubo();
+    bool proc_kotubo = bg_damage_proc_kotubo();
+    return proc_kotubo;
 }
 
-/* 80476804-8047680C 007884 0008+00 1/0 0/0 0/0 .text bg_damage_proc_ironball__12daObjCarry_cFv */
+/* 80476804-8047680C 007884 0008+00 1/0 0/0 0/0 .text            bg_damage_proc_ironball__12daObjCarry_cFv */
 bool daObjCarry_c::bg_damage_proc_ironball() {
     return false;
 }
 
-/* 8047680C-8047682C 00788C 0020+00 1/0 0/0 0/0 .text bg_damage_proc_taru__12daObjCarry_cFv */
+/* 8047680C-8047682C 00788C 0020+00 1/0 0/0 0/0 .text            bg_damage_proc_taru__12daObjCarry_cFv */
 bool daObjCarry_c::bg_damage_proc_taru() {
-    return bg_damage_proc_kotubo();
+    bool proc_kotubo = bg_damage_proc_kotubo();
+    return proc_kotubo;
 }
 
-/* 8047682C-8047684C 0078AC 0020+00 1/0 0/0 0/0 .text bg_damage_proc_dokuro__12daObjCarry_cFv */
+/* 8047682C-8047684C 0078AC 0020+00 1/0 0/0 0/0 .text            bg_damage_proc_dokuro__12daObjCarry_cFv */
 bool daObjCarry_c::bg_damage_proc_dokuro() {
-    return bg_damage_proc_kotubo();
+    bool proc_kotubo = bg_damage_proc_kotubo();
+    return proc_kotubo;
 }
 
-/* 8047684C-80476930 0078CC 00E4+00 1/0 0/0 0/0 .text bg_damage_proc_bokkuri__12daObjCarry_cFv */
+/* 8047684C-80476930 0078CC 00E4+00 1/0 0/0 0/0 .text            bg_damage_proc_bokkuri__12daObjCarry_cFv */
 bool daObjCarry_c::bg_damage_proc_bokkuri() {
     bool rt = check_bg_damage_proc_base();
     if (field_0xd74 != 0) {
@@ -3707,8 +3836,7 @@ bool daObjCarry_c::bg_damage_proc_bokkuri() {
     return rt;
 }
 
-/* 80476930-80476938 0079B0 0008+00 2/0 0/0 0/0 .text            bg_damage_proc_LightBall__12daObjCarry_cFv
- */
+/* 80476930-80476938 0079B0 0008+00 2/0 0/0 0/0 .text            bg_damage_proc_LightBall__12daObjCarry_cFv */
 bool daObjCarry_c::bg_damage_proc_LightBall() {
     return false;
 }
@@ -3722,6 +3850,12 @@ bool daObjCarry_c::bg_damage_proc_Lv8Ball() {
 void daObjCarry_c::obj_break(bool i_createItem, bool i_cancelCarry, bool i_doBreakEff) {
     int item_no = getItemNo();
     int item_bit = getItemBit();
+
+    #if DEBUG
+    if (l_HIO.field_0x9 != 0) {
+        item_no = l_HIO.field_0xa;
+    }
+    #endif
 
     if (i_createItem) {
         if (getItemType() == 0) {
@@ -3744,8 +3878,7 @@ void daObjCarry_c::obj_break(bool i_createItem, bool i_cancelCarry, bool i_doBre
     }
 }
 
-/* 80476A5C-80476B04 007ADC 00A8+00 1/1 0/0 0/0 .text check_cc_damage_proc_base__12daObjCarry_cFb
- */
+/* 80476A5C-80476B04 007ADC 00A8+00 1/1 0/0 0/0 .text            check_cc_damage_proc_base__12daObjCarry_cFb */
 bool daObjCarry_c::check_cc_damage_proc_base(bool param_0) {
     bool rt = false;
 
@@ -3763,7 +3896,7 @@ bool daObjCarry_c::check_cc_damage_proc_base(bool param_0) {
     return rt;
 }
 
-/* 80476B04-80476B68 007B84 0064+00 5/2 0/0 0/0 .text cc_damage_proc_kotubo__12daObjCarry_cFv */
+/* 80476B04-80476B68 007B84 0064+00 5/2 0/0 0/0 .text            cc_damage_proc_kotubo__12daObjCarry_cFv */
 bool daObjCarry_c::cc_damage_proc_kotubo() {
     bool rt = check_cc_damage_proc_base(false);
     if (rt) {
@@ -3774,12 +3907,12 @@ bool daObjCarry_c::cc_damage_proc_kotubo() {
     return rt;
 }
 
-/* 80476B68-80476B88 007BE8 0020+00 3/0 0/0 0/0 .text cc_damage_proc_ootubo__12daObjCarry_cFv */
+/* 80476B68-80476B88 007BE8 0020+00 3/0 0/0 0/0 .text            cc_damage_proc_ootubo__12daObjCarry_cFv */
 bool daObjCarry_c::cc_damage_proc_ootubo() {
     return cc_damage_proc_kotubo();
 }
 
-/* 80476B88-80476CE4 007C08 015C+00 1/0 0/0 0/0 .text cc_damage_proc_kibako__12daObjCarry_cFv */
+/* 80476B88-80476CE4 007C08 015C+00 1/0 0/0 0/0 .text            cc_damage_proc_kibako__12daObjCarry_cFv */
 bool daObjCarry_c::cc_damage_proc_kibako() {
     bool break_obj = false;
     bool do_break_eff = false;
@@ -3826,7 +3959,7 @@ bool daObjCarry_c::cc_damage_proc_kibako() {
     return break_obj;
 }
 
-/* 80476CE4-80476E04 007D64 0120+00 1/0 0/0 0/0 .text cc_damage_proc_ironball__12daObjCarry_cFv */
+/* 80476CE4-80476E04 007D64 0120+00 1/0 0/0 0/0 .text            cc_damage_proc_ironball__12daObjCarry_cFv */
 // NONMATCHING - regalloc, equivalent
 bool daObjCarry_c::cc_damage_proc_ironball() {
     bool var_r26 = false;
@@ -3854,7 +3987,7 @@ bool daObjCarry_c::cc_damage_proc_ironball() {
     return var_r26;
 }
 
-/* 80476E04-80476F88 007E84 0184+00 1/0 0/0 0/0 .text cc_damage_proc_taru__12daObjCarry_cFv */
+/* 80476E04-80476F88 007E84 0184+00 1/0 0/0 0/0 .text            cc_damage_proc_taru__12daObjCarry_cFv */
 bool daObjCarry_c::cc_damage_proc_taru() {
     bool break_obj = false;
     bool do_break_eff = false;
@@ -3903,12 +4036,12 @@ bool daObjCarry_c::cc_damage_proc_taru() {
     return break_obj;
 }
 
-/* 80476F88-80476FA8 008008 0020+00 1/0 0/0 0/0 .text cc_damage_proc_dokuro__12daObjCarry_cFv */
+/* 80476F88-80476FA8 008008 0020+00 1/0 0/0 0/0 .text            cc_damage_proc_dokuro__12daObjCarry_cFv */
 bool daObjCarry_c::cc_damage_proc_dokuro() {
     return cc_damage_proc_kotubo();
 }
 
-/* 80476FA8-804771B0 008028 0208+00 1/0 0/0 0/0 .text cc_damage_proc_bokkuri__12daObjCarry_cFv */
+/* 80476FA8-804771B0 008028 0208+00 1/0 0/0 0/0 .text            cc_damage_proc_bokkuri__12daObjCarry_cFv */
 bool daObjCarry_c::cc_damage_proc_bokkuri() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     bool break_obj = false;
@@ -3966,18 +4099,18 @@ bool daObjCarry_c::cc_damage_proc_bokkuri() {
     return break_obj;
 }
 
-/* 804771B0-804771B8 008230 0008+00 2/0 0/0 0/0 .text cc_damage_proc_LightBall__12daObjCarry_cFv
+/* 804771B0-804771B8 008230 0008+00 2/0 0/0 0/0 .text            cc_damage_proc_LightBall__12daObjCarry_cFv
  */
 bool daObjCarry_c::cc_damage_proc_LightBall() {
     return false;
 }
 
-/* 804771B8-804771C0 008238 0008+00 1/0 0/0 0/0 .text cc_damage_proc_Lv8Ball__12daObjCarry_cFv */
+/* 804771B8-804771C0 008238 0008+00 1/0 0/0 0/0 .text            cc_damage_proc_Lv8Ball__12daObjCarry_cFv */
 bool daObjCarry_c::cc_damage_proc_Lv8Ball() {
     return false;
 }
 
-/* 804771C0-8047731C 008240 015C+00 7/7 0/0 0/0 .text eff_break_tuboBmd__12daObjCarry_cFUs4cXyz */
+/* 804771C0-8047731C 008240 015C+00 7/7 0/0 0/0 .text            eff_break_tuboBmd__12daObjCarry_cFUs4cXyz */
 void daObjCarry_c::eff_break_tuboBmd(u16 param_0, cXyz param_1) {
     J3DModelData* tubo_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", 0x20);
     J3DAnmTexPattern* tubo_btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("Always", 0x42);
@@ -3992,7 +4125,7 @@ void daObjCarry_c::eff_break_tuboBmd(u16 param_0, cXyz param_1) {
     dComIfGp_particle_set(0x15D, &current.pos, NULL, NULL, 0xFF, dPa_control_c::getTsuboSelectTexEcallBack(param_0), fopAcM_GetRoomNo(this), NULL, NULL, &param_1);
 }
 
-/* 8047731C-8047747C 00839C 0160+00 2/2 0/0 0/0 .text eff_break_kibakoBmd__12daObjCarry_cF4cXyz */
+/* 8047731C-8047747C 00839C 0160+00 2/2 0/0 0/0 .text            eff_break_kibakoBmd__12daObjCarry_cF4cXyz */
 void daObjCarry_c::eff_break_kibakoBmd(cXyz i_size) {
     cXyz pos(current.pos);
 
@@ -4009,8 +4142,7 @@ void daObjCarry_c::eff_break_kibakoBmd(cXyz i_size) {
     }
 }
 
-/* 8047747C-804774D4 0084FC 0058+00 1/0 0/0 0/0 .text            eff_break_tsubo__12daObjCarry_cFv
- */
+/* 8047747C-804774D4 0084FC 0058+00 1/0 0/0 0/0 .text            eff_break_tsubo__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_tsubo() {
     u16 var_r31 = 0;
 
@@ -4018,8 +4150,7 @@ void daObjCarry_c::eff_break_tsubo() {
     eff_break_tuboBmd(var_r31, spC);
 }
 
-/* 804774D4-8047752C 008554 0058+00 1/0 0/0 0/0 .text            eff_break_ootubo__12daObjCarry_cFv
- */
+/* 804774D4-8047752C 008554 0058+00 1/0 0/0 0/0 .text            eff_break_ootubo__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_ootubo() {
     u16 var_r31 = 1;
 
@@ -4027,14 +4158,13 @@ void daObjCarry_c::eff_break_ootubo() {
     eff_break_tuboBmd(var_r31, spC);
 }
 
-/* 8047752C-80477574 0085AC 0048+00 1/0 0/0 0/0 .text            eff_break_kibako__12daObjCarry_cFv
- */
+/* 8047752C-80477574 0085AC 0048+00 1/0 0/0 0/0 .text            eff_break_kibako__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_kibako() {
     cXyz size(scale);
     eff_break_kibakoBmd(size);
 }
 
-/* 80477574-80477578 0085F4 0004+00 1/0 0/0 0/0 .text eff_break_ironball__12daObjCarry_cFv */
+/* 80477574-80477578 0085F4 0004+00 1/0 0/0 0/0 .text            eff_break_ironball__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_ironball() {}
 
 /* 80477578-804775BC 0085F8 0044+00 1/0 0/0 0/0 .text            eff_break_taru__12daObjCarry_cFv */
@@ -4043,8 +4173,7 @@ void daObjCarry_c::eff_break_taru() {
     eff_break_kibakoBmd(size);
 }
 
-/* 804775BC-80477614 00863C 0058+00 1/0 0/0 0/0 .text            eff_break_dokuro__12daObjCarry_cFv
- */
+/* 804775BC-80477614 00863C 0058+00 1/0 0/0 0/0 .text            eff_break_dokuro__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_dokuro() {
     u16 var_r31 = 2;
 
@@ -4052,8 +4181,7 @@ void daObjCarry_c::eff_break_dokuro() {
     eff_break_tuboBmd(var_r31, spC);
 }
 
-/* 80477614-80477798 008694 0184+00 1/0 0/0 0/0 .text            eff_break_bokkuri__12daObjCarry_cFv
- */
+/* 80477614-80477798 008694 0184+00 1/0 0/0 0/0 .text            eff_break_bokkuri__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_bokkuri() {
     cXyz pos(current.pos);
     pos.y += 50.0f;
@@ -4074,8 +4202,7 @@ void daObjCarry_c::eff_break_bokkuri() {
     }
 }
 
-/* 80477798-804777F0 008818 0058+00 1/0 0/0 0/0 .text            eff_break_kotubo2__12daObjCarry_cFv
- */
+/* 80477798-804777F0 008818 0058+00 1/0 0/0 0/0 .text            eff_break_kotubo2__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_kotubo2() {
     u16 var_r31 = 1;
 
@@ -4083,11 +4210,10 @@ void daObjCarry_c::eff_break_kotubo2() {
     eff_break_tuboBmd(var_r31, spC);
 }
 
-/* 804777F0-804777F4 008870 0004+00 2/0 0/0 0/0 .text eff_break_LightBall__12daObjCarry_cFv */
+/* 804777F0-804777F4 008870 0004+00 2/0 0/0 0/0 .text            eff_break_LightBall__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_LightBall() {}
 
-/* 804777F4-8047784C 008874 0058+00 1/0 0/0 0/0 .text            eff_break_ootubo2__12daObjCarry_cFv
- */
+/* 804777F4-8047784C 008874 0058+00 1/0 0/0 0/0 .text            eff_break_ootubo2__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_ootubo2() {
     u16 var_r31 = 0;
 
@@ -4095,12 +4221,10 @@ void daObjCarry_c::eff_break_ootubo2() {
     eff_break_tuboBmd(var_r31, spC);
 }
 
-/* 8047784C-80477850 0088CC 0004+00 1/0 0/0 0/0 .text            eff_break_Lv8Ball__12daObjCarry_cFv
- */
+/* 8047784C-80477850 0088CC 0004+00 1/0 0/0 0/0 .text            eff_break_Lv8Ball__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_Lv8Ball() {}
 
-/* 80477850-804778A8 0088D0 0058+00 1/0 0/0 0/0 .text            eff_break_tsuboL8__12daObjCarry_cFv
- */
+/* 80477850-804778A8 0088D0 0058+00 1/0 0/0 0/0 .text            eff_break_tsuboL8__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_tsuboL8() {
     u16 var_r31 = 7;
 
@@ -4108,7 +4232,7 @@ void daObjCarry_c::eff_break_tsuboL8() {
     eff_break_tuboBmd(var_r31, spC);
 }
 
-/* 804778A8-80477900 008928 0058+00 1/0 0/0 0/0 .text eff_break_ootuboL8__12daObjCarry_cFv */
+/* 804778A8-80477900 008928 0058+00 1/0 0/0 0/0 .text            eff_break_ootuboL8__12daObjCarry_cFv */
 void daObjCarry_c::eff_break_ootuboL8() {
     u16 var_r31 = 7;
 
@@ -4116,14 +4240,14 @@ void daObjCarry_c::eff_break_ootuboL8() {
     eff_break_tuboBmd(var_r31, spC);
 }
 
-/* 80477900-80477990 008980 0090+00 1/1 0/0 0/0 .text se_break__12daObjCarry_cFP13cBgS_PolyInfo */
+/* 80477900-80477990 008980 0090+00 1/1 0/0 0/0 .text            se_break__12daObjCarry_cFP13cBgS_PolyInfo */
 void daObjCarry_c::se_break(cBgS_PolyInfo*) {
     if (field_0xdb3 == 0) {
         fopAcM_seStart(this, data().m_breakSound, 0);
     }
 }
 
-/* 80477990-80477A14 008A10 0084+00 1/1 0/0 0/0 .text se_put__12daObjCarry_cFP13cBgS_PolyInfo */
+/* 80477990-80477A14 008A10 0084+00 1/1 0/0 0/0 .text            se_put__12daObjCarry_cFP13cBgS_PolyInfo */
 void daObjCarry_c::se_put(cBgS_PolyInfo*) {
     fopAcM_seStart(this, data().m_putSound, 0);
 }
@@ -4138,16 +4262,18 @@ void daObjCarry_c::se_fall_water() {
     fopAcM_seStart(this, data().m_fallWaterSound, 0);
 }
 
-/* 80477B1C-80477FE0 008B9C 04C4+00 7/7 0/0 0/0 .text calc_rot_axis_base__12daObjCarry_cFUc */
+/* 80477B1C-80477FE0 008B9C 04C4+00 7/7 0/0 0/0 .text            calc_rot_axis_base__12daObjCarry_cFUc */
 void daObjCarry_c::calc_rot_axis_base(u8 param_0) {
     field_0xd4c = ZeroQuat;
 
     if (fopAcM_checkCarryNow(this)) {
         if (field_0xd7b < 0) {
-            mDoMtx_quatSlerp(&field_0xd3c, &ZeroQuat, &field_0xd3c, 0.25f * daPy_getLinkPlayerActorClass()->getBaseAnimeFrameRate());
-        } else {
-            field_0xd7b--;
+            f32 fVar1 = 0.25f * daPy_getLinkPlayerActorClass()->getBaseAnimeFrameRate();
+            mDoMtx_quatSlerp(&field_0xd3c, &ZeroQuat, &field_0xd3c, fVar1);
+            return;
         }
+        
+        field_0xd7b--;
         return;
     }
 
@@ -4198,7 +4324,7 @@ void daObjCarry_c::calc_rot_axis_base(u8 param_0) {
     field_0xd7b = param_0;
 }
 
-/* 80477FE0-80478004 009060 0024+00 2/0 0/0 0/0 .text calc_rot_axis_tsubo__12daObjCarry_cFv */
+/* 80477FE0-80478004 009060 0024+00 2/0 0/0 0/0 .text            calc_rot_axis_tsubo__12daObjCarry_cFv */
 void daObjCarry_c::calc_rot_axis_tsubo() {
     cXyz sp20;
     int var_r30 = 0;
@@ -4242,12 +4368,12 @@ void daObjCarry_c::calc_rot_axis_tsubo() {
     }
 }
 
-/* 80478004-80478028 009084 0024+00 3/0 0/0 0/0 .text calc_rot_axis_ootubo__12daObjCarry_cFv */
+/* 80478004-80478028 009084 0024+00 3/0 0/0 0/0 .text            calc_rot_axis_ootubo__12daObjCarry_cFv */
 void daObjCarry_c::calc_rot_axis_ootubo() {
     calc_rot_axis_base(10);
 }
 
-/* 80478028-8047814C 0090A8 0124+00 2/1 0/0 0/0 .text calc_rot_axis_kibako__12daObjCarry_cFv */
+/* 80478028-8047814C 0090A8 0124+00 2/1 0/0 0/0 .text            calc_rot_axis_kibako__12daObjCarry_cFv */
 void daObjCarry_c::calc_rot_axis_kibako() {
     if (fopAcM_checkCarryNow(this)) {
         mRotAxis = cXyz::Zero;
@@ -4266,22 +4392,22 @@ void daObjCarry_c::calc_rot_axis_kibako() {
     }
 }
 
-/* 8047814C-80478170 0091CC 0024+00 1/0 0/0 0/0 .text calc_rot_axis_ironball__12daObjCarry_cFv */
+/* 8047814C-80478170 0091CC 0024+00 1/0 0/0 0/0 .text            calc_rot_axis_ironball__12daObjCarry_cFv */
 void daObjCarry_c::calc_rot_axis_ironball() {
     calc_rot_axis_base(10);
 }
 
-/* 80478170-80478190 0091F0 0020+00 1/0 0/0 0/0 .text calc_rot_axis_taru__12daObjCarry_cFv */
+/* 80478170-80478190 0091F0 0020+00 1/0 0/0 0/0 .text            calc_rot_axis_taru__12daObjCarry_cFv */
 void daObjCarry_c::calc_rot_axis_taru() {
     calc_rot_axis_kibako();
 }
 
-/* 80478190-804781B4 009210 0024+00 1/0 0/0 0/0 .text calc_rot_axis_dokuro__12daObjCarry_cFv */
+/* 80478190-804781B4 009210 0024+00 1/0 0/0 0/0 .text            calc_rot_axis_dokuro__12daObjCarry_cFv */
 void daObjCarry_c::calc_rot_axis_dokuro() {
     calc_rot_axis_base(5);
 }
 
-/* 804781B4-804783C0 009234 020C+00 1/0 0/0 0/0 .text calc_rot_axis_bokkuri__12daObjCarry_cFv */
+/* 804781B4-804783C0 009234 020C+00 1/0 0/0 0/0 .text            calc_rot_axis_bokkuri__12daObjCarry_cFv */
 void daObjCarry_c::calc_rot_axis_bokkuri() {
     if (mMode == MODE_DROP || mMode == MODE_DB_DROP) {
         if (fopAcM_checkCarryNow(this)) {
@@ -4304,25 +4430,22 @@ void daObjCarry_c::calc_rot_axis_bokkuri() {
     } else {
         mRotAxis = cXyz::Zero;
         mRotation = 0;
-        field_0xd60 = 0.0f;
-        field_0xd5c = 0.0f;
-        field_0xd68 = 0;
-        field_0xd66 = 0;
-        field_0xd64 = 0;
+        field_0xd5c = field_0xd60 = 0.0f;
+        field_0xd64 = field_0xd66 = field_0xd68 = 0;
     }
 }
 
-/* 804783C0-804783E4 009440 0024+00 1/0 0/0 0/0 .text calc_rot_axis_kotubo2__12daObjCarry_cFv */
+/* 804783C0-804783E4 009440 0024+00 1/0 0/0 0/0 .text            calc_rot_axis_kotubo2__12daObjCarry_cFv */
 void daObjCarry_c::calc_rot_axis_kotubo2() {
     calc_rot_axis_base(5);
 }
 
-/* 804783E4-80478408 009464 0024+00 2/0 0/0 0/0 .text calc_rot_axis_LightBall__12daObjCarry_cFv */
+/* 804783E4-80478408 009464 0024+00 2/0 0/0 0/0 .text            calc_rot_axis_LightBall__12daObjCarry_cFv */
 void daObjCarry_c::calc_rot_axis_LightBall() {
     calc_rot_axis_base(10);
 }
 
-/* 80478408-8047842C 009488 0024+00 1/0 0/0 0/0 .text calc_rot_axis_Lv8Ball__12daObjCarry_cFv */
+/* 80478408-8047842C 009488 0024+00 1/0 0/0 0/0 .text            calc_rot_axis_Lv8Ball__12daObjCarry_cFv */
 void daObjCarry_c::calc_rot_axis_Lv8Ball() {
     calc_rot_axis_base(10);
 }
@@ -4364,23 +4487,20 @@ void daObjCarry_c::set_wind_power() {
     }
 }
 
-/* 80478808-80478828 009888 0020+00 3/0 0/0 0/0 .text            exec_proc_tsubo__12daObjCarry_cFv
- */
+/* 80478808-80478828 009888 0020+00 3/0 0/0 0/0 .text            exec_proc_tsubo__12daObjCarry_cFv */
 void daObjCarry_c::exec_proc_tsubo() {
     set_wind_power();
 }
 
-/* 80478828-80478848 0098A8 0020+00 3/0 0/0 0/0 .text            exec_proc_ootubo__12daObjCarry_cFv
- */
+/* 80478828-80478848 0098A8 0020+00 3/0 0/0 0/0 .text            exec_proc_ootubo__12daObjCarry_cFv */
 void daObjCarry_c::exec_proc_ootubo() {
     set_wind_power();
 }
 
-/* 80478848-8047884C 0098C8 0004+00 1/0 0/0 0/0 .text            exec_proc_kibako__12daObjCarry_cFv
- */
+/* 80478848-8047884C 0098C8 0004+00 1/0 0/0 0/0 .text            exec_proc_kibako__12daObjCarry_cFv */
 void daObjCarry_c::exec_proc_kibako() {}
 
-/* 8047884C-804788C4 0098CC 0078+00 1/0 0/0 0/0 .text exec_proc_ironball__12daObjCarry_cFv */
+/* 8047884C-804788C4 0098CC 0078+00 1/0 0/0 0/0 .text            exec_proc_ironball__12daObjCarry_cFv */
 void daObjCarry_c::exec_proc_ironball() {
     if (mAcch.GetGroundH() != -G_CM3D_F_INF) {
         savePos(getSaveID(), current.pos);
@@ -4391,18 +4511,20 @@ void daObjCarry_c::exec_proc_ironball() {
 /* 804788C4-804788C8 009944 0004+00 1/0 0/0 0/0 .text            exec_proc_taru__12daObjCarry_cFv */
 void daObjCarry_c::exec_proc_taru() {}
 
-/* 804788C8-804788CC 009948 0004+00 1/0 0/0 0/0 .text            exec_proc_dokuro__12daObjCarry_cFv
- */
+/* 804788C8-804788CC 009948 0004+00 1/0 0/0 0/0 .text            exec_proc_dokuro__12daObjCarry_cFv */
 void daObjCarry_c::exec_proc_dokuro() {}
 
-/* 804788CC-80478C18 00994C 034C+00 1/0 0/0 0/0 .text            exec_proc_bokkuri__12daObjCarry_cFv
- */
+/* 804788CC-80478C18 00994C 034C+00 1/0 0/0 0/0 .text            exec_proc_bokkuri__12daObjCarry_cFv */
 void daObjCarry_c::exec_proc_bokkuri() {
-    switch (field_0xd79) {
+    switch (mBokkuriExecProcMode) {
     case 0:
         if (mAcch.ChkGroundLanding()) {
-            field_0xd79 = 1;
+            mBokkuriExecProcMode = 1;
+            #if DEBUG
+            field_0xd77 = l_HIO.field_0xc;
+            #else
             field_0xd77 = 15;
+            #endif
         }
         break;
     case 1:
@@ -4412,14 +4534,14 @@ void daObjCarry_c::exec_proc_bokkuri() {
 
         if (field_0xd77 == 0) {
             mSound.startSound(Z2SE_EN_DB_SHRINK, 0, -1);
-            field_0xd79 = 2;
+            mBokkuriExecProcMode = 2;
         }
         break;
     case 2:
         cLib_chaseUC(&field_0xd76, 0, 0xFF / 24);
         if (field_0xd76 == 0) {
             field_0xd75 = 0;
-            field_0xd79 = 3;
+            mBokkuriExecProcMode = 3;
         }
         break;
     case 3:
@@ -4470,30 +4592,41 @@ void daObjCarry_c::exec_proc_bokkuri() {
     }
 }
 
-/* 80478C18-80478CE4 009C98 00CC+00 2/0 0/0 0/0 .text exec_proc_LightBall__12daObjCarry_cFv */
+/* 80478C18-80478CE4 009C98 00CC+00 2/0 0/0 0/0 .text            exec_proc_LightBall__12daObjCarry_cFv */
 void daObjCarry_c::exec_proc_LightBall() {
     mDalkmistInf.mPos = current.pos;
     mLightAtSph.SetC(current.pos);
     dComIfG_Ccsp()->Set(&mLightAtSph);
 
-    if (mCyl.ChkTgHit() && mCyl.GetTgHitObj()) {
-        mSound.startCollisionSE(mCyl.GetTgHitObjHitSeID(1), 2, NULL);
+    #if DEBUG
+    mDalkmistInf.field_0xc = KREG_F(10) + 750.0f;
+    #endif
+
+    if (mCyl.ChkTgHit()) {
+        cCcD_Obj* tgHitObj = mCyl.GetTgHitObj();
+        if (tgHitObj) {
+            u32 hitSeID = mCyl.GetTgHitObjHitSeID(1);
+            mSound.startCollisionSE(hitSeID, 2, NULL);
+        }
     }
 
     mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
-/* 80478CE4-80478D78 009D64 0094+00 1/0 0/0 0/0 .text            exec_proc_Lv8Ball__12daObjCarry_cFv
- */
+/* 80478CE4-80478D78 009D64 0094+00 1/0 0/0 0/0 .text            exec_proc_Lv8Ball__12daObjCarry_cFv */
 void daObjCarry_c::exec_proc_Lv8Ball() {
-    if (mCyl.ChkTgHit() && mCyl.GetTgHitObj()) {
-        mSound.startCollisionSE(mCyl.GetTgHitObjHitSeID(1), 2, NULL);
+    if (mCyl.ChkTgHit()) {
+        cCcD_Obj* tgHitObj = mCyl.GetTgHitObj();
+        if (tgHitObj) {
+            u32 hitSeID = mCyl.GetTgHitObjHitSeID(1);
+            mSound.startCollisionSE(hitSeID, 2, NULL);
+        }
     }
 
     mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
-/* 80478D78-80478F50 009DF8 01D8+00 1/1 0/0 0/0 .text bg_damage_proc_call__12daObjCarry_cFv */
+/* 80478D78-80478F50 009DF8 01D8+00 1/1 0/0 0/0 .text            bg_damage_proc_call__12daObjCarry_cFv */
 void daObjCarry_c::bg_damage_proc_call() {
     typedef bool (daObjCarry_c::*type_func)();
     static type_func l_type_func[] = {
@@ -4506,12 +4639,20 @@ void daObjCarry_c::bg_damage_proc_call() {
         &daObjCarry_c::bg_damage_proc_kotubo,    &daObjCarry_c::bg_damage_proc_ootubo,
     };
 
-    if (field_0xdae == 0) {
-        field_0xdae |= (this->*l_type_func[mType])();
+    #if DEBUG
+    if (mType == 3 || l_HIO.field_0x5 == 0 || l_HIO.field_0x6 == 0) {
+    #endif
+
+        if (field_0xdae == 0) {
+            field_0xdae |= (this->*l_type_func[mType])();
+        }
+
+    #if DEBUG
     }
+    #endif
 }
 
-/* 80478F50-80479128 009FD0 01D8+00 1/1 0/0 0/0 .text cc_damage_proc_call__12daObjCarry_cFv */
+/* 80478F50-80479128 009FD0 01D8+00 1/1 0/0 0/0 .text            cc_damage_proc_call__12daObjCarry_cFv */
 void daObjCarry_c::cc_damage_proc_call() {
     typedef bool (daObjCarry_c::*type_func)();
     static type_func l_type_func[] = {
@@ -4524,9 +4665,17 @@ void daObjCarry_c::cc_damage_proc_call() {
         &daObjCarry_c::cc_damage_proc_kotubo,    &daObjCarry_c::cc_damage_proc_ootubo,
     };
 
+    #if DEBUG
+    if (l_HIO.field_0x5 == 0 || l_HIO.field_0x6 == 0) {
+    #endif
+    
     if (field_0xdae == 0) {
         field_0xdae |= (this->*l_type_func[mType])();
     }
+
+    #if DEBUG
+    }
+    #endif
 }
 
 /* 80479128-804792D4 00A1A8 01AC+00 1/1 0/0 0/0 .text            eff_break_call__12daObjCarry_cFv */
@@ -4561,7 +4710,7 @@ void daObjCarry_c::calc_rot_call() {
     (this->*l_type_func[mType])();
 }
 
-/* 80479480-8047962C 00A500 01AC+00 1/1 0/0 0/0 .text obj_execute_proc_call__12daObjCarry_cFv */
+/* 80479480-8047962C 00A500 01AC+00 1/1 0/0 0/0 .text            obj_execute_proc_call__12daObjCarry_cFv */
 void daObjCarry_c::obj_execute_proc_call() {
     typedef void (daObjCarry_c::*type_func)();
     static type_func l_type_func[] = {
@@ -4577,8 +4726,7 @@ void daObjCarry_c::obj_execute_proc_call() {
     (this->*l_type_func[mType])();
 }
 
-/* 8047962C-80479648 00A6AC 001C+00 1/1 0/0 0/0 .text            setTgHitCallBack__12daObjCarry_cFv
- */
+/* 8047962C-80479648 00A6AC 001C+00 1/1 0/0 0/0 .text            setTgHitCallBack__12daObjCarry_cFv */
 void daObjCarry_c::setTgHitCallBack() {
     typedef void (*TgCallBack)(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
     static TgCallBack l_callback[] = {
@@ -4592,8 +4740,7 @@ void daObjCarry_c::setTgHitCallBack() {
     mCyl.SetTgHitCallback(l_callback[mType]);
 }
 
-/* 80479648-80479664 00A6C8 001C+00 1/1 0/0 0/0 .text            setCoHitCallBack__12daObjCarry_cFv
- */
+/* 80479648-80479664 00A6C8 001C+00 1/1 0/0 0/0 .text            setCoHitCallBack__12daObjCarry_cFv */
 void daObjCarry_c::setCoHitCallBack() {
     typedef void (*CoCallBack)(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
     static CoCallBack l_callback[] = {
@@ -4623,27 +4770,27 @@ int daObjCarry_c::CreateInitCall() {
     return (this->*l_func[mType])();
 }
 
-/* 80479810-80479830 00A890 0020+00 1/0 0/0 0/0 .text            daObjCarry_Draw__FP12daObjCarry_c
- */
+/* 80479810-80479830 00A890 0020+00 1/0 0/0 0/0 .text            daObjCarry_Draw__FP12daObjCarry_c */
 static int daObjCarry_Draw(daObjCarry_c* i_this) {
     return i_this->draw();
 }
 
-/* 80479830-80479850 00A8B0 0020+00 1/0 0/0 0/0 .text daObjCarry_Execute__FP12daObjCarry_c */
+/* 80479830-80479850 00A8B0 0020+00 1/0 0/0 0/0 .text            daObjCarry_Execute__FP12daObjCarry_c */
 static int daObjCarry_Execute(daObjCarry_c* i_this) {
     return i_this->execute();
 }
 
-/* 80479850-80479870 00A8D0 0020+00 1/0 0/0 0/0 .text            daObjCarry_Delete__FP12daObjCarry_c
- */
+/* 80479850-80479870 00A8D0 0020+00 1/0 0/0 0/0 .text            daObjCarry_Delete__FP12daObjCarry_c */
 static int daObjCarry_Delete(daObjCarry_c* i_this) {
+    fpc_ProcID id = fopAcM_GetID(i_this);
     return i_this->_delete();
 }
 
-/* 80479870-80479890 00A8F0 0020+00 1/0 0/0 0/0 .text            daObjCarry_Create__FP10fopAc_ac_c
- */
-static int daObjCarry_Create(fopAc_ac_c* i_this) {
-    return ((daObjCarry_c*)i_this)->create();
+/* 80479870-80479890 00A8F0 0020+00 1/0 0/0 0/0 .text            daObjCarry_Create__FP10fopAc_ac_c */
+static int daObjCarry_Create(fopAc_ac_c* a_this) {
+    daObjCarry_c* i_this = (daObjCarry_c*)a_this;
+    fpc_ProcID id = fopAcM_GetID(a_this);
+    return i_this->create();
 }
 
 /* 8047B110-8047B130 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjCarry_Method */
