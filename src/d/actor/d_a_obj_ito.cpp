@@ -19,6 +19,14 @@ daObj_Ito_HIO_c::daObj_Ito_HIO_c() {
     field_0x10 = 1;
 }
 
+#ifdef DEBUG
+void daObj_Ito_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genLabel("　ぶら下りＯＢＪ糸", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("糸長さ基準値", &field_0x8, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("糸位置補正値", &field_0xc, -100.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+}
+#endif
+
 /* 8047D9C8-8047D9CC 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 l_initHio;
 

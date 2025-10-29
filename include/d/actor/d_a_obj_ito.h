@@ -58,10 +58,12 @@ public:
 
 STATIC_ASSERT(sizeof(obj_ito_class) == 0x150c);
 
-class daObj_Ito_HIO_c {
+class daObj_Ito_HIO_c : public JORReflexible {
 public:
     /* 8047B2EC */ daObj_Ito_HIO_c();
     /* 8047D778 */ virtual ~daObj_Ito_HIO_c() {}
+    void genMessage(JORMContext*);
+
 
     /* ぶら下りＯＢＪ糸 */
     /* 0x04 */ s8 field_0x4;
