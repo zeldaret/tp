@@ -297,7 +297,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
     obj_rw_class* i_this = (obj_rw_class*)actor;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_rw", 3);
-    JUT_ASSERT(603, modelData != 0);
+    JUT_ASSERT(603, modelData != NULL);
 
     i_this->model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->model == NULL) {
