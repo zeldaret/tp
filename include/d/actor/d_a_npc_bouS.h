@@ -10,7 +10,42 @@
  *
  * @details
  *
- */
+*/
+
+struct daNpcBouS_HIOParam {
+    /* 0x00 */ daNpcF_HIOParam common;
+    /* 0x6C */ f32 excitement_level;
+    /* 0x70 */ f32 talk_dist;
+    /* 0x74 */ f32 gaze_x;
+    /* 0x78 */ f32 gaze_y;
+    /* 0x7C */ f32 gaze_z;
+    /* 0x80 */ f32 eye_dist;
+    /* 0x84 */ s16 eye_angle_x;
+    /* 0x86 */ s16 eye_angle_y;
+    /* 0x88 */ s16 field_0x88;
+};
+
+class daNpcBouS_Param_c {
+public:
+    /* 809783A4 */ ~daNpcBouS_Param_c();
+
+    static daNpcBouS_HIOParam const m;
+};
+
+#if DEBUG
+class daNpcBouS_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpcBouS_HIO_c();
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+    
+    /* 0x8 */ daNpcBouS_HIOParam m;
+};
+#define NPC_BOUS_HIO_CLASS daNpcBouS_HIO_c
+#else
+#define NPC_BOUS_HIO_CLASS daNpcBouS_Param_c
+#endif
+
 class daNpcBouS_c : public fopAc_ac_c {
 public:
     /* 8097354C */ daNpcBouS_c();
@@ -77,13 +112,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpcBouS_c) == 0xe00);
-
-class daNpcBouS_Param_c {
-public:
-    /* 809783A4 */ ~daNpcBouS_Param_c();
-
-    static u8 const m[140];
-};
-
 
 #endif /* D_A_NPC_BOUS_H */

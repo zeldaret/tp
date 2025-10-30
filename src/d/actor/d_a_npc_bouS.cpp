@@ -247,6 +247,19 @@ extern "C" void checkStartUp__15daNpcWrestler_cFv();
 // Declarations:
 //
 
+#if DEBUG
+void daNpcBouS_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genSlider("興奮度", &m.excitement_level, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("会話距離", &m.talk_dist, 0.0f, 500.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("目線 X", &m.gaze_x, -500.0f, 500.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("目線 Y", &m.gaze_y, -500.0f, 500.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("目線 Z", &m.gaze_z, -500.0f, 500.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("Eye 距離", &m.eye_dist, 0.0f, 3000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("Eye 角度X", &m.eye_angle_x, -0x8000, 0x7FFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("Eye 角度Y", &m.eye_angle_y, -0x8000, 0x7FFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+}
+#endif
+
 /* ############################################################################################## */
 /* 80978758-80978758 000348 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -467,33 +480,6 @@ SECTION_DATA static void* lit_5429[3] = {
     (void*)wait__11daNpcBouS_cFPv,
 };
 
-/* 80978A3C-80978A5C -00001 0020+00 1/0 0/0 0/0 .data            daNpcBouS_MethodTable */
-static actor_method_class daNpcBouS_MethodTable = {
-    (process_method_func)daNpcBouS_Create__FPv,
-    (process_method_func)daNpcBouS_Delete__FPv,
-    (process_method_func)daNpcBouS_Execute__FPv,
-    (process_method_func)daNpcBouS_IsDelete__FPv,
-    (process_method_func)daNpcBouS_Draw__FPv,
-};
-
-/* 80978A5C-80978A8C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_BOU_S */
-extern actor_process_profile_definition g_profile_NPC_BOU_S = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_BOU_S,         // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daNpcBouS_c),    // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  325,                    // mPriority
-  &daNpcBouS_MethodTable, // sub_method
-  0x00044100,             // mStatus
-  fopAc_NPC_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
 /* 80978A8C-80978A98 0002E8 000C+00 2/2 0/0 0/0 .data            __vt__11J3DTexNoAnm */
 SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
     (void*)NULL /* RTTI */,
@@ -614,20 +600,51 @@ daNpcBouS_c::~daNpcBouS_c() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
 /* 80978410-8097849C 000000 008C+00 13/13 0/0 0/0 .rodata          m__17daNpcBouS_Param_c */
-SECTION_RODATA u8 const daNpcBouS_Param_c::m[140] = {
-    0x43, 0x5C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
-    0x43, 0x7F, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
-    0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x03, 0x00, 0x06, 0x00, 0x13, 0x00, 0x06,
-    0x42, 0xA0, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
-    0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x43, 0x5C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00,
-    0x44, 0x23, 0xB2, 0x3D, 0xEB, 0x51, 0xA3, 0xC6, 0x00, 0x00, 0x00, 0x00,
+daNpcBouS_HIOParam const daNpcBouS_Param_c::m = {
+    220.0f,
+    -3.0f,
+    1.0f,
+    400.0f,
+    255.0f,
+    200.0f,
+    35.0f,
+    40.0f,
+    0.0f,
+    0.0f,
+    10.0f,
+    -10.0f,
+    30.0f,
+    -10.0f,
+    45.0f,
+    -45.0f,
+    0.6f,
+    12.0f,
+    3,
+    6,
+    0x13,
+    6,
+    80.0f,
+    500.0f,
+    300.0f,
+    -300.0f,
+    60,
+    8,
+    0,
+    0,
+    0,
+    false,
+    false,
+    0.0f,
+    220.0f,
+    0.0f,
+    100.0f,
+    80.0f,
+    654.78497f,
+    0xEB51,
+    0xA3C6,
+    0,
 };
-COMPILER_STRIP_GATE(0x80978410, &daNpcBouS_Param_c::m);
 
 /* 8097849C-809784A0 00008C 0004+00 0/1 0/0 0/0 .rodata          @4394 */
 #pragma push
@@ -1551,17 +1568,8 @@ SECTION_RODATA static u8 const lit_5697[8] = {
 COMPILER_STRIP_GATE(0x80978740, &lit_5697);
 #pragma pop
 
-/* 80978BD0-80978BDC 000060 000C+00 0/1 0/0 0/0 .bss             @4035 */
-#pragma push
-#pragma force_active on
-static u8 lit_4035[12];
-#pragma pop
-
 /* 80978BDC-80978BE0 00006C 0004+00 0/1 0/0 0/0 .bss             l_HIO */
-#pragma push
-#pragma force_active on
-static u8 l_HIO[4];
-#pragma pop
+static NPC_BOUS_HIO_CLASS l_HIO;
 
 /* 80978BE0-80978BEC 000070 000C+00 1/1 0/0 0/0 .bss             @4616 */
 static u8 lit_4616[12];
@@ -1925,3 +1933,30 @@ static void func_809783F4() {
 }
 
 /* 80978758-80978758 000348 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+
+/* 80978A3C-80978A5C -00001 0020+00 1/0 0/0 0/0 .data            daNpcBouS_MethodTable */
+static actor_method_class daNpcBouS_MethodTable = {
+    (process_method_func)daNpcBouS_Create,
+    (process_method_func)daNpcBouS_Delete,
+    (process_method_func)daNpcBouS_Execute,
+    (process_method_func)daNpcBouS_IsDelete,
+    (process_method_func)daNpcBouS_Draw,
+};
+
+/* 80978A5C-80978A8C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_BOU_S */
+extern actor_process_profile_definition g_profile_NPC_BOU_S = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_NPC_BOU_S,         // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daNpcBouS_c),    // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  325,                    // mPriority
+  &daNpcBouS_MethodTable, // sub_method
+  0x00044100,             // mStatus
+  fopAc_NPC_e,            // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};
