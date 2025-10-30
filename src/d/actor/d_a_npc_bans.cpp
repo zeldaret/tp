@@ -1237,21 +1237,10 @@ BOOL daNpc_Bans_c::setAction(actionFunc action) {
 
 /* 80964D20-80964DD0 002540 00B0+00 1/1 0/0 0/0 .text            checkPlayerIn2ndFloorOfBombShop__12daNpc_Bans_cFv */
 BOOL daNpc_Bans_c::checkPlayerIn2ndFloorOfBombShop() {
-    /* NONMATCHING */
     bool rv = false;
-    bool bVar1 = false;
 
-    if (strcmp("R_SP109", dComIfGp_getStartStageName()) == 0 && dComIfGp_roomControl_getStayNo() == 1) {
-        bVar1 = true;
-    }
-
-    if (bVar1) {
-        if (300.0f < fabsf(daPy_getPlayerActorClass()->current.pos.y - current.pos.y)) {
-            rv = true;
-        }
-    }
-
-    return rv;
+    return strcmp("R_SP109", dComIfGp_getStartStageName()) == 0 && dComIfGp_roomControl_getStayNo() == 1 &&
+           300.0f < fabsf(daPy_getPlayerActorClass()->current.pos.y - current.pos.y);
 }
 
 /* 80964DD0-80964EB0 0025F0 00E0+00 2/2 0/0 0/0 .text            orderAngerEvt__12daNpc_Bans_cFv */
@@ -1671,7 +1660,6 @@ int daNpc_Bans_c::wait(void* param_1) {
 
 /* 809661F0-80966874 003A10 0684+00 1/0 0/0 0/0 .text            tend__12daNpc_Bans_cFPv */
 int daNpc_Bans_c::tend(void* param_1) {
-    /* NONMATCHING */
     fopAc_ac_c* actor_p = NULL;
 
     switch (mMode) {
@@ -1739,13 +1727,13 @@ int daNpc_Bans_c::tend(void* param_1) {
                         cXyz attnPos = getAttnPos(daPy_getPlayerActorClass());
                         BOOL bVar2 = NULL != mPlayerActorMngr.getActorP();
                         
-                        int i_no = attention_info.distances[fopAc_attn_SPEAK_e];
+                        int i_no = actor_p->attention_info.distances[fopAc_attn_SPEAK_e];
                         f32 dist_max = dComIfGp_getAttention()->getDistTable(i_no).mDistMax;
                         f32 neg_lower_y = dComIfGp_getAttention()->getDistTable(i_no).mLowerY * -1.0f;
                         f32 neg_upper_y = dComIfGp_getAttention()->getDistTable(i_no).mUpperY * -1.0f;
 
                         if (bVar2) {
-                            int i_no = attention_info.distances[fopAc_attn_TALK_e];
+                            i_no = actor_p->attention_info.distances[fopAc_attn_TALK_e];
                             dist_max = dComIfGp_getAttention()->getDistTable(i_no).mDistMaxRelease;
                         }
 
