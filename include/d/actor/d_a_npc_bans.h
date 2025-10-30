@@ -136,7 +136,7 @@ public:
     /* 0x1266 */ u8 field_0x1266;
     /* 0x1267 */ u8 mDemo13Flag;
     /* 0x1268 */ u8 mDropWaterTimer;
-    /* 0x1269 */ u8 mMakingBombsFlag;
+    /* 0x1269 */ u8 field_0x1269;
     /* 0x126A */ u8 field_0x126a;
     /* 0x126B */ u8 field_0x126b;
     /* 0x126C */ u8 field_0x126c;

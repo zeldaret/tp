@@ -1106,7 +1106,7 @@ int daNpc_Bans_c::drawDbgInfo() {
         dDbVw_drawCircleOpa(attention_info.position, dist_max_speak, (GXColor){0x00, 0xC8, 0x00, 0xFF}, 1, 12);
         dDbVw_drawCircleOpa(attention_info.position, dist_max_talk, (GXColor){0xC8, 0x00, 0x00, 0xFF}, 1, 12);
         dDbVw_drawSphereXlu(eyePos, 18.0f, (GXColor){0x80, 0x80, 0x80, 0xA0}, 1);
-        dDbVw_drawSphereXlu(eyePos, 9.0f, (GXColor){0x80, 0x80, 0x80, 0xA0}, 1);
+        dDbVw_drawSphereXlu(attention_info.position, 9.0f, (GXColor){0x80, 0x80, 0x80, 0xA0}, 1);
     }
     #endif
     
@@ -1672,7 +1672,7 @@ int daNpc_Bans_c::wait(void* param_1) {
 /* 809661F0-80966874 003A10 0684+00 1/0 0/0 0/0 .text            tend__12daNpc_Bans_cFPv */
 int daNpc_Bans_c::tend(void* param_1) {
     /* NONMATCHING */
-    BOOL bVar1 = FALSE;
+    fopAc_ac_c* actor_p = NULL;
 
     switch (mMode) {
         case 0:
@@ -1732,8 +1732,8 @@ int daNpc_Bans_c::tend(void* param_1) {
 
                     attention_info.flags = 0;
                 } else {
-                    bVar1 = FALSE;
-                    fopAc_ac_c* actor_p = mActorMngrs[7].getActorP();
+                    BOOL bVar1 = FALSE;
+                    actor_p = mActorMngrs[7].getActorP();
 
                     if (actor_p != NULL) {
                         cXyz attnPos = getAttnPos(daPy_getPlayerActorClass());
@@ -1745,13 +1745,13 @@ int daNpc_Bans_c::tend(void* param_1) {
                         f32 neg_upper_y = dComIfGp_getAttention()->getDistTable(i_no).mUpperY * -1.0f;
 
                         if (bVar2) {
-                            i_no = attention_info.distances[fopAc_attn_TALK_e];
+                            int i_no = attention_info.distances[fopAc_attn_TALK_e];
                             dist_max = dComIfGp_getAttention()->getDistTable(i_no).mDistMaxRelease;
                         }
 
                         if (chkPointInArea(attnPos, actor_p->attention_info.position, dist_max, neg_lower_y, neg_upper_y, 0)) {
                             mJntAnm.lookPlayer(0);
-                            bVar1 = true;
+                            bVar1 = TRUE;
                         }
                     }
 
@@ -1810,11 +1810,11 @@ int daNpc_Bans_c::talk(void* param_1) {
         case 1:
             if (!mStagger.checkStagger()) {
                 initTalk(mFlowNodeNo, NULL);
-                mMakingBombsFlag = 0;
+                field_0x1269 = 0;
 
                 if (mType == TYPE_MAKING_BOMBS) {
                     if (daNpcT_chkEvtBit(240)) { // dSv_event_flag_c::F_0240 - Kakariko Village - Speak with Barnes while heas making bombs
-                        mMakingBombsFlag = 1;
+                        field_0x1269 = 1;
                     } else {
                         mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
                         mMotionSeqMngr.setNo(MOT_REST, -1.0f, FALSE, 0);
@@ -1835,7 +1835,7 @@ int daNpc_Bans_c::talk(void* param_1) {
 
                     mJntAnm.lookPlayer(0);
 
-                    if (mTwilight || mType == TYPE_POST_TWILIGHT || mType == TYPE_COLIN_KIDNAPPED || mMakingBombsFlag) {
+                    if (mTwilight || mType == TYPE_POST_TWILIGHT || mType == TYPE_COLIN_KIDNAPPED || field_0x1269) {
                         mJntAnm.lookNone(0);
                     }
                 } else {
