@@ -2,6 +2,7 @@
 #define D_A_OBJ_LV8KEKKAITRAP_H
 
 #include "f_op/f_op_actor_mng.h"
+#include "d/d_bg_s_movebg_actor.h"
 
 /**
  * @ingroup actors-objects
@@ -11,12 +12,10 @@
  * @details
  *
  */
-class daKekaiTrap_c : public fopAc_ac_c {
+class daKekaiTrap_c : public dBgS_MoveBgActor {
 public:
     /* 80C87D40 */ void setBaseMtx();
-    /* 80C87DC8 */ void CreateHeap();
-    /* 80C87E48 */ void create();
-    /* 80C87FB0 */ void Execute(Mtx**);
+    /* 80C87E48 */ int create();
     /* 80C88000 */ void moveMain();
     /* 80C88104 */ void init_modeWait();
     /* 80C88110 */ void modeWait();
@@ -24,20 +23,26 @@ public:
     /* 80C88138 */ void modeMoveUp();
     /* 80C881F0 */ void init_modeMoveDown();
     /* 80C88214 */ void modeMoveDown();
-    /* 80C882C8 */ void Draw();
-    /* 80C8836C */ void Delete();
+
+    /* 80C87DC8 */ virtual int CreateHeap();
+    /* 80C87FB0 */ virtual int Execute(Mtx**);
+    /* 80C882C8 */ virtual int Draw();
+    /* 80C8836C */ virtual int Delete();
+
+    int getType() { return fopAcM_GetParamBit(this, 0, 4); }
+    int getSwBit() { return fopAcM_GetParamBit(this, 4, 8); }
 
 private:
-    /* 0x568 */ u8 field_0x568[0x5b4 - 0x568];
+    /* 0x5A0 */ request_of_phase_process_class mPhase;
+    /* 0x5A8 */ J3DModel* mpModel;
+    /* 0x5AC */ u8 field_0x5ac;
+    /* 0x5AD */ u8 field_0x5ad;
+    /* 0x5AE */ u8 field_0x5ae;
+    /* 0x5AF */ u8 mMode;
+    /* 0x5B0 */ u8 field_0x5b0;
 };
 
 STATIC_ASSERT(sizeof(daKekaiTrap_c) == 0x5b4);
-
-class daKekaiTrap_HIO_c {
-public:
-    /* 80C87CAC */ daKekaiTrap_HIO_c();
-    /* 80C88438 */ ~daKekaiTrap_HIO_c();
-};
 
 
 #endif /* D_A_OBJ_LV8KEKKAITRAP_H */
