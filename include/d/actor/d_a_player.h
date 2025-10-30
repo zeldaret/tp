@@ -1250,7 +1250,10 @@ public:
     BOOL checkInsectRelease() { return checkResetFlg1(RFLG1_UNK_100); }
 
     void onChainForcePull() { onEndResetFlg1(ERFLG1_UNK_1000000); }
-    void onChainPullEnd() { onEndResetFlg1(ERFLG1_UNK_2000000); } 
+    void onChainPullEnd() { onEndResetFlg1(ERFLG1_UNK_2000000); }
+
+    void onWaterDrop() { onEndResetFlg1(ERFLG1_UNK_20000); }
+    void forceKandelaarLightOff() { onNoResetFlg2(FLG2_UNK_10000000); }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

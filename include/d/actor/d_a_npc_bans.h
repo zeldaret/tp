@@ -13,7 +13,31 @@
  *
 */
 
-class daNpc_Bans_HIO_c;
+struct daNpc_Bans_HIOParam {
+    /* 0x00 */ daNpcT_HIOParam common;
+    /* 0x8C */ f32 run_spd;
+};
+
+class daNpc_Bans_Param_c {
+public:
+    /* 80967C24 */ virtual ~daNpc_Bans_Param_c() {}
+
+    static daNpc_Bans_HIOParam const m;
+};
+
+#if DEBUG
+class daNpc_Bans_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpc_Bans_HIO_c();
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+
+    /* 0x8 */ daNpc_Bans_HIOParam m;
+};
+#define NPC_BANS_HIO_CLASS daNpc_Bans_HIO_c
+#else
+#define NPC_BANS_HIO_CLASS daNpc_Bans_Param_c
+#endif
 
 class daNpc_Bans_c : public dShopSystem_c {
 public:
@@ -72,12 +96,12 @@ public:
                 i_arcNames) {
             OS_REPORT("|%06d:%x|daNpc_Bans_c -> コンストラクト\n", g_Counter.mCounter0, this);
         }
-    /* 80967BE4 */ u16 getEyeballMaterialNo();
-    /* 80967BEC */ s32 getHeadJointNo();
-    /* 80967BF4 */ s32 getNeckJointNo();
-    /* 80967BFC */ s32 getBackboneJointNo();
-    /* 80967C04 */ BOOL checkChangeJoint(int);
-    /* 80967C14 */ BOOL checkRemoveJoint(int);
+    /* 80967BE4 */ u16 getEyeballMaterialNo() { return 2; }
+    /* 80967BEC */ s32 getHeadJointNo() { return 6; }
+    /* 80967BF4 */ s32 getNeckJointNo() { return 5; }
+    /* 80967BFC */ s32 getBackboneJointNo() { return 1; }
+    /* 80967C04 */ BOOL checkChangeJoint(int i_joint) { return i_joint == 6; }
+    /* 80967C14 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == 0xB; }
 
     u8 getGroupId() { return (fopAcM_GetParam(this) & ~0xFFFFFFF) >> 28; }
     u8 getMaxNumItem() { return (fopAcM_GetParam(this) & 0xF000000) >> 24; }
@@ -97,7 +121,7 @@ public:
     static cutFunc mCutList[4];
 
     /* 0x0F7C */ mDoExt_McaMorfSO* field_0xf7c;
-    /* 0x0F80 */ daNpc_Bans_HIO_c* mHIO;
+    /* 0x0F80 */ NPC_BANS_HIO_CLASS* mHIO;
     /* 0x0F84 */ J3DModel* mModel[1];
     /* 0x0F88 */ dCcD_Cyl mCyl1;
     /* 0x10C4 */ dCcD_Cyl mCyl2;
@@ -106,7 +130,7 @@ public:
     /* 0x1244 */ actionFunc mNextAction;
     /* 0x1250 */ actionFunc mAction;
     /* 0x125C */ int field_0x125c;
-    /* 0x1260 */ u8 field_0x1260[0x1264 - 0x1260];
+    /* 0x1260 */ int field_0x1260;
     /* 0x1264 */ u8 field_0x1264;
     /* 0x1265 */ u8 field_0x1265;
     /* 0x1266 */ u8 field_0x1266;
@@ -119,17 +143,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(daNpc_Bans_c) == 0x1270);
-
-struct daNpc_Bans_HIOParam {
-    /* 0x00 */ daNpcT_HIOParam common;
-    /* 0x8C */ f32 run_spd;
-};
-
-class daNpc_Bans_Param_c {
-public:
-    /* 80967C24 */ ~daNpc_Bans_Param_c();
-
-    static daNpc_Bans_HIOParam const m;
-};
 
 #endif /* D_A_NPC_BANS_H */
