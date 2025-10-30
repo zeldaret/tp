@@ -12,6 +12,131 @@
 #include "d/actor/d_a_tag_kmsg.h"
 #include "d/actor/d_a_npc_len.h"
 
+enum Bans_RES_File_ID {
+    /* BCK */
+    /* 0x06 */ BCK_BANS_F_TALK_A = 0x6,
+    /* 0x07 */ BCK_BANS_F_TALK_B,
+    /* 0x08 */ BCK_BANS_FH_TALK_B,
+    /* 0x09 */ BCK_BANS_WAIT_A,
+
+    /* BMDE */
+    /* 0x0C */ BMDE_BANS = 0xC,
+
+    /* BTK */
+    /* 0x0F */ BTK_BANS = 0xF,
+
+    /* BTP */
+    /* 0x12 */ BTP_BANS = 0x12,
+};
+
+enum Bans_TW_RES_File_ID {
+    /* BCK */
+    /* 0x4 */ BCK_BANS_WAIT_TW = 0x4,
+
+    /* BMDR */
+    /* 0x7 */ BMDR_BANS_TW = 0x7,
+};
+
+enum Bans1_RES_File_ID {
+    /* BCK */
+    /* 0x04 */ BCK_BANS_ANGRY_A = 0x4,
+    /* 0x05 */ BCK_BANS_ANGRY_B,
+    /* 0x06 */ BCK_BANS_MASKDOWN,
+    /* 0x07 */ BCK_BANS_MASKUP,
+    /* 0x08 */ BCK_BANS_SIDESTEPL,
+    /* 0x09 */ BCK_BANS_SIDESTEPR,
+    /* 0x0A */ BCK_BANS_TALK_A,
+    /* 0x0B */ BCK_BANS_TALK_B,
+    /* 0x0C */ BCK_BANS_TALK_C,
+    /* 0x0D */ BCK_BANS_TALK_D,
+    /* 0x0E */ BCK_BANS_WAIT_B,
+    /* 0x0F */ BCK_BANS_WAIT_C,
+    /* 0x10 */ BCK_BANS_WAIT_D,
+
+    /* EVT */
+    /* 0x13 */ EVT_BANS1_EVENT_LIST = 0x13,
+};
+
+enum Bans2_RES_File_ID {
+    /* BCK */
+    /* 0x05 */ BCK_BANS_ANGRY_C = 0x5,
+    /* 0x06 */ BCK_BANS_FAINT,
+    /* 0x07 */ BCK_BANS_REST,
+    /* 0x08 */ BCK_BANS_SAD,
+    /* 0x09 */ BCK_BANS_SCOOP_A,
+    /* 0x0A */ BCK_BANS_SCOOP_B,
+    /* 0x0B */ BCK_BANS_WORK,
+
+    /* BMDR */
+    /* 0x0E */ BMDR_BANS_SCOOP = 0xE,
+    /* 0x0F */ BMDR_BANS_TUB,
+
+    /* EVT */
+    /* 0x12 */ EVT_BANS2_EVENT_LIST = 0x12,
+};
+
+enum RES_Name {
+    /* 0x0 */ NONE,
+    /* 0x1 */ BANS,
+    /* 0x2 */ BANS_TW,
+    /* 0x3 */ BANS1,
+    /* 0x4 */ BANS2,
+    /* 0x5 */ LEN1,
+};
+
+enum Face_Motion {
+    /* 0x0 */ FACE_TALK_A,
+    /* 0x1 */ FACE_TALK_B,
+    /* 0x2 */ FACE_H_TALK_B,
+    /* 0x3 */ FACE_BLINK,
+    /* 0x4 */ FACE_NONE,
+};
+
+enum Motion {
+    /* 0x00 */ MOT_WAIT_A,
+    /* 0x01 */ MOT_WAIT_B,
+    /* 0x02 */ MOT_MASKDOWN,
+    /* 0x03 */ MOT_MASKUP,
+    /* 0x04 */ MOT_ANGRY_B,
+    /* 0x05 */ MOT_TALK_A,
+    /* 0x06 */ MOT_TALK_B,
+    /* 0x07 */ MOT_WAIT_C,
+    /* 0x08 */ MOT_WAIT_D,
+    /* 0x09 */ MOT_TALK_C,
+    /* 0x0A */ MOT_TALK_D,
+    /* 0x0B */ MOT_WORK,
+    /* 0x0C */ MOT_SAD,
+    /* 0x0D */ MOT_FAINT,
+    /* 0x0E */ MOT_TALK_D_C,
+    /* 0x0F */ MOT_REST,
+    /* 0x10 */ MOT_WAIT_TW,
+    /* 0x11 */ MOT_ANGRY_A,
+    /* 0x12 */ MOT_SIDESTEPL,
+    /* 0x13 */ MOT_SIDESTEPR,
+    /* 0x14 */ MOT_ANGRY_C,
+};
+
+enum Event {
+    /* 0x0 */ EVT_NONE,
+    /* 0x1 */ EVT_DEFAULT_GETITEM,
+    /* 0x2 */ EVT_NO_RESPONSE,
+    /* 0x3 */ EVT_DEMO13_STB,
+    /* 0x4 */ EVT_ANGER,
+    /* 0x5 */ EVT_ANGER2,
+    /* 0x6 */ EVT_ANGER_NEAR,
+    /* 0x7 */ EVT_ANGER_NEAR2,
+    /* 0x8 */ EVT_GOBACK,
+};
+
+enum Type {
+    /* 0x0 */ TYPE_POST_TWILIGHT,
+    /* 0x1 */ TYPE_TWILIGHT,
+    /* 0x2 */ TYPE_COLIN_KIDNAPPED,
+    /* 0x3 */ TYPE_MAKING_BOMBS,
+    /* 0x4 */ TYPE_SHOP,
+    /* 0x5 */ TYPE_DEFAULT,
+};
+
 #if DEBUG
 daNpc_Bans_HIO_c::daNpc_Bans_HIO_c() {
     m = daNpc_Bans_Param_c::m;
@@ -50,10 +175,10 @@ void daNpc_Bans_HIO_c::genMessage(JORMContext* ctx) {
 
 /* 80968020-80968040 000020 0020+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[4][2] = {
-    {0xC, 1},
-    {7, 2},
-    {0xE, 4},
-    {0xF, 4},
+    {BMDE_BANS, BANS},
+    {BMDR_BANS_TW, BANS_TW},
+    {BMDR_BANS_SCOOP, BANS2},
+    {BMDR_BANS_TUB, BANS2},
 };
 
 /* 80968040-80968088 -00001 0048+00 0/1 0/0 0/0 .data            l_evtList */
@@ -81,27 +206,27 @@ static char* l_resNameList[6] = {
 
 /* 809680A0-809680A4 0000A0 0003+01 1/0 0/0 0/0 .data            l_loadResPtrn0 */
 static s8 l_loadResPtrn0[3] = {
-    1, 3, -1,
+    BANS, BANS1, -1,
 };
 
 /* 809680A4-809680A8 0000A4 0003+01 1/0 0/0 0/0 .data            l_loadResPtrn1 */
 static s8 l_loadResPtrn1[3] = {
-    1, 4, -1,
+    BANS, BANS2, -1,
 };
 
 /* 809680A8-809680AC 0000A8 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn2 */
 static s8 l_loadResPtrn2[2] = {
-    2, -1,
+    BANS_TW, -1,
 };
 
 /* 809680AC-809680B0 0000AC 0004+00 1/0 0/0 0/0 .data            l_loadResPtrn3 */
 static s8 l_loadResPtrn3[4] = {
-    1, 3, 4, -1,
+    BANS, BANS1, BANS2, -1,
 };
 
 /* 809680B0-809680B8 0000B0 0005+03 1/0 0/0 0/0 .data            l_loadResPtrn4 */
 static s8 l_loadResPtrn4[5] = {
-    1, 2, 3, 4, -1,
+    BANS, BANS_TW, BANS1, BANS2, -1,
 };
 
 /* 809680B8-809680D0 -00001 0018+00 1/2 0/0 0/0 .data            l_loadResPtrnList */
@@ -112,35 +237,35 @@ static s8* l_loadResPtrnList[6] = {
 
 /* 809680D0-8096815C 0000D0 008C+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
 static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[5] = {
-    {-1, J3DFrameCtrl::EMode_NONE, 0, 0x12, J3DFrameCtrl::EMode_LOOP, 1, TRUE},
-    {-1, J3DFrameCtrl::EMode_NONE, 0, -1, J3DFrameCtrl::EMode_NONE, 0, FALSE},
-    {6, J3DFrameCtrl::EMode_NONE, 1, 0x12, J3DFrameCtrl::EMode_LOOP, 1, TRUE},
-    {7, J3DFrameCtrl::EMode_NONE, 1, 0x12, J3DFrameCtrl::EMode_LOOP, 1, TRUE},
-    {8, J3DFrameCtrl::EMode_LOOP, 1, 0x12, J3DFrameCtrl::EMode_LOOP, 1, TRUE},
+    {-1, J3DFrameCtrl::EMode_NONE, NONE, BTP_BANS, J3DFrameCtrl::EMode_LOOP, BANS, TRUE},
+    {-1, J3DFrameCtrl::EMode_NONE, NONE, -1, J3DFrameCtrl::EMode_NONE, NONE, FALSE},
+    {BCK_BANS_F_TALK_A, J3DFrameCtrl::EMode_NONE, BANS, BTP_BANS, J3DFrameCtrl::EMode_LOOP, BANS, TRUE},
+    {BCK_BANS_F_TALK_B, J3DFrameCtrl::EMode_NONE, BANS, BTP_BANS, J3DFrameCtrl::EMode_LOOP, BANS, TRUE},
+    {BCK_BANS_FH_TALK_B, J3DFrameCtrl::EMode_LOOP, BANS, BTP_BANS, J3DFrameCtrl::EMode_LOOP, BANS, TRUE},
 };
 
 /* 8096815C-8096838C 00015C 0230+00 0/1 0/0 0/0 .data            l_motionAnmData */
 static daNpcT_motionAnmData_c l_motionAnmData[20] = {
-    {0x9, J3DFrameCtrl::EMode_LOOP, 1, 0xF, J3DFrameCtrl::EMode_NONE, 1, 1, 0},
-    {0xE, J3DFrameCtrl::EMode_LOOP, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 1, 0},
-    {0xF, J3DFrameCtrl::EMode_LOOP, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 1, 0},
-    {0x10, J3DFrameCtrl::EMode_LOOP, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 1, 0},
-    {0x4, J3DFrameCtrl::EMode_LOOP, 2, -1, J3DFrameCtrl::EMode_NONE, 0, 0, 0},
-    {0x6, J3DFrameCtrl::EMode_NONE, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0x7, J3DFrameCtrl::EMode_NONE, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0x4, J3DFrameCtrl::EMode_NONE, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0x5, J3DFrameCtrl::EMode_NONE, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0x5, J3DFrameCtrl::EMode_NONE, 4, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0xA, J3DFrameCtrl::EMode_NONE, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0xB, J3DFrameCtrl::EMode_NONE, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0xC, J3DFrameCtrl::EMode_NONE, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0xD, J3DFrameCtrl::EMode_NONE, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0x8, J3DFrameCtrl::EMode_NONE, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0x9, J3DFrameCtrl::EMode_NONE, 3, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0xB, J3DFrameCtrl::EMode_LOOP, 4, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0x7, J3DFrameCtrl::EMode_LOOP, 4, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0x8, J3DFrameCtrl::EMode_LOOP, 4, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
-    {0x6, J3DFrameCtrl::EMode_LOOP, 4, 0xF, J3DFrameCtrl::EMode_NONE, 1, 0, 0},
+    {BCK_BANS_WAIT_A, J3DFrameCtrl::EMode_LOOP, BANS, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 1, 0},
+    {BCK_BANS_WAIT_B, J3DFrameCtrl::EMode_LOOP, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 1, 0},
+    {BCK_BANS_WAIT_C, J3DFrameCtrl::EMode_LOOP, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 1, 0},
+    {BCK_BANS_WAIT_D, J3DFrameCtrl::EMode_LOOP, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 1, 0},
+    {BCK_BANS_WAIT_TW, J3DFrameCtrl::EMode_LOOP, BANS_TW, -1, J3DFrameCtrl::EMode_NONE, NONE, 0, 0},
+    {BCK_BANS_MASKDOWN, J3DFrameCtrl::EMode_NONE, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_MASKUP, J3DFrameCtrl::EMode_NONE, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_ANGRY_A, J3DFrameCtrl::EMode_NONE, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_ANGRY_B, J3DFrameCtrl::EMode_NONE, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_ANGRY_C, J3DFrameCtrl::EMode_NONE, BANS2, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_TALK_A, J3DFrameCtrl::EMode_NONE, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_TALK_B, J3DFrameCtrl::EMode_NONE, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_TALK_C, J3DFrameCtrl::EMode_NONE, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_TALK_D, J3DFrameCtrl::EMode_NONE, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_SIDESTEPL, J3DFrameCtrl::EMode_NONE, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_SIDESTEPR, J3DFrameCtrl::EMode_NONE, BANS1, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_WORK, J3DFrameCtrl::EMode_LOOP, BANS2, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_REST, J3DFrameCtrl::EMode_LOOP, BANS2, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_SAD, J3DFrameCtrl::EMode_LOOP, BANS2, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
+    {BCK_BANS_FAINT, J3DFrameCtrl::EMode_LOOP, BANS2, BTK_BANS, J3DFrameCtrl::EMode_NONE, BANS, 0, 0},
 };
 
 /* 8096838C-809683DC 00038C 0050+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
@@ -203,8 +328,8 @@ daNpc_Bans_c::~daNpc_Bans_c() {
         mpMorf[0]->stopZelAnime();
     }
 
-    if (field_0xf7c != NULL) {
-        field_0xf7c->stopZelAnime();
+    if (mpScoopMorf != NULL) {
+        mpScoopMorf->stopZelAnime();
     }
 
     #if DEBUG
@@ -368,7 +493,7 @@ int daNpc_Bans_c::CreateHeap() {
         return 0;
     }
 
-    if (mType == 3) {
+    if (mType == TYPE_MAKING_BOMBS) {
         idx = 2;
         resIdx = l_bmdData[idx][1];
         bmdIdx = l_bmdData[idx][0];
@@ -378,13 +503,13 @@ int daNpc_Bans_c::CreateHeap() {
         }
 
         u32 uVar3 = 0x11000084;
-        field_0xf7c = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, NULL, 0x80000, uVar3);
-        if (field_0xf7c == NULL || field_0xf7c->getModel() == NULL) {
+        mpScoopMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, NULL, 0x80000, uVar3);
+        if (mpScoopMorf == NULL || mpScoopMorf->getModel() == NULL) {
             return 0;
         }
     }
 
-    if (mType == 3) {
+    if (mType == TYPE_MAKING_BOMBS) {
         if (l_bmdData[3][0] >= 0) {
             modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[3][1]], l_bmdData[3][0]);
         } else {
@@ -392,10 +517,10 @@ int daNpc_Bans_c::CreateHeap() {
         }
 
         if (modelData != NULL) {
-            mModel[0] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            mTubModel[0] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         }
 
-        if (mModel[0] == NULL) {
+        if (mTubModel[0] == NULL) {
             return 0;
         }
     }
@@ -425,18 +550,18 @@ int daNpc_Bans_c::Delete() {
 
 /* 8096336C-80963444 000B8C 00D8+00 2/2 0/0 0/0 .text            Execute__12daNpc_Bans_cFv */
 int daNpc_Bans_c::Execute() {
-    if (!mCreating && !checkShopOpen() && mType == 4 && field_0x1265 == 0) {
+    if (!mCreating && !checkShopOpen() && mType == TYPE_SHOP && mShopFlag == 0) {
         initShopSystem();
         setSellItemMax(getMaxNumItem());
         field_0xf60 = -1;
         mShopCamAction.setCamDataIdx(0);
         mShopCamAction.setCamAction(NULL);
-        field_0x1265 = 1;
+        mShopFlag = 1;
     }
 
     execute();
 
-    if (field_0x1265 != 0 && searchItemActor()) {
+    if (mShopFlag != 0 && searchItemActor()) {
         mShopCamAction.move();
     }
 
@@ -481,44 +606,63 @@ u8 daNpc_Bans_c::getType() {
     u8 param = fopAcM_GetParam(this) & 0xFF;
     switch (param) {
         case 0:
-            return 0;
+            return TYPE_POST_TWILIGHT; // After Eldin Twilight cleared but before Colin kidnapped
 
         case 1:
-            return 1;
+            return TYPE_TWILIGHT; // Eldin Twilight
         
         case 2:
-            return 2;
+            return TYPE_COLIN_KIDNAPPED; // After Colin kidnapped but before horseback battle cleared
 
         case 3:
-            return 3;
+            return TYPE_MAKING_BOMBS; // After horseback battle cleared but before Goron Mines cleared
 
         case 4:
-            return 4;
+            return TYPE_SHOP; // After Goron Mines cleared
 
         default:
-            return 5;
+            return TYPE_DEFAULT;
     }
 }
 
 /* 809635BC-809636C0 000DDC 0104+00 1/1 0/0 0/0 .text            isDelete__12daNpc_Bans_cFv */
 BOOL daNpc_Bans_c::isDelete() {
     switch (mType) {
-        case 0:
+        case TYPE_POST_TWILIGHT:
+            /*
+                Delete if TYPE_POST_TWILIGHT and:
+                Eldin Twilight Not Cleared or Colin Kidnapped
+            */
             return !daNpcT_chkEvtBit(61) || // dSv_event_flag_c::M_028 - Cutscene - [cutscene: 14] restore mountain spirit - Reuinion with Colin et al.
                     daNpcT_chkEvtBit(53); // dSv_event_flag_c::M_020 - Cutscene - [cutscene: ] Colin kidnapped : ON once watched
 
-        case 1:
+        case TYPE_TWILIGHT:
+            /*
+                Do not delete if TYPE_TWILIGHT
+            */
             return FALSE;
         
-        case 2:
+        case TYPE_COLIN_KIDNAPPED:
+            /*
+                Delete if TYPE_COLIN_KIDNAPPED and:
+                Colin Not Kidnapped or Horseback Battle Cleared
+            */
             return !daNpcT_chkEvtBit(53) || // dSv_event_flag_c::M_020 - Cutscene - [cutscene: ] Colin kidnapped : ON once watched
-                   daNpcT_chkEvtBit(85); // dSv_event_flag_c::M_052 - Main Event - Horseback battle clear
+                    daNpcT_chkEvtBit(85); // dSv_event_flag_c::M_052 - Main Event - Horseback battle clear
 
-        case 3:
+        case TYPE_MAKING_BOMBS:
+            /*
+                Delete if TYPE_MAKING_BOMBS and:
+                Horseback Battle Not Cleared or Goron Mines Cleared
+            */
             return !daNpcT_chkEvtBit(85) || // dSv_event_flag_c::M_052 - Main Event - Horseback battle clear
-                   daNpcT_chkEvtBit(64); // dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear
+                    daNpcT_chkEvtBit(64); // dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear
 
-        case 4:
+        case TYPE_SHOP:
+            /*
+                Delete if TYPE_SHOP and:
+                Goron Mines Cleared
+            */
             return !daNpcT_chkEvtBit(64); // dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear
 
         default:
@@ -546,11 +690,11 @@ void daNpc_Bans_c::reset() {
     angle.y = home.angle.y;
 
     switch (mType) {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
+        case TYPE_POST_TWILIGHT:
+        case TYPE_TWILIGHT:
+        case TYPE_COLIN_KIDNAPPED:
+        case TYPE_MAKING_BOMBS:
+        case TYPE_SHOP:
         default:
             daNpcT_offTmpBit(57); // dSv_event_tmp_flag_c::T_0057 - Kakariko Village (inside) - Barnes bomb shop <purchase>
             setAngle(angle);
@@ -570,14 +714,14 @@ void daNpc_Bans_c::afterJntAnm(int param_1) {
 
 /* 809638CC-80963A7C 0010EC 01B0+00 1/0 0/0 0/0 .text            setParam__12daNpc_Bans_cFv */
 void daNpc_Bans_c::setParam() {
-    if (field_0x1264) {
-        if (field_0x125c == 2) {
+    if (mSetParamFlag) {
+        if (mShopProcess == 2) {
             mShopCamAction.Reset();
         } else {
             mShopCamAction.EventRecoverNotime();
         }
 
-        field_0x1264 = 0;
+        mSetParamFlag = 0;
     }
 
     selectAction();
@@ -594,24 +738,24 @@ void daNpc_Bans_c::setParam() {
     s16 attention_angle = mHIO->m.common.attention_angle;
 
     switch (mType) {
-        case 0:
+        case TYPE_POST_TWILIGHT:
             talk_distance = 5;
             attention_distance = 5;
             break;
 
-        case 1:
+        case TYPE_TWILIGHT:
             talk_distance = 8;
             break;
 
-        case 2:
+        case TYPE_COLIN_KIDNAPPED:
             break;
 
-        case 3:
+        case TYPE_MAKING_BOMBS:
             talk_distance = 4;
             attention_distance = 5;
             break;
 
-        case 4:
+        case TYPE_SHOP:
             talk_distance = 5;
             attention_distance = 5;
 
@@ -646,7 +790,7 @@ BOOL daNpc_Bans_c::checkChangeEvt() {
 
         if (dComIfGp_event_chkTalkXY()) {
             if (dComIfGp_evmng_ChkPresentEnd()) {
-                mEvtNo = 2;
+                mEvtNo = EVT_NO_RESPONSE;
                 evtChange();
             }
 
@@ -664,11 +808,11 @@ BOOL daNpc_Bans_c::checkChangeEvt() {
 
 /* 80963B30-80963BA8 001350 0078+00 1/0 0/0 0/0 .text setAfterTalkMotion__12daNpc_Bans_cFv */
 void daNpc_Bans_c::setAfterTalkMotion() {
-    int motion = 3;
+    int motion = MOT_MASKUP;
 
     switch (mFaceMotionSeqMngr.getNo()) {
-        case 1:
-            motion = 2;
+        case FACE_TALK_B:
+            motion = MOT_MASKDOWN;
             break;
     }
 
@@ -678,7 +822,7 @@ void daNpc_Bans_c::setAfterTalkMotion() {
 /* 80963BA8-80963DB0 0013C8 0208+00 1/1 0/0 0/0 .text            srchActors__12daNpc_Bans_cFv */
 void daNpc_Bans_c::srchActors() {
     switch (mType) {
-        case 0:
+        case TYPE_POST_TWILIGHT:
             for (int i = 0; i < 2; i++) {
                 if (mActorMngrs[i + 5].getActorP() == NULL) {
                     mActorMngrs[i + 5].entry(getEvtAreaTagP(3, i));
@@ -686,7 +830,7 @@ void daNpc_Bans_c::srchActors() {
             }
             break;
         
-        case 1:
+        case TYPE_TWILIGHT:
             for (int i = 0; i < 2; i++) {
                 if (mActorMngrs[i + 5].getActorP() == NULL) {
                     mActorMngrs[i + 5].entry(getEvtAreaTagP(3, i));
@@ -698,8 +842,8 @@ void daNpc_Bans_c::srchActors() {
             }
             break;
 
-        case 2:
-        case 3:
+        case TYPE_COLIN_KIDNAPPED:
+        case TYPE_MAKING_BOMBS:
             for (int i = 0; i < 2; i++) {
                 if (mActorMngrs[i + 5].getActorP() == NULL) {
                     mActorMngrs[i + 5].entry(getEvtAreaTagP(3, i));
@@ -707,7 +851,7 @@ void daNpc_Bans_c::srchActors() {
             }
             break;
 
-        case 4:
+        case TYPE_SHOP:
             for (int i = 0; i < 2; i++) {
                 if (mActorMngrs[i + 5].getActorP() == NULL) {
                     mActorMngrs[i + 5].entry(getEvtAreaTagP(3, i));
@@ -727,7 +871,7 @@ void daNpc_Bans_c::srchActors() {
 
 /* 80963DB0-80963EDC 0015D0 012C+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_Bans_cFv */
 BOOL daNpc_Bans_c::evtTalk() {
-    if (field_0x1265) {
+    if (mShopFlag) {
         if (chkAction(&daNpc_Bans_c::shop)) {
             (this->*mAction)(NULL);
         } else {
@@ -812,14 +956,14 @@ void daNpc_Bans_c::setAttnPos() {
     cXyz sp70(15.0f, 30.0f, 0.0f);
     cXyz sp7c(15.0f, 0.0f, 0.0f);
 
-    if (field_0x1267) {
+    if (mDemo13Flag) {
         daPy_getPlayerActorClass()->onWolfEyeKeep();
     }
 
     mStagger.calc(FALSE);
     f32 rad = cM_s2rad((s16)(mCurAngle.y - field_0xd7e.y));
 
-    if (mType == 0) {
+    if (mType == TYPE_POST_TWILIGHT) {
         mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp70, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(), 0.0f, 0.0f, 0.0f, 0.0f,
                          mHIO->m.common.head_angleX_min, mHIO->m.common.head_angleX_max, mHIO->m.common.head_angleY_min, mHIO->m.common.head_angleY_max,
                          mHIO->m.common.neck_rotation_ratio, rad, &sp7c);
@@ -833,8 +977,8 @@ void daNpc_Bans_c::setAttnPos() {
     mJntAnm.calcJntRad(0.2f, 1.0f, rad);
     setMtx();
 
-    if (field_0xf7c != NULL) {
-        if (mMotionSeqMngr.getNo() == 11) {
+    if (mpScoopMorf != NULL) {
+        if (mMotionSeqMngr.getNo() == MOT_WORK) {
             if (mpMorf[0]->checkFrame(8.0f)) {
                 mDoAud_seStart(Z2SE_BANS_SHOVEL, &current.pos, 0, 0);
             }
@@ -844,7 +988,7 @@ void daNpc_Bans_c::setAttnPos() {
             }
         }
 
-        field_0xf7c->play(0, 0);
+        mpScoopMorf->play(0, 0);
 
         mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(0x15));
         Mtx mtx;
@@ -855,8 +999,8 @@ void daNpc_Bans_c::setAttnPos() {
         MTXCopy(mDoMtx_stack_c::get(), mtx);
         #endif
 
-        field_0xf7c->getModel()->setBaseTRMtx(mtx);
-        field_0xf7c->modelCalc();
+        mpScoopMorf->getModel()->setBaseTRMtx(mtx);
+        mpScoopMorf->modelCalc();
     }
 
     mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
@@ -867,12 +1011,10 @@ void daNpc_Bans_c::setAttnPos() {
     sp70.set(0.0f, 0.0f, 0.0f);
     sp70.y = mHIO->m.common.attention_offset;
 
-    if (mType == 1) {
+    if (mType == TYPE_TWILIGHT) {
         sp70.set(30.0f, 180.0f, 10.0f);
-    } else {
-        if (mMotionSeqMngr.getNo() == 0xC) {
-            sp70.set(0.0f, 180.0f, 70.0f);
-        }
+    } else if (mMotionSeqMngr.getNo() == MOT_SAD) {
+        sp70.set(0.0f, 180.0f, 70.0f);
     }
 
     mDoMtx_stack_c::YrotS(mCurAngle.y);
@@ -900,7 +1042,7 @@ void daNpc_Bans_c::setCollision() {
         }
 
         f32 height, width;
-        if (mType != 0 && mType != 4) {
+        if (mType != TYPE_POST_TWILIGHT && mType != TYPE_SHOP) {
             mCyl2.SetCoSPrm(coSPrm);
             mCyl2.SetTgType(tgType);
             mCyl2.SetTgSPrm(tgSPrm);
@@ -909,7 +1051,7 @@ void daNpc_Bans_c::setCollision() {
             height = mCylH;
             width = mWallR;
 
-            if (mType == 1) {
+            if (mType == TYPE_TWILIGHT) {
                 pos.set(0.0f, 0.0f, 0.0f);
                 height = mCylH;
                 width = 50.0f;
@@ -924,7 +1066,7 @@ void daNpc_Bans_c::setCollision() {
             dComIfG_Ccsp()->Set(&mCyl2);
         }
 
-        if (mType == 2) {
+        if (mType == TYPE_COLIN_KIDNAPPED) {
             pos.set(0.0f, 0.0f, -60.0f);
             height = mCylH;
             width = 100.0f;
@@ -937,7 +1079,7 @@ void daNpc_Bans_c::setCollision() {
             dComIfG_Ccsp()->Set(&mCyl1);
         }
 
-        if (mType == 3) {
+        if (mType == TYPE_MAKING_BOMBS) {
             pos.set(0.0f, 0.0f, 50.0f);
             height = 40.0f;
             width = 110.0f;
@@ -974,23 +1116,23 @@ int daNpc_Bans_c::drawDbgInfo() {
 /* 8096499C-80964AD8 0021BC 013C+00 1/0 0/0 0/0 .text            drawOtherMdl__12daNpc_Bans_cFv */
 void daNpc_Bans_c::drawOtherMdl() {
     for (int i = 0; i < 1; i++) {
-        if (mModel[i] != NULL && i == 0 && mType == 3) {
-            g_env_light.setLightTevColorType_MAJI(mModel[i], &tevStr);
+        if (mTubModel[i] != NULL && i == 0 && mType == TYPE_MAKING_BOMBS) {
+            g_env_light.setLightTevColorType_MAJI(mTubModel[i], &tevStr);
             mDoMtx_stack_c::transS(current.pos);
             mDoMtx_stack_c::YrotM(home.angle.y);
             mDoMtx_stack_c::scaleM(scale);
-            mModel[i]->setBaseTRMtx(mDoMtx_stack_c::get());
-            mDoExt_modelUpdateDL(mModel[i]);
-            dComIfGd_addRealShadow(mShadowKey, mModel[i]);
+            mTubModel[i]->setBaseTRMtx(mDoMtx_stack_c::get());
+            mDoExt_modelUpdateDL(mTubModel[i]);
+            dComIfGd_addRealShadow(mShadowKey, mTubModel[i]);
         }
     }
 
-    if (field_0xf7c != NULL) {
-        g_env_light.setLightTevColorType_MAJI(field_0xf7c->getModel(), &tevStr);
-        field_0xf7c->entryDL();dComIfGd_addRealShadow(mShadowKey, field_0xf7c->getModel());
+    if (mpScoopMorf != NULL) {
+        g_env_light.setLightTevColorType_MAJI(mpScoopMorf->getModel(), &tevStr);
+        mpScoopMorf->entryDL();dComIfGd_addRealShadow(mShadowKey, mpScoopMorf->getModel());
     }
 
-    if (field_0x1265) {
+    if (mShopFlag) {
         cXyz pos;
         itemRotate();
         pos.set(0.0f, 0.0f, 0.0f);
@@ -1026,13 +1168,13 @@ bool daNpc_Bans_c::setScoopAnm(int i_idx, int i_attr, f32 i_morf) {
 
     J3DAnmTransform* anm = NULL;
 
-    if (field_0xf7c != NULL) {
+    if (mpScoopMorf != NULL) {
         if (scoopAnmData[i_idx][0] > 0) {
             anm = getTrnsfrmKeyAnmP(l_resNameList[scoopAnmData[i_idx][1]], scoopAnmData[i_idx][0]);
         }
 
         if (anm != NULL) {
-            field_0xf7c->setAnm(anm, i_attr, i_morf, 1.0f, 0.0f, -1.0f);
+            mpScoopMorf->setAnm(anm, i_attr, i_morf, 1.0f, 0.0f, -1.0f);
         }
     }
 
@@ -1060,7 +1202,7 @@ BOOL daNpc_Bans_c::selectAction() {
     #endif
     
     switch (mType) {
-        case 4:
+        case TYPE_SHOP:
             mNextAction = &daNpc_Bans_c::tend;
             break;
         
@@ -1117,7 +1259,7 @@ void daNpc_Bans_c::orderAngerEvt() {
     daPy_py_c* player = daPy_getPlayerActorClass();
 
     if (player->checkUseKandelaar(0) && player->getKandelaarFlamePos() != NULL) {
-        mEvtNo = 4;
+        mEvtNo = EVT_ANGER;
 
         for (int i = 0; i < 2; i++) {
             daTag_EvtArea_c* actor = (daTag_EvtArea_c*)mActorMngrs[i + 5].getActorP();
@@ -1128,7 +1270,7 @@ void daNpc_Bans_c::orderAngerEvt() {
                 cXyz& pos(player->current.pos);
                 bVar1 = true;
                 if (actor->chkPointInArea(pos)) {
-                    mEvtNo = 6;
+                    mEvtNo = EVT_ANGER_NEAR;
                     break;
                 }
             }
@@ -1185,21 +1327,21 @@ int daNpc_Bans_c::cutAnger(int i_staffId) {
         switch (prm) {
             case 0:
             case 1:
-                if (mType == 3) {
-                    mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
+                if (mType == TYPE_MAKING_BOMBS) {
+                    mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_REST, -1.0f, FALSE, 0);
                 }
 
                 initTalk(12, NULL);
                 break;
             
             case 2:
-                if (mType == 3) {
-                    mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(0x14, -1.0f, FALSE, 0);
+                if (mType == TYPE_MAKING_BOMBS) {
+                    mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_ANGRY_C, -1.0f, FALSE, 0);
                 } else {
-                    mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(0x11, -1.0f, FALSE, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_ANGRY_A, -1.0f, FALSE, 0);
                 }
 
                 mJntAnm.lookNone(1);
@@ -1208,7 +1350,7 @@ int daNpc_Bans_c::cutAnger(int i_staffId) {
 
             case 3:
                 mEventTimer = timer;
-                field_0x1268 = 20;
+                mDropWaterTimer = 20;
                 break;
             
             case 4:
@@ -1216,13 +1358,13 @@ int daNpc_Bans_c::cutAnger(int i_staffId) {
                 break;
 
             case 5:
-                mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x14, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_ANGRY_C, -1.0f, FALSE, 0);
                 break;
                 
             case 6:
-                mFaceMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_TALK_A, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_REST, -1.0f, FALSE, 0);
                 initTalk(12, NULL);
                 break;
         }
@@ -1233,7 +1375,7 @@ int daNpc_Bans_c::cutAnger(int i_staffId) {
         case 1:
             mJntAnm.lookPlayer(0);
 
-            if (mType == 0 || mType == 3 || mPlayerAngle == mCurAngle.y) {
+            if (mType == TYPE_POST_TWILIGHT || mType == TYPE_MAKING_BOMBS || mPlayerAngle == mCurAngle.y) {
                 if (talkProc(NULL, FALSE, NULL, FALSE) && mFlow.checkEndFlow()) {
                     rv = 1;
                 }
@@ -1243,29 +1385,29 @@ int daNpc_Bans_c::cutAnger(int i_staffId) {
             break;
         
         case 2:
-            if (mMotionSeqMngr.getNo() == 0x11 || mMotionSeqMngr.getNo() == 0x14) {
+            if (mMotionSeqMngr.getNo() == MOT_ANGRY_A || mMotionSeqMngr.getNo() == MOT_ANGRY_C) {
                 if (mMotionSeqMngr.checkEndSequence()) {
                     cXyz pos(daPy_getPlayerActorClass()->current.pos);
                     pos.y += 450.0f;
                     mDoAud_seStart(Z2SE_LINK_COVER_WATER, &pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
                     setPrtcls();
 
-                    if (mType == 4) {
+                    if (mType == TYPE_SHOP) {
                         if (daNpcT_chkTmpBit(57)) { // dSv_event_tmp_flag_c::T_0057 - Kakariko Village (inside) - Barnes bomb shop <purchase>
-                            mFaceMotionSeqMngr.setNo(2, -1.0f, FALSE, 0);
-                            mMotionSeqMngr.setNo(8, -1.0f, FALSE, 0);
+                            mFaceMotionSeqMngr.setNo(FACE_H_TALK_B, -1.0f, FALSE, 0);
+                            mMotionSeqMngr.setNo(MOT_WAIT_D, -1.0f, FALSE, 0);
                         } else {
-                            mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                            mMotionSeqMngr.setNo(7, -1.0f, FALSE, 0);
+                            mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                            mMotionSeqMngr.setNo(MOT_WAIT_C, -1.0f, FALSE, 0);
                         }
-                    } else if (mType == 3) {
-                        mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0xB, -1.0f, FALSE, 0);
+                    } else if (mType == TYPE_MAKING_BOMBS) {
+                        mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_WORK, -1.0f, FALSE, 0);
                     } else {
-                        mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                     }
-                } else if ((mMotionSeqMngr.getNo() == 0x11 && mpMorf[0]->checkFrame(16.0f)) || (mMotionSeqMngr.getNo() == 0x14 && mpMorf[0]->checkFrame(8.0f))) {
+                } else if ((mMotionSeqMngr.getNo() == MOT_ANGRY_A && mpMorf[0]->checkFrame(16.0f)) || (mMotionSeqMngr.getNo() == MOT_ANGRY_C && mpMorf[0]->checkFrame(8.0f))) {
                     dComIfGp_getVibration().StartShock(VIBMODE_S_POWER5, 15, cXyz(0.0f, 1.0f, 0.0f));
                 }
             } else {
@@ -1274,8 +1416,8 @@ int daNpc_Bans_c::cutAnger(int i_staffId) {
             break;
 
         case 3:
-            if (field_0x1268 != 0 || dComIfGp_getEventManager().getIsAddvance(i_staffId) != 0) {
-                if (cLib_calcTimer(&field_0x1268) == 0) {
+            if (mDropWaterTimer != 0 || dComIfGp_getEventManager().getIsAddvance(i_staffId) != 0) {
+                if (cLib_calcTimer(&mDropWaterTimer) == 0) {
                     daPy_getPlayerActorClass()->onWaterDrop();
                     daPy_getPlayerActorClass()->forceKandelaarLightOff();
                 }
@@ -1294,11 +1436,11 @@ int daNpc_Bans_c::cutAnger(int i_staffId) {
             break;
 
         case 5:
-            if (mMotionSeqMngr.getNo() == 0x14) {
+            if (mMotionSeqMngr.getNo() == MOT_ANGRY_C) {
                 mJntAnm.lookNone(0);
                 if (mMotionSeqMngr.checkEndSequence()) {
-                    mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_REST, -1.0f, FALSE, 0);
                     rv = 1;
                 }
             } else {
@@ -1316,7 +1458,7 @@ int daNpc_Bans_c::cutAnger(int i_staffId) {
             break;
     }
 
-    if (mMotionSeqMngr.getNo() == 0x14 && mpMorf[0]->checkFrame(9.0f)) {
+    if (mMotionSeqMngr.getNo() == MOT_ANGRY_C && mpMorf[0]->checkFrame(9.0f)) {
         mDoAud_seStart(Z2SE_BANS_KICK, &current.pos, 0, 0);
     }
 
@@ -1344,8 +1486,8 @@ int daNpc_Bans_c::cutPurchase(int i_staffId) {
     if (dComIfGp_getEventManager().getIsAddvance(i_staffId)) {
         switch (prm) {
             case 1:
-                mFaceMotionSeqMngr.setNo(3, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x12, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_BLINK, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_SIDESTEPL, -1.0f, FALSE, 0);
                 speedF = 0.0f;
                 speed.setall(0.0f);
                 daNpcT_onTmpBit(57); // dSv_event_tmp_flag_c::T_0057 - Kakariko Village (inside) - Barnes bomb shop <purchase>
@@ -1355,8 +1497,8 @@ int daNpc_Bans_c::cutPurchase(int i_staffId) {
                 break;
 
             case 3:
-                mFaceMotionSeqMngr.setNo(3, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x13, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_BLINK, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_SIDESTEPR, -1.0f, FALSE, 0);
                 speedF = 0.0f;
                 speed.setall(0.0f);
                 field_0x1266 = 0;
@@ -1371,13 +1513,13 @@ int daNpc_Bans_c::cutPurchase(int i_staffId) {
             actor_p = mActorMngrs[7].getActorP();
             JUT_ASSERT(2427, NULL != actor_p);
 
-            if (mMotionSeqMngr.getNo() == 0x12) {
+            if (mMotionSeqMngr.getNo() == MOT_SIDESTEPL) {
                 current.angle.y = cLib_targetAngleY(&home.pos, &actor_p->current.pos);
                 speedF = mHIO->m.run_spd;
 
                 if (mMotionSeqMngr.checkEndSequence()) {
-                    mFaceMotionSeqMngr.setNo(2, 0.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(8, 0.0f, FALSE, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_H_TALK_B, 0.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_WAIT_D, 0.0f, FALSE, 0);
                     setAngle(shape_angle.y);
                     speedF = 0.0f;
                     speed.setall(0.0f);
@@ -1392,13 +1534,13 @@ int daNpc_Bans_c::cutPurchase(int i_staffId) {
             actor_p = mActorMngrs[7].getActorP();
             JUT_ASSERT(2448, NULL != actor_p);
 
-            if (mMotionSeqMngr.getNo() == 0x13) {
+            if (mMotionSeqMngr.getNo() == MOT_SIDESTEPR) {
                 current.angle.y = cLib_targetAngleY(&actor_p->current.pos, &home.pos);
                 speedF = mHIO->m.run_spd;
 
                 if (mMotionSeqMngr.checkEndSequence()) {
-                    mFaceMotionSeqMngr.setNo(3, 0.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(7, 0.0f, FALSE, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_BLINK, 0.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_WAIT_C, 0.0f, FALSE, 0);
                     setAngle(shape_angle.y);
                     speedF = 0.0f;
                     speed.setall(0.0f);
@@ -1421,29 +1563,29 @@ int daNpc_Bans_c::wait(void* param_1) {
         case 1:
             if (!mStagger.checkStagger()) {
                 switch (mType) {
-                    case 0:
-                        mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0xC, -1.0f, FALSE, 0);
+                    case TYPE_POST_TWILIGHT:
+                        mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_SAD, -1.0f, FALSE, 0);
                         break;
 
-                    case 1:
-                        mFaceMotionSeqMngr.setNo(4, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0x10, -1.0f, FALSE, 0);
+                    case TYPE_TWILIGHT:
+                        mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_WAIT_TW, -1.0f, FALSE, 0);
                         break;
                     
-                    case 2:
-                        mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
+                    case TYPE_COLIN_KIDNAPPED:
+                        mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_FAINT, -1.0f, FALSE, 0);
                         break;
 
-                    case 3:
-                        mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0xB, -1.0f, FALSE, 0);
+                    case TYPE_MAKING_BOMBS:
+                        mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_WORK, -1.0f, FALSE, 0);
                         break;
 
                     default:
-                        mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                         break;
                 }
 
@@ -1451,41 +1593,41 @@ int daNpc_Bans_c::wait(void* param_1) {
             }
             // fallthrough
         case 2:
-            if (mType == 1) {
+            if (mType == TYPE_TWILIGHT) {
                 actor_p = (daNpc_Len_c*)mActorMngrs[3].getActorP();
                 if (actor_p != NULL && actor_p->checkStartDemo13StbEvt(this, mHIO->m.common.box_min_x, mHIO->m.common.box_min_y, mHIO->m.common.box_min_z,
                                                                        mHIO->m.common.box_max_x, mHIO->m.common.box_max_y, mHIO->m.common.box_max_z, mHIO->m.common.box_offset)) {
-                    mEvtNo = 3;
-                    field_0x1267 = 1;
+                    mEvtNo = EVT_DEMO13_STB;
+                    mDemo13Flag = 1;
                 }
 
-                if (field_0x1267 != 0 &&
+                if (mDemo13Flag != 0 &&
                     daNpcT_chkEvtBit(60) && // dSv_event_flag_c::M_027 - Cutscene - [cutscene: 13] kids in the church (beast eyes)
                     !dComIfGp_event_runCheck()
                 ) {
-                   field_0x1267 = 0; 
+                   mDemo13Flag = 0; 
                 }
             }
 
-            if (mType != 1 && mType != 2) {
+            if (mType != TYPE_TWILIGHT && mType != TYPE_COLIN_KIDNAPPED) {
                 orderAngerEvt();
                 if (mType == 3) {
-                    if (mEvtNo == 4) {
-                        mEvtNo = 5;
+                    if (mEvtNo == EVT_ANGER) {
+                        mEvtNo = EVT_ANGER2;
                     }
 
-                    if (mEvtNo == 6) {
-                        mEvtNo = 7;
+                    if (mEvtNo == EVT_ANGER_NEAR) {
+                        mEvtNo = EVT_ANGER_NEAR2;
                     }
                 }
             }
 
             if (!mStagger.checkStagger()) {
-                if (mType == 0 || mType == 2 || mType == 3) {
+                if (mType == TYPE_POST_TWILIGHT || mType == TYPE_COLIN_KIDNAPPED || mType == TYPE_MAKING_BOMBS) {
                     mPlayerActorMngr.remove();
                 }
 
-                if (mPlayerActorMngr.getActorP() != NULL && !mTwilight && mType != 2) {
+                if (mPlayerActorMngr.getActorP() != NULL && !mTwilight && mType != TYPE_COLIN_KIDNAPPED) {
                     mJntAnm.lookPlayer(0);
                     if (!chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y)) {
                         mJntAnm.lookNone(0);
@@ -1508,7 +1650,7 @@ int daNpc_Bans_c::wait(void* param_1) {
                         }
 
                         attention_info.flags = 0;
-                    } else if (!mTwilight && mType != 0 && mType != 2 && mType == 3) {
+                    } else if (!mTwilight && mType != TYPE_POST_TWILIGHT && mType != TYPE_COLIN_KIDNAPPED && mType == TYPE_MAKING_BOMBS) {
                         srchPlayerActor();
                     }
                 }
@@ -1537,32 +1679,32 @@ int daNpc_Bans_c::tend(void* param_1) {
         case 1:
             if (!mStagger.checkStagger()) {
                 if (field_0x126a != 0) {
-                    mFaceMotionSeqMngr.setNo(2, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_H_TALK_B, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_WAIT_B, -1.0f, FALSE, 0);
                 } else {
                     if (daNpcT_chkTmpBit(57)) { // dSv_event_tmp_flag_c::T_0057 - Kakariko Village (inside) - Barnes bomb shop <purchase>
-                        mFaceMotionSeqMngr.setNo(2, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(8, -1.0f, FALSE, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_H_TALK_B, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_WAIT_D, -1.0f, FALSE, 0);
                     } else {
-                        mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(7, -1.0f, FALSE, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_WAIT_C, -1.0f, FALSE, 0);
                     }
 
-                    field_0x1260 = 20;
+                    mTimer = 20;
                 }
 
                 mMode = 2;
             }
             // fallthrough
         case 2:
-            if (field_0x1265) {
+            if (mShopFlag) {
                 if (field_0x1266) {
-                    mEvtNo = 8;
+                    mEvtNo = EVT_GOBACK;
                     field_0xe33 = true;
                 } else if (daNpcT_chkTmpBit(57)) { // dSv_event_tmp_flag_c::T_0057 - Kakariko Village (inside) - Barnes bomb shop <purchase>
                     mSpeakEvent = true;
                     field_0xe33 = true;
-                } else if (field_0x125c == 2) {
+                } else if (mShopProcess == 2) {
                     mSpeakEvent = true;
                     field_0xe33 = true;
                 } else {
@@ -1627,7 +1769,7 @@ int daNpc_Bans_c::tend(void* param_1) {
                         } else {
                             mJntAnm.lookNone(0);
 
-                            if (!mTwilight && mType != 0 && mType != 2) {
+                            if (!mTwilight && mType != TYPE_POST_TWILIGHT && mType != TYPE_COLIN_KIDNAPPED) {
                                 srchPlayerActor();
                             }
                         }
@@ -1642,8 +1784,8 @@ int daNpc_Bans_c::tend(void* param_1) {
                         if (daPy_py_c::checkNowWolf()) {
                             if (field_0x126a) {
                                 mJntAnm.lookNone(0);
-                            } else if (cLib_calcTimer(&field_0x1260) == 0) {
-                                mMotionSeqMngr.setNo(2, -1.0f, FALSE, 0);
+                            } else if (cLib_calcTimer(&mTimer) == 0) {
+                                mMotionSeqMngr.setNo(MOT_MASKDOWN, -1.0f, FALSE, 0);
                                 field_0x126a = 1;
                             }
 
@@ -1668,14 +1810,14 @@ int daNpc_Bans_c::talk(void* param_1) {
         case 1:
             if (!mStagger.checkStagger()) {
                 initTalk(mFlowNodeNo, NULL);
-                field_0x1269 = 0;
+                mMakingBombsFlag = 0;
 
-                if (mType == 3) {
+                if (mType == TYPE_MAKING_BOMBS) {
                     if (daNpcT_chkEvtBit(240)) { // dSv_event_flag_c::F_0240 - Kakariko Village - Speak with Barnes while heas making bombs
-                        field_0x1269 = 1;
+                        mMakingBombsFlag = 1;
                     } else {
-                        mFaceMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_REST, -1.0f, FALSE, 0);
                     }
                 }
 
@@ -1684,7 +1826,7 @@ int daNpc_Bans_c::talk(void* param_1) {
             // fallthrough
         case 2:
             if (!mStagger.checkStagger()) {
-                if (mTwilight || mPlayerAngle == mCurAngle.y || mType == 0 || mType == 2 || mType == 3) {
+                if (mTwilight || mPlayerAngle == mCurAngle.y || mType == TYPE_POST_TWILIGHT || mType == TYPE_COLIN_KIDNAPPED || mType == TYPE_MAKING_BOMBS) {
                     if (talkProc(NULL, FALSE, NULL, FALSE) && mFlow.checkEndFlow()) {
                         mPlayerActorMngr.entry(daPy_getPlayerActorClass());
                         dComIfGp_event_reset();
@@ -1693,7 +1835,7 @@ int daNpc_Bans_c::talk(void* param_1) {
 
                     mJntAnm.lookPlayer(0);
 
-                    if (mTwilight || mType == 0 || mType == 2 || field_0x1269) {
+                    if (mTwilight || mType == TYPE_POST_TWILIGHT || mType == TYPE_COLIN_KIDNAPPED || mMakingBombsFlag) {
                         mJntAnm.lookNone(0);
                     }
                 } else {
@@ -1716,7 +1858,7 @@ int daNpc_Bans_c::shop(void* param_1) {
         case 0:
         case 1:
             if (!mStagger.checkStagger()) {
-                if (field_0x125c == 2) {
+                if (mShopProcess == 2) {
                     shop_init(true);
                 } else {
                     mShopCamAction.Save();
@@ -1731,8 +1873,8 @@ int daNpc_Bans_c::shop(void* param_1) {
             // fallthrough
         case 2:
             if (!mStagger.checkStagger()) {
-                field_0x125c = shop_process(this, &mFlow);
-                if (field_0x125c != 0) {
+                mShopProcess = shop_process(this, &mFlow);
+                if (mShopProcess != 0) {
                     if (daNpcT_chkTmpBit(57)) { // dSv_event_tmp_flag_c::T_0057 - Kakariko Village (inside) - Barnes bomb shop <purchase>
                         field_0x1266 = 1;
                     }
@@ -1740,7 +1882,7 @@ int daNpc_Bans_c::shop(void* param_1) {
                     mPlayerActorMngr.entry(daPy_getPlayerActorClass());
                     dComIfGp_event_reset();
                     mMode = 3;
-                    field_0x1264 = 1;
+                    mSetParamFlag = 1;
                 }
             }
             break;
