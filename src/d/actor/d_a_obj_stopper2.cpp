@@ -169,12 +169,12 @@ void daObjStopper2_c::actionWait() {
             case dStage_MapEvent_dt_TYPE_ZEV:
                 mEventIdx[field_0x584] = dComIfGp_getEventManager().getEventIdx(this, mTool);
                 fopAcM_orderMapToolEvent(this, mTool, 0xFF, 0xFFFF, 1, 0);
-                eventInfo.onCondition(2);
+                eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 break;
             case dStage_MapEvent_dt_TYPE_MAPTOOLCAMERA:
             case dStage_MapEvent_dt_TYPE_STB:
                 fopAcM_orderOtherEventId(this, mEventIdx[field_0x584], mTool, 0xFFFF, 0, 1);
-                eventInfo.onCondition(2);
+                eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 break;
             default:
                 JUT_ASSERT(346, 0);
@@ -182,12 +182,12 @@ void daObjStopper2_c::actionWait() {
             }
         } else {
             fopAcM_orderOtherEventId(this, mEventIdx[field_0x584], mTool, 0xFFFF, 0, 1);
-            eventInfo.onCondition(2);
+            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
         }
     } else if ((field_0x584 == 0 && is_switch) || (field_0x584 == 2 && is_switch)) {
         setAction(1);
         fopAcM_orderOtherEventId(this, mEventIdx[field_0x584], 0xFF, 0xFFFF, 0, 1);
-        eventInfo.onCondition(2);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 
