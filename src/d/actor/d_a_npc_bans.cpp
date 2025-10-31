@@ -457,11 +457,6 @@ cPhs__Step daNpc_Bans_c::create() {
     return phase;
 }
 
-enum unk_ModelFlags_e {
-    unk_flag_1 = 0,
-    unk_flag_2 = 0x80000,
-};
-
 /* 80962D6C-8096317C 00058C 0410+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_Bans_cFv */
 int daNpc_Bans_c::CreateHeap() {
     J3DModelData* modelData;
@@ -477,7 +472,7 @@ int daNpc_Bans_c::CreateHeap() {
     }
 
     u32 uVar2 = 0x11020284;
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, (int)idx == 1 ? unk_flag_2 : unk_flag_1, uVar2);
+    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, (int)idx == 1 ? J3DMdlFlag_DifferedDLBuffer : J3DMdlFlag_None, uVar2);
     if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
         return 0;
     }
@@ -503,7 +498,7 @@ int daNpc_Bans_c::CreateHeap() {
         }
 
         u32 uVar3 = 0x11000084;
-        mpScoopMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, NULL, 0x80000, uVar3);
+        mpScoopMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, NULL, J3DMdlFlag_DifferedDLBuffer, uVar3);
         if (mpScoopMorf == NULL || mpScoopMorf->getModel() == NULL) {
             return 0;
         }
@@ -517,7 +512,7 @@ int daNpc_Bans_c::CreateHeap() {
         }
 
         if (modelData != NULL) {
-            mTubModel[0] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            mTubModel[0] = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
         }
 
         if (mTubModel[0] == NULL) {
@@ -727,11 +722,7 @@ void daNpc_Bans_c::setParam() {
     selectAction();
     srchActors();
 
-    #if DEBUG
-    u32 flags = 0x42;
-    #else
-    u32 flags = 10;
-    #endif
+    u32 flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     s16 talk_distance = mHIO->m.common.talk_distance;
     s16 talk_angle = mHIO->m.common.talk_angle;
     s16 attention_distance = mHIO->m.common.attention_distance;
@@ -1287,7 +1278,7 @@ fopAc_ac_c* daNpc_Bans_c::getKMsgTagP() {
 /* 80964F48-80964FEC 002768 00A4+00 1/1 0/0 0/0 .text            setPrtcls__12daNpc_Bans_cFv */
 void daNpc_Bans_c::setPrtcls() {
     static u16 const id[4] = {
-        0x862C, 0x86A3, 0x862D, 0x862E,
+        dPa_RM(ID_ZF_S_K_LAMPWATER00_FALL), dPa_RM(ID_ZF_S_K_LAMPWATER00_FALL1), dPa_RM(ID_ZF_S_K_LAMPWATER01_SPLASH), dPa_RM(ID_ZF_S_K_LAMPWATER02_SPLASH),
     };
 
     for (int i = 0; i < 4; i++) {
@@ -1883,7 +1874,6 @@ int daNpc_Bans_c::shop(void* param_1) {
 }
 
 #if DEBUG
-/* 80DA60D0 - 80DA61AF */
 int daNpc_Bans_c::test(void* param_1) {
     int rv = 0;
     
@@ -1910,27 +1900,27 @@ int daNpc_Bans_c::test(void* param_1) {
 #endif
 
 /* 80966C88-80966CA8 0044A8 0020+00 1/0 0/0 0/0 .text            daNpc_Bans_Create__FPv */
-static int daNpc_Bans_Create(void* a_this) {
-    return static_cast<daNpc_Bans_c*>(a_this)->create();
+static int daNpc_Bans_Create(void* i_this) {
+    return static_cast<daNpc_Bans_c*>(i_this)->create();
 }
 
 /* 80966CA8-80966CC8 0044C8 0020+00 1/0 0/0 0/0 .text            daNpc_Bans_Delete__FPv */
-static int daNpc_Bans_Delete(void* a_this) {
-    return static_cast<daNpc_Bans_c*>(a_this)->Delete();
+static int daNpc_Bans_Delete(void* i_this) {
+    return static_cast<daNpc_Bans_c*>(i_this)->Delete();
 }
 
 /* 80966CC8-80966CE8 0044E8 0020+00 1/0 0/0 0/0 .text            daNpc_Bans_Execute__FPv */
-static int daNpc_Bans_Execute(void* a_this) {
-    return static_cast<daNpc_Bans_c*>(a_this)->Execute();
+static int daNpc_Bans_Execute(void* i_this) {
+    return static_cast<daNpc_Bans_c*>(i_this)->Execute();
 }
 
 /* 80966CE8-80966D08 004508 0020+00 1/0 0/0 0/0 .text            daNpc_Bans_Draw__FPv */
-static int daNpc_Bans_Draw(void* a_this) {
-    return static_cast<daNpc_Bans_c*>(a_this)->Draw();
+static int daNpc_Bans_Draw(void* i_this) {
+    return static_cast<daNpc_Bans_c*>(i_this)->Draw();
 }
 
 /* 80966D08-80966D10 004528 0008+00 1/0 0/0 0/0 .text            daNpc_Bans_IsDelete__FPv */
-static int daNpc_Bans_IsDelete(void* a_this) {
+static int daNpc_Bans_IsDelete(void* i_this) {
     return 1;
 }
 

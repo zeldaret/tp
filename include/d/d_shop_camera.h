@@ -8,7 +8,7 @@ class ShopCam_action_c {
 public:
     typedef int (ShopCam_action_c::*ShopCamFunc)();
 
-    inline ShopCam_action_c() {
+    ShopCam_action_c() {
         setCameraSpeed(0.25f, 20.0f, 0.25f, 5.0f);
         field_0xda = true;
         field_0xd0 = 0;
