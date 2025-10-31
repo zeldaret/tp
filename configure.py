@@ -1845,7 +1845,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_bou"),
-    ActorRel(NonMatching, "d_a_npc_bouS"),
+    ActorRel(NonMatching, "d_a_npc_bouS", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_cdn3"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01"), "d_a_npc_chat", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_chin"),
