@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv8KekkaiTrap.h"
-#include "dol2asm.h"
 
 class daKekaiTrap_HIO_c : public mDoHIO_entry_c {
 public:
@@ -55,7 +54,7 @@ void daKekaiTrap_c::setBaseMtx() {
 
 /* 80C87DC8-80C87E48 000208 0080+00 1/0 0/0 0/0 .text            CreateHeap__13daKekaiTrap_cFv */
 int daKekaiTrap_c::CreateHeap() {
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_type[field_0x5ae], l_bmdIdx[field_0x5ae]);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_type[mType], l_bmdIdx[mType]);
     JUT_ASSERT(170, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -70,20 +69,20 @@ int daKekaiTrap_c::CreateHeap() {
 int daKekaiTrap_c::create() {
     fopAcM_ct(this, daKekaiTrap_c);
 
-    field_0x5ae = getType();
+    mType = getType();
     
-    int temp_r3 = dComIfG_resLoad(&mPhase, l_type[field_0x5ae]);
-    if (temp_r3 == 4) {
-        if (MoveBGCreate(l_type[field_0x5ae], l_dzbIdx[field_0x5ae], dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL) == 5) {
-            return 5;
+    int phase_state = dComIfG_resLoad(&mPhase, l_type[mType]);
+    if (phase_state == cPhs_COMPLEATE_e) {
+        if (MoveBGCreate(l_type[mType], l_dzbIdx[mType], dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL) == cPhs_ERROR_e) {
+            return cPhs_ERROR_e;
         }
 
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         fopAcM_setCullSizeBox2(this, mpModel->getModelData());
 
-        field_0x5ad = getSwBit();
-        field_0x5ac = fopAcM_isSwitch(this, field_0x5ad);
-        if (field_0x5ac == 0) {
+        mSwbit = getSwBit();
+        mIsSwitch = fopAcM_isSwitch(this, mSwbit);
+        if (!mIsSwitch) {
             if (mpBgW != NULL) {
                 dComIfG_Bgsp().Release(mpBgW);
             }
@@ -98,7 +97,7 @@ int daKekaiTrap_c::create() {
         #endif
     }
 
-    return temp_r3;
+    return phase_state;
 }
 
 /* 80C87FB0-80C88000 0003F0 0050+00 1/0 0/0 0/0 .text            Execute__13daKekaiTrap_cFPPA3_A4_f
@@ -118,10 +117,10 @@ void daKekaiTrap_c::moveMain() {
         &daKekaiTrap_c::modeMoveDown,
     };
 
-    u8 temp_r30 = field_0x5ac;
-    field_0x5ac = fopAcM_isSwitch(this, field_0x5ad);
-    if (field_0x5ac != temp_r30) {
-        if (field_0x5ac != 0) {
+    u8 prev_switch = mIsSwitch;
+    mIsSwitch = fopAcM_isSwitch(this, mSwbit);
+    if (mIsSwitch != prev_switch) {
+        if (mIsSwitch) {
             init_modeMoveUp();
         } else {
             init_modeMoveDown();
@@ -143,14 +142,14 @@ void daKekaiTrap_c::modeWait() {}
  */
 void daKekaiTrap_c::init_modeMoveUp() {
     fopAcM_SetSpeedF(this, l_HIO.appear_init_speed);
-    field_0x5b0 = l_HIO.appear_wait;
+    mTimer = l_HIO.appear_wait;
     mMode = 1;
 }
 
 /* 80C88138-80C881F0 000578 00B8+00 1/0 0/0 0/0 .text            modeMoveUp__13daKekaiTrap_cFv */
 void daKekaiTrap_c::modeMoveUp() {
-    if (field_0x5b0 != 0) {
-        field_0x5b0--;
+    if (mTimer != 0) {
+        mTimer--;
         return;
     }
 
@@ -167,14 +166,14 @@ void daKekaiTrap_c::modeMoveUp() {
 /* 80C881F0-80C88214 000630 0024+00 1/1 0/0 0/0 .text init_modeMoveDown__13daKekaiTrap_cFv */
 void daKekaiTrap_c::init_modeMoveDown() {
     fopAcM_SetSpeedF(this, l_HIO.disappear_init_speed);
-    field_0x5b0 = l_HIO.disappear_wait;
+    mTimer = l_HIO.disappear_wait;
     mMode = 2;
 }
 
 /* 80C88214-80C882C8 000654 00B4+00 1/0 0/0 0/0 .text            modeMoveDown__13daKekaiTrap_cFv */
 void daKekaiTrap_c::modeMoveDown() {
-    if (field_0x5b0 != 0) {
-        field_0x5b0--;
+    if (mTimer != 0) {
+        mTimer--;
         return;
     }
 
@@ -201,7 +200,7 @@ int daKekaiTrap_c::Draw() {
 
 /* 80C8836C-80C883AC 0007AC 0040+00 1/0 0/0 0/0 .text            Delete__13daKekaiTrap_cFv */
 int daKekaiTrap_c::Delete() {
-    dComIfG_resDelete(&mPhase, l_type[field_0x5ae]);
+    dComIfG_resDelete(&mPhase, l_type[mType]);
     #if DEBUG
     l_HIO.removeHIO();
     #endif

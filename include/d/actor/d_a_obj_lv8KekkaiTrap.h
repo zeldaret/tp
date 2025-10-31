@@ -35,11 +35,11 @@ public:
 private:
     /* 0x5A0 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ J3DModel* mpModel;
-    /* 0x5AC */ u8 field_0x5ac;
-    /* 0x5AD */ u8 field_0x5ad;
-    /* 0x5AE */ u8 field_0x5ae;
+    /* 0x5AC */ u8 mIsSwitch;
+    /* 0x5AD */ u8 mSwbit;
+    /* 0x5AE */ u8 mType;
     /* 0x5AF */ u8 mMode;
-    /* 0x5B0 */ u8 field_0x5b0;
+    /* 0x5B0 */ u8 mTimer;
 };
 
 STATIC_ASSERT(sizeof(daKekaiTrap_c) == 0x5b4);
