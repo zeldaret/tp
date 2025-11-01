@@ -572,6 +572,9 @@ static int daE_MK_BO_Execute(e_mk_bo_class* i_this) {
 
     if (i_this->field_0x600 != 0) {
         fopAcM_delete(actor);
+#if VERSION == VERSION_GCN_JPN
+        return 1;
+#endif
     }
 
     i_this->counter++;
