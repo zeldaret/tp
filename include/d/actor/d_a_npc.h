@@ -534,7 +534,7 @@ public:
     /* 0xA80 */ f32 mExpressionMorfFrame;
     /* 0xA84 */ f32 mMorfFrames;
     /* 0xA88 */ bool mCreating;
-    /* 0xA89 */ bool mTwilight;
+    /* 0xA89 */ u8 mTwilight;
     /* 0xA8C */ dBgS_GndChk field_0xa8c;
     /* 0xAE0 */ dBgS_LinChk mLinChk;
     /* 0xB50 */ daNpcT_MotionSeqMngr_c mFaceMotionSeqMngr;
@@ -938,7 +938,7 @@ public:
     /* 0x83C */ u16* field_0x83c;
     /* 0x840 */ u16 field_0x840;
     /* 0x842 */ u16 field_0x842;
-    /* 0x844 */ bool field_0x844;
+    /* 0x844 */ u8 field_0x844;
     /* 0x845 */ u8 field_0x845[0x848 - 0x845];
     /* 0x848 */ s32 field_0x848;
     /* 0x84C */ dMsgFlow_c mMsgFlow;
@@ -1089,7 +1089,7 @@ protected:
     /* 0x9F1 */ u8 field_0x9f1;
     /* 0x9F2 */ bool mHide;
     /* 0x9F3 */ u8 field_0x9f3;
-    /* 0x9F4 */ bool mTwilight;
+    /* 0x9F4 */ u8 mTwilight;
     /* 0x9F5 */ u8 field_0x9f5;
     /* 0x9F6 */ u8 field_0x9f6;
     /* 0x9F8 */ dMsgFlow_c mFlow;

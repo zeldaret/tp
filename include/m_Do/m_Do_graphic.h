@@ -21,6 +21,7 @@ public:
         u8 getEnable() { return mEnable; }
         void setEnable(u8 i_enable) { mEnable = i_enable; }
         GXColor* getMonoColor() { return &mMonoColor; }
+        GXColor* getBlendColor() { return &mBlendColor; }
         void setPoint(u8 i_point) { mPoint = i_point; }
         void setBlureSize(u8 i_size) { mBlureSize = i_size; }
         void setBlureRatio(u8 i_ratio) { mBlureRatio = i_ratio; }
@@ -28,6 +29,9 @@ public:
         void setMonoColor(GXColor i_color) { mMonoColor = i_color; }
         void setMode(u8 i_mode) { mMode = i_mode; }
         void* getBuffer() { return m_buffer; }
+        u8 getPoint() { return mPoint; }
+        u8 getBlureSize() { return mBlureSize; }
+        u8 getBlureRatio() { return mBlureRatio; }
 
         /* 0x00 */ GXColor mBlendColor;
         /* 0x04 */ GXColor mMonoColor;

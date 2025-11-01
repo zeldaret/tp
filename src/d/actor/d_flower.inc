@@ -602,10 +602,10 @@ void dFlower_packet_c::draw() {
 
             for (dFlower_data_c* sp44 = sp5C->getData(); sp44 != NULL; sp44 = sp44->mp_next) {
 #if DEBUG
-                if (g_kankyoHIO.field_0x698 != 0) {
-                    sp64.r = g_kankyoHIO.field_0x694 * 2;
-                    sp64.g = g_kankyoHIO.field_0x695 * 2;
-                    sp64.b = g_kankyoHIO.field_0x696 * 2;
+                if (g_kankyoHIO.navy.grass_adjust_ON != 0) {
+                    sp64.r = g_kankyoHIO.navy.grass_ambcol.r * 2;
+                    sp64.g = g_kankyoHIO.navy.grass_ambcol.g * 2;
+                    sp64.b = g_kankyoHIO.navy.grass_ambcol.b * 2;
                 } else {
 #endif
                     sp64.r = (sp44->field_0x04 & 0x1F) * 2;
@@ -680,8 +680,8 @@ void dFlower_packet_c::draw() {
             }
 
 #if DEBUG
-            if (g_kankyoHIO.field_0x06d != 0) {
-                sp2C = g_kankyoHIO.field_0x79b;
+            if (g_kankyoHIO.light.m_HOSTIO_setting != 0) {
+                sp2C = g_kankyoHIO.dungeonLight.usedLights;
             }
 #endif
 

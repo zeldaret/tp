@@ -376,6 +376,8 @@ public:
     u32 ChkAtSPrm(u32 prm) { return mObjAt.ChkSPrm(prm); }
     u32 ChkCoSPrm(u32 prm) const { return mObjCo.ChkSPrm(prm); }
     void OnTgNoSlingHitInfSet() { mObjTg.OnSPrmBit(0x40); }
+    void OnAtVsBitSet(u32 prm) { mObjAt.OnSPrmBit(prm); }
+    void OffAtVsBitSet(u32 prm) { mObjAt.OffSPrmBit(prm); }
 
 };  // Size = 0x40
 

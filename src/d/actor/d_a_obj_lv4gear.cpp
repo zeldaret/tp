@@ -19,7 +19,7 @@ static void* searchSwSpinSub(void* i_actor, void* i_data) {
     daObjLv4Gear_c* gear = (daObjLv4Gear_c*)i_data;
 
     if (sw != NULL && fopAc_IsActor(sw) && fpcM_GetProfName(sw) == PROC_Obj_SwSpinner) {
-        u8 sw_bit = sw->getSwBit();
+        u8 sw_bit = sw->getSwbit();
         if (sw_bit != 0xFF && sw_bit == gear->getSwBit()) {
             return sw;
         }

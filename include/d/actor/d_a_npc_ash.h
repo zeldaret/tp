@@ -3,6 +3,32 @@
 
 #include "d/actor/d_a_npc.h"
 
+struct daNpcAsh_HIOParam {
+    /* 0x00 */ daNpcF_HIOParam common;
+};
+
+class daNpcAsh_Param_c {
+public:
+    /* 8095D5D4 */ virtual ~daNpcAsh_Param_c() {}
+
+    static const daNpcAsh_HIOParam m;
+};
+
+#if DEBUG
+class daNpcAsh_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpcAsh_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    daNpcAsh_HIOParam m;
+};
+
+#define NPC_ASH_HIO_CLASS daNpcAsh_HIO_c
+#else
+#define NPC_ASH_HIO_CLASS daNpcAsh_Param_c
+#endif
+
 /**
  * @ingroup actors-npcs
  * @class daNpcAsh_c
@@ -66,28 +92,6 @@ public:
         /* 0x9 */ MOT_STEP,
     };
 
-private:
-    /* 0xB48 */ Z2Creature mCreatureSound;
-    /* 0xBD8 */ J3DModel* mModelBow;
-    /* 0xBDC */ J3DModel* mModelQuiver;
-    /* 0xBE0 */ daNpcF_MatAnm_c* mpMatAnm;
-    /* 0xBE4 */ daNpcF_Lookat_c mLookat;
-    /* 0xC80 */ daNpcF_ActorMngr_c mActorMngr[6];
-    /* 0xCB0 */ fopAc_ac_c* mTalkPartner;
-    /* 0xCB4 */ u32 field_0xcb4; // unused
-    /* 0xCB8 */ dCcD_Cyl mCcCyl[2];
-    /* 0xF30 */ ActionFn mpActionFn;
-    /* 0xF3C */ request_of_phase_process_class mPhase[2];
-    /* 0xF4C */ u32 mItemPartnerId;
-    /* 0xF50 */ u32 field_0xf50; // unused
-    /* 0xF54 */ u32 field_0xf54;
-    /* 0xF58 */ s16 mFlowID;
-    /* 0xF5A */ s16 mLookMode;
-    /* 0xF5C */ u16 mMode;
-    /* 0xF5E */ u8 mMapToolId;
-    /* 0xF5F */ u8 field_0xf5f;
-    /* 0xF60 */ u8 mType;
-
 public:
     /* 809582EC */ daNpcAsh_c();
     /* 80958610 */ ~daNpcAsh_c();
@@ -112,23 +116,25 @@ public:
     /* 8095A8EC */ bool talk(void*);
     /* 8095AD28 */ bool demo(void*);
     /* 8095B164 */ bool leave(void*);
-    /* 8095B48C */ BOOL EvCut_Introduction(int i_staffID);
-    /* 8095B58C */ BOOL EvCut_Meeting(int i_staffID);
-    /* 8095B83C */ BOOL EvCut_WiretapSponsor(int i_staffID);
-    /* 8095BA80 */ BOOL EvCut_WiretapEntrant(int i_staffID);
-    /* 8095BCF0 */ void setParam();
-    /* 8095BF6C */ BOOL main();
-    /* 8095C200 */ void playMotion();
-    /* 8095C520 */ BOOL ctrlBtk();
-    /* 8095C5C4 */ void setAttnPos();
-    /* 8095C9BC */ void lookat();
-    /* 8095CC8C */ BOOL drawDbgInfo();
+    /* 8095B48C */ BOOL EvCut_Introduction(int);
+    /* 8095B58C */ BOOL EvCut_Meeting(int);
+    /* 8095B83C */ BOOL EvCut_WiretapSponsor(int);
+    /* 8095BA80 */ BOOL EvCut_WiretapEntrant(int);
+    /* 8095BCF0 */ inline void setParam();
+    /* 8095BF6C */ inline BOOL main();
+    /* 8095C200 */ inline void playMotion();
+    /* 8095C520 */ inline BOOL ctrlBtk();
+    /* 8095C5C4 */ inline void setAttnPos();
+    /* 8095C9BC */ inline void lookat();
+    /* 8095CC8C */ inline BOOL drawDbgInfo();
 
     s16 getMessageNo() { return shape_angle.x; }
-                            /* dSv_event_flag_c::F_0268 - City in the Sky - City in the Sky clear */
-    bool isMap() { return !(daNpcF_chkEvtBit(0x10c)
-                                /* dSv_event_flag_c::F_0264 - Cutscene - Get master sword */
-                            || !daNpcF_chkEvtBit(0x108)); }
+    /* dSv_event_flag_c::F_0268 - City in the Sky - City in the Sky clear */
+    bool isMap() {
+        return !(daNpcF_chkEvtBit(0x10c)
+                 /* dSv_event_flag_c::F_0264 - Cutscene - Get master sword */
+                 || !daNpcF_chkEvtBit(0x108));
+    }
     inline void setExpressionTalkAfter() { setExpression(7, -1.0f); }
     inline void setLookMode(int i_lookMode, fopAc_ac_c* i_talkPartner);
     inline void searchActors();
@@ -137,50 +143,30 @@ public:
     inline void playExpression();
 
     static EventFn mEvtSeqList[6];
+
+private:
+    /* 0xB48 */ Z2Creature mCreatureSound;
+    /* 0xBD8 */ J3DModel* mModelBow;
+    /* 0xBDC */ J3DModel* mModelQuiver;
+    /* 0xBE0 */ daNpcF_MatAnm_c* mpMatAnm;
+    /* 0xBE4 */ daNpcF_Lookat_c mLookat;
+    /* 0xC80 */ daNpcF_ActorMngr_c mActorMngr[6];
+    /* 0xCB0 */ fopAc_ac_c* mTalkPartner;
+    /* 0xCB4 */ NPC_ASH_HIO_CLASS* mpHIO;
+    /* 0xCB8 */ dCcD_Cyl mCcCyl[2];
+    /* 0xF30 */ ActionFn mpActionFn;
+    /* 0xF3C */ request_of_phase_process_class mPhase[2];
+    /* 0xF4C */ u32 mItemPartnerId;
+    /* 0xF50 */ u32 field_0xf50;  // unused
+    /* 0xF54 */ u32 field_0xf54;
+    /* 0xF58 */ s16 mFlowID;
+    /* 0xF5A */ s16 mLookMode;
+    /* 0xF5C */ u16 mMode;
+    /* 0xF5E */ u8 mMapToolId;
+    /* 0xF5F */ u8 field_0xf5f;
+    /* 0xF60 */ u8 mType;
 };
 
 STATIC_ASSERT(sizeof(daNpcAsh_c) == 0xF64);
-
-class daNpcAsh_Param_c {
-public:
-    /* 8095D5D4 */ virtual ~daNpcAsh_Param_c() {}
-
-    struct param {
-        /* 0x00 */ f32 mAttnOffsetY;
-        /* 0x04 */ f32 mGravity;
-        /* 0x08 */ f32 mScale;
-        /* 0x0C */ f32 mShadowDepth;
-        /* 0x10 */ f32 mCcWeight;
-        /* 0x14 */ f32 mCylH;
-        /* 0x18 */ f32 mWallH;
-        /* 0x1C */ f32 mWallR;
-        /* 0x20 */ f32 mBodyUpAngle;
-        /* 0x24 */ f32 mBodyDownAngle;
-        /* 0x28 */ f32 mBodyLeftAngle;
-        /* 0x2C */ f32 mBodyRightAngle;
-        /* 0x30 */ f32 mHeadUpAngle;
-        /* 0x34 */ f32 mHeadDownAngle;
-        /* 0x38 */ f32 mHeadLeftAngle;
-        /* 0x3C */ f32 mHeadRightAngle;
-        /* 0x40 */ f32 mNeckAngleScl;
-        /* 0x44 */ f32 mMorfFrames;
-        /* 0x48 */ s16 mSpeakDistIdx;
-        /* 0x4A */ s16 mSpeakAngleIdx;
-        /* 0x4C */ s16 mTalkDistIdx;
-        /* 0x4E */ s16 mTalkAngleIdx;
-        /* 0x50 */ f32 mAttnFovY;
-        /* 0x54 */ f32 mAttnRadius;
-        /* 0x58 */ f32 mAttnUpperY;
-        /* 0x5C */ f32 mAttnLowerY;
-        /* 0x60 */ s16 field_0x60;
-        /* 0x62 */ s16 mDamageTimer;
-        /* 0x64 */ s16 mTestExpression;
-        /* 0x66 */ s16 mTestMotion;
-        /* 0x68 */ s16 mTestLookMode;
-        /* 0x6A */ bool mTest;
-    };
-
-    static param const m;
-};
 
 #endif /* D_A_NPC_ASH_H */

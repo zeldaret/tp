@@ -24,6 +24,7 @@
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
 #include "m_Do/m_Do_main.h"
+#include "d/d_debug_viewer.h"
 
 /* 80007D9C-80007E44 0026DC 00A8+00 1/1 0/0 0/0 .text            createTimg__FUsUsUl */
 static ResTIMG* createTimg(u16 width, u16 height, u32 format) {
@@ -265,6 +266,10 @@ void mDoGph_BlankingOFF() {}
 /* 80008424-80008450 002D64 002C+00 1/1 0/0 0/0 .text            dScnPly_BeforeOfPaint__Fv */
 static void dScnPly_BeforeOfPaint() {
     dComIfGd_reset();
+
+    #if DEBUG
+    dDbVw_deleteDrawPacketList();
+    #endif
 }
 
 /* 80008450-80008474 002D90 0024+00 0/0 1/0 0/0 .text            mDoGph_BeforeOfDraw__Fv */
