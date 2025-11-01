@@ -31,8 +31,7 @@ static cXyz get_check_pos(kytag00_class* i_this) {
     return pos;
 }
 
-/* 8046B9DC-8046BA10 00033C 0034+00 2/2 0/0 0/0 .text            wether_tag_reset__FP13kytag00_class
- */
+/* 8046B9DC-8046BA10 00033C 0034+00 2/2 0/0 0/0 .text            wether_tag_reset__FP13kytag00_class */
 static void wether_tag_reset(kytag00_class* i_this) {
     i_this->field_0x56d = 0;
 
@@ -42,8 +41,7 @@ static void wether_tag_reset(kytag00_class* i_this) {
     g_env_light.mColPatModeGather = 1;
 }
 
-/* 8046BA10-8046BD60 000370 0350+00 1/1 0/0 0/0 .text            wether_tag_move__FP13kytag00_class
- */
+/* 8046BA10-8046BD60 000370 0350+00 1/1 0/0 0/0 .text            wether_tag_move__FP13kytag00_class */
 static void wether_tag_move(kytag00_class* i_this) {
     cXyz spC;
     cXyz check_pos = get_check_pos(i_this);
@@ -142,7 +140,8 @@ static void wether_tag_move(kytag00_class* i_this) {
 
 /* 8046BD60-8046BDA4 0006C0 0044+00 1/1 0/0 0/0 .text            raincnt_set__Ff */
 static void raincnt_set(f32 param_0) {
-    int cnt = param_0 * param_0 * param_0 * 250.0f;
+    int cnt = 0;
+    cnt = param_0 * param_0 * param_0 * 250.0f;
     if (cnt > g_env_light.base_raincnt) {
         g_env_light.raincnt = cnt;
     }
@@ -205,8 +204,8 @@ static void wether_tag_efect_reset(kytag00_class* i_this) {
 
 /* 8046BEB8-8046C660 000818 07A8+00 3/2 0/0 0/0 .text wether_tag_efect_move__FP13kytag00_class */
 static void wether_tag_efect_move(kytag00_class* i_this) {
-    cXyz spC;
-    cXyz check_pos = get_check_pos(i_this);
+    cXyz spC, check_pos;
+    check_pos = get_check_pos(i_this);
 
     f32 temp_f31 = i_this->field_0x57c * 100.0f;
 
@@ -389,15 +388,15 @@ static void wether_tag_efect_move(kytag00_class* i_this) {
     }
 }
 
-/* 8046C660-8046C684 000FC0 0024+00 1/0 0/0 0/0 .text            daKytag00_Draw__FP13kytag00_class
- */
+/* 8046C660-8046C684 000FC0 0024+00 1/0 0/0 0/0 .text            daKytag00_Draw__FP13kytag00_class */
 static int daKytag00_Draw(kytag00_class* i_this) {
     wether_tag_efect_move(i_this);
     return 1;
 }
 
-/* 8046C684-8046C76C 000FE4 00E8+00 1/0 0/0 0/0 .text daKytag00_Execute__FP13kytag00_class */
+/* 8046C684-8046C76C 000FE4 00E8+00 1/0 0/0 0/0 .text            daKytag00_Execute__FP13kytag00_class */
 static int daKytag00_Execute(kytag00_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     BOOL var_r30 = TRUE;
 
     if (i_this->field_0x571 != 0xFF && dComIfGs_isSwitch(i_this->field_0x571, dComIfGp_roomControl_getStayNo())) {
@@ -416,34 +415,36 @@ static int daKytag00_Execute(kytag00_class* i_this) {
     return 1;
 }
 
-/* 8046C76C-8046C774 0010CC 0008+00 1/0 0/0 0/0 .text daKytag00_IsDelete__FP13kytag00_class */
+/* 8046C76C-8046C774 0010CC 0008+00 1/0 0/0 0/0 .text            daKytag00_IsDelete__FP13kytag00_class */
 static int daKytag00_IsDelete(kytag00_class* i_this) {
     return 1;
 }
 
-/* 8046C774-8046C7BC 0010D4 0048+00 1/0 0/0 0/0 .text            daKytag00_Delete__FP13kytag00_class
- */
+/* 8046C774-8046C7BC 0010D4 0048+00 1/0 0/0 0/0 .text            daKytag00_Delete__FP13kytag00_class */
 static int daKytag00_Delete(kytag00_class* i_this) {
     wether_tag_reset(i_this);
     wether_tag_efect_reset(i_this);
+    fpc_ProcID id = fopAcM_GetID(i_this);
     g_env_light.mMoyaCount = 0;
     return 1;
 }
 
 /* 8046C7BC-8046C978 00111C 01BC+00 1/0 0/0 0/0 .text            daKytag00_Create__FP10fopAc_ac_c */
 static int daKytag00_Create(fopAc_ac_c* i_this) {
-    fopAcM_ct(i_this, kytag00_class);
     kytag00_class* a_this = (kytag00_class*)i_this;
+    BOOL var_r30;
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_ct(a_this, kytag00_class);
 
     a_this->field_0x56e = 0;
-    a_this->field_0x56f = fopAcM_GetParam(a_this) & 0xFF;
-    a_this->field_0x570 = (fopAcM_GetParam(a_this) >> 8) & 0xFF;
-    a_this->field_0x578 = (fopAcM_GetParam(a_this) >> 0x10) & 0xFF;
-    a_this->field_0x57c = (fopAcM_GetParam(a_this) >> 0x18) & 0xFF;
-    a_this->field_0x571 = a_this->current.angle.x & 0xFF;
-    a_this->field_0x572 = (a_this->current.angle.x >> 8) & 0xFF;
+    a_this->field_0x56f = fopAcM_GetParam(i_this) & 0xFF;
+    a_this->field_0x570 = (fopAcM_GetParam(i_this) & 0xFF00) >> 8;
+    a_this->field_0x578 = (fopAcM_GetParam(i_this) & 0xFF0000) >> 0x10;
+    a_this->field_0x57c = (fopAcM_GetParam(i_this) & 0xFF000000) >> 0x18;
+    a_this->field_0x571 = i_this->current.angle.x & 0xFF;
+    a_this->field_0x572 = (i_this->current.angle.x & 0xFF00) >> 8;
 
-    BOOL var_r30 = TRUE;
+    var_r30 = TRUE;
 
     if (a_this->field_0x571 != 0xFF && dComIfGs_isSwitch(a_this->field_0x571, dComIfGp_roomControl_getStayNo())) {
         var_r30 = FALSE;
@@ -465,8 +466,8 @@ static int daKytag00_Create(fopAc_ac_c* i_this) {
         a_this->field_0x57c = 10;
     }
 
-    a_this->field_0x580 = a_this->scale.x * 5000.0f;
-    a_this->field_0x584 = a_this->scale.x * 5000.0f + a_this->field_0x578 * 100.0f;
+    a_this->field_0x580 = i_this->scale.x * 5000.0f;
+    a_this->field_0x584 = i_this->scale.x * 5000.0f + a_this->field_0x578 * 100.0f;
     a_this->field_0x56c = 0;
     a_this->field_0x56d = 0;
     g_env_light.mMoyaCount = 0;

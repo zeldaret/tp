@@ -12,7 +12,8 @@
  *
  * @details
  *
- */
+*/
+
 class daObjBurnBox_c : public dBgS_MoveBgActor {
 public:
     /* 8046E698 */ void initBaseMtx();
@@ -35,9 +36,7 @@ private:
     /* 0x5E8 */ dCcD_Cyl mCyl;
     /* 0x724 */ u32 field_0x724;
     /* 0x728 */ s16 field_0x728;
-    /* 0x72a */ u8 field_0x72a;
-    /* 0x72b */ u8 field_0x72b;
-    /* 0x72c */ JPABaseEmitter* mpEmitters[5];
+    /* 0x72C */ JPABaseEmitter* mpEmitters[5];
 };
 
 STATIC_ASSERT(sizeof(daObjBurnBox_c) == 0x740);

@@ -26,6 +26,10 @@ public:
     /* 80036C44 */ int getHitmarkPosAndAngle(cXyz const*, csXyz const*, cXyz*, csXyz*, int) const;
     /* 80036FA8 */ void setArrowPosAndAngle(cXyz const*, cXyz const*, int, cXyz*, csXyz*);
 
+    #if DEBUG
+    /* 80072FA0 */ void debugDraw();
+    #endif
+
     bool checkPassNum(int bit) { return field_0xc & (1 << bit); }
     void onPassNum(int num) { field_0xc |= (1 << num); }
     void offPassNum(int num) { field_0xc &= ~(1 << num); }

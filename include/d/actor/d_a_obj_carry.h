@@ -7,13 +7,24 @@
 #include "d/d_cc_d.h"
 #include "d/d_jnt_col.h"
 
+/**
+ * @ingroup actors-objects
+ * @class daObjCarry_c
+ * @brief Carryable Object
+ *
+ * @details This is a multi-use class for carryable objects.
+ * It's used by: small and large blue pot, small and large red pot, box, cannon ball, barrel, skull,
+ * deku nut, Sols, small and large Twilight pots.
+ *
+*/
+
 struct daObjCarry_dt_t {
     /* 0x00 */ f32 m_throwInitSpeedY;
     /* 0x04 */ f32 m_throwInitSpeedXZ;
     /* 0x08 */ f32 m_wolfThrowInitSpeedY;
     /* 0x0C */ f32 m_wolfThrowInitSpeedXZ;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
+    /* 0x10 */ f32 m_velocityReflCoeffY;
+    /* 0x14 */ f32 m_velocityReflCoeffXZ;
     /* 0x18 */ f32 m_gravity;
     /* 0x1C */ f32 m_Buoyancy;
     /* 0x20 */ f32 m_urnWindEffRatio;
@@ -51,16 +62,44 @@ struct daObjCarry_dt_t {
     /* 0x90 */ u32 m_heapSize;
 };
 
-/**
- * @ingroup actors-objects
- * @class daObjCarry_c
- * @brief Carryable Object
- *
- * @details This is a multi-use class for carryable objects.
- * It's used by: small and large blue pot, small and large red pot, box, cannon ball, barrel, skull,
- * deku nut, Sols, small and large Twilight pots.
- *
- */
+class daObj_HIO_c : public JORReflexible {
+public:
+    daObj_HIO_c(int);
+    void entry();
+    void remove();
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ u8 type;
+    /* 0x08 */ daObjCarry_dt_t dt;
+    /* 0x9C */ s8 field_0x9c;
+};
+
+class daObj_HIO_common_c : public JORReflexible {
+public:
+    daObj_HIO_common_c();
+    void entry();
+    void remove();
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 field_0x5;
+    /* 0x06 */ u8 field_0x6;
+    /* 0x07 */ u8 field_0x7;
+    /* 0x08 */ u8 field_0x8;
+    /* 0x09 */ u8 field_0x9;
+    /* 0x0A */ u8 field_0xa;
+    /* 0x0B */ u8 field_0xb;
+    /* 0x0C */ u8 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ u8 field_0x1c;
+    /* 0x1D */ u8 field_0x1d;
+    /* 0x20 */ cXyz field_0x20;
+    /* 0x2C */ J3DGXColor field_0x2c[2];
+    /* 0x34 */ J3DGXColorS10 field_0x34;
+};
+
 class daObjCarry_c : public fopAc_ac_c {
 public:
     enum {
@@ -107,7 +146,7 @@ public:
     /* 80031D38 */ static void savePos(int, cXyz);
     /* 80031D64 */ static void onSttsFlag(int, u8);
     /* 80031D78 */ static void offSttsFlag(int, u8);
-    /* 80031D8C */ static u8 chkSttsFlag(int, u8);
+    /* 80031D8C */ static bool chkSttsFlag(int, u8);
     /* 80031DAC */ static void setRoomNo(int, s8);
     /* 80031DB8 */ static s8 getRoomNo(int);
     /* 8046F6A4 */ const daObjCarry_dt_t& data();
@@ -258,17 +297,17 @@ public:
 
     s32 getType() { return mType; }
     u8 getSwbit() { return fopAcM_GetParamBit(this, 6, 8); }
-    u32 getSwbit2() { return fopAcM_GetParamBit(this, 14, 8); }
+    u8 getSwbit2() { return fopAcM_GetParamBit(this, 14, 8); }
     s8 getRoomNo() { return fopAcM_GetParamBit(this, 0, 6); }
 
-    u32 checkOnMoveBg() { return ~((field_0xd18 >> 0xc) & 1); }
-    u32 checkCrashRoll() { return field_0xd18 >> 6 & 1; }
+    u8 checkOnMoveBg() { return ~((field_0xd18 >> 0xc) & 1); }
+    u8 checkCrashRoll() { return field_0xd18 >> 6 & 1; }
     u8 getItemNo() { return mItemNo; }
-    u8 getItemBit() { return mItemNo >> 8; }
+    u8 getItemBit() { return (mItemNo >> 8) & 0xFF; }
     u8 getItemType() { return field_0xd18 & 1; }
     u8 getSaveID() { return getItemNo(); }
     u8 getTrboxBit() { return (mItemNo >> 8) & 0x3F; }
-    u32 getSetType() { return (field_0xd18 >> 13) & 0x7; }
+    u8 getSetType() { return (field_0xd18 >> 13) & 0x7; }
     bool prm_chk_type_ironball() { return getType() == TYPE_IRON_BALL; }
     bool prm_chk_type_lightball() { return getType() == TYPE_BALL_S || getType() == TYPE_BALL_S_2; }
     void startCtrl() { mCtrl = 1; }
@@ -304,6 +343,9 @@ public:
     }
 
     static const daObjCarry_dt_t mData[];
+    #if DEBUG
+    static daObj_HIO_c mHIO[14];
+    #endif
     static cXyz mPos[5];
     static u8 mSttsFlag[5];
     static s8 mRoomNo[5];
@@ -329,13 +371,12 @@ public:
     /* 0xD00 */ s16 mRotation;
     /* 0xD02 */ u8 field_0xD02[0xD04 - 0xD02];
     /* 0xD04 */ s16 field_0xd04;
-    /* 0xD08 */ cXyz field_0xd08;
+    /* 0xD08 */ cXyz mGrabCollisionOffset;
     /* 0xD14 */ u8 field_0xd14;
     /* 0xD15 */ bool mInitParams;
     /* 0xD16 */ u16 mItemNo;
     /* 0xD18 */ u16 field_0xd18;
-    /* 0xD1A */ u8 field_0xD1A[0xD1C - 0xD1A];
-    /* 0xD1C */ cXyz field_0xd1c;
+    /* 0xD1C */ cXyz mInitSpeed;
     /* 0xD28 */ daPy_boomerangMove_c mBoomerangMove;
     /* 0xD34 */ u8 field_0xD34[0xD3C - 0xD34];
     /* 0xD3C */ Quaternion field_0xd3c;
@@ -352,16 +393,15 @@ public:
     /* 0xD75 */ u8 field_0xd75;
     /* 0xD76 */ u8 field_0xd76;
     /* 0xD77 */ u8 field_0xd77;
-    /* 0xD78 */ u8 field_0xD78[0xD79 - 0xD78];
-    /* 0xD79 */ u8 field_0xd79;
+    /* 0xD78 */ u8 field_0xd78;
+    /* 0xD79 */ u8 mBokkuriExecProcMode;
     /* 0xD7A */ u8 field_0xd7a;
     /* 0xD7B */ s8 field_0xd7b;
     /* 0xD7C */ csXyz field_0xd7c;
-    /* 0xD82 */ u8 field_0xD82[0xD84 - 0xD82];
     /* 0xD84 */ f32 field_0xd84;
     /* 0xD88 */ Z2SoundObjSimple mSound;
     /* 0xDA8 */ u8 field_0xda8;
-    /* 0xDA9 */ bool field_0xda9;
+    /* 0xDA9 */ bool mCarryNowFlag;
     /* 0xDAA */ u8 field_0xdaa;
     /* 0xDAB */ u8 field_0xdab;
     /* 0xDAC */ bool field_0xdac;
@@ -375,7 +415,7 @@ public:
     /* 0xDB4 */ u8 field_0xdb4;
     /* 0xDB5 */ bool mCanCrashRoll;
     /* 0xDB6 */ u8 mDeleteTimer;
-    /* 0xDB7 */ bool mDraw;
+    /* 0xDB7 */ u8 mDraw;
     /* 0xDB8 */ u8 mCtrl;
     /* 0xDB9 */ u8 field_0xdb9;
     /* 0xDBA */ bool mReset;
@@ -386,7 +426,7 @@ public:
     /* 0xDC8 */ f32 field_0xdc8;
     /* 0xDCC */ f32 field_0xdcc;
     /* 0xDD0 */ fopAc_ac_c* mpCannonActor;
-    /* 0xDD4 */ u32 field_0xdd4;
+    /* 0xDD4 */ u32 mHamonPrtcl;
     /* 0xDD8 */ u8 field_0xDD8[0xDDC - 0xDD8];
     /* 0xDDC */ f32 field_0xddc;
     /* 0xDE0 */ f32 field_0xde0;
@@ -398,16 +438,13 @@ public:
     /* 0xDF8 */ DALKMIST_INFLUENCE mDalkmistInf;
     /* 0xE0C */ u8 field_0xe0c;
     /* 0xE0D */ u8 field_0xe0d;
-    /* 0xE0E */ u8 field_0xE0E[0xE10 - 0xE0E];
     /* 0xE10 */ dJntCol_c mJntCol;
     /* 0xE20 */ f32 field_0xe20;
     /* 0xE24 */ s8 field_0xe24;
     /* 0xE25 */ u8 field_0xe25;
-    /* 0xE26 */ u8 field_0xe26;
-    /* 0xE27 */ u8 field_0xe27;
 
 private:
-    u16 getType_private() { return field_0xd18 >> 1 & 0x1f; }
+    u8 getType_private() { return field_0xd18 >> 1 & 0x1f; }
 };
 
 STATIC_ASSERT(sizeof(daObjCarry_c) == 0xE28);

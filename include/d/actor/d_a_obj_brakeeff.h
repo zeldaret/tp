@@ -17,7 +17,8 @@ class dBgW;
  *
  * @details
  *
- */
+*/
+
 class obj_brakeeff_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mRequestOfPhase;

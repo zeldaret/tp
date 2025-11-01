@@ -1,12 +1,21 @@
 /**
  * d_a_andsw.cpp
  * AND - Switch
- */
+*/
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_andsw.h"
 #include "d/d_procname.h"
+
+class daAndsw_HIO_c : public mDoHIO_entry_c {
+public:
+    daAndsw_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    /* 0x06 */ u8 field_0x6;
+};
 
 #ifdef DEBUG
 daAndsw_HIO_c l_HIO;
@@ -20,6 +29,10 @@ void daAndsw_HIO_c::genMessage(JORMContext* ctx) {
     ctx->genCheckBox("ＳＷ状態出力", &field_0x6, 0x01, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
 }
 #endif
+
+u8 daAndsw_c::getTimer() { return fopAcM_GetParamBit(this,16,8); }
+u8 daAndsw_c::getSwNo2() { return fopAcM_GetParamBit(this,8,8); }
+u8 daAndsw_c::getSwNo() { return fopAcM_GetParamBit(this,0,8); }
 
 /* 80457978-804579B8 000078 0040+00 1/1 0/0 0/0 .text            Create__9daAndsw_cFv */
 int daAndsw_c::Create() {
@@ -37,6 +50,8 @@ int daAndsw_c::Create() {
     return 1;
 }
 
+daAndsw_c::daAndsw_c() {}
+
 /* 804579B8-80457A20 0000B8 0068+00 1/1 0/0 0/0 .text            create__9daAndsw_cFv */
 int daAndsw_c::create() {
     fopAcM_ct(this, daAndsw_c);
@@ -50,6 +65,8 @@ int daAndsw_c::create() {
 
     return cPhs_COMPLEATE_e;
 }
+
+u8 daAndsw_c::getType() { return fopAcM_GetParamBit(this,24,8); }
 
 /* 80457A20-80457ABC 000120 009C+00 1/1 0/0 0/0 .text            execute__9daAndsw_cFv */
 int daAndsw_c::execute() {
@@ -109,7 +126,6 @@ static int daAndsw_Create(fopAc_ac_c* i_this) {
     return a_this->create();
 }
 
-/* ############################################################################################## */
 /* 80457B2C-80457B4C -00001 0020+00 1/0 0/0 0/0 .data            l_daAndsw_Method */
 static actor_method_class l_daAndsw_Method = {
     (process_method_func)daAndsw_Create,

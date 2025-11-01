@@ -1,7 +1,6 @@
 #ifndef D_A_DOOR_SHUTTER_H
 #define D_A_DOOR_SHUTTER_H
 
-#include "dolphin/types.h"
 #include "f_op/f_op_actor.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "d/d_bg_w.h"
@@ -35,7 +34,8 @@ public:
  *
  * @details Multi-purpose door actor. This actor is used for vertical sliding doors in the game.
  *
- */
+*/
+
 class daDoor20_c : public fopAc_ac_c {
 public:
     enum ActionType {
@@ -53,6 +53,9 @@ public:
     /* 80460CF0 */ char* getBtk();
     /* 80460D5C */ J3DModelData* getModelData();
     /* 80460D80 */ f32 getSize2X();
+    #if DEBUG
+    /* 8081DA40 */ bool debugCheckParam();
+    #endif
     /* 80460DAC */ int CreateHeap();
     /* 8046129C */ void setEventPrm();
     /* 804616EC */ int checkOpenMsgDoor(int*);
@@ -93,8 +96,8 @@ public:
     /* 80464858 */ int createKey();
     /* 80464AE4 */ int deleteKey();
     /* 80464B3C */ int adjoinPlayer();
-    /* 80464BD8 */ int frontCheckOld();
-    /* 80464C68 */ int frontCheck();
+    /* 80464BD8 */ u8 frontCheckOld();
+    /* 80464C68 */ u8 frontCheck();
     /* 80464CEC */ int drawCheck(int);
     /* 80464E18 */ int checkExecute();
     /* 80464EC4 */ void startDemoProc();
@@ -124,6 +127,9 @@ public:
     void setAction(u8 action) { mAction = action; }
 
 private:
+    #if DEBUG
+    /* 0x574 */ u8 field_0x574;
+    #endif
     /* 0x56C */ request_of_phase_process_class mPhase1;
     /* 0x574 */ request_of_phase_process_class mPhase2;
     /* 0x57C */ J3DModel* mModel1;
@@ -131,8 +137,8 @@ private:
     /* 0x584 */ mDoExt_bckAnm field_0x584;
     /* 0x5A0 */ mDoExt_bckAnm field_0x5a0;
     /* 0x5BC */ J3DModel* field_0x5bc;
-    /* 0x5C0 */ mDoExt_btkAnm* field_0x5c0;
-    /* 0x5C4 */ dBgW* field_0x5c4;
+    /* 0x5C0 */ mDoExt_btkAnm* mBtkAnm;
+    /* 0x5C4 */ dBgW* mpBgW;
     /* 0x5C8 */ s8 field_0x5c8;
     /* 0x5C9 */ bool field_0x5c9;
     /* 0x5CA */ u8 field_0x5ca[0x5dd - 0x5ca];
@@ -142,7 +148,7 @@ private:
     /* 0x5F0 */ bool field_0x5f0;
     /* 0x5F1 */ u8 field_0x5f1;
     /* 0x5F4 */ Mtx field_0x5f4;
-    /* 0x624 */ dMsgFlow_c field_0x624;
+    /* 0x624 */ dMsgFlow_c mMsgFlow;
     /* 0x670 */ s16 field_0x670;
     /* 0x672 */ bool field_0x672;
     /* 0x673 */ u8 field_0x673;
@@ -164,8 +170,8 @@ private:
     /* 0x6CC */ u32 field_0x6cc;
     /* 0x6D0 */ dDoor_stop_c mDoorStop;
     /* 0x6DC */ s16 field_0x6dc;
-    /* 0x6DE */ dBgS_ObjAcch field_0x6de;
-    /* 0x8B8 */ dBgS_AcchCir field_0x8b8;
+    /* 0x6DE */ dBgS_ObjAcch mBgc;
+    /* 0x8B8 */ dBgS_AcchCir mAcchCir;
     /* 0x8F8 */ u32 field_0x8f8;
 };
 
