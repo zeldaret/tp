@@ -144,17 +144,17 @@ SECTION_DATA static u8 run_se[8] = {
 };
 
 /* 809B18FC-809B193C 000010 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4342 */
-static dCcD_SrcSph cc_sph_src = {
-    {
-        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x75}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
-    {
-        {{0.0f, 0.0f, 0.0f}, 20.0f} // mSph
-    } // mSphAttr
-};
+// static dCcD_SrcSph cc_sph_src = {
+//     {
+//         {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x75}}, // mObj
+//         {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+//         {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+//         {0x0}, // mGObjCo
+//     }, // mObjInf
+//     {
+//         {{0.0f, 0.0f, 0.0f}, 20.0f} // mSph
+//     } // mSphAttr
+// };
 
 /* 809B193C-809B195C -00001 0020+00 1/0 0/0 0/0 .data            l_daNpc_Du_Method */
 static actor_method_class l_daNpc_Du_Method = {
@@ -514,13 +514,13 @@ COMPILER_STRIP_GATE(0x809B18C8, &lit_4237);
 #pragma pop
 
 /* 809B19E8-809B19EC 000008 0004+00 2/2 0/0 0/0 .bss             None */
-static u8 data_809B19E8[4];
+static bool l_initHIO;
 
 /* 809B19EC-809B19F8 00000C 000C+00 1/1 0/0 0/0 .bss             @3757 */
 static u8 lit_3757[12];
 
 /* 809B19F8-809B1A04 000018 000C+00 3/3 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[12];
+static daNpc_Du_HIO_c l_HIO;
 
 /* 809B0DE0-809B116C 001180 038C+00 2/1 0/0 0/0 .text            daNpc_Du_Execute__FP12npc_du_class
  */
@@ -548,7 +548,7 @@ static void daNpc_Du_Delete(npc_du_class* param_0) {
 }
 
 /* 809B11E0-809B13C8 001580 01E8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
+static int useHeapInit(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
@@ -558,31 +558,68 @@ extern "C" void __dt__12J3DFrameCtrlFv() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 809B18D0-809B18D4 000088 0004+00 0/1 0/0 0/0 .rodata          @4408 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4408 = 25.0f;
-COMPILER_STRIP_GATE(0x809B18D0, &lit_4408);
-#pragma pop
-
-/* 809B18D4-809B18D8 00008C 0004+00 0/1 0/0 0/0 .rodata          @4409 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4409 = 65536.0f;
-COMPILER_STRIP_GATE(0x809B18D4, &lit_4409);
-#pragma pop
-
-/* 809B18D8-809B18DC 000090 0004+00 0/1 0/0 0/0 .rodata          @4410 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4410 = -5.0f;
-COMPILER_STRIP_GATE(0x809B18D8, &lit_4410);
-#pragma pop
-
 /* 809B1410-809B16A0 0017B0 0290+00 1/0 0/0 0/0 .text            daNpc_Du_Create__FP10fopAc_ac_c */
-static void daNpc_Du_Create(fopAc_ac_c* param_0) {
+static cPhs__Step daNpc_Du_Create(fopAc_ac_c* a_this) {
     // NONMATCHING
+    fopAcM_ct(a_this, npc_du_class);
+    npc_du_class* i_this = (npc_du_class*)a_this;
+
+    cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "Npc_Du");
+    if (phase == cPhs_COMPLEATE_e) {
+        OS_REPORT("NPC_DU PARAM %x\n", fopAcM_GetParam(a_this));
+        i_this->arg0 = fopAcM_GetParam(a_this);
+        i_this->arg1 = fopAcM_GetParam(a_this) >> 8;
+        i_this->mMsgFNo = a_this->current.angle.x;
+        a_this->shape_angle.x = 0;
+        a_this->current.angle.x = 0;
+
+        if (i_this->arg0 == 1) {
+            i_this->mMsgFNo = 0x2EF;
+        } else {
+            i_this->mMsgFNo = 0x2F0;
+        }
+
+        OS_REPORT("NPC_DU//////////////NPC_DU SET 1 !!\n");
+
+        if (!fopAcM_entrySolidHeap(a_this, useHeapInit, 0x1280)) {
+            OS_REPORT("//////////////NPC_DU SET NON !!\n");
+            return cPhs_ERROR_e;
+        }
+
+        OS_REPORT("//////////////NPC_DU SET 2 !!\n");
+        if (!l_initHIO) {
+            i_this->field_0x9fc = 1;
+            l_initHIO = true;
+            l_HIO.id = -1;
+        }
+
+        i_this->mAction = 0;
+        fopAcM_SetMtx(a_this, i_this->mpMorf->getModel()->getBaseTRMtx());
+        i_this->mBgc.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(a_this), a_this, 1, &i_this->mAcchCir,
+                         fopAcM_GetSpeed_p(a_this), NULL, NULL);
+        i_this->mAcchCir.SetWall(20.0f, 25.0f);
+        i_this->mStts.Init(100, 0, a_this);
+
+        static dCcD_SrcSph cc_sph_src = {
+            {
+                {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x75}}, // mObj
+                {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+                {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+                {0x0}, // mGObjCo
+            }, // mObjInf
+            {
+                {{0.0f, 0.0f, 0.0f}, 20.0f} // mSph
+            } // mSphAttr
+        };
+
+        i_this->mSph.Set(cc_sph_src);
+        i_this->mSph.SetStts(&i_this->mStts);
+        i_this->field_0x5cc = cM_rndF(65536.0f);
+        a_this->gravity = -5.0f;
+        daNpc_Du_Execute(i_this);
+    }
+
+    return phase;
 }
 
 /* 809B16A0-809B16E8 001A40 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
@@ -600,11 +637,6 @@ extern "C" void __dt__8cM3dGAabFv() {
 /* 809B1730-809B17A0 001AD0 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
 // dBgS_ObjAcch::~dBgS_ObjAcch() {
 extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* 809B17A0-809B17E8 001B40 0048+00 2/1 0/0 0/0 .text            __dt__14daNpc_Du_HIO_cFv */
-daNpc_Du_HIO_c::~daNpc_Du_HIO_c() {
     // NONMATCHING
 }
 
