@@ -17,9 +17,6 @@ struct bee_s {
         /* 0xA */ ACT_HOME = 10,
     };
 
-    /* 80685368 */ bee_s() {}
-    /* 806852FC */ ~bee_s() {}
-
     /* 0x00 */ J3DModel* mpModel1;
     /* 0x04 */ J3DModel* mpModel2;
     /* 0x08 */ J3DModel* mpModel3;
@@ -75,18 +72,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(e_bee_class) == 0x2588);
-
-class daE_Bee_HIO_c {
-public:
-    /* 8068286C */ daE_Bee_HIO_c();
-    /* 8068539C */ virtual ~daE_Bee_HIO_c() {}
-
-    /* 0x4 */ s8 field_0x4;
-    /* 0x8 */ f32 mScale;
-    /* 0xC */ bool mDelete;
-    /* 0xD */ bool mNoKill;
-};
-
-STATIC_ASSERT(sizeof(daE_Bee_HIO_c) == 0x10);
 
 #endif /* D_A_E_BEE_H */

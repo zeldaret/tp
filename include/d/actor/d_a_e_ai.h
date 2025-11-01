@@ -53,10 +53,10 @@ private:
     /* 0x5B0 */ request_of_phase_process_class m_phase;
     /* 0x5B8 */ u8 field_0x5b8;
     /* 0x5B9 */ u8 field_0x5b9;
-    /* 0x5BA */ u8 field_0x5ba;
+    /* 0x5BA */ u8 arg0;
     /* 0x5BC */ cXyz unk_0x5bc;
     /* 0x5C8 */ mDoExt_brkAnm* m_brk;
-    /* 0x5CC */ u8 field_0x5cc;
+    /* 0x5CC */ u8 m_currentBrkAnm;
     /* 0x5D0 */ mDoExt_McaMorfSO* m_modelMorf;
     /* 0x5D4 */ Z2CreatureEnemy m_sound;
     /* 0x678 */ u8 field_0x678[0x67C - 0x678];
@@ -66,13 +66,13 @@ private:
     /* 0x688 */ u8 field_0x688[0x68C - 0x688];
     /* 0x68C */ s16 m_lifetime;
     /* 0x68E */ s16 m_action;
-    /* 0x690 */ s16 m_mode;
+    /* 0x690 */ s16 m_actionPhase;
     /* 0x692 */ s16 field_0x692;
     /* 0x694 */ s16 field_0x694;
     /* 0x696 */ s16 field_0x696;
     /* 0x698 */ u8 m_swbit;
     /* 0x69C */ cXyz unk_0x69c;
-    /* 0x6A8 */ s16 field_0x6a8;
+    /* 0x6A8 */ s16 m_targetAngleY;
     /* 0x6AA */ s16 m_angleToPlayer;
     /* 0x6AC */ f32 m_playerDist;
     /* 0x6B0 */ s16 m_timers[4];
