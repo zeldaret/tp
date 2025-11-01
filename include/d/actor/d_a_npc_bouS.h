@@ -67,14 +67,6 @@ public:
     /* 80974730 */ void reset();
     /* 809748F0 */ inline BOOL setAction(actionFunc);
     /* 80974A04 */ bool checkInstructionTag(fopAc_ac_c*);
-    /* 80976C00 */ inline void setParam();
-    /* 80976C9C */ inline BOOL main();
-                   inline void playExpression();
-    /* 80976EEC */ inline void playMotion();
-    /* 80977368 */ inline BOOL ctrlBtk();
-    /* 80977444 */ inline void setAttnPos();
-    /* 809778D8 */ inline void lookat();
-                   inline BOOL step(s16, int);
     /* 80974A28 */ bool wait(void*);
     /* 809750BC */ void setMotion(int, f32, int);
     /* 80975104 */ void setExpression(int, f32);
@@ -86,9 +78,17 @@ public:
     /* 80975FDC */ int EvCut_BousIntroSumo1(int);
     /* 80976284 */ int EvCut_BousIntroSumo2(int);
     /* 80976654 */ int EvCut_BousIntroSumo3(int);
+    /* 80976C00 */ inline void setParam();
+    /* 80976C9C */ inline BOOL main();
+                   inline void playExpression();
+    /* 80976EEC */ inline void playMotion();
+    /* 80977368 */ inline BOOL ctrlBtk();
+    /* 80977444 */ inline void setAttnPos();
+    /* 809778D8 */ inline void lookat();
+                   inline BOOL step(s16, int);
     /* 80977AB8 */ inline int drawDbgInfo();
     /* 80977AC0 */ inline void drawOtherMdls();
-    /* 809783A0 */ inline void adjustShapeAngle();
+    /* 809783A0 */ void adjustShapeAngle() {}
 
     s16 getMessageNo() { return (fopAcM_GetParam(this) >> 8) & 0xFFFF; }
     s8 getArenaNo() { return fopAcM_GetParam(this) & 0xFF; }
@@ -112,21 +112,7 @@ public:
 
     void setLookMode(int i_lookMode) { if (i_lookMode >= 0 && i_lookMode < 4 && i_lookMode != mLookMode) mLookMode = i_lookMode; }
 
-    void setExpressionTalkAfter() {
-        switch (mExpression) {
-            case 3:
-                setExpressionAnm(4, true);
-                break;
-            
-            case 4:
-                setExpressionAnm(6, true);
-                break;
-
-            default:
-                setExpression(5, -1.0f);
-                break;
-        }
-    }
+    inline void setExpressionTalkAfter();
 
     s8 getType() { return argument & 0x7F; }
 
@@ -171,12 +157,12 @@ private:
     /* 0xDCC */ u8 field_0xdcc[0xdd4 - 0xdcc];
     /* 0xDD4 */ request_of_phase_process_class mPhases[2];
     /* 0xDE4 */ fpc_ProcID mItemPartnerId;
-    /* 0xDE8 */ int field_0xde8;
-    /* 0xDEC */ int field_0xdec;
+    /* 0xDE8 */ int mTimer;
+    /* 0xDEC */ int mInstructionMode;
     /* 0xDF0 */ int mMsgNo;
     /* 0xDF4 */ u8 field_0xdf4[0xdf8 - 0xdf4];
     /* 0xDF8 */ s16 mLookMode;
-    /* 0xDFA */ s16 field_0xdfa;
+    /* 0xDFA */ s16 mMotionPhaseCopy;
     /* 0xDFC */ u16 mMode;
     /* 0xDFE */ u8 mForcibleTalk;
     /* 0xDFF */ u8 mDispFlag;
