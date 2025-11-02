@@ -81,23 +81,6 @@ static const char l_sWShdArcName[] = "SWShd";
 /* 80452C90-80452C98 001290 0006+02 7/7 0/0 0/0 .sdata2          l_arcName */
 static const char l_arcName[] = "Alink";
 
-#if DEBUG
-void daAlinkHIO_c::jumpStateUpdate(const cXyz* param_0, const cXyz* param_1, f32 param_2) {
-  char buf[68];
-
-  f32 xDiff = param_0->x - param_1->x;
-  f32 zDiff = param_0->z - param_1->z;
-  JORMContext* ctx = attachJORMContext(8);
-  ctx->startUpdateNode(this);
-  sprintf(buf, "水平距離 %-8.3f", JMAFastSqrt(xDiff * xDiff + zDiff * zDiff));
-  ctx->updateLabel(2, 0x4000006, buf);
-  sprintf(buf, "最頂点   %-8.3f", param_2);
-  ctx->updateLabel(2, 0x4000007, buf);
-  ctx->endUpdateNode();
-  releaseJORMContext(ctx);
-}
-#endif
-
 /* 8009D884-8009D88C 0981C4 0008+00 0/0 0/0 13/13 .text            getAlinkArcName__9daAlink_cFv */
 const char* daAlink_c::getAlinkArcName() {
     return l_arcName;
@@ -1923,7 +1906,6 @@ void daAlink_c::setMatrixWorldAxisRot(MtxP param_0, s16 param_1, s16 param_2, s1
 }
 
 /* 8009DD90-8009E7B8 0986D0 0A28+00 2/2 0/0 0/0 .text            jointControll__9daAlink_cFi */
-// NONMATCHING - 0x20 bytes missing from stack at 0x58 (release)/0x60 (debug)
 int daAlink_c::jointControll(int param_0) {
     csXyz sp18(0, 0, 0);
     int var_r27 = 0;
@@ -2962,7 +2944,11 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
     s16 sp18;
     s16 sp16 = field_0x2fe6 + mBodyAngle.y;
     if ((mProcID == PROC_GOAT_CATCH && mProcVar1.field_0x300a == 0) || (mProcID == PROC_HAND_PAT && mProcVar2.field_0x300c == 0)) {
+#ifdef DEBUG
+        sp16 += (s16)0x8000;
+#else
         sp16 -= (s16)0x8000;
+#endif
     }
 
     cXyz sp28 = eyePos - field_0x34e0;
@@ -2991,8 +2977,13 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
 
         if (checkWolf()) {
             if (mProcID == PROC_WOLF_TIRED_WAIT) {
+                #ifndef DEBUG
                 temp_r24 = cLib_minMaxLimit<s16>((s16)temp_r24, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnUp, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnDown);
                 var_r28 = cLib_minMaxLimit<s16>((s16)var_r28, -daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH);
+                #else
+                temp_r24 = cLib_minMaxLimit<s16>((s16)temp_r24, mpHIO->mWolf.field_0x3ac0, mpHIO->mWolf.field_0x3ac2);
+                var_r28 = cLib_minMaxLimit<s16>((s16)var_r28, -daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH);
+                #endif
             } else {
                 temp_r24 = cLib_minMaxLimit<s16>((s16)temp_r24, daAlinkHIO_wolf_c0::m.mMaxNeckTurnUp, daAlinkHIO_wolf_c0::m.mMaxNeckTurnDown);
                 var_r28 = cLib_minMaxLimit<s16>((s16)var_r28, -daAlinkHIO_wolf_c0::m.mMaxNeckTurnH, daAlinkHIO_wolf_c0::m.mMaxNeckTurnH);
