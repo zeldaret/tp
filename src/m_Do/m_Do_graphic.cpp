@@ -364,7 +364,7 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
 
                 if (atn_actor != NULL) {
                     cXyz sp28 = atn_actor->eyePos;
-                    if (fabsf(sp28.y - camera_p->lookat.eye.y) < 400.0f) {
+                    if (std::fabs(sp28.y - camera_p->lookat.eye.y) < 400.0f) {
                         sp28.y = camera_p->lookat.eye.y;
                     }
 
