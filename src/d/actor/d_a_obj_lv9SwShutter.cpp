@@ -12,6 +12,8 @@ public:
     /* 80C8CEAC */ daLv9SwShutter_HIO_c();
     /* 80C8D730 */ virtual ~daLv9SwShutter_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 open_speed;
     /* 0x08 */ f32 close_speed;
     /* 0x0C */ f32 close_accel;

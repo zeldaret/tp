@@ -12,10 +12,15 @@ public:
     /* 80C848AC */ daLv7BsGate_HIO_c();
     /* 80C85164 */ virtual ~daLv7BsGate_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 open_speed;
     /* 0x08 */ f32 close_speed;
     /* 0x0C */ u8 vibration;
 };
+
+/* 80C8536C-80C8537C 000014 0010+00 3/3 0/0 0/0 .bss             l_HIO */
+static daLv7BsGate_HIO_c l_HIO;
 
 /* 80C85264-80C8526C -00001 0008+00 3/3 0/0 0/0 .data            l_type */
 static char* l_type[2] = {
@@ -106,9 +111,6 @@ int daLv7BsGate_c::Execute(Mtx** param_0) {
     setBaseMtx();
     return 1;
 }
-
-/* 80C8536C-80C8537C 000014 0010+00 3/3 0/0 0/0 .bss             l_HIO */
-static daLv7BsGate_HIO_c l_HIO;
 
 /* 80C84C1C-80C84D24 00045C 0108+00 1/1 0/0 0/0 .text            moveGate__13daLv7BsGate_cFv */
 void daLv7BsGate_c::moveGate() {
