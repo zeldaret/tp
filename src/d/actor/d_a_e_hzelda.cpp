@@ -1483,7 +1483,7 @@ static int daE_HZELDA_Create(fopAc_ac_c* i_this) {
 
         a_this->mBallSphAt.Set(ball_at_sph_src);
         a_this->mBallSphAt.SetStts(&a_this->field_0xd3c);
-        a_this->mBallSphAt.SetAtMtrl(dCcD_MTRL_UNK_5);
+        a_this->mBallSphAt.SetAtMtrl(dCcD_MTRL_ELECTRIC);
 
         static dCcD_SrcSph ball_tg_sph_src = {
             {

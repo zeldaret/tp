@@ -42,7 +42,7 @@ enum dCcD_Material {
     dCcD_MTRL_ICE,
     dCcD_MTRL_WIND,
     dCcD_MTRL_LIGHT,
-    dCcD_MTRL_UNK_5,
+    dCcD_MTRL_ELECTRIC,
     dCcD_MTRL_UNK_6,
     dCcD_MTRL_UNK_7,
 };
