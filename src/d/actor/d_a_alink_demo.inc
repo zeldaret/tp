@@ -867,7 +867,7 @@ void daAlink_c::resetDemoBck() {
         setFaceBasicAnime(ANM_WAIT);
     } else {
         setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
-                                daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+                                daAlinkHIO_basic_c0::m.mBasicInterpolation);
     }
 }
 
@@ -1926,7 +1926,7 @@ int daAlink_c::procCoUnequipInit() {
     if (checkWolf()) {
         setBlendWolfMoveAnime(daAlinkHIO_wlMove_c0::m.field_0x94);
     } else {
-        setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+        setBlendMoveAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
 
         if (mDemo.getParam1() == 0) {
             if (mEquipItem != fpcNm_ITEM_NONE) {
@@ -2352,7 +2352,7 @@ int daAlink_c::procCoGetItem() {
                                            3.0f);
                             field_0x2f99 = 0x60;
                         } else {
-                            setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+                            setBlendMoveAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
                         }
                     }
                 }
@@ -2422,7 +2422,7 @@ int daAlink_c::procDoorOpenInit() {
     f32 start_f = 0.0f;
     s16 end_f = -1;
 
-    field_0x3478 = daAlinkHIO_basic_c0::m.mAnmBlendFactor;
+    field_0x3478 = daAlinkHIO_basic_c0::m.mBasicInterpolation;
     mProcVar0.field_0x3008 = 0;
 
     if (mDemo.getParam0() == 4) {
@@ -2557,7 +2557,7 @@ int daAlink_c::procCoLookWaitInit() {
     if (checkWolf()) {
         setBlendWolfMoveAnime(daAlinkHIO_wlMove_c0::m.field_0x94);
     } else {
-        setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+        setBlendMoveAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
     }
 
     current.angle.y = shape_angle.y;
@@ -2701,7 +2701,7 @@ int daAlink_c::procDemoBoomerangCatch() {
     dComIfGp_evmng_cutEnd(mAlinkStaffId);
 
     if (checkAnmEnd(mUnderFrameCtrl)) {
-        setBlendMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+        setBlendMoveAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
     }
     return 1;
 }
@@ -4103,7 +4103,7 @@ int daAlink_c::procDungeonWarpSceneStartInit() {
 
     setSpecialGravity(0.0f, maxFallSpeed, 0);
     setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
-                            daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+                            daAlinkHIO_basic_c0::m.mBasicInterpolation);
 
     if (checkDungeon() && !checkLv7DungeonShop()) {
         createNpcTks(&current.pos, fopAcM_GetRoomNo(this), 4);

@@ -1905,7 +1905,7 @@ int daAlink_c::procScreamWaitInit() {
         setScreamWaitAnime();
     } else {
         setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
-                                daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+                                daAlinkHIO_basic_c0::m.mBasicInterpolation);
         mProcVar2.field_0x300c = 0;
     }
 

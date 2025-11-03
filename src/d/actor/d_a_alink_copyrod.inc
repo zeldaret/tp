@@ -365,7 +365,7 @@ int daAlink_c::procCopyRodMove() {
 
             if (field_0x2f98 != 3) {
                 field_0x2f98 = 3;
-                var_f31 = daAlinkHIO_basic_c0::m.mAnmBlendFactor;
+                var_f31 = daAlinkHIO_basic_c0::m.mBasicInterpolation;
             }
         } else {
             offModeFlg(1);

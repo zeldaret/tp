@@ -1507,7 +1507,7 @@ int daAlink_c::procHookshotMove() {
 
             if (field_0x2f98 != 2) {
                 field_0x2f98 = 2;
-                blend = daAlinkHIO_basic_c0::m.mAnmBlendFactor;
+                blend = daAlinkHIO_basic_c0::m.mBasicInterpolation;
             }
         } else {
             offModeFlg(1);

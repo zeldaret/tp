@@ -93,7 +93,7 @@ BOOL daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
         deleteEquipItem(TRUE, FALSE);
         setGrabItemActor(p_actor);
         field_0x33e4 = 38.0f;
-        setGrabUpperAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+        setGrabUpperAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
         return true;
     }
 
@@ -906,7 +906,7 @@ int daAlink_c::procGrabThrowInit(int param_0) {
             var_f31 = daAlinkHIO_noActAtnMove_c0::m.mWaitAnmSpeed;
         }
 
-        setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, var_f31, daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+        setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, var_f31, daAlinkHIO_basic_c0::m.mBasicInterpolation);
         setUpperAnimeParam(0x51, UPPER_0, &daAlinkHIO_grab_c0::m.field_0xB4);
         field_0x343c = 4.0f;
         field_0x347c = daAlinkHIO_grab_c0::m.field_0xB4.mCancelFrame;
@@ -1060,7 +1060,7 @@ int daAlink_c::procGrabWaitInit() {
         return 0;
     }
 
-    f32 var_f31 = daAlinkHIO_basic_c0::m.mAnmBlendFactor;
+    f32 var_f31 = daAlinkHIO_basic_c0::m.mBasicInterpolation;
     if (!checkGrabAnime()) {
         setGrabUpperAnime(-1.0f);
     } else {
@@ -1076,7 +1076,7 @@ int daAlink_c::procGrabWaitInit() {
     }
 
     if (checkAttentionLock() && (checkGrabAnimeUp() || checkGrabAnimeSide())) {
-        setBlendAtnMoveAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+        setBlendAtnMoveAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
     } else {
         setBlendMoveAnime(var_f31);
     }

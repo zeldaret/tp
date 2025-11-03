@@ -54,7 +54,7 @@ void daAlink_c::setIronBallWaitUpperAnime(int param_0) {
     if (!checkIronBallWaitAnime() && !checkIronBallPreSwingAnime() &&
         (mItemVar0.field_0x3018 == 0 || mItemVar0.field_0x3018 == 8) && (param_0 || checkNoUpperAnime())) {
         setUpperAnimeBaseSpeed(0x19C, daAlinkHIO_ironBall_c0::m.mWaitAnmSpeed,
-                               daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+                               daAlinkHIO_basic_c0::m.mBasicInterpolation);
         setFacePriBck(0xE8);
         field_0x2f96 = 254;
         field_0x2f97 = 5;
@@ -997,7 +997,7 @@ int daAlink_c::procIronBallMove() {
 
             if (field_0x2f98 != 2) {
                 field_0x2f98 = 2;
-                var_f31 = daAlinkHIO_basic_c0::m.mAnmBlendFactor;
+                var_f31 = daAlinkHIO_basic_c0::m.mBasicInterpolation;
             }
         } else {
             offModeFlg(1);
