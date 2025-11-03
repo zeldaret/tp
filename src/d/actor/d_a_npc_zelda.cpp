@@ -84,7 +84,7 @@ void daNpc_Zelda_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
     JORReflexible::listenPropertyEvent(event);
 
     JORFile aJStack_910;
-    switch (reinterpret_cast<u32>(event->id)) {
+    switch (event->id) {
     case 0x40000002:
         if (aJStack_910.open(6, "", NULL, NULL, NULL) != 0) {
             memset(auStack_7e0, 0, 2000);

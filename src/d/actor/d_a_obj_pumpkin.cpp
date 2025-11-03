@@ -45,7 +45,7 @@ void daObj_Pumpkin_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
     JORReflexible::listenPropertyEvent(event);
     JORFile file_handle;
     int len;
-    switch (reinterpret_cast<u32>(event->id)) {
+    switch (event->id) {
     case 0x40000002:
         if (file_handle.open(6, "すべてのファイル(*.*)\0*.*\0", NULL, NULL, NULL) != 0) {
             memset(msg_buffer, 0, 2000);

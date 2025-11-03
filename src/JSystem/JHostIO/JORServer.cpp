@@ -92,13 +92,13 @@ void JORReflexible::listenPropertyEvent(const JORPropertyEvent* pEvent) {
         case 'CMBX':
             if (pEvent->field_0x14 >= 4) {
                 JORPropertyEvent* event = (JORPropertyEvent*)pEvent;
-                JORServer::defSetVal(event->id, event->kind, event->field_0x18.U32);
+                JORServer::defSetVal((void*)event->id, event->kind, event->field_0x18.U32);
             }
             break;
         case 'CHBX':
             if (pEvent->field_0x14 >= 4) {
                 JORPropertyEvent* event = (JORPropertyEvent*)pEvent;
-                JORServer::defSetBitVal(event->id, event->kind, (u16)event->field_0x18.U16[0], (u16)event->field_0x18.U16[1]);
+                JORServer::defSetBitVal((void*)event->id, event->kind, (u16)event->field_0x18.U16[0], (u16)event->field_0x18.U16[1]);
             }
             break;
         case 'EDBX':
