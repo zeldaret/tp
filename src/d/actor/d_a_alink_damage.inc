@@ -669,7 +669,7 @@ BOOL daAlink_c::checkDamageAction() {
                 }
             }
 
-            if (at_mtrl == dCcD_MTRL_UNK_5) {
+            if (at_mtrl == dCcD_MTRL_ELECTRIC) {
                 dComIfGp_getVibration().StartShock(4, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
             } else if (checkHugeAttack(at_spl)) {
                 dComIfGp_getVibration().StartShock(8, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
@@ -681,7 +681,7 @@ BOOL daAlink_c::checkDamageAction() {
 
             setDamagePoint(dmg, at_mtrl == dCcD_MTRL_FIRE || at_mtrl == dCcD_MTRL_ICE, TRUE, 0);
 
-            if (armor_no_dmg && at_mtrl != dCcD_MTRL_UNK_5 && at_mtrl != dCcD_MTRL_ICE) {
+            if (armor_no_dmg && at_mtrl != dCcD_MTRL_ELECTRIC && at_mtrl != dCcD_MTRL_ICE) {
                 setGuardSe(var_r29);
             } else if (at_mtrl == dCcD_MTRL_FIRE) {
                 seStartOnlyReverb(Z2SE_AL_BURN_START);
@@ -699,10 +699,10 @@ BOOL daAlink_c::checkDamageAction() {
                     voiceStart(Z2SE_AL_V_DAMAGE_S);
                     seStartOnlyReverb(Z2SE_AL_DAMAGE_NORMAL);
                 }
-            } else if (at_mtrl == dCcD_MTRL_UNK_5 && !checkSpecialHorseRide()) {
+            } else if (at_mtrl == dCcD_MTRL_ELECTRIC && !checkSpecialHorseRide()) {
                 return procCoElecDamageInit(var_r29->GetTgHitAc(), var_r29, at_spl);
             } else if (checkReinRide()) {
-                if (at_mtrl == dCcD_MTRL_UNK_5) {
+                if (at_mtrl == dCcD_MTRL_ELECTRIC) {
                     return procCoLargeDamageInit(-1, 1, 0, 0, var_r29, 0);
                 }
 
