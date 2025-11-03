@@ -6,213 +6,318 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv7PropellerY.h"
-#include "dol2asm.h"
 
+class daPropY_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 80C8546C */ daPropY_HIO_c();
+    /* 80C86084 */ virtual ~daPropY_HIO_c() {}
 
+    void genMessage(JORMContext*);
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__13daPropY_HIO_cFv();
-extern "C" void __dt__14mDoHIO_entry_cFv();
-extern "C" void setBaseMtx__9daPropY_cFv();
-extern "C" void CreateHeap__9daPropY_cFv();
-extern "C" void create__9daPropY_cFv();
-extern "C" void Execute__9daPropY_cFPPA3_A4_f();
-extern "C" void procMain__9daPropY_cFv();
-extern "C" void init_modeMoveWait__9daPropY_cFv();
-extern "C" void modeMoveWait__9daPropY_cFv();
-extern "C" void init_modeMove__9daPropY_cFv();
-extern "C" void modeMove__9daPropY_cFv();
-extern "C" void init_modeWait__9daPropY_cFv();
-extern "C" void modeWait__9daPropY_cFv();
-extern "C" void init_modeMove2__9daPropY_cFv();
-extern "C" void modeMove2__9daPropY_cFv();
-extern "C" void init_modeStop__9daPropY_cFv();
-extern "C" void modeStop__9daPropY_cFv();
-extern "C" void Draw__9daPropY_cFv();
-extern "C" void Delete__9daPropY_cFv();
-extern "C" static void daPropY_Draw__FP9daPropY_c();
-extern "C" static void daPropY_Execute__FP9daPropY_c();
-extern "C" static void daPropY_Delete__FP9daPropY_c();
-extern "C" static void daPropY_Create__FP10fopAc_ac_c();
-extern "C" void __dt__13daPropY_HIO_cFv();
-extern "C" void __sinit_d_a_obj_lv7PropellerY_cpp();
-extern "C" extern char const* const d_a_obj_lv7PropellerY__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void cLib_addCalcAngleS__FPsssss();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __dl__FPv();
-extern "C" void __ptmf_scall();
-extern "C" void __cvt_fp2unsigned();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80C86130-80C86134 000000 0004+00 7/7 0/0 0/0 .rodata          @3650 */
-SECTION_RODATA static u8 const lit_3650[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    /* 0x04 */ f32 rot_speed;
+    /* 0x08 */ f32 rot_accel;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 max_rot_speed;
+    /* 0x14 */ f32 rot_time_sec;
+    /* 0x18 */ u8 wait_time;
+    /* 0x1C */ f32 y_offset;
 };
-COMPILER_STRIP_GATE(0x80C86130, &lit_3650);
-
-/* 80C86134-80C86138 000004 0004+00 0/1 0/0 0/0 .rodata          @3651 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3651 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C86134, &lit_3651);
-#pragma pop
-
-/* 80C86138-80C8613C 000008 0004+00 0/1 0/0 0/0 .rodata          @3652 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3652 = 0x3B449BA6;
-COMPILER_STRIP_GATE(0x80C86138, &lit_3652);
-#pragma pop
-
-/* 80C8613C-80C86140 00000C 0004+00 0/4 0/0 0/0 .rodata          @3653 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3653 = 1.0f;
-COMPILER_STRIP_GATE(0x80C8613C, &lit_3653);
-#pragma pop
-
-/* 80C86140-80C86144 000010 0004+00 0/1 0/0 0/0 .rodata          @3654 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3654 = 20.0f;
-COMPILER_STRIP_GATE(0x80C86140, &lit_3654);
-#pragma pop
-
-/* 80C86160-80C86160 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C86160 = "stickwl00";
-SECTION_DEAD static char const* const stringBase_80C8616A = "stickwl01";
-#pragma pop
 
 /* 80C86194-80C8619C -00001 0008+00 3/3 0/0 0/0 .data            l_type */
-SECTION_DATA static void* l_type[2] = {
-    (void*)&d_a_obj_lv7PropellerY__stringBase0,
-    (void*)(((char*)&d_a_obj_lv7PropellerY__stringBase0) + 0xA),
+static char* l_type[2] = {
+    "stickwl00",
+    "stickwl01",
 };
 
 /* 80C8619C-80C861A4 000028 0008+00 1/1 0/0 0/0 .data            l_bmdIdx */
-SECTION_DATA static u8 l_bmdIdx[8] = {
-    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x04,
-};
+static int l_bmdIdx[] = {4, 4};
 
 /* 80C861A4-80C861AC 000030 0008+00 1/1 0/0 0/0 .data            l_dzbIdx */
-SECTION_DATA static u8 l_dzbIdx[8] = {
-    0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x07,
-};
+static int l_dzbIdx[] = {7, 7};
 
-/* 80C861AC-80C861B8 -00001 000C+00 0/1 0/0 0/0 .data            @3788 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3788[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMoveWait__9daPropY_cFv,
-};
-#pragma pop
+/* 80C8546C-80C854C4 0000EC 0058+00 1/1 0/0 0/0 .text            __ct__13daPropY_HIO_cFv */
+daPropY_HIO_c::daPropY_HIO_c() {
+    rot_speed = 0.0f;
+    rot_accel = 0.1f;
+    field_0xc = 0.003f;
+    max_rot_speed = 1.0f;
+    rot_time_sec = 20.0f;
+    wait_time = 30;
+    y_offset = 0.0f;
+}
 
-/* 80C861B8-80C861C4 -00001 000C+00 0/1 0/0 0/0 .data            @3789 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3789[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMove__9daPropY_cFv,
-};
-#pragma pop
+/* 80C862CC-80C862EC 000014 0020+00 7/7 0/0 0/0 .bss             l_HIO */
+static daPropY_HIO_c l_HIO;
 
-/* 80C861C4-80C861D0 -00001 000C+00 0/1 0/0 0/0 .data            @3790 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3790[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWait__9daPropY_cFv,
-};
-#pragma pop
+/* 80C8550C-80C855A4 00018C 0098+00 2/2 0/0 0/0 .text            setBaseMtx__9daPropY_cFv */
+void daPropY_c::setBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + l_HIO.y_offset, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+    mpModel->setBaseScale(scale);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+}
 
-/* 80C861D0-80C861DC -00001 000C+00 0/1 0/0 0/0 .data            @3791 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3791[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeMove2__9daPropY_cFv,
-};
-#pragma pop
+/* 80C855A4-80C85624 000224 0080+00 1/0 0/0 0/0 .text            CreateHeap__9daPropY_cFv */
+int daPropY_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_type[mType], l_bmdIdx[mType]);
+    JUT_ASSERT(184, modelData != NULL);
 
-/* 80C861DC-80C861E8 -00001 000C+00 0/1 0/0 0/0 .data            @3792 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3792[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeStop__9daPropY_cFv,
-};
-#pragma pop
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (mpModel == NULL) {
+        return 0;
+    }
 
-/* 80C861E8-80C86224 000074 003C+00 0/1 0/0 0/0 .data            mode_proc$3787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 mode_proc[60] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
+    return 1;
+}
+
+/* 80C85624-80C85810 0002A4 01EC+00 1/1 0/0 0/0 .text            create__9daPropY_cFv */
+int daPropY_c::create() {
+    fopAcM_ct(this, daPropY_c);
+
+    mType = getType();
+
+    int phase_state = dComIfG_resLoad(&mPhase, l_type[mType]);
+    if (phase_state == cPhs_COMPLEATE_e) {
+        if (MoveBGCreate(l_type[mType], l_dzbIdx[mType], dBgS_MoveBGProc_TypicalRotY, 0x2A40, NULL) == cPhs_ERROR_e) {
+            return cPhs_ERROR_e;
+        }
+
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+        fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+        setBaseMtx();
+
+        mSwbit = getSw();
+        mTurnType = getTurnType();
+        mTurnVec = getTurnVec();
+        if (mTurnVec > 1) {
+            mTurnVec = 0;
+        }
+
+        if (mTurnVec == 0) {
+            field_0x5b2 = -1;
+            field_0x5b6 = -0x8000;
+        } else {
+            field_0x5b2 = 1;
+            field_0x5b6 = 0;
+        }
+
+        if (mSwbit == 0xFF) {
+            if (mTurnType == 0) {
+                init_modeMove();
+            } else {
+                init_modeWait();
+            }
+        } else {
+            mIsSwitch = fopAcM_isSwitch(this, mSwbit);
+            if (mIsSwitch) {
+                if (mTurnType == 0) {
+                    init_modeMove();
+                } else {
+                    init_modeWait();
+                }
+            } else {
+                init_modeMoveWait();
+            }
+        }
+
+        #if DEBUG
+        l_HIO.entryHIO("プロペラ横");
+        #endif
+    }
+
+    return phase_state;
+}
+
+/* 80C85810-80C85860 000490 0050+00 1/0 0/0 0/0 .text            Execute__9daPropY_cFPPA3_A4_f */
+int daPropY_c::Execute(Mtx** param_0) {
+    procMain();
+    *param_0 = &mpModel->getBaseTRMtx();
+    setBaseMtx();
+    return 1;
+}
+
+/* 80C85860-80C859B4 0004E0 0154+00 1/1 0/0 0/0 .text            procMain__9daPropY_cFv */
+void daPropY_c::procMain() {
+    static void (daPropY_c::*mode_proc[])() = {
+        &daPropY_c::modeMoveWait,
+        &daPropY_c::modeMove,
+        &daPropY_c::modeWait,
+        &daPropY_c::modeMove2,
+        &daPropY_c::modeStop,
+    };
+
+    if (mSwbit != 0xFF) {
+        u8 prev_switch = mIsSwitch;
+        mIsSwitch = fopAcM_isSwitch(this, mSwbit);
+        if (mIsSwitch != prev_switch) {
+            if (mIsSwitch) {
+                if (mTurnType == 0) {
+                    init_modeMove();
+                } else {
+                    init_modeMove2();
+                }
+            } else {
+                init_modeStop();
+            }
+        }
+    }
+
+    (this->*mode_proc[mMode])();
+}
+
+/* 80C859B4-80C859C0 000634 000C+00 2/2 0/0 0/0 .text            init_modeMoveWait__9daPropY_cFv */
+void daPropY_c::init_modeMoveWait() {
+    mMode = 0;
+}
+
+/* 80C859C0-80C859C4 000640 0004+00 1/0 0/0 0/0 .text            modeMoveWait__9daPropY_cFv */
+void daPropY_c::modeMoveWait() {}
+
+/* 80C859C4-80C859E0 000644 001C+00 2/2 0/0 0/0 .text            init_modeMove__9daPropY_cFv */
+void daPropY_c::init_modeMove() {
+    fopAcM_SetSpeedF(this, 0.0f);
+    field_0x5c4 = 0.0f;
+    mMode = 1;
+}
+
+/* 80C859E0-80C85B08 000660 0128+00 1/0 0/0 0/0 .text            modeMove__9daPropY_cFv */
+void daPropY_c::modeMove() {
+    cLib_chaseF(&speedF, 360.0f / (30.0f * l_HIO.rot_time_sec), l_HIO.field_0xc);
+    field_0x5b4 = cM_deg2s(speedF);
+    field_0x5c4 = 127.0f * (speedF / (360.0f / (30.0f * l_HIO.rot_time_sec)));
+    mDoAud_seStartLevel(Z2SE_OBJ_AMI_ROLL, &current.pos, field_0x5c4, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+
+    if (l_HIO.rot_time_sec != 0.0f) {
+        shape_angle.y += (field_0x5b4 * field_0x5b2);
+    }
+}
+
+/* 80C85B08-80C85B24 000788 001C+00 2/2 0/0 0/0 .text            init_modeWait__9daPropY_cFv */
+void daPropY_c::init_modeWait() {
+    mTimer = l_HIO.wait_time;
+    mMode = 2;
+}
+
+/* 80C85B24-80C85B5C 0007A4 0038+00 1/0 0/0 0/0 .text            modeWait__9daPropY_cFv */
+void daPropY_c::modeWait() {
+    if (mTimer == 0) {
+        init_modeMove2();
+    } else {
+        mTimer--;
+    }
+}
+
+/* 80C85B5C-80C85B84 0007DC 0028+00 2/2 0/0 0/0 .text            init_modeMove2__9daPropY_cFv */
+void daPropY_c::init_modeMove2() {
+    fopAcM_SetSpeedF(this, l_HIO.rot_speed);
+    field_0x5c4 = 0.0f;
+    mMode = 3;
+}
+
+/* 80C85B84-80C85CAC 000804 0128+00 1/0 0/0 0/0 .text            modeMove2__9daPropY_cFv */
+void daPropY_c::modeMove2() {
+    cLib_chaseF(&speedF, l_HIO.max_rot_speed, l_HIO.rot_accel);
+    s16 temp_r30 = cLib_addCalcAngleS(&shape_angle.y, field_0x5b6, 1, (182.04445f * fopAcM_GetSpeedF(this)), 1);
+    field_0x5c4 = 127.0f * (speedF / l_HIO.max_rot_speed);
+    mDoAud_seStartLevel(Z2SE_OBJ_AMI_ROLL, &current.pos, field_0x5c4, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+
+    if (temp_r30 == 0) {
+        if (mTurnVec == 0) {
+            field_0x5b6 -= 0x8000;
+        } else {
+            field_0x5b6 += 0x7FFF;
+        }
+        init_modeWait();
+    }
+}
+
+/* 80C85CAC-80C85DD0 00092C 0124+00 1/1 0/0 0/0 .text            init_modeStop__9daPropY_cFv */
+void daPropY_c::init_modeStop() {
+    if (mTurnType == 0) {
+        fopAcM_SetSpeedF(this, cM_deg2s(360.0f / (30.0f * l_HIO.rot_time_sec)));
+    }
+
+    if (mTurnVec == 0) {
+        if (shape_angle.y <= 0) {
+            field_0x5b6 = home.angle.y - 0x8000;
+        } else {
+            field_0x5b6 = home.angle.y;
+        }
+    } else if (shape_angle.y >= 0) {
+        field_0x5b6 = home.angle.y + 0x7FFF;
+    } else {
+        field_0x5b6 = home.angle.y;
+    }
+
+    field_0x5bc = std::fabs((f32)shape_angle.y - (f32)field_0x5b6);
+    field_0x5c0 = field_0x5c4;
+    mMode = 4;
+}
+
+/* 80C85DD0-80C85F14 000A50 0144+00 1/0 0/0 0/0 .text            modeStop__9daPropY_cFv */
+// NONMATCHING - fsubs instead of fsub
+void daPropY_c::modeStop() {
+    s16 var_r30;
+    if (mTurnType == 0) {
+        var_r30 = cLib_addCalcAngleS(&shape_angle.y, field_0x5b6, 16, fopAcM_GetSpeedF(this), cM_deg2s(0.1f));
+    } else {
+        var_r30 = cLib_addCalcAngleS(&shape_angle.y, field_0x5b6, 1, (182.04445f * fopAcM_GetSpeedF(this)), 1);
+    }
+
+    field_0x5c4 = field_0x5c0 * (std::fabs((f32)var_r30) / field_0x5bc);
+    mDoAud_seStartLevel(Z2SE_OBJ_AMI_ROLL, &current.pos, field_0x5c4, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+
+    if (var_r30 == 0) {
+        init_modeMoveWait();
+    }
+}
+
+/* 80C85F14-80C85FB8 000B94 00A4+00 1/0 0/0 0/0 .text            Draw__9daPropY_cFv */
+int daPropY_c::Draw() {
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+    return 1;
+}
+
+/* 80C85FB8-80C85FF8 000C38 0040+00 1/0 0/0 0/0 .text            Delete__9daPropY_cFv */
+int daPropY_c::Delete() {
+    dComIfG_resDelete(&mPhase, l_type[mType]);
+    #if DEBUG
+    l_HIO.removeHIO();
+    #endif
+    return 1;
+}
+
+/* 80C85FF8-80C86024 000C78 002C+00 1/0 0/0 0/0 .text            daPropY_Draw__FP9daPropY_c */
+static int daPropY_Draw(daPropY_c* i_this) {
+    return i_this->MoveBGDraw();
+}
+
+/* 80C86024-80C86044 000CA4 0020+00 1/0 0/0 0/0 .text            daPropY_Execute__FP9daPropY_c */
+static int daPropY_Execute(daPropY_c* i_this) {
+    return i_this->MoveBGExecute();
+}
+
+/* 80C86044-80C86064 000CC4 0020+00 1/0 0/0 0/0 .text            daPropY_Delete__FP9daPropY_c */
+static int daPropY_Delete(daPropY_c* i_this) {
+    return i_this->MoveBGDelete();
+}
+
+/* 80C86064-80C86084 000CE4 0020+00 1/0 0/0 0/0 .text            daPropY_Create__FP10fopAc_ac_c */
+static int daPropY_Create(fopAc_ac_c* i_this) {
+    return ((daPropY_c*)i_this)->create();
+}
 
 /* 80C86224-80C86244 -00001 0020+00 1/0 0/0 0/0 .data            l_daPropY_Method */
 static actor_method_class l_daPropY_Method = {
-    (process_method_func)daPropY_Create__FP10fopAc_ac_c,
-    (process_method_func)daPropY_Delete__FP9daPropY_c,
-    (process_method_func)daPropY_Execute__FP9daPropY_c,
-    0,
-    (process_method_func)daPropY_Draw__FP9daPropY_c,
+    (process_method_func)daPropY_Create,
+    (process_method_func)daPropY_Delete,
+    (process_method_func)daPropY_Execute,
+    NULL,
+    (process_method_func)daPropY_Draw,
 };
 
 /* 80C86244-80C86274 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv7PropY */
@@ -232,222 +337,3 @@ extern actor_process_profile_definition g_profile_Obj_Lv7PropY = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80C86274-80C8629C 000100 0028+00 1/1 0/0 0/0 .data            __vt__9daPropY_c */
-SECTION_DATA extern void* __vt__9daPropY_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__9daPropY_cFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__9daPropY_cFPPA3_A4_f,
-    (void*)Draw__9daPropY_cFv,
-    (void*)Delete__9daPropY_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
-
-/* 80C8629C-80C862A8 000128 000C+00 2/2 0/0 0/0 .data            __vt__13daPropY_HIO_c */
-SECTION_DATA extern void* __vt__13daPropY_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13daPropY_HIO_cFv,
-};
-
-/* 80C862A8-80C862B4 000134 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
-/* 80C8546C-80C854C4 0000EC 0058+00 1/1 0/0 0/0 .text            __ct__13daPropY_HIO_cFv */
-daPropY_HIO_c::daPropY_HIO_c() {
-    // NONMATCHING
-}
-
-/* 80C854C4-80C8550C 000144 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-// mDoHIO_entry_c::~mDoHIO_entry_c() {
-extern "C" void __dt__14mDoHIO_entry_cFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80C862C0-80C862CC 000008 000C+00 1/1 0/0 0/0 .bss             @3644 */
-static u8 lit_3644[12];
-
-/* 80C862CC-80C862EC 000014 0020+00 7/7 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[32];
-
-/* 80C8550C-80C855A4 00018C 0098+00 2/2 0/0 0/0 .text            setBaseMtx__9daPropY_cFv */
-void daPropY_c::setBaseMtx() {
-    // NONMATCHING
-}
-
-/* 80C855A4-80C85624 000224 0080+00 1/0 0/0 0/0 .text            CreateHeap__9daPropY_cFv */
-void daPropY_c::CreateHeap() {
-    // NONMATCHING
-}
-
-/* 80C85624-80C85810 0002A4 01EC+00 1/1 0/0 0/0 .text            create__9daPropY_cFv */
-void daPropY_c::create() {
-    // NONMATCHING
-}
-
-/* 80C85810-80C85860 000490 0050+00 1/0 0/0 0/0 .text            Execute__9daPropY_cFPPA3_A4_f */
-void daPropY_c::Execute(Mtx** param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80C862EC-80C862F0 000034 0004+00 1/1 0/0 0/0 .bss             None */
-static u8 data_80C862EC[4];
-
-/* 80C85860-80C859B4 0004E0 0154+00 1/1 0/0 0/0 .text            procMain__9daPropY_cFv */
-void daPropY_c::procMain() {
-    // NONMATCHING
-}
-
-/* 80C859B4-80C859C0 000634 000C+00 2/2 0/0 0/0 .text            init_modeMoveWait__9daPropY_cFv */
-void daPropY_c::init_modeMoveWait() {
-    // NONMATCHING
-}
-
-/* 80C859C0-80C859C4 000640 0004+00 1/0 0/0 0/0 .text            modeMoveWait__9daPropY_cFv */
-void daPropY_c::modeMoveWait() {
-    /* empty function */
-}
-
-/* 80C859C4-80C859E0 000644 001C+00 2/2 0/0 0/0 .text            init_modeMove__9daPropY_cFv */
-void daPropY_c::init_modeMove() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80C86144-80C86148 000014 0004+00 0/2 0/0 0/0 .rodata          @3845 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3845 = 360.0f;
-COMPILER_STRIP_GATE(0x80C86144, &lit_3845);
-#pragma pop
-
-/* 80C86148-80C8614C 000018 0004+00 0/2 0/0 0/0 .rodata          @3846 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3846 = 30.0f;
-COMPILER_STRIP_GATE(0x80C86148, &lit_3846);
-#pragma pop
-
-/* 80C8614C-80C86150 00001C 0004+00 0/4 0/0 0/0 .rodata          @3847 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3847 = 0x43360B61;
-COMPILER_STRIP_GATE(0x80C8614C, &lit_3847);
-#pragma pop
-
-/* 80C86150-80C86154 000020 0004+00 0/2 0/0 0/0 .rodata          @3848 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3848 = 127.0f;
-COMPILER_STRIP_GATE(0x80C86150, &lit_3848);
-#pragma pop
-
-/* 80C86154-80C86158 000024 0004+00 0/3 0/0 0/0 .rodata          @3849 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3849 = -1.0f;
-COMPILER_STRIP_GATE(0x80C86154, &lit_3849);
-#pragma pop
-
-/* 80C859E0-80C85B08 000660 0128+00 1/0 0/0 0/0 .text            modeMove__9daPropY_cFv */
-void daPropY_c::modeMove() {
-    // NONMATCHING
-}
-
-/* 80C85B08-80C85B24 000788 001C+00 2/2 0/0 0/0 .text            init_modeWait__9daPropY_cFv */
-void daPropY_c::init_modeWait() {
-    // NONMATCHING
-}
-
-/* 80C85B24-80C85B5C 0007A4 0038+00 1/0 0/0 0/0 .text            modeWait__9daPropY_cFv */
-void daPropY_c::modeWait() {
-    // NONMATCHING
-}
-
-/* 80C85B5C-80C85B84 0007DC 0028+00 2/2 0/0 0/0 .text            init_modeMove2__9daPropY_cFv */
-void daPropY_c::init_modeMove2() {
-    // NONMATCHING
-}
-
-/* 80C85B84-80C85CAC 000804 0128+00 1/0 0/0 0/0 .text            modeMove2__9daPropY_cFv */
-void daPropY_c::modeMove2() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80C86158-80C86160 000028 0008+00 0/2 0/0 0/0 .rodata          @3913 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3913[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C86158, &lit_3913);
-#pragma pop
-
-/* 80C85CAC-80C85DD0 00092C 0124+00 1/1 0/0 0/0 .text            init_modeStop__9daPropY_cFv */
-void daPropY_c::init_modeStop() {
-    // NONMATCHING
-}
-
-/* 80C85DD0-80C85F14 000A50 0144+00 1/0 0/0 0/0 .text            modeStop__9daPropY_cFv */
-void daPropY_c::modeStop() {
-    // NONMATCHING
-}
-
-/* 80C85F14-80C85FB8 000B94 00A4+00 1/0 0/0 0/0 .text            Draw__9daPropY_cFv */
-void daPropY_c::Draw() {
-    // NONMATCHING
-}
-
-/* 80C85FB8-80C85FF8 000C38 0040+00 1/0 0/0 0/0 .text            Delete__9daPropY_cFv */
-void daPropY_c::Delete() {
-    // NONMATCHING
-}
-
-/* 80C85FF8-80C86024 000C78 002C+00 1/0 0/0 0/0 .text            daPropY_Draw__FP9daPropY_c */
-static void daPropY_Draw(daPropY_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80C86024-80C86044 000CA4 0020+00 1/0 0/0 0/0 .text            daPropY_Execute__FP9daPropY_c */
-static void daPropY_Execute(daPropY_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80C86044-80C86064 000CC4 0020+00 1/0 0/0 0/0 .text            daPropY_Delete__FP9daPropY_c */
-static void daPropY_Delete(daPropY_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80C86064-80C86084 000CE4 0020+00 1/0 0/0 0/0 .text            daPropY_Create__FP10fopAc_ac_c */
-static void daPropY_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80C86084-80C860E0 000D04 005C+00 2/1 0/0 0/0 .text            __dt__13daPropY_HIO_cFv */
-daPropY_HIO_c::~daPropY_HIO_c() {
-    // NONMATCHING
-}
-
-/* 80C860E0-80C8611C 000D60 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_lv7PropellerY_cpp
- */
-void __sinit_d_a_obj_lv7PropellerY_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80C860E0, __sinit_d_a_obj_lv7PropellerY_cpp);
-#pragma pop
-
-/* 80C86160-80C86160 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
