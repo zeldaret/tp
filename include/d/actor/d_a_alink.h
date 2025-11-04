@@ -367,7 +367,7 @@ public:
     virtual void genMessage(JORMContext*);
 
 private:
-    /* 0x34 */ daAlinkHIO_noActAtnMove_c0 m;
+    /* 0x34 */ daAlinkHIO_noActAtnMove_c1 m;
 };
 
 class daAlinkHIO_frontRoll_c1 {
@@ -581,7 +581,9 @@ public:
     virtual void genMessage(JORMContext*);
 
 private:
-    /* 0x34 */ daAlinkHIO_cutNormal_c1 m;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ daAlinkHIO_cutNormal_c1 m;
+
 };
 
 class daAlinkHIO_cutFinish_c1 {
@@ -634,7 +636,8 @@ public:
     virtual void genMessage(JORMContext*);
 
 private:
-    /* 0x34 */ daAlinkHIO_cutFinish_c1 m;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ daAlinkHIO_cutFinish_c1 m;
 };
 
 class daAlinkHIO_cutFnJU_c1 {
@@ -701,7 +704,8 @@ public:
     virtual void genMessage(JORMContext*);
 
 private:
-    /* 0x34 */ daAlinkHIO_cutDash_c1 m;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ daAlinkHIO_cutDash_c1 m;
 };
 
 class daAlinkHIO_cutJump_c1 {
@@ -816,7 +820,8 @@ public:
     virtual void genMessage(JORMContext*);
 
 private:
-    /* 0x34 */ daAlinkHIO_hoCut_c1 m;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ daAlinkHIO_hoCut_c1 m;
 };
 
 class daAlinkHIO_hoCutCharge_c1 {
@@ -990,7 +995,33 @@ public:
     virtual void genMessage(JORMContext*);
 
 private:
-    /* 0x34 */ daAlinkHIO_cut_c1 m;
+    /* 0x34 */ daAlinkHIO_cutNormal_c mCutNormal0;
+    daAlinkHIO_cutNormal_c mCutNormal1;
+    daAlinkHIO_cutNormal_c mCutNormal2;
+    daAlinkHIO_cutNormal_c mCutNormal3;
+    daAlinkHIO_cutNormal_c mCutNormal4;
+    daAlinkHIO_cutFinish_c mCutFinish0;
+    daAlinkHIO_cutFinish_c mCutFinish1;
+    daAlinkHIO_cutFinish_c mCutFinish2;
+    daAlinkHIO_cutFinish_c mCutFinish3;
+    daAlinkHIO_cutFinish_c mCutFinish4;
+    daAlinkHIO_cutFinish_c mCutFinish5;
+    daAlinkHIO_cutFnJU_c mCutFinishJU;
+    daAlinkHIO_cutJump_c mCutJump;
+    daAlinkHIO_cutTurn_c mCutTurn;
+    daAlinkHIO_hoCut_c mHoCut0;
+    daAlinkHIO_hoCut_c mHoCut1;
+    daAlinkHIO_hoCut_c mHoCut2;
+    daAlinkHIO_hoCut_c mHoCut3;
+    daAlinkHIO_hoCutCharge_c mHoCutCharge;
+    daAlinkHIO_cutDash_c mCutDash0;
+    daAlinkHIO_cutDash_c mCutDash1;
+    daAlinkHIO_cutDash_c mCutDash2;
+    daAlinkHIO_cutDown_c mCutDown;
+    daAlinkHIO_cutHead_c mCutHead;
+    daAlinkHIO_cutLargeJump_c mCutLargeJump;
+    daAlinkHIO_cut_c1 m;
+
 };
 
 class daAlinkHIO_guardAttack_c : public daAlinkHIO_data_c {
