@@ -681,11 +681,7 @@ static cPhs__Step daNpc_Du_Create(fopAc_ac_c* a_this) {
         if (!l_initHIO) {
             i_this->mIsFirstSpawn = 1;
             l_initHIO = true;
-            #if DEBUG
             l_HIO.id = mDoHIO_CREATE_CHILD("アヒル", &l_HIO);
-            #else
-            l_HIO.id = -1;
-            #endif
         }
 
         i_this->mAction = ACTION_NORMAL;
