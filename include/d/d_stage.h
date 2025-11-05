@@ -417,6 +417,7 @@ struct dStage_MapEvent_dt_c {
     /* 0x1A */ u8 field_0x1a;
     /* 0x1B */ u8 switch_no;
 };  // SIZE = 0x1C
+#pragma pack()
 #pragma pop
 
 enum dStage_MapEvent_dt_type {
