@@ -106,58 +106,34 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
         npc_du_class* actor = (npc_du_class*)model->getUserArea();
         if (actor != NULL) {
             if (jntNo == JNT_NECK2) {
-                #if DEBUG
-                C_MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
-                #else
                 MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
-                #endif
                 
                 cMtx_XrotM(*calc_mtx, actor->mNeck2XRot);
                 model->setAnmMtx(jntNo, *calc_mtx);
 
-                #if DEBUG
-                C_MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
-                #else
                 MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
-                #endif
             }
 
             if (jntNo == TREG_S(0)) {
-                #if DEBUG
-                C_MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
-                #else
                 MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
-                #endif
 
                 cMtx_YrotM(*calc_mtx, TREG_S(1));
                 cMtx_XrotM(*calc_mtx, TREG_S(2));
                 cMtx_ZrotM(*calc_mtx, TREG_S(3));
                 model->setAnmMtx(jntNo, *calc_mtx);
 
-                #if DEBUG
-                C_MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
-                #else
                 MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
-                #endif
             }
 
             if (jntNo == TREG_S(4)) {
-                #if DEBUG
-                C_MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
-                #else
                 MTXCopy(model->getAnmMtx(jntNo), *calc_mtx);
-                #endif
 
                 cMtx_YrotM(*calc_mtx, TREG_S(5));
                 cMtx_XrotM(*calc_mtx, TREG_S(6));
                 cMtx_ZrotM(*calc_mtx, TREG_S(7));
                 model->setAnmMtx(jntNo, *calc_mtx);
 
-                #if DEBUG
-                C_MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
-                #else
                 MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
-                #endif
             }
         }
     }
@@ -238,8 +214,9 @@ static void npc_du_normal(npc_du_class* i_this) {
 
 /* 809B0360-809B04E0 000700 0180+00 1/1 0/0 0/0 .text            npc_du_away__FP12npc_du_class */
 static void npc_du_away(npc_du_class* i_this) {
+    // Fakematch???
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
-    #if DEBUG
+    #if PLATFORM_SHIELD
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     #endif
     cXyz pos_delta, sp5c;
@@ -247,7 +224,7 @@ static void npc_du_away(npc_du_class* i_this) {
     f32 maxStepF = 2.0f;
     s16 maxStepS = 0x1800;
 
-    #if DEBUG
+    #if PLATFORM_SHIELD
     pos_delta = actor->current.pos - player->current.pos;
     #else
     pos_delta = actor->current.pos - dComIfGp_getPlayer(0)->current.pos;
@@ -601,11 +578,7 @@ static int daNpc_Du_Execute(npc_du_class* i_this) {
         fopAcM_seStart(actor, Z2SE_DUCK_SWIM, 0);
     }
 
-    #if DEBUG
-    C_MTXCopy(model->getAnmMtx(JNT_HEAD), *calc_mtx);
-    #else
     MTXCopy(model->getAnmMtx(JNT_HEAD), *calc_mtx);
-    #endif
     sp2c.set(0.0f, 0.0f, 0.0f);
     MtxPosition(&sp2c, &actor->eyePos);
     actor->attention_info.position = actor->eyePos;
