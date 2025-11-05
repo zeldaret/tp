@@ -29,11 +29,17 @@ public:
     /* 809B1F6C */ void connect(daNpc_Fairy_c*);
     /* 809B1FD4 */ void draw(daNpc_Fairy_c*);
 
+    void output_anmframe() {}
+
     void playAnm() {
         mBtkAnm.play();
         mBrkAnm.play();
         mpMorf->play(0, 0);
     }
+
+    f32 getAnmFrame() { return mpMorf->getFrame(); }
+    void setAnmFrame(f32 i_frame) { mpMorf->setFrame(i_frame); }
+    void setAnmPlaySpeed(f32 i_playSpeed) { mpMorf->setPlaySpeed(i_playSpeed); }
 
     /* 0x00 */ mDoExt_McaMorfSO* mpMorf;
     /* 0x04 */ mDoExt_invisibleModel mModel;
@@ -88,7 +94,7 @@ public:
     /* 809B3034 */ void drawOtherMdl();
     /* 809B3074 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 809B3094 */ static int ctrlJointCallBack(J3DJoint*, int);
-    /* 809B30EC */ bool isDelete();
+    /* 809B30EC */ BOOL isDelete();
     /* 809B30F4 */ void reset();
     /* 809B32C4 */ void initStatus();
     /* 809B32D0 */ void afterJntAnm(int);
@@ -103,66 +109,67 @@ public:
     /* 809B384C */ void ptcl_water();
     /* 809B38E8 */ void ptcl_sprit();
     /* 809B39FC */ void _to_FairyField();
-    /* 809B3AB0 */ void chk_tempbit();
+    /* 809B3AB0 */ int chk_tempbit();
     /* 809B3B20 */ void beforeMove();
     /* 809B3B98 */ void afterMoved();
     /* 809B3C64 */ void setAttnPos();
     /* 809B3EA0 */ void setCollision();
     /* 809B3FD8 */ int drawDbgInfo();
-    /* 809B3FE0 */ void setAction(actionFunc, int);
-    /* 809B4090 */ void wait(int);
-    /* 809B4360 */ void talk(int);
+    /* 809B3FE0 */ BOOL setAction(actionFunc, int);
+    /* 809B4090 */ int wait(int);
+    /* 809B4360 */ int talk(int);
+    int test(int);
     /* 809B4450 */ void AppearDemoCall();
     /* 809B4588 */ void ReturnDemoCall();
     /* 809B45BC */ void PresentDemoCall();
     /* 809B464C */ int cutAppear_10F_01(int);
-    /* 809B46E0 */ void _cutAppear_10F_01_Init(int const&);
-    /* 809B48C4 */ void _cutAppear_10F_01_Main(int const&);
+    /* 809B46E0 */ int _cutAppear_10F_01_Init(int const&);
+    /* 809B48C4 */ int _cutAppear_10F_01_Main(int const&);
     /* 809B4A44 */ int cutAppear_10F_02(int);
-    /* 809B4AD8 */ void _cutAppear_10F_02_Init(int const&);
-    /* 809B4BF8 */ void _cutAppear_10F_02_Main(int const&);
+    /* 809B4AD8 */ int _cutAppear_10F_02_Init(int const&);
+    /* 809B4BF8 */ int _cutAppear_10F_02_Main(int const&);
     /* 809B4CC0 */ int cutAppear_20F_01(int);
-    /* 809B4D54 */ void _cutAppear_20F_01_Init(int const&);
-    /* 809B4EB4 */ void _cutAppear_20F_01_Main(int const&);
+    /* 809B4D54 */ int _cutAppear_20F_01_Init(int const&);
+    /* 809B4EB4 */ int _cutAppear_20F_01_Main(int const&);
     /* 809B5000 */ int cutAppear_20F_02(int);
-    /* 809B5094 */ void _cutAppear_20F_02_Init(int const&);
-    /* 809B51F4 */ void _cutAppear_20F_02_Main(int const&);
+    /* 809B5094 */ int _cutAppear_20F_02_Init(int const&);
+    /* 809B51F4 */ int _cutAppear_20F_02_Main(int const&);
     /* 809B5340 */ int cutAppear_30F_01(int);
-    /* 809B53D4 */ void _cutAppear_30F_01_Init(int const&);
-    /* 809B54F4 */ void _cutAppear_30F_01_Main(int const&);
+    /* 809B53D4 */ int _cutAppear_30F_01_Init(int const&);
+    /* 809B54F4 */ int _cutAppear_30F_01_Main(int const&);
     /* 809B55BC */ int cutAppear_30F_02(int);
-    /* 809B5650 */ void _cutAppear_30F_02_Init(int const&);
-    /* 809B5770 */ void _cutAppear_30F_02_Main(int const&);
+    /* 809B5650 */ int _cutAppear_30F_02_Init(int const&);
+    /* 809B5770 */ int _cutAppear_30F_02_Main(int const&);
     /* 809B5838 */ int cutAppear_40F_01(int);
-    /* 809B58CC */ void _cutAppear_40F_01_Init(int const&);
-    /* 809B59EC */ void _cutAppear_40F_01_Main(int const&);
+    /* 809B58CC */ int _cutAppear_40F_01_Init(int const&);
+    /* 809B59EC */ int _cutAppear_40F_01_Main(int const&);
     /* 809B5AB4 */ int cutAppear_40F_02(int);
-    /* 809B5B48 */ void _cutAppear_40F_02_Init(int const&);
-    /* 809B5C68 */ void _cutAppear_40F_02_Main(int const&);
+    /* 809B5B48 */ int _cutAppear_40F_02_Init(int const&);
+    /* 809B5C68 */ int _cutAppear_40F_02_Main(int const&);
     /* 809B5D30 */ int cutAppear_50F_01(int);
-    /* 809B5E00 */ void _cutAppear_50F_01_Init(int const&, int const&);
-    /* 809B6084 */ void _cutAppear_50F_01_Main(int const&, int const&);
+    /* 809B5E00 */ int _cutAppear_50F_01_Init(int const&, int const&);
+    /* 809B6084 */ int _cutAppear_50F_01_Main(int const&, int const&);
     /* 809B631C */ int cutAppear_50F_02(int);
-    /* 809B63EC */ void _cutAppear_50F_02_Init(int const&, int const&);
-    /* 809B662C */ void _cutAppear_50F_02_Main(int const&, int const&);
+    /* 809B63EC */ int _cutAppear_50F_02_Init(int const&, int const&);
+    /* 809B662C */ int _cutAppear_50F_02_Main(int const&, int const&);
     /* 809B6830 */ int cutAppear_50F_03(int);
-    /* 809B6900 */ void _cutAppear_50F_03_Init(int const&, int const&);
-    /* 809B6ADC */ void _cutAppear_50F_03_Main(int const&, int const&);
+    /* 809B6900 */ int _cutAppear_50F_03_Init(int const&, int const&);
+    /* 809B6ADC */ int _cutAppear_50F_03_Main(int const&, int const&);
     /* 809B6C30 */ int cutAppear_50F_04(int);
-    /* 809B6D00 */ void _cutAppear_50F_04_Init(int const&, int const&);
-    /* 809B6F40 */ void _cutAppear_50F_04_Main(int const&, int const&);
+    /* 809B6D00 */ int _cutAppear_50F_04_Init(int const&, int const&);
+    /* 809B6F40 */ int _cutAppear_50F_04_Main(int const&, int const&);
     /* 809B7168 */ int cutAppear_50F_05(int);
-    /* 809B7238 */ void _cutAppear_50F_05_Init(int const&, int const&);
-    /* 809B74AC */ void _cutAppear_50F_05_Main(int const&, int const&);
+    /* 809B7238 */ int _cutAppear_50F_05_Init(int const&, int const&);
+    /* 809B74AC */ int _cutAppear_50F_05_Main(int const&, int const&);
     /* 809B7718 */ int cutSelect_Return1(int);
-    /* 809B77AC */ void _cutSelect_Return1_Init(int const&);
-    /* 809B78F0 */ void _cutSelect_Return1_Main(int const&);
+    /* 809B77AC */ int _cutSelect_Return1_Init(int const&);
+    /* 809B78F0 */ int _cutSelect_Return1_Main(int const&);
     /* 809B79A4 */ int cutSelect_Return2(int);
-    /* 809B7A38 */ void _cutSelect_Return2_Init(int const&);
-    /* 809B7A9C */ void _cutSelect_Return2_Main(int const&);
+    /* 809B7A38 */ int _cutSelect_Return2_Init(int const&);
+    /* 809B7A9C */ int _cutSelect_Return2_Main(int const&);
     /* 809B7BA4 */ int cutSelect_Return3(int);
-    /* 809B7C38 */ void _cutSelect_Return3_Init(int const&);
-    /* 809B7D7C */ void _cutSelect_Return3_Main(int const&);
+    /* 809B7C38 */ int _cutSelect_Return3_Init(int const&);
+    /* 809B7D7C */ int _cutSelect_Return3_Main(int const&);
     /* 809B7E30 */ int cutReturnCancel(int);
     /* 809B7EC4 */ bool _cutReturnCancel_Init(int const&);
     /* 809B7ECC */ bool _cutReturnCancel_Main(int const&);
@@ -198,6 +205,15 @@ public:
         return param;
     }
 
+    BOOL chkAction(actionFunc action) { return mAction == action; }
+
+    int getSwitchBitNo() { return fopAcM_GetParam(this) >> 24; }
+
+    void sprit_se() { mSound.startCreatureSoundLevel(Z2SE_FAIRY_STAY, 0, -1); }
+    void feather_se() { mSound.startCreatureSoundLevel(Z2SE_FAIRY_HANE_STAY, 0, -1); }
+    void feather_appear_se() { mSound.startCreatureSoundLevel(Z2SE_FAIRY_HANE_OP, 0, -1); }
+
+    u8 getSceneNo2() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
 
     static char* mCutNameList[18];
     static cutFunc mCutList[18];
