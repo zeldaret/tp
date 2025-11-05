@@ -9,7 +9,19 @@
 #include "dol2asm.h"
 #include "f_op/f_op_actor_enemy.h"
 
+class daE_TT_HIO_c : public JORReflexible {
+public:
+    /* 807BD7AC */ daE_TT_HIO_c();
+    /* 807C1AA8 */ virtual ~daE_TT_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 id;
+    /* 0x08 */ f32 model_size;
+    /* 0x0C */ f32 player_detection_range;
+    /* 0x10 */ f32 player_attack_distance;
+    /* 0x14 */ f32 attack_angle;
+};
 
 //
 // Forward References:
@@ -1077,11 +1089,6 @@ static void daE_TT_Create(daE_TT_c* param_0) {
 /* 807C1A60-807C1AA8 0043A0 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 // cCcD_GStts::~cCcD_GStts() {
 extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 807C1AA8-807C1AF0 0043E8 0048+00 2/1 0/0 0/0 .text            __dt__12daE_TT_HIO_cFv */
-daE_TT_HIO_c::~daE_TT_HIO_c() {
     // NONMATCHING
 }
 
