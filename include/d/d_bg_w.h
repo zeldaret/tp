@@ -341,4 +341,6 @@ private:
     /* 0xBC */ u8 m_flags;
 };
 
+dBgW* dBgW_NewSet(cBgD_t* pbgd, u32 flags, Mtx* pbase_mtx);
+
 #endif /* D_BG_D_BG_W_H */
