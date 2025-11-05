@@ -805,7 +805,7 @@ static void damage_check(e_yg_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
 
-    if (!i_this->mInvulnerabilityTimer) {
+    if (i_this->mInvulnerabilityTimer == 0) {
         i_this->mStts.Move();
 
         if (i_this->mSph1.ChkTgHit()) {
