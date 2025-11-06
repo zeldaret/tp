@@ -552,7 +552,7 @@ void daNpc_Hoz_c::setParam() {
     s16 attn_angle = daNpc_Hoz_Param_c::m.common.attention_angle;
 
     attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(attn_dist, attn_angle);
-    attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[0];
+    attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_dist, talk_angle);
 
     if (mType == 1 && field_0xf8b == 0) {
@@ -996,7 +996,7 @@ int daNpc_Hoz_c::waitTwilightBattle(void* param_0) {
     case 0:
     case 1:
         if (daNpcT_chkEvtBit(0x50) != 0) {
-            if (mMotionSeqMngr.getNo() == 0xA) {
+            if (mMotionSeqMngr.getNo() == 10) {
                 mMotionSeqMngr.setNo(0x20, -1.0f, 0, 0);
             } else {
                 mMotionSeqMngr.setNo(0x23, -1.0f, 0, 0);
