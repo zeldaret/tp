@@ -6,37 +6,31 @@
 
 #include "d/actor/d_a_door_knob00.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/d_com_inf_game.h"
 #include "d/d_msg_object.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_meter2_info.h"
-#include "SSystem/SComponent/c_math.h"
-#include "printf.h"
 
-/* 8045E858-8045E864 000078 000C+00 1/1 0/0 0/0 .text getDoorModel__12knob_param_cFP10fopAc_ac_c
- */
+/* 80460894-80460898 -00001 0004+00 1/1 0/0 0/0 .data            l_bmd_base_name */
+static char* l_bmd_base_name = "door-knob_";
+
+/* 8045E858-8045E864 000078 000C+00 1/1 0/0 0/0 .text            getDoorModel__12knob_param_cFP10fopAc_ac_c */
 u32 knob_param_c::getDoorModel(fopAc_ac_c* i_this) {
     return fopAcM_GetParamBit(i_this, 5, 3);
 }
 
-/* 8045E864-8045E870 000084 000C+00 1/1 0/0 0/0 .text
- * getDoorLightInf__12knob_param_cFP10fopAc_ac_c                */
+/* 8045E864-8045E870 000084 000C+00 1/1 0/0 0/0 .text            getDoorLightInf__12knob_param_cFP10fopAc_ac_c */
 u32 knob_param_c::getDoorLightInf(fopAc_ac_c* i_this) {
     return fopAcM_GetParamBit(i_this, 8, 3);
 }
 
-/* 8045E870-8045E87C 000090 000C+00 2/2 0/0 0/0 .text getMsgNo__12knob_param_cFP10fopAc_ac_c */
+/* 8045E870-8045E87C 000090 000C+00 2/2 0/0 0/0 .text            getMsgNo__12knob_param_cFP10fopAc_ac_c */
 u16 knob_param_c::getMsgNo(fopAc_ac_c* i_this) {
     return i_this->home.angle.x;
 }
 
-/* 8045E87C-8045E888 00009C 000C+00 2/2 0/0 0/0 .text getExitNo__12knob_param_cFP10fopAc_ac_c */
+/* 8045E87C-8045E888 00009C 000C+00 2/2 0/0 0/0 .text            getExitNo__12knob_param_cFP10fopAc_ac_c */
 u8 knob_param_c::getExitNo(fopAc_ac_c* i_this) {
     return fopAcM_GetParamBit(i_this, 25, 6);
-}
-
-static char* dummyStringFunc() {
-    return "door-knob_";
 }
 
 /* 8045E888-8045E898 0000A8 0010+00 4/4 0/0 0/0 .text            getAlwaysArcName__10daKnob20_cFv */
@@ -58,9 +52,6 @@ char* daKnob20_c::getDzb() {
 char* daKnob20_c::getDummyBmd() {
     return "door-knobDummy.bmd";
 }
-
-/* 80460894-80460898 -00001 0004+00 1/1 0/0 0/0 .data            l_bmd_base_name */
-static char* l_bmd_base_name = "door-knob_";
 
 /* 80460A98-80460AB8 000000 0020+00 1/1 0/0 0/0 .bss             l_bmdName$3809 */
 static char l_bmdName[32];
@@ -383,12 +374,13 @@ int daKnob20_c::demoProc() {
         case 3:
             field_0x610 = 10;
             break;
-        case 10:
+        case 10: {
             int msgNo = knob_param_c::getMsgNo(this);
             if (msgNo != 0xffff) {
                 field_0x5c0.init(this, msgNo, 0, NULL);
             }
             break;
+        }
         case 0xe:
             field_0x612 = 0;
             field_0x614 = 1000;

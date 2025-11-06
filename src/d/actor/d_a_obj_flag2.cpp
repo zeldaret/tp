@@ -159,8 +159,7 @@ cXyz FlagCloth_c::calcFlagFactor(cXyz* param_1, cXyz* param_2, cXyz* param_3, in
     return flagFactor;
 }
 
-/* 80BEC928-80BECAE0 000348 01B8+00 1/1 0/0 0/0 .text
- * calcFlagFactorSub__11FlagCloth_cFP4cXyzP4cXyzP4cXyzf         */
+/* 80BEC928-80BECAE0 000348 01B8+00 1/1 0/0 0/0 .text            calcFlagFactorSub__11FlagCloth_cFP4cXyzP4cXyzP4cXyzf */
 void FlagCloth_c::calcFlagFactorSub(cXyz* param_1, cXyz* param_2, cXyz* param_3, f32 param_4) {
     cXyz acStack_2c = *param_2 - *param_1;
     param_4 = acStack_2c.abs() - param_4;
@@ -170,7 +169,7 @@ void FlagCloth_c::calcFlagFactorSub(cXyz* param_1, cXyz* param_2, cXyz* param_3,
     *param_3 += cStack_38;
 }
 
-/* 80BECAE0-80BECC34 000500 0154+00 2/2 0/0 0/0 .text calcFlagNormal__11FlagCloth_cFP4cXyzi */
+/* 80BECAE0-80BECC34 000500 0154+00 2/2 0/0 0/0 .text            calcFlagNormal__11FlagCloth_cFP4cXyzi */
 void FlagCloth_c::calcFlagNormal(cXyz* o_normal, int param_2) {
     static int rel_pos_idx_tbl[147] = {
         1,  2,  -1, -1, -1, -1, -1, 3,  4,  2,  0,  -1, -1, -1, 0,  1,  4,  5,  -1, -1, -1,

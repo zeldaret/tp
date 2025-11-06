@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_dmidna.h"
-#include "f_op/f_op_actor_mng.h"
 
 /* 8045D290-8045D298 000000 0007+01 3/3 0/0 0/0 .rodata          l_arcName */
 static const char l_arcName[] = "Dmidna";
@@ -23,11 +22,12 @@ int daDmidna_c::createHeap() {
     return 1;
 }
 
-/* 8045CFC4-8045CFE4 000164 0020+00 1/1 0/0 0/0 .text            daDmidna_createHeap__FP10fopAc_ac_c
- */
+/* 8045CFC4-8045CFE4 000164 0020+00 1/1 0/0 0/0 .text            daDmidna_createHeap__FP10fopAc_ac_c */
 static int daDmidna_createHeap(fopAc_ac_c* i_this) {
     return static_cast<daDmidna_c*>(i_this)->createHeap();
 }
+
+daDmidna_c::daDmidna_c() {}
 
 /* 8045CFE4-8045D094 000184 00B0+00 1/1 0/0 0/0 .text            create__10daDmidna_cFv */
 int daDmidna_c::create() {
@@ -47,8 +47,10 @@ int daDmidna_c::create() {
 }
 
 /* 8045D094-8045D0B4 000234 0020+00 1/0 0/0 0/0 .text            daDmidna_Create__FP10fopAc_ac_c */
-static int daDmidna_Create(fopAc_ac_c* i_this) {
-    return static_cast<daDmidna_c*>(i_this)->create();
+static int daDmidna_Create(fopAc_ac_c* a_this) {
+    daDmidna_c* i_this = (daDmidna_c*)a_this;
+    fpc_ProcID id = fopAcM_GetID(a_this);
+    return i_this->create();
 }
 
 /* 8045D0B4-8045D11C 000254 0068+00 1/1 0/0 0/0 .text            __dt__10daDmidna_cFv */
@@ -58,6 +60,7 @@ daDmidna_c::~daDmidna_c() {
 
 /* 8045D11C-8045D144 0002BC 0028+00 1/0 0/0 0/0 .text            daDmidna_Delete__FP10daDmidna_c */
 static int daDmidna_Delete(daDmidna_c* i_this) {
+    fpc_ProcID id = fopAcM_GetID(i_this);
     i_this->~daDmidna_c();
     return 1;
 }
@@ -95,11 +98,12 @@ static int daDmidna_Draw(daDmidna_c* i_this) {
     return i_this->draw();
 }
 
-/* ############################################################################################## */
 /* 8045D29C-8045D2BC -00001 0020+00 1/0 0/0 0/0 .data            l_daDmidna_Method */
 static actor_method_class l_daDmidna_Method = {
-    (process_method_func)daDmidna_Create,  (process_method_func)daDmidna_Delete,
-    (process_method_func)daDmidna_Execute, (process_method_func)NULL,
+    (process_method_func)daDmidna_Create, 
+    (process_method_func)daDmidna_Delete,
+    (process_method_func)daDmidna_Execute,
+    (process_method_func)NULL,
     (process_method_func)daDmidna_Draw,
 };
 

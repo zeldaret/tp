@@ -20,7 +20,8 @@ typedef int (daBgObj_c::*actionFunc)();
  *
  * @details
  *
- */
+*/
+
 class daBgObj_c : public dBgS_MoveBgActor {
 public:
     class spec_data_c {
@@ -89,24 +90,24 @@ public:
 
     void setAction(u8 i_action) { mAction = i_action; }
 
-    static createHeapFunc mCreateHeapFunc[];
-    static createInitFunc mCreateInitFunc[];
-    static executeFunc mExecuteFunc[];
-    static tgSetFunc mTgSetFunc[];
+    static createHeapFunc const mCreateHeapFunc[];
+    static createInitFunc const mCreateInitFunc[];
+    static executeFunc const mExecuteFunc[];
+    static tgSetFunc const mTgSetFunc[];
 
     /* 0x5A0 */ request_of_phase_process_class mPhase;
-    /* 0x5A8 */ J3DModel* field_0x5a8[2][2];
-    /* 0x5B8 */ mDoExt_btkAnm* field_0x5b8[2][2];
-    /* 0x5C8 */ mDoExt_brkAnm* field_0x5c8[2][2];
+    /* 0x5A8 */ J3DModel* mpModelMtx[2][2];
+    /* 0x5B8 */ mDoExt_btkAnm* mpBtkAnmMtx[2][2];
+    /* 0x5C8 */ mDoExt_brkAnm* mpBrkAnmMtx[2][2];
     /* 0x5D8 */ dBgW* mpBgW2;
     /* 0x5DC */ dCcD_Stts mStts;
     /* 0x618 */ dCcD_Tri mTris[4];
     /* 0xB88 */ dCcD_Cyl mCyl;
-    /* 0xCC4 */ u8 field_0xcc4;
+    /* 0xCC4 */ u8 mTriNum;
     /* 0xCC5 */ u8 mAction;
     /* 0xCC6 */ s16 mEventIdx;
     /* 0xCC8 */ u8 field_0xcc8;
-    /* 0xCC9 */ u8 field_0xcc9;
+    /* 0xCC9 */ u8 mCreateFirstFlag;
     /* 0xCCA */ u16 field_0xcca;
     /* 0xCCC */ u16 field_0xccc;
     /* 0xCD0 */ spec_data_c mSpecData;
@@ -114,7 +115,7 @@ public:
     /* 0xCFC */ u32 mAttnActorID;
     /* 0xD00 */ u8 field_0xd00;
     /* 0xD01 */ u8 field_0xd01;
-    /* 0xD02 */ u8 field_0xd02;
+    /* 0xD02 */ u8 mSetSpecDataFlag;
 };
 
 namespace daBgObj_prm {
@@ -127,7 +128,7 @@ inline u8 getSwBit(daBgObj_c* i_this) {
 }
 
 inline u8 getSwBit2(daBgObj_c* i_this) {
-    return (i_this->field_0xccc >> 8) & 0xFF;
+    return (int)(i_this->field_0xccc & ~0xFFFF00FF) >> 8;
 }
 
 inline u8 getObjArg0(daBgObj_c* i_this) {

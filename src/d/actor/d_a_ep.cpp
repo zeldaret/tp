@@ -38,7 +38,7 @@ static void hahen_draw(ep_class* i_this) {
 static int move_calc(ep_class* i_this, ep_hahen_s* hahen_s) {
     fopAc_ac_c* a_this = i_this;
     static u16 w_eff_id[4] = {
-        0x01B8, 0x01B9, 0x01BA, 0x01BB,
+        ID_ZI_J_DOWNWTRA_A, ID_ZI_J_DOWNWTRA_B, ID_ZI_J_DOWNWTRA_C, ID_ZI_J_DOWNWTRA_D,
     };
 
     dBgS_LinChk dStack_bc;
@@ -191,7 +191,7 @@ static void hahen_water(ep_class* i_this, ep_hahen_s* hahen_s) {
     hahen_s->field_0x28.y += hahen_s->field_0x92;
     cLib_addCalcAngleS2(&hahen_s->field_0x92, 0, 1, 0x28);
 
-    cLib_addCalcAngleS2(&hahen_s->field_0x28.z, (200.0f * cM_ssin(hahen_s->field_0x94 * 0x708)), 1, 0x800);
+    cLib_addCalcAngleS2(&hahen_s->field_0x28.z, ((NREG_F(14) + 200.0f) * cM_ssin(hahen_s->field_0x94 * 0x708)), 1, 0x800);
     cLib_addCalcAngleS2(&hahen_s->field_0x28.x, 0, 4, 0x1000);
 
     if (hahen_s->field_0x98 == 0) {
@@ -211,7 +211,7 @@ static void hahen_water(ep_class* i_this, ep_hahen_s* hahen_s) {
         }
     }
 
-    fopAcM_effHamonSet(&hahen_s->field_0xa0, &hahen_s->field_0x4, 1.0f, 0.05f);
+    fopAcM_effHamonSet(&hahen_s->field_0xa0, &hahen_s->field_0x4, KREG_F(2) + 1.0f, 0.05f);
 }
 
 /* 80468E50-80469034 000CD0 01E4+00 1/1 0/0 0/0 .text hahen_carry__FP8ep_classP10ep_hahen_s */
@@ -230,16 +230,14 @@ static void hahen_carry(ep_class* i_this, ep_hahen_s* hahen_s) {
 
                 fopAc_ac_c* lockOnTarget = dComIfGp_getAttention()->LockonTarget(0);
                 if (lockOnTarget) {
-                    cXyz local_34, cStack_28;
-                    local_34 = lockOnTarget->current.pos - hahen_s->field_0x4;
+                    cXyz local_34 = lockOnTarget->current.pos - hahen_s->field_0x4;
+                    cXyz cStack_28;
                     hahen_s->field_0x28.y = cM_atan2s(local_34.x, local_34.z);
 
-                    f32 fVar1 = JMAFastSqrt(local_34.x * local_34.x + local_34.z * local_34.z);
-                    s16 sVar1 = -cM_atan2s(local_34.y, fVar1);
+                    s16 sVar1 = -cM_atan2s(local_34.y, JMAFastSqrt(local_34.x * local_34.x + local_34.z * local_34.z));
                     cMtx_XrotS(*calc_mtx, -0x800 + sVar1);
 
-                    local_34.y = 0.0f;
-                    local_34.x = 0.0f;
+                    local_34.x = local_34.y = 0.0f;
                     local_34.z = hahen_s->field_0x30;
                     MtxPosition(&local_34, &cStack_28);
                     hahen_s->field_0x1c.y = cStack_28.y;
@@ -261,7 +259,7 @@ static void hahen_carry(ep_class* i_this, ep_hahen_s* hahen_s) {
 static void hahen_cast(ep_class* i_this, ep_hahen_s* hahen_s) {
     cXyz local_1c, local_28;
 
-    hahen_s->field_0x28.x += 0x1450;
+    hahen_s->field_0x28.x += KREG_S(7) + 0x1450;
 
     cMtx_YrotS(*calc_mtx, hahen_s->field_0x28.y);
     local_1c.x = 0.0f;
@@ -271,7 +269,8 @@ static void hahen_cast(ep_class* i_this, ep_hahen_s* hahen_s) {
     hahen_s->field_0x1c.x = local_28.x;
     hahen_s->field_0x1c.z = local_28.z;
 
-    if (move_calc(i_this, hahen_s)) {
+    int moveCalc = move_calc(i_this, hahen_s);
+    if (moveCalc != 0) {
         hahen_s->field_0x97 = 1;
     }
 
@@ -357,10 +356,12 @@ static void hahen_move(ep_class* i_this) {
 
 /* 80469568-804695F8 0013E8 0090+00 1/0 0/0 0/0 .text            daEp_Draw__FP8ep_class */
 static int daEp_Draw(ep_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    
     if (i_this->mpModel) {
         if (i_this->field_0x602 != 1) {
-            g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->tevStr);
-            g_env_light.setLightTevColorType_MAJI(i_this->mpModel->mModelData, &i_this->tevStr);
+            g_env_light.settingTevStruct(16, &a_this->current.pos, &a_this->tevStr);
+            g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &a_this->tevStr);
             mDoExt_modelUpdateDL(i_this->mpModel);
         }
     }
@@ -374,24 +375,28 @@ static int daEp_Draw(ep_class* i_this) {
 
 /* 804695F8-80469658 001478 0060+00 2/2 0/0 0/0 .text            ep_switch_event_end__FP8ep_class */
 static BOOL ep_switch_event_end(ep_class* i_this) {
-    int rv = FALSE;
+    BOOL rv = FALSE;
+    
     if (dComIfGp_evmng_endCheck("SHOKUDAI_SWITCH") != 0) {
         dComIfGp_event_reset();
         rv = TRUE;
     }
+
     return rv;
 }
 
 /* 80469658-80469700 0014D8 00A8+00 1/1 0/0 0/0 .text            ep_switch_event_begin__FP8ep_class */
 static BOOL ep_switch_event_begin(ep_class* i_this) {
-    BOOL rv = 0;
+    BOOL rv = FALSE;
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
-        fopAcM_orderOtherEvent(i_this, "SHOKUDAI_SWITCH", 0xffff, 1, 0);
+    if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+        fopAcM_orderOtherEvent(a_this, "SHOKUDAI_SWITCH", 0xffff, 1, 0);
     } else {
-        i_this->eventInfo.onCondition(2);
+        a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
         rv = dComIfGp_evmng_getMyStaffId("SHOKUDAI", 0, 0);
         if (rv == -1) {
+            OS_REPORT("イベントに(SHOKUDAI)がない。\n"); // (SHOKUDAI) is not in the event.
            ep_switch_event_end(i_this);
         }
     }
@@ -406,8 +411,7 @@ static int ep_switch_event_move(ep_class* i_this) {
         "FIRE",
     };
 
-    fopAc_ac_c* a_this = i_this;
-    (void) a_this;
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     int rv = 0;
 
     if (dComIfGp_evmng_getIsAddvance(i_this->field_0xa5c)) {
@@ -433,13 +437,13 @@ static int ep_switch_event_move(ep_class* i_this) {
 /* 804697F4-80469EDC 001674 06E8+00 1/1 0/0 0/0 .text            ep_move__FP8ep_class */
 static void ep_move(ep_class* i_this) {
     static u16 l_particle_fire_A[2] = {
-        0x0100, 0x8110,
+        ID_ZI_J_O_FIRE_A, dPa_RM(ID_ZI_S_O_FIRE2_A),
     };
     static u16 l_particle_fire_B[2] = {
-        0x0101, 0x8111
+        ID_ZI_J_O_FIRE_B, dPa_RM(ID_ZI_S_O_FIRE2_B)
     };
     static u16 l_particle_kagerou[2] = {
-        0x0103, 0x8112
+        ID_ZI_J_O_KAGEROU, dPa_RM(ID_ZI_S_O_KAGEROU2)
     };
 
     fopAc_ac_c* a_this = i_this;
@@ -480,19 +484,18 @@ static void ep_move(ep_class* i_this) {
                             mDoAud_seStart(Z2SE_OBJ_FIRE_IGNITION, &i_this->field_0x634,
                                 0, 0);
                         }
+
                         i_this->field_0x60d = 0;
                     }
                 }
-            } else {
-                if (i_this->field_0x60b != 0xFF && i_this->field_0xa5c != -1) {
-                    if (ep_switch_event_move(i_this)) {
-                        i_this->field_0x5a4 = 3;
-                        i_this->field_0x5b4 = a_this->scale.x;
-                    }
-                } else {
+            } else if (i_this->field_0x60b != 0xFF && i_this->field_0xa5c != -1) {
+                if (ep_switch_event_move(i_this)) {
                     i_this->field_0x5a4 = 3;
                     i_this->field_0x5b4 = a_this->scale.x;
                 }
+            } else {
+                i_this->field_0x5a4 = 3;
+                i_this->field_0x5b4 = a_this->scale.x;
             }
 
             break;
@@ -500,10 +503,11 @@ static void ep_move(ep_class* i_this) {
 
         case 3:
             i_this->field_0x5a4++;
+            // fallthrough
         case 4:
             cLib_addCalc2(&i_this->field_0x5b0, i_this->field_0x5b4, 0.5f, 0.2f);
             if (i_this->field_0xa79 == 0) {
-                if ( i_this->field_0xa50 < (s16)(7 + TREG_S(3)) ) {
+                if ( i_this->field_0xa50 < (s16)(TREG_S(7) + 7) ) {
                     dComIfGp_particle_setSimple(l_particle_fire_A[i_this->field_0x60c],
                         &sp1C, 0xff, g_whiteColor, g_whiteColor, 
                         0, 0.0f);
@@ -513,11 +517,12 @@ static void ep_move(ep_class* i_this) {
 
                     if (i_this->field_0xa50 == 0 && i_this->mSph1.ChkTgHit()) {
                         cCcD_Obj* tg_hit_obj = i_this->mSph1.GetTgHitObj();
+                        OS_REPORT("...........FIRE SET !\n");
                         fopAc_ac_c* pfVar4 = dCc_GetAc(tg_hit_obj->GetAc());
                         f32 x_diff = a_this->current.pos.x - pfVar4->current.pos.x;
                         f32 z_diff = a_this->current.pos.z - pfVar4->current.pos.z;
                         i_this->field_0xa58 = cM_atan2s(x_diff, z_diff);
-                        i_this->field_0xa50 = 0x28;
+                        i_this->field_0xa50 = TREG_S(2) + 0x28;
                     }
                 }
 
@@ -552,6 +557,7 @@ static void ep_move(ep_class* i_this) {
                 }
             }
             break;
+
         case 10:
             cLib_addCalc0(&i_this->field_0x5b0, 1.0f, 0.1f);
             if (i_this->field_0x5b0 < 0.05f) {
@@ -618,16 +624,18 @@ static void ep_move(ep_class* i_this) {
 
 /* 80469EDC-8046A0A8 001D5C 01CC+00 1/1 0/0 0/0 .text            daEp_set_mtx__FP8ep_class */
 static void daEp_set_mtx(ep_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+
     if (i_this->mpModel) {
         f32 fVar1 = 70.0f;
         if ((i_this->field_0xa5a & 1) != 0) {
-            fVar1 = 140.0f;
+            fVar1 = NREG_F(1) + 140.0f;
         }
 
-        MtxTrans(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z, 0);
-        cMtx_YrotM(*calc_mtx, i_this->current.angle.y);
+        MtxTrans(a_this->current.pos.x, a_this->current.pos.y, a_this->current.pos.z, 0);
+        cMtx_YrotM(*calc_mtx, (s16)a_this->current.angle.y);
         MtxTrans(0.0f, fVar1, 0.0f, 1);
-        cMtx_XrotM(*calc_mtx, i_this->shape_angle.x);
+        cMtx_XrotM(*calc_mtx, (s16)a_this->shape_angle.x);
         MtxTrans(0.0f, -fVar1, 0.0f, 1);
         i_this->mpModel->setBaseTRMtx(*calc_mtx);
 
@@ -635,34 +643,33 @@ static void daEp_set_mtx(ep_class* i_this) {
         i_this->field_0x5f4 = i_this->field_0x5e8;
         
         cXyz local_28;
-        local_28.z = 0.0f;
-        local_28.x = 0.0f;
+        local_28.x = local_28.z = 0.0f;
         if ((i_this->field_0xa5a & 1) != 0) {
-            local_28.y = 280.0f;
+            local_28.y = NREG_F(0) + 140.0f + 140.0f;
         } else {
-            local_28.y = 140.0f;
+            local_28.y = TREG_F(0) + 140.0f;
         }
         MtxPosition(&local_28, &i_this->field_0x634);
 
-        i_this->eyePos = i_this->field_0x634;
-        i_this->eyePos.y += 20.0f;
-        i_this->attention_info.position = i_this->eyePos;
-        i_this->attention_info.position.y += 30.0f;
+        a_this->eyePos = i_this->field_0x634;
+        a_this->eyePos.y += 20.0f;
+        a_this->attention_info.position = a_this->eyePos;
+        a_this->attention_info.position.y += 30.0f;
 
         local_28.y = 0.0f;
         MtxPosition(&local_28, &i_this->field_0x5e8);
     } else {
-        i_this->field_0x634 = i_this->current.pos;
+        i_this->field_0x634 = a_this->current.pos;
     }
 }
 
 /* 8046A0A8-8046A6D4 001F28 062C+00 1/0 0/0 0/0 .text            daEp_Execute__FP8ep_class */
 static int daEp_Execute(ep_class* i_this) {
     static u16 eff_name[3] = {
-        0x8340, 0x8341, 0x8342,
+        dPa_RM(ID_ZI_S_KSYOKU_BREAK_A), dPa_RM(ID_ZI_S_KSYOKU_BREAK_B), dPa_RM(ID_ZI_S_KSYOKU_BREAK_C),
     };
 
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     i_this->field_0x601 = 0;
     i_this->field_0x602 = 0;
     if (i_this->field_0x640) {
@@ -705,8 +712,8 @@ static int daEp_Execute(ep_class* i_this) {
     }
 
     if (!i_this->field_0x5c8[0]) {
-        i_this->field_0x5c8[0] = cM_rndF(5.0f);
-        i_this->field_0x5c4 = cM_rndF(4.0f) + 8.0f;
+        i_this->field_0x5c8[0] = TREG_F(3) + cM_rndF(TREG_F(2) + 5.0f);
+        i_this->field_0x5c4 = cM_rndF(TREG_F(6) + 4.0f) + 8.0f + TREG_F(7);
     }
 
     if (!i_this->field_0x5c8[1]) {
@@ -719,7 +726,7 @@ static int daEp_Execute(ep_class* i_this) {
         }
     }
 
-    cLib_addCalc2(&i_this->field_0x5c0, i_this->field_0x5c4, 1.0f, 1.0f);
+    cLib_addCalc2(&i_this->field_0x5c0, i_this->field_0x5c4, 1.0f, TREG_F(4) + 0.1f + 0.9f);
     cLib_addCalc2(&i_this->field_0x5b8, i_this->field_0x5bc, 0.4f, 0.04f);
 
     mDoLib_clipper::changeFar(1000000.0f);
@@ -759,13 +766,13 @@ static int daEp_Execute(ep_class* i_this) {
             epHahenS->field_0x97 = 1;
             epHahenS->field_0x4 = a_this->home.pos;
             if (i < 3) {
-                epHahenS->field_0x4.y += 40.0f;
-                epHahenS->field_0x28.z = 0x363c;
+                epHahenS->field_0x4.y += AREG_F(7) + 40.0f;
+                epHahenS->field_0x28.z = AREG_S(7) + 0x363C;
             } else {
-                epHahenS->field_0x4.y += 110.0f;
-                epHahenS->field_0x28.z = -0x363c;
+                epHahenS->field_0x4.y += AREG_F(8) + 110.0f;
+                epHahenS->field_0x28.z = -(AREG_S(7) + 0x363C);
             }
-            epHahenS->field_0x28.y = (i * 0x5555) + 1000;
+            epHahenS->field_0x28.y = (i * 0x5555) + 1000 + AREG_S(8);
 
             cMtx_YrotS(*calc_mtx, epHahenS->field_0x28.y);
             local_84.x = 0.0f;
@@ -776,9 +783,9 @@ static int daEp_Execute(ep_class* i_this) {
 
             epHahenS->field_0x90 = 3000.0f + cM_rndF(1000.0f);
             epHahenS->field_0x92 = cM_rndFX(2000.0f);
-            epHahenS->field_0x1c.y = 20.0f + cM_rndF(15.0f);
-            epHahenS->field_0x1c.x = cM_rndFX(15.0f);
-            epHahenS->field_0x1c.z = cM_rndFX(15.0f);
+            epHahenS->field_0x1c.y = AREG_F(1) + (20.0f + cM_rndF(15.0f));
+            epHahenS->field_0x1c.x = cM_rndFX(AREG_F(2) + 15.0f);
+            epHahenS->field_0x1c.z = cM_rndFX(AREG_F(2) + 15.0f);
             epHahenS->field_0x96 = 0;
         }
 
@@ -806,6 +813,9 @@ static int daEp_IsDelete(ep_class* i_this) {
 static int daEp_Delete(ep_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "Ep");
     dKy_plight_cut(&i_this->mLightInf);
+    #if DEBUG
+    mDoAud_seDeleteObject(&i_this->field_0x634);
+    #endif
     return 1;
 }
 
@@ -850,9 +860,9 @@ static void daEp_CreateInit(fopAc_ac_c* a_this) {
 
     i_this->field_0x5a4 = 0;
     i_this->field_0x60d = 0;
-    fopAcM_SetMtx(i_this, i_this->field_0x570);
-    fopAcM_SetMin(i_this, -160.0f, -160.0f, -160.0f);
-    fopAcM_SetMax(i_this, 160.0f, 160.0f, 160.0f);
+    fopAcM_SetMtx(a_this, i_this->field_0x570);
+    fopAcM_SetMin(a_this, -160.0f, -160.0f, -160.0f);
+    fopAcM_SetMax(a_this, 160.0f, 160.0f, 160.0f);
     daEp_set_mtx(i_this);
     i_this->field_0x601 = 0;
     i_this->field_0x602 = 0;
@@ -898,28 +908,28 @@ static int daEp_Create(fopAc_ac_c* a_this) {
         } // mSphAttr
     };
 
-    int rv;
     ep_class* i_this = (ep_class*)a_this;
     fopAcM_ct(a_this, ep_class);
 
-    rv = dComIfG_resLoad(&i_this->mPhase, "Ep");
+    int rv = dComIfG_resLoad(&i_this->mPhase, "Ep");
     if (rv == cPhs_COMPLEATE_e) {
-        if (fopAcM_GetParam(i_this) & 8) {
-            i_this->field_0x60c = fopAcM_GetParam(i_this) & 7;
-            i_this->field_0x60c += 1;
+        OS_REPORT("   /////   EP PARAM %x\n", fopAcM_GetParam(a_this));
+        if (fopAcM_GetParam(a_this) & 8) {
+            i_this->field_0x60c = fopAcM_GetParam(a_this) & 7;
+            i_this->field_0x60c++;
             i_this->field_0x60c &= 1;
             i_this->field_0xa5a = -1;
         } else {
-            i_this->field_0xa5a = fopAcM_GetParam(i_this) & 7;
-            i_this->field_0xa5a += 1;
+            i_this->field_0xa5a = fopAcM_GetParam(a_this) & 7;
+            i_this->field_0xa5a++;
             i_this->field_0xa5a &= 7;
         }
     
-        i_this->field_0x609 = fopAcM_GetParam(i_this) >> 8;
-        i_this->field_0x60b = fopAcM_GetParam(i_this) >> 16;
-        i_this->field_0x60a = fopAcM_GetParam(i_this) >> 24;
+        i_this->field_0x609 = (fopAcM_GetParam(a_this) & 0xFF00) >> 8;
+        i_this->field_0x60b = (fopAcM_GetParam(a_this) & 0xFF0000) >> 16;
+        i_this->field_0x60a = (fopAcM_GetParam(a_this) & 0xFF000000) >> 24;
 
-        i_this->mStts.Init(0xff, 0xff, i_this);
+        i_this->mStts.Init(0xff, 0xff, a_this);
         i_this->mSph1.Set(sph_src);
         i_this->mSph1.SetStts(&i_this->mStts);
 
@@ -927,10 +937,8 @@ static int daEp_Create(fopAc_ac_c* a_this) {
             i_this->mSph1.SetR(70.0f);
         }
 
-        if (i_this->field_0xa5a < 0) {
-            OS_REPORT("   /////   EP PARAM %x\n");
-        } else {
-            if (!fopAcM_entrySolidHeap(i_this, daEp_CreateHeap, 0x4b000)) {
+        if (i_this->field_0xa5a >= 0) {
+            if (!fopAcM_entrySolidHeap(a_this, daEp_CreateHeap, 0x4B000)) {
                 return cPhs_ERROR_e;
             }
 
@@ -941,10 +949,12 @@ static int daEp_Create(fopAc_ac_c* a_this) {
             if ((i_this->field_0xa5a & 1) != 0) {
                 i_this->mCyl.SetH(240.0f);
             }
+        } else {
+            OS_REPORT("bonbori 燭台無し Create\n");
         }
 
-        daEp_CreateInit(i_this);
-        if (i_this->field_0x60a != 0xff) {
+        daEp_CreateInit(a_this);
+        if (i_this->field_0x60a != 0xFF) {
             if (!dComIfGs_isSwitch(i_this->field_0x60a, fopAcM_GetRoomNo(i_this))) {
                 i_this->field_0x60d = i_this->field_0x60a + 1;
             }
@@ -956,8 +966,8 @@ static int daEp_Create(fopAc_ac_c* a_this) {
     }
 
     i_this->field_0xa5c = -1;
-    i_this->attention_info.distances[4] = 7;
-    fopAcM_OnCarryType(i_this, fopAcM_CARRY_UNK_30);
+    a_this->attention_info.distances[fopAc_attn_CARRY_e] = 7;
+    fopAcM_OnCarryType(a_this, fopAcM_CARRY_UNK_30);
 
     i_this->mSph2.Set(at_sph_src);
     i_this->mSph2.SetStts(&i_this->mStts);
