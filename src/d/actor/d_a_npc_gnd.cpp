@@ -131,7 +131,7 @@ daNpc_Gnd_c::~daNpc_Gnd_c() {
 
 /* 809BB730-809BB9D4 000210 02A4+00 1/1 0/0 0/0 .text            create__11daNpc_Gnd_cFv */
 int daNpc_Gnd_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Gnd_c, l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Gnd_c, l_faceMotionAnmData,
                        l_motionAnmData, l_faceMotionSequenceData, 4,
                        l_motionSequenceData, 4, l_evtList, l_resNameList);
 

@@ -271,7 +271,7 @@ daNpc_Moi_c::~daNpc_Moi_c() {
 int daNpc_Moi_c::create() {
     static const int heapSize[] = {0, 0x5C70, 0x7CB0, 0x7CA0, 0x5C70, 0x5C80, 0};
 
-    fopAcM_SetupActor2(this, daNpc_Moi_c, (daNpcT_faceMotionAnmData_c const*)l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Moi_c, (daNpcT_faceMotionAnmData_c const*)l_faceMotionAnmData,
                        (const daNpcT_motionAnmData_c*)l_motionAnmData,
                        (const daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_faceMotionSequenceData,
                        4, (const daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_motionSequenceData,

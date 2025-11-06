@@ -222,7 +222,7 @@ daNpc_Raca_HIOParam const daNpc_Raca_Param_c::m = {
 
 /* 80AB5DFC-80AB60B8 00023C 02BC+00 1/1 0/0 0/0 .text            create__12daNpc_Raca_cFv */
 cPhs__Step daNpc_Raca_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Raca_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4,
+    daNpcT_ct(this, daNpc_Raca_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4,
                        l_motionSequenceData, 4, l_evtList, l_resNameList);
 
     mType = getType();
