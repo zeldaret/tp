@@ -1237,6 +1237,10 @@ inline void dComIfGs_offSwitch(int i_no, int i_roomNo) {
     g_dComIfG_gameInfo.info.offSwitch(i_no, i_roomNo);
 }
 
+inline void dComIfGs_revSwitch(int i_no, int i_roomNo) {
+    g_dComIfG_gameInfo.info.revSwitch(i_no, i_roomNo);
+}
+
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo) {
     return g_dComIfG_gameInfo.info.isSwitch(i_no, i_roomNo);
 }
@@ -2145,10 +2149,6 @@ inline void dComIfGs_offDarkClearLV(int i_no) {
 
 inline void dComIfGs_offTransformLV(int i_no) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().offTransformLV(i_no);
-}
-
-inline void dComIfGs_revSwitch(int i_no, int i_roomNo) {
-    g_dComIfG_gameInfo.info.revSwitch(i_no, i_roomNo);
 }
 
 inline s8 dComIfGs_Grass_hide_Check() {
@@ -3746,6 +3746,10 @@ inline BOOL dComIfGp_evmng_isMapToolCamera(u8 mapToolID) {
 inline bool dComIfGp_evmng_existence(const char* eventname) {
      return g_dComIfG_gameInfo.play.getEvtManager().getEventData(
          dComIfGp_evmng_getEventIdx(eventname, 0xFF)) != NULL;
+}
+
+inline bool dComIfGp_evmng_existence(s16 eventId) {
+    return g_dComIfG_gameInfo.play.getEvtManager().getEventData(eventId) != NULL;
 }
 
 inline void dComIfGp_particle_createCommon(const void* data) {

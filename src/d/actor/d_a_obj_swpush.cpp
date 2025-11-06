@@ -749,10 +749,6 @@ void daObjSwpush::Act_c::demo_stop_puase() {
     }
 }
 
-static inline bool dComIfGp_evmng_existence(s16 eventIdx) {
-    return g_dComIfG_gameInfo.play.getEvtManager().getEventData(eventIdx) != NULL;
-}
-
 /* 80484708-804847B4 001AA8 00AC+00 2/2 0/0 0/0 .text demo_reqSw_init__Q211daObjSwpush5Act_cFv */
 void daObjSwpush::Act_c::demo_reqSw_init() {
     if (dComIfGp_evmng_existence(mEventID) && (mDemoMode == DEMO_MODE_NON || mDemoMode == DEMO_MODE_REQ_PAUSE || mDemoMode == DEMO_MODE_RUN_PAUSE)) {
