@@ -7,9 +7,35 @@
 
 #include "d/actor/d_a_npc_zanb.h"
 
+enum zanB_RES_File_ID {
+    /* BCK */
+    /* 0x5 */ BCK_ZANB_SIT = 0x5,
+    /* 0x6 */ BCK_ZANB_WAIT_A,
+
+    /* BMDR */
+    /* 0x9 */ BMDR_ZANB = 0x9,
+
+    /* BTK */
+    /* 0xC */ BTK_ZANB = 0xC,
+};
+
+enum RES_Name {
+    /* 0x0 */ NONE,
+    /* 0x1 */ ZANB,
+};
+
+enum Face_Motion {
+    /* 0x0 */ FACE_MOT_NONE,
+};
+
+enum Motion {
+    /* 0x0 */ MOT_WAIT_A,
+    /* 0x1 */ MOT_SIT,
+};
+
 /* 80B6BDF0-80B6BDF8 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[1][2] = {
-    {9, 1},
+    {9, ZANB},
 };
 
 /* 80B6BDF8-80B6BE08 -00001 0010+00 0/1 0/0 0/0 .data            l_evtList */
@@ -36,13 +62,13 @@ static s8* l_loadResPtrnList[2] = {
 
 /* 80B6BE1C-80B6BE38 00004C 001C+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
 static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[1] = {
-    {-1, 0, 0, -1, 0, 0, 0},
+    {-1, J3DFrameCtrl::EMode_NONE, NONE, -1, J3DFrameCtrl::EMode_NONE, 0, 0},
 };
 
 /* 80B6BE38-80B6BE70 000068 0038+00 0/1 0/0 0/0 .data            l_motionAnmData */
 static daNpcT_motionAnmData_c l_motionAnmData[2] = {
-    {6, 2, 1, 12, 0, 1, 1, 0},
-    {5, 2, 1, 12, 0, 1, 1, 0},
+    {BCK_ZANB_WAIT_A, J3DFrameCtrl::EMode_LOOP, ZANB, BTK_ZANB, J3DFrameCtrl::EMode_NONE, ZANB, 1, 0},
+    {BCK_ZANB_SIT, J3DFrameCtrl::EMode_LOOP, ZANB, BTK_ZANB, J3DFrameCtrl::EMode_NONE, ZANB, 1, 0},
 };
 
 /* 80B6BE70-80B6BE80 0000A0 0010+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
@@ -63,7 +89,6 @@ daNpc_zanB_c::cutFunc daNpc_zanB_c::mCutList[1] = {NULL};
 
 /* 80B68F2C-80B6904C 0000EC 0120+00 1/0 0/0 0/0 .text            __dt__12daNpc_zanB_cFv */
 daNpc_zanB_c::~daNpc_zanB_c() {
-    // NONMATCHING
     OS_REPORT("|%06d:%x|daNpc_zanB_c -> デストラクト\n", g_Counter.mCounter0, this);
 
     if (mpMorf[0] != NULL) {
@@ -373,7 +398,7 @@ void daNpc_zanB_c::setParam() {
 /* 80B69CA8-80B69D08 000E68 0060+00 1/0 0/0 0/0 .text setAfterTalkMotion__12daNpc_zanB_cFv */
 void daNpc_zanB_c::setAfterTalkMotion() {
     int face_motion = mFaceMotionSeqMngr.getNo();
-    mFaceMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
+    mFaceMotionSeqMngr.setNo(FACE_MOT_NONE, -1.0f, FALSE, 0);
 }
 
 /* 80B69D08-80B69D0C 000EC8 0004+00 1/1 0/0 0/0 .text            srchActors__12daNpc_zanB_cFv */
@@ -575,11 +600,11 @@ int daNpc_zanB_c::wait(void* param_1) {
         case 1:
             if (!mStagger.checkStagger()) {
                 if (mType == 0) {
-                    mFaceMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_MOT_NONE, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_SIT, -1.0f, FALSE, 0);
                 } else {
-                    mFaceMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_MOT_NONE, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                 }
 
                 mMode = 2;

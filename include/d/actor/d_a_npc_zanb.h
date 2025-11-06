@@ -93,7 +93,7 @@ public:
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;
-        if (nodeNo == 0xffff) {
+        if (nodeNo == 0xFFFF) {
             return -1;
         }
         return nodeNo;
