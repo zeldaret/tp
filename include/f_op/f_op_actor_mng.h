@@ -441,6 +441,7 @@ inline void fopAcM_SetAngle(fopAc_ac_c* i_actor, s16 x, s16 y, s16 z) {
 
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
 inline void dComIfGs_offSwitch(int i_no, int i_roomNo);
+inline void dComIfGs_revSwitch(int i_no, int i_roomNo);
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo);
 inline void dComIfGs_offActor(int i_no, int i_roomNo);
 
@@ -450,6 +451,10 @@ inline void fopAcM_onSwitch(const fopAc_ac_c* i_actor, int sw) {
 
 inline void fopAcM_offSwitch(const fopAc_ac_c* i_actor, int sw) {
     return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(i_actor));
+}
+
+inline void fopAcM_revSwitch(const fopAc_ac_c* i_actor, int sw) {
+    return dComIfGs_revSwitch(sw, fopAcM_GetHomeRoomNo(i_actor));
 }
 
 inline BOOL fopAcM_isSwitch(const fopAc_ac_c* i_actor, int sw) {

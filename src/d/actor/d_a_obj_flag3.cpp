@@ -48,7 +48,9 @@ public:
     /* 0x8 */ daObjFlag3_Attr_c mAttr;
 };
 
+#if DEBUG
 daObjFlag3_Hio_c M_hio;
+#endif
 
 /* 80BF0458-80BF046C 000000 0014+00 3/3 0/0 0/0 .rodata          M_attr__12daObjFlag3_c */
 daObjFlag3_Attr_c const daObjFlag3_c::M_attr = {
@@ -442,32 +444,7 @@ static int daObjFlag3_Create(fopAc_ac_c* i_this) {
     return static_cast<daObjFlag3_c*>(i_this)->create();
 }
 
-/* 80BEF95C-80BEFBC4 000F5C 0268+00 1/1 0/0 0/0 .text            create__12daObjFlag3_cFv */
-int daObjFlag3_c::create() {
-    fopAcM_ct(this, daObjFlag3_c);
-    s8 flagNum = (u8)shape_angle.x;
-    if (flagNum <= -1 || flagNum > 99) {
-        mFlagValid = false;
-    } else {
-        mFlagValid = true;
-        sprintf(mFlagName, "FlagObj%02d", flagNum);
-        int rv = dComIfG_resLoad(&mFlagPhase, mFlagName);
-        if (rv != cPhs_COMPLEATE_e) {
-            return rv;
-        }
-    }
-    int rv = dComIfG_resLoad(&mArcPhase, daSetBgObj_c::getArcName(this));
-    if (rv == cPhs_COMPLEATE_e) {
-        if (fopAcM_entrySolidHeap(this, createSolidHeap, 0x4000) == 0) {
-            return cPhs_ERROR_e;
-        } else {
-            create_init();
-        }
-    }
-    return rv;
-}
-
-inline void daObjFlag3_c::initBaseMtx() {
+void daObjFlag3_c::initBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
     fopAcM_SetMtx(this, mModel->getBaseTRMtx());
@@ -524,6 +501,31 @@ void FlagCloth2_c::initFlagPos(cXyz* param_0, fopAc_ac_c* param_1) {
     }
     calcFlagNormalBack();
     initTexCoord();
+}
+
+/* 80BEF95C-80BEFBC4 000F5C 0268+00 1/1 0/0 0/0 .text            create__12daObjFlag3_cFv */
+int daObjFlag3_c::create() {
+    fopAcM_ct(this, daObjFlag3_c);
+    s8 flagNum = (u8)shape_angle.x;
+    if (flagNum <= -1 || flagNum > 99) {
+        mFlagValid = false;
+    } else {
+        mFlagValid = true;
+        sprintf(mFlagName, "FlagObj%02d", flagNum);
+        int rv = dComIfG_resLoad(&mFlagPhase, mFlagName);
+        if (rv != cPhs_COMPLEATE_e) {
+            return rv;
+        }
+    }
+    int rv = dComIfG_resLoad(&mArcPhase, daSetBgObj_c::getArcName(this));
+    if (rv == cPhs_COMPLEATE_e) {
+        if (fopAcM_entrySolidHeap(this, createSolidHeap, 0x4000) == 0) {
+            return cPhs_ERROR_e;
+        } else {
+            create_init();
+        }
+    }
+    return rv;
 }
 
 /* 80BF058C-80BF05AC -00001 0020+00 1/0 0/0 0/0 .data            l_daObjFlag3_Method */
