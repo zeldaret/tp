@@ -62,17 +62,5 @@ public:
 
 STATIC_ASSERT(sizeof(daLv6ChangeGate_c) == 0x14dc);
 
-class daLv6ChangeGate_HIO_c : public fOpAcm_HIO_entry_c {
-public:
-    /* 80C70C4C */ daLv6ChangeGate_HIO_c();
-    /* 80C71EE8 */ virtual ~daLv6ChangeGate_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x4 */ f32 speed;
-    /* 0x8 */ f32 move_amount;
-    /* 0xC */ u8 unk_0xc;
-};
-
 
 #endif /* D_A_OBJ_LV6CHANGEGATE_H */

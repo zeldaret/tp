@@ -8,6 +8,18 @@
 #include "d/actor/d_a_obj_lv6ChangeGate.h"
 #include "d/d_s_play.h"
 
+class daLv6ChangeGate_HIO_c : public fOpAcm_HIO_entry_c {
+public:
+    /* 80C70C4C */ daLv6ChangeGate_HIO_c();
+    /* 80C71EE8 */ virtual ~daLv6ChangeGate_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x4 */ f32 speed;
+    /* 0x8 */ f32 move_amount;
+    /* 0xC */ u8 unk_0xc;
+};
+
 /* 80C70C4C-80C70C94 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__21daLv6ChangeGate_HIO_cFv */
 daLv6ChangeGate_HIO_c::daLv6ChangeGate_HIO_c() {
     speed = 10.0f;
