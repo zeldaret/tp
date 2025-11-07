@@ -541,7 +541,7 @@ static NPC_FAIRY_HIO_CLASS l_HIO;
 
 /* 809B2430-809B26E8 000A10 02B8+00 1/1 0/0 0/0 .text            Create__13daNpc_Fairy_cFv */
 cPhs__Step daNpc_Fairy_c::Create() {
-    fopAcM_SetupActor2(this, daNpc_Fairy_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Fairy_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList, l_resNameList);
 
     mType = getType();
