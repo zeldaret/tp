@@ -66,9 +66,9 @@ public:
     /* 80AF0D34 */ void playMotion();
     /* 80AF0F50 */ BOOL chkAction(actionFunc);
     /* 80AF0F7C */ BOOL setAction(actionFunc);
-    /* 80AF1024 */ void selectAction();
+    /* 80AF1024 */ BOOL selectAction();
     /* 80AF10A4 */ void doNormalAction(int);
-    /* 80AF11B8 */ void doEvent();
+    /* 80AF11B8 */ BOOL doEvent();
     /* 80AF1488 */ void setLookMode(int);
     /* 80AF14AC */ void lookat();
     /* 80AF1734 */ int wait(void*);
@@ -82,7 +82,7 @@ public:
 
 private:
     /* 0xB48 */ Z2Creature mSound;
-    /* 0xBD8 */ J3DModel* mpModel;
+    /* 0xBD8 */ J3DModel* mSpearModel;
     /* 0xBDC */ daNpcF_Lookat_c mLookat;
     /* 0xC78 */ daNpcF_ActorMngr_c mActorMngrs[3];
     /* 0xC90 */ NPC_SOLDIERA_HIO_CLASS* mHIO;
@@ -92,12 +92,13 @@ private:
     /* 0xDE8 */ request_of_phase_process_class mPhases[3];
     /* 0xE00 */ int field_0xe00;
     /* 0xE04 */ int field_0xe04;
-    /* 0xE08 */ u8 field_0xe08[0xe10 - 0xe08];
+    /* 0xE08 */ int field_0xe08;
+    /* 0xE0C */ int field_0xe0c;
     /* 0xE10 */ int mMsgNo;
-    /* 0xE14 */ u8 field_0xe14[0xe16 - 0xe14];
+    /* 0xE14 */ s16 mLookMode;
     /* 0xE16 */ u16 mMode;
     /* 0xE18 */ u8 mType;
-    /* 0xE1A */ u8 field_0xe1a[0xe20 - 0xe1a];
+    /* 0xE1C */ int mAnm;
 };
 
 STATIC_ASSERT(sizeof(daNpc_SoldierA_c) == 0xe20);
