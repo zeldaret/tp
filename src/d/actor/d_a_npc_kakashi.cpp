@@ -161,7 +161,7 @@ const daNpc_Kakashi_HIOParam daNpc_Kakashi_Param_c::m = {
 
 /* 8054B4E8-8054B7D8 000268 02F0+00 1/1 0/0 0/0 .text            create__15daNpc_Kakashi_cFv */
 int daNpc_Kakashi_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Kakashi_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Kakashi_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
                        l_evtList, l_resNameList);
 

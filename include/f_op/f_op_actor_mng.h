@@ -18,12 +18,6 @@
         fopAcM_OnCondition(ptr, fopAcCnd_INIT_e);                                                  \
     }
 
-#define fopAcM_SetupActor2(ptr, ClassName, ...)                                                    \
-    if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) {                                            \
-        new (ptr) ClassName(__VA_ARGS__);                                                          \
-        fopAcM_OnCondition(ptr, fopAcCnd_INIT_e);                                                  \
-    }
-
 #define fopAcM_RegisterDeleteID(i_this, actor_name_str)                                            \
     const fpc_ProcID procID = fopAcM_GetID(i_this);                                                \
     "Delete -> " actor_name_str "(id=%d)\n"

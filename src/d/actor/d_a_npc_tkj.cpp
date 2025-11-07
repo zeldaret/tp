@@ -141,7 +141,7 @@ const daNpc_Tkj_HIOParam daNpc_Tkj_Param_c::m = {
 
 /* 80573850-80573B18 000210 02C8+00 1/1 0/0 0/0 .text            create__10daNpcTkj_cFv */
 int daNpcTkj_c::create() {
-    fopAcM_SetupActor2(this, daNpcTkj_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpcTkj_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
                        l_evtList, l_resNameList);
 

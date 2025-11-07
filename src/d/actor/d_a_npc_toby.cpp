@@ -304,7 +304,7 @@ int daNpc_Toby_c::create() {
         0x3BC0, 0x3B10, 0x3B10, 0x43C0,
         0x0, 0x3BD0, 0x0,
     };
-    fopAcM_SetupActor2(this, daNpc_Toby_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Toby_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
                        l_evtList, l_resNameList
     );
