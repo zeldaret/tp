@@ -154,7 +154,7 @@ static NPC_ZANB_HIO_CLASS l_HIO;
 
 /* 80B6904C-80B69330 00020C 02E4+00 1/1 0/0 0/0 .text            create__12daNpc_zanB_cFv */
 cPhs__Step daNpc_zanB_c::create() {
-    fopAcM_SetupActor2(this, daNpc_zanB_c, l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_zanB_c, l_faceMotionAnmData,
                        l_motionAnmData, l_faceMotionSequenceData, 4,
                        l_motionSequenceData, 4, l_evtList, l_resNameList);
 
