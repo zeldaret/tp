@@ -972,6 +972,10 @@ public:
     /* 8014F60C */ int MoveBGCreate(char const*, int, MoveBGActor_SetFunc, u32);
     /* 8014F6FC */ int MoveBGDelete();
     /* 8014F770 */ int MoveBGExecute();
+    int MoveBGDraw() {
+        int ret = Draw();
+        return ret;
+    }
 
     /* 80155FB0 */ virtual ~daBaseNpc_moveBgActor_c() {}
     /* 801503BC */ virtual int CreateHeap() { return 1; }
