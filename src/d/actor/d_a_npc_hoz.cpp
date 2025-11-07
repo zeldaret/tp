@@ -9,7 +9,6 @@
 #include "d/actor/d_a_arrow.h"
 #include "d/actor/d_a_canoe.h"
 #include "d/d_meter2_info.h"
-#include "dol2asm.h"
 
 /* 80A06824-80A06834 000020 0010+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[2][2] = {
