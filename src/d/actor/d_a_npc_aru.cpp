@@ -331,7 +331,7 @@ const daNpc_Aru_HIOParam daNpc_Aru_Param_c::m = {
 
 /* 809518C4-80951BB0 000224 02EC+00 1/1 0/0 0/0 .text            create__11daNpc_Aru_cFv */
 cPhs__Step daNpc_Aru_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Aru_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Aru_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList, l_resNameList);
 
     mType = getType();

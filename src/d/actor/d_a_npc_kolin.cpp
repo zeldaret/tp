@@ -412,7 +412,7 @@ daNpc_Kolin_HIOParam const daNpc_Kolin_Param_c::m = {
 
 /* 80554138-80554414 000238 02DC+00 1/1 0/0 0/0 .text            create__13daNpc_Kolin_cFv */
 cPhs__Step daNpc_Kolin_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Kolin_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList, l_resNameList);
+    daNpcT_ct(this, daNpc_Kolin_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList, l_resNameList);
 
     mType = getType();
     mFlowNodeNo = getFlowNodeNo();

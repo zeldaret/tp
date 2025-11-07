@@ -194,7 +194,7 @@ dCcD_SrcGObjInf const daNpc_Hanjo_c::mStoneCcDObjInfo = {
 /* 809F9278-809F9578 0002D8 0300+00 1/1 0/0 0/0 .text            create__13daNpc_Hanjo_cFv */
 int daNpc_Hanjo_c::create() {
     static int const heapSize[5] = {0x61B0, 0x41D0, 0x39D0, 0x39C0, 0};
-    fopAcM_SetupActor2(this, daNpc_Hanjo_c, l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Hanjo_c, l_faceMotionAnmData,
                        (daNpcT_motionAnmData_c*)l_motionAnmData, l_faceMotionSequenceData, 4,
                        l_motionSequenceData, 4, l_evtList, l_resNameList);
     mType = getType();

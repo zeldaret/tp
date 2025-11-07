@@ -88,7 +88,7 @@ const f32 daNpc_FairySeirei_Param_c::m[37] = {
 
 /* 8054006C-80540298 0001EC 022C+00 1/1 0/0 0/0 .text            create__19daNpc_FairySeirei_cFv */
 int daNpc_FairySeirei_c::create() {
-    fopAcM_SetupActor2(this, daNpc_FairySeirei_c, &l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_FairySeirei_c, &l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList,
                        l_resNameList);
     mType = getType();

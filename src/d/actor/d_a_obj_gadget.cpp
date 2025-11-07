@@ -12,7 +12,6 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "JSystem/JHostIO/JORFile.h"
-#include "dol2asm.h"
 
 #if DEBUG
 #define PARAM field_0x568->mAttr

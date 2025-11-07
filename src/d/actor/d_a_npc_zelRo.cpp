@@ -155,7 +155,7 @@ const daNpc_ZelRo_HIOParam daNpc_ZelRo_Param_c::m = {
 
 /* 80B720E4-80B72378 000224 0294+00 1/1 0/0 0/0 .text            create__13daNpc_ZelRo_cFv */
 cPhs__Step daNpc_ZelRo_c::create() {
-    fopAcM_SetupActor2(this, daNpc_ZelRo_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList, l_resNameList);
+    daNpcT_ct(this, daNpc_ZelRo_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList, l_resNameList);
 
     mType = getType();
     mFlowNodeNo = getFlowNodeNo();

@@ -220,7 +220,7 @@ daNpc_Seirei_HIOParam const daNpc_Seirei_Param_c::m = {
 
 /* 80AD57C4-80AD5A7C 000184 02B8+00 1/1 0/0 0/0 .text            create__14daNpc_Seirei_cFv */
 cPhs__Step daNpc_Seirei_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Seirei_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4,
+    daNpcT_ct(this, daNpc_Seirei_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4,
                        l_motionSequenceData, 4, l_evtList, l_resNameList);
 
     mType = getType();
