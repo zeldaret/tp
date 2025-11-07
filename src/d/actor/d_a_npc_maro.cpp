@@ -243,7 +243,7 @@ int daNpc_Maro_c::create() {
         0x3310, 0x3310, 0x3310, 0x3310,
         0,
     };
-    fopAcM_SetupActor2(this, daNpc_Maro_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Maro_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
                        l_evtList, l_resNameList
     );

@@ -132,7 +132,7 @@ daNpc_midP_HIOParam const daNpc_midP_Param_c::m = {
 
 /* 80A70D90-80A71074 000210 02E4+00 1/1 0/0 0/0 .text            create__12daNpc_midP_cFv */
 int daNpc_midP_c::create() {
-    fopAcM_SetupActor2(this, daNpc_midP_c, &l_faceMotionAnmData, &l_motionAnmData, l_faceMotionSequenceData, 4,
+    daNpcT_ct(this, daNpc_midP_c, &l_faceMotionAnmData, &l_motionAnmData, l_faceMotionSequenceData, 4,
         l_motionSequenceData, 4, l_evtList, l_resNameList);
     
     mType = getType();

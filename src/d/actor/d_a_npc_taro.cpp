@@ -285,7 +285,7 @@ daNpc_Taro_HIOParam const daNpc_Taro_Param_c::m = {
 
 /* 8056604C-80566340 0002AC 02F4+00 1/1 0/0 0/0 .text            create__12daNpc_Taro_cFv */
 int daNpc_Taro_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Taro_c, l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Taro_c, l_faceMotionAnmData,
                        l_motionAnmData, l_faceMotionSequenceData,
                        4, l_motionSequenceData,
                        4, l_evtList, l_resNameList);
