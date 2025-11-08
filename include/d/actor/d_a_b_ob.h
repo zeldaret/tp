@@ -73,7 +73,7 @@ public:
     /* 0x4734 */ int mAnmID;
     /* 0x4738 */ int mCoreAnm;
     /* 0x473C */ u8 mCoreAnmMode;
-    /* 0x4740 */ f32 field_0x4740;
+    /* 0x4740 */ f32 mCoreMorfFrame;
     /* 0x4744 */ s8 field_0x4744;
     /* 0x4745 */ s8 mDrawShadow;
     /* 0x4748 */ u32 mShadowKey;
@@ -82,11 +82,11 @@ public:
     /* 0x474E */ u8 mAttnOffTimer;
     /* 0x4750 */ s16 field_0x4750;
     /* 0x4752 */ s16 mAction;
-    /* 0x4754 */ s16 mMode;
+    /* 0x4754 */ s16 mActionPhase;
     /* 0x4756 */ s16 field_0x4756;
     /* 0x4758 */ cXyz mTargetMovePos;
     /* 0x4764 */ csXyz mMoveAngle;
-    /* 0x476A */ s16 field_0x476a;
+    /* 0x476A */ s16 mMoveAngleStep;
     /* 0x476C */ s16 mYAngleToPlayer;
     /* 0x476E */ s16 mXAngleToPlayer;
     /* 0x4770 */ f32 mDistToPlayer;
@@ -99,7 +99,7 @@ public:
     /* 0x4790 */ int field_0x4790;
     /* 0x4794 */ s16 field_0x4794;
     /* 0x4798 */ f32 field_0x4798;
-    /* 0x479C */ f32 field_0x479c;
+    /* 0x479C */ f32 mPosTransY;
     /* 0x47A0 */ f32 field_0x47a0;
     /* 0x47A4 */ s16 field_0x47a4[3];
     /* 0x47AA */ s16 field_0x47aa;
@@ -142,7 +142,7 @@ public:
     /* 0x5CC4 */ f32 field_0x5cc4;
     /* 0x5CC8 */ f32 field_0x5cc8;
     /* 0x5CCC */ f32 mDemoCamFovy;
-    /* 0x5CD0 */ f32 field_0x5cd0;
+    /* 0x5CD0 */ f32 mBaseDemoCamStepScale;
     /* 0x5CD4 */ f32 field_0x5cd4;
     /* 0x5CD8 */ f32 field_0x5cd8;
     /* 0x5CDC */ f32 field_0x5cdc;

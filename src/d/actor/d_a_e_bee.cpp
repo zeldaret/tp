@@ -14,6 +14,19 @@
 #include "f_op/f_op_camera_mng.h"
 #include "SSystem/SComponent/c_math.h"
 
+class daE_Bee_HIO_c {
+public:
+    /* 8068286C */ daE_Bee_HIO_c();
+    /* 8068539C */ virtual ~daE_Bee_HIO_c() {}
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x8 */ f32 mScale;
+    /* 0xC */ bool mDelete;
+    /* 0xD */ bool mNoKill;
+};
+
+STATIC_ASSERT(sizeof(daE_Bee_HIO_c) == 0x10);
+
 /* 80685674-80685678 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 /* 80685675 0003+00 data_80685675 None */
 static bool hioInit;
@@ -458,17 +471,11 @@ static void bee_start(e_bee_class* i_this, bee_s* i_bee) {
 /* 80684248-80684A94 001AC8 084C+00 1/1 0/0 0/0 .text            bee_control__FP11e_bee_class */
 // NONMATCHING regalloc
 static void bee_control(e_bee_class* i_this) {
-    fopAc_ac_c* parent;
-    s8 bees_in_nest;
-    camera_class* camera;
-    e_nest_class* nest;
-    int i;
     fopAc_ac_c* a_this;
-    cXyz* hit_pos_p;
-    bee_s* bee;
     s8 nest_health;
-    s8 active_bees;
     s8 bees_flying;
+    s8 active_bees;
+    s8 bees_in_nest;
 
     a_this = (fopAc_ac_c*)i_this;
 
@@ -477,8 +484,8 @@ static void bee_control(e_bee_class* i_this) {
     static cXyz non(-20000.0f, 30000.0f, -15000.0f);
     i_this->mCcSph.SetC(a_this->current.pos + non);
 
-    parent = fopAcM_SearchByID(a_this->parentActorID);
-    nest = NULL;
+    fopAc_ac_c* parent = (fopAc_ac_c*)fopAcM_SearchByID(a_this->parentActorID);
+    e_nest_class* nest = NULL;
     if (parent != NULL) {
         if (parent != NULL && parent->health != 0) {
             nest_health = parent->health;
@@ -489,24 +496,32 @@ static void bee_control(e_bee_class* i_this) {
 
     dComIfG_Ccsp()->Set(&i_this->mCcCyl);
 
-    hit_pos_p = NULL;
+    cXyz* hit_pos_p = NULL;
     cXyz hit_pos;
     f32 hit_radius = 120.0f;
+    
+    cCcD_Obj* hit_obj;
+    fopAc_ac_c* hit_actor;
+    daPy_py_c* player_p1;
+    cXyz* center;
+    daPy_py_c* player_p2;
+    camera_class* camera;
+    int i;
     
     if (i_this->mCcCyl.ChkTgHit()) {
         cXyz vec1, vec2;
         hit_pos_p = &hit_pos;
-        cCcD_Obj* hit_obj = i_this->mCcCyl.GetTgHitObj();
+        hit_obj = i_this->mCcCyl.GetTgHitObj();
         if (hit_obj->ChkAtType(AT_TYPE_BOMB) || hit_obj->ChkAtType(AT_TYPE_BOOMERANG)
                                              || hit_obj->ChkAtType(AT_TYPE_IRON_BALL)) {
-            fopAc_ac_c* hit_actor = dCc_GetAc(hit_obj->GetAc());
+            hit_actor = dCc_GetAc(hit_obj->GetAc());
             if (hit_obj->ChkAtType(AT_TYPE_BOMB)) {
                 hit_radius = 300.0f + TREG_F(19);
                 hit_pos = hit_actor->current.pos;
             } else if (hit_obj->ChkAtType(AT_TYPE_IRON_BALL)) {
                 hit_radius = 100.0f+ TREG_F(19);
-                daPy_py_c* player = static_cast<daPy_py_c*>(dComIfGp_getPlayer(0));
-                cXyz* center = player->getIronBallCenterPos();
+                player_p1 = static_cast<daPy_py_c*>(dComIfGp_getPlayer(0));
+                center = player_p1->getIronBallCenterPos();
                 if (center != NULL) {
                     hit_pos = *center;
                 }
@@ -515,24 +530,24 @@ static void bee_control(e_bee_class* i_this) {
                 hit_radius = 150.0f + TREG_F(19);
             }
         } else {
-            daPy_py_c* player = daPy_getPlayerActorClass();
+            player_p2 = daPy_getPlayerActorClass();
             if (cc_pl_cut_bit_get() == 0x80) {
                 i_this->mBoomerangAngle += (s16)0x1400;
                 vec1.z = 150.0f + TREG_F(15);
             } else {
                 vec1.z = 100.0f + TREG_F(12);
             }
-            cMtx_YrotS(*calc_mtx, player->shape_angle.y + i_this->mBoomerangAngle);
+            cMtx_YrotS(*calc_mtx, player_p2->shape_angle.y + i_this->mBoomerangAngle);
             vec1.x = 0.0f;
             vec1.y = 100.0f;
             MtxPosition(&vec1, &vec2);
-            hit_pos = player->current.pos + vec2;
+            hit_pos = player_p2->current.pos + vec2;
         }
     } else {
         i_this->mBoomerangAngle = 0;
     }
 
-    bee = i_this->mBees;
+    bee_s* bee = i_this->mBees;
     active_bees = 0;
     cXyz vec3;
     ccCylSet = 0;
@@ -578,6 +593,7 @@ static void bee_control(e_bee_class* i_this) {
                     a_this->current.pos = bee->mPos;
                     bees_flying++;
                 }
+                
                 if (hit_pos_p != NULL) {
                     vec3 = bee->mPos - *hit_pos_p;
                     if (vec3.abs() < hit_radius) {
@@ -611,12 +627,13 @@ static void bee_control(e_bee_class* i_this) {
         OS_REPORT("E_BEE DELETED \n");
     } else {
         if (bees_flying != 0) {
-            if (dComIfGp_event_runCheck()) {
+            if (dComIfGp_event_runCheck() != FALSE) {
                 i_this->mSound.playBeeGroupSound(Z2SE_EN_BE_FLY_D, bees_flying);
             } else {
                 i_this->mSound.playBeeGroupSound(Z2SE_EN_BE_FLY, bees_flying);
             }
         }
+        
         i_this->mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
         if (nest != NULL) {
             if (bees_in_nest != 0) {
@@ -626,12 +643,14 @@ static void bee_control(e_bee_class* i_this) {
         }
     }
 
+    cCcD_Obj* hitObj;
+    fopAc_ac_c* i_actor;
     if (!dComIfGp_event_runCheck()) {
         dComIfG_Ccsp()->Set(&i_this->mCcSph);
         if (i_this->mCcSph.ChkAtHit()) {
-            cCcD_Obj* hitObj = i_this->mCcSph.GetAtHitObj();
-            fopAc_ac_c* hit_actor = dCc_GetAc(hitObj->GetAc());
-            if (hit_actor != NULL && fopAcM_GetName(hit_actor) == PROC_ALINK) {
+            hitObj = i_this->mCcSph.GetAtHitObj();
+            i_actor = dCc_GetAc(hitObj->GetAc());
+            if (i_actor != NULL && fopAcM_GetName(i_actor) == PROC_ALINK) {
                 dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
             }
         }

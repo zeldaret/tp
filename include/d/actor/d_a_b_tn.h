@@ -17,58 +17,6 @@
  
 class daB_TN_c : public fopEn_enemy_c {
 public:
-    enum daB_TN_ACTION1 {
-        /* 0x0 */ ACT_ROOMDEMO,
-        /* 0x1 */ ACT_OPENING,
-        /* 0x2 */ ACT_WAITH,
-        /* 0x3 */ ACT_CHASEH,
-        /* 0x4 */ ACT_ATTACKH,
-        /* 0x5 */ ACT_ATTACKSHIELDH,
-        /* 0x6 */ ACT_GUARDH,
-        /* 0x7 */ ACT_DAMAGEH,
-        /* 0x8 */ ACT_CHANGEDEMO,
-        /* 0x9 */ ACT_CHASEL,
-        /* 0xA */ ACT_ATTACKL,
-        /* 0xB */ ACT_ATTACKSHIELDL,
-        /* 0xC */ ACT_GUARDL,
-        /* 0xD */ ACT_DAMAGEL,
-        /* 0xE */ ACT_ENDING,
-        /* 0xF */ ACT_YOROKE,
-    };
-
-    enum daB_TN_ACTION2 {
-        /* 0x0 */ ACTION2_0_e,
-        /* 0x1 */ ACTION2_1_e,
-        /* 0x2 */ ACTION2_2_e,
-        /* 0x3 */ ACTION2_3_e,
-        /* 0x4 */ ACTION2_4_e,
-        /* 0x5 */ ACTION2_5_e,
-        /* 0x6 */ ACTION2_6_e,
-        /* 0x7 */ ACTION2_7_e,
-        /* 0x8 */ ACTION2_8_e,
-        /* 0x9 */ ACTION2_9_e,
-        /* 0xA */ ACTION2_10_e,
-        /* 0xB */ ACTION2_11_e,
-        /* 0xC */ ACTION2_12_e,
-        /* 0xD */ ACTION2_13_e,
-        /* 0xE */ ACTION2_14_e,
-        /* 0xF */ ACTION2_15_e,
-        /* 0x10 */ ACTION2_16_e,
-        /* 0x11 */ ACTION2_17_e,
-        
-        /* 0x14 */ ACTION2_20_e = 0x14,
-        /* 0x40 */ ACTION2_70_e = 0x40,
-        /* 0x46 */ ACTION2_76_e = 0x46,
-        /* 0x64 */ ACTION2_100_e = 100,
-        /* 0x65 */ ACTION2_101_e,
-        /* 0x66 */ ACTION2_102_e,
-        /* 0x67 */ ACTION2_103_e,
-        /* 0x68 */ ACTION2_104_e,
-        /* 0x69 */ ACTION2_105_e,
-        /* 0x6A */ ACTION2_106_e,
-        /* 0x6B */ ACTION2_107_e,
-    };
-
     /* 8061EC58 */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 8061ED10 */ static int JointCallBack(J3DJoint*, int);
     /* 8061ED5C */ void calcNeckAngle();
@@ -141,18 +89,18 @@ private:
     /* 0x0644 */ mDoExt_brkAnm* mpBrkAnm;
     /* 0x0648 */ J3DModel* swordEffectModel;
     /* 0x064C */ Z2CreatureEnemy mSound;
-    /* 0x06F0 */ int mActionMode1;
-    /* 0x06F4 */ int mActionMode2;
+    /* 0x06F0 */ int mActionMode;
+    /* 0x06F4 */ int mActionPhase;
     /* 0x06F8 */ u32 mShadowKey;
     /* 0x06FC */ int field_0x6fc;
     /* 0x0700 */ int field_0x700;
-    /* 0x0704 */ cXyz mCamEye;
-    /* 0x0710 */ cXyz mCamCenter;
+    /* 0x0704 */ cXyz mDemoCamEye;
+    /* 0x0710 */ cXyz mDemoCamCenter;
     /* 0x071C */ f32 mCamFovY;
     /* 0x0720 */ s16 field_0x720;
     /* 0x0724 */ f32 field_0x724;
     /* 0x0728 */ f32 mMaterialColor;
-    /* 0x072C */ Mtx mNewTRMtx;
+    /* 0x072C */ Mtx mNewSwordTRMtx;
     /* 0x075C */ cXyz mPositions[16];
     /* 0x081C */ cXyz mPositionsCopy[16];
     /* 0x08DC */ cXyz field_0x8dc[16];
@@ -176,13 +124,13 @@ private:
     /* 0x0A8C */ int mWalkDir;
     /* 0x0A90 */ u8 mUpdateModelTimer;
     /* 0x0A91 */ bool field_0xa91;
-    /* 0x0A92 */ u8 mNextActionMode2;
+    /* 0x0A92 */ u8 mDamageLeftRightFlag;
     /* 0x0A93 */ bool mUpdateNeckAngle;
     /* 0x0A94 */ bool mUpdateWaistAngle;
     /* 0x0A96 */ s16 mNeckAngle;
     /* 0x0A98 */ s16 mWaistAngle;
     /* 0x0A9A */ bool field_0xa9a;
-    /* 0x0A9B */ u8 mActionMode2Copy;
+    /* 0x0A9B */ u8 mPrevActionPhase;
     /* 0x0A9C */ u8 field_0xa9c;
     /* 0x0A9D */ u8 field_0xa9d;
     /* 0x0A9E */ bool mDisappear;
