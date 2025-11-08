@@ -254,10 +254,6 @@ void daObjLadder::Act_c::mode_demoreq_init() {
     mInDemo = false;
 }
 
-static inline bool dComIfGp_evmng_existence(s16 eventIdx) {
-    return g_dComIfG_gameInfo.play.getEvtManager().getEventData(eventIdx) != NULL;
-}
-
 /* 8058D628-8058D6E8 000548 00C0+00 1/0 0/0 0/0 .text mode_demoreq__Q211daObjLadder5Act_cFv */
 void daObjLadder::Act_c::mode_demoreq() {
     bool isDemo = false;

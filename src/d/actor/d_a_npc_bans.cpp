@@ -392,7 +392,7 @@ static NPC_BANS_HIO_CLASS l_HIO;
 
 /* 80962AA0-80962D6C 0002C0 02CC+00 1/1 0/0 0/0 .text            create__12daNpc_Bans_cFv */
 cPhs__Step daNpc_Bans_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Bans_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Bans_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
                        l_evtList, l_resNameList);
     mType = getType();

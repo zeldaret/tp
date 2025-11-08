@@ -11,7 +11,7 @@
 
 struct daWtPillar_HIO_c : public mDoHIO_entry_c {
     /* 80D2C6CC */ daWtPillar_HIO_c();
-    /* 80D2DF34 */ virtual ~daWtPillar_HIO_c();
+    /* 80D2DF34 */ virtual ~daWtPillar_HIO_c() {}
 
     void genMessage(JORMContext*);
 
@@ -228,8 +228,8 @@ int daWtPillar_c::execute() {
     effectSet();
     effectSet2();
 
-    mScaleX = scale.x;
-    mScaleZ = scale.z;
+    mScale.x = scale.x;
+    mScale.z = scale.z;
 
     cXyz currentHeightVector(0.0f, 1.0f, 0.0f);
     currentHeightVector.y *= mCurrentHeight;
@@ -604,18 +604,6 @@ int daWtPillar_Delete(daWtPillar_c* i_this) {
  */
 int daWtPillar_Create(fopAc_ac_c* i_this) {
     return static_cast<daWtPillar_c*>(i_this)->create();
-}
-
-daWtPillar_HIO_c::~daWtPillar_HIO_c() {
-}
-
-/* 80D2E054-80D2E21C 001A74 01C8+00 1/1 0/0 0/0 .text            __ct__12daWtPillar_cFv */
-daWtPillar_c::daWtPillar_c() : dEvLib_callback_c(this) {
-    // Empty
-    // Having this in the header file results in inlining...
-}
-
-daWtPillar_c::~daWtPillar_c() {
 }
 
 /* 80D2EA14-80D2EA34 -00001 0020+00 1/0 0/0 0/0 .data            l_daWtPillar_Method */

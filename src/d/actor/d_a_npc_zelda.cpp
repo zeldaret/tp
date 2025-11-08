@@ -171,7 +171,7 @@ int daNpc_Zelda_c::create() {
         0x8FE0,
     };
 
-    fopAcM_SetupActor2(this, daNpc_Zelda_c, (daNpcT_faceMotionAnmData_c*)l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Zelda_c, (daNpcT_faceMotionAnmData_c*)l_faceMotionAnmData,
         (daNpcT_motionAnmData_c*)l_motionAnmData,
         (daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_faceMotionSequenceData, 4,
         (daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_motionSequenceData, 4,

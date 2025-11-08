@@ -799,6 +799,12 @@ public:
 
 STATIC_ASSERT(sizeof(daNpcT_c) == 0xE40);
 
+#define daNpcT_ct(ptr, ClassName, faceMotionAnmData, motionAnmData, faceMotionSequenceData, faceMotionStepNum, motionSequenceData, motionStepNum, evtData, arcNames) \
+    if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) { \
+        new (ptr) ClassName(faceMotionAnmData, motionAnmData, faceMotionSequenceData, faceMotionStepNum, motionSequenceData, motionStepNum, evtData, arcNames); \
+        fopAcM_OnCondition(ptr, fopAcCnd_INIT_e); \
+    }
+
 BOOL daNpcT_chkEvtBit(u32 i_idx);
 BOOL daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3, BOOL param_4);
 u8 daNpcT_getDistTableIdx(int param_0, int param_1);

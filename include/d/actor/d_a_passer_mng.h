@@ -32,17 +32,11 @@ public:
     u8 getGroupNo() { return (shape_angle.x >> 8) & 0xff; }
 
     int getTimeHour() {
-        if (dKy_darkworld_check()) {
-            return dKy_getDarktime_hour();
-        } 
-        return dKy_getdaytime_hour();
+        return (dKy_darkworld_check()) ? dKy_getDarktime_hour() : dKy_getdaytime_hour();
     }
 
     int getTimeMinute() {
-        if (dKy_darkworld_check()) {
-            return dKy_getDarktime_minute();
-        } 
-        return dKy_getdaytime_minute();
+        return (dKy_darkworld_check()) ? dKy_getDarktime_minute() : dKy_getdaytime_minute();
     }
 
     int getTime() {
@@ -50,10 +44,7 @@ public:
     }
 
     int getDayOfWeek() {
-        if (dKy_darkworld_check()) {
-            return dKy_getDarktime_week();
-        }
-        return dKy_get_dayofweek();
+        return (dKy_darkworld_check()) ? dKy_getDarktime_week() : dKy_get_dayofweek();
     }
 
     int getChildNum() {

@@ -31,7 +31,7 @@ public:
     /* 80C90C50 */ static int createHeapCallBack(fopAc_ac_c* i_this);
     /* 80C90C70 */ int CreateHeap();
     /* 80C90DB8 */ int create();
-    /* 80C90F6C */ void create_init();
+    /* 80C90F6C */ inline void create_init();
     /* 80C91448 */ ~daObjMasterSword_c();
     /* 80C91714 */ int draw();
 

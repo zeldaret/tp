@@ -363,7 +363,7 @@ daNpc_Jagar_c::~daNpc_Jagar_c() {
 /* 80A14858-80A14B20 000238 02C8+00 1/1 0/0 0/0 .text            create__13daNpc_Jagar_cFv */
 int daNpc_Jagar_c::create() {
     static int const heapSize[4] = {14416, 14448, 14448, 0};
-    fopAcM_SetupActor2(this, daNpc_Jagar_c, l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Jagar_c, l_faceMotionAnmData,
         (const daNpcT_motionAnmData_c *)l_motionAnmData, (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *) l_faceMotionSequenceData, 4,
         (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *)l_motionSequenceData, 4, (const daNpcT_evtData_c *)l_evtList, (char **)l_resNameList
     );
