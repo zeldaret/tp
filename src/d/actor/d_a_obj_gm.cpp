@@ -241,7 +241,7 @@ static void bg_fix(obj_gm_class* i_this) {
     }
 
     if ((i_this->field_0xae4 & 4) != 0) {
-        i_this->field_0xae4 &= -5;
+        i_this->field_0xae4 &= (s8) -5;
         i_this->field_0x630 = TREG_F(14) + 10.0f;
         i_this->field_0x648 = TREG_F(16) + 5000.0f;
     }
@@ -255,7 +255,7 @@ static void bg_fix(obj_gm_class* i_this) {
     }
 
     if ((i_this->field_0xae4 & 1) != 0) {
-        i_this->field_0xae4 &= ~1;
+        i_this->field_0xae4 &= (s8) ~1;
         i_this->mAction = 1;
         i_this->mActionMode = 0;
     }
@@ -264,7 +264,7 @@ static void bg_fix(obj_gm_class* i_this) {
         if (i_this->mType >= 5) {
             fopAcM_delete(a_this);
         } else {
-            i_this->field_0xae4 &= ~2;
+            i_this->field_0xae4 &= (s8) ~2;
             i_this->mAction = 2;
             i_this->mActionMode = 0;
 
