@@ -154,11 +154,8 @@ daNpc_Knj_c::~daNpc_Knj_c() {
 
 /* 80A43608-80A43848 000188 0240+00 1/1 0/0 0/0 .text            create__11daNpc_Knj_cFv */
 int daNpc_Knj_c::create() {
-    daNpcT_ct(this, daNpc_Knj_c, l_faceMotionAnmData,
-              (const daNpcT_motionAnmData_c*)l_motionAnmData,
-              (const daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_faceMotionSequenceData, 4,
-              (const daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_motionSequenceData, 4,
-              (const daNpcT_evtData_c*)l_evtList, (char**)l_resNameList);
+    daNpcT_ct(this, daNpc_Knj_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4,
+              l_motionSequenceData, 4, l_evtList, l_resNameList);
 
     mType = getType();
     mFlowNodeNo = getFlowNodeNo();
