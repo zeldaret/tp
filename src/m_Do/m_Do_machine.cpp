@@ -635,6 +635,10 @@ int mDoMch_Create() {
     j2dHeapSize -= 0x3E800;
     gameHeapSize -= 0x300000;
     #endif
+    #if VERSION == VERSION_GCN_JPN
+    archiveHeapSize += 0x6C00;
+    gameHeapSize += 0xC800;
+    #endif
 
     #ifdef DEBUG
     if (mDoMain::archiveHeapSize != -1) {
@@ -657,6 +661,10 @@ int mDoMch_Create() {
     arenaSize -= 0x120;
     #ifndef DEBUG
     arenaSize -= 0xDAB400;
+    #endif
+    #if VERSION == VERSION_GCN_JPN
+    arenaSize -= 0x6C00;
+    arenaSize -= 0xC800;
     #endif
     JFWSystem::setSysHeapSize(arenaSize);
     my_PrintHeap("システムヒープ", arenaSize);
