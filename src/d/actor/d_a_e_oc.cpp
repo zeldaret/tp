@@ -264,8 +264,8 @@ static void* s_other_oc(void* arg_lhs, void* arg_rhs) {
 }
 
 /* 8072CBD4-8072CC10 0006F4 003C+00 1/1 0/0 0/0 .text getVisionAngle__8daE_OC_cFP10fopAc_ac_c */
-s16 daE_OC_c::getVisionAngle(fopAc_ac_c* i_this) {
-    return cLib_distanceAngleS(shape_angle.y, fopAcM_searchActorAngleY(this, i_this));
+s16 daE_OC_c::getVisionAngle(fopAc_ac_c* other_oc) {
+    return cLib_distanceAngleS(shape_angle.y, fopAcM_searchActorAngleY(this, other_oc));
 }
 
 /* 8072CC10-8072CDA8 000730 0198+00 1/1 0/0 0/0 .text            searchOtherOc__8daE_OC_cFv */
