@@ -2795,7 +2795,7 @@ BOOL daNpc_grA_c::ECut_rescueRock(int i_staffID) {
             mParticleManager[2].field_0x0 = 1;
             setExpression(0x17, -1.0f);
             setMotion(0, -1.0f, 0);
-            mCreature.startCreatureSound(0x6004b, 0, -1);
+            mCreature.startCreatureSound(Z2SE_GORON_ROLL_BOUND, 0, -1);
         }
         break;
     default:
@@ -2880,7 +2880,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int i_staffID) {
             field_0xDD4.reverse();
             field_0xDD4.setNextIdx();
             mEventTimer = 0x118;
-            mCreature.startCreatureVoice(0x501e1, -1);
+            mCreature.startCreatureVoice(Z2SE_GRA_V_ROLLING_RETURN, -1);
             break;
         case 0x50: {
             cXyz c = current.pos;
