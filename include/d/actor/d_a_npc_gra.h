@@ -23,6 +23,7 @@ public:
     static daNpc_grA_HIOParam const m;
 };
 
+#if DEBUG
 class daNpc_grA_HIO_c : public mDoHIO_entry_c {
 public:
     daNpc_grA_HIO_c();
@@ -32,6 +33,14 @@ public:
 #endif
     daNpc_grA_HIOParam mHioParams;
 };
+
+#define NPC_GRA_HIO_CLASS daNpc_grA_HIO_c
+
+#else
+
+#define NPC_GRA_HIO_CLASS daNpc_grA_Param_c
+
+#endif
 
 /**
  * @ingroup actors-npcs
@@ -126,7 +135,7 @@ public:
     /* 809C8A2C */ BOOL waitBuyer(void*);
     /* 809C8BD4 */ BOOL talk(void*);
     /* 809C9044 */ BOOL test(void*);
-    /* 809C9D28 */ void adjustShapeAngle();
+    /* 809C9D28 */ virtual void adjustShapeAngle() {}
 
     int getType() { return mType; }
     s16 getGraNo() { return 0; }
@@ -145,7 +154,7 @@ private:
     /* 0x0BDC */ int field_0xBDC;
     /* 0x0BE0 */ daNpcF_Lookat_c mNpcfLookAt;
     /* 0x0C7C */ daNpcF_ActorMngr_c mNpcfActorManager[3];
-    /* 0x0C94 */ daNpc_grA_HIO_c* mpHio;
+    /* 0x0C94 */ NPC_GRA_HIO_CLASS* mpHio;
     /* 0x0C98 */ dCcD_Cyl field_0xC98;
     /* 0x0DD4 */ daNpcF_Path_c field_0xDD4;
     /* 0x1404 */ daNpc_grA_c_Action mAction2;
