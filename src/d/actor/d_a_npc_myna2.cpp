@@ -1384,7 +1384,7 @@ static int daNpc_myna2_Draw(void* i_this) {
 
 /* 80A87A20-80A87A28 003C80 0008+00 1/0 0/0 0/0 .text            daNpc_myna2_IsDelete__FPv */
 static int daNpc_myna2_IsDelete(void* i_this) {
-    return true;
+    return TRUE;
 }
 
 /* 80A889C4-80A889E4 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_myna2_MethodTable */
