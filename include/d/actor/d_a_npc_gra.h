@@ -18,7 +18,7 @@ public:
 
 class daNpc_grA_Param_c {
 public:
-    /* 809C9D2C */ ~daNpc_grA_Param_c();
+    /* 809C9D2C */ virtual ~daNpc_grA_Param_c(){};
 
     static daNpc_grA_HIOParam const m;
 };

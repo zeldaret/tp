@@ -146,8 +146,11 @@ daNpc_grA_HIO_c::daNpc_grA_HIO_c() {
     mHioParams = daNpc_grA_Param_c::m;
 }
 
+#if DEBUG
 daNpc_grA_HIO_c l_HIO;
-
+#else
+daNpc_grA_Param_c l_HIO;
+#endif
 /* 809CA8D4-809CA900 -00001 002C+00 0/3 0/0 0/0 .data            l_evtNames */
 static char* l_evtNames[11] = {
     NULL,
@@ -1966,15 +1969,14 @@ void daNpc_grA_c::lookat() {
     fopAc_ac_c* player = NULL;
     J3DModel* model = mpMorf->getModel();
     BOOL r27 = FALSE;
-    f32 headAnglyMin, headAngleYMax;
     f32 bodyAngleXMin = GET_HIO(mNpcFParams.body_angleX_min);
     f32 bodyAngleXMax = GET_HIO(mNpcFParams.body_angleX_max);
     f32 bodyAngleYMin = GET_HIO(mNpcFParams.body_angleY_min);
     f32 bodyAngleYMax = GET_HIO(mNpcFParams.body_angleY_max);
     f32 headAngleXMin = GET_HIO(mNpcFParams.head_angleX_min);
     f32 headAngleXMan = GET_HIO(mNpcFParams.head_angleX_max);
-    headAnglyMin = GET_HIO(mNpcFParams.head_angleY_min);
-    headAngleYMax = GET_HIO(mNpcFParams.head_angleY_max);
+    f32 headAnglyMin = GET_HIO(mNpcFParams.head_angleY_min);
+    f32 headAngleYMax = GET_HIO(mNpcFParams.head_angleY_max);
     s16 diffInAngle = mCurAngle.y - mOldAngle.y;
     cXyz pLookPositions[] = {
         mLookatPos[0],
@@ -4217,11 +4219,6 @@ static BOOL daNpc_grA_IsDelete(void* i_this) {
  */
 void daNpc_grA_c::adjustShapeAngle() {
     /* empty function */
-}
-
-/* 809C9D2C-809C9D74 00B4CC 0048+00 2/1 0/0 0/0 .text            __dt__17daNpc_grA_Param_cFv */
-daNpc_grA_Param_c::~daNpc_grA_Param_c() {
-    // NONMATCHING
 }
 
 /* 809CB1B0-809CB1D0 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_grA_MethodTable */
