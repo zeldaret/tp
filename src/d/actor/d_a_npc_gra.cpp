@@ -142,15 +142,14 @@ static int l_evtGetParamList[][2] = {
     0x0A, 0x0D,
 };
 
+#if DEBUG
 daNpc_grA_HIO_c::daNpc_grA_HIO_c() {
     mHioParams = daNpc_grA_Param_c::m;
 }
-
-#if DEBUG
-daNpc_grA_HIO_c l_HIO;
-#else
-daNpc_grA_Param_c l_HIO;
 #endif
+
+NPC_GRA_HIO_CLASS l_HIO;
+
 /* 809CA8D4-809CA900 -00001 002C+00 0/3 0/0 0/0 .data            l_evtNames */
 static char* l_evtNames[11] = {
     NULL,
@@ -356,12 +355,6 @@ daNpc_grA_c::cut_type daNpc_grA_c::mEvtCutList[] = {
     &daNpc_grA_c::ECut_rollRockCrash,
 };
 
-/* 809CAF08-809CAF28 0008F4 0020+00 1/1 0/0 0/0 .data            l_offsetHeight */
-static u8 l_offsetHeight[32] = {
-    0xB6, 0xB6, 0xBA, 0xBE, 0xC6, 0xCE, 0xCE, 0xCE, 0xCA, 0xCA, 0xC6, 0xC2, 0xBE, 0xBA, 0xB6, 0xB6,
-    0xBA, 0xBA, 0xBE, 0xC6, 0xCA, 0xCE, 0xD1, 0xCE, 0xC6, 0xBA, 0xCA, 0xCE, 0xCA, 0xBE, 0xB6, 0xB6,
-};
-
 /* 809BE94C-809BEB24 0000EC 01D8+00 1/1 0/0 0/0 .text            __ct__11daNpc_grA_cFv */
 daNpc_grA_c::daNpc_grA_c() : daNpcF_c() {
     // NONMATCHING
@@ -536,7 +529,7 @@ BOOL daNpc_grA_c::CreateHeap() {
 
 /* 809BF418-809BF44C 000BB8 0034+00 1/1 0/0 0/0 .text            Delete__11daNpc_grA_cFv */
 BOOL daNpc_grA_c::Delete() {
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_GRA");
     this->~daNpc_grA_c();
     return TRUE;
 }
@@ -1072,11 +1065,11 @@ bool daNpc_grA_c::setExpressionAnm(int i_expression, bool i_modify) {
     case 0x13:
         ret = setExpressionBtp(0x0d);
         break;
-    case 0x14:
-        ret = setExpressionBtp(0x0f);
-        break;
     case 0x15:
-        ret = setExpressionBtp(0x0e);
+        ret = setExpressionBtp(0x0F);
+        break;
+    case 0x14:
+        ret = setExpressionBtp(0x0E);
         break;
     default:
         bck = NULL;
@@ -1108,13 +1101,34 @@ bool daNpc_grA_c::setExpressionBtp(int i_expression) {
     }
     switch(i_expression)
     {
-        case 0x0 : attr = 2; break;
-        case 0x3 : attr = 2; break;
-        case 0x6 : attr = 2; break;
-        case 0x8 : attr = 2; break;
-        case 0xb : attr = 2; break;
-        case 0xe:
-        default: bck = NULL;
+        case 0:
+            attr = 2;
+            break;
+        case 3:
+            attr = 2;
+            break;
+        case 6:
+            attr = 2;
+            break;
+        case 8:
+            attr = 2;
+            break;
+        case 11:
+            attr = 2;
+            break;
+        default:
+            bck = NULL;
+        case 1:
+        case 2:
+        case 4:
+        case 5:
+        case 7:
+        case 9:
+        case 10:
+        case 12:
+        case 13:
+        case 14:
+            break;
     }
     if (bck == NULL) {
         return true;
@@ -1155,47 +1169,61 @@ void daNpc_grA_c::setMotionAnm(int i_motion, f32 i_morf) {
     }
     switch(i_motion)
     {
-    case 0x19:
+    case 25:
         attr2 = 0;
         break;
-    case 0x1b:
-    case 0x1c:
+    case 27:
+    case 28:
         attr2 = 0;
         break;
-    case 0x1f:
-    case 0x20:
-    case 0x21:
+    case 31:
+    case 32:
+    case 33:
         attr2 = 0;
         break;
-    case 0x23:
-    case 0x25:
+    case 35:
+    case 37:
         attr2 = 0;
         break;
-    case 0x28:
+    case 40:
         attr2 = 0;
         break;
-    case 0x2A:
+    case 42:
         attr2 = 0;
         break;
-    case 0x2C:
+    case 44:
         attr2 = 0;
         break;
-    case 0x2E:
+    case 46:
         attr2 = 0;
         break;
-    case 0x2F:
+    case 47:
         attr2 = 0;
         break;
-    case 0x31:
+    case 49:
         attr2 = 0;
         break;
-    case 0x32:
+    case 50:
         attr2 = 0;
         break;
-    case 0x16:
     default:
         bck = NULL;
         btk = NULL;
+    case 22:
+    case 23:
+    case 24:
+    case 26:
+    case 29:
+    case 30:
+    case 34:
+    case 36:
+    case 38:
+    case 39:
+    case 41:
+    case 43:
+    case 45:
+    case 48:
+        break;
     }
     if (l_btkGetParamList[btkIndex][0] >= 0) {
         btk = getTexSRTKeyAnmP(l_resNames[l_btkGetParamList[btkIndex][1]], l_btkGetParamList[btkIndex][0]);
@@ -1856,7 +1884,14 @@ enum Event_Cut_Nums {
 BOOL daNpc_grA_c::doEvent() {
     dEvent_manager_c* manager = NULL;
     BOOL ret = FALSE;
-    if (dComIfGp_event_runCheck()) {
+#if VERSION != VERSION_SHIELD_DEBUG
+        // TODO: gameInfo fake match to force reuse of pointer
+        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+        if (play->getEvent().runCheck())
+#else
+        if (dComIfGp_event_runCheck())
+#endif
+        {
         manager = &dComIfGp_getEventManager();
         if (field_0x1691 == 0) {
             mOrderNewEvt = 0;
@@ -1866,7 +1901,7 @@ BOOL daNpc_grA_c::doEvent() {
         if (eventInfo.checkCommandTalk()) {
             if (chkAction(&daNpc_grA_c::talk)) {
                 (this->*mAction)(NULL);
-            } else if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
+            } else if (dComIfGp_event_chkTalkXY() == FALSE || dComIfGp_evmng_ChkPresentEnd()) {
                 if (field_0x1487 == 0) {
                     setAction(&daNpc_grA_c::talk);
                 } else {
@@ -1901,25 +1936,41 @@ BOOL daNpc_grA_c::doEvent() {
             if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && manager->endCheck(mEventIdx)) {
                 switch (mOrderEvtNo) {
                 case 5:
+#if VERSION != VERSION_SHIELD_DEBUG
+                    play->getEvent().reset();
+#else
                     dComIfGp_event_reset();
+#endif
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
                     field_0x1693 = field_0x1692 = 0;
                     fpcM_Search(s_subCarry, this);
                     break;
                 case 6:
+#if VERSION != VERSION_SHIELD_DEBUG
+                    play->getEvent().reset();
+#else
                     dComIfGp_event_reset();
+#endif
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
                     break;
                 case 7:
+#if VERSION != VERSION_SHIELD_DEBUG
+                    play->getEvent().reset();
+#else
                     dComIfGp_event_reset();
+#endif
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
                     fopAcM_delete(this);
                     break;
                 default:
+#if VERSION != VERSION_SHIELD_DEBUG
+                    play->getEvent().reset();
+#else
                     dComIfGp_event_reset();
+#endif
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
                     break;
@@ -2076,22 +2127,22 @@ BOOL daNpc_grA_c::chkFindPlayer() {
 /* 809C35D0-809C36AC 004D70 00DC+00 2/1 0/0 0/0 .text setExpressionTalkAfter__11daNpc_grA_cFv */
 void daNpc_grA_c::setExpressionTalkAfter() {
     switch (mExpression) {
-    case 2:
+    case 5:
         setExpression(0x11, -1.0f);
         break;
-    case 3:
+    case 9:
         setExpression(0x12, -1.0f);
         break;
-    case 5:
+    case 2:
         setExpression(0xf, -1.0f);
         break;
-    case 6:
+    case 3:
         setExpression(0x10, -1.0f);
+        break;
+    case 6:
         break;
     default:
         setExpression(0x17, -1.0f);
-        break;
-    case 9:
         break;
     }
 }
@@ -2180,6 +2231,12 @@ void daNpc_grA_c::setRollPrtcl(cXyz const& i_pos, f32 i_scale) {
         }
     }
 }
+
+/* 809CAF08-809CAF28 0008F4 0020+00 1/1 0/0 0/0 .data            l_offsetHeight */
+static u8 l_offsetHeight[32] = {
+    0xB6, 0xB6, 0xBA, 0xBE, 0xC6, 0xCE, 0xCE, 0xCE, 0xCA, 0xCA, 0xC6, 0xC2, 0xBE, 0xBA, 0xB6, 0xB6,
+    0xBA, 0xBA, 0xBE, 0xC6, 0xCA, 0xCE, 0xD1, 0xCE, 0xC6, 0xBA, 0xCA, 0xCE, 0xCA, 0xBE, 0xB6, 0xB6,
+};
 
 /* 809C3A54-809C3B28 0051F4 00D4+00 1/1 0/0 0/0 .text            setOtherObjMtx__11daNpc_grA_cFv */
 void daNpc_grA_c::setOtherObjMtx() {
@@ -4207,20 +4264,6 @@ static BOOL daNpc_grA_IsDelete(void* i_this) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 809CB2E4-809CB2F0 000CD0 000C+00 2/2 0/0 0/0 .data            __vt__17daNpc_grA_Param_c */
-// extern void* __vt__17daNpc_grA_Param_c[3] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)__dt__17daNpc_grA_Param_cFv,
-// };
-
-/* 809C9D28-809C9D2C 00B4C8 0004+00 1/0 0/0 0/0 .text            adjustShapeAngle__11daNpc_grA_cFv
- */
-void daNpc_grA_c::adjustShapeAngle() {
-    /* empty function */
-}
-
 /* 809CB1B0-809CB1D0 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_grA_MethodTable */
 static actor_method_class daNpc_grA_MethodTable = {
     (process_method_func)daNpc_grA_Create,
@@ -4249,5 +4292,3 @@ extern actor_process_profile_definition g_profile_NPC_GRA = {
 };
 
 AUDIO_INSTANCES;
-
-/* 809CA4B8-809CA4B8 000720 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
