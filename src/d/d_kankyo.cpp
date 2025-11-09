@@ -2523,7 +2523,7 @@ void dScnKy_env_light_c::setLight() {
 
             #if DEBUG
             if (bloomInf0_p == NULL || bloomInf2_p == NULL || bloomInf1_p == NULL || bloomInf3_p == NULL) {
-                JUT_ASSERT(3839, 0);
+                JUT_ASSERT(3839, FALSE);
             }
             #endif
 
@@ -6764,7 +6764,7 @@ void dKy_bgparts_activelight_set(LIGHT_INFLUENCE* light_inf_p, int bgpart_id) {
         memcpy(&g_env_light.bgparts_active_light[bgpart_id], light_inf_p, sizeof(LIGHT_INFLUENCE));
         g_env_light.bgparts_active_light[bgpart_id].mIndex = bgpart_id + 1;
     } else {
-        JUT_ASSERT(13758, 0);
+        JUT_ASSERT(13758, FALSE);
     }
 }
 
@@ -7186,7 +7186,7 @@ void dKy_set_nexttime(f32 next_time) {
     OS_REPORT("\n\n\nnext_time=[%f]\n\n\n", next_time);
     #if DEBUG
     if (next_time > 360.0f) {
-        JUT_ASSERT(14615, 0);
+        JUT_ASSERT(14615, FALSE);
     }
     #endif
 

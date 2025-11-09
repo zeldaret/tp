@@ -38,6 +38,7 @@ struct DynamicModuleControlBase {
     /* 80262364 */ BOOL unlink();
     /* 802623EC */ BOOL load_async();
     /* 8026242C */ bool force_unlink();
+    static JKRHeap* createHeap(u32, JKRHeap*);
 
     static inline DynamicModuleControlBase* getFirstClass() { return mFirst; }
     inline DynamicModuleControlBase* getNextClass() { return mNext; }
