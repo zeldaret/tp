@@ -15,11 +15,6 @@
 // Declarations:
 //
 
-int offs()
-{
-    return offsetof(daNpc_grA_HIOParam, mParticleSize);
-}
-
 /* ############################################################################################## */
 /* 809C9D98-809C9E1C 000000 0084+00 27/27 0/0 0/0 .rodata          m__17daNpc_grA_Param_c */
 const daNpc_grA_HIOParam daNpc_grA_Param_c::m = {
@@ -2149,7 +2144,7 @@ void daNpc_grA_c::setOtherObjMtx() {
 }
 
 /* 809C3B28-809C3D78 0052C8 0250+00 1/0 0/0 0/0 .text            ECut_talkSpa__11daNpc_grA_cFi */
-BOOL daNpc_grA_c::ECut_talkSpa(int param_0) {
+BOOL daNpc_grA_c::ECut_talkSpa(int i_staffID) {
     dEvent_manager_c& manager = dComIfGp_getEventManager();
     int unusedr26 = 0;
     daPy_py_c* r25 = daPy_getPlayerActorClass();
@@ -2158,11 +2153,11 @@ BOOL daNpc_grA_c::ECut_talkSpa(int param_0) {
     int r28 = -1;
     int unusedr24 = 0;
     fopAc_ac_c* arr[2] = {this, mNpcfActorManager[2].getActorP()};
-    intp = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    intp = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (intp != NULL) {
         r28 = *intp;
     }
-    if (manager.getIsAddvance(param_0)) {
+    if (manager.getIsAddvance(i_staffID)) {
         switch (r28) {
         case 0:
             ((daNpcT_c*)mNpcfActorManager[2].getActorP())->mJntAnm.lookActor(this, 0.0f, FALSE);
@@ -2204,7 +2199,7 @@ BOOL daNpc_grA_c::ECut_talkSpa(int param_0) {
 }
 
 /* 809C3D78-809C45B0 005518 0838+00 1/0 0/0 0/0 .text            ECut_grDSRoll__11daNpc_grA_cFi */
-BOOL daNpc_grA_c::ECut_grDSRoll(int param_0) {
+BOOL daNpc_grA_c::ECut_grDSRoll(int i_staffID) {
     dEvent_manager_c& sp34 = dComIfGp_getEventManager();
     int sp30 = 0;
     daPy_py_c* sp2c = daPy_getPlayerActorClass();
@@ -2213,12 +2208,12 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int param_0) {
     int sp24 = -1;
     int sp20 = 0;
     
-    sp28 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    sp28 = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (sp28 != NULL) {
         sp24 = *sp28;
     }
 
-    if (sp34.getIsAddvance(param_0)) {
+    if (sp34.getIsAddvance(i_staffID)) {
         switch (sp24) {
         case 0xa:
             mTurnMode = 0;
@@ -2386,7 +2381,7 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int param_0) {
 }
 
 /* 809C45B0-809C47EC 005D50 023C+00 1/0 0/0 0/0 .text            ECut_grDSGate__11daNpc_grA_cFi */
-BOOL daNpc_grA_c::ECut_grDSGate(int param_0) {
+BOOL daNpc_grA_c::ECut_grDSGate(int i_staffID) {
     dEvent_manager_c& manager = dComIfGp_getEventManager();
     int sp10 = 0;
     daPy_py_c* spc = daPy_getPlayerActorClass();
@@ -2394,11 +2389,11 @@ BOOL daNpc_grA_c::ECut_grDSGate(int param_0) {
     int* r29 = 0;
     int r28 = -1;
     int sp8 = 0;
-    r29 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    r29 = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (r29 != NULL) {
         r28 = *r29;
     }
-    if (manager.getIsAddvance(param_0)) {
+    if (manager.getIsAddvance(i_staffID)) {
         switch (r28) {
         case 0xa:
             mTurnMode = 0;
@@ -2449,7 +2444,7 @@ BOOL daNpc_grA_c::ECut_grDSGate(int param_0) {
 
 /* 809C47EC-809C4BE4 005F8C 03F8+00 1/0 0/0 0/0 .text            ECut_teachElevator__11daNpc_grA_cFi
  */
-BOOL daNpc_grA_c::ECut_teachElevator(int param_0) {
+BOOL daNpc_grA_c::ECut_teachElevator(int i_staffID) {
     dEvent_manager_c& manager = dComIfGp_getEventManager();
     int sp10 = 0;
     daPy_py_c* spc = daPy_getPlayerActorClass();
@@ -2457,11 +2452,11 @@ BOOL daNpc_grA_c::ECut_teachElevator(int param_0) {
     int* r29 = 0;
     int r28 = -1;
     int sp8 = 0;
-    r29 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    r29 = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (r29 != NULL) {
         r28 = *r29;
     }
-    if (manager.getIsAddvance(param_0)) {
+    if (manager.getIsAddvance(i_staffID)) {
         switch (r28) {
         case 0:
             if (!dComIfGs_isSwitch(mSwBit, fopAcM_GetRoomNo(this))) {
@@ -2545,7 +2540,7 @@ BOOL daNpc_grA_c::ECut_teachElevator(int param_0) {
 }
 
 /* 809C4BE4-809C4EB4 006384 02D0+00 1/0 0/0 0/0 .text            ECut_kickOut__11daNpc_grA_cFi */
-BOOL daNpc_grA_c::ECut_kickOut(int param_0) {
+BOOL daNpc_grA_c::ECut_kickOut(int i_staffID) {
     dEvent_manager_c& sp40 = dComIfGp_getEventManager();
     int sp3C = 0;
     daPy_py_c* sp38 = daPy_getPlayerActorClass();
@@ -2554,12 +2549,12 @@ BOOL daNpc_grA_c::ECut_kickOut(int param_0) {
     int sp30 = -1;
     int sp2C = 0;
 
-    sp34 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    sp34 = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (sp34 != NULL) {
         sp30 = *sp34;
     }
 
-    if (sp40.getIsAddvance(param_0)) {
+    if (sp40.getIsAddvance(i_staffID)) {
         switch (sp30) {
         case 0:
             setExpression(0x17, -1.0f);
@@ -2613,7 +2608,7 @@ BOOL daNpc_grA_c::ECut_kickOut(int param_0) {
 }
 
 /* 809C4EB4-809C5088 006654 01D4+00 1/0 0/0 0/0 .text            ECut_noneLook__11daNpc_grA_cFi */
-BOOL daNpc_grA_c::ECut_noneLook(int param_0) {
+BOOL daNpc_grA_c::ECut_noneLook(int i_staffID) {
     dEvent_manager_c& manager = dComIfGp_getEventManager();
     int r26 = 0;
     daPy_py_c* player = daPy_getPlayerActorClass();
@@ -2621,11 +2616,11 @@ BOOL daNpc_grA_c::ECut_noneLook(int param_0) {
     int* r29 = 0;
     int r28 = -1;
     int r24 = 0;
-    r29 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    r29 = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (r29 != NULL) {
         r28 = *r29;
     }
-    if (manager.getIsAddvance(param_0)) {
+    if (manager.getIsAddvance(i_staffID)) {
         switch (r28) {
         case 0:
             setExpression(0x17, -1.0f);
@@ -2672,7 +2667,7 @@ BOOL daNpc_grA_c::ECut_noneLook(int param_0) {
 }
 
 /* 809C5088-809C5430 006828 03A8+00 1/0 0/0 0/0 .text            ECut_rescueRock__11daNpc_grA_cFi */
-BOOL daNpc_grA_c::ECut_rescueRock(int param_0) {
+BOOL daNpc_grA_c::ECut_rescueRock(int i_staffID) {
     dEvent_manager_c& sp40 = dComIfGp_getEventManager();
     int sp3C = 0;
     daPy_py_c* sp38 = daPy_getPlayerActorClass();
@@ -2681,12 +2676,12 @@ BOOL daNpc_grA_c::ECut_rescueRock(int param_0) {
     int sp30 = -1;
     int sp2C = 0;
     
-    sp34 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    sp34 = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (sp34 != NULL) {
         sp30 = *sp34;
     }
 
-    if (sp40.getIsAddvance(param_0)) {
+    if (sp40.getIsAddvance(i_staffID)) {
         switch (sp30) {
         case 0:
             setExpression(0x17, 0.0f);
@@ -2761,7 +2756,7 @@ BOOL daNpc_grA_c::ECut_rescueRock(int param_0) {
 
 /* 809C5430-809C5D44 006BD0 0914+00 3/0 0/0 0/0 .text            ECut_carrySpaWater__11daNpc_grA_cFi
  */
-BOOL daNpc_grA_c::ECut_carrySpaWater(int param_0) {
+BOOL daNpc_grA_c::ECut_carrySpaWater(int i_staffID) {
     dEvent_manager_c& sp40 = dComIfGp_getEventManager();
     int sp3C = 0;
     daPy_py_c* sp38 = daPy_getPlayerActorClass();
@@ -2770,12 +2765,12 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int param_0) {
     int sp30 = -1;
     int sp2C = 0;
     
-    sp34 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    sp34 = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (sp34 != NULL) {
         sp30 = *sp34;
     }
 
-    if (sp40.getIsAddvance(param_0)) {
+    if (sp40.getIsAddvance(i_staffID)) {
         switch (sp30) {
         case 0:{
             daNpcF_offTmpBit(0xb);
@@ -2963,7 +2958,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int param_0) {
 
 /* 809C5D44-809C5F90 0074E4 024C+00 1/0 0/0 0/0 .text ECut_carrySpaWaterFailure__11daNpc_grA_cFi
  */
-BOOL daNpc_grA_c::ECut_carrySpaWaterFailure(int param_0) {
+BOOL daNpc_grA_c::ECut_carrySpaWaterFailure(int i_staffID) {
     dEvent_manager_c& sp34 = dComIfGp_getEventManager();
     int sp30 = 0;
     daPy_py_c* sp2c = daPy_getPlayerActorClass();
@@ -2972,12 +2967,12 @@ BOOL daNpc_grA_c::ECut_carrySpaWaterFailure(int param_0) {
     int sp24 = -1;
     int sp20 = 0;
     
-    sp28 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    sp28 = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (sp28 != NULL) {
         sp24 = *sp28;
     }
 
-    if (sp34.getIsAddvance(param_0)) {
+    if (sp34.getIsAddvance(i_staffID)) {
         switch (sp24) {
         case 0:
             setExpression(0x16, -1.0f);
@@ -3027,7 +3022,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWaterFailure(int param_0) {
 
 /* 809C5F90-809C6608 007730 0678+00 1/0 0/0 0/0 .text            ECut_rollRockCrash__11daNpc_grA_cFi
  */
-BOOL daNpc_grA_c::ECut_rollRockCrash(int param_0) {
+BOOL daNpc_grA_c::ECut_rollRockCrash(int i_staffID) {
     dEvent_manager_c& sp34 = dComIfGp_getEventManager();
     int sp30 = 0;
     daPy_py_c* sp2c = daPy_getPlayerActorClass();
@@ -3036,12 +3031,12 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int param_0) {
     int sp24 = -1;
     int sp20 = 0;
     
-    sp28 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    sp28 = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (sp28 != NULL) {
         sp24 = *sp28;
     }
 
-    if (sp34.getIsAddvance(param_0)) {
+    if (sp34.getIsAddvance(i_staffID)) {
         switch (sp24) {
         case 0:
             setExpression(0x17, -1.0f);
@@ -3171,7 +3166,7 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int param_0) {
 
 /* 809C6608-809C681C 007DA8 0214+00 1/0 0/0 0/0 .text            ECut_talkSpaWater__11daNpc_grA_cFi
  */
-BOOL daNpc_grA_c::ECut_talkSpaWater(int param_0) {
+BOOL daNpc_grA_c::ECut_talkSpaWater(int i_staffID) {
     dEvent_manager_c& manager = dComIfGp_getEventManager();
     int r26 = 0;
     daPy_py_c* player = daPy_getPlayerActorClass();
@@ -3179,11 +3174,11 @@ BOOL daNpc_grA_c::ECut_talkSpaWater(int param_0) {
     int* r29 = 0;
     int r28 = -1;
     int r24 = 0;
-    r29 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    r29 = dComIfGp_evmng_getMyIntegerP(i_staffID, "prm");
     if (r29 != NULL) {
         r28 = *r29;
     }
-    if (manager.getIsAddvance(param_0)) {
+    if (manager.getIsAddvance(i_staffID)) {
         switch (r28) {
         case 0:
             setLookMode(0);
@@ -3224,7 +3219,7 @@ BOOL daNpc_grA_c::ECut_talkSpaWater(int param_0) {
 }
 
 /* 809C681C-809C69B8 007FBC 019C+00 3/0 0/0 0/0 .text            wait__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::wait(void* param_0) {
+BOOL daNpc_grA_c::wait(void*) {
     switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
@@ -3262,7 +3257,7 @@ BOOL daNpc_grA_c::wait(void* param_0) {
 }
 
 /* 809C69B8-809C6AAC 008158 00F4+00 1/0 0/0 0/0 .text            waitTW__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::waitTW(void* param_0) {
+BOOL daNpc_grA_c::waitTW(void*) {
         switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
@@ -3286,7 +3281,7 @@ BOOL daNpc_grA_c::waitTW(void* param_0) {
 }
 
 /* 809C6AAC-809C6D48 00824C 029C+00 1/0 0/0 0/0 .text            waitCheer__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::waitCheer(void* param_0) {
+BOOL daNpc_grA_c::waitCheer(void*) {
     switch (field_0x1472) {
     case 0:
         setExpressionAnm(0, TRUE);
@@ -3346,7 +3341,7 @@ BOOL daNpc_grA_c::waitCheer(void* param_0) {
 }
 
 /* 809C6D48-809C73FC 0084E8 06B4+00 1/0 0/0 0/0 .text            waitGate__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::waitGate(void* param_0) {
+BOOL daNpc_grA_c::waitGate(void*) {
     switch (field_0x1472) {
     case 0:
         setExpressionAnm(0, TRUE);
@@ -3467,7 +3462,7 @@ BOOL daNpc_grA_c::waitGate(void* param_0) {
 }
 
 /* 809C73FC-809C770C 008B9C 0310+00 1/0 0/0 0/0 .text            waitKickOut__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::waitKickOut(void* param_0) {
+BOOL daNpc_grA_c::waitKickOut(void*) {
     switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
@@ -3532,7 +3527,7 @@ BOOL daNpc_grA_c::waitKickOut(void* param_0) {
 }
 
 /* 809C770C-809C77E0 008EAC 00D4+00 2/0 0/0 0/0 .text            moveRock__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::moveRock(void* param_0) {
+BOOL daNpc_grA_c::moveRock(void*) {
     switch (field_0x1472) {
     case 0:
         setExpression(0x17, 0.0f);
@@ -3554,7 +3549,7 @@ BOOL daNpc_grA_c::moveRock(void* param_0) {
 }
 
 /* 809C77E0-809C7ACC 008F80 02EC+00 1/0 0/0 0/0 .text            spaWarm__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::spaWarm(void* param_0) {
+BOOL daNpc_grA_c::spaWarm(void*) {
     switch (field_0x1472) {
     case 0:
         if (getMode() == 1) {
@@ -3622,7 +3617,7 @@ BOOL daNpc_grA_c::spaWarm(void* param_0) {
 }
 
 /* 809C7ACC-809C7F24 00926C 0458+00 3/0 0/0 0/0 .text            waitSpaWater__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::waitSpaWater(void* param_0) {
+BOOL daNpc_grA_c::waitSpaWater(void*) {
     switch (field_0x1472) {
     case 0:
         if (field_0x1690 == 2) {
@@ -3714,7 +3709,7 @@ BOOL daNpc_grA_c::waitSpaWater(void* param_0) {
 }
 
 /* 809C7F24-809C8138 0096C4 0214+00 1/0 0/0 0/0 .text            waitSpaBuyer__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::waitSpaBuyer(void* param_0) {
+BOOL daNpc_grA_c::waitSpaBuyer(void*) {
     switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
@@ -3766,7 +3761,7 @@ BOOL daNpc_grA_c::waitSpaBuyer(void* param_0) {
 }
 
 /* 809C8138-809C82A8 0098D8 0170+00 1/0 0/0 0/0 .text            waitSpaBuyerTW__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::waitSpaBuyerTW(void* param_0) {
+BOOL daNpc_grA_c::waitSpaBuyerTW(void*) {
     switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
@@ -3799,7 +3794,7 @@ BOOL daNpc_grA_c::waitSpaBuyerTW(void* param_0) {
 
 /* 809C82A8-809C8514 009A48 026C+00 1/0 0/0 0/0 .text            beforeCrashWait__11daNpc_grA_cFPv
  */
-BOOL daNpc_grA_c::beforeCrashWait(void* param_0) {
+BOOL daNpc_grA_c::beforeCrashWait(void*) {
     switch (field_0x1472) {
     case 0:
         setExpression(0x14, -1.0f);
@@ -3854,7 +3849,7 @@ BOOL daNpc_grA_c::beforeCrashWait(void* param_0) {
 }
 
 /* 809C8514-809C8694 009CB4 0180+00 1/0 0/0 0/0 .text            crashRoll__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::crashRoll(void* param_0) {
+BOOL daNpc_grA_c::crashRoll(void*) {
    switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
@@ -3887,7 +3882,7 @@ BOOL daNpc_grA_c::crashRoll(void* param_0) {
 }
 
 /* 809C8694-809C884C 009E34 01B8+00 1/0 0/0 0/0 .text            crashRollWait__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::crashRollWait(void* param_0) {
+BOOL daNpc_grA_c::crashRollWait(void*) {
     switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
@@ -3921,7 +3916,7 @@ BOOL daNpc_grA_c::crashRollWait(void* param_0) {
 }
 
 /* 809C884C-809C8A2C 009FEC 01E0+00 1/0 0/0 0/0 .text            crashedWait__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::crashedWait(void* param_0) {
+BOOL daNpc_grA_c::crashedWait(void*) {
     switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
@@ -3965,7 +3960,7 @@ BOOL daNpc_grA_c::crashedWait(void* param_0) {
 }
 
 /* 809C8A2C-809C8BD4 00A1CC 01A8+00 1/0 0/0 0/0 .text            waitBuyer__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::waitBuyer(void* param_0) {
+BOOL daNpc_grA_c::waitBuyer(void*) {
     switch (field_0x1472) {
     case 0:
         if (field_0x1691 == 0 && home.angle.y == mCurAngle.y) {
@@ -4003,7 +3998,7 @@ BOOL daNpc_grA_c::waitBuyer(void* param_0) {
 }
 
 /* 809C8BD4-809C9044 00A374 0470+00 2/0 0/0 0/0 .text            talk__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::talk(void* param_0) {
+BOOL daNpc_grA_c::talk(void*) {
     int spc = 0;
     BOOL r29 = 0;
     int r27 = 0;
@@ -4111,7 +4106,7 @@ BOOL daNpc_grA_c::talk(void* param_0) {
 }
 
 /* 809C9044-809C9128 00A7E4 00E4+00 2/0 0/0 0/0 .text            test__11daNpc_grA_cFPv */
-BOOL daNpc_grA_c::test(void* param_0) {
+BOOL daNpc_grA_c::test(void*) {
     switch (field_0x1472) {
     case 0:
         speedF = 0.0f;
@@ -4135,27 +4130,27 @@ BOOL daNpc_grA_c::test(void* param_0) {
 }
 
 /* 809C9128-809C9148 00A8C8 0020+00 1/0 0/0 0/0 .text            daNpc_grA_Create__FPv */
-static BOOL daNpc_grA_Create(void* param_0) {
-    return ((daNpc_grA_c*)param_0)->create();
+static BOOL daNpc_grA_Create(void* i_this) {
+    return ((daNpc_grA_c*)i_this)->create();
 }
 
 /* 809C9148-809C9168 00A8E8 0020+00 1/0 0/0 0/0 .text            daNpc_grA_Delete__FPv */
-static BOOL daNpc_grA_Delete(void* param_0) {
-    return ((daNpc_grA_c*)param_0)->Delete();
+static BOOL daNpc_grA_Delete(void* i_this) {
+    return ((daNpc_grA_c*)i_this)->Delete();
 }
 
 /* 809C9168-809C9188 00A908 0020+00 1/0 0/0 0/0 .text            daNpc_grA_Execute__FPv */
-static BOOL daNpc_grA_Execute(void* param_0) {
-    return ((daNpc_grA_c*)param_0)->Execute();
+static BOOL daNpc_grA_Execute(void* i_this) {
+    return ((daNpc_grA_c*)i_this)->Execute();
 }
 
 /* 809C9188-809C91A8 00A928 0020+00 1/0 0/0 0/0 .text            daNpc_grA_Draw__FPv */
-static BOOL daNpc_grA_Draw(void* param_0) {
-    return ((daNpc_grA_c*)param_0)->Draw();
+static BOOL daNpc_grA_Draw(void* i_this) {
+    return ((daNpc_grA_c*)i_this)->Draw();
 }
 
 /* 809C91A8-809C91B0 00A948 0008+00 1/0 0/0 0/0 .text            daNpc_grA_IsDelete__FPv */
-static bool daNpc_grA_IsDelete(void* param_0) {
+static bool daNpc_grA_IsDelete(void* i_this) {
     return true;
 }
 
