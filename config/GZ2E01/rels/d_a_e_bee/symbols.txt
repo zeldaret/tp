@@ -111,6 +111,7 @@ lbl_173_bss_45 = .bss:0x00000045; // type:object size:0x1 data:byte
 l_HIO = .bss:0x00000054; // type:object size:0x10 scope:global data:byte
 lbl_173_bss_64 = .bss:0x00000064; // type:object size:0x1 data:byte
 @4455 = .bss:0x00000068; // type:object size:0xC scope:local
+init$2267 = .bss:0x00000074; // type:object size:0x1 scope:local align:1
 non$4454 = .bss:0x00000078; // type:object size:0xC scope:local
 sInstance__40JASGlobalInstance<19JASDefaultBankTable> = .bss:0x00000084; // type:object size:0x4 scope:global
 sInstance__35JASGlobalInstance<14JASAudioThread> = .bss:0x00000088; // type:object size:0x4 scope:global

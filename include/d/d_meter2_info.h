@@ -206,6 +206,7 @@ public:
     void resetWindowAccept() { mWindowAccept = 0xFFFF; }
     void onWindowAccept(int param_0) { mWindowAccept |= (u16)(1 << param_0); }
     void offWindowAccept(int param_0) { mWindowAccept &= ~(u16)(1 << param_0); }
+    void onMenuInForce(int param_0) { unk_0x98 |= (u16)(1 << param_0); }
 
 public:
     /* 0x04 */ u8 unk_0x4[4];
@@ -851,6 +852,10 @@ inline void dMeter2Info_onWindowAccept(int param_0) {
 
 inline void dMeter2Info_offWindowAccept(int param_0) {
     g_meter2_info.offWindowAccept(param_0);
+}
+
+inline void dMeter2Info_onMenuInForce(int param_0) {
+    g_meter2_info.onMenuInForce(param_0);
 }
 
 #endif /* D_METER_D_METER2_INFO_H */

@@ -56,7 +56,7 @@ void daObjSwSpinner_c::setBaseMtx() {
 
 /* 80D00284-80D0035C 000384 00D8+00 1/0 0/0 0/0 .text            Create__16daObjSwSpinner_cFv */
 int daObjSwSpinner_c::Create() {
-    if (fopAcM_isSwitch(this, getSwBit2())) {
+    if (fopAcM_isSwitch(this, getSwbit2())) {
         mPartBHeight = 50.0f;
         mCanUse = false;
     } else {
@@ -141,7 +141,7 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
         mCount++;
     }
 
-    if (fopAcM_isSwitch(this, getSwBit2())) {
+    if (fopAcM_isSwitch(this, getSwbit2())) {
         if (cLib_addCalc(&mPartBHeight, 50.0f, 0.1f, 10.0f, 2.0f) == 0.0f && mCanUse) {
             if (mSpinnerIn) {
                 spinner->offSpinnerTag();
@@ -158,13 +158,13 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
     } else if (mSpinnerIn) {
         if (mCount > 200) {
             if (mRotSpeedY > 3000) {
-                fopAcM_onSwitch(this, getSwBit());
+                fopAcM_onSwitch(this, getSwbit());
             } else {
-                fopAcM_offSwitch(this, getSwBit());
+                fopAcM_offSwitch(this, getSwbit());
             }
         }
     } else {
-        dComIfGs_offSwitch(getSwBit() & 0xFF, fopAcM_GetHomeRoomNo(this));
+        dComIfGs_offSwitch(getSwbit() & 0xFF, fopAcM_GetHomeRoomNo(this));
     }
 
     if (mSpinnerIn && !mPrevSpinnerIn) {
@@ -182,7 +182,7 @@ int daObjSwSpinner_c::Execute(Mtx** param_0) {
     attention_info.position = current.pos;
     attention_info.position.y -= 100.0f;
 
-    mPrevIsSwbit2 = fopAcM_isSwitch(this, getSwBit2());
+    mPrevIsSwbit2 = fopAcM_isSwitch(this, getSwbit2());
     mPrevSpinnerIn = mSpinnerIn;
     return 1;
 }

@@ -182,7 +182,7 @@ const daNpc_Seira2_HIOParam daNpc_Seira2_Param_c::m = {
 
 /* 80AD0D58-80AD0FF8 000238 02A0+00 1/1 0/0 0/0 .text            create__14daNpc_Seira2_cFv */
 int daNpc_Seira2_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Seira2_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Seira2_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
                        l_evtList, l_resNameList
     );

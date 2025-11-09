@@ -884,7 +884,7 @@ static int daE_FB_Delete(daE_FB_c* i_this) {
 /* 806B8678-806B8878 0022B8 0200+00 1/1 0/0 0/0 .text            CreateHeap__8daE_FB_cFv */
 int daE_FB_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("E_FL", 0xB);
-    JUT_ASSERT(1516, modelData != 0);
+    JUT_ASSERT(1516, modelData != NULL);
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_FL", 0x8),
                                   0, 1.0f, 0, -1, &mCreatureSound, 0, 0x31000084);

@@ -26,8 +26,8 @@ public:
     /* 80CBF404 */ virtual int Draw();
     /* 80CBF4BC */ virtual int Delete();
 
-    u8 getPlayerRide() const { return mIsPlayerRide; }
-    u8 getBridgeAngle() const { return mBridgeAngle; }
+    u8 getPlayerRide() { return mIsPlayerRide; }
+    u8 getBridgeAngle() { return mBridgeAngle; }
 
     /* 0x5A0 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ J3DModel* mpModel;

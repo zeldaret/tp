@@ -417,6 +417,7 @@ struct dStage_MapEvent_dt_c {
     /* 0x1A */ u8 field_0x1a;
     /* 0x1B */ u8 switch_no;
 };  // SIZE = 0x1C
+#pragma pack()
 #pragma pop
 
 enum dStage_MapEvent_dt_type {
@@ -1364,8 +1365,9 @@ inline s32 dStage_stagInfo_GetSaveTbl(stage_stag_info_class* param_0) {
     return param_0->field_0x09 >> 1 & 0x1f;
 }
 
-inline s8 dStage_stagInfo_GetTimeH(stage_stag_info_class* p_info) {
-    return (p_info->field_0x0c >> 8) & 0xFF;
+inline int dStage_stagInfo_GetTimeH(stage_stag_info_class* p_info) {
+    s8 time = (p_info->field_0x0c >> 8) & 0xFF;
+    return time;
 }
 
 inline BOOL dStage_staginfo_GetArchiveHeap(stage_stag_info_class* p_info) {
@@ -1448,7 +1450,7 @@ inline u8 dStage_FileList_dt_GetDefaultCamera(dStage_FileList_dt_c* p_fList) {
     return p_fList->mDefaultCamera;
 }
 
-inline u8 dStage_FileList_dt_GRASSLIGHT(dStage_FileList_dt_c* p_fList) {
+inline int dStage_FileList_dt_GRASSLIGHT(dStage_FileList_dt_c* p_fList) {
     return (p_fList->mParameters >> 7) & 0xFF;
 }
 

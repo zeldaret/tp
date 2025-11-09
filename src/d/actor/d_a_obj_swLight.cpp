@@ -168,7 +168,7 @@ int daObjSwLight_c::Create() {
 /* 80CF71F0-80CF7260 0002D0 0070+00 1/0 0/0 0/0 .text            CreateHeap__14daObjSwLight_cFv */
 int daObjSwLight_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(385, modelData != 0);
+    JUT_ASSERT(385, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mpModel == NULL ? 0 : 1;
 }

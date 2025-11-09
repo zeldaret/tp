@@ -93,7 +93,7 @@ daNpc_Zant_Param_c::Data const daNpc_Zant_Param_c::m  = {
 int daNpc_Zant_c::create() {
     int rv;
 
-    fopAcM_SetupActor2(this, daNpc_Zant_c, &l_faceMotionAnmData, &l_motionAnmData, l_faceMotionSequenceData, 
+    daNpcT_ct(this, daNpc_Zant_c, &l_faceMotionAnmData, &l_motionAnmData, l_faceMotionSequenceData, 
         4, l_motionSequenceData, 4, l_evtList, l_resNameList);
         
     mType = getType();

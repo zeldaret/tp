@@ -131,7 +131,7 @@ daNpc_Gnd_c::~daNpc_Gnd_c() {
 
 /* 809BB730-809BB9D4 000210 02A4+00 1/1 0/0 0/0 .text            create__11daNpc_Gnd_cFv */
 int daNpc_Gnd_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Gnd_c, l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Gnd_c, l_faceMotionAnmData,
                        l_motionAnmData, l_faceMotionSequenceData, 4,
                        l_motionSequenceData, 4, l_evtList, l_resNameList);
 
@@ -194,7 +194,7 @@ int daNpc_Gnd_c::CreateHeap() {
     int res_name_idx = l_bmdData[bmdIdx][1];
     int my_bmd = l_bmdData[bmdIdx][0];
     mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[res_name_idx], my_bmd));
-    JUT_ASSERT(433, 0 != mdlData_p);
+    JUT_ASSERT(433, NULL != mdlData_p);
 
     u32 sp_0x24 = 0x11020285;
     mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x24);

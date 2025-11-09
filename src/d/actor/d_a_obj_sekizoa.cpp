@@ -167,7 +167,7 @@ int daObj_Sekizoa_c::create() {
         0x2390, 0x2380, 0x2390, 0x2380, 0x2350, 0x2340, 0x33E0, 0,
     };
 
-    fopAcM_SetupActor2(this, daObj_Sekizoa_c, &l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daObj_Sekizoa_c, &l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList,
                        l_resNameList);
 

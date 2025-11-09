@@ -2318,7 +2318,7 @@ daNpcChat_HIOParam const daNpcChat_Param_c::m = {
 BOOL daNpcChat_c::NpcCreate(int type) {
     J3DModelData* a_mdlData_p = getNpcMdlDataP(type);
 
-    JUT_ASSERT(185, 0 != a_mdlData_p);
+    JUT_ASSERT(185, NULL != a_mdlData_p);
 
     J3DAnmTexPattern* texAnmP = getTexAnmP(type);
     u32 uVar1 = texAnmP != NULL ? 0x11020084 : 0x11000084;
@@ -3023,7 +3023,7 @@ BOOL daNpcChat_c::searchGroup() {
 
 /* 80982C10-80982D20 0024B0 0110+00 3/2 0/0 0/0 .text            appearTimeCheck__11daNpcChat_cFv */
 BOOL daNpcChat_c::appearTimeCheck() {
-    int time = (dKy_darkworld_check() & 0xFF) ? dKy_getDarktime_hour() : dKy_getdaytime_hour();
+    int time = dKy_darkworld_check() ? dKy_getDarktime_hour() : dKy_getdaytime_hour();
     BOOL rv = FALSE;
 
     switch (mTalkGroupNo) {
@@ -3949,7 +3949,7 @@ bool daNpcChat_c::wait(void* param_1) {
             }
 
             if (
-                (dKy_darkworld_check() & 0xFF) == 0 && daPy_py_c::checkNowWolf() &&
+                dKy_darkworld_check() == 0 && daPy_py_c::checkNowWolf() &&
                 fopAcM_searchPlayerDistanceXZ2(this) < std::pow(500.0, 2.0) || mFear
             ) {
                 setAction(&daNpcChat_c::fear);
@@ -4016,7 +4016,7 @@ bool daNpcChat_c::wait(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2580, 0);
+            JUT_ASSERT(2580, FALSE);
     }
 
     return true;
@@ -4055,7 +4055,7 @@ bool daNpcChat_c::fear(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2664, 0);
+            JUT_ASSERT(2664, FALSE);
             break;
     }
 
@@ -4142,7 +4142,7 @@ bool daNpcChat_c::talk(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2764, 0);
+            JUT_ASSERT(2764, FALSE);
             break;
     }
 
@@ -4166,7 +4166,7 @@ bool daNpcChat_c::demo(void* param_1) {
                     if (staffId != -1) {
                         mStaffID = staffId;
 
-                        JUT_ASSERT(2798, 0 != mEvtSeqList[mOrderEvtNo]);
+                        JUT_ASSERT(2798, NULL != mEvtSeqList[mOrderEvtNo]);
 
                         if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {
                             eventManager.cutEnd(staffId);
@@ -4187,7 +4187,7 @@ bool daNpcChat_c::demo(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2826, 0);
+            JUT_ASSERT(2826, FALSE);
             break;
     }
 

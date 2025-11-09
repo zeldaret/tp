@@ -500,7 +500,7 @@ void mDoMain_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
                 }
             }
 
-            JKRSetDebugFillNotuse(mDoMch::mDebugFillNotuse);
+            JKRSetDebugFillNotuse(mDoMch::mDebugFillNotUse);
             JKRSetDebugFillNew(mDoMch::mDebugFillNew);
             JKRSetDebugFillDelete(mDoMch::mDebugFillDelete);
         }
@@ -977,91 +977,114 @@ bool JKRHeap::dump_sort() {
 /* ############################################################################################## */
 /* 80450B38-80450B3C 000038 0004+00 0/0 2/2 0/0 .sbss
  * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
+template<>
 Z2WolfHowlMgr* JASGlobalInstance<Z2WolfHowlMgr>::sInstance;
 
 /* 80450B3C-80450B40 00003C 0004+00 0/0 6/6 0/0 .sbss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
  */
+template<>
 Z2EnvSeMgr* JASGlobalInstance<Z2EnvSeMgr>::sInstance;
 
 /* 80450B40-80450B44 000040 0004+00 0/0 6/6 0/0 .sbss
  * sInstance__32JASGlobalInstance<11Z2FxLineMgr>                */
+template<>
 Z2FxLineMgr* JASGlobalInstance<Z2FxLineMgr>::sInstance;
 
 /* 80450B44-80450B48 000044 0004+00 0/0 18/18 0/0 .sbss
  * sInstance__31JASGlobalInstance<10Z2Audience>                 */
+template<>
 Z2Audience* JASGlobalInstance<Z2Audience>::sInstance;
 
 /* 80450B48-80450B4C 000048 0004+00 0/0 17/17 0/0 .sbss
  * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
+template<>
 Z2SoundObjMgr* JASGlobalInstance<Z2SoundObjMgr>::sInstance;
 
 /* 80450B4C-80450B50 00004C 0004+00 0/0 10/10 0/0 .sbss
  * sInstance__32JASGlobalInstance<11Z2SoundInfo>                */
+template<>
 Z2SoundInfo* JASGlobalInstance<Z2SoundInfo>::sInstance;
 
 /* 80450B50-80450B54 000050 0004+00 0/0 5/5 0/0 .sbss
  * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
+template<>
 JAUSoundInfo* JASGlobalInstance<JAUSoundInfo>::sInstance;
 
 /* 80450B54-80450B58 000054 0004+00 0/0 2/2 0/0 .sbss
  * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
+template<>
 JAUSoundNameTable* JASGlobalInstance<JAUSoundNameTable>::sInstance;
 
 /* 80450B58-80450B5C 000058 0004+00 0/0 12/12 0/0 .sbss
  * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
+template<>
 JAUSoundTable* JASGlobalInstance<JAUSoundTable>::sInstance;
 
 /* 80450B5C-80450B60 00005C 0004+00 0/0 6/6 0/0 .sbss
  * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
+template<>
 JAISoundInfo* JASGlobalInstance<JAISoundInfo>::sInstance;
 
 /* 80450B60-80450B64 000060 0004+00 0/0 29/29 0/0 .sbss
  * sInstance__31JASGlobalInstance<10Z2SoundMgr>                 */
+template<>
 Z2SoundMgr* JASGlobalInstance<Z2SoundMgr>::sInstance;
 
 /* 80450B64-80450B68 000064 0004+00 0/0 2/2 0/0 .sbss
  * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
+template<>
 JAIStreamMgr* JASGlobalInstance<JAIStreamMgr>::sInstance;
 
 /* 80450B68-80450B6C 000068 0004+00 0/0 3/3 0/0 .sbss sInstance__29JASGlobalInstance<9JAISeqMgr>
  */
+template<>
 JAISeqMgr* JASGlobalInstance<JAISeqMgr>::sInstance;
 
 /* 80450B6C-80450B70 00006C 0004+00 0/0 4/4 0/0 .sbss sInstance__28JASGlobalInstance<8JAISeMgr> */
+template<>
 JAISeMgr* JASGlobalInstance<JAISeMgr>::sInstance;
 
 /* 80450B70-80450B74 000070 0004+00 0/0 9/9 0/0 .sbss
  * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
+template<>
 Z2SpeechMgr2* JASGlobalInstance<Z2SpeechMgr2>::sInstance;
 
 /* 80450B74-80450B78 000074 0004+00 0/0 22/22 0/0 .sbss
  * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
+template<>
 Z2SoundStarter* JASGlobalInstance<Z2SoundStarter>::sInstance;
 
 /* 80450B78-80450B7C 000078 0004+00 0/0 2/2 0/0 .sbss
  * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
+template<>
 JAISoundStarter* JASGlobalInstance<JAISoundStarter>::sInstance;
 
 /* 80450B7C-80450B80 00007C 0004+00 0/0 34/34 0/0 .sbss
  * sInstance__32JASGlobalInstance<11Z2StatusMgr>                */
+template<>
 Z2StatusMgr* JASGlobalInstance<Z2StatusMgr>::sInstance;
 
 /* 80450B80-80450B84 000080 0004+00 0/0 46/46 0/0 .sbss
  * sInstance__31JASGlobalInstance<10Z2SceneMgr>                 */
+template<>
 Z2SceneMgr* JASGlobalInstance<Z2SceneMgr>::sInstance;
 
 /* 80450B84-80450B88 000084 0004+00 0/0 38/38 0/0 .sbss sInstance__28JASGlobalInstance<8Z2SeqMgr>
  */
+template<>
 Z2SeqMgr* JASGlobalInstance<Z2SeqMgr>::sInstance;
 
 /* 80450B88-80450B8C 000088 0004+00 0/0 25/25 0/0 .sbss sInstance__27JASGlobalInstance<7Z2SeMgr>
  */
+template<>
 Z2SeMgr* JASGlobalInstance<Z2SeMgr>::sInstance;
 
 /* 80450B8C-80450B90 00008C 0004+00 0/0 6/6 0/0 .sbss
  * sInstance__35JASGlobalInstance<14JASAudioThread>             */
+template<>
 JASAudioThread* JASGlobalInstance<JASAudioThread>::sInstance;
 
 /* 80450B90-80450B98 000090 0004+04 0/0 4/4 0/0 .sbss
  * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
+template<>
 JASDefaultBankTable* JASGlobalInstance<JASDefaultBankTable>::sInstance;

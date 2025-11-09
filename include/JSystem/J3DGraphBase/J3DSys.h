@@ -132,7 +132,11 @@ struct J3DSys {
     J3DMatPacket* getMatPacket() { return mMatPacket; }
     void setMaterialMode(u32 mode) { mMaterialMode = mode; }
 
-    void setCurrentMtxCalc(J3DMtxCalc * pCalc) { mCurrentMtxCalc = pCalc; }
+    void setCurrentMtxCalc(J3DMtxCalc * pCalc) {
+        J3D_ASSERT_NULLPTR(210, pCalc != NULL);
+        mCurrentMtxCalc = pCalc;
+    }
+
     J3DMtxCalc * getCurrentMtxCalc() const { return mCurrentMtxCalc; }
 
     void setTexture(J3DTexture* pTex) { mTexture = pTex; }

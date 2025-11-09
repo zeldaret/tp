@@ -535,7 +535,7 @@ public:
     /* 0xA80 */ f32 mExpressionMorfFrame;
     /* 0xA84 */ f32 mMorfFrames;
     /* 0xA88 */ bool mCreating;
-    /* 0xA89 */ bool mTwilight;
+    /* 0xA89 */ u8 mTwilight;
     /* 0xA8C */ dBgS_GndChk field_0xa8c;
     /* 0xAE0 */ dBgS_LinChk mLinChk;
     /* 0xB50 */ daNpcT_MotionSeqMngr_c mFaceMotionSeqMngr;
@@ -800,6 +800,12 @@ public:
 
 STATIC_ASSERT(sizeof(daNpcT_c) == 0xE40);
 
+#define daNpcT_ct(ptr, ClassName, faceMotionAnmData, motionAnmData, faceMotionSequenceData, faceMotionStepNum, motionSequenceData, motionStepNum, evtData, arcNames) \
+    if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) { \
+        new (ptr) ClassName(faceMotionAnmData, motionAnmData, faceMotionSequenceData, faceMotionStepNum, motionSequenceData, motionStepNum, evtData, arcNames); \
+        fopAcM_OnCondition(ptr, fopAcCnd_INIT_e); \
+    }
+
 BOOL daNpcT_chkEvtBit(u32 i_idx);
 BOOL daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3, BOOL param_4);
 u8 daNpcT_getDistTableIdx(int param_0, int param_1);
@@ -939,7 +945,7 @@ public:
     /* 0x83C */ u16* field_0x83c;
     /* 0x840 */ u16 field_0x840;
     /* 0x842 */ u16 field_0x842;
-    /* 0x844 */ bool field_0x844;
+    /* 0x844 */ u8 field_0x844;
     /* 0x845 */ u8 field_0x845[0x848 - 0x845];
     /* 0x848 */ s32 field_0x848;
     /* 0x84C */ dMsgFlow_c mMsgFlow;
@@ -967,6 +973,10 @@ public:
     /* 8014F60C */ int MoveBGCreate(char const*, int, MoveBGActor_SetFunc, u32);
     /* 8014F6FC */ int MoveBGDelete();
     /* 8014F770 */ int MoveBGExecute();
+    int MoveBGDraw() {
+        int ret = Draw();
+        return ret;
+    }
 
     /* 80155FB0 */ virtual ~daBaseNpc_moveBgActor_c() {}
     /* 801503BC */ virtual int CreateHeap() { return 1; }
@@ -1090,7 +1100,7 @@ protected:
     /* 0x9F1 */ u8 field_0x9f1;
     /* 0x9F2 */ bool mHide;
     /* 0x9F3 */ u8 field_0x9f3;
-    /* 0x9F4 */ bool mTwilight;
+    /* 0x9F4 */ u8 mTwilight;
     /* 0x9F5 */ u8 field_0x9f5;
     /* 0x9F6 */ u8 field_0x9f6;
     /* 0x9F8 */ dMsgFlow_c mFlow;

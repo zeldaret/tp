@@ -303,7 +303,7 @@ const daNpc_Kkri_HIOParam daNpc_Kkri_Param_c::m = {
 
 /* 8054F4F8-8054F7D0 000238 02D8+00 1/1 0/0 0/0 .text            create__12daNpc_Kkri_cFv */
 int daNpc_Kkri_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Kkri_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Kkri_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
                        l_evtList, l_resNameList);
 

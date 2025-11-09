@@ -201,7 +201,7 @@ cPhs__Step daNpcDoorBoy_c::Create() {
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -50.0f, -10.0f, -50.0f, 50.0f, 210.0f, 50.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
-        mSound.setMdlType(5, false, 0xFF & dKy_darkworld_check());
+        mSound.setMdlType(5, false, dKy_darkworld_check());
 
         mAcchCir.SetWall(daNpcDoorBoy_Param_c::m.common.width, daNpcDoorBoy_Param_c::m.common.knee_length);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),

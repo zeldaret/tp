@@ -1328,6 +1328,8 @@ void daNpc_zrZ_c::lightColorProc() {
     int prev_key_frame, next_key_frame, next, i;
     for (i = 0; i < 4; i++) {
         if (key_frame[i] <= mLightEffectFrame && key_frame[i + 1] > mLightEffectFrame) {
+            // The following is present to cause dbg asm to use r31 for stack reg:
+            int nested_var;
             prev_key_frame = key_frame[i];
             next_key_frame = key_frame[i + 1];
             next = i + 1;
@@ -1336,12 +1338,16 @@ void daNpc_zrZ_c::lightColorProc() {
     }
 
     int frames = next_key_frame - prev_key_frame;
-    s16 step_r = std::fabs(key_color[i + 1].r - key_color[i].r) / frames;
-    s16 step_g = std::fabs(key_color[i + 1].g - key_color[i].g) / frames;
-    s16 step_b = std::fabs(key_color[i + 1].b - key_color[i].b) / frames;
-    cLib_chaseS(&mLight.mColor.r, key_color[next].r, ++step_r);
-    cLib_chaseS(&mLight.mColor.g, key_color[next].g, ++step_g);
-    cLib_chaseS(&mLight.mColor.b, key_color[next].b, ++step_b);
+    GXColorS10 color;
+    color.r = std::fabs(key_color[i + 1].r - key_color[i].r) / frames;
+    color.g = std::fabs(key_color[i + 1].g - key_color[i].g) / frames;
+    color.b = std::fabs(key_color[i + 1].b - key_color[i].b) / frames;
+    ++color.r;
+    ++color.g;
+    ++color.b;
+    cLib_chaseS(&mLight.mColor.r, key_color[next].r, color.r);
+    cLib_chaseS(&mLight.mColor.g, key_color[next].g, color.g);
+    cLib_chaseS(&mLight.mColor.b, key_color[next].b, color.b);
 }
 
 /* 80B9B1B8-80B9B1C0 0001CC 0008+00 0/0 0/0 0/0 .rodata          @5782 */

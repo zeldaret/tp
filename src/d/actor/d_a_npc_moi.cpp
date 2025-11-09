@@ -271,7 +271,7 @@ daNpc_Moi_c::~daNpc_Moi_c() {
 int daNpc_Moi_c::create() {
     static const int heapSize[] = {0, 0x5C70, 0x7CB0, 0x7CA0, 0x5C70, 0x5C80, 0};
 
-    fopAcM_SetupActor2(this, daNpc_Moi_c, (daNpcT_faceMotionAnmData_c const*)l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Moi_c, (daNpcT_faceMotionAnmData_c const*)l_faceMotionAnmData,
                        (const daNpcT_motionAnmData_c*)l_motionAnmData,
                        (const daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_faceMotionSequenceData,
                        4, (const daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_motionSequenceData,
@@ -552,7 +552,7 @@ void daNpc_Moi_c::reset() {
         break;
     case TYPE_2:
         if (daNpcT_chkEvtBit(0xcd)) {
-            JUT_ASSERT(1932, 0 != mPath.getPathInfo());
+            JUT_ASSERT(1932, NULL != mPath.getPathInfo());
             iVar8 = g_Counter.mCounter0 % mPath.getNumPnts();
             cStack_30 = mPath.getPntPos(iVar8);
             setPos(cStack_30);
@@ -1220,7 +1220,7 @@ int daNpc_Moi_c::injuryCheck() {
 
     if (bVar1 && timer != 0) {
         if (field_0x1667 != 0) {
-            if (timer & 1 != 0) {
+            if ((timer & 1) != 0) {
                 mMotionSeqMngr.setNo(MOT_UNK_38, -1.0f, 0, 0);
             } else {
                 mMotionSeqMngr.setNo(MOT_UNK_37, -1.0f, 0, 0);
@@ -1250,7 +1250,7 @@ int daNpc_Moi_c::injuryTurn(cXyz param_1) {
     BOOL bVar1 = FALSE;
 
     switch (field_0x1654) {
-    case 0:
+    case 0: {
         s16 iVar1 = cLib_targetAngleY(&current.pos, &param_1) - mCurAngle.y;
         if (abs(iVar1) < 0x2000) {
             bVar1 = TRUE;
@@ -1264,6 +1264,7 @@ int daNpc_Moi_c::injuryTurn(cXyz param_1) {
             field_0x1654 = 1;
         }
         break;
+    }
     case 1:
         if (turn(field_0x1664, 40, 1)) {
             current.angle.y = mCurAngle.y;
@@ -1460,7 +1461,7 @@ int daNpc_Moi_c::cutDeliveredSw(int param_1) {
 
     switch (iVar6) {
     case 0:
-    case 1:
+    case 1: {
         mJntAnm.lookNone(0);
         if (cLib_calcTimer(&mEventTimer) == 0) {
             if (iVar6 == 1) {
@@ -1488,6 +1489,7 @@ int daNpc_Moi_c::cutDeliveredSw(int param_1) {
             rv = 1;
         }
         break;
+    }
     case 2:
         mJntAnm.lookPlayer(0);
         if (cLib_calcTimer(&mEventTimer) == 0) {
