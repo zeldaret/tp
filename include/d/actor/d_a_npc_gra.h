@@ -6,14 +6,14 @@
 
 class daNpc_grA_HIOParam {
 public:
-    daNpcF_HIOParam mNpcFParams;
-    s16 mBowTimer;
-    f32 mRotationalSpeed;
-    f32 mWalkingSpeed;
-    f32 mWalkingAnimationSpeed;
-    s16 mWalkingRotationSpeed;
-    s16 mWalkingRotationDivisions;
-    f32 mParticleSize;
+    /* 0x00 */ daNpcF_HIOParam mNpcFParams;
+    /* 0x6C */ s16 mBowTimer;
+    /* 0x70 */ f32 mRotationalSpeed;
+    /* 0x74 */ f32 mWalkingSpeed;
+    /* 0x78 */ f32 mWalkingAnimationSpeed;
+    /* 0x7C */ s16 mWalkingRotationSpeed;
+    /* 0x7A */ s16 mWalkingRotationDivisions;
+    /* 0x80 */ f32 mParticleSize;
 };
 
 class daNpc_grA_Param_c {
@@ -54,14 +54,14 @@ public:
 
     /* 809BE94C */ daNpc_grA_c();
     /* 809BEB64 */ ~daNpc_grA_c();
-    /* 809BEDA4 */ int create();
-    /* 809BF0A8 */ int CreateHeap();
-    /* 809BF418 */ int Delete();
-    /* 809BF44C */ int Execute();
-    /* 809BF490 */ int Draw();
-    /* 809BF504 */ int ctrlJoint(J3DJoint*, J3DModel*);
-    /* 809BF738 */ static int createHeapCallBack(fopAc_ac_c*);
-    /* 809BF758 */ static int ctrlJointCallBack(J3DJoint*, int);
+    /* 809BEDA4 */ BOOL create();
+    /* 809BF0A8 */ BOOL CreateHeap();
+    /* 809BF418 */ BOOL Delete();
+    /* 809BF44C */ BOOL Execute();
+    /* 809BF490 */ BOOL Draw();
+    /* 809BF504 */ BOOL ctrlJoint(J3DJoint*, J3DModel*);
+    /* 809BF738 */ static BOOL createHeapCallBack(fopAc_ac_c*);
+    /* 809BF758 */ static BOOL ctrlJointCallBack(J3DJoint*, int);
     /* 809BF7A4 */ BOOL setTagJump();
     /* 809BF8A0 */ BOOL setTagJump2();
     /* 809BF99C */ BOOL setHomeJump();
@@ -87,7 +87,7 @@ public:
     /* 809C13D8 */ void reset();
     /* 809C1990 */ void playExpression();
     /* 809C2080 */ void playMotion();
-    /* 809C28BC */ int chkAction(int (daNpc_grA_c::*)(void*));
+    /* 809C28BC */ BOOL chkAction(int (daNpc_grA_c::*)(void*));
     /* 809C28E8 */ BOOL setAction(int (daNpc_grA_c::*)(void*));
     /* 809C2990 */ BOOL selectAction();
     /* 809C2C3C */ BOOL doEvent();
@@ -125,77 +125,77 @@ public:
     /* 809C884C */ BOOL crashedWait(void*);
     /* 809C8A2C */ BOOL waitBuyer(void*);
     /* 809C8BD4 */ BOOL talk(void*);
-    /* 809C9044 */ int test(void*);
+    /* 809C9044 */ BOOL test(void*);
     /* 809C9D28 */ void adjustShapeAngle();
 
     int getType() { return mType; }
-    s16 getGraNo() {return 0;}
-    void addCarryNum() { field_0x16E2++; }
+    s16 getGraNo() { return 0; }
+    void addCarryNum() { field_0x1692++; }
     u8 getPathNoFromParam() { return home.angle.z; } // this matches but feels wrong?
-    void setGateWalk() { field_0x1520 = 1; }
+    void setGateWalk() { field_0x14D0 = 1; }
     static char* mEvtCutNameList[12];
     typedef BOOL (daNpc_grA_c::*cut_type)(int);
     static cut_type mEvtCutList[];
 
-// private:
+private:
     typedef BOOL (daNpc_grA_c::*daNpc_grA_c_Action)(void*);
     
-    /* 0x0B68 */ Z2Creature mCreature;
-    /* 0x0C28 */ J3DModel* mpModel;
-    int : 32;
-    /* 0x0C30 */ daNpcF_Lookat_c mNpcfLookAt;
-    /* 0x0CCC */ daNpcF_ActorMngr_c mNpcfActorManager[3];
-    /* 0x0CE4 */ daNpc_grA_HIO_c* mpHio;
-    /* 0x0CE8 */ dCcD_Cyl field_0xCE8;
-    /* 0x0E24 */ daNpcF_Path_c field_0xE24;
-    /* 0x1454 */ daNpc_grA_c_Action mAction2;
-    /* 0x1460 */ daNpc_grA_c_Action mAction;
-    /* 0x146C */ request_of_phase_process_class mPhase[8];
-    /* 0x14AC */ int field_0x14AC;
-    /* 0x14B0 */ int field_0x14B0;
-    /* 0x14B4 */ int field_0x14B4;
-    /* 0x14B8 */ int field_0x14B8;
-    /* 0x14BC */ int field_0x14BC;
-    /* 0x14C0 */ s16 mLookMode;
-    /* 0x14C2 */ u16 field_0x14C2;
-    /* 0x14C4 */ u8 mType;
-    /* 0x14C8 */ int field_0x14C8;
-    /* 0x14CC */ const char* mName;
-    /* 0x14D9 */ int field_0x14D0;
-    /* 0x14D4 */ s16 field_0x14D4;
-    /* 0x14D6 */ u8 field_0x14D6;
-    /* 0x14D7 */ u8 field_0x14D7;
-    /* 0x14D8 */ u8 field_0x14D8;
-    /* 0x14D9 */ u8 field_0x14D9;
-    /* 0x14DC */ cXyz field_0x14DC;
-    /* 0x14E8 */ csXyz field_0x14E8;
-    /* 0x14EE */ u8 field_0x14EE;
-    /* 0x14F0 */ cXyz field_0x14F0;
-    /* 0x14FC */ csXyz field_0x14FC;
-    /* 0x1504 */ f32 field_0x1504;
-    /* 0x1508 */ f32 field_0x1508;
-    /* 0x150C */ cXyz field_0x150C;
-    /* 0x1518 */ csXyz field_0x1518;
-    /* 0x151E */ u8 mMode;
-    /* 0x151F */ u8 mSwBit;
-    /* 0x1520 */ u8 field_0x1520;
-    /* 0x1521 */ u8 field_0x1521;
-    /* 0x1524 */ f32 field_0x1524;
-    /* 0x1528 */ int field_0x1528;
-    /* 0x152C */ Mtx field_0x152C;
-    /* 0x155C */ u8 field_0x155C;
-    /* 0x1560 */ int mParticleID[3];
-    /* 0x156C */ int field_0x156C;
-    /* 0x1570 */ daNpc_GrA_prtclMngr_c mParticleManager[4];
-    /* 0x16E0 */ u8 field_0x16E0;
-    /* 0x16E1 */ u8 field_0x16E1;
-    /* 0x16E2 */ u8 field_0x16E2;
-    /* 0x16E2 */ u8 field_0x16E3;
-    /* 0x16E2 */ s16 field_0x16E4;
+    /* 0x0B48 */ Z2Creature mCreature;
+    /* 0x0BD8 */ J3DModel* mpModel;
+    /* 0x0BDC */ int field_0xBDC;
+    /* 0x0BE0 */ daNpcF_Lookat_c mNpcfLookAt;
+    /* 0x0C7C */ daNpcF_ActorMngr_c mNpcfActorManager[3];
+    /* 0x0C94 */ daNpc_grA_HIO_c* mpHio;
+    /* 0x0C98 */ dCcD_Cyl field_0xC98;
+    /* 0x0DD4 */ daNpcF_Path_c field_0xDD4;
+    /* 0x1404 */ daNpc_grA_c_Action mAction2;
+    /* 0x1410 */ daNpc_grA_c_Action mAction;
+    /* 0x141C */ request_of_phase_process_class mPhase[8];
+    /* 0x145C */ int field_0x145C;
+    /* 0x14B0 */ int field_0x1460;
+    /* 0x1464 */ int field_0x1464;
+    /* 0x1468 */ int field_0x1468;
+    /* 0x146C */ int field_0x146C;
+    /* 0x1470 */ s16 mLookMode;
+    /* 0x1472 */ u16 field_0x1472;
+    /* 0x1474 */ u8 mType;
+    /* 0x1478 */ int field_0x1478;
+    /* 0x147C */ const char* mName;
+    /* 0x1480 */ int field_0x1480;
+    /* 0x1484 */ s16 field_0x1484;
+    /* 0x1486 */ u8 field_0x1486;
+    /* 0x1487 */ u8 field_0x1487;
+    /* 0x1488 */ u8 field_0x1488;
+    /* 0x1489 */ u8 field_0x1489;
+    /* 0x148C */ cXyz field_0x148C;
+    /* 0x1498 */ csXyz field_0x1498;
+    /* 0x149E */ u8 field_0x149E;
+    /* 0x14A0 */ cXyz field_0x14A0;
+    /* 0x14AC */ csXyz field_0x14AC;
+    /* 0x14B4 */ f32 field_0x14B4;
+    /* 0x14B8 */ f32 field_0x14B8;
+    /* 0x14BC */ cXyz field_0x14BC;
+    /* 0x14C8 */ csXyz field_0x14C8;
+    /* 0x14CE */ u8 mMode;
+    /* 0x14CF */ u8 mSwBit;
+    /* 0x14D0 */ u8 field_0x14D0;
+    /* 0x14D1 */ u8 field_0x14D1;
+    /* 0x14D4 */ f32 field_0x14D4;
+    /* 0x14D8 */ int field_0x14D8;
+    /* 0x14DC */ Mtx field_0x14DC;
+    /* 0x150C */ u8 field_0x150C;
+    /* 0x1510 */ int mParticleID[3];
+    /* 0x151C */ int field_0x151C;
+    /* 0x1520 */ daNpc_GrA_prtclMngr_c mParticleManager[4];
+    /* 0x1690 */ u8 field_0x1690;
+    /* 0x1691 */ u8 field_0x1691;
+    /* 0x1692 */ u8 field_0x1692;
+    /* 0x1692 */ u8 field_0x1693;
+    /* 0x1692 */ s16 field_0x1694;
 
 };
 
-// STATIC_ASSERT(sizeof(daNpc_grA_c) == 0x1698);
+STATIC_ASSERT(sizeof(daNpc_grA_c) == 0x1698);
 
 
 #endif /* D_A_NPC_GRA_H */

@@ -15,6 +15,11 @@
 // Declarations:
 //
 
+int offs()
+{
+    return offsetof(daNpc_grA_HIOParam, mParticleSize);
+}
+
 /* ############################################################################################## */
 /* 809C9D98-809C9E1C 000000 0084+00 27/27 0/0 0/0 .rodata          m__17daNpc_grA_Param_c */
 const daNpc_grA_HIOParam daNpc_grA_Param_c::m = {
@@ -381,16 +386,16 @@ daNpc_grA_c::~daNpc_grA_c() {
 }
 
 /* 809BEDA4-809BF0A8 000544 0304+00 1/1 0/0 0/0 .text            create__11daNpc_grA_cFv */
-int daNpc_grA_c::create() {
+BOOL daNpc_grA_c::create() {
     fopAcM_ct(this, daNpc_grA_c);
     mTwilight = dKy_darkworld_check();
     mType = getTypeFromParam();
     mMode = getMode();
     mSwBit = getSwBit();
     if (home.angle.x != 0xffff) {
-        field_0x14BC = home.angle.x;
+        field_0x146C = home.angle.x;
     } else{
-        field_0x14BC = -1;
+        field_0x146C = -1;
     }
     if (isDelete()) {
         return cPhs_ERROR_e;
@@ -436,8 +441,8 @@ int daNpc_grA_c::create() {
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mCcStts.Init(GET_HIO(mNpcFParams.weight), 0, this);
 
-        field_0xCE8.Set(mCcDCyl);
-        field_0xCE8.SetStts(&mCcStts);
+        field_0xC98.Set(mCcDCyl);
+        field_0xC98.SetStts(&mCcStts);
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
@@ -451,7 +456,7 @@ int daNpc_grA_c::create() {
 }
 
 /* 809BF0A8-809BF418 000848 0370+00 1/1 0/0 0/0 .text            CreateHeap__11daNpc_grA_cFv */
-int daNpc_grA_c::CreateHeap() {
+BOOL daNpc_grA_c::CreateHeap() {
     J3DModelData* mdlData_p = NULL;
     J3DModel* mdlData2_p = NULL;
     if (mTwilight) {
@@ -531,27 +536,27 @@ int daNpc_grA_c::CreateHeap() {
 }
 
 /* 809BF418-809BF44C 000BB8 0034+00 1/1 0/0 0/0 .text            Delete__11daNpc_grA_cFv */
-int daNpc_grA_c::Delete() {
+BOOL daNpc_grA_c::Delete() {
     fpc_ProcID id = fopAcM_GetID(this);
     this->~daNpc_grA_c();
     return TRUE;
 }
 
 /* 809BF44C-809BF490 000BEC 0044+00 2/2 0/0 0/0 .text            Execute__11daNpc_grA_cFv */
-int daNpc_grA_c::Execute() {
+BOOL daNpc_grA_c::Execute() {
     int ret = execute();
     setPrtcl();
     return ret;
 }
 
 /* 809BF490-809BF504 000C30 0074+00 1/1 0/0 0/0 .text            Draw__11daNpc_grA_cFv */
-int daNpc_grA_c::Draw() {
+BOOL daNpc_grA_c::Draw() {
     return draw(chkAction(&daNpc_grA_c::test), 0, GET_HIO(mNpcFParams.real_shadow_size), NULL, 0);
 }
 
 /* 809BF504-809BF738 000CA4 0234+00 1/1 0/0 0/0 .text
  * ctrlJoint__11daNpc_grA_cFP8J3DJointP8J3DModel                */
-int daNpc_grA_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
+BOOL daNpc_grA_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     J3DJoint* joint = i_joint;
     int jntNo = joint->getJntNo();
     int arr[] = {1, 3, 4};
@@ -596,13 +601,13 @@ int daNpc_grA_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
 /* 809BF738-809BF758 000ED8 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__11daNpc_grA_cFP10fopAc_ac_c              */
-int daNpc_grA_c::createHeapCallBack(fopAc_ac_c* i_this) {
+BOOL daNpc_grA_c::createHeapCallBack(fopAc_ac_c* i_this) {
     daNpc_grA_c* this_gra = (daNpc_grA_c*)i_this;
     return this_gra->CreateHeap();
 }
 
 /* 809BF758-809BF7A4 000EF8 004C+00 2/2 0/0 0/0 .text ctrlJointCallBack__11daNpc_grA_cFP8J3DJointi */
-int daNpc_grA_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
+BOOL daNpc_grA_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
     if (param_1 == 0)
     {
         J3DModel* model = j3dSys.getModel();
@@ -617,10 +622,10 @@ int daNpc_grA_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 809BF7A4-809BF8A0 000F44 00FC+00 1/1 0/0 1/1 .text            setTagJump__11daNpc_grA_cFv */
 BOOL daNpc_grA_c::setTagJump() {
-    if (field_0x14D9) {
-        current.pos = old.pos = home.pos = field_0x14DC;
-        shape_angle = mCurAngle = mOldAngle = current.angle = old.angle = home.angle = field_0x14E8;
-        field_0x1520 = 0;
+    if (field_0x1489) {
+        current.pos = old.pos = home.pos = field_0x148C;
+        shape_angle = mCurAngle = mOldAngle = current.angle = old.angle = home.angle = field_0x1498;
+        field_0x14D0 = 0;
         return TRUE;
     }
     return FALSE;
@@ -628,10 +633,10 @@ BOOL daNpc_grA_c::setTagJump() {
 
 /* 809BF8A0-809BF99C 001040 00FC+00 2/2 0/0 0/0 .text            setTagJump2__11daNpc_grA_cFv */
 BOOL daNpc_grA_c::setTagJump2() {
-    if (field_0x14EE) {
-        current.pos = old.pos = home.pos = field_0x14F0;
-        shape_angle = mCurAngle = mOldAngle = current.angle = old.angle = home.angle = field_0x14FC;
-        field_0x1520 = 0;
+    if (field_0x149E) {
+        current.pos = old.pos = home.pos = field_0x14A0;
+        shape_angle = mCurAngle = mOldAngle = current.angle = old.angle = home.angle = field_0x14AC;
+        field_0x14D0 = 0;
         return TRUE;
     }
     return FALSE;
@@ -639,10 +644,10 @@ BOOL daNpc_grA_c::setTagJump2() {
 
 /* 809BF99C-809BFA88 00113C 00EC+00 1/1 0/0 1/1 .text            setHomeJump__11daNpc_grA_cFv */
 BOOL daNpc_grA_c::setHomeJump() {
-    current.pos = old.pos = home.pos = field_0x150C;
-    shape_angle = mCurAngle = mOldAngle = current.angle = old.angle = home.angle = field_0x1518;
-    field_0x1520 = 0;
-    field_0x1521 = 0;
+    current.pos = old.pos = home.pos = field_0x14BC;
+    shape_angle = mCurAngle = mOldAngle = current.angle = old.angle = home.angle = field_0x14C8;
+    field_0x14D0 = 0;
+    field_0x14D1 = 0;
     return TRUE;
 }
 
@@ -768,8 +773,8 @@ void daNpc_grA_c::setParam() {
         }
     }
     if (mTwilight) {
-        field_0x14AC = 0;
-        field_0x14B0 = 0;
+        field_0x145C = 0;
+        field_0x1460 = 0;
         if (mType == 9) {
             talkDistance = 0xb;
             talkAngle = 0x4;
@@ -782,8 +787,8 @@ void daNpc_grA_c::setParam() {
             attnAngle = 0x6;
         }
     } else {
-        field_0x14AC = 0;
-        field_0x14B0 = 0;
+        field_0x145C = 0;
+        field_0x1460 = 0;
         talkDistance = GET_HIO(mNpcFParams.talk_distance);
         talkAngle = GET_HIO(mNpcFParams.talk_angle);
         attnDistance = GET_HIO(mNpcFParams.attention_distance);
@@ -804,7 +809,7 @@ void daNpc_grA_c::setParam() {
         attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(attnDistance, attnAngle);
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(talkDistance, talkAngle);
-        if (field_0x1528 == 0x1a) {
+        if (field_0x14D8 == 0x1a) {
             attention_info.flags = 0;
         }else{
             attention_info.flags = flags;
@@ -829,11 +834,11 @@ BOOL daNpc_grA_c::main() {
     int a = 0xffff;
     JUT_ASSERT(1367, mpMorf != NULL); // TODO: update "mpMorf" to "mAnm_p"
     if (doEvent() == 0) {
-        if (hitChk2(&field_0xCE8, TRUE, FALSE)) {
+        if (hitChk2(&field_0xC98, TRUE, FALSE)) {
             setDamage(GET_HIO(mNpcFParams.damage_time), 0x17, 0);
             setLookMode(1);
         } else if (mIsDamaged && mDamageTimer == 0) {
-            field_0x14C2 = 0;
+            field_0x1472 = 0;
             mIsDamaged = 0;
         }
         mOrderEvtNo = 0;
@@ -862,7 +867,7 @@ BOOL daNpc_grA_c::main() {
             }
             eventInfo.setArchiveName(l_resNames[l_evtGetParamList[mOrderEvtNo][1]]);
         }
-        orderEvent(field_0x16E1, l_evtNames[l_evtGetParamList[mOrderEvtNo][0]], a, 4, 0xff, j);
+        orderEvent(field_0x1691, l_evtNames[l_evtGetParamList[mOrderEvtNo][0]], a, 4, 0xff, j);
     }
     if (field_0x9ee != 0) {
         mExpressionMorfOverride = 0.0f;
@@ -930,7 +935,7 @@ void daNpc_grA_c::setAttnPos() {
         mEyeAngle.x = 0;
     }
     
-    if (chkAction(&daNpc_grA_c::moveRock) || field_0x1528 == 0x1a) {
+    if (chkAction(&daNpc_grA_c::moveRock) || field_0x14D8 == 0x1a) {
         attention_info.position.set(current.pos.x, current.pos.y + 300.0f, current.pos.z);
     } else {
         attention_info.position.set(mHeadPos.x, mHeadPos.y + attnOffset, mHeadPos.z);
@@ -938,26 +943,26 @@ void daNpc_grA_c::setAttnPos() {
 
     if (!mHide) {
         if (mDamageTimer == 0) {
-            field_0xCE8.SetTgType(0xd8fbfdff);
-            field_0xCE8.SetTgSPrm(0x1f);
-            field_0xCE8.OnTgNoHitMark();
+            field_0xC98.SetTgType(0xd8fbfdff);
+            field_0xC98.SetTgSPrm(0x1f);
+            field_0xC98.OnTgNoHitMark();
             if (mType == 7) {
-                field_0xCE8.OnTgNoConHit();
-                field_0xCE8.OffTgShield();
+                field_0xC98.OnTgNoConHit();
+                field_0xC98.OffTgShield();
             }
         } else {
-            field_0xCE8.SetTgType(0);
-            field_0xCE8.SetTgSPrm(0);
+            field_0xC98.SetTgType(0);
+            field_0xC98.SetTgSPrm(0);
         }
         if (mType == 10) {
-            if (field_0x1528 == 0x1a) {
-                field_0xCE8.OnAtSPrmBit(0xc);
-                field_0xCE8.SetAtSe(dCcD_SE_STONE);
-                field_0xCE8.SetAtSpl(dCcG_At_Spl_UNK_D);
-                field_0xCE8.SetAtType(AT_TYPE_CSTATUE_SWING);
-                field_0xCE8.OnAtSetBit();
+            if (field_0x14D8 == 0x1a) {
+                field_0xC98.OnAtSPrmBit(0xc);
+                field_0xC98.SetAtSe(dCcD_SE_STONE);
+                field_0xC98.SetAtSpl(dCcG_At_Spl_UNK_D);
+                field_0xC98.SetAtType(AT_TYPE_CSTATUE_SWING);
+                field_0xC98.OnAtSetBit();
             } else {
-                field_0xCE8.OffAtSetBit();
+                field_0xC98.OffAtSetBit();
             }
         }
         f32 width = 0.0f;
@@ -973,20 +978,20 @@ void daNpc_grA_c::setAttnPos() {
             mDoMtx_stack_c::YrotS(shape_angle.y);
             mDoMtx_stack_c::multVec(&center, &center);
             center += current.pos;
-            field_0xCE8.SetC(center);
+            field_0xC98.SetC(center);
             width = 150.0f;
             height = 150.0f;
         } else {
-            field_0xCE8.SetC(current.pos);
+            field_0xC98.SetC(current.pos);
         }
-        field_0xCE8.SetCoSPrm(0x79);
-        field_0xCE8.SetH(height);
-        field_0xCE8.SetR(width);
-        dComIfG_Ccsp()->Set(&field_0xCE8);
+        field_0xC98.SetCoSPrm(0x79);
+        field_0xC98.SetH(height);
+        field_0xC98.SetR(width);
+        dComIfG_Ccsp()->Set(&field_0xC98);
     }
-    field_0xCE8.ClrAtHit();
-    field_0xCE8.ClrTgHit();
-    field_0xCE8.ClrCoHit();
+    field_0xC98.ClrAtHit();
+    field_0xC98.ClrTgHit();
+    field_0xC98.ClrCoHit();
 }
 
 /* 809C0948-809C0CE4 0020E8 039C+00 2/0 0/0 0/0 .text            setExpressionAnm__11daNpc_grA_cFib
@@ -1152,7 +1157,7 @@ void daNpc_grA_c::setMotionAnm(int i_motion, f32 i_morf) {
     if (bck != NULL && setMcaMorfAnm(bck, 1.0f, i_morf, attr2, 0, -1)) {
         mAnmFlags |= 0x9;
         mMotionLoops = 0;
-        field_0x1528 = i_motion;
+        field_0x14D8 = i_motion;
     }
 }
 
@@ -1205,14 +1210,14 @@ BOOL daNpc_grA_c::drawDbgInfo() {
 
         dDbVw_drawSphereXlu(mLookPos, 18.f, (GXColor){0x80, 0x80, 0x80, 0xA0}, 1);
 
-        int tableidx = getDistTableIdx(field_0x14AC, field_0x14B0);
+        int tableidx = getDistTableIdx(field_0x145C, field_0x1460);
         maxSpeakDist = dComIfGp_getAttention()->getDistTable(tableidx).mDistMax;
 
         dDbVw_drawCircleOpa(attention_info.position, maxSpeakDist,
                             (GXColor){0xc8, 0xc8, 0xc8, 0xff}, 1, 0xc);
 
-        if (field_0xE24.getPathInfo() != NULL) {
-            field_0xE24.drawDbgInfoXyz();
+        if (field_0xDD4.getPathInfo() != NULL) {
+            field_0xDD4.drawDbgInfoXyz();
         }
     }
 #endif
@@ -1221,11 +1226,11 @@ BOOL daNpc_grA_c::drawDbgInfo() {
 
 /* 809C1064-809C1154 002804 00F0+00 1/0 0/0 0/0 .text            drawOtherMdls__11daNpc_grA_cFv */
 void daNpc_grA_c::drawOtherMdls() {
-    if (field_0x155C && mpModel) {
+    if (field_0x150C && mpModel) {
         g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
         switch (mType) {
         case 7:
-            mpModel->setBaseTRMtx(field_0x152C);
+            mpModel->setBaseTRMtx(field_0x14DC);
             break;
         case 8:
         case 9:
@@ -1332,10 +1337,10 @@ BOOL daNpc_grA_c::isDelete() {
 /* 809C13D8-809C1990 002B78 05B8+00 1/1 0/0 0/0 .text            reset__11daNpc_grA_cFv */
 void daNpc_grA_c::reset() {
     initialize();
-    field_0xE24.initialize();
+    field_0xDD4.initialize();
     if (mType == 5 || mType == 7) {
-        if (field_0xE24.setPathInfo(getPathNoFromParam(), fopAcM_GetRoomNo(this), 0)) {
-            field_0xE24.setRange(100.0f);
+        if (field_0xDD4.setPathInfo(getPathNoFromParam(), fopAcM_GetRoomNo(this), 0)) {
+            field_0xDD4.setRange(100.0f);
         }
     }
     mNpcfLookAt.initialize();
@@ -1344,16 +1349,16 @@ void daNpc_grA_c::reset() {
     }
     mAction2 = NULL;
     mAction = NULL;
-    field_0x14AC = 0;
-    field_0x14B0 = 0;
-    field_0x14B4 = 0;
-    field_0x14B8 = 0;
+    field_0x145C = 0;
+    field_0x1460 = 0;
+    field_0x1464 = 0;
+    field_0x1468 = 0;
     mLookMode = -1;
-    field_0x14C2 = 0;
+    field_0x1472 = 0;
     mHide = false;
-    field_0x14D0 = -1;
-    mDoMtx_identity(field_0x152C);
-    field_0x155C = 0;
+    field_0x1480 = -1;
+    mDoMtx_identity(field_0x14DC);
+    field_0x150C = 0;
     current.pos = home.pos;
     old.pos = current.pos;
     current.angle.set(0, home.angle.y, 0);
@@ -1370,41 +1375,41 @@ void daNpc_grA_c::reset() {
             mParticleManager[i].mManager.init(&mAcch, 0.f, 0.f);
         }
     }
-    field_0x14D9 = 0;
-    field_0x14EE = 0;
-    field_0x1524 = 0.0f;
-    field_0x16E1 = 0;
-    field_0x14D6 = 0;
-    field_0x16E0 = 0;
-    field_0x14D7 = 0;
+    field_0x1489 = 0;
+    field_0x149E = 0;
+    field_0x14D4 = 0.0f;
+    field_0x1691 = 0;
+    field_0x1486 = 0;
+    field_0x1690 = 0;
+    field_0x1487 = 0;
     if (mType == 2 && getMode1() == 0) {
         mName = l_myName[1];
-        field_0x14D8 = 1;
-        field_0x14D7 = 1;
+        field_0x1488 = 1;
+        field_0x1487 = 1;
     } else if (mType == 7) {
         mName = l_myName[0];
         if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && fopAcM_GetRoomNo(this) == 0 &&
             dComIfGp_getStartStageLayer() == 8 && dComIfGs_getStartPoint() == 8)
         {
-            field_0x14D8 = 1;
+            field_0x1488 = 1;
         } else {
-            field_0x14D8 = 0;
+            field_0x1488 = 0;
         }
     } else if (mType == 8 || mType == 9) {
         mName = l_myName[0];
-        field_0x14D8 = 0;
-        field_0x155C = 1;
+        field_0x1488 = 0;
+        field_0x150C = 1;
     } else if (mType == 10) {
         mName = l_myName[0];
         if (daNpcF_chkEvtBit(0x187) == 0) {
-            field_0x14D6 = 0;
-            field_0x14D8 = 0;
+            field_0x1486 = 0;
+            field_0x1488 = 0;
         } else if (!dComIfGs_isSwitch(mSwBit, fopAcM_GetRoomNo(this))) {
-            field_0x14D6 = 1;
-            field_0x14D8 = 0;
+            field_0x1486 = 1;
+            field_0x1488 = 0;
         } else {
-            field_0x14D6 = 3;
-            field_0x14D8 = 1;
+            field_0x1486 = 3;
+            field_0x1488 = 1;
         }
     } else {
         mName = l_myName[0];
@@ -1438,19 +1443,19 @@ void daNpc_grA_c::reset() {
             }
         } else if (mType == 6 ) {
             if (mMode != 0) {
-                field_0x14D6 = 0;
+                field_0x1486 = 0;
             } else {
-                field_0x14D6 = 1;
+                field_0x1486 = 1;
             }
         }
-        field_0x14D8 = 0;
+        field_0x1488 = 0;
     }
-    field_0x16E2 = field_0x16E3 = 0;
-    field_0x16E4 = 0;
+    field_0x1692 = field_0x1693 = 0;
+    field_0x1694 = 0;
     for (int i = 0; i < 3; i++) {
         mParticleID[i] = -1;
     }
-    field_0x156C = -1;
+    field_0x151C = -1;
     field_0x9ee = 1;
 }
 
@@ -1706,18 +1711,18 @@ void daNpc_grA_c::playMotion() {
 
 /* 809C28BC-809C28E8 00405C 002C+00 4/4 0/0 0/0 .text
  * chkAction__11daNpc_grA_cFM11daNpc_grA_cFPCvPvPv_i            */
-int daNpc_grA_c::chkAction(daNpc_grA_c_Action i_action) {
+BOOL daNpc_grA_c::chkAction(daNpc_grA_c_Action i_action) {
     return mAction == i_action;
 }
 
 /* 809C28E8-809C2990 004088 00A8+00 2/2 0/0 0/0 .text
  * setAction__11daNpc_grA_cFM11daNpc_grA_cFPCvPvPv_i            */
 BOOL daNpc_grA_c::setAction(daNpc_grA_c_Action i_action) {
-    field_0x14C2 = 3;
+    field_0x1472 = 3;
     if (mAction) {
         (this->*mAction)(NULL);
     }
-    field_0x14C2 = 0;
+    field_0x1472 = 0;
     mAction = i_action;
     if (mAction) {
         (this->*mAction)(NULL);
@@ -1745,7 +1750,7 @@ BOOL daNpc_grA_c::selectAction() {
             mAction2 = &daNpc_grA_c::waitKickOut;
             break;
         case 6:
-            if (field_0x14D6 == 0) {
+            if (field_0x1486 == 0) {
                 mAction2 = &daNpc_grA_c::wait;
             } else {
                 mAction2 = &daNpc_grA_c::moveRock;
@@ -1761,7 +1766,7 @@ BOOL daNpc_grA_c::selectAction() {
             mAction2 = &daNpc_grA_c::waitSpaBuyerTW;
             break;
         case 10:
-            switch (field_0x14D6) {
+            switch (field_0x1486) {
             case 0:
                 mAction2 = &daNpc_grA_c::beforeCrashWait;
                 break;
@@ -1804,7 +1809,7 @@ BOOL daNpc_grA_c::doEvent() {
     BOOL ret = FALSE;
     if (dComIfGp_event_runCheck()) {
         manager = &dComIfGp_getEventManager();
-        if (field_0x16E1 == 0) {
+        if (field_0x1691 == 0) {
             mOrderSpeakEvt = 0;
         } else {
             mOrderSpeakEvt = 1;
@@ -1813,7 +1818,7 @@ BOOL daNpc_grA_c::doEvent() {
             if (chkAction(&daNpc_grA_c::talk)) {
                 (this->*mAction)(NULL);
             } else if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
-                if (field_0x14D7 == 0) {
+                if (field_0x1487 == 0) {
                     setAction(&daNpc_grA_c::talk);
                 } else {
                     mOrderEvtNo = 1;
@@ -1823,9 +1828,9 @@ BOOL daNpc_grA_c::doEvent() {
             }
             ret = TRUE;
         } else {
-            if (field_0x14D0 != 0xffffffff) {  // -1 doesn't work
-                dComIfGp_event_setItemPartnerId(field_0x14D0);
-                field_0x14D0 = -1;
+            if (field_0x1480 != 0xffffffff) {  // -1 doesn't work
+                dComIfGp_event_setItemPartnerId(field_0x1480);
+                field_0x1480 = -1;
             }
             int id;
             if (eventInfo.getIdx() > 0) {
@@ -1850,7 +1855,7 @@ BOOL daNpc_grA_c::doEvent() {
                     dComIfGp_event_reset();
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
-                    field_0x16E3 = field_0x16E2 = 0;
+                    field_0x1693 = field_0x1692 = 0;
                     fpcM_Search(s_subCarry, this);
                     break;
                 case 6:
@@ -1964,7 +1969,7 @@ void daNpc_grA_c::lookat() {
         }
         mNpcfLookAt.setAttnPos(&mLookPos);
     } else if (mLookMode == 6) {
-        mLookPos = field_0x14F0;
+        mLookPos = field_0x14A0;
         mLookPos.y += 160.0f;
         mNpcfLookAt.setAttnPos(&mLookPos);
     } else if (mLookMode == 7) {
@@ -2130,15 +2135,15 @@ void daNpc_grA_c::setRollPrtcl(cXyz const& i_pos, f32 i_scale) {
 
 /* 809C3A54-809C3B28 0051F4 00D4+00 1/1 0/0 0/0 .text            setOtherObjMtx__11daNpc_grA_cFv */
 void daNpc_grA_c::setOtherObjMtx() {
-    if (field_0x155C != 0) {
+    if (field_0x150C != 0) {
         switch (mType) {
         case 7:
-            cXyz c = current.pos;
-            c.y += l_offsetHeight[(u32)mpMorf->getFrame() % 0x1f]; // maybe meant to be & 0x1f
-            mDoMtx_stack_c::transS(c);
+            cXyz pos = current.pos;
+            pos.y += l_offsetHeight[(u32)mpMorf->getFrame() % 0x1f]; // maybe meant to be & 0x1f
+            mDoMtx_stack_c::transS(pos);
             mDoMtx_stack_c::ZXYrotM(mCurAngle);
             mDoMtx_stack_c::scaleM(scale);
-            mDoMtx_copy(mDoMtx_stack_c::get(), field_0x152C);
+            mDoMtx_copy(mDoMtx_stack_c::get(), field_0x14DC);
         }
     }
 }
@@ -2164,7 +2169,7 @@ BOOL daNpc_grA_c::ECut_talkSpa(int param_0) {
             setLookMode(5);
             break;
         case 1:
-            initTalk(field_0x14BC, arr);
+            initTalk(field_0x146C, arr);
             break;
         case 2:
             if (daNpcF_chkEvtBit(6) && daNpcF_chkEvtBit(0x3e) == FALSE) {
@@ -2229,7 +2234,7 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int param_0) {
         case 0x28:
             setMotion(0x13, -1.0f, 0);
             setLookMode(0);
-            field_0x1524 = 0.1f;
+            field_0x14D4 = 0.1f;
             break;
         case 0x32:
             setLookMode(0);
@@ -2265,7 +2270,7 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int param_0) {
         r28 = 1;
     } break;
     case 0x1e:
-        if (field_0x1528 == 0x1b) {
+        if (field_0x14D8 == 0x1b) {
             if (mpMorf->isStop()) {
                 r28 = 1;
             } else if (mpMorf->checkFrame(14.0f)) {
@@ -2279,41 +2284,41 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int param_0) {
         }
         break;
     case 0x28:
-        if (field_0x1528 == 0x1a) {
+        if (field_0x14D8 == 0x1a) {
             mpMorf->setEndFrame(29.0f);
-            if (field_0x1524 < 3.0f) {
-                field_0x1524 += 0.2f;
+            if (field_0x14D4 < 3.0f) {
+                field_0x14D4 += 0.2f;
             }
-            mpMorf->setPlaySpeed(field_0x1524);
+            mpMorf->setPlaySpeed(field_0x14D4);
             speedF = 0.0f;
         }
         r28 = 1;
         break;
     case 0x2d:
-        if (field_0x1528 == 0x1a) {
+        if (field_0x14D8 == 0x1a) {
             mpMorf->setEndFrame(29.0f);
-            if (field_0x1524 < 3.0f) {
-                field_0x1524 += 0.2f;
+            if (field_0x14D4 < 3.0f) {
+                field_0x14D4 += 0.2f;
             }
-            mpMorf->setPlaySpeed(field_0x1524);
-            speedF = field_0x1524 * GET_HIO(mRotationalSpeed);
+            mpMorf->setPlaySpeed(field_0x14D4);
+            speedF = field_0x14D4 * GET_HIO(mRotationalSpeed);
         }
         r28 = 1;
         break;
     case 0x32:
-        if (field_0x1528 == 0x1a) {
-            if (field_0x1524 > 1.0f) {
-                field_0x1524 -= 0.25f;
-                mpMorf->setPlaySpeed(field_0x1524);
-                speedF = field_0x1524 * GET_HIO(mRotationalSpeed);
+        if (field_0x14D8 == 0x1a) {
+            if (field_0x14D4 > 1.0f) {
+                field_0x14D4 -= 0.25f;
+                mpMorf->setPlaySpeed(field_0x14D4);
+                speedF = field_0x14D4 * GET_HIO(mRotationalSpeed);
             } else {
                 if (mpMorf->getFrame() >= 0.0f && mpMorf->getFrame() <= 5.0f) {
                     setMotion(0x14, -1.0f, 0);
-                    field_0x1524 = 0.0f;
+                    field_0x14D4 = 0.0f;
                 }
                 speedF = 0.0f;
             }
-        } else if (field_0x1528 == 0x19) {
+        } else if (field_0x14D8 == 0x19) {
             if (mpMorf->checkFrame(12.0f)) {
                 mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x1a));
                 mDoMtx_stack_c::multVecZero(&mParticleManager[1].mPos);
@@ -2326,7 +2331,7 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int param_0) {
                 mParticleManager[2].mAngle = mCurAngle;
                 mParticleManager[2].field_0x0 = 1;
             }
-        } else if (field_0x1528 == 0x16) {
+        } else if (field_0x14D8 == 0x16) {
             r28 = 1;
         }
         break;
@@ -2345,16 +2350,16 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int param_0) {
             mTurnMode = 0;
         } else if (step(fopAcM_searchPlayerAngleY(this), -1, 0x16, 0xf)) {
             mTurnMode = 0;
-            if (field_0x1528 == 0x1c) {
+            if (field_0x14D8 == 0x1c) {
                 setMotion(0, -1.0f, 0);
             }
         }
         if (cLib_calcTimer(&mEventTimer) == 0) {
             if (mMotion == 0x15) {
-                if (field_0x1528 == 0x16 && fopAcM_searchPlayerAngleY(this) == mCurAngle.y) {
+                if (field_0x14D8 == 0x16 && fopAcM_searchPlayerAngleY(this) == mCurAngle.y) {
                     r28 = 1;
                 }
-                if (field_0x1528 == 0x1f && mpMorf->getFrame() >= 10.0f &&
+                if (field_0x14D8 == 0x1f && mpMorf->getFrame() >= 10.0f &&
                     mpMorf->getFrame() < 11.0f)
                 {
                     mCreature.startCreatureVoice(Z2SE_GORON_V_SMR_REPLY, -1);
@@ -2370,11 +2375,11 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int param_0) {
         break;
     }
 
-    if (field_0x1528 == 0x1a) {
-        if (field_0x1524 >= 1.0f) {
+    if (field_0x14D8 == 0x1a) {
+        if (field_0x14D4 >= 1.0f) {
             setRollPrtcl(current.pos, 1.0f);
         }
-        f32 v = cLib_minMaxLimit(fabsf(field_0x1524) * 20.0f, 1.0f, 127.0f);
+        f32 v = cLib_minMaxLimit(fabsf(field_0x14D4) * 20.0f, 1.0f, 127.0f);
         mCreature.startCreatureSound(Z2SE_GORON_ROLLING, v, -1);
     }
     return r28;
@@ -2418,13 +2423,13 @@ BOOL daNpc_grA_c::ECut_grDSGate(int param_0) {
         break;
     case 0x14:
         if (mMotion != 5) {
-            if (field_0x1528 != 0x17) {
-                cLib_chasePosXZ(&current.pos, field_0x14DC, 30.f / 11.f);
+            if (field_0x14D8 != 0x17) {
+                cLib_chasePosXZ(&current.pos, field_0x148C, 30.f / 11.f);
                 if (mpMorf->isStop()) {
                     setMotion(5, -1.0f, 0);
-                    home.pos = field_0x14DC;
-                    home.angle = field_0x14E8;
-                    field_0x1521 = 1;
+                    home.pos = field_0x148C;
+                    home.angle = field_0x1498;
+                    field_0x14D1 = 1;
                     r30 = 1;
                 }
             }
@@ -2517,13 +2522,13 @@ BOOL daNpc_grA_c::ECut_teachElevator(int param_0) {
         break;
     case 0x28:
         if (mMotion != 5) {
-            if (field_0x1528 != 0x17) {
-                cLib_chasePosXZ(&current.pos, field_0x14DC, 30.0f / 11.0f);
+            if (field_0x14D8 != 0x17) {
+                cLib_chasePosXZ(&current.pos, field_0x148C, 30.0f / 11.0f);
                 if (mpMorf->isStop()) {
                     setMotion(5, -1.0f, 0);
-                    home.pos = field_0x14DC;
-                    home.angle = field_0x14E8;
-                    field_0x1521 = 1;
+                    home.pos = field_0x148C;
+                    home.angle = field_0x1498;
+                    field_0x14D1 = 1;
                     r30 = 1;
                 }
             }
@@ -2627,7 +2632,7 @@ BOOL daNpc_grA_c::ECut_noneLook(int param_0) {
             setMotion(0, -1.0f, 0);
             setLookMode(0);
             speedF = 0.0f;
-            field_0x16E0 = 1;
+            field_0x1690 = 1;
             break;
         case 0xa:
             mEventTimer = 0x41;
@@ -2689,8 +2694,8 @@ BOOL daNpc_grA_c::ECut_rescueRock(int param_0) {
             setLookMode(0);
             gravity = -1.0f;
             speed.y = 41.0f;
-            field_0x1524 = 2.0f;
-            field_0x14D6 = 0;
+            field_0x14D4 = 2.0f;
+            field_0x1486 = 0;
             break;
         case 0x14:
             mAcch.ClrGrndNone();
@@ -2703,7 +2708,7 @@ BOOL daNpc_grA_c::ECut_rescueRock(int param_0) {
     switch (sp30) {
     case 0:
         if (speed.y < 10.0f) {
-            if (field_0x1528 != 0x19) {
+            if (field_0x14D8 != 0x19) {
                 setExpression(0x17, -1.0f);
                 setMotion(0x14, -1.0f, 0);
                 gravity = -0.5f;
@@ -2711,13 +2716,13 @@ BOOL daNpc_grA_c::ECut_rescueRock(int param_0) {
                 r28 = 1;
             }
         } else {
-            cLib_chaseF(&field_0x1524, 1.0f, 0.03f);
-            mpMorf->setPlaySpeed(field_0x1524);
+            cLib_chaseF(&field_0x14D4, 1.0f, 0.03f);
+            mpMorf->setPlaySpeed(field_0x14D4);
             mpMorf->setEndFrame(27.0f);
         }
         break;
     case 0xa:
-        if (field_0x1528 == 0x19) {
+        if (field_0x14D8 == 0x19) {
             if (mpMorf->getFrame() >= 8.0f) {
                 setExpression(0x17, -1.0f);
                 setMotion(0x1c, -1.0f, 0);
@@ -2788,7 +2793,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int param_0) {
             break;
         case 0x14: {
             setLookMode(0);
-            field_0x1524 = 1.0f;
+            field_0x14D4 = 1.0f;
             cXyz c(250.0f, 0.0f, 100.0f);
             mDoMtx_stack_c::YrotS(shape_angle.y);
             mDoMtx_stack_c::multVec(&c, &c);
@@ -2813,21 +2818,21 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int param_0) {
             setExpression(0x17, -1.0f);
             break;
         case 0x3c: 
-            field_0x1524 = 0.0f;
-            mpMorf->setPlaySpeed(field_0x1524);
+            field_0x14D4 = 0.0f;
+            mpMorf->setPlaySpeed(field_0x14D4);
             mEventTimer = 0x12c;
             break;
         case 0x41:
             mHide = 1;
             setAngle(home.angle.y + 0x8000);
             speedF = 0.0f;
-            field_0x1524 = 0.0f;
+            field_0x14D4 = 0.0f;
             break;
         case 0x46:
-            field_0x155C = 1;
+            field_0x150C = 1;
             mHide = 0;
-            field_0xE24.reverse();
-            field_0xE24.setNextIdx();
+            field_0xDD4.reverse();
+            field_0xDD4.setNextIdx();
             mEventTimer = 0x118;
             mCreature.startCreatureVoice(0x501e1, -1);
             break;
@@ -2850,9 +2855,9 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int param_0) {
             cXyz c;
             mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
             mDoMtx_stack_c::multVecZero(&c);
-            field_0x156C = dComIfGp_particle_set(field_0x156C, 0x2a3, &c, &tevStr, &current.angle, NULL, 0xff,
+            field_0x151C = dComIfGp_particle_set(field_0x151C, 0x2a3, &c, &tevStr, &current.angle, NULL, 0xff,
                                   NULL, -1, NULL, NULL, NULL);
-            sp28 = dComIfGp_particle_getEmitter(field_0x156C);
+            sp28 = dComIfGp_particle_getEmitter(field_0x151C);
             if (sp28 != NULL)
             {
                 sp28->setGlobalTranslation(c.x, c.y, c.z);
@@ -2896,7 +2901,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int param_0) {
         }
         break;
     case 0x32:
-    if (field_0x1528 == 0x1b) {
+    if (field_0x14D8 == 0x1b) {
         if (mpMorf->isStop()) {
                 r28 = 1;
                 setMotion(0x13, -1.0f, 0);
@@ -2909,7 +2914,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int param_0) {
                 mParticleManager[0].mAngle = mCurAngle;
                 mParticleManager[0].field_0x0 = 1;
             }
-        } else if (field_0x1528 == 0x1a) {
+        } else if (field_0x14D8 == 0x1a) {
             mpMorf->setPlaySpeed(0.0f);
             mpMorf->setEndFrame(29.0f);
             r28 = 1;
@@ -2917,16 +2922,16 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int param_0) {
         break;
     case 0x46:
     case 0x3c:
-        if (field_0xE24.getPathInfo() != NULL) {
+        if (field_0xDD4.getPathInfo() != NULL) {
             cXyz c;
-            BOOL b = field_0xE24.getDstPos(current.pos, c);
+            BOOL b = field_0xDD4.getDstPos(current.pos, c);
             if (!b) {
                 cLib_addCalcAngleS2(&mCurAngle.y, cLib_targetAngleY(&current.pos, &c), 6, 0x400);
                 setAngle(mCurAngle.y);
             }
-            cLib_addCalc2(&field_0x1524, 5.0f, 0.1f, 0.1f);
-            mpMorf->setPlaySpeed(field_0x1524);
-            speedF = field_0x1524 * 10.0f;
+            cLib_addCalc2(&field_0x14D4, 5.0f, 0.1f, 0.1f);
+            mpMorf->setPlaySpeed(field_0x14D4);
+            speedF = field_0x14D4 * 10.0f;
         }
         if (!cLib_calcTimer(&mEventTimer)) {
             r28 = 1;
@@ -2943,12 +2948,12 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int param_0) {
         break;
     }
 
-    if ((field_0x1528 == 0x1a && field_0x1524 >= 1.0f) ||
-        field_0x1528 == 0x28 && mpMorf->getFrame() >= 18.0f && mpMorf->getFrame() <= 20.0f)
+    if ((field_0x14D8 == 0x1a && field_0x14D4 >= 1.0f) ||
+        field_0x14D8 == 0x28 && mpMorf->getFrame() >= 18.0f && mpMorf->getFrame() <= 20.0f)
     {
         setRollPrtcl(current.pos, 1.0f);
-        if (field_0x1528 == 0x1a) {
-            f32 v = cLib_minMaxLimit(fabsf(field_0x1524) * 20.0f, 1.0f, 127.0f);
+        if (field_0x14D8 == 0x1a) {
+            f32 v = cLib_minMaxLimit(fabsf(field_0x14D4) * 20.0f, 1.0f, 127.0f);
             mCreature.startCreatureSound(Z2SE_GORON_ROLLING, v, -1);
         }
     }
@@ -2978,7 +2983,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWaterFailure(int param_0) {
             setExpression(0x16, -1.0f);
             setMotion(2, -1.0f, 0);
             setLookMode(0);
-            field_0x16E0 = 2;
+            field_0x1690 = 2;
             break;
         case 0xa:
             setExpression(0x16, -1.0f);
@@ -3042,7 +3047,7 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int param_0) {
             setExpression(0x17, -1.0f);
             setMotion(0, -1.0f, 0);
             setLookMode(2);
-            field_0x14D6 = 2;
+            field_0x1486 = 2;
             break;
         case 0xa:
             setExpression(0x15, -1.0f);
@@ -3051,7 +3056,7 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int param_0) {
             break;
         case 0x14: {
             setLookMode(0);
-            initTalk(field_0x14BC, NULL);
+            initTalk(field_0x146C, NULL);
             cXyz c(200.0f, 100.0f, 0.0f);
             mDoMtx_stack_c::YrotS(home.angle.y);
             mDoMtx_stack_c::multVec(&c, &c);
@@ -3081,15 +3086,15 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int param_0) {
         r28 = 1;
         break;
     case 0xa:
-        if (field_0x1528 == 0x29) {
+        if (field_0x14D8 == 0x29) {
             r28 = 1;
         } else {
             if (mpMorf->getFrame() >= 79.0f) {
-                field_0x155C = 0;
+                field_0x150C = 0;
             } else if (mpMorf->getFrame() >= 7.0f) {
-                field_0x155C = 1;
+                field_0x150C = 1;
             } else {
-                field_0x155C = 0;
+                field_0x150C = 0;
             }
             if (mpMorf->getFrame() >= 93.0f && mpMorf->getFrame() < 94.0f) {
                 mCreature.startCreatureVoice(Z2SE_GRA_V_SPAWATER_SHOUT, -1);
@@ -3112,7 +3117,7 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int param_0) {
         }
         break;
     case 0x28:
-        if (field_0x1528 == 0x1b) {
+        if (field_0x14D8 == 0x1b) {
             if (mpMorf->isStop()) {
                 setMotion(0x13, -1.0f, 0);
             } else if (mpMorf->checkFrame(14.0f)) {
@@ -3123,24 +3128,24 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int param_0) {
                 mParticleManager[0].mAngle = mCurAngle;
                 mParticleManager[0].field_0x0 = 1;
             }
-        } else if (field_0x1528 == 0x1a) {
+        } else if (field_0x14D8 == 0x1a) {
             mpMorf->setPlaySpeed(0.0f);
             mpMorf->setEndFrame(29.0f);
             r28 = 1;
-            field_0x1524 = 0.0f;
+            field_0x14D4 = 0.0f;
         }
         break;
     case 0x32:
-        cLib_addCalc2(&field_0x1524, 5.0f, 0.1f, 0.1f);
-        mpMorf->setPlaySpeed(field_0x1524);
-        speedF = field_0x1524 * 10.0f;
+        cLib_addCalc2(&field_0x14D4, 5.0f, 0.1f, 0.1f);
+        mpMorf->setPlaySpeed(field_0x14D4);
+        speedF = field_0x14D4 * 10.0f;
         if (mAcch.ChkWallHit()) {
             r28 = 1;
         }
         break;
     case 0x3c:
-        cLib_addCalc2(&field_0x1524, 5.0f, 0.1f, 0.1f);
-        mpMorf->setPlaySpeed(field_0x1524);
+        cLib_addCalc2(&field_0x14D4, 5.0f, 0.1f, 0.1f);
+        mpMorf->setPlaySpeed(field_0x14D4);
         if (!cLib_calcTimer(&mEventTimer)) {
             r28 = 1;
         }
@@ -3150,15 +3155,15 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int param_0) {
         break;
     }
 
-    if (field_0x1528 == 0x1a) {
-        if (field_0x1524 >= 1.0f) {
+    if (field_0x14D8 == 0x1a) {
+        if (field_0x14D4 >= 1.0f) {
             f32 f31 = 1.0f;
             if (sp24 >= 0x3c) {
                 f31 = GET_HIO(mParticleSize);
             }
             setRollPrtcl(current.pos, f31);
         }
-        f32 v = cLib_minMaxLimit(fabsf(field_0x1524) * 20.0f, 1.0f, 127.0f);
+        f32 v = cLib_minMaxLimit(fabsf(field_0x14D4) * 20.0f, 1.0f, 127.0f);
         mCreature.startCreatureSound(Z2SE_GORON_ROLLING, v, -1);
     }
     return r28;
@@ -3182,7 +3187,7 @@ BOOL daNpc_grA_c::ECut_talkSpaWater(int param_0) {
         switch (r28) {
         case 0:
             setLookMode(0);
-            field_0x16E0 = 1;
+            field_0x1690 = 1;
             break;
         case 0xa: {
             initTalk(0x30, NULL);
@@ -3220,13 +3225,13 @@ BOOL daNpc_grA_c::ECut_talkSpaWater(int param_0) {
 
 /* 809C681C-809C69B8 007FBC 019C+00 3/0 0/0 0/0 .text            wait__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::wait(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
         setMotion(0, -1.0f, 0);
         setLookMode(0);
         mTurnMode = 0;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
         if (mDamageTimer == 0) {
@@ -3245,7 +3250,7 @@ BOOL daNpc_grA_c::wait(void* param_0) {
                 if (home.angle.y != mCurAngle.y && step(home.angle.y, 0x17, 0x16, 0xf)) {
                     setExpression(0x17, -1.0f);
                     setMotion(0, -1.0f, 0);
-                    field_0x14C2 = 0;
+                    field_0x1472 = 0;
                 }
             }
         }
@@ -3258,19 +3263,19 @@ BOOL daNpc_grA_c::wait(void* param_0) {
 
 /* 809C69B8-809C6AAC 008158 00F4+00 1/0 0/0 0/0 .text            waitTW__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::waitTW(void* param_0) {
-        switch (field_0x14C2) {
+        switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
         setMotion(0, 0.0f, 0);
         setLookMode(0);
         mTurnMode = 0;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
         if (!mIsDamaged) {
             setLookMode(0);
             if (home.angle.y != mCurAngle.y && step(home.angle.y, -1, -1, 0xf)) {
-                field_0x14C2 = 0;
+                field_0x1472 = 0;
             }
         }
         break;
@@ -3282,35 +3287,35 @@ BOOL daNpc_grA_c::waitTW(void* param_0) {
 
 /* 809C6AAC-809C6D48 00824C 029C+00 1/0 0/0 0/0 .text            waitCheer__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::waitCheer(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         setExpressionAnm(0, TRUE);
         setMotion(0, -1.0f, FALSE);
         setLookMode(0);
         mTurnMode = 0;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
-        if (field_0x14D9 == 0) {
+        if (field_0x1489 == 0) {
             fopAc_ac_c* r29 = (fopAc_ac_c*)fpcM_Search(s_sub, this);
             if (r29 != NULL) {
                 daTagGra_c* r27 = (daTagGra_c*)r29;
-                field_0x14DC = r27->getGraPos();
-                field_0x14E8 = r27->getGraAngle();
-                field_0x150C = home.pos;
-                field_0x1518 = home.angle;
+                field_0x148C = r27->getGraPos();
+                field_0x1498 = r27->getGraAngle();
+                field_0x14BC = home.pos;
+                field_0x14C8 = home.angle;
                 fopAcM_delete(r29);
-                field_0x14D9 = 1;
+                field_0x1489 = 1;
             }
         }
-        if (field_0x14EE == 0) {
+        if (field_0x149E == 0) {
             fopAc_ac_c* r28 = (fopAc_ac_c*)fpcM_Search(s_sub2, this);
             if (r28 != NULL) {
                 daTagGra_c* r26 = (daTagGra_c*)r28;
-                field_0x14F0 = r26->getGraPos();
-                field_0x14FC = r26->getGraAngle();
+                field_0x14A0 = r26->getGraPos();
+                field_0x14AC = r26->getGraAngle();
                 fopAcM_delete(r28);
-                field_0x14EE = 1;
+                field_0x149E = 1;
                 if (daNpcF_chkEvtBit(0x3f)) {
                     setTagJump2();
                 }
@@ -3329,7 +3334,7 @@ BOOL daNpc_grA_c::waitCheer(void* param_0) {
             } else {
                 setLookMode(0);
                 if (home.angle.y != mCurAngle.y && step(home.angle.y, -1, -1, 0xf)) {
-                    field_0x14C2 = 0;
+                    field_0x1472 = 0;
                 }
             }
         }
@@ -3342,27 +3347,27 @@ BOOL daNpc_grA_c::waitCheer(void* param_0) {
 
 /* 809C6D48-809C73FC 0084E8 06B4+00 1/0 0/0 0/0 .text            waitGate__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::waitGate(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         setExpressionAnm(0, TRUE);
         setMotion(5, -1.0f, FALSE);
         setLookMode(0);
         mTurnMode = 0;
         field_0x9ea = 1;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
-        if (field_0x14D9 == 0 || field_0x14EE == 0) {
-            if (getMode1() == 1 && field_0x14EE == 0) {
+        if (field_0x1489 == 0 || field_0x149E == 0) {
+            if (getMode1() == 1 && field_0x149E == 0) {
                 fopAc_ac_c* r27 = (fopAc_ac_c*)fpcM_Search(s_sub, this);
                 if (r27 != NULL) {
                     daTagGra_c* r28 = (daTagGra_c*)r27;
-                    field_0x14F0 = r28->getGraPos();
-                    field_0x14FC = r28->getGraAngle();
-                    field_0x1504 = r28->getGraExtent();
-                    field_0x1508 = r28->getGraHeight();
+                    field_0x14A0 = r28->getGraPos();
+                    field_0x14AC = r28->getGraAngle();
+                    field_0x14B4 = r28->getGraExtent();
+                    field_0x14B8 = r28->getGraHeight();
                     fopAcM_delete(r27);
-                    field_0x14EE = 1;
+                    field_0x149E = 1;
                     if (daNpcF_chkEvtBit(0x40) &&
                         !dComIfGs_isSwitch(mSwBit, fopAcM_GetRoomNo(this)))
                     {
@@ -3370,47 +3375,47 @@ BOOL daNpc_grA_c::waitGate(void* param_0) {
                     }
                 }
             } else {
-                field_0x14EE = 1;
+                field_0x149E = 1;
             }
-            if (field_0x14EE == 1) {
+            if (field_0x149E == 1) {
                 cXyz c(150.0f, 0.0f, 0.0f);
                 if (mMode == 0) {
                     c.x = -150.0f;
                 }
-                cLib_offsetPos(&field_0x14DC, &current.pos, current.angle.y, &c);
-                field_0x14E8 = home.angle;
-                field_0x150C = home.pos;
-                field_0x1518 = home.angle;
-                field_0x14D9 = 1;
+                cLib_offsetPos(&field_0x148C, &current.pos, current.angle.y, &c);
+                field_0x1498 = home.angle;
+                field_0x14BC = home.pos;
+                field_0x14C8 = home.angle;
+                field_0x1489 = 1;
                 if (daNpcF_chkEvtBit(0x3e)) {
                     if (getMode1() == 1) {
                         if (dComIfGs_isSwitch(mSwBit, fopAcM_GetRoomNo(this))) {
                             setTagJump();
-                            field_0x1520 = 1;
-                            field_0x1521 = 1;
+                            field_0x14D0 = 1;
+                            field_0x14D1 = 1;
                         }
                     } else {
                         setTagJump();
-                        field_0x1520 = 1;
-                        field_0x1521 = 1;
+                        field_0x14D0 = 1;
+                        field_0x14D1 = 1;
                     }
                 } else if (daNpcF_chkEvtBit(0x3f) && getMode1() != 1) {
                     setTagJump();
-                    field_0x1520 = 1;
-                    field_0x1521 = 1;
+                    field_0x14D0 = 1;
+                    field_0x14D1 = 1;
                 }
             }
         } else {
             if (getMode1() == 1 && daNpcF_chkEvtBit(0x3e) &&
                 !dComIfGs_isSwitch(mSwBit, fopAcM_GetRoomNo(this)))
             {
-                cXyz diff = (daPy_getPlayerActorClass()->current.pos - field_0x14F0);
-                if (diff.absXZ() < field_0x1504) {
+                cXyz diff = (daPy_getPlayerActorClass()->current.pos - field_0x14A0);
+                if (diff.absXZ() < field_0x14B4) {
                     mOrderEvtNo = 2;
                     break;
                 }
             }
-            if (field_0x1521 == 0 && field_0x1520 == 1) {
+            if (field_0x14D1 == 0 && field_0x14D0 == 1) {
                 if (mMotion == 5) {
                     if (mMode == 0) {
                         setMotion(0x18, -1.0f, 0);
@@ -3420,15 +3425,15 @@ BOOL daNpc_grA_c::waitGate(void* param_0) {
                     mAcch.SetWallNone();
                 }
                 setLookMode(0);
-                if (field_0x1528 != 0x17) {
+                if (field_0x14D8 != 0x17) {
                     cLib_chaseAngleS(&current.angle.y, home.angle.y, 0x400);
                     setAngle(current.angle.y);
-                    cLib_chasePosXZ(&current.pos, field_0x14DC, 30.f / 11.f);
+                    cLib_chasePosXZ(&current.pos, field_0x148C, 30.f / 11.f);
                     if (mpMorf->isStop()) {
-                        field_0x1521 = 1;
+                        field_0x14D1 = 1;
                         setMotion(5, -1.0f, 0);
-                        home.pos = field_0x14DC;
-                        home.angle = field_0x14E8;
+                        home.pos = field_0x148C;
+                        home.angle = field_0x1498;
                     } else {
                         return TRUE;
                     }
@@ -3450,7 +3455,7 @@ BOOL daNpc_grA_c::waitGate(void* param_0) {
             } else {
                 setLookMode(0);
                 if (home.angle.y != mCurAngle.y && step(home.angle.y, -1, -1, 0xf)) {
-                    field_0x14C2 = 0;
+                    field_0x1472 = 0;
                 }
             }
         }
@@ -3463,21 +3468,21 @@ BOOL daNpc_grA_c::waitGate(void* param_0) {
 
 /* 809C73FC-809C770C 008B9C 0310+00 1/0 0/0 0/0 .text            waitKickOut__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::waitKickOut(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
         setMotion(1, 0.0f, 0);
         setLookMode(0);
         mTurnMode = 0;
-        field_0x16E4 = 0;
-        field_0x14C2 = 2;
+        field_0x1694 = 0;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
-        field_0x16E3 = field_0x16E2;
-        field_0x16E2 = 0;
+        field_0x1693 = field_0x1692;
+        field_0x1692 = 0;
         fpcM_Search(s_subCarry, this);
-        if (field_0x16E3 > field_0x16E2) {
-            if (field_0x16E0 == 1) {
+        if (field_0x1693 > field_0x1692) {
+            if (field_0x1690 == 1) {
                 mOrderEvtNo = 4;
             } else {
                 mOrderEvtNo = 5;
@@ -3490,17 +3495,17 @@ BOOL daNpc_grA_c::waitKickOut(void* param_0) {
                    chkActorInSight(daPy_getPlayerActorClass(), GET_HIO(mNpcFParams.fov)))
         {
             mOrderEvtNo = 3;
-        } else if (field_0xE24.getPathInfo() != NULL) {
+        } else if (field_0xDD4.getPathInfo() != NULL) {
             cXyz c;
-            if (field_0x16E4 == 0) {
-                BOOL b = field_0xE24.getDstPos(current.pos, c);
+            if (field_0x1694 == 0) {
+                BOOL b = field_0xDD4.getDstPos(current.pos, c);
                 if (b) {
-                    field_0xE24.reverse();
+                    field_0xDD4.reverse();
                     setExpression(0x17, -1.0f);
                     setMotion(0, -1.0f, 0);
                     speedF = 0.0f;
                     setLookMode(7);
-                    field_0x16E4 = 0xb4;
+                    field_0x1694 = 0xb4;
                     break;
                 } else {
                     s16 r27 = cLib_targetAngleY(&current.pos, &c);
@@ -3510,12 +3515,12 @@ BOOL daNpc_grA_c::waitKickOut(void* param_0) {
                                         GET_HIO(mWalkingRotationSpeed));
                     setAngle(current.angle.y);
                 }
-            } else if (cLib_calcTimer(&field_0x16E4) == 0) {
+            } else if (cLib_calcTimer(&field_0x1694) == 0) {
                 setExpression(0x17, -1.0f);
                 setMotion(1, -1.0f, 0);
-            } else if (field_0x16E4 == 0x78) {
+            } else if (field_0x1694 == 0x78) {
                 setLookMode(8);
-            } else if (field_0x16E4 == 0x3c) {
+            } else if (field_0x1694 == 0x3c) {
                 setLookMode(0);
             }
         }
@@ -3528,7 +3533,7 @@ BOOL daNpc_grA_c::waitKickOut(void* param_0) {
 
 /* 809C770C-809C77E0 008EAC 00D4+00 2/0 0/0 0/0 .text            moveRock__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::moveRock(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         setExpression(0x17, 0.0f);
         setMotion(0x13, 0.0f, 0);
@@ -3536,7 +3541,7 @@ BOOL daNpc_grA_c::moveRock(void* param_0) {
         mTurnMode = 0;
         mAcch.SetGrndNone();
         mAcch.SetWallNone();
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
         gravity = 0.0f;
@@ -3550,7 +3555,7 @@ BOOL daNpc_grA_c::moveRock(void* param_0) {
 
 /* 809C77E0-809C7ACC 008F80 02EC+00 1/0 0/0 0/0 .text            spaWarm__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::spaWarm(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         if (getMode() == 1) {
             setExpressionAnm(0xa, 1);
@@ -3561,21 +3566,21 @@ BOOL daNpc_grA_c::spaWarm(void* param_0) {
         }
         setLookMode(0);
         mTurnMode = 0;
-        field_0x14C2 = 2;
-        field_0x14C8 = cLib_getRndValue(3, 7);
+        field_0x1472 = 2;
+        field_0x1478 = cLib_getRndValue(3, 7);
         field_0x9ea = 1;
         // fallthrough
     case 2:
-        if (field_0x14D8 == 1) {
+        if (field_0x1488 == 1) {
             fopAc_ac_c* p = (fopAc_ac_c*)fpcM_Search(s_subShop, this);
             if (p != NULL) {
                 mNpcfActorManager[2].entry(p);
-                field_0x14D8 = 0;
+                field_0x1488 = 0;
             }
         }
 
         if (mDamageTimer == 0) {
-            if (field_0x14D7 == 1) {
+            if (field_0x1487 == 1) {
                 setLookMode(5);
             } else {
                 if (mNpcfActorManager[0].getActorP() != NULL) {
@@ -3592,22 +3597,22 @@ BOOL daNpc_grA_c::spaWarm(void* param_0) {
                     setLookMode(0);
 
                     if (home.angle.y != mCurAngle.y && step(home.angle.y, -1, -1, 0xf)) {
-                        field_0x14C2 = 0;
+                        field_0x1472 = 0;
                     }
                 }
             }
         }
 
         if (getMode() == 1) {
-            if (mMotionLoops >= field_0x14C8) {
+            if (mMotionLoops >= field_0x1478) {
                 setMotion(0xe, 0.0f, 1);
                 setExpression(0xe, -1.0f);
-                field_0x14C8 = cLib_getRndValue(3, 7);
+                field_0x1478 = cLib_getRndValue(3, 7);
             }
-        } else if (mMotionLoops >= field_0x14C8) {
+        } else if (mMotionLoops >= field_0x1478) {
             setMotion(0xc, 0.0f, 1);
             setExpression(0xc, -1.0f);
-            field_0x14C8 = cLib_getRndValue(3, 7);
+            field_0x1478 = cLib_getRndValue(3, 7);
         }
         break;
     case 3:
@@ -3618,9 +3623,9 @@ BOOL daNpc_grA_c::spaWarm(void* param_0) {
 
 /* 809C7ACC-809C7F24 00926C 0458+00 3/0 0/0 0/0 .text            waitSpaWater__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::waitSpaWater(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
-        if (field_0x16E0 == 2) {
+        if (field_0x1690 == 2) {
             setExpression(0x16, -1.0f);
             setMotion(0x9, -1.0f, 0);
         } else {
@@ -3629,12 +3634,12 @@ BOOL daNpc_grA_c::waitSpaWater(void* param_0) {
         }
         setLookMode(0);
         mTurnMode = 0;
-        field_0x14BC = 0x28;
-        field_0x14C2 = 2;
+        field_0x146C = 0x28;
+        field_0x1472 = 2;
         field_0x9ea = 1;
         // fallthrough
     case 2:
-        if (field_0x14D8 == 1) {
+        if (field_0x1488 == 1) {
             daOnsTaru_c* p = (daOnsTaru_c*)fpcM_Search(s_subOnsenTaru, this);
             if (p != NULL) {
                 if (!daPy_getPlayerActorClass()->setForceGrab(p, 1, 0)) {
@@ -3642,7 +3647,7 @@ BOOL daNpc_grA_c::waitSpaWater(void* param_0) {
                 }
                 p->startTimer();
                 mNpcfActorManager[2].entry(p);
-                field_0x14D8 = 0;
+                field_0x1488 = 0;
             }
         }
 
@@ -3652,7 +3657,7 @@ BOOL daNpc_grA_c::waitSpaWater(void* param_0) {
                 if (!p->getTempStat()) {
                     dMeter2Info_setFloatingMessage(0x7fd, 0x96, 0);
                     mNpcfActorManager[2].initialize();
-                } else if (field_0x16E0 == 0) {
+                } else if (field_0x1690 == 0) {
                     fopAc_ac_c* g = NULL;
                     s32 r = fopAcM_SearchByID(daPy_getPlayerActorClass()->getGrabActorID(), &g);
                     if (r == 1 && p == g) {
@@ -3669,8 +3674,8 @@ BOOL daNpc_grA_c::waitSpaWater(void* param_0) {
             }
         }
 
-        if (field_0xCE8.ChkTgHit()) {
-            daOnsTaru_c* hit = (daOnsTaru_c*)field_0xCE8.GetTgHitAc();
+        if (field_0xC98.ChkTgHit()) {
+            daOnsTaru_c* hit = (daOnsTaru_c*)field_0xC98.GetTgHitAc();
             if (fopAcM_GetName(hit) == 0x16c) {
                 fopAcM_OnStatus(hit, 0x4000);
                 if (hit->getTempStat()) {
@@ -3683,7 +3688,7 @@ BOOL daNpc_grA_c::waitSpaWater(void* param_0) {
         }
 
         if (mDamageTimer == 0) {
-            if (field_0x16E0 == 2) {
+            if (field_0x1690 == 2) {
                 setLookMode(0);
             } else {
                 if (mNpcfActorManager[0].getActorP() != NULL) {
@@ -3710,19 +3715,19 @@ BOOL daNpc_grA_c::waitSpaWater(void* param_0) {
 
 /* 809C7F24-809C8138 0096C4 0214+00 1/0 0/0 0/0 .text            waitSpaBuyer__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::waitSpaBuyer(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
         setMotion(0x10, -1.0f, 0);
         setLookMode(0);
         mTurnMode = 0;
-        field_0x14C8 = cLib_getRndValue(3, 7);
+        field_0x1478 = cLib_getRndValue(3, 7);
         field_0x9ea = 1;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
         if (mDamageTimer == 0) {
-            if (field_0x1528 == 0x31) {
+            if (field_0x14D8 == 0x31) {
                 mNpcfActorManager[0].remove();
             } else if (mNpcfActorManager[0].getActorP()) {
                 if (!chkFindPlayer()) {
@@ -3737,21 +3742,21 @@ BOOL daNpc_grA_c::waitSpaBuyer(void* param_0) {
             if (mNpcfActorManager[0].getActorP()) {
                 setLookMode(2);
                 mMotionLoops = 0;
-                field_0x14C8 = cLib_getRndValue(1, 7);
+                field_0x1478 = cLib_getRndValue(1, 7);
             } else {
                 setLookMode(0);
                 if (home.angle.y != mCurAngle.y) {
                     if (step(home.angle.y, 0x17, 0x16, 0xf)) {
-                        field_0x14C2 = 0;
+                        field_0x1472 = 0;
                     }
                 }
             }
         }
 
-        if (mNpcfActorManager[0].getActorP() == NULL && mMotionLoops >= field_0x14C8) {
+        if (mNpcfActorManager[0].getActorP() == NULL && mMotionLoops >= field_0x1478) {
             setMotion(0x11, -1.0f, 1);
             setExpression(0x17, -1.0f);
-            field_0x14C8 = cLib_getRndValue(3, 7);
+            field_0x1478 = cLib_getRndValue(3, 7);
         }
         break;
     case 3:
@@ -3762,28 +3767,28 @@ BOOL daNpc_grA_c::waitSpaBuyer(void* param_0) {
 
 /* 809C8138-809C82A8 0098D8 0170+00 1/0 0/0 0/0 .text            waitSpaBuyerTW__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::waitSpaBuyerTW(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
         setMotion(0x10, -1.0f, 0);
         setLookMode(0);
         mTurnMode = 0;
-        field_0x14C8 =  cLib_getRndValue(3, 7);
+        field_0x1478 =  cLib_getRndValue(3, 7);
         field_0x9ea = 1;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
     case 2:
         if (mDamageTimer == 0) {
             setLookMode(0);
             if (home.angle.y != mCurAngle.y) {
                 if (step(home.angle.y, 0x17, 0x16, 0xf)) {
-                    field_0x14C2 = 0;
+                    field_0x1472 = 0;
                 }
             }
         }
-        if (mMotionLoops >= field_0x14C8) {
+        if (mMotionLoops >= field_0x1478) {
             setMotion(0x11, -1.0f, 1);
             setExpression(0x17, -1.0f);
-            field_0x14C8 = cLib_getRndValue(3, 7);
+            field_0x1478 = cLib_getRndValue(3, 7);
         }
         break;
     case 3:
@@ -3795,22 +3800,22 @@ BOOL daNpc_grA_c::waitSpaBuyerTW(void* param_0) {
 /* 809C82A8-809C8514 009A48 026C+00 1/0 0/0 0/0 .text            beforeCrashWait__11daNpc_grA_cFPv
  */
 BOOL daNpc_grA_c::beforeCrashWait(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         setExpression(0x14, -1.0f);
         setMotion(0x1a, -1.0f, 0);
         setLookMode(0);
         mTurnMode = 0;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
-        if (field_0x14D8 == 1) {
+        if (field_0x1488 == 1) {
             fopAc_ac_c* p = (fopAc_ac_c*)fpcM_Search(s_subCrashed, this);
             if (p != NULL) {
                 home.pos = current.pos = old.pos = p->current.pos;
                 setAngle(p->current.angle.y);
                 home.angle.y = current.angle.y;
-                field_0x14D8 = 0;
+                field_0x1488 = 0;
             }
         }
 
@@ -3833,7 +3838,7 @@ BOOL daNpc_grA_c::beforeCrashWait(void* param_0) {
                 setLookMode(0);
                 if (home.angle.y != mCurAngle.y) {
                     if (step(home.angle.y, 0x17, 0x16, 0xf)) {
-                        field_0x14C2 = 0;
+                        field_0x1472 = 0;
                     }
                 } else {
                     setExpression(0x14, -1.0f);
@@ -3850,27 +3855,27 @@ BOOL daNpc_grA_c::beforeCrashWait(void* param_0) {
 
 /* 809C8514-809C8694 009CB4 0180+00 1/0 0/0 0/0 .text            crashRoll__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::crashRoll(void* param_0) {
-   switch (field_0x14C2) {
+   switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
         setMotion(0x13, -1.0f, 0);
         setLookMode(0);
         mTurnMode = 0;
         speedF = 50.0f;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
         if (mAcch.ChkWallHit()) {
-            field_0x14D6 = 2;
+            field_0x1486 = 2;
         }
-        field_0x1524 = 5.0f;
-        mpMorf->setPlaySpeed(field_0x1524);
+        field_0x14D4 = 5.0f;
+        mpMorf->setPlaySpeed(field_0x14D4);
         mpMorf->setEndFrame(29.0f);
-        if (field_0x1528 == 0x1a) {
-            if (field_0x1524 >= 1.0f) {
+        if (field_0x14D8 == 0x1a) {
+            if (field_0x14D4 >= 1.0f) {
                 setRollPrtcl(current.pos, 1.0f);
             }
-            f32 a = cLib_minMaxLimit(fabsf(field_0x1524) * 20.0f, 1.0f, 127.0f);
+            f32 a = cLib_minMaxLimit(fabsf(field_0x14D4) * 20.0f, 1.0f, 127.0f);
             u32 b = a;
             mCreature.startCreatureSound(Z2SE_GORON_ROLLING, b, -1);
         }
@@ -3883,28 +3888,28 @@ BOOL daNpc_grA_c::crashRoll(void* param_0) {
 
 /* 809C8694-809C884C 009E34 01B8+00 1/0 0/0 0/0 .text            crashRollWait__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::crashRollWait(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
         setMotion(0x13, -1.0f, 0);
         setLookMode(0);
         mTurnMode = 0;
         speedF = 0.0f;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
-        field_0x1524 = 5.0f;
-        mpMorf->setPlaySpeed(field_0x1524);
+        field_0x14D4 = 5.0f;
+        mpMorf->setPlaySpeed(field_0x14D4);
         mpMorf->setEndFrame(29.0f);
-        if (field_0x1528 == 0x1a) {
-            if (field_0x1524 >= 1.0f) {
+        if (field_0x14D8 == 0x1a) {
+            if (field_0x14D4 >= 1.0f) {
                 cXyz c(0.0f, 0.0f, 0.0f);
                 mDoMtx_stack_c::YrotS(shape_angle.y);
                 mDoMtx_stack_c::multVec(&c, &c);
                 c += current.pos;
                 setRollPrtcl(c, GET_HIO(mParticleSize));
             }
-            f32 a = cLib_minMaxLimit(fabsf(field_0x1524) * 20.0f, 1.0f, 127.0f);
+            f32 a = cLib_minMaxLimit(fabsf(field_0x14D4) * 20.0f, 1.0f, 127.0f);
             u32 b = a;
             mCreature.startCreatureSound(Z2SE_GORON_ROLLING, b, -1);
         }
@@ -3917,22 +3922,22 @@ BOOL daNpc_grA_c::crashRollWait(void* param_0) {
 
 /* 809C884C-809C8A2C 009FEC 01E0+00 1/0 0/0 0/0 .text            crashedWait__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::crashedWait(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
         setExpression(0x17, -1.0f);
         setMotion(0, -1.0f, 0);
         setLookMode(0);
         mTurnMode = 0;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
-        if (field_0x14D8 == 1) {
+        if (field_0x1488 == 1) {
             fopAc_ac_c* found = (fopAc_ac_c*)fpcM_Search(s_subCrashed, this);
             if (found) {
                 home.pos = current.pos = old.pos = found->current.pos;
                 setAngle(found->current.angle.y);
                 home.angle.y = current.angle.y;
-                field_0x14D8 = 0;
+                field_0x1488 = 0;
             }
         }
         if (mDamageTimer == 0) {
@@ -3948,7 +3953,7 @@ BOOL daNpc_grA_c::crashedWait(void* param_0) {
             } else {
                 setLookMode(0);
                 if (home.angle.y != mCurAngle.y && step(home.angle.y, 0x17, 0x16, 0xf)) {
-                    field_0x14C2 = 0;
+                    field_0x1472 = 0;
                 }
             }
         }
@@ -3961,14 +3966,14 @@ BOOL daNpc_grA_c::crashedWait(void* param_0) {
 
 /* 809C8A2C-809C8BD4 00A1CC 01A8+00 1/0 0/0 0/0 .text            waitBuyer__11daNpc_grA_cFPv */
 BOOL daNpc_grA_c::waitBuyer(void* param_0) {
-    switch (field_0x14C2) {
+    switch (field_0x1472) {
     case 0:
-        if (field_0x16E1 == 0 && home.angle.y == mCurAngle.y) {
+        if (field_0x1691 == 0 && home.angle.y == mCurAngle.y) {
             setExpressionAnm(0, 1.0f);
             setMotion(5, -1.0f, 0);
         }
         mTurnMode = 0;
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
         if (mDamageTimer == 0) {
@@ -3986,7 +3991,7 @@ BOOL daNpc_grA_c::waitBuyer(void* param_0) {
                 if (home.angle.y != mCurAngle.y && step(home.angle.y, 0x17, 0x16, 0xf)) {
                     setExpression(0x17, -1.0f);
                     setMotion(0, -1.0f, 0);
-                    field_0x14C2 = 0;
+                    field_0x1472 = 0;
                 }
             }
         }
@@ -4004,7 +4009,7 @@ BOOL daNpc_grA_c::talk(void* param_0) {
     int r27 = 0;
     BOOL r26 = 0;
     int sp8 = 0;
-    switch (field_0x14C2)
+    switch (field_0x1472)
     {
     case 0:
         if (mDamageTimer != 0)
@@ -4018,23 +4023,23 @@ BOOL daNpc_grA_c::talk(void* param_0) {
                 setGateWalk();
             }
         } else {
-            r27 = field_0x14BC;
+            r27 = field_0x146C;
         }
         initTalk(r27, NULL);
-        field_0x14D4 = fopAcM_searchPlayerAngleY(this);
+        field_0x1484 = fopAcM_searchPlayerAngleY(this);
         if (mType == 0xb) {
-            if (field_0x16E1 == 0) {
+            if (field_0x1691 == 0) {
                 daNpcF_offTmpBit(0xb);
                 daNpcF_offTmpBit(0xc);
             }
         } else if (mType == 0xa) {
-            if (field_0x14D6 == 0) {
+            if (field_0x1486 == 0) {
                 daNpcF_offTmpBit(0xb);
             }
         }
         mTurnMode = 0;
-        field_0x16E1 = 0;
-        field_0x14C2 = 2;
+        field_0x1691 = 0;
+        field_0x1472 = 2;
         // fallthrough
     case 2:
         if (field_0x9ea || mTwilight || mType == 5) {
@@ -4042,7 +4047,7 @@ BOOL daNpc_grA_c::talk(void* param_0) {
             if (mType == 5) {
                 setLookMode(0);
             } else if (!mTwilight && mType != 5) {
-                if (mType != 7 || field_0x16E0 != 2) {
+                if (mType != 7 || field_0x1690 != 2) {
                     setLookMode(2);
                 }else{
 
@@ -4051,9 +4056,9 @@ BOOL daNpc_grA_c::talk(void* param_0) {
         } else {
             setLookMode(3);
             mNpcfActorManager[0].entry(daPy_getPlayerActorClass());
-            if (field_0x14D4 == mCurAngle.y) {
+            if (field_0x1484 == mCurAngle.y) {
                 r26 = 1;
-            } else if (step(field_0x14D4, 0x17, 0x16, 0xf)) {
+            } else if (step(field_0x1484, 0x17, 0x16, 0xf)) {
                 setExpression(0x17, -1.0f);
                 if (mType == 8) {
                     setMotion(0x10, -1.0f, 0);
@@ -4065,9 +4070,9 @@ BOOL daNpc_grA_c::talk(void* param_0) {
         }
         if (r26 && talkProc(NULL, TRUE, NULL)) {
             if (mFlow.getEventId(&sp8) == 1) {
-                field_0x14D0 =
+                field_0x1480 =
                     fopAcM_createItemForPresentDemo(&current.pos, sp8, 0, -1, -1, NULL, NULL);
-                if (field_0x14D0 != 0xffffffff) {
+                if (field_0x1480 != 0xffffffff) {
                     s16 r25 = dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_GETITEM", 0xff);
                     dComIfGp_getEvent().reset(this);
                     fopAcM_orderChangeEventId(this, r25, 1, -1);
@@ -4075,11 +4080,11 @@ BOOL daNpc_grA_c::talk(void* param_0) {
                     r29 = 1;
                     mOrderNewEvt = 1;
                     if (mType == 0xb) {
-                        field_0x16E1 = 1;
+                        field_0x1691 = 1;
                     }
                 }
             } else {
-                if (mType == 0xa && field_0x14D6 == 0 && daNpcF_chkEvtBit(0x187)) {
+                if (mType == 0xa && field_0x1486 == 0 && daNpcF_chkEvtBit(0x187)) {
                     dComIfGp_getEvent().reset(this);
                     field_0x9ec = 1;
                     mOrderNewEvt = 1;
@@ -4091,7 +4096,7 @@ BOOL daNpc_grA_c::talk(void* param_0) {
             }
         }
         if (r29) {
-            field_0x14C2 = 3;
+            field_0x1472 = 3;
             if (field_0x9ec == 0) {
                 dComIfGp_event_reset();
             }
@@ -4106,12 +4111,12 @@ BOOL daNpc_grA_c::talk(void* param_0) {
 }
 
 /* 809C9044-809C9128 00A7E4 00E4+00 2/0 0/0 0/0 .text            test__11daNpc_grA_cFPv */
-int daNpc_grA_c::test(void* param_0) {
-    switch (field_0x14C2) {
+BOOL daNpc_grA_c::test(void* param_0) {
+    switch (field_0x1472) {
     case 0:
         speedF = 0.0f;
         speed.setall(0.0f);
-        field_0x14C2 = 2;
+        field_0x1472 = 2;
         // fallthrough
 
     case 2:
