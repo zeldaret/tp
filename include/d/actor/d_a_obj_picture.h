@@ -36,7 +36,13 @@ public:
     int getArg_0() { return fopAcM_GetParamBit(this, 0, 4); }
     int getSW_0() { return fopAcM_GetParamBit(this, 4, 8); }
 
+#if DEBUG
+    const
+#endif
     static dCcD_SrcCps s_CcDCps;
+#if DEBUG
+    const
+#endif
     static dCcD_SrcCyl s_CcDCyl_pic_at;
 
 private:
