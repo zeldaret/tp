@@ -6,7 +6,6 @@
 #include "d/d_msg_flow.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_ext.h"
-#include "m_Do/m_Do_hostIO.h"
 
 // This struct may end up belonging elsewhere
 struct ShopItem {
@@ -108,8 +107,8 @@ public:
     /* 80949948 */ J3DAnmTexPattern* getTexPtrnAnm(char*);
     /* 80949A70 */ int checkEndAnm(J3DFrameCtrl*);
     /* 80949998 */ int checkEndAnm(f32);
-    /* 80949AD4 */ int getItemNumMax();
-    /* 80949AE0 */ int getItemType(void*);
+    /* 80949AD4 */ u8 getItemNumMax();
+    /* 80949AE0 */ u8 getItemType(void*);
     /* 80949C0C */ u16 getFlowNodeNum();
     /* 80949C44 */ void checkDead();
     /* 80949D54 */ int chkPlayerInEvtArea(fopAc_ac_c*, cXyz);
@@ -123,7 +122,9 @@ public:
 
     void onEventFlag(u8 flag) { field_0x92F |= (u8)(1 << flag); }
     void offEventFlag(u8 flag) { field_0x92F &= (u8)~(u8)(1 << flag); }
-    bool isEventFlag(u8 flag) { return field_0x92F & (u8)(1 << flag); }
+    bool isEventFlag(u8 flag) {
+        return (field_0x92F & (u8)(1 << flag)) ? true : false;
+    }
 
     fopAc_ac_c* getSpeakActorPtr() { return field_0x828; }
 
@@ -163,7 +164,7 @@ public:
     /* 0x920 */ s16 field_0x920;
     /* 0x922 */ s16 field_0x922;
     /* 0x924 */ s16 field_0x924;
-    /* 0x926 */ s16 field_0x926;
+    /* 0x926 */ s16 mDamageTimer;
     /* 0x928 */ s16 field_0x928;
     /* 0x92A */ s16 field_0x92A;
     /* 0x92C */ u8 field_0x92C;
