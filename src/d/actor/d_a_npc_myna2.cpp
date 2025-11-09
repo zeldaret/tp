@@ -511,7 +511,7 @@ void daNpc_myna2_c::setMotion(int i_motion, f32 i_morf, int param_2) {
 
 /* 80A85030-80A85038 001290 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__13daNpc_myna2_cFv */
 BOOL daNpc_myna2_c::drawDbgInfo() {
-    return false;
+    return FALSE;
 }
 
 /* 80A85038-80A8503C 001298 0004+00 1/0 0/0 0/0 .text            drawOtherMdls__13daNpc_myna2_cFv */
