@@ -823,7 +823,7 @@ int daNpc_myna2_c::wait(void* param_0) {
     switch (mMode) {
     case 0:
         setMotion(0, -1.0f, 0);
-        setLookMode(0);
+        setLookMode(LOOK_NONE);
         mTurnMode = 0;
         mMode = 2;
         /* fallthrough */
@@ -845,7 +845,7 @@ int daNpc_myna2_c::waitHovering(void* param_0) {
     switch (mMode) {
     case 0:
         setMotion(7, -1.0f, 0);
-        setLookMode(0);
+        setLookMode(LOOK_NONE);
         mTurnMode = 0;
         field_0x9ea = 1;
         mMode = 2;
@@ -889,7 +889,7 @@ int daNpc_myna2_c::waitFailure(void* param_0) {
     switch (mMode) {
     case 0:
         setMotion(7, -1.0f, 0);
-        setLookMode(0);
+        setLookMode(LOOK_NONE);
         mTurnMode = 0;
         mMode = 2;
         break;
@@ -971,7 +971,7 @@ int daNpc_myna2_c::talk(void* param_0) {
                     calcHovering(0, 1);
                 }
             } else {
-                setLookMode(3);
+                setLookMode(LOOK_PLAYER_TALK);
                 mActorMgrs[0].entry(daPy_getPlayerActorClass());
 
                 if (mCurAngle.y == fopAcM_searchPlayerAngleY(this)) {
