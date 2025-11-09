@@ -137,7 +137,15 @@ public:
     void onFlag2(u16 flag) { mFlag2 |= flag; }
     void offFlag2(u16 flag) { mFlag2 &= ~flag; }
 
-    BOOL chkTalkXY() { return mTalkXyType == 1 || mTalkXyType == 2; }
+    BOOL chkTalkXY() 
+    {
+        // maybe exclusive to ShieldD
+#if DEBUG
+        return mTalkXyType == 1 || mTalkXyType == 2 || mTalkXyType == 3 || mTalkXyType == 4;
+#else
+        return mTalkXyType == 1 || mTalkXyType == 2;
+#endif
+    }
 
     BOOL isOrderOK() { return mEventStatus == 0 || mEventStatus == 2; }
 

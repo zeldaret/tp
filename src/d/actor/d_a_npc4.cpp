@@ -165,6 +165,12 @@ void daNpcF_Path_c::initialize() {
     field_0x10 = 0.0f;
 }
 
+#if DEBUG
+void daNpcF_Path_c::drawDbgInfoXyz() {
+    // UNFINISHED
+}
+#endif
+
 /* 8015095C-80150A24 14B29C 00C8+00 0/0 0/0 12/12 .text setPathInfo__13daNpcF_Path_cFUcScUc */
 int daNpcF_Path_c::setPathInfo(u8 i_pathNo, s8 i_roomNo, u8 i_isReversed) {
     mPathInfo = NULL;

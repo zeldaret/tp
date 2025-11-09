@@ -3,6 +3,36 @@
 
 #include "d/actor/d_a_npc.h"
 
+
+class daNpc_grA_HIOParam {
+public:
+    daNpcF_HIOParam mNpcFParams;
+    s16 mBowTimer;
+    f32 mRotationalSpeed;
+    f32 mWalkingSpeed;
+    f32 mWalkingAnimationSpeed;
+    s16 mWalkingRotationSpeed;
+    s16 mWalkingRotationDivisions;
+    f32 mParticleSize;
+};
+
+class daNpc_grA_Param_c {
+public:
+    /* 809C9D2C */ ~daNpc_grA_Param_c();
+
+    static daNpc_grA_HIOParam const m;
+};
+
+class daNpc_grA_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpc_grA_HIO_c();
+#if DEBUG
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+#endif
+    daNpc_grA_HIOParam mHioParams;
+};
+
 /**
  * @ingroup actors-npcs
  * @class daNpc_grA_c
@@ -11,108 +41,161 @@
  * @details
  *
  */
-class daNpc_grA_c : public fopAc_ac_c {
+class daNpc_grA_c : public daNpcF_c {
 public:
     class daNpc_GrA_prtclMngr_c {
     public:
-        /* 809BEB24 */ ~daNpc_GrA_prtclMngr_c();
-        /* 809BEB60 */ daNpc_GrA_prtclMngr_c();
+        /* 0x00 */ u8 field_0x0;
+        /* 0x04 */ cXyz mPos;
+        /* 0x10 */ csXyz mAngle;
+        /* 0x18 */ cXyz mScale;
+        /* 0x24 */ dPaPo_c mManager;
     };
 
     /* 809BE94C */ daNpc_grA_c();
     /* 809BEB64 */ ~daNpc_grA_c();
-    /* 809BEDA4 */ void create();
-    /* 809BF0A8 */ void CreateHeap();
-    /* 809BF418 */ void Delete();
-    /* 809BF44C */ void Execute();
-    /* 809BF490 */ void Draw();
-    /* 809BF504 */ void ctrlJoint(J3DJoint*, J3DModel*);
-    /* 809BF738 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 809BF758 */ void ctrlJointCallBack(J3DJoint*, int);
-    /* 809BF7A4 */ void setTagJump();
-    /* 809BF8A0 */ void setTagJump2();
-    /* 809BF99C */ void setHomeJump();
-    /* 809BFAF4 */ void checkTagGraSub(fopAc_ac_c*);
-    /* 809BFBC0 */ void checkTagGraSub2(fopAc_ac_c*);
-    /* 809BFDCC */ void checkTagGraSubCrashed(fopAc_ac_c*);
+    /* 809BEDA4 */ int create();
+    /* 809BF0A8 */ int CreateHeap();
+    /* 809BF418 */ int Delete();
+    /* 809BF44C */ int Execute();
+    /* 809BF490 */ int Draw();
+    /* 809BF504 */ int ctrlJoint(J3DJoint*, J3DModel*);
+    /* 809BF738 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 809BF758 */ static int ctrlJointCallBack(J3DJoint*, int);
+    /* 809BF7A4 */ BOOL setTagJump();
+    /* 809BF8A0 */ BOOL setTagJump2();
+    /* 809BF99C */ BOOL setHomeJump();
+    /* 809BFAF4 */ bool checkTagGraSub(fopAc_ac_c*);
+    /* 809BFBC0 */ bool checkTagGraSub2(fopAc_ac_c*);
+    /* 809BFDCC */ bool checkTagGraSubCrashed(fopAc_ac_c*);
     /* 809BFDFC */ void setParam();
-    /* 809C0038 */ void main();
-    /* 809C0298 */ bool ctrlBtk();
+    /* 809C0038 */ BOOL main();
+    /* 809C0298 */ BOOL ctrlBtk();
     /* 809C02A0 */ void setAttnPos();
-    /* 809C0948 */ void setExpressionAnm(int, bool);
-    /* 809C0CE4 */ void setExpressionBtp(int);
+    /* 809C0948 */ bool setExpressionAnm(int, bool);
+    /* 809C0CE4 */ bool setExpressionBtp(int);
     /* 809C0E18 */ void setExpression(int, f32);
-    /* 809C0E44 */ bool setMotionAnm(int, f32);
+    /* 809C0E44 */ void setMotionAnm(int, f32);
     /* 809C1018 */ void setMotion(int, f32, int);
-    /* 809C105C */ bool drawDbgInfo();
+    /* 809C105C */ BOOL drawDbgInfo();
     /* 809C1064 */ void drawOtherMdls();
-    /* 809C1154 */ void getMode();
+    /* 809C1154 */ u8 getMode();
     /* 809C1160 */ u8 getMode1();
-    /* 809C116C */ void getTypeFromParam();
-    /* 809C1238 */ void getSwBit();
-    /* 809C1244 */ void isDelete();
+    /* 809C116C */ u8 getTypeFromParam();
+    /* 809C1238 */ u8 getSwBit();
+    /* 809C1244 */ BOOL isDelete();
     /* 809C13D8 */ void reset();
     /* 809C1990 */ void playExpression();
     /* 809C2080 */ void playMotion();
-    /* 809C28BC */ void chkAction(int (daNpc_grA_c::*)(void*));
-    /* 809C28E8 */ void setAction(int (daNpc_grA_c::*)(void*));
-    /* 809C2990 */ void selectAction();
-    /* 809C2C3C */ void doEvent();
+    /* 809C28BC */ int chkAction(int (daNpc_grA_c::*)(void*));
+    /* 809C28E8 */ BOOL setAction(int (daNpc_grA_c::*)(void*));
+    /* 809C2990 */ BOOL selectAction();
+    /* 809C2C3C */ BOOL doEvent();
     /* 809C3070 */ void setLookMode(int);
     /* 809C3094 */ void lookat();
-    /* 809C3424 */ void chkFindPlayer();
+    /* 809C3424 */ BOOL chkFindPlayer();
     /* 809C35D0 */ void setExpressionTalkAfter();
-    /* 809C36AC */ void setPrtcl();
+    /* 809C36AC */ BOOL setPrtcl();
     /* 809C389C */ void setRollPrtcl(cXyz const&, f32);
     /* 809C3A54 */ void setOtherObjMtx();
-    /* 809C3B28 */ void ECut_talkSpa(int);
-    /* 809C3D78 */ void ECut_grDSRoll(int);
-    /* 809C45B0 */ void ECut_grDSGate(int);
-    /* 809C47EC */ void ECut_teachElevator(int);
-    /* 809C4BE4 */ void ECut_kickOut(int);
-    /* 809C4EB4 */ void ECut_noneLook(int);
-    /* 809C5088 */ void ECut_rescueRock(int);
-    /* 809C5430 */ void ECut_carrySpaWater(int);
-    /* 809C5D44 */ void ECut_carrySpaWaterFailure(int);
-    /* 809C5F90 */ void ECut_rollRockCrash(int);
-    /* 809C6608 */ void ECut_talkSpaWater(int);
-    /* 809C681C */ void wait(void*);
-    /* 809C69B8 */ void waitTW(void*);
-    /* 809C6AAC */ void waitCheer(void*);
-    /* 809C6D48 */ void waitGate(void*);
-    /* 809C73FC */ void waitKickOut(void*);
-    /* 809C770C */ void moveRock(void*);
-    /* 809C77E0 */ void spaWarm(void*);
-    /* 809C7ACC */ void waitSpaWater(void*);
-    /* 809C7F24 */ void waitSpaBuyer(void*);
-    /* 809C8138 */ void waitSpaBuyerTW(void*);
-    /* 809C82A8 */ void beforeCrashWait(void*);
-    /* 809C8514 */ void crashRoll(void*);
-    /* 809C8694 */ void crashRollWait(void*);
-    /* 809C884C */ void crashedWait(void*);
-    /* 809C8A2C */ void waitBuyer(void*);
-    /* 809C8BD4 */ void talk(void*);
-    /* 809C9044 */ void test(void*);
+    /* 809C3B28 */ BOOL ECut_talkSpa(int);
+    /* 809C3D78 */ BOOL ECut_grDSRoll(int);
+    /* 809C45B0 */ BOOL ECut_grDSGate(int);
+    /* 809C47EC */ BOOL ECut_teachElevator(int);
+    /* 809C4BE4 */ BOOL ECut_kickOut(int);
+    /* 809C4EB4 */ BOOL ECut_noneLook(int);
+    /* 809C5088 */ BOOL ECut_rescueRock(int);
+    /* 809C5430 */ BOOL ECut_carrySpaWater(int);
+    /* 809C5D44 */ BOOL ECut_carrySpaWaterFailure(int);
+    /* 809C5F90 */ BOOL ECut_rollRockCrash(int);
+    /* 809C6608 */ BOOL ECut_talkSpaWater(int);
+    /* 809C681C */ BOOL wait(void*);
+    /* 809C69B8 */ BOOL waitTW(void*);
+    /* 809C6AAC */ BOOL waitCheer(void*);
+    /* 809C6D48 */ BOOL waitGate(void*);
+    /* 809C73FC */ BOOL waitKickOut(void*);
+    /* 809C770C */ BOOL moveRock(void*);
+    /* 809C77E0 */ BOOL spaWarm(void*);
+    /* 809C7ACC */ BOOL waitSpaWater(void*);
+    /* 809C7F24 */ BOOL waitSpaBuyer(void*);
+    /* 809C8138 */ BOOL waitSpaBuyerTW(void*);
+    /* 809C82A8 */ BOOL beforeCrashWait(void*);
+    /* 809C8514 */ BOOL crashRoll(void*);
+    /* 809C8694 */ BOOL crashRollWait(void*);
+    /* 809C884C */ BOOL crashedWait(void*);
+    /* 809C8A2C */ BOOL waitBuyer(void*);
+    /* 809C8BD4 */ BOOL talk(void*);
+    /* 809C9044 */ int test(void*);
     /* 809C9D28 */ void adjustShapeAngle();
 
     int getType() { return mType; }
-
+    s16 getGraNo() {return 0;}
+    void addCarryNum() { field_0x16E2++; }
+    u8 getPathNoFromParam() { return home.angle.z; } // this matches but feels wrong?
+    void setGateWalk() { field_0x1520 = 1; }
     static char* mEvtCutNameList[12];
-    static u8 mEvtCutList[144];
+    typedef BOOL (daNpc_grA_c::*cut_type)(int);
+    static cut_type mEvtCutList[];
 
-private:
-    /* 0x0568 */ u8 field_0x568[0x1474 - 0x568];
-    /* 0x1474 */ u8 mType;
-    /* 0x1475 */ u8 field_0x1475[0x1698 - 0x1475];
+// private:
+    typedef BOOL (daNpc_grA_c::*daNpc_grA_c_Action)(void*);
+    
+    /* 0x0B68 */ Z2Creature mCreature;
+    /* 0x0C28 */ J3DModel* mpModel;
+    int : 32;
+    /* 0x0C30 */ daNpcF_Lookat_c mNpcfLookAt;
+    /* 0x0CCC */ daNpcF_ActorMngr_c mNpcfActorManager[3];
+    /* 0x0CE4 */ daNpc_grA_HIO_c* mpHio;
+    /* 0x0CE8 */ dCcD_Cyl field_0xCE8;
+    /* 0x0E24 */ daNpcF_Path_c field_0xE24;
+    /* 0x1454 */ daNpc_grA_c_Action mAction2;
+    /* 0x1460 */ daNpc_grA_c_Action mAction;
+    /* 0x146C */ request_of_phase_process_class mPhase[8];
+    /* 0x14AC */ int field_0x14AC;
+    /* 0x14B0 */ int field_0x14B0;
+    /* 0x14B4 */ int field_0x14B4;
+    /* 0x14B8 */ int field_0x14B8;
+    /* 0x14BC */ int field_0x14BC;
+    /* 0x14C0 */ s16 mLookMode;
+    /* 0x14C2 */ u16 field_0x14C2;
+    /* 0x14C4 */ u8 mType;
+    /* 0x14C8 */ int field_0x14C8;
+    /* 0x14CC */ const char* mName;
+    /* 0x14D9 */ int field_0x14D0;
+    /* 0x14D4 */ s16 field_0x14D4;
+    /* 0x14D6 */ u8 field_0x14D6;
+    /* 0x14D7 */ u8 field_0x14D7;
+    /* 0x14D8 */ u8 field_0x14D8;
+    /* 0x14D9 */ u8 field_0x14D9;
+    /* 0x14DC */ cXyz field_0x14DC;
+    /* 0x14E8 */ csXyz field_0x14E8;
+    /* 0x14EE */ u8 field_0x14EE;
+    /* 0x14F0 */ cXyz field_0x14F0;
+    /* 0x14FC */ csXyz field_0x14FC;
+    /* 0x1504 */ f32 field_0x1504;
+    /* 0x1508 */ f32 field_0x1508;
+    /* 0x150C */ cXyz field_0x150C;
+    /* 0x1518 */ csXyz field_0x1518;
+    /* 0x151E */ u8 mMode;
+    /* 0x151F */ u8 mSwBit;
+    /* 0x1520 */ u8 field_0x1520;
+    /* 0x1521 */ u8 field_0x1521;
+    /* 0x1524 */ f32 field_0x1524;
+    /* 0x1528 */ int field_0x1528;
+    /* 0x152C */ Mtx field_0x152C;
+    /* 0x155C */ u8 field_0x155C;
+    /* 0x1560 */ int mParticleID[3];
+    /* 0x156C */ int field_0x156C;
+    /* 0x1570 */ daNpc_GrA_prtclMngr_c mParticleManager[4];
+    /* 0x16E0 */ u8 field_0x16E0;
+    /* 0x16E1 */ u8 field_0x16E1;
+    /* 0x16E2 */ u8 field_0x16E2;
+    /* 0x16E2 */ u8 field_0x16E3;
+    /* 0x16E2 */ s16 field_0x16E4;
+
 };
 
-STATIC_ASSERT(sizeof(daNpc_grA_c) == 0x1698);
+// STATIC_ASSERT(sizeof(daNpc_grA_c) == 0x1698);
 
-class daNpc_grA_Param_c {
-public:
-    /* 809C9D2C */ ~daNpc_grA_Param_c();
-
-    static u8 const m[132];
-};
 
 #endif /* D_A_NPC_GRA_H */
