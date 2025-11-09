@@ -1291,7 +1291,10 @@ void daMyna_c::deleteItem(int i_itemIndex) {
     mShopItems[i_itemIndex].mItemStatus = 4;
 }
 
-// this seems to be missing in the final REL??
+// For some reason, this function needs to be force active or the linker strips it out.
+#pragma push
+#pragma force_active on
+
 /* 80949144-80949190 0035C4 004C+00 0/0 0/0 0/0 .text            deleteItem__8daMyna_cFUi */
 void daMyna_c::deleteItem(fpc_ProcID i_itemId) {
     for (int i = 0; i < mNumShopItems; i++) {
@@ -1301,6 +1304,8 @@ void daMyna_c::deleteItem(fpc_ProcID i_itemId) {
         }
     }
 }
+
+#pragma pop
 
 /* 80949190-80949408 003610 0278+00 1/1 0/0 0/0 .text            initiate__8daMyna_cFv */
 void daMyna_c::initiate() {
