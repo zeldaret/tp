@@ -32,7 +32,7 @@ public:
 
 namespace mDoMch {
     extern u8 mDebugFill;
-    extern u8 mDebugFillNotuse;
+    extern u8 mDebugFillNotUse;
     extern u8 mDebugFillNew;
     extern u8 mDebugFillDelete;
 

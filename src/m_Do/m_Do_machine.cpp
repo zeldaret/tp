@@ -24,11 +24,12 @@
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_machine_exception.h"
 #include "m_Do/m_Do_main.h"
+#include "DynamicLink.h"
 
 /* 80450BF0-80450BF4 0000F0 0004+00 1/1 0/0 0/0 .sbss            None */
 #if DEBUG
 u8 mDoMch::mDebugFill = true;
-u8 mDoMch::mDebugFillNotuse = 0xDD;
+u8 mDoMch::mDebugFillNotUse = 0xDD;
 u8 mDoMch::mDebugFillNew = 0xF7;
 u8 mDoMch::mDebugFillDelete = 0xDD;
 
@@ -62,12 +63,153 @@ static int unknownHeapErrors;
 /* 80450C0C-80450C10 00010C 0004+00 1/1 0/0 0/0 .sbss            heapErrors */
 static u32 heapErrors;
 
+#if VERSION != VERSION_GCN_PAL
+/* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
+GXRenderModeObj g_ntscZeldaIntDf = {
+    VI_TVMODE_NTSC_INT,
+    608,
+    448,
+    448,
+    27,
+    16,
+    666,
+    448,
+    VI_XFBMODE_DF,
+    0,
+    0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    {8, 8, 10, 12, 10, 8, 8},
+};
+
+/* 803A2F9C-803A2FD8 0000BC 003C+00 1/1 1/1 0/0 .data            g_ntscZeldaProg */
+GXRenderModeObj g_ntscZeldaProg = {
+    VI_TVMODE_NTSC_PROG,
+    608,
+    448,
+    448,
+    27,
+    16,
+    666,
+    448,
+    VI_XFBMODE_SF,
+    0,
+    0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    {0, 0, 21, 22, 21, 0, 0},
+};
+#else
+/* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
+GXRenderModeObj g_ntscZeldaIntDf = {
+    VI_TVMODE_PAL_INT,
+    608,
+    448,
+    538,
+    25,
+    18,
+    670,
+    538,
+    VI_XFBMODE_DF,
+    0,
+    0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    {8, 8, 10, 12, 10, 8, 8},
+};
+
+/* 803A2F9C-803A2FD8 0000BC 003C+00 1/1 1/1 0/0 .data            g_ntscZeldaProg */
+GXRenderModeObj g_ntscZeldaProg = {
+    VI_TVMODE_EURGB60_INT,
+    608,
+    448,
+    448,
+    27,
+    16,
+    666,
+    448,
+    VI_XFBMODE_DF,
+    0,
+    0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    {8, 8, 10, 12, 10, 8, 8},
+};
+#endif
+
+#ifdef DEBUG
+static void myGXVerifyCallback(GXWarningLevel, u32, const char*);
+
+GXRenderModeObj g_palZeldaProg60 = {
+    VI_TVMODE_EURGB60_PROG,
+    640, 456, 456, 25, 12, 670, 456,
+    VI_XFBMODE_SF, 0, 0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    { 8, 8, 10, 12, 10, 8, 8 },
+};
+#endif
+
+/* 804505A0-804505A8 -00001 0004+04 1/1 3/3 0/0 .sdata           mRenderModeObj__15mDoMch_render_c
+ */
+GXRenderModeObj* mDoMch_render_c::mRenderModeObj = &g_ntscZeldaIntDf;
+
 /* 8000B1EC-8000B3EC 005B2C 0200+00 2/2 0/0 0/0 .text            myGetHeapTypeByString__FP7JKRHeap
  */
 static const char* myGetHeapTypeByString(JKRHeap* p_heap) {
     static char tmpString[5];
 
-    if (p_heap == JKRHeap::getSystemHeap()) {
+    if (p_heap == JKRGetSystemHeap()) {
         return "SystemHeap";
     }
 
@@ -416,135 +558,17 @@ static void dummy_string() {
 
 /* 8000BCF4-8000BCF8 006634 0004+00 1/1 0/0 0/0 .text            my_PrintHeap__FPCcUl */
 static void my_PrintHeap(char const* heapName, u32 heapSize) {
-    /* empty function */
+    OS_REPORT("\x1b[32m%-24s = size=%d KB\n\x1b[m", heapName, heapSize / 1024);
 }
 
 /* 8000BCF8-8000BD44 006638 004C+00 1/1 0/0 0/0 .text            my_SysPrintHeap__FPCcPvUl */
 void my_SysPrintHeap(char const* message, void* start, u32 size) {
+    uintptr_t end = (uintptr_t)start + size;
     OSReport_System("\x1b[32m%-24s = %08x-%08x size=%d KB\n\x1b[m", message, start,
-                    (uintptr_t)start + size, size / 1024);
+                    end, size / 1024);
 }
 
-#if VERSION != VERSION_GCN_PAL
-/* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
-extern GXRenderModeObj g_ntscZeldaIntDf = {
-    VI_TVMODE_NTSC_INT,
-    608,
-    448,
-    448,
-    27,
-    16,
-    666,
-    448,
-    VI_XFBMODE_DF,
-    0,
-    0,
-    {{6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6}},
-    {8, 8, 10, 12, 10, 8, 8},
-};
-
-/* 803A2F9C-803A2FD8 0000BC 003C+00 1/1 1/1 0/0 .data            g_ntscZeldaProg */
-extern GXRenderModeObj g_ntscZeldaProg = {
-    VI_TVMODE_NTSC_PROG,
-    608,
-    448,
-    448,
-    27,
-    16,
-    666,
-    448,
-    VI_XFBMODE_SF,
-    0,
-    0,
-    {{6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6}},
-    {0, 0, 21, 22, 21, 0, 0},
-};
-#else
-/* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
-extern GXRenderModeObj g_ntscZeldaIntDf = {
-    VI_TVMODE_PAL_INT,
-    608,
-    448,
-    538,
-    25,
-    18,
-    670,
-    538,
-    VI_XFBMODE_DF,
-    0,
-    0,
-    {{6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6}},
-    {8, 8, 10, 12, 10, 8, 8},
-};
-
-/* 803A2F9C-803A2FD8 0000BC 003C+00 1/1 1/1 0/0 .data            g_ntscZeldaProg */
-extern GXRenderModeObj g_ntscZeldaProg = {
-    VI_TVMODE_EURGB60_INT,
-    608,
-    448,
-    448,
-    27,
-    16,
-    666,
-    448,
-    VI_XFBMODE_DF,
-    0,
-    0,
-    {{6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6},
-     {6, 6}},
-    {8, 8, 10, 12, 10, 8, 8},
-};
-#endif
-
-/* 804505A0-804505A8 -00001 0004+04 1/1 3/3 0/0 .sdata           mRenderModeObj__15mDoMch_render_c
- */
-GXRenderModeObj* mDoMch_render_c::mRenderModeObj = &g_ntscZeldaIntDf;
-
 /* 8000BD44-8000C0CC 006684 0388+00 0/0 2/1 0/0 .text            mDoMch_Create__Fv */
-// NONMATCHING - small regalloc
 int mDoMch_Create() {
     if (mDoMain::developmentMode == 0 || !(OSGetConsoleType() & 0x10000000)) {
         OSReportDisable();
@@ -552,7 +576,7 @@ int mDoMch_Create() {
 
     JKRHeap::setDefaultDebugFill(mDoMch::mDebugFill);
     #ifdef DEBUG
-    JKRSetDebugFillNotuse(mDoMch::mDebugFillNotuse);
+    JKRSetDebugFillNotuse(mDoMch::mDebugFillNotUse);
     JKRSetDebugFillNew(mDoMch::mDebugFillNew);
     JKRSetDebugFillDelete(mDoMch::mDebugFillDelete);
     #endif
@@ -574,31 +598,90 @@ int mDoMch_Create() {
         arenaSize += mDoMain::memMargin;
     }
 
-    #ifdef DEBUG
-    u32 uVar14 = 0xf20c00;
-    u32 local_1c = 0x74e000;
-    if (mDoMain::archiveHeapSize == -1) {
-        mDoMain::archiveHeapSize = 0x106ec00;
-    } else {
-        OSReport_Error("アーカイブヒープサイズ指定！\n");
-        uVar14 = mDoMain::archiveHeapSize;
-    }
-    if (mDoMain::gameHeapSize == -1) {
-        mDoMain::gameHeapSize = 0x74e000;
-    } else {
-        OSReport_Error("ゲームヒープサイズ指定！\n");
-        local_1c = mDoMain::gameHeapSize;
-    }
+    JKRHeap* heap; // sp4C
+    u32 archiveHeapSize; // r30
+    u32 j2dHeapSize; // sp48
+    u32 gameHeapSize; // sp44
+    u32 commandHeapSize; // sp40
+    u32 dynamicLinkHeapSize; // sp3C
+    u32 dbPrintHeapSize; // sp38
+    dbPrintHeapSize = 0x1800;
+    commandHeapSize = 0x1000;
+    gameHeapSize = 0x400000;
+    archiveHeapSize = 0x740000;
+    archiveHeapSize += 0xED000;
+    archiveHeapSize += 0xA0000;
+    gameHeapSize += 0x4E000;
+    archiveHeapSize += 0x30000;
+    archiveHeapSize += 0x2000;
+    archiveHeapSize += 0x4B000;
+    archiveHeapSize -= 0xC0000;
+    archiveHeapSize += 0x4800;
+    j2dHeapSize = 0xBB800;
+    archiveHeapSize += 0x10000;
+    archiveHeapSize += 0x2400;
+    archiveHeapSize += 0x80000;
+    archiveHeapSize += 0x100000;
+    archiveHeapSize += 0x400000;
+    archiveHeapSize += 0x100000;
+    gameHeapSize += 0x200000;
+    gameHeapSize += 0x100000;
+    dynamicLinkHeapSize = 0x180000;
+
+    #ifndef DEBUG
+    // Fakematch because the heap sizes differ between debug and retail.
+    // Maybe the actual calculations above use sizeof or constants and that's why it's different?
+    archiveHeapSize -= 0x641800;
+    j2dHeapSize -= 0x3E800;
+    gameHeapSize -= 0x300000;
     #endif
 
-    JFWSystem::setSysHeapSize(arenaSize - 0xDACD30);
-    my_PrintHeap("システムヒープ", arenaSize - 0xDACD30);
+    #ifdef DEBUG
+    if (mDoMain::archiveHeapSize != -1) {
+        OSReport_Error("アーカイブヒープサイズ指定！\n");
+        archiveHeapSize = mDoMain::archiveHeapSize;
+    } else {
+        mDoMain::archiveHeapSize = archiveHeapSize + 0x14E000;
+    }
+    if (mDoMain::gameHeapSize != -1) {
+        OSReport_Error("ゲームヒープサイズ指定！\n");
+        gameHeapSize = mDoMain::gameHeapSize;
+    } else {
+        mDoMain::gameHeapSize = gameHeapSize;
+    }
+    arenaSize -= dynamicLinkHeapSize;
+    arenaSize -= gameHeapSize + commandHeapSize;
+    #endif
+
+    arenaSize -= (dbPrintHeapSize + 0x10);
+    arenaSize -= 0x120;
+    #ifndef DEBUG
+    arenaSize -= 0xDAB400;
+    #endif
+    JFWSystem::setSysHeapSize(arenaSize);
+    my_PrintHeap("システムヒープ", arenaSize);
+
+    if (arenaSize) {
+        // Fakematch to force arenaSize into a register for debug.
+    }
 
     JFWSystem::setFifoBufSize(0xA0000);
+    #ifdef DEBUG
+    JFWSystem::setAramAudioBufSize(0xB00000);
+    #else
     JFWSystem::setAramAudioBufSize(0xA00000);
+    #endif
     JFWSystem::setAramGraphBufSize(-1);
 
-    #if VERSION != VERSION_GCN_PAL
+    #ifdef DEBUG
+    VIInit();
+    if (VIGetDTVStatus() != 0 && mDoMch_IsProgressiveMode()) {
+        mDoMch_render_c::setProgressiveMode();
+        OSReport("=== プログレッシブモードです ===\n");
+    } else if (VIGetTvFormat() == 5) {
+        mDoMch_render_c::setRenderModeObj(&g_palZeldaProg60);
+    }
+    #elif VERSION != VERSION_GCN_PAL
     if ((OSGetResetCode() >> 31) == 0) {
         if (VIGetDTVStatus() == 0) {
             OSSetProgressiveMode(0);
@@ -620,8 +703,9 @@ int mDoMch_Create() {
 
     JFWSystem::setRenderMode(mDoMch_render_c::getRenderModeObj());
     JFWSystem::firstInit();
-    JUTDbPrint::start(NULL, mDoExt_createDbPrintHeap(0x1800, JKRHeap::getRootHeap()));
-    mDoExt_createAssertHeap(JKRHeap::getRootHeap());
+    JKRExpHeap* dbPrintHeap = mDoExt_createDbPrintHeap(dbPrintHeapSize, JKRGetRootHeap());
+    JUTDbPrint::start(NULL, dbPrintHeap);
+    mDoExt_createAssertHeap(JKRGetRootHeap());
     JFWSystem::init();
 
     if (mDoMain::developmentMode == 0) {
@@ -629,48 +713,90 @@ int mDoMch_Create() {
         JUTDbPrint::getManager()->setVisible(false);
     }
 
-    JKRHeap::setErrorHandler(myMemoryErrorRoutine);
-    JKRHeap::getRootHeap()->setErrorFlag(true);
-    JFWSystem::getSystemHeap()->setErrorFlag(true);
+    JKRSetErrorHandler(myMemoryErrorRoutine);
+    JKRSetErrorFlag(JKRHeap::getRootHeap(), true);
+    JKRSetErrorFlag(JFWSystem::getSystemHeap(), true);
 
-    JKRHeap* rootHeap = JKRGetRootHeap();
+    JKRHeap* rootHeap = (JKRHeap*)JKRGetRootHeap();
+    #ifdef DEBUG
+    JKRHeap* rootHeap2 = JKRGetRootHeap2();
+    #else
+    JKRHeap* rootHeap2 = rootHeap;
+    #endif
+
     // Command Heap size: 4 KB
-    my_SysPrintHeap("コマンドヒープ", mDoExt_createCommandHeap(0x1000, rootHeap), 0x1000);
+    heap = mDoExt_createCommandHeap(commandHeapSize, rootHeap);
+    my_SysPrintHeap("コマンドヒープ", heap, commandHeapSize);
+
+    #ifdef DEBUG
+    heap = DynamicModuleControlBase::createHeap(dynamicLinkHeapSize, rootHeap);
+    my_SysPrintHeap("ダイナミックリンクヒープ", heap, dynamicLinkHeapSize);
+    #endif
 
     // Archive Heap size: 9085 KB
-    my_SysPrintHeap("アーカイブヒープ", mDoExt_createArchiveHeap(0x8DF400, rootHeap), 0x8DF400);
+    heap = mDoExt_createArchiveHeap(archiveHeapSize, rootHeap2);
+    my_SysPrintHeap("アーカイブヒープ", heap, archiveHeapSize);
 
     // J2D Heap size: 500 KB
-    my_SysPrintHeap("Ｊ２Ｄ用ヒープ", mDoExt_createJ2dHeap(0x7D000, rootHeap), 0x7D000);
+    heap = mDoExt_createJ2dHeap(j2dHeapSize, rootHeap2);
+    my_SysPrintHeap("Ｊ２Ｄ用ヒープ", heap, j2dHeapSize);
 
     // Game Heap size: 4408 KB
-    my_SysPrintHeap("ゲームヒープ", mDoExt_createGameHeap(0x44E000, rootHeap), 0x44E000);
+    heap = mDoExt_createGameHeap(gameHeapSize, rootHeap);
+    my_SysPrintHeap("ゲームヒープ", heap, gameHeapSize);
 
-    JKRHeap* sysHeap = JKRGetSystemHeap();
-    u32 zeldaHeapSize = sysHeap->getFreeSize() - 0x10000;
-    JKRHeap* zeldaHeap = mDoExt_createZeldaHeap(zeldaHeapSize, sysHeap);
-    my_SysPrintHeap("ゼルダヒープ", zeldaHeap, zeldaHeapSize);
-    zeldaHeap->becomeCurrentHeap();
+    #ifdef DEBUG
+    JKRHeap* sp28 = rootHeap2;
+    u32 hostIOHeapSize = 0x71450;
+    hostIOHeapSize += 0x32000;
+    JKRHeap* hostIOHeap = mDoExt_createHostIOHeap(hostIOHeapSize, sp28);
+    my_SysPrintHeap("HostIOヒープ", hostIOHeap, hostIOHeapSize);
+    #endif
 
-    JKRAramStream::setTransBuffer(NULL, 0x2000, JKRGetSystemHeap());
+    JKRHeap* systemHeap = JKRGetSystemHeap();
+    s32 size = systemHeap->getFreeSize();
+    size -= 0x10000;
+    JUT_ASSERT(1549, size > 0);
+    JKRHeap* zeldaHeap = mDoExt_createZeldaHeap(size, systemHeap);
+    my_SysPrintHeap("ゼルダヒープ", zeldaHeap, size);
+    JKRSetCurrentHeap(zeldaHeap);
+
+    #ifdef DEBUG
+    my_PrintHeap("システムヒープ", JKRGetSystemHeap()->getTotalFreeSize());
+    my_PrintHeap("ルートヒープ", JKRGetRootHeap()->getTotalFreeSize());
+    my_PrintHeap("ルートヒープ2", JKRGetRootHeap2()->getTotalFreeSize());
+    #endif
+
+    JKRSetAramTransferBuffer(NULL, 0x2000, JKRGetSystemHeap());
     JKRThreadSwitch::createManager(NULL);
+    { // Fakematch to fix stack on debug, unsure where this block is supposed to go
     JKRThread* thread = new JKRThread(OSGetCurrentThread(), 0);
+    }
 
     JUTConsole* sysConsole = JFWSystem::getSystemConsole();
     sysConsole->setOutput(JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT);
     sysConsole->setPosition(16, 42);
 
+#ifdef DEBUG
+    JUTException::setMapFile("/map/RVL/Debug/RframeworkD.map");
+#else
     JUTException::appendMapFile("/map/Final/Release/frameworkF.map");
+#endif
     JUTException::setPreUserCallback(myExceptionCallback);
     JUTException::setPostUserCallback(fault_callback_scroll);
 
     cMl::init(mDoExt_getZeldaHeap());
     cM_initRnd(100, 100, 100);
+    #ifdef DEBUG
+    GXSetVerifyLevel((GXWarningLevel)mDoMch::GXWarningLevel);
+    GXSetVerifyCallback((GXVerifyCallback)&myGXVerifyCallback);
+    #endif
     JKRDvdRipper::setSZSBufferSize(0x4000);
     JKRDvdAramRipper::setSZSBufferSize(0x4000);
     JKRAram::setSZSBufferSize(0x2000);
     mDoDvdThd::create(OSGetThreadPriority(OSGetCurrentThread()) - 2);
     mDoDvdErr_ThdInit();
     mDoMemCd_ThdInit();
+
     return 1;
 }

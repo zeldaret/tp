@@ -456,39 +456,31 @@ static void bee_start(e_bee_class* i_this, bee_s* i_bee) {
 }
 
 /* 80684248-80684A94 001AC8 084C+00 1/1 0/0 0/0 .text            bee_control__FP11e_bee_class */
-// NONMATCHING regalloc
 static void bee_control(e_bee_class* i_this) {
-    fopAc_ac_c* parent;
-    s8 bees_in_nest;
-    camera_class* camera;
-    e_nest_class* nest;
-    int i;
     fopAc_ac_c* a_this;
-    cXyz* hit_pos_p;
-    bee_s* bee;
-    s8 nest_health;
-    s8 active_bees;
-    s8 bees_flying;
-
     a_this = (fopAc_ac_c*)i_this;
 
+    s8 nest_health;
     nest_health = 0;
 
     static cXyz non(-20000.0f, 30000.0f, -15000.0f);
     i_this->mCcSph.SetC(a_this->current.pos + non);
 
-    parent = fopAcM_SearchByID(a_this->parentActorID);
+    e_nest_class* parent;
+    parent = (e_nest_class*)fopAcM_SearchByID(a_this->parentActorID);
+    e_nest_class* nest;
     nest = NULL;
     if (parent != NULL) {
         if (parent != NULL && parent->health != 0) {
             nest_health = parent->health;
         }
-        nest = (e_nest_class*)parent;
+        nest = parent;
         a_this->home.pos = nest->mCenterPos;
     }
 
     dComIfG_Ccsp()->Set(&i_this->mCcCyl);
 
+    cXyz* hit_pos_p;
     hit_pos_p = NULL;
     cXyz hit_pos;
     f32 hit_radius = 120.0f;
@@ -496,7 +488,8 @@ static void bee_control(e_bee_class* i_this) {
     if (i_this->mCcCyl.ChkTgHit()) {
         cXyz vec1, vec2;
         hit_pos_p = &hit_pos;
-        cCcD_Obj* hit_obj = i_this->mCcCyl.GetTgHitObj();
+        cCcD_Obj* hit_obj;
+        hit_obj = i_this->mCcCyl.GetTgHitObj();
         if (hit_obj->ChkAtType(AT_TYPE_BOMB) || hit_obj->ChkAtType(AT_TYPE_BOOMERANG)
                                              || hit_obj->ChkAtType(AT_TYPE_IRON_BALL)) {
             fopAc_ac_c* hit_actor = dCc_GetAc(hit_obj->GetAc());
@@ -532,13 +525,18 @@ static void bee_control(e_bee_class* i_this) {
         i_this->mBoomerangAngle = 0;
     }
 
+    bee_s* bee;
     bee = i_this->mBees;
+    s8 active_bees;
     active_bees = 0;
     cXyz vec3;
     ccCylSet = 0;
+    s8 bees_in_nest;
     bees_in_nest = 0;
+    s8 bees_flying;
     bees_flying = 0;
-    camera = dComIfGp_getCamera(0);
+    camera_class* camera;
+    camera = (camera_class*)dComIfGp_getCamera(0);
 
     if ((nest != NULL && nest->mDemoStage == 0 && dComIfGp_event_runCheck())
                     || !daPy_getPlayerActorClass()->checkSwimUp()
@@ -552,7 +550,7 @@ static void bee_control(e_bee_class* i_this) {
         i_this->mHomeTimer = 10;
     }
 
-    for (i = 0; i < i_this->mNumBees; i++, bee++) {
+    for (int i = 0; i < i_this->mNumBees; i++, bee++) {
         if (bee->mAction != bee_s::ACT_DEAD) {
             active_bees++;
             bee->mNoDraw = false;
