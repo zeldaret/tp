@@ -139,8 +139,7 @@ public:
 
     BOOL chkTalkXY() 
     {
-        // maybe exclusive to ShieldD
-#if DEBUG
+#if PLATFORM_WII || PLATFORM_SHIELD
         return mTalkXyType == 1 || mTalkXyType == 2 || mTalkXyType == 3 || mTalkXyType == 4;
 #else
         return mTalkXyType == 1 || mTalkXyType == 2;

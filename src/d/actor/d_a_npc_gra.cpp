@@ -10,6 +10,7 @@
 #include "JSystem/JHostIO/JORFile.h"
 #include "d/actor/d_a_npc_gra.h"
 #include "d/actor/d_a_tag_gra.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 //
 // Declarations:
@@ -1000,30 +1001,80 @@ bool daNpc_grA_c::setExpressionAnm(int i_expression, bool i_modify) {
                                 l_bckGetParamList[i_expression][0]);
     }
     bool ret = 0;
-    switch(i_expression)
-    {
-    case 0x00:           ret = setExpressionBtp(0x00); break;
-    case 0x01:           ret = setExpressionBtp(0x00); break;
-    case 0x02:           ret = setExpressionBtp(0x00); break;
-    case 0x03:           ret = setExpressionBtp(0x00); break;
-    case 0x04: attr = 2; ret = setExpressionBtp(0x00); break;
-    case 0x05:           ret = setExpressionBtp(0x01); break;
-    case 0x06: attr = 2; ret = setExpressionBtp(0x00); break;
-    case 0x07:           ret = setExpressionBtp(0x02); break;
-    case 0x08: attr = 2; ret = setExpressionBtp(0x03); break;
-    case 0x09:           ret = setExpressionBtp(0x04); break;
-    case 0x0a: attr = 2; ret = setExpressionBtp(0x00); break;
-    case 0x0b:           ret = setExpressionBtp(0x05); break;
-    case 0x0c: attr = 2; ret = setExpressionBtp(0x06); break;
-    case 0x0d:           ret = setExpressionBtp(0x07); break;
-    case 0x0e: attr = 2; ret = setExpressionBtp(0x08); break;
-    case 0x0f:           ret = setExpressionBtp(0x09); break;
-    case 0x10:           ret = setExpressionBtp(0x0a); break;
-    case 0x11: attr = 2; ret = setExpressionBtp(0x0b); break;
-    case 0x12:           ret = setExpressionBtp(0x0c); break;
-    case 0x13:           ret = setExpressionBtp(0x0d); break;
-    case 0x14:           ret = setExpressionBtp(0x0f); break;
-    case 0x15:           ret = setExpressionBtp(0x0e); break;
+    switch (i_expression) {
+    case 0x00:
+        ret = setExpressionBtp(0x00);
+        break;
+    case 0x01:
+        ret = setExpressionBtp(0x00);
+        break;
+    case 0x02:
+        ret = setExpressionBtp(0x00);
+        break;
+    case 0x03:
+        ret = setExpressionBtp(0x00);
+        break;
+    case 0x04:
+        attr = 2;
+        ret = setExpressionBtp(0x00);
+        break;
+    case 0x05:
+        ret = setExpressionBtp(0x01);
+        break;
+    case 0x06:
+        attr = 2;
+        ret = setExpressionBtp(0x00);
+        break;
+    case 0x07:
+        ret = setExpressionBtp(0x02);
+        break;
+    case 0x08:
+        attr = 2;
+        ret = setExpressionBtp(0x03);
+        break;
+    case 0x09:
+        ret = setExpressionBtp(0x04);
+        break;
+    case 0x0a:
+        attr = 2;
+        ret = setExpressionBtp(0x00);
+        break;
+    case 0x0b:
+        ret = setExpressionBtp(0x05);
+        break;
+    case 0x0c:
+        attr = 2;
+        ret = setExpressionBtp(0x06);
+        break;
+    case 0x0d:
+        ret = setExpressionBtp(0x07);
+        break;
+    case 0x0e:
+        attr = 2;
+        ret = setExpressionBtp(0x08);
+        break;
+    case 0x0f:
+        ret = setExpressionBtp(0x09);
+        break;
+    case 0x10:
+        ret = setExpressionBtp(0x0a);
+        break;
+    case 0x11:
+        attr = 2;
+        ret = setExpressionBtp(0x0b);
+        break;
+    case 0x12:
+        ret = setExpressionBtp(0x0c);
+        break;
+    case 0x13:
+        ret = setExpressionBtp(0x0d);
+        break;
+    case 0x14:
+        ret = setExpressionBtp(0x0f);
+        break;
+    case 0x15:
+        ret = setExpressionBtp(0x0e);
+        break;
     default:
         bck = NULL;
     }
@@ -1823,7 +1874,7 @@ BOOL daNpc_grA_c::doEvent() {
             }
             ret = TRUE;
         } else {
-            if (field_0x1480 != 0xffffffff) {  // -1 doesn't work
+            if (field_0x1480 != fpcM_ERROR_PROCESS_ID_e) {
                 dComIfGp_event_setItemPartnerId(field_0x1480);
                 field_0x1480 = -1;
             }
@@ -4067,7 +4118,7 @@ BOOL daNpc_grA_c::talk(void*) {
             if (mFlow.getEventId(&sp8) == 1) {
                 field_0x1480 =
                     fopAcM_createItemForPresentDemo(&current.pos, sp8, 0, -1, -1, NULL, NULL);
-                if (field_0x1480 != 0xffffffff) {
+                if (field_0x1480 != fpcM_ERROR_PROCESS_ID_e) {
                     s16 r25 = dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_GETITEM", 0xff);
                     dComIfGp_getEvent().reset(this);
                     fopAcM_orderChangeEventId(this, r25, 1, -1);
@@ -4150,7 +4201,7 @@ static BOOL daNpc_grA_Draw(void* i_this) {
 }
 
 /* 809C91A8-809C91B0 00A948 0008+00 1/0 0/0 0/0 .text            daNpc_grA_IsDelete__FPv */
-static bool daNpc_grA_IsDelete(void* i_this) {
+static BOOL daNpc_grA_IsDelete(void* i_this) {
     return true;
 }
 
@@ -4200,5 +4251,6 @@ extern actor_process_profile_definition g_profile_NPC_GRA = {
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
+AUDIO_INSTANCES;
 
 /* 809CA4B8-809CA4B8 000720 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

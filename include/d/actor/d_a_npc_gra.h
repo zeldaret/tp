@@ -131,7 +131,7 @@ public:
     int getType() { return mType; }
     s16 getGraNo() { return 0; }
     void addCarryNum() { field_0x1692++; }
-    u8 getPathNoFromParam() { return home.angle.z; } // this matches but feels wrong?
+    u8 getPathNoFromParam() { return home.angle.z; }
     void setGateWalk() { field_0x14D0 = 1; }
     static char* mEvtCutNameList[12];
     typedef BOOL (daNpc_grA_c::*cut_type)(int);
