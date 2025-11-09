@@ -276,7 +276,7 @@ static int daNpc_Inko_Execute(npc_inko_class* i_this) {
 
     if (i_this->field_0x5e2 == 0) {
         i_this->field_0x5e2 = (s8)(30.0f + cM_rndF(90.0f));
-        i_this->sound.startSound(0x60045, 0, -1);
+        i_this->sound.startSound(Z2SE_LINKBIRD_CRY, 0, -1);
     }
 
     s16 spE = 0;
