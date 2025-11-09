@@ -1859,9 +1859,9 @@ BOOL daNpc_grA_c::doEvent() {
     if (dComIfGp_event_runCheck()) {
         manager = &dComIfGp_getEventManager();
         if (field_0x1691 == 0) {
-            mOrderSpeakEvt = 0;
+            mOrderNewEvt = 0;
         } else {
-            mOrderSpeakEvt = 1;
+            mOrderNewEvt = 1;
         }
         if (eventInfo.checkCommandTalk()) {
             if (chkAction(&daNpc_grA_c::talk)) {
