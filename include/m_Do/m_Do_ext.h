@@ -812,6 +812,7 @@ void mDoExt_modelTexturePatch(J3DModelData* i_modelData);
 #if VERSION == VERSION_SHIELD_DEBUG
 s32 mDoExt_getSafeZeldaHeapSize();
 void mDoExt_addSafeZeldaHeapSize(s32);
+JKRHeap* mDoExt_createHostIOHeap(u32, JKRHeap*);
 #endif
 
 struct JUTFont;

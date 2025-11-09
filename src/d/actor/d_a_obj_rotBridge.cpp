@@ -73,7 +73,7 @@ static const int l_bckIdx[] = {
 /* 80CBEB38-80CBECBC 000298 0184+00 1/0 0/0 0/0 .text            CreateHeap__13daRotBridge_cFv */
 int daRotBridge_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameIdx[mType], l_bmdIdx[mType]);
-    JUT_ASSERT(216, modelData != 0);
+    JUT_ASSERT(216, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, BMD_DEFAULT_DIFF_FLAGS);
     if (mpModel == NULL) {
