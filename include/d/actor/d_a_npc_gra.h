@@ -161,7 +161,7 @@ private:
     /* 0x1474 */ u8 mType;
     /* 0x1478 */ int field_0x1478;
     /* 0x147C */ const char* mName;
-    /* 0x1480 */ int field_0x1480;
+    /* 0x1480 */ fpc_ProcID field_0x1480;
     /* 0x1484 */ s16 field_0x1484;
     /* 0x1486 */ u8 field_0x1486;
     /* 0x1487 */ u8 field_0x1487;
