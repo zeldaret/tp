@@ -824,7 +824,7 @@ void daNpc_grA_c::setParam() {
 /* 809C0038-809C0298 0017D8 0260+00 1/0 0/0 0/0 .text            main__11daNpc_grA_cFv */
 BOOL daNpc_grA_c::main() {
     int a = 0xffff;
-    JUT_ASSERT(1367, mAnm_p!= NULL); // TODO: update "mAnm_p" to "mAnm_p"
+    JUT_ASSERT(1367, mAnm_p!= NULL);
     if (doEvent() == 0) {
         if (hitChk2(&field_0xC98, TRUE, FALSE)) {
             setDamage(GET_HIO(mNpcFParams.damage_time), 0x17, 0);
@@ -868,7 +868,7 @@ BOOL daNpc_grA_c::main() {
     }
     playExpression();
     playMotion();
-    JUT_ASSERT(1487, mAnm_p!= NULL); // TODO: update "mAnm_p" to "mAnm_p"
+    JUT_ASSERT(1487, mAnm_p!= NULL); 
     return TRUE;
 }
 
