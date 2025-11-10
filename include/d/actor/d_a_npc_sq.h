@@ -31,7 +31,7 @@ public:
     /* 0x608 */ cXyz field_0x608;
     /* 0x614 */ u8 field_0x614[4];
     /* 0x618 */ f32 mPlayerDist;
-    /* 0x61C */ mDoExt_McaMorf* mpMorf;
+    /* 0x61C */ mDoExt_McaMorf* mAnm_p;
     /* 0x620 */ mDoExt_btkAnm* mpBtkAnm;
     /* 0x624 */ s8 mBtkFrame;
     /* 0x626 */ s16 mCounter;

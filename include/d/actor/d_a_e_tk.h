@@ -29,7 +29,7 @@ public:
     /* 0x5BC */ dPath* mpPath;
     /* 0x5C0 */ s8 mPathID;
     /* 0x5C1 */ s8 mPathDirection;
-    /* 0x5C4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5C4 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5C8 */ int mAnim;
     /* 0x5CC */ Z2CreatureEnemy mSound;
     /* 0x670 */ f32 mAnimSpeed;

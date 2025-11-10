@@ -51,11 +51,11 @@ daB_ZANTZ_HIO_c::daB_ZANTZ_HIO_c() {
 
 /* 806507B0-80650834 000110 0084+00 1/1 0/0 0/0 .text            draw__11daB_ZANTZ_cFv */
 int daB_ZANTZ_c::draw() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     mpBrk->entry(model->getModelData());
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
     return 1;
 }
 
@@ -127,13 +127,13 @@ void daB_ZANTZ_c::setMouthMode(u8 param_0) {
     if (param_0 == 2) {
         if (mMouthMode == 0 || mMouthMode == 1) {
             mMouthMode = 2;
-            mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_CLOSE), J3DFrameCtrl::EMode_NONE, 0.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_CLOSE), J3DFrameCtrl::EMode_NONE, 0.0f, 1.0f, 0.0f, -1.0f);
             Z2GetAudioMgr()->seStart(Z2SE_EN_ZZ_CLOSE, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         }
     } else if (param_0 == 0) {
         if (mMouthMode == 2 || mMouthMode == 3) {
             mMouthMode = 0;
-            mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), J3DFrameCtrl::EMode_NONE, 0.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), J3DFrameCtrl::EMode_NONE, 0.0f, 1.0f, 0.0f, -1.0f);
             Z2GetAudioMgr()->seStart(Z2SE_EN_ZZ_OPEN, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         }
     }
@@ -146,14 +146,14 @@ void daB_ZANTZ_c::setAppearMode(u8 param_0) {
     if (param_0 == 2) {
         if (mAppearMode == 0 || mAppearMode == 1) {
             mAppearMode = 2;
-            mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_APPEARANCE), J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_APPEARANCE), J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f, 0.0f, -1.0f);
             field_0x660 = 1.0f;
             dComIfGp_getVibration().StartQuake(1, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
     } else if (param_0 == 0) {
         if (mAppearMode == 2 || mAppearMode == 3) {
             mAppearMode = 0;
-            mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_APPEARANCE), J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_APPEARANCE), J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f, 0.0f, -1.0f);
             field_0x660 = 1.0f;
             dComIfGp_getVibration().StartQuake(1, 31, cXyz(0.0f, 1.0f, 0.0f));
 
@@ -175,7 +175,7 @@ void daB_ZANTZ_c::setAppearMode(u8 param_0) {
         if (mAppearMode == 1) {
             if (abs((s16)(fopAcM_searchPlayerAngleY(this) - shape_angle.y)) > 0x1800) {
                 mAppearMode = 4;
-                mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_APPEARANCE), J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f, 0.0f, -1.0f);
+                mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_APPEARANCE), J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f, 0.0f, -1.0f);
                 field_0x660 = 1.0f;
                 dComIfGp_getVibration().StartQuake(1, 31, cXyz(0.0f, 1.0f, 0.0f));
             }
@@ -184,7 +184,7 @@ void daB_ZANTZ_c::setAppearMode(u8 param_0) {
         if (mAppearMode == 1) {
             mAppearMode = 5;
             mSearchContinue = true;
-            mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_APPEARANCE), J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_APPEARANCE), J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f, 0.0f, -1.0f);
             field_0x660 = 1.0f;
             dComIfGp_getVibration().StartQuake(1, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
@@ -218,27 +218,27 @@ f32 daB_ZANTZ_c::getGroundPos() {
 /* 8065127C-80651B1C 000BDC 08A0+00 1/1 0/0 0/0 .text            action__11daB_ZANTZ_cFv */
 void daB_ZANTZ_c::action() {
     if (mMouthMode == 0) {
-        if (mpMorf->checkFrame(4.0f) || mpMorf->checkFrame(10.0f) || mpMorf->checkFrame(15.0f)) {
+        if (mAnm_p->checkFrame(4.0f) || mAnm_p->checkFrame(10.0f) || mAnm_p->checkFrame(15.0f)) {
             dComIfGp_getVibration().StartShock(1, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
 
-        if (mpMorf->checkFrame(40.0f)) {
+        if (mAnm_p->checkFrame(40.0f)) {
             dComIfGp_getVibration().StartShock(3, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mMouthMode++;
         }
     } else if (mMouthMode == 2) {
-        if (mpMorf->checkFrame(6.0f) || mpMorf->checkFrame(9.0f) || mpMorf->checkFrame(13.0f) || mpMorf->checkFrame(16.0f)) {
+        if (mAnm_p->checkFrame(6.0f) || mAnm_p->checkFrame(9.0f) || mAnm_p->checkFrame(13.0f) || mAnm_p->checkFrame(16.0f)) {
             dComIfGp_getVibration().StartShock(1, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
 
-        if (mpMorf->checkFrame(26.0f)) {
+        if (mAnm_p->checkFrame(26.0f)) {
             dComIfGp_getVibration().StartShock(3, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mMouthMode++;
         }
     }
@@ -250,7 +250,7 @@ void daB_ZANTZ_c::action() {
         f32 var_f31 = cLib_addCalc(&current.pos.y, home.pos.y + 3500.0f, 0.1f, 15.0f, 1.0f);
         if (std::abs(var_f31) < 15.0f) {
             cLib_chaseF(&field_0x660, 0.0f, 0.2f);
-            mpMorf->setFrame(field_0x660);
+            mAnm_p->setFrame(field_0x660);
         }
 
         if (current.pos.y > home.pos.y + 300.0f) {
@@ -263,7 +263,7 @@ void daB_ZANTZ_c::action() {
         if (!var_f31) {
             dComIfGp_getVibration().StopQuake(0x1F);
             mAppearMode++;
-            mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), J3DFrameCtrl::EMode_LOOP, 0.0f, 0.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), J3DFrameCtrl::EMode_LOOP, 0.0f, 0.0f, 0.0f, -1.0f);
         }
         break;
     }
@@ -271,7 +271,7 @@ void daB_ZANTZ_c::action() {
         f32 var_f31 = cLib_addCalc(&current.pos.y, home.pos.y, 0.1f, 15.0f, 1.0f);
         if (std::abs(var_f31) < 15.0f) {
             cLib_chaseF(&field_0x660, 0.0f, 0.2f);
-            mpMorf->setFrame(field_0x660);
+            mAnm_p->setFrame(field_0x660);
         }
 
         if (current.pos.y > home.pos.y + 300.0f) {
@@ -286,7 +286,7 @@ void daB_ZANTZ_c::action() {
         if (!var_f31) {
             dComIfGp_getVibration().StopQuake(0x1F);
             mAppearMode++;
-            mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), J3DFrameCtrl::EMode_LOOP, 0.0f, 0.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), J3DFrameCtrl::EMode_LOOP, 0.0f, 0.0f, 0.0f, -1.0f);
         }
         break;
     }
@@ -313,23 +313,23 @@ void daB_ZANTZ_c::action() {
 
         if (sp6C) {
             cLib_chaseF(&field_0x660, 0.0f, 0.1f);
-            mpMorf->setFrame(field_0x660);
+            mAnm_p->setFrame(field_0x660);
 
             if (!field_0x660) {
                 dComIfGp_getVibration().StopQuake(0x1F);
                 mAppearMode = 1;
-                mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), J3DFrameCtrl::EMode_LOOP, 0.0f, 0.0f, 0.0f, -1.0f);
+                mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), J3DFrameCtrl::EMode_LOOP, 0.0f, 0.0f, 0.0f, -1.0f);
             }
         } else {
             cLib_chaseF(&field_0x660, 1.0f, 0.2f);
-            mpMorf->setFrame(field_0x660);
+            mAnm_p->setFrame(field_0x660);
         }
         break;
     }
     }
 
     fopAcM_posMoveF(this, NULL);
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
 /* 80651B1C-80651C20 00147C 0104+00 1/1 0/0 0/0 .text            cc_set__11daB_ZANTZ_cFv */
@@ -339,7 +339,7 @@ void daB_ZANTZ_c::cc_set() {
     eyePos.y += 100.0f;
 
     for (int i = 0; i < 3; i++) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(i + 2));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(i + 2));
         mDoMtx_stack_c::transM(0.0f, 0.0f, 130.0f);
         mDoMtx_stack_c::multVecZero(&cc_center);
 
@@ -366,8 +366,8 @@ int daB_ZANTZ_c::execute() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
 
     mpBrk->play();
 
@@ -424,8 +424,8 @@ int daB_ZANTZ_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BMDR_ZZ);
     JUT_ASSERT(0, modelData != NULL);
 
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), 0, 0.0f, 0, -1, &mSound, 0, 0x11000084);
-    if (mpMorf == NULL) {
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), 0, 0.0f, 0, -1, &mSound, 0, 0x11000084);
+    if (mAnm_p== NULL) {
         return 0;
     }
 
@@ -434,7 +434,7 @@ int daB_ZANTZ_c::CreateHeap() {
         return 0;
     }
 
-    if (!mpBrk->init(mpMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BRK_ZZ), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
+    if (!mpBrk->init(mAnm_p->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BRK_ZZ), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -486,7 +486,7 @@ int daB_ZANTZ_c::create() {
 
         attention_info.flags = 0;
         
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -400.0f, -400.0f,-400.0f);
         fopAcM_SetMax(this, 400.0f, 400.0f, 400.0f);
 
@@ -512,8 +512,8 @@ int daB_ZANTZ_c::create() {
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
         mDoMtx_stack_c::scaleM(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);
-        mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-        mpMorf->modelCalc();
+        mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+        mAnm_p->modelCalc();
     }
 
     return phase_state;

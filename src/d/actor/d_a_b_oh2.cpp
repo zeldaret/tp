@@ -37,7 +37,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 8061DDB0-8061DE4C 000170 009C+00 1/0 0/0 0/0 .text            daB_OH2_Draw__FP11b_oh2_class */
 static int daB_OH2_Draw(b_oh2_class* i_this) {
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
 
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
@@ -143,10 +143,10 @@ static void action(b_oh2_class* i_this) {
         break;
     }
 
-    MTXCopy(boss->mBodyParts[0].mpMorf->getModel()->getAnmMtx(i_this->field_0x5c8 + 8),
+    MTXCopy(boss->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(i_this->field_0x5c8 + 8),
               mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&i_this->current.pos);
-    MTXCopy(boss->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
+    MTXCopy(boss->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
 
     local_20.set(0.0f, 0.0f, i_this->field_0x5c8 * 20.0f + 650.0f);
     mDoMtx_stack_c::multVec(&local_20, &vstack_2C);
@@ -161,9 +161,9 @@ static void action(b_oh2_class* i_this) {
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
-    i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
 
     if (boss->speedF <= 1.0f) {
         i_this->mpBrk->setFrame(0.0f);
@@ -173,7 +173,7 @@ static void action(b_oh2_class* i_this) {
         i_this->mpBrk->play();
     }
 
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 }
 
 /* 8061E410-8061E4E8 0007D0 00D8+00 2/1 0/0 0/0 .text            daB_OH2_Execute__FP11b_oh2_class */
@@ -216,7 +216,7 @@ static int daB_OH2_IsDelete(b_oh2_class* i_this) {
 static int daB_OH2_Delete(b_oh2_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "B_oh");
     if (i_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -226,22 +226,22 @@ static int daB_OH2_Delete(b_oh2_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     b_oh2_class* _this = static_cast<b_oh2_class*>(i_this);
 
-    _this->mpMorf =
+    _this->mAnm_p=
         new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x29), NULL, NULL, NULL, 2,
                              1.0f, 0, -1, &_this->mZ2Enemy, 0, 0x11000284);
 
-    if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
+    if (_this->mAnm_p== NULL || _this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    if (!_this->mInvisModel.create(_this->mpMorf->getModel(), 1)) {
+    if (!_this->mInvisModel.create(_this->mAnm_p->getModel(), 1)) {
         return 0;
     }
 
-    _this->mpMorf->getModel()->setUserArea((uintptr_t)i_this);
+    _this->mAnm_p->getModel()->setUserArea((uintptr_t)i_this);
 
-    for (u16 i = 0; i < _this->mpMorf->getModel()->getModelData()->getJointNum(); i++) {
-        _this->mpMorf->getModel()->getModelData()->getJointNodePointer(i)->setCallBack(
+    for (u16 i = 0; i < _this->mAnm_p->getModel()->getModelData()->getJointNum(); i++) {
+        _this->mAnm_p->getModel()->getModelData()->getJointNodePointer(i)->setCallBack(
             nodeCallBack);
     }
 
@@ -251,7 +251,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_oh", 0x36);
-    if (!_this->mpBtk->init(_this->mpMorf->getModel()->getModelData(), btk, TRUE, 2, 1.0f, 0, -1)) {
+    if (!_this->mpBtk->init(_this->mAnm_p->getModel()->getModelData(), btk, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -264,7 +264,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_oh", 0x2F);
-    if (!_this->mpBrk->init(_this->mpMorf->getModel()->getModelData(), brk, TRUE, 2, 1.0f, 0, -1)) {
+    if (!_this->mpBrk->init(_this->mAnm_p->getModel()->getModelData(), brk, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
 

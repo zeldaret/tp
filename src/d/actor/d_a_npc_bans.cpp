@@ -324,8 +324,8 @@ daNpc_Bans_c::~daNpc_Bans_c() {
 
     deleteObject();
 
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     if (mpScoopMorf != NULL) {
@@ -420,8 +420,8 @@ cPhs__Step daNpc_Bans_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -472,12 +472,12 @@ int daNpc_Bans_c::CreateHeap() {
     }
 
     u32 uVar2 = 0x11020284;
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, (int)idx == 1 ? J3DMdlFlag_DifferedDLBuffer : J3DMdlFlag_None, uVar2);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, (int)idx == 1 ? J3DMdlFlag_DifferedDLBuffer : J3DMdlFlag_None, uVar2);
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -566,7 +566,7 @@ int daNpc_Bans_c::Execute() {
 /* 80963444-809634E0 000C64 009C+00 1/1 0/0 0/0 .text            Draw__12daNpc_Bans_cFv */
 int daNpc_Bans_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -955,11 +955,11 @@ void daNpc_Bans_c::setAttnPos() {
     f32 rad = cM_s2rad((s16)(mCurAngle.y - field_0xd7e.y));
 
     if (mType == TYPE_POST_TWILIGHT) {
-        mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp70, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(), 0.0f, 0.0f, 0.0f, 0.0f,
+        mJntAnm.setParam(this, mAnm_p[0]->getModel(), &sp70, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(), 0.0f, 0.0f, 0.0f, 0.0f,
                          mHIO->m.common.head_angleX_min, mHIO->m.common.head_angleX_max, mHIO->m.common.head_angleY_min, mHIO->m.common.head_angleY_max,
                          mHIO->m.common.neck_rotation_ratio, rad, &sp7c);
     } else {
-        mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp70, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+        mJntAnm.setParam(this, mAnm_p[0]->getModel(), &sp70, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
                          mHIO->m.common.body_angleX_min, mHIO->m.common.body_angleX_max, mHIO->m.common.body_angleY_min, mHIO->m.common.body_angleY_max,
                          mHIO->m.common.head_angleX_min, mHIO->m.common.head_angleX_max, mHIO->m.common.head_angleY_min, mHIO->m.common.head_angleY_max,
                          mHIO->m.common.neck_rotation_ratio, rad, &sp7c);
@@ -970,18 +970,18 @@ void daNpc_Bans_c::setAttnPos() {
 
     if (mpScoopMorf != NULL) {
         if (mMotionSeqMngr.getNo() == MOT_WORK) {
-            if (mpMorf[0]->checkFrame(8.0f)) {
+            if (mAnm_p[0]->checkFrame(8.0f)) {
                 mDoAud_seStart(Z2SE_BANS_SHOVEL, &current.pos, 0, 0);
             }
 
-            if (mpMorf[0]->checkFrame(34.0f)) {
+            if (mAnm_p[0]->checkFrame(34.0f)) {
                 mDoAud_seStart(Z2SE_BANS_SHOVEL2, &current.pos, 0, 0);
             }
         }
 
         mpScoopMorf->play(0, 0);
 
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(0x15));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(0x15));
         Mtx mtx;
 
         #if DEBUG
@@ -994,7 +994,7 @@ void daNpc_Bans_c::setAttnPos() {
         mpScoopMorf->modelCalc();
     }
 
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&sp70, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, FALSE, 1.0f, 0);
@@ -1387,7 +1387,7 @@ int daNpc_Bans_c::cutAnger(int i_staffId) {
                         mFaceMotionSeqMngr.setNo(FACE_BLINK, -1.0f, FALSE, 0);
                         mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                     }
-                } else if ((mMotionSeqMngr.getNo() == MOT_ANGRY_A && mpMorf[0]->checkFrame(16.0f)) || (mMotionSeqMngr.getNo() == MOT_ANGRY_C && mpMorf[0]->checkFrame(8.0f))) {
+                } else if ((mMotionSeqMngr.getNo() == MOT_ANGRY_A && mAnm_p[0]->checkFrame(16.0f)) || (mMotionSeqMngr.getNo() == MOT_ANGRY_C && mAnm_p[0]->checkFrame(8.0f))) {
                     dComIfGp_getVibration().StartShock(VIBMODE_S_POWER5, 15, cXyz(0.0f, 1.0f, 0.0f));
                 }
             } else {
@@ -1438,7 +1438,7 @@ int daNpc_Bans_c::cutAnger(int i_staffId) {
             break;
     }
 
-    if (mMotionSeqMngr.getNo() == MOT_ANGRY_C && mpMorf[0]->checkFrame(9.0f)) {
+    if (mMotionSeqMngr.getNo() == MOT_ANGRY_C && mAnm_p[0]->checkFrame(9.0f)) {
         mDoAud_seStart(Z2SE_BANS_KICK, &current.pos, 0, 0);
     }
 

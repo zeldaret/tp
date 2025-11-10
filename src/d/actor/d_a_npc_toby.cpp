@@ -285,8 +285,8 @@ NPC_TOBY_HIO_CLASS l_HIO;
 /* 80B1E64C-80B1E798 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__12daNpc_Toby_cFv */
 daNpc_Toby_c::~daNpc_Toby_c() {
     OS_REPORT("|%06d:%x|daNpc_Toby_c -> デストラクト\n", g_Counter.mCounter0, this);
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
 #if DEBUG
@@ -327,8 +327,8 @@ int daNpc_Toby_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         field_0x9c0.init(&mAcch, 0.0f, 0.0f);
@@ -376,12 +376,12 @@ int daNpc_Toby_c::CreateHeap() {
     }
 
     u32 sp_0x24 = 0x11020284;
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x24);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x24);
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    model = mpMorf[0]->getModel();
+    model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -432,7 +432,7 @@ int daNpc_Toby_c::Execute() {
 /* 80B1EF7C-80B1F010 000A1C 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_Toby_cFv */
 int daNpc_Toby_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -855,7 +855,7 @@ void daNpc_Toby_c::setAttnPos() {
     cXyz cStack_3c(0.0f, 30.0f, 0.0f);
     mStagger.calc(0);
     f32 dVar8 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    mJntAnm.setParam(this, mpMorf[0]->getModel(), &cStack_3c, getBackboneJointNo(), getNeckJointNo(),
+    mJntAnm.setParam(this, mAnm_p[0]->getModel(), &cStack_3c, getBackboneJointNo(), getNeckJointNo(),
         getHeadJointNo(), mpHIO->m.common.body_angleX_min, mpHIO->m.common.body_angleX_max,
         mpHIO->m.common.body_angleY_min, mpHIO->m.common.body_angleY_max,
         mpHIO->m.common.head_angleX_min, mpHIO->m.common.head_angleX_max,
@@ -863,7 +863,7 @@ void daNpc_Toby_c::setAttnPos() {
         mpHIO->m.common.neck_rotation_ratio, dVar8, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar8);
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&cStack_3c, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 1, 1.0f, 0);
@@ -968,7 +968,7 @@ static s16 dummy_lit_123017(int sel) {
 
 /* 80B20434-80B2050C 001ED4 00D8+00 1/0 0/0 0/0 .text            drawOtherMdl__12daNpc_Toby_cFv */
 void daNpc_Toby_c::drawOtherMdl() {
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (int i = 0; i < 1; i++) {
         if (mpTobyModels[i] != NULL && i == 0 && field_0x1002) {
             g_env_light.setLightTevColorType_MAJI(mpTobyModels[i], &tevStr);
@@ -1010,18 +1010,18 @@ bool daNpc_Toby_c::afterSetFaceMotionAnm(int arg0, int, f32, int) {
 bool daNpc_Toby_c::afterSetMotionAnm(int arg0, int, f32, int) {
     switch (arg0) {
     case 6:
-        mpMorf[0]->setPlaySpeed(0.0f);
+        mAnm_p[0]->setPlaySpeed(0.0f);
         mBtkAnm.setPlaySpeed(0.0f);
         break;
     case 7:
-        mpMorf[0]->setPlaySpeed(0.0f);
+        mAnm_p[0]->setPlaySpeed(0.0f);
         break;
     case 8:
-        mpMorf[0]->setPlaySpeed(mPlaySpeed);
+        mAnm_p[0]->setPlaySpeed(mPlaySpeed);
         break;
     case 9:
         mAnmFlags &= 0xFFFFFFFE;
-        mpMorf[0]->setPlaySpeed(mPlaySpeed);
+        mAnm_p[0]->setPlaySpeed(mPlaySpeed);
         break;
     }
 
@@ -1128,7 +1128,7 @@ int daNpc_Toby_c::cutTobyHouseFire(int arg0) {
             break;
 
         case 3:
-            mpMorf[0]->setPlaySpeed(mPlaySpeed);
+            mAnm_p[0]->setPlaySpeed(mPlaySpeed);
             mBtkAnm.setPlaySpeed(mPlaySpeed);
             mBckAnm.setPlaySpeed(mPlaySpeed);
             mBtpAnm.setPlaySpeed(mPlaySpeed);
@@ -1153,10 +1153,10 @@ int daNpc_Toby_c::cutTobyHouseFire(int arg0) {
 
     case 3: 
         if (mMotionSeqMngr.getNo() != 19) {
-            mpMorf[0]->setPlaySpeed(mPlaySpeed);
+            mAnm_p[0]->setPlaySpeed(mPlaySpeed);
             mBckAnm.setPlaySpeed(mPlaySpeed);
             mBtpAnm.setPlaySpeed(mPlaySpeed);
-            ((daObj_AutoMata_c*)atmt_p)->setAnmPlaySpeed(mpMorf[0]->getPlaySpeed());
+            ((daObj_AutoMata_c*)atmt_p)->setAnmPlaySpeed(mAnm_p[0]->getPlaySpeed());
             retval = 1;
         }
 
@@ -2153,13 +2153,13 @@ int daNpc_Toby_c::play(void* param_0) {
                     }
                 }
 
-                mpMorf[0]->setPlaySpeed(mPlaySpeed);
+                mAnm_p[0]->setPlaySpeed(mPlaySpeed);
                 mBckAnm.setPlaySpeed(mPlaySpeed);
                 mBtpAnm.setPlaySpeed(mPlaySpeed);
             }
 
             if (actor_p != NULL && reg_r29) {
-                actor_p->setAnmPlaySpeed(mpMorf[0]->getPlaySpeed());
+                actor_p->setAnmPlaySpeed(mAnm_p[0]->getPlaySpeed());
             }
 
             field_0x0FFC = mMorfLoops;

@@ -240,8 +240,8 @@ daNpc_Saru_c::cutFunc daNpc_Saru_c::mCutList[4] = {
 
 /* 80AC042C-80AC0578 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__12daNpc_Saru_cFv */
 daNpc_Saru_c::~daNpc_Saru_c() {
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
@@ -323,7 +323,7 @@ int daNpc_Saru_c::create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         #ifdef DEBUG
@@ -364,13 +364,13 @@ int daNpc_Saru_c::CreateHeap() {
     if (modelData == NULL) {
         return 0;
     }
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL,
                                   NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -678,7 +678,7 @@ void daNpc_Saru_c::setAttnPos() {
 
     mStagger.calc(FALSE);
     f32 fVar1 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp3c, getBackboneJointNo(), getNeckJointNo(),
+    mJntAnm.setParam(this, mAnm_p[0]->getModel(), &sp3c, getBackboneJointNo(), getNeckJointNo(),
         getHeadJointNo(), daNpc_Saru_Param_c::m.common.body_angleX_min, daNpc_Saru_Param_c::m.common.body_angleX_max,
         daNpc_Saru_Param_c::m.common.body_angleY_min, daNpc_Saru_Param_c::m.common.body_angleY_max,
         daNpc_Saru_Param_c::m.common.head_angleX_min, daNpc_Saru_Param_c::m.common.head_angleX_max,
@@ -687,7 +687,7 @@ void daNpc_Saru_c::setAttnPos() {
     mJntAnm.calcJntRad(0.2f, 1.0f, fVar1);
 
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&sp3c, &eyePos);
     mDoMtx_stack_c::multVecZero(&sp3c);
     field_0xe0c.set(-30.0f, 0.0f, 10.0f);
@@ -755,7 +755,7 @@ void daNpc_Saru_c::drawOtherMdl() {
     };
 
     Mtx mtx;
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (int i = 0; i < 2; i++) {
         if (mpRoseModels[i] != NULL && ((i == 0 && mTwilight == false) || (i == 1 && mTwilight != false))) {
             g_env_light.setLightTevColorType_MAJI(mpRoseModels[i], &tevStr);
@@ -798,55 +798,55 @@ int daNpc_Saru_c::setAction(int (daNpc_Saru_c::*action)(void*)) {
 
 /* 80AC1C4C-80AC216C 00190C 0520+00 1/1 0/0 0/0 .text            setSe__12daNpc_Saru_cFv */
 void daNpc_Saru_c::setSe() {
-    if (cM3d_IsZero(mpMorf[0]->getPlaySpeed()) <= 0) {
-        if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[25].mBckArcIdx], l_motionAnmData[25].mBckFileIdx) == mpMorf[0]->getAnm()) {
-            if (mpMorf[0]->checkFrame(0.0f)) {
+    if (cM3d_IsZero(mAnm_p[0]->getPlaySpeed()) <= 0) {
+        if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[25].mBckArcIdx], l_motionAnmData[25].mBckFileIdx) == mAnm_p[0]->getAnm()) {
+            if (mAnm_p[0]->checkFrame(0.0f)) {
                 mSound.startCreatureVoice(Z2SE_KOSARU_V_WALK, -1);
             }
 
-            if (mpMorf[0]->checkFrame(12.0f)) {
+            if (mAnm_p[0]->checkFrame(12.0f)) {
                 mSound.startCreatureSound(Z2SE_KOSARU_FOOTNOTE, 0, -1);
             }
         }
 
-        if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[36].mBckArcIdx], l_motionAnmData[36].mBckFileIdx) == mpMorf[0]->getAnm()) {
-            if (((mpMorf[0]->checkFrame(0.0f) || mpMorf[0]->checkFrame(19.0f)) || mpMorf[0]->checkFrame(42.0f)) || mpMorf[0]->checkFrame(75.0f)) {
+        if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[36].mBckArcIdx], l_motionAnmData[36].mBckFileIdx) == mAnm_p[0]->getAnm()) {
+            if (((mAnm_p[0]->checkFrame(0.0f) || mAnm_p[0]->checkFrame(19.0f)) || mAnm_p[0]->checkFrame(42.0f)) || mAnm_p[0]->checkFrame(75.0f)) {
                 mSound.startCreatureVoice(Z2SE_KOSARU_V_PRISONED, -1);
             }
 
-            if (mpMorf[0]->checkFrame(5.0f) || mpMorf[0]->checkFrame(21.0f)) {
+            if (mAnm_p[0]->checkFrame(5.0f) || mAnm_p[0]->checkFrame(21.0f)) {
                 mSound.startCreatureSound(Z2SE_OBJ_MONKEYJAIL_CREAK, 0, -1);
             }
 
-            if (mpMorf[0]->checkFrame(53.0f) || mpMorf[0]->checkFrame(64.0f)) {
+            if (mAnm_p[0]->checkFrame(53.0f) || mAnm_p[0]->checkFrame(64.0f)) {
                 mSound.startCreatureSound(Z2SE_KOSARU_JUMP_END, 0, -1);
             }
         }
 
-        if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[11].mBckArcIdx], l_motionAnmData[11].mBckFileIdx) == mpMorf[0]->getAnm() && mpMorf[0]->checkFrame(0.0f)) {
+        if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[11].mBckArcIdx], l_motionAnmData[11].mBckFileIdx) == mAnm_p[0]->getAnm() && mAnm_p[0]->checkFrame(0.0f)) {
             mSound.startCreatureVoice(Z2SE_KOSARU_V_SCARED, -1);
         }
 
-        if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[38].mBckArcIdx], l_motionAnmData[38].mBckFileIdx) == mpMorf[0]->getAnm()) {
-            if (mpMorf[0]->checkFrame(4.0f) || mpMorf[0]->checkFrame(21.0f)) {
+        if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[38].mBckArcIdx], l_motionAnmData[38].mBckFileIdx) == mAnm_p[0]->getAnm()) {
+            if (mAnm_p[0]->checkFrame(4.0f) || mAnm_p[0]->checkFrame(21.0f)) {
                 mSound.startCreatureVoice(Z2SE_KOSARU_V_POINT, -1);
             }
 
-            if ((mpMorf[0]->checkFrame(0.0f) || mpMorf[0]->checkFrame(11.0f)) || mpMorf[0]->checkFrame(23.0f)) {
+            if ((mAnm_p[0]->checkFrame(0.0f) || mAnm_p[0]->checkFrame(11.0f)) || mAnm_p[0]->checkFrame(23.0f)) {
                 mSound.startCreatureSound(Z2SE_KOSARU_JUMP_END, 0, -1);
             }
         }
 
-        if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[3].mBckArcIdx], l_motionAnmData[3].mBckFileIdx) == mpMorf[0]->getAnm()) {
-            if (mpMorf[0]->checkFrame(0.0f)) {
+        if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[3].mBckArcIdx], l_motionAnmData[3].mBckFileIdx) == mAnm_p[0]->getAnm()) {
+            if (mAnm_p[0]->checkFrame(0.0f)) {
                 mSound.startCreatureVoice(Z2SE_KOSARU_V_DELIGHT, -1);
             }
 
-            if (mpMorf[0]->checkFrame(9.0f)) {
+            if (mAnm_p[0]->checkFrame(9.0f)) {
                 mSound.startCreatureSound(Z2SE_KOSARU_HAND_CLAP, 0, -1);
             }
 
-            if (mpMorf[0]->checkFrame(15.0f)) {
+            if (mAnm_p[0]->checkFrame(15.0f)) {
                 mSound.startCreatureSound(Z2SE_KOSARU_JUMP_END, 0, -1);
             }
         }

@@ -117,7 +117,7 @@ daPeru_c::cutAppearFunc daPeru_c::mCutList[3] = {
 daPeru_c::~daPeru_c() {
     OS_REPORT("|%06d:%x|daPeru_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
     deleteRes(l_loadResPtrnList[mType], (const char**) l_resNameList);
 }
@@ -191,8 +191,8 @@ int daPeru_c::create() {
             return cPhs_ERROR_e;
         }
         OS_REPORT("\n");
-        mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f,
                                               -300.0f, 300.0f,
                                               450.0f, 300.0f);
@@ -228,18 +228,18 @@ int daPeru_c::CreateHeap() {
     J3DModelData* mdlData_p =
         (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[idx][1]], l_bmdData[idx][0]);
     JUT_ASSERT(660, NULL != mdlData_p);
-    mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
+    mAnm_p[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
                                      0x11020284);
-    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
-        mpMorf[0]->stopZelAnime();
-        mpMorf[0] = NULL;
+    if (mAnm_p[0] != NULL && mAnm_p[0]->getModel() == NULL) {
+        mAnm_p[0]->stopZelAnime();
+        mAnm_p[0] = NULL;
     }
 
-    if (mpMorf[0] == NULL) {
+    if (mAnm_p[0] == NULL) {
         return 0;
     }
 
-    J3DModel* model = (J3DModel*)mpMorf[0]->getModel();
+    J3DModel* model = (J3DModel*)mAnm_p[0]->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -295,7 +295,7 @@ int daPeru_c::Execute() {
 int daPeru_c::Draw() {
     daNpcT_MatAnm_c* matAnm = mpMatAnm[0];
     if (matAnm != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         u16 eyeballMat = getEyeballMaterialNo();
         modelData->getMaterialNodePointer(eyeballMat)->setMaterialAnm(matAnm);
     }
@@ -449,7 +449,7 @@ void daPeru_c::setAttnPos() {
     mStagger.calc(0);
     f32 dVar9 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
     mJntAnm.setParam(
-        this, mpMorf[0]->getModel(), &acStack_3c, getBackboneJointNo(), getNeckJointNo(),
+        this, mAnm_p[0]->getModel(), &acStack_3c, getBackboneJointNo(), getNeckJointNo(),
         getHeadJointNo(), daPeru_Param_c::m.field_0x00[9], daPeru_Param_c::m.field_0x00[8],
         daPeru_Param_c::m.field_0x00[11], daPeru_Param_c::m.field_0x00[10],
         daPeru_Param_c::m.field_0x00[13], daPeru_Param_c::m.field_0x00[12],
@@ -457,13 +457,13 @@ void daPeru_c::setAttnPos() {
         daPeru_Param_c::m.field_0x00[16], dVar9, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar9);
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&acStack_3c, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos,
         mCurAngle.y, 0, 1.0f, 0);
     cXyz cStack_48(0.0f, daPeru_Param_c::m.field_0x00[0], 30.0f);
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getBaseTRMtx());
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getBaseTRMtx());
     mDoMtx_stack_c::multVec(&cStack_48, &attention_info.position);
 }
 
@@ -486,7 +486,7 @@ void daPeru_c::setCollision() {
         cXyz cStack_40;
         for (int i = 0; i < 2; i = i + 1) {
             cStack_40.set(0.0f, 0.0f, local_48[i]);
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getBaseTRMtx());
+            mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getBaseTRMtx());
             mDoMtx_stack_c::multVec(&cStack_40, &acStack_34);
             mCyls[i].SetCoSPrm(coSPrm);
             mCyls[i].SetTgType(tgType);
@@ -666,12 +666,12 @@ int daPeru_c::jump_st(int param_1) {
         break;
     case MODE_RUN:
         if ((field_0xe58 & 0xf) == 2) {
-            mpMorf[0]->setFrame(22.0f);
+            mAnm_p[0]->setFrame(22.0f);
         }
         mMode = 3;
         break;
     case MODE_EXIT:
-        if (mpMorf[0]->getFrame() >= 36.0f) {
+        if (mAnm_p[0]->getFrame() >= 36.0f) {
             fopAcM_SetSpeedF(this, 14.5f);
             fopAcM_SetSpeed(this, 0, 18.0f, 0);
             fopAcM_SetGravity(this, -9.0f);
@@ -716,13 +716,13 @@ int daPeru_c::jump_ed(int param_1) {
                 mSound.startCreatureSound(Z2SE_GZ_NE_JUMP, 0, -1);
                 field_0xe7c = 1;
             }
-            if (!mpMorf[0]->isStop()) {
+            if (!mAnm_p[0]->isStop()) {
                 break;
             }
             setAction(&daPeru_c::wait, 0);
             return 1;
         }
-        if (field_0xe58 == 1 && mpMorf[0]->getFrame() >= 10.0f) {
+        if (field_0xe58 == 1 && mAnm_p[0]->getFrame() >= 10.0f) {
             return 1;
         }
         break;
@@ -746,11 +746,11 @@ int daPeru_c::sniff(int param_0) {
         mMode = MODE_RUN;
         break;
     case MODE_RUN:
-        if (mpMorf[0]->isStop()) {
+        if (mAnm_p[0]->isStop()) {
             setAction(&daPeru_c::wait, 0);
             return 1;
         }
-        if (mpMorf[0]->getFrame() == 23.0f) {
+        if (mAnm_p[0]->getFrame() == 23.0f) {
             mSound.startCreatureVoice(Z2SE_GZ_NE_KNKN, -1);
         }
         break;
@@ -806,7 +806,7 @@ int daPeru_c::demo_walk_to_link(int param_0) {
         mMode = MODE_RUN;
         break;
     case MODE_RUN: {
-        mpMorf[0]->setPlaySpeed(1.3f);
+        mAnm_p[0]->setPlaySpeed(1.3f);
         fopAc_ac_c* actor = mActors[2].getActorP();
         if (actor == NULL) {
             OS_REPORT("-----there is no player!!\n");

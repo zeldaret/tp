@@ -102,7 +102,7 @@ public:
     void setResistanceDemo() { mFlags |= 0x100; }
 
     /* 0x568 */ request_of_phase_process_class mPhase;
-    /* 0x570 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x570 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x574 */ Z2Creature mSound;
     /* 0x604 */ cXyz field_0x604;
     /* 0x610 */ cXyz field_0x610;

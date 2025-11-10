@@ -75,7 +75,7 @@ public:
     /* 0x5C0 */ s32 mAnim;
     /* 0x5C4 */ s16 mTargetAngle;
     /* 0x5C6 */ s16 mInvincibilityTimer;
-    /* 0x5C8 */ mDoExt_McaMorfSO* mpMorfSO;
+    /* 0x5C8 */ mDoExt_McaMorfSO* mAnm_pSO;
     /* 0x5CC */ request_of_phase_process_class mPhaseReq;
     /* 0x5D4 */ u8 field_0x5d4[0x5D8 - 0x5D4];
     /* 0x5D8 */ Z2CreatureEnemy mCreatureSound;

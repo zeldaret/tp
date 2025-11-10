@@ -73,7 +73,7 @@ private:
     /* 0x9C9 */ bool mBoomerangHit;
     /* 0x9CC */ Z2Creature mCreatureSound;
     /* 0xA5C */ u8 field_0xa5c[4];
-    /* 0xA60 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0xA60 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0xA64 */ request_of_phase_process_class mPhaseReq;
     /* 0xA6C */ bool mHIOInit;
 };

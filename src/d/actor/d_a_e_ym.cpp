@@ -70,7 +70,7 @@ daE_YM_HIO_c::daE_YM_HIO_c() {
 
 /* 80808184-808081E0 000144 005C+00 3/3 0/0 0/0 .text            checkBck__8daE_YM_cFPCci */
 u8 daE_YM_c::checkBck(char const* i_arcName, int i_resNo) {
-    return mpMorf->getAnm() == (J3DAnmTransform*)dComIfG_getObjectRes(i_arcName, i_resNo);
+    return mAnm_p->getAnm() == (J3DAnmTransform*)dComIfG_getObjectRes(i_arcName, i_resNo);
 }
 
 /* 808081E0-80808328 0001A0 0148+00 18/18 0/0 0/0 .text            bckSet__8daE_YM_cFiUcff */
@@ -96,17 +96,17 @@ void daE_YM_c::bckSet(int i_resID, u8 i_attribute, f32 i_morf, f32 i_speed) {
             tm_res_id = 9;
         }
 
-        mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_TM", tm_res_id), i_attribute,
+        mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_TM", tm_res_id), i_attribute,
                             i_morf, i_speed, 0.0f, -1.0f);
     } else {
-        mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_YM", i_resID), i_attribute,
+        mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_YM", i_resID), i_attribute,
                             i_morf, i_speed, 0.0f, -1.0f);
     }
 }
 
 /* 80808328-808083CC 0002E8 00A4+00 4/4 0/0 0/0 .text            bckSetFly__8daE_YM_cFiUcff */
 void daE_YM_c::bckSetFly(int i_resID, u8 i_attribute, f32 i_morf, f32 i_speed) {
-    mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_TM", i_resID), i_attribute,
+    mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_TM", i_resID), i_attribute,
                         i_morf, i_speed, 0.0f, -1.0f);
 }
 
@@ -140,7 +140,7 @@ int daE_YM_c::draw() {
 
     if (mFlyType == true) {
         J3DShape* shape_p =
-            mpMorf->getModel()->getModelData()->getMaterialNodePointer(1)->getShape();
+            mAnm_p->getModel()->getModelData()->getMaterialNodePointer(1)->getShape();
 
         if (shape_p != NULL) {
             if (field_0x6cc) {
@@ -151,7 +151,7 @@ int daE_YM_c::draw() {
         }
     }
 
-    J3DModel* model_p = mpMorf->getModel();
+    J3DModel* model_p = mAnm_p->getModel();
     g_env_light.settingTevStruct(6, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model_p, &tevStr);
 
@@ -164,7 +164,7 @@ int daE_YM_c::draw() {
         if (field_0x6dc != -70.0f) {
             mpBrk->entry(model_p->getModelData());
             dComIfGd_setListDark();
-            mpMorf->entryDL();
+            mAnm_p->entryDL();
             dComIfGd_setList();
         }
 
@@ -237,9 +237,9 @@ void daE_YM_c::setElecEffect1() {
     cXyz cStack_2c(fVar3, fVar3, fVar3);
     MtxP iVar5;
     if (mFlyType == true) {
-        iVar5 = mpMorf->getModel()->getAnmMtx(8);
+        iVar5 = mAnm_p->getModel()->getAnmMtx(8);
     } else {
-        iVar5 = mpMorf->getModel()->getAnmMtx(0);
+        iVar5 = mAnm_p->getModel()->getAnmMtx(0);
     }
 
     cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
@@ -256,9 +256,9 @@ void daE_YM_c::setElecEffect2() {
     cXyz cStack_2c(fVar3, fVar3, fVar3);
     MtxP iVar5;
     if (mFlyType == true) {
-        iVar5 = mpMorf->getModel()->getAnmMtx(8);
+        iVar5 = mAnm_p->getModel()->getAnmMtx(8);
     } else {
-        iVar5 = mpMorf->getModel()->getAnmMtx(0);
+        iVar5 = mAnm_p->getModel()->getAnmMtx(0);
     }
     cXyz cStack_38(iVar5[0][3], iVar5[1][3], iVar5[2][3]);
     setElecEffect1();
@@ -550,8 +550,8 @@ void daE_YM_c::setMoveSound(int param_0) {
     } else if (checkBck("E_YM", 16) == 0) {
         return;
     }
-    mpMorf->setPlaySpeed(fabsf(speedF) * 0.15f);
-    if (mpMorf->checkFrame(1.0f) || mpMorf->checkFrame(5.0f) || mpMorf->checkFrame(9.0f)) {
+    mAnm_p->setPlaySpeed(fabsf(speedF) * 0.15f);
+    if (mAnm_p->checkFrame(1.0f) || mAnm_p->checkFrame(5.0f) || mAnm_p->checkFrame(9.0f)) {
         if (param_0) {
             mSound.startCreatureSound(Z2SE_EN_YM_FN_UNDER, 0, -1);
         } else {
@@ -562,7 +562,7 @@ void daE_YM_c::setMoveSound(int param_0) {
 
 /* 80809EF0-80809F9C 001EB0 00AC+00 3/3 0/0 0/0 .text            setTurnSound__8daE_YM_cFv */
 void daE_YM_c::setTurnSound() {
-    if (mpMorf->checkFrame(1.0f) || mpMorf->checkFrame(5.0f) || mpMorf->checkFrame(9.0f)) {
+    if (mAnm_p->checkFrame(1.0f) || mAnm_p->checkFrame(5.0f) || mAnm_p->checkFrame(9.0f)) {
         mSound.startCreatureSound(Z2SE_EN_YM_FOOTNOTE, 0, -1);
     }
 }
@@ -767,7 +767,7 @@ void daE_YM_c::executeMove() {
             }
             case 2:
                 mSound.startCreatureSoundLevel(Z2SE_EN_YM_WAIT, 0, -1);
-                if (field_0x6f0 == 0 && mpMorf->checkFrame(1.0f)) {
+                if (field_0x6f0 == 0 && mAnm_p->checkFrame(1.0f)) {
                     bckSet(0x10, 2, 5.0f, 1.0f);
                     mMode = 3;
                     speedF = 10.0f;
@@ -908,7 +908,7 @@ void daE_YM_c::executeEscape() {
                     bckSet(0xc, 0, 0.0f, 1.0f);
                 }
             } else {
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     mMode = 4;
                     bckSet(0x10, 2, 5.0f, 1.0f);
                 }
@@ -1066,7 +1066,7 @@ void daE_YM_c::executeDown() {
             }
             break;
         case 3:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 if (mSwitchBit != 0xff && dComIfGs_isSwitch(mSwitchBit, fopAcM_GetRoomNo(this)) == 0) {
                     dComIfGs_onSwitch(mSwitchBit, fopAcM_GetRoomNo(this));
                 }
@@ -1359,7 +1359,7 @@ void daE_YM_c::executeSurprise() {
             bckSet(10, 0, 10.0f, 2.0f);
             break;
         case 5:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 bckSet(0xb, 0, 5.0f, 1.0f);
                 mSound.startCreatureSound(Z2SE_EN_YM_JUMP, 0, -1);
                 mMode = 6;
@@ -1400,7 +1400,7 @@ void daE_YM_c::executeSurprise() {
             }
             break;
         case 7:
-            if (mpMorf->isStop() && field_0x6f0 == 0) {
+            if (mAnm_p->isStop() && field_0x6f0 == 0) {
                 setActionMode(ACT_WAIT);
                 field_0x6f6 = 0xf;
                 field_0x6a7 = 0;
@@ -1542,7 +1542,7 @@ void daE_YM_c::executeAttack() {
         case 2:
             setElecEffect1();
             mSound.startCreatureSoundLevel(Z2SE_EN_YM_ELECTRIC, 0, -1);
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 bckSet(10, 0, 10.0f, 2.0f);
                 mMode = 3;
             }
@@ -1550,7 +1550,7 @@ void daE_YM_c::executeAttack() {
         case 3:
             setElecEffect2();
             mSound.startCreatureSoundLevel(Z2SE_EN_YM_ELECTRIC_LOOP, 0, -1);
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 bckSet(0xb, 0, 5.0f, 1.0f);
                 mSound.startCreatureSound(Z2SE_EN_YM_JUMP, 0, -1);
                 speed.y = 35.0f;
@@ -1571,7 +1571,7 @@ void daE_YM_c::executeAttack() {
             }
             break;
         case 5:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setActionMode(ACT_WAIT);
                 field_0x6f6 = 0xf;
                 field_0x6fc = 0x32;
@@ -1702,7 +1702,7 @@ void daE_YM_c::executeAttackWall() {
                 break;
             }
             case 4:
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     setActionMode(ACT_WAIT);
                     return;
                 }
@@ -1756,7 +1756,7 @@ void daE_YM_c::executeDefense() {
             }
             break;
         case 2:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setActionMode(ACT_WAIT);
             }
             break;
@@ -1809,10 +1809,10 @@ void daE_YM_c::executeFly() {
             if (mType == 1) {
                 setElecEffect1();
             }
-            if (mpMorf->checkFrame(6.0f)) {
+            if (mAnm_p->checkFrame(6.0f)) {
                 field_0x6cc = 1;
             }
-            if (mpMorf->checkFrame(14.0f)) {
+            if (mAnm_p->checkFrame(14.0f)) {
                 if (mType != 1) {
                     mMode = 7;
                     field_0x6f0 = 0x1e;
@@ -1904,7 +1904,7 @@ void daE_YM_c::executeFly() {
         case 4:
         case 6: {
             cLib_chaseF(&speedF, l_HIO.mFlyMoveSpeed * fabsf(cM_scos(current.angle.x)), 1.0f);
-            if (mpMorf->isStop() && checkBck("E_TM", 0xd)) {
+            if (mAnm_p->isStop() && checkBck("E_TM", 0xd)) {
                 bckSetFly(0xc, 2, 0.0f, 1.0f);
             }
             cLib_chaseAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &player_pos), 0x400);
@@ -1932,7 +1932,7 @@ void daE_YM_c::executeFly() {
             break;
         }
         case 7: {
-            if (mpMorf->isStop() && checkBck("E_TM", 0xd)) {
+            if (mAnm_p->isStop() && checkBck("E_TM", 0xd)) {
                 bckSetFly(0xc, 2, 0.0f, 1.0f);
             }
             cLib_chaseF(&speedF, 20.0f, 3.0f);
@@ -1978,7 +1978,7 @@ void daE_YM_c::executeFly() {
                 mSphCc.OnAtSetBit();
             }
             if (field_0x70e) {
-                if (mpMorf->isStop() && checkBck("E_TM", 0xd)) {
+                if (mAnm_p->isStop() && checkBck("E_TM", 0xd)) {
                     bckSetFly(0xc, 2, 0.0f, 1.0f);
                 }
                 if (player_pos.y + 100.0f > current.pos.y) {
@@ -2041,7 +2041,7 @@ void daE_YM_c::executeFlyAttack() {
             mSound.startCreatureSoundLevel(Z2SE_EN_YM_ELECTRIC, 0, -1);
             cLib_chaseAngleS(&shape_angle.x, 0, 0x400);
             cLib_chaseAngleS(&shape_angle.z, 0, 0x400);
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 bckSetFly(6, 2, 0.0f, 1.0f);
                 mMode = 2;
                 field_0x6f0 = 300;
@@ -2088,7 +2088,7 @@ void daE_YM_c::executeFlyAttack() {
             cLib_chaseF(&speedF, 0.0f, 3.0f);
             int do_stuff = 0;
             if (mMode == 4) {
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     do_stuff = true;
                 }
             } else if (field_0x6f0 == 0) {
@@ -2342,14 +2342,14 @@ void daE_YM_c::executeElectric() {
             mMode = 1;
             break;
         case 1:
-            if (mpMorf->getFrame() < 36.0f) {
+            if (mAnm_p->getFrame() < 36.0f) {
                 setElecEffect1();
                 mSound.startCreatureSoundLevel(Z2SE_EN_YM_ELECTRIC, 0, -1);
             } else {
                 setElecEffect2();
                 mSound.startCreatureSoundLevel(Z2SE_EN_YM_ELECTRIC_LOOP, 0, -1);
             }
-            if (mpMorf->checkFrame(40.0f)) {
+            if (mAnm_p->checkFrame(40.0f)) {
                 mMode = 2;
             }
             break;
@@ -2358,7 +2358,7 @@ void daE_YM_c::executeElectric() {
             mSound.startCreatureSoundLevel(Z2SE_EN_YM_ELECTRIC_LOOP, 0, -1);
             field_0x700 = l_HIO.mElectricInvincibilityTimeExtension;
             mSphCc.OnAtSetBit();
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 mMode = 3;
                 field_0x6f0 = 0x1e;
                 bckSet(0xf, 2, 5.0f, 1.0f);
@@ -2540,10 +2540,10 @@ void daE_YM_c::executeFire() {
             }
             break;
         case 1:
-            if (mpMorf->checkFrame(6.0f)) {
+            if (mAnm_p->checkFrame(6.0f)) {
                 field_0x6cc = 1;
             }
-            if (mpMorf->checkFrame(14.0f)) {
+            if (mAnm_p->checkFrame(14.0f)) {
                 attention_info.distances[2] = 0x2e;
                 gravity = 0.0f;
                 fopAcM_SearchByName(0x1f7, &field_0x660);
@@ -2589,7 +2589,7 @@ void daE_YM_c::executeFire() {
             } else {
                 mSphCc.OffCoSetBit();
             }
-            if (field_0x6a5 == 0 && mpMorf->isStop()) {
+            if (field_0x6a5 == 0 && mAnm_p->isStop()) {
                 bckSetFly(0xc, 2, 0.0f, 1.0f);
                 ++field_0x6a5;
             }
@@ -3029,7 +3029,7 @@ void daE_YM_c::action() {
     cXyz unused_vec(field_0x68c, field_0x68c, field_0x68c);
     cXyz my_pos = current.pos;
     setMidnaBindEffect(this, &mSound, &my_pos, &scale);
-    mpMorf->play(NULL, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(NULL, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     mpBrk->play();
 }
 
@@ -3040,15 +3040,15 @@ void daE_YM_c::mtx_set() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(field_0x68c, field_0x68c, field_0x68c);
 
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
 }
 
 /* 808135B0-808138AC 00B570 02FC+00 1/1 0/0 0/0 .text            cc_set__8daE_YM_cFv */
 void daE_YM_c::cc_set() {
     cXyz my_vec_0;
     cXyz my_vec_1;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     cXyz my_vec_2(0.0f, 0.0f, 0.0f);
     if (mIsHide) {
         my_vec_2.y = 40.0f;
@@ -3199,16 +3199,16 @@ int daE_YM_c::CreateHeap() {
     if (mFlyType == 1) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_TM", 0x11);
         JUT_ASSERT(0x1094, modelData != NULL);
-        mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_TM", 10),
+        mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_TM", 10),
                                       0, 1.0f, 0, -1, &mSound, 0x80000,0x11000084);
-        if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+        if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
             return 0;
         }
         mpBrk = new mDoExt_brkAnm();
         if (mpBrk == NULL) {
             return 0;
         }
-        if (!mpBrk->init(mpMorf->getModel()->getModelData(),
+        if (!mpBrk->init(mAnm_p->getModel()->getModelData(),
                          (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_TM", 0x14),
                          TRUE, 2, 1.0f, 0, -1)) {
             return 0;
@@ -3216,16 +3216,16 @@ int daE_YM_c::CreateHeap() {
     } else {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_YM", 0x13);
         JUT_ASSERT(0x10bb, modelData != NULL);
-        mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YM", 0x10),
+        mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YM", 0x10),
                                       0, 1.0f, 0, -1, &mSound, 0x80000,0x11000084);
-        if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+        if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
             return 0;
         }
         mpBrk = new mDoExt_brkAnm();
         if (mpBrk == NULL) {
             return 0;
         }
-        if (!mpBrk->init(mpMorf->getModel()->getModelData(),
+        if (!mpBrk->init(mAnm_p->getModel()->getModelData(),
                          (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_YM", 0x16),
                          TRUE, 2, 1.0f, 0, -1)) {
             return 0;
@@ -3478,7 +3478,7 @@ int daE_YM_c::create() {
 
         field_0x714 = 4;
         attention_info.distances[fopAc_attn_BATTLE_e] = 58;
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -100.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 100.0f, 200.0f);
 

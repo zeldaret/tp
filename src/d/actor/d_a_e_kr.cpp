@@ -158,7 +158,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 806FFCD8-806FFD84 000418 00AC+00 8/8 0/0 0/0 .text            anm_init__FP10e_kr_classifUcf */
 static void anm_init(e_kr_class* i_this, int i_resIndex, f32 i_morf, u8 i_attr, f32 i_rate) {
-    i_this->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_kr", i_resIndex), i_attr,
+    i_this->mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_kr", i_resIndex), i_attr,
                            i_morf, i_rate, 0.0f, -1.0f);
     i_this->field_0x5b8 = i_resIndex;
 }
@@ -278,7 +278,7 @@ static BOOL pl_horse_check(e_kr_class* i_this) {
  */
 static void daE_Kr_shadowDraw(e_kr_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     cXyz unkXyz1;
     unkXyz1.set(actor->current.pos.x, actor->current.pos.y + 150.0f + BREG_F(0x12),
                   actor->current.pos.z);
@@ -296,7 +296,7 @@ static int daE_Kr_Draw(e_kr_class* i_this) {
         return 1;
     }
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
 
     g_env_light.settingTevStruct(0, &actor->current.pos, &actor->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &actor->tevStr);
@@ -311,7 +311,7 @@ static int daE_Kr_Draw(e_kr_class* i_this) {
         }
     }
 
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
 
     daE_Kr_shadowDraw(i_this);
 
@@ -431,7 +431,7 @@ static s8 e_kr_path_move(e_kr_class* i_this) {
     s8 unkFlag1 = TRUE;
     s8 retVal = TRUE;
     i_this->field_0xe8c = 2;
-    s32 frame = i_this->mpMorf->getFrame();
+    s32 frame = i_this->mAnm_p->getFrame();
 
     switch (i_this->field_0x670) {
     case 0: {
@@ -588,7 +588,7 @@ static void e_kr_auto_move(e_kr_class* i_this) {
     i_this->field_0xe8c = 2;
     switch (i_this->field_0x670) {
     case 0: {
-        s32 frame = i_this->mpMorf->getFrame();
+        s32 frame = i_this->mAnm_p->getFrame();
         if (i_this->field_0x69c[0] == 0 && frame == 9 + TREG_S(0)) {
             i_this->field_0x670 = 1;
             i_this->field_0x69c[0] = cM_rndF(200.0f) + 50.0f;
@@ -609,7 +609,7 @@ static void e_kr_auto_move(e_kr_class* i_this) {
     case 10:
         break;
     case 20: {
-        s32 frame = i_this->mpMorf->getFrame();
+        s32 frame = i_this->mAnm_p->getFrame();
         if (frame == 34) {
             i_this->field_0x670 = 0;
             i_this->field_0x69c[0] = cM_rndF(60.0f) + 20.0f;
@@ -705,7 +705,7 @@ static void e_kr_atack_move(e_kr_class* i_this) {
         kuti_open(i_this, 25, Z2SE_EN_KR_V_NAKU);
     }
 
-    s32 frame = i_this->mpMorf->getFrame();
+    s32 frame = i_this->mAnm_p->getFrame();
 
     f32 unkFloat1;
     switch (i_this->field_0x672) {
@@ -898,7 +898,7 @@ static void e_kr_atack_move(e_kr_class* i_this) {
 
         e_kr_pos_move(i_this);
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x672 = 4;
 
             anm_init(i_this, 17, 3.0f, 2, l_e_krHIO.field_0x2c);
@@ -945,11 +945,11 @@ static void e_kr_atack_move(e_kr_class* i_this) {
 
         e_kr_pos_move(i_this);
 
-        if ((s32)i_this->mpMorf->getFrame() == 24) {
+        if ((s32)i_this->mAnm_p->getFrame() == 24) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_KR_V_FURA, -1);
         }
 
-        if (i_this->mpMorf->isStop() && i_this->field_0x672 == 10) {
+        if (i_this->mAnm_p->isStop() && i_this->field_0x672 == 10) {
             i_this->field_0x672 = 11;
             anm_init(i_this, 5, 0.0f, 2, l_e_krHIO.field_0x3c);
         }
@@ -1018,7 +1018,7 @@ static void e_kr_horse_move(e_kr_class* i_this) {
 
     i_this->field_0xe8c = 1;
 
-    s32 frame = i_this->mpMorf->getFrame();
+    s32 frame = i_this->mAnm_p->getFrame();
     f32 speed = dComIfGp_getHorseActor()->speedF;
     if (speed > 60.0f) {
         speed = 60.0f;
@@ -1097,7 +1097,7 @@ static void e_kr_horse_move(e_kr_class* i_this) {
 
                     i_this->field_0x69c[1] = cM_rndF(100.0f) + 60.0f;
                 } else {
-                    i_this->mpMorf->setPlaySpeed(cM_rndF(0.2f) + 1.2f);
+                    i_this->mAnm_p->setPlaySpeed(cM_rndF(0.2f) + 1.2f);
                 }
             }
         }
@@ -1155,7 +1155,7 @@ static void e_kr_horse_move(e_kr_class* i_this) {
             i_this->mSphere1.ClrAtHit();
         }
 
-        if (i_this->mpMorf->isStop() && JREG_S(3) == 0) {
+        if (i_this->mAnm_p->isStop() && JREG_S(3) == 0) {
             i_this->field_0x672 = 2;
             i_this->field_0x69c[1] = 0;
             i_this->field_0x69c[3] = cM_rndF(100.0f) + 60.0f;
@@ -1210,7 +1210,7 @@ static void e_kr_wait_move(e_kr_class* i_this) {
     case -1:
         i_this->field_0x91c = true;
 
-        if (!i_this->mpMorf->isStop()) {
+        if (!i_this->mAnm_p->isStop()) {
             break;
         }
 
@@ -1397,7 +1397,7 @@ static void e_kr_su_wait_move(e_kr_class* i_this) {
     case -1:
         i_this->field_0x91c = true;
 
-        if (!i_this->mpMorf->isStop()) {
+        if (!i_this->mAnm_p->isStop()) {
             break;
         }
 
@@ -1565,7 +1565,7 @@ static void body_smoke_set(e_kr_class* i_this) {
     cXyz unkXyz1;
     cXyz unkXyz2;
 
-    MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(1), *calc_mtx);
+    MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(1), *calc_mtx);
     unkXyz1.set(0.0f, 0.0f, 0.0f);
     MtxPosition(&unkXyz1, &unkXyz2);
 
@@ -1581,7 +1581,7 @@ static void wing_smoke_set(e_kr_class* i_this) {
     cXyz unkXyz2;
 
     for (s32 i = 0; i <= 3; i++) {
-        MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(wing_j[i]), *calc_mtx);
+        MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(wing_j[i]), *calc_mtx);
         if (i <= 1) {
             unkXyz1.set(0.0f, 0.0f, 50.0f);
         } else {
@@ -1874,7 +1874,7 @@ static void ground_angle_set(e_kr_class* i_this) {
 
         unkFloat1 = 75.0f;
 
-        MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(0), *calc_mtx);
+        MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(0), *calc_mtx);
         unkXyz1.set(0.0f, 0.0f, 0.0f);
         MtxPosition(&unkXyz1, &unkXyz3);
         unkXyz3.y += 100.0f;
@@ -1919,7 +1919,7 @@ static void ground_angle_set(e_kr_class* i_this) {
         unkXyz6 = actor->current.pos;
         unkXyz6.y += JREG_F(5) + 30.0f;
 
-        model = i_this->mpMorf->getModel();
+        model = i_this->mAnm_p->getModel();
 
         unkXyz5.set(0.0f, 0.0f, 0.0f);
         MTXCopy(model->getAnmMtx(5), *calc_mtx);
@@ -2046,16 +2046,16 @@ static int daE_Kr_Execute(e_kr_class* i_this) {
 
     action(i_this);
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
 
     if (i_this->field_0x5b8 == 0xd) {
         i_this->mSound.startCreatureSoundLevel(0x7002f, 0, -1);
     } else {
-        if (i_this->mpMorf->checkFrame(27.0f) && i_this->field_0x5b8 == 8) {
+        if (i_this->mAnm_p->checkFrame(27.0f) && i_this->field_0x5b8 == 8) {
             i_this->mSound.startCreatureSound(Z2SE_EN_KR_WING, 0, -1);
-        } else if (i_this->mpMorf->checkFrame(11.0f) && i_this->field_0x5b8 == 15) {
+        } else if (i_this->mAnm_p->checkFrame(11.0f) && i_this->field_0x5b8 == 15) {
             i_this->mSound.startCreatureSound(Z2SE_EN_KR_WING, 0, -1);
-        } else if (i_this->mpMorf->checkFrame(12.0f) && i_this->field_0x5b8 == 17) {
+        } else if (i_this->mAnm_p->checkFrame(12.0f) && i_this->field_0x5b8 == 17) {
             i_this->mSound.startCreatureSound(Z2SE_EN_KR_WING, 0, -1);
         }
     }
@@ -2075,11 +2075,11 @@ static int daE_Kr_Execute(e_kr_class* i_this) {
     MtxScale(l_e_krHIO.field_0x14, l_e_krHIO.field_0x14,
              l_e_krHIO.field_0x14, 1);
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseScale(actor->scale);
     model->setBaseTRMtx(*calc_mtx);
 
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
     MTXCopy(model->getAnmMtx(6), *calc_mtx);
     unkXyz1.set(0.0f, 0.0f, 0.0f);
     MtxPosition(&unkXyz1, &actor->eyePos);
@@ -2245,7 +2245,7 @@ static int daE_Kr_Delete(e_kr_class* i_this) {
     //l_e_krHIO.removeHIO(*enemy); //TODO: several missing inline functions
 #endif
     if (enemy->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
     return 1;
 }
@@ -2254,14 +2254,14 @@ static int daE_Kr_Delete(e_kr_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_kr_class* kr = (e_kr_class*)i_this;
 
-    kr->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_kr", 24), NULL, NULL,
+    kr->mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_kr", 24), NULL, NULL,
                                       (J3DAnmTransform*)dComIfG_getObjectRes("E_kr", 13), 2, 1.0f,
                                       0, -1, &((e_kr_class*)i_this)->mSound, 0x80000, 0x11000084);
-    if (kr->mpMorf == NULL || kr->mpMorf->getModel() == NULL) {
+    if (kr->mAnm_p== NULL || kr->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = kr->mpMorf->getModel();
+    J3DModel* model = kr->mAnm_p->getModel();
     model->setUserArea((int)kr);
 
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
@@ -2375,7 +2375,7 @@ static int daE_Kr_Create(fopAc_ac_c* i_this) {
 
         OS_REPORT("");
 
-        fopAcM_SetMtx(i_this, kr->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, kr->mAnm_p->getModel()->getBaseTRMtx());
 
         fopAcM_SetMin(i_this, -300.0f, -200.0f, -300.0f);
         fopAcM_SetMax(i_this, 300.0f, 200.0f, 300.0f);

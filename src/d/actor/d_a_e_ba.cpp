@@ -58,17 +58,17 @@ static void ba_disappear(fopAc_ac_c* i_this) {
 static void anm_init(e_ba_class* i_this, int i_index, f32 i_morf, u8 i_attr, f32 i_rate) {
     J3DAnmTransform* anm =
         static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(i_this->mArcName, i_index));
-    i_this->mpMorf->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    i_this->mAnm_p->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
     i_this->mAnm = i_index;
 }
 
 /* 8067EE38-8067EEA8 000238 0070+00 1/0 0/0 0/0 .text            daE_BA_Draw__FP10e_ba_class */
 static int daE_BA_Draw(e_ba_class* i_this) {
     fopEn_enemy_c* a_this = &i_this->mEnemy;
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
     return 1;
 }
 
@@ -168,7 +168,7 @@ static void damage_check(e_ba_class* i_this) {
                     i_this->mKnockbackAngle = i_this->mAtInfo.mHitDirection.y;
                     if (a_this->health <= 0) {
                         i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_BA_V_DEATH, -1);
-                        i_this->mpMorf->setPlaySpeed(0.2f);
+                        i_this->mAnm_p->setPlaySpeed(0.2f);
                         i_this->mIsDying = true;
                     }
                 }
@@ -890,10 +890,10 @@ static int daE_BA_Execute(e_ba_class* i_this) {
 
     action(i_this);
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
 
     if ((i_this->mAnm == e_ba_class::ANM_HOVERING || i_this->mAnm == e_ba_class::ANM_FLY)) {
-        if (i_this->mpMorf->checkFrame(4.0f)) {
+        if (i_this->mAnm_p->checkFrame(4.0f)) {
             if (i_this->mAnm == e_ba_class::ANM_HOVERING) {
                 i_this->mCreatureSound.startCreatureSound(Z2SE_EN_BA_WING, 0, -1);
             } else {
@@ -901,12 +901,12 @@ static int daE_BA_Execute(e_ba_class* i_this) {
             }
         }
     } else if (i_this->mAnm == e_ba_class::ANM_FURA2) {
-        if (i_this->mpMorf->checkFrame(0.0f)) {
+        if (i_this->mAnm_p->checkFrame(0.0f)) {
             i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_BA_V_FURA, -1);
         }
     }
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     if (i_this->mAction == e_ba_class::ACT_WOLFBITE && i_this->mMode < 2) {
         fopAcM_OffStatus(a_this, 0);
         a_this->attention_info.flags = 0;
@@ -929,7 +929,7 @@ static int daE_BA_Execute(e_ba_class* i_this) {
         model->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
     MTXCopy(model->getAnmMtx(2), *calc_mtx);
 
     cXyz zero;
@@ -960,7 +960,7 @@ static int daE_BA_Execute(e_ba_class* i_this) {
                                               &a_this->current.pos, NULL, NULL);
                     JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey[i]);
                     if (emitter != NULL) {
-                        emitter->setGlobalSRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(18));
+                        emitter->setGlobalSRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(18));
                         emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
                         emitter->setUserWork((uintptr_t)&i_this->field_0x6b0);
                     }
@@ -975,7 +975,7 @@ static int daE_BA_Execute(e_ba_class* i_this) {
                                           &a_this->current.pos, NULL, NULL);
                 JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey[i]);
                 if (emitter != NULL) {
-                    emitter->setGlobalSRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(18));
+                    emitter->setGlobalSRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(18));
                     emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
                     emitter->setUserWork((uintptr_t)&i_this->field_0x6b0);
                 }
@@ -1000,7 +1000,7 @@ static int daE_BA_Delete(e_ba_class* i_this) {
         hioInit = false;
     }
     if (a_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
     return 1;
 }
@@ -1008,11 +1008,11 @@ static int daE_BA_Delete(e_ba_class* i_this) {
 /* 806817A0-80681890 002BA0 00F0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_ba_class* _this = (e_ba_class*)i_this;
-    _this->mpMorf = new mDoExt_McaMorfSO(
+    _this->mAnm_p= new mDoExt_McaMorfSO(
         static_cast<J3DModelData*>(dComIfG_getObjectRes(_this->mArcName, 13)), NULL, NULL,
         static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(_this->mArcName, 10)),
         2, 1.0f, 0, -1, &_this->mCreatureSound, 0x80000, 0x11000084);
-    if (_this->mpMorf == NULL || _this->mpMorf->mpModel == NULL) {
+    if (_this->mAnm_p== NULL || _this->mAnm_p->mpModel == NULL) {
         return 0;
     } else {
         return 1;
@@ -1095,7 +1095,7 @@ static cPhs__Step daE_BA_Create(fopAc_ac_c* i_this) {
         }
 
         i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-        fopAcM_SetMtx(i_this, _this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, _this->mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(i_this, 200.0f, 200.0f, 200.0f);
         i_this->health = 1;

@@ -123,8 +123,8 @@ static daNpc_Seira2_Param_c l_HIO;
 /* 80AD0C0C-80AD0D58 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__14daNpc_Seira2_cFv */
 daNpc_Seira2_c::~daNpc_Seira2_c() {
     deleteObject();
-    if (mpMorf[0] != 0) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != 0) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     if (mpSeiraMorf != NULL) {
@@ -203,8 +203,8 @@ int daNpc_Seira2_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
@@ -243,13 +243,13 @@ int daNpc_Seira2_c::CreateHeap() {
     }
 
     u32 sp_0x28 = 0x11020284;
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
         0x80000, sp_0x28);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    model = mpMorf[0]->getModel();
+    model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -310,7 +310,7 @@ int daNpc_Seira2_c::Execute() {
 /* 80AD1610-80AD16A4 000AF0 0094+00 1/1 0/0 0/0 .text            Draw__14daNpc_Seira2_cFv */
 int daNpc_Seira2_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
@@ -579,7 +579,7 @@ void daNpc_Seira2_c::setAttnPos() {
     cXyz eyeOffset(-30.0f, 10.0f, 0.0f);
     mStagger.calc(0);
     mJntAnm.setParam(
-        this, mpMorf[0]->getModel(), &eyeOffset, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+        this, mAnm_p[0]->getModel(), &eyeOffset, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
         daNpc_Seira2_Param_c::m.common.body_angleX_min, daNpc_Seira2_Param_c::m.common.body_angleX_max,
         daNpc_Seira2_Param_c::m.common.body_angleY_min, daNpc_Seira2_Param_c::m.common.body_angleY_max,
         daNpc_Seira2_Param_c::m.common.head_angleX_min, daNpc_Seira2_Param_c::m.common.head_angleX_max,
@@ -591,14 +591,14 @@ void daNpc_Seira2_c::setAttnPos() {
     setMtx();
     if (mpSeiraMorf) {
         Mtx jointAnmMtx;
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(18));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(18));
         cMtx_copy(mDoMtx_stack_c::get(), jointAnmMtx);
         mpSeiraMorf->getModel()->setBaseTRMtx(jointAnmMtx);
         mpSeiraMorf->play(0, 0);
         mpSeiraMorf->modelCalc();
     }
 
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 1, 1.0f, 0);
@@ -608,7 +608,7 @@ void daNpc_Seira2_c::setAttnPos() {
             eyeOffset.y += 20.0f;
         }
 
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getBaseTRMtx());
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getBaseTRMtx());
         mDoMtx_stack_c::multVec(&eyeOffset, &attention_info.position);
     } else {
         attention_info.position = current.pos;

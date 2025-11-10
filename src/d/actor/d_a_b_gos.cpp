@@ -47,11 +47,11 @@ daB_GOS_HIO_c::daB_GOS_HIO_c() {
 
 /* 8060429C-80604370 00011C 00D4+00 1/0 0/0 0/0 .text            daB_GOS_Draw__FP11b_gos_class */
 static int daB_GOS_Draw(b_gos_class* i_this) {
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
 
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
 
     cXyz sp28;
     sp28.set(i_this->current.pos.x, i_this->current.pos.y + 50.0f, i_this->current.pos.z);
@@ -65,7 +65,7 @@ static int daB_GOS_Draw(b_gos_class* i_this) {
 /* 80604370-8060441C 0001F0 00AC+00 3/3 0/0 0/0 .text            anm_init__FP11b_gos_classifUcf */
 static void anm_init(b_gos_class* i_this, int i_anmID, f32 i_morf, u8 i_attribute, f32 i_speed) {
     J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes("B_gos", i_anmID);
-    i_this->mpMorf->setAnm(bck, i_attribute, i_morf, i_speed, 0.0f, -1.0f);
+    i_this->mAnm_p->setAnm(bck, i_attribute, i_morf, i_speed, 0.0f, -1.0f);
     i_this->mAnmID = i_anmID;
 }
 
@@ -166,7 +166,7 @@ static void stick(b_gos_class* i_this) {
 
     cLib_addCalc2(&i_this->speedF, 200, 1, 1);
 
-    J3DModel* boss_model = boss->mpMorf->getModel();
+    J3DModel* boss_model = boss->mAnm_p->getModel();
     MTXCopy(boss_model->getAnmMtx(j_info[i_this->mJointIndex].joint_no & 0xFF), *calc_mtx);
 
     offset.x = 0.0f;
@@ -310,10 +310,10 @@ static int daB_GOS_Execute(b_gos_class* i_this) {
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::scaleM(l_HIO.mSize, l_HIO.mSize, l_HIO.mSize);
     mDoMtx_stack_c::transM(0.0f, i_this->field_0x698, i_this->field_0x69c);
-    i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
+    i_this->mAnm_p->modelCalc();
 
     i_this->mCyl.SetR(60.0f);
     i_this->mCyl.SetC(i_this->current.pos);
@@ -336,7 +336,7 @@ static int daB_GOS_Delete(b_gos_class* i_this) {
     }
 
     if (i_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -346,12 +346,12 @@ static int daB_GOS_Delete(b_gos_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     b_gos_class* a_this = (b_gos_class*)i_this;
 
-    a_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_gos", 9), NULL,
+    a_this->mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_gos", 9), NULL,
                                           NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_gos", 6),
                                           J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, &a_this->mSound,
                                           0x80000, 0x11000084);
 
-    if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
+    if (a_this->mAnm_p== NULL || a_this->mAnm_p->getModel() == NULL) {
         return false;
     }
 
@@ -386,7 +386,7 @@ static int daB_GOS_Create(fopAc_ac_c* i_this) {
         }
 
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-        fopAcM_SetMtx(a_this, a_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(a_this, a_this->mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(a_this, 200.0f, 200.0f, 200.0f);
         a_this->health = 1000;

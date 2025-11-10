@@ -360,8 +360,8 @@ static daNpc_Yelia_Param_c l_HIO;
 
 /* 80B4D30C-80B4D458 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__13daNpc_Yelia_cFv */
 daNpc_Yelia_c::~daNpc_Yelia_c() {
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
 }
@@ -394,7 +394,7 @@ cPhs__Step daNpc_Yelia_c::create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0, 200.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         reset();
@@ -439,13 +439,13 @@ int daNpc_Yelia_c::CreateHeap() {
         return 0;
     }
     
-    mpMorf[0] = new mDoExt_McaMorfSO(model_data, NULL, NULL, NULL, -1, 1.0f, 0, -1,
+    mAnm_p[0] = new mDoExt_McaMorfSO(model_data, NULL, NULL, NULL, -1, 1.0f, 0, -1,
                                      &mSound, 0x80000, 0x11020284);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < model_data->getJointNum(); i++) {
         model_data->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -485,7 +485,7 @@ int daNpc_Yelia_c::Execute() {
 /* 80B4DC74-80B4DD08 000A54 0094+00 1/1 0/0 0/0 .text            Draw__13daNpc_Yelia_cFv */
 int daNpc_Yelia_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* model_data = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* model_data = mAnm_p[0]->getModel()->getModelData();
         model_data->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return draw(FALSE, FALSE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
@@ -849,12 +849,12 @@ void daNpc_Yelia_c::setAttnPos() {
 
     f32 angle_diff = cM_s2rad(mCurAngle.y - field_0xd7e.y);
     if (mType == TYPE_TWILIGHT || mType == TYPE_AFTER_ESCORT) {
-        mJntAnm.setParam(this, mpMorf[0]->getModel(), &eye_offset, getBackboneJointNo(),
+        mJntAnm.setParam(this, mAnm_p[0]->getModel(), &eye_offset, getBackboneJointNo(),
                          getNeckJointNo(), getHeadJointNo(), 0.0f, 0.0f, 0.0f, 0.0f,
                          l_HIO.m.mHeadDownAngle, l_HIO.m.mHeadUpAngle, l_HIO.m.mHeadRightAngle,
                          l_HIO.m.mHeadLeftAngle, l_HIO.m.mNeckAngleScl, angle_diff, &vec);
     } else {
-        mJntAnm.setParam(this, mpMorf[0]->getModel(), &eye_offset, getBackboneJointNo(),
+        mJntAnm.setParam(this, mAnm_p[0]->getModel(), &eye_offset, getBackboneJointNo(),
                          getNeckJointNo(), getHeadJointNo(), l_HIO.m.mBodyDownAngle,
                          l_HIO.m.mBodyUpAngle, l_HIO.m.mBodyRightAngle, l_HIO.m.mBodyLeftAngle,
                          l_HIO.m.mHeadDownAngle, l_HIO.m.mHeadUpAngle, l_HIO.m.mHeadRightAngle,
@@ -863,7 +863,7 @@ void daNpc_Yelia_c::setAttnPos() {
     mJntAnm.calcJntRad(0.2f, 1.0f, angle_diff);
 
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&eye_offset, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, -0x1000);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, TRUE, 1.0f, 0);

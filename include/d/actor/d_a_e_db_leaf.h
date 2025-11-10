@@ -15,7 +15,7 @@
 class e_db_leaf_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ mDoExt_McaMorf* mpMorf;
+    /* 0x5B4 */ mDoExt_McaMorf* mAnm_p;
 }; // Size: 0x5B8
 
 #endif /* D_A_E_DB_LEAF_H */

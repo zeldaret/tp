@@ -24,7 +24,7 @@ enum b_ob_action {
 };
 
 struct ob_part_s {
-    /* 0x00 */ mDoExt_McaMorf* mpMorf;
+    /* 0x00 */ mDoExt_McaMorf* mAnm_p;
     /* 0x04 */ mDoExt_McaMorf* mpFinMorf;
     /* 0x08 */ mDoExt_McaMorf* mpFinUnkMorf;
     /* 0x0C */ mDoExt_McaMorf* mpFinBMorf;

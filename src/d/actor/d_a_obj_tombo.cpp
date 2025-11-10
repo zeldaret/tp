@@ -92,14 +92,14 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 int daObjTOMBO_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Tombo", 9);
     JUT_ASSERT(259, modelData != NULL);
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("Tombo", 6), 2, 1.0, 0, -1,
                                   &mCreature, 0, 0x11000284);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* morfModel = mpMorf->getModel();
+    J3DModel* morfModel = mAnm_p->getModel();
     mBrk = new mDoExt_brkAnm();
     if (mBrk == NULL) {
         return 0;
@@ -259,7 +259,7 @@ void daObjTOMBO_c::LinkAction() {
         if (cLib_addCalcPos(&current.pos, cStack_28, 0.05f, 5.0f, 0.0f) < 10.0f) {
             field_0x712++;
             field_0x714[0] = 200;
-            mpMorf->setPlaySpeed(0.0f);
+            mAnm_p->setPlaySpeed(0.0f);
         }
         field_0x724 = cLib_targetAngleY(&current.pos, &cStack_28);
         cLib_addCalcAngleS2(&current.angle.y, field_0x724, 8, 0x1000);
@@ -274,7 +274,7 @@ void daObjTOMBO_c::LinkAction() {
             speedF = 0.0f;
             speed.y = 0.0f;
             field_0x714[0] = 0;
-            mpMorf->setPlaySpeed(1.0f);
+            mAnm_p->setPlaySpeed(1.0f);
         }
         break;
     }
@@ -288,7 +288,7 @@ void daObjTOMBO_c::LinkAction() {
         speedF = 0.0f;
         speed.y = 0.0f;
         field_0x714[0] = 0;
-        mpMorf->setPlaySpeed(1.0f);
+        mAnm_p->setPlaySpeed(1.0f);
     }
     field_0x73c = cStack_28;
 }
@@ -438,7 +438,7 @@ void daObjTOMBO_c::BoomChk() {
                 field_0x71c = 5.0f;
                 mIsHitByBoomerang = false;
                 field_0x718 = 100;
-                mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Tombo", 6), 2, 5.0f, 1.0f,
+                mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Tombo", 6), 2, 5.0f, 1.0f,
                                0.0f, -1.0f);
                 home.pos = current.pos;
             } else {
@@ -449,7 +449,7 @@ void daObjTOMBO_c::BoomChk() {
                 speedF = 5.0f;
                 field_0x71c = 5.0f;
                 field_0x718 = 100;
-                mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Tombo", 6), 2, 5.0f, 1.0f,
+                mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Tombo", 6), 2, 5.0f, 1.0f,
                                          0.0f, -1.0f);
                 current.pos.y = old.pos.y = playerPos.y + 100.0f;
             }
@@ -494,7 +494,7 @@ int daObjTOMBO_c::Execute() {
 
     mCreature.startCreatureSoundLevel(Z2SE_INSCT_KIRA, 0, -1);
     mAcch.CrrPos(dComIfG_Bgsp());
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     mBtk->setPlaySpeed(l_HIO.mBtkSpeed);
     mBtk->play();
     mBrk->play();
@@ -520,7 +520,7 @@ void daObjTOMBO_c::ObjHit() {
             mAction = ACTION_MOVE;
             field_0x712 = 0;
             mIsHitByBoomerang = false;
-            mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Tombo", 6), 2, 5.0f, 1.0f, 0.0f,
+            mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Tombo", 6), 2, 5.0f, 1.0f, 0.0f,
                            -1.0f);
             speedF = 8.0f;
             field_0x71c = cM_rndF(5.0f) + 8.0f;
@@ -567,7 +567,7 @@ int daObjTOMBO_c::Delete() {
         mDoHIO_DELETE_CHILD(l_HIO.mId);
     }
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
     return 1;
 }
@@ -577,19 +577,19 @@ void daObjTOMBO_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
 }
 
 inline int daObjTOMBO_c::Draw() {
     if (mDraw) {
         Z_BufferChk();
-        J3DModel* morfModel = mpMorf->getModel();
+        J3DModel* morfModel = mAnm_p->getModel();
         g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(morfModel, &tevStr);
         mBtk->entry(morfModel->getModelData());
         mBrk->entry(morfModel->getModelData());
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
         if (!field_0x75c) {
             dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 15.0f, mAcch.m_gnd, 0, -0.6f,
                                      dDlst_shadowControl_c::getSimpleTex());
@@ -699,7 +699,7 @@ int daObjTOMBO_c::create() {
         mAction = ACTION_WAIT;
         field_0x712 = 0;
         gravity = 0.0f;
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);
         mCreature.init(&current.pos, &eyePos, 3, 1);

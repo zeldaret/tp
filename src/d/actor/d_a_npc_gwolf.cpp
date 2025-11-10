@@ -232,7 +232,7 @@ daNpc_GWolf_c::~daNpc_GWolf_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -322,8 +322,8 @@ cPhs__Step daNpc_GWolf_c::create() {
             return cPhs_ERROR_e;
         }
 
-        mpMorf->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        mAnm_p->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
 
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -360,17 +360,17 @@ int daNpc_GWolf_c::CreateHeap() {
 
     JUT_ASSERT(538, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p= new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -399,7 +399,7 @@ int daNpc_GWolf_c::Execute() {
 
 /* 809F3C2C-809F3CBC 000C6C 0090+00 1/1 0/0 0/0 .text            Draw__13daNpc_GWolf_cFv */
 int daNpc_GWolf_c::Draw() {
-    J3DModelData* mdlData_p = mpMorf->getModel()->getModelData();
+    J3DModelData* mdlData_p = mAnm_p->getModel()->getModelData();
     mdlData_p->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
 
     return draw(
@@ -409,7 +409,7 @@ int daNpc_GWolf_c::Draw() {
 
 /* 809F3CBC-809F3FB8 000CFC 02FC+00 1/1 0/0 0/0 .text draw__13daNpc_GWolf_cFiifP11_GXColorS10i */
 int daNpc_GWolf_c::draw(int param_1, int param_2, f32 param_3, _GXColorS10* i_color, int param_5) {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     J3DModelData* mdlData_p = model->getModelData();
 
     field_0x9f3 = 1;
@@ -457,7 +457,7 @@ int daNpc_GWolf_c::draw(int param_1, int param_2, f32 param_3, _GXColorS10* i_co
                 fopAcM_setEffectMtx(this, mdlData_p);
             }
 
-            mpMorf->entryDL();
+            mAnm_p->entryDL();
 
             if ((mAnmFlags & ANM_PLAY_BTP) != 0) {
                 mBtpAnm.remove(mdlData_p);
@@ -487,11 +487,11 @@ int daNpc_GWolf_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int i_jointList[3] = {1, 3, 4};
 
     if (jntNo == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -518,8 +518,8 @@ int daNpc_GWolf_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((jntNo == 4 || jntNo == 0xE) && (mAnmFlags & ANM_PLAY_BCK) != 0) {
         J3DAnmTransform* anm = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(anm);
+        mBckAnm.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(anm);
     }
 
     return 1;
@@ -682,7 +682,7 @@ void daNpc_GWolf_c::setAttnPos() {
     setMtx();
     lookat();
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
     eyeOffset.y = 0.0f;
@@ -795,7 +795,7 @@ void daNpc_GWolf_c::setMotionAnm(int i_index, f32 i_morf) {
     }
 
     if (i_btk != NULL) {
-        if (setBtkAnm(i_btk, mpMorf->getModel()->getModelData(), 1.0f, J3DFrameCtrl::EMode_LOOP)) {
+        if (setBtkAnm(i_btk, mAnm_p->getModel()->getModelData(), 1.0f, J3DFrameCtrl::EMode_LOOP)) {
             mAnmFlags |= ANM_PLAY_BTK | ANM_PAUSE_BTK;
         }
     }
@@ -807,7 +807,7 @@ void daNpc_GWolf_c::setMotionAnm(int i_index, f32 i_morf) {
     if (i_brk != NULL) {
         if (mBrkAnm.getBrkAnm() == i_brk) {
             mAnmFlags |= ANM_PLAY_BRK;
-        } else if (setBrkAnm(i_brk, mpMorf->getModel()->getModelData(), 1.0f, J3DFrameCtrl::EMode_LOOP)) {
+        } else if (setBrkAnm(i_brk, mAnm_p->getModel()->getModelData(), 1.0f, J3DFrameCtrl::EMode_LOOP)) {
             mAnmFlags |= ANM_PLAY_BRK | ANM_PAUSE_BRK;
         }
     }
@@ -1006,19 +1006,19 @@ void daNpc_GWolf_c::playMotion() {
     if (mHide != true) {
         switch (mAnm) {
             case ANM_WAITSIT:
-                if (mpMorf->getFrame() >= 1.0f && mpMorf->getFrame() < 2.0f) {
+                if (mAnm_p->getFrame() >= 1.0f && mAnm_p->getFrame() < 2.0f) {
                     mSound.startCreatureVoice(Z2SE_G_WLF_BREATH, -1);
                 }
                 break;
 
             case ANM_JUMPAST:
-                if (mpMorf->getFrame() >= 1.0f && mpMorf->getFrame() < 2.0f) {
+                if (mAnm_p->getFrame() >= 1.0f && mAnm_p->getFrame() < 2.0f) {
                     mSound.startCreatureVoice(Z2SE_G_WLF_JUMP, -1);
                 }
                 break;
 
             case ANM_HOWLB:
-                if (mpMorf->getFrame() >= 1.0f && mpMorf->getFrame() < 2.0f) {
+                if (mAnm_p->getFrame() >= 1.0f && mAnm_p->getFrame() < 2.0f) {
                     mSound.startCreatureVoice(Z2SE_G_WLF_TRANSFORM, -1);
                 }
                 break;
@@ -1199,7 +1199,7 @@ void daNpc_GWolf_c::setLookMode(int i_lookMode) {
 /* 809F5B84-809F5E0C 002BC4 0288+00 1/1 0/0 0/0 .text            lookat__13daNpc_GWolf_cFv */
 void daNpc_GWolf_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     BOOL i_snap = FALSE;
     f32 body_angleX_min = daNpc_GWolf_Param_c::m.common.body_angleX_min;
     f32 body_angleX_max = daNpc_GWolf_Param_c::m.common.body_angleX_max;
@@ -1356,11 +1356,11 @@ BOOL daNpc_GWolf_c::ECut_attackWarp(int i_staffId) {
 
         case 30:
             if (mMotion == MOT_ATTACKAST && mMotionPhase > 0) {
-                if (mpMorf->getFrame() >= 3.0f) {
+                if (mAnm_p->getFrame() >= 3.0f) {
                     if (speed.y > 5.0f) {
-                        mpMorf->setPlaySpeed(0.0f);
+                        mAnm_p->setPlaySpeed(0.0f);
                     } else {
-                        mpMorf->setPlaySpeed(1.0f);
+                        mAnm_p->setPlaySpeed(1.0f);
                     }
                 }
 
@@ -1373,7 +1373,7 @@ BOOL daNpc_GWolf_c::ECut_attackWarp(int i_staffId) {
 
                     dStage_changeScene(mExitId, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
                     Z2GetAudioMgr()->seStart(Z2SE_SY_WARP_FADE_GW, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                    mpMorf->setPlaySpeed(0.5f);
+                    mAnm_p->setPlaySpeed(0.5f);
                     rv = TRUE;
                 }
             }
@@ -1487,11 +1487,11 @@ BOOL daNpc_GWolf_c::ECut_attackWarpHorse(int i_staffId) {
 
         case 30:
             if (mMotion == MOT_ATTACKAST && mMotionPhase > 0) {
-                if (mpMorf->getFrame() >= 3.0f && speed.y > 5.0f) {
+                if (mAnm_p->getFrame() >= 3.0f && speed.y > 5.0f) {
                     if (speed.y > 5.0f) {
-                        mpMorf->setPlaySpeed(0.0f);
+                        mAnm_p->setPlaySpeed(0.0f);
                     } else {
-                        mpMorf->setPlaySpeed(1.0f);
+                        mAnm_p->setPlaySpeed(1.0f);
                     }
                 }
 
@@ -1503,7 +1503,7 @@ BOOL daNpc_GWolf_c::ECut_attackWarpHorse(int i_staffId) {
                     }
 
                     dStage_changeScene(mExitId, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
-                    mpMorf->setPlaySpeed(1.0f);
+                    mAnm_p->setPlaySpeed(1.0f);
                     Z2GetAudioMgr()->seStart(Z2SE_SY_WARP_FADE_GW, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                     rv = TRUE;
                 }
@@ -1585,8 +1585,8 @@ BOOL daNpc_GWolf_c::ECut_howlingSessionA(int i_staffId) {
     switch (prm) {
         case 0:
             if (mAnm == ANM_HOWLC) {
-                if (mpMorf->getFrame() >= 28.0f) {
-                    mpMorf->setLoopFrame(28.0f);
+                if (mAnm_p->getFrame() >= 28.0f) {
+                    mAnm_p->setLoopFrame(28.0f);
                     mBtpAnm.setLoopFrame(28.0f);
                     rv = TRUE;
                 }
@@ -1622,7 +1622,7 @@ BOOL daNpc_GWolf_c::ECut_howlingSessionA(int i_staffId) {
 
         case 40:
             if (mAnm == ANM_JUMPAST) {
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     speedF = 20.0f;
 
                     if (speed.y <= 4.0f) {

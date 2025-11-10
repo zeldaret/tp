@@ -46,7 +46,7 @@ public:
     /* 80603CA0 */ b_go_class();
 
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5B8 */ Z2CreatureEnemy mSound;
     /* 0x65C */ int mAnmID;
     /* 0x660 */ u8 unk_0x660;

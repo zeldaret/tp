@@ -164,8 +164,8 @@ daNpc_Bou_c::cutFunc daNpc_Bou_c::mCutList[9] = {
 
 /* 8096CF8C-8096D0D8 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__11daNpc_Bou_cFv */
 daNpc_Bou_c::~daNpc_Bou_c() {
-    if (mpMorf[0] != 0) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != 0) {
+        mAnm_p[0]->stopZelAnime();
     }
     deleteRes(l_loadResPtrnList[mType], (char const**)l_resNameList);
 }
@@ -200,8 +200,8 @@ int daNpc_Bou_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         reset();
@@ -246,13 +246,13 @@ int daNpc_Bou_c::CreateHeap() {
         return 0;
     }
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
         0x80000, 0x11020284);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -285,7 +285,7 @@ int daNpc_Bou_c::Execute() {
 /* 8096D80C-8096D8A0 00096C 0094+00 1/1 0/0 0/0 .text            Draw__11daNpc_Bou_cFv */
 int daNpc_Bou_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
@@ -682,7 +682,7 @@ void daNpc_Bou_c::setAttnPos() {
     cXyz cStack_3c(-30.0f, 10.0f, 0.0f);
     mStagger.calc(0);
     f32 dVar8 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     mJntAnm.setParam(this, model, &cStack_3c, getBackboneJointNo(), getNeckJointNo(),
         getHeadJointNo(), daNpc_Bou_Param_c::m.field_0x24, daNpc_Bou_Param_c::m.field_0x20,
         daNpc_Bou_Param_c::m.field_0x2c, daNpc_Bou_Param_c::m.field_0x28,
@@ -691,7 +691,7 @@ void daNpc_Bou_c::setAttnPos() {
         daNpc_Bou_Param_c::m.field_0x40, dVar8, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar8);
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&cStack_3c, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 1, 1.0f, 0);

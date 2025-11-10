@@ -63,7 +63,7 @@ public:
 
 private:
     /* 0x5AC */ request_of_phase_process_class mPhaseReq;
-    /* 0x5B4 */ mDoExt_McaMorfSO* mpMorfSO;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mAnm_pSO;
     /* 0x5B8 */ Z2CreatureEnemy mSound;
     /* 0x65C */ dBgS_AcchCir mAcchCir;
     /* 0x69C */ dBgS_ObjAcch mObjAcch;

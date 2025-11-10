@@ -88,7 +88,7 @@ daNpcTkj_c::~daNpcTkj_c() {
     OS_REPORT("|%06d:%x|daNpcTkj_c -> デストラクト\n", g_Counter.mCounter0, this);
 
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
 
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
@@ -168,8 +168,8 @@ int daNpcTkj_c::create() {
 
         OS_REPORT("\n");
 
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -207,17 +207,17 @@ int daNpcTkj_c::CreateHeap() {
     JUT_ASSERT(446, NULL != mdlData_p);
 
     u32 diff_flags = J3D_DIFF_FLAG(FALSE, FALSE, TRUE, 8, 2, FALSE, 2, 0, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE);
-    mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, diff_flags);
-    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
-        mpMorf[0]->stopZelAnime();
-        mpMorf[0] = NULL;
+    mAnm_p[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, diff_flags);
+    if (mAnm_p[0] != NULL && mAnm_p[0]->getModel() == NULL) {
+        mAnm_p[0]->stopZelAnime();
+        mAnm_p[0] = NULL;
     }
 
-    if (mpMorf[0] == NULL) {
+    if (mAnm_p[0] == NULL) {
         return 0;
     }
 
-    J3DModel* mdl_p = mpMorf[0]->getModel();
+    J3DModel* mdl_p = mAnm_p[0]->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -252,7 +252,7 @@ int daNpcTkj_c::Execute() {
 /* 80573FBC-80574058 00097C 009C+00 1/1 0/0 0/0 .text            Draw__10daNpcTkj_cFv */
 int daNpcTkj_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* mdlData_p = mAnm_p[0]->getModel()->getModelData();
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -386,7 +386,7 @@ void daNpcTkj_c::action() {
 void daNpcTkj_c::setAttnPos() {
     cXyz sp28(0.0f, -30.0f, 0.0f);
 
-    mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp28, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+    mJntAnm.setParam(this, mAnm_p[0]->getModel(), &sp28, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
         daNpc_Tkj_Param_c::m.common.body_angleX_min, daNpc_Tkj_Param_c::m.common.body_angleX_max,
         daNpc_Tkj_Param_c::m.common.body_angleY_min, daNpc_Tkj_Param_c::m.common.body_angleY_max,
         daNpc_Tkj_Param_c::m.common.head_angleX_min, daNpc_Tkj_Param_c::m.common.head_angleX_max,
@@ -394,14 +394,14 @@ void daNpcTkj_c::setAttnPos() {
         daNpc_Tkj_Param_c::m.common.neck_rotation_ratio, 0.0f, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, cM_s2rad(mCurAngle.y - field_0xd7e.y));
 
-    J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
+    J3DModelData* mdlData_p = mAnm_p[0]->getModel()->getModelData();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
     setMtx();
 
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&sp28, &eyePos);
 
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);

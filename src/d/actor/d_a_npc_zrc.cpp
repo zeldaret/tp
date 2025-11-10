@@ -213,7 +213,7 @@ daNpc_zrC_c::~daNpc_zrC_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -255,7 +255,7 @@ cPhs__Step daNpc_zrC_c::create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         mCreatureSound.init(&current.pos, &eyePos, 3, 1);
         mAcchCir.SetWall(daNpc_zrC_Param_c::m.mWallR, daNpc_zrC_Param_c::m.mWallH);
@@ -300,17 +300,17 @@ int daNpc_zrC_c::CreateHeap() {
         model_flag = 0;
     }
 
-    mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL, NULL, -1, 1.0f, 0, -1,
+    mAnm_p= new mDoExt_McaMorfSO(model_data, NULL, NULL, NULL, -1, 1.0f, 0, -1,
                                   &mCreatureSound, model_flag, 0x11020284);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
     
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (u16 i = 0; i < model_data->getJointNum(); i++) {
         model_data->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -349,7 +349,7 @@ int daNpc_zrC_c::Execute() {
 
 /* 80B8E884-80B8E914 000D64 0090+00 1/1 0/0 0/0 .text            Draw__11daNpc_zrC_cFv */
 int daNpc_zrC_c::Draw() {
-    mpMorf->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
+    mAnm_p->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
     BOOL is_test = chkAction(&daNpc_zrC_c::test);
     return draw(is_test, true, daNpc_zrC_Param_c::m.mShadowDepth, NULL, false);
 }
@@ -361,11 +361,11 @@ int daNpc_zrC_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int lookat_joints[3] = {1, 3, 4};
 
     if (jnt_no == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -392,8 +392,8 @@ int daNpc_zrC_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((jnt_no == 4 || jnt_no == 13) && (mAnmFlags & ANM_PLAY_BCK)) {
         J3DAnmTransform* bck_anm = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(bck_anm);
+        mBckAnm.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(bck_anm);
     }
 
     return 1;
@@ -558,7 +558,7 @@ void daNpc_zrC_c::setAttnPos() {
     setMtx();
     lookat();
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
     eyeOffset.x = 0.0f;
@@ -582,7 +582,7 @@ void daNpc_zrC_c::setAttnPos() {
         extra_height = -20.0f;
         extra_radius = 15.0f;
         vec2.set(0.0f, 0.0f, 0.0f);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0));
         mDoMtx_stack_c::multVec(&vec2, &center);
         attention_info.position.set(center.x, center.y + offset, center.z);
     } else {
@@ -756,7 +756,7 @@ bool daNpc_zrC_c::setExpressionBtp(int i_idx) {
         return true;
     }
 
-    if (setBtpAnm(btp_anm, mpMorf->getModel()->getModelData(), 1.0f, attr)) {
+    if (setBtpAnm(btp_anm, mAnm_p->getModel()->getModelData(), 1.0f, attr)) {
         mAnmFlags |= ANM_PLAY_BTP | ANM_PAUSE_BTP;
         if (i_idx == 0) {
             mAnmFlags |= ANM_FLAG_800;
@@ -845,7 +845,7 @@ void daNpc_zrC_c::setMotionAnm(int i_idx, f32 i_morf) {
                                     l_btkGetParamList[btk_idx].fileIdx);
     }
 
-    if (btk_anm != NULL && setBtkAnm(btk_anm, mpMorf->getModel()->getModelData(), 1.0f, btk_attr)) {
+    if (btk_anm != NULL && setBtkAnm(btk_anm, mAnm_p->getModel()->getModelData(), 1.0f, btk_attr)) {
         mAnmFlags |= ANM_PLAY_BTK | ANM_PAUSE_BTK;
     }
 
@@ -1072,7 +1072,7 @@ void daNpc_zrC_c::playMotionAnm2(daNpcF_c::daNpcF_anmPlayData*** i_data) {
 
             if (morf > 0.0f) {
                 mExpressionMorf = 0.0f;
-                mpMorf->setMorf(morf);
+                mAnm_p->setMorf(morf);
             }
         }
     }
@@ -1257,7 +1257,7 @@ void daNpc_zrC_c::setLookMode(int i_lookMode) {
 /* 80B91160-80B91418 003640 02B8+00 1/1 0/0 0/0 .text            lookat__11daNpc_zrC_cFv */
 void daNpc_zrC_c::lookat() {
     fopAc_ac_c* attn_actor = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     BOOL snap = false;
     f32 body_down_angle = daNpc_zrC_Param_c::m.mBodyDownAngle;
     f32 body_up_angle = daNpc_zrC_Param_c::m.mBodyUpAngle;

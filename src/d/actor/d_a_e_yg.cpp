@@ -121,7 +121,7 @@ void daE_YG_HIO_c::genMessage(JORMContext* ctx) {
 
 /* 807F8394-807F8440 000134 00AC+00 7/7 0/0 0/0 .text            anm_init__FP10e_yg_classifUcf */
 static void anm_init(e_yg_class* i_this, int i_index, f32 i_morf, u8 i_attr, f32 i_rate) {
-    i_this->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_YG", i_index), i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    i_this->mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_YG", i_index), i_attr, i_morf, i_rate, 0.0f, -1.0f);
     i_this->mAnm = i_index;
 }
 
@@ -145,11 +145,11 @@ static int daE_YG_Draw(e_yg_class* i_this) {
 
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(2, &actor->current.pos, &actor->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->actor.tevStr);
     dComIfGd_setListDark();
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
 
     cXyz pos;
     pos.set(actor->current.pos.x, actor->current.pos.y + 100.0f, actor->current.pos.z);
@@ -358,7 +358,7 @@ static s8 e_yg_normal(e_yg_class* i_this) {
         case NORMAL_MODE_1:
             target = l_HIO.movement_spd;
 
-            if (i_this->mpMorf->checkFrame(1.0f)) {
+            if (i_this->mAnm_p->checkFrame(1.0f)) {
                 i_this->mCurrentAngleYTarget += (s16)cM_rndFX(2000.0f);
             }
 
@@ -394,7 +394,7 @@ static s8 e_yg_normal(e_yg_class* i_this) {
             rv = 0;
             target = l_HIO.movement_spd * 1.5f;
 
-            if (i_this->mpMorf->checkFrame(1.0f)) {
+            if (i_this->mAnm_p->checkFrame(1.0f)) {
                 i_this->mCurrentAngleYTarget += (s16)cM_rndFX(4000.0f);
             }
 
@@ -443,7 +443,7 @@ static s8 e_yg_attack(e_yg_class* i_this) {
         case ATTACK_MODE_RUN:
             i_this->mCurrentAngleYTarget = i_this->mPlayerAngleY;
 
-            if (i_this->mpMorf->isStop()) {
+            if (i_this->mAnm_p->isStop()) {
                 anm_init(i_this, BCK_YG_RUN, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
                 i_this->mActionMode = ATTACK_MODE_2;
             }
@@ -478,7 +478,7 @@ static s8 e_yg_attack(e_yg_class* i_this) {
         case ATTACK_MODE_JUMPING:
             i_this->mCurrentAngleYTarget = i_this->mPlayerAngleY;
 
-            if (i_this->mpMorf->isStop()) {
+            if (i_this->mAnm_p->isStop()) {
                 anm_init(i_this, BCK_YG_JUMP_MIDDLE, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                 actor->speed.y = TREG_F(5) + 30.0f;
                 actor->speedF = l_HIO.attack_spd;
@@ -510,7 +510,7 @@ static s8 e_yg_attack(e_yg_class* i_this) {
         case ATTACK_MODE_END:
             rv = 0;
 
-            if (i_this->mpMorf->isStop()) {
+            if (i_this->mAnm_p->isStop()) {
                 end_attack_flag = true;
                 i_this->mUnkFlag2 = 0;
             }
@@ -632,7 +632,7 @@ static void e_yg_swim(e_yg_class* i_this) {
     }
 
     cLib_addCalc2(&actor->speedF, target, 1.0f, 0.5f);
-    i_this->mpMorf->setPlaySpeed(play_spd);
+    i_this->mAnm_p->setPlaySpeed(play_spd);
     cLib_addCalcAngleS2(&actor->current.angle.y, i_this->mCurrentAngleYTarget, 8, maxStep);
     actor->gravity = actor->speed.y = 0.0f;
     cLib_addCalc2(&actor->current.pos.y, i_this->mGroundCross - 40.0f + KREG_F(4), 1.0f, 5.0f);
@@ -667,7 +667,7 @@ static void e_yg_dokuro(e_yg_class* i_this) {
                 break;
 
             case DOKURO_MODE_RUN:
-                if (i_this->mpMorf->isStop()) {
+                if (i_this->mAnm_p->isStop()) {
                     anm_init(i_this, BCK_YG_RUN, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
                     i_this->mActionMode = DOKURO_MODE_2;
                 }
@@ -978,7 +978,7 @@ static void ke_set(e_yg_class* i_this) {
     cXyz work, unused;
 
     cM_initRnd2(12, 123, fopAcM_GetID(actor) * 2 + 50);
-    MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_BODY), *calc_mtx);
+    MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_BODY), *calc_mtx);
     f32 pos_z = ZREG_F(10) + 10.0f;
 
     for (int i = 0; i < 13; i++) {
@@ -1171,43 +1171,43 @@ static void anm_se_set(e_yg_class* i_this) {
     s8 footnote_flag = false;
 
     if (i_this->mAnm == BCK_YG_WAIT) {
-        if (i_this->mpMorf->checkFrame(0.0f)) {
+        if (i_this->mAnm_p->checkFrame(0.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_YG_V_NAKU, -1);
             footnote_flag = true;
         }
     } else if (i_this->mAnm == BCK_YG_WALK) {
-        if (i_this->mpMorf->checkFrame(0.0f)) {
+        if (i_this->mAnm_p->checkFrame(0.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_YG_V_NAKU, -1);
         }
 
-        if (i_this->mpMorf->checkFrame(0.0f) || i_this->mpMorf->checkFrame(9.5f)) {
+        if (i_this->mAnm_p->checkFrame(0.0f) || i_this->mAnm_p->checkFrame(9.5f)) {
             footnote_flag = true;
         }
     } else if (i_this->mAnm == BCK_YG_RUN) {
-        if (i_this->mpMorf->checkFrame(0.0f)) {
+        if (i_this->mAnm_p->checkFrame(0.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_YG_V_NAKU, -1);
         }
 
-        if (i_this->mpMorf->checkFrame(0.0f) || i_this->mpMorf->checkFrame(5.5f)) {
+        if (i_this->mAnm_p->checkFrame(0.0f) || i_this->mAnm_p->checkFrame(5.5f)) {
             footnote_flag = true;
         } 
     } else if (i_this->mAnm == BCK_YG_JUMP_START) {
-        if (i_this->mpMorf->checkFrame(6.5f) || i_this->mpMorf->checkFrame(8.0f)) {
+        if (i_this->mAnm_p->checkFrame(6.5f) || i_this->mAnm_p->checkFrame(8.0f)) {
             footnote_flag = true;
         }
     } else if (i_this->mAnm == BCK_YG_JUMP_END) {
-        if (i_this->mpMorf->checkFrame(2.5f) || i_this->mpMorf->checkFrame(6.0f)) {
+        if (i_this->mAnm_p->checkFrame(2.5f) || i_this->mAnm_p->checkFrame(6.0f)) {
             footnote_flag = true;
         }
     } else if (i_this->mAnm == BCK_YG_FIND) {
-        if (i_this->mpMorf->checkFrame(1.0f)) {
+        if (i_this->mAnm_p->checkFrame(1.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_YG_V_FIND, -1);
         }
     } else if (i_this->mAnm == BCK_YG_GNAW) {
-        if (i_this->mpMorf->checkFrame(0.0f) || i_this->mpMorf->checkFrame(4.5f) || i_this->mpMorf->checkFrame(9.5f) || i_this->mpMorf->checkFrame(15.0f)) {
+        if (i_this->mAnm_p->checkFrame(0.0f) || i_this->mAnm_p->checkFrame(4.5f) || i_this->mAnm_p->checkFrame(9.5f) || i_this->mAnm_p->checkFrame(15.0f)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_YG_BITE, 0, -1);
         }
-    } else if (i_this->mAnm == BCK_YG_SWIM && (i_this->mpMorf->checkFrame(0.0f) || i_this->mpMorf->checkFrame(9.5f))) {
+    } else if (i_this->mAnm == BCK_YG_SWIM && (i_this->mAnm_p->checkFrame(0.0f) || i_this->mAnm_p->checkFrame(9.5f))) {
         i_this->mSound.startCreatureSound(Z2SE_EN_YG_SWIM, 0, -1);
     }
 
@@ -1241,7 +1241,7 @@ static int daE_YG_Execute(e_yg_class* i_this) {
         i_this->mSplashTimer--;
     }
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
 
     action(i_this);
 
@@ -1267,8 +1267,8 @@ static int daE_YG_Execute(e_yg_class* i_this) {
     mDoMtx_stack_c::scaleM(l_HIO.basic_size, l_HIO.basic_size, l_HIO.basic_size);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
+    i_this->mAnm_p->modelCalc();
     ke_set(i_this);
     anm_se_set(i_this);
 
@@ -1296,7 +1296,7 @@ static int daE_YG_Execute(e_yg_class* i_this) {
     i_this->mSph2.SetR((JREG_F(2) + 20.0f) * l_HIO.basic_size);
     dComIfG_Ccsp()->Set(&i_this->mSph2);
 
-    if (i_this->mWaterFlag && i_this->mAnm == BCK_YG_RUN && (i_this->mpMorf->checkFrame(1.0f) || i_this->mpMorf->checkFrame(7.0f)) && cM_rndF(1.0f) < 0.5f) {
+    if (i_this->mWaterFlag && i_this->mAnm == BCK_YG_RUN && (i_this->mAnm_p->checkFrame(1.0f) || i_this->mAnm_p->checkFrame(7.0f)) && cM_rndF(1.0f) < 0.5f) {
         static cXyz sc(0.3f, 0.3f, 0.3f);
         static u16 eff_id[4] = {
             ID_ZI_J_DOWNWTRA_A, ID_ZI_J_DOWNWTRA_B, ID_ZI_J_DOWNWTRA_C, ID_ZI_J_DOWNWTRA_D,
@@ -1340,7 +1340,7 @@ static int daE_YG_Delete(e_yg_class* i_this) {
     }
 
     if (actor->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -1350,10 +1350,10 @@ static int daE_YG_Delete(e_yg_class* i_this) {
 static int useHeapInit(fopAc_ac_c* a_this) {
     e_yg_class* i_this = (e_yg_class*)a_this;
 
-    i_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_YG", 0x13), NULL, NULL,
+    i_this->mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_YG", 0x13), NULL, NULL,
                                           (J3DAnmTransform*)dComIfG_getObjectRes("E_YG", 0xF), 2, 1.0f, 0, -1,
                                           &i_this->mSound, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
-    if (i_this->mpMorf == NULL || i_this->mpMorf->getModel() == NULL) {
+    if (i_this->mAnm_p== NULL || i_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -1398,7 +1398,7 @@ static cPhs__Step daE_YG_Create(fopAc_ac_c* actor) {
             l_HIO.id = mDoHIO_CREATE_CHILD("グース", &l_HIO);
         }
 
-        fopAcM_SetMtx(actor, i_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(actor, i_this->mAnm_p->getModel()->getBaseTRMtx());
 
         actor->field_0x560 = actor->health = 1;
 

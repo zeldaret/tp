@@ -147,7 +147,7 @@ NPC_KNJ_HIO_CLASS l_HIO;
 /* 80A4356C-80A43608 0000EC 009C+00 1/0 0/0 0/0 .text            __dt__11daNpc_Knj_cFv */
 daNpc_Knj_c::~daNpc_Knj_c() {
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
 }
@@ -171,8 +171,8 @@ int daNpc_Knj_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         mSound.init(&current.pos, &eyePos, 3, 1);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
@@ -196,19 +196,19 @@ int daNpc_Knj_c::CreateHeap() {
     J3DModelData* modelData = static_cast<J3DModelData*>(
         dComIfG_getObjectRes(l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]));
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
                                      0x11020084);
 
-    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
-        mpMorf[0]->stopZelAnime();
-        mpMorf[0] = NULL;
+    if (mAnm_p[0] != NULL && mAnm_p[0]->getModel() == NULL) {
+        mAnm_p[0]->stopZelAnime();
+        mAnm_p[0] = NULL;
     }
 
-    if (mpMorf[0] == NULL) {
+    if (mAnm_p[0] == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     model->setUserArea((uintptr_t)this);
 
     if (setFaceMotionAnm(0, false) && setMotionAnm(0, 0.0f, 0)) {
@@ -232,7 +232,7 @@ int daNpc_Knj_c::Execute() {
 /* 80A439F4-80A43A88 000574 0094+00 1/1 0/0 0/0 .text            Draw__11daNpc_Knj_cFv */
 int daNpc_Knj_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 0.0f, 1, 0, 0);
@@ -415,7 +415,7 @@ bool daNpc_Knj_c::afterSetMotionAnm(int param_1, int param_2, f32 param_3, int p
     if (anm_text) {
         if (mBtpAnm.getBtpAnm() == anm_text) {
             mAnmFlags |= 0x800;
-        } else if (setBtpAnm(anm_text, mpMorf[0]->getModel()->getModelData(), 1.0f, param_2)) {
+        } else if (setBtpAnm(anm_text, mAnm_p[0]->getModel()->getModelData(), 1.0f, param_2)) {
             mAnmFlags |= 0x820;
         }
     }
@@ -432,7 +432,7 @@ bool daNpc_Knj_c::afterSetMotionAnm(int param_1, int param_2, f32 param_3, int p
     if (anm_tev) {
         if (mBrkAnm.getBrkAnm() == anm_tev) {
             mAnmFlags |= 0x100;
-        } else if (setBrkAnm(anm_tev, mpMorf[0]->getModel()->getModelData(), 1.0f, param_2)) {
+        } else if (setBrkAnm(anm_tev, mAnm_p[0]->getModel()->getModelData(), 1.0f, param_2)) {
             mBrkAnm.setFrame(mType * 10);
             mAnmFlags |= 0x104;
         }
@@ -447,10 +447,10 @@ bool daNpc_Knj_c::afterSetMotionAnm(int param_1, int param_2, f32 param_3, int p
 
 /* 80A44264-80A442D0 000DE4 006C+00 1/0 0/0 0/0 .text            drawGhost__11daNpc_Knj_cFv */
 void daNpc_Knj_c::drawGhost() {
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     g_env_light.settingTevStruct(5, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
-    mpMorf[0]->entryDL();
+    mAnm_p[0]->entryDL();
 }
 
 /* 80A442D0-80A44318 000E50 0048+00 1/1 0/0 0/0 .text            selectAction__11daNpc_Knj_cFv */

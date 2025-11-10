@@ -53,7 +53,7 @@ daNi_HIO_c::daNi_HIO_c() {
 static void anm_init(ni_class* i_this, int i_resID, f32 i_morf, u8 i_mode, f32 i_speed) {
     if (!(i_this->field_0x610 > 1.0f)) {
         J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes("Ni", i_resID);
-        i_this->mpMorf->setAnm(pbck, i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
+        i_this->mAnm_p->setAnm(pbck, i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
         i_this->mAnmID = i_resID;
     }
 }
@@ -126,12 +126,12 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 8094C110-8094C204 0005D0 00F4+00 1/0 0/0 0/0 .text            daNi_Draw__FP8ni_class */
 static int daNi_Draw(ni_class* i_this) {
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
 
     i_this->mpBtk->entry(model->getModelData());
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
 
     if (!fopAcM_checkCarryNow(i_this)) {
         cXyz pos;
@@ -361,7 +361,7 @@ static void ni_normal(ni_class* i_this) {
             i_this->mMode = 0;
         }
 
-        if (i_this->mpMorf->checkFrame(1.0f) || i_this->mpMorf->checkFrame(16.0f)) {
+        if (i_this->mAnm_p->checkFrame(1.0f) || i_this->mAnm_p->checkFrame(16.0f)) {
             i_this->mSound.startSound(Z2SE_CHICKEN_WALK, 0, -1);
         }
         break;
@@ -457,7 +457,7 @@ static void ni_away(ni_class* i_this) {
     case 1:
         move_speed = l_HIO.mFleeWalkSpeed;
 
-        if (a_this->mpMorf->checkFrame(1.0f) || a_this->mpMorf->checkFrame(8.0f)) {
+        if (a_this->mAnm_p->checkFrame(1.0f) || a_this->mAnm_p->checkFrame(8.0f)) {
             a_this->mSound.startSound(Z2SE_CHICKEN_WALK, 0, -1);
         }
 
@@ -1005,7 +1005,7 @@ static int ni_play(ni_class* i_this) {
         i_this->mMode++;
         // fallthrough
     case 1:
-        if (i_this->mpMorf->checkFrame(1.0f) || i_this->mpMorf->checkFrame(16.0f)) {
+        if (i_this->mAnm_p->checkFrame(1.0f) || i_this->mAnm_p->checkFrame(16.0f)) {
             i_this->mSound.startSound(Z2SE_CHICKEN_WALK, 0, -1);
         }
 
@@ -1016,7 +1016,7 @@ static int ni_play(ni_class* i_this) {
         }
         break;
     case 2:
-        if (i_this->mpMorf->checkFrame(1.0f) || i_this->mpMorf->checkFrame(8.0f)) {
+        if (i_this->mAnm_p->checkFrame(1.0f) || i_this->mAnm_p->checkFrame(8.0f)) {
             i_this->mSound.startSound(Z2SE_CHICKEN_WALK, 0, -1);
         }
 
@@ -1027,7 +1027,7 @@ static int ni_play(ni_class* i_this) {
         }
         break;
     case 5:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mMode = 0;
         }
         break;
@@ -1122,7 +1122,7 @@ static int ni_play(ni_class* i_this) {
             i_this->mPlayAnmSpeed = var_f30_2 * 2.0f;
         }
 
-        i_this->mpMorf->setPlaySpeed(i_this->mPlayAnmSpeed);
+        i_this->mAnm_p->setPlaySpeed(i_this->mPlayAnmSpeed);
 
         if (i_this->speed.y <= -15.0f) {
             i_this->speed.y = 0.0f;
@@ -1803,7 +1803,7 @@ static int daNi_Execute(ni_class* i_this) {
 
     action(i_this);
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     if (i_this->field_0xb08) {
         fopAcM_OnCarryType(i_this, fopAcM_CARRY_CHICKEN);
         i_this->field_0xb08 = 0;
@@ -1816,9 +1816,9 @@ static int daNi_Execute(ni_class* i_this) {
         model->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 
-    i_this->mpMorf->play(&i_this->eyePos, 0, 0);
+    i_this->mAnm_p->play(&i_this->eyePos, 0, 0);
     i_this->mpBtk->setFrame(i_this->mColor);
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     MTXCopy(model->getAnmMtx(5), *calc_mtx);
     MtxPosition(&sp30, &i_this->eyePos);
@@ -1834,15 +1834,15 @@ static int daNi_Execute(ni_class* i_this) {
     i_this->mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
 
     if (i_this->mAnmID == BCK_MOGAKU || i_this->mAnmID == BCK_FLY || i_this->mAnmID == BCK_FALL) {
-        if (i_this->mpMorf->checkFrame(1) || i_this->mpMorf->checkFrame(5) ||
-            i_this->mpMorf->checkFrame(9) || i_this->mpMorf->checkFrame(13) ||
-            i_this->mpMorf->checkFrame(17) || i_this->mpMorf->checkFrame(21) ||
-            i_this->mpMorf->checkFrame(25))
+        if (i_this->mAnm_p->checkFrame(1) || i_this->mAnm_p->checkFrame(5) ||
+            i_this->mAnm_p->checkFrame(9) || i_this->mAnm_p->checkFrame(13) ||
+            i_this->mAnm_p->checkFrame(17) || i_this->mAnm_p->checkFrame(21) ||
+            i_this->mAnm_p->checkFrame(25))
         {
             i_this->mSound.startSound(Z2SE_CHICKEN_WING, 0, -1);
         }
 
-        if (i_this->mpMorf->checkFrame(1)) {
+        if (i_this->mAnm_p->checkFrame(1)) {
             i_this->mSound.startSound(Z2SE_CHICKEN_CRY, 0, -1);
         }
     }
@@ -1892,15 +1892,15 @@ static int daNi_Delete(ni_class* i_this) {
 static BOOL useHeapInit(fopAc_ac_c* i_this) {
     ni_class* a_this = (ni_class*)i_this;
 
-    a_this->mpMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Ni", 16), NULL, NULL,
+    a_this->mAnm_p= new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Ni", 16), NULL, NULL,
                                         (J3DAnmTransform*)dComIfG_getObjectRes("Ni", 11), 0, 1.0f,
                                         0, -1, 1, NULL, 0x80000, 0x11000284);
 
-    if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
+    if (a_this->mAnm_p== NULL || a_this->mAnm_p->getModel() == NULL) {
         return false;
     }
 
-    J3DModel* model = a_this->mpMorf->getModel();
+    J3DModel* model = a_this->mAnm_p->getModel();
     a_this->model = model;
     model->setUserArea((uintptr_t)a_this);
 
@@ -1913,7 +1913,7 @@ static BOOL useHeapInit(fopAc_ac_c* i_this) {
         return false;
     }
 
-    if (!a_this->mpBtk->init(a_this->mpMorf->getModel()->getModelData(),
+    if (!a_this->mpBtk->init(a_this->mAnm_p->getModel()->getModelData(),
                              (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Ni", 0x13), TRUE,
                              J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))
     {
@@ -1971,7 +1971,7 @@ static int daNi_Create(fopAc_ac_c* i_this) {
 
         i_this->attention_info.flags = 0;
         a_this->mAction = ACTION_NORMAL_e;
-        fopAcM_SetMtx(i_this, a_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, a_this->mAnm_p->getModel()->getBaseTRMtx());
 
         a_this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this), i_this, 1,
                           &a_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);

@@ -80,7 +80,7 @@ public:
     bool isFlyingAttackLand() { return mFlyingAttackLand; }
     u8 isDead() { return mDead; }
     bool isDemoJump() { return mDemoJump; }
-    MtxP getBackMtx() { return mpMorf->getModel()->getAnmMtx(1); }
+    MtxP getBackMtx() { return mAnm_p->getModel()->getAnmMtx(1); }
     fpc_ProcID getDemoId() { return mDemoID; }
 
 private:
@@ -88,7 +88,7 @@ private:
     /* 0x05C4 */ J3DModel* mpChestModel;
     /* 0x05C8 */ J3DModel* mpSpitModel;
     /* 0x05CC */ J3DModel* mpSpitBModel;
-    /* 0x05D0 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x05D0 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x05D4 */ Z2CreatureEnemy mSound;
     /* 0x0678 */ fpc_ProcID mDemoID;
     /* 0x067C */ daE_OT_c* mDemoOtama[3];

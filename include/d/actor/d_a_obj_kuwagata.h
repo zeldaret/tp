@@ -77,7 +77,7 @@ private:
     /* 0x9C2 */ u8 field_0x9c2;
     /* 0x9C4 */ Z2Creature mSound;
     /* 0xA54 */ int field_0xa54;
-    /* 0xA58 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0xA58 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0xA5C */ request_of_phase_process_class mPhase;
     /* 0xA64 */ bool mIsHIOOwner;
 };

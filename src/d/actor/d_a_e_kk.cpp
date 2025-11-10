@@ -123,12 +123,12 @@ int daE_KK_c::draw() {
         position.set(current.pos.x, current.pos.y + 10.0f, current.pos.z);
 
         if (field_0x679 != 1) {
-            J3DModel* model = mpMorfSO->getModel();
+            J3DModel* model = mAnm_pSO->getModel();
             g_env_light.settingTevStruct(0, &current.pos, &tevStr);
             g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
             J3DShape* shape =
-                mpMorfSO->getModel()->getModelData()->getMaterialNodePointer(2)->getShape();
+                mAnm_pSO->getModel()->getModelData()->getMaterialNodePointer(2)->getShape();
             if (shape != NULL) {
                 if (mActionMode == 10 && mMoveMode != 2) {
                     shape->hide();
@@ -138,7 +138,7 @@ int daE_KK_c::draw() {
             }
 
             fopAcM_setEffectMtx(this, model->getModelData());
-            mpMorfSO->entryDL();
+            mAnm_pSO->entryDL();
 
             u32 shadow =
                 dComIfGd_setShadow(mModelShadow, 1, model, &position, 1000.0f, 0.0f, current.pos.y,
@@ -173,7 +173,7 @@ static int daE_KK_Draw(daE_KK_c* i_this) {
 /* 806FAA68-806FAB14 000448 00AC+00 10/10 0/0 0/0 .text            setBck__8daE_KK_cFiUcff */
 void daE_KK_c::setBck(int i_index, u8 i_attr, f32 i_morf, f32 i_rate) {
     J3DAnmTransform* animation = (J3DAnmTransform*)dComIfG_getObjectRes("E_KK", i_index);
-    mpMorfSO->setAnm(animation, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    mAnm_pSO->setAnm(animation, i_attr, i_morf, i_rate, 0.0f, -1.0f);
     field_0x764 = i_index;
 }
 
@@ -237,7 +237,7 @@ void daE_KK_c::damage_check() {
         return;
     }
     cXyz effPos;
-    mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(2));
+    mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(2));
     mDoMtx_stack_c::multVecZero(&effPos);
     setMidnaBindEffect(this, &mCreatureSound, &effPos, &scale);
 
@@ -462,7 +462,7 @@ void daE_KK_c::executeIcicleWait() {
         break;
 
     case 1:
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             setBck(0x13, 0, 0.0f, 1.0f);
             setWeaponBck(0x1E, 0, 0.0f, 1.0f);
             mMoveMode++;
@@ -478,7 +478,7 @@ void daE_KK_c::executeIcicleWait() {
             mCyl.OnTgNoHitMark();
             field_0x76c = 0;
         }
-        if (mpMorfSO->isStop() && mpWeaponMorfSO->isStop()) {
+        if (mAnm_pSO->isStop() && mpWeaponMorfSO->isStop()) {
             mCyl.OnTgNoHitMark();
             field_0x67d = 0;
             field_0x76c = 0;
@@ -549,7 +549,7 @@ void daE_KK_c::executeWalk() {
     }
 
     if (field_0x764 == 0x1B) {
-        if ((s32)mpMorfSO->getFrame() == 0x19 || (s32)mpMorfSO->getFrame() == 0x31) {
+        if ((s32)mAnm_pSO->getFrame() == 0x19 || (s32)mAnm_pSO->getFrame() == 0x31) {
             mCreatureSound.startCreatureSound(Z2SE_EN_KK_FOOTNOTE, 0, -1);
         }
     }
@@ -577,7 +577,7 @@ void daE_KK_c::executeSpearThrow() {
 
     case 2:
         if (!dComIfGp_event_runCheck() && fopAcM_searchPlayerDistance(this) <= l_HIO.direct_attack_range &&
-            !fopAcM_otherBgCheck(this, dComIfGp_getPlayer(0)) && (s32)mpMorfSO->getFrame() < 0x17 &&
+            !fopAcM_otherBgCheck(this, dComIfGp_getPlayer(0)) && (s32)mAnm_pSO->getFrame() < 0x17 &&
             !dComIfGp_event_runCheck() && !dComIfGp_checkPlayerStatus0(0, 0x100))
         {
             fopAc_ac_c* player = dComIfGp_getPlayer(0);
@@ -586,7 +586,7 @@ void daE_KK_c::executeSpearThrow() {
                 break;
             }
         }
-        if ((s32)mpMorfSO->getFrame() == 0x17) {
+        if ((s32)mAnm_pSO->getFrame() == 0x17) {
             fopAcM_createChild(PROC_E_KK, fopAcM_GetID(this), 0xFF0001, &field_0x698,
                                fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
             field_0x67d = 1;
@@ -594,12 +594,12 @@ void daE_KK_c::executeSpearThrow() {
             mCyl.OffTgShield();
             mCreatureSound.startCreatureSound(Z2SE_EN_KK_THROW, 0, -1);
         }
-        if ((s32)mpMorfSO->getFrame() == 9 || (s32)mpMorfSO->getFrame() == 0x17 ||
-            (s32)mpMorfSO->getFrame() == 0x22 || (s32)mpMorfSO->getFrame() == 0x3D)
+        if ((s32)mAnm_pSO->getFrame() == 9 || (s32)mAnm_pSO->getFrame() == 0x17 ||
+            (s32)mAnm_pSO->getFrame() == 0x22 || (s32)mAnm_pSO->getFrame() == 0x3D)
         {
             mCreatureSound.startCreatureSound(Z2SE_EN_KK_FOOTNOTE, 0, -1);
         }
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             mMoveMode++;
         case 3:
             setBck(0x12, 0, 0.0f, 1.0f);
@@ -618,7 +618,7 @@ void daE_KK_c::executeSpearThrow() {
             mCyl.OnTgNoHitMark();
             field_0x76c = 0;
         }
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             if (mpWeaponMorfSO->isStop()) {
                 mCyl.OnTgNoHitMark();
                 field_0x67d = 0;
@@ -630,7 +630,7 @@ void daE_KK_c::executeSpearThrow() {
     }
 
     if (field_0x764 == 0x14 &&
-        ((s32)mpMorfSO->getFrame() == 9 || (s32)mpMorfSO->getFrame() == 0x12))
+        ((s32)mAnm_pSO->getFrame() == 9 || (s32)mAnm_pSO->getFrame() == 0x12))
     {
         mCreatureSound.startCreatureSound(Z2SE_EN_KK_FOOTNOTE, 0, -1);
     }
@@ -694,7 +694,7 @@ void daE_KK_c::executeBackWalk() {
             mCyl.OnTgNoHitMark();
             field_0x76c = 0;
         }
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             if (mpWeaponMorfSO->isStop()) {
                 field_0x67d = 0;
                 field_0x76c = 0;
@@ -707,7 +707,7 @@ void daE_KK_c::executeBackWalk() {
     }
 
     cLib_addCalcAngleS2(&shape_angle.y, fopAcM_searchPlayerAngleY(this), 2, 0x200);
-    if (field_0x764 == 7 && ((s32)mpMorfSO->getFrame() == 9 || (s32)mpMorfSO->getFrame() == 0x13)) {
+    if (field_0x764 == 7 && ((s32)mAnm_pSO->getFrame() == 9 || (s32)mAnm_pSO->getFrame() == 0x13)) {
         mCreatureSound.startCreatureSound(Z2SE_EN_KK_FOOTNOTE, 0, -1);
     }
 }
@@ -731,7 +731,7 @@ void daE_KK_c::executeYoroke() {
         mMoveMode = 2;
         return;
     case 2:
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             offHeadLockFlg();
             if (field_0x67d == 0) {
                 nextActionCheck();
@@ -762,7 +762,7 @@ void daE_KK_c::executeGuard() {
         break;
 
     case 1:
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             nextActionCheck();
         }
         break;
@@ -802,7 +802,7 @@ void daE_KK_c::executeDamage() {
 
     case 3:
         mCyl.OffTgNoHitMark();
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             current.angle.y = fopAcM_searchPlayerAngleY(this) + 0x8000;
             setActionMode(4, 0);
         }
@@ -857,17 +857,17 @@ void daE_KK_c::executeAttack() {
         break;
 
     case 3:
-        if ((s32)mpMorfSO->getFrame() == 0x18) {
+        if ((s32)mAnm_pSO->getFrame() == 0x18) {
             speedF = 80.0f;
             field_0x67e = 0;
             if (field_0x764 == 6) {
                 mCreatureSound.startCreatureSound(Z2SE_EN_KK_ATTACK03, 0, -1);
             }
         }
-        if (field_0x764 == 5 && (s32)mpMorfSO->getFrame() == 0x1B) {
+        if (field_0x764 == 5 && (s32)mAnm_pSO->getFrame() == 0x1B) {
             mCreatureSound.startCreatureSound(Z2SE_EN_KK_ATTACK01, 0, -1);
         }
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             nextActionCheck();
         }
         break;
@@ -879,14 +879,14 @@ void daE_KK_c::executeAttack() {
         field_0x67c = 1;
     }
 
-    if ((s32)mpMorfSO->getFrame() < 0x19) {
+    if ((s32)mAnm_pSO->getFrame() < 0x19) {
         cLib_addCalcAngleS2(&current.angle.y, fopAcM_searchPlayerAngleY(this), 1, 0x500);
         shape_angle.y = current.angle.y;
-    } else if ((s32)mpMorfSO->getFrame() >= 0x21) {
+    } else if ((s32)mAnm_pSO->getFrame() >= 0x21) {
         field_0x67e = 1;
     }
 
-    if (field_0x764 == 0x1C && ((s32)mpMorfSO->getFrame() == 0 || (s32)mpMorfSO->getFrame() == 10))
+    if (field_0x764 == 0x1C && ((s32)mAnm_pSO->getFrame() == 0 || (s32)mAnm_pSO->getFrame() == 10))
     {
         mCreatureSound.startCreatureSound(Z2SE_EN_KK_FOOTNOTE, 0, -1);
     }
@@ -894,7 +894,7 @@ void daE_KK_c::executeAttack() {
 
 /* 806FD068-806FD294 002A48 022C+00 1/1 0/0 0/0 .text            executeDead__8daE_KK_cFv */
 void daE_KK_c::executeDead() {
-    mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(0x11));
+    mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(0x11));
     cXyz effect_position;
     mDoMtx_stack_c::multVecZero(&effect_position);
 
@@ -923,7 +923,7 @@ void daE_KK_c::executeDead() {
         return;
 
     case 1:
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             field_0x564 = 0x1A;
             fopAcM_createDisappear(this, &current.pos, 8, 0, field_0x564);
             fopAcM_delete(this);
@@ -1179,7 +1179,7 @@ void daE_KK_c::action() {
                 }
             }
         }
-        mpMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mAnm_pSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     } else {
         if (speed.y < 0.0f) {
             mAcchCir.SetWall(1.0f, 1.0f);
@@ -1204,9 +1204,9 @@ void daE_KK_c::mtx_set() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(l_HIO.model_size, l_HIO.model_size, l_HIO.model_size);
 
-    J3DModel* morfModel = mpMorfSO->getModel();
+    J3DModel* morfModel = mAnm_pSO->getModel();
     morfModel->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorfSO->modelCalc();
+    mAnm_pSO->modelCalc();
     mDoMtx_stack_c::copy(morfModel->getAnmMtx(0xE));
 
     mDoMtx_stack_c::multVecZero(&field_0x698);
@@ -1256,7 +1256,7 @@ void daE_KK_c::weapon_mtx_set() {
 /* 806FE0B8-806FE2A8 003A98 01F0+00 1/1 0/0 0/0 .text            cc_set__8daE_KK_cFv */
 void daE_KK_c::cc_set() {
     if (field_0x679 != 1) {
-        mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVecZero(&attention_info.position);
         eyePos = attention_info.position;
         eyePos.y -= 50.0f;
@@ -1364,13 +1364,13 @@ int daE_KK_c::CreateHeap() {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_KK", 0x22);
         JUT_ASSERT(2212, modelData != NULL);
 
-        mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+        mAnm_pSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                         (J3DAnmTransform*)dComIfG_getObjectRes("E_KK", 0x19), 0,
                                         1.0f, 0, -1, &mCreatureSound, 0, 0x31000084);
-        if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
+        if (mAnm_pSO == NULL || mAnm_pSO->getModel() == NULL) {
             return 0;
         }
-        model = mpMorfSO->getModel();
+        model = mAnm_pSO->getModel();
         model->setUserArea((uintptr_t)this);
         for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
             if (i != 0) {
@@ -1467,7 +1467,7 @@ int daE_KK_c::create() {
             gravity = -3.0f;
             field_0x67e = 1;
 
-            fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
+            fopAcM_SetMtx(this, mAnm_pSO->getModel()->getBaseTRMtx());
 
             field_0x6a4.set(current.pos);
             field_0x74c.set(current.pos);

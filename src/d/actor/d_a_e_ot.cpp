@@ -122,7 +122,7 @@ daE_OT_HIO_c::daE_OT_HIO_c() {
 int daE_OT_c::draw() {
     J3DModel* model;
     if (mHatched) {
-        model = mpMorf->getModel();
+        model = mAnm_p->getModel();
     } else {
         model = mpEggModel;
     }
@@ -131,7 +131,7 @@ int daE_OT_c::draw() {
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     
     if (mHatched) {
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
     } else {
         mpEggAnm->entry(model->getModelData());
         fopAcM_setEffectMtx(this, model->getModelData());
@@ -155,7 +155,7 @@ static int daE_OT_Draw(daE_OT_c* i_this) {
 /* 8073A454-8073A4F8 000274 00A4+00 4/4 0/0 0/0 .text            setBck__8daE_OT_cFiUcff */
 void daE_OT_c::setBck(int i_anm, u8 i_attr, f32 i_morf, f32 i_rate) {
     J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes("E_OT", i_anm);
-    mpMorf->setAnm(bck, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    mAnm_p->setAnm(bck, i_attr, i_morf, i_rate, 0.0f, -1.0f);
 }
 
 /* 8073A4F8-8073A510 000318 0018+00 4/4 0/0 0/0 .text            setActionMode__8daE_OT_cFii */
@@ -375,7 +375,7 @@ void daE_OT_c::executeBorn() {
         break;
 
     case 1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACT_ATTACK, 0);
         }
         break;
@@ -412,12 +412,12 @@ void daE_OT_c::executeAttack() {
             mTimer2 = 180.0f + cM_rndFX(30.0f);
         }
 
-        if (mpMorf->checkFrame(0.0f)) {
+        if (mAnm_p->checkFrame(0.0f)) {
             mSound.startCreatureSound(Z2SE_EN_OT_SWIM, 0, -1);
         }
 
         cLib_chaseF(&speedF, l_HIO.mAttackSpeed + rand_speed[mChildNo & 3], 2.0f);
-        mpMorf->setPlaySpeed(speedF / 13.0f);
+        mAnm_p->setPlaySpeed(speedF / 13.0f);
 
         if (mpToadActor->isDead()) {
             if (mTimer1 == 0) {
@@ -475,7 +475,7 @@ void daE_OT_c::executePanic() {
         break;
 
     case 3:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             speedF = 20.0f;
             mMode = 4;
             setBck(ANM_SWIM, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
@@ -483,7 +483,7 @@ void daE_OT_c::executePanic() {
         break;
 
     case 4:
-        if (mpMorf->checkFrame(0.0f)) {
+        if (mAnm_p->checkFrame(0.0f)) {
             mSound.startCreatureSound(Z2SE_EN_OT_SWIM, 0, -1);
         }
         cLib_addCalcAngleS(&shape_angle.y, fopAcM_searchPlayerAngleY(this)
@@ -523,7 +523,7 @@ void daE_OT_c::executePanic() {
         break;
 
     case 8:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mCcSph.SetTgType(0xd8fbfdff);
             setActionMode(ACT_ATTACK, 0);
         }
@@ -577,7 +577,7 @@ void daE_OT_c::executeDamage() {
 
     case 3:
         cLib_chaseF(&mAnmSpeed, 0.0f, 0.02f);
-        mpMorf->setPlaySpeed(mAnmSpeed);
+        mAnm_p->setPlaySpeed(mAnmSpeed);
         if (mTimer1 == 0) {
             if (mHatched) {
                 setDeathLightEffect();
@@ -655,7 +655,7 @@ void daE_OT_c::action() {
 
     mAcch.CrrPos(dComIfG_Bgsp());
 
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     if (!mHatched) {
         mpEggAnm->play();
     }
@@ -666,15 +666,15 @@ void daE_OT_c::mtx_set() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y - 20.0f, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(mScale, mScale, mScale);
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
     mpEggModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 8073BE10-8073BF84 001C30 0174+00 1/1 0/0 0/0 .text            cc_set__8daE_OT_cFv */
 void daE_OT_c::cc_set() {
     cXyz vec, center;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     mDoMtx_stack_c::copy(model->getAnmMtx(0));
     vec.set(30.0f, 0.0f, 0.0f);
@@ -750,11 +750,11 @@ static int daE_OT_Delete(daE_OT_c* i_this) {
 /* 8073C0EC-8073C2B4 001F0C 01C8+00 1/1 0/0 0/0 .text            CreateHeap__8daE_OT_cFv */
 int daE_OT_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("E_OT", 14);
-    mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(model_data, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_OT", ANM_BORN),
                                   J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, &mSound,
                                   0x80000, 0x11000084);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -799,7 +799,7 @@ cPhs__Step daE_OT_c::create() {
         }
 
         attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,

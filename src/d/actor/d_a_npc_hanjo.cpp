@@ -165,8 +165,8 @@ dCcD_SrcSph daNpc_Hanjo_c::mStoneCcDSph = {
 /* 809F908C-809F9278 0000EC 01EC+00 1/0 0/0 0/0 .text            __dt__13daNpc_Hanjo_cFv */
 daNpc_Hanjo_c::~daNpc_Hanjo_c() {
     OS_REPORT("|%06d:%x|daNpc_Hanjo_c -> デストラクト\n", g_Counter.mCounter0, this);
-    if (mpMorf[0] != 0) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != 0) {
+        mAnm_p[0]->stopZelAnime();
     }
     deleteRes(l_loadResPtrnList[mType], (char const**)l_resNameList);
 }
@@ -213,8 +213,8 @@ int daNpc_Hanjo_c::create() {
             OS_REPORT("===>isDelete:TRUE\n");
             return cPhs_ERROR_e;
         } 
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox2(this, modelData);
         mSound.init(&current.pos, &eyePos, 3, 1);
         field_0x9c0.init(&mAcch, 60.0f, 0.0f);
@@ -254,12 +254,12 @@ int daNpc_Hanjo_c::CreateHeap() {
     if (modelData == NULL) {
         return 0;
     }
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
                                      0x80000, 0x11020284);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -337,7 +337,7 @@ int daNpc_Hanjo_c::Execute() {
 /* 809F9B8C-809F9C20 000BEC 0094+00 1/1 0/0 0/0 .text            Draw__13daNpc_Hanjo_cFv */
 int daNpc_Hanjo_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
@@ -690,7 +690,7 @@ void daNpc_Hanjo_c::afterMoved() {
     for (int i = 0; i < 4; i++) {
         if (mStones[i].chkActive()) {
             if (cM3d_IsZero(mStones[i].getSpeedF())) {
-                mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(18));
+                mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(18));
                 mDoMtx_stack_c::multVecZero((Vec*)&cStack_1c);
                 mStones[i].setPos(cStack_1c);
             } else {
@@ -709,7 +709,7 @@ void daNpc_Hanjo_c::setAttnPos() {
     cXyz cStack_44;
     mStagger.calc(0);
     f32 dVar8 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     mJntAnm.setParam(this, model, &cStack_38, getBackboneJointNo(), getNeckJointNo(),
         getHeadJointNo(), daNpc_Hanjo_Param_c::m.field_0x24, daNpc_Hanjo_Param_c::m.field_0x20,
         daNpc_Hanjo_Param_c::m.field_0x2c, daNpc_Hanjo_Param_c::m.field_0x28,
@@ -718,7 +718,7 @@ void daNpc_Hanjo_c::setAttnPos() {
         daNpc_Hanjo_Param_c::m.field_0x40, dVar8, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar8);
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&cStack_38, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 1, 1.0f, 0);
@@ -729,11 +729,11 @@ void daNpc_Hanjo_c::setAttnPos() {
     } else if (mMotionSeqMngr.getNo() == 2) {
         cStack_38.set(0.0f, 170.0f, -20.0f);
     }
-    if (1.0f <= mpMorf[0]->getMorfRatio()) {
+    if (1.0f <= mAnm_p[0]->getMorfRatio()) {
         field_0x16f8 = cStack_38;
     } else {
         cStack_44 = field_0x16f8 - cStack_38;
-        cStack_44 *= 1.0f - mpMorf[0]->getMorfRatio();
+        cStack_44 *= 1.0f - mAnm_p[0]->getMorfRatio();
         cStack_38 = cStack_38 + cStack_44;
     }
     mDoMtx_stack_c::YrotS(mCurAngle.y);
@@ -824,11 +824,11 @@ int daNpc_Hanjo_c::drawDbgInfo() {
 /* 809FB2CC-809FB59C 00232C 02D0+00 1/0 0/0 0/0 .text            drawOtherMdl__13daNpc_Hanjo_cFv */
 void daNpc_Hanjo_c::drawOtherMdl() {
     Mtx mtx;
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (int i = 0; i < 4; i++) {
         if (mStones[i].chkActive()) {
             g_env_light.setLightTevColorType_MAJI(mStones[i].getModelP(), &tevStr);
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(18));
+            mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(18));
             cMtx_copy(mDoMtx_stack_c::get(), mtx);
             mStones[i].setMtx(mtx);
             mDoExt_modelUpdateDL(mStones[i].getModelP());
@@ -837,7 +837,7 @@ void daNpc_Hanjo_c::drawOtherMdl() {
     if (mModel2 != NULL && (mType == TYPE_1 || mType == TYPE_2)) {
         J3DAnmTransformKey* transformKey = getTrnsfrmKeyAnmP(
             l_resNameList[l_motionAnmData[100]], l_motionAnmData[98]);
-        if (transformKey == mpMorf[0]->getAnm()) {
+        if (transformKey == mAnm_p[0]->getAnm()) {
             g_env_light.setLightTevColorType_MAJI(mModel2,
                 &tevStr);
             mDoMtx_stack_c::copy(model->getAnmMtx(18));
@@ -925,7 +925,7 @@ int daNpc_Hanjo_c::shoot(int param_1) {
     if (mMotionSeqMngr.getNo() == 16 || mMotionSeqMngr.getNo() == 15) {
         switch(mMotionSeqMngr.getStepNo()) {
         case 0:
-            dVar13 = mpMorf[0]->getFrame();
+            dVar13 = mAnm_p[0]->getFrame();
             if (36.0f < dVar13 && field_0x170c == -1) {
                 int i = 0;
                 for (; i < 4; i = i + 1) {
@@ -943,7 +943,7 @@ int daNpc_Hanjo_c::shoot(int param_1) {
             }
             break;
         case 1:
-            if ((mpMorf[0]->checkFrame(21.0f)) && field_0x170c >= 0) {
+            if ((mAnm_p[0]->checkFrame(21.0f)) && field_0x170c >= 0) {
                 if (param_1 != 0) {
                     dVar13 = 110.0f;
                     sVar9 = cM_deg2s(78.0f);
@@ -1026,12 +1026,12 @@ void daNpc_Hanjo_c::dive() {
     if (mMotionSeqMngr.getNo() == 18) {
         if (field_0x1720 != 0 && field_0x171f == 0 && 0.0f < speed.y) {
             if (local_34 - current.pos.y < 260.0f && mMotionSeqMngr.getNo() == 18) {
-                if (cM3d_IsZero(mpMorf[0]->getPlaySpeed())) {
-                    mpMorf[0]->setPlaySpeed(1.0f);
+                if (cM3d_IsZero(mAnm_p[0]->getPlaySpeed())) {
+                    mAnm_p[0]->setPlaySpeed(1.0f);
                 }
             }
-        } else if ((mMotionSeqMngr.getNo() == 18) && mpMorf[0]->checkFrame(18.0f)) {
-            mpMorf[0]->setPlaySpeed(0.0f);
+        } else if ((mMotionSeqMngr.getNo() == 18) && mAnm_p[0]->checkFrame(18.0f)) {
+            mAnm_p[0]->setPlaySpeed(0.0f);
         }
     }
 }
@@ -1453,7 +1453,7 @@ int daNpc_Hanjo_c::cutAppearHawker(int param_1) {
             }
         } else if (mMotionSeqMngr.checkEndSequence()) {
             rv = 1;
-        } else if (mpMorf[0]->checkFrame(8.0f)) {
+        } else if (mAnm_p[0]->checkFrame(8.0f)) {
             Z2GetAudioMgr()->seStart(Z2SE_PLAY_REED_TOBIKUSA, &current.pos, 0, 0, 1.0f, 1.0f,
                                         -1.0f, -1.0f, 0);
         }

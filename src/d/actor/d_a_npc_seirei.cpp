@@ -164,8 +164,8 @@ daNpc_Seirei_c::cutFunc daNpc_Seirei_c::mCutList[2] = {
 
 /* 80AD572C-80AD57C4 0000EC 0098+00 1/0 0/0 0/0 .text            __dt__14daNpc_Seirei_cFv */
 daNpc_Seirei_c::~daNpc_Seirei_c() {
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
@@ -245,8 +245,8 @@ cPhs__Step daNpc_Seirei_c::create() {
         OS_REPORT("\n");
 
         if (arg0 != 0) {
-            mpMorf[0]->getModel()->getModelData();
-            fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+            mAnm_p[0]->getModel()->getModelData();
+            fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
             mSound.init(&current.pos, &eyePos, 3, 1);
         }
 
@@ -281,12 +281,12 @@ int daNpc_Seirei_c::CreateHeap() {
         return 0;
     }
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    mpMorf[0]->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p[0]->getModel()->setUserArea((uintptr_t)this);
 
     if (setFaceMotionAnm(FACE_MOT_NONE, false) && setMotionAnm(MOT_WAIT_A, 0.0f, FALSE)) {
         return 1;
@@ -310,7 +310,7 @@ int daNpc_Seirei_c::Execute() {
 int daNpc_Seirei_c::Draw() {
     if (arg0 != 0) {
         if (mpMatAnm[0] != NULL) {
-            J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+            J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
             modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
         }
 
@@ -493,7 +493,7 @@ void daNpc_Seirei_c::setAttnPos() {
     if (arg0 != 0) {
         setMtx();
         sp18.set(300.0f, 40.0f, 0.0f);
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(JNT_HEAD));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVec(&sp18, &eyePos);
         sp18.set(0.0f, daNpc_Seirei_Param_c::m.common.attention_offset, 800.0f);
         mDoMtx_stack_c::YrotS(mCurAngle.y);
@@ -542,7 +542,7 @@ bool daNpc_Seirei_c::afterSetMotionAnm(int i_index, int i_mode, f32 param_3, int
         if (mBtkAnm.getBtkAnm() == i_btk) {
             mAnmFlags |= ANM_PLAY_BTK;
         } else {
-            if (setBtkAnm(i_btk, mpMorf[0]->getModel()->getModelData(), 1.0f, i_mode)) {
+            if (setBtkAnm(i_btk, mAnm_p[0]->getModel()->getModelData(), 1.0f, i_mode)) {
                 mAnmFlags |= ANM_PLAY_BTK | ANM_PAUSE_BTK;
             }
         }
@@ -560,7 +560,7 @@ bool daNpc_Seirei_c::afterSetMotionAnm(int i_index, int i_mode, f32 param_3, int
         if (mBrkAnm.getBrkAnm() == i_brk) {
             mAnmFlags |= ANM_PLAY_BRK;
         } else {
-            if (setBrkAnm(i_brk, mpMorf[0]->getModel()->getModelData(), 1.0f, i_mode)) {
+            if (setBrkAnm(i_brk, mAnm_p[0]->getModel()->getModelData(), 1.0f, i_mode)) {
                 mAnmFlags |= ANM_PLAY_BRK | ANM_PAUSE_BRK;
             }
         }
@@ -653,7 +653,7 @@ void daNpc_Seirei_c::setPrtcls() {
     int j = 0;
     for (; i < 7; i++, j++) {
         if (arg0 != 0) {
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(JNT_SIZUKU));
+            mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(JNT_SIZUKU));
             mDoMtx_stack_c::multVecZero(&i_pos);
             mPrtcls[j] = dComIfGp_particle_set(mPrtcls[j], id1[i], &i_pos, NULL, &i_scale);
         } else if (getBitSW() != 0xFF) {

@@ -87,13 +87,13 @@ int daObjKUW_c::CreateHeap() {
         JUT_ASSERT(259, modelData != NULL);
     }
     
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 7), 2, 1.0f, 0, -1, &mSound, 0, 0x11000284);
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 7), 2, 1.0f, 0, -1, &mSound, 0, 0x11000284);
     
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
     
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL) {
         return 0;
@@ -151,7 +151,7 @@ void daObjKUW_c::ShopWaitAction() {
     switch (mSubAction) {
     case 0:
         speedF = 0.0f;
-        mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 7), 2, 5.0f, 0.0f, 0.0f, -1.0f);
+        mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 7), 2, 5.0f, 0.0f, 0.0f, -1.0f);
         mSubAction++;
         mTimers[0] = cM_rndF(50.0f) + 50.0f;
         break;
@@ -181,7 +181,7 @@ void daObjKUW_c::WaitAction() {
     switch (mSubAction) {
     case 0:
         speedF = 0.0f;
-        mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 7), 2, 5.0f, 0.0f, 0.0f, -1.0f);
+        mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 7), 2, 5.0f, 0.0f, 0.0f, -1.0f);
         mSubAction++;
         mTimers[0] = cM_rndF(50.0f) + 50.0f;
         break;
@@ -319,7 +319,7 @@ void daObjKUW_c::WalkAction() {
     
     switch (mSubAction) {
     case 0:
-        mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 7), 2, 5.0f, 1.0f, 0.0f, -1.0f);
+        mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 7), 2, 5.0f, 1.0f, 0.0f, -1.0f);
         mSpeedFTarget = 0.5f;
         speed.y = 0.0f;
         mSpeedYTarget = 0.0f;
@@ -370,13 +370,13 @@ void daObjKUW_c::MoveAction() {
     
     switch (mSubAction) {
     case 0:
-        mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 6), 2, 5.0f, 0.0f, 0.0f, -1.0f);
+        mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 6), 2, 5.0f, 0.0f, 0.0f, -1.0f);
         mSubAction++;
         mTimers[0] = 20;
         break;
     case 1:
         if (mTimers[0] == 10) {
-            mpMorf->setPlaySpeed(1.0f);
+            mAnm_p->setPlaySpeed(1.0f);
         }
         if (mTimers[0] == 0) {
             mSubAction++;
@@ -421,11 +421,11 @@ void daObjKUW_c::MoveAction() {
                 mSpeedFTarget = 0.0f;
                 speed.y = 0.0f;
                 mSpeedYTarget = 0.0f;
-                mpMorf->setPlaySpeed(0.0f);
+                mAnm_p->setPlaySpeed(0.0f);
                 mAngleTarget = 0;
                 current.angle.y = field_0x9a2;
                 field_0x9c2 = 1;
-                mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 7), 2, 5.0f, 1.0f, 0.0f, -1.0f);
+                mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 7), 2, 5.0f, 1.0f, 0.0f, -1.0f);
             } else {
                 if (field_0x9c2 != 0) {
                     field_0x9c2 = 0;
@@ -433,9 +433,9 @@ void daObjKUW_c::MoveAction() {
                     speed.y = 3.0f;
                     speedF = 8.0f;
                     mSpeedFTarget = 8.0f;
-                    mpMorf->setPlaySpeed(1.0f);
+                    mAnm_p->setPlaySpeed(1.0f);
                     field_0x9a2 = 0;
-                    mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 6), 2, 5.0f, 1.0f, 0.0f, -1.0f);
+                    mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 6), 2, 5.0f, 1.0f, 0.0f, -1.0f);
                 }
             }
         }
@@ -456,7 +456,7 @@ void daObjKUW_c::MoveAction() {
             mTimers[1] = cM_rndF(20.0f) + 20.0f;
         }
         
-        mpMorf->getFrame();
+        mAnm_p->getFrame();
         SpeedSet();
         
         if (field_0x9c0 == 0) {
@@ -486,7 +486,7 @@ void daObjKUW_c::MoveAction() {
         break;
     }
     
-    if (mpMorf->getPlaySpeed() == 1.0f) {
+    if (mAnm_p->getPlaySpeed() == 1.0f) {
         mSound.startCreatureSoundLevel(Z2SE_INSCT_BTBT, 0, -1);
     }
 }
@@ -628,7 +628,7 @@ void daObjKUW_c::BoomChk() {
                 mAction = ACTION_MOVE;
                 mSubAction = 2;
                 J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 6);
-                mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+                mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
                 speedF = 8.0f;
                 mSpeedFTarget = cM_rndF(5.0f) + 8.0f;
                 home.pos = current.pos;
@@ -662,7 +662,7 @@ void daObjKUW_c::ObjHit() {
             mAction = ACTION_MOVE;
             mSubAction = 2;
             field_0x9c1 = 0;
-            mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 6), 2, 5.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kuw", 6), 2, 5.0f, 1.0f, 0.0f, -1.0f);
             speedF = 8.0f;
             mSpeedFTarget = cM_rndF(5.0f) + 8.0f;
             mTimers[1] = cM_rndF(5.0f) + 5.0f;
@@ -716,7 +716,7 @@ int daObjKUW_c::Execute() {
     
     mpBrkAnm->play();
     mpBtkAnm->play();
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setBaseMtx();
     return 1;
 }
@@ -736,7 +736,7 @@ int daObjKUW_c::Delete() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
     return 1;
 }
@@ -747,19 +747,19 @@ void daObjKUW_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(field_0x99a);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
-    mpMorf->getModel()->setBaseTRMtx( mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx( mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
 }
 
 int daObjKUW_c::Draw() {
     if (mDraw) {
         Z_BufferChk();
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
         mpBtkAnm->entry(model->getModelData());
         mpBrkAnm->entry(model->getModelData());
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
         if (field_0x9c0 == 0) {
             dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 15.0f, mAcch.m_gnd, 0, -0.6f, dDlst_shadowControl_c::getSimpleTex());
         }
@@ -913,7 +913,7 @@ int daObjKUW_c::create() {
 
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), NULL, NULL);
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);

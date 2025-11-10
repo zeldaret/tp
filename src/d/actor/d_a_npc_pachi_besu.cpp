@@ -485,8 +485,8 @@ daNpc_Pachi_Besu_c::cutFunc daNpc_Pachi_Besu_c::mCutList[11] = {
 
 /* 80A92D6C-80A92EA4 0000EC 0138+00 1/0 0/0 0/0 .text            __dt__18daNpc_Pachi_Besu_cFv */
 daNpc_Pachi_Besu_c::~daNpc_Pachi_Besu_c() {
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
@@ -562,7 +562,7 @@ cPhs__Step daNpc_Pachi_Besu_c::create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -600,13 +600,13 @@ int daNpc_Pachi_Besu_c::CreateHeap() {
         return 1;
     }
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
 
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -646,7 +646,7 @@ int daNpc_Pachi_Besu_c::Execute() {
 /* 80A9365C-80A936F0 0009DC 0094+00 1/1 0/0 0/0 .text            Draw__18daNpc_Pachi_Besu_cFv */
 int daNpc_Pachi_Besu_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -948,7 +948,7 @@ void daNpc_Pachi_Besu_c::setAttnPos() {
     
     mStagger.calc(bVar1);
     f32 fVar1 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
 
     mJntAnm.setParam(this, model, &sp38, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
                      daNpc_Pachi_Besu_Param_c::m.common.body_angleX_min, daNpc_Pachi_Besu_Param_c::m.common.body_angleX_max,
@@ -959,7 +959,7 @@ void daNpc_Pachi_Besu_c::setAttnPos() {
     mJntAnm.calcJntRad(0.2f, 1.0f, fVar1);
     setMtx();
 
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&sp38, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, TRUE, 1.0f, 0);

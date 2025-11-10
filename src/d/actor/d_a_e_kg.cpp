@@ -33,18 +33,18 @@ daE_KG_HIO_c::daE_KG_HIO_c() {
 /* 806F7F24-806F7FD0 000124 00AC+00 6/6 0/0 0/0 .text            anm_init__FP10e_kg_classifUcf */
 static void anm_init(e_kg_class* i_this, int i_index, f32 i_morf, u8 i_attr, f32 i_rate) {
     J3DAnmTransform* anm = (J3DAnmTransform*) dComIfG_getObjectRes("E_kg", i_index);
-    i_this->mpMorf->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    i_this->mAnm_p->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
     i_this->mResIndex = i_index;
 }
 
 /* 806F7FD0-806F80D0 0001D0 0100+00 1/0 0/0 0/0 .text            daE_KG_Draw__FP10e_kg_class */
 static int daE_KG_Draw(e_kg_class* i_this) {
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
     J3DModelData* model_data = model->getModelData();
     i_this->mpBtp->entry(model_data);
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
     if (i_this->mShadowKey != 0x564FF) {
         cXyz my_vec_0;
         my_vec_0.set(i_this->current.pos.x, i_this->current.pos.y + 50.0f, i_this->current.pos.z);
@@ -163,7 +163,7 @@ static daE_KG_HIO_c l_HIO;
 
 /* 806F8434-806F8714 000634 02E0+00 1/1 0/0 0/0 .text            e_kg_move__FP10e_kg_class */
 static void e_kg_move(e_kg_class* i_this) {
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
     f32 tgt_val = 0.0f;
     cXyz my_vec_0;
     cXyz my_vec_1;
@@ -226,7 +226,7 @@ static void e_kg_move(e_kg_class* i_this) {
 
 /* 806F8714-806F8A40 000914 032C+00 1/1 0/0 0/0 .text            e_kg_attack__FP10e_kg_class */
 static int e_kg_attack(e_kg_class* i_this) {
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
     f32 next_speed = 0.0f;
     s16 angle_add = 0;
     cXyz my_vec_0;
@@ -271,7 +271,7 @@ static int e_kg_attack(e_kg_class* i_this) {
             }
 
             if (frame >= 63) {
-                i_this->mpMorf->setPlaySpeed(0.0f);
+                i_this->mAnm_p->setPlaySpeed(0.0f);
                 i_this->field_0x678 = 3;
                 i_this->speed.y = 20.0f;
                 i_this->speedF = 40.0f;
@@ -284,7 +284,7 @@ static int e_kg_attack(e_kg_class* i_this) {
         case 3: {
             ret_val = 1;
             if (i_this->mAcch.ChkGroundHit()) {
-                i_this->mpMorf->setPlaySpeed(1.0f);
+                i_this->mAnm_p->setPlaySpeed(1.0f);
                 i_this->field_0x678 = 4;
             }
 
@@ -297,7 +297,7 @@ static int e_kg_attack(e_kg_class* i_this) {
 
         case 4: {
             cLib_addCalc0(&i_this->speedF, 1.0f, 15.0f);
-            if (i_this->mpMorf->isStop()) {
+            if (i_this->mAnm_p->isStop()) {
                 i_this->field_0x694[0] = cM_rndF(30.0f) + 30.0f;
                 anm_init(i_this, 0xE, 5.0f, 2, 1.0f);
                 i_this->field_0x678 = 5;
@@ -424,7 +424,7 @@ static void e_kg_damage(e_kg_class* i_this) {
         }
 
         case 3: {
-            i_this->mpMorf->setPlaySpeed(i_this->field_0x664);
+            i_this->mAnm_p->setPlaySpeed(i_this->field_0x664);
             cLib_addCalc0(&i_this->field_0x664, 1.0f, 0.015f);
             cLib_addCalc0(&i_this->speedF, 1.0f, 3.0f);
             if (i_this->field_0x694[0] == 0) {
@@ -597,8 +597,8 @@ static void action(e_kg_class* i_this) {
 
 /* 806F9400-806F94D0 001600 00D0+00 1/1 0/0 0/0 .text            anm_se_set__FP10e_kg_class */
 static void anm_se_set(e_kg_class* i_this) {
-    if (i_this->mResIndex == 0xF && (i_this->mpMorf->checkFrame(3.0f) || i_this->mpMorf->checkFrame(9.0f)
-                                  || i_this->mpMorf->checkFrame(16.0f) || i_this->mpMorf->checkFrame(23.0f))) {
+    if (i_this->mResIndex == 0xF && (i_this->mAnm_p->checkFrame(3.0f) || i_this->mAnm_p->checkFrame(9.0f)
+                                  || i_this->mAnm_p->checkFrame(16.0f) || i_this->mAnm_p->checkFrame(23.0f))) {
         i_this->mSound.startCreatureSound(Z2SE_EN_KG_FOOTNOTE, 0, -1);
     }
 }
@@ -623,12 +623,12 @@ static int daE_KG_Execute(e_kg_class* i_this) {
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::scaleM(l_HIO.mSize, l_HIO.mSize, l_HIO.mSize);
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
     anm_se_set(i_this);
     i_this->mpBtp->setFrame(i_this->field_0x670);
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
     MTXCopy(model->getAnmMtx(1), *calc_mtx);
     my_vec_0.set(20.0f, 0.0f, 0.0f);
     MtxPosition(&my_vec_0, &i_this->eyePos);
@@ -646,7 +646,7 @@ static int daE_KG_Execute(e_kg_class* i_this) {
     dComIfG_Ccsp()->Set(&i_this->mSph);
     if (i_this->field_0xa54 != 0) {
         --i_this->field_0xa54;
-        MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(0x10), *calc_mtx);
+        MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(0x10), *calc_mtx);
         cXyz my_vec_2;
         cXyz my_vec_3;
         my_vec_2.set(0.0f, 0.0f, 0.0f);
@@ -671,7 +671,7 @@ static int daE_KG_Delete(e_kg_class* i_this) {
     }
 
     if (i_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -680,10 +680,10 @@ static int daE_KG_Delete(e_kg_class* i_this) {
 /* 806F9818-806F99B8 001A18 01A0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_kg_class* a_this = (e_kg_class*) i_this;
-    a_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_kg", 0x12), NULL, NULL,
+    a_this->mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_kg", 0x12), NULL, NULL,
                                           (J3DAnmTransform*)dComIfG_getObjectRes("E_kg", 0xE), 2, 1.0f, 0,
                                           -1, &a_this->mSound, 0x80000, 0x11020084);
-    if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
+    if (a_this->mAnm_p== NULL || a_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -693,7 +693,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DAnmTexPattern* btk = (J3DAnmTexPattern*) dComIfG_getObjectRes("E_kg", 0x15);
-    return (!a_this->mpBtp->init(a_this->mpMorf->getModel()->getModelData(), btk, TRUE, 0, 1.0f, 0, -1)) ? cPhs_ERROR_e : 1;
+    return (!a_this->mpBtp->init(a_this->mAnm_p->getModel()->getModelData(), btk, TRUE, 0, 1.0f, 0, -1)) ? cPhs_ERROR_e : 1;
 }
 
 /* 806F9A00-806F9CD4 001C00 02D4+00 1/0 0/0 0/0 .text            daE_KG_Create__FP10fopAc_ac_c */
@@ -737,7 +737,7 @@ static int daE_KG_Create(fopAc_ac_c* i_this) {
         }
 
         i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-        fopAcM_SetMtx(i_this, a_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, a_this->mAnm_p->getModel()->getBaseTRMtx());
         i_this->health = 0x50;
         i_this->field_0x560 = 0x50;
         a_this->mStts.Init(100, 0, i_this);

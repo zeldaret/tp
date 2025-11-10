@@ -30,7 +30,7 @@ public:
     /* 0x05B8 */ int mSwBit;
     /* 0x05BC */ cXyz field_0x5bc;
     /* 0x05C8 */ s16 mCurrentAngleYTarget;
-    /* 0x05CC */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x05CC */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x05D0 */ int mAnm;
     /* 0x05D4 */ u32 mShadowKey;
     /* 0x05D8 */ Z2CreatureEnemy mSound;

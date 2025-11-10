@@ -1205,10 +1205,10 @@ int daNpcT_c::setMcaMorfAnm(J3DAnmTransformKey* i_bck, f32 i_speed, f32 i_morf, 
     f32 start = i_start;
     f32 end = i_end;
 
-    mpMorf[0]->setAnm(i_bck, i_mode, i_morf, i_speed, start, end);
+    mAnm_p[0]->setAnm(i_bck, i_mode, i_morf, i_speed, start, end);
 
-    if (mpMorf[1] != NULL) {
-        mpMorf[1]->setAnm(i_bck, i_mode, i_morf, i_speed, start, end);
+    if (mAnm_p[1] != NULL) {
+        mAnm_p[1]->setAnm(i_bck, i_mode, i_morf, i_speed, start, end);
     }
 
     return 1;
@@ -1333,7 +1333,7 @@ int daNpcT_c::execute() {
 /* 8014886C-80148C70 1431AC 0404+00 0/0 0/0 58/58 .text draw__8daNpcT_cFiifP11_GXColorS10fiii */
 int daNpcT_c::draw(BOOL param_0, BOOL i_setEffMtx, f32 param_2, GXColorS10* i_color, f32 param_4,
                    BOOL i_drawGhost, BOOL i_noShadow, BOOL i_simpleShadow) {
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     J3DModelData* modelData = model->getModelData();
     field_0xe34 = 1;
 
@@ -1389,12 +1389,12 @@ int daNpcT_c::draw(BOOL param_0, BOOL i_setEffMtx, f32 param_2, GXColorS10* i_co
         g_env_light.settingTevStruct(4, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
         dComIfGd_setListDark();
-        mpMorf[0]->entryDL();
+        mAnm_p[0]->entryDL();
         dComIfGd_setList();
     } else {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
-        mpMorf[0]->entryDL();
+        mAnm_p[0]->entryDL();
     }
 
     if (mAnmFlags & ANM_PLAY_BTP) {
@@ -1444,12 +1444,12 @@ void daNpcT_c::setRoomNo() {
 
 /* 80148D10-80148DD0 143650 00C0+00 1/1 0/0 0/0 .text            checkEndAnm__8daNpcT_cFf */
 int daNpcT_c::checkEndAnm(f32 i_speed) {
-    switch ((u8)mpMorf[0]->getPlayMode()) {
+    switch ((u8)mAnm_p[0]->getPlayMode()) {
     case J3DFrameCtrl::EMode_LOOP:
-        return mpMorf[0]->isLoop();
+        return mAnm_p[0]->isLoop();
     case J3DFrameCtrl::EMode_NONE:
     case J3DFrameCtrl::EMode_RESET:
-        return mpMorf[0]->isStop() && cM3d_IsZero(mpMorf[0]->getPlaySpeed()) && !cM3d_IsZero(i_speed);
+        return mAnm_p[0]->isStop() && cM3d_IsZero(mAnm_p[0]->getPlaySpeed()) && !cM3d_IsZero(i_speed);
     case J3DFrameCtrl::EMode_REVERSE:
     case J3DFrameCtrl::EMode_LOOP_REVERSE:
         break;
@@ -1520,22 +1520,22 @@ void daNpcT_c::playAllAnm() {
     }
 
     if (mAnmFlags & ANM_PLAY_MORF) {
-        f32 morf_speed = mpMorf[0]->getPlaySpeed();
+        f32 morf_speed = mAnm_p[0]->getPlaySpeed();
         if (mAnmFlags & ANM_PAUSE_MORF) {
-            mpMorf[0]->setPlaySpeed(0.0f);
-            mpMorf[0]->play(mPolSound, mReverb);
-            mpMorf[0]->setPlaySpeed(morf_speed);
+            mAnm_p[0]->setPlaySpeed(0.0f);
+            mAnm_p[0]->play(mPolSound, mReverb);
+            mAnm_p[0]->setPlaySpeed(morf_speed);
 
-            if (mpMorf[1] != NULL) {
-                mpMorf[1]->setPlaySpeed(0.0f);
-                mpMorf[1]->play(0, 0);
-                mpMorf[1]->setPlaySpeed(morf_speed);
+            if (mAnm_p[1] != NULL) {
+                mAnm_p[1]->setPlaySpeed(0.0f);
+                mAnm_p[1]->play(0, 0);
+                mAnm_p[1]->setPlaySpeed(morf_speed);
             }
         } else {
-            mpMorf[0]->play(mPolSound, mReverb);
+            mAnm_p[0]->play(mPolSound, mReverb);
 
-            if (mpMorf[1] != NULL) {
-                mpMorf[1]->play(0, 0);
+            if (mAnm_p[1] != NULL) {
+                mAnm_p[1]->play(0, 0);
             }
 
             if (checkEndAnm(morf_speed)) {
@@ -1608,7 +1608,7 @@ BOOL daNpcT_c::ctrlBtk() {
 
 /* 80149190-8014924C 143AD0 00BC+00 0/0 0/0 57/57 .text            setMtx__8daNpcT_cFv */
 void daNpcT_c::setMtx() {
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     J3DModelData* modelData = model->getModelData();
 
     mDoMtx_stack_c::transS(current.pos);
@@ -1618,16 +1618,16 @@ void daNpcT_c::setMtx() {
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     model->setUserArea((uintptr_t)this);
 
-    mpMorf[0]->onMorfNone();
+    mAnm_p[0]->onMorfNone();
     if (cM3d_IsZero(field_0xdfc) != FALSE) {
-        mpMorf[0]->offMorfNone();
+        mAnm_p[0]->offMorfNone();
     }
 
     if (mAnmFlags & ANM_PLAY_BCK) {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
     }
 
-    mpMorf[0]->modelCalc();
+    mAnm_p[0]->modelCalc();
 }
 
 /* 8014924C-80149300 143B8C 00B4+00 1/1 0/0 0/0 .text            ctrlFaceMotion__8daNpcT_cFv */
@@ -1639,18 +1639,18 @@ void daNpcT_c::ctrlFaceMotion() {
         setFaceMotionAnm(motionNo, true);
 
         if (morfFrm < 0.0f) {
-            mpMorf[0]->setMorf(mExpressionMorfFrame);
+            mAnm_p[0]->setMorf(mExpressionMorfFrame);
             field_0xdfc = mExpressionMorfFrame;
 
-            if (mpMorf[1]) {
-                mpMorf[1]->setMorf(mExpressionMorfFrame);
+            if (mAnm_p[1]) {
+                mAnm_p[1]->setMorf(mExpressionMorfFrame);
             }
         } else {
-            mpMorf[0]->setMorf(morfFrm);
+            mAnm_p[0]->setMorf(morfFrm);
             field_0xdfc = morfFrm;
 
-            if (mpMorf[1]) {
-                mpMorf[1]->setMorf(morfFrm);
+            if (mAnm_p[1]) {
+                mAnm_p[1]->setMorf(morfFrm);
             }
         }
     }
@@ -1674,12 +1674,12 @@ void daNpcT_c::ctrlMotion() {
         field_0xdfc = 0.0f;
 
         if (mCreating) {
-            mpMorf[0]->setMorf(0.0f);
+            mAnm_p[0]->setMorf(0.0f);
 
             field_0xdfc = 0.0f;
 
-            if (mpMorf[1]) {
-                mpMorf[1]->setMorf(0.0f);
+            if (mAnm_p[1]) {
+                mAnm_p[1]->setMorf(0.0f);
             }
         }
     }
@@ -1784,15 +1784,15 @@ int daNpcT_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((mAnmFlags & ANM_PLAY_BCK) && (checkChangeJoint(joint_no) || checkRemoveJoint(joint_no))) {
         J3DAnmTransform* bck = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf[0]->getAnm());
-        mpMorf[0]->changeAnm(bck);
+        mBckAnm.changeBckOnly(mAnm_p[0]->getAnm());
+        mAnm_p[0]->changeAnm(bck);
     }
 
     if (cM3d_IsZero(field_0xdfc) == false) {
         if (checkChangeJoint(joint_no)) {
-            mpMorf[0]->offMorfNone();
+            mAnm_p[0]->offMorfNone();
         } else if (checkRemoveJoint(joint_no)) {
-            mpMorf[0]->onMorfNone();
+            mAnm_p[0]->onMorfNone();
         }
     }
 
@@ -1864,14 +1864,14 @@ BOOL daNpcT_c::evtProc() {
 void daNpcT_c::setFootPos() {
     if (getFootLJointNo() >= 0) {
         mOldFootLOffset = mFootLOffset;
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getFootLJointNo()));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getFootLJointNo()));
         mDoMtx_stack_c::multVecZero(&mFootLPos);
         mFootLOffset = mFootLPos - current.pos;
     }
 
     if (getFootRJointNo() >= 0) {
         mOldFootROffset = mFootROffset;
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getFootRJointNo()));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getFootRJointNo()));
         mDoMtx_stack_c::multVecZero(&mFootRPos);
         mFootROffset = mFootRPos - current.pos;
     }
@@ -2046,7 +2046,7 @@ bool daNpcT_c::setFaceMotionAnm(int i_idx, bool i_modify) {
     if (btp != NULL) {
         if (btp == mBtpAnm.getBtpAnm() && anm_data.field_0x18) {
             mAnmFlags |= ANM_PLAY_BTP | ANM_PAUSE_TIMER_BTP;
-        } else if (setBtpAnm(btp, mpMorf[0]->getModel()->getModelData(), 1.0f, anm_data.mBtpAttr)) {
+        } else if (setBtpAnm(btp, mAnm_p[0]->getModel()->getModelData(), 1.0f, anm_data.mBtpAttr)) {
             mAnmFlags |= ANM_PAUSE_BTP | ANM_PLAY_BTP;
             if (anm_data.field_0x18) {
                 mAnmFlags |= ANM_PAUSE_TIMER_BTP;
@@ -2082,7 +2082,7 @@ bool daNpcT_c::setMotionAnm(int i_idx, f32 i_morf, BOOL i_restart) {
     }
 
     if (bck != NULL) {
-        if (i_restart && bck == mpMorf[0]->getAnm()) {
+        if (i_restart && bck == mAnm_p[0]->getAnm()) {
             mAnmFlags |= ANM_PLAY_MORF;
             mMorfLoops = 0;
             restarted = TRUE;
@@ -2113,7 +2113,7 @@ bool daNpcT_c::setMotionAnm(int i_idx, f32 i_morf, BOOL i_restart) {
     if (btk != NULL) {
         if (restarted) {
             mAnmFlags |= ANM_PLAY_BTK;
-        } else if (setBtkAnm(btk, mpMorf[0]->getModel()->getModelData(), 1.0f, anm_data.mBtkAttr)) {
+        } else if (setBtkAnm(btk, mAnm_p[0]->getModel()->getModelData(), 1.0f, anm_data.mBtkAttr)) {
             mAnmFlags |= ANM_PAUSE_BTK | ANM_PLAY_BTK;
         } else {
             btk = NULL;

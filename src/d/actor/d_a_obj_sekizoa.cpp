@@ -142,14 +142,14 @@ daObj_Sekizoa_Param_c::Data const daObj_Sekizoa_Param_c::m = {
 
 /* 80CCE34C-80CCE570 0000EC 0224+00 1/0 0/0 0/0 .text            __dt__15daObj_Sekizoa_cFv */
 daObj_Sekizoa_c::~daObj_Sekizoa_c() {
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
     if (mpMcaMorf != NULL) {
         mpMcaMorf->stopZelAnime();
     }
-    if (mpMorf[1] != NULL) {
-        mpMorf[1]->stopZelAnime();
+    if (mAnm_p[1] != NULL) {
+        mAnm_p[1]->stopZelAnime();
     }
     if (mType == TYPE_0) {
         if (daNpcT_chkTmpBit(0x31)) {
@@ -182,8 +182,8 @@ int daObj_Sekizoa_c::create() {
         if (fopAcM_entrySolidHeap(this, createHeapCallBack, heapSize[mType]) == 0) {
             return cPhs_ERROR_e;
         }
-        J3DModelData* mpModelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* mpModelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox2(this, mpModelData);
         mSound.init(&current.pos, &eyePos, 3, 1);
         reset();
@@ -240,21 +240,21 @@ int daObj_Sekizoa_c::CreateHeap() {
     if (modelData == NULL) {
         return 0;
     }
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
                                         0x80000, 0x11000284);
 
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
     if (mType == TYPE_6) {
-        int success_create = mInvModel.create(mpMorf[0]->getModel(), 1);
+        int success_create = mInvModel.create(mAnm_p[0]->getModel(), 1);
         if (success_create == NULL) {
             return 0;
         }
 
-        mpMorf[1] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1,
+        mAnm_p[1] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1,
                                             &mSound, 0x80000, 0x11000284);
-        if (mpMorf[1] == NULL || mpMorf[1]->getModel() == NULL) {
+        if (mAnm_p[1] == NULL || mAnm_p[1]->getModel() == NULL) {
             return 0;
         }
     } else {
@@ -322,7 +322,7 @@ int daObj_Sekizoa_c::Execute() {
 int daObj_Sekizoa_c::Draw() {
     daNpcT_MatAnm_c* mat_anm = mpMatAnm[0];
     if (mat_anm != NULL) {
-        J3DModelData* this_01 = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* this_01 = mAnm_p[0]->getModel()->getModelData();
         J3DMaterial* mpNodePtr = this_01->getMaterialNodePointer(getEyeballMaterialNo());
         mpNodePtr->setMaterialAnm(mat_anm);
     }
@@ -733,7 +733,7 @@ void daObj_Sekizoa_c::setAttnPos() {
 
     mStagger.calc(0);
     f32 rad_angle_y = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    mJntAnm.setParam(this, mpMorf[0]->getModel(), &vec_pos, getBackboneJointNo(), getNeckJointNo(),
+    mJntAnm.setParam(this, mAnm_p[0]->getModel(), &vec_pos, getBackboneJointNo(), getNeckJointNo(),
                      getHeadJointNo(), daObj_Sekizoa_Param_c::m.field_0x24,
                      daObj_Sekizoa_Param_c::m.field_0x20, daObj_Sekizoa_Param_c::m.field_0x2C,
                      daObj_Sekizoa_Param_c::m.field_0x28, daObj_Sekizoa_Param_c::m.field_0x34,
@@ -744,27 +744,27 @@ void daObj_Sekizoa_c::setAttnPos() {
     setMtx();
 
     if (mType == TYPE_6) {
-        J3DModel* mp_model = mpMorf[1]->getModel();
+        J3DModel* mp_model = mAnm_p[1]->getModel();
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::ZXYrotM(mCurAngle);
         mDoMtx_stack_c::scaleM(scale);
 
         mp_model->setBaseTRMtx(mDoMtx_stack_c::get());
         mp_model->setUserArea((uintptr_t)this);
-        mpMorf[1]->modelCalc();
+        mAnm_p[1]->modelCalc();
     }
     if (mpMcaMorf != NULL) {
         ((mDoExt_McaMorfSO*)mpMcaMorf)->play(NULL, 0);
         if (mType == TYPE_1 || mType == TYPE_3 || mType == TYPE_5) {
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(7));
+            mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(7));
         } else {
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(13));
+            mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(13));
         }
         cMtx_copy(mDoMtx_stack_c::get(), M_stack);
         mpMcaMorf->getModel()->setBaseTRMtx(M_stack);
         ((mDoExt_McaMorfSO*)mpMcaMorf)->modelCalc();
     }
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&vec_pos, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 1, 1.0f, 0);
@@ -858,11 +858,11 @@ int daObj_Sekizoa_c::drawDbgInfo() {
  */
 void daObj_Sekizoa_c::drawOtherMdl() {
     if (mType == TYPE_6) {
-        J3DModel* mp_model = mpMorf[1]->getModel();
+        J3DModel* mp_model = mAnm_p[1]->getModel();
         mp_model->getModelData();
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mp_model, &tevStr);
-        mpMorf[1]->entryDL();
+        mAnm_p[1]->entryDL();
     }
     if (mpMcaMorf != NULL && field_0x1179 != 0) {
         J3DModel* mp_model = mpMcaMorf->getModel();
@@ -939,7 +939,7 @@ int daObj_Sekizoa_c::setYariAnm(int i_frame, int i_mode, f32 i_morf) {
 
 /* 80CD05D0-80CD06BC 002370 00EC+00 1/0 0/0 0/0 .text            drawGhost__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::drawGhost() {
-    J3DModel* ghost_model = mpMorf[0]->getModel();
+    J3DModel* ghost_model = mAnm_p[0]->getModel();
     if (mType == TYPE_6) {
         g_env_light.settingTevStruct(7, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(ghost_model->getModelData(), &tevStr);
@@ -948,7 +948,7 @@ void daObj_Sekizoa_c::drawGhost() {
         g_env_light.settingTevStruct(16, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(ghost_model->getModelData(), &tevStr);
         dComIfGd_setListBG();
-        mpMorf[0]->entryDL();
+        mAnm_p[0]->entryDL();
         dComIfGd_setList();
     }
 }
@@ -987,27 +987,27 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
     switch (i_frame) {
     case 7:
     case 18:
-        mpMorf[0]->setStartFrame(0.0f);
-        mpMorf[0]->setEndFrame(17.0f);
+        mAnm_p[0]->setStartFrame(0.0f);
+        mAnm_p[0]->setEndFrame(17.0f);
         break;
     case 8:
     case 19:
-        mpMorf[0]->setStartFrame(18.0f);
-        mpMorf[0]->setEndFrame(35.0f);
+        mAnm_p[0]->setStartFrame(18.0f);
+        mAnm_p[0]->setEndFrame(35.0f);
         break;
     case 9:
     case 20:
-        mpMorf[0]->setStartFrame(36.0f);
+        mAnm_p[0]->setStartFrame(36.0f);
         break;
     case 6:
     case 17:
-        mpMorf[0]->setStartFrame(29.0f);
-        mpMorf[0]->setEndFrame(41.0f);
+        mAnm_p[0]->setStartFrame(29.0f);
+        mAnm_p[0]->setEndFrame(41.0f);
         break;
     case 23:
-        mpMorf[0]->setStartFrame(0.0f);
-        mpMorf[0]->setEndFrame(0.0f);
-        mpMorf[0]->setPlaySpeed(0.0f);
+        mAnm_p[0]->setStartFrame(0.0f);
+        mAnm_p[0]->setEndFrame(0.0f);
+        mAnm_p[0]->setPlaySpeed(0.0f);
         break;
     }
     if (i_frame == 23) {
@@ -1037,7 +1037,7 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
         if (mBtkAnm.getBtkAnm() == anm_text) {
             mAnmFlags |= ANM_PLAY_BTK;
         } else {
-            if (setBtkAnm(anm_text, mpMorf[0]->getModel()->getModelData(), 1.0f,
+            if (setBtkAnm(anm_text, mAnm_p[0]->getModel()->getModelData(), 1.0f,
                           btkAnmData[4].field_0x4))
             {
                 if (frame_1 == 3) {
@@ -1061,7 +1061,7 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
         if (mBrkAnm.getBrkAnm() == anm_tev) {
             mAnmFlags |= ANM_PLAY_BRK;
         } else {
-            frame_1 = setBrkAnm(anm_tev, mpMorf[0]->getModel()->getModelData(), 1.0,
+            frame_1 = setBrkAnm(anm_tev, mAnm_p[0]->getModel()->getModelData(), 1.0,
                                 brkAnmData[6].field_0x4);
             if (frame_1 != 0) {
                 if (frame_2 == 5) {
@@ -1083,7 +1083,7 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
     frame_1 = setYariAnm(i_frame, i_mode, var1);
     if (frame_1 & 0xFF) {
         if (mType == TYPE_2 || mType == TYPE_3 || mType == TYPE_4 || mType == TYPE_5) {
-            mpMorf[0]->setPlaySpeed(0.0f);
+            mAnm_p[0]->setPlaySpeed(0.0f);
             if (mpMcaMorf != NULL) {
                 mpMcaMorf->setPlaySpeed(0.0f);
             }

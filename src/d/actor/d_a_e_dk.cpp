@@ -88,7 +88,7 @@ static u32 const dk_btk_name[2] = { BTK_DK_WAIT, BTK_DK_ATTACK };
 
 /* 806AA228-806AA5A8 000128 0380+00 1/1 0/0 0/0 .text            draw__8daE_DK_cFv */
 int daE_DK_c::draw() {
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
     J3DModel* modelCore = mpCoreMorfSO->getModel();
 
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
@@ -122,7 +122,7 @@ int daE_DK_c::draw() {
     mpBrkAnm[field_0x6a0]->entry(model->getModelData());
     mpBtkAnm[field_0x6a0]->entry(model->getModelData());
 
-    mpMorfSO->entryDL();
+    mAnm_pSO->entryDL();
 
     if (field_0x6a1 == 0) {
         mpCoreMorfSO->entryDL();
@@ -166,7 +166,7 @@ void daE_DK_c::setBck(int i_resIndex, u8 i_attr, f32 i_morf, f32 i_rate) {
         field_0x6a0 = 1;
     }
 
-    mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_DK", i_resIndex),
+    mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_DK", i_resIndex),
         i_attr, i_morf, i_rate, 0.0f, -1.0f);
 }
 
@@ -399,7 +399,7 @@ void daE_DK_c::setBodyDeadEffect() {
 
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mDeadEffects[i]);
         if (emitter != NULL) {
-            emitter->setGlobalSRTMatrix(mpMorfSO->getModel()->getAnmMtx(1));
+            emitter->setGlobalSRTMatrix(mAnm_pSO->getModel()->getAnmMtx(1));
         }
     }
 }
@@ -415,11 +415,11 @@ void daE_DK_c::executeWait() {
         break;
     }
     case 1: {
-        if (mpMorfSO->checkFrame(0.0f) != 0 || mpMorfSO->checkFrame(80.0f) != 0) {
+        if (mAnm_pSO->checkFrame(0.0f) != 0 || mAnm_pSO->checkFrame(80.0f) != 0) {
             mCreatureSound.startCreatureSound(Z2SE_EN_DK_WAIT, 0, -1);
         }
-        f32 fVar4 = mpMorfSO->getFrame();
-        if (mpMorfSO->checkFrame(70.0f) != 0 || mpMorfSO->checkFrame(150.0f) != 0) {
+        f32 fVar4 = mAnm_pSO->getFrame();
+        if (mAnm_pSO->checkFrame(70.0f) != 0 || mAnm_pSO->checkFrame(150.0f) != 0) {
             dirFromHome = current.pos - home.pos;
             if (std::abs(dirFromHome.y) < 100.0f) {
                 field_0x6ac = 5.0f;
@@ -480,11 +480,11 @@ void daE_DK_c::executeChase() {
         break;
     }
     case 1: {
-        if (mpMorfSO->checkFrame(0.0f) != 0 || mpMorfSO->checkFrame(80.0f) != 0) {
+        if (mAnm_pSO->checkFrame(0.0f) != 0 || mAnm_pSO->checkFrame(80.0f) != 0) {
             mCreatureSound.startCreatureSound(Z2SE_EN_DK_WAIT, 0, -1);
         }
-        f32 fVar4 = mpMorfSO->getFrame();
-        if (mpMorfSO->checkFrame(70.0f) != 0 || mpMorfSO->checkFrame(150.0f) != 0) {
+        f32 fVar4 = mAnm_pSO->getFrame();
+        if (mAnm_pSO->checkFrame(70.0f) != 0 || mAnm_pSO->checkFrame(150.0f) != 0) {
             dirFromHome = current.pos - daPy_getPlayerActorClass()->current.pos;
             if (std::abs(dirFromHome.y) < 50.0f) {
                 field_0x6ac = 5.0f;
@@ -545,7 +545,7 @@ void daE_DK_c::executeAttack() {
         break;
     }
     case 1: {
-        if (mpMorfSO->checkFrame(14.0f) != 0) {
+        if (mAnm_pSO->checkFrame(14.0f) != 0) {
             mCreatureSound.startCreatureSound(Z2SE_EN_DK_CHARGE, 0, -1);
         }
         cLib_chaseF(&speed.y, -3.0f, 0.2f);
@@ -620,7 +620,7 @@ void daE_DK_c::executeDamage() {
         cLib_chaseF(&speed.y, 0.0, 0.2f);
         cLib_chaseF(&speedF, 0.0, 0.2f);
 
-        if (mpMorfSO->isStop() != 0) {
+        if (mAnm_pSO->isStop() != 0) {
             shape_angle.x = 0;
             setActionMode(1, 0);
         }
@@ -722,7 +722,7 @@ void daE_DK_c::executeDeath() {
         if (fopAcM_CheckStatus(this, 0x100000) == 0) {
             mMoveMode = 3;
 
-            mpMorfSO->setPlaySpeed(1.0f);
+            mAnm_pSO->setPlaySpeed(1.0f);
             mpCoreMorfSO->setPlaySpeed(1.0f);
 
             current.pos.y += 125.0f;
@@ -762,8 +762,8 @@ void daE_DK_c::executeDeath() {
             }
         }
         BodyDeathMove();
-        if (mpMorfSO->isStop() == 0) {
-            cLib_chaseUC(&field_0x691, 120.0f - mpMorfSO->getFrame(), 2);
+        if (mAnm_pSO->isStop() == 0) {
+            cLib_chaseUC(&field_0x691, 120.0f - mAnm_pSO->getFrame(), 2);
             cLib_chaseUC(&field_0x692, field_0x691, 3);
         } else {
             cLib_chaseUC(&field_0x691, 0, 2);
@@ -841,7 +841,7 @@ void daE_DK_c::action() {
     mpBrkAnm[field_0x6a0]->play();
     mpBtkAnm[field_0x6a0]->play();
 
-    mpMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_pSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     mpCoreMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
@@ -855,9 +855,9 @@ void daE_DK_c::mtx_set() {
     }
     mDoMtx_stack_c::scaleM(l_HIO.model_size, l_HIO.model_size, l_HIO.model_size);
 
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorfSO->modelCalc();
+    mAnm_pSO->modelCalc();
 
     if (!field_0x6a2) {
         mDoMtx_stack_c::copy(model->getAnmMtx(14));
@@ -881,7 +881,7 @@ void daE_DK_c::mtx_set() {
 void daE_DK_c::cc_set() {
     cXyz sphCenter;
 
-    mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(14));
+    mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(14));
     mDoMtx_stack_c::transS(mDoMtx_stack_c::get()[0][3], mDoMtx_stack_c::get()[1][3],
                            mDoMtx_stack_c::get()[2][3]);
 
@@ -892,21 +892,21 @@ void daE_DK_c::cc_set() {
     attention_info.position.y += 100.0f + nREG_F(15);
 
     if (field_0x6a2 == 0) {
-        mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(0));
+        mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(0));
         mDoMtx_stack_c::transM(nREG_F(10), 40.0f + nREG_F(0xb), nREG_F(0xc));
         mDoMtx_stack_c::multVecZero(&sphCenter);
         mSphere.SetC(sphCenter);
         mSphere.SetR(90.0f + nREG_F(13));
         dComIfG_Ccsp()->Set(&mSphere);
 
-        mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(0));
+        mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(0));
         mDoMtx_stack_c::transM(0.0f, 20.0f + nREG_F(16), 0.0f);
         mDoMtx_stack_c::multVecZero(&sphCenter);
         mAtSphere.SetC(sphCenter);
         mAtSphere.SetR(160.0f + nREG_F(14));
         dComIfG_Ccsp()->Set(&mAtSphere);
 
-        mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(0));
+        mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(0));
         mDoMtx_stack_c::transM(0.0f, 50.0f + nREG_F(16), 0.0f);
         mDoMtx_stack_c::multVecZero(&sphCenter);
         mCoreSphere.SetC(sphCenter);
@@ -970,11 +970,11 @@ static int daE_DK_Delete(daE_DK_c* i_this) {
 int daE_DK_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_DK", BMDR_DK);
     JUT_ASSERT(1488, modelData != NULL);
-    mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_pSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_DK", BCK_DK_WAIT), 0, 1.0f, 0,
                                     -1, &mCreatureSound, 0x80000, 0x31000284);
 
-    if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
+    if (mAnm_pSO == NULL || mAnm_pSO->getModel() == NULL) {
         return 0;
     }
 
@@ -985,7 +985,7 @@ int daE_DK_c::CreateHeap() {
         }
 
         J3DAnmTevRegKey* tevKey = (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_DK", dk_brk_name[i]);
-        if (mpBrkAnm[i]->init(mpMorfSO->getModel()->getModelData(), tevKey,
+        if (mpBrkAnm[i]->init(mAnm_pSO->getModel()->getModelData(), tevKey,
             1, 2, 1.0f, 0, -1) == 0)
         {
             return 0;
@@ -998,7 +998,7 @@ int daE_DK_c::CreateHeap() {
 
         J3DAnmTextureSRTKey* texKey =
             (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("E_DK", dk_btk_name[i]);
-        if (mpBtkAnm[i]->init(mpMorfSO->getModel()->getModelData(), texKey,
+        if (mpBtkAnm[i]->init(mAnm_pSO->getModel()->getModelData(), texKey,
             1, 2, 1.0f, 0, -1) == 0) {
             return 0;
         }
@@ -1061,7 +1061,7 @@ int daE_DK_c::create() {
 
         attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
-        fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_pSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0, -200.0, -200.0);
         fopAcM_SetMax(this, 200.0, 200.0, 200.0);
 

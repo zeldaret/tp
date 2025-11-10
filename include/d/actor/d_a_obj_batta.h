@@ -45,7 +45,7 @@ public:
 
 private:
     /* 0x590 */ Z2Creature mCreature;
-    /* 0x620 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x620 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x624 */ mDoExt_brkAnm* mBrk;
     /* 0x628 */ mDoExt_btkAnm* mBtk;
     /* 0x62C */ dBgS_AcchCir mAcchCir;

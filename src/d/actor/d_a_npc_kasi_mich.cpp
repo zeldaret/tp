@@ -160,7 +160,7 @@ daNpcKasiMich_c::~daNpcKasiMich_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -224,8 +224,8 @@ cPhs__Step daNpcKasiMich_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModel* model = mpMorf->getModel();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        J3DModel* model = mAnm_p->getModel();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -60.0f, -10.0f, -60.0f, 60.0f, 220.0f, 60.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -258,21 +258,21 @@ int daNpcKasiMich_c::CreateHeap() {
 
     JUT_ASSERT(314, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p= new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
 
     cXyz i_scale(1.0f, 0.8630768f, 1.0f);
-    mpMorf->offTranslate();
-    mpMorf->setTranslateScale(i_scale);
+    mAnm_p->offTranslate();
+    mAnm_p->setTranslateScale(i_scale);
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -311,11 +311,11 @@ int daNpcKasiMich_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int i_jointList[3] = {1, 2, 3};
 
     if (jntNo == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(2));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -424,7 +424,7 @@ void daNpcKasiMich_c::setAttnPos() {
 
     cXyz sp1c(10.0f, 15.0f, 0.0f);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&sp1c, &eyePos);
     sp1c.x = 0.0f;
@@ -436,7 +436,7 @@ void daNpcKasiMich_c::setAttnPos() {
 
     cXyz sp28;
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
     mDoMtx_stack_c::multVecZero(&sp28);
     sp28.y = current.pos.y;
     mCyl.SetC(sp28);
@@ -514,7 +514,7 @@ void daNpcKasiMich_c::reset() {
     J3DAnmTexPattern* i_btp = getTexPtrnAnmP(l_arcNames[0], 7);
     mAnmFlags &= 0xFFFFF57F;
 
-    if (setBtpAnm(i_btp, mpMorf->getModel()->getModelData(), 1.0f, J3DFrameCtrl::EMode_LOOP)) {
+    if (setBtpAnm(i_btp, mAnm_p->getModel()->getModelData(), 1.0f, J3DFrameCtrl::EMode_LOOP)) {
         mAnmFlags |= ANM_FLAG_800 | ANM_PLAY_BTP | ANM_PAUSE_BTP;
     }
 
@@ -620,7 +620,7 @@ void daNpcKasiMich_c::playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData*** i_data) 
             }
 
             mExpressionMorf = 0.0f;
-            mpMorf->setMorf(i_morf);
+            mAnm_p->setMorf(i_morf);
         }
     }
 
@@ -655,7 +655,7 @@ void daNpcKasiMich_c::setLookMode(int i_lookMode) {
 /* 80A27B50-80A27D30 001A70 01E0+00 1/1 0/0 0/0 .text            lookat__15daNpcKasiMich_cFv */
 void daNpcKasiMich_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     BOOL i_snap = FALSE;
     f32 body_angleX_min = daNpcKasiMich_Param_c::m.common.body_angleX_min;
     f32 body_angleX_max = daNpcKasiMich_Param_c::m.common.body_angleX_max;
@@ -869,7 +869,7 @@ int daNpcKasiMich_c::fear(int param_1) {
             break;
 
         case 3:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setMotion(MOT_W_RUN_A, -1.0f, 0);
                 fopAcM_SetSpeedF(this, 15.0f);
                 mSound.startCreatureVoice(Z2SE_MICH_V_FEAR, -1);
@@ -879,7 +879,7 @@ int daNpcKasiMich_c::fear(int param_1) {
 
         case 4: {
             cXyz sp28;
-            mpMorf->setPlaySpeed(1.5f);
+            mAnm_p->setPlaySpeed(1.5f);
             
             if (mPath.getDstPos(current.pos, sp28)) {
                 mEscape = true;
@@ -1142,7 +1142,7 @@ int daNpcKasiMich_c::kya(int param_1) {
         case 0:
             setMotion(MOT_MICH_KYA_TALK, -1.0f, 0);
             speedF = 0.0f;
-            mpMorf->setPlaySpeed(0.0f);
+            mAnm_p->setPlaySpeed(0.0f);
             field_0x1440 = 16;
             mMode = 1;
             break;
@@ -1152,9 +1152,9 @@ int daNpcKasiMich_c::kya(int param_1) {
                 field_0x1440--;
 
                 if (field_0x1440 == 0) {
-                    mpMorf->setPlaySpeed(1.0f);
+                    mAnm_p->setPlaySpeed(1.0f);
                 } else {
-                    mpMorf->setPlaySpeed(0.0f);
+                    mAnm_p->setPlaySpeed(0.0f);
                 }
             }
             break;
@@ -1173,7 +1173,7 @@ int daNpcKasiMich_c::kya2(int param_1) {
             setMotion(MOT_MICH_KYA_TALK, -1.0f, 0);
             setLookMode(LOOK_NONE);
             speedF = 0.0f;
-            mpMorf->setPlaySpeed(1.0f);
+            mAnm_p->setPlaySpeed(1.0f);
             mMode = 1;
             break;
 
@@ -1200,7 +1200,7 @@ int daNpcKasiMich_c::kya_stop(int param_1) {
             break;
 
         case 1:
-            if (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f) {
+            if (mAnm_p->getFrame() == 19.0f || mAnm_p->getFrame() == 1.0f) {
                 setAction(&daNpcKasiMich_c::wait);
             }
             break;
@@ -1252,7 +1252,7 @@ int daNpcKasiMich_c::escape(int param_1) {
 
         case 2:
             _turn_pos(mChacePos, 0x1000);
-            mpMorf->setPlaySpeed(1.75f);
+            mAnm_p->setPlaySpeed(1.75f);
             break;
     }
 
@@ -1350,7 +1350,7 @@ int daNpcKasiMich_c::cheer(int param_1) {
             setLookMode(LOOK_PLAYER);
             fopAcM_SetSpeed(this, 0.0f, 0.0f, 0.0f);
             fopAcM_SetSpeedF(this, 0.0f);
-            mpMorf->setPlaySpeed(0.0f);
+            mAnm_p->setPlaySpeed(0.0f);
             mTalked = false;
             field_0x1440 = 20;
             mMode = 1;
@@ -1361,9 +1361,9 @@ int daNpcKasiMich_c::cheer(int param_1) {
                 field_0x1440--;
 
                 if (field_0x1440 == 0) {
-                    mpMorf->setPlaySpeed(1.0f);
+                    mAnm_p->setPlaySpeed(1.0f);
                 } else {
-                    mpMorf->setPlaySpeed(0.0f);
+                    mAnm_p->setPlaySpeed(0.0f);
                 }
             }
 

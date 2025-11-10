@@ -105,7 +105,7 @@ private:
     /* 0x568 */ const char* mResName;
     /* 0x56C */ request_of_phase_process_class mPhaseReq;
     /* 0x574 */ J3DModel* mModel;
-    /* 0x578 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x578 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x57C */ mDoExt_btkAnm mAnim1;
     /* 0x594 */ mDoExt_brkAnm mAnim2;
     /* 0x5AC */ dBgS_AcchCir mAcchCir[4];

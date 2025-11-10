@@ -162,16 +162,16 @@ int daCstatue_c::createHeap() {
         resource_index = data->modelIndex;
     }
 
-    mpMorf = new mDoExt_McaMorfSO(
+    mAnm_p= new mDoExt_McaMorfSO(
         static_cast<J3DModelData*>(dComIfG_getObjectRes(mResName, (u16)resource_index)), NULL, NULL,
         animation, 0, 0.0f, animation->getFrameMax(), -1, &mSound,
         mType == daCstatueType_Normal2 ? J3DMdlFlag_None : J3DMdlFlag_DifferedDLBuffer, data->morfIndex);
 
-    if (mpMorf == NULL || mpMorf->mpModel == NULL) {
+    if (mAnm_p== NULL || mAnm_p->mpModel == NULL) {
         return cPhs_INIT_e;
     }
 
-    mModel = mpMorf->mpModel;
+    mModel = mAnm_p->mpModel;
     if (!initBrk(data->brkIndex)) {
         return cPhs_INIT_e;
     }
@@ -201,7 +201,7 @@ int daCstatue_c::createHeap() {
         if (!mCyl2) {
             return cPhs_INIT_e;
         }
-    } else if (mType == daCstatueType_Normal2 && !mInvisible.create(mpMorf->getModel(), 1)) {
+    } else if (mType == daCstatueType_Normal2 && !mInvisible.create(mAnm_p->getModel(), 1)) {
         return cPhs_INIT_e;
     }
     return cPhs_LOADING_e;
@@ -271,7 +271,7 @@ int daCstatue_c::create() {
             return cPhs_ERROR_e;
         }
 
-        mpMorf->setMorf(1.0f);
+        mAnm_p->setMorf(1.0f);
         if (mType == daCstatueType_Normal) {
             mCurrentAnim = CStatueAnimIndex_4;
         } else {
@@ -281,7 +281,7 @@ int daCstatue_c::create() {
             scale.set(1.6f, 1.6f, 1.6f);
         }
         mModel->setBaseScale(scale);
-        mpMorf->play(0, 0);
+        mAnm_p->play(0, 0);
         mCyl1.Set(l_cylSrc);
         mCyl1.SetStts(&mStts);
         mCyl1.StartCAt(current.pos);
@@ -413,8 +413,8 @@ static int daCstatue_Create(void* actor) {
 /* 80664840-80664A78 001280 0238+00 1/1 0/0 0/0 .text            __dt__11daCstatue_cFv */
 daCstatue_c::~daCstatue_c() {
     mSound.deleteObject();
-    if (mpMorf) {
-        mpMorf->stopZelAnime();
+    if (mAnm_p) {
+        mAnm_p->stopZelAnime();
     }
     if (checkStateFlg0(daCstatue_FLG0_1000)) {
         dComIfGs_offTbox(mParam2);
@@ -456,7 +456,7 @@ void daCstatue_c::setMatrix() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::transM(0.0f, mSomePos.z, 0.0f);
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
     if (mType == daCstatueType_Normal || mType == daCstatueType_Normal2) {
         attention_info.position.set(current.pos.x, current.pos.y + scale.y * 140.0f, current.pos.z);
         mDoMtx_multVec(mModel->getAnmMtx(1), &normalLocalBallPos, &mBallPos);
@@ -509,7 +509,7 @@ void daCstatue_c::posMove() {
             current.pos.z = current.pos.z + speed.z;
             speedF = JMAFastSqrt(speed.x * speed.x + speed.z * speed.z);
             if (mCurrentAnim == CStatueAnimIndex_1) {
-                f32 playSpeed = mpMorf->getPlaySpeed();
+                f32 playSpeed = mAnm_p->getPlaySpeed();
                 f32 targetSpeed;
                 if (speedF >= 1.0f) {
                     current.angle.y = speed.atan2sX_Z();
@@ -528,14 +528,14 @@ void daCstatue_c::posMove() {
                     targetSpeed = 0.0f;
                 }
                 cLib_chaseF(&playSpeed, targetSpeed, 0.2f);
-                mpMorf->setPlaySpeed(playSpeed);
+                mAnm_p->setPlaySpeed(playSpeed);
             }
         }
     } else {
         if (!fopAcM_checkCarryNow(this) && mMoveMode != daCstatue_MoveMode_0) {
             if (mStatueAcch.ChkGroundHit()) {
                 if (mMoveMode != daCstatue_MoveMode_3) {
-                    mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(mResName, 7)),
+                    mAnm_p->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(mResName, 7)),
                                    -1, 0.0f, 1.0f, 0.0f, -1.0f);
                     mCurrentAnim = CStatueAnimIndex_3;
                     if (speedF > 1.0f) {
@@ -563,16 +563,16 @@ void daCstatue_c::posMove() {
             }
         }
         if (mCurrentAnim == CStatueAnimIndex_0) {
-            mpMorf->setPlaySpeed(0.0f);
+            mAnm_p->setPlaySpeed(0.0f);
             if (mMoveMode == daCstatue_MoveMode_0) {
                 speedF = 0.0f;
             }
         } else if (mCurrentAnim == CStatueAnimIndex_3 && checkStateFlg0(daCstatue_FLG0_200)) {
-            if (mpMorf->checkFrame(7.0f)) {
+            if (mAnm_p->checkFrame(7.0f)) {
                 speedF = 3.0f;
-            } else if (mpMorf->getFrame() > 12.0f) {
+            } else if (mAnm_p->getFrame() > 12.0f) {
                 speedF = 0.0f;
-            } else if (mpMorf->getFrame() > 7.0f) {
+            } else if (mAnm_p->getFrame() > 7.0f) {
                 cLib_chaseF(&speedF, 0.0f, 0.4f);
             }
             current.pos.x = current.pos.x + speedF * cM_ssin(current.angle.y);
@@ -605,7 +605,7 @@ void daCstatue_c::posMove() {
         if (!groundHit && mStatueAcch.ChkGroundHit() && mSomePos.y - current.pos.y >= 100.0f) {
             J3DAnmTransform* animation = static_cast<J3DAnmTransform*>(
                 dComIfG_getObjectRes(mResName, m_bckIdxTable[mType][CStatueAnimIndex_3]));
-            mpMorf->setAnm(animation, -1, 0.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm(animation, -1, 0.0f, 1.0f, 0.0f, -1.0f);
             mCurrentAnim = CStatueAnimIndex_3;
             offStateFlg0(daCstatue_FLG0_200);
         }
@@ -670,8 +670,8 @@ void daCstatue_c::setCollision() {
             mCyl2->SetR(radius);
         }
 
-        if (mCurrentAnim == CStatueAnimIndex_2 && mpMorf->getFrame() >= 13.0f &&
-            mpMorf->getFrame() < 21.0f)
+        if (mCurrentAnim == CStatueAnimIndex_2 && mAnm_p->getFrame() >= 13.0f &&
+            mAnm_p->getFrame() < 21.0f)
         {
             cXyz direction(cM_ssin(shape_angle.y) * 10.0f, 0.0f, cM_scos(shape_angle.y) * 10.0f);
             cXyz startPos;
@@ -688,7 +688,7 @@ void daCstatue_c::setCollision() {
             dComIfG_Ccsp()->Set(mCps2);
             onStateFlg0(daCstatue_FLG0_10);
 
-            if (mpMorf->checkFrame(17.0f)) {
+            if (mAnm_p->checkFrame(17.0f)) {
                 cXyz center = (mCps2->GetStart() + mCps2->GetEnd()) * 0.5f;
                 if (!fopAcM_gc_c::gndCheck(&center) ||
                     fopAcM_gc_c::getGroundY() < current.pos.y - 10.0f)
@@ -729,7 +729,7 @@ void daCstatue_c::setCollision() {
             }
         } else {
             if (mCurrentAnim == CStatueAnimIndex_2 && mCyl2->ChkAtSet() &&
-                mpMorf->getFrame() < 30.0f)
+                mAnm_p->getFrame() < 30.0f)
             {
                 dComIfG_Ccsp()->Set(mCyl2);
             } else {
@@ -856,14 +856,14 @@ void daCstatue_c::setDemo() {
                         camera->mCamera.Set(centerPos, eyePos);
                         J3DAnmTransform* animation =
                             static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(mResName, 12));
-                        mpMorf->mDoExt_McaMorfSO::setAnm(animation, -1, 3.0f, 1.0f, 0.0f, -1.0f);
+                        mAnm_p->mDoExt_McaMorfSO::setAnm(animation, -1, 3.0f, 1.0f, 0.0f, -1.0f);
                         // this is out-of-bounds of the animation table
                         mCurrentAnim = CStatueAnimIndex_N;
                         mDemoTimer = 30;
                         mDemoMode = daCstatue_DemoMode_3;
                     }
                 }
-            } else if (mpMorf->isStop()) {
+            } else if (mAnm_p->isStop()) {
                 if (mDemoTimer) {
                     mDemoTimer--;
                 } else {
@@ -902,11 +902,11 @@ void daCstatue_c::setAnime() {
     int mNewAnim;
     if (checkBossType()) {
         if ((mCurrentAnim == CStatueAnimIndex_6 || mCurrentAnim == CStatueAnimIndex_1) &&
-            !mpMorf->isStop())
+            !mAnm_p->isStop())
         {
             mNewAnim = mCurrentAnim;
         } else if (mCurrentAnim == CStatueAnimIndex_2) {
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 mNewAnim = CStatueAnimIndex_6;
                 dComIfGp_getVibration().StartShock(VIBMODE_S_POWER8, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
                 mBossAtGndHit = true;
@@ -933,7 +933,7 @@ void daCstatue_c::setAnime() {
             speed.x = link->speed.x + (f32)link->transAnimeMoveX();
             speed.z = link->speed.z + (f32)link->transAnimeMoveZ();
         }
-        if (mCurrentAnim == CStatueAnimIndex_6 && !mpMorf->isStop()) {
+        if (mCurrentAnim == CStatueAnimIndex_6 && !mAnm_p->isStop()) {
             offStateFlg0(daCstatue_FLG0_800);
             if (link->checkCopyRodSwingModeInit()) {
                 mNewAnim = CStatueAnimIndex_2;
@@ -951,7 +951,7 @@ void daCstatue_c::setAnime() {
                     mNewAnim = CStatueAnimIndex_2;
                 }
             }
-        } else if (mCurrentAnim == CStatueAnimIndex_3 && !mpMorf->isStop()) {
+        } else if (mCurrentAnim == CStatueAnimIndex_3 && !mAnm_p->isStop()) {
             offStateFlg0(daCstatue_FLG0_800);
             mNewAnim = CStatueAnimIndex_3;
         } else if (fabsf(speed.x) + fabsf(speed.z) > 0.1f && mStatueAcch.ChkGroundHit()) {
@@ -959,7 +959,7 @@ void daCstatue_c::setAnime() {
             mNewAnim = CStatueAnimIndex_1;
         } else {
             if (mCurrentAnim == CStatueAnimIndex_4 ||
-                (mCurrentAnim == CStatueAnimIndex_5 && !mpMorf->isStop()))
+                (mCurrentAnim == CStatueAnimIndex_5 && !mAnm_p->isStop()))
             {
                 mNewAnim = CStatueAnimIndex_5;
             } else {
@@ -968,13 +968,13 @@ void daCstatue_c::setAnime() {
         }
     } else if (mType == daCstatueType_Normal) {
         mNewAnim = CStatueAnimIndex_4;
-    } else if (mCurrentAnim == CStatueAnimIndex_3 && !mpMorf->isStop()) {
+    } else if (mCurrentAnim == CStatueAnimIndex_3 && !mAnm_p->isStop()) {
         mNewAnim = CStatueAnimIndex_3;
     } else {
         mNewAnim = CStatueAnimIndex_0;
     }
     if (mNewAnim != mCurrentAnim ||
-        (mNewAnim == CStatueAnimIndex_2 && mpMorf->isStop() && link->checkCopyRodSwingModeInit()))
+        (mNewAnim == CStatueAnimIndex_2 && mAnm_p->isStop() && link->checkCopyRodSwingModeInit()))
     {
         J3DAnmTransform* animation = static_cast<J3DAnmTransform*>(
             dComIfG_getObjectRes(mResName, m_bckIdxTable[mType][mNewAnim]));
@@ -989,8 +989,8 @@ void daCstatue_c::setAnime() {
                 animSpeed = 3.0f;
             }
         }
-        mpMorf->setAnm(animation, -1, 3.0f, animSpeed, animStartFrame, -1.0f);
-        mpMorf->setFrameF(animStartFrame);
+        mAnm_p->setAnm(animation, -1, 3.0f, animSpeed, animStartFrame, -1.0f);
+        mAnm_p->setFrameF(animStartFrame);
         mCurrentAnim = mNewAnim;
     }
     if (controlledActor == this) {
@@ -1138,16 +1138,16 @@ int daCstatue_c::execute() {
     }
     u32 morf =
         mStatueAcch.GetGroundH() != -G_CM3D_F_INF ? dKy_pol_sound_get(&mStatueAcch.m_gnd) : 0;
-    mpMorf->play(morf, mReverb);
+    mAnm_p->play(morf, mReverb);
     if (!bossType && mCurrentAnim == CStatueAnimIndex_2 && link->checkCopyRodSwingMode()) {
-        if (mpMorf->getEndFrame() > link->getBaseAnimeFrame()) {
-            mpMorf->setFrame(link->getBaseAnimeFrame());
+        if (mAnm_p->getEndFrame() > link->getBaseAnimeFrame()) {
+            mAnm_p->setFrame(link->getBaseAnimeFrame());
         } else {
-            mpMorf->setFrame(mpMorf->getEndFrame());
+            mAnm_p->setFrame(mAnm_p->getEndFrame());
         }
     } else if (mTimer1) {
         mTimer1--;
-        mpMorf->setFrame(0.0f);
+        mAnm_p->setFrame(0.0f);
     }
     setRoomInfo();
     setMatrix();
@@ -1169,7 +1169,7 @@ int daCstatue_c::execute() {
     u32 effect = 0;
     if (mStatueAcch.ChkGroundLanding() ||
         (mType == daCstatueType_Small && mCurrentAnim == CStatueAnimIndex_2 &&
-         mpMorf->checkFrame(7.0f)))
+         mAnm_p->checkFrame(7.0f)))
     {
         effect = 7;
     }

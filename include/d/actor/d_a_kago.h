@@ -118,17 +118,17 @@ public:
     }
 
     MtxP getLegR3Mtx() { return mLegR3Mtx; }
-    MtxP getMidnaLocaterMtx() { return mpMorf->getModel()->getAnmMtx(4); }
+    MtxP getMidnaLocaterMtx() { return mAnm_p->getModel()->getAnmMtx(4); }
     s8 getPathDir() { return mPathDir; }
     bool isFlying() { return mIsFlying; }
     fopAc_ac_c* getLockActor() { return mpLockActor; }
     void setLockActor(fopAc_ac_c* actor) { mpLockActor = actor; }
     void setEatYm() { field_0x6d8 |= 4; }
-    MtxP getMouthMtx() { return mpMorf->getModel()->getAnmMtx(7); }
+    MtxP getMouthMtx() { return mAnm_p->getModel()->getAnmMtx(7); }
 
 private:
     /* 0x568 */ request_of_phase_process_class mPhase;
-    /* 0x570 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x570 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x574 */ Z2CreatureEnemy mSound;
     /* 0x618 */ fopAc_ac_c* mpLockActor;
     /* 0x61C */ fpc_ProcID mBalloon2DId;

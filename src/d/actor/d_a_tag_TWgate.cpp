@@ -301,7 +301,7 @@ void daTagTWGate_c::executeDemoFilone3() {
                 break;
             case 0x30303033:
                 initBaseMtx();
-                mpMorf->setPlaySpeed(1.0f);
+                mAnm_p->setPlaySpeed(1.0f);
                 field_0x5e0 = 1;
                 break;
             }
@@ -357,7 +357,7 @@ void daTagTWGate_c::executeDemoFilone3() {
                                       l_zevParamTbl[mType].mLayer);
             }
 
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 dComIfGp_evmng_cutEnd(staffId);
             }
             break;
@@ -501,7 +501,7 @@ void daTagTWGate_c::executeDemoOrdin3() {
             break;
         case '0003':
             initBaseMtx();
-           mpMorf->setPlaySpeed(1.0f);
+           mAnm_p->setPlaySpeed(1.0f);
             field_0x5e0 = 1;
             break;
         }
@@ -552,7 +552,7 @@ void daTagTWGate_c::executeDemoOrdin3() {
                 l_zevParamTbl[mType].mRoomNo,
                 l_zevParamTbl[mType].mLayer);
         }
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             evtMng.cutEnd(staffId);
         }
         break;
@@ -694,7 +694,7 @@ void daTagTWGate_c::executeDemoRanail3() {
             break;
         case '0003':
             initBaseMtx();
-           mpMorf->setPlaySpeed(1.0f);
+           mAnm_p->setPlaySpeed(1.0f);
             field_0x5e0 = 1;
             break;
         }
@@ -745,7 +745,7 @@ void daTagTWGate_c::executeDemoRanail3() {
                 l_zevParamTbl[mType].mRoomNo,
                 l_zevParamTbl[mType].mLayer);
         }
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             evtMng.cutEnd(staffId);
         }
         break;
@@ -884,7 +884,7 @@ void daTagTWGate_c::executeDemoHyral3() {
             break;
         case '0003':
             initBaseMtx();
-            mpMorf->setPlaySpeed(1.0f);
+            mAnm_p->setPlaySpeed(1.0f);
             field_0x5e0 = 1;
             break;
         }
@@ -924,7 +924,7 @@ void daTagTWGate_c::executeDemoHyral3() {
             dComIfGp_setNextStage(l_zevParamTbl[mType].mStage, l_zevParamTbl[mType].mPoint,
                                   l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
         }
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             eventMgr.cutEnd(staffId);
         }
         break;
@@ -940,7 +940,7 @@ void daTagTWGate_c::executeDemoHyral3() {
 
 /* 80D54ECC-80D54F88 00294C 00BC+00 4/4 0/0 0/0 .text            initBaseMtx__13daTagTWGate_cFv */
 void daTagTWGate_c::initBaseMtx() {
-    cullMtx = mpMorf->getModel()->getBaseTRMtx();
+    cullMtx = mAnm_p->getModel()->getBaseTRMtx();
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
 
     shape_angle.y = player->shape_angle.y + 0x8000;
@@ -952,7 +952,7 @@ void daTagTWGate_c::initBaseMtx() {
     current.pos.y = mDoMtx_stack_c::get()[1][3];
     current.pos.z = mDoMtx_stack_c::get()[2][3];
 
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80D54F88-80D5502C 002A08 00A4+00 4/4 0/0 0/0 .text            downloadModels__13daTagTWGate_cFv
@@ -1016,17 +1016,17 @@ int daTagTWGate_c::createHeapCallBack(fopAc_ac_c* i_actor) {
 /* 80D55180-80D55288 002C00 0108+00 1/1 0/0 0/0 .text            CreateHeap__13daTagTWGate_cFv */
 int daTagTWGate_c::CreateHeap() {
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("TWGate_Md", 7));
-    mpMorf =
+    mAnm_p=
         new mDoExt_McaMorfSO(modelData, NULL, NULL,
                              static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("TWGate_Md", 4)),
                              0, 0.0f, 0, -1, NULL, 0, 0x11000084);
 
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     } else {
         return 1;

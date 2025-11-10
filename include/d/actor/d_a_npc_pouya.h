@@ -57,14 +57,14 @@ public:
     /* 80AB1F74 */ void checkChangeJoint(int);
     /* 80AB1F84 */ void checkRemoveJoint(int);
 
-    MtxP getHeadMtx() { return mpMorf->getModel()->getAnmMtx(4); }
+    MtxP getHeadMtx() { return mAnm_p->getModel()->getAnmMtx(4); }
 
     static char* mCutNameList[3];
     static u8 mCutList[36];
 
 private:
     /* 0x568 */ u8 field_0x568[0x578 - 0x568];
-    /* 0x578 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x578 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x57C */ u8 field_0x57c[0xfd4 - 0x57c];
 };
 

@@ -352,8 +352,8 @@ daNpc_Kolin_c::cutFunc daNpc_Kolin_c::mCutList[11] = {
 
 /* 80553FEC-80554138 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__13daNpc_Kolin_cFv */
 daNpc_Kolin_c::~daNpc_Kolin_c() {
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
@@ -442,8 +442,8 @@ cPhs__Step daNpc_Kolin_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModel* model = mpMorf[0]->getModel();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModel* model = mAnm_p[0]->getModel();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
 
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -491,12 +491,12 @@ int daNpc_Kolin_c::CreateHeap() {
         return 0;
     }
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -552,7 +552,7 @@ int daNpc_Kolin_c::Execute() {
 /* 80554984-80554A18 000A84 0094+00 1/1 0/0 0/0 .text            Draw__13daNpc_Kolin_cFv */
 int daNpc_Kolin_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -1005,7 +1005,7 @@ void daNpc_Kolin_c::setAttnPos() {
 
     mStagger.calc(FALSE);
     f32 rad_val = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp3c, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+    mJntAnm.setParam(this, mAnm_p[0]->getModel(), &sp3c, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
                      daNpc_Kolin_Param_c::m.common.body_angleX_min, daNpc_Kolin_Param_c::m.common.body_angleX_max,
                      daNpc_Kolin_Param_c::m.common.body_angleY_min, daNpc_Kolin_Param_c::m.common.body_angleY_max,
                      daNpc_Kolin_Param_c::m.common.head_angleX_min, daNpc_Kolin_Param_c::m.common.head_angleX_max,
@@ -1014,7 +1014,7 @@ void daNpc_Kolin_c::setAttnPos() {
     mJntAnm.calcJntRad(0.2f, 1.0f, rad_val);
     
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&sp3c, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, FALSE, 1.0f, 0);
@@ -1089,7 +1089,7 @@ int daNpc_Kolin_c::drawDbgInfo() {
 
 /* 80555CEC-80555DC4 001DEC 00D8+00 1/0 0/0 0/0 .text            drawOtherMdl__13daNpc_Kolin_cFv */
 void daNpc_Kolin_c::drawOtherMdl() {
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
 
     for (int i = 0; i < 1; i++) {
         if (mpClothModel != NULL && i == 0 && field_0x1017 != 0) {

@@ -15,7 +15,7 @@
 class b_oh2_class : public fopEn_enemy_c {
 public:
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5B8 */ mDoExt_invisibleModel mInvisModel;
     /* 0x5C0 */ mDoExt_btkAnm* mpBtk;
     /* 0x5C4 */ mDoExt_brkAnm* mpBrk;

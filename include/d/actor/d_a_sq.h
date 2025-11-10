@@ -40,7 +40,7 @@ public:
     /* 0x5D8 */ u8 field_0x5d8[0xc];
     /* 0x5E4 */ s8 field_0x5e4;
     /* 0x5E5 */ u8 field_0x5e5[7];
-    /* 0x5EC */ mDoExt_McaMorf* mpMorf;
+    /* 0x5EC */ mDoExt_McaMorf* mAnm_p;
     /* 0x5F0 */ mDoExt_btkAnm* mpBtkAnm;
     /* 0x5F4 */ s8 mBtkFrame;
     /* 0x5F6 */ s16 mCounter;

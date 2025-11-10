@@ -87,14 +87,14 @@ int daCow_c::calcRunAnime(int resetRunType) {
         if (animationSpeed > 5.0f) {
             animationSpeed = 5.0f;
         }
-        mpMorf->setPlaySpeed(animationSpeed);
+        mAnm_p->setPlaySpeed(animationSpeed);
         if (speedF > 35.0f) {
             setBck(daCow_c::Animation_Run, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mRunType = daCow_c::RunType_Run;
         }
     } break;
     case daCow_c::RunType_Run:
-        mpMorf->setPlaySpeed(1.3f);
+        mAnm_p->setPlaySpeed(1.3f);
         if (speedF < 35.0f) {
             setBck(daCow_c::Animation_TrotA, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mRunType = daCow_c::RunType_Trot;
@@ -107,13 +107,13 @@ int daCow_c::calcRunAnime(int resetRunType) {
 /* 80658730-806587D4 000250 00A4+00 20/20 0/0 0/0 .text            setBck__7daCow_cFiUcff */
 void daCow_c::setBck(int i_index, u8 i_attr, f32 i_morf, f32 i_rate) {
     J3DAnmTransform* animation = (J3DAnmTransform*)dComIfG_getObjectRes("Cow", i_index);
-    mpMorf->setAnm(animation, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    mAnm_p->setAnm(animation, i_attr, i_morf, i_rate, 0.0f, -1.0f);
 }
 
 /* 806587D4-80658830 0002F4 005C+00 1/1 0/0 0/0 .text            checkBck__7daCow_cFi */
 u8 daCow_c::checkBck(int i_index) {
     J3DAnmTransform* animation = (J3DAnmTransform*)dComIfG_getObjectRes("Cow", i_index);
-    return mpMorf->getAnm() == animation;
+    return mAnm_p->getAnm() == animation;
 }
 
 namespace {
@@ -237,14 +237,14 @@ bool daCow_c::checkNadeNade() {
 
 /* 80658CD0-80658D3C 0007F0 006C+00 3/3 0/0 0/0 .text            setSeSnort__7daCow_cFv */
 void daCow_c::setSeSnort() {
-    if (mpMorf->checkFrame(1.0f)) {
+    if (mAnm_p->checkFrame(1.0f)) {
         mSound.startCreatureVoice(Z2SE_GOAT_V_BREATH, -1);
     }
 }
 
 /* 80658D3C-80658DB8 00085C 007C+00 2/2 0/0 0/0 .text            setRushVibration__7daCow_cFi */
 void daCow_c::setRushVibration(int i_vibmode) {
-    if (mpMorf->checkFrame(1.0f)) {
+    if (mAnm_p->checkFrame(1.0f)) {
         dComIfGp_getVibration().StartShock(i_vibmode, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
     }
 }
@@ -577,14 +577,14 @@ void daCow_c::action_wait() {
             mMode = daCow_c::Mode_2;
         } else {
             setBck(daCow_c::Animation_ConnectA, J3DFrameCtrl::EMode_NONE, 12.0f, 1.0f);
-            mpMorf->setFrame(mpMorf->getEndFrame());
-            mpMorf->setPlaySpeed(-1.0f);
+            mAnm_p->setFrame(mAnm_p->getEndFrame());
+            mAnm_p->setPlaySpeed(-1.0f);
             mMode = daCow_c::Mode_1;
         }
         break;
 
     case daCow_c::Mode_1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(daCow_c::Animation_WaitA, J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f);
             mMode = daCow_c::Mode_2;
         }
@@ -670,13 +670,13 @@ void daCow_c::action_eat() {
         }
         break;
     case daCow_c::Mode_1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(daCow_c::Animation_EatA, J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f);
             mMode = daCow_c::Mode_2;
         }
     case daCow_c::Mode_2:
-        if (mpMorf->checkFrame(10.0f) || mpMorf->checkFrame(40.0f) || mpMorf->checkFrame(68.0f) ||
-            mpMorf->checkFrame(98.0f))
+        if (mAnm_p->checkFrame(10.0f) || mAnm_p->checkFrame(40.0f) || mAnm_p->checkFrame(68.0f) ||
+            mAnm_p->checkFrame(98.0f))
         {
             mSound.startCreatureVoice(Z2SE_GOAT_V_EAT, -1);
         }
@@ -696,7 +696,7 @@ void daCow_c::action_eat() {
                 return;
             }
         }
-        if (!cLib_calcTimer(&mIdleTimer) && mpMorf->isLoop()) {
+        if (!cLib_calcTimer(&mIdleTimer) && mAnm_p->isLoop()) {
             if (checkNearWolf()) {
                 setProcess(&daCow_c::action_moo, false);
             } else {
@@ -730,18 +730,18 @@ void daCow_c::action_moo() {
             mMode = daCow_c::Mode_2;
         } else {
             setBck(daCow_c::Animation_ConnectA, J3DFrameCtrl::EMode_NONE, 12.0f, 1.0f);
-            mpMorf->setFrame(mpMorf->getEndFrame());
-            mpMorf->setPlaySpeed(-1.0f);
+            mAnm_p->setFrame(mAnm_p->getEndFrame());
+            mAnm_p->setPlaySpeed(-1.0f);
             mMode = daCow_c::Mode_1;
         }
         break;
     case daCow_c::Mode_1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(daCow_c::Animation_MooA, J3DFrameCtrl::EMode_NONE, 0.0f, 1.0f);
             mMode = daCow_c::Mode_2;
         }
     case daCow_c::Mode_2:
-        if (mpMorf->checkFrame(35.0f)) {
+        if (mAnm_p->checkFrame(35.0f)) {
             mSound.startCreatureVoice(Z2SE_GOAT_V_CRY, -1);
         }
 
@@ -756,7 +756,7 @@ void daCow_c::action_moo() {
                 }
             }
         }
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             if (checkNearWolf()) {
                 setProcess(&daCow_c::action_shake, true);
             } else {
@@ -788,13 +788,13 @@ void daCow_c::action_shake() {
         }
         break;
     case daCow_c::Mode_1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(daCow_c::Animation_ShakeA, J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f);
             mMode = daCow_c::Mode_2;
         }
     case daCow_c::Mode_2:
 
-        if (mpMorf->checkFrame(68.0f)) {
+        if (mAnm_p->checkFrame(68.0f)) {
             mSound.startCreatureVoice(Z2SE_GOAT_V_NOSE, -1);
         }
 
@@ -813,7 +813,7 @@ void daCow_c::action_shake() {
                 return;
             }
         }
-        if (mpMorf->isLoop()) {
+        if (mAnm_p->isLoop()) {
             if (checkNearWolf()) {
                 setProcess(&daCow_c::action_moo, true);
             } else {
@@ -1531,7 +1531,7 @@ void daCow_c::action_enter() {
             }
         } break;
         case daCow_c::Crazy_Catch:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 if (current.pos.abs(mTarget) > 100.0f) {
                     mCrazy = daCow_c::Crazy_BeforeCatch;
                     speedF = 3.0f;
@@ -1880,7 +1880,7 @@ void daCow_c::action_angry() {
             break;
         }
         case daCow_c::Crazy_Attack:
-            mpMorf->setPlaySpeed(1.0f);
+            mAnm_p->setPlaySpeed(1.0f);
 
             playerAngle = fopAcM_searchPlayerAngleY(this);
             cLib_chaseAngleS(&mSavedAngle.y, playerAngle, 0x800);
@@ -1889,7 +1889,7 @@ void daCow_c::action_angry() {
             shape_angle.y = targetZ;
             current.angle.y = targetZ;
 
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 mCrazy = daCow_c::Crazy_Dash;
                 calcRunAnime(true);
             }
@@ -2101,7 +2101,7 @@ void daCow_c::executeCrazyCatch() {
     case daCow_c::Execute_0:
     case daCow_c::Execute_1:
         mShouldSetEffect = 1;
-        if (mExecute == daCow_c::Execute_0 && mpMorf->isStop()) {
+        if (mExecute == daCow_c::Execute_0 && mAnm_p->isStop()) {
             setBck(daCow_c::Animation_Catch, J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f);
             mExecute = daCow_c::Execute_1;
         }
@@ -2113,7 +2113,7 @@ void daCow_c::executeCrazyCatch() {
         break;
     case daCow_c::Execute_2:
         catchDistance = -260.0f;
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(daCow_c::Animation_PressWB, J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f);
             mTimer1 = 60;
             mExecute = daCow_c::Execute_4;
@@ -2191,10 +2191,10 @@ void daCow_c::executeCrazyThrow() {
     case daCow_c::Execute_0:
         current.pos = mTarget;
 
-        if (mpMorf->checkFrame(10.0f)) {
+        if (mAnm_p->checkFrame(10.0f)) {
             mSound.startCreatureVoice(Z2SE_GOAT_V_THROWN, -1);
         }
-        if (mpMorf->checkFrame(34.0f)) {
+        if (mAnm_p->checkFrame(34.0f)) {
             mExecute = daCow_c::Execute_1;
             mJointIndex = 2;
             mIsCrazy = false;
@@ -2272,7 +2272,7 @@ void daCow_c::executeCrazyThrow() {
         }
         break;
     case daCow_c::Execute_4:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             if (mPrm0 != 3) {
                 initCrazyBack(0);
             } else {
@@ -2313,18 +2313,18 @@ void daCow_c::executeCrazyAttack() {
     switch (mAction) {
     case daCow_c::Action_Wait:
         cLib_chaseF(&speedF, 10.0f, 1.0f);
-        if (mpMorf->checkFrame(2.0f)) {
+        if (mAnm_p->checkFrame(2.0f)) {
             mSound.startCreatureVoice(Z2SE_GOAT_V_BREATH_SHAKE, -1);
         }
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             initCrazyAway(0);
         }
         break;
     case daCow_c::Action_NadeNade:
-        if (mpMorf->checkFrame(2.0f)) {
+        if (mAnm_p->checkFrame(2.0f)) {
             mSound.startCreatureVoice(Z2SE_GOAT_V_BREATH_SHAKE, -1);
         }
-        if (mpMorf->checkFrame(10.0f)) {
+        if (mAnm_p->checkFrame(10.0f)) {
             if (mPrm0 == 3) {
                 initCrazyAway(0);
             } else {
@@ -2334,7 +2334,7 @@ void daCow_c::executeCrazyAttack() {
         }
         break;
     case daCow_c::Action_Cry:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             initCrazyAway(0);
         }
         break;
@@ -2456,16 +2456,16 @@ void daCow_c::executeCrazyBack() {
         }
         break;
     case daCow_c::Action_Cry:
-        if (mpMorf->checkFrame(35.0f)) {
+        if (mAnm_p->checkFrame(35.0f)) {
             mSound.startCreatureVoice(Z2SE_GOAT_V_CRY, -1);
         }
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(daCow_c::Animation_WalkDejected, J3DFrameCtrl::EMode_LOOP, 10.0f, 1.0f);
             mAction = daCow_c::Action_Wait;
         }
         break;
     case daCow_c::Action_3:
-        if (mpMorf->checkFrame(11.0f)) {
+        if (mAnm_p->checkFrame(11.0f)) {
             setBck(daCow_c::Animation_WaitA, J3DFrameCtrl::EMode_LOOP, 10.0f, 1.0f);
             mAction = daCow_c::Action_4;
         }
@@ -2480,7 +2480,7 @@ void daCow_c::executeCrazyBack() {
         setBck(daCow_c::Animation_Toss, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
         mAction = daCow_c::Action_6;
     case daCow_c::Action_6:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             if (mPointIndex < 0) {
                 setBck(daCow_c::Animation_WalkDejected, J3DFrameCtrl::EMode_LOOP, 10.0f, 1.0f);
                 mAction = daCow_c::Action_3;
@@ -2659,10 +2659,10 @@ void daCow_c::executeCrazyBack2() {
         }
         break;
     case daCow_c::Action_3:
-        if (mpMorf->checkFrame(35.0f)) {
+        if (mAnm_p->checkFrame(35.0f)) {
             mSound.startCreatureVoice(Z2SE_GOAT_V_CRY, -1);
         }
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(daCow_c::Animation_WalkDejected, J3DFrameCtrl::EMode_LOOP, 10.0f, 1.0f);
             mAction = daCow_c::Action_NadeNade;
         }
@@ -2901,7 +2901,7 @@ void daCow_c::action_damage() {
         break;
     case daCow_c::Mode_1:
         setRedTev();
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mReadyToDash = false;
             mRunDuration = 1;
             setProcess(&daCow_c::action_angry, false);
@@ -2947,12 +2947,12 @@ void daCow_c::action() {
 
 /* 80661580-806615EC 0090A0 006C+00 1/1 0/0 0/0 .text            setMtx__7daCow_cFv */
 void daCow_c::setMtx() {
-    if (mpMorf) {
+    if (mAnm_p) {
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::ZXYrotM(mGroundTransform);
         mDoMtx_stack_c::ZXYrotM(mSavedAngle);
-        mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-        mpMorf->modelCalc();
+        mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+        mAnm_p->modelCalc();
     }
 }
 
@@ -2961,16 +2961,16 @@ void daCow_c::setAttnPos() {
     cXyz arg;
     cXyz pos;
 
-    if (mpMorf) {
+    if (mAnm_p) {
         if (attention_info.flags & fopAc_AttnFlag_ETC_e) {
             arg.set(0.0f, 0.0f, 0.0f);
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(11));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(11));
             mDoMtx_stack_c::multVec(&arg, &eyePos);
             pos = eyePos;
             attention_info.position.set(pos.x, pos.y + 30.0f, pos.z);
         } else {
             arg.set(18.0f, 30.0f, 0.0f);
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(9));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(9));
             mDoMtx_stack_c::multVec(&arg, &eyePos);
             pos = eyePos;
             attention_info.position.set(pos.x, pos.y + 80.0f, pos.z);
@@ -2995,19 +2995,19 @@ void daCow_c::setCollisions() {
 
         cXyz ofstNow;
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(9));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(9));
         mDoMtx_stack_c::multVec(&headOfst, &ofstNow);
         mSph[0].SetR(40.0f);
         mSph[0].SetC(ofstNow);
         dComIfG_Ccsp()->Set(&mSph[0]);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVec(&backBornOfst, &ofstNow);
         mSph[1].SetR(45.0f);
         mSph[1].SetC(ofstNow);
         dComIfG_Ccsp()->Set(&mSph[1]);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0xb));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0xb));
         mDoMtx_stack_c::multVec(&waistOfst, &ofstNow);
         mSph[2].SetR(45.0f);
         mSph[2].SetC(ofstNow);
@@ -3029,7 +3029,7 @@ int daCow_c::Execute() {
         mAcch.CrrPos(dComIfG_Bgsp());
         mGroundHeight = mAcch.GetGroundH();
         setEffect();
-        mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 
         if (!mAnimationInterval) {
             mpBtp->setPlaySpeed(1.0f);
@@ -3067,14 +3067,14 @@ int daCow_c::CreateHeap() {
 
     JUT_ASSERT(3826, modelData);
 
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
                                   0x11020084);
 
-    if (!mpMorf || !mpMorf->getModel()) {
+    if (!mAnm_p|| !mAnm_p->getModel()) {
         return cPhs_INIT_e;
     }
 
-    mpMorf->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p->getModel()->setUserArea((uintptr_t)this);
 
     for (u16 iJoint = 0; iJoint < modelData->getJointNum(); iJoint++) {
         if (iJoint == 1 || iJoint == 8 || iJoint == 0) {
@@ -3090,7 +3090,7 @@ int daCow_c::CreateHeap() {
     }
 
     J3DAnmTexPattern* pattern = static_cast<J3DAnmTexPattern*>(dComIfG_getObjectRes("Cow", 0x22));
-    modelData = mpMorf->getModel()->getModelData();
+    modelData = mAnm_p->getModel()->getModelData();
     if (mpBtp->init(modelData, pattern, 1, 0, 1.0f, 0, -1)) {
         return cPhs_LOADING_e;
     } else {
@@ -3106,7 +3106,7 @@ int daCow_c::createHeapCallBack(fopAc_ac_c* actor) {
 
 /* 80661D44-80662228 009864 04E4+00 1/1 0/0 0/0 .text            initialize__7daCow_cFv */
 u8 daCow_c::initialize() {
-    fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+    fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
     mSound.init(&current.pos, &eyePos, 3, 1);
 
     eventInfo.setArchiveName("Cow");
@@ -3324,13 +3324,13 @@ int daCow_c::Draw() {
         return 1;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
     mpBtp->entry(model->getModelData());
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
 
     if (!strcmp(dComIfGp_getEventManager().getRunEventName(), "MAKI_OP")) {
         cXyz shadowPos;

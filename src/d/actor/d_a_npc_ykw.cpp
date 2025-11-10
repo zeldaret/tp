@@ -279,7 +279,7 @@ daNpc_ykW_c::~daNpc_ykW_c() {
     OS_REPORT("|%06d:%x|daNpc_ykW_c -> デストラクト\n", g_Counter.mCounter0, this);
 
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
 
 #if DEBUG
@@ -349,8 +349,8 @@ int daNpc_ykW_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
 
         fopAcM_setCullSizeBox(this, -300.0f, -100.0f, -300.0f, 300.0f, 300.0f, 300.0f);
 
@@ -421,18 +421,18 @@ int daNpc_ykW_c::CreateHeap() {
     }
 
     int temp1 = 0x11020284;
-    mpMorf[0] = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
+    mAnm_p[0] = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
                                      0x80000, temp1);
 
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
-        if (mpMorf[0] != NULL) {
-            mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
+        if (mAnm_p[0] != NULL) {
+            mAnm_p[0]->stopZelAnime();
         }
 
         return 0;
     }
 
-    model = mpMorf[0]->getModel();
+    model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < ((J3DModelData*)mdlData_p)->getJointNum(); i++) {
         ((J3DModelData*)mdlData_p)->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -468,7 +468,7 @@ int daNpc_ykW_c::Draw() {
     int result = 0;
 
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -481,7 +481,7 @@ int daNpc_ykW_c::Draw() {
     if (field_0x1069 != 0) {
         fopAc_ac_c* actor = mActorMngrs[3].getActorP();
         if (actor != NULL) {
-            dComIfGd_addRealShadow(mShadowKey, ((daNpcT_c*)actor)->mpMorf[0]->getModel());
+            dComIfGd_addRealShadow(mShadowKey, ((daNpcT_c*)actor)->mAnm_p[0]->getModel());
         }
     }
 
@@ -1007,13 +1007,13 @@ void daNpc_ykW_c::setAttnPos() {
     f32 unkFloat1 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
     if (&daNpc_ykW_c::sitWait == field_0xfd8) {
         mJntAnm.setParam(
-            this, mpMorf[0]->getModel(), &unkXyz1, getBackboneJointNo(), getNeckJointNo(),
+            this, mAnm_p[0]->getModel(), &unkXyz1, getBackboneJointNo(), getNeckJointNo(),
             getHeadJointNo(), 0.0f, 0.0f, 0.0f, 0.0f, HIO_PARAM(this)->common.head_angleX_min,
             HIO_PARAM(this)->common.head_angleX_max, HIO_PARAM(this)->common.head_angleY_min,
             HIO_PARAM(this)->common.head_angleY_max, HIO_PARAM(this)->common.neck_rotation_ratio,
             unkFloat1, NULL);
     } else {
-        mJntAnm.setParam(this, mpMorf[0]->getModel(), &unkXyz1, getBackboneJointNo(),
+        mJntAnm.setParam(this, mAnm_p[0]->getModel(), &unkXyz1, getBackboneJointNo(),
                          getNeckJointNo(), getHeadJointNo(),
                          field_0x1061 != 0 ? 0.0f : HIO_PARAM(this)->common.body_angleX_min,
                          field_0x1061 != 0 ? 0.0f : HIO_PARAM(this)->common.body_angleX_max,
@@ -1028,7 +1028,7 @@ void daNpc_ykW_c::setAttnPos() {
 
     mJntAnm.calcJntRad(0.2f, 1.0f, unkFloat1);
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&unkXyz1, &eyePos);
 
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);

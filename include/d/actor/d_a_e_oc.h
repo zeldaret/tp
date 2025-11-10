@@ -85,11 +85,11 @@ public:
     f32 getPlayerRange() { return mPlayerRange; }
     int getActionMode() { return mActionMode; }
     daE_OC_c* getTalkOc() { return mpTalk; }
-    J3DModel* getOcModel() { return mpMorf->getModel(); }
+    J3DModel* getOcModel() { return mAnm_p->getModel(); }
 
 private:
     /* 0x5a0 */ request_of_phase_process_class mPhaseReqs[2];
-    /* 0x5bc */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5bc */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5c0 */ J3DModel* mpModel;
     /* 0x5c4 */ Z2CreatureEnemy mSound;
     /* 0x668 */ daE_OC_c* mpBattle;

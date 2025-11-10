@@ -152,7 +152,7 @@ static s32 pl_check(mg_fish_class* i_this, f32 speed) {
 static void anm_init(mg_fish_class* i_this, int i_resIndex, f32 i_morf, u8 i_mode, f32 i_speed) {
     J3DAnmTransform* anmTransform =
         (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, i_resIndex);
-    i_this->mpMorf->setAnm(anmTransform, i_mode, i_morf, i_speed,
+    i_this->mAnm_p->setAnm(anmTransform, i_mode, i_morf, i_speed,
         0.0f, -1.0f, NULL);
     i_this->mAnmID = i_resIndex;
 }
@@ -697,12 +697,12 @@ s32 daMg_Fish_Draw(mg_fish_class* i_this) {
             return 1;
         }
 
-        J3DModel* i_model = i_this->mpMorf->getModel();
+        J3DModel* i_model = i_this->mAnm_p->getModel();
         g_env_light.setLightTevColorType_MAJI(i_model, &i_this->actor.tevStr);
         if (i_this->mpBrkAnm != NULL) {
             i_this->mpBrkAnm->entry(i_model->getModelData());
         }
-        i_this->mpMorf->entryDL();
+        i_this->mAnm_p->entryDL();
         if (i_this->field_0xc3c == 0 && i_this->mCurAction == ACTION_MG_FISH_MF_JUMP &&
             i_this->mActionPhase >= 10) {
             cXyz pos;
@@ -2179,7 +2179,7 @@ static void pota_set(mg_fish_class* i_this) {
         i_this->mEmitterIds[0] = uVar2;
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mEmitterIds[0]);
         if (emitter != NULL) {
-            emitter->setGlobalSRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(h_jnt[i_this->mGedouKind]));
+            emitter->setGlobalSRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(h_jnt[i_this->mGedouKind]));
         }
     }
 }
@@ -3316,7 +3316,7 @@ static int daMg_Fish_Execute(mg_fish_class* i_this) {
     action(i_this);
     dmcalc(i_this);
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     for (u16 i = 1; i < model->mModelData->getJointNum(); i++) {
         if ((i_this->mCurAction == ACTION_MG_FISH_MF_JUMP && i_this->actor.speedF == 0.0f) ||
             i_this->mCurAction == ACTION_MG_FISH_MF_CATCH ||
@@ -3557,16 +3557,16 @@ static int daMg_Fish_Execute(mg_fish_class* i_this) {
             }
         }
     }
-    i_this->mpMorf->play(&i_this->actor.eyePos, 0, 0);
+    i_this->mAnm_p->play(&i_this->actor.eyePos, 0, 0);
     if (i_this->mpBrkAnm != NULL) {
         i_this->mpBrkAnm->play();
     }
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
     i_this->mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(&i_this->actor)));
     if (i_this->mKind2 == 3) {
         cXyz* ctrlPtMtx;
         for (s32 i = 0; i < 2; i++) {
-            MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(0), *calc_mtx);
+            MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(0), *calc_mtx);
 
             if (i == 0) {
                 commonXyz.set(3.0f, 0.0f, 17.0f);
@@ -3796,15 +3796,15 @@ static int useHeapImg_fisht(fopAc_ac_c* i_actor) {
     } else {
         i_this->mAnmTransform = 0;
     }
-    i_this->mpMorf = new mDoExt_McaMorf(
+    i_this->mAnm_p= new mDoExt_McaMorf(
         (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, fish_bmd[i_this->mGedouKind]),
             NULL, NULL, i_this->mAnmTransform, 0, 1.0f, 0, -1, 1, NULL,
             0x80000, 0x11000084);
-    if (i_this->mpMorf == NULL || i_this->mpMorf->getModel() == NULL) {
+    if (i_this->mAnm_p== NULL || i_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setUserArea((s32)i_this);
     i_this->mNumJoints = fish_joint[i_this->mGedouKind];
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
@@ -3986,7 +3986,7 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
         a_this->mCcStatus.Init(0x1e, 0, i_this);
         a_this->mCcCyl.Set(cc_cyl_src);
         a_this->mCcCyl.SetStts(&a_this->mCcStatus);
-        i_this->cullMtx = a_this->mpMorf->getModel()->getBaseTRMtx();
+        i_this->cullMtx = a_this->mAnm_p->getModel()->getBaseTRMtx();
         fopAcM_SetMin(i_this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(i_this, 200.0f, 200.0f, 200.0f);
         a_this->mAcch.Set(&i_this->current.pos, &i_this->old.pos, i_this, 1, &a_this->mAcchCir,

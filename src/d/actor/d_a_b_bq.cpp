@@ -100,7 +100,7 @@ public:
     /* 0x5B6 */ u8 field_0x5b6;
     /* 0x5B8 */ cXyz field_0x5b8;
     /* 0x5C4 */ u8 field_0x5C4[0x5C8 - 0x5C4];
-    /* 0x5C8 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5C8 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5CC */ int mAnmID;
     /* 0x5D0 */ mDoExt_btpAnm* field_0x5d0;
     /* 0x5D4 */ s16 field_0x5d4;
@@ -230,7 +230,7 @@ daB_BQ_HIO_c::daB_BQ_HIO_c() {
 /* 805B35A0-805B364C 000120 00AC+00 6/6 0/0 0/0 .text            anm_init__FP10b_bq_classifUcf */
 static void anm_init(b_bq_class* i_this, int i_anmID, f32 i_morf, u8 i_mode, f32 i_speed) {
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes("B_bq", i_anmID);
-    i_this->mpMorf->setAnm(pbck, i_mode, i_morf, i_speed, 0.0f, -1.0f);
+    i_this->mAnm_p->setAnm(pbck, i_mode, i_morf, i_speed, 0.0f, -1.0f);
     i_this->mAnmID = i_anmID;
 }
 
@@ -274,7 +274,7 @@ static int daB_BQ_Draw(b_bq_class* i_this) {
         return 1;
     }
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
 
@@ -297,7 +297,7 @@ static int daB_BQ_Draw(b_bq_class* i_this) {
         }
     }
 
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
 
     if (i_this->field_0x5c8 != 0) {
         if (i_this->field_0x5c8 == 1) {
@@ -502,7 +502,7 @@ static void damage_check(b_bq_class* i_this) {
 /* 805B4048-805B44D4 000BC8 048C+00 1/1 0/0 0/0 .text            b_bq_stay__FP10b_bq_class */
 static s8 b_bq_stay(b_bq_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    int anm_frame = i_this->mpMorf->getFrame();
+    int anm_frame = i_this->mAnm_p->getFrame();
 
     s8 rt = 0;
 
@@ -546,16 +546,16 @@ static s8 b_bq_stay(b_bq_class* i_this) {
     case 4:
         rt = 1;
 
-        if (i_this->mpMorf->checkFrame(45)) {
+        if (i_this->mAnm_p->checkFrame(45)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_BQ_APPEAR, 0, -1);
             i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_APPEAR, -1);
         }
 
-        if (i_this->mpMorf->checkFrame(KREG_F(7) + 180)) {
+        if (i_this->mAnm_p->checkFrame(KREG_F(7) + 180)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_BARK, -1);
         }
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = ACTION_WAIT;
             anm_init(i_this, BCK_BQ_WAIT01, 1.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 1;
@@ -589,7 +589,7 @@ static void b_bq_wait(b_bq_class* i_this) {
         break;
     }
 
-    if (i_this->mAnmID == BCK_BQ_NODAMAGE && i_this->mpMorf->isStop()) {
+    if (i_this->mAnmID == BCK_BQ_NODAMAGE && i_this->mAnm_p->isStop()) {
         anm_init(i_this, BCK_BQ_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
     }
 
@@ -613,13 +613,13 @@ static void b_bq_damage(b_bq_class* i_this) {
         i_this->field_0x1392 = 4;
         // fallthrough
     case 1:
-        if (i_this->mpMorf->checkFrame(YREG_F(8) + 113)) {
+        if (i_this->mAnm_p->checkFrame(YREG_F(8) + 113)) {
             dComIfGp_getVibration().StartShock(YREG_S(2) + 5, 14, cXyz(0.0f, 1.0f, 0.0f));
             dComIfGp_getVibration().StartShock(8, 31, cXyz(0.0f, 1.0f, 0.0f));
 
             i_this->mSound.startCreatureSound(Z2SE_EN_BQ_DOWN, 0, -1);
 
-            MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(YREG_S(1) + 50), *calc_mtx);
+            MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(YREG_S(1) + 50), *calc_mtx);
 
             cXyz sp2C(XREG_F(3) + 300.0f, XREG_F(4), XREG_F(5));
             cXyz sp38;
@@ -636,7 +636,7 @@ static void b_bq_damage(b_bq_class* i_this) {
             Z2GetAudioMgr()->changeBgmStatus(2);
         }
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, BCK_BQ_DAMAGEWAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = l_HIO.mChanceTime;
@@ -653,7 +653,7 @@ static void b_bq_damage(b_bq_class* i_this) {
         i_this->mMode = 11;
         break;
     case 11:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, BCK_BQ_DAMAGEWAIT, JREG_F(15), J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
         }
@@ -674,7 +674,7 @@ static void b_bq_damage(b_bq_class* i_this) {
         i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_DAMAGEBACK, -1);
         break;
     case 21:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             set_wait_action = true;
         }
         break;
@@ -684,7 +684,7 @@ static void b_bq_damage(b_bq_class* i_this) {
         i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_BACK, -1);
         break;
     case 31:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             set_wait_action = true;
         }
         break;
@@ -715,7 +715,7 @@ static void b_bq_damage(b_bq_class* i_this) {
         Z2GetAudioMgr()->changeBgmStatus(1);
     }
 
-    MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(YREG_S(0) + 53), mDoMtx_stack_c::get());
+    MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(YREG_S(0) + 53), mDoMtx_stack_c::get());
     cXyz sp44;
     mDoMtx_stack_c::multVecZero(&sp44);
 
@@ -753,7 +753,7 @@ static void b_bq_damage(b_bq_class* i_this) {
 static s8 b_bq_attack(b_bq_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    int anm_frame = i_this->mpMorf->getFrame();
+    int anm_frame = i_this->mAnm_p->getFrame();
     s8 set_dokuhaki = false;
 
     s16 head_rot = cM_ssin(i_this->mTimers[0] * 1500) * (NREG_F(7) + 1200.0f);
@@ -761,7 +761,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
     cXyz spCC;
     cXyz spD8;
 
-    MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD), *calc_mtx);
+    MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD), *calc_mtx);
     cMtx_ZrotM(*calc_mtx, head_rot);
 
     spCC.set(0.0f, 0.0f, 0.0f);
@@ -795,7 +795,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
             set_dokuhaki = true;
         }
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, BCK_BQ_ATTACK_B, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = l_HIO.mWaterSprayTime;
@@ -810,7 +810,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
         }
         break;
     case 3:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x6de = 1;
         }
         break;
@@ -837,7 +837,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
 
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mMizutamaEmtrIDs[i]);
             if (emitter != NULL) {
-                MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD), *calc_mtx);
+                MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD), *calc_mtx);
                 cMtx_ZrotM(*calc_mtx, head_rot);
 
                 emitter->setGlobalRTMatrix(*calc_mtx);
@@ -1013,7 +1013,7 @@ static void action(b_bq_class* i_this) {
 
 /* 805B58C8-805B6264 002448 099C+00 1/1 0/0 0/0 .text            anm_se_set__FP10b_bq_class */
 static void anm_se_set(b_bq_class* i_this) {
-    int anm_frame = i_this->mpMorf->getFrame();
+    int anm_frame = i_this->mAnm_p->getFrame();
 
     if (i_this->mAnmID == BCK_BQ_APPEAR) {
         if (anm_frame >= 175) {
@@ -1022,7 +1022,7 @@ static void anm_se_set(b_bq_class* i_this) {
 
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->field_0x1188);
             if (emitter != NULL) {
-                emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_JAW_T3));
+                emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(JNT_JAW_T3));
             }
         }
 
@@ -1032,7 +1032,7 @@ static void anm_se_set(b_bq_class* i_this) {
 
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->field_0x118c);
             if (emitter != NULL) {
-                emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+                emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
             }
 
             i_this->field_0x1190 = dComIfGp_particle_set(i_this->field_0x1190, 0x82B3,
@@ -1040,7 +1040,7 @@ static void anm_se_set(b_bq_class* i_this) {
 
             emitter = dComIfGp_particle_getEmitter(i_this->field_0x1190);
             if (emitter != NULL) {
-                emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+                emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
             }
         }
     } else if (i_this->mAnmID == BCK_BQ_RETURN01) {
@@ -1049,7 +1049,7 @@ static void anm_se_set(b_bq_class* i_this) {
 
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->field_0x1188);
         if (emitter != NULL) {
-            emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+            emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         }
 
         i_this->field_0x118c =
@@ -1057,7 +1057,7 @@ static void anm_se_set(b_bq_class* i_this) {
 
         emitter = dComIfGp_particle_getEmitter(i_this->field_0x118c);
         if (emitter != NULL) {
-            emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+            emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         }
     } else if (i_this->mAnmID == BCK_BQ_RETURN02) {
         i_this->field_0x1188 =
@@ -1065,7 +1065,7 @@ static void anm_se_set(b_bq_class* i_this) {
 
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->field_0x1188);
         if (emitter != NULL) {
-            emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+            emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         }
 
         i_this->field_0x118c =
@@ -1073,7 +1073,7 @@ static void anm_se_set(b_bq_class* i_this) {
 
         emitter = dComIfGp_particle_getEmitter(i_this->field_0x118c);
         if (emitter != NULL) {
-            emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+            emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         }
     } else if (i_this->mAnmID == BCK_BQ_BOMBDAMAGE) {
         i_this->field_0x1188 =
@@ -1081,7 +1081,7 @@ static void anm_se_set(b_bq_class* i_this) {
 
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->field_0x1188);
         if (emitter != NULL) {
-            emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+            emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         }
 
         i_this->field_0x118c =
@@ -1089,7 +1089,7 @@ static void anm_se_set(b_bq_class* i_this) {
 
         emitter = dComIfGp_particle_getEmitter(i_this->field_0x118c);
         if (emitter != NULL) {
-            emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+            emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         }
 
         i_this->field_0x1190 =
@@ -1097,7 +1097,7 @@ static void anm_se_set(b_bq_class* i_this) {
 
         emitter = dComIfGp_particle_getEmitter(i_this->field_0x1190);
         if (emitter != NULL) {
-            emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+            emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         }
     } else if (i_this->mAnmID == BCK_BQ_DEAD) {
         if (anm_frame == 1) {
@@ -1122,7 +1122,7 @@ static void anm_se_set(b_bq_class* i_this) {
                 static int g_k_ji[] = {0x28, 0x28, 0x29, 0x29, 0x2A, 0x2A,
                                        0x2B, 0x2B, 0x2C, 0x2C, 0x2D, 0x2D};
 
-                emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(g_k_ji[i]));
+                emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(g_k_ji[i]));
             }
         }
     } else {
@@ -1145,7 +1145,7 @@ static void anm_se_set(b_bq_class* i_this) {
             if (emitter != NULL) {
                 static int g_y_ji[] = {0x37, 0x38, 0x3B, 0x3D, 0x2F};
 
-                MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(g_y_ji[i]), *calc_mtx);
+                MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(g_y_ji[i]), *calc_mtx);
                 MtxScale(i_this->field_0x11d8, i_this->field_0x11d8, i_this->field_0x11d8, 1);
                 emitter->setGlobalRTMatrix(*calc_mtx);
             }
@@ -1169,7 +1169,7 @@ static void anm_se_set(b_bq_class* i_this) {
                 static int g_c_ji[] = {0x02, 0x30, 0x35, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D,
                                        0x02, 0x30, 0x27, 0x28, 0x29, 0x2A, 0x2B, 0x2C, 0x2D};
 
-                MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(g_c_ji[i]), *calc_mtx);
+                MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(g_c_ji[i]), *calc_mtx);
                 emitter->setGlobalRTMatrix(*calc_mtx);
             }
         }
@@ -1741,7 +1741,7 @@ static void demo_camera(b_bq_class* i_this) {
         i_this->mDemoCamEye.y = BREG_F(11) + 1000.0f;
         i_this->mDemoCamEye.z = BREG_F(12) + 1471.0f;
 
-        MTXCopy(monkeybomb->mpMorf->getModel()->getAnmMtx(0x1C), mDoMtx_stack_c::get());
+        MTXCopy(monkeybomb->mAnm_p->getModel()->getAnmMtx(0x1C), mDoMtx_stack_c::get());
 
         mDoMtx_stack_c::transM(JREG_F(17) + 60.0f, JREG_F(18) + -35.0f, JREG_F(19) + 15.0f);
         mDoMtx_stack_c::multVecZero(&sp114);
@@ -1802,7 +1802,7 @@ static void demo_camera(b_bq_class* i_this) {
         monkeybomb->mMode++;
         // fallthrough
     case 35:
-        MTXCopy(monkeybomb->mpMorf->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
+        MTXCopy(monkeybomb->mAnm_p->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&sp114);
 
         cLib_addCalc2(&i_this->mDemoCamCenter.x, sp114.x, BREG_F(14) + 0.6f, 100.0f);
@@ -2253,10 +2253,10 @@ static int daB_BQ_Execute(b_bq_class* i_this) {
     mDoMtx_stack_c::YrotM(a_this->shape_angle.y);
     mDoMtx_stack_c::scaleM(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
 
     if (i_this->mpDeadBrk->getPlaySpeed() > 0.0f) {
         i_this->mpDeadBrk->play();
@@ -2266,7 +2266,7 @@ static int daB_BQ_Execute(b_bq_class* i_this) {
         i_this->mpTodomeBtk->play();
     }
 
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
     anm_se_set(i_this);
 
     cXyz sp5C(-20000.0f, -40000.0f, 30000.0f);
@@ -2437,7 +2437,7 @@ static int daB_BQ_Delete(b_bq_class* i_this) {
     }
 
     if (i_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
         i_this->field_0x684.deleteObject();
         i_this->field_0x6a4.deleteObject();
     }
@@ -2449,14 +2449,14 @@ static int daB_BQ_Delete(b_bq_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     b_bq_class* a_this = (b_bq_class*)i_this;
 
-    a_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_bq", BMDV_BQ), NULL,
+    a_this->mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_bq", BMDV_BQ), NULL,
                                           NULL, NULL, J3DFrameCtrl::EMode_LOOP, 0.6f, 0, -1,
                                           &a_this->mSound, 0, 0x11000284);
-    if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
+    if (a_this->mAnm_p== NULL || a_this->mAnm_p->getModel() == NULL) {
         return false;
     }
 
-    J3DModel* model = a_this->mpMorf->getModel();
+    J3DModel* model = a_this->mAnm_p->getModel();
     model->setUserArea((uintptr_t)a_this);
 
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
@@ -2468,7 +2468,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return false;
     }
 
-    if (!a_this->mpDeadBrk->init(a_this->mpMorf->getModel()->getModelData(),
+    if (!a_this->mpDeadBrk->init(a_this->mAnm_p->getModel()->getModelData(),
                                  (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_bq", BRK_BQ_DEAD), TRUE,
                                  J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))
     {
@@ -2482,7 +2482,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return false;
     }
 
-    if (!a_this->mpTodomeBtk->init(a_this->mpMorf->getModel()->getModelData(),
+    if (!a_this->mpTodomeBtk->init(a_this->mAnm_p->getModel()->getModelData(),
                                    (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_bq", BTK_BQ_TODOME), TRUE,
                                    J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))
     {

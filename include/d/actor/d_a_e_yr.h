@@ -20,7 +20,7 @@ public:
 
     /* 0x0   */ fopEn_enemy_c mEnemy;
     /* 0x5AC */ request_of_phase_process_class mPhaseReq;
-    /* 0x5B4 */ mDoExt_McaMorfSO* mpMorfSO;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mAnm_pSO;
     /* 0x5B8 */ s32 field_0x5b8;
     /* 0x5BC */ u32 mShadowKey;
     /* 0x5C0 */ Z2CreatureEnemy mSound;

@@ -105,8 +105,8 @@ void daNpc_Zelda_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
 daNpc_Zelda_c::~daNpc_Zelda_c() {
     OS_REPORT("|%06d:%x|daNpc_Zelda_c -> デストラクト\n", g_Counter.mCounter0, this);
 
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
 #if DEBUG
@@ -198,8 +198,8 @@ int daNpc_Zelda_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* unusedModelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* unusedModelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -272,12 +272,12 @@ int daNpc_Zelda_c::CreateHeap() {
     }
 
     s32 temp4 = 0x11020284;
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, temp4);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, temp4);
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    model = mpMorf[0]->getModel();
+    model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -313,7 +313,7 @@ int daNpc_Zelda_c::Execute() {
 
 /* 80B759CC-80B75A90 00098C 00C4+00 1/1 0/0 0/0 .text            Draw__13daNpc_Zelda_cFv */
 int daNpc_Zelda_c::Draw() {
-    J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+    J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
     if (mpMatAnm[0] != NULL) {
         modelData->getMaterialNodePointer(getEyeballLMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
@@ -555,7 +555,7 @@ void daNpc_Zelda_c::setAttnPos() {
     cXyz acStack_3c(10.0f, -30.0f, 0.0f);
     mStagger.calc(0);
     dVar6 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    pJVar5 = mpMorf[0]->getModel();
+    pJVar5 = mAnm_p[0]->getModel();
     mJntAnm.setParam((fopAc_ac_c*)this, pJVar5, &acStack_3c,
         getBackboneJointNo(),
         getNeckJointNo(),
@@ -574,7 +574,7 @@ void daNpc_Zelda_c::setAttnPos() {
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar6);
     setMtx();
     s32 headJointNo = getHeadJointNo();
-    pJVar5 = mpMorf[0]->getModel();
+    pJVar5 = mAnm_p[0]->getModel();
     mDoMtx_stack_c::copy(pJVar5->getAnmMtx(headJointNo));
     mDoMtx_stack_c::multVec(&acStack_3c, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);

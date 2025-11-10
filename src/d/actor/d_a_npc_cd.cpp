@@ -220,14 +220,14 @@ int daNpcCd_c::NpcCreate(int param_1) {
 
     JUT_ASSERT(470, NULL != a_mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature,
+    mAnm_p= new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature,
                                   0x80000, 0x11000084);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
 
@@ -253,14 +253,14 @@ int daNpcCd_c::NpcCreate(int param_1) {
     };
 
     cXyz scale = a_transScaleTbl[param_1];
-    mpMorf->offTranslate();
-    mpMorf->setTranslateScale(scale);
+    mAnm_p->offTranslate();
+    mAnm_p->setTranslateScale(scale);
 
     for (u16 i = 0; i < a_mdlData_p->getJointNum(); i++) {
         a_mdlData_p->getJointNodePointer(i)->setCallBack(jntNodeCallBack);
     }
 
-    mpMorf->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p->getModel()->setUserArea((uintptr_t)this);
 
     OS_REPORT("   [ |   X   l     Type=%d  ", param_1);
 
@@ -410,7 +410,7 @@ int daNpcCd_c::setAttention(int i_idx) {
         cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
     };
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(6));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(6));
     mDoMtx_stack_c::multVec(&a_eyeOfsTbl[i_idx], &eyePos);
     attention_info.position.set(current.pos.x, current.pos.y + HIO_atnOfs(i_idx), current.pos.z);
     return 1;
@@ -480,9 +480,9 @@ void daNpcCd_c::setRoomNo() {
 
 /* 80156DBC-80156E20 1516FC 0064+00 0/0 0/0 1/1 .text            animation__9daNpcCd_cFv */
 void daNpcCd_c::animation() {
-    f32 lastframe = mpMorf->getFrame();
-    mpMorf->play(0, 0);
-    if (mpMorf->getFrame() < lastframe) {
+    f32 lastframe = mAnm_p->getFrame();
+    mAnm_p->play(0, 0);
+    if (mAnm_p->getFrame() < lastframe) {
         cLib_calcTimer(&field_0x9c8);
     }
 }
@@ -491,8 +491,8 @@ void daNpcCd_c::animation() {
  */
 void daNpcCd_c::setAnm(J3DAnmTransformKey* i_anm, f32 i_rate, f32 i_morf, int i_attr, int i_start,
                        int i_end) {
-    if (i_anm != (J3DAnmTransformKey*)mpMorf->getAnm()) {
-        mpMorf->setAnm(i_anm, i_attr, i_morf, i_rate, i_start, i_end);
+    if (i_anm != (J3DAnmTransformKey*)mAnm_p->getAnm()) {
+        mAnm_p->setAnm(i_anm, i_attr, i_morf, i_rate, i_start, i_end);
     }
 }
 
@@ -509,7 +509,7 @@ int daNpcCd_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
     s32 jntNum = a_jntNumTbl[idx];
     if (i_model && jntNum >= 0) {
         g_env_light.setLightTevColorType_MAJI(i_model, &tevStr);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jntNum));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(jntNum));
         mDoMtx_stack_c::scaleM(i_scale, i_scale, i_scale);
         i_model->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(i_model);
@@ -531,13 +531,13 @@ int daNpcCd_c::drawNpc() {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     }
 
-    g_env_light.setLightTevColorType_MAJI(mpMorf->getModel(), &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mAnm_p->getModel(), &tevStr);
 
     if (mIsDarkWorld) {
         dComIfGd_setListDark();
     }
 
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
     if (mIsDarkWorld) {
         dComIfGd_setList();
     }

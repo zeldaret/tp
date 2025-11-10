@@ -28,7 +28,7 @@ public:
     /* 0x570 */ u8 mBmdIdx;
     /* 0x571 */ u8 mScaleXZ;
     /* 0x572 */ u8 mScaleY;
-    /* 0x574 */ mDoExt_McaMorf* mpMorf;
+    /* 0x574 */ mDoExt_McaMorf* mAnm_p;
     /* 0x578 */ s16 mCounter;
     /* 0x57A */ s16 field_0x57a;
     /* 0x57C */ u8 field_0x57c[8];

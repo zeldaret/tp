@@ -249,8 +249,8 @@ int (daNpc_Kkri_c::*daNpc_Kkri_c::mCutList[])(int) = {
 daNpc_Kkri_c::~daNpc_Kkri_c() {
     OS_REPORT("|%06d:%x|daNpc_Kkri_c -> デストラクト\n", g_Counter.mCounter0, this);
 
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
@@ -333,8 +333,8 @@ int daNpc_Kkri_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -393,12 +393,12 @@ int daNpc_Kkri_c::CreateHeap() {
     }
 
     u32 diff_flags = J3D_DIFF_FLAG(FALSE, FALSE, TRUE, 8, 2, FALSE, 2, 0, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE);
-    mpMorf[0] = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, diff_flags);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    mAnm_p[0] = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, diff_flags);
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    mdl_p = mpMorf[0]->getModel();
+    mdl_p = mAnm_p[0]->getModel();
     for (u16 i = 0; i < ((J3DModelData*)mdlData_p)->getJointNum(); i++) {
         ((J3DModelData*)mdlData_p)->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -433,7 +433,7 @@ int daNpc_Kkri_c::Execute() {
 /* 8054FC64-8054FD00 0009A4 009C+00 1/1 0/0 0/0 .text            Draw__12daNpc_Kkri_cFv */
 int daNpc_Kkri_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* mdlData_p = mAnm_p[0]->getModel()->getModelData();
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -706,21 +706,21 @@ void daNpc_Kkri_c::setAttnPos() {
     f32 var_f31 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
 
     if (mType == 0) {
-        mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp34, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+        mJntAnm.setParam(this, mAnm_p[0]->getModel(), &sp34, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
             0.0f, 0.0f,
             0.0f, 0.0f,
             daNpc_Kkri_Param_c::m.common.head_angleX_min, daNpc_Kkri_Param_c::m.common.head_angleX_max,
             -30.0f, 30.0f,
             daNpc_Kkri_Param_c::m.common.neck_rotation_ratio, 0.0f, NULL);
     } else if (mType == 1) {
-        mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp34, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+        mJntAnm.setParam(this, mAnm_p[0]->getModel(), &sp34, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
             0.0f, 0.0f,
             0.0f, 0.0f,
             daNpc_Kkri_Param_c::m.common.head_angleX_min, daNpc_Kkri_Param_c::m.common.head_angleX_max,
             daNpc_Kkri_Param_c::m.common.head_angleY_min, daNpc_Kkri_Param_c::m.common.head_angleY_max,
             daNpc_Kkri_Param_c::m.common.neck_rotation_ratio, 0.0f, NULL);
     } else {
-        mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp34, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+        mJntAnm.setParam(this, mAnm_p[0]->getModel(), &sp34, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
             daNpc_Kkri_Param_c::m.common.body_angleX_min, daNpc_Kkri_Param_c::m.common.body_angleX_max,
             daNpc_Kkri_Param_c::m.common.body_angleY_min, daNpc_Kkri_Param_c::m.common.body_angleY_max,
             daNpc_Kkri_Param_c::m.common.head_angleX_min, daNpc_Kkri_Param_c::m.common.head_angleX_max,
@@ -732,7 +732,7 @@ void daNpc_Kkri_c::setAttnPos() {
 
     setMtx();
 
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&sp34, &eyePos);
 
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);

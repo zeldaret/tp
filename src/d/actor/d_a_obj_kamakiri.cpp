@@ -69,13 +69,13 @@ int daObjKAM_c::CreateHeap() {
         modelData = (J3DModelData*)dComIfG_getObjectRes("I_Kam", 10);
         JUT_ASSERT(0x103, modelData != NULL);
     }
-    mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_pSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 7), 2, 1.0f, 0,
                                     -1, &mCreatureSound, 0, 0x11000284);
-    if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
+    if (mAnm_pSO == NULL || mAnm_pSO->getModel() == NULL) {
         return 0;
     }
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL) {
         return 0;
@@ -137,7 +137,7 @@ void daObjKAM_c::ShopWaitAction() {
     switch (field_0x981) {
     case 0:
         speedF = 0.0f;
-        mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 7), 2, 5.0f, 0.0f, 0.0f,
+        mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 7), 2, 5.0f, 0.0f, 0.0f,
                          -1.0f);
         field_0x981++;
         field_0x982[0] = cM_rndF(50.0f) + 50.0f;
@@ -171,7 +171,7 @@ void daObjKAM_c::WaitAction() {
     switch (field_0x981) {
     case 0:
         speedF = 0.0f;
-        mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 7), 2, 5.0f, 0.0f, 0.0f,
+        mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 7), 2, 5.0f, 0.0f, 0.0f,
                          -1.0f);
         field_0x981++;
         field_0x982[0] = cM_rndF(50.0f) + 50.0f;
@@ -306,7 +306,7 @@ void daObjKAM_c::WalkAction() {
 
     switch (field_0x981) {
     case 0: {
-        mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 7), 2, 5.0f, 1.0f, 0.0f,
+        mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 7), 2, 5.0f, 1.0f, 0.0f,
                          -1.0f);
         field_0x988 = 0.5f;
         speed.y = 0.0f;
@@ -364,14 +364,14 @@ void daObjKAM_c::MoveAction() {
 
     switch (field_0x981) {
     case 0:
-        mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 6), 2, 5.0f, 0.0f, 0.0f,
+        mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 6), 2, 5.0f, 0.0f, 0.0f,
                          -1.0f);
         field_0x981++;
         field_0x982[0] = 20;
         break;
     case 1:
         if (field_0x982[0] == 10) {
-            mpMorfSO->setPlaySpeed(1.0f);
+            mAnm_pSO->setPlaySpeed(1.0f);
         }
         if (field_0x982[0] == 0) {
             field_0x981++;
@@ -411,11 +411,11 @@ void daObjKAM_c::MoveAction() {
                 field_0x988 = 0.0f;
                 speed.y = 0.0f;
                 field_0x98c = 0.0f;
-                mpMorfSO->setPlaySpeed(0.0f);
+                mAnm_pSO->setPlaySpeed(0.0f);
                 field_0x990 = 0;
                 current.angle.y = mNormalYaw;
                 field_0x9c2 = 1;
-                mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 7), 2, 5.0f, 1.0f,
+                mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 7), 2, 5.0f, 1.0f,
                                  0.0f, -1.0f);
             } else {
                 if (field_0x9c2 != 0) {
@@ -424,9 +424,9 @@ void daObjKAM_c::MoveAction() {
                     speed.y = 3.0f;
                     speedF = 8.0f;
                     field_0x988 = 8.0f;
-                    mpMorfSO->setPlaySpeed(1.0f);
+                    mAnm_pSO->setPlaySpeed(1.0f);
                     mNormalYaw = 0;
-                    mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 6), 2, 5.0f,
+                    mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 6), 2, 5.0f,
                                      1.0f, 0.0f, -1.0f);
                 }
             }
@@ -445,7 +445,7 @@ void daObjKAM_c::MoveAction() {
             field_0x98c = -cM_rndF(nREG_F(10) + 3.0f);
             field_0x982[1] = cM_rndF(20.0f) + 20.0f;
         }
-        f32 unusedFloat1 = mpMorfSO->getFrame();
+        f32 unusedFloat1 = mAnm_pSO->getFrame();
         s16 unusedShort1 = current.angle.y;
         SpeedSet();
         if (WallCheck()) {
@@ -472,7 +472,7 @@ void daObjKAM_c::MoveAction() {
         break;
     }
 
-    if (mpMorfSO->getPlaySpeed() == 1.0f) {
+    if (mAnm_pSO->getPlaySpeed() == 1.0f) {
         mCreatureSound.startCreatureSoundLevel(Z2SE_INSCT_BTBT, 0, -1);
     }
 }
@@ -618,7 +618,7 @@ void daObjKAM_c::BoomChk() {
                 field_0x980 = 1;
                 field_0x981 = 2;
 
-                mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 6), 2, 5.0f, 1.0f,
+                mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 6), 2, 5.0f, 1.0f,
                                  0.0f, -1.0f);
 
                 speedF = 8.0f;
@@ -655,7 +655,7 @@ void daObjKAM_c::ObjHit() {
                 field_0x980 = 1;
                 field_0x981 = 2;
                 field_0x9c1 = 0;
-                mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 6), 2, 5.0f, 1.0f,
+                mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 6), 2, 5.0f, 1.0f,
                                  0.0f, -1.0f);
                 speedF = 8.0f;
                 field_0x988 = cM_rndF(5.0f) + 8.0f;
@@ -707,7 +707,7 @@ int daObjKAM_c::Execute() {
     }
     mpBrkAnm->play();
     mpBtkAnm->play();
-    mpMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_pSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setBaseMtx();
     return 1;
 }
@@ -720,7 +720,7 @@ int daObjKAM_c::Delete() {
         mDoHIO_DELETE_CHILD(l_HIO.field_0x4);
     }
     if (heap != NULL) {
-        mpMorfSO->stopZelAnime();
+        mAnm_pSO->stopZelAnime();
     }
     return 1;
 }
@@ -733,8 +733,8 @@ void daObjKAM_c::setBaseMtx() {
     mDoMtx_stack_c::scaleM(scale);
 
     MtxP mtx = mDoMtx_stack_c::get();
-    mpMorfSO->getModel()->setBaseTRMtx(mtx);
-    mpMorfSO->modelCalc();
+    mAnm_pSO->getModel()->setBaseTRMtx(mtx);
+    mAnm_pSO->modelCalc();
 }
 
 /* 80C377F4-80C378D4 002754 00E0+00 1/0 0/0 0/0 .text            daObjKAM_Draw__FP10daObjKAM_c */
@@ -913,7 +913,7 @@ int daObjKAM_c::create() {
         mObjAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                      fopAcM_GetSpeed_p(this), NULL, NULL);
 
-        fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_pSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);
         mCreatureSound.init(&current.pos, &eyePos, 3, 1);

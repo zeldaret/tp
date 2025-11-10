@@ -228,8 +228,8 @@ daNpc_Uri_c::cutFunc daNpc_Uri_c::mCutList[7] = {
 
 /* 80B267AC-80B268F8 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__11daNpc_Uri_cFv */
 daNpc_Uri_c::~daNpc_Uri_c() {
-    if (mpMorf[0] != 0) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != 0) {
+        mAnm_p[0]->stopZelAnime();
     }
     deleteRes(l_loadResPtrnList[mType], (char const**)l_resNameList);
 }
@@ -256,8 +256,8 @@ int daNpc_Uri_c::create() {
         if (!fopAcM_entrySolidHeap(this, createHeapCallBack, heapSize[mType])) {
             return cPhs_ERROR_e;
         }
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         field_0x9c0.init(&mAcch, 0.0f, 0.0f);
@@ -295,13 +295,13 @@ int daNpc_Uri_c::CreateHeap() {
         return 1;
     }
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
                                      0x11020284);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
 
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
@@ -352,7 +352,7 @@ int daNpc_Uri_c::Execute() {
 /* 80B270E0-80B27174 000A20 0094+00 1/1 0/0 0/0 .text            Draw__11daNpc_Uri_cFv */
 int daNpc_Uri_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -524,9 +524,9 @@ void daNpc_Uri_c::afterJntAnm(int param_1) {
 
     if (0.0f < field_0x1004) {
         if (param_1 == 18) {
-            mpMorf[0]->onMorfNone();
+            mAnm_p[0]->onMorfNone();
         } else if (param_1 == 28) {
-            mpMorf[0]->offMorfNone();
+            mAnm_p[0]->offMorfNone();
         }
     }
 }
@@ -755,7 +755,7 @@ void daNpc_Uri_c::setAttnPos() {
     mStagger.calc(0);
 
     f32 dVar6 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    mJntAnm.setParam(this, mpMorf[0]->getModel(), &acStack_3c, getBackboneJointNo(),
+    mJntAnm.setParam(this, mAnm_p[0]->getModel(), &acStack_3c, getBackboneJointNo(),
                      getNeckJointNo(), getHeadJointNo(), mpHIO->m.common.body_angleX_min,
                      mpHIO->m.common.body_angleX_max, mpHIO->m.common.body_angleY_min,
                      mpHIO->m.common.body_angleY_max, mpHIO->m.common.head_angleX_min,
@@ -765,7 +765,7 @@ void daNpc_Uri_c::setAttnPos() {
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar6);
 
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&acStack_3c, &eyePos);
 
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
@@ -858,7 +858,7 @@ void daNpc_Uri_c::drawOtherMdl() {
     static int const jointNo[1] = {12};
 
     Mtx mtx;
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
 
     for (int i = 0; i < 1; i++) {
         if (mpModel[i] != NULL && i == 0 && field_0x1008 != 0) {
@@ -1459,7 +1459,7 @@ int daNpc_Uri_c::krun(void* param_0) {
             } else {
                 J3DAnmTransform* anm_transform = getTrnsfrmAnmP(
                     l_resNameList[l_motionAnmData[15].mBckArcIdx], l_motionAnmData[15].mBckFileIdx);
-                if (anm_transform == mpMorf[0]->getAnm() && mpMorf[0]->checkFrame(14.0f)) {
+                if (anm_transform == mAnm_p[0]->getAnm() && mAnm_p[0]->checkFrame(14.0f)) {
                     mSound.startCreatureVoice(Z2SE_M036_URI_01, -1);
                 }
                 iVar7 = cLib_calcTimer(&field_0xfec);
@@ -1723,7 +1723,7 @@ int daNpc_Uri_c::walk(void* param_0) {
                         cLib_chaseF(&field_0x1004, 0.0f, 1.0f);
                     }
                     if (field_0xfec == 0) {
-                        if (bVar11 || mpMorf[0]->isLoop()) {
+                        if (bVar11 || mAnm_p[0]->isLoop()) {
                             field_0xfec = cLib_getRndValue((f32)uVar2 * 0.5f, (f32)uVar2 * 1.5f);
                             field_0x1004 = mMorfFrames;
                             if (mMotionSeqMngr.getNo() == 28) {

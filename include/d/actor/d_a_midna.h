@@ -336,7 +336,7 @@ public:
     }
 
     bool checkShadowReturnEnd() const {
-        return mBckHeap[0].getIdx() == 0x21C && mpMorf->isStop();
+        return mBckHeap[0].getIdx() == 0x21C && mAnm_p->isStop();
     }
 
     bool checkShadowModeTalkWait() const {
@@ -400,7 +400,7 @@ private:
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ J3DModel* mpShadowModel;
-    /* 0x578 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x578 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x57C */ daMidna_McaMorfCB1_c mMorfCB;
     /* 0x584 */ mDoExt_bckAnm mUpperBck;
     /* 0x5A0 */ mDoExt_bckAnm mFaceBck;

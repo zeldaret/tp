@@ -94,7 +94,7 @@ void daBd_HIO_c::genMessage(JORMContext* mctx) {
 
 /* 804D6CA4-804D6D54 000144 00B0+00 8/8 0/0 0/0 .text            anm_init__FP8bd_classifUcf */
 static void anm_init(bd_class* i_this, int i_anmID, f32 i_morf, u8 i_attr, f32 i_speed) {
-    i_this->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Bd", i_anmID), i_attr, i_morf,
+    i_this->mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Bd", i_anmID), i_attr, i_morf,
                            i_speed, 0.0f, -1.0f, NULL);
     i_this->mAnmID = i_anmID;
 }
@@ -103,11 +103,11 @@ static void anm_init(bd_class* i_this, int i_anmID, f32 i_morf, u8 i_attr, f32 i
 static int daBd_Draw(bd_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
 
-    J3DModel* mpModel = i_this->mpMorf->getModel();
+    J3DModel* mpModel = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &a_this->tevStr);
     i_this->mpBtk->entry(mpModel->getModelData());
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
     return 1;
 }
 
@@ -380,7 +380,7 @@ static void bd_ground(bd_class* i_this) {
     case 4:
         speed = l_HIO.mGroundSpeed;
         cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetAngleY, 4, TREG_S(0) + 0x1000);
-        if (i_this->field_0x64C[0] == 0 && !((int)i_this->mpMorf->getFrame() > 1)) {
+        if (i_this->field_0x64C[0] == 0 && !((int)i_this->mAnm_p->getFrame() > 1)) {
             i_this->field_0x61C = 1;
         } else if ((i_this->field_0x64C[2] == 0) && (i_this->mBgc.ChkWallHit() != 0)) {
             turn_set(i_this);
@@ -934,15 +934,15 @@ static int daBd_Execute(bd_class* i_this) {
     mDoMtx_stack_c::XrotM(a_this->shape_angle.x);
     mDoMtx_stack_c::ZrotM(a_this->shape_angle.z);
     mDoMtx_stack_c::scaleM(l_HIO.mBasicSize, l_HIO.mBasicSize, l_HIO.mBasicSize);
-    J3DModel* model_p = i_this->mpMorf->getModel();
+    J3DModel* model_p = i_this->mAnm_p->getModel();
     model_p->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpMorf->play(&a_this->eyePos, 0, 0);
+    i_this->mAnm_p->play(&a_this->eyePos, 0, 0);
     if (i_this->mAnmID == ANM_FLY && i_this->mChirpDist != 0) {
         i_this->mChirpDist--;
         i_this->mSound.startLevelSound(Z2SE_BIRD_FLYING, 0, -1);
     }
     i_this->mpBtk->setFrame((f32)(int)i_this->field_0x5EC);
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
     a_this->eyePos = a_this->current.pos;
     a_this->eyePos.y += 20.0f;
     a_this->attention_info.position = a_this->eyePos;
@@ -988,10 +988,10 @@ static int daBd_Delete(bd_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     bd_class* a_this = (bd_class*)i_this;
 
-    a_this->mpMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Bd", 0xE), NULL, NULL,
+    a_this->mAnm_p= new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Bd", 0xE), NULL, NULL,
                                         (J3DAnmTransform*)dComIfG_getObjectRes("Bd", 8), 0, 1.0f, 0,
                                         -1, 1, NULL, 0x80000, 0x11000284);
-    if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
+    if (a_this->mAnm_p== NULL || a_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -999,7 +999,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     if (a_this->mpBtk == NULL) {
         return 0;
     }
-    if (a_this->mpBtk->init(a_this->mpMorf->getModel()->getModelData(),
+    if (a_this->mpBtk->init(a_this->mAnm_p->getModel()->getModelData(),
                             (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Bd", 0x11), 1, 0, 1.0f, 0,
                             -1) == 0)
     {
@@ -1039,7 +1039,7 @@ static int daBd_Create(fopAc_ac_c* i_act_this) {
             l_HIOInit = 1;
             l_HIO.id = mDoHIO_CREATE_CHILD("小鳥", (JORReflexible*)&l_HIO);
         }
-        fopAcM_SetMtx(i_act_this, i_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_act_this, i_this->mAnm_p->getModel()->getBaseTRMtx());
         i_this->mBgc.Set(fopAcM_GetPosition_p(i_act_this), fopAcM_GetOldPosition_p(i_act_this),
                          i_act_this, 1, &i_this->mAcchCir, fopAcM_GetSpeed_p(i_act_this), NULL,
                          NULL);

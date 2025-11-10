@@ -163,7 +163,7 @@ int daE_OC_c::JointCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 8072C734-8072C918 000254 01E4+00 1/1 0/0 0/0 .text            draw__8daE_OC_cFv */
 int daE_OC_c::draw() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     if (mHide) {
@@ -180,7 +180,7 @@ int daE_OC_c::draw() {
         }
     }
 
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
     cXyz shadow_pos;
     shadow_pos.set(current.pos.x, 100.0f + current.pos.y, current.pos.z);
     mShadowKey = dComIfGd_setShadow(mShadowKey, 1, model, &shadow_pos, 1000.0f, 0.0f,
@@ -814,13 +814,13 @@ void daE_OC_c::damage_check() {
 
 /* 8072E274-8072E31C 001D94 00A8+00 17/17 0/0 0/0 .text            setBck__8daE_OC_cFiUcff */
 void daE_OC_c::setBck(int i_index, u8 i_attr, f32 i_morf, f32 i_rate) {
-    mpMorf->setAnm((J3DAnmTransform *) dComIfG_getObjectRes("E_ocb", i_index),
+    mAnm_p->setAnm((J3DAnmTransform *) dComIfG_getObjectRes("E_ocb", i_index),
                     i_attr, i_morf, i_rate, 0.0f, -1.0f);
 }
 
 /* 8072E31C-8072E37C 001E3C 0060+00 11/11 0/0 0/0 .text            checkBck__8daE_OC_cFi */
 bool daE_OC_c::checkBck(int i_index) {
-    if (mpMorf->getAnm() != dComIfG_getObjectRes("E_ocb", i_index)) {
+    if (mAnm_p->getAnm() != dComIfG_getObjectRes("E_ocb", i_index)) {
         return false;
     } else {
         return true;
@@ -829,7 +829,7 @@ bool daE_OC_c::checkBck(int i_index) {
 
 /* 8072E37C-8072E42C 001E9C 00B0+00 3/3 0/0 0/0 .text            setSpitEffect__8daE_OC_cFv */
 void daE_OC_c::setSpitEffect() {
-    MtxP my_mtx_p = mpMorf->getModel()->getAnmMtx(0x11);
+    MtxP my_mtx_p = mAnm_p->getModel()->getAnmMtx(0x11);
     cXyz my_vec(my_mtx_p[0][3], my_mtx_p[1][3], my_mtx_p[2][3]);
     mParticleKeys[0] = dComIfGp_particle_set(mParticleKeys[0], dPa_RM(ID_ZM_S_ORCSPIT00),
                                              &my_vec, &tevStr, &shape_angle, NULL,
@@ -840,9 +840,9 @@ void daE_OC_c::setSpitEffect() {
 s16 daE_OC_c::getHeadAngle() {
     cXyz my_vec_0;
     cXyz my_vec_1;
-    MtxP my_mtx_p = mpMorf->getModel()->getAnmMtx(0x11);
+    MtxP my_mtx_p = mAnm_p->getModel()->getAnmMtx(0x11);
     my_vec_0.set(my_mtx_p[0][3], my_mtx_p[1][3], my_mtx_p[2][3]);
-    my_mtx_p = mpMorf->getModel()->getAnmMtx(0x13);
+    my_mtx_p = mAnm_p->getModel()->getAnmMtx(0x13);
     my_vec_1.set(my_mtx_p[0][3], my_mtx_p[1][3], my_mtx_p[2][3]);
     return (s16)cLib_targetAngleY(&my_vec_0, &my_vec_1);
 }
@@ -851,7 +851,7 @@ s16 daE_OC_c::getHeadAngle() {
 void daE_OC_c::setStabPos() {
     cXyz my_vec_0;
     cXyz my_vec_1;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x1));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0x1));
     my_vec_1.set(-10.0f, 0.0f, 0.0f);
     mDoMtx_stack_c::multVec(&my_vec_1, &my_vec_0);
     setDownPos(&my_vec_0);
@@ -859,7 +859,7 @@ void daE_OC_c::setStabPos() {
 
 /* 8072E528-8072E5A4 002048 007C+00 1/1 0/0 0/0 .text            setWaitSound__8daE_OC_cFv */
 void daE_OC_c::setWaitSound() {
-    if (checkBck(0x1b) && mpMorf->checkFrame(0.0f)) {
+    if (checkBck(0x1b) && mAnm_p->checkFrame(0.0f)) {
         mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT, -1);
     }
 }
@@ -867,9 +867,9 @@ void daE_OC_c::setWaitSound() {
 /* 8072E5A4-8072E670 0020C4 00CC+00 1/1 0/0 0/0 .text            setWalkSound__8daE_OC_cFv */
 void daE_OC_c::setWalkSound() {
     if (checkBck(0x1d)) {
-        if (mpMorf->checkFrame(14.0f)) {
+        if (mAnm_p->checkFrame(14.0f)) {
             mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_L, 0, -1);
-        } else if (mpMorf->checkFrame(30.0f)) {
+        } else if (mAnm_p->checkFrame(30.0f)) {
             mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_R, 0, -1);
         }
     }
@@ -878,11 +878,11 @@ void daE_OC_c::setWalkSound() {
 /* 8072E670-8072E788 002190 0118+00 1/1 0/0 0/0 .text            setWalkStSound__8daE_OC_cFv */
 void daE_OC_c::setWalkStSound() {
     if (checkBck(0x1e)) {
-        if (mpMorf->checkFrame(0.0f)) {
+        if (mAnm_p->checkFrame(0.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_OC_V_WALK_ST, -1);
-        } else if (mpMorf->checkFrame(1.0f)) {
+        } else if (mAnm_p->checkFrame(1.0f)) {
             mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_L, 0, -1);
-        } else if (mpMorf->checkFrame(9.0f)) {
+        } else if (mAnm_p->checkFrame(9.0f)) {
             mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_R, 0, -1);
         }
     }
@@ -891,11 +891,11 @@ void daE_OC_c::setWalkStSound() {
 /* 8072E788-8072E910 0022A8 0188+00 1/1 0/0 0/0 .text            setDashSound__8daE_OC_cFv */
 void daE_OC_c::setDashSound() {
     if (checkBck(0xb)) {
-        if (mpMorf->checkFrame(0.0f)) {
+        if (mAnm_p->checkFrame(0.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_OC_V_DASH, -1);
-        } else if (mpMorf->checkFrame(1.0f)) {
+        } else if (mAnm_p->checkFrame(1.0f)) {
             mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_L, 0, -1);
-        } else if (mpMorf->checkFrame(8.5f)) {
+        } else if (mAnm_p->checkFrame(8.5f)) {
             mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_R, 0, -1);
         }
         if (mName == "E_OC") {
@@ -909,11 +909,11 @@ void daE_OC_c::setDashSound() {
 /* 8072E910-8072EA58 002430 0148+00 1/1 0/0 0/0 .text            setWaitStSound__8daE_OC_cFv */
 void daE_OC_c::setWaitStSound() {
     if (checkBck(0x1c)) {
-        if (mpMorf->checkFrame(0.0f)) {
+        if (mAnm_p->checkFrame(0.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
-        } else if (mpMorf->checkFrame(6.5f) || mpMorf->checkFrame(20.0f)) {
+        } else if (mAnm_p->checkFrame(6.5f) || mAnm_p->checkFrame(20.0f)) {
             mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_L, 0, -1);
-        } else if (mpMorf->checkFrame(13.0f) || mpMorf->checkFrame(28.5f)) {
+        } else if (mAnm_p->checkFrame(13.0f) || mAnm_p->checkFrame(28.5f)) {
             mSound.startCreatureSound(Z2SE_EN_OC_FOOTNOTE_R, 0, -1);
         }
     }
@@ -992,7 +992,7 @@ void daE_OC_c::executeWait() {
             if (searchPlayerShakeHead()) {
                 setActionMode(E_OC_ACTION_FIND, 1);
             } else {
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     setBck(0x1b, 2, 5.0f, 1.0f);
                     mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT, -1);
                     if (field_0x6b4 == 0) {
@@ -1147,7 +1147,7 @@ void daE_OC_c::executeTalk() {
             }
             break;
         case 3:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 mOcState = 1;
             }
             break;
@@ -1285,7 +1285,7 @@ void daE_OC_c::executeFind() {
                         }
 
                         if (speedF < 0.0f) {
-                            if (checkBck(0x1c) == 0 || mpMorf->getPlaySpeed() != 1.0f) {
+                            if (checkBck(0x1c) == 0 || mAnm_p->getPlaySpeed() != 1.0f) {
                                 setBck(0x1c, 2, 5.0f, 1.0f);
                                 mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                             }
@@ -1295,7 +1295,7 @@ void daE_OC_c::executeFind() {
                                 mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                             }
                         } else {
-                            if (checkBck(0x1e) == 0 || mpMorf->getPlaySpeed() != 1.3f) {
+                            if (checkBck(0x1e) == 0 || mAnm_p->getPlaySpeed() != 1.3f) {
                                 setBck(0x1e, 2, 5.0f, 1.3f);
                                 mSound.startCreatureVoice(Z2SE_EN_OC_V_WALK_ST, -1);
                             }
@@ -1314,7 +1314,7 @@ void daE_OC_c::executeFind() {
                     }
 
                     if (speedF < 0.0f) {
-                        if (checkBck(0x1e) == 0 || mpMorf->getPlaySpeed() != -1.0f) {
+                        if (checkBck(0x1e) == 0 || mAnm_p->getPlaySpeed() != -1.0f) {
                             setBck(0x1e, 2, 5.0f, -1.0f);
                             mSound.startCreatureVoice(Z2SE_EN_OC_V_WALK_ST, -1);
                         }
@@ -1324,7 +1324,7 @@ void daE_OC_c::executeFind() {
                             mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                         }
                     } else {
-                        if (checkBck(0x1e) == 0 || mpMorf->getPlaySpeed() != 1.3f) {
+                        if (checkBck(0x1e) == 0 || mAnm_p->getPlaySpeed() != 1.3f) {
                             setBck(0x1e, 2, 5.0f, 1.3f);
                             mSound.startCreatureVoice(Z2SE_EN_OC_V_WALK_ST, -1);
                         }
@@ -1362,7 +1362,7 @@ void daE_OC_c::executeFind() {
             case 6:
                 mBattleOn = true;
                 mPrevShapeAngle = shape_angle.y;
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     mOcState = 0;
                 }
 
@@ -1370,7 +1370,7 @@ void daE_OC_c::executeFind() {
                     mOcState = 0;
                 }
 
-                if (mpMorf->getFrame() >= 20.0f && searchPlayerShakeHead()) {
+                if (mAnm_p->getFrame() >= 20.0f && searchPlayerShakeHead()) {
                     mOcState = 0;
                 }
 
@@ -1385,11 +1385,11 @@ void daE_OC_c::executeFind() {
  */
 void daE_OC_c::setWeaponGroundAngle() {
     s16 my_val = 0;
-    if (checkBck(5) && mpMorf->getFrame() >= 30.0f && mpMorf->getFrame() <= 45.0f) {
+    if (checkBck(5) && mAnm_p->getFrame() >= 30.0f && mAnm_p->getFrame() <= 45.0f) {
         dBgS_GndChk gnd_chk;
         cXyz my_vec_0;
         cXyz my_vec_1;
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0xc));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0xc));
         mDoMtx_stack_c::multVecZero(&my_vec_0);
         my_vec_0.y += 100.0f;
         mDoMtx_stack_c::transM(0.0f,0.0f,100.0f);
@@ -1419,7 +1419,7 @@ void daE_OC_c::setWeaponGroundAngle() {
 /* 807305C0-80730DC0 0040E0 0800+00 1/1 0/0 0/0 .text            executeAttack__8daE_OC_cFv */
 void daE_OC_c::executeAttack() {
     f32 my_float = 0.0f;
-    int frame_ctrl = (mpMorf->getFrame() - 9.0f);
+    int frame_ctrl = (mAnm_p->getFrame() - 9.0f);
     if (frame_ctrl >= 0) {
         if (frame_ctrl >= 9) {
             frame_ctrl = 9;
@@ -1454,7 +1454,7 @@ void daE_OC_c::executeAttack() {
         }
 
         case 2: {
-            MtxP my_mtx_p = mpMorf->getModel()->getAnmMtx(0);
+            MtxP my_mtx_p = mAnm_p->getModel()->getAnmMtx(0);
             cXyz my_vec_0(my_mtx_p[0][3], my_mtx_p[1][3], my_mtx_p[2][3]);
             mParticleKeys[0] = dComIfGp_particle_set(mParticleKeys[0], dPa_RM(ID_ZM_S_ORCATTACKBLUR00),
                                                      &my_vec_0, &tevStr,
@@ -1468,11 +1468,11 @@ void daE_OC_c::executeAttack() {
         // fallthrough intentional
         case 1: {
             if (mOcState == 1) {
-                if (mpMorf->checkFrame(10.0f)) {
+                if (mAnm_p->checkFrame(10.0f)) {
                     mSound.startCreatureVoice(Z2SE_EN_OC_V_ATTACK_B2, -1);
-                } else if (mpMorf->checkFrame(12.5f)) {
+                } else if (mAnm_p->checkFrame(12.5f)) {
                     mSound.startCreatureSound(Z2SE_EN_OC_ATTACK_B, 0, -1);
-                } else if (mpMorf->checkFrame(19.0f)) {
+                } else if (mAnm_p->checkFrame(19.0f)) {
                     if (mName == "E_OC") {
                         mSound.startCreatureSound(Z2SE_EN_OC_CLUB_HIT, 0, -1);
                     } else {
@@ -1480,19 +1480,19 @@ void daE_OC_c::executeAttack() {
                     }
                 }
             } else {
-                if (mpMorf->checkFrame(7.0f)) {
+                if (mAnm_p->checkFrame(7.0f)) {
                     mSound.startCreatureVoice(Z2SE_EN_OC_V_ATTACK_C2, -1);
-                } else if (mpMorf->checkFrame(11.5f)) {
+                } else if (mAnm_p->checkFrame(11.5f)) {
                     mSound.startCreatureSound(Z2SE_EN_OC_ATTACK_C, 0, -1);
                 }
             }
 
-            if (mpMorf->getFrame() >= 14.0f && mpMorf->getFrame() <= 22.0f) {
+            if (mAnm_p->getFrame() >= 14.0f && mAnm_p->getFrame() <= 22.0f) {
                 mSphs_at[0].OnAtSetBit();
                 mSphs_at[1].OnAtSetBit();
             }
 
-            if (mpMorf->getFrame() >= 22.0f) {
+            if (mAnm_p->getFrame() >= 22.0f) {
                 mPrevShapeAngle = fopAcM_searchPlayerAngleY(this);
             }
 
@@ -1513,7 +1513,7 @@ void daE_OC_c::executeAttack() {
             }
 
             if (my_bool && daPy_getPlayerActorClass()->checkPlayerGuard()) {
-                mpMorf->setPlaySpeed(-1.0);
+                mAnm_p->setPlaySpeed(-1.0);
                 mOcState = 3;
                 dComIfGp_getVibration().StartShock(3, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
             }
@@ -1521,7 +1521,7 @@ void daE_OC_c::executeAttack() {
             current.pos.x += (my_float - field_0x6a0) * cM_ssin(shape_angle.y);
             current.pos.z += (my_float - field_0x6a0) * cM_scos(shape_angle.y);
             field_0x6a0 = my_float;
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setBck(0x1c, 2, 0.0f, 1.0f);
                 mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                 if (field_0x6e3) {
@@ -1540,7 +1540,7 @@ void daE_OC_c::executeAttack() {
             current.pos.x += (my_float - field_0x6a0) * cM_ssin(shape_angle.y);
             current.pos.z += (my_float - field_0x6a0) * cM_scos(shape_angle.y);
             field_0x6a0 = my_float;
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setBck(0x1c, 2, 5.0f, 1.0f);
                 mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
                 if (field_0x6e3) {
@@ -1609,7 +1609,7 @@ void daE_OC_c::executeDamage() {
             if (speedF) {
                 fopAcM_effSmokeSet2(&field_0xe60, &field_0xe64, &current.pos, NULL, 2.0f, &tevStr);
             }
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 if (daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_HEAD_JUMP) {
                     offHeadLockFlg();
                     if (field_0x6e3) {
@@ -1622,7 +1622,7 @@ void daE_OC_c::executeDamage() {
             break;
         case 6:
             setSpitEffect();
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 if (field_0x6e3) {
                     setActionMode(E_OC_ACTION_MOVE_OUT, 0);
                 } else {
@@ -1694,7 +1694,7 @@ void daE_OC_c::executeBigDamage() {
                 setBck(0x14, 0, 0.0f, 1.0f);
                 mSound.startCreatureSound(Z2SE_CM_BODYFALL_M, 0, -1);
                 if (field_0x6dc) {
-                    mpMorf->setFrame(5.0f);
+                    mAnm_p->setFrame(5.0f);
                     mSound.startCreatureSound(Z2SE_EN_OC_LEAP_B, 0, -1);
                 }
                 mOcState = 4;
@@ -1703,10 +1703,10 @@ void daE_OC_c::executeBigDamage() {
             break;
         case 4:
             setGroundAngle();
-            if (mpMorf->checkFrame(15.0f)) {
+            if (mAnm_p->checkFrame(15.0f)) {
                 mSound.startCreatureSound(Z2SE_CM_BODYFALL_M, 0, -1);
             }
-            if (field_0x6dc == 0 && mpMorf->checkFrame(5.0f)) {
+            if (field_0x6dc == 0 && mAnm_p->checkFrame(5.0f)) {
                 mSound.startCreatureSound(Z2SE_EN_OC_LEAP_B, 0, -1);
             }
             checkDamageBg();
@@ -1714,7 +1714,7 @@ void daE_OC_c::executeBigDamage() {
                 speedF = 0.0f;
             }
             cLib_chaseF(&speedF, 0.0f, 1.0f);
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 if (health < 1) {
                     setActionMode(E_OC_ACTION_DEATH, 0);
                     offTgSph();
@@ -1749,7 +1749,7 @@ void daE_OC_c::executeBigDamage() {
         case 6:
             cLib_chaseAngleS(&field_0x688.x, 0, 0x400);
             cLib_chaseAngleS(&field_0x688.z, 0, 0x400);
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setActionMode(E_OC_ACTION_FIND, 5);
             }
         default:
@@ -1801,7 +1801,7 @@ void daE_OC_c::executeWatch() {
             break;
         case 4:
             mPrevShapeAngle = fopAcM_searchPlayerAngleY(this);
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setActionMode(E_OC_ACTION_FIND, 2);
             }
             break;
@@ -1851,7 +1851,7 @@ void daE_OC_c::executeSoundWatch() {
             }
             break;
         case 3:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setActionMode(E_OC_ACTION_WAIT, 0);
             }
             break;
@@ -1891,7 +1891,7 @@ void daE_OC_c::executeDeath() {
             break;
         case 3:
             setSpitEffect();
-            if (mpMorf->checkFrame(28.5f)) {
+            if (mAnm_p->checkFrame(28.5f)) {
                 mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
             }
         case 2:
@@ -1953,9 +1953,9 @@ void daE_OC_c::executeWaterDeath() {
             cLib_chaseF(&speed.y, 5.0f, 3.0f);
             cLib_chaseAngleS(&shape_angle.x, 0, 0x800);
 
-            if (mpMorf->checkFrame(24.0f) ||
-                mpMorf->checkFrame(37.0f) ||
-                mpMorf->checkFrame(49.0f)) {
+            if (mAnm_p->checkFrame(24.0f) ||
+                mAnm_p->checkFrame(37.0f) ||
+                mAnm_p->checkFrame(49.0f)) {
                 setWaterEffect();
             }
 
@@ -1966,13 +1966,13 @@ void daE_OC_c::executeWaterDeath() {
             }
             break;
         case 2:
-            if (mpMorf->checkFrame(24.0f) ||
-                mpMorf->checkFrame(37.0f) ||
-                mpMorf->checkFrame(49.0f)) {
+            if (mAnm_p->checkFrame(24.0f) ||
+                mAnm_p->checkFrame(37.0f) ||
+                mAnm_p->checkFrame(49.0f)) {
                 setWaterEffect();
             }
 
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 if (mName == "E_OC") {
                     fopAcM_createDisappear(this, &current.pos, 10, 0, 4);
                 } else {
@@ -2033,18 +2033,18 @@ void daE_OC_c::executeDemoMaster() {
         case 5:
             cLib_addCalc2(&field_0x704, 13.0f, 0.2f, 2.0f);
             if (mOcState == 4) {
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     setBck(4, 0, 5.0f, 1.0f);
                     mSound.startCreatureVoice(Z2SE_EN_OC_V_ANGRY_B, -1);
                     mOcState = 5;
                 }
             } else {
-                if (mpMorf->checkFrame(9.0f)) {
+                if (mAnm_p->checkFrame(9.0f)) {
                     mSound.startCreatureSound(Z2SE_EN_OC_ATTACK_C, 0, -1);
                 }
 
                 cLib_chaseAngleS(&field_0x6bc, fopAcM_searchPlayerAngleY(this) + 0x8000, 0x200);
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     mOcState = 6;
                     setBck(0x10, 0, 5.0f, 1.0f);
                     mSound.startCreatureVoice(Z2SE_EN_OC_V_JUMP, -1);
@@ -2061,7 +2061,7 @@ void daE_OC_c::executeDemoMaster() {
                 cLib_addCalc2(&field_0x6f8.y, current.pos.y + 100.0f, 0.2f, 10.0f);
             }
 
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setBck(0x11, 0, 5.0f, 1.0f);
             }
 
@@ -2095,11 +2095,11 @@ void daE_OC_c::executeDemoMaster() {
         case 8:
             field_0x704 = 47.0f;
             cLib_addCalc2(&field_0x6f8.y, my_vec_0.y + 2950.0f, 0.1f, 10.0f);
-            if (mpMorf->checkFrame(34.0f)) {
+            if (mAnm_p->checkFrame(34.0f)) {
                 mSound.startCreatureVoice(Z2SE_EN_OC_V_FIND, -1);
             }
 
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 field_0x6c8 = 30;
                 setActionMode(E_OC_ACTION_FIND, 0);
                 Z2GetAudioMgr()->onEnemyDamage();
@@ -2138,7 +2138,7 @@ void daE_OC_c::executeDemoChild() {
                 }
                 break;
             case 5:
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     setBck(0x10, 0, 5.0f, 1.0f);
                     mSound.startCreatureVoice(Z2SE_EN_OC_V_JUMP, -1);
                     mOcState = 6;
@@ -2147,7 +2147,7 @@ void daE_OC_c::executeDemoChild() {
                 }
                 break;
             case 6:
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     setBck(0x11, 0, 5.0f, 1.0f);
                 }
                 if (mpParent->mOcState == 7) {
@@ -2167,10 +2167,10 @@ void daE_OC_c::executeDemoChild() {
                 }
                 break;
             case 8:
-                if (mpMorf->checkFrame(34.0f)) {
+                if (mAnm_p->checkFrame(34.0f)) {
                     mSound.startCreatureVoice(Z2SE_EN_OC_V_FIND, -1);
                 }
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     setActionMode(E_OC_ACTION_FIND, 0);
                 }
                 break;
@@ -2267,7 +2267,7 @@ void daE_OC_c::executeFall() {
             }
             break;
         case 2:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setActionMode(E_OC_ACTION_FIND, 0);
             }
             break;
@@ -2569,7 +2569,7 @@ void daE_OC_c::action() {
     head_lock_pos.y += 300.0f + NREG_F(7);
     setHeadLockPos(&head_lock_pos);
     setWeaponGroundAngle();
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
 /* 807345D8-80734698 0080F8 00C0+00 1/1 0/0 0/0 .text            mtx_set__8daE_OC_cFv */
@@ -2579,9 +2579,9 @@ void daE_OC_c::mtx_set() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::YrotM(field_0x6d8);
     mDoMtx_stack_c::scaleM(l_HIO.basic_size, l_HIO.basic_size, l_HIO.basic_size);
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
     if (mpModel) {
         mpModel->setBaseTRMtx(model->getAnmMtx(0xc));
     }
@@ -2591,7 +2591,7 @@ void daE_OC_c::mtx_set() {
 void daE_OC_c::cc_set() {
     cXyz my_vec_lhs;
     cXyz my_vec_rhs;
-    J3DModel *model = mpMorf->getModel();
+    J3DModel *model = mAnm_p->getModel();
     mDoMtx_stack_c::copy(model->getAnmMtx(0x11));
     my_vec_lhs.set(10.0f, 0.0f, 0.0f);
     mDoMtx_stack_c::multVec(&my_vec_lhs, &eyePos);
@@ -2673,7 +2673,7 @@ int daE_OC_c::execute() {
     mtx_set();
     cc_set();
     cXyz my_vec_0;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x1));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0x1));
     mDoMtx_stack_c::multVecZero(&my_vec_0);
     cXyz my_vec_1(1.0f + nREG_F(3), 2.0f + nREG_F(4), 1.0f + nREG_F(5));
     setMidnaBindEffect(this, &mSound, &my_vec_0, &my_vec_1);
@@ -2716,15 +2716,15 @@ static void daE_OC_Delete(daE_OC_c* i_this) {
 int daE_OC_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes(mName, 0x3);
     JUT_ASSERT(3443, modelData != NULL);
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_ocb", 0x1b),
                                   0, 1.0f, 0, -1,
                                   &mSound, 0x80000, 0x11000084);
-    if (mpMorf == NULL || mpMorf->getModel() == 0) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == 0) {
         return 0;
     }
 
-    J3DModel* my_model = mpMorf->getModel();
+    J3DModel* my_model = mAnm_p->getModel();
     my_model->setUserArea((uintptr_t)this);
     for (u16 idx = 1; idx < my_model->getModelData()->getJointNum(); ++idx) {
         if (idx == 17 || idx == 12) {
@@ -2803,7 +2803,7 @@ cPhs__Step daE_OC_c::create() {
             }
 
             attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-            fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+            fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
             fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
             fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
             mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,

@@ -548,8 +548,8 @@ daNpc_Besu_c::cutFunc daNpc_Besu_c::mCutList[15] = {
 daNpc_Besu_c::~daNpc_Besu_c() {
     // "Destruct":
     OS_REPORT("|%06d:%x|daNpc_Besu_c -> デストラクト\n", g_Counter.mCounter0, this);
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     if (mpCupModelMorf != NULL) {
@@ -646,8 +646,8 @@ int daNpc_Besu_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData_p = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData_p = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -705,13 +705,13 @@ int daNpc_Besu_c::CreateHeap() {
     }
 
     u32 dbg_0x24 = 0x11020284;
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
                                      dbg_0x24);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    model = (J3DModel*)mpMorf[0]->getModel();
+    model = (J3DModel*)mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -789,7 +789,7 @@ int daNpc_Besu_c::Execute() {
 int daNpc_Besu_c::Draw() {
     daNpcT_MatAnm_c* matAnm = mpMatAnm[0];
     if (matAnm != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         J3DMaterial* material = modelData->getMaterialNodePointer(getEyeballMaterialNo());
         material->setMaterialAnm(matAnm);
     }
@@ -1371,14 +1371,14 @@ void daNpc_Besu_c::setAttnPos() {
     f32 rad_val = cM_s2rad(mCurAngle.y - field_0xd7e.y);
     if (chkNurse()) {
         mJntAnm.setParam(
-            this, mpMorf[0]->getModel(), &eyeOffset, getBackboneJointNo(), getNeckJointNo(),
+            this, mAnm_p[0]->getModel(), &eyeOffset, getBackboneJointNo(), getNeckJointNo(),
             getHeadJointNo(), daNpc_Besu_Param_c::m.common.body_angleX_min, 0.0f,
             0.0f, 0.0f, -10.0f, daNpc_Besu_Param_c::m.common.head_angleX_max,
             daNpc_Besu_Param_c::m.common.head_angleY_min, daNpc_Besu_Param_c::m.common.head_angleY_max,
             daNpc_Besu_Param_c::m.common.neck_rotation_ratio, 0.0f, NULL);
     } else {
         mJntAnm.setParam(
-            this, mpMorf[0]->getModel(), &eyeOffset, getBackboneJointNo(), getNeckJointNo(),
+            this, mAnm_p[0]->getModel(), &eyeOffset, getBackboneJointNo(), getNeckJointNo(),
             getHeadJointNo(), daNpc_Besu_Param_c::m.common.body_angleX_min, daNpc_Besu_Param_c::m.common.body_angleX_max,
             daNpc_Besu_Param_c::m.common.body_angleY_min, daNpc_Besu_Param_c::m.common.body_angleY_max,
             daNpc_Besu_Param_c::m.common.head_angleX_min, daNpc_Besu_Param_c::m.common.head_angleX_max,
@@ -1387,18 +1387,18 @@ void daNpc_Besu_c::setAttnPos() {
     }
 
     mJntAnm.calcJntRad(0.2f, 1.0f, rad_val);
-    mpMorf[0]->setPlaySpeed(daNpc_Besu_Param_c::m.field_0x8c);
+    mAnm_p[0]->setPlaySpeed(daNpc_Besu_Param_c::m.field_0x8c);
     setMtx();
     if (mpCupModelMorf != NULL) {
         mpCupModelMorf->play(0, 0);
         Mtx jointAnmMtx;
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(10));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(10));
         cMtx_copy(mDoMtx_stack_c::get(), jointAnmMtx);
         mpCupModelMorf->getModel()->setBaseTRMtx(jointAnmMtx);
         mpCupModelMorf->modelCalc();
     }
 
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
     if (&daNpc_Besu_c::nurse == mNextAction || &daNpc_Besu_c::giveHotWater == mNextAction) {
         mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
@@ -1413,11 +1413,11 @@ void daNpc_Besu_c::setAttnPos() {
 
     if (chkNurse()) {
         eyeOffset.set(84.0f, 130.0f, 75.0f);
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getBaseTRMtx());
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getBaseTRMtx());
         mDoMtx_stack_c::multVec(&eyeOffset, &attention_info.position);
     } else if (mType == 5) {
         eyeOffset.set(40.0f, 80.0f, 20.0f);
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getBaseTRMtx());
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getBaseTRMtx());
         mDoMtx_stack_c::multVec(&eyeOffset, &attention_info.position);
     } else {
         eyeOffset.set(0.0f, 0.0f, 0.0f);
@@ -1504,7 +1504,7 @@ int daNpc_Besu_c::drawDbgInfo() {
 
 /* 8053949C-805395F4 00273C 0158+00 1/0 0/0 0/0 .text            drawOtherMdl__12daNpc_Besu_cFv */
 void daNpc_Besu_c::drawOtherMdl() {
-    J3DModel* model_p = mpMorf[0]->getModel();
+    J3DModel* model_p = mAnm_p[0]->getModel();
     if (mpCupModelMorf != NULL) {
         g_env_light.setLightTevColorType_MAJI(mpCupModelMorf->getModel(), &tevStr);
         if (field_0x112e == 0) {

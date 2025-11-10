@@ -169,7 +169,7 @@ daNpc_grMC_c::~daNpc_grMC_c() {
     deleteObject();
 
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
 
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
@@ -245,8 +245,8 @@ cPhs__Step daNpc_grMC_c::create() {
 
         OS_REPORT("\n");
 
-        J3DModel* model = mpMorf[0]->getModel();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModel* model = mAnm_p[0]->getModel();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -280,17 +280,17 @@ int daNpc_grMC_c::CreateHeap() {
 
     JUT_ASSERT(701, NULL != mdlData_p);
 
-    mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
-    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
-        mpMorf[0]->stopZelAnime();
-        mpMorf[0] = NULL;
+    mAnm_p[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    if (mAnm_p[0] != NULL && mAnm_p[0]->getModel() == NULL) {
+        mAnm_p[0]->stopZelAnime();
+        mAnm_p[0] = NULL;
     }
 
-    if (mpMorf[0] == NULL) {
+    if (mAnm_p[0] == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -565,7 +565,7 @@ void daNpc_grMC_c::setAttnPos() {
     cXyz sp48(18.0f, 30.0f, 0.0f);
     
     mStagger.calc(FALSE);
-    mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp48, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+    mJntAnm.setParam(this, mAnm_p[0]->getModel(), &sp48, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
                      daNpc_grMC_Param_c::m.common.body_angleX_min, daNpc_grMC_Param_c::m.common.body_angleX_max,
                      daNpc_grMC_Param_c::m.common.body_angleY_min, daNpc_grMC_Param_c::m.common.body_angleY_max,
                      daNpc_grMC_Param_c::m.common.head_angleX_min, daNpc_grMC_Param_c::m.common.head_angleX_max,
@@ -573,13 +573,13 @@ void daNpc_grMC_c::setAttnPos() {
                      daNpc_grMC_Param_c::m.common.neck_rotation_ratio, 0.0f, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, cM_s2rad((s16)(mCurAngle.y - field_0xd7e.y)));
 
-    J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+    J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&sp48, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, FALSE, 1.0f, 0);

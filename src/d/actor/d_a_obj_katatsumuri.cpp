@@ -95,14 +95,14 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 int daObjKAT_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Kat", 9);
     JUT_ASSERT(0x136, modelData != NULL);
-    mpMorfSO =
+    mAnm_pSO =
         new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("Kat", 6),
                              2, 1.0f, 0, -1, &mCreatureSound, 0, 0x11000284);
-    if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
+    if (mAnm_pSO == NULL || mAnm_pSO->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL) {
         return 0;
@@ -271,7 +271,7 @@ void daObjKAT_c::MoveAction() {
             field_0x7d4 = cM_rndF(400.0f) + 400.0f;
         }
 
-        if (mpMorfSO->getFrame() > 50.0f + XREG_F(0)) {
+        if (mAnm_pSO->getFrame() > 50.0f + XREG_F(0)) {
             field_0x7d8 = 0.1f + yREG_F(0);
             speedF = 0.1f + yREG_F(0);
             s16 unused1 = current.angle.y;
@@ -595,7 +595,7 @@ int daObjKAT_c::Execute() {
         mAcch.CrrPos(dComIfG_Bgsp());
     }
 
-    mpMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_pSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     mpBrkAnm->play();
     mpBtkAnm->play();
 
@@ -653,7 +653,7 @@ int daObjKAT_c::Delete() {
         mDoHIO_DELETE_CHILD(l_HIO.field_0x4);
     }
     if (heap != NULL) {
-        mpMorfSO->stopZelAnime();
+        mAnm_pSO->stopZelAnime();
     }
     return 1;
 }
@@ -665,8 +665,8 @@ void daObjKAT_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
 
-    mpMorfSO->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorfSO->modelCalc();
+    mAnm_pSO->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_pSO->modelCalc();
 }
 
 /* 80C3B9A0-80C3BA8C 002120 00EC+00 1/0 0/0 0/0 .text            daObjKAT_Draw__FP10daObjKAT_c */
@@ -839,7 +839,7 @@ int daObjKAT_c::create() {
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &field_0xa24,
                   fopAcM_GetSpeed_p(this), NULL, NULL);
 
-        J3DModel* model = mpMorfSO->getModel();
+        J3DModel* model = mAnm_pSO->getModel();
         model->setUserArea((uintptr_t)this);
 
         for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
@@ -860,7 +860,7 @@ int daObjKAT_c::create() {
 
         field_0x7c8 = current.pos;
 
-        fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_pSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);
 

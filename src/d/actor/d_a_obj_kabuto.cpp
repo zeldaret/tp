@@ -68,13 +68,13 @@ int daObjKABUTO_c::CreateHeap() {
     } else {
         model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes("Kab_m", 11));
     }
-    mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(model_data, NULL, NULL,
                                   static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7)),
                                   2, 1.5f, 0, -1, &mCreatureSound, 0, 0x11000284);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL) {
@@ -132,7 +132,7 @@ void daObjKABUTO_c::ShopWaitAction() {
     case 0:
         speedF = 0.0f;
         J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
-        mpMorf->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
+        mAnm_p->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
         mMode++;
         mTimers[0] = cM_rndF(50.0f) + 50.0f;
         break;
@@ -164,7 +164,7 @@ void daObjKABUTO_c::WaitAction() {
     case 0:
         speedF = 0.0f;
         J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
-        mpMorf->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
+        mAnm_p->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
         mMode++;
         mTimers[0] = cM_rndF(50.0f) + 50.0f;
         break;
@@ -277,7 +277,7 @@ void daObjKABUTO_c::WalkAction() {
     switch (mMode) {
     case 0:
         anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
-        mpMorf->setAnm(anm, 2, 5.0f, 1.5f, 0.0f, -1.0f);
+        mAnm_p->setAnm(anm, 2, 5.0f, 1.5f, 0.0f, -1.0f);
         mTargetSpeedXZ = 0.2f;
         speed.y = 0.0f;
         mTargetSpeedY = 0.0f;
@@ -328,14 +328,14 @@ void daObjKABUTO_c::MoveAction() {
     switch (mMode) {
     case 0:
         anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 6));
-        mpMorf->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
+        mAnm_p->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
         mMode++;
         mTimers[0] = 20;
         break;
     
     case 1:
         if (mTimers[0] == 10) {
-            mpMorf->setPlaySpeed(1.0f);
+            mAnm_p->setPlaySpeed(1.0f);
         }
 
         if (mTimers[0] == 0) {
@@ -377,22 +377,22 @@ void daObjKABUTO_c::MoveAction() {
                 mTargetSpeedXZ = 0.0f;
                 speed.y = 0.0f;
                 mTargetSpeedY = 0.0f;
-                mpMorf->setPlaySpeed(0.0f);
+                mAnm_p->setPlaySpeed(0.0f);
                 mTargetAngleY = 0;
                 current.angle.y = mDownAngleY;
                 field_0x735 = true;
                 anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
-                mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+                mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
             } else if (field_0x735) {
                 field_0x735 = false;
                 mTargetSpeedY = 3.0f;
                 speed.y = 3.0f;
                 speedF = 8.0f;
                 mTargetSpeedXZ = 8.0f;
-                mpMorf->setPlaySpeed(1.0f);
+                mAnm_p->setPlaySpeed(1.0f);
                 mDownAngleY = 0;
                 anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 6));
-                mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+                mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
             }
         }
 
@@ -439,7 +439,7 @@ void daObjKABUTO_c::MoveAction() {
         break;
     }
 
-    if (mpMorf->getPlaySpeed() == 1.0f) {
+    if (mAnm_p->getPlaySpeed() == 1.0f) {
         mCreatureSound.startCreatureSoundLevel(Z2SE_INSCT_BTBT, 0, -1);
     }
 }
@@ -600,7 +600,7 @@ int daObjKABUTO_c::Execute() {
                     mMode = 2;
                     J3DAnmTransform* anm =
                         static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 6));
-                    mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+                    mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
                     speedF = 8.0f;
                     mTargetSpeedXZ = cM_rndF(5.0f) + 8.0f;
                     home.pos = current.pos;
@@ -632,7 +632,7 @@ int daObjKABUTO_c::Execute() {
     }
     mpBtkAnm->play();
     mpBrkAnm->play();
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setBaseMtx();
     return 1;
 }
@@ -655,7 +655,7 @@ void daObjKABUTO_c::ObjHit() {
             mMode = 2;
             mBoomerangHit = false;
             J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 6));
-            mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
             speedF = 8.0f;
             mTargetSpeedXZ = cM_rndF(5.0f) + 8.0f;
             mTimers[1] = cM_rndF(5.0f) + 5.0f;
@@ -671,7 +671,7 @@ int daObjKABUTO_c::Delete() {
         hioInit = false;
     }
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
     return 1;
 }
@@ -682,19 +682,19 @@ void daObjKABUTO_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(mWallAngle);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
 }
 
 int daObjKABUTO_c::Draw() {
     if (mDraw) {
         Z_BufferChk();
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
         mpBtkAnm->entry(model->getModelData());
         mpBrkAnm->entry(model->getModelData());
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
         if (mLocation == LOC_OUTSIDE) {
             dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 15.0f, mAcch.m_gnd, 0,
                                      l_HIO.field_0x10, dDlst_shadowControl_c::getSimpleTex());
@@ -857,7 +857,7 @@ cPhs__Step daObjKABUTO_c::create() {
             InitCcSph();
         }
         mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, NULL, NULL);
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);
 

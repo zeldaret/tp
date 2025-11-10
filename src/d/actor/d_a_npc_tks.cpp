@@ -222,7 +222,7 @@ daNpcTks_c::~daNpcTks_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 
     if (parentActorID != fpcM_ERROR_PROCESS_ID_e) {
@@ -319,7 +319,7 @@ cPhs__Step daNpcTks_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -80.0f, -30.0f, -80.0f, 80.0f, 10.0f, 80.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         mTksTsubo.mSound.init(&mTksTsubo.mPos, &mTksTsubo.mPos, 3, 1);
@@ -362,17 +362,17 @@ int daNpcTks_c::CreateHeap() {
 
     JUT_ASSERT(410, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p= new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -417,7 +417,7 @@ int daNpcTks_c::Execute() {
 
 /* 80B15430-80B1548C 000EF0 005C+00 1/1 0/0 0/0 .text            Draw__10daNpcTks_cFv */
 int daNpcTks_c::Draw() {
-    mpMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
+    mAnm_p->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
     draw(FALSE, FALSE, daNpcTks_Param_c::m.common.real_shadow_size, NULL, FALSE);
     return 1;
 }
@@ -428,11 +428,11 @@ int daNpcTks_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int i_jointList[3] = {JNT_NECK1, JNT_NECK2, JNT_HEAD};
 
     if (jntNo == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK2));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK2));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -451,8 +451,8 @@ int daNpcTks_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((jntNo == JNT_HEAD || jntNo == JNT_MOUTH) && (mAnmFlags & ANM_PLAY_BCK) != 0) {
         J3DAnmTransform* anm = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(anm);
+        mBckAnm.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(anm);
     }
 
     return 1;
@@ -479,7 +479,7 @@ int daNpcTks_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 
 /* 80B156BC-80B157C0 00117C 0104+00 1/0 0/0 0/0 .text            setMtx__10daNpcTks_cFv */
 void daNpcTks_c::setMtx() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
@@ -505,7 +505,7 @@ void daNpcTks_c::setMtx() {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
     }
 
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
 }
 
 /* 80B157C0-80B1590C 001280 014C+00 1/0 0/0 0/0 .text            setExpressionAnm__10daNpcTks_cFib */
@@ -561,7 +561,7 @@ bool daNpcTks_c::setExpressionBtp(int i_index) {
         return true;
     }
 
-    if (setBtpAnm(i_btp, mpMorf->getModel()->getModelData(), 1.0f, i_attr)) {
+    if (setBtpAnm(i_btp, mAnm_p->getModel()->getModelData(), 1.0f, i_attr)) {
         mAnmFlags |= ANM_PLAY_BTP | ANM_PAUSE_BTP;
 
         if (i_index == 0) {
@@ -853,7 +853,7 @@ void daNpcTks_c::playMotion() {
 /* 80B1CFD0-80B1D1FC 008A90 022C+00 1/1 0/0 0/0 .text            lookat__10daNpcTks_cFv */
 void daNpcTks_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     BOOL i_snap = FALSE;
     f32 body_angleX_min = daNpcTks_Param_c::m.common.body_angleX_min;
     f32 body_angleX_max = daNpcTks_Param_c::m.common.body_angleX_max;
@@ -1014,9 +1014,9 @@ void daNpcTks_c::setMotionAnm(int i_index, f32 i_morf) {
         mMotionLoops = 0;
 
         if (i_index == ANM_RUN) {
-            mpMorf->setPlaySpeed(speedF / daNpcTks_Param_c::m.walk_spd);
+            mAnm_p->setPlaySpeed(speedF / daNpcTks_Param_c::m.walk_spd);
         } else {
-            mpMorf->setPlaySpeed(1.0f);
+            mAnm_p->setPlaySpeed(1.0f);
         }
 
         if (field_0x138a) {
@@ -1044,7 +1044,7 @@ void daNpcTks_c::setMotionAnm(int i_index, f32 i_morf) {
     i_attr = l_btkGetParamList[0].attr;
 
     if (i_btk != NULL) {
-        if (setBtkAnm(i_btk, mpMorf->getModel()->getModelData(), 1.0f, i_attr)) {
+        if (setBtkAnm(i_btk, mAnm_p->getModel()->getModelData(), 1.0f, i_attr)) {
             mAnmFlags |= ANM_PLAY_BTK | ANM_PAUSE_BTK;
         }
     }
@@ -1310,7 +1310,7 @@ void daNpcTks_c::shake() {
             break;
         
         case 2:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setAction(&daNpcTks_c::hide);
             }
 
@@ -1339,7 +1339,7 @@ void daNpcTks_c::showUp() {
             break;
         
         case 2:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setAction(&daNpcTks_c::showUpWait);
             }
             break;
@@ -1421,7 +1421,7 @@ void daNpcTks_c::lookAroundA() {
             break;
         
         case 2:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setAction(&daNpcTks_c::showUpWait);
             }
 
@@ -1450,7 +1450,7 @@ void daNpcTks_c::lookAroundB() {
             break;
         
         case 2:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setAction(&daNpcTks_c::showUpWait);
             }
 
@@ -1479,7 +1479,7 @@ void daNpcTks_c::in() {
             break;
         
         case 2:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setAction(&daNpcTks_c::hide);
             }
             break;
@@ -1505,7 +1505,7 @@ void daNpcTks_c::damage() {
             break;
         
         case 2:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setAction(&daNpcTks_c::hide);
             }
 
@@ -1549,7 +1549,7 @@ void daNpcTks_c::broken() {
         case 2:
             if (mAcch.ChkGroundLanding()) {
                 setMotion(MOT_LAND, -1.0f, 0);
-            } else if (mAcch.ChkGroundHit() && mpMorf->isStop()) {
+            } else if (mAcch.ChkGroundHit() && mAnm_p->isStop()) {
                 setAction(&daNpcTks_c::waitNude);
             }
             break;
@@ -1655,7 +1655,7 @@ void daNpcTks_c::demo_appear() {
                             break;
 
                         case '0002':
-                            if (mpMorf->isStop()) {
+                            if (mAnm_p->isStop()) {
                                 eventManager.cutEnd(staffId);
                             }
                             break;
@@ -1761,7 +1761,7 @@ void daNpcTks_c::demo_scannon() {
 
                             case '0003':
                                 setMotion(MOT_JUMP_S, 0.0f, 0);
-                                mpMorf->setPlaySpeed(1.0f);
+                                mAnm_p->setPlaySpeed(1.0f);
                                 setAngle(0);
                                 speedF = 0.0f;
                                 speed.y = 0.0f;
@@ -1804,7 +1804,7 @@ void daNpcTks_c::demo_scannon() {
                         }
 
                         case '0003':
-                            if (mMotionPhase == 0 && mpMorf->checkFrame(9.0f)) {
+                            if (mMotionPhase == 0 && mAnm_p->checkFrame(9.0f)) {
                                 speedF = 25.0f;
                                 speed.y = 60.0f;
                                 mSound.startCreatureSound(Z2SE_TKS_V_JUMP_UP, 0, -1);
@@ -2031,7 +2031,7 @@ void daNpcTks_c::demo_farewell() {
                             cXyz* pos = dComIfGp_evmng_getMyXyzP(staffId, "pos");
 
                             if (mMotion == 4) {
-                                if (mMotionPhase == 0 && mpMorf->checkFrame(9.0f)) {
+                                if (mMotionPhase == 0 && mAnm_p->checkFrame(9.0f)) {
                                     speedF = 15.0f;
                                     speed.y = 60.0f;
                                     mSound.startCreatureSound(Z2SE_TKS_V_JUMP_UP, 0, -1);
@@ -2040,7 +2040,7 @@ void daNpcTks_c::demo_farewell() {
                                     speedF = 0.0f;
                                     speed.y = 0.0f;
                                 }
-                            } else if (mMotion == 5 && mpMorf->isStop()) {
+                            } else if (mMotion == 5 && mAnm_p->isStop()) {
                                 Z2GetAudioMgr()->subBgmStop();
                                 eventManager.cutEnd(staffId);
                             }
@@ -2161,7 +2161,7 @@ void daNpcTks_c::demo_warpBack() {
                             break;
 
                         case '0003':
-                            if (mMotionPhase == 0 && mpMorf->checkFrame(9.0f)) {
+                            if (mMotionPhase == 0 && mAnm_p->checkFrame(9.0f)) {
                                 speedF = 12.0f;
                                 speed.y = 33.0f;
                                 field_0x1370 = 200.0f / speedF;
@@ -2290,7 +2290,7 @@ void daNpcTks_c::demo_walkBack() {
                             break;
 
                         case '0003':
-                            if (mMotionPhase == 0 && mpMorf->checkFrame(9.0f)) {
+                            if (mMotionPhase == 0 && mAnm_p->checkFrame(9.0f)) {
                                 speedF = 12.0f;
                                 speed.y = 31.0f;
                                 field_0x1370 = 200.0f / speedF;
@@ -2598,7 +2598,7 @@ void daNpcTks_c::demo_Lv7Start() {
 
                         case '0010':
                             if (mMotion == 4) {
-                                if (mMotionPhase == 0 && mpMorf->checkFrame(9.0f)) {
+                                if (mMotionPhase == 0 && mAnm_p->checkFrame(9.0f)) {
                                     speedF = 8.0f;
                                     speed.y = 30.0f;
                                     mSound.startCreatureSound(Z2SE_TKS_V_JUMP_UP, 0, -1);
@@ -2611,7 +2611,7 @@ void daNpcTks_c::demo_Lv7Start() {
                                     speed.y = 0.0f;
                                 }
                             } else if (mMotion == 5) {
-                                if (mpMorf->isStop()) {
+                                if (mAnm_p->isStop()) {
                                     eventManager.cutEnd(staffId);
                                 }
                             }
@@ -2738,7 +2738,7 @@ void daNpcTks_c::demo_Lv3PickUp() {
                             break;
 
                         case '0003':
-                            if (mMotionPhase == 0 && mpMorf->checkFrame(9.0f)) {
+                            if (mMotionPhase == 0 && mAnm_p->checkFrame(9.0f)) {
                                 speed.y = 33.0f;
                                 field_0x136c = speed.y * -2.0f / gravity;
                                 field_0x1370 = field_0x136c;
@@ -2870,7 +2870,7 @@ void daNpcTks_c::demo_Lv6PickUp() {
                             break;
 
                         case '0003':
-                            if (mMotionPhase == 0 && mpMorf->checkFrame(9.0f)) {
+                            if (mMotionPhase == 0 && mAnm_p->checkFrame(9.0f)) {
                                 speedF = 16.0f;
                                 speed.y = 36.0f;
                                 field_0x1370 = 300.0f / speedF;
@@ -2972,7 +2972,7 @@ void daNpcTks_c::setAttnPos() {
         }
     }
 
-    J3DModelData* mdlData_p = mpMorf->getModel()->getModelData();
+    J3DModelData* mdlData_p = mAnm_p->getModel()->getModelData();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -2985,7 +2985,7 @@ void daNpcTks_c::setAttnPos() {
         eyePos.y += 80.0f;
     } else {
         cXyz sp2c(10.0f, 10.0f, 0.0f);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x11));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0x11));
         mDoMtx_stack_c::multVecZero(&mHeadPos);
         mDoMtx_stack_c::multVec(&sp2c, &eyePos);
         sp2c.x = 0.0f;

@@ -110,7 +110,7 @@ static int daB_OH_Draw(b_oh_class* i_this) {
         return 1;
     }
 
-    J3DModel* model_p = i_this->mpMorf->getModel();
+    J3DModel* model_p = i_this->mAnm_p->getModel();
 
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model_p, &i_this->tevStr);
@@ -150,7 +150,7 @@ static void start(b_oh_class* i_this) {
     case 1:
         if (i_this->field_0xcac < -100.0f) {
             for (int i = 0; i < 28; i++) {
-                MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(i), mDoMtx_stack_c::get());
+                MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(i), mDoMtx_stack_c::get());
                 mDoMtx_stack_c::multVecZero(&sp28);
 
                 if (sp28.y > boss->field_0x47a0) {
@@ -538,7 +538,7 @@ static void action(b_oh_class* i_this) {
         cLib_addCalc2(&a_this->mTentacleLength, l_HIO.mLength, 0.1f, 0.5f);
     }
 
-    MTXCopy(boss->mBodyParts[0].mpMorf->getModel()->getAnmMtx(a_this->field_0x5c8 + 8),
+    MTXCopy(boss->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(a_this->field_0x5c8 + 8),
             mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&a_this->current.pos);
 
@@ -590,7 +590,7 @@ static void damage_check(b_oh_class* i_this) {
                 i_this->health = 1000;
                 cc_at_check(i_this, &i_this->mAtInfo);
 
-                MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(i * 2 + 1), mDoMtx_stack_c::get());
+                MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(i * 2 + 1), mDoMtx_stack_c::get());
                 mDoMtx_stack_c::multVecZero(&i_this->eyePos);
                 dComIfGp_setHitMark(1, i_this, &i_this->eyePos, NULL, NULL, 0);
                 mDoAud_seStart(Z2SE_EN_OI_HIT_TENTACLE, &i_this->eyePos, 0, 0);
@@ -672,12 +672,12 @@ static int daB_OH_Execute(b_oh_class* i_this) {
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::scaleM(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);
 
-    J3DModel* model_p = i_this->mpMorf->getModel();
+    J3DModel* model_p = i_this->mAnm_p->getModel();
     model_p->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpMorf->play(NULL, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)), 0);
+    i_this->mAnm_p->play(NULL, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)), 0);
     i_this->mpBtk->play();
     i_this->mpBrk->play();
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     int tmp = 1;
     if (i_this->mDistToPlayer > 150.0f && i_this->mAction == OH_ACTION_WAIT) {
@@ -725,20 +725,20 @@ static int daB_OH_Delete(b_oh_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     b_oh_class* this_ = (b_oh_class*)i_this;
 
-    this_->mpMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", BMDV_OH), NULL,
+    this_->mAnm_p= new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", BMDV_OH), NULL,
                                        NULL, NULL, 2, 1.0f, 0, -1, 1, NULL, 0, 0x11000284);
-    if (this_->mpMorf == NULL || this_->mpMorf->getModel() == NULL) {
+    if (this_->mAnm_p== NULL || this_->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    if (!this_->mInvisModel.create(this_->mpMorf->getModel(), 1)) {
+    if (!this_->mInvisModel.create(this_->mAnm_p->getModel(), 1)) {
         return 0;
     }
 
-    this_->mpMorf->getModel()->setUserArea((uintptr_t)this_);
+    this_->mAnm_p->getModel()->setUserArea((uintptr_t)this_);
 
-    for (u16 i = 0; i < this_->mpMorf->getModel()->getModelData()->getJointNum(); i++) {
-        this_->mpMorf->getModel()->getModelData()->getJointNodePointer(i)->setCallBack(
+    for (u16 i = 0; i < this_->mAnm_p->getModel()->getModelData()->getJointNum(); i++) {
+        this_->mAnm_p->getModel()->getModelData()->getJointNodePointer(i)->setCallBack(
             nodeCallBack);
     }
 
@@ -748,7 +748,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_oh", BTK_OH_LOOP);
-    if (!this_->mpBtk->init(this_->mpMorf->getModel()->getModelData(), btk, TRUE, 2, 1.0f, 0, -1)) {
+    if (!this_->mpBtk->init(this_->mAnm_p->getModel()->getModelData(), btk, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -761,7 +761,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_oh", BRK_OH_LOOP);
-    if (!this_->mpBrk->init(this_->mpMorf->getModel()->getModelData(), brk, TRUE, 2, 1.0f, 0, -1)) {
+    if (!this_->mpBrk->init(this_->mAnm_p->getModel()->getModelData(), brk, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
 

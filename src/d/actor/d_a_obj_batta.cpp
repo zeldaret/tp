@@ -98,14 +98,14 @@ static u32 const l_batta_btk_index[2] = {
 inline int daObjBATTA_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Bat", 0xb);
     JUT_ASSERT(256, modelData != NULL);
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("Bat", 8), 2, 1.0f, 0, -1,
                                   &mCreature, 0x80000, 0x11000284);
-    if (mpMorf == NULL ||  mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL ||  mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* morfModel = mpMorf->getModel();
+    J3DModel* morfModel = mAnm_p->getModel();
     mBrk = new mDoExt_brkAnm();
     if (mBrk == NULL) {
         return 0;
@@ -150,7 +150,7 @@ static int daObjBATTA_Delete(daObjBATTA_c* i_this) {
 void daObjBATTA_c::wait() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     if (field_0x9e8 == 0) {
-        mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Bat", 8), 2, 4.0f, 1.0f, 0.0f,
+        mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Bat", 8), 2, 4.0f, 1.0f, 0.0f,
                        -1.0f);
         speedF = 0.0f;
         field_0x9f1 = 0;
@@ -219,7 +219,7 @@ void daObjBATTA_c::jump() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz* flamePos = player->getKandelaarFlamePos();
     if (field_0x9e8 == 0) {
-        mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Bat", 7), 0, 4.0f, 2.0f, 0.0f,
+        mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Bat", 7), 0, 4.0f, 2.0f, 0.0f,
                                  -1.0f);
         speed.y = cM_rndFX(5.0f) + 25.0f;
         speedF = cM_rndFX(4.0f) + 20.0f;
@@ -235,7 +235,7 @@ void daObjBATTA_c::jump() {
             batta_setParticle();
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             if (field_0x9f0 == 0 && field_0x9f1 != 0 && speed.y < -2.5f) {
                 speed.y = -2.5f;
                 setAction(&daObjBATTA_c::fly_up);
@@ -252,7 +252,7 @@ void daObjBATTA_c::fly_up() {
     cXyz* flamePos = player->getKandelaarFlamePos();
 
     if (field_0x9e8 == 0) {
-        mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Bat", 6), 2, 4.0f, 0.5f, 0.0f,
+        mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Bat", 6), 2, 4.0f, 0.5f, 0.0f,
                        -1.0f);
         gravity = 0.0f;
         maxFallSpeed = -20.0f;
@@ -335,7 +335,7 @@ void daObjBATTA_c::fly_down() {
 void daObjBATTA_c::bin_wait() {
     if (field_0x9e8 == 0) {
         J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("Bat", 8);
-        mpMorf->setAnm(anm, 2, 4.0f, 1.0f, 0.0f, -1.0f);
+        mAnm_p->setAnm(anm, 2, 4.0f, 1.0f, 0.0f, -1.0f);
         fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
         mDraw = false;
         gravity = 0.0f;
@@ -365,7 +365,7 @@ void daObjBATTA_c::bin_wait() {
 void daObjBATTA_c::bin_action() {
     if (field_0x9e8 == 0) {
         J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("Bat", 6);
-        mpMorf->setAnm(anm, 2, 4.0f, 0.5f, 0.0f, -1.0f);
+        mAnm_p->setAnm(anm, 2, 4.0f, 0.5f, 0.0f, -1.0f);
         maxFallSpeed = -2.0f;
         gravity = -2.0f;
         scale.setall(0.4f);
@@ -538,7 +538,7 @@ int daObjBATTA_c::execute() {
     action();
     mBrk->play();
     mBtk->play();
-    mpMorf->play(NULL, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(NULL, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     mtx_set();
     if (field_0x9f0 == 0) {
         mSph.SetC(current.pos);
@@ -561,7 +561,7 @@ int daObjBATTA_c::_delete() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -569,18 +569,18 @@ int daObjBATTA_c::_delete() {
 
 /* 80BAC00C-80BAC084 0022CC 0078+00 1/1 0/0 0/0 .text            mtx_set__12daObjBATTA_cFv */
 void daObjBATTA_c::mtx_set() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     model->setBaseScale(scale);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
 }
 
 inline int daObjBATTA_c::draw() {
     if (mDraw) {
         dInsect_c::CalcZBuffer(50.0f);
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
@@ -588,7 +588,7 @@ inline int daObjBATTA_c::draw() {
         mBrk->entry(model->getModelData());
 
         if (field_0x9f0 != 2) {
-            mpMorf->entryDL();
+            mAnm_p->entryDL();
             if (field_0x9f0 != 1) {
                 dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 15.0f, mAcch.m_gnd, 0,
                                          -0.6f, dDlst_shadowControl_c::getSimpleTex());
@@ -684,7 +684,7 @@ int daObjBATTA_c::create() {
             l_HIO.mId = mDoHIO_CREATE_CHILD("黄金蟲(バッタ)", &l_HIO);
         }
         
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         fopAcM_SetMtx(this, model->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);

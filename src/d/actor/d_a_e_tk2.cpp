@@ -58,17 +58,17 @@ daE_TK2_HIO_c::daE_TK2_HIO_c() {
 static void anm_init(e_tk2_class* i_this, int i_index, f32 i_morf, u8 i_attr, f32 i_rate) {
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("E_tk2", i_index);
 
-    i_this->mpMorf->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    i_this->mAnm_p->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
     i_this->mAnim = i_index;
 }
 
 /* 807BA660-807BA6D0 0001E0 0070+00 1/0 0/0 0/0 .text            daE_TK2_Draw__FP11e_tk2_class */
 static int daE_TK2_Draw(e_tk2_class* i_this) {
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
 
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
     return 1;
 }
 
@@ -179,7 +179,7 @@ static void e_tk2_find(e_tk2_class* i_this) {
         break;
 
     case MODE_TK2_APPEAR:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_TK2_WAIT01, 3.0f, 0x2, 1.0f);
             i_this->mMode = MODE_TK2_ATTACK;
             i_this->mActionTimer[0] = cM_rndF(10.0f) + 10.0f;
@@ -200,7 +200,7 @@ static void e_tk2_find(e_tk2_class* i_this) {
 
     case MODE_TK2_HIDE:
         i_this->mAttentionOFF = true;
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = ACT_TK2_WAIT;
             i_this->mMode = MODE_TK2_NONE;
             i_this->mActionTimer[1] = cM_rndF(30.0f) + 30.0f;
@@ -215,7 +215,7 @@ static void e_tk2_find(e_tk2_class* i_this) {
     case MODE_TK2_SWIM:
         i_this->mPlayerAngleY = i_this->mPlayerAngleY + -0x8000;
         i_this->mAttentionOFF = true;
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAnimSpeed = 4.0f;
             anm_init(i_this, ANM_TK2_SWIM, 0.0f, 0x2, i_this->mAnimSpeed);
             i_this->mMode = MODE_TK2_WAIT01;
@@ -225,7 +225,7 @@ static void e_tk2_find(e_tk2_class* i_this) {
     case MODE_TK2_WAIT01:
         i_this->mAttentionOFF = true;
         cLib_addCalc2(&i_this->mAnimSpeed, 2.0f, 1.0f, 0.15f);
-        i_this->mpMorf->setPlaySpeed(i_this->mAnimSpeed);
+        i_this->mAnm_p->setPlaySpeed(i_this->mAnimSpeed);
         if (i_this->mActionTimer[0] == 0 &&
             i_this->mPlayerDistanceLimit > l_HIO.mPlayerRange1 * 1.2f)
         {
@@ -255,15 +255,15 @@ static void e_tk2_attack(e_tk2_class* i_this) {
         break;
 
     case MODE_TK2_APPEAR:
-        if ((int)i_this->mpMorf->getFrame() == 0x18) {
+        if ((int)i_this->mAnm_p->getFrame() == 0x18) {
             i_this->mBallID =
                 fopAcM_createChild(PROC_E_TK_BALL, fopAcM_GetID(i_this), 1, &i_this->eyePos,
                                    fopAcM_GetRoomNo(i_this), &i_this->shape_angle, 0, -1, 0);
         }
-        if ((int)i_this->mpMorf->getFrame() == 0x1c) {
+        if ((int)i_this->mAnm_p->getFrame() == 0x1c) {
             i_this->mTKBallSpawned = true;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_TK2_WAIT01, 1.0f, 0x02, 1.0f);
             i_this->mActionTimer[0] = (short)(int)(cM_rndF(30.0f) + 70.0f);
             i_this->mMode = MODE_TK2_ATTACK;
@@ -292,7 +292,7 @@ static void e_tk2_s_damage(e_tk2_class* i_this) {
         break;
 
     case MODE_TK2_APPEAR:
-        if (i_this->mpMorf->getFrame() > 10.0f) {
+        if (i_this->mAnm_p->getFrame() > 10.0f) {
             i_this->mAction = ACT_TK2_FIND;
             i_this->mMode = MODE_TK2_DAMAGE;
         }
@@ -312,7 +312,7 @@ static void e_tk2_damage(e_tk2_class* i_this) {
         break;
 
     case MODE_TK2_APPEAR:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             fopAcM_createDisappear(i_this, &i_this->eyePos, 10, 0, 0x12);
             fopAcM_delete(i_this);
         }
@@ -386,48 +386,48 @@ static int daE_TK2_Execute(e_tk2_class* i_this) {
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::scaleM(l_HIO.mRadiusScale, l_HIO.mRadiusScale, l_HIO.mRadiusScale);
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
 
     if (i_this->mAnim == ANM_TK2_SWIM) {
-        if (i_this->mpMorf->checkFrame(0.0f) || i_this->mpMorf->checkFrame(6.0f) ||
-            i_this->mpMorf->checkFrame(12.0f) || i_this->mpMorf->checkFrame(18.0f) ||
-            i_this->mpMorf->checkFrame(24.0f))
+        if (i_this->mAnm_p->checkFrame(0.0f) || i_this->mAnm_p->checkFrame(6.0f) ||
+            i_this->mAnm_p->checkFrame(12.0f) || i_this->mAnm_p->checkFrame(18.0f) ||
+            i_this->mAnm_p->checkFrame(24.0f))
         {
             i_this->mSound.startCreatureSound(Z2SE_EN_TK2_SWIM, 0, -1);
         }
     } else if (i_this->mAnim == ANM_TK2_APPEAR) {
-        if (i_this->mpMorf->checkFrame(5.0f)) {
+        if (i_this->mAnm_p->checkFrame(5.0f)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_TK2_APPEAR, 0, -1);
-        } else if (i_this->mpMorf->checkFrame(20.0f)) {
+        } else if (i_this->mAnm_p->checkFrame(20.0f)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_TK2_APPEAR2, 0, -1);
         }
     } else if (i_this->mAnim == ANM_TK2_HIDE) {
-        if (i_this->mpMorf->checkFrame(6.0f)) {
+        if (i_this->mAnm_p->checkFrame(6.0f)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_TK2_HIDE, 0, -1);
         }
     } else if (i_this->mAnim == ANM_TK2_ATTACK) {
-        if (i_this->mpMorf->checkFrame(1.0f)) {
+        if (i_this->mAnm_p->checkFrame(1.0f)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_TK2_V_ATTACK, 0, -1);
-        } else if (i_this->mpMorf->checkFrame(27.0f)) {
+        } else if (i_this->mAnm_p->checkFrame(27.0f)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_TK2_ATTACK, 0, -1);
         }
     } else if (i_this->mAnim == ANM_TK2_DAMAGE) {
-        if (i_this->mpMorf->checkFrame(1.0f)) {
+        if (i_this->mAnm_p->checkFrame(1.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_TK2_V_DAMAGE, -1);
         }
     } else if (i_this->mAnim == ANM_TK2_WAIT01) {
-        if (i_this->mpMorf->checkFrame(1.0f)) {
+        if (i_this->mAnm_p->checkFrame(1.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_TK2_V_WAIT, -1);
         }
     } else if (i_this->mAnim == ANM_TK2_KYORO2 &&
-               (i_this->mpMorf->checkFrame(1.0f) || i_this->mpMorf->checkFrame(30.0f)))
+               (i_this->mAnm_p->checkFrame(1.0f) || i_this->mAnm_p->checkFrame(30.0f)))
     {
         i_this->mSound.startCreatureVoice(Z2SE_EN_TK2_KYORO, -1);
     }
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     MTXCopy(model->getAnmMtx(3), *calc_mtx);
 
@@ -485,7 +485,7 @@ static int daE_TK2_Delete(e_tk2_class* i_this) {
         hioInit = false;
     }
     if (i_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
     return 1;
 }
@@ -494,12 +494,12 @@ static int daE_TK2_Delete(e_tk2_class* i_this) {
 static int useHeapInit(fopAc_ac_c* a_this) {
     e_tk2_class* i_this = static_cast<e_tk2_class*>(a_this);
 
-    i_this->mpMorf =
+    i_this->mAnm_p=
         new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_tk2", 0xE), NULL, NULL,
                              (J3DAnmTransform*)dComIfG_getObjectRes("E_tk2", 0x9), 2, 1.0f, 0, -1,
                              &i_this->mSound, 0x80000, 0x11000084);
 
-    if (i_this->mpMorf == NULL || i_this->mpMorf->getModel() == NULL) {
+    if (i_this->mAnm_p== NULL || i_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -542,7 +542,7 @@ static int daE_TK2_Create(fopAc_ac_c* i_this) {
 
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
-        fopAcM_SetMtx(a_this, a_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(a_this, a_this->mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -100.0f, -100.0f, -100.0f);
         fopAcM_SetMax(a_this, 100.0f, 100.0f, 100.0f);
 

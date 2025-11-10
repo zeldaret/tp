@@ -70,7 +70,7 @@ private:
     /* 0x75C */ u8 field_0x75c;
     /* 0x760 */ Z2Creature mCreature;
     /* 0x7F0 */ dBgS_AcchCir mAcchCir;
-    /* 0x830 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x830 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x834 */ dBgS_ObjAcch mAcch;
     /* 0xA0C */ request_of_phase_process_class mPhase;
     /* 0xA14 */ bool mIsHIOOwner;

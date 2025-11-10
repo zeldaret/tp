@@ -78,7 +78,7 @@ daNpc_Ne_HIO_c::daNpc_Ne_HIO_c() :
 static void anm_init(npc_ne_class* i_this, int i_resNo, f32 i_morf, u8 i_attr, f32 i_speed) {
     J3DAnmTransform* anm =
         static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(i_this->mResName, i_resNo));
-    i_this->mpMorf->setAnm(anm, i_attr, i_morf, i_speed, 0.0f, -1.0f, NULL);
+    i_this->mAnm_p->setAnm(anm, i_attr, i_morf, i_speed, 0.0f, -1.0f, NULL);
     i_this->mAnmID = i_resNo;
 }
 
@@ -139,7 +139,7 @@ static int daNpc_Ne_Draw(npc_ne_class* i_this) {
         return 1;
     }
     
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     if (i_this->mResName == "Npc_net") {
         if (!dComIfGs_wolfeye_effect_check()) {
             return 1;
@@ -152,7 +152,7 @@ static int daNpc_Ne_Draw(npc_ne_class* i_this) {
 
     i_this->mpBtkAnm->entry(model->getModelData());
     i_this->mpBtpAnm->entry(model->getModelData());
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
 
     if (!fopAcM_checkCarryNow(i_this)) {
         cXyz vec(i_this->current.pos.x, i_this->current.pos.y + 100.0f, i_this->current.pos.z);
@@ -670,7 +670,7 @@ static void npc_ne_away(npc_ne_class* i_this) {
         i_this->mBackboneTargetAngleY = ang_y;
     }
     
-    i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+    i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
 }
 
 /* 80A8A8F4-80A8AAE8 001D14 01F4+00 1/1 0/0 0/0 .text            ground_search__FP12npc_ne_class */
@@ -968,7 +968,7 @@ static void npc_ne_tame(npc_ne_class* i_this) {
             i_this->mBackboneTargetAngleY = angle;
         }
 
-        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+        i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
 
             /* dSv_event_flag_c::F_0470 - Fishing Pond - Reserved for fishing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])) {
@@ -1102,7 +1102,7 @@ static void npc_ne_bird(npc_ne_class* i_this) {
     }
 
     cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 4, max_angle_step);
-    i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+    i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
 }
 
 /* 80A8BAFC-80A8C094 002F1C 0598+00 2/1 0/0 0/0 .text            npc_ne_ball__FP12npc_ne_class */
@@ -1192,11 +1192,11 @@ static void npc_ne_ball(npc_ne_class* i_this) {
         i_this->mTailTargetAngle = -15000;
         i_this->mTailSwayTarget = 3000.0f;
         cLib_addCalc0(&i_this->speedF, 1.0f, 1.0f);
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = npc_ne_class::ACT_WAIT;
             i_this->mMode = 0;
         }
-        if (i_this->mpMorf->getFrame() >= 16.0f) {
+        if (i_this->mAnm_p->getFrame() >= 16.0f) {
             cLib_addCalc2(&i_this->field_0xbf4, 80.0f, 1.0f, 20.0f);
         }
         break;
@@ -1220,7 +1220,7 @@ static void npc_ne_ball(npc_ne_class* i_this) {
     }
 
     cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 4, max_angle_step);
-    i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+    i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
 }
 
 /* 80A8C094-80A8C508 0034B4 0474+00 1/1 0/0 0/0 .text            npc_ne_pathwalk__FP12npc_ne_class
@@ -1280,7 +1280,7 @@ static void npc_ne_pathwalk(npc_ne_class* i_this) {
         cLib_addCalc2(&i_this->mAnmSpeed, target_speed, 1.0f, 0.05f);
         cLib_addCalc2(&i_this->speedF, i_this->mAnmSpeed * l_HIO.mWalkSpeed * 0.9f,
                       1.0f, 0.2f * l_HIO.mWalkSpeed);
-        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+        i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
         if (i_this->mDistToTarget < 100.0f && i_this->speedF > 7.4f) {
             i_this->mAnmSpeed = 1.0f;
             anm_init(i_this, npc_ne_class::ANM_RUN, 3.0f, 2, i_this->mAnmSpeed);
@@ -1301,7 +1301,7 @@ static void npc_ne_pathwalk(npc_ne_class* i_this) {
 
 /* 80A8C508-80A8C748 003928 0240+00 1/1 0/0 0/0 .text            npc_ne_jump__FP12npc_ne_class */
 static void npc_ne_jump(npc_ne_class* i_this) {
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
     f32 target_speed = 0.0f;
     f32 max_speed_step = 3.0f;
 
@@ -1314,7 +1314,7 @@ static void npc_ne_jump(npc_ne_class* i_this) {
 
     case 1:
         cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 4, 0x1000);
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, npc_ne_class::ANM_JUMP_LOOP, 2.0f, 0, 1.0f);
             i_this->mMode++;
             i_this->mSound.startSound(Z2SE_CAT_CRY_ATTACK, 0, -1);
@@ -1335,14 +1335,14 @@ static void npc_ne_jump(npc_ne_class* i_this) {
                 max_speed_step = 4.0f;
             }
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, npc_ne_class::ANM_TO_WAIT, 2.0f, 0, 1.0f);
             i_this->mMode++;
         }
         break;
 
     case 3:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = npc_ne_class::ACT_WAIT;
             i_this->mMode = 0;
         }
@@ -1354,7 +1354,7 @@ static void npc_ne_jump(npc_ne_class* i_this) {
 
 /* 80A8C748-80A8C8F8 003B68 01B0+00 1/1 0/0 0/0 .text            npc_ne_s_jump__FP12npc_ne_class */
 static void npc_ne_s_jump(npc_ne_class* i_this) {
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
     f32 target_speed = 0.0f;
     f32 max_speed_step = 3.0f;
 
@@ -1383,13 +1383,13 @@ static void npc_ne_s_jump(npc_ne_class* i_this) {
         }
         if (frame >= 3) {
             anm_init(i_this, npc_ne_class::ANM_JUMP_END, 3.0f, 0, 1.0f);
-            i_this->mpMorf->setFrame(4.0f);
+            i_this->mAnm_p->setFrame(4.0f);
             i_this->mMode++;
         }
         break;
 
     case 3:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = npc_ne_class::ACT_WAIT;
             i_this->mMode = 0;
         }
@@ -1467,7 +1467,7 @@ static int home_path_search(npc_ne_class* i_this, int param_1) {
 static BOOL npc_ne_home(npc_ne_class* i_this) {
     BOOL ret = true;
     i_this->mCcDisableTimer = 10;
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
     f32 target_speed = 0.0f;
     f32 max_speed_step = 4.0f;
     cXyz vec;
@@ -1579,7 +1579,7 @@ static BOOL npc_ne_home(npc_ne_class* i_this) {
 
     case 11:
         i_this->mNeckAngleY = cM_ssin(g_Counter.mTimer * 5000) * 500.0f;
-        if (i_this->mTimers[0] == 0 && i_this->mpMorf->isStop()) {
+        if (i_this->mTimers[0] == 0 && i_this->mAnm_p->isStop()) {
             anm_init(i_this, npc_ne_class::ANM_JUMP_LOOP, 2.0f, 0, 1.0f);
             i_this->mSound.startSound(Z2SE_CAT_CRY_ATTACK_D, 0, -1);
             i_this->mMode = 12;
@@ -1598,7 +1598,7 @@ static BOOL npc_ne_home(npc_ne_class* i_this) {
                 max_speed_step = 4.0f;
             }
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, npc_ne_class::ANM_RUN, 3.0f, 2, 1.5f);
             i_this->mMode = 13;
         }
@@ -1829,7 +1829,7 @@ static void npc_ne_swim(npc_ne_class* i_this) {
         // fallthrough
 
     case 1:
-        if (i_this->mpMorf->checkFrame(4.0f) || i_this->mpMorf->checkFrame(12.0f)) {
+        if (i_this->mAnm_p->checkFrame(4.0f) || i_this->mAnm_p->checkFrame(12.0f)) {
             i_this->mSound.startSound(Z2SE_CAT_SWIM, 0, -1);
         }
         max_angle_step = 0x100;
@@ -1897,7 +1897,7 @@ static void npc_ne_outswim(npc_ne_class* i_this) {
         break;
 
     case 3:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = npc_ne_class::ACT_AWAY;
             i_this->mMode = 0;
             i_this->mTimers[3] = 0;
@@ -1951,7 +1951,7 @@ static BOOL npc_ne_climb(npc_ne_class* i_this) {
 
     case 2:
         i_this->mLookUpTimer = 2;
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, npc_ne_class::ANM_RUN, 5.0f, 2, 2.0f);
             i_this->mMode++;
             i_this->mTimers[0] = 50;
@@ -2000,7 +2000,7 @@ static BOOL npc_ne_climb(npc_ne_class* i_this) {
         cLib_addCalc2(&_this->current.pos.x, i_this->mTargetPos.x, 0.2f, 15.0f);
         cLib_addCalc2(&_this->current.pos.y, i_this->mTargetPos.y, 1.0f, 15.0f);
         cLib_addCalc2(&_this->current.pos.z, i_this->mTargetPos.z, 0.2f, 15.0f);
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             if (i_this->mBehavior == npc_ne_class::BHV_PIER) {
                 i_this->mAction = npc_ne_class::ACT_HOME;
             } else {
@@ -2034,7 +2034,7 @@ static void npc_ne_drop(npc_ne_class* i_this) {
         if (i_this->mAcch.ChkGroundHit()) {
             i_this->shape_angle.x = 0;
             i_this->current.angle.x = 0;
-            i_this->mpMorf->setPlaySpeed(2.0f);
+            i_this->mAnm_p->setPlaySpeed(2.0f);
             i_this->mTimers[0] = 10;
             i_this->mMode++;
         }
@@ -2052,7 +2052,7 @@ static void npc_ne_drop(npc_ne_class* i_this) {
 
 /* 80A8EB60-80A8ED58 005F80 01F8+00 1/1 0/0 0/0 .text            npc_ne_s_drop__FP12npc_ne_class */
 static void npc_ne_s_drop(npc_ne_class* i_this) {
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
     f32 target_speed = 0.0f;
     f32 max_speed_step = 3.0f;
 
@@ -2068,7 +2068,7 @@ static void npc_ne_s_drop(npc_ne_class* i_this) {
         i_this->speed.y = 0.0f;
         i_this->speedF = 0.0f;
         i_this->gravity = 0.0f;
-        if (!i_this->mpMorf->isStop()) {
+        if (!i_this->mAnm_p->isStop()) {
             break;
         }
         anm_init(i_this, npc_ne_class::ANM_JUMP_START, 2.0f, 0, 1.0f);
@@ -2086,14 +2086,14 @@ static void npc_ne_s_drop(npc_ne_class* i_this) {
         }
         if (i_this->mTimers[0] == 0 && i_this->mAcch.ChkGroundHit()) {
             anm_init(i_this, npc_ne_class::ANM_JUMP_END, 3.0f, 0, 1.0f);
-            i_this->mpMorf->setFrame(4.0f);
+            i_this->mAnm_p->setFrame(4.0f);
             i_this->mMode++;
         }
         break;
 
     case 3:
         max_speed_step = 1.0f;
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = npc_ne_class::ACT_WAIT;
             i_this->mMode = 0;
         }
@@ -2113,19 +2113,19 @@ static BOOL npc_ne_carry(npc_ne_class* i_this) {
     case 0:
         anm_init(i_this, npc_ne_class::ANM_TO_CARRY_B, 1.0f, 0,
                  daPy_getLinkPlayerActorClass()->getBaseAnimeFrameRate());
-        i_this->mpMorf->setFrame(daPy_getLinkPlayerActorClass()->getBaseAnimeFrame());
+        i_this->mAnm_p->setFrame(daPy_getLinkPlayerActorClass()->getBaseAnimeFrame());
         i_this->mTimers[0] = 20;
         i_this->mMode++;
         break;
 
     case 1:
-        if (i_this->mpMorf->checkFrame(10.0f)) {
+        if (i_this->mAnm_p->checkFrame(10.0f)) {
             i_this->mSound.startSound(Z2SE_CAT_CRY_CARRY, 0, -1);
         }
         if (daPy_getLinkPlayerActorClass()->getGrabPutStart()) {
             anm_init(i_this, npc_ne_class::ANM_TO_CARRY_B, 1.0f, 0,
                     daPy_getLinkPlayerActorClass()->getBaseAnimeFrameRate());
-            i_this->mpMorf->setFrame(daPy_getLinkPlayerActorClass()->getBaseAnimeFrame());
+            i_this->mAnm_p->setFrame(daPy_getLinkPlayerActorClass()->getBaseAnimeFrame());
             i_this->mMode++;
         }
         break;
@@ -2987,12 +2987,12 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
     i_this->scale.x = i_this->mBaseScale.x * l_HIO.mScale;
     mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.x, i_this->scale.x);
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpMorf->play(&i_this->eyePos, 0, 0);
+    i_this->mAnm_p->play(&i_this->eyePos, 0, 0);
     i_this->mpBtkAnm->setFrame(i_this->mBtkFrame);
     i_this->mpBtpAnm->setFrame(i_this->mBtpFrame);
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     if (i_this->mBehavior == npc_ne_class::BHV_DISH) {
         mDoMtx_stack_c::transS(i_this->mDishPos.x, i_this->mDishPos.y, i_this->mDishPos.z);
@@ -3052,17 +3052,17 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
         mDoMtx_stack_c::ZrotM(-19000);
         mDoMtx_stack_c::scaleM(0.5f, 0.5f, 0.5f);
         mDoMtx_stack_c::transM(5.0f, 35.0f, 15.0f);
-        fish->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+        fish->mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
         int ivar3 = cM_ssin(g_Counter.mTimer * 15000) * 1500.0f;
         for (int i = 0; i <= fish->mNumJoints; i++) {
             fish->jointYaws1[i] = ivar3;
         }
-        for (u16 i = 1; i < fish->mpMorf->getModel()->getModelData()->getJointNum(); i++) {
-            fish->mpMorf->getModel()->getModelData()
+        for (u16 i = 1; i < fish->mAnm_p->getModel()->getModelData()->getJointNum(); i++) {
+            fish->mAnm_p->getModel()->getModelData()
                 ->getJointNodePointer(i)->setCallBack(fish->mNodeCallBack);
         }
-        fish->mpMorf->play(NULL, 0, 0);
-        fish->mpMorf->modelCalc();
+        fish->mAnm_p->play(NULL, 0, 0);
+        fish->mAnm_p->modelCalc();
         fish->actor.current.pos = i_this->eyePos;
         fish->actor.eyePos = i_this->eyePos;
     }
@@ -3096,16 +3096,16 @@ static int daNpc_Ne_Delete(npc_ne_class* i_this) {
 /* 80A91798-80A91B40 008BB8 03A8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
     npc_ne_class* _this = static_cast<npc_ne_class*>(i_this);
-    _this->mpMorf =
+    _this->mAnm_p=
         new mDoExt_McaMorf(static_cast<J3DModelData*>(dComIfG_getObjectRes(_this->mResName, 28)),
                            NULL, NULL,
                            static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(_this->mResName, 24)),
                            2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11020284);
-    if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
+    if (_this->mAnm_p== NULL || _this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = _this->mpMorf->getModel();
+    J3DModel* model = _this->mAnm_p->getModel();
     i_this->model = model;
     model->setUserArea((uintptr_t)_this);
 
@@ -3119,7 +3119,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     if (_this->mpBtkAnm == NULL) {
         return 0;
     }
-    if (FALSE == _this->mpBtkAnm->init(_this->mpMorf->getModel()->getModelData(),
+    if (FALSE == _this->mpBtkAnm->init(_this->mAnm_p->getModel()->getModelData(),
         static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes(_this->mResName, 32)), 1, 0, 1.0f, 0, -1)) {
         return 0;
     }
@@ -3128,7 +3128,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     if (_this->mpBtpAnm == NULL) {
         return 0;
     }
-    if (FALSE == _this->mpBtpAnm->init(_this->mpMorf->getModel()->getModelData(),
+    if (FALSE == _this->mpBtpAnm->init(_this->mAnm_p->getModel()->getModelData(),
         static_cast<J3DAnmTexPattern*>(dComIfG_getObjectRes(_this->mResName, 35)), 1, 0, 1.0f, 0, -1)) {
         return 0;
     }
@@ -3235,7 +3235,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
         fopAcM_OnCarryType(i_this, fopAcM_CARRY_TYPE_8);
         i_this->attention_info.flags = 0;
         i_this->attention_info.distances[fopAc_attn_CARRY_e] = 7;
-        fopAcM_SetMtx(i_this, _this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, _this->mAnm_p->getModel()->getBaseTRMtx());
         i_this->health = 1;
         _this->field_0x560 = 1;
 

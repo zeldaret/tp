@@ -90,7 +90,7 @@ private:
     /* 0x612 */ s16 field_0x612;
     /* 0x614 */ csXyz field_0x614;
     /* 0x61A */ u8 field_0x61a;
-    /* 0x61C */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x61C */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x620 */ request_of_phase_process_class mPhaseReq;
     /* 0x628 */ int mShadowKey;
     /* 0x62C */ Z2CreatureEnemy mSound;

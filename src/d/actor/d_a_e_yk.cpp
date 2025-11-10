@@ -111,7 +111,7 @@ static void yk_disappear(e_yk_class* i_this) {
  */
 /* 808049E4-80804A90 0002A4 00AC+00 10/10 0/0 0/0 .text            anm_init__FP10e_yk_classifUcf */
 static void anm_init(e_yk_class* i_this, int i_resIdx, f32 i_morf, u8 i_attr, f32 i_rate) {
-    i_this->mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_YK",i_resIdx), i_attr, i_morf, i_rate, 0.0f,-1.0f);
+    i_this->mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_YK",i_resIdx), i_attr, i_morf, i_rate, 0.0f,-1.0f);
     i_this->mResIdx = i_resIdx;
 }
 
@@ -135,14 +135,14 @@ static void anm_init(e_yk_class* i_this, int i_resIdx, f32 i_morf, u8 i_attr, f3
  */
 /* 80804A90-80804B38 000350 00A8+00 1/0 0/0 0/0 .text            daE_YK_Draw__FP10e_yk_class */
 static int daE_YK_Draw(e_yk_class* i_this) {
-    J3DModel* model = i_this->mpMorfSO->getModel();
+    J3DModel* model = i_this->mAnm_pSO->getModel();
 
     g_env_light.settingTevStruct(2,&i_this->current.pos,&i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model,&i_this->tevStr);
 
     dComIfGd_setListDark();
 
-    i_this->mpMorfSO->entryDL();
+    i_this->mAnm_pSO->entryDL();
     dComIfGd_setList();
     return 1;
 }
@@ -326,7 +326,7 @@ static void damage_check(e_yk_class* i_this) {
                         // If keese is dead, play death sound, set morph speed and set the death flag
                         if (i_this->health <= 0) {
                             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_DEATH,-1);
-                            i_this->mpMorfSO->setPlaySpeed(0.2f);
+                            i_this->mAnm_pSO->setPlaySpeed(0.2f);
                             i_this->mDeathFlag = 1;
                         }
                     }
@@ -1300,8 +1300,8 @@ static int daE_YK_Execute(e_yk_class* i_this) {
 
         action(i_this);
 
-        i_this->mpMorfSO->play(0,dComIfGp_getReverb(fopAcM_GetRoomNo(_this)));
-        J3DModel* model = i_this->mpMorfSO->getModel();
+        i_this->mAnm_pSO->play(0,dComIfGp_getReverb(fopAcM_GetRoomNo(_this)));
+        J3DModel* model = i_this->mAnm_pSO->getModel();
 
         if (i_this->mAction == ACT_WOLFBITE && i_this->mActionPhase < 2) {
             fopAcM_OffStatus(_this,0);
@@ -1327,18 +1327,18 @@ static int daE_YK_Execute(e_yk_class* i_this) {
             model->setBaseTRMtx(mDoMtx_stack_c::get());
         }
 
-        i_this->mpMorfSO->modelCalc();
+        i_this->mAnm_pSO->modelCalc();
         int res_idx = i_this->mResIdx;
 
         if (res_idx == 8 || res_idx == 5) {
-            if (i_this->mpMorfSO->checkFrame(4.0f)) {
+            if (i_this->mAnm_pSO->checkFrame(4.0f)) {
                 if (i_this->mResIdx == 8) {
                     i_this->mCreature.startCreatureSound(Z2SE_EN_YK_WING,0,-1);
                 } else {
                     i_this->mCreature.startCreatureSound(Z2SE_EN_YK_WING,0,-1);
                 }   
             }
-        } else if (res_idx == 6 && i_this->mpMorfSO->checkFrame(0.0)) {
+        } else if (res_idx == 6 && i_this->mAnm_pSO->checkFrame(0.0)) {
             i_this->mCreature.startCreatureVoice(Z2SE_EN_YK_V_FURA,-1);
         }
 
@@ -1416,7 +1416,7 @@ static int daE_YK_Delete(e_yk_class* i_this) {
     }
 
     if (i_this->heap) {
-        i_this->mpMorfSO->stopZelAnime();
+        i_this->mAnm_pSO->stopZelAnime();
     }
 
     return 1;
@@ -1428,7 +1428,7 @@ static int daE_YK_Delete(e_yk_class* i_this) {
  * @param i_this Pointer to the actor base class
  * @return 1 if initialization successful, 0 if failed
  * 
- * Creates and initializes the morphing model object (mpMorfSO):
+ * Creates and initializes the morphing model object (mAnm_pSO):
  * - Uses "E_YK" model data and animation resources
  * - Sets up transform animations
  * - Configures creature parameters
@@ -1437,9 +1437,9 @@ static int daE_YK_Delete(e_yk_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_yk_class* yk = (e_yk_class*)i_this;
 
-    yk->mpMorfSO = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_YK", 12), 
+    yk->mAnm_pSO = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_YK", 12), 
         NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YK",9), 2, 1.0f, 0, -1, &yk->mCreature, 0x80000,0x11000084);
-    if (!yk->mpMorfSO || !yk->mpMorfSO->mpModel) {
+    if (!yk->mAnm_pSO || !yk->mAnm_pSO->mpModel) {
         return 0;
     }
 
@@ -1533,7 +1533,7 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
 
             yk->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
-            fopAcM_SetMtx(yk,yk->mpMorfSO->getModel()->getBaseTRMtx());
+            fopAcM_SetMtx(yk,yk->mAnm_pSO->getModel()->getBaseTRMtx());
             fopAcM_SetMin(yk,-200.0f,-200.0f,-200.0f);
             fopAcM_SetMax(yk,200.0f,200.0f,200.0f);
 

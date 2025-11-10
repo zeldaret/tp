@@ -61,7 +61,7 @@ static void yd_disappear(e_yd_class* i_this) {
 /* 807F2E20-807F2ECC 0002E0 00AC+00 8/8 0/0 0/0 .text            anm_init__FP10e_yd_classifUcf */
 static void anm_init(e_yd_class* i_this, int param_1, f32 param_2, u8 param_3, f32 param_4) {
     J3DAnmTransform* anmTransform = (J3DAnmTransform*)dComIfG_getObjectRes("E_yd", param_1);
-    i_this->mpMorf->setAnm(anmTransform, param_3, param_2, param_4, 0.0f, -1.0f);
+    i_this->mAnm_p->setAnm(anmTransform, param_3, param_2, param_4, 0.0f, -1.0f);
     i_this->field_0x664 = param_1;
 }
 
@@ -71,7 +71,7 @@ static s32 leaf_anm_init(e_yd_class* i_this, int param_1, f32 param_2, u8 param_
     e_yd_leaf_class* leaf = (e_yd_leaf_class*)fopAcM_SearchByID(i_this->mLeafId);
     if (leaf != NULL) {
         J3DAnmTransform* anmTransform = (J3DAnmTransform*)dComIfG_getObjectRes("E_yd", param_1);
-        leaf->mpMorf->setAnm(anmTransform, param_3, param_2, param_4, 0.0f, -1.0f, NULL);
+        leaf->mAnm_p->setAnm(anmTransform, param_3, param_2, param_4, 0.0f, -1.0f, NULL);
         return true;
     }
 
@@ -86,10 +86,10 @@ static s32 daE_YD_Draw(e_yd_class* i_this) {
 
     g_env_light.settingTevStruct(2, &i_this->actor.current.pos, &i_this->actor.tevStr);
     dComIfGd_setListDark();
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.setLightTevColorType_MAJI(model, &i_this->actor.tevStr);
     i_this->mBrkAnm->entry(model->getModelData());
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
     i_this->mLineMat.update(12, l_color, &i_this->actor.tevStr);
     dComIfGd_set3DlineMat(&i_this->mLineMat);
     for (s32 i = 1; i < 11; i++) {
@@ -263,7 +263,7 @@ static void e_yd_stay(e_yd_class* i_this) {
 
 /* 807F3784-807F3A44 000C44 02C0+00 1/1 0/0 0/0 .text            e_yd_appear__FP10e_yd_class */
 static void e_yd_appear(e_yd_class* i_this) {
-    s32 frame = i_this->mpMorf->getFrame();
+    s32 frame = i_this->mAnm_p->getFrame();
     switch (i_this->field_0x670) {
     case 0:
         anm_init(i_this, 6, 10.0f, 0, 1.0f);
@@ -289,7 +289,7 @@ static void e_yd_appear(e_yd_class* i_this) {
         cLib_addCalc2(&i_this->actor.current.pos.z, i_this->field_0x678.z, 0.1f, i_this->field_0x694 * 30.0f);
         cLib_addCalc2(&i_this->actor.current.pos.y, i_this->field_0x678.y, 0.1f, i_this->field_0x694 * 30.0f);
         cLib_addCalc2(&i_this->field_0x694, 1.0f, 1.0f, 0.05f);
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x66e = 3;
             i_this->field_0x670 = 0;
         }
@@ -320,7 +320,7 @@ static void e_yd_appear_v(e_yd_class* i_this) {
         i_this->field_0x670 = 1;
         i_this->field_0x69c[0] = JREG_S(6) + 30;
         i_this->field_0x694 = 0;
-        i_this->mpMorf->setFrame(15.0f);
+        i_this->mAnm_p->setFrame(15.0f);
     case 1:
         local_34.x = fVar2 * cM_ssin(i_this->field_0x66c * (TREG_S(0) + 1200));
         local_34.z = fVar2 * cM_scos(i_this->field_0x66c * (TREG_S(2) + 1500));
@@ -355,7 +355,7 @@ static void e_yd_wait(e_yd_class* i_this) {
     cXyz commonXyz;
     switch (i_this->field_0x670) {
     case -1:
-        if (i_this->mpMorf->isStop() != 0) {
+        if (i_this->mAnm_p->isStop() != 0) {
             i_this->field_0x670 = 0;
         } else {
             cXyz cStack_54(0.0f, 90.0f, -100.0f);
@@ -546,7 +546,7 @@ static void e_yd_attack(e_yd_class* i_this) {
                 break;
             }
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x670 = 3;
             i_this->field_0x69c[0] = 0;
         }
@@ -674,7 +674,7 @@ static void e_yd_chance(e_yd_class* i_this) {
         break;
     }
     case 2:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x66e = 3;
             i_this->field_0x670 = 0;
             i_this->field_0x850 = 0;
@@ -794,7 +794,7 @@ static void e_yd_damage(e_yd_class* i_this) {
         i_this->field_0x1058.CrrPos(dComIfG_Bgsp());
         i_this->actor.current.pos.y += fVar6;
         i_this->actor.old.pos.y += fVar6;
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x66e = 3;
             i_this->field_0x670 = 0;
         }
@@ -1099,7 +1099,7 @@ static void action(e_yd_class* i_this) {
 
         player = fopAcM_SearchByID(i_this->mLeafId);
         if (player != NULL) {
-            ((e_yd_leaf_class*)player)->mpMorf->play(NULL, 0, 0);
+            ((e_yd_leaf_class*)player)->mAnm_p->play(NULL, 0, 0);
         }
 
         cLib_addCalc2(&i_this->field_0x850, 1.0f, 1.0f, 0.05f);
@@ -1152,7 +1152,7 @@ static void eff_set(e_yd_class* i_this) {
     cXyz acStack_48;
 
     if (i_this->actor.field_0x567 == 0) {
-        model = i_this->mpMorf->getModel();
+        model = i_this->mAnm_p->getModel();
         if (i_this->field_0x1234 != 0) {
             i_this->field_0x1234 -= 1;
             i_this->field_0x1235 = 3;
@@ -1214,19 +1214,19 @@ static void eff_set(e_yd_class* i_this) {
 /* 807F64E0-807F6648 0039A0 0168+00 1/1 0/0 0/0 .text            anm_se_set__FP10e_yd_class */
 static void anm_se_set(e_yd_class* i_this) {
     if (i_this->field_0x664 == 6) {
-        if (i_this->mpMorf->checkFrame(22.0f) != 0) {
+        if (i_this->mAnm_p->checkFrame(22.0f) != 0) {
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_DB_BERON, 0, -1);
         }
     } else if (i_this->field_0x664 == 7) {
-        if (i_this->mpMorf->checkFrame(21.0f) != 0) {
+        if (i_this->mAnm_p->checkFrame(21.0f) != 0) {
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_DB_ATTACK, 0, -1);
         }
     } else if (i_this->field_0x664 == 18) {
-        if (i_this->mpMorf->checkFrame(15.0f) != 0) {
+        if (i_this->mAnm_p->checkFrame(15.0f) != 0) {
             i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_DB_V_AWAKE, -1);
         }
     } else if (i_this->field_0x664 == 16) {
-        if (i_this->mpMorf->checkFrame(3.0f) != 0) {
+        if (i_this->mAnm_p->checkFrame(3.0f) != 0) {
             i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_DB_V_CREEP, -1);
         }
     }
@@ -1260,13 +1260,13 @@ static int daE_YD_Execute(e_yd_class* i_this) {
     f32 scale = l_HIO.field_0x8 * i_this->field_0x698;
     mDoMtx_stack_c::scaleM(scale, scale, scale);
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(&i_this->actor)));
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(&i_this->actor)));
     i_this->mBrkAnm->play();
 
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     cXyz cStack_2c;
     cXyz cStack_20;
@@ -1331,7 +1331,7 @@ static int daE_YD_Delete(e_yd_class* i_this) {
         data_807F7D68 = 0;
     }
     if (i_this->actor.heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
     return 1;
 }
@@ -1342,14 +1342,14 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     e_yd_class* a_this = (e_yd_class*)i_this;
 
-    a_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_yd", 24),
+    a_this->mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_yd", 24),
         NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_yd", 19), 2, 1.0f, 0, -1,
         &a_this->mCreatureSound, 0x80000, 0x11000084);
-    if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
+    if (a_this->mAnm_p== NULL || a_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = a_this->mpMorf->getModel();
+    J3DModel* model = a_this->mAnm_p->getModel();
 
     a_this->mBrkAnm = new mDoExt_brkAnm();
     if (a_this->mBrkAnm == NULL) {
@@ -1460,7 +1460,7 @@ static int daE_YD_Create(fopAc_ac_c* i_this) {
         }
 
         i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-        fopAcM_SetMtx(i_this, ((e_yd_class*)i_this)->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, ((e_yd_class*)i_this)->mAnm_p->getModel()->getBaseTRMtx());
 
         fopAcM_SetMin(i_this, -300.0f, -400.0f, -300.0f);
         fopAcM_SetMax(i_this, 300.0f, 400.0f, 300.0f);

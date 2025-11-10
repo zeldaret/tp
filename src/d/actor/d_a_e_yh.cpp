@@ -77,7 +77,7 @@ static void yh_disappear(e_yh_class* i_this) {
 
 /* 807FD6BC-807FD768 0002DC 00AC+00 12/12 0/0 0/0 .text            anm_init__FP10e_yh_classifUcf */
 static void anm_init(e_yh_class* i_this, int param_2, f32 param_3, u8 param_4, f32 param_5) {
-    i_this->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_yd", param_2), param_4,
+    i_this->mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_yd", param_2), param_4,
                            param_3, param_5, 0.0f, -1.0f);
     i_this->field_0x664 = param_2;
 }
@@ -86,7 +86,7 @@ static void anm_init(e_yh_class* i_this, int param_2, f32 param_3, u8 param_4, f
 static BOOL leaf_anm_init(e_yh_class* i_this, int param_2, f32 param_3, u8 param_4, f32 param_5) {
     e_yd_leaf_class* leaf = (e_yd_leaf_class*)fopAcM_SearchByID(i_this->mChildID);
     if (leaf != NULL) {
-        leaf->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_yd", param_2), param_4,
+        leaf->mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_yd", param_2), param_4,
                                param_3, param_5, 0.0f, -1.0f, NULL);
         return TRUE;
     }
@@ -100,11 +100,11 @@ static int daE_YH_Draw(e_yh_class* i_this) {
 
     g_env_light.settingTevStruct(2, &a_this->current.pos, &a_this->tevStr);
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
 
     i_this->mBrk->entry(model->getModelData());
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
 
     if (i_this->field_0x66e != 10) {
         cXyz shadowPos;
@@ -353,7 +353,7 @@ static void e_yh_stay(e_yh_class* i_this) {
 /* 807FE1C4-807FE484 000DE4 02C0+00 1/1 0/0 0/0 .text            e_yh_appear__FP10e_yh_class */
 static void e_yh_appear(e_yh_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    f32 frame = i_this->mpMorf->getFrame();
+    f32 frame = i_this->mAnm_p->getFrame();
     int frameInt = (int)frame;
     
     switch (i_this->field_0x670) {
@@ -385,7 +385,7 @@ static void e_yh_appear(e_yh_class* i_this) {
         cLib_addCalc2(&a_this->current.pos.y, i_this->field_0x678.y, 0.1f, i_this->field_0x690 * 30.0f);
         cLib_addCalc2(&i_this->field_0x690, 1.0f, 1.0f, 0.05f);
         
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x66e = 3;
             i_this->field_0x670 = 0;
         }
@@ -418,7 +418,7 @@ static void e_yh_appear_v(e_yh_class* i_this) {
         i_this->field_0x670 = 1;
         i_this->field_0x698[0] = 30;
         i_this->field_0x690 = 0.0f;
-        i_this->mpMorf->setFrame(15.0f);
+        i_this->mAnm_p->setFrame(15.0f);
         // fallthrough
     case 1:
         local_34.x = dVar6 * cM_ssin(i_this->field_0x66c * 0x4b0);
@@ -458,7 +458,7 @@ static void e_yh_wait(e_yh_class* i_this) {
 
     switch (i_this->field_0x670) {
     case -1:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x670 = 0;
         } else {
             cXyz cStack_54(0.0f, 90.0f, -100.0f);
@@ -710,7 +710,7 @@ static void e_yh_attack(e_yh_class* i_this) {
             }
         }
         
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x670 = 3;
             i_this->field_0x698[0] = 0;
         }
@@ -903,7 +903,7 @@ static void e_yh_chance(e_yh_class* i_this) {
         }
         break;
     case 2:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x66e = 3;
             i_this->field_0x670 = 0;
             i_this->field_0x84c = 0.0f;
@@ -1038,7 +1038,7 @@ static void e_yh_damage(e_yh_class* i_this) {
         a_this->current.pos.y += groundOffset;
         a_this->old.pos.y += groundOffset;
         
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             if (i_this->field_0x5b4 == 1) {
                 i_this->field_0x66e = 10;
             } else {
@@ -1410,7 +1410,7 @@ static s8 e_yh_escape(e_yh_class* i_this) {
         break;
         
     case 11:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0x670 = 1;
             anm_init(i_this, 16, 5.0f, 2, 1.0f);
         }
@@ -1501,7 +1501,7 @@ static s8 e_yh_escape(e_yh_class* i_this) {
         break;
         
     case 21:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, 16, 10.0f, 2, 1.0f);
             i_this->field_0x670 = 1;
         }
@@ -1532,7 +1532,7 @@ static s8 e_yh_escape(e_yh_class* i_this) {
             if (i_this->field_0x698[1] < 10) {
                 cLib_addCalc2(&a_this->speedF, 7.5f, 1.0f, 1.0f);
             }
-            local_114 = 5000.0f * cM_ssin((i_this->mpMorf->getFrame() * 65536.0f) / 11.0f);
+            local_114 = 5000.0f * cM_ssin((i_this->mAnm_p->getFrame() * 65536.0f) / 11.0f);
         } else {
             local_114 = 0;
         }
@@ -1845,7 +1845,7 @@ static void action(e_yh_class* i_this) {
         
         e_yd_leaf_class* leaf = (e_yd_leaf_class*)fopAcM_SearchByID(i_this->mChildID);
         if (leaf != NULL) {
-            leaf->mpMorf->play(NULL, 0, 0);
+            leaf->mAnm_p->play(NULL, 0, 0);
         }
         
         cLib_addCalc2(&i_this->field_0x84c, 1.0f, 1.0f, 0.05f);
@@ -1891,7 +1891,7 @@ static void eff_set(e_yh_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     
     if (a_this->field_0x567 == 0) {
-        J3DModel* model = i_this->mpMorf->getModel();
+        J3DModel* model = i_this->mAnm_p->getModel();
         
         if (i_this->field_0x123c != 0) {
             i_this->field_0x123c--;
@@ -1976,19 +1976,19 @@ static void anm_se_set(e_yh_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     
     if (i_this->field_0x664 == 6) {
-        if (i_this->mpMorf->checkFrame(22.0f)) {
+        if (i_this->mAnm_p->checkFrame(22.0f)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_DB_BERON, 0, -1);
         }
     } else if (i_this->field_0x664 == 7) {
-        if (i_this->mpMorf->checkFrame(21.0f)) {
+        if (i_this->mAnm_p->checkFrame(21.0f)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_DB_ATTACK, 0, -1);
         }
     } else if (i_this->field_0x664 == 0x12) {
-        if (i_this->mpMorf->checkFrame(15.0f)) {
+        if (i_this->mAnm_p->checkFrame(15.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_DB_V_AWAKE, -1);
         }
     } else if (i_this->field_0x664 == 0x10) {
-        if (i_this->mpMorf->checkFrame(3.0f)) {
+        if (i_this->mAnm_p->checkFrame(3.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_DB_V_CREEP, -1);
         }
     }
@@ -2036,12 +2036,12 @@ static int daE_YH_Execute(e_yh_class* i_this) {
         mDoMtx_stack_c::scaleM(scale, scale, scale);
     }
     
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     
-    i_this->mpMorf->play(NULL, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
+    i_this->mAnm_p->play(NULL, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
     i_this->mBrk->play();
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
     
     cXyz cStack_64(-30000.0f, 10000.0f, -20000.0f);
     MTXCopy(model->getAnmMtx(1), *calc_mtx);
@@ -2097,7 +2097,7 @@ static int daE_YH_Delete(e_yh_class* i_this) {
     }
 
     if (a_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -2106,14 +2106,14 @@ static int daE_YH_Delete(e_yh_class* i_this) {
 /* 808031E8-80803474 005E08 028C+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* a_this) {
     e_yh_class* i_this = (e_yh_class*)a_this;
-    i_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_yd", 0x18), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_yd", 0x13), 2, 1.0, 0, -1, &i_this->mSound,
+    i_this->mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_yd", 0x18), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_yd", 0x13), 2, 1.0, 0, -1, &i_this->mSound,
             0x80000, 0x11000084);
 
-    if (i_this->mpMorf == NULL || i_this->mpMorf->getModel() == NULL) {
+    if (i_this->mAnm_p== NULL || i_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     i_this->mBrk = new mDoExt_brkAnm();
     if (i_this->mBrk == NULL) {
         return 0;
@@ -2194,7 +2194,7 @@ static int daE_YH_Create(fopAc_ac_c* a_this) {
         }
 
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-        fopAcM_SetMtx(a_this, i_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(a_this, i_this->mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -300.0f, -400.0f, -300.0f);
         fopAcM_SetMax(a_this, 300.0f, 400.0f, 300.0f);
         a_this->health = 30;

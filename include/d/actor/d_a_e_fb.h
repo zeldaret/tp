@@ -42,7 +42,7 @@ public:
 
 private:
     /* 0x5AC */ request_of_phase_process_class mPhaseReq;
-    /* 0x5B4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5B8 */ mDoExt_invisibleModel mInvisibleModel;
     /* 0x5C0 */ mDoExt_brkAnm* mpBrkAnm;
     /* 0x5C4 */ Z2CreatureEnemy mCreatureSound;

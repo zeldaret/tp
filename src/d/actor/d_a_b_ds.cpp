@@ -291,7 +291,7 @@ int daB_DS_c::draw() {
         return 1;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model->mModelData, &tevStr);
     J3DModelData* model_data = model->getModelData();
@@ -303,7 +303,7 @@ int daB_DS_c::draw() {
                 model_data->getMaterialNodePointer(1)->getTevKColor(1)->a = mCrackAlpha;
             }
 
-            mpMorf->entryDL();
+            mAnm_p->entryDL();
 
             cXyz shadow_pos;
             shadow_pos.set(current.pos.x, current.pos.y + 120.0f, current.pos.z);
@@ -354,7 +354,7 @@ int daB_DS_c::draw() {
         if (mBackboneLevel != 0 && mBackboneLevel < 3) {
             for (int i = 4; i < backbone_hide_mat + 1; i++) {
                 J3DShape* shape =
-                    mpMorf->getModel()->getModelData()->getMaterialNodePointer((u8)i)->getShape();
+                    mAnm_p->getModel()->getModelData()->getMaterialNodePointer((u8)i)->getShape();
                 if (shape != NULL) {
                     shape->hide();
                 }
@@ -362,14 +362,14 @@ int daB_DS_c::draw() {
         } else {
             for (int i = 4; i < 7; i++) {
                 J3DShape* shape =
-                    mpMorf->getModel()->getModelData()->getMaterialNodePointer((u8)i)->getShape();
+                    mAnm_p->getModel()->getModelData()->getMaterialNodePointer((u8)i)->getShape();
                 if (shape != NULL) {
                     shape->show();
                 }
             }
         }
 
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
 
         if (!mNoDrawSword) {
             J3DModel* sword_model = mpSwordMorf->getModel();
@@ -404,7 +404,7 @@ int daB_DS_c::draw() {
 
         cXyz shadow_pos;
         shadow_pos.set(current.pos.x, current.pos.y + 1000.0f, current.pos.z);
-        model = mpMorf->getModel();
+        model = mAnm_p->getModel();
         tevStr.field_0x344 = field_0x7f8;
         mShadowKey = dComIfGd_setShadow(mShadowKey, 0, model, &shadow_pos, 7000.0f, 0.0f,
                                         current.pos.y, mAcch.GetGroundH(), mAcch.m_gnd, &tevStr, 0,
@@ -422,7 +422,7 @@ static int daB_DS_Draw(daB_DS_c* i_this) {
 /* 805CBAC8-805CBB74 000988 00AC+00 18/18 0/0 0/0 .text            setBck__8daB_DS_cFiUcff */
 void daB_DS_c::setBck(int i_anmID, u8 i_attr, f32 i_morf, f32 i_rate) {
     J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", i_anmID));
-    mpMorf->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    mAnm_p->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
     mAnmID = i_anmID;
 }
 
@@ -1647,7 +1647,7 @@ void daB_DS_c::executeOpeningDemo() {
         sp280.set(mSwordPos);
         sp280.y += -100.0f;
         cLib_addCalcPos(&mCameraCenter, sp280, 1.0f, 20.0f, 10.0f);
-        if ((int)mpMorf->getFrame() < 330) {
+        if ((int)mAnm_p->getFrame() < 330) {
             break;
         }
 
@@ -1666,7 +1666,7 @@ void daB_DS_c::executeOpeningDemo() {
 
         f32 max_step = 10.0f;
         f32 min_step = 5.0f;
-        if ((int)mpMorf->getFrame() > 460) {
+        if ((int)mAnm_p->getFrame() > 460) {
             max_step = 40.0f;
             min_step = 20.0f;
             sp280.y -= 200.0f;
@@ -1681,26 +1681,26 @@ void daB_DS_c::executeOpeningDemo() {
         cLib_addCalcPos(&mCameraCenter, sp280, 1.0f, max_step, min_step);
         cLib_addCalcPos(&mCameraEye, sp274, 1.0f, 40.0f, 20.0f);
 
-        if (mpMorf->checkFrame(517.0f)) {
+        if (mAnm_p->checkFrame(517.0f)) {
             dComIfGp_getVibration().StopQuake(0x1f);
         }
 
-        if (mpMorf->checkFrame(518.0f)) {
+        if (mAnm_p->checkFrame(518.0f)) {
             hand_smokeSet(0);
         }
 
-        if (mpMorf->checkFrame(670.0f)) {
+        if (mAnm_p->checkFrame(670.0f)) {
             dCam_getBody()->StartBlure(40, this, 0.8f, 1.2f);
             fopMsgM_messageSetDemo(0x482);
             dComIfGp_getVibration().StartQuake(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
             pla->changeDemoMode(34, 0, 0, 0);
         }
 
-        if (mpMorf->checkFrame(770.0f)) {
+        if (mAnm_p->checkFrame(770.0f)) {
             dComIfGp_getVibration().StopQuake(0x1f);
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             dKy_change_colpat(1);
 
             camera->mCamera.Start();
@@ -1748,7 +1748,7 @@ void daB_DS_c::executeOpeningDemo() {
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mStartingParticleKey[i]);
             if (emitter != NULL) {
                 emitter->setGlobalSRTMatrix(
-                    mpMorf->getModel()->getAnmMtx(KIDOU_EFF_DT[i].joint_no));
+                    mAnm_p->getModel()->getAnmMtx(KIDOU_EFF_DT[i].joint_no));
             }
         }
     }
@@ -1935,26 +1935,26 @@ void daB_DS_c::damageDownCheck() {
         int ptcl_check_frame = 18;
 
         if (mBrokenBone == 0) {
-            if (mpMorf->checkFrame(30.0f)) {
+            if (mAnm_p->checkFrame(30.0f)) {
                 hand_smokeSet(1);
             }
 
-            if (mpMorf->checkFrame(50.0f)) {
+            if (mAnm_p->checkFrame(50.0f)) {
                 hand_smokeSet(2);
             }
 
             ptcl_check_frame = 35;
         } else {
-            if (mpMorf->checkFrame(13.0f)) {
+            if (mAnm_p->checkFrame(13.0f)) {
                 hand_smokeSet(1);
             }
 
-            if (mpMorf->checkFrame(29.0f)) {
+            if (mAnm_p->checkFrame(29.0f)) {
                 hand_smokeSet(2);
             }
         }
 
-        if (mpMorf->checkFrame(ptcl_check_frame)) {
+        if (mAnm_p->checkFrame(ptcl_check_frame)) {
             for (int i = 0; i < 2; i++) {
                 mHitParticleKey[i] =
                     dComIfGp_particle_set(mHitParticleKey[i], eff_smoke_id[i], &current.pos,
@@ -2065,8 +2065,8 @@ void daB_DS_c::executeDamage() {
         }
 
         if (mModeTimer == 0 && mAnmID != ANM_DAMAGE_A_WAIT && mAnmID != ANM_DAMAGE_B_WAIT &&
-            ((mBrokenBone == 0 && mpMorf->checkFrame(24.0f)) ||
-             (mBrokenBone != 0 && mpMorf->checkFrame(7.0f))))
+            ((mBrokenBone == 0 && mAnm_p->checkFrame(24.0f)) ||
+             (mBrokenBone != 0 && mAnm_p->checkFrame(7.0f))))
         {
             int index = mBackboneLevel * 4;
             for (int i = 0; i < 4; i++) {
@@ -2074,7 +2074,7 @@ void daB_DS_c::executeDamage() {
                                                                 &current.pos, &shape_angle, NULL);
                 if (emitter != NULL) {
                     emitter->setGlobalSRTMatrix(
-                        mpMorf->getModel()->getAnmMtx(BROKENBORN_EFF_DT[index + i].joint_no));
+                        mAnm_p->getModel()->getAnmMtx(BROKENBORN_EFF_DT[index + i].joint_no));
                 }
             }
 
@@ -2161,7 +2161,7 @@ void daB_DS_c::executeDamage() {
 
         camera->mCamera.Set(mCameraCenter, mCameraEye);
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mBrokenBone = 0;
 
             f32 dist = fopAcM_searchPlayerDistance(this);
@@ -2219,7 +2219,7 @@ void daB_DS_c::executeDamage() {
         cLib_addCalcAngleS2(&shape_angle.x, 2000, 8, 0x100);
         cLib_addCalc0(&field_0x7f8, 0.1f, 0.01f);
 
-        if (mpMorf->checkFrame(120.0f)) {
+        if (mAnm_p->checkFrame(120.0f)) {
             hand_smokeSet(1);
             dComIfGp_getVibration().StartShock(1, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_HAND, 0, -1);
@@ -2232,7 +2232,7 @@ void daB_DS_c::executeDamage() {
                                                                 &current.pos, &shape_angle, NULL);
                 if (emitter != NULL) {
                     emitter->setGlobalSRTMatrix(
-                        mpMorf->getModel()->getAnmMtx(BROKENBORN_EFF_DT[index + i].joint_no));
+                        mAnm_p->getModel()->getAnmMtx(BROKENBORN_EFF_DT[index + i].joint_no));
                 }
             }
 
@@ -2240,14 +2240,14 @@ void daB_DS_c::executeDamage() {
             mSound.startCreatureSound(Z2SE_EN_DS_BONE_BRK, 0, -1);
         }
 
-        if (mpMorf->checkFrame(241.0f)) {
+        if (mAnm_p->checkFrame(241.0f)) {
             hand_smokeSet(2);
             dComIfGp_getVibration().StartShock(5, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_HAND, 0, -1);
         }
 
-        if (mpMorf->checkFrame(145.0f)) {
+        if (mAnm_p->checkFrame(145.0f)) {
             for (int i = 0; i < 2; i++) {
                 mHitParticleKey[i] = dComIfGp_particle_set(mHitParticleKey[i], eff_smoke_id[i],
                                                            &current.pos, &angle, &particle_scale);
@@ -2258,11 +2258,11 @@ void daB_DS_c::executeDamage() {
         }
 
         index = 0;
-        if ((int)mpMorf->getFrame() > 130) {
+        if ((int)mAnm_p->getFrame() > 130) {
             index = 1;
         }
 
-        if ((int)mpMorf->getFrame() < 140) {
+        if ((int)mAnm_p->getFrame() < 140) {
             shape_angle.y = home.angle.y;
             current.angle.y = shape_angle.y;
             mCameraCenter = down_center_dt[index];
@@ -2273,13 +2273,13 @@ void daB_DS_c::executeDamage() {
         }
         camera->mCamera.Set(mCameraCenter, mCameraEye);
 
-        if (mpMorf->checkFrame(215.0f)) {
+        if (mAnm_p->checkFrame(215.0f)) {
             dComIfGp_getVibration().StartShock(4, 0x4f, cXyz(0.0f, 1.0f, 0.0f));
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_HAND, 0, -1);
         }
 
-        if (!mpMorf->isStop()) {
+        if (!mAnm_p->isStop()) {
             break;
         }
         mModeTimer = 30;
@@ -2412,7 +2412,7 @@ void daB_DS_c::executeEtcDamage() {
         break;
     case 3:
     case 4:
-        if ((int)mpMorf->getFrame() == smokeSet_dt[mBackboneLevel]) {
+        if ((int)mAnm_p->getFrame() == smokeSet_dt[mBackboneLevel]) {
             if (mMode == 4) {
                 hand_smokeSet(1);
             } else {
@@ -2421,7 +2421,7 @@ void daB_DS_c::executeEtcDamage() {
         }
         // fallthrough
     case 5:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACT_WAIT, 0);
         }
     }
@@ -2440,7 +2440,7 @@ void daB_DS_c::breath_smokeSet() {
                                                            &mHeadPos, &mHeadAngle, &particle_scale);
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mBreathSmokeParticleKey[i]);
         if (emitter != NULL) {
-            emitter->setGlobalSRTMatrix(mpMorf->getModel()->getAnmMtx(DS_JNT_HEAD));
+            emitter->setGlobalSRTMatrix(mAnm_p->getModel()->getAnmMtx(DS_JNT_HEAD));
         }
     }
 
@@ -2479,16 +2479,16 @@ void daB_DS_c::executeBreathAttack() {
         mMode = 1;
         break;
     case 1:
-        if (mpMorf->checkFrame(82.0f)) {
+        if (mAnm_p->checkFrame(82.0f)) {
             hand_smokeSet(0);
             mSound.startCreatureSound(Z2SE_EN_DS_HANDS, 0, -1);
         }
 
-        if ((int)mpMorf->getFrame() > 82) {
+        if ((int)mAnm_p->getFrame() > 82) {
             cLib_addCalcAngleS2(&mBh2AttackAngleF, 10000, 10, 0x100);
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(Ds_breath_id[mBackboneLevel * 3 + 1], 2, 3.0f, 1.0f);
             mModeTimer = 185;
             mBreathTimerBase = 0.0f;
@@ -2510,7 +2510,7 @@ void daB_DS_c::executeBreathAttack() {
         }
         break;
     case 3:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACT_WAIT, 0);
         }
     }
@@ -2530,10 +2530,10 @@ void daB_DS_c::executeHandAttack() {
         mMode++;
         break;
     case 1:
-        if ((int)mpMorf->getFrame() > 90 && (int)mpMorf->getFrame() < 110) {
+        if ((int)mAnm_p->getFrame() > 90 && (int)mAnm_p->getFrame() < 110) {
             bool bvar1 = false;
 
-            int ivar3 = (int)((mpMorf->getFrame() - 90.0f) / 4.0f) + 7;
+            int ivar3 = (int)((mAnm_p->getFrame() - 90.0f) / 4.0f) + 7;
             if ((int)mChkHigh < ivar3) {
                 mChkHigh = ivar3;
                 bvar1 = true;
@@ -2541,12 +2541,12 @@ void daB_DS_c::executeHandAttack() {
 
             if (mAttackingHand == 0) {
                 mHandAtRCyl.OnAtSetBit();
-                if ((int)mpMorf->getFrame() > 100 && bvar1) {
+                if ((int)mAnm_p->getFrame() > 100 && bvar1) {
                     hand_smokeSet(2);
                 }
             } else {
                 mHandAtLCyl.OnAtSetBit();
-                if ((int)mpMorf->getFrame() > 100 && bvar1) {
+                if ((int)mAnm_p->getFrame() > 100 && bvar1) {
                     hand_smokeSet(1);
                 }
             }
@@ -2555,7 +2555,7 @@ void daB_DS_c::executeHandAttack() {
             mHandAtRCyl.OffAtSetBit();
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACT_WAIT, 0);
         }
     }
@@ -2572,7 +2572,7 @@ void daB_DS_c::executeBreathSearch() {
         mMode++;
         // fallthrough
     case 1:
-        if ((int)mpMorf->getFrame() >= 177 && (int)mpMorf->getFrame() <= 195) {
+        if ((int)mAnm_p->getFrame() >= 177 && (int)mAnm_p->getFrame() <= 195) {
             mHandAtRCyl.OnAtSetBit();
             mHandAtLCyl.OnAtSetBit();
             hand_smokeSet(0);
@@ -2581,13 +2581,13 @@ void daB_DS_c::executeBreathSearch() {
             mHandAtRCyl.OffAtSetBit();
         }
 
-        if (mpMorf->isStop() && !mHandBreathChk()) {
+        if (mAnm_p->isStop() && !mHandBreathChk()) {
             setActionMode(ACT_WAIT, 0);
         }
         break;
     }
 
-    if ((int)mpMorf->getFrame() > 70 && (int)mpMorf->getFrame() < 150) {
+    if ((int)mAnm_p->getFrame() > 70 && (int)mAnm_p->getFrame() < 150) {
         s16 angle = fopAcM_searchPlayerAngleY(this);
         cLib_addCalcAngleS2(&current.angle.y, angle, 40, 0x200);
         shape_angle.y = current.angle.y;
@@ -2730,7 +2730,7 @@ void daB_DS_c::executeBattle2OpeningDemo() {
                                                         &current.pos, &shape_angle, NULL);
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mSandParticleKey[i]);
             if (emitter != NULL) {
-                emitter->setGlobalSRTMatrix(mpMorf->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
+                emitter->setGlobalSRTMatrix(mAnm_p->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
             }
         }
 
@@ -2827,11 +2827,11 @@ void daB_DS_c::executeBattle2OpeningDemo() {
         mMode++;
         // fallthrough
     case 15:
-        if ((int)mpMorf->getFrame() < 30) {
+        if ((int)mAnm_p->getFrame() < 30) {
             break;
         }
 
-        if (mpMorf->checkFrame(35.0f)) {
+        if (mAnm_p->checkFrame(35.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_DS_H_V_ATK, -1);
         }
 
@@ -3197,8 +3197,8 @@ void daB_DS_c::executeBattle2FMove() {
         }
         break;
     case 3:
-        if (!mpMorf->isStop()) {
-            if (mpMorf->checkFrame(35.0f)) {
+        if (!mAnm_p->isStop()) {
+            if (mAnm_p->checkFrame(35.0f)) {
                 mSound.startCreatureVoice(Z2SE_EN_DS_H_V_ATK, -1);
             }
             break;
@@ -3237,7 +3237,7 @@ void daB_DS_c::executeBattle2FMove() {
         break;
     case 10:
     case 100:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             if (mMode == 10) {
                 mMode = 0;
             } else {
@@ -3267,10 +3267,10 @@ void daB_DS_c::executeBattle2Tired() {
         break;
     case 1:
         if (mAnmID == ANM_HEAD_FATTACK_A) {
-            if (mpMorf->checkFrame(35.0f)) {
+            if (mAnm_p->checkFrame(35.0f)) {
                 mSound.startCreatureVoice(Z2SE_EN_DS_H_V_ATK, -1);
             }
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setBck(ANM_HEAD_FATTACK_B, 2, 3.0f, 1.0f);
             }
         }
@@ -3289,7 +3289,7 @@ void daB_DS_c::executeBattle2Tired() {
         }
         break;
     case 3:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mMode = 777;
         }
         break;
@@ -3505,7 +3505,7 @@ void daB_DS_c::executeBattle2Damage() {
                 dComIfGp_particle_set(mParticleKey1, 0x8bf5, &current.pos, &shape_angle, NULL);
             emitter = dComIfGp_particle_getEmitter(mParticleKey1);
             if (emitter != NULL) {
-                emitter->setGlobalSRTMatrix(mpMorf->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
+                emitter->setGlobalSRTMatrix(mAnm_p->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
             }
 
             Z2GetAudioMgr()->seStartLevel(Z2SE_EN_DS_SMOKE_2, &mSwordPos, 0, 0, 1.0f, 1.0f, -1.0f,
@@ -3541,8 +3541,8 @@ void daB_DS_c::executeBattle2Damage() {
             return;
         }
 
-        if ((int)mpMorf->getFrame() >= 20) {
-            if (mpMorf->checkFrame(20.0f)) {
+        if ((int)mAnm_p->getFrame() >= 20) {
+            if (mAnm_p->checkFrame(20.0f)) {
                 mSound.startCreatureSound(Z2SE_EN_DS_H_DOWN_UP, 0, -1);
             }
 
@@ -4310,7 +4310,7 @@ void daB_DS_c::mSoundSE_Set() {
     case ANM_WAIT01_A:
     case ANM_WAIT01_B:
     case ANM_WAIT01_C:
-        if (mpMorf->checkFrame(29.0f)) {
+        if (mAnm_p->checkFrame(29.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(mWaitDt[mAnmID - ANM_WAIT01_A], -1);
         }
@@ -4318,11 +4318,11 @@ void daB_DS_c::mSoundSE_Set() {
     case ANM_NODAMAGE_01_A:
     case ANM_NODAMAGE_01_B:
     case ANM_NODAMAGE_01_C:
-        if (mpMorf->checkFrame(25.0f)) {
+        if (mAnm_p->checkFrame(25.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(Z2SE_EN_DS_V_NODMG, -1);
         }
-        if (mpMorf->checkFrame(39.0f)) {
+        if (mAnm_p->checkFrame(39.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_HAND_1, 0, -1);
         }
@@ -4330,11 +4330,11 @@ void daB_DS_c::mSoundSE_Set() {
     case ANM_NODAMAGE_02_A:
     case ANM_NODAMAGE_02_B:
     case ANM_NODAMAGE_02_C:
-        if (mpMorf->checkFrame(28.0f)) {
+        if (mAnm_p->checkFrame(28.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(Z2SE_EN_DS_V_NODMG, -1);
         }
-        if (mpMorf->checkFrame(51.0f)) {
+        if (mAnm_p->checkFrame(51.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_HAND_2, 0, -1);
         }
@@ -4342,7 +4342,7 @@ void daB_DS_c::mSoundSE_Set() {
     case ANM_NODAMAGE_03_A:
     case ANM_NODAMAGE_03_B:
     case ANM_NODAMAGE_03_C:
-        if (mpMorf->checkFrame(42.0f)) {
+        if (mAnm_p->checkFrame(42.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(Z2SE_EN_DS_V_NODMG, -1);
         }
@@ -4353,17 +4353,17 @@ void daB_DS_c::mSoundSE_Set() {
     case ANM_ATTACK_R_A:
     case ANM_ATTACK_R_B:
     case ANM_ATTACK_R_C:
-        if (mpMorf->checkFrame(32.0f)) {
+        if (mAnm_p->checkFrame(32.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(Z2SE_EN_DS_V_ATK_1, -1);
         }
 
-        if (mpMorf->checkFrame(97.0f)) {
+        if (mAnm_p->checkFrame(97.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(Z2SE_EN_DS_V_ATK_2, -1);
         }
 
-        if (mpMorf->checkFrame(105.0f)) {
+        if (mAnm_p->checkFrame(105.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_ATK, 0, -1);
         }
@@ -4371,7 +4371,7 @@ void daB_DS_c::mSoundSE_Set() {
     case ANM_ATTACK02_A_A:
     case ANM_ATTACK02_A_B:
     case ANM_ATTACK02_A_C:
-        if (mpMorf->checkFrame(83.0f)) {
+        if (mAnm_p->checkFrame(83.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(Z2SE_EN_DS_V_ATK_FIRE, -1);
         }
@@ -4382,44 +4382,44 @@ void daB_DS_c::mSoundSE_Set() {
     case ANM_CIRCLE_R_A:
     case ANM_CIRCLE_R_B:
     case ANM_CIRCLE_R_C:
-        if (mpMorf->checkFrame(32.0f)) {
+        if (mAnm_p->checkFrame(32.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_HAND_1, 0, -1);
         }
 
-        if (mpMorf->checkFrame(54.0f)) {
+        if (mAnm_p->checkFrame(54.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_HAND_2, 0, -1);
         }
 
-        if (mpMorf->checkFrame(92.0f)) {
+        if (mAnm_p->checkFrame(92.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_HAND_1, 0, -1);
         }
 
-        if (mpMorf->checkFrame(114.0f)) {
+        if (mAnm_p->checkFrame(114.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_HAND_2, 0, -1);
         }
         break;
     case ANM_ATTACK01_A:
-        if (mpMorf->checkFrame(272.0f)) {
+        if (mAnm_p->checkFrame(272.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_HAND_1, 0, -1);
         }
 
-        if (mpMorf->checkFrame(314.0f)) {
+        if (mAnm_p->checkFrame(314.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_HAND_2, 0, -1);
         }
         // fallthrough
     case ANM_ATTACK01_B:
     case ANM_ATTACK01_C:
-        if (mpMorf->checkFrame(10.0f)) {
+        if (mAnm_p->checkFrame(10.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(Z2SE_EN_DS_V_RTT, -1);
         }
-        if (mpMorf->checkFrame(184.0f)) {
+        if (mAnm_p->checkFrame(184.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_HANDS, 0, -1);
         }
@@ -4431,70 +4431,70 @@ void daB_DS_c::mSoundSE_Set() {
         mSound.startCreatureSound(Z2SE_EN_DS_DMG_WAIT, 0, -1);
         break;
     case ANM_DAMAGE_A:
-        if (mpMorf->checkFrame(0.0f)) {
+        if (mAnm_p->checkFrame(0.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(Z2SE_EN_DS_V_DMG_A, -1);
         }
 
-        if (mpMorf->checkFrame(20.0f)) {
+        if (mAnm_p->checkFrame(20.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_A_FALL, 0, -1);
         }
 
-        if (mpMorf->checkFrame(28.0f)) {
+        if (mAnm_p->checkFrame(28.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_HAND, 0, -1);
         }
 
-        if (mpMorf->checkFrame(54.0f)) {
+        if (mAnm_p->checkFrame(54.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_HAND, 0, -1);
         }
         break;
 
     case ANM_DAMAGE_B:
-        if (mpMorf->checkFrame(0.0f)) {
+        if (mAnm_p->checkFrame(0.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(Z2SE_EN_DS_V_DMG_B, -1);
         }
 
-        if (mpMorf->checkFrame(6.0f)) {
+        if (mAnm_p->checkFrame(6.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_B_FALL, 0, -1);
         }
 
-        if (mpMorf->checkFrame(33.0f)) {
+        if (mAnm_p->checkFrame(33.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_HAND, 0, -1);
         }
 
-        if (mpMorf->checkFrame(45.0f)) {
+        if (mAnm_p->checkFrame(45.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_HAND, 0, -1);
         }
         break;
     case ANM_LASTDAMAGE:
-        if (mpMorf->checkFrame(0.0f)) {
+        if (mAnm_p->checkFrame(0.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureVoice(Z2SE_EN_DS_V_DMG_L, -1);
         }
 
-        if (mpMorf->checkFrame(124.0f)) {
+        if (mAnm_p->checkFrame(124.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_L_FALL, 0, -1);
         }
 
-        if (mpMorf->checkFrame(119.0f)) {
+        if (mAnm_p->checkFrame(119.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_HAND, 0, -1);
         }
 
-        if (mpMorf->checkFrame(236.0f)) {
+        if (mAnm_p->checkFrame(236.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_BODY, 0, -1);
         }
 
-        if (mpMorf->checkFrame(240.0f)) {
+        if (mAnm_p->checkFrame(240.0f)) {
             mSoundPos = current.pos;
             mSound.startCreatureSound(Z2SE_EN_DS_DMG_HAND, 0, -1);
         }
@@ -4611,7 +4611,7 @@ void daB_DS_c::action() {
             daPy_getPlayerActorClass()->cancelWolfLock(this);
         }
 
-        mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
         mpSwordBrkAnm->play();
         mpSwordMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 
@@ -4636,9 +4636,9 @@ void daB_DS_c::mtx_set() {
         mpOpPatternModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
 
     mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_HEAD));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
@@ -4704,7 +4704,7 @@ void daB_DS_c::cc_set() {
         300.0f, 350.0f, 270.0f, 190.0f, 190.0f,
     };
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     cXyz center_base, center;
 
     mDoMtx_stack_c::copy(model->getAnmMtx(DS_JNT_HEAD));
@@ -4812,7 +4812,7 @@ void daB_DS_c::cc_etc_set() {
         i = 12;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (; i < last; i++) {
         mDoMtx_stack_c::copy(model->getAnmMtx(ETC_CC_DT[i].joint_no));
         cXyz center_base = ETC_CC_DT[i].center;
@@ -4869,7 +4869,7 @@ void daB_DS_c::mBattle2Action() {
         mAcchCir.SetWall(200.0f, mWallR);
         mAcch.SetGroundUpY(mGroundUpY);
         mAcch.CrrPos(dComIfG_Bgsp());
-        mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
 
     mpSwordBrkAnm->play();
@@ -5050,7 +5050,7 @@ bool daB_DS_c::mBattle2_damage_check() {
 void daB_DS_c::mBattle2_mtx_set() {
     cXyz vec1, vec2, vec3;
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     if (!mDead) {
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::transM(field_0x790.x, field_0x790.y, field_0x790.z);
@@ -5058,7 +5058,7 @@ void daB_DS_c::mBattle2_mtx_set() {
         mDoMtx_stack_c::ZXYrotM(field_0x7ae);
         mDoMtx_stack_c::scaleM(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);
         model->setBaseTRMtx(mDoMtx_stack_c::get());
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
 
         mDoMtx_stack_c::copy(model->getAnmMtx(DS_HEAD_JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mHeadPos);
@@ -5122,7 +5122,7 @@ void daB_DS_c::mBattle2_mtx_set() {
             dComIfGp_particle_set(mParticleKey2, 0x8bfa, &current.pos, &shape_angle, NULL);
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mParticleKey2);
         if (emitter != NULL) {
-            emitter->setGlobalSRTMatrix(mpMorf->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
+            emitter->setGlobalSRTMatrix(mAnm_p->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
         }
     }
 }
@@ -5139,7 +5139,7 @@ void daB_DS_c::mBattle2_cc_etc_set() {
     };
 
     if (mAction == ACT_B2_OPENING_DEMO) {
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         for (int i = 0; i < 2; i++) {
             mDoMtx_stack_c::copy(model->getAnmMtx(B2_ETC_CC_DT[i].joint_no));
             cXyz center_base = B2_ETC_CC_DT[i].center;
@@ -5166,7 +5166,7 @@ void daB_DS_c::mBattle2_cc_set() {
         300.0f, 350.0f, 270.0f, 190.0f, 190.0f,
     };
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(DS_HEAD_JNT_HEAD));
 
     csXyz hit_angle;
     cXyz delta_pos;
@@ -5231,7 +5231,7 @@ int daB_DS_c::execute() {
     dBgS_GndChk gnd_chk;
     cXyz unused_0, chk_pos, unused_1;
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     s8 var_r25;
     int i = 0;
 
@@ -5263,7 +5263,7 @@ int daB_DS_c::execute() {
                 var_r25 = true;
 
                 if (field_0x84d & 1) {
-                    if ((int)mpMorf->getFrame() >= 72 && (int)mpMorf->getFrame() < 79) {
+                    if ((int)mAnm_p->getFrame() >= 72 && (int)mAnm_p->getFrame() < 79) {
                         hand_smokeSet(1);
                         field_0x84d ^= 1;
                     }
@@ -5285,7 +5285,7 @@ int daB_DS_c::execute() {
                 handR_ang += (s16)(fabsf(jnt_pos.y - chk_pos.y) * 10.0f);
                 var_r25 = true;
                 if (field_0x84d & 2) {
-                    if ((int)mpMorf->getFrame() >= 34 && (int)mpMorf->getFrame() < 41) {
+                    if ((int)mAnm_p->getFrame() >= 34 && (int)mAnm_p->getFrame() < 41) {
                         hand_smokeSet(2);
                         field_0x84d ^= 2;
                     }
@@ -5296,7 +5296,7 @@ int daB_DS_c::execute() {
                 break;
             }
 
-            mpMorf->updateDL();
+            mAnm_p->updateDL();
 
             i++;
             if (i > 10) {
@@ -5394,14 +5394,14 @@ int daB_DS_c::CreateHeap() {
 
     JUT_ASSERT(0, modelData != NULL);
 
-    mpMorf = new mDoExt_McaMorfSO(
+    mAnm_p= new mDoExt_McaMorfSO(
         modelData, NULL, NULL, static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", anm_res)),
         0, 1.0f, 0, -1, &mSound, 0, 0x11000084);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    model = mpMorf->getModel();
+    model = mAnm_p->getModel();
     model->setUserArea((uintptr_t)this);
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         if (i != 0) {
@@ -5608,7 +5608,7 @@ cPhs__Step daB_DS_c::create() {
             attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
-            fopAcM_SetMtx(this, mpMorf->mpModel->getBaseTRMtx());
+            fopAcM_SetMtx(this, mAnm_p->mpModel->getBaseTRMtx());
             fopAcM_SetMin(this, -40000.0f, -40000.0f, -40000.0f);
             fopAcM_SetMax(this, 40000.0f, 40000.0f, 40000.0f);
 

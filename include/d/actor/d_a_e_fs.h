@@ -28,7 +28,7 @@ public:
     /* 0x5C6 */ s16 mPlayerAngleY;
     /* 0x5C8 */ f32 mPlayerDistXZ;
     /* 0x5CC */ u8 field_0x5cc[0x5D0 - 0x5CC];
-    /* 0x5D0 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5D0 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5D4 */ Z2CreatureEnemy mCreatureSound;
     /* 0x678 */ u32 mAnm;
     /* 0x67C */ s16 mFrameCounter;

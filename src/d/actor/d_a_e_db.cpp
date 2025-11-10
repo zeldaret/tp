@@ -62,7 +62,7 @@ static void anm_init(e_db_class* i_this, int i_anm, f32 i_morf, u8 i_mode, f32 i
 static BOOL leaf_anm_init(e_db_class* i_this, int i_anm, f32 i_morf, u8 i_mode, f32 i_speed) {
     e_db_leaf_class* pleaf = (e_db_leaf_class*)fopAcM_SearchByID(i_this->leaf_actor_id);
     if (pleaf != NULL) {
-        pleaf->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_db", i_anm), i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
+        pleaf->mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_db", i_anm), i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
         return TRUE;
     }
 
@@ -1815,7 +1815,7 @@ static void action(e_db_class* i_this) {
 
         e_db_leaf_class* pleaf = (e_db_leaf_class*)fopAcM_SearchByID(i_this->leaf_actor_id);
         if (pleaf != NULL) {
-            pleaf->mpMorf->play(NULL, 0, 0);
+            pleaf->mAnm_p->play(NULL, 0, 0);
         }
 
         cLib_addCalc2(&i_this->field_0x848, 1.0f, 1.0f, 0.05f);

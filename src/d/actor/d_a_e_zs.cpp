@@ -54,10 +54,10 @@ int daE_ZS_c::draw() {
         return 1;
     }
 
-    J3DModel * model = mpMorf->getModel();
+    J3DModel * model = mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
     cXyz adj_pos;
     adj_pos.set(current.pos.x, current.pos.y + 10.0f, current.pos.z);
     mShadowKey = dComIfGd_setShadow(mShadowKey, 1, model, &adj_pos, 700.0f, 0.0f,
@@ -74,7 +74,7 @@ static int daE_ZS_Draw(daE_ZS_c* i_this) {
 /* 808331E4-80833290 000224 00AC+00 4/4 0/0 0/0 .text            setBck__8daE_ZS_cFiUcff */
 void daE_ZS_c::setBck(int i_res_index, u8 i_attr, f32 i_morf, f32 i_rate) {
     J3DAnmTransform* anmTransform = (J3DAnmTransform*)dComIfG_getObjectRes("E_ZS", i_res_index);
-    mpMorf->setAnm(anmTransform, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    mAnm_p->setAnm(anmTransform, i_attr, i_morf, i_rate, 0.0f, -1.0f);
     mResIndex = i_res_index;
 }
 
@@ -97,7 +97,7 @@ void daE_ZS_c::damage_check() {
 
     if (health > 1 && field_0x670 == 0 && field_0x673 && mAction != 3 && mCyl.ChkTgSet()) {
         cXyz eff_pos;
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&eff_pos);
         scale.set(l_HIO.field_0x8, l_HIO.field_0x8, l_HIO.field_0x8);
         setMidnaBindEffect(this, &mSound, &eff_pos, &scale);
@@ -107,7 +107,7 @@ void daE_ZS_c::damage_check() {
             mpCollider = mCyl.GetTgHitObj();
             my_vec_1 = *mCyl.GetTgHitPosP();
             if (mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_SPINNER)) {
-                mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+                mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
                 mDoMtx_stack_c::multVecZero(&eff_pos);
                 for (int idx = 0; idx < 3; ++idx) {
                     dComIfGp_particle_set(eff_Damage_id[idx], &eff_pos, NULL, &shape_angle,
@@ -242,7 +242,7 @@ void daE_ZS_c::executeAppear() {
                     setActionMode(1, 0);
                 }
             } else {
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     offWolfNoLock();
                     fopAcM_OnStatus(this, 0x200000);
                     setActionMode(1, 0);
@@ -289,7 +289,7 @@ void daE_ZS_c::executeWait() {
 
             mMode = 1;
         case 1: {
-            if ((int)mpMorf->getFrame() == 0) {
+            if ((int)mAnm_p->getFrame() == 0) {
                 mSound.startCreatureVoice(Z2SE_EN_ZS_V_WAIT, -1);
             }
             daB_DS_c* stallord_boss = (daB_DS_c*) fpcM_Search(s_BossSearch, this);
@@ -326,7 +326,7 @@ void daE_ZS_c::executeDamage() {
             mMode = 1;
             break;
         case 1:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setActionMode(1, 0);
             }
 
@@ -337,7 +337,7 @@ void daE_ZS_c::executeDamage() {
             mMode = 3;
             break;
         case 3:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 cXyz my_vec_0(5.0f, 5.0f, 5.0f);
                 for (int idx = 0; idx < 4; ++idx) {
                     dComIfGp_particle_set(w_eff_id[idx], &current.pos, &tevStr, NULL,
@@ -377,7 +377,7 @@ void daE_ZS_c::executeDrive() {
             break;
         case 1:
         case 11:
-            if ((int)mpMorf->getFrame() < 1) {
+            if ((int)mAnm_p->getFrame() < 1) {
                 if (lbl_259_bss_29 || mMode == 1) {
                     fopAcM_delete(this);
                 } else {
@@ -430,7 +430,7 @@ void daE_ZS_c::action() {
     fopAcM_posMoveF(this, mStts.GetCCMoveP());
     mAcch.CrrPos(dComIfG_Bgsp());
     if (field_0x673) {
-        mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
 }
 
@@ -441,8 +441,8 @@ void daE_ZS_c::mtx_set() {
         mDoMtx_stack_c::transM(0.0f, field_0x65c, 0.0f);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
         mDoMtx_stack_c::scaleM(l_HIO.field_0x8, l_HIO.field_0x8, l_HIO.field_0x8);
-        mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-        mpMorf->modelCalc();
+        mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+        mAnm_p->modelCalc();
     }
 }
 
@@ -451,7 +451,7 @@ void daE_ZS_c::cc_set() {
     if (field_0x673) {
         cXyz my_vec_0;
         cXyz my_vec_1;
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         mDoMtx_stack_c::copy(model->getAnmMtx(4));
         my_vec_0.set(0.0f, 25.0f, 0.0f);
         mDoMtx_stack_c::multVec(&my_vec_0, &my_vec_1);
@@ -516,9 +516,9 @@ static int daE_ZS_Delete(daE_ZS_c* i_this) {
 int daE_ZS_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("E_ZS", 0xC);
     JUT_ASSERT(0x3e9, modelData != NULL);
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_ZS", 4),
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_ZS", 4),
                                   1, 1.0f, 0, -1, &mSound, 0,0x11000084);
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
     return 1;
@@ -552,7 +552,7 @@ int daE_ZS_c::create() {
 
         OS_REPORT("arg0 %d\n", field_0x672);
         attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
@@ -568,7 +568,7 @@ int daE_ZS_c::create() {
         mpSound = &mSound;
         field_0xa22 = 10;
         gravity = -1.0f;
-        mpMorf->setStartFrame(0.0f);
+        mAnm_p->setStartFrame(0.0f);
         onWolfNoLock();
         if (field_0x672 == 0) {
             setActionMode(0, 0);

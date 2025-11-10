@@ -31,7 +31,7 @@ public:
     /* 0x574 */ request_of_phase_process_class mPhase2;
     /* 0x57C */ request_of_phase_process_class mPhase3;
     /* 0x584 */ request_of_phase_process_class mPhase4;
-    /* 0x58C */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x58C */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x590 */ Z2CreatureCitizen mCreature;
     /* 0x634 */ dBgS_ObjAcch mAcch;
     /* 0x80C */ dBgS_AcchCir mAcchCir;

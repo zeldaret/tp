@@ -20,7 +20,7 @@ public:
     /* 0x5B5 */ u8 arg1;
     /* 0x5B8 */ f32 mPlayerDist;
     /* 0x5BC */ s16 mPlayerAngleY;
-    /* 0x5C0 */ mDoExt_McaMorf* mpMorf;
+    /* 0x5C0 */ mDoExt_McaMorf* mAnm_p;
     /* 0x5C4 */ mDoExt_btpAnm* mpBtpAnm;
     /* 0x5C8 */ int mAnm;
     /* 0x5CC */ s16 mFrameCounter;

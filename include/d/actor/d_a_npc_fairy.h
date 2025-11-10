@@ -46,13 +46,13 @@ public:
     };
 
     _Fairy_Feather_c() {
-        mpMorf = NULL;
+        mAnm_p= NULL;
         mPrevAnm = -1;
     }
     ~_Fairy_Feather_c() {
-        if (mpMorf != NULL) {
-            delete mpMorf;
-            mpMorf = NULL;
+        if (mAnm_p!= NULL) {
+            delete mAnm_p;
+            mAnm_p= NULL;
         }
     }
     /* 809B1B0C */ BOOL create();
@@ -69,14 +69,14 @@ public:
     void playAnm() {
         mBtkAnm.play();
         mBrkAnm.play();
-        mpMorf->play(0, 0);
+        mAnm_p->play(0, 0);
     }
 
-    f32 getAnmFrame() { return mpMorf->getFrame(); }
-    void setAnmFrame(f32 i_frame) { mpMorf->setFrame(i_frame); }
-    void setAnmPlaySpeed(f32 i_playSpeed) { mpMorf->setPlaySpeed(i_playSpeed); }
+    f32 getAnmFrame() { return mAnm_p->getFrame(); }
+    void setAnmFrame(f32 i_frame) { mAnm_p->setFrame(i_frame); }
+    void setAnmPlaySpeed(f32 i_playSpeed) { mAnm_p->setPlaySpeed(i_playSpeed); }
 
-    /* 0x00 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x00 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x04 */ mDoExt_invisibleModel mModel;
     /* 0x0C */ mDoExt_btkAnm mBtkAnm;
     /* 0x24 */ mDoExt_brkAnm mBrkAnm;

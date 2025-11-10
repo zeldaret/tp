@@ -94,7 +94,7 @@ void daNpc_Du_HIO_c::genMessage(JORMContext* ctx) {
 
 /* 809AFD70-809AFE20 000110 00B0+00 4/4 0/0 0/0 .text            anm_init__FP12npc_du_classifUcf */
 static void anm_init(npc_du_class* i_this, int i_index, f32 i_morf, u8 i_mode, f32 i_speed) {
-    i_this->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Npc_du", i_index), i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
+    i_this->mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Npc_du", i_index), i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
     i_this->mAnm = i_index;
 }
 
@@ -144,12 +144,12 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
 /* 809B0014-809B0114 0003B4 0100+00 1/0 0/0 0/0 .text            daNpc_Du_Draw__FP12npc_du_class */
 static int daNpc_Du_Draw(npc_du_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
 
     g_env_light.settingTevStruct(0, &actor->current.pos, &actor->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &actor->tevStr);
     i_this->mpBtpAnm->entry(model->getModelData());
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
 
     if (i_this->mAction != ACTION_SWIM) {
         cXyz pos;
@@ -295,11 +295,11 @@ static void npc_du_swim(npc_du_class* i_this) {
         case SWIM_MODE_2:
             if (i_this->mTimers[1] != 0) {
                 target = TREG_F(15) + 3.0f;
-                i_this->mpMorf->setPlaySpeed(1.5f);
+                i_this->mAnm_p->setPlaySpeed(1.5f);
                 maxStep = 0x200;
             } else {
                 target = TREG_F(15) + 2.0f;
-                i_this->mpMorf->setPlaySpeed(1.0f);
+                i_this->mAnm_p->setPlaySpeed(1.0f);
             }
 
             cLib_addCalcAngleS2(&actor->current.angle.y, i_this->mCurrentAngleYTarget, 4, maxStep);
@@ -554,11 +554,11 @@ static int daNpc_Du_Execute(npc_du_class* i_this) {
     mDoMtx_stack_c::ZrotM(actor->shape_angle.z);
     mDoMtx_stack_c::scaleM(l_HIO.base_size, l_HIO.base_size, l_HIO.base_size);
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpMorf->play(&actor->eyePos, 0, 0);
+    i_this->mAnm_p->play(&actor->eyePos, 0, 0);
     i_this->mpBtpAnm->setFrame(i_this->arg0);
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     static u32 walk_se[2] = {
         Z2SE_DUCK_SING, Z2SE_DUCK_SING_S,
@@ -568,13 +568,13 @@ static int daNpc_Du_Execute(npc_du_class* i_this) {
         Z2SE_DUCK_CRY, Z2SE_DUCK_CRY_S,
     };
 
-    if (i_this->mAnm == BCK_DU_WALK && i_this->mpMorf->checkFrame(0.0f)) {
+    if (i_this->mAnm == BCK_DU_WALK && i_this->mAnm_p->checkFrame(0.0f)) {
         if (i_this->mAction == ACTION_AWAY) {
             fopAcM_seStart(actor, run_se[i_this->arg0], 0);
         } else {
             fopAcM_seStart(actor, walk_se[i_this->arg0], 0);
         }
-    } else if (i_this->mAnm == BCK_DU_SWIM && i_this->mpMorf->checkFrame(0.0f)) {
+    } else if (i_this->mAnm == BCK_DU_SWIM && i_this->mAnm_p->checkFrame(0.0f)) {
         fopAcM_seStart(actor, Z2SE_DUCK_SWIM, 0);
     }
 
@@ -622,14 +622,14 @@ static int daNpc_Du_Delete(npc_du_class* i_this) {
 static int useHeapInit(fopAc_ac_c* actor) {
     npc_du_class* i_this = (npc_du_class*)actor;
 
-    i_this->mpMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Npc_Du", 0xA), NULL, NULL,
+    i_this->mAnm_p= new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Npc_Du", 0xA), NULL, NULL,
                                         (J3DAnmTransform*)dComIfG_getObjectRes("Npc_Du", 6), 0, 1.0f, 0, -1, 1, NULL,
                                         J3DMdlFlag_DifferedDLBuffer, 0x11020084);
-    if (i_this->mpMorf == NULL || i_this->mpMorf->getModel() == NULL) {
+    if (i_this->mAnm_p== NULL || i_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setUserArea((uintptr_t)actor);
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
@@ -641,7 +641,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
     }
 
     if (
-        !i_this->mpBtpAnm->init(i_this->mpMorf->getModel()->getModelData(),
+        !i_this->mpBtpAnm->init(i_this->mAnm_p->getModel()->getModelData(),
                                 (J3DAnmTexPattern*)dComIfG_getObjectRes("Npc_Du", 0xD), 1, J3DFrameCtrl::EMode_NONE,
                                 1.0f, 0, -1)
     ) {
@@ -686,7 +686,7 @@ static cPhs__Step daNpc_Du_Create(fopAc_ac_c* a_this) {
 
         i_this->mAction = ACTION_NORMAL;
 
-        fopAcM_SetMtx(a_this, i_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(a_this, i_this->mAnm_p->getModel()->getBaseTRMtx());
         i_this->mBgc.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(a_this), a_this, 1, &i_this->mAcchCir,
                          fopAcM_GetSpeed_p(a_this), NULL, NULL);
         i_this->mAcchCir.SetWall(20.0f, 25.0f);

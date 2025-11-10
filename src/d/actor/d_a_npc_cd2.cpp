@@ -267,13 +267,13 @@ int daNpcCd2_c::NpcCreate(int param_1) {
     } else {
         uVar5 = 0x11000084;
     }
-    mpMorf = new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCitizen,
+    mAnm_p= new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCitizen,
                                   0x80000, uVar5);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
     mCitizen.init(&current.pos, &eyePos, 3, 1);
@@ -288,12 +288,12 @@ int daNpcCd2_c::NpcCreate(int param_1) {
         field_0xaa4 = 0;
     }
     cXyz cStack_38(a_transScaleTbl[param_1]);
-    mpMorf->offTranslate();
-    mpMorf->setTranslateScale(cStack_38);
+    mAnm_p->offTranslate();
+    mAnm_p->setTranslateScale(cStack_38);
     for (u16 i = 0; i < a_mdlData_p->getJointNum(); i++) {
         a_mdlData_p->getJointNodePointer(i)->setCallBack(jntNodeCallBack);
     }
-    mpMorf->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p->getModel()->setUserArea((uintptr_t)this);
     return 1;
 }
 
@@ -332,10 +332,10 @@ J3DModel* daNpcCd2_c::ChairCreate(f32 param_1) {
 
 /* 801580A8-801580F0 1529E8 0048+00 4/4 0/0 5/5 .text            isM___10daNpcCd2_cFv */
 bool daNpcCd2_c::isM_() {
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return m_type < 16;
     }
-    u16 a_jntNum = mpMorf->getModel()->getModelData()->getJointNum();
+    u16 a_jntNum = mAnm_p->getModel()->getModelData()->getJointNum();
     JUT_ASSERT(738, (a_jntNum == JntM_NUM_e) || (a_jntNum == JntW_NUM_e));
     return a_jntNum == JntM_NUM_e;
 }
@@ -1577,7 +1577,7 @@ int daNpcCd2_c::setAttention(int param_1) {
     };
 
     int anmIdx = isM_() ? 3 : 3;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(anmIdx));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(anmIdx));
     mDoMtx_stack_c::multVec(&a_eyeOfsTbl[param_1], &eyePos);
     attention_info.position.set(current.pos.x, Cd2_HIO_atnOfs(param_1) + current.pos.y, current.pos.z);
     return 1;
@@ -1652,9 +1652,9 @@ void daNpcCd2_c::animation(int param_1) {
             field_0xac4 = 0;
         }
     }
-    f32 prevFrame = mpMorf->getFrame();
-    mpMorf->play(0, 0);
-    if (mpMorf->getFrame() < prevFrame) {
+    f32 prevFrame = mAnm_p->getFrame();
+    mAnm_p->play(0, 0);
+    if (mAnm_p->getFrame() < prevFrame) {
         cLib_calcTimer(&field_0xaa0);
     }
 }
@@ -1663,8 +1663,8 @@ void daNpcCd2_c::animation(int param_1) {
  * setAnm__10daNpcCd2_cFP18J3DAnmTransformKeyffiii              */
 void daNpcCd2_c::setAnm(J3DAnmTransformKey* param_1, f32 param_2, f32 param_3, int param_4,
                         int param_5, int param_6) {
-    if (param_1 != mpMorf->getAnm()) {
-        mpMorf->setAnm(param_1, param_4, param_3, param_2, param_5, param_6);
+    if (param_1 != mAnm_p->getAnm()) {
+        mAnm_p->setAnm(param_1, param_4, param_3, param_2, param_5, param_6);
     }
 }
 
@@ -1698,7 +1698,7 @@ int daNpcCd2_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
     s32 jntNum = a_jntNumTbl[idx][x];
     if (i_model && jntNum >= 0) {
         g_env_light.setLightTevColorType_MAJI(i_model, &tevStr);
-        mDoMtx_copy(mpMorf->getModel()->getAnmMtx(jntNum), mDoMtx_stack_c::now);
+        mDoMtx_copy(mAnm_p->getModel()->getAnmMtx(jntNum), mDoMtx_stack_c::now);
         mDoMtx_stack_c::scaleM(i_scale, i_scale, i_scale);
         i_model->setBaseTRMtx(mDoMtx_stack_c::now);
         mDoExt_modelUpdateDL(i_model);
@@ -1717,16 +1717,16 @@ int daNpcCd2_c::drawNpc() {
         setHitodamaParticle();
         return 1;
     }
-    g_env_light.setLightTevColorType_MAJI(mpMorf->getModel(), &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mAnm_p->getModel(), &tevStr);
     if (mIsDarkWorld) {
         dComIfGd_setListDark();
     }
     if (mpBtpAnm) {
-        mpBtpAnm->entry(mpMorf->getModel()->getModelData(), field_0xac4);
-        mpMorf->entryDL();
-        mpBtpAnm->remove(mpMorf->getModel()->getModelData());
+        mpBtpAnm->entry(mAnm_p->getModel()->getModelData(), field_0xac4);
+        mAnm_p->entryDL();
+        mpBtpAnm->remove(mAnm_p->getModel()->getModelData());
     } else {
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
     }
     if (mIsDarkWorld) {
         dComIfGd_setList();

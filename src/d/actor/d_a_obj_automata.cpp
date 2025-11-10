@@ -57,8 +57,8 @@ static dCcD_SrcSph l_ccDSph = {
 /* 80BA56EC-80BA5990 0000EC 02A4+00 1/0 0/0 0/0 .text            __dt__16daObj_AutoMata_cFv */
 daObj_AutoMata_c::~daObj_AutoMata_c() {
     OS_REPORT("|%06d:%x|daObj_AutoMata_c -> デストラクト\n", g_Counter.mCounter0, this);
-    if (mpMorf != NULL) {
-        mpMorf->stopZelAnime();
+    if (mAnm_p!= NULL) {
+        mAnm_p->stopZelAnime();
     }
     dComIfG_resDelete(&mPhase, l_resNameList[l_bmdData[field_0xb30][1]]);
 }
@@ -73,8 +73,8 @@ int daObj_AutoMata_c::create() {
         if (fopAcM_entrySolidHeap(this, createHeapCallBack, 0x1370) == 0) {
             return cPhs_ERROR_e;
         } 
-        mpMorf->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        mAnm_p->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         mCreature.init(&current.pos, &eyePos, 3, 1);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &field_0x834,
@@ -105,9 +105,9 @@ int daObj_AutoMata_c::CreateHeap() {
     if (modelData == NULL) {
         return 0;
     }
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000,
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000,
                                   0x11000284);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     } 
     return setAnm(0, false) ? 1 : 0;
@@ -141,8 +141,8 @@ int daObj_AutoMata_c::Execute() {
             setEnvTevColor();
             setRoomNo();
         }
-        mpMorf->setPlaySpeed(mAnmPlaySpeed);
-        mpMorf->play(0, 0);
+        mAnm_p->setPlaySpeed(mAnmPlaySpeed);
+        mAnm_p->play(0, 0);
         mBtk.setPlaySpeed(mAnmPlaySpeed);
         mBtk.play();
         mAnmPlaySpeed = 0.0f;
@@ -150,7 +150,7 @@ int daObj_AutoMata_c::Execute() {
         setMtx();
         if (mCoNone == 0) {
             cStack_28.set(0.0f, 40.0f, 0.0f);
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
             mDoMtx_stack_c::multVec(&cStack_28, &sphCenter);
             mSph.SetC(sphCenter);
             mSph.SetR(daObj_AutoMata_Param_c::m[2]);
@@ -172,12 +172,12 @@ int daObj_AutoMata_c::Execute() {
 
 /* 80BA639C-80BA6480 000D9C 00E4+00 1/1 0/0 0/0 .text            Draw__16daObj_AutoMata_cFv */
 int daObj_AutoMata_c::Draw() {
-    J3DModel* morfModel = mpMorf->getModel();
+    J3DModel* morfModel = mAnm_p->getModel();
     J3DModelData* modelData = morfModel->getModelData();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(morfModel, &tevStr);
     mBtk.entry(modelData);
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
     mBtk.remove(modelData);
     if (mGroundH != -G_CM3D_F_INF) {
         mShadowId = dComIfGd_setShadow(
@@ -223,7 +223,7 @@ static int const playMode[2] = {
 
 /* 80BA6500-80BA6634 000F00 0134+00 1/1 0/0 1/1 .text            setAnm__16daObj_AutoMata_cFib */
 int daObj_AutoMata_c::setAnm(int param_1, bool param_2) {
-    J3DModelData* modelData = mpMorf->getModel()->getModelData();
+    J3DModelData* modelData = mAnm_p->getModel()->getModelData();
     const char* resName = l_resNameList[l_bmdData[field_0xb30][1]];
     if (param_1 >= 0 && param_1 < 2) {
         J3DAnmTransform* anmTransform = (J3DAnmTransform*)dComIfG_getObjectRes(
@@ -232,7 +232,7 @@ int daObj_AutoMata_c::setAnm(int param_1, bool param_2) {
         if (anmTransform == NULL) {
             return 0;
         }
-        mpMorf->setAnm(anmTransform, playMode[param_1], 0.0f, 0.0f, 0.0f, -1.0f);
+        mAnm_p->setAnm(anmTransform, playMode[param_1], 0.0f, 0.0f, 0.0f, -1.0f);
         J3DAnmTextureSRTKey* srtKey =
             (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(resName, btkArcIx[param_1]);
         if (srtKey == NULL) {
@@ -261,45 +261,45 @@ void daObj_AutoMata_c::setRoomNo() {
 
 /* 80BA66D4-80BA674C 0010D4 0078+00 1/1 0/0 0/0 .text            setMtx__16daObj_AutoMata_cFv */
 void daObj_AutoMata_c::setMtx() {
-    J3DModel* morfModel = mpMorf->getModel();
+    J3DModel* morfModel = mAnm_p->getModel();
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
     morfModel->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
 }
 
 /* 80BA674C-80BA6A10 00114C 02C4+00 1/1 0/0 0/0 .text            setSe__16daObj_AutoMata_cFv */
 void daObj_AutoMata_c::setSe() {
-    if (cM3d_IsZero(mpMorf->getPlaySpeed()) == false) {
+    if (cM3d_IsZero(mAnm_p->getPlaySpeed()) == false) {
         const char* resName = l_resNameList[l_bmdData[field_0xb30][1]];
         J3DAnmTransform* anmTransform = (J3DAnmTransform*)dComIfG_getObjectRes(resName, 5);
-        J3DAnmTransform* currentAnm = mpMorf->getAnm();
+        J3DAnmTransform* currentAnm = mAnm_p->getAnm();
         if (anmTransform == currentAnm) {
-            if (mpMorf->checkFrame(17.0f)) {
+            if (mAnm_p->checkFrame(17.0f)) {
                 Z2GetAudioMgr()->seStart(Z2SE_OBJ_AMATA_ACTION, &current.pos,
-                                         mpMorf->getPlaySpeed() * 100.0f, 0, 1.0f, 1.0f, -1.0f,
+                                         mAnm_p->getPlaySpeed() * 100.0f, 0, 1.0f, 1.0f, -1.0f,
                                          -1.0f, 0);
             }
             Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_AMATA_CRK, &current.pos,
-                                          mpMorf->getPlaySpeed() * 100.0f, 0, 1.0f, 1.0f, -1.0f,
+                                          mAnm_p->getPlaySpeed() * 100.0f, 0, 1.0f, 1.0f, -1.0f,
                                           -1.0f, 0);
         }
         anmTransform = (J3DAnmTransform*)dComIfG_getObjectRes(resName, 6);
-        currentAnm = mpMorf->getAnm();
+        currentAnm = mAnm_p->getAnm();
         if (anmTransform == currentAnm) {
-            if (mpMorf->checkFrame(7.0f)) {
+            if (mAnm_p->checkFrame(7.0f)) {
                 Z2GetAudioMgr()->seStart(Z2SE_OBJ_AMATA_ACTION, &current.pos,
-                                         mpMorf->getPlaySpeed() * 100.0f, 0, 1.0f, 1.0f, -1.0f,
+                                         mAnm_p->getPlaySpeed() * 100.0f, 0, 1.0f, 1.0f, -1.0f,
                                          -1.0, 0);
             }
-            if (mpMorf->checkFrame(67.0f)) {
+            if (mAnm_p->checkFrame(67.0f)) {
                 Z2GetAudioMgr()->seStart(Z2SE_OBJ_AMATA_ACTION, &current.pos,
-                                         mpMorf->getPlaySpeed() * 100.0f, 0, 1.0f, 1.0f, -1.0f,
+                                         mAnm_p->getPlaySpeed() * 100.0f, 0, 1.0f, 1.0f, -1.0f,
                                          -1.0f, 0);
             }
             Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_AMATA_CRK, &current.pos,
-                                          mpMorf->getPlaySpeed() * 100.0f, 0, 1.0f, 1.0f, -1.0f,
+                                          mAnm_p->getPlaySpeed() * 100.0f, 0, 1.0f, 1.0f, -1.0f,
                                           -1.0f, 0);
         }
     }

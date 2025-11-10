@@ -53,7 +53,7 @@ public:
     /* 0x5D8 */ s16 field_0x5D8;
     /* 0x5DC */ f32 field_0x5DC;
     /* 0x5E0 */ f32 field_0x5E0;
-    /* 0x5E4 */ mDoExt_McaMorf* mpMorf;
+    /* 0x5E4 */ mDoExt_McaMorf* mAnm_p;
     /* 0x5E8 */ mDoExt_btkAnm* mpBtk;
     /* 0x5EC */ s8 field_0x5EC;
     /* 0x5F0 */ s32 mAnmID;

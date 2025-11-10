@@ -611,7 +611,7 @@ BOOL daNpcF_c::execute() {
 int daNpcF_c::draw(BOOL i_isTest, BOOL param_1, f32 i_shadowDepth, _GXColorS10* i_fogColor,
                    BOOL i_hideDamage) {
     f32 damage_ratio, frame;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     J3DModelData* modelData = model->getModelData();
     field_0x9f3 = 1;
 
@@ -664,10 +664,10 @@ int daNpcF_c::draw(BOOL i_isTest, BOOL param_1, f32 i_shadowDepth, _GXColorS10* 
 
             if (mTwilight) {
                 dComIfGd_setListDark();
-                mpMorf->entryDL();
+                mAnm_p->entryDL();
                 dComIfGd_setList();
             } else {
-                mpMorf->entryDL();
+                mAnm_p->entryDL();
             }
 
             if (mAnmFlags & ANM_PLAY_BTP) {
@@ -741,7 +741,7 @@ void* daNpcF_c::srchActor(void* i_proc, void* i_this) {
 
 /* 8015276C-801527FC 14D0AC 0090+00 2/0 0/0 40/9 .text            setMtx__8daNpcF_cFv */
 void daNpcF_c::setMtx() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(mCurAngle);
     mDoMtx_stack_c::scaleM(scale);
@@ -750,15 +750,15 @@ void daNpcF_c::setMtx() {
 
     if (mAnmFlags & 0x100) {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
     } else {
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
     }
 }
 
 /* 801527FC-801528C8 14D13C 00CC+00 2/0 0/0 38/0 .text            setMtx2__8daNpcF_cFv */
 void daNpcF_c::setMtx2() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(mCurAngle);
     mDoMtx_stack_c::scaleM(scale);
@@ -766,16 +766,16 @@ void daNpcF_c::setMtx2() {
     model->setUserArea((uintptr_t)this);
 
     if (cM3d_IsZero_inverted(mExpressionMorf)) {
-        mpMorf->onMorfNone();
+        mAnm_p->onMorfNone();
     } else {
-        mpMorf->offMorfNone();
+        mAnm_p->offMorfNone();
     }
 
     if (mAnmFlags & 0x100) {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
     } else {
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
     }
 }
 
@@ -895,7 +895,7 @@ J3DAnmTevRegKey* daNpcF_c::getTevRegKeyAnmP(char* i_arcName, int i_resIdx) {
  * setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii          */
 BOOL daNpcF_c::setMcaMorfAnm(J3DAnmTransformKey* i_anm, f32 i_speed, f32 i_morf, int i_mode,
                              int i_start, int i_end) {
-    mpMorf->setAnm(i_anm, i_mode, i_morf, i_speed, (f32)i_start, (f32)i_end);
+    mAnm_p->setAnm(i_anm, i_mode, i_morf, i_speed, (f32)i_start, (f32)i_end);
     return true;
 }
 
@@ -942,12 +942,12 @@ void daNpcF_c::setRoomNo() {
 
 /* 80152E24-80152EC4 14D764 00A0+00 1/1 0/0 0/0 .text            chkEndAnm__8daNpcF_cFf */
 BOOL daNpcF_c::chkEndAnm(f32 param_0) {
-    switch ((u8)mpMorf->getPlayMode()) {
+    switch ((u8)mAnm_p->getPlayMode()) {
     case J3DFrameCtrl::EMode_LOOP:
-        return mpMorf->isLoop();
+        return mAnm_p->isLoop();
     case J3DFrameCtrl::EMode_NONE:
     case J3DFrameCtrl::EMode_RESET:
-        return mpMorf->isStop() && mpMorf->getPlaySpeed() == 0.0f && param_0 != 0.0f;
+        return mAnm_p->isStop() && mAnm_p->getPlaySpeed() == 0.0f && param_0 != 0.0f;
     case J3DFrameCtrl::EMode_REVERSE:
     default:
         return false;
@@ -1019,13 +1019,13 @@ BOOL daNpcF_c::playAllAnm() {
     }
 
     if (mAnmFlags & ANM_PLAY_MORF) {
-        rate = mpMorf->getPlaySpeed();
+        rate = mAnm_p->getPlaySpeed();
         if (mAnmFlags & ANM_PAUSE_MORF) {
-            mpMorf->setPlaySpeed(0.0f);
-            mpMorf->play(mPolySound, mReverb);
-            mpMorf->setPlaySpeed(rate);
+            mAnm_p->setPlaySpeed(0.0f);
+            mAnm_p->play(mPolySound, mReverb);
+            mAnm_p->setPlaySpeed(rate);
         } else {
-            mpMorf->play(mPolySound, mReverb);
+            mAnm_p->play(mPolySound, mReverb);
             if (chkEndAnm(rate)) {
                 mMotionLoops++;
             }
@@ -1089,7 +1089,7 @@ void daNpcF_c::playExpressionAnm(daNpcF_c::daNpcF_anmPlayData*** anm) {
                 morf = mExpressionMorfOverride;
             }
             mExpressionMorf = morf;
-            mpMorf->setMorf(morf);
+            mAnm_p->setMorf(morf);
         }
     }
 
@@ -1129,7 +1129,7 @@ void daNpcF_c::playMotionAnm(daNpcF_c::daNpcF_anmPlayData*** anm) {
                 morf = mMotionMorfOverride;
             }
             mExpressionMorf = 0.0f;
-            mpMorf->setMorf(morf);
+            mAnm_p->setMorf(morf);
         }
     }
 

@@ -79,15 +79,15 @@ public:
     u8 getBitSW2() { return (fopAcM_GetParam(this) & 0xFF000000) >> 24; }
 
     MtxP getBd3Mtx() {
-        return mpMorf[0]->getModel()->getAnmMtx(0x11);
+        return mAnm_p[0]->getModel()->getAnmMtx(0x11);
     }
 
     MtxP getBd2Mtx() {
-        return mpMorf[0]->getModel()->getAnmMtx(6);
+        return mAnm_p[0]->getModel()->getAnmMtx(6);
     }
 
     MtxP getBd1Mtx() {
-        return mpMorf[0]->getModel()->getAnmMtx(5);
+        return mAnm_p[0]->getModel()->getAnmMtx(5);
     }
 
     static char* mCutNameList[3];

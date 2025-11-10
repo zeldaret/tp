@@ -131,7 +131,7 @@ daNpcRafrel_c::~daNpcRafrel_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -234,8 +234,8 @@ int daNpcRafrel_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* mdlData_p = mpMorf->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        J3DModelData* mdlData_p = mAnm_p->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -160.0f, -50.0f, -160.0f, 160.0f, 220.0f, 160.0f);
 
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -257,7 +257,7 @@ int daNpcRafrel_c::Create() {
 
         setEnvTevColor();
         setRoomNo();
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
 
         reset();
         Execute();
@@ -275,17 +275,17 @@ int daNpcRafrel_c::CreateHeap() {
     JUT_ASSERT(403, NULL != mdlData_p);
 
     u32 mdl_diff_flags = 0x11020284;
-    mpMorf = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, mdl_diff_flags);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, mdl_diff_flags);
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
 
-    mdl_p = mpMorf->getModel();
+    mdl_p = mAnm_p->getModel();
 
     for (u16 i = 0; i < ((J3DModelData*)mdlData_p)->getJointNum(); i++) {
         ((J3DModelData*)mdlData_p)->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
@@ -355,7 +355,7 @@ int daNpcRafrel_c::Execute() {
 
 /* 80ABA3D8-80ABA4A8 000E98 00D0+00 1/1 0/0 0/0 .text            Draw__13daNpcRafrel_cFv */
 int daNpcRafrel_c::Draw() {
-    mpMorf->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
+    mAnm_p->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
     draw(FALSE, FALSE, daNpcRafrel_Param_c::m.common.real_shadow_size, NULL, FALSE);
 
     if (mpItemModel != NULL) {
@@ -363,7 +363,7 @@ int daNpcRafrel_c::Draw() {
         int item_jnt_no = mType == 1 ? JNT_20 : JNT_19;
  
         g_env_light.setLightTevColorType_MAJI(mpItemModel, &tevStr);
-        mpItemModel->setBaseTRMtx(mpMorf->getModel()->getAnmMtx(item_jnt_no));
+        mpItemModel->setBaseTRMtx(mAnm_p->getModel()->getAnmMtx(item_jnt_no));
         mDoExt_modelUpdateDL(mpItemModel);
     }
 
@@ -377,13 +377,13 @@ int daNpcRafrel_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int spC[] = {1, 3, 4};
 
     if (jnt_no == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -401,8 +401,8 @@ int daNpcRafrel_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
         if ((jnt_no == 4 || jnt_no == 9) && (mAnmFlags & 0x100)) {
             J3DAnmTransform* temp_r27 = mBckAnm.getBckAnm();
-            mBckAnm.changeBckOnly(mpMorf->getAnm());
-            mpMorf->changeAnm(temp_r27);
+            mBckAnm.changeBckOnly(mAnm_p->getAnm());
+            mAnm_p->changeAnm(temp_r27);
         }
     }
 
@@ -503,7 +503,7 @@ bool daNpcRafrel_c::setExpressionBtp(int i_idx) {
         return true;
     }
 
-    if (setBtpAnm(btpAnm, mpMorf->getModel()->getModelData(), 1.0f, attr)) {
+    if (setBtpAnm(btpAnm, mAnm_p->getModel()->getModelData(), 1.0f, attr)) {
         mAnmFlags |= ANM_PAUSE_BTP | ANM_PLAY_BTP;
         if (i_idx == 0) {
             mAnmFlags |= ANM_FLAG_800;
@@ -553,7 +553,7 @@ void daNpcRafrel_c::setMotionAnm(int i_idx, f32 i_morf) {
     }
 
     if (btkAnm != NULL) {
-        if (setBtkAnm(btkAnm, mpMorf->getModel()->getModelData(), 1.0f, btkAttr)) {
+        if (setBtkAnm(btkAnm, mAnm_p->getModel()->getModelData(), 1.0f, btkAttr)) {
             mAnmFlags |= ANM_PAUSE_BTK | ANM_PLAY_BTK;
         }
     }
@@ -595,7 +595,7 @@ void daNpcRafrel_c::reset() {
     field_0xe15 = daNpcF_chkEvtBit(0x130) != 0;
     field_0xe14 = 0;
 
-    J3DModelData* mdlData_p = mpMorf->getModel()->getModelData();
+    J3DModelData* mdlData_p = mAnm_p->getModel()->getModelData();
     if (mType == 1) {
         mdlData_p->getMaterialNodePointer(5)->getShape()->show();
         mdlData_p->getMaterialNodePointer(4)->getShape()->hide();
@@ -779,7 +779,7 @@ void daNpcRafrel_c::setAttnPos() {
         sp20.set(-15.0f, 10.0f, 2.0f);
     }
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&sp20, &eyePos);
     sp20.x = 0.0f;
@@ -806,7 +806,7 @@ void daNpcRafrel_c::setAttnPos() {
     }
 
     cXyz cyl_center;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(2));
     mDoMtx_stack_c::multVecZero(&cyl_center);
     cyl_center.y = current.pos.y;
 
@@ -827,7 +827,7 @@ void daNpcRafrel_c::setAttnPos() {
 /* 80ABEE98-80ABF074 005958 01DC+00 1/1 0/0 0/0 .text            lookat__13daNpcRafrel_cFv */
 void daNpcRafrel_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model_p = mpMorf->getModel();
+    J3DModel* model_p = mAnm_p->getModel();
 
     int var_r28 = 0;
     f32 body_angleX_min = daNpcRafrel_Param_c::m.common.body_angleX_min;
@@ -1178,7 +1178,7 @@ bool daNpcRafrel_c::wait_type2(void* param_0) {
             break;
         case 1:
             if (field_0xdfc != NULL) {
-                field_0xdfc->setGlobalRTMatrix(mpMorf->getModel()->getAnmMtx(0x13));
+                field_0xdfc->setGlobalRTMatrix(mAnm_p->getModel()->getAnmMtx(0x13));
                 if (daNpcF_chkTmpBit(0x75)) {
                     field_0xdfc->becomeInvalidEmitter();
                 }
@@ -1478,7 +1478,7 @@ int daNpcRafrel_c::EvCut_Appear(int i_staffId) {
             mTurnMode = 0;
             break;
         case '0004': {
-            J3DModelData* temp_r3_2 = mpMorf->getModel()->getModelData();
+            J3DModelData* temp_r3_2 = mAnm_p->getModel()->getModelData();
             temp_r3_2->getMaterialNodePointer(5)->getShape()->hide();
             temp_r3_2->getMaterialNodePointer(4)->getShape()->show();
             setMotion(12, -1.0f, 0);

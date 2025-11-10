@@ -209,8 +209,8 @@ daNpc_Kolinb_c::cutFunc daNpc_Kolinb_c::mCutList[7] = {
 
 /* 80A4598C-80A45ADC 0000EC 0150+00 1/0 0/0 0/0 .text            __dt__14daNpc_Kolinb_cFv */
 daNpc_Kolinb_c::~daNpc_Kolinb_c() {
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     if (mpBgW != NULL) {
@@ -297,8 +297,8 @@ cPhs__Step daNpc_Kolinb_c::create() {
             }
         }
 
-        J3DModel* model = mpMorf[0]->getModel();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModel* model = mAnm_p[0]->getModel();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 200.0f, 200.0f);
 
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -344,12 +344,12 @@ int daNpc_Kolinb_c::CreateHeap() {
         return 0;
     }
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -395,7 +395,7 @@ int daNpc_Kolinb_c::Execute() {
 /* 80A46090-80A46124 0007F0 0094+00 1/1 0/0 0/0 .text            Draw__14daNpc_Kolinb_cFv */
 int daNpc_Kolinb_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -593,11 +593,11 @@ void daNpc_Kolinb_c::setAttnPos() {
     setMtx();
 
     if (mpBgW != NULL) {
-        MTXCopy(mpMorf[0]->getModel()->getBaseTRMtx(), mMtx);
+        MTXCopy(mAnm_p[0]->getModel()->getBaseTRMtx(), mMtx);
         mpBgW->Move();
     }
 
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&work, &eyePos);
     work.set(100.0f, 0.0f, 0.0f);
     work.y = daNpc_Kolinb_Param_c::m.common.attention_offset;

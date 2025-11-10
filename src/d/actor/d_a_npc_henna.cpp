@@ -86,7 +86,7 @@ daNpc_Henna_HIO_c::daNpc_Henna_HIO_c() {
 /* 80542F98-80543048 000178 00B0+00 4/4 0/0 0/0 .text            anm_init__FP15npc_henna_classifUcf
  */
 static void anm_init(npc_henna_class* i_this, int i_resIndex, f32 i_morf, u8 i_mode, f32 i_speed) {
-    i_this->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Henna", i_resIndex), i_mode,
+    i_this->mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Henna", i_resIndex), i_mode,
                            i_morf, i_speed, 0.0f, -1.0f, NULL);
     i_this->mAnmResIndex = i_resIndex;
 }
@@ -156,11 +156,11 @@ static int daNpc_Henna_Draw(npc_henna_class* i_this) {
         if (lookOffsetY > 190.0f + JREG_F(16) || lookOffsetY < 0.0f ||
             lookOffsetX * lookOffsetX + lookOffsetZ * lookOffsetZ > 700.0f + JREG_F(17))
         {
-            J3DModel* model = i_this->mpMorf->getModel();
+            J3DModel* model = i_this->mAnm_p->getModel();
             g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
             i_this->mpBtkAnms[i_this->field_0x654]->entry(model->getModelData());
             i_this->mpBtpAnms[i_this->field_0x658]->entry(model->getModelData());
-            i_this->mpMorf->entryDL();
+            i_this->mAnm_p->entryDL();
         }
     }
     if (i_this->field_0x693 != 0) {
@@ -314,7 +314,7 @@ static void henna_shop(npc_henna_class* i_this) {
         anm_init(i_this, 27, 0.0f, 0, 1.0f);
         i_this->move_mode = 3;
     case 3:
-        if (i_this->mAnmResIndex == 27 && i_this->mpMorf->isStop()) {
+        if (i_this->mAnmResIndex == 27 && i_this->mAnm_p->isStop()) {
             anm_init(i_this, 32, 10.0f, 2, 1.0f);
             i_this->move_mode = 5;
         }
@@ -351,7 +351,7 @@ static void henna_shop(npc_henna_class* i_this) {
         unkInt1 = 0;
         i_this->field_0x70d = 0;
         i_this->field_0x709 = 5;
-        if (i_this->mpMorf->isStop() != 0) {
+        if (i_this->mAnm_p->isStop() != 0) {
             if (i_this->mAnmResIndex == 20) {
                 anm_init(i_this, 19, 0.0f, 2, 1.0f);
             } else {
@@ -491,20 +491,20 @@ static void henna_ride(npc_henna_class* i_this) {
         break;
     case 3:
         cLib_addCalcAngleS2(&i_this->field_0x690, -0x1f40, 1, 0x800);
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->move_mode = 0;
         }
         break;
     case 5:
         anm_init(i_this, 21, 3.0f, 1, -1.0f);
-        i_this->mpMorf->setFrame(i_this->mpMorf->getEndFrame() - 1.0f);
+        i_this->mAnm_p->setFrame(i_this->mAnm_p->getEndFrame() - 1.0f);
         i_this->move_mode++;
         break;
     case 6:
-        if (i_this->mpMorf->getFrame() <= 12.0f + VREG_F(6)) {
+        if (i_this->mAnm_p->getFrame() <= 12.0f + VREG_F(6)) {
             cLib_addCalcAngleS2(&i_this->field_0x690, 0, 1, 0x800);
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->move_mode = 7;
         }
         break;
@@ -614,7 +614,7 @@ static void henna_ride(npc_henna_class* i_this) {
                     if (stickMagAdj < 1.0f + VREG_F(8)) {
                         stickMagAdj = 1.0f + VREG_F(8);
                     }
-                    i_this->mpMorf->setPlaySpeed(stickMagAdj);
+                    i_this->mAnm_p->setPlaySpeed(stickMagAdj);
                     MTXCopy(i_this->mpModel->getBaseTRMtx(), *calc_mtx);
                     lookat_pos.x = 0.0f;
                     lookat_pos.y = 0.0f;
@@ -627,7 +627,7 @@ static void henna_ride(npc_henna_class* i_this) {
                     } else {
                         unkFloat1 = 2.0f;
                     }
-                    if (i_this->mpMorf->checkFrame(unkFloat1) != FALSE) {
+                    if (i_this->mAnm_p->checkFrame(unkFloat1) != FALSE) {
                         fopKyM_createWpillar(&pos, 0.6f + VREG_F(10), 0);
                     }
                 }
@@ -641,7 +641,7 @@ static void henna_ride(npc_henna_class* i_this) {
         }
     }
 
-    if (i_this->mAnmResIndex == 21 && i_this->mpMorf->getFrame() <= 12.0f + VREG_F(6)) {
+    if (i_this->mAnmResIndex == 21 && i_this->mAnm_p->getFrame() <= 12.0f + VREG_F(6)) {
         i_this->field_0x692 = 1;
     }
 
@@ -2409,7 +2409,7 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
 
     action(i_this);
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     if (i_this->field_0x7e1 != 0) {
         daCanoe_c* boat = (daCanoe_c*)fopAcM_SearchByID(i_this->boat_id);
         if (boat != NULL) {
@@ -2432,10 +2432,10 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
 
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(&i_this->actor.eyePos, 0, 0);
+    i_this->mAnm_p->play(&i_this->actor.eyePos, 0, 0);
     if ((i_this->mAnmResIndex == 9 || i_this->mAnmResIndex == 10) &&
-        (i_this->mpMorf->checkFrame(1.5f) != 0 || i_this->mpMorf->checkFrame(9.5f) != 0 ||
-         i_this->mpMorf->checkFrame(17.5f) != 0))
+        (i_this->mAnm_p->checkFrame(1.5f) != 0 || i_this->mAnm_p->checkFrame(9.5f) != 0 ||
+         i_this->mAnm_p->checkFrame(17.5f) != 0))
     {
         fopAcM_seStart(&i_this->actor, Z2SE_HENA_CLAP, 0);
     }
@@ -2491,7 +2491,7 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
         }
     }
 
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     i_this->field_0x693 = 1;
 
@@ -2646,13 +2646,13 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         resId = 38;
     }
 
-    a_this->mpMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Henna", resId), NULL,
+    a_this->mAnm_p= new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Henna", resId), NULL,
                                         NULL, NULL, 0, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11020284);
-    if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
+    if (a_this->mAnm_p== NULL || a_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* morfModel = a_this->mpMorf->getModel();
+    J3DModel* morfModel = a_this->mAnm_p->getModel();
     morfModel->setUserArea((s32)i_this);
 
     for (u16 i = 0; i < morfModel->getModelData()->getJointNum(); i++) {
@@ -2665,7 +2665,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             return 0;
         }
         J3DAnmTextureSRTKey* srtKey = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Henna", btk_d[i]);
-        morfModel = a_this->mpMorf->getModel();
+        morfModel = a_this->mAnm_p->getModel();
         if (a_this->mpBtkAnms[i]->init(morfModel->getModelData(), srtKey, 1, 0, 1.0f, 0, -1) == 0) {
             return 0;
         }
@@ -2677,7 +2677,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             return 0;
         }
         J3DAnmTexPattern* texPattern = (J3DAnmTexPattern*)dComIfG_getObjectRes("Henna", btp_d[i]);
-        morfModel = a_this->mpMorf->getModel();
+        morfModel = a_this->mAnm_p->getModel();
         if (a_this->mpBtpAnms[i]->init(morfModel->getModelData(), texPattern, 1, 2, 1.0f, 0, -1) ==
             0)
         {
@@ -2731,7 +2731,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* i_this) {
         }
         i_this->attention_info.flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         a_this->action = 0;
-        fopAcM_SetMtx(i_this, a_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, a_this->mAnm_p->getModel()->getBaseTRMtx());
         lbl_82_bss_90 = 0;
         if (a_this->arg0 == 1) {
             a_this->field_0x70c = 1;

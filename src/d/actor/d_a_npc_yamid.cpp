@@ -145,7 +145,7 @@ daNpc_yamiD_c::cutFunc daNpc_yamiD_c::mCutList[2] = {
 daNpc_yamiD_c::~daNpc_yamiD_c() {
     OS_REPORT("|%06d:%x|daNpc_yamiD_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
 #if DEBUG
     if (mpHIO) {
@@ -230,8 +230,8 @@ cPhs__Step daNpc_yamiD_c::create() {
 
         OS_REPORT("\n");
 
-        J3DModelData* model_data = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* model_data = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeFar(this, 3.0f);
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
@@ -283,17 +283,17 @@ int daNpc_yamiD_c::CreateHeap() {
     JUT_ASSERT(477, NULL != mdlData_p);
 
     u32 sp_0x1C = 0x11020284;
-    mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x1C);
-    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
-        mpMorf[0]->stopZelAnime();
-        mpMorf[0] = NULL;
+    mAnm_p[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x1C);
+    if (mAnm_p[0] != NULL && mAnm_p[0]->getModel() == NULL) {
+        mAnm_p[0]->stopZelAnime();
+        mAnm_p[0] = NULL;
     }
 
-    if (mpMorf[0] == NULL) {
+    if (mAnm_p[0] == NULL) {
         return 0;
     }
 
-    model = mpMorf[0]->getModel();
+    model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -331,7 +331,7 @@ int daNpc_yamiD_c::Draw() {
     }
 
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* mdlData_p = mAnm_p[0]->getModel()->getModelData();
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -554,7 +554,7 @@ void daNpc_yamiD_c::setAttnPos() {
 
     mStagger.calc(FALSE);
     f32 rad = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    mJntAnm.setParam(this, mpMorf[0]->getModel(), &work, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+    mJntAnm.setParam(this, mAnm_p[0]->getModel(), &work, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
                      mpHIO->m.common.body_angleX_min, mpHIO->m.common.body_angleX_max,
                      mpHIO->m.common.body_angleY_min, mpHIO->m.common.body_angleY_max,
                      mpHIO->m.common.head_angleX_min, mpHIO->m.common.head_angleX_max,
@@ -562,7 +562,7 @@ void daNpc_yamiD_c::setAttnPos() {
                      mpHIO->m.common.neck_rotation_ratio, rad, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, rad);
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&work, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, TRUE, 1.0f, 0);
@@ -614,10 +614,10 @@ int daNpc_yamiD_c::drawDbgInfo() {
 
 /* 80B444A0-80B4450C 001640 006C+00 1/0 0/0 0/0 .text            drawGhost__13daNpc_yamiD_cFv */
 void daNpc_yamiD_c::drawGhost() {
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     g_env_light.settingTevStruct(3, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
-    mpMorf[0]->entryDL();
+    mAnm_p[0]->entryDL();
 }
 
 /* 80B4450C-80B44554 0016AC 0048+00 1/1 0/0 0/0 .text            selectAction__13daNpc_yamiD_cFv */

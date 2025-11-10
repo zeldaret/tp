@@ -104,7 +104,7 @@ daNpc_Kakashi_c::~daNpc_Kakashi_c() {
     OS_REPORT("|%06d:%x|daNpc_Kakashi_c -> デストラクト\n", g_Counter.mCounter0, this);
 
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
         mSound.deleteObject();
     }
 
@@ -185,8 +185,8 @@ int daNpc_Kakashi_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
         
@@ -245,12 +245,12 @@ int daNpc_Kakashi_c::CreateHeap() {
     }
 
     u32 diff_flags = J3D_DIFF_FLAG(FALSE, FALSE, TRUE, 8, 2, FALSE, 2, 0, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE);
-    mpMorf[0] = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, NULL, J3DMdlFlag_DifferedDLBuffer, diff_flags);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    mAnm_p[0] = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, NULL, J3DMdlFlag_DifferedDLBuffer, diff_flags);
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    mdl_p = mpMorf[0]->getModel();
+    mdl_p = mAnm_p[0]->getModel();
     for (u16 i = 0; i < ((J3DModelData*)mdlData_p)->getJointNum(); i++) {
         ((J3DModelData*)mdlData_p)->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -576,7 +576,7 @@ void daNpc_Kakashi_c::setAttnPos() {
 
     setMtx();
 
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(7));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(7));
     mDoMtx_stack_c::multVec(&sp20, &eyePos);
 
     if (health == 0) {
@@ -615,14 +615,14 @@ void daNpc_Kakashi_c::setCollision() {
         }
 
         if (health != 0) {
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(7));
+            mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(7));
             mDoMtx_stack_c::multVec(&headOfst, &sp8);
             mCcSph[0].SetC(sp8);
             mCcSph[0].SetR(30.0f);
             dComIfG_Ccsp()->Set(&mCcSph[0]);
         }
 
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(2));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(2));
 
         mDoMtx_stack_c::multVec(&armROfst, &sp8);
         mCcSph[1].SetCoSPrm(0x19);
@@ -881,7 +881,7 @@ void daNpc_Kakashi_c::setStaggerParam(fopAc_ac_c* i_hitActor) {
         (&daNpc_Kakashi_c::swdTutorial != mSelectAction || daNpcKakashi_getSwdTutorialStep() == 6))
     {
         cXyz pos;
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(7));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(7));
         mDoMtx_stack_c::multVecZero(&pos);
         pos.y += 40.0f;
 
@@ -913,7 +913,7 @@ void daNpc_Kakashi_c::setStaggerParam(fopAc_ac_c* i_hitActor) {
 void daNpc_Kakashi_c::setPrtcls(int i_type) {
     cXyz pos;
     if (i_type == 0 || i_type == 1) {
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(7));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(7));
         mDoMtx_stack_c::multVecZero(&pos);
     } else {
         pos = current.pos;

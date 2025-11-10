@@ -515,7 +515,7 @@ public:
     /* 0x56C */ daNpcT_motionAnmData_c const* mpMotionAnmData;
     /* 0x570 */ daNpcT_evtData_c const* mpEvtData;
     /* 0x574 */ char** mpArcNames;
-    /* 0x578 */ mDoExt_McaMorfSO* mpMorf[2];
+    /* 0x578 */ mDoExt_McaMorfSO* mAnm_p[2];
     /* 0x580 */ Z2Creature mSound;
     /* 0x610 */ mDoExt_bckAnm mBckAnm;
     /* 0x62C */ mDoExt_btpAnm mBtpAnm;
@@ -1017,7 +1017,7 @@ public:
 
 class daNpcF_c : public fopAc_ac_c {
 protected:
-    /* 0x568 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x568 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x56C */ mDoExt_bckAnm mBckAnm;
     /* 0x588 */ mDoExt_btpAnm mBtpAnm;
     /* 0x5A0 */ mDoExt_btkAnm mBtkAnm;

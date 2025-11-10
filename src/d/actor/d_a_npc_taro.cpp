@@ -262,8 +262,8 @@ static daNpc_Taro_Param_c l_HIO;
 /* 80565E8C-8056604C 0000EC 01C0+00 1/0 0/0 0/0 .text            __dt__12daNpc_Taro_cFv */
 daNpc_Taro_c::~daNpc_Taro_c() {
     OS_REPORT("|%06d:%x|daNpc_Taro_c -> デストラクト\n", g_Counter.mCounter0, this);
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     #ifdef DEBUG
@@ -318,8 +318,8 @@ int daNpc_Taro_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData_p = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData_p = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         field_0x9c0.init(&mAcch, 0.0f, 0.0f);
@@ -370,13 +370,13 @@ int daNpc_Taro_c::CreateHeap() {
         return 0;
     }
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
                                      0x11020284);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = (J3DModel*)mpMorf[0]->getModel();
+    J3DModel* model = (J3DModel*)mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -452,7 +452,7 @@ int daNpc_Taro_c::Execute() {
 int daNpc_Taro_c::Draw() {
     daNpcT_MatAnm_c* matAnm = mpMatAnm[0];
     if (matAnm != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         J3DMaterial* material = modelData->getMaterialNodePointer(getEyeballMaterialNo());
         material->setMaterialAnm(matAnm);
     }
@@ -1015,7 +1015,7 @@ void daNpc_Taro_c::setAttnPos() {
     mStagger.calc(isStaggering);
     f32 dVar8 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
     mJntAnm.setParam(
-        this, mpMorf[0]->getModel(), &eyeOffset, getBackboneJointNo(), getNeckJointNo(),
+        this, mAnm_p[0]->getModel(), &eyeOffset, getBackboneJointNo(), getNeckJointNo(),
         getHeadJointNo(), daNpc_Taro_Param_c::m.mBodyUpAngle, daNpc_Taro_Param_c::m.mBodyDownAngle,
         daNpc_Taro_Param_c::m.mBodyLeftAngle, daNpc_Taro_Param_c::m.mBodyRightAngle,
         daNpc_Taro_Param_c::m.mHeadUpAngle, daNpc_Taro_Param_c::m.mHeadDownAngle,
@@ -1023,7 +1023,7 @@ void daNpc_Taro_c::setAttnPos() {
         daNpc_Taro_Param_c::m.field_0x40, 0.0f, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, (float)dVar8);
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 1, 1.0f, 0);
@@ -1117,7 +1117,7 @@ int daNpc_Taro_c::drawDbgInfo() {
 
 /* 80568598-805686A0 0027F8 0108+00 1/0 0/0 0/0 .text            drawOtherMdl__12daNpc_Taro_cFv */
 void daNpc_Taro_c::drawOtherMdl() {
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (int i = 0; i < 2; i++) {
         if (mModels[i] != NULL && ((i == 0 && field_0x11a4 != 0) || (i == 1 && field_0x11a5 != 0)))
         {
@@ -1197,15 +1197,15 @@ void daNpc_Taro_c::setSwingVoice() {
     if (mType != TYPE_3 && mType != TYPE_8 && mType != TYPE_13) {
         J3DAnmTransform* anmTransform = getTrnsfrmAnmP(l_resNameList[l_motionAnmData[19].mBckArcIdx],
             l_motionAnmData[19].mBckFileIdx);
-        if (anmTransform == mpMorf[0]->getAnm() &&
-            mpMorf[0]->checkFrame(34.0f))
+        if (anmTransform == mAnm_p[0]->getAnm() &&
+            mAnm_p[0]->checkFrame(34.0f))
         {
             mSound.startCreatureVoice(Z2SE_TARO_V_SWING_L, -1);
         }
 
         anmTransform = getTrnsfrmAnmP(l_resNameList[l_motionAnmData[20].mBckArcIdx],
                                       l_motionAnmData[20].mBckFileIdx);
-        if (anmTransform == mpMorf[0]->getAnm() && mpMorf[0]->checkFrame(52.0f)) {
+        if (anmTransform == mAnm_p[0]->getAnm() && mAnm_p[0]->checkFrame(52.0f)) {
             mSound.startCreatureVoice(Z2SE_TARO_V_SWING_S, -1);
         }
     }
@@ -1440,7 +1440,7 @@ int daNpc_Taro_c::cutSwdTutorial(int param_1) {
             if (mMotionSeqMngr.getStepNo() > 0) {
                 mMotionSeqMngr.setNo(0xf, -1.0f, 0, 0);
             } else {
-                if (mMotionSeqMngr.getStepNo() == 0 && mpMorf[0]->checkFrame(8.0f)) {
+                if (mMotionSeqMngr.getStepNo() == 0 && mAnm_p[0]->checkFrame(8.0f)) {
                     mSound.startCreatureVoice(Z2SE_M055_TARO_02, -1);
                 }
             }
@@ -1482,7 +1482,7 @@ int daNpc_Taro_c::cutSwdTutorial(int param_1) {
             if (mMotionSeqMngr.getStepNo() > 0) {
                 mMotionSeqMngr.setNo(9, -1.0f, 0, 0);
             } else {
-                if (mMotionSeqMngr.getStepNo() == 0 && mpMorf[0]->checkFrame(10.0f)) {
+                if (mMotionSeqMngr.getStepNo() == 0 && mAnm_p[0]->checkFrame(10.0f)) {
                     mSound.startCreatureVoice(Z2SE_M056_TARO_03, -1);
                 }
             }
@@ -2143,7 +2143,7 @@ int daNpc_Taro_c::cutGetWoodSwd(int param_1) {
         field_0xd6c = acStack_30 + attention_info.position;
         mJntAnm.lookPos(&field_0xd6c, 0);
         if (mMotionSeqMngr.getStepNo() == 0) {
-            if (mpMorf[0]->checkFrame(45.0f) || mpMorf[0]->checkFrame(63.0f)) {
+            if (mAnm_p[0]->checkFrame(45.0f) || mAnm_p[0]->checkFrame(63.0f)) {
                 mSound.startCreatureVoice(Z2SE_M058_TARO_05, -1);
             }
         } else {
@@ -2178,7 +2178,7 @@ int daNpc_Taro_c::cutGetWoodSwd(int param_1) {
     case 14:
     case 15:
         if (prm == 14) {
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(15));
+            mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(15));
             mDoMtx_stack_c::multVecZero(&field_0xd6c);
             mJntAnm.lookPos(&field_0xd6c, 0);
         } else {

@@ -50,7 +50,7 @@ public:
     /* 0x5F6 */ s16 field_0x5f6;
     /* 0x5F8 */ s16 field_0x5f8;
     /* 0x5FC */ char* mResName;
-    /* 0x600 */ mDoExt_McaMorf* mpMorf;
+    /* 0x600 */ mDoExt_McaMorf* mAnm_p;
     /* 0x604 */ J3DAnmTransform* mAnmTransform;
     /* 0x608 */ u32 mShadowId;
     /* 0x60C */ int mAnmID;

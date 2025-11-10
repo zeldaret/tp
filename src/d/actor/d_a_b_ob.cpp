@@ -106,7 +106,7 @@ daB_OB_HIO_c::daB_OB_HIO_c() {
 /* 806105BC-8061066C 00013C 00B0+00 8/8 0/0 0/0 .text            anm_init__FP10b_ob_classifUcf */
 static void anm_init(b_ob_class* i_this, int i_anmID, f32 i_morf, u8 i_mode, f32 i_speed) {
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes("B_oh", i_anmID);
-    i_this->mBodyParts[0].mpMorf->setAnm(pbck, i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
+    i_this->mBodyParts[0].mAnm_p->setAnm(pbck, i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
     i_this->mAnmID = i_anmID;
 }
 
@@ -309,11 +309,11 @@ static int daB_OB_Draw(b_ob_class* i_this) {
                 if ((i_this->mBodyParts[i].mPos - camera->lookat.eye).abs() >
                     i_this->mBodyParts[i].mSize * (JREG_F(17) + 500.0f))
                 {
-                    g_env_light.setLightTevColorType_MAJI(i_this->mBodyParts[i].mpMorf->getModel(),
+                    g_env_light.setLightTevColorType_MAJI(i_this->mBodyParts[i].mAnm_p->getModel(),
                                                           &a_this->tevStr);
-                    dark(i_this->mBodyParts[i].mpMorf->getModel()->getModelData(),
+                    dark(i_this->mBodyParts[i].mAnm_p->getModel()->getModelData(),
                          i_this->field_0x5d14);
-                    i_this->mBodyParts[i].mpMorf->entryDL();
+                    i_this->mBodyParts[i].mAnm_p->entryDL();
 
                     if (i == 0) {
                         var_r28 = true;
@@ -391,9 +391,9 @@ static int daB_OB_Draw(b_ob_class* i_this) {
         }
 
         g_env_light.settingTevStruct(0, &a_this->home.pos, &a_this->tevStr);
-        g_env_light.setLightTevColorType_MAJI(i_this->mBodyParts[0].mpMorf->getModel(),
+        g_env_light.setLightTevColorType_MAJI(i_this->mBodyParts[0].mAnm_p->getModel(),
                                               &a_this->tevStr);
-        i_this->mBodyParts[0].mpMorf->entryDL();
+        i_this->mBodyParts[0].mAnm_p->entryDL();
     }
 
     if (i_this->mSuiBrkFrame > 0.0f) {
@@ -452,12 +452,12 @@ static void core_start(b_ob_class* i_this) {
     case 2: {
         b_oh_class* tentacle =
             (b_oh_class*)fopAcM_SearchByID(i_this->mTentacleActorIDs[i_this->mCoreHandNo]);
-        MTXCopy(tentacle->mpMorf->getModel()->getAnmMtx(i_this->field_0x478c),
+        MTXCopy(tentacle->mAnm_p->getModel()->getAnmMtx(i_this->field_0x478c),
                 mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&sp28);
 
         MTXCopy(
-            tentacle->mpMorf->getModel()->getAnmMtx(i_this->field_0x478c + i_this->field_0x4790),
+            tentacle->mAnm_p->getModel()->getAnmMtx(i_this->field_0x478c + i_this->field_0x4790),
             mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&sp34);
 
@@ -548,12 +548,12 @@ static void core_hand_move(b_ob_class* i_this) {
             return;
         }
 
-        MTXCopy(tentacle->mpMorf->getModel()->getAnmMtx(i_this->field_0x478c),
+        MTXCopy(tentacle->mAnm_p->getModel()->getAnmMtx(i_this->field_0x478c),
                 mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&sp38);
 
         MTXCopy(
-            tentacle->mpMorf->getModel()->getAnmMtx(i_this->field_0x478c + i_this->field_0x4790),
+            tentacle->mAnm_p->getModel()->getAnmMtx(i_this->field_0x478c + i_this->field_0x4790),
             mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&sp44);
 
@@ -815,7 +815,7 @@ static int core_chance(b_ob_class* i_this) {
 /* 80612484-8061285C 002004 03D8+00 1/1 0/0 0/0 .text            core_end__FP10b_ob_class */
 static void core_end(b_ob_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    int frame = i_this->mBodyParts[0].mpMorf->getFrame();
+    int frame = i_this->mBodyParts[0].mAnm_p->getFrame();
     i_this->mHitIFrameTimer = 10;
 
     cXyz particle_pos;
@@ -840,7 +840,7 @@ static void core_end(b_ob_class* i_this) {
             i_this->field_0x5ce4 = WREG_F(11) + 6.0f;
         }
 
-        if (i_this->mBodyParts[0].mpMorf->isStop()) {
+        if (i_this->mBodyParts[0].mAnm_p->isStop()) {
             i_this->mMode = 2;
             i_this->mTimers[0] = 120;
             dComIfGp_getVibration().StopQuake(31);
@@ -870,7 +870,7 @@ static void core_end(b_ob_class* i_this) {
             a_this->home.pos.y = i_this->field_0x47a0;
             a_this->health = 2;
 
-            MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getBaseTRMtx(),
+            MTXCopy(i_this->mBodyParts[0].mAnm_p->getModel()->getBaseTRMtx(),
                     mDoMtx_stack_c::get());
             mDoMtx_stack_c::multVecZero(&a_this->current.pos);
             a_this->current.angle.y = 0;
@@ -1359,7 +1359,7 @@ static int fish_normal(b_ob_class* i_this) {
         i_this->field_0x5ce4 = JREG_F(11) + 6.0f;
 
         cXyz sp70;
-        MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
+        MTXCopy(i_this->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&sp70);
 
         i_this->field_0x5d24[0] =
@@ -1374,7 +1374,7 @@ static int fish_normal(b_ob_class* i_this) {
         }
     }
 
-    if (i_this->mAnmID == BCK_OI_APPEAR02 && i_this->mBodyParts[0].mpMorf->isStop()) {
+    if (i_this->mAnmID == BCK_OI_APPEAR02 && i_this->mBodyParts[0].mAnm_p->isStop()) {
         anm_init(i_this, BCK_OI_SWIMWAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
     }
 
@@ -1403,7 +1403,7 @@ static int fish_vacume(b_ob_class* i_this) {
         i_this->field_0x476a = 0;
         break;
     case 1:
-        if (i_this->mBodyParts[0].mpMorf->isStop()) {
+        if (i_this->mBodyParts[0].mAnm_p->isStop()) {
             anm_init(i_this, BCK_OI_OPENMOUTHWAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = 200;
@@ -1438,7 +1438,7 @@ static int fish_vacume(b_ob_class* i_this) {
 
         i_this->mBodyParts[0].mSph.OffCoSetBit();
 
-        if (i_this->mBodyParts[0].mpMorf->isStop()) {
+        if (i_this->mBodyParts[0].mAnm_p->isStop()) {
             if (i_this->mAnmID == BCK_OI_SWALLOW) {
                 anm_init(i_this, BCK_OI_EAT02, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else if (i_this->mAnmID == BCK_OI_EAT02) {
@@ -1486,7 +1486,7 @@ static int fish_end(b_ob_class* i_this) {
         anm_init(i_this, BCK_OI_LASTDAMAGE, 0.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         break;
     case 1:
-        if (i_this->mBodyParts[0].mpMorf->isStop()) {
+        if (i_this->mBodyParts[0].mAnm_p->isStop()) {
             anm_init(i_this, BCK_OI_SWIMWAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
@@ -1867,21 +1867,21 @@ static void fish_move(b_ob_class* i_this) {
         }
 
         if (i == 0) {
-            part->mpMorf->play(NULL, 0, 0);
+            part->mAnm_p->play(NULL, 0, 0);
 
-            if (i_this->mAnmID == BCK_OI_EAT02 && i_this->mBodyParts[0].mpMorf->checkFrame(1.0f)) {
+            if (i_this->mAnmID == BCK_OI_EAT02 && i_this->mBodyParts[0].mAnm_p->checkFrame(1.0f)) {
                 i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_V_EAT02, -1);
             }
         }
 
-        part->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-        part->mpMorf->modelCalc();
+        part->mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+        part->mAnm_p->modelCalc();
 
         if (i == 0 && i_this->mSuiBrkFrame > 0.0f) {
             i_this->mpSuiBrk->setFrame(i_this->mSuiBrkFrame);
             i_this->mpSuiBtk->play();
 
-            MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
+            MTXCopy(i_this->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
             mDoMtx_stack_c::XrotM(VREG_S(1) + 0x4000);
             mDoMtx_stack_c::transM(0.0f, VREG_F(0) + 1300.0f, 0.0f);
             i_this->mpSuiModel->setBaseTRMtx(mDoMtx_stack_c::get());
@@ -1943,7 +1943,7 @@ static void fish_move(b_ob_class* i_this) {
         }
 
         if (i == 0) {
-            MTXCopy(part->mpMorf->getModel()->getBaseTRMtx(), *calc_mtx);
+            MTXCopy(part->mAnm_p->getModel()->getBaseTRMtx(), *calc_mtx);
 
             sp84.set(0.0f, 0.0f, VREG_F(2) + 700.0f);
             MtxPosition(&sp84, &sp90);
@@ -1981,7 +1981,7 @@ static void fish_move(b_ob_class* i_this) {
     a_this->current.pos.y += var_f31_2;
     a_this->old.pos.y += var_f31_2;
 
-    MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getBaseTRMtx(), mDoMtx_stack_c::get());
+    MTXCopy(i_this->mBodyParts[0].mAnm_p->getModel()->getBaseTRMtx(), mDoMtx_stack_c::get());
     mDoMtx_stack_c::transM(XREG_F(5), XREG_F(6) + 390.0f, XREG_F(7) + 400.0f + 11.0f);
     mDoMtx_stack_c::multVecZero(&sp90);
     a_this->eyePos = sp90;
@@ -2113,7 +2113,7 @@ static void demo_camera(b_ob_class* i_this) {
         cLib_addCalc2(&i_this->mDemoCamEye.z, sp64.z, 0.1f, i_this->field_0x5cd0 * 200.0f);
         cLib_addCalc2(&i_this->field_0x5cd0, 1.0f, 1.0f, TREG_F(7) + 0.1f);
 
-        MTXCopy(tentacle->mpMorf->getModel()->getAnmMtx(29), mDoMtx_stack_c::get());
+        MTXCopy(tentacle->mAnm_p->getModel()->getAnmMtx(29), mDoMtx_stack_c::get());
 
         mDoMtx_stack_c::transM(ZREG_F(0) + 50.0f, ZREG_F(1) + -100.0f,
                                -(ZREG_F(2) + 80.0f) * (f32)tentacle->field_0xc88);
@@ -2156,7 +2156,7 @@ static void demo_camera(b_ob_class* i_this) {
             dComIfGp_getVibration().StartShock(4, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
 
-        if (i_this->mAnmID == BCK_OI_EAT && i_this->mBodyParts[0].mpMorf->checkFrame(153.0f)) {
+        if (i_this->mAnmID == BCK_OI_EAT && i_this->mBodyParts[0].mAnm_p->checkFrame(153.0f)) {
             i_this->mDemoAction = 4;
             i_this->mDemoActionTimer = 0;
 
@@ -2174,7 +2174,7 @@ static void demo_camera(b_ob_class* i_this) {
         cLib_addCalc2(&i_this->mDemoCamCenter.y, player->current.pos.y, 0.4f, 300.0f);
         cLib_addCalc2(&i_this->mDemoCamCenter.z, player->current.pos.z, 0.4f, 300.0f);
 
-        if (i_this->mBodyParts[0].mpMorf->isStop()) {
+        if (i_this->mBodyParts[0].mAnm_p->isStop()) {
             i_this->mDemoAction = 100;
             i_this->mCoreAnm = BCK_OI_WAIT;
             i_this->mCoreAnmMode = J3DFrameCtrl::EMode_LOOP;
@@ -2216,7 +2216,7 @@ static void demo_camera(b_ob_class* i_this) {
             break;
         }
 
-        MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0x13), mDoMtx_stack_c::get());
+        MTXCopy(i_this->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(0x13), mDoMtx_stack_c::get());
 
         sp58.x = i_this->field_0x5d00;
         sp58.y = 0.0;
@@ -2482,7 +2482,7 @@ static void demo_camera(b_ob_class* i_this) {
         if (i_this->mDemoActionTimer == 570) {
             i_this->mDemoAction = 32;
             i_this->mDemoActionTimer = 0;
-            i_this->mBodyParts[0].mpMorf->setPlaySpeed(1.0f);
+            i_this->mBodyParts[0].mAnm_p->setPlaySpeed(1.0f);
 
             sp58.set(0.0f, 0.0f, 0.0f);
             dComIfGp_particle_set(dPa_RM(ID_ZI_S_OI_ISO_APP_A), &sp58, NULL, NULL);
@@ -2534,7 +2534,7 @@ static void demo_camera(b_ob_class* i_this) {
             i_this->mBlureRateTarget = 0;
         }
 
-        if (i_this->mBodyParts[0].mpMorf->isStop()) {
+        if (i_this->mBodyParts[0].mAnm_p->isStop()) {
             anm_init(i_this, BCK_OI_WAIT, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
@@ -2594,7 +2594,7 @@ static void demo_camera(b_ob_class* i_this) {
         if (i_this->mDemoAction == 42 || i_this->mDemoAction == 43) {
             sp88 = a_this->eyePos;
         } else {
-            MTXCopy(i_this->mBodyParts[BREG_S(5) + 8].mpMorf->getModel()->getAnmMtx(0),
+            MTXCopy(i_this->mBodyParts[BREG_S(5) + 8].mAnm_p->getModel()->getAnmMtx(0),
                     mDoMtx_stack_c::get());
             mDoMtx_stack_c::multVecZero(&sp88);
         }
@@ -2871,13 +2871,13 @@ static void demo_camera(b_ob_class* i_this) {
 
         i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_V_EAT, -1);
 
-        MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
+        MTXCopy(i_this->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&sp64);
         dComIfGp_particle_set(dPa_RM(ID_ZI_S_OI_ISO_HAKI_A), &sp64, NULL, NULL);
         dComIfGp_particle_set(dPa_RM(ID_ZI_S_OI_ISO_HAKI_B), &sp64, NULL, NULL);
         /* fallthrough */
     case 51:
-        MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0x13), mDoMtx_stack_c::get());
+        MTXCopy(i_this->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(0x13), mDoMtx_stack_c::get());
         sp58.x = i_this->field_0x5d00;
         sp58.y = 0.0;
         sp58.z = 0.0;
@@ -2897,11 +2897,11 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->mDemoCamEye += a_this->home.pos;
 
         if (i_this->mAnmID == BCK_OI_EAT) {
-            if (i_this->mBodyParts[0].mpMorf->checkFrame(120.0f)) {
+            if (i_this->mBodyParts[0].mAnm_p->checkFrame(120.0f)) {
                 daPy_getPlayerActorClass()->changeDemoMode(46, 0, 0, 0);
             }
 
-            if (i_this->mBodyParts[0].mpMorf->checkFrame(153.0f)) {
+            if (i_this->mBodyParts[0].mAnm_p->checkFrame(153.0f)) {
                 i_this->mDemoAction = 52;
                 i_this->mDemoActionTimer = 0;
 
@@ -2928,7 +2928,7 @@ static void demo_camera(b_ob_class* i_this) {
             cLib_addCalc2(&i_this->field_0x5cd0, 1.0f, 1.0f, 0.05f);
         }
 
-        if (i_this->mDemoAction == 52 && i_this->mBodyParts[0].mpMorf->isStop()) {
+        if (i_this->mDemoAction == 52 && i_this->mBodyParts[0].mAnm_p->isStop()) {
             i_this->mDemoAction = 100;
             i_this->mCoreAnm = BCK_OI_WAIT;
             i_this->mCoreAnmMode = J3DFrameCtrl::EMode_LOOP;
@@ -3200,9 +3200,9 @@ static int daB_OB_Execute(b_ob_class* i_this) {
             mDoMtx_stack_c::XrotM(-0x4000);
             mDoMtx_stack_c::scaleM(l_HIO.mBodySize, l_HIO.mBodySize, l_HIO.mBodySize);
 
-            i_this->mBodyParts[0].mpMorf->play(NULL, 0, 0);
-            i_this->mBodyParts[0].mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-            i_this->mBodyParts[0].mpMorf->modelCalc();
+            i_this->mBodyParts[0].mAnm_p->play(NULL, 0, 0);
+            i_this->mBodyParts[0].mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+            i_this->mBodyParts[0].mAnm_p->modelCalc();
 
             i_this->mBodySph.SetC(a_this->home.pos);
             i_this->mBodySph.SetR(TREG_F(17) + 410.0f);
@@ -3210,8 +3210,8 @@ static int daB_OB_Execute(b_ob_class* i_this) {
         }
     }
 
-    if (i_this->mAnmID == BCK_OI_APPEAR && i_this->mBodyParts[0].mpMorf->getPlaySpeed() >= 0.5f) {
-        J3DModel* model = i_this->mBodyParts[0].mpMorf->getModel();
+    if (i_this->mAnmID == BCK_OI_APPEAR && i_this->mBodyParts[0].mAnm_p->getPlaySpeed() >= 0.5f) {
+        J3DModel* model = i_this->mBodyParts[0].mAnm_p->getModel();
         for (int i = 0; i < 5; i++) {
             int joint_no = 1;
             if (i >= 2) {
@@ -3226,7 +3226,7 @@ static int daB_OB_Execute(b_ob_class* i_this) {
                 dComIfGp_particle_set(i_this->field_0x5d24[i], iso_eff[i], &sp7C, NULL, NULL);
         }
     } else if (i_this->mAnmID == BCK_OI_EAT) {
-        J3DModel* model = i_this->mBodyParts[0].mpMorf->getModel();
+        J3DModel* model = i_this->mBodyParts[0].mAnm_p->getModel();
         MTXCopy(model->getAnmMtx(0x13), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&sp7C);
 
@@ -3236,7 +3236,7 @@ static int daB_OB_Execute(b_ob_class* i_this) {
                 dComIfGp_particle_set(i_this->field_0x5d24[i], iso_eff[i], &sp7C, NULL, NULL);
         }
     } else if (i_this->mAnmID == BCK_OI_THROWUP) {
-        J3DModel* model = i_this->mBodyParts[0].mpMorf->getModel();
+        J3DModel* model = i_this->mBodyParts[0].mAnm_p->getModel();
         for (int i = 0; i < 4; i++) {
             static u16 iso_eff[] = {dPa_RM(ID_ZI_S_OI_FISH_HAKI_A), dPa_RM(ID_ZI_S_OI_FISH_HAKI_B), dPa_RM(ID_ZI_S_OI_FISH_HAKI_C), dPa_RM(ID_ZI_S_OI_FISH_HAKI_D)};
             i_this->field_0x5d24[i] = dComIfGp_particle_set(i_this->field_0x5d24[i], iso_eff[i],
@@ -3275,30 +3275,30 @@ static int daB_OB_Execute(b_ob_class* i_this) {
 
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->field_0x5d38);
         if (emitter != 0) {
-            emitter->setGlobalRTMatrix(i_this->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0));
+            emitter->setGlobalRTMatrix(i_this->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(0));
         }
     }
 
-    MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0x13), mDoMtx_stack_c::get());
+    MTXCopy(i_this->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(0x13), mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&i_this->field_0x5be4[0]);
 
-    MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getAnmMtx(1), mDoMtx_stack_c::get());
+    MTXCopy(i_this->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(1), mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&i_this->field_0x5be4[1]);
 
-    MTXCopy(i_this->mBodyParts[2].mpMorf->getModel()->getBaseTRMtx(), mDoMtx_stack_c::get());
+    MTXCopy(i_this->mBodyParts[2].mAnm_p->getModel()->getBaseTRMtx(), mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&i_this->field_0x5be4[2]);
 
-    MTXCopy(i_this->mBodyParts[5].mpMorf->getModel()->getBaseTRMtx(), mDoMtx_stack_c::get());
+    MTXCopy(i_this->mBodyParts[5].mAnm_p->getModel()->getBaseTRMtx(), mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&i_this->field_0x5be4[3]);
 
-    MTXCopy(i_this->mBodyParts[18].mpMorf->getModel()->getBaseTRMtx(), mDoMtx_stack_c::get());
+    MTXCopy(i_this->mBodyParts[18].mAnm_p->getModel()->getBaseTRMtx(), mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&i_this->field_0x5be4[4]);
 
     for (int i = 0; i < 8; i++) {
         if (i_this->mCoreBattleMode != 0) {
             b_oh_class* tentacle = (b_oh_class*)fopAcM_SearchByID(i_this->mTentacleActorIDs[i]);
             if (tentacle != NULL) {
-                MTXCopy(tentacle->mpMorf->getModel()->getAnmMtx(0x19), mDoMtx_stack_c::get());
+                MTXCopy(tentacle->mAnm_p->getModel()->getAnmMtx(0x19), mDoMtx_stack_c::get());
                 sp70 = i_this->field_0x5be4[5 + i];
                 mDoMtx_stack_c::multVecZero(&i_this->field_0x5be4[5 + i]);
                 sp70 = i_this->field_0x5be4[5 + i] - sp70;
@@ -3353,30 +3353,30 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             var_r31 = 0;
         }
 
-        a_this->mBodyParts[i].mpMorf =
+        a_this->mBodyParts[i].mAnm_p=
             new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", p_bmd[i]), NULL, NULL,
                                NULL, 2, 1.0f, 0, -1, 1, NULL, var_r31, 0x11000084);
 
-        if (a_this->mBodyParts[i].mpMorf == NULL ||
-            a_this->mBodyParts[i].mpMorf->getModel() == NULL)
+        if (a_this->mBodyParts[i].mAnm_p== NULL ||
+            a_this->mBodyParts[i].mAnm_p->getModel() == NULL)
         {
             return 0;
         }
 
-        a_this->mBodyParts[i].mpMorf->getModel()->setUserArea((uintptr_t)i_this);
+        a_this->mBodyParts[i].mAnm_p->getModel()->setUserArea((uintptr_t)i_this);
 
-        for (u16 j = 0; j < a_this->mBodyParts[i].mpMorf->getModel()->getModelData()->getJointNum();
+        for (u16 j = 0; j < a_this->mBodyParts[i].mAnm_p->getModel()->getModelData()->getJointNum();
              j++)
         {
             if (p_bmd[i] == 0x2B) {
                 a_this->mBodyParts[i]
-                    .mpMorf->getModel()
+                    .mAnm_p->getModel()
                     ->getModelData()
                     ->getJointNodePointer(j)
                     ->setCallBack(HeadCallBack);
             } else if (p_bmd[i] == 0x26) {
                 a_this->mBodyParts[i]
-                    .mpMorf->getModel()
+                    .mAnm_p->getModel()
                     ->getModelData()
                     ->getJointNodePointer(j)
                     ->setCallBack(TailCallBack);

@@ -21,7 +21,7 @@ public:
     /* 0x05B5 */ u8 field_0x5b5;
     /* 0x05B6 */ u8 field_0x5b6;
     /* 0x05B7 */ u8 field_0x5b7;
-    /* 0x05B8 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x05B8 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x05BC */ Z2CreatureEnemy mSound;
     /* 0x0660 */ mDoExt_brkAnm* mBrk;
     /* 0x0664 */ int field_0x664;

@@ -66,13 +66,13 @@ daNPC_TK_HIO_c::daNPC_TK_HIO_c() {
 
 /* 80B01498-80B0153C 000178 00A4+00 14/14 0/0 0/0 .text            setBck__10daNPC_TK_cFiUcff */
 void daNPC_TK_c::setBck(int param_0, u8 param_1, f32 param_2, f32 param_3) {
-    mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Npc_tk", param_0), param_1, param_2,
+    mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("Npc_tk", param_0), param_1, param_2,
                    param_3, 0.0f, -1.0f);
 }
 
 /* 80B0153C-80B01598 00021C 005C+00 6/6 0/0 0/0 .text            checkBck__10daNPC_TK_cFi */
 bool daNPC_TK_c::checkBck(int param_0) {
-    if (mpMorf->getAnm() == dComIfG_getObjectRes("Npc_tk", param_0)) {
+    if (mAnm_p->getAnm() == dComIfG_getObjectRes("Npc_tk", param_0)) {
         return true;
     } else {
         return false;
@@ -81,11 +81,11 @@ bool daNPC_TK_c::checkBck(int param_0) {
 
 /* 80B01598-80B01678 000278 00E0+00 1/1 0/0 0/0 .text            draw__10daNPC_TK_cFv */
 int daNPC_TK_c::draw() {
-    J3DModel* pJVar1 = mpMorf->getModel();
+    J3DModel* pJVar1 = mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(pJVar1, &tevStr);
     if (field_0x6c0 == 0) {
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
         cXyz shadowPos;
         shadowPos.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
         field_0x688 = dComIfGd_setShadow(field_0x688, 1, pJVar1, &shadowPos, 400.0f, 0.0f,
@@ -241,7 +241,7 @@ void daNPC_TK_c::setAwayAction(int param_0) {
 /* 80B01EF4-80B0207C 000BD4 0188+00 1/1 0/0 0/0 .text            setFlySE__10daNPC_TK_cFv */
 void daNPC_TK_c::setFlySE() {
     if (checkBck(6) != 0) {
-        if (mpMorf->checkFrame(10.0f) != 0) {
+        if (mAnm_p->checkFrame(10.0f) != 0) {
             mSound.startCreatureSound(Z2SE_HAWK_WING, 0, -1);
         }
     } else {
@@ -249,11 +249,11 @@ void daNPC_TK_c::setFlySE() {
             mSound.startCreatureSoundLevel(Z2SE_HAWK_GLIDE, 0, -1);
         } else {
             if (checkBck(7) != 0) {
-                if (mpMorf->checkFrame(5.0f) != 0) {
+                if (mAnm_p->checkFrame(5.0f) != 0) {
                     mSound.startCreatureSound(Z2SE_HAWK_HOVER, 0, -1);
                 }
             } else {
-                if (checkBck(9) != 0 && mpMorf->checkFrame(7.0f) != 0) {
+                if (checkBck(9) != 0 && mAnm_p->checkFrame(7.0f) != 0) {
                     mSound.startCreatureSound(Z2SE_HAWK_LANDING, 0, -1);
                 }
             }
@@ -335,7 +335,7 @@ void daNPC_TK_c::executeFly() {
                 field_0x6b0 = (u8)(cM_rndF(100.0f) + 100.0f);
             }
         } else {
-            if (mpMorf->getFrame() >= 7.0f && mpMorf->getFrame() <= 27.0f) {
+            if (mAnm_p->getFrame() >= 7.0f && mAnm_p->getFrame() <= 27.0f) {
                 current.pos.y += 1.0f;
             }
             if (field_0x6b0 == 0) {
@@ -731,7 +731,7 @@ void daNPC_TK_c::executeHandOn() {
         cLib_chaseAngleS(&field_0x6a2, (shape_angle.y - field_0x69e) * 7, 0x200);
         field_0x69e = shape_angle.y;
 
-        if (field_0x6b0 == 0 && mpMorf->checkFrame(0.0f) != 0) {
+        if (field_0x6b0 == 0 && mAnm_p->checkFrame(0.0f) != 0) {
             if (cM_rndF(1.0f) < 0.5f) {
                 setBck(10, 0, 0.0f, 1.0f);
             } else {
@@ -748,7 +748,7 @@ void daNPC_TK_c::executeHandOn() {
         cLib_chaseAngleS(&field_0x6a0, 0, 0x1000);
         cLib_chaseAngleS(&field_0x6a2, 0, 0x1000);
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             field_0x694 = 0;
         }
 
@@ -908,7 +908,7 @@ void daNPC_TK_c::executeAttack() {
 
         field_0x6ae = 1;
         if (field_0x6b0 == 0 && checkBck(8) == 0) {
-            if (mpMorf->checkFrame(mpMorf->getEndFrame()) != 0) {
+            if (mAnm_p->checkFrame(mAnm_p->getEndFrame()) != 0) {
                 setBck(8, 2, 3.0f, 1.0f);
             }
         }
@@ -994,7 +994,7 @@ void daNPC_TK_c::executeAttack() {
     case 2: {
         mAcch.SetGroundUpY(fabsf(cM_ssin(shape_angle.x) * 30.0f));
 
-        MtxP anmMtx = mpMorf->getModel()->getAnmMtx(0);
+        MtxP anmMtx = mAnm_p->getModel()->getAnmMtx(0);
         cXyz part1Trans(anmMtx[0][3], anmMtx[1][3], anmMtx[2][3]);
 
         field_0xb3c = dComIfGp_particle_set(field_0xb3c, 0x832b, &part1Trans, &tevStr, &shape_angle,
@@ -1043,7 +1043,7 @@ void daNPC_TK_c::executeAway() {
     case 0: {
         if (field_0x698 == 0 || field_0x698 == 2) {
             if (checkBck(6) != 0) {
-                mpMorf->setPlaySpeed(1.5f);
+                mAnm_p->setPlaySpeed(1.5f);
             } else {
                 setBck(6, 2, 3.0f, 1.5f);
             }
@@ -1138,7 +1138,7 @@ void daNPC_TK_c::setCarryActorMtx() {
         cXyz unkXyz1;
         switch (mCarryType) {
         case 0:
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0));
             mDoMtx_stack_c::multVecZero(&unkXyz1);
             mDoMtx_stack_c::transS(unkXyz1);
             mDoMtx_stack_c::ZXYrotM(-shape_angle.x, shape_angle.y - 0x8000, shape_angle.z);
@@ -1146,7 +1146,7 @@ void daNPC_TK_c::setCarryActorMtx() {
             ((ni_class*)field_0x634)->setMtx(mDoMtx_stack_c::get());
             break;
         case 2:
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0));
             mDoMtx_stack_c::multVecZero(&unkXyz1);
             mDoMtx_stack_c::transS(unkXyz1);
             mDoMtx_stack_c::ZXYrotM(shape_angle.z, shape_angle.y - 0x4000, -shape_angle.x / 2);
@@ -1157,7 +1157,7 @@ void daNPC_TK_c::setCarryActorMtx() {
             ((daObj_Kago_c*)field_0x634)->setMtx(mDoMtx_stack_c::get());
             break;
         case 1:
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0));
             mDoMtx_stack_c::transM(-35.0f, -45.0f, 0.0f);
             ((daObj_Pumpkin_c*)field_0x634)->setMtx(mDoMtx_stack_c::get());
             break;
@@ -1497,7 +1497,7 @@ void daNPC_TK_c::executeStayHanjo() {
         field_0x694 = 3;
     }
     case 3: {
-        if (field_0x6b0 == 0 && mpMorf->checkFrame(0.0f) != 0) {
+        if (field_0x6b0 == 0 && mAnm_p->checkFrame(0.0f) != 0) {
             if (cM_rndF(1.0f) < 0.5f) {
                 setBck(10, 0, 0.0f, 1.0f);
             } else {
@@ -1515,7 +1515,7 @@ void daNPC_TK_c::executeStayHanjo() {
         break;
     }
     case 4: {
-        if (mpMorf->isStop() != 0) {
+        if (mAnm_p->isStop() != 0) {
             field_0x694 = 2;
         }
 
@@ -2634,7 +2634,7 @@ void daNPC_TK_c::executeResistanceDemo() {
 
         return;
     case 7:
-        if (mpMorf->isStop() != 0) {
+        if (mAnm_p->isStop() != 0) {
             setBck(0xc, 2, 3.0f, 1.0f);
         }
     case 8:
@@ -3058,7 +3058,7 @@ void daNPC_TK_c::action() {
         mAcch.CrrPos(dComIfG_Bgsp());
     }
 
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
 /* 80B0B5CC-80B0B6DC 00A2AC 0110+00 1/1 0/0 0/0 .text            mtx_set__10daNPC_TK_cFv */
@@ -3075,13 +3075,13 @@ void daNPC_TK_c::mtx_set() {
     }
 
     mDoMtx_stack_c::scaleM(l_HIO.field_0x8, l_HIO.field_0x8, l_HIO.field_0x8);
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
 }
 
 /* 80B0B6DC-80B0B7CC 00A3BC 00F0+00 1/1 0/0 0/0 .text            cc_set__10daNPC_TK_cFv */
 void daNPC_TK_c::cc_set() {
-    MTXCopy(mpMorf->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
+    MTXCopy(mAnm_p->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&eyePos);
     attention_info.position = eyePos;
     attention_info.position.y += 30.0f;
@@ -3237,14 +3237,14 @@ int daNPC_TK_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Npc_tk", "tk.bmd");
     JUT_ASSERT_MSG(0xf4f, modelData != NULL, "  鷹匠");  // falconer
 
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("Npc_tk", 6), 0, 1.0f, 0,
                                   -1, &mSound, 0x80000, 0x11000084);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     model->setUserArea((uintptr_t)this);
 
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
@@ -3295,7 +3295,7 @@ int daNPC_TK_c::create() {
 
         attention_info.flags = 0;
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
 

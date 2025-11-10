@@ -61,13 +61,13 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80BCA418-80BCA700 0001F8 02E8+00 1/1 0/0 0/0 .text            CreateHeap__10daObjCHO_cFv */
 int daObjCHO_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("I_Cho", 10);
-    mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(model_data, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 6),
                                   2, 1.0f, 0, -1, &mCreatureSound, 0, 0x11000284);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL) {
@@ -173,7 +173,7 @@ void daObjCHO_c::WaitAction() {
             mMode++;
             mTimers[0] = 200;
             J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 7);
-            mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
             home.pos = current.pos;
         }
         mTargetAngleY = cLib_targetAngleY(&current.pos, &target);
@@ -190,7 +190,7 @@ void daObjCHO_c::WaitAction() {
             speed.y = 0.0f;
             mTimers[2] = 50;
             J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 6);
-            mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
         }
     }
 
@@ -201,7 +201,7 @@ void daObjCHO_c::WaitAction() {
         speed.y = 0.0f;
         mTimers[2] = 50;
         J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 6);
-        mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+        mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
     }
 
     mTargetPos = target;
@@ -212,7 +212,7 @@ void daObjCHO_c::MoveAction() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     SpeedSet();
     
-    if (mpMorf->getFrame() > 3.5f) {
+    if (mAnm_p->getFrame() > 3.5f) {
         current.pos.y += 2.0f;
     } else {
         current.pos.y -= 2.0f;
@@ -249,7 +249,7 @@ void daObjCHO_c::MoveAction() {
 
     WallCheck();
     cLib_addCalc2(&mPlaySpeed, speed.abs() / 4 + 0.7f, 0.5f, 10.0f);
-    mpMorf->setPlaySpeed(mPlaySpeed);
+    mAnm_p->setPlaySpeed(mPlaySpeed);
     
     if (mTimers[2] == 0) {
         SearchLink();
@@ -370,7 +370,7 @@ void daObjCHO_c::BoomChk() {
                 mBoomerangHit = false;
                 mTimers[2] = 100;
                 J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 6);
-                mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+                mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
                 home.pos = current.pos;
             } else {
                 home.pos = current.pos;
@@ -381,7 +381,7 @@ void daObjCHO_c::BoomChk() {
                 mTargetSpeedXZ = 5.0f;
                 mTimers[2] = 100;
                 J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 6);
-                mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+                mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
                 current.pos.y = old.pos.y = player->current.pos.y + 100.0f;
             }
         }
@@ -436,7 +436,7 @@ int daObjCHO_c::Execute() {
     
     mCreatureSound.startCreatureSoundLevel(Z2SE_INSCT_KIRA, 0, -1);
     mAcch.CrrPos(dComIfG_Bgsp());
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     mpBtkAnm->play();
     mpBrkAnm->play();
     setBaseMtx();
@@ -461,7 +461,7 @@ void daObjCHO_c::ObjHit() {
             mMode = 2;
             mBoomerangHit = false;
             J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("I_Cho", 6);
-            mpMorf->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
+            mAnm_p->setAnm(anm, 2, 5.0f, 1.0f, 0.0f, -1.0f);
             speedF = 8.0f;
             mTargetSpeedXZ = cM_rndF(5.0f) + 8.0f;
         }
@@ -476,7 +476,7 @@ int daObjCHO_c::Delete() {
         hioInit = false;
     }
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
     return 1;
 }
@@ -486,19 +486,19 @@ void daObjCHO_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
 }
 
 int daObjCHO_c::Draw() {
     if (mDraw) {
         Z_BufferChk();
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
         mpBtkAnm->entry(model->getModelData());
         mpBrkAnm->entry(model->getModelData());
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
         if (mLocation == LOC_OUTSIDE) {
             dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 15.0f, mAcch.m_gnd, 0, -0.6f,
                                      dDlst_shadowControl_c::getSimpleTex());
@@ -613,7 +613,7 @@ cPhs__Step daObjCHO_c::create() {
             mLocation |= LOC_UNK_3;
             mAction = ACT_WAIT;
         }
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);
         mCreatureSound.init(&current.pos, &eyePos, 3, 1);

@@ -33,7 +33,7 @@ daE_YC_HIO_c::daE_YC_HIO_c() {
 /* 807EFEF0-807EFF9C 000110 00AC+00 5/5 0/0 0/0 .text            anm_init__FP10e_yc_classifUcf */
 static void anm_init(e_yc_class* i_this, int i_anmID, f32 i_morf, u8 i_attr, f32 i_rate) {
     J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("E_yc", i_anmID));
-    i_this->mpMorf->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    i_this->mAnm_p->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
     i_this->mAnm = i_anmID;
 }
 
@@ -43,11 +43,11 @@ static int daE_YC_Draw(e_yc_class* i_this) {
         return 1;
     }
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(2, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
     dComIfGd_setListDark();
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
     dComIfGd_setList();
     
     cXyz pos;
@@ -83,7 +83,7 @@ static void damage_check(e_yc_class* i_this) {
 static void e_yc_fly(e_yc_class* i_this) {
     fopAc_ac_c* base_rdy = fopAcM_SearchByID(i_this->mRiderID);
     e_rdy_class* rider = (e_rdy_class*) base_rdy;
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
     f32 target_speed = 0.0f;
     f32 accel = 1.0f;
     f32 delta_x, delta_y, delta_z;
@@ -199,7 +199,7 @@ static void e_yc_fly(e_yc_class* i_this) {
 /* 807F06AC-807F0AA0 0008CC 03F4+00 1/1 0/0 0/0 .text            e_yc_f_fly__FP10e_yc_class */
 static void e_yc_f_fly(e_yc_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
     f32 delta_x, delta_y, delta_z;
 
     switch (i_this->mFlyAnmMode) {
@@ -324,7 +324,7 @@ static void e_yc_attack(e_yc_class* i_this) {
     fopAc_ac_c* base_rdy = fopAcM_SearchByID(i_this->mRiderID);
     e_rdy_class* rider = (e_rdy_class*) base_rdy;
     f32 target_speed = 0.0f;
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
 
     if (i_this->mMode < 4) {
         i_this->mTargetPos = player->current.pos;
@@ -374,7 +374,7 @@ static void e_yc_attack(e_yc_class* i_this) {
         cLib_addCalc2(&i_this->current.pos.y, i_this->mTargetPos.y + 350.0f, 1.0f, 30.0f);
         cLib_addCalc2(&i_this->current.pos.z, i_this->mTargetPos.z, 1.0f, 30.0f);
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             if (rider->mDemoMode == 0) {
                 i_this->mAction = e_yc_class::ACT_HOVERING;
                 i_this->mMode = 0;
@@ -401,7 +401,7 @@ static void e_yc_attack(e_yc_class* i_this) {
             rider->mDemoMode = 3;
         }
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = e_yc_class::ACT_HOVERING;
             i_this->mMode = 0;
         }
@@ -443,7 +443,7 @@ static void e_yc_wolfbite(e_yc_class* i_this) {
     daPy_py_c* player = static_cast<daPy_py_c*>(dComIfGp_getPlayer(0));
     e_rdy_class* rider = (e_rdy_class*) fopAcM_SearchByID(i_this->mRiderID);
 
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
     i_this->mCcDisableTimer = 10;
     cLib_addCalc0(&_this->speedF, 1.0f, 2.0f);
 
@@ -457,14 +457,14 @@ static void e_yc_wolfbite(e_yc_class* i_this) {
         break;
 
     case 1:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, e_yc_class::ANM_HANGED_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
         }
         break;
 
     case 2:
-        if (i_this->mAnm == e_yc_class::ANM_HANGED_DAMAGE && i_this->mpMorf->isStop()) {
+        if (i_this->mAnm == e_yc_class::ANM_HANGED_DAMAGE && i_this->mAnm_p->isStop()) {
             anm_init(i_this, e_yc_class::ANM_HANGED_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
@@ -510,7 +510,7 @@ static void e_yc_wolfbite(e_yc_class* i_this) {
             rider->field_0xa8f = 1;
         }
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             if (i_this->mAnm == e_yc_class::ANM_HANGED_BRUSH2) {
                 i_this->mAction = e_yc_class::ACT_FLY;
                 i_this->mMode = 0;
@@ -531,38 +531,38 @@ static void e_yc_wolfbite(e_yc_class* i_this) {
 
 /* 807F165C-807F1AD4 00187C 0478+00 1/1 0/0 0/0 .text            anm_se_set__FP10e_yc_class */
 static void anm_se_set(e_yc_class* i_this) {
-    if ((i_this->mAnm == e_yc_class::ANM_FLY && i_this->mpMorf->checkFrame(28.0f))
-        || (i_this->mAnm == e_yc_class::ANM_CATCH_START && i_this->mpMorf->checkFrame(27.0f))
-        || (i_this->mAnm == e_yc_class::ANM_CATCH_MIDDLE && i_this->mpMorf->checkFrame(11.0f))
+    if ((i_this->mAnm == e_yc_class::ANM_FLY && i_this->mAnm_p->checkFrame(28.0f))
+        || (i_this->mAnm == e_yc_class::ANM_CATCH_START && i_this->mAnm_p->checkFrame(27.0f))
+        || (i_this->mAnm == e_yc_class::ANM_CATCH_MIDDLE && i_this->mAnm_p->checkFrame(11.0f))
         || (i_this->mAnm == e_yc_class::ANM_CATCH_END
-            && (i_this->mpMorf->checkFrame(11.0f) || i_this->mpMorf->checkFrame(36.0f))))
+            && (i_this->mAnm_p->checkFrame(11.0f) || i_this->mAnm_p->checkFrame(36.0f))))
     {
         i_this->mCreatureSound.startCreatureSound(Z2SE_EN_YC_WING, 0, -1);
     } else if (i_this->mAnm == e_yc_class::ANM_FLY_GLIDE) {
         i_this->mCreatureSound.startCreatureSoundLevel(Z2SE_EN_YC_GLIDE, 0, -1);
-    } else if (i_this->mAnm == e_yc_class::ANM_HANGED_BRUSH && i_this->mpMorf->checkFrame(1.0f)) {
+    } else if (i_this->mAnm == e_yc_class::ANM_HANGED_BRUSH && i_this->mAnm_p->checkFrame(1.0f)) {
         i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_YC_V_BRUSH, -1);
-    } else if (i_this->mAnm == e_yc_class::ANM_HANGED_BRUSH2 && i_this->mpMorf->checkFrame(1.0f)) {
+    } else if (i_this->mAnm == e_yc_class::ANM_HANGED_BRUSH2 && i_this->mAnm_p->checkFrame(1.0f)) {
         i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_YC_V_BRUSH2, -1);
-    } else if (i_this->mAnm == e_yc_class::ANM_HANGED && i_this->mpMorf->checkFrame(1.0f)) {
+    } else if (i_this->mAnm == e_yc_class::ANM_HANGED && i_this->mAnm_p->checkFrame(1.0f)) {
         i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_YC_V_HANGED, -1);
         i_this->mCreatureSound.startCreatureSound(Z2SE_EN_YC_WING, 0, -1);
-    } else if (i_this->mAnm == e_yc_class::ANM_HANGED_BRUSH && i_this->mpMorf->checkFrame(7.0f)) {
+    } else if (i_this->mAnm == e_yc_class::ANM_HANGED_BRUSH && i_this->mAnm_p->checkFrame(7.0f)) {
         i_this->mCreatureSound.startCreatureSound(Z2SE_EN_YC_WING, 0, -1);
     } else if (i_this->mAnm == e_yc_class::ANM_HANGED_BRUSH2
-        && (i_this->mpMorf->checkFrame(1.0f) || i_this->mpMorf->checkFrame(6.0f)
-            || i_this->mpMorf->checkFrame(14.0f) || i_this->mpMorf->checkFrame(36.0f)))
+        && (i_this->mAnm_p->checkFrame(1.0f) || i_this->mAnm_p->checkFrame(6.0f)
+            || i_this->mAnm_p->checkFrame(14.0f) || i_this->mAnm_p->checkFrame(36.0f)))
     {
         i_this->mCreatureSound.startCreatureSound(Z2SE_EN_YC_WING, 0, -1);
     } else if (i_this->mAnm == e_yc_class::ANM_HANGED_DAMAGE) {
-        if (i_this->mpMorf->checkFrame(1.0f)) {
+        if (i_this->mAnm_p->checkFrame(1.0f)) {
             i_this->mCreatureSound.startCreatureVoice(Z2SE_EN_YC_V_DAMAGE, -1);
-        } else if (i_this->mpMorf->checkFrame(7.0f) || i_this->mpMorf->checkFrame(15.0f)) {
+        } else if (i_this->mAnm_p->checkFrame(7.0f) || i_this->mAnm_p->checkFrame(15.0f)) {
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_YC_WING, 0, -1);
         }
     } else if (i_this->mAnm == e_yc_class::ANM_HOVERING) {
         i_this->mCreatureSound.startCreatureVoiceLevel(Z2SE_EN_YC_V_HOVERING, -1);
-        if (i_this->mpMorf->checkFrame(11.0f)) {
+        if (i_this->mAnm_p->checkFrame(11.0f)) {
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_YC_WING, 0, -1);
         }
     }
@@ -651,8 +651,8 @@ static int daE_YC_Execute(e_yc_class* i_this) {
 
     action(i_this);
 
-    J3DModel* model = i_this->mpMorf->getModel();
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
+    J3DModel* model = i_this->mAnm_p->getModel();
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
     anm_se_set(i_this);
 
     static int wing_j[2] = {12, 17};
@@ -672,7 +672,7 @@ static int daE_YC_Execute(e_yc_class* i_this) {
         }
     }
 
-    if (i_this->mpMorf->checkFrame(1.0f)) {
+    if (i_this->mAnm_p->checkFrame(1.0f)) {
         if (i_this->mAnm == e_yc_class::ANM_HANGED_DAMAGE
             || i_this->mAnm == e_yc_class::ANM_HANGED_BRUSH
             || i_this->mAnm == e_yc_class::ANM_HANGED_BRUSH2)
@@ -703,7 +703,7 @@ static int daE_YC_Execute(e_yc_class* i_this) {
     mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
     mDoMtx_stack_c::scaleM(l_HIO.mScale, l_HIO.mScale, l_HIO.mScale);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     MTXCopy(model->getAnmMtx(6), *calc_mtx);
     vec1.set(0.0f, 0.0f, 0.0f);
@@ -749,7 +749,7 @@ static int daE_YC_Delete(e_yc_class* i_this) {
     }
 
     if (i_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -759,11 +759,11 @@ static int daE_YC_Delete(e_yc_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_yc_class* _this = static_cast<e_yc_class*>(i_this);
 
-    _this->mpMorf =
+    _this->mAnm_p=
         new mDoExt_McaMorfSO(static_cast<J3DModelData*>(dComIfG_getObjectRes("E_yc", 24)), NULL,
                              NULL, static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("E_yc", 21)),
                              2, 1.0f, 0, -1, &_this->mCreatureSound, 0x80000, 0x11000084);
-    if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
+    if (_this->mAnm_p== NULL || _this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -789,7 +789,7 @@ static cPhs__Step daE_YC_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        fopAcM_SetMtx(_this, _this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(_this, _this->mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(_this, -500.0f, -300.0f, -500.0f);
         fopAcM_SetMax(_this, 500.0f, 300.0f, 500.0f);
         

@@ -41,10 +41,10 @@ int daE_DF_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_DF", 0xD);
     JUT_ASSERT(161, modelData != NULL);
 
-    mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_pSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_DF", 10), 2, 1.0f, 0,
                                     -1, &mCreatureSound, 0x80000, 0x11000084);
-    if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
+    if (mAnm_pSO == NULL || mAnm_pSO->getModel() == NULL) {
         return 0;
     }
 
@@ -88,7 +88,7 @@ void daE_DF_c::setCcCylinder() {
 
 /* 806A78D4-806A7980 0002D4 00AC+00 6/6 0/0 0/0 .text            SetAnm__8daE_DF_cFiiff */
 void daE_DF_c::SetAnm(int i_index, int i_attr, f32 i_morf, f32 i_rate) {
-    mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_DF", i_index), i_attr, i_morf,
+    mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_DF", i_index), i_attr, i_morf,
                      i_rate, 0.0f, -1.0f);
     mAnim = i_index;
 }
@@ -276,7 +276,7 @@ void daE_DF_c::DamageAction() {
         break;
 
     case EAT_TYPE_LINK:
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             SetAnm(ANIM_WAIT, 2, 1.0f, 1.0f);
             mCreatureSound.startCreatureSound(Z2SE_EN_DF_WAIT, 0, -1);
             mAction = ACT_WAIT;
@@ -301,7 +301,7 @@ void daE_DF_c::BombEatAction() {
         break;
 
     case 1:
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             mEatStep++;
             SetAnm(ANIM_EAT_WAIT, 2, 5.0f, 1.0f);
         }
@@ -321,11 +321,11 @@ void daE_DF_c::BombEatAction() {
         break;
 
     case 3:
-        if (mpMorfSO->isStop() && mAnim == ANIM_BURST) {
+        if (mAnm_pSO->isStop() && mAnim == ANIM_BURST) {
             SetAnm(ANIM_DIE, 0, 5.0f, 1.0f);
             mCreatureSound.startCreatureSound(Z2SE_EN_DF_DIE, 0, -1);
 
-        } else if (mpMorfSO->isStop() && mAnim == ANIM_DIE) {
+        } else if (mAnm_pSO->isStop() && mAnim == ANIM_DIE) {
             if (mArg0 != 0xff && dComIfGs_isSwitch(mArg0, fopAcM_GetRoomNo(this)) == 0) {
                 dComIfGs_onSwitch(mArg0, fopAcM_GetRoomNo(this));
             }
@@ -353,23 +353,23 @@ void daE_DF_c::BombEatAction() {
 void daE_DF_c::Spid_Out() {
     daPy_py_c* player = daPy_getPlayerActorClass();
 
-    if (mpMorfSO->checkFrame(24.0f)) {
+    if (mAnm_pSO->checkFrame(24.0f)) {
         fopAcM_SetSpeed(player, 0, 0, 0);
         SetReleaseCam();
         Link_Eat_Pos();
 
-    } else if (mpMorfSO->checkFrame(25.0f)) {
+    } else if (mAnm_pSO->checkFrame(25.0f)) {
         fopAcM_SetSpeed(player, 0, 0, 0);
         player->setThrowDamage(cLib_targetAngleY(&current.pos, &mEyePos), 25.0f, 60.0f, 2, 0, 0);
         mTimer = 40;
 
-    } else if (mpMorfSO->checkFrame(2.0f + nREG_F(2))) {
+    } else if (mAnm_pSO->checkFrame(2.0f + nREG_F(2))) {
         dComIfGp_getVibration().StartQuake(3, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
 
-    } else if (mpMorfSO->checkFrame(15.0f + nREG_F(3))) {
+    } else if (mAnm_pSO->checkFrame(15.0f + nREG_F(3))) {
         dComIfGp_getVibration().StopQuake(0x1f);
 
-    } else if (mpMorfSO->isStop()) {
+    } else if (mAnm_pSO->isStop()) {
         mAction = ACT_WAIT;
         mEatObjType = EAT_TYPE_OBJ;
         mEatStep = 0;
@@ -399,7 +399,7 @@ void daE_DF_c::LinkEatAction() {
     case 1:
         player->setPlayerPosAndAngle(&pos, angle, 0);
         player->changeDemoMode(4, 7, 0, 0);
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             mEatStep++;
             SetAnm(ANIM_EAT_WAIT, 2, 5.0f, 1.0f);
         }
@@ -414,7 +414,7 @@ void daE_DF_c::LinkEatAction() {
             dComIfGp_particle_set(0x83be, &current.pos, &tevStr, &shape_angle, 0);
         }
 
-        if (mpMorfSO->checkFrame(10.0f + nREG_F(1))) {
+        if (mAnm_pSO->checkFrame(10.0f + nREG_F(1))) {
             dComIfGp_getVibration().StartShock(2, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
         }
         break;
@@ -435,7 +435,7 @@ bool daE_DF_c::Mogu_Mogu() {
         return true;
     }
 
-    if (mpMorfSO->isLoop()) {
+    if (mAnm_pSO->isLoop()) {
         mMoguCount++;
 
         if (mCarryType == daObjCarry_c::TYPE_TSUBO || mCarryType == daObjCarry_c::TYPE_OOTSUBO ||
@@ -464,7 +464,7 @@ void daE_DF_c::ObjEatAction() {
         break;
 
     case 1:
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             mEatStep++;
             SetAnm(ANIM_EAT_WAIT, 2, 5.0f, 1.0f);
         }
@@ -563,7 +563,7 @@ void daE_DF_c::MissAction() {
         break;
 
     case EAT_TYPE_LINK:
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             mAction = ACT_WAIT;
             mEatObjType = EAT_TYPE_OBJ;
             mEatStep = 0;
@@ -604,7 +604,7 @@ int daE_DF_c::Execute() {
     cXyz eff_size(1.5f, 1.5f, 1.5f);
     setMidnaBindEffect(this, &mCreatureSound, &current.pos, &eff_size);
 
-    if (mAnim == ANIM_WAIT && mpMorfSO->checkFrame(38.0f)) {
+    if (mAnim == ANIM_WAIT && mAnm_pSO->checkFrame(38.0f)) {
         mCreatureSound.startCreatureSound(Z2SE_EN_DF_WAIT, 0, -1);
     }
 
@@ -612,7 +612,7 @@ int daE_DF_c::Execute() {
         mInvincibilityTimer--;
     }
 
-    mpMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_pSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setBaseMtx();
     setCcCylinder();
     return 1;
@@ -630,10 +630,10 @@ void daE_DF_c::Yazirushi() {
 
 /* 806A94E0-806A9550 001EE0 0070+00 1/1 0/0 0/0 .text            Draw__8daE_DF_cFv */
 int daE_DF_c::Draw() {
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
-    mpMorfSO->entryDL();
+    mAnm_pSO->entryDL();
     return 1;
 }
 
@@ -645,7 +645,7 @@ int daE_DF_c::Delete() {
         mDoHIO_DELETE_CHILD(l_HIO.mNo);
     }
     if (heap != NULL) {
-        mpMorfSO->stopZelAnime();
+        mAnm_pSO->stopZelAnime();
     }
     return 1;
 }
@@ -656,8 +656,8 @@ void daE_DF_c::setBaseMtx() {
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mpMorfSO->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorfSO->modelCalc();
+    mAnm_pSO->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_pSO->modelCalc();
 }
 
 /* 806A9610-806A9630 002010 0020+00 1/0 0/0 0/0 .text            daE_DF_Draw__FP8daE_DF_c */
@@ -706,7 +706,7 @@ int daE_DF_c::Create() {
         }
         attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
-        fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_pSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
 
@@ -724,7 +724,7 @@ int daE_DF_c::Create() {
         }
 
         initCcCylinder();
-        J3DModel* model = mpMorfSO->getModel();
+        J3DModel* model = mAnm_pSO->getModel();
         model->setUserArea((uintptr_t)this);
 
         for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {

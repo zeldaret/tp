@@ -95,13 +95,13 @@ int daObjARI_c::CreateHeap() {
     } else {
         model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes("I_Ari", 10));
     }
-    mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(model_data, NULL, NULL,
                                   static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("I_Ari", 6)),
                                   2, 0.5f, 0, -1, &mCreatureSound, 0, 0x11000284);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL) {
@@ -512,7 +512,7 @@ int daObjARI_c::Execute() {
     mpBtkAnm->play();
     mCreatureSound.startCreatureSoundLevel(Z2SE_INSCT_KSKS, 0, -1);
     mCreatureSound.startCreatureSoundLevel(Z2SE_INSCT_KIRA, 0, -1);
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setBaseMtx();
 
     return 1;
@@ -552,7 +552,7 @@ int daObjARI_c::Delete() {
         hioInit = false;
     }
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
     return 1;
 }
@@ -563,19 +563,19 @@ void daObjARI_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(mWallAlignAngle);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(scale);
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
 }
 
 int daObjARI_c::Draw() {
     if (mDraw) {
         Z_BufferChk();
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
         mpBtkAnm->entry(model->getModelData());
         mpBrkAnm->entry(model->getModelData());
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
         if (mLocation == LOC_OUTSIDE) {
             dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 15.0f, mAcch.m_gnd, 0, -0.6f,
                                      dDlst_shadowControl_c::getSimpleTex());
@@ -728,7 +728,7 @@ cPhs__Step daObjARI_c::create() {
             }
         }
 
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         model->setUserArea((uintptr_t)this);
         for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
             if (i != 0) {
@@ -747,7 +747,7 @@ cPhs__Step daObjARI_c::create() {
 
         mTargetPos = current.pos;
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);
 

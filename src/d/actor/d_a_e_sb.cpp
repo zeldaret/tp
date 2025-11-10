@@ -70,11 +70,11 @@ void daE_SB_HIO_c::genMessage(JORMContext* ctext) {
 int daE_SB_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("E_SB", 0xF);
     JUT_ASSERT(271, modelData != NULL);
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_SB", 0xC),
                                   2, 1.0f, 0, -1,
                                   &mSound, 0x80000, 0x11000084);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -162,7 +162,7 @@ void daE_SB_c::Particle_Set(u16 param_0) {
 
 /* 80781A4C-80781AF8 0004EC 00AC+00 8/8 0/0 0/0 .text            SetAnm__8daE_SB_cFiiff */
 void daE_SB_c::SetAnm(int param_0, int param_1, f32 param_2, f32 param_3) {
-    mpMorf->setAnm((J3DAnmTransform*) dComIfG_getObjectRes("E_SB", param_0), param_1, param_2, param_3, 0.0f, -1.0f);
+    mAnm_p->setAnm((J3DAnmTransform*) dComIfG_getObjectRes("E_SB", param_0), param_1, param_2, param_3, 0.0f, -1.0f);
     field_0x608 = param_0;
 }
 
@@ -281,7 +281,7 @@ namespace {
 
 /* 80781DD4-80781F30 000874 015C+00 1/1 0/0 0/0 .text            Shield_Motion__8daE_SB_cFv */
 void daE_SB_c::Shield_Motion() {
-    mpMorf->setAnm((J3DAnmTransform*) dComIfG_getObjectRes("E_SB", 0xB), 0, 5.0f, l_HIO.shield_atk_anm_speed, 0.0f, -1.0f);
+    mAnm_p->setAnm((J3DAnmTransform*) dComIfG_getObjectRes("E_SB", 0xB), 0, 5.0f, l_HIO.shield_atk_anm_speed, 0.0f, -1.0f);
     field_0x602 = 1;
     current.angle.y = cLib_targetAngleY(&current.pos, s_LinkPos);
     speedF = -5.0f;
@@ -371,11 +371,11 @@ void daE_SB_c::Attack_Motion() {
         }
 
         case 1: {
-            if (mpMorf->getFrame() < 53.0f && field_0x5c0 == 2) {
+            if (mAnm_p->getFrame() < 53.0f && field_0x5c0 == 2) {
                 AttackStop();
             }
 
-            if (mpMorf->getFrame() > 53.0f) {
+            if (mAnm_p->getFrame() > 53.0f) {
                 mCyl.OnTgShield();
                 mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_2);
                 mCyl.OnAtSetBit();
@@ -397,7 +397,7 @@ void daE_SB_c::Attack_Motion() {
         }
 
         case 3: {
-            if (64.0f == mpMorf->getFrame()) {
+            if (64.0f == mAnm_p->getFrame()) {
                 mSound.startCreatureSound(Z2SE_EN_SB_ATTACK02, 0, -1);
             }
 
@@ -413,7 +413,7 @@ void daE_SB_c::Attack_Motion() {
                 field_0x603 = 1;
             }
 
-            if (mAcch.ChkGroundHit() && mpMorf->isStop()) {
+            if (mAcch.ChkGroundHit() && mAnm_p->isStop()) {
                 mSound.startCreatureSound(Z2SE_EN_SB_LAND, 0, -1);
                 Particle_Set(0x8479);
                 speedF = 0.0f;
@@ -598,7 +598,7 @@ void daE_SB_c::Jump_Motion() {
 
         case 2: {
             ActionCheck();
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 MemberClear();
             }
 
@@ -703,7 +703,7 @@ void daE_SB_c::Wait_Motion() {
             field_0x5b4 = 1;
             break;
         case 1:
-            if (mpMorf->getFrame() == 0.0f) {
+            if (mAnm_p->getFrame() == 0.0f) {
                 mSound.startCreatureSound(Z2SE_EN_SB_WAIT, 0, -1);
             }
 
@@ -737,7 +737,7 @@ void daE_SB_c::Shield() {
             break;
         case 1:
             ActionCheck();
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 field_0x602 = 0;
                 MemberClear();
             }
@@ -764,11 +764,11 @@ void daE_SB_c::Anm_Motion() {
             break;
 
         case 2: {
-            if (mpMorf->checkFrame(49.5f)) {
+            if (mAnm_p->checkFrame(49.5f)) {
                 mSound.startCreatureSound(Z2SE_EN_SB_LAND, 0, -1);
             }
 
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 Death_Motion();
             }
 
@@ -781,11 +781,11 @@ void daE_SB_c::Anm_Motion() {
 
         case 6: {
             ActionCheck();
-            if (2.0f == mpMorf->getFrame()) {
+            if (2.0f == mAnm_p->getFrame()) {
                 mSound.startCreatureSound(Z2SE_EN_SB_DEFENCE, 0, -1);
             }
 
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 MemberClear();
                 field_0x5b0 = 1;
                 SetAnm(0xC, 2, 5.0f, l_HIO.other_anm_speed);
@@ -1065,7 +1065,7 @@ int daE_SB_c::Execute() {
         mAcch.OnClrSpeedY();
     }
 
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     field_0x60c -= 1;
     if (field_0x60c < 0) {
         field_0x60c = 0;
@@ -1080,10 +1080,10 @@ int daE_SB_c::Execute() {
 
 /* 807844BC-807845D8 002F5C 011C+00 1/1 0/0 0/0 .text            Draw__8daE_SB_cFv */
 int daE_SB_c::Draw() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
-    J3DShape* shape = mpMorf->getModel()->getModelData()->getMaterialNodePointer(1)->getShape();
+    J3DShape* shape = mAnm_p->getModel()->getModelData()->getMaterialNodePointer(1)->getShape();
     if (shape != NULL) {
         if (field_0x5b0 == 2) {
             shape->hide();
@@ -1092,7 +1092,7 @@ int daE_SB_c::Draw() {
         }
     }
 
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
     cXyz my_vec;
     my_vec.set(current.pos.x, 100.0f + current.pos.y, current.pos.z);
     _GXTexObj* tex_obj = dDlst_shadowControl_c::getSimpleTex();
@@ -1110,7 +1110,7 @@ int daE_SB_c::Delete() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -1122,9 +1122,9 @@ void daE_SB_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(field_0x614);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(l_HIO.size, l_HIO.size, l_HIO.size);
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
 }
 
 /* 807846B8-807846D8 003158 0020+00 1/0 0/0 0/0 .text            daE_SB_Draw__FP8daE_SB_c */
@@ -1170,7 +1170,7 @@ cPhs__Step daE_SB_c::Create() {
 
         attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         attention_info.distances[2] = 0x24;
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, 0.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
         mAcchCir.SetWall(30.0f, 100.0f);
@@ -1185,7 +1185,7 @@ cPhs__Step daE_SB_c::Create() {
         }
 
         initCcCylinder();
-        mpMorf->setAnm((J3DAnmTransform *) dComIfG_getObjectRes("E_SB", 0xC), 2, 5.0f, l_HIO.other_anm_speed, 0.0f, -1.0f);
+        mAnm_p->setAnm((J3DAnmTransform *) dComIfG_getObjectRes("E_SB", 0xC), 2, 5.0f, l_HIO.other_anm_speed, 0.0f, -1.0f);
         mSound.startCreatureSound(Z2SE_EN_SB_WAIT, 0, -1);
         field_0x5b0 = 1;
         gravity = -9.0f;
@@ -1195,7 +1195,7 @@ cPhs__Step daE_SB_c::Create() {
         mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_2);
         mCyl.OffAtSetBit();
         mSound.setEnemyName("E_SB");
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         model->setUserArea((uintptr_t) this);
         for (u16 idx = 0; idx < model->getModelData()->getJointNum(); ++idx) {
             if (idx != 0) {

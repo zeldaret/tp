@@ -16,7 +16,7 @@
 class daObj_AutoMata_c : public fopAc_ac_c {
 private:
     /* 0x568 */ int field_0x568;
-    /* 0x56C */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x56C */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x570 */ Z2Creature mCreature;
     /* 0x600 */ mDoExt_btkAnm mBtk;
     /* 0x618 */ request_of_phase_process_class mPhase;

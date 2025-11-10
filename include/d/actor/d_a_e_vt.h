@@ -148,7 +148,7 @@ public:
 
 private:
     /* 0x005AC */ request_of_phase_process_class mPhase;
-    /* 0x005B4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x005B4 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x005B8 */ mDoExt_McaMorfSO* mpEndEfMorf;
     /* 0x005BC */ J3DModel* mpWeaponModel;
     /* 0x005C0 */ J3DModel* mpCardModels[40];

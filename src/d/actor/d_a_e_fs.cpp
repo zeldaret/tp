@@ -91,7 +91,7 @@ daE_Fs_HIO_c::daE_Fs_HIO_c() {
 
 /* 806BBB10-806BBBBC 000130 00AC+00 7/7 0/0 0/0 .text            anm_init__FP10e_fs_classifUcf */
 static void anm_init(e_fs_class* i_this, int i_anm, f32 i_morf, u8 i_attr, f32 i_rate) {
-    i_this->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_FS", i_anm),
+    i_this->mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_FS", i_anm),
                            i_attr, i_morf, i_rate, 0.0f, -1.0f);
     i_this->mAnm = i_anm;
 }
@@ -99,14 +99,14 @@ static void anm_init(e_fs_class* i_this, int i_anm, f32 i_morf, u8 i_attr, f32 i
 /* 806BBBBC-806BBCDC 0001DC 0120+00 1/0 0/0 0/0 .text            daE_Fs_Draw__FP10e_fs_class */
 static int daE_Fs_Draw(e_fs_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mEnemy;
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
     J3DModelData* model_data = model->getModelData();
     for (u16 i = 0; i < model_data->getMaterialNum(); i++) {
         model_data->getMaterialNodePointer(i)->getTevKColor(3)->a = 0xff;
     }
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
     cXyz pos(a_this->current.pos.x, a_this->current.pos.y + 100.0f, a_this->current.pos.z);
     i_this->mShadowKey = dComIfGd_setShadow(i_this->mShadowKey, 1, model, &pos, 1000.0f, 50.0f,
                                             a_this->current.pos.y, i_this->mAcch.GetGroundH(),
@@ -185,11 +185,11 @@ static void e_fs_appear(e_fs_class* i_this) {
         break;
 
     case 2:
-        if (i_this->mpMorf->checkFrame(38.0f)) {
+        if (i_this->mAnm_p->checkFrame(38.0f)) {
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_FS_POSE, 0, -1);
         }
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = e_fs_class::ACT_WAIT;
             i_this->mMode = 0;
         }
@@ -226,7 +226,7 @@ static void e_fs_wait(e_fs_class* i_this) {
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_FS_POSE, 0, -1);
         }
 
-        if (i_this->mpMorf->checkFrame(4.0f)) {
+        if (i_this->mAnm_p->checkFrame(4.0f)) {
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_FS_KUBIKASIGE, 0, -1);
         }
 
@@ -297,7 +297,7 @@ static void e_fs_move(e_fs_class* i_this) {
 static void e_fs_attack(e_fs_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mEnemy;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    int frame = i_this->mpMorf->getFrame();
+    int frame = i_this->mAnm_p->getFrame();
 
     switch (i_this->mMode) {
     case 0:
@@ -307,7 +307,7 @@ static void e_fs_attack(e_fs_class* i_this) {
         break;
 
     case 1:
-        if (i_this->mpMorf->checkFrame(9.0f)) {
+        if (i_this->mAnm_p->checkFrame(9.0f)) {
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_FS_BACKSWING, 0, -1);
         }
 
@@ -320,7 +320,7 @@ static void e_fs_attack(e_fs_class* i_this) {
             }
         }
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = e_fs_class::ACT_WAIT;
             i_this->mMode = -1;
         }
@@ -349,7 +349,7 @@ static void e_fs_damage(e_fs_class* i_this) {
         break;
 
     case 1:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = e_fs_class::ACT_WAIT;
             i_this->mMode = -1;
         }
@@ -382,11 +382,11 @@ static void e_fs_end(e_fs_class* i_this) {
         break;
 
     case 1:
-        if (i_this->mpMorf->checkFrame(23.0f)) {
+        if (i_this->mAnm_p->checkFrame(23.0f)) {
             i_this->mTargetAngleY = 0;
         }
 
-        if (i_this->mpMorf->checkFrame(15.0f)) {
+        if (i_this->mAnm_p->checkFrame(15.0f)) {
             i_this->mTargetAngleY = i_this->mTargetAngleY / 2;
             dBgS_GndChk gnd_chk;
             dBgS_ObjGndChk_Spl spl_chk;
@@ -413,7 +413,7 @@ static void e_fs_end(e_fs_class* i_this) {
             }
         }
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             cXyz pos = a_this->current.pos;
             if (!strcmp("F_SP117", dComIfGp_getStartStageName())
                                     && dComIfG_play_c::getLayerNo(0) == 2) {
@@ -513,14 +513,14 @@ static void e_fs_demowait(e_fs_class* i_this) {
         delta.z = monkey->actor.current.pos.z - a_this->current.pos.z;
         i_this->mTargetAngleY = cM_atan2s(delta.x, delta.z);
         if (i_this->mAcch.ChkGroundHit()) {
-            i_this->mpMorf->setPlaySpeed(1.0f);
+            i_this->mAnm_p->setPlaySpeed(1.0f);
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_FS_APPEAR, 0, -1);
             i_this->mMode = 3;
         }
         break;
 
     case 3:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 4;
         }
@@ -675,10 +675,10 @@ static int daE_Fs_Execute(e_fs_class* i_this) {
     mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y, a_this->current.pos.z);
     mDoMtx_stack_c::YrotM(a_this->shape_angle.y);
     mDoMtx_stack_c::scaleM(l_HIO.mScale, l_HIO.mScale, l_HIO.mScale);
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
+    i_this->mAnm_p->modelCalc();
 
     MTXCopy(model->getAnmMtx(JNT_HEAD), *calc_mtx);
     zero.set(0.0f, 0.0f, 0.0f);
@@ -721,7 +721,7 @@ static int daE_Fs_Delete(e_fs_class* i_this) {
     }
 
     if (a_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -730,11 +730,11 @@ static int daE_Fs_Delete(e_fs_class* i_this) {
 /* 806BD740-806BD838 001D60 00F8+00 1/1 0/0 0/0 .text            useHeapIe_fst__FP10fopAc_ac_c */
 static int useHeapIe_fst(fopAc_ac_c* i_this) {
     e_fs_class* _this = (e_fs_class*)i_this;
-    _this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_FS", 0xc), NULL,
+    _this->mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_FS", 0xc), NULL,
                                          NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_FS", 9),
                                          J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1,
                                          &_this->mCreatureSound, 0x80000, 0x11000084);
-    if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
+    if (_this->mAnm_p== NULL || _this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -800,7 +800,7 @@ static cPhs__Step daE_Fs_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        fopAcM_SetMtx(i_this, _this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, _this->mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(i_this, 200.0f, 200.0f, 200.0f);
 

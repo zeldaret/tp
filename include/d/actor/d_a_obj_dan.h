@@ -65,7 +65,7 @@ private:
     /* 0x7AC */ int mBounceCount;
     /* 0x7B0 */ Z2Creature mCreatureSound;
     /* 0x840 */ u8 field_0x840[4];
-    /* 0x844 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x844 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x848 */ dBgS_AcchCir mAcchCir;
     /* 0x888 */ dBgS_ObjAcch mAcch;
     /* 0xA60 */ request_of_phase_process_class mPhase;

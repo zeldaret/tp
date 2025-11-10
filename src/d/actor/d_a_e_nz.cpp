@@ -95,7 +95,7 @@ void daE_NZ_HIO_c::genMessage(JORMContext* ctx) {
 
 /* 80729A3C-80729AE8 00013C 00AC+00 4/4 0/0 0/0 .text            anm_init__FP10e_nz_classifUcf */
 static void anm_init(e_nz_class* i_this, int param_2, f32 param_3, u8 param_4, f32 param_5) {
-    i_this->mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_NZ", param_2), param_4,
+    i_this->mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_NZ", param_2), param_4,
                              param_3, param_5, 0.0f, -1.0f);
     i_this->field_0x5e4 = param_2;
 }
@@ -116,7 +116,7 @@ static BOOL pl_check(e_nz_class* i_this, f32 param_1) {
 /* 80729B24-80729C24 000224 0100+00 1/0 0/0 0/0 .text            daE_NZ_Draw__FP10e_nz_class */
 static int daE_NZ_Draw(e_nz_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     if (i_this->field_0x5b8 != 0) {
         return 1;
     }
@@ -163,21 +163,21 @@ static void e_nz_normal(e_nz_class* i_this) {
         i_this->field_0x698 = cM_rndF(65535.0f);
         break;
     case 1:
-        if (i_this->mpMorf->getFrame() >= 1.0f && i_this->mpMorf->getFrame() <= 7.0f) {
+        if (i_this->mAnm_p->getFrame() >= 1.0f && i_this->mAnm_p->getFrame() <= 7.0f) {
             dVar9 = l_HIO.mSpeed;
             a_this->speedF = dVar9;
         }
 
-        if (i_this->mpMorf->checkFrame(1.0f)) {
+        if (i_this->mAnm_p->checkFrame(1.0f)) {
             i_this->field_0x5d4 += (int)cM_rndFX(3000.0f);
             a_this->speed.y = 20.0f;
         }
 
-        if (i_this->mpMorf->checkFrame(9.0f)) {
+        if (i_this->mAnm_p->checkFrame(9.0f)) {
             i_this->field_0xa78 = 1;
         }
 
-        if (i_this->field_0x6a2[0] == 0 && i_this->mpMorf->checkFrame(10.0f)) {
+        if (i_this->field_0x6a2[0] == 0 && i_this->mAnm_p->checkFrame(10.0f)) {
             i_this->field_0x6a2[0] = cM_rndF(60.0f) + 30.0f;
             i_this->mSubAction = 2;
             if (cM_rndF(1.0f) < 0.5f) {
@@ -213,7 +213,7 @@ static void e_nz_normal(e_nz_class* i_this) {
         i_this->field_0x5d4 = i_this->mPlayerAngleY;
         if (i_this->mPlayerDistance < 400.0f &&
             (i_this->field_0x5e4 == 8 ||
-             ((i_this->field_0x5e4 == 9 && i_this->mpMorf->checkFrame(10.0f)))))
+             ((i_this->field_0x5e4 == 9 && i_this->mAnm_p->checkFrame(10.0f)))))
         {
             for (int i = 0; i < 8; i++) {
                 if ((data_8072C454[0] & stick_bit[i]) == 0) {
@@ -246,7 +246,7 @@ static s8 e_nz_attack(e_nz_class* i_this) {
         local_38 = i_this->field_0x5bc - a_this->current.pos;
         a_this->current.angle.y = cM_atan2s(local_38.x, local_38.z);
         a_this->current.angle.x = -cM_atan2s(local_38.y, JMAFastSqrt(local_38.x * local_38.x + local_38.z * local_38.z));
-        if (!i_this->mpMorf->isStop()) {
+        if (!i_this->mAnm_p->isStop()) {
             break;
         }
         anm_init(i_this, 6, 5.0f, 0, 1.0f);
@@ -308,7 +308,7 @@ static void e_nz_stick(e_nz_class* i_this) {
         dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
         break;
     case 1:
-        if (i_this->mpMorf->checkFrame(2.0f)) {
+        if (i_this->mAnm_p->checkFrame(2.0f)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_NZ_BITE, 0, -1);
         }
         for (int i = 0; i < 8; i++) {
@@ -583,7 +583,7 @@ static int daE_NZ_Execute(e_nz_class* i_this) {
         i_this->field_0x6aa--;
     }
     
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     
     if (i_this->mAction == ACTION_STICK || i_this->mAction == ACTION_ATTACK) {
         daPy_py_c* player = daPy_getLinkPlayerActorClass();
@@ -620,8 +620,8 @@ static int daE_NZ_Execute(e_nz_class* i_this) {
         model->setBaseTRMtx(mDoMtx_stack_c::get());
     }
     
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
+    i_this->mAnm_p->modelCalc();
     
     MtxP joint_mtx = model->getAnmMtx(6);
     cMtx_copy(joint_mtx, *calc_mtx);
@@ -673,7 +673,7 @@ static int daE_NZ_Delete(e_nz_class* i_this) {
     }
 
     if (a_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
 
     if (i_this->field_0x6ac != 0) {
@@ -686,16 +686,16 @@ static int daE_NZ_Delete(e_nz_class* i_this) {
 /* 8072B680-8072B7C4 001D80 0144+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* a_this) {
     e_nz_class* i_this = (e_nz_class*)a_this;
-    i_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_NZ", 13), NULL,
+    i_this->mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_NZ", 13), NULL,
                                           NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_NZ", 10),
                                           2, 1.0f, 0, -1, &i_this->mSound, 0x80000, 0x11000084);
-    if (i_this->mpMorf == NULL || i_this->mpMorf->getModel() == NULL) {
+    if (i_this->mAnm_p== NULL || i_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
     MtxScale(0.0f, 0.0f, 0.0f, 0);
-    i_this->mpMorf->getModel()->setBaseTRMtx(*calc_mtx);
-    if (i_this->mInvModel.create(i_this->mpMorf->getModel(), 1) == 0) {
+    i_this->mAnm_p->getModel()->setBaseTRMtx(*calc_mtx);
+    if (i_this->mInvModel.create(i_this->mAnm_p->getModel(), 1) == 0) {
         return 0;
     }
     return 1;
@@ -724,7 +724,7 @@ static int daE_NZ_Create(fopAc_ac_c* a_this) {
             // Ghost Rat
             l_HIO.mId = mDoHIO_CREATE_CHILD("幽霊ネズミ", &l_HIO);
         }
-        fopAcM_SetMtx(a_this, i_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(a_this, i_this->mAnm_p->getModel()->getBaseTRMtx());
         a_this->health = 10;
         a_this->field_0x560 = 10;
         i_this->mStts.Init(100, 0, a_this);

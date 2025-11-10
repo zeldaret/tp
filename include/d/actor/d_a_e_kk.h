@@ -51,7 +51,7 @@ public:
 
 private:
     /* 0x05AC */ request_of_phase_process_class mPhaseReq;
-    /* 0x05B4 */ mDoExt_McaMorfSO* mpMorfSO;
+    /* 0x05B4 */ mDoExt_McaMorfSO* mAnm_pSO;
     /* 0x05B8 */ mDoExt_McaMorfSO* mpWeaponMorfSO;
     /* 0x05BC */ Z2CreatureEnemy mCreatureSound;
     /* 0x0660 */ s32 mActionMode;

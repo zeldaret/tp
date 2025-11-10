@@ -181,11 +181,11 @@ int daE_PM_c::DemoSkipCallBack(void* i_this, int param_1) {
 /* 80742038-80742388 000238 0350+00 1/1 0/0 0/0 .text            CreateHeap__8daE_PM_cFv */
 int daE_PM_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("E_PM", 0x1d);
-    mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(model_data, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_PM", 0x10),
                                   J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1,
                                   &mCreatureSound, 0x80000, 0x11020084);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -193,7 +193,7 @@ int daE_PM_c::CreateHeap() {
     if (mpEyeAnm == NULL) {
         return 5;
     }
-    if (!mpEyeAnm->init(mpMorf->getModel()->getModelData(),
+    if (!mpEyeAnm->init(mAnm_p->getModel()->getModelData(),
                         (J3DAnmTexPattern*)dComIfG_getObjectRes("E_PM", 0x23),
                         TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1)) {
         return 5;
@@ -301,7 +301,7 @@ void daE_PM_c::Particle_Set(u16 i_id, cXyz i_pos) {
 /* 80742674-80742720 000874 00AC+00 20/20 0/0 0/0 .text            SetAnm__8daE_PM_cFiiff */
 void daE_PM_c::SetAnm(int i_anm, int i_attr, f32 i_morf, f32 i_rate) {
     J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes("E_PM", i_anm);
-    mpMorf->setAnm(bck, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    mAnm_p->setAnm(bck, i_attr, i_morf, i_rate, 0.0f, -1.0f);
     mAnm = i_anm;
 }
 
@@ -324,7 +324,7 @@ static BOOL way_bg_check2(daE_PM_c* i_this, cXyz i_start, cXyz i_end) {
 /* 80742810-807428A8 000A10 0098+00 1/1 0/0 0/0 .text            Yazirushi__8daE_PM_cFv */
 void daE_PM_c::Yazirushi() {
     cXyz zero;
-    MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_HEAD), *calc_mtx);
+    MTXCopy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD), *calc_mtx);
     zero.set(0.0f, 0.0f, 0.0f);
     MtxPosition(&zero, &eyePos);
     attention_info.position = eyePos;
@@ -579,7 +579,7 @@ void daE_PM_c::Ap_StartAction() {
                                              &current.angle, &scale, 0xff, NULL, -1,
                                              NULL, NULL, NULL);
         
-        if (mAnm == ANM_APPEAR02 && mpMorf->isStop()) {
+        if (mAnm == ANM_APPEAR02 && mAnm_p->isStop()) {
             SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_LAUGH, -1);
         }
@@ -645,7 +645,7 @@ void daE_PM_c::Ap_CreateAction() {
         if (mAnm != ANM_FOGBLOW_ST) {
             SetAnm(ANM_FOGBLOW_ST, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_FOGBLOW, -1);
-        } else if (mpMorf->isStop() && mAnm == ANM_FOGBLOW_ST) {
+        } else if (mAnm_p->isStop() && mAnm == ANM_FOGBLOW_ST) {
             SetAnm(ANM_FOGBLOW_LP, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mTimer[0] = 80;
             mMode++;
@@ -765,7 +765,7 @@ void daE_PM_c::Ap_EscapeAction() {
         break;
 
     case 1:
-        if (mpMorf->getFrame() > 5.0f) {
+        if (mAnm_p->getFrame() > 5.0f) {
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
         } else {
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
@@ -886,7 +886,7 @@ void daE_PM_c::DemoBeforeEscape() {
     }
 
     case 2:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mDemoMode++;
             SetAnm(ANM_HIDE, 0, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_FADEOUT, -1);
@@ -896,13 +896,13 @@ void daE_PM_c::DemoBeforeEscape() {
 
     case 3:
         SetMoveCam(0.1f, 50.0f);
-        MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
+        MTXCopy(mAnm_p->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
         vec2.set(0.0f, -30.0f, 0.0f);
         MtxPosition(&vec2, &vec2);
         mParticleKey = dComIfGp_particle_set(mParticleKey, 0x880C, &vec2, &tevStr, &current.angle,
                                              &scale, 0xff, NULL, -1, NULL, NULL, NULL);
         
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             if (mSwBit != 0xff && !dComIfGs_isSwitch(mSwBit, fopAcM_GetRoomNo(this))) {
                 dComIfGs_onSwitch(mSwBit, fopAcM_GetRoomNo(this));
             }
@@ -987,7 +987,7 @@ void daE_PM_c::DemoAfterEscape() {
         vec1.set(pnt.x, pnt.y, pnt.z);
         vec2 = *s_LinkPos - vec1;
 
-        if (mpMorf->isStop() && mAnm == ANM_APPEAR02) {
+        if (mAnm_p->isStop() && mAnm == ANM_APPEAR02) {
             SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             player->offPlayerNoDraw();
             player->offPlayerShadowNoDraw();
@@ -1016,7 +1016,7 @@ void daE_PM_c::DemoAfterEscape() {
     }
 
     case 4:
-        if (mpMorf->getFrame() > 5.0f) {
+        if (mAnm_p->getFrame() > 5.0f) {
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
         } else {
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
@@ -1160,7 +1160,7 @@ void daE_PM_c::EscapeAction() {
         break;
 
     case 1:
-        if (mpMorf->getFrame() > 5.0f) {
+        if (mAnm_p->getFrame() > 5.0f) {
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
         } else {
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
@@ -1237,7 +1237,7 @@ void daE_PM_c::DeathAction() {
         break;
 
     case 1:
-        if (mpMorf->getFrame() > 20.0f) {
+        if (mAnm_p->getFrame() > 20.0f) {
             mMode++;
             SetAnm(ANM_HIDE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_FADEOUT, -1);
@@ -1245,7 +1245,7 @@ void daE_PM_c::DeathAction() {
         break;
 
     case 2:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             if (mSwBit != 0xff && !dComIfGs_isSwitch(mSwBit, fopAcM_GetRoomNo(this))) {
                 dComIfGs_onSwitch(mSwBit, fopAcM_GetRoomNo(this));
             }
@@ -1380,7 +1380,7 @@ void daE_PM_c::DemoBossStart2() {
             SetAnm(ANM_APPEAR02, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
-        } else if (mpMorf->isStop() && mAnm == ANM_APPEAR02) {
+        } else if (mAnm_p->isStop() && mAnm == ANM_APPEAR02) {
             SetAnm(ANM_OP, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_OP, -1);
             mDemoMode++;
@@ -1389,7 +1389,7 @@ void daE_PM_c::DemoBossStart2() {
         break;
 
     case Mode2:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mDemoMode++;
 
         } else {
@@ -1397,16 +1397,16 @@ void daE_PM_c::DemoBossStart2() {
             cLib_offsetPos(&vec2, &current.pos, s_TargetAngle, &vec1);
             cLib_addCalcPos2(&mCamEyeTarget, vec2, 0.5f, 20.0f);
 
-            if (mpMorf->checkFrame(106.0f) || mpMorf->checkFrame(124.0f)) {
+            if (mAnm_p->checkFrame(106.0f) || mAnm_p->checkFrame(124.0f)) {
                 bVar1 = true;
                 vec1.set(50.0f, -50.0f, 0.0f);
                 dComIfGp_getVibration().StartShock(2, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
-            } else if (mpMorf->checkFrame(115.0f) || mpMorf->checkFrame(133.0f)) {
+            } else if (mAnm_p->checkFrame(115.0f) || mAnm_p->checkFrame(133.0f)) {
                 bVar1 = true;
                 vec1.set(-50.0f, -50.0f, 0.0f);
                 dComIfGp_getVibration().StartShock(2, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
-            } else if (mpMorf->checkFrame(146.0f) || mpMorf->checkFrame(159.0f)
-                    || mpMorf->checkFrame(173.0f) || mpMorf->checkFrame(184.0f)) {
+            } else if (mAnm_p->checkFrame(146.0f) || mAnm_p->checkFrame(159.0f)
+                    || mAnm_p->checkFrame(173.0f) || mAnm_p->checkFrame(184.0f)) {
                 bVar1 = true;
                 vec1.set(0.0f, -80.0f, 0.0f);
                 dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
@@ -1447,7 +1447,7 @@ void daE_PM_c::DemoBossStart2() {
         break;
 
     case Mode5:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mpTrumpetMorf->setPlaySpeed(0.0f);
             mDemoMode++;
@@ -1516,7 +1516,7 @@ void daE_PM_c::DemoBossStart() {
         break;
 
     case Mode1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             SetAnm(ANM_HIDE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_FADEOUT, -1);
             mCamCenterTarget.y += 100.0f;
@@ -1528,16 +1528,16 @@ void daE_PM_c::DemoBossStart() {
             cLib_offsetPos(&vec2, &current.pos, shape_angle.y, &vec1);
             cLib_addCalcPos2(&mCamEyeTarget, vec2, 0.5f, 20.0f);
 
-            if (mpMorf->checkFrame(106.0f) || mpMorf->checkFrame(124.0f)) {
+            if (mAnm_p->checkFrame(106.0f) || mAnm_p->checkFrame(124.0f)) {
                 bVar1 = true;
                 vec1.set(50.0f, -50.0f, 0.0f);
                 dComIfGp_getVibration().StartShock(2, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
-            } else if (mpMorf->checkFrame(115.0f) || mpMorf->checkFrame(133.0f)) {
+            } else if (mAnm_p->checkFrame(115.0f) || mAnm_p->checkFrame(133.0f)) {
                 bVar1 = true;
                 vec1.set(-50.0f, -50.0f, 0.0f);
                 dComIfGp_getVibration().StartShock(2, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
-            } else if (mpMorf->checkFrame(146.0f) || mpMorf->checkFrame(159.0f)
-                    || mpMorf->checkFrame(173.0f) || mpMorf->checkFrame(184.0f)) {
+            } else if (mAnm_p->checkFrame(146.0f) || mAnm_p->checkFrame(159.0f)
+                    || mAnm_p->checkFrame(173.0f) || mAnm_p->checkFrame(184.0f)) {
                 bVar1 = true;
                 vec1.set(0.0f, -80.0f, 0.0f);
                 dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
@@ -1553,19 +1553,19 @@ void daE_PM_c::DemoBossStart() {
         break;
 
     case Mode2:
-        if (mpMorf->isStop() && mAnm == ANM_HIDE) {
+        if (mAnm_p->isStop() && mAnm == ANM_HIDE) {
             mPoint = dPath_GetPnt(mpPath, 1)->m_position;
             current.pos.set(mPoint.x, mPoint.y + 10000.0f, mPoint.z);
             SetAnm(ANM_APPEAR01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mTimer[1] = 15;
-            MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
+            MTXCopy(mAnm_p->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
             vec1.set(0.0f, -30.0f, 0.0f);
             MtxPosition(&vec1, &vec1);
             Particle_Set(0x880D, vec1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FADEIN, 0, -1);
 
         } else if (mAnm == ANM_HIDE) {
-            MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
+            MTXCopy(mAnm_p->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
             vec1.set(0.0f, -30.0f, 0.0f);
             MtxPosition(&vec1, &vec1);
             mParticleKey = dComIfGp_particle_set(mParticleKey, 0x880C, &vec1, &tevStr,
@@ -1586,7 +1586,7 @@ void daE_PM_c::DemoBossStart() {
             cLib_offsetPos(&mCamEyeTarget, &pos, s_TargetAngle, &vec1);
             mCamEye = mCamEyeTarget;
             SetMoveCam(0.1f, 50.0f);
-            MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
+            MTXCopy(mAnm_p->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
             vec1.set(0.0f, -30.0f, 0.0f);
             MtxPosition(&vec1, &vec1);
             Particle_Set(0x880D, vec1);
@@ -1616,7 +1616,7 @@ void daE_PM_c::DemoBossStart() {
             vec1.set(mPoint.x, mPoint.y, mPoint.z);
             vec2.set(0.0f, 100.0f, 250.0f);
             cLib_offsetPos(&mCamEyeTarget, &vec1, shape_angle.y, &vec2);
-        } else if (mpMorf->isStop() && mAnm == ANM_APPEAR02) {
+        } else if (mAnm_p->isStop() && mAnm == ANM_APPEAR02) {
             SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         }
 
@@ -1657,7 +1657,7 @@ void daE_PM_c::DemoBossStart() {
         break;
 
     case Mode6:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mpTrumpetMorf->setPlaySpeed(0.0f);
             mDemoMode++;
@@ -1697,13 +1697,13 @@ void daE_PM_c::BossEscapeAction() {
         break;
 
     case 1:
-        MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
+        MTXCopy(mAnm_p->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
         vec1.set(0.0f, -30.0f, 0.0f);
         MtxPosition(&vec1, &vec1);
         mParticleKey = dComIfGp_particle_set(mParticleKey, 0x880C, &vec1, &tevStr, &current.angle,
                                              &scale, 0xff, NULL, -1, NULL, NULL, NULL);
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             SearchRndP();
             SetAnm(ANM_APPEAR01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             current.pos.set(mPoint.x, mPoint.y + 100.0f, mPoint.z);
@@ -1728,7 +1728,7 @@ void daE_PM_c::BossEscapeAction() {
         break;
 
     case 3:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             mAction = ACT_WAIT;
             mMode = 0;
@@ -1803,7 +1803,7 @@ void daE_PM_c::BossDamageAction() {
         break;
 
     case 1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             SetAnm(ANM_HIDE, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_FADEOUT, -1);
             mMode++;
@@ -1814,7 +1814,7 @@ void daE_PM_c::BossDamageAction() {
 
     case 2:
         if (mAnm == ANM_HIDE) {
-            MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
+            MTXCopy(mAnm_p->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
             vec4.set(0.0f, -30.0f, 0.0f);
             MtxPosition(&vec4, &vec4);
             mParticleKey = dComIfGp_particle_set(mParticleKey, 0x880C, &vec4, &tevStr,
@@ -1822,12 +1822,12 @@ void daE_PM_c::BossDamageAction() {
                                                  NULL, NULL, NULL);
         }
 
-        if (mpMorf->isStop() && mAnm == ANM_HIDE) {
+        if (mAnm_p->isStop() && mAnm == ANM_HIDE) {
             SearchFarP();
             SetAnm(ANM_APPEAR01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             current.pos.set(mPoint.x, mPoint.y + 10000.0f, mPoint.z);
             mTimer[1] = 20;
-            MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
+            MTXCopy(mAnm_p->getModel()->getAnmMtx(JNT_WAIST), *calc_mtx);
             vec4.set(0.0f, -30.0f, 0.0f);
             MtxPosition(&vec4, &vec4);
             Particle_Set(0x880D, vec4);
@@ -1876,7 +1876,7 @@ void daE_PM_c::BossDamageAction() {
         mCamEyeTarget = vec3;
         SetMoveCam(0.1f, 50.0f);
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             for (int i = 0; i < mPuppetNum; i++) {
                 mPuppetID[i] = -1;
             }
@@ -1894,7 +1894,7 @@ void daE_PM_c::BossDamageAction() {
         break;
 
     case 11:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mAction = ACT_WAIT;
             mMode = 0;
             mDemoMode = 0;
@@ -1947,8 +1947,8 @@ void daE_PM_c::BossDeathAction() {
 
     switch (mMode) {
     case 0:
-        if (mpMorf->getFrame() < 196.0f && mAnm == ANM_END) {
-            MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE), *calc_mtx);
+        if (mAnm_p->getFrame() < 196.0f && mAnm == ANM_END) {
+            MTXCopy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE), *calc_mtx);
             vec3.set(0.0f, -30.0f, 0.0f);
             MtxPosition(&vec3, &vec3);
             vec3.x = current.pos.x;
@@ -1963,13 +1963,13 @@ void daE_PM_c::BossDeathAction() {
 
         mTargetAngleY = shape_angle.y;
 
-        if (mpMorf->getFrame() == 195.0f && mAnm == ANM_END) {
+        if (mAnm_p->getFrame() == 195.0f && mAnm == ANM_END) {
             current.pos.y += 30000.0f;
             old.pos = current.pos;
             gravity = 0.0f;
             mTimer[2] = 10;
             shape_angle.y = cLib_targetAngleY(&mCamCenterTarget, &mCamEyeTarget);
-        } else if (mpMorf->isStop() && mAnm == ANM_END && mTimer[2] == 0) {
+        } else if (mAnm_p->isStop() && mAnm == ANM_END && mTimer[2] == 0) {
             mTimer[2] = 100;
             if (mSwBit != 0xff && !dComIfGs_isSwitch(mSwBit, fopAcM_GetRoomNo(this))) {
                 dComIfGs_onSwitch(mSwBit, fopAcM_GetRoomNo(this));
@@ -1977,7 +1977,7 @@ void daE_PM_c::BossDeathAction() {
             mMode++;
         }
 
-        if (mpMorf->getFrame() > 180.0f) {
+        if (mAnm_p->getFrame() > 180.0f) {
             mParticleKey = dComIfGp_particle_set(mParticleKey, 0x880C, &vec3, &tevStr,
                                                  &current.angle, &scale, 0xff, NULL, -1,
                                                  NULL, NULL, NULL);
@@ -2133,7 +2133,7 @@ int daE_PM_c::Execute() {
     LampAction();
     setMidnaBindEffect(this, &mCreatureSound, &current.pos, &cXyz(1.5f, 1.5f, 1.5f));
     EyeMove();
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setCcCylinder();
     fopAcM_posMoveF(this, mCcStts.GetCCMoveP());
     mAcch.CrrPos(dComIfG_Bgsp());
@@ -2214,7 +2214,7 @@ void daE_PM_c::StartAction() {
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_L, 0, -1);
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
             J3DAnmTexPattern* btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("E_PM", 0x22);
-            mpEyeAnm->init(mpMorf->getModel()->getModelData(), btp, TRUE,
+            mpEyeAnm->init(mAnm_p->getModel()->getModelData(), btp, TRUE,
                            J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
             mMode++;
         }
@@ -2225,7 +2225,7 @@ void daE_PM_c::StartAction() {
             mPuppetID[i] = -1;
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             if (mStage != 4) {
                 mAction = ACT_CREATE;
                 mMode = 0;
@@ -2243,7 +2243,7 @@ void daE_PM_c::StartAction() {
             SetAnm(ANM_KYORO2, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mTimer[0] = (u8)(cM_rndFX(50.0f) + 200.0f);
         }
@@ -2300,7 +2300,7 @@ void daE_PM_c::GakkiLoopAction(cXyz param_0, f32 param_1) {
     cXyz vec2(0.0f, 0.0f, param_1);
     cXyz vec3;
 
-    if (mAnm == ANM_FOGBLOW_ST && mpMorf->isStop()) {
+    if (mAnm == ANM_FOGBLOW_ST && mAnm_p->isStop()) {
         SetAnm(ANM_FOGBLOW_LP, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
         mTimer[0] = 0;
         J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes("E_PM", 0x19);
@@ -2384,7 +2384,7 @@ void daE_PM_c::DemoCreateAction() {
         break;
 
     case 2:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mCcCyl.OnTgNoHitMark();
             mpTrumpetMorf->setPlaySpeed(0.0f);
             if (field_0x613 == 1) {
@@ -2427,7 +2427,7 @@ void daE_PM_c::CreateAction() {
     }
 
     case 2:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mpTrumpetMorf->setPlaySpeed(0.0f);
             if (field_0x613 == 1) {
                 field_0x613 += 2;
@@ -2489,7 +2489,7 @@ void daE_PM_c::DamageAction() {
         break;
 
     case 1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mAction = ACT_WAIT;
             mMode = 0;
         }
@@ -2643,11 +2643,11 @@ int daE_PM_c::Draw() {
         dKy_BossLight_set(&mLampPosition, &color, field_0x5fc, 1);
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     mpEyeAnm->entry(model->getModelData());
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
 
     cXyz pos;
     pos.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
@@ -2694,7 +2694,7 @@ int daE_PM_c::Delete() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -2704,14 +2704,14 @@ int daE_PM_c::Delete() {
 void daE_PM_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
     mpEyeAnm->setFrame(mEyeAnmFrame);
 }
 
 /* 8074ABA8-8074AC10 008DA8 0068+00 1/1 0/0 0/0 .text            setGakkiBaseMtx__8daE_PM_cFv */
 void daE_PM_c::setGakkiBaseMtx() {
-    mpTrumpetMorf->getModel()->setBaseTRMtx(mpMorf->getModel()->getAnmMtx(JNT_HAND_L));
+    mpTrumpetMorf->getModel()->setBaseTRMtx(mAnm_p->getModel()->getAnmMtx(JNT_HAND_L));
     mpTrumpetMorf->play(NULL, 0, 0);
     mpTrumpetMorf->modelCalc();
 }
@@ -2719,7 +2719,7 @@ void daE_PM_c::setGakkiBaseMtx() {
 /* 8074AC10-8074AE90 008E10 0280+00 1/1 0/0 0/0 .text            setLampBaseMtx__8daE_PM_cFv */
 void daE_PM_c::setLampBaseMtx() {
     cXyz vec1, vec2;
-    MTXCopy(mpMorf->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
+    MTXCopy(mAnm_p->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
     cXyz vec3(0.0f, -30.0f, -5.0f);
     //! @bug vec1 is not initialized in its first two uses, which are probably supposed to be vec3
     MtxPosition(&vec1, &mLampPosition);
@@ -2889,7 +2889,7 @@ cPhs__Step daE_PM_c::Create() {
 
         attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         attention_info.distances[fopAc_attn_BATTLE_e] = 86;
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, 0.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
         mAcchCir.SetWall(30.0f, 100.0f);
@@ -2907,7 +2907,7 @@ cPhs__Step daE_PM_c::Create() {
         field_0x5fc = 0.0f;
         mCreatureSound.setEnemyName("E_PM");
 
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         model->setUserArea((uintptr_t)this);
         model->getModelData()->getJointNodePointer(JNT_HEAD)->setCallBack(JointCallBack);
 

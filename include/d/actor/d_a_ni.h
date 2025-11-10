@@ -60,7 +60,7 @@ public:
         old.pos = current.pos;
         speed.y = 0.0f;
         speedF = 0.0f;
-        mpMorf->getModel()->setBaseTRMtx(mtx);
+        mAnm_p->getModel()->setBaseTRMtx(mtx);
     }
 
     void changeMode() { field_0x5fe = 1; }
@@ -75,7 +75,7 @@ public:
     /* 0x5DC */ s16 mMoveAngle;
     /* 0x5E0 */ f32 mDistToPlayer;
     /* 0x5E4 */ s16 mAngleToPlayer;
-    /* 0x5E8 */ mDoExt_McaMorf* mpMorf;
+    /* 0x5E8 */ mDoExt_McaMorf* mAnm_p;
     /* 0x5EC */ mDoExt_btkAnm* mpBtk;
     /* 0x5F0 */ s8 mColor;
     /* 0x5F4 */ int mAnmID;

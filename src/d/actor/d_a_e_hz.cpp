@@ -71,14 +71,14 @@ daE_HZ_HIO_c::daE_HZ_HIO_c() {
 void daE_HZ_c::setBck(int i_index, u8 i_attr, f32 i_morf, f32 i_rate) {
     J3DAnmTransform* transform = (J3DAnmTransform*)dComIfG_getObjectRes("E_HZ", i_index);
 
-    mpMorfSO->setAnm(transform, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    mAnm_pSO->setAnm(transform, i_attr, i_morf, i_rate, 0.0f, -1.0f);
 }
 
 /* 806EA734-806EA790 000214 005C+00 5/5 0/0 0/0 .text            checkBck__8daE_HZ_cFi */
 bool daE_HZ_c::checkBck(int i_index) {
     J3DAnmTransform* transform = (J3DAnmTransform*)dComIfG_getObjectRes("E_HZ", i_index);
 
-    if (mpMorfSO->getAnm() == transform) {
+    if (mAnm_pSO->getAnm() == transform) {
         return true;
     }
 
@@ -94,7 +94,7 @@ int daE_HZ_c::draw() {
     if (field_0x6e8 != 0) {
         return 1;
     }
-    J3DModel* morfModel = mpMorfSO->getModel();
+    J3DModel* morfModel = mAnm_pSO->getModel();
     g_env_light.setLightTevColorType_MAJI(morfModel, &tevStr);
 
     if (mReadyChangeColor != 0) {
@@ -107,7 +107,7 @@ int daE_HZ_c::draw() {
         }
     }
 
-    mpMorfSO->entryDL();
+    mAnm_pSO->entryDL();
     g_env_light.settingTevStruct(0x10, &current.pos, &mTevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
     mDoExt_modelUpdateDL(mpModel);
@@ -330,7 +330,7 @@ void daE_HZ_c::checkFall() {
             ground_cross + 500.0f > current.pos.y)
         {
             cXyz pos;
-            mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(0x12));
+            mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(0x12));
             mDoMtx_stack_c::multVecZero(&pos);
             fopAcM_createDisappear(this, &pos, 10, 0, 5);
             setActionMode(0xB);
@@ -447,7 +447,7 @@ void daE_HZ_c::executeWait() {
         break;
     }
 
-    if (checkBck(0x10) && (mpMorfSO->checkFrame(0.0f) || mpMorfSO->checkFrame(30.0f))) {
+    if (checkBck(0x10) && (mAnm_pSO->checkFrame(0.0f) || mAnm_pSO->checkFrame(30.0f))) {
         mSound.startCreatureVoice(Z2SE_EN_HZ_V_WAIT, -1);
     }
     if (checkHideStart()) {
@@ -627,7 +627,7 @@ void daE_HZ_c::executeAttack() {
         break;
 
     case 1:
-        MtxP anmMtx = mpMorfSO->getModel()->getAnmMtx(1);
+        MtxP anmMtx = mAnm_pSO->getModel()->getAnmMtx(1);
         position.set(anmMtx[0][3], anmMtx[1][3], anmMtx[2][3]);
 
         for (int i = 0; i < 2; i++) {
@@ -636,19 +636,19 @@ void daE_HZ_c::executeAttack() {
                                       &shape_angle, NULL, 0xff, NULL, -1, NULL, NULL, NULL);
         }
 
-        if (mpMorfSO->checkFrame(8.0f)) {
-            mpMorfSO->setPlaySpeed(1.0f);
-        } else if (mpMorfSO->checkFrame(38.0f)) {
+        if (mAnm_pSO->checkFrame(8.0f)) {
+            mAnm_pSO->setPlaySpeed(1.0f);
+        } else if (mAnm_pSO->checkFrame(38.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_HZ_V_LAUGH, -1);
         }
 
         if (!daPy_getPlayerActorClass()->checkThrowDamage()) {
-            if (mpMorfSO->getFrame() > 60.0f && mpMorfSO->getFrame() < 100.0f && checkHideStart()) {
-                mpMorfSO->setFrame(100.0f);
+            if (mAnm_pSO->getFrame() > 60.0f && mAnm_pSO->getFrame() < 100.0f && checkHideStart()) {
+                mAnm_pSO->setFrame(100.0f);
             }
         }
 
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             setCloseSmokeEffect();
             mAttackCooldownTimer = 20;
             setActionMode(ACTION_HIDE);
@@ -718,15 +718,15 @@ void daE_HZ_c::executeAway() {
         break;
 
     case 1:
-        if (mpMorfSO->checkFrame(4.0f)) {
+        if (mAnm_pSO->checkFrame(4.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_HZ_V_STAND, -1);
-        } else if (mpMorfSO->checkFrame(20.0f)) {
+        } else if (mAnm_pSO->checkFrame(20.0f)) {
             mSound.startCreatureSound(Z2SE_EN_HZ_SWING, 0, -1);
         }
 
         speedF = 0.0f;
         if (field_0x6ea == 0) {
-            if (mpMorfSO->getFrame() >= 35.0f) {
+            if (mAnm_pSO->getFrame() >= 35.0f) {
                 gravity = -5.0f;
                 if (mObjAcch.ChkGroundHit()) {
                     mSound.startCreatureSound(Z2SE_CM_BODYFALL_M, 0, -1);
@@ -735,13 +735,13 @@ void daE_HZ_c::executeAway() {
                     if (speed.y > -20.0f) {
                         speed.y = -20.0f;
                     }
-                    mpMorfSO->setFrame(35.0f);
+                    mAnm_pSO->setFrame(35.0f);
                 }
-            } else if (mpMorfSO->getFrame() >= 23.0f) {
+            } else if (mAnm_pSO->getFrame() >= 23.0f) {
                 speedF = 10.0f;
             }
         } else if (mObjAcch.ChkGroundHit()) {
-            if (mpMorfSO->isStop()) {
+            if (mAnm_pSO->isStop()) {
                 initBackWalk();
             }
         }
@@ -779,11 +779,11 @@ void daE_HZ_c::executeAway() {
         break;
 
     case 4:
-        if (mpMorfSO->checkFrame(4.0f)) {
+        if (mAnm_pSO->checkFrame(4.0f)) {
             mSound.startCreatureSound(Z2SE_EN_HZ_WALK, 0, -1);
-        } else if (mpMorfSO->checkFrame(10.0f)) {
+        } else if (mAnm_pSO->checkFrame(10.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_HZ_V_BACK, -1);
-        } else if (mpMorfSO->checkFrame(14.0f)) {
+        } else if (mAnm_pSO->checkFrame(14.0f)) {
             speed.y = 0.0f;
             speedF = 0.0f;
             mMode = 5;
@@ -796,7 +796,7 @@ void daE_HZ_c::executeAway() {
 
     case 5:
         mDisableShadow = true;
-        if (mpMorfSO->checkFrame(28.0f)) {
+        if (mAnm_pSO->checkFrame(28.0f)) {
             mSound.startCreatureSound(Z2SE_EN_HZ_BACK, 0, -1);
         }
         if (current.pos.y <= home.pos.y) {
@@ -805,7 +805,7 @@ void daE_HZ_c::executeAway() {
         }
         cLib_addCalcPosXZ(&current.pos, home.pos, 1.0f, 20.0f, 5.0f);
         if (home.pos == current.pos) {
-            if (mpMorfSO->isStop()) {
+            if (mAnm_pSO->isStop()) {
                 setCloseSmokeEffect();
                 shape_angle.y = shape_angle.y + 0x2000 & 0xC000;
                 gravity = 0.0f;
@@ -816,10 +816,10 @@ void daE_HZ_c::executeAway() {
     }
 
     if (checkBck(0x11)) {
-        if (mpMorfSO->checkFrame(0.0f)) {
+        if (mAnm_pSO->checkFrame(0.0f)) {
             mSound.startCreatureSound(Z2SE_EN_HZ_WALK, 0, -1);
             mSound.startCreatureVoice(Z2SE_EN_HZ_V_WALK, -1);
-        } else if (mpMorfSO->checkFrame(15.0f)) {
+        } else if (mAnm_pSO->checkFrame(15.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_HZ_V_WALK, -1);
         }
     }
@@ -848,7 +848,7 @@ void daE_HZ_c::executeWind() {
     dBgS_GndChk gndChk;
     dBgS_LinChk linChk;
     BOOL bVar = false;
-    f32 frame = mpMorfSO->getFrame();
+    f32 frame = mAnm_pSO->getFrame();
     mpBoomerangActor = daPy_py_c::getThrowBoomerangActor();
 
     switch (mMode) {
@@ -883,14 +883,14 @@ void daE_HZ_c::executeWind() {
         current.pos.y += frame;
         shape_angle.y -= 0x7D0;
 
-        if (mpMorfSO->checkFrame(field_0x6cc) || mpBoomerangActor == NULL ||
+        if (mAnm_pSO->checkFrame(field_0x6cc) || mpBoomerangActor == NULL ||
             mpBoomerangActor->getReturnFlg())
         {
             bVar = true;
         }
 
         if (bVar) {
-            mpMorfSO->setFrame(15.0f);
+            mAnm_pSO->setFrame(15.0f);
             mMode = 2;
             field_0x6a8 = 60.0f;
         }
@@ -900,7 +900,7 @@ void daE_HZ_c::executeWind() {
         current.pos.y += field_0x6a8;
         if (current.pos.y - home.pos.y >= 300.0f) {
             if (frame < 23.0f) {
-                mpMorfSO->setFrame(23.0f);
+                mAnm_pSO->setFrame(23.0f);
             }
 
             if (mpBoomerangActor == NULL) {
@@ -966,7 +966,7 @@ void daE_HZ_c::executeWind() {
         cLib_chaseF(&field_0x678.y, 0.0f, 5.0f);
         cLib_chaseAngleS(&shape_angle.z, field_0x678.z * cM_scos(field_0x6b4), 0x100);
 
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             cLib_chaseAngleS(&shape_angle.x, -0x8000, 0x400);
         }
         shape_angle.y -= (s16)l_HIO.reeling_rotation_speed;
@@ -998,13 +998,13 @@ void daE_HZ_c::executeWind() {
         }
         cLib_chaseAngleS(&shape_angle.z, field_0x678.z * cM_scos(field_0x6b4), 0x100);
         cLib_chaseF(&field_0x678.z, 0.0f, 512.0f);
-        if (mpMorfSO->checkFrame(13.0f)) {
+        if (mAnm_pSO->checkFrame(13.0f)) {
             mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
         }
         if (mObjAcch.ChkGroundHit()) {
             cLib_chaseAngleS(&field_0x6b2, 0, 0x100);
             if (field_0x6b2 == 0) {
-                if (mpMorfSO->isStop()) {
+                if (mAnm_pSO->isStop()) {
                     setActionMode(ACTION_CHANCE);
                     return;
                 }
@@ -1014,7 +1014,7 @@ void daE_HZ_c::executeWind() {
         break;
     }
 
-    if (checkBck(0x13) && mpMorfSO->checkFrame(25.0f)) {
+    if (checkBck(0x13) && mAnm_pSO->checkFrame(25.0f)) {
         mSound.startCreatureVoice(Z2SE_EN_HZ_V_WIND, -1);
     }
 }
@@ -1036,7 +1036,7 @@ void daE_HZ_c::executeChance() {
         /* fallthrough */
 
     case 1:
-        if (mpMorfSO->checkFrame(0.0f)) {
+        if (mAnm_pSO->checkFrame(0.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_HZ_V_FAINT, -1);
         }
         if (mPiyoriTimer == 0) {
@@ -1097,7 +1097,7 @@ bool daE_HZ_c::doRollDamage() {
         }
         cLib_chaseF(&speedF, 0.0f, 1.0f);
         cLib_chaseAngleS(&field_0x6b6, 0, 0x80);
-        if (!speedF && field_0x6b6 == 0 && mpMorfSO->isStop()) {
+        if (!speedF && field_0x6b6 == 0 && mAnm_pSO->isStop()) {
             return true;
         }
     }
@@ -1120,14 +1120,14 @@ void daE_HZ_c::executeDamage() {
             setBck(6, 0, 5.0f, 1.0f);
         }
         mSound.startCreatureVoice(Z2SE_EN_HZ_V_DAMAGE, -1);
-        mpMorfSO->setFrame(0.0f);
+        mAnm_pSO->setFrame(0.0f);
         return;
 
     case 1:
         if (speedF > 2.0f) {
             mSound.startCreatureSoundLevel(Z2SE_EN_HZ_SLIDE, 0, -1);
         }
-        if (mpMorfSO->checkFrame(28.0f)) {
+        if (mAnm_pSO->checkFrame(28.0f)) {
             mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
         }
         if (doRollDamage()) {
@@ -1185,17 +1185,17 @@ void daE_HZ_c::executeDeath() {
 
     case 1:
         if (checkBck(7)) {
-            if (mpMorfSO->checkFrame(41.5f)) {
+            if (mAnm_pSO->checkFrame(41.5f)) {
                 mSound.startCreatureSound(Z2SE_CM_BODYFALL_M, 0, -1);
             }
             if (speedF > 2.0f) {
                 mSound.startCreatureSoundLevel(Z2SE_EN_HZ_SLIDE, 0, -1);
             }
-            if (mpMorfSO->checkFrame(35.0f)) {
+            if (mAnm_pSO->checkFrame(35.0f)) {
                 mReadyChangeColor = 1;
             }
         } else {
-            if (mpMorfSO->isStop()) {
+            if (mAnm_pSO->isStop()) {
                 mReadyChangeColor = 1;
             }
         }
@@ -1205,7 +1205,7 @@ void daE_HZ_c::executeDeath() {
         break;
 
     case 2:
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             fopAcM_createDisappear(this, &current.pos, 10, 0, 5);
             setActionMode(0xB);
         }
@@ -1306,10 +1306,10 @@ void daE_HZ_c::executeWindWalk() {
         /* fallthrough */
 
     case 1:
-        if (mpMorfSO->checkFrame(14.0f) || mpMorfSO->checkFrame(24.0f)) {
+        if (mAnm_pSO->checkFrame(14.0f) || mAnm_pSO->checkFrame(24.0f)) {
             mSound.startCreatureSound(Z2SE_EN_HZ_WALK, 0, -1);
         }
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             setActionMode(ACTION_AWAY);
             initBackWalk();
         }
@@ -1362,8 +1362,8 @@ void daE_HZ_c::executeWaterDeath() {
         cLib_chaseF(&speed.y, 5.0f, 10.0f);
         cLib_chaseAngleS(&shape_angle.x, 0, 0x800);
         cLib_chaseAngleS(&shape_angle.z, 0, 0x800);
-        if (mpMorfSO->checkFrame(10.0f) || mpMorfSO->checkFrame(20.0f) ||
-            mpMorfSO->checkFrame(36.0f) || mpMorfSO->checkFrame(57.0f))
+        if (mAnm_pSO->checkFrame(10.0f) || mAnm_pSO->checkFrame(20.0f) ||
+            mAnm_pSO->checkFrame(36.0f) || mAnm_pSO->checkFrame(57.0f))
         {
             setWaterEffect();
             mSound.startCreatureSound(Z2SE_EN_HZ_DROWNSPLASH, 0, -1);
@@ -1378,16 +1378,16 @@ void daE_HZ_c::executeWaterDeath() {
         break;
 
     case 2:
-        if (mpMorfSO->checkFrame(10.0f) || mpMorfSO->checkFrame(20.0f) ||
-            mpMorfSO->checkFrame(36.0f) || mpMorfSO->checkFrame(57.0f))
+        if (mAnm_pSO->checkFrame(10.0f) || mAnm_pSO->checkFrame(20.0f) ||
+            mAnm_pSO->checkFrame(36.0f) || mAnm_pSO->checkFrame(57.0f))
         {
             setWaterEffect();
             mSound.startCreatureSound(Z2SE_EN_HZ_DROWNSPLASH, 0, -1);
         }
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             cXyz position;
 
-            mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(0x12));
+            mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(0x12));
             mDoMtx_stack_c::multVecZero(&position);
             fopAcM_createDisappear(this, &position, 10, 0, 5);
             setActionMode(0xB);
@@ -1678,7 +1678,7 @@ void daE_HZ_c::action() {
     if (field_0x566 != 0) {
         cXyz effPos;
 
-        mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(0x12));
+        mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(0x12));
         mDoMtx_stack_c::multVecZero(&effPos);
 
         cXyz effSize(2.0f, 2.0f, 2.0f);
@@ -1696,7 +1696,7 @@ void daE_HZ_c::action() {
         mObjAcch.ClrGroundHit();
     }
 
-    mpMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_pSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
 /* 806EF144-806EF2C8 004C24 0184+00 1/1 0/0 0/0 .text            mtx_set__8daE_HZ_cFv */
@@ -1707,9 +1707,9 @@ void daE_HZ_c::mtx_set() {
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
         mDoMtx_stack_c::scaleM(l_HIO.basic_size, l_HIO.basic_size, l_HIO.basic_size);
-        J3DModel* morfModel = mpMorfSO->getModel();
+        J3DModel* morfModel = mAnm_pSO->getModel();
         morfModel->setBaseTRMtx(mDoMtx_stack_c::get());
-        mpMorfSO->modelCalc();
+        mAnm_pSO->modelCalc();
         MtxP anmMtx = morfModel->getAnmMtx(7);
         mpModel->setBaseTRMtx(anmMtx);
         mSmokeEffectPosition.set(anmMtx[0][3], anmMtx[1][3], anmMtx[2][3]);
@@ -1734,7 +1734,7 @@ void daE_HZ_c::mtx_set() {
 void daE_HZ_c::cc_set() {
     if (field_0x6e8 == 0) {
         cXyz pos;
-        J3DModel* morfModel = mpMorfSO->getModel();
+        J3DModel* morfModel = mAnm_pSO->getModel();
 
         eyePos = mSmokeEffectPosition;
         attention_info.position = eyePos;
@@ -1907,11 +1907,11 @@ int daE_HZ_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_HZ", 0x16);
     JUT_ASSERT(2479, modelData != NULL);
 
-    mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_pSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_HZ", 0x10), 0, 1.0f,
                                     0, -1, &mSound, 0x80000, 0x11000084);
 
-    if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
+    if (mAnm_pSO == NULL || mAnm_pSO->getModel() == NULL) {
         return 0;
     }
 
@@ -1949,7 +1949,7 @@ int daE_HZ_c::CreateHeap() {
         return 0;
     }
 
-    J3DModel* morfModel = mpMorfSO->getModel();
+    J3DModel* morfModel = mAnm_pSO->getModel();
     morfModel->setUserArea((u32)this);
     for (u16 i = 0; i < morfModel->getModelData()->getJointNum(); i++) {
         if (i != 0) {
@@ -2043,7 +2043,7 @@ int daE_HZ_c::create() {
             l_HIO.enemy_sample = mDoHIO_CREATE_CHILD("Hajiki-san", &l_HIO);
         }
 
-        fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_pSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
         mObjAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,

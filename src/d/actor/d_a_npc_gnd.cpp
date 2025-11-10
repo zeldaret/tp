@@ -117,7 +117,7 @@ NPC_GND_HIO_CLASS l_HIO;
 daNpc_Gnd_c::~daNpc_Gnd_c() {
     OS_REPORT("|%06d:%x|daNpc_Gnd_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
 
 #if DEBUG
@@ -152,8 +152,8 @@ int daNpc_Gnd_c::create() {
         }
 
         OS_REPORT("\n");
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -197,17 +197,17 @@ int daNpc_Gnd_c::CreateHeap() {
     JUT_ASSERT(433, NULL != mdlData_p);
 
     u32 sp_0x24 = 0x11020285;
-    mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x24);
-    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
-        mpMorf[0]->stopZelAnime();
-        mpMorf[0] = NULL;
+    mAnm_p[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x24);
+    if (mAnm_p[0] != NULL && mAnm_p[0]->getModel() == NULL) {
+        mAnm_p[0]->stopZelAnime();
+        mAnm_p[0] = NULL;
     }
 
-    if (mpMorf[0] == NULL) {
+    if (mAnm_p[0] == NULL) {
         return 0;
     }
 
-    model = mpMorf[0]->getModel();
+    model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -241,7 +241,7 @@ int daNpc_Gnd_c::Execute() {
 
 /* 809BBE80-809BBF44 000960 00C4+00 1/1 0/0 0/0 .text            Draw__11daNpc_Gnd_cFv */
 int daNpc_Gnd_c::Draw() {
-    J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+    J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
     if (mpMatAnm[0] != NULL) {
         modelData->getMaterialNodePointer(getEyeballLMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }

@@ -373,7 +373,7 @@ int daMyna_c::create() {
     // myna bird
     l_HOSTIO.entryHIO("九官鳥");
 #endif
-    fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+    fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
     mCreature.init(&current.pos, &eyePos, 3, 1);
     initiate();
     setRoomNo();
@@ -387,7 +387,7 @@ int daMyna_c::create() {
 int daMyna_c::destroy() {
     dComIfG_resDelete(&mPhase, "Npc_myna");
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 
 #if DEBUG
@@ -398,7 +398,7 @@ int daMyna_c::destroy() {
 
 /* 8094640C-809464CC 00088C 00C0+00 1/1 0/0 0/0 .text            draw__8daMyna_cFv */
 int daMyna_c::draw() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     J3DModelData* modelData = model->getModelData();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
@@ -406,7 +406,7 @@ int daMyna_c::draw() {
         mBtpAnm.entry(modelData);
     }
     fopAcM_setEffectMtx(this, modelData);
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
     if (cLib_checkBit<u16>(u16(field_0x914), 0x40)) {
         mBtpAnm.remove(modelData);
     }
@@ -473,18 +473,18 @@ int daMyna_c::createHeap() {
     J3DModelData* aMdlData_p = NULL;
     aMdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes("Npc_myna", "MYNA.bmd"));
     JUT_ASSERT(803, NULL != aMdlData_p);
-    mpMorf = new mDoExt_McaMorfSO(aMdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000,
+    mAnm_p= new mDoExt_McaMorfSO(aMdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000,
                                   0x11020084);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
 
-    J3DModel* model_p = mpMorf->getModel();
+    J3DModel* model_p = mAnm_p->getModel();
     for (u16 i = 0; i < aMdlData_p->getJointNum(); i++) {
         aMdlData_p->getJointNodePointer(i)->setCallBack(jntNodeCallBack);
     }
@@ -497,7 +497,7 @@ int daMyna_c::createHeap() {
     int reg_r24 = 2;
     J3DAnmTexPattern* anmTexPattern = getTexPtrnAnm(l_btpFileNameTBL[field_0x936]);
     if (anmTexPattern != NULL) {
-        setBtpAnm(anmTexPattern, mpMorf->getModel()->getModelData(), 1.0f, reg_r24);
+        setBtpAnm(anmTexPattern, mAnm_p->getModel()->getModelData(), 1.0f, reg_r24);
         cLib_onBit<u16>(field_0x914, 0x44);
     }
 
@@ -1493,19 +1493,19 @@ void daMyna_c::setCollision() {
 
 /* 809495E0-80949744 003A60 0164+00 1/1 0/0 0/0 .text            set_mtx__8daMyna_cFv */
 void daMyna_c::set_mtx() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     cXyz local_18(current.pos);
     scale.set(l_HOSTIO.scale, l_HOSTIO.scale, l_HOSTIO.scale);
     mDoMtx_stack_c::transS(local_18);
     mDoMtx_stack_c::ZXYrotM(current.angle);
     mDoMtx_stack_c::scaleM(scale);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+    mAnm_p->modelCalc();
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&field_0x82C);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&field_0x838);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x10));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0x10));
     mDoMtx_stack_c::multVecZero(&field_0x85C);
     field_0x82C -= current.pos;
     field_0x838 -= current.pos;
@@ -1514,8 +1514,8 @@ void daMyna_c::set_mtx() {
 /* 80949744-8094983C 003BC4 00F8+00 1/1 0/0 0/0 .text            animePlay__8daMyna_cFv */
 void daMyna_c::animePlay() {
     int reg_r29 = 15;
-    f32 speed = mpMorf->getPlaySpeed();
-    mpMorf->play(0, 0);
+    f32 speed = mAnm_p->getPlaySpeed();
+    mAnm_p->play(0, 0);
     if (checkEndAnm(speed) != 0) {
         field_0x91E += u16(1);
     }
@@ -1546,7 +1546,7 @@ int daMyna_c::setMcaMorfAnm(J3DAnmTransformKey* i_anm, f32 i_rate, f32 i_morf, i
                             int i_start, int i_end) {
     f32 f_start = i_start;
     f32 f_end = i_end;
-    mpMorf->setAnm(i_anm, i_attr, i_morf, i_rate, f_start, f_end);
+    mAnm_p->setAnm(i_anm, i_attr, i_morf, i_rate, f_start, f_end);
     field_0x91E = 0;
     return 1;
 }
@@ -1580,15 +1580,15 @@ J3DAnmTexPattern* daMyna_c::getTexPtrnAnm(char* i_resName) {
 /* 80949998-80949A70 003E18 00D8+00 1/1 0/0 0/0 .text            checkEndAnm__8daMyna_cFf */
 int daMyna_c::checkEndAnm(f32 param_0) {
     bool retVal;
-    switch ((u8)mpMorf->getPlayMode()) {
+    switch ((u8)mAnm_p->getPlayMode()) {
     case J3DFrameCtrl::EMode_LOOP:
-        return mpMorf->isLoop();
+        return mAnm_p->isLoop();
     case J3DFrameCtrl::EMode_NONE:
     case J3DFrameCtrl::EMode_RESET:
-        return mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0;
+        return mAnm_p->isStop() && mAnm_p->getPlaySpeed() != param_0;
     case J3DFrameCtrl::EMode_REVERSE:
     case J3DFrameCtrl::EMode_LOOP_REVERSE:
-        return mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0;
+        return mAnm_p->isStop() && mAnm_p->getPlaySpeed() != param_0;
     default:
         return false;
     }
@@ -1779,7 +1779,7 @@ void daMyna_c::animeControl() {
         int attribute = 2;
         J3DAnmTexPattern* btp = getTexPtrnAnm(l_btpFileNameTBL[field_0x936]);
         if (btp != NULL) {
-            setBtpAnm(btp, mpMorf->getModel()->getModelData(), 1.0f, attribute);
+            setBtpAnm(btp, mAnm_p->getModel()->getModelData(), 1.0f, attribute);
             cLib_onBit<u16>(field_0x914, 0x44);
         }
     }

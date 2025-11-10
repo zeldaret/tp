@@ -27,7 +27,7 @@ enum b_oh_action {
 class b_oh_class : public fopEn_enemy_c {
 public:
     /* 0x05AC */ request_of_phase_process_class mPhase;
-    /* 0x05B4 */ mDoExt_McaMorf* mpMorf;
+    /* 0x05B4 */ mDoExt_McaMorf* mAnm_p;
     /* 0x05B8 */ mDoExt_invisibleModel mInvisModel;
     /* 0x05C0 */ mDoExt_btkAnm* mpBtk;
     /* 0x05C4 */ mDoExt_brkAnm* mpBrk;

@@ -275,7 +275,7 @@ static void anm_init(e_rd_class* i_this, int i_anmID, f32 i_morf, u8 i_mode, f32
 /* 80504D28-80504DDC 0003A8 00B4+00 2/2 0/0 0/0 .text            horn_anm_init__FP10e_rd_classifUcf */
 static void horn_anm_init(e_rd_class* i_this, int i_anmID, f32 i_morf, u8 i_mode, f32 i_speed) {
     if (i_this->field_0x6a0 != 0) {
-        i_this->mpMorfHornAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_rdb", i_anmID),
+        i_this->mAnm_pHornAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_rdb", i_anmID),
                                       i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
     }
 }
@@ -461,8 +461,8 @@ static int daE_RD_Draw(e_rd_class* i_this) {
         g_env_light.setLightTevColorType_MAJI(i_this->field_0x694, &a_this->tevStr);
         mDoExt_modelUpdateDL(i_this->field_0x694);
     } else if (i_this->field_0x5bc >= 2) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mpMorfBowAnm->getModel(), &a_this->tevStr);
-        i_this->mpMorfBowAnm->entryDL();
+        g_env_light.setLightTevColorType_MAJI(i_this->mAnm_pBowAnm->getModel(), &a_this->tevStr);
+        i_this->mAnm_pBowAnm->entryDL();
 
         if (i_this->field_0x9a2 != 0) {
             g_env_light.setLightTevColorType_MAJI(i_this->field_0x694, &a_this->tevStr);
@@ -479,8 +479,8 @@ static int daE_RD_Draw(e_rd_class* i_this) {
         }
 
         if (i_this->field_0x6a0 != 0) {
-            g_env_light.setLightTevColorType_MAJI(i_this->mpMorfHornAnm->getModel(), &a_this->tevStr);
-            i_this->mpMorfHornAnm->entryDL();
+            g_env_light.setLightTevColorType_MAJI(i_this->mAnm_pHornAnm->getModel(), &a_this->tevStr);
+            i_this->mAnm_pHornAnm->entryDL();
         }
     }
 
@@ -705,10 +705,10 @@ static void ride_off(e_rd_class* i_this) {
     }
 
     i_this->field_0x9bc = 0;
-    if (i_this->mpMorfBowAnm != NULL) {
-        i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0,
+    if (i_this->mAnm_pBowAnm != NULL) {
+        i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0,
                                     1.0f, 1.0f, 0.0f, -1.0f);
-        i_this->mpMorfBowAnm->setFrame(10.0f);
+        i_this->mAnm_pBowAnm->setFrame(10.0f);
     }
 
     a_this->home.pos = a_this->current.pos;
@@ -1525,7 +1525,7 @@ static void e_rd_bow(e_rd_class* i_this) {
     switch (i_this->mMode) {
         case 0:
             anm_init(i_this, BCK_RD_SHOOT_READY, 5.0f, 0, 1.0f);
-            i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 7), 0, 5.0f, 0.9f, 0.0f, -1.0f);
+            i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 7), 0, 5.0f, 0.9f, 0.0f, -1.0f);
             i_this->mMode = 1;
             a_this->speedF = 0.0f;
             break;
@@ -1552,7 +1552,7 @@ static void e_rd_bow(e_rd_class* i_this) {
             if (i_this->field_0x990[0] == 0) {
                 if (i_this->field_0x9a4 == 0 && !dMsgObject_isTalkNowCheck()) {
                     anm_init(i_this, BCK_RD_SHOOT, 1.0f, 0, 1.0f);
-                    i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                    i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                     i_this->mMode = 3;
                 } else {
                     i_this->mAction = ACTION_BOW_RUN;
@@ -1633,7 +1633,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
 
         case 2:
             anm_init(i_this, BCK_RD_SHOOT_READY, 5.0f, 0, 1.0f);
-            i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 7), 0, 5.0f, 0.9f, 0.0f, -1.0f);
+            i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 7), 0, 5.0f, 0.9f, 0.0f, -1.0f);
             i_this->mMode = 3;
             a_this->speedF = 0.0f;
             break;
@@ -1665,7 +1665,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
 
                 if (!dMsgObject_isTalkNowCheck() && i_this->field_0x9a4 == 0) {
                     anm_init(i_this, BCK_RD_SHOOT, 1.0f, 0, 1.0f);
-                    i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                    i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                     i_this->mMode = 5;
                 }
             }
@@ -1711,7 +1711,7 @@ static void e_rd_bow_ikki(e_rd_class* i_this) {
     switch (i_this->mMode) {
         case 0:
             anm_init(i_this, BCK_RD_SHOOT_READY, 5.0f, 0, 1.0f);
-            i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 7), 0, 5.0f, 0.9f, 0.0f, -1.0f);
+            i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 7), 0, 5.0f, 0.9f, 0.0f, -1.0f);
             i_this->mMode = 1;
             a_this->speedF = 0.0f;
             break;
@@ -1734,7 +1734,7 @@ static void e_rd_bow_ikki(e_rd_class* i_this) {
         case 2:
             if (i_this->field_0x990[0] == 0 && i_this->field_0x9a4 == 0) {
                 anm_init(i_this, BCK_RD_SHOOT, 1.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mMode = 3;
             }
 
@@ -2085,8 +2085,8 @@ static void e_rd_wb_run(e_rd_class* i_this) {
         anm_init(i_this, BCK_RD_RRUN02_BACK, 5.0f, 2, 1.0f);
         i_this->mMode = 40;
 
-        if (i_this->mpMorfBowAnm != NULL) {
-            i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_SHOOT),
+        if (i_this->mAnm_pBowAnm != NULL) {
+            i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_SHOOT),
                                          0, 1.0f, 1.0f, 0.0f, -1.0f);
         }
     }
@@ -2157,7 +2157,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 } else {
                     if (i_this->field_0x990[1] == 0 && i_this->field_0x5bc >= 2) {
                         anm_init(i_this, BCK_RD_RSHOOT_READY, 5.0f, 0, 1.0f);
-                        i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_RREADY), 0, 5.0f, 1.0f, 0.0f, -1.0f);
+                        i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_RREADY), 0, 5.0f, 1.0f, 0.0f, -1.0f);
                         i_this->mMode = 30;
                     }
                 }
@@ -2249,7 +2249,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
             if (i_this->field_0x990[1] == 0 && i_this->mPlayerDistance < l_HIO.mounted_launch_distance
                 && i_this->field_0x9a4 == 0 && !dComIfGp_event_runCheck()) {
                 anm_init(i_this, BCK_RD_RSHOOT, 1.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10),
+                i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10),
                                                 0, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mMode = 32;
             }
@@ -2270,7 +2270,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
             if (i_this->mpModelMorf->isStop()) {
                 anm_init(i_this, BCK_RD_RSHOOT_READY, 5.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 8),
+                i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 8),
                                                 0, 5.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mMode = 30;
 
@@ -3313,7 +3313,7 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
         case 10:
             if (i_this->field_0x990[0] == 0) {
                 anm_init(i_this, BCK_RD_SHOOT_READY, 5.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 7), 0, 5.0f, 0.9f, 0.0f, -1.0f);
+                i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 7), 0, 5.0f, 0.9f, 0.0f, -1.0f);
                 i_this->mMode = 11;
                 a_this->speedF = 0.0f;
             }
@@ -3342,7 +3342,7 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
             
             if (i_this->field_0x990[0] == 0 && !dMsgObject_isTalkNowCheck() && i_this->field_0x9a4 == 0) {
                 anm_init(i_this, BCK_RD_SHOOT, 1.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mMode = 13;
             }
 
@@ -4376,8 +4376,8 @@ static void damage_check(e_rd_class* i_this) {
                     }
 
                     a_this->speedF = 0.0f;
-                    if (i_this->mpMorfBowAnm != NULL) {
-                        i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                    if (i_this->mAnm_pBowAnm != NULL) {
+                        i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                     }
                     break;
             }
@@ -4469,7 +4469,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
         case 10:
             if (i_this->mpModelMorf->isStop()) {
                 anm_init(i_this, BCK_RD_SHOOT_READY, 5.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 7), 0, 5.0f, 0.9f, 0.0f, -1.0f);
+                i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 7), 0, 5.0f, 0.9f, 0.0f, -1.0f);
                 i_this->mMode = 11;
                 a_this->speedF = 0.0f;
             }
@@ -4498,7 +4498,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
 
             if (i_this->field_0x990[0] == 0 && i_this->field_0x9a4 == 0) {
                 anm_init(i_this, BCK_RD_SHOOT, 1.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mAnm_pBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mMode = 13;
             }
 
@@ -6663,7 +6663,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
         i_this->field_0x9a8 = i_this->field_0x9a6 * cM_ssin(i_this->field_0x9a6 * (TREG_S(9) + 0x7800)) * (TREG_F(5) + 100.0f);
 
-        model = i_this->mpMorfBowAnm->getModel();
+        model = i_this->mAnm_pBowAnm->getModel();
         if (i_this->field_0x5bd == 0) {
             model->setBaseTRMtx(i_this->mpModelMorf->getModel()->getAnmMtx(19));
         } else {
@@ -6675,8 +6675,8 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             model->setBaseTRMtx(*calc_mtx);
         }
 
-        i_this->mpMorfBowAnm->play(0, 0);
-        i_this->mpMorfBowAnm->modelCalc();
+        i_this->mAnm_pBowAnm->play(0, 0);
+        i_this->mAnm_pBowAnm->modelCalc();
 
         if (i_this->field_0x9a2 != 0) {
             MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(24), *calc_mtx);
@@ -6840,7 +6840,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 i_this->field_0x6c0 += 0xF00;
             }
 
-            i_this->mpMorfHornAnm->getModel()->setBaseTRMtx(*calc_mtx);
+            i_this->mAnm_pHornAnm->getModel()->setBaseTRMtx(*calc_mtx);
         }
 
         if (i_this->field_0x6c2 != 0) {
@@ -6866,8 +6866,8 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
 
         if (i_this->field_0x6a0 != 0) {
-            i_this->mpMorfHornAnm->play(NULL, 0, 0);
-            i_this->mpMorfHornAnm->modelCalc();
+            i_this->mAnm_pHornAnm->play(NULL, 0, 0);
+            i_this->mAnm_pHornAnm->modelCalc();
         }
     }
 
@@ -7035,9 +7035,9 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         }
 
         if (i_this->mBossMode == 1) {
-            i_this->mpMorfHornAnm = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BMDR_RB_HORN), 
+            i_this->mAnm_pHornAnm = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BMDR_RB_HORN), 
                                                        NULL, NULL, NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
-            if (i_this->mpMorfHornAnm == NULL || i_this->mpMorfHornAnm->getModel() == NULL) {
+            if (i_this->mAnm_pHornAnm == NULL || i_this->mAnm_pHornAnm->getModel() == NULL) {
                 return 0;
             }
 
@@ -7113,14 +7113,14 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
             i_this->field_0x694->setBaseTRMtx(mDoMtx_stack_c::get());
         } else if (i_this->field_0x5bc >= 2) {
-            i_this->mpMorfBowAnm = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->mResName, BMDR_RD_BOW), NULL, NULL,
+            i_this->mAnm_pBowAnm = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->mResName, BMDR_RD_BOW), NULL, NULL,
                                                        (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_SHOOT), 0, 1.0f,
                                                        0, -1, NULL, 0x80000, 0x11000084);
-            if (i_this->mpMorfBowAnm == NULL || i_this->mpMorfBowAnm->getModel() == NULL) {
+            if (i_this->mAnm_pBowAnm == NULL || i_this->mAnm_pBowAnm->getModel() == NULL) {
                 return 0;
             }
 
-            model = i_this->mpMorfBowAnm->getModel();
+            model = i_this->mAnm_pBowAnm->getModel();
             model->setUserArea((uintptr_t)i_this);
             model->setBaseTRMtx(mDoMtx_stack_c::get());
 

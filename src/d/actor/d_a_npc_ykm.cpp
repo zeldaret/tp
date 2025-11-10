@@ -405,8 +405,8 @@ daNpc_ykM_c::cutFunc daNpc_ykM_c::mCutList[10] = {
 
 /* 80B534EC-80B53698 0000EC 01AC+00 1/0 0/0 0/0 .text            __dt__11daNpc_ykM_cFv */
 daNpc_ykM_c::~daNpc_ykM_c() {
-    if (mpMorf[0] != NULL) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != NULL) {
+        mAnm_p[0]->stopZelAnime();
     }
 
     if (mFishModelMorf != NULL) {
@@ -517,7 +517,7 @@ cPhs__Step daNpc_ykM_c::create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -400.0f, -100.0f, -500.0f, 400.0f, 600.0f, 500.0f);
 
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -568,12 +568,12 @@ int daNpc_ykM_c::CreateHeap() {
     }
 
     int sp34 = 0x11020284;
-    mpMorf[0] = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp34);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    mAnm_p[0] = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp34);
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    model = mpMorf[0]->getModel();
+    model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < ((J3DModelData*)mdlData_p)->getJointNum(); i++) {
         ((J3DModelData*)mdlData_p)->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -674,7 +674,7 @@ int daNpc_ykM_c::Execute() {
 
 /* 80B54110-80B541F8 000D10 00E8+00 1/1 0/0 0/0 .text            Draw__11daNpc_ykM_cFv */
 int daNpc_ykM_c::Draw() {
-    J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
+    J3DModelData* mdlData_p = mAnm_p[0]->getModel()->getModelData();
 
     if (mpMatAnm[0] != NULL) {
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
@@ -1316,7 +1316,7 @@ void daNpc_ykM_c::setAttnPos() {
     }
 
     f32 fVar1 = cM_s2rad((s16)(mCurAngle.y - field_0xd7e.y));
-    mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp104,
+    mJntAnm.setParam(this, mAnm_p[0]->getModel(), &sp104,
         getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
         field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleX_min,
         field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleX_max,
@@ -1334,7 +1334,7 @@ void daNpc_ykM_c::setAttnPos() {
         mJntAnm.calcJntRad(0.2f, 1.0f, fVar1);
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     J3DModelData* modelData = model->getModelData();
     cXyz sp11c(current.pos);
     sp11c.y += field_0x1568;
@@ -1344,21 +1344,21 @@ void daNpc_ykM_c::setAttnPos() {
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     model->setUserArea((uintptr_t)this);
 
-    mpMorf[0]->onMorfNone();
+    mAnm_p[0]->onMorfNone();
     if (cM3d_IsZero(field_0xdfc) != false) {
-        mpMorf[0]->offMorfNone();
+        mAnm_p[0]->offMorfNone();
     }
 
     if ((mAnmFlags & 0x400) != 0) {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
     }
 
-    mpMorf[0]->modelCalc();
+    mAnm_p[0]->modelCalc();
 
     if (mFishModelMorf != NULL) {
         cXyz sp128;
         mFishModelMorf->play(0, 0);
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(JNT_FINGERR));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(JNT_FINGERR));
         mDoMtx_stack_c::multVecZero(&sp128);
 
         Mtx mtx;
@@ -1384,7 +1384,7 @@ void daNpc_ykM_c::setAttnPos() {
         }
     }
 
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&sp104, &eyePos);
 
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
@@ -1440,7 +1440,7 @@ void daNpc_ykM_c::setCollision() {
             field_0xf94[i].SetAtSPrm(atSPrm);
             field_0xf94[i].OnTgNoHitMark();
 
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(jointNo[i]));
+            mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(jointNo[i]));
 
             if (jointNo[i] == 29) {
                 sp28.set(170.0f, 0.0f, 0.0f);
@@ -1463,7 +1463,7 @@ void daNpc_ykM_c::setCollision() {
         field_0xe58.SetH(mCylH);
         field_0xe58.SetR(mWallR);
 
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(JNT_CENTER));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(JNT_CENTER));
         mDoMtx_stack_c::multVecZero(&sp28);
         sp28.y = current.pos.y;
         field_0xe58.SetC(sp28);
@@ -1493,7 +1493,7 @@ int daNpc_ykM_c::drawDbgInfo() {
 
 /* 80B56424-80B56624 003024 0200+00 1/0 0/0 0/0 .text            drawOtherMdl__11daNpc_ykM_cFv */
 void daNpc_ykM_c::drawOtherMdl() {
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
 
     if (mFishModelMorf != NULL) {
         g_env_light.setLightTevColorType_MAJI(mFishModelMorf->getModel(), &tevStr);
@@ -1621,7 +1621,7 @@ bool daNpc_ykM_c::afterSetMotionAnm(int i_index, int i_attr, f32 i_morf, int par
 
     switch (i_index) {
         case 0x23:
-            mpMorf[0]->setStartFrame(15.0f);
+            mAnm_p[0]->setStartFrame(15.0f);
             break;
     }
 
@@ -1847,11 +1847,11 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
             mJntAnm.lookNone(0);
 
             if (mMotionSeqMngr.getStepNo() == 0) {
-                if (mpMorf[0]->checkFrame(65.0f)) {
+                if (mAnm_p[0]->checkFrame(65.0f)) {
                     rv = 1;
-                } else if (mpMorf[0]->checkFrame(50.0f)) {
+                } else if (mAnm_p[0]->checkFrame(50.0f)) {
                     mSound.startCreatureVoice(Z2SE_YKM_V_ATTACK_TREE, -1);
-                } else if (mpMorf[0]->checkFrame(62.0f)) {
+                } else if (mAnm_p[0]->checkFrame(62.0f)) {
                     i_sePos.set(-14483.0f, 2023.0f, -9768.0f);
                     mDoAud_seStart(Z2SE_YM_ATTACK_TREE, &i_sePos, 0, 0);
                     dComIfGp_getVibration().StartShock(5, 15, cXyz(0.0f, 1.0f, 0.0f));
@@ -1883,7 +1883,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
         case 5:
             if (mMotionSeqMngr.checkEndSequence()) {
                 rv = 1;
-            } else if (mpMorf[0]->checkFrame(27.0f)) {
+            } else if (mAnm_p[0]->checkFrame(27.0f)) {
                 mSound.startCreatureSound(Z2SE_YM_RIDE_LEAF, 0, -1);
             }
             break;
@@ -2130,7 +2130,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
             }
 
             if (mMotionSeqMngr.getStepNo() == 0) {
-                if (mpMorf[0]->checkFrame(daNpc_ykM_Param_c::m.skip_frame)) {
+                if (mAnm_p[0]->checkFrame(daNpc_ykM_Param_c::m.skip_frame)) {
                     mSound.startCreatureVoice(Z2SE_YKM_V_GETFOOD, -1);
                     fVar1 = daNpc_ykM_Param_c::m.fly_speed;
                     iVar1 = cM_deg2s(daNpc_ykM_Param_c::m.fly_angle);
@@ -2144,7 +2144,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
         case 5:
             if (mMotionSeqMngr.getNo() == MOTION_PICKUP) {
                 if (mMotionSeqMngr.getStepNo() == 0) {
-                    if (mpMorf[0]->checkFrame(19.0f)) {
+                    if (mAnm_p[0]->checkFrame(19.0f)) {
                         field_0x1577 = 1;
                         actor_p = (daObj_Gadget_c*)mActorMngr[3].getActorP();
                         if (actor_p != NULL) {
@@ -2160,7 +2160,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
         case 7:
             if (mMotionSeqMngr.getNo() == MOTION_POUR) {
                 if (mMotionSeqMngr.getStepNo() == 0) {
-                    if (mpMorf[0]->checkFrame(18.0f)) {
+                    if (mAnm_p[0]->checkFrame(18.0f)) {
                         if (field_0x1577 != 0) {
                             mDoAud_seStart(Z2SE_CM_BODYFALL_WATER_S, NULL, 0, 0);
                         }
@@ -2196,7 +2196,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
     if (prm == 5 || prm == 6) {
         if (field_0x1577 != 0) {
             field_0x1575 = 1;
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(JNT_FINGERR));
+            mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(JNT_FINGERR));
             mDoMtx_stack_c::multVecZero(&field_0xd6c);
             mJntAnm.lookPos(&field_0xd6c, 0);
         } else {
@@ -2336,7 +2336,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
             }
 
             if (mMotionSeqMngr.getStepNo() == 0) {
-                if (mpMorf[0]->checkFrame(daNpc_ykM_Param_c::m.skip_frame)) {
+                if (mAnm_p[0]->checkFrame(daNpc_ykM_Param_c::m.skip_frame)) {
                     mSound.startCreatureVoice(Z2SE_YKM_V_GETFOOD, -1);
                     fVar1 = daNpc_ykM_Param_c::m.fly_speed;
                     iVar1 = cM_deg2s(daNpc_ykM_Param_c::m.fly_angle);
@@ -2350,7 +2350,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
         case 5:
             if (mMotionSeqMngr.getNo() == MOTION_PICKUP) {
                 if (mMotionSeqMngr.getStepNo() == 0) {
-                    if (mpMorf[0]->checkFrame(19.0f)) {
+                    if (mAnm_p[0]->checkFrame(19.0f)) {
                         field_0x1578 = 1;
                         actor_p = (daObj_Gadget_c*)mActorMngr[4].getActorP();
                         if (actor_p != NULL) {
@@ -2365,7 +2365,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
         case 7:
             if (mMotionSeqMngr.getNo() == MOTION_POUR) {
                 if (mMotionSeqMngr.getStepNo() == 0) {
-                    if (mpMorf[0]->checkFrame(18.0f)) {
+                    if (mAnm_p[0]->checkFrame(18.0f)) {
                         if (field_0x1578 != 0) {
                             mDoAud_seStart(Z2SE_CM_BODYFALL_WATER_S, NULL, 0, 0);
                         }
@@ -2401,7 +2401,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
     if (prm == 5 || prm == 6) {
         if (field_0x1578 != 0) {
             field_0x1575 = 1;
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(JNT_FINGERR));
+            mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(JNT_FINGERR));
             mDoMtx_stack_c::multVecZero(&field_0xd6c);
             mJntAnm.lookPos(&field_0xd6c, 0);
         } else {

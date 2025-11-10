@@ -38,13 +38,13 @@ public:
     int Draw() {
         if (mDraw) {
             Z_BufferChk();
-            J3DModel* model = mpMorfSO->getModel();
+            J3DModel* model = mAnm_pSO->getModel();
             g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
             g_env_light.setLightTevColorType_MAJI(model, &tevStr);
             mpBtkAnm->entry(model->getModelData());
             mpBrkAnm->entry(model->getModelData());
             fopAcM_setEffectMtx(this, model->getModelData());
-            mpMorfSO->entryDL();
+            mAnm_pSO->entryDL();
             if (field_0x808 == 0) {
                 dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 15.0f, mAcch.m_gnd, 0,
                                          -0.6f, dDlst_shadowControl_c::getSimpleTex());
@@ -86,7 +86,7 @@ private:
     /* 0x990 */ u8 field_0x990;
     /* 0x994 */ Z2Creature mCreatureSound;
     /* 0xA24 */ dBgS_AcchCir field_0xa24;
-    /* 0xA64 */ mDoExt_McaMorfSO* mpMorfSO;
+    /* 0xA64 */ mDoExt_McaMorfSO* mAnm_pSO;
     /* 0xA68 */ request_of_phase_process_class mPhase;
     /* 0xA70 */ u8 field_0xa70;
 };

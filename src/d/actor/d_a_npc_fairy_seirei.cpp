@@ -74,7 +74,7 @@ daNpc_FairySeirei_c::cutFunc daNpc_FairySeirei_c::mCutList[1] = {
 /* 8053FF6C-8054006C 0000EC 0100+00 1/0 0/0 0/0 .text            __dt__19daNpc_FairySeirei_cFv */
 daNpc_FairySeirei_c::~daNpc_FairySeirei_c() {
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
 }
 

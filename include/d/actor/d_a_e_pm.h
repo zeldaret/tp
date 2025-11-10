@@ -134,7 +134,7 @@ private:
     /* 0x6FE */ bool mBossLightOn;
     /* 0x6FF */ bool field_0x6ff;
     /* 0x700 */ mDoExt_btpAnm* mpEyeAnm;
-    /* 0x704 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x704 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x708 */ mDoExt_McaMorf* mpTrumpetMorf;
     /* 0x70C */ J3DModel* mpLampModel;
     /* 0x710 */ mDoExt_McaMorf* mpGlowEffectMorf;

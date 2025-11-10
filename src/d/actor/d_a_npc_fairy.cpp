@@ -332,19 +332,19 @@ BOOL _Fairy_Feather_c::loadModel() {
     JUT_ASSERT(674, NULL != mdlData_p);
 
     u32 uVar1 = 0x11000284;
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_None, uVar1);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p= new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_None, uVar1);
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         // ----------------Failed to load wing model\n
         OS_REPORT("---------------- 羽モデル読み込み失敗\n");
         return 0;
     }
 
-    J3DModel* mdl_p = mpMorf->getModel();
+    J3DModel* mdl_p = mAnm_p->getModel();
     for (u16 i = 0; i < 26; i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -385,8 +385,8 @@ BOOL _Fairy_Feather_c::setAnm(int i_idx) {
         i_morf = 12.0f;
     }
 
-    mpMorf->setAnm(anm, sBckPrm[i_idx].attr, i_morf, 1.0f, 0.0f, -1.0f);
-    mpMorf->setPlaySpeed(1.0f);
+    mAnm_p->setAnm(anm, sBckPrm[i_idx].attr, i_morf, 1.0f, 0.0f, -1.0f);
+    mAnm_p->setPlaySpeed(1.0f);
     mPrevAnm = i_idx;
 
     return TRUE;
@@ -404,7 +404,7 @@ BOOL _Fairy_Feather_c::setBrk(int i_idx) {
         return FALSE;
     }
 
-    return mBrkAnm.init(mpMorf->getModel()->getModelData(), brk, 1, sBrkPrm[i_idx].attr, 1.0f, 0, -1);
+    return mBrkAnm.init(mAnm_p->getModel()->getModelData(), brk, 1, sBrkPrm[i_idx].attr, 1.0f, 0, -1);
 }
 
 /* 809B1EA8-809B1F64 000488 00BC+00 1/1 0/0 0/0 .text            setBtk__16_Fairy_Feather_cFi */
@@ -419,7 +419,7 @@ BOOL _Fairy_Feather_c::setBtk(int i_idx) {
         return FALSE;
     }
 
-    return mBtkAnm.init(mpMorf->getModel()->getModelData(), btk, 1, sBtkPrm[i_idx].attr, 1.0f, 0, -1);
+    return mBtkAnm.init(mAnm_p->getModel()->getModelData(), btk, 1, sBtkPrm[i_idx].attr, 1.0f, 0, -1);
 }
 
 /* 809B1F64-809B1F6C 000544 0008+00 1/1 0/0 0/0 .text            ctrlJointCallBack__16_Fairy_Feather_cFP8J3DJointi */
@@ -429,17 +429,17 @@ int _Fairy_Feather_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 
 /* 809B1F6C-809B1FD4 00054C 0068+00 1/1 0/0 0/0 .text            connect__16_Fairy_Feather_cFP13daNpc_Fairy_c */
 void _Fairy_Feather_c::connect(daNpc_Fairy_c* i_this) {
-    J3DModel* mdl_p = i_this->mpMorf[0]->getModel();
+    J3DModel* mdl_p = i_this->mAnm_p[0]->getModel();
     mDoMtx_stack_c::copy(mdl_p->getAnmMtx(JNT_FEATHER1AL1));
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
 }
 
 /* 809B1FD4-809B2250 0005B4 027C+00 1/1 0/0 0/0 .text draw__16_Fairy_Feather_cFP13daNpc_Fairy_c */
 void _Fairy_Feather_c::draw(daNpc_Fairy_c* i_this) {
     cXyz pos(fopAcM_GetPosition(i_this));
     dKy_tevstr_c tevStr = i_this->tevStr;
-    J3DModel* mdl_p = mpMorf->getModel();
+    J3DModel* mdl_p = mAnm_p->getModel();
 
     g_env_light.settingTevStruct(0, &pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mdl_p, &tevStr);
@@ -447,7 +447,7 @@ void _Fairy_Feather_c::draw(daNpc_Fairy_c* i_this) {
     J3DModelData* mdlData_p = mdl_p->getModelData();
     mBtkAnm.entry(mdlData_p);
     mBrkAnm.entry(mdlData_p);
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
 
     mBrkAnm.remove(mdlData_p);
     mBtkAnm.remove(mdlData_p);
@@ -524,7 +524,7 @@ daNpc_Fairy_c::~daNpc_Fairy_c() {
     OS_REPORT("|%06d:%x|daNpc_Fairy_c -> デストラクト\n", g_Counter.mCounter0, this);
 
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
 
     #if DEBUG
@@ -563,8 +563,8 @@ cPhs__Step daNpc_Fairy_c::Create() {
 
         OS_REPORT("\n");
 
-        J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* mdlData_p = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -200.0f, -400.0f, 300.0f, 200.0f, 200.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -609,17 +609,17 @@ int daNpc_Fairy_c::CreateHeap() {
     JUT_ASSERT(1113, NULL != mdlData_p);
 
     u32 uVar1 = 0x11020285;
-    mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_None, uVar1);
-    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
-        mpMorf[0]->stopZelAnime();
-        mpMorf[0] = NULL;
+    mAnm_p[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_None, uVar1);
+    if (mAnm_p[0] != NULL && mAnm_p[0]->getModel() == NULL) {
+        mAnm_p[0]->stopZelAnime();
+        mAnm_p[0] = NULL;
     }
 
-    if (mpMorf[0] == NULL) {
+    if (mAnm_p[0] == NULL) {
         return 0;
     }
 
-    J3DModel* mdl_p = mpMorf[0]->getModel();
+    J3DModel* mdl_p = mAnm_p[0]->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -646,7 +646,7 @@ int daNpc_Fairy_c::CreateHeap() {
 
 /* 809B2B44-809B2C20 001124 00DC+00 1/1 0/0 0/0 .text            setAnmData__13daNpc_Fairy_cFv */
 void daNpc_Fairy_c::setAnmData() {
-    J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
+    J3DModelData* mdlData_p = mAnm_p[0]->getModel()->getModelData();
     J3DAnmColor* bpk = getColorAnmP(l_resNameList[1], BPK_FAIRY);
     if (bpk != NULL) {
         setBpkAnm(bpk, mdlData_p, 1.0f, J3DFrameCtrl::EMode_LOOP);
@@ -678,7 +678,7 @@ bool daNpc_Fairy_c::setMotionAnm(int i_idx, f32 i_morf, int param_3) {
         anm = getTrnsfrmKeyAnmP(mpArcNames[anmData.mBckArcIdx], anmData.mBckFileIdx);
     }
 
-    if (param_3 != 0 && anm == mpMorf[0]->getAnm()) {
+    if (param_3 != 0 && anm == mAnm_p[0]->getAnm()) {
         mAnmFlags |= ANM_PLAY_MORF;
         mMorfLoops = 0;
         unused = 1;
@@ -773,7 +773,7 @@ int daNpc_Fairy_c::Draw() {
     }
 
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* mdlData_p = mAnm_p[0]->getModel()->getModelData();
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -1115,14 +1115,14 @@ void daNpc_Fairy_c::setAttnPos() {
     mStagger.calc(FALSE);
     f32 rad = cM_s2rad((s16)(mCurAngle.y - field_0xd7e.y));
     
-    mJntAnm.setParam(this, mpMorf[0]->getModel(), &pos, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+    mJntAnm.setParam(this, mAnm_p[0]->getModel(), &pos, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
                      mHIO->m.common.body_angleX_min, mHIO->m.common.body_angleX_max, mHIO->m.common.body_angleY_min, mHIO->m.common.body_angleY_max,
                      mHIO->m.common.head_angleX_min, mHIO->m.common.head_angleX_max, mHIO->m.common.head_angleY_min, mHIO->m.common.head_angleY_max,
                      mHIO->m.common.neck_rotation_ratio, rad, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, rad);
     setMtx();
 
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&pos, &eyePos);
     eyePos.y += 15.0f;
 
@@ -1675,7 +1675,7 @@ int daNpc_Fairy_c::_cutAppear_20F_01_Main(int const& i_cutId) {
             break;
 
         case 0x1E:
-            if (mpMorf[0]->isStop()) {
+            if (mAnm_p[0]->isStop()) {
                 mMotionSeqMngr.setNo(MOT_WAIT, -1.0f, FALSE, 0);
                 rv = 1;
             }
@@ -1766,7 +1766,7 @@ int daNpc_Fairy_c::_cutAppear_20F_02_Main(int const& i_cutId) {
             break;
 
         case 0x1E:
-            if (mpMorf[0]->isStop()) {
+            if (mAnm_p[0]->isStop()) {
                 mMotionSeqMngr.setNo(MOT_WAIT, -1.0f, FALSE, 0);
                 rv = 1;
             }
@@ -2182,7 +2182,7 @@ int daNpc_Fairy_c::_cutAppear_50F_01_Init(int const& i_cutId, int const& i_msgNo
         }
 
         case 0x33:
-            mpMorf[0]->setFrame(0.0f);
+            mAnm_p[0]->setFrame(0.0f);
             daPy_getPlayerActorClass()->setAnimeFrame(tREG_F(2));
             break;
 
@@ -2351,7 +2351,7 @@ int daNpc_Fairy_c::_cutAppear_50F_02_Init(int const& i_cutId, int const& i_msgNo
         }
 
         case 0x21:
-            mpMorf[0]->setFrameF(0.0f);
+            mAnm_p[0]->setFrameF(0.0f);
             daPy_getPlayerActorClass()->setAnimeFrame(tREG_F(2));
             break;
             
@@ -2624,7 +2624,7 @@ int daNpc_Fairy_c::_cutAppear_50F_04_Init(int const& i_cutId, int const& i_msgNo
         }
 
         case 0x2A:
-            mpMorf[0]->setFrameF(0.0f);
+            mAnm_p[0]->setFrameF(0.0f);
             daPy_getPlayerActorClass()->setAnimeFrame(tREG_F(2));
             break;
 
@@ -2787,7 +2787,7 @@ int daNpc_Fairy_c::_cutAppear_50F_05_Init(int const& i_cutId, int const& i_msgNo
         }
 
         case 0x33:
-            mpMorf[0]->setFrameF(0.0f);
+            mAnm_p[0]->setFrameF(0.0f);
             daPy_getPlayerActorClass()->setAnimeFrame(tREG_F(2));
             break;
 

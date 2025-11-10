@@ -33,8 +33,8 @@ public:
                 mpModel->setBaseTRMtx(i_mtx);
             }
         } else {
-            if (mpMorf != NULL) {
-                mpMorf->getModel()->setBaseTRMtx(i_mtx);
+            if (mAnm_p!= NULL) {
+                mAnm_p->getModel()->setBaseTRMtx(i_mtx);
             }
         }
     }
@@ -51,7 +51,7 @@ public:
     /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ mDoExt_brkAnm* mpBrkAnm;
     /* 0x578 */ mDoExt_btkAnm* mpBtkAnm;
-    /* 0x57C */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x57C */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x580 */ f32 mScaleF;
     /* 0x584 */ u8 field_0x584[2];
     /* 0x586 */ s16 mShadowMode;

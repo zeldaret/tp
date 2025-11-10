@@ -975,7 +975,7 @@ int daAlink_c::setOctaIealHangPos() {
         return 0;
     }
 
-    mDoMtx_stack_c::copy(boss->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0));
+    mDoMtx_stack_c::copy(boss->mBodyParts[0].mAnm_p->getModel()->getAnmMtx(0));
     mDoMtx_stack_c::transM(0.0f, 424.8800048828125f, 347.0299987792969f);
     mDoMtx_stack_c::multVecZero(&current.pos);
     mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &shape_angle);

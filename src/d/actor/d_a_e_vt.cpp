@@ -327,11 +327,11 @@ void daE_VA_c::calcJointSleeve() {
     csXyz sp128;
     cXyz sp90(field_0x13b8);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_LEFT_COTH_01));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_LEFT_COTH_01));
     mDoMtx_stack_c::multVecZero(&field_0x13b8);
     mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &sp128);
 
-    f32 anm_frame = mpMorf->getFrame();
+    f32 anm_frame = mAnm_p->getFrame();
     if ((checkBck(ANM_SUBS_ATTACK_A1_e) && anm_frame >= 74.0f) ||
         (checkBck(ANM_SUBS_ATTACK_A3_e) && anm_frame <= 11.0f) ||
         (checkBck(ANM_TRANS_ATTACK_A1_e) && anm_frame >= 60.0f) ||
@@ -460,7 +460,7 @@ void daE_VA_c::calcJointSleeve() {
 
 /* 807C3264-807C37F8 000D64 0594+00 1/1 0/0 0/0 .text            draw__8daE_VA_cFv */
 int daE_VA_c::draw() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
 
     if (!mPlayEndEf) {
@@ -576,14 +576,14 @@ static int daE_VA_Draw(daE_VA_c* i_this) {
 
 /* 807C3818-807C38BC 001318 00A4+00 19/19 0/0 0/0 .text            setBck__8daE_VA_cFiUcff */
 void daE_VA_c::setBck(int i_anmID, u8 i_attr, f32 i_morf, f32 i_rate) {
-    mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_VA", i_anmID), i_attr, i_morf, i_rate,
+    mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_VA", i_anmID), i_attr, i_morf, i_rate,
                    0.0f, -1.0f);
 }
 
 /* 807C38BC-807C3918 0013BC 005C+00 8/8 0/0 0/0 .text            checkBck__8daE_VA_cFi */
 bool daE_VA_c::checkBck(int i_anmID) {
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes("E_VA", i_anmID);
-    return mpMorf->getAnm() == pbck ? TRUE : FALSE;
+    return mAnm_p->getAnm() == pbck ? TRUE : FALSE;
 }
 
 /* 807C3918-807C39C4 001418 00AC+00 21/21 0/0 0/0 .text            setActionMode__8daE_VA_cFii */
@@ -998,7 +998,7 @@ static u16 va_bugs_eff_id[] = {
 
 /* 807C4DFC-807C4F10 0028FC 0114+00 1/1 0/0 0/0 .text            setBugsEffect__8daE_VA_cFv */
 void daE_VA_c::setBugsEffect() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     JGeometry::TVec3<f32> scale(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);
 
     for (int i = 0; i < 12; i++) {
@@ -1758,17 +1758,17 @@ void daE_VA_c::executeDemoOp() {
         sp38.set(950.0f, 50.0f, 550.0f);
         cLib_chasePos(&mDemoCamEye, sp38, nREG_F(19) + 15.0f);
 
-        if (mpMorf->checkFrame(50.0f)) {
+        if (mAnm_p->checkFrame(50.0f)) {
             player->changeDemoMode(0x22, 0, 0, 0);
         }
 
-        if (mpMorf->checkFrame(67.0f)) {
+        if (mAnm_p->checkFrame(67.0f)) {
             setWeponLandEffect();
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_IMPACT, 0, -1);
             dComIfGp_getVibration().StartShock(5, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             camera->mCamera.Reset(mDemoCamCenter, mDemoCamEye, mDemoCamBank, 0);
             camera->mCamera.Start();
             camera->mCamera.SetTrimSize(0);
@@ -1859,7 +1859,7 @@ void daE_VA_c::executeClearChase() {
 
 /* 807C783C-807C7A8C 00533C 0250+00 1/1 0/0 0/0 .text            executeClearAttack__8daE_VA_cFv */
 void daE_VA_c::executeClearAttack() {
-    f32 anm_frame = mpMorf->getFrame();
+    f32 anm_frame = mAnm_p->getFrame();
     cLib_addCalc(&current.pos.y, 0.0f, 0.1f, 10.0f, 1.0f);
 
     switch (mMode) {
@@ -1869,11 +1869,11 @@ void daE_VA_c::executeClearAttack() {
         mMode = 1;
         return;
     case 1:
-        if (mpMorf->checkFrame(32.0f)) {
+        if (mAnm_p->checkFrame(32.0f)) {
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_ATK1, 0, -1);
         }
 
-        if (mpMorf->checkFrame(36.0f)) {
+        if (mAnm_p->checkFrame(36.0f)) {
             setWeponLandEffect();
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_IMPACT, 0, -1);
             dComIfGp_getVibration().StartShock(5, 31, cXyz(0.0f, 1.0f, 0.0f));
@@ -1885,7 +1885,7 @@ void daE_VA_c::executeClearAttack() {
             offSwordShield();
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_CLEAR_CHASE_e, 0);
             mDemoModeTimer = 150;
         }
@@ -1925,7 +1925,7 @@ void daE_VA_c::executeTransWait() {
         cLib_addCalc(&current.pos.y, 0.0f, 0.1f, 10.0f, 1.0f);
         field_0x1391 = 1;
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_TRANS_CHASE_e, 0);
         }
         break;
@@ -1992,7 +1992,7 @@ void daE_VA_c::executeTransChase() {
 
 /* 807C7ED4-807C839C 0059D4 04C8+00 1/1 0/0 0/0 .text            executeTransAttack__8daE_VA_cFv */
 void daE_VA_c::executeTransAttack() {
-    f32 anm_frame = mpMorf->getFrame();
+    f32 anm_frame = mAnm_p->getFrame();
 
     switch (mMode) {
     case 0:
@@ -2003,11 +2003,11 @@ void daE_VA_c::executeTransAttack() {
         mMode = 2;
         break;
     case 2:
-        if (mpMorf->checkFrame(22.0f)) {
+        if (mAnm_p->checkFrame(22.0f)) {
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_ATK1, 0, -1);
         }
 
-        if (mpMorf->checkFrame(26.0f)) {
+        if (mAnm_p->checkFrame(26.0f)) {
             setWeponLandEffect();
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_IMPACT, 0, -1);
             dComIfGp_getVibration().StartShock(5, 31, cXyz(0.0f, 1.0f, 0.0f));
@@ -2019,7 +2019,7 @@ void daE_VA_c::executeTransAttack() {
             offSwordShield();
         }
 
-        if (mpMorf->checkFrame(20.0f)) {
+        if (mAnm_p->checkFrame(20.0f)) {
             mGlowBody = 1;
             mBodyCyls[0].OnTgSetBit();
             mBodyCyls[1].OnTgSetBit();
@@ -2027,18 +2027,18 @@ void daE_VA_c::executeTransAttack() {
             mBodyCyls[1].SetTgType(0xD8FBFDFF);
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(ANM_TRANS_ATTACK_A3_e, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
             mSound.startCreatureVoice(Z2SE_EN_VA_V_ATK3, -1);
             mMode = 4;
         }
         break;
     case 4:
-        if (mpMorf->checkFrame(20.0f)) {
+        if (mAnm_p->checkFrame(20.0f)) {
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_ATK2, 0, -1);
         }
 
-        if (mpMorf->checkFrame(53.0f)) {
+        if (mAnm_p->checkFrame(53.0f)) {
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_ATK3, 0, -1);
             mSound.startCreatureVoice(Z2SE_EN_VA_V_ATK3, -1);
         }
@@ -2047,13 +2047,13 @@ void daE_VA_c::executeTransAttack() {
             offSwordShield();
         }
 
-        if (mpMorf->checkFrame(40.0f)) {
+        if (mAnm_p->checkFrame(40.0f)) {
             mGlowBody = 0;
             mBodyCyls[0].OffTgSetBit();
             mBodyCyls[1].OffTgSetBit();
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_TRANS_CHASE_e, 0);
             mDemoModeTimer = 90;
         }
@@ -2080,7 +2080,7 @@ void daE_VA_c::executeTransBiteDamage() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz sp38;
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK_02));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK_02));
     mDoMtx_stack_c::multVecZero(&sp38);
 
     switch (mMode) {
@@ -2132,10 +2132,10 @@ void daE_VA_c::executeTransBiteDamage() {
         }
 
         if (checkBck(ANM_TRANS_NECK_DMG_e)) {
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setBck(ANM_TRANS_ATTACK_A2_e, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
             }
-        } else if (checkBck(ANM_TRANS_ATTACK_A2_e) && mpMorf->checkFrame(22.0f)) {
+        } else if (checkBck(ANM_TRANS_ATTACK_A2_e) && mAnm_p->checkFrame(22.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_VA_V_ATK2, -1);
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_ATK2, 0, -1);
         }
@@ -2154,7 +2154,7 @@ void daE_VA_c::executeTransBiteDamage() {
         }
         break;
     case 3:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_TRANS_CHASE_e, 0);
             return;
         }
@@ -2197,19 +2197,19 @@ void daE_VA_c::executeTransDamage() {
         mBodyCyls[1].SetTgType(0xD8FBFDFF);
         /* fallthrough */
     case 1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(ANM_TRANS_NECK_PAT_e, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
             mMode = 2;
         }
         break;
     case 2:
-        if (mpMorf->checkFrame(30.0f)) {
+        if (mAnm_p->checkFrame(30.0f)) {
             mGlowBody = 0;
             mBodyCyls[0].OffTgSetBit();
             mBodyCyls[1].OffTgSetBit();
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_TRANS_CHASE_e, 0);
         }
     }
@@ -2224,7 +2224,7 @@ void daE_VA_c::executeTransThrough() {
         mMode = 1;
         break;
     case 1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_TRANS_CHASE_e, 0);
         }
         break;
@@ -2321,7 +2321,7 @@ void daE_VA_c::executeOpaciWait() {
         camera->Set(mDemoCamCenter, mDemoCamEye, mDemoCamBank, 0);
         cLib_addCalcAngleS(&shape_angle.y, -0x1000, 8, 0x100, 0x100);
 
-        if (mpMorf->checkFrame(90.0f)) {
+        if (mAnm_p->checkFrame(90.0f)) {
             mMode = 14;
             dComIfGp_getVibration().StartQuake(2, 31, cXyz(0.0f, 1.0f, 0.0f));
             field_0x14b0 = 180.0f;
@@ -2334,11 +2334,11 @@ void daE_VA_c::executeOpaciWait() {
 
         camera->Set(mDemoCamCenter, mDemoCamEye, mDemoCamBank, 0);
 
-        if (mpMorf->checkFrame(120.0f)) {
+        if (mAnm_p->checkFrame(120.0f)) {
             dComIfGp_getVibration().StopQuake(31);
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             camera->Reset(mDemoCamCenter, mDemoCamEye);
             camera->Start();
             camera->SetTrimSize(0);
@@ -2490,25 +2490,25 @@ void daE_VA_c::executeOpaciFly() {
         }
         break;
     case 12:
-        if (mpMorf->checkFrame(42.0f)) {
+        if (mAnm_p->checkFrame(42.0f)) {
             mSound.startCreatureSound(Z2SE_EN_VA_ATK_FLY, 0, -1);
             mSound.startCreatureVoice(Z2SE_EN_VA_V_ATK_FLY, -1);
         }
 
-        if (mpMorf->checkFrame(62.0f)) {
+        if (mAnm_p->checkFrame(62.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_VA_V_ATK_FLY2, -1);
             mSound.startCreatureSound(Z2SE_EN_VA_ATK_FLY2, 0, -1);
         }
 
-        if (mpMorf->checkFrame(47.0f)) {
+        if (mAnm_p->checkFrame(47.0f)) {
             field_0x1228[0] = 1;
         }
 
-        if (mpMorf->checkFrame(67.0f)) {
+        if (mAnm_p->checkFrame(67.0f)) {
             field_0x1228[1] = 1;
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(ANM_FLOAT_WAIT_e, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
             mMode = 2;
             field_0x1348 = cM_rndF(30.0f) + 90.0f;
@@ -2533,7 +2533,7 @@ void daE_VA_c::executeOpaciDamage() {
         speedF = 0.0f;
         /* fallthrough */
     case 1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             gravity = -5.0f;
             maxFallSpeed = -50.0f;
             mMode = 2;
@@ -2552,7 +2552,7 @@ void daE_VA_c::executeOpaciDamage() {
         mMode = 11;
         /* fallthrough */
     case 11:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_OPACI_FLY_e, 0);
         }
         break;
@@ -2699,7 +2699,7 @@ void daE_VA_c::executeOpaciChase() {
 
 /* 807CA364-807CA73C 007E64 03D8+00 1/1 0/0 0/0 .text            executeOpaciAttack__8daE_VA_cFv */
 void daE_VA_c::executeOpaciAttack() {
-    f32 anm_frame = mpMorf->getFrame();
+    f32 anm_frame = mAnm_p->getFrame();
 
     mBodyCyls[0].OnTgSetBit();
     mBodyCyls[1].OnTgSetBit();
@@ -2713,11 +2713,11 @@ void daE_VA_c::executeOpaciAttack() {
         mMode = 1;
         /* fallthrough */
     case 1:
-        if (mpMorf->checkFrame(22.0f)) {
+        if (mAnm_p->checkFrame(22.0f)) {
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_ATK1, 0, -1);
         }
 
-        if (mpMorf->checkFrame(27.0f)) {
+        if (mAnm_p->checkFrame(27.0f)) {
             setWeponLandEffect();
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_IMPACT, 0, -1);
             dComIfGp_getVibration().StartShock(5, 31, cXyz(0.0f, 1.0f, 0.0f));
@@ -2735,24 +2735,24 @@ void daE_VA_c::executeOpaciAttack() {
             field_0x1386 = 1;
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(ANM_SUBS_ATTACK_A3_e, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
             mSound.startCreatureVoice(Z2SE_EN_VA_V_ATK3, -1);
             mMode = 2;
         }
         break;
     case 2:
-        if (mpMorf->checkFrame(12.0f)) {
+        if (mAnm_p->checkFrame(12.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_VA_V_ATK3, -1);
             mSound.startCreatureSound(Z2SE_EN_VA_SWD_ATK3, 0, -1);
         }
 
-        if (mpMorf->getFrame() <= 15.0f) {
+        if (mAnm_p->getFrame() <= 15.0f) {
             offSwordShield();
             field_0x1386 = 1;
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             if (mFadeAwayTimer == 0) {
                 Z2GetAudioMgr()->changeSubBgmStatus(1);
                 setActionMode(ACTION_OPACI_FADE_AWAY_e, 1);
@@ -2782,11 +2782,11 @@ void daE_VA_c::executeOpaciDown() {
         dComIfGs_onOneZoneSwitch(6, fopAcM_GetRoomNo(this));
         /* fallthrough */
     case 2:
-        if (mpMorf->getFrame() < 40.0f) {
+        if (mAnm_p->getFrame() < 40.0f) {
             mBodyCyls[1].OffTgSetBit();
         }
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(ANM_SUBS_DOWN_WAIT_e, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
             mMode = 3;
         }
@@ -2796,7 +2796,7 @@ void daE_VA_c::executeOpaciDown() {
         mMode = 3;
         /* fallthrough */
     case 3:
-        if (mpMorf->checkFrame(1.0f)) {
+        if (mAnm_p->checkFrame(1.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_VA_V_DYING, -1);
         }
 
@@ -2821,7 +2821,7 @@ void daE_VA_c::executeOpaciDown() {
     case 4:
         mBodyCyls[1].OffTgSetBit();
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_OPACI_FLY_e, 0);
             return;
         }
@@ -2884,7 +2884,7 @@ void daE_VA_c::executeOpaciDownDamage() {
 
         mMode = 5;
     case 5:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_OPACI_DOWN_e, 1);
             field_0x1381 = 1;
         }
@@ -2901,7 +2901,7 @@ void daE_VA_c::executeOpaciFlip() {
         daPy_getPlayerActorClass()->setThrowDamage(shape_angle.y, 20.0f, 40.0f, 1, 0, 0);
         /* fallthrough */
     case 1:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_OPACI_CHASE_e, 0);
         }
     }
@@ -2918,11 +2918,11 @@ void daE_VA_c::executeOpaciFadeAway() {
     switch (mMode) {
     case 10:
         if (checkBck(ANM_TRANS_ATTACK_A3_e)) {
-            if (mpMorf->checkFrame(20.0f)) {
+            if (mAnm_p->checkFrame(20.0f)) {
                 mSound.startCreatureSound(Z2SE_EN_VA_SWD_ATK2, 0, -1);
             }
 
-            if (mpMorf->checkFrame(53.0f)) {
+            if (mAnm_p->checkFrame(53.0f)) {
                 mSound.startCreatureSound(Z2SE_EN_VA_SWD_ATK3, 0, -1);
                 mSound.startCreatureVoice(Z2SE_EN_VA_V_ATK3, -1);
             }
@@ -2931,7 +2931,7 @@ void daE_VA_c::executeOpaciFadeAway() {
         mAlphaType = 0;
         speedF = 0.0f;
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_CLEAR_WAIT_e, 0);
         }
         break;
@@ -2962,7 +2962,7 @@ void daE_VA_c::executeOpaciFadeAway() {
         speedF = 0.0f;
         break;
     case 3:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setBck(ANM_SUBS_TO_TRANS_e, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
             mSound.startCreatureVoice(Z2SE_EN_VA_V_VANISH, -1);
             mSound.startCreatureSound(Z2SE_EN_VA_VANISH, 0, -1);
@@ -2973,13 +2973,13 @@ void daE_VA_c::executeOpaciFadeAway() {
         break;
     case 4:
         cLib_addCalc(&current.pos.y, 0.0f, 0.1f, 10.0f, 1.0f);
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setActionMode(ACTION_CLEAR_WAIT_e, 1);
             current.pos.y = 0.0f;
         }
         break;
     case 5:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mMode = 1;
         }
         break;
@@ -3051,7 +3051,7 @@ void daE_VA_c::executeOpaciDeath() {
         cLib_offsetPos(&mDemoCamEye, &current.pos, shape_angle.y + field_0x14ac, &sp24);
         mDemoCamEye.y = 50.0f;
 
-        if (mpMorf->checkFrame(155.0f)) {
+        if (mAnm_p->checkFrame(155.0f)) {
             mMode = 2;
             mDemoModeTimer = 60;
 
@@ -3068,7 +3068,7 @@ void daE_VA_c::executeOpaciDeath() {
         mDemoCamCenter = eyePos;
         mDemoCamCenter.y -= 50.0f;
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mDoMtx_stack_c::copy(mpWeaponModel->getBaseTRMtx());
             mDoMtx_stack_c::transM(-10.0f, 160.0f, 15.0f);
             mDoMtx_stack_c::multVecZero(&sp30);
@@ -3432,7 +3432,7 @@ void daE_VA_c::action() {
     cLib_addCalcAngleS(&field_0x1304.x, target_x, 8, 0x400, 0x40);
     cLib_addCalcAngleS(&field_0x1304.z, target_z, 8, 0x400, 0x40);
 
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     if (mPlayEndEf) {
         mpEndEfMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
@@ -3450,7 +3450,7 @@ void daE_VA_c::mtx_set() {
     mDoMtx_stack_c::transM(0.0f, -300.0f, 0.0f);
     mDoMtx_stack_c::scaleM(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
     if (mPlayEndEf) {
@@ -3459,11 +3459,11 @@ void daE_VA_c::mtx_set() {
     }
 
     field_0x138b = 0;
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
     calcJointSleeve();
 
     field_0x138b = 1;
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
 
     if (!mRopesEnabled) {
         if (mpWeaponModel != NULL) {
@@ -3484,7 +3484,7 @@ void daE_VA_c::mtx_set() {
                 mpWeaponModel->setBaseTRMtx(mDoMtx_stack_c::get());
                 break;
             case 1:
-                mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_KEN_2));
+                mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_KEN_2));
                 mpWeaponModel->setBaseTRMtx(mDoMtx_stack_c::get());
                 mDoMtx_stack_c::multVecZero(&field_0x122c);
                 break;
@@ -3526,19 +3526,19 @@ void daE_VA_c::cc_set() {
     cXyz sp24;
 
     if (mGlowLightA != 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&eyePos);
         attention_info.position = eyePos;
         attention_info.position.y += 50.0f;
     } else {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_KEN_2));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_KEN_2));
         mDoMtx_stack_c::transM(-20.0f, 350.0f, 50.0f);
         mDoMtx_stack_c::multVecZero(&eyePos);
         attention_info.position = eyePos;
         attention_info.position.y += 30.0f;
     }
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK_02));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK_02));
     mDoMtx_stack_c::transM(0.0f, 40.0f, 0.0f);
     mDoMtx_stack_c::multVecZero(&sp24);
 
@@ -3551,7 +3551,7 @@ void daE_VA_c::cc_set() {
 
     dComIfG_Ccsp()->Set(&mNeckSph);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_ROOT));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_ROOT));
     mDoMtx_stack_c::transM(0.0f, 0.0f, 0.0f);
     mDoMtx_stack_c::multVecZero(&sp24);
     mBodyCyls[0].SetC(sp24);
@@ -3565,7 +3565,7 @@ void daE_VA_c::cc_set() {
 
     dComIfG_Ccsp()->Set(&mBodyCyls[0]);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK_02));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK_02));
     mDoMtx_stack_c::multVecZero(&sp24);
     sp24.y -= 50.0f;
 
@@ -3574,7 +3574,7 @@ void daE_VA_c::cc_set() {
     mBodyCyls[1].SetR(80.0f);
     dComIfG_Ccsp()->Set(&mBodyCyls[1]);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK_02));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK_02));
     mDoMtx_stack_c::multVecZero(&sp24);
     sp24.y -= 200.0f;
 
@@ -3686,7 +3686,7 @@ int daE_VA_c::execute() {
     }
 
     cXyz bind_pos;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
     mDoMtx_stack_c::multVecZero(&bind_pos);
 
     cXyz bind_scale(1.0f, 1.0f, 1.0f);
@@ -3736,18 +3736,18 @@ int daE_VA_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_VA", 0x33);
     JUT_ASSERT(0, modelData != NULL);
 
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_VA", 15), 0, 1.0f, 0,
                                   -1, &mSound, 0x80000, 0x31000084);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    if (!mInvisModel.create(mpMorf->getModel(), 1)) {
+    if (!mInvisModel.create(mAnm_p->getModel(), 1)) {
         return 0;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     model->setUserArea((uintptr_t)this);
 
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
@@ -3884,7 +3884,7 @@ int daE_VA_c::create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -500.0f, -500.0f, -500.0f);
         fopAcM_SetMax(this, 500.0f, 500.0f, 500.0f);
 

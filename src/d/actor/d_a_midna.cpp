@@ -278,8 +278,8 @@ int daMidna_c::modelCallBack(int i_jointNo) {
 /* 804BC5C4-804BC614 000424 0050+00 1/1 0/0 0/0 .text            changeUpperBck__9daMidna_cFv */
 int daMidna_c::changeUpperBck() {
     J3DAnmTransform* anm = mUpperBck.getBckAnm();
-    mUpperBck.changeBckOnly(mpMorf->getAnm());
-    mpMorf->changeAnm(anm);
+    mUpperBck.changeBckOnly(mAnm_p->getAnm());
+    mAnm_p->changeAnm(anm);
     return 1;
 }
 
@@ -287,8 +287,8 @@ int daMidna_c::changeUpperBck() {
 int daMidna_c::changeFaceBck() {
     if (checkStateFlg0(FLG0_UNK_800000)) {
         J3DAnmTransform* anm = mFaceBck.getBckAnm();
-        mFaceBck.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(anm);
+        mFaceBck.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(anm);
     }
     return 1;
 }
@@ -443,19 +443,19 @@ int daMidna_c::createHeap() {
         (J3DAnmTransform*)J3DAnmLoaderDataBase::load(mBckHeap[0].getBuffer(),
                                                      J3DLOADER_UNK_FLAG0);
     J3DModelData* md_bmd = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 14);
-    mpMorf = new mDoExt_McaMorfSO(md_bmd, &mMorfCB, NULL, md_anm,
+    mAnm_p= new mDoExt_McaMorfSO(md_bmd, &mMorfCB, NULL, md_anm,
                                   J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, NULL, 0, 0x11000284);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
     mMorfCB.setScale(mHairScale);
-    if (!mInvModel.create(mpMorf->getModel(), 1)) {
+    if (!mInvModel.create(mAnm_p->getModel(), 1)) {
         return 0;
     }
-    if (!mUpperBck.init(mpMorf->getAnm(), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
+    if (!mUpperBck.init(mAnm_p->getAnm(), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
         return 0;
     }
-    if (!mFaceBck.init(mpMorf->getAnm(), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
+    if (!mFaceBck.init(mAnm_p->getAnm(), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
         return 0;
     }
     if (!mBtpHeap.mallocBuffer()) {
@@ -533,7 +533,7 @@ cPhs__Step daMidna_c::create() {
         mBtkHeap.createHeap(daPy_anmHeap_c::HEAP_TYPE_2);
         
         mSound.init(&current.pos, &eyePos, 3, 1);
-        mpShadowModel = mpMorf->getModel();
+        mpShadowModel = mAnm_p->getModel();
         mpShadowModel->setUserArea((uintptr_t)this);
         J3DModelData* model_data = mpShadowModel->getModelData();
 
@@ -575,7 +575,7 @@ cPhs__Step daMidna_c::create() {
         setMatrix();
         setRoomInfo();
         daPy_py_c::setMidnaActor(this);
-        mpMorf->setMorf(1.0f);
+        mAnm_p->setMorf(1.0f);
         
         if (fopAcM_GetParam(this) == 1 && checkMidnaRealBody() && !checkMidnaTired()) {
             changeOriginalDemo();
@@ -585,9 +585,9 @@ cPhs__Step daMidna_c::create() {
         setHairAngle();
         offStateFlg0(FLG0_UNK_8);
         setAnm();
-        mpMorf->setMorf(0.0f);
+        mAnm_p->setMorf(0.0f);
         allAnimePlay();
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
         setBodyPartMatrix();
         
         field_0x6e0.r = l_normalColor.r;
@@ -687,16 +687,16 @@ void daMidna_c::allAnimePlay() {
         mpFaceBtk->setFrame(uvar7);
     }
 
-    mpMorf->play(0, mReverb);
+    mAnm_p->play(0, mReverb);
     if (mDemoMode == 0xc) {
-        mpMorf->setFrame(0.0f);
+        mAnm_p->setFrame(0.0f);
     }
 
     if (checkSetAnime(0, ANM_S_APPEAR) || checkSetAnime(0, ANM_S_APPEARBL)) {
-        mpAppearBrk->setFrame(mpMorf->getFrame());
-        mpMaskAppearBrk->setFrame(mpMorf->getFrame());
-        mpHairhandAppearBrk->setFrame(mpMorf->getFrame());
-        mpGokouAppearBrk->setFrame(mpMorf->getFrame());
+        mpAppearBrk->setFrame(mAnm_p->getFrame());
+        mpMaskAppearBrk->setFrame(mAnm_p->getFrame());
+        mpHairhandAppearBrk->setFrame(mAnm_p->getFrame());
+        mpGokouAppearBrk->setFrame(mAnm_p->getFrame());
     } else if (field_0x84e == 1 || field_0x84e == 2) {
         mpAppearBrk->setFrame(0.0f);
         mpMaskAppearBrk->setFrame(0.0f);
@@ -707,7 +707,7 @@ void daMidna_c::allAnimePlay() {
         mpMaskAppearBrk->setFrame(mpMaskAppearBrk->getFrameMax() - 0.001f);
         mpHairhandAppearBrk->setFrame(mpHairhandAppearBrk->getFrameMax() - 0.001f);
         if (checkSetAnime(0, ANM_S_RETURN)) {
-            mpGokouAppearBrk->setFrame(mpMorf->getEndFrame() - mpMorf->getFrame());
+            mpGokouAppearBrk->setFrame(mAnm_p->getEndFrame() - mAnm_p->getFrame());
         } else if (checkSetAnime(0, ANM_RETURN)) {
             f32 fvar8 = mpGokouAppearBrk->getFrame() - 2.0f;
             if (fvar8 < 0.0f) {
@@ -752,7 +752,7 @@ void daMidna_c::setMatrix() {
     daAlink_c* link = daAlink_getAlinkActorClass();
     if (mDemoMode == 0x200) {
         J3DTransformInfo transform;
-        mpMorf->getTransform(1, &transform);
+        mAnm_p->getTransform(1, &transform);
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::YrotM(shape_angle.y);
         Vec vec2 = {transform.mTranslate.x, 0.0f, transform.mTranslate.z};
@@ -830,7 +830,7 @@ void daMidna_c::setMatrix() {
             mDoMtx_stack_c::transS(current.pos);
             mDoMtx_stack_c::YrotM(shape_angle.y);
             if (checkSetAnime(0, ANM_WARPIN) && checkStateFlg1(FLG1_SIDE_WARP)) {
-                f32 fvar7 = (mpMorf->getFrame() - 24.0f) * 0.05f;
+                f32 fvar7 = (mAnm_p->getFrame() - 24.0f) * 0.05f;
                 if (fvar7 < 0.0f) {
                     fvar7 = 0.0f;
                 } else if (fvar7 > 1.0f) {
@@ -1059,10 +1059,10 @@ void daMidna_c::setRoomInfo() {
 
 /* 804BEDB8-804BEFA0 002C18 01E8+00 1/1 0/0 0/0 .text            setBodyPartPos__9daMidna_cFv */
 void daMidna_c::setBodyPartPos() {
-    if (!(checkSetAnime(0, ANM_S_RETURN) && mpMorf->getFrame() > 14.0f)) {
+    if (!(checkSetAnime(0, ANM_S_RETURN) && mAnm_p->getFrame() > 14.0f)) {
         mDoMtx_multVec(mpShadowModel->getAnmMtx(JNT_HEAD), &l_eyeOffset, &eyePos);
     }
-    if (field_0x84e == 1 || (checkSetAnime(0, ANM_S_APPEAR) && mpMorf->getFrame() < 3.0f)) {
+    if (field_0x84e == 1 || (checkSetAnime(0, ANM_S_APPEAR) && mAnm_p->getFrame() < 3.0f)) {
         daAlink_c* link = daAlink_getAlinkActorClass();
         f32 fvar1 = daPy_py_c::checkNowWolf() ? 250.0f : 50.0f;
         attention_info.position.set(
@@ -1090,7 +1090,7 @@ BOOL daMidna_c::checkAppear() {
     if (daPy_py_c::checkNowWolf() && daPy_py_c::checkFirstMidnaDemo() &&
         (!daAlink_getAlinkActorClass()->checkMidnaDisappearMode()
             || checkStateFlg0(FLG0_WOLF_NO_POS)
-            || (checkSetAnime(0, ANM_RETURN) && !mpMorf->isStop())))
+            || (checkSetAnime(0, ANM_RETURN) && !mAnm_p->isStop())))
     {
         return TRUE;
     }
@@ -1142,7 +1142,7 @@ void daMidna_c::checkMidnaPosState() {
     } else if (link->checkMidnaWolfDeadAnime()) {
         offStateFlg0((daMidna_FLG0)(FLG0_UNK_1000 | FLG0_UNK_200 | FLG0_UNK_20));
         if (checkSetAnime(0, ANM_WLDIEA) && !checkStateFlg0(FLG0_NO_DRAW)
-                                         && mpMorf->getFrame() >= 72.0f) {
+                                         && mAnm_p->getFrame() >= 72.0f) {
             onStateFlg0(FLG0_WOLF_NO_POS);
         } else {
             offStateFlg0(FLG0_WOLF_NO_POS);
@@ -1150,7 +1150,7 @@ void daMidna_c::checkMidnaPosState() {
     } else if (link->checkMidnaWolfSwimDeadAnime()) {
         offStateFlg0((daMidna_FLG0)(FLG0_UNK_1000 | FLG0_UNK_200 | FLG0_UNK_20));
         if (checkSetAnime(0, ANM_WLSWIMDIE) && !checkStateFlg0(FLG0_NO_DRAW)
-                                         && mpMorf->getFrame() >= 2.0f) {
+                                         && mAnm_p->getFrame() >= 2.0f) {
             onStateFlg0(FLG0_WOLF_NO_POS);
         } else {
             offStateFlg0(FLG0_WOLF_NO_POS);
@@ -1226,12 +1226,12 @@ void daMidna_c::checkMidnaPosState() {
         }
         offStateFlg0(FLG0_UNK_400000);
     } else if (mDemoMode == 13) {
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             dComIfGp_evmng_cutEnd(mStaffID);
         }
         offStateFlg0(FLG0_UNK_400000);
     } else if (mDemoMode == 17 || mDemoMode == 18) {
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             dComIfGp_evmng_cutEnd(mStaffID);
         }
     } else if (mDemoMode == 3 || mDemoMode == 6 || mDemoMode == 4 || mDemoMode == 19
@@ -1263,12 +1263,12 @@ void daMidna_c::checkMidnaPosState() {
             if (checkSetAnime(0, ANM_S_HOLE)) {
                 cLib_addCalcAngleS(&shape_angle.y, mDemoAngle, 2, 0x2000, 0x800);
                 current.angle.y = shape_angle.y;
-                if (mpMorf->getFrame() >= 26.0f) {
+                if (mAnm_p->getFrame() >= 26.0f) {
                     setRightHandShape(3);
-                } else if (mpMorf->getFrame() >= 13.0f) {
+                } else if (mAnm_p->getFrame() >= 13.0f) {
                     setRightHandShape(2);
                 }
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     dComIfGp_evmng_cutEnd(mStaffID);
                 }
             }
@@ -1281,7 +1281,7 @@ void daMidna_c::checkMidnaPosState() {
                 dComIfGp_evmng_cutEnd(mStaffID);
             }
         } else if (mDemoMode == 5) {
-            if ((checkSetAnime(0, ANM_S_RETURN) || checkSetAnime(0, ANM_RETURN)) && mpMorf->isStop())
+            if ((checkSetAnime(0, ANM_S_RETURN) || checkSetAnime(0, ANM_RETURN)) && mAnm_p->isStop())
             {
                 offStateFlg0((daMidna_FLG0)(FLG0_WOLF_NO_POS | FLG0_TAG_WAIT));
                 dComIfGp_evmng_cutEnd(mStaffID);
@@ -1292,7 +1292,7 @@ void daMidna_c::checkMidnaPosState() {
                 cLib_addCalcAngleS(&shape_angle.y, angle, 2, 0x2000, 0x800);
                 current.angle.y = shape_angle.y;
             }
-            if (mDemoMode == 20 || (mDemoMode == 21 && mpMorf->isStop())
+            if (mDemoMode == 20 || (mDemoMode == 21 && mAnm_p->isStop())
                                 || (mDemoMode == 19 && mFaceBck.isStop())) {
                 dComIfGp_evmng_cutEnd(mStaffID);
             }
@@ -1322,7 +1322,7 @@ void daMidna_c::checkMidnaPosState() {
 
         s16 angle = shape_angle.y;
         if (checkSetAnime(0, ANM_LEADED)) {
-            if (mpMorf->getFrame() >= 4.0f && mpMorf->getFrame() < 17.0f) {
+            if (mAnm_p->getFrame() >= 4.0f && mAnm_p->getFrame() < 17.0f) {
                 if ((s16)(field_0x876 - shape_angle.y) < 0) {
                     angle = shape_angle.y + 0x7fff;
                 } else {
@@ -1521,7 +1521,7 @@ BOOL daMidna_c::setDemoAnm() {
                         setBckAnime(bck, -1, morf);
                         setUpperAnime(var4, 0);
                         offStateFlg0((daMidna_FLG0)(FLG0_UNK_1000 | FLG0_UNK_1));
-                        demo_actor->setAnmFrameMax(mpMorf->getEndFrame());
+                        demo_actor->setAnmFrameMax(mAnm_p->getEndFrame());
                     }
                     ret = TRUE;
                 }
@@ -1618,7 +1618,7 @@ BOOL daMidna_c::setDemoAnm() {
     }
 
     if (demo_actor->checkEnable(0x40)) {
-        mpMorf->setFrameF(demo_actor->getAnmFrame());
+        mAnm_p->setFrameF(demo_actor->getAnmFrame());
         mUpperBck.setFrame(demo_actor->getAnmFrame());
         mFaceBck.setFrame(demo_actor->getAnmFrame());
         if (mpFaceBtp != NULL && !mBtpHeap.checkNoSetArcNo()) {
@@ -1753,7 +1753,7 @@ BOOL daMidna_c::checkHairOnlyAnime(int i_anm) const {
 /* 804C0F24-804C103C 004D84 0118+00 2/2 0/0 0/0 .text setBckAnime__9daMidna_cFP15J3DAnmTransformif
  */
 void daMidna_c::setBckAnime(J3DAnmTransform* i_bck, int i_attr, f32 i_morf) {
-    mpMorf->setAnm(i_bck, i_attr, i_morf, 1.0f, 0.0f, -1.0f);
+    mAnm_p->setAnm(i_bck, i_attr, i_morf, 1.0f, 0.0f, -1.0f);
     void* bas;
     
     if (!mBckHeap[0].checkNoSetArcNo()) {
@@ -1775,7 +1775,7 @@ void daMidna_c::setBckAnime(J3DAnmTransform* i_bck, int i_attr, f32 i_morf) {
     }
 
     if (bas != NULL) {
-        mSound.initAnime(bas, mpMorf->getPlaySpeed() >= 0.0f, mpMorf->getLoopFrame(), 0.0f);
+        mSound.initAnime(bas, mAnm_p->getPlaySpeed() >= 0.0f, mAnm_p->getLoopFrame(), 0.0f);
     }
 }
 
@@ -1819,7 +1819,7 @@ void daMidna_c::setAnm() {
     } else if (link->checkMidnaGanonCatchAnm()) {
         bVar2 = TRUE;
         if (checkSetAnime(0, ANM_MGNCATCHED)
-            || (mpMorf->isStop() && checkSetAnime(0, ANM_MGNCATCHST)))
+            || (mAnm_p->isStop() && checkSetAnime(0, ANM_MGNCATCHST)))
         {
             anm = ANM_MGNCATCHED;
         } else {
@@ -1827,11 +1827,11 @@ void daMidna_c::setAnm() {
         }
     } else if (link->checkMidnaGanonThrowLeftAnm()) {
         if (checkSetAnime(0, ANM_MGNTHROWLED)
-            || (mpMorf->isStop() && checkSetAnime(0, ANM_MGNTHROWLST)))
+            || (mAnm_p->isStop() && checkSetAnime(0, ANM_MGNTHROWLST)))
         {
             bVar2 = TRUE;
             anm = ANM_MGNTHROWLED;
-            if (mpMorf->isStop() && checkSetAnime(0, ANM_MGNTHROWLED)) {
+            if (mAnm_p->isStop() && checkSetAnime(0, ANM_MGNTHROWLED)) {
                 link->setEndGanonThrow();
             }
         } else {
@@ -1839,11 +1839,11 @@ void daMidna_c::setAnm() {
         }
     } else if (link->checkMidnaGanonThrowRightAnm()) {
         if (checkSetAnime(0, ANM_MGNTHROWRED)
-            || (mpMorf->isStop() && checkSetAnime(0, ANM_MGNTHROWRST)))
+            || (mAnm_p->isStop() && checkSetAnime(0, ANM_MGNTHROWRST)))
         {
             bVar2 = TRUE;
             anm = ANM_MGNTHROWRED;
-            if (mpMorf->isStop() && checkSetAnime(0, ANM_MGNTHROWRED)) {
+            if (mAnm_p->isStop() && checkSetAnime(0, ANM_MGNTHROWRED)) {
                 link->setEndGanonThrow();
             }
         } else {
@@ -1905,11 +1905,11 @@ void daMidna_c::setAnm() {
     } else if (checkStateFlg0(FLG0_UNK_1000)) {
         bVar2 = TRUE;
         anm = ANM_LEADTOWAITA;
-        if (mpMorf->isStop() && checkSetAnime(0, ANM_LEADTOWAITA)) {
+        if (mAnm_p->isStop() && checkSetAnime(0, ANM_LEADTOWAITA)) {
             offStateFlg0(FLG0_UNK_1000);
         }
     } else if (checkStateFlg0(FLG0_UNK_200)) {
-        if ((mpMorf->isStop() && checkSetAnime(0, ANM_LEADED)) || checkSetAnime(0, ANM_LEADSWAIT)
+        if ((mAnm_p->isStop() && checkSetAnime(0, ANM_LEADED)) || checkSetAnime(0, ANM_LEADSWAIT)
                                                                || checkSetAnime(0, ANM_LEADWAIT)) {
             anm = ANM_LEADWAIT;
             offStateFlg0(FLG0_NO_INPUT);
@@ -1923,7 +1923,7 @@ void daMidna_c::setAnm() {
             anm = ANM_CLING;
             onStateFlg0(FLG0_UNK_4000000);
         } else if (checkStateFlg0(FLG0_UNK_4000000)) {
-            if (mpMorf->isStop() || checkSetAnime(0, ANM_CLING)) {
+            if (mAnm_p->isStop() || checkSetAnime(0, ANM_CLING)) {
                 anm = ANM_CLING;
             } else {
                 anm = ANM_LEADTOWAITA;
@@ -1950,7 +1950,7 @@ void daMidna_c::setAnm() {
             anm = motionTable[mMotionNum - 31];
             offStateFlg0(FLG0_UNK_1000);
         } else if (link->checkMidnaWolfDashAnime() && !tired) {
-            if ((mpMorf->isStop() && checkSetAnime(0, ANM_CLINGST)) || checkSetAnime(0, ANM_CLING))
+            if ((mAnm_p->isStop() && checkSetAnime(0, ANM_CLINGST)) || checkSetAnime(0, ANM_CLING))
             {
                 anm = ANM_CLING;
             } else {
@@ -1975,7 +1975,7 @@ void daMidna_c::setAnm() {
                 anm = ANM_WAITD;
             }
         } else if (link->checkMidnaLookAroundAnime()) {
-            if ((mpMorf->isStop() && checkSetAnime(0, ANM_ENTRANCE))
+            if ((mAnm_p->isStop() && checkSetAnime(0, ANM_ENTRANCE))
                 || checkSetAnime(0, ANM_SWAITB))
             {
                 anm = ANM_SWAITB;
@@ -1995,7 +1995,7 @@ void daMidna_c::setAnm() {
             anm = ANM_PANIC;
             offStateFlg0(FLG0_UNK_1);
         } else if (!checkStateFlg0(FLG0_UNK_1) && checkSetAnime(0, ANM_SWAITB)
-                                               && !mpMorf->isStop()) {
+                                               && !mAnm_p->isStop()) {
             anm = ANM_SWAITB;
         } else {
             anm = ANM_WAITA;
@@ -2078,19 +2078,19 @@ void daMidna_c::setAnm() {
             shape_angle.y += 0x8000;
             field_0x85a = shape_angle.y;
             current.angle.y = shape_angle.y;
-            mpMorf->getOldTransInfo()[JNT_BACKBONE1].mTranslate.z += 90.0f;
-            mpMorf->getOldTransInfo()[JNT_WAIST].mTranslate.z += 90.0f;
-            Quaternion* quat_backbone_ptr = &mpMorf->getOldQuaternion()[JNT_BACKBONE1];
+            mAnm_p->getOldTransInfo()[JNT_BACKBONE1].mTranslate.z += 90.0f;
+            mAnm_p->getOldTransInfo()[JNT_WAIST].mTranslate.z += 90.0f;
+            Quaternion* quat_backbone_ptr = &mAnm_p->getOldQuaternion()[JNT_BACKBONE1];
             Quaternion quat1, quat2;
             JMAEulerToQuat(0, 0x8000, 0, &quat1);
             quat2 = *quat_backbone_ptr;
             mDoMtx_QuatConcat(&quat1, &quat2, quat_backbone_ptr);
-            quat_backbone_ptr = &mpMorf->getOldQuaternion()[JNT_WAIST];
+            quat_backbone_ptr = &mAnm_p->getOldQuaternion()[JNT_WAIST];
             quat2 = *quat_backbone_ptr;
             mDoMtx_QuatConcat(&quat1, &quat2, quat_backbone_ptr);
         } else if (anm == ANM_WLSWIMDIE) {
-            J3DTransformInfo* trans_backbone = &mpMorf->getOldTransInfo()[JNT_BACKBONE1];
-            J3DTransformInfo* trans_waist = &mpMorf->getOldTransInfo()[JNT_WAIST];
+            J3DTransformInfo* trans_backbone = &mAnm_p->getOldTransInfo()[JNT_BACKBONE1];
+            J3DTransformInfo* trans_waist = &mAnm_p->getOldTransInfo()[JNT_WAIST];
             trans_backbone->mTranslate.x = trans_waist->mTranslate.x = 0.9f;
             trans_backbone->mTranslate.y = trans_waist->mTranslate.y = 36.060127f;
             trans_backbone->mTranslate.z = trans_waist->mTranslate.z = -14.515757f;
@@ -2112,7 +2112,7 @@ void daMidna_c::setAnm() {
             offStateFlg0(FLG0_UNK_1);
             if (setUpperAnimeAndSe(ANM_WAITTP)) {
                 mUpperBck.setLoopFrame(15.0);
-                mpMorf->setMorf(5.0f);
+                mAnm_p->setMorf(5.0f);
                 offStateFlg0(FLG0_UNK_80);
                 if (mpModel != NULL) {
                     setFaceBtp(0x3F8, FALSE);
@@ -2124,12 +2124,12 @@ void daMidna_c::setAnm() {
             }
         } else if (mDemoMode == 0x14) {
             if (setUpperAnimeAndSe(ANM_GRAB)) {
-                mpMorf->setMorf(5.0f);
+                mAnm_p->setMorf(5.0f);
             }
         } else if (checkStateFlg0(FLG0_UNK_2)) {
             offStateFlg0(FLG0_UNK_2);
             setUpperAnime(mBckHeap[0].getIdx(), 0xffff);
-            mpMorf->setMorf(5.0f);
+            mAnm_p->setMorf(5.0f);
         } else if (checkStateFlg0(FLG0_UNK_1)) {
             if (mUpperBck.isStop() || mUpperBck.checkFrame(0.0f)
                 || mNeckAngle.x != 0 || mNeckAngle.y != 0 || bVar1
@@ -2182,7 +2182,7 @@ void daMidna_c::setAnm() {
     } else if (checkStateFlg0(FLG0_UNK_2)) {
         offStateFlg0(FLG0_UNK_2);
         setUpperAnime(mBckHeap[0].getIdx(), 0xffff);
-        mpMorf->setMorf(5.0f);
+        mAnm_p->setMorf(5.0f);
     }
 
     if (sVar4 != mBckHeap[1].getIdx()) {
@@ -2303,7 +2303,7 @@ void daMidna_c::setAnm() {
             onEndResetStateFlg0(ERFLG0_UNK_40);
         }
     } else if (anm == ANM_S_APPEAR || anm == ANM_S_APPEARBL || anm == ANM_RETURN
-        || (anm == ANM_WARPIN && mpMorf->getFrame() > 2.0f) || anm == ANM_S_RETURN)
+        || (anm == ANM_WARPIN && mAnm_p->getFrame() > 2.0f) || anm == ANM_S_RETURN)
     {
         onStateFlg0(FLG0_NO_HAIR_SCALE);
     }
@@ -3033,7 +3033,7 @@ void daMidna_c::setSound() {
     }
 
     if (checkStateFlg1(FLG1_UNK_800)) {
-        mSound.updateAnime(mpMorf->getFrame(), mpMorf->getPlaySpeed());
+        mSound.updateAnime(mAnm_p->getFrame(), mAnm_p->getPlaySpeed());
     }
 
     if (checkMidnaTired() && !dComIfGp_checkPlayerStatus0(0, 0x20000000)) {
@@ -3101,14 +3101,14 @@ int daMidna_c::execute() {
             }
         } else if (field_0x84e == 2) {
             link->moveShadowScaleLight();
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 field_0x84e = 3;
             }
         } else if (field_0x84e == 3 && checkStateFlg0(FLG0_UNK_1000000)) {
             offStateFlg0(FLG0_UNK_1000000);
             field_0x84e = 4;
         } else if (field_0x84e == 4) {
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 field_0x84e = 5;
             }
         } else if (field_0x84e == 5 && checkStateFlg0(FLG0_WOLF_NO_POS)) {
@@ -3118,7 +3118,7 @@ int daMidna_c::execute() {
         field_0x84e = 0;
     }
 
-    if (checkSetAnime(0, ANM_LEADTOWAITA) && mpMorf->checkFrame(2.0f) && daPy_py_c::checkNowWolf()
+    if (checkSetAnime(0, ANM_LEADTOWAITA) && mAnm_p->checkFrame(2.0f) && daPy_py_c::checkNowWolf()
                                      && mpKago == NULL) {
         dComIfGp_getVibration().StartShock(2, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
     }
@@ -3126,7 +3126,7 @@ int daMidna_c::execute() {
     setAnm();
     setHairAngle();
     setMatrix();
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
     setRoomInfo();
     setNeckAngle();
     if (checkEndResetStateFlg0(ERFLG0_UNK_20)) {
@@ -3178,7 +3178,7 @@ int daMidna_c::execute() {
                         onStateFlg0(FLG0_UNK_2000000);
                     }
                 } else if (!checkStateFlg0(FLG0_NO_DRAW)
-                            || (checkSetAnime(0, ANM_S_RETURN) && mpMorf->isStop())) {
+                            || (checkSetAnime(0, ANM_S_RETURN) && mAnm_p->isStop())) {
                     if (event_id == 0xb) {
                         dMeter2Info_setPauseStatus(6);
                         link->onPortalWarpMidnaAtnKeep();
@@ -3267,8 +3267,8 @@ int daMidna_c::draw() {
                                       && mpModel != NULL) {
         g_env_light.settingTevStruct(3, &current.pos, &tevStr);
         if (checkSetAnime(0, ANM_RETURN)) {
-            f32 end_frame = mpMorf->getEndFrame();
-            f32 frame = mpMorf->getFrame();
+            f32 end_frame = mAnm_p->getEndFrame();
+            f32 frame = mAnm_p->getFrame();
             tevStr.TevColor.r = (frame / end_frame) * -32.0f;
             tevStr.TevColor.g = tevStr.TevColor.r;
             tevStr.TevColor.b = tevStr.TevColor.r;

@@ -20,7 +20,7 @@ public:
     /* 805B9B3C */ b_bq_class();
 
     /* 0x05AC */ request_of_phase_process_class mPhase;
-    /* 0x05B4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x05B4 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x05B8 */ mDoExt_brkAnm* mpDeadBrk;
     /* 0x05BC */ mDoExt_btkAnm* mpTodomeBtk;
     /* 0x05C0 */ s8 mPlayTodomeBtk;

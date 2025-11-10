@@ -1279,7 +1279,7 @@ static int daB_BH_Execute(b_bh_class* i_this) {
     if (i_this->field_0xa25 != 0) {
         i_this->field_0xa26 = bq_p->shape_angle;
 
-        J3DModel* bq_model = bq_p->mpMorf->getModel();
+        J3DModel* bq_model = bq_p->mAnm_p->getModel();
         bq_model->setBaseTRMtx(mDoMtx_stack_c::get());
 
         if (i_this->mID == 0) {

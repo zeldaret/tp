@@ -11,10 +11,10 @@
 /* 807F7E18-807F7EC0 000078 00A8+00 1/0 0/0 0/0 .text daE_YD_LEAF_Draw__FP15e_yd_leaf_class */
 static int daE_YD_LEAF_Draw(e_yd_leaf_class* i_this) {
     g_env_light.settingTevStruct(2, &i_this->current.pos, &i_this->tevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpMorf->getModel(), &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mAnm_p->getModel(), &i_this->tevStr);
 
     dComIfGd_setListDark();
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
     dComIfGd_setList();
     return 1;
 }
@@ -40,8 +40,8 @@ static int daE_YD_LEAF_Execute(e_yd_leaf_class* i_this) {
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::scaleM(i_this->scale.y, i_this->scale.y, i_this->scale.y);
-    i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mAnm_p->modelCalc();
     return 1;
 }
 
@@ -60,10 +60,10 @@ static int daE_YD_LEAF_Delete(e_yd_leaf_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_yd_leaf_class* a_this = static_cast<e_yd_leaf_class*>(i_this);
 
-    a_this->mpMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_YD", 0x19), NULL,
+    a_this->mAnm_p= new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_YD", 0x19), NULL,
                                         NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YD", 0x14),
                                         2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
-    if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
+    if (a_this->mAnm_p== NULL || a_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -87,7 +87,7 @@ static int daE_YD_LEAF_Create(fopAc_ac_c* i_this) {
 
         OS_REPORT("//////////////E_YD_LEAF SET 2 !!\n");
 
-        fopAcM_SetMtx(a_this, a_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(a_this, a_this->mAnm_p->getModel()->getBaseTRMtx());
         a_this->scale.y = 1.0f;
         daE_YD_LEAF_Execute(a_this);
     }

@@ -94,7 +94,7 @@ public:
     /* 0x5C4 */ u8 field_0x5c4[4];
     /* 0x5C8 */ f32 mDistFromPlayer;
     /* 0x5CC */ s16 mTargetAngleY;
-    /* 0x5D8 */ mDoExt_McaMorf* mpMorf;
+    /* 0x5D8 */ mDoExt_McaMorf* mAnm_p;
     /* 0x5D4 */ mDoExt_btkAnm* mpBtk;
     /* 0x5D8 */ mDoExt_btpAnm* mpBtp;
     /* 0x5DC */ s8 mBtkFrame;

@@ -70,7 +70,7 @@ daNpc_seiD_c::~daNpc_seiD_c() {
     OS_REPORT("|%06d:%x|daNpc_seiD_c -> デストラクト\n", g_Counter.mCounter0, this);
 
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
 
     #ifdef DEBUG
@@ -150,7 +150,7 @@ int daNpc_seiD_c::create() {
         }
 
         OS_REPORT("\n");
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         mSound.init(&current.pos, &eyePos, 3, 1);
 
 #ifdef DEBUG
@@ -182,17 +182,17 @@ int daNpc_seiD_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]);
     JUT_ASSERT(424, NULL != mdlData_p);
 
-    mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
-    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
-        mpMorf[0]->stopZelAnime();
-        mpMorf[0] = NULL;
+    mAnm_p[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
+    if (mAnm_p[0] != NULL && mAnm_p[0]->getModel() == NULL) {
+        mAnm_p[0]->stopZelAnime();
+        mAnm_p[0] = NULL;
     }
 
-    if (mpMorf[0] == NULL) {
+    if (mAnm_p[0] == NULL) {
         return 0;
     }
 
-    mpMorf[0]->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p[0]->getModel()->setUserArea((uintptr_t)this);
     if (setFaceMotionAnm(0, false) && setMotionAnm(0, 0.0f, FALSE)) {
         return 1;
     }
@@ -217,7 +217,7 @@ int daNpc_seiD_c::Execute() {
 int daNpc_seiD_c::Draw() {
     daNpcT_MatAnm_c* matAnm = mpMatAnm[0];
     if (matAnm != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         J3DMaterial* material = modelData->getMaterialNodePointer(getEyeballMaterialNo());
         material->setMaterialAnm(matAnm);
     }
@@ -393,7 +393,7 @@ bool daNpc_seiD_c::afterSetMotionAnm(int param_1, int param_2, f32 param_3, int 
     if (anm_text) {
         if (mBtkAnm.getBtkAnm() == anm_text) {
             mAnmFlags |= 0x80;
-        } else if (setBtkAnm(anm_text, mpMorf[0]->getModel()->getModelData(), 1.0f, param_2)) {
+        } else if (setBtkAnm(anm_text, mAnm_p[0]->getModel()->getModelData(), 1.0f, param_2)) {
             mAnmFlags |= 0x82;
         }
     }
@@ -409,7 +409,7 @@ bool daNpc_seiD_c::afterSetMotionAnm(int param_1, int param_2, f32 param_3, int 
     if (anm_tev) {
         if (mBrkAnm.getBrkAnm() == anm_tev) {
             mAnmFlags |= 0x100;
-        } else if (setBrkAnm(anm_tev, mpMorf[0]->getModel()->getModelData(), 1.0f, param_2)) {
+        } else if (setBrkAnm(anm_tev, mAnm_p[0]->getModel()->getModelData(), 1.0f, param_2)) {
             mAnmFlags |= 0x104;
         }
     }

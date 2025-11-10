@@ -261,8 +261,8 @@ enum Motion {
 
 /* 80A73F4C-80A74150 0000EC 0204+00 1/0 0/0 0/0 .text            __dt__11daNpc_Moi_cFv */
 daNpc_Moi_c::~daNpc_Moi_c() {
-    if (mpMorf[0] != 0) {
-        mpMorf[0]->stopZelAnime();
+    if (mAnm_p[0] != 0) {
+        mAnm_p[0]->stopZelAnime();
     }
     deleteRes(l_loadResPtrnList[mType], (char const**)l_resNameList);
 }
@@ -289,8 +289,8 @@ int daNpc_Moi_c::create() {
         if (!fopAcM_entrySolidHeap(this, createHeapCallBack, heapSize[mType])) {
             return cPhs_ERROR_e;
         }
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         field_0x9c0.init(&mAcch, 0.0f, 0.0f);
@@ -339,13 +339,13 @@ int daNpc_Moi_c::CreateHeap() {
         return 1;
     }
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
                                      0x11020284);
-    if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
+    if (mAnm_p[0] == NULL || mAnm_p[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
 
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
@@ -411,7 +411,7 @@ int daNpc_Moi_c::Execute() {
 int daNpc_Moi_c::Draw() {
     J3DModelData* modelData;
     if (mpMatAnm[0] != NULL) {
-        modelData = mpMorf[0]->getModel()->getModelData();
+        modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -835,11 +835,11 @@ void daNpc_Moi_c::setAttnPos() {
     f32 dVar6 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
 
     if (mType == 3) {
-        mJntAnm.setParam(this, mpMorf[0]->getModel(), &acStack_3c, getBackboneJointNo(),
+        mJntAnm.setParam(this, mAnm_p[0]->getModel(), &acStack_3c, getBackboneJointNo(),
                          getNeckJointNo(), getHeadJointNo(), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
                          0.0f, 0.0f, mpHIO->m.common.neck_rotation_ratio, dVar6, NULL);
     } else {
-        mJntAnm.setParam(this, mpMorf[0]->getModel(), &acStack_3c, getBackboneJointNo(),
+        mJntAnm.setParam(this, mAnm_p[0]->getModel(), &acStack_3c, getBackboneJointNo(),
                          getNeckJointNo(), getHeadJointNo(), mpHIO->m.common.body_angleX_min,
                          mpHIO->m.common.body_angleX_max, mpHIO->m.common.body_angleY_min,
                          mpHIO->m.common.body_angleY_max, mpHIO->m.common.head_angleX_min,
@@ -850,7 +850,7 @@ void daNpc_Moi_c::setAttnPos() {
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar6);
 
     setMtx();
-    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(getHeadJointNo()));
     mDoMtx_stack_c::multVec(&acStack_3c, &eyePos);
 
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
@@ -926,7 +926,7 @@ void daNpc_Moi_c::setCollision() {
 
     if (field_0x166a) {
         cStack_5c.set(0.0f, 0.0f, -70.0f);
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(17));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(17));
         mDoMtx_stack_c::multVec(&cStack_5c, &cStack_68);
         mSph.SetAtType(0x400);
         mSph.SetAtSPrm(13);
@@ -956,7 +956,7 @@ void daNpc_Moi_c::drawOtherMdl() {
     static int const jointNo[6] = {2, 17, 23, 24, 25, 12};
 
     Mtx mtx;
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
 
     for (int i = 0; i < 6; i++) {
         if ((field_0x166f == 0 || (u32)i > 1) && mpModel[i] != NULL) {
@@ -985,7 +985,7 @@ void daNpc_Moi_c::drawOtherMdl() {
 bool daNpc_Moi_c::afterSetMotionAnm(int param_1, int param_2, f32 param_3, int param_4) {
     switch (param_1) {
     case 0x22:
-        mpMorf[0]->setPlaySpeed(2.0f);
+        mAnm_p[0]->setPlaySpeed(2.0f);
     }
     return true;
 }
@@ -1135,14 +1135,14 @@ BOOL daNpc_Moi_c::chkPullOutSw() {
     if (mType == TYPE_2) {
         J3DAnmTransform* anmTransform = getTrnsfrmAnmP(
             l_resNameList[l_motionAnmData[25].mBckArcIdx], l_motionAnmData[25].mBckFileIdx);
-        return anmTransform == mpMorf[0]->getAnm();
+        return anmTransform == mAnm_p[0]->getAnm();
     }
     return FALSE;
 }
 
 /* 80A768FC-80A76954 002A9C 0058+00 1/1 0/0 0/0 .text            pullOutSw__11daNpc_Moi_cFv */
 void daNpc_Moi_c::pullOutSw() {
-    if (chkPullOutSw() && mpMorf[0]->checkFrame(4.0f)) {
+    if (chkPullOutSw() && mAnm_p[0]->checkFrame(4.0f)) {
         field_0x166b = 1;
     }
 }
@@ -1152,14 +1152,14 @@ BOOL daNpc_Moi_c::chkSetInSw() {
     if (mType == TYPE_2) {
         J3DAnmTransform* anmTransform = getTrnsfrmAnmP(
             l_resNameList[l_motionAnmData[26].mBckArcIdx], l_motionAnmData[26].mBckFileIdx);
-        return anmTransform == mpMorf[0]->getAnm();
+        return anmTransform == mAnm_p[0]->getAnm();
     }
     return FALSE;
 }
 
 /* 80A769C8-80A76A20 002B68 0058+00 1/1 0/0 0/0 .text            setInSw__11daNpc_Moi_cFv */
 void daNpc_Moi_c::setInSw() {
-    if (chkSetInSw() && mpMorf[0]->checkFrame(6.0f)) {
+    if (chkSetInSw() && mAnm_p[0]->checkFrame(6.0f)) {
         field_0x166b = 0;
     }
 }
@@ -1171,11 +1171,11 @@ void daNpc_Moi_c::setSwAT() {
     if (mType == TYPE_2) {
         J3DAnmTransform* anmTransform = getTrnsfrmAnmP(
             l_resNameList[l_motionAnmData[24].mBckArcIdx], l_motionAnmData[24].mBckFileIdx);
-        if (anmTransform == mpMorf[0]->getAnm()) {
-            if (5.0f <= mpMorf[0]->getFrame() && mpMorf[0]->getFrame() <= 7.0f) {
+        if (anmTransform == mAnm_p[0]->getAnm()) {
+            if (5.0f <= mAnm_p[0]->getFrame() && mAnm_p[0]->getFrame() <= 7.0f) {
                 field_0x166a = 1;
             }
-            if (20.0f <= mpMorf[0]->getFrame() && mpMorf[0]->getFrame() <= 22.0f) {
+            if (20.0f <= mAnm_p[0]->getFrame() && mAnm_p[0]->getFrame() <= 22.0f) {
                 field_0x166a = 1;
             }
         }
@@ -1189,7 +1189,7 @@ void daNpc_Moi_c::torch() {
 
     if (mpModel[5] && field_0x1668 != 0) {
         actor = mActorMngr[0].getActorP();
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(12));
+        mDoMtx_stack_c::copy(mAnm_p[0]->getModel()->getAnmMtx(12));
         mDoMtx_stack_c::multVec(&lightOffset, &field_0x1628);
         if (actor == NULL && field_0x166f == 0) {
             if (field_0x15c0 == 0xFFFFFFFF) {
@@ -1791,9 +1791,9 @@ int daNpc_Moi_c::wait(void* param_1) {
                                 mMode = MODE_INIT;
                                 break;
                             }
-                            if (mpMorf[0]->checkFrame(13.0f) || mpMorf[0]->checkFrame(29.0f)) {
+                            if (mAnm_p[0]->checkFrame(13.0f) || mAnm_p[0]->checkFrame(29.0f)) {
                                 mSound.startCreatureVoice(JAISoundID(Z2SE_MOI_V_SWING_S), -1);
-                            } else if (mpMorf[0]->checkFrame(35.0f)) {
+                            } else if (mAnm_p[0]->checkFrame(35.0f)) {
                                 mSound.startCreatureVoice(JAISoundID(Z2SE_MOI_V_SWING_L), -1);
                             }
                         }

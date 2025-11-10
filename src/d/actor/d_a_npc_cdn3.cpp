@@ -22,7 +22,7 @@ static int createHeapCallBack(fopAc_ac_c* param_0) {
         if (i_this->mObjNum != 0) {
             rv = (i_this->field_0xac8 = i_this->ObjCreate(i_this->mObjNum)) != NULL;
             if (!rv) {
-                i_this->mpMorf->stopZelAnime();
+                i_this->mAnm_p->stopZelAnime();
             }
         } else {
             i_this->field_0xac8 = NULL;
@@ -34,7 +34,7 @@ static int createHeapCallBack(fopAc_ac_c* param_0) {
             i_this->field_0xacc = model;
             rv = model != 0;
             if (rv == 0) {
-                i_this->mpMorf->stopZelAnime();
+                i_this->mAnm_p->stopZelAnime();
             }
         } else {
             i_this->field_0xacc = NULL;
@@ -371,11 +371,11 @@ void daNpcCdn3_c::executeWait() {
         int newIndex;
         field_0xb97 = (m_funcTbl[mSeqNum][field_0xb97 + 1] == NULL) ? 0 : field_0xb97 + 1;
         field_0xb94 = 1;
-        if (mpMorf->getAnm() == getAnmP(8, mObjNum)) {
+        if (mAnm_p->getAnm() == getAnmP(8, mObjNum)) {
             mCitizen.playVoice(3);
-        } else if (mpMorf->getAnm() == getAnmP(49, mObjNum)) {
+        } else if (mAnm_p->getAnm() == getAnmP(49, mObjNum)) {
             mCitizen.playVoice(4);
-        } else if (mpMorf->getAnm() == getAnmP(20, mObjNum) || mpMorf->getAnm() == getAnmP(21, mObjNum)) {
+        } else if (mAnm_p->getAnm() == getAnmP(20, mObjNum) || mAnm_p->getAnm() == getAnmP(21, mObjNum)) {
             mCitizen.playVoice(5);
         }
     }
@@ -554,7 +554,7 @@ void daNpcCdn3_c::initTalk() {
     field_0xb68 = 0;
     m_targetAct.entry(dComIfGp_getLinkPlayer());
     field_0xb92 = shape_angle.y;
-    field_0xb80 = mpMorf->getAnm();
+    field_0xb80 = mAnm_p->getAnm();
     field_0xb7c = mSeqNum;
     JUT_ASSERT(658, NULL != m_targetAct.getActorP());
     if (!isInShop() && !isNoTurnTalk()) {
@@ -579,7 +579,7 @@ void daNpcCdn3_c::initTalk() {
 
 /* 80979B2C-80979F08 000ECC 03DC+00 1/0 0/0 0/0 .text            executeTalk__11daNpcCdn3_cFv */
 void daNpcCdn3_c::executeTalk() {
-    if (mpMorf->getAnm() == getAnmP(47,mObjNum)) {
+    if (mAnm_p->getAnm() == getAnmP(47,mObjNum)) {
         if (m_type == 17) {
             mCitizen.startCreatureVoiceLevel(Z2SE_WAD_A_MV_DANCE, -1);
         } else if (m_type == 2) {
@@ -678,7 +678,7 @@ void daNpcCdn3_c::initEscape() {
 /* 8097A028-8097A398 0013C8 0370+00 1/0 0/0 0/0 .text            executeEscape__11daNpcCdn3_cFv */
 void daNpcCdn3_c::executeEscape() {
     if (field_0xb68 == 0) {
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setAnm((J3DAnmTransformKey*)getAnmP(4, mObjNum), 1.0f, 12.0f, 2, 0, -1);
             mCitizen.playVoice(0);
             field_0xb68 = 1;
@@ -726,14 +726,14 @@ void daNpcCdn3_c::executeEscape() {
 /* 8097A398-8097A518 001738 0180+00 1/0 0/0 0/0 .text            initFear__11daNpcCdn3_cFv */
 void daNpcCdn3_c::initFear() {
     int a_anmNum = 0x26;
-    if (mpMorf->getAnm() == getAnmP(14, mObjNum) ||
-        mpMorf->getAnm() == getAnmP(15, mObjNum) ||
-        mpMorf->getAnm() == getAnmP(16, mObjNum))
+    if (mAnm_p->getAnm() == getAnmP(14, mObjNum) ||
+        mAnm_p->getAnm() == getAnmP(15, mObjNum) ||
+        mAnm_p->getAnm() == getAnmP(16, mObjNum))
     {
         a_anmNum = 0x27;
-    } else if (mpMorf->getAnm() == getAnmP(17, mObjNum) ||
-               mpMorf->getAnm() == getAnmP(18, mObjNum) ||
-               mpMorf->getAnm() == getAnmP(19, mObjNum))
+    } else if (mAnm_p->getAnm() == getAnmP(17, mObjNum) ||
+               mAnm_p->getAnm() == getAnmP(18, mObjNum) ||
+               mAnm_p->getAnm() == getAnmP(19, mObjNum))
     {
         a_anmNum = 0x28;
     }
@@ -749,10 +749,10 @@ void daNpcCdn3_c::initFear() {
 
 /* 8097A518-8097A60C 0018B8 00F4+00 1/0 0/0 0/0 .text            executeFear__11daNpcCdn3_cFv */
 void daNpcCdn3_c::executeFear() {
-    if (mpMorf->checkFrame(1.0f)) {
+    if (mAnm_p->checkFrame(1.0f)) {
         mCitizen.playVoice(2);
     }
-    if (mpMorf->isStop()) {
+    if (mAnm_p->isStop()) {
         mObjNum = 0;
         setAnm((J3DAnmTransformKey*)getAnmP(mSeqNum, mObjNum), 1.0f, 12.0f, 2, 0, -1);
         field_0xb92 = cLib_targetAngleY(fopAcM_GetPosition_p(daPy_getPlayerActorClass()), &current.pos);
@@ -772,7 +772,7 @@ void daNpcCdn3_c::initFear2() {
 
 /* 8097A6AC-8097A724 001A4C 0078+00 1/0 0/0 0/0 .text            executeFear2__11daNpcCdn3_cFv */
 void daNpcCdn3_c::executeFear2() {
-    if (mpMorf->checkFrame(1.0f)) {
+    if (mAnm_p->checkFrame(1.0f)) {
         mCitizen.playVoice(2);
     }
     if (fopAcM_CheckCondition(this, 4)) {
@@ -794,12 +794,12 @@ void daNpcCdn3_c::initFight() {
 
 /* 8097A7E0-8097A960 001B80 0180+00 1/0 0/0 0/0 .text            executeFight__11daNpcCdn3_cFv */
 void daNpcCdn3_c::executeFight() {
-    if (mpMorf->isStop()) {
+    if (mAnm_p->isStop()) {
         setAnm((J3DAnmTransformKey*)getAnmP(42, mObjNum), 1.0f, 12.0f, 2, 0, -1);
     }
     field_0xb92 = fopAcM_searchPlayerAngleY(this);
-    if (mpMorf->getAnm() != getAnmP(41, mObjNum)) {
-        if (mpMorf->checkFrame(1.0f)) {
+    if (mAnm_p->getAnm() != getAnmP(41, mObjNum)) {
+        if (mAnm_p->checkFrame(1.0f)) {
             mCitizen.playVoice(2);
         }
         if (cLib_distanceAngleS(shape_angle.y, field_0xb92) > 0x600) {
@@ -894,7 +894,7 @@ void daNpcCdn3_c::pathMoveF() {
         if (playSpeed < 0.6f) {
             playSpeed = 0.6f;
         }
-        mpMorf->setPlaySpeed(playSpeed);
+        mAnm_p->setPlaySpeed(playSpeed);
     }
 }
 
@@ -1591,7 +1591,7 @@ int daNpcCdn3_c::create() {
 void daNpcCdn3_c::create_init() {
     gravity = -3.0f;
     initTimeSchedule();
-    fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+    fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
     fopAcM_setCullSizeBox(this, -40.0f, -10.0f, -40.0f, 40.0f, 190.0f,
                           40.0f);
     f32 chkWallR = Cd2_HIO_chkWallR(m_type);
@@ -1625,7 +1625,7 @@ void daNpcCdn3_c::create_init() {
         setAction(MODE_WAIT);
     }
 
-    mpMorf->setMorf(0.0f);
+    mAnm_p->setMorf(0.0f);
     f32 gnd = mAcch.GetGroundH();
     current.pos.y = gnd;
     field_0xb64 = gnd;
@@ -1636,13 +1636,13 @@ void daNpcCdn3_c::create_init() {
 void daNpcCdn3_c::setMtx() {
     mDoMtx_stack_c::transS(current.pos.x, field_0xb64, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     field_0xa9c = 0;
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
     setAttention(m_type);
     lookat();
     field_0xa9c = 1;
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
     setAttention(m_type);
 }
 
@@ -1672,13 +1672,13 @@ void daNpcCdn3_c::lookat() {
         local_68[2] = 3;
         local_68[3] = -1;
     }
-    mLookat.init(mpMorf->getModel(), local_68, &vecs1[0], &vecs2[0]);
+    mLookat.init(mAnm_p->getModel(), local_68, &vecs1[0], &vecs2[0]);
     Mtx afStack_38;
     if (m_targetAct.getActorP() != NULL) {
-        cMtx_copy(mpMorf->getModel()->getBaseTRMtx(), afStack_38);
+        cMtx_copy(mAnm_p->getModel()->getBaseTRMtx(), afStack_38);
         cStack_80 = m_targetAct.getActorP()->eyePos;
     } else {
-        cMtx_copy(mpMorf->getModel()->getBaseTRMtx(), afStack_38);
+        cMtx_copy(mAnm_p->getModel()->getBaseTRMtx(), afStack_38);
         cStack_80 = cXyz::Zero;
     }
     mLookat.action(cStack_80, eyePos, this, afStack_38, m_targetAct.getActorP() != NULL);
@@ -1694,7 +1694,7 @@ static int daNpcCdn3_Delete(void* i_this) {
 daNpcCdn3_c::~daNpcCdn3_c() {
     removeResrc(m_type, mObjNum);
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 

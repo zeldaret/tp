@@ -65,7 +65,7 @@ daNpcBlueNS_c::~daNpcBlueNS_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -148,8 +148,8 @@ int daNpcBlueNS_c::Create() {
 
         mTwilight = dKy_darkworld_check();
 
-        mpMorf->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        mAnm_p->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeFar(this, 3.0f);
         fopAcM_setCullSizeBox(this, -120.0f, -10.0f, -120.0f, 120.0f, 220.0f, 120.0f);
         
@@ -188,17 +188,17 @@ int daNpcBlueNS_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[0], 0x10);
     JUT_ASSERT(406, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p= new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
 
-    J3DModel* mdl_p = mpMorf->getModel();
+    J3DModel* mdl_p = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -383,7 +383,7 @@ int daNpcBlueNS_c::Draw() {
         return 1;
     }
 
-    J3DModel* mdl_p = mpMorf->getModel();
+    J3DModel* mdl_p = mAnm_p->getModel();
     mdl_p->getModelData();
 
     tevStr.TevColor.r = 0;
@@ -395,12 +395,12 @@ int daNpcBlueNS_c::Draw() {
         g_env_light.settingTevStruct(2, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mdl_p, &tevStr);
         dComIfGd_setListDark();
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
         dComIfGd_setList();
     } else {
         g_env_light.settingTevStruct(2, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mdl_p, &tevStr);
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
     }
 
     mShadowKey = dComIfGd_setShadow(mShadowKey, 1, mdl_p, &current.pos, daNpcBlueNS_Param_c::m.common.real_shadow_size, 20.0f + tREG_F(3), current.pos.y, mGroundH, mGndChk, &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
@@ -414,13 +414,13 @@ int daNpcBlueNS_c::ctrlJoint(J3DJoint* param_0, J3DModel* i_model) {
     int spC[] = {1, 3, 4};
 
     if (jnt_no == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -616,7 +616,7 @@ void daNpcBlueNS_c::setAttnPos() {
 
     cXyz sp20(10.0f, 15.0f, 0.0f);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&sp20, &eyePos);
     sp20.x = 0.0f;
@@ -628,7 +628,7 @@ void daNpcBlueNS_c::setAttnPos() {
     attention_info.position.set(mHeadPos.x, mHeadPos.y + daNpcBlueNS_Param_c::m.common.attention_offset, mHeadPos.z);
 
     cXyz cyl_center;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
     mDoMtx_stack_c::multVecZero(&cyl_center);
     cyl_center.y = current.pos.y;
 
@@ -782,7 +782,7 @@ void daNpcBlueNS_c::setLookMode(int i_lookMode) {
 /* 8096A81C-8096A9FC 001F9C 01E0+00 1/1 0/0 0/0 .text            lookat__13daNpcBlueNS_cFv */
 void daNpcBlueNS_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model_p = mpMorf->getModel();
+    J3DModel* model_p = mAnm_p->getModel();
 
     int var_r28 = 0;
     f32 body_angleX_min = daNpcBlueNS_Param_c::m.common.body_angleX_min;
@@ -925,7 +925,7 @@ int daNpcBlueNS_c::down(int param_0) {
         field_0xdc0 = 2;
         break;
     case 2:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             setAction(&daNpcBlueNS_c::wait);
         }
         break;
@@ -1184,7 +1184,7 @@ BOOL daNpcBlueNS_c::_Evt_ChgYami_Chibi_CutMain(const int& i_cutId) {
         }
         break;
     case 20:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             ChgPtclDisp();
             rt = 1;
         }
@@ -1266,7 +1266,7 @@ BOOL daNpcBlueNS_c::_Evt_ChgYami_Debu_CutMain(const int& i_cutId) {
         }
         break;
     case 20:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             ChgPtclDisp();
             rt = 1;
         }
@@ -1348,7 +1348,7 @@ BOOL daNpcBlueNS_c::_Evt_ChgYami_Noppo_CutMain(const int& i_cutId) {
         }
         break;
     case 20:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             ChgPtclDisp();
             rt = 1;
         }
@@ -1430,7 +1430,7 @@ BOOL daNpcBlueNS_c::_Evt_ChgYami_STNoppo_CutMain(const int& i_cutId) {
         }
         break;
     case 20:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             ChgPtclDisp();
             rt = 1;
         }

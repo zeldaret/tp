@@ -65,7 +65,7 @@ public:
     /* 0x5BD */ s8 mPathPoint;
     /* 0x5BE */ s8 mPathStep;
     /* 0x5C0 */ dPath* mpPath;
-    /* 0x5C4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5C4 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5C8 */ Z2CreatureEnemy mCreatureSound;
     /* 0x66C */ int mAnm;
     /* 0x670 */ s16 mCounter;

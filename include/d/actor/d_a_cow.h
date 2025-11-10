@@ -211,7 +211,7 @@ public:
 private:
     /* 0x568 */ u16 mFlags;
     /* 0x56c */ request_of_phase_process_class mPhase;
-    /* 0x574 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x574 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x578 */ mDoExt_btpAnm* mpBtp;
     /* 0x57c */ Z2Creature mSound;
     /* 0x60c */ dBgS_ObjAcch mAcch;

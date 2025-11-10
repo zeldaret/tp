@@ -135,7 +135,7 @@ public:
     static daMyna_c::BaseMotionFunc mBaseMotionTBL[7];
 
     /* 0x56C */ request_of_phase_process_class mPhase;
-    /* 0x574 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x574 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x578 */ mDoExt_btpAnm mBtpAnm;
     /* 0x590 */ Z2Creature mCreature;
     /* 0x620 */ dMsgFlow_c mMsgFlow;

@@ -37,7 +37,7 @@ public:
     /* 0x05C1 */ s8 mPathDirection;
     /* 0x05C4 */ cXyz mPathTargetPos;
     /* 0x05D0 */ s16 mTargetAngle;
-    /* 0x05D4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x05D4 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x05D8 */ int mAnm;
     /* 0x05DC */ u8 field_0x5DC[0x05E0 - 0x05DC];
     /* 0x05E0 */ Z2CreatureEnemy mSound;

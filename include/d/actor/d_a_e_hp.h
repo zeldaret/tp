@@ -42,10 +42,10 @@ public:
     /* 806E9900 */ daE_HP_c();
 
     /* 0x5AC */ request_of_phase_process_class mPhaseReq;
-    /* 0x5B4 */ mDoExt_McaMorfSO* mpMorfSO;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mAnm_pSO;
     /* 0x5B8 */ mDoExt_invisibleModel mInvModel;
     /* 0x5C0 */ J3DModel* mpModel;
-    /* 0x5C4 */ mDoExt_McaMorf* mpMorf;
+    /* 0x5C4 */ mDoExt_McaMorf* mAnm_p;
     /* 0x5C8 */ Z2CreatureEnemy mSound1;
     /* 0x66C */ Z2CreatureEnemy mSound2;
     /* 0x710 */ s32 mAction;

@@ -169,10 +169,10 @@ int daE_PH_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_PH", PH_BMD);
     JUT_ASSERT(0, modelData != NULL);
 
-    mpMorf = new mDoExt_McaMorfSO(
+    mAnm_p= new mDoExt_McaMorfSO(
         modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PH", ANM_WAIT),
         J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -200,7 +200,7 @@ static int daE_PH_Delete(daE_PH_c* i_this) {
 /* 8073DB28-8073DBD4 0007C8 00AC+00 5/5 0/0 0/0 .text            SetAnm__8daE_PH_cFiiff */
 void daE_PH_c::SetAnm(int i_anmID, int i_attr, f32 i_morf, f32 i_speed) {
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("E_PH", i_anmID);
-    mpMorf->setAnm(anm, i_attr, i_morf, i_speed, 0.0f, -1.0f);
+    mAnm_p->setAnm(anm, i_attr, i_morf, i_speed, 0.0f, -1.0f);
     mAnmID = i_anmID;
 }
 
@@ -240,7 +240,7 @@ void daE_PH_c::SearchNearP() {
 /* 8073DDF8-8073E068 000A98 0270+00 2/2 0/0 0/0 .text            FlyAnm__8daE_PH_cFv */
 void daE_PH_c::FlyAnm() {
     if (mAnmID == ANM_DAMAGE_ARROW || mAnmID == ANM_HANG_START || mAnmID == ANM_HANG_WAIT) {
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         }
 
@@ -266,7 +266,7 @@ void daE_PH_c::FlyAnm() {
             SetAnm(ANM_HANG_END, J3DFrameCtrl::EMode_NONE, 5.0f, mAnmSpeed);
         }
     } else if (mAnmID == ANM_HANG_END) {
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         }
     }
@@ -315,7 +315,7 @@ void daE_PH_c::GoTarget() {
 
     cLib_chaseF(&mAnmSpeed, field_0x620, 0.06f);
     cLib_chaseAngleS(&field_0x612, field_0x610 * mAnmSpeed, 0x10);
-    mpMorf->setPlaySpeed(mAnmSpeed);
+    mAnm_p->setPlaySpeed(mAnmSpeed);
 
     if (mAcch.GetGroundH() != -G_CM3D_F_INF && current.pos.y < mAcch.GetGroundH() + 100.0f) {
         current.pos.y = mAcch.GetGroundH() + 100.0f;
@@ -380,7 +380,7 @@ void daE_PH_c::DownBoots() {
         field_0x620 = nREG_F(0) + 3.0f;
     }
 
-    mpMorf->setPlaySpeed(mAnmSpeed);
+    mAnm_p->setPlaySpeed(mAnmSpeed);
 }
 
 /* 8073EA50-8073EB64 0016F0 0114+00 2/2 0/0 0/0 .text            UpBoots__8daE_PH_cFv */
@@ -399,7 +399,7 @@ void daE_PH_c::UpBoots() {
         field_0x620 = nREG_F(0) + 3.0f;
     }
 
-    mpMorf->setPlaySpeed(mAnmSpeed);
+    mAnm_p->setPlaySpeed(mAnmSpeed);
 
     if (current.pos.y > field_0x640) {
         mCAction = 0;
@@ -505,7 +505,7 @@ void daE_PH_c::S_SetPlaySpeed() {
 
     cLib_chaseF(&mAnmSpeed, field_0x620, yREG_F(8) + 0.3f);
     cLib_chaseAngleS(&field_0x612, field_0x610 * field_0x620, 0x10);
-    mpMorf->setPlaySpeed(mAnmSpeed);
+    mAnm_p->setPlaySpeed(mAnmSpeed);
 }
 
 /* 8073EE68-8073F250 001B08 03E8+00 1/1 0/0 0/0 .text            S_GoTarget__8daE_PH_cFv */
@@ -589,7 +589,7 @@ void daE_PH_c::S_SetAngle() {
 /* 8073F8C8-8073FB70 002568 02A8+00 1/1 0/0 0/0 .text            FlyAnm2__8daE_PH_cFv */
 void daE_PH_c::FlyAnm2() {
     if (mAnmID == ANM_DAMAGE_ARROW || mAnmID == ANM_HANG_START || mAnmID == ANM_HANG_WAIT) {
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         }
 
@@ -622,7 +622,7 @@ void daE_PH_c::FlyAnm2() {
             SetAnm(ANM_HANG_END, J3DFrameCtrl::EMode_NONE, 5.0f, mAnmSpeed);
         }
     } else if (mAnmID == ANM_HANG_END) {
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, mAnmSpeed);
         }
     }
@@ -760,7 +760,7 @@ void daE_PH_c::Action() {
     ObjHit();
     BaseSet();
 
-    mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     mAcch.CrrPos(dComIfG_Bgsp());
 }
 
@@ -776,7 +776,7 @@ void daE_PH_c::SetHeadAngle(s16 i_targetAngle) {
 void daE_PH_c::CamAction() {
     cXyz sp20(0.0f, 0.0f, 0.0f);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(2));
     mDoMtx_stack_c::multVec(&sp20, &sp20);
     sp20.y += yREG_F(3);
 
@@ -838,24 +838,24 @@ void daE_PH_c::DemoAction() {
         break;
     case 1:
         if (mTimers[0] == 0 && mAnmID != ANM_APPEAR) {
-            mpMorf->setPlaySpeed(1.0f);
+            mAnm_p->setPlaySpeed(1.0f);
             mAnmID = ANM_APPEAR;
         }
 
-        if (mpMorf->checkFrame(154) && mAnmID == ANM_APPEAR) {
+        if (mAnm_p->checkFrame(154) && mAnmID == ANM_APPEAR) {
             speed.y = yREG_F(0) + 70.0f;
             mSound.startCreatureSound(Z2SE_EN_PH_APPEAR, 0, -1);
             mCAction++;
         }
 
-        if (mpMorf->getFrame() > 126.0f && mAnmID == ANM_APPEAR) {
+        if (mAnm_p->getFrame() > 126.0f && mAnmID == ANM_APPEAR) {
             SetHeadAngle(0x2000);
         }
         break;
     case 2:
         speed.y += yREG_F(1) + -1.8f;
 
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             mCAction++;
             mTimers[0] = 50;
             SetAnm(ANM_WAIT, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
@@ -892,7 +892,7 @@ void daE_PH_c::DemoAction() {
             mTimers[1] = 360;
         }
 
-        mpMorf->setPlaySpeed(speed.y / 20.0f + 1.0f);
+        mAnm_p->setPlaySpeed(speed.y / 20.0f + 1.0f);
         break;
     case 4:
         cLib_addCalc2(&speed.y, 15.0f, 0.1f, 0.5f);
@@ -909,7 +909,7 @@ void daE_PH_c::DemoAction() {
             SetHeadAngle(0x1500);
         }
 
-        mpMorf->setPlaySpeed(speed.y / 20.0f + 1.0f);
+        mAnm_p->setPlaySpeed(speed.y / 20.0f + 1.0f);
 
         if (mTimers[1] == 0 || !dComIfGp_event_runCheck()) {
             fopAcM_delete(this);
@@ -1008,7 +1008,7 @@ int daE_PH_c::Execute() {
             CamAction();
         }
 
-        mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
         break;
     default:
         De_Timer();
@@ -1145,7 +1145,7 @@ int daE_PH_c::Delete() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -1158,12 +1158,12 @@ void daE_PH_c::setBaseMtx() {
     mDoMtx_stack_c::XrotM(shape_angle.x);
     mDoMtx_stack_c::ZrotM(shape_angle.z);
 
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
 }
 
 int daE_PH_c::Draw() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     if (mAction != 3) {
         if (field_0x5b2) {
@@ -1172,7 +1172,7 @@ int daE_PH_c::Draw() {
 
             g_env_light.settingTevStruct(0, &current.pos, &tevStr);
             g_env_light.setLightTevColorType_MAJI(model, &tevStr);
-            mpMorf->entryDL();
+            mAnm_p->entryDL();
 
             mShadowKey = dComIfGd_setShadow(mShadowKey, 0, model, &sp28, BREG_F(16) + 1000.0f,
                                             BREG_F(17) + 100.0f, current.pos.y, mAcch.GetGroundH(),
@@ -1242,7 +1242,7 @@ int daE_PH_c::create() {
             mStopTimePrm = 0;
         }
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         mAcchCir.SetWall(100.0f, 100.0f);
 
         if (!initialized) {
@@ -1264,7 +1264,7 @@ int daE_PH_c::create() {
         mSound.init(&current.pos, &sp3C, 3, 1);
         mAtInfo.mpSound = &mSound;
 
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         model->setUserArea((uintptr_t)this);
 
         for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
@@ -1314,7 +1314,7 @@ int daE_PH_c::create() {
         }
 
         if (mAction == 4 || mAction == 5) {
-            mpMorf->setPlaySpeed(0.0f);
+            mAnm_p->setPlaySpeed(0.0f);
             SetAnm(ANM_APPEAR, J3DFrameCtrl::EMode_NONE, 5.0f, 0.0f);
             mAnmID = ANM_WAIT;
         }

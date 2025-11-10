@@ -290,7 +290,7 @@ daNpcMoiR_c::~daNpcMoiR_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 #if DEBUG
     if (mpHIO) {
@@ -363,8 +363,8 @@ cPhs__Step daNpcMoiR_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* model_data = mpMorf->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        J3DModelData* model_data = mAnm_p->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 #if DEBUG
@@ -391,7 +391,7 @@ cPhs__Step daNpcMoiR_c::Create() {
 
         setEnvTevColor();
         setRoomNo();
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
         reset();
         Execute();
     }
@@ -408,17 +408,17 @@ int daNpcMoiR_c::CreateHeap() {
     JUT_ASSERT(403, NULL != mdlData_p);
 
     u32 sp_0x18 = 0x11020284;
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x18);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p= new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x18);
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
 
-    mdl_p = mpMorf->getModel();
+    mdl_p = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -475,7 +475,7 @@ int daNpcMoiR_c::Execute() {
 
 /* 80A7CEA0-80A7CEFC 000E20 005C+00 1/1 0/0 0/0 .text            Draw__11daNpcMoiR_cFv */
 int daNpcMoiR_c::Draw() {
-    J3DModelData* model_data = mpMorf->getModel()->getModelData();
+    J3DModelData* model_data = mAnm_p->getModel()->getModelData();
     model_data->getMaterialNodePointer(MAT_MOIR_EYEBALL_M)->setMaterialAnm(mpMatAnm);
     draw(FALSE, FALSE, mpHIO->m.common.real_shadow_size, NULL, FALSE);
     return 1;
@@ -488,13 +488,13 @@ int daNpcMoiR_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int i_jointList[3] = {JNT_BACKBONE1, JNT_NECK, JNT_HEAD};
 
     if (jntNo == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -514,8 +514,8 @@ int daNpcMoiR_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((jntNo == JNT_HEAD || jntNo == JNT_MOUTH) && (mAnmFlags & ANM_PLAY_BCK) != 0) {
         J3DAnmTransform* anm = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(anm);
+        mBckAnm.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(anm);
     }
 
     return 1;
@@ -681,7 +681,7 @@ bool daNpcMoiR_c::setExpressionBtp(int i_index) {
         return true;
     }
 
-    if (setBtpAnm(anmTexPattern, mpMorf->getModel()->getModelData(), 1.0f, i_attr)) {
+    if (setBtpAnm(anmTexPattern, mAnm_p->getModel()->getModelData(), 1.0f, i_attr)) {
         mAnmFlags |= ANM_PLAY_BTP | ANM_PAUSE_BTP;
 
         if (i_index == EXPR_BTP_MOIR) {
@@ -715,7 +715,7 @@ void daNpcMoiR_c::setMotionAnm(int i_index, f32 i_morf) {
     }
 
     if (btkAnm != NULL) {
-        if (setBtkAnm(btkAnm, mpMorf->getModel()->getModelData(), 1.0f, i_btkAttr)) {
+        if (setBtkAnm(btkAnm, mAnm_p->getModel()->getModelData(), 1.0f, i_btkAttr)) {
             mAnmFlags |= ANM_PLAY_BTK | ANM_PAUSE_BTK;
         }
     }
@@ -954,7 +954,7 @@ void daNpcMoiR_c::playMotion() {
 /* 80A825A0-80A82878 006520 02D8+00 1/1 0/0 0/0 .text            lookat__11daNpcMoiR_cFv */
 void daNpcMoiR_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     BOOL bVar1 = FALSE;
     f32 body_angleX_min = mpHIO->m.common.body_angleX_min;
     f32 body_angleX_max = mpHIO->m.common.body_angleX_max;
@@ -989,7 +989,7 @@ void daNpcMoiR_c::lookat() {
             }
 
             if (mMode == MODE_SIT) {
-                J3DAnmTransform* anm = mpMorf->getAnm();
+                J3DAnmTransform* anm = mAnm_p->getAnm();
                 if (anm == getTrnsfrmKeyAnmP(l_arcNames[1], l_bckGetParamList[30].fileIdx) ||
                     anm == getTrnsfrmKeyAnmP(l_arcNames[1], l_bckGetParamList[33].fileIdx)) {
                     player = NULL;
@@ -1522,7 +1522,7 @@ bool daNpcMoiR_c::fight(void* param_1) {
                 field_0xe00 = cLib_getRndValue(1, 2);
             }
 
-            if (mMotion == MOT_DRIVEAWAY && mMotionPhase == 0 && (mpMorf->checkFrame(11.0f) || mpMorf->checkFrame(36.0f))) {
+            if (mMotion == MOT_DRIVEAWAY && mMotionPhase == 0 && (mAnm_p->checkFrame(11.0f) || mAnm_p->checkFrame(36.0f))) {
                 mSound.startCreatureVoice(Z2SE_MOIR_V_SHIT_H, -1);
             }
 
@@ -1819,7 +1819,7 @@ BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
                 break;
             }
 
-            if (mMotionPhase == 0 && mpMorf->checkFrame(25.0f)) {
+            if (mMotionPhase == 0 && mAnm_p->checkFrame(25.0f)) {
                 mDoAud_seStart(Z2SE_PLAY_REED_TOBIKUSA, NULL, 0, 0);
                 break;
             }
@@ -1931,12 +1931,12 @@ BOOL daNpcMoiR_c::main() {
 
 /* 80A815D4-80A818B4 005554 02E0+00 1/1 0/0 0/0 .text            checkHeadGear__11daNpcMoiR_cFv */
 void daNpcMoiR_c::checkHeadGear() {
-    J3DModelData* mdlData_p = mpMorf->getModel()->getModelData();
-    J3DAnmTransform* anm = mpMorf->getAnm();
+    J3DModelData* mdlData_p = mAnm_p->getModel()->getModelData();
+    J3DAnmTransform* anm = mAnm_p->getAnm();
 
     if (mMode == MODE_SIT) {
         if (anm == getTrnsfrmKeyAnmP(l_arcNames[1], l_bckGetParamList[30].fileIdx)) {
-            if (mpMorf->checkFrame(14.0f)) {
+            if (mAnm_p->checkFrame(14.0f)) {
                 mWearHelmet = false;
                 mdlData_p->getMaterialNodePointer(MAT_MOIR_HEADGEAR_M)->getShape()->hide();
             }
@@ -1946,13 +1946,13 @@ void daNpcMoiR_c::checkHeadGear() {
         } else if (anm == getTrnsfrmKeyAnmP(l_arcNames[1], l_bckGetParamList[32].fileIdx)) {
             mWearHelmet = false;
             mdlData_p->getMaterialNodePointer(MAT_MOIR_HEADGEAR_M)->getShape()->hide();
-        } else if (anm == getTrnsfrmKeyAnmP(l_arcNames[1], l_bckGetParamList[33].fileIdx) && mpMorf->checkFrame(24.0f)) {
+        } else if (anm == getTrnsfrmKeyAnmP(l_arcNames[1], l_bckGetParamList[33].fileIdx) && mAnm_p->checkFrame(24.0f)) {
             mWearHelmet = true;
             mdlData_p->getMaterialNodePointer(MAT_MOIR_HEADGEAR_M)->getShape()->show();
         }
     } else if (mMode == MODE_STAND) {
         if (anm == getTrnsfrmKeyAnmP(l_arcNames[2], l_bckGetParamList[24].fileIdx)) {
-            if (mpMorf->checkFrame(15.0f)) {
+            if (mAnm_p->checkFrame(15.0f)) {
                 mWearHelmet = false;
                 mdlData_p->getMaterialNodePointer(MAT_MOIR_HEADGEAR_M)->getShape()->hide();
             }
@@ -1962,7 +1962,7 @@ void daNpcMoiR_c::checkHeadGear() {
         } else if (anm == getTrnsfrmKeyAnmP(l_arcNames[2], l_bckGetParamList[26].fileIdx)) {
             mWearHelmet = false;
             mdlData_p->getMaterialNodePointer(MAT_MOIR_HEADGEAR_M)->getShape()->hide();
-        } else if (anm == getTrnsfrmKeyAnmP(l_arcNames[2], l_bckGetParamList[27].fileIdx) && mpMorf->checkFrame(33.0f)) {
+        } else if (anm == getTrnsfrmKeyAnmP(l_arcNames[2], l_bckGetParamList[27].fileIdx) && mAnm_p->checkFrame(33.0f)) {
             mWearHelmet = true;
             mdlData_p->getMaterialNodePointer(MAT_MOIR_HEADGEAR_M)->getShape()->show();
         }
@@ -2007,7 +2007,7 @@ void daNpcMoiR_c::setAttnPos() {
         sp40.set(-15.0f, 10.0f, 2.0f);
     }
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&sp40, &eyePos);
     sp40.x = 0.0f;
@@ -2034,7 +2034,7 @@ void daNpcMoiR_c::setAttnPos() {
 
     attention_info.position.set(mHeadPos.x, mHeadPos.y + mpHIO->m.common.attention_offset, mHeadPos.z);
     cXyz sp58;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE2));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE2));
     mDoMtx_stack_c::multVecZero(&sp58);
     sp58.y = current.pos.y;
     field_0xca0.SetC(sp58);
@@ -2055,7 +2055,7 @@ void daNpcMoiR_c::setAttnPos() {
 void daNpcMoiR_c::drawOtherMdls() {
     if (!mWearHelmet) {
         g_env_light.setLightTevColorType_MAJI(mpHeadgearModel, &tevStr);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HANDR));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HANDR));
         mpHeadgearModel->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mpHeadgearModel);
     }

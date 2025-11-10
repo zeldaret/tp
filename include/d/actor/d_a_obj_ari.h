@@ -73,7 +73,7 @@ private:
     /* 0x7C0 */ Z2Creature mCreatureSound;
     /* 0x850 */ dBgS_AcchCir mAcchCir;
     /* 0x890 */ dBgS_ObjAcch mAcch;
-    /* 0xA68 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0xA68 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0xA6C */ request_of_phase_process_class mPhase;
     /* 0xA74 */ bool mHIOInit;
 };

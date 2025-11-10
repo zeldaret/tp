@@ -564,8 +564,8 @@ static void action(obj_hb_class* i_this) {
 
     e_hb_leaf_class* hb_leaf_p = (e_hb_leaf_class*)fopAcM_SearchByID(i_this->mChildActorID);
     if (hb_leaf_p != NULL) {
-        hb_leaf_p->mpMorf->setPlaySpeed(i_this->mChildPlaySpeed);
-        hb_leaf_p->mpMorf->play(NULL, 0, 0);
+        hb_leaf_p->mAnm_p->setPlaySpeed(i_this->mChildPlaySpeed);
+        hb_leaf_p->mAnm_p->play(NULL, 0, 0);
     }
 
     if (i_this->mShapeAngleXOffset == 0) {

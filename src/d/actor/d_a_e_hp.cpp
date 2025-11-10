@@ -186,7 +186,7 @@ int daE_HP_c::draw() {
         attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
     }
 
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
@@ -230,9 +230,9 @@ int daE_HP_c::draw() {
     mDoMtx_stack_c::XrotM((s16)unkXyz1.atan2sY_XZ());
     mDoMtx_stack_c::scaleM(l_HIO.modelSize, l_HIO.modelSize, l_HIO.modelSize);
 
-    model = mpMorf->getModel();
+    model = mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
 
     mDoMtx_stack_c::copy(mpModel->getAnmMtx(2));
     mDoMtx_stack_c::multVecZero(&unkXyz1);
@@ -245,8 +245,8 @@ int daE_HP_c::draw() {
         }
     }
 
-    mpMorf->getModel();
-    mpMorf->entryDL();
+    mAnm_p->getModel();
+    mAnm_p->entryDL();
 
     if (checkDownFlg()) {
         cXyz local_50;
@@ -288,7 +288,7 @@ static int daE_HP_Draw(daE_HP_c* param_0) {
 
 /* 806E6514-806E65C0 000814 00AC+00 6/6 0/0 0/0 .text            setBck__8daE_HP_cFiUcff */
 void daE_HP_c::setBck(int param_0, u8 param_1, f32 param_2, f32 param_3) {
-    mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_HP", param_0), param_1, param_2,
+    mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_HP", param_0), param_1, param_2,
                      param_3, 0.0f, -1.0f);
     field_0x780 = param_0;
 }
@@ -318,7 +318,7 @@ void daE_HP_c::damage_check() {
     }
 
     cXyz cStack_1c;
-    mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(1));
+    mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(1));
     mDoMtx_stack_c::multVecZero(&cStack_1c);
 
     scale.set(l_HIO.modelSize, l_HIO.modelSize, l_HIO.modelSize);
@@ -389,7 +389,7 @@ void daE_HP_c::executeWait() {
 
         break;
     case 11:
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             setActionMode(1, 0);
         }
 
@@ -504,11 +504,11 @@ void daE_HP_c::executeAttack() {
 
         break;
     case 1:
-        if (mpMorfSO->checkFrame(20.0f) || mpMorfSO->checkFrame(32.0f)) {
+        if (mAnm_pSO->checkFrame(20.0f) || mAnm_pSO->checkFrame(32.0f)) {
             mSound1.startCreatureSound(Z2SE_EN_HP_SWING, 0, -1);
         }
 
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             setBck(14, 2, 3.0f, 1.0f);
 
             mSound1.startCreatureVoice(Z2SE_EN_HP_V_LAUGH, -1);
@@ -553,7 +553,7 @@ void daE_HP_c::executeDamage() {
         break;
     }
     case 1: {
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             cXyz vecToHome;
             if (mChkDistance(300.0f + NREG_F(7))) {
                 setActionMode(3, 0);
@@ -624,13 +624,13 @@ void daE_HP_c::executeDown() {
         break;
     }
     case 1: {
-        if (field_0x780 == 9 && mpMorfSO->isStop()) {
+        if (field_0x780 == 9 && mAnm_pSO->isStop()) {
             field_0x7a0 = 0.0f;
             field_0x71d = 7 + BREG_S(7);
             field_0x71c = (u8)l_HIO.resurrectionTime;
             setBck(15, 2, 3.0f, 1.0f);
             movemode = 10;
-        } else if (field_0x780 == 8 && mpMorfSO->isStop()) {
+        } else if (field_0x780 == 8 && mAnm_pSO->isStop()) {
             setBck(9, 0, 3.0f, 1.0f);
         }
         break;
@@ -657,14 +657,14 @@ void daE_HP_c::executeDown() {
     case 11: {
         cLib_addCalcAngleS2(&field_0x772.x, 0, 4, 0x100);
         cLib_addCalcAngleS2(&field_0x772.z, 0, 4, 0x100);
-        if ((s32)mpMorfSO->getFrame() >= 16 && (s32)mpMorfSO->getFrame() <= 23) {
+        if ((s32)mAnm_pSO->getFrame() >= 16 && (s32)mAnm_pSO->getFrame() <= 23) {
             field_0x7a4 += (170.0f + JREG_F(0)) / 7.0f * (2.0f + JREG_F(3));
             if (field_0x7a4 > 170.0f + JREG_F(0)) {
                 field_0x7a4 = 170.0f + JREG_F(0);
             }
             cLib_addCalcAngleS2(&field_0x76c.z, -0x4000 + JREG_S(0), 1, 0x1000);
         } else {
-            if ((s32)mpMorfSO->getFrame() >= 28) {
+            if ((s32)mAnm_pSO->getFrame() >= 28) {
                 field_0x7a8++;
                 cLib_addCalcAngleS2(&field_0x76c.z, 0, 4, 0x400);
             }
@@ -674,7 +674,7 @@ void daE_HP_c::executeDown() {
                       field_0x7a4 +
                           (20.0f + NREG_F(4)) * (cM_ssin((f32)field_0x7a8 * (1000.0f + NREG_F(3)))),
                       0.8f, 10.0f);
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             health = 40;
 
             offWolfNoLock();
@@ -950,8 +950,8 @@ void daE_HP_c::action() {
 
     cLib_addCalcAngleS2(&field_0x7aa, angleDiff, 8, 0x400);
 
-    mpMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
-    mpMorf->play(NULL, 0, 0);
+    mAnm_pSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_p->play(NULL, 0, 0);
 
     setBallModelEffect(&tevStr);
 
@@ -960,7 +960,7 @@ void daE_HP_c::action() {
 
 /* 806E89C0-806E8DE0 002CC0 0420+00 2/2 0/0 0/0 .text            mtx_set__8daE_HP_cFv */
 void daE_HP_c::mtx_set() {
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
 
     cXyz unkXyz1;
 
@@ -971,7 +971,7 @@ void daE_HP_c::mtx_set() {
     mDoMtx_stack_c::scaleM(l_HIO.modelSize, l_HIO.modelSize, l_HIO.modelSize);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    mpMorfSO->modelCalc();
+    mAnm_pSO->modelCalc();
     field_0x750.set(field_0x744);
 
     mDoMtx_stack_c::copy(model->getAnmMtx(13));
@@ -1005,7 +1005,7 @@ void daE_HP_c::mtx_set() {
         field_0xddc = dComIfGp_particle_set(field_0xddc, 0x878b, &field_0xde0, &shape_angle, 0);
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0xddc);
         if (emitter != NULL) {
-            J3DModel* model = mpMorfSO->getModel();
+            J3DModel* model = mAnm_pSO->getModel();
             emitter->setGlobalSRTMatrix(model->getAnmMtx(7));
         }
     }
@@ -1016,7 +1016,7 @@ void daE_HP_c::cc_set() {
     cXyz cStack_1c;
     cXyz cStack_28;
 
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
 
     mDoMtx_stack_c::copy(model->getAnmMtx(8));
     mDoMtx_stack_c::multVecZero(&eyePos);
@@ -1042,8 +1042,8 @@ void daE_HP_c::cc_set() {
     mDoMtx_stack_c::multVecZero(&field_0xde0);
 
     if (field_0x780 == 5) {
-        if (mpMorfSO->getFrame() >= 23.0f) {
-            if (mpMorfSO->getFrame() <= 42.0f) {
+        if (mAnm_pSO->getFrame() >= 23.0f) {
+            if (mAnm_pSO->getFrame() <= 42.0f) {
                 dComIfG_Ccsp()->Set(&mCyl2);
             }
         }
@@ -1154,18 +1154,18 @@ static int daE_HP_Delete(daE_HP_c* i_this) {
 int daE_HP_c::CreateHeap() {
     J3DModelData* modeldata = (J3DModelData*)dComIfG_getObjectRes("E_HP", 19);
     JUT_ASSERT(0x764, modeldata != NULL);
-    mpMorfSO = new mDoExt_McaMorfSO(modeldata, NULL, NULL,
+    mAnm_pSO = new mDoExt_McaMorfSO(modeldata, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_HP", 13), 2, 1.0f, 0,
                                     -1, &mSound1, 0x80000, 0x11000084);
-    if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
+    if (mAnm_pSO == NULL || mAnm_pSO->getModel() == NULL) {
         return 0;
     }
 
-    if (mInvModel.create(mpMorfSO->getModel(), 1) == 0) {
+    if (mInvModel.create(mAnm_pSO->getModel(), 1) == 0) {
         return 0;
     }
 
-    model = mpMorfSO->getModel();
+    model = mAnm_pSO->getModel();
     model->setUserArea((uintptr_t)this);
 
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
@@ -1190,11 +1190,11 @@ int daE_HP_c::CreateHeap() {
     }
 
     modeldata = (J3DModelData*)dComIfG_getObjectRes("E_HP", 18);
-    mpMorf =
+    mAnm_p=
         new mDoExt_McaMorf(modeldata, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_HP", 4),
                            2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
 
-    if (mpMorf == NULL || mpMorf->getModel() == 0) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == 0) {
         return 0;
     }
 
@@ -1264,7 +1264,7 @@ int daE_HP_c::create() {
         }
         attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
-        fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_pSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
 

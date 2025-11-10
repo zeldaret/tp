@@ -66,7 +66,7 @@ public:
 private:
     /* 0x5AC */ request_of_phase_process_class mPhaseReq;
     /* 0x5B4 */ request_of_phase_process_class mPhaseReq2;
-    /* 0x5BC */ mDoExt_McaMorfSO* mpMorfSO;
+    /* 0x5BC */ mDoExt_McaMorfSO* mAnm_pSO;
     /* 0x5C0 */ J3DModel* mpModel;
     /* 0x5C4 */ J3DModel* mpModel2;
     /* 0x5C8 */ Z2CreatureEnemy mSound;

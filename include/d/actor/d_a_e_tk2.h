@@ -25,7 +25,7 @@ public:
     /* 0x5B5 */ u8 mArg1;
     /* 0x5B6 */ u8 mArg2;
     /* 0x5B7 */ u8 mArg3; /* Unused */
-    /* 0x5B8 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5B8 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5BC */ int mAnim;
     /* 0x5C0 */ Z2CreatureEnemy mSound;
     /* 0x664 */ f32 mAnimSpeed;

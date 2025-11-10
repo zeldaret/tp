@@ -112,7 +112,7 @@ public:
     /* 0x66C */ request_of_phase_process_class mPhase;
     /* 0x674 */ Z2CreatureEnemy mSound;
     /* 0x718 */ u32 mShadowKey;
-    /* 0x71C */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x71C */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x720 */ dBgS_AcchCir mAcchCir;
     /* 0x760 */ dBgS_ObjAcch mAcch;
     /* 0x938 */ dCcD_Stts mCcStts;

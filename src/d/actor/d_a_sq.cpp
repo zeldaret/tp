@@ -47,22 +47,22 @@ static void anm_init(sq_class* i_this, int i_bck, f32 i_morf, u8 i_mode, f32 i_s
     }
 
     if (i_bas >= 0) {
-        i_this->mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Sq", i_bck)),
+        i_this->mAnm_p->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Sq", i_bck)),
                                i_mode, i_morf, i_speed, 0.0f, -1.0f,
                                dComIfG_getObjectRes("Sq", i_bas));
     } else {
-        i_this->mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Sq", i_bck)),
+        i_this->mAnm_p->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Sq", i_bck)),
                                i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
     }
 }
 
 /* 8059F808-8059F900 000288 00F8+00 1/0 0/0 0/0 .text            daSq_Draw__FP8sq_class */
 static int daSq_Draw(sq_class* i_this) {
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
     i_this->mpBtkAnm->entry(model->getModelData());
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
     cXyz shadow_pos;
     shadow_pos.set(i_this->current.pos.x, i_this->current.pos.y + 100.0f, i_this->current.pos.z);
     i_this->mShadowKey =
@@ -265,7 +265,7 @@ static void sq_fly(sq_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         anm_init(i_this, 7, 2.0f, 0, 0.0f, -1);
-        i_this->mpMorf->setFrame(6.0f);
+        i_this->mAnm_p->setFrame(6.0f);
         i_this->mMode++;
         break;
 
@@ -453,12 +453,12 @@ static int daSq_Execute(sq_class* i_this) {
     mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
     f32 scale = i_this->scale.x * l_HIO.mScale;
     mDoMtx_stack_c::scaleM(scale, scale, scale);
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(&i_this->eyePos, 0, 0);
+    i_this->mAnm_p->play(&i_this->eyePos, 0, 0);
     i_this->mpBtkAnm->setFrame(i_this->mBtkFrame);
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
     
     MTXCopy(model->getAnmMtx(2), *calc_mtx);
     MtxPosition(&vec, &i_this->eyePos);
@@ -491,11 +491,11 @@ static int daSq_Delete(sq_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     sq_class* _this = static_cast<sq_class*>(i_this);
     
-    _this->mpMorf =
+    _this->mAnm_p=
         new mDoExt_McaMorf(static_cast<J3DModelData*>(dComIfG_getObjectRes("Sq", 17)), NULL, NULL,
                            static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Sq", 9)),
                            0, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000284);
-    if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
+    if (_this->mAnm_p== NULL || _this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -503,7 +503,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     if (_this->mpBtkAnm == NULL) {
         return 0;
     }
-    return _this->mpBtkAnm->init(_this->mpMorf->getModel()->getModelData(),
+    return _this->mpBtkAnm->init(_this->mAnm_p->getModel()->getModelData(),
                                  static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("Sq", 20)),
                                  1, 0, 1.0f, 0, -1) ? 1 : 0;
 }
@@ -544,7 +544,7 @@ static cPhs__Step daSq_Create(fopAc_ac_c* i_this) {
         fopAcM_OnStatus(_this, 0x100);
         _this->attention_info.flags = 0;
         _this->mAction = sq_class::ACT_NORMAL;
-        fopAcM_SetMtx(_this, _this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(_this, _this->mAnm_p->getModel()->getBaseTRMtx());
         _this->mAcch.Set(fopAcM_GetPosition_p(_this), fopAcM_GetOldPosition_p(_this), _this, 1,
                          &_this->mAcchCir, fopAcM_GetSpeed_p(_this), NULL, NULL);
         _this->mAcchCir.SetWall(30.0f, 40.0f);

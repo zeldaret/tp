@@ -14,7 +14,7 @@ int daNpcFgd_c::createHeap() {
         if (mObjNum != 0) {
             rv = (field_0xac8 = ObjCreate(mObjNum)) != NULL;
             if (rv == 0) {
-                mpMorf->stopZelAnime();
+                mAnm_p->stopZelAnime();
             }
         } else {
             field_0xac8 = NULL;
@@ -77,8 +77,8 @@ void daNpcFgd_c::initCollision() {
 void daNpcFgd_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, field_0xad4, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    mAnm_p->modelCalc();
     setAttention(m_type);
 }
 
@@ -86,7 +86,7 @@ void daNpcFgd_c::setBaseMtx() {
 void daNpcFgd_c::create_init() {
     gravity = -3.0f;
     maxFallSpeed = -21.0f;
-    fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+    fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
     fopAcM_setCullSizeBox(this, -50.0f, -10.0f, -90.0f, 50.0f, 290.0f, 60.0f);
 
     f32 chkWallR = Cd2_HIO_chkWallR(m_type);
@@ -115,7 +115,7 @@ void daNpcFgd_c::create_init() {
         setAnime(0);
     }
 
-    mpMorf->setMorf(0.0f);
+    mAnm_p->setMorf(0.0f);
     setBaseMtx();
 }
 
@@ -130,7 +130,7 @@ daNpcFgd_c::~daNpcFgd_c() {
     removeResrc(m_type, mObjNum);
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 

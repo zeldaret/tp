@@ -34,7 +34,7 @@ public:
     /* 0x05BB */ s8 field_0x5bb;
     /* 0x05BC */ cXyz field_0x5bc;
     /* 0x05C8 */ s16 mTargetAngleY;
-    /* 0x05CC */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x05CC */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x05D0 */ Z2CreatureEnemy mSound;
     /* 0x0674 */ char* mpArcName;
     /* 0x0678 */ int mAnm;

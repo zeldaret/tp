@@ -45,10 +45,10 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 80C44010-80C44080 000210 0070+00 1/0 0/0 0/0 .text            daObj_Ki_Draw__FP12obj_ki_class */
 static int daObj_Ki_Draw(obj_ki_class* i_this) {
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
     return 1;
 }
 
@@ -77,10 +77,10 @@ static int daObj_Ki_Execute(obj_ki_class* i_this) {
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
     mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.y, i_this->scale.z);
-    i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     PSMTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
     i_this->mpBgW->Move();
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     for (int i = 0; i < 3; i++) {
         csXyz ang;
@@ -123,17 +123,17 @@ static int daObj_Ki_Delete(obj_ki_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     obj_ki_class* _this = static_cast<obj_ki_class*>(i_this);
 
-    _this->mpMorf =
+    _this->mAnm_p=
         new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Obj_Ki", ki_bmd[_this->mBmdIdx]),
                            NULL, NULL, NULL, 0, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
-    if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
+    if (_this->mAnm_p== NULL || _this->mAnm_p->getModel() == NULL) {
         return 0;
     }
-    if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
+    if (_this->mAnm_p== NULL || _this->mAnm_p->getModel() == NULL) {
         return 0;
     }
     
-    J3DModel* model = _this->mpMorf->getModel();
+    J3DModel* model = _this->mAnm_p->getModel();
     model->setUserArea((uintptr_t)_this);
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
@@ -181,7 +181,7 @@ static cPhs__Step daObj_Ki_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        fopAcM_SetMtx(_this, _this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(_this, _this->mAnm_p->getModel()->getBaseTRMtx());
 
         if (_this->mScaleXZ != 0xff) {
             _this->scale.x = _this->mScaleXZ * 0.1f;

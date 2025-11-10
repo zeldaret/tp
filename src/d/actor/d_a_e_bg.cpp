@@ -119,7 +119,7 @@ int daE_BG_c::draw() {
         return 1;
     }
 
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
 
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
@@ -139,7 +139,7 @@ int daE_BG_c::draw() {
         mat->setTevColor(0, &color);
     }
 
-    mpMorfSO->entryDL();
+    mAnm_pSO->entryDL();
 
     cXyz offsetPos;
     offsetPos.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
@@ -159,7 +159,7 @@ static int daE_BG_Draw(daE_BG_c* i_this) {
 
 /* 80685B70-80685C14 000450 00A4+00 2/2 0/0 0/0 .text            setBck__8daE_BG_cFiUcff */
 void daE_BG_c::setBck(int param_0, u8 param_1, f32 param_2, f32 param_3) {
-    mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_BG", param_0), param_1, param_2,
+    mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_BG", param_0), param_1, param_2,
         param_3, 0.0f, -1.0f);
 }
 
@@ -227,7 +227,7 @@ void daE_BG_c::setSparkEffect() {
         0x0A11,
     };
 
-    mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(1));
+    mDoMtx_stack_c::copy(mAnm_pSO->getModel()->getAnmMtx(1));
 
     for (s32 i = 0; i < 5; i++) {
         mParticle[i] = dComIfGp_particle_set(mParticle[i], enemyBombID[i], &current.pos, &tevStr);
@@ -739,7 +739,7 @@ void daE_BG_c::executeDamage() {
             maxFallSpeed = -3.0f;
         }
 
-        if (mpMorfSO->isStop()) {
+        if (mAnm_pSO->isStop()) {
             setActionMode(4, 0);
         }
 
@@ -1173,7 +1173,7 @@ void daE_BG_c::action() {
 
     mObjAcch.CrrPos(dComIfG_Bgsp());
 
-    mpMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mAnm_pSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
 /* 80689544-8068966C 003E24 0128+00 1/1 0/0 0/0 .text            mtx_set__8daE_BG_cFv */
@@ -1183,7 +1183,7 @@ void daE_BG_c::mtx_set() {
     mDoMtx_stack_c::ZXYrotM(-shape_angle.x, shape_angle.y, shape_angle.z);
     mDoMtx_stack_c::transM(0.0f, -25.0f, 0.0f);
 
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
 
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     model->setUserArea((uintptr_t)this);
@@ -1192,7 +1192,7 @@ void daE_BG_c::mtx_set() {
         model->getModelData()->getJointNodePointer(i)->setCallBack(JointCallBack);
     }
 
-    mpMorfSO->modelCalc();
+    mAnm_pSO->modelCalc();
 
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(NULL);
@@ -1204,7 +1204,7 @@ void daE_BG_c::cc_set() {
     cXyz unkXyz1;
     cXyz center;
 
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
 
     if (field_0x6af == 0) {
         mDoMtx_stack_c::copy(model->getAnmMtx(0));
@@ -1325,14 +1325,14 @@ int daE_BG_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_BG", 10);
     JUT_ASSERT(0, modelData != NULL);
 
-    mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
+    mAnm_pSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_BG", 7), 0, 1.0f, 0,
                                     -1, &mCreatureSound, 0x80000, 0x11000084);
-    if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
+    if (mAnm_pSO == NULL || mAnm_pSO->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorfSO->getModel();
+    J3DModel* model = mAnm_pSO->getModel();
 
     model->setUserArea((uintptr_t)this);
 
@@ -1393,7 +1393,7 @@ int daE_BG_c::create() {
 
         attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
-        fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_pSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);
 

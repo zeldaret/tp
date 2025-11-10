@@ -245,11 +245,11 @@ void daE_RDY_HIO_c::genMessage(JORMContext* context) {
 /* 8076BE80-8076BF6C 0001A0 00EC+00 23/23 0/0 0/0 .text            anm_init__FP11e_rdy_classifUcf */
 static void anm_init(e_rdy_class* i_this, int i_anm, f32 i_morf, u8 i_attr, f32 i_rate) {
     J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, i_anm);
-    i_this->mpMorf->setAnm(bck, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    i_this->mAnm_p->setAnm(bck, i_attr, i_morf, i_rate, 0.0f, -1.0f);
     i_this->mAnm = i_anm;
 
     if (i_anm == ANM_KYORO2) {
-        i_this->mpMorf->setFrame(cM_rndF(30.0f));
+        i_this->mAnm_p->setFrame(cM_rndF(30.0f));
     }
 }
 
@@ -372,7 +372,7 @@ static int daE_RDY_Draw(e_rdy_class* i_this) {
         return 1;
     }
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(2, &a_this->current.pos, &a_this->tevStr);
     dComIfGd_setListDark();
     g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
@@ -387,7 +387,7 @@ static int daE_RDY_Draw(e_rdy_class* i_this) {
         }
     }
 
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
 
     if (i_this->mIsDying) {
         J3DModelData* model_data = model->getModelData();
@@ -762,10 +762,10 @@ static void e_rdy_normal(e_rdy_class* i_this) {
         break;
 
     case 1:
-        if ((int)i_this->mpMorf->getFrame() == 11) {
+        if ((int)i_this->mAnm_p->getFrame() == 11) {
             i_this->field_0x5bb = false;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mMode = 2;
         }
         break;
@@ -881,10 +881,10 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
 
     switch (i_this->mMode) {
     case -20:
-        if ((int)i_this->mpMorf->getFrame() == 11) {
+        if ((int)i_this->mAnm_p->getFrame() == 11) {
             i_this->field_0x5bb = false;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mMode = 0;
         }
         break;
@@ -1019,7 +1019,7 @@ static fopAc_ac_c* at_hit_check(e_rdy_class* i_this) {
 /* 8076E06C-8076E418 00238C 03AC+00 1/1 0/0 0/0 .text            e_rdy_fight__FP11e_rdy_class */
 static void e_rdy_fight(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
-    int frame = (int)i_this->mpMorf->getFrame();
+    int frame = (int)i_this->mAnm_p->getFrame();
     int last_frame;
 
     switch (i_this->mMode) {
@@ -1042,10 +1042,10 @@ static void e_rdy_fight(e_rdy_class* i_this) {
             cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngle, 4, 0x800);
         }
         if (frame == 30) {
-            i_this->mpMorf->setFrame(0.0f);
+            i_this->mAnm_p->setFrame(0.0f);
         } else if (i_this->mTimer[0] == 0) {
             anm_init(i_this, ANM_ATTACK01, 2.0f, J3DFrameCtrl::EMode_NONE, l_HIO.mAttackAnmSpeed);
-            i_this->mpMorf->setFrame(30.0f);
+            i_this->mAnm_p->setFrame(30.0f);
             i_this->mMode = 2;
         }
         break;
@@ -1054,11 +1054,11 @@ static void e_rdy_fight(e_rdy_class* i_this) {
         if (frame >= 44 && frame <= 47) {
             i_this->field_0xa7b = 1;
         }
-        if (i_this->mpMorf->checkFrame(44.0f)) {
+        if (i_this->mAnm_p->checkFrame(44.0f)) {
             i_this->mSound.startCreatureSound(Z2SE_EN_RD_SWING_CLUB, 0, -1);
         }
-        if (i_this->mpMorf->checkFrame(50.0f)) {
-            i_this->mpMorf->setPlaySpeed(1.0f);
+        if (i_this->mAnm_p->checkFrame(50.0f)) {
+            i_this->mAnm_p->setPlaySpeed(1.0f);
         }
         if (l_HIO.field_0x38 == 0) {
             last_frame = 64;
@@ -1096,7 +1096,7 @@ static void e_rdy_fight(e_rdy_class* i_this) {
         if (hit_actor != NULL && fopAcM_GetName(hit_actor) == PROC_ALINK
             && daPy_getPlayerActorClass()->checkPlayerGuard())
         {
-            i_this->mpMorf->setPlaySpeed(-1.0f);
+            i_this->mAnm_p->setPlaySpeed(-1.0f);
             dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
             dKy_Sound_set(a_this->current.pos, 100, fopAcM_GetID(i_this), 5);
             i_this->mMode = 10;
@@ -1115,10 +1115,10 @@ static void e_rdy_bow_run(e_rdy_class* i_this) {
 
     switch (i_this->mMode) {
     case -20:
-        if ((int)i_this->mpMorf->getFrame() == 11) {
+        if ((int)i_this->mAnm_p->getFrame() == 11) {
             i_this->field_0x5bb = false;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mMode = 0;
         }
         break;
@@ -1212,7 +1212,7 @@ static void e_rdy_bow_run(e_rdy_class* i_this) {
 static void e_rdy_bow(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     J3DAnmTransform* bck;
-    int frame = (int)i_this->mpMorf->getFrame();
+    int frame = (int)i_this->mAnm_p->getFrame();
 
     switch (i_this->mMode) {
     case 0:
@@ -1231,7 +1231,7 @@ static void e_rdy_bow(e_rdy_class* i_this) {
         if (frame == 20) {
             i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(10.0f) + 10.0f;
             i_this->mMode = 2;
@@ -1262,7 +1262,7 @@ static void e_rdy_bow(e_rdy_class* i_this) {
         if (frame == 2) {
             i_this->mArrowFired = true;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             if (i_this->mTimer[1] == 0 && (i_this->mPlayerDist < l_HIO.field_0x28 - 200.0f
                                             || i_this->mPlayerDist > l_HIO.field_0x28)) {
                 if (!(i_this->mPlayerDist < l_HIO.field_0x28 - 200.0f
@@ -1296,7 +1296,7 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     fopAc_ac_c* player = (fopAc_ac_c*) dComIfGp_getPlayer(0);
     cXyz vec1, vec2;
-    int frame = (int)i_this->mpMorf->getFrame();
+    int frame = (int)i_this->mAnm_p->getFrame();
 
     s8 ret = false;
     if (i_this->mMode <= 1) {
@@ -1355,7 +1355,7 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
         if (frame == 20) {
             i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(10.0f);
             i_this->mMode = 4;
@@ -1391,7 +1391,7 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
         if (frame == 2 + XREG_S(7)) {
             i_this->mArrowFired = true;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             if (i_this->mTimer[1] == 0 && i_this->mPlayerDist < l_HIO.field_0x28 - 200.0f) {
                 if (!way_bg_check(i_this, -100.0f) && !move_gake_check(i_this, -200.0f)) {
                     i_this->mAction = ACT_BOW_RUN;
@@ -1417,7 +1417,7 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     J3DAnmTransform* bck;
-    int frame = (int)i_this->mpMorf->getFrame();
+    int frame = (int)i_this->mAnm_p->getFrame();
 
     switch (i_this->mMode) {
     case 0:
@@ -1458,7 +1458,7 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
         if (frame == 20) {
             i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 6;
             i_this->mTimer[0] = 40;
@@ -1482,7 +1482,7 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
         if (frame == 2) {
             i_this->mArrowFired = true;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mMode = 2;
             anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
@@ -1506,7 +1506,7 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
 /* 8076F438-8076F59C 003758 0164+00 1/1 0/0 0/0 .text            e_rdy_avoid__FP11e_rdy_class */
 static void e_rdy_avoid(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
-    int frame = (int)i_this->mpMorf->getFrame();
+    int frame = (int)i_this->mAnm_p->getFrame();
 
     switch (i_this->mMode) {
     case 0:
@@ -1519,21 +1519,21 @@ static void e_rdy_avoid(e_rdy_class* i_this) {
 
     case 1:
         if (frame == 6) {
-            i_this->mpMorf->setPlaySpeed(0.0f);
+            i_this->mAnm_p->setPlaySpeed(0.0f);
             i_this->mMode = 2;
         }
         break;
 
     case 2:
         if (i_this->mAcch.ChkGroundHit()) {
-            i_this->mpMorf->setPlaySpeed(1.0f);
+            i_this->mAnm_p->setPlaySpeed(1.0f);
             i_this->mMode = 3;
         }
         break;
 
     case 3:
         cLib_addCalc0(&a_this->speedF, 1.0f, 10.0f);
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = ACT_FIGHT_RUN;
             i_this->mMode = 0;
             i_this->mTimer[0] = 30;
@@ -1572,7 +1572,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         kargarok->mRiderID = fopAcM_GetID(i_this);
     }
 
-    int frame = (int)i_this->mpMorf->getFrame();
+    int frame = (int)i_this->mAnm_p->getFrame();
     f32 target_speed = 0.0f;
 
     fopAc_ac_c* grass = (fopAc_ac_c*)fpcM_Search(s_kusa_sub, i_this);
@@ -1655,7 +1655,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         if (frame == 30 + TREG_S(8)) {
             i_this->mDemoMode++;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_BLOW, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 6;
             i_this->mTimer[0] = 220;
@@ -1736,7 +1736,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         break;
 
     case 10:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mMode = 11;
             anm_init(i_this, ANM_JUMP_B, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mRideState = 1;
@@ -1754,9 +1754,9 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         break;
 
     case 12:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_RHOVERING, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
-            i_this->mpMorf->setFrame(kargarok->mpMorf->getFrame());
+            i_this->mAnm_p->setFrame(kargarok->mAnm_p->getFrame());
             i_this->mMode = 13;
             kargarok->mMode = 6;
             i_this->mDemoMode = 19;
@@ -1778,7 +1778,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
 
 /* 807701F4-8077089C 004514 06A8+00 1/1 0/0 0/0 .text            e_rdy_yc_ride__FP11e_rdy_class */
 static void e_rdy_yc_ride(e_rdy_class* i_this) {
-    int frame = (int)i_this->mpMorf->getFrame();
+    int frame = (int)i_this->mAnm_p->getFrame();
     e_yc_class* kargarok = (e_yc_class*)fopAcM_SearchByID(i_this->mKargarokID);
     i_this->mIFrameTimer = 20;
 
@@ -1792,7 +1792,7 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
         return;
     }
 
-    int kargarok_frame = (int)kargarok->mpMorf->getFrame();
+    int kargarok_frame = (int)kargarok->mAnm_p->getFrame();
     if (i_this->mAnm != ANM_RHANGED && i_this->mAnm != ANM_RHANGED_BRASH
         && i_this->mAnm != ANM_RHANGED_BRASH2 && i_this->mAnm != ANM_RHANGED_DAMAGE)
     {
@@ -1805,19 +1805,19 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
     case 0:
         if (kargarok->mAnm == e_yc_class::ANM_HOVERING && i_this->mAnm != ANM_RHOVERING) {
             anm_init(i_this, ANM_RHOVERING, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
-            i_this->mpMorf->setFrame(kargarok->mpMorf->getFrame());
+            i_this->mAnm_p->setFrame(kargarok->mAnm_p->getFrame());
         } else if (kargarok->mAnm == e_yc_class::ANM_FLY && i_this->mAnm != ANM_RFLY) {
             anm_init(i_this, ANM_RFLY, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
-            i_this->mpMorf->setFrame(kargarok->mpMorf->getFrame());
+            i_this->mAnm_p->setFrame(kargarok->mAnm_p->getFrame());
         } else if (kargarok->mAnm == e_yc_class::ANM_FLY_GLIDE && i_this->mAnm != ANM_RFLY_GLIDE) {
             anm_init(i_this, ANM_RFLY_GLIDE, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
-            i_this->mpMorf->setFrame(kargarok->mpMorf->getFrame());
+            i_this->mAnm_p->setFrame(kargarok->mAnm_p->getFrame());
         } else if (kargarok->mAnm == e_yc_class::ANM_HANGED && kargarok_frame == 1) {
             anm_init(i_this, ANM_RHANGED, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else if (kargarok->mAnm == e_yc_class::ANM_HANGED_WAIT
                                                             && i_this->mAnm != ANM_RHANGED_WAIT) {
             anm_init(i_this, ANM_RHANGED_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
-            i_this->mpMorf->setFrame(kargarok->mpMorf->getFrame());
+            i_this->mAnm_p->setFrame(kargarok->mAnm_p->getFrame());
         } else if (kargarok->mAnm == e_yc_class::ANM_HANGED_DAMAGE && kargarok_frame == 1) {
             anm_init(i_this, ANM_RHANGED_DAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else if (kargarok->mAnm == e_yc_class::ANM_HANGED_BRUSH && kargarok_frame == 1) {
@@ -1844,7 +1844,7 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
         if (frame == 14) {
             i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mMode = 3;
             anm_init(i_this, ANM_RSHOOT_WAIT, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
@@ -1868,7 +1868,7 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
         if (frame == 2) {
             i_this->mArrowFired = true;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             if (kargarok->mAnm == e_yc_class::ANM_HOVERING) {
                 anm_init(i_this, ANM_RSHOOT_READY, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                 J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 9);
@@ -1961,7 +1961,7 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
     case 6:
         i_this->mCollisionEnabled = false;
         target_angle = i_this->mPlayerAngle;
-        if ((int)i_this->mpMorf->getFrame() <= 10) {
+        if ((int)i_this->mAnm_p->getFrame() <= 10) {
             mDoMtx_YrotS(*calc_mtx, target_angle);
             vec1.x = -30.0f;
             vec1.y = 0.0f;
@@ -1970,13 +1970,13 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
             vec2 += a_this->current.pos;
             cLib_addCalc2(&bomb->current.pos.x, vec2.x, 1.0f, 15.0f);
             cLib_addCalc2(&bomb->current.pos.z, vec2.z, 1.0f, 15.0f);
-            if ((int)i_this->mpMorf->getFrame() == 10) {
+            if ((int)i_this->mAnm_p->getFrame() == 10) {
                 bomb->speedF = 30.0f;
                 bomb->speed.y = 30.0f;
                 bomb->current.angle.y = a_this->shape_angle.y;
             }
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 3;
         }
@@ -2010,7 +2010,7 @@ static void e_rdy_s_damage(e_rdy_class* i_this) {
         if (i_this->mTimer[1] != 0) {
             a_this->onHeadLockFlg();
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             if (i_this->mPrevAction == ACT_BOW2) {
                 i_this->mAction = ACT_BOW2;
             } else if (i_this->mPrevAction == ACT_BOW3) {
@@ -2068,7 +2068,7 @@ static int kado_check(e_rdy_class* i_this) {
 static void rd_disappear(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     cXyz vec1, vec2;
-    MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
+    MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
     vec1.set(0.0f, 0.0f, 0.0f);
     MtxPosition(&vec1, &vec2);
     fopAcM_createDisappear(a_this, &vec2, 10, 1, 12);
@@ -2090,7 +2090,7 @@ static void rd_disappear(e_rdy_class* i_this) {
 static BOOL body_gake(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     cXyz vec1, vec2;
-    MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
+    MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
     vec1.set(40.0f, 0.0f, 0.0f);
     MtxPosition(&vec1, &vec2);
     dBgS_ObjGndChk gnd_chk;
@@ -2313,11 +2313,11 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         break;
 
     case 20:
-        if (i_this->mpMorf->getFrame() >= 35.0f) {
+        if (i_this->mAnm_p->getFrame() >= 35.0f) {
             i_this->field_0xae8.z = 0;
             i_this->field_0xae8.x = 0;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->field_0xadc.y = 0;
             i_this->field_0xadc.x = 0;
             anm_init(i_this, ANM_WAIT01, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
@@ -2377,7 +2377,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
     }
 
     if (a_this->checkDownFlg()) {
-        MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
+        MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
         vec1.set(0.0f, 0.0f, 0.0f);
         MtxPosition(&vec1, &vec2);
         a_this->setDownPos(&vec2);
@@ -2446,7 +2446,7 @@ static void e_rdy_drop(e_rdy_class* i_this) {
 
     case 1:
         i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_FURA2, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTargetAngleY = gake_check(i_this, 200.0f);
@@ -2468,7 +2468,7 @@ static void e_rdy_drop(e_rdy_class* i_this) {
             i_this->mMode = 3;
             i_this->field_0xadc.y = a_this->shape_angle.y + 0x8000;
             i_this->field_0xadc.x = 0;
-            i_this->mpMorf->setPlaySpeed(0.3f);
+            i_this->mAnm_p->setPlaySpeed(0.3f);
             i_this->field_0xbc8 = 0;
             i_this->mTimer[0] = 20;
         }
@@ -2576,7 +2576,7 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
         i_this->mTimer[0] = cM_rndF(20.0f) + 80.0f;
     }
 
-    int frame = (int)i_this->mpMorf->getFrame();
+    int frame = (int)i_this->mAnm_p->getFrame();
     s8 turn_to_player = true;
 
     switch (i_this->mMode) {
@@ -2627,7 +2627,7 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
         if (frame == 20) {
             i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_SHOOT_WAIT, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = cM_rndF(10.0f) + 10.0f;
             i_this->mMode = 12;
@@ -2653,7 +2653,7 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
         if (frame == 2) {
             i_this->mArrowFired = true;
         }
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mMode = 0;
         }
         break;
@@ -2756,7 +2756,7 @@ static void e_rdy_commander(e_rdy_class* i_this) {
         if (i_this->mTimer[0] == 1) {
             fpcM_Search(s_command2_sub, i_this);
         }
-        if (i_this->mTimer[0] == 0 && i_this->mpMorf->isStop()) {
+        if (i_this->mTimer[0] == 0 && i_this->mAnm_p->isStop()) {
             anm_init(i_this, ANM_WAIT01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             if (!dComIfGp_event_runCheck() && !pl_check(i_this, i_this->mPlayerCheckDist, 0x4000)) {
                 i_this->mMode = 10;
@@ -2780,7 +2780,7 @@ static void e_rdy_commander(e_rdy_class* i_this) {
         break;
 
     case 11:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             if (i_this->mTimer[1] == 0) {
                 anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
                 i_this->mTimer[0] = cM_rndF(30.0f) + 30.0f;
@@ -2958,7 +2958,7 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
 
     case 11:
         cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngle, 2, 0x800);
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = ACT_FIGHT_RUN;
             i_this->mMode = -10;
             i_this->mTimer[0] = 60;
@@ -3410,7 +3410,7 @@ static void action(e_rdy_class* i_this) {
         e_yc_class* kargorok = (e_yc_class*) a_karg;
         a_this->speedF = a_karg->speedF;
         a_this->speed.set(0.0f, 0.0f, 0.0f);
-        MTXCopy(kargorok->mpMorf->getModel()->getAnmMtx(9), *calc_mtx);
+        MTXCopy(kargorok->mAnm_p->getModel()->getAnmMtx(9), *calc_mtx);
         vec1.set(0.0f, -60.0f + BREG_F(4), 15.0f + BREG_F(5));
         MtxPosition(&vec1, &i_this->mKargarokPos);
         if (i_this->mRideState == 2) {
@@ -3621,7 +3621,7 @@ static void action(e_rdy_class* i_this) {
             cXyz unused_vec;
             dBgS_GndChk gnd_chk;
             f32 z_adj = 75.0f;
-            MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_HIP1), *calc_mtx);
+            MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HIP1), *calc_mtx);
             vec1.set(0.0f, 0.0f, 0.0f);
             MtxPosition(&vec1, &gnd_pos);
             gnd_pos.y += 100.0f;
@@ -3665,7 +3665,7 @@ static void action(e_rdy_class* i_this) {
             cXyz vec4, lin_start, lin_end;
             lin_start = a_this->current.pos;
             lin_start.y += 30.0f + JREG_F(5);
-            J3DModel* model = i_this->mpMorf->getModel();
+            J3DModel* model = i_this->mAnm_p->getModel();
             vec4.set(0.0f, 0.0f, 0.0f);
             MTXCopy(model->getAnmMtx(JNT_HEAD + BREG_S(8)), *calc_mtx);
             MtxPosition(&vec4, &lin_end);
@@ -3696,7 +3696,7 @@ static void action(e_rdy_class* i_this) {
     }
 
     if (i_this->mGroundHit) {
-        J3DModel* model = i_this->mpMorf->getModel();
+        J3DModel* model = i_this->mAnm_p->getModel();
         MTXCopy(model->getAnmMtx(JNT_MUNE2), *calc_mtx);
         vec1.set(0.0f, 0.0f, 0.0f);
         MtxPosition(&vec1, &vec2);
@@ -4454,11 +4454,11 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     mDoMtx_stack_c::ZrotM(a_this->shape_angle.z);
     scale = l_HIO.mScale * a_this->scale.x;
     mDoMtx_stack_c::scaleM(scale, scale, scale);
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
-    int frame = i_this->mpMorf->getFrame();
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
+    int frame = i_this->mAnm_p->getFrame();
     if (i_this->mAnm == ANM_RUN && (frame == 1 || frame == 10)) {
         i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_RUNNING_BREATH, -1);
     }
@@ -4472,9 +4472,9 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_READY_WEAPON, -1);
     }
     if ((i_this->mAnm == ANM_WALK
-            && (i_this->mpMorf->checkFrame(1.0f) || i_this->mpMorf->checkFrame(15.0f)))
+            && (i_this->mAnm_p->checkFrame(1.0f) || i_this->mAnm_p->checkFrame(15.0f)))
         || ((i_this->mAnm == ANM_RUN || i_this->mAnm == ANM_RUN02)
-            && (i_this->mpMorf->checkFrame(1.0f) || i_this->mpMorf->checkFrame(7.0f))))
+            && (i_this->mAnm_p->checkFrame(1.0f) || i_this->mAnm_p->checkFrame(7.0f))))
     {
         if (i_this->mInWater) {
             i_this->mSound.startCreatureSound(Z2SE_RIDER_FOOTNOTE_WATER, 0, -1);
@@ -4483,7 +4483,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         }
     }
 
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     if (dComIfGp_checkPlayerStatus0(0, 0x200000)) {
         i_this->mDrawEyeModel = false;
@@ -4495,7 +4495,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     };
 
     if (i_this->mDrawEyeModel) {
-        J3DModel* model = i_this->mpMorf->getModel();
+        J3DModel* model = i_this->mAnm_p->getModel();
         cLib_addCalc2(&i_this->mEyeScale, i_this->mTargetEyeScale, 1.0f, 0.02f);
         i_this->mTargetEyeScale = 1.0f;
         MTXCopy(model->getAnmMtx(JNT_HEAD), *calc_mtx);
@@ -4586,7 +4586,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     }
 
     if (i_this->field_0xa7b == 2) {
-        MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
+        MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
         vec1.set(0.0f, 0.0f, 0.0f);
         MtxPosition(&vec1, &vec2);
         i_this->mAtSph.SetR(l_HIO.mScale * 50.0f);
@@ -4597,9 +4597,9 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
 
     if (i_this->mWeaponType == WEAPON_CLUB) {
         if (!i_this->field_0x5bb) {
-            MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
+            MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
         } else {
-            MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
+            MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
             cMtx_YrotM(*calc_mtx, 6000);
             cMtx_XrotM(*calc_mtx, 10000);
             cMtx_ZrotM(*calc_mtx, 18000);
@@ -4628,7 +4628,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     }
 
     if (i_this->mWeaponType >= WEAPON_BOW) {
-        J3DModel* model_ptr = i_this->mpMorf->getModel();
+        J3DModel* model_ptr = i_this->mAnm_p->getModel();
         if (i_this->mBowRotationTimer != 0) {
             i_this->mBowRotationTimer--;
         }
@@ -4637,9 +4637,9 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
 
         model_ptr = i_this->mpBowMorf->getModel();
         if (!i_this->field_0x5bb) {
-            model_ptr->setBaseTRMtx(i_this->mpMorf->getModel()->getAnmMtx(JNT_HAND_L));
+            model_ptr->setBaseTRMtx(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HAND_L));
         } else {
-            MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
+            MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
             cMtx_YrotM(*calc_mtx, 6000);
             cMtx_XrotM(*calc_mtx, 10000);
             cMtx_ZrotM(*calc_mtx, 18000);
@@ -4650,7 +4650,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         i_this->mpBowMorf->modelCalc();
 
         if (i_this->mHasArrow) {
-            MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
+            MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
             i_this->mpWeaponModel->setBaseTRMtx(*calc_mtx);
             if (i_this->mWeaponType >= WEAPON_BOW_FIRE) {
                 if (i_this->mRideState != 2 || i_this->mTimer[1] <= 18) {
@@ -4669,7 +4669,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
             }
             i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_SHOT_ARROW, -1);
             vec1.set(0.0f, 0.0f, 0.0f);
-            MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
+            MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
             MtxPosition(&vec1, &vec2);
             csXyz arrow_angle;
             if (i_this->mpPath != NULL || i_this->mAction == ACT_BOW_IKKI2) {
@@ -4720,7 +4720,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
             }
             ang_y = (i_this->mCounter & 1) * tmp * 2 - tmp;
         }
-        MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
+        MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_HAND_R), *calc_mtx);
         MtxTrans(20.0f + NREG_F(0), 5.0f + NREG_F(1), -10.0f + NREG_F(2), 1);
         cMtx_XrotM(*calc_mtx, NREG_S(0) + 0x8000);
         cMtx_YrotM(*calc_mtx, NREG_S(1) + ang_y + -0x15cd);
@@ -4734,7 +4734,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
 
     if (i_this->mRideState == 0) {
         fopAc_ac_c* player = dComIfGp_getPlayer(0);
-        MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), mDoMtx_stack_c::get());
+        MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(JNT_MUNE2), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&vec2);
         vec1 = player->current.pos - vec2;
         s16 tan_res = cM_atan2s(vec1.x, vec1.z);
@@ -4771,7 +4771,7 @@ static int daE_RDY_Delete(e_rdy_class* i_this) {
     }
 
     if (a_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -4800,15 +4800,15 @@ static dJntColData_c jc_data[11] = {
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_rdy_class* _this = (e_rdy_class*)i_this;
     
-    _this->mpMorf = new mDoExt_McaMorfSO(
+    _this->mAnm_p= new mDoExt_McaMorfSO(
         (J3DModelData*)dComIfG_getObjectRes(_this->mpArcName, 81), NULL, NULL,
         (J3DAnmTransform*)dComIfG_getObjectRes(_this->mpArcName, 76),
         J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, &_this->mSound, 0x80000, 0x11000084);
-    if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
+    if (_this->mAnm_p== NULL || _this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = _this->mpMorf->getModel();
+    J3DModel* model = _this->mAnm_p->getModel();
     model->setUserArea((uintptr_t)_this);
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
@@ -4991,7 +4991,7 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        fopAcM_SetMtx(i_this, _this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, _this->mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(i_this, 200.0f, 200.0f, 200.0f);
         _this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this), i_this, 1,

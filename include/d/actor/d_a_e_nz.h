@@ -27,7 +27,7 @@ public:
     /* 0x5D4 */ s16 field_0x5d4;
     /* 0x5D8 */ f32 field_0x5d8;
     /* 0x5DC */ f32 field_0x5dc;
-    /* 0x5E0 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5E0 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5E4 */ int field_0x5e4;
     /* 0x5E8 */ mDoExt_invisibleModel mInvModel;
     /* 0x5F0 */ f32 mMaterialAlpha;

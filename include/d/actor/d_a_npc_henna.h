@@ -30,7 +30,7 @@ public:
     /* 0x618 */ s16 field_0x618;
     /* 0x61C */ f32 field_0x61c;
     /* 0x620 */ s16 field_0x620;
-    /* 0x624 */ mDoExt_McaMorf* mpMorf;
+    /* 0x624 */ mDoExt_McaMorf* mAnm_p;
     /* 0x628 */ mDoExt_btkAnm* mpBtkAnms[3];
     /* 0x634 */ mDoExt_btpAnm* mpBtpAnms[3];
     /* 0x640 */ u8 field_0x640[0x654 - 0x640];

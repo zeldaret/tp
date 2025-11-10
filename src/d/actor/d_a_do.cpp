@@ -40,7 +40,7 @@ daDo_HIO_c::daDo_HIO_c() {
 /* 80667DA8-80667E68 000148 00C0+00 16/16 0/0 0/0 .text            anm_init__FP8do_classifUcf */
 static void anm_init(do_class* i_this, int i_resIdx, f32 i_morf, u8 i_mode, f32 i_speed) {
     if (!(i_this->field_0x608 > 1.0f)) {
-        i_this->mpMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Do", i_resIdx)),
+        i_this->mAnm_p->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Do", i_resIdx)),
                                i_mode, i_morf, i_speed, 0.0f, -1.0f, 0);
         i_this->mAnmID = i_resIdx;
     }
@@ -86,12 +86,12 @@ static int daDo_Draw(do_class* i_this) {
         return 1;
     }
 
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
     i_this->mpBtk->entry(model->getModelData());
     i_this->mpBtp->entry(model->getModelData());
-    i_this->mpMorf->entryDL();
+    i_this->mAnm_p->entryDL();
 
     if (!fopAcM_checkCarryNow(i_this) && i_this->mAction != ACT_BOAT) {
         cXyz pos;
@@ -404,7 +404,7 @@ static void do_stay(do_class* i_this) {
         i_this->field_0x616 = 1;
         i_this->mTailWagTarget = 2000.0f;
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = ACT_WALK_RUN;
             i_this->mMode = 0;
         }
@@ -450,7 +450,7 @@ static void do_stay(do_class* i_this) {
         i_this->field_0x616 = 1;
         i_this->mTailWagTarget = 1500.0f;
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = ACT_WAIT_1;
             i_this->mMode = 0;
         }
@@ -491,7 +491,7 @@ static void do_walk(do_class* i_this) {
         break;
 
     case 1:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mMode++;
         }
         break;
@@ -585,7 +585,7 @@ static void do_walk(do_class* i_this) {
     }
 
     cLib_addCalc2(&i_this->mAnmSpeed, i_this->mTargetAnmSpeed, 1.0f, 0.05f);
-    i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+    i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
 
     if (i_this->mTimer[2] == 0 && i_this->mMode < 10 &&
         i_this->mDistFromPlayer < l_HIO.mPlayerRecognitionDist)
@@ -611,7 +611,7 @@ static void do_walk_run(do_class* i_this) {
 
     case 1:
         cLib_addCalc2(&i_this->mAnmSpeed, 2.0f, 1.0f, 0.05f);
-        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+        i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
 
         if (i_this->mAnmSpeed >= 2.0f) {
             i_this->mAction = ACT_RUN;
@@ -655,7 +655,7 @@ static void do_run(do_class* i_this) {
 
     case 1:
         cLib_addCalc2(&i_this->mAnmSpeed, i_this->mTargetAnmSpeed, 1.0f, 0.02f);
-        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+        i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
 
         if (i_this->mDistFromPlayer < 320.0f * i_this->mScale.z) {
             i_this->mAction = ACT_RUN_WALK;
@@ -687,7 +687,7 @@ static void do_run_walk(do_class* i_this) {
 
     case 1:
         cLib_addCalc2(&i_this->mAnmSpeed, 1.5f, 1.0f, 0.05f);
-        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+        i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
         // fallthrough
 
     default:
@@ -847,7 +847,7 @@ case1:
 
     case 11:
         cLib_addCalc2(&i_this->mAnmSpeed, 2.0f, 1.0f, 0.2f);
-        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+        i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
 
         if (i_this->mAnmSpeed <= 2.2f) {
             i_this->mMode = 0;
@@ -984,7 +984,7 @@ static void do_sit(do_class* i_this) {
         break;
 
     case 4:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = ACT_WAIT_1;
             i_this->mMode = 0;
         }
@@ -1085,7 +1085,7 @@ static void do_hang(do_class* i_this) {
         break;
 
     case 2:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = ACT_STAY;
             i_this->mMode = 13;
         }
@@ -1113,7 +1113,7 @@ static void do_hang(do_class* i_this) {
         break;
 
     case 6:
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mAction = ACT_WAIT_1;
             i_this->mMode = 0;
         }
@@ -1228,7 +1228,7 @@ case1and2:
         i_this->mLookTimer = 10;
 
         cLib_addCalc2(&i_this->mAnmSpeed, i_this->mTargetAnmSpeed, 1.0f, 0.02f);
-        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+        i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
         cLib_addCalc2(&i_this->speedF, i_this->mAnmSpeed * l_HIO.mRunSpeed, 1.0f,
                       0.2f * l_HIO.mRunSpeed);
         
@@ -1311,7 +1311,7 @@ case1and2:
     case 21:
         i_this->field_0x616 = 1;
         cLib_addCalc2(&i_this->mAnmSpeed, i_this->mTargetAnmSpeed, 1.0f, 0.02f);
-        i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
+        i_this->mAnm_p->setPlaySpeed(i_this->mAnmSpeed);
         cLib_addCalc2(&i_this->speedF, i_this->mAnmSpeed * l_HIO.mRunSpeed, 1.0f,
                       0.2f * l_HIO.mRunSpeed);
         cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 8, 0x1000);
@@ -1699,7 +1699,7 @@ static void do_a_swim(do_class* i_this) {
         emitter = dComIfGp_particle_set(0x2a3, &i_this->current.pos, 0, 0);
 
         if (emitter) {
-            emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(2));
+            emitter->setGlobalRTMatrix(i_this->mAnm_p->getModel()->getAnmMtx(2));
             cXyz _pos(0.6f, 0.6f, 0.6f);
             JGeometry::TVec3<f32> pos;
             JGeometry::setTVec3f(&_pos.x, &pos.x);
@@ -1717,9 +1717,9 @@ static void do_a_swim(do_class* i_this) {
 
     case 2:
         if (l_HIO.mWaterHuntAnimType == 1) {
-            i_this->mpMorf->setPlaySpeed(i_this->mShakeSpeed * 5.0f);
+            i_this->mAnm_p->setPlaySpeed(i_this->mShakeSpeed * 5.0f);
         } else {
-            i_this->mpMorf->setPlaySpeed(i_this->mShakeSpeed * 5.0f);
+            i_this->mAnm_p->setPlaySpeed(i_this->mShakeSpeed * 5.0f);
         }
 
         if (i_this->mShakeSpeed <= 0.025f) {
@@ -1743,20 +1743,20 @@ static s8 do_carry(do_class* i_this) {
     case 0:
         anm_init(i_this, ANM_TO_CARRY_B, 1.0f, 0,
                  daPy_getLinkPlayerActorClass()->getBaseAnimeFrameRate());
-        i_this->mpMorf->setFrame(daPy_getLinkPlayerActorClass()->getBaseAnimeFrame());
+        i_this->mAnm_p->setFrame(daPy_getLinkPlayerActorClass()->getBaseAnimeFrame());
         i_this->mTimer[0] = 20;
         i_this->mMode++;
         break;
 
     case 1:
-        if (i_this->mpMorf->checkFrame(10.0f)) {
+        if (i_this->mAnm_p->checkFrame(10.0f)) {
             i_this->mSound.startSound(Z2SE_DOG_CARRIED, 0, -1);
         }
 
         if (daPy_getLinkPlayerActorClass()->getGrabPutStart()) {
             anm_init(i_this, ANM_TO_CARRY_B, 1.0f, 0,
                      daPy_getLinkPlayerActorClass()->getBaseAnimeFrameRate());
-            i_this->mpMorf->setFrame(daPy_getLinkPlayerActorClass()->getBaseAnimeFrame());
+            i_this->mAnm_p->setFrame(daPy_getLinkPlayerActorClass()->getBaseAnimeFrame());
             i_this->mMode++;
         }
         break;
@@ -2280,17 +2280,17 @@ static int daDo_Execute(do_class* i_this) {
                      i_this->mScale.y * l_HIO.mBaseSize,
                      i_this->mScale.z * l_HIO.mBaseSize);
     mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.y, i_this->scale.z);
-    J3DModel* model = i_this->mpMorf->getModel();
+    J3DModel* model = i_this->mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpMorf->play(&i_this->eyePos, 0, 0);
+    i_this->mAnm_p->play(&i_this->eyePos, 0, 0);
 
     if (i_this->mAnmID == ANM_JOYFUL) {
-        if (i_this->mpMorf->checkFrame(16.0f)) {
-            i_this->mpMorf->setFrame(0.0f);
+        if (i_this->mAnm_p->checkFrame(16.0f)) {
+            i_this->mAnm_p->setFrame(0.0f);
         }
     } else if (i_this->mAnmID == ANM_RUN) {
-        if (i_this->mpMorf->checkFrame(15.0f)) {
-            i_this->mpMorf->setFrame(0.0f);
+        if (i_this->mAnm_p->checkFrame(15.0f)) {
+            i_this->mAnm_p->setFrame(0.0f);
         }
     }
 
@@ -2301,7 +2301,7 @@ static int daDo_Execute(do_class* i_this) {
 
     i_this->mpBtk->setFrame(i_this->mBtkFrame);
     i_this->mpBtp->setFrame(i_this->mBtpFrame);
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->modelCalc();
 
     cXyz vec, center;
     MTXCopy(model->getAnmMtx(10), *calc_mtx);
@@ -2336,7 +2336,7 @@ static int daDo_Execute(do_class* i_this) {
                 }
             }
 
-            MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(10), *calc_mtx);
+            MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(10), *calc_mtx);
             cMtx_YrotM(*calc_mtx, 0);
             cMtx_XrotM(*calc_mtx, 0);
             cMtx_ZrotM(*calc_mtx, 0);
@@ -2356,7 +2356,7 @@ static int daDo_Execute(do_class* i_this) {
             static_cast<obj_food_class*>(fopAcM_SearchByID(i_this->mFoodActorID));
         if (food != NULL) {
             if (fopAcM_GetName(food) == PROC_OBJ_FOOD) {
-                MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(10), *calc_mtx);
+                MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(10), *calc_mtx);
                 cMtx_YrotM(*calc_mtx, 0x4000);
                 MtxTrans(0.0f, -7.0f, 25.0f, 1);
                 food->mpModel->setBaseTRMtx(*calc_mtx);
@@ -2366,7 +2366,7 @@ static int daDo_Execute(do_class* i_this) {
             }
         } else {
             //!@bug: the last two lines will fail because this path only executes if food is null
-            MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(10), *calc_mtx);
+            MTXCopy(i_this->mAnm_p->getModel()->getAnmMtx(10), *calc_mtx);
             cMtx_YrotM(*calc_mtx, 0x4000);
             MtxTrans(0.0f, -7.0f, 25.0f, 1);
             vec.set(0.0f, 0.0f, 0.0f);
@@ -2403,15 +2403,15 @@ static int daDo_Delete(do_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     do_class* _this = (do_class*)i_this;
 
-    _this->mpMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Do", 25), NULL, NULL,
+    _this->mAnm_p= new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Do", 25), NULL, NULL,
                                        (J3DAnmTransform*)dComIfG_getObjectRes("Do", 14), 2,
                                        1.0f, 0, -1, 1, NULL, 0x80000, 0x11020284);
 
-    if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
+    if (_this->mAnm_p== NULL || _this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = _this->mpMorf->getModel();
+    J3DModel* model = _this->mAnm_p->getModel();
     _this->model = model;
     model->setUserArea((uintptr_t)i_this);
 
@@ -2426,7 +2426,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!_this->mpBtk->init(_this->mpMorf->getModel()->getModelData(),
+    if (!_this->mpBtk->init(_this->mAnm_p->getModel()->getModelData(),
                             (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Do", 29), TRUE, 0,
                             1.0f, 0, -1))
     {
@@ -2438,7 +2438,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!_this->mpBtp->init(_this->mpMorf->getModel()->getModelData(),
+    if (!_this->mpBtp->init(_this->mAnm_p->getModel()->getModelData(),
                             (J3DAnmTexPattern*)dComIfG_getObjectRes("Do", 32), TRUE, 0,
                             1.0f, 0, -1))
     {
@@ -2482,7 +2482,7 @@ static cPhs__Step daDo_Create(fopAc_ac_c* i_this) {
         fopAcM_OnCarryType(i_this, fopAcM_CARRY_TYPE_8);
         i_this->attention_info.flags = 0;
         i_this->attention_info.distances[fopAc_attn_CARRY_e] = 7;
-        fopAcM_SetMtx(i_this, _this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, _this->mAnm_p->getModel()->getBaseTRMtx());
         _this->mBgS_Acch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this), i_this,
                              1, &_this->mBgS_AcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
         _this->mBgS_AcchCir.SetWall(30.0f, 30.0f);

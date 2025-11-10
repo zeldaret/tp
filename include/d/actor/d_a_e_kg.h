@@ -18,7 +18,7 @@ public:
     /* 0x5ac */ request_of_phase_process_class mPhase;
     /* 0x5b4 */ u8 field_0x5b4;
     /* 0x5b5 */ u8 field_0x5b5;
-    /* 0x5b8 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5b8 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5bc */ Z2CreatureEnemy mSound;
     /* 0x660 */ mDoExt_btpAnm* mpBtp;
     /* 0x664 */ f32 field_0x664;

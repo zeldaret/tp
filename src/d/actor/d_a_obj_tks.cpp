@@ -52,7 +52,7 @@ daObjTks_c::~daObjTks_c() {
     dComIfG_resDelete(&mPhase, l_arcName);
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 
     if (parentActorID != fpcM_ERROR_PROCESS_ID_e) {
@@ -112,8 +112,8 @@ int daObjTks_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* mdlData_p = mpMorf->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        J3DModelData* mdlData_p = mAnm_p->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -80.0f, -30.0f, -80.0f, 80.0f, 10.0f, 80.0f);
 
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -160,17 +160,17 @@ int daObjTks_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0xE);
     JUT_ASSERT(314, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p= new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
 
-    J3DModel* mdl_p = mpMorf->getModel();
+    J3DModel* mdl_p = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -221,7 +221,7 @@ int daObjTks_c::Draw() {
         return 1;
     }
 
-    mpMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
+    mAnm_p->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
     draw(FALSE, FALSE, daObjTks_Param_c::m.common.real_shadow_size, NULL, FALSE);
     return 1;
 }
@@ -233,13 +233,13 @@ int daObjTks_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     int spC[] = {15, 16, 17};
     if (jnt_no == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(15));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(15));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(16));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(16));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(17));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(17));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -258,8 +258,8 @@ int daObjTks_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((jnt_no == 0x11 || jnt_no == 0x13) && (mAnmFlags & 0x100)) {
         J3DAnmTransform* bck_p = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(bck_p);
+        mBckAnm.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(bck_p);
     }
 
     return 1;
@@ -288,7 +288,7 @@ int daObjTks_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 80D10100-80D10184 000F60 0084+00 1/0 0/0 0/0 .text            setMtx__10daObjTks_cFv */
 void daObjTks_c::setMtx() {
-    J3DModel* mdl_p = mpMorf->getModel();
+    J3DModel* mdl_p = mAnm_p->getModel();
 
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
@@ -301,7 +301,7 @@ void daObjTks_c::setMtx() {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
     }
 
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
 }
 
 /* 80D10184-80D102D0 000FE4 014C+00 1/0 0/0 0/0 .text            setExpressionAnm__10daObjTks_cFib
@@ -354,7 +354,7 @@ bool daObjTks_c::setExpressionBtp(int i_anm) {
         return 1;
     }
 
-    if (setBtpAnm(btp_p, mpMorf->getModel()->getModelData(), 1.0f, mode)) {
+    if (setBtpAnm(btp_p, mAnm_p->getModel()->getModelData(), 1.0f, mode)) {
         mAnmFlags |= (ANM_PLAY_BTP | ANM_PAUSE_BTP);
         if (i_anm == 0) {
             mAnmFlags |= ANM_FLAG_800;
@@ -497,7 +497,7 @@ void daObjTks_c::playMotion() {
 /* 80D11CB4-80D11E94 002B14 01E0+00 1/1 0/0 0/0 .text            lookat__10daObjTks_cFv */
 void daObjTks_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model_p = mpMorf->getModel();
+    J3DModel* model_p = mAnm_p->getModel();
 
     int var_r28 = 0;
     f32 body_angleX_min = daObjTks_Param_c::m.common.body_angleX_min;
@@ -726,7 +726,7 @@ void daObjTks_c::setMotionAnm(int i_anm, f32 i_morf) {
 
     J3DAnmTextureSRTKey* btk_p = getTexSRTKeyAnmP(l_arcName, l_btkGetParamList[0].fileIdx);
     int temp_r24 = l_btkGetParamList[0].arcIdx;
-    if (btk_p != NULL && setBtkAnm(btk_p, mpMorf->getModel()->getModelData(), 1.0f, temp_r24)) {
+    if (btk_p != NULL && setBtkAnm(btk_p, mAnm_p->getModel()->getModelData(), 1.0f, temp_r24)) {
         mAnmFlags |= (ANM_PLAY_BTK | ANM_PAUSE_BTK);
     }
 }
@@ -876,7 +876,7 @@ void daObjTks_c::setAttnPos() {
 
     cXyz sp14(10.0f, 10.0f, 0.0f);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(17));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(17));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&sp14, &eyePos);
     sp14.x = 0.0f;

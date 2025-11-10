@@ -245,7 +245,7 @@ static void yr_disappear(e_yr_class* i_this) {
 /* 80822790-80822848 000670 00B8+00 8/8 0/0 0/0 .text            anm_init__FP10e_yr_classifUcf */
 static void anm_init(e_yr_class* i_this, int param_1, f32 param_2, u8 param_3, f32 param_4) {
     if (i_this->field_0x66b < 3) {
-        i_this->mpMorfSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_Yr", param_1), param_3,
+        i_this->mAnm_pSO->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_Yr", param_1), param_3,
                                  param_2, param_4, 0.0f, -1.0f);
         i_this->field_0x5b8 = param_1;
     }
@@ -420,7 +420,7 @@ static int pl_horse_check(e_yr_class* i_this) {
 static void daE_Yr_shadowDraw(e_yr_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->mEnemy;
 
-    J3DModel* model = i_this->mpMorfSO->getModel();
+    J3DModel* model = i_this->mAnm_pSO->getModel();
     cXyz unkXyz1;
     unkXyz1.set(actor->current.pos.x, actor->current.pos.y + 150.0f + BREG_F(18),
                   actor->current.pos.z);
@@ -438,14 +438,14 @@ static int daE_Yr_Draw(e_yr_class* i_this) {
         return 1;
     }
 
-    J3DModel* model = i_this->mpMorfSO->getModel();
+    J3DModel* model = i_this->mAnm_pSO->getModel();
 
     g_env_light.settingTevStruct(2, &actor->current.pos, &actor->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &actor->tevStr);
 
     dComIfGd_setListDark();
 
-    i_this->mpMorfSO->entryDL();
+    i_this->mAnm_pSO->entryDL();
 
     dComIfGd_setList();
 
@@ -545,7 +545,7 @@ static void e_yr_path_move(e_yr_class* i_this) {
     s32 frame;
     switch (i_this->field_0x67c) {
     case 0:
-        frame = i_this->mpMorfSO->getFrame();
+        frame = i_this->mAnm_pSO->getFrame();
         if (actor->current.pos.y > i_this->field_0x680.y &&
             frame == 9 + TREG_S(0))
         {
@@ -684,7 +684,7 @@ static void e_yr_path_move(e_yr_class* i_this) {
     }
     case 20: {
         unkChar1 = -1;
-        frame = i_this->mpMorfSO->getFrame();
+        frame = i_this->mAnm_pSO->getFrame();
 
         cLib_addCalc2(&actor->current.pos.x, i_this->field_0x680.x, 0.1f, fabsf(actor->speed.x));
         cLib_addCalc2(&actor->current.pos.z, i_this->field_0x680.z, 0.1f, fabsf(actor->speed.z));
@@ -740,7 +740,7 @@ static void e_yr_path_move(e_yr_class* i_this) {
     }
     case 23: {
         unkChar1 = 1;
-        frame = i_this->mpMorfSO->getFrame();
+        frame = i_this->mAnm_pSO->getFrame();
         if (frame >= TREG_S(3) && frame <= 9 + TREG_S(4)) {
             i_this->field_0x68c = i_this->field_0x6b4 * 5.0f;
             actor->speedF = i_this->field_0x6b4 * 5.0f;
@@ -801,7 +801,7 @@ static void e_yr_auto_move(e_yr_class* i_this) {
     s32 frame;
     switch (i_this->field_0x67c) {
     case 0:
-        frame = i_this->mpMorfSO->getFrame();
+        frame = i_this->mAnm_pSO->getFrame();
         if (i_this->field_0x6a4[0] == 0 && frame == 9 + TREG_S(0)) {
             i_this->field_0x67c = 1;
             i_this->field_0x6a4[0] = cM_rndF(200.0f) + 50.0f;
@@ -822,7 +822,7 @@ static void e_yr_auto_move(e_yr_class* i_this) {
     case 10:
         break;
     case 20:
-        frame = i_this->mpMorfSO->getFrame();
+        frame = i_this->mAnm_pSO->getFrame();
         if (frame == 34) {
             i_this->field_0x67c = 0;
             i_this->field_0x6a4[0] = cM_rndF(60.0f) + 20.0f;
@@ -897,7 +897,7 @@ static void e_yr_atack_move(e_yr_class* i_this) {
         kuti_open(i_this, 25, Z2SE_EN_YR_V_NAKU);
     }
 
-    s32 frame = i_this->mpMorfSO->getFrame();
+    s32 frame = i_this->mAnm_pSO->getFrame();
 
     switch (i_this->field_0x67d) {
     case 0: {
@@ -1072,7 +1072,7 @@ static void e_yr_atack_move(e_yr_class* i_this) {
 
         e_yr_pos_move(i_this);
 
-        if (i_this->mpMorfSO->isStop()) {
+        if (i_this->mAnm_pSO->isStop()) {
             i_this->field_0x67d = 4;
 
             anm_init(i_this, 15, 3.0f, 2, l_e_yrHIO.mHoveringPlaybackSpeed);
@@ -1115,11 +1115,11 @@ static void e_yr_atack_move(e_yr_class* i_this) {
     case 11: {
         i_this->field_0xe94 = 0;
         e_yr_pos_move(i_this);
-        if ((s32)i_this->mpMorfSO->getFrame() == 24) {
+        if ((s32)i_this->mAnm_pSO->getFrame() == 24) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_YR_V_FURA, -1);
         }
 
-        if (i_this->mpMorfSO->isStop() && i_this->field_0x67d == 10) {
+        if (i_this->mAnm_pSO->isStop() && i_this->field_0x67d == 10) {
             i_this->field_0x67d = 11;
             anm_init(i_this, 5, 0.0f, 2, l_e_yrHIO.mChancePlaybackSpeed);
         }
@@ -1195,7 +1195,7 @@ static void e_yr_horse_move(e_yr_class* i_this) {
 
     i_this->field_0xe94 = 1;
 
-    s32 frame = i_this->mpMorfSO->getFrame();
+    s32 frame = i_this->mAnm_pSO->getFrame();
 
     f32 horseSpeed = dComIfGp_getHorseActor()->speedF;
     if (horseSpeed > 60.0f) {
@@ -1281,7 +1281,7 @@ static void e_yr_horse_move(e_yr_class* i_this) {
 
                     i_this->field_0x6a4[1] = cM_rndF(100.0f) + 60.0f;
                 } else {
-                    i_this->mpMorfSO->setPlaySpeed(cM_rndF(0.2f) + 1.2f);
+                    i_this->mAnm_pSO->setPlaySpeed(cM_rndF(0.2f) + 1.2f);
                 }
             }
         }
@@ -1331,7 +1331,7 @@ static void e_yr_horse_move(e_yr_class* i_this) {
             i_this->mSph1.ClrAtHit();
         }
 
-        if (i_this->mpMorfSO->isStop() && JREG_S(3) == 0) {
+        if (i_this->mAnm_pSO->isStop() && JREG_S(3) == 0) {
             i_this->field_0x67d = 2;
             i_this->field_0x6a4[1] = 0;
             i_this->field_0x6a4[3] = cM_rndF(100.0f) + 60.0f;
@@ -1394,7 +1394,7 @@ static void e_yr_wait_move(e_yr_class* i_this) {
     switch (i_this->field_0x67d) {
     case -1:
         i_this->field_0x924 = 1;
-        if (!i_this->mpMorfSO->isStop()) {
+        if (!i_this->mAnm_pSO->isStop()) {
             break;
         }
         i_this->field_0x67d = 0;
@@ -1596,7 +1596,7 @@ static void e_yr_su_wait_move(e_yr_class* i_this) {
     case -1:
         i_this->field_0x924 = 1;
 
-        if (!i_this->mpMorfSO->isStop()) {
+        if (!i_this->mAnm_pSO->isStop()) {
             break;
         }
 
@@ -1975,7 +1975,7 @@ static void ground_angle_set(e_yr_class* i_this) {
         dBgS_GndChk gndChk;
         f32 unkFloat1 = 75.0f;
 
-        model = i_this->mpMorfSO->getModel();
+        model = i_this->mAnm_pSO->getModel();
         MTXCopy(model->getAnmMtx(0), *calc_mtx);
         unkXyz1.set(0.0f, 0.0f, 0.0f);
         MtxPosition(&unkXyz1, &unkXyz3);
@@ -2024,7 +2024,7 @@ static void ground_angle_set(e_yr_class* i_this) {
         unkXyz6 = actor->current.pos;
         unkXyz6.y += 30.0f + JREG_F(5);
 
-        model = i_this->mpMorfSO->getModel();
+        model = i_this->mAnm_pSO->getModel();
         unkXyz5.set(0.0f, 0.0f, 0.0f);
         MTXCopy(model->getAnmMtx(5), *calc_mtx);
 
@@ -2102,20 +2102,20 @@ static int daE_Yr_Execute(e_yr_class* i_this) {
             i_this->field_0x6d0--;
         }
 
-        i_this->mpMorfSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
+        i_this->mAnm_pSO->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
 
         if (i_this->field_0x5b8 == 12) {
             i_this->mSound.startCreatureSoundLevel(Z2SE_EN_YR_GLIDE, 0, -1);
         } else if (i_this->field_0x5b8 == 15) {
             i_this->mSound.startCreatureSoundLevel(Z2SE_EN_YR_V_HOVERING, 0, -1);
-            if (i_this->mpMorfSO->checkFrame(12.0f)) {
+            if (i_this->mAnm_pSO->checkFrame(12.0f)) {
                 i_this->mSound.startCreatureSound(Z2SE_EN_YR_WING, 0, -1);
             }
-        } else if (i_this->mpMorfSO->checkFrame(27.0f) && i_this->field_0x5b8 == 8) {
+        } else if (i_this->mAnm_pSO->checkFrame(27.0f) && i_this->field_0x5b8 == 8) {
             i_this->mSound.startCreatureSound(Z2SE_EN_YR_WING, 0, -1);
-        } else if (i_this->mpMorfSO->checkFrame(11.0f) && i_this->field_0x5b8 == 13) {
+        } else if (i_this->mAnm_pSO->checkFrame(11.0f) && i_this->field_0x5b8 == 13) {
             i_this->mSound.startCreatureSound(Z2SE_EN_YR_WING, 0, -1);
-        } else if (i_this->mpMorfSO->checkFrame(12.0f) && i_this->field_0x5b8 == 15) {
+        } else if (i_this->mAnm_pSO->checkFrame(12.0f) && i_this->field_0x5b8 == 15) {
             i_this->mSound.startCreatureSound(Z2SE_EN_YR_WING, 0, -1);
         }
 
@@ -2172,10 +2172,10 @@ static int daE_Yr_Execute(e_yr_class* i_this) {
     cMtx_ZrotM(*calc_mtx, actor->shape_angle.z);
     MtxScale(l_e_yrHIO.mModelScale, l_e_yrHIO.mModelScale, l_e_yrHIO.mModelScale, 1);
 
-    J3DModel* model = i_this->mpMorfSO->getModel();
+    J3DModel* model = i_this->mAnm_pSO->getModel();
     model->setBaseScale(actor->scale);
     model->setBaseTRMtx(*calc_mtx);
-    i_this->mpMorfSO->modelCalc();
+    i_this->mAnm_pSO->modelCalc();
 
     if (i_this->field_0xf1c == 0) {
         static u16 e_name[5] = {0x843A, 0x843B, 0x843C, 0x843D, 0x843E};
@@ -2192,7 +2192,7 @@ static int daE_Yr_Execute(e_yr_class* i_this) {
         }
     }
 
-    if (i_this->field_0x5b8 == 4 && i_this->mpMorfSO->checkFrame(1.0f)) {
+    if (i_this->field_0x5b8 == 4 && i_this->mAnm_pSO->checkFrame(1.0f)) {
         dComIfGp_particle_set(0x8435, &actor->current.pos, NULL, NULL);
     }
 
@@ -2415,7 +2415,7 @@ static int daE_Yr_Delete(e_yr_class* i_this) {
 #endif
 
     if (actor->heap != NULL) {
-        i_this->mpMorfSO->stopZelAnime();
+        i_this->mAnm_pSO->stopZelAnime();
     }
     return 1;
 }
@@ -2424,17 +2424,17 @@ static int daE_Yr_Delete(e_yr_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_yr_class* yr = (e_yr_class*)i_this;
 
-    yr->mpMorfSO = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_Yr", 21), NULL, NULL,
+    yr->mAnm_pSO = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_Yr", 21), NULL, NULL,
                                         (J3DAnmTransform*)dComIfG_getObjectRes("E_Yr", 12), 2, 1.0f,
                                         0, -1, &yr->mSound, 0x80000, 0x11000084);
 
-    if (yr->mpMorfSO == NULL ||
-        yr->mpMorfSO->getModel() == NULL)
+    if (yr->mAnm_pSO == NULL ||
+        yr->mAnm_pSO->getModel() == NULL)
     {
         return 0;
     }
 
-    J3DModel* model = yr->mpMorfSO->getModel();
+    J3DModel* model = yr->mAnm_pSO->getModel();
     model->setUserArea((int)yr);
 
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
@@ -2550,7 +2550,7 @@ static int daE_Yr_Create(fopAc_ac_c* i_this) {
             yr->field_0x669 = 3;
         }
 
-        fopAcM_SetMtx(i_this, yr->mpMorfSO->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(i_this, yr->mAnm_pSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_this, -300.0f, -200.0f, -300.0f);
         fopAcM_SetMax(i_this, 300.0f, 200.0f, 300.0f);
 

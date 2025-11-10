@@ -112,7 +112,7 @@ daNpcAshB_c::~daNpcAshB_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -144,8 +144,8 @@ cPhs__Step daNpcAshB_c::Create() {
             if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x58b0)) {
                 return cPhs_ERROR_e;
             } else {
-                J3DModelData* model_data = mpMorf->getModel()->getModelData();
-                fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+                J3DModelData* model_data = mAnm_p->getModel()->getModelData();
+                fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
                 fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
                 mCreatureSound.init(&current.pos, &eyePos, 3, 1);
                 mAcchCir.SetWall(mpHIO->m.common.width, mpHIO->m.common.knee_length);
@@ -164,7 +164,7 @@ cPhs__Step daNpcAshB_c::Create() {
                 mGroundH = mAcch.GetGroundH();
                 setEnvTevColor();
                 setRoomNo();
-                mpMorf->modelCalc();
+                mAnm_p->modelCalc();
                 reset();
                 Execute();
             }
@@ -177,17 +177,17 @@ cPhs__Step daNpcAshB_c::Create() {
 /* 8095E4A0-8095E758 000740 02B8+00 1/1 0/0 0/0 .text            CreateHeap__11daNpcAshB_cFv */
 BOOL daNpcAshB_c::CreateHeap() {
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 28));
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreatureSound,
+    mAnm_p= new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreatureSound,
                                   0x80000, 0x11020284);
-    if (mpMorf != NULL && mpMorf->mpModel == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    if (mAnm_p!= NULL && mAnm_p->mpModel == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return false;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (u16 jointNo = 0; jointNo < modelData->getJointNum(); jointNo++) {
         modelData->getJointNodePointer(jointNo)->setCallBack(ctrlJointCallBack);
     }
@@ -227,7 +227,7 @@ int daNpcAshB_c::Execute() {
 
 /* 8095E96C-8095E9C8 000C0C 005C+00 1/1 0/0 0/0 .text            Draw__11daNpcAshB_cFv */
 int daNpcAshB_c::Draw() {
-    mpMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
+    mAnm_p->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
     draw(false, false, mpHIO->m.common.real_shadow_size, NULL, false);
     return 1;
 }
@@ -239,11 +239,11 @@ bool daNpcAshB_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int lookatJoints[3] = {1, 9, 10};
 
     if (jointNo == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(9));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(9));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(10));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(10));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -261,8 +261,8 @@ bool daNpcAshB_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((jointNo == 10 || jointNo == 19) && (mAnmFlags & ANM_PLAY_BCK)) {
         J3DAnmTransform* bckAnm = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(bckAnm);
+        mBckAnm.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(bckAnm);
     }
 
     return true;
@@ -393,7 +393,7 @@ void daNpcAshB_c::playMotion() {
 /* 80961574-80961770 003814 01FC+00 1/1 0/0 0/0 .text            lookat__11daNpcAshB_cFv */
 void daNpcAshB_c::lookat() {
     fopAc_ac_c* actor = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     BOOL snap = false;
     f32 body_angleX_min = mpHIO->m.common.body_angleX_min;
@@ -520,7 +520,7 @@ bool daNpcAshB_c::setExpressionBtp(int i_idx) {
     if (btpAnm == NULL) {
         return true;
     }
-    if (setBtpAnm(btpAnm, mpMorf->getModel()->getModelData(), 1.0f, attr)) {
+    if (setBtpAnm(btpAnm, mAnm_p->getModel()->getModelData(), 1.0f, attr)) {
         mAnmFlags |= ANM_PAUSE_BTP | ANM_PLAY_BTP;
         if (i_idx == 0) {
             mAnmFlags |= ANM_FLAG_800;
@@ -568,7 +568,7 @@ void daNpcAshB_c::setMotionAnm(int i_idx, f32 i_morf) {
         mMotionLoops = 0;
     }
 
-    if (btkAnm && setBtkAnm(btkAnm, mpMorf->getModel()->getModelData(), 1.0, iVar4)) {
+    if (btkAnm && setBtkAnm(btkAnm, mAnm_p->getModel()->getModelData(), 1.0, iVar4)) {
         mAnmFlags |= 0x12;
     }
 }
@@ -1004,14 +1004,14 @@ BOOL daNpcAshB_c::EvCut_Appear(int i_staffID) {
         break;
     case '0005':
         if (mMotionPhase > 1) {
-            mpMorf->getModel()->getModelData()->getMaterialNodePointer(4)->getShape()->hide();
+            mAnm_p->getModel()->getModelData()->getMaterialNodePointer(4)->getShape()->hide();
             return TRUE;
         }
 
         if (mMotionPhase == 1) {
             setExpression(6, 0.0f);
-            f32 subtract = mpMorf->getEndFrame() - 1.0f;
-            if (mpMorf->getFrame() > subtract) {
+            f32 subtract = mAnm_p->getEndFrame() - 1.0f;
+            if (mAnm_p->getFrame() > subtract) {
                 field_0xded = 1;
             }
         }
@@ -1123,7 +1123,7 @@ void daNpcAshB_c::setAttnPos() {
     lookat();
 
     cXyz vec(10.0f, 10.0f, 0.0f);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(10));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(10));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&vec, &eyePos);
     vec.x = 0.0f;
@@ -1156,7 +1156,7 @@ void daNpcAshB_c::setAttnPos() {
 /* 80961770-809617F8 003A10 0088+00 1/0 0/0 0/0 .text            drawOtherMdls__11daNpcAshB_cFv */
 void daNpcAshB_c::drawOtherMdls() {
     if (field_0xded != 0) {
-        J3DModel* model = mpMorf->getModel();
+        J3DModel* model = mAnm_p->getModel();
         MtxP src = model->getAnmMtx(24);
         mDoMtx_stack_c::copy(src);
         mpModel->setBaseTRMtx(mDoMtx_stack_c::get());

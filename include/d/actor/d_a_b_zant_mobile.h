@@ -35,7 +35,7 @@ public:
 
 private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5B8 */ mDoExt_brkAnm* mpBrk;
     /* 0x5BC */ Z2CreatureEnemy mSound;
     /* 0x660 */ f32 field_0x660;

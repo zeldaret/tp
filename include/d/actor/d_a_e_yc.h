@@ -18,11 +18,11 @@
  */
 class e_yc_class : public fopEn_enemy_c {
 public:
-    MtxP getLegR3Mtx() { return mpMorf->getModel()->getAnmMtx(28); }
+    MtxP getLegR3Mtx() { return mAnm_p->getModel()->getAnmMtx(28); }
 
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ u8 mParam;
-    /* 0x5B8 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5B8 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5BC */ Z2CreatureEnemy mCreatureSound;
     /* 0x660 */ int mAnm;
     /* 0x664 */ int mFlyAnmMode;

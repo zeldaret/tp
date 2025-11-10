@@ -145,13 +145,13 @@ int daKago_c::getBckName(int param_0) {
 
 /* 808496F0-80849798 000230 00A8+00 13/13 0/0 0/0 .text            setBck__8daKago_cFiUcff */
 void daKago_c::setBck(int param_0, u8 param_1, f32 param_2, f32 param_3) {
-    mpMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(field_0x75c, getBckName(param_0)),
+    mAnm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(field_0x75c, getBckName(param_0)),
                    param_1, param_2, param_3, 0.0f, -1.0f);
 }
 
 /* 80849798-808497F8 0002D8 0060+00 6/6 0/0 0/0 .text            checkBck__8daKago_cFi */
 bool daKago_c::checkBck(int param_0) {
-    if (mpMorf->getAnm() == dComIfG_getObjectRes(field_0x75c, getBckName(param_0))) {
+    if (mAnm_p->getAnm() == dComIfG_getObjectRes(field_0x75c, getBckName(param_0))) {
         return true;
     } else {
         return false;
@@ -165,11 +165,11 @@ int daKago_c::draw() {
     }
 
     g_env_light.settingTevStruct(2, &current.pos, &tevStr);
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     fopAcM_setEffectMtx(this, model->getModelData());
     dComIfGd_setListDark();
-    mpMorf->entryDL();
+    mAnm_p->entryDL();
     dComIfGd_setList();
     cXyz unkXyz1;
     unkXyz1.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
@@ -429,7 +429,7 @@ void daKago_c::checkSizeBg() {
     cXyz unkXyz2;
     cM3dGPla plane;
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     field_0x6d9 = 0;
 
@@ -1153,7 +1153,7 @@ void daKago_c::executeFly() {
         field_0x714 = unkInt1;
         flySpeedCalc(unkInt1, 0);
         if (checkBck(11)) {
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setFlyAnime();
             }
         } else {
@@ -1260,7 +1260,7 @@ void daKago_c::executeStagger() {
 
         daPy_getPlayerActorClass()->setPlayerDamage(0, 1);
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(6));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(6));
         mDoMtx_stack_c::multVecZero(&field_0x674);
 
         if (field_0x6e7 == 0) {
@@ -1324,7 +1324,7 @@ void daKago_c::executeStagger() {
 
         mSph.OffAtSetBit();
 
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(6));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(6));
         mDoMtx_stack_c::multVecZero(&field_0x674);
 
         if (field_0x6e7 == 0) {
@@ -1390,7 +1390,7 @@ void daKago_c::executeStagger() {
 
             field_0x728 = 60;
 
-            if (mpMorf->checkFrame(22.0f)) {
+            if (mAnm_p->checkFrame(22.0f)) {
                 setRideOff();
                 setBck(8, 2, 10.0f, 1.0f);
             }
@@ -1583,14 +1583,14 @@ void daKago_c::executeAttack() {
         setDashEffect();
         if (calcAttackMove(0) == 0) {
             cLib_chaseF(&field_0x6f8, 30.0f, l_HIO.mDashTimeMultiplier * 3.0f);
-            if (mpMorf->checkFrame(9.0f)) {
+            if (mAnm_p->checkFrame(9.0f)) {
                 if (field_0x6e7 == 0) {
                     mSound.startCreatureSound(Z2SE_EN_YC_DASH, 0, -1);
                 } else {
                     mSound.startCreatureSound(Z2SE_EN_KC_DASH, 0, -1);
                 }
             }
-            if (mpMorf->checkFrame(12.0f)) {
+            if (mAnm_p->checkFrame(12.0f)) {
                 field_0x744 = 2;
                 field_0x728 = 0x14;
 
@@ -1606,7 +1606,7 @@ void daKago_c::executeAttack() {
     case 2:
         setDashEffect();
 
-        if (mpMorf->checkFrame(23.0f)) {
+        if (mAnm_p->checkFrame(23.0f)) {
             mSph.OnAtSetBit();
         }
 
@@ -2462,7 +2462,7 @@ void daKago_c::initFirstDemo() {
     case 8: {
         setBck(15, 2, 10.0f, 1.0f);
         if (field_0x6e8 != 0) {
-            mpMorf->setFrame(0.0f);
+            mAnm_p->setFrame(0.0f);
             field_0x6a4.set(-67000.0f, -13000.0f, 28000.0f);
             current.pos.set(-76600.0f, -15500.0f, 37340.0f);
             shape_angle.y = current.angle.y = -0x8000;
@@ -3201,14 +3201,14 @@ void daKago_c::moveDemoFly() {
         }
         case 2: {
             cLib_chaseF(&field_0x6f8, 30.0f, l_HIO.mDashTimeMultiplier * 3.0f);
-            if (mpMorf->checkFrame(9.0f)) {
+            if (mAnm_p->checkFrame(9.0f)) {
                 if (field_0x6e7 == 0) {
                     mSound.startCreatureSound(Z2SE_EN_YC_DASH, 0, -1);
                 } else {
                     mSound.startCreatureSound(Z2SE_EN_KC_DASH, 0, -1);
                 }
             }
-            if (mpMorf->checkFrame(12.0f)) {
+            if (mAnm_p->checkFrame(12.0f)) {
                 field_0x744 = 3;
                 field_0x728 = 0x14;
 
@@ -3327,7 +3327,7 @@ void daKago_c::setFlyEffect() {
         return;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     JPABaseEmitter* emitter;
 
     field_0xb30 = dComIfGp_particle_set(field_0xb30, 0x8607, &current.pos, &tevStr);
@@ -3345,7 +3345,7 @@ void daKago_c::setFlyEffect() {
 
 /* 80852F14-808530A4 009A54 0190+00 2/2 0/0 0/0 .text            setDashEffect__8daKago_cFv */
 void daKago_c::setDashEffect() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     JPABaseEmitter* emitter;
 
     if (field_0x6e7 == 0) {
@@ -3367,7 +3367,7 @@ void daKago_c::setDashEffect() {
 
 /* 808530A4-80853228 009BE4 0184+00 1/1 0/0 0/0 .text            setDamageEffect__8daKago_cFv */
 void daKago_c::setDamageEffect() {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     JPABaseEmitter* emitter;
 
     if (field_0x6e7 != 1) {
@@ -3509,28 +3509,28 @@ void daKago_c::setFlySound() {
         BOOL unkFlag1 = FALSE;
         if (checkBck(9) || checkBck(15)) {
             if (field_0x6e7 == 0) {
-                if (mpMorf->checkFrame(27.0f)) {
+                if (mAnm_p->checkFrame(27.0f)) {
                     unkFlag1 = TRUE;
                 }
             } else {
-                if (mpMorf->checkFrame(29.0f)) {
+                if (mAnm_p->checkFrame(29.0f)) {
                     unkFlag1 = TRUE;
                 }
             }
         } else if (checkBck(21)) {
-            if (mpMorf->checkFrame(10.0f)) {
+            if (mAnm_p->checkFrame(10.0f)) {
                 unkFlag1 = TRUE;
             }
         } else if (checkBck(6)) {
-            if (mpMorf->checkFrame(26.0f)) {
+            if (mAnm_p->checkFrame(26.0f)) {
                 unkFlag1 = TRUE;
             }
         } else if (checkBck(5)) {
-            if (mpMorf->checkFrame(10.0f)) {
+            if (mAnm_p->checkFrame(10.0f)) {
                 unkFlag1 = TRUE;
             }
         } else if (checkBck(4)) {
-            if (mpMorf->checkFrame(10.0f) || mpMorf->checkFrame(35.0f)) {
+            if (mAnm_p->checkFrame(10.0f) || mAnm_p->checkFrame(35.0f)) {
                 unkFlag1 = TRUE;
             }
         } else if (checkBck(12) || checkBck(13)) {
@@ -3641,8 +3641,8 @@ void daKago_c::action() {
         mObjAcch.CrrPos(dComIfG_Bgsp());
     }
 
-    if (mpMorf != NULL) {
-        mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    if (mAnm_p!= NULL) {
+        mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
 
     field_0x674 = current.pos;
@@ -3660,11 +3660,11 @@ void daKago_c::mtx_set() {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(l_HIO.mBasicSize,l_HIO.mBasicSize,l_HIO.mBasicSize);
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    mpMorf->modelCalc();
+    mAnm_p->modelCalc();
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x1c));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0x1c));
     mDoMtx_stack_c::ZrotM(field_0x6ca);
     cMtx_copy(mDoMtx_stack_c::get(), mLegR3Mtx);
 }
@@ -3795,15 +3795,15 @@ int daKago_c::CreateHeap() {
     }
     JUT_ASSERT(0x139f, modelData != NULL);
 
-    mpMorf = new mDoExt_McaMorfSO(
+    mAnm_p= new mDoExt_McaMorfSO(
         modelData, NULL, NULL,
         (J3DAnmTransform*)dComIfG_getObjectRes(field_0x75c, getBckName(9)), 2, 1.0f, 0, -1, &this->mSound, 0x80000, 0x11000084);
 
-    if (mpMorf == NULL || mpMorf->getModel() == NULL) {
+    if (mAnm_p== NULL || mAnm_p->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     model->setUserArea((uintptr_t)this);
 
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
@@ -3861,7 +3861,7 @@ int daKago_c::create() {
 
         attention_info.flags = 0;
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
 

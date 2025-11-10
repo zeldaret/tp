@@ -62,13 +62,13 @@ static int daObj_Ystone_Draw(obj_ystone_class* i_this) {
             mDoExt_modelUpdateDL(i_this->mpModel);
         }
     } else {
-        J3DModel* model = i_this->mpMorf->getModel();
+        J3DModel* model = i_this->mAnm_p->getModel();
         g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
         if (i_this->field_0x59a) {
             i_this->mpBtkAnm->entry(model->getModelData());
         }
         fopAcM_setEffectMtx(i_this, model->getModelData());
-        i_this->mpMorf->entryDL();
+        i_this->mAnm_p->entryDL();
     }
     return 1;
 }
@@ -79,7 +79,7 @@ static void setModelBaseMtx(obj_ystone_class* i_this) {
     if (i_this->mLevel < 3) {
         model = i_this->mpModel;
     } else {
-        model = i_this->mpMorf->getModel();
+        model = i_this->mAnm_p->getModel();
     }
     if (i_this->field_0x598 == 0) {
         mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
@@ -132,15 +132,15 @@ static void action(obj_ystone_class* i_this) {
             i_this->mMirrorMode = 1;
             i_this->mTimer = 120;
             anm = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName[i_this->mLevel], 5);
-            i_this->mpMorf->setAnm(anm, 0, 0.0f, 0.0f, 0.0f, -1.0f);
-            i_this->mpMorf->setFrame(1.0f);
+            i_this->mAnm_p->setAnm(anm, 0, 0.0f, 0.0f, 0.0f, -1.0f);
+            i_this->mAnm_p->setFrame(1.0f);
             break;
 
         case 1:
             if (i_this->mTimer == 0) {
                 i_this->mMirrorMode = 2;
-                i_this->mpMorf->setPlaySpeed(1.0f);
-                i_this->mpMorf->setFrame(0.0f);
+                i_this->mAnm_p->setPlaySpeed(1.0f);
+                i_this->mAnm_p->setFrame(0.0f);
             }
             // no break
 
@@ -155,17 +155,17 @@ static void action(obj_ystone_class* i_this) {
         case 3:
             i_this->mMirrorMode = 4;
             anm = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName[i_this->mLevel], 6);
-            i_this->mpMorf->setAnm(anm, 0, 0.0f, 1.0f, 0.0f, -1.0f);
+            i_this->mAnm_p->setAnm(anm, 0, 0.0f, 1.0f, 0.0f, -1.0f);
             i_this->field_0x59a = true;
             btk_anm = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[i_this->mLevel],
                                                                  l_btkIndex[i_this->mLevel]);
-            i_this->mpBtkAnm->init(i_this->mpMorf->getModel()->getModelData(),
+            i_this->mpBtkAnm->init(i_this->mAnm_p->getModel()->getModelData(),
                                    btk_anm, 1, 0, 1.0f, 0, -1);
             // no break
 
         case 4: {
             i_this->shape_angle.y += 0x100;
-            mDoMtx_stack_c::copy(i_this->mpMorf->getModel()->getAnmMtx(0));
+            mDoMtx_stack_c::copy(i_this->mAnm_p->getModel()->getAnmMtx(0));
             cXyz particle_pos;
             mDoMtx_stack_c::multVecZero(&particle_pos);
             i_this->mParticleKey =
@@ -177,7 +177,7 @@ static void action(obj_ystone_class* i_this) {
         case 5:
             i_this->mMirrorMode = 6;
             anm = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName[i_this->mLevel], 6);
-            i_this->mpMorf->setAnm(anm, 0, 0.0f, 0.0f, 0.0f, -1.0f);
+            i_this->mAnm_p->setAnm(anm, 0, 0.0f, 0.0f, 0.0f, -1.0f);
             break;
         
         case 6:
@@ -187,9 +187,9 @@ static void action(obj_ystone_class* i_this) {
         if (i_this->field_0x59a) {
             i_this->mpBtkAnm->play();
         }
-        i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
+        i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
         setModelBaseMtx(i_this);
-        i_this->mpMorf->modelCalc();
+        i_this->mAnm_p->modelCalc();
     }
 }
 
@@ -240,10 +240,10 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             return 0;
         }
     } else {
-        _this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)model_data, NULL, NULL,
+        _this->mAnm_p= new mDoExt_McaMorfSO((J3DModelData*)model_data, NULL, NULL,
             (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName[_this->mLevel], 5),
             0, 1.0f, 0, -1, NULL, 0, 0x11000284);
-        if (_this->mpMorf == NULL || _this->mpMorf->getModel() == NULL) {
+        if (_this->mAnm_p== NULL || _this->mAnm_p->getModel() == NULL) {
             return 0;
         }
 
@@ -288,7 +288,7 @@ static cPhs__Step daObj_Ystone_Create(fopAc_ac_c* i_this) {
             mDoMtx_stack_c::scaleS(0.0f, 0.0f, 0.0f);
             _this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
         } else {
-            fopAcM_SetMtx(_this, _this->mpMorf->getModel()->getBaseTRMtx());
+            fopAcM_SetMtx(_this, _this->mAnm_p->getModel()->getBaseTRMtx());
             _this->mMirrorMode = fopAcM_GetParam(_this) & 0xff;
             if (_this->mMirrorMode >= 7) {
                 _this->mMirrorMode = 0;

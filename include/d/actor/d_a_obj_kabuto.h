@@ -77,7 +77,7 @@ private:
     /* 0x798 */ dBgS_ObjAcch mAcch;
     /* 0x970 */ Z2Creature mCreatureSound;
     /* 0xA00 */ u8 field_0xa00[4];
-    /* 0xA04 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0xA04 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0xA08 */ request_of_phase_process_class mPhaseReq;
     /* 0xA10 */ bool mHIOInit;
  };

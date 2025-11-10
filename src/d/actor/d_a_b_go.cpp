@@ -29,11 +29,11 @@ static daB_GO_HIO_c l_HIO;
 /* 806031EC-80603270 00012C 0084+00 1/0 0/0 0/0 .text            daB_GO_Draw__FP10b_go_class */
 static int daB_GO_Draw(b_go_class* i_this) {
     if (l_HIO.mDisplayModelImage) {
-        J3DModel* model = i_this->mpMorf->getModel();
+        J3DModel* model = i_this->mAnm_p->getModel();
 
         g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
-        i_this->mpMorf->entryDL();
+        i_this->mAnm_p->entryDL();
     }
 
     return 1;
@@ -42,7 +42,7 @@ static int daB_GO_Draw(b_go_class* i_this) {
 /* 80603270-8060331C 0001B0 00AC+00 3/3 0/0 0/0 .text            anm_init__FP10b_go_classifUcf */
 static void anm_init(b_go_class* i_this, int i_anmID, f32 i_morf, u8 i_attribute, f32 i_speed) {
     J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes("B_go", i_anmID);
-    i_this->mpMorf->setAnm(bck, i_attribute, i_morf, i_speed, 0.0f, -1.0f);
+    i_this->mAnm_p->setAnm(bck, i_attribute, i_morf, i_speed, 0.0f, -1.0f);
     i_this->mAnmID = i_anmID;
 }
 
@@ -96,7 +96,7 @@ static void h_walk(b_go_class* i_this) {
 
 /* 80603508-80603638 000448 0130+00 1/1 0/0 0/0 .text            h_attack__FP10b_go_class */
 static void h_attack(b_go_class* i_this) {
-    int anm_frame = i_this->mpMorf->getFrame();
+    int anm_frame = i_this->mAnm_p->getFrame();
     cLib_addCalc0(&i_this->speedF, 1.0f, 1.0f);
 
     switch (i_this->mMode) {
@@ -114,7 +114,7 @@ static void h_attack(b_go_class* i_this) {
             }
         }
 
-        if (i_this->mpMorf->isStop()) {
+        if (i_this->mAnm_p->isStop()) {
             i_this->mActionID = ACT_WAIT;
             i_this->mMode = 0;
         }
@@ -192,10 +192,10 @@ static int daB_GO_Execute(b_go_class* i_this) {
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
     mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
     mDoMtx_stack_c::scaleM(l_HIO.mSmallSize, l_HIO.mSmallSize, l_HIO.mSmallSize);
-    i_this->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mAnm_p->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
-    i_this->mpMorf->modelCalc();
+    i_this->mAnm_p->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
+    i_this->mAnm_p->modelCalc();
 
     return 1;
 }
@@ -214,7 +214,7 @@ static int daB_GO_Delete(b_go_class* i_this) {
     }
 
     if (i_this->heap != NULL) {
-        i_this->mpMorf->stopZelAnime();
+        i_this->mAnm_p->stopZelAnime();
     }
 
     return 1;
@@ -224,12 +224,12 @@ static int daB_GO_Delete(b_go_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     b_go_class* a_this = (b_go_class*)i_this;
 
-    a_this->mpMorf = new mDoExt_McaMorfSO(
+    a_this->mAnm_p= new mDoExt_McaMorfSO(
         (J3DModelData*)dComIfG_getObjectRes("B_go", RES_IS_MODEL), NULL, NULL,
         (J3DAnmTransform*)dComIfG_getObjectRes("B_go", ANM_WAIT_03), J3DFrameCtrl::EMode_LOOP,
         1.0f, 0, -1, &a_this->mSound, 0x80000, 0x11000084);
 
-    if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
+    if (a_this->mAnm_p== NULL || a_this->mAnm_p->getModel() == NULL) {
         return 0;
     }
 
@@ -262,7 +262,7 @@ static int daB_GO_Create(fopAc_ac_c* i_this) {
         }
 
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-        fopAcM_SetMtx(a_this, a_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(a_this, a_this->mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -500.0f, -2000.0f, -500.0f);
         fopAcM_SetMax(a_this, 500.0f, 2000.0f, 500.0f);
         a_this->health = 1000;

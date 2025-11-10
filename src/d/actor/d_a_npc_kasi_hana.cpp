@@ -606,7 +606,7 @@ daNpcKasiHana_c::~daNpcKasiHana_c() {
     }
     
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -672,8 +672,8 @@ cPhs__Step daNpcKasiHana_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModel* model = mpMorf->getModel();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        J3DModel* model = mAnm_p->getModel();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -60.0f, -10.0f, -60.0f, 60.0f, 160.0f, 60.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -706,21 +706,21 @@ int daNpcKasiHana_c::CreateHeap() {
 
     JUT_ASSERT(950, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p= new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
+    if (mAnm_p!= NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p= NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p== NULL) {
         return 0;
     }
 
     cXyz i_scale(1.0f, 0.8630768f, 1.0f);
-    mpMorf->offTranslate();
-    mpMorf->setTranslateScale(i_scale);
+    mAnm_p->offTranslate();
+    mAnm_p->setTranslateScale(i_scale);
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -758,11 +758,11 @@ int daNpcKasiHana_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int i_jointList[3] = {JNT_BACKBONE, JNT_NECK, JNT_HEAD};
 
     if (jntNo == JNT_CENTER) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -885,7 +885,7 @@ void daNpcKasiHana_c::setAttnPos() {
 
     cXyz sp1c(10.0f, 15.0f, 0.0f);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&sp1c, &eyePos);
     sp1c.x = 0.0f;
@@ -897,7 +897,7 @@ void daNpcKasiHana_c::setAttnPos() {
 
     cXyz sp28;
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
     mDoMtx_stack_c::multVecZero(&sp28);
     sp28.y = current.pos.y;
     mCyl.SetC(sp28);
@@ -977,7 +977,7 @@ void daNpcKasiHana_c::reset() {
     J3DAnmTexPattern* i_btp = getTexPtrnAnmP(l_arcNames[0], 8);
     mAnmFlags &= 0xFFFFF57F;
 
-    if (setBtpAnm(i_btp, mpMorf->getModel()->getModelData(), 1.0f, J3DFrameCtrl::EMode_LOOP)) {
+    if (setBtpAnm(i_btp, mAnm_p->getModel()->getModelData(), 1.0f, J3DFrameCtrl::EMode_LOOP)) {
         mAnmFlags |= ANM_FLAG_800 | ANM_PLAY_BTP | ANM_PAUSE_BTP;
     }
 
@@ -1078,7 +1078,7 @@ void daNpcKasiHana_c::playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData*** i_data) 
             }
 
             mExpressionMorf = 0.0f;
-            mpMorf->setMorf(i_morf);
+            mAnm_p->setMorf(i_morf);
         }
     }
 
@@ -1113,7 +1113,7 @@ void daNpcKasiHana_c::setLookMode(int i_lookMode) {
 /* 80A1D848-80A1DA28 002988 01E0+00 1/1 0/0 0/0 .text            lookat__15daNpcKasiHana_cFv */
 void daNpcKasiHana_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     BOOL i_snap = FALSE;
     f32 body_angleX_min = daNpcKasiHana_Param_c::m.common.body_angleX_min;
     f32 body_angleX_max = daNpcKasiHana_Param_c::m.common.body_angleX_max;
@@ -1466,7 +1466,7 @@ int daNpcKasiHana_c::fear(int param_1) {
             break;
 
         case 3:
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setMotion(MOT_W_RUN_A, -1.0f, 0);
                 fopAcM_SetSpeedF(this, 15.0f);
                 mSound.startCreatureVoice(Z2SE_HANA_V_FEAR, -1);
@@ -1476,7 +1476,7 @@ int daNpcKasiHana_c::fear(int param_1) {
 
         case 4: {
             cXyz sp28;
-            mpMorf->setPlaySpeed(1.5f);
+            mAnm_p->setPlaySpeed(1.5f);
             
             if (mPath.getDstPos(current.pos, sp28)) {
                 mEscape = true;
@@ -1717,7 +1717,7 @@ int daNpcKasiHana_c::escape(int param_1) {
             } else {
                 _turn_pos(sp28, 0x600);
                 mKasiMng.calcEscapeForm();
-                mpMorf->setPlaySpeed(1.75f);
+                mAnm_p->setPlaySpeed(1.75f);
             }
             break;
     }
@@ -1883,7 +1883,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Appear_CutMain(int const& i_cutIndex) {
             break;
         
         case 21:
-            if (mMotion == MOT_MICH_KYA_TALK && (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f)) {
+            if (mMotion == MOT_MICH_KYA_TALK && (mAnm_p->getFrame() == 19.0f || mAnm_p->getFrame() == 1.0f)) {
                 setMotion(MOT_W_WAIT_A, -1.0f, 0);
             }
 
@@ -1976,7 +1976,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Talk_CutMain(int const& i_cutIndex, int param_2)
             break;
         
         case 20:
-            if (mMotion == MOT_MICH_KYA_TALK && (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f)) {
+            if (mMotion == MOT_MICH_KYA_TALK && (mAnm_p->getFrame() == 19.0f || mAnm_p->getFrame() == 1.0f)) {
                 setMotion(MOT_W_WAIT_A, -1.0f, 0);
             }
 
@@ -2076,7 +2076,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_CutMain(int const& i_cutIndex) {
             break;
 
         case 21:
-            if (mMotion == MOT_MICH_KYA_TALK && (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f)) {
+            if (mMotion == MOT_MICH_KYA_TALK && (mAnm_p->getFrame() == 19.0f || mAnm_p->getFrame() == 1.0f)) {
                 setMotion(MOT_W_WAIT_A, -1.0f, 0);
             }
 

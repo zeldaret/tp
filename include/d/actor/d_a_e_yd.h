@@ -22,7 +22,7 @@ public:
     /* 0x5B5 */ u8 field_0x5b5;
     /* 0x5B6 */ u8 field_0x5b6;
     /* 0x5B7 */ u8 field_0x5b7;
-    /* 0x5B8 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x5B8 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5BC */ Z2CreatureEnemy mCreatureSound;
     /* 0x660 */ mDoExt_brkAnm* mBrkAnm;
     /* 0x664 */ s32 field_0x664;

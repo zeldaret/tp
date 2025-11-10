@@ -89,15 +89,15 @@ public:
         callExecute();
 
         if (field_0x5e0 != 0) {
-            mpMorf->play(0, 0);
-            mpMorf->modelCalc();
+            mAnm_p->play(0, 0);
+            mAnm_p->modelCalc();
         }
         return 1;
     }
 
     int draw() {
         if (field_0x5e0 != 0) {
-            mpMorf->entryDL();
+            mAnm_p->entryDL();
         }
         return 1;
     }
@@ -116,7 +116,7 @@ public:
     static actionFunc ActionTable[13][2];
 
 private:
-    /* 0x568 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x568 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x56C */ request_of_phase_process_class mPhaseZevArc;
     /* 0x574 */ request_of_phase_process_class mPhaseMdRes;
     /* 0x57C */ request_of_phase_process_class mPhasePyRes;

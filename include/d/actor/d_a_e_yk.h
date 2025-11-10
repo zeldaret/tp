@@ -53,7 +53,7 @@ public:
     /* 0x5B9 */ s8 mPathPntIdx;                         ///< @brief Current index in path point array.
     /* 0x5BA */ s8 mPathDirection;                      ///< @brief Direction to traverse path (1: forward, -1: backward).
     /* 0x5BC */ dPath* mpPath;                          ///< @brief Pointer to current flight path data.
-    /* 0x5C0 */ mDoExt_McaMorfSO* mpMorfSO;             ///< @brief Model and animation handler.
+    /* 0x5C0 */ mDoExt_McaMorfSO* mAnm_pSO;             ///< @brief Model and animation handler.
     /* 0x5C4 */ Z2CreatureEnemy mCreature;              ///< @brief Sound effect and voice handler.
     /* 0x668 */ s32 mResIdx;                            ///< @brief Current animation resource index.
     /* 0x66C */ s16 mFrameCounter;                      ///< @brief Increments each frame, used for periodic events.

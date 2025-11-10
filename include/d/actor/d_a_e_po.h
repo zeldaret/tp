@@ -65,13 +65,13 @@ public:
     /* 0x5C0 */ bool field_0x5C0;
     /* 0x5C1 */ bool field_0x5C1;
     /* 0x5C2 */ u8 field_0x5C2[0x5D4 - 0x5C2];  // Padding
-    /* 0x5D4 */ mDoExt_McaMorfSO* mpMorf;
-    /* 0x5D8 */ mDoExt_McaMorfSO* mpMorf3;
+    /* 0x5D4 */ mDoExt_McaMorfSO* mAnm_p;
+    /* 0x5D8 */ mDoExt_McaMorfSO* mAnm_p3;
     /* 0x5DC */ mDoExt_invisibleModel mInvModel;
     /* 0x5E4 */ int mAnmID;
     /* 0x5E8 */ J3DModel* mpModel;
     /* 0x5EC */ J3DModel* mpModel2;
-    /* 0x5F0 */ mDoExt_McaMorf* mpMorf2;
+    /* 0x5F0 */ mDoExt_McaMorf* mAnm_p2;
     /* 0x5F4 */ f32 field_0x5F4;
     /* 0x5F8 */ Z2CreatureEnemy mSound1;
     /* 0x69C */ Z2CreatureEnemy mSound2;

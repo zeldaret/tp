@@ -65,7 +65,7 @@ daNpc_seiB_c::cutFunc daNpc_seiB_c::mCutList[1] = {
 /* 80AC50EC-80AC5188 0000EC 009C+00 1/0 0/0 0/0 .text            __dt__12daNpc_seiB_cFv */
 daNpc_seiB_c::~daNpc_seiB_c() {
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
 
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
@@ -136,7 +136,7 @@ int daNpc_seiB_c::create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
         mSound.init(&current.pos, &eyePos, 3, 1);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
@@ -162,18 +162,18 @@ int daNpc_seiB_c::CreateHeap() {
         (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]);
     JUT_ASSERT(466, NULL != mdlData_p);
 
-    mpMorf[0] =
+    mAnm_p[0] =
         new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
-    if (mpMorf[0] && mpMorf[0]->getModel() == NULL) {
-        mpMorf[0]->stopZelAnime();
-        mpMorf[0] = NULL;
+    if (mAnm_p[0] && mAnm_p[0]->getModel() == NULL) {
+        mAnm_p[0]->stopZelAnime();
+        mAnm_p[0] = NULL;
     }
 
-    if (mpMorf[0] == NULL) {
+    if (mAnm_p[0] == NULL) {
         return 0;
     }
 
-    mpMorf[0]->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p[0]->getModel()->setUserArea((uintptr_t)this);
     if (setFaceMotionAnm(0, false) && setMotionAnm(0, 0.0f, FALSE)) {
         return 1;
     }
@@ -197,7 +197,7 @@ int daNpc_seiB_c::Execute() {
 /* 80AC5574-80AC5608 000574 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_seiB_cFv */
 int daNpc_seiB_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* mdlData_p = mAnm_p[0]->getModel()->getModelData();
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
@@ -380,7 +380,7 @@ bool daNpc_seiB_c::afterSetMotionAnm(int param_1, int param_2, f32 param_3, int 
     if (anm_text) {
         if (mBtkAnm.getBtkAnm() == anm_text) {
             mAnmFlags |= 0x80;
-        } else if (setBtkAnm(anm_text, mpMorf[0]->getModel()->getModelData(), 1.0f, param_2)) {
+        } else if (setBtkAnm(anm_text, mAnm_p[0]->getModel()->getModelData(), 1.0f, param_2)) {
             mAnmFlags |= 0x82;
         }
     }
@@ -397,7 +397,7 @@ bool daNpc_seiB_c::afterSetMotionAnm(int param_1, int param_2, f32 param_3, int 
     if (anm_tev) {
         if (mBrkAnm.getBrkAnm() == anm_tev) {
             mAnmFlags |= 0x100;
-        } else if (setBrkAnm(anm_tev, mpMorf[0]->getModel()->getModelData(), 1.0f, param_2)) {
+        } else if (setBrkAnm(anm_tev, mAnm_p[0]->getModel()->getModelData(), 1.0f, param_2)) {
             mAnmFlags |= 0x104;
         }
     }

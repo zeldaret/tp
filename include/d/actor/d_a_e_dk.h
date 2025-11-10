@@ -47,7 +47,7 @@ public:
 
 private:
     /* 0x5AC */ request_of_phase_process_class mPhaseReq;
-    /* 0x5B4 */ mDoExt_McaMorfSO* mpMorfSO;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mAnm_pSO;
     /* 0x5B8 */ mDoExt_McaMorfSO* mpCoreMorfSO;
     /* 0x5BC */ mDoExt_brkAnm* mpBrkAnm[2];
     /* 0x5C4 */ mDoExt_btkAnm* mpBtkAnm[2];

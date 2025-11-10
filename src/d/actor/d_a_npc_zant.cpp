@@ -74,7 +74,7 @@ static daNpc_Zant_Param_c l_HIO;
 daNpc_Zant_c::~daNpc_Zant_c() {
     OS_REPORT("|%06d:%x|daNpc_Zant_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (heap != NULL) {
-        mpMorf[0]->stopZelAnime();
+        mAnm_p[0]->stopZelAnime();
     }
 
     deleteRes(l_loadResPtrnList[mType], (const char **)l_resNameList);
@@ -107,7 +107,7 @@ int daNpc_Zant_c::create() {
         } else if (isDelete()) {
             return cPhs_ERROR_e;
         } else {
-            fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
+            fopAcM_SetMtx(this, mAnm_p[0]->getModel()->getBaseTRMtx());
             fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
             fopAcM_OnStatus(this, 0x8000000);
 
@@ -141,17 +141,17 @@ int daNpc_Zant_c::create() {
 int daNpc_Zant_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[1]], l_bmdData[0]);
 
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
+    mAnm_p[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
         0x80000, 0x11020284);        
-    if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {
-        mpMorf[0]->stopZelAnime();
-        mpMorf[0] = NULL;
+    if (mAnm_p[0] != NULL && mAnm_p[0]->getModel() == NULL) {
+        mAnm_p[0]->stopZelAnime();
+        mAnm_p[0] = NULL;
     }
-    if (mpMorf[0] == NULL) {
+    if (mAnm_p[0] == NULL) {
         return 0;
     }
     
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -181,7 +181,7 @@ int daNpc_Zant_c::Execute() {
 /* 80B6C754-80B6C7E8 000694 0094+00 1/1 0/0 0/0 .text            Draw__12daNpc_Zant_cFv */
 int daNpc_Zant_c::Draw() {
     if (mpMatAnm[0] != NULL) {
-        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
+        J3DModelData* modelData = mAnm_p[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
     return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 0.0f, 1, 0, 0);
@@ -366,7 +366,7 @@ void daNpc_Zant_c::setAttnPos() {
     mStagger.calc(0);
 
     f32 fVar1 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     mJntAnm.setParam(this, model, &cStack1, getBackboneJointNo(),
         getNeckJointNo(), getHeadJointNo(), daNpc_Zant_Param_c::m.field_0x24,
         daNpc_Zant_Param_c::m.field_0x20, daNpc_Zant_Param_c::m.field_0x2c,
@@ -432,10 +432,10 @@ int daNpc_Zant_c::drawDbgInfo() {
 
 /* 80B6D1B0-80B6D21C 0010F0 006C+00 1/0 0/0 0/0 .text            drawGhost__12daNpc_Zant_cFv */
 void daNpc_Zant_c::drawGhost() {
-    J3DModel* model = mpMorf[0]->getModel();
+    J3DModel* model = mAnm_p[0]->getModel();
     g_env_light.settingTevStruct(3, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
-    mpMorf[0]->entryDL();
+    mAnm_p[0]->entryDL();
 }
 
 /* 80B6D21C-80B6D264 00115C 0048+00 1/1 0/0 0/0 .text            selectAction__12daNpc_Zant_cFv */
