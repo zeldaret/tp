@@ -1784,6 +1784,10 @@ inline u32 dComIfGs_getBalloonScore() {
     return g_dComIfG_gameInfo.info.getMiniGame().getBalloonScore();
 }
 
+inline void dComIfGs_setBalloonScore(u32 i_score) {
+    g_dComIfG_gameInfo.info.getMiniGame().setBalloonScore(i_score);
+}
+
 inline u8 dComIfGs_getTransformStatus() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getTransformStatus();
 }

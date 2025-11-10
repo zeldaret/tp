@@ -77,4 +77,8 @@ inline JKRAramStreamCommand* JKRStreamToAram_Async(JSUFileInputStream *stream, u
     return JKRAramStream::write_StreamToAram_Async(stream, addr, size, offset, returnSize);
 }
 
+inline void JKRSetAramTransferBuffer(u8* buffer, u32 bufferSize, JKRHeap* heap) {
+    JKRAramStream::setTransBuffer(buffer, bufferSize, heap);
+}
+
 #endif /* JKRARAMSTREAM_H */

@@ -253,6 +253,14 @@ inline JKRHeap* JKRGetRootHeap() {
     return JKRHeap::getRootHeap();
 }
 
+inline JKRErrorHandler JKRSetErrorHandler(JKRErrorHandler errorHandler) {
+    return JKRHeap::setErrorHandler(errorHandler);
+}
+
+inline bool JKRSetErrorFlag(JKRHeap* heap, bool flag) {
+    return heap->setErrorFlag(flag);
+}
+
 #if PLATFORM_WII || PLATFORM_SHIELD
 inline JKRHeap* JKRGetRootHeap2() {
     return JKRHeap::getRootHeap2();

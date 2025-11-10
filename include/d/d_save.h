@@ -674,10 +674,11 @@ class dSv_MiniGame_c {
 public:
     void init();
 
+    void setBalloonScore(u32 i_score) { mBalloonScore = i_score; }
+    void setRaceGameTime(u32 i_time) { mRaceGameTime = i_time; }
+
     u32 getRaceGameTime() const { return mRaceGameTime; }
     u32 getBalloonScore() const { return mBalloonScore; }
-
-    void setRaceGameTime(u32 i_time) { mRaceGameTime = i_time; }
 
 private:
     /* 0x00 */ u8 unk0[1][4];

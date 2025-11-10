@@ -177,7 +177,7 @@ void daObjStopper2_c::actionWait() {
                 eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 break;
             default:
-                JUT_ASSERT(346, 0);
+                JUT_ASSERT(346, FALSE);
                 break;
             }
         } else {

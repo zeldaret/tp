@@ -50,7 +50,7 @@ static char* l_arcName = "Obj_l4brg";
 /* 80C62A2C-80C62A9C 00022C 0070+00 1/0 0/0 0/0 .text            CreateHeap__13daObjLv4Brg_cFv */
 int daObjLv4Brg_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(170, modelData != 0);
+    JUT_ASSERT(170, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {

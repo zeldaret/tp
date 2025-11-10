@@ -2133,7 +2133,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_yd", 0x1a);
-    JUT_ASSERT(3719, modelData != 0);
+    JUT_ASSERT(3719, modelData != NULL);
 
     for (int i = 1; i < 11; i++) {
         if ((i & 1) != 0) {

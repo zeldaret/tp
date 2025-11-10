@@ -26,35 +26,6 @@ static Vec l_PIC_AT_OFFSET_POS = {
     0.0f, 100.0f, 0.0f
 };
 
-/* 80CAF110-80CAF15C 000028 004C+00 1/1 0/0 0/0 .data            s_CcDCps__14daObjPicture_c */
-dCcD_SrcCps daObjPicture_c::s_CcDCps = {
-    {
-        {0x0, {{0x0, 0x0, 0x0}, {0x20A0, 0x11}, 0x0}}, // mObj
-        {dCcD_SE_SWORD, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
-    {
-        {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, 14.0f}, // mCps
-    } // mCpsAttr
-};
-
-/* 80CAF15C-80CAF1A0 000074 0044+00 1/1 0/0 0/0 .data            s_CcDCyl_pic_at__14daObjPicture_c
- */
-dCcD_SrcCyl daObjPicture_c::s_CcDCyl_pic_at = {
-    {
-        {0x0, {{0x400, 0x1, 0x11}, {0x0, 0x11}, 0x79}},  // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},              // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},              // mGObjTg
-        {0x0},                                           // mGObjCo
-    },                                                   // mObjInf
-    {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
-};
-
 /* 80CAD318-80CAD498 000098 0180+00 2/2 0/0 0/0 .text            __ct__14daObjPicture_cFv */
 daObjPicture_c::daObjPicture_c() {
     memset(mpBgw, 0, 8);
@@ -151,7 +122,6 @@ int daObjPicture_c::createHeap() {
 }
 
 /* 80CADC18-80CADFB0 000998 0398+00 1/1 0/0 0/0 .text            create__14daObjPicture_cFv */
-// NONMATCHING
 int daObjPicture_c::create() {
     fopAcM_ct(this, daObjPicture_c);
 
@@ -576,6 +546,41 @@ static int daObjPicture_execute(daObjPicture_c* i_this) {
 static int daObjPicture_draw(daObjPicture_c* i_this) {
     return i_this->draw();
 }
+
+/* 80CAF110-80CAF15C 000028 004C+00 1/1 0/0 0/0 .data            s_CcDCps__14daObjPicture_c */
+#if DEBUG
+const
+#endif
+dCcD_SrcCps daObjPicture_c::s_CcDCps = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x20A0, 0x11}, 0x0}}, // mObj
+        {dCcD_SE_SWORD, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x4}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, 14.0f}, // mCps
+    } // mCpsAttr
+};
+
+/* 80CAF15C-80CAF1A0 000074 0044+00 1/1 0/0 0/0 .data            s_CcDCyl_pic_at__14daObjPicture_c
+ */
+#if DEBUG
+const
+#endif
+dCcD_SrcCyl daObjPicture_c::s_CcDCyl_pic_at = {
+    {
+        {0x0, {{0x400, 0x1, 0x11}, {0x0, 0x11}, 0x79}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},              // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},              // mGObjTg
+        {0x0},                                           // mGObjCo
+    },                                                   // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f},  // mCenter
+        0.0f,                // mRadius
+        0.0f                 // mHeight
+    }  // mCyl
+};
 
 /* 80CAF1A0-80CAF1C0 -00001 0020+00 1/0 0/0 0/0 .data            daObjPicture_METHODS */
 static actor_method_class daObjPicture_METHODS = {

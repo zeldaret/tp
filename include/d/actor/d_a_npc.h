@@ -284,7 +284,8 @@ public:
     }
 
     void lookActor(fopAc_ac_c* param_1, f32 param_2, u8 isDirect) {
-        if (setMode(LOOK_ACTOR, mActrMngr.getActorP() != param_1) && fopAcM_IsActor(param_1)) {
+        bool isDifferentActor = mActrMngr.getActorP() != param_1;
+        if (setMode(LOOK_ACTOR, isDifferentActor) && fopAcM_IsActor(param_1)) {
             mActrMngr.entry(param_1);
             field_0x14c = param_2;
         }
@@ -972,6 +973,10 @@ public:
     /* 8014F60C */ int MoveBGCreate(char const*, int, MoveBGActor_SetFunc, u32);
     /* 8014F6FC */ int MoveBGDelete();
     /* 8014F770 */ int MoveBGExecute();
+    int MoveBGDraw() {
+        int ret = Draw();
+        return ret;
+    }
 
     /* 80155FB0 */ virtual ~daBaseNpc_moveBgActor_c() {}
     /* 801503BC */ virtual int CreateHeap() { return 1; }
@@ -1349,6 +1354,9 @@ public:
     dPath* getPathInfo() { return mPathInfo; }
     void setRange(f32 i_range) { mRange = i_range; }
     u16 getNumPnts() { return mPathInfo->m_num; }
+#if DEBUG
+    void drawDbgInfoXyz();
+#endif
 };  // Size: 0x630
 
 class daNpcF_Lookat_c {

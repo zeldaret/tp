@@ -225,7 +225,7 @@ int daObjSwChain_c::CreateHeap() {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(532, modelData != 0);
+    JUT_ASSERT(532, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 
     if (mpModel == NULL) {
@@ -233,7 +233,7 @@ int daObjSwChain_c::CreateHeap() {
     }
 
     mChainModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 3);
-    JUT_ASSERT(545, mChainModelData != 0);
+    JUT_ASSERT(545, mChainModelData != NULL);
 
     return 1;
 }
