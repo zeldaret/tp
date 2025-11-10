@@ -169,13 +169,13 @@ char* daNpc_zrZ_c::mEvtCutNameList[8] = {
 /* 80B9B434-80B9B494 0001B0 0060+00 0/2 0/0 0/0 .data            mEvtCutList__11daNpc_zrZ_c */
 daNpc_zrZ_c::EventFn daNpc_zrZ_c::mEvtCutList[8] = {
     NULL,
-    &ECut_helpPrince,
-    &ECut_comeHere,
-    &ECut_restoreLink,
-    &ECut_clothesGet,
-    &ECut_getAfter,
-    &ECut_sealRelease,
-    &ECut_srSkip,
+    &daNpc_zrZ_c::ECut_helpPrince,
+    &daNpc_zrZ_c::ECut_comeHere,
+    &daNpc_zrZ_c::ECut_restoreLink,
+    &daNpc_zrZ_c::ECut_clothesGet,
+    &daNpc_zrZ_c::ECut_getAfter,
+    &daNpc_zrZ_c::ECut_sealRelease,
+    &daNpc_zrZ_c::ECut_srSkip,
 };
 
 /* 80B93DCC-80B93F84 0000EC 01B8+00 1/1 0/0 0/0 .text            __ct__11daNpc_zrZ_cFv */
@@ -322,9 +322,9 @@ int daNpc_zrZ_c::Execute() {
 int daNpc_zrZ_c::Draw() {
     mpMorf->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
     if (mType == 1) {
-        return draw(chkAction(&test), false, daNpc_zrZ_Param_c::m.mShadowDepth, NULL, false);
+        return draw(chkAction(&daNpc_zrZ_c::test), false, daNpc_zrZ_Param_c::m.mShadowDepth, NULL, false);
     } else {
-        return daNpcF_c::draw(chkAction(&test), false, daNpc_zrZ_Param_c::m.mShadowDepth,
+        return daNpcF_c::draw(chkAction(&daNpc_zrZ_c::test), false, daNpc_zrZ_Param_c::m.mShadowDepth,
                               NULL, false);
     }
 }
@@ -949,7 +949,7 @@ void daNpc_zrZ_c::reset() {
     if (mDemoMode == DEMO_WAIT) {
         mIsLeading = false;
         tevStr.TevColor.a = 0;
-        mpNextActionFn = &wait;
+        mpNextActionFn = &daNpc_zrZ_c::wait;
     } else if (mDemoMode == DEMO_COME_HERE || mDemoMode == DEMO_COME_HERE_2) {
         mIsLeading = false;
         tevStr.TevColor.a = 0xff;
@@ -1045,17 +1045,17 @@ BOOL daNpc_zrZ_c::setAction(ActionFn i_action) {
 BOOL daNpc_zrZ_c::selectAction() {
     mpNextActionFn = NULL;
     if (daNpc_zrZ_Param_c::m.mTest) {
-        mpNextActionFn = &test;
+        mpNextActionFn = &daNpc_zrZ_c::test;
     } else {
         switch (mDemoMode) {
         case DEMO_COME_HERE:
-            mpNextActionFn = &comeHere;
+            mpNextActionFn = &daNpc_zrZ_c::comeHere;
             break;
         case DEMO_COME_HERE_2:
-            mpNextActionFn = &comeHere2;
+            mpNextActionFn = &daNpc_zrZ_c::comeHere2;
             break;
         default:
-            mpNextActionFn = &wait;
+            mpNextActionFn = &daNpc_zrZ_c::wait;
             break;
         }
     }
@@ -1102,10 +1102,10 @@ BOOL daNpc_zrZ_c::doEvent() {
         }
 
         if (eventInfo.checkCommandTalk()) {
-            if (chkAction(&talk)) {
+            if (chkAction(&daNpc_zrZ_c::talk)) {
                 (this->*mpActionFn)(NULL);
             } else if (dComIfGp_event_chkTalkXY() == false || dComIfGp_evmng_ChkPresentEnd()) {
-                setAction(&talk);
+                setAction(&daNpc_zrZ_c::talk);
             }
             ret = true;
         } else {

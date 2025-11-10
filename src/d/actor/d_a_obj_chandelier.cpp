@@ -14,11 +14,11 @@ static char* l_arcName = "L9Chand";
 
 /* 80BC8DA4-80BC8DE0 000060 003C+00 1/2 0/0 0/0 .data            s_exeProc__17daObjChandelier_c */
 daObjChandelier_proc daObjChandelier_c::s_exeProc[5] = {
-    &exeModeWait,
-    &exeModeStartSwg,
-    &exeModeDown,
-    &exeModeEndSwg,
-    &exeModeHookSwg,
+    &daObjChandelier_c::exeModeWait,
+    &daObjChandelier_c::exeModeStartSwg,
+    &daObjChandelier_c::exeModeDown,
+    &daObjChandelier_c::exeModeEndSwg,
+    &daObjChandelier_c::exeModeHookSwg,
 };
 
 /* 80BC7F38-80BC7F74 000078 003C+00 2/2 0/0 0/0 .text            __ct__17daObjChandelier_cFv */

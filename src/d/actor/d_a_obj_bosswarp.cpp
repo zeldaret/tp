@@ -315,17 +315,17 @@ int daObjBossWarp_c::execute() {
 void daObjBossWarp_c::event_proc_call() {
     typedef void (daObjBossWarp_c::*daObjBossWarp_action)();
     static daObjBossWarp_action l_func[11] = {
-        &actionWait,
-        &actionOrderEvent,
-        &actionEvent,
-        &actionWaitWarp,
-        &actionOrderWarpEvent,
-        &actionWarpEvent,
-        &actionDead,
-        &actionOrderChkEvent,
-        &actionChkEvent,
-        &actionOrderCancelEvent,
-        &actionCancelEvent,
+        &daObjBossWarp_c::actionWait,
+        &daObjBossWarp_c::actionOrderEvent,
+        &daObjBossWarp_c::actionEvent,
+        &daObjBossWarp_c::actionWaitWarp,
+        &daObjBossWarp_c::actionOrderWarpEvent,
+        &daObjBossWarp_c::actionWarpEvent,
+        &daObjBossWarp_c::actionDead,
+        &daObjBossWarp_c::actionOrderChkEvent,
+        &daObjBossWarp_c::actionChkEvent,
+        &daObjBossWarp_c::actionOrderCancelEvent,
+        &daObjBossWarp_c::actionCancelEvent,
     };
     (this->*l_func[mAction])();
 }
@@ -494,7 +494,7 @@ int daObjBossWarp_c::demoProc() {
 
     if (dComIfGp_evmng_getIsAddvance(mStaffId)) {
         switch (act_idx) {
-        case 0:  // WAIT
+        case 0: { // WAIT
             int* timer = dComIfGp_evmng_getMyIntegerP(mStaffId, "Timer");
             if (timer == NULL) {
                 mTimer = 1;
@@ -502,13 +502,15 @@ int daObjBossWarp_c::demoProc() {
                 mTimer = *timer;
             }
             break;
-        case 1:  // APPEAR
+        }
+        case 1: { // APPEAR
             int level = getNowLevel();
             if (level >= 0 && level < 10 && l_dangeon_clr_bitNo[level] > 0) {
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[l_dangeon_clr_bitNo[level]]);
             }
             appear(0);
             break;
+        }
         case 2:  // DISAPPEAR
             disappear(0);
             break;

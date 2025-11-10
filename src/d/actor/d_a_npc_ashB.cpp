@@ -99,7 +99,7 @@ static char* l_myName = "AshB";
 /* 809625B0-809625C8 000198 0018+00 1/2 0/0 0/0 .data            mEvtSeqList__11daNpcAshB_c */
 daNpcAshB_c::EventFn daNpcAshB_c::mEvtSeqList[2] = {
     NULL,
-    &EvCut_Appear,
+    &daNpcAshB_c::EvCut_Appear,
 };
 
 /* 8095DE4C-8095DFD0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcAshB_cFv */
@@ -605,7 +605,7 @@ void daNpcAshB_c::reset() {
     field_0xded = 0;
     field_0xdee = 0;
 
-    setAction(&wait);
+    setAction(&daNpcAshB_c::wait);
 }
 
 /* 8095F21C-8095F2C4 0014BC 00A8+00 1/1 0/0 0/0 .text
@@ -734,7 +734,7 @@ bool daNpcAshB_c::wait(void* param_0) {
                         u8 preitemno = dComIfGp_event_getPreItemNo();
                         if (preitemno == fpcNm_ITEM_ASHS_SCRIBBLING) {
                             mFlowID = 504;
-                            setAction(&talk);
+                            setAction(&daNpcAshB_c::talk);
                         } else {
                             s16 evt_idx =
                                 dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
@@ -743,12 +743,12 @@ bool daNpcAshB_c::wait(void* param_0) {
                         }
                     }
                 } else {
-                    setAction(&talk);
+                    setAction(&daNpcAshB_c::talk);
                 }
             } else {
                 int mystaffid = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
                 if (mystaffid != -1) {
-                    setAction(&demo);
+                    setAction(&daNpcAshB_c::demo);
                 }
             }
         } else {
@@ -857,10 +857,10 @@ bool daNpcAshB_c::talk(void* param_0) {
                         dComIfGp_getEvent().reset(this);
                         fopAcM_orderChangeEventId(this, evt_idx, 1, -1);
                         field_0x9ec = 1;
-                        setAction(&wait);
+                        setAction(&daNpcAshB_c::wait);
                     }
                 } else {
-                    setAction(&wait);
+                    setAction(&daNpcAshB_c::wait);
                 }
 
                 ret = true;
@@ -932,7 +932,7 @@ bool daNpcAshB_c::demo(void* param_0) {
                 dComIfGp_event_reset();
                 mOrderEvtNo = 0;
                 mEventIdx = -1;
-                setAction(&wait);
+                setAction(&daNpcAshB_c::wait);
             }
         }
 
