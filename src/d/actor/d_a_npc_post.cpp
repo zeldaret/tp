@@ -154,7 +154,7 @@ enum Event {
 enum Type {
     /* 0x0 */ TYPE_0,
     /* 0x1 */ TYPE_DELIVER,
-    /* 0x2 */ TYPE_2,
+    /* 0x2 */ TYPE_BAR,
     /* 0x3 */ TYPE_DEFAULT,
 };
 
@@ -504,7 +504,7 @@ int daNpc_Post_c::CreateHeap() {
         return 0;
     }
 
-    if (mType != TYPE_2) {
+    if (mType != TYPE_BAR) {
         u32 uVar2 = 0x11000084;
         mpFlagModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, NULL, J3DMdlFlag_DifferedDLBuffer, uVar2);
         if (mpFlagModelMorf == NULL || mpFlagModelMorf->getModel() == NULL) {
@@ -596,7 +596,7 @@ u8 daNpc_Post_c::getType() {
             return TYPE_DELIVER;
 
         case 2:
-            return TYPE_2;
+            return TYPE_BAR;
 
         default:
             return TYPE_DEFAULT;
@@ -612,7 +612,7 @@ BOOL daNpc_Post_c::isDelete() {
         case TYPE_DELIVER:
             return FALSE;
 
-        case TYPE_2:
+        case TYPE_BAR:
             return FALSE;
 
         default:
@@ -652,7 +652,7 @@ void daNpc_Post_c::reset() {
             mHide = true;
             break;
 
-        case TYPE_2:
+        case TYPE_BAR:
             mLetterBDispFlag = 1;
             mFlagModelDispFlag = 0;
             mSitFlag = 1;
@@ -766,7 +766,7 @@ void daNpc_Post_c::srchActors() {
             }
             break;
 
-        case TYPE_2:
+        case TYPE_BAR:
             break;
     }
 }
@@ -953,7 +953,7 @@ void daNpc_Post_c::setCollision() {
         f32 height = mCylH;
         f32 width = mWallR;
 
-        if (mType == TYPE_2) {
+        if (mType == TYPE_BAR) {
             work.set(0.0f, 0.0f, 20.0f);
             height = 80.0f;
             width = 50.0f;
