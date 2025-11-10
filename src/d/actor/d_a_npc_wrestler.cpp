@@ -2670,8 +2670,7 @@ bool daNpcWrestler_c::sumouPunchDraw(void* param_1) {
 
 /* 80B3606C-80B36908 006ECC 089C+00 5/0 0/0 0/0 .text            sumouTackleHit__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::sumouTackleHit(void* param_1) {
-    // NONMATCHING - regalloc
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();
     int jointNo = mType == 0 ? 0 : 0;
     cXyz sp2c;
 
@@ -3237,7 +3236,6 @@ bool daNpcWrestler_c::sumouTackleStagger(void* param_1) {
     daPy_py_c* player = daPy_getPlayerActorClass();
     int jointNo = mType == 0 ? 0x1A : 0x18;
     int jointNo2 = mType == 0 ? 0x1E : 0x1B;
-    cXyz sp58;
     f32 fVar1, fVar2;
 
     switch (field_0xe96) {
@@ -3249,8 +3247,9 @@ bool daNpcWrestler_c::sumouTackleStagger(void* param_1) {
             field_0xe96 = 2;
             break;
 
-        case 2:
+        case 2: {
             correctGraspPosAngle(true);
+            cXyz sp58;
             mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
             mDoMtx_stack_c::multVecZero(&sp58);
             sp58.y = current.pos.y;
@@ -3282,9 +3281,13 @@ bool daNpcWrestler_c::sumouTackleStagger(void* param_1) {
                 setAction(&daNpcWrestler_c::sumouTackleStaggerRelease);
             }
             break;
-
+        }
         case 3:
             player->setSumouForceGraspCancel();
+            break;
+
+        default:
+            JUT_ASSERT(4311, FALSE);
             break;
     }
 

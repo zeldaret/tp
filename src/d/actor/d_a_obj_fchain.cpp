@@ -126,7 +126,6 @@ static Vec const wolfChainBaseOffset = {
 };
 
 /* 80BE6868-80BE7174 0008E8 090C+00 1/1 0/0 0/0 .text            execute__13daObjFchain_cFv */
-// NONMATCHING - regalloc, stack
 int daObjFchain_c::execute() {
     if (dComIfGp_event_runCheck()) {
         if (dComIfGp_getEventManager().getRunEventName() != NULL) {
@@ -249,9 +248,8 @@ int daObjFchain_c::execute() {
     if (field_0x584 == 0) {
         field_0x584 = 1;
         sp_30 = field_0x79c;
-        for (int i = 0; i < 22; i++) {
+        for (i = 0; i < 22; i++, sp_30++) {
             *sp_30 = cXyz::Zero;
-            sp_30++;
         }
         field_0x586 = 5;
     }

@@ -273,6 +273,7 @@ public:
 class dEvDtFlag_c {
 public:
     dEvDtFlag_c() {}
+    ~dEvDtFlag_c() {}
     BOOL flagCheck(int flag);
     BOOL flagSet(int flag);
     BOOL flagMaxCheck(int flag);

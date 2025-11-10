@@ -2500,7 +2500,6 @@ void daE_PM_c::DamageAction() {
 }
 
 /* 8074A210-8074A3DC 008410 01CC+00 1/1 0/0 0/0 .text            At_Check__8daE_PM_cFv */
-// NONMATCHING regalloc
 void daE_PM_c::At_Check() {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     mAtInfo.mpCollider = mCcCyl.GetTgHitObj();

@@ -131,7 +131,6 @@ u8* daBgObj_c::spec_data_c::initFarInfoBlock(u8* i_dataPtr) {
 
 /* 80459904-80459B64 000324 0260+00 1/1 0/0 1/1 .text            Set__Q29daBgObj_c11spec_data_cFPv
  */
-// NONMATCHING - close-ish
 bool daBgObj_c::spec_data_c::Set(void* i_ptr) {
     JUT_ASSERT(496, i_ptr != NULL);
 

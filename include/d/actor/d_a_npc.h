@@ -1112,7 +1112,7 @@ public:
     struct daNpcF_anmPlayData {
         u16 idx;
         f32 morf;
-        s32 numLoops;
+        int numLoops;
     };
 
     enum AnmFlags {

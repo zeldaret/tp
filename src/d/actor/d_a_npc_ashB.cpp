@@ -906,6 +906,7 @@ bool daNpcAshB_c::talk(void* param_0) {
 // NONMATCHING - extra instruction at dComIfGp_event_runCheck() causing regalloc issues?
 bool daNpcAshB_c::demo(void* param_0) {
     dEvent_manager_c& evtmgr = dComIfGp_getEventManager();
+    BOOL r26 = FALSE;
 
     switch (mMode) {
     case 0:
@@ -915,13 +916,15 @@ bool daNpcAshB_c::demo(void* param_0) {
         // fallthrough
 
     case 2:
-        if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk()) {
+        if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk()) {
             s32 staff_id = evtmgr.getMyStaffId(l_myName, NULL, 0);
             if (staff_id != -1) {
                 mStaffID = staff_id;
+                JUT_ASSERT(1523, mEvtSeqList[mOrderEvtNo] != 0);
                 if ((this->*(mEvtSeqList[mOrderEvtNo]))(staff_id)) {
                     evtmgr.cutEnd(staff_id);
                 }
+                r26 = TRUE;
             }
 
             if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && evtmgr.endCheck(mEventIdx))
@@ -937,6 +940,9 @@ bool daNpcAshB_c::demo(void* param_0) {
 
     case 3:
         break;
+
+    default:
+        JUT_ASSERT(1551, FALSE);
     }
 
     return true;

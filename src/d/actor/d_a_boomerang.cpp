@@ -932,7 +932,6 @@ void daBoomerang_c::setEffect() {
 }
 
 /* 804A0874-804A0F0C 002834 0698+00 2/0 0/0 0/0 .text            procWait__13daBoomerang_cFv */
-// NONMATCHING - small regalloc
 int daBoomerang_c::procWait() {
     daAlink_c* player = daAlink_getAlinkActorClass();
     speedF = 0.0f;
@@ -973,7 +972,7 @@ int daBoomerang_c::procWait() {
             offStateFlg0(FLG0_10);
         }
     
-        current.angle.y += 0x1830;
+        current.angle.y += (s16)0x1830;
         shape_angle.x = current.angle.x;
         shape_angle.y = current.angle.y;
         shape_angle.z = 0x1000;
@@ -993,7 +992,7 @@ int daBoomerang_c::procWait() {
         procMove();
     } else if (dCam_getBody()->Mode() != 8) {
         if (dComIfGp_checkPlayerStatus0(0, 0x80000) && player->getAtnActor() != NULL && m_lockCnt < BOOMERANG_LOCK_MAX) {
-            fpc_ProcID atn_actor_id = fopAcM_GetID(player->getAtnActor());
+            fpc_ProcID atn_actor_id = (fpc_ProcID)fopAcM_GetID(player->getAtnActor());
             
             int var_r27 = 0;
             while (var_r27 < m_lockCnt) {

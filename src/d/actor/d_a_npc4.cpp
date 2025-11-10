@@ -1065,7 +1065,6 @@ BOOL daNpcF_c::playAllAnm() {
  *  an animation index for that phase of the expression, the number of interpolation frames, and
  *  the number of loops before moving on to the next phase (or 0 for the last phase).
  */
-// NONMATCHING - regalloc, matches debug
 void daNpcF_c::playExpressionAnm(daNpcF_c::daNpcF_anmPlayData*** anm) {
     daNpcF_anmPlayData* playData = NULL;
     f32 morf;
@@ -1105,7 +1104,6 @@ void daNpcF_c::playExpressionAnm(daNpcF_c::daNpcF_anmPlayData*** anm) {
  *  an animation index for that phase of the motion, the number of interpolation frames, and the
  *  number of loops before moving on to the next phase (or 0 for the last phase).
  */
-// NONMATCHING - regalloc, matches debug
 void daNpcF_c::playMotionAnm(daNpcF_c::daNpcF_anmPlayData*** anm) {
     daNpcF_anmPlayData* playData = NULL;
     f32 morf;
@@ -1515,16 +1513,16 @@ u8 daNpcF_c::getDistTableIdx(int param_0, int param_1) {
 }
 
 /* 801542A0-8015436C 14EBE0 00CC+00 0/0 0/0 6/6 .text            getEvtAreaTagP__8daNpcF_cFii */
-// NONMATCHING regalloc
 fopAc_ac_c* daNpcF_c::getEvtAreaTagP(int i_type, int i_no) {
+    int r29 = 0;
+    f32 f31 = G_CM3D_F_INF;
     mFindCount = 0;
     mSrchActorName = PROC_TAG_EVTAREA;
     fpcM_Search(this->srchActor, this);
 
     for (int i = 0; i < mFindCount; i++) {
-        daTag_EvtArea_c* evt_area = static_cast<daTag_EvtArea_c*>(mFindActorPList[i]);
-        if (i_type == evt_area->getType() && i_no == evt_area->getNo()) {
-            return evt_area;
+        if (i_type == static_cast<daTag_EvtArea_c*>(mFindActorPList[i])->getType() && i_no == static_cast<daTag_EvtArea_c*>(mFindActorPList[i])->getNo()) {
+            return static_cast<daTag_EvtArea_c*>(mFindActorPList[i]);
         }
     }
 

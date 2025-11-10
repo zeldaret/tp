@@ -490,7 +490,6 @@ inline u16 absoluteValue(s16 num) {
 }
 
 /* 8076CB24-8076CE10 000E44 02EC+00 2/2 0/0 0/0 .text            search_bomb__FP11e_rdy_classi */
-// NONMATCHING regalloc
 static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
     if ((i_this->field_0xaf0 & 0x10000000) == 0) {
         return NULL;
