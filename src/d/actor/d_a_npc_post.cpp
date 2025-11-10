@@ -356,11 +356,13 @@ int daNpc_Post_c::Draw() {
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
-    #if DEBUG
-    return draw(chkAction(&daNpc_Post_c::test), FALSE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
-    #else
-    return draw(FALSE, FALSE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
-    #endif
+    return draw(
+#if DEBUG
+        chkAction(&daNpc_Toby_c::test),
+#else
+        0,
+#endif
+        0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
 /* 80AA971C-80AA973C 000B7C 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__12daNpc_Post_cFP10fopAc_ac_c */
