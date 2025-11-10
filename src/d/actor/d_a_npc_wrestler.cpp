@@ -1621,7 +1621,7 @@ inline bool daNpcWrestler_c::wait(void* param_1) {
         }
 
         default: {
-            JUT_PANIC(2769, "0")
+            JUT_ASSERT(2769, FALSE);
             break;
         }
     }
@@ -1772,7 +1772,7 @@ inline bool daNpcWrestler_c::talk(void* param_1) {
         }
 
         default: {
-            JUT_PANIC(2858, "0");
+            JUT_ASSERT(2858, FALSE);
         }
     }
 
@@ -1815,7 +1815,7 @@ inline bool daNpcWrestler_c::demo(void* param_1) {
         }
 
         default: {
-            JUT_PANIC(2912, "0");
+            JUT_ASSERT(2912, FALSE);
             break;
         }
     }
@@ -1876,7 +1876,7 @@ inline bool daNpcWrestler_c::gotoArena(void* param_1) {
                 }
 
                 default: {
-                    JUT_PANIC(2969, "0");
+                    JUT_ASSERT(2969, FALSE);
                     break;
                 }
             }
@@ -1887,7 +1887,7 @@ inline bool daNpcWrestler_c::gotoArena(void* param_1) {
         }
 
         default: {
-            JUT_PANIC(2974, "0");
+            JUT_ASSERT(2974, FALSE);
             break;
         }
     }
@@ -1944,7 +1944,7 @@ inline bool daNpcWrestler_c::gotoLiving(void* param_1) {
                 }
 
                 default: {
-                    JUT_PANIC(3032, "0");
+                    JUT_ASSERT(3032, FALSE);
                     break;
                 }
             }
@@ -1955,7 +1955,7 @@ inline bool daNpcWrestler_c::gotoLiving(void* param_1) {
         }
 
         default: {
-            JUT_PANIC(3037, "0");
+            JUT_ASSERT(3037, FALSE);
             break;
         }
     }
@@ -2119,7 +2119,7 @@ bool daNpcWrestler_c::sumouReady(void* param_1) {
                     break;
 
                 default:
-                    JUT_PANIC(3181, "0");
+                    JUT_ASSERT(3181, FALSE);
                     break;
             }
 
@@ -2371,7 +2371,7 @@ inline bool daNpcWrestler_c::sumouPunchHit(void* param_1) {
         }
 
         default: {
-            JUT_PANIC(3411, "0");
+            JUT_ASSERT(3411, FALSE);
             break;
         }
     }
@@ -2552,7 +2552,7 @@ inline bool daNpcWrestler_c::sumouPunchMiss(void* param_1) {
         }
 
         default: {
-            JUT_PANIC(3579, "0");
+            JUT_ASSERT(3579, FALSE);
         }
     }
 
@@ -3028,7 +3028,7 @@ inline bool daNpcWrestler_c::sumouSideStep(void* param_1) {
         }
 
         default: {
-            JUT_PANIC(4008, "0");
+            JUT_ASSERT(4008, FALSE);
             break;
         }
     }
@@ -3154,7 +3154,7 @@ inline bool daNpcWrestler_c::sumouPunchChaseShock(void* param_1) {
             break;
 
         default:
-            JUT_PANIC(4149, "0");
+            JUT_ASSERT(4149, FALSE);
     }
 
     return true;
@@ -3382,7 +3382,7 @@ inline bool daNpcWrestler_c::sumouTacklePush(void* param_1) {
             break;
 
         default: {
-            JUT_PANIC(4435, "0");
+            JUT_ASSERT(4435, FALSE);
             break;
         }
     }
@@ -3718,7 +3718,7 @@ inline bool daNpcWrestler_c::demoSumouReady(void* param_1) {
                     break;
 
                 default:
-                    JUT_PANIC(4821, "0");
+                    JUT_ASSERT(4821, FALSE);
                     break;
             }
 
@@ -3732,7 +3732,7 @@ inline bool daNpcWrestler_c::demoSumouReady(void* param_1) {
             break;
 
         default:
-            JUT_PANIC(4828, "0");
+            JUT_ASSERT(4828, FALSE);
             break;
     }
 
@@ -4218,7 +4218,7 @@ bool daNpcWrestler_c::demoSumouLose2(void* param_1) {
                 }
 
                 default:
-                    JUT_PANIC(5347, "0");
+                    JUT_ASSERT(5347, FALSE);
                     break;
             }
 
@@ -4232,7 +4232,7 @@ bool daNpcWrestler_c::demoSumouLose2(void* param_1) {
             break;
 
         default:
-            JUT_PANIC(5355, "0");
+            JUT_ASSERT(5355, FALSE);
     }
 
     return true;
@@ -4339,7 +4339,7 @@ inline bool daNpcWrestler_c::demoSumouUnilateralWin(void* param_1) {
                 }
 
                 default:
-                    JUT_PANIC(5478, "0");
+                    JUT_ASSERT(5478, FALSE);
                     break;
             }
 
@@ -4353,7 +4353,7 @@ inline bool daNpcWrestler_c::demoSumouUnilateralWin(void* param_1) {
             break;
 
         default:
-            JUT_PANIC(5486, "0");
+            JUT_ASSERT(5486, FALSE);
             break;
     }
 
@@ -4429,7 +4429,7 @@ inline bool daNpcWrestler_c::demoTalkAfterLose(void* param_1) {
                     break;
 
                 default:
-                    JUT_PANIC(5571, "0");
+                    JUT_ASSERT(5571, FALSE);
                     break;
             }
             break;
@@ -4440,7 +4440,7 @@ inline bool daNpcWrestler_c::demoTalkAfterLose(void* param_1) {
             break;
 
         default:
-            JUT_PANIC(5579, "0");
+            JUT_ASSERT(5579, FALSE);
             break;
     }
 
@@ -4482,7 +4482,7 @@ inline BOOL daNpcWrestler_c::EvCut_grDSEntry(int i_cutIndex) {
                 break;
 
             default:
-                JUT_PANIC(5622, "0");
+                JUT_ASSERT(5622, FALSE);
                 break;
         }
     }
@@ -4554,7 +4554,7 @@ inline BOOL daNpcWrestler_c::EvCut_grDSEntry(int i_cutIndex) {
         }
 
         default: {
-            JUT_PANIC(5688, "0");
+            JUT_ASSERT(5688, FALSE);
             break;
         }
     }
@@ -4576,7 +4576,7 @@ inline BOOL daNpcWrestler_c::EvCut_grDSEntry2(int i_cutIndex) {
                 break;
 
             default:
-                JUT_PANIC(5715, "0");
+                JUT_ASSERT(5715, FALSE);
                 break;
         }
     }
@@ -4594,7 +4594,7 @@ inline BOOL daNpcWrestler_c::EvCut_grDSEntry2(int i_cutIndex) {
             return TRUE;
 
         default:
-            JUT_PANIC(5735, "0");
+            JUT_ASSERT(5735, FALSE);
             break;
     }
 

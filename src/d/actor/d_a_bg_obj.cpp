@@ -160,7 +160,7 @@ bool daBgObj_c::spec_data_c::Set(void* i_ptr) {
             default:
                 // Invalid data block type
                 OS_REPORT_ERROR("データブロックタイプが不正です<%d>\n", block_type);
-                JUT_PANIC(527, "0");
+                JUT_ASSERT(527, FALSE);
             }
 
             if (block_type == 0) {
@@ -201,7 +201,7 @@ bool daBgObj_c::spec_data_c::Set(void* i_ptr) {
             default:
                 // Invalid data block type
                 OS_REPORT_ERROR("データブロックタイプが不正です<%d>\n", block_type);
-                JUT_PANIC(570, "0");
+                JUT_ASSERT(570, FALSE);
             }
 
             if (block_type == 0) {
@@ -242,7 +242,7 @@ bool daBgObj_c::spec_data_c::Set(void* i_ptr) {
             default:
                 // "Data Block type invalid<%d>\n"
                 OSReport_Error("データブロックタイプが不正です<%d>\n", block_type);
-                JUT_PANIC(619, "0");
+                JUT_ASSERT(619, FALSE);
                 break;
             }
 
@@ -980,7 +980,7 @@ void daBgObj_c::setParticle() {
                 default:
                     // Multi MoveBG: Particle model number is invalid <%d>
                     OS_REPORT_ERROR("マルチMoveBG：パーティクルモデル番号が不正<%d>\n", modelNumber);
-                    JUT_PANIC(1689, "0");
+                    JUT_ASSERT(1689, FALSE);
                     break;
             }
             JPABaseEmitter* emitter = dComIfGp_particle_set(

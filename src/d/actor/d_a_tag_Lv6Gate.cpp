@@ -199,7 +199,7 @@ inline int daTagLv6Gate_c::execute() {
                     fopAcM_delete(parentActorID);
                     break;
                 default:
-                    JUT_PANIC(332, "0");
+                    JUT_ASSERT(332, FALSE);
                 }
             }
 
@@ -213,7 +213,7 @@ inline int daTagLv6Gate_c::execute() {
                 eventManager.cutEnd(cut_index);
                 break;
             default:
-                JUT_PANIC(345, "0");
+                JUT_ASSERT(345, FALSE);
             }
 
             if (eventInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&

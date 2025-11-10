@@ -521,7 +521,7 @@ void daObjTobyHouse_c::sceneChange() {
         exitId = 3;
         break;
     default:
-        JUT_PANIC(936, "0");
+        JUT_ASSERT(936, FALSE);
     }
 
     dStage_changeScene(exitId, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);

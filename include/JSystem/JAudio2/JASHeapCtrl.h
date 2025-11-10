@@ -215,7 +215,7 @@ public:
             chunk = chunk->getNextChunk();
         }
 
-        JUT_PANIC(362,"Cannnot free for JASMemChunkPool")
+        JUT_PANIC(362, "Cannnot free for JASMemChunkPool");
     }
 
     /* 0x18 */ MemoryChunk* field_0x18;

@@ -333,7 +333,7 @@ int daObjWStatue_c::actionSwOnWait() {
         }
         break;
     default:
-        JUT_PANIC(644, "0");
+        JUT_ASSERT(644, FALSE);
     }
 
     return 1;
