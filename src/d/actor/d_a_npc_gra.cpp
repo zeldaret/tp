@@ -1884,14 +1884,7 @@ enum Event_Cut_Nums {
 BOOL daNpc_grA_c::doEvent() {
     dEvent_manager_c* manager = NULL;
     BOOL ret = FALSE;
-#if VERSION != VERSION_SHIELD_DEBUG
-        // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck())
-#else
-        if (dComIfGp_event_runCheck())
-#endif
-        {
+    if (dComIfGp_event_runCheck() != FALSE) {
         manager = &dComIfGp_getEventManager();
         if (field_0x1691 == 0) {
             mOrderNewEvt = 0;
@@ -1936,41 +1929,25 @@ BOOL daNpc_grA_c::doEvent() {
             if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && manager->endCheck(mEventIdx)) {
                 switch (mOrderEvtNo) {
                 case 5:
-#if VERSION != VERSION_SHIELD_DEBUG
-                    play->getEvent().reset();
-#else
                     dComIfGp_event_reset();
-#endif
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
                     field_0x1693 = field_0x1692 = 0;
                     fpcM_Search(s_subCarry, this);
                     break;
                 case 6:
-#if VERSION != VERSION_SHIELD_DEBUG
-                    play->getEvent().reset();
-#else
                     dComIfGp_event_reset();
-#endif
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
                     break;
                 case 7:
-#if VERSION != VERSION_SHIELD_DEBUG
-                    play->getEvent().reset();
-#else
                     dComIfGp_event_reset();
-#endif
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
                     fopAcM_delete(this);
                     break;
                 default:
-#if VERSION != VERSION_SHIELD_DEBUG
-                    play->getEvent().reset();
-#else
                     dComIfGp_event_reset();
-#endif
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
                     break;

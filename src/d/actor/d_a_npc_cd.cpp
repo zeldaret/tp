@@ -396,7 +396,6 @@ daNpcCd_HIO_c l_Cd_HIO;
 
 /* 801563C8-80156B4C 150D08 0784+00 0/0 0/0 2/2 .text            setAttention__9daNpcCd_cFi */
 int daNpcCd_c::setAttention(int i_idx) {
-    // NONMATCHING
     static cXyz const a_eyeOfsTbl[30] = {
         cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),
         cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f), cXyz(0.0f, 10.0f, 0.0f),

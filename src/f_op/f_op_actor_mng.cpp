@@ -2020,11 +2020,11 @@ fopAc_ac_c* fopAcM_searchFromName(char const* name, u32 param0, u32 param1) {
 /* 8001D6F0-8001D7A0 018030 00B0+00 1/1 0/0 0/0 .text fopAcM_findObject4EventCB__FP10fopAc_ac_cPv
  */
 fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* i_actor, void* i_data) {
-    fopAcM_search4ev_prm* prm = (fopAcM_search4ev_prm*)i_data;
-
     if (i_data == NULL || !fopAcM_IsExecuting(fopAcM_GetID(i_actor))) {
         return NULL;
     }
+
+    fopAcM_search4ev_prm* prm = (fopAcM_search4ev_prm*)i_data;
 
     if (prm->procname == fopAcM_GetProfName(i_actor) && prm->argument == i_actor->argument) {
         if (prm->event_id < 0 || prm->event_id == i_actor->eventInfo.getIdx()) {

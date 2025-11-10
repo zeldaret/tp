@@ -19,169 +19,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Instances.h"
 
-//
-// Forward References:
-//
-
-extern "C" static void ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
-extern "C" static void Reel_CallBack__FP8J3DJointi();
-extern "C" static void frog_CallBack__FP8J3DJointi();
-extern "C" static void koro2_draw__FP11fshop_class();
-extern "C" static void daFshop_Draw__FP11fshop_class();
-extern "C" static void lure_set__FP11fshop_class();
-extern "C" static void rod_set__FP11fshop_class();
-extern "C" void __dt__4cXyzFv();
-extern "C" static void s_fish_sub__FPvPv();
-extern "C" static void tsubo_set__FP11fshop_class();
-extern "C" static void weed_control__FP11fshop_classP9fs_weed_s();
-extern "C" static void stage_copy__FP11fshop_classP11fshop_class();
-extern "C" static void koro2_mtx_set__FP11fshop_class();
-extern "C" static void s_sel_sub__FPvPv();
-extern "C" static void s_ball_sub__FPvPv();
-extern "C" static void koro2_game__FP11fshop_class();
-extern "C" static void ball_wall_check__FP11fshop_class();
-extern "C" static void daFshop_Execute__FP11fshop_class();
-extern "C" static bool daFshop_IsDelete__FP11fshop_class();
-extern "C" static void daFshop_Delete__FP11fshop_class();
-extern "C" static void koro2_heapinit__FP10fopAc_ac_c();
-extern "C" static void useHeapInit__FP10fopAc_ac_c();
-extern "C" static void BalluseHeapInit__FP10fopAc_ac_c();
-extern "C" static void daFshop_Create__FP10fopAc_ac_c();
-extern "C" void __dt__10fs_koro2_sFv();
-extern "C" void __ct__10fs_koro2_sFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10fs_tsubo_sFv();
-extern "C" void __ct__10fs_tsubo_sFv();
-extern "C" void __dt__9fs_weed_sFv();
-extern "C" void __ct__9fs_weed_sFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__8fs_rod_sFv();
-extern "C" void __ct__8fs_rod_sFv();
-extern "C" void __dt__9fs_lure_sFv();
-extern "C" void __ct__9fs_lure_sFv();
-extern "C" void __sinit_d_a_mg_fshop_cpp();
-extern "C" static void func_80870070();
-extern "C" static void func_80870078();
-extern "C" extern char const* const d_a_mg_fshop__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_XrotS__FPA4_fs();
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void push__14mDoMtx_stack_cFv();
-extern "C" void pop__14mDoMtx_stack_cFv();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void init__19mDoExt_3DlineMat0_cFUsUsi();
-extern "C" void update__19mDoExt_3DlineMat0_cFifR8_GXColorUsP12dKy_tevstr_c();
-extern "C" void update__19mDoExt_3DlineMat0_cFiR8_GXColorP12dKy_tevstr_c();
-extern "C" void setMat__26mDoExt_3DlineMatSortPacketFP18mDoExt_3DlineMat_c();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAc_IsActor__FPv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc();
-extern "C" void fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fpcEx_Search__FPFPvPv_PvPv();
-extern "C" void fpcSch_JudgeForPName__FPvPv();
-extern "C" void addSimpleModel__14dComIfG_play_cFP12J3DModelDataiUc();
-extern "C" void removeSimpleModel__14dComIfG_play_cFP12J3DModelDatai();
-extern "C" void entrySimpleModel__14dComIfG_play_cFP8J3DModeli();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj();
-extern "C" void getEventReg__11dSv_event_cCFUs();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void dBgS_MoveBGProc_Typical__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void OnWallSort__9dBgS_AcchFv();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void Set__4cBgWFP6cBgD_tUlPA3_A4_f();
-extern "C" void __ct__4dBgWFv();
-extern "C" void Move__4dBgWFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dTimer_getRestTimeMs__Fv();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void cM_initRnd2__Fiii();
-extern "C" void cM_rndF2__Ff();
-extern "C" void cM_rndFX2__Ff();
-extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalc0__FPfff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void MtxScale__FfffUc();
-extern "C" void MtxPosition__FP4cXyzP4cXyz();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savegpr_14();
-extern "C" void _savegpr_17();
-extern "C" void _savegpr_18();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_14();
-extern "C" void _restgpr_17();
-extern "C" void _restgpr_18();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__19mDoExt_3DlineMat0_c[5];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
-
 /* 8086C06C-8086C08C 0000EC 0020+00 1/1 0/0 0/0 .text
  * ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c            */
 static void ride_call_back(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
@@ -1664,7 +1501,6 @@ static int ball_wall_check(fshop_class* param_1) {
 }
 
 /* 8086DA00-8086E6C4 001A80 0CC4+00 2/1 0/0 0/0 .text            daFshop_Execute__FP11fshop_class */
-// NONMATCHING Regalloc, instruction order issues
 static int daFshop_Execute(fshop_class* param_1) {
     fopAc_ac_c* pPlayer = dComIfGp_getPlayer(0);
     cXyz local_c0;
@@ -1702,7 +1538,7 @@ static int daFshop_Execute(fshop_class* param_1) {
             param_1->field_0x428d = 10;
         case 2:
             bVar5 = TRUE;
-            param_1->scale.x = 0.24f;
+            param_1->scale.x = 0.24000001f;
             break;
         }
 
@@ -1713,7 +1549,7 @@ static int daFshop_Execute(fshop_class* param_1) {
             MtxPosition(&param_1->speed, &param_1->field_0x4064);
             param_1->field_0x4064 = param_1->speed;
             param_1->current.pos += param_1->field_0x4064;
-            if (param_1->speed.x != 0.0f || param_1->speed.z != 0.0f) {
+            if (param_1->speed.x || param_1->speed.z) {
                 param_1->current.angle.y = cM_atan2s(param_1->speed.x, param_1->speed.z);
             }
             param_1->speed.y -= 3.5f;
@@ -1836,7 +1672,7 @@ static int daFshop_Execute(fshop_class* param_1) {
                                            (fabsf(local_d8.z) * 0.1f + 0.2f));
             }
         }
-        camera_class* pmVar11 = dComIfGp_getCamera(0);
+        camera_class* pmVar11 = (camera_class*)dComIfGp_getCamera(0);
         mDoMtx_stack_c::transS(param_1->current.pos.x, param_1->current.pos.y,
                                param_1->current.pos.z);
         mDoMtx_stack_c::scaleM(param_1->scale.x, param_1->scale.x,
@@ -2367,13 +2203,19 @@ SECTION_DATA static u8 check_kind[8] = {
     0xF5, 0x7F, 0xF4, 0x7F, 0xF3, 0x7F, 0xF2, 0x7F,
 };
 
+/* 8086F634-8086FD78 0036B4 0744+00 1/0 0/0 0/0 .text            daFshop_Create__FP10fopAc_ac_c */
+static void daFshop_Create(fopAc_ac_c* param_0) {
+    // NONMATCHING
+    fopAcM_ct(param_0, fshop_class);
+}
+
 /* 808708BC-808708DC -00001 0020+00 1/0 0/0 0/0 .data            l_daFshop_Method */
 static actor_method_class l_daFshop_Method = {
-    (process_method_func)daFshop_Create__FP10fopAc_ac_c,
-    (process_method_func)daFshop_Delete__FP11fshop_class,
-    (process_method_func)daFshop_Execute__FP11fshop_class,
-    (process_method_func)daFshop_IsDelete__FP11fshop_class,
-    (process_method_func)daFshop_Draw__FP11fshop_class,
+    (process_method_func)daFshop_Create,
+    (process_method_func)daFshop_Delete,
+    (process_method_func)daFshop_Execute,
+    (process_method_func)daFshop_IsDelete,
+    (process_method_func)daFshop_Draw,
 };
 
 /* 808708DC-8087090C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_FSHOP */
@@ -2393,83 +2235,5 @@ extern actor_process_profile_definition g_profile_FSHOP = {
   fopAc_ACTOR_e,         // mActorType
   fopAc_CULLBOX_0_e,     // cullType
 };
-
-/* 8086F634-8086FD78 0036B4 0744+00 1/0 0/0 0/0 .text            daFshop_Create__FP10fopAc_ac_c */
-static void daFshop_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
-/* 8086FD78-8086FDB4 003DF8 003C+00 1/1 0/0 0/0 .text            __dt__10fs_koro2_sFv */
-fs_koro2_s::~fs_koro2_s() {
-    // NONMATCHING
-}
-
-/* 8086FDB4-8086FDB8 003E34 0004+00 1/1 0/0 0/0 .text            __ct__10fs_koro2_sFv */
-// fs_koro2_s::fs_koro2_s() {
-extern "C" void __ct__10fs_koro2_sFv() {
-    /* empty function */
-}
-
-/* 8086FDB8-8086FE28 003E38 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* 8086FE28-8086FE98 003EA8 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 8086FE98-8086FED4 003F18 003C+00 1/1 0/0 0/0 .text            __dt__10fs_tsubo_sFv */
-fs_tsubo_s::~fs_tsubo_s() {
-    // NONMATCHING
-}
-
-/* 8086FED4-8086FED8 003F54 0004+00 1/1 0/0 0/0 .text            __ct__10fs_tsubo_sFv */
-// fs_tsubo_s::fs_tsubo_s() {
-extern "C" void __ct__10fs_tsubo_sFv() {
-    /* empty function */
-}
-
-/* 8086FED8-8086FF38 003F58 0060+00 1/1 0/0 0/0 .text            __dt__9fs_weed_sFv */
-fs_weed_s::~fs_weed_s() {
-    // NONMATCHING
-}
-
-/* 8086FF38-8086FF80 003FB8 0048+00 1/1 0/0 0/0 .text            __ct__9fs_weed_sFv */
-// fs_weed_s::fs_weed_s() {
-extern "C" void __ct__9fs_weed_sFv() {
-    // NONMATCHING
-}
-
-/* 8086FF80-8086FF84 004000 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
-/* 8086FF84-8086FFC0 004004 003C+00 1/1 0/0 0/0 .text            __dt__8fs_rod_sFv */
-fs_rod_s::~fs_rod_s() {
-    // NONMATCHING
-}
-
-/* 8086FFC0-8086FFDC 004040 001C+00 1/1 0/0 0/0 .text            __ct__8fs_rod_sFv */
-// fs_rod_s::fs_rod_s() {
-extern "C" void __ct__8fs_rod_sFv() {
-    // NONMATCHING
-}
-
-/* 8086FFDC-80870018 00405C 003C+00 1/1 0/0 0/0 .text            __dt__9fs_lure_sFv */
-fs_lure_s::~fs_lure_s() {
-    // NONMATCHING
-}
-
-/* 80870018-8087001C 004098 0004+00 1/1 0/0 0/0 .text            __ct__9fs_lure_sFv */
-// fs_lure_s::fs_lure_s() {
-extern "C" void __ct__9fs_lure_sFv() {
-    /* empty function */
-}
 
 AUDIO_INSTANCES;

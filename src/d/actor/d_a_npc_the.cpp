@@ -1162,7 +1162,7 @@ void daNpcThe_c::setParam() {
 // NONMATCHING dComIfG_gameInfo issues
 BOOL daNpcThe_c::main() {
     if (!doEvent()) {
-        doNormalAction();
+        doNormalAction(1);
     }
 
     if (field_0x9ee) {

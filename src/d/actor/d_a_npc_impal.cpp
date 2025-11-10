@@ -900,14 +900,7 @@ bool daNpcImpal_c::demo(void* param_0) {
         setMotion(MOT_0, -1.0f, false);
         mMode = 2;
     case 2: {
-#if VERSION != VERSION_SHIELD_DEBUG
-        // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck() && !eventInfo.checkCommandTalk())
-#else
-        if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk())
-#endif
-        {
+        if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk()) {
             dEvent_manager_c& event_manager = dComIfGp_getEventManager();
 
             s32 staff_id = dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
@@ -923,11 +916,7 @@ bool daNpcImpal_c::demo(void* param_0) {
                 event_manager.endCheck(mEventIdx))
             {
                 if (!field_0x9ec) {
-#if VERSION != VERSION_SHIELD_DEBUG
-                    play->getEvent().reset();
-#else
                     dComIfGp_event_reset();
-#endif
                 }
 
                 field_0x9ec = 0;

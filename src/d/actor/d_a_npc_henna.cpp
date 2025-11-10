@@ -1516,7 +1516,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                 case 7:
                     i_this->mMsgFlow.init(actor, 0x33e, 0, NULL);
                     break;
-                case 8:
+                case 8: {
                     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
                     if (kankyo->raincnt == 0) {
                         hour = kankyo->daytime / 15.0f;
@@ -1529,6 +1529,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                         i_this->mMsgFlow.init(actor, 0x347, 0, NULL);
                     }
                     break;
+                }
                 case 0xb:
                     i_this->mMsgFlow.init(actor, 0x35f, 0, NULL);
                     break;
