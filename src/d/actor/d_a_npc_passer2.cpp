@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_passer2.h"
+#include "d/d_s_play.h"
 #include "dol2asm.h"
 
 //
@@ -122,102 +123,104 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 l_Cd_HIO[10684];
 extern "C" u8 sincosTable___5JMath[65536];
 
 //
 // Declarations:
 //
 
-/* 80AA74D8-80AA755C 000078 0084+00 1/1 0/0 0/0 .text            createHeapCallBack__FP10fopAc_ac_c
- */
-static void createHeapCallBack(fopAc_ac_c* param_0) {
-    // NONMATCHING
+int daNpcPasser2_c::createHeap() {
+    int rv = NpcCreate(field_0x9c4);
+
+    if (rv != 0) {
+        if (m_objNum != 0) {
+            rv = NULL != (mpModel = ObjCreate(m_objNum));
+            if (rv == 0) {
+                mpMorf->stopZelAnime();
+            }
+        } else {
+            mpModel = NULL;
+            rv = 1;
+        }
+    }
+
+    return rv;
 }
 
-/* 80AA8A88-80AA8A94 -00001 000C+00 0/1 0/0 0/0 .data            @3845 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3845[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)initPath__14daNpcPasser2_cFv,
-};
-#pragma pop
-
-/* 80AA8A94-80AA8AA0 -00001 000C+00 0/1 0/0 0/0 .data            @3846 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3846[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)executePath__14daNpcPasser2_cFv,
-};
-#pragma pop
+/* 80AA74D8-80AA755C 000078 0084+00 1/1 0/0 0/0 .text            createHeapCallBack__FP10fopAc_ac_c */
+static int createHeapCallBack(fopAc_ac_c* i_this) {
+    daNpcPasser2_c* actor = (daNpcPasser2_c*)i_this;
+    return actor->createHeap();
+}
 
 /* 80AA8AA0-80AA8AB8 000038 0018+00 1/2 0/0 0/0 .data            ActionTable__14daNpcPasser2_c */
-SECTION_DATA u8 daNpcPasser2_c::ActionTable[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+daNpcPasser2_c::actionFunc daNpcPasser2_c::ActionTable[1][2] = {
+    {&daNpcPasser2_c::initPath, &daNpcPasser2_c::executePath},
 };
 
-/* 80AA755C-80AA75A0 0000FC 0044+00 1/1 0/0 0/0 .text
- * setAction__14daNpcPasser2_cFQ214daNpcPasser2_c6Mode_e        */
-void daNpcPasser2_c::setAction(daNpcPasser2_c::Mode_e param_0) {
-    // NONMATCHING
+/* 80AA755C-80AA75A0 0000FC 0044+00 1/1 0/0 0/0 .text            setAction__14daNpcPasser2_cFQ214daNpcPasser2_c6Mode_e */
+void daNpcPasser2_c::setAction(daNpcPasser2_c::Mode_e i_action) {
+    JUT_ASSERT(302, i_action < MODE_MAX_e);
+    mPrevActionIdx = mActionIdx;
+    mActionIdx = i_action;
+    mAction = ActionTable[mActionIdx];
+    callInit();
 }
 
 /* 80AA75A0-80AA75C8 000140 0028+00 1/1 0/0 0/0 .text            callInit__14daNpcPasser2_cFv */
 void daNpcPasser2_c::callInit() {
-    // NONMATCHING
+    JUT_ASSERT(320, mAction != NULL);
+    (this->*mAction[0])();
 }
 
 /* 80AA75C8-80AA75F4 000168 002C+00 1/1 0/0 0/0 .text            callExecute__14daNpcPasser2_cFv */
 void daNpcPasser2_c::callExecute() {
-    // NONMATCHING
+    JUT_ASSERT(333, mAction != NULL);
+    (this->*mAction[1])();
 }
 
-/* ############################################################################################## */
-/* 80AA8A18-80AA8A1C 000000 0004+00 3/3 0/0 0/0 .rodata          @3963 */
-SECTION_RODATA static f32 const lit_3963 = 1.0f;
-COMPILER_STRIP_GATE(0x80AA8A18, &lit_3963);
-
-/* 80AA8A1C-80AA8A20 000004 0004+00 1/1 0/0 0/0 .rodata          @3964 */
-SECTION_RODATA static f32 const lit_3964 = 12.0f;
-COMPILER_STRIP_GATE(0x80AA8A1C, &lit_3964);
+enum Rnd_Values {
+    /* 0x0 */ ZERO,
+    /* 0x1 */ ONE,
+    /* 0x2 */ TWO,
+    /* 0x3 */ THREE,
+    /* 0x4 */ FOUR,
+    /* 0x5 */ FIVE,
+};
 
 /* 80AA75F4-80AA774C 000194 0158+00 1/0 0/0 0/0 .text            initPath__14daNpcPasser2_cFv */
 void daNpcPasser2_c::initPath() {
-    // NONMATCHING
+    if (getMoveType() == 1) {
+        field_0xa3c = 1;
+    } else if (getMoveType() == 2) {
+        field_0xa3c = 0;
+    } else {
+        field_0xa3c = cLib_getRndValue(0, 2) != 0 ? 1 : 0;
+    }
+
+    int idx = 0;
+    if (field_0xa3c == 1) {
+        if (getWalkMotionType() == 1) {
+            idx = 0;
+        } else if (getWalkMotionType() == 2) {
+            idx = 1;
+        } else {
+            idx = cLib_getRndValue(0, 2) == 0 ? 1 : 0;
+        }
+    } else if (field_0xa3c == 0) {
+        if (getRunMotionType() == 1) {
+            idx = 2;
+        } else if (getRunMotionType() == 2) {
+            idx = 3;
+        } else {
+            idx = cLib_getRndValue(0, 2) != 0 ? TWO : THREE;
+        }
+    }
+
+    setAnm((J3DAnmTransformKey*)getAnmP(idx, m_objNum), 1.0f, 12.0f, J3DFrameCtrl::EMode_LOOP, 0, -1);
+    field_0xa43 = 0;
+    field_0xa42 = 1;
 }
-
-/* ############################################################################################## */
-/* 80AA8AB8-80AA8AD8 -00001 0020+00 1/0 0/0 0/0 .data            daNpcPasser2_METHODS */
-static actor_method_class daNpcPasser2_METHODS = {
-    (process_method_func)daNpcPasser2_Create__FPv,
-    (process_method_func)daNpcPasser2_Delete__FPv,
-    (process_method_func)daNpcPasser2_Execute__FPv,
-    (process_method_func)daNpcPasser2_IsDelete__FPv,
-    (process_method_func)daNpcPasser2_Draw__FPv,
-};
-
-/* 80AA8AD8-80AA8B08 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_PASSER2 */
-extern actor_process_profile_definition g_profile_NPC_PASSER2 = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_PASSER2,       // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daNpcPasser2_c), // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  402,                    // mPriority
-  &daNpcPasser2_METHODS,  // sub_method
-  0x02040107,             // mStatus
-  fopAc_NPC_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
 
 /* 80AA8B08-80AA8B14 0000A0 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
 SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
@@ -290,18 +293,42 @@ SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
 
 /* 80AA774C-80AA78C4 0002EC 0178+00 1/0 0/0 0/0 .text            executePath__14daNpcPasser2_cFv */
 void daNpcPasser2_c::executePath() {
-    // NONMATCHING
-}
+    if (m_path.checkPoint(current.pos, speedF)) {
+        if (m_path.checkPathEnd(current.pos, speedF)) {
+            fopAcM_delete(this);
+        } else {
+            m_path.setNextPoint(current.pos);
+        }
+    }
 
-/* 80AA78C4-80AA790C 000464 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGPlaFv */
-// cM3dGPla::~cM3dGPla() {
-extern "C" void __dt__8cM3dGPlaFv() {
-    // NONMATCHING
+    if (field_0xa3c == 1 || field_0xa3c == 0) {
+        cXyz targetPnt;
+        m_path.getTargetPoint(&targetPnt);
+        cLib_addCalcAngleS2(&current.angle.y, cLib_targetAngleY(&current.pos, &targetPnt), MREG_S(0) + 3, MREG_S(1) + 0x600);
+
+        if (current.pos.y != old.pos.y) {
+            s16 sVar1 = 0;
+            cM3dGPla plane;
+
+            bool isTriPla = dComIfG_Bgsp().GetTriPla(mAcch.m_gnd, &plane);
+            if (isTriPla) {
+                sVar1 = fopAcM_getPolygonAngle(&plane, shape_angle.y);
+            }
+
+            if (sVar1 != 0) {
+                field_0xa38 = current.pos.y;
+            }
+        }
+    }
+
+    setAngle();
+    pathMoveF();
+    mAcch.CrrPos(dComIfG_Bgsp());
 }
 
 /* 80AA790C-80AA7918 0004AC 000C+00 1/1 0/0 0/0 .text            setAngle__14daNpcPasser2_cFv */
 void daNpcPasser2_c::setAngle() {
-    // NONMATCHING
+    shape_angle.y = current.angle.y;
 }
 
 /* ############################################################################################## */
@@ -352,9 +379,67 @@ SECTION_RODATA static f32 const lit_4132 = 3.0f / 5.0f;
 COMPILER_STRIP_GATE(0x80AA8A34, &lit_4132);
 #pragma pop
 
+void daNpcPasser2_c::setSpeed(f32 param_1, f32 param_2, f32* i_speed, int param_4) {
+    f32 target = field_0xa30 * (param_2 * field_0xa30);
+    f32 step = field_0xa30 * (param_1 * field_0xa30);
+
+    if (param_4 != 0 && mAcch.ChkWallHit()) {
+        s16 sVar1 = current.angle.y + 0x8000 - mAcchCir.GetWallAngleY();
+        if (abs(sVar1) < 0x4000) {
+            target *= 1.0f - cM_scos(sVar1);
+        }
+    }
+
+    if (param_2 < target) {
+        target = param_2;
+    }
+
+    cLib_chaseF(i_speed, target, step);
+}
+
 /* 80AA7918-80AA7CB8 0004B8 03A0+00 1/1 0/0 0/0 .text            pathMoveF__14daNpcPasser2_cFv */
 void daNpcPasser2_c::pathMoveF() {
-    // NONMATCHING
+    f32 fVar1 = 0.0f;
+    f32 speed = 0.0f;
+    f32 fVar2 = 0.0f;
+    cXyz* ccMoveP = mStts.GetCCMoveP();
+
+    if (field_0xa3c == 1) {
+        fVar1 = HIO_walkMaxSpeed(field_0x9c4);
+        fVar2 = Cd2_HIO_anmPlaySpeed(field_0x9c4);
+
+        cLib_chaseF(&field_0xa34, 1.0f, 0.05f);
+        setSpeed(MREG_F(0) + 0.7f, fVar1, &field_0xa38, 0);
+        setSpeed(MREG_F(0) + 0.7f, fVar1, &speedF, 1);
+    } else if (field_0xa3c == 0) {
+        cLib_chaseF(&field_0xa34, 0.0f, 0.05f);
+        cLib_chaseF(&field_0xa38, 0.0f, 1.5f);
+        cLib_chaseF(&speedF, 0.0f, 1.5f);
+    }
+
+    cXyz targetPnt;
+    m_path.getTargetPoint(&targetPnt);
+
+    s32 angleS = cLib_distanceAngleS(current.angle.y, cLib_targetAngleY(&current.pos, &targetPnt));
+    if (angleS >= 0x2000) {
+        cLib_chaseF(&field_0xa34, 0.0f, 0.05f);
+        cLib_chaseF(&field_0xa38, 0.0f, 1.2f);
+        cLib_chaseF(&speedF, 0.0f, 1.2f);
+    }
+
+    fopAcM_posMoveF(this, ccMoveP);
+
+    fVar1 = field_0xa38 / fVar1;
+    if (fVar1 > 1.0f) {
+        fVar1 = 1.0f;
+    }
+
+    speed = fVar2 * fVar1;
+    if (speed < 0.6f) {
+        speed = 0.6f;
+    }
+
+    mpMorf->setPlaySpeed(speed);
 }
 
 /* 80AA7CB8-80AA7CD8 000858 0020+00 1/0 0/0 0/0 .text            daNpcPasser2_Create__FPv */
@@ -533,3 +618,31 @@ extern "C" void __dt__12dBgS_AcchCirFv() {
 extern "C" void __dt__12dBgS_ObjAcchFv() {
     // NONMATCHING
 }
+
+
+/* 80AA8AB8-80AA8AD8 -00001 0020+00 1/0 0/0 0/0 .data            daNpcPasser2_METHODS */
+static actor_method_class daNpcPasser2_METHODS = {
+    (process_method_func)daNpcPasser2_Create,
+    (process_method_func)daNpcPasser2_Delete,
+    (process_method_func)daNpcPasser2_Execute,
+    (process_method_func)daNpcPasser2_IsDelete,
+    (process_method_func)daNpcPasser2_Draw,
+};
+
+/* 80AA8AD8-80AA8B08 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_PASSER2 */
+extern actor_process_profile_definition g_profile_NPC_PASSER2 = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_NPC_PASSER2,       // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daNpcPasser2_c), // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  402,                    // mPriority
+  &daNpcPasser2_METHODS,  // sub_method
+  0x02040107,             // mStatus
+  fopAc_NPC_e,            // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};

@@ -73,7 +73,10 @@ struct daNpcCd_HIO_Child_c : public JORReflexible {
     /* 0x004 */ daNpcCd_HIO_Jnt_c field_0x4[12];
     /* 0x128 */ s16 field_0x128[0x0E];
     /* 0x136 */ s16 mAtn;
-    /* 0x156 */ s16 field_0x146[0x10];
+    /* 0x138 */ u8 field_0x138[0x150 - 0x142];
+    /* 0x144 */ f32 mMaxSpeed;
+    /* 0x148 */ f32 mWalkMaxSpeed;
+    /* 0x14C */ u8 field_0x14c[0x164 - 0x158];
 };
 
 STATIC_ASSERT(sizeof(daNpcCd_HIO_Child_c) == 0x164);
@@ -162,6 +165,10 @@ static inline f32 HIO_jntTZ(int param_1, int param_2) {
         rv = l_Cd_HIO.field_0x1648[param_1 - 16].field_0x4[param_2].jntT.z;
     }
     return 10.0f * rv;
+}
+
+static inline f32 HIO_walkMaxSpeed(int param_1) {
+    return (f32)(param_1 < 16 ? l_Cd_HIO.field_0x0004[param_1].mWalkMaxSpeed : l_Cd_HIO.field_0x0004[param_1].mWalkMaxSpeed);
 }
 
 #endif /* A_NPC_D_A_NPC_CD_H */

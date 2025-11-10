@@ -1901,7 +1901,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_pachi_besu"),
     ActorRel(NonMatching, "d_a_npc_pachi_maro"),
     ActorRel(NonMatching, "d_a_npc_pachi_taro"),
-    ActorRel(NonMatching, "d_a_npc_passer"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_passer"),
     ActorRel(NonMatching, "d_a_npc_passer2"),
     ActorRel(NonMatching, "d_a_npc_post"),
     ActorRel(NonMatching, "d_a_npc_pouya"),
