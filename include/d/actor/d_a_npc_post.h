@@ -74,8 +74,8 @@ public:
     /* 80AAA99C */ BOOL selectAction();
     /* 80AAA9E4 */ BOOL chkAction(actionFunc);
     /* 80AAAA10 */ BOOL setAction(actionFunc);
-    /* 80AAAAB8 */ bool chkPullOutLetter1();
-    /* 80AAAB2C */ bool chkPullOutLetter2();
+    /* 80AAAAB8 */ BOOL chkPullOutLetter1();
+    /* 80AAAB2C */ BOOL chkPullOutLetter2();
     /* 80AAABA0 */ void pullOutLetter();
     /* 80AAAC64 */ int cutDeliver(int);
     /* 80AAB61C */ int wait(void*);
@@ -93,14 +93,14 @@ public:
                    i_arcNames) {
         OS_REPORT("|%06d:%x|daNpc_Post_c -> コンストラクト\n", g_Counter.mCounter0, this);
     }
-    /* 80AAD0D0 */ u16 getEyeballMaterialNo();
-    /* 80AAD0D8 */ s32 getHeadJointNo();
-    /* 80AAD0E0 */ s32 getNeckJointNo();
-    /* 80AAD0E8 */ s32 getBackboneJointNo();
-    /* 80AAD0F0 */ BOOL checkChangeJoint(int);
-    /* 80AAD100 */ BOOL checkRemoveJoint(int);
-    /* 80AAD110 */ s32 getFootLJointNo();
-    /* 80AAD118 */ s32 getFootRJointNo();
+    /* 80AAD0D0 */ u16 getEyeballMaterialNo() { return 1; }
+    /* 80AAD0D8 */ s32 getHeadJointNo() { return 4; }
+    /* 80AAD0E0 */ s32 getNeckJointNo() { return 3; }
+    /* 80AAD0E8 */ s32 getBackboneJointNo() { return 1; }
+    /* 80AAD0F0 */ BOOL checkChangeJoint(int i_joint) { return i_joint == 4; }
+    /* 80AAD100 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == 8; }
+    /* 80AAD110 */ s32 getFootLJointNo() { return 0x18; }
+    /* 80AAD118 */ s32 getFootRJointNo() { return 0x1B; }
 
     u32 getFlowNodeNo() {
         u16 nodeNo = home.angle.x;
@@ -130,8 +130,8 @@ private:
     /* 0x0FE4 */ actionFunc mAction;
     /* 0x0FF0 */ cXyz field_0xff0;
     /* 0x0FFC */ u8 field_0xffc[0x1008 - 0xffc];
-    /* 0x1008 */ f32 field_0x1008;
-    /* 0x100C */ u8 field_0x100c[0x1010 - 0x100c];
+    /* 0x1008 */ f32 mPrevPos;
+    /* 0x100C */ int mTimer;
     /* 0x1010 */ u8 field_0x1010;
     /* 0x1011 */ u8 field_0x1011;
     /* 0x1012 */ u8 field_0x1012;
