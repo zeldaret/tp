@@ -2117,7 +2117,7 @@ void dPa_gen_b_light8PcallBack::draw(JPABaseEmitter* param_1, JPABaseParticle* p
     JGeometry::TVec3<f32> aTStack_a4;
     JGeometry::TVec3<f32> aTStack_b0;
     JGeometry::TVec3<f32> local_bc;
-    u8 uVar7 = param_1->getGlobalAlpha() & 0xff;
+    u8 uVar7 = param_1->getGlobalAlpha();
     JGeometry::TVec3<f32> local_c8;
     JGeometry::TVec3<f32> local_d4;
     JGeometry::TVec3<f32> local_e0;
@@ -2138,10 +2138,7 @@ void dPa_gen_b_light8PcallBack::draw(JPABaseEmitter* param_1, JPABaseParticle* p
     local_80[1][3] = local_8c.y;
     local_80[2][2] = 1.0f;
     local_80[2][3] = local_8c.z;
-    local_80[2][1] = 0.0f;
-    local_80[2][0] = 0.0f;
-    local_80[1][2] = 0.0f;
-    local_80[0][2] = 0.0f;
+    local_80[0][2] = local_80[1][2] = local_80[2][0] = local_80[2][1] = 0.0f;
     GXLoadPosMtxImm(local_80, 0);
     GXLoadNrmMtxImm(local_80, 0);
     JGeometry::TVec3<f32> local_104;

@@ -244,7 +244,7 @@ public:
             break;
         default:
             OS_REPORT("%s: Line.%d arg=%d\n", "d_a_passer_mng.cpp", 1049, param_1);
-            JUT_PANIC(1050, 0);
+            JUT_ASSERT(1050, FALSE);
             break;
         }
         return paramLow << 8;

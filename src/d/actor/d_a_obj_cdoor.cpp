@@ -189,9 +189,9 @@ void daObjCdoor_c::execCdoor() {
 void daObjCdoor_c::execWgate() {
     typedef void (daObjCdoor_c::*daObjCdoor_modeFunc)();
     static daObjCdoor_modeFunc mode_proc[3] = {
-        &modeWait,
-        &modeOpen,
-        &modeClose,
+        &daObjCdoor_c::modeWait,
+        &daObjCdoor_c::modeOpen,
+        &daObjCdoor_c::modeClose,
     };
     u8 was_open = mIsOpen;
     mIsOpen = fopAcM_isSwitch(this, mSw);
@@ -258,10 +258,10 @@ static int daObjCdoor_Execute(daObjCdoor_c* i_this) {
 void daObjCdoor_c::event_proc_call() {
     typedef void (daObjCdoor_c::*daObjCdoor_eventFunc)();
     static daObjCdoor_eventFunc l_func[4] = {
-        &actionWait,
-        &actionOrderEvent,
-        &actionEvent,
-        &actionDead,
+        &daObjCdoor_c::actionWait,
+        &daObjCdoor_c::actionOrderEvent,
+        &daObjCdoor_c::actionEvent,
+        &daObjCdoor_c::actionDead,
     };
     (this->*l_func[mAction])();
 }

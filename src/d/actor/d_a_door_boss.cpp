@@ -357,10 +357,10 @@ BOOL daBdoor_c::actionEnd() {
 int daBdoor_c::execute() {
     typedef BOOL (daBdoor_c::*daBdoor_action)();
     static daBdoor_action l_action[4] = {
-        &actionWait,
-        &actionCloseWait,
-        &actionOpen,
-        &actionEnd,
+        &daBdoor_c::actionWait,
+        &daBdoor_c::actionCloseWait,
+        &daBdoor_c::actionOpen,
+        &daBdoor_c::actionEnd,
     };
     if (fopAcM_CheckStatus(this, 0x1000)) {
         mStaffID = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);

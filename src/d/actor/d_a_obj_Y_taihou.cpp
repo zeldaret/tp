@@ -69,7 +69,6 @@ static fopAc_ac_c* pushPullcallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_1, s1
 
 /* 80B9FD5C-80B9FDE8 00035C 008C+00 1/1 0/0 0/0 .text            searchIronBallCallback__FPvPv */
 static void* searchIronBallCallback(void* i_actor, void* i_data) {
-    // NONMATCHING
     daObjYtaihou_c* taihou_rhs = (daObjYtaihou_c*)i_data;
     if (fopAcM_GetProfName(i_actor) == PROC_Obj_Carry) {
         daObjCarry_c* pCarry = ((daObjCarry_c*)i_actor);
@@ -198,7 +197,6 @@ void daObjYtaihou_c::setMtx() {
 
 /* 80BA0208-80BA045C 000808 0254+00 1/1 0/0 0/0 .text            rotateCheck__14daObjYtaihou_cFv */
 void daObjYtaihou_c::rotateCheck() {
-    // NONMATCHING
     if (shape_angle.y != current.angle.z) {
         cLib_chaseAngleS(&current.angle.x, 0xbe, 5);
         if (cLib_chaseAngleS(&shape_angle.y, current.angle.z, current.angle.x)) {

@@ -73,7 +73,10 @@ int daSpinLift_c::CreateHeap() {
         (J3DModelData*)dComIfG_getObjectRes(l_resNameIdx[mModelType], l_bmdIdx[mModelType]);
     JUT_ASSERT(222, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-    return mpModel == NULL ? 0 : 1;
+    if (mpModel == NULL) {
+        return 0;
+    }
+    return 1;
 }
 
 /* 80CE3F1C-80CE40FC 00025C 01E0+00 1/1 0/0 0/0 .text            create__12daSpinLift_cFv */

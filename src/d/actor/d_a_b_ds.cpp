@@ -1303,7 +1303,7 @@ void daB_DS_c::executeOpeningDemo() {
             mMode++;
         }
         break;
-    case 2:
+    case 2: {
         f32 calc_center = cLib_addCalcPos(&mCameraCenter, mOpCenterDt[1], 0.3f, 2.0f, 1.0f);
         f32 calc_eye = cLib_addCalcPos(&mCameraEye, mOpEyeDt[1], 0.3f, 2.0f, 1.0f);
         if (calc_center > 2.0f || calc_eye > 2.0f || cLib_calcTimer(&mModeTimer) != 0) {
@@ -1323,6 +1323,7 @@ void daB_DS_c::executeOpeningDemo() {
         fopAcM_OffStatus(this, 0x4000);
         mMode++;
         // fallthrough
+    }
     case 3:
         mPedestalFallTimer = l_HIO.mPedestalFallTime;
 
@@ -1519,7 +1520,7 @@ void daB_DS_c::executeOpeningDemo() {
         dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
         mMode++;
         // fallthrough
-    case 26:
+    case 26: {
         if (!field_0x85e && mpZantMorf->isStop()) {
             mpZantMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 67)),
                                J3DFrameCtrl::EMode_LOOP, 1.0f, 1.0f, 0.0f, -1.0f);
@@ -1562,6 +1563,7 @@ void daB_DS_c::executeOpeningDemo() {
         mMode = 30;
         field_0x85e = false;
         // fallthrough
+    }
     case 30:
         mCameraCenter.set(mOpCenterDt[12]);
         mCameraEye.set(mOpEyeDt[12]);
@@ -2325,7 +2327,7 @@ void daB_DS_c::executeDamage() {
         mMode = 100;
         mSound.startCreatureSound(Z2SE_EN_DS_MDEMO_FALL, 0, -1);
         // fallthrough
-    case 100:
+    case 100: {
         gravity = -0.2f;
         if (current.pos.y > -1600.0f) {
             if (current.pos.y <= -300.0f) {
@@ -2346,6 +2348,7 @@ void daB_DS_c::executeDamage() {
                       &p2_angle, NULL, 0xff);
         mMode = 101;
         // fallthrough
+    }
     case 101:
         cLib_addCalc2(&mCameraCenter.y, down_center_dt[4].y, 0.7f, 10.0f);
         cLib_addCalc2(&mCameraEye.y, down_eye_dt[4].y, 0.7f, 10.0f);

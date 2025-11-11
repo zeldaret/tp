@@ -209,11 +209,11 @@ static char* l_myName = "Ash";
 
 daNpcAsh_c::EventFn daNpcAsh_c::mEvtSeqList[6] = {
     NULL,
-    &EvCut_Introduction,
-    &EvCut_Meeting,
-    &EvCut_WiretapSponsor,
-    &EvCut_WiretapEntrant,
-    &EvCut_WiretapEntrant,
+    &daNpcAsh_c::EvCut_Introduction,
+    &daNpcAsh_c::EvCut_Meeting,
+    &daNpcAsh_c::EvCut_WiretapSponsor,
+    &daNpcAsh_c::EvCut_WiretapEntrant,
+    &daNpcAsh_c::EvCut_WiretapEntrant,
 };
 
 /* 809582EC-80958430 0000EC 0144+00 1/1 0/0 0/0 .text            __ct__10daNpcAsh_cFv */
@@ -623,9 +623,9 @@ void daNpcAsh_c::reset() {
     }
 
     if (mType == TYPE_BAR) {
-        setAction(&wait_type0);
+        setAction(&daNpcAsh_c::wait_type0);
     } else {
-        setAction(&wait_type1);
+        setAction(&daNpcAsh_c::wait_type1);
     }
 }
 
@@ -845,12 +845,12 @@ bool daNpcAsh_c::wait_type0(void* param_0) {
                         mOrderEvtNo = 3;
                         changeEvent(l_arcNames[0], l_evtNames[mOrderEvtNo], 1, -1);
                     } else {
-                        setAction(&talk);
+                        setAction(&daNpcAsh_c::talk);
                     }
                 }
             } else {
                 if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
-                    setAction(&demo);
+                    setAction(&daNpcAsh_c::demo);
                 }
             }
         } else {
@@ -918,7 +918,7 @@ bool daNpcAsh_c::wait_type1(void* param_0) {
 
         case 1:
             if (daNpcF_chkTmpBit(0x74)) {
-                setAction(&leave);
+                setAction(&daNpcAsh_c::leave);
             }
             break;
         }
@@ -955,7 +955,7 @@ bool daNpcAsh_c::talk(void* param_0) {
         if (field_0xf5f <= 2 || mCurAngle.y == fopAcM_searchPlayerAngleY(this)) {
             if (talkProc(NULL, 1, NULL)) {
                 mActorMngr[0].entry(daPy_getPlayerActorClass());
-                setAction(&wait_type0);
+                setAction(&daNpcAsh_c::wait_type0);
                 ret = true;
             } else {
                 s32 prev_msg_timer = mMsgTimer;
@@ -1024,18 +1024,18 @@ bool daNpcAsh_c::demo(void* param_0) {
                 mOrderEvtNo = 0;
                 mEventIdx = -1;
                 if (mType == TYPE_BAR) {
-                    setAction(&wait_type0);
+                    setAction(&daNpcAsh_c::wait_type0);
                 } else {
-                    setAction(&wait_type1);
+                    setAction(&daNpcAsh_c::wait_type1);
                 }
             }
         } else {
             mOrderEvtNo = 0;
             mEventIdx = -1;
             if (mType == TYPE_BAR) {
-                setAction(&wait_type0);
+                setAction(&daNpcAsh_c::wait_type0);
             } else {
-                setAction(&wait_type1);
+                setAction(&daNpcAsh_c::wait_type1);
             }
         }
         break;

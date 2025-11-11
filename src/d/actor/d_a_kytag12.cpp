@@ -210,7 +210,7 @@ static int daKytag12_Execute_standard(kytag12_class* i_this) {
             effect_p->field_0x42 = 0;
             effect_p->mStatus++;
             /* fallthrough */
-        case 1:
+        case 1: {
             var_f30 = cM_ssin(effect_p->field_0x3c);
             effect_p->field_0x3c += (((f32)(i & 31) * 6.8f) + 630.0f);
 
@@ -231,6 +231,7 @@ static int daKytag12_Execute_standard(kytag12_class* i_this) {
                 }
             }
             break;
+        }
         case 2:
             spB8 = effect_p->mBasePos + effect_p->mPosition;
             var_f29 = 0.0f;
@@ -507,7 +508,7 @@ static int daKytag12_Execute_arrival(kytag12_class* i_this) {
         }
 
         switch (effect_p->mStatus) {
-        case 0:
+        case 0: {
             s16 temp_r3 = cM_rndF(0x10000);
 
             sp80.x = cM_rndFX(cM_ssin(temp_r3) * 1000.0f);
@@ -529,7 +530,8 @@ static int daKytag12_Execute_arrival(kytag12_class* i_this) {
             effect_p->mPosition.z = -sp80.z;
             effect_p->mStatus++;
             break;
-        case 1:
+        }
+        case 1: {
             sp80.x = 0.0f;
             sp80.y = effect_p->mPosition.y;
             sp80.z = 0.0f;
@@ -547,6 +549,7 @@ static int daKytag12_Execute_arrival(kytag12_class* i_this) {
                          0.01f);
             cLib_addCalc(&effect_p->mPosition.z, var_f21 * 20.0f, 0.1f, 10.0f, 0.01f);
             break;
+        }
         case 2:
             effect_p->mPosition.x = var_f21 * 20.0f;
             effect_p->mPosition.y = (var_f22 + 1.0f) * 20.0f;
@@ -726,6 +729,7 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
         EF_EVIL_EFF* effect_p = &temp_r25->mEffect[i];
         var_f25 = 1.0f;
 
+        f32 f31;
         switch (effect_p->mStatus) {
         case 0:
             if (i < 500) {
@@ -746,9 +750,8 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
                 effect_p->mBasePos.y = cM_rndF(6800.0f) + -3200.0f;
                 effect_p->mBasePos.z = cM_rndFX(480.0f) + 5350.0f;
 
-                f32 temp_f2 = (effect_p->mBasePos.y / 1000.0f);
-                temp_f2 = temp_f2;  // fake match? idk how else to fix instruction order
-                effect_p->mBasePos.x = temp_f2 * -200.0f + -3000.0f;
+                f31 = (effect_p->mBasePos.y / 1000.0f);
+                effect_p->mBasePos.x = f31 * -200.0f + -3000.0f;
 
                 effect_p->field_0x24 = 1.0f;
                 effect_p->field_0x38 = fabsf(var_f26) * 50.0f + 150.0f;
@@ -756,9 +759,8 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
                 effect_p->mBasePos.y = cM_rndF(6800.0f) + -3200.0f;
                 effect_p->mBasePos.z = cM_rndFX(510.0f) + 5300.0f;
 
-                f32 temp_f2 = (effect_p->mBasePos.y / 1000.0f);
-                temp_f2 = temp_f2;  // fake match? idk how else to fix instruction order
-                effect_p->mBasePos.x = temp_f2 * -200.0f + 3400.0f;
+                f31 = (effect_p->mBasePos.y / 1000.0f);
+                effect_p->mBasePos.x = f31 * -200.0f + 3400.0f;
 
                 effect_p->field_0x24 = 1.0f;
                 effect_p->field_0x38 = fabsf(var_f26) * 50.0f + 150.0f;
@@ -775,7 +777,7 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
             effect_p->field_0x2c = 0.0f;
             effect_p->mStatus++;
             /* fallthrough */
-        case 1:
+        case 1: {
             var_f26 = cM_ssin(effect_p->field_0x3c);
             effect_p->field_0x3c += ((f32)(i & 240) * 4.8f);
 
@@ -790,6 +792,7 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
                 effect_p->field_0x38 = (temp_f7 * 10.0f + 85.0f) * 1.5f;
             }
             break;
+        }
         case 2:
             sp80 = effect_p->mBasePos + effect_p->mPosition;
             var_f25 = 0.0f;
@@ -833,18 +836,15 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
                 effect_p->mStatus = 1;
             }
 
-            f32 temp_f2 = (effect_p->mBasePos.y / 1000.0f);
-            temp_f2 = temp_f2;  // fake match? idk how else to fix instruction order
-            effect_p->mBasePos.x = temp_f2 * -200.0f + -3000.0f;
+            f31 = (effect_p->mBasePos.y / 1000.0f);
+            effect_p->mBasePos.x = f31 * -200.0f + -3000.0f;
 
             if (effect_p->mBasePos.y < -680.0f) {
-                f32 temp_f2 = (effect_p->mBasePos.y / 1000.0f);
-                temp_f2 = temp_f2;  // fake match? idk how else to fix instruction order
-                effect_p->mBasePos.x = temp_f2 * -20.0f + -2250.0f;
+                f31 = (effect_p->mBasePos.y / 1000.0f);
+                effect_p->mBasePos.x = f31 * -20.0f + -2250.0f;
             } else if (effect_p->mBasePos.y < 0.0f) {
-                f32 temp_f2 = (effect_p->mBasePos.y / 1000.0f);
-                temp_f2 = temp_f2;  // fake match? idk how else to fix instruction order
-                effect_p->mBasePos.x = temp_f2 * -1160.0f + -3000.0f;
+                f31 = (effect_p->mBasePos.y / 1000.0f);
+                effect_p->mBasePos.x = f31 * -1160.0f + -3000.0f;
                 effect_p->mBasePos.y += 10.0f;
             }
         } else if (i >= 1500 && i < 2000) {
@@ -854,18 +854,15 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
                 effect_p->mStatus = 1;
             }
 
-            f32 temp_f2 = (effect_p->mBasePos.y / 1000.0f);
-            temp_f2 = temp_f2;  // fake match? idk how else to fix instruction order
-            effect_p->mBasePos.x = temp_f2 * 200.0f + 3400.0f;
+            f31 = (effect_p->mBasePos.y / 1000.0f);
+            effect_p->mBasePos.x = f31 * 200.0f + 3400.0f;
 
             if (effect_p->mBasePos.y < -380.0f) {
-                f32 temp_f2 = (effect_p->mBasePos.y / 1000.0f);
-                temp_f2 = temp_f2;  // fake match? idk how else to fix instruction order
-                effect_p->mBasePos.x = temp_f2 * -20.0f + 2700.0f;
+                f31 = (effect_p->mBasePos.y / 1000.0f);
+                effect_p->mBasePos.x = f31 * -20.0f + 2700.0f;
             } else if (effect_p->mBasePos.y < 200.0f) {
-                f32 temp_f2 = (effect_p->mBasePos.y / -800.0f);
-                temp_f2 = temp_f2;  // fake match? idk how else to fix instruction order
-                effect_p->mBasePos.x = temp_f2 * -1060.0f + 3200.0f;
+                f31 = (effect_p->mBasePos.y / -800.0f);
+                effect_p->mBasePos.x = f31 * -1060.0f + 3200.0f;
                 effect_p->mBasePos.y += 10.0f;
             }
         }

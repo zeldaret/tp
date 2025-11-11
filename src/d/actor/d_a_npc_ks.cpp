@@ -555,13 +555,13 @@ static void npc_ks_pole_ori(npc_ks_class* i_this) {
                 a_this->current.angle.y = ((obj_so_class*)actor_p)->actor.shape_angle.y;
                 a_this->current.angle.x = ((obj_so_class*)actor_p)->actor.shape_angle.x;
                 a_this->current.pos = ((obj_so_class*)actor_p)->actor.current.pos;
-                // The following causes regswap in the debug build when uncommented...
-                //a_this->current.pos.y += TREG_F(3);
+                a_this->current.pos.y += TREG_F(3);
 
                 if (leader->field_0xb42 == 0) {
                     if (!dComIfGs_isSwitch(20, fopAcM_GetRoomNo(a_this))) {
                         cXyz sp2c(11497.0f, 3764.0f, 3810.0f);
-                        sp2c -= dComIfGp_getPlayer(0)->current.pos;
+                        daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+                        sp2c -= player->current.pos;
                         sp2c.y = 0.0f;
                         if (sp2c.abs() < 300.0f) {
                             leader->field_0xb42 = 110;

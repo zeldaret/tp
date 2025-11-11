@@ -112,8 +112,8 @@ int daZrTuraRc_c::Execute() {
 void daZrTuraRc_c::move() {
     typedef void (daZrTuraRc_c::*daZrTuraRc_modeFunc)();
     static daZrTuraRc_modeFunc mode_proc[2] = {
-        &modeDrop,
-        &modeDropEnd,
+        &daZrTuraRc_c::modeDrop,
+        &daZrTuraRc_c::modeDropEnd,
     };
     (this->*mode_proc[mMode])();
     mCcSph.SetR(mScaleF * 130.0f);

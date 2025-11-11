@@ -564,7 +564,7 @@ struct J2DColorChanInfo {
     /* 0x0 */ u8 field_0x3;
 };
 
-inline u8 J2DCalcColorChanID(const J2DColorChanInfo& info) { return info.field_0x1; }
+inline u16 J2DCalcColorChanID(u8 param_0) { return param_0; }
 extern const J2DColorChanInfo j2dDefaultColorChanInfo;
 
 /**
@@ -577,11 +577,11 @@ public:
         setColorChanInfo(j2dDefaultColorChanInfo);
     }
     J2DColorChan(const J2DColorChanInfo& info) {
-        mColorChan = J2DCalcColorChanID(info);
+        mColorChan = J2DCalcColorChanID(info.field_0x1);
     }
 
     void setColorChanInfo(const J2DColorChanInfo& info) {
-        mColorChan = J2DCalcColorChanID(info);
+        mColorChan = J2DCalcColorChanID(info.field_0x1);
     }
 
     u16 getMatSrc() const { return mColorChan & 1; }

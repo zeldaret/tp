@@ -996,7 +996,7 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
         speedF = 0.0f;
         field_0xe10 = 2;
         break;
-    case 2:
+    case 2: {
         if (isSneaking()) {
             setLookMode(LOOK_NONE, NULL);
         } else if (field_0xe14 != 0 && mType == 1) {
@@ -1105,6 +1105,7 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
             }
         }
         break;
+    }
     case 3:
     default:
         JUT_ASSERT(1634, FALSE);

@@ -177,14 +177,14 @@ char* daNpcThe_c::mEvtCutNameList[4] = {
 
 daNpcThe_c::EventFn daNpcThe_c::mEvtCutList[4] = {
     NULL,
-    &EvCut_TwResistance,
-    &EvCut_TwResistance,
-    &EvCut_Introduction,
+    &daNpcThe_c::EvCut_TwResistance,
+    &daNpcThe_c::EvCut_TwResistance,
+    &daNpcThe_c::EvCut_Introduction,
 };
 
 int daNpcThe_c::Draw() {
     mpMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
-    ActionFn action_test = &test;
+    ActionFn action_test = &daNpcThe_c::test;
     int is_test = mpActionFn == action_test;
     return draw(is_test, false, mpHIO->m.common.real_shadow_size, NULL, false);
 }
@@ -1114,11 +1114,11 @@ void daNpcThe_c::setParam() {
     ActionFn next_action = mpNextActionFn;
     mpNextActionFn = NULL;
     if (mpHIO->m.common.debug_mode_ON) {
-        mpNextActionFn = &test;
+        mpNextActionFn = &daNpcThe_c::test;
     } else if (mTwilight) {
-        mpNextActionFn = &waitTW;
+        mpNextActionFn = &daNpcThe_c::waitTW;
     } else {
-        mpNextActionFn = &wait;
+        mpNextActionFn = &daNpcThe_c::wait;
     }
     if (mpNextActionFn != next_action) {
         for (int i = 3; i < 3; i++) {
@@ -1162,7 +1162,7 @@ void daNpcThe_c::setParam() {
 // NONMATCHING dComIfG_gameInfo issues
 BOOL daNpcThe_c::main() {
     if (!doEvent()) {
-        doNormalAction();
+        doNormalAction(1);
     }
 
     if (field_0x9ee) {
@@ -1251,17 +1251,17 @@ BOOL daNpcThe_c::doEvent() {
                 u8 item_no = dComIfGp_event_getPreItemNo();
                 if (item_no == 0x80) {
                     mFlowID = 0x430;
-                    if (chkAction(&talk)) {
+                    if (chkAction(&daNpcThe_c::talk)) {
                         (this->*mpActionFn)(NULL);
                     } else {
-                        setAction(&talk);
+                        setAction(&daNpcThe_c::talk);
                     }
                 } else if (item_no == 0x81) {
                     mFlowID = 0x431;
-                    if (chkAction(&talk)) {
+                    if (chkAction(&daNpcThe_c::talk)) {
                         (this->*mpActionFn)(NULL);
                     } else {
-                        setAction(&talk);
+                        setAction(&daNpcThe_c::talk);
                     }
                 } else {
                     s16 event_idx =
@@ -1270,10 +1270,10 @@ BOOL daNpcThe_c::doEvent() {
                     fopAcM_orderChangeEventId(this, event_idx, 1, 0xffff);
                 }
             } else {
-                if (chkAction(&talk)) {
+                if (chkAction(&daNpcThe_c::talk)) {
                     (this->*mpActionFn)(NULL);
                 } else {
-                    setAction(&talk);
+                    setAction(&daNpcThe_c::talk);
                 }
             }
             ret = true;

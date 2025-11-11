@@ -32,7 +32,6 @@ void dalv4CandleDemoTag_c::setBaseMtx() {
 }
 
 /* 80C5CA90-80C5CBA4 000190 0114+00 1/1 0/0 0/0 .text            create__20dalv4CandleDemoTag_cFv */
-// NONMATCHING - vtables need work
 int dalv4CandleDemoTag_c::create() {
     fopAcM_ct(this, dalv4CandleDemoTag_c);
 

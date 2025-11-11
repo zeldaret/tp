@@ -831,10 +831,7 @@ public:
     /* 0x2DB */ u8 door_light_influence_ratio;
     /* 0x2DC */ s16 unk_light_influence_ratio;
     /* 0x2DE */ u8 fish_pond_colreg_adjust_ON;
-    /* 0x2E0 */ s16 fish_pond_colreg_c0_R;
-    /* 0x2E2 */ s16 fish_pond_colreg_c0_G;
-    /* 0x2E4 */ s16 fish_pond_colreg_c0_B;
-    /* 0x2E6 */ u8 field_0x2E6[0x2E8 - 0x2E6];
+    /* 0x2E0 */ GXColorS10 fish_pond_colreg_c0;
     /* 0x2E8 */ u8 water_mud_adjust_ON;
     /* 0x2EA */ s16 field_0x2ea;
     /* 0x2EC */ s16 field_0x2ec;

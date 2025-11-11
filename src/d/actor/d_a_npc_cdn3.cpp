@@ -426,11 +426,8 @@ void daNpcCdn3_c::executePath() {
                                 m_path.setNextPoint(current.pos);
                             } else {
                                 if (mSeqNum < 0 || mSeqNum >= 44) {
-                                    #ifdef DEBUG
-                                    JUT_PANIC(517, 0);
-                                    #else
                                     OSReport_Error("城下町の町人 パス点引数設定値異常 引数1モーションシーケンス=%dが異常です。\n", mSeqNum);
-                                    #endif
+                                    JUT_ASSERT(517, FALSE);
                                 }
                                 field_0xb68 = 0;
                                 setAction(MODE_WAIT);
@@ -505,7 +502,7 @@ void daNpcCdn3_c::executePath() {
             }
             break;
         default:
-            JUT_PANIC(598, 0);
+            JUT_ASSERT(598, FALSE);
             break;
         }
 
@@ -650,7 +647,7 @@ void daNpcCdn3_c::executeTalk() {
         setAngle();
         return;
     default:
-        JUT_PANIC(741, 0);
+        JUT_ASSERT(741, FALSE);
     }    
 }
 
@@ -1040,7 +1037,7 @@ void daNpcCdn3_c::setSchedule(daTagSchedule_c* param_1) {
     mFlowNodeNum = mTagSched->getFlowNodeNum();
     if (mSeqNum < 0 || mSeqNum >= 44) {
         OSReport_Error("城下町の町人 スケジュールタグ設定値異常 引数1モーションシーケンス=%dが異常です。\n", mSeqNum);
-        JUT_PANIC(1825, 0);
+        JUT_ASSERT(1825, FALSE);
     }
     if (mTagSched->getStartEnd() == 0) {
         current.pos.set(m_path.getPoint(0));
@@ -1081,7 +1078,7 @@ void daNpcCdn3_c::setSchedule(daTagSchedule_c* param_1) {
         dayStr = "土";
         break;
     default:
-        JUT_PANIC(1856, 0);
+        JUT_ASSERT(1856, FALSE);
         break;
     }
     OS_REPORT("町人スケジュールセット\n");
@@ -1574,7 +1571,7 @@ int daNpcCdn3_c::create() {
     mFlowNodeNum = getFlowNodeNum();
     if (mSeqNum < 0 || 44 <= mSeqNum) {
         OSReport_Error("城下町の町人 マップツール設定値異常 引数1モーションシーケンス=%dが異常です。\n", mSeqNum);
-        JUT_PANIC(175, 0);
+        JUT_ASSERT(175, FALSE);
     }
     int rv = loadResrc(m_type, mObjNum);
     if (rv == cPhs_COMPLEATE_e) {

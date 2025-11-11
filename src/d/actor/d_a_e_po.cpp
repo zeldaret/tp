@@ -1006,7 +1006,7 @@ static void e_po_dead(e_po_class* i_this) {
         }
         break;
 
-    case 4:
+    case 4: {
         J3DModel* model_p = i_this->mpMorf3->getModel();
         for (i = 0; i < 4; i++) {
             i_this->mParticleKeys[i] =
@@ -1051,7 +1051,7 @@ static void e_po_dead(e_po_class* i_this) {
                 i_this->field_0x788.y = i_this->mAcch.GetGroundH();
             }
         }
-
+    }
     case 6:
         if (i_this->field_0x74A[0] == 0) {
             local_100 = a_this->current.pos - i_this->field_0x788;
@@ -2128,7 +2128,7 @@ static void e_po_holl_demo(e_po_class* i_this) {
         i_this->mType = 22;
         // Fallthrough
 
-    case 22:
+    case 22: {
         if (mArg0Check(i_this, 7) != 0) {
             cLib_addCalcPos(&i_this->field_0x844, mKcenterInit_dt[9], 0.5f, 20.0f, 10.0f);
             cLib_addCalcPos(&i_this->field_0x838, mKeyeInit_dt[9], 0.5f, 20.0f, 10.0f);
@@ -2166,7 +2166,7 @@ static void e_po_holl_demo(e_po_class* i_this) {
         i_this->field_0x7E2 = 0;
         i_this->mType = 23;
         // Fallthrough
-
+    }
     case 23:
         if (mHollDemoFlag < 24) {
             i_this->field_0x74A[2] = 10;
