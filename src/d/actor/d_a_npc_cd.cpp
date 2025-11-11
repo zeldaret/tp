@@ -280,7 +280,7 @@ J3DModel* daNpcCd_c::ObjCreate(int param_0) {
 BOOL daNpcCd_c::isM_() {
     // JUT_ASSERT(574, m_type < MdlNUM_e); // Not yet configured in DEBUG
 
-    return field_0x9c4 < 16;
+    return m_type < 16;
 }
 
 /* 80156248-801563C8 150B88 0180+00 0/0 0/0 1/1 .text            getAnmP__9daNpcCd_cFii */
@@ -550,12 +550,12 @@ int daNpcCd_c::jntNodeCB(J3DJoint* i_jnt, J3DModel* i_model) {
     J3DJoint* i_jnt_ = i_jnt;
     int jntNo = i_jnt_->getJntNo();
     mDoMtx_stack_c::copy(i_model->getAnmMtx(jntNo));
-    mDoMtx_stack_c::ZXYrotM(HIO_jntRX(field_0x9c4, jntNo), HIO_jntRY(field_0x9c4, jntNo),
-                            HIO_jntRZ(field_0x9c4, jntNo));
+    mDoMtx_stack_c::ZXYrotM(HIO_jntRX(m_type, jntNo), HIO_jntRY(m_type, jntNo),
+                            HIO_jntRZ(m_type, jntNo));
 
-    f32 tmp_z = HIO_jntTZ(field_0x9c4, jntNo);
-    f32 tmp_y = HIO_jntTY(field_0x9c4, jntNo);
-    f32 tmp_x = HIO_jntTX(field_0x9c4, jntNo);
+    f32 tmp_z = HIO_jntTZ(m_type, jntNo);
+    f32 tmp_y = HIO_jntTY(m_type, jntNo);
+    f32 tmp_x = HIO_jntTX(m_type, jntNo);
     mDoMtx_stack_c::transM(tmp_x, tmp_y, tmp_z);  // Fake force eval order
     i_model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
     cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
@@ -1256,13 +1256,13 @@ daNpcCd_HIO_c::daNpcCd_HIO_c() {
         for (int j = 0; j < 12; j++) {
             memcpy((void*)&field_0x0004[i].field_0x4[j].jntT, a_jntTbl_M[i][j], 20);
         }
-        memcpy(&field_0x0004[i].field_0x128, a_prmTbl_M + i * 0x40, 0x40);
+        memcpy(&field_0x0004[i].field_0x124, a_prmTbl_M + i * 0x40, 0x40);
     }
     for (int i = 0; i < 14; i++) {
         for (int j = 0; j < 12; j++) {
             memcpy((void*)&field_0x1648[i].field_0x4[j].jntT, a_jntTbl_W[i][j], 20);
         }
-        memcpy(&field_0x1648[i].field_0x128, a_prmTbl_W + i * 0x40, 0x40);
+        memcpy(&field_0x1648[i].field_0x124, a_prmTbl_W + i * 0x40, 0x40);
     }
 }
 

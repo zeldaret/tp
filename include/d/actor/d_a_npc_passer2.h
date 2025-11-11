@@ -1,7 +1,6 @@
 #ifndef D_A_NPC_PASSER2_H
 #define D_A_NPC_PASSER2_H
 
-#include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_cd.h"
 #include "d/actor/d_a_npc_cd2.h"
 
@@ -29,15 +28,28 @@ public:
     /* 80AA774C */ void executePath();
     /* 80AA790C */ void setAngle();
     /* 80AA7918 */ void pathMoveF();
-    /* 80AA7CD8 */ void create();
+    /* 80AA7CD8 */ cPhs__Step create();
     /* 80AA7F78 */ void create_init();
-    /* 80AA8270 */ ~daNpcPasser2_c();
+    /* 80AA8270 */ inline ~daNpcPasser2_c();
 
     inline int createHeap();
     inline void setSpeed(f32, f32, f32*, int);
+    inline void initCollision();
+    inline void setBaseMtx();
+    inline int execute();
+    inline void setCollision();
+    inline int draw();
+    int getObjNum() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
+    int getTimeHour() { return dKy_darkworld_check() ? dKy_getDarktime_hour() : dKy_getdaytime_hour(); }
+    int getTimeMinute() { return dKy_darkworld_check() ? dKy_getDarktime_minute() : dKy_getdaytime_minute(); }
+    int getTime() {return (getTimeHour() * 60) + getTimeMinute(); }
+    int getDayOfWeek() { return dKy_darkworld_check() ? dKy_getDarktime_week() : dKy_get_dayofweek(); }
+    int getEndTime() { return current.angle.x; }
+    int getType() { return fopAcM_GetParam(this) & 0xFF; }
     u8 getMoveType() { return (fopAcM_GetParam(this) >> 24) & 0xF; }
     u8 getWalkMotionType() { return (fopAcM_GetParam(this) >> 28) & 3; }
     u8 getRunMotionType() { return fopAcM_GetParam(this) >> 30; }
+    u8 getPathID() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
 
     static actionFunc ActionTable[1][2];
 
@@ -52,7 +64,7 @@ private:
     /* 0xA2C */ int m_endTime;
     /* 0xA30 */ f32 field_0xa30;
     /* 0xA34 */ f32 field_0xa34;
-    /* 0xA38 */ f32 field_0xa38;
+    /* 0xA38 */ f32 mPosY;
     /* 0xA3C */ u32 field_0xa3c;
     /* 0xA40 */ u8 field_0xa40;
     /* 0xA41 */ u8 field_0xa41;
