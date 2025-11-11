@@ -367,7 +367,7 @@ daNpc_grA_c::~daNpc_grA_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 
 #if DEBUG
@@ -410,9 +410,9 @@ BOOL daNpc_grA_c::create() {
         if (!fopAcM_entrySolidHeap(this, &daNpc_grA_c::createHeapCallBack, 0x800045d0)) {
             return cPhs_ERROR_e;
         }
-        unused = mpMorf->getModel()->getModelData();
+        unused = mAnm_p->getModel()->getModelData();
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         mCreature.init(&current.pos, &eyePos, 3, 1);
 
@@ -462,15 +462,15 @@ BOOL daNpc_grA_c::CreateHeap() {
     }
     JUT_ASSERT(774, NULL != mdlData_p);
     int v = 0x11020284;
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000, v);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000, v);
+    if (mAnm_p != NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p = NULL;
     }
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return FALSE;
     }
-    mdlData2_p = mpMorf->getModel();
+    mdlData2_p = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -553,11 +553,11 @@ BOOL daNpc_grA_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int jntNo = joint->getJntNo();
     int arr[] = {1, 3, 4};
     if (jntNo == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -584,8 +584,8 @@ BOOL daNpc_grA_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     if (jntNo == 4 || jntNo == 7) {
         if ((mAnmFlags & 0x100) != 0) {
             J3DAnmTransform* a = mBckAnm.getBckAnm();
-            mBckAnm.changeBckOnly(mpMorf->getAnm());
-            mpMorf->changeAnm(a);
+            mBckAnm.changeBckOnly(mAnm_p->getAnm());
+            mAnm_p->changeAnm(a);
         }
     }
     return TRUE;
@@ -824,7 +824,7 @@ void daNpc_grA_c::setParam() {
 /* 809C0038-809C0298 0017D8 0260+00 1/0 0/0 0/0 .text            main__11daNpc_grA_cFv */
 BOOL daNpc_grA_c::main() {
     int a = 0xffff;
-    JUT_ASSERT(1367, mpMorf != NULL); // TODO: update "mpMorf" to "mAnm_p"
+    JUT_ASSERT(1367, mAnm_p != NULL); // TODO: update "mAnm_p" to "mAnm_p"
     if (doEvent() == 0) {
         if (hitChk2(&field_0xC98, TRUE, FALSE)) {
             setDamage(GET_HIO(mNpcFParams.damage_time), 0x17, 0);
@@ -868,7 +868,7 @@ BOOL daNpc_grA_c::main() {
     }
     playExpression();
     playMotion();
-    JUT_ASSERT(1487, mpMorf != NULL); // TODO: update "mpMorf" to "mAnm_p"
+    JUT_ASSERT(1487, mAnm_p != NULL);
     return TRUE;
 }
 
@@ -902,14 +902,14 @@ void daNpc_grA_c::setAttnPos() {
             mLookatAngle[i].setall(0);
         }
     }
-    J3DModelData* modelData = mpMorf->getModel()->getModelData();
+    J3DModelData* modelData = mAnm_p->getModel()->getModelData();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(&daNpc_grA_c::ctrlJointCallBack);
     }
     setMtx();
     setOtherObjMtx();
     lookat();
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
     mDoMtx_stack_c::multVec(&eyeOffset, &offset);
@@ -1133,7 +1133,7 @@ bool daNpc_grA_c::setExpressionBtp(int i_expression) {
     if (bck == NULL) {
         return true;
     }
-    if (setBtpAnm(bck, mpMorf->getModel()->getModelData(), 1.0f, attr)) {
+    if (setBtpAnm(bck, mAnm_p->getModel()->getModelData(), 1.0f, attr)) {
         mAnmFlags |= 0x280;
         if (i_expression == 0) {
             mAnmFlags |= 0x800;
@@ -1228,7 +1228,7 @@ void daNpc_grA_c::setMotionAnm(int i_motion, f32 i_morf) {
     if (l_btkGetParamList[btkIndex][0] >= 0) {
         btk = getTexSRTKeyAnmP(l_resNames[l_btkGetParamList[btkIndex][1]], l_btkGetParamList[btkIndex][0]);
     }
-    if (btk != NULL && setBtkAnm(btk, mpMorf->getModel()->getModelData(), 1.0f, attr)) {
+    if (btk != NULL && setBtkAnm(btk, mAnm_p->getModel()->getModelData(), 1.0f, attr)) {
         mAnmFlags |= 0x12;
     }
     if (bck != NULL && setMcaMorfAnm(bck, 1.0f, i_morf, attr2, 0, -1)) {
@@ -1312,7 +1312,7 @@ void daNpc_grA_c::drawOtherMdls() {
         case 8:
         case 9:
         case 10:
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(17));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(17));
             mDoMtx_stack_c::scaleM(scale);
             mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
             J3DModelData* data = mpModel->getModelData();
@@ -1995,7 +1995,7 @@ void daNpc_grA_c::setLookMode(int i_lookMode) {
 /* 809C3094-809C3424 004834 0390+00 1/1 0/0 0/0 .text            lookat__11daNpc_grA_cFv */
 void daNpc_grA_c::lookat() {
     fopAc_ac_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     BOOL r27 = FALSE;
     f32 bodyAngleXMin = GET_HIO(mNpcFParams.body_angleX_min);
     f32 bodyAngleXMax = GET_HIO(mNpcFParams.body_angleX_max);
@@ -2050,12 +2050,12 @@ void daNpc_grA_c::lookat() {
         mNpcfLookAt.setAttnPos(&mLookPos);
     } else if (mLookMode == 7) {
         cXyz f(0.0f, 0.0f, 300.0f);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVec(&f, &mLookPos);
         mNpcfLookAt.setAttnPos(&mLookPos);
     } else if (mLookMode == 8) {
         cXyz f(0.0f, 0.0f, -300.0f);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVec(&f, &mLookPos);
         mNpcfLookAt.setAttnPos(&mLookPos);
     } else {
@@ -2221,7 +2221,7 @@ void daNpc_grA_c::setOtherObjMtx() {
         switch (mType) {
         case 7:
             cXyz pos = current.pos;
-            pos.y += l_offsetHeight[(u32)mpMorf->getFrame() % 0x1f]; // maybe meant to be & 0x1f
+            pos.y += l_offsetHeight[(u32)mAnm_p->getFrame() % 0x1f]; // maybe meant to be & 0x1f
             mDoMtx_stack_c::transS(pos);
             mDoMtx_stack_c::ZXYrotM(mCurAngle);
             mDoMtx_stack_c::scaleM(scale);
@@ -2353,9 +2353,9 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int i_staffID) {
     } break;
     case 0x1e:
         if (field_0x14D8 == 0x1b) {
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 r28 = 1;
-            } else if (mpMorf->checkFrame(14.0f)) {
+            } else if (mAnm_p->checkFrame(14.0f)) {
                 cXyz c(0.0f, 0.0f, 20.0f);
                 mDoMtx_stack_c::transS(current.pos);
                 mDoMtx_stack_c::YrotM(mCurAngle.y);
@@ -2367,22 +2367,22 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int i_staffID) {
         break;
     case 0x28:
         if (field_0x14D8 == 0x1a) {
-            mpMorf->setEndFrame(29.0f);
+            mAnm_p->setEndFrame(29.0f);
             if (field_0x14D4 < 3.0f) {
                 field_0x14D4 += 0.2f;
             }
-            mpMorf->setPlaySpeed(field_0x14D4);
+            mAnm_p->setPlaySpeed(field_0x14D4);
             speedF = 0.0f;
         }
         r28 = 1;
         break;
     case 0x2d:
         if (field_0x14D8 == 0x1a) {
-            mpMorf->setEndFrame(29.0f);
+            mAnm_p->setEndFrame(29.0f);
             if (field_0x14D4 < 3.0f) {
                 field_0x14D4 += 0.2f;
             }
-            mpMorf->setPlaySpeed(field_0x14D4);
+            mAnm_p->setPlaySpeed(field_0x14D4);
             speedF = field_0x14D4 * GET_HIO(mRotationalSpeed);
         }
         r28 = 1;
@@ -2391,23 +2391,23 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int i_staffID) {
         if (field_0x14D8 == 0x1a) {
             if (field_0x14D4 > 1.0f) {
                 field_0x14D4 -= 0.25f;
-                mpMorf->setPlaySpeed(field_0x14D4);
+                mAnm_p->setPlaySpeed(field_0x14D4);
                 speedF = field_0x14D4 * GET_HIO(mRotationalSpeed);
             } else {
-                if (mpMorf->getFrame() >= 0.0f && mpMorf->getFrame() <= 5.0f) {
+                if (mAnm_p->getFrame() >= 0.0f && mAnm_p->getFrame() <= 5.0f) {
                     setMotion(0x14, -1.0f, 0);
                     field_0x14D4 = 0.0f;
                 }
                 speedF = 0.0f;
             }
         } else if (field_0x14D8 == 0x19) {
-            if (mpMorf->checkFrame(12.0f)) {
-                mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x1a));
+            if (mAnm_p->checkFrame(12.0f)) {
+                mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0x1a));
                 mDoMtx_stack_c::multVecZero(&mParticleManager[1].mPos);
                 mParticleManager[1].mPos.y = current.pos.y;
                 mParticleManager[1].mAngle = mCurAngle;
                 mParticleManager[1].field_0x0 = 1;
-                mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x17));
+                mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0x17));
                 mDoMtx_stack_c::multVecZero(&mParticleManager[2].mPos);
                 mParticleManager[2].mPos.y = current.pos.y;
                 mParticleManager[2].mAngle = mCurAngle;
@@ -2441,8 +2441,8 @@ BOOL daNpc_grA_c::ECut_grDSRoll(int i_staffID) {
                 if (field_0x14D8 == 0x16 && fopAcM_searchPlayerAngleY(this) == mCurAngle.y) {
                     r28 = 1;
                 }
-                if (field_0x14D8 == 0x1f && mpMorf->getFrame() >= 10.0f &&
-                    mpMorf->getFrame() < 11.0f)
+                if (field_0x14D8 == 0x1f && mAnm_p->getFrame() >= 10.0f &&
+                    mAnm_p->getFrame() < 11.0f)
                 {
                     mCreature.startCreatureVoice(Z2SE_GORON_V_SMR_REPLY, -1);
                 }
@@ -2507,7 +2507,7 @@ BOOL daNpc_grA_c::ECut_grDSGate(int i_staffID) {
         if (mMotion != 5) {
             if (field_0x14D8 != 0x17) {
                 cLib_chasePosXZ(&current.pos, field_0x148C, 30.f / 11.f);
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     setMotion(5, -1.0f, 0);
                     home.pos = field_0x148C;
                     home.angle = field_0x1498;
@@ -2606,7 +2606,7 @@ BOOL daNpc_grA_c::ECut_teachElevator(int i_staffID) {
         if (mMotion != 5) {
             if (field_0x14D8 != 0x17) {
                 cLib_chasePosXZ(&current.pos, field_0x148C, 30.0f / 11.0f);
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     setMotion(5, -1.0f, 0);
                     home.pos = field_0x148C;
                     home.angle = field_0x1498;
@@ -2656,7 +2656,7 @@ BOOL daNpc_grA_c::ECut_kickOut(int i_staffID) {
             setExpression(0x17, -1.0f);
             setMotion(1, -1.0f, 0);
             speedF = GET_HIO(mWalkingSpeed);
-            mpMorf->setPlaySpeed(GET_HIO(mWalkingSpeed) * GET_HIO(mWalkingAnimationSpeed));
+            mAnm_p->setPlaySpeed(GET_HIO(mWalkingSpeed) * GET_HIO(mWalkingAnimationSpeed));
             break;
         case 0x1e:
             Z2GetAudioMgr()->seStart(0x600b2, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
@@ -2680,7 +2680,7 @@ BOOL daNpc_grA_c::ECut_kickOut(int i_staffID) {
         break;
     case 0x14:
         speedF = GET_HIO(mWalkingSpeed);
-        mpMorf->setPlaySpeed(GET_HIO(mWalkingSpeed) * GET_HIO(mWalkingAnimationSpeed));
+        mAnm_p->setPlaySpeed(GET_HIO(mWalkingSpeed) * GET_HIO(mWalkingAnimationSpeed));
         r28 = 1;
         break;
     case 0x1e:
@@ -2799,13 +2799,13 @@ BOOL daNpc_grA_c::ECut_rescueRock(int i_staffID) {
             }
         } else {
             cLib_chaseF(&field_0x14D4, 1.0f, 0.03f);
-            mpMorf->setPlaySpeed(field_0x14D4);
-            mpMorf->setEndFrame(27.0f);
+            mAnm_p->setPlaySpeed(field_0x14D4);
+            mAnm_p->setEndFrame(27.0f);
         }
         break;
     case 0xa:
         if (field_0x14D8 == 0x19) {
-            if (mpMorf->getFrame() >= 8.0f) {
+            if (mAnm_p->getFrame() >= 8.0f) {
                 setExpression(0x17, -1.0f);
                 setMotion(0x1c, -1.0f, 0);
             }
@@ -2818,13 +2818,13 @@ BOOL daNpc_grA_c::ECut_rescueRock(int i_staffID) {
             r28 = 1;
         }
         if (mAcch.ChkGroundLanding()) {
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x1a));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0x1a));
             mDoMtx_stack_c::multVecZero(&mParticleManager[1].mPos);
             mParticleManager[1].mPos.y = current.pos.y;
             mParticleManager[1].mAngle = mCurAngle;
             mParticleManager[1].field_0x0 = 1;
 
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x17));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0x17));
             mDoMtx_stack_c::multVecZero(&mParticleManager[2].mPos);
             mParticleManager[2].mPos.y = current.pos.y;
             mParticleManager[2].mAngle = mCurAngle;
@@ -2867,7 +2867,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int i_staffID) {
             setMotion(0x19, -1.0f, 0);
             setLookMode(0);
             cXyz c;
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
             mDoMtx_stack_c::multVecZero(&c);
         } break;
         case 0xa:
@@ -2901,7 +2901,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int i_staffID) {
             break;
         case 0x3c: 
             field_0x14D4 = 0.0f;
-            mpMorf->setPlaySpeed(field_0x14D4);
+            mAnm_p->setPlaySpeed(field_0x14D4);
             mEventTimer = 0x12c;
             break;
         case 0x41:
@@ -2930,12 +2930,12 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int i_staffID) {
 
     switch (sp30) {
     case 0:
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
             r28 = 1;
         } else {
             JPABaseEmitter* sp28 = 0;
             cXyz c;
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
             mDoMtx_stack_c::multVecZero(&c);
             field_0x151C = dComIfGp_particle_set(field_0x151C, 0x2a3, &c, &tevStr, &current.angle, NULL, 0xff,
                                   NULL, -1, NULL, NULL, NULL);
@@ -2984,11 +2984,11 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int i_staffID) {
         break;
     case 0x32:
     if (field_0x14D8 == 0x1b) {
-        if (mpMorf->isStop()) {
+        if (mAnm_p->isStop()) {
                 r28 = 1;
                 setMotion(0x13, -1.0f, 0);
                 mCreature.startCreatureVoice(Z2SE_GRA_V_ROLLING, -1);
-            } else if (mpMorf->checkFrame(14.0f)) {
+            } else if (mAnm_p->checkFrame(14.0f)) {
                 cXyz c(0.0f, 0.0f, 20.0f);
                 mDoMtx_stack_c::transS(current.pos);
                 mDoMtx_stack_c::YrotM(mCurAngle.y);
@@ -2997,8 +2997,8 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int i_staffID) {
                 mParticleManager[0].field_0x0 = 1;
             }
         } else if (field_0x14D8 == 0x1a) {
-            mpMorf->setPlaySpeed(0.0f);
-            mpMorf->setEndFrame(29.0f);
+            mAnm_p->setPlaySpeed(0.0f);
+            mAnm_p->setEndFrame(29.0f);
             r28 = 1;
         }
         break;
@@ -3012,7 +3012,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int i_staffID) {
                 setAngle(mCurAngle.y);
             }
             cLib_addCalc2(&field_0x14D4, 5.0f, 0.1f, 0.1f);
-            mpMorf->setPlaySpeed(field_0x14D4);
+            mAnm_p->setPlaySpeed(field_0x14D4);
             speedF = field_0x14D4 * 10.0f;
         }
         if (!cLib_calcTimer(&mEventTimer)) {
@@ -3031,7 +3031,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWater(int i_staffID) {
     }
 
     if ((field_0x14D8 == 0x1a && field_0x14D4 >= 1.0f) ||
-        field_0x14D8 == 0x28 && mpMorf->getFrame() >= 18.0f && mpMorf->getFrame() <= 20.0f)
+        field_0x14D8 == 0x28 && mAnm_p->getFrame() >= 18.0f && mAnm_p->getFrame() <= 20.0f)
     {
         setRollPrtcl(current.pos, 1.0f);
         if (field_0x14D8 == 0x1a) {
@@ -3085,7 +3085,7 @@ BOOL daNpc_grA_c::ECut_carrySpaWaterFailure(int i_staffID) {
         if (mMotion == 8) {
             if (mMotionPhase > 0) {
                 r28 = 1;
-            } else if (mpMorf->checkFrame(21.0f)) {
+            } else if (mAnm_p->checkFrame(21.0f)) {
                 cXyz c(0.0f, 0.0f, -150.0f);
                 mDoMtx_stack_c::transS(current.pos);
                 mDoMtx_stack_c::YrotM(mCurAngle.y);
@@ -3171,14 +3171,14 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int i_staffID) {
         if (field_0x14D8 == 0x29) {
             r28 = 1;
         } else {
-            if (mpMorf->getFrame() >= 79.0f) {
+            if (mAnm_p->getFrame() >= 79.0f) {
                 field_0x150C = 0;
-            } else if (mpMorf->getFrame() >= 7.0f) {
+            } else if (mAnm_p->getFrame() >= 7.0f) {
                 field_0x150C = 1;
             } else {
                 field_0x150C = 0;
             }
-            if (mpMorf->getFrame() >= 93.0f && mpMorf->getFrame() < 94.0f) {
+            if (mAnm_p->getFrame() >= 93.0f && mAnm_p->getFrame() < 94.0f) {
                 mCreature.startCreatureVoice(Z2SE_GRA_V_SPAWATER_SHOUT, -1);
             }
         }
@@ -3200,9 +3200,9 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int i_staffID) {
         break;
     case 0x28:
         if (field_0x14D8 == 0x1b) {
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 setMotion(0x13, -1.0f, 0);
-            } else if (mpMorf->checkFrame(14.0f)) {
+            } else if (mAnm_p->checkFrame(14.0f)) {
                 cXyz c(0.0f, 0.0f, 20.0f);
                 mDoMtx_stack_c::transS(current.pos);
                 mDoMtx_stack_c::YrotM(mCurAngle.y);
@@ -3211,15 +3211,15 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int i_staffID) {
                 mParticleManager[0].field_0x0 = 1;
             }
         } else if (field_0x14D8 == 0x1a) {
-            mpMorf->setPlaySpeed(0.0f);
-            mpMorf->setEndFrame(29.0f);
+            mAnm_p->setPlaySpeed(0.0f);
+            mAnm_p->setEndFrame(29.0f);
             r28 = 1;
             field_0x14D4 = 0.0f;
         }
         break;
     case 0x32:
         cLib_addCalc2(&field_0x14D4, 5.0f, 0.1f, 0.1f);
-        mpMorf->setPlaySpeed(field_0x14D4);
+        mAnm_p->setPlaySpeed(field_0x14D4);
         speedF = field_0x14D4 * 10.0f;
         if (mAcch.ChkWallHit()) {
             r28 = 1;
@@ -3227,7 +3227,7 @@ BOOL daNpc_grA_c::ECut_rollRockCrash(int i_staffID) {
         break;
     case 0x3c:
         cLib_addCalc2(&field_0x14D4, 5.0f, 0.1f, 0.1f);
-        mpMorf->setPlaySpeed(field_0x14D4);
+        mAnm_p->setPlaySpeed(field_0x14D4);
         if (!cLib_calcTimer(&mEventTimer)) {
             r28 = 1;
         }
@@ -3511,7 +3511,7 @@ BOOL daNpc_grA_c::waitGate(void*) {
                     cLib_chaseAngleS(&current.angle.y, home.angle.y, 0x400);
                     setAngle(current.angle.y);
                     cLib_chasePosXZ(&current.pos, field_0x148C, 30.f / 11.f);
-                    if (mpMorf->isStop()) {
+                    if (mAnm_p->isStop()) {
                         field_0x14D1 = 1;
                         setMotion(5, -1.0f, 0);
                         home.pos = field_0x148C;
@@ -3592,7 +3592,7 @@ BOOL daNpc_grA_c::waitKickOut(void*) {
                 } else {
                     s16 r27 = cLib_targetAngleY(&current.pos, &c);
                     speedF = 5.0f;
-                    mpMorf->setPlaySpeed(speedF * GET_HIO(mWalkingAnimationSpeed));
+                    mAnm_p->setPlaySpeed(speedF * GET_HIO(mWalkingAnimationSpeed));
                     cLib_addCalcAngleS2(&current.angle.y, r27, GET_HIO(mWalkingRotationDivisions),
                                         GET_HIO(mWalkingRotationSpeed));
                     setAngle(current.angle.y);
@@ -3951,8 +3951,8 @@ BOOL daNpc_grA_c::crashRoll(void*) {
             field_0x1486 = 2;
         }
         field_0x14D4 = 5.0f;
-        mpMorf->setPlaySpeed(field_0x14D4);
-        mpMorf->setEndFrame(29.0f);
+        mAnm_p->setPlaySpeed(field_0x14D4);
+        mAnm_p->setEndFrame(29.0f);
         if (field_0x14D8 == 0x1a) {
             if (field_0x14D4 >= 1.0f) {
                 setRollPrtcl(current.pos, 1.0f);
@@ -3981,8 +3981,8 @@ BOOL daNpc_grA_c::crashRollWait(void*) {
         // fallthrough
     case 2:
         field_0x14D4 = 5.0f;
-        mpMorf->setPlaySpeed(field_0x14D4);
-        mpMorf->setEndFrame(29.0f);
+        mAnm_p->setPlaySpeed(field_0x14D4);
+        mAnm_p->setEndFrame(29.0f);
         if (field_0x14D8 == 0x1a) {
             if (field_0x14D4 >= 1.0f) {
                 cXyz c(0.0f, 0.0f, 0.0f);

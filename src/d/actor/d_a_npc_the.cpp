@@ -183,7 +183,7 @@ daNpcThe_c::EventFn daNpcThe_c::mEvtCutList[4] = {
 };
 
 int daNpcThe_c::Draw() {
-    mpMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
+    mAnm_p->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
     ActionFn action_test = &daNpcThe_c::test;
     int is_test = mpActionFn == action_test;
     return draw(is_test, false, mpHIO->m.common.real_shadow_size, NULL, false);
@@ -198,7 +198,7 @@ daNpcThe_c::~daNpcThe_c() {
         dComIfG_resDelete(&mPhase[i], l_resNames[l_loadRes_list[mType][i]]);
     }
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -211,18 +211,18 @@ int daNpcThe_c::CreateHeap() {
             dComIfG_getObjectRes(l_resNames[l_bmdGetParamList[bmd_get_idx].arcIdx],
                                  l_bmdGetParamList[bmd_get_idx].fileIdx));
     }
-    mpMorf = new mDoExt_McaMorfSO(model_data, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
+    mAnm_p = new mDoExt_McaMorfSO(model_data, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000,
                                   0x11020284);
 
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    if (mAnm_p != NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p = NULL;
     }
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (u16 i = 0; i < model_data->getJointTree().getJointNum(); i++) {
         model_data->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -247,11 +247,11 @@ int daNpcThe_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int lookat_joints[3] = {1, 3, 4};
 
     if (joint_no == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -270,8 +270,8 @@ int daNpcThe_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((joint_no == 4 || joint_no == 11) && (mAnmFlags & 0x100)) {
         J3DAnmTransform* anm = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(anm);
+        mBckAnm.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(anm);
     }
 
     return 1;
@@ -435,7 +435,7 @@ bool daNpcThe_c::setExpressionBtp(int i_idx) {
         return true;
     }
 
-    if (setBtpAnm(anm, mpMorf->getModel()->getModelData(), 1.0f, attr)) {
+    if (setBtpAnm(anm, mAnm_p->getModel()->getModelData(), 1.0f, attr)) {
         mAnmFlags |= ANM_PAUSE_BTP | ANM_PLAY_BTP;
         if (i_idx == 0) {
             mAnmFlags |= ANM_FLAG_800;
@@ -509,7 +509,7 @@ void daNpcThe_c::setMotionAnm(int i_idx, f32 i_morf) {
     }
 
     if (anm_tex != NULL) {
-        if (setBtkAnm(anm_tex, mpMorf->getModel()->getModelData(), 1.0f, 2)) {
+        if (setBtkAnm(anm_tex, mAnm_p->getModel()->getModelData(), 1.0f, 2)) {
             mAnmFlags |= ANM_PAUSE_BTK | ANM_PLAY_BTK;
         }
     }
@@ -602,7 +602,7 @@ void daNpcThe_c::playMotion() {
 /* 80AFB1C4-80AFB488 003BE4 02C4+00 1/1 0/0 0/0 .text            lookat__10daNpcThe_cFv */
 void daNpcThe_c::lookat() {
     fopAc_ac_c* actor = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     BOOL snap = false;
     f32 body_angleX_min = mpHIO->m.common.body_angleX_min;
@@ -819,11 +819,11 @@ BOOL daNpcThe_c::talk(void* param_0) {
             bvar1 = true;
         } else {
             if (mType == TYPE_KAKARIKO &&
-                (mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_resNames[l_bckGetParamList[24].arcIdx],
+                (mAnm_p->getAnm() == getTrnsfrmKeyAnmP(l_resNames[l_bckGetParamList[24].arcIdx],
                                                        l_bckGetParamList[24].fileIdx) ||
-                 mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_resNames[l_bckGetParamList[25].arcIdx],
+                 mAnm_p->getAnm() == getTrnsfrmKeyAnmP(l_resNames[l_bckGetParamList[25].arcIdx],
                                                        l_bckGetParamList[25].fileIdx) ||
-                 mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_resNames[l_bckGetParamList[26].arcIdx],
+                 mAnm_p->getAnm() == getTrnsfrmKeyAnmP(l_resNames[l_bckGetParamList[26].arcIdx],
                                                        l_bckGetParamList[26].fileIdx)))
             {
                 setLookMode(LOOK_NONE);
@@ -1024,8 +1024,8 @@ cPhs__Step daNpcThe_c::create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
-        fopAcM_setCullSizeBox2(this, mpMorf->getModel()->getModelData());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
+        fopAcM_setCullSizeBox2(this, mAnm_p->getModel()->getModelData());
         mSound.init(&current.pos, &eyePos, 3, 1);
         mAcchCir.SetWall(mpHIO->m.common.width, mpHIO->m.common.knee_length);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
@@ -1355,7 +1355,7 @@ void daNpcThe_c::setAttnPos() {
     lookat();
 
     cXyz vec1(-10.0f, 0.0f, 0.0f);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&vec1, &eyePos);
     vec1.y = 0.0f;

@@ -399,7 +399,7 @@ daNpc_Grz_c::~daNpc_Grz_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -486,7 +486,7 @@ cPhs__Step daNpc_Grz_c::create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         
         mSound.init(&current.pos, &eyePos, 3, 1);
@@ -521,17 +521,17 @@ int daNpc_Grz_c::CreateHeap() {
 
     JUT_ASSERT(556, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    if (mAnm_p != NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p = NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -565,8 +565,8 @@ int daNpc_Grz_c::Execute() {
 
 /* 809E9324-809E9568 001004 0244+00 1/1 0/0 0/0 .text            Draw__11daNpc_Grz_cFv */
 int daNpc_Grz_c::Draw() {
-    J3DModel* model = mpMorf->getModel();
-    J3DModelData* mdlData_p = mpMorf->getModel()->getModelData();
+    J3DModel* model = mAnm_p->getModel();
+    J3DModelData* mdlData_p = mAnm_p->getModel()->getModelData();
 
     if (checkHide()) {
         return 1;
@@ -601,7 +601,7 @@ int daNpc_Grz_c::Draw() {
             mBrkAnm.entry(mdlData_p);
         }
 
-        mpMorf->entryDL();
+        mAnm_p->entryDL();
 
         if ((mAnmFlags & ANM_PLAY_BTP) != 0) {
             mBtpAnm.remove(mdlData_p);
@@ -630,11 +630,11 @@ int daNpc_Grz_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int i_jointList[3] = {JNT_BACKBONE1, JNT_NECK, JNT_HEAD};
 
     if (jntNo == JNT_CENTER) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -661,8 +661,8 @@ int daNpc_Grz_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((jntNo == JNT_HEAD || jntNo == JNT_MOUTH) && (mAnmFlags & ANM_PLAY_BCK) != 0) {
         J3DAnmTransform* anm = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(anm);
+        mBckAnm.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(anm);
     }
 
     return 1;
@@ -813,7 +813,7 @@ void daNpc_Grz_c::setAttnPos() {
 
     setMtx();
     lookat();
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
     eyeOffset.x = 0.0f;
@@ -884,7 +884,7 @@ void daNpc_Grz_c::setAttnPos() {
 /* 809EA1DC-809EA734 001EBC 0558+00 1/1 0/0 0/0 .text            setCollisionPunch__11daNpc_Grz_cFv */
 void daNpc_Grz_c::setCollisionPunch() {
     if (mType == TYPE_SMASH) {
-        f32 frame = mpMorf->getFrame();
+        f32 frame = mAnm_p->getFrame();
 
         if (mAnm == ANM_PUNCHING && ((frame >= 15.0f && frame < 16.0f) || (frame >= 35.0f && frame < 36.0f))) {
             daPy_py_c* player = daPy_getPlayerActorClass();
@@ -910,7 +910,7 @@ void daNpc_Grz_c::setCollisionPunch() {
                 if (mAnm == ANM_PUNCHING && ((frame >= 10.0f && frame < 18.0f && i >= 2) || ((frame < 2.0f || frame >= 29.0f) && i < 2))) {
                     cXyz sp60;
                     mSphs[i].OnAtSetBit();
-                    J3DModel* model = mpMorf->getModel();
+                    J3DModel* model = mAnm_p->getModel();
 
                     static int l_attack_jnt[4] = {
                         JNT_ARML2, JNT_HANDL, JNT_ARMR2, JNT_HANDR,
@@ -1089,7 +1089,7 @@ bool daNpc_Grz_c::setExpressionBtp(int i_index) {
         return true;
     }
 
-    if (setBtpAnm(btp, mpMorf->getModel()->getModelData(), 1.0f, i_attr)) {
+    if (setBtpAnm(btp, mAnm_p->getModel()->getModelData(), 1.0f, i_attr)) {
         mAnmFlags |= ANM_PLAY_BTP | ANM_PAUSE_BTP;
 
         if (i_index == 0) {
@@ -1196,7 +1196,7 @@ void daNpc_Grz_c::setMotionAnm(int i_index, f32 i_morf) {
     }
 
     if (btk != NULL) {
-        if (setBtkAnm(btk, mpMorf->getModel()->getModelData(), 1.0f, i_attr2)) {
+        if (setBtkAnm(btk, mAnm_p->getModel()->getModelData(), 1.0f, i_attr2)) {
             mAnmFlags |= ANM_PLAY_BTK | ANM_PAUSE_BTK;
         }
     }
@@ -1670,7 +1670,7 @@ void daNpc_Grz_c::setLookMode(int i_lookMode) {
 /* 809EC188-809EC424 003E68 029C+00 1/1 0/0 0/0 .text            lookat__11daNpc_Grz_cFv */
 void daNpc_Grz_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     BOOL bVar1 = FALSE;
     f32 body_angleX_min = daNpc_Grz_Param_c::m.common.body_angleX_min;
     f32 body_angleX_max = daNpc_Grz_Param_c::m.common.body_angleX_max;
@@ -1865,7 +1865,7 @@ int daNpc_Grz_c::waitSmash(void* param_1) {
                 fopAcM_delete(this);
             } else {
                 if (mAnm == ANM_PUNCHING) {
-                    f32 frame = mpMorf->getFrame();
+                    f32 frame = mAnm_p->getFrame();
                     if ((frame >= 10.0f && frame < 11.0f) || (frame >= 28.0f && frame < 29.0f)) {
                         mSound.startCreatureVoice(Z2SE_GRZ_V_BREAK, -1);
                     }
@@ -2132,7 +2132,7 @@ int daNpc_Grz_c::doTalkStandCut(int i_staffId) {
     switch (prm) {
         case 0:
             if (mAnm == ANM_GETUP_2) {
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     rv = 1;
                 }
             }
@@ -2210,7 +2210,7 @@ int daNpc_Grz_c::doGoOutCut(int i_staffId) {
                 break;
 
             case 21:
-                mpMorf->setPlaySpeed(0.0f);
+                mAnm_p->setPlaySpeed(0.0f);
                 break;
 
             case 99:
@@ -2346,8 +2346,8 @@ int daNpc_Grz_c::doStoneSmashCut(int i_staffId) {
                 break;
 
             case 75:
-                mpMorf->setPlaySpeed(0.0f);
-                mpMorf->setEndFrame(10.0f);
+                mAnm_p->setPlaySpeed(0.0f);
+                mAnm_p->setEndFrame(10.0f);
                 break;
 
             case 80:
@@ -2358,12 +2358,12 @@ int daNpc_Grz_c::doStoneSmashCut(int i_staffId) {
 
     switch (prm) {
         case 0:
-            if (mpMorf->getFrame() == mpMorf->getStartFrame()) {
+            if (mAnm_p->getFrame() == mAnm_p->getStartFrame()) {
                 field_0x1a9c++;
             }
 
             if (field_0x1a9c >= 2) {
-                if (mpMorf->getFrame() >= 20.0f) {
+                if (mAnm_p->getFrame() >= 20.0f) {
                     rv = 1;
                 }
             } else {
@@ -2375,7 +2375,7 @@ int daNpc_Grz_c::doStoneSmashCut(int i_staffId) {
             }
 
             if (mAnm == ANM_PUNCHING) {
-                f32 frame = mpMorf->getFrame();
+                f32 frame = mAnm_p->getFrame();
                 if ((frame >= 10.0f && frame < 11.0f) || (frame >= 28.0f && frame < 29.0f)) {
                     mSound.startCreatureVoice(Z2SE_GRZ_V_BREAK, -1);
                 }
@@ -2383,12 +2383,12 @@ int daNpc_Grz_c::doStoneSmashCut(int i_staffId) {
             break;
         
         case 10:
-            if (mpMorf->getFrame() == mpMorf->getStartFrame()) {
+            if (mAnm_p->getFrame() == mAnm_p->getStartFrame()) {
                 rv = 1;
             }
 
             if (mAnm == ANM_PUNCHING) {
-                f32 frame = mpMorf->getFrame();
+                f32 frame = mAnm_p->getFrame();
                 if ((frame >= 10.0f && frame < 11.0f) || (frame >= 28.0f && frame < 29.0f)) {
                     mSound.startCreatureVoice(Z2SE_GRZ_V_BREAK, -1);
                 }
@@ -2396,7 +2396,7 @@ int daNpc_Grz_c::doStoneSmashCut(int i_staffId) {
             break;
         
         case 20:
-            if (mpMorf->getFrame() >= 17.0f) {
+            if (mAnm_p->getFrame() >= 17.0f) {
                 dComIfGp_getVibration().StopQuake(31);
                 rv = 1;
             }
@@ -2405,7 +2405,7 @@ int daNpc_Grz_c::doStoneSmashCut(int i_staffId) {
         case 30:
             if (mMotionPhase > 0) {
                 rv = 1;
-            } else if (mpMorf->getFrame() == 35.0f) {
+            } else if (mAnm_p->getFrame() == 35.0f) {
                 dComIfGp_getVibration().StartShock(8, 15, cXyz(0.0f, 1.0f, 0.0f));
                 daObjGrzRock_c* rock_p = (daObjGrzRock_c*)mActorMngrs[3].getActorP();
                 if (rock_p != NULL) {
@@ -2448,7 +2448,7 @@ int daNpc_Grz_c::doStoneSmashCut(int i_staffId) {
             if (mMotion == MOT_TO_STONE_NORMAL) {
                 if (mMotionPhase > 0) {
                     rv = 1;
-                } else if (mpMorf->checkFrame(14.0f)) {
+                } else if (mAnm_p->checkFrame(14.0f)) {
                     cXyz sp70(0.0f, 0.0f, 20.0f);
                     mDoMtx_stack_c::transS(current.pos);
                     mDoMtx_stack_c::YrotM(mCurAngle.y);
@@ -2466,9 +2466,9 @@ int daNpc_Grz_c::doStoneSmashCut(int i_staffId) {
                 mPath.getDstPos(current.pos, sp7c);
                 cLib_addCalcAngleS2(&mCurAngle.y, cLib_targetAngleY(&current.pos, &sp7c), 6, 0x400);
                 setAngle(mCurAngle.y);
-                f32 playSpeed = mpMorf->getPlaySpeed();
+                f32 playSpeed = mAnm_p->getPlaySpeed();
                 cLib_addCalc2(&playSpeed, 1.0f, 0.1f, 0.1f);
-                mpMorf->setPlaySpeed(playSpeed);
+                mAnm_p->setPlaySpeed(playSpeed);
                 speedF = daNpc_Grz_Param_c::m.rotation_movement_speed * playSpeed;
             }
 
@@ -2480,7 +2480,7 @@ int daNpc_Grz_c::doStoneSmashCut(int i_staffId) {
             break;
     }
 
-    if (mMotion == MOT_TO_STONE_NORMAL && mMotionPhase > 0 && mpMorf->getPlaySpeed() >= 0.5f) {
+    if (mMotion == MOT_TO_STONE_NORMAL && mMotionPhase > 0 && mAnm_p->getPlaySpeed() >= 0.5f) {
         JPABaseEmitter* emitter = NULL;
         cXyz pos(current.pos);
         cXyz scale(1.2f, 1.2f, 1.2f);

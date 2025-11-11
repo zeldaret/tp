@@ -181,7 +181,7 @@ public:
     /* 80A82878 */ inline void drawOtherMdls();
     /* 80A82900 */ inline BOOL drawDbgInfo();
 
-    MtxP getHandRMtx() { return mpMorf->getModel()->getAnmMtx(17); }
+    MtxP getHandRMtx() { return mAnm_p->getModel()->getAnmMtx(17); }
 
     s16 getMessageNo() { return (fopAcM_GetParam(this) >> 8) & 0xFFFF; }
 
