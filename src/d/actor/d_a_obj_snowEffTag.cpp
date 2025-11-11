@@ -64,14 +64,13 @@ bool daSnowEffTag_c::playerAreaCheck() {
     if (player_p->current.pos.y < current.pos.y ||
         player_p->current.pos.y > current.pos.y + scale.y * 100.0f)
     {
-        return false;
+        return in_area;
     } else {
         cXyz pos_diff = current.pos - player_p->current.pos;
         f32 dist_to_player = pos_diff.absXZ();
 
-        // supposed to be std::fabs, but it changes regalloc
         if (dist_to_player <=
-            mMaxSize - field_0x574 * fabsf(player_p->current.pos.y - current.pos.y))
+            mMaxSize - field_0x574 * std::fabs(player_p->current.pos.y - current.pos.y))
         {
             in_area = true;
         } else {

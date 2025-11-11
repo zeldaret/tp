@@ -89,7 +89,7 @@ private:
     /* 0x5BC */ u8 field_0x5bc[0x5DC - 0x5BC];
     /* 0x5DC */ u8 mDoorAction;
     /* 0x5E0 */ dPath* mpPath;
-    /* 0x5E4 */ cXyz mPoint;
+    /* 0x5E4 */ Vec mPoint;
     /* 0x5F0 */ u8 mPathIndex;
     /* 0x5F4 */ int mPointIndex;
     /* 0x5F8 */ u8 mBossHealth;

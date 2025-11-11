@@ -131,8 +131,7 @@ public:
     }
 
     void setHome() { 
-        current.pos = home.pos;
-        old.pos = current.pos;
+        old.pos = current.pos = home.pos;
         shape_angle.y = home.angle.y;
     }
     void offDispFlag() { mDispFlag = 0; }

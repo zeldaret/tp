@@ -21,6 +21,10 @@ public:
         return home.pos;
     }
 
+    csXyz getGraAngle() {
+        return home.angle;
+    }
+    
     f32 getGraExtent() {
         return scale.x * 100.0f;
     }

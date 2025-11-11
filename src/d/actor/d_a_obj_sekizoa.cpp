@@ -388,10 +388,11 @@ fopAc_ac_c* daObj_Sekizoa_c::getKMsgTagP() {
 
 /* 80CCF03C-80CCF138 000DDC 00FC+00 1/1 0/0 0/0 .text            isDelete__15daObj_Sekizoa_cFv */
 int daObj_Sekizoa_c::isDelete() {
+    bool ret;
     switch (mType) {
     case TYPE_0:
     case TYPE_1:
-        bool ret = false;
+        ret = false;
         if (getBitSW2() != 0xFF) {
             if (dComIfGs_isSwitch(getBitSW2(), fopAcM_GetRoomNo(this))) {
                 ret = true;
@@ -1268,7 +1269,7 @@ void daObj_Sekizoa_c::jump() {
         break;
 
     case 2:
-    case 3:
+    case 3: {
         cXyz temp_vec2;
 
         if (mMotionSeqMngr.getNo() == 7 || mMotionSeqMngr.getNo() == 18) {
@@ -1324,7 +1325,7 @@ void daObj_Sekizoa_c::jump() {
             }
         }
         break;
-
+    }
     case 4:
         if (mMotionSeqMngr.checkEndSequence() != 0) {
             mMotionSeqMngr.setNo(getGameMotionNo(), -1.0f, 0, 0);
@@ -2046,18 +2047,17 @@ int daObj_Sekizoa_c::cutGoal(int i_staffIdx) {
         }
         break;
 
-    case 1:
+    case 1: {
         f32 temp_float = mGoalStatueAngle;
         cLib_chaseF(&mGoalStatueAngle, 0.0f, mGoalStatueTurnSpeed);
-        int temp_diff = mGoalStatueAngle - temp_float;
-        current.angle.y -= temp_diff;
+        current.angle.y -= (int)(mGoalStatueAngle - temp_float);
         shape_angle.y = current.angle.y;
         mCurAngle.y = current.angle.y;
         if (mMotionSeqMngr.checkEndSequence() != 0) {
             ret = 1;
         }
         break;
-
+    }
     case 2:
         if (mMotionSeqMngr.checkEndSequence() != 0) {
             ret = 1;

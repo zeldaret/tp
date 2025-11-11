@@ -173,7 +173,6 @@ int daObjLadder::Act_c::CreateHeap() {
 
 /* 8058D1D8-8058D378 0000F8 01A0+00 1/0 0/0 0/0 .text            Create__Q211daObjLadder5Act_cFv */
 int daObjLadder::Act_c::Create() {
-    // NONMATCHING
     fopAcM_SetMtx(this, mModel->getBaseTRMtx());
     init_mtx();
     fopAcM_setCullSizeBox(this, -55.0f, -1.0f, -10.0f, 55.0f, attr_type(mType).field_0x4 + 41.0f,

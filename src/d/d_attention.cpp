@@ -1880,9 +1880,7 @@ int dAttCatch_c::request(fopAc_ac_c* i_reqActor, u8 i_itemNo, f32 i_horizontalDi
 
     if (i_angle != 0) {
         cSGlobe globe(vec_to_player);
-        csXyz* player_angle_p = fopAcM_GetShapeAngle_p(player);
-
-        s16 angle = globe.U() - player_angle_p->y;
+        s16 angle = globe.U() - fopAcM_GetShapeAngle_p(player)->y;
         if (angle < 0) {
             angle = -angle;
         }

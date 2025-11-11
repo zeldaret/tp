@@ -642,7 +642,6 @@ void dMsgObject_c::setMessageIndex(u32 revoIndex, u32 param_2, bool param_3) {
 }
 
 /* 80233E70-80233F84 22E7B0 0114+00 1/1 1/1 0/0 .text setMessageIndexDemo__12dMsgObject_cFUlb */
-// NONMATCHING reg swap
 void dMsgObject_c::setMessageIndexDemo(u32 revoMsgIndex, bool param_2) {
     field_0x158 = revoMsgIndex;
     revoMsgIndex = getRevoMessageIndex(revoMsgIndex);

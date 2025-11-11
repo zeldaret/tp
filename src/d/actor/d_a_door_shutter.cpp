@@ -933,7 +933,7 @@ int daDoor20_c::demoProc() {
             if (!field_0x584.init(anm, 1, 0, 1.0f, 0, -1, true) || !field_0x5a0.init(anm,
                                                              1, 0, 1.0f, 0, -1, true))
             {
-                JUT_PANIC(1799, 0);
+                JUT_ASSERT(1799, FALSE);
             }
             field_0x67c = 0;
             openInit2();
@@ -945,7 +945,7 @@ int daDoor20_c::demoProc() {
             if (!field_0x584.init(anm, 1, 0, 1.0f, 0, -1, true) || !field_0x5a0.init(anm,
                                                              1, 0, 1.0f, 0, -1, true))
             {
-                JUT_PANIC(1812, 0);
+                JUT_ASSERT(1812, FALSE);
             }
             field_0x67c = 0;
             openInit2();

@@ -408,6 +408,13 @@ int daBg_c::draw() {
                                 break;
                             }
 
+                            #ifdef DEBUG
+                            s16 sp56 = 0xFF;
+                            if (g_kankyoHIO.navy.fish_pond_colreg_adjust_ON) {
+                                sp50 = g_kankyoHIO.navy.fish_pond_colreg_c0;
+                            }
+                            #endif
+
                             f32 var_f31 = bgPart->tevstr->AmbCol.r / 10.0f;
                             var_f31 *= var_f31;
                             if (var_f31 > 1.0f) {

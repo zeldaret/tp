@@ -256,7 +256,6 @@ int daObjHBombkoya_c::Delete() {
 
 /* 80C1C1A8-80C1C2BC 0009A8 0114+00 1/0 0/0 0/0 .text
  * daObjHBombkoya_create1st__FP16daObjHBombkoya_c               */
-// NONMATCHING - vtable issues, read more below
 static int daObjHBombkoya_create1st(daObjHBombkoya_c* i_this) {
     fopAcM_ct(i_this, daObjHBombkoya_c);
 

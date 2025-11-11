@@ -42,18 +42,8 @@ daNpcImpal_HIOParam const daNpcImpal_Param_c::m = {
     0,             // look_mode
     0,             // debug_mode_ON
     0,             // debug_info_ON
-    300.0f,        // field_0x6c
+    300.0f,        // demo_start_dist
 };
-
-#if DEBUG
-daNpcImpal_HIO_c::daNpcImpal_HIO_c() {
-    m = daNpcImpal_Param_c::m;
-}
-
-void daNpcImpal_HIO_c::genMessage(JORMContext* ctext) {
-    // TODO
-}
-#endif
 
 NPC_IMPAL_HIO_CLASS l_HIO;
 
@@ -95,12 +85,24 @@ static Vec l_resetPos = {2536.763671875f, 99.99166107177734f, -1154.231811523437
 /* 80A0C6E4-80A0C6E8 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
 static char* l_myName = "impal";
 
+#if DEBUG
+daNpcImpal_HIO_c::daNpcImpal_HIO_c() {
+    m = daNpcImpal_Param_c::m;
+}
+
+void daNpcImpal_HIO_c::genMessage(JORMContext* ctext) {
+    // Ancient Document Demo Start Distance:
+    ctext->genSlider("古文書デモ開始距離", &m.demo_start_dist, 0.0f, 5000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    daNpcF_commonGenMessage(ctext, &m.common);
+}
+#endif
+
 /* 80A0C70C-80A0C73C 0001E8 0030+00 0/2 0/0 0/0 .data            mEvtSeqList__12daNpcImpal_c */
 daNpcImpal_c::EventFn daNpcImpal_c::mEvtSeqList[4] = {
     NULL,
-    &EvCut_ImpalAppear1,
-    &EvCut_ImpalAppear2,
-    &EvCut_CopyRod,
+    &daNpcImpal_c::EvCut_ImpalAppear1,
+    &daNpcImpal_c::EvCut_ImpalAppear2,
+    &daNpcImpal_c::EvCut_CopyRod,
 };
 
 /* 80A079EC-80A07B70 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__12daNpcImpal_cFv */
@@ -115,11 +117,16 @@ daNpcImpal_c::~daNpcImpal_c() {
     if (heap != NULL) {
         mpMorf->stopZelAnime();
     }
+
+#if DEBUG
+    if (mpHIO) {
+        mpHIO->removeHIO();
+    }
+#endif
 }
 
 /* 80A07DC4-80A080F8 0004C4 0334+00 1/1 0/0 0/0 .text            Create__12daNpcImpal_cFv */
 int daNpcImpal_c::Create() {
-    int phase;
 
     fopAcM_ct(this, daNpcImpal_c);
 
@@ -129,6 +136,7 @@ int daNpcImpal_c::Create() {
         return cPhs_ERROR_e;
     }
 
+    int phase = cPhs_ERROR_e;
     for (int i = 0; i < 1; i++) {
         phase = dComIfG_resLoad(&mPhase[i], l_arcNames[i]);
         if (phase != cPhs_COMPLEATE_e) {
@@ -148,6 +156,11 @@ int daNpcImpal_c::Create() {
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -160.0f, -50.0f, -160.0f, 160.0f, 220.0f, 160.0f);
         mCreatureSound.init(&current.pos, &eyePos, 3, 1);
+#if DEBUG
+        mpHIO = &l_HIO;
+        // Grandma Impaz:
+        mpHIO->entryHIO("インパルばあさん");
+#endif
         mAcchCir.SetWall(mpHIO->m.common.width, mpHIO->m.common.knee_length);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
@@ -167,9 +180,10 @@ int daNpcImpal_c::Create() {
         reset();
         Execute();
 
+        // Hidden Village:
         if (!strcmp(dComIfGp_getStartStageName(), "F_SP128")) {
-            u8 switch_no = getSwitchNo();
-            if (fopAcM_isSwitch(this, switch_no) && !daNpcF_chkEvtBit(0x116)) {
+            // 0x116 - F_0278 - Received pendant from Impaz
+            if (fopAcM_isSwitch(this, getSwitchNo()) && !daNpcF_chkEvtBit(0x116)) {
                 daNpcF_clearMessageTmpBit();
                 mOrderEvtNo = 1;
             }
@@ -181,9 +195,13 @@ int daNpcImpal_c::Create() {
 
 /* 80A080F8-80A08368 0007F8 0270+00 1/1 0/0 0/0 .text            CreateHeap__12daNpcImpal_cFv */
 BOOL daNpcImpal_c::CreateHeap() {
-    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 26));
-    mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreatureSound,
-                                  0x80000, 0x11020284);
+    J3DModelData* mdlData_p = NULL;
+    J3DModel* model = NULL;
+    mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 26));
+    JUT_ASSERT(349, 0 != mdlData_p);
+    u32 reg_r23 = 0x11020284;
+    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreatureSound,
+                                  0x80000, reg_r23);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
         mpMorf->stopZelAnime();
         mpMorf = NULL;
@@ -192,9 +210,9 @@ BOOL daNpcImpal_c::CreateHeap() {
         return FALSE;
     }
 
-    J3DModel* model = mpMorf->getModel();
-    for (u16 jointNo = 0; jointNo < modelData->getJointNum(); jointNo++) {
-        modelData->getJointNodePointer(jointNo)->setCallBack(ctrlJointCallBack);
+    model = mpMorf->getModel();
+    for (u16 jointNo = 0; jointNo < mdlData_p->getJointNum(); jointNo++) {
+        mdlData_p->getJointNodePointer(jointNo)->setCallBack(ctrlJointCallBack);
     }
     model->setUserArea((uintptr_t)this);
 
@@ -214,6 +232,7 @@ BOOL daNpcImpal_c::CreateHeap() {
 
 /* 80A08524-80A08558 000C24 0034+00 1/1 0/0 0/0 .text            Delete__12daNpcImpal_cFv */
 int daNpcImpal_c::Delete() {
+    fopAcM_RegisterDeleteID(this, "NPC_IMPAL");
     this->~daNpcImpal_c();
     return 1;
 }
@@ -230,7 +249,8 @@ int daNpcImpal_c::Draw() {
         return 1;
     }
 
-    mpMorf->getModel()->getModelData()->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
+    J3DModelData* model_data = mpMorf->getModel()->getModelData();
+    model_data->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
     draw(false, false, mpHIO->m.common.real_shadow_size, NULL, false);
 
     return 1;
@@ -239,7 +259,8 @@ int daNpcImpal_c::Draw() {
 /* 80A085EC-80A087BC 000CEC 01D0+00 1/1 0/0 0/0 .text
  * ctrlJoint__12daNpcImpal_cFP8J3DJointP8J3DModel               */
 bool daNpcImpal_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
-    int jointNo = i_joint->getJntNo();
+    J3DJoint* my_joint = i_joint;
+    int jointNo = my_joint->getJntNo();
     int lookatJoints[3] = {1, 3, 4};
 
     if (jointNo == 0) {
@@ -292,7 +313,7 @@ void daNpcImpal_c::setExpressionTalkAfter() {
     }
 }
 
-s16 daNpcImpal_c::step(s16 i_angle, int i_animate) {
+int daNpcImpal_c::step(s16 i_angle, int i_animate) {
     if (mTurnMode == 0) {
         if (i_animate) {
             if ((s32)fabsf(cM_sht2d((f32)(s16)(i_angle - mCurAngle.y))) > 40) {
@@ -384,7 +405,8 @@ void daNpcImpal_c::playMotion() {
 /* 80A087BC-80A087DC 000EBC 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__12daNpcImpal_cFP10fopAc_ac_c             */
 int daNpcImpal_c::createHeapCallBack(fopAc_ac_c* i_this) {
-    return static_cast<daNpcImpal_c*>(i_this)->CreateHeap();
+    daNpcImpal_c* a_this = static_cast<daNpcImpal_c*>(i_this);
+    return a_this->CreateHeap();
 }
 
 /* 80A087DC-80A08828 000EDC 004C+00 1/1 0/0 0/0 .text
@@ -405,13 +427,10 @@ int daNpcImpal_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
 bool daNpcImpal_c::setExpressionAnm(int i_idx, bool i_modify) {
     mAnmFlags &= ~ANM_EXPRESSION_FLAGS;
 
-    J3DAnmTransform* bckAnm;
-    if (l_bckGetParamList[i_idx].fileIdx >= 0) {
-        bckAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx],
-                                   l_bckGetParamList[i_idx].fileIdx);
-    } else {
-        bckAnm = NULL;
-    }
+    J3DAnmTransform* bckAnm = (l_bckGetParamList[i_idx].fileIdx >= 0) ?
+                                getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx],
+                                                  l_bckGetParamList[i_idx].fileIdx)
+                                : NULL;
 
     s32 attr = l_bckGetParamList[i_idx].attr;
     bool res = false;
@@ -465,6 +484,8 @@ bool daNpcImpal_c::setExpressionAnm(int i_idx, bool i_modify) {
         return true;
     }
 
+    // "%s: Failed to register facial BCK animation!\n"
+    OS_REPORT("%s: 表情Bckアニメーションの登録に失敗しました！\n", __FILE__);
     return false;
 }
 
@@ -489,6 +510,8 @@ bool daNpcImpal_c::setExpressionBtp(int i_idx) {
         return true;
     }
 
+    // "%s: Failed to register facial BTP animation!\n"
+    OS_REPORT("%s: 表情Btpアニメーションの登録に失敗しました！\n", __FILE__);
     return false;
 }
 
@@ -506,9 +529,12 @@ void daNpcImpal_c::setMotionAnm(int i_idx, f32 i_morf) {
     case ANM_10:
     case ANM_11:
         break;
-    case ANM_2:
-    case ANM_3:
+    // Is this a bug from the original developers?
     case ANM_12:
+        iVar5 = 1;
+    case ANM_2:
+        iVar5 = 2;
+    case ANM_3:
         iVar5 = 3;
         break;
     }
@@ -560,22 +586,16 @@ void daNpcImpal_c::reset() {
         field_0xde8 = 1;
         field_0xde9 = 1;
     } else {
-        u8 switch_no = getSwitchNo();
-        field_0xde8 = fopAcM_isSwitch(this, switch_no) ? 1 : 0;
-        u8 dVar1 = 0;
-        switch_no = getSwitchNo();
-        if (fopAcM_isSwitch(this, switch_no) && daNpcF_chkEvtBit(0x116)) {
-            dVar1 = 1;
-        }
-        field_0xde9 = dVar1;
+        field_0xde8 = fopAcM_isSwitch(this, getSwitchNo()) != FALSE;
+        field_0xde9 = (fopAcM_isSwitch(this, getSwitchNo()) && daNpcF_chkEvtBit(0x116));
     }
 
-    if (!strcmp(dComIfGp_getStartStageName(), "F_SP128") && field_0xde8 != 0 && field_0xde9 != 0) {
+    if (!strcmp(dComIfGp_getStartStageName(), "F_SP128") && field_0xde8 && field_0xde9) {
         current.pos.set(l_resetPos);
         old.pos = current.pos;
     }
 
-    setAction(&wait);
+    setAction(&daNpcImpal_c::wait);
 }
 
 /* 80A08EB8-80A08F60 0015B8 00A8+00 1/1 0/0 0/0 .text
@@ -658,10 +678,11 @@ static void* s_sub1(void* i_actor, void* i_data) {
 BOOL daNpcImpal_c::chkFindPlayer() {
     BOOL ret;
 
-    if (!chkActorInSight(daPy_getPlayerActorClass(), mpHIO->m.common.fov)) {
+    if (chkActorInSight(daPy_getPlayerActorClass(), mpHIO->m.common.fov) == FALSE) {
         mActorMngr[0].remove();
-        ret = false;
+        return FALSE;
     } else {
+        ret = FALSE;
         if (mActorMngr[0].getActorP() == NULL) {
             ret = chkPlayerInSpeakArea(this);
         } else {
@@ -700,7 +721,7 @@ bool daNpcImpal_c::wait(void* param_0) {
         break;
     case 2:
         if (mActorMngr[0].getActorP()) {
-            if (!chkFindPlayer()) {
+            if (chkFindPlayer() == FALSE) {
                 mTurnMode = 0;
             }
         } else if (chkFindPlayer()) {
@@ -721,37 +742,33 @@ bool daNpcImpal_c::wait(void* param_0) {
             }
         }
 
-        u8 switch_no;
-        if (field_0xde8 == 0 && (switch_no = getSwitchNo(), fopAcM_isSwitch(this, switch_no))) {
+        if (field_0xde8 == 0 && fopAcM_isSwitch(this, getSwitchNo())) {
             deleteObstacle();
             Z2GetAudioMgr()->bgmStop(60, 0);
             daNpcF_clearMessageTmpBit();
             mOrderEvtNo = 1;
             field_0xde8 = 1;
         } else {
-            if (daNpcF_chkEvtBit(0x116) && !daNpcF_chkEvtBit(0x30f)) {
-                if ((u8)daPy_getPlayerActorClass()->checkCopyRodEquip()) {
-                    f32 player_dist =
-                        (daPy_getPlayerActorClass()->current.pos - current.pos).absXZ();
-                    if (player_dist < daNpcImpal_Param_c::m.field_0x6c) {
-                        daNpcF_offTmpBit(0xb);
-                        daNpcF_offTmpBit(0xc);
-                        mOrderEvtNo = 3;
-                    }
-                }
+            // 0x116 - F_0278 - Received pendant from Impaz
+            // 0x30F - F_0783 - Showed dominion rod to Impaz
+            if (daNpcF_chkEvtBit(0x116) && !daNpcF_chkEvtBit(0x30F) && daPy_getPlayerActorClass()->checkCopyRodEquip()
+                && (daPy_getPlayerActorClass()->current.pos - current.pos).absXZ() < mpHIO->m.demo_start_dist) {
+                daNpcF_offTmpBit(0xb);
+                daNpcF_offTmpBit(0xc);
+                mOrderEvtNo = 3;
             }
         }
 
-        if (dComIfGp_event_runCheck() != false) {
+        if (dComIfGp_event_runCheck() != FALSE) {
             if (eventInfo.checkCommandTalk()) {
                 if (dComIfGp_event_chkTalkXY()) {
-                    if (!dComIfGp_evmng_ChkPresentEnd()) {
+                    if (dComIfGp_evmng_ChkPresentEnd() == FALSE) {
                         return true;
                     }
                     u8 preitemno = dComIfGp_event_getPreItemNo();
                     if (preitemno == fpcNm_ITEM_ANCIENT_DOCUMENT) {
                         mFlowID = 5;
-                        setAction(&talk);
+                        setAction(&daNpcImpal_c::talk);
                     } else {
                         s16 evt_idx =
                             dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
@@ -759,15 +776,16 @@ bool daNpcImpal_c::wait(void* param_0) {
                         fopAcM_orderChangeEventId(this, evt_idx, 1, -1);
                     }
                 } else {
-                    setAction(&talk);
+                    setAction(&daNpcImpal_c::talk);
                 }
             } else {
                 int mystaffid = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
                 if (mystaffid != -1) {
-                    setAction(&demo);
+                    setAction(&daNpcImpal_c::demo);
                 }
             }
         } else {
+            // 0x30F - F_0783 - Showed dominion rod to Impaz
             if (daNpcF_chkEvtBit(0x30f)) {
                 eventInfo.onCondition(0x20);
             }
@@ -778,6 +796,8 @@ bool daNpcImpal_c::wait(void* param_0) {
         }
     case 3:
         break;
+    default:
+        JUT_ASSERT(1384, FALSE);
     }
 
     return true;
@@ -835,7 +855,7 @@ bool daNpcImpal_c::talk(void* param_0) {
                     }
                 }
 
-                setAction(&wait);
+                setAction(&daNpcImpal_c::wait);
 
                 ret = true;
             } else {
@@ -869,18 +889,24 @@ bool daNpcImpal_c::talk(void* param_0) {
 
 /* 80A09F4C-80A0A1E0 00264C 0294+00 1/0 0/0 0/0 .text            demo__12daNpcImpal_cFPv */
 bool daNpcImpal_c::demo(void* param_0) {
+    // FIXME: Create proper enum list for impal events:
+    enum Impal_Enums_are_magic {
+        Impal_magic_enum_0 = 0,
+        Impal_magic_enum_2 = 2,
+    };
     switch (mMode) {
     case 0:
         setExpression(EXPR_7, -1.0f);
         setMotion(MOT_0, -1.0f, false);
         mMode = 2;
-    case 2:
-        if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
+    case 2: {
+        if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk()) {
             dEvent_manager_c& event_manager = dComIfGp_getEventManager();
 
             s32 staff_id = dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
             if (staff_id != -1) {
                 mStaffID = staff_id;
+                JUT_ASSERT(1494, NULL != mEvtSeqList[mOrderEvtNo]);
                 if ((this->*(mEvtSeqList[mOrderEvtNo]))(staff_id)) {
                     event_manager.cutEnd(staff_id);
                 }
@@ -892,21 +918,17 @@ bool daNpcImpal_c::demo(void* param_0) {
                 if (!field_0x9ec) {
                     dComIfGp_event_reset();
                 }
+
                 field_0x9ec = 0;
-
-                u16 evt_no = 0;
-                if (mOrderEvtNo == 1) {
-                    evt_no = 2;
-                }
-                mOrderEvtNo = evt_no;
-
+                mOrderEvtNo = (mOrderEvtNo == 1) ? Impal_magic_enum_2 : Impal_magic_enum_0;
                 mEventIdx = -1;
 
-                setAction(&wait);
+                setAction(&daNpcImpal_c::wait);
             }
         } else {
-            setAction(&wait);
+            setAction(&daNpcImpal_c::wait);
         }
+    }
     case 3:
         break;
     }
@@ -1095,7 +1117,7 @@ BOOL daNpcImpal_c::EvCut_CopyRod(int i_cut_index) {
     }
 
     switch (*cut_name) {
-    case '0001':
+    case '0001': {
         if (talkProc(NULL, 1, NULL)) {
             return TRUE;
         }
@@ -1112,6 +1134,7 @@ BOOL daNpcImpal_c::EvCut_CopyRod(int i_cut_index) {
         s16 angle = cLib_targetAngleY(&acStack_40, &current.pos);
         daPy_getPlayerActorClass()->setPlayerPosAndAngle(&acStack_40, angle, 0);
         break;
+    }
     case '0002':
     case '0004':
         if (talkProc(NULL, 1, NULL)) {

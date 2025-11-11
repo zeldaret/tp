@@ -1661,7 +1661,7 @@ int daAlink_c::procCutTurnInit(int param_0, int param_1) {
         if (param_0) {
             var_f31 = cutData->mRightTurnInputStartFrame;
         } else {
-            var_f31 = cutData->mRightTurnAnm.mStartFrame;
+            var_f31 = anm_data->mStartFrame;
         }
 
         field_0x3484 = cutData->mRightAttackStartFrame;

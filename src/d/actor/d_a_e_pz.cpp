@@ -428,7 +428,6 @@ void daE_PZ_c::executeSearchPoint() {
 }
 
 /* 807593CC-8075B7CC 000F4C 2400+00 2/1 0/0 0/0 .text            executeOpeningDemo__8daE_PZ_cFv */
-// NONMATCHING - fopAcM_GetID not getting inlined, equivalent
 void daE_PZ_c::executeOpeningDemo() {
     static cXyz mPzCenterInit_dt[] = {
         cXyz(-50.0f, 10.0f, -3150.0f),

@@ -5,7 +5,7 @@
 
 struct daNpcImpal_HIOParam {
     /* 0x00 */ daNpcF_HIOParam common;
-    /* 0x6C */ f32 field_0x6c;
+    /* 0x6C */ f32 demo_start_dist;
 };
 
 class daNpcImpal_Param_c {
@@ -91,10 +91,10 @@ public:
     /* 80A085EC */ bool ctrlJoint(J3DJoint*, J3DModel*);
     /* 80A087BC */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80A087DC */ static int ctrlJointCallBack(J3DJoint*, int);
-    /* 80A08828 */ bool setExpressionAnm(int, bool);
-    /* 80A08A68 */ bool setExpressionBtp(int);
+    /* 80A08828 */ inline bool setExpressionAnm(int, bool);
+    /* 80A08A68 */ inline bool setExpressionBtp(int);
     /* 80A08B48 */ void setMotionAnm(int, f32);
-    /* 80A08CBC */ void reset();
+    /* 80A08CBC */ inline void reset();
     /* 80A08EB8 */ inline bool setAction(daNpcImpal_c::actionFunc);
     /* 80A090E8 */ bool wait(void*);
     /* 80A099B4 */ void setMotion(int, f32, BOOL);
@@ -111,11 +111,11 @@ public:
     /* 80A0B76C */ inline void lookat();
     /* 80A0B94C */ inline BOOL drawDbgInfo();
 
-    s16 getMessageNo() { return shape_angle.x; }
-    u8 getSwitchNo() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
+    s16 getMessageNo() { return s16(shape_angle.x); }
+    int getSwitchNo() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
     inline void playExpression();
     inline void playMotion();
-    inline s16 step(s16, int);
+    inline int step(s16, int);
     inline void setExpressionTalkAfter();
     inline BOOL chkFindPlayer();
     inline void setLookMode(int i_lookMode);
@@ -139,8 +139,8 @@ private:
     /* 0xDE2 */ s16 field_de2;
     /* 0xDE4 */ s16 mLookMode;
     /* 0xDE6 */ u16 mMode;
-    /* 0xDE8 */ u8 field_0xde8;
-    /* 0xDE9 */ u8 field_0xde9;
+    /* 0xDE8 */ bool field_0xde8;
+    /* 0xDE9 */ bool field_0xde9;
 };
 
 STATIC_ASSERT(sizeof(daNpcImpal_c) == 0xdec);
