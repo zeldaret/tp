@@ -63,6 +63,7 @@ double frexp(double, int*);
 double ldexp(double, int);
 double modf(double, double*);
 double pow(double, double);
+float powf(float, float);
 double sin(double);
 float sinf(float);
 double sqrt(double);

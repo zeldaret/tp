@@ -3950,7 +3950,7 @@ bool daNpcChat_c::wait(void* param_1) {
 
             if (
                 dKy_darkworld_check() == 0 && daPy_py_c::checkNowWolf() &&
-                fopAcM_searchPlayerDistanceXZ2(this) < std::pow(500.0, 2.0) || mFear
+                fopAcM_searchPlayerDistanceXZ2(this) < std::pow(500.0f, 2.0f) || mFear
             ) {
                 setAction(&daNpcChat_c::fear);
                 if (!mFear) {
@@ -3988,15 +3988,13 @@ bool daNpcChat_c::wait(void* param_1) {
                         setMotion(i_motion, -1.0f, 1);
                     }
 
-                    if (mTalkFlag) {
-                        if (dComIfGp_event_getTalkPartner() != this) {
+                    if (mTalkFlag && dComIfGp_event_getTalkPartner() != this) {
                         if (field_0xe51 == 1) {
                             setMotion(MOT_SITWAIT_A, -1.0f, 0);
                         } else if (field_0xe51 == 2) {
                             setMotion(MOT_SITWAIT_B, -1.0f, 0);
                         } else {
                             setMotion(MOT_WAIT_A, -1.0f, 0);
-                        }
                         }
                     }
                 } else if (mTalkFlag) {
