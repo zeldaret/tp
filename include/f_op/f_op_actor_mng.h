@@ -425,6 +425,10 @@ inline void fopAcM_SetOldPosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
     i_actor->old.pos.set(x, y, z);
 }
 
+inline csXyz* fopAcM_GetHomeAngle_p(fopAc_ac_c* i_actor) {
+    return &i_actor->home.angle;
+}
+
 inline void fopAcM_SetHomePosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
     i_actor->home.pos.set(x, y, z);
 }

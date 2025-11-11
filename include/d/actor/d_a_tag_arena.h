@@ -13,7 +13,7 @@ public:
     cXyz getArenaPos() { return home.pos; }
     f32 getArenaExtent() { return scale.x * 100.0f; }
     s16 getArenaAngle() { return home.angle.y; }
-    u16 getArenaNo() { return fopAcM_GetParam(this) & 0xFF; }
+    s16 getArenaNo() { return fopAcM_GetParam(this) & 0xFF; }
 };
 
 #endif /* D_A_TAG_ARENA_H */
