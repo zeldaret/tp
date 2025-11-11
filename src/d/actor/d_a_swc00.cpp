@@ -146,7 +146,7 @@ int daSwc00_c::execute() {
         break;
     default:
         OSReport_Error("領域スイッチ：引数０が不正値<%d>です\n", type);
-        JUT_PANIC(289, "0");
+        JUT_ASSERT(289, FALSE);
         break;
     }
     

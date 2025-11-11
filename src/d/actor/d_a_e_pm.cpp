@@ -355,7 +355,6 @@ static s16 s_TargetAngle;
 }  // namespace
 
 /* 80742958-80742C94 000B58 033C+00 1/1 0/0 0/0 .text            SearchFarP__8daE_PM_cFv */
-// NONMATCHING regalloc, instruction order
 void daE_PM_c::SearchFarP() {
     //! @bug best_distance is not initialized
     f32 best_distance;
@@ -2500,7 +2499,6 @@ void daE_PM_c::DamageAction() {
 }
 
 /* 8074A210-8074A3DC 008410 01CC+00 1/1 0/0 0/0 .text            At_Check__8daE_PM_cFv */
-// NONMATCHING regalloc
 void daE_PM_c::At_Check() {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     mAtInfo.mpCollider = mCcCyl.GetTgHitObj();

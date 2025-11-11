@@ -55,6 +55,10 @@ inline void mDoAud_bgmStart(u32 i_bgmID) {
     Z2AudioMgr::getInterface()->bgmStart(i_bgmID, 0, 0);
 }
 
+inline void mDoAud_bgmAllMute(u32 i_count) {
+    Z2AudioMgr::getInterface()->bgmAllMute(i_count, 0.0f);
+}
+
 inline void mDoAud_subBgmStart(u32 i_bgmID) {
     Z2AudioMgr::getInterface()->subBgmStart(i_bgmID);
 }

@@ -195,7 +195,7 @@ public:
         return true;
     }
 
-    void doNormalAction() {
+    void doNormalAction(int) {
         mOrderEvtNo = 0;
         if (mpNextActionFn != NULL) {
             if (mpNextActionFn == mpActionFn) {

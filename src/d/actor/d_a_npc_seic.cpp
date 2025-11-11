@@ -269,7 +269,6 @@ void daNpc_seiC_c::reset() {
 
 /* 80AC7C1C-80AC7D34 0007BC 0118+00 1/0 0/0 0/0 .text            setParam__12daNpc_seiC_cFv */
 void daNpc_seiC_c::setParam() {
-    // NONMATCHING
     selectAction();
     srchActors();
 

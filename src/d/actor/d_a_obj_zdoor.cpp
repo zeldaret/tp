@@ -316,7 +316,6 @@ int daZdoor_c::create1st() {
 
 /* 80D3FACC-80D3FCE8 00070C 021C+00 1/0 0/0 0/0 .text            Execute__9daZdoor_cFPPA3_A4_f */
 int daZdoor_c::Execute(Mtx** i_mtx) {
-    // NONMATCHING
     s16 current_open_angle = mOpenAngle;
     set_cyl();
 

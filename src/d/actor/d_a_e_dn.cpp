@@ -2947,7 +2947,6 @@ int c_start;
 
 /* 804ECB50-804ED83C 007A90 0CEC+00 2/1 0/0 0/0 .text            daE_DN_Execute__FP10e_dn_class */
 static int daE_DN_Execute(e_dn_class* i_this) {
-    // NONMATCHING
     if (i_this->field_0x10d8 != 0) {
         return 1;
     }
@@ -3181,8 +3180,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
             def_se_set(&i_this->mSound, i_this->field_0xf7c.GetTgHitObj(), 40, 0);
             dScnPly_c::setPauseTimer(l_HIO.field_0x1c);
             i_this->field_0x6ec = 10;
-            // The following s16 cast makes ALL the difference in terms of regalloc!
-            cMtx_YrotS(*calc_mtx, (s16) a_this->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, (s16)a_this->shape_angle.y);
             sp2c.x = KREG_F(0);
             sp2c.y = 120.0f + KREG_F(1);
             sp2c.z = 50.0f + KREG_F(2);

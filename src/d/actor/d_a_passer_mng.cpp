@@ -502,7 +502,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         break;
     default:
         OS_REPORT("%s: Line.%d arg=%d\n", "d_a_passer_mng.cpp", 921, param_1);
-        JUT_PANIC(922, 0);
+        JUT_ASSERT(922, FALSE);
     }
     return paramLow << 8;
 }

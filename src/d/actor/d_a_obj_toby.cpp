@@ -443,7 +443,6 @@ static int daObj_Toby_Delete(obj_toby_class* i_this) {
 }
 
 /* 80D149DC-80D14BD4 00133C 01F8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-// nonmatching - regalloc
 static int useHeapInit(fopAc_ac_c* a_this) {
     obj_toby_class* i_this = (obj_toby_class*)a_this;
     void* modelData;

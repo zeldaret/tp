@@ -10,6 +10,7 @@ class fopAc_ac_c;
 class dEvent_exception_c {
 public:
     dEvent_exception_c() { mEventInfoIdx = -1; }
+    ~dEvent_exception_c() {}
     void init();
     int setStartDemo(int mapToolID);
     const char* getEventName();

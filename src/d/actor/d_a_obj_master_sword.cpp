@@ -10,8 +10,6 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
 
-// NONMATCHING - vtable order. I think it has something to do with the inline functions.
-
 /* 80C91940-80C91944 000000 0004+00 2/2 0/0 0/0 .rodata          mAttr__18daObjMasterSword_c */
 daObjMasterSword_Attr_c const daObjMasterSword_c::mAttr = {1.0f};
 

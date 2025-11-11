@@ -10,9 +10,6 @@ class J3DModelData;
 class dBgW;
 
 struct fs_weed_s {
-    /* 8086FED8 */ ~fs_weed_s();
-    /* 8086FF38 */ fs_weed_s();
-
     /* 0x00 */ cXyz field_0x00[15];
     /* 0xB4 */ f32 field_0xb4;
     /* 0xB8 */ f32 field_0xb8;
@@ -20,9 +17,6 @@ struct fs_weed_s {
 };
 
 struct fs_tsubo_s {
-    /* 8086FE98 */ ~fs_tsubo_s();
-    /* 8086FED4 */ fs_tsubo_s();
-
     /* 0x00 */ cXyz field_0x00;
     /* 0x0C */ u8 field_0x0c[0x14 - 0x0c];
     /* 0x14 */ J3DModel* field_0x14;
@@ -34,9 +28,6 @@ struct fs_tsubo_s {
 };
 
 struct fs_rod_s {
-    /* 8086FF84 */ ~fs_rod_s();
-    /* 8086FFC0 */ fs_rod_s();
-
     /* 0x00 */ cXyz field_0x00;
     /* 0x0C */ u8 field_0x0C[0x14 - 0x0C];
     /* 0x14 */ J3DModel* field_0x14;
@@ -49,9 +40,6 @@ struct fs_rod_s {
 };
 
 struct fs_lure_s {
-    /* 8086FFDC */ ~fs_lure_s();
-    /* 80870018 */ fs_lure_s();
-
     /* 0x00 */ cXyz field_0x00;
     /* 0x0C */ s16 field_0x0c;
     /* 0x0E */ s16 field_0x0e;
@@ -72,9 +60,6 @@ struct fs_lure_s {
 };
 
 struct fs_koro2_s {
-    /* 8086FD78 */ ~fs_koro2_s();
-    /* 8086FDB4 */ fs_koro2_s();
-
     /* 0x00 */ J3DModel* mpModel;
     /* 0x04 */ Mtx field_0x04;
     /* 0x34 */ s8 field_0x34;
