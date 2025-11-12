@@ -2158,7 +2158,7 @@ int daAlink_c::procHorseCut() {
 /* 800F1894-800F194C 0EC1D4 00B8+00 3/3 0/0 0/0 .text procHorseCutChargeReadyInit__9daAlink_cFv */
 int daAlink_c::procHorseCutChargeReadyInit() {
     commonProcInit(PROC_HORSE_CUT_CHARGE_READY);
-    setUpperAnimeParam(0x96, UPPER_2, &daAlinkHIO_hoCutCharge_c0::m.field_0x0);
+    setUpperAnimeParam(0x96, UPPER_2, &daAlinkHIO_hoCutCharge_c0::m.mChargeAnm);
     setFacePriBck(0xE8);
     field_0x2f96 = 2;
 
@@ -2222,12 +2222,12 @@ int daAlink_c::procHorseCutTurnInit() {
         resetUnderAnime(UNDER_2, -1.0f);
     }
 
-    setSingleAnimeParam(ANM_HORSE_CUT_TURN, &daAlinkHIO_hoCutCharge_c0::m.field_0x28);
+    setSingleAnimeParam(ANM_HORSE_CUT_TURN, &daAlinkHIO_hoCutCharge_c0::m.mCutAnm);
     setCutType(43);
     setSyncRide(1);
-    field_0x3478 = daAlinkHIO_hoCutCharge_c0::m.field_0x50;
+    field_0x3478 = daAlinkHIO_hoCutCharge_c0::m.mSpinAttackRadius;
     setCylAtParam(getSwordAtType(), dCcG_At_Spl_UNK_1, 3, 1, 3, field_0x3478 * 0.5f, 200.0f);
-    mProcVar4.field_0x3010 = daAlinkHIO_hoCutCharge_c0::m.field_0x3E;
+    mProcVar4.field_0x3010 = daAlinkHIO_hoCutCharge_c0::m.mSpinAttackEndFrame;
     voiceStart(Z2SE_AL_V_KAITEN);
     setCutWaterDropEffect();
     setHorseZeldaDamage();
@@ -2246,7 +2246,7 @@ int daAlink_c::procHorseCutTurn() {
         procHorseWaitInit();
         field_0x2060->initOldFrameMorf(4.0f, 0, 0x23);
     } else {
-        if (temp_r30->getFrame() > daAlinkHIO_hoCutCharge_c0::m.field_0x28.mCancelFrame) {
+        if (temp_r30->getFrame() > daAlinkHIO_hoCutCharge_c0::m.mCutAnm.mCancelFrame) {
             if (orderTalk(1)) {
                 return 1;
             }
@@ -2261,7 +2261,7 @@ int daAlink_c::procHorseCutTurn() {
             }
         }
 
-        if (temp_r30->getFrame() >= daAlinkHIO_hoCutCharge_c0::m.field_0x48 && temp_r30->getFrame() < daAlinkHIO_hoCutCharge_c0::m.field_0x4C) {
+        if (temp_r30->getFrame() >= daAlinkHIO_hoCutCharge_c0::m.mSpinAttackStartFrame && temp_r30->getFrame() < daAlinkHIO_hoCutCharge_c0::m.mSpinAttackEndFrame) {
             if (!checkNoResetFlg0(FLG0_UNK_40)) {
                 seStartSwordCut(Z2SE_AL_KAITENGIRI);
             }

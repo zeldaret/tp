@@ -583,8 +583,7 @@ public:
 private:
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ daAlinkHIO_cutNormal_c1 m;
-
-};
+}; // Size: 0x58
 
 class daAlinkHIO_cutFinish_c1 {
 public:
@@ -672,7 +671,7 @@ public:
 
 private:
     /* 0x34 */ daAlinkHIO_cutFnJU_c1 m;
-};
+}; // Size: 0x88
 
 class daAlinkHIO_cutDash_c1 {
 public:
@@ -735,7 +734,7 @@ public:
 
 private:
     /* 0x34 */ daAlinkHIO_cutJump_c1 m;
-};
+}; // Size: 0x78
 
 class daAlinkHIO_cutTurn_c1 {
 public:
@@ -782,7 +781,7 @@ public:
 
 private:
     /* 0x34 */ daAlinkHIO_cutTurn_c1 m;
-};
+}; // Size: 0xCC
 
 class daAlinkHIO_hoCut_c1 {
 public:
@@ -790,7 +789,7 @@ public:
     /* 0x14 */ f32 mAttackStartFrame;
     /* 0x18 */ f32 mAttackEndFrame;
     /* 0x1C */ f32 mAfterCutMorf;
-};
+}; // Size: 0x20
 
 class daAlinkHIO_hoCutLA_c0 {
 public:
@@ -822,20 +821,20 @@ public:
 private:
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ daAlinkHIO_hoCut_c1 m;
-};
+}; // Size: 0x58
 
 class daAlinkHIO_hoCutCharge_c1 {
 public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
-    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
-    /* 0x3C */ s16 field_0x3C;
-    /* 0x3E */ s16 field_0x3E;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ f32 field_0x44;
-    /* 0x48 */ f32 field_0x48;
-    /* 0x4C */ f32 field_0x4C;
-    /* 0x50 */ f32 field_0x50;
+    /* 0x00 */ daAlinkHIO_anm_c mChargeAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mCutAnm;
+    /* 0x28 */ daAlinkHIO_anm_c mSpinAnm;
+    /* 0x3C */ s16 mCutStopTime;
+    /* 0x3E */ s16 mSpinStopTime;
+    /* 0x40 */ f32 mCutAttackStartFrame;
+    /* 0x44 */ f32 mCutAttackEndFrame;
+    /* 0x48 */ f32 mSpinAttackStartFrame;
+    /* 0x4C */ f32 mSpinAttackEndFrame;
+    /* 0x50 */ f32 mSpinAttackRadius;
 };  // Size: 0x54
 
 class daAlinkHIO_hoCutCharge_c0 {
@@ -852,7 +851,7 @@ public:
 
 private:
     /* 0x34 */ daAlinkHIO_hoCutCharge_c1 m;
-};
+}; // Size: 0x88
 
 class daAlinkHIO_cutDown_c1 {
 public:
@@ -883,7 +882,7 @@ public:
 
 private:
     /* 0x34 */ daAlinkHIO_cutDown_c1 m;
-};
+}; // Size: 0xA8
 
 class daAlinkHIO_cutHead_c1 {
 public:
@@ -915,7 +914,7 @@ public:
 
 private:
     /* 0x34 */ daAlinkHIO_cutHead_c1 m;
-};
+}; // Size: 0x94
 
 class daAlinkHIO_cutLargeJump_c1 {
 public:
@@ -948,7 +947,7 @@ public:
 
 private:
     /* 0x34 */ daAlinkHIO_cutLargeJump_c1 m;
-};
+}; // Size: 0xA8
 
 class daAlinkHIO_cut_c1 {
 public:
@@ -995,33 +994,51 @@ public:
     virtual void genMessage(JORMContext*);
 
 private:
-    /* 0x34 */ daAlinkHIO_cutNormal_c mCutNormal0;
-    daAlinkHIO_cutNormal_c mCutNormal1;
-    daAlinkHIO_cutNormal_c mCutNormal2;
-    daAlinkHIO_cutNormal_c mCutNormal3;
-    daAlinkHIO_cutNormal_c mCutNormal4;
-    daAlinkHIO_cutFinish_c mCutFinish0;
-    daAlinkHIO_cutFinish_c mCutFinish1;
-    daAlinkHIO_cutFinish_c mCutFinish2;
-    daAlinkHIO_cutFinish_c mCutFinish3;
-    daAlinkHIO_cutFinish_c mCutFinish4;
-    daAlinkHIO_cutFinish_c mCutFinish5;
-    daAlinkHIO_cutFnJU_c mCutFinishJU;
-    daAlinkHIO_cutJump_c mCutJump;
-    daAlinkHIO_cutTurn_c mCutTurn;
-    daAlinkHIO_hoCut_c mHoCut0;
-    daAlinkHIO_hoCut_c mHoCut1;
-    daAlinkHIO_hoCut_c mHoCut2;
-    daAlinkHIO_hoCut_c mHoCut3;
-    daAlinkHIO_hoCutCharge_c mHoCutCharge;
-    daAlinkHIO_cutDash_c mCutDash0;
-    daAlinkHIO_cutDash_c mCutDash1;
-    daAlinkHIO_cutDash_c mCutDash2;
-    daAlinkHIO_cutDown_c mCutDown;
-    daAlinkHIO_cutHead_c mCutHead;
-    daAlinkHIO_cutLargeJump_c mCutLargeJump;
-    daAlinkHIO_cut_c1 m;
+    /* 0x034 */ daAlinkHIO_cutNormal_c mCutVertical;
+    /* 0x08C */ daAlinkHIO_cutNormal_c mCutLeft;
+    /* 0x0E4 */ daAlinkHIO_cutNormal_c mCutRight;
+    /* 0x13C */ daAlinkHIO_cutNormal_c mCutLeftStab;
+    /* 0x194 */ daAlinkHIO_cutNormal_c mCutRightStab;
+    /* 0x1EC */ daAlinkHIO_cutFinish_c mCutFinishLeft;
+    /* 0x250 */ daAlinkHIO_cutFinish_c mCutFinishVertical;
+    /* 0x2B4 */ daAlinkHIO_cutFinish_c mCutFinishStab;
+    /* 0x318 */ daAlinkHIO_cutFinish_c mCutFinishSweep;
+    /* 0x37C */ daAlinkHIO_cutFinish_c mCutFinishSlash;
+    /* 0x3E0 */ daAlinkHIO_cutFinish_c mCutFinishRight;
+    /* 0x444 */ daAlinkHIO_cutFnJU_c mCutFinishJumpUppercut;
+    /* 0x4CC */ daAlinkHIO_cutJump_c mCutJump;
+    /* 0x544 */ daAlinkHIO_cutTurn_c mCutTurn;
+    /* 0x610 */ daAlinkHIO_hoCut_c mHorseCutLeftA;
+    /* 0x668 */ daAlinkHIO_hoCut_c mHorseCutLeftB;
+    /* 0x6C0 */ daAlinkHIO_hoCut_c mHorseCutRightA;
+    /* 0x718 */ daAlinkHIO_hoCut_c mHorseCutRightB;
+    /* 0x770 */ daAlinkHIO_hoCutCharge_c mHorseCutCharge;
+    /* 0x7F8 */ daAlinkHIO_cutDash_c mCutDashLeft;
+    /* 0x84C */ daAlinkHIO_cutDash_c mCutDashRight;
+    /* 0x8A0 */ daAlinkHIO_cutDash_c mCutDashCharge;
+    /* 0x8F4 */ daAlinkHIO_cutDown_c mCutDown;
+    /* 0x99C */ daAlinkHIO_cutHead_c mCutHead;
+    /* 0xA30 */ daAlinkHIO_cutLargeJump_c mCutLargeJump;
+    /* 0xAD8 */ daAlinkHIO_cut_c1 m;
+}; // Size: 0xB74
 
+class daAlinkHIO_guardAttack_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mAttackAnm;
+    /* 0x14 */ f32 mSpeed;
+    /* 0x18 */ f32 mAttackStartFrame;
+    /* 0x1C */ f32 mAttackEndFrame;
+    /* 0x20 */ f32 mSlashCheckFrame;
+};  // Size: 0x24
+
+class daAlinkHIO_gAtPush_c0 {
+public:
+    static daAlinkHIO_guardAttack_c1 const m;
+};
+
+class daAlinkHIO_gAtKick_c0 {
+public:
+    static daAlinkHIO_guardAttack_c1 const m;
 };
 
 class daAlinkHIO_guardAttack_c : public daAlinkHIO_data_c {
@@ -1030,6 +1047,28 @@ public:
     ~daAlinkHIO_guardAttack_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ daAlinkHIO_guardAttack_c1 m;
+};
+
+class daAlinkHIO_turnMove_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mTurnAnm;
+    /* 0x14 */ s16 mTurnSpeedRate;
+    /* 0x16 */ s16 mMaxTurnSpeed;
+    /* 0x18 */ s16 mMinTurnSpeed;
+    /* 0x1A */ s16 mMaxHalfTurnSpeed;
+    /* 0x1C */ f32 mHalfTurnAnmSpeed;
+    /* 0x20 */ f32 mTwirlCutDelayF;
+    /* 0x24 */ f32 mSideRollAnmSpeed;
+    /* 0x28 */ f32 mSideRollSpeed;
+};  // Size: 0x2C
+
+class daAlinkHIO_turnMove_c0 {
+public:
+    static daAlinkHIO_turnMove_c1 const m;
 };
 
 class daAlinkHIO_turnMove_c : public daAlinkHIO_data_c {
@@ -1038,6 +1077,35 @@ public:
     ~daAlinkHIO_turnMove_c();
     
     virtual void genMessage(JORMContext*);
+private:
+    /* 0x34 */ daAlinkHIO_turnMove_c1 m;
+};
+
+class daAlinkHIO_guard_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mGuardHitAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mCrouchGuardHitAnm;  // Unused
+    /* 0x28 */ daAlinkHIO_anm_c mRecoilAnm;
+    /* 0x3C */ daAlinkHIO_anm_c mGuardBreakAnm;
+    /* 0x50 */ s16 mGuardLRAngleMax;
+    /* 0x52 */ s16 mGuardFBAngleMax;
+    /* 0x54 */ s16 mGuardBodyInterpolation;
+    /* 0x56 */ s16 mSmallGuardLRAngleMax;
+    /* 0x58 */ s16 mSmallGuardFBAngleMax;
+    /* 0x5C */ f32 mCrouchGuardAnmSpeed;       // Unused
+    /* 0x60 */ f32 mCrouchGuardInterpolation;  // Unused
+    /* 0x64 */ f32 mGuardSpeedNormal;
+    /* 0x68 */ f32 mGuardSpeedLarge;
+    /* 0x6C */ f32 mGuardSpeedHuge;
+    /* 0x70 */ f32 mAttackPosOffset;
+    /* 0x74 */ f32 mAttackRadius;
+    /* 0x78 */ f32 mMagneGuardSpeed;
+    /* 0x7C */ f32 mMagneHvyGuardSpeed;
+};  // Size: 0x80
+
+class daAlinkHIO_guard_c0 {
+public:
+    static daAlinkHIO_guard_c1 const m;
 };
 
 class daAlinkHIO_guard_c : public daAlinkHIO_data_c {
@@ -1046,6 +1114,33 @@ public:
     ~daAlinkHIO_guard_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    /* 0x34 */ daAlinkHIO_guardAttack_c mGuardAttack1;
+    /* 0x00 */ daAlinkHIO_guardAttack_c mGuardAttack2;
+    /* 0x00 */ daAlinkHIO_turnMove_c mTurnMove;
+    /* 0x00 */ daAlinkHIO_guard_c1 m;
+};
+
+class daAlinkHIO_crouch_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mCrawlStartAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mCrawlEndAnm;
+    /* 0x28 */ s16 mCrawlTurnRate;
+    /* 0x2A */ s16 mCrawlTurnMax;
+    /* 0x2C */ s16 mCrawlTurnMin;
+    /* 0x30 */ f32 mCrouchAnmSpeed;
+    /* 0x34 */ f32 mCrouchInterpolation;
+    /* 0x38 */ f32 mStandInterpolation;
+    /* 0x3C */ f32 mCrawlMoveRate;
+    /* 0x40 */ f32 mCrawlAnmSpeedMax;
+    /* 0x44 */ f32 mCrawlAnmSpeedMin;
+    /* 0x48 */ f32 mCrawlInterpolation;
+};  // Size: 0x4C
+
+class daAlinkHIO_crouch_c0 {
+public:
+    static daAlinkHIO_crouch_c1 const m;
 };
 
 class daAlinkHIO_crouch_c : public daAlinkHIO_data_c {
@@ -1054,6 +1149,49 @@ public:
     ~daAlinkHIO_crouch_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    /* 0x34 */ daAlinkHIO_crouch_c1 m;
+};
+
+class daAlinkHIO_autoJump_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mJumpAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mLandAnm;
+    /* 0x28 */ daAlinkHIO_anm_c mDiveAnm;
+    /* 0x3C */ daAlinkHIO_anm_c mDiveConnectAnm;
+    /* 0x50 */ bool mAlwaysMaxSpeedJump;
+    /* 0x52 */ s16 mJumpAngle;
+    /* 0x54 */ s16 mSpinJumpRotateSpeed;
+    /* 0x56 */ s16 mSpinJumpLandStopTime;
+    /* 0x58 */ s16 mCuccoJumpAngle;
+    /* 0x5C */ f32 mJumpSpeedLimit;
+    /* 0x60 */ f32 mMinJumpSpeed;
+    /* 0x64 */ f32 mJumpSpeedRate;
+    /* 0x68 */ f32 mAirborneInterpolation;
+    /* 0x6C */ f32 mJumpFallInterpolation;
+    /* 0x70 */ f32 mFallInterpolation;
+    /* 0x74 */ f32 mGravity;
+    /* 0x78 */ f32 mMaxFallSpeed;
+    /* 0x7C */ f32 mMaxJumpSpeed;
+    /* 0x80 */ f32 mSpinJumpInterpolation;
+    /* 0x84 */ f32 mSpinJumpFallInterpolation;
+    /* 0x88 */ f32 mSpinJumpAddSpeed;
+    /* 0x8C */ f32 mSpinJumpAccel;
+    /* 0x90 */ f32 mHangHeightLimit;
+    /* 0x94 */ f32 mGrabHeightLimit;
+    /* 0x98 */ f32 mOoccooJumpMaxSpeed;
+    /* 0x9C */ f32 mDiveSpeedV;
+    /* 0xA0 */ f32 mDiveSpeedH;
+    /* 0xA4 */ f32 mDiveGravity;
+    /* 0xA8 */ f32 mCuccoJumpMaxSpeed;
+    /* 0xAC */ f32 mCuccoFallMaxSpeed;
+    /* 0xB0 */ f32 mCuccoStartSpeed;
+};  // size = 0xB4
+
+class daAlinkHIO_autoJump_c0 {
+public:
+    static daAlinkHIO_autoJump_c1 const m;
 };
 
 class daAlinkHIO_autoJump_c : public daAlinkHIO_data_c {
@@ -1062,6 +1200,24 @@ public:
     ~daAlinkHIO_autoJump_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    daAlinkHIO_autoJump_c1 m;
+};
+
+class daAlinkHIO_smallJump_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mSmallJumpAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mStepClimbAnm;
+    /* 0x28 */ daAlinkHIO_anm_c mStepLandAnm;
+    /* 0x3C */ f32 mSpeedH;
+    /* 0x40 */ f32 mTargetHeightOffset;
+    /* 0x44 */ f32 mFallInterpolation;
+};  // Size: 0x48
+
+class daAlinkHIO_smallJump_c0 {
+public:
+    static daAlinkHIO_smallJump_c1 const m;
 };
 
 class daAlinkHIO_smallJump_c : public daAlinkHIO_data_c {
@@ -1070,6 +1226,23 @@ public:
     ~daAlinkHIO_smallJump_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    daAlinkHIO_smallJump_c1 m;
+};
+
+class daAlinkHIO_wallCatch_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mGrabAAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mGrabBAnm;
+    /* 0x28 */ daAlinkHIO_anm_c mClimbAnm;
+    /* 0x3C */ daAlinkHIO_anm_c mJumpAnm;
+    /* 0x50 */ f32 mClimbStartFrame;
+};  // Size: 0x54
+
+class daAlinkHIO_wallCatch_c0 {
+public:
+    static daAlinkHIO_wallCatch_c1 const m;
 };
 
 class daAlinkHIO_wallCatch_c : public daAlinkHIO_data_c {
@@ -1078,6 +1251,20 @@ public:
     ~daAlinkHIO_wallCatch_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    daAlinkHIO_wallCatch_c1 m;
+};
+
+class daAlinkHIO_wallFall_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c mOneHandGrabAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mTwoHandGrabAnm;
+};  // Size: 0x28
+
+class daAlinkHIO_wallFall_c0 {
+public:
+    static daAlinkHIO_wallFall_c1 const m;
 };
 
 class daAlinkHIO_wallFall_c : public daAlinkHIO_data_c {
@@ -1086,8 +1273,24 @@ public:
     ~daAlinkHIO_wallFall_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    daAlinkHIO_wallFall_c1 m;
 };
 
+class daAlinkHIO_wallMove_c1 {
+public:
+    /* 0x00 */ f32 mMinAnmSpeed;
+    /* 0x04 */ f32 mMaxAnmSpeed;
+    /* 0x08 */ f32 mInterpolation;
+    /* 0x0C */ f32 mMinSpeed;
+    /* 0x10 */ f32 mMaxSpeed;
+};
+
+class daAlinkHIO_wallMove_c0 {
+public:
+    static daAlinkHIO_wallMove_c1 const m;
+};
 
 class daAlinkHIO_wallMove_c : public daAlinkHIO_data_c {
 public:
@@ -1095,6 +1298,26 @@ public:
     ~daAlinkHIO_wallMove_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    daAlinkHIO_wallMove_c1 m;
+};
+
+class daAlinkHIO_wallHang_c1 {
+public:
+    /* 0x00 */ s16 small_jump_input_time;
+    /* 0x02 */ s16 grab_input_time;
+    /* 0x04 */ f32 auto_walk_height;
+    /* 0x08 */ f32 small_jump_height;
+    /* 0x0C */ f32 climb_height;
+    /* 0x10 */ f32 jump_climb_height;
+    /* 0x14 */ f32 jump_hang_height;
+    /* 0x18 */ f32 hang_foot_pos_height;
+};  // Size: 0x1C
+
+class daAlinkHIO_wallHang_c0 {
+public:
+    static daAlinkHIO_wallHang_c1 const m;
 };
 
 class daAlinkHIO_wallHang_c : public daAlinkHIO_data_c {
@@ -1103,6 +1326,41 @@ public:
     ~daAlinkHIO_wallHang_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    /* 0x34 */ daAlinkHIO_smallJump_c mSmallJump;
+    /* 0x00 */ daAlinkHIO_wallCatch_c mWallCatch;
+    /* 0x00 */ daAlinkHIO_wallFall_c mWallFall;
+    /* 0x00 */ daAlinkHIO_wallMove_c mWallMove;
+    /* 0x00 */ daAlinkHIO_wallHang_c1 m;
+};
+
+class daAlinkHIO_pushpull_c1 {
+public:
+    /* 0x00 */ s16 field_0x0;
+    /* 0x02 */ s16 field_0x2;
+    /* 0x04 */ s16 field_0x4;
+    /* 0x06 */ s16 field_0x6;
+    /* 0x08 */ s16 field_0x8;
+    /* 0x0A */ s16 field_0xA;
+    /* 0x0C */ s16 field_0xC;
+    /* 0x0E */ s16 field_0xE;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1C;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2C;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 field_0x38;
+};  // Size: 0x3C
+
+class daAlinkHIO_pushpull_c0 {
+public:
+    static daAlinkHIO_pushpull_c1 const m;
 };
 
 class daAlinkHIO_pushpull_c : public daAlinkHIO_data_c {
@@ -1111,8 +1369,29 @@ public:
     ~daAlinkHIO_pushpull_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    daAlinkHIO_pushpull_c1 m;
 };
 
+class daAlinkHIO_damNormal_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
+    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
+    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
+    /* 0x3C */ daAlinkHIO_anm_c field_0x3C;
+    /* 0x50 */ s16 field_0x50;
+    /* 0x52 */ s16 field_0x52;
+    /* 0x54 */ f32 field_0x54;
+    /* 0x58 */ f32 field_0x58;
+    /* 0x5C */ f32 field_0x5C;
+    /* 0x60 */ f32 field_0x60;
+};  // Size: 0x64
+
+class daAlinkHIO_damNormal_c0 {
+public:
+    static daAlinkHIO_damNormal_c1 const m;
+};
 
 class daAlinkHIO_damNormal_c : public daAlinkHIO_data_c {
 public:
@@ -1120,8 +1399,39 @@ public:
     ~daAlinkHIO_damNormal_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    daAlinkHIO_damNormal_c1 m;
 };
 
+class daAlinkHIO_damLaHu_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
+    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
+    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
+    /* 0x3C */ daAlinkHIO_anm_c field_0x3C;
+    /* 0x50 */ daAlinkHIO_anm_c field_0x50;
+    /* 0x64 */ daAlinkHIO_anm_c field_0x64;
+    /* 0x78 */ daAlinkHIO_anm_c field_0x78;
+    /* 0x8C */ daAlinkHIO_anm_c field_0x8C;
+    /* 0xA0 */ s16 field_0xA0;
+    /* 0xA4 */ f32 field_0xA4;
+    /* 0xA8 */ f32 field_0xA8;
+    /* 0xAC */ f32 field_0xAC;
+    /* 0xB0 */ f32 field_0xB0;
+    /* 0xB4 */ f32 field_0xB4;
+    /* 0xB8 */ f32 field_0xB8;
+};
+
+class daAlinkHIO_damLarge_c0 {
+public:
+    static daAlinkHIO_damLaHu_c1 const m;
+};
+
+class daAlinkHIO_damHuge_c0 {
+public:
+    static daAlinkHIO_damLaHu_c1 const m;
+};
 
 class daAlinkHIO_damLaHu_c : public daAlinkHIO_data_c {
 public:
@@ -1129,8 +1439,23 @@ public:
     ~daAlinkHIO_damLaHu_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    daAlinkHIO_damLaHu_c1 m;
 };
 
+class daAlinkHIO_damHorse_c1 {
+public:
+    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
+    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
+    /* 0x28 */ s16 field_0x28;
+    /* 0x2A */ s16 field_0x2A;
+};  // Size: 0x2C
+
+class daAlinkHIO_damHorse_c0 {
+public:
+    static daAlinkHIO_damHorse_c1 const m;
+};
 
 class daAlinkHIO_damHorse_c : public daAlinkHIO_data_c {
 public:
@@ -1138,6 +1463,9 @@ public:
     ~daAlinkHIO_damHorse_c();
     
     virtual void genMessage(JORMContext*);
+
+private:
+    /* 0x34 */ daAlinkHIO_damHorse_c1 m;
 };
 
 
@@ -5922,184 +6250,6 @@ struct daAlink_cutHorseParamTbl {
     /* 0xA */ u8 m_cutType;
 };  // Size: 0xC
 
-class daAlinkHIO_autoJump_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c mJumpAnm;
-    /* 0x14 */ daAlinkHIO_anm_c mLandAnm;
-    /* 0x28 */ daAlinkHIO_anm_c mDiveAnm;
-    /* 0x3C */ daAlinkHIO_anm_c mDiveConnectAnm;
-    /* 0x50 */ bool mAlwaysMaxSpeedJump;
-    /* 0x52 */ s16 mJumpAngle;
-    /* 0x54 */ s16 mSpinJumpRotateSpeed;
-    /* 0x56 */ s16 mSpinJumpLandStopTime;
-    /* 0x58 */ s16 mCuccoJumpAngle;
-    /* 0x5C */ f32 mJumpSpeedLimit;
-    /* 0x60 */ f32 mMinJumpSpeed;
-    /* 0x64 */ f32 mJumpSpeedRate;
-    /* 0x68 */ f32 mAirborneInterpolation;
-    /* 0x6C */ f32 mJumpFallInterpolation;
-    /* 0x70 */ f32 mFallInterpolation;
-    /* 0x74 */ f32 mGravity;
-    /* 0x78 */ f32 mMaxFallSpeed;
-    /* 0x7C */ f32 mMaxJumpSpeed;
-    /* 0x80 */ f32 mSpinJumpInterpolation;
-    /* 0x84 */ f32 mSpinJumpFallInterpolation;
-    /* 0x88 */ f32 mSpinJumpAddSpeed;
-    /* 0x8C */ f32 mSpinJumpAccel;
-    /* 0x90 */ f32 mHangHeightLimit;
-    /* 0x94 */ f32 mGrabHeightLimit;
-    /* 0x98 */ f32 mOoccooJumpMaxSpeed;
-    /* 0x9C */ f32 mDiveSpeedV;
-    /* 0xA0 */ f32 mDiveSpeedH;
-    /* 0xA4 */ f32 mDiveGravity;
-    /* 0xA8 */ f32 mCuccoJumpMaxSpeed;
-    /* 0xAC */ f32 mCuccoFallMaxSpeed;
-    /* 0xB0 */ f32 mCuccoStartSpeed;
-};  // size = 0xB4
-
-class daAlinkHIO_autoJump_c0 {
-public:
-    static daAlinkHIO_autoJump_c1 const m;
-};
-
-class daAlinkHIO_smallJump_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c mSmallJumpAnm;
-    /* 0x14 */ daAlinkHIO_anm_c mStepClimbAnm;
-    /* 0x28 */ daAlinkHIO_anm_c mStepLandAnm;
-    /* 0x3C */ f32 mSpeedH;
-    /* 0x40 */ f32 mTargetHeightOffset;
-    /* 0x44 */ f32 mFallInterpolation;
-};  // Size: 0x48
-
-class daAlinkHIO_smallJump_c0 {
-public:
-    static daAlinkHIO_smallJump_c1 const m;
-};
-
-class daAlinkHIO_guardAttack_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c mAttackAnm;
-    /* 0x14 */ f32 mSpeed;
-    /* 0x18 */ f32 mAttackStartFrame;
-    /* 0x1C */ f32 mAttackEndFrame;
-    /* 0x20 */ f32 mSlashCheckFrame;
-};  // Size: 0x24
-
-class daAlinkHIO_gAtPush_c0 {
-public:
-    static daAlinkHIO_guardAttack_c1 const m;
-};
-
-class daAlinkHIO_gAtKick_c0 {
-public:
-    static daAlinkHIO_guardAttack_c1 const m;
-};
-
-class daAlinkHIO_guard_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c mGuardHitAnm;
-    /* 0x14 */ daAlinkHIO_anm_c mCrouchGuardHitAnm;  // Unused
-    /* 0x28 */ daAlinkHIO_anm_c mRecoilAnm;
-    /* 0x3C */ daAlinkHIO_anm_c mGuardBreakAnm;
-    /* 0x50 */ s16 mGuardLRAngleMax;
-    /* 0x52 */ s16 mGuardFBAngleMax;
-    /* 0x54 */ s16 mGuardBodyInterpolation;
-    /* 0x56 */ s16 mSmallGuardLRAngleMax;
-    /* 0x58 */ s16 mSmallGuardFBAngleMax;
-    /* 0x5C */ f32 mCrouchGuardAnmSpeed;       // Unused
-    /* 0x60 */ f32 mCrouchGuardInterpolation;  // Unused
-    /* 0x64 */ f32 mGuardSpeedNormal;
-    /* 0x68 */ f32 mGuardSpeedLarge;
-    /* 0x6C */ f32 mGuardSpeedHuge;
-    /* 0x70 */ f32 mAttackPosOffset;
-    /* 0x74 */ f32 mAttackRadius;
-    /* 0x78 */ f32 mMagneGuardSpeed;
-    /* 0x7C */ f32 mMagneHvyGuardSpeed;
-};  // Size: 0x80
-
-class daAlinkHIO_guard_c0 {
-public:
-    static daAlinkHIO_guard_c1 const m;
-};
-
-class daAlinkHIO_crouch_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c mCrawlStartAnm;
-    /* 0x14 */ daAlinkHIO_anm_c mCrawlEndAnm;
-    /* 0x28 */ s16 mCrawlTurnRate;
-    /* 0x2A */ s16 mCrawlTurnMax;
-    /* 0x2C */ s16 mCrawlTurnMin;
-    /* 0x30 */ f32 mCrouchAnmSpeed;
-    /* 0x34 */ f32 mCrouchInterpolation;
-    /* 0x38 */ f32 mStandInterpolation;
-    /* 0x3C */ f32 mCrawlMoveRate;
-    /* 0x40 */ f32 mCrawlAnmSpeedMax;
-    /* 0x44 */ f32 mCrawlAnmSpeedMin;
-    /* 0x48 */ f32 mCrawlInterpolation;
-};  // Size: 0x4C
-
-class daAlinkHIO_crouch_c0 {
-public:
-    static daAlinkHIO_crouch_c1 const m;
-};
-
-class daAlinkHIO_wallMove_c1 {
-public:
-    /* 0x00 */ f32 mMinAnmSpeed;
-    /* 0x04 */ f32 mMaxAnmSpeed;
-    /* 0x08 */ f32 mInterpolation;
-    /* 0x0C */ f32 mMinSpeed;
-    /* 0x10 */ f32 mMaxSpeed;
-};
-
-class daAlinkHIO_wallMove_c0 {
-public:
-    static daAlinkHIO_wallMove_c1 const m;
-};
-
-class daAlinkHIO_wallFall_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c mOneHandGrabAnm;
-    /* 0x14 */ daAlinkHIO_anm_c mTwoHandGrabAnm;
-};  // Size: 0x28
-
-class daAlinkHIO_wallFall_c0 {
-public:
-    static daAlinkHIO_wallFall_c1 const m;
-};
-
-class daAlinkHIO_wallCatch_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c mGrabAAnm;
-    /* 0x14 */ daAlinkHIO_anm_c mGrabBAnm;
-    /* 0x28 */ daAlinkHIO_anm_c mClimbAnm;
-    /* 0x3C */ daAlinkHIO_anm_c mJumpAnm;
-    /* 0x50 */ f32 mClimbStartFrame;
-};  // Size: 0x54
-
-class daAlinkHIO_wallCatch_c0 {
-public:
-    static daAlinkHIO_wallCatch_c1 const m;
-};
-
-class daAlinkHIO_wallHang_c1 {
-public:
-    /* 0x00 */ s16 small_jump_input_time;
-    /* 0x02 */ s16 grab_input_time;
-    /* 0x04 */ f32 auto_walk_height;
-    /* 0x08 */ f32 small_jump_height;
-    /* 0x0C */ f32 climb_height;
-    /* 0x10 */ f32 jump_climb_height;
-    /* 0x14 */ f32 jump_hang_height;
-    /* 0x18 */ f32 hang_foot_pos_height;
-};  // Size: 0x1C
-
-class daAlinkHIO_wallHang_c0 {
-public:
-    static daAlinkHIO_wallHang_c1 const m;
-};
-
 class daAlinkHIO_roofHang_c1 {
 public:
     /* 0x00 */ daAlinkHIO_anm_c field_0x0;
@@ -6123,24 +6273,6 @@ public:
 class daAlinkHIO_roofHang_c0 {
 public:
     static daAlinkHIO_roofHang_c1 const m;
-};
-
-class daAlinkHIO_turnMove_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c mTurnAnm;
-    /* 0x14 */ s16 mTurnSpeedRate;
-    /* 0x16 */ s16 mMaxTurnSpeed;
-    /* 0x18 */ s16 mMinTurnSpeed;
-    /* 0x1A */ s16 mMaxHalfTurnSpeed;
-    /* 0x1C */ f32 mHalfTurnAnmSpeed;
-    /* 0x20 */ f32 mTwirlCutDelayF;
-    /* 0x24 */ f32 mSideRollAnmSpeed;
-    /* 0x28 */ f32 mSideRollSpeed;
-};  // Size: 0x2C
-
-class daAlinkHIO_turnMove_c0 {
-public:
-    static daAlinkHIO_turnMove_c1 const m;
 };
 
 class daAlinkHIO_swim_c1 {
@@ -6230,34 +6362,6 @@ public:
 class daAlinkHIO_ladder_c0 {
 public:
     static daAlinkHIO_ladder_c1 const m;
-};
-
-class daAlinkHIO_pushpull_c1 {
-public:
-    /* 0x00 */ s16 field_0x0;
-    /* 0x02 */ s16 field_0x2;
-    /* 0x04 */ s16 field_0x4;
-    /* 0x06 */ s16 field_0x6;
-    /* 0x08 */ s16 field_0x8;
-    /* 0x0A */ s16 field_0xA;
-    /* 0x0C */ s16 field_0xC;
-    /* 0x0E */ s16 field_0xE;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1C;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2C;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-};  // Size: 0x3C
-
-class daAlinkHIO_pushpull_c0 {
-public:
-    static daAlinkHIO_pushpull_c1 const m;
 };
 
 class daAlinkHIO_grab_c1 {
@@ -6360,67 +6464,6 @@ public:
 class daAlinkHIO_damage_c0 {
 public:
     static daAlinkHIO_damage_c1 const m;
-};
-
-class daAlinkHIO_damNormal_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
-    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
-    /* 0x3C */ daAlinkHIO_anm_c field_0x3C;
-    /* 0x50 */ s16 field_0x50;
-    /* 0x52 */ s16 field_0x52;
-    /* 0x54 */ f32 field_0x54;
-    /* 0x58 */ f32 field_0x58;
-    /* 0x5C */ f32 field_0x5C;
-    /* 0x60 */ f32 field_0x60;
-};  // Size: 0x64
-
-class daAlinkHIO_damNormal_c0 {
-public:
-    static daAlinkHIO_damNormal_c1 const m;
-};
-
-class daAlinkHIO_damLaHu_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
-    /* 0x28 */ daAlinkHIO_anm_c field_0x28;
-    /* 0x3C */ daAlinkHIO_anm_c field_0x3C;
-    /* 0x50 */ daAlinkHIO_anm_c field_0x50;
-    /* 0x64 */ daAlinkHIO_anm_c field_0x64;
-    /* 0x78 */ daAlinkHIO_anm_c field_0x78;
-    /* 0x8C */ daAlinkHIO_anm_c field_0x8C;
-    /* 0xA0 */ s16 field_0xA0;
-    /* 0xA4 */ f32 field_0xA4;
-    /* 0xA8 */ f32 field_0xA8;
-    /* 0xAC */ f32 field_0xAC;
-    /* 0xB0 */ f32 field_0xB0;
-    /* 0xB4 */ f32 field_0xB4;
-    /* 0xB8 */ f32 field_0xB8;
-};
-
-class daAlinkHIO_damLarge_c0 {
-public:
-    static daAlinkHIO_damLaHu_c1 const m;
-};
-
-class daAlinkHIO_damHuge_c0 {
-public:
-    static daAlinkHIO_damLaHu_c1 const m;
-};
-
-class daAlinkHIO_damHorse_c1 {
-public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
-    /* 0x28 */ s16 field_0x28;
-    /* 0x2A */ s16 field_0x2A;
-};  // Size: 0x2C
-
-class daAlinkHIO_damHorse_c0 {
-public:
-    static daAlinkHIO_damHorse_c1 const m;
 };
 
 class daAlinkHIO_damFall_c1 {
