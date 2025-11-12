@@ -8,7 +8,7 @@ public:
     daTagEscape_c() {}
     ~daTagEscape_c() {}
     
-    int getPathID() { return fopAcM_GetParam(this) & 0xff; }
+    u8 getPathID() { return fopAcM_GetParam(this) & 0xff; }
 };
 
 #endif /* D_A_TAG_ESCAPE_H */
