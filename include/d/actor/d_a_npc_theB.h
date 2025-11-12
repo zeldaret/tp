@@ -26,8 +26,8 @@ struct daNpcTheB_Param_c {
 class daNpcTheB_HIO_c : public mDoHIO_entry_c {
 public:
     daNpcTheB_HIO_c();
+    void listenPropertyEvent(const JORPropertyEvent*);
     void genMessage(JORMContext*);
-    void listenPropertyEvent(const JOREventListener*);
     
     /* 0x8 */ daNpcTheB_HIOParam m;
 };
@@ -40,6 +40,43 @@ class daNpcTheB_c : public daNpcF_c {
 public:
     typedef int (daNpcTheB_c::*actionFunc)(void*);
     typedef int (daNpcTheB_c::*cutFunc)(int);
+
+    enum Animation {
+        /* 0x0 */ ANM_NONE,
+        /* 0x1 */ ANM_F_TALK_A,
+        /* 0x2 */ ANM_F_TALK_B,
+        /* 0x3 */ ANM_F_TALK_C,
+        /* 0x4 */ ANM_F_BEND_TURN,
+        /* 0x5 */ ANM_FH_TALK_B,
+        /* 0x6 */ ANM_FH_TALK_C,
+        /* 0x7 */ ANM_FH_BEND_WAIT,
+        /* 0x8 */ ANM_SIT,
+        /* 0x9 */ ANM_SIT_B,
+        /* 0xA */ ANM_WHIP,
+        /* 0xB */ ANM_WHIP_B,
+        /* 0xC */ ANM_BEND_WAIT,
+        /* 0xD */ ANM_BEND_TURN,
+    };
+
+    enum Expression {
+        /* 0x0 */ EXPR_TALK_A,
+        /* 0x1 */ EXPR_TALK_B,
+        /* 0x2 */ EXPR_TALK_C,
+        /* 0x3 */ EXPR_NONE,
+    };
+
+    enum Motion {
+        /* 0x0 */ MOT_SIT,
+        /* 0x1 */ MOT_SIT_B,
+        /* 0x2 */ MOT_BEND_WAIT,
+        /* 0x3 */ MOT_WHIP,
+        /* 0x4 */ MOT_WHIP_B,
+        /* 0x5 */ MOT_BEND_TURN,
+    };
+
+    enum Expression_BTP {
+        /* 0x0 */ EXPR_BTP_THEB,
+    };
 
     /* 80AFC76C */ daNpcTheB_c();
     /* 80AFC980 */ ~daNpcTheB_c();
@@ -68,13 +105,13 @@ public:
     /* 80AFE920 */ void doNormalAction();
     /* 80AFEA14 */ BOOL doEvent();
     /* 80AFED24 */ void lookat();
-    /* 80AFEECC */ void wait(void*);
+    /* 80AFEECC */ int wait(void*);
     /* 80AFF45C */ void setMotion(int, f32, int);
     /* 80AFF4A0 */ void setExpression(int, f32);
-    /* 80AFF4CC */ void talk(void*);
+    /* 80AFF4CC */ int talk(void*);
     /* 80AFF6AC */ int EvCut_PersonalCombatIntro(int);
     /* 80AFF888 */ int EvCut_PersonalCombatRevenge(int);
-    /* 80AFFBB4 */ int EvCut_PersonalCombatAfter();
+    /* 80AFFBB4 */ void EvCut_PersonalCombatAfter();
     /* 80AFFEF4 */ int EvCut_AnnulationFieldRace(int);
     /* 80AFFFE0 */ int EvCut_TheBHint(int);
     /* 80B00204 */ int EvCut_CoachGuardGameOver(int);
@@ -83,6 +120,34 @@ public:
     void setTRMtx(MtxP mtx) { mpMorf->getModel()->setBaseTRMtx(mtx); }
     void setGameOver() { mGameOver = 1; }
     f32 getCoachSpeed() { return fopAcM_GetSpeedF((fopAc_ac_c*)fpcM_SearchByID(parentActorID)); }
+    void setAction(actionFunc action) {
+        mMode = 3;
+
+        if (mAction) {
+            (this->*mAction)(NULL);
+        }
+
+        mMode = 0;
+        mAction = action;
+
+        if (mAction) {
+            (this->*mAction)(NULL);
+        }
+    }
+    BOOL chkAction(actionFunc action) { return mAction == action; }
+    void setLookMode(int i_lookMode) {
+        if (i_lookMode >= 0 && i_lookMode < 3 && i_lookMode != mLookMode) {
+            mLookMode = i_lookMode;
+        }
+    }
+    inline void setWaitAnimation();
+    void setExpressionTalkAfter() {
+        switch (mExpression) {
+            default:
+                setExpression(EXPR_NONE, -1.0f);
+                break;
+        }
+    }
 
     static cutFunc mEvtSeqList[6];
 
@@ -100,20 +165,22 @@ private:
     /* 0xDE4 */ int field_0xde4;
     /* 0xDE8 */ int field_0xde8;
     /* 0xDEC */ int field_0xdec;
-    /* 0xDF0 */ int field_0xdf0;
+    /* 0xDF0 */ int mRoomNo;
     /* 0xDF4 */ int mMsgNo;
-    /* 0xDF8 */ int field_0xdf8;
-    /* 0xDFC */ int field_0xdfc;
-    /* 0xE00 */ s16 field_0xe00;
-    /* 0xE02 */ u16 field_0xe02;
+    /* 0xDF8 */ int mHintMsgNo;
+    /* 0xDFC */ int mTimer;
+    /* 0xE00 */ s16 mLookMode;
+    /* 0xE02 */ u16 mMode;
     /* 0xE04 */ u16 field_0xe04;
-    /* 0xE06 */ s16 field_0xe06;
-    /* 0xE08 */ s16 field_0xe08;
-    /* 0xE0A */ s16 field_0xe0a;
-    /* 0xE0C */ u8 field_0xe0c;
+    /* 0xE06 */ s16 mBackboneRotX;
+    /* 0xE08 */ s16 mBackboneRotY;
+    /* 0xE0A */ s16 mBackboneRotZ;
+    /* 0xE0C */ u8 mHintEvtFlag;
     /* 0xE0D */ u8 mGameOver;
-    /* 0xE0E */ u8 field_0xe0e;
-    /* 0xE0F */ u8 field_0xe0f[0xe14 - 0xe0f];
+    /* 0xE0E */ u8 mPersonalCombatAfterFlag;
+    /* 0xE0F */ u8 mPersonalCombatAfterMode;
+    /* 0xE10 */ u8 mPersonalCombatAfterTimer;
+    /* 0xE11 */ u8 mUnkFlag;
 };
 
 STATIC_ASSERT(sizeof(daNpcTheB_c) == 0xe14);

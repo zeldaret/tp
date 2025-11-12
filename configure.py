@@ -1925,7 +1925,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_soldierB"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_sq"),
     ActorRel(NonMatching, "d_a_npc_the", extra_cflags=[DANPCF_C_HACK]),
-    ActorRel(NonMatching, "d_a_npc_theB", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(Equivalent, "d_a_npc_theB", extra_cflags=[DANPCF_C_HACK]), # inlining issue
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_tk"),
     ActorRel(NonMatching, "d_a_npc_tkc"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_tkj2"),

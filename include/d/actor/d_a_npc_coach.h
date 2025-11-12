@@ -294,6 +294,7 @@ public:
     u8 getPathID() { return fopAcM_GetParam(this) & 0xFF; }
     s16 getMessageNo() { return home.angle.x; }
     inline void setHarnessMtx();
+    void setAimSpeed(f32 i_aimSpeed) { mChHorse.mAimSpeed = i_aimSpeed; }
 
     const daNpcCoach_Attr_c& attr() const { return M_attr; }
 
