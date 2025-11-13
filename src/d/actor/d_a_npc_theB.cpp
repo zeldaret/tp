@@ -1032,6 +1032,7 @@ void daNpcTheB_c::lookat() {
     mLookat.calc(this, model->getBaseTRMtx(), lookat_angle, FALSE, angle_delta, false);
 }
 
+#pragma inline_max_size(503) // FAKEMATCH
 inline void daNpcTheB_c::setWaitAnimation() {
     if (
         mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[8].fileIdx)
@@ -1082,7 +1083,6 @@ inline void daNpcTheB_c::setWaitAnimation() {
 
 /* 80AFEECC-80AFF45C 00284C 0590+00 1/0 0/0 0/0 .text            wait__11daNpcTheB_cFPv */
 int daNpcTheB_c::wait(void* param_1) {
-    // NONMATCHING
     switch (mMode) {
         case 0:
             mAttnChangeTimer = 0;

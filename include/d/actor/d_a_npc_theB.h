@@ -140,7 +140,7 @@ public:
             mLookMode = i_lookMode;
         }
     }
-    inline void setWaitAnimation();
+    void setWaitAnimation();
     void setExpressionTalkAfter() {
         switch (mExpression) {
             default:
