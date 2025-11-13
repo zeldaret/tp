@@ -199,7 +199,7 @@ daNpcTheB_c::~daNpcTheB_c() {
     dComIfG_resDelete(&mPhase, l_arcName);
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 
     #if DEBUG
@@ -264,8 +264,8 @@ cPhs__Step daNpcTheB_c::create() {
 
         fopAcM_setStageLayer(this);
 
-        J3DModelData* mdlData_p = mpMorf->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        J3DModelData* mdlData_p = mAnm_p->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -50.0f, -60.0f, -50.0f, 50.0f, 130.0f, 70.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -307,14 +307,14 @@ int daNpcTheB_c::CreateHeap() {
     mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0x26);
     JUT_ASSERT(383, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 0x1B),
+    mAnm_p = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 0x1B),
                                   2, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, 0x11020284);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    if (mAnm_p != NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p = NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return 0;
     }
 
@@ -323,7 +323,7 @@ int daNpcTheB_c::CreateHeap() {
     mdlData_p->getJointNodePointer(JNT_NECK)->setCallBack(ctrlJointCallBack);
     mdlData_p->getJointNodePointer(JNT_HEAD)->setCallBack(ctrlJointCallBack);
     mdlData_p->getJointNodePointer(JNT_MOUTH)->setCallBack(ctrlJointCallBack);
-    mpMorf->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p->getModel()->setUserArea((uintptr_t)this);
 
     mpMatAnm = new daNpcF_MatAnm_c();
     if (mpMatAnm == NULL) {
@@ -353,7 +353,7 @@ int daNpcTheB_c::Execute() {
 
 /* 80AFD250-80AFD2A8 000BD0 0058+00 1/1 0/0 0/0 .text            Draw__11daNpcTheB_cFv */
 int daNpcTheB_c::Draw() {
-    J3DModelData* mdlData_p = mpMorf->getModel()->getModelData();
+    J3DModelData* mdlData_p = mAnm_p->getModel()->getModelData();
     mdlData_p->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
     return draw(FALSE, FALSE, mpHIO->m.common.real_shadow_size, NULL, FALSE);
 }
@@ -363,11 +363,11 @@ int daNpcTheB_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int jntNo = i_joint->getJntNo();
 
     if (jntNo == JNT_CENTER) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
 
         return 1;
@@ -394,8 +394,8 @@ int daNpcTheB_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((jntNo == JNT_HEAD || jntNo == JNT_MOUTH) && (mAnmFlags & ANM_PLAY_BCK)) {
         J3DAnmTransform* anm = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(anm);
+        mBckAnm.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(anm);
     }
 
     return 1;
@@ -430,8 +430,8 @@ cXyz daNpcTheB_c::getHandPos1(int hand) {
     };
     Vec* handPosP = hand != 0 ? &handPos[0] : &handPos[1];
     cXyz handPos1;
-    mpMorf->modelCalc();
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jntNo));
+    mAnm_p->modelCalc();
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(jntNo));
     mDoMtx_stack_c::transM(handPosP->x, handPosP->y, handPosP->z);
     mDoMtx_stack_c::multVecZero(&handPos1);
     return handPos1;
@@ -447,8 +447,8 @@ cXyz daNpcTheB_c::getHandPos2(int hand) {
     };
     Vec* handPosP = hand != 0 ? &handPos[0] : &handPos[1];
     cXyz handPos2;
-    mpMorf->modelCalc();
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jntNo));
+    mAnm_p->modelCalc();
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(jntNo));
     mDoMtx_stack_c::transM(handPosP->x, handPosP->y, handPosP->z);
     mDoMtx_stack_c::multVecZero(&handPos2);
     return handPos2;
@@ -580,7 +580,7 @@ BOOL daNpcTheB_c::ctrlBtk() {
 
 /* 80AFDB70-80AFDEC0 0014F0 0350+00 1/0 0/0 0/0 .text            setAttnPos__11daNpcTheB_cFv */
 void daNpcTheB_c::setAttnPos() {
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getBaseTRMtx());
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getBaseTRMtx());
     mDoMtx_stack_c::multVecZero(&current.pos);
     mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &mCurAngle);
     shape_angle = mCurAngle;
@@ -590,15 +590,15 @@ void daNpcTheB_c::setAttnPos() {
 
     if ((mAnmFlags & ANM_PLAY_BCK)) {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
     } else {
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
     }
 
     lookat();
 
     cXyz sp2c(-18.0f, 6.0f, 0.0f);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0xA));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(0xA));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&sp2c, &eyePos);
     sp2c.x = 0.0f;
@@ -725,7 +725,7 @@ bool daNpcTheB_c::setExpressionBtp(int i_idx) {
         return true;
     }
 
-    if (setBtpAnm(btp, mpMorf->getModel()->getModelData(), 1.0f, attr)) {
+    if (setBtpAnm(btp, mAnm_p->getModel()->getModelData(), 1.0f, attr)) {
         mAnmFlags |= ANM_PAUSE_BTP | ANM_PLAY_BTP;
         if (i_idx == 0) {
             mAnmFlags |= ANM_FLAG_800;
@@ -784,7 +784,7 @@ void daNpcTheB_c::setMotionAnm(int i_idx, f32 i_morf) {
     }
 
     if (btk != NULL) {
-        if (setBtkAnm(btk, mpMorf->getModel()->getModelData(), 1.0f, btkAttr)) {
+        if (setBtkAnm(btk, mAnm_p->getModel()->getModelData(), 1.0f, btkAttr)) {
             mAnmFlags |= ANM_PLAY_BTK | ANM_PAUSE_BTK;
         }
     }
@@ -988,7 +988,7 @@ BOOL daNpcTheB_c::doEvent() {
 /* 80AFED24-80AFEECC 0026A4 01A8+00 1/1 0/0 0/0 .text            lookat__11daNpcTheB_cFv */
 void daNpcTheB_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
 
     f32 body_angleX_min = mpHIO->m.common.body_angleX_min;
     f32 body_angleX_max = mpHIO->m.common.body_angleX_max;
@@ -1035,8 +1035,8 @@ void daNpcTheB_c::lookat() {
 #pragma inline_max_size(503) // FAKEMATCH
 inline void daNpcTheB_c::setWaitAnimation() {
     if (
-        mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[8].fileIdx)
-        || mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[10].fileIdx)
+        mAnm_p->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[8].fileIdx)
+        || mAnm_p->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[10].fileIdx)
     ) {
         if (dComIfGs_isSaveDunSwitch(55)) {
             setMotion(MOT_BEND_TURN, mpHIO->m.common.morf_frame, 0);
@@ -1049,8 +1049,8 @@ inline void daNpcTheB_c::setWaitAnimation() {
             setMotion(MOT_SIT, mpHIO->m.common.morf_frame, 0);
         }
     } else if (
-        mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[9].fileIdx) ||
-        mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[11].fileIdx)
+        mAnm_p->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[9].fileIdx) ||
+        mAnm_p->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[11].fileIdx)
     ) {
         if (dComIfGs_isSaveDunSwitch(55)) {
             setMotion(MOT_BEND_TURN, mpHIO->m.common.morf_frame, 0);
@@ -1063,8 +1063,8 @@ inline void daNpcTheB_c::setWaitAnimation() {
             setMotion(MOT_SIT, mpHIO->m.common.morf_frame, 0);
         }
     } else if (
-        mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[12].fileIdx) ||
-        mpMorf->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[13].fileIdx)
+        mAnm_p->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[12].fileIdx) ||
+        mAnm_p->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[13].fileIdx)
     ) {
         if (!dComIfGs_isSaveDunSwitch(55)) {
             if (getCoachSpeed() == 0.0f) {
