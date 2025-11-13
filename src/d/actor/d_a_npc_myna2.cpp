@@ -136,7 +136,7 @@ daNpc_myna2_c::~daNpc_myna2_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -218,8 +218,8 @@ int daNpc_myna2_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* model_data = mpMorf->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        J3DModelData* model_data = mAnm_p->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -258,17 +258,17 @@ int daNpc_myna2_c::CreateHeap() {
 
     JUT_ASSERT(476, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    if (mAnm_p != NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p = NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return 0;
     }
 
-    mpMorf->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p->getModel()->setUserArea((uintptr_t)this);
 
     setMotionAnm(0, 0.0f);
     return 1;
@@ -386,7 +386,7 @@ void daNpc_myna2_c::setAttnPos() {
 
     setMtx();
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(15));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(15));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
     eyeOffset.y = 0.0f;
@@ -447,7 +447,7 @@ bool daNpc_myna2_c::setExpressionBtp(int i_index) {
         return 1;
     }
 
-    if (setBtpAnm(btp_p, mpMorf->getModel()->getModelData(), 1.0f, mode)) {
+    if (setBtpAnm(btp_p, mAnm_p->getModel()->getModelData(), 1.0f, mode)) {
         mAnmFlags |= 0x280;
         if (i_index == 0) {
             mAnmFlags |= 0x800;
@@ -957,7 +957,7 @@ int daNpc_myna2_c::talk(void* param_0) {
         if (!mIsDamaged) {
             initTalk(field_0xe04, NULL);
             mTurnMode = 0;
-            mpMorf->setPlaySpeed(1.0f);
+            mAnm_p->setPlaySpeed(1.0f);
             mMode = 2;
         case 2:
             mSound.playSumomoBgm(0);
@@ -1280,10 +1280,10 @@ void daNpc_myna2_c::calcHovering(int param_0, int param_1) {
     if (param_0 != 0) {
         field_0xe1c.set(0.0f, 5.0f, 0.0f);
         cLib_addCalcPos2(&field_0xe10, field_0xe1c, 0.1f, 0.1f);
-        mpMorf->setPlaySpeed(1.5f);
+        mAnm_p->setPlaySpeed(1.5f);
     } else if (current.pos.y > 500.0f + home.pos.y) {
         field_0xe10.y = -25.0f;
-        mpMorf->setPlaySpeed(0.5f);
+        mAnm_p->setPlaySpeed(0.5f);
     } else {
         cXyz sp78(home.pos);
         sp78.y += 120.0f;
@@ -1347,7 +1347,7 @@ void daNpc_myna2_c::calcHovering(int param_0, int param_1) {
             cLib_addCalcPos2(&field_0xe10, field_0xe1c, 0.1f, 0.1f);
         }
 
-        mpMorf->setPlaySpeed(0.5f + ((3.0f + field_0xe1c.y) / 6.0f));
+        mAnm_p->setPlaySpeed(0.5f + ((3.0f + field_0xe1c.y) / 6.0f));
     }
 
     current.pos += field_0xe10;

@@ -323,7 +323,7 @@ public:
     int getType() { return mType; }
     u32 getAngleNoFromParam() { return (u8)(fopAcM_GetParam(this) >> 8); }
     void setBlastFlag(u8 i_flag) { mBlastFlag = i_flag; }
-    MtxP getHeadMtx() { return mpMorf->getModel()->getAnmMtx(4); }
+    MtxP getHeadMtx() { return mAnm_p->getModel()->getAnmMtx(4); }
 
     /* 0x0B48 */ Z2Creature mCreatureSound;
     /* 0x0BD8 */ J3DModel* mpObjectModel[3];
