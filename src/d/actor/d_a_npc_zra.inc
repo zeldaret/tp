@@ -108,7 +108,7 @@ void daNpc_zrA_c::walkCalc() {
     }
     s16 target_angle = cLib_targetAngleY(&current.pos, &next_pnt);
     speedF = HIO_PARAM(this).mWalkSpeed;
-    mpMorf->setPlaySpeed(HIO_PARAM(this).mWalkSpeed / HIO_PARAM(this).mWalkAnmRate);
+    mAnm_p->setPlaySpeed(HIO_PARAM(this).mWalkSpeed / HIO_PARAM(this).mWalkAnmRate);
     cLib_addCalcAngleS2(&current.angle.y, target_angle,
                         HIO_PARAM(this).mWalkAngleScale, HIO_PARAM(this).mWalkAngleSpeed);
     mCurAngle = current.angle;
@@ -456,16 +456,16 @@ BOOL daNpc_zrA_c::railSwim() {
     csXyz angle;
 
     if (field_0x153c) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::scaleM(scale);
         mDoMtx_stack_c::multVecZero(&vec1);
         mPath.getDstPosDst2(current.pos, vec2);
 
         if (field_0x153e) {
-            if (mpMorf->getFrame() > 13.0f && mpMorf->getFrame() < 21.0f) {
-                f32 play_speed = mpMorf->getPlaySpeed();
+            if (mAnm_p->getFrame() > 13.0f && mAnm_p->getFrame() < 21.0f) {
+                f32 play_speed = mAnm_p->getPlaySpeed();
                 cLib_addCalc2(&play_speed, 0.3f, 0.7f, 0.3f);
-                mpMorf->setPlaySpeed(play_speed);
+                mAnm_p->setPlaySpeed(play_speed);
             }
 
             calcBank(ang_step, 8, current.angle.y, current.angle.z);
@@ -492,7 +492,7 @@ BOOL daNpc_zrA_c::railSwim() {
                 field_0x153c = false;
                 mSwimSpeedScale = 1.0f;
                 mSwimSpeedF = mSwimSpeed.absXZ();
-                mpMorf->setPlaySpeed(1.0f);
+                mAnm_p->setPlaySpeed(1.0f);
             }
 
             return true;
@@ -511,10 +511,10 @@ BOOL daNpc_zrA_c::railSwim() {
                 mIsAboveWater = true;
                 mCreatureSound.startCreatureSound(Z2SE_ZRA_DIVE_SPLASH_OUT, 0, -1);
             } else {
-                if (mpMorf->getFrame() > 13.0f && mpMorf->getFrame() < 17.0f) {
-                    f32 play_speed = mpMorf->getPlaySpeed();
+                if (mAnm_p->getFrame() > 13.0f && mAnm_p->getFrame() < 17.0f) {
+                    f32 play_speed = mAnm_p->getPlaySpeed();
                     cLib_addCalc2(&play_speed, 0.3f, 0.7f, 0.5f);
-                    mpMorf->setPlaySpeed(play_speed);
+                    mAnm_p->setPlaySpeed(play_speed);
                 }
 
                 if (current.pos.y > water_height && current.angle.x < -0x2000
@@ -585,7 +585,7 @@ BOOL daNpc_zrA_c::railSwim() {
     if (mActionType != ACT_TYPE_0 && mSpinAngle == 0 && !field_0x153c && !field_0x153d
         && (abs(ang_diff_x) > 0x3000 || abs(ang_diff_y) > 0x3000) && mSwimSpeedF > 14.0f)
     {
-        f32 frame = mpMorf->getFrame();
+        f32 frame = mAnm_p->getFrame();
         if ((angle.z <= 0x2000 || ang_diff_y >= 0) && (angle.z >= -0x2000 || ang_diff_y <= 0)) {
             if (ang_diff_x < -0x3000) {
                 if (frame >= 2.0f && frame <= 4.0f) {
@@ -614,15 +614,15 @@ BOOL daNpc_zrA_c::railSwim() {
     cLib_addCalc2(&mSwimSpeedF, fvar3 * HIO_PARAM(this).mSwimSpeed, fvar15, fvar2);
 
     if (field_0x153c == true && mIsAboveWater == true) {
-        if (mpMorf->getFrame() > 13.0f && mpMorf->getFrame() < 21.0f) {
-            f32 play_speed = mpMorf->getPlaySpeed();
+        if (mAnm_p->getFrame() > 13.0f && mAnm_p->getFrame() < 21.0f) {
+            f32 play_speed = mAnm_p->getPlaySpeed();
             cLib_addCalc2(&play_speed, 0.3f, 0.7f, 0.3f);
-            mpMorf->setPlaySpeed(play_speed);
+            mAnm_p->setPlaySpeed(play_speed);
         }
     } else if (!bvar6) {
-        f32 play_speed = mpMorf->getPlaySpeed();
+        f32 play_speed = mAnm_p->getPlaySpeed();
         cLib_addCalc2(&play_speed, mSwimSpeedF / HIO_PARAM(this).mSwimAnmRate, 0.2f, 0.1f);
-        mpMorf->setPlaySpeed(play_speed);
+        mAnm_p->setPlaySpeed(play_speed);
     }
 
     swim_speed.set(0.0f, 0.0f, mSwimSpeedF);
@@ -761,24 +761,24 @@ BOOL daNpc_zrA_c::turnSwim() {
     shape_angle = mCurAngle;
 
     if (mBaseMotionAnm == ANM_SWIM_TURN) {
-        if (mpMorf->getFrame() < 40.0f) {
+        if (mAnm_p->getFrame() < 40.0f) {
             cXyz zero(0.0f, 0.0f, 0.0f);
             cLib_chasePos(&mSwimSpeed, zero, 0.7f);
             current.pos += mSwimSpeed;
-            mpMorf->setPlaySpeed(0.8f);
+            mAnm_p->setPlaySpeed(0.8f);
         } else {
             cXyz swim_speed;
             mSwimSpeedF = 1.5f * HIO_PARAM(this).mSwimSpeed;
             swim_speed.set(0.0f, 0.0f, mSwimSpeedF);
             calcSwimPos(swim_speed);
-            mpMorf->setPlaySpeed(1.0f);
+            mAnm_p->setPlaySpeed(1.0f);
         }
     } else if (mBaseMotionAnm == ANM_STILL) {
         cXyz swim_speed;
         mSwimSpeedF = 1.5f * HIO_PARAM(this).mSwimSpeed;
         swim_speed.set(0.0f, 0.0f, mSwimSpeedF);
         calcSwimPos(swim_speed);
-        mpMorf->setPlaySpeed(1.0f);
+        mAnm_p->setPlaySpeed(1.0f);
 
         if (mIsTurning) {
             mSwimTurnTimer = 10;
@@ -808,7 +808,7 @@ BOOL daNpc_zrA_c::turnSwim() {
 BOOL daNpc_zrA_c::turnSwimCheck() {
     if (mSoldierType != SOLDIER_SPEAR) {
         if (mCheckSwimTurn) {
-            if (mpMorf->isLoop()) {
+            if (mAnm_p->isLoop()) {
                 turnSwimInit();
                 turnSwim();
                 return true;
@@ -1266,7 +1266,7 @@ BOOL daNpc_zrA_c::swimWaterfall(void* param_0) {
 
         if (mActionType != ACT_TYPE_0 && (abs(ang_diff_x) > 0x3000 || abs(ang_diff_y) > 0x3000)
                                       && mSwimSpeedF > 14.0f) {
-            f32 frame = mpMorf->getFrame();
+            f32 frame = mAnm_p->getFrame();
             if ((angle.z <= 0x2000 || ang_diff_y >= 0) && (angle.z >= -0x2000 || ang_diff_y <= 0)) {
                 if (ang_diff_x < -0x3000) {
                     if (frame >= 2.0f && frame <= 4.0f) {
@@ -1274,9 +1274,9 @@ BOOL daNpc_zrA_c::swimWaterfall(void* param_0) {
                     }
                 } else {
                     if (frame >= 16.0f && frame <= 18.0f) {
-                        mpMorf->setFrame(18.0f);
-                        mpMorf->setMorf(4.0f);
-                        mpMorf->setPlaySpeed(0.1f);
+                        mAnm_p->setFrame(18.0f);
+                        mAnm_p->setMorf(4.0f);
+                        mAnm_p->setPlaySpeed(0.1f);
                         bvar5 = true;
                     }
                 }
@@ -1303,11 +1303,11 @@ BOOL daNpc_zrA_c::swimWaterfall(void* param_0) {
         calcSwimPos(swim_speed);
 
         if (!bvar5) {
-            f32 play_speed = mpMorf->getPlaySpeed();
+            f32 play_speed = mAnm_p->getPlaySpeed();
             f32 target_speed =
                 cLib_minMaxLimit(mSwimSpeedF / HIO_PARAM(this).mSwimAnmRate, 0.0f, 1.5f);
             cLib_addCalc2(&play_speed, target_speed, 0.2f, 0.1f);
-            mpMorf->setPlaySpeed(play_speed);
+            mAnm_p->setPlaySpeed(play_speed);
         }
 
         calcBank(angle_step, angle_scale, angle.y, angle.z);
@@ -1645,7 +1645,7 @@ BOOL daNpc_zrA_c::diveCalc(s16 i_angleStep, s16 i_angleScale, BOOL param_2) {
     calcSwimAngle(angle, mSwimAngleCalc, i_angleScale, i_angleStep);
     shape_angle = mCurAngle = current.angle;
 
-    f32 frame = mpMorf->getFrame();
+    f32 frame = mAnm_p->getFrame();
     cXyz dive_speed(0.0f, 0.0f, 0.0f);
     if (frame < 3.0f) {
         dive_speed.set(0.0f, -6.0f, 0.0f);
@@ -1860,15 +1860,15 @@ BOOL daNpc_zrA_c::swimRiverDescend(void* param_0) {
         if (field_0x153c) {
             mMeterCount = dMeter2Info_getNowCount();
             cXyz head_pos_sp7c;
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
             mDoMtx_stack_c::scaleM(scale);
             mDoMtx_stack_c::multVecZero(&head_pos_sp7c);
 
             if (field_0x153e) {
-                if (mIsAboveWater && mpMorf->getFrame() > 13.0f && mpMorf->getFrame() < 17.0f) {
-                    f32 play_speed_sp1c = mpMorf->getPlaySpeed();
+                if (mIsAboveWater && mAnm_p->getFrame() > 13.0f && mAnm_p->getFrame() < 17.0f) {
+                    f32 play_speed_sp1c = mAnm_p->getPlaySpeed();
                     cLib_addCalc2(&play_speed_sp1c, 0.3f, 0.7f, 0.5f);
-                    mpMorf->setPlaySpeed(play_speed_sp1c);
+                    mAnm_p->setPlaySpeed(play_speed_sp1c);
                 }
 
                 angle_sp44.y = cLib_targetAngleY(&current.pos, &pos_sp94);
@@ -1896,7 +1896,7 @@ BOOL daNpc_zrA_c::swimRiverDescend(void* param_0) {
                         fopKyM_createWpillar(&wpillar_pos, 2.5f, 0);
                         mIsAboveWater = false;
                         mCreatureSound.startCreatureSound(Z2SE_ZRA_DIVE_SPLASH, 0, -1);
-                        mpMorf->setPlaySpeed(1.0f);
+                        mAnm_p->setPlaySpeed(1.0f);
                     }
 
                     if (current.pos.y <= water_height - HIO_PARAM(this).mMinDepth) {
@@ -1924,10 +1924,10 @@ BOOL daNpc_zrA_c::swimRiverDescend(void* param_0) {
                         mIsAboveWater = true;
                         mCreatureSound.startCreatureSound(Z2SE_ZRA_DIVE_SPLASH_OUT, 0, -1);
                     } else {
-                        if (mpMorf->getFrame() > 13.0f && mpMorf->getFrame() < 17.0f) {
-                            f32 play_speed_sp18 = mpMorf->getPlaySpeed();
+                        if (mAnm_p->getFrame() > 13.0f && mAnm_p->getFrame() < 17.0f) {
+                            f32 play_speed_sp18 = mAnm_p->getPlaySpeed();
                             cLib_addCalc2(&play_speed_sp18, 0.3f, 0.7f, 0.8f);
-                            mpMorf->setPlaySpeed(play_speed_sp18);
+                            mAnm_p->setPlaySpeed(play_speed_sp18);
                         }
                         if (current.pos.y > water_height && current.angle.x < -0x2000) {
                             swim_speed_sp88.set(0.0f, 0.0f, mSwimSpeedF);
@@ -2008,7 +2008,7 @@ BOOL daNpc_zrA_c::swimRiverDescend(void* param_0) {
         swim_speed_sp88.set(0.0f, 0.0f, mSwimSpeedF);
         calcSwimPos(swim_speed_sp88);
 
-        f32 play_speed_sp14 = mpMorf->getPlaySpeed();
+        f32 play_speed_sp14 = mAnm_p->getPlaySpeed();
         if (target_speed_f31 != 0.0f) {
             cLib_addCalc2(&play_speed_sp14,
                 cLib_minMaxLimit((mSwimSpeedF - vec_sp58.abs()) / 25.0f, 0.0f, 1.3f) + 0.7f,
@@ -2016,7 +2016,7 @@ BOOL daNpc_zrA_c::swimRiverDescend(void* param_0) {
         } else {
             cLib_addCalc2(&play_speed_sp14, 1.7f, 0.2f, 0.05f);
         }
-        mpMorf->setPlaySpeed(play_speed_sp14);
+        mAnm_p->setPlaySpeed(play_speed_sp14);
 
         if (!field_0x153c && mAcch.ChkWaterHit()
             && current.pos.y > water_height - HIO_PARAM(this).mMinDepth)
@@ -2097,9 +2097,9 @@ BOOL daNpc_zrA_c::swimRiverDescend2(void* param_0) {
             swim_speed.set(0.0f, 0.0f, mSwimSpeedF);
             calcSwimPos(swim_speed);
             
-            f32 play_speed = mpMorf->getPlaySpeed();
+            f32 play_speed = mAnm_p->getPlaySpeed();
             cLib_addCalc2(&play_speed, 1.7f, 0.2f, 0.05f);
-            mpMorf->setPlaySpeed(play_speed);
+            mAnm_p->setPlaySpeed(play_speed);
 
             if (mAcch.ChkWaterHit()
                 && current.pos.y > water_height - HIO_PARAM(this).mMinDepth)
@@ -2154,7 +2154,7 @@ BOOL daNpc_zrA_c::diveRiverDescend(void* param_0) {
         calcSwimAngle(angle, mSwimAngleCalc, 3, angle_step);
         shape_angle = mCurAngle = current.angle;
 
-        f32 frame = mpMorf->getFrame();
+        f32 frame = mAnm_p->getFrame();
         cXyz dive_speed(0.0f, 0.0f, 0.0f);
         if (mBaseMotionAnm == ANM_DIVE_B) {
             if (frame <= 3.0f) {
@@ -2276,12 +2276,12 @@ BOOL daNpc_zrA_c::swimGoalRiverDescend(void* param_0) {
             swim_speed.set(0.0f, 0.0f, mSwimSpeedF);
             calcSwimPos(swim_speed);
 
-            f32 play_speed = mpMorf->getPlaySpeed();
+            f32 play_speed = mAnm_p->getPlaySpeed();
             //!@bug vec is used here despite not being initialized in all code paths
             f32 target_play_speed =
                 cLib_minMaxLimit((mSwimSpeedF - vec.abs()) / 25.0f, 0.0f, 1.3f) + 0.7f;
             cLib_addCalc2(&play_speed, target_play_speed, 0.2f, 0.1f);
-            mpMorf->setPlaySpeed(play_speed);
+            mAnm_p->setPlaySpeed(play_speed);
 
             calcBank(angle_step, 3, angle.y, angle.z);
             current.angle.z = angle.z;
@@ -2327,7 +2327,7 @@ BOOL daNpc_zrA_c::returnRiverDescend(void* param_0) {
                 && (abs(angle_diff_x) > 0x3000 || abs(angle_diff_y) > 0x3000)
                 && mSwimSpeedF > 14.0f)
             {
-                f32 frame = mpMorf->getFrame();
+                f32 frame = mAnm_p->getFrame();
                 if ((angle.z <= 0x2000 || angle_diff_y >= 0)
                     && (angle.z >= -0x2000 || angle_diff_y <= 0))
                 {
@@ -2337,9 +2337,9 @@ BOOL daNpc_zrA_c::returnRiverDescend(void* param_0) {
                         }
                     } else {
                         if (frame >= 16.0f && frame <= 18.0f) {
-                            mpMorf->setFrame(18.0f);
-                            mpMorf->setMorf(2.0f);
-                            mpMorf->setPlaySpeed(0.1f);
+                            mAnm_p->setFrame(18.0f);
+                            mAnm_p->setMorf(2.0f);
+                            mAnm_p->setPlaySpeed(0.1f);
                             bvar4 = true;
                         }
                     }
@@ -2364,10 +2364,10 @@ BOOL daNpc_zrA_c::returnRiverDescend(void* param_0) {
             }
 
             if (!bvar4) {
-                f32 play_speed = mpMorf->getPlaySpeed();
+                f32 play_speed = mAnm_p->getPlaySpeed();
                 cLib_addCalc2(&play_speed, mSwimSpeedF / HIO_PARAM(this).mSwimAnmRate,
                               0.2f, 0.1f);
-                mpMorf->setPlaySpeed(play_speed);
+                mAnm_p->setPlaySpeed(play_speed);
             }
 
             calcBank(angle_step, 8, angle.y, angle.z);
@@ -2743,9 +2743,9 @@ BOOL daNpc_zrA_c::ECut_thanksBlast(int i_staffID) {
             }
 
             cLib_addCalc2(&mSwimSpeedF, target_speed, 0.2f, 3.0f);
-            f32 play_speed = mpMorf->getPlaySpeed();
+            f32 play_speed = mAnm_p->getPlaySpeed();
             cLib_addCalc2(&play_speed, 1.0f, 0.2f, 0.03f);
-            mpMorf->setPlaySpeed(play_speed);
+            mAnm_p->setPlaySpeed(play_speed);
 
             csXyz angle;
             angle.x = cLib_targetAngleX(&pos, &current.pos);
@@ -2837,7 +2837,7 @@ BOOL daNpc_zrA_c::ECut_thanksBlast(int i_staffID) {
         calcSwimAngle(angle, mSwimAngleCalc, 4, angle_step);
         shape_angle = mCurAngle = current.angle;
         
-        f32 frame = mpMorf->getFrame();
+        f32 frame = mAnm_p->getFrame();
         cXyz dive_speed(0.0f, 0.0f, 0.0f);
         if (mBaseMotionAnm == ANM_DIVE_B) {
             if (frame <= 3.0f) {
@@ -3059,9 +3059,9 @@ BOOL daNpc_zrA_c::ECut_resultAnnounce(int i_staffID) {
             }
 
             cLib_addCalc2(&mSwimSpeedF, target_speed, 0.2f, 3.0f);
-            f32 play_speed = mpMorf->getPlaySpeed();
+            f32 play_speed = mAnm_p->getPlaySpeed();
             cLib_addCalc2(&play_speed, 1.0f, 0.2f, 0.03f);
-            mpMorf->setPlaySpeed(play_speed);
+            mAnm_p->setPlaySpeed(play_speed);
 
             csXyz angle;
             angle.x = cLib_targetAngleX(&pos, &current.pos);
@@ -3149,7 +3149,7 @@ BOOL daNpc_zrA_c::ECut_resultAnnounce(int i_staffID) {
         calcSwimAngle(angle, mSwimAngleCalc, 4, angle_step);
         shape_angle = mCurAngle = current.angle;
         
-        f32 frame = mpMorf->getFrame();
+        f32 frame = mAnm_p->getFrame();
         cXyz dive_speed(0.0f, 0.0f, 0.0f);
         if (mBaseMotionAnm == ANM_DIVE_B) {
             if (frame <= 3.0f) {
@@ -3353,7 +3353,7 @@ BOOL daNpc_zrA_c::tobikomi1(void* param_0) {
 
     case 2:
         if (mBaseMotionAnm == MOT_FLOAT_B) {
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 cXyz vec(-1.68f, -7.99f, 206.37f);
                 mDoMtx_stack_c::YrotS(mCurAngle.y);
                 mDoMtx_stack_c::multVec(&vec, &vec);
@@ -3398,7 +3398,7 @@ BOOL daNpc_zrA_c::tobikomi2(void* param_0) {
     case 2:
         if (fopAcM_getWaterY(&current.pos, &water_y)) {
             cXyz head_pos;
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
             mDoMtx_stack_c::scaleM(scale);
             mDoMtx_stack_c::multVecZero(&head_pos);
             if (head_pos.y <= water_y) {
@@ -3472,15 +3472,15 @@ BOOL daNpc_zrA_c::tobiJump(void* param_0) {
 
     case 2: {
         cXyz head_pos;
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::scaleM(scale);
         mDoMtx_stack_c::multVecZero(&head_pos);
 
         if (field_0x153e) {
-            if (mpMorf->getFrame() > 13.0f && mpMorf->getFrame() < 17.0f) {
-                f32 play_speed = mpMorf->getPlaySpeed();
+            if (mAnm_p->getFrame() > 13.0f && mAnm_p->getFrame() < 17.0f) {
+                f32 play_speed = mAnm_p->getPlaySpeed();
                 cLib_addCalc2(&play_speed, 0.3f, 0.5f, 0.8f);
-                mpMorf->setPlaySpeed(play_speed);
+                mAnm_p->setPlaySpeed(play_speed);
             }
 
             calcBank(angle_step, angle_scale, current.angle.y, current.angle.z);
@@ -3538,9 +3538,9 @@ BOOL daNpc_zrA_c::tobiJump(void* param_0) {
             cLib_addCalc2(&mSwimSpeedF, 2.0f * HIO_PARAM(this).mSwimSpeed, 0.7f, 10.0f);
             swim_speed.set(0.0f, 0.0f, mSwimSpeedF);
             calcSwimPos(swim_speed);
-            f32 play_speed = mpMorf->getPlaySpeed();
+            f32 play_speed = mAnm_p->getPlaySpeed();
             cLib_addCalc2(&play_speed, mSwimSpeedF / HIO_PARAM(this).mSwimAnmRate, 0.2f, 0.1f);
-            mpMorf->setPlaySpeed(play_speed);
+            mAnm_p->setPlaySpeed(play_speed);
             shape_angle = mCurAngle = current.angle;
         }
 
@@ -3582,9 +3582,9 @@ BOOL daNpc_zrA_c::tobiEnd(void* param_0) {
                     HIO_PARAM(this).mSwimSpeed / 3.0f);
         swim_speed.set(0.0f, 0.0f, mSwimSpeedF);
         calcSwimPos(swim_speed);
-        f32 play_speed = mpMorf->getPlaySpeed();
+        f32 play_speed = mAnm_p->getPlaySpeed();
         cLib_addCalc2(&play_speed, mSwimSpeedF / HIO_PARAM(this).mSwimAnmRate, 0.2f, 0.1f);
-        mpMorf->setPlaySpeed(play_speed);
+        mAnm_p->setPlaySpeed(play_speed);
         calcBank(angle_step, 8, angle.y, angle.z);
         current.angle.z = angle.z;
         shape_angle = mCurAngle = current.angle;
@@ -3703,7 +3703,7 @@ BOOL daNpc_zrA_c::ECut_searchPrince1(int i_staffID) {
 
     case 20: {
         if (mBaseMotionAnm == ANM_TOBIKOMI_S) {
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 cXyz dive_speed(-1.68f, -30.0f, 210.37f);
                 mDoMtx_stack_c::YrotS(mCurAngle.y);
                 mDoMtx_stack_c::multVec(&dive_speed, &dive_speed);
@@ -3720,7 +3720,7 @@ BOOL daNpc_zrA_c::ECut_searchPrince1(int i_staffID) {
             ret = true;
         }
         cXyz head_pos;
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
         mDoMtx_stack_c::scaleM(scale);
         mDoMtx_stack_c::multVecZero(&head_pos);
         break;
@@ -3731,7 +3731,7 @@ BOOL daNpc_zrA_c::ECut_searchPrince1(int i_staffID) {
             ret = true;
         } else if (fopAcM_getWaterY(&current.pos, &water_y)) {
             cXyz head_pos;
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
             mDoMtx_stack_c::scaleM(scale);
             mDoMtx_stack_c::multVecZero(&head_pos);
             if (head_pos.y <= water_y) {
@@ -3768,7 +3768,7 @@ BOOL daNpc_zrA_c::ECut_searchPrince1(int i_staffID) {
         angle.x = cLib_targetAngleX(&pos, &current.pos);
         angle.y = cLib_targetAngleY(&current.pos, &pos);
         angle.z = current.angle.z;
-        mpMorf->setPlaySpeed(HIO_PARAM(this).mSwimSpeed / HIO_PARAM(this).mSwimAnmRate);
+        mAnm_p->setPlaySpeed(HIO_PARAM(this).mSwimSpeed / HIO_PARAM(this).mSwimAnmRate);
         calcSwimAngle(angle, mSwimAngleCalc, 23, HIO_PARAM(this).mSwimAngleSpeed / 2);
         calcSwimPos(swim_speed);
         calcBank(HIO_PARAM(this).mSwimAngleSpeed / 2, 16, angle.y, angle.z);
@@ -3842,7 +3842,7 @@ BOOL daNpc_zrA_c::ECut_searchPrince2(int i_staffID) {
 
     case 20:
         if (mBaseMotionAnm == ANM_TOBIKOMI_S) {
-            if (mpMorf->isStop()) {
+            if (mAnm_p->isStop()) {
                 cXyz dive_speed(-1.68f, -30.0f, 210.37f);
                 mDoMtx_stack_c::YrotS(mCurAngle.y);
                 mDoMtx_stack_c::multVec(&dive_speed, &dive_speed);
@@ -3865,7 +3865,7 @@ BOOL daNpc_zrA_c::ECut_searchPrince2(int i_staffID) {
             ret = true;
         } else if (fopAcM_getWaterY(&current.pos, &water_y)) {
             cXyz head_pos;
-            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+            mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(4));
             mDoMtx_stack_c::scaleM(scale);
             mDoMtx_stack_c::multVecZero(&head_pos);
             if (head_pos.y <= water_y) {
@@ -3902,7 +3902,7 @@ BOOL daNpc_zrA_c::ECut_searchPrince2(int i_staffID) {
         angle.x = cLib_targetAngleX(&pos, &current.pos);
         angle.y = cLib_targetAngleY(&current.pos, &pos);
         angle.z = current.angle.z;
-        mpMorf->setPlaySpeed(HIO_PARAM(this).mSwimSpeed / HIO_PARAM(this).mSwimAnmRate);
+        mAnm_p->setPlaySpeed(HIO_PARAM(this).mSwimSpeed / HIO_PARAM(this).mSwimAnmRate);
         calcSwimAngle(angle, mSwimAngleCalc, 23, HIO_PARAM(this).mSwimAngleSpeed / 2);
         calcSwimPos(swim_speed);
         calcBank(HIO_PARAM(this).mSwimAngleSpeed / 2, 16, angle.y, angle.z);

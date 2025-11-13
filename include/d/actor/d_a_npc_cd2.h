@@ -116,33 +116,15 @@ inline f32 Cd2_HIO_objScale(int param_1) {
 }
 
 inline f32 Cd2_HIO_walkMaxSpeed(int param_1) {
-    f32 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mWalkMaxSpeed;
-    } else {
-        return l_Cd2_HIO.field_0x20c4[param_1 - 16].mWalkMaxSpeed;
-    }
-    return rv;
+    return (f32)(param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mWalkMaxSpeed : l_Cd2_HIO.field_0x20c4[param_1 - 16].mWalkMaxSpeed);
 }
 
 inline f32 Cd2_HIO_walkAnmPlaySpeed(int param_1) {
-    f32 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mWalkAnmPlaySpeed;
-    } else {
-        return l_Cd2_HIO.field_0x20c4[param_1 - 16].mWalkAnmPlaySpeed;
-    }
-    return rv;
+    return (f32)(param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mWalkAnmPlaySpeed : l_Cd2_HIO.field_0x20c4[param_1 - 16].mWalkAnmPlaySpeed);
 }
 
 inline f32 Cd2_HIO_maxSpeed(int param_1) {
-    f32 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMaxSpeed;
-    } else {
-        return l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxSpeed;
-    }
-    return rv;
+    return (f32)(param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mMaxSpeed : l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxSpeed);
 }
 
 inline f32 Cd2_HIO_anmPlaySpeed(int param_1) {

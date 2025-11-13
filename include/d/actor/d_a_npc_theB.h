@@ -117,7 +117,7 @@ public:
     /* 80B00204 */ int EvCut_CoachGuardGameOver(int);
 
     s16 getMessageNo() { return fopAcM_GetParam(this) & 0xFFFF; }
-    void setTRMtx(MtxP mtx) { mpMorf->getModel()->setBaseTRMtx(mtx); }
+    void setTRMtx(MtxP mtx) { mAnm_p->getModel()->setBaseTRMtx(mtx); }
     void setGameOver() { mGameOver = 1; }
     f32 getCoachSpeed() { return fopAcM_GetSpeedF((fopAc_ac_c*)fpcM_SearchByID(parentActorID)); }
     void setAction(actionFunc action) {
