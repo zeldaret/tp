@@ -2239,7 +2239,7 @@ daNpcChat_c::~daNpcChat_c() {
     removeResrc(mType, mObjNum);
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -2318,18 +2318,18 @@ daNpcChat_HIOParam const daNpcChat_Param_c::m = {
 BOOL daNpcChat_c::NpcCreate(int type) {
     J3DModelData* a_mdlData_p = getNpcMdlDataP(type);
 
-    JUT_ASSERT(185, 0 != a_mdlData_p);
+    JUT_ASSERT(185, NULL != a_mdlData_p);
 
     J3DAnmTexPattern* texAnmP = getTexAnmP(type);
     u32 uVar1 = texAnmP != NULL ? 0x11020084 : 0x11000084;
 
-    mpMorf = new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, uVar1);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p = new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, uVar1);
+    if (mAnm_p != NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p = NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return FALSE;
     }
 
@@ -2367,14 +2367,14 @@ BOOL daNpcChat_c::NpcCreate(int type) {
     };
 
     cXyz i_scale(a_transScaleTbl[type]);
-    mpMorf->offTranslate();
-    mpMorf->setTranslateScale(i_scale);
+    mAnm_p->offTranslate();
+    mAnm_p->setTranslateScale(i_scale);
     J3DJointCallBack jointCallBack = a_mdlData_p->getJointNodePointer(0)->getCallBack();
-    uintptr_t userArea = mpMorf->getModel()->getUserArea();
+    uintptr_t userArea = mAnm_p->getModel()->getUserArea();
     for (u16 i = 0; i < a_mdlData_p->getJointNum(); i++) {
         a_mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
-    mpMorf->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p->getModel()->setUserArea((uintptr_t)this);
 
     if (!setExpressionBtp(type)) {
         return FALSE;
@@ -2385,7 +2385,7 @@ BOOL daNpcChat_c::NpcCreate(int type) {
     for (u16 i = 0; i < a_mdlData_p->getJointNum(); i++) {
         a_mdlData_p->getJointNodePointer(i)->setCallBack(jointCallBack);
     }
-    mpMorf->getModel()->setUserArea(userArea);
+    mAnm_p->getModel()->setUserArea(userArea);
 
     return TRUE;
 }
@@ -2524,11 +2524,11 @@ J3DModel* daNpcChat_c::ChairCreate(f32 i_scale) {
 
 /* 80981108-80981140 0009A8 0038+00 5/5 0/0 0/0 .text            isM___11daNpcChat_cFv */
 bool daNpcChat_c::isM_() {
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return mType < 16;
     }
 
-    u16 a_jntNum = mpMorf->getModel()->getModelData()->getJointNum();
+    u16 a_jntNum = mAnm_p->getModel()->getModelData()->getJointNum();
     JUT_ASSERT(738, (a_jntNum == JntM_NUM_e) || (a_jntNum == JntW_NUM_e));
     return a_jntNum == JntM_NUM_e;
 }
@@ -2674,7 +2674,7 @@ BOOL daNpcChat_c::setAttention(int param_1) {
     };
 
     int jointNo = isM_() ? JNTM_HEAD : JNTW_HEAD;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(jointNo));
     mDoMtx_stack_c::multVec(&a_eyeOfsTbl[param_1], &eyePos);
     mBaseAttnPos.set(current.pos.x, current.pos.y + AtnOfs(param_1), current.pos.z);
 
@@ -2756,8 +2756,8 @@ cPhs__Step daNpcChat_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* mdlData_p = mpMorf->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        J3DModelData* mdlData_p = mAnm_p->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -40.0f, -10.0f, -30.0f, 30.0f, 190.0f, 40.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         mSound.setMdlType(mType, false, mTwilight & 0xFF);
@@ -2807,14 +2807,14 @@ BOOL daNpcChat_c::CreateHeap() {
             mObjModel = model;
             rv = model != NULL;
             if (!rv) {
-                mpMorf->stopZelAnime();
+                mAnm_p->stopZelAnime();
             }
         } else if (field_0xe51 == 1) {
             model = ChairCreate(ObjScale(mType));
             mObjModel = model;
             rv = model != NULL;
             if (!rv) {
-                mpMorf->stopZelAnime();
+                mAnm_p->stopZelAnime();
             }
         } else {
             mObjModel = NULL;
@@ -2839,19 +2839,19 @@ int daNpcChat_c::Execute() {
         return 1;
     }
 
-    J3DModelData* a_mdlData_p = mpMorf->getModel()->getModelData();
+    J3DModelData* a_mdlData_p = mAnm_p->getModel()->getModelData();
     J3DJointCallBack callBack = a_mdlData_p->getJointNodePointer(0)->getCallBack();
-    u32 userArea = mpMorf->getModel()->getUserArea();
+    u32 userArea = mAnm_p->getModel()->getUserArea();
     for (u16 i = 0; i < a_mdlData_p->getJointNum(); i++) {
         a_mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
-    mpMorf->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p->getModel()->setUserArea((uintptr_t)this);
     execute();
 
     for (u16 i = 0; i < a_mdlData_p->getJointNum(); i++) {
         a_mdlData_p->getJointNodePointer(i)->setCallBack(callBack);
     }
-    mpMorf->getModel()->setUserArea(userArea);
+    mAnm_p->getModel()->setUserArea(userArea);
 
     return 1;
 }
@@ -2864,7 +2864,7 @@ int daNpcChat_c::Draw() {
 
 /* 8098250C-80982780 001DAC 0274+00 1/1 0/0 0/0 .text            draw__11daNpcChat_cFiifP11_GXColorS10i */
 int daNpcChat_c::draw(int param_1, int param_2, f32 param_3, _GXColorS10* i_color, int param_5) {
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     J3DModelData* a_mdlData_p = model->getModelData();
 
     if (i_color != NULL) {
@@ -2904,10 +2904,10 @@ int daNpcChat_c::draw(int param_1, int param_2, f32 param_3, _GXColorS10* i_colo
 
         if (mTwilight) {
             dComIfGd_setListDark();
-            mpMorf->entryDL();
+            mAnm_p->entryDL();
             dComIfGd_setList();
         } else {
-            mpMorf->entryDL();
+            mAnm_p->entryDL();
         }
 
         if ((mAnmFlags & ANM_PLAY_BTP) != 0) {
@@ -3168,7 +3168,7 @@ void daNpcChat_c::setAttnPos() {
 
     daNpcF_c::setMtx();
     cXyz sp28(10.0f, 15.0f, 0.0f);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&sp28, &eyePos);
     sp28.x = 0.0f;
@@ -3187,7 +3187,7 @@ bool daNpcChat_c::setExpressionBtp(int i_index) {
         return true;
     }
 
-    J3DModelData* a_mdlData_p = mpMorf->getModel()->getModelData();
+    J3DModelData* a_mdlData_p = mAnm_p->getModel()->getModelData();
     if (setBtpAnm(i_btp, a_mdlData_p, 1.0f, J3DFrameCtrl::EMode_LOOP)) {
         mAnmFlags |= ANM_FLAG_800 | ANM_PLAY_BTP | ANM_PAUSE_BTP;
         return true;
@@ -3578,7 +3578,7 @@ void daNpcChat_c::drawOtherMdls() {
                 if (mObjModel != NULL && jntNo >= 0) {
                   if (!chkAction(&daNpcChat_c::fear)) {
                         g_env_light.setLightTevColorType_MAJI(mObjModel, &tevStr);
-                        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jntNo));
+                        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(jntNo));
                         mDoMtx_stack_c::scaleM(objScale, objScale, objScale);
                         mObjModel->setBaseTRMtx(mDoMtx_stack_c::get());
                         mDoExt_modelUpdateDL(mObjModel);
@@ -3862,7 +3862,7 @@ void daNpcChat_c::playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData*** i_data) {
             }
 
             mExpressionMorf = 0.0f;
-            mpMorf->setMorf(i_morf);
+            mAnm_p->setMorf(i_morf);
         }
     }
 
@@ -3950,7 +3950,7 @@ bool daNpcChat_c::wait(void* param_1) {
 
             if (
                 dKy_darkworld_check() == 0 && daPy_py_c::checkNowWolf() &&
-                fopAcM_searchPlayerDistanceXZ2(this) < std::pow(500.0, 2.0) || mFear
+                fopAcM_searchPlayerDistanceXZ2(this) < std::pow(500.0f, 2.0f) || mFear
             ) {
                 setAction(&daNpcChat_c::fear);
                 if (!mFear) {
@@ -3988,15 +3988,13 @@ bool daNpcChat_c::wait(void* param_1) {
                         setMotion(i_motion, -1.0f, 1);
                     }
 
-                    if (mTalkFlag) {
-                        if (dComIfGp_event_getTalkPartner() != this) {
+                    if (mTalkFlag && dComIfGp_event_getTalkPartner() != this) {
                         if (field_0xe51 == 1) {
                             setMotion(MOT_SITWAIT_A, -1.0f, 0);
                         } else if (field_0xe51 == 2) {
                             setMotion(MOT_SITWAIT_B, -1.0f, 0);
                         } else {
                             setMotion(MOT_WAIT_A, -1.0f, 0);
-                        }
                         }
                     }
                 } else if (mTalkFlag) {
@@ -4016,7 +4014,7 @@ bool daNpcChat_c::wait(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2580, 0);
+            JUT_ASSERT(2580, FALSE);
     }
 
     return true;
@@ -4035,7 +4033,7 @@ bool daNpcChat_c::fear(void* param_1) {
         
         case 2:
             if (mMotionAnm == ANM_SURPRISE) {
-                if (mpMorf->isStop()) {
+                if (mAnm_p->isStop()) {
                     setMotion(MOT_TO_WOLF, -1.0f, 0);
                     mPlayerAngleY = fopAcM_searchPlayerAngleY(this) + 0x8000;
                 }
@@ -4045,7 +4043,7 @@ bool daNpcChat_c::fear(void* param_1) {
                     setAngle(shape_angle.y);
                 }
 
-                if (mpMorf->getFrame() >= 1.0f && mpMorf->getFrame() < 2.0f) {
+                if (mAnm_p->getFrame() >= 1.0f && mAnm_p->getFrame() < 2.0f) {
                     mSound.playVoice(2);
                 }
             }
@@ -4055,7 +4053,7 @@ bool daNpcChat_c::fear(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2664, 0);
+            JUT_ASSERT(2664, FALSE);
             break;
     }
 
@@ -4142,7 +4140,7 @@ bool daNpcChat_c::talk(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2764, 0);
+            JUT_ASSERT(2764, FALSE);
             break;
     }
 
@@ -4166,7 +4164,7 @@ bool daNpcChat_c::demo(void* param_1) {
                     if (staffId != -1) {
                         mStaffID = staffId;
 
-                        JUT_ASSERT(2798, 0 != mEvtSeqList[mOrderEvtNo]);
+                        JUT_ASSERT(2798, NULL != mEvtSeqList[mOrderEvtNo]);
 
                         if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {
                             eventManager.cutEnd(staffId);
@@ -4187,7 +4185,7 @@ bool daNpcChat_c::demo(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2826, 0);
+            JUT_ASSERT(2826, FALSE);
             break;
     }
 

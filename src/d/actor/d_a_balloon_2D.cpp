@@ -444,7 +444,6 @@ void daBalloon2D_c::setComboAlpha() {
 }
 
 /* 80654730-80654E8C 001350 075C+00 1/1 0/0 0/0 .text            drawAddScore__13daBalloon2D_cFv */
-// NONMATCHING - field_0x0.x, regalloc
 void daBalloon2D_c::drawAddScore() {
     for (s32 i = 19; i >= 0; i--) {
         if (field_0x5f8[i].field_0xe != 0) {
@@ -591,7 +590,6 @@ void daBalloon2D_HIO_c::resetAddScoreSetFlag() {
 }
 
 /* 80655250-80655304 001E70 00B4+00 1/0 0/0 0/0 .text daBalloon2D_create__FP13daBalloon2D_c */
-// NONMATCHING - vtable
 static int daBalloon2D_create(daBalloon2D_c* i_this) {
     fopAcM_ct(i_this, daBalloon2D_c);
     return i_this->create();

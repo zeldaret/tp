@@ -1637,8 +1637,10 @@ void dComIfGp_createSubExpHeap2D() {
     u32 size = dComIfGp_getExpHeap2D()->getTotalFreeSize() * (2.0f / 5.0f);
 
     for (int i = 0; i < 2; i++) {
+        JUT_ASSERT(3573, dComIfGp_getSubExpHeap2D(i) == NULL);
         if (dComIfGp_getSubExpHeap2D(i) == NULL) {
-            JKRExpHeap* i_heap = JKRExpHeap::create(size, dComIfGp_getExpHeap2D(), false);
+            JKRExpHeap* i_heap = JKRCreateExpHeap(size, dComIfGp_getExpHeap2D(), false);
+            JUT_ASSERT(3576, i_heap != NULL);
             dComIfGp_setSubExpHeap2D(i, i_heap);
         }
     }

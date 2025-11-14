@@ -266,7 +266,7 @@ int daNpc_Lud_c::create() {
         0x3EF0, 0x3EF0, 0x3EF0, 0x3EF0, 0x46D0, 0x5000, 0x46E0, 0x3EF0, 0x0,
     };
 
-    fopAcM_SetupActor2(this, daNpc_Lud_c, (daNpcT_faceMotionAnmData_c const*)l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Lud_c, (daNpcT_faceMotionAnmData_c const*)l_faceMotionAnmData,
                        (const daNpcT_motionAnmData_c*)l_motionAnmData,
                        (const daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_faceMotionSequenceData,
                        4, (const daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_motionSequenceData,

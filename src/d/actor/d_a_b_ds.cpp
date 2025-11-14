@@ -17,6 +17,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"
 #include "f_op/f_op_actor_enemy.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 enum daB_DS_Joint {
     DS_JNT_BACKBONE1,
@@ -1302,7 +1303,7 @@ void daB_DS_c::executeOpeningDemo() {
             mMode++;
         }
         break;
-    case 2:
+    case 2: {
         f32 calc_center = cLib_addCalcPos(&mCameraCenter, mOpCenterDt[1], 0.3f, 2.0f, 1.0f);
         f32 calc_eye = cLib_addCalcPos(&mCameraEye, mOpEyeDt[1], 0.3f, 2.0f, 1.0f);
         if (calc_center > 2.0f || calc_eye > 2.0f || cLib_calcTimer(&mModeTimer) != 0) {
@@ -1322,6 +1323,7 @@ void daB_DS_c::executeOpeningDemo() {
         fopAcM_OffStatus(this, 0x4000);
         mMode++;
         // fallthrough
+    }
     case 3:
         mPedestalFallTimer = l_HIO.mPedestalFallTime;
 
@@ -1518,7 +1520,7 @@ void daB_DS_c::executeOpeningDemo() {
         dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
         mMode++;
         // fallthrough
-    case 26:
+    case 26: {
         if (!field_0x85e && mpZantMorf->isStop()) {
             mpZantMorf->setAnm(static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 67)),
                                J3DFrameCtrl::EMode_LOOP, 1.0f, 1.0f, 0.0f, -1.0f);
@@ -1561,6 +1563,7 @@ void daB_DS_c::executeOpeningDemo() {
         mMode = 30;
         field_0x85e = false;
         // fallthrough
+    }
     case 30:
         mCameraCenter.set(mOpCenterDt[12]);
         mCameraEye.set(mOpEyeDt[12]);
@@ -2324,7 +2327,7 @@ void daB_DS_c::executeDamage() {
         mMode = 100;
         mSound.startCreatureSound(Z2SE_EN_DS_MDEMO_FALL, 0, -1);
         // fallthrough
-    case 100:
+    case 100: {
         gravity = -0.2f;
         if (current.pos.y > -1600.0f) {
             if (current.pos.y <= -300.0f) {
@@ -2345,6 +2348,7 @@ void daB_DS_c::executeDamage() {
                       &p2_angle, NULL, 0xff);
         mMode = 101;
         // fallthrough
+    }
     case 101:
         cLib_addCalc2(&mCameraCenter.y, down_center_dt[4].y, 0.7f, 10.0f);
         cLib_addCalc2(&mCameraEye.y, down_eye_dt[4].y, 0.7f, 10.0f);
@@ -5769,178 +5773,6 @@ static cPhs__Step daB_DS_Create(daB_DS_c* i_this) {
     return i_this->create();
 }
 
-/* ############################################################################################## */
-/* 805DE2AC-805DE2B0 000844 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2AC[4];
-#pragma pop
-
-/* 805DE2B0-805DE2B4 000848 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2B0[4];
-#pragma pop
-
-/* 805DE2B4-805DE2B8 00084C 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2B4[4];
-#pragma pop
-
-/* 805DE2B8-805DE2BC 000850 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2B8[4];
-#pragma pop
-
-/* 805DE2BC-805DE2C0 000854 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2BC[4];
-#pragma pop
-
-/* 805DE2C0-805DE2C4 000858 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2C0[4];
-#pragma pop
-
-/* 805DE2C4-805DE2C8 00085C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2C4[4];
-#pragma pop
-
-/* 805DE2C8-805DE2CC 000860 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2C8[4];
-#pragma pop
-
-/* 805DE2CC-805DE2D0 000864 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2CC[4];
-#pragma pop
-
-/* 805DE2D0-805DE2D4 000868 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2D0[4];
-#pragma pop
-
-/* 805DE2D4-805DE2D8 00086C 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2D4[4];
-#pragma pop
-
-/* 805DE2D8-805DE2DC 000870 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2D8[4];
-#pragma pop
-
-/* 805DE2DC-805DE2E0 000874 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2DC[4];
-#pragma pop
-
-/* 805DE2E0-805DE2E4 000878 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2E0[4];
-#pragma pop
-
-/* 805DE2E4-805DE2E8 00087C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2E4[4];
-#pragma pop
-
-/* 805DE2E8-805DE2EC 000880 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2E8[4];
-#pragma pop
-
-/* 805DE2EC-805DE2F0 000884 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2EC[4];
-#pragma pop
-
-/* 805DE2F0-805DE2F4 000888 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2F0[4];
-#pragma pop
-
-/* 805DE2F4-805DE2F8 00088C 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2F4[4];
-#pragma pop
-
-/* 805DE2F8-805DE2FC 000890 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2F8[4];
-#pragma pop
-
-/* 805DE2FC-805DE300 000894 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_805DE2FC[4];
-#pragma pop
-
-/* 805DE300-805DE304 000898 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_805DE300[4];
-#pragma pop
-
-/* 805DE304-805DE308 00089C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_805DE304[4];
-#pragma pop
-
-/* 805DE308-805DE30C 0008A0 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_805DE308[4];
-#pragma pop
-
-/* 805DE30C-805DE310 0008A4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_805DE30C[4];
-#pragma pop
-
 /* 805DD994-805DD9B4 -00001 0020+00 1/0 0/0 0/0 .data            l_daB_DS_Method */
 static actor_method_class l_daB_DS_Method = {
     (process_method_func)daB_DS_Create,  (process_method_func)daB_DS_Delete,
@@ -5965,3 +5797,5 @@ extern actor_process_profile_definition g_profile_B_DS = {
     fopAc_ENEMY_e,
     fopAc_CULLBOX_CUSTOM_e,
 };
+
+AUDIO_INSTANCES;

@@ -239,7 +239,7 @@ static void* s_piro_sub(void* param_0, void* param_1) {
 /* 80543718-8054378C 0008F8 0074+00 1/1 0/0 0/0 .text            s_du_sub__FPvPv */
 static void* s_du_sub(void* param_0, void* param_1) {
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_NPC_DU &&
-        ((npc_du_class*)param_0)->field_0x5b8 < 300.0f)
+        ((npc_du_class*)param_0)->mPlayerDist < 300.0f)
     {
         ((npc_henna_class*)param_1)->field_0x7d5 = 70;
         return param_0;
@@ -1516,7 +1516,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                 case 7:
                     i_this->mMsgFlow.init(actor, 0x33e, 0, NULL);
                     break;
-                case 8:
+                case 8: {
                     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
                     if (kankyo->raincnt == 0) {
                         hour = kankyo->daytime / 15.0f;
@@ -1529,6 +1529,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                         i_this->mMsgFlow.init(actor, 0x347, 0, NULL);
                     }
                     break;
+                }
                 case 0xb:
                     i_this->mMsgFlow.init(actor, 0x35f, 0, NULL);
                     break;

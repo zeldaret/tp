@@ -47,16 +47,16 @@ m_Do/m_Do_graphic.cpp:
 	.text       start:0x8000DBD0 end:0x800163A0
 	.ctors      start:0x8062F7CC end:0x8062F7D0
 	.data       start:0x80661190 end:0x80661890
-	.sdata      start:0x8073F2F0 end:0x8073F364
-	.sbss       start:0x8074C310 end:0x8074C388
+	.sdata      start:0x8073F2F0 end:0x8073F360
+	.sbss       start:0x8074C310 end:0x8074C380
 	.sdata2     start:0x8074D780 end:0x8074D870
 	.bss        start:0x80755780 end:0x80755868
 
 m_Do/m_Do_machine.cpp:
 	.text       start:0x800163A0 end:0x80017DE0
 	.data       start:0x80661890 end:0x80661ED0
-	.sdata      start:0x8073F364 end:0x8073F3E8
-	.sbss       start:0x8074C388 end:0x8074C3B0
+	.sdata      start:0x8073F360 end:0x8073F3E8
+	.sbss       start:0x8074C380 end:0x8074C3B0
 	.sdata2     start:0x8074D870 end:0x8074D878
 	.bss        start:0x80755868 end:0x807558E0
 

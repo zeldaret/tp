@@ -58,7 +58,7 @@ s32 JFWSystem::CSetUpParam::aPiecePriority = 6;
 ResFONT* JFWSystem::CSetUpParam::systemFontRes = (ResFONT*)&JUTResFONT_Ascfont_fix12;
 
 /* 80450794-80450798 -00001 0004+00 1/1 1/1 0/0 .sdata renderMode__Q29JFWSystem11CSetUpParam */
-GXRenderModeObj* JFWSystem::CSetUpParam::renderMode = &GXNtsc480IntDf;
+const GXRenderModeObj* JFWSystem::CSetUpParam::renderMode = &GXNtsc480IntDf;
 
 /* 80450798-804507A0 000218 0004+04 1/1 0/0 0/0 .sdata
  * exConsoleBufferSize__Q29JFWSystem11CSetUpParam               */

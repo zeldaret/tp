@@ -13,6 +13,7 @@
 #include "d/d_s_play.h"
 #include "f_op/f_op_camera_mng.h"
 #include "SSystem/SComponent/c_math.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 /* 80685674-80685678 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 /* 80685675 0003+00 data_80685675 None */
@@ -456,39 +457,31 @@ static void bee_start(e_bee_class* i_this, bee_s* i_bee) {
 }
 
 /* 80684248-80684A94 001AC8 084C+00 1/1 0/0 0/0 .text            bee_control__FP11e_bee_class */
-// NONMATCHING regalloc
 static void bee_control(e_bee_class* i_this) {
-    fopAc_ac_c* parent;
-    s8 bees_in_nest;
-    camera_class* camera;
-    e_nest_class* nest;
-    int i;
     fopAc_ac_c* a_this;
-    cXyz* hit_pos_p;
-    bee_s* bee;
-    s8 nest_health;
-    s8 active_bees;
-    s8 bees_flying;
-
     a_this = (fopAc_ac_c*)i_this;
 
+    s8 nest_health;
     nest_health = 0;
 
     static cXyz non(-20000.0f, 30000.0f, -15000.0f);
     i_this->mCcSph.SetC(a_this->current.pos + non);
 
-    parent = fopAcM_SearchByID(a_this->parentActorID);
+    e_nest_class* parent;
+    parent = (e_nest_class*)fopAcM_SearchByID(a_this->parentActorID);
+    e_nest_class* nest;
     nest = NULL;
     if (parent != NULL) {
         if (parent != NULL && parent->health != 0) {
             nest_health = parent->health;
         }
-        nest = (e_nest_class*)parent;
+        nest = parent;
         a_this->home.pos = nest->mCenterPos;
     }
 
     dComIfG_Ccsp()->Set(&i_this->mCcCyl);
 
+    cXyz* hit_pos_p;
     hit_pos_p = NULL;
     cXyz hit_pos;
     f32 hit_radius = 120.0f;
@@ -496,7 +489,8 @@ static void bee_control(e_bee_class* i_this) {
     if (i_this->mCcCyl.ChkTgHit()) {
         cXyz vec1, vec2;
         hit_pos_p = &hit_pos;
-        cCcD_Obj* hit_obj = i_this->mCcCyl.GetTgHitObj();
+        cCcD_Obj* hit_obj;
+        hit_obj = i_this->mCcCyl.GetTgHitObj();
         if (hit_obj->ChkAtType(AT_TYPE_BOMB) || hit_obj->ChkAtType(AT_TYPE_BOOMERANG)
                                              || hit_obj->ChkAtType(AT_TYPE_IRON_BALL)) {
             fopAc_ac_c* hit_actor = dCc_GetAc(hit_obj->GetAc());
@@ -532,13 +526,18 @@ static void bee_control(e_bee_class* i_this) {
         i_this->mBoomerangAngle = 0;
     }
 
+    bee_s* bee;
     bee = i_this->mBees;
+    s8 active_bees;
     active_bees = 0;
     cXyz vec3;
     ccCylSet = 0;
+    s8 bees_in_nest;
     bees_in_nest = 0;
+    s8 bees_flying;
     bees_flying = 0;
-    camera = dComIfGp_getCamera(0);
+    camera_class* camera;
+    camera = (camera_class*)dComIfGp_getCamera(0);
 
     if ((nest != NULL && nest->mDemoStage == 0 && dComIfGp_event_runCheck())
                     || !daPy_getPlayerActorClass()->checkSwimUp()
@@ -552,7 +551,7 @@ static void bee_control(e_bee_class* i_this) {
         i_this->mHomeTimer = 10;
     }
 
-    for (i = 0; i < i_this->mNumBees; i++, bee++) {
+    for (int i = 0; i < i_this->mNumBees; i++, bee++) {
         if (bee->mAction != bee_s::ACT_DEAD) {
             active_bees++;
             bee->mNoDraw = false;
@@ -826,179 +825,6 @@ static cPhs__Step daE_Bee_Create(fopAc_ac_c* i_this) {
     return step;
 }
 
-/* 806856B4-806856B8 000084 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_806856B4[4];
-#pragma pop
-
-/* 806856B8-806856BC 000088 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_806856B8[4];
-#pragma pop
-
-/* 806856BC-806856C0 00008C 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_806856BC[4];
-#pragma pop
-
-/* 806856C0-806856C4 000090 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_806856C0[4];
-#pragma pop
-
-/* 806856C4-806856C8 000094 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806856C4[4];
-#pragma pop
-
-/* 806856C8-806856CC 000098 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806856C8[4];
-#pragma pop
-
-/* 806856CC-806856D0 00009C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806856CC[4];
-#pragma pop
-
-/* 806856D0-806856D4 0000A0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_806856D0[4];
-#pragma pop
-
-/* 806856D4-806856D8 0000A4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_806856D4[4];
-#pragma pop
-
-/* 806856D8-806856DC 0000A8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_806856D8[4];
-#pragma pop
-
-/* 806856DC-806856E0 0000AC 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_806856DC[4];
-#pragma pop
-
-/* 806856E0-806856E4 0000B0 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_806856E0[4];
-#pragma pop
-
-/* 806856E4-806856E8 0000B4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_806856E4[4];
-#pragma pop
-
-/* 806856E8-806856EC 0000B8 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806856E8[4];
-#pragma pop
-
-/* 806856EC-806856F0 0000BC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_806856EC[4];
-#pragma pop
-
-/* 806856F0-806856F4 0000C0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_806856F0[4];
-#pragma pop
-
-/* 806856F4-806856F8 0000C4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_806856F4[4];
-#pragma pop
-
-/* 806856F8-806856FC 0000C8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_806856F8[4];
-#pragma pop
-
-/* 806856FC-80685700 0000CC 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806856FC[4];
-#pragma pop
-
-/* 80685700-80685704 0000D0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80685700[4];
-#pragma pop
-
-/* 80685704-80685708 0000D4 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80685704[4];
-#pragma pop
-
-/* 80685708-8068570C 0000D8 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80685708[4];
-#pragma pop
-
-/* 8068570C-80685710 0000DC 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8068570C[4];
-#pragma pop
-
-/* 80685710-80685714 0000E0 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80685710[4];
-#pragma pop
-
-/* 80685714-80685718 0000E4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80685714[4];
-#pragma pop
-
-/* 80685524-80685524 0000F0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 806855B0-806855D0 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_Bee_Method */
 static actor_method_class l_daE_Bee_Method = {
     (process_method_func)daE_Bee_Create,
@@ -1025,3 +851,5 @@ extern actor_process_profile_definition g_profile_E_BEE = {
     fopAc_ACTOR_e,
     fopAc_CULLBOX_CUSTOM_e,
 };
+
+AUDIO_INSTANCES;

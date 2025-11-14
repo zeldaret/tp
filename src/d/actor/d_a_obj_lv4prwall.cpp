@@ -90,7 +90,7 @@ void daObjLv4PRwall_c::setMtx() {
 /* 80C68F20-80C68FA0 000300 0080+00 1/0 0/0 0/0 .text            CreateHeap__16daObjLv4PRwall_cFv */
 int daObjLv4PRwall_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_bmdidx[mType]);
-    JUT_ASSERT(226, model_data != 0);
+    JUT_ASSERT(226, model_data != NULL);
 
     mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mpModel == NULL) {

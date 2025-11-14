@@ -284,7 +284,8 @@ public:
     }
 
     void lookActor(fopAc_ac_c* param_1, f32 param_2, u8 isDirect) {
-        if (setMode(LOOK_ACTOR, mActrMngr.getActorP() != param_1) && fopAcM_IsActor(param_1)) {
+        bool isDifferentActor = mActrMngr.getActorP() != param_1;
+        if (setMode(LOOK_ACTOR, isDifferentActor) && fopAcM_IsActor(param_1)) {
             mActrMngr.entry(param_1);
             field_0x14c = param_2;
         }
@@ -799,6 +800,12 @@ public:
 
 STATIC_ASSERT(sizeof(daNpcT_c) == 0xE40);
 
+#define daNpcT_ct(ptr, ClassName, faceMotionAnmData, motionAnmData, faceMotionSequenceData, faceMotionStepNum, motionSequenceData, motionStepNum, evtData, arcNames) \
+    if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) { \
+        new (ptr) ClassName(faceMotionAnmData, motionAnmData, faceMotionSequenceData, faceMotionStepNum, motionSequenceData, motionStepNum, evtData, arcNames); \
+        fopAcM_OnCondition(ptr, fopAcCnd_INIT_e); \
+    }
+
 BOOL daNpcT_chkEvtBit(u32 i_idx);
 BOOL daNpcT_chkPointInArea(cXyz param_0, cXyz param_1, cXyz param_2, s16 param_3, BOOL param_4);
 u8 daNpcT_getDistTableIdx(int param_0, int param_1);
@@ -966,6 +973,10 @@ public:
     /* 8014F60C */ int MoveBGCreate(char const*, int, MoveBGActor_SetFunc, u32);
     /* 8014F6FC */ int MoveBGDelete();
     /* 8014F770 */ int MoveBGExecute();
+    int MoveBGDraw() {
+        int ret = Draw();
+        return ret;
+    }
 
     /* 80155FB0 */ virtual ~daBaseNpc_moveBgActor_c() {}
     /* 801503BC */ virtual int CreateHeap() { return 1; }
@@ -1006,7 +1017,7 @@ public:
 
 class daNpcF_c : public fopAc_ac_c {
 protected:
-    /* 0x568 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x568 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x56C */ mDoExt_bckAnm mBckAnm;
     /* 0x588 */ mDoExt_btpAnm mBtpAnm;
     /* 0x5A0 */ mDoExt_btkAnm mBtkAnm;
@@ -1101,7 +1112,7 @@ public:
     struct daNpcF_anmPlayData {
         u16 idx;
         f32 morf;
-        s32 numLoops;
+        int numLoops;
     };
 
     enum AnmFlags {
@@ -1343,6 +1354,9 @@ public:
     dPath* getPathInfo() { return mPathInfo; }
     void setRange(f32 i_range) { mRange = i_range; }
     u16 getNumPnts() { return mPathInfo->m_num; }
+#if DEBUG
+    void drawDbgInfoXyz();
+#endif
 };  // Size: 0x630
 
 class daNpcF_Lookat_c {

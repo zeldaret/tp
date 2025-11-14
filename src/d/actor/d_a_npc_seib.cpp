@@ -114,7 +114,7 @@ daNpc_seiB_Param_c::Data const daNpc_seiB_Param_c::m = {
 
 /* 80AC5188-80AC53C8 000188 0240+00 1/1 0/0 0/0 .text            create__12daNpc_seiB_cFv */
 int daNpc_seiB_c::create() {
-    fopAcM_SetupActor2(this, daNpc_seiB_c, &l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_seiB_c, &l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList,
                        l_resNameList);
 

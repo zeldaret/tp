@@ -539,7 +539,7 @@ daNpc_Pachi_Besu_HIOParam const daNpc_Pachi_Besu_Param_c::m = {
 
 /* 80A92EA4-80A9317C 000224 02D8+00 1/1 0/0 0/0 .text            create__18daNpc_Pachi_Besu_cFv */
 cPhs__Step daNpc_Pachi_Besu_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Pachi_Besu_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Pachi_Besu_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
                        l_evtList, l_resNameList);
 

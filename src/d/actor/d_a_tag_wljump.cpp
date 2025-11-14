@@ -63,7 +63,6 @@ static int daTagWljump_Delete(daTagWljump_c* i_this) {
 }
 
 /* 80D65090-80D6587C 000250 07EC+00 1/1 0/0 0/0 .text            execute__13daTagWljump_cFv */
-// NONMATCHING - reg swap (regs match on debug, probably an inline issue)
 int daTagWljump_c::execute() {
     attention_info.flags = 0;
 

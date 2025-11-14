@@ -491,7 +491,7 @@ daNpc_ykM_HIOParam const daNpc_ykM_Param_c::m = {
 
 /* 80B53698-80B53990 000298 02F8+00 1/1 0/0 0/0 .text            create__11daNpc_ykM_cFv */
 cPhs__Step daNpc_ykM_c::create() {
-    fopAcM_SetupActor2(this, daNpc_ykM_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData,
+    daNpcT_ct(this, daNpc_ykM_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData,
                                                   4, l_motionSequenceData, 4, l_evtList, l_resNameList);
     mType = getType();
     mFlowNodeNo = getFlowNodeNo();

@@ -248,6 +248,7 @@ protected:
     /* 0x14 */ u8 mAtp;
     /* 0x15 */ u8 field_0x15[3];
 };
+#pragma pack()
 #pragma pop
 
 STATIC_ASSERT(0x18 == sizeof(cCcD_ObjAt));

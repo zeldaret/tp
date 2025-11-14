@@ -17,8 +17,8 @@
 
 class daWtPillar_c : public fopAc_ac_c, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
-    daWtPillar_c();
-    ~daWtPillar_c();
+    daWtPillar_c() : dEvLib_callback_c(this) {}
+    ~daWtPillar_c() {}
 
     /* 80D2C7B0 */ void setBaseMtx();
     /* 80D2C838 */ static int createHeapCallBack(fopAc_ac_c*);
@@ -84,10 +84,9 @@ private:
     /* 0x7DC */ dCcD_Stts mStts;
     /* 0x818 */ dCcD_Cps mCapsuleCollider;
     /* 0x95C */ dCcD_Cyl mCylinderCollider;
-    /* 0xA98 */ u8 pad0[0x3C];
-    /* 0xAD4 */ f32 mScaleX;    // Modified but never read; unused?
-    /* 0xAD8 */ u8 pad1[0x4];
-    /* 0xADC */ f32 mScaleZ;    // Modified but never read; unused?
+    /* 0xA98 */ u8 pad0[0x30];
+    /* 0xAC8 */ cXyz field_0xAC8;   // unused.
+    /* 0xAD4 */ cXyz mScale;    // Modified but never read; unused?
     /* 0xAE0 */ f32 mCurrentHeight;
     /* 0xAE4 */ cM3dGCpsS mCapsuleSource;
     /* 0xB00 */ u8 mAction;

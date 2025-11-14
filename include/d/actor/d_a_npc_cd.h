@@ -23,7 +23,7 @@ public:
     /* 8015736C */ void setHitodamaParticle();
     /* 80157524 */ J3DModelData* getNpcMdlDataP(int);
     /* 80157588 */ J3DModelData* getObjMdlDataP(int);
-    /* 80AA8694 */ virtual ~daNpcCd_c();
+    /* 80AA8694 */ virtual ~daNpcCd_c() {}
 
     static dCcD_SrcCyl const m_cylDat;
 
@@ -37,14 +37,14 @@ public:
     /* 0x80C */ dBgS_AcchCir mAcchCir;
     /* 0x84C */ dCcD_Stts mStts;
     /* 0x888 */ dCcD_Cyl mCyl;
-    /* 0x9C4 */ int field_0x9c4;
+    /* 0x9C4 */ int m_type;
     /* 0x9C8 */ int field_0x9c8;
     /* 0x9CC */ int mHitodamaEmitters[2];
     /* 0x9D4 */ int field_0x9d4;
     /* 0x9D8 */ cXyz field_0x9d8;
     /* 0x9E4 */ s16 field_0x9e4;
     /* 0x9E6 */ s16 field_0x9e6;
-    /* 0x9E8 */ bool mIsDarkWorld;
+    /* 0x9E8 */ u8 mIsDarkWorld;
 };
 
 STATIC_ASSERT(sizeof(daNpcCd_c) == 0x9EC);
@@ -71,9 +71,17 @@ struct daNpcCd_HIO_Child_c : public JORReflexible {
 #endif
 
     /* 0x004 */ daNpcCd_HIO_Jnt_c field_0x4[12];
-    /* 0x128 */ s16 field_0x128[0x0E];
-    /* 0x136 */ s16 mAtn;
-    /* 0x156 */ s16 field_0x146[0x10];
+    /* 0x124 */ s16 field_0x124[0x0C];
+    /* 0x13C */ f32 mObjScale;
+    /* 0x140 */ s16 mAtn;
+    /* 0x144 */ f32 mAnmPlaySpeed;
+    /* 0x148 */ f32 mWalkAnmPlaySpeed;
+    /* 0x14C */ f32 mMaxSpeed;
+    /* 0x150 */ f32 mWalkMaxSpeed;
+    /* 0x154 */ f32 mCylH;
+    /* 0x158 */ f32 mCylR;
+    /* 0x15C */ f32 mChkWallH;
+    /* 0x160 */ f32 mChkWallR;
 };
 
 STATIC_ASSERT(sizeof(daNpcCd_HIO_Child_c) == 0x164);
@@ -163,5 +171,23 @@ static inline f32 HIO_jntTZ(int param_1, int param_2) {
     }
     return 10.0f * rv;
 }
+
+static inline f32 HIO_maxSpeed(int param_1) { return (f32)(param_1 < 16 ? l_Cd_HIO.field_0x0004[param_1].mMaxSpeed : l_Cd_HIO.field_0x0004[param_1].mMaxSpeed); }
+
+static inline f32 HIO_anmPlaySpeed(int param_1) { return (f32)(param_1 < 16 ? l_Cd_HIO.field_0x0004[param_1].mAnmPlaySpeed : l_Cd_HIO.field_0x0004[param_1].mAnmPlaySpeed); }
+
+static inline f32 HIO_walkMaxSpeed(int param_1) { return (f32)(param_1 < 16 ? l_Cd_HIO.field_0x0004[param_1].mWalkMaxSpeed : l_Cd_HIO.field_0x0004[param_1].mWalkMaxSpeed); }
+
+static inline f32 HIO_walkAnmPlaySpeed(int param_1) { return (f32)(param_1 < 16 ? l_Cd_HIO.field_0x0004[param_1].mWalkAnmPlaySpeed : l_Cd_HIO.field_0x0004[param_1].mWalkAnmPlaySpeed); }
+
+static inline f32 HIO_chkWallR(int param_1) { return (param_1 < 16 ? l_Cd_HIO.field_0x0004[param_1].mChkWallR : l_Cd_HIO.field_0x0004[param_1].mChkWallR); }
+
+static inline f32 HIO_chkWallH(int param_1) { return (param_1 < 16 ? l_Cd_HIO.field_0x0004[param_1].mChkWallH : l_Cd_HIO.field_0x0004[param_1].mChkWallH); }
+
+static inline f32 HIO_cylR(int param_1) { return (param_1 < 16 ? l_Cd_HIO.field_0x0004[param_1].mCylR : l_Cd_HIO.field_0x0004[param_1].mCylR); }
+
+static inline f32 HIO_cylH(int param_1) { return (param_1 < 16 ? l_Cd_HIO.field_0x0004[param_1].mCylH : l_Cd_HIO.field_0x0004[param_1].mCylH); }
+
+static inline f32 HIO_objScale(int param_1) { return (f32)(param_1 < 16 ? l_Cd_HIO.field_0x0004[param_1].mObjScale : l_Cd_HIO.field_0x0004[param_1].mObjScale); }
 
 #endif /* A_NPC_D_A_NPC_CD_H */

@@ -191,7 +191,7 @@ int daNpc_Shop0_c::init() {
     eventInfo.setArchiveName(getResName());
     field_0x9e8 = -1;
 
-    setProcess(daNpc_Shop0_c::wait, NULL, 0);
+    setProcess(&daNpc_Shop0_c::wait, NULL, 0);
     setRoomInf();
     return execute();
 }
@@ -347,7 +347,7 @@ int daNpc_Shop0_c::talk(void* i_stat_loc) {
             break;
         case 1:
             if (cut_alert(-1, 0) != 0) {
-                setProcess(daNpc_Shop0_c::wait, NULL, 0);
+                setProcess(&daNpc_Shop0_c::wait, NULL, 0);
             }
             break;
         case 2:

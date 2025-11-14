@@ -11,7 +11,6 @@
 #include "f_op/f_op_actor_enemy.h"
 #include "f_op/f_op_camera_mng.h"
 
-
 class daE_TT_HIO_c : public JORReflexible {
 public:
     /* 807BD7AC */ daE_TT_HIO_c();

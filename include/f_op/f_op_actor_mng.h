@@ -18,12 +18,6 @@
         fopAcM_OnCondition(ptr, fopAcCnd_INIT_e);                                                  \
     }
 
-#define fopAcM_SetupActor2(ptr, ClassName, ...)                                                    \
-    if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) {                                            \
-        new (ptr) ClassName(__VA_ARGS__);                                                          \
-        fopAcM_OnCondition(ptr, fopAcCnd_INIT_e);                                                  \
-    }
-
 #define fopAcM_RegisterDeleteID(i_this, actor_name_str)                                            \
     const fpc_ProcID procID = fopAcM_GetID(i_this);                                                \
     "Delete -> " actor_name_str "(id=%d)\n"
@@ -431,6 +425,10 @@ inline void fopAcM_SetOldPosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
     i_actor->old.pos.set(x, y, z);
 }
 
+inline csXyz* fopAcM_GetHomeAngle_p(fopAc_ac_c* i_actor) {
+    return &i_actor->home.angle;
+}
+
 inline void fopAcM_SetHomePosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
     i_actor->home.pos.set(x, y, z);
 }
@@ -441,6 +439,7 @@ inline void fopAcM_SetAngle(fopAc_ac_c* i_actor, s16 x, s16 y, s16 z) {
 
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
 inline void dComIfGs_offSwitch(int i_no, int i_roomNo);
+inline void dComIfGs_revSwitch(int i_no, int i_roomNo);
 inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo);
 inline void dComIfGs_offActor(int i_no, int i_roomNo);
 
@@ -450,6 +449,10 @@ inline void fopAcM_onSwitch(const fopAc_ac_c* i_actor, int sw) {
 
 inline void fopAcM_offSwitch(const fopAc_ac_c* i_actor, int sw) {
     return dComIfGs_offSwitch(sw, fopAcM_GetHomeRoomNo(i_actor));
+}
+
+inline void fopAcM_revSwitch(const fopAc_ac_c* i_actor, int sw) {
+    return dComIfGs_revSwitch(sw, fopAcM_GetHomeRoomNo(i_actor));
 }
 
 inline BOOL fopAcM_isSwitch(const fopAc_ac_c* i_actor, int sw) {

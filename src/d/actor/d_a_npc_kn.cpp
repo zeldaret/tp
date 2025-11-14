@@ -441,7 +441,7 @@ const daNpc_Kn_HIOParam daNpc_Kn_Param_c::m = {
 
 /* 80A2AFD4-80A2B278 0006B4 02A4+00 1/1 0/0 0/0 .text            create__10daNpc_Kn_cFv */
 int daNpc_Kn_c::create() {
-    fopAcM_SetupActor2(this, daNpc_Kn_c, l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Kn_c, l_faceMotionAnmData,
                        (daNpcT_motionAnmData_c*)l_motionAnmData, l_faceMotionSequenceData, 4,
                        l_motionSequenceData, 4, l_evtList, l_resNameList);
 

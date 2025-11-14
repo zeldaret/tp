@@ -75,7 +75,7 @@ private:
     /* 0x6F8 */ u8 mPlayerOnHorse;
     /* 0x6F9 */ u8 mSwitchFlag;
     /* 0x6FA */ u8 mTektiteOnWater;
-    /* 0x6FB */ u8 field_0x6fb; // only set, not used
+    /* 0x6FB */ u8 field_0x6fb;  // only set, not used
     /* 0x6FC */ dBgS_AcchCir mAcchCir;
     /* 0x73C */ dBgS_ObjAcch mObjAcch;
     /* 0x914 */ dCcD_Stts mStts;

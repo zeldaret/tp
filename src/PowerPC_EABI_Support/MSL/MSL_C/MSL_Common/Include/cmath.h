@@ -42,6 +42,11 @@ inline float tan(float num) {
 inline float pow(float x, float y) {
     return ::pow(x, y);
 }
+
+inline float pow(float x, int y) {
+    // FIXME: Needs to use powf
+    return ::pow(x, y);
+}
 }  // namespace std
 
 #endif

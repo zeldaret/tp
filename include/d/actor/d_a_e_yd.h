@@ -78,21 +78,5 @@ public:
 
 STATIC_ASSERT(sizeof(e_yd_class) == 0x126c);
 
-class daE_YD_HIO_c {
-public:
-    daE_YD_HIO_c();
-    virtual ~daE_YD_HIO_c() {}
-
-    /* 0x4 */ s8 field_0x4;
-    /* 0x8 */ f32 field_0x8;
-    /* 0xC */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ s16 field_0x14;
-    /* 0x16 */ s16 field_0x16;
-    /* 0x18 */ u8 field_0x18;
-};
-
-STATIC_ASSERT(sizeof(daE_YD_HIO_c) == 0x1c);
-
 
 #endif /* D_A_E_YD_H */

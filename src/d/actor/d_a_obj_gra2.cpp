@@ -15,31 +15,113 @@
 #ifdef DEBUG
 #include "d/d_debug_viewer.h"
 #endif
-#include "dol2asm.h"
 #include "d/d_msg_object.h"
 #include "d/d_attention.h"
 #include "f_op/f_op_camera_mng.h"
 #include <cmath.h>
 
-/* 80BFFF0C-80BFFF58 0000EC 004C+00 2/2 0/0 0/0 .text            jointCtrlCallBack__FP8J3DJointi */
-static int jointCtrlCallBack(J3DJoint* i_joint, int param_2) {
-    if (param_2 == 0) {
-        J3DModel* model = j3dSys.getModel();
-        daObj_GrA_c* i_this = (daObj_GrA_c*)model->getUserArea();
-        if (i_this != NULL) {
-            i_this->jointCtrl(i_joint, model);
-        }
+class daObj_GrA_Param_c {
+public:
+    /* 80C04B1C */ virtual ~daObj_GrA_Param_c() {}
+
+    static const daObj_GrA_HIO_Param_c m;
+};
+
+#if DEBUG
+class daObj_GrA_HIO_c : public fOpAcm_HIO_entry_c {
+public:
+    daObj_GrA_HIO_c() {
+        m = daObj_GrA_Param_c::m;
     }
 
-    return 1;
-}
+    void genMessage(JORMContext* ctext) {
+        // featured offset
+        ctext->genSlider("注目オフセット  ", &m.field_0x00, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // gravity
+        ctext->genSlider("重力            ", &m.mGravity, -99.0f, 99.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // scale
+        ctext->genSlider("スケ－ル        ", &m.field_0x08, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // interpolated frames
+        ctext->genSlider("補間フレ－ム    ", &m.field_0x0c, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // height
+        ctext->genSlider("高さ            ", &m.field_0x14, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // knee-length
+        ctext->genSlider("ひざ丈          ", &m.mWallR, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // width
+        ctext->genSlider("幅              ", &m.mWallH, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // weight
+        ctext->genSlider("体重            ", &m.mWeight, 0.0f, 255.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // back upper x angle
+        ctext->genSlider("背のＸ角上限    ", &m.field_0x24, -90.0f, 90.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // back lower x angle
+        ctext->genSlider("背のＸ角下限    ", &m.field_0x28, -90.0f, 90.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // back upper y angle
+        ctext->genSlider("背のＹ角上限    ", &m.field_0x2c, -180.0f, 179.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // --- TODO ---
+        ctext->genSlider("", &m.field_0x30, -180.0f, 179.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x34, -90.0f, 90.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x38, -90.0f, 90.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x3c, -180.0f, 179.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x40, -180.0f, 179.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x44, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x48, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x4c, 0.0f, 180.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x50, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x54, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x56, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x58, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x5a, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x5c, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x60, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x64, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x68, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // Goron Soldier Guard
+        ctext->genLabel("\n-----------------------【見張りゴロン兵】", 0, 0, NULL, -1, -1, 0x200, 0x18);
+        ctext->genSlider("", &m.field_0x70, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x74, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x84, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0xa8, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x78, 0.0f, 1.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x9c, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0x9a, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // Rolling attack start demo parameters
+        ctext->genLabel("\n○転がり攻撃開始デモ用パラメータ", 0, 0, NULL, -1, -1, 0x200, 0x18);
+        ctext->genSlider("", &m.field_0xac, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0xae, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0xb0, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0xb2, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0xb4, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0xb8, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genSlider("", &m.field_0xbc, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // Goron Regular Soldier
+        ctext->genLabel("\n-----------------------【ゴロン一般兵】", 0, 0, NULL, -1, -1, 0x200, 0x18);
+        // search radius (10)
+        ctext->genSlider("サ－チ半径(10)  ", &m.field_0x6c, 0.0f, 9999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // turning speed
+        ctext->genSlider("旋回速度        ", &m.field_0x88, 0, 0x4000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // walking speed
+        ctext->genSlider("歩く速度        ", &m.field_0x90, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // punch start distance
+        ctext->genSlider("パンチ開始距離  ", &m.field_0x94, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // post attack wait time
+        ctext->genSlider("攻撃後待ち時間  ", &m.field_0x98, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // attack hand radius
+        ctext->genSlider("攻撃時の手の半径", &m.field_0x8c, 0.0f, 999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        // return speed
+        ctext->genSlider("戻る速度        ", &m.field_0xa0, 0.0f, 9999.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        ctext->genLabel("\n", 0, 0, NULL, -1, -1, 0x200, 0x18);
+        // debug draw ON
+        ctext->genCheckBox("デバグ描画ＯＮ  ", &m.field_0x8a, true, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        // Export File
+        ctext->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    }
 
-/* 80BFFF58-80BFFF70 000138 0018+00 1/1 0/0 0/0 .text            rideCallBack__11daObj_GrA_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c */
-void daObj_GrA_c::rideCallBack(dBgW* param_1, fopAc_ac_c* aActor_p, fopAc_ac_c* param_3) {
-    ((daObj_GrA_c*)aActor_p)->field_0x10c4 = fopAcM_GetProfName(param_3) == PROC_ALINK;
-}
+    void listenPropertyEvent(const JORPropertyEvent*) {
+        // TODO
+    }
 
-#if VERSION != VERSION_SHIELD_DEBUG
+    daObj_GrA_HIO_Param_c m;
+};
 #endif
 
 /* 80C0FE88-80C0FE98 -00001 0010+00 1/1 0/0 0/0 .data            l_resFileNameList */
@@ -138,6 +220,26 @@ static u16 l_entryJntNoList[4] = {
     5, 6, 7, -1,
 };
 
+/* 80BFFF0C-80BFFF58 0000EC 004C+00 2/2 0/0 0/0 .text            jointCtrlCallBack__FP8J3DJointi */
+static int jointCtrlCallBack(J3DJoint* i_joint, int param_2) {
+    if (param_2 == 0) {
+        J3DModel* model = j3dSys.getModel();
+        daObj_GrA_c* i_this = (daObj_GrA_c*)model->getUserArea();
+        if (i_this != NULL) {
+            i_this->jointCtrl(i_joint, model);
+        }
+    }
+
+    return 1;
+}
+
+/* 80BFFF58-80BFFF70 000138 0018+00 1/1 0/0 0/0 .text            rideCallBack__11daObj_GrA_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c */
+void daObj_GrA_c::rideCallBack(dBgW* param_1, fopAc_ac_c* actor_p, fopAc_ac_c* param_3) {
+    daObj_GrA_c* aActor_p = (daObj_GrA_c*) actor_p;
+    JUT_ASSERT(684, NULL != aActor_p);
+    aActor_p->field_0x10c4 = fopAcM_GetProfName(param_3) == PROC_ALINK;
+}
+
 /* 80BFFF70-80C0011C 000150 01AC+00 1/1 0/0 0/0 .text            __ct__11daObj_GrA_cFv */
 daObj_GrA_c::daObj_GrA_c() {}
 
@@ -153,10 +255,17 @@ daObj_GrA_c::~daObj_GrA_c() {
     }
 
     if (mpBgw != NULL && mpBgw->ChkUsed()) {
-        if (dComIfG_Bgsp().Release(mpBgw)) {
+        bool rel_ret = dComIfG_Bgsp().Release(mpBgw);
+        if (rel_ret) {
             OS_REPORT("Release Error\n");
         }
     }
+
+#if DEBUG
+    if (mpHIO != NULL) {
+        mpHIO->removeHIO(this);
+    }
+#endif
 }
 
 /* 80C003CC-80C00614 0005AC 0248+00 1/1 0/0 0/0 .text            create__11daObj_GrA_cFv */
@@ -214,13 +323,12 @@ cPhs__Step daObj_GrA_c::create() {
 }
 
 /* 80C0FA7C-80C0FB3C 000000 00C0+00 54/54 0/0 0/0 .rodata          m__17daObj_GrA_Param_c */
-daObj_GrA_Param_c::Data const daObj_GrA_Param_c::m = {
+daObj_GrA_HIO_Param_c const daObj_GrA_Param_c::m = {
     85.0f,
     -4.0f,
     1.0f,
     12.0f,
     1,
-    0,
     280.0f,
     40.0f,
     100.0f,
@@ -242,11 +350,9 @@ daObj_GrA_Param_c::Data const daObj_GrA_Param_c::m = {
     60,
     4,
     30,
-    0,
     140.0f,
     150.0f,
     100,
-    0,
     100.0f,
     15.0f,
     20.0f,
@@ -261,50 +367,40 @@ daObj_GrA_Param_c::Data const daObj_GrA_Param_c::m = {
     230.0f,
     60,
     1,
-    0.0f,
+    0,
     25.0f,
     100,
-    0,
     0.5f,
     10,
     10,
     30,
     40,
     20,
-    0,
     60.0f,
     30.0f,
 };
 
 /* 80C0FB3C-80C0FB8C 0000C0 0050+00 0/0 0/0 0/0 .rodata          l_bgcParam */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_bgcParam[80] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0xBF, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x3F, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0xBF, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
-    0x3F, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00,
-    0xBF, 0x00, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00,
+static const f32 l_bgcParam[20] = {
+    0.0f, 0.0f, 0.0f, 0.0f,
+    -0.5f, 1.0f, -0.5f, 1.0f,
+    0.5f, -1.0f, -0.5f, 1.0f,
+    0.5f, -1.0f, 0.5f, -1.0f,
+    -0.5f, 1.0f, 0.5f, -1.0f,
 };
-COMPILER_STRIP_GATE(0x80C0FB3C, &l_bgcParam);
-#pragma pop
 
 /* 80C0FB8C-80C0FB94 000110 0008+00 0/0 0/0 0/0 .rodata          l_dirToAngleTBL */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_dirToAngleTBL[8] = {
-    0x00, 0x00, 0x40, 0x00, 0x80, 0x00, 0xC0, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C0FB8C, &l_dirToAngleTBL);
-#pragma pop
+const s16 l_dirToAngleTBL[4] = {0, 0x4000, 0x8000, 0xC000};
 
 /* 80C00614-80C00790 0007F4 017C+00 1/0 0/0 0/0 .text            CreateHeap__11daObj_GrA_cFv */
 int daObj_GrA_c::CreateHeap() {
+    J3DModelData* aMdlData_p = NULL;
     field_0x844 = dKy_darkworld_check();
 
-    J3DModelData* aMdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNames[l_bmdGetParamList[1]], l_bmdGetParamList[0]);
+    aMdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNames[l_bmdGetParamList[1]], l_bmdGetParamList[0]);
     JUT_ASSERT(854, NULL != aMdlData_p);
-    mpModelMorf = new mDoExt_McaMorfSO(aMdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    u32 reg_r25 = 0x11020284;
+    mpModelMorf = new mDoExt_McaMorfSO(aMdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, reg_r25);
     if (mpModelMorf != NULL && mpModelMorf->getModel() == NULL) {
         mpModelMorf->stopZelAnime();
         mpModelMorf = NULL;
@@ -329,6 +425,7 @@ int daObj_GrA_c::CreateHeap() {
 
 /* 80C00790-80C00804 000970 0074+00 1/0 0/0 0/0 .text            Delete__11daObj_GrA_cFv */
 int daObj_GrA_c::Delete() {
+    fopAcM_RegisterDeleteID(this, "OBJ_GRA");
     if (dComIfGp_getVibration().CheckQuake()) {
         dComIfGp_getVibration().StopQuake(31);
     }
@@ -409,9 +506,9 @@ int daObj_GrA_c::jointCtrl(J3DJoint* i_joint, J3DModel* param_2) {
             spb4.set(MStack_78[0][3], MStack_78[1][3], MStack_78[2][3]);
             MStack_78[0][3] = MStack_78[1][3] = MStack_78[2][3] = 0.0f;
             mDoMtx_stack_c::ZXYrotS(shape_angle);
-            field_0x9c2.x = field_0x9c8.x * daObj_GrA_Param_c::m.field_0x44;
-            field_0x9c2.y = field_0x9c8.y * daObj_GrA_Param_c::m.field_0x44;
-            field_0x9c2.z = field_0x9c8.z * daObj_GrA_Param_c::m.field_0x44;
+            field_0x9c2.x = field_0x9c8.x * mpHIO->m.field_0x44;
+            field_0x9c2.y = field_0x9c8.y * mpHIO->m.field_0x44;
+            field_0x9c2.z = field_0x9c8.z * mpHIO->m.field_0x44;
 
             switch (jointNo) {
                 case 1:
@@ -550,7 +647,7 @@ void daObj_GrA_c::restart() {
     setProcess(&daObj_GrA_c::wait);
     field_0xa94 = 0.0f;
     field_0xa98 = 0.0f;
-    health = daObj_GrA_Param_c::m.field_0x10;
+    health = mpHIO->m.field_0x10;
     ppMoveInit();
     field_0x1fbc = ~field_0x109c;
     field_0xaac = 0;
@@ -581,7 +678,7 @@ void daObj_GrA_c::restart() {
     field_0x2032 = 0;
     mGraMode = 0;
 
-    setBaseMotion(0, daObj_GrA_Param_c::m.field_0x0c);
+    setBaseMotion(0, mpHIO->m.field_0x0c);
     setFaceMotion(0, -1.0f);
     field_0x204c.entry(NULL);
     field_0x209c = 0;
@@ -591,20 +688,24 @@ void daObj_GrA_c::restart() {
 static cXyz l_centerOfst(0.0f, 67.0f, 26.0f);
 
 /* 80C10904-80C10908 00006C 0004+00 1/2 0/0 0/0 .bss             l_HIO */
-static daObj_GrA_Param_c l_HIO;
+static OBJ_GRA_HIO_CLASS l_HIO;
 
 /* 80C010D4-80C013B0 0012B4 02DC+00 1/1 0/0 0/0 .text            init__11daObj_GrA_cFv */
 int daObj_GrA_c::init() {
     fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());
     mSound.init(&current.pos, &eyePos, 3, 1);
     eventInfo.setArchiveName((char*)getResName());
-    field_0xa4c = &l_HIO;
-    attention_info.distances[4] = 40;
-    attention_info.distances[2] = 22;
-    mAcchCir.SetWall(daObj_GrA_Param_c::m.mWallH, daObj_GrA_Param_c::m.mWallR);
+    mpHIO = &l_HIO;
+#if DEBUG
+    // "Goron"
+    mpHIO->entryHIO("ゴロン");
+#endif
+    attention_info.distances[fopAc_attn_CARRY_e] = 40;
+    attention_info.distances[fopAc_attn_BATTLE_e] = 22;
+    mAcchCir.SetWall(mpHIO->m.mWallH, mpHIO->m.mWallR);
     mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, 
               fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
-    mCcStts.Init(daObj_GrA_Param_c::m.mWeight, 0, this);
+    mCcStts.Init(mpHIO->m.mWeight, 0, this);
     field_0xf50.Set(mCcDCyl);
     field_0xf50.SetStts(&mCcStts);
     field_0xce0[0].Set(mCcDSph);
@@ -833,7 +934,7 @@ void daObj_GrA_c::setFaceMotion(int param_1, f32 param_2) {
     field_0xa8e = 1;
 
     if (param_2 < 0.0f) {
-        field_0xa98 = daObj_GrA_Param_c::m.field_0x0c;
+        field_0xa98 = mpHIO->m.field_0x0c;
         return;
     }
 
@@ -919,28 +1020,33 @@ void daObj_GrA_c::setParam() {
         }
     }
 
-    scale.set(daObj_GrA_Param_c::m.field_0x08, daObj_GrA_Param_c::m.field_0x08, daObj_GrA_Param_c::m.field_0x08);
-    mCcStts.SetWeight(daObj_GrA_Param_c::m.mWeight);
-    gravity = daObj_GrA_Param_c::m.mGravity;
+    scale.set(mpHIO->m.field_0x08, mpHIO->m.field_0x08, mpHIO->m.field_0x08);
+    mCcStts.SetWeight(mpHIO->m.mWeight);
+    gravity = mpHIO->m.mGravity;
 }
 
 /* 80C01C18-80C01D7C 001DF8 0164+00 1/1 0/0 0/0 .text            checkEvent__11daObj_GrA_cFv */
 BOOL daObj_GrA_c::checkEvent() {
     BOOL rv = TRUE;
-    // TODO: fake match to force reuse of pointer
+#if VERSION != VERSION_SHIELD_DEBUG
+    // TODO: gameInfo fake match to force reuse of pointer
     dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+#endif
     if (dComIfGp_event_runCheck()) {
         rv = FALSE;
         if (eventInfo.checkCommandTalk()) {
             if (checkProcess(&daObj_GrA_c::talk)) {
                 rv = (this->*field_0xa50)(NULL);
-            } else if (!g_dComIfG_gameInfo.play.mEvent.chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
-                // FIXME: Condition uses fakematch to get GCN to match...
+            } else if (dComIfGp_event_chkTalkXY() == FALSE || dComIfGp_evmng_ChkPresentEnd()) {
                 setProcess(&daObj_GrA_c::talk);
             }
         } else if (eventInfo.checkCommandDemoAccrpt()) {
             if (dComIfGp_getEventManager().endCheck(mEvtIdx) != 0) {
+#if VERSION != VERSION_SHIELD_DEBUG
                 play->getEvent().reset();
+#else
+                dComIfGp_event_reset();
+#endif
                 field_0x1520 = 0;
                 mEvtIdx = -1;
                 rv = TRUE;
@@ -1021,7 +1127,7 @@ void daObj_GrA_c::setMtx(int param_1) {
     }
 
     if (field_0x109c != 0) {
-        cXyz sp30(l_centerOfst);
+        cXyz sp30(l_centerOfst.x, l_centerOfst.y, l_centerOfst.z);
         mDoMtx_stack_c::transS(0.0f, 0.0f, 0.0f);
         mDoMtx_stack_c::ZXYrotM(field_0x91a);
         sp30.x += aTrembleTrans[field_0x10a0 % 15].x;
@@ -1059,7 +1165,7 @@ void daObj_GrA_c::setMtx(int param_1) {
         model->setUserArea(0);
     }
 
-    if (cLib_checkBit<u16>(field_0x840, 0x20) != 0) {
+    if (cLib_checkBit<u16>(u16(field_0x840), 0x20) != 0) {
         mBck.getBckAnm()->setFrame(mBck.getFrame());
         mpModelMorf->modelCalc();
     } else {
@@ -1108,13 +1214,13 @@ void daObj_GrA_c::setCollisions() {
             if (field_0xa90 == 10 || field_0xa90 == 4) {
                 field_0xf50.SetH(200.0f);
             } else {
-                field_0xf50.SetH(daObj_GrA_Param_c::m.field_0x14);
+                field_0xf50.SetH(mpHIO->m.field_0x14);
             }
 
-            field_0xf50.SetR(daObj_GrA_Param_c::m.mWallH);
+            field_0xf50.SetR(mpHIO->m.mWallH);
 
             if (field_0xf50.ChkAtSet()) {
-                field_0xf50.SetR(daObj_GrA_Param_c::m.mWallH + 40.0f);
+                field_0xf50.SetR(mpHIO->m.mWallH + 40.0f);
             }
 
             if (cLib_calcTimer(&field_0x1fd8) == 0) {
@@ -1131,14 +1237,14 @@ void daObj_GrA_c::setCollisions() {
             mDoMtx_stack_c::scaleM(scale);
             mDoMtx_stack_c::multVecZero(&sp1c);
             field_0xce0[1].SetC(sp1c);
-            field_0xce0[1].SetR(daObj_GrA_Param_c::m.field_0x8c);
+            field_0xce0[1].SetR(mpHIO->m.field_0x8c);
             dComIfG_Ccsp()->Set(&field_0xce0[1]);
 
             mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(17));
             mDoMtx_stack_c::scaleM(scale);
             mDoMtx_stack_c::multVecZero(&sp1c);
             field_0xce0[0].SetC(sp1c);
-            field_0xce0[0].SetR(daObj_GrA_Param_c::m.field_0x8c);
+            field_0xce0[0].SetR(mpHIO->m.field_0x8c);
             dComIfG_Ccsp()->Set(&field_0xce0[0]);
         }
     }
@@ -1154,8 +1260,20 @@ void daObj_GrA_c::setAttnPos() {
     mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(4));
     mDoMtx_stack_c::multVec(&aEyeOfst, &eyePos);
     mDoMtx_stack_c::multVecZero(&sp18);
-    attention_info.position.set(sp18.x, sp18.y + daObj_GrA_Param_c::m.field_0x00, sp18.z);
+    attention_info.position.set(sp18.x, sp18.y + mpHIO->m.field_0x00, sp18.z);
 }
+
+#if DEBUG
+static s16 dummy_lit_124881(int sel) {
+    const s16 arr[2] = {0x00C8, 0x0040};
+    return arr[sel];
+}
+
+static s16 dummy_lit_124886(int sel) {
+    const s16 arr[2] = {0x8000, 0x00A0};
+    return arr[sel];
+}
+#endif
 
 /* 80C02A5C-80C02A60 002C3C 0004+00 1/0 0/0 0/0 .text            drawOtherMdls__11daObj_GrA_cFv */
 void daObj_GrA_c::drawOtherMdls() {
@@ -1234,13 +1352,13 @@ int daObj_GrA_c::lookat() {
 
     csXyz acStack_60[4];
     csXyz acStack_78[4];
-    acStack_60[0].set(cM_deg2s(-daObj_GrA_Param_c::m.field_0x28) - 0x4000, cM_deg2s(daObj_GrA_Param_c::m.field_0x2c), 0);
+    acStack_60[0].set(cM_deg2s(-mpHIO->m.field_0x28) - 0x4000, cM_deg2s(mpHIO->m.field_0x2c), 0);
     acStack_60[1].set(-0x4000, 0, 0);
-    acStack_60[2].set(cM_deg2s(-daObj_GrA_Param_c::m.field_0x38), cM_deg2s(daObj_GrA_Param_c::m.field_0x3c), 0);
+    acStack_60[2].set(cM_deg2s(-mpHIO->m.field_0x38), cM_deg2s(mpHIO->m.field_0x3c), 0);
     acStack_60[3].set(0, 0, 0);
-    acStack_78[0].set(cM_deg2s(-daObj_GrA_Param_c::m.field_0x24) - 0x4000, cM_deg2s(daObj_GrA_Param_c::m.field_0x30), 0);
+    acStack_78[0].set(cM_deg2s(-mpHIO->m.field_0x24) - 0x4000, cM_deg2s(mpHIO->m.field_0x30), 0);
     acStack_78[1].set(-0x4000, 0, 0);
-    acStack_78[2].set(cM_deg2s(-daObj_GrA_Param_c::m.field_0x34), cM_deg2s(daObj_GrA_Param_c::m.field_0x40), 0);
+    acStack_78[2].set(cM_deg2s(-mpHIO->m.field_0x34), cM_deg2s(mpHIO->m.field_0x40), 0);
     acStack_78[3].set(0, 0, 0);
     cXyz sp48[4];
 
@@ -1322,7 +1440,7 @@ int daObj_GrA_c::hitChk() {
             field_0xab0.entry(field_0xf50.GetTgHitAc());
 
             if (field_0x1528.field_0xa18 != 0) {
-                field_0xaa4 = daObj_GrA_Param_c::m.field_0x54;
+                field_0xaa4 = mpHIO->m.field_0x54;
                 def_se_set(&mSound, field_0xf50.GetTgHitObj(), 0x2C, NULL);
                 setProcess(&daObj_GrA_c::rollReturn);
                 health = 0;
@@ -1351,13 +1469,13 @@ int daObj_GrA_c::wait(void* param_1) {
 
             switch (mMode) {
                 case 0:
-                    setBaseMotion(0, daObj_GrA_Param_c::m.field_0x0c);
+                    setBaseMotion(0, mpHIO->m.field_0x0c);
                     setFaceMotion(0, -1.0f);
                     setProcess(&daObj_GrA_c::standWait);
                     break;
 
                 case 1:
-                    setBaseMotion(0, daObj_GrA_Param_c::m.field_0x0c);
+                    setBaseMotion(0, mpHIO->m.field_0x0c);
                     setFaceMotion(0, -1.0f);
                     setProcess(&daObj_GrA_c::standWaitJump);
                     setLookMode(1);
@@ -1400,7 +1518,7 @@ int daObj_GrA_c::talk(void* param_1) {
             if (sVar1 != field_0x91a.y) {
                 if (field_0x1fcc < 2) {
                     if (turn_step(sVar1, 0, 19, 20)) {
-                        setBaseMotion(0, daObj_GrA_Param_c::m.field_0x0c);
+                        setBaseMotion(0, mpHIO->m.field_0x0c);
                         setFaceMotion(0, -1.0f);
                     }
                     
@@ -1434,7 +1552,7 @@ int daObj_GrA_c::talk(void* param_1) {
             iVar3 = field_0xaa0;
             if (ctrlMsgAnm(iVar1, iVar2, this) != 0) {
                 if (iVar2 != -1) {
-                    setBaseMotion(l_eventMotionChangeTable[iVar2], daObj_GrA_Param_c::m.field_0x0c);
+                    setBaseMotion(l_eventMotionChangeTable[iVar2], mpHIO->m.field_0x0c);
                 }
 
                 if (iVar1 != -1) {
@@ -1617,6 +1735,7 @@ int daObj_GrA_c::setPrtcl() {
 }
 
 #include "d/actor/d_a_obj_gra2_soldier.inc"
+#include "d/actor/d_a_obj_gra2_base.inc"
 
 /* 80C03B14-80C03B48 003CF4 0034+00 1/0 0/0 0/0 .text            base000__11daObj_GrA_cFi */
 int daObj_GrA_c::base000(int param_1) {
@@ -1641,7 +1760,7 @@ int daObj_GrA_c::base003(int param_1) {
     if (param_1 != 0) {
         setBaseAnm(4, field_0xa94);
     } else if (mpModelMorf->isStop()) {
-        setBaseMotion(0, daObj_GrA_Param_c::m.field_0x0c);
+        setBaseMotion(0, mpHIO->m.field_0x0c);
         setBaseAnm(0, field_0xa94);
     }
 
@@ -1653,7 +1772,7 @@ int daObj_GrA_c::base004(int param_1) {
     if (param_1 != 0) {
         setBaseAnm(5, field_0xa94);
     } else if (mpModelMorf->isStop()) {
-        setBaseMotion(0, daObj_GrA_Param_c::m.field_0x0c);
+        setBaseMotion(0, mpHIO->m.field_0x0c);
         setBaseAnm(0, field_0xa94);
     }
 
@@ -1994,7 +2113,8 @@ int daObj_GrA_c::face017(int param_1) {
 /* 80C048B8-80C048F8 004A98 0040+00 1/0 0/0 0/0 .text            face999__11daObj_GrA_cFi */
 int daObj_GrA_c::face999(int param_1) {
     if (param_1 != 0) {
-        cLib_offBit<u16>(field_0x840, 0x22);
+        int reg_r30 = 0x22;
+        cLib_offBit<u16>(field_0x840, reg_r30);
         setFaceBtp(0);
     }
 
@@ -2017,7 +2137,7 @@ int daObj_GrA_c::evtcutTalk(int param_1, int param_2) {
     int iVar3 = field_0xaa0;
     if (ctrlMsgAnm(iVar1, iVar2, this) != 0) {
         if (iVar2 != -1) {
-            setBaseMotion(l_eventMotionChangeTable[iVar2], daObj_GrA_Param_c::m.field_0x0c);
+            setBaseMotion(l_eventMotionChangeTable[iVar2], mpHIO->m.field_0x0c);
         }
 
         if (iVar1 != -1) {
@@ -2036,44 +2156,40 @@ int daObj_GrA_c::evtcutTalk(int param_1, int param_2) {
 void daObj_GrA_c::setFaceTalkAfter() {
     switch (field_0xa92) {
         case 6:
-            setFaceMotion(4, daObj_GrA_Param_c::m.field_0x0c);
+            setFaceMotion(4, mpHIO->m.field_0x0c);
             break;
 
         case 7:
-            setFaceMotion(5, daObj_GrA_Param_c::m.field_0x0c);
+            setFaceMotion(5, mpHIO->m.field_0x0c);
             break;
 
         default:
-            setFaceMotion(0, daObj_GrA_Param_c::m.field_0x0c);
+            setFaceMotion(0, mpHIO->m.field_0x0c);
     }
 }
 
 /* 80C04A88-80C04AA8 004C68 0020+00 1/0 0/0 0/0 .text            daObj_GrA_Create__FPv */
-static int daObj_GrA_Create(void* param_1) {
-    daObj_GrA_c* i_this = (daObj_GrA_c*)param_1;
-    return i_this->create();
+static int daObj_GrA_Create(void* i_this) {
+    return ((daObj_GrA_c*)i_this)->create();
 }
 
 /* 80C04AA8-80C04AC8 004C88 0020+00 1/0 0/0 0/0 .text            daObj_GrA_Delete__FPv */
-static int daObj_GrA_Delete(void* param_1) {
-    daObj_GrA_c* i_this = (daObj_GrA_c*)param_1;
-    return i_this->MoveBGDelete();
+static int daObj_GrA_Delete(void* i_this) {
+    return ((daObj_GrA_c*)i_this)->MoveBGDelete();
 }
 
 /* 80C04AC8-80C04AE8 004CA8 0020+00 1/0 0/0 0/0 .text            daObj_GrA_Execute__FPv */
-static int daObj_GrA_Execute(void* param_1) {
-    daObj_GrA_c* i_this = (daObj_GrA_c*)param_1;
-    return i_this->MoveBGExecute();
+static int daObj_GrA_Execute(void* i_this) {
+    return ((daObj_GrA_c*)i_this)->MoveBGExecute();
 }
 
 /* 80C04AE8-80C04B14 004CC8 002C+00 1/0 0/0 0/0 .text            daObj_GrA_Draw__FPv */
-static int daObj_GrA_Draw(void* param_1) {
-    daObj_GrA_c* i_this = (daObj_GrA_c*)param_1;
-    return i_this->Draw();
+static int daObj_GrA_Draw(void* i_this) {
+    return ((daObj_GrA_c*)i_this)->MoveBGDraw();
 }
 
 /* 80C04B14-80C04B1C 004CF4 0008+00 1/0 0/0 0/0 .text            daObj_GrA_IsDelete__FPv */
-static int daObj_GrA_IsDelete(void* param_1) {
+static int daObj_GrA_IsDelete(void* i_this) {
     return 1;
 }
 

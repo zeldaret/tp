@@ -49,7 +49,9 @@ public:
 
     int getSw() { return fopAcM_GetParamBit(this, 0, 8); }
     int getSw2() { return fopAcM_GetParamBit(this, 8, 8); }
-
+    bool getTempStat() { return mTempStat; }
+    void startTimer() { mStartTimer = true; }
+    
     static dCcD_SrcGObjInf const mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;
 
