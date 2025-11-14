@@ -2,10 +2,10 @@
 
 /* 80A3C998-80A3CB14 012078 017C+00 1/1 0/0 0/0 .text            setParamTeach01__10daNpc_Kn_cFv */
 u32 daNpc_Kn_c::setParamTeach01() {
-    s16 talk_distance = daNpc_Kn_Param_c::m.common.talk_distance;
-    s16 talk_angle = daNpc_Kn_Param_c::m.common.talk_angle;
-    s16 attention_distance = daNpc_Kn_Param_c::m.common.attention_distance;
-    s16 attention_angle = daNpc_Kn_Param_c::m.common.attention_angle;
+    s16 talk_distance = mpHIO->m.common.talk_distance;
+    s16 talk_angle = mpHIO->m.common.talk_angle;
+    s16 attention_distance = mpHIO->m.common.attention_distance;
+    s16 attention_angle = mpHIO->m.common.attention_angle;
 
     switch (mActionMode) {
     case 0:
@@ -23,8 +23,8 @@ u32 daNpc_Kn_c::setParamTeach01() {
         attention_info.distances[fopAc_attn_BATTLE_e] = 0xe4;
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_distance, talk_angle);
-        mAcchCir.SetWallR(daNpc_Kn_Param_c::m.common.width);
-        mAcchCir.SetWallH(daNpc_Kn_Param_c::m.common.knee_length);
+        mAcchCir.SetWallR(mpHIO->m.common.width);
+        mAcchCir.SetWallH(mpHIO->m.common.knee_length);
         return fopAc_AttnFlag_BATTLE_e;
     case 3:
         attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(attention_distance, attention_angle);
@@ -32,7 +32,7 @@ u32 daNpc_Kn_c::setParamTeach01() {
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_distance, talk_angle);
         mAcchCir.SetWallR(135.0f);
-        mAcchCir.SetWallH(daNpc_Kn_Param_c::m.common.knee_length);
+        mAcchCir.SetWallH(mpHIO->m.common.knee_length);
         return fopAc_AttnFlag_BATTLE_e;
     }
 
@@ -150,10 +150,10 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
         mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
         mMotionSeqMngr.setNo(9, -1.0f, 0, 0);
         mJntAnm.lookPlayer(0);
-        field_0xdec = daNpc_Kn_Param_c::m.attack_wait_time;
+        field_0xdec = mpHIO->m.attack_wait_time;
         mTargetPos = current.pos;
         field_0x15bc = 0;
-        field_0x15d0 = cLib_getRndValue(daNpc_Kn_Param_c::m.attack_start_min_time, daNpc_Kn_Param_c::m.attack_start_time_range);
+        field_0x15d0 = cLib_getRndValue(mpHIO->m.attack_start_min_time, mpHIO->m.attack_start_time_range);
         speedF = 0.0f;
         speed.zero();
         mMode = 2;
@@ -170,13 +170,14 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
             {
                 mActionMode = 3;
                 setAngle(fopAcM_searchPlayerAngleY(this));
-                speedF = -daNpc_Kn_Param_c::m.attack_disappear_speed_h;
-                speed.y = daNpc_Kn_Param_c::m.attack_disappear_speed_v;
+                speedF = -mpHIO->m.attack_disappear_speed_h;
+                speed.y = mpHIO->m.attack_disappear_speed_v;
                 mSound.startCollisionSE(Z2SE_HIT_SWORD, 0x1f);
             } else {
                 fopAc_ac_c* aTgHitActor_p = mCylCc.GetTgHitAc();
+                JUT_ASSERT(303, NULL != aTgHitActor_p);
                 s16 angle = cLib_targetAngleY(&aTgHitActor_p->current.pos, &current.pos);
-                cXyz pos(0.0f, 0.0f, daNpc_Kn_Param_c::m.small_slide_distance);
+                cXyz pos(0.0f, 0.0f, mpHIO->m.small_slide_distance);
                 mDoMtx_stack_c::YrotS(angle);
                 mDoMtx_stack_c::multVec(&pos, &mTargetPos);
                 mTargetPos += current.pos;
@@ -194,7 +195,11 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
                     is_lockon = TRUE;
                 }
 
-                checkCollisionSword() ? mEvtNo = 4 : mEvtNo = 1;
+                if (checkCollisionSword()) {
+                    mEvtNo = 4;
+                } else {
+                    mEvtNo = 1;
+                }
 
                 mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
                 mMotionSeqMngr.setNo(0, -1.0f, 1, 0);
@@ -219,7 +224,7 @@ int daNpc_Kn_c::teach01_swordFinishWait(void* param_0) {
         mMotionSeqMngr.setNo(0x12, -1.0f, 0, 0);
         mSound.startCreatureVoice(Z2SE_KN_V_DAMAGE_L, -1);
         mJntAnm.lookNone(0);
-        field_0xdec = daNpc_Kn_Param_c::m.attack_wait_time;
+        field_0xdec = mpHIO->m.attack_wait_time;
         mMode = 2;
     case 2: {
         mTargetPos = current.pos;
@@ -290,7 +295,7 @@ int daNpc_Kn_c::ctrlWarp() {
     case 0: {
         cXyz spEC(daPy_getPlayerActorClass()->current.pos);
     
-        bool sp8 = (daPy_getPlayerActorClass()->current.pos - current.pos).absXZ() > daNpc_Kn_Param_c::m.warp_distance;
+        bool sp8 = (daPy_getPlayerActorClass()->current.pos - current.pos).absXZ() > mpHIO->m.warp_distance;
         if (sp8) {
             sp28 = 1;
             cXyz spE0(0.0f, 0.0f, 600.0f);
