@@ -10,27 +10,70 @@
  *
  * @details
  *
- */
-class daNpcTkc_c : public fopAc_ac_c {
+*/
+
+struct daNpcTkc_HIOParam {
+    /* 0x00 */ daNpcF_HIOParam common;
+    /* 0x6C */ f32 field_0x6c;
+    /* 0x70 */ f32 field_0x70;
+    /* 0x74 */ f32 field_0x74;
+    /* 0x78 */ f32 field_0x78;
+    /* 0x7C */ f32 field_0x7c;
+    /* 0x80 */ f32 field_0x80;
+    /* 0x84 */ f32 field_0x84;
+    /* 0x88 */ f32 field_0x88;
+    /* 0x8C */ f32 field_0x8c;
+    /* 0x90 */ f32 field_0x90;
+    /* 0x94 */ f32 field_0x94;
+    /* 0x98 */ f32 field_0x98;
+    /* 0x9C */ s16 field_0x9c;
+    /* 0x9E */ s16 field_0x9e;
+    /* 0xA0 */ s16 field_0xa0;
+    /* 0xA2 */ s16 field_0xa2;
+};
+
+class daNpcTkc_Param_c {
 public:
+    /* 80B10848 */ virtual ~daNpcTkc_Param_c() {}
+
+    static daNpcTkc_HIOParam const m;
+};
+
+#if DEBUG
+class daNpcTkc_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpcTkc_HIO_c();
+    void genMessage(JORMContext*);
+
+    /* 0x8 */ daNpcTkc_HIOParam m;
+};
+#define NPC_TKC_HIO_CLASS daNpcTkc_HIO_c
+#else
+#define NPC_TKC_HIO_CLASS daNpcTkc_Param_c
+#endif
+
+class daNpcTkc_c : public daNpcF_c {
+public:
+    typedef void (daNpcTkc_c::*actionFunc)();
+
     /* 80B0C7CC */ daNpcTkc_c();
     /* 80B0C964 */ ~daNpcTkc_c();
-    /* 80B0CA9C */ void Create();
-    /* 80B0CD7C */ void CreateHeap();
-    /* 80B0D180 */ void Delete();
-    /* 80B0D1B4 */ void Execute();
-    /* 80B0D1EC */ void Draw();
-    /* 80B0D25C */ void ctrlJoint(J3DJoint*, J3DModel*);
-    /* 80B0D2CC */ void createHeapCallBack(fopAc_ac_c*);
+    /* 80B0CA9C */ cPhs__Step Create();
+    /* 80B0CD7C */ int CreateHeap();
+    /* 80B0D180 */ int Delete();
+    /* 80B0D1B4 */ int Execute();
+    /* 80B0D1EC */ int Draw();
+    /* 80B0D25C */ static int ctrlJoint(J3DJoint*, J3DModel*);
+    /* 80B0D2CC */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80B0D2EC */ void ctrlJointCallBack(J3DJoint*, int);
     /* 80B0D338 */ void setActionWait();
     /* 80B0D37C */ void setActionFollow();
     /* 80B0D3C0 */ void setMtx();
-    /* 80B0D458 */ void setExpressionAnm(int, bool);
-    /* 80B0D5A4 */ void setExpressionBtp(int);
+    /* 80B0D458 */ bool setExpressionAnm(int, bool);
+    /* 80B0D5A4 */ bool setExpressionBtp(int);
     /* 80B0D678 */ void reset();
-    /* 80B0DA94 */ bool setMotionAnm(int, f32);
-    /* 80B0DBC8 */ void setAction(void (daNpcTkc_c::*)());
+    /* 80B0DA94 */ void setMotionAnm(int, f32);
+    /* 80B0DBC8 */ void setAction(actionFunc);
     /* 80B0DC68 */ void wait();
     /* 80B0DEF8 */ void calcFly();
     /* 80B0E124 */ void searchPlayer();
@@ -45,32 +88,42 @@ public:
     /* 80B0F1F8 */ void EvCut_TksWarpExit(int);
     /* 80B0F5D4 */ void EvCut_TksWarpBack(int);
     /* 80B0FA5C */ void setParam();
-    /* 80B0FAD0 */ void main();
-    /* 80B0FD18 */ void ctrlBtk();
+    /* 80B0FAD0 */ BOOL main();
+    /* 80B0FD18 */ BOOL ctrlBtk();
     /* 80B0FDE4 */ void setAttnPos();
-    /* 80B0FFD4 */ bool drawDbgInfo();
+    /* 80B0FFD4 */ int drawDbgInfo();
 
-    void setStart() { field_0xd7a = 1; }
+    void setStart() { mStatus = 1; }
     void callOdorokiSound() { mSound.startCreatureVoiceLevel(Z2SE_TKC_V_ODOROKI_LOOP, -1); }
 
     static u8 mEvtSeqList[48];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xb48 - 0x568];
     /* 0xB48 */ Z2Creature mSound;
-    /* 0xBD8 */ u8 field_0xbd8[0xd7a - 0xbd8];
-    /* 0xD7A */ u8 field_0xd7a;
-    /* 0xD7B */ u8 field_0xd7b[0xd7c - 0xd7b];
+    /* 0xBD8 */ daNpcF_MatAnm_c* mpMatAnm;
+    /* 0xBDC */ daNpcF_ActorMngr_c mActorMngr[1];
+    /* 0xBE0 */ NPC_TKC_HIO_CLASS* mpHIO;
+    /* 0xBE4 */ dCcD_Sph mSph;
+    /* 0xD20 */ actionFunc mAction;
+    /* 0xD2C */ request_of_phase_process_class mPhase;
+    /* 0xD34 */ fpc_ProcID field_0xd34;
+    /* 0xD38 */ cXyz field_0xd38;
+    /* 0xD44 */ cXyz field_0xd44;
+    /* 0xD50 */ cXyz field_0xd50;
+    /* 0xD5C */ int field_0xd5c;
+    /* 0xD60 */ int field_0xd60;
+    /* 0xD64 */ f32 field_0xd64;
+    /* 0xD68 */ f32 field_0xd68;
+    /* 0xD6C */ f32 field_0xd6c;
+    /* 0xD70 */ s16 field_0xd70;
+    /* 0xD72 */ s16 mMsgNo;
+    /* 0xD74 */ s16 mLookMode;
+    /* 0xD76 */ u16 mMode;
+    /* 0xD78 */ s16 field_0xd78;
+    /* 0xD7A */ u8 mStatus;
+    /* 0xD7B */ u8 field_0xd7b;
 };
 
 STATIC_ASSERT(sizeof(daNpcTkc_c) == 0xd7c);
-
-class daNpcTkc_Param_c {
-public:
-    /* 80B10848 */ ~daNpcTkc_Param_c();
-
-    static u8 const m[164];
-};
-
 
 #endif /* D_A_NPC_TKC_H */
