@@ -100,6 +100,7 @@ public:
             }
         }
     }
+    void setOffset(int i_offset) { mOffset = i_offset; }
 
 private:
     /* 0x00 */ sequenceStepData_c const* mpSeqData;
