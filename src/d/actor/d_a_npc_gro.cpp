@@ -292,19 +292,19 @@ SECTION_DATA static u8 l_bmdGetParamList[24] = {
 #pragma pop
 
 /* 809DF33C-809DF3F4 000044 00B8+00 1/2 0/0 0/0 .data            l_bckGetParamList */
-SECTION_DATA static u8 l_bckGetParamList[184] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x01,
+static daNpc_GetParam1 l_bckGetParamList[184] = {
+    -1, 0, 9, 0,
+    0xA, 0, 7, 0,
+    8, 0, 0xB, 1,
+    0x10, 1, 0x0C, 1,
+    0x0A, 1, 0x0F, 1,
+    9, 1, 0x0E, 1,
+    0x0D, 1, 0x0E, 0,
+    0x0F, 0, 0x0C, 0,
+    0x0D, 0, 0x0B, 0,
+    0x05, 1, 0x07, 1,
+    0x08, 1, 0x06, 1,
+    0x11, 1,
 };
 
 /* 809DF3F4-809DF424 0000FC 0030+00 1/1 0/0 0/0 .data            l_btpGetParamList */
@@ -388,35 +388,12 @@ char* daNpc_grO_c::mEvtCutNameList[3] = {
     "PUSHOUT",
 };
 
-/* 809DF4CC-809DF4D8 -00001 000C+00 0/1 0/0 0/0 .data            @4096 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4096[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)ECut_bokinFinish__11daNpc_grO_cFi,
-};
-#pragma pop
-
-/* 809DF4D8-809DF4E4 -00001 000C+00 0/1 0/0 0/0 .data            @4097 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4097[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)cutPushOut__11daNpc_grO_cFi,
-};
-#pragma pop
-
 /* 809DF4E4-809DF508 0001EC 0024+00 0/2 0/0 0/0 .data            mEvtCutList__11daNpc_grO_c */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 daNpc_grO_c::mEvtCutList[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+daNpc_grO_c::cutFunc daNpc_grO_c::mEvtCutList[3] = {
+    NULL,
+    &daNpc_grO_c::ECut_bokinFinish,
+    &daNpc_grO_c::cutPushOut,
 };
-#pragma pop
 
 /* 809DF508-809DF514 -00001 000C+00 1/1 0/0 0/0 .data            @4584 */
 SECTION_DATA static void* lit_4584[3] = {
@@ -525,33 +502,6 @@ SECTION_DATA static void* lit_5368[3] = {
     (void*)talk__11daNpc_grO_cFPv,
 };
 #pragma pop
-
-/* 809DF5C4-809DF5E4 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_grO_MethodTable */
-static actor_method_class daNpc_grO_MethodTable = {
-    (process_method_func)daNpc_grO_Create__FPv,
-    (process_method_func)daNpc_grO_Delete__FPv,
-    (process_method_func)daNpc_grO_Execute__FPv,
-    (process_method_func)daNpc_grO_IsDelete__FPv,
-    (process_method_func)daNpc_grO_Draw__FPv,
-};
-
-/* 809DF5E4-809DF614 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_GRO */
-extern actor_process_profile_definition g_profile_NPC_GRO = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_GRO,           // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daNpc_grO_c),    // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  311,                    // mPriority
-  &daNpc_grO_MethodTable, // sub_method
-  0x00044100,             // mStatus
-  fopAc_NPC_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
 
 /* 809DF614-809DF620 00031C 000C+00 2/2 0/0 0/0 .data            __vt__11J3DTexNoAnm */
 SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
@@ -673,18 +623,42 @@ daNpc_grO_c::~daNpc_grO_c() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
 /* 809DEF7C-809DEFE8 000000 006C+00 14/14 0/0 0/0 .rodata          m__17daNpc_grO_Param_c */
-SECTION_RODATA u8 const daNpc_grO_Param_c::m[108] = {
-    0x43, 0x20, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x44, 0x16, 0x00, 0x00,
-    0x43, 0x7F, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0xB4, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0xC1, 0xF0, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
-    0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x03, 0x00, 0x03, 0x00, 0x05, 0x00, 0x03,
-    0x43, 0x34, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
-    0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+daNpc_grR_HIOParam const daNpc_grO_Param_c::m = {
+    60.0f,
+    -3.0f,
+    1.0f,
+    600.0f,
+    255.0f,
+    240.0f,
+    35.0f,
+    60.0f,
+    0.0f,
+    0.0f,
+    10.0f,
+    -10.0f,
+    30.0f,
+    -30.0f,
+    45.0f,
+    -45.0f,
+    0.6f,
+    12.0f,
+    3,
+    1,
+    5,
+    1,
+    180.0f,
+    500.0f,
+    300.0f,
+    -300.0f,
+    60,
+    8,
+    0,
+    0,
+    0,
+    false,
+    false,
 };
-COMPILER_STRIP_GATE(0x809DEF7C, &daNpc_grO_Param_c::m);
 
 /* 809DEFE8-809DEFF8 00006C 0010+00 0/1 0/0 0/0 .rodata          heapSize$4387 */
 #pragma push
@@ -724,7 +698,7 @@ COMPILER_STRIP_GATE(0x809DF004, &lit_4477);
 #pragma pop
 
 /* 809DA980-809DAC58 000500 02D8+00 1/1 0/0 0/0 .text            create__11daNpc_grO_cFv */
-void daNpc_grO_c::create() {
+cPhs__Step daNpc_grO_c::create() {
     // NONMATCHING
 }
 
@@ -743,7 +717,7 @@ SECTION_RODATA static u8 const lit_4553[4] = {
 COMPILER_STRIP_GATE(0x809DF00C, &lit_4553);
 
 /* 809DAC58-809DAF74 0007D8 031C+00 1/1 0/0 0/0 .text            CreateHeap__11daNpc_grO_cFv */
-void daNpc_grO_c::CreateHeap() {
+int daNpc_grO_c::CreateHeap() {
     // NONMATCHING
 }
 
@@ -808,17 +782,17 @@ extern "C" void __ct__14J3DMatColorAnmFv() {
 }
 
 /* 809DB130-809DB164 000CB0 0034+00 1/1 0/0 0/0 .text            Delete__11daNpc_grO_cFv */
-void daNpc_grO_c::Delete() {
+int daNpc_grO_c::Delete() {
     // NONMATCHING
 }
 
 /* 809DB164-809DB184 000CE4 0020+00 2/2 0/0 0/0 .text            Execute__11daNpc_grO_cFv */
-void daNpc_grO_c::Execute() {
+int daNpc_grO_c::Execute() {
     // NONMATCHING
 }
 
 /* 809DB184-809DB214 000D04 0090+00 1/1 0/0 0/0 .text            Draw__11daNpc_grO_cFv */
-void daNpc_grO_c::Draw() {
+int daNpc_grO_c::Draw() {
     // NONMATCHING
 }
 
@@ -831,19 +805,19 @@ COMPILER_STRIP_GATE(0x809DF010, &lit_4605);
 
 /* 809DB214-809DB448 000D94 0234+00 1/1 0/0 0/0 .text
  * ctrlJoint__11daNpc_grO_cFP8J3DJointP8J3DModel                */
-void daNpc_grO_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
+int daNpc_grO_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
     // NONMATCHING
 }
 
 /* 809DB448-809DB468 000FC8 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__11daNpc_grO_cFP10fopAc_ac_c              */
-void daNpc_grO_c::createHeapCallBack(fopAc_ac_c* param_0) {
+int daNpc_grO_c::createHeapCallBack(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
 /* 809DB468-809DB4B4 000FE8 004C+00 1/1 0/0 0/0 .text ctrlJointCallBack__11daNpc_grO_cFP8J3DJointi
  */
-void daNpc_grO_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
+int daNpc_grO_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
     // NONMATCHING
 }
 
@@ -853,7 +827,7 @@ void daNpc_grO_c::setParam() {
 }
 
 /* 809DB5F4-809DB774 001174 0180+00 1/0 0/0 0/0 .text            main__11daNpc_grO_cFv */
-void daNpc_grO_c::main() {
+BOOL daNpc_grO_c::main() {
     // NONMATCHING
 }
 
@@ -867,7 +841,7 @@ SECTION_RODATA static f32 const lit_4813 = 1.0f / 50.0f;
 COMPILER_STRIP_GATE(0x809DF020, &lit_4813);
 
 /* 809DB774-809DB854 0012F4 00E0+00 1/0 0/0 0/0 .text            ctrlBtk__11daNpc_grO_cFv */
-void daNpc_grO_c::ctrlBtk() {
+BOOL daNpc_grO_c::ctrlBtk() {
     // NONMATCHING
 }
 
@@ -959,13 +933,13 @@ void daNpc_grO_c::setAttnPos() {
 
 /* 809DBD58-809DBFF4 0018D8 029C+00 2/0 0/0 0/0 .text            setExpressionAnm__11daNpc_grO_cFib
  */
-void daNpc_grO_c::setExpressionAnm(int param_0, bool param_1) {
+bool daNpc_grO_c::setExpressionAnm(int param_0, bool param_1) {
     // NONMATCHING
 }
 
 /* 809DBFF4-809DC118 001B74 0124+00 1/0 0/0 0/0 .text            setExpressionBtp__11daNpc_grO_cFi
  */
-void daNpc_grO_c::setExpressionBtp(int param_0) {
+bool daNpc_grO_c::setExpressionBtp(int param_0) {
     // NONMATCHING
 }
 
@@ -975,7 +949,7 @@ void daNpc_grO_c::setExpression(int param_0, f32 param_1) {
 }
 
 /* 809DC144-809DC2E4 001CC4 01A0+00 2/0 0/0 0/0 .text            setMotionAnm__11daNpc_grO_cFif */
-bool daNpc_grO_c::setMotionAnm(int param_0, f32 param_1) {
+void daNpc_grO_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 
@@ -985,8 +959,8 @@ void daNpc_grO_c::setMotion(int param_0, f32 param_1, int param_2) {
 }
 
 /* 809DC328-809DC330 001EA8 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpc_grO_cFv */
-bool daNpc_grO_c::drawDbgInfo() {
-    return false;
+int daNpc_grO_c::drawDbgInfo() {
+    return 0;
 }
 
 /* 809DC330-809DC3DC 001EB0 00AC+00 1/0 0/0 0/0 .text            drawOtherMdls__11daNpc_grO_cFv */
@@ -1542,20 +1516,18 @@ void daNpc_grO_c::playMotion() {
     // NONMATCHING
 }
 
-/* 809DCDA4-809DCDD0 002924 002C+00 2/2 0/0 0/0 .text
- * chkAction__11daNpc_grO_cFM11daNpc_grO_cFPCvPvPv_i            */
-void daNpc_grO_c::chkAction(int (daNpc_grO_c::*param_0)(void*)) {
+/* 809DCDA4-809DCDD0 002924 002C+00 2/2 0/0 0/0 .text            chkAction__11daNpc_grO_cFM11daNpc_grO_cFPCvPvPv_i */
+BOOL daNpc_grO_c::chkAction(actionFunc action) {
     // NONMATCHING
 }
 
-/* 809DCDD0-809DCE78 002950 00A8+00 2/2 0/0 0/0 .text
- * setAction__11daNpc_grO_cFM11daNpc_grO_cFPCvPvPv_i            */
-void daNpc_grO_c::setAction(int (daNpc_grO_c::*param_0)(void*)) {
+/* 809DCDD0-809DCE78 002950 00A8+00 2/2 0/0 0/0 .text            setAction__11daNpc_grO_cFM11daNpc_grO_cFPCvPvPv_i */
+BOOL daNpc_grO_c::setAction(actionFunc action) {
     // NONMATCHING
 }
 
 /* 809DCE78-809DCF44 0029F8 00CC+00 1/1 0/0 0/0 .text            selectAction__11daNpc_grO_cFv */
-void daNpc_grO_c::selectAction() {
+BOOL daNpc_grO_c::selectAction() {
     // NONMATCHING
 }
 
@@ -1627,17 +1599,17 @@ void daNpc_grO_c::setExpressionTalkAfter() {
 }
 
 /* 809DD758-809DD960 0032D8 0208+00 1/0 0/0 0/0 .text            wait__11daNpc_grO_cFPv */
-void daNpc_grO_c::wait(void* param_0) {
+int daNpc_grO_c::wait(void* param_0) {
     // NONMATCHING
 }
 
 /* 809DD960-809DDB68 0034E0 0208+00 1/0 0/0 0/0 .text            bokinWait__11daNpc_grO_cFPv */
-void daNpc_grO_c::bokinWait(void* param_0) {
+int daNpc_grO_c::bokinWait(void* param_0) {
     // NONMATCHING
 }
 
 /* 809DDB68-809DDCF8 0036E8 0190+00 1/0 0/0 0/0 .text            waitMaro__11daNpc_grO_cFPv */
-void daNpc_grO_c::waitMaro(void* param_0) {
+int daNpc_grO_c::waitMaro(void* param_0) {
     // NONMATCHING
 }
 
@@ -1649,7 +1621,7 @@ SECTION_DEAD static char const* const stringBase_809DF2E4 = "DEFAULT_GETITEM";
 #pragma pop
 
 /* 809DDCF8-809DE084 003878 038C+00 3/0 0/0 0/0 .text            talk__11daNpc_grO_cFPv */
-void daNpc_grO_c::talk(void* param_0) {
+int daNpc_grO_c::talk(void* param_0) {
     // NONMATCHING
 }
 
@@ -1673,43 +1645,43 @@ SECTION_DEAD static char const* const stringBase_809DF2F4 = "prm";
 
 /* 809DE0D0-809DE30C 003C50 023C+00 1/0 0/0 0/0 .text            ECut_bokinFinish__11daNpc_grO_cFi
  */
-void daNpc_grO_c::ECut_bokinFinish(int param_0) {
+int daNpc_grO_c::ECut_bokinFinish(int param_0) {
     // NONMATCHING
 }
 
 /* 809DE30C-809DE4EC 003E8C 01E0+00 1/0 0/0 0/0 .text            cutPushOut__11daNpc_grO_cFi */
-void daNpc_grO_c::cutPushOut(int param_0) {
+int daNpc_grO_c::cutPushOut(int param_0) {
     // NONMATCHING
 }
 
 /* 809DE4EC-809DE5D0 00406C 00E4+00 2/0 0/0 0/0 .text            test__11daNpc_grO_cFPv */
-void daNpc_grO_c::test(void* param_0) {
+int daNpc_grO_c::test(void* param_0) {
     // NONMATCHING
 }
 
 /* 809DE5D0-809DE5F0 004150 0020+00 1/0 0/0 0/0 .text            daNpc_grO_Create__FPv */
-static void daNpc_grO_Create(void* param_0) {
-    // NONMATCHING
+static int daNpc_grO_Create(void* i_this) {
+    return static_cast<daNpc_grO_c*>(i_this)->create();
 }
 
 /* 809DE5F0-809DE610 004170 0020+00 1/0 0/0 0/0 .text            daNpc_grO_Delete__FPv */
-static void daNpc_grO_Delete(void* param_0) {
-    // NONMATCHING
+static int daNpc_grO_Delete(void* i_this) {
+    return static_cast<daNpc_grO_c*>(i_this)->Delete();
 }
 
 /* 809DE610-809DE630 004190 0020+00 1/0 0/0 0/0 .text            daNpc_grO_Execute__FPv */
-static void daNpc_grO_Execute(void* param_0) {
-    // NONMATCHING
+static int daNpc_grO_Execute(void* i_this) {
+    return static_cast<daNpc_grO_c*>(i_this)->Execute();
 }
 
 /* 809DE630-809DE650 0041B0 0020+00 1/0 0/0 0/0 .text            daNpc_grO_Draw__FPv */
-static void daNpc_grO_Draw(void* param_0) {
-    // NONMATCHING
+static int daNpc_grO_Draw(void* i_this) {
+    return static_cast<daNpc_grO_c*>(i_this)->Draw();
 }
 
 /* 809DE650-809DE658 0041D0 0008+00 1/0 0/0 0/0 .text            daNpc_grO_IsDelete__FPv */
-static bool daNpc_grO_IsDelete(void* param_0) {
-    return true;
+static int daNpc_grO_IsDelete(void* i_this) {
+    return 1;
 }
 
 /* 809DE658-809DE688 0041D8 0030+00 1/0 0/0 0/0 .text            calc__11J3DTexNoAnmCFPUs */
@@ -1832,19 +1804,31 @@ void daNpc_grO_c::adjustShapeAngle() {
     /* empty function */
 }
 
-/* 809DEF10-809DEF58 004A90 0048+00 2/1 0/0 0/0 .text            __dt__17daNpc_grO_Param_cFv */
-daNpc_grO_Param_c::~daNpc_grO_Param_c() {
-    // NONMATCHING
-}
-
-/* 809DEF58-809DEF60 004AD8 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_809DEF58() {
-    // NONMATCHING
-}
-
-/* 809DEF60-809DEF68 004AE0 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_809DEF60() {
-    // NONMATCHING
-}
-
 AUDIO_INSTANCES;
+
+/* 809DF5C4-809DF5E4 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_grO_MethodTable */
+static actor_method_class daNpc_grO_MethodTable = {
+    (process_method_func)daNpc_grO_Create,
+    (process_method_func)daNpc_grO_Delete,
+    (process_method_func)daNpc_grO_Execute,
+    (process_method_func)daNpc_grO_IsDelete,
+    (process_method_func)daNpc_grO_Draw,
+};
+
+/* 809DF5E4-809DF614 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_GRO */
+extern actor_process_profile_definition g_profile_NPC_GRO = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_NPC_GRO,           // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daNpc_grO_c),    // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  311,                    // mPriority
+  &daNpc_grO_MethodTable, // sub_method
+  0x00044100,             // mStatus
+  fopAc_NPC_e,            // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};
