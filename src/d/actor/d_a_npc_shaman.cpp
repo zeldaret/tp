@@ -764,95 +764,102 @@ BOOL daNpc_Sha_c::setAction(actionFunc action) {
 /* 80AE45DC-80AE48D0 0018FC 02F4+00 1/1 0/0 0/0 .text            getSceneChangeNoTableIx__11daNpc_Sha_cFv */
 int daNpc_Sha_c::getSceneChangeNoTableIx() {
     // NONMATCHING
-    u8 uVar1;
-    int iVar2[6][8];
-    int iVar3[48];
-    int i = 0;
-    int j = 0;
-    int k = 0;
-    int l = 0;
-    int m = 0;
-    int n = 0;
-    int o = 0;
-    int iVar1 = 0;
+    int iVar2[48];
+    BOOL bool_array[48];
+    int sp_0x40 = 0;
+    int sp_0x3c = 0;
+    int sp_0x38 = 0;
+    int sp_0x34 = 0;
+    int sp_0x30 = 0;
+    int sp_0x2c = 0;
+    int sp_0x28 = 0;
+    sp_0x2c = 0;
+    u8 eventReg;
+    u8 tmp_reg;
 
-    for (i = 0; i < 6; i++) {
-        u8 eventReg = dComIfGs_getEventReg(mEvtBitLabels[i]);
-        uVar1 = 1;
+    for (int i = 0; i < 6; i++) {
+        eventReg = dComIfGs_getEventReg(u16(mEvtBitLabels[i]));
+        tmp_reg = 1;
 
-        for (j = 0; j < 8; j++) {
-            iVar2[i][j] = 0;
+        for (int j = 0; j < 8; j++) {
+            bool_array[i*8 + j] = FALSE;
 
-            if ((uVar1 & (eventReg & 0xFF)) != 0) {
-                iVar2[i][j] = 1;
-                iVar1++;
+            if ((tmp_reg & eventReg) != 0) {
+                bool_array[i*8 + j] = TRUE;
+                sp_0x2c++;
             }
 
-            uVar1 = (uVar1 & 0xFF) << 1;
+            tmp_reg <<= 1;
         }
     }
 
-    if (iVar1 >= 45) {
+    if (sp_0x2c >= 45) {
         return -2;
     }
 
-    for (k = 2; k != 0; k--) {
-        for (l = 0; l < 6; l++) {
-            u8 uVar2 = dComIfGs_getTmpReg(mTmpBitLabels[l]);
-            u8 uVar3 = dComIfGs_getEventReg(mEvtBitLabels[l]);
-            dComIfGs_setTmpReg(mTmpBitLabels[l], uVar2 | uVar3);
+    for (sp_0x40 = 2; sp_0x40 != 0; sp_0x40--) {
+        for (int idx = 0; idx < 6; idx++) {
+            tmp_reg = dComIfGs_getTmpReg(mTmpBitLabels[idx]);
+            eventReg = dComIfGs_getEventReg(u16(mEvtBitLabels[idx]));
+            tmp_reg |= eventReg;
+            dComIfGs_setTmpReg(mTmpBitLabels[idx], tmp_reg);
         }
 
-        for (m = 0; m < 48; m++) {
-            iVar3[m] = -1;
+        for (int m = 0; m < 48; m++) {
+            iVar2[m] = -1;
         }
 
-        int iVar4 = 0;
-        int iVar5 = 0;
-        int iVar6 = 0;
-        int iVar7 = 0;
-        int iVar8 = 0;
-        for (n = 0; n < 6; n++) {
-            uVar1 = 1;
-            for (o = 0; o < 8; o++) {
-                if ((this->*mQueries[n][o])()) {
-                    iVar4++;
-                    if (iVar2[n][o] != 0) {
-                        iVar8++;
+        sp_0x34 = 0;
+        sp_0x3c = 0;
+        sp_0x38 = 0;
+        sp_0x30 = 0;
+        sp_0x28 = 0;
+        for (int n = 0; n < 6; n++) {
+            tmp_reg = 1;
+            for (int o = 0; o < 8; o++) {
+                if ((this->*mQueries[n*8 + o])()) {
+                    sp_0x34++;
+                    if (bool_array[n*8 + o]) {
+                        sp_0x28++;
                     }
 
-                    if ((uVar1 & (dComIfGs_getTmpReg(mTmpBitLabels[n]) & 0xFF)) == 0) {
-                        iVar3[iVar5] = iVar7;
-                        iVar5++;
+                    eventReg = dComIfGs_getTmpReg(mTmpBitLabels[n]);
+                    if ((tmp_reg & eventReg) == 0) {
+                        iVar2[sp_0x3c] = sp_0x30;
+                        sp_0x3c++;
                     } else {
-                        iVar6++;
+                        sp_0x38++;
                     }
                 }
 
-                uVar1 = (uVar1 & 0xFF) << 1;
-                iVar7++;
+                tmp_reg <<= 1;
+                sp_0x30++;
             }
         }
 
-        u32 tmpReg = dComIfGs_getTmpReg(0xF2FF) & 0xFF;
-        if (tmpReg != 0) {
-            if (tmpReg > 45) {
-                tmpReg = 45;
+        eventReg = dComIfGs_getTmpReg(0xF2FF);
+        if (eventReg != 0) {
+            if (eventReg > 45) {
+                eventReg = 45;
             }
 
-            return (tmpReg - 1) & 0xFF;
+            --eventReg;
+            return eventReg;
         }
 
-        if (iVar4 == 0 || iVar4 == iVar8) {
+        if (sp_0x34 == 0 || sp_0x34 == sp_0x28) {
             return -1;
         }
 
-        if (iVar5 != 0) {
-            int iVar9 = cLib_getRndValue(0, iVar5);
-            return iVar3[(iVar9 + g_Counter.mCounter0) % iVar5];
+        if (sp_0x3c != 0) {
+            sp_0x30 = cLib_getRndValue(0, sp_0x3c);
+            sp_0x30 = (sp_0x30 + g_Counter.mCounter0) % sp_0x3c;
+            return iVar2[sp_0x30];
         }
 
-        if (iVar6 == 0) break;
+        if (sp_0x38 == 0) {
+            break;
+        }
 
         for (int p = 0; p < 6; p++) {
             dComIfGs_setTmpReg(mTmpBitLabels[p] & 0xFFFF, 0);
@@ -864,21 +871,20 @@ int daNpc_Sha_c::getSceneChangeNoTableIx() {
 
 /* 80AE48D0-80AE4974 001BF0 00A4+00 1/1 0/0 0/0 .text            setTempBit__11daNpc_Sha_cFi */
 void daNpc_Sha_c::setTempBit(int i_idx) {
-    // NONMATCHING
-    u8 uVar2 = 0;
+    u8 reg_r30 = 0;
+    u8 reg_r29 = 0;
     if (i_idx < 48) {
-        u8 tmpReg = dComIfGs_getTmpReg(mTmpBitLabels[i_idx / 8]);
-        uVar2 = 1;
-        u32 uVar3 = i_idx << 29;
+        reg_r30 = dComIfGs_getTmpReg(mTmpBitLabels[i_idx / 8]);
+        reg_r29 = 1;
 
-        if (((uVar3 << 3) | (i_idx * 0x20000000 + uVar3) >> 29) != uVar3) {
-            for (int i = 0; i < ((uVar3 << 3) | (i_idx * 0x20000000 + uVar3) >> 29); i++) {
-                tmpReg = (uVar3 & 0xFF) << 1;
+        if (i_idx % 8 != 0) {
+            for (int i = 0; i < i_idx % 8; i++) {
+                reg_r29 = reg_r29 << 1;
             }
         }
 
-        tmpReg |= uVar3;
-        dComIfGs_setTmpReg(mTmpBitLabels[i_idx / 8], tmpReg);
+        reg_r30 |= reg_r29;
+        dComIfGs_setTmpReg(mTmpBitLabels[i_idx / 8], reg_r30);
     }
 }
 
@@ -1181,19 +1187,19 @@ int daNpc_Sha_c::mSceneChangeNoTable[48] = {
 };
 
 /* 80AE7434-80AE7674 00071C 0240+00 1/2 0/0 0/0 .data            mQueries__11daNpc_Sha_c */
-daNpc_Sha_c::queryFunc daNpc_Sha_c::mQueries[6][8] = {
-    {&daNpc_Sha_c::query000, &daNpc_Sha_c::query265, &daNpc_Sha_c::query000, &daNpc_Sha_c::query267,
-         &daNpc_Sha_c::query000, &daNpc_Sha_c::query000, &daNpc_Sha_c::query078, &daNpc_Sha_c::query268},
-    {&daNpc_Sha_c::query265, &daNpc_Sha_c::query265, &daNpc_Sha_c::query078, &daNpc_Sha_c::query000,
-         &daNpc_Sha_c::query000, &daNpc_Sha_c::query264, &daNpc_Sha_c::query000, &daNpc_Sha_c::query000},
-    {&daNpc_Sha_c::query000, &daNpc_Sha_c::query000, &daNpc_Sha_c::query078, &daNpc_Sha_c::query078,
-         &daNpc_Sha_c::query265, &daNpc_Sha_c::query265, &daNpc_Sha_c::query266, &daNpc_Sha_c::query266},
-    {&daNpc_Sha_c::query267, &daNpc_Sha_c::query267, &daNpc_Sha_c::query268, &daNpc_Sha_c::query268,
-         &daNpc_Sha_c::query542, &daNpc_Sha_c::query542, &daNpc_Sha_c::query267, &daNpc_Sha_c::query288},
-    {&daNpc_Sha_c::query266, &daNpc_Sha_c::query000, &daNpc_Sha_c::query000, &daNpc_Sha_c::query000,
-         &daNpc_Sha_c::query264, &daNpc_Sha_c::query267, &daNpc_Sha_c::query461, &daNpc_Sha_c::query264},
-    {&daNpc_Sha_c::query264, &daNpc_Sha_c::query264, &daNpc_Sha_c::query266, &daNpc_Sha_c::query267,
-         &daNpc_Sha_c::query264, &daNpc_Sha_c::query999, &daNpc_Sha_c::query999, &daNpc_Sha_c::query999},
+daNpc_Sha_c::queryFunc daNpc_Sha_c::mQueries[48] = {
+    &daNpc_Sha_c::query000, &daNpc_Sha_c::query265, &daNpc_Sha_c::query000, &daNpc_Sha_c::query267,
+    &daNpc_Sha_c::query000, &daNpc_Sha_c::query000, &daNpc_Sha_c::query078, &daNpc_Sha_c::query268,
+    &daNpc_Sha_c::query265, &daNpc_Sha_c::query265, &daNpc_Sha_c::query078, &daNpc_Sha_c::query000,
+    &daNpc_Sha_c::query000, &daNpc_Sha_c::query264, &daNpc_Sha_c::query000, &daNpc_Sha_c::query000,
+    &daNpc_Sha_c::query000, &daNpc_Sha_c::query000, &daNpc_Sha_c::query078, &daNpc_Sha_c::query078,
+    &daNpc_Sha_c::query265, &daNpc_Sha_c::query265, &daNpc_Sha_c::query266, &daNpc_Sha_c::query266,
+    &daNpc_Sha_c::query267, &daNpc_Sha_c::query267, &daNpc_Sha_c::query268, &daNpc_Sha_c::query268,
+    &daNpc_Sha_c::query542, &daNpc_Sha_c::query542, &daNpc_Sha_c::query267, &daNpc_Sha_c::query288,
+    &daNpc_Sha_c::query266, &daNpc_Sha_c::query000, &daNpc_Sha_c::query000, &daNpc_Sha_c::query000,
+    &daNpc_Sha_c::query264, &daNpc_Sha_c::query267, &daNpc_Sha_c::query461, &daNpc_Sha_c::query264,
+    &daNpc_Sha_c::query264, &daNpc_Sha_c::query264, &daNpc_Sha_c::query266, &daNpc_Sha_c::query267,
+    &daNpc_Sha_c::query264, &daNpc_Sha_c::query999, &daNpc_Sha_c::query999, &daNpc_Sha_c::query999,
 };
 
 /* 80AE52CC-80AE52F0 0025EC 0024+00 5/0 0/0 0/0 .text            query265__11daNpc_Sha_cFv */

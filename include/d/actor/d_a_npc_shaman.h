@@ -115,7 +115,7 @@ public:
     static u16 mEvtBitLabels[6];
     static u16 mTmpBitLabels[6];
     static int mSceneChangeNoTable[48];
-    static queryFunc mQueries[6][8];
+    static queryFunc mQueries[48];
 
 private:
     /* 0xE40 */ NPC_SHA_HIO_CLASS* mpHIO;
