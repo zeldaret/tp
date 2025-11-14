@@ -10,9 +10,9 @@
  * @ingroup actors-enemies
  * @class daE_TT_c
  * @brief Tektite
- * 
- * @details 
- * 
+ *
+ * @details
+ *
  */
 class daE_TT_c : public fopEn_enemy_c {
 public:
@@ -46,6 +46,7 @@ public:
     /* 807C1164 */ int _delete();
     /* 807C121C */ int CreateHeap();
     /* 807C13B4 */ int create();
+
 private:
     /* 0x5AC */ request_of_phase_process_class mPhaseReq;
     /* 0x5B4 */ request_of_phase_process_class mPhaseReq2;
@@ -56,25 +57,25 @@ private:
     /* 0x6BC */ s32 mMode;
     /* 0x6C0 */ u32 mShadowKey;
     /* 0x6C4 */ u8 field_0x6C4[0x6C8 - 0x6C4];
-    /* 0x6C8 */ f32 field_0x6c8;
-    /* 0x6CC */ f32 field_0x6cc;
-    /* 0x6D0 */ f32 field_0x6d0;
+    /* 0x6C8 */ f32 mDeathColor;
+    /* 0x6CC */ f32 mTransOffsetVelocity;
+    /* 0x6D0 */ f32 mTransOffset;
     /* 0x6D4 */ f32 field_0x6d4;
-    /* 0x6D8 */ s16 field_0x6d8[4];
+    /* 0x6D8 */ s16 mFootJoints[4];
     /* 0x6E0 */ s16 field_0x6e0;
     /* 0x6E4 */ char* mpResName;
-    /* 0x6E8 */ u16 field_0x6e8;
-    /* 0x6EA */ u8 field_0x6ea;
-    /* 0x6EC */ s32 field_0x6ec;
+    /* 0x6E8 */ u16 mDamageCooldownTimer;
+    /* 0x6EA */ u8 mGenericTimer;
+    /* 0x6EC */ s32 mAttackTimer;
     /* 0x6F0 */ s32 field_0x6f0;
-    /* 0x6F4 */ u8 field_0x6f4;
-    /* 0x6F5 */ u8 field_0x6f5;
-    /* 0x6F6 */ u8 field_0x6f6;
+    /* 0x6F4 */ u8 mPlayerCutTimer;
+    /* 0x6F5 */ u8 mPlayerCutType;
+    /* 0x6F6 */ u8 mTektiteType;
     /* 0x6F7 */ u8 field_0x6f7;
-    /* 0x6F8 */ u8 field_0x6f8;
-    /* 0x6F9 */ u8 field_0x6f9;
-    /* 0x6FA */ u8 field_0x6fa;
-    /* 0x6FB */ u8 field_0x6fb;
+    /* 0x6F8 */ u8 mPlayerOnHorse;
+    /* 0x6F9 */ u8 mSwitchFlag;
+    /* 0x6FA */ u8 mTektiteOnWater;
+    /* 0x6FB */ u8 field_0x6fb; // only set, not used
     /* 0x6FC */ dBgS_AcchCir mAcchCir;
     /* 0x73C */ dBgS_ObjAcch mObjAcch;
     /* 0x914 */ dCcD_Stts mStts;
