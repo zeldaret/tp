@@ -53,8 +53,8 @@ private:
     /* 0x5BC */ mDoExt_McaMorfSO* mpMorfSO;
     /* 0x5C0 */ Z2CreatureEnemy mSound;
     /* 0x664 */ dBgS_ObjGndChk_All mGndChk;
-    /* 0x6B8 */ s32 mAction;
-    /* 0x6BC */ s32 mMode;
+    /* 0x6B8 */ int mAction;
+    /* 0x6BC */ int mMode;
     /* 0x6C0 */ u32 mShadowKey;
     /* 0x6C4 */ u8 field_0x6C4[0x6C8 - 0x6C4];
     /* 0x6C8 */ f32 mDeathColor;
@@ -66,8 +66,8 @@ private:
     /* 0x6E4 */ char* mpResName;
     /* 0x6E8 */ u16 mDamageCooldownTimer;
     /* 0x6EA */ u8 mGenericTimer;
-    /* 0x6EC */ s32 mAttackTimer;
-    /* 0x6F0 */ s32 field_0x6f0;
+    /* 0x6EC */ int mAttackTimer;
+    /* 0x6F0 */ int field_0x6f0;
     /* 0x6F4 */ u8 mPlayerCutTimer;
     /* 0x6F5 */ u8 mPlayerCutType;
     /* 0x6F6 */ u8 mTektiteType;
