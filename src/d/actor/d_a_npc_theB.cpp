@@ -1032,7 +1032,16 @@ void daNpcTheB_c::lookat() {
     mLookat.calc(this, model->getBaseTRMtx(), lookat_angle, FALSE, angle_delta, false);
 }
 
-#pragma inline_max_size(503) // FAKEMATCH
+#pragma inline_max_size(503)
+/* 
+    FAKEMATCH
+    The DANPCF_C_HACK sets an inline size that prevents the parent constructor
+    from being inlined, however that same hack also prevents the following
+    function from being inlined when it needs to.
+
+    Once a proper solution is found for the constructor issue, the pragma
+    should be removed
+*/
 inline void daNpcTheB_c::setWaitAnimation() {
     if (
         mAnm_p->getAnm() == getTrnsfrmKeyAnmP(l_arcName, l_bckGetParamList[8].fileIdx)
