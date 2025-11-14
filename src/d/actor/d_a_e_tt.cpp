@@ -253,12 +253,12 @@ void daE_TT_c::damage_check() {
             }
 
             if (mode >= 5) {
-                setActionMode(4, mode - 5);
+                setActionMode(ACTION_DEATH, mode - 5);
             } else {
                 if (health <= 0) {
-                    setActionMode(4, 2);
+                    setActionMode(ACTION_DEATH, 2);
                 } else {
-                    setActionMode(3, mode);
+                    setActionMode(ACTION_DAMAGE, mode);
                 }
             }
         }
@@ -336,8 +336,8 @@ void daE_TT_c::checkFootGround() {
                 if (local_e0[i] == 1) {
                     pos1.set(pos3.x, fVar5, pos3.z);
                     mPolyColors[i] = dComIfGp_particle_setPolyColor(
-                        mPolyColors[i], 0x1B8, *fopAcM_wt_c::getWaterCheck(), &pos1, &tevStr,
-                        &shape_angle, &sc, 0, NULL, -1, NULL);
+                        mPolyColors[i], ID_ZI_J_DOWNWTRA_A, *fopAcM_wt_c::getWaterCheck(), &pos1,
+                        &tevStr, &shape_angle, &sc, 0, NULL, -1, NULL);
                     JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mPolyColors[i]);
                     if (emitter != NULL) {
                         emitter->setRateStep(5);
@@ -362,7 +362,8 @@ void daE_TT_c::checkFootGround() {
 
 /* 807BE2A8-807BE438 000BE8 0190+00 1/1 0/0 0/0 .text            setBodyLandEffect__8daE_TT_cFv */
 void daE_TT_c::setBodyLandEffect() {
-    static u16 w_eff_id[4] = {0x01B8, 0x01B9, 0x01BA, 0x01BB};
+    static u16 w_eff_id[4] = {ID_ZI_J_DOWNWTRA_A, ID_ZI_J_DOWNWTRA_B, ID_ZI_J_DOWNWTRA_C,
+                              ID_ZI_J_DOWNWTRA_D};
     static cXyz sc(1.2f, 1.2f, 1.2f);
 
     if (mTektiteOnWater) {
@@ -375,8 +376,8 @@ void daE_TT_c::setBodyLandEffect() {
         }
         mSound.startCreatureSound(Z2SE_EN_TT_LAND_WATER, 0, -1);
     } else {
-        dComIfGp_particle_setPolyColor(0xE7, mObjAcch.m_gnd, &current.pos, &tevStr, &shape_angle,
-                                       &sc, 0, NULL, -1, NULL);
+        dComIfGp_particle_setPolyColor(ID_ZI_J_DOWNSMOKE_A, mObjAcch.m_gnd, &current.pos, &tevStr,
+                                       &shape_angle, &sc, 0, NULL, -1, NULL);
         mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
     }
 }
@@ -384,9 +385,9 @@ void daE_TT_c::setBodyLandEffect() {
 /* 807BE438-807BE708 000D78 02D0+00 4/4 0/0 0/0 .text            setWaterEffect__8daE_TT_cFv */
 void daE_TT_c::setWaterEffect() {
     static u16 w_eff_id[3] = {
-        0x01B9,
-        0x01BA,
-        0x01BB,
+        ID_ZI_J_DOWNWTRA_B,
+        ID_ZI_J_DOWNWTRA_C,
+        ID_ZI_J_DOWNWTRA_D,
     };
     static s32 foot_jnt_no[4] = {
         0x4,
@@ -426,8 +427,8 @@ void daE_TT_c::setWaterEffect() {
         if (!mTektiteOnWater) {
             mSound.startCreatureSound(Z2SE_EN_TT_LAND, 0, -1);
             sc.set(1.2f, 1.2f, 1.2f);
-            dComIfGp_particle_setPolyColor(0xE7, mObjAcch.m_gnd, &current.pos, &tevStr,
-                                           &shape_angle, &sc, 0, NULL, -1, NULL);
+            dComIfGp_particle_setPolyColor(ID_ZI_J_DOWNSMOKE_A, mObjAcch.m_gnd, &current.pos,
+                                           &tevStr, &shape_angle, &sc, 0, NULL, -1, NULL);
         } else {
             mSound.startCreatureSound(Z2SE_EN_TT_LAND_WATER, 0, -1);
         }
@@ -439,17 +440,19 @@ void daE_TT_c::setDeathEyeEffect() {
     static cXyz sc(0.6f, 0.6f, 0.6f);
 
     if (!mTektiteType) {
-        mDeathParticle = dComIfGp_particle_set(mDeathParticle, 0x84D1, &current.pos, &tevStr,
-                                               &shape_angle, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
-        mDeathParticle2 =
-            dComIfGp_particle_set(mDeathParticle2, 0x84D4, &current.pos, &tevStr, &shape_angle, &sc,
-                                  0xFF, NULL, -1, NULL, NULL, NULL);
+        mDeathParticle = dComIfGp_particle_set(
+            mDeathParticle, dPa_RM(ID_ZF_S_TT_DAMAGEARROWRED00_PURPLE), &current.pos, &tevStr,
+            &shape_angle, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
+        mDeathParticle2 = dComIfGp_particle_set(
+            mDeathParticle2, dPa_RM(ID_ZF_S_TT_DAMAGEARROWRED01_PURPLE), &current.pos, &tevStr,
+            &shape_angle, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
     } else {
-        mDeathParticle = dComIfGp_particle_set(mDeathParticle, 0x84D0, &current.pos, &tevStr,
-                                               &shape_angle, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
-        mDeathParticle2 =
-            dComIfGp_particle_set(mDeathParticle2, 0x84D3, &current.pos, &tevStr, &shape_angle, &sc,
-                                  0xFF, NULL, -1, NULL, NULL, NULL);
+        mDeathParticle = dComIfGp_particle_set(
+            mDeathParticle, dPa_RM(ID_ZF_S_TT_DAMAGEARROWBLUE00_ORANGE), &current.pos, &tevStr,
+            &shape_angle, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
+        mDeathParticle2 = dComIfGp_particle_set(
+            mDeathParticle2, dPa_RM(ID_ZF_S_TT_DAMAGEARROWBLUE01_ORANGE), &current.pos, &tevStr,
+            &shape_angle, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
     }
 
     JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mDeathParticle);
@@ -474,10 +477,12 @@ void daE_TT_c::setDeathFootEffect() {
     csXyz rot;
     mDoMtx_MtxToRot(mpMorfSO->getModel()->getAnmMtx(0), &rot);
 
-    mDeathParticle = dComIfGp_particle_set(mDeathParticle, 0x84D5, &current.pos, &tevStr,
-                                           &shape_angle, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
-    mDeathParticle2 = dComIfGp_particle_set(mDeathParticle2, 0x84D7, &current.pos, &tevStr,
-                                            &shape_angle, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
+    mDeathParticle = dComIfGp_particle_set(
+        mDeathParticle, dPa_RM(ID_ZF_S_TT_LEGOFFBACKBONEL00_SPLASH), &current.pos, &tevStr,
+        &shape_angle, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
+    mDeathParticle2 = dComIfGp_particle_set(
+        mDeathParticle2, dPa_RM(ID_ZF_S_TT_LEGOFFBACKBONER00_SPLASH), &current.pos, &tevStr,
+        &shape_angle, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
 
     JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mDeathParticle);
     if (emitter != NULL) {
@@ -542,7 +547,7 @@ void daE_TT_c::executeWait() {
             setBck(0xB, 0, 3.0f, 1.0f);
         } else {
             if (checkPlayerSearch()) {
-                setActionMode(1, 0);
+                setActionMode(ACTION_CHASE, 0);
             }
         }
         break;
@@ -611,7 +616,7 @@ void daE_TT_c::executeChase() {
             mSound.startCreatureSound(Z2SE_EN_TT_WAIT, 0, -1);
         }
         if (mGenericTimer == 0 && field_0x6d4 && home.pos.absXZ(current.pos) > field_0x6d4) {
-            setActionMode(5, 0);
+            setActionMode(ACTION_OUT_RANGE, 0);
         } else {
             cLib_addCalcAngleS(&shape_angle.y, fopAcM_searchPlayerAngleY(this), 0x8, 0x800, 0x100);
             current.angle.y = shape_angle.y;
@@ -620,14 +625,14 @@ void daE_TT_c::executeChase() {
                 setBck(0xB, 0, 3.0f, 1.0f);
             } else {
                 if (!checkPlayerSearch()) {
-                    setActionMode(0, 0);
+                    setActionMode(ACTION_WAIT, 0);
                 }
-                if (mAttackTimer == 0 && !fopAcM_CheckCondition(this, 4)) {
+                if (mAttackTimer == 0 && !fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e)) {
                     if ((s16)abs((s16)(daPy_getPlayerActorClass()->shape_angle.y -
                                        fopAcM_searchPlayerAngleY(this))) > l_HIO.attack_angle &&
                         m_attack_tt == NULL)
                     {
-                        setActionMode(2, 0);
+                        setActionMode(ACTION_ATTACK, 0);
                         m_attack_tt = this;
                     }
                 }
@@ -756,10 +761,10 @@ void daE_TT_c::executeAttack() {
         calcHitGroundSpeed();
         if (mpMorfSO->isStop() && !speedF) {
             if (!checkPlayerSearch()) {
-                setActionMode(0, 0);
+                setActionMode(ACTION_WAIT, 0);
                 break;
             }
-            setActionMode(1, 0);
+            setActionMode(ACTION_CHASE, 0);
         }
         break;
     }
@@ -822,9 +827,9 @@ void daE_TT_c::executeDamage() {
         if (mpMorfSO->isStop()) {
             speedF = 0.0f;
             if (!checkPlayerSearch()) {
-                setActionMode(0, 0);
+                setActionMode(ACTION_WAIT, 0);
             } else {
-                setActionMode(1, 0);
+                setActionMode(ACTION_CHASE, 0);
             }
         }
         break;
@@ -929,22 +934,23 @@ void daE_TT_c::executeOutRange() {
         }
         cLib_addCalcAngleS(&shape_angle.y, fopAcM_searchPlayerAngleY(this), 0x8, 0x800, 0x100);
         current.angle.y = shape_angle.y;
-        if (!fopAcM_CheckCondition(this, 4) &&
+        if (!fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e) &&
             abs((s16)(shape_angle.y - cLib_targetAngleY(&current.pos, &home.pos))) < 0x2000)
         {
-            setActionMode(1, 0);
+            setActionMode(ACTION_CHASE, 0);
             break;
         }
         if (fopAcM_searchPlayerDistanceXZ(this) > 2000.0f) {
-            setActionMode(0, 0);
+            setActionMode(ACTION_WAIT, 0);
             break;
         }
-        if (fopAcM_searchPlayerDistanceXZ(this) < 500.0f && !fopAcM_CheckCondition(this, 4) &&
+        if (fopAcM_searchPlayerDistanceXZ(this) < 500.0f &&
+            !fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e) &&
             (s16)abs((s16)(daPy_getPlayerActorClass()->shape_angle.y -
                            fopAcM_searchPlayerAngleY(this))) > l_HIO.attack_angle &&
             m_attack_tt == NULL)
         {
-            setActionMode(2, 0);
+            setActionMode(ACTION_ATTACK, 0);
             m_attack_tt = this;
         }
         break;
@@ -968,7 +974,7 @@ void daE_TT_c::executeFirstAttack() {
         }
         cLib_addCalcAngleS(&shape_angle.y, fopAcM_searchPlayerAngleY(this), 0x8, 0x800, 0x100);
         current.angle.y = shape_angle.y;
-        if (!fopAcM_CheckCondition(this, 4)) {
+        if (!fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e)) {
             f32 modifiedPlayerSpeed = player->getSpeedF() * 40.0f + 500.0f;
             if (fopAcM_searchPlayerDistanceXZ(this) < modifiedPlayerSpeed) {
                 if ((s16)abs((s16)(player->shape_angle.y - fopAcM_searchPlayerAngleY(this))) >
@@ -1048,9 +1054,9 @@ void daE_TT_c::executeFirstAttack() {
         calcHitGroundSpeed();
         if (mpMorfSO->isStop() && !speedF) {
             if (!checkPlayerSearch()) {
-                setActionMode(0, 0);
+                setActionMode(ACTION_WAIT, 0);
             } else {
-                setActionMode(1, 0);
+                setActionMode(ACTION_CHASE, 0);
             }
         }
         break;
@@ -1101,7 +1107,7 @@ void daE_TT_c::action() {
     }
 
     mSound.setLinkSearch(linkSearch);
-    if (mAction != ACTION_DEATH && !fopAcM_CheckCondition(this, 4)) {
+    if (mAction != ACTION_DEATH && !fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e)) {
         dBgS_LinChk linChk;
         linChk.Set(&dComIfGp_getCamera(0)->lookat.eye, &attention_info.position, this);
         if (dComIfG_Bgsp().LineCross(&linChk)) {
@@ -1127,7 +1133,7 @@ void daE_TT_c::mtx_set(int param_0) {
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mDoMtx_stack_c::scaleM(l_HIO.model_size, l_HIO.model_size, l_HIO.model_size);
     mpMorfSO->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-    if (param_0 != 0 || !field_0x6f7 || !fopAcM_CheckCondition(this, 4) ||
+    if (param_0 != 0 || !field_0x6f7 || !fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e) ||
         !(fopAcM_searchPlayerDistance(this) > 3000.0f))
     {
         mpMorfSO->modelCalc();
@@ -1145,7 +1151,7 @@ void daE_TT_c::cc_set() {
     attention_info.position = eyePos;
     attention_info.position.y += 30.0f;
 
-    if (!fopAcM_CheckCondition(this, 4)) {
+    if (!fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e)) {
         mDoMtx_stack_c::copy(model->getAnmMtx(0));
         mDoMtx_stack_c::transM(40.0f, 20.0f, 0.0f);
         mDoMtx_stack_c::multVecZero(&sphereC);
@@ -1248,7 +1254,7 @@ int daE_TT_c::CreateHeap() {
 
     if (!field_0x6f7) {
         J3DModel* morfModel = mpMorfSO->getModel();
-        morfModel->setUserArea((u32)this);
+        morfModel->setUserArea((uintptr_t)this);
         for (u16 i = 1; i < morfModel->getModelData()->getJointNum(); i++) {
             morfModel->getModelData()->getJointNodePointer(i)->setCallBack(JointCallBack);
         }
@@ -1334,9 +1340,9 @@ int daE_TT_c::create() {
             gravity = -5.0f;
 
             if (!field_0x6f7) {
-                setActionMode(0, 0);
+                setActionMode(ACTION_WAIT, 0);
             } else {
-                setActionMode(6, 0);
+                setActionMode(ACTION_FIRST_ATTACK, 0);
             }
             mtx_set(1);
         }
