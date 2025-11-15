@@ -173,6 +173,7 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
                 speedF = -mpHIO->m.attack_disappear_speed_h;
                 speed.y = mpHIO->m.attack_disappear_speed_v;
                 mSound.startCollisionSE(Z2SE_HIT_SWORD, 0x1f);
+                break;
             } else {
                 fopAc_ac_c* aTgHitActor_p = mCylCc.GetTgHitAc();
                 JUT_ASSERT(303, NULL != aTgHitActor_p);
@@ -191,7 +192,8 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
                 mTargetPos = current.pos;
 
                 int is_lockon = FALSE;
-                if (dComIfGp_getAttention()->LockonTruth()) {
+                dAttention_c* attention_p = dComIfGp_getAttention();
+                if (attention_p->LockonTruth()) {
                     is_lockon = TRUE;
                 }
 
@@ -204,15 +206,26 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
                 mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
                 mMotionSeqMngr.setNo(0, -1.0f, 1, 0);
 
-                is_lockon ? mFlowNodeNo = 0x2da : mFlowNodeNo = 0x2db;
+                if (is_lockon) {
+                    mFlowNodeNo = 0x2da;
+                } else {
+                    mFlowNodeNo = 0x2db;
+                }
+
+                break;
             } else {
                 calcSwordAttackMove(1);
             }
         }
+
+        break;
+
     case 3:
     default:
-        return 1;
+        break;
     }
+
+    return 1;
 }
 
 /* 80A3D32C-80A3D6D8 012A0C 03AC+00 1/0 0/0 0/0 .text teach01_swordFinishWait__10daNpc_Kn_cFPv */
@@ -247,9 +260,8 @@ int daNpc_Kn_c::teach01_swordFinishWait(void* param_0) {
                     cXyz pos(10.0f, 0.0f, 0.0f);
                     onDownFlg();
 
-                    u8 backbone_joint = getBackboneJointNo();
-                    J3DModel* model = mpModelMorf[0]->getModel();
-                    mDoMtx_stack_c::copy(model->getAnmMtx(backbone_joint));
+                    int backbone_joint = getBackboneJointNo();
+                    mDoMtx_stack_c::copy(mpModelMorf[0]->getModel()->getAnmMtx(backbone_joint));
                     mDoMtx_stack_c::multVec(&pos, &field_0x15c0);
                     setDownPos(&field_0x15c0);
                 } else if (checkCutDownHitFlg()) {
@@ -414,10 +426,12 @@ int daNpc_Kn_c::ctrlWarp() {
 int daNpc_Kn_c::ECut_firstEncount(int i_idx) {
     dEvent_manager_c* event_manager = &dComIfGp_getEventManager();
 
+    int reg_r24 = 0;
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -430,7 +444,11 @@ int daNpc_Kn_c::ECut_firstEncount(int i_idx) {
             break;
         case 10:
             daPy_getPlayerActorClass()->changeDemoMoveAngle(fopAcM_searchPlayerAngleY(this) + 0x8000);
+#if VERSION == VERSION_SHIELD_DEBUG
+            field_0xdec = 50;
+#else
             field_0xdec = 52;
+#endif
             break;
         case 20:
             break;
@@ -471,9 +489,10 @@ int daNpc_Kn_c::ECut_attackFailed(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -607,9 +626,10 @@ int daNpc_Kn_c::ECut_firstSkillGet(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }

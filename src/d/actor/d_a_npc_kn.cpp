@@ -90,7 +90,7 @@ daNpc_Kn_HIO_c::daNpc_Kn_HIO_c() {
 }
 
 void daNpc_Kn_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
-    char msg_buffer[1988];
+    char msg_buffer[2000];
 
     JORReflexible::listenPropertyEvent(event);
 
@@ -99,7 +99,7 @@ void daNpc_Kn_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
     switch (reinterpret_cast<u32>(event->id)) {
     case 0x40000002:
         if (aJStack_910.open(6, "すべてのファイル(*.*)\0*.*\0", NULL, NULL, NULL) != 0) {
-            memset(msg_buffer, 0, 2000);
+            memset(msg_buffer, 0, sizeof(msg_buffer));
             len = 0;
             daNpcT_cmnListenPropertyEvent(msg_buffer, &len, &m.common);
             sprintf(msg_buffer + len, "%d,   \t//  アルファ\n", m.alpha);
@@ -4079,6 +4079,7 @@ int daNpc_Kn_c::ECut_fifthSkillExplain(int i_idx) {
     if (event_manager->getIsAddvance(i_idx)) {
         switch (prm) {
         case 0:
+            break;
         case 4: 
             mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
             if (mMotionSeqMngr.getNo() == 0x13) {
@@ -4413,6 +4414,7 @@ int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
     if (event_manager->getIsAddvance(i_idx)) {
         switch (prm) {
         case 0:
+            break;
         case 4: 
             mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
             if (mMotionSeqMngr.getNo() == 0x13) {
@@ -4598,10 +4600,12 @@ int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
 int daNpc_Kn_c::ECut_sixthSkillGet(int i_idx) {
     dEvent_manager_c* event_manager = &dComIfGp_getEventManager();
 
+    int sp_0x8 = 0;
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -4740,9 +4744,10 @@ int daNpc_Kn_c::ECut_seventhSkillExplain(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -4750,6 +4755,7 @@ int daNpc_Kn_c::ECut_seventhSkillExplain(int i_idx) {
     if (event_manager->getIsAddvance(i_idx)) {
         switch (prm) {
         case 0:
+            break;
         case 4: 
             mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
             if (mMotionSeqMngr.getNo() == 0x13) {
