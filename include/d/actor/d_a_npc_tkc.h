@@ -14,22 +14,22 @@
 
 struct daNpcTkc_HIOParam {
     /* 0x00 */ daNpcF_HIOParam common;
-    /* 0x6C */ f32 field_0x6c;
-    /* 0x70 */ f32 field_0x70;
-    /* 0x74 */ f32 field_0x74;
-    /* 0x78 */ f32 field_0x78;
-    /* 0x7C */ f32 field_0x7c;
-    /* 0x80 */ f32 field_0x80;
-    /* 0x84 */ f32 field_0x84;
-    /* 0x88 */ f32 field_0x88;
-    /* 0x8C */ f32 field_0x8c;
-    /* 0x90 */ f32 field_0x90;
-    /* 0x94 */ f32 field_0x94;
-    /* 0x98 */ f32 field_0x98;
-    /* 0x9C */ s16 field_0x9c;
-    /* 0x9E */ s16 field_0x9e;
-    /* 0xA0 */ s16 field_0xa0;
-    /* 0xA2 */ s16 field_0xa2;
+    /* 0x6C */ f32 warp_initial_pos;
+    /* 0x70 */ f32 down_move_spd;
+    /* 0x74 */ f32 up_move_spd;
+    /* 0x78 */ f32 ellipse_width;
+    /* 0x7C */ f32 div;
+    /* 0x80 */ f32 max;
+    /* 0x84 */ f32 min;
+    /* 0x88 */ f32 conversation_dist;
+    /* 0x8C */ f32 target_height;
+    /* 0x90 */ f32 flight_range;
+    /* 0x94 */ f32 step;
+    /* 0x98 */ f32 amplitude;
+    /* 0x9C */ s16 interval;
+    /* 0x9E */ s16 rotation_interval;
+    /* 0xA0 */ s16 x_angle;
+    /* 0xA2 */ s16 z_angle;
 };
 
 class daNpcTkc_Param_c {
@@ -55,6 +55,7 @@ public:
 class daNpcTkc_c : public daNpcF_c {
 public:
     typedef void (daNpcTkc_c::*actionFunc)();
+    typedef int (daNpcTkc_c::*evtFunc)(int);
 
     /* 80B0C7CC */ daNpcTkc_c();
     /* 80B0C964 */ ~daNpcTkc_c();
@@ -63,9 +64,9 @@ public:
     /* 80B0D180 */ int Delete();
     /* 80B0D1B4 */ int Execute();
     /* 80B0D1EC */ int Draw();
-    /* 80B0D25C */ static int ctrlJoint(J3DJoint*, J3DModel*);
+    /* 80B0D25C */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 80B0D2CC */ static int createHeapCallBack(fopAc_ac_c*);
-    /* 80B0D2EC */ void ctrlJointCallBack(J3DJoint*, int);
+    /* 80B0D2EC */ static int ctrlJointCallBack(J3DJoint*, int);
     /* 80B0D338 */ void setActionWait();
     /* 80B0D37C */ void setActionFollow();
     /* 80B0D3C0 */ void setMtx();
@@ -84,19 +85,20 @@ public:
     /* 80B0EB54 */ void setExpression(int, f32);
     /* 80B0EB80 */ void warpTalk();
     /* 80B0EEE8 */ void demo();
-    /* 80B0F00C */ void EvCut_TksSecretChild(int);
-    /* 80B0F1F8 */ void EvCut_TksWarpExit(int);
-    /* 80B0F5D4 */ void EvCut_TksWarpBack(int);
+    /* 80B0F00C */ int EvCut_TksSecretChild(int);
+    /* 80B0F1F8 */ int EvCut_TksWarpExit(int);
+    /* 80B0F5D4 */ int EvCut_TksWarpBack(int);
     /* 80B0FA5C */ void setParam();
     /* 80B0FAD0 */ BOOL main();
     /* 80B0FD18 */ BOOL ctrlBtk();
     /* 80B0FDE4 */ void setAttnPos();
     /* 80B0FFD4 */ int drawDbgInfo();
 
+    u8 getType() { return fopAcM_GetParam(this) & 0xFF; }
     void setStart() { mStatus = 1; }
     void callOdorokiSound() { mSound.startCreatureVoiceLevel(Z2SE_TKC_V_ODOROKI_LOOP, -1); }
 
-    static u8 mEvtSeqList[48];
+    static evtFunc mEvtSeqList[4];
 
 private:
     /* 0xB48 */ Z2Creature mSound;
@@ -104,6 +106,7 @@ private:
     /* 0xBDC */ daNpcF_ActorMngr_c mActorMngr[1];
     /* 0xBE0 */ NPC_TKC_HIO_CLASS* mpHIO;
     /* 0xBE4 */ dCcD_Sph mSph;
+
     /* 0xD20 */ actionFunc mAction;
     /* 0xD2C */ request_of_phase_process_class mPhase;
     /* 0xD34 */ fpc_ProcID field_0xd34;
