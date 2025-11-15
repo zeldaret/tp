@@ -1591,10 +1591,10 @@ void daNpc_Kn_c::teach03_selectAction() {
 void daNpc_Kn_c::teach04_selectAction() {
     switch (mActionMode) {
     case 9:
-        mpTeachAction = &daNpc_Kn_c::teach04_headBreakWait;
+        mpTeachAction = &daNpc_Kn_c::teach04_attackWait;
         return;
     case 10:
-        mpTeachAction = &daNpc_Kn_c::teach04_attackWait;
+        mpTeachAction = &daNpc_Kn_c::teach04_headBreakWait;
         return;
     case 11:
         mpTeachAction = &daNpc_Kn_c::teach04_finishWait;
@@ -1619,7 +1619,7 @@ void daNpc_Kn_c::teach05_selectAction() {
 void daNpc_Kn_c::teach06_selectAction() {
     switch (mActionMode) {
     case 13:
-        mpTeachAction = &daNpc_Kn_c::teach06_superJumpedDivide;
+        mpTeachAction = &daNpc_Kn_c::teach06_superJumpWait;
         return;
     case 14:
         mpTeachAction = &daNpc_Kn_c::teach06_divideMove;
@@ -1628,13 +1628,13 @@ void daNpc_Kn_c::teach06_selectAction() {
         mpTeachAction = &daNpc_Kn_c::teach06_superJumpWaitDivide;
         return;
     case 16:
-        mpTeachAction = &daNpc_Kn_c::teach06_superJumpWait;
+        mpTeachAction = &daNpc_Kn_c::teach06_superJumpedDivide;
         return;
     case 17:
-        mpTeachAction = &daNpc_Kn_c::teach06_waitDivide;
+        mpTeachAction = &daNpc_Kn_c::teach06_warpDelete;
         return;
     case 18:
-        mpTeachAction = &daNpc_Kn_c::teach06_warpDelete;
+        mpTeachAction = &daNpc_Kn_c::teach06_waitDivide;
         return;
     }
 
@@ -1645,7 +1645,7 @@ void daNpc_Kn_c::teach06_selectAction() {
 void daNpc_Kn_c::teach07_selectAction() {
     switch (mActionMode) {
     case 19:
-        mpTeachAction = &daNpc_Kn_c::teach07_superTurnAttackedDivide;
+        mpTeachAction = &daNpc_Kn_c::teach07_superTurnAttackWait;
         return;
     case 20:
         mpTeachAction = &daNpc_Kn_c::teach07_divideMove;
@@ -1654,13 +1654,13 @@ void daNpc_Kn_c::teach07_selectAction() {
         mpTeachAction = &daNpc_Kn_c::teach07_superTurnAttackWaitDivide;
         return;
     case 22:
-        mpTeachAction = &daNpc_Kn_c::teach07_superTurnAttackWait;
+        mpTeachAction = &daNpc_Kn_c::teach07_superTurnAttackedDivide;
         return;
     case 23:
-        mpTeachAction = &daNpc_Kn_c::teach07_waitDivide;
+        mpTeachAction = &daNpc_Kn_c::teach07_warpDelete;
         return;
     case 24:
-        mpTeachAction = &daNpc_Kn_c::teach07_warpDelete;
+        mpTeachAction = &daNpc_Kn_c::teach07_waitDivide;
         return;
     }
 
