@@ -21,7 +21,7 @@ public:
     /* 80848D54 */ virtual ~daHoZelda_matAnm_c() {}
     /* 80845EDC */ virtual void calc(J3DMaterial*) const;
 
-    static bool getEyeMoveFlg() { return mEyeMoveFlg; }
+    static u8 getEyeMoveFlg() { return mEyeMoveFlg; }
     static void offEyeMoveFlg() { mEyeMoveFlg = false; }
     static void onEyeMoveFlg() { mEyeMoveFlg = true; }
 
@@ -29,7 +29,7 @@ public:
     static void setMorfFrame(u8 i_frame) { mMorfFrame = i_frame; }
     static void decMorfFrame() { cLib_calcTimer<u8>(&mMorfFrame); }
 
-    static bool mEyeMoveFlg;
+    static u8 mEyeMoveFlg;
     static u8 mMorfFrame;
 
     /* 0x0F4 */ f32 field_0xf4;
@@ -38,10 +38,34 @@ public:
     /* 0x100 */ f32 mNowOffsetY;
 };
 
+struct daHoZelda_hio_c1 {
+    /* 0x0 */ s16 bow_search_y_angle;
+    /* 0x2 */ s16 bow_start_angle;
+    /* 0x4 */ s16 bow_end_angle;
+    /* 0x6 */ s16 field_0x6;
+    /* 0x8 */ f32 bow_start_distance;
+    /* 0xC */ f32 bow_end_distance;
+};
+
+struct daHoZelda_hio_c0 {
+    static daHoZelda_hio_c1 const m;
+};
+
 class daHoZelda_hio_c : public JORReflexible {
 public:
-    daHoZelda_hio_c() {}
+    daHoZelda_hio_c() {
+#if DEBUG
+        mParameters = daHoZelda_hio_c0::m;
+#endif
+    }
+    
+    /* 0x4 */ s8 mID;
+
+#if DEBUG
     void genMessage(JORMContext*);
+    virtual ~daHoZelda_hio_c() {}
+    /* 0x8 */ daHoZelda_hio_c1 mParameters;
+#endif
 };
 
 /**
