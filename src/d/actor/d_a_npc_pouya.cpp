@@ -1005,7 +1005,7 @@ int daNpc_Pouya_c::cutHaveFavorToAsk(int param_0) {
                 field_0xfce = 0;
                 switch (evt_id) {
                 case 1:
-                    if (mItemPartnerId == -1) {
+                    if (mItemPartnerId == fpcM_ERROR_PROCESS_ID_e) {
                         mItemPartnerId = fopAcM_createItemForPresentDemo(&current.pos, local_64, 0,
                                                                          -1, -1, 0, 0);
                     }
@@ -1183,7 +1183,7 @@ int daNpc_Pouya_c::talk(void* param_0) {
                     field_0xfce = 0;
                     switch (evt_id) {
                     case 1:
-                        if (mItemPartnerId == -1) {
+                        if (mItemPartnerId == fpcM_ERROR_PROCESS_ID_e) {
                             mItemPartnerId = fopAcM_createItemForPresentDemo(&current.pos, local_18,
                                                                              0, -1, -1, 0, 0);
                         }
