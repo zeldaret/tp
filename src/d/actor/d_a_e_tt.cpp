@@ -1064,7 +1064,6 @@ void daE_TT_c::executeFirstAttack() {
 }
 
 /* 807C0C28-807C0E10 003568 01E8+00 2/1 0/0 0/0 .text            action__8daE_TT_cFv */
-// NONMATCHING
 void daE_TT_c::action() {
     checkWaterSurface();
     if (!field_0x6f7) {
