@@ -74,10 +74,10 @@ public:
     /* 80B0D5A4 */ bool setExpressionBtp(int);
     /* 80B0D678 */ void reset();
     /* 80B0DA94 */ void setMotionAnm(int, f32);
-    /* 80B0DBC8 */ void setAction(actionFunc);
+    /* 80B0DBC8 */ BOOL setAction(actionFunc);
     /* 80B0DC68 */ void wait();
     /* 80B0DEF8 */ void calcFly();
-    /* 80B0E124 */ void searchPlayer();
+    /* 80B0E124 */ BOOL searchPlayer();
     /* 80B0E304 */ void follow();
     /* 80B0E784 */ void appear();
     /* 80B0E8EC */ void normalTalk();
@@ -95,8 +95,12 @@ public:
     /* 80B0FFD4 */ int drawDbgInfo();
 
     u8 getType() { return fopAcM_GetParam(this) & 0xFF; }
+    u16 getMessageNo() { return fopAcM_GetParam(this) >> 16; }
     void setStart() { mStatus = 1; }
     void callOdorokiSound() { mSound.startCreatureVoiceLevel(Z2SE_TKC_V_ODOROKI_LOOP, -1); }
+    void setLookMode(int i_lookMode) { if (i_lookMode >= 0 && i_lookMode < 4 && i_lookMode != mLookMode) mLookMode = i_lookMode; }
+    BOOL checkFindPlayer();
+    void setExpressionTalkAfter();
 
     static evtFunc mEvtSeqList[4];
 
