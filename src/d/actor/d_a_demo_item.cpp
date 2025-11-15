@@ -167,7 +167,6 @@ void daDitem_c::actionStart() {
 }
 
 /* 804E00DC-804E0A50 0005FC 0974+00 1/1 0/0 0/0 .text            actionEvent__9daDitem_cFv */
-// NONMATCHING - r30/r31 swap
 void daDitem_c::actionEvent() {
     if (mSetLightEff) {
         cLib_addCalc2(&mLight.mPow, mLightStrength, 0.1f, 1.0f);
