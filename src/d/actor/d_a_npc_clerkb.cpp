@@ -464,7 +464,7 @@ void daNpc_clerkB_c::afterJntAnm(int param_1) {
         mDoMtx_stack_c::ZrotM(mStagger.getAngleX(0));
     }
     if (param_1 == 9) {
-        mDoMtx_stack_c::XrotM(field_0x10fa);
+        mDoMtx_stack_c::XrotM(field_0x10f8.y);
     }
 }
 
@@ -626,7 +626,7 @@ void daNpc_clerkB_c::setAttnPos() {
     cXyz cStack_3c(-30.0f, 15.0f, 0.0f);
     cXyz cStack_48(0.0f, 15.0f, 0.0f);
 
-    field_0x10fa += cM_deg2s(6.0);
+    field_0x10f8.y += cM_deg2s(6.0);
     mStagger.calc(FALSE);
     mBpkAnm2.play();
     f32 rad = cM_s2rad((s16)(mCurAngle.y - field_0xd7e.y));

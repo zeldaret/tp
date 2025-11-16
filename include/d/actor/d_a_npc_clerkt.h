@@ -80,11 +80,11 @@ public:
     /* 8099B4DC */ int tend(void*);
     /* 8099B60C */ int talk(void*);
     /* 8099B804 */ int shop(void*);
-    /* 8099BCE8 */ void setParam();
-    /* 8099BE48 */ void setAfterTalkMotion();
-    /* 8099BEA8 */ void beforeMove();
-    /* 8099BF20 */ void setAttnPos();
-    /* 8099C1A0 */ void setCollision();
+    /* 8099BCE8 */ inline void setParam();
+    /* 8099BE48 */ inline void setAfterTalkMotion();
+    /* 8099BEA8 */ inline void beforeMove();
+    /* 8099BF20 */ inline void setAttnPos();
+    /* 8099C1A0 */ inline void setCollision();
     /* 8099CF9C */ daNpcClerkT_c(
         daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
         daNpcT_motionAnmData_c const* i_motionAnmData,
