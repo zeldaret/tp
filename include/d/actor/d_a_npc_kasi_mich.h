@@ -96,9 +96,9 @@ public:
     int getMessageNo() { return home.angle.x; }
     u8 getRailNo() { return fopAcM_GetParam(this) >> 8; }
     void setSygnal(int i_sygnal) { mSygnal = i_sygnal; }
-    void setChacePos(cXyz& i_chacePos) { mChacePos = i_chacePos; }
-    void setCenterPos(cXyz& i_centerPos) { mCenterPos = i_centerPos; }
-    void setPlPoint(int i_plPoint) { mPlPoint = i_plPoint; }
+    void setChacePos(const cXyz& i_chacePos) { mChacePos = i_chacePos; }
+    void setCenterPos(const cXyz& i_centerPos) { mCenterPos = i_centerPos; }
+    void setPlPoint(const int& i_plPoint) { mPlPoint = i_plPoint; }
     void off_talked() { mTalked = false; }
     BOOL is_talked() { return mTalked; }
     BOOL is_fear() { return mFear; }
