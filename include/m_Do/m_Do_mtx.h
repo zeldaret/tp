@@ -45,7 +45,7 @@ inline void mDoMtx_multVecArray(Mtx m, const Vec* src, Vec* dst, u32 count) {
 }
 
 inline void mDoMtx_copy(const Mtx src, Mtx dst) {
-    MTXCopy(src, dst);
+    PSMTXCopy(src, dst);
 }
 
 inline void mDoMtx_trans(Mtx m, f32 x, f32 y, f32 z) {

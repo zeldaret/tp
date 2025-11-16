@@ -543,11 +543,11 @@ void daObjKAM_c::Z_BufferChk() {
         cameraHeight = 0.0f;
     }
 #ifdef DEBUG
-#define Z_BUFFERCHK_X_MAX 640.0f
-#define Z_BUFFERCHK_Y_MAX 456.0f
+#define Z_BUFFERCHK_X_MAX FB_WIDTH
+#define Z_BUFFERCHK_Y_MAX FB_HEIGHT
 #else
-#define Z_BUFFERCHK_X_MAX 608.0f
-#define Z_BUFFERCHK_Y_MAX 448.0f
+#define Z_BUFFERCHK_X_MAX FB_WIDTH
+#define Z_BUFFERCHK_Y_MAX FB_HEIGHT
 #endif
     if (currentProj.x > 0.0f && currentProj.x < Z_BUFFERCHK_X_MAX && currentProj.y > cameraHeight &&
         currentProj.y < Z_BUFFERCHK_Y_MAX - cameraHeight)

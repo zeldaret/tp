@@ -91,7 +91,7 @@ public:
     void setDebugFill(bool debugFill) { mDebugFill = debugFill; }
     bool getDebugFill() const { return mDebugFill; }
     void* getStartAddr() { return (void*)mStart; }
-    void* getEndAddr() const { return (void*)mEnd; }
+    void* getEndAddr() { return (void*)mEnd; }
     u32 getSize() const { return mSize; }
     bool getErrorFlag() const { return mErrorFlag; }
     void callErrorHandler(JKRHeap* heap, u32 size, int alignment) {

@@ -258,9 +258,9 @@ cflags_base = [
 ]
 
 if config.version == "ShieldD":
-    cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1"])
+    cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1", "-DWIDESCREEN_SUPPORT=1"])
 elif config.version == "RZDE01_00" or config.version == "RZDE01_02" or config.version == "Shield":
-    cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS"])
+    cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS", "-DWIDESCREEN_SUPPORT=1"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
 
@@ -396,15 +396,11 @@ def MWVersion(cfg_version: str | None) -> str:
         case "GZ2J01":
             return "GC/2.7"
         case "RZDE01_00" | "RZDE01_02":
-            # TODO: Find right compiler for Wii
-            # GC/3.0a3 codegen seems better than Wii compilers, but it fails linking (linker version?) and can't handle multi-char constants
-            # Potentially missing an early Wii compiler that had the earlier codegen and reverted char constant change?
-            # Or some specific compiler used in the early days of transitioning GC to Wii development
-            # Additionally, "-ipa file" seems to needed, so it can't be earlier than GC 3.0
-            # GC/3.0a5.2 breaks when compiling TUs like m_Do_graphic, but none of the other 3.0+ ones do
-            # Wii/1.0RC1 is the earliest Wii one we have at this time but it doesn't have the right codegen from GC/3.0+
-            # (GC 3.0a3 - Dec 2005 | GC 3.0a5.2 - Aug 2006 | Wii 1.0RC - May 2008)
-            return "Wii/1.0RC1"
+            # NOTE: we use a modified version of GC/3.0a3 to be able to handle multi-char constants.
+            # This was probably a change made in some compiler version in the early days of transitioning GC to Wii development,
+            # but we don't have that version. GC/3.0a3 appears to have the best overall codegen of any available GC/Wii compiler
+            # However GC/3.0a5 is required for the linker version, GC/3.0a3 won't work.
+            return "GC/3.0a3t"
         case "ShieldD":
             return "Wii/1.0"
         case "Shield":
@@ -412,7 +408,10 @@ def MWVersion(cfg_version: str | None) -> str:
         case _:
             return "GC/2.7"
 
-config.linker_version = MWVersion(config.version)
+if config.version == "RZDE01_00" or config.version == "RZDE01_02":
+    config.linker_version = "GC/3.0a5"
+else:
+    config.linker_version = MWVersion(config.version)
 
 
 # Helper function for Dolphin libraries
@@ -778,6 +777,16 @@ config.libs = [
         "host": True,
         "objects": [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "DynamicLink.cpp"),
+        ],
+    },
+    {
+        "lib": "CaptureScreen",
+        "mw_version": MWVersion(config.version),
+        "cflags": cflags_framework,
+        "progress_category": "core",
+        "host": True,
+        "objects": [
+            Object(NonMatching, "CaptureScreen.cpp"),
         ],
     },
     {

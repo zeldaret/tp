@@ -613,7 +613,7 @@ static int phase_4(dScnPly_c* i_this) {
         dComIfGp_setPlayerPtr(i, NULL);
     }
 
-    dComIfGp_setWindow(0, 0.0f, 0.0f, 608.0f, 448.0f, 0.0f, 1.0f, 0, 2);
+    dComIfGp_setWindow(0, 0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0.0f, 1.0f, 0, 2);
     dComIfGp_setCameraInfo(0, NULL, 0, 0, -1);
     dComIfGd_setWindow(NULL);
     dComIfGd_setViewport(NULL);

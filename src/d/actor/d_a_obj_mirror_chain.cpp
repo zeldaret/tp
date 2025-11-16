@@ -41,7 +41,7 @@ COMPILER_STRIP_GATE(0x80C98038, &lit_3919);
 /* 80C9803C-80C98040 000014 0004+00 0/1 0/0 0/0 .rodata          @3920 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_3920 = 608.0f;
+SECTION_RODATA static f32 const lit_3920 = FB_WIDTH;
 COMPILER_STRIP_GATE(0x80C9803C, &lit_3920);
 #pragma pop
 

@@ -70,7 +70,7 @@ double sqrt(double);
 double tan(double);
 float tanf(float);
 
-#if PLATFORM_SHIELD
+#if PLATFORM_WII || PLATFORM_SHIELD
 inline float sqrtf(float mag) {
     return sqrt(mag);
 }

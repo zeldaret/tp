@@ -134,7 +134,7 @@ m_Do/m_Do_machine_exception.cpp:
 c/c_damagereaction.cpp:
 	.text       start:0x8001DD0C end:0x8001DFE4
 	.ctors      start:0x803CE25C end:0x803CE260
-	.data       start:0x803F7238 end:0x803F9CF0
+	.data       start:0x803F7238 end:0x803F7288
 	.bss        start:0x8047D480 end:0x8047D490
 	.sdata      start:0x805377B8 end:0x80537808
 	.sbss       start:0x8053A8F4 end:0x8053A8FC
@@ -143,7 +143,7 @@ c/c_damagereaction.cpp:
 c/c_dylink.cpp:
 	.text       start:0x8001DFE4 end:0x8001E4D4
 	.rodata     start:0x803CE450 end:0x803CFC00
-	.data       start:0x803F9CF0 end:0x803F9D00
+	.data       start:0x803F7288 end:0x803F9D00
 	.bss        start:0x8047D490 end:0x8047E0E8
 	.sbss       start:0x8053A8FC end:0x8053A908
 

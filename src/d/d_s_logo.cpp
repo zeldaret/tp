@@ -730,10 +730,10 @@ void dScnLogo_c::logoInitGC() {
     };
 
     ResTIMG* warningImg = (ResTIMG*)mpPalLogoResCommand->getArchive()->getResource('DAT ', warning[language]);
-    mWarning = new dDlst_2D_c(warningImg, 0, 0, 608, 448, 255);
+    mWarning = new dDlst_2D_c(warningImg, 0, 0, FB_WIDTH, FB_HEIGHT, 255);
 
     ResTIMG* warnStartImg = (ResTIMG*)mpPalLogoResCommand->getArchive()->getResource('DAT ', warningPs[language]);
-    mWarningStart = new dDlst_2D_c(warnStartImg, 0, 359, 608, 48, 255);
+    mWarningStart = new dDlst_2D_c(warnStartImg, 0, 359, FB_WIDTH, 48, 255);
 
     ResTIMG* progChoiceImg = (ResTIMG*)mpPalLogoResCommand->getArchive()->getResource('DAT ', choice[language]);
     mProgressiveChoice = new dDlst_2D_c(progChoiceImg, 113, 143, 416, 210, 255);
@@ -751,10 +751,10 @@ void dScnLogo_c::logoInitGC() {
     mProgressiveSel = new dDlst_2D_c(mProgressivePro, 153, 309, 336, 88, 255);
 #else
     ResTIMG* warningImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 10);
-    mWarning = new dDlst_2D_c(warningImg, 0, 0, 608, 448, 255);
+    mWarning = new dDlst_2D_c(warningImg, 0, 0, FB_WIDTH, FB_HEIGHT, 255);
 
     ResTIMG* warnStartImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 11);
-    mWarningStart = new dDlst_2D_c(warnStartImg, 0, 359, 608, 48, 255);
+    mWarningStart = new dDlst_2D_c(warnStartImg, 0, 359, FB_WIDTH, 48, 255);
 
     ResTIMG* progChoiceImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 5);
     mProgressiveChoice = new dDlst_2D_c(progChoiceImg, 113, 281, 416, 72, 255);
