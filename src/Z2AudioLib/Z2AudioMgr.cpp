@@ -110,6 +110,8 @@ void Z2AudioMgr::init(JKRSolidHeap* param_0, u32 param_1, void* param_2, JKRArch
     seMgr->setSeqDataMgr(sectionHeap->getSeSeqDataMgr());
     seqMgr->setSeqDataMgr(sectionHeap->getSeqSeqDataMgr());
     if (sectionHeap->getStreamDataMgr()) {
+        // The following is to force stack reg to be r31 in dbg:
+        int unused;
         streamMgr->setStreamDataMgr(sectionHeap->getStreamDataMgr());
     } else {
         streamMgr->setStreamDataMgr(&mSoundInfo);

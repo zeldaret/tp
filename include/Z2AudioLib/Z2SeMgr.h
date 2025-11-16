@@ -109,6 +109,9 @@ private:
     /* 0x3CA */ u8 field_0x3ca;
     /* 0x3CB */ u8 field_0x3cb;
     /* 0x3CC */ u8 mCrowdSize;
+#if DEBUG
+    u8 semgr_pad[0x14];
+#endif
 };  // Size = 0x3D0
 
 inline Z2SeMgr* Z2GetSeMgr() {
