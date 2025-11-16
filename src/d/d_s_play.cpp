@@ -27,6 +27,10 @@
 #include "d/actor/d_a_suspend.h"
 #include "d/actor/d_a_ykgr.h"
 
+#if PLATFORM_WII
+#include "d/d_cursor_mng.h"
+#endif
+
 static void dScnPly_Create(scene_class*);
 static int dScnPly_Delete(dScnPly_c*);
 static int dScnPly_IsDelete(dScnPly_c);
@@ -293,6 +297,11 @@ static int dScnPly_Delete(dScnPly_c* i_this) {
     }
 
     dComIfGp_init();
+
+    #if PLATFORM_WII
+    data_8053a730 = 0;
+    #endif
+
     JUTAssertion::setMessageCount(0);
     return 1;
 }
@@ -345,6 +354,10 @@ static int phase_00(dScnPly_c* i_this) {
     if (!i_this->resetGame()) {
         return cPhs_INIT_e;
     } else {
+        #if PLATFORM_WII
+        data_8053a730 = 1;
+        #endif
+
         mDoGph_gInf_c::offBlure();
         return cPhs_NEXT_e;
     }

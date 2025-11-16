@@ -33,6 +33,10 @@
 #include <revolution/sc.h>
 #endif
 
+#if PLATFORM_WII
+#include "d/d_cursor_mng.h"
+#endif
+
 class mDoGph_HIO_c : public JORReflexible {
 public:
     mDoGph_HIO_c() {
@@ -1157,7 +1161,11 @@ void mDoGph_gInf_c::bloom_c::draw() {
         GXClearVtxDesc();
         GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
         GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+        #if PLATFORM_WII
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGB8, 0);
+        #else
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_RGB8, 0);
+        #endif
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB8, 0);
         if (mMonoColor.a != 0) {
             GXSetNumTevStages(1);
@@ -1374,7 +1382,11 @@ static void motionBlure(view_class* param_0) {
         GXClearVtxDesc();
         GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
         GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+        #if PLATFORM_WII
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGB8, 0);
+        #else
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_RGB8, 0);
+        #endif
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB8, 0);
         mDoGph_drawFilterQuad(1, 1);
         GXSetProjection(param_0->projMtx, GX_PERSPECTIVE);
@@ -1928,7 +1940,6 @@ int mDoGph_Painter() {
     #endif
 
     #if PLATFORM_WII
-    static u8 data_8053a730; // move this later
     if (data_8053a730) {
         GXSetTexCopySrc(0, 0, FB_WIDTH, FB_HEIGHT);
         GXSetTexCopyDst(FB_WIDTH, FB_HEIGHT, (GXTexFmt)mDoGph_gInf_c::m_fullFrameBufferTimg->format, 0);

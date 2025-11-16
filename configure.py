@@ -599,6 +599,7 @@ config.libs = [
         "host": True,
         "objects": [
             Object(NonMatching, "d/d_home_button.cpp"),
+            Object(NonMatching, "d/d_cursor_mng.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_stage.cpp"),
             Object(Equivalent, "d/d_map.cpp"), # weak func order
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_com_inf_game.cpp"),

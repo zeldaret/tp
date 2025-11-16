@@ -18,6 +18,10 @@
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
 
+#if PLATFORM_WII
+#include "d/d_cursor_mng.h"
+#endif
+
 #if VERSION == VERSION_GCN_JPN
 #define LOGO_ARC  "Logo"
 #define MSG_PATH  "/res/Msgjp/bmgres.arc"
@@ -532,6 +536,10 @@ dScnLogo_c::~dScnLogo_c() {
     dDlst_shadowControl_c::setSimpleTex((ResTIMG*)dComIfG_getObjectRes("Always", 0x4A));
     dTres_c::createWork();
     dMpath_c::createWork();
+
+    #if PLATFORM_WII
+    data_8053a730 = 0;
+    #endif
 }
 
 /* 80257910-802579BC 252250 00AC+00 1/0 0/0 0/0 .text            phase_0__FP10dScnLogo_c */
@@ -618,6 +626,10 @@ int dScnLogo_c::create() {
     if (phase_state != cPhs_COMPLEATE_e) {
         return phase_state;
     }
+
+    #if PLATFORM_WII
+    data_8053a730 = 1;
+    #endif
 
     mpHeap = mDoExt_setCurrentHeap(field_0x1d4);
     logoInitGC();
