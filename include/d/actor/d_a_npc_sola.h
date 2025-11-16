@@ -24,8 +24,8 @@ public:
         /* 0x03 */ JNT_NECK,
         /* 0x04 */ JNT_HEAD,
         /* 0x05 */ JNT_SHOULDERL,
-        /* 0x06 */ JNT_ARML1,
-        /* 0x07 */ JNT_ARML2,
+        /* 0x06 */ JNT_ARM1L,
+        /* 0x07 */ JNT_ARM2L,
         /* 0x08 */ JNT_HANDL,
         /* 0x09 */ JNT_FINGERL,
         /* 0x0A */ JNT_THUMBL,
@@ -36,12 +36,13 @@ public:
         /* 0x0F */ JNT_FINGERR,
         /* 0x10 */ JNT_THUMBR,
         /* 0x11 */ JNT_WAIST,
-        /* 0x12 */ JNT_LEGL1,
-        /* 0x13 */ JNT_LEGL2,
+        /* 0x12 */ JNT_LEG1L,
+        /* 0x13 */ JNT_LEG2L,
         /* 0x14 */ JNT_FOOTL,
         /* 0x15 */ JNT_LEG1R,
         /* 0x16 */ JNT_LEG2R,
         /* 0x17 */ JNT_FOOTR,
+        /* 0x18 */ JNT_SAYA,
     };
 
     /* 80AECBAC */ ~daNpc_solA_c();
