@@ -1406,22 +1406,159 @@ void daNpcTkc_c::demo() {
     }
 }
 
-/* ############################################################################################## */
-/* 80B10A2C-80B10A2C 000178 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80B10A5A = "prm";
-#pragma pop
-
 /* 80B0F00C-80B0F1F8 00292C 01EC+00 1/0 0/0 0/0 .text EvCut_TksSecretChild__10daNpcTkc_cFi */
-int daNpcTkc_c::EvCut_TksSecretChild(int param_0) {
+int daNpcTkc_c::EvCut_TksSecretChild(int i_staffId) {
     // NONMATCHING
+    dEvent_manager_c& eventManager = dComIfGp_getEventManager();
+    int* prm = dComIfGp_evmng_getMyIntegerP(i_staffId, "prm");
+    if (prm == NULL) {
+        return 0;
+    }
+
+    if (eventManager.getIsAddvance(i_staffId)) {
+        switch (*prm) {
+            case 0:
+            case 1:
+                setLookMode(LOOK_RESET);
+                break;
+            
+            case 2:
+                dComIfGp_getEvent().reset(this);
+                eventInfo.setArchiveName(l_arcName);
+                dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+                mEventIdx = dComIfGp_getEventManager().getEventIdx(this, "TKS_WARP", 0xFF);
+                fopAcM_orderChangeEventId(this, mEventIdx, 1, 0xFFFF);
+                break;
+
+            default:
+                JUT_ASSERT(1603, FALSE);
+                break;
+        }
+    }
+
+    int msgTimer = mMsgTimer;
+    int expression, motion;
+    if (ctrlMsgAnm(expression, motion, this, FALSE)) {
+        setExpression(expression, -1.0f);
+        setMotion(motion, -1.0f, 0);
+    } else if (msgTimer != 0 && mMsgTimer == 0) {
+        setExpressionTalkAfter();
+    }
+
+    switch (*prm) {
+        case 0:
+        case 2:
+            return 1;
+
+        case 1:
+            calcFly();
+            return 1;
+
+        default:
+            JUT_ASSERT(1626, FALSE);
+            break;
+    }
+
+    return 0;
 }
 
-/* 80B0F1F8-80B0F5D4 002B18 03DC+00 1/0 0/0 0/0 .text            EvCut_TksWarpExit__10daNpcTkc_cFi
- */
-int daNpcTkc_c::EvCut_TksWarpExit(int param_0) {
+/* 80B0F1F8-80B0F5D4 002B18 03DC+00 1/0 0/0 0/0 .text            EvCut_TksWarpExit__10daNpcTkc_cFi */
+int daNpcTkc_c::EvCut_TksWarpExit(int i_staffId) {
     // NONMATCHING
+    dEvent_manager_c& eventManager = dComIfGp_getEventManager();
+    int* prm = dComIfGp_evmng_getMyIntegerP(i_staffId, "prm");
+    if (prm == NULL) {
+        return 0;
+    }
+
+    if (eventManager.getIsAddvance(i_staffId)) {
+        switch (*prm) {
+            case 0:
+                speed.setall(0.0f);
+                field_0xd78 = 0;
+                field_0xd7b = 0;
+                mSph.OffCoSetBit();
+                break;
+
+            case 1:
+                field_0xd6c = 0.0f;
+                field_0xd70 = 0;
+                mSound.startCreatureSound(Z2SE_TKC_WARP_IN, 0, -1);
+                break;
+            
+            case 2:
+                field_0xd68 = mpHIO->m.ellipse_width;
+                field_0xd7b = 0xFF;
+                tevStr.FogCol.r = field_0xd7b;
+                tevStr.FogCol.g = field_0xd7b;
+                tevStr.FogCol.b = field_0xd7b;
+                tevStr.FogCol.a = field_0xd7b;
+                tevStr.TevKColor.r = field_0xd7b;
+                tevStr.TevKColor.g = field_0xd7b;
+                tevStr.TevKColor.b = field_0xd7b;
+                tevStr.TevKColor.a = field_0xd7b;
+                break;
+
+            default:
+                JUT_ASSERT(1681, FALSE);
+                break;
+        }
+    }
+
+    switch (*prm) {
+        case 0:
+            field_0xd44 = *fopAcM_GetPosition_p(daPy_getPlayerActorClass());
+            field_0xd44.y += mpHIO->m.warp_initial_pos;
+
+            if (cLib_addCalcPos(&current.pos, field_0xd44, mpHIO->m.div, mpHIO->m.max, mpHIO->m.min) == 0.0f) {
+                return 1;
+            }
+            break;
+
+        case 1:
+            cLib_chaseUC(&field_0xd7b, 0xFF, 2);
+            tevStr.TevKColor.r = field_0xd7b;
+            tevStr.TevKColor.g = field_0xd7b;
+            tevStr.TevKColor.b = field_0xd7b;
+            tevStr.TevKColor.a = field_0xd7b;
+            cLib_chaseF(&field_0xd6c, 8.0f, 0.1f);
+            cLib_chaseS(&field_0xd70, 16000, 350);
+            current.pos.x = field_0xd44.x + mpHIO->m.ellipse_width * cM_ssin(field_0xd78);
+            current.pos.y -= field_0xd6c;
+            current.pos.z += mpHIO->m.ellipse_width * cM_scos(field_0xd78);
+            field_0xd78 += field_0xd70;
+            
+            f32 fVar1 = field_0xd44.y - current.pos.y;
+            if (fVar1 <= 40.0f) {
+                daPy_getPlayerActorClass()->cancelDungeonWarpReadyNeck();
+            }
+
+            if (fVar1 >= mpHIO->m.warp_initial_pos - 15.0f) {
+                return 1;
+            }
+            break;
+        
+        case 2:
+            cLib_chaseF(&field_0xd68, 0.0f, 0.8f);
+            current.pos.x = field_0xd44.x + field_0xd68 * cM_ssin(field_0xd78);
+            current.pos.y += mpHIO->m.up_move_spd;
+            current.pos.z = field_0xd44.z + field_0xd68 * cM_scos(field_0xd68);
+            field_0xd78 += mpHIO->m.rotation_interval;
+
+            if (field_0xd44.y - current.pos.y <= 40.0f) {
+                fopAcM_delete(this);
+            }
+            break;
+
+        case 3:
+            return 1;
+
+        default:
+            JUT_ASSERT(1723, FALSE);
+            break;
+    }
+
+    return 0;
 }
 
 /* ############################################################################################## */
