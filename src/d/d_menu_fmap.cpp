@@ -194,9 +194,9 @@ dMenu_Fmap_c::dMenu_Fmap_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
 
     mProcess = PROC_REGION_MAP;
     strcpy(mMarkedStageName, "");
-    if (g_fmapHIO.mpArchive != NULL && g_fmapHIO.mpArchive->isMounted()) {
+    if (g_fmapHIO.mpArcData != NULL && g_fmapHIO.mpArcData->isMounted()) {
         mProcess = i_process;
-        mpMapArchive = g_fmapHIO.mpArchive;
+        mpMapArchive = g_fmapHIO.mpArcData;
     } else {
         mpMapArchive = dComIfGp_getFieldMapArchive2();
     }

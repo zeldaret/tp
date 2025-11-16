@@ -63,7 +63,7 @@ static int unknownHeapErrors;
 /* 80450C0C-80450C10 00010C 0004+00 1/1 0/0 0/0 .sbss            heapErrors */
 static u32 heapErrors;
 
-#if VERSION != VERSION_GCN_PAL
+#if VERSION == VERSION_GCN_USA || VERSION == VERSION_GCN_JPN
 /* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
 GXRenderModeObj g_ntscZeldaIntDf = {
     VI_TVMODE_NTSC_INT,
@@ -119,7 +119,7 @@ GXRenderModeObj g_ntscZeldaProg = {
      {6, 6}},
     {0, 0, 21, 22, 21, 0, 0},
 };
-#else
+#elif VERSION == VERSION_GCN_PAL
 /* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
 GXRenderModeObj g_ntscZeldaIntDf = {
     VI_TVMODE_PAL_INT,
@@ -174,6 +174,60 @@ GXRenderModeObj g_ntscZeldaProg = {
      {6, 6},
      {6, 6}},
     {8, 8, 10, 12, 10, 8, 8},
+};
+#else
+GXRenderModeObj g_ntscZeldaIntDf = {
+    VI_TVMODE_NTSC_INT,
+    640,
+    456,
+    456,
+    25,
+    12,
+    670,
+    456,
+    VI_XFBMODE_DF,
+    0,
+    0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    {8, 8, 10, 12, 10, 8, 8},
+};
+
+GXRenderModeObj g_ntscZeldaProg = {
+    VI_TVMODE_NTSC_PROG,
+    640,
+    456,
+    456,
+    25,
+    12,
+    670,
+    456,
+    VI_XFBMODE_SF,
+    0,
+    0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    {0, 0, 21, 22, 21, 0, 0},
 };
 #endif
 
