@@ -17,13 +17,7 @@
 class JKRArchive;
 class JKRSolidHeap;
 
-class UnkZ2Dbg {
-#if DEBUG
-    u8 pad[0x14];
-#endif
-};
-
-class Z2AudioMgr : public Z2SeMgr, public UnkZ2Dbg, public Z2SeqMgr, public Z2SceneMgr, public Z2StatusMgr, public Z2SoundObjMgr {
+class Z2AudioMgr : public Z2SeMgr, public Z2SeqMgr, public Z2SceneMgr, public Z2StatusMgr, public Z2SoundObjMgr {
 public:
     Z2AudioMgr();
     ~Z2AudioMgr() {}
