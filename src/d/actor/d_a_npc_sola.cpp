@@ -183,7 +183,6 @@ int daNpc_solA_c::Execute() {
 
 /* 80AED14C-80AED1E8 00068C 009C+00 1/1 0/0 0/0 .text            Draw__12daNpc_solA_cFv */
 void daNpc_solA_c::Draw() {
-    // NONMATCHING
     if (mpMatAnm[0] != NULL) {
         J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
