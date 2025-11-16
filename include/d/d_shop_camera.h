@@ -58,6 +58,8 @@ public:
 
     void setCamDataIdx(int data_idx) { mCamDataIdx = data_idx; }
 
+    bool isCameraStopFlag() { return field_0xda; }
+
     /* 0x00 */ ShopCamFunc mCamAction;
     /* 0x0c */ u8 field_0xc[0x18 - 0xc];
     /* 0x18 */ fopAc_ac_c* field_0x18;
