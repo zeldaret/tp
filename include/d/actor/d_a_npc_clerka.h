@@ -2,6 +2,36 @@
 #define D_A_NPC_CLERKA_H
 
 #include "d/actor/d_a_npc.h"
+#include "d/d_shop_system.h"
+
+struct daNpc_clerkA_HIOParam {
+    /* 0x00 */ daNpcT_HIOParam common;
+    /* 0x8C */ s16 field_0x8c;
+    /* 0x8F */ s16 field_0x8f;
+};
+
+class daNpc_clerkA_Param_c {
+public:
+    /* 80B2CD94 */ virtual ~daNpc_clerkA_Param_c() {}
+
+    static const daNpc_clerkA_HIOParam m;
+};
+
+#if DEBUG
+class daNpc_clerkA_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpc_clerkA_HIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+
+    daNpc_clerkA_HIOParam m;
+};
+
+#define NPC_CLERKA_HIO_CLASS daNpc_clerkA_HIO_c
+#else
+#define NPC_CLERKA_HIO_CLASS daNpc_clerkA_Param_c
+#endif
 
 /**
  * @ingroup actors-npcs
@@ -11,64 +41,110 @@
  * @details
  *
  */
-class daNpc_clerkA_c : public fopAc_ac_c {
+class daNpc_clerkA_c : public dShopSystem_c {
 public:
+    typedef int (daNpc_clerkA_c::*cutFunc)(int);
+    typedef int (daNpc_clerkA_c::*actionFunc)(void*);
+
+    enum Type {
+        TYPE_SHOP,
+        TYPE_1,
+    };
+
+    enum FaceMotion {
+        /* 0x01 */ FACE_MOT_UNK_1 = 1,
+        /* 0x02 */ FACE_MOT_UNK_2 = 2,
+        /* 0x03 */ FACE_MOT_UNK_3 = 3,
+        /* 0x04 */ FACE_MOT_UNK_4 = 4,
+    };
+
+    enum Motion {
+        /* 0x0 */ MOT_UNK_0 = 0,
+        /* 0x2 */ MOT_UNK_2 = 2,
+        /* 0x3 */ MOT_UNK_3 = 3,
+        /* 0x6 */ MOT_UNK_6 = 6,
+    };
+
     /* 8099252C */ ~daNpc_clerkA_c();
-    /* 8099266C */ void create();
-    /* 80992914 */ void CreateHeap();
-    /* 80992D50 */ void Delete();
-    /* 80992D84 */ void Execute();
-    /* 80992E5C */ void Draw();
-    /* 80992EF0 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 80992F10 */ void ctrlJointCallBack(J3DJoint*, int);
-    /* 80992F68 */ void getType();
-    /* 80992F88 */ void isDelete();
+    /* 8099266C */ int create();
+    /* 80992914 */ int CreateHeap();
+    /* 80992D50 */ int Delete();
+    /* 80992D84 */ int Execute();
+    /* 80992E5C */ int Draw();
+    /* 80992EF0 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 80992F10 */ static int ctrlJointCallBack(J3DJoint*, int);
+    /* 80992F68 */ u8 getType();
+    /* 80992F88 */ int isDelete();
     /* 80992FB8 */ void reset();
     /* 809930EC */ void afterJntAnm(int);
     /* 80993170 */ void setParam();
     /* 809932A4 */ void setAfterTalkMotion();
     /* 80993330 */ void srchActors();
-    /* 8099338C */ void evtTalk();
-    /* 80993568 */ void evtCutProc();
+    /* 8099338C */ BOOL evtTalk();
+    /* 80993568 */ BOOL evtCutProc();
     /* 80993630 */ void action();
     /* 8099371C */ void beforeMove();
     /* 80993794 */ void setAttnPos();
     /* 80993A40 */ void setCollision();
-    /* 80993B74 */ bool drawDbgInfo();
+    /* 80993B74 */ int drawDbgInfo();
     /* 80993B7C */ void drawOtherMdl();
-    /* 80993BDC */ void selectAction();
-    /* 80993C58 */ void chkAction(int (daNpc_clerkA_c::*)(void*));
-    /* 80993C84 */ void setAction(int (daNpc_clerkA_c::*)(void*));
-    /* 80993D2C */ void wait(void*);
-    /* 80993F84 */ void tend(void*);
-    /* 809941B8 */ void talk(void*);
-    /* 809943B0 */ void shop(void*);
-    /* 809955C8 */ daNpc_clerkA_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
-                                  daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                  daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                  daNpcT_evtData_c const*, char**);
-    /* 80995694 */ u16 getEyeballMaterialNo();
-    /* 8099569C */ s32 getHeadJointNo();
-    /* 809956A4 */ s32 getNeckJointNo();
-    /* 809956AC */ bool getBackboneJointNo();
-    /* 809956B4 */ void checkChangeJoint(int);
-    /* 809956C4 */ void checkRemoveJoint(int);
+    /* 80993BDC */ int selectAction();
+    /* 80993C58 */ int chkAction(int (daNpc_clerkA_c::*)(void*));
+    /* 80993C84 */ int setAction(int (daNpc_clerkA_c::*)(void*));
+    /* 80993D2C */ int wait(void*);
+    /* 80993F84 */ int tend(void*);
+    /* 809941B8 */ int talk(void*);
+    /* 809943B0 */ int shop(void*);
+    /* 809955C8 */ daNpc_clerkA_c(
+        daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
+        daNpcT_motionAnmData_c const* i_motionAnmData,
+        daNpcT_MotionSeqMngr_c::sequenceStepData_c const* i_faceMotionSequenceData,
+        int i_faceMotionStepNum,
+        daNpcT_MotionSeqMngr_c::sequenceStepData_c const* i_motionSequenceData, int i_motionStepNum,
+        daNpcT_evtData_c const* i_evtData, char** i_arcNames)
+        : dShopSystem_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
+                        i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
+                        i_arcNames) {}
+    /* 80995694 */ u16 getEyeballMaterialNo() { return 3; }
+    /* 8099569C */ s32 getHeadJointNo() { return 4; }
+    /* 809956A4 */ s32 getNeckJointNo() { return 3; }
+    /* 809956AC */ s32 getBackboneJointNo() { return 1; }
+    /* 809956B4 */ BOOL checkChangeJoint(int i_joint) { return i_joint == 4; }
+    /* 809956C4 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == 8; }
+
+    u32 getFlowNodeNo() {
+        u16 nodeNo = home.angle.x;
+        u32 rv;
+        if (nodeNo == 0xffff) {
+            rv = -1;
+        } else {
+            rv = nodeNo;
+        }
+        return rv;
+    }
+
+    u8 getMaxNumItem() { return (fopAcM_GetParam(this) & 0xF000000) >> 24; }
 
     static char* mCutNameList[1];
-    static u8 mCutList[12];
+    static cutFunc mCutList[1];
 
 private:
-    /* 0x568 */ u8 field_0x568[0x10f4 - 0x568];
+    /* 0x0F7C */ NPC_CLERKA_HIO_CLASS* mpHIO;
+    /* 0x0F80 */ dCcD_Cyl mCyl;
+    /* 0x10BC */ u8 mType;
+    /* 0x10C0 */ daNpcT_ActorMngr_c mActorMngr[1];
+    /* 0x10C8 */ actionFunc mNextAction;
+    /* 0x10D4 */ actionFunc mAction;
+    /* 0x10E0 */ int mShopProcess;
+    /* 0x10E4 */ int field_0x10e4;
+    /* 0x10E8 */ int field_0x10e8;
+    /* 0x10EC */ u8 field_0x10ec;
+    /* 0x10ED */ u8 field_0x10ed;
+    /* 0x10EE */ u8 field_0x10ee;
+    /* 0x10EF */ u8 mShopFlag;
+    /* 0x10F0 */ u8 field_0x10f0;
 };
 
 STATIC_ASSERT(sizeof(daNpc_clerkA_c) == 0x10f4);
-
-class daNpc_clerkA_Param_c {
-public:
-    /* 809956D4 */ ~daNpc_clerkA_Param_c();
-
-    static u8 const m[144];
-};
-
 
 #endif /* D_A_NPC_CLERKA_H */
