@@ -1840,8 +1840,8 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_myna"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_ni"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_aru"),
-    ActorRel(NonMatching, "d_a_npc_ash", extra_cflags=[DANPCF_C_HACK]),  # weak func order
-    ActorRel(NonMatching, "d_a_npc_ashB", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(Equivalent, "d_a_npc_ash", extra_cflags=[DANPCF_C_HACK]),  # weak func order
+    ActorRel(Equivalent, "d_a_npc_ashB", extra_cflags=[DANPCF_C_HACK]),  # weak func order
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_bou"),
@@ -1879,9 +1879,9 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_inko"),
     ActorRel(Equivalent, "d_a_npc_ins", extra_cflags=[DANPCF_C_HACK]),  # weak func order
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_jagar"),
-    ActorRel(NonMatching, "d_a_npc_kasi_hana", extra_cflags=[DANPCF_C_HACK]),
-    ActorRel(NonMatching, "d_a_npc_kasi_kyu", extra_cflags=[DANPCF_C_HACK]),
-    ActorRel(NonMatching, "d_a_npc_kasi_mich", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_kasi_hana", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_kasi_kyu", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(Equivalent, "d_a_npc_kasi_mich", extra_cflags=[DANPCF_C_HACK]),  # idk this why can't link
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01", "Shield"), "d_a_npc_kdk"),
     ActorRel(NonMatching, "d_a_npc_kn"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_knj"),
