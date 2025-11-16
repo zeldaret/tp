@@ -927,7 +927,7 @@ public:
     bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
     bool checkFreezeDamage() const { return checkNoResetFlg1(FLG1_ICE_FREEZE); }
     bool checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); }
-    bool checkDamageImpact() const { return checkResetFlg1(RFLG1_DAMAGE_IMPACT); }
+    BOOL checkDamageImpact() const { return checkResetFlg1(RFLG1_DAMAGE_IMPACT); }
     bool getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); }
     bool getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
     bool checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
@@ -935,7 +935,7 @@ public:
     BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     BOOL checkBoardNoFootAngle() const { return checkResetFlg1(RFLG1_UNK_40); }
     bool checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
-    bool checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
+    BOOL checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
     bool checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
     bool checkAttentionLock() const { return checkResetFlg0(RFLG0_UNK_10000); }
     BOOL checkFishingRodUseStart() const { return checkResetFlg1(RFLG1_UNK_80); }

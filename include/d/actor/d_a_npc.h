@@ -100,6 +100,7 @@ public:
             }
         }
     }
+    void setOffset(int i_offset) { mOffset = i_offset; }
 
 private:
     /* 0x00 */ sequenceStepData_c const* mpSeqData;
@@ -1017,7 +1018,7 @@ public:
 
 class daNpcF_c : public fopAc_ac_c {
 protected:
-    /* 0x568 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x568 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x56C */ mDoExt_bckAnm mBckAnm;
     /* 0x588 */ mDoExt_btpAnm mBtpAnm;
     /* 0x5A0 */ mDoExt_btkAnm mBtkAnm;

@@ -69,6 +69,7 @@ public:
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }
     static void offFade() { mFade = 0; }
     static u8 isFade() { return mFade; }
+    static void fadeIn_f(f32 i_fadeSpeed, _GXColor& i_fadeColor) { fadeOut_f(-i_fadeSpeed, i_fadeColor); }
     static void offBlure() { mBlureFlag = false; }
     static bool isBlure() { return mBlureFlag; }
     static void setBlureRate(u8 i_rate) { mBlureRate = i_rate; }

@@ -2512,7 +2512,6 @@ int dMsgFlow_c::event027(mesg_flow_node_event* i_flowNode_p, fopAc_ac_c* i_speak
 
 /* 8024D3C4-8024D500 247D04 013C+00 1/0 0/0 0/0 .text
  * event028__10dMsgFlow_cFP20mesg_flow_node_eventP10fopAc_ac_c  */
-// NONMATCHING regalloc
 int dMsgFlow_c::event028(mesg_flow_node_event* i_flowNode_p, fopAc_ac_c* i_speaker_p) {
     u8 pos = dComIfGs_getTmpReg(0xFBFF) - 1;
     dMsgObject_setSelectCursorPos(pos);

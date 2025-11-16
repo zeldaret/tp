@@ -87,10 +87,21 @@ public:
     /* 8019ACE8 */ virtual int beforeSelectSeqAction(dMsgFlow_c*, int) { return 1; }
 
     bool chkSpMode() { return mSpMode == 1; }
+    void onSpMode() { mSpMode = 1; }
     void offSpMode() { mSpMode = 0; }
     u8 getEventParamU8(int param_0) { return (mEventParam >> (3 - param_0) * 8) & 0xFF; }
     void setEventParam(u32 param) { mEventParam = param; }
     void setMasterType(u8 master_type) { mMasterType = master_type; }
+    u8 getCursorPos() { return mCursorPos; }
+    dShopItemCtrl_c* getShopItemCtrlP() { return &mItemCtrl; }
+
+    u8 chkExplainItem() {
+        u8 rv = 0;
+        if (mSeq == 2 || mSeq == 3 || mSeq == 4 || mSeq == 5) {
+            rv = 1;
+        }
+        return rv;
+    }
 
 public:
     /* 0xE40 */ STControl* mpStick;

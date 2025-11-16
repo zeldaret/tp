@@ -20,6 +20,8 @@ public:
     u8 get_MTagSw2() { return fopAcM_GetParamBit(this, 16, 8); }
     s32 get_prm() { return fopAcM_GetParam(this) & 0xff; }
 
+    int is_CoHit() { return mIsCoHit; }
+
     void on_CoHit() {
         mCyl.OnCoSetBit();
         mCoHitValid = 1;

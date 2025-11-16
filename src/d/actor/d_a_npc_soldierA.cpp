@@ -166,7 +166,7 @@ daNpc_SoldierA_c::~daNpc_SoldierA_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 
     #if DEBUG
@@ -249,8 +249,8 @@ cPhs__Step daNpc_SoldierA_c::create() {
             return cPhs_ERROR_e;
         }
 
-        J3DModelData* modelData = mpMorf->getModel()->getModelData();
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        J3DModelData* modelData = mAnm_p->getModel()->getModelData();
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -293,17 +293,17 @@ int daNpc_SoldierA_c::CreateHeap() {
     JUT_ASSERT(413, NULL != mdlData_p);
 
     u32 uVar1 = 0x11020284;
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, uVar1);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, uVar1);
+    if (mAnm_p != NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p = NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return 0;
     }
 
-    model = mpMorf->getModel();
+    model = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -349,11 +349,11 @@ int daNpc_SoldierA_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int i_jointList[3] = {JNT_BACKBONE1, JNT_NECK, JNT_HEAD};
 
     if (jntNo == JNT_CENTER) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -504,7 +504,7 @@ void daNpc_SoldierA_c::setAttnPos() {
     setMtx();
     lookat();
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
     mDoMtx_stack_c::multVec(&eyeOffset, &sp8c);
@@ -646,7 +646,7 @@ int daNpc_SoldierA_c::drawDbgInfo() {
 /* 80AF0A84-80AF0B30 0015E4 00AC+00 1/0 0/0 0/0 .text            drawOtherMdls__16daNpc_SoldierA_cFv */
 void daNpc_SoldierA_c::drawOtherMdls() {
     g_env_light.setLightTevColorType_MAJI(mSpearModel, &tevStr);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HANDR));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HANDR));
     mDoMtx_stack_c::scaleM(scale);
     mSpearModel->setBaseTRMtx(mDoMtx_stack_c::get());
     J3DModelData* mdlData_p = mSpearModel->getModelData();
@@ -881,7 +881,7 @@ void daNpc_SoldierA_c::setLookMode(int i_lookMode) {
 /* 80AF14AC-80AF1734 00200C 0288+00 1/1 0/0 0/0 .text            lookat__16daNpc_SoldierA_cFv */
 void daNpc_SoldierA_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     BOOL i_snap = FALSE;
     f32 body_angleX_min = mHIO->m.common.body_angleX_min;
     f32 body_angleX_max = mHIO->m.common.body_angleX_max;

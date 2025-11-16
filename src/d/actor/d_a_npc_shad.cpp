@@ -351,7 +351,7 @@ daNpcShad_c::~daNpcShad_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -454,7 +454,7 @@ cPhs__Step daNpcShad_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
         mAcchCir.SetWall(mpHIO->m.common.width, mpHIO->m.common.knee_length);
@@ -474,7 +474,7 @@ cPhs__Step daNpcShad_c::Create() {
         mGroundH = mAcch.GetGroundH();
         setEnvTevColor();
         setRoomNo();
-        mpMorf->modelCalc();
+        mAnm_p->modelCalc();
         reset();
         Execute();
     }
@@ -486,18 +486,18 @@ cPhs__Step daNpcShad_c::Create() {
 int daNpcShad_c::CreateHeap() {
     J3DModelData* mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], BMDR_SHAD));
     JUT_ASSERT(483, NULL != mdlData_p);
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
+    mAnm_p = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
                                   &mSound, 0x80000, 0x11020284);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    if (mAnm_p != NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p = NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -576,19 +576,19 @@ int daNpcShad_c::Draw() {
         return 1;
     }
 
-    mpMorf->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
+    mAnm_p->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
     draw(FALSE, FALSE, mpHIO->m.common.real_shadow_size, NULL, FALSE);
 
     if (mBookKnifeModel != NULL) {
         g_env_light.setLightTevColorType_MAJI(mBookKnifeModel, &tevStr);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_FINGERL));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_FINGERL));
         mBookKnifeModel->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mBookKnifeModel);
     }
 
     if (mKomonshoModel != NULL && (mMotion == MOT_TAKE_KOMON || mMotion == MOT_READ_KOMON)) {
         g_env_light.setLightTevColorType_MAJI(mKomonshoModel, &tevStr);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_FINGERR));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_FINGERR));
         mKomonshoModel->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoExt_modelUpdateDL(mKomonshoModel);
     }
@@ -602,11 +602,11 @@ int daNpcShad_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int lookatJoints[3] = {JNT_BACKBONE1, JNT_NECK, JNT_HEAD};
 
     if (jntNo == JNT_CENTER) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -625,8 +625,8 @@ int daNpcShad_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
     if ((jntNo == JNT_HEAD || jntNo == JNT_MOUTH) && (mAnmFlags & ANM_PLAY_BCK) != 0) {
         J3DAnmTransform* anmTransform = mBckAnm.getBckAnm();
-        mBckAnm.changeBckOnly(mpMorf->getAnm());
-        mpMorf->changeAnm(anmTransform);
+        mBckAnm.changeBckOnly(mAnm_p->getAnm());
+        mAnm_p->changeAnm(anmTransform);
     }
 
     return 1;
@@ -752,7 +752,7 @@ bool daNpcShad_c::setExpressionBtp(int i_idx) {
         return true;
     }
 
-    if (setBtpAnm(anmTexPattern, mpMorf->getModel()->getModelData(), 1.0f, i_attr)) {
+    if (setBtpAnm(anmTexPattern, mAnm_p->getModel()->getModelData(), 1.0f, i_attr)) {
         mAnmFlags |= ANM_PLAY_BTP | ANM_PAUSE_BTP;
 
         if (i_idx == 0) {
@@ -801,7 +801,7 @@ void daNpcShad_c::setMotionAnm(int i_idx, f32 i_morf) {
     i_attr = l_btkGetParamList[i_index].attr;
 
     if (anmTextureSRTKey != NULL) {
-        if (setBtkAnm(anmTextureSRTKey, mpMorf->getModel()->getModelData(), 1.0f, i_attr)) {
+        if (setBtkAnm(anmTextureSRTKey, mAnm_p->getModel()->getModelData(), 1.0f, i_attr)) {
             mAnmFlags |= ANM_PLAY_BTK | ANM_PAUSE_BTK;
         }
     }
@@ -1021,7 +1021,7 @@ inline void daNpcShad_c::playMotion() {
 /* 80AE1320-80AE153C 009200 021C+00 1/1 0/0 0/0 .text            lookat__11daNpcShad_cFv */
 inline void daNpcShad_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     int iVar1 = 0;
     f32 body_angleX_min = mpHIO->m.common.body_angleX_min;
     f32 body_angleX_max = mpHIO->m.common.body_angleX_max;
@@ -2649,7 +2649,7 @@ inline void daNpcShad_c::setAttnPos() {
     lookat();
 
     cXyz sp40(10.0f, 10.0f, 0.0f);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&sp40, &eyePos);
     sp40.x = 0.0f;
@@ -2670,7 +2670,7 @@ inline void daNpcShad_c::setAttnPos() {
 
     attention_info.position.set(mHeadPos.x, mHeadPos.y + mpHIO->m.common.attention_offset, mHeadPos.z);
     cXyz sp58;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE2));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE2));
     mDoMtx_stack_c::multVecZero(&sp58);
     sp58.y = current.pos.y;
     
