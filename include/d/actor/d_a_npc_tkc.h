@@ -101,6 +101,10 @@ public:
     void setLookMode(int i_lookMode) { if (i_lookMode >= 0 && i_lookMode < 4 && i_lookMode != mLookMode) mLookMode = i_lookMode; }
     BOOL checkFindPlayer();
     void setExpressionTalkAfter();
+    void playExpression();
+    void playMotion();
+    BOOL chkAction(actionFunc action) { return action == mAction; }
+    void lookat();
 
     static evtFunc mEvtSeqList[4];
 
@@ -113,13 +117,13 @@ private:
 
     /* 0xD20 */ actionFunc mAction;
     /* 0xD2C */ request_of_phase_process_class mPhase;
-    /* 0xD34 */ fpc_ProcID field_0xd34;
-    /* 0xD38 */ cXyz field_0xd38;
+    /* 0xD34 */ fpc_ProcID mUnkID;
+    /* 0xD38 */ cXyz mSpeedTarget;
     /* 0xD44 */ cXyz field_0xd44;
-    /* 0xD50 */ cXyz field_0xd50;
-    /* 0xD5C */ int field_0xd5c;
+    /* 0xD50 */ cXyz mPrevSpeed;
+    /* 0xD5C */ int mTimer;
     /* 0xD60 */ int field_0xd60;
-    /* 0xD64 */ f32 field_0xd64;
+    /* 0xD64 */ f32 mCurrentPosYOffset;
     /* 0xD68 */ f32 field_0xd68;
     /* 0xD6C */ f32 field_0xd6c;
     /* 0xD70 */ s16 field_0xd70;
@@ -128,7 +132,7 @@ private:
     /* 0xD76 */ u16 mMode;
     /* 0xD78 */ s16 field_0xd78;
     /* 0xD7A */ u8 mStatus;
-    /* 0xD7B */ u8 field_0xd7b;
+    /* 0xD7B */ u8 mColor;
 };
 
 STATIC_ASSERT(sizeof(daNpcTkc_c) == 0xd7c);
