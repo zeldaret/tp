@@ -231,7 +231,7 @@ int daObjMirrorChain_c::createHeap() {
         /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 12);
-        JUT_ASSERT(336, bck != NULL);
+        JUT_ASSERT(336, modelData != NULL);
         mpPortalModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
         if (mpPortalModel == NULL) {
             return 0;
