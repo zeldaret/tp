@@ -531,7 +531,7 @@ void daObjARI_c::Z_BufferChk() {
     } else {
         trim_height = 0.0f;
     }
-    if (vec2.x > 0.0f && vec2.x < 608.0f && vec2.y > trim_height && vec2.y < 448.0f - trim_height) {
+    if (vec2.x > 0.0f && vec2.x < FB_WIDTH && vec2.y > trim_height && vec2.y < FB_HEIGHT - trim_height) {
         dComIfGd_peekZ(vec2.x, vec2.y, &mBufferZ);
     }
 

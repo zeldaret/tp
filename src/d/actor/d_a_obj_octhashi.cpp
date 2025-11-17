@@ -187,8 +187,8 @@ void daObjOCTHASHI_c::SphAction() {
     f32 fvals_3888[2] = {2.125f, 0.0f};
     f32 fvals_3889[2] = {0.0f, 0.0f};
     f32 fval_3890[1] = {2000.0f};
-    f32 fval_3903[1] = {608.0f};
-    f32 fval_3904[1] = {448.0f};
+    f32 fval_3903[1] = {FB_WIDTH};
+    f32 fval_3904[1] = {FB_HEIGHT};
     for (int idx = 0; idx < mPieceNum; ++idx) {
         if (mColliders[idx].ChkCoHit()) {
             fopAc_ac_c* hit_actor = dCc_GetAc(mColliders[idx].GetCoHitObj()->GetAc());

@@ -36,7 +36,7 @@ struct fs_rod_s {
     /* 0x4C */ int field_0x4c;
     /* 0x50 */ u8 field_0x50[0x54 - 0x50];
     /* 0x54 */ f32 field_0x54;
-    /* 0x58 */ u8 field_0x58[0x5C - 0x58];
+    /* 0x58 */ s16 field_0x58;
 };
 
 struct fs_lure_s {
@@ -82,8 +82,9 @@ struct fs_koro2_s {
  * @details
  *
  */
-class fshop_class : public fopAc_ac_c {
+class fshop_class {
 public:
+    /* 0x0000 */ fopAc_ac_c actor;
     /* 0x0568 */ request_of_phase_process_class mPhase;
     /* 0x0570 */ s16 field_0x0570;
     /* 0x0572 */ s16 field_0x0572;

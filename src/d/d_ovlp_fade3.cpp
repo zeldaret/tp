@@ -14,16 +14,16 @@
 
 /* 80252ED4-80252F28 24D814 0054+00 1/0 0/0 0/0 .text            draw__16dDlst_snapShot_cFv */
 void dDlst_snapShot_c::draw() {
-    GXSetTexCopySrc(0, 0, 608, 448);
-    GXSetTexCopyDst(608 / 2, 448 / 2, GX_TF_RGBA8, GX_TRUE);
+    GXSetTexCopySrc(0, 0, FB_WIDTH, FB_HEIGHT);
+    GXSetTexCopyDst(FB_WIDTH / 2, FB_HEIGHT / 2, GX_TF_RGBA8, GX_TRUE);
     GXCopyTex(mDoGph_gInf_c::getFrameBufferTex(), GX_FALSE);
     GXPixModeSync();
 }
 
 /* 80252F28-8025343C 24D868 0514+00 1/0 0/0 0/0 .text            draw__15dOvlpFd3_dlst_cFv */
 void dOvlpFd3_dlst_c::draw() {
-    GXSetViewport(0.0f, 0.0f, 608.0f, 448.0f, 0.0f, 1.0f);
-    GXSetScissor(0, 0, 608, 448);
+    GXSetViewport(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0.0f, 1.0f);
+    GXSetScissor(0, 0, FB_WIDTH, FB_HEIGHT);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_RGBA4, 0);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -59,8 +59,8 @@ void dOvlpFd3_dlst_c::draw() {
     C_MTXPerspective(m, 60.0f, mDoGph_gInf_c::getWidthF() / mDoGph_gInf_c::getHeightF(), 100.0f,
                      100000.0f);
     GXSetProjection(m, GX_PERSPECTIVE);
-    GXInitTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), mDoGph_gInf_c::getFrameBufferTex(), 304,
-                 224, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXInitTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), mDoGph_gInf_c::getFrameBufferTex(), FB_WIDTH / 2,
+                 FB_HEIGHT / 2, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
     GXInitTexObjLOD(mDoGph_gInf_c::getFrameBufferTexObj(), GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f,
                     GX_FALSE, GX_FALSE, GX_ANISO_1);
     GXLoadTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), GX_TEXMAP0);

@@ -218,7 +218,7 @@ void dDbgCamSetup_c::genMessage(JORMContext* mctx) {
 
     mctx->genLabel("- 情報表示", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
     mctx->genCheckBox(" 有効", &mFlag, 0x8000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    mctx->genSlider("   表示位置 Ｘ", &mPosX, 0, 640, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mctx->genSlider("   表示位置 Ｘ", &mPosX, 0, FB_WIDTH, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
     mctx->genSlider("            Ｙ", &mPosY, 0, 480, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
 
     mctx->genLabel("-", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);

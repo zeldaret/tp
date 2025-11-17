@@ -2977,9 +2977,9 @@ static void daMP_THPGXYuv2RgbSetup(GXRenderModeObj const* param_0) {
     int height = param_0->efbHeight;
     f32 var_f31 = 0.0f;
 
-    #if PLATFORM_WII || PLATFORM_SHIELD
+    #if WIDESCREEN_SUPPORT
     if (!mDoGph_gInf_c::isWide()) {
-        var_f31 = ((u16)height - (width * 808.0f) / 608.0f) * 0.5f;
+        var_f31 = ((u16)height - (width * 808.0f) / FB_WIDTH) * 0.5f;
     }
     #endif
 

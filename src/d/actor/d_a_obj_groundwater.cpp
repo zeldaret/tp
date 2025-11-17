@@ -324,7 +324,9 @@ int daGrdWater_c::Draw() {
             Mtx afStack_50;
             C_MTXLightPerspective(afStack_50, dComIfGd_getView()->fovy, dComIfGd_getView()->aspect,
                                   1.0f, 1.0f, -0.01f, 0.0f);
+            #if WIDESCREEN_SUPPORT
             mDoGph_gInf_c::setWideZoomLightProjection(afStack_50);
+            #endif
             mtxInfo->setEffectMtx(afStack_50);
             modelData2->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
         }

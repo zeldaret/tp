@@ -113,8 +113,8 @@ void dInsect_c::CalcZBuffer(f32 param_0) {
         camera_trim_height = 0.0f;
     }
 
-    if (pos_projected.x > 0.0f && pos_projected.x < 608.0f &&
-        pos_projected.y > camera_trim_height && pos_projected.y < 448.0f - camera_trim_height)
+    if (pos_projected.x > 0.0f && pos_projected.x < FB_WIDTH &&
+        pos_projected.y > camera_trim_height && pos_projected.y < FB_HEIGHT - camera_trim_height)
     {
         dComIfGd_peekZ(pos_projected.x, pos_projected.y, &field_0x578);
     } else {

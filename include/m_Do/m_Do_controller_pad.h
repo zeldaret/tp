@@ -59,7 +59,7 @@ public:
     static s16 getSubStickAngle(u32 pad) { return getCpadInfo(pad).mCStickAngle; }
     static f32 getAnalogR(u32 pad) { return getCpadInfo(pad).mTriggerRight; }
     static f32 getAnalogL(u32 pad) { return getCpadInfo(pad).mTriggerLeft; }
-    static BOOL isConnect(u32 pad) { return JUTGamePad::getPortStatus(pad) == 0; }
+    static BOOL isConnect(u32 pad) { return JUTGamePad::getPortStatus((JUTGamePad::EPadPort)pad) == 0; }
     static void startMotorWave(u32 pad, void* data, JUTGamePad::CRumble::ERumble rumble, u32 length) {
         m_gamePad[pad]->startMotorWave(data, rumble, length);
     }

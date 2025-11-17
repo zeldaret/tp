@@ -315,7 +315,7 @@ void dMenu_ItemExplain_c::draw(J2DOrthoGraph* i_graph) {
         mpLabel->scale(g_ringHIO.mItemDescTitleScale, g_ringHIO.mItemDescTitleScale);
         mpLabel->paneTrans(g_ringHIO.mItemDescTitlePosX, g_ringHIO.mItemDescTitlePosY);
         if (mpBackTex != NULL) {
-            mpBackTex->draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
+            mpBackTex->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, false, false, false);
         }
         if (field_0xc8 != field_0xd0) {
             field_0xd0 = field_0xc8;

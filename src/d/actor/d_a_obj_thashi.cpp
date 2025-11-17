@@ -90,8 +90,8 @@ static void dataStripping2() {
 
     stripFloat(3.0f);
     stripFloat(2000.0f);
-    stripFloat(608.0f);
-    stripFloat(448.0f);
+    stripFloat(FB_WIDTH);
+    stripFloat(FB_HEIGHT);
 }
 
 /* 80D0C298-80D0C2B8 0000D8 0020+00 1/0 0/0 0/0 .text            daObjTHASHI_Create__FP10fopAc_ac_c

@@ -207,7 +207,7 @@ void daAlink_c::preKandelaarDraw() {
         var_f3 = 0.0f;
     }
 
-    if (proj.x > 0.0f && proj.x < 608.0f && proj.y > var_f3 && proj.y < 448.0f - var_f3) {
+    if (proj.x > 0.0f && proj.x < FB_WIDTH && proj.y > var_f3 && proj.y < FB_HEIGHT - var_f3) {
         dComIfGd_peekZ(proj.x, proj.y, &field_0x32c8);
     } else {
         field_0x32c8 = 0;
