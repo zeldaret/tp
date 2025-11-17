@@ -112,9 +112,9 @@ public:
 
     static char* mCutNameList[2];
     static cutFunc mCutList[2];
-    static u16 mEvtBitLabels[6];
-    static u16 mTmpBitLabels[6];
-    static int mSceneChangeNoTable[48];
+    static const u16 mEvtBitLabels[6];
+    static const u16 mTmpBitLabels[6];
+    static const int mSceneChangeNoTable[48];
     static queryFunc mQueries[48];
 
 private:

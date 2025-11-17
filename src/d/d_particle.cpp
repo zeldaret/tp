@@ -2109,7 +2109,7 @@ void dPa_light8PcallBack::draw(JPABaseEmitter* param_1, JPABaseParticle* param_2
 
 /* 8004E6A8-8004ED44 048FE8 069C+00 1/0 0/0 0/0 .text
  * draw__25dPa_gen_b_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle */
-// NONMATCHING regalloc
+// NONMATCHING - fpr regalloc
 void dPa_gen_b_light8PcallBack::draw(JPABaseEmitter* param_1, JPABaseParticle* param_2) {
     Mtx local_80;
     JGeometry::TVec3<f32> local_8c;

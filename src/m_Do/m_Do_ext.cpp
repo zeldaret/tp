@@ -775,7 +775,7 @@ static JKRSolidHeap* mDoExt_createSolidHeap(u32 i_size, JKRHeap* i_heap, u32 i_a
 
     JKRSolidHeap* createdHeap;
     if (i_size == 0 || i_size == 0xFFFFFFFF) {
-        createdHeap = JKRSolidHeap::create(0xFFFFFFFFFF, i_heap, false);
+        createdHeap = JKRSolidHeap::create(0xFFFFFFFF, i_heap, false);
     } else {
         i_size = ALIGN_NEXT(i_size, 0x10);
         i_size += 0x80;

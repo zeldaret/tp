@@ -1921,7 +1921,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
             i_this->field_0x1690 = 0;
         }
         break;
-    case 4:
+    case 4: {
         dVar17 = l_HIO.mSingleRiderSpeed;
         dVar16 = 5.0f;
         i_this->mMovementType = 1;
@@ -1976,6 +1976,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         }
         local_d6 = 0x800;
         break;
+    }
     case 5:
         if (a_this->speedF > 15.0f) {
             i_this->mMovementType = 2;
@@ -2104,7 +2105,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
     e_rd_class* rider = (e_rd_class*)fopAcM_SearchByID(i_this->field_0x1434);
 
     switch (i_this->mActionMode) {
-    case -100:
+    case -100: {
         int local_a0 = dComIfGp_getEventManager().getMyStaffId("RiderBoss", NULL, 0);
         if (local_a0 != -1) {
             dComIfGp_getEventManager().cutEnd(local_a0);
@@ -2112,7 +2113,8 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
         }
         break;
-    case -99:
+    }
+    case -99: {
         a_this->current.angle.y = 0x58f0;
         turn_speed = 0;
         local_b6 = 0;
@@ -2122,6 +2124,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
             i_this->mActionMode = -98;
         }
         break;
+    }
     case -98:
         turn_speed = 0;
         break;
@@ -3275,7 +3278,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
         i_this->mStatusFlags |= 0x20;
         // fallthrough
 
-    case 1:
+    case 1: {
         cXyz target_pos(-62943.0f, -9045.0f, 70997.0f);
         local_10c = target_pos - a_this->current.pos;
         s16 target_angle = cM_atan2s(local_10c.x, local_10c.z);
@@ -3291,7 +3294,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
             i_this->field_0x17e1 = 1;
         }
         break;
-
+    }
     case 2:
         if (i_this->field_0x7a6 == 0) {
             anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
@@ -3326,7 +3329,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
     case 0xc:
         i_this->mActionMode = 0xd;
         // fallthrough
-    case 0xd:
+    case 0xd: {
         local_10c = a_this->current.pos;
         local_10c.y += 500.0f;
         cStack_118 = coach->eyePos;
@@ -3431,7 +3434,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
         i_this->mMovementType = 1;
         i_this->mPursuitFlag = 1;
         break;
-
+    }
     case 0x14:
         anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
         i_this->mActionMode = 0x15;
@@ -4069,7 +4072,7 @@ static void demo_camera(e_wb_class* i_this) {
             i_this->field_0x169e = 0;
         }
         break;
-    case 0x19:
+    case 0x19: {
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
             a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
@@ -4089,6 +4092,7 @@ static void demo_camera(e_wb_class* i_this) {
         } else {
             i_this->field_0x170c = -200.0f;
         }
+    }
     case 0x1a:
         mDoMtx_stack_c::YrotS(a_this->shape_angle.y);
         local_3c.x = i_this->field_0x170c;
@@ -4644,7 +4648,7 @@ static void demo_camera(e_wb_class* i_this) {
             i_this->field_0x16a0 = 0;
         }
         break;
-    case 0x3e:
+    case 0x3e: {
         daObjCRVSTEEL_c* crvSteel = (daObjCRVSTEEL_c*)fopAcM_SearchByName(PROC_Obj_CRVSTEEL);
         if (i_this->field_0x16a0 == 20) {
             crvSteel->OpenSet(20.0f, 350.0f);
@@ -4677,6 +4681,7 @@ static void demo_camera(e_wb_class* i_this) {
         i_this->field_0x169e = 0x3f;
         i_this->field_0x16a0 = 0;
         // fallthrough
+    }
     case 0x3f:
         if (i_this->field_0x16a0 == 40) {
             rdb->field_0xfe4 = 1;
@@ -5916,4 +5921,5 @@ extern actor_process_profile_definition g_profile_E_WB = {
 
 AUDIO_INSTANCES;
 #include "JSystem/JAudio2/JAUSectionHeap.h"
+template<>
 JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;
