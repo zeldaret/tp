@@ -4,7 +4,6 @@
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
-
 #include "d/actor/d_a_e_mm_mt.h"
 #include "d/d_cc_d.h"
 #include "dol2asm.h"
@@ -144,18 +143,27 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80725884-80725888 00002C 0004+00 0/1 0/0 0/0 .rodata          @3829 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3829 = 700.0f;
-COMPILER_STRIP_GATE(0x80725884, &lit_3829);
-#pragma pop
-
 /* 80722F78-8072305C 000078 00E4+00 1/0 0/0 0/0 .text            daE_MM_MT_Draw__FP13e_mm_mt_class
  */
-static void daE_MM_MT_Draw(e_mm_mt_class* param_0) {
-    // NONMATCHING
+static int daE_MM_MT_Draw(e_mm_mt_class* param_0) {
+    param_0->model = param_0->mpModel;
+
+    g_env_light.settingTevStruct(0, &param_0->current.pos, &param_0->tevStr);
+    g_env_light.setLightTevColorType_MAJI(param_0->mpModel, &param_0->tevStr);
+
+    mDoExt_modelUpdateDL(param_0->mpModel);
+    
+    cXyz local_18(param_0->current.pos.x, param_0->current.pos.y + 100, param_0->current.pos.z);
+
+    if (!fopAcM_CheckStatus(param_0, fopAcM_STATUS_CARRY_NOW)) {
+        param_0->mShadowKey = dComIfGd_setShadow(
+            param_0->mShadowKey, 1, param_0->mpModel, &local_18, 700.0f, 0.0f,
+            param_0->current.pos.y, param_0->mAcch.GetGroundH(), param_0->mAcch.m_gnd,
+            &param_0->tevStr, 0, 1.0, dDlst_shadowControl_c::getSimpleTex()
+        );
+    }
+
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -175,14 +183,93 @@ COMPILER_STRIP_GATE(0x8072588C, &lit_3884);
 
 /* 8072305C-80723270 00015C 0214+00 2/2 0/0 0/0 .text            e_mm_hookCheck__FP13e_mm_mt_class
  */
-static void e_mm_hookCheck(e_mm_mt_class* param_0) {
-    // NONMATCHING
+static bool e_mm_hookCheck(e_mm_mt_class* param_0) {
+
+    cCcD_Obj* hitObject;
+    Vec local_24;
+    Vec VStack_18;
+
+    if(param_0->argument == 1){
+        return false;
+    }
+
+    int iVar1 = param_0->mSphere.ChkTgHit();
+    if(iVar1 != 0) { 
+        hitObject = param_0->mSphere.GetTgHitObj();
+
+        if(hitObject->ChkAtType(AT_TYPE_HOOKSHOT)) {
+            //LAB
+
+        }
+    }
+
+    // if(fopAcM_CheckStatus(param_0, 0x100000) == 0){
+    //     if(param_0->mSphere.)
+    // }
+
+    local_24.x = param_0->current.pos.x;
+    local_24.z = param_0->current.pos.z;
+
+    if(false){
+        local_24.y = param_0->current.pos.y - 20;
+    } else{
+        local_24.y = param_0->current.pos.y + 20;
+    }
+
+    mDoMtx_stack_c::transS(param_0->current.pos);
+    mDoMtx_stack_c::ZXYrotM(param_0->shape_angle);
+    mDoMtx_stack_c::inverse();
+    
+    mDoMtx_stack_c::multVec(&local_24, &VStack_18);
+    // daPy_getPlayerActorClass()->setHookshotCarryOffset(fopAcM_GetID(this), &offset);
+
+
+    if(param_0 == 0){
+        
+    }else{
+
+    }
+    return 1;
 }
 
 /* 80723270-807234E8 000370 0278+00 1/1 0/0 0/0 .text            e_mm_mt_normal__FP13e_mm_mt_class
  */
 static void e_mm_mt_normal(e_mm_mt_class* param_0) {
     // NONMATCHING
+    fopAc_ac_c* local_28;
+    cXyz acStack_28 [2];
+
+
+    fopAc_ac_c* local_2c = dComIfGp_getPlayer(0);
+    if(fopAcM_SearchByID(param_0->parentActorID, &local_28) != 0){
+        param_0->scale.x = local_28->scale.x;
+        param_0->shape_angle.y = local_28->shape_angle.y - 0x4000;
+
+
+        MtxPosition(acStack_28, &param_0->current.pos);
+        param_0->eyePos = local_28->eyePos;
+        param_0->attention_info.position = param_0->eyePos;
+        fopAcM_OffStatus(param_0,0); // unsure. Delete if posssible
+        if( param_0->field_0x660[36]){
+
+
+
+
+        }else{
+            param_0->mSphere.OffAtSetBit();
+        }
+        // if(((param_0->actor_status & 0x00FF0000) >> 16) != 1){
+        //     param_0->mSphere.OffAtSetBit();
+        // }
+        if(param_0->argument != 0x01){
+            
+        }
+
+
+    }
+
+
+
 }
 
 /* ############################################################################################## */
@@ -472,31 +559,57 @@ static void action(e_mm_mt_class* param_0) {
 }
 
 /* 80724D40-80724DF4 001E40 00B4+00 2/1 0/0 0/0 .text daE_MM_MT_Execute__FP13e_mm_mt_class */
-static void daE_MM_MT_Execute(e_mm_mt_class* param_0) {
+static int daE_MM_MT_Execute(e_mm_mt_class* param_0) {
     // NONMATCHING
-}
+    void** ppvVar1;
+    s8 sVar2;
+    s32 iVar4;
 
-/* 80724DF4-80724DFC 001EF4 0008+00 1/0 0/0 0/0 .text daE_MM_MT_IsDelete__FP13e_mm_mt_class */
-static bool daE_MM_MT_IsDelete(e_mm_mt_class* param_0) {
+    param_0->tevStr.mLightObj.mInfo.mCosAtten.y += 1;
+
+    for(s32 i = 2; i != 0; i--){
+    }
+
+    action(param_0);
+    fopAcM_OffStatus(param_0, fopAcM_STATUS_UNK_0x200);
+    sVar2 = dComIfGp_getReverb(fopAcM_GetRoomNo(param_0));
+
     return true;
 }
 
-/* ############################################################################################## */
-/* 8072592C-8072592C 0000D4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8072592C = "E_MM_MT";
-#pragma pop
+/* 80724DF4-80724DFC 001EF4 0008+00 1/0 0/0 0/0 .text daE_MM_MT_IsDelete__FP13e_mm_mt_class */
+static int daE_MM_MT_IsDelete(e_mm_mt_class* param_0) {
+    return 1;
+}
 
 /* 80724DFC-80724E58 001EFC 005C+00 1/0 0/0 0/0 .text            daE_MM_MT_Delete__FP13e_mm_mt_class
  */
-static void daE_MM_MT_Delete(e_mm_mt_class* param_0) {
-    // NONMATCHING
+static int daE_MM_MT_Delete(e_mm_mt_class* param_0) {
+    dComIfG_resDelete(&param_0->mPhase, "E_MM_");
+    if(param_0->heap != NULL){
+        param_0->mSound.deleteObject();
+    }
+    return 1;
 }
 
 /* 80724E58-80724EE0 001F58 0088+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int useHeapInit(fopAc_ac_c* param_0) {
+    J3DModelData* i_modelData;
+    s64 resource_index = 4;
+
+    if(param_0->argument == 1){
+        resource_index = 3;
+    }
+    i_modelData = (J3DModelData*) dComIfG_getObjectRes("E_MM_MT",resource_index);
+    JUT_ASSERT(1197, i_modelData != NULL);
+
+    ((e_mm_mt_class*)param_0)->mpModel = mDoExt_J3DModel__create(i_modelData, 0x80000, 0x11000084);
+
+    if (((e_mm_mt_class*)param_0)->mpModel == NULL) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* ############################################################################################## */
@@ -633,9 +746,10 @@ extern "C" void __dt__8cM3dGAabFv() {
 }
 
 /* 807252A8-80725304 0023A8 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
+//dCcD_GStts::~dCcD_GStts() {
 extern "C" void __dt__10dCcD_GSttsFv() {
     // NONMATCHING
+    
 }
 
 /* 80725304-80725374 002404 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
