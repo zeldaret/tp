@@ -14,16 +14,16 @@
  */
 class e_mm_mt_class : public fopEn_enemy_c {
 public:
-    /* 0x5ac */ request_of_phase_process_class mPhase;
-    /* 0x5b4 */ Z2CreatureEnemy mSound;
-    /* 0x658 */ u8 field_0x658[0x65c - 0x658];
-    /* 0x65c */ J3DModel* mpModel;
+    /* 0x5AC */ request_of_phase_process_class mPhase;
+    /* 0x5B4 */ Z2CreatureEnemy mSound;
+    /* 0x658 */ u8 field_0x658[0x65C - 0x658];
+    /* 0x65C */ J3DModel* mpModel;
     /* 0x660 */ u32 mShadowKey;
-    /* 0x664 */ u8 field_0x660[0x6ec - 0x664];
-    /* 0x6ec */ dBgS_ObjAcch mAcch;
-    /* 0x8c4 */ u8 field_0x8c4[0x900 - 0x8c4];
+    /* 0x664 */ u8 field_0x660[0x6EC - 0x664];
+    /* 0x6EC */ dBgS_ObjAcch mAcch;
+    /* 0x8C4 */ u8 field_0x8C4[0x900 - 0x8C4];
     /* 0x900*/ dCcD_Sph mSphere;
-    /* 0xa38 */ u8 field_0xa38[0xba4 - 0xa38];
+    /* 0xA38 */ u8 field_0xA38[0xBA4 - 0xA38];
 
 };
 
