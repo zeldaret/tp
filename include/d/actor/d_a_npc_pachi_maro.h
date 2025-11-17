@@ -89,11 +89,22 @@ public:
     /* 80A9B800 */ void checkChangeJoint(int);
     /* 80A9B810 */ void checkRemoveJoint(int);
 
+    void talkOff() { mTalk = 0; }
+    void setTagPos(cXyz const& i_pos) { mTagPos = i_pos; }
+    void setLookPos(cXyz const& i_pos) { mLookPos = i_pos; }
+    void setFMotion_LookNone() { mFMotion = 2; }
+
     static char* mCutNameList[11];
     static u8 mCutList[132];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xfcc - 0x568];
+    /* 0x568 */ u8 field_0x568[0xf84 - 0x568];
+    /* 0xF84 */ u8 mTalk;
+    /* 0xF85 */ u8 field_0xf85;
+    /* 0xF86 */ u8 mFMotion;
+    /* 0xF88 */ cXyz mTagPos;
+    /* 0xF94 */ cXyz mLookPos;
+    /* 0xFA0 */ u8 field_0xfa0[0xfcc - 0xfa0];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Pachi_Maro_c) == 0xfcc);

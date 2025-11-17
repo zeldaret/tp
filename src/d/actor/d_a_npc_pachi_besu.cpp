@@ -1054,7 +1054,7 @@ BOOL daNpc_Pachi_Besu_c::wait(void* param_1) {
     switch (mMode) {
         case MODE_ENTER:
         case MODE_INIT:
-            field_0xf81 = 0;
+            mTalk = 0;
 
             if (!mStagger.checkStagger()) {
                 mFaceMotionSeqMngr.setNo(FACE_MOT_NONE, -1.0f, FALSE, 0);
@@ -1063,7 +1063,7 @@ BOOL daNpc_Pachi_Besu_c::wait(void* param_1) {
             }
             // fallthrough
         case MODE_RUN:
-            field_0xf81 = 0;
+            mTalk = 0;
 
             if (!mStagger.checkStagger()) {
                 fopAc_ac_c* actor_p = mPlayerActorMngr.getActorP();
@@ -1446,8 +1446,8 @@ BOOL daNpc_Pachi_Besu_c::_cutTutrialSelectGiveUp_Main(int const& i_cutId) {
 
     switch (i_cutId) {
         case 10:
-            if (_turn_pos(field_0xf84)) {
-                mJntAnm.lookPos(&field_0xf90, 1);
+            if (_turn_pos(mTagPos)) {
+                mJntAnm.lookPos(&mLookPos, 1);
                 rv = TRUE;
             }
             break;
@@ -1531,7 +1531,7 @@ BOOL daNpc_Pachi_Besu_c::_cutTutrialContinue_Init(int const& i_cutId) {
 BOOL daNpc_Pachi_Besu_c::_cutTutrialContinue_Main(int const& i_cutId) {
     switch (i_cutId) {
         case 10:
-            _turn_pos(field_0xf84, 0x1000);
+            _turn_pos(mTagPos, 0x1000);
             break;
     }
 
