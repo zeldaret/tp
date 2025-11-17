@@ -1868,14 +1868,14 @@ static void demo_camera_shop(npc_henna_class* i_this) {
     }
     case 73: {
         koro_shop = (fshop_class*)fpcM_Search(s_koro2ball_sub, i_this);
-        unkXyz_54 = koro_shop->current.pos;
+        unkXyz_54 = koro_shop->actor.current.pos;
         fshop = (fshop_class*)fpcM_Search(s_shop_sub, i_this);
         cMtx_YrotS(*calc_mtx, fshop->field_0x4060);
         unkXyz_78.x = -500.0f;
         unkXyz_78.y = 600.0f;
         unkXyz_78.z = 0.0f;
         MtxPosition(&unkXyz_78, &unkXyz_60);
-        unkXyz_60 += koro_shop->current.pos;
+        unkXyz_60 += koro_shop->actor.current.pos;
         if (koro2_reset != 0) {
             koro2_reset = 0;
             i_this->field_0x76c = unkXyz_54;

@@ -1844,7 +1844,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_kytag15"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_kytag16"),
     ActorRel(NonMatching, "d_a_mant"),
-    ActorRel(NonMatching, "d_a_mg_fshop"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_mg_fshop"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_mirror"),
     ActorRel(NonMatching, "d_a_movie_player", extra_cflags=["-O3,p"]),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_myna"),
