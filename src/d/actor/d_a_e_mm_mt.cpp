@@ -189,28 +189,28 @@ static bool e_mm_hookCheck(e_mm_mt_class* i_this) {
     Vec local_24;
     Vec VStack_18;
 
-    if(i_this->argument == 1) {
+    if (i_this->argument == 1) {
         return false;
     }
 
     int iVar1 = i_this->mSphere.ChkTgHit();
-    if(iVar1 != 0) { 
+    if (iVar1 != 0) { 
         hitObject = i_this->mSphere.GetTgHitObj();
 
-        if(hitObject->ChkAtType(AT_TYPE_HOOKSHOT)) {
+        if (hitObject->ChkAtType(AT_TYPE_HOOKSHOT)) {
             //LAB
 
         }
     }
 
-    // if(fopAcM_CheckStatus(i_this, 0x100000) == 0){
-    //     if(i_this->mSphere.)
+    // if (fopAcM_CheckStatus(i_this, 0x100000) == 0){
+    //     if (i_this->mSphere.)
     // }
 
     local_24.x = i_this->current.pos.x;
     local_24.z = i_this->current.pos.z;
 
-    if(false) {
+    if (false) {
         local_24.y = i_this->current.pos.y - 20;
     } else {
         local_24.y = i_this->current.pos.y + 20;
@@ -224,7 +224,7 @@ static bool e_mm_hookCheck(e_mm_mt_class* i_this) {
     // daPy_getPlayerActorClass()->setHookshotCarryOffset(fopAcM_GetID(this), &offset);
 
 
-    if(i_this == 0){
+    if (i_this == 0){
         
     } else {
 
@@ -241,7 +241,7 @@ static void e_mm_mt_normal(e_mm_mt_class* i_this) {
 
 
     fopAc_ac_c* local_2c = dComIfGp_getPlayer(0);
-    if(fopAcM_SearchByID(i_this->parentActorID, &local_28) != 0) {
+    if (fopAcM_SearchByID(i_this->parentActorID, &local_28) != 0) {
         i_this->scale.x = local_28->scale.x;
         i_this->shape_angle.y = local_28->shape_angle.y - 0x4000;
 
@@ -250,7 +250,7 @@ static void e_mm_mt_normal(e_mm_mt_class* i_this) {
         i_this->eyePos = local_28->eyePos;
         i_this->attention_info.position = i_this->eyePos;
         fopAcM_OffStatus(i_this,0); // unsure. Delete if posssible
-        if(i_this->field_0x660[36]) {
+        if (i_this->field_0x660[36]) {
 
 
 
@@ -258,10 +258,10 @@ static void e_mm_mt_normal(e_mm_mt_class* i_this) {
         } else {
             i_this->mSphere.OffAtSetBit();
         }
-        // if(((i_this->actor_status & 0x00FF0000) >> 16) != 1){
+        // if (((i_this->actor_status & 0x00FF0000) >> 16) != 1){
         //     i_this->mSphere.OffAtSetBit();
         // }
-        if(i_this->argument != 0x01) {
+        if (i_this->argument != 0x01) {
 
         }
 
@@ -586,7 +586,7 @@ static int daE_MM_MT_IsDelete(e_mm_mt_class* i_this) {
  */
 static int daE_MM_MT_Delete(e_mm_mt_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_MM_MT");
-    if(i_this->heap != NULL){
+    if (i_this->heap != NULL){
         i_this->mSound.deleteObject();
     }
     return 1;
@@ -597,7 +597,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     J3DModelData* i_modelData;
     s64 resource_index = 4;
 
-    if(i_this->argument == 1) {
+    if (i_this->argument == 1) {
         resource_index = 3;
     }
     i_modelData = (J3DModelData*) dComIfG_getObjectRes("E_MM_MT",resource_index);
