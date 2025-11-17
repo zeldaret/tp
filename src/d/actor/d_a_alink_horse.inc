@@ -710,8 +710,8 @@ int daAlink_c::setSyncHorse(int param_0) {
             s32 dir = getDirectionFromShapeAngle();
             if (dir == DIR_FORWARD)
             {
-                field_0x3004 = daAlinkHIO_horse_c0::m.mNoWalkTime;
-                setSingleAnimeParam(ANM_WSTARTH, &daAlinkHIO_horse_c0::m.mWalkAnm);
+                field_0x3004 = daAlinkHIO_horse_c0::m.mWalkOutProhibitionTime;
+                setSingleAnimeParam(ANM_WSTARTH, &daAlinkHIO_horse_c0::m.mWalkOutAnm);
                 offNoResetFlg1(FLG1_UNK_1000);
             }
         }
@@ -755,7 +755,7 @@ int daAlink_c::setSyncHorse(int param_0) {
             setDoStatus(9);
 
             if (doTrigger()) {
-                field_0x3004 = daAlinkHIO_horse_c0::m.mNoWalkTime;
+                field_0x3004 = daAlinkHIO_horse_c0::m.mWalkOutProhibitionTime;
                 daAlink_ANM anm;
                 const daAlinkHIO_anm_c* anmparam_p = &daAlinkHIO_horse_c0::m.mWhipAnm;
                 anm = ANM_HORSE_LASH;
@@ -829,7 +829,7 @@ int daAlink_c::setSyncHorse(int param_0) {
          mProcID != PROC_HORSE_CUT_TURN) ||
         field_0x2f8c == 10)
     {
-        if ((var_r28 || field_0x3004 != daAlinkHIO_horse_c0::m.mNoWalkTime) && field_0x3004 != 0) {
+        if ((var_r28 || field_0x3004 != daAlinkHIO_horse_c0::m.mWalkOutProhibitionTime) && field_0x3004 != 0) {
             field_0x3004--;
         }
 
@@ -878,8 +878,8 @@ int daAlink_c::setSyncBoar(int param_0) {
     {
         int direction = getDirectionFromShapeAngle();
         if (direction == DIR_FORWARD || direction == DIR_BACKWARD) {
-            field_0x3004 = daAlinkHIO_horse_c0::m.mNoWalkTime;
-            setSingleAnimeParam(ANM_WSTARTH, &daAlinkHIO_horse_c0::m.mWalkAnm);
+            field_0x3004 = daAlinkHIO_horse_c0::m.mWalkOutProhibitionTime;
+            setSingleAnimeParam(ANM_WSTARTH, &daAlinkHIO_horse_c0::m.mWalkOutAnm);
         }
     }
 
@@ -1067,10 +1067,10 @@ int daAlink_c::setRideSubjectAngle(s16 param_0) {
     if (mTargetedActor != NULL) {
         var_r30 = 10000;
     } else {
-        var_r30 = daAlinkHIO_horse_c0::m.field_0x58;
+        var_r30 = daAlinkHIO_horse_c0::m.mSubjectiveDownwardMaxAngle;
     }
 
-    mBodyAngle.x = cLib_minMaxLimit<s16>((s16)mBodyAngle.x, daAlinkHIO_horse_c0::m.field_0x5A, var_r30);
+    mBodyAngle.x = cLib_minMaxLimit<s16>((s16)mBodyAngle.x, daAlinkHIO_horse_c0::m.mSubjectiveUpwardMaxAngle, var_r30);
 
     s16 temp_r29 = shape_angle.y - param_0;
     if (checkHorseZelda()) {
@@ -1538,7 +1538,7 @@ int daAlink_c::procHorseRide() {
                 voiceStart(Z2SE_AL_V_RUSH_HORSE);
 
                 field_0x30a6 = daAlinkHIO_horse_c0::m.mWhipWaitTime;
-                field_0x3004 = daAlinkHIO_horse_c0::m.mNoWalkTime;
+                field_0x3004 = daAlinkHIO_horse_c0::m.mWalkOutProhibitionTime;
                 var_r26->onPlayerBackRideLash();
             }
         } else if (mProcVar2.field_0x300c == 0 && checkHorseRide()) {
@@ -2296,7 +2296,7 @@ int daAlink_c::procHorseDamageInit(dCcD_GObjInf* param_0) {
     if (checkUnderMove0BckNoArc(ANM_HORSE_STOP) || checkUnderMove0BckNoArc(ANM_HORSE_STOP_TO_STAND) || checkUnderMove0BckNoArc(ANM_HORSE_STAND) || checkUnderMove0BckNoArc(ANM_HORSE_DASH_B) || checkUnderMove0BckNoArc(ANM_HORSE_DASH_A) || checkUnderMove0BckNoArc(ANM_HORSE_DASH_START)) {
         mProcVar4.field_0x3010 = 0;
         mProcVar5.field_0x3012 = 0;
-        setUpperAnimeParam(anmIdx[4], UPPER_2, &daAlinkHIO_damHorse_c0::m.field_0x0);
+        setUpperAnimeParam(anmIdx[4], UPPER_2, &daAlinkHIO_damHorse_c0::m.mNoDirectionAnm);
     } else {
         cXyz* temp_r29 = getDamageVec(param_0);
         
@@ -2304,11 +2304,11 @@ int daAlink_c::procHorseDamageInit(dCcD_GObjInf* param_0) {
         f32 temp_f1 = cM_scos(shape_angle.y);
         cXyz spC((temp_r29->z * -temp_f31) + (temp_r29->x * temp_f1), temp_r29->y, (temp_r29->z * temp_f1) + (temp_r29->x * temp_f31));
 
-        mProcVar4.field_0x3010 = cLib_minMaxLimit<s16>(cM_atan2s(spC.z, spC.y), -daAlinkHIO_damHorse_c0::m.field_0x28, daAlinkHIO_damHorse_c0::m.field_0x28);
-        mProcVar5.field_0x3012 = cLib_minMaxLimit<s16>(cM_atan2s(spC.x, -JMAFastSqrt((spC.y * spC.y) + (spC.z * spC.z))), -daAlinkHIO_damHorse_c0::m.field_0x2A, daAlinkHIO_damHorse_c0::m.field_0x2A);
+        mProcVar4.field_0x3010 = cLib_minMaxLimit<s16>(cM_atan2s(spC.z, spC.y), -daAlinkHIO_damHorse_c0::m.mFrontBackBodyMaxAngle, daAlinkHIO_damHorse_c0::m.mFrontBackBodyMaxAngle);
+        mProcVar5.field_0x3012 = cLib_minMaxLimit<s16>(cM_atan2s(spC.x, -JMAFastSqrt((spC.y * spC.y) + (spC.z * spC.z))), -daAlinkHIO_damHorse_c0::m.mLeftRightBodyMaxAngle, daAlinkHIO_damHorse_c0::m.mLeftRightBodyMaxAngle);
         
         int direction = getDirectionFromAngle(cM_atan2s(-spC.x, -spC.z));
-        setUpperAnimeParam(anmIdx[direction], UPPER_2, &daAlinkHIO_damHorse_c0::m.field_0x14);
+        setUpperAnimeParam(anmIdx[direction], UPPER_2, &daAlinkHIO_damHorse_c0::m.mWithDirectionAnm);
     }
 
     setFacePriBck(0xEA);

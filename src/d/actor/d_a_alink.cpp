@@ -2981,8 +2981,8 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
                 temp_r24 = cLib_minMaxLimit<s16>((s16)temp_r24, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnUp, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnDown);
                 var_r28 = cLib_minMaxLimit<s16>((s16)var_r28, -daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH);
                 #else
-                temp_r24 = cLib_minMaxLimit<s16>((s16)temp_r24, mpHIO->mWolf.field_0x3ac0, mpHIO->mWolf.field_0x3ac2);
-                var_r28 = cLib_minMaxLimit<s16>((s16)var_r28, -daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH);
+                // temp_r24 = cLib_minMaxLimit<s16>((s16)temp_r24, mpHIO->mWolf.field_0x3ac0, mpHIO->mWolf.field_0x3ac2);
+                // var_r28 = cLib_minMaxLimit<s16>((s16)var_r28, -daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH);
                 #endif
             } else {
                 temp_r24 = cLib_minMaxLimit<s16>((s16)temp_r24, daAlinkHIO_wolf_c0::m.mMaxNeckTurnUp, daAlinkHIO_wolf_c0::m.mMaxNeckTurnDown);
@@ -11100,11 +11100,11 @@ BOOL daAlink_c::checkUpperItemAction() {
         field_0x30f6--;
 
         if (swordTrigger() || doTrigger()) {
-            field_0x30f6 -= daAlinkHIO_damCaught_c0::m.field_0x16;
+            field_0x30f6 -= daAlinkHIO_damCaught_c0::m.mInputFadeTime;
         }
 
         if (checkInputOnR() && abs((s16)(mStickAngle - mPrevStickAngle)) > 0x1000) {
-            field_0x30f6 -= daAlinkHIO_damCaught_c0::m.field_0x16;
+            field_0x30f6 -= daAlinkHIO_damCaught_c0::m.mInputFadeTime;
         }
 
         if (field_0x30f6 < 0 || !checkNoResetFlg0(FLG0_DK_CAUGHT)) {
@@ -12801,7 +12801,7 @@ void daAlink_c::posMove() {
     }
 
     if (checkModeFlg(MODE_SWIMMING)) {
-        cLib_chasePos(&field_0x3750, cXyz::Zero, daAlinkHIO_damSwim_c0::m.field_0x84);
+        cLib_chasePos(&field_0x3750, cXyz::Zero, daAlinkHIO_damSwim_c0::m.mDeceleration);
         current.pos += field_0x3750;
 
         if (checkNoResetFlg0(FLG0_SWIM_UP) && mProcID != PROC_SWIM_DIVE) {

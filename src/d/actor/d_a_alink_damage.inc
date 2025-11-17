@@ -449,7 +449,7 @@ BOOL daAlink_c::checkDamageAction() {
         if ((!checkModeFlg(0x70C52)) && (!checkWolf()) && (!checkDkCaught2Anime())) {
             setUpperAnimeBase(getMainBckData(ANM_HORSE_WAIT_D_B)->m_underID);
             setFacePriAnime(ANM_HORSE_WAIT_D_B);
-            field_0x30f6 = daAlinkHIO_damCaught_c0::m.field_0x14;
+            field_0x30f6 = daAlinkHIO_damCaught_c0::m.mGrabDuration;
             field_0x2f96 = 1;
             field_0x2f97 = 6;
             onNoResetFlg1(FLG1_UNK_100000);
@@ -831,8 +831,8 @@ int daAlink_c::procDamageInit(dCcD_GObjInf* param_0, int param_1) {
                 var_r29->y,
                 var_r29->z * var_f29 + var_r29->x * var_f30);
     
-    mProcVar2.field_0x300c = cLib_minMaxLimit<s16>(cM_atan2s(sp88.z, sp88.y), -daAlinkHIO_damNormal_c0::m.field_0x50, daAlinkHIO_damNormal_c0::m.field_0x50);
-    mProcVar3.field_0x300e = cLib_minMaxLimit<s16>(cM_atan2s(sp88.x, -JMAFastSqrt(sp88.y * sp88.y + sp88.z * sp88.z)), -daAlinkHIO_damNormal_c0::m.field_0x52, daAlinkHIO_damNormal_c0::m.field_0x52);
+    mProcVar2.field_0x300c = cLib_minMaxLimit<s16>(cM_atan2s(sp88.z, sp88.y), -daAlinkHIO_damNormal_c0::m.mFrontBackBodyMaxAngle, daAlinkHIO_damNormal_c0::m.mFrontBackBodyMaxAngle);
+    mProcVar3.field_0x300e = cLib_minMaxLimit<s16>(cM_atan2s(sp88.x, -JMAFastSqrt(sp88.y * sp88.y + sp88.z * sp88.z)), -daAlinkHIO_damNormal_c0::m.mLeftRightBodyMaxAngle, daAlinkHIO_damNormal_c0::m.mLeftRightBodyMaxAngle);
 
     if (freeze_player) {
         var_f31 = 0.0f;
@@ -850,23 +850,23 @@ int daAlink_c::procDamageInit(dCcD_GObjInf* param_0, int param_1) {
 
     int direction = getDirectionFromAngle(cM_atan2s(-sp88.x, -sp88.z));
     if (direction == DIR_FORWARD) {
-        setSingleAnimeParam(ANM_DMG_SMALL_A, &daAlinkHIO_damNormal_c0::m.field_0x0);
-        field_0x3478 = daAlinkHIO_damNormal_c0::m.field_0x0.mCancelFrame;
+        setSingleAnimeParam(ANM_DMG_SMALL_A, &daAlinkHIO_damNormal_c0::m.mFrontAnm);
+        field_0x3478 = daAlinkHIO_damNormal_c0::m.mFrontAnm.mCancelFrame;
     } else if (direction == DIR_BACKWARD) {
-        setSingleAnimeParam(ANM_DMG_SMALL_B, &daAlinkHIO_damNormal_c0::m.field_0x14);
-        field_0x3478 = daAlinkHIO_damNormal_c0::m.field_0x14.mCancelFrame;
+        setSingleAnimeParam(ANM_DMG_SMALL_B, &daAlinkHIO_damNormal_c0::m.mRearAnm);
+        field_0x3478 = daAlinkHIO_damNormal_c0::m.mRearAnm.mCancelFrame;
     } else if (direction == DIR_LEFT) {
-        setSingleAnimeParam(ANM_DMG_SMALL_LEFT, &daAlinkHIO_damNormal_c0::m.field_0x28);
-        field_0x3478 = daAlinkHIO_damNormal_c0::m.field_0x28.mCancelFrame;
+        setSingleAnimeParam(ANM_DMG_SMALL_LEFT, &daAlinkHIO_damNormal_c0::m.mLeftAnm);
+        field_0x3478 = daAlinkHIO_damNormal_c0::m.mLeftAnm.mCancelFrame;
     } else {
-        setSingleAnimeParam(ANM_DMG_SMALL_RIGHT, &daAlinkHIO_damNormal_c0::m.field_0x3C);
-        field_0x3478 = daAlinkHIO_damNormal_c0::m.field_0x3C.mCancelFrame;
+        setSingleAnimeParam(ANM_DMG_SMALL_RIGHT, &daAlinkHIO_damNormal_c0::m.mRightAnm);
+        field_0x3478 = daAlinkHIO_damNormal_c0::m.mRightAnm.mCancelFrame;
     }
 
     current.angle.y = var_r29->atan2sX_Z();
     mProcVar4.field_0x3010 = current.angle.y;
 
-    mNormalSpeed = var_r29->absXZ() * daAlinkHIO_damNormal_c0::m.field_0x58 + daAlinkHIO_damNormal_c0::m.field_0x54;
+    mNormalSpeed = var_r29->absXZ() * daAlinkHIO_damNormal_c0::m.mAttackSpeedRate + daAlinkHIO_damNormal_c0::m.mInitialSpeed;
     if (mNormalSpeed > daAlinkHIO_move_c0::m.mMaxSpeed) {
         mNormalSpeed = daAlinkHIO_move_c0::m.mMaxSpeed;
     }
@@ -875,7 +875,7 @@ int daAlink_c::procDamageInit(dCcD_GObjInf* param_0, int param_1) {
     field_0x347c = M_PI / (frame_ctrl->getEnd() - frame_ctrl->getStart());
 
     if (freeze_player) {
-        frame_ctrl->setRate(daAlinkHIO_damNormal_c0::m.field_0x60);
+        frame_ctrl->setRate(daAlinkHIO_damNormal_c0::m.mIceDamageASpeed);
         frame_ctrl->setEnd(7);
         mNormalSpeed = 0.0f;
         mProcVar0.mIceFreezeTimer = 90;
@@ -898,7 +898,7 @@ int daAlink_c::procDamage() {
     mBodyAngle.z = -mProcVar3.field_0x300e * var_f31;
     mBodyAngle.y = 0;
 
-    cLib_chaseF(&mNormalSpeed, 0.0f, daAlinkHIO_damNormal_c0::m.field_0x5C);
+    cLib_chaseF(&mNormalSpeed, 0.0f, daAlinkHIO_damNormal_c0::m.mDeceleration);
 
     if (checkFreezeDamage()) {
         freezeTimerDamage();
@@ -1083,11 +1083,11 @@ int daAlink_c::procCoLargeDamageInit(int param_0, int param_1, s16 param_2, s16 
             var_r28 = &daAlinkHIO_damHuge_c0::m;
         }
 
-        setSpecialGravity(var_r28->field_0xA4, maxFallSpeed, 0);
-        mProcVar4.field_0x3010 = var_r28->field_0xA0;
-        field_0x3478 = var_r28->field_0xB4;
-        field_0x347c = var_r28->field_0xB8;
-        setSingleAnimeBaseMorf((daAlink_c::daAlink_ANM)field_0x3198, var_r28->field_0xA8);
+        setSpecialGravity(var_r28->mGravity, maxFallSpeed, 0);
+        mProcVar4.field_0x3010 = var_r28->mBodyRotateRate;
+        field_0x3478 = var_r28->mBounceSpeed;
+        field_0x347c = var_r28->mDeceleration;
+        setSingleAnimeBaseMorf((daAlink_c::daAlink_ANM)field_0x3198, var_r28->mDamageBlend);
     }
 
     if (param_0 < 0) {
@@ -1106,8 +1106,8 @@ int daAlink_c::procCoLargeDamageInit(int param_0, int param_1, s16 param_2, s16 
                 mNormalSpeed = var_r29->field_0x5C;
                 speed.y = var_r29->field_0x60;
             } else {
-                mNormalSpeed = var_r28->field_0xAC;
-                speed.y = var_r28->field_0xB0;
+                mNormalSpeed = var_r28->mHorizontalSpeed;
+                speed.y = var_r28->mVerticalSpeed;
             }
 
             if (param_0 == -6) {
@@ -1136,7 +1136,7 @@ int daAlink_c::procCoLargeDamageInit(int param_0, int param_1, s16 param_2, s16 
         if (checkWolf()) {
             mNormalSpeed = var_r29->field_0x64;
         } else {
-            mNormalSpeed = var_r28->field_0xB4;
+            mNormalSpeed = var_r28->mBounceSpeed;
         }
 
         current.pos.x += 35.0f * cM_ssin(current.angle.y);
@@ -1270,7 +1270,7 @@ int daAlink_c::procLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 
         setSingleAnimeBase(ANM_DMG_FBW);
 
         field_0x32cc = 0x88;
-        field_0x3478 = var_r30->field_0x14.mCancelFrame;
+        field_0x3478 = var_r30->mBackGetUpAnm.mCancelFrame;
         field_0x3480 = 39.0f;
         field_0x3484 = 1000.0f;
     } else if (param_0 < 0) {
@@ -1288,7 +1288,7 @@ int daAlink_c::procLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 
             var_f31 = 1.0f;
 
             mProcVar0.field_0x3008 = -1;
-            field_0x3478 = var_r30->field_0x0.mCancelFrame;
+            field_0x3478 = var_r30->mFrontGetUpAnm.mCancelFrame;
             field_0x3480 = 39.0f;
             field_0x2f9d = 4;
             field_0x3484 = 18.0f;
@@ -1296,14 +1296,14 @@ int daAlink_c::procLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 
             if (param_0 == -2) {
                 var_f30 = 0.0f;
             } else {
-                var_f30 = daAlinkHIO_damLarge_c0::m.field_0x14.mInterpolation;
+                var_f30 = daAlinkHIO_damLarge_c0::m.mBackGetUpAnm.mInterpolation;
             }
 
             field_0x3484 = 9.0f;
             var_r28 = ANM_DMG_LARGE_LAND;
             var_f29 = 9.0f;
             var_r27 = -1;
-            field_0x3478 = var_r30->field_0x14.mCancelFrame;
+            field_0x3478 = var_r30->mBackGetUpAnm.mCancelFrame;
 
             if (param_0 == -5 && mDemo.getParam1() > 0) {
                 mProcVar0.field_0x3008 = mDemo.getParam1();
@@ -1331,27 +1331,27 @@ int daAlink_c::procLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 
         field_0x2f9d = 4;
 
         if (param_0 == 0x84) {
-            setSingleAnimeParam(ANM_DMG_LARGE_LAND, &var_r30->field_0x14);
-            field_0x3478 = var_r30->field_0x14.mCancelFrame;
+            setSingleAnimeParam(ANM_DMG_LARGE_LAND, &var_r30->mBackGetUpAnm);
+            field_0x3478 = var_r30->mBackGetUpAnm.mCancelFrame;
             mProcVar1.field_0x300a = 1;
             field_0x3480 = 39.0f;
             field_0x32cc = 0x88;
             field_0x3484 = 9.0f;
         } else if (param_0 == 0x85) {
-            setSingleAnimeParam(ANM_DMG_AIR_LEFT_LAND, &var_r30->field_0x28);
-            field_0x3478 = var_r30->field_0x28.mCancelFrame;
+            setSingleAnimeParam(ANM_DMG_AIR_LEFT_LAND, &var_r30->mLeftGetUpAnm);
+            field_0x3478 = var_r30->mLeftGetUpAnm.mCancelFrame;
             field_0x3480 = 29.0f;
             field_0x32cc = 0x89;
             field_0x3484 = 6.0f;
         } else if (param_0 == 0x86) {
-            setSingleAnimeParam(ANM_DMG_AIR_RIGHT_LAND, &var_r30->field_0x3C);
-            field_0x3478 = var_r30->field_0x3C.mCancelFrame;
+            setSingleAnimeParam(ANM_DMG_AIR_RIGHT_LAND, &var_r30->mRightGetUpAnm);
+            field_0x3478 = var_r30->mRightGetUpAnm.mCancelFrame;
             field_0x3480 = 29.0f;
             field_0x32cc = 0x8A;
             field_0x3484 = 6.0f;
         } else {
-            setSingleAnimeParam(ANM_DMG_AIR_LAND, &var_r30->field_0x0);
-            field_0x3478 = var_r30->field_0x0.mCancelFrame;
+            setSingleAnimeParam(ANM_DMG_AIR_LAND, &var_r30->mFrontGetUpAnm);
+            field_0x3478 = var_r30->mFrontGetUpAnm.mCancelFrame;
             field_0x3480 = 39.0f;
             field_0x32cc = 0x87;
             field_0x3484 = 18.0f;
@@ -1383,7 +1383,7 @@ int daAlink_c::procLargeDamageUp() {
             return 1;
         }
 
-        setSingleAnime(ANM_DMG_LARGE_LAND, daAlinkHIO_damLarge_c0::m.field_0x14.mSpeed, 9.0f, -1, daAlinkHIO_damLarge_c0::m.field_0x14.mInterpolation);
+        setSingleAnime(ANM_DMG_LARGE_LAND, daAlinkHIO_damLarge_c0::m.mBackGetUpAnm.mSpeed, 9.0f, -1, daAlinkHIO_damLarge_c0::m.mBackGetUpAnm.mInterpolation);
         field_0x3198 = -3;
         field_0x347c = 2.0f / (field_0x3478 - 9.0f);
     }
@@ -1492,19 +1492,19 @@ int daAlink_c::procCoLargeDamageWallInit(int param_0, int param_1, s16 param_2, 
 
         if (param_0 == 0x84) {
             field_0x3198 = 0x88;
-            setSingleAnimeParam(ANM_DMG_LARGE_LAND, &var_r28->field_0x64);
+            setSingleAnimeParam(ANM_DMG_LARGE_LAND, &var_r28->mBackWallHitAnm);
             field_0x3080 = temp_r29 - 0x4000;
         } else if (param_0 == 0x85) {
             field_0x3198 = 0x89;
-            setSingleAnimeParam(ANM_DMG_AIR_LEFT_LAND, &var_r28->field_0x78);
+            setSingleAnimeParam(ANM_DMG_AIR_LEFT_LAND, &var_r28->mLeftWallHitAnm);
             field_0x3082 = temp_r29 - 0x4000;
         } else if (param_0 == 0x86) {
             field_0x3198 = 0x8A;
-            setSingleAnimeParam(ANM_DMG_AIR_RIGHT_LAND, &var_r28->field_0x8C);
+            setSingleAnimeParam(ANM_DMG_AIR_RIGHT_LAND, &var_r28->mRightWallHitAnm);
             field_0x3082 = 0x4000 - temp_r29;
         } else {
             field_0x3198 = 0x87;
-            setSingleAnimeParam(ANM_DMG_AIR_LAND, &var_r28->field_0x50);
+            setSingleAnimeParam(ANM_DMG_AIR_LAND, &var_r28->mFrontWallHitAnm);
             field_0x3080 = 0x4000 - temp_r29;
         }
     }
@@ -1769,7 +1769,7 @@ int daAlink_c::procCoElecDamage() {
 /* 800DB5B0-800DB610 0D5EF0 0060+00 2/2 0/0 0/0 .text            procStEscapeInit__9daAlink_cFv */
 int daAlink_c::procStEscapeInit() {
     commonProcInit(PROC_HUMAN_ST_ESCAPE);
-    setSingleAnimeParam(ANM_FROZEN_FREE, &daAlinkHIO_damCaught_c0::m.field_0x0);
+    setSingleAnimeParam(ANM_FROZEN_FREE, &daAlinkHIO_damCaught_c0::m.mEscapeAnm);
 
     mUnderFrameCtrl[0].setFrame(7.0f);
     getNowAnmPackUnder(UNDER_0)->setFrame(7.0f);
@@ -1785,7 +1785,7 @@ int daAlink_c::procStEscape() {
 
     if (frameCtrl->checkAnmEnd()) {
         checkNextAction(0);
-    } else if (frameCtrl->getFrame() > daAlinkHIO_damCaught_c0::m.field_0x0.mCancelFrame) {
+    } else if (frameCtrl->getFrame() > daAlinkHIO_damCaught_c0::m.mEscapeAnm.mCancelFrame) {
         onModeFlg(4);
         checkNextAction(1);
     }
@@ -1808,7 +1808,7 @@ int daAlink_c::procDkCaughtInit(fpc_ProcID param_0) {
 
     field_0x28f8 = param_0;
     mNormalSpeed = 0.0f;
-    mProcVar0.field_0x3008 = daAlinkHIO_damCaught_c0::m.field_0x14;
+    mProcVar0.field_0x3008 = daAlinkHIO_damCaught_c0::m.mGrabDuration;
 
     fopAc_ac_c* temp_r3 = fopAcM_SearchByID(field_0x28f8);
     if (temp_r3 != NULL) {
@@ -1870,11 +1870,11 @@ int daAlink_c::procDkCaught() {
     mProcVar0.field_0x3008--;
 
     if (escapeTrigger()) {
-        mProcVar0.field_0x3008 -= daAlinkHIO_damCaught_c0::m.field_0x16;
+        mProcVar0.field_0x3008 -= daAlinkHIO_damCaught_c0::m.mInputFadeTime;
     }
 
     if (checkInputOnR() && abs((s16)(mStickAngle - mPrevStickAngle)) > 0x1000) {
-        mProcVar0.field_0x3008 -= daAlinkHIO_damCaught_c0::m.field_0x16;
+        mProcVar0.field_0x3008 -= daAlinkHIO_damCaught_c0::m.mInputFadeTime;
     }
 
     if (mProcVar0.field_0x3008 < 0) {
@@ -2070,7 +2070,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
         mMidnaAnm = 1;
         var_f31 = daAlinkHIO_wlSwim_c0::m.field_0x48;
     } else {
-        setSingleAnime(ANM_SWIM_DMG_FREEZE, daAlinkHIO_damNormal_c0::m.field_0x60,
+        setSingleAnime(ANM_SWIM_DMG_FREEZE, daAlinkHIO_damNormal_c0::m.mIceDamageASpeed,
                        0.0f, 5, 10.0f);
         voiceStart(Z2SE_AL_V_DAMAGE_FREEZE);
         var_f31 = daAlinkHIO_swim_c0::m.mInitHeight;

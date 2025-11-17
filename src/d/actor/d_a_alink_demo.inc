@@ -2598,8 +2598,8 @@ int daAlink_c::procCoDemoPushPullWaitInit() {
     if (checkWolf()) {
         setSingleAnimeWolfBase(WANM_WAIT_PP);
     } else {
-        setSingleAnimeBaseSpeed(ANM_WAIT_PUSH_PULL, daAlinkHIO_pushpull_c0::m.field_0x10,
-                                daAlinkHIO_pushpull_c0::m.field_0x14);
+        setSingleAnimeBaseSpeed(ANM_WAIT_PUSH_PULL, daAlinkHIO_pushpull_c0::m.mStandbyASpeed,
+                                daAlinkHIO_pushpull_c0::m.mStandbyInterpolation);
     }
 
     mNormalSpeed = 0.0f;
@@ -2623,8 +2623,8 @@ int daAlink_c::procCoDemoPushMoveInit() {
         if (mDemo.getParam0() != 0) {
             setSingleAnimeBase(ANM_PUSH);
         } else {
-            setSingleAnimeBaseSpeed(ANM_PUSH_LIGHT, daAlinkHIO_pushpull_c0::m.field_0x18,
-                                    daAlinkHIO_pushpull_c0::m.field_0x1C);
+            setSingleAnimeBaseSpeed(ANM_PUSH_LIGHT, daAlinkHIO_pushpull_c0::m.mPushASpeed,
+                                    daAlinkHIO_pushpull_c0::m.mPushInterpolation);
         }
     }
 
@@ -2992,7 +2992,7 @@ int daAlink_c::procCoCaughtInit() {
     if (checkWolf()) {
         setSingleAnimeWolfBaseMorf(WANM_WAIT_START, daAlinkHIO_wlDamCaught_c0::m.field_0x8);
     } else {
-        setSingleAnimeBaseMorf(ANM_WAIT_START, daAlinkHIO_damCaught_c0::m.field_0x1C);
+        setSingleAnimeBaseMorf(ANM_WAIT_START, daAlinkHIO_damCaught_c0::m.mStandbyInterp);
     }
 
     if (chk_40000) {

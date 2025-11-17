@@ -1710,12 +1710,12 @@ f32 daAlink_c::getPushPullAnimeSpeed() {
         if (checkWolf()) {
             var_f31 = daAlinkHIO_wlPush_c0::m.field_0x10;
         } else {
-            var_f31 = daAlinkHIO_pushpull_c0::m.field_0x38;
+            var_f31 = daAlinkHIO_pushpull_c0::m.mPushASpeedHeavy;
         }
     } else if (checkWolf()) {
         var_f31 = daAlinkHIO_wlPush_c0::m.field_0x8;
     } else {
-        var_f31 = daAlinkHIO_pushpull_c0::m.field_0x18;
+        var_f31 = daAlinkHIO_pushpull_c0::m.mPushASpeed;
     }
 
     return var_f31;
@@ -1741,7 +1741,7 @@ int daAlink_c::procCoPushPullWaitInit(int param_0) {
             resetUpperAnime(UPPER_2, -1.0f);
         }
 
-        setSingleAnimeBaseSpeed(ANM_WAIT_PUSH_PULL, daAlinkHIO_pushpull_c0::m.field_0x10, daAlinkHIO_pushpull_c0::m.field_0x14);
+        setSingleAnimeBaseSpeed(ANM_WAIT_PUSH_PULL, daAlinkHIO_pushpull_c0::m.mStandbyASpeed, daAlinkHIO_pushpull_c0::m.mStandbyInterpolation);
         var_f31 = 50.0f;
     }
 
@@ -1824,7 +1824,7 @@ int daAlink_c::procCoPushMoveInit(int param_0, int param_1) {
             setSingleAnimeBase(ANM_PUSH_START);
             var_f31 = 1.0f;
         } else {
-            setSingleAnimeBaseSpeed(ANM_PUSH_LIGHT, var_f31, daAlinkHIO_pushpull_c0::m.field_0x1C);
+            setSingleAnimeBaseSpeed(ANM_PUSH_LIGHT, var_f31, daAlinkHIO_pushpull_c0::m.mPushInterpolation);
         }
 
         field_0x3478 = 15.0f;
@@ -1953,7 +1953,7 @@ int daAlink_c::procPullMoveInit(int param_0) {
         setSingleAnimeBase(ANM_PULL_START);
     } else {
         var_f31 = getPushPullAnimeSpeed();
-        setSingleAnimeBaseSpeed(ANM_PULL_LIGHT, var_f31, daAlinkHIO_pushpull_c0::m.field_0x24);
+        setSingleAnimeBaseSpeed(ANM_PULL_LIGHT, var_f31, daAlinkHIO_pushpull_c0::m.mPullInterpolation);
     }
 
     mUnderFrameCtrl[0].setRate(var_f31);
