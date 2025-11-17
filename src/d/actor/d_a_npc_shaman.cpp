@@ -763,7 +763,6 @@ BOOL daNpc_Sha_c::setAction(actionFunc action) {
 
 /* 80AE45DC-80AE48D0 0018FC 02F4+00 1/1 0/0 0/0 .text            getSceneChangeNoTableIx__11daNpc_Sha_cFv */
 int daNpc_Sha_c::getSceneChangeNoTableIx() {
-    // NONMATCHING
     int iVar2[48];
     BOOL bool_array[48];
     int sp_0x40 = 0;
@@ -778,7 +777,7 @@ int daNpc_Sha_c::getSceneChangeNoTableIx() {
     u8 tmp_reg;
 
     for (int i = 0; i < 6; i++) {
-        eventReg = dComIfGs_getEventReg(u16(mEvtBitLabels[i]));
+        eventReg = dComIfGs_getEventReg((u16)mEvtBitLabels[i]);
         tmp_reg = 1;
 
         for (int j = 0; j < 8; j++) {
@@ -799,10 +798,10 @@ int daNpc_Sha_c::getSceneChangeNoTableIx() {
 
     for (sp_0x40 = 2; sp_0x40 != 0; sp_0x40--) {
         for (int idx = 0; idx < 6; idx++) {
-            tmp_reg = dComIfGs_getTmpReg(mTmpBitLabels[idx]);
-            eventReg = dComIfGs_getEventReg(u16(mEvtBitLabels[idx]));
+            tmp_reg = dComIfGs_getTmpReg((u16)mTmpBitLabels[idx]);
+            eventReg = dComIfGs_getEventReg((u16)mEvtBitLabels[idx]);
             tmp_reg |= eventReg;
-            dComIfGs_setTmpReg(mTmpBitLabels[idx], tmp_reg);
+            dComIfGs_setTmpReg((u16)mTmpBitLabels[idx], tmp_reg);
         }
 
         for (int m = 0; m < 48; m++) {
@@ -823,7 +822,7 @@ int daNpc_Sha_c::getSceneChangeNoTableIx() {
                         sp_0x28++;
                     }
 
-                    eventReg = dComIfGs_getTmpReg(mTmpBitLabels[n]);
+                    eventReg = dComIfGs_getTmpReg((u16)mTmpBitLabels[n]);
                     if ((tmp_reg & eventReg) == 0) {
                         iVar2[sp_0x3c] = sp_0x30;
                         sp_0x3c++;
@@ -874,7 +873,7 @@ void daNpc_Sha_c::setTempBit(int i_idx) {
     u8 reg_r30 = 0;
     u8 reg_r29 = 0;
     if (i_idx < 48) {
-        reg_r30 = dComIfGs_getTmpReg(mTmpBitLabels[i_idx / 8]);
+        reg_r30 = dComIfGs_getTmpReg((u16)mTmpBitLabels[i_idx / 8]);
         reg_r29 = 1;
 
         if (i_idx % 8 != 0) {
@@ -884,7 +883,7 @@ void daNpc_Sha_c::setTempBit(int i_idx) {
         }
 
         reg_r30 |= reg_r29;
-        dComIfGs_setTmpReg(mTmpBitLabels[i_idx / 8], reg_r30);
+        dComIfGs_setTmpReg((u16)mTmpBitLabels[i_idx / 8], reg_r30);
     }
 }
 
@@ -1161,17 +1160,17 @@ int daNpc_Sha_c::test(void* param_1) {
 }
 
 /* 80AE711C-80AE7128 000404 000C+00 1/1 0/0 0/0 .data            mEvtBitLabels__11daNpc_Sha_c */
-u16 daNpc_Sha_c::mEvtBitLabels[6] = {
+const u16 daNpc_Sha_c::mEvtBitLabels[6] = {
     0xF0FF, 0xEFFF, 0xEEFF, 0xEDFF, 0xECFF, 0xEBFF,
 };
 
 /* 80AE7128-80AE7134 000410 000C+00 2/2 0/0 0/0 .data            mTmpBitLabels__11daNpc_Sha_c */
-u16 daNpc_Sha_c::mTmpBitLabels[6] = {
+const u16 daNpc_Sha_c::mTmpBitLabels[6] = {
     0xFAFF, 0xF9FF, 0xF8FF, 0xF7FF, 0xF6FF, 0xF5FF,
 };
 
 /* 80AE7134-80AE71F4 00041C 00C0+00 1/1 0/0 0/0 .data            mSceneChangeNoTable__11daNpc_Sha_c */
-int daNpc_Sha_c::mSceneChangeNoTable[48] = {
+const int daNpc_Sha_c::mSceneChangeNoTable[48] = {
     1, 2, 3, 4,
     5, 6, 7, 8,
     9, 0xA, 0xB, 0xC,

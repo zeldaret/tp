@@ -117,7 +117,7 @@ static u8 const l_blurTop[12] = {
 
 /* 804A2868-804A287A 000018 000C+06 0/0 0/0 0/0 .rodata          l_blurRoot */
 // unused
-static u8 const l_blurRoot[12 + 6] = {
+static u8 const l_blurRoot[12] = {
     0xC2,
     0x20,
     0x00,
@@ -130,6 +130,10 @@ static u8 const l_blurRoot[12 + 6] = {
     0x00,
     0x00,
     0x00,
+};
+
+// TODO: what is this?
+static const u8 lbl_46_rodata_24[6] = {
     0xB4,
     0xA0,
     0x8C,

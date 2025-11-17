@@ -919,11 +919,12 @@ public:
 class J3DFrameCtrl {
 public:
     enum Attribute_e {
-        EMode_NONE,
-        EMode_RESET,
-        EMode_LOOP,
-        EMode_REVERSE,
-        EMode_LOOP_REVERSE,
+        /*  -1 */ EMode_NULL = -1,
+        /* 0x0 */ EMode_NONE,
+        /* 0x1 */ EMode_RESET,
+        /* 0x2 */ EMode_LOOP,
+        /* 0x3 */ EMode_REVERSE,
+        /* 0x4 */ EMode_LOOP_REVERSE,
     };
 
     J3DFrameCtrl() { this->init(0); }
