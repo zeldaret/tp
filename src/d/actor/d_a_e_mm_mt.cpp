@@ -145,21 +145,21 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 /* 80722F78-8072305C 000078 00E4+00 1/0 0/0 0/0 .text            daE_MM_MT_Draw__FP13e_mm_mt_class
  */
-static int daE_MM_MT_Draw(e_mm_mt_class* param_0) {
-    param_0->model = param_0->mpModel;
+static int daE_MM_MT_Draw(e_mm_mt_class* i_this) {
+    i_this->model = i_this->mpModel;
 
-    g_env_light.settingTevStruct(0, &param_0->current.pos, &param_0->tevStr);
-    g_env_light.setLightTevColorType_MAJI(param_0->mpModel, &param_0->tevStr);
+    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &i_this->tevStr);
 
-    mDoExt_modelUpdateDL(param_0->mpModel);
+    mDoExt_modelUpdateDL(i_this->mpModel);
     
-    cXyz local_18(param_0->current.pos.x, param_0->current.pos.y + 100, param_0->current.pos.z);
+    cXyz local_18(i_this->current.pos.x, i_this->current.pos.y + 100, i_this->current.pos.z);
 
-    if (!fopAcM_CheckStatus(param_0, fopAcM_STATUS_CARRY_NOW)) {
-        param_0->mShadowKey = dComIfGd_setShadow(
-            param_0->mShadowKey, 1, param_0->mpModel, &local_18, 700.0f, 0.0f,
-            param_0->current.pos.y, param_0->mAcch.GetGroundH(), param_0->mAcch.m_gnd,
-            &param_0->tevStr, 0, 1.0, dDlst_shadowControl_c::getSimpleTex()
+    if (!fopAcM_CheckStatus(i_this, fopAcM_STATUS_CARRY_NOW)) {
+        i_this->mShadowKey = dComIfGd_setShadow(
+            i_this->mShadowKey, 1, i_this->mpModel, &local_18, 700.0f, 0.0f,
+            i_this->current.pos.y, i_this->mAcch.GetGroundH(), i_this->mAcch.m_gnd,
+            &i_this->tevStr, 0, 1.0, dDlst_shadowControl_c::getSimpleTex()
         );
     }
 
@@ -183,19 +183,19 @@ COMPILER_STRIP_GATE(0x8072588C, &lit_3884);
 
 /* 8072305C-80723270 00015C 0214+00 2/2 0/0 0/0 .text            e_mm_hookCheck__FP13e_mm_mt_class
  */
-static bool e_mm_hookCheck(e_mm_mt_class* param_0) {
+static bool e_mm_hookCheck(e_mm_mt_class* i_this) {
 
     cCcD_Obj* hitObject;
     Vec local_24;
     Vec VStack_18;
 
-    if(param_0->argument == 1){
+    if(i_this->argument == 1) {
         return false;
     }
 
-    int iVar1 = param_0->mSphere.ChkTgHit();
+    int iVar1 = i_this->mSphere.ChkTgHit();
     if(iVar1 != 0) { 
-        hitObject = param_0->mSphere.GetTgHitObj();
+        hitObject = i_this->mSphere.GetTgHitObj();
 
         if(hitObject->ChkAtType(AT_TYPE_HOOKSHOT)) {
             //LAB
@@ -203,30 +203,30 @@ static bool e_mm_hookCheck(e_mm_mt_class* param_0) {
         }
     }
 
-    // if(fopAcM_CheckStatus(param_0, 0x100000) == 0){
-    //     if(param_0->mSphere.)
+    // if(fopAcM_CheckStatus(i_this, 0x100000) == 0){
+    //     if(i_this->mSphere.)
     // }
 
-    local_24.x = param_0->current.pos.x;
-    local_24.z = param_0->current.pos.z;
+    local_24.x = i_this->current.pos.x;
+    local_24.z = i_this->current.pos.z;
 
-    if(false){
-        local_24.y = param_0->current.pos.y - 20;
-    } else{
-        local_24.y = param_0->current.pos.y + 20;
+    if(false) {
+        local_24.y = i_this->current.pos.y - 20;
+    } else {
+        local_24.y = i_this->current.pos.y + 20;
     }
 
-    mDoMtx_stack_c::transS(param_0->current.pos);
-    mDoMtx_stack_c::ZXYrotM(param_0->shape_angle);
+    mDoMtx_stack_c::transS(i_this->current.pos);
+    mDoMtx_stack_c::ZXYrotM(i_this->shape_angle);
     mDoMtx_stack_c::inverse();
     
     mDoMtx_stack_c::multVec(&local_24, &VStack_18);
     // daPy_getPlayerActorClass()->setHookshotCarryOffset(fopAcM_GetID(this), &offset);
 
 
-    if(param_0 == 0){
+    if(i_this == 0){
         
-    }else{
+    } else {
 
     }
     return 1;
@@ -234,35 +234,35 @@ static bool e_mm_hookCheck(e_mm_mt_class* param_0) {
 
 /* 80723270-807234E8 000370 0278+00 1/1 0/0 0/0 .text            e_mm_mt_normal__FP13e_mm_mt_class
  */
-static void e_mm_mt_normal(e_mm_mt_class* param_0) {
+static void e_mm_mt_normal(e_mm_mt_class* i_this) {
     // NONMATCHING
     fopAc_ac_c* local_28;
     cXyz acStack_28 [2];
 
 
     fopAc_ac_c* local_2c = dComIfGp_getPlayer(0);
-    if(fopAcM_SearchByID(param_0->parentActorID, &local_28) != 0){
-        param_0->scale.x = local_28->scale.x;
-        param_0->shape_angle.y = local_28->shape_angle.y - 0x4000;
+    if(fopAcM_SearchByID(i_this->parentActorID, &local_28) != 0) {
+        i_this->scale.x = local_28->scale.x;
+        i_this->shape_angle.y = local_28->shape_angle.y - 0x4000;
 
 
-        MtxPosition(acStack_28, &param_0->current.pos);
-        param_0->eyePos = local_28->eyePos;
-        param_0->attention_info.position = param_0->eyePos;
-        fopAcM_OffStatus(param_0,0); // unsure. Delete if posssible
-        if( param_0->field_0x660[36]){
+        MtxPosition(acStack_28, &i_this->current.pos);
+        i_this->eyePos = local_28->eyePos;
+        i_this->attention_info.position = i_this->eyePos;
+        fopAcM_OffStatus(i_this,0); // unsure. Delete if posssible
+        if(i_this->field_0x660[36]) {
 
 
 
 
-        }else{
-            param_0->mSphere.OffAtSetBit();
+        } else {
+            i_this->mSphere.OffAtSetBit();
         }
-        // if(((param_0->actor_status & 0x00FF0000) >> 16) != 1){
-        //     param_0->mSphere.OffAtSetBit();
+        // if(((i_this->actor_status & 0x00FF0000) >> 16) != 1){
+        //     i_this->mSphere.OffAtSetBit();
         // }
-        if(param_0->argument != 0x01){
-            
+        if(i_this->argument != 0x01) {
+
         }
 
 
@@ -345,7 +345,7 @@ COMPILER_STRIP_GATE(0x807258B4, &lit_4017);
 
 /* 807234E8-80723744 0005E8 025C+00 1/1 0/0 0/0 .text            e_mm_mt_hagare__FP13e_mm_mt_class
  */
-static void e_mm_mt_hagare(e_mm_mt_class* param_0) {
+static void e_mm_mt_hagare(e_mm_mt_class* i_this) {
     // NONMATCHING
 }
 
@@ -379,7 +379,7 @@ COMPILER_STRIP_GATE(0x807258C4, &lit_4092);
 #pragma pop
 
 /* 80723744-807239CC 000844 0288+00 1/1 0/0 0/0 .text            e_mm_mt_carry__FP13e_mm_mt_class */
-static void e_mm_mt_carry(e_mm_mt_class* param_0) {
+static void e_mm_mt_carry(e_mm_mt_class* i_this) {
     // NONMATCHING
 }
 
@@ -393,7 +393,7 @@ COMPILER_STRIP_GATE(0x807258C8, &lit_4146);
 
 /* 807239CC-80723B70 000ACC 01A4+00 1/1 0/0 0/0 .text            wall_angle_get__FP13e_mm_mt_class
  */
-static void wall_angle_get(e_mm_mt_class* param_0) {
+static void wall_angle_get(e_mm_mt_class* i_this) {
     // NONMATCHING
 }
 
@@ -471,7 +471,7 @@ COMPILER_STRIP_GATE(0x807258F0, &lit_4348);
 #pragma pop
 
 /* 80723B70-80724190 000C70 0620+00 1/1 0/0 0/0 .text            e_mm_mt_drop__FP13e_mm_mt_class */
-static void e_mm_mt_drop(e_mm_mt_class* param_0) {
+static void e_mm_mt_drop(e_mm_mt_class* i_this) {
     // NONMATCHING
 }
 
@@ -554,58 +554,58 @@ COMPILER_STRIP_GATE(0x80725920, &lit_4740);
 #pragma pop
 
 /* 80724190-80724D40 001290 0BB0+00 1/1 0/0 0/0 .text            action__FP13e_mm_mt_class */
-static void action(e_mm_mt_class* param_0) {
+static void action(e_mm_mt_class* i_this) {
     // NONMATCHING
 }
 
 /* 80724D40-80724DF4 001E40 00B4+00 2/1 0/0 0/0 .text daE_MM_MT_Execute__FP13e_mm_mt_class */
-static int daE_MM_MT_Execute(e_mm_mt_class* param_0) {
+static int daE_MM_MT_Execute(e_mm_mt_class* i_this) {
     // NONMATCHING
     void** ppvVar1;
     s8 sVar2;
     s32 iVar4;
 
-    param_0->tevStr.mLightObj.mInfo.mCosAtten.y += 1;
+    i_this->tevStr.mLightObj.mInfo.mCosAtten.y += 1;
 
     for(s32 i = 2; i != 0; i--){
     }
 
-    action(param_0);
-    fopAcM_OffStatus(param_0, fopAcM_STATUS_UNK_0x200);
-    sVar2 = dComIfGp_getReverb(fopAcM_GetRoomNo(param_0));
+    action(i_this);
+    fopAcM_OffStatus(i_this, fopAcM_STATUS_UNK_0x200);
+    sVar2 = dComIfGp_getReverb(fopAcM_GetRoomNo(i_this));
 
     return true;
 }
 
 /* 80724DF4-80724DFC 001EF4 0008+00 1/0 0/0 0/0 .text daE_MM_MT_IsDelete__FP13e_mm_mt_class */
-static int daE_MM_MT_IsDelete(e_mm_mt_class* param_0) {
+static int daE_MM_MT_IsDelete(e_mm_mt_class* i_this) {
     return 1;
 }
 
 /* 80724DFC-80724E58 001EFC 005C+00 1/0 0/0 0/0 .text            daE_MM_MT_Delete__FP13e_mm_mt_class
  */
-static int daE_MM_MT_Delete(e_mm_mt_class* param_0) {
-    dComIfG_resDelete(&param_0->mPhase, "E_MM_");
-    if(param_0->heap != NULL){
-        param_0->mSound.deleteObject();
+static int daE_MM_MT_Delete(e_mm_mt_class* i_this) {
+    dComIfG_resDelete(&i_this->mPhase, "E_MM_MT");
+    if(i_this->heap != NULL){
+        i_this->mSound.deleteObject();
     }
     return 1;
 }
 
 /* 80724E58-80724EE0 001F58 0088+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static int useHeapInit(fopAc_ac_c* param_0) {
+static int useHeapInit(fopAc_ac_c* i_this) {
     J3DModelData* i_modelData;
     s64 resource_index = 4;
 
-    if(param_0->argument == 1){
+    if(i_this->argument == 1) {
         resource_index = 3;
     }
     i_modelData = (J3DModelData*) dComIfG_getObjectRes("E_MM_MT",resource_index);
     JUT_ASSERT(1197, i_modelData != NULL);
 
-    ((e_mm_mt_class*)param_0)->mpModel = mDoExt_J3DModel__create(i_modelData, 0x80000, 0x11000084);
+    ((e_mm_mt_class*)i_this)->mpModel = mDoExt_J3DModel__create(i_modelData, 0x80000, 0x11000084);
 
-    if (((e_mm_mt_class*)param_0)->mpModel == NULL) {
+    if (((e_mm_mt_class*)i_this)->mpModel == NULL) {
         return 0;
     }
 
@@ -729,7 +729,7 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
 };
 
 /* 80724EE0-80725218 001FE0 0338+00 1/0 0/0 0/0 .text            daE_MM_MT_Create__FP10fopAc_ac_c */
-static void daE_MM_MT_Create(fopAc_ac_c* param_0) {
+static void daE_MM_MT_Create(fopAc_ac_c* i_this) {
     // NONMATCHING
 }
 
