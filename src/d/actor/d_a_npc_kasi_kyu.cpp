@@ -199,7 +199,7 @@ daNpcKasiKyu_HIOParam const daNpcKasiKyu_Param_c::m = {
     0,
     false,
     false,
-    10,
+    5,
     16.0f,
 };
 
@@ -761,7 +761,6 @@ BOOL daNpcKasiKyu_c::chkFindPlayer() {
 
 /* 80A23708-80A23AB4 001E28 03AC+00 8/0 0/0 0/0 .text            wait__14daNpcKasiKyu_cFi */
 int daNpcKasiKyu_c::wait(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -808,13 +807,24 @@ int daNpcKasiKyu_c::wait(int param_1) {
                 }
             }
 
-            if (dComIfGp_event_runCheck()) {
+#if VERSION != VERSION_SHIELD_DEBUG
+            // TODO: gameInfo fake match to force reuse of pointer
+            dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+            if (play->getEvent().runCheck())
+#else
+            if (dComIfGp_event_runCheck())
+#endif
+            {
                 if (eventInfo.checkCommandTalk()) {
                     if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                         OS_REPORT("------------------kyu talk reset!!\n");
 
                         mTalked = true;
+#if VERSION != VERSION_SHIELD_DEBUG
+                        play->getEvent().reset();
+#else
                         dComIfGp_event_reset();
+#endif
                     }
                 }
             } else {
@@ -962,9 +972,20 @@ int daNpcKasiKyu_c::getWolfPathNearIdx() {
     return rv;
 }
 
+daNpcKasiKyu_c::actionFunc dummy_lit_4960() {
+    return &daNpcKasiKyu_c::wait;
+}
+
+daNpcKasiKyu_c::actionFunc dummy_lit_4968() {
+    return &daNpcKasiKyu_c::wait;
+}
+
+daNpcKasiKyu_c::actionFunc dummy_lit_5003() {
+    return &daNpcKasiKyu_c::wait;
+}
+
 /* 80A23EFC-80A23FA0 00261C 00A4+00 2/0 0/0 0/0 .text            chace_st__14daNpcKasiKyu_cFi */
 int daNpcKasiKyu_c::chace_st(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -987,7 +1008,6 @@ int daNpcKasiKyu_c::chace_st(int param_1) {
 
 /* 80A23FA0-80A24110 0026C0 0170+00 4/0 0/0 0/0 .text            chace__14daNpcKasiKyu_cFi */
 int daNpcKasiKyu_c::chace(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1018,6 +1038,10 @@ int daNpcKasiKyu_c::chace(int param_1) {
     return 1;
 }
 
+daNpcKasiKyu_c::actionFunc dummy_lit_5106() {
+    return &daNpcKasiKyu_c::chace;
+}
+
 /* 80A24110-80A241CC 002830 00BC+00 1/1 0/0 0/0 .text            getChacePos__14daNpcKasiKyu_cFv */
 cXyz daNpcKasiKyu_c::getChacePos() {
     int plPoint = mPlPoint;
@@ -1041,7 +1065,6 @@ cXyz daNpcKasiKyu_c::getChacePos() {
 
 /* 80A241CC-80A2428C 0028EC 00C0+00 2/0 0/0 0/0 .text            turn_link__14daNpcKasiKyu_cFi */
 int daNpcKasiKyu_c::turn_link(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1064,7 +1087,6 @@ int daNpcKasiKyu_c::turn_link(int param_1) {
 
 /* 80A2428C-80A24370 0029AC 00E4+00 1/0 0/0 0/0 .text            turn_home__14daNpcKasiKyu_cFi */
 int daNpcKasiKyu_c::turn_home(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1092,7 +1114,6 @@ int daNpcKasiKyu_c::turn_home(int param_1) {
 
 /* 80A24370-80A24440 002A90 00D0+00 1/0 0/0 0/0 .text            turn_center__14daNpcKasiKyu_cFi */
 int daNpcKasiKyu_c::turn_center(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1186,7 +1207,6 @@ int daNpcKasiKyu_c::kya2(int param_1) {
 
 /* 80A24628-80A246FC 002D48 00D4+00 2/0 0/0 0/0 .text            kya_stop__14daNpcKasiKyu_cFi */
 int daNpcKasiKyu_c::kya_stop(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1230,7 +1250,6 @@ int daNpcKasiKyu_c::iyan(int param_1) {
 
 /* 80A24774-80A2484C 002E94 00D8+00 1/0 0/0 0/0 .text            iyan_look__14daNpcKasiKyu_cFi */
 int daNpcKasiKyu_c::iyan_look(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1336,7 +1355,6 @@ int daNpcKasiKyu_c::wait_dummy(int param_1) {
 
 /* 80A24AD8-80A24CC4 0031F8 01EC+00 1/0 0/0 0/0 .text            cheer__14daNpcKasiKyu_cFi */
 int daNpcKasiKyu_c::cheer(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1373,11 +1391,22 @@ int daNpcKasiKyu_c::cheer(int param_1) {
             current.angle.y = mCurAngle.y;
             shape_angle.y = mCurAngle.y;
 
-            if (dComIfGp_event_runCheck()) {
+#if VERSION != VERSION_SHIELD_DEBUG
+        // TODO: gameInfo fake match to force reuse of pointer
+            dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+            if (play->getEvent().runCheck())
+#else
+            if (dComIfGp_event_runCheck())
+#endif
+            {
                 if (eventInfo.checkCommandTalk()) {
                     if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                         mTalked = true;
+#if VERSION != VERSION_SHIELD_DEBUG
+                        play->getEvent().reset();
+#else
                         dComIfGp_event_reset();
+#endif
                     }
                 }
             } else {

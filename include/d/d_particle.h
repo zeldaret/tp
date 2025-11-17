@@ -409,6 +409,13 @@ public:
 
     void levelAllForceOnEventMove() { field_0x210.allForceOnEventMove(); }
 
+    void levelExecute(u32 param_0) {
+        level_c::emitter_c* emitter = field_0x210.get(param_0);
+        if (emitter != NULL) {
+            field_0x210.execute(emitter);
+        }
+    }
+
     static void onStatus(u8 status) { mStatus |= status; }
     static void offStatus(u8 status) { mStatus &= ~status; }
     static bool isStatus(u8 status) { return mStatus & status; }

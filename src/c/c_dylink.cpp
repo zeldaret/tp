@@ -10,6 +10,11 @@
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_ext.h"
 
+#if DEBUG
+#include "f_pc/f_pc_debug_sv.h"
+#include "m_Do/m_Do_ext2.h"
+#endif
+
 /* 80374640-80375DE8 -00001 17A8+00 1/1 0/0 0/0 .rodata          DynamicNameTable */
 static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_ALLDIE, "d_a_alldie"},
@@ -17,6 +22,9 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_Obj_Swpush2, "d_a_obj_swpush2"},
     {PROC_Obj_Swpush5, "d_a_obj_swpush5"},
     {PROC_Tag_Gstart, "d_a_tag_gstart"},
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    {PROC_NO_CHG_ROOM, "d_a_no_chg_room"},
+    #endif
     {PROC_Obj_Lv6ElevtA, "d_a_obj_lv6elevta"},
     {PROC_OBJ_SO, "d_a_obj_so"},
     {PROC_Obj_Movebox, "d_a_obj_movebox"},
@@ -91,7 +99,9 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_Obj_BkDoor, "d_a_obj_bkdoor"},
     {PROC_Obj_Cboard, "d_a_obj_cboard"},
     {PROC_Obj_MGate, "d_a_obj_mgate"},
+    #if !PLATFORM_SHIELD
     {PROC_Obj_Ikada, "d_a_obj_ikada"},
+    #endif
     {PROC_Obj_Ice_l, "d_a_obj_ice_l"},
     {PROC_Obj_Ice_s, "d_a_obj_ice_s"},
     {PROC_Obj_E_CREATE, "d_a_obj_enemy_create"},
@@ -530,14 +540,18 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_Obj_LifeContainer, "d_a_obj_life_container"},
     {PROC_Obj_Shield, "d_a_obj_shield"},
     {PROC_Demo_Item, "d_a_demo_item"},
+    #if !PLATFORM_SHIELD
     {PROC_ShopItem, "d_a_shop_item"},
+    #endif
     {PROC_Obj_Drop, "d_a_obj_drop"},
     {PROC_OBJ_RW, "d_a_obj_rw"},
     {PROC_NBOMB, "d_a_nbomb"},
     {PROC_TAG_CSW, "d_a_tag_csw"},
     {PROC_TAG_QS, "d_a_tag_qs"},
     {PROC_HOZELDA, "d_a_hozelda"},
+    #if !PLATFORM_SHIELD
     {PROC_SWC00, "d_a_swc00"},
+    #endif
     {PROC_KNOB20, "d_a_door_knob00"},
     {PROC_DBDOOR, "d_a_door_dbdoor00"},
     {PROC_BOSS_DOOR, "d_a_door_boss"},
@@ -549,7 +563,9 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_Tag_ChgRestart, "d_a_tag_chgrestart"},
     {PROC_Tag_Restart, "d_a_tag_setrestart"},
     {PROC_ANDSW, "d_a_andsw"},
+    #if !PLATFORM_SHIELD
     {PROC_ANDSW2, "d_a_andsw2"},
+    #endif
     {PROC_MYNA, "d_a_myna"},
     {PROC_NPC_GND, "d_a_npc_gnd"},
     {PROC_NPC_GRA, "d_a_npc_gra"},
@@ -668,10 +684,14 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_NPC_CHIN, "d_a_npc_chin"},
     {PROC_NPC_INS, "d_a_npc_ins"},
     {PROC_NPC_SHOP0, "d_a_npc_shop0"},
+    #if !PLATFORM_SHIELD
     {PROC_NPC_MK, "d_a_npc_mk"},
+    #endif
     {PROC_NPC_P2, "d_a_npc_p2"},
     {PROC_KYTAG00, "d_a_kytag00"},
+    #if !PLATFORM_SHIELD
     {PROC_KYTAG01, "d_a_kytag01"},
+    #endif
     {PROC_KYTAG02, "d_a_kytag02"},
     {PROC_KYTAG03, "d_a_kytag03"},
     {PROC_KYTAG04, "d_a_kytag04"},
@@ -709,11 +729,15 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_DEMO00, "d_a_demo00"},
     {PROC_TAG_CAMERA, "d_a_tag_camera"},
     {PROC_TAG_CHKPOINT, "d_a_tag_chkpoint"},
+    #if !PLATFORM_SHIELD
     {PROC_TAG_EVENT, "d_a_tag_event"},
+    #endif
     {PROC_TAG_EVT, "d_a_tag_evt"},
     {PROC_TAG_TELOP, "d_a_tag_telop"},
     {PROC_TAG_HOWL, "d_a_tag_howl"},
+    #if !PLATFORM_SHIELD
     {PROC_TAG_MSG, "d_a_tag_msg"},
+    #endif
     {PROC_TAG_LANTERN, "d_a_tag_lantern"},
     {PROC_Tag_Mist, "d_a_tag_mist"},
     {PROC_DMIDNA, "d_a_dmidna"},
@@ -724,7 +748,9 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_BG_OBJ, "d_a_bg_obj"},
     {PROC_MIRROR, "d_a_mirror"},
     {PROC_MOVIE_PLAYER, "d_a_movie_player"},
+    #if !PLATFORM_SHIELD
     {PROC_TITLE, "d_a_title"},
+    #endif
     {PROC_FR, "d_a_fr"},
     {PROC_ECONT, "d_a_econt"},
     {PROC_MG_ROD, "d_a_mg_rod"},
@@ -767,70 +793,134 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {PROC_Obj_Timer, "d_a_obj_timer"},
     {PROC_SCENE_EXIT, "d_a_scene_exit"},
     {PROC_SUSPEND, "d_a_suspend"},
+    #if !PLATFORM_SHIELD
     {PROC_GRASS, "d_a_grass"},
+    #endif
     {0xFFFF, NULL},
 };
 
 /* 803F0F50-803F1BB0 01DC70 0C60+00 4/4 0/0 0/0 .bss             DMC */
-static DynamicModuleControlBase* DMC[792];
+static DynamicModuleControlBase* DMC[PROC_MAX_NUM];
 
 /* 80450CA8-80450CAC 0001A8 0004+00 1/1 0/0 0/0 .sbss            None */
 static bool DMC_initialized;
 
+/* 80450CAC-80450CB0 0001AC 0004+00 2/2 0/0 0/0 .sbss            cDyl_Initialized */
+static BOOL cDyl_Initialized;
+
 /* 800183DC-80018544 012D1C 0168+00 1/1 0/0 0/0 .text            cCc_Init__Fv */
-static int cCc_Init() {
-    JKRHeap* arcHeap = mDoExt_getArchiveHeap();
-    JKRSolidHeap* heap = JKRSolidHeap::create(0x8820, arcHeap, false);
-    JKRHeap* prev = heap->becomeCurrentHeap();
+int cCc_Init() {
+    JUT_ASSERT(37, !DMC_initialized);
+
+    #if PLATFORM_GCN
+    JKRHeap* parentHeap = mDoExt_getArchiveHeap();
+    #else
+    JKRHeap* parentHeap = DynamicModuleControlBase::getHeap();
+    #endif
+    u32 dmcHeapSize = sizeof(DynamicModuleControl) * PROC_MAX_NUM;
+
+    JKRSolidHeap* dmcHeap = JKRCreateSolidHeap(dmcHeapSize, parentHeap, false);
+    JKRHeap* prevHeap = JKRSetCurrentHeap(dmcHeap);
 
     memset(&DMC, 0, sizeof(DMC));
-    for (int i = 0; i < ARRAY_SIZEU(DynamicNameTable); i++) {
-        const DynamicNameTableEntry* d = &DynamicNameTable[i];
 
-        if (d->name != NULL) {
+    for (int i = 0; i < ARRAY_SIZEU(DynamicNameTable); i++) {
+        const DynamicNameTableEntry& d = DynamicNameTable[i];
+
+        if (d.name != NULL) {
+            JUT_ASSERT(52, d.mKey < ARRAY_SIZEU(DMC));
+            JUT_ASSERT(53, DMC[d.mKey] == NULL);
+
             for (int j = 0; j < ARRAY_SIZEU(DMC); j++) {
                 if (DMC[j] != NULL) {
-                    if (!strcmp(d->name, DMC[j]->getModuleName())) {
-                        DMC[d->mKey] = DMC[j];
+                    if (!strcmp(d.name, DMC[j]->getModuleName())) {
+                        DMC[d.mKey] = DMC[j];
                         break;
                     }
                 }
             }
 
-            if (DMC[d->mKey] == NULL) {
-                DMC[d->mKey] = new DynamicModuleControl(d->name);
+            if (DMC[d.mKey] == NULL) {
+                DMC[d.mKey] = new DynamicModuleControl(d.name);
             }
         }
     }
 
-    heap->adjustSize();
-    prev->becomeCurrentHeap();
+    dmcHeap->adjustSize();
+    JKRSetCurrentHeap(prevHeap);
+
+    #if DEBUG
+    FixedMemoryCheck* check = FixedMemoryCheck::easyCreate(DMC, sizeof(DMC));
+    #endif
+
     DMC_initialized = true;
     return 1;
 }
 
+BOOL cCc_Check() {
+    BOOL rt = TRUE;
+    for (int i = 0; i < ARRAY_SIZEU(DynamicNameTable); i++) {
+        uintptr_t ptr = (uintptr_t)DMC[i];
+        if (ptr != NULL) {
+            u32 ptr_hi_byte = ptr >> 0x18;
+            if (ptr_hi_byte < 0x80 || ptr_hi_byte > 0x83) {
+                // "cCc_Check invalid pointer detected"
+                OS_REPORT_ERROR("cCc_Check ポインタ破壊を発見 %d %08x\n", i, ptr);
+                rt = FALSE;
+            }
+        }
+    }
+
+    return rt;
+}
+
+BOOL cDyl_IsInitialized() {
+    return cDyl_Initialized;
+}
+
 /* 80018544-8001857C 012E84 0038+00 0/0 1/1 0/0 .text            cDyl_IsLinked__Fs */
 BOOL cDyl_IsLinked(s16 i_ProfName) {
-    if (DMC[i_ProfName] != NULL) {
-        return DMC[i_ProfName]->isLinked();
+    JUT_ASSERT(183, cDyl_Initialized);
+    
+
+    DynamicModuleControlBase* d = DMC[i_ProfName];
+    BOOL rt;
+    if (d != NULL) {
+        rt = d->isLinked();
+    } else {
+        rt = TRUE;
     }
-    return true;
+
+    return rt;
 }
 
 /* 8001857C-800185C0 012EBC 0044+00 1/1 1/1 0/0 .text            cDyl_Unlink__Fs */
 BOOL cDyl_Unlink(s16 i_ProfName) {
-    if (DMC[i_ProfName] != NULL) {
-        return DMC[i_ProfName]->unlink();
-    }
-    return false;
-}
+    #if DEBUG
+    cCc_Check();
+    #endif
 
-/* 80450CAC-80450CB0 0001AC 0004+00 2/2 0/0 0/0 .sbss            cDyl_Initialized */
-static BOOL cDyl_Initialized;
+    JUT_ASSERT(206, cDyl_Initialized);
+    JUT_ASSERT(207, i_ProfName < ARRAY_SIZEU(DMC));
+
+    DynamicModuleControlBase* d = DMC[i_ProfName];
+    if (d != NULL) {
+        return d->unlink();
+    }
+
+    return FALSE;
+}
 
 /* 800185C0-80018688 012F00 00C8+00 1/1 1/1 0/0 .text            cDyl_LinkASync__Fs */
 int cDyl_LinkASync(s16 i_ProfName) {
-    if (cDyl_Initialized == false) {
+    #if DEBUG
+    cCc_Check();
+    #endif
+
+    JUT_ASSERT(266, DMC_initialized);
+
+    if (!cDyl_Initialized) {
+        OS_REPORT_ERROR("初期化が終わってないのに呼んでもらっても困ります %d %s\n", i_ProfName, fpcDbSv_getNameString(i_ProfName));
         return cPhs_INIT_e;
     }
 
@@ -839,8 +929,12 @@ int cDyl_LinkASync(s16 i_ProfName) {
         return cPhs_ERROR_e;
     }
 
+    JUT_ASSERT(282, i_ProfName < ARRAY_SIZEU(DMC));
+
     DynamicModuleControlBase* d = DMC[i_ProfName];
     if (d != NULL) {
+        JUT_ASSERT(286, cDyl_Initialized);
+
         if (d->load_async()) {
             if (d->link()) {
                 return cPhs_COMPLEATE_e;
@@ -859,71 +953,85 @@ int cDyl_LinkASync(s16 i_ProfName) {
 
 /* 80018688-80018764 012FC8 00DC+00 1/1 0/0 0/0 .text            cDyl_InitCallback__FPv */
 static int cDyl_InitCallback(void* param_0) {
-    JKRExpHeap* heap = mDoExt_getArchiveHeap();
-    JKRFileLoader* loader = JKRFileCache::mount("/", heap, NULL);
+    JUT_ASSERT(335, !cDyl_Initialized);
+
+    #if PLATFORM_GCN
+    JKRHeap* parentHeap = mDoExt_getArchiveHeap();
+    #else
+    JKRHeap* parentHeap = DynamicModuleControlBase::getHeap();
+    #endif
+
+    JKRFileCache* loader = JKRMountDvdDrive("/", parentHeap, NULL);
     DynamicModuleControl::initialize();
 
-    void* strTbl = JKRFileLoader::getGlbResource("/dvd/str/Final/Release/frameworkF.str");
-    JKRFileLoader::detachResource(strTbl, loader);
-    loader->unmount();
+    #if PLATFORM_GCN
+    void* strTbl = JKRGetResource("/dvd/str/Final/Release/frameworkF.str");
+    #elif PLATFORM_WII
+    void* strTbl = JKRGetResource("/dvd/str/Rfinal/Release/RframeworkF.str");
+    #else
+    void* strTbl = JKRGetResource("/dvd/str/Final/Release/frameworkF.str");
+    #endif
+
+    JKRDetachResource(strTbl, loader);
+    JKRUnmountDvdDrive(loader);
     OSSetStringTable(strTbl);
 
     DynamicModuleControl dmc("f_pc_profile_lst");
     dmc.link();
     cDyl_Initialized = true;
-    fopScnM_CreateReq(PROC_LOGO_SCENE, 0x7FFF, 0, 0);
 
+    fopScnM_CreateReq(PROC_LOGO_SCENE, 0x7FFF, 0, 0);
     return 1;
 }
 
-/* ############################################################################################## */
 /* 80450CB0-80450CB8 0001B0 0004+04 2/2 0/0 0/0 .sbss            cDyl_DVD */
 static mDoDvdThd_callback_c* cDyl_DVD;
 
 /* 80018764-80018798 0130A4 0034+00 0/0 1/1 0/0 .text            cDyl_InitAsync__Fv */
 void cDyl_InitAsync() {
     cCc_Init();
+    JUT_ASSERT(367, cDyl_DVD == NULL);
     cDyl_DVD = mDoDvdThd_callback_c::create((mDoDvdThd_callback_func)cDyl_InitCallback, NULL);
 }
 
 /* 80018798-80018804 0130D8 006C+00 0/0 2/1 0/0 .text            cDyl_InitAsyncIsDone__Fv */
-int cDyl_InitAsyncIsDone() {
+BOOL cDyl_InitAsyncIsDone() {
     if (cDyl_DVD == NULL) {
-        return 1;
+        return TRUE;
     }
 
     if (cDyl_DVD->sync()) {
         cDyl_DVD->destroy();
         cDyl_DVD = NULL;
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 /* 80018804-8001880C 013144 0008+00 1/0 0/0 0/0 .text            phase_01__7cDylPhsFPv */
 int cDylPhs::phase_01(void* param_0) {
-    return 2;
+    return cPhs_NEXT_e;
 }
 
 /* 8001880C-80018844 01314C 0038+00 1/0 0/0 0/0 .text            phase_02__7cDylPhsFPs */
 int cDylPhs::phase_02(s16* p_profName) {
     int ret = cDyl_LinkASync(*p_profName);
-
-    if (ret != 4) {
-        return ret;
+    if (ret == cPhs_COMPLEATE_e) {
+        return cPhs_NEXT_e;
     }
-    return 2;
+
+    return ret;
 }
 
 /* 80018844-8001884C 013184 0008+00 1/0 0/0 0/0 .text            phase_03__7cDylPhsFPv */
 int cDylPhs::phase_03(void* param_0) {
-    return 0;
+    return cPhs_INIT_e;
 }
 
 /* 8001884C-80018890 01318C 0044+00 0/0 2/2 0/0 .text
  * Link__7cDylPhsFP30request_of_phase_process_classs            */
-int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 param_1) {
+int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 i_ProfName) {
     static request_of_phase_process_fn l_method[3] = {
         (request_of_phase_process_fn)cDylPhs::phase_01, 
         (request_of_phase_process_fn)cDylPhs::phase_02,
@@ -934,20 +1042,19 @@ int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 param_1) {
         return cPhs_COMPLEATE_e;
     }
 
-    return dComLbG_PhaseHandler(i_phase, l_method, &param_1);
+    return dComLbG_PhaseHandler(i_phase, l_method, &i_ProfName);
 }
 
 /* 80018890-800188DC 0131D0 004C+00 0/0 1/1 0/0 .text
  * Unlink__7cDylPhsFP30request_of_phase_process_classs          */
 int cDylPhs::Unlink(request_of_phase_process_class* i_phase, s16 i_ProfName) {
-    int ret;
+    JUT_ASSERT(460, i_phase->id != cPhs_LOADING_e);
 
     if (i_phase->id == cPhs_NEXT_e) {
-        ret = cDyl_Unlink(i_ProfName);
+        int ret = cDyl_Unlink(i_ProfName);
         i_phase->id = cPhs_INIT_e;
-    } else {
-        ret = 0;
+        return ret;
     }
 
-    return ret;
+    return 0;
 }

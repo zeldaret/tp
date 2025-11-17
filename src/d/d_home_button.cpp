@@ -26,7 +26,7 @@ void drawCallback(J2DOrthoGraph& param_0, void* param_1) {
     if (mDoGph_gInf_c::isWide()) {
         MTXOrtho(sp8, 228.0f, -228.0f, -416.0f, 416.0f, 0.0f, 500.0f);
     } else {
-        MTXOrtho(sp8, 228.0f, -228.0f, -304.0f, 304.0f, 0.0f, 500.0f);
+        MTXOrtho(sp8, 228.0f, -228.0f, -(FB_WIDTH / 2), (FB_WIDTH / 2), 0.0f, 500.0f);
     }
 
     GXSetProjection(sp8, GX_ORTHOGRAPHIC);
@@ -179,8 +179,8 @@ int dHomeButton_c::execute() {
 // NONMATCHING
 void dHomeButton_c::drawCapture(u8 param_0, void (*param_1)(J2DOrthoGraph&, void*), void* param_2) {
     if (lbl_8053A725 == 0) {
-        GXSetTexCopySrc(0, 0, 640, 456);
-        GXSetTexCopyDst(640, 456, (GXTexFmt)mDoGph_gInf_c::m_fullFrameBufferTimg->format, GX_FALSE);
+        GXSetTexCopySrc(0, 0, FB_WIDTH, FB_HEIGHT);
+        GXSetTexCopyDst(FB_WIDTH, FB_HEIGHT, (GXTexFmt)mDoGph_gInf_c::m_fullFrameBufferTimg->format, GX_FALSE);
         GXCopyTex(mDoGph_gInf_c::m_fullFrameBufferTex, GX_FALSE);
         lbl_8053A725 = 1;
     }
@@ -190,7 +190,7 @@ void dHomeButton_c::drawCapture(u8 param_0, void (*param_1)(J2DOrthoGraph&, void
     GXSetAlphaUpdate(GX_DISABLE);
     j3dSys.drawInit();
 
-    J2DOrthoGraph sp30(0.0f, 0.0f, 640.0f, 456.0f, -1.0f, 1.0f);
+    J2DOrthoGraph sp30(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, -1.0f, 1.0f);
     sp30.setOrtho(JGeometry::TBox2<f32>(mDoGph_gInf_c::getMinXF(), mDoGph_gInf_c::getMinYF(),
                                         mDoGph_gInf_c::getMinXF() + mDoGph_gInf_c::getWidthF(),
                                         mDoGph_gInf_c::getMinYF() + mDoGph_gInf_c::getHeightF()),

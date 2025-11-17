@@ -466,7 +466,7 @@ void daE_FK_c::DamageAction() {
 bool daE_FK_c::checkViewArea() {
     Vec proj;
     mDoLib_project(&current.pos, &proj);
-    return (proj.x >= 0.0f && proj.x <= 608.0f) && (proj.y >= 0.0f && proj.y <= 448.0f);
+    return (proj.x >= 0.0f && proj.x <= FB_WIDTH) && (proj.y >= 0.0f && proj.y <= FB_HEIGHT);
 }
 
 namespace {

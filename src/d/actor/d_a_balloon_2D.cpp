@@ -567,7 +567,7 @@ void daBalloon2D_c::setHIO(bool param_1) {
         field_0x5a0->paneTrans(l_HOSTIO.m.mBalloonSmallPosX, l_HOSTIO.m.mBalloonSmallPosY);
         field_0x5a0->scale(l_HOSTIO.m.mBalloonSmallSize, l_HOSTIO.m.mBalloonSmallSize);
         field_0x5a0->setAlphaRate(l_HOSTIO.m.mBalloonSmallAlpha * mAllAlpha);
-#if DEBUG
+#if WIDESCREEN_SUPPORT
         if (mDoGph_gInf_c::isWide()) {
             field_0x5a4->paneTrans(l_HOSTIO.m.m2DNumberCombo2PosX, l_HOSTIO.m.m2DNumberCombo2PosY);
         } else {

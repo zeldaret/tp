@@ -5,21 +5,12 @@
 #include "JSystem/JHostIO/JORReflexible.h"
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "JSystem/JUtility/JUTAssert.h"
+#include "CaptureScreen.h"
 #include <string.h>
 
 void fapGm_After();
 void fapGm_Create();
 void fapGm_Execute();
-
-struct CaptureScreen {
-    CaptureScreen(const JFWDisplay* i_display) {
-        field_0x0 = i_display;
-        field_0x4 = 0;
-    } 
-
-    /* 0x0 */ const JFWDisplay* field_0x0;
-    /* 0x4 */ int field_0x4;
-};
 
 class fapGm_HIO_c : public JORReflexible {
 public:
@@ -40,6 +31,10 @@ public:
     static void createCaptureScreen() {
         mCaptureScreen = new CaptureScreen(JFWDisplay::getManager());
         JUT_ASSERT(46, mCaptureScreen != NULL);
+    }
+
+    static u8 isCaptureScreen() {
+        return mCaptureScreenFlag;
     }
 
     static void onCpuTimer() {
@@ -81,7 +76,7 @@ public:
     /* 0x17 */ u8 mDisplay2D;
     /* 0x18 */ u8 mDisplayParticle;
     /* 0x19 */ u8 mDisplayProcessID;
-    #if DEBUG
+    #if PLATFORM_WII || PLATFORM_SHIELD
     /* 0x1A */ u8 mTrapFilter;
     /* 0x1B */ u8 mGammaCorrection;
     #endif
@@ -119,7 +114,7 @@ inline BOOL fapGmHIO_isMenu() {
     return g_HIO.mDisplayPrint & 2;
 }
 
-inline bool fapGmHIO_isPrint() {
+inline BOOL fapGmHIO_isPrint() {
     return g_HIO.mDisplayPrint & 1;
 }
 
@@ -154,6 +149,20 @@ inline void fapGmHIO_offPrint() {
 inline void fapGmHIO_onPrint() {
     g_HIO.mDisplayPrint |= (u8)0x1;
 }
+
+inline u8 fapGmHIO_getParticle() {
+    return g_HIO.mDisplayParticle;
+}
+
+#if PLATFORM_WII || PLATFORM_SHIELD
+inline u8 fapGmHIO_getTrapFilter() {
+    return g_HIO.mTrapFilter;
+}
+
+inline u8 fapGmHIO_getGamma() {
+    return g_HIO.mGammaCorrection;
+}
+#endif
 
 struct fapGm_dataMem {
     enum HeapType_e {

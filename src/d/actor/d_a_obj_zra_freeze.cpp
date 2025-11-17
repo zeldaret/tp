@@ -44,7 +44,7 @@ BOOL daZraFreeze_c::chkActorInScreen() {
     PSMTXMultVecArray(mDoMtx_stack_c::get(), vec, vec, 8);
     for (int i = 0; i < 8; i++) {
         mDoLib_project(&vec[i], &proj);
-        if (0.0f < proj.x && proj.x < 608.0f && 0.0f < proj.y && proj.y < 448.0f) {
+        if (0.0f < proj.x && proj.x < FB_WIDTH && 0.0f < proj.y && proj.y < FB_HEIGHT) {
             continue;
         }
         return false;

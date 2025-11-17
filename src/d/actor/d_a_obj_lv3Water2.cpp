@@ -236,7 +236,7 @@ int daLv3Water2_c::Draw() {
             Mtx lightProjMtx;
             C_MTXLightPerspective(lightProjMtx, dComIfGd_getView()->fovy, dComIfGd_getView()->aspect, 1.0f, 1.0f, -0.01f, 0);
 
-            #ifdef DEBUG
+            #if WIDESCREEN_SUPPORT
             mDoGph_gInf_c::setWideZoomLightProjection(lightProjMtx);
             /* TODO: Handle screen capture perspective calculations */
             #endif

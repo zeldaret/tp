@@ -149,9 +149,7 @@ private:
     /* 0x10D8 */ daNpcT_ActorMngr_c mActorMngr[1];
     /* 0x10E0 */ actionFunc mNextAction;
     /* 0x10EC */ actionFunc mAction;
-    /* 0x10F8 */ u8 field_0x10f8[0x10fa - 0x10f8];
-    /* 0x10FA */ s16 field_0x10fa;
-    /* 0x10FC */ u8 field_0x10fc[0x1100 - 0x10fc];
+    /* 0x10F8 */ csXyz field_0x10f8;
     /* 0x1100 */ int mShopProcess;
     /* 0x1104 */ int field_0x1104;
     /* 0x1108 */ f32 field_0x1108;

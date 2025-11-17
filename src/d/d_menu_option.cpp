@@ -497,11 +497,11 @@ void dMenu_Option_c::_draw() {
     if (mpArchive != NULL) {
         J2DGrafContext* ctx = dComIfGp_getCurrentGrafPort();
         mpBlackTex->setAlpha(0xff);
-        mpBlackTex->draw(0.0f, 0.0f, 608.0f, 448.0f, 0, 0, 0);
+        mpBlackTex->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0, 0, 0);
         mpBackScreen->draw(0.0f, 0.0f, ctx);
         f32 alpha = (f32)g_drawHIO.mOptionScreen.mBackgroundAlpha * (f32)field_0x374;
         mpBlackTex->setAlpha(alpha);
-        mpBlackTex->draw(0.0f, 0.0f, 608.0f, 448.0f, 0, 0, 0);
+        mpBlackTex->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0, 0, 0);
         mpScreen->draw(0.0f, 0.0f, ctx);
         mpClipScreen->draw(0.0f, 0.0f, ctx);
         mpShadowScreen->draw(0.0f, 0.0f, ctx);

@@ -543,8 +543,8 @@ void daObjTOMBO_c::Z_BufferChk() {
     } else {
         trimHeight = 0.0f;
     }
-    if (local_5c.x > 0.0f && local_5c.x < 608.0f && local_5c.y > trimHeight &&
-        local_5c.y < 448.0f - trimHeight)
+    if (local_5c.x > 0.0f && local_5c.x < FB_WIDTH && local_5c.y > trimHeight &&
+        local_5c.y < FB_HEIGHT - trimHeight)
     {
         dComIfGd_peekZ(local_5c.x, local_5c.y, &field_0x754);
     }

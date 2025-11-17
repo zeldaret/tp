@@ -917,17 +917,17 @@ void dKydb_dungeonlight_draw() {
                 proj.x -= 30.0f;
             }
 
-            if (proj.x < 0.0f || proj.x > 640.0f || proj.y < 0.0f || proj.y > 456.0f) {
+            if (proj.x < 0.0f || proj.x > FB_WIDTH || proj.y < 0.0f || proj.y > FB_HEIGHT) {
                 if (proj.x < 0.0f) {
                     proj.x = 10.0f;
                 }
-                if (proj.x > 640.0f) {
+                if (proj.x > FB_WIDTH) {
                     proj.x = 560.0f;
                 }
                 if (proj.y < 0.0f) {
                     proj.y = 40.0f;
                 }
-                if (proj.y > 456.0f) {
+                if (proj.y > FB_HEIGHT) {
                     proj.y = 404.0f;
                 }
 

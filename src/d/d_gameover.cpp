@@ -42,11 +42,11 @@ void dDlst_Gameover_CAPTURE_c::draw() {
     GXTexObj tex_obj;
     Mtx44 m;
 
-    GXSetTexCopySrc(0, 0, 608, 448);
-    GXSetTexCopyDst(304, 224, GX_TF_RGB565, 1);
+    GXSetTexCopySrc(0, 0, FB_WIDTH, FB_HEIGHT);
+    GXSetTexCopyDst(FB_WIDTH / 2, FB_HEIGHT / 2, GX_TF_RGB565, 1);
     GXCopyTex(mDoGph_gInf_c::mZbufferTex, 0);
     GXPixModeSync();
-    GXInitTexObj(&tex_obj, mDoGph_gInf_c::mFrameBufferTex, 304, 224,
+    GXInitTexObj(&tex_obj, mDoGph_gInf_c::mFrameBufferTex, FB_WIDTH / 2, FB_HEIGHT / 2,
                  (GXTexFmt)mDoGph_gInf_c::mFrameBufferTimg->format, GX_CLAMP, GX_CLAMP, GX_FALSE);
     GXInitTexObjLOD(&tex_obj, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE,
                     GX_ANISO_1);
@@ -469,7 +469,7 @@ void dDlst_GameOverScrnDraw_c::draw() {
         img_white.a = 255;
 
         mpBackImg->setBlackWhite(img_black, img_white);
-        mpBackImg->draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
+        mpBackImg->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, false, false, false);
     } else {
         JUtility::TColor img_black;
         JUtility::TColor img_white;
@@ -484,12 +484,12 @@ void dDlst_GameOverScrnDraw_c::draw() {
         img_white.b = l_HIO.mWhite.b;
         img_white.a = l_HIO.mWhite.a;
 
-        mpBackImg->draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
+        mpBackImg->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, false, false, false);
 
         static f32 offset[8] = {-138.0f, -96.0f, -56.0f, -18.0f, 42.0f, 75.0f, 110.0f, 143.0f};
 
         for (int i = 0; i < 8; i++) {
-            mpLight->draw(&field_0x10, offset[i] + 304.0f, 224.0f, l_HIO.mScale, l_HIO.mScale,
+            mpLight->draw(&field_0x10, offset[i] + (FB_WIDTH / 2.0f), (FB_HEIGHT / 2), l_HIO.mScale, l_HIO.mScale,
                           l_HIO.mAlpha, l_HIO.mAnimSpeed, img_black, img_white);
         }
     }

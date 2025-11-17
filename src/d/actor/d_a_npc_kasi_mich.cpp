@@ -808,13 +808,24 @@ int daNpcKasiMich_c::wait(int param_1) {
                 }
             }
 
-            if (dComIfGp_event_runCheck()) {
+#if VERSION != VERSION_SHIELD_DEBUG
+            // TODO: gameInfo fake match to force reuse of pointer
+            dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+            if (play->getEvent().runCheck())
+#else
+            if (dComIfGp_event_runCheck())
+#endif
+            {
                 if (eventInfo.checkCommandTalk()) {
                     if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                         OS_REPORT("------------------mich talk reset!!\n");
 
                         mTalked = true;
+#if VERSION != VERSION_SHIELD_DEBUG
+                        play->getEvent().reset();
+#else
                         dComIfGp_event_reset();
+#endif
                     }
                 }
             } else {
@@ -1371,11 +1382,22 @@ int daNpcKasiMich_c::cheer(int param_1) {
             current.angle.y = mCurAngle.y;
             shape_angle.y = mCurAngle.y;
 
-            if (dComIfGp_event_runCheck()) {
+#if VERSION != VERSION_SHIELD_DEBUG
+        // TODO: gameInfo fake match to force reuse of pointer
+            dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+            if (play->getEvent().runCheck())
+#else
+            if (dComIfGp_event_runCheck())
+#endif
+            {
                 if (eventInfo.checkCommandTalk()) {
                     if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                         mTalked = true;
+#if VERSION != VERSION_SHIELD_DEBUG
+                        play->getEvent().reset();
+#else
                         dComIfGp_event_reset();
+#endif
                     }
                 }
             } else {

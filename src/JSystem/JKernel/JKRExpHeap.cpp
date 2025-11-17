@@ -826,7 +826,7 @@ bool JKRExpHeap::dump() {
         }
 
         JUTReportConsole_f("%s %08x: %08x  %3d %3d  (%08x %08x)\n",
-                           block->_isTempMemBlock() ? " temp" : "alloc", block->getContent(),
+                           block->isTempMemBlock() ? " temp" : "alloc", block->getContent(),
                            block->size, block->mGroupId, block->getAlignment(), block->mPrev,
                            block->mNext);
         usedBytes += sizeof(CMemBlock) + block->size + block->getAlignment();
@@ -886,7 +886,7 @@ bool JKRExpHeap::dump_sort() {
 
             int offset = block->getAlignment();
             void* content = block->getContent();
-            const char* type = block->_isTempMemBlock() ? " temp" : "alloc";
+            const char* type = block->isTempMemBlock() ? " temp" : "alloc";
             JUTReportConsole_f("%s %08x: %08x  %3d %3d  (%08x %08x)\n", type, content, block->size,
                                block->getGroupId(), offset, block->mPrev, block->mNext);
             usedBytes += sizeof(CMemBlock) + block->size + block->getAlignment();

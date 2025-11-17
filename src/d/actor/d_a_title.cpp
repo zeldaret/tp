@@ -68,7 +68,7 @@ daTit_HIO_c::daTit_HIO_c() {
         mPSPosX = 303.0f;
         break;
     case OS_LANGUAGE_FRENCH:
-        mPSPosX = 304.0f;
+        mPSPosX = FB_WIDTH / 2;
         break;
     }
     #else

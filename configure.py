@@ -258,9 +258,9 @@ cflags_base = [
 ]
 
 if config.version == "ShieldD":
-    cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1"])
+    cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1", "-DWIDESCREEN_SUPPORT=1"])
 elif config.version == "RZDE01_00" or config.version == "RZDE01_02" or config.version == "Shield":
-    cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS"])
+    cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS", "-DWIDESCREEN_SUPPORT=1"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
 
@@ -396,15 +396,11 @@ def MWVersion(cfg_version: str | None) -> str:
         case "GZ2J01":
             return "GC/2.7"
         case "RZDE01_00" | "RZDE01_02":
-            # TODO: Find right compiler for Wii
-            # GC/3.0a3 codegen seems better than Wii compilers, but it fails linking (linker version?) and can't handle multi-char constants
-            # Potentially missing an early Wii compiler that had the earlier codegen and reverted char constant change?
-            # Or some specific compiler used in the early days of transitioning GC to Wii development
-            # Additionally, "-ipa file" seems to needed, so it can't be earlier than GC 3.0
-            # GC/3.0a5.2 breaks when compiling TUs like m_Do_graphic, but none of the other 3.0+ ones do
-            # Wii/1.0RC1 is the earliest Wii one we have at this time but it doesn't have the right codegen from GC/3.0+
-            # (GC 3.0a3 - Dec 2005 | GC 3.0a5.2 - Aug 2006 | Wii 1.0RC - May 2008)
-            return "Wii/1.0RC1"
+            # NOTE: we use a modified version of GC/3.0a3 to be able to handle multi-char constants.
+            # This was probably a change made in some compiler version in the early days of transitioning GC to Wii development,
+            # but we don't have that version. GC/3.0a3 appears to have the best overall codegen of any available GC/Wii compiler
+            # However GC/3.0a5 is required for the linker version, GC/3.0a3 won't work.
+            return "GC/3.0a3t"
         case "ShieldD":
             return "Wii/1.0"
         case "Shield":
@@ -412,7 +408,10 @@ def MWVersion(cfg_version: str | None) -> str:
         case _:
             return "GC/2.7"
 
-config.linker_version = MWVersion(config.version)
+if config.version == "RZDE01_00" or config.version == "RZDE01_02":
+    config.linker_version = "GC/3.0a5"
+else:
+    config.linker_version = MWVersion(config.version)
 
 
 # Helper function for Dolphin libraries
@@ -600,6 +599,7 @@ config.libs = [
         "host": True,
         "objects": [
             Object(NonMatching, "d/d_home_button.cpp"),
+            Object(NonMatching, "d/d_cursor_mng.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_stage.cpp"),
             Object(Equivalent, "d/d_map.cpp"), # weak func order
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_com_inf_game.cpp"),
@@ -778,6 +778,16 @@ config.libs = [
         "host": True,
         "objects": [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "DynamicLink.cpp"),
+        ],
+    },
+    {
+        "lib": "CaptureScreen",
+        "mw_version": MWVersion(config.version),
+        "cflags": cflags_framework,
+        "progress_category": "core",
+        "host": True,
+        "objects": [
+            Object(NonMatching, "CaptureScreen.cpp"),
         ],
     },
     {
@@ -1679,7 +1689,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_swc00"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_CstaSw"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_ajnot"),
-    ActorRel(NonMatching, "d_a_tag_attack_item"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_attack_item"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_gstart"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_hinit"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_hjump"),
@@ -1834,14 +1844,14 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_kytag15"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_kytag16"),
     ActorRel(NonMatching, "d_a_mant"),
-    ActorRel(NonMatching, "d_a_mg_fshop"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_mg_fshop"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_mirror"),
     ActorRel(NonMatching, "d_a_movie_player", extra_cflags=["-O3,p"]),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_myna"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_ni"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_aru"),
-    ActorRel(NonMatching, "d_a_npc_ash", extra_cflags=[DANPCF_C_HACK]),  # weak func order
-    ActorRel(NonMatching, "d_a_npc_ashB", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(Equivalent, "d_a_npc_ash", extra_cflags=[DANPCF_C_HACK]),  # weak func order
+    ActorRel(Equivalent, "d_a_npc_ashB", extra_cflags=[DANPCF_C_HACK]),  # weak func order
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_bou"),
@@ -1850,8 +1860,8 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_chat", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_chin"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_clerka"),
-    ActorRel(Equivalent, "d_a_npc_clerkb"),
-    ActorRel(Equivalent, "d_a_npc_clerkt"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_clerkb"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_clerkt"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_coach"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_df"),
     ActorRel(NonMatching, "d_a_npc_doc"),
@@ -1879,9 +1889,9 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_inko"),
     ActorRel(Equivalent, "d_a_npc_ins", extra_cflags=[DANPCF_C_HACK]),  # weak func order
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_jagar"),
-    ActorRel(NonMatching, "d_a_npc_kasi_hana", extra_cflags=[DANPCF_C_HACK]),
-    ActorRel(NonMatching, "d_a_npc_kasi_kyu", extra_cflags=[DANPCF_C_HACK]),
-    ActorRel(NonMatching, "d_a_npc_kasi_mich", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_kasi_hana", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_kasi_kyu", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(Equivalent, "d_a_npc_kasi_mich", extra_cflags=[DANPCF_C_HACK]),  # idk this why can't link
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01", "Shield"), "d_a_npc_kdk"),
     ActorRel(NonMatching, "d_a_npc_kn"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_knj"),
@@ -1920,14 +1930,14 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_shoe", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_shop0"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_shop_maro"),
-    ActorRel(NonMatching, "d_a_npc_sola"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_sola"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_soldierA", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_soldierB"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_sq"),
     ActorRel(NonMatching, "d_a_npc_the", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_theB", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_tk"),
-    ActorRel(NonMatching, "d_a_npc_tkc"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_tkc", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_tkj2"),
     ActorRel(NonMatching, "d_a_npc_tks", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_toby"),
@@ -2129,7 +2139,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mhole"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mie"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_6pole"),
-    ActorRel(NonMatching, "d_a_obj_mirror_chain"),
+    ActorRel(Equivalent, "d_a_obj_mirror_chain"), # stack order
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_sand"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_screw"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_table"),
