@@ -43,14 +43,13 @@ static void ride_call_back(dBgW* i_bgw, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rid
 
 /* 8086C08C-8086C140 00010C 00B4+00 1/1 0/0 0/0 .text            Reel_CallBack__FP8J3DJointi */
 static int Reel_CallBack(J3DJoint* i_joint, int param_1) {
-    fs_rod_s* rod;
     J3DJoint* var_r27;
 
     if (param_1 == 0) {
         var_r27 = i_joint;
         int jnt_no = var_r27->getJntNo();
         J3DModel* model = j3dSys.getModel();
-        rod = (fs_rod_s*)model->getUserArea();
+        fs_rod_s* rod = (fs_rod_s*)model->getUserArea();
         MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
         cMtx_XrotM(*calc_mtx, rod->rot_x);
         model->setAnmMtx(jnt_no, *calc_mtx);
