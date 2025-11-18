@@ -36,7 +36,7 @@
     "build/**/*.lcf": true,
     "build/**/*.preplf": true,
     "build/**/*.d": true,
-    "build/**/*.s": true,
+    // "build/**/*.s": true,
     "build/**/*.map": true,
     "build/**/*.cpp": true,
     "build/**/*.ctx": true,

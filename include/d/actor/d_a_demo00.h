@@ -7,13 +7,10 @@
 
 struct demo_s1_ke_s {
 public:
-    /* 804A4420 */ ~demo_s1_ke_s();
-    /* 804A86B4 */ demo_s1_ke_s();
-
     /* 0x000 */ cXyz field_0x0[16];
     /* 0x0C0 */ cXyz field_0xc0[16];
     /* 0x180 */ cXyz field_0x180;
-};
+};  // Size: 0x18C
 
 class daDemo00_resID_c {
 public:
@@ -28,20 +25,12 @@ public:
     /* 0x18 */ u32 field_0x18;
     /* 0x1C */ u32 field_0x1c;
     /* 0x20 */ u32 field_0x20;
-};
-
-class daDemo00_model_c {
-public:
-    /* 804A4338 */ void reset();
-
-    /* 0x00 */ daDemo00_resID_c field_0x0;
-    /* 0x24 */ daDemo00_resID_c mID;
-};
+};  // Size: 0x24
 
 struct daDemo00_bgc_c {
     /* 0x00 */ dBgS_GndChk mGndChk;
     /* 0x54 */ f32 field_0x54;
-};
+};  // Size: 0x58
 
 struct daDemo00_shadow_c {
     /* 0x00 */ u32 field_0x0;
@@ -49,7 +38,25 @@ struct daDemo00_shadow_c {
     /* 0x10 */ cXyz field_0x10;
     /* 0x1C */ f32 field_0x1c;
     /* 0x20 */ f32 field_0x20;
-};
+};  // Size: 0x24
+
+class daDemo00_model_c {
+public:
+    /* 804A4338 */ void reset();
+
+    /* 0x00 */ daDemo00_resID_c mID;
+    /* 0x24 */ mDoExt_McaMorfSO* mpModelMorf;
+    /* 0x28 */ J3DModel* field_0x5d4;
+    /* 0x2C */ mDoExt_invisibleModel* field_0x5d8;
+    /* 0x30 */ mDoExt_bpkAnm* mpBpkAnm;
+    /* 0x34 */ mDoExt_btpAnm* mpBtpAnm;
+    /* 0x38 */ mDoExt_btkAnm* mpBtkAnm;
+    /* 0x3C */ mDoExt_brkAnm* mpBrkAnm;
+    /* 0x40 */ daDemo00_shadow_c* mShadow;
+    /* 0x44 */ J3DDeformData* mDeformData;
+    /* 0x48 */ mDoExt_blkAnm* mpBlkAnm;
+    /* 0x4C */ daDemo00_bgc_c* mBgc;
+};  // Size: 0x50
 
 /**
  * @ingroup actors-unsorted
@@ -73,34 +80,20 @@ public:
     /* 804A6F94 */ int draw();
     /* 804A7BA8 */ int execute();
 
-    int create() {
-        dKy_tevstr_init(&tevStr, dComIfGp_roomControl_getStayNo(), 0xFF);
-        tevStr.field_0x384 = 1;
-        mSound.init(&eyePos, NULL, 10, 1);
-        setAction(&daDemo00_c::actStandby);
-        mModel.field_0x0.reset();
-        field_0x6a0 = -1;
-        return 4;
-    }
+    int create();
 
     void setAction(actionFunc action) { field_0x57c = action; }
     void action(dDemo_actor_c* actor) { (this->*field_0x57c)(actor); }
 
     /* 0x0568 */ cXyz field_0x568;
     /* 0x0574 */ csXyz field_0x574;
+    #ifdef DEBUG
+    cXyz debug_field_0x570;
+    csXyz debug_field_0x57c;
+    #endif
     /* 0x057C */ actionFunc field_0x57c;
-    /* 0x0584 */ daDemo00_model_c mModel;
-    /* 0x05D0 */ mDoExt_McaMorfSO* mpModelMorf;
-    /* 0x05D4 */ J3DModel* field_0x5d4;
-    /* 0x05D8 */ mDoExt_invisibleModel* field_0x5d8;
-    /* 0x05DC */ mDoExt_bpkAnm* mpBpkAnm;
-    /* 0x05E0 */ mDoExt_btpAnm* mpBtpAnm;
-    /* 0x05E4 */ mDoExt_btkAnm* mpBtkAnm;
-    /* 0x05E8 */ mDoExt_brkAnm* mpBrkAnm;
-    /* 0x05EC */ daDemo00_shadow_c* mShadow;
-    /* 0x05F0 */ J3DDeformData* mDeformData;
-    /* 0x05F4 */ mDoExt_blkAnm* mpBlkAnm;
-    /* 0x05F8 */ daDemo00_bgc_c* mBgc;
+    /* 0x0588 */ daDemo00_resID_c field_0x588;
+    /* 0x05AC */ daDemo00_model_c mModel;
     /* 0x05FC */ Z2Creature mSound;
     /* 0x068C */ u32 field_0x68c;
     /* 0x0690 */ u8 field_0x690[0x694 - 0x690];
@@ -123,9 +116,9 @@ public:
     /* 0x06AC */ u8 field_0x6ac;
     /* 0x06AD */ u8 field_0x6ad;
     /* 0x06AE */ u8 field_0x6ae;
-    /* 0x06AF */ s8 field_0x6af;
-    /* 0x06B0 */ s8 field_0x6b0;
-    /* 0x06B1 */ s8 field_0x6b1;
+    /* 0x06AF */ u8 field_0x6af;
+    /* 0x06B0 */ u8 field_0x6b0;
+    /* 0x06B1 */ u8 field_0x6b1;
     /* 0x06B2 */ u8 field_0x6b2;
     /* 0x06B3 */ s8 field_0x6b3;
     /* 0x06B4 */ s8 field_0x6b4;
@@ -142,6 +135,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(daDemo00_c) == 0x292c);
-
 
 #endif /* D_A_DEMO00_H */
