@@ -891,7 +891,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JStudio/JStudio/ctb.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01", "Shield", "ShieldD"), "JSystem/JStudio/JStudio/ctb-data.cpp"),
             Object(Equivalent, "JSystem/JStudio/JStudio/functionvalue.cpp"), # weak func order
-            Object(NonMatching, "JSystem/JStudio/JStudio/fvb.cpp"),
+            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JStudio/JStudio/fvb.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01", "Shield"), "JSystem/JStudio/JStudio/fvb-data.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01", "Shield"), "JSystem/JStudio/JStudio/fvb-data-parse.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JStudio/JStudio/jstudio-control.cpp"),
