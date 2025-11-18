@@ -91,6 +91,7 @@ public:
     /* 80A9E778 */ void allTagPosSet(cXyz const&);
     /* 80A9E80C */ void allLookPosSet(cXyz const&);
     /* 80A9E8A0 */ int talk(void*);
+    int test(void*);
     /* 80A9E910 */ BOOL evtEndProc();
     /* 80A9E9E8 */ int cutTutrialBegin(int);
     /* 80A9EAA0 */ int _cutTutrialBegin_Init(int const&);
@@ -136,21 +137,24 @@ public:
                     i_arcNames) {
                         OS_REPORT("|%06d:%x|daNpc_Pachi_Taro_c -> コンストラクト\n", g_Counter.mCounter0, this);
                     }
-    /* 80AA1558 */ u16 getEyeballMaterialNo();
-    /* 80AA1560 */ s32 getHeadJointNo();
-    /* 80AA1568 */ s32 getNeckJointNo();
-    /* 80AA1570 */ s32 getBackboneJointNo();
-    /* 80AA1578 */ BOOL checkChangeJoint(int);
-    /* 80AA1588 */ BOOL checkRemoveJoint(int);
+    /* 80AA1558 */ u16 getEyeballMaterialNo() { return 2; }
+    /* 80AA1560 */ s32 getHeadJointNo() { return 4; }
+    /* 80AA1568 */ s32 getNeckJointNo() { return 3; }
+    /* 80AA1570 */ s32 getBackboneJointNo() { return 1; }
+    /* 80AA1578 */ BOOL checkChangeJoint(int i_joint) { return i_joint == 4; }
+    /* 80AA1588 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == 7; }
 
     u32 getFlowNodeNo() { 
         u16 nodeNo = home.angle.x;
+        u32 rv;
         if (nodeNo == 0xffff) {
-            return -1;
+            rv = -1;
+        } else {
+            rv = nodeNo;
         }
-        return nodeNo;
+        return rv;
     }
-    int getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
+    u8 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
     u8 getBitSW() { return (fopAcM_GetParam(this) & 0xFF0000) >> 16; }
     u8 getBitSW2() { return fopAcM_GetParam(this) >> 24; }
     void clrMesPat() { mMesPat = -1; }

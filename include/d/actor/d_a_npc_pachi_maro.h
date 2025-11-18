@@ -92,6 +92,7 @@ public:
     void talkOff() { mTalk = 0; }
     void setTagPos(cXyz const& i_pos) { mTagPos = i_pos; }
     void setLookPos(cXyz const& i_pos) { mLookPos = i_pos; }
+    void setFMotion_Niramu_to_Besu() { mFMotion = 1; }
     void setFMotion_LookNone() { mFMotion = 2; }
 
     static char* mCutNameList[11];

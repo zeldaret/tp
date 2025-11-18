@@ -126,8 +126,10 @@ public:
     int getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
     int getBitSW() { return (fopAcM_GetParam(this) & 0xFF0000) >> 16; }
     void setFMotion_None() { mFMotion = 0; }
-    void setFMotion_LookNone() { mFMotion = 4; }
+    void setFMotion_Hit() { mFMotion = 1; }
+    void setFMotion_Mad() { mFMotion = 2; }
     void setFMotion_LookBros() { mFMotion = 3; }
+    void setFMotion_LookNone() { mFMotion = 4; }
     void talkOff() { mTalk = 0; }
     void setTagPos(cXyz const& i_pos) { mTagPos = i_pos; }
     void setLookPos(cXyz const& i_pos) { mLookPos = i_pos; }
