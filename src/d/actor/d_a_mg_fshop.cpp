@@ -1663,7 +1663,7 @@ static int daFshop_Create(fopAc_ac_c* actor) {
 
         u8 sp10 = 1;
         #if VERSION == VERSION_GCN_PAL || VERSION == VERSION_WII_PAL || PLATFORM_SHIELD
-        if (dComIfGs_getPalLanguage() == 1) {
+        if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_ENGLISH) {
             sp10 = 2;
         } else {
             sp10 = 0;
