@@ -45,6 +45,7 @@
     ".ninja_*": true,
     "objdiff.json": true,
     ".cache/**": true,
+    "compile_commands.json": true,
   },
   "clangd.arguments": [
       "--function-arg-placeholders=0",
