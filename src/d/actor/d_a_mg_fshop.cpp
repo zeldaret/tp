@@ -14,6 +14,24 @@
 #include "d/d_s_play.h"
 #include "Z2AudioLib/Z2Instances.h"
 
+enum koro2_parts {
+    KORO2_PART_BOX = 1,
+    KORO2_PART_CURVE_A_U_L,
+    KORO2_PART_CURVE_A_U_R,
+    KORO2_PART_CURVE_A_R_U,
+    KORO2_PART_CURVE_A_L_U,
+    KORO2_PART_START,
+    KORO2_PART_GOAL,
+    KORO2_PART_CURVE_B_U_L,
+    KORO2_PART_CURVE_B_U_R,
+    KORO2_PART_CURVE_B_R_U,
+    KORO2_PART_CURVE_B_L_U,
+    KORO2_PART_SLOPE_D,
+    KORO2_PART_SLOPE_U,
+    KORO2_PART_SLOPE_L,
+    KORO2_PART_SLOPE_R,
+};
+
 /* 8086C06C-8086C08C 0000EC 0020+00 1/1 0/0 0/0 .text
  * ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c            */
 static void ride_call_back(dBgW* i_bgw, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rideActor) {
@@ -25,16 +43,16 @@ static void ride_call_back(dBgW* i_bgw, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rid
 
 /* 8086C08C-8086C140 00010C 00B4+00 1/1 0/0 0/0 .text            Reel_CallBack__FP8J3DJointi */
 static int Reel_CallBack(J3DJoint* i_joint, int param_1) {
-    s32 userarea;
+    fs_rod_s* rod;
     J3DJoint* var_r27;
 
     if (param_1 == 0) {
         var_r27 = i_joint;
         int jnt_no = var_r27->getJntNo();
         J3DModel* model = j3dSys.getModel();
-        userarea = model->getUserArea();
+        rod = (fs_rod_s*)model->getUserArea();
         MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
-        cMtx_XrotM(*calc_mtx, *(s16*)(userarea + 0x58)); // fakematch, unknown type for userarea
+        cMtx_XrotM(*calc_mtx, rod->rot_x);
         model->setAnmMtx(jnt_no, *calc_mtx);
         MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
     }
@@ -44,14 +62,14 @@ static int Reel_CallBack(J3DJoint* i_joint, int param_1) {
 
 /* 8086C140-8086C214 0001C0 00D4+00 1/1 0/0 0/0 .text            frog_CallBack__FP8J3DJointi */
 static int frog_CallBack(J3DJoint* i_joint, int param_1) {
-    int userarea;
+    fs_lure_s* lure;
     J3DJoint* var_r27;
 
     if (param_1 == 0) {
         var_r27 = i_joint;
         int jnt_no = var_r27->getJntNo();
         J3DModel* model = j3dSys.getModel();
-        userarea = model->getUserArea();  // unknown type
+        lure = (fs_lure_s*)model->getUserArea();
 
         if (jnt_no == 1) {
             MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
@@ -86,847 +104,141 @@ static void koro2_draw(fshop_class* i_this) {
     mDoExt_modelUpdateDL(ArcIX_A_crwaku_model[0]);
 
     for (int i = 0; i < ARRAY_SIZE(i_this->mKoro2); i++) {
-        if (i_this->mKoro2[i].mpModel != NULL) {
-            g_env_light.setLightTevColorType_MAJI(i_this->mKoro2[i].mpModel, &actor->tevStr);
-            mDoExt_modelUpdateDL(i_this->mKoro2[i].mpModel);
+        if (i_this->mKoro2[i].model != NULL) {
+            g_env_light.setLightTevColorType_MAJI(i_this->mKoro2[i].model, &actor->tevStr);
+            mDoExt_modelUpdateDL(i_this->mKoro2[i].model);
         }
     }
 
     dComIfGd_setList();
 }
 
+/**
+ * Koro2 (Rollgoal) map data works as a 15x15 grid
+ * Each grid value represents a piece to be placed there (koro2_parts enum)
+ * (0) represents an empty space
+ *
+ * Up to 100 parts are supported in a course, though each piece has it's own max limit:
+ * Start: 1
+ * Goal: 1
+ * Box: 31
+ * CurveA: 16
+ * CurveB: 4
+ * Slope: 8
+ */
+
 /* 808702A4-8087032C 000020 0087+01 1/1 0/0 0/0 .data            koro2_map_LV1 */
 static s8 koro2_map_LV1[135] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x03,
-    0x01,
-    0x01,
-    0x01,
-    0x01,
-    0x01,
-    0x04,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x06,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x05, 0x01, 0x01, 0x02, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x03, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x05, 0x01, 0x01, 0x02, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 8087032C-808703B4 0000A8 0087+01 1/0 0/0 0/0 .data            koro2_map_LV2 */
 static s8 koro2_map_LV2[135] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x03,
-    0x01,
-    0x02,
-    0x00,
-    0x03,
-    0x01,
-    0x04,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x05,
-    0x01,
-    0x04,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x06,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x05, 0x01, 0x01, 0x02, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x03, 0x01, 0x02, 0x00, 0x03, 0x01, 0x04, 0x00,
+    0x00, 0x01, 0x00, 0x05, 0x01, 0x04, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x05, 0x01, 0x01, 0x02, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 808703B4-8087043C 000130 0087+01 1/0 0/0 0/0 .data            koro2_map_LV3 */
 static s8 koro2_map_LV3[135] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x03,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x05,
-    0x01,
-    0x01,
-    0x01,
-    0x04,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x03,
-    0x01,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x01,
-    0x04,
-    0x00,
-    0x00,
-    0x06,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x05, 0x01, 0x01, 0x02, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x03, 0x01, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x01, 0x00, 0x05, 0x01, 0x01, 0x01, 0x04, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x03, 0x01, 0x01, 0x02, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x05, 0x01, 0x01, 0x04, 0x00, 0x00, 0x06, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 8087043C-808704C4 0001B8 0087+01 1/0 0/0 0/0 .data            koro2_map_LV4 */
 static s8 koro2_map_LV4[135] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x03,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x04,
-    0x00,
-    0x05,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x03,
-    0x01,
-    0x01,
-    0x01,
-    0x01,
-    0x01,
-    0x04,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x01,
-    0x01,
-    0x01,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x03,
-    0x01,
-    0x01,
-    0x01,
-    0x01,
-    0x01,
-    0x04,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x03,
-    0x01,
-    0x01,
-    0x02,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x05,
-    0x01,
-    0x01,
-    0x04,
-    0x00,
-    0x00,
-    0x06,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x03, 0x01, 0x02, 0x00, 0x00, 0x00,
+    0x00, 0x05, 0x01, 0x04, 0x00, 0x05, 0x01, 0x02, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x03, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x05, 0x01, 0x01, 0x01, 0x01, 0x01, 0x02, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x03, 0x01, 0x01, 0x01, 0x01, 0x01, 0x04, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x03, 0x01, 0x01, 0x02, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x05, 0x01, 0x01, 0x04, 0x00, 0x00, 0x06, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 808704C4-8087054C 000240 0087+01 1/0 0/0 0/0 .data            koro2_map_LV5 */
 static s8 koro2_map_LV5[135] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x09,
-    0x00,
-    0x00,
-    0x08,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x0C,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x0B,
-    0x00,
-    0x00,
-    0x0A,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x0D,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x06,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x09, 0x00, 0x00, 0x08, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x0C, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x0B, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 8087054C-808705D4 0002C8 0087+01 1/0 0/0 0/0 .data            koro2_map_LV7 */
 static s8 koro2_map_LV7[135] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x07,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x05,
-    0x0E,
-    0x00,
-    0x00,
-    0x0F,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x08,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x01,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x0C,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x0D,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x06,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x05, 0x0E, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0C, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 808705D4-8087065C 000350 0087+01 1/0 0/0 0/0 .data            koro2_map_LV6 */
@@ -1002,16 +314,16 @@ static int daFshop_Draw(fshop_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     g_env_light.settingTevStruct(0x10, &actor->current.pos, &actor->tevStr);
 
-    if (i_this->field_0x4070 != NULL) {
-        g_env_light.setLightTevColorType_MAJI(i_this->field_0x4070, &actor->tevStr);
+    if (i_this->ballModel != NULL) {
+        g_env_light.setLightTevColorType_MAJI(i_this->ballModel, &actor->tevStr);
 
-        J3DMaterial* sp1C = i_this->field_0x4070->getModelData()->getMaterialNodePointer(0);
+        J3DMaterial* sp1C = i_this->ballModel->getModelData()->getMaterialNodePointer(0);
         sp1C->getTevKColor(1)->r = 0;
 
-        mDoExt_modelUpdateDL(i_this->field_0x4070);
+        mDoExt_modelUpdateDL(i_this->ballModel);
         dComIfGd_setSimpleShadow(
-            &actor->current.pos, i_this->field_0x40b4.GetGroundH(), (TREG_F(8) + 66.6f) * actor->scale.x,
-            i_this->field_0x40b4.m_gnd, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+            &actor->current.pos, i_this->ballAcch.GetGroundH(), (TREG_F(8) + 66.6f) * actor->scale.x,
+            i_this->ballAcch.m_gnd, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
        return 1;
     }
     
@@ -1030,20 +342,20 @@ static int daFshop_Draw(fshop_class* i_this) {
         f32 fVar4 = i_this->mLure[i].field_0x00.x - camera->lookat.eye.x;
         f32 fVar5 = i_this->mLure[i].field_0x00.z - camera->lookat.eye.z;
         if (SQUARE(fVar4) + SQUARE(fVar5) > KREG_F(11) + 1200.0f) {
-            g_env_light.setLightTevColorType_MAJI(i_this->mLure[i].field_0x14, &actor->tevStr);
-            mDoExt_modelUpdateDL(i_this->mLure[i].field_0x14);
+            g_env_light.setLightTevColorType_MAJI(i_this->mLure[i].model, &actor->tevStr);
+            mDoExt_modelUpdateDL(i_this->mLure[i].model);
 
             if (i_this->mLure[i].field_0x24 != 3) {
                 for (int j = 0; j < 2; j++) {
-                    dComIfGp_entrySimpleModel(i_this->mLure[i].field_0x18[j], roomNo);
+                    dComIfGp_entrySimpleModel(i_this->mLure[i].hookModel[j], roomNo);
                 }
             }
         }
     }
 
     for (int i = 0; i < 3; i++) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mRod[i].field_0x14, &actor->tevStr);
-        mDoExt_modelUpdateDL(i_this->mRod[i].field_0x14);
+        g_env_light.setLightTevColorType_MAJI(i_this->mRod[i].model, &actor->tevStr);
+        mDoExt_modelUpdateDL(i_this->mRod[i].model);
 
         static GXColor rod_color[3] = {
             {0x96, 0x50, 0x14, 0xFF},
@@ -1054,30 +366,30 @@ static int daFshop_Draw(fshop_class* i_this) {
         dComIfGd_set3DlineMat(&i_this->mRod[i].line_mat);
 
         for (int j = 0; j < 6; j++) {
-            dComIfGp_entrySimpleModel(i_this->mRod[i].field_0x18[j], roomNo);
+            dComIfGp_entrySimpleModel(i_this->mRod[i].ringModel[j], roomNo);
         }
     }
 
     for (int i = 0; i < 2; i++) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mTsubo[i].field_0x14, &actor->tevStr);
-        mDoExt_modelUpdateDL(i_this->mTsubo[i].field_0x14);
+        g_env_light.setLightTevColorType_MAJI(i_this->mTsubo[i].model, &actor->tevStr);
+        mDoExt_modelUpdateDL(i_this->mTsubo[i].model);
     }
 
     static GXColor l_color = {0x32, 0x64, 0x1E, 0xFF};
     i_this->field_0x3f88.update(15, TREG_F(11) + 1.2f, l_color, 2, &actor->tevStr);
     dComIfGd_set3DlineMat(&i_this->field_0x3f88);
 
-    g_env_light.setLightTevColorType_MAJI(i_this->field_0x6b30, &actor->tevStr);
-    mDoExt_modelUpdateDL(i_this->field_0x6b30);
+    g_env_light.setLightTevColorType_MAJI(i_this->canoeModel, &actor->tevStr);
+    mDoExt_modelUpdateDL(i_this->canoeModel);
 
-    g_env_light.setLightTevColorType_MAJI(i_this->field_0x3ff4, &actor->tevStr);
-    mDoExt_modelUpdateDL(i_this->field_0x3ff4);
+    g_env_light.setLightTevColorType_MAJI(i_this->hatModel, &actor->tevStr);
+    mDoExt_modelUpdateDL(i_this->hatModel);
 
-    if (i_this->field_0x4004 != NULL) {
+    if (i_this->photoModel != NULL) {
         mDoMtx_stack_c::transS(0.0f, 0.0f, 0.0f);
-        i_this->field_0x4004->setBaseTRMtx(mDoMtx_stack_c::get());
-        g_env_light.setLightTevColorType_MAJI(i_this->field_0x4004, &actor->tevStr);
-        mDoExt_modelUpdateDL(i_this->field_0x4004);
+        i_this->photoModel->setBaseTRMtx(mDoMtx_stack_c::get());
+        g_env_light.setLightTevColorType_MAJI(i_this->photoModel, &actor->tevStr);
+        mDoExt_modelUpdateDL(i_this->photoModel);
     }
 
     return 1;
@@ -1151,18 +463,18 @@ static void lure_set(fshop_class* i_this) {
         mDoMtx_stack_c::ZrotM(pLure->field_0x10);
         mDoMtx_stack_c::scaleM(pLure->field_0x2c, pLure->field_0x2c, pLure->field_0x28);
         mDoMtx_stack_c::transM(0.0f, 0.0f, 0.0f);
-        pLure->field_0x14->setBaseTRMtx(mDoMtx_stack_c::get());
+        pLure->model->setBaseTRMtx(mDoMtx_stack_c::get());
 
         if (pLure->field_0x24 != 3) {
             mDoMtx_stack_c::push();
             mDoMtx_stack_c::transM(0.0f, hook_1_offy[pLure->field_0x24], 1.0f);
             mDoMtx_stack_c::XrotM(-10000);
-            pLure->field_0x18[0]->setBaseTRMtx(mDoMtx_stack_c::get());
+            pLure->hookModel[0]->setBaseTRMtx(mDoMtx_stack_c::get());
             mDoMtx_stack_c::pop();
             mDoMtx_stack_c::transM(0.0f, hook_2_offy[pLure->field_0x24],
                                    hook_2_offz[pLure->field_0x24]);
             mDoMtx_stack_c::XrotM(0x4000);
-            pLure->field_0x18[1]->setBaseTRMtx(mDoMtx_stack_c::get());
+            pLure->hookModel[1]->setBaseTRMtx(mDoMtx_stack_c::get());
         }
     }
 }
@@ -1182,7 +494,7 @@ static void rod_set(fshop_class* i_this) {
         }
         mDoMtx_stack_c::XrotM(1300);
         mDoMtx_stack_c::YrotM(0);
-        pRod->field_0x14->setBaseTRMtx(mDoMtx_stack_c::get());
+        pRod->model->setBaseTRMtx(mDoMtx_stack_c::get());
 
         cXyz* local_64 = pRod->line_mat.getPos(0);
         if (pRod->field_0x4c == 0) {
@@ -1213,7 +525,7 @@ static void rod_set(fshop_class* i_this) {
             mDoMtx_stack_c::scaleM(guide_s[j], guide_s[j], guide_s[j]);
             mDoMtx_stack_c::transM(0.0f, 4.0f, 0.0f);
             mDoMtx_stack_c::YrotM(0x4000);
-            pRod->field_0x18[j]->setBaseTRMtx(mDoMtx_stack_c::get());
+            pRod->ringModel[j]->setBaseTRMtx(mDoMtx_stack_c::get());
         }
     }
 }
@@ -1280,7 +592,7 @@ static void tsubo_set(fshop_class* i_this) {
         mDoMtx_stack_c::XrotM(xrot);
         mDoMtx_stack_c::ZrotM(zrot);
         mDoMtx_stack_c::scaleM(1.0f, 1.0f, 1.0f);
-        pTsubo->field_0x14->setBaseTRMtx(mDoMtx_stack_c::get());
+        pTsubo->model->setBaseTRMtx(mDoMtx_stack_c::get());
 
         cLib_addCalc0(&pTsubo->field_0x1c, 1.0f, 50.0f);
     }
@@ -1333,12 +645,12 @@ static void koro2_mtx_set(fshop_class* i_this) {
     if (i_this->field_0x400d) {
         mDoMtx_stack_c::transS(0.0f, -10000.0f, 0.0f);
         MTXCopy(mDoMtx_stack_c::get(), i_this->field_0x4030);
-        i_this->field_0x402c->Move();
+        i_this->koro2WakuBgw->Move();
 
         for (int i = 0; i < 100; i++) {
-            if (i_this->mKoro2[i].mpModel != NULL) {
-                MTXCopy(mDoMtx_stack_c::get(), i_this->mKoro2[i].field_0x04);
-                i_this->mKoro2[i].mpBgW->Move();
+            if (i_this->mKoro2[i].model != NULL) {
+                MTXCopy(mDoMtx_stack_c::get(), i_this->mKoro2[i].bgMtx);
+                i_this->mKoro2[i].bgw->Move();
             }
         }
     } else {
@@ -1352,35 +664,35 @@ static void koro2_mtx_set(fshop_class* i_this) {
         i_this->mpA_crwaku_model->setBaseTRMtx(mDoMtx_stack_c::get());
         MTXCopy(mDoMtx_stack_c::get(), i_this->field_0x4030);
 
-        i_this->field_0x402c->Move();
+        i_this->koro2WakuBgw->Move();
         mDoMtx_stack_c::pop();
 
         f32 var_f31 = VREG_F(2) + -10.0f;
         f32 var_f30 = VREG_F(4) + -18.0f;
 
         for (int i = 0; i < 100; i++) {
-            if (i_this->mKoro2[i].mpModel != NULL) {
+            if (i_this->mKoro2[i].model != NULL) {
                 mDoMtx_stack_c::push();
-                mDoMtx_stack_c::transM(i_this->mKoro2[i].field_0x38.x + var_f31,
-                                       i_this->mKoro2[i].field_0x38.y,
-                                       i_this->mKoro2[i].field_0x38.z + var_f30);
-                mDoMtx_stack_c::YrotM(i_this->mKoro2[i].field_0x50);
-                mDoMtx_stack_c::scaleM(i_this->mKoro2[i].field_0x44.x,
-                                       i_this->mKoro2[i].field_0x44.y,
-                                       i_this->mKoro2[i].field_0x44.z);
+                mDoMtx_stack_c::transM(i_this->mKoro2[i].pos.x + var_f31,
+                                       i_this->mKoro2[i].pos.y,
+                                       i_this->mKoro2[i].pos.z + var_f30);
+                mDoMtx_stack_c::YrotM(i_this->mKoro2[i].rot_y);
+                mDoMtx_stack_c::scaleM(i_this->mKoro2[i].size.x,
+                                       i_this->mKoro2[i].size.y,
+                                       i_this->mKoro2[i].size.z);
                 mDoMtx_stack_c::push();
                 mDoMtx_stack_c::scaleM(0.01f, 0.01f, 0.01f);
-                i_this->mKoro2[i].mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
-                MTXCopy(mDoMtx_stack_c::get(), i_this->mKoro2[i].field_0x04);
+                i_this->mKoro2[i].model->setBaseTRMtx(mDoMtx_stack_c::get());
+                MTXCopy(mDoMtx_stack_c::get(), i_this->mKoro2[i].bgMtx);
 
-                i_this->mKoro2[i].mpBgW->Move();
+                i_this->mKoro2[i].bgw->Move();
                 mDoMtx_stack_c::pop();
-                mDoMtx_stack_c::multVecZero(&i_this->mKoro2[i].field_0x54);
+                mDoMtx_stack_c::multVecZero(&i_this->mKoro2[i].world_pos);
 
-                if (i_this->mKoro2[i].field_0x34 == 6) {
+                if (i_this->mKoro2[i].part_id == KORO2_PART_START) {
                     cStack_44.set(0.0f, 0.0f, 2.5f);
                     mDoMtx_stack_c::multVec(&cStack_44, &BallStartPos);
-                } else if (i_this->mKoro2[i].field_0x34 == 7) {
+                } else if (i_this->mKoro2[i].part_id == KORO2_PART_GOAL) {
                     cStack_44.set(0.0f, 0.0f, -2.0f);
                     mDoMtx_stack_c::multVec(&cStack_44, &BallEndPos);
                 }
@@ -1499,7 +811,7 @@ static void koro2_game(fshop_class* i_this) {
 
 /* 8086D854-8086DA00 0018D4 01AC+00 1/1 0/0 0/0 .text            ball_wall_check__FP11fshop_class */
 static int ball_wall_check(fshop_class* i_this) {
-    if (!i_this->field_0x40b4.ChkWallHit()) {
+    if (!i_this->ballAcch.ChkWallHit()) {
         return 0;
     }
 
@@ -1556,7 +868,7 @@ static int daFshop_Execute(fshop_class* i_this) {
         return 1;
     }
 
-    if (i_this->field_0x4070 != NULL) {
+    if (i_this->ballModel != NULL) {
         actor->scale.x = 0.024f;
         cXyz local_cc;
         cXyz local_d8;
@@ -1606,15 +918,15 @@ static int daFshop_Execute(fshop_class* i_this) {
                 actor->speed.y = -15.0f;
             }
 
-            i_this->field_0x40b4.m_gnd.OffWall();
-            i_this->field_0x40b4.CrrPos(dComIfG_Bgsp());
+            i_this->ballAcch.m_gnd.OffWall();
+            i_this->ballAcch.CrrPos(dComIfG_Bgsp());
             ball_wall_check(i_this);
 
             fshop_class* iVar6 = i_this->field_0x4008;
             for (int i = 0; i < 100; i++) {
-                if (iVar6->mKoro2[i].mpModel != NULL) {
-                    local_cc.x = iVar6->mKoro2[i].field_0x54.x - actor->current.pos.x;
-                    local_cc.z = iVar6->mKoro2[i].field_0x54.z - actor->current.pos.z;
+                if (iVar6->mKoro2[i].model != NULL) {
+                    local_cc.x = iVar6->mKoro2[i].world_pos.x - actor->current.pos.x;
+                    local_cc.z = iVar6->mKoro2[i].world_pos.z - actor->current.pos.z;
                     if (JMAFastSqrt(local_cc.x * local_cc.x + local_cc.z * local_cc.z) < 40.0f) {
                         iVar6->mKoro2[i].field_0x60 = 0;
                     }
@@ -1629,7 +941,7 @@ static int daFshop_Execute(fshop_class* i_this) {
             if (henna != NULL && henna->field_0x7b9 != 0 && (actor->field_0x567 == 1 || dTimer_getRestTimeMs() == 0)) {
                 BOOL bVar5 = FALSE;
                 for (int i = 0; i < 100; i++) {
-                    if (iVar6->mKoro2[i].mpModel != NULL && iVar6->mKoro2[i].field_0x60) {
+                    if (iVar6->mKoro2[i].model != NULL && iVar6->mKoro2[i].field_0x60) {
                         bVar5 = TRUE;
                         break;
                     }
@@ -1655,7 +967,7 @@ static int daFshop_Execute(fshop_class* i_this) {
                         if (henna != NULL) {
                             BOOL bVar5 = FALSE;
                             for (int i = 0; i < 100; i++) {
-                                if (iVar6->mKoro2[i].mpModel != NULL && iVar6->mKoro2[i].field_0x60) {
+                                if (iVar6->mKoro2[i].model != NULL && iVar6->mKoro2[i].field_0x60) {
                                     bVar5 = TRUE;
                                     break;
                                 }
@@ -1676,7 +988,7 @@ static int daFshop_Execute(fshop_class* i_this) {
                 }
             }
 
-            if (i_this->field_0x40b4.ChkGroundHit()) {
+            if (i_this->ballAcch.ChkGroundHit()) {
                 if (i_this->field_0x428c == 0) {
                     actor->speed.y = 7.0f;
                 } else if (i_this->field_0x428c == 1) {
@@ -1736,7 +1048,7 @@ static int daFshop_Execute(fshop_class* i_this) {
         local_cc = pmVar11->lookat.eye - actor->current.pos;
         mDoMtx_stack_c::YrotM(cM_atan2s(local_cc.x, local_cc.z));
         mDoMtx_stack_c::XrotM(-cM_atan2s(local_cc.y, JMAFastSqrt((local_cc.x * local_cc.x + local_cc.z * local_cc.z))));
-        i_this->field_0x4070->setBaseTRMtx(mDoMtx_stack_c::get());
+        i_this->ballModel->setBaseTRMtx(mDoMtx_stack_c::get());
         return 1;
     } else {
         lure_set(i_this);
@@ -1777,12 +1089,12 @@ static int daFshop_Execute(fshop_class* i_this) {
         mDoMtx_stack_c::transS(-450.0f, 25.0f, -250.0f);
         mDoMtx_stack_c::YrotM(0x4000);
         mDoMtx_stack_c::ZrotM(iVar6 + 2000);
-        i_this->field_0x6b30->setBaseTRMtx(mDoMtx_stack_c::get());
+        i_this->canoeModel->setBaseTRMtx(mDoMtx_stack_c::get());
         mDoMtx_stack_c::transS(-450.0f, 0.0f, -250.0f);
         mDoMtx_stack_c::scaleM(4.0f, 1.5f, 1.0f);
         MTXCopy(mDoMtx_stack_c::get(), i_this->field_0x6b38);
 
-        i_this->field_0x6b68->Move();
+        i_this->tableBgw->Move();
 
         local_c0.x = 325.0f - pPlayer->current.pos.x;
         local_c0.z = 237.0f - pPlayer->current.pos.z;
@@ -1804,7 +1116,7 @@ static int daFshop_Execute(fshop_class* i_this) {
         mDoMtx_stack_c::XrotM((s16)iVar10);
         mDoMtx_stack_c::ZrotM(iVar11 + 15000);
         mDoMtx_stack_c::transM(-10.0f, -7.0f, 0.0f);
-        i_this->field_0x3ff4->setBaseTRMtx(mDoMtx_stack_c::get());
+        i_this->hatModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
         koro2_game(i_this);
     }
@@ -1831,13 +1143,13 @@ static int daFshop_Delete(fshop_class* i_this) {
     }
 
     dComIfG_resDelete(&i_this->mPhase, "Fshop");
-    dComIfG_Bgsp().Release(i_this->field_0x6b68);
+    dComIfG_Bgsp().Release(i_this->tableBgw);
 
     if (i_this->field_0x400e != 0) {
-        dComIfG_Bgsp().Release(i_this->field_0x402c);
+        dComIfG_Bgsp().Release(i_this->koro2WakuBgw);
         for (int i = 0; i < 100; i++) {
-            if (i_this->mKoro2[i].mpBgW != NULL) {
-                dComIfG_Bgsp().Release(i_this->mKoro2[i].mpBgW);
+            if (i_this->mKoro2[i].bgw != NULL) {
+                dComIfG_Bgsp().Release(i_this->mKoro2[i].bgw);
             }
         }
     }
@@ -1864,106 +1176,113 @@ static int koro2_heapinit(fopAc_ac_c* actor) {
 
     fshop_class* i_this = (fshop_class*)actor;
 
-    i_this->field_0x402c = new dBgW();
-    if (i_this->field_0x402c == NULL) {
+    i_this->koro2WakuBgw = new dBgW();
+    if (i_this->koro2WakuBgw == NULL) {
         return 0;
     }
 
     cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("Fshop", 37);
-    if (i_this->field_0x402c->Set(dzb, 1, &i_this->field_0x4030) == 1) {
+    if (i_this->koro2WakuBgw->Set(dzb, 1, &i_this->field_0x4030) == 1) {
         return 0;
     }
 
-    i_this->field_0x402c->SetCrrFunc(dBgS_MoveBGProc_Typical);
-    i_this->field_0x402c->SetRideCallback(ride_call_back);
+    i_this->koro2WakuBgw->SetCrrFunc(dBgS_MoveBGProc_Typical);
+    i_this->koro2WakuBgw->SetRideCallback(ride_call_back);
     i_this->mpA_crwaku_model = ArcIX_A_crwaku_model[0];
 
     int part_no = 0;
     int flag567 = actor->field_0x567 & 8;
-    int r29 = 0;
-    int r28 = 0;
-    int r30 = 0;
-    int r27 = 0;
-    int r26 = 0;
-    int r25 = 0;
+    int crstart_model_idx = 0;
+    int crgoal_model_idx = 0;
+    int crbox_model_idx = 0;
+    int crcurve_a_model_idx = 0;
+    int crcurve_b_model_idx = 0;
+    int crcurve_c_model_idx = 0;
+
     s8* mapData = koro2_map_d[actor->field_0x567 & 7];
 
-    for (int i = 0; i < 9; i++) {
-        for (int local_60 = 0; local_60 < 15; local_60++) {
-            int index = local_60 * 9 + i;
+    for (int column = 0; column < 9; column++) {
+        for (int row = 0; row < 15; row++) {
+            int index = (row * 9) + column;
             if (mapData[index] != 0) {
-                if (flag567 != 0) {
-                    i_this->mKoro2[part_no].field_0x34 = pande_d[mapData[index]];
-                    i_this->mKoro2[part_no].field_0x38.x = 2.5f * (8 - i);
+                if (flag567) {
+                    i_this->mKoro2[part_no].part_id = pande_d[mapData[index]];
+                    i_this->mKoro2[part_no].pos.x = 2.5f * (8 - column);
                 } else {
-                    i_this->mKoro2[part_no].field_0x34 = mapData[index];
-                    i_this->mKoro2[part_no].field_0x38.x = 2.5f * i;
+                    i_this->mKoro2[part_no].part_id = mapData[index];
+                    i_this->mKoro2[part_no].pos.x = 2.5f * column;
                 }
 
-                i_this->mKoro2[part_no].field_0x38.y = 2.0f;
-                i_this->mKoro2[part_no].field_0x38.z = 2.5f * local_60;
+                i_this->mKoro2[part_no].pos.y = 2.0f;
+                i_this->mKoro2[part_no].pos.z = 2.5f * row;
 
-                if (i_this->mKoro2[part_no].field_0x34 == 6) {
-                    i_this->mKoro2[part_no].field_0x38.z -= 2.5f;
-                } else if (i_this->mKoro2[part_no].field_0x34 == 8) {
-                    i_this->mKoro2[part_no].field_0x38.z -= 2.5f;
-                    i_this->mKoro2[part_no].field_0x38.x -= 2.5f;
-                } else if (i_this->mKoro2[part_no].field_0x34 == 11) {
-                    i_this->mKoro2[part_no].field_0x38.z += 2.5f;
-                    i_this->mKoro2[part_no].field_0x38.x += 2.5f;
+                if (i_this->mKoro2[part_no].part_id == KORO2_PART_START) {
+                    i_this->mKoro2[part_no].pos.z -= 2.5f;
+                } else if (i_this->mKoro2[part_no].part_id == KORO2_PART_CURVE_B_U_L) {
+                    i_this->mKoro2[part_no].pos.z -= 2.5f;
+                    i_this->mKoro2[part_no].pos.x -= 2.5f;
+                } else if (i_this->mKoro2[part_no].part_id == KORO2_PART_CURVE_B_L_U) {
+                    i_this->mKoro2[part_no].pos.z += 2.5f;
+                    i_this->mKoro2[part_no].pos.x += 2.5f;
                 }
 
-                i_this->mKoro2[part_no].field_0x44.set(2.5f, 2.5f, 2.5f);
+                i_this->mKoro2[part_no].size.set(2.5f, 2.5f, 2.5f);
 
-                if (i_this->mKoro2[part_no].field_0x34 == 2 || i_this->mKoro2[part_no].field_0x34 == 8) {
-                    i_this->mKoro2[part_no].field_0x50 = -0x4000;
-                } else if (i_this->mKoro2[part_no].field_0x34 == 4 || i_this->mKoro2[part_no].field_0x34 == 10) {
-                    i_this->mKoro2[part_no].field_0x50 = -0x8000;
-                } else if (i_this->mKoro2[part_no].field_0x34 == 5 || i_this->mKoro2[part_no].field_0x34 == 11) {
-                    i_this->mKoro2[part_no].field_0x50 = 0x4000;
-                } else if (i_this->mKoro2[part_no].field_0x34 == 12) {
-                    i_this->mKoro2[part_no].field_0x50 = -0x8000;
-                } else if (i_this->mKoro2[part_no].field_0x34 == 14) {
-                    i_this->mKoro2[part_no].field_0x50 = -0x4000;
-                } else if (i_this->mKoro2[part_no].field_0x34 == 15) {
-                    i_this->mKoro2[part_no].field_0x50 = 0x4000;
-                }
-                
-                if (koro2_bmd[i_this->mKoro2[part_no].field_0x34 - 1] == 10) {
-                    i_this->mKoro2[part_no].mpModel = ArcIX_A_crbox_model[r30];
-                    r30++;
-                } else if (koro2_bmd[i_this->mKoro2[part_no].field_0x34 - 1] == 15) {
-                    i_this->mKoro2[part_no].mpModel = ArcIX_A_crstart_model[r29];
-                    r29++;
-                } else if (koro2_bmd[i_this->mKoro2[part_no].field_0x34 - 1] == 13) {
-                    i_this->mKoro2[part_no].mpModel = ArcIX_A_crgoal_model[r28];
-                    r28++;
-                } else if (koro2_bmd[i_this->mKoro2[part_no].field_0x34 - 1] == 11) {
-                    i_this->mKoro2[part_no].mpModel = ArcIX_A_crcurve_a_model[r27];
-                    r27++;
-                } else if (koro2_bmd[i_this->mKoro2[part_no].field_0x34 - 1] == 12) {
-                    i_this->mKoro2[part_no].mpModel = ArcIX_A_crcurve_b_model[r26];
-                    r26++;
-                } else if (koro2_bmd[i_this->mKoro2[part_no].field_0x34 - 1] == 14) {
-                    i_this->mKoro2[part_no].mpModel = ArcIX_A_crsaka_model[r25];
-                    r25++;
+                if (i_this->mKoro2[part_no].part_id == KORO2_PART_CURVE_A_U_L ||
+                    i_this->mKoro2[part_no].part_id == KORO2_PART_CURVE_B_U_L)
+                {
+                    i_this->mKoro2[part_no].rot_y = -0x4000;
+                } else if (i_this->mKoro2[part_no].part_id == KORO2_PART_CURVE_A_R_U ||
+                           i_this->mKoro2[part_no].part_id == KORO2_PART_CURVE_B_R_U)
+                {
+                    i_this->mKoro2[part_no].rot_y = -0x8000;
+                } else if (i_this->mKoro2[part_no].part_id == KORO2_PART_CURVE_A_L_U ||
+                           i_this->mKoro2[part_no].part_id == KORO2_PART_CURVE_B_L_U)
+                {
+                    i_this->mKoro2[part_no].rot_y = 0x4000;
+                } else if (i_this->mKoro2[part_no].part_id == KORO2_PART_SLOPE_D) {
+                    i_this->mKoro2[part_no].rot_y = -0x8000;
+                } else if (i_this->mKoro2[part_no].part_id == KORO2_PART_SLOPE_L) {
+                    i_this->mKoro2[part_no].rot_y = -0x4000;
+                } else if (i_this->mKoro2[part_no].part_id == KORO2_PART_SLOPE_R) {
+                    i_this->mKoro2[part_no].rot_y = 0x4000;
                 }
                 
-                if (i_this->mKoro2[part_no].mpModel == NULL) {
+                if (koro2_bmd[i_this->mKoro2[part_no].part_id - 1] == 10) {
+                    i_this->mKoro2[part_no].model = ArcIX_A_crbox_model[crbox_model_idx];
+                    crbox_model_idx++;
+                } else if (koro2_bmd[i_this->mKoro2[part_no].part_id - 1] == 15) {
+                    i_this->mKoro2[part_no].model = ArcIX_A_crstart_model[crstart_model_idx];
+                    crstart_model_idx++;
+                } else if (koro2_bmd[i_this->mKoro2[part_no].part_id - 1] == 13) {
+                    i_this->mKoro2[part_no].model = ArcIX_A_crgoal_model[crgoal_model_idx];
+                    crgoal_model_idx++;
+                } else if (koro2_bmd[i_this->mKoro2[part_no].part_id - 1] == 11) {
+                    i_this->mKoro2[part_no].model = ArcIX_A_crcurve_a_model[crcurve_a_model_idx];
+                    crcurve_a_model_idx++;
+                } else if (koro2_bmd[i_this->mKoro2[part_no].part_id - 1] == 12) {
+                    i_this->mKoro2[part_no].model = ArcIX_A_crcurve_b_model[crcurve_b_model_idx];
+                    crcurve_b_model_idx++;
+                } else if (koro2_bmd[i_this->mKoro2[part_no].part_id - 1] == 14) {
+                    i_this->mKoro2[part_no].model = ArcIX_A_crsaka_model[crcurve_c_model_idx];
+                    crcurve_c_model_idx++;
+                }
+                
+                if (i_this->mKoro2[part_no].model == NULL) {
                     return 0;
                 }
                 
-                i_this->mKoro2[part_no].mpBgW = new dBgW();
-                if (i_this->mKoro2[part_no].mpBgW == NULL) {
+                i_this->mKoro2[part_no].bgw = new dBgW();
+                if (i_this->mKoro2[part_no].bgw == NULL) {
                     return 0;
                 }
 
-                cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("Fshop",koro2_dzb[i_this->mKoro2[part_no].field_0x34 - 1]);
-                if (i_this->mKoro2[part_no].mpBgW->Set(dzb, 1, &i_this->mKoro2[part_no].field_0x04) == 1) {
+                cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("Fshop",koro2_dzb[i_this->mKoro2[part_no].part_id - 1]);
+                if (i_this->mKoro2[part_no].bgw->Set(dzb, 1, &i_this->mKoro2[part_no].bgMtx) == 1) {
                     return 0;
                 }
 
-                i_this->mKoro2[part_no].mpBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
+                i_this->mKoro2[part_no].bgw->SetCrrFunc(dBgS_MoveBGProc_Typical);
 
                 part_no++;
                 if (part_no >= 100) {
@@ -2021,13 +1340,13 @@ static int useHeapInit(fopAc_ac_c* actor) {
         modelData = dComIfG_getObjectRes("Fshop", lure_d[i_this->mLure[i].field_0x24]);
         JUT_ASSERT(2832, modelData != NULL);
 
-        i_this->mLure[i].field_0x14 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
-        if (i_this->mLure[i].field_0x14 == NULL) {
+        i_this->mLure[i].model = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+        if (i_this->mLure[i].model == NULL) {
             return 0;
         }
 
         if (i_this->mLure[i].field_0x24 == 3) {
-            i_this->mLure[i].field_0x14->setUserArea((uintptr_t)&i_this->mLure[i]);
+            i_this->mLure[i].model->setUserArea((uintptr_t)&i_this->mLure[i]);
 
             for (u16 j = 0; j < ((J3DModelData*)modelData)->getJointNum(); j++) {
                 if (j == 1) {
@@ -2039,8 +1358,8 @@ static int useHeapInit(fopAc_ac_c* actor) {
             JUT_ASSERT(2852, modelData != NULL);
 
             for (int j = 0; j < 2; j++) {
-                i_this->mLure[i].field_0x18[j] = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x20000, 0x11000084);
-                if (i_this->mLure[i].field_0x18[j] == NULL) {
+                i_this->mLure[i].hookModel[j] = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x20000, 0x11000084);
+                if (i_this->mLure[i].hookModel[j] == NULL) {
                     return 0;
                 }
             }
@@ -2067,16 +1386,16 @@ static int useHeapInit(fopAc_ac_c* actor) {
             i_this->mRod[i].field_0x54 = 30.0f * (1.0f + cM_rndF2(0.15f));
         }
 
-        static int rod_d[] = {0x19, 0x18,};
+        static int rod_d[] = {0x19, 0x18};
         modelData = dComIfG_getObjectRes("Fshop", rod_d[i_this->mRod[i].field_0x4c]);
         JUT_ASSERT(2903, modelData != NULL);
-        i_this->mRod[i].field_0x14 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
-        if (i_this->mRod[i].field_0x14 == NULL) {
+        i_this->mRod[i].model = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+        if (i_this->mRod[i].model == NULL) {
             return 0;
         }
 
-        i_this->mRod[i].field_0x14->setUserArea((uintptr_t)&i_this->mRod[i]);
-        i_this->mRod[i].field_0x58 = cM_rndF2(65536.0f);
+        i_this->mRod[i].model->setUserArea((uintptr_t)&i_this->mRod[i]);
+        i_this->mRod[i].rot_x = cM_rndF2(65536.0f);
 
         for (u16 j = 0; j < ((J3DModelData*)modelData)->getJointNum(); j++) {
             if (j == 1) {
@@ -2088,8 +1407,8 @@ static int useHeapInit(fopAc_ac_c* actor) {
         JUT_ASSERT(2923, modelData != NULL);
 
         for (int j = 0; j < 6; j++) {
-            i_this->mRod[i].field_0x18[j] = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x20000, 0x11000084);
-            if (i_this->mRod[i].field_0x18[j] == NULL) {
+            i_this->mRod[i].ringModel[j] = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x20000, 0x11000084);
+            if (i_this->mRod[i].ringModel[j] == NULL) {
                 return 0;
             }
         }
@@ -2126,8 +1445,8 @@ static int useHeapInit(fopAc_ac_c* actor) {
 
         JUT_ASSERT(2969, modelData != NULL);
 
-        i_this->mTsubo[i].field_0x14 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
-        if (i_this->mTsubo[i].field_0x14 == NULL) {
+        i_this->mTsubo[i].model = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+        if (i_this->mTsubo[i].model == NULL) {
             return 0;
         }
     }
@@ -2138,26 +1457,26 @@ static int useHeapInit(fopAc_ac_c* actor) {
 
     modelData = dComIfG_getObjectRes("Fshop", 0x12);
     JUT_ASSERT(3035, modelData != NULL);
-    i_this->field_0x6b30 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
-    if (i_this->field_0x6b30 == NULL) {
+    i_this->canoeModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+    if (i_this->canoeModel == NULL) {
         return 0;
     }
 
-    i_this->field_0x6b68 = new dBgW();
-    if (i_this->field_0x6b68 == NULL) {
+    i_this->tableBgw = new dBgW();
+    if (i_this->tableBgw == NULL) {
         return 0;
     }
 
-    if (i_this->field_0x6b68->Set((cBgD_t*)dComIfG_getObjectRes("Fshop", 0x26), 1, &i_this->field_0x6b38) == 1) {
+    if (i_this->tableBgw->Set((cBgD_t*)dComIfG_getObjectRes("Fshop", 0x26), 1, &i_this->field_0x6b38) == 1) {
         return 0;
     }
 
-    i_this->field_0x6b68->SetCrrFunc(dBgS_MoveBGProc_Typical);
+    i_this->tableBgw->SetCrrFunc(dBgS_MoveBGProc_Typical);
 
     modelData = dComIfG_getObjectRes("Fshop", 0x15);
     JUT_ASSERT(3069, modelData != NULL);
-    i_this->field_0x3ff4 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
-    if (i_this->field_0x3ff4 == 0) {
+    i_this->hatModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+    if (i_this->hatModel == NULL) {
         return 0;
     }
 
@@ -2212,8 +1531,8 @@ static int useHeapInit(fopAc_ac_c* actor) {
     if ((int)dComIfGs_getEventReg(0xF47F) >= 10) {
         modelData = dComIfG_getObjectRes("Fshop", 0x11);
         JUT_ASSERT(3137, modelData != NULL);
-        i_this->field_0x4004 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
-        if (i_this->field_0x4004 == 0) {
+        i_this->photoModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+        if (i_this->photoModel == NULL) {
             return 0;
         }
     }
@@ -2227,8 +1546,8 @@ static int BalluseHeapInit(fopAc_ac_c* actor) {
 
     void* modelData = dComIfG_getObjectRes("Fshop", 9);
     JUT_ASSERT(3157, modelData != NULL);
-    i_this->field_0x4070 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
-    if (i_this->field_0x4070 == 0) {
+    i_this->ballModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+    if (i_this->ballModel == NULL) {
         return 0;
     }
 
@@ -2240,26 +1559,26 @@ static int daFshop_Create(fopAc_ac_c* actor) {
     fshop_class* i_this = (fshop_class*)actor;
     fopAcM_ct(actor, fshop_class);
 
-    int sp3C = dComIfG_resLoad(&i_this->mPhase, "Fshop");
-    if (sp3C == cPhs_COMPLEATE_e) {
+    int phase_state = dComIfG_resLoad(&i_this->mPhase, "Fshop");
+    if (phase_state == cPhs_COMPLEATE_e) {
         OS_REPORT("FSHOP PARAM %x\n", fopAcM_GetParam(actor));
         if ((fopAcM_GetParam(actor) & 0xFF) == 0x23) {
             if (!fopAcM_entrySolidHeap(actor, BalluseHeapInit, 0x800)) {
                 OS_REPORT("//////////////FSHOP BALL SET NON !!\n");
-                return 5;
+                return cPhs_ERROR_e;
             }
 
-            i_this->field_0x40b4.Set(fopAcM_GetPosition_p(actor), fopAcM_GetOldPosition_p(actor), actor, 1, &i_this->field_0x4074, fopAcM_GetSpeed_p(actor), NULL, NULL);
-            i_this->field_0x4074.SetWall(9.0f, 11.0f);
-            i_this->field_0x40b4.OnWallSort();
-            return sp3C;
+            i_this->ballAcch.Set(fopAcM_GetPosition_p(actor), fopAcM_GetOldPosition_p(actor), actor, 1, &i_this->ballAcchcir, fopAcM_GetSpeed_p(actor), NULL, NULL);
+            i_this->ballAcchcir.SetWall(9.0f, 11.0f);
+            i_this->ballAcch.OnWallSort();
+            return phase_state;
         }
 
         if ((s8)(fopAcM_GetParam(actor) & 0xFF) >= 100) {
             i_this->field_0x400e = (fopAcM_GetParam(actor) & 0xFF) - 100;
             actor->field_0x567 = ((i_this->field_0x400e - 1) | (dComIfGs_getEventReg(0xF63F) & 8));
 
-            u32 sp58[] = {
+            u32 heapsizes[] = {
                 0x84A0,
                 0x9AC0,
                 0xB440,
@@ -2270,24 +1589,24 @@ static int daFshop_Create(fopAc_ac_c* actor) {
                 0xA9E0,
             };
 
-            if (!fopAcM_entrySolidHeap(actor, koro2_heapinit, sp58[i_this->field_0x400e - 1])) {
+            if (!fopAcM_entrySolidHeap(actor, koro2_heapinit, heapsizes[i_this->field_0x400e - 1])) {
                 OS_REPORT("//////////////FSHOP KORO222 SET NON !!\n");
-                return 5;
+                return cPhs_ERROR_e;
             }
 
-            if (i_this->field_0x402c != NULL && dComIfG_Bgsp().Regist(i_this->field_0x402c, actor)) {
-                return 5;
+            if (i_this->koro2WakuBgw != NULL && dComIfG_Bgsp().Regist(i_this->koro2WakuBgw, actor)) {
+                return cPhs_ERROR_e;
             }
 
             for (int i = 0; i < 100; i++) {
-                if (i_this->mKoro2[i].mpBgW != NULL && dComIfG_Bgsp().Regist(i_this->mKoro2[i].mpBgW, actor)) {
-                    return 5;
+                if (i_this->mKoro2[i].bgw != NULL && dComIfG_Bgsp().Regist(i_this->mKoro2[i].bgw, actor)) {
+                    return cPhs_ERROR_e;
                 }
             }
 
             i_this->field_0x428d = 30;
             i_this->field_0x400d = 1;
-            return sp3C;
+            return phase_state;
         }
 
         fopAcM_SetParam(actor, 0);
@@ -2297,13 +1616,13 @@ static int daFshop_Create(fopAc_ac_c* actor) {
 
         if (!fopAcM_entrySolidHeap(actor, useHeapInit, 0x5B000)) {
             OS_REPORT("//////////////FSHOP SET NON !!\n");
-            return 5;
+            return cPhs_ERROR_e;
         }
 
         OS_REPORT("//////////////FSHOP SET 2 !!\n");
 
-        if (i_this->field_0x6b68 != NULL && dComIfG_Bgsp().Regist(i_this->field_0x6b68, actor)) {
-            return 5;
+        if (i_this->tableBgw != NULL && dComIfG_Bgsp().Regist(i_this->tableBgw, actor)) {
+            return cPhs_ERROR_e;
         }
 
         for (int i = 0; i < 60; i++) {
@@ -2367,30 +1686,30 @@ static int daFshop_Create(fopAc_ac_c* actor) {
                 sp24 = dComIfGs_getEventReg(check_kind[i]);
             }
 
-            if (sp24 >= 0xA) {
-                u32 sp28 = (sp24 << 8) | 0xFFFF0000 | i;
-                fopAcM_create(PROC_MG_FISH, sp28, &actor->current.pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1);
+            if (sp24 >= 10) {
+                u32 parameters = (sp24 << 8) | 0xFFFF0000 | i;
+                fopAcM_create(PROC_MG_FISH, parameters, &actor->current.pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1);
             }
         }
 
-        cXyz sp48(-648.0f + YREG_F(7), 215.0f + YREG_F(8), 380.0f + YREG_F(9));
-        csXyz sp40(0, 0, 0);
-        fopAcM_create(PROC_OBJ_KAGE, 0xFFFFFF01, &sp48, fopAcM_GetRoomNo(actor), &sp40, NULL, -1);
+        cXyz work_pos(-648.0f + YREG_F(7), 215.0f + YREG_F(8), 380.0f + YREG_F(9));
+        csXyz work_angle(0, 0, 0);
+        fopAcM_create(PROC_OBJ_KAGE, 0xFFFFFF01, &work_pos, fopAcM_GetRoomNo(actor), &work_angle, NULL, -1);
 
         for (int i = 0; i < 8; i++) {
             fopAcM_create(PROC_MG_FISH, 0xFFFF2005, &actor->current.pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1);
         }
 
-        sp48.set(-131.0f, 3000.0f + nREG_F(7), -4500.0f);
-        fopAcM_create(PROC_NPC_TK, -1, &sp48, fopAcM_GetRoomNo(actor), NULL, NULL, -1);
+        work_pos.set(-131.0f, 3000.0f + nREG_F(7), -4500.0f);
+        fopAcM_create(PROC_NPC_TK, -1, &work_pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1);
 
         for (int i = 0; i < 5; i++) {
-            sp48.set(-450.0f, 0.0f, -878.0f);
-            fopAcM_create(PROC_BD, 0xFFFFFFFF, &sp48, fopAcM_GetRoomNo(actor), NULL, NULL, -1);
+            work_pos.set(-450.0f, 0.0f, -878.0f);
+            fopAcM_create(PROC_BD, 0xFFFFFFFF, &work_pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1);
         }
     }
 
-    return sp3C;
+    return phase_state;
 }
 
 /* 808708BC-808708DC -00001 0020+00 1/0 0/0 0/0 .data            l_daFshop_Method */

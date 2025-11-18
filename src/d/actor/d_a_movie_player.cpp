@@ -9,18 +9,12 @@
 // in other TUs, but not here.
 #pragma dont_inline on
 
-#include <stdio.h>
-#include <cstring.h>
-#include <dolphin.h>
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JAudio2/JASAiCtrl.h"
+#include "JSystem/JAudio2/JASDriverIF.h"
 #include "d/actor/d_a_movie_player.h"
-#include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "Z2AudioLib/Z2Instances.h"
-#include "m_Do/m_Do_graphic.h"
 #include "f_op/f_op_overlap_mng.h"
-#include "SSystem/SComponent/c_API_controller_pad.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -70,13 +64,12 @@ static u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag) {
             yn += (sample << decInfo.scale) << 11;
             yn <<= 5;
 
-            if (sample > 0x8000) {
-                yn += 0x10000;
-            } else if ((sample == 0x8000) && ((yn & 0x10000) != 0)) {
-                yn += 0x10000;
-            }
-
-            yn += 0x8000;
+            if ((u16)(yn & 0xffff) > 0x8000) {
+				yn += 0x10000;
+			} else if ((u16)(yn & 0xffff) == 0x8000) {
+				if ((yn & 0x10000))
+					yn += 0x10000;
+			}
 
             if (yn > 2147483647LL) {
                 yn = 2147483647LL;
@@ -105,7 +98,15 @@ static u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag) {
             yn += header->lCoef[decInfo.predictor][0] * yn1;
             yn += (sample << decInfo.scale) << 11;
             yn <<= 5;
-            yn += 0x8000;
+            
+            if ((u16)(yn & 0xffff) > 0x8000) {
+				yn += 0x10000;
+			} else {
+				if ((u16)(yn & 0xffff) == 0x8000) {
+					if ((yn & 0x10000))
+						yn += 0x10000;
+				}
+			}
 
             if (yn > 2147483647LL) {
                 yn = 2147483647LL;
@@ -133,7 +134,14 @@ static u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag) {
             yn += (sample << decInfo.scale) << 11;
             yn <<= 5;
 
-            yn += 0x8000;
+            if ((u16)(yn & 0xffff) > 0x8000) {
+				yn += 0x10000;
+			} else {
+				if ((u16)(yn & 0xffff) == 0x8000) {
+					if ((yn & 0x10000))
+						yn += 0x10000;
+				}
+			}
 
             if (yn > 2147483647LL) {
                 yn = 2147483647LL;
@@ -276,13 +284,13 @@ static s32 THPVideoDecode(void* file, void* tileY, void* tileU, void* tileV, voi
     }
 
     __THPWorkArea = (u8*)work;
-    __THPInfo     = (THPFileInfo*)OSRoundUp32B(__THPWorkArea);
+    __THPInfo = (THPFileInfo*)OSRoundUp32B(__THPWorkArea);
     __THPWorkArea = (u8*)OSRoundUp32B(__THPWorkArea) + sizeof(THPFileInfo);
     DCZeroRange(__THPInfo, sizeof(THPFileInfo));
-    __THPInfo->cnt           = 33;
+    __THPInfo->cnt = 33;
     __THPInfo->decompressedY = 0;
-    __THPInfo->c             = (u8*)file;
-    all_done                 = FALSE;
+    __THPInfo->c = (u8*)file;
+    all_done = FALSE;
 
     for (;;) {
         if ((*(__THPInfo->c)++) != 255) {
@@ -465,7 +473,7 @@ static u8 __THPReadScaneHeader() {
     for (i = 0; i < 3; i++) {
         utmp8 = (*(__THPInfo->c)++);
 
-        utmp8                                    = (*(__THPInfo->c)++);
+        utmp8 = (*(__THPInfo->c)++);
         __THPInfo->components[i].DCTableSelector = (u8)(utmp8 >> 4);
         __THPInfo->components[i].ACTableSelector = (u8)(utmp8 & 15);
 
@@ -479,7 +487,7 @@ static u8 __THPReadScaneHeader() {
     }
 
     __THPInfo->c += 3;
-    __THPInfo->MCUsPerRow           = (u16)THPROUNDUP(__THPInfo->xPixelSize, 16);
+    __THPInfo->MCUsPerRow = (u16)THPROUNDUP(__THPInfo->xPixelSize, 16);
     __THPInfo->components[0].predDC = 0;
     __THPInfo->components[1].predDC = 0;
     __THPInfo->components[2].predDC = 0;
@@ -502,35 +510,37 @@ static const f64 __THPAANScaleFactor[8] = {
 /* 808731B4-80873574 000AD4 03C0+00 1/1 0/0 0/0 .text            __THPReadQuantizationTable */
 // NONMATCHING - regalloc
 static u8 __THPReadQuantizationTable() {
-    f32 q_temp[64];
+    u16 length, id, i, row, col;
+	f32 q_temp[64];
 
-    u16 length = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
-    __THPInfo->c += 2;
-    length -= 2;
+	length = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
+	__THPInfo->c += 2;
+	length -= 2;
 
-    do {
-        u16 i;
-        u16 id = (*(__THPInfo->c)++);
+	for (;;) {
+		id = (*(__THPInfo->c)++);
 
-        for (i = 0; i < 64; i++) {
-            q_temp[__THPJpegNaturalOrder[i]] = (f32)(*(__THPInfo->c)++);
-        }
+		for (i = 0; i < 64; i++) {
+			q_temp[__THPJpegNaturalOrder[i]] = (f32)(*(__THPInfo->c)++);
+		}
 
-        u16 row;
-        u16 col;
-        u16 j;
-        j = 0;
-        for (row = 0; row < 8; row++) {
-            for (col = 0; col < 8; col++) {
-                __THPInfo->quantTabs[id][j] = (f32)((f64)q_temp[j] * __THPAANScaleFactor[row] * __THPAANScaleFactor[col]);
-                j++;
-            }
-        }
+		i = 0;
+		for (row = 0; row < 8; row++) {
+			for (col = 0; col < 8; col++) {
+				__THPInfo->quantTabs[id][i]
+				    = (f32)((f64)q_temp[i] * __THPAANScaleFactor[row]
+				            * __THPAANScaleFactor[col]);
+				i++;
+			}
+		}
 
-        length -= 65;
-    } while (length != 0);
+		length -= 65;
+		if (!length) {
+			break;
+		}
+	}
 
-    return 0;
+	return 0;
 }
 
 /* 80873574-8087375C 000E94 01E8+00 1/1 0/0 0/0 .text            __THPReadHuffmanTableSpecification
@@ -541,17 +551,17 @@ static u8 __THPReadHuffmanTableSpecification() {
 
     __THPHuffmanSizeTab = __THPWorkArea;
     __THPHuffmanCodeTab = (u16*)((u32)__THPWorkArea + 256 + 1);
-    length              = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
+    length = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
     __THPInfo->c += 2;
     length -= 2;
 
     for (;;) {
-        i                = (*(__THPInfo->c)++);
-        id               = (u8)(i & 15);
-        t_class          = (u8)(i >> 4);
+        i = (*(__THPInfo->c)++);
+        id = (u8)(i & 15);
+        t_class = (u8)(i >> 4);
         __THPHuffmanBits = __THPInfo->c;
-        tab_index        = (u8)((id << 1) + t_class);
-        num_Vij          = 0;
+        tab_index = (u8)((id << 1) + t_class);
+        num_Vij = 0;
 
         for (i = 0; i < 16; i++) {
             num_Vij += (*(__THPInfo->c)++);
@@ -593,9 +603,9 @@ static void __THPHuffGenerateCodeTable() {
     u8 si;
     u16 p, code;
 
-    p    = 0;
+    p = 0;
     code = 0;
-    si   = __THPHuffmanSizeTab[0];
+    si = __THPHuffmanSizeTab[0];
 
     while (__THPHuffmanSizeTab[p]) {
         while (__THPHuffmanSizeTab[p] == si) {
@@ -643,7 +653,7 @@ static void __THPPrepBitStream() {
     u32* ptr;
     u32 offset, i, j, k;
 
-    ptr    = (u32*)((u32)__THPInfo->c & 0xFFFFFFFC);
+    ptr = (u32*)((u32)__THPInfo->c & 0xFFFFFFFC);
     offset = (u32)__THPInfo->c & 3;
 
     if (__THPInfo->cnt != 33) {
@@ -652,7 +662,7 @@ static void __THPPrepBitStream() {
         __THPInfo->cnt = (offset * 8) + 1;
     }
 
-    __THPInfo->c        = (u8*)ptr;
+    __THPInfo->c = (u8*)ptr;
     __THPInfo->currByte = *ptr;
 
     for (i = 0; i < 4; i++) {
@@ -704,7 +714,7 @@ static void __THPDecompressYUV(void* tileY, void* tileU, void* tileV) {
     __THPInfo->dLC[2] = (u8*)tileV;
 
     currentY = __THPInfo->decompressedY;
-    targetY  = __THPInfo->yPixelSize;
+    targetY = __THPInfo->yPixelSize;
 
     __THPGQRSetup();
     __THPPrepBitStream();
@@ -791,31 +801,31 @@ static void __THPDecompressiMCURow512x448() {
         __THPHuffDecodeDCTCompU(__THPInfo, __THPMCUBuffer[4]);
         __THPHuffDecodeDCTCompV(__THPInfo, __THPMCUBuffer[5]);
 
-        comp  = &__THPInfo->components[0];
+        comp = &__THPInfo->components[0];
         Gbase = __THPLCWork512[0];
-        Gwid  = 512;
-        Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+        Gwid = 512;
+        Gq = __THPInfo->quantTabs[comp->quantizationTableSelector];
         x_pos = (u32)(cl_num * 16);
         __THPInverseDCTNoYPos(__THPMCUBuffer[0], x_pos);
         __THPInverseDCTNoYPos(__THPMCUBuffer[1], x_pos + 8);
         __THPInverseDCTY8(__THPMCUBuffer[2], x_pos);
         __THPInverseDCTY8(__THPMCUBuffer[3], x_pos + 8);
 
-        comp  = &__THPInfo->components[1];
+        comp = &__THPInfo->components[1];
         Gbase = __THPLCWork512[1];
-        Gwid  = 256;
-        Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+        Gwid = 256;
+        Gq = __THPInfo->quantTabs[comp->quantizationTableSelector];
         x_pos /= 2;
         __THPInverseDCTNoYPos(__THPMCUBuffer[4], x_pos);
-        comp  = &__THPInfo->components[2];
+        comp = &__THPInfo->components[2];
         Gbase = __THPLCWork512[2];
-        Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+        Gq = __THPInfo->quantTabs[comp->quantizationTableSelector];
         __THPInverseDCTNoYPos(__THPMCUBuffer[5], x_pos);
 
         if (__THPInfo->RST != 0) {
             if ((--__THPInfo->currMCU) == 0) {
                 __THPInfo->currMCU = __THPInfo->nMCU;
-                __THPInfo->cnt     = 1 + ((__THPInfo->cnt + 6) & 0xFFFFFFF8);
+                __THPInfo->cnt = 1 + ((__THPInfo->cnt + 6) & 0xFFFFFFF8);
 
                 if (__THPInfo->cnt > 33) {
                     __THPInfo->cnt = 33;
@@ -843,13 +853,13 @@ static void __THPInverseDCTY8(register THPCoeff* in, register u32 xPos) {
     register f32 tmp0, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9;
     register f32 tmp10, tmp11, tmp12, tmp13;
     register f32 tmp20, tmp21, tmp22, tmp23;
-    register f32 cc4    = 1.414213562F;
-    register f32 cc2    = 1.847759065F;
+    register f32 cc4 = 1.414213562F;
+    register f32 cc2 = 1.847759065F;
     register f32 cc2c6s = 1.082392200F;
     register f32 cc2c6a = -2.613125930F;
-    register f32 bias   = 1024.0F;
+    register f32 bias = 1024.0F;
 
-    q  = Gq;
+    q = Gq;
     ws = &__THPIDCTWorkspace[0] - 2;
 
     {
@@ -1023,7 +1033,7 @@ static void __THPInverseDCTY8(register THPCoeff* in, register u32 xPos) {
 
     {
         register THPSample* obase = Gbase;
-        register u32 wid          = Gwid;
+        register u32 wid = Gwid;
 
         register u32 itmp0, off0, off1;
         register THPSample *out0, *out1;
@@ -1158,13 +1168,13 @@ static void __THPInverseDCTNoYPos(register THPCoeff* in, register u32 xPos) {
     register f32 tmp0, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9;
     register f32 tmp10, tmp11, tmp12, tmp13;
     register f32 tmp20, tmp21, tmp22, tmp23;
-    register f32 cc4    = 1.414213562F;
-    register f32 cc2    = 1.847759065F;
+    register f32 cc4 = 1.414213562F;
+    register f32 cc2 = 1.847759065F;
     register f32 cc2c6s = 1.082392200F;
     register f32 cc2c6a = -2.613125930F;
-    register f32 bias   = 1024.0F;
-    q                   = Gq;
-    ws                  = &__THPIDCTWorkspace[0] - 2;
+    register f32 bias = 1024.0F;
+    q = Gq;
+    ws = &__THPIDCTWorkspace[0] - 2;
 
     {
         register u32 itmp0, itmp1, itmp2, itmp3;
@@ -1336,7 +1346,7 @@ static void __THPInverseDCTNoYPos(register THPCoeff* in, register u32 xPos) {
 
     {
         register THPSample* obase = Gbase;
-        register u32 wid          = Gwid;
+        register u32 wid = Gwid;
 
         register u32 itmp0, off0, off1;
         register THPSample *out0, *out1;
@@ -1480,26 +1490,26 @@ static void __THPDecompressiMCURow640x480() {
             __THPHuffDecodeDCTCompU(__THPInfo, __THPMCUBuffer[4]);
             __THPHuffDecodeDCTCompV(__THPInfo, __THPMCUBuffer[5]);
 
-            comp  = &__THPInfo->components[0];
+            comp = &__THPInfo->components[0];
             Gbase = __THPLCWork640[0];
-            Gwid  = 640;
-            Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+            Gwid = 640;
+            Gq = __THPInfo->quantTabs[comp->quantizationTableSelector];
             x_pos = (u32)(cl_num * 16);
             __THPInverseDCTNoYPos(__THPMCUBuffer[0], x_pos);
             __THPInverseDCTNoYPos(__THPMCUBuffer[1], x_pos + 8);
             __THPInverseDCTY8(__THPMCUBuffer[2], x_pos);
             __THPInverseDCTY8(__THPMCUBuffer[3], x_pos + 8);
 
-            comp  = &__THPInfo->components[1];
+            comp = &__THPInfo->components[1];
             Gbase = __THPLCWork640[1];
-            Gwid  = 320;
-            Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+            Gwid = 320;
+            Gq = __THPInfo->quantTabs[comp->quantizationTableSelector];
             x_pos /= 2;
             __THPInverseDCTNoYPos(__THPMCUBuffer[4], x_pos);
 
-            comp  = &__THPInfo->components[2];
+            comp = &__THPInfo->components[2];
             Gbase = __THPLCWork640[2];
-            Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+            Gq = __THPInfo->quantTabs[comp->quantizationTableSelector];
             __THPInverseDCTNoYPos(__THPMCUBuffer[5], x_pos);
 
             if (__THPInfo->RST != 0) {
@@ -1548,20 +1558,20 @@ static void __THPDecompressiMCURowNxN() {
         __THPHuffDecodeDCTCompU(__THPInfo, __THPMCUBuffer[4]);
         __THPHuffDecodeDCTCompV(__THPInfo, __THPMCUBuffer[5]);
 
-        comp  = &__THPInfo->components[0];
+        comp = &__THPInfo->components[0];
         Gbase = __THPLCWork640[0];
-        Gwid  = x;
-        Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+        Gwid = x;
+        Gq = __THPInfo->quantTabs[comp->quantizationTableSelector];
         x_pos = (u32)(cl_num * 16);
         __THPInverseDCTNoYPos(__THPMCUBuffer[0], x_pos);
         __THPInverseDCTNoYPos(__THPMCUBuffer[1], x_pos + 8);
         __THPInverseDCTY8(__THPMCUBuffer[2], x_pos);
         __THPInverseDCTY8(__THPMCUBuffer[3], x_pos + 8);
 
-        comp  = &__THPInfo->components[1];
+        comp = &__THPInfo->components[1];
         Gbase = __THPLCWork640[1];
-        Gwid  = x / 2;
-        Gq    = __THPInfo->quantTabs[comp->quantizationTableSelector];
+        Gwid = x / 2;
+        Gq = __THPInfo->quantTabs[comp->quantizationTableSelector];
         x_pos /= 2;
         __THPInverseDCTNoYPos(__THPMCUBuffer[4], x_pos);
 
@@ -1574,7 +1584,7 @@ static void __THPDecompressiMCURowNxN() {
             __THPInfo->currMCU--;
             if (__THPInfo->currMCU == 0) {
                 __THPInfo->currMCU = __THPInfo->nMCU;
-                __THPInfo->cnt     = 1 + ((__THPInfo->cnt + 6) & 0xFFFFFFF8);
+                __THPInfo->cnt = 1 + ((__THPInfo->cnt + 6) & 0xFFFFFFF8);
 
                 if (__THPInfo->cnt > 32) {
                     __THPInfo->cnt = 33;
@@ -1667,7 +1677,7 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
         };
 
         __dcbz((void*)block, 96);
-        dc       = (s16)(info->components[0].predDC + diff);
+        dc = (s16)(info->components[0].predDC + diff);
         block[0] = info->components[0].predDC = dc;
     }
 
@@ -1837,7 +1847,7 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
                 // clang-format on
             } while (code > h->maxCode[ssss]);
 
-            cnt  = (u32)(ssss + 1);
+            cnt = (u32)(ssss + 1);
             ssss = (h->Vij[(s32)(code + h->valPtr[ssss])]);
 
             goto _DoneDecodeTab;
@@ -2361,7 +2371,7 @@ static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
     }
 
     __dcbz((void*)block, 96);
-    dc       = (s16)(info->components[1].predDC + diff);
+    dc = (s16)(info->components[1].predDC + diff);
     block[0] = info->components[1].predDC = dc;
 
     for (k = 1; k < 64; k++) {
@@ -2498,7 +2508,7 @@ static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
 
     __dcbz((void*)block, 96);
 
-    dc       = (s16)(info->components[2].predDC + diff);
+    dc = (s16)(info->components[2].predDC + diff);
     block[0] = info->components[2].predDC = dc;
 
     for (k = 1; k < 64; k++) {
@@ -2578,7 +2588,7 @@ static BOOL THPInit() {
     __THPLCWork512[2] = base;
     base += 0x200;
 
-    base              = (u8*)(0xE000 << 16);
+    base = (u8*)(0xE000 << 16);
     __THPLCWork640[0] = base;
     base += 0x2800;
     __THPLCWork640[1] = base;
@@ -2597,7 +2607,7 @@ static BOOL THPInit() {
 #endif
 
 /* 80879BD0-80879DA0 000630 01D0+00 28/29 0/0 0/0 .bss             daMP_ActivePlayer */
-static daMP_Player_c daMP_ActivePlayer ALIGN_DECL(16);
+static daMP_THPPlayer daMP_ActivePlayer ALIGN_DECL(16);
 
 /* 80879DA0-80879DA4 000800 0004+00 2/3 0/0 0/0 .bss             daMP_ReadThreadCreated */
 static BOOL daMP_ReadThreadCreated;
@@ -2610,28 +2620,26 @@ static OSMessageQueue daMP_ReadedBufferQueue;
 
 /* 80875880-808758B4 0031A0 0034+00 2/2 0/0 0/0 .text            daMP_PopReadedBuffer__Fv */
 void* daMP_PopReadedBuffer() {
-    OSMessage msg;
-    OSReceiveMessage(&daMP_ReadedBufferQueue, &msg, 1);
-    return msg;
+    OSMessage buffer;
+    OSReceiveMessage(&daMP_ReadedBufferQueue, &buffer, 1);
+    return buffer;
 }
 
 /* 808758B4-808758E4 0031D4 0030+00 1/1 0/0 0/0 .text            daMP_PushReadedBuffer__FPv */
-void daMP_PushReadedBuffer(void* r3) {
-    OSMessage msg = (OSMessage)r3;
-    OSSendMessage(&daMP_ReadedBufferQueue, msg, 1);
+void daMP_PushReadedBuffer(void* buffer) {
+    OSSendMessage(&daMP_ReadedBufferQueue, buffer, 1);
 }
 
 /* 808758E4-80875918 003204 0034+00 1/1 0/0 0/0 .text            daMP_PopFreeReadBuffer__Fv */
-daMP_THPReadBuffer* daMP_PopFreeReadBuffer() {
-    OSMessage msg;
-    OSReceiveMessage(&daMP_FreeReadBufferQueue, &msg, 1);
-    return (daMP_THPReadBuffer*)msg;
+void* daMP_PopFreeReadBuffer() {
+    OSMessage buffer;
+    OSReceiveMessage(&daMP_FreeReadBufferQueue, &buffer, 1);
+    return buffer;
 }
 
 /* 80875918-80875948 003238 0030+00 2/2 0/0 0/0 .text            daMP_PushFreeReadBuffer__FPv */
-void daMP_PushFreeReadBuffer(void* r3) {
-    OSMessage msg = (OSMessage)r3;
-    OSSendMessage(&daMP_FreeReadBufferQueue, msg, 1);
+void daMP_PushFreeReadBuffer(void* buffer) {
+    OSSendMessage(&daMP_FreeReadBufferQueue, buffer, 1);
 }
 
 /* 80879DE4-80879E04 000844 0020+00 2/3 0/0 0/0 .bss             daMP_ReadedBufferQueue2 */
@@ -2639,15 +2647,14 @@ static OSMessageQueue daMP_ReadedBufferQueue2;
 
 /* 80875948-8087597C 003268 0034+00 1/1 0/0 0/0 .text            daMP_PopReadedBuffer2__Fv */
 void* daMP_PopReadedBuffer2() {
-    OSMessage msg;
-    OSReceiveMessage(&daMP_ReadedBufferQueue2, &msg, 1);
-    return msg;
+    OSMessage buffer;
+    OSReceiveMessage(&daMP_ReadedBufferQueue2, &buffer, 1);
+    return buffer;
 }
 
 /* 8087597C-808759AC 00329C 0030+00 1/1 0/0 0/0 .text            daMP_PushReadedBuffer2__FPv */
-void daMP_PushReadedBuffer2(void* r3) {
-    OSMessage msg = (OSMessage)r3;
-    OSSendMessage(&daMP_ReadedBufferQueue2, msg, 1);
+void daMP_PushReadedBuffer2(void* buffer) {
+    OSSendMessage(&daMP_ReadedBufferQueue2, buffer, 1);
 }
 
 /* 80879E04-80879E2C 000864 0028+00 0/1 0/0 0/0 .bss             daMP_FreeReadBufferMessage */
@@ -2678,41 +2685,44 @@ void daMP_ReadThreadCancel() {
 }
 
 /* 80875A28-80875B0C 003348 00E4+00 1/1 0/0 0/0 .text            daMP_Reader__FPv */
-void daMP_Reader(void*) {
-    daMP_THPReadBuffer* readBuf;
-    int r30;
-    int r29;
-    int r28;
-    int readBytes;
-    r28 = 0;
-    r30 = daMP_ActivePlayer.field_0xb8;
-    r29 = daMP_ActivePlayer.field_0xbc;
-    while (true) {
-        readBuf = daMP_PopFreeReadBuffer();
-        readBytes = DVDReadPrio(&daMP_ActivePlayer.mFileInfo, readBuf->m00, r29, r30, 2);
-        if (readBytes != r29) {
-            if (readBytes == -1) {
-                daMP_ActivePlayer.field_0xa8 = -1;
-            }
-            if (r28 == 0) {
-                daMP_PrepareReady(0);
-            }
-            OSSuspendThread(&daMP_ReadThread);
-        }
-        readBuf->m04 = r28;
-        daMP_PushReadedBuffer(readBuf);
-        r30 += r29;
-        r29 = daMP_NEXT_READ_SIZE(readBuf);
-        u32 r0 = (r28 + daMP_ActivePlayer.field_0xc0) % daMP_ActivePlayer.mTotalFrames;
-        if (r0 == daMP_ActivePlayer.mTotalFrames - 1) {
-            if (daMP_ActivePlayer.field_0xa6 & 0x01) {
-                r30 = daMP_ActivePlayer.field_0x64;
-            } else {
-                OSSuspendThread(&daMP_ReadThread);
-            }
-        }
-        r28++;
-    }
+void* daMP_Reader(void*) {
+    daMP_THPReadBuffer* buf;
+	s32 curFrame;
+	s32 status;
+	s32 offset;
+	s32 initReadSize;
+	s32 frame = 0;
+
+    offset = daMP_ActivePlayer.initOffset;
+	initReadSize = daMP_ActivePlayer.initReadSize;
+
+	while (TRUE) {
+		buf = (daMP_THPReadBuffer*)daMP_PopFreeReadBuffer();
+		status = DVDReadPrio(&daMP_ActivePlayer.fileInfo, buf->ptr, initReadSize, offset, 2);
+		if (status != initReadSize) {
+			if (status == -1)
+				daMP_ActivePlayer.dvdError = -1;
+			if (frame == 0)
+				daMP_PrepareReady(FALSE);
+
+			OSSuspendThread(&daMP_ReadThread);
+		}
+
+		buf->frameNumber = frame;
+		daMP_PushReadedBuffer(buf);
+		offset += initReadSize;
+		initReadSize = daMP_NEXT_READ_SIZE(buf);
+
+		curFrame = (frame + daMP_ActivePlayer.initReadFrame) % daMP_ActivePlayer.header.numFrames;
+		if (curFrame == daMP_ActivePlayer.header.numFrames - 1) {
+			if (daMP_ActivePlayer.playFlag & 1)
+				offset = daMP_ActivePlayer.header.movieDataOffsets;
+			else
+				OSSuspendThread(&daMP_ReadThread);
+		}
+
+		frame++;
+	}
 }
 
 /* 8087A198-8087C198 000BF8 2000+00 0/1 0/0 0/0 .bss             daMP_ReadThreadStack */
@@ -2723,17 +2733,16 @@ static BOOL daMP_VideoDecodeThreadCreated;
 
 /* 80875B18-80875BC8 003438 00B0+00 1/1 0/0 0/0 .text            daMP_CreateReadThread__Fl */
 static BOOL daMP_CreateReadThread(s32 param_0) {
-    // NONMATCHING
-    if (!OSCreateThread(&daMP_ReadThread, (void*(*)(void*))daMP_Reader, 0, daMP_ReadThreadStack + sizeof(daMP_ReadThreadStack), sizeof(daMP_ReadThreadStack), param_0, 1)) {
+    if (!OSCreateThread(&daMP_ReadThread, daMP_Reader, 0, daMP_ReadThreadStack + sizeof(daMP_ReadThreadStack), sizeof(daMP_ReadThreadStack), param_0, 1)) {
         OSReport("Can't create read thread\n");
-        return 0;
+        return FALSE;
     }
 
     OSInitMessageQueue(&daMP_FreeReadBufferQueue, daMP_FreeReadBufferMessage, 10);
     OSInitMessageQueue(&daMP_ReadedBufferQueue, daMP_ReadedBufferMessage, 10);
     OSInitMessageQueue(&daMP_ReadedBufferQueue2, daMP_ReadedBufferMessage2, 10);
     daMP_ReadThreadCreated = TRUE;
-    return 1;
+    return TRUE;
 }
 
 /* 8087C1A0-8087C4B8 002C00 0318+00 4/5 0/0 0/0 .bss             daMP_VideoDecodeThread */
@@ -2746,35 +2755,33 @@ static u8 daMP_VideoDecodeThreadStack[0x64000];
 static OSMessageQueue daMP_FreeTextureSetQueue;
 
 /* 80875BC8-80875BFC 0034E8 0034+00 1/1 0/0 0/0 .text            daMP_PopFreeTextureSet__Fv */
-OSMessage daMP_PopFreeTextureSet() {
-    OSMessage msg;
-    OSReceiveMessage(&daMP_FreeTextureSetQueue, &msg, 1);
-    return msg;
+void* daMP_PopFreeTextureSet() {
+    OSMessage tex;
+    OSReceiveMessage(&daMP_FreeTextureSetQueue, &tex, 1);
+    return tex;
 }
 
 /* 80875BFC-80875C2C 00351C 0030+00 2/2 0/0 0/0 .text            daMP_PushFreeTextureSet__FPv */
-void daMP_PushFreeTextureSet(void* r3) {
-    OSMessage msg = (OSMessage)r3;
-    OSSendMessage(&daMP_FreeTextureSetQueue, msg, 0);
+void daMP_PushFreeTextureSet(void* tex) {
+    OSSendMessage(&daMP_FreeTextureSetQueue, tex, 0);
 }
 
 /* 808E04D8-808E04F8 066F38 0020+00 2/2 0/0 0/0 .bss             daMP_DecodedTextureSetQueue */
 static OSMessageQueue daMP_DecodedTextureSetQueue;
 
 /* 80875C2C-80875C70 00354C 0044+00 1/1 0/0 0/0 .text            daMP_PopDecodedTextureSet__Fl */
-void* daMP_PopDecodedTextureSet(s32 r3) {
-    OSMessage msg;
-    if (OSReceiveMessage(&daMP_DecodedTextureSetQueue, &msg, r3) == TRUE) {
-        return msg;
+void* daMP_PopDecodedTextureSet(s32 flags) {
+    OSMessage tex;
+    if (OSReceiveMessage(&daMP_DecodedTextureSetQueue, &tex, flags) == TRUE) {
+        return tex;
     } else {
         return NULL;
     }
 }
 
 /* 80875C70-80875CA0 003590 0030+00 1/1 0/0 0/0 .text            daMP_PushDecodedTextureSet__FPv */
-void daMP_PushDecodedTextureSet(void* r3) {
-    OSMessage msg = (OSMessage)r3;
-    OSSendMessage(&daMP_DecodedTextureSetQueue, msg, 1);
+void daMP_PushDecodedTextureSet(void* tex) {
+    OSSendMessage(&daMP_DecodedTextureSetQueue, tex, 1);
 }
 
 /* 808E04F8-808E0504 066F58 000C+00 0/0 0/0 0/0 .bss             daMP_FreeTextureSetMessage */
@@ -2787,33 +2794,148 @@ static OSMessage daMP_DecodedTextureSetMessage[3];
 static BOOL daMP_First;
 
 /* 80875CA0-80875DD8 0035C0 0138+00 2/2 0/0 0/0 .text daMP_VideoDecode__FP18daMP_THPReadBuffer */
-static void daMP_VideoDecode(daMP_THPReadBuffer* param_0) {
-    // NONMATCHING
+static void daMP_VideoDecode(daMP_THPReadBuffer* readBuffer) {
+    THPTextureSet* textureSet;
+	s32 i;
+	u32* tileOffsets;
+	u8* tile;
+
+    tileOffsets = (u32*)(readBuffer->ptr + 8);
+	tile = &readBuffer->ptr[daMP_ActivePlayer.compInfo.numComponents * 4] + 8;
+	textureSet = (THPTextureSet*)daMP_PopFreeTextureSet();
+
+    for (i = 0; i < daMP_ActivePlayer.compInfo.numComponents; i++) {
+        switch (daMP_ActivePlayer.compInfo.frameComp[i]) {
+		case 0: {
+			if ((daMP_ActivePlayer.videoError = THPVideoDecode(
+			         tile, textureSet->ytexture, textureSet->utexture,
+			         textureSet->vtexture, daMP_ActivePlayer.thpWork))) {
+				if (daMP_First) {
+					daMP_PrepareReady(FALSE);
+					daMP_First = FALSE;
+				}
+				OSSuspendThread(&daMP_VideoDecodeThread);
+			}
+			textureSet->frameNumber = readBuffer->frameNumber;
+			daMP_PushDecodedTextureSet(textureSet);
+			BOOL enable = OSDisableInterrupts();
+			daMP_ActivePlayer.videoDecodeCount++;
+			OSRestoreInterrupts(enable);
+		}
+		}
+
+        tile += *tileOffsets;
+		tileOffsets++;
+    }
+
+    if (daMP_First) {
+        daMP_PrepareReady(1);
+        daMP_First = 0;
+    }
 }
 
 /* 80875DD8-80875EA0 0036F8 00C8+00 1/1 0/0 0/0 .text            daMP_VideoDecoder__FPv */
-static void daMP_VideoDecoder(void* param_0) {
-    // NONMATCHING
+static void* daMP_VideoDecoder(void* param_0) {
+    daMP_THPReadBuffer* thpBuffer;
+
+	while (TRUE) {
+		if (daMP_ActivePlayer.audioExist) {
+			for (; daMP_ActivePlayer.videoDecodeCount < 0;) {
+				thpBuffer = (daMP_THPReadBuffer*)daMP_PopReadedBuffer2();
+				s32 remaining
+				    = ((thpBuffer->frameNumber + daMP_ActivePlayer.initReadFrame)
+				       % daMP_ActivePlayer.header.numFrames);
+				if (remaining == (daMP_ActivePlayer.header.numFrames - 1)
+				    && (daMP_ActivePlayer.playFlag & 1) == 0)
+					daMP_VideoDecode(thpBuffer);
+
+				daMP_PushFreeReadBuffer(thpBuffer);
+				BOOL enable = OSDisableInterrupts();
+				daMP_ActivePlayer.videoDecodeCount++;
+				OSRestoreInterrupts(enable);
+			}
+		}
+
+		if (daMP_ActivePlayer.audioExist)
+			thpBuffer = (daMP_THPReadBuffer*)daMP_PopReadedBuffer2();
+		else
+			thpBuffer = (daMP_THPReadBuffer*)daMP_PopReadedBuffer();
+
+		daMP_VideoDecode(thpBuffer);
+		daMP_PushFreeReadBuffer(thpBuffer);
+	}
 }
 
 /* 80875EA0-80875FD4 0037C0 0134+00 1/1 0/0 0/0 .text            daMP_VideoDecoderForOnMemory__FPv
  */
-static void daMP_VideoDecoderForOnMemory(void* param_0) {
-    // NONMATCHING
+static void* daMP_VideoDecoderForOnMemory(void* param_0) {
+    daMP_THPReadBuffer readBuffer;
+	s32 readSize;
+	s32 frame;
+	s32 remaining;
+
+	readSize = daMP_ActivePlayer.initReadSize;
+	readBuffer.ptr = (u8*)param_0;
+    frame = 0;
+
+	while (TRUE) {
+		if (daMP_ActivePlayer.audioExist) {
+			while (daMP_ActivePlayer.videoDecodeCount < 0) {
+				BOOL enable = OSDisableInterrupts();
+				daMP_ActivePlayer.videoDecodeCount++;
+				OSRestoreInterrupts(enable);
+				remaining = (frame + daMP_ActivePlayer.initReadFrame)
+				            % daMP_ActivePlayer.header.numFrames;
+				if (remaining == daMP_ActivePlayer.header.numFrames - 1) {
+					if ((daMP_ActivePlayer.playFlag & 1) == 0)
+						break;
+
+					readSize       = *(s32*)readBuffer.ptr;
+					readBuffer.ptr = daMP_ActivePlayer.movieData;
+				} else {
+					s32 size = *(s32*)readBuffer.ptr;
+					readBuffer.ptr += readSize;
+					readSize = size;
+				}
+				frame++;
+			}
+		}
+
+		readBuffer.frameNumber = frame;
+
+		daMP_VideoDecode(&readBuffer);
+
+		remaining = (frame + daMP_ActivePlayer.initReadFrame)
+		            % daMP_ActivePlayer.header.numFrames;
+		if (remaining == daMP_ActivePlayer.header.numFrames - 1) {
+			if ((daMP_ActivePlayer.playFlag & 1)) {
+				readSize = *(s32*)readBuffer.ptr;
+				readBuffer.ptr = daMP_ActivePlayer.movieData;
+			} else {
+				OSSuspendThread(&daMP_VideoDecodeThread);
+			}
+		} else {
+			s32 size = *(s32*)readBuffer.ptr;
+			readBuffer.ptr += readSize;
+			readSize = size;
+		}
+
+		frame++;
+	}
 }
 
 /* 80875FD4-808760EC 0038F4 0118+00 1/1 0/0 0/0 .text            daMP_CreateVideoDecodeThread__FlPUc
  */
-static int daMP_CreateVideoDecodeThread(s32 param_0, u8* param_1) {
+static BOOL daMP_CreateVideoDecodeThread(OSPriority prio, u8* param_1) {
     if (param_1 != NULL) {
-        if (!OSCreateThread(&daMP_VideoDecodeThread, (void*(*)(void*))daMP_VideoDecoderForOnMemory, param_1, daMP_VideoDecodeThreadStack + sizeof(daMP_VideoDecodeThreadStack), sizeof(daMP_VideoDecodeThreadStack), param_0, 1)) {
+        if (!OSCreateThread(&daMP_VideoDecodeThread, daMP_VideoDecoderForOnMemory, param_1, daMP_VideoDecodeThreadStack + sizeof(daMP_VideoDecodeThreadStack), sizeof(daMP_VideoDecodeThreadStack), prio, 1)) {
             OSReport("Can't create video decode thread\n");
-            return 0;
+            return FALSE;
         }
     } else {
-        if (!OSCreateThread(&daMP_VideoDecodeThread, (void*(*)(void*))daMP_VideoDecoder, NULL, daMP_VideoDecodeThreadStack + sizeof(daMP_VideoDecodeThreadStack), sizeof(daMP_VideoDecodeThreadStack), param_0, 1)) {
+        if (!OSCreateThread(&daMP_VideoDecodeThread, daMP_VideoDecoder, NULL, daMP_VideoDecodeThreadStack + sizeof(daMP_VideoDecodeThreadStack), sizeof(daMP_VideoDecodeThreadStack), prio, 1)) {
             OSReport("Can't create video decode thread\n");
-            return 0;
+            return FALSE;
         }
     }
 
@@ -2821,7 +2943,7 @@ static int daMP_CreateVideoDecodeThread(s32 param_0, u8* param_1) {
     OSInitMessageQueue(&daMP_DecodedTextureSetQueue, daMP_DecodedTextureSetMessage, 3);
 
     daMP_First = daMP_VideoDecodeThreadCreated = TRUE;
-    return 1;
+    return TRUE;
 }
 
 /* 808760EC-80876124 003A0C 0038+00 1/1 0/0 0/0 .text            daMP_VideoDecodeThreadStart__Fv */
@@ -2852,55 +2974,104 @@ static u8 daMP_AudioDecodeThreadStack[0x64000];
 static OSMessageQueue daMP_FreeAudioBufferQueue;
 
 /* 80876168-8087619C 003A88 0034+00 1/1 0/0 0/0 .text            daMP_PopFreeAudioBuffer__Fv */
-static OSMessage daMP_PopFreeAudioBuffer() {
-    OSMessage msg;
-    OSReceiveMessage(&daMP_FreeAudioBufferQueue, &msg, OS_MESSAGE_BLOCK);
-    return msg;
+static void* daMP_PopFreeAudioBuffer() {
+    OSMessage buffer;
+    OSReceiveMessage(&daMP_FreeAudioBufferQueue, &buffer, OS_MESSAGE_BLOCK);
+    return buffer;
 }
 
 /* 8087619C-808761CC 003ABC 0030+00 2/2 0/0 0/0 .text            daMP_PushFreeAudioBuffer__FPv */
-static void daMP_PushFreeAudioBuffer(void* param_0) {
-    OSMessage msg = (OSMessage)param_0;
-    OSSendMessage(&daMP_FreeAudioBufferQueue, msg, OS_MESSAGE_NOBLOCK);
+static void daMP_PushFreeAudioBuffer(void* buffer) {
+    OSSendMessage(&daMP_FreeAudioBufferQueue, buffer, OS_MESSAGE_NOBLOCK);
 }
 
 /* 80944850-80944870 0CB2B0 0020+00 2/2 0/0 0/0 .bss             daMP_DecodedAudioBufferQueue */
 static OSMessageQueue daMP_DecodedAudioBufferQueue;
 
 /* 808761CC-80876210 003AEC 0044+00 1/1 0/0 0/0 .text            daMP_PopDecodedAudioBuffer__Fl */
-static OSMessage daMP_PopDecodedAudioBuffer(s32 param_0) {
-    OSMessage msg;
-    if (OSReceiveMessage(&daMP_DecodedAudioBufferQueue, &msg, param_0) == 1) {
-        return msg;
+static void* daMP_PopDecodedAudioBuffer(s32 flags) {
+    OSMessage buffer;
+    if (OSReceiveMessage(&daMP_DecodedAudioBufferQueue, &buffer, flags) == 1) {
+        return buffer;
     }
 
     return NULL;
 }
 
 /* 80876210-80876240 003B30 0030+00 1/1 0/0 0/0 .text            daMP_PushDecodedAudioBuffer__FPv */
-static void daMP_PushDecodedAudioBuffer(void* param_0) {
-    OSMessage msg = (OSMessage)param_0;
-    OSSendMessage(&daMP_DecodedAudioBufferQueue, msg, OS_MESSAGE_BLOCK);
+static void daMP_PushDecodedAudioBuffer(void* buffer) {
+    OSSendMessage(&daMP_DecodedAudioBufferQueue, buffer, OS_MESSAGE_BLOCK);
 }
 
 /* 80876240-8087631C 003B60 00DC+00 2/2 0/0 0/0 .text daMP_AudioDecode__FP18daMP_THPReadBuffer */
-static void daMP_AudioDecode(daMP_THPReadBuffer* param_0) {
-    // NONMATCHING
+static void daMP_AudioDecode(daMP_THPReadBuffer* readBuffer) {
+    THPAudioBuffer* audioBuf;
+	s32 i;
+	u32* offsets;
+	u8* audioData;
+
+	offsets = (u32*)(readBuffer->ptr + 8);
+	audioData = &readBuffer->ptr[daMP_ActivePlayer.compInfo.numComponents * 4] + 8;
+	audioBuf = (THPAudioBuffer*)daMP_PopFreeAudioBuffer();
+
+	for (i = 0; i < daMP_ActivePlayer.compInfo.numComponents; i++) {
+		switch (daMP_ActivePlayer.compInfo.frameComp[i]) {
+		case 1: {
+			audioBuf->validSample = THPAudioDecode(
+			    audioBuf->buffer,
+			    (audioData + *offsets * daMP_ActivePlayer.curAudioTrack), 0);
+			audioBuf->curPtr = audioBuf->buffer;
+			daMP_PushDecodedAudioBuffer(audioBuf);
+			return;
+		}
+		}
+
+		audioData += *offsets;
+		offsets++;
+	}
 }
 
 /* 8087631C-80876344 003C3C 0028+00 1/1 0/0 0/0 .text            daMP_AudioDecoder__FPv */
-static void daMP_AudioDecoder(void* param_0) {
-    while (1) {
-        void* var_r31 = daMP_PopReadedBuffer();
-        daMP_AudioDecode((daMP_THPReadBuffer*)var_r31);
-        daMP_PushReadedBuffer2(var_r31);
+static void* daMP_AudioDecoder(void* param_0) {
+    daMP_THPReadBuffer* buf;
+
+    while (TRUE) {
+        buf = (daMP_THPReadBuffer*)daMP_PopReadedBuffer();
+        daMP_AudioDecode(buf);
+        daMP_PushReadedBuffer2(buf);
     }
 }
 
 /* 80876344-808763EC 003C64 00A8+00 1/1 0/0 0/0 .text            daMP_AudioDecoderForOnMemory__FPv
  */
-static void daMP_AudioDecoderForOnMemory(void* param_0) {
-    // NONMATCHING
+static void* daMP_AudioDecoderForOnMemory(void* param_0) {
+	s32 readSize;
+	daMP_THPReadBuffer readBuffer;
+    s32 frame;
+
+	readSize = daMP_ActivePlayer.initReadSize;
+	readBuffer.ptr = (u8*)param_0;
+    frame = 0;
+
+	while (TRUE) {
+		readBuffer.frameNumber = frame;
+		daMP_AudioDecode(&readBuffer);
+
+		s32 remaining = (frame + daMP_ActivePlayer.initReadFrame) % daMP_ActivePlayer.header.numFrames;
+		if (remaining == daMP_ActivePlayer.header.numFrames - 1) {
+			if ((daMP_ActivePlayer.playFlag & 1)) {
+				readSize = *(s32*)readBuffer.ptr;
+				readBuffer.ptr = daMP_ActivePlayer.movieData;
+			} else {
+				OSSuspendThread(&daMP_AudioDecodeThread);
+			}
+		} else {
+			s32 size = *(s32*)readBuffer.ptr;
+			readBuffer.ptr += readSize;
+			readSize = size;
+		}
+		frame++;
+	}
 }
 
 /* 80944870-8094487C 0CB2D0 000C+00 0/0 0/0 0/0 .bss             daMP_FreeAudioBufferMessage */
@@ -2911,15 +3082,15 @@ static OSMessage daMP_DecodedAudioBufferMessage[3];
 
 /* 808763EC-808764E8 003D0C 00FC+00 1/1 0/0 0/0 .text            daMP_CreateAudioDecodeThread__FlPUc
  */
-static int daMP_CreateAudioDecodeThread(s32 param_0, u8* param_1) {
+static BOOL daMP_CreateAudioDecodeThread(OSPriority prio, u8* param_1) {
     if (param_1 != NULL) {
-        if (!OSCreateThread(&daMP_AudioDecodeThread, (void*(*)(void*))daMP_AudioDecoderForOnMemory, param_1, daMP_AudioDecodeThreadStack + sizeof(daMP_AudioDecodeThreadStack), sizeof(daMP_AudioDecodeThreadStack), param_0, 1)) {
-            return 0;
+        if (!OSCreateThread(&daMP_AudioDecodeThread, daMP_AudioDecoderForOnMemory, param_1, daMP_AudioDecodeThreadStack + sizeof(daMP_AudioDecodeThreadStack), sizeof(daMP_AudioDecodeThreadStack), prio, 1)) {
+            return FALSE;
         }
     } else {
-        if (!OSCreateThread(&daMP_AudioDecodeThread, (void*(*)(void*))daMP_AudioDecoder, NULL, daMP_AudioDecodeThreadStack + sizeof(daMP_AudioDecodeThreadStack), sizeof(daMP_AudioDecodeThreadStack), param_0, 1)) {
+        if (!OSCreateThread(&daMP_AudioDecodeThread, daMP_AudioDecoder, NULL, daMP_AudioDecodeThreadStack + sizeof(daMP_AudioDecodeThreadStack), sizeof(daMP_AudioDecodeThreadStack), prio, 1)) {
             OSReport("Can't create audio decode thread\n");
-            return 0;
+            return FALSE;
         }
     }
 
@@ -2927,7 +3098,7 @@ static int daMP_CreateAudioDecodeThread(s32 param_0, u8* param_1) {
     OSInitMessageQueue(&daMP_DecodedAudioBufferQueue, daMP_DecodedAudioBufferMessage, 3);
 
     daMP_AudioDecodeThreadCreated = TRUE;
-    return 1;
+    return TRUE;
 }
 
 /* 808764E8-80876520 003E08 0038+00 1/1 0/0 0/0 .text            daMP_AudioDecodeThreadStart__Fv */
@@ -2961,7 +3132,7 @@ static void daMP_THPGXRestore() {
     GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
     GXSetTevSwapModeTable(GX_TEV_SWAP1, GX_CH_RED, GX_CH_RED, GX_CH_RED, GX_CH_ALPHA);
     GXSetTevSwapModeTable(GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
-    GXSetTevSwapModeTable(GXTevSwapSel(GX_TEV_SWAP1|GX_TEV_SWAP2), GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
 }
 
 static f32 dummyLiteral() {
@@ -2972,27 +3143,29 @@ static f32 dummyLiteral() {
 
 /* 8087667C-80876BA8 003F9C 052C+00 1/1 0/0 0/0 .text
  * daMP_THPGXYuv2RgbSetup__FPC16_GXRenderModeObj                */
-static void daMP_THPGXYuv2RgbSetup(GXRenderModeObj const* param_0) {
-    int width = param_0->fbWidth;
-    int height = param_0->efbHeight;
-    f32 var_f31 = 0.0f;
+static void daMP_THPGXYuv2RgbSetup(const GXRenderModeObj* rmode) {
+    s32 w, h;
+    f32 var_f31;
+	Mtx44 m;
+	Mtx e_m;
+
+    w = rmode->fbWidth;
+    h = rmode->efbHeight;
+    var_f31 = 0.0f;
 
     #if WIDESCREEN_SUPPORT
     if (!mDoGph_gInf_c::isWide()) {
-        var_f31 = ((u16)height - (width * 808.0f) / FB_WIDTH) * 0.5f;
+        var_f31 = ((u16)h - (w * 808.0f) / FB_WIDTH) * 0.5f;
     }
     #endif
 
-    Mtx44 sp50;
-    Mtx sp20;
-
     GXSetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);
-    C_MTXOrtho(sp50, var_f31, height - var_f31, 0.0f, width, 0.0f, -1.0f);
-    GXSetProjection(sp50, GX_ORTHOGRAPHIC);
-    GXSetViewport(0.0f, 0.0f, width, height, 0.0f, 1.0f);
-    GXSetScissor(0, 0, width, height);
-    MTXIdentity(sp20);
-    GXLoadPosMtxImm(sp20, GX_PNMTX0);
+    C_MTXOrtho(m, var_f31, h - var_f31, 0.0f, w, 0.0f, -1.0f);
+    GXSetProjection(m, GX_ORTHOGRAPHIC);
+    GXSetViewport(0.0f, 0.0f, w, h, 0.0f, 1.0f);
+    GXSetScissor(0, 0, w, h);
+    MTXIdentity(e_m);
+    GXLoadPosMtxImm(e_m, GX_PNMTX0);
     GXSetCurrentMtx(0);
     GXSetZCompLoc(GX_TRUE);
     GXSetZMode(GX_ENABLE, GX_ALWAYS, GX_DISABLE);
@@ -3062,43 +3235,39 @@ static void daMP_THPGXYuv2RgbSetup(GXRenderModeObj const* param_0) {
 }
 
 /* 80876BD0-80876DE4 0044F0 0214+00 1/1 0/0 0/0 .text daMP_THPGXYuv2RgbDraw__FPUcPUcPUcssssss */
-static void daMP_THPGXYuv2RgbDraw(u8* param_0, u8* param_1, u8* param_2, s16 param_3,
-                                      s16 param_4, s16 param_5, s16 param_6, s16 param_7,
-                                      s16 param_8) {
-    GXTexObj sp48;
-    GXTexObj sp28;
-    GXTexObj sp8;
+static void daMP_THPGXYuv2RgbDraw(u8* y_data, u8* u_data, u8* v_data, s16 x,
+                                  s16 y, s16 textureWidth, s16 textureHeight, s16 polygonWidth,
+                                  s16 polygonHeight) {
+    GXTexObj tobj0;
+    GXTexObj tobj1;
+    GXTexObj tobj2;
 
-    GXInitTexObj(&sp48, param_0, param_5, param_6, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
-    GXInitTexObjLOD(&sp48, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, 0, 0, GX_ANISO_1);
-    GXLoadTexObj(&sp48, GX_TEXMAP0);
+    GXInitTexObj(&tobj0, y_data, textureWidth, textureHeight, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXInitTexObjLOD(&tobj0, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, 0, 0, GX_ANISO_1);
+    GXLoadTexObj(&tobj0, GX_TEXMAP0);
 
-    GXInitTexObj(&sp28, param_1, param_5 >> 1, param_6 >> 1, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
-    GXInitTexObjLOD(&sp28, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, 0, 0, GX_ANISO_1);
-    GXLoadTexObj(&sp28, GX_TEXMAP1);
+    GXInitTexObj(&tobj1, u_data, textureWidth >> 1, textureHeight >> 1, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXInitTexObjLOD(&tobj1, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, 0, 0, GX_ANISO_1);
+    GXLoadTexObj(&tobj1, GX_TEXMAP1);
 
-    GXInitTexObj(&sp8, param_2, param_5 >> 1, param_6 >> 1, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
-    GXInitTexObjLOD(&sp8, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, 0, 0, GX_ANISO_1);
-    GXLoadTexObj(&sp8, GX_TEXMAP2);
+    GXInitTexObj(&tobj2, v_data, textureWidth >> 1, textureHeight >> 1, GX_TF_I8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXInitTexObjLOD(&tobj2, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, 0, 0, GX_ANISO_1);
+    GXLoadTexObj(&tobj2, GX_TEXMAP2);
 
     GXBegin(GX_QUADS, GX_VTXFMT7, 4);
-    GXPosition3s16(param_3, param_4, 0);
+    GXPosition3s16(x, y, 0);
     GXTexCoord2u16(0, 0);
-    GXPosition3s16(param_3 + param_7, param_4, 0);
+    GXPosition3s16(x + polygonWidth, y, 0);
     GXTexCoord2u16(1, 0);
-    GXPosition3s16(param_3 + param_7, param_4 + param_8, 0);
+    GXPosition3s16(x + polygonWidth, y + polygonHeight, 0);
     GXTexCoord2u16(1, 1);
-    GXPosition3s16(param_3, param_4 + param_8, 0);
+    GXPosition3s16(x, y + polygonHeight, 0);
     GXTexCoord2u16(0, 1);
     GXEnd();
 }
 
-/* 80879114-80879118 0000E0 0004+00 1/1 0/0 0/0 .rodata          @4894 */
-SECTION_RODATA static f32 const lit_4894 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80879114, &lit_4894);
-
 /* 80879434-80879534 000000 0100+00 1/1 0/0 0/0 .data            daMP_VolumeTable */
-SECTION_DATA static u16 daMP_VolumeTable[] = {
+static u16 daMP_VolumeTable[] = {
     0x0000, 0x0002, 0x0008, 0x0012, 0x0020, 0x0032, 0x0049, 0x0063,
     0x0082, 0x00A4, 0x00CB, 0x00F5, 0x0124, 0x0157, 0x018E, 0x01C9,
     0x0208, 0x024B, 0x0292, 0x02DD, 0x032C, 0x037F, 0x03D7, 0x0432,
@@ -3118,15 +3287,95 @@ SECTION_DATA static u16 daMP_VolumeTable[] = {
 };
 
 /* 80876E0C-80877074 00472C 0268+00 1/1 0/0 0/0 .text            daMP_MixAudio__FPsPsUl */
-static void daMP_MixAudio(s16* param_0, s16* param_1, u32 param_2) {
-    // NONMATCHING
+// NONMATCHING - missing extsh
+static void daMP_MixAudio(s16* destination, s16*, u32 sample) {
+    if (daMP_ActivePlayer.open && daMP_ActivePlayer.internalState == 2 && daMP_ActivePlayer.audioExist) {
+		u32 sampleNum;
+		u32 requestSample;
+		s32 i;
+		s16* dst;
+		s16* curPtr;
+		s32 l_mix, r_mix;
+		u16 attenuation;
+
+		requestSample = sample;
+		dst = destination;
+
+		do {
+			do {
+				if (daMP_ActivePlayer.playAudioBuffer == (THPAudioBuffer*)NULL) {
+					if (!(daMP_ActivePlayer.playAudioBuffer = (THPAudioBuffer*)daMP_PopDecodedAudioBuffer(0))) {
+						memset(dst, 0, requestSample * 4);
+						return;
+					}
+					daMP_ActivePlayer.curAudioNumber++;
+				}
+			} while ((sampleNum = daMP_ActivePlayer.playAudioBuffer->validSample) == 0);
+
+            if (sampleNum >= requestSample) {
+                sampleNum = requestSample;
+            }
+
+			curPtr = daMP_ActivePlayer.playAudioBuffer->curPtr;
+
+			for (i = 0; i < sampleNum; i++) {
+				if (daMP_ActivePlayer.rampCount != 0) {
+					daMP_ActivePlayer.rampCount--;
+					daMP_ActivePlayer.curVolume += daMP_ActivePlayer.deltaVolume;
+				} else {
+					daMP_ActivePlayer.curVolume = daMP_ActivePlayer.targetVolume;
+				}
+
+				attenuation = daMP_VolumeTable[(s32)daMP_ActivePlayer.curVolume];
+
+				l_mix = 0.7f * (attenuation * curPtr[0] >> 15);
+				// clamp volume
+				if (l_mix < -32768)
+					l_mix = -32768;
+				if (l_mix > 32767)
+					l_mix = 32767;
+
+				r_mix = 0.7f * (attenuation * curPtr[1] >> 15);
+				if (r_mix < -32768)
+					r_mix = -32768;
+				if (r_mix > 32767)
+					r_mix = 32767;
+
+                if (JASDriver::getOutputMode() == 0) {
+                    l_mix = r_mix = ((r_mix >> 1) + (l_mix >> 1));
+                }
+
+                dst[0] = l_mix;
+				dst[1] = r_mix;
+
+				dst += 2;
+				curPtr += 2;
+			}
+
+			requestSample -= sampleNum;
+			daMP_ActivePlayer.playAudioBuffer->validSample -= sampleNum;
+			daMP_ActivePlayer.playAudioBuffer->curPtr = curPtr;
+
+			if ((daMP_ActivePlayer.playAudioBuffer)->validSample == 0) {
+				daMP_PushFreeAudioBuffer(daMP_ActivePlayer.playAudioBuffer);
+				daMP_ActivePlayer.playAudioBuffer = (THPAudioBuffer*)NULL;
+			}
+
+			if (requestSample == 0) {
+				break;
+			}
+
+		} while (TRUE);
+	} else {
+		memset(destination, 0, sample * 4);
+	}
 }
 
 /* 80944888-809448A0 0CB2E8 0004+14 3/3 0/0 0/0 .bss             daMP_Initialized */
 static BOOL daMP_Initialized;
 
 /* 809448A0-809448E0 0CB300 0040+00 2/2 0/0 0/0 .bss             daMP_WorkBuffer */
-static u8 daMP_WorkBuffer[0x40] ALIGN_DECL(32);
+static u32 daMP_WorkBuffer[16] ALIGN_DECL(32);
 
 /* 809448E0-80944900 0CB340 0020+00 3/3 0/0 0/0 .bss             daMP_PrepareReadyQueue */
 static OSMessageQueue daMP_PrepareReadyQueue;
@@ -3162,15 +3411,15 @@ static s32 daMP_AudioSystem;
 static u8 daMP_SoundBuffer[2][0x8C0] ALIGN_DECL(32);
 
 /* 80877074-8087712C 004994 00B8+00 1/1 0/0 0/0 .text            daMP_audioCallbackWithMSound__Fl */
-static s16* daMP_audioCallbackWithMSound(s32 param_0) {
-    if (daMP_ActivePlayer.field_0xa0 == 0 || daMP_ActivePlayer.field_0xa5 != 2 || daMP_ActivePlayer.field_0xa7 == 0) {
+static s16* daMP_audioCallbackWithMSound(s32 sample) {
+    if (daMP_ActivePlayer.open == 0 || daMP_ActivePlayer.internalState != 2 || daMP_ActivePlayer.audioExist == 0) {
         return NULL;
     }
 
-    BOOL intr = OSEnableInterrupts();
+    BOOL enable = OSEnableInterrupts();
     daMP_SoundBufferIndex ^= 1;
-    daMP_MixAudio((s16*)daMP_SoundBuffer[daMP_SoundBufferIndex], NULL, param_0);
-    OSRestoreInterrupts(intr);
+    daMP_MixAudio((s16*)daMP_SoundBuffer[daMP_SoundBufferIndex], NULL, sample);
+    OSRestoreInterrupts(enable);
     return (s16*)daMP_SoundBuffer[daMP_SoundBufferIndex];
 }
 
@@ -3185,16 +3434,15 @@ static void daMP_audioQuitWithMSound() {
 }
 
 /* 80877180-808771B0 004AA0 0030+00 1/1 0/0 0/0 .text            daMP_PushUsedTextureSet__FPv */
-static void daMP_PushUsedTextureSet(void* param_0) {
-    OSMessage msg = (OSMessage)param_0;
-    OSSendMessage(&daMP_UsedTextureSetQueue, msg, OS_MESSAGE_NOBLOCK);
+static void daMP_PushUsedTextureSet(void* tex) {
+    OSSendMessage(&daMP_UsedTextureSetQueue, tex, OS_MESSAGE_NOBLOCK);
 }
 
 /* 808771B0-808771F4 004AD0 0044+00 2/2 0/0 0/0 .text            daMP_PopUsedTextureSet__Fv */
-static OSMessage daMP_PopUsedTextureSet() {
-    OSMessage msg;
-    if (OSReceiveMessage(&daMP_DecodedAudioBufferQueue, &msg, OS_MESSAGE_NOBLOCK) == 1) {
-        return msg;
+static void* daMP_PopUsedTextureSet() {
+    OSMessage tex;
+    if (OSReceiveMessage(&daMP_DecodedAudioBufferQueue, &tex, OS_MESSAGE_NOBLOCK) == 1) {
+        return tex;
     }
 
     return NULL;
@@ -3202,7 +3450,8 @@ static OSMessage daMP_PopUsedTextureSet() {
 
 /* 808771F4-808772CC 004B14 00D8+00 1/1 0/0 0/0 .text            daMP_THPPlayerInit__Fl */
 static int daMP_THPPlayerInit(s32 param_0) {
-    // NONMATCHING
+    BOOL enable;
+
     memset(&daMP_ActivePlayer, 0, sizeof(daMP_ActivePlayer));
     LCEnable();
 
@@ -3212,7 +3461,7 @@ static int daMP_THPPlayerInit(s32 param_0) {
         return 0;
     }
 
-    BOOL enable = OSDisableInterrupts();
+    enable = OSDisableInterrupts();
     daMP_AudioSystem = param_0;
     daMP_SoundBufferIndex = 0;
     daMP_LastAudioBuffer = NULL;
@@ -3234,88 +3483,89 @@ static void daMP_THPPlayerQuit() {
     LCDisable();
     daMP_audioQuitWithMSound();
     daMP_Initialized = FALSE;
-    daMP_ActivePlayer.field_0xa8 = 0;
-    daMP_ActivePlayer.field_0xac = 0;
+    daMP_ActivePlayer.dvdError = 0;
+    daMP_ActivePlayer.videoError = 0;
 }
 
 /* 8087730C-808776EC 004C2C 03E0+00 1/1 0/0 0/0 .text            daMP_THPPlayerOpen__FPCci */
-// NONMATCHING - regalloc, some missing instructions
-static BOOL daMP_THPPlayerOpen(char const* filename, int param_1) {
+// NONMATCHING - regalloc
+static BOOL daMP_THPPlayerOpen(char const* filename, BOOL onMemory) {
+    s32 offset;
+	s32 i;
+
     if (!daMP_Initialized) {
         OSReport("You must call daMP_THPPlayerInit before you call this function\n");
         return 0;
     }
 
-    if (daMP_ActivePlayer.field_0xa0 != 0) {
+    if (daMP_ActivePlayer.open) {
         OSReport("Can't open %s. Because thp file have already opened.\n");
         return 0;
     }
 
-    THPVideoInfo* temp_r29 = &daMP_ActivePlayer.mVideoInfo;
-    memset(temp_r29, 0, sizeof(THPVideoInfo));
-    memset(&daMP_ActivePlayer.mAudioInfo, 0, sizeof(THPAudioInfo));
+    memset(&daMP_ActivePlayer.videoInfo, 0, sizeof(THPVideoInfo));
+    memset(&daMP_ActivePlayer.audioInfo, 0, sizeof(THPAudioInfo));
 
-    if (!DVDOpen(filename, &daMP_ActivePlayer.mFileInfo)) {
+    if (!DVDOpen(filename, &daMP_ActivePlayer.fileInfo)) {
         OSReport("Can't open %s.\n", filename);
         return 0;
     }
 
-    if (DVDReadPrio(&daMP_ActivePlayer.mFileInfo, daMP_WorkBuffer, sizeof(daMP_WorkBuffer), 0, 2) < 0) {
+    if (DVDReadPrio(&daMP_ActivePlayer.fileInfo, daMP_WorkBuffer, sizeof(daMP_WorkBuffer), 0, 2) < 0) {
         OSReport("Fail to read the header from THP file.\n");
-        DVDClose(&daMP_ActivePlayer.mFileInfo);
+        DVDClose(&daMP_ActivePlayer.fileInfo);
         return 0;
     }
 
-    char* temp_r23 = (char*)&daMP_ActivePlayer.field_0x3c;
-    memcpy(temp_r23, daMP_WorkBuffer, 0x30);
+    memcpy(&daMP_ActivePlayer.header, daMP_WorkBuffer, sizeof(THPHeader));
 
-    if (strcmp(temp_r23, "THP") != 0) {
+    if (strcmp(daMP_ActivePlayer.header.magic, "THP") != 0) {
         OSReport("This file is not THP file.\n");
-        DVDClose(&daMP_ActivePlayer.mFileInfo);
+        DVDClose(&daMP_ActivePlayer.fileInfo);
         return 0;
     }
 
-    if (daMP_ActivePlayer.field_0x40 != 0x11000) {
+    if (daMP_ActivePlayer.header.version != 0x11000) {
         OSReport("invalid version.\n");
-        DVDClose(&daMP_ActivePlayer.mFileInfo);
+        DVDClose(&daMP_ActivePlayer.fileInfo);
         return 0;
     }
 
-    s32 var_r26 = daMP_ActivePlayer.field_0x5c;
+    offset = daMP_ActivePlayer.header.compInfoDataOffsets;
 
-    if (DVDReadPrio(&daMP_ActivePlayer.mFileInfo, daMP_WorkBuffer, 0x20, var_r26, 2) < 0) {
+    if (DVDReadPrio(&daMP_ActivePlayer.fileInfo, daMP_WorkBuffer, 0x20, offset, 2) < 0) {
         OSReport("Fail to read the frame component infomation from THP file.\n");
-        DVDClose(&daMP_ActivePlayer.mFileInfo);
+        DVDClose(&daMP_ActivePlayer.fileInfo);
         return 0;
     }
 
-    memcpy(&daMP_ActivePlayer.field_0x6c, daMP_WorkBuffer, 0x14);
-    var_r26 += 0x14;
+    memcpy(&daMP_ActivePlayer.compInfo, daMP_WorkBuffer, sizeof(THPFrameCompInfo));
+    offset += sizeof(THPFrameCompInfo);
 
-    daMP_ActivePlayer.field_0xa7 = 0;
+    daMP_ActivePlayer.audioExist = 0;
 
-    for (int i = 0; i < daMP_ActivePlayer.field_0x6c._0; i++) {
-        switch (daMP_ActivePlayer.field_0x6c._4) {
+    for (i = 0; i < daMP_ActivePlayer.compInfo.numComponents; i++) {
+        switch (daMP_ActivePlayer.compInfo.frameComp[i]) {
         case 0:
-            if (DVDReadPrio(&daMP_ActivePlayer.mFileInfo, daMP_WorkBuffer, 0x20, var_r26, 2) < 0) {
+            if (DVDReadPrio(&daMP_ActivePlayer.fileInfo, daMP_WorkBuffer, 0x20, offset, 2) < 0) {
                 OSReport("Fail to read the video infomation from THP file.\n");
-                DVDClose(&daMP_ActivePlayer.mFileInfo);
+                DVDClose(&daMP_ActivePlayer.fileInfo);
                 return 0;
             }
 
-            memcpy(temp_r29, daMP_WorkBuffer, sizeof(THPVideoInfo));
-            var_r26 += 0xC;
+            memcpy(&daMP_ActivePlayer.videoInfo, daMP_WorkBuffer, sizeof(THPVideoInfo));
+            offset += sizeof(THPVideoInfo);
             break;
         case 1:
-            if (DVDReadPrio(&daMP_ActivePlayer.mFileInfo, daMP_WorkBuffer, 0x20, var_r26, 2) < 0) {
+            if (DVDReadPrio(&daMP_ActivePlayer.fileInfo, daMP_WorkBuffer, 0x20, offset, 2) < 0) {
                 OSReport("Fail to read the video infomation from THP file.\n");
-                DVDClose(&daMP_ActivePlayer.mFileInfo);
+                DVDClose(&daMP_ActivePlayer.fileInfo);
                 return 0;
             }
 
-            memcpy(&daMP_ActivePlayer.mAudioInfo, daMP_WorkBuffer, sizeof(THPAudioInfo));
-            daMP_ActivePlayer.field_0xa7 = 1;
-            var_r26 += 0x10;
+            memcpy(&daMP_ActivePlayer.audioInfo, daMP_WorkBuffer, sizeof(THPAudioInfo));
+            daMP_ActivePlayer.audioExist = 1;
+            offset += sizeof(THPAudioInfo);
             break;
         default:
             OSReport("Unknow frame components.\n");
@@ -3323,91 +3573,344 @@ static BOOL daMP_THPPlayerOpen(char const* filename, int param_1) {
         }
     }
 
-    daMP_ActivePlayer.field_0xa5 = 0;
-    daMP_ActivePlayer.mState = 0;
-    daMP_ActivePlayer.field_0xa6 = 0;
-    daMP_ActivePlayer.field_0xb0 = param_1;
-    daMP_ActivePlayer.field_0xa0 = 1;
-    daMP_ActivePlayer.field_0xdc = 127.0f;
-    daMP_ActivePlayer.field_0xe0 = 127.0f;
-    daMP_ActivePlayer.field_0xe8 = 0;
+    daMP_ActivePlayer.internalState = 0;
+    daMP_ActivePlayer.state = 0;
+    daMP_ActivePlayer.playFlag = 0;
+    daMP_ActivePlayer.onMemory = onMemory;
+    daMP_ActivePlayer.open = 1;
+    daMP_ActivePlayer.curVolume = 127.0f;
+    daMP_ActivePlayer.targetVolume = 127.0f;
+    daMP_ActivePlayer.rampCount = 0;
     return 1;
 }
 
 /* 808776EC-80877740 00500C 0054+00 2/2 0/0 0/0 .text            daMP_THPPlayerClose__Fv */
-static int daMP_THPPlayerClose() {
-    if (daMP_ActivePlayer.field_0xa0 != 0 && daMP_ActivePlayer.mState == 0) {
-        daMP_ActivePlayer.field_0xa0 = 0;
-        DVDClose(&daMP_ActivePlayer.mFileInfo);
-        return 1;
+static BOOL daMP_THPPlayerClose() {
+    if (daMP_ActivePlayer.open && daMP_ActivePlayer.state == 0) {
+        daMP_ActivePlayer.open = 0;
+        DVDClose(&daMP_ActivePlayer.fileInfo);
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 /* 80877740-808777F0 005060 00B0+00 1/1 0/0 0/0 .text            daMP_THPPlayerCalcNeedMemory__Fv */
 static u32 daMP_THPPlayerCalcNeedMemory() {
-    // NONMATCHING
+    if (daMP_ActivePlayer.open) {
+		u32 size = daMP_ActivePlayer.onMemory
+		               ? ALIGN_NEXT(daMP_ActivePlayer.header.movieDataSize, 32)
+		               : ALIGN_NEXT(daMP_ActivePlayer.header.bufsize, 32) * 10;
+
+		size += ALIGN_NEXT(daMP_ActivePlayer.videoInfo.xSize * daMP_ActivePlayer.videoInfo.ySize, 32) * 3;
+		size += ALIGN_NEXT(daMP_ActivePlayer.videoInfo.xSize * daMP_ActivePlayer.videoInfo.ySize / 4, 32) * 3;
+		size += ALIGN_NEXT(daMP_ActivePlayer.videoInfo.xSize * daMP_ActivePlayer.videoInfo.ySize / 4, 32) * 3;
+
+		if (daMP_ActivePlayer.audioExist) {
+			size += ALIGN_NEXT(daMP_ActivePlayer.header.audioMaxSamples * 4, 32) * THP_AUDIO_BUFFER_COUNT;
+		}
+    
+		return size + 0x1000;
+	}
+
+	return 0;
 }
 
 /* 808777F0-80877A08 005110 0218+00 1/1 0/0 0/0 .text            daMP_THPPlayerSetBuffer__FPUc */
-static void daMP_THPPlayerSetBuffer(u8* param_0) {
-    // NONMATCHING
+static BOOL daMP_THPPlayerSetBuffer(u8* buffer) {
+    u32 i;
+	u8* ptr;
+	u32 ysize;
+	u32 uvsize;
+
+	if (daMP_ActivePlayer.open && daMP_ActivePlayer.state == 0) {
+		ptr = buffer;
+		if (daMP_ActivePlayer.onMemory) {
+			daMP_ActivePlayer.movieData = buffer;
+			ptr += daMP_ActivePlayer.header.movieDataSize;
+		} else {
+			for (i = 0; i < ARRAY_SIZE(daMP_ActivePlayer.readBuffer); i++) {
+				daMP_ActivePlayer.readBuffer[i].ptr = ptr;
+				ptr += ALIGN_NEXT(daMP_ActivePlayer.header.bufsize, 32);
+			}
+		}
+
+		ysize = ALIGN_NEXT(daMP_ActivePlayer.videoInfo.xSize * daMP_ActivePlayer.videoInfo.ySize, 32);
+		uvsize = ALIGN_NEXT(daMP_ActivePlayer.videoInfo.xSize * daMP_ActivePlayer.videoInfo.ySize / 4, 32);
+
+		for (i = 0; i < ARRAY_SIZE(daMP_ActivePlayer.textureSet); i++) {
+			daMP_ActivePlayer.textureSet[i].ytexture = ptr;
+
+			DCInvalidateRange(ptr, ysize);
+			ptr += ysize;
+
+			daMP_ActivePlayer.textureSet[i].utexture = ptr;
+			DCInvalidateRange(ptr, uvsize);
+			ptr += uvsize;
+
+			daMP_ActivePlayer.textureSet[i].vtexture = ptr;
+			DCInvalidateRange(ptr, uvsize);
+			ptr += uvsize;
+		}
+
+		if (daMP_ActivePlayer.audioExist) {
+			for (i = 0; i < ARRAY_SIZE(daMP_ActivePlayer.audioBuffer); i++) {
+				daMP_ActivePlayer.audioBuffer[i].buffer = (s16*)ptr;
+				daMP_ActivePlayer.audioBuffer[i].curPtr = (s16*)ptr;
+				daMP_ActivePlayer.audioBuffer[i].validSample = 0;
+				ptr += ALIGN_NEXT(daMP_ActivePlayer.header.audioMaxSamples * 4, 32);
+			}
+		}
+
+		daMP_ActivePlayer.thpWork = ptr;
+		return TRUE;
+	}
+
+	return FALSE;
 }
 
 /* 80877A08-80877ADC 005328 00D4+00 1/1 0/0 0/0 .text            daMP_InitAllMessageQueue__Fv */
 static void daMP_InitAllMessageQueue() {
-    // NONMATCHING
+    int i;
+	if (daMP_ActivePlayer.onMemory == FALSE) {
+		for (i = 0; i < THP_READ_BUFFER_COUNT; i++) {
+			daMP_PushFreeReadBuffer(&daMP_ActivePlayer.readBuffer[i]);
+		}
+	}
+
+	for (i = 0; i < THP_TEXTURE_SET_COUNT; i++) {
+		daMP_PushFreeTextureSet(&daMP_ActivePlayer.textureSet[i]);
+	}
+
+	if (daMP_ActivePlayer.audioExist) {
+		for (i = 0; i < THP_AUDIO_BUFFER_COUNT; i++) {
+			daMP_PushFreeAudioBuffer(&daMP_ActivePlayer.audioBuffer[i]);
+		}
+	}
+
+	OSInitMessageQueue(&daMP_PrepareReadyQueue, &daMP_PrepareReadyMessage, 1);
 }
 
 /* 80877ADC-80877B48 0053FC 006C+00 1/1 0/0 0/0 .text            daMP_ProperTimingForStart__Fv */
-static void daMP_ProperTimingForStart() {
-    // NONMATCHING
+static BOOL daMP_ProperTimingForStart() {
+    if (daMP_ActivePlayer.videoInfo.videoType & 1) {
+		if (VIGetNextField() == 0)
+			return TRUE;
+	} else if (daMP_ActivePlayer.videoInfo.videoType & 2) {
+		if (VIGetNextField() == 1)
+			return TRUE;
+	} else
+		return TRUE;
+
+	return FALSE;
 }
 
 /* 80877B48-80877C8C 005468 0144+00 1/1 0/0 0/0 .text daMP_ProperTimingForGettingNextFrame__Fv */
-static void daMP_ProperTimingForGettingNextFrame() {
-    // NONMATCHING
+static BOOL daMP_ProperTimingForGettingNextFrame() {
+    if ((daMP_ActivePlayer.videoInfo.videoType & 1)) {
+		if (VIGetNextField() == 0) {
+			return TRUE;
+		}
+	} else if ((daMP_ActivePlayer.videoInfo.videoType & 2)) {
+		if (VIGetNextField() == 1) {
+			return TRUE;
+		}
+	} else {
+		s32 frameRate = daMP_ActivePlayer.header.frameRate * 100.0f;
+		if (VIGetTvFormat() == VI_PAL) {
+			daMP_ActivePlayer.curCount = daMP_ActivePlayer.retaceCount * frameRate / 5000;
+		} else {
+			daMP_ActivePlayer.curCount = daMP_ActivePlayer.retaceCount * frameRate / 5994;
+		}
+
+		if (daMP_ActivePlayer.prevCount != daMP_ActivePlayer.curCount) {
+			daMP_ActivePlayer.prevCount = daMP_ActivePlayer.curCount;
+			return TRUE;
+		}
+	}
+
+	return FALSE;
 }
 
 /* 80877C8C-80877F48 0055AC 02BC+00 1/1 0/0 0/0 .text            daMP_PlayControl__FUl */
-static void daMP_PlayControl(u32 param_0) {
-    // NONMATCHING
+static void daMP_PlayControl(u32 retraceCnt) {
+    THPTextureSet* decodedTexture;
+
+	if (daMP_OldVIPostCallback != NULL)
+		daMP_OldVIPostCallback(retraceCnt);
+
+	decodedTexture = (THPTextureSet*)-1;
+	if (daMP_ActivePlayer.open && daMP_ActivePlayer.state == 2) {
+		if (daMP_ActivePlayer.dvdError || daMP_ActivePlayer.videoError) {
+			daMP_ActivePlayer.internalState = 5;
+			daMP_ActivePlayer.state = 5;
+			return;
+		}
+
+		++daMP_ActivePlayer.retaceCount;
+
+		if (daMP_ActivePlayer.retaceCount == 0) {
+			if (daMP_ProperTimingForStart()) {
+				if (daMP_ActivePlayer.audioExist) {
+					if (daMP_ActivePlayer.curVideoNumber - daMP_ActivePlayer.curAudioNumber <= 1) {
+						decodedTexture = (THPTextureSet*)daMP_PopDecodedTextureSet(0);
+						daMP_ActivePlayer.videoDecodeCount--;
+						daMP_ActivePlayer.curVideoNumber++;
+					} else {
+						daMP_ActivePlayer.internalState = 2;
+					}
+				} else {
+					decodedTexture = (THPTextureSet*)daMP_PopDecodedTextureSet(0);
+				}
+			} else {
+				daMP_ActivePlayer.retaceCount = -1;
+			}
+		} else {
+			if (daMP_ActivePlayer.retaceCount == 1) {
+				daMP_ActivePlayer.internalState = 2;
+			}
+
+			if (daMP_ProperTimingForGettingNextFrame()) {
+				if (daMP_ActivePlayer.audioExist) {
+					if (daMP_ActivePlayer.curVideoNumber - daMP_ActivePlayer.curAudioNumber <= 1) {
+						decodedTexture = (THPTextureSet*)daMP_PopDecodedTextureSet(0);
+						daMP_ActivePlayer.videoDecodeCount--;
+						daMP_ActivePlayer.curVideoNumber++;
+					}
+				} else {
+					decodedTexture = (THPTextureSet*)daMP_PopDecodedTextureSet(0);
+				}
+			}
+		}
+
+		if (decodedTexture != NULL && decodedTexture != (THPTextureSet*)-1) {
+			if (daMP_ActivePlayer.dispTextureSet != NULL)
+				daMP_PushUsedTextureSet(daMP_ActivePlayer.dispTextureSet);
+			daMP_ActivePlayer.dispTextureSet = decodedTexture;
+		}
+
+		if ((daMP_ActivePlayer.playFlag & 1) == 0) {
+			if (daMP_ActivePlayer.audioExist) {
+				s32 audioFrame = daMP_ActivePlayer.curAudioNumber + daMP_ActivePlayer.initReadFrame;
+				if (audioFrame == daMP_ActivePlayer.header.numFrames && daMP_ActivePlayer.playAudioBuffer == NULL) {
+					daMP_ActivePlayer.internalState = 3;
+					daMP_ActivePlayer.state = 3;
+				}
+			} else {
+				s32 curFrame;
+				if (daMP_ActivePlayer.dispTextureSet != NULL)
+					curFrame = daMP_ActivePlayer.dispTextureSet->frameNumber + daMP_ActivePlayer.initReadFrame;
+				else
+					curFrame = daMP_ActivePlayer.initReadFrame - 1;
+
+				if (curFrame == daMP_ActivePlayer.header.numFrames - 1 && decodedTexture == NULL) {
+					daMP_ActivePlayer.internalState = 3;
+					daMP_ActivePlayer.state = 3;
+				}
+			}
+		}
+	}
 }
 
 /* 80877F48-80877F88 005868 0040+00 1/1 0/0 0/0 .text            daMP_WaitUntilPrepare__Fv */
-s32 daMP_WaitUntilPrepare() {
+BOOL daMP_WaitUntilPrepare() {
     OSMessage msg;
     OSReceiveMessage(&daMP_PrepareReadyQueue, &msg, 1);
-    u32 temp = (s32)msg;
-    return (-temp | temp) >> 31; // fakematch? should be temp != 0;
+    
+    if ((BOOL)msg) {
+		return TRUE;
+	} else {
+		return FALSE;
+	}
 }
 
 /* 80877F88-80877FB8 0058A8 0030+00 2/2 0/0 0/0 .text            daMP_PrepareReady__Fi */
-void daMP_PrepareReady(int r3) {
-    OSMessage msg = (OSMessage)r3;
-    OSSendMessage(&daMP_PrepareReadyQueue, msg, 1);
+void daMP_PrepareReady(BOOL msg) {
+    OSSendMessage(&daMP_PrepareReadyQueue, (OSMessage)msg, 1);
 }
 
-/* 8087911C-8087911C 0000E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_808792E2 =
-    "This thp file doesn't have the offset data\n";
-SECTION_DEAD static char const* const stringBase_8087930E =
-    "Fail to read the offset data from THP file.\n";
-SECTION_DEAD static char const* const stringBase_8087933B =
-    "Specified frame number is over total frame numbe"
-    "r\n";
-SECTION_DEAD static char const* const stringBase_8087936E =
-    "Specified audio track number is invalid\n";
-SECTION_DEAD static char const* const stringBase_80879397 =
-    "Fail to read all movie data from THP file\n";
-#pragma pop
-
 /* 80877FB8-808782A0 0058D8 02E8+00 1/1 0/0 0/0 .text            daMP_THPPlayerPrepare__Flll */
-static BOOL daMP_THPPlayerPrepare(s32 param_0, s32 param_1, s32 param_2) {
-    // NONMATCHING
+static BOOL daMP_THPPlayerPrepare(s32 frame, s32 flag, s32 audioTrack) {
+    u8* threadData;
+	if (daMP_ActivePlayer.open && daMP_ActivePlayer.state == 0) {
+		if (frame > 0) {
+			if (daMP_ActivePlayer.header.offsetDataOffsets == 0) {
+                OSReport("This thp file doesn't have the offset data\n");
+                return FALSE;
+            }
+
+			if (daMP_ActivePlayer.header.numFrames > frame) {
+				if (DVDReadPrio(&daMP_ActivePlayer.fileInfo, daMP_WorkBuffer, 0x20, daMP_ActivePlayer.header.offsetDataOffsets + (frame - 1) * 4, 2) < 0) {
+					OSReport("Fail to read the offset data from THP file.\n");
+                    return FALSE;
+                }
+
+				daMP_ActivePlayer.initOffset = daMP_ActivePlayer.header.movieDataOffsets + daMP_WorkBuffer[0];
+				daMP_ActivePlayer.initReadFrame = frame;
+				daMP_ActivePlayer.initReadSize = daMP_WorkBuffer[1] - daMP_WorkBuffer[0];
+			} else {
+                OSReport("Specified frame number is over total frame number\n");
+				return FALSE;
+			}
+		} else {
+			daMP_ActivePlayer.initOffset = daMP_ActivePlayer.header.movieDataOffsets;
+			daMP_ActivePlayer.initReadSize = daMP_ActivePlayer.header.firstFrameSize;
+			daMP_ActivePlayer.initReadFrame = frame;
+		}
+
+		if (daMP_ActivePlayer.audioExist) {
+			if (audioTrack < 0 || audioTrack >= daMP_ActivePlayer.audioInfo.sndNumTracks) {
+                OSReport("Specified audio track number is invalid\n");
+                return FALSE;
+            }
+			daMP_ActivePlayer.curAudioTrack = audioTrack;
+		}
+
+		daMP_ActivePlayer.playFlag = flag & 1;
+		daMP_ActivePlayer.videoDecodeCount = 0;
+
+		if (daMP_ActivePlayer.onMemory) {
+			if (DVDReadPrio(&daMP_ActivePlayer.fileInfo, daMP_ActivePlayer.movieData, daMP_ActivePlayer.header.movieDataSize, daMP_ActivePlayer.header.movieDataOffsets, 2) < 0) {
+				OSReport("Fail to read all movie data from THP file\n");
+                return FALSE;
+			}
+
+			threadData = daMP_ActivePlayer.movieData + daMP_ActivePlayer.initOffset - daMP_ActivePlayer.header.movieDataOffsets;
+			daMP_CreateVideoDecodeThread(20, threadData);
+
+			if (daMP_ActivePlayer.audioExist)
+				daMP_CreateAudioDecodeThread(12, threadData);
+		} else {
+			daMP_CreateVideoDecodeThread(20, 0);
+			if (daMP_ActivePlayer.audioExist)
+				daMP_CreateAudioDecodeThread(12, NULL);
+			daMP_CreateReadThread(8);
+		}
+
+		daMP_InitAllMessageQueue();
+		daMP_VideoDecodeThreadStart();
+
+		if (daMP_ActivePlayer.audioExist)
+			daMP_AudioDecodeThreadStart();
+		if (daMP_ActivePlayer.onMemory == 0)
+			daMP_ReadThreadStart();
+
+		if (!daMP_WaitUntilPrepare())
+			return FALSE;
+
+		daMP_ActivePlayer.state = 1;
+		daMP_ActivePlayer.internalState = 0;
+		daMP_ActivePlayer.dispTextureSet = (THPTextureSet*)NULL;
+		daMP_ActivePlayer.playAudioBuffer = (THPAudioBuffer*)NULL;
+		daMP_ActivePlayer.curVideoNumber = 0;
+		daMP_ActivePlayer.curAudioNumber = 0;
+
+		daMP_OldVIPostCallback = VISetPostRetraceCallback(daMP_PlayControl);
+
+		return TRUE;
+	}
+
+	return FALSE;
 }
 
 /* 808782A0-808782E4 005BC0 0044+00 1/1 0/0 0/0 .text            daMP_THPPlayerDrawDone__Fv */
@@ -3415,61 +3918,61 @@ static void daMP_THPPlayerDrawDone() {
     GXDrawDone();
 
     if (daMP_Initialized) {
-        while (1) {
-            void* temp_r3 = daMP_PopUsedTextureSet();
-            if (temp_r3 == NULL) {
+        while (TRUE) {
+            void* tex = daMP_PopUsedTextureSet();
+            if (tex == NULL) {
                 break;
             }
-            daMP_PushFreeTextureSet(temp_r3);
+            daMP_PushFreeTextureSet(tex);
         }
     }
 }
 
 /* 808782E4-80878344 005C04 0060+00 1/1 0/0 0/0 .text            daMP_THPPlayerPlay__Fv */
-static int daMP_THPPlayerPlay() {
-    if (daMP_ActivePlayer.field_0xa0 != 0 && (daMP_ActivePlayer.mState == 1 || daMP_ActivePlayer.mState == 4)) {
-        daMP_ActivePlayer.mState = 2;
-        daMP_ActivePlayer.field_0xd0 = 0;
-        daMP_ActivePlayer.field_0xd4 = 0;
-        daMP_ActivePlayer.field_0xc8 = -1;
-        return 1;
+static BOOL daMP_THPPlayerPlay() {
+    if (daMP_ActivePlayer.open != 0 && (daMP_ActivePlayer.state == 1 || daMP_ActivePlayer.state == 4)) {
+        daMP_ActivePlayer.state = 2;
+        daMP_ActivePlayer.prevCount = 0;
+        daMP_ActivePlayer.curCount = 0;
+        daMP_ActivePlayer.retaceCount = -1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 /* 80878344-808783FC 005C64 00B8+00 3/3 0/0 0/0 .text            daMP_THPPlayerStop__Fv */
 static void daMP_THPPlayerStop() {
-    if (daMP_ActivePlayer.field_0xa0 != 0 && daMP_ActivePlayer.mState != 0) {
-        daMP_ActivePlayer.field_0xa5 = 0;
-        daMP_ActivePlayer.mState = 0;
+    if (daMP_ActivePlayer.open != 0 && daMP_ActivePlayer.state != 0) {
+        daMP_ActivePlayer.internalState = 0;
+        daMP_ActivePlayer.state = 0;
 
         VISetPostRetraceCallback(daMP_OldVIPostCallback);
 
-        if (daMP_ActivePlayer.field_0xb0 == 0) {
-            DVDCancel(&daMP_ActivePlayer.mFileInfo.cb);
+        if (daMP_ActivePlayer.onMemory == 0) {
+            DVDCancel(&daMP_ActivePlayer.fileInfo.cb);
             daMP_ReadThreadCancel();
         }
 
         daMP_VideoDecodeThreadCancel();
 
-        if (daMP_ActivePlayer.field_0xa7 != 0) {
+        if (daMP_ActivePlayer.audioExist != 0) {
             daMP_AudioDecodeThreadCancel();
             daMP_audioQuitWithMSound();
         }
 
         while (daMP_PopUsedTextureSet() != NULL) {}
 
-        daMP_ActivePlayer.field_0xdc = daMP_ActivePlayer.field_0xe0;
-        daMP_ActivePlayer.field_0xe8 = 0.0f;
+        daMP_ActivePlayer.curVolume = daMP_ActivePlayer.targetVolume;
+        daMP_ActivePlayer.rampCount = 0.0f;
     }
 }
 
 /* 808783FC-80878438 005D1C 003C+00 1/1 0/0 0/0 .text            daMP_THPPlayerPause__Fv */
 static int daMP_THPPlayerPause() {
-    if (daMP_ActivePlayer.field_0xa0 != 0 && daMP_ActivePlayer.mState == 2) {
-        daMP_ActivePlayer.field_0xa5 = 4;
-        daMP_ActivePlayer.mState = 4;
+    if (daMP_ActivePlayer.open != 0 && daMP_ActivePlayer.state == 2) {
+        daMP_ActivePlayer.internalState = 4;
+        daMP_ActivePlayer.state = 4;
         return 1;
     }
 
@@ -3478,16 +3981,34 @@ static int daMP_THPPlayerPause() {
 
 /* 80878438-80878534 005D58 00FC+00 1/1 0/0 0/0 .text
  * daMP_THPPlayerDrawCurrentFrame__FPC16_GXRenderModeObjUlUlUlUl */
-static int daMP_THPPlayerDrawCurrentFrame(_GXRenderModeObj const* param_0, u32 param_1,
-                                               u32 param_2, u32 param_3, u32 param_4) {
-    // NONMATCHING
+static int daMP_THPPlayerDrawCurrentFrame(const GXRenderModeObj* rmode, u32 x,
+                                          u32 y, u32 polygonW, u32 polygonH) {
+    s32 frame;
+	if (daMP_ActivePlayer.open && daMP_ActivePlayer.state != 0 && daMP_ActivePlayer.dispTextureSet != NULL) {
+		daMP_THPGXYuv2RgbSetup(rmode);
+		daMP_THPGXYuv2RgbDraw(daMP_ActivePlayer.dispTextureSet->ytexture,
+		                 daMP_ActivePlayer.dispTextureSet->utexture,
+		                 daMP_ActivePlayer.dispTextureSet->vtexture, x, y,
+		                 daMP_ActivePlayer.videoInfo.xSize,
+		                 daMP_ActivePlayer.videoInfo.ySize, polygonW, polygonH);
+		daMP_THPGXRestore();
+		frame = (daMP_ActivePlayer.dispTextureSet->frameNumber + daMP_ActivePlayer.initReadFrame) % daMP_ActivePlayer.header.numFrames;
+        
+        if (mDoGph_gInf_c::isFade()) {
+            mDoGph_gInf_c::fadeIn(1.0f);
+        }
+
+        return frame;
+    }
+
+	return -1;
 }
 
 /* 80878568-808785B0 005E88 0048+00 1/1 0/0 0/0 .text daMP_THPPlayerGetVideoInfo__FP12THPVideoInfo
  */
 static int daMP_THPPlayerGetVideoInfo(THPVideoInfo* info) {
-    if (daMP_ActivePlayer.field_0xa0 != 0) {
-        memcpy(info, &daMP_ActivePlayer.mVideoInfo, sizeof(THPVideoInfo));
+    if (daMP_ActivePlayer.open != 0) {
+        memcpy(info, &daMP_ActivePlayer.videoInfo, sizeof(THPVideoInfo));
         return 1;
     }
 
@@ -3497,8 +4018,8 @@ static int daMP_THPPlayerGetVideoInfo(THPVideoInfo* info) {
 /* 808785B0-808785F8 005ED0 0048+00 1/1 0/0 0/0 .text daMP_THPPlayerGetAudioInfo__FP12THPAudioInfo
  */
 static int daMP_THPPlayerGetAudioInfo(THPAudioInfo* info) {
-    if (daMP_ActivePlayer.field_0xa0 != 0) {
-        memcpy(info, &daMP_ActivePlayer.mAudioInfo, sizeof(THPAudioInfo));
+    if (daMP_ActivePlayer.open != 0) {
+        memcpy(info, &daMP_ActivePlayer.audioInfo, sizeof(THPAudioInfo));
         return 1;
     }
 
@@ -3507,8 +4028,8 @@ static int daMP_THPPlayerGetAudioInfo(THPAudioInfo* info) {
 
 /* 808785F8-8087861C 005F18 0024+00 2/2 0/0 0/0 .text            daMP_THPPlayerGetTotalFrame__Fv */
 static u32 daMP_THPPlayerGetTotalFrame() {
-    if (daMP_ActivePlayer.field_0xa0 != 0) {
-        return daMP_ActivePlayer.mTotalFrames;
+    if (daMP_ActivePlayer.open != 0) {
+        return daMP_ActivePlayer.header.numFrames;
     }
 
     return 0;
@@ -3516,12 +4037,45 @@ static u32 daMP_THPPlayerGetTotalFrame() {
 
 /* 8087861C-8087862C 005F3C 0010+00 2/2 0/0 0/0 .text            daMP_THPPlayerGetState__Fv */
 static int daMP_THPPlayerGetState() {
-    return daMP_ActivePlayer.mState;
+    return daMP_ActivePlayer.state;
 }
 
 /* 8087862C-80878758 005F4C 012C+00 1/1 0/0 0/0 .text            daMP_THPPlayerSetVolume__Fll */
-static void daMP_THPPlayerSetVolume(s32 param_0, s32 param_1) {
-    // NONMATCHING
+static BOOL daMP_THPPlayerSetVolume(s32 vol, s32 duration) {
+    u32 numSamples;
+	BOOL interrupt;
+
+	if (daMP_ActivePlayer.open && daMP_ActivePlayer.audioExist) {
+		numSamples = AIGetDSPSampleRate() == 0 ? 32 : 48;
+
+		// clamp volume
+		if (vol > 127)
+			vol = 127;
+		if (vol < 0)
+			vol = 0;
+
+		// clamp duration
+		if (duration > 60000)
+			duration = 60000;
+		if (duration < 0)
+			duration = 0;
+
+		interrupt = OSDisableInterrupts();
+
+		daMP_ActivePlayer.targetVolume = vol;
+		if (duration != 0) {
+			daMP_ActivePlayer.rampCount = numSamples * duration;
+			daMP_ActivePlayer.deltaVolume = (daMP_ActivePlayer.targetVolume - daMP_ActivePlayer.curVolume) / daMP_ActivePlayer.rampCount;
+		} else {
+			daMP_ActivePlayer.rampCount = 0;
+			daMP_ActivePlayer.curVolume = daMP_ActivePlayer.targetVolume;
+		}
+		OSRestoreInterrupts(interrupt);
+
+		return TRUE;
+	}
+
+	return FALSE;
 }
 
 /* 80945AE0-80945AEC 0CC540 000C+00 1/1 0/0 0/0 .bss             daMP_videoInfo */
@@ -3552,11 +4106,11 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
     daMP_THPPlayerGetVideoInfo(&daMP_videoInfo);
     daMP_THPPlayerGetAudioInfo(&daMP_audioInfo);
 
-    u16 var_r31 = JUTVideo::getManager()->getRenderMode()->fbWidth;
-    u16 temp_r4 = JUTVideo::getManager()->getRenderMode()->efbHeight;
+    u16 width = JUTVideo::getManager()->getRenderMode()->fbWidth;
+    u16 height = JUTVideo::getManager()->getRenderMode()->efbHeight;
 
-    daMP_DrawPosX = (var_r31 - daMP_videoInfo.field_0x0) >> 1;
-    daMP_DrawPosY = (temp_r4 - daMP_videoInfo.field_0x4) >> 1;
+    daMP_DrawPosX = (width - daMP_videoInfo.xSize) >> 1;
+    daMP_DrawPosY = (height - daMP_videoInfo.ySize) >> 1;
 
     // "The memory needed for this THP movie is %d bytes\n"
     OS_REPORT("このＴＨＰムービーが必要なメモリは%dバイトです\n", daMP_THPPlayerCalcNeedMemory());
@@ -3570,7 +4124,7 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
 
     daMP_THPPlayerSetBuffer((u8*)daMP_buffer);
 
-    if (!daMP_THPPlayerPrepare(0, 0, daMP_audioInfo.field_0xc != 1 ? OSGetTick() % daMP_audioInfo.field_0xc : 0)) {
+    if (!daMP_THPPlayerPrepare(0, 0, daMP_audioInfo.sndNumTracks != 1 ? OSGetTick() % daMP_audioInfo.sndNumTracks : 0)) {
         OSReport("Fail to prepare\n");
         JUT_ASSERT(0, FALSE);
         return 0;
@@ -3606,10 +4160,10 @@ static void daMP_ActivePlayer_Main() {
 
 /* 80878994-80878A34 0062B4 00A0+00 1/1 0/0 0/0 .text            daMP_ActivePlayer_Draw__Fv */
 static void daMP_ActivePlayer_Draw() {
-    int var_r31 = daMP_THPPlayerDrawCurrentFrame(JUTVideo::getManager()->getRenderMode(), daMP_DrawPosX, daMP_DrawPosY, daMP_videoInfo.field_0x0, daMP_videoInfo.field_0x4);
+    int frame = daMP_THPPlayerDrawCurrentFrame(JUTVideo::getManager()->getRenderMode(), daMP_DrawPosX, daMP_DrawPosY, daMP_videoInfo.xSize, daMP_videoInfo.ySize);
     daMP_THPPlayerDrawDone();
 
-    if (!fopOvlpM_IsPeek() && var_r31 > 0 && (cAPICPad_ANY_BUTTON(0) || !daMP_c::daMP_c_Get_MovieRestFrame())) {
+    if (!fopOvlpM_IsPeek() && frame > 0 && (cAPICPad_ANY_BUTTON(0) || !daMP_c::daMP_c_Get_MovieRestFrame())) {
         dComIfGp_event_reset();
         daMP_c::daMP_c_Set_PercentMovieVolume(0.0f);
     }
@@ -3619,24 +4173,43 @@ static void daMP_ActivePlayer_Draw() {
 static BOOL daMP_Fail_alloc;
 
 /* 80878A6C-80878B38 00638C 00CC+00 1/1 0/0 0/0 .text            daMP_Get_MovieRestFrame__Fv */
+// NONMATCHING - ending section isnt right
 static u32 daMP_Get_MovieRestFrame() {
-    // NONMATCHING
-    return 0;
+    u32 temp_r31;
+    if (daMP_Fail_alloc != 0 || daMP_THPPlayerGetState() == 5) {
+        return 0;
+    }
+
+    if (daMP_ActivePlayer.open && daMP_ActivePlayer.dispTextureSet != NULL) {
+        temp_r31 = (daMP_ActivePlayer.dispTextureSet->frameNumber + daMP_ActivePlayer.initReadFrame) % daMP_ActivePlayer.header.numFrames;
+    } else {
+        return -1;
+    }
+
+    u32 temp_r3 = daMP_THPPlayerGetTotalFrame();
+    if (temp_r3 == 0) {
+        return 0;
+    }
+    if (temp_r3 <= 1) {
+        return 0;
+    }
+
+    return temp_r3 - temp_r31;
 }
 
 /* 80878B38-80878BB8 006458 0080+00 1/1 0/0 0/0 .text            daMP_Set_PercentMovieVolume__Ff */
-static void daMP_Set_PercentMovieVolume(f32 param_0) {
+static void daMP_Set_PercentMovieVolume(f32 volume) {
     if (!daMP_Fail_alloc) {
-        s32 var_r3;
-        if (param_0 >= 1.0f) {
-            var_r3 = 127;
-        } else if (param_0 <= 0.0f) {
-            var_r3 = 0;
+        s32 player_vol;
+        if (volume >= 1.0f) {
+            player_vol = 127;
+        } else if (volume <= 0.0f) {
+            player_vol = 0;
         } else {
-            var_r3 = param_0 / 127.0f;
+            player_vol = volume / 127.0f;
         }
 
-        daMP_THPPlayerSetVolume(var_r3, 1000);
+        daMP_THPPlayerSetVolume(player_vol, 1000);
     }
 }
 
