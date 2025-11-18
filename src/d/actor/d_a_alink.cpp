@@ -14630,7 +14630,7 @@ void daAlink_c::setLight() {
         }
     } else {
         if (checkNoResetFlg1(FLG1_UNK_80)) {
-            var_f31 = light_m->field_0xC;
+            var_f31 = light_m->mPower;
         } else {
             var_f31 = 0.0f;
         }
@@ -14648,19 +14648,19 @@ void daAlink_c::setLight() {
         var_f29 = 0.2f;
     }
 
-    cLib_chaseF(&field_0x33fc, var_f31, light_m->field_0xC * var_f29);
+    cLib_chaseF(&field_0x33fc, var_f31, light_m->mPower * var_f29);
 
     cXyz spB8;
     f32 var_f27;
     if (field_0x33fc > 0.0f) {
         GXColor spF0 = {0x00, 0x00, 0x00, 0xFF};
-        spF0.r = light_m->field_0x4;
-        spF0.g = light_m->field_0x6;
-        spF0.b = light_m->field_0x8;
+        spF0.r = light_m->mColorR;
+        spF0.g = light_m->mColorG;
+        spF0.b = light_m->mColorB;
 
         Vec spC4 = {0.0f, 0.0f, 0.0f};
-        spC4.y = light_m->field_0x14;
-        spC4.z = light_m->field_0x18;
+        spC4.y = light_m->mYOffset;
+        spC4.z = light_m->mZOffset;
 
         f32 var_f26;
         if ((uintptr_t)light_m == (uintptr_t)&daAlinkHIO_wlLight_c0::m) {
@@ -14689,7 +14689,7 @@ void daAlink_c::setLight() {
             var_f26 = cM_sht2d(-shape_angle.y);
         }
 
-        dKy_WolfEyeLight_set(&spB8, var_f27 + light_m->field_0xA, var_f26, (light_m->field_0x10 * field_0x33fc) / light_m->field_0xC, &spF0, field_0x33fc, light_m->field_0x0, light_m->field_0x1);
+        dKy_WolfEyeLight_set(&spB8, var_f27 + light_m->mXAngle, var_f26, (light_m->mWidth * field_0x33fc) / light_m->mPower, &spF0, field_0x33fc, light_m->mAngleAttenuationType, light_m->mDistanceAttenuationType);
     }
 }
 

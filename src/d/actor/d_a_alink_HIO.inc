@@ -1800,43 +1800,43 @@ daAlinkHIO_smallJump_c::~daAlinkHIO_smallJump_c() {}
 
 void daAlinkHIO_pushpull_c::genMessage(JORMContext* ctx) {
     // Reset
-    ctx->genButton("リセット", 0x4000003, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Standby A speed
-    ctx->genSlider("待機Ａ速度", &m.mStandbyASpeed, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("待機Ａ速度", &m.mStandbyASpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Standby interpolation
-    ctx->genSlider("待機補間", &m.mStandbyInterpolation, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("待機補間", &m.mStandbyInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Push A speed
-    ctx->genSlider("押しＡ速度", &m.mPushASpeed, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("押しＡ速度", &m.mPushASpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Push A speed (heavy)
-    ctx->genSlider("押しＡ速度（重）", &m.mPushASpeedHeavy, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("押しＡ速度（重）", &m.mPushASpeedHeavy, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Push interpolation
-    ctx->genSlider("押し補間", &m.mPushInterpolation, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("押し補間", &m.mPushInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Pull interpolation
-    ctx->genSlider("引き補間", &m.mPullInterpolation, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("引き補間", &m.mPullInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo push A speed
-    ctx->genSlider("相撲押しＡ速度", &m.mSumoPushASpeed, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲押しＡ速度", &m.mSumoPushASpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo push additional A speed
-    ctx->genSlider("相撲押し追加Ａ速度", &m.mSumoPushAddASpeed, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲押し追加Ａ速度", &m.mSumoPushAddASpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo pushed A speed
-    ctx->genSlider("相撲押されＡ速度", &m.mSumoPushedASpeed, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲押されＡ速度", &m.mSumoPushedASpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo pushed additional A speed
-    ctx->genSlider("相撲押され追加Ａ速度", &m.mSumoPushedAddASpeed, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲押され追加Ａ速度", &m.mSumoPushedAddASpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo max gauge
-    ctx->genSlider("相撲最大ゲージ", &m.mSumoMaxGauge, 0, 0x7fff, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲最大ゲージ", &m.mSumoMaxGauge, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo increase gauge
-    ctx->genSlider("相撲増加ゲージ", &m.mSumoIncreaseGauge, 0, 0x7fff, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲増加ゲージ", &m.mSumoIncreaseGauge, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo penalty time
-    ctx->genSlider("相撲ペナルティ時間", &m.mSumoPenaltyTime, 0, 0x7fff, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲ペナルティ時間", &m.mSumoPenaltyTime, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo power 3/2 switch
-    ctx->genSlider("相撲パワー３・２境界", &m.mSumoPower3To2Switch, 0, 0x7fff, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲パワー３・２境界", &m.mSumoPower3To2Switch, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo power 2/1 switch
-    ctx->genSlider("相撲パワー２・１境界", &m.mSumoPower2To1Switch, 0, 0x7fff, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲パワー２・１境界", &m.mSumoPower2To1Switch, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo rotation allow power
-    ctx->genSlider("相撲旋回許可パワー", &m.mSumoRotationAllowPower, 0, 3, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲旋回許可パワー", &m.mSumoRotationAllowPower, 0, 3, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo rotation angle
-    ctx->genSlider("相撲旋回角度", &m.mSumoRotationAngle, 0, 0x7fff, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("相撲旋回角度", &m.mSumoRotationAngle, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sumo wait rotation allow
-    ctx->genCheckBox("相撲待機旋回許可", &m.mEnableSumoWaitRotation, '\x01', 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genCheckBox("相撲待機旋回許可", &m.mEnableSumoWaitRotation, '\x01', 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_pushpull_c::daAlinkHIO_pushpull_c() {
@@ -2113,7 +2113,7 @@ daAlinkHIO_damSwim_c::daAlinkHIO_damSwim_c() {
 
 void daAlinkHIO_damage_c::genMessage(JORMContext* ctx) {
     // Reset
-    ctx->genButton("リセット",0x4000003,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genButton("リセット",0x4000003,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Normal
     ctx->genNode("通常",&mDamNormal,0,0);
     // Large
@@ -2129,51 +2129,51 @@ void daAlinkHIO_damage_c::genMessage(JORMContext* ctx) {
     // Swim
     ctx->genNode("泳ぎ",&mDamSwim,0,0);
     // Invincible state
-    ctx->genCheckBox("無敵状態",&m.mInvincible,'\x01',0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genCheckBox("無敵状態",&m.mInvincible,'\x01',0, NULL, 0xffff,0xffff,0x200,0x18);
     // Invincible time
-    ctx->genSlider("無敵時間",&m.mInvincibleTime,0,0x96,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("無敵時間",&m.mInvincibleTime,0,0x96,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Wolf floor invincible time
-    ctx->genSlider("狼ポリゴン時無敵時間",&m.mWolfFloorInvincibleTime,0,0x96,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("狼ポリゴン時無敵時間",&m.mWolfFloorInvincibleTime,0,0x96,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Floor get up
     daAlinkHIO_setAnmGenMessage(&m.mFloorDmgAnm,ctx,"床起き",14.0f,1);
     // Dash
     daAlinkHIO_setAnmGenMessage(&m.mDashDmgAnm,ctx,"ダッシュ",9.0f,0);
     // Recover stand anm speed
-    ctx->genSlider("復帰起き上がりＡ速度",&m.mRecoverStandAnmSpeed,1.0f,10.0f,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("復帰起き上がりＡ速度",&m.mRecoverStandAnmSpeed,1.0f,10.0f,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Inverted fall interpolation
-    ctx->genSlider("逆さま落下補間",&m.mInvertedFallInterpolation,0.0f,50.0f,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("逆さま落下補間",&m.mInvertedFallInterpolation,0.0f,50.0f,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Freeze wait time
-    ctx->genSlider("凍り待ち時間",&m.mFreezeTime,1,0x7fff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("凍り待ち時間",&m.mFreezeTime,1,0x7fff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Freeze initial R
-    ctx->genSlider("凍り初期Ｒ",&m.mFreezeInitR,-0x40,0x40,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("凍り初期Ｒ",&m.mFreezeInitR,-0x40,0x40,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Freeze initial G
-    ctx->genSlider("凍り初期Ｇ",&m.mFreezeInitG,-0x40,0x40,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("凍り初期Ｇ",&m.mFreezeInitG,-0x40,0x40,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Freeze initial B
-    ctx->genSlider("凍り初期Ｂ",&m.mFreezeInitB,-0x40,0x40,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("凍り初期Ｂ",&m.mFreezeInitB,-0x40,0x40,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Freeze middle R
-    ctx->genSlider("凍り中Ｒ",&m.mFreezeR,-0xff,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("凍り中Ｒ",&m.mFreezeR,-0xff,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Freeze middle G
-    ctx->genSlider("凍り中Ｇ",&m.mFreezeG,-0xff,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("凍り中Ｇ",&m.mFreezeG,-0xff,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Freeze middle B
-    ctx->genSlider("凍り中Ｂ",&m.mFreezeB,-0xff,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("凍り中Ｂ",&m.mFreezeB,-0xff,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Damage R0
-    ctx->genSlider("ダメージＲ０",&m.mDamageR0,0,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ダメージＲ０",&m.mDamageR0,0,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Damage G0
-    ctx->genSlider("ダメージＧ０",&m.mDamageG0,0,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ダメージＧ０",&m.mDamageG0,0,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Damage B0
-    ctx->genSlider("ダメージＢ０",&m.mDamageB0,0,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ダメージＢ０",&m.mDamageB0,0,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Damage R1
-    ctx->genSlider("ダメージＲ１",&m.mDamageR1,0,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ダメージＲ１",&m.mDamageR1,0,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Damage G1
-    ctx->genSlider("ダメージＧ１",&m.mDamageG1,0,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ダメージＧ１",&m.mDamageG1,0,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Damage B1
-    ctx->genSlider("ダメージＢ１",&m.mDamageB1,0,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ダメージＢ１",&m.mDamageB1,0,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Damage R2
-    ctx->genSlider("ダメージＲ２",&m.mDamageR2,0,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ダメージＲ２",&m.mDamageR2,0,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Damage G2
-    ctx->genSlider("ダメージＧ２",&m.mDamageG2,0,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ダメージＧ２",&m.mDamageG2,0,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
     // Damage B2
-    ctx->genSlider("ダメージＢ２",&m.mDamageB2,0,0xff,0,(JOREventListener *)0x0,0xffff,0xffff,0x200,0x18);
+    ctx->genSlider("ダメージＢ２",&m.mDamageB2,0,0xff,0, NULL, 0xffff,0xffff,0x200,0x18);
 }
 
 daAlinkHIO_damage_c::daAlinkHIO_damage_c() :
@@ -2209,35 +2209,35 @@ daAlinkHIO_damNormal_c::~daAlinkHIO_damNormal_c() {}
 
 void daAlinkHIO_horse_c::genMessage(JORMContext* ctx) {
     // Reset
-    ctx->genButton("リセット", 0x4000003, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sword up Animation speed
-    ctx->genSlider("剣上Ａ速度", &m.mSwordUpAnmSpeed, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("剣上Ａ速度", &m.mSwordUpAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sword up interpolation
-    ctx->genSlider("剣上補間", &m.mSwordUpInterpolation, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("剣上補間", &m.mSwordUpInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Sword up time
-    ctx->genSlider("剣上時間", &m.mSwordUpTime, 0, 300, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("剣上時間", &m.mSwordUpTime, 0, 300, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Search range angle
-    ctx->genSlider("サーチ範囲角度", &m.mSearchRangeAngle, 0, 0x7fff, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("サーチ範囲角度", &m.mSearchRangeAngle, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Walk out prohibition time
-    ctx->genSlider("歩出禁止時間", &m.mWalkOutProhibitionTime, 0, 500, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("歩出禁止時間", &m.mWalkOutProhibitionTime, 0, 500, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Walk out
     daAlinkHIO_setAnmGenMessage(&m.mWalkOutAnm, ctx, "歩出", 18.0f, 0);
     // Run out
     daAlinkHIO_setAnmGenMessage(&m.mRunOutAnm, ctx, "走出", 22.0f, 0);
     // Horse walk start F
-    ctx->genSlider("馬歩出開始Ｆ", &m.mHorseWalkStartFrame, 0.0f, 18.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("馬歩出開始Ｆ", &m.mHorseWalkStartFrame, 0.0f, 18.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Whip(ctx,
     daAlinkHIO_setAnmGenMessage(&m.mWhipAnm, ctx, "鞭", 43.0f, 0);
     // Whip run out
     daAlinkHIO_setAnmGenMessage(&m.mWhipRunOutAnm, ctx, "鞭走出", 22.0f, 0);
     // Tired wait interpolation
-    ctx->genSlider("疲れ待機補間", &m.mTiredWaitInterpolation, 0.0f, 10.0f, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("疲れ待機補間", &m.mTiredWaitInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Whip wait time
-    ctx->genSlider("鞭打ち待ち時間", &m.mWhipWaitTime, 0, 300, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("鞭打ち待ち時間", &m.mWhipWaitTime, 0, 300, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Subjective downward max angle
-    ctx->genSlider("主観下向最大角度", &m.mSubjectiveDownwardMaxAngle, 0, 0x4000, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("主観下向最大角度", &m.mSubjectiveDownwardMaxAngle, 0, 0x4000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Subjective upward max angle
-    ctx->genSlider("主観上向最大角度", &m.mSubjectiveUpwardMaxAngle, -0x4000, 0, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("主観上向最大角度", &m.mSubjectiveUpwardMaxAngle, -0x4000, 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_horse_c::daAlinkHIO_horse_c() {
@@ -2258,7 +2258,38 @@ daAlinkHIO_horse_c::daAlinkHIO_horse_c() {
 }
 
 void daAlinkHIO_canoe_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Stick rowing animation speed
+    ctx->genSlider("スティック漕ぎＡ速度", &m.mStickRowAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Button rowing animation speed
+    ctx->genSlider("ボタン漕ぎＡ速度", &m.mBtnRowAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Stick rowing start animation speed
+    ctx->genSlider("スティック漕ぎ始めＡ速度", &m.mStickRowStartAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Button rowing start animation speed
+    ctx->genSlider("ボタン漕ぎ始めＡ速度", &m.mBtnRowStartAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Canoe speed rate
+    ctx->genSlider("カヌー速度率", &m.mSpeedRate, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Canoe maximum speed
+    ctx->genSlider("カヌー最高速度", &m.mMaxSpeed, 0.0f, 30.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Canoe backward speed rate
+    ctx->genSlider("カヌー後退速度率", &m.mBackSpeedRate, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Canoe backward maximum speed
+    ctx->genSlider("カヌー後退最高速度", &m.mBackMaxSpeed, 0.0f, 30.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Canoe deceleration value
+    ctx->genSlider("カヌー減速値", &m.mDeceleration, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Canoe maximum turning angle
+    ctx->genSlider("カヌー最高旋回角度", &m.mMaxTurnAngle, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Left-right grip change
+    daAlinkHIO_setAnmGenMessage(&m.mLeftRightChangeAnm, ctx, "左右持替", 23.0f, 0);
+    // Downriver canoe maximum turning angle
+    ctx->genSlider("川下りカヌー最高旋回角度", &m.mMaxTurnAngle_RiverRide, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Downriver canoe maximum speed
+    ctx->genSlider("川下りカヌー最高速度", &m.mMaxSpeed_RiverRide, 0.0f, 200.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Downriver canoe speed rate
+    ctx->genSlider("川下りカヌー速度率", &m.mSpeedRate_RiverRide, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Downriver canoe deceleration value
+    ctx->genSlider("川下りカヌー減速値", &m.mDeceleration_RiverRide, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_canoe_c::daAlinkHIO_canoe_c() {
@@ -2279,7 +2310,50 @@ daAlinkHIO_canoe_c::daAlinkHIO_canoe_c() {
 }
 
 void daAlinkHIO_bow_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Shoot
+    daAlinkHIO_setAnmGenMessage(&m.mShootAnm, ctx, "撃つ", 9.0f, 1);
+    // Load
+    daAlinkHIO_setAnmGenMessage(&m.mLoadAnm, ctx, "装填", 6.0f, 0);
+    // Start interpolation
+    ctx->genSlider("開始補間", &m.mStartInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Arrow speed
+    ctx->genSlider("矢速度", &m.mArrowSpeed, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Arrow distance
+    ctx->genSlider("矢飛距離", &m.mArrowDistance, 0.0f, 100000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Charge time
+    ctx->genSlider("ため時間", &m.mChargeArrowTime, 0, 300, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Charge arrow speed
+    ctx->genSlider("ため矢速度", &m.mChargeArrowSpeed, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Charge arrow distance
+    ctx->genSlider("ため矢飛距離", &m.mChargeArrowDistance, 0.0f, 100000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Scope arrow speed
+    ctx->genSlider("スコープ矢速度", &m.mScopeArrowSpeed, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Scope arrow distance
+    ctx->genSlider("スコープ矢飛距離", &m.mScopeArrowDistance, 0.0f, 100000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Arrow additional attack radius
+    ctx->genSlider("矢追加攻撃半径", &m.mArrowAttackRadius, 0.0f, 300.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Arrow additional attack radius start
+    ctx->genSlider("矢追加攻撃半径開始", &m.mArrowIncAttackMaxStart, 0.0f, 100000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Arrow additional attack radius max
+    ctx->genSlider("矢追加攻撃半径最大", &m.mArrowIncAttackMax, 0.0f, 100000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Bomb arrow speed
+    ctx->genSlider("爆弾矢速度", &m.mBombArrowSpeed, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Bomb arrow distance
+    ctx->genSlider("爆弾矢飛距離", &m.mBombArrowDistance, 0.0f, 100000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Charge bomb arrow speed
+    ctx->genSlider("ため爆弾矢速度", &m.mChargeBombArrowSpeed, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Charge bomb arrow distance
+    ctx->genSlider("ため爆弾矢飛距離", &m.mChargeBombArrowDistance, 0.0f, 100000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Arrow wait time
+    ctx->genSlider("矢待ち時間", &m.mBombArrowHoldTime, 0, 300, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Bomb arrow fly explode time
+    ctx->genSlider("爆弾矢飛行爆発時間", &m.mBombArrowFlyExplodeTime, 0, 1000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Slingshot speed
+    ctx->genSlider("パチンコ速度", &m.mSlingshotSpeed, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Slingshot distance
+    ctx->genSlider("パチンコ飛距離", &m.mSlingshotDistance, 0.0f, 100000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_bow_c::daAlinkHIO_bow_c() {
@@ -2300,7 +2374,32 @@ daAlinkHIO_bow_c::daAlinkHIO_bow_c() {
 }
 
 void daAlinkHIO_boom_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw
+    daAlinkHIO_setAnmGenMessage(&m.mThrowAnm, ctx, "投げ", 21.0f, 1);
+    // Catch
+    daAlinkHIO_setAnmGenMessage(&m.mCatchAnm, ctx, "キャッチ", 25.0f, 1);
+    // Idle animation speed
+    ctx->genSlider("待機Ａ速度", &m.mIdleAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Start interpolation
+    ctx->genSlider("開始補間", &m.mStartInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Fly speed
+    ctx->genSlider("飛行速度", &m.mFlySpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Charge fly speed
+    ctx->genSlider("ため飛行速度", &m.mChargeFlySpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Entangling fly speed
+    ctx->genSlider("巻込飛行速度", &m.mCatchSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Fly distance max
+    ctx->genSlider("飛行距離", &m.mFlyDistMax, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Horseback fly distance max
+    ctx->genSlider("馬上飛行距離", &m.mHorsebackFlyDistMax, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Charge time
+    ctx->genSlider("ため時間", &m.mChargeTime, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Lock distance max
+    ctx->genSlider("ロック距離", &m.mLockDistMax, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Wall piercing time
+    ctx->genSlider("壁突き抜け時間", &m.mBgThroughTime, 0, 1000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_boom_c::daAlinkHIO_boom_c() {
@@ -2321,7 +2420,48 @@ daAlinkHIO_boom_c::daAlinkHIO_boom_c() {
 }
 
 void daAlinkHIO_bomb_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Explode time
+    ctx->genSlider("爆発時間", &m.mExplodeTime, 0, 300, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Gravity
+    ctx->genSlider("重力", &m.mGravity, -5.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Max fall speed
+    ctx->genSlider("最大落下速度", &m.mMaxFallSpeed, -500.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw horizontal speed
+    ctx->genSlider("投げ水平速度", &m.mThrowSpeedH, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw vertical speed
+    ctx->genSlider("投げ垂直速度", &m.mThrowSpeedV, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Bound rate
+    ctx->genSlider("バウンド率", &m.mBoundRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Vertical stop speed
+    ctx->genSlider("垂直停止速度", &m.mStopSpeedY, 0.0f, 20.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Bounce time max speed
+    ctx->genSlider("跳返時最大速度", &m.mMaxSpeedY, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Effect scale
+    ctx->genSlider("爆発エフェクトスケール", &m.mEffScale, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Underwater explode switch
+    ctx->genSlider("水中爆発切替え", &m.mExplodeWaterEffectLimit, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Explode attack radius
+    ctx->genSlider("爆発攻撃半径", &m.mAttackRadius, 0.0f, 500.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Bomb insect red blink
+    ctx->genSlider("爆弾虫赤点滅", &m.mEnemyBombColorR, 0, 0xff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Bomb insect effect track rate
+    ctx->genSlider("爆弾虫エフェクト追従率", &m.mPokeBombTrackRate, 0.0f, 5.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Water gravity
+    ctx->genSlider("水中重力", &m.mWaterGravity, -5.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Water max fall speed
+    ctx->genSlider("水中最大落下速度", &m.mWaterMaxFallSpeed, -500.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Water throw horizontal speed
+    ctx->genSlider("水中投げ水平速度", &m.mWaterThrowSpeedH, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Water throw vertical speed
+    ctx->genSlider("水中投げ垂直速度", &m.mWaterThrowSpeedV, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Wolf throw horizontal speed
+    ctx->genSlider("狼投げ水平速度", &m.mWolfThrowSpeedH, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Wolf throw vertical speed
+    ctx->genSlider("狼投げ垂直速度", &m.mWolfThrowSpeedV, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Poke insect limit angle
+    ctx->genSlider("ポケムシ制限角度", &m.mBombInsectLimitAngle, 0, 0x5a, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_bomb_c::daAlinkHIO_bomb_c() {
@@ -2342,7 +2482,52 @@ daAlinkHIO_bomb_c::daAlinkHIO_bomb_c() {
 }
 
 void daAlinkHIO_light_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // X angle
+    ctx->genSlider("Ｘ角度", &m.mXAngle, -0xb4, 0xb4, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Power
+    ctx->genSlider("パワー", &m.mPower, 0.0f, 200.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Width
+    ctx->genSlider("幅", &m.mWidth, 0.0f, 200.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Y offset
+    ctx->genSlider("Ｙずらし", &m.mYOffset, -10000.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Z offset
+    ctx->genSlider("Ｚずらし", &m.mZOffset, -10000.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Color R
+    ctx->genSlider("色Ｒ", &m.mColorR, 0, 0xff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Color G
+    ctx->genSlider("色Ｇ", &m.mColorG, 0, 0xff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Color B
+    ctx->genSlider("色Ｂ", &m.mColorB, 0, 0xff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Distance attenuation
+    ctx->startComboBox("距離減衰", &m.mDistanceAttenuationType, 0, NULL, 0xffff, 0xffff, 0x100, 0x1a);
+    // No attenuation [GX_DA_OFF]
+    ctx->genComboBoxItem("減衰なし [GX_DA_OFF]", 0);
+    // Gentle [GX_DA_GENTLE]
+    ctx->genComboBoxItem("おだやか [GX_DA_GENTLE]", 1);
+    // Medium [GX_DA_MEDIUM]
+    ctx->genComboBoxItem("中間     [GX_DA_MEDIUM]", 2);
+    // Steep [GX_DA_STEEP]
+    ctx->genComboBoxItem("険しい   [GX_DA_STEEP]", 3);
+    ctx->endComboBox();
+    // Angle attenuation
+    ctx->startComboBox("角度減衰", &m.mAngleAttenuationType, 0, NULL, 0xffff, 0xffff, 0x100, 0x1a);
+    // Point [GX_SP_OFF]
+    ctx->genComboBoxItem("ポイント [GX_SP_OFF]", 0);
+    // Right angle [GX_SP_FLAT]
+    ctx->genComboBoxItem("直角     [GX_SP_FLAT]", 1);
+    // COS curve [GX_SP_COS]
+    ctx->genComboBoxItem("COS曲線  [GX_SP_COS]", 2);
+    // COS2 curve [GX_SP_COS2]
+    ctx->genComboBoxItem("COS2曲線 [GX_SP_COS2]", 3);
+    // Sharp [GX_SP_SHARP]
+    ctx->genComboBoxItem("シャープ [GX_SP_SHARP]", 4);
+    // Ring shape [GX_SP_RING1]
+    ctx->genComboBoxItem("リング状 [GX_SP_RING1]", 5);
+    // Ring shape 2 [GX_SP_RING2]
+    ctx->genComboBoxItem("リング状2[GX_SP_RING2]", 6);
+    ctx->endComboBox();
 }
 
 daAlinkHIO_light_c::daAlinkHIO_light_c(int param_0) {
@@ -2375,7 +2560,32 @@ daAlinkHIO_light_c::daAlinkHIO_light_c(int param_0) {
 }
 
 void daAlinkHIO_kandelaar_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Shake
+    daAlinkHIO_setAnmGenMessage(&m.mShakeAnm, ctx, "振る", 30.0f, 1);
+    // Color Reg 1 R
+    ctx->genSlider("カラレジ１Ｒ", &m.mColorReg1R, 0, 0xff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Color Reg 1 G
+    ctx->genSlider("カラレジ１Ｇ", &m.mColorReg1G, 0, 0xff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Color Reg 1 B
+    ctx->genSlider("カラレジ１Ｂ", &m.mColorReg1B, 0, 0xff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Color Reg 2 R
+    ctx->genSlider("カラレジ２Ｒ", &m.mColorReg2R, 0, 0xff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Color Reg 2 G
+    ctx->genSlider("カラレジ２Ｇ", &m.mColorReg2G, 0, 0xff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Color Reg 2 B
+    ctx->genSlider("カラレジ２Ｂ", &m.mColorReg2B, 0, 0xff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Flame Track Rate
+    ctx->genSlider("炎追従率", &m.mFlameTrackRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Pour Begin
+    daAlinkHIO_setAnmGenMessage(&m.mBeginUnkAnm, ctx, "注始", 11.0f, 0);
+    // Pour End
+    daAlinkHIO_setAnmGenMessage(&m.mEndUnkAnm, ctx, "注終", 17.0f, 0);
+    // Normal Oil Loss
+    ctx->genSlider("通常油減り", &m.mNormalOilLoss, 0, 30000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Shake Oil Loss
+    ctx->genSlider("振り油減り", &m.mShakeOilLoss, 0, 30000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_kandelaar_c::daAlinkHIO_kandelaar_c() {
@@ -2396,7 +2606,38 @@ daAlinkHIO_kandelaar_c::daAlinkHIO_kandelaar_c() {
 }
 
 void daAlinkHIO_magneBoots_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Equip
+    daAlinkHIO_setAnmGenMessage(&m.mEquipAnm, ctx, "装備", 29.0f, 1);
+    // Key input rate
+    ctx->genSlider("キー入力率", &m.mInputFactor, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Foot position ratio
+    ctx->genSlider("足位置比率", &m.mFeetPositionRatio, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Walk A speed max
+    ctx->genSlider("歩きＡ速度最大", &m.mWalkAnmSpeedMax, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Walk A speed min
+    ctx->genSlider("歩きＡ速度最小", &m.mWalkAnmSpeedMin, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Underwater key input rate
+    ctx->genSlider("水中キー入力率", &m.mWaterInputFactor, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Underwater A speed rate
+    ctx->genSlider("水中Ａ速度率", &m.mWaterStartWalkAnmRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Underwater A speed rate (slow)
+    ctx->genSlider("水中Ａ速度率（遅）", &m.mWaterWalkAnmRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Underwater A speed rate (sword)
+    ctx->genSlider("水中Ａ速度率（剣）", &m.mWaterVelRateSword, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Max fly speed
+    ctx->genSlider("最大飛び速度", &m.mMaxMagneFlySpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Fly acceleration
+    ctx->genSlider("飛び加速度", &m.mMagneFlyAccelRate, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Underwater vertical speed rate
+    ctx->genSlider("水中垂直速度率", &m.mWaterVelocityY, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Underwater horizontal speed rate
+    ctx->genSlider("水中平面速度率", &m.mWaterVelocityX, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Underwater key input rate (Zora)
+    ctx->genSlider("水中キー入力率（ゾーラ）", &m.mZoraWaterInputFactor, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Underwater A speed rate (Zora)
+    ctx->genSlider("水中Ａ速度率（ゾーラ）", &m.mZoraWaterAnmSpeed, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_magneBoots_c::daAlinkHIO_magneBoots_c() {
@@ -2417,7 +2658,12 @@ daAlinkHIO_magneBoots_c::daAlinkHIO_magneBoots_c() {
 }
 
 void daAlinkHIO_fmChain_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット",0x4000003,0, NULL, 0xffff,0xffff,0x200,0x18);
+    // Grip
+    daAlinkHIO_setAnmGenMessage(&m.mGripAnm, ctx, "掴み", 20.0f, 1);
+    // Unfinished
+    daAlinkHIO_setReverseAnmGenMessage(&m.mUnfinishedAnm, ctx, "放し", 20.0f, 1);
 }
 
 daAlinkHIO_fmChain_c::daAlinkHIO_fmChain_c() {
@@ -2438,7 +2684,40 @@ daAlinkHIO_fmChain_c::daAlinkHIO_fmChain_c() {
 }
 
 void daAlinkHIO_hookshot_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Idle A speed
+    ctx->genSlider("待機Ａ速度", &m.mWaitAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Start interpolation
+    ctx->genSlider("開始補間", &m.mStartInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Maximum length
+    ctx->genSlider("最大長さ", &m.mMaxLength, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Launch speed
+    ctx->genSlider("発射速度", &m.mShootSpeed, 0.0f, 500.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Return speed
+    ctx->genSlider("戻り速度", &m.mReturnSpeed, 0.0f, 500.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Pierce return speed
+    ctx->genSlider("刺戻り速度", &m.mStickReturnSpeed, 0.0f, 500.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Shoot
+    daAlinkHIO_setAnmGenMessage(&m.mShootAnm, ctx, "撃つ", 12.0f, 0);
+    // Throw wait
+    daAlinkHIO_setAnmGenMessage(&m.mRoofHangAnm, ctx, "天井停止", 39.0f, 1);
+    // Ceiling ascent speed
+    ctx->genSlider("天井上昇速度", &m.mRoofHangRiseSpeed, 0.0f, 50.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ceiling descent speed
+    ctx->genSlider("天井降下速度", &m.mRoofHangDecendSpeed, 0.0f, 50.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Wall wait
+    daAlinkHIO_setAnmGenMessage(&m.mWallHangAnm, ctx, "壁停止", 28.0f, 1);
+    // Forced pierce
+    ctx->genCheckBox("強制刺さり", &m.mForceStick, '\x01', 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Boss battle maximum length
+    ctx->genSlider("ボス戦最大長さ", &m.mBossMaxLength, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Boss battle launch speed
+    ctx->genSlider("ボス戦発射速度", &m.mBossShootSpeed, 0.0f, 500.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Boss battle return speed
+    ctx->genSlider("ボス戦戻り速度", &m.mBossReturnSpeed, 0.0f, 500.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Boss battle pierce return speed
+    ctx->genSlider("ボス戦刺戻り速度", &m.mBossStickReturnSpeed, 0.0f, 500.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_hookshot_c::daAlinkHIO_hookshot_c() {
@@ -2459,7 +2738,36 @@ daAlinkHIO_hookshot_c::daAlinkHIO_hookshot_c() {
 }
 
 void daAlinkHIO_spinner_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Gravity
+    ctx->genSlider("重力", &m.mGravity, -10.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Max fall speed
+    ctx->genSlider("最大落下速度", &m.mMaxFallSpeed, -100.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Jump rate
+    ctx->genSlider("ジャンプ比率", &m.mJumpRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Board wait time
+    ctx->genSlider("乗込待ち時間", &m.mBoardWaitTime, 0, 1000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ride move time
+    ctx->genSlider("乗り移動時間", &m.mRideMoveTime, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ride speed
+    ctx->genSlider("乗り速度", &m.mRideSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ride decel max
+    ctx->genSlider("乗り減速最大", &m.mDecelSpeedMax, 0.0f, 50.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ride decel min
+    ctx->genSlider("乗り減速最小",  &m.mDecelSpeedMin, 0.0f, 50.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ride decel rate
+    ctx->genSlider("乗り減速率", &m.mDecelRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ride rot max
+    ctx->genSlider("乗り旋回最大", &m.mRideRotAngleMax, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ride rot min
+    ctx->genSlider("乗り旋回最小", &m.mRideRotAngleMin, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Kick
+    daAlinkHIO_setAnmGenMessage(&m.mKickAnm, ctx, "蹴り", 21.0f, 1);
+    // Boss ride move time
+    ctx->genSlider("ボス乗り移動時間", &m.mBossRideMoveTime, 0, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Boss ride speed
+    ctx->genSlider("ボス乗り速度", &m.mBossRideSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_spinner_c::daAlinkHIO_spinner_c() {
@@ -2480,7 +2788,70 @@ daAlinkHIO_spinner_c::daAlinkHIO_spinner_c() {
 }
 
 void daAlinkHIO_ironBall_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Idle A speed
+    ctx->genSlider("待機Ａ速度", &m.mWaitAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Foot position ratio
+    ctx->genSlider("足位置比率", &m.mFeetPosRatio, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Walk A speed max
+    ctx->genSlider("歩きＡ速度最大", &m.mWalkAnmSpeedMax, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Walk A speed min
+    ctx->genSlider("歩きＡ速度最小", &m.mWalkAnmSpeedMin, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Prepare A speed
+    ctx->genSlider("準備Ａ速度", &m.mPrepareAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Prepare interpolation
+    ctx->genSlider("準備補間", &m.mPrepareInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Swing A speed
+    ctx->genSlider("回しＡ速度", &m.mTurnAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Swing interpolation
+    ctx->genSlider("回し補間", &m.mTurnInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Pre-throw A speed
+    ctx->genSlider("投げ前Ａ速度", &m.mPreThrowAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Pre-throw interpolation
+    ctx->genSlider("投げ前補間", &m.mPreThrowAnmInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw A speed
+    ctx->genSlider("投げＡ速度", &m.mThrowAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw interpolation
+    ctx->genSlider("投げ補間", &m.mThrowInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Pull A speed
+    ctx->genSlider("引きＡ速度", &m.mPullAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Pull interpolation
+    ctx->genSlider("引き補間", &m.mPullInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Catch
+    daAlinkHIO_setAnmGenMessage(&m.mCatchAnm, ctx, "キャッチ", 19.0f, 1);
+    // Ball gravity
+    ctx->genSlider("球重力", &m.mBallGravity, -10.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ball max fall speed
+    ctx->genSlider("球最大落下速度", &m.mBallMaxFallSpeed, -300.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw ball gravity
+    ctx->genSlider("投げ球重力", &m.mThrowBallGravity, -10.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw ball speed Z
+    ctx->genSlider("投げ球速度Ｚ", &m.mThrowSpeedZ, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw ball speed Y
+    ctx->genSlider("投げ球速度Ｙ", &m.mThrowSpeedY, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Return ball gravity
+    ctx->genSlider("戻り球重力", &m.mReturnBallGravity, -10.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Chain speed rate
+    ctx->genSlider("鎖速度率", &m.mChainSpeedRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Chain gravity
+    ctx->genSlider("鎖重力", &m.mChainGravity, -10.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw chain gravity
+    ctx->genSlider("投げ鎖重力", &m.mThrowChainGravity, -10.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw chain accel Z
+    ctx->genSlider("投げ鎖付加速度Ｚ", &m.mThrowChainAccelZ, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw chain accel Y
+    ctx->genSlider("投げ鎖付加速度Ｙ", &m.mThrowChainAccelY, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Throw chain add num
+    ctx->genSlider("投げ鎖追加数", &m.mThrowChainNum, 0, 100, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Return chain accel Y
+    ctx->genSlider("戻り鎖付加速度Ｙ", &m.mReturnChainAccelY, 0.0f, 30.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Return chain add rate
+    ctx->genSlider("戻り鎖付加率", &m.mReturnChainRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Return chain reduce num
+    ctx->genSlider("戻り鎖減少数", &m.mReturnChainRemoveNum, 0, 100, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Attack radius
+    ctx->genSlider("攻撃半径", &m.mAttackRadius, 0.0f, 200.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_ironBall_c::daAlinkHIO_ironBall_c() {
@@ -2501,7 +2872,20 @@ daAlinkHIO_ironBall_c::daAlinkHIO_ironBall_c() {
 }
 
 void daAlinkHIO_copyRod_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Swing
+    daAlinkHIO_setAnmGenMessage(&m.mSwingAnm, ctx, "振り", 19.0f, 1);
+    // Swing end
+    daAlinkHIO_setAnmGenMessage(&m.mBigSwingAnm, ctx, "振り大", 39.0f, 1);
+    // Ball speed
+    ctx->genSlider("ボール速度", &m.mBallSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ball return speed
+    ctx->genSlider("ボール戻速度", &m.mBallReturnSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Ball fly distance
+    ctx->genSlider("ボール飛距離", &m.mBallMaxDistance, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Boss battle ball fly distance
+    ctx->genSlider("ボス戦ボール飛距離", &m.mBossBallMaxDistance, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_copyRod_c::daAlinkHIO_copyRod_c() {
@@ -2522,7 +2906,12 @@ daAlinkHIO_copyRod_c::daAlinkHIO_copyRod_c() {
 }
 
 void daAlinkHIO_pickUp_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット",0x4000003,0,NULL,0xffff,0xffff,0x200,0x18);
+    // Grab
+    daAlinkHIO_setAnmGenMessage(&m.field_0x0,ctx,"掴み",18.0f,1);
+    // Place
+    daAlinkHIO_setReverseAnmGenMessage(&m.field_0x14,ctx,"置く",18.0f,1);
 }
 
 daAlinkHIO_pickUp_c::daAlinkHIO_pickUp_c() {
@@ -2543,7 +2932,54 @@ daAlinkHIO_pickUp_c::daAlinkHIO_pickUp_c() {
 }
 
 void daAlinkHIO_board_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Max speed
+    ctx->genSlider("最大速度", &m.mMaxSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Paddling acceleration
+    ctx->genSlider("漕ぎ加速", &m.mPushAccel, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Paddling max speed
+    ctx->genSlider("漕ぎ最大速度", &m.mMaxPushSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Start min speed
+    ctx->genSlider("開始最低速度", &m.mStartMinSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Start add speed
+    ctx->genSlider("開始追加速度", &m.mStartAddSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Min jump Y speed
+    ctx->genSlider("最低ジャンプＹ速度", &m.mMinJumpSpeedY, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Max jump Y speed
+    ctx->genSlider("最高ジャンプＹ速度", &m.mMaxJumpSpeedY, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Stand A speed
+    ctx->genSlider("立ちＡ速度", &m.mStandAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Stand interpolation
+    ctx->genSlider("立ち補間", &m.mStandInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Sit A speed
+    ctx->genSlider("座りＡ速度", &m.mSitAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Sit interpolation
+    ctx->genSlider("座り補間", &m.mSitInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Paddling max A speed
+    ctx->genSlider("漕ぎ最高Ａ速度", &m.mPushAnmMaxSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Paddling min A speed
+    ctx->genSlider("漕ぎ最小Ａ速度", &m.mPushAnmMinSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Paddling interpolation
+    ctx->genSlider("漕ぎ補間", &m.mPushInterpolation, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Fast paddling switch speed
+    ctx->genSlider("早漕ぎ切替速度", &m.mFastPushSwitchSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Fast paddling interpolation
+    ctx->genSlider("早漕ぎ補間", &m.mFastPushInterpolation, 0.0f, 20.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Fly out / Jump
+    daAlinkHIO_setAnmGenMessage(&m.mJumpAnm, ctx, "飛出", 9.0f, 0);
+    // Airborne
+    daAlinkHIO_setAnmGenMessage(&m.mAirborneAnm, ctx, "滞空", 14.0f, 0);
+    // Land
+    daAlinkHIO_setAnmGenMessage(&m.mLandAnm, ctx, "着地", 24.0f, 0);
+    // Rotation slash
+    daAlinkHIO_setAnmGenMessage(&m.mSpinAnm, ctx, "回転斬り", 24.0f, 0);
+    // Rotation slash min jump Y speed
+    ctx->genSlider("回転斬最低ジャンプＹ速度", &m.mSpinMinJumpSpeedY, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Rotation slash max jump Y speed
+    ctx->genSlider("回転斬最高ジャンプＹ速度", &m.mSpinMaxJumpSpeedY, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Dedicated effect max speed
+    ctx->genSlider("専用エフェクト最大速度", &m.mEffectMaxSpeed, 0.1f, 200.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_board_c::daAlinkHIO_board_c() {
@@ -2564,7 +3000,26 @@ daAlinkHIO_board_c::daAlinkHIO_board_c() {
 }
 
 void daAlinkHIO_bottle_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, (JOREventListener *)0x0, 0xffff, 0xffff, 0x200, 0x18);
+    // Start drink
+    daAlinkHIO_setAnmGenMessage(&m.mStartDrinkAnm, ctx, "飲む始め", 56.0f, 0);
+    // End drink
+    daAlinkHIO_setAnmGenMessage(&m.mEndDrinkAnm, ctx, "飲み終", 39.0f, 0);
+    // Milk end drink
+    daAlinkHIO_setAnmGenMessage(&m.mEndDrinkAnm, ctx, "ミルク飲み終", 86.0f, 0);
+    // Open
+    daAlinkHIO_setAnmGenMessage(&m.mOpenBottleAnm, ctx, "開ける", 49.0f, 0);
+    // Scoop
+    daAlinkHIO_setAnmGenMessage(&m.mScoopAnm, ctx, "すくう", 54.0f, 0);
+    // Swing down
+    daAlinkHIO_setAnmGenMessage(&m.mSwingDownAnm, ctx, "下振り", 24.0f, 1);
+    // Swing side
+    daAlinkHIO_setAnmGenMessage(&m.mSwingSideAnm, ctx, "横振り", 19.0f, 1);
+    // Medicine
+    daAlinkHIO_setAnmGenMessage(&m.mDrinkNastyAnm, ctx, "くすり", 29.0f, 0);
+    // Get
+    daAlinkHIO_setAnmGenMessage(&m.mGetAnm, ctx, "ゲット", 47.0f, 0);
 }
 
 daAlinkHIO_bottle_c::daAlinkHIO_bottle_c() {
@@ -2585,17 +3040,66 @@ daAlinkHIO_bottle_c::daAlinkHIO_bottle_c() {
 }
 
 void daAlinkHIO_item_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Bow
+    ctx->genNode("弓", &mBow, 0, 0);
+    // Boomerang
+    ctx->genNode("ブーメラン", &mBoomerang, 0, 0);
+    // Bomb
+    ctx->genNode("爆弾", &mBomb, 0, 0);
+    // Lantern PL
+    ctx->genNode("カンテラＰＬ", &mLanternPL, 0, 0);
+    // Lantern
+    ctx->genNode("カンテラ", &mLantern, 0, 0);
+    // Fire Mage Chain
+    ctx->genNode("火魔人鎖", &mFmChain, 0, 0);
+    // Iron Boots
+    ctx->genNode("アイアンブーツ", &mIronBoots, 0, 0);
+    // Picked up item
+    ctx->genNode("拾い物", &mPickUp, 0, 0);
+    // Board
+    ctx->genNode("ボード", &mBoard, 0, 0);
+    // Bottle
+    ctx->genNode("ビン", &mBottle, 0, 0);
+    // Hookshot
+    ctx->genNode("フックショット", &mHookshot, 0, 0);
+    // Spinner
+    ctx->genNode("スピナー", &mSpinner, 0, 0);
+    // Iron Ball
+    ctx->genNode("鉄球", &mIronBall, 0, 0);
+    // Copy Rod
+    ctx->genNode("コピーロッド", &mCopyRod, 0, 0);
+    // Zora Armor PL
+    ctx->genNode("ゾーラ服ＰＬ", &mZoraArmorPL, 0, 0);
+    // Bag hold equip
+    daAlinkHIO_setAnmGenMessage(&m.mOneHandEquipAnm, ctx, "片手装備", 12.0f, 1);
+    // Bag hold quick release A speed
+    ctx->genSlider("片手早解除Ａ速度", &m.mOneHandReleaseAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Two-hand hold equip
+    daAlinkHIO_setAnmGenMessage(&m.mTwoHandEquipAnm, ctx, "両手装備", 14.0f, 1);
+    // Two-hand hold quick release A speed
+    ctx->genSlider("両手早解除Ａ速度", &m.mTwoHandReleaseAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Item first-person long press time
+    ctx->genSlider("アイテム主観長押時間", &m.mItemFPTransitionTimer, 0, 0x78, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // First-person downward max min move interval
+    ctx->genSlider("主観下方最大", &m.mItemFPMaxUnk, 0, 0x4000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // First-person camera downward max min move interval
+    ctx->genSlider("主観上方最大", &m.mItemFPUpMaxUnk, -0x4000, 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // First-person upward max min move interval
+    ctx->genSlider("Wii主観カメラ下方最大", &m.mWiiItemFPDownMaxUnk, 0, 0x4000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // First-person camera upward max min move interval
+    ctx->genSlider("Wii主観カメラ上方最大", &m.mWiiItemFPUpMaxUnk, -0x4000, 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 
 daAlinkHIO_item_c::daAlinkHIO_item_c() :
     mBow(),
-    mBoom(),
+    mBoomerang(),
     mBomb(),
-    mLight0(0),
-    mKandelaar(),
+    mLanternPL(0),
+    mLantern(),
     mFmChain(),
-    mMagneBoots(),
+    mIronBoots(),
     mPickUp(),
     mBoard(),
     mBottle(),
@@ -2603,7 +3107,7 @@ daAlinkHIO_item_c::daAlinkHIO_item_c() :
     mSpinner(),
     mIronBall(),
     mCopyRod(),
-    mLight1(2) {
+    mZoraArmorPL(2) {
     static const char plabel[] = "const daAlinkHIO_item_c1 daAlinkHIO_item_c0::m = {\n";
     m_len = 60;
     mp_src_data = (void*)&daAlinkHIO_item_c0::m;

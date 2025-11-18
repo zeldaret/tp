@@ -1502,7 +1502,7 @@ int daAlink_c::procFmChainUpInit() {
     }
 
     commonProcInit(PROC_CHAIN_UP);
-    setSingleAnimeParam(ANM_CHAIN_PICK_UP, &daAlinkHIO_fmChain_c0::m.field_0x0);
+    setSingleAnimeParam(ANM_CHAIN_PICK_UP, &daAlinkHIO_fmChain_c0::m.mGripAnm);
     mNormalSpeed = 0.0f;
     return 1;
 }
@@ -1514,7 +1514,7 @@ int daAlink_c::procFmChainUp() {
     setGrabStatus(0x96, 2);
     setShapeAngleToAtnActor(0);
 
-    if (checkAnmEnd(temp_r29) || (checkInputOnR() && temp_r29->getFrame() > daAlinkHIO_fmChain_c0::m.field_0x0.mCancelFrame)) {
+    if (checkAnmEnd(temp_r29) || (checkInputOnR() && temp_r29->getFrame() > daAlinkHIO_fmChain_c0::m.mGripAnm.mCancelFrame)) {
         u8 temp_r27 = field_0x2fa3;
         fopAc_ac_c* temp_r28 = field_0x2844.getActor();
 

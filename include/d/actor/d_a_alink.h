@@ -986,11 +986,16 @@ public:
     static daAlinkHIO_cut_c1 const m;
 };
 
-class daAlinkHIO_cut_c : public daAlinkHIO_data_c {
+class daAlinkHIO_cut_c 
+#ifdef DEBUG
+: public daAlinkHIO_data_c 
+#endif
+{
 public:
     daAlinkHIO_cut_c();
     ~daAlinkHIO_cut_c();
     
+#ifdef DEBUG
     virtual void genMessage(JORMContext*);
 
 private:
@@ -1020,6 +1025,7 @@ private:
     /* 0x99C */ daAlinkHIO_cutHead_c mCutHead;
     /* 0xA30 */ daAlinkHIO_cutLargeJump_c mCutLargeJump;
     /* 0xAD8 */ daAlinkHIO_cut_c1 m;
+#endif
 }; // Size: 0xB74
 
 class daAlinkHIO_guardAttack_c1 {
@@ -1792,18 +1798,18 @@ private:
 
 class daAlinkHIO_huLight_c1 {
 public:
-    /* 0x00 */ u8 field_0x0;
-    /* 0x00 */ u8 field_0x1;
-    /* 0x02 */ s16 field_0x2;
-    /* 0x04 */ s16 field_0x4;
-    /* 0x06 */ s16 field_0x6;
-    /* 0x08 */ s16 field_0x8;
-    /* 0x0A */ s16 field_0xA;
-    /* 0x0C */ f32 field_0xC;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-};  // Size: 0x1C
+    /* 0x00 */ u8 mAngleAttenuationType;
+    /* 0x01 */ u8 mDistanceAttenuationType;
+    /* 0x02 */ s16 mAlpha;
+    /* 0x04 */ s16 mColorR;
+    /* 0x06 */ s16 mColorG;
+    /* 0x08 */ s16 mColorB;
+    /* 0x0A */ s16 mXAngle;
+    /* 0x0C */ f32 mPower;
+    /* 0x10 */ f32 mWidth;
+    /* 0x14 */ f32 mYOffset;
+    /* 0x18 */ f32 mZOffset;
+}; // Size: 0x1C
 
 class daAlinkHIO_huLight_c0 {
 public:
@@ -1899,8 +1905,8 @@ public:
     /* 0x1C */ f32 mWalkAnmSpeedMax;
     /* 0x20 */ f32 mWalkAnmSpeedMin;
     /* 0x24 */ f32 mWaterInputFactor;
-    /* 0x28 */ f32 mWaterStartWalkAnmRate;
-    /* 0x2C */ f32 mWaterWalkAnmRate;
+    /* 0x28 */ f32 mWaterWalkAnmRate;
+    /* 0x2C */ f32 mWaterStartWalkAnmRate;
     /* 0x30 */ f32 mMaxMagneFlySpeed;
     /* 0x34 */ f32 mMagneFlyAccelRate;
     /* 0x38 */ f32 mWaterVelocityY;
@@ -1928,8 +1934,8 @@ private:
 
 class daAlinkHIO_fmChain_c1 {
 public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
+    /* 0x00 */ daAlinkHIO_anm_c mGripAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mUnfinishedAnm;
 };  // Size: 0x28
 
 class daAlinkHIO_fmChain_c0 {
@@ -2203,7 +2209,7 @@ public:
     /* 0x30 */ s16 mWiiItemFPUpMaxUnk;
     /* 0x34 */ f32 mOneHandReleaseAnmSpeed;
     /* 0x38 */ f32 mTwoHandReleaseAnmSpeed;
-};  // Size: 0x3C
+}; // Size: 0x3C
 
 class daAlinkHIO_item_c0 {
 public:
@@ -2219,12 +2225,12 @@ public:
 
 private:
     /* 0x00 */ daAlinkHIO_bow_c mBow;
-    /* 0x00 */ daAlinkHIO_boom_c mBoom;
+    /* 0x00 */ daAlinkHIO_boom_c mBoomerang;
     /* 0x00 */ daAlinkHIO_bomb_c mBomb;
-    /* 0x00 */ daAlinkHIO_light_c mLight0;
-    /* 0x00 */ daAlinkHIO_kandelaar_c mKandelaar;
+    /* 0x00 */ daAlinkHIO_light_c mLanternPL;
+    /* 0x00 */ daAlinkHIO_kandelaar_c mLantern;
     /* 0x00 */ daAlinkHIO_fmChain_c mFmChain;
-    /* 0x00 */ daAlinkHIO_magneBoots_c mMagneBoots;
+    /* 0x00 */ daAlinkHIO_magneBoots_c mIronBoots;
     /* 0x00 */ daAlinkHIO_pickUp_c mPickUp;
     /* 0x00 */ daAlinkHIO_board_c mBoard;
     /* 0x00 */ daAlinkHIO_bottle_c mBottle;
@@ -2232,7 +2238,7 @@ private:
     /* 0x00 */ daAlinkHIO_spinner_c mSpinner;
     /* 0x00 */ daAlinkHIO_ironBall_c mIronBall;
     /* 0x00 */ daAlinkHIO_copyRod_c mCopyRod;
-    /* 0x00 */ daAlinkHIO_light_c mLight1;
+    /* 0x00 */ daAlinkHIO_light_c mZoraArmorPL;
     /* 0x00 */ daAlinkHIO_item_c1 m;
 };
 
@@ -3478,11 +3484,16 @@ public:
     static daAlinkHIO_wolf_c1 const m;
 };
 
-class daAlinkHIO_wolf_c : public daAlinkHIO_data_c {
+class daAlinkHIO_wolf_c 
+#ifdef DEBUG
+: public daAlinkHIO_data_c 
+#endif
+{
 public:
     daAlinkHIO_wolf_c();
     ~daAlinkHIO_wolf_c();
 
+#ifdef DEBUG
     virtual void genMessage(JORMContext*);
 
 private:
@@ -3507,6 +3518,7 @@ private:
     /* 0x00 */ daAlinkHIO_wlGrab_c mWlGrab;
     /* 0x00 */ daAlinkHIO_wlBall_c mWlBall;
     /* 0x00 */ daAlinkHIO_wolf_c1 m;
+#endif
 };
 
 class daAlinkHIO_c
@@ -3518,6 +3530,7 @@ public:
     /* 80140B88 */ daAlinkHIO_c();
     /* 80140C10 */ virtual ~daAlinkHIO_c();
 
+#ifdef DEBUG
     void jumpStateUpdate(const cXyz*, const cXyz*, f32);
     void genMessage(JORMContext*);
     void readFileData(char*);
@@ -3529,6 +3542,7 @@ public:
     /* 0x0D */ u8 field_0xD[0x4B - 0xD];
     /* 0x4B */ daAlinkHIO_wolf_c mWolf;
     /* 0x4C */ u8 field_0x4C[0x6C - 0x4C];
+#endif
 };
 
 class daAlink_c;
@@ -6981,7 +6995,7 @@ public:
     J3DAnmTransform* getNowAnmPackUnder(daAlink_UNDER i_idx) {
         return mNowAnmPackUnder[i_idx].getAnmTransform();
     }
-    bool doButton() const { return mItemButton & BTN_A; }
+    BOOL doButton() const { return mItemButton & BTN_A; }
     void setGrassCancelStatus(u8 param_0) { setBStatus(param_0); }
 
     void seStartSystem(u32 i_seID) { mDoAud_seStart(i_seID, NULL, 0, 0); }
