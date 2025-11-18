@@ -10,6 +10,253 @@
 #include "d/actor/d_a_tag_pachi.h"
 #include "d/actor/d_a_npc_pachi_maro.h"
 #include "d/actor/d_a_npc_pachi_besu.h"
+#include "d/d_debug_viewer.h"
+
+enum Taro_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_TARO = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_TARO_F_NORMAL = 0x7,
+};
+
+enum Taro_TW_RES_File_ID {
+    /* BCK */
+    /* 0x06 */ BCK_TARO_DEMO_WAIT = 0x6,
+    /* 0x07 */ BCK_TARO_F_DEMO_WAIT,
+
+    /* BMDR */
+    /* 0x0A */ BMDR_TARO_TW = 0xA,
+
+    /* BTK */
+    /* 0x0D */ BTK_TARO_DEMO_WAIT = 0xD,
+
+    /* BTP */
+    /* 0x10 */ BTP_TARO_F_DEMO_WAIT = 0x10,
+};
+
+enum Taro0_RES_File_ID {
+    /* BCK */
+    /* 0x5 */ BCK_TARO_DEFENSE_A = 0x5,
+    /* 0x6 */ BCK_TARO_F_CLOSE,
+    /* 0x7 */ BCK_TARO_F_NORMAL,
+    /* 0x8 */ BCK_TARO_STEP,
+    /* 0x9 */ BCK_TARO_WAIT_A,
+
+    /* BTK */
+    /* 0xC */ BTK_TARO = 0xC,
+
+    /* BTP */
+    /* 0xF */ BTP_TARO_F_CLOSE = 0xF,
+};
+
+enum Taro1_RES_File_ID {
+    /* BCK */
+    /* 0x07 */ BCK_TARO_CHOP_A = 0x7,
+    /* 0x08 */ BCK_TARO_CHOP_B,
+    /* 0x09 */ BCK_TARO_F_PANIC,
+    /* 0x0A */ BCK_TARO_F_S_GET,
+    /* 0x0B */ BCK_TARO_F_SAD,
+    /* 0x0C */ BCK_TARO_F_SHOUT,
+    /* 0x0D */ BCK_TARO_F_SURPRISE,
+    /* 0x0E */ BCK_TARO_FH_PANIC,
+    /* 0x0F */ BCK_TARO_FH_SAD,
+    /* 0x10 */ BCK_TARO_FH_SURPRISE,
+    /* 0x11 */ BCK_TARO_RUN,
+    /* 0x12 */ BCK_TARO_S_CHOP_A,
+    /* 0x13 */ BCK_TARO_S_CHOP_B,
+    /* 0x14 */ BCK_TARO_S_GET,
+    /* 0x15 */ BCK_TARO_S_RUN,
+    /* 0x16 */ BCK_TARO_S_WAIT,
+    /* 0x17 */ BCK_TARO_TALK_A,
+    /* 0x18 */ BCK_TARO_TALK_B,
+    /* 0x19 */ BCK_TARO_WAIT_B,
+    /* 0x1A */ BCK_TARO_WAIT_D,
+    /* 0x1B */ BCK_TARO_WAIT_E,
+    /* 0x1C */ BCK_TARO_WAIT_F,
+
+    /* BMDR */
+    /* 0x1F */ BMDR_TARO_STICK_A = 0x1F,
+    /* 0x20 */ BMDR_TARO_SWB,
+
+    /* BTK */
+    /* 0x23 */ BTK_TARO_S_GET = 0x23,
+    /* 0x24 */ BTK_TARO_TALK_C,
+    /* 0x25 */ BTK_TARO_TALK_E,
+    /* 0x26 */ BTK_TARO_TARK_D,
+
+    /* BTP */
+    /* 0x29 */ BTP_TARO_F_PANIC = 0x29,
+    /* 0x2A */ BTP_TARO_F_S_GET,
+    /* 0x2B */ BTP_TARO_F_SAD,
+    /* 0x2C */ BTP_TARO_F_SHOUT,
+    /* 0x2D */ BTP_TARO_F_SURPRISE,
+    /* 0x2E */ BTP_TARO_FH_PANIC,
+    /* 0x2F */ BTP_TARO_FH_SAD,
+    /* 0x30 */ BTP_TARO_FH_SURPRISE,
+
+    /* EVT */
+    /* 0x33 */ EVT_TARO1_EVENT_LIST = 0x33,
+};
+
+enum Taro2_RES_File_ID {
+    /* BCK */
+    /* 0x06 */ BCK_TARO_CALL = 0x6,
+    /* 0x07 */ BCK_TARO_F_CALL,
+    /* 0x08 */ BCK_TARO_F_HI,
+    /* 0x09 */ BCK_TARO_F_MARVELOUS,
+    /* 0x0A */ BCK_TARO_F_POINT,
+    /* 0x0B */ BCK_TARO_F_WATCH,
+    /* 0x0C */ BCK_TARO_F_WAVE,
+    /* 0x0D */ BCK_TARO_HI,
+    /* 0x0E */ BCK_TARO_HI_WAIT,
+    /* 0x0F */ BCK_TARO_LOOKBACK,
+    /* 0x10 */ BCK_TARO_MARVELOUS,
+    /* 0x11 */ BCK_TARO_POINT,
+    /* 0x12 */ BCK_TARO_TO_WAIT_C2,
+    /* 0x13 */ BCK_TARO_WATCH,
+    /* 0x14 */ BCK_TARO_WATCHING,
+    /* 0x15 */ BCK_TARO_WAVE,
+
+    /* BTK */
+    /* 0x18 */ BTK_TARO_LOOKBACK = 0x18,
+
+    /* BTP */
+    /* 0x1B */ BTP_TARO_F_CALL = 0x1B,
+    /* 0x1C */ BTP_TARO_F_HI,
+    /* 0x1D */ BTP_TARO_F_MARVELOUS,
+    /* 0x1E */ BTP_TARO_F_POINT,
+    /* 0x1F */ BTP_TARO_F_WATCH,
+    /* 0x20 */ BTP_TARO_F_WAVE,
+
+    /* EVT */
+    /* 0x23 */ EVT_TARO2_EVENT_LIST = 0x23,
+};
+
+enum Taro3_RES_File_ID {
+    /* BCK */
+    /* 0x4 */ BCK_TARO_F_ANGER = 0x4,
+    /* 0x5 */ BCK_TARO_F_SMILE,
+    /* 0x6 */ BCK_TARO_FH_ANGER,
+    /* 0x7 */ BCK_TARO_FH_SMILE,
+    /* 0x8 */ BCK_TARO_TO_WAIT_C,
+    /* 0x9 */ BCK_TARO_VICTORY_A,
+    /* 0xA */ BCK_TARO_WAIT_C,
+
+    /* BTP */
+    /* 0xD */ BTP_TARO_F_ANGER = 0xD,
+    /* 0xE */ BTP_TARO_F_SMILE,
+    /* 0xF */ BTP_TARO_FH_SMILE,
+};
+
+enum Taro4_RES_File_ID {
+    /* BCK */
+    /* 0x4 */ BCK_TARO_F_SURPRISEB = 0x4,
+    /* 0x5 */ BCK_TARO_FH_SURPRISEB,
+    /* 0x6 */ BCK_TARO_SURPRISEB,
+    /* 0x7 */ BCK_TARO_SURPRISEB_TALK,
+
+    /* BTP */
+    /* 0xA */ BTP_TARO_F_SURPRISEB = 0xA,
+    /* 0xB */ BTP_TARO_FH_SURPRISEB,
+};
+
+enum Taro5_RES_File_ID {
+    /* BCK */
+    /* 0x06 */ BCK_TARO_CRY = 0x6,
+    /* 0x07 */ BCK_TARO_F_CRY,
+    /* 0x08 */ BCK_TAROB_F_MISERABLE,
+    /* 0x09 */ BCK_TAROB_F_SAVED,
+    /* 0x0A */ BCK_TAROB_F_SCARED,
+    /* 0x0B */ BCK_TAROB_FH_MISERABLE,
+    /* 0x0C */ BCK_TAROB_FH_SCARED,
+    /* 0x0D */ BCK_TAROB_SAD_TALK_A,
+    /* 0x0E */ BCK_TAROB_SAD_UTUMUKI,
+    /* 0x0F */ BCK_TAROB_SAD_WAIT,
+    /* 0x10 */ BCK_TAROB_SAD_WALK,
+    /* 0x11 */ BCK_TAROB_SAVED,
+    /* 0x12 */ BCK_TAROB_SAVED_WAIT,
+    /* 0x13 */ BCK_TAROB_SCARED,
+
+    /* BTK */
+    /* 0x16 */ BTK_TARO_CRY = 0x16,
+
+    /* BTP */
+    /* 0x19 */ BTP_TARO_F_CRY = 0x19,
+    /* 0x1A */ BTP_TAROB_F_MISERABLE,
+    /* 0x1B */ BTP_TAROB_F_SAVED,
+    /* 0x1C */ BTP_TAROB_F_SCARED,
+    /* 0x1D */ BTP_TAROB_FH_MISERABLE,
+    /* 0x1E */ BTP_TAROB_FH_SCARED,
+
+    /* EVT */
+    /* 0x21 */ EVT_TARO5_EVENT_LIST = 0x21,
+};
+
+enum TaroB_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_GM_TARO = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BMDR_TAROB = 0x7,
+};
+
+enum Len1_RES_File_ID {
+    /* BCK */
+    /* 0x06 */ BCK_LEN_DISLIKE_A = 0x6,
+    /* 0x07 */ BCK_LEN_DISLIKE_B,
+    /* 0x08 */ BCK_LEN_EVADE_A,
+    /* 0x09 */ BCK_LEN_EVADE_B,
+    /* 0x0A */ BCK_LEN_EVADE_C,
+    /* 0x0B */ BCK_LEN_F_DISLIKE_A,
+    /* 0x0C */ BCK_LEN_F_DISLIKE_B,
+    /* 0x0D */ BCK_LEN_F_EVADE_A,
+    /* 0x0E */ BCK_LEN_F_TALK_B,
+    /* 0x0F */ BCK_LEN_F_TALK_C,
+    /* 0x10 */ BCK_LEN_F_TALK_D,
+    /* 0x11 */ BCK_LEN_F_WAIT_BC_CONNECT,
+    /* 0x12 */ BCK_LEN_F_WAIT_C,
+    /* 0x13 */ BCK_LEN_F_WAIT_D,
+    /* 0x14 */ BCK_LEN_F_WAIT_E,
+    /* 0x15 */ BCK_LEN_FH_DISLIKE_B,
+    /* 0x16 */ BCK_LEN_FH_EVADE_B,
+    /* 0x17 */ BCK_LEN_FH_TALK_C,
+    /* 0x18 */ BCK_LEN_FH_TALK_D,
+    /* 0x19 */ BCK_LEN_FH_WAIT_C,
+    /* 0x1A */ BCK_LEN_FH_WAIT_D,
+    /* 0x1B */ BCK_LEN_TALK_A,
+    /* 0x1C */ BCK_LEN_TALK_C,
+    /* 0x1D */ BCK_LEN_WAIT_B,
+    /* 0x1E */ BCK_LEN_WAIT_BC_CONNECT,
+    /* 0x1F */ BCK_LEN_WAIT_C,
+    /* 0x20 */ BCK_LEN_WAIT_D,
+    /* 0x21 */ BCK_LEN_WAIT_E,
+    /* 0x22 */ BCK_LEN_WALK_A,
+
+    /* BTK */
+    /* 0x25 */ BTK_LEN_F_DISLIKE = 0x25,
+    /* 0x26 */ BTK_LEN_F_DISLIKE_B,
+    /* 0x27 */ BTK_LEN_FH_DISLIKE_B,
+
+    /* BTP */
+    /* 0x2A */ BTP_LEN_F_DISLIKE_A = 0x2A,
+    /* 0x2B */ BTP_LEN_F_DISLIKE_B,
+    /* 0x2C */ BTP_LEN_F_EVADE_A,
+    /* 0x2D */ BTP_LEN_F_TALK_C,
+    /* 0x2E */ BTP_LEN_F_TALK_D,
+    /* 0x2F */ BTP_LEN_F_WAIT_C,
+    /* 0x30 */ BTP_LEN_FH_TALK_C,
+    /* 0x31 */ BTP_LEN_FH_TALK_D,
+    /* 0x32 */ BTP_LEN_FH_WAIT_C,
+
+    /* EVT */
+    /* 0x35 */ EVT_LEN1_EVENT_LIST = 0x35,
+};
+
+enum evt_pachi_RES_File_ID {
+    /* EVT */
+    /* 0x3 */ EVT_EVT_PACHI_EVENT_LIST = 0x3,
+};
 
 enum RES_Name {
     /* 0x0 */ NONE,
@@ -24,6 +271,176 @@ enum RES_Name {
     /* 0x9 */ TAROB,
     /* 0xA */ LEN1,
     /* 0xB */ EVT_PACHI,
+};
+
+enum Face_Motion_Animation {
+    /* 0x00 */ FACE_MOT_ANM_NONE,
+    /* 0x01 */ FACE_MOT_ANM_NORMAL,
+    /* 0x02 */ FACE_MOT_ANM_SAD,
+    /* 0x03 */ FACE_MOT_ANM_SMILE,
+    /* 0x04 */ FACE_MOT_ANM_SURPRISE,
+    /* 0x05 */ FACE_MOT_ANM_PANIC,
+    /* 0x06 */ FACE_MOT_ANM_ANGER,
+    /* 0x07 */ FACE_MOT_ANM_SHOUT,
+    /* 0x08 */ FACE_MOT_ANM_H_SAD,
+    /* 0x09 */ FACE_MOT_ANM_H_SMILE,
+    /* 0x0A */ FACE_MOT_ANM_H_SURPRISE,
+    /* 0x0B */ FACE_MOT_ANM_H_PANIC,
+    /* 0x0C */ FACE_MOT_ANM_H_ANGER,
+    /* 0x0D */ FACE_MOT_ANM_CLOSE,
+    /* 0x0E */ FACE_MOT_ANM_S_GET,
+    /* 0x0F */ FACE_MOT_ANM_CALL,
+    /* 0x10 */ FACE_MOT_ANM_WAVE,
+    /* 0x11 */ FACE_MOT_ANM_WATCH,
+    /* 0x12 */ FACE_MOT_ANM_MARVELOUS,
+    /* 0x13 */ FACE_MOT_ANM_POINT,
+    /* 0x14 */ FACE_MOT_ANM_HI,
+    /* 0x15 */ FACE_MOT_ANM_SURPRISEB,
+    /* 0x16 */ FACE_MOT_ANM_H_SURPRISEB,
+    /* 0x17 */ FACE_MOT_ANM_DEMO_WAIT,
+    /* 0x18 */ FACE_MOT_ANM_SCARED,
+    /* 0x19 */ FACE_MOT_ANM_H_SCARED,
+    /* 0x1A */ FACE_MOT_ANM_MISERABLE,
+    /* 0x1B */ FACE_MOT_ANM_H_MISERABLE,
+    /* 0x1C */ FACE_MOT_ANM_SAVED,
+    /* 0x1D */ FACE_MOT_ANM_CRY,
+};
+
+enum Motion_Animation {
+    /* 0x00 */ MOT_ANM_WAIT_A,
+    /* 0x01 */ MOT_ANM_WAIT_B,
+    /* 0x02 */ MOT_ANM_WAIT_C,
+    /* 0x03 */ MOT_ANM_WAIT_D,
+    /* 0x04 */ MOT_ANM_WAIT_E,
+    /* 0x05 */ MOT_ANM_WAIT_F,
+    /* 0x06 */ MOT_ANM_TO_WAIT_C,
+    /* 0x07 */ MOT_ANM_NONE,
+    /* 0x08 */ MOT_ANM_RUN,
+    /* 0x09 */ MOT_ANM_SAD_WALK,
+    /* 0x0A */ MOT_ANM_S_RUN,
+    /* 0x0B */ MOT_ANM_TALK_A,
+    /* 0x0C */ MOT_ANM_TALK_B,
+    /* 0x0D */ MOT_ANM_VICTORY_A,
+    /* 0x0E */ MOT_ANM_CHOP_A,
+    /* 0x0F */ MOT_ANM_CHOP_B,
+    /* 0x10 */ MOT_ANM_DEFENSE_A,
+    /* 0x11 */ MOT_ANM_S_GET,
+    /* 0x12 */ MOT_ANM_S_WAIT,
+    /* 0x13 */ MOT_ANM_S_CHOP_A,
+    /* 0x14 */ MOT_ANM_S_CHOP_B,
+    /* 0x15 */ MOT_ANM_CALL,
+    /* 0x16 */ MOT_ANM_WAVE,
+    /* 0x17 */ MOT_ANM_WATCH,
+    /* 0x18 */ MOT_ANM_WATCHING,
+    /* 0x19 */ MOT_ANM_MARVELOUS,
+    /* 0x1A */ MOT_ANM_POINT,
+    /* 0x1B */ MOT_ANM_LOOKBACK,
+    /* 0x1C */ MOT_ANM_HI,
+    /* 0x1D */ MOT_ANM_HI_WAIT,
+    /* 0x1E */ MOT_ANM_TO_WAIT_C2,
+    /* 0x1F */ MOT_ANM_SURPRISEB,
+    /* 0x20 */ MOT_ANM_SURPRISEB_TALK,
+    /* 0x21 */ MOT_ANM_DEMO_WAIT,
+    /* 0x22 */ MOT_ANM_STEP,
+    /* 0x23 */ MOT_ANM_SCARED,
+    /* 0x24 */ MOT_ANM_SAD_WAIT,
+    /* 0x25 */ MOT_ANM_SAD_TALK_A,
+    /* 0x26 */ MOT_ANM_SAD_UTUMUKI,
+    /* 0x27 */ MOT_ANM_CRY,
+    /* 0x28 */ MOT_ANM_SAVED,
+};
+
+enum Face_Motion {
+    /* 0x00 */ FACE_MOT_NORMAL,
+    /* 0x01 */ FACE_MOT_SAD,
+    /* 0x02 */ FACE_MOT_SMILE,
+    /* 0x03 */ FACE_MOT_SURPRISE,
+    /* 0x04 */ FACE_MOT_PANIC,
+    /* 0x05 */ FACE_MOT_ANGER,
+    /* 0x06 */ FACE_MOT_CALL,
+    /* 0x07 */ FACE_MOT_WAVE,
+    /* 0x08 */ FACE_MOT_MARVELOUS,
+    /* 0x09 */ FACE_MOT_S_GET,
+    /* 0x0A */ FACE_MOT_POINT,
+    /* 0x0B */ FACE_MOT_HI,
+    /* 0x0C */ FACE_MOT_SURPRISEB,
+    /* 0x0D */ FACE_MOT_SCARED,
+    /* 0x0E */ FACE_MOT_MISERABLE,
+    /* 0x0F */ FACE_MOT_SMILE2,
+    /* 0x10 */ FACE_MOT_SHOUT,
+    /* 0x11 */ FACE_MOT_CLOSE,
+    /* 0x12 */ FACE_MOT_H_SAD,
+    /* 0x13 */ FACE_MOT_H_SMILE,
+    /* 0x14 */ FACE_MOT_H_SURPRISE,
+    /* 0x15 */ FACE_MOT_H_PANIC,
+    /* 0x16 */ FACE_MOT_H_ANGER,
+    /* 0x17 */ FACE_MOT_WATCH,
+    /* 0x18 */ FACE_MOT_H_SURPRISEB,
+    /* 0x19 */ FACE_MOT_DEMO_WAIT,
+    /* 0x1A */ FACE_MOT_H_SCARED,
+    /* 0x1B */ FACE_MOT_H_MISERABLE,
+    /* 0x1C */ FACE_MOT_SAVED,
+    /* 0x1D */ FACE_MOT_SCARED2,
+    /* 0x1E */ FACE_MOT_CRY,
+    /* 0x1F */ FACE_MOT_NONE,
+};
+
+enum Motion {
+    /* 0x00 */ MOT_WAIT_A,
+    /* 0x01 */ MOT_CALL,
+    /* 0x02 */ MOT_WAVE,
+    /* 0x03 */ MOT_WAIT_B,
+    /* 0x04 */ MOT_S_GET,
+    /* 0x05 */ MOT_WATCHING,
+    /* 0x06 */ MOT_MARVELOUS,
+    /* 0x07 */ MOT_POINT,
+    /* 0x08 */ MOT_WAIT_C,
+    /* 0x09 */ MOT_TO_WAIT_C,
+    /* 0x0A */ MOT_LOOKBACK,
+    /* 0x0B */ MOT_WAIT_D,
+    /* 0x0C */ MOT_HI,
+    /* 0x0D */ MOT_TALK_A,
+    /* 0x0E */ MOT_TALK_B,
+    /* 0x0F */ MOT_VICTORY_A,
+    /* 0x10 */ MOT_HI_WAIT,
+    /* 0x11 */ MOT_TO_WAIT_C2,
+    /* 0x12 */ MOT_SURPRISEB_TALK,
+    /* 0x13 */ MOT_SURPRISEB,
+    /* 0x14 */ MOT_WAIT_F,
+    /* 0x15 */ MOT_SCARED,
+    /* 0x16 */ MOT_SAD_WAIT,
+    /* 0x17 */ MOT_SAD_TALK_A,
+    /* 0x18 */ MOT_SAD_UTUMUKI,
+    /* 0x19 */ MOT_S_WAIT,
+    /* 0x1A */ MOT_CRY,
+    /* 0x1B */ MOT_CHOP_A,
+    /* 0x1C */ MOT_CHOP_B,
+    /* 0x1D */ MOT_UNK_29,
+    /* 0x1E */ MOT_UNK_30,
+    /* 0x1F */ MOT_S_CHOP_A,
+    /* 0x20 */ MOT_S_CHOP_B,
+    /* 0x21 */ MOT_DEFENSE_A,
+    /* 0x22 */ MOT_WATCH,
+    /* 0x23 */ MOT_DEMO_WAIT,
+    /* 0x24 */ MOT_STEP,
+    /* 0x25 */ MOT_RUN,
+    /* 0x26 */ MOT_S_RUN,
+    /* 0x27 */ MOT_SAD_WALK,
+    /* 0x28 */ MOT_SAVED,
+};
+
+enum Event {
+    /* 0x0 */ EVT_NONE,
+    /* 0x1 */ EVT_TUTRIAL_BEGIN,
+    /* 0x2 */ EVT_TUTRIAL_BEGIN_SKIP,
+    /* 0x3 */ EVT_TUTRIAL_CLEAR,
+    /* 0x4 */ EVT_TUTRIAL_TALK,
+    /* 0x5 */ EVT_TUTRIAL_TALK2,
+    /* 0x6 */ EVT_HIT_KAKASI_BODY,
+    /* 0x7 */ EVT_TUTRIAL_SELECT_GIVEUP,
+    /* 0x8 */ EVT_TUTRIAL_CONTINUE,
+    /* 0x9 */ EVT_TUTRIAL_GIVEUP,
+    /* 0xA */ EVT_TUTRIAL_CAUTION,
 };
 
 #if DEBUG
@@ -51,35 +468,35 @@ void daNpc_Pachi_Taro_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) 
             break;
     }
 }
-#endif
 
 void daNpc_Pachi_Taro_HIO_c::genMessage(JORMContext* ctx) {
     daNpcT_cmnGenMessage(ctx, &m.common);
     ctx->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
 }
+#endif
 
 /* 80AA194C-80AA1974 000020 0028+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[5][2] = {
-    {4, 1},
-    {31, 4},
-    {32, 4},
-    {10, 2},
-    {4, 9},
+    {BMDR_TARO, TARO},
+    {BMDR_TARO_STICK_A, TARO1},
+    {BMDR_TARO_SWB, TARO1},
+    {BMDR_TARO_TW, TARO_TW},
+    {BMDR_GM_TARO, TAROB},
 };
 
 /* 80AA1974-80AA19CC -00001 0058+00 0/1 0/0 0/0 .data            l_evtList */
 static daNpcT_evtData_c l_evtList[11] = {
-    {"", 0},
-    {"TUTRIAL_BEGIN", 11},
-    {"TUTRIAL_BEGIN_SKIP", 11},
-    {"TUTRIAL_CLEAR", 11},
-    {"TUTRIAL_TALK", 11},
-    {"TUTRIAL_TALK2", 11},
-    {"HIT_KAKASI_BODY", 11},
-    {"TUTRIAL_SELECT_GIVEUP", 11},
-    {"TUTRIAL_CONTINUE", 11},
-    {"TUTRIAL_GIVEUP", 11},
-    {"TUTRIAL_CAUTION", 11},
+    {"", NONE},
+    {"TUTRIAL_BEGIN", EVT_PACHI},
+    {"TUTRIAL_BEGIN_SKIP", EVT_PACHI},
+    {"TUTRIAL_CLEAR", EVT_PACHI},
+    {"TUTRIAL_TALK", EVT_PACHI},
+    {"TUTRIAL_TALK2", EVT_PACHI},
+    {"HIT_KAKASI_BODY", EVT_PACHI},
+    {"TUTRIAL_SELECT_GIVEUP", EVT_PACHI},
+    {"TUTRIAL_CONTINUE", EVT_PACHI},
+    {"TUTRIAL_GIVEUP", EVT_PACHI},
+    {"TUTRIAL_CAUTION", EVT_PACHI},
 };
 
 /* 80AA19CC-80AA19FC -00001 0030+00 2/3 0/0 0/0 .data            l_resNameList */
@@ -100,12 +517,12 @@ static char* l_resNameList[12] = {
 
 /* 80AA19FC-80AA1A04 0000D0 0007+01 1/0 0/0 0/0 .data            l_loadResPtrn0 */
 static s8 l_loadResPtrn0[7] = {
-    1, 3, 4, 5, 6, 11, -1,
+    TARO, TARO0, TARO1, TARO2, TARO3, EVT_PACHI, -1,
 };
 
 /* 80AA1A04-80AA1A0C 0000D8 0008+00 1/0 0/0 0/0 .data            l_loadResPtrn4 */
 static s8 l_loadResPtrn4[8] = {
-    1, 2, 3, 4, 5, 6, 7, -1,
+    TARO, TARO_TW, TARO0, TARO1, TARO2, TARO3, TARO4, -1,
 };
 
 /* 80AA1A0C-80AA1A14 -00001 0008+00 1/2 0/0 0/0 .data            l_loadResPtrnList */
@@ -116,126 +533,162 @@ static s8* l_loadResPtrnList[2] = {
 
 /* 80AA1A14-80AA1D5C 0000E8 0348+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
 static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[30] = {
-    {-1, 0, 0, 7, 2, 1, 1},
-    {7, 0, 3, 7, 2, 1, 1},
-    {11, 0, 4, 43, 0, 4, 0},
-    {5, 0, 6, 14, 0, 6, 0},
-    {13, 0, 4, 45, 0, 4, 0},
-    {9, 0, 4, 41, 0, 4, 0},
-    {4, 0, 6, 13, 0, 6, 0},
-    {12, 0, 4, 44, 0, 4, 0},
-    {15, 2, 4, 47, 2, 4, 0},
-    {7, 2, 6, 15, 2, 6, 0},
-    {16, 2, 4, 48, 2, 4, 0},
-    {14, 2, 4, 46, 2, 4, 0},
-    {6, 2, 6, 7, 2, 1, 1},
-    {6, 0, 3, 15, 0, 3, 0},
-    {10, 0, 4, 42, 0, 4, 0},
-    {7, 0, 5, 27, 0, 5, 0},
-    {12, 0, 5, 32, 0, 5, 0},
-    {11, 0, 5, 31, 0, 5, 0},
-    {9, 0, 5, 29, 0, 5, 0},
-    {10, 0, 5, 30, 0, 5, 0},
-    {8, 0, 5, 28, 0, 5, 0},
-    {4, 0, 7, 10, 0, 7, 0},
-    {5, 2, 7, 11, 2, 7, 0},
-    {7, 2, 2, 16, 2, 2, 0},
-    {10, 0, 8, 28, 0, 8, 0},
-    {12, 2, 8, 30, 2, 8, 0},
-    {8, 0, 8, 26, 0, 8, 0},
-    {11, 2, 8, 29, 2, 8, 0},
-    {9, 0, 8, 27, 0, 8, 0},
-    {7, 2, 8, 25, 2, 8, 0},
+    {-1, J3DFrameCtrl::EMode_NONE, NONE, BTP_TARO_F_NORMAL, J3DFrameCtrl::EMode_LOOP, TARO, 1},
+    {BCK_TARO_F_NORMAL, J3DFrameCtrl::EMode_NONE, TARO0,BTP_TARO_F_NORMAL, J3DFrameCtrl::EMode_LOOP, TARO, 1},
+    {BCK_TARO_F_SAD, J3DFrameCtrl::EMode_NONE, TARO1, BTP_TARO_F_SAD, J3DFrameCtrl::EMode_NONE, TARO1, 0},
+    {BCK_TARO_F_SMILE, J3DFrameCtrl::EMode_NONE, TARO3, BTP_TARO_F_SMILE, J3DFrameCtrl::EMode_NONE, TARO3, 0},
+    {BCK_TARO_F_SURPRISE, J3DFrameCtrl::EMode_NONE, TARO1, BTP_TARO_F_SURPRISE, J3DFrameCtrl::EMode_NONE, TARO1, 0},
+    {BCK_TARO_F_PANIC, J3DFrameCtrl::EMode_NONE, TARO1, BTP_TARO_F_PANIC, J3DFrameCtrl::EMode_NONE, TARO1, 0},
+    {BCK_TARO_F_ANGER, J3DFrameCtrl::EMode_NONE, TARO3, BTP_TARO_F_ANGER, J3DFrameCtrl::EMode_NONE, TARO3, 0},
+    {BCK_TARO_F_SHOUT, J3DFrameCtrl::EMode_NONE, TARO1, BTP_TARO_F_SHOUT, J3DFrameCtrl::EMode_NONE, TARO1, 0},
+    {BCK_TARO_FH_SAD, J3DFrameCtrl::EMode_LOOP, TARO1, BTP_TARO_FH_SAD, J3DFrameCtrl::EMode_LOOP, TARO1, 0},
+    {BCK_TARO_FH_SMILE, J3DFrameCtrl::EMode_LOOP, TARO3, BTP_TARO_FH_SMILE, J3DFrameCtrl::EMode_LOOP, TARO3, 0},
+    {BCK_TARO_FH_SURPRISE, J3DFrameCtrl::EMode_LOOP, TARO1, BTP_TARO_FH_SURPRISE, J3DFrameCtrl::EMode_LOOP, TARO1, 0},
+    {BCK_TARO_FH_PANIC, J3DFrameCtrl::EMode_LOOP, TARO1, BTP_TARO_FH_PANIC, J3DFrameCtrl::EMode_LOOP, TARO1, 0},
+    {BCK_TARO_FH_ANGER, J3DFrameCtrl::EMode_LOOP, TARO3, BTP_TARO_F_NORMAL, J3DFrameCtrl::EMode_LOOP, TARO, 1},
+    {BCK_TARO_F_CLOSE, J3DFrameCtrl::EMode_NONE, TARO0, BTP_TARO_F_CLOSE, J3DFrameCtrl::EMode_NONE, TARO0, 0},
+    {BCK_TARO_F_S_GET, J3DFrameCtrl::EMode_NONE, TARO1, BTP_TARO_F_S_GET, J3DFrameCtrl::EMode_NONE, TARO1, 0},
+    {BCK_TARO_F_CALL, J3DFrameCtrl::EMode_NONE, TARO2, BTP_TARO_F_CALL, J3DFrameCtrl::EMode_NONE, TARO2, 0},
+    {BCK_TARO_F_WAVE, J3DFrameCtrl::EMode_NONE, TARO2, BTP_TARO_F_WAVE, J3DFrameCtrl::EMode_NONE, TARO2, 0},
+    {BCK_TARO_F_WATCH, J3DFrameCtrl::EMode_NONE, TARO2, BTP_TARO_F_WATCH, J3DFrameCtrl::EMode_NONE, TARO2, 0},
+    {BCK_TARO_F_MARVELOUS, J3DFrameCtrl::EMode_NONE, TARO2, BTP_TARO_F_MARVELOUS, J3DFrameCtrl::EMode_NONE, TARO2, 0},
+    {BCK_TARO_F_POINT, J3DFrameCtrl::EMode_NONE, TARO2, BTP_TARO_F_POINT, J3DFrameCtrl::EMode_NONE, TARO2, 0},
+    {BCK_TARO_F_HI, J3DFrameCtrl::EMode_NONE, TARO2, BTP_TARO_F_HI, J3DFrameCtrl::EMode_NONE, TARO2, 0},
+    {BCK_TARO_F_SURPRISEB, J3DFrameCtrl::EMode_NONE, TARO4, BTP_TARO_F_SURPRISEB, J3DFrameCtrl::EMode_NONE, TARO4, 0},
+    {BCK_TARO_FH_SURPRISEB, J3DFrameCtrl::EMode_LOOP, TARO4, BTP_TARO_FH_SURPRISEB, J3DFrameCtrl::EMode_LOOP, TARO4, 0},
+    {BCK_TARO_F_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, TARO_TW, BTP_TARO_F_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, TARO_TW, 0},
+    {BCK_TAROB_F_SCARED, J3DFrameCtrl::EMode_NONE, TARO5, BTP_TAROB_F_SCARED, J3DFrameCtrl::EMode_NONE, TARO5, 0},
+    {BCK_TAROB_FH_SCARED, J3DFrameCtrl::EMode_LOOP, TARO5, BTP_TAROB_FH_SCARED, J3DFrameCtrl::EMode_LOOP, TARO5, 0},
+    {BCK_TAROB_F_MISERABLE, J3DFrameCtrl::EMode_NONE, TARO5, BTP_TAROB_F_MISERABLE, J3DFrameCtrl::EMode_NONE, TARO5, 0},
+    {BCK_TAROB_FH_MISERABLE, J3DFrameCtrl::EMode_LOOP, TARO5, BTP_TAROB_FH_MISERABLE, J3DFrameCtrl::EMode_LOOP, TARO5, 0},
+    {BCK_TAROB_F_SAVED, J3DFrameCtrl::EMode_NONE, TARO5, BTP_TAROB_F_SAVED, J3DFrameCtrl::EMode_NONE, TARO5, 0},
+    {BCK_TARO_F_CRY, J3DFrameCtrl::EMode_LOOP, TARO5, BTP_TARO_F_CRY, J3DFrameCtrl::EMode_LOOP, TARO5, 0},
 };
 
 /* 80AA1D5C-80AA21D8 000430 047C+00 0/1 0/0 0/0 .data            l_motionAnmData */
 static daNpcT_motionAnmData_c l_motionAnmData[41] = {
-    {9, 2, 3, 12, 0, 3, 1, 0},
-    {25, 2, 4, 12, 0, 3, 1, 0},
-    {10, 2, 6, 12, 0, 3, 1, 0},
-    {26, 2, 4, 12, 0, 3, 1, 0},
-    {27, 2, 4, 12, 0, 3, 1, 0},
-    {28, 2, 4, 12, 0, 3, 1, 0},
-    {8, 0, 6, 12, 0, 3, 1, 0},
-    {-1, 0, 0, -1, 0, 0, 0, 0},
-    {17, 2, 4, 12, 0, 3, 1, 0},
-    {16, 2, 8, 12, 0, 3, 1, 0},
-    {21, 2, 4, 12, 0, 3, 1, 0},
-    {23, 0, 4, 12, 0, 3, 1, 0},
-    {24, 2, 4, 12, 0, 3, 1, 0},
-    {9, 0, 6, 12, 0, 3, 1, 0},
-    {7, 0, 4, 12, 0, 3, 1, 0},
-    {8, 0, 4, 12, 0, 3, 1, 0},
-    {5, 0, 3, 12, 0, 3, 1, 0},
-    {20, 0, 4, 35, 0, 4, 0, 0},
-    {22, 2, 4, 12, 0, 3, 1, 0},
-    {18, 2, 4, 12, 0, 3, 1, 0},
-    {19, 2, 4, 12, 0, 3, 1, 0},
-    {6, 0, 5, 12, 0, 3, 1, 0},
-    {21, 0, 5, 12, 0, 3, 1, 0},
-    {19, 0, 5, 12, 0, 3, 1, 0},
-    {20, 2, 5, 12, 0, 3, 1, 0},
-    {16, 0, 5, 12, 0, 3, 1, 0},
-    {17, 0, 5, 12, 0, 3, 1, 0},
-    {15, 0, 5, 24, 0, 5, 0, 0},
-    {13, 0, 5, 12, 0, 3, 1, 0},
-    {14, 2, 5, 12, 0, 3, 1, 0},
-    {18, 0, 5, 12, 0, 3, 1, 0},
-    {6, 2, 7, 12, 0, 3, 1, 0},
-    {7, 0, 7, 12, 0, 3, 1, 0},
-    {6, 2, 2, 13, 2, 2, 0, 0},
-    {8, 0, 3, 12, 0, 3, 1, 0},
-    {19, 2, 8, 12, 0, 3, 1, 0},
-    {15, 2, 8, 12, 0, 3, 1, 0},
-    {13, 0, 8, 12, 0, 3, 1, 0},
-    {14, 2, 8, 12, 0, 3, 1, 0},
-    {6, 2, 8, 22, 2, 8, 0, 0},
-    {17, 0, 8, 12, 0, 3, 1, 0},
+    {BCK_TARO_WAIT_A, J3DFrameCtrl::EMode_LOOP, TARO0,BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_WAIT_B, J3DFrameCtrl::EMode_LOOP, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_WAIT_C, J3DFrameCtrl::EMode_LOOP, TARO3, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_WAIT_D, J3DFrameCtrl::EMode_LOOP, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_WAIT_E, J3DFrameCtrl::EMode_LOOP, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_WAIT_F, J3DFrameCtrl::EMode_LOOP, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_TO_WAIT_C, J3DFrameCtrl::EMode_NONE, TARO3, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {-1, J3DFrameCtrl::EMode_NONE, NONE, -1, J3DFrameCtrl::EMode_NONE, NONE, 0, 0},
+    {BCK_TARO_RUN, J3DFrameCtrl::EMode_LOOP, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TAROB_SAD_WALK, J3DFrameCtrl::EMode_LOOP, TARO5, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_S_RUN, J3DFrameCtrl::EMode_LOOP, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_TALK_A, J3DFrameCtrl::EMode_NONE, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_TALK_B, J3DFrameCtrl::EMode_LOOP, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_VICTORY_A, J3DFrameCtrl::EMode_NONE, TARO3, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_CHOP_A, J3DFrameCtrl::EMode_NONE, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_CHOP_B, J3DFrameCtrl::EMode_NONE, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_DEFENSE_A, J3DFrameCtrl::EMode_NONE, TARO0, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_S_GET, J3DFrameCtrl::EMode_NONE, TARO1, BTK_TARO_S_GET, J3DFrameCtrl::EMode_NONE, TARO1, 0, 0},
+    {BCK_TARO_S_WAIT, J3DFrameCtrl::EMode_LOOP, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_S_CHOP_A, J3DFrameCtrl::EMode_LOOP, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_S_CHOP_B, J3DFrameCtrl::EMode_LOOP, TARO1, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_CALL, J3DFrameCtrl::EMode_NONE, TARO2, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_WAVE, J3DFrameCtrl::EMode_NONE, TARO2, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_WATCH, J3DFrameCtrl::EMode_NONE, TARO2, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_WATCHING, J3DFrameCtrl::EMode_LOOP, TARO2, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_MARVELOUS, J3DFrameCtrl::EMode_NONE, TARO2, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_POINT, J3DFrameCtrl::EMode_NONE, TARO2, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_LOOKBACK, J3DFrameCtrl::EMode_NONE, TARO2, BTK_TARO_LOOKBACK, J3DFrameCtrl::EMode_NONE, TARO2, 0, 0},
+    {BCK_TARO_HI, J3DFrameCtrl::EMode_NONE, TARO2, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_HI_WAIT, J3DFrameCtrl::EMode_LOOP, TARO2, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_TO_WAIT_C2, J3DFrameCtrl::EMode_NONE, TARO2, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_SURPRISEB, J3DFrameCtrl::EMode_LOOP, TARO4, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_SURPRISEB_TALK, J3DFrameCtrl::EMode_NONE, TARO4, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, TARO_TW, BTK_TARO_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, TARO_TW, 0, 0},
+    {BCK_TARO_STEP, J3DFrameCtrl::EMode_NONE, TARO0, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TAROB_SCARED, J3DFrameCtrl::EMode_LOOP, TARO5, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TAROB_SAD_WAIT, J3DFrameCtrl::EMode_LOOP, TARO5, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TAROB_SAD_TALK_A, J3DFrameCtrl::EMode_NONE, TARO5, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TAROB_SAD_UTUMUKI, J3DFrameCtrl::EMode_LOOP, TARO5, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
+    {BCK_TARO_CRY, J3DFrameCtrl::EMode_LOOP, TARO5, BTK_TARO_CRY, J3DFrameCtrl::EMode_LOOP, TARO5, 0, 0},
+    {BCK_TAROB_SAVED, J3DFrameCtrl::EMode_NONE, TARO5, BTK_TARO, J3DFrameCtrl::EMode_NONE, TARO0, 1, 0},
 };
 
 /* 80AA21D8-80AA23D8 0008AC 0200+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[128] = {
-    {1, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {2, -1, 1}, {8, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {3, -1, 1}, {9, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {4, -1, 1}, {10, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {5, -1, 1}, {11, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {6, -1, 1}, {12, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {15, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {16, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {18, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {14, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {19, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {20, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {21, -1, 1}, {22, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {24, -1, 1}, {25, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {26, -1, 1}, {27, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {3, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {7, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {13, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {8, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {9, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {10, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {11, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {12, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {17, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {22, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {23, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {25, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {27, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {28, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {24, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {29, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_NORMAL, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_SAD, -1, 1}, {8, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_SMILE, -1, 1}, {9, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_SURPRISE, -1, 1}, {10, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_PANIC, -1, 1}, {11, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_ANGER, -1, 1}, {12, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_CALL, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_WAVE, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_MARVELOUS, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_S_GET, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_POINT, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_HI, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_SURPRISEB, -1, 1}, {22, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_SCARED, -1, 1}, {25, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_MISERABLE, -1, 1}, {27, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_SMILE, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_SHOUT, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_CLOSE, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_H_SAD, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_H_SMILE, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_H_SURPRISE, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_H_PANIC, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_H_ANGER, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_WATCH, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_H_SURPRISEB, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_DEMO_WAIT, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_H_SCARED, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_H_MISERABLE, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_SAVED, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_SCARED, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_CRY, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {FACE_MOT_ANM_NONE, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
 
 /* 80AA23D8-80AA2668 000AAC 0290+00 0/1 0/0 0/0 .data            l_motionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[164] = {
-    {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {21, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {22, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {17, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {24, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {25, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {26, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {2, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {6, 0, 1}, {2, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {27, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {28, -1, 1}, {29, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {11, -1, 1}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {12, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {13, -1, 1}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {29, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {30, 10, 1}, {2, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {32, -1, 1}, {31, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {31, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {35, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {36, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {37, -1, 1}, {36, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {38, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {18, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {39, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {14, -1, 1}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {15, -1, 1}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {19, -1, 1}, {18, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {20, -1, 1}, {18, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {16, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {23, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {33, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {34, 4, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {8, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {10, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {9, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {40, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_WAIT_A, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_CALL, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_WAVE, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_WAIT_B, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_S_GET, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_WATCHING, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_MARVELOUS, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_POINT, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_WAIT_C, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_TO_WAIT_C, 0, 1}, {2, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_LOOKBACK, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_WAIT_D, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_HI, -1, 1}, {29, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_TALK_A, -1, 1}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_TALK_B, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_VICTORY_A, -1, 1}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_HI_WAIT, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_TO_WAIT_C2, 10, 1}, {2, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_SURPRISEB_TALK, -1, 1}, {31, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_SURPRISEB, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_WAIT_F, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_SCARED, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_SAD_WAIT, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_SAD_TALK_A, -1, 1}, {36, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_SAD_UTUMUKI, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_S_WAIT, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_CRY, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_CHOP_A, -1, 1}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_CHOP_B, -1, 1}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_S_CHOP_A, -1, 1}, {18, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_S_CHOP_B, -1, 1}, {18, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_DEFENSE_A, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_WATCH, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_DEMO_WAIT, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_STEP, 4, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_RUN, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_S_RUN, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_SAD_WALK, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {MOT_ANM_SAVED, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
 
 /* 80AA2668-80AA2694 -00001 002C+00 1/1 0/0 0/0 .data            mCutNameList__18daNpc_Pachi_Taro_c */
@@ -443,14 +896,14 @@ int daNpc_Pachi_Taro_c::CreateHeap() {
     }
 
     if (mTwilight) {
-        if (setFaceMotionAnm(0x17, false) && setMotionAnm(0x21, 0.0f, FALSE)) {
+        if (setFaceMotionAnm(FACE_MOT_ANM_DEMO_WAIT, false) && setMotionAnm(MOT_ANM_DEMO_WAIT, 0.0f, FALSE)) {
             return 1;
         }
 
         return 0;
     }
     
-    if (setFaceMotionAnm(1, false) && setMotionAnm(0, 0.0f, FALSE)) {
+    if (setFaceMotionAnm(FACE_MOT_ANM_NORMAL, false) && setMotionAnm(MOT_ANM_WAIT_A, 0.0f, FALSE)) {
         return 1;
     }
 
@@ -568,10 +1021,10 @@ void daNpc_Pachi_Taro_c::reset() {
 
 /* 80A9CF10-80A9CF9C 000D70 008C+00 1/0 0/0 0/0 .text            afterJntAnm__18daNpc_Pachi_Taro_cFi */
 void daNpc_Pachi_Taro_c::afterJntAnm(int i_joint) {
-    if (i_joint == 1) {
+    if (i_joint == JNT_BACKBONE1) {
         mDoMtx_stack_c::YrotM(-mStagger.getAngleZ(1));
         mDoMtx_stack_c::ZrotM(mStagger.getAngleX(1));
-    } else if (i_joint == 4) {
+    } else if (i_joint == JNT_HEAD) {
         mDoMtx_stack_c::YrotM(-mStagger.getAngleZ(0));
         mDoMtx_stack_c::ZrotM(mStagger.getAngleX(0));
     }
@@ -607,7 +1060,7 @@ void daNpc_Pachi_Taro_c::setParam() {
 /* 80A9D098-80A9D0A0 000EF8 0008+00 1/0 0/0 0/0 .text            checkChangeEvt__18daNpc_Pachi_Taro_cFv */
 BOOL daNpc_Pachi_Taro_c::checkChangeEvt() {
     switch (mType) {
-        case 0:
+        default:
             break;
     }
     
@@ -616,39 +1069,39 @@ BOOL daNpc_Pachi_Taro_c::checkChangeEvt() {
 
 /* 80A9D0A0-80A9D164 000F00 00C4+00 2/0 0/0 0/0 .text            setAfterTalkMotion__18daNpc_Pachi_Taro_cFv */
 void daNpc_Pachi_Taro_c::setAfterTalkMotion() {
-    int idx = 0x1F;
+    int idx = FACE_MOT_NONE;
 
     switch (mFaceMotionSeqMngr.getNo()) {
-        case 1:
-            idx = 0x12;
+        case FACE_MOT_SAD:
+            idx = FACE_MOT_H_SAD;
             break;
 
-        case 2:
-            idx = 0x13;
+        case FACE_MOT_SMILE:
+            idx = FACE_MOT_H_SMILE;
             break;
 
-        case 3:
-            idx = 0x14;
+        case FACE_MOT_SURPRISE:
+            idx = FACE_MOT_H_SURPRISE;
             break;
 
-        case 4:
-            idx = 0x15;
+        case FACE_MOT_PANIC:
+            idx = FACE_MOT_H_PANIC;
             break;
 
-        case 5:
-            idx = 0x16;
+        case FACE_MOT_ANGER:
+            idx = FACE_MOT_H_ANGER;
             break;
 
-        case 0xC:
-            idx = 0x18;
+        case FACE_MOT_SURPRISEB:
+            idx = FACE_MOT_H_SURPRISEB;
             break;
             
-        case 0xD:
-            idx = 0x1A;
+        case FACE_MOT_SCARED:
+            idx = FACE_MOT_H_SCARED;
             break;
 
-        case 0xE:
-            idx = 0x1B;
+        case FACE_MOT_MISERABLE:
+            idx = FACE_MOT_H_MISERABLE;
             break;
     }
 
@@ -717,19 +1170,21 @@ fopAc_ac_c* daNpc_Pachi_Taro_c::srchDistTag2() {
 
 /* 80A9D33C-80A9D3A4 00119C 0068+00 1/1 0/0 0/0 .text            _srch_DistTag2_main__18daNpc_Pachi_Taro_cFPvPv */
 void* daNpc_Pachi_Taro_c::_srch_DistTag2_main(void* i_actor, void* i_data) {
-    if (!fopAcM_IsActor(i_actor)) {
+    daTagPati_c* actor = (daTagPati_c*)i_actor;
+    
+    if (!fopAcM_IsActor(actor)) {
         return NULL;
     } 
     
-    if (fopAcM_GetName(i_actor) != PROC_TAG_PATI) {
+    if (fopAcM_GetName(actor) != PROC_TAG_PATI) {
         return NULL;
     } 
     
-    if (((daTagPati_c*)i_actor)->isDistChkTag2()) {
-        return i_actor;
+    if (!actor->isDistChkTag2()) {
+        return NULL;
     }
 
-    return NULL;
+    return actor;
 }
 
 /* 80A9D3A4-80A9D3D0 001204 002C+00 1/1 0/0 0/0 .text            srchEscapeTag1__18daNpc_Pachi_Taro_cFv */
@@ -739,19 +1194,21 @@ fopAc_ac_c* daNpc_Pachi_Taro_c::srchEscapeTag1() {
 
 /* 80A9D3D0-80A9D438 001230 0068+00 1/1 0/0 0/0 .text            _srch_EscapeTag1_main__18daNpc_Pachi_Taro_cFPvPv */
 void* daNpc_Pachi_Taro_c::_srch_EscapeTag1_main(void* i_actor, void* i_data) {
-    if (!fopAcM_IsActor(i_actor)) {
+    daTagPati_c* actor = (daTagPati_c*)i_actor;
+    
+    if (!fopAcM_IsActor(actor)) {
         return NULL;
     } 
     
-    if (fopAcM_GetName(i_actor) != PROC_TAG_PATI) {
+    if (fopAcM_GetName(actor) != PROC_TAG_PATI) {
         return NULL;
     } 
     
-    if (((daTagPati_c*)i_actor)->isEscapeChkTag1()) {
-        return i_actor;
+    if (!actor->isEscapeChkTag1()) {
+        return NULL;
     }
 
-    return NULL;
+    return actor;
 }
 
 /* 80A9D438-80A9D464 001298 002C+00 1/1 0/0 0/0 .text            srchEscapeTag2__18daNpc_Pachi_Taro_cFv */
@@ -761,19 +1218,21 @@ fopAc_ac_c* daNpc_Pachi_Taro_c::srchEscapeTag2() {
 
 /* 80A9D464-80A9D4CC 0012C4 0068+00 1/1 0/0 0/0 .text            _srch_EscapeTag2_main__18daNpc_Pachi_Taro_cFPvPv */
 void* daNpc_Pachi_Taro_c::_srch_EscapeTag2_main(void* i_actor, void* i_data) {
-    if (!fopAcM_IsActor(i_actor)) {
+    daTagPati_c* actor = (daTagPati_c*)i_actor;
+    
+    if (!fopAcM_IsActor(actor)) {
         return NULL;
     } 
     
-    if (fopAcM_GetName(i_actor) != PROC_TAG_PATI) {
+    if (fopAcM_GetName(actor) != PROC_TAG_PATI) {
         return NULL;
     } 
     
-    if (((daTagPati_c*)i_actor)->isEscapeChkTag2()) {
-        return i_actor;
+    if (!actor->isEscapeChkTag2()) {
+        return NULL;
     }
 
-    return NULL;
+    return actor;
 }
 
 /* 80A9D4CC-80A9D5D0 00132C 0104+00 1/0 0/0 0/0 .text            evtTalk__18daNpc_Pachi_Taro_cFv */
@@ -800,7 +1259,6 @@ BOOL daNpc_Pachi_Taro_c::evtTalk() {
 
 /* 80A9D5D0-80A9D698 001430 00C8+00 1/0 0/0 0/0 .text            evtCutProc__18daNpc_Pachi_Taro_cFv */
 BOOL daNpc_Pachi_Taro_c::evtCutProc() {
-    BOOL rv;
     int staffId = dComIfGp_getEventManager().getMyStaffId("PA_Taro", this, -1);
 
     if (staffId != -1) {
@@ -810,12 +1268,10 @@ BOOL daNpc_Pachi_Taro_c::evtCutProc() {
             dComIfGp_getEventManager().cutEnd(mStaffId);
         }
 
-        rv = TRUE;
-    } else {
-        rv = FALSE;
+        return TRUE;
     }
 
-    return rv;
+    return FALSE;
 }
 
 /* 80A9D698-80A9D840 0014F8 01A8+00 1/0 0/0 0/0 .text            action__18daNpc_Pachi_Taro_cFv */
@@ -860,15 +1316,14 @@ void daNpc_Pachi_Taro_c::setAttnPos() {
     cXyz sp38(0.0f, 30.0f, 0.0f);
 
     BOOL bVar1 = 0;
-    if (mMotionSeqMngr.getNo() == 0x21 && !mMotionSeqMngr.checkEndSequence()) {
+    if (mMotionSeqMngr.getNo() == MOT_DEFENSE_A && !mMotionSeqMngr.checkEndSequence()) {
         bVar1 = TRUE;
     }
     
     mStagger.calc(bVar1);
     f32 fVar1 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
-    J3DModel* model = mpMorf[0]->getModel();
 
-    mJntAnm.setParam(this, model, &sp38, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+    mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp38, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
                      mpHIO->m.common.body_angleX_min, mpHIO->m.common.body_angleX_max,
                      mpHIO->m.common.body_angleY_min, mpHIO->m.common.body_angleY_max,
                      mpHIO->m.common.head_angleX_min, mpHIO->m.common.head_angleX_max,
@@ -889,6 +1344,7 @@ void daNpc_Pachi_Taro_c::setAttnPos() {
 /* 80A9DB0C-80A9DC14 00196C 0108+00 1/0 0/0 0/0 .text setCollision__18daNpc_Pachi_Taro_cFv */
 void daNpc_Pachi_Taro_c::setCollision() {
     if (!mHide) {
+        u32 coSPrm = 0x79;
         u32 tgType = 0xD8FBFDFF;
         u32 tgSPrm = 0x1F;
 
@@ -903,7 +1359,7 @@ void daNpc_Pachi_Taro_c::setCollision() {
             tgSPrm = 0;
         }
 
-        mCyl.SetCoSPrm(0x79);
+        mCyl.SetCoSPrm(coSPrm);
         mCyl.SetTgType(tgType);
         mCyl.SetTgSPrm(tgSPrm);
         mCyl.OnTgNoHitMark();
@@ -919,6 +1375,17 @@ void daNpc_Pachi_Taro_c::setCollision() {
 
 /* 80A9DC14-80A9DC1C 001A74 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__18daNpc_Pachi_Taro_cFv */
 int daNpc_Pachi_Taro_c::drawDbgInfo() {
+    #if DEBUG
+    if (mpHIO->m.common.debug_info_ON) {
+        f32 radius1 = dComIfGp_getAttention()->getDistTable(attention_info.distances[fopAc_attn_SPEAK_e]).mDistMax;
+        f32 radius2 = dComIfGp_getAttention()->getDistTable(attention_info.distances[fopAc_attn_TALK_e]).mDistMax;
+        dDbVw_drawCircleOpa(attention_info.position, radius1, (GXColor){0x00, 0xC8, 0x00, 0xFF}, 1, 12);
+        dDbVw_drawCircleOpa(attention_info.position, radius2, (GXColor){0xC8, 0x00, 0x00, 0xFF}, 1, 12);
+        dDbVw_drawSphereXlu(eyePos, 18.0f, (GXColor){0x80, 0x80, 0x80, 0xA0}, 1);
+        dDbVw_drawSphereXlu(attention_info.position, 9.0f, (GXColor){0x80, 0x80, 0x80, 0xA0}, 1);
+    }
+    #endif
+    
     return 0;
 }
 
@@ -927,7 +1394,7 @@ void daNpc_Pachi_Taro_c::drawOtherMdl() {
     J3DModel* model = mpMorf[0]->getModel();
 
     static int const jointNo[2] = {
-        0xF, 0xF,
+        JNT_HANDR, JNT_HANDR,
     };
 
     for (int i = 0; i < 2; i++) {
@@ -946,6 +1413,13 @@ void daNpc_Pachi_Taro_c::drawOtherMdl() {
 /* 80A9DD24-80A9DDA0 001B84 007C+00 1/1 0/0 0/0 .text            selectAction__18daNpc_Pachi_Taro_cFv */
 BOOL daNpc_Pachi_Taro_c::selectAction() {
     mNextAction = NULL;
+
+    #if DEBUG
+    if (mpHIO->m.common.debug_mode_ON) {
+        mNextAction = &daNpc_Pachi_Taro_c::test;
+        return TRUE;
+    }
+    #endif
 
     switch (mType) {
         case 0:
@@ -985,13 +1459,15 @@ BOOL daNpc_Pachi_Taro_c::setAction(actionFunc action) {
 
 /* 80A9DE74-80A9E154 001CD4 02E0+00 2/0 0/0 0/0 .text            wait__18daNpc_Pachi_Taro_cFPv */
 int daNpc_Pachi_Taro_c::wait(void* param_1) {
+    int unused = 0;
+    
     switch (mMode) {
         case 0:
         case 1:
             if (!mStagger.checkStagger()) {
                 mMesPat = -1;
-                mFaceMotionSeqMngr.setNo(0x1F, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_MOT_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                 mMode = 2;
             }
             // fallthrough
@@ -1031,6 +1507,7 @@ int daNpc_Pachi_Taro_c::wait(void* param_1) {
                 }
             
                 switch (mJntAnm.getMode()) {
+                    case 0:
                     default:
                         break;
                 }
@@ -1079,7 +1556,8 @@ void daNpc_Pachi_Taro_c::setMesPat() {
 
 /* 80A9E224-80A9E270 002084 004C+00 3/3 0/0 0/0 .text _turn_to_link__18daNpc_Pachi_Taro_cFs */
 BOOL daNpc_Pachi_Taro_c::_turn_to_link(s16 i_step) {
-    cXyz pos(*fopAcM_GetPosition_p(daPy_getPlayerActorClass()));
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz pos(*fopAcM_GetPosition_p(player));
     return _turn_pos(pos, i_step);
 }
 
@@ -1103,20 +1581,21 @@ BOOL daNpc_Pachi_Taro_c::_turn_pos(cXyz const& i_pos) {
 
 /* 80A9E30C-80A9E364 00216C 0058+00 1/1 0/0 0/0 .text            talk_cancel__18daNpc_Pachi_Taro_cFv */
 void daNpc_Pachi_Taro_c::talk_cancel() {
-    fopAc_ac_c* actor_p = mActorMngrs[0].getActorP();
-    if (actor_p != NULL) {
-        ((daNpc_Pachi_Maro_c*)actor_p)->talkOff();
+    daNpc_Pachi_Maro_c* maro_p = (daNpc_Pachi_Maro_c*)mActorMngrs[0].getActorP();
+    if (maro_p != NULL) {
+        maro_p->talkOff();
     }
     
-    actor_p = mActorMngrs[1].getActorP();
-    if (actor_p != NULL) {
-        ((daNpc_Pachi_Besu_c*)actor_p)->talkOff();
+    daNpc_Pachi_Besu_c* besu_p = (daNpc_Pachi_Besu_c*)mActorMngrs[1].getActorP();
+    if (besu_p != NULL) {
+        besu_p->talkOff();
     }
 }
 
 /* 80A9E364-80A9E3E4 0021C4 0080+00 1/1 0/0 0/0 .text watch_tutrial__18daNpc_Pachi_Taro_cFv */
 void daNpc_Pachi_Taro_c::watch_tutrial() {
-    u16 evtNo = chkDistTag();
+    u16 evtNo = 0;
+    evtNo = chkDistTag();
     if (evtNo) {
         mEvtNo = evtNo;
         mPrevEvtNo = mEvtNo;
@@ -1130,6 +1609,7 @@ void daNpc_Pachi_Taro_c::watch_tutrial() {
             if (evtNo) {
                 mEvtNo = evtNo;
                 mPrevEvtNo = mEvtNo;
+                return;
             }
         }
     }
@@ -1137,7 +1617,8 @@ void daNpc_Pachi_Taro_c::watch_tutrial() {
 
 /* 80A9E3E4-80A9E458 002244 0074+00 1/1 0/0 0/0 .text            chkDistTag__18daNpc_Pachi_Taro_cFv */
 u16 daNpc_Pachi_Taro_c::chkDistTag() {
-    fopAc_ac_c* actor_p = mActorMngrs[2].getActorP();
+    fopAc_ac_c* actor_p = NULL;
+    actor_p = mActorMngrs[2].getActorP();
     if (actor_p != NULL && ((daTagPati_c*)actor_p)->is_CoHit()) {
         OS_REPORT("---- tag hit1!!\n");
         return 10;
@@ -1154,7 +1635,8 @@ u16 daNpc_Pachi_Taro_c::chkDistTag() {
 
 /* 80A9E458-80A9E56C 0022B8 0114+00 1/1 0/0 0/0 .text chkEscapeTag__18daNpc_Pachi_Taro_cFv */
 u16 daNpc_Pachi_Taro_c::chkEscapeTag() {
-    fopAc_ac_c* actor_p = mActorMngrs[4].getActorP();
+    fopAc_ac_c* actor_p = NULL;
+    actor_p = mActorMngrs[4].getActorP();
     if (actor_p != NULL && ((daTagPati_c*)actor_p)->is_CoHit()) {
         cXyz tagPos(-428.2985f, 800.0f, -1607.351f);
         cXyz lookPos(640.3426f, 900.0f, -1783.4485f);
@@ -1218,7 +1700,7 @@ u16 daNpc_Pachi_Taro_c::chkTarget() {
                 if (field_0xfe0 == 0) {
                     field_0xfe0 = 1;
                     rv = 6;
-                    field_0xfe1 = sVar1;
+                    mHitMsgIdx = sVar1;
                 }
                 break;
 
@@ -1226,7 +1708,7 @@ u16 daNpc_Pachi_Taro_c::chkTarget() {
             case 2:
                 field_0xfdf = 1;
                 rv = 6;
-                field_0xfe1 = sVar1;
+                mHitMsgIdx = sVar1;
                 break;
 
             default:
@@ -1247,8 +1729,9 @@ u16 daNpc_Pachi_Taro_c::chkTarget() {
 
 /* 80A9E700-80A9E778 002560 0078+00 1/1 0/0 0/0 .text            clr_tagHit__18daNpc_Pachi_Taro_cFv */
 void daNpc_Pachi_Taro_c::clr_tagHit() {
+    fopAc_ac_c* actor_p = NULL;
     for (int i = 0; i < 4; i++) {
-        fopAc_ac_c* actor_p = mActorMngrs[i + 2].getActorP();
+        actor_p = mActorMngrs[i + 2].getActorP();
         if (actor_p != NULL) {
             ((daTagPati_c*)actor_p)->clr_CoHit();
         }
@@ -1311,11 +1794,30 @@ int daNpc_Pachi_Taro_c::talk(void* param_1) {
 }
 
 int daNpc_Pachi_Taro_c::test(void* param_1) {
+    switch (mMode) {
+        case 0:
+        case 1:
+            speedF = 0.0f;
+            speed.setall(0.0f);
+            mMode = 2;
+            // fallthrough
+        case 2:
+            mFaceMotionSeqMngr.setNo(mpHIO->m.common.face_expression, -1.0f, FALSE, 0);
+            mMotionSeqMngr.setNo(mpHIO->m.common.motion, -1.0f, FALSE, 0);
+            mJntAnm.lookNone(0);
+            attention_info.flags = 0;
+            break;
 
+        case 3:
+            break;
+    }
+
+    return 1;
 }
 
 /* 80A9E910-80A9E9E8 002770 00D8+00 2/0 0/0 0/0 .text            evtEndProc__18daNpc_Pachi_Taro_cFv */
 BOOL daNpc_Pachi_Taro_c::evtEndProc() {
+    BOOL rv = TRUE;
     fopAc_ac_c* actor_p = mActorMngrs[0].getActorP();
 
     talk_cancel();
@@ -1351,7 +1853,7 @@ BOOL daNpc_Pachi_Taro_c::evtEndProc() {
             break;
     }
 
-    return TRUE;
+    return rv;
 }
 
 /* 80A9E9E8-80A9EAA0 002848 00B8+00 1/0 0/0 0/0 .text cutTutrialBegin__18daNpc_Pachi_Taro_cFi */
@@ -1360,7 +1862,8 @@ BOOL daNpc_Pachi_Taro_c::cutTutrialBegin(int i_staffId) {
 
     dComIfGp_getEvent().setSkipZev(this, "TUTRIAL_BEGIN_SKIP");
     dEvent_manager_c& eventManager = dComIfGp_getEventManager();
-    int* cutId = dComIfGp_evmng_getMyIntegerP(i_staffId, "cutId");
+    int* cutId = NULL;
+    cutId = dComIfGp_evmng_getMyIntegerP(i_staffId, "cutId");
     if (cutId == NULL) {
         OS_REPORT("-----CUT FALSE\n");
         return TRUE;
@@ -1421,7 +1924,8 @@ BOOL daNpc_Pachi_Taro_c::_cutTutrialBegin_Main(int const& i_cutId) {
 /* 80A9EC5C-80A9ECF0 002ABC 0094+00 1/0 0/0 0/0 .text            cutTutrialBegin_Skip__18daNpc_Pachi_Taro_cFi */
 BOOL daNpc_Pachi_Taro_c::cutTutrialBegin_Skip(int i_staffId) {
     dEvent_manager_c& eventManager = dComIfGp_getEventManager();
-    int* cutId = dComIfGp_evmng_getMyIntegerP(i_staffId, "cutId");
+    int* cutId = NULL;
+    cutId = dComIfGp_evmng_getMyIntegerP(i_staffId, "cutId");
     if (cutId == NULL) {
         OS_REPORT("-----CUT FALSE\n");
         return TRUE;
@@ -1462,7 +1966,8 @@ BOOL daNpc_Pachi_Taro_c::_cutTutrialBegin_Skip_Main(int const& i_cutId) {
 /* 80A9ED40-80A9EDD4 002BA0 0094+00 1/0 0/0 0/0 .text cutTutrialClear__18daNpc_Pachi_Taro_cFi */
 BOOL daNpc_Pachi_Taro_c::cutTutrialClear(int i_staffId) {
     dEvent_manager_c& eventManager = dComIfGp_getEventManager();
-    int* cutId = dComIfGp_evmng_getMyIntegerP(i_staffId, "cutId");
+    int* cutId = NULL;
+    cutId = dComIfGp_evmng_getMyIntegerP(i_staffId, "cutId");
     if (cutId == NULL) {
         OS_REPORT("-----CUT FALSE\n");
         return TRUE;
@@ -1511,8 +2016,8 @@ BOOL daNpc_Pachi_Taro_c::_cutTutrialClear_Main(int const& i_cutId) {
             if (_turn_pos(pos, 0x1000)) {
                 rv = TRUE;
             }
-            break;
         }
+        break;
 
         case 20:
             if (talkProc(NULL, FALSE, actors, FALSE)) {
@@ -1527,7 +2032,8 @@ BOOL daNpc_Pachi_Taro_c::_cutTutrialClear_Main(int const& i_cutId) {
 /* 80A9EFC0-80A9F0DC 002E20 011C+00 1/0 0/0 0/0 .text            cutTalk__18daNpc_Pachi_Taro_cFi */
 BOOL daNpc_Pachi_Taro_c::cutTalk(int i_staffId) {
     dEvent_manager_c& eventManager = dComIfGp_getEventManager();
-    int* cutId = dComIfGp_evmng_getMyIntegerP(i_staffId, "cutId");
+    int* cutId = NULL;
+    cutId = dComIfGp_evmng_getMyIntegerP(i_staffId, "cutId");
     if (cutId == NULL) {
         return TRUE;
     }
@@ -1584,7 +2090,6 @@ BOOL daNpc_Pachi_Taro_c::_cutTalk_Init(int const& i_cutId) {
 
 /* 80A9F188-80A9F324 002FE8 019C+00 2/1 0/0 0/0 .text            _cutTalk_Main__18daNpc_Pachi_Taro_cFRCiRCi */
 BOOL daNpc_Pachi_Taro_c::_cutTalk_Main(int const& i_cutId, int const& i_mesNo) {
-    // NONMATCHING
     fopAc_ac_c* actors[3] = {this, mActorMngrs[0].getActorP(), mActorMngrs[1].getActorP()};
     fopAc_ac_c* actor_p = mActorMngrs[0].getActorP();
     fopAc_ac_c* actor_p2 = mActorMngrs[1].getActorP();
@@ -1703,7 +2208,6 @@ BOOL daNpc_Pachi_Taro_c::_cutTalk2_Init(int const& i_cutId) {
 
 /* 80A9F4EC-80A9F688 00334C 019C+00 2/1 0/0 0/0 .text            _cutTalk2_Main__18daNpc_Pachi_Taro_cFRCiRCi */
 BOOL daNpc_Pachi_Taro_c::_cutTalk2_Main(int const& i_cutId, int const& i_mesNo) {
-    // NONMATCHING
     fopAc_ac_c* actors[3] = {this, mActorMngrs[0].getActorP(), mActorMngrs[1].getActorP()};
     fopAc_ac_c* actor_p = mActorMngrs[0].getActorP();
     fopAc_ac_c* actor_p2 = mActorMngrs[1].getActorP();
@@ -1794,13 +2298,13 @@ BOOL daNpc_Pachi_Taro_c::_cut1stHit_KakasiBody_Init(int const& i_cutId) {
             break;
 
         case 20:
-            if (sHitMsg[field_0xfe1] != 0x48) {
+            if (sHitMsg[mHitMsgIdx] != 0x48) {
                 fopAc_ac_c* actor_p = mActorMngrs[1].getActorP();
                 ((daNpc_Pachi_Besu_c*)actor_p)->setFMotion_Hit();
             }
 
             field_0xfda = 30;
-            initTalk(sHitMsg[field_0xfe1], actors);
+            initTalk(sHitMsg[mHitMsgIdx], actors);
             break;
     }
 
@@ -1809,10 +2313,9 @@ BOOL daNpc_Pachi_Taro_c::_cut1stHit_KakasiBody_Init(int const& i_cutId) {
 
 /* 80A9F83C-80A9F9C4 00369C 0188+00 1/1 0/0 0/0 .text            _cut1stHit_KakasiBody_Main__18daNpc_Pachi_Taro_cFRCi */
 BOOL daNpc_Pachi_Taro_c::_cut1stHit_KakasiBody_Main(int const& i_cutId) {
-    // NONMATCHING
     fopAc_ac_c* actors[3] = {this, mActorMngrs[0].getActorP(), mActorMngrs[1].getActorP()};
-    fopAc_ac_c* actor_p = mActorMngrs[1].getActorP();
-    fopAc_ac_c* actor_p2 = mActorMngrs[0].getActorP();
+    daNpc_Pachi_Besu_c* besu_p = (daNpc_Pachi_Besu_c*)mActorMngrs[1].getActorP();
+    daNpc_Pachi_Maro_c* maro_p = (daNpc_Pachi_Maro_c*)mActorMngrs[0].getActorP();
     BOOL rv = FALSE;
 
     switch (i_cutId) {
@@ -1825,8 +2328,8 @@ BOOL daNpc_Pachi_Taro_c::_cut1stHit_KakasiBody_Main(int const& i_cutId) {
             if (_turn_pos(pos, 0x1000)) {
                 rv = TRUE;
             }
-            break;
         }
+        break;
 
         case 20:
             if (talkProc(NULL, FALSE, actors, FALSE)) {
@@ -1834,14 +2337,17 @@ BOOL daNpc_Pachi_Taro_c::_cut1stHit_KakasiBody_Main(int const& i_cutId) {
             } else {
                 u32 nowMsgNo = mFlow.getNowMsgNo();
                 if (nowMsgNo == 0x168F) {
-                    if (--field_0xfda <= 0 && actor_p != NULL) {
-                        ((daNpc_Pachi_Besu_c*)actor_p)->setFMotion_Mad();
+                    if (--field_0xfda <= 0 && besu_p != NULL) {
+                        besu_p->setFMotion_Mad();
                     }
-                } else if ((nowMsgNo == 0x1675 || nowMsgNo == 0x168C || nowMsgNo == 0x166F || nowMsgNo == 0x1672) && actor_p2 != NULL) {
-                    ((daNpc_Pachi_Maro_c*)actor_p2)->setFMotion_Niramu_to_Besu();
+                } else if ((nowMsgNo == 0x1675 || nowMsgNo == 0x168C || nowMsgNo == 0x166F || nowMsgNo == 0x1672) && maro_p != NULL) {
+                    maro_p->setFMotion_Niramu_to_Besu();
                 }
             }
+            break;
     }
+
+    return rv;
 }
 
 /* 80A9F9C4-80A9FA58 003824 0094+00 1/0 0/0 0/0 .text            cutTutrialSelectGiveUp__18daNpc_Pachi_Taro_cFi */
@@ -2085,7 +2591,6 @@ BOOL daNpc_Pachi_Taro_c::_cutTutrialContinue_Init(int const& i_cutId) {
 
 /* 80AA01A4-80AA0258 004004 00B4+00 1/1 0/0 0/0 .text            _cutTutrialContinue_Main__18daNpc_Pachi_Taro_cFRCi */
 BOOL daNpc_Pachi_Taro_c::_cutTutrialContinue_Main(int const& i_cutId) {
-    // NONMATCHING
     BOOL rv = FALSE;
 
     switch (i_cutId) {
@@ -2102,11 +2607,10 @@ BOOL daNpc_Pachi_Taro_c::_cutTutrialContinue_Main(int const& i_cutId) {
             shape_angle.y = mCurAngle.y;
 
             if (chaseAngleFlag) {
-                fopAc_ac_c* actor_p = mActorMngrs[0].getActorP();
-                ((daNpc_Pachi_Maro_c*)actor_p)->setFMotion_LookNone();
+                daNpc_Pachi_Maro_c* maro_p = (daNpc_Pachi_Maro_c*)mActorMngrs[0].getActorP();
+                maro_p->setFMotion_LookNone();
                 rv = TRUE;
             }
-            break;
     }
 
     return rv;

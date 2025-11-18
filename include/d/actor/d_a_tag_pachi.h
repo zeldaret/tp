@@ -24,7 +24,7 @@ public:
     BOOL isDistChkTag2() { return field_0x6E0 == 1; }
     BOOL isEscapeChkTag1() { return field_0x6E0 == 2; }
     BOOL isEscapeChkTag2() { return field_0x6E0 == 3; }
-    BOOL is_CoHit() { return field_0x6E4; }
+    BOOL is_CoHit() const { return field_0x6E4; }
     void clr_CoHit() { 
         mCyl.ClrCoHit();
         field_0x6E4 = 0;
