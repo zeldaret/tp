@@ -1857,8 +1857,8 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                 i_this->field_0x7b9 = 1;
                 for (s32 i = 0; i < 100; i++) {
                     koro = &fshop->field_0x4008->mKoro2[i];
-                    if ((koro->field_0x34 >= 2 && koro->field_0x34 <= 5) ||
-                        (koro->field_0x34 >= 8 && koro->field_0x34 <= 11))
+                    if ((koro->part_id >= 2 && koro->part_id <= 5) ||
+                        (koro->part_id >= 8 && koro->part_id <= 11))
                     {
                         fshop->field_0x4008->mKoro2[i].field_0x60 = 1;
                     }

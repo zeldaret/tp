@@ -78,6 +78,10 @@ public:
     /* 80008078 */ static void onBlure();
     /* 80008330 */ static void calcFade();
 
+    static void fadeIn(f32 fadeSpeed) {
+        fadeOut(-fadeSpeed);
+    }
+
     static JUTFader* getFader() { return mFader; }
     static void setFader(JUTFader* fader) {
         JFWDisplay::getManager()->setFader(fader);
