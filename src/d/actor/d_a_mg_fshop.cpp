@@ -1668,7 +1668,7 @@ static int daFshop_Create(fopAc_ac_c* actor) {
         } else {
             sp10 = 0;
         }
-        #elif VERSION == PLATFORM_SHIELD
+        #elif PLATFORM_SHIELD
         if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_GERMAN) {
             sp10 = 2;
         } else {
