@@ -1090,6 +1090,7 @@ public:
     void offDkCaught2() { offNoResetFlg0(FLG0_DK_CAUGHT); }
     void onWaterFallFrontHit() { onEndResetFlg1(ERFLG1_UNK_800); }
     void onCanoeItemCancel() { onEndResetFlg1(ERFLG1_UNK_20000000); }
+    void onSwordTriggerNon() { onEndResetFlg1(ERFLG1_UNK_40000000); }
 
     u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }

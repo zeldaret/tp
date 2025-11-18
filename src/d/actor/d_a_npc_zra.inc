@@ -1361,6 +1361,7 @@ BOOL daNpc_zrA_c::talkSwim(void* param_0) {
     BOOL bvar2 = false;
     int flow_id;
 
+    int choiceNo;
     switch (mMode) {
     case 0:
         if (mDamageTimer != 0) {
@@ -1390,7 +1391,8 @@ BOOL daNpc_zrA_c::talkSwim(void* param_0) {
             }
 
             if (bvar2 && talkProc(NULL, 1, NULL)) {
-                if (mFlow.getChoiceNo() == 0) {
+                choiceNo = mFlow.getChoiceNo();
+                if (choiceNo == 0) {
                     field_0x1558 = 1;
                     mSwimAngleCalc = current.angle;
                     mSwimSpeedScale = 1.0f;
