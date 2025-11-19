@@ -30,7 +30,7 @@ public:
     u8 getDetailLevel() { return argument; }
     u8 getPathID() { return fopAcM_GetParam(this); }
     u8 getIntervalTime() { return fopAcM_GetParam(this) >> 24; }
-    int getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
+    u8 getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
     u8 getEndTime() { return (fopAcM_GetParam(this) >> 16) & 0xff; }
     u8 getMaxNum() { return shape_angle.x; }
     u8 getGroupNo() { return (shape_angle.x >> 8) & 0xff; }
