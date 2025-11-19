@@ -1055,8 +1055,8 @@ int daDoor20_c::demoProc() {
             if (swBit != 0xFF && !dComIfGs_isSwitch(swBit, 0xffffffff) &&
                 (door_param2_c::getFrontOption(this) == 2 || door_param2_c::getBackOption(this) == 2))
             {
-                dComIfGs_onSwitch(swBit, 0xFFFFFFFF);
-                dComIfGp_setItemKeyNumCount(0xFFFFFFFF);
+                dComIfGs_onSwitch(swBit, -1);
+                dComIfGp_setItemKeyNumCount(-1);
                 if (field_0x673 == 1) {
                     fopAcM_seStart(this, Z2SE_OBJ_DOOR_LOCK_OPEN, 0);
                 } else {

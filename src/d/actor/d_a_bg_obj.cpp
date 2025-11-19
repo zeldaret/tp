@@ -85,10 +85,6 @@ static const char* getDzbName(int param_0) {
     return l_dzbName;
 }
 
-// static const char* dummy() {
-//     return "spec.dat";
-// }
-
 /* 8045CB38-8045CB3C -00001 0004+00 1/1 0/0 0/0 .data            l_specName */
 static char* l_specName = "spec.dat";
 

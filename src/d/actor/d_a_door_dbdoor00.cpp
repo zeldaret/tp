@@ -81,18 +81,21 @@ bool daDbDoor00_c::debugCheckParam() {
         u8 frontOption = door_param2_c::getFrontOption(this);
         u8 backOption = door_param2_c::getBackOption(this);
         if (frontOption != 0) {
-            OS_REPORT_ERROR("両開き押しドア：表のオプション指定があります！<%d>\n", frontOption); // Double-opening push door: There are options specified on the front! <%d>
+            // Double-opening push door: There are options specified on the front! <%d>
+            OS_REPORT_ERROR("両開き押しドア：表のオプション指定があります！<%d>\n", frontOption);
             rv = 1;
         }
 
         if (backOption != 0) {
-            OS_REPORT_ERROR("両開き押しドア：裏のオプション指定があります！<%d>\n", backOption); // Double-opening push door: There is an option specified for the back! <%d>
+            // Double-opening push door: There is an option specified for the back! <%d>
+            OS_REPORT_ERROR("両開き押しドア：裏のオプション指定があります！<%d>\n", backOption);
             rv = 1;
         }
 
         u8 exitNo = door_param2_c::getExitNo(this);
         if (exitNo == 63) {
-            OS_REPORT_ERROR("両開き押しドア：シーン切り替え番号指定がありません！\n"); // Double-opening push door: No scene switch number specified!
+            // Double-opening push door: No scene switch number specified!
+            OS_REPORT_ERROR("両開き押しドア：シーン切り替え番号指定がありません！\n");
             rv = 1;
         }
 

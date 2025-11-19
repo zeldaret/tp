@@ -9,7 +9,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
 namespace daObj {
@@ -266,7 +265,8 @@ void HioVarious_c::init(JORReflexible* node_ptr, const char* node_name) {
     }
 
     if (i >= 16) {
-        OS_REPORT_ERROR("汎用オブジェノードバッファがパンク(%s %d)\n", "d_a_obj.cpp", 872); // Generic object node buffer full (%s %d)
+        // Generic object node buffer full (%s %d)
+        OS_REPORT_ERROR("汎用オブジェノードバッファがパンク(%s %d)\n", __FILE__, 872);
     }
 }
 
@@ -416,7 +416,9 @@ void HioSpot_c::genMessage(JORMContext* ctx) {
 }
 
 HioObj_c HioObj_c::M_hio;
-SECTION_RODATA
+
+// FAKEMATCH
+__declspec(section ".rodata")
 const char* HioObj_c::M_node_name[4] = {
     "汎用オブジェ",         // General purpose object
     "投げ物",               // Throwing
@@ -424,7 +426,8 @@ const char* HioObj_c::M_node_name[4] = {
     "スポット",             // Spot
 };
 
-SECTION_RODATA
+// FAKEMATCH
+__declspec(section ".rodata")
 const JORReflexible* HioObj_c::M_node_ptr[4] = {
     &daObj::HioVarious_c::M_hio,
     &daObj::HioThrow_c::M_hio,

@@ -15,11 +15,11 @@ static int daHitobj_Draw(hitobj_class* i_this) {
 
 /* 8046B360-8046B3C8 000080 0068+00 1/0 0/0 0/0 .text            daHitobj_Execute__FP12hitobj_class */
 static int daHitobj_Execute(hitobj_class* i_this) {
-    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     
     if (i_this->mTimer != 0) {
         i_this->mTimer--;
-        i_this->mSph.SetC(a_this->current.pos);
+        i_this->mSph.SetC(actor->current.pos);
         dComIfG_Ccsp()->Set(&i_this->mSph);
     } else {
         fopKyM_Delete(i_this);

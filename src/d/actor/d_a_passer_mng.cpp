@@ -12,8 +12,6 @@
 
 class daPasserMng_Attr_c {
 public:
-    daPasserMng_Attr_c& operator=(const daPasserMng_Attr_c&);
-
     /* 0x0 */ int appearance_interval;
     /* 0x4 */ s16 npc_type;
 };
@@ -39,12 +37,6 @@ daPasserMng_Hio_c::daPasserMng_Hio_c() {
 
 void daPasserMng_Hio_c::default_set() {
     mAttr = daPasserMng_c::M_attr;
-}
-
-daPasserMng_Attr_c& daPasserMng_Attr_c::operator=(const daPasserMng_Attr_c& attr) {
-    appearance_interval = attr.appearance_interval;
-    npc_type = attr.npc_type;
-    return *this;
 }
 
 void daPasserMng_Hio_c::ct() {
