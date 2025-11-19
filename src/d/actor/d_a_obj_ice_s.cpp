@@ -110,9 +110,8 @@ void daObjIce_s_c::setBaseMtx() {
  // reg alloc
 static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
     (void)param_1;
-    cXyz* icePos;
     daObjIce_s_c* ice = (daObjIce_s_c*)param_2;
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();
     cXyz& playerPos = fopAcM_GetPosition(player);
     cXyz* pBallCenter = player->getIronBallCenterPos();
 
@@ -126,7 +125,7 @@ static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3
         ice->Check_LinkRideOn(playerPos);
     }
 
-    icePos = &fopAcM_GetPosition(param_2);
+    cXyz* icePos = &fopAcM_GetPosition(param_2);
     if (pBallCenter != NULL && icePos != NULL && icePos->absXZ(*pBallCenter) < ice->field_0x5c8.x * 600.0f) {
         ice->field_0x5d8 = 0x300;
         ice->field_0x5a4 = -11.0f;
