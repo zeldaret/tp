@@ -12,7 +12,7 @@ public:
     JSUOutputStream() {}
     virtual ~JSUOutputStream();
 
-    virtual s32 skip(s32, s8) = 0;
+    virtual s32 skip(s32, s8);
 	virtual s32 writeData(const void*, s32) = 0;
 
     s32 write(const void*, s32);

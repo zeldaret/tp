@@ -1090,7 +1090,7 @@ config.libs = [
         [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JSupport/JSUList.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JSupport/JSUInputStream.cpp"),
-            Object(NonMatching, "JSystem/JSupport/JSUOutputStream.cpp"),
+            Object(MatchingFor("Shield", "ShieldD"), "JSystem/JSupport/JSUOutputStream.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JSupport/JSUMemoryStream.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JSupport/JSUFileStream.cpp"),
         ],
