@@ -1149,7 +1149,10 @@ public:
         /* 5 */ LOOK_ATTN,
     };
 
-    daNpcF_c() { initialize(); }
+    daNpcF_c() {
+        FORCE_DONT_INLINE;
+        initialize();
+    }
     /* 80152014 */ BOOL execute();
     /* 801522AC */ int draw(BOOL, BOOL, f32, _GXColorS10*, BOOL);
     /* 80152614 */ static void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*,
