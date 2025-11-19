@@ -12,16 +12,16 @@
 namespace JStudio {
 namespace fvb {
 
-TObject::~TObject() {}
+TObject::~TObject() {
+    JGADGET_ASSERTWARN(26, pfv_!=NULL);
+}
 
-// NONMATCHING regalloc, missing mr, addition order
 void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
-    ASSERT(pfv_ != 0);
-
-    ASSERT(pControl != 0);
+    JUT_ASSERT(35, pfv_!=0);
+    JUT_ASSERT(36, pControl!=0);
     TFunctionValueAttributeSet set = pfv_->getAttributeSet();
-    const void* pNext = rBlock.getNext();
-    const void* pData = rBlock.getContent();
+    const void* pNext = (const void*)rBlock.getNext();
+    const void* pData = (const void*)rBlock.getContent();
     while (pData < pNext) {
         data::TParse_TParagraph para(pData);
         data::TParse_TParagraph::TData dat;
@@ -36,133 +36,129 @@ void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
             prepare_data_(dat, pControl);
             break;
         case 0x10: {
-            JUT_EXPECT(u32Size >= 4);
-            ASSERT(pContent != 0);
+            JGADGET_ASSERTWARN(61, u32Size>=4);
+            JUT_ASSERT(62, pContent!=0);
             TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
-            JUT_EXPECT(pfvaRefer != NULL);
+            JGADGET_ASSERTWARN(64, pfvaRefer!=NULL);
             if (pfvaRefer == NULL) {
-                JUTWarn w;
-                w << "invalid paragraph";
-            } else {
-                JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
-                u32* content = (u32*)pContent;
-                u32 i = content[0];
-                u32* ptr = content + 1;
-                for (; i != 0; ptr++, i--) {
-                    u32 size = *ptr;
-                    TObject* pObject = pControl->getObject(ptr + 1, size);
-                    if (pObject == NULL) {
-                        JUTWarn w;
-                        w << "object not found by ID";
-                    } else {
-                        TFunctionValue* rfv = pObject->referFunctionValue();
-                        rCnt.push_back(rfv);
-                    }
-                    ptr += align_roundUp(size, 4) >> 2;
+                JGADGET_WARNMSG(67, "invalid paragraph");
+                break;
+            }
+            JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
+            u8* content = (u8*)pContent;
+            u32 i = *(u32*)content;
+            u8* ptr = content + 4;
+            for (; i != 0; i--) {
+                u32 size = *(u32*)ptr;
+                TObject* pObject = pControl->getObject(ptr + 4, size);
+                if (pObject != NULL) {
+                    TFunctionValue* const rfv = pObject->referFunctionValue();
+                    TFunctionValue* const* pRfv = &rfv;
+                    rCnt.push_back(*pRfv);
+                } else {
+                    JGADGET_WARNMSG(85, "object not found by ID");
                 }
+                ptr += align_roundUp(size, 4) + 4;
             }
         } break;
         case 0x11: {
-            JUT_EXPECT(u32Size >= 4);
-            ASSERT(pContent != 0);
+            JGADGET_ASSERTWARN(93, u32Size>=4);
+            JUT_ASSERT(94, pContent!=0);
             TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
-            JUT_EXPECT(pfvaRefer != NULL);
+            JGADGET_ASSERTWARN(96, pfvaRefer!=NULL);
             if (pfvaRefer == NULL) {
-                JUTWarn w;
-                w << "invalid paragraph";
-            } else {
-                JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
-                u32* content = (u32*)pContent;
-                u32* ptr = content;
-                u32 i = content[0];
-                for (; ptr++, i != 0; i--) {
-                    u32 index = *ptr;
-                    TObject* pObject = pControl->getObject_index(index);
-                    if (pObject == NULL) {
-                        JUTWarn w;
-                        w << "object not found by index : " << index;
-                    } else {
-                        TFunctionValue& rfv = *pObject->referFunctionValue();
-                        rCnt.push_back(&rfv);
-                    }
+                JGADGET_WARNMSG(99, "invalid paragraph");
+                break;
+            }
+
+            JGadget::TVector_pointer<TFunctionValue*>& rCnt = pfvaRefer->refer_referContainer();
+            u8* ptr = (u8*)pContent;
+            u32 i = *(u32*)ptr;
+            for (; ptr += 4, i != 0; i--) {
+                u32 index = *(u32*)ptr;
+                TObject* pObject = pControl->getObject_index(index);
+                if (pObject != NULL) {
+                    TFunctionValue* const rfv = pObject->referFunctionValue();
+                    TFunctionValue* const* pRfv = &rfv;
+                    rCnt.push_back(*pRfv);
+                } else {
+                    JGADGET_WARNMSG(114, "object not found by index : " << index);
                 }
             }
         } break;
         case 0x12: {
-            JUT_EXPECT(u32Size == 8);
-            ASSERT(pContent != 0);
+            JGADGET_ASSERTWARN(121, u32Size==8);
+            JUT_ASSERT(122, pContent!=0);
             TFunctionValueAttribute_range* pfvaRange = set.range_get();
-            JUT_EXPECT(pfvaRange != NULL);
+            JGADGET_ASSERTWARN(124, pfvaRange!=NULL);
             if (pfvaRange == NULL) {
-                JUTWarn w;
-                w << "invalid paragraph";
-            } else {
-                f32* arr = (f32*)pContent;
-                pfvaRange->range_set(arr[0], arr[1]);
+                JGADGET_WARNMSG(127, "invalid paragraph");
+                break;
             }
+            f32* arr = (f32*)pContent;
+            pfvaRange->range_set(arr[0], arr[1]);
         } break;
         case 0x13: {
-            JUT_EXPECT(u32Size == 4);
-            ASSERT(pContent != 0);
+            JGADGET_ASSERTWARN(138, u32Size==4);
+            JUT_ASSERT(139, pContent!=0);
             TFunctionValueAttribute_range* pfvaRange = set.range_get();
-            JUT_EXPECT(pfvaRange != NULL);
+            JGADGET_ASSERTWARN(141, pfvaRange!=NULL);
             if (pfvaRange == NULL) {
-                JUTWarn w;
-                w << "invalid paragraph";
-            } else {
-                TFunctionValue::TEProgress prog = *(TFunctionValue::TEProgress*)pContent;
-                pfvaRange->range_setProgress(prog);
+                JGADGET_WARNMSG(144, "invalid paragraph");
+                break;
             }
+
+            TFunctionValue::TEProgress prog = *(TFunctionValue::TEProgress*)pContent;
+            pfvaRange->range_setProgress(prog);
         } break;
         case 0x14: {
-            JUT_EXPECT(u32Size == 4);
-            ASSERT(pContent != 0);
+            JGADGET_ASSERTWARN(156, u32Size==4);
+            JUT_ASSERT(157, pContent!=0);
             TFunctionValueAttribute_range* pfvaRange = set.range_get();
-            JUT_EXPECT(pfvaRange != NULL);
+            JGADGET_ASSERTWARN(159, pfvaRange!=NULL);
             if (pfvaRange == NULL) {
-                JUTWarn w;
-                w << "invalid paragraph";
-            } else {
-                TFunctionValue::TEAdjust adjust = *(TFunctionValue::TEAdjust*)pContent;
-                pfvaRange->range_setAdjust(adjust);
+                JGADGET_WARNMSG(162, "invalid paragraph");
+                break;
             }
+
+            TFunctionValue::TEAdjust adjust = *(TFunctionValue::TEAdjust*)pContent;
+            pfvaRange->range_setAdjust(adjust);
         } break;
         case 0x15: {
-            JUT_EXPECT(u32Size == 4);
-            ASSERT(pContent != 0);
+            JGADGET_ASSERTWARN(174, u32Size==4);
+            JUT_ASSERT(175, pContent!=0);
             TFunctionValueAttribute_range* pfvaRange = set.range_get();
-            JUT_EXPECT(pfvaRange != NULL);
+            JGADGET_ASSERTWARN(177, pfvaRange!=NULL);
             if (pfvaRange == NULL) {
-                JUTWarn w;
-                w << "invalid paragraph";
-            } else {
-                u16* out = (u16*)pContent;
-                pfvaRange->range_setOutside((TFunctionValue::TEOutside)out[0],
-                                            (TFunctionValue::TEOutside)out[1]);
+                JGADGET_WARNMSG(180, "invalid paragraph");
+                break;
             }
+
+            u16* out = (u16*)pContent;
+            pfvaRange->range_setOutside((TFunctionValue::TEOutside)out[0],
+                                        (TFunctionValue::TEOutside)out[1]);
         } break;
         case 0x16: {
-            JUT_EXPECT(u32Size == 4);
-            ASSERT(pContent != 0);
+            JGADGET_ASSERTWARN(193, u32Size==4);
+            JUT_ASSERT(194, pContent!=0);
             TFunctionValueAttribute_interpolate* pfvaInterpolate = set.interpolate_get();
-            JUT_EXPECT(pfvaInterpolate != NULL);
+            JGADGET_ASSERTWARN(197, pfvaInterpolate!=NULL);
             if (pfvaInterpolate == NULL) {
-                JUTWarn w;
-                w << "invalid paragraph";
-            } else {
-                TFunctionValue::TEInterpolate interp = *(TFunctionValue::TEInterpolate*)pContent;
-                pfvaInterpolate->interpolate_set(interp);
+                JGADGET_WARNMSG(200, "invalid paragraph");
+                break;
             }
+
+            TFunctionValue::TEInterpolate interp = *(TFunctionValue::TEInterpolate*)pContent;
+            pfvaInterpolate->interpolate_set(interp);
         } break;
         default:
-            JUTWarn w;
-            w << "unknown paragraph : " << u32Type;
+            JGADGET_WARNMSG(211, "unknown paragraph : " << u32Type);
         }
         pData = dat.next;
-        ASSERT(pData != 0);
+        JUT_ASSERT(214, pData!=0);
     }
 end:
-    JUT_EXPECT(pData == pNext);
+    JGADGET_ASSERTWARN(216, pData==pNext);
     pfv_->prepare();
 }
 
@@ -221,21 +217,22 @@ TObject_composite::TObject_composite(const data::TParse_TBlock& block) : TObject
 
 void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& rData,
                                       TControl* control) {
-    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
-
+    JUT_ASSERT(306, rData.u32Type==data::PARAGRAPH_DATA);
     u32 u32Size = rData.u32Size;
-    JUT_EXPECT(u32Size == 8);
-
     struct unknown {
         data::TEComposite composite_type;
         u32 data;
     };
 
     const unknown* pContent = static_cast<const unknown*>(rData.pContent);
-    ASSERT(pContent != NULL);
+    JGADGET_ASSERTWARN(310, u32Size== 8);
+    JUT_ASSERT(311, pContent!=NULL);
 
-    const data::CompositeOperation* op = getCompositeOperation_(pContent->composite_type);
-    fnValue.data_set(op->composite, op->getCompositeData(&pContent->data));
+    data::TEComposite type = pContent->composite_type;
+    const data::CompositeOperation* op = getCompositeOperation_(type);
+    data::CompositeDataFunc pfn = op->getCompositeData;
+    JUT_ASSERT(316, pfn!=NULL);
+    fnValue.data_set(op->composite, pfn(&pContent->data));
 }
 
 /* 80284338-802843B8 27EC78 0080+00 1/1 0/0 0/0 .text
@@ -245,15 +242,14 @@ TObject_constant::TObject_constant(data::TParse_TBlock const& param_0)
 
 void TObject_constant::prepare_data_(const data::TParse_TParagraph::TData& rData,
                                      TControl* control) {
-    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
+    JUT_ASSERT(337, rData.u32Type==data::PARAGRAPH_DATA);
 
     u32 u32Size = rData.u32Size;
-    JUT_EXPECT(u32Size == 4);
-
     const f32* pContent = static_cast<const f32*>(rData.pContent);
-    ASSERT(pContent != NULL);
-
-    fnValue.data_set(pContent[0]);
+    JGADGET_ASSERTWARN(341, u32Size==4);
+    JUT_ASSERT(342, pContent!=NULL);
+    f32 val = pContent[0];
+    fnValue.data_set(val);
 }
 
 /* 802843C8-80284448 27ED08 0080+00 1/1 0/0 0/0 .text
