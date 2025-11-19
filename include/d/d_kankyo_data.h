@@ -52,9 +52,7 @@ enum BloomType {
     /* 0x1 */ BLOOM_SOFT
 };
 
-#define BLOOMINFO_MAX 64
-class dKydata_BloomInfo_c {
-public:
+struct dkydata_bloomInfo_info_class {
     /* 0x0 */ u8 mType;
     /* 0x1 */ u8 mThreshold;
     /* 0x2 */ u8 mBlurAmount;
@@ -66,7 +64,13 @@ public:
     /* 0x8 */ u8 mSaturateSubtractR;
     /* 0x9 */ u8 mSaturateSubtractG;
     /* 0xA */ u8 mSaturateSubtractB;
-    /* 0xB */ u8 mSaturateSubtractA;
+    /* 0xB */ u8 mSaturateSubtractA; 
+};
+
+#define BLOOMINFO_MAX 64
+class dKydata_BloomInfo_c {
+public:
+    dkydata_bloomInfo_info_class info;
 };  // Size: 0xC
 
 void* dKyd_dmpalet_getp();

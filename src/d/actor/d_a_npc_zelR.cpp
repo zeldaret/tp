@@ -131,7 +131,7 @@ daNpc_ZelR_HIOParam const daNpc_ZelR_Param_c::m = {
 
 /* 80B6EF64-80B6F1F8 000224 0294+00 1/1 0/0 0/0 .text            create__12daNpc_ZelR_cFv */
 int daNpc_ZelR_c::create() {
-    fopAcM_SetupActor2(this, daNpc_ZelR_c, l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_ZelR_c, l_faceMotionAnmData,
         &l_motionAnmData, l_faceMotionSequenceData, 4,
         l_motionSequenceData, 4, l_evtList, l_resNameList);
     mType = getType();

@@ -11,7 +11,7 @@
 #define M_SQRT3 1.73205f
 
 #define DEG_TO_RAD(degrees) (degrees * (M_PI / 180.0f))
-#define RAD_TO_DEG(radians) (radians / (180.0f / M_PI))
+#define RAD_TO_DEG(radians) (radians * (180.0f / M_PI))
 
 #ifdef __cplusplus
 extern "C" {
@@ -63,13 +63,14 @@ double frexp(double, int*);
 double ldexp(double, int);
 double modf(double, double*);
 double pow(double, double);
+float powf(float, float);
 double sin(double);
 float sinf(float);
 double sqrt(double);
 double tan(double);
 float tanf(float);
 
-#if PLATFORM_SHIELD
+#if PLATFORM_WII || PLATFORM_SHIELD
 inline float sqrtf(float mag) {
     return sqrt(mag);
 }

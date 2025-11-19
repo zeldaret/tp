@@ -173,7 +173,6 @@ int daObjLadder::Act_c::CreateHeap() {
 
 /* 8058D1D8-8058D378 0000F8 01A0+00 1/0 0/0 0/0 .text            Create__Q211daObjLadder5Act_cFv */
 int daObjLadder::Act_c::Create() {
-    // NONMATCHING
     fopAcM_SetMtx(this, mModel->getBaseTRMtx());
     init_mtx();
     fopAcM_setCullSizeBox(this, -55.0f, -1.0f, -10.0f, 55.0f, attr_type(mType).field_0x4 + 41.0f,
@@ -252,10 +251,6 @@ void daObjLadder::Act_c::mode_wait() {
 void daObjLadder::Act_c::mode_demoreq_init() {
     mMode = MODE_DEMOREQ;
     mInDemo = false;
-}
-
-static inline bool dComIfGp_evmng_existence(s16 eventIdx) {
-    return g_dComIfG_gameInfo.play.getEvtManager().getEventData(eventIdx) != NULL;
 }
 
 /* 8058D628-8058D6E8 000548 00C0+00 1/0 0/0 0/0 .text mode_demoreq__Q211daObjLadder5Act_cFv */

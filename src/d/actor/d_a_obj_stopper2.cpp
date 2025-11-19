@@ -6,356 +6,332 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_stopper2.h"
-#include "dol2asm.h"
 
+/* 80CEFF24-80CEFF28 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
+static char* l_arcName = "Stop00";
 
-//
-// Forward References:
-//
+/* 80CEFF28-80CEFF38 -00001 0010+00 1/1 0/0 0/0 .data            l_evName */
+static char* l_evName[4] = {
+    "STOP_OPEN",
+    "STOP_CLOSE",
+    "STOP_OPEN2",
+    "STOP_CLOSE2",
+};
 
-extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
-extern "C" static void getStopName__Fv();
-extern "C" void getStopModelData__15daObjStopper2_cFv();
-extern "C" void initBaseMtx__15daObjStopper2_cFv();
-extern "C" void setBaseMtx__15daObjStopper2_cFv();
-extern "C" void getMaxOffsetY__15daObjStopper2_cFv();
-extern "C" void Create__15daObjStopper2_cFv();
-extern "C" void CreateHeap__15daObjStopper2_cFv();
-extern "C" void create__15daObjStopper2_cFv();
-extern "C" void execute__15daObjStopper2_cFv();
-extern "C" void event_proc_call__15daObjStopper2_cFv();
-extern "C" void actionWait__15daObjStopper2_cFv();
-extern "C" void actionOrderEvent__15daObjStopper2_cFv();
-extern "C" void actionEvent__15daObjStopper2_cFv();
-extern "C" void actionDead__15daObjStopper2_cFv();
-extern "C" void demoProc__15daObjStopper2_cFv();
-extern "C" void draw__15daObjStopper2_cFv();
-extern "C" void _delete__15daObjStopper2_cFv();
-extern "C" static void daObjStopper2_Draw__FP15daObjStopper2_c();
-extern "C" static void daObjStopper2_Execute__FP15daObjStopper2_c();
-extern "C" static void daObjStopper2_Delete__FP15daObjStopper2_c();
-extern "C" static void daObjStopper2_Create__FP15daObjStopper2_c();
-extern "C" void func_80CEFE6C(void* _this, u8*);
-extern "C" extern char const* const d_a_obj_stopper2__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void fopAcM_orderMapToolEvent__FP10fopAc_ac_cUcsUsUsUs();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void dComIfG_getStageRes__FPCc();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void searchMapEventData__14dEvt_control_cFUc();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_80CEFFF8[4];
-
-//
-// Declarations:
-//
+/* 80CEFF38-80CEFF3C -00001 0004+00 1/1 0/0 0/0 .data            l_staffName */
+static char* l_staffName = "dstop";
 
 /* 80CEF338-80CEF358 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 static int CheckCreateHeap(fopAc_ac_c* i_this) {
-    // NONMATCHING
+    return ((daObjStopper2_c*)i_this)->CreateHeap();
 }
 
-/* ############################################################################################## */
-/* 80CEFEB0-80CEFEB0 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80CEFEB0 = "Stop00";
-SECTION_DEAD static char const* const stringBase_80CEFEB7 = "STOP_OPEN";
-SECTION_DEAD static char const* const stringBase_80CEFEC1 = "STOP_CLOSE";
-SECTION_DEAD static char const* const stringBase_80CEFECC = "STOP_OPEN2";
-SECTION_DEAD static char const* const stringBase_80CEFED7 = "STOP_CLOSE2";
-SECTION_DEAD static char const* const stringBase_80CEFEE3 = "dstop";
-SECTION_DEAD static char const* const stringBase_80CEFEE9 = "door-stop.bmd";
-#pragma pop
-
 /* 80CEF358-80CEF368 000098 0010+00 1/1 0/0 0/0 .text            getStopName__Fv */
-static char* getStopName() {
-    // NONMATCHING
+static const char* getStopName() {
+    return "door-stop.bmd";
 }
 
 /* 80CEF368-80CEF38C 0000A8 0024+00 1/1 0/0 0/0 .text getStopModelData__15daObjStopper2_cFv */
 J3DModelData* daObjStopper2_c::getStopModelData() {
-    // NONMATCHING
+    return (J3DModelData*)dComIfG_getStageRes(getStopName());
 }
 
 /* 80CEF38C-80CEF3C8 0000CC 003C+00 1/1 0/0 0/0 .text            initBaseMtx__15daObjStopper2_cFv */
 void daObjStopper2_c::initBaseMtx() {
-    // NONMATCHING
+    mpModel->setBaseScale(scale);
+    setBaseMtx();
 }
 
 /* 80CEF3C8-80CEF434 000108 006C+00 2/2 0/0 0/0 .text            setBaseMtx__15daObjStopper2_cFv */
 void daObjStopper2_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + mOffsetY, current.pos.z);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80CEF434-80CEF44C 000174 0018+00 2/2 0/0 0/0 .text            getMaxOffsetY__15daObjStopper2_cFv
  */
-float daObjStopper2_c::getMaxOffsetY() {
-    // NONMATCHING
+f32 daObjStopper2_c::getMaxOffsetY() {
+    J3DJoint* root_jnt = mpModel->getModelData()->getJointNodePointer(0);
+    JUT_ASSERT(154, root_jnt != NULL);
+    return root_jnt->getMax()->y;
 }
-
-/* ############################################################################################## */
-/* 80CEFE90-80CEFE94 000000 0004+00 3/3 0/0 0/0 .rodata          @3722 */
-SECTION_RODATA static u8 const lit_3722[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80CEFE90, &lit_3722);
-
-/* 80CEFE94-80CEFE98 000004 0004+00 1/1 0/0 0/0 .rodata          @3723 */
-SECTION_RODATA static f32 const lit_3723 = 150.0f;
-COMPILER_STRIP_GATE(0x80CEFE94, &lit_3723);
-
-/* 80CEFF24-80CEFF28 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_stopper2__stringBase0;
-
-/* 80CEFF28-80CEFF38 -00001 0010+00 1/1 0/0 0/0 .data            l_evName */
-SECTION_DATA static void* l_evName[4] = {
-    (void*)(((char*)&d_a_obj_stopper2__stringBase0) + 0x7),
-    (void*)(((char*)&d_a_obj_stopper2__stringBase0) + 0x11),
-    (void*)(((char*)&d_a_obj_stopper2__stringBase0) + 0x1C),
-    (void*)(((char*)&d_a_obj_stopper2__stringBase0) + 0x27),
-};
 
 /* 80CEF44C-80CEF57C 00018C 0130+00 1/1 0/0 0/0 .text            Create__15daObjStopper2_cFv */
 int daObjStopper2_c::Create() {
-    // NONMATCHING
+    if (!fopAcM_isSwitch(this, getSwbit())) {
+        mOffsetY = 0.0f;
+        field_0x588 = 1;
+    } else {
+        mOffsetY = getMaxOffsetY();
+        field_0x588 = 0;
+    }
+
+    attention_info.position.y += 150.0f;
+    eyePos.y += 150.0f;
+
+    initBaseMtx();
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    fopAcM_setCullSizeBox2(this, mpModel->getModelData());
+
+    mTool = getEvId();
+    eventInfo.setArchiveName(l_arcName);
+
+    for (int i = 0; i < 4; i++) {
+        mEventIdx[i] = dComIfGp_getEventManager().getEventIdx(this, l_evName[i], 0xFF);
+        OS_REPORT("閉じデモ用柵：evid<%d>tool<%d>\n", mEventIdx[0], mTool);
+    }
+
+    return 1;
 }
 
 /* 80CEF57C-80CEF5C8 0002BC 004C+00 1/1 0/0 0/0 .text            CreateHeap__15daObjStopper2_cFv */
 int daObjStopper2_c::CreateHeap() {
-    // NONMATCHING
+    J3DModelData* modelData = getStopModelData();
+    JUT_ASSERT(206, modelData != NULL);
+
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* 80CEF5C8-80CEF66C 000308 00A4+00 1/1 0/0 0/0 .text            create__15daObjStopper2_cFv */
 int daObjStopper2_c::create() {
-    // NONMATCHING
+    fopAcM_ct(this, daObjStopper2_c);
+
+    #if DEBUG
+    if (getSwbit() == 0xFF) {
+        OS_REPORT_ERROR("ドア柵：スイッチ指定がありません！\n");
+        return cPhs_ERROR_e;
+    }
+    #endif
+
+    int phase_state = dComIfG_resLoad(&mPhaseReq, l_arcName);
+    if (phase_state != cPhs_COMPLEATE_e) {
+        return phase_state;
+    }
+
+    if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0x4000)) {
+        return cPhs_ERROR_e;
+    }
+
+    if (!Create()) {
+        return cPhs_ERROR_e;
+    }
+
+    return cPhs_COMPLEATE_e;
 }
 
 /* 80CEF66C-80CEF6A4 0003AC 0038+00 1/1 0/0 0/0 .text            execute__15daObjStopper2_cFv */
 int daObjStopper2_c::execute() {
-    // NONMATCHING
+    event_proc_call();
+    setBaseMtx();
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80CEFF38-80CEFF3C -00001 0004+00 1/1 0/0 0/0 .data            l_staffName */
-SECTION_DATA static void* l_staffName = (void*)(((char*)&d_a_obj_stopper2__stringBase0) + 0x33);
-
-/* 80CEFF3C-80CEFF48 -00001 000C+00 0/1 0/0 0/0 .data            @3769 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3769[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWait__15daObjStopper2_cFv,
-};
-#pragma pop
-
-/* 80CEFF48-80CEFF54 -00001 000C+00 0/1 0/0 0/0 .data            @3770 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3770[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOrderEvent__15daObjStopper2_cFv,
-};
-#pragma pop
-
-/* 80CEFF54-80CEFF60 -00001 000C+00 0/1 0/0 0/0 .data            @3771 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3771[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionEvent__15daObjStopper2_cFv,
-};
-#pragma pop
-
-/* 80CEFF60-80CEFF6C -00001 000C+00 0/1 0/0 0/0 .data            @3772 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3772[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionDead__15daObjStopper2_cFv,
-};
-#pragma pop
-
-/* 80CEFF6C-80CEFF9C 000068 0030+00 0/1 0/0 0/0 .data            l_func$3768 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_func[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
 
 /* 80CEF6A4-80CEF760 0003E4 00BC+00 1/1 0/0 0/0 .text event_proc_call__15daObjStopper2_cFv */
 void daObjStopper2_c::event_proc_call() {
-    // NONMATCHING
+    static void (daObjStopper2_c::*l_func[])() = {
+        &daObjStopper2_c::actionWait,
+        &daObjStopper2_c::actionOrderEvent,
+        &daObjStopper2_c::actionEvent,
+        &daObjStopper2_c::actionDead,
+    };
+    
+    (this->*l_func[mAction])();
 }
 
 /* 80CEF760-80CEF98C 0004A0 022C+00 1/0 0/0 0/0 .text            actionWait__15daObjStopper2_cFv */
 void daObjStopper2_c::actionWait() {
-    // NONMATCHING
+    BOOL is_switch = fopAcM_isSwitch(this, getSwbit());
+
+    if (mOffsetY == 0.0f) {
+        field_0x584 = 0;
+    } else {
+        field_0x584 = 1;
+    }
+
+    if (mTool != 0xFF && mOffsetY != 0.0f) {
+        field_0x584 += 2;
+    }
+
+    if ((field_0x584 == 1 && !is_switch) || (field_0x584 == 3 && !is_switch)) {
+        setAction(1);
+
+        if (mTool != 0xFF) {
+            dStage_MapEvent_dt_c* maptooldata = dEvt_control_c::searchMapEventData(mTool);
+            JUT_ASSERT(325, maptooldata != NULL);
+
+            switch (maptooldata->type) {
+            case dStage_MapEvent_dt_TYPE_ZEV:
+                mEventIdx[field_0x584] = dComIfGp_getEventManager().getEventIdx(this, mTool);
+                fopAcM_orderMapToolEvent(this, mTool, 0xFF, 0xFFFF, 1, 0);
+                eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                break;
+            case dStage_MapEvent_dt_TYPE_MAPTOOLCAMERA:
+            case dStage_MapEvent_dt_TYPE_STB:
+                fopAcM_orderOtherEventId(this, mEventIdx[field_0x584], mTool, 0xFFFF, 0, 1);
+                eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                break;
+            default:
+                JUT_ASSERT(346, FALSE);
+                break;
+            }
+        } else {
+            fopAcM_orderOtherEventId(this, mEventIdx[field_0x584], mTool, 0xFFFF, 0, 1);
+            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+        }
+    } else if ((field_0x584 == 0 && is_switch) || (field_0x584 == 2 && is_switch)) {
+        setAction(1);
+        fopAcM_orderOtherEventId(this, mEventIdx[field_0x584], 0xFF, 0xFFFF, 0, 1);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    }
 }
 
 /* 80CEF98C-80CEFA60 0006CC 00D4+00 1/0 0/0 0/0 .text actionOrderEvent__15daObjStopper2_cFv */
 void daObjStopper2_c::actionOrderEvent() {
-    // NONMATCHING
+    if (eventInfo.checkCommandDemoAccrpt()) {
+        setAction(2);
+        mStaffId = dComIfGp_evmng_getMyStaffId(l_staffName, NULL, 0);
+        field_0x588 = 1;
+        demoProc();
+    } else {
+        if (mEventIdx[field_0x584] == -1) {
+            fopAcM_orderMapToolEvent(this, mTool, 0xFF, 0xFFFF, 1, 0);
+        } else {
+            fopAcM_orderOtherEventId(this, mEventIdx[field_0x584], mTool, 0xFFFF, 0, 1);
+        }
+
+        eventInfo.onCondition(2);
+    }
 }
 
 /* 80CEFA60-80CEFAD4 0007A0 0074+00 1/0 0/0 0/0 .text            actionEvent__15daObjStopper2_cFv */
 void daObjStopper2_c::actionEvent() {
-    // NONMATCHING
+    if (dComIfGp_evmng_endCheck(mEventIdx[field_0x584])) {
+        setAction(0);
+        dComIfGp_event_reset();
+    } else {
+        demoProc();
+    }
 }
 
 /* 80CEFAD4-80CEFAD8 000814 0004+00 1/0 0/0 0/0 .text            actionDead__15daObjStopper2_cFv */
-void daObjStopper2_c::actionDead() {
-    /* empty function */
-}
-
-/* ############################################################################################## */
-/* 80CEFE98-80CEFE9C 000008 0004+00 0/1 0/0 0/0 .rodata          @3921 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3921 = 1.0f;
-COMPILER_STRIP_GATE(0x80CEFE98, &lit_3921);
-#pragma pop
-
-/* 80CEFE9C-80CEFEA0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3922 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3922 = -1.0f;
-COMPILER_STRIP_GATE(0x80CEFE9C, &lit_3922);
-#pragma pop
-
-/* 80CEFEA0-80CEFEA4 000010 0004+00 0/1 0/0 0/0 .rodata          @3923 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3923 = 30.0f;
-COMPILER_STRIP_GATE(0x80CEFEA0, &lit_3923);
-#pragma pop
-
-/* 80CEFEA4-80CEFEA8 000014 0004+00 0/1 0/0 0/0 .rodata          @3924 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3924 = 4.0f;
-COMPILER_STRIP_GATE(0x80CEFEA4, &lit_3924);
-#pragma pop
-
-/* 80CEFEA8-80CEFEAC 000018 0004+00 0/1 0/0 0/0 .rodata          @3925 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3925 = 60.0f;
-COMPILER_STRIP_GATE(0x80CEFEA8, &lit_3925);
-#pragma pop
-
-/* 80CEFEAC-80CEFEB0 00001C 0004+00 0/1 0/0 0/0 .rodata          @3926 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3926 = 6.0f;
-COMPILER_STRIP_GATE(0x80CEFEAC, &lit_3926);
-#pragma pop
-
-/* 80CEFEB0-80CEFEB0 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80CEFEF7 = "WAIT";
-SECTION_DEAD static char const* const stringBase_80CEFEFC = "Timer";
-#pragma pop
-
-/* 80CEFF9C-80CEFFA8 -00001 000C+00 1/1 0/0 0/0 .data            action_table$3859 */
-SECTION_DATA static void* action_table[3] = {
-    (void*)(((char*)&d_a_obj_stopper2__stringBase0) + 0x47),
-    (void*)(((char*)&d_a_obj_stopper2__stringBase0) + 0x7),
-    (void*)(((char*)&d_a_obj_stopper2__stringBase0) + 0x11),
-};
+void daObjStopper2_c::actionDead() {}
 
 /* 80CEFAD8-80CEFD40 000818 0268+00 2/2 0/0 0/0 .text            demoProc__15daObjStopper2_cFv */
-void daObjStopper2_c::demoProc() {
-    // NONMATCHING
+int daObjStopper2_c::demoProc() {
+    static char* action_table[3] = {
+        "WAIT",
+        "STOP_OPEN",
+        "STOP_CLOSE",
+    };
+
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    int act_idx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, ARRAY_SIZE(action_table), 0, 0);
+    int* idata;
+
+    if (dComIfGp_evmng_getIsAddvance(mStaffId)) {
+        switch (act_idx) {
+        case 0:
+            idata = dComIfGp_evmng_getMyIntegerP(mStaffId, "Timer");
+            if (idata == NULL) {
+                mTimer = 1;
+            } else {
+                mTimer = *idata;
+            }
+            break;
+        case 1:
+            mOffsetY = 0.0f;
+            speedF = 0.0f;
+            fopAcM_seStart(this, Z2SE_OBJ_DOOR_STEEL_BAR, 0);
+            OS_REPORT("閉じデモドア柵：シャッターオープンＳＥ\n");
+            break;
+        case 2:
+            mOffsetY = getMaxOffsetY();
+            speedF = 0.0f;
+            fopAcM_seStart(this, Z2SE_OBJ_DOOR_STEEL_BAR_CL, 0);
+            OS_REPORT("閉じデモドア柵：シャッタークローズＳＥ\n");
+            break;
+        }
+    }
+
+    switch (act_idx) {
+    case 0:
+        if (cLib_calcTimer<u8>(&mTimer) == 0) {
+            dComIfGp_evmng_cutEnd(mStaffId);
+        }
+        break;
+    case 1:
+        cLib_chaseF(&speedF, 30.0f, 4.0f);
+        if (cLib_chaseF(&mOffsetY, getMaxOffsetY(), speedF)) {
+            field_0x588 = 0;
+            dComIfGp_evmng_cutEnd(mStaffId);
+        }
+        break;
+    case 2:
+        cLib_chaseF(&speedF, 60.0f, 6.0f);
+        if (cLib_chaseF(&mOffsetY, 0.0f, speedF)) {
+            dComIfGp_evmng_cutEnd(mStaffId);
+        }
+        break;
+    default:
+        dComIfGp_evmng_cutEnd(mStaffId);
+        break;
+    }
+
+    return 0;
 }
 
 /* 80CEFD40-80CEFDB8 000A80 0078+00 1/1 0/0 0/0 .text            draw__15daObjStopper2_cFv */
 int daObjStopper2_c::draw() {
-    // NONMATCHING
+    if (field_0x588 == 0) {
+        return 1;
+    }
+
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    mDoExt_modelUpdateDL(mpModel);
+    return 1;
 }
 
 /* 80CEFDB8-80CEFDEC 000AF8 0034+00 1/1 0/0 0/0 .text            _delete__15daObjStopper2_cFv */
 int daObjStopper2_c::_delete() {
-    // NONMATCHING
+    dComIfG_resDelete(&mPhaseReq, l_arcName);
+    return 1;
 }
 
 /* 80CEFDEC-80CEFE0C 000B2C 0020+00 1/0 0/0 0/0 .text daObjStopper2_Draw__FP15daObjStopper2_c */
 static int daObjStopper2_Draw(daObjStopper2_c* i_this) {
-    // NONMATCHING
+    return i_this->draw();
 }
 
 /* 80CEFE0C-80CEFE2C 000B4C 0020+00 1/0 0/0 0/0 .text daObjStopper2_Execute__FP15daObjStopper2_c
  */
 static int daObjStopper2_Execute(daObjStopper2_c* i_this) {
-    // NONMATCHING
+    return i_this->execute();
 }
 
 /* 80CEFE2C-80CEFE4C 000B6C 0020+00 1/0 0/0 0/0 .text daObjStopper2_Delete__FP15daObjStopper2_c */
 static int daObjStopper2_Delete(daObjStopper2_c* i_this) {
-    // NONMATCHING
+    return i_this->_delete();
 }
 
 /* 80CEFE4C-80CEFE6C 000B8C 0020+00 1/0 0/0 0/0 .text daObjStopper2_Create__FP15daObjStopper2_c */
 static int daObjStopper2_Create(daObjStopper2_c* i_this) {
-    // NONMATCHING
+    return i_this->create();
 }
 
-/* 80CEFE6C-80CEFE88 000BAC 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Uc>__FPUc */
-extern "C" void func_80CEFE6C(void* _this, u8* param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
 /* 80CEFFA8-80CEFFC8 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjStopper2_Method */
 static actor_method_class l_daObjStopper2_Method = {
-    (process_method_func)daObjStopper2_Create__FP15daObjStopper2_c,
-    (process_method_func)daObjStopper2_Delete__FP15daObjStopper2_c,
-    (process_method_func)daObjStopper2_Execute__FP15daObjStopper2_c,
-    0,
-    (process_method_func)daObjStopper2_Draw__FP15daObjStopper2_c,
+    (process_method_func)daObjStopper2_Create,
+    (process_method_func)daObjStopper2_Delete,
+    (process_method_func)daObjStopper2_Execute,
+    NULL,
+    (process_method_func)daObjStopper2_Draw,
 };
 
 /* 80CEFFC8-80CEFFF8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Stopper2 */

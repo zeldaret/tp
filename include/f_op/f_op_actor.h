@@ -180,7 +180,7 @@ public:
     void setArchiveName(char* name) { mArchiveName = name; }
     u8 getMapToolId() { return mMapToolId; }
     s16 getEventId() { return mEventId; }
-    s16 getIdx() { return mIndex; }
+    s16 getIdx() { return (s8)mIndex; }
     void setIdx(u8 i_idx) { mIndex = i_idx; }
     char* getArchiveName() { return mArchiveName; }
     BOOL chkCondition(u16 condition) { return (mCondition & condition) == condition; }
@@ -195,7 +195,7 @@ public:
     /* 0x06 */ u16 mCondition;
     /* 0x08 */ s16 mEventId;
     /* 0x0A */ u8 mMapToolId;
-    /* 0x0B */ s8 mIndex;
+    /* 0x0B */ u8 mIndex;
     /* 0x0C */ char* mArchiveName;
     /* 0x10 */ u8 field_0x10;
     /* 0x14 */ void (*field_0x14)(void*);
@@ -328,7 +328,7 @@ public:
     void onWolfBiteDamage() { mFlags |= fopEn_flag_WolfBiteDamage; }
     void onWolfDownStartFlg() { mFlags |= (fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart); }
     void onWolfDownPullEndFlg() { mFlags |= fopEn_flag_WolfDownPullEnd; }
-    void onWolfNoLock() { mFlags |= fopEn_flag_WolfNoLock; }
+    void onWolfNoLock() { mFlags |= (u16)fopEn_flag_WolfNoLock; }
     void onDownFlg() { mFlags |= fopEn_flag_Down; }
     void onHeadLockFlg() { mFlags |= fopEn_flag_HeadLock; }
 

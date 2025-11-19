@@ -91,7 +91,7 @@ public:
     void setDebugFill(bool debugFill) { mDebugFill = debugFill; }
     bool getDebugFill() const { return mDebugFill; }
     void* getStartAddr() { return (void*)mStart; }
-    void* getEndAddr() const { return (void*)mEnd; }
+    void* getEndAddr() { return (void*)mEnd; }
     u32 getSize() const { return mSize; }
     bool getErrorFlag() const { return mErrorFlag; }
     void callErrorHandler(JKRHeap* heap, u32 size, int alignment) {
@@ -251,6 +251,14 @@ inline s32 JKRResizeMemBlock(JKRHeap* heap, void* ptr, u32 size) {
 
 inline JKRHeap* JKRGetRootHeap() {
     return JKRHeap::getRootHeap();
+}
+
+inline JKRErrorHandler JKRSetErrorHandler(JKRErrorHandler errorHandler) {
+    return JKRHeap::setErrorHandler(errorHandler);
+}
+
+inline bool JKRSetErrorFlag(JKRHeap* heap, bool flag) {
+    return heap->setErrorFlag(flag);
 }
 
 #if PLATFORM_WII || PLATFORM_SHIELD

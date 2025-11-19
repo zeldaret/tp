@@ -1,18 +1,60 @@
 /**
  * @file d_a_npc_shoe.cpp
- * 
-*/
+ *
+ */
 
-#include "d/dolzel_rel.h" // IWYU pragma: keep
+#include "d/dolzel_rel.h"  // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_shoe.h"
-#include "dol2asm.h"
 
-//
-// Declarations:
-//
+/* 80AEA3B0-80AEA41C 000000 006C+00 11/11 0/0 0/0 .rodata          m__17daNpcShoe_Param_c */
+const daNpcShoe_HIOParam daNpcShoe_Param_c::m = {
+    55.0f,    // attention_offset
+    -3.0f,    // gravity
+    1.0f,     // scale
+    300.0f,   // real_shadow_size
+    255.0f,   // weight
+    140.0f,   // height
+    35.0f,    // knee_length
+    30.0f,    // width
+    0.0f,     // body_angleX_max
+    0.0f,     // body_angleX_min
+    10.0f,    // body_angleY_max
+    -10.0f,   // body_angleY_min
+    30.0f,    // head_angleX_max
+    -10.0f,   // head_angleX_min
+    45.0f,    // head_angleY_max
+    -45.0f,   // head_angleY_min
+    0.6f,     // neck_rotation_ratio
+    12.0f,    // morf_frame
+    2,        // talk_distance
+    2,        // talk_angle
+    3,        // attention_distance
+    2,        // attention_angle
+    60.0f,    // fov
+    500.0f,   // search_distance
+    300.0f,   // search_height
+    -300.0f,  // search_depth
+    60,       // attention_time
+    0,        // damage_time
+    0,        // face_expression
+    0,        // motion
+    0,        // look_mode
+    0,        // debug_mode_ON
+    0,        // debug_info_ON
+};
 
-static daNpcShoe_Param_c l_HIO;
+#if DEBUG
+daNpcShoe_HIO_c::daNpcShoe_HIO_c() {
+    m = daNpcShoe_Param_c::m;
+}
+
+void daNpcShoe_HIO_c::genMessage(JORMContext* ctext) {
+    // TODO
+}
+#endif
+
+NPC_SHOE_HIO_CLASS l_HIO;
 
 void daNpcShoe_c::setLookMode(int i_lookMode) {
     if (mLookMode != i_lookMode) {
@@ -22,7 +64,7 @@ void daNpcShoe_c::setLookMode(int i_lookMode) {
 
 bool daNpcShoe_c::chkFindPlayer() {
     bool ret;
-    if (!chkActorInSight(daPy_getPlayerActorClass(), daNpcShoe_Param_c::m.mAttnFovY)) {
+    if (!chkActorInSight(daPy_getPlayerActorClass(), mpHIO->m.common.fov)) {
         mActorMngr[0].remove();
         ret = false;
     } else {
@@ -42,16 +84,16 @@ bool daNpcShoe_c::chkFindPlayer() {
 
 /* 80AEA558-80AEA594 000020 003C+00 1/1 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[5] = {
-    { 17, 2, 1}, // m_sitwait_a
-    { 13, 0, 1}, // m_sittalk_a
-    { 14, 0, 1}, // m_sittalk_a_b
-    { 5, 0, 0}, // shoe_talk_a
-    { 11, 2, 1} // m_sit_to_wolf_a
+    {17, 2, 1},  // m_sitwait_a
+    {13, 0, 1},  // m_sittalk_a
+    {14, 0, 1},  // m_sittalk_a_b
+    {5, 0, 0},   // shoe_talk_a
+    {11, 2, 1}   // m_sit_to_wolf_a
 };
 
 /* 80AEA594-80AEA5A0 00005C 000C+00 0/0 0/0 0/0 .data            l_btpGetParamList */
 static daNpc_GetParam2 l_btpGetParamList[1] = {
-    { 12, 2, 0 }, // shoe
+    {12, 2, 0},  // shoe
 };
 
 /* 80AEA5A0-80AEA5AC -00001 000C+00 5/6 0/0 0/0 .data            l_arcNames */
@@ -62,22 +104,16 @@ static char* l_arcNames[3] = {
 };
 
 /* 80AEA5AC-80AEA5B0 000074 0004+00 0/1 0/0 0/0 .data            l_evtNames */
-static char* l_evtNames[1] = {
-    l_arcNames[0]
-};
+static char* l_evtNames[1] = {l_arcNames[0]};
 
 /* 80AEA5B0-80AEA5B4 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
 static char* l_myName = "Shoe";
 
 /* 80AEA5B4-80AEA5C0 00007C 000C+00 1/2 0/0 0/0 .data            mEvtSeqList__11daNpcShoe_c */
-daNpcShoe_c::EventFn daNpcShoe_c::mEvtSeqList[1] = {
-    NULL
-};
+daNpcShoe_c::EventFn daNpcShoe_c::mEvtSeqList[1] = {NULL};
 
 /* 80AE794C-80AE7AD0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcShoe_cFv */
-daNpcShoe_c::daNpcShoe_c() {
-    // NONMATCHING
-}
+daNpcShoe_c::daNpcShoe_c() {}
 
 /* 80AE7B60-80AE7D48 000300 01E8+00 1/0 0/0 0/0 .text            __dt__11daNpcShoe_cFv */
 daNpcShoe_c::~daNpcShoe_c() {
@@ -85,46 +121,9 @@ daNpcShoe_c::~daNpcShoe_c() {
         dComIfG_resDelete(&mPhases[i], l_arcNames[i]);
     }
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
-
-/* ############################################################################################## */
-/* 80AEA3B0-80AEA41C 000000 006C+00 11/11 0/0 0/0 .rodata          m__17daNpcShoe_Param_c */
-daNpcShoe_Param_c::param const daNpcShoe_Param_c::m = {
-    55.0f,
-    -3.0f,
-    1.0f,
-    300.0f,
-    255.0f,
-    140.0f,
-    35.0f,
-    30.0f,
-    0.0f,
-    0.0f,
-    10.0f,
-    -10.0f,
-    30.0f,
-    -10.0f,
-    45.0f,
-    -45.0f,
-    0.6f,
-    12.0f,
-    2,
-    2,
-    3,
-    2,
-    60.0f,
-    500.0f,
-    300.0f,
-    -300.0f,
-    60,
-    0,
-    0,
-    0,
-    0,
-    false,
-};
 
 /* 80AE7D48-80AE7FD8 0004E8 0290+00 1/1 0/0 0/0 .text            Create__11daNpcShoe_cFv */
 cPhs__Step daNpcShoe_c::Create() {
@@ -147,20 +146,20 @@ cPhs__Step daNpcShoe_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf->mpModel->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->mpModel->getBaseTRMtx());
 
         fopAcM_setCullSizeBox(this, -50.0f, -10.0f, -50.0f, 50.0f, 160.0f, 50.0f);
 
         mCreature.init(&current.pos, &eyePos, 3, 1);
         mCreature.setMdlType(7, false, (BOOL)(dKy_darkworld_check() != 0));
 
-        mAcchCir.SetWall(daNpcShoe_Param_c::m.mWallR, daNpcShoe_Param_c::m.mWallH);
+        mAcchCir.SetWall(mpHIO->m.common.width, mpHIO->m.common.knee_length);
 
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
 
         mAcch.CrrPos(dComIfG_Bgsp());
-        mCcStts.Init((int)daNpcShoe_Param_c::m.mCcWeight, 0, this);
+        mCcStts.Init((int)mpHIO->m.common.weight, 0, this);
         mCcCyl.Set(mCcDCyl);
 
         mCcCyl.SetStts(&mCcStts);
@@ -169,7 +168,7 @@ cPhs__Step daNpcShoe_c::Create() {
 
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.m_ground_h;
-        gravity = daNpcShoe_Param_c::m.mGravity;
+        gravity = mpHIO->m.common.gravity;
 
         setEnvTevColor();
         setRoomNo();
@@ -186,23 +185,23 @@ BOOL daNpcShoe_c::CreateHeap() {
 
     JUT_ASSERT(292, NULL != mdlData_p)
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, 
-        &mCreature, 0x80000, 0x11020084);
-    
-    if (mpMorf != NULL && mpMorf->mpModel == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature, 0x80000,
+                                  0x11020084);
+
+    if (mAnm_p != NULL && mAnm_p->mpModel == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p = NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return false;
     }
 
     cXyz cstack_30(1.0f, 0.5581154f, 1.0f);
-    mpMorf->offTranslate();
-    mpMorf->setTranslateScale(cstack_30);
+    mAnm_p->offTranslate();
+    mAnm_p->setTranslateScale(cstack_30);
 
-    J3DModel* model = mpMorf->getModel();
+    J3DModel* model = mAnm_p->getModel();
     for (u16 jointNo = 0; jointNo < mdlData_p->getJointNum(); jointNo++) {
         mdlData_p->getJointNodePointer(jointNo)->setCallBack(ctrlJointCallBack);
     }
@@ -267,15 +266,16 @@ int daNpcShoe_c::Draw() {
         return 1;
     }
 
-    draw(false, false, daNpcShoe_Param_c::m.mShadowDepth, NULL, false);
+    draw(false, false, mpHIO->m.common.real_shadow_size, NULL, false);
     g_env_light.setLightTevColorType_MAJI(mpModel1->mModelData, &tevStr);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(11));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(11));
     mpModel1->setBaseTRMtx(mDoMtx_stack_c::get());
     mDoExt_modelUpdateDL(mpModel1);
     g_env_light.setLightTevColorType_MAJI(mpModel2->mModelData, &tevStr);
     mDoExt_modelUpdateDL(mpModel2);
-    dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 50.0f, mAcch.m_gnd, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
-    
+    dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), 50.0f, mAcch.m_gnd, 0, 1.0f,
+                             dDlst_shadowControl_c::getSimpleTex());
+
     return 1;
 }
 
@@ -286,21 +286,21 @@ bool daNpcShoe_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int lookat_joints[3] = {1, 2, 3};
 
     if (joint_no == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(2));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
-    
+
     mDoMtx_stack_c::copy(i_model->getAnmMtx(joint_no));
-    switch(joint_no) {
-        case 1:
-        case 2:
-        case 3:
-            setLookatMtx(joint_no, lookat_joints, daNpcShoe_Param_c::m.mNeckAngleScl);
-            break;
+    switch (joint_no) {
+    case 1:
+    case 2:
+    case 3:
+        setLookatMtx(joint_no, lookat_joints, mpHIO->m.common.neck_rotation_ratio);
+        break;
     }
 
     i_model->setAnmMtx(joint_no, mDoMtx_stack_c::get());
@@ -341,7 +341,6 @@ void daNpcShoe_c::setMotion(int i_motion, f32 i_morf, BOOL i_restart) {
         }
     }
 }
-
 
 /* 80AE864C-80AE895C 000DEC 0310+00 1/1 0/0 0/0 .text            reset__11daNpcShoe_cFv */
 void daNpcShoe_c::reset() {
@@ -395,7 +394,7 @@ void daNpcShoe_c::reset() {
 
     J3DAnmTexPattern* btpAnm = getTexPtrnAnmP(l_arcNames[0], 12);
     mAnmFlags &= ~(ANM_PAUSE_BTP | ANM_PLAY_BTP | ANM_FLAG_800);
-    if (setBtpAnm(btpAnm, mpMorf->getModel()->getModelData(), 1.0f, 2)) {
+    if (setBtpAnm(btpAnm, mAnm_p->getModel()->getModelData(), 1.0f, 2)) {
         mAnmFlags |= ANM_PAUSE_BTP | ANM_PLAY_BTP | ANM_FLAG_800;
     }
 
@@ -410,28 +409,23 @@ void daNpcShoe_c::reset() {
     mMotionMorfOverride = 0.0f;
 }
 
-
 void daNpcShoe_c::playMotion() {
-    daNpcF_anmPlayData dat0 = {ANM_M_SITWAIT_A, daNpcShoe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat0 = {ANM_M_SITWAIT_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1a = {ANM_M_SITTALK_A, daNpcShoe_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat1b = {ANM_M_SITWAIT_A, daNpcShoe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat1a = {ANM_M_SITTALK_A, mpHIO->m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat1b = {ANM_M_SITWAIT_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat1[2] = {&dat1a, &dat1b};
-    daNpcF_anmPlayData dat2a = {ANM_M_SITTALK_A_B, daNpcShoe_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat2b = {ANM_M_SITWAIT_A, daNpcShoe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat2a = {ANM_M_SITTALK_A_B, mpHIO->m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat2b = {ANM_M_SITWAIT_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat2[2] = {&dat2a, &dat2b};
-    daNpcF_anmPlayData dat3a = {ANM_SHOE_TALK_A, daNpcShoe_Param_c::m.mMorfFrames, 1};
-    daNpcF_anmPlayData dat3b = {ANM_M_SITWAIT_A, daNpcShoe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat3a = {ANM_SHOE_TALK_A, mpHIO->m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat3b = {ANM_M_SITWAIT_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[2] = {&dat3a, &dat3b};
-    daNpcF_anmPlayData dat4 = {ANM_M_SIT_TO_WOLF_A, daNpcShoe_Param_c::m.mMorfFrames, 0};
+    daNpcF_anmPlayData dat4 = {ANM_M_SIT_TO_WOLF_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&dat4};
 
     daNpcF_anmPlayData** ppDat[5] = {
-        pDat0,
-        pDat1,
-        pDat2,
-        pDat3,
-        pDat4,
+        pDat0, pDat1, pDat2, pDat3, pDat4,
     };
     if (mMotion >= 0 && mMotion < 5) {
         field_0xe16 = mMotionPhase;
@@ -439,6 +433,57 @@ void daNpcShoe_c::playMotion() {
     }
 }
 
+/* 80AE9820-80AE9A00 001FC0 01E0+00 1/1 0/0 0/0 .text            lookat__11daNpcShoe_cFv */
+void daNpcShoe_c::lookat() {
+    fopAc_ac_c* actor = NULL;
+    J3DModel* model = mAnm_p->getModel();
+
+    BOOL snap = false;
+    f32 body_angleX_min = mpHIO->m.common.body_angleX_min;
+    f32 body_angleX_max = mpHIO->m.common.body_angleX_max;
+    f32 body_angleY_min = mpHIO->m.common.body_angleY_min;
+    f32 body_angleY_max = mpHIO->m.common.body_angleY_max;
+    f32 head_angleX_min = mpHIO->m.common.head_angleX_min;
+    f32 head_angleX_max = mpHIO->m.common.head_angleX_max;
+    f32 head_angleY_min = mpHIO->m.common.head_angleY_min;
+    f32 head_angleY_max = mpHIO->m.common.head_angleY_max;
+
+    s16 angle_delta = mCurAngle.y - mOldAngle.y;
+    cXyz lookat_pos[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
+    csXyz* lookat_angle[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
+
+    switch (mLookMode) {
+    case LOOK_NONE:
+        break;
+    case LOOK_RESET:
+        snap = true;
+        break;
+    case LOOK_PLAYER:
+    case LOOK_PLAYER_TALK:
+        actor = daPy_getPlayerActorClass();
+        if (mLookMode != LOOK_PLAYER_TALK) {
+            break;
+        }
+        head_angleY_min = -80.0f;
+        head_angleY_max = 80.0f;
+        break;
+    }
+
+    if (actor != NULL) {
+        mLookPos = actor->attention_info.position;
+        if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK) {
+            mLookPos.y -= 40.0f;
+        }
+        mLookat.setAttnPos(&mLookPos);
+    } else {
+        mLookat.setAttnPos(NULL);
+    }
+
+    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max, 0.0f, 0.0f,
+                     0.0f, 0.0f, head_angleX_min, head_angleX_max, head_angleY_min, head_angleY_max,
+                     mCurAngle.y, lookat_pos);
+    mLookat.calc(this, model->getBaseTRMtx(), lookat_angle, snap, angle_delta, false);
+}
 
 /* 80AE895C-80AE8A04 0010FC 00A8+00 1/1 0/0 0/0 .text
  * setAction__11daNpcShoe_cFM11daNpcShoe_cFPCvPvPv_b            */
@@ -458,7 +503,6 @@ int daNpcShoe_c::setAction(bool (daNpcShoe_c::*i_actionFunc)(void*)) {
 
 /* 80AE8A04-80AE8E24 0011A4 0420+00 3/0 0/0 0/0 .text            wait__11daNpcShoe_cFPv */
 bool daNpcShoe_c::wait(void* param_0) {
-    // NONMATCHING
     switch (mMode) {
     case 0:
         setMotion(MOT_SITWAIT_A, -1.0f, false);
@@ -469,7 +513,7 @@ bool daNpcShoe_c::wait(void* param_0) {
         break;
     case 2: {
         chkFindPlayer();
-        
+
         fopAc_ac_c* pactor = mActorMngr->getActorP();
         if (pactor != NULL) {
             setLookMode(LOOK_PLAYER);
@@ -513,27 +557,26 @@ bool daNpcShoe_c::wait(void* param_0) {
     return 1;
 }
 
-
 /* 80AE8E24-80AE8ED4 0015C4 00B0+00 1/0 0/0 0/0 .text            fear__11daNpcShoe_cFPv */
 bool daNpcShoe_c::fear(void* param_0) {
     switch (mMode) {
-        case 0:
-            setMotion(MOT_SIT_TO_WOLF_A, -1.0f, false);
-            speedF = 0.0f;
-            mMode = 2;
-            break;
-        case 1:
-            break;
-        case 2:
-            if (mpMorf->checkFrame(1.0f)) {
-                mCreature.playVoice(2);
-            }
-            break;
-        case 3:
-            break;
-        default:
-            JUT_ASSERT(1100, FALSE);
-            break;
+    case 0:
+        setMotion(MOT_SIT_TO_WOLF_A, -1.0f, false);
+        speedF = 0.0f;
+        mMode = 2;
+        break;
+    case 1:
+        break;
+    case 2:
+        if (mAnm_p->checkFrame(1.0f)) {
+            mCreature.playVoice(2);
+        }
+        break;
+    case 3:
+        break;
+    default:
+        JUT_ASSERT(1100, FALSE);
+        break;
     }
     return 1;
 }
@@ -542,37 +585,37 @@ bool daNpcShoe_c::fear(void* param_0) {
 bool daNpcShoe_c::talk(void* param_0) {
     bool ret = 0;
     switch (mMode) {
-        case 0:
-            initTalk(field_0xe0c, NULL);
-            mMsgTimer = 0;
-            field_0xe1a = 0;
-            setLookMode(LOOK_PLAYER_TALK);
-            mMode = 2;
-            break;
-        case 1:
-            break;
-        case 2:
-            if (talkProc(NULL, 1, NULL)) {
-                mActorMngr->entry(daPy_getPlayerActorClass());
-                setAction(&daNpcShoe_c::wait);
-                ret = 1;
-            } else {
-                int expression, motion;
-                if (ctrlMsgAnm(expression, motion, this, false)) {
-                    setMotion(motion, -1.0f, false);
-                }
+    case 0:
+        initTalk(field_0xe0c, NULL);
+        mMsgTimer = 0;
+        field_0xe1a = 0;
+        setLookMode(LOOK_PLAYER_TALK);
+        mMode = 2;
+        break;
+    case 1:
+        break;
+    case 2:
+        if (talkProc(NULL, 1, NULL)) {
+            mActorMngr->entry(daPy_getPlayerActorClass());
+            setAction(&daNpcShoe_c::wait);
+            ret = 1;
+        } else {
+            int expression, motion;
+            if (ctrlMsgAnm(expression, motion, this, false)) {
+                setMotion(motion, -1.0f, false);
             }
+        }
+        break;
+    case 3:
+        if (field_0x9ec != 0) {
             break;
-        case 3:
-            if (field_0x9ec != 0) {
-                break;
-            }
-            
-            dComIfGp_event_reset();
-            break;
-        default:
-            JUT_ASSERT(1169, FALSE);
-            break;
+        }
+
+        dComIfGp_event_reset();
+        break;
+    default:
+        JUT_ASSERT(1169, FALSE);
+        break;
     }
     return ret;
 }
@@ -580,39 +623,41 @@ bool daNpcShoe_c::talk(void* param_0) {
 /* 80AE9094-80AE9260 001834 01CC+00 1/0 0/0 0/0 .text            demo__11daNpcShoe_cFPv */
 bool daNpcShoe_c::demo(void* param_0) {
     switch (mMode) {
-        case 0:
-            setMotion(MOT_SITWAIT_A, -1.0f, false);
-            mMode = 2;
-            break;
-        case 1:
-            break;
-        case 2:
-            if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk()) {
-                dEvent_manager_c& eventManager = dComIfGp_getEventManager();
-                s32 staff_id = eventManager.getMyStaffId(l_myName, NULL, 0);
-                if (staff_id != -1) {
-                    mStaffID = staff_id;
+    case 0:
+        setMotion(MOT_SITWAIT_A, -1.0f, false);
+        mMode = 2;
+        break;
+    case 1:
+        break;
+    case 2:
+        if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk()) {
+            dEvent_manager_c& eventManager = dComIfGp_getEventManager();
+            s32 staff_id = eventManager.getMyStaffId(l_myName, NULL, 0);
+            if (staff_id != -1) {
+                mStaffID = staff_id;
 
-                    JUT_ASSERT(1203, NULL != mEvtSeqList[mOrderEvtNo])
+                JUT_ASSERT(1203, NULL != mEvtSeqList[mOrderEvtNo])
 
-                    if ((this->*(mEvtSeqList[mOrderEvtNo]))(staff_id)) {
-                        eventManager.cutEnd(staff_id);
-                    }
-                }
-
-                if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && eventManager.endCheck(mEventIdx)) {
-                    dComIfGp_event_reset();
-                    mOrderEvtNo = 0;
-                    mEventIdx = -1;
-                    setAction(&daNpcShoe_c::wait);
+                if ((this->*(mEvtSeqList[mOrderEvtNo]))(staff_id)) {
+                    eventManager.cutEnd(staff_id);
                 }
             }
-            break;
-        case 3:
-            break;
-        default:
-            JUT_ASSERT(1169, FALSE);
-            break;
+
+            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 &&
+                eventManager.endCheck(mEventIdx))
+            {
+                dComIfGp_event_reset();
+                mOrderEvtNo = 0;
+                mEventIdx = -1;
+                setAction(&daNpcShoe_c::wait);
+            }
+        }
+        break;
+    case 3:
+        break;
+    default:
+        JUT_ASSERT(1169, FALSE);
+        break;
     }
     return 1;
 }
@@ -644,16 +689,19 @@ static bool daNpcShoe_IsDelete(void* param_0) {
 
 /* 80AE92E8-80AE93A0 001A88 00B8+00 1/0 0/0 0/0 .text            setParam__11daNpcShoe_cFv */
 void daNpcShoe_c::setParam() {
-    attention_info.distances[0] = getDistTableIdx(daNpcShoe_Param_c::m.mTalkDistIdx, daNpcShoe_Param_c::m.mTalkAngleIdx);
+    attention_info.distances[0] =
+        getDistTableIdx(mpHIO->m.common.attention_distance, mpHIO->m.common.attention_angle);
     attention_info.distances[1] = attention_info.distances[0];
-    attention_info.distances[3] = getDistTableIdx(daNpcShoe_Param_c::m.mSpeakDistIdx, daNpcShoe_Param_c::m.mSpeakAngleIdx);
+    attention_info.distances[3] =
+        getDistTableIdx(mpHIO->m.common.talk_distance, mpHIO->m.common.talk_angle);
 
-    attention_info.flags = (field_0xe1b != 0) ? (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e) : 0;
+    attention_info.flags =
+        (field_0xe1b != 0) ? (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e) : 0;
 
-    scale.setall(daNpcShoe_Param_c::m.mScale);
-    mAcchCir.SetWallR(daNpcShoe_Param_c::m.mWallR);
-    mAcchCir.SetWallH(daNpcShoe_Param_c::m.mWallH);
-    gravity = daNpcShoe_Param_c::m.mGravity;
+    scale.setall(mpHIO->m.common.scale);
+    mAcchCir.SetWallR(mpHIO->m.common.width);
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
+    gravity = mpHIO->m.common.gravity;
 }
 
 /* 80AE93A0-80AE9624 001B40 0284+00 1/0 0/0 0/0 .text            main__11daNpcShoe_cFv */
@@ -671,7 +719,6 @@ BOOL daNpcShoe_c::main() {
 
 /* 80AE9624-80AE9820 001DC4 01FC+00 1/0 0/0 0/0 .text            setAttnPos__11daNpcShoe_cFv */
 void daNpcShoe_c::setAttnPos() {
-    // NONMATCHING
     if (mLookMode == LOOK_RESET) {
         for (int i = 0; i < 3; i++) {
             mLookatAngle[i].setall(0);
@@ -681,88 +728,37 @@ void daNpcShoe_c::setAttnPos() {
     setMtx();
     lookat();
 
-    cXyz vec(10.0f,15.0f,0.0f);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+    cXyz vec(10.0f, 15.0f, 0.0f);
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&vec, &eyePos);
     vec.x = 0.0f;
     mDoMtx_stack_c::multVec(&vec, &vec);
 
-    mHeadAngle.x = cLib_targetAngleX(&mHeadPos,&vec);
-    mHeadAngle.y = cLib_targetAngleY(&mHeadPos,&vec);
+    mHeadAngle.x = cLib_targetAngleX(&mHeadPos, &vec);
+    mHeadAngle.y = cLib_targetAngleY(&mHeadPos, &vec);
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(3));
     mDoMtx_stack_c::multVecZero(&attention_info.position);
-    attention_info.position.y += daNpcShoe_Param_c::m.mAttnOffsetY;
+    attention_info.position.y += mpHIO->m.common.attention_offset;
 
     cXyz cStack28;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(1));
     mDoMtx_stack_c::multVecZero(&cStack28);
     cStack28.y = current.pos.y;
     mCcCyl.SetC(cStack28);
-    mCcCyl.SetH(daNpcShoe_Param_c::m.mCylH);
-    mCcCyl.SetR(daNpcShoe_Param_c::m.mWallR);
+    mCcCyl.SetH(mpHIO->m.common.height);
+    mCcCyl.SetR(mpHIO->m.common.width);
     dComIfG_Ccsp()->Set(&mCcCyl);
-}
-
-/* 80AE9820-80AE9A00 001FC0 01E0+00 1/1 0/0 0/0 .text            lookat__11daNpcShoe_cFv */
-void daNpcShoe_c::lookat() {
-    // NONMATCHING
-    fopAc_ac_c* actor = NULL;
-    J3DModel* model = mpMorf->getModel();
-    BOOL snap = false;
-    f32 body_down_angle = daNpcShoe_Param_c::m.mBodyDownAngle;
-    f32 body_up_angle = daNpcShoe_Param_c::m.mBodyUpAngle;
-    f32 body_right_angle = daNpcShoe_Param_c::m.mBodyRightAngle;
-    f32 body_left_angle = daNpcShoe_Param_c::m.mBodyLeftAngle;
-    f32 head_down_angle = daNpcShoe_Param_c::m.mHeadDownAngle;
-    f32 head_up_angle = daNpcShoe_Param_c::m.mHeadUpAngle;
-    f32 head_right_angle = daNpcShoe_Param_c::m.mHeadRightAngle;
-    f32 head_left_angle = daNpcShoe_Param_c::m.mHeadLeftAngle;
-    s16 angle_delta = mCurAngle.y - mOldAngle.y;
-    cXyz lookat_pos[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
-    csXyz* lookat_angle[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
-
-    switch (mLookMode) {
-        case LOOK_NONE:
-            break;
-        case LOOK_RESET:
-            snap = true;
-            break;
-        case LOOK_PLAYER:
-        case LOOK_PLAYER_TALK:
-            actor = daPy_getPlayerActorClass();
-            if (mLookMode != LOOK_PLAYER_TALK) {
-                break;
-            }
-            head_right_angle = -80.0f;
-            head_left_angle = 80.0f;
-            break;
-    }
-
-    if (actor != NULL) {
-        mLookPos = actor->attention_info.position;
-        if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK) {
-            mLookPos.y -= 40.0f;
-        }
-        mLookat.setAttnPos(&mLookPos);
-    } else {
-        mLookat.setAttnPos(NULL);
-    }
-
-    mLookat.setParam(body_down_angle, body_up_angle, body_right_angle, body_left_angle,
-        0.0f, 0.0f, 0.0f, 0.0f,
-        head_down_angle, head_up_angle, head_right_angle, head_left_angle,
-        mCurAngle.y, lookat_pos);
-    mLookat.calc(this, model->getBaseTRMtx(), lookat_angle, snap, angle_delta, false);
 }
 
 /* 80AE9A00-80AE9AD0 0021A0 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcShoe_cFif */
 void daNpcShoe_c::setMotionAnm(int i_idx, f32 i_morf) {
-    J3DAnmTransformKey* morfAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx], l_bckGetParamList[i_idx].fileIdx);
-    
+    J3DAnmTransformKey* morfAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx],
+                                                    l_bckGetParamList[i_idx].fileIdx);
+
     int morfAttr = l_bckGetParamList[i_idx].attr;
-    
+
     mAnmFlags &= ~(ANM_PAUSE_MORF | ANM_PLAY_MORF);
 
     if (morfAnm) {
@@ -780,33 +776,29 @@ BOOL daNpcShoe_c::drawDbgInfo() {
 
 /* 80AEA340-80AEA344 002AE0 0004+00 1/0 0/0 0/0 .text            adjustShapeAngle__11daNpcShoe_cFv
  */
-void daNpcShoe_c::adjustShapeAngle() {
-    /* empty function */
-}
+void daNpcShoe_c::adjustShapeAngle() {}
 
 /* 80AEA608-80AEA628 -00001 0020+00 1/0 0/0 0/0 .data            daNpcShoe_MethodTable */
 static actor_method_class daNpcShoe_MethodTable = {
-    (process_method_func)daNpcShoe_Create,
-    (process_method_func)daNpcShoe_Delete,
-    (process_method_func)daNpcShoe_Execute,
-    (process_method_func)daNpcShoe_IsDelete,
+    (process_method_func)daNpcShoe_Create,  (process_method_func)daNpcShoe_Delete,
+    (process_method_func)daNpcShoe_Execute, (process_method_func)daNpcShoe_IsDelete,
     (process_method_func)daNpcShoe_Draw,
 };
 
 /* 80AEA628-80AEA658 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_SHOE */
 extern actor_process_profile_definition g_profile_NPC_SHOE = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_SHOE,          // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daNpcShoe_c),    // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  417,                    // mPriority
-  &daNpcShoe_MethodTable, // sub_method
-  0x00044107,             // mStatus
-  fopAc_NPC_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_NPC_SHOE,           // mProcName
+    &g_fpcLf_Method.base,    // sub_method
+    sizeof(daNpcShoe_c),     // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    417,                     // mPriority
+    &daNpcShoe_MethodTable,  // sub_method
+    0x00044107,              // mStatus
+    fopAc_NPC_e,             // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

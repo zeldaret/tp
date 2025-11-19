@@ -178,7 +178,6 @@ static void damage_check(e_ba_class* i_this) {
 }
 
 /* 8067F2DC-8067F544 0006DC 0268+00 2/3 0/0 0/0 .text            path_check__FP10e_ba_class */
-// NONMATCHING regalloc
 static BOOL path_check(e_ba_class* i_this) {
     fopEn_enemy_c* a_this = &i_this->mEnemy;
     if (i_this->mpPath != NULL) {

@@ -167,7 +167,6 @@ void daE_OT_c::setActionMode(int i_action, int i_mode) {
 }
 
 /* 8073A510-8073A7B0 000330 02A0+00 1/1 0/0 0/0 .text            damage_check__8daE_OT_cFv */
-// NONMATCHING regswap
 void daE_OT_c::damage_check() {
     if (mAction == ACT_DAMAGE) {
         return;
@@ -182,7 +181,7 @@ void daE_OT_c::damage_check() {
 
     if (mCcSph.ChkCoHit()) {
         fopAc_ac_c* hit_actor = dCc_GetAc(mCcSph.GetCoHitObj()->GetAc());
-        if (fopAcM_GetName(hit_actor) == PROC_E_DT
+        if (fopAcM_GetName(dCc_GetAc(hit_actor)) == PROC_E_DT
             && static_cast<daE_DT_c*>(hit_actor)->isFlyingAttack())
         {
             setActionMode(ACT_DAMAGE, 10);
@@ -197,7 +196,7 @@ void daE_OT_c::damage_check() {
 
     if (mCcSph.ChkTgHit()) {
         mAtInfo.mpCollider = mCcSph.GetTgHitObj();
-        dCc_GetAc(mAtInfo.mpCollider->GetAc());
+        fopAc_ac_c* ac = dCc_GetAc(mAtInfo.mpCollider->GetAc());
         cc_at_check(this, &mAtInfo);
         dScnPly_c::setPauseTimer(0);
         if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK)) {

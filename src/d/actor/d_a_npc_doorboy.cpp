@@ -137,7 +137,7 @@ daNpcDoorBoy_c::~daNpcDoorBoy_c() {
     }
 
     if (heap != NULL) {
-        mpMorf->stopZelAnime();
+        mAnm_p->stopZelAnime();
     }
 }
 
@@ -198,10 +198,10 @@ cPhs__Step daNpcDoorBoy_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(this, mAnm_p->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -50.0f, -10.0f, -50.0f, 50.0f, 210.0f, 50.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
-        mSound.setMdlType(5, false, 0xFF & dKy_darkworld_check());
+        mSound.setMdlType(5, false, dKy_darkworld_check());
 
         mAcchCir.SetWall(daNpcDoorBoy_Param_c::m.common.width, daNpcDoorBoy_Param_c::m.common.knee_length);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),
@@ -233,24 +233,24 @@ int daNpcDoorBoy_c::CreateHeap() {
 
     JUT_ASSERT(292, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
-    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
-        mpMorf->stopZelAnime();
-        mpMorf = NULL;
+    mAnm_p = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
+    if (mAnm_p != NULL && mAnm_p->getModel() == NULL) {
+        mAnm_p->stopZelAnime();
+        mAnm_p = NULL;
     }
 
-    if (mpMorf == NULL) {
+    if (mAnm_p == NULL) {
         return 0;
     }
 
     cXyz translateScale(1.0f, 1.0820773f, 1.0f);
-    mpMorf->offTranslate();
-    mpMorf->setTranslateScale(translateScale);
+    mAnm_p->offTranslate();
+    mAnm_p->setTranslateScale(translateScale);
 
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
-    mpMorf->getModel()->setUserArea((uintptr_t)this);
+    mAnm_p->getModel()->setUserArea((uintptr_t)this);
     
     setMotion(MOT_WAIT_A, -1.0f, 0);
 
@@ -282,11 +282,11 @@ int daNpcDoorBoy_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int i_jointList[3] = {JNT_BACKBONE, JNT_NECK, JNT_HEAD};
 
     if (jointNo == JNT_CENTER) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_NECK));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+        mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
@@ -367,7 +367,7 @@ void daNpcDoorBoy_c::reset() {
     J3DAnmTexPattern* i_btp = getTexPtrnAnmP(l_arcNames[0], 7);
     mAnmFlags &= 0xFFFFF57F;
 
-    if (setBtpAnm(i_btp, mpMorf->getModel()->getModelData(), 1.0f, 2)) {
+    if (setBtpAnm(i_btp, mAnm_p->getModel()->getModelData(), 1.0f, 2)) {
         mAnmFlags |= 0xA80;
     }
 
@@ -430,7 +430,7 @@ inline void daNpcDoorBoy_c::playMotion() {
 /* 809ACE18-809ACFF8 002278 01E0+00 1/1 0/0 0/0 .text            lookat__14daNpcDoorBoy_cFv */
 inline void daNpcDoorBoy_c::lookat() {
     daPy_py_c* player = NULL;
-    J3DModel* model_p = mpMorf->getModel();
+    J3DModel* model_p = mAnm_p->getModel();
 
     int iVar1 = 0;
     f32 body_angleX_min = daNpcDoorBoy_Param_c::m.common.body_angleX_min;
@@ -639,7 +639,7 @@ bool daNpcDoorBoy_c::fear(void* param_1) {
             break;
 
         case 2:
-            if (mpMorf->checkFrame(1.0f)) {
+            if (mAnm_p->checkFrame(1.0f)) {
                 mSound.playVoice(2);
             }
             break;
@@ -851,7 +851,7 @@ void daNpcDoorBoy_c::setAttnPos() {
     setMtx();
     lookat();
 
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_HEAD));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     cXyz sp1c(23.0f, 15.0f, 0.0f);
     mDoMtx_stack_c::multVec(&sp1c, &eyePos);
@@ -863,7 +863,7 @@ void daNpcDoorBoy_c::setAttnPos() {
     mDoMtx_stack_c::multVec(&attention_info.position, &attention_info.position);
 
     cXyz sp28;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE));
+    mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE));
     mDoMtx_stack_c::multVecZero(&sp28);
     sp28.y = current.pos.y;
     

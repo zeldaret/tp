@@ -445,7 +445,6 @@ bool daE_ZH_c::mColorSet(bool param_1, f32 param_2, f32 param_3) {
 
 /* 80829AD8-80829E44 000B98 036C+00 2/2 0/0 0/0 .text            mReturnLineMove__8daE_ZH_cFv */
 bool daE_ZH_c::mReturnLineMove() {
-    // NONMATCHING
     if (mS_Ball == NULL) {
         setActionMode(ACTION_EXECUTE_FLY_DELETE, 0);
         return false;

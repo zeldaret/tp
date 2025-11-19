@@ -3,6 +3,35 @@
 
 #include "d/actor/d_a_npc.h"
 
+struct daNpcThe_HIOParam {
+    /* 0x00 */ daNpcF_HIOParam common;
+};
+
+class daNpcThe_Param_c {
+public:
+    /* 80AFBDA0 */ virtual ~daNpcThe_Param_c() {}
+
+    static const daNpcThe_HIOParam m;
+};
+
+STATIC_ASSERT(sizeof(daNpcThe_Param_c::m) == 0x6C);
+
+#if DEBUG
+class daNpcThe_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpcThe_HIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+
+    daNpcThe_HIOParam m;
+};
+
+#define NPC_THE_HIO_CLASS daNpcThe_HIO_c
+#else
+#define NPC_THE_HIO_CLASS daNpcThe_Param_c
+#endif
+
 /**
  * @ingroup actors-npcs
  * @class daNpcThe_c
@@ -103,16 +132,16 @@ public:
     /* 80AF9358 */ cPhs__Step create();
     /* 80AF9748 */ void reset();
     /*  inline  */ inline int Draw();
-    /* 80AF99F4 */ void setParam();
-    /* 80AF9CF0 */ BOOL main();
-    /* 80AF9F94 */ void playMotion();
-    /* 80AFA338 */ void playExpression();
+    /* 80AF99F4 */ inline void setParam();
+    /* 80AF9CF0 */ inline BOOL main();
+    /* 80AF9F94 */ inline void playMotion();
+    /* 80AFA338 */ inline void playExpression();
     /*  inline  */ inline void setExpressionTalkAfter();
-    /* 80AFA6CC */ BOOL doEvent();
-    /* 80AFADEC */ BOOL ctrlBtk();
-    /* 80AFAEC8 */ void setAttnPos();
-    /* 80AFB1C4 */ void lookat();
-    /* 80AFB488 */ BOOL drawDbgInfo();
+    /* 80AFA6CC */ inline BOOL doEvent();
+    /* 80AFADEC */ inline BOOL ctrlBtk();
+    /* 80AFAEC8 */ inline void setAttnPos();
+    /* 80AFB1C4 */ inline void lookat();
+    /* 80AFB488 */ inline BOOL drawDbgInfo();
     /* 80AFBD9C */ void adjustShapeAngle() {}
 
     u8 getTypeFromParam() {
@@ -143,16 +172,15 @@ public:
     }
 
     bool isSneaking() {
-        if (!strcmp(dComIfGp_getStartStageName(), "R_SP116") && dComIfGp_getStartStageRoomNo() == 5
-                                                    && dComIfG_play_c::getLayerNo(0) == 2) {
+        if (!strcmp(dComIfGp_getStartStageName(), "R_SP116") &&
+            dComIfGp_getStartStageRoomNo() == 5 && dComIfG_play_c::getLayerNo(0) == 2)
+        {
             return true;
         }
         return false;
     }
 
-    bool chkAction(ActionFn action) {
-        return mpActionFn == action;
-    }
+    bool chkAction(ActionFn action) { return mpActionFn == action; }
 
     BOOL setAction(ActionFn action) {
         if (mpActionFn != NULL) {
@@ -167,7 +195,7 @@ public:
         return true;
     }
 
-    void doNormalAction() {
+    void doNormalAction(int) {
         mOrderEvtNo = 0;
         if (mpNextActionFn != NULL) {
             if (mpNextActionFn == mpActionFn) {
@@ -184,7 +212,7 @@ private:
     /* 0xBD8 */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0xBDC */ daNpcF_Lookat_c mLookat;
     /* 0xC78 */ daNpcF_ActorMngr_c mActorMngr[3];
-    /* 0xC90 */ u8 field_0xc90[4];
+    /* 0xC90 */ NPC_THE_HIO_CLASS* mpHIO;
     /* 0xC94 */ dCcD_Cyl mColCyl;
     /* 0xDD0 */ ActionFn mpNextActionFn;
     /* 0xDDC */ ActionFn mpActionFn;
@@ -207,49 +235,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpcThe_c) == 0xE20);
-
-class daNpcThe_Param_c {
-public:
-    struct param {
-        /* 0x00 */ f32 mAttnOffsetY;
-        /* 0x04 */ f32 mGravity;
-        /* 0x08 */ f32 mScale;
-        /* 0x0C */ f32 mShadowDepth;
-        /* 0x10 */ f32 mCcWeight;
-        /* 0x14 */ f32 mCylH;
-        /* 0x18 */ f32 mWallH;
-        /* 0x1C */ f32 mWallR;
-        /* 0x20 */ f32 mBodyUpAngle;
-        /* 0x24 */ f32 mBodyDownAngle;
-        /* 0x28 */ f32 mBodyLeftAngle;
-        /* 0x2C */ f32 mBodyRightAngle;
-        /* 0x30 */ f32 mHeadUpAngle;
-        /* 0x34 */ f32 mHeadDownAngle;
-        /* 0x38 */ f32 mHeadLeftAngle;
-        /* 0x3C */ f32 mHeadRightAngle;
-        /* 0x40 */ f32 mNeckAngleScl;
-        /* 0x44 */ f32 mMorfFrames;
-        /* 0x48 */ s16 mSpeakDistIdx;
-        /* 0x4A */ s16 mSpeakAngleIdx;
-        /* 0x4C */ s16 mTalkDistIdx;
-        /* 0x4E */ s16 mTalkAngleIdx;
-        /* 0x50 */ f32 mAttnFovY;
-        /* 0x54 */ f32 mAttnRadius;
-        /* 0x58 */ f32 mAttnUpperY;
-        /* 0x5C */ f32 mAttnLowerY;
-        /* 0x60 */ s16 field_0x60;
-        /* 0x62 */ s16 mDamageTimer;
-        /* 0x64 */ s16 mTestExpression;
-        /* 0x66 */ s16 mTestMotion;
-        /* 0x68 */ s16 mTestLookMode;
-        /* 0x6A */ bool mTest;
-    };
-
-    /* 80AFBDA0 */ virtual ~daNpcThe_Param_c() {}
-
-    static daNpcThe_Param_c::param const m;
-};
-
-STATIC_ASSERT(sizeof(daNpcThe_Param_c::param) == 0x6C);
 
 #endif /* D_A_NPC_THE_H */

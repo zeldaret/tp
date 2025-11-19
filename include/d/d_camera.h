@@ -10,6 +10,7 @@
 #include "d/d_stage.h"
 #include "d/actor/d_a_player.h"
 #include "f_op/f_op_actor.h"
+#include "m_Do/m_Do_graphic.h"
 
 dAttention_c* dComIfGp_getAttention();
 
@@ -1063,7 +1064,7 @@ public:
 
     bool CheckFlag(u32 i_flag) { return mEventFlags & i_flag; }
 
-    void ResetView() { setView(0.0f, 0.0f, 608.0f, 448.0f); }
+    void ResetView() { setView(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT); }
 
     void clearInfo(dCamInfo_c* i_info, s16 param_1) {
         i_info->field_0x1e = param_1;

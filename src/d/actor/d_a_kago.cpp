@@ -249,7 +249,7 @@ static u8 l_HIOInit;
 static daKago_HIO_c l_HIO;
 
 /* 80849BA8-8084A070 0006E8 04C8+00 4/4 0/0 0/0 .text checkGroundHeight__8daKago_cF4cXyzPf */
-// NONMATCHING - regalloc
+// NONMATCHING - fpr regalloc
 f32 daKago_c::checkGroundHeight(cXyz i_pos, f32* o_step) {
     f32 retVal;
 
@@ -393,8 +393,7 @@ f32 daKago_c::checkRoofHeight(cXyz param_0) {
         if (std::abs(current.pos.y - roofChkYVal) < 310.0f) {
             fopAc_ac_c* actor = dComIfG_Bgsp().GetActorPointer(roofChk);
             if (actor != NULL && fopAcM_GetName(actor) == PROC_Obj_RIVERROCK) {
-                daObjRIVERROCK_c* riverRock = (daObjRIVERROCK_c*)actor;
-                if (riverRock->mBreakSubAction == daObjRIVERROCK_c::BREAK_MOVE) {
+                if (((daObjRIVERROCK_c*)actor)->mBreakSubAction == daObjRIVERROCK_c::BREAK_MOVE) {
                     field_0x6e5 = 1;
                 }
             }
@@ -2617,7 +2616,7 @@ bool daKago_c::executeFirstDemo() {
         }
 
         break;
-    case 3:
+    case 3: {
         dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 3);
 
         setMidnaTagPos();
@@ -2638,6 +2637,7 @@ bool daKago_c::executeFirstDemo() {
         }
 
         break;
+    }
     case 4:
         dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 2);
 

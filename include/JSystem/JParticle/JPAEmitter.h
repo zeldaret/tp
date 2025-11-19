@@ -139,6 +139,7 @@ public:
     }
     void getGlobalTranslation(JGeometry::TVec3<f32>* out) const { out->set(mGlobalTrs); }
     void setGlobalDynamicsScale(const JGeometry::TVec3<f32>& i_scale) { mGlobalScl.set(i_scale); }
+    void getGlobalDynamicsScale(JGeometry::TVec3<f32>* i_scale) const { i_scale->set(mGlobalScl); }
     void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
     u8 getGlobalAlpha() const { return mGlobalPrmClr.a; }
     void getGlobalPrmColor(GXColor& color) { color = mGlobalPrmClr; }
@@ -214,6 +215,10 @@ public:
 
     void setVolumeMiniRadius(f32 param_1) {
         mVolumeMinRad = param_1;
+    }
+
+    void setMaxFrame(s32 maxFrame) {
+        mMaxFrame = maxFrame;
     }
 
 public:

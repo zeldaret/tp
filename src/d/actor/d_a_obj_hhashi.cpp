@@ -229,7 +229,7 @@ bool daObjHHASHI_c::checkViewArea(int param_1) {
     Vec local_20;
     mDoLib_project(&field_0x5b0[param_1], &local_20);
     bool rv = false;
-    if (local_20.x >= 0.0f && local_20.x <= 608.0f && local_20.y >= 0.0f && local_20.y <= 448.0f) {
+    if (local_20.x >= 0.0f && local_20.x <= FB_WIDTH && local_20.y >= 0.0f && local_20.y <= FB_HEIGHT) {
         rv = true;
     }
     return rv;

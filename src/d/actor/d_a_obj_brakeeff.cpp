@@ -175,7 +175,9 @@ int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpBrk->init(a_this->mpModel->getModelData(), static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("Obj_Bef", bef_brk[a_this->mEffectType])), 1,0,1.0f,0,-1)) {
+    J3DAnmTevRegKey* tev_anm = static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("Obj_Bef", bef_brk[a_this->mEffectType]));
+
+    if (!a_this->mpBrk->init(a_this->mpModel->getModelData(), tev_anm, 1, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1)) {
         return 0;
     }
 

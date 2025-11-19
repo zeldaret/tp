@@ -444,7 +444,6 @@ void daBalloon2D_c::setComboAlpha() {
 }
 
 /* 80654730-80654E8C 001350 075C+00 1/1 0/0 0/0 .text            drawAddScore__13daBalloon2D_cFv */
-// NONMATCHING - field_0x0.x, regalloc
 void daBalloon2D_c::drawAddScore() {
     for (s32 i = 19; i >= 0; i--) {
         if (field_0x5f8[i].field_0xe != 0) {
@@ -568,7 +567,7 @@ void daBalloon2D_c::setHIO(bool param_1) {
         field_0x5a0->paneTrans(l_HOSTIO.m.mBalloonSmallPosX, l_HOSTIO.m.mBalloonSmallPosY);
         field_0x5a0->scale(l_HOSTIO.m.mBalloonSmallSize, l_HOSTIO.m.mBalloonSmallSize);
         field_0x5a0->setAlphaRate(l_HOSTIO.m.mBalloonSmallAlpha * mAllAlpha);
-#if DEBUG
+#if WIDESCREEN_SUPPORT
         if (mDoGph_gInf_c::isWide()) {
             field_0x5a4->paneTrans(l_HOSTIO.m.m2DNumberCombo2PosX, l_HOSTIO.m.m2DNumberCombo2PosY);
         } else {
@@ -591,7 +590,6 @@ void daBalloon2D_HIO_c::resetAddScoreSetFlag() {
 }
 
 /* 80655250-80655304 001E70 00B4+00 1/0 0/0 0/0 .text daBalloon2D_create__FP13daBalloon2D_c */
-// NONMATCHING - vtable
 static int daBalloon2D_create(daBalloon2D_c* i_this) {
     fopAcM_ct(i_this, daBalloon2D_c);
     return i_this->create();

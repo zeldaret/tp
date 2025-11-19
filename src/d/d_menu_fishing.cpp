@@ -121,7 +121,7 @@ void dMenu_Fishing_c::_draw() {
     if (mpArchive) {
         J2DGrafContext* grafPort = dComIfGp_getCurrentGrafPort();
         mpBlackTex->setAlpha(0xff);
-        mpBlackTex->draw(0.0f, 0.0f, 608.0f, 448.0f, 0, 0, 0);
+        mpBlackTex->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0, 0, 0);
         mpScreen->draw(0.0f, 0.0f, grafPort);
         mpIconScreen->draw(0.0f, 0.0f, grafPort);
     }

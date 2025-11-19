@@ -285,7 +285,6 @@ static int getPolyColor(cBgS_PolyInfo& i_polyInfo, int param_2, _GXColor* p_effP
 
 /* 80765B70-80765E70 000B90 0300+00 1/1 0/0 0/0 .text            e_rdb_attack__FP11e_rdb_class */
 static void e_rdb_attack(e_rdb_class* i_this) {
-    // NONMATCHING
     static u16 ap_name[3] = {
         0x8A5C,
         0x8A5D,
@@ -360,7 +359,6 @@ static void e_rdb_attack(e_rdb_class* i_this) {
 /* 80765E70-80766188 000E90 0318+00 1/1 0/0 0/0 .text            e_rdb_spin_attack__FP11e_rdb_class
  */
 static void e_rdb_spin_attack(e_rdb_class* i_this) {
-    // NONMATCHING
     static u16 ap_name[2] = {
         0x8A5F,
         0x8A60,

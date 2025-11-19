@@ -55,7 +55,7 @@ int daBg_btkAnm_c::create(J3DModelData* i_modelData, J3DAnmTextureSRTKey* i_btk,
         return 0;
     }
 
-    if (!mpBtk->init(i_modelData, i_btk, i_anmPlay, -1, 1.0f, 0, -1)) {
+    if (!mpBtk->init(i_modelData, i_btk, i_anmPlay, J3DFrameCtrl::EMode_NULL, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -90,7 +90,7 @@ int daBg_brkAnm_c::create(J3DModelData* i_modelData, J3DAnmTevRegKey* i_brk, int
         return 0;
     }
 
-    if (!mpBrk->init(i_modelData, i_brk, i_anmPlay, -1, 1.0f, 0, -1)) {
+    if (!mpBrk->init(i_modelData, i_brk, i_anmPlay, J3DFrameCtrl::EMode_NULL, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -407,6 +407,13 @@ int daBg_c::draw() {
                                 sp50.b = 0;
                                 break;
                             }
+
+                            #ifdef DEBUG
+                            s16 sp56 = 0xFF;
+                            if (g_kankyoHIO.navy.fish_pond_colreg_adjust_ON) {
+                                sp50 = g_kankyoHIO.navy.fish_pond_colreg_c0;
+                            }
+                            #endif
 
                             f32 var_f31 = bgPart->tevstr->AmbCol.r / 10.0f;
                             var_f31 *= var_f31;

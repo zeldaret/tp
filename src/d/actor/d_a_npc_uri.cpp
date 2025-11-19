@@ -1,13 +1,83 @@
 /**
-* @file d_a_npc_uri.cpp
+ * @file d_a_npc_uri.cpp
  *
  */
 
-#include "d/dolzel_rel.h" // IWYU pragma: keep
+#include "d/dolzel_rel.h"  // IWYU pragma: keep
 
-#include "d/actor/d_a_npc_uri.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include "d/actor/d_a_npc_uri.h"
 #include "m_Do/m_Do_graphic.h"
+
+/* 80B2CE14-80B2CEC0 000000 00AC+00 14/14 0/0 0/0 .rodata          m__17daNpc_Uri_Param_c */
+const daNpc_Uri_HIOParam daNpc_Uri_Param_c::m = {
+    200.0f,   // attention_offset
+    -3.0f,    // gravity
+    1.0f,     // scale
+    500.0f,   // real_shadow_size
+    255.0f,   // weight
+    180.0f,   // height
+    35.0f,    // knee_length
+    30.0f,    // width
+    0.0f,     // body_angleX_max
+    0.0f,     // body_angleX_min
+    10.0f,    // body_angleY_max
+    -10.0f,   // body_angleY_min
+    30.0f,    // head_angleX_max
+    -10.0f,   // head_angleX_min
+    45.0f,    // head_angleY_max
+    -45.0f,   // head_angleY_min
+    0.6f,     // neck_rotation_ratio
+    20.0f,    // morf_frame
+    3,        // talk_distance
+    6,        // talk_angle
+    5,        // attention_distance
+    6,        // attention_angle
+    110.0f,   // fov
+    400.0f,   // search_distance
+    300.0f,   // search_height
+    -300.0f,  // search_depth
+    60,       // attention_time
+    8,        // damage_time
+    0,        // face_expression
+    0,        // motion
+    0,        // look_mode
+    0,        // debug_mode_ON
+    0,        // debug_info_ON
+    4.0f,     // expression_morf_frame
+    0.0f,     // box_min_x
+    0.0f,     // box_min_y
+    0.0f,     // box_min_z
+    0.0f,     // box_max_x
+    0.0f,     // box_max_y
+    0.0f,     // box_max_z
+    0.0f,     // box_offset
+    120,      // field_0x8c
+    120,      // field_0x8e
+    60,       // field_0x90
+    180,      // field_0x92
+    10,       // field_0x94
+    0,        // field_0x96
+    350.0f,   // field_0x98
+    400.0f,   // field_0x9c
+    3000.0f,  // field_0xa0
+    200.0f,   // field_0xa4
+    600.0f,   // field_0xa8
+};
+
+#if DEBUG
+daNpc_Uri_HIO_c::daNpc_Uri_HIO_c() {
+    m = daNpc_Uri_Param_c::m;
+}
+
+void daNpc_Uri_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
+    // TODO
+}
+
+void daNpc_Uri_HIO_c::genMessage(JORMContext* ctext) {
+    // TODO
+}
+#endif
 
 /* 80B2D068-80B2D078 000020 0010+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[2][2] = {{12, 1}, {33, 2}};
@@ -164,59 +234,11 @@ daNpc_Uri_c::~daNpc_Uri_c() {
     deleteRes(l_loadResPtrnList[mType], (char const**)l_resNameList);
 }
 
-/* ############################################################################################## */
-/* 80B2CE14-80B2CEC0 000000 00AC+00 14/14 0/0 0/0 .rodata          m__17daNpc_Uri_Param_c */
-daNpc_Uri_HIOParam const daNpc_Uri_Param_c::m = {
-    200.0f,   // field_0x00
-    -3.0f,    // field_0x04
-    1.0f,     // field_0x08
-    500.0f,   // field_0x0c
-    255.0f,   // field_0x10
-    180.0f,   // field_0x14
-    35.0f,    // field_0x18
-    30.0f,    // field_0x1c
-    0.0f,     // field_0x20
-    0.0f,     // field_0x24
-    10.0f,    // field_0x28
-    -10.0f,   // field_0x2c
-    30.0f,    // field_0x30
-    -10.0f,   // field_0x34
-    45.0f,    // field_0x38
-    -45.0f,   // field_0x3c
-    0.6f,     // field_0x40
-    20.0f,    // field_0x44
-    3,        // field_0x48
-    6,        // field_0x4a
-    5,        // field_0x4c
-    6,        // field_0x4e
-    110.0f,   // field_0x50
-    400.0f,   // field_0x54
-    300.0f,   // field_0x58
-    -300.0f,  // field_0x5c
-    60,       // field_0x60
-    8,        // field_0x62
-    0x00,    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    4.0f,  // field_0x6c
-    0x00,    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00,    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    120,      // field_0x8c
-    120,      // field_0x8e
-    60,       // field_0x90
-    180,      // field_0x92
-    10,       // field_0x94
-    0,        // field_0x96
-    350.0f,   // field_0x98
-    400.0f,   // field_0x9c
-    3000.0f,  // field_0xa0
-    200.0f,   // field_0xa4
-    600.0f,   // field_0xa8
-};
-
 /* 80B268F8-80B26BE4 000238 02EC+00 1/1 0/0 0/0 .text            create__11daNpc_Uri_cFv */
 int daNpc_Uri_c::create() {
     static const int heapSize[] = {0, 0x3F20, 0, 0, 0x3740, 0x3740, 0};
 
-    fopAcM_SetupActor2(this, daNpc_Uri_c, l_faceMotionAnmData,
+    daNpcT_ct(this, daNpc_Uri_c, l_faceMotionAnmData,
                        (const daNpcT_motionAnmData_c*)l_motionAnmData,
                        (const daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_faceMotionSequenceData,
                        4, (const daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_motionSequenceData,
@@ -242,7 +264,7 @@ int daNpc_Uri_c::create() {
         reset();
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
-        mCcStts.Init(daNpc_Uri_Param_c::m.field_0x10, 0, this);
+        mCcStts.Init(daNpc_Uri_Param_c::m.common.weight, 0, this);
         mCyl.Set(mCcDCyl);
         mCyl.SetStts(&mCcStts);
         mCyl.SetTgHitCallback(tgHitCallBack);
@@ -433,7 +455,8 @@ void daNpc_Uri_c::reset() {
         field_0xfd8 = cStack_44;
         field_0xfe4.setall(0);
         field_0xfe4.y = cLib_targetAngleY(&acStack_38, &field_0xfd8);
-            /* dSv_event_flag_c::F_0032 - Ordon Ranch - 3rd day - First convo with fado (before forced goat chase) */
+        /* dSv_event_flag_c::F_0032 - Ordon Ranch - 3rd day - First convo with fado (before forced
+         * goat chase) */
         if (daNpcT_chkEvtBit(0x25)) {
             setPos(cStack_44);
             cStack_a0.y = cLib_targetAngleY(&acStack_38, &cStack_44);
@@ -446,23 +469,26 @@ void daNpc_Uri_c::reset() {
             cStack_a0.y = cLib_targetAngleY(&acStack_38, &cStack_44);
             mPath.setNextIdx(mPath.getNumPnts());
         }
-            /* dSv_event_flag_c::F_0027 - Ordon Village - Uli tutorial ends (same whether pass or fail) */
+        /* dSv_event_flag_c::F_0027 - Ordon Village - Uli tutorial ends (same whether pass or fail)
+         */
         if (daNpcT_chkEvtBit(0x20)
-               /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
+            /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
             || daNpcT_chkEvtBit(0x1E)
-               /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
-            || daNpcT_chkEvtBit(0x92) )
+            /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
+            || daNpcT_chkEvtBit(0x92))
         {
             setPos(home.pos);
-                /* dSv_event_flag_c::F_0027 - Ordon Village - Uli tutorial ends (same whether pass or fail) */
+            /* dSv_event_flag_c::F_0027 - Ordon Village - Uli tutorial ends (same whether pass or
+             * fail) */
             if (daNpcT_chkEvtBit(0x20)) {
                 field_0x100d = 1;
 
             } else {
-                    /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
+                /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
                 if (daNpcT_chkEvtBit(0x1E)
-                       /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
-                    || daNpcT_chkEvtBit(0x92)) {
+                    /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
+                    || daNpcT_chkEvtBit(0x92))
+                {
                     field_0x100f = 1;
                 }
             }
@@ -480,7 +506,8 @@ void daNpc_Uri_c::reset() {
 
     /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
     daNpcT_offTmpBit(7);
-    /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
+    /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night
+     */
     dComIfGs_offTmpBit(0x1308);
     setAngle(cStack_a0);
 }
@@ -509,10 +536,10 @@ void daNpc_Uri_c::setParam() {
     selectAction();
     srchActors();
 
-    s16 sVar7 = daNpc_Uri_Param_c::m.field_0x48;
-    s16 sVar6 = daNpc_Uri_Param_c::m.field_0x4a;
-    s16 sVar5 = daNpc_Uri_Param_c::m.field_0x4c;
-    s16 sVar4 = daNpc_Uri_Param_c::m.field_0x4e;
+    s16 sVar7 = mpHIO->m.common.talk_distance;
+    s16 sVar6 = mpHIO->m.common.talk_angle;
+    s16 sVar5 = mpHIO->m.common.attention_distance;
+    s16 sVar4 = mpHIO->m.common.attention_angle;
     if (mType == TYPE_1) {
         sVar6 = 4;
         sVar4 = 4;
@@ -528,18 +555,17 @@ void daNpc_Uri_c::setParam() {
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(sVar7, sVar6);
     attention_info.flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
-    scale.set(daNpc_Uri_Param_c::m.field_0x08, daNpc_Uri_Param_c::m.field_0x08,
-              daNpc_Uri_Param_c::m.field_0x08);
-    mCcStts.SetWeight(daNpc_Uri_Param_c::m.field_0x10);
-    mCylH = daNpc_Uri_Param_c::m.field_0x14;
-    mWallR = daNpc_Uri_Param_c::m.field_0x1c;
-    mAttnFovY = daNpc_Uri_Param_c::m.field_0x50;
+    scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale, mpHIO->m.common.scale);
+    mCcStts.SetWeight(mpHIO->m.common.weight);
+    mCylH = mpHIO->m.common.height;
+    mWallR = mpHIO->m.common.width;
+    mAttnFovY = mpHIO->m.common.fov;
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(daNpc_Uri_Param_c::m.field_0x18);
-    mRealShadowSize = daNpc_Uri_Param_c::m.field_0x0c;
-    gravity = daNpc_Uri_Param_c::m.field_0x04;
-    mExpressionMorfFrame = daNpc_Uri_Param_c::m.field_0x6c;
-    mMorfFrames = daNpc_Uri_Param_c::m.field_0x44;
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
+    mRealShadowSize = mpHIO->m.common.real_shadow_size;
+    gravity = mpHIO->m.common.gravity;
+    mExpressionMorfFrame = mpHIO->m.common.expression_morf_frame;
+    mMorfFrames = mpHIO->m.common.morf_frame;
     if (mType == TYPE_4) {
         mAcch.SetGrndNone();
         mAcch.SetWallNone();
@@ -562,13 +588,15 @@ BOOL daNpc_Uri_c::checkChangeEvt() {
 
         switch (mType) {
         case TYPE_1:
-                 /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
+            /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
             if (!daNpcT_chkEvtBit(0x1E)
-                    /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
-                && !daNpcT_chkEvtBit(0x92)) {
-                     /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
+                /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
+                && !daNpcT_chkEvtBit(0x92))
+            {
+                /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
                 if (!daNpcT_chkTmpBit(0x7)) {
-                        /* dSv_event_flag_c::F_0031 - Ordon Village - 2nd day - Spoke to Uli bfore finding basket */
+                    /* dSv_event_flag_c::F_0031 - Ordon Village - 2nd day - Spoke to Uli bfore
+                     * finding basket */
                     if (daNpcT_chkEvtBit(0x24)) {
                         mEvtNo = 4;
                     } else {
@@ -577,7 +605,8 @@ BOOL daNpc_Uri_c::checkChangeEvt() {
                     evtChange();
                     return TRUE;
                 }
-                        /* dSv_event_flag_c::F_0027 - Ordon Village - Uli tutorial ends (same whether pass or fail) */
+                /* dSv_event_flag_c::F_0027 - Ordon Village - Uli tutorial ends (same whether pass
+                 * or fail) */
             } else if (!daNpcT_chkEvtBit(0x20) && field_0x100b == 0) {
                 mEvtNo = 7;
                 evtChange();
@@ -585,10 +614,13 @@ BOOL daNpc_Uri_c::checkChangeEvt() {
             }
             break;
         case TYPE_4:
-                /* dSv_event_flag_c::M_028 - Cutscene - [cutscene: 14] restore mountain spirit - Reuinion with Colin et al. */
+            /* dSv_event_flag_c::M_028 - Cutscene - [cutscene: 14] restore mountain spirit -
+             * Reuinion with Colin et al. */
             if (daNpcT_chkEvtBit(0x3D)
-                    /* dSv_event_flag_c::F_0330 - Ordon Village - Meet again with Uli for the first time (first forced conversation) */
-                && !daNpcT_chkEvtBit(0x14A)) {
+                /* dSv_event_flag_c::F_0330 - Ordon Village - Meet again with Uli for the first time
+                   (first forced conversation) */
+                && !daNpcT_chkEvtBit(0x14A))
+            {
                 mEvtNo = 10;
                 evtChange();
                 return TRUE;
@@ -714,7 +746,7 @@ void daNpc_Uri_c::beforeMove() {
 }
 
 /* 80B2DD64-80B2DD68 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpc_Uri_Param_c l_HIO;
+NPC_URI_HIO_CLASS l_HIO;
 
 /* 80B27FD8-80B28318 001918 0340+00 1/0 0/0 0/0 .text            setAttnPos__11daNpc_Uri_cFv */
 void daNpc_Uri_c::setAttnPos() {
@@ -724,9 +756,12 @@ void daNpc_Uri_c::setAttnPos() {
 
     f32 dVar6 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
     mJntAnm.setParam(this, mpMorf[0]->getModel(), &acStack_3c, getBackboneJointNo(),
-                     getNeckJointNo(), getHeadJointNo(), l_HIO.m.field_0x24, l_HIO.m.field_0x20,
-                     l_HIO.m.field_0x2c, l_HIO.m.field_0x28, l_HIO.m.field_0x34, l_HIO.m.field_0x30,
-                     l_HIO.m.field_0x3c, l_HIO.m.field_0x38, l_HIO.m.field_0x40, dVar6, NULL);
+                     getNeckJointNo(), getHeadJointNo(), mpHIO->m.common.body_angleX_min,
+                     mpHIO->m.common.body_angleX_max, mpHIO->m.common.body_angleY_min,
+                     mpHIO->m.common.body_angleY_max, mpHIO->m.common.head_angleX_min,
+                     mpHIO->m.common.head_angleX_max, mpHIO->m.common.head_angleY_min,
+                     mpHIO->m.common.head_angleY_max, mpHIO->m.common.neck_rotation_ratio, dVar6,
+                     NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar6);
 
     setMtx();
@@ -737,7 +772,7 @@ void daNpc_Uri_c::setAttnPos() {
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y + field_0xd8a.y, 1, 1.0f, 0);
 
     acStack_3c.set(0.0f, 0.0f, 0.0f);
-    acStack_3c.y = l_HIO.m.field_0x00;
+    acStack_3c.y = mpHIO->m.common.attention_offset;
 
     if (field_0x100d != 0) {
         if (mType == TYPE_1) {
@@ -907,7 +942,7 @@ int daNpc_Uri_c::selectAction() {
             field_0xfc0[0] = &daNpc_Uri_c::sitWait;
         } else {
             if (field_0x100e != NULL) {
-                    /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
+                /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
                 if (daNpcT_chkTmpBit(7) && field_0x100f == NULL) {
                     field_0xfc0[0] = &daNpc_Uri_c::walk;
                 } else {
@@ -975,16 +1010,16 @@ int daNpc_Uri_c::getTutorialCond(cXyz param_1) {
     cXyz cStack_5c;
 
     local_44 = mPath.getPntPos(mPath.getNumPnts() - 1);
-    if (local_44.absXZ(param_1) < daNpc_Uri_Param_c::m.field_0x98) {
+    if (local_44.absXZ(param_1) < mpHIO->m.field_0x98) {
         return 9;
     }
     f32 fVar11 = (param_1 - current.pos).absXZ();
     s16 sVar8 = cLib_targetAngleY(&current.pos, &param_1) - mCurAngle.y;
     s16 uVar5 = abs(sVar8);
 
-    if (daNpc_Uri_Param_c::m.field_0xa4 < fVar11 && ((u32)uVar5 & 0xFFFF) > 0x4000) {
-        if (daNpc_Uri_Param_c::m.field_0xa8 < fVar11) {
-            field_0x1000 = daNpc_Uri_Param_c::m.field_0xa8 - 100.0f;
+    if (mpHIO->m.field_0xa4 < fVar11 && ((u32)uVar5 & 0xFFFF) > 0x4000) {
+        if (mpHIO->m.field_0xa8 < fVar11) {
+            field_0x1000 = mpHIO->m.field_0xa8 - 100.0f;
             return 5;
         }
         if (field_0x1009 != NULL) {
@@ -996,13 +1031,13 @@ int daNpc_Uri_c::getTutorialCond(cXyz param_1) {
     for (i = 0; i < mPath.getNumPnts() - 1; i++) {
         local_44 = mPath.getPntPos(i);
         local_50 = mPath.getPntPos(i + 1);
-        if (!((param_1 - local_44).absXZ() < daNpc_Uri_Param_c::m.field_0xa8)) {
-            if (!((param_1 - local_50).absXZ() < daNpc_Uri_Param_c::m.field_0xa8)) {
+        if (!((param_1 - local_44).absXZ() < mpHIO->m.field_0xa8)) {
+            if (!((param_1 - local_50).absXZ() < mpHIO->m.field_0xa8)) {
                 f32 local_a8;
                 if (cM3d_Len2dSqPntAndSegLine(param_1.x, param_1.z, local_44.x, local_44.z,
                                               local_50.x, local_50.z, &cStack_5c.x, &cStack_5c.z,
                                               &local_a8) &&
-                    local_a8 < daNpc_Uri_Param_c::m.field_0xa8)
+                    local_a8 < mpHIO->m.field_0xa8)
                 {
                     break;
                 }
@@ -1015,7 +1050,7 @@ int daNpc_Uri_c::getTutorialCond(cXyz param_1) {
     }
 
     if (mPath.getNumPnts() - 1 <= i) {
-        field_0x1000 = daNpc_Uri_Param_c::m.field_0xa8 - 100.0f;
+        field_0x1000 = mpHIO->m.field_0xa8 - 100.0f;
         return 5;
     }
 
@@ -1180,7 +1215,8 @@ int daNpc_Uri_c::cutEndCarryTutorial(int param_1) {
             if (fopAcM_IsExecuting(mItemPartnerId)) {
                 /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
                 daNpcT_offTmpBit(7);
-                /* dSv_event_tmp_flag_c::T_0009 - Ordon Village - Walked a bit during Uli's pick-up tutorial */
+                /* dSv_event_tmp_flag_c::T_0009 - Ordon Village - Walked a bit during Uli's pick-up
+                 * tutorial */
                 daNpcT_offTmpBit(10);
                 /* dSv_event_tmp_flag_c::T_0031 - Ordon Village - Borrow Rusl's sword */
                 daNpcT_offTmpBit(0x20);
@@ -1270,14 +1306,15 @@ int daNpc_Uri_c::cutFindWolf(int param_1) {
                 sVar9 = -0x4000;
             }
             sVar9 += home.angle.y;
-            cStack_2c.set(0.0f, 300.0f, daNpc_Uri_Param_c::m.field_0x54 + 150.0f);
+            cStack_2c.set(0.0f, 300.0f, mpHIO->m.common.search_distance + 150.0f);
             mDoMtx_stack_c::YrotS(sVar9);
             mDoMtx_stack_c::multVec(&cStack_2c, &cStack_2c);
             cStack_2c += current.pos;
             mGndChk.SetPos(&cStack_2c);
             cStack_2c.y = dComIfG_Bgsp().GroundCross(&mGndChk);
             daPy_getPlayerActorClass()->setPlayerPosAndAngle(&cStack_2c, sVar9 - (s16)0x8000, 0);
-            /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
+            /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village
+             * night */
             dComIfGs_onTmpBit(0x1308);
             break;
         case 1:
@@ -1332,7 +1369,8 @@ int daNpc_Uri_c::cutMeetingAgain(int param_1) {
         switch (iVar10) {
         case 0:
             mJntAnm.lookPlayer(0);
-            /* dSv_event_tmp_flag_c::T_0010 - General use - General use temporary flag (flow control) A */
+            /* dSv_event_tmp_flag_c::T_0010 - General use - General use temporary flag (flow
+             * control) A */
             daNpcT_offTmpBit(0xB);
             initTalk(mFlowNodeNo, NULL);
             break;
@@ -1393,7 +1431,7 @@ int daNpc_Uri_c::cutMeetingAgain(int param_1) {
 
 /* 80B29EA0-80B2A1B4 0037E0 0314+00 1/0 0/0 0/0 .text            krun__11daNpc_Uri_cFPv */
 int daNpc_Uri_c::krun(void* param_0) {
-    int iVar7 = daNpc_Uri_Param_c::m.field_0x8c / 2;
+    int iVar7 = mpHIO->m.field_0x8c / 2;
 
     switch (mMode) {
     case MODE_ENTER:
@@ -1455,10 +1493,12 @@ int daNpc_Uri_c::wait(void* param_0) {
                     mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
                 } else {
                     if (field_0x100f) {
-                             /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
+                        /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
                         if (!daNpcT_chkEvtBit(0x1E)
-                                /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
-                            && !daNpcT_chkEvtBit(0x92)) {
+                            /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial
+                               <fail> */
+                            && !daNpcT_chkEvtBit(0x92))
+                        {
                             mFaceMotionSeqMngr.setNo(17, -1.0f, 0, 0);
                             mMotionSeqMngr.setNo(8, -1.0f, 0, 0);
                         } else {
@@ -1466,7 +1506,8 @@ int daNpc_Uri_c::wait(void* param_0) {
                             mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
                         }
                     } else {
-                            /* dSv_event_flag_c::F_0031 - Ordon Village - 2nd day - Spoke to Uli bfore finding basket */
+                        /* dSv_event_flag_c::F_0031 - Ordon Village - 2nd day - Spoke to Uli bfore
+                         * finding basket */
                         if (daNpcT_chkEvtBit(0x24)) {
                             mFaceMotionSeqMngr.setNo(5, -1.0f, 0, 0);
                             mMotionSeqMngr.setNo(12, -1.0f, 0, 0);
@@ -1478,7 +1519,8 @@ int daNpc_Uri_c::wait(void* param_0) {
                 }
                 break;
             case TYPE_3:
-                    /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
+                /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon
+                 * village night */
                 if (dComIfGs_isTmpBit(0x1308)) {
                     mFaceMotionSeqMngr.setNo(12, -1.0f, 0, 0);
                     mMotionSeqMngr.setNo(22, -1.0f, 0, 0);
@@ -1496,7 +1538,7 @@ int daNpc_Uri_c::wait(void* param_0) {
     case MODE_RUN:
         switch (mType) {
         case TYPE_1:
-                /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
+            /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
             if (daNpcT_chkTmpBit(0x7)) {
                 if (chkPlayerCarryBasket()) {
                     switch (getTutorialCond(daPy_getPlayerActorClass()->current.pos)) {
@@ -1512,10 +1554,11 @@ int daNpc_Uri_c::wait(void* param_0) {
                     }
                 }
             } else {
-                     /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
+                /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
                 if (!daNpcT_chkEvtBit(0x1E)
-                        /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
-                    && !daNpcT_chkEvtBit(0x92)) {
+                    /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
+                    && !daNpcT_chkEvtBit(0x92))
+                {
                     cXyz acStack_70 = getAttnPos(daPy_getPlayerActorClass());
                     int dist_index = attention_info.distances[1];
                     f32 fVar2 = dComIfGp_getAttention()->getDistTable(dist_index).mLowerY * -1.0f;
@@ -1523,7 +1566,8 @@ int daNpc_Uri_c::wait(void* param_0) {
                     if (chkPointInArea(acStack_70, attention_info.position, 200.0f, fVar2, fVar3,
                                        0))
                     {
-                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != 0 &&
+                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) !=
+                                0 &&
                             chkPlayerCarryBasket())
                         {
                             mEvtNo = 5;
@@ -1536,15 +1580,18 @@ int daNpc_Uri_c::wait(void* param_0) {
         case TYPE_2:
             break;
         case TYPE_3:
-                /* dSv_event_flag_c::F_0205 - Ordon Village - Heard Rusl and Uli talking in Ordon village at night */
+            /* dSv_event_flag_c::F_0205 - Ordon Village - Heard Rusl and Uli talking in Ordon
+             * village at night */
             if (daNpcT_chkEvtBit(0xCD)) {
                 cXyz cStack_7c = getAttnPos(daPy_getPlayerActorClass());
                 if (chkPointInArea(cStack_7c, attention_info.position,
-                                   daNpc_Uri_Param_c::m.field_0x54, daNpc_Uri_Param_c::m.field_0x58,
-                                   daNpc_Uri_Param_c::m.field_0x5c, mCurAngle.y))
+                                   mpHIO->m.common.search_distance, mpHIO->m.common.search_height,
+                                   mpHIO->m.common.search_depth, mCurAngle.y))
                 {
                     if (!daPy_getPlayerActorClass()->checkPlayerFly()) {
-                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != 0) {
+                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) !=
+                            0)
+                        {
                             if (chkActorInSight(daPy_getPlayerActorClass(), mAttnFovY,
                                                 home.angle.y))
                             {
@@ -1564,7 +1611,8 @@ int daNpc_Uri_c::wait(void* param_0) {
                 mSpeakEvent = true;
                 field_0xe33 = true;
             }
-                /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
+            /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village
+             * night */
             if (dComIfGs_isTmpBit(0x1308)) {
                 mPlayerActorMngr.entry(daPy_getPlayerActorClass());
                 mJntAnm.lookPlayer(0);
@@ -1621,9 +1669,9 @@ int daNpc_Uri_c::wait(void* param_0) {
 /* 80B2AB60-80B2B24C 0044A0 06EC+00 1/0 0/0 0/0 .text            walk__11daNpc_Uri_cFPv */
 int daNpc_Uri_c::walk(void* param_0) {
     BOOL bVar = FALSE;
-    int uVar2 = daNpc_Uri_Param_c::m.field_0x8c;
-    int uVar3 = daNpc_Uri_Param_c::m.field_0x8e;
-    int uVar4 = daNpc_Uri_Param_c::m.field_0x90;
+    int uVar2 = mpHIO->m.field_0x8c;
+    int uVar3 = mpHIO->m.field_0x8e;
+    int uVar4 = mpHIO->m.field_0x90;
 
     switch (mMode) {
     case MODE_ENTER:
@@ -1745,7 +1793,7 @@ int daNpc_Uri_c::walk(void* param_0) {
 
 /* 80B2B24C-80B2B7C0 004B8C 0574+00 2/0 0/0 0/0 .text            sitWait__11daNpc_Uri_cFPv */
 int daNpc_Uri_c::sitWait(void* param_0) {
-    int sVar2 = daNpc_Uri_Param_c::m.field_0x92;
+    int sVar2 = mpHIO->m.field_0x92;
 
     switch (mMode) {
     case MODE_ENTER:
@@ -1763,12 +1811,14 @@ int daNpc_Uri_c::sitWait(void* param_0) {
                 }
                 break;
             case TYPE_4:
-                    /* dSv_event_flag_c::M_028 - Cutscene - [cutscene: 14] restore mountain spirit - Reuinion with Colin et al. */
+                /* dSv_event_flag_c::M_028 - Cutscene - [cutscene: 14] restore mountain spirit -
+                 * Reuinion with Colin et al. */
                 if (daNpcT_chkEvtBit(0x3D)
-                        /* dSv_event_flag_c::F_0330 - Ordon Village - Meet again with Uli for the first time 
-                                                                      (first forced conversation) */
+                    /* dSv_event_flag_c::F_0330 - Ordon Village - Meet again with Uli for the first
+                       time (first forced conversation) */
                     && (daNpcT_chkEvtBit(0x14A)
-                           /* dSv_event_flag_c::F_0516 - Ordon Village - Told Uli directly about having found kids */
+                        /* dSv_event_flag_c::F_0516 - Ordon Village - Told Uli directly about having
+                           found kids */
                         || daNpcT_chkEvtBit(0x204)))
                 {
                     mFaceMotionSeqMngr.setNo(17, -1.0f, 0, 0);
@@ -1782,8 +1832,8 @@ int daNpc_Uri_c::sitWait(void* param_0) {
             mMode = MODE_RUN;
         }
     case MODE_RUN:
-                                /* dSv_event_flag_c::F_0330 - Ordon Village - Meet again with Uli for the first time 
-                                                                              (first forced conversation) */
+        /* dSv_event_flag_c::F_0330 - Ordon Village - Meet again with Uli for the first time
+                                                      (first forced conversation) */
         if (mType == TYPE_4 && !daNpcT_chkEvtBit(0x14A)) {
             mSpeakEvent = true;
             field_0xe33 = true;

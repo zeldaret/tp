@@ -166,12 +166,12 @@ void dMenu_Insect_c::_draw() {
     if (mpArchive != NULL) {
         J2DGrafContext* grafPort = dComIfGp_getCurrentGrafPort();
         mpBlackTex->setAlpha(0xff);
-        mpBlackTex->draw(0.0f, 0.0f, 608.0f, 448.0f, 0, 0, 0);
+        mpBlackTex->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0, 0, 0);
         mpScreen->draw(0.0f, 0.0f, grafPort);
         mpDrawCursor->draw();
         field_0xfc = mpExpParent->getAlphaRate() * 150.0f;
         mpBlackTex->setAlpha(field_0xfc);
-        mpBlackTex->draw(0.0f, 0.0f, 608.0f, 448.0f, 0, 0, 0);
+        mpBlackTex->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0, 0, 0);
         mpExpScreen->draw(0.0f, 0.0f, grafPort);
         mpSelect_c->setOffsetX(g_drawHIO.mInsectListScreen.mConfirmOptionPosX_4x3);
         mpSelect_c->translate(g_drawHIO.mInsectListScreen.mConfirmOptionPosX_4x3 + 486.0f,

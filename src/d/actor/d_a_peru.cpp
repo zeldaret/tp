@@ -170,7 +170,7 @@ PeruParams const daPeru_Param_c::m = {
 
 /* 80D46FCC-80D4720C 0001CC 0240+00 1/1 0/0 0/0 .text            create__8daPeru_cFv */
 int daPeru_c::create() {
-    fopAcM_SetupActor2(this, daPeru_c, (daNpcT_faceMotionAnmData_c*)l_faceMotionAnmData, (daNpcT_motionAnmData_c*)l_motionAnmData, (daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_faceMotionSequenceData, 4, (daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_motionSequenceData, 4, l_evtList, l_resNameList);
+    daNpcT_ct(this, daPeru_c, (daNpcT_faceMotionAnmData_c*)l_faceMotionAnmData, (daNpcT_motionAnmData_c*)l_motionAnmData, (daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_faceMotionSequenceData, 4, (daNpcT_MotionSeqMngr_c::sequenceStepData_c*)l_motionSequenceData, 4, l_evtList, l_resNameList);
     OS_REPORT("------------ ルイーズ生成処理開始\n");
     mType = getType();
     OS_REPORT("type=%d\n", mType);
@@ -810,7 +810,7 @@ int daPeru_c::demo_walk_to_link(int param_0) {
         fopAc_ac_c* actor = mActors[2].getActorP();
         if (actor == NULL) {
             OS_REPORT("-----there is no player!!\n");
-            JUT_PANIC(1948, 0);
+            JUT_ASSERT(1948, FALSE);
         }
         cLib_chaseAngleS(&mCurAngle.y, fopAcM_searchActorAngleY(this, actor), 0x800);
         current.angle.y = mCurAngle.y;
@@ -1013,7 +1013,7 @@ int daPeru_c::_cutAppear_Init(int const& param_1) {
         if (fopAcM_SearchByName(PROC_MIDNA, &midna) != 0) {
             if (midna == NULL) {
                 OS_REPORT("---- there is no midna!!\n");
-                JUT_PANIC(2446, 0);
+                JUT_ASSERT(2446, FALSE);
             } else {
                 mJntAnm.lookActor(midna, 0.0, 0);
             }
@@ -1184,7 +1184,7 @@ void daPeru_c::_catdoor_open() {
     daObjCatDoor_c* pCatDoor = (daObjCatDoor_c*)mActors[1].getActorP();
     if (pCatDoor == NULL) {
         OS_REPORT("---- there is no catdoor!! ----!!\n");
-        JUT_PANIC(2799, 0);
+        JUT_ASSERT(2799, FALSE);
     } else {
         pCatDoor->setDoorOpen();
     }
@@ -1196,7 +1196,7 @@ void daPeru_c::_catdoor_open_demoskip() {
     daObjCatDoor_c* pCatDoor = (daObjCatDoor_c*)mActors[1].getActorP();
     if (pCatDoor == NULL) {
         OS_REPORT("---- there is no catdoor!! ----!!\n");
-        JUT_PANIC(2829, 0);
+        JUT_ASSERT(2829, FALSE);
     } else {
         pCatDoor->_toDoorOpened();
     }

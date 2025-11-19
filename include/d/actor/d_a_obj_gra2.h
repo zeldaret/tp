@@ -4,6 +4,74 @@
 #include "d/actor/d_a_npc.h"
 #include "f_op/f_op_actor_mng.h"
 
+
+struct daObj_GrA_HIO_Param_c {
+    /* 0x00 */ f32 field_0x00;
+    /* 0x04 */ f32 mGravity;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ s16 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 mWallR;
+    /* 0x1C */ f32 mWallH;
+    /* 0x20 */ f32 mWeight;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ f32 field_0x3c;
+    /* 0x40 */ f32 field_0x40;
+    /* 0x44 */ f32 field_0x44;
+    /* 0x48 */ f32 field_0x48;
+    /* 0x4C */ f32 field_0x4c;
+    /* 0x50 */ f32 field_0x50;
+    /* 0x54 */ s16 field_0x54;
+    /* 0x56 */ s16 field_0x56;
+    /* 0x58 */ s16 field_0x58;
+    /* 0x5A */ s16 field_0x5a;
+    /* 0x5C */ s16 field_0x5c;
+    /* 0x60 */ f32 field_0x60;
+    /* 0x64 */ f32 field_0x64;
+    /* 0x68 */ s16 field_0x68;
+    /* 0x6C */ f32 field_0x6c;
+    /* 0x70 */ f32 field_0x70;
+    /* 0x74 */ f32 field_0x74;
+    /* 0x78 */ f32 field_0x78;
+    /* 0x7C */ f32 field_0x7c;
+    /* 0x80 */ f32 field_0x80;
+    /* 0x84 */ f32 field_0x84;
+    /* 0x88 */ s16 field_0x88;
+    /* 0x8A */ u8 field_0x8a;
+    /* 0x8C */ f32 field_0x8c;
+    /* 0x90 */ f32 field_0x90;
+    /* 0x94 */ f32 field_0x94;
+    /* 0x98 */ s16 field_0x98;
+    /* 0x9A */ s16 field_0x9a;
+    /* 0x9C */ s16 field_0x9c;
+    /* 0xA0 */ f32 field_0xa0;
+    /* 0xA4 */ s16 field_0xa4;
+    /* 0xA8 */ f32 field_0xa8;
+    /* 0xAC */ s16 field_0xac;
+    /* 0xAE */ s16 field_0xae;
+    /* 0xB0 */ s16 field_0xb0;
+    /* 0xB2 */ s16 field_0xb2;
+    /* 0xB4 */ s16 field_0xb4;
+    /* 0xB8 */ f32 field_0xb8;
+    /* 0xBC */ f32 field_0xbc;
+};
+
+#if DEBUG
+class daObj_GrA_HIO_c;
+
+#define OBJ_GRA_HIO_CLASS daObj_GrA_HIO_c
+#else
+class daObj_GrA_Param_c;
+
+#define OBJ_GRA_HIO_CLASS daObj_GrA_Param_c
+#endif
+
 /**
  * @ingroup actors-objects
  * @class daObj_GrA_c
@@ -12,75 +80,6 @@
  * @details
  *
  */
-
-class daObj_GrA_Param_c {
-public:
-    /* 80C04B1C */ virtual ~daObj_GrA_Param_c() {}
-
-    struct Data {
-        /* 0x00 */ f32 field_0x00;
-        /* 0x04 */ f32 mGravity;
-        /* 0x08 */ f32 field_0x08;
-        /* 0x0C */ f32 field_0x0c;
-        /* 0x10 */ s16 field_0x10;
-        /* 0x12 */ s16 field_0x12;
-        /* 0x14 */ f32 field_0x14;
-        /* 0x18 */ f32 mWallR;
-        /* 0x1C */ f32 mWallH;
-        /* 0x20 */ f32 mWeight;
-        /* 0x24 */ f32 field_0x24;
-        /* 0x28 */ f32 field_0x28;
-        /* 0x2C */ f32 field_0x2c;
-        /* 0x30 */ f32 field_0x30;
-        /* 0x34 */ f32 field_0x34;
-        /* 0x38 */ f32 field_0x38;
-        /* 0x3C */ f32 field_0x3c;
-        /* 0x40 */ f32 field_0x40;
-        /* 0x44 */ f32 field_0x44;
-        /* 0x48 */ f32 field_0x48;
-        /* 0x4C */ f32 field_0x4c;
-        /* 0x50 */ f32 field_0x50;
-        /* 0x54 */ s16 field_0x54;
-        /* 0x56 */ s16 field_0x56;
-        /* 0x58 */ s16 field_0x58;
-        /* 0x5A */ s16 field_0x5a;
-        /* 0x5C */ s16 field_0x5c;
-        /* 0x5E */ s16 field_0x5e;
-        /* 0x60 */ f32 field_0x60;
-        /* 0x64 */ f32 field_0x64;
-        /* 0x68 */ s16 field_0x68;
-        /* 0x6A */ s16 field_0x6a;
-        /* 0x6C */ f32 field_0x6c;
-        /* 0x70 */ f32 field_0x70;
-        /* 0x74 */ f32 field_0x74;
-        /* 0x78 */ f32 field_0x78;
-        /* 0x7C */ f32 field_0x7c;
-        /* 0x80 */ f32 field_0x80;
-        /* 0x84 */ f32 field_0x84;
-        /* 0x88 */ s16 field_0x88;
-        /* 0x8A */ s16 field_0x8a;
-        /* 0x8C */ f32 field_0x8c;
-        /* 0x90 */ f32 field_0x90;
-        /* 0x94 */ f32 field_0x94;
-        /* 0x98 */ s16 field_0x98;
-        /* 0x9A */ s16 field_0x9a;
-        /* 0x9C */ f32 field_0x9c;
-        /* 0xA0 */ f32 field_0xa0;
-        /* 0xA4 */ s16 field_0xa4;
-        /* 0xA6 */ s16 field_0xa6;
-        /* 0xA8 */ f32 field_0xa8;
-        /* 0xAC */ s16 field_0xac;
-        /* 0xAE */ s16 field_0xae;
-        /* 0xB0 */ s16 field_0xb0;
-        /* 0xB2 */ s16 field_0xb2;
-        /* 0xB4 */ s16 field_0xb4;
-        /* 0xB6 */ s16 field_0xb6;
-        /* 0xB8 */ f32 field_0xb8;
-        /* 0xBC */ f32 field_0xbc;
-    };
-    static const Data m;
-};
-
 class daObj_GrA_c : public daBaseNpc_moveBgActor_c {
 public:
     typedef int (daObj_GrA_c::*MotionFunc)(int);
@@ -237,14 +236,15 @@ public:
     static MotionFunc mBaseMotionList[22];
     static MotionFunc mFaceMotionList[14];
 
-    bool isFirstGra() { return field_0x1fe8 == 0; }
+    bool isFirstGra() { return isFisrtGra(); }
+    bool isFisrtGra() { return field_0x1fe8 == 0; }
 
     void setDemoMode(s16 mDemoMode) { mDemoCamMode = mDemoMode; }
     s16 getDemoMode() { return mDemoCamMode; }
 
 private:
     /* 0x0A48 */ u16 field_0xa48;
-    /* 0x0A4C */ daObj_GrA_Param_c* field_0xa4c;
+    /* 0x0A4C */ OBJ_GRA_HIO_CLASS* mpHIO;
     /* 0x0A50 */ Process field_0xa50;
     /* 0x0A5C */ request_of_phase_process_class mPhases[4];
     /* 0x0A7C */ u16 field_0xa7c;

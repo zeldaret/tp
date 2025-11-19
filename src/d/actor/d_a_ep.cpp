@@ -826,7 +826,6 @@ static int model_d[8] = {
 
 /* 8046A724-8046A858 0025A4 0134+00 1/1 0/0 0/0 .text            daEp_CreateHeap__FP10fopAc_ac_c */
 static int daEp_CreateHeap(fopAc_ac_c* a_this) {
-    // NONMATCHING - equiv in debug
     ep_class* i_this = (ep_class*)a_this;
 
     void* modelData = dComIfG_getObjectRes("Ep", model_d[i_this->field_0xa5a]);

@@ -124,7 +124,7 @@ public:
     void setModel(J3DModel* p_model) { mModel = p_model; }
     BOOL checkEnable(u16 flag) { return mFlags & flag; }
     void onEnable(u16 flag) { mFlags |= flag; }
-    void offEnable(u16 flag) { mFlags &= ~flag; }
+    void offEnable(u16 flag) { mFlags &= (u16)~flag; }
     cXyz& getTrans() { return mTrans; }
     cXyz& getScale() { return mScale; }
     csXyz& getRatate() { return mRotate; }

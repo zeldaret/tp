@@ -76,9 +76,9 @@ static daBsGate_HIO_c l_HIO;
 void daBsGate_c::moveGate() {
     typedef void (daBsGate_c::*daBsGate_modeFunc)();
     static daBsGate_modeFunc mode_proc[3] = {
-        &modeWait,
-        &modeOpen,
-        &modeClose,
+        &daBsGate_c::modeWait,
+        &daBsGate_c::modeOpen,
+        &daBsGate_c::modeClose,
     };
     u8 was_open = mOpen;
     mOpen = fopAcM_isSwitch(this, fopAcM_GetParam(this) & 0xff);

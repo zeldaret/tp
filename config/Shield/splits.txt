@@ -297,7 +297,7 @@ f_pc/f_pc_layer.cpp:
 f_pc/f_pc_leaf.cpp:
 	.text       start:0x80028AE0 end:0x80028C40
 	.data       start:0x804B48F0 end:0x804B4908
-	.sbss       start:0x80508B38 end:0x80508B48
+	.sbss       start:0x80508B38 end:0x80508B40
 
 f_pc/f_pc_layer_iter.cpp:
 	.text       start:0x80028C40 end:0x80028DC0
@@ -316,6 +316,7 @@ f_pc/f_pc_load.cpp:
 
 f_pc/f_pc_manager.cpp:
 	.text       start:0x800291C0 end:0x80029500
+	.sbss       start:0x80508B40 end:0x80508B48
 	.bss        start:0x8053F100 end:0x8053F1A8
 
 f_pc/f_pc_method.cpp:
@@ -1436,7 +1437,7 @@ SSystem/SComponent/c_API.cpp:
 
 SSystem/SComponent/c_malloc.cpp:
 	.text       start:0x802F0040 end:0x802F0090
-	.sbss       start:0x80508F60 end:0x80508F70
+	.sbss       start:0x80508F60 end:0x80508F68
 
 SSystem/SComponent/c_API_controller_pad.cpp:
 	.text       start:0x802F0090 end:0x802F00C0
@@ -1455,6 +1456,7 @@ SSystem/SComponent/c_cc_d.cpp:
 SSystem/SComponent/c_cc_s.cpp:
 	.text       start:0x802F1760 end:0x802F2C40
 	.data       start:0x804D7228 end:0x804D7258
+	.sbss       start:0x80508F68 end:0x80508F70
 	.sdata2     start:0x8050D0F0 end:0x8050D108
 	.bss        start:0x8057B790 end:0x8057B7A0
 

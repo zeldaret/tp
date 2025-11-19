@@ -26,12 +26,12 @@ daObjMirrorScrew_c::attr const daObjMirrorScrew_c::M_attr = {
  */
 daObjMirrorScrew_actionFunc daObjMirrorScrew_c::ActionTable[2][2] = {
     {
-        &initWait,
-        &executeWait,
+        &daObjMirrorScrew_c::initWait,
+        &daObjMirrorScrew_c::executeWait,
     },
     {
-        &initDown,
-        &executeDown,
+        &daObjMirrorScrew_c::initDown,
+        &daObjMirrorScrew_c::executeDown,
     },
 };
 

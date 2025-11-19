@@ -2,13 +2,22 @@
 #define M_DO_M_DO_GRAPHIC_H
 
 #include "JSystem/JFramework/JFWDisplay.h"
-#include "dolphin/mtx.h"
+#include "m_Do/m_Do_mtx.h"
 #include "global.h"
+
+#if WIDESCREEN_SUPPORT
+#define FB_WIDTH  (640)
+#define FB_HEIGHT (456)
+#else
+#define FB_WIDTH  (608)
+#define FB_HEIGHT (448)
+#endif
 
 int mDoGph_Create();
 void mDoGph_drawFilterQuad(s8 param_0, s8 param_1);
 
 struct ResTIMG;
+class JKRSolidHeap;
 class mDoGph_gInf_c {
 public:
     class bloom_c {
@@ -21,6 +30,7 @@ public:
         u8 getEnable() { return mEnable; }
         void setEnable(u8 i_enable) { mEnable = i_enable; }
         GXColor* getMonoColor() { return &mMonoColor; }
+        GXColor* getBlendColor() { return &mBlendColor; }
         void setPoint(u8 i_point) { mPoint = i_point; }
         void setBlureSize(u8 i_size) { mBlureSize = i_size; }
         void setBlureRatio(u8 i_ratio) { mBlureRatio = i_ratio; }
@@ -28,6 +38,9 @@ public:
         void setMonoColor(GXColor i_color) { mMonoColor = i_color; }
         void setMode(u8 i_mode) { mMode = i_mode; }
         void* getBuffer() { return m_buffer; }
+        u8 getPoint() { return mPoint; }
+        u8 getBlureSize() { return mBlureSize; }
+        u8 getBlureRatio() { return mBlureRatio; }
 
         /* 0x00 */ GXColor mBlendColor;
         /* 0x04 */ GXColor mMonoColor;
@@ -38,6 +51,20 @@ public:
         /* 0x0C */ u8 mBlureRatio;
         /* 0x10 */ void* m_buffer;
     };
+
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    class csr_c {
+    public:
+        virtual ~csr_c();
+        virtual bool isPointer();
+
+        void particleExecute();
+
+        static u32 m_blurID;
+    };
+
+    static void entryBaseCsr(csr_c*);
+    #endif
 
     /* 80007E44 */ static void create();
     /* 80007F90 */ static void beginRender();
@@ -50,6 +77,10 @@ public:
     /* 800080A0 */ static void onBlure(const Mtx);
     /* 80008078 */ static void onBlure();
     /* 80008330 */ static void calcFade();
+
+    static void fadeIn(f32 fadeSpeed) {
+        fadeOut(-fadeSpeed);
+    }
 
     static JUTFader* getFader() { return mFader; }
     static void setFader(JUTFader* fader) {
@@ -65,8 +96,9 @@ public:
     static void endFrame() { JFWDisplay::getManager()->endFrame(); }
     static void offFade() { mFade = 0; }
     static u8 isFade() { return mFade; }
+    static void fadeIn_f(f32 i_fadeSpeed, _GXColor& i_fadeColor) { fadeOut_f(-i_fadeSpeed, i_fadeColor); }
     static void offBlure() { mBlureFlag = false; }
-    static bool isBlure() { return mBlureFlag; }
+    static u8 isBlure() { return mBlureFlag; }
     static void setBlureRate(u8 i_rate) { mBlureRate = i_rate; }
     static u8 getBlureRate() { return mBlureRate; }
     static MtxP getBlureMtx() { return mBlureMtx; }
@@ -75,11 +107,15 @@ public:
     static void setTickRate(u32 rate) { JFWDisplay::getManager()->setTickRate(rate); }
     static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
 
+    static void setBlureMtx(const Mtx m) {
+        cMtx_copy(m, mBlureMtx);
+    }
+
     static f32 getWidthF() {
         #if PLATFORM_WII || PLATFORM_SHIELD
         return m_widthF;
         #else
-        return 608.0f;
+        return FB_WIDTH;
         #endif
     }
 
@@ -87,12 +123,12 @@ public:
         #if PLATFORM_WII || PLATFORM_SHIELD
         return m_heightF;
         #else
-        return 448.0f;
+        return FB_HEIGHT;
         #endif
     }
 
-    static f32 getWidth() { return 608.0f; }
-    static f32 getHeight() { return 448.0f; }
+    static f32 getWidth() { return FB_WIDTH; }
+    static f32 getHeight() { return FB_HEIGHT; }
 
     static f32 getMinYF() {
         #if PLATFORM_WII || PLATFORM_SHIELD
@@ -114,7 +150,7 @@ public:
         #if PLATFORM_WII || PLATFORM_SHIELD
         return m_maxYF;
         #else
-        return 448.0f;
+        return FB_HEIGHT;
         #endif
     }
 
@@ -122,15 +158,50 @@ public:
         #if PLATFORM_WII || PLATFORM_SHIELD
         return m_maxXF;
         #else
-        return 608.0f;
+        return FB_WIDTH;
         #endif
     }
 
-    static f32 getAspect() { return 1.3571428f; }
-    static int getMinY() { return 0; }
-    static int getMinX() { return 0; }
-    static int getMaxY() { return 448; }
-    static int getMaxX() { return 608; }
+    static f32 getAspect() {
+        #if WIDESCREEN_SUPPORT
+        return m_aspect;
+        #else
+        return 1.3571428f;
+        #endif
+    }
+
+    static int getMinY() {
+        #if WIDESCREEN_SUPPORT
+        return m_minY;
+        #else
+        return 0;
+        #endif
+    }
+
+    static int getMinX() {
+        #if WIDESCREEN_SUPPORT
+        return m_minX;
+        #else
+        return 0;
+        #endif
+    }
+
+    static int getMaxY() {
+        #if WIDESCREEN_SUPPORT
+        return m_maxY;
+        #else
+        return FB_HEIGHT;
+        #endif
+    }
+
+    static int getMaxX() {
+        #if WIDESCREEN_SUPPORT
+        return m_maxX;
+        #else
+        return FB_WIDTH;
+        #endif
+    }
+
     static ResTIMG* getFrameBufferTimg() { return mFrameBufferTimg; }
     static ResTIMG* getZbufferTimg() { return mZbufferTimg; }
     static void* getFrameBufferTex() { return mFrameBufferTex; }
@@ -143,9 +214,6 @@ public:
     static void endRender() { JFWDisplay::getManager()->endRender(); }
     static GXTexObj* getZbufferTexObj() { return &mZbufferTexObj; }
     static GXTexObj* getFrameBufferTexObj() { return &mFrameBufferTexObj; }
-    static f32 getInvScale() { return 1.0f; }
-    static f32 getScale() { return 1.0f; }
-    static void setWideZoomLightProjection(Mtx m) {}
     static void setFrameRate(u16 i_rate) { JFWDisplay::getManager()->setFrameRate(i_rate); }
 
     static int getFrameBufferSize() {
@@ -157,22 +225,30 @@ public:
         return JFWDisplay::getManager()->getXfbManager()->getDisplayingXfb();
     }
 
-    // NONMATCHING - Need to define all mDoGph_gInf_c shieldD members
-    static u8 isWide() {
-        #if PLATFORM_WII || PLATFORM_SHIELD
-        return mWide == TRUE;
+    static f32 getInvScale() {
+        #if WIDESCREEN_SUPPORT
+        return m_invScale;
         #else
-        return false;
+        return 1.0f;
         #endif
     }
 
-    static void onWideZoom() {
-        //TODO
-    }
+    static f32 getScale() { return 1.0f; }
 
-    static void offWideZoom() {
-        //TODO
-    }
+    #if WIDESCREEN_SUPPORT
+    static void setTvSize();
+
+    static void onWide();
+    static void offWide();
+    static u8 isWide();
+
+    static void onWideZoom();
+    static void offWideZoom();
+    static BOOL isWideZoom();
+
+    static void setWideZoomProjection(Mtx44& m);
+    static void setWideZoomLightProjection(Mtx& m);
+    #endif
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;
@@ -187,28 +263,57 @@ public:
     static void* mZbufferTex;
     static f32 mFadeRate;
     static f32 mFadeSpeed;
-    static bool mBlureFlag;
+    static u8 mBlureFlag;
     static u8 mBlureRate;
     static u8 mFade;
     static bool mAutoForcus;
 
-    #if PLATFORM_WII || PLATFORM_SHIELD
+    #if PLATFORM_SHIELD
     static JKRHeap* getHeap() {
         return m_heap;
     }
 
+    static void setHeap(JKRSolidHeap* i_heap) {
+        m_heap = (JKRHeap*)i_heap;
+    }
+
     static JKRHeap* m_heap;
+    #endif
+
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    static void resetDimming();
+
+    static csr_c* m_baseCsr;
+    static csr_c* m_csr;
+
     static cXyz m_nowEffPos;
     static cXyz m_oldEffPos;
     static cXyz m_oldOldEffPos;
+    #endif
+
+    #if WIDESCREEN_SUPPORT
     static u8 mWide;
+    static u8 mWideZoom;
     static ResTIMG* m_fullFrameBufferTimg;
     static void* m_fullFrameBufferTex;
     static GXTexObj m_fullFrameBufferTexObj;
+
+    static f32 m_aspect;
+    static f32 m_scale;
+    static f32 m_invScale;
+
     static f32 m_minXF;
     static f32 m_minYF;
+    static int m_minX;
+    static int m_minY;
+
     static f32 m_maxXF;
     static f32 m_maxYF;
+    static int m_maxX;
+    static int m_maxY;
+
+    static int m_width;
+    static int m_height;
     static f32 m_heightF;
     static f32 m_widthF;
     #endif

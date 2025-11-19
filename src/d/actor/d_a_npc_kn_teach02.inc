@@ -3,12 +3,10 @@
 
 /* 80A3EB84-80A3EE38 014264 02B4+00 1/1 0/0 0/0 .text            setParamTeach02__10daNpc_Kn_cFv */
 u32 daNpc_Kn_c::setParamTeach02() {
-    s16 talk_distance = daNpc_Kn_Param_c::m.common.talk_distance;
-    s16 talk_angle = daNpc_Kn_Param_c::m.common.talk_angle;
-    s16 attention_distance = daNpc_Kn_Param_c::m.common.attention_distance;
-    s16 attention_angle = daNpc_Kn_Param_c::m.common.attention_angle;
-    f32 radius = daNpc_Kn_Param_c::m.common.attention_offset;
-    f32 height = daNpc_Kn_Param_c::m.common.height;
+    s16 talk_distance = mpHIO->m.common.talk_distance;
+    s16 talk_angle = mpHIO->m.common.talk_angle;
+    s16 attention_distance = mpHIO->m.common.attention_distance;
+    s16 attention_angle = mpHIO->m.common.attention_angle;
 
     switch (mActionMode) {
     case 7:
@@ -27,9 +25,7 @@ u32 daNpc_Kn_c::setParamTeach02() {
         mDoMtx_stack_c::copy(mpModelMorf[0]->getModel()->getAnmMtx(getBackboneJointNo()));
         mDoMtx_stack_c::multVecZero(&pos);
 
-        f32 absxz = (daPy_getPlayerActorClass()->current.pos - pos).absXZ();
-
-        if (absxz < 255.0f) {
+        if ((daPy_getPlayerActorClass()->current.pos - pos).absXZ() < 255.0f) {
             return fopAc_AttnFlag_UNK_0x200000 | fopAc_AttnFlag_BATTLE_e;
         } else {
             return fopAc_AttnFlag_BATTLE_e;
@@ -40,8 +36,8 @@ u32 daNpc_Kn_c::setParamTeach02() {
         attention_info.distances[fopAc_attn_BATTLE_e] = 0xe4;
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_distance, talk_angle);
-        mAcchCir.SetWallR(daNpc_Kn_Param_c::m.common.width);
-        mAcchCir.SetWallH(daNpc_Kn_Param_c::m.common.knee_length);
+        mAcchCir.SetWallR(mpHIO->m.common.width);
+        mAcchCir.SetWallH(mpHIO->m.common.knee_length);
         return 0;
     }
 
@@ -109,11 +105,11 @@ int daNpc_Kn_c::teach02_shieldBashWait(void* param_0) {
         mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
         mMotionSeqMngr.setNo(9, -1.0f, 0, 0);
         mJntAnm.lookPlayer(0);
-        field_0xdec = daNpc_Kn_Param_c::m.attack_wait_time;
+        field_0xdec = mpHIO->m.attack_wait_time;
         mTargetPos = current.pos;
         field_0x15bc = 0;
         field_0x15d0 =
-            cLib_getRndValue(daNpc_Kn_Param_c::m.attack_start_min_time, daNpc_Kn_Param_c::m.attack_start_time_range);
+            cLib_getRndValue(mpHIO->m.attack_start_min_time, mpHIO->m.attack_start_time_range);
         speedF = 0.0f;
         speed.zero();
         mMode = 2;
@@ -121,12 +117,10 @@ int daNpc_Kn_c::teach02_shieldBashWait(void* param_0) {
         mCcStts.Move();
 
         if (mCylCc.ChkTgShieldHit()) {
-            u8 cut_type = daPy_getPlayerActorClass()->getCutType();
-
-            if (cut_type == daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
+            if (daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
                 s16 angle = cLib_targetAngleY(&daPy_getPlayerActorClass()->current.pos,
                                               &attention_info.position);
-                cXyz pos(0.0f, 0.0f, daNpc_Kn_Param_c::m.small_slide_distance);
+                cXyz pos(0.0f, 0.0f, mpHIO->m.small_slide_distance);
 
                 mDoMtx_stack_c::YrotS(angle);
                 mDoMtx_stack_c::multVec(&pos, &mTargetPos);
@@ -141,7 +135,8 @@ int daNpc_Kn_c::teach02_shieldBashWait(void* param_0) {
 
         if (!cLib_calcTimer(&field_0xdec) || checkCollisionSword()) {
             BOOL is_lockon = FALSE;
-            if (dComIfGp_getAttention()->LockonTruth()) {
+            dAttention_c* attention_p = dComIfGp_getAttention();
+            if (attention_p->LockonTruth()) {
                 is_lockon = TRUE;
             }
 
@@ -159,6 +154,8 @@ int daNpc_Kn_c::teach02_shieldBashWait(void* param_0) {
             } else {
                 mFlowNodeNo = 0x2bf;
             }
+
+            break;
         } else {
             if (mCylCc.ChkTgHit()) {
                 if (!mCylCc.GetTgHitObj()->ChkAtType(0x10)) {
@@ -188,25 +185,24 @@ int daNpc_Kn_c::teach02_finishWait(void* param_0) {
         mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
         mMotionSeqMngr.setNo(11, -1.0f, 1, 0);
         mJntAnm.lookPlayer(0);
-        field_0xdec = daNpc_Kn_Param_c::m.followup_wait_time;
+        field_0xdec = mpHIO->m.followup_wait_time;
         mMode = 2;
     case 2:
         calcSlip();
         mCcStts.Move();
 
         if (mCylCc.ChkTgHit()) {
-            u8 cut_type = daPy_getPlayerActorClass()->getCutType();
-
-            if (cut_type != daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
+            if (daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
                 if (mType == 1) {
                     mEvtNo = 10;
                 } else if (mType == 2) {
                     mEvtNo = 12;
                 }
 
-                cXyz pos(0.0f, 0.0f, daNpc_Kn_Param_c::m.big_slide_distance);
-                mDoMtx_stack_c::YrotS(cLib_targetAngleY(&daPy_getPlayerActorClass()->current.pos,
-                                                        &attention_info.position));
+                cXyz pos(0.0f, 0.0f, mpHIO->m.big_slide_distance);
+                s16 tgt_ang = cLib_targetAngleY(&daPy_getPlayerActorClass()->current.pos,
+                                                &attention_info.position);
+                mDoMtx_stack_c::YrotS(tgt_ang);
                 mDoMtx_stack_c::multVec(&pos, &mTargetPos);
                 mTargetPos += current.pos;
                 field_0x15bc = 1;
@@ -287,7 +283,7 @@ int daNpc_Kn_c::teach02_shieldReflectWait(void* param_0) {
                     mEvtNo = 0xB;
 
                     s16 var_r27 = cLib_targetAngleY(&aTgHitActor_p->current.pos, &current.pos);
-                    cXyz sp14(0.0f, 0.0f, daNpc_Kn_Param_c::m.big_slide_distance);
+                    cXyz sp14(0.0f, 0.0f, mpHIO->m.big_slide_distance);
                     mDoMtx_stack_c::YrotS(var_r27);
                     mDoMtx_stack_c::multVec(&sp14, &mTargetPos);
                     mTargetPos += current.pos;
@@ -313,9 +309,10 @@ int daNpc_Kn_c::ECut_secondSkillExplain(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -451,9 +448,10 @@ int daNpc_Kn_c::ECut_reflectExplain(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -542,9 +540,10 @@ int daNpc_Kn_c::ECut_secondSkillGet(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }

@@ -17,7 +17,7 @@ public:
     /* 80CEF368 */ J3DModelData* getStopModelData();
     /* 80CEF38C */ void initBaseMtx();
     /* 80CEF3C8 */ void setBaseMtx();
-    /* 80CEF434 */ float getMaxOffsetY();
+    /* 80CEF434 */ f32 getMaxOffsetY();
     /* 80CEF44C */ int Create();
     /* 80CEF57C */ int CreateHeap();
     /* 80CEF5C8 */ int create();
@@ -27,7 +27,7 @@ public:
     /* 80CEF98C */ void actionOrderEvent();
     /* 80CEFA60 */ void actionEvent();
     /* 80CEFAD4 */ void actionDead();
-    /* 80CEFAD8 */ void demoProc();
+    /* 80CEFAD8 */ int demoProc();
     /* 80CEFD40 */ int draw();
     /* 80CEFDB8 */ int _delete();
 
@@ -38,13 +38,13 @@ public:
 private:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ J3DModel* mpModel;
-    /* 0x574 */ f32 field_0x574;
-    /* 0x578 */ s32 field_0x578;
-    /* 0x57C */ u16 field_0x57c[4];
+    /* 0x574 */ f32 mOffsetY;
+    /* 0x578 */ int mStaffId;
+    /* 0x57C */ s16 mEventIdx[4];
     /* 0x584 */ u8 field_0x584;
-    /* 0x585 */ u8 field_0x585;
+    /* 0x585 */ u8 mTool;
     /* 0x586 */ u8 mAction;
-    /* 0x587 */ u8 field_0x587;
+    /* 0x587 */ u8 mTimer;
     /* 0x588 */ u8 field_0x588;
 };
 

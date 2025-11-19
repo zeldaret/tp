@@ -304,7 +304,7 @@ int daNpc_Toby_c::create() {
         0x3BC0, 0x3B10, 0x3B10, 0x43C0,
         0x0, 0x3BD0, 0x0,
     };
-    fopAcM_SetupActor2(this, daNpc_Toby_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Toby_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
                        l_evtList, l_resNameList
     );
@@ -1107,7 +1107,7 @@ int daNpc_Toby_c::cutTobyHouseFire(int arg0) {
             break;
 
         case 1:
-            JUT_ASSERT(2331, 0 != atmt_p);
+            JUT_ASSERT(2331, NULL != atmt_p);
             field_0x0FFF = 1;
             setParam();
             setPos(atmt_p->current.pos);
@@ -1402,7 +1402,7 @@ int daNpc_Toby_c::cutRepairSCannon(int arg0) {
                 daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, angle.y, 0);
             }
 
-            JUT_ASSERT(2703, 0 != scannon_p);
+            JUT_ASSERT(2703, NULL != scannon_p);
             ((daSCannon_c*)scannon_p)->setCannonRepair();
             if (mEventTimer) {
                 Z2GetAudioMgr()->bgmStreamPrepare(0x02000003);
@@ -2070,7 +2070,7 @@ int daNpc_Toby_c::walk(void*) {
     case 2:
         if (mStagger.checkStagger() == 0) {
             cXyz work;
-            JUT_ASSERT(3620, 0 != mPath.getPathInfo());
+            JUT_ASSERT(3620, NULL != mPath.getPathInfo());
             int dst_pos_h = mPath.getDstPosH(current.pos, &work, mPath.getNumPnts(), 2);
             calcSpeedAndAngle(work, dst_pos_h, 4, 0x800);
             if (dst_pos_h && cM3d_IsZero(speedF)) {

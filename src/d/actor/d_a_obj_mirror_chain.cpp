@@ -7,186 +7,280 @@
 
 #include "d/actor/d_a_obj_mirror_chain.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 
 /* 80C98080-80C98084 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char const* l_arcName = "MR-Chain";
 
-/* ############################################################################################## */
-/* 80C98028-80C9802C 000000 0004+00 2/2 0/0 0/0 .rodata          @3915 */
-SECTION_RODATA static u32 const lit_3915 = 0x3C8EFA35;
-COMPILER_STRIP_GATE(0x80C98028, &lit_3915);
-
-/* 80C9802C-80C98030 000004 0004+00 0/1 0/0 0/0 .rodata          @3916 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3916 = 0.5f;
-COMPILER_STRIP_GATE(0x80C9802C, &lit_3916);
-#pragma pop
-
-/* 80C98034-80C98038 00000C 0004+00 0/1 0/0 0/0 .rodata          @3918 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3918 = 2.0f;
-COMPILER_STRIP_GATE(0x80C98034, &lit_3918);
-#pragma pop
-
-/* 80C98038-80C9803C 000010 0004+00 0/1 0/0 0/0 .rodata          @3919 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3919 = 304.0f;
-COMPILER_STRIP_GATE(0x80C98038, &lit_3919);
-#pragma pop
-
-/* 80C9803C-80C98040 000014 0004+00 0/1 0/0 0/0 .rodata          @3920 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3920 = 608.0f;
-COMPILER_STRIP_GATE(0x80C9803C, &lit_3920);
-#pragma pop
-
-/* 80C98040-80C98044 000018 0004+00 0/1 0/0 0/0 .rodata          @3921 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3921 = 224.0f;
-COMPILER_STRIP_GATE(0x80C98040, &lit_3921);
-#pragma pop
-
-/* 80C98044-80C98048 00001C 0004+00 0/1 0/0 0/0 .rodata          @3922 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3922 = 448.0f;
-COMPILER_STRIP_GATE(0x80C98044, &lit_3922);
-#pragma pop
-
-/* 80C98048-80C98050 000020 0004+04 1/3 0/0 0/0 .rodata          @3923 */
-SECTION_RODATA static f32 const lit_3923[1 + 1 /* padding */] = {
-    1.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80C98048, &lit_3923);
-
-/* 80C98050-80C98058 000028 0008+00 0/1 0/0 0/0 .rodata          @3925 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3925[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C98050, &lit_3925);
-#pragma pop
-
 /* 80C98138-80C98148 000000 0010+00 2/2 0/0 0/0 .bss             l_scissor */
 static u32 l_scissor[4];
 
-/* 80C96698-80C96DAC 000078 0714+00 1/0 0/0 0/0 .text            draw__22dScissorBegin_packet_cFv */
-void dScissorBegin_packet_c::draw() {
-    // NONMATCHING
-}
+#if DEBUG
+static u8 l_begin;
+#endif
 
-// Temporary fake function to make the cXyz destructor appear here
-// delete once dScissorBegin_packet_c::draw() is matched
-static void fake() {
-    cXyz vec;
-    vec.normalize();
+/* 80C96698-80C96DAC 000078 0714+00 1/0 0/0 0/0 .text            draw__22dScissorBegin_packet_cFv */
+// NONMATCHING - slight stack order issue
+void dScissorBegin_packet_c::draw() {
+    GXGetScissor(&l_scissor[0], &l_scissor[1], &l_scissor[2], &l_scissor[3]);
+
+    #if DEBUG
+    JUT_ASSERT(76, !l_begin);
+    l_begin = TRUE;
+    #endif
+
+    f32 var_f31 = FLT_MAX;
+    f32 var_f30 = FLT_MAX;
+    f32 sp7C = -FLT_MAX;
+    f32 sp78 = -FLT_MAX;
+    f32 sp74 = -FLT_MAX;
+
+    f32 sp70 = l_scissor[0];
+    f32 sp6C = sp70 + l_scissor[2];
+    f32 sp68 = l_scissor[1];
+    f32 sp64 = sp68 + l_scissor[3];
+
+    cXyz spEC[4];
+    cXyz sp11C;
+    int sp60 = 4;
+    view_class* view_p = dComIfGd_getView();
+    f32 sp58 = -view_p->near;
+
+    cXyz* sp54 = mQuad;
+    cXyz* var_r30 = spEC;
+
+    int sp50 = 0;
+    int sp4C = 0;
+
+    for (int i = 0; i < 4; i++) {
+        cMtx_multVec(view_p->viewMtx, sp54, var_r30);
+        if (var_r30->z >= sp58) {
+            sp50++;
+        } else {
+            sp4C = i;
+        }
+
+        sp54++;
+        var_r30++;
+    }
+
+    if (sp50 >= 4) {
+        GXSetScissor(FB_WIDTH + 1, FB_HEIGHT + 1, 0, 0);
+        return;
+    }
+
+    if (sp50 != 0) {
+        int sp44 = -1;
+
+        for (int i = 0; i < 4; i++) {
+            int sp3C = (sp4C + 1) % 4;
+            if (sp44 < 0) {
+                if (spEC[sp3C].z >= sp58) {
+                    sp44 = sp3C;
+                }
+            } else if (spEC[sp3C].z < sp58) {
+                int sp38 = (sp44 + 3) % 4;
+                cXyz spE0 = spEC[sp44] - spEC[sp38];
+                f32 sp34 = (sp58 - spEC[sp38].z) / spE0.z;
+                spE0 *= sp34;
+                spEC[sp60] = spEC[sp38] + spE0;
+
+                sp60++;
+
+                spE0 = spEC[sp4C] - spEC[sp3C];
+                sp34 = (sp58 - spEC[sp3C].z) / spE0.z;
+                spE0 *= sp34;
+                spEC[sp4C] = spEC[sp3C] + spE0;
+
+                for (int sp30 = sp44; sp30 != sp4C; sp30 = (sp30 + 1) % 4) {
+                    spEC[sp30] = spEC[sp4C];
+                }
+                break;
+            }
+
+            sp4C = (sp4C + 1) % 4;
+        }
+    }
+
+    f32 sp2C = view_p->fovy;
+    f32 sp28 = view_p->aspect;
+    f32 sp24 = std::tan(0.017453292f * (0.5f * sp2C));
+
+    f32 sp20, sp1C, sp18, sp14;
+    view_port_class* viewport_p = dComIfGd_getViewport();
+    if (0.0f != viewport_p->x_orig) {
+        sp20 = (0.5f * ((2.0f * viewport_p->x_orig) + viewport_p->width)) - (FB_WIDTH / 2);
+        sp18 = FB_WIDTH;
+    } else {
+        sp20 = viewport_p->x_orig;
+        sp18 = viewport_p->width;
+    }
+
+    if (0.0f != viewport_p->y_orig) {
+        sp1C = (0.5f * ((2.0f * viewport_p->y_orig) + viewport_p->height)) - (FB_HEIGHT / 2);
+        sp14 = FB_HEIGHT;
+    } else {
+        sp1C = viewport_p->y_orig;
+        sp14 = viewport_p->height;
+    }
+
+    var_r30 = spEC;
+    for (int i = 0; i < sp60; i++) {
+        var_r30->y = var_r30->y / (var_r30->z * sp24);
+        var_r30->x = var_r30->x / (sp28 * (-var_r30->z * sp24));
+
+        #if WIDESCREEN_SUPPORT
+        if (mDoGph_gInf_c::isWideZoom()) {
+            var_r30->x *= mDoGph_gInf_c::getScale();
+            var_r30->y *= mDoGph_gInf_c::getScale();
+        }
+        #endif
+
+        var_r30->x = sp20 + ((1.0f + var_r30->x) * (0.5f * sp18));
+        var_r30->y = sp1C + ((1.0f + var_r30->y) * (0.5f * sp14));
+
+        if (var_r30->x < var_f31) {
+            var_f31 = var_r30->x;
+        }
+        if (var_r30->x > sp7C) {
+            sp7C = var_r30->x;
+        }
+        if (var_r30->y < var_f30) {
+            var_f30 = var_r30->y;
+        }
+        if (var_r30->y > sp78) {
+            sp78 = var_r30->y;
+        }
+        if (var_r30->z > sp74) {
+            sp74 = var_r30->z;
+        }
+
+        var_r30++;
+    }
+
+    var_r30 = spEC;
+    cXyz spD4 = var_r30[1] - var_r30[0];
+    cXyz spC8;
+    cXyz spBC(0.0f, 0.0f, 1.0f);
+    for (int i = 0; i < 2; i++) {
+        var_r30++;
+        spC8 = var_r30[1] - var_r30[0];
+        if (!spD4.isZero()) {
+            spBC = spD4.outprod(spC8);
+            if (spBC.z < 0.0f) {
+                break;
+            }
+        }
+
+        spD4 = spC8;
+    }
+
+    if (spBC.z < 0.0f || var_f31 > sp6C || sp7C < sp70 || var_f30 > sp64 || sp78 < sp68) {
+        GXSetScissor(FB_WIDTH + 1, FB_HEIGHT + 1, 0, 0);
+    } else {
+        var_f31 = cLib_minLimit<f32>(var_f31, sp70);
+        sp7C = cLib_maxLimit<f32>(sp7C, sp6C);
+        var_f30 = cLib_minLimit<f32>(var_f30, sp68);
+        sp78 = cLib_maxLimit<f32>(sp78, sp64);
+        GXSetScissor((u32)var_f31, (u32)var_f30, (u32)(sp7C - var_f31), (u32)(sp78 - var_f30));
+    }
 }
 
 /* 80C96DE8-80C96E20 0007C8 0038+00 1/0 0/0 0/0 .text            draw__20dScissorEnd_packet_cFv */
 void dScissorEnd_packet_c::draw() {
+    #if DEBUG
+    JUT_ASSERT(246, l_begin);
+    l_begin = FALSE;
+    #endif
+
     GXSetScissor(l_scissor[0], l_scissor[1], l_scissor[2], l_scissor[3]);
 }
 
 /* 80C96E20-80C96E40 000800 0020+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
 static int createSolidHeap(fopAc_ac_c* i_this) {
-    return static_cast<daObjMirrorChain_c*>(i_this)->createHeap();
+    return ((daObjMirrorChain_c*)i_this)->createHeap();
 }
-
-/* ############################################################################################## */
-/* 80C98058-80C98060 000030 0008+00 1/1 0/0 0/0 .rodata          @4164 */
-SECTION_RODATA static u8 const lit_4164[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C98058, &lit_4164);
-
-extern void* __vt__12J3DFrameCtrl[3];
 
 /* 80C96E40-80C975A4 000820 0764+00 1/1 0/0 0/0 .text            createHeap__18daObjMirrorChain_cFv
  */
 int daObjMirrorChain_c::createHeap() {
-    J3DModelData* model_data;
+    J3DModelData* modelData;
+
         /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
-        model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 16);
-        mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000284);
+        modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 16);
+        JUT_ASSERT(306, modelData != NULL);
+        mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
 
-        J3DAnmTevRegKey* brk_anm = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 21);
+        J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 21);
+        JUT_ASSERT(316, brk != NULL);
         mpBrkAnm = new mDoExt_brkAnm();
-        if (mpBrkAnm == NULL || !mpBrkAnm->init(model_data, brk_anm, 1, 2, 1.0f, 0, -1)) {
+        if (mpBrkAnm == NULL || !mpBrkAnm->init(modelData, brk, 1, 2, 1.0f, 0, -1)) {
             return 0;
         }
     } else {
-        model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 15);
-        mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
+        modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 15);
+        JUT_ASSERT(323, modelData != NULL);
+        mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         mpBrkAnm = NULL;
     }
+
     if (mpModel == NULL) {
         return 0;
     }
 
         /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
-        J3DModelData* portal_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 12);
-        mpPortalModel = mDoExt_J3DModel__create(portal_model_data, 0, 0x11000084);
+        J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 12);
+        JUT_ASSERT(336, modelData != NULL);
+        mpPortalModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
         if (mpPortalModel == NULL) {
             return 0;
         }
 
-        J3DAnmTransform* bck_anm = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 9);
+        J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 9);
+        JUT_ASSERT(344, bck != NULL);
         mpBckAnm = new mDoExt_bckAnm();
-        if (mpBckAnm == NULL
-            || !mpBckAnm->init(bck_anm, 1, 2, 1.0f, 0, -1, false))
-        {
+        if (mpBckAnm == NULL || !mpBckAnm->init(bck, 1, 2, 1.0f, 0, -1, false)) {
             return 0;
         }
         mpBckAnm->setEndFrame(300);
 
-        J3DAnmTevRegKey* portal_brk_anm = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 20);
+        J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 20);
+        JUT_ASSERT(353, brk != NULL);
         mpPortalBrkAnm = new mDoExt_brkAnm();
-        if (mpPortalBrkAnm == NULL
-            || !mpPortalBrkAnm->init(portal_model_data, portal_brk_anm, 1, 2, 1.0f, 0, -1))
+        if (mpPortalBrkAnm == NULL || !mpPortalBrkAnm->init(modelData, brk, 1, 0, 1.0f, 0, -1))
         {
             return 0;
         }
-        mpPortalBrkAnm->setFrame(portal_brk_anm->getFrameMax());
+        mpPortalBrkAnm->setFrame(brk->getFrameMax());
 
         cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes(l_arcName, 26);
         if (mBgW[1].Set(dzb, 1, &mMtx)) {
             return 0;
         }
+
         mBgW[0] = mBgW[1];
     } else {
-        J3DAnmTransform* bck_anm = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 8);
+        J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 8);
+        JUT_ASSERT(367, bck != NULL);
         mpBckAnm = new mDoExt_bckAnm();
-        bool b = fopAcM_isSwitch(this, getSwitchNo())
-                /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
-             || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]);
-        f32 rate = b ? 1.0f : 0.0f;
-        if (mpBckAnm == NULL
-            || !mpBckAnm->init(bck_anm, 1, 0, rate, 0, -1, false))
+
+        /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+        f32 rate = (fopAcM_isSwitch(this, getSwitchNo()) || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])) ? 1.0f : 0.0f;
+        if (mpBckAnm == NULL || !mpBckAnm->init(bck, 1, 0, rate, 0, -1, false))
         {
             return 0;
         }
-        if (fopAcM_isSwitch(this, getSwitchNo())
-                /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
-             || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]))
-        {
-            mpBckAnm->setFrame(bck_anm->getFrameMax());
+
+        /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+        if (fopAcM_isSwitch(this, getSwitchNo()) || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])) {
+            mpBckAnm->setFrame(bck->getFrameMax());
         }
 
-        J3DAnmTevRegKey* brk_anm = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 19);
+        J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 19);
+        JUT_ASSERT(381, brk != NULL);
         mpBrkAnm = new mDoExt_brkAnm();
-        if (mpBrkAnm == NULL
-            || !mpBrkAnm->init(model_data, brk_anm, 1, 0, 1.0f, 0, -1))
+        if (mpBrkAnm == NULL || !mpBrkAnm->init(modelData, brk, 1, 0, 0.0f, 0, -1))
         {
             return 0;
         }
@@ -208,13 +302,6 @@ int daObjMirrorChain_c::createHeap() {
     return 1;
 }
 
-
-/* 80C975A4-80C975EC 000F84 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
-}
-
 /* 80C975EC-80C97618 000FCC 002C+00 1/1 0/0 0/0 .text            initBaseMtx__18daObjMirrorChain_cFv
  */
 void daObjMirrorChain_c::initBaseMtx() {
@@ -228,9 +315,11 @@ void daObjMirrorChain_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+
     if (mpPortalModel != NULL) {
         mpPortalModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
+
     MTXCopy(mDoMtx_stack_c::get(), mMtx);
     mpActiveBgW->Move();
 }
@@ -243,32 +332,40 @@ static int daObjMirrorChain_Draw(daObjMirrorChain_c* i_this) {
 
 /* 80C976B8-80C97968 001098 02B0+00 1/1 0/0 0/0 .text            draw__18daObjMirrorChain_cFv */
 int daObjMirrorChain_c::draw() {
-    static f32 const SCISSOR_CENTER_X = 1799.2f;
-    static f32 const SCISSOR_CENTER_Y = 4779.58f;
-    static f32 const SCISSOR_CENTER_Z = -23024.53f;
-    static f32 const SCISSOR_SIZE = 984.0f;
+    static const f32 SCISSOR_CENTER_X = 1799.2f;
+    static const f32 SCISSOR_CENTER_Y = 4779.58f;
+    static const f32 SCISSOR_CENTER_Z = -23024.53f;
+    static const f32 SCISSOR_SIZE = 984.0f;
+
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+
         /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         g_env_light.setLightTevColorType_MAJI(mpPortalModel, &tevStr);
+
         if (mpBckAnm != NULL) {
             mpBckAnm->entry(mpPortalModel->getModelData());
         }
+
         if (mpBrkAnm != NULL) {
             mpBrkAnm->entry(mpModel->getModelData());
         }
+
         if (mpPortalBrkAnm != NULL) {
             mpPortalBrkAnm->entry(mpPortalModel->getModelData());
         }
+
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpModel);
+
         static Vec l_offsetScissor[4] = {
             {SCISSOR_CENTER_X - SCISSOR_SIZE / 2, SCISSOR_CENTER_Y + SCISSOR_SIZE, SCISSOR_CENTER_Z},
             {SCISSOR_CENTER_X + SCISSOR_SIZE / 2, SCISSOR_CENTER_Y + SCISSOR_SIZE, SCISSOR_CENTER_Z},
             {SCISSOR_CENTER_X + SCISSOR_SIZE / 2, SCISSOR_CENTER_Y, SCISSOR_CENTER_Z},
             {SCISSOR_CENTER_X - SCISSOR_SIZE / 2, SCISSOR_CENTER_Y, SCISSOR_CENTER_Z},
         };
+
         cXyz* quad = mScissorBegin.getQuad();
         PSMTXMultVecArray(mpModel->getBaseTRMtx(), l_offsetScissor, quad, 4);
         j3dSys.setDrawBuffer(dComIfGd_getXluListBG(), 0);
@@ -276,12 +373,15 @@ int daObjMirrorChain_c::draw() {
         mDoExt_modelUpdateDL(mpPortalModel);
         mScissorBegin.entryPacket();
         dComIfGd_setList();
+
         if (mpBckAnm != NULL) {
             mpBckAnm->remove(mpPortalModel->getModelData());
         }
+
         if (mpBrkAnm != NULL) {
             mpBrkAnm->remove(mpModel->getModelData());
         }
+
         if (mpPortalBrkAnm != NULL) {
             mpPortalBrkAnm->remove(mpPortalModel->getModelData());
         }
@@ -289,19 +389,24 @@ int daObjMirrorChain_c::draw() {
         if (mpBckAnm != NULL) {
             mpBckAnm->entry(mpModel->getModelData());
         }
+
         if (mpBrkAnm != NULL) {
             mpBrkAnm->entry(mpModel->getModelData());
         }
+
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(mpModel);
         dComIfGd_setList();
+
         if (mpBckAnm != NULL) {
             mpBckAnm->remove(mpModel->getModelData());
         }
+
         if (mpBrkAnm != NULL) {
             mpBrkAnm->remove(mpModel->getModelData());
         }
     }
+
     return 1;
 }
 
@@ -311,83 +416,22 @@ static int daObjMirrorChain_Execute(daObjMirrorChain_c* i_this) {
     return i_this->execute();
 }
 
-// this should come automatically from the static data in draw() but it does not
-
-/* ############################################################################################## */
-/* 80C98060-80C98064 000038 0004+00 0/0 0/0 0/0 .rodata
- * SCISSOR_CENTER_X$localstatic3$draw__18daObjMirrorChain_cFv   */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const data_80C98060[4] = {
-    0x44,
-    0xE0,
-    0xE6,
-    0x66,
-};
-COMPILER_STRIP_GATE(0x80C98060, &data_80C98060);
-#pragma pop
-
-/* 80C98064-80C98068 00003C 0004+00 0/0 0/0 0/0 .rodata
- * SCISSOR_CENTER_Y$localstatic4$draw__18daObjMirrorChain_cFv   */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const data_80C98064[4] = {
-    0x45,
-    0x95,
-    0x5C,
-    0xA4,
-};
-COMPILER_STRIP_GATE(0x80C98064, &data_80C98064);
-#pragma pop
-
-/* 80C98068-80C9806C 000040 0004+00 0/0 0/0 0/0 .rodata
- * SCISSOR_CENTER_Z$localstatic5$draw__18daObjMirrorChain_cFv   */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const data_80C98068[4] = {
-    0xC6,
-    0xB3,
-    0xE1,
-    0x0F,
-};
-COMPILER_STRIP_GATE(0x80C98068, &data_80C98068);
-#pragma pop
-
-/* 80C9806C-80C98070 000044 0004+00 0/0 0/0 0/0 .rodata
- * SCISSOR_SIZE$localstatic6$draw__18daObjMirrorChain_cFv       */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const data_80C9806C[4] = {
-    0x44,
-    0x76,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C9806C, &data_80C9806C);
-#pragma pop
-
-/* 80C98070-80C98074 000048 0004+00 0/1 0/0 0/0 .rodata          @4494 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4494 = -1.0f;
-COMPILER_STRIP_GATE(0x80C98070, &lit_4494);
-#pragma pop
-
 /* 80C97988-80C97BA4 001368 021C+00 1/1 0/0 0/0 .text            execute__18daObjMirrorChain_cFv */
 int daObjMirrorChain_c::execute() {
     if (mpBckAnm != NULL) {
         mpBckAnm->play();
     }
+
     if (mpBrkAnm != NULL) {
         mpBrkAnm->play();
     }
+
     if (mpPortalBrkAnm != NULL) {
         mpPortalBrkAnm->play();
     }
 
-         /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
-    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
-                                && mpBckAnm != NULL && mpBckAnm->getPlaySpeed() > 0.0f) {
+        /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
+    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) && mpBckAnm != NULL && mpBckAnm->getPlaySpeed() > 0.0f) {
         if (mpActiveBgW == &mBgW[0]) {
             dComIfG_Bgsp().Release(&mBgW[0]);
             dComIfG_Bgsp().Regist(&mBgW[1], this);
@@ -396,7 +440,7 @@ int daObjMirrorChain_c::execute() {
         }
 
         if (mpEmitter == NULL) {
-            mpEmitter = dComIfGp_particle_set(0x8acc, &current.pos, &shape_angle, NULL);
+            mpEmitter = dComIfGp_particle_set(dPa_RM(ID_ZF_S_D32_01_MONO02SAND), &current.pos, &shape_angle, NULL);
             cXyz pos;
             mDoMtx_stack_c::copy(mpModel->getAnmMtx(1));
             mDoMtx_stack_c::multVecZero(&pos);
@@ -412,7 +456,6 @@ int daObjMirrorChain_c::execute() {
     return 1;
 }
 
-
 /* 80C97BA4-80C97BAC 001584 0008+00 1/0 0/0 0/0 .text
  * daObjMirrorChain_IsDelete__FP18daObjMirrorChain_c            */
 static int daObjMirrorChain_IsDelete(daObjMirrorChain_c* i_this) {
@@ -423,9 +466,11 @@ daObjMirrorChain_c::~daObjMirrorChain_c() {
     if (mBgW[0].ChkUsed()) {
         dComIfG_Bgsp().Release(&mBgW[0]);
     }
+
     if (mBgW[1].ChkUsed()) {
         dComIfG_Bgsp().Release(&mBgW[1]);
     }
+
     dComIfG_resDelete(&mPhaseReq, l_arcName);
 }
 
@@ -438,40 +483,41 @@ static int daObjMirrorChain_Delete(daObjMirrorChain_c* i_this) {
 }
 
 void daObjMirrorChain_c::create_init() {
-    if (mpBckAnm != NULL
-            /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
-        && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
+    /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
+    if (mpBckAnm != NULL && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         mpBckAnm->setPlaySpeed(0.0f);
     }
+
     mpEmitter = NULL;
     mBgW[0].SetCrrFunc(NULL);
     mBgW[0].SetRoomId(fopAcM_GetRoomNo(this));
     mBgW[1].SetCrrFunc(NULL);
     mBgW[1].SetRoomId(fopAcM_GetRoomNo(this));
-    bool b = fopAcM_isSwitch(this, getSwitchNo())
-                /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
-             || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]);
-    mpActiveBgW = b ? &mBgW[1] : &mBgW[0];
+
+    /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+    mpActiveBgW = (fopAcM_isSwitch(this, getSwitchNo()) || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])) ? &mBgW[1] : &mBgW[0];
     dComIfG_Bgsp().Regist(mpActiveBgW, this);
     initBaseMtx();
 }
 
 cPhs__Step daObjMirrorChain_c::create() {
     fopAcM_ct(this, daObjMirrorChain_c);
-    cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
-    if (step == cPhs_COMPLEATE_e) {
+
+    cPhs__Step phase_state = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
+    if (phase_state == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x71b0)) {
             return cPhs_ERROR_e;
         }
         create_init();
     }
-    return step;
+
+    return phase_state;
 }
 
 /* 80C97D24-80C97F3C 001704 0218+00 1/0 0/0 0/0 .text daObjMirrorChain_Create__FP10fopAc_ac_c */
 static cPhs__Step daObjMirrorChain_Create(fopAc_ac_c* i_this) {
     fopAcM_GetID(i_this);
-    return static_cast<daObjMirrorChain_c*>(i_this)->create();
+    return ((daObjMirrorChain_c*)i_this)->create();
 }
 
 /* 80C980B4-80C980D4 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjMirrorChain_Method */
@@ -499,11 +545,4 @@ extern actor_process_profile_definition g_profile_Obj_MirrorChain = {
     0x44000,
     fopAc_ACTOR_e,
     fopAc_CULLBOX_CUSTOM_e,
-};
-
-/* 80C98104-80C98110 000084 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
 };

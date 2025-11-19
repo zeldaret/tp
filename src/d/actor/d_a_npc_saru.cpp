@@ -300,7 +300,7 @@ int daNpc_Saru_c::create() {
         14480, 14480, 14464, 0,
     };
 
-    fopAcM_SetupActor2(this, daNpc_Saru_c, l_faceMotionAnmData, l_motionAnmData, 
+    daNpcT_ct(this, daNpc_Saru_c, l_faceMotionAnmData, l_motionAnmData, 
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList, (char**)l_resNameList);
     
     mType = getType();

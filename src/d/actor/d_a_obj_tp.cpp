@@ -39,7 +39,9 @@ static int daObj_Tp_Draw(obj_tp_class* i_this) {
                         Mtx lightProjMtx;
                         C_MTXLightPerspective(lightProjMtx, dComIfGd_getView()->fovy,
                                               dComIfGd_getView()->aspect, 1.0f, 1.0f, -0.01f, 0);
+                        #if WIDESCREEN_SUPPORT
                         mDoGph_gInf_c::setWideZoomLightProjection(lightProjMtx);
+                        #endif
                         texMtxInfo->setEffectMtx(lightProjMtx);
                         modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
                     }

@@ -3365,8 +3365,7 @@ int daHorse_c::callHorseSubstance(cXyz const* i_pos) {
 
 /* 80841468-808415B4 009628 014C+00 1/0 0/0 0/0 .text
  * setHorsePosAndAngleSubstance__9daHorse_cFPC4cXyzs            */
-// NONMATCHING - small regalloc, equivalent
-int daHorse_c::setHorsePosAndAngleSubstance(cXyz const* param_0, s16 param_1) {
+void daHorse_c::setHorsePosAndAngleSubstance(cXyz const* param_0, s16 param_1) {
     int i, j;
 
     cXyz sp10(current.pos);

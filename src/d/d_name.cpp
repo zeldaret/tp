@@ -1083,6 +1083,24 @@ void dName_c::screenSet() {
     static u64 l_cur1TagName[8] = {
         's_0r', 's_01r', 's_02r', 's_03r', 's_04r', 's_05r', 's_06r', 's_07r',
     };
+#if VERSION == VERSION_GCN_JPN
+    static u64 l_menu_icon_tag[4] = {
+        'j_hira_n',
+        'j_kata_n',
+        'j_eigo_n',
+        'j_end_n',
+    };
+    static u64 l_menu_tag[5][3] = {
+        'm_hira_0',  'm_hira_1',  'm_hira_s',  'm_kata_0', 'm_kata_1', 'm_kata_s',
+        'm_eigo_0', 'm_eigo_1', 'm_eigo_s', 'j_end_0', 'j_end_1', 'j_end_s',
+    };
+    static u32 l_menu_msg[4] = {
+        0x386,
+        0x387,
+        0x388,
+        0x38A,
+    };
+#else
     static u64 l_menu_icon_tag[4] = {
         'p_ABC_n',
         'p_abc_n',
@@ -1099,6 +1117,7 @@ void dName_c::screenSet() {
         0x388,
         0x38E,
     };
+#endif
     static u64 l_tagName[65] = {
         'm_00_0', 'm_00_1', 'm_00_2', 'm_00_3', 'm_00_4', 'm_01_0', 'm_01_1', 'm_01_2', 'm_01_3',
         'm_01_4', 'm_02_0', 'm_02_1', 'm_02_2', 'm_02_3', 'm_02_4', 'm03_0',  'm03_1',  'm03_2',

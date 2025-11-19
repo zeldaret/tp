@@ -12,6 +12,22 @@
 #include "d/d_cc_uty.h"
 #include "f_op/f_op_actor_enemy.h"
 
+class daE_YD_HIO_c {
+public:
+    daE_YD_HIO_c();
+    virtual ~daE_YD_HIO_c() {}
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x8 */ f32 field_0x8;
+    /* 0xC */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ s16 field_0x14;
+    /* 0x16 */ s16 field_0x16;
+    /* 0x18 */ u8 field_0x18;
+};
+
+STATIC_ASSERT(sizeof(daE_YD_HIO_c) == 0x1c);
+
 /* 807F2C2C-807F2C78 0000EC 004C+00 1/1 0/0 0/0 .text __ct__12daE_YD_HIO_cFv */
 daE_YD_HIO_c::daE_YD_HIO_c() {
     field_0x4 = -1;

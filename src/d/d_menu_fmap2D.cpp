@@ -282,7 +282,7 @@ void dMenu_Fmap2DBack_c::draw() {
     u32 scissorLeft, scissorTop, scissorWidth, scissorHeight;
     GXGetScissor(&scissorLeft, &scissorTop, &scissorWidth, &scissorHeight);
 
-    grafPort->scissor(mTransX, 0.0f, 608.0f, 448.0f);
+    grafPort->scissor(mTransX, 0.0f, FB_WIDTH, FB_HEIGHT);
     grafPort->setScissor();
 
     mpBackTex->setBlackWhite(field_0x1208, field_0x120c);
@@ -299,8 +299,8 @@ void dMenu_Fmap2DBack_c::draw() {
 
     Vec vec2 = mpMapArea->getGlobalVtx(&mtx, 3, false, 0);
 
-    f32 width = mDoGph_gInf_c::getWidthF() / 608.0f;
-    f32 height = mDoGph_gInf_c::getHeightF() / 448.0f;
+    f32 width = mDoGph_gInf_c::getWidthF() / FB_WIDTH;
+    f32 height = mDoGph_gInf_c::getHeightF() / FB_HEIGHT;
 
     grafPort->scissor(mTransX + ((vec1.x - mDoGph_gInf_c::getMinXF()) / width),
                       mTransZ + (vec1.y / height), (vec2.x - vec1.x) / width,
@@ -2489,7 +2489,7 @@ void dMenu_Fmap2DTop_c::draw() {
     J2DOrthoGraph* ctx = static_cast<J2DOrthoGraph*>(dComIfGp_getCurrentGrafPort());
     ctx->setup2D();
     GXGetScissor(&scissor_left, &scissor_top, &scissor_width, &scissor_height);
-    ctx->scissor(mTransX, 0.0f, 608.0f, 448.0f);
+    ctx->scissor(mTransX, 0.0f, FB_WIDTH, FB_HEIGHT);
     ctx->setScissor();
     mpTitleScreen->draw(mTransX, mTransY, ctx);
     ctx->scissor(scissor_left, scissor_top, scissor_width, scissor_height);

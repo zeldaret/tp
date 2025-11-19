@@ -183,7 +183,7 @@ daNpc_Bou_Param_c::Data const daNpc_Bou_Param_c::m= {
 /* 8096D0D8-8096D38C 000238 02B4+00 1/1 0/0 0/0 .text            create__11daNpc_Bou_cFv */
 int daNpc_Bou_c::create() {
     static int const heapSize[6] = {15696, 15696, 15696, 15696, 15696, 0};
-    fopAcM_SetupActor2(this, daNpc_Bou_c, l_faceMotionAnmData, l_motionAnmData,
+    daNpcT_ct(this, daNpc_Bou_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
                        l_evtList, l_resNameList
     );

@@ -145,9 +145,9 @@ int daZrTurara_c::Execute(Mtx** i_mtxP) {
 void daZrTurara_c::move() {
     typedef void (daZrTurara_c::*daZrTurara_modeFunc)();
     static daZrTurara_modeFunc mode_proc[3] = {
-        &modeWait,
-        &modeBreak,
-        &modeEnd,
+        &daZrTurara_c::modeWait,
+        &daZrTurara_c::modeBreak,
+        &daZrTurara_c::modeEnd,
     };
     (this->*mode_proc[mMode])();
     mCcCyl.SetR(130.0f);

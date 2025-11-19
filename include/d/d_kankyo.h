@@ -3,8 +3,10 @@
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "d/d_kankyo_wether.h"
+#include "d/d_kankyo_data.h"
 #include "f_pc/f_pc_base.h"
 #include "m_Do/m_Do_ext.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 
 class JPABaseEmitter;
 class cBgS_PolyInfo;
@@ -221,6 +223,13 @@ struct dKy_Odour_Data {
     /* 0x1 */ u8 field_0xf21;
     /* 0x4 */ int field_0xf24;
     /* 0x8 */ dKankyo_odour_Packet* mpOdourPacket;
+};
+
+struct dKy_flush_info {
+    u8 start_frame;
+    u8 r;
+    u8 g;
+    u8 b;
 };
 
 class dScnKy_env_light_c {
@@ -505,46 +514,498 @@ inline dScnKy_env_light_c* dKy_getEnvlight() {
     return &g_env_light;
 }
 
-// unsure of correct size
-class dKankyo_lightHIO_c {
+class dKankyo_lightHIO_c : public JORReflexible {
 public:
-    void dKankyo_lightHIOInfoUpDateF() {
-        // NONMATCHING
-    }
+    dKankyo_lightHIO_c();
 
-    u8 field_0x0[4];
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_lightHIO_c() {}
+
+    void dKankyo_lightHIOInfoUpDateF();
+
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 field_0x5;
+    /* 0x08 */ int field_0x8;
+    /* 0x0C */ int field_0xc[10];
+    /* 0x34 */ u8 m_fogtype;
+    /* 0x35 */ u8 field_0x35[0x50 - 0x35];
+    /* 0x50 */ u8 m_displayTVColorSettings;
+    /* 0x51 */ u8 m_HOSTIO_setting;
+    /* 0x52 */ u8 field_0x52;
+    /* 0x53 */ u8 m_forcedPalette;
+    /* 0x54 */ u8 m_displayColorPaletteCheckInfo;
+    /* 0x58 */ f32 field_0x58;
+    /* 0x5C */ s16 field_0x5c;
+    /* 0x5E */ s16 field_0x5e;
+    /* 0x60 */ u8 field_0x60;
+    /* 0x61 */ u8 field_0x61;
+    /* 0x62 */ u8 field_0x62;
+    /* 0x63 */ u8 field_0x63;
+    /* 0x64 */ u8 field_0x64;
+    /* 0x65 */ u8 field_0x65;
+    /* 0x66 */ u8 field_0x66;
+    /* 0x67 */ u8 field_0x67;
+    /* 0x68 */ u8 field_0x68;
+    /* 0x69 */ u8 field_0x69;
+    /* 0x6A */ u8 field_0x6a;
+    /* 0x6B */ u8 field_0x6b;
+    /* 0x6C */ cXyz m_BG_fakelight_pos;
+    /* 0x78 */ u8 m_BG_fakelight_R;
+    /* 0x79 */ u8 m_BG_fakelight_G;
+    /* 0x7A */ u8 m_BG_fakelight_B;
+    /* 0x7C */ f32 m_BG_fakelight_power;
+    /* 0x80 */ u8 field_0x80;
 };
 
-class dKankyo_HIO_c {
+class dKankyo_vrboxHIO_c : public JORReflexible {
 public:
-    /* 0x000 */ u8 field_0x000[0x1c - 0x0];
-    /* 0x01C */ dKankyo_lightHIO_c field_0x01c;
-    /* 0x020 */ u8 field_0x020[0x6d - 0x20];
-    /* 0x06D */ u8 field_0x06d;
-    /* 0x06E */ u8 field_0x06e[0xb4 - 0x6e];
-    /* 0x0B4 */ u8 field_0x0b4;
-    /* 0x0B8 */ f32 field_0x0b8;
-    /* 0x0BC */ u8 field_0x0bc[0x3f4 - 0xbc];
-    /* 0x3F4 */ f32 field_0x3f4;
-    /* 0x3F8 */ f32 field_0x3f8;
-    /* 0x3FC */ u8 field_0x3fc[0x686 - 0x3fc];
-    /* 0x686 */ u8 field_0x686;
-    /* 0x687 */ u8 field_0x687[0x694 - 0x687];
-    /* 0x694 */ u8 field_0x694;
-    /* 0x695 */ u8 field_0x695;
-    /* 0x696 */ u8 field_0x696;
-    /* 0x697 */ u8 field_0x697[0x698 - 0x697];
-    /* 0x698 */ bool field_0x698;
-    /* 0x699 */ u8 field_0x699[0x69c - 0x699];
-    /* 0x69C */ f32 field_0x69c;
-    /* 0x6A0 */ u8 field_0x6a0[0x6d9 - 0x6a0];
-    /* 0x6D9 */ u8 field_0x6d9;
-    /* 0x6DA */ u8 field_0x6da[0x6e0 - 0x6da];
-    /* 0x6E0 */ f32 field_0x6e0;
-    /* 0x6E4 */ f32 field_0x6e4;
-    /* 0x6E8 */ f32 field_0x6e8;
-    /* 0x6EC */ u8 field_0x6ec[0x79b - 0x6ec];
-    /* 0x79B */ u8 field_0x79b;
+    dKankyo_vrboxHIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_vrboxHIO_c() {}
+
+    void dKankyo_vrboxHIOInfoUpDateF();
+
+    /* 0x04 */ u8 m_VrboxSetting;
+    /* 0x05 */ u8 field_0x5;
+    /* 0x06 */ u8 m_displayVrboxTVColorSettings;
+    /* 0x07 */ u8 field_0x7;
+    /* 0x08 */ u8 field_0x8;
+    /* 0x09 */ u8 field_0x9;
+    /* 0x0A */ u8 field_0xa;
+    /* 0x0B */ u8 field_0xb;
+    /* 0x0C */ u8 field_0xc;
+    /* 0x0D */ u8 field_0xd;
+    /* 0x0E */ s8 field_0xe;
+    /* 0x0F */ s8 field_0xf;
+    /* 0x10 */ s8 field_0x10;
+    /* 0x11 */ s8 field_0x11;
+    /* 0x12 */ s8 field_0x12;
+    /* 0x13 */ s8 field_0x13;
+    /* 0x14 */ u8 field_0x14;
+    /* 0x18 */ f32 m_horizonHeight;
+    /* 0x1C */ u8 field_0x1c[0x20 - 0x1C];
+};
+
+class dKankyo_bloomHIO_c : public JORReflexible {
+public:
+    dKankyo_bloomHIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_bloomHIO_c() {}
+
+    /* 0x004 */ u8 field_0x4;
+    /* 0x005 */ u8 field_0x5;
+    /* 0x006 */ u8 m_saturationPattern;
+    /* 0x007 */ dkydata_bloomInfo_info_class bloom_info[64];
+};
+
+class dKankyo_navyHIO_c : public JORReflexible {
+public:
+    dKankyo_navyHIO_c();
+
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_navyHIO_c() {}
+
+    /* 0x004 */ u8 field_0x4;
+    /* 0x005 */ u8 field_0x5;
+    /* 0x006 */ u8 field_0x6;
+    /* 0x008 */ s16 field_0x8;
+    /* 0x00C */ f32 cloud_sunny_wind_influence_rate;
+    /* 0x010 */ f32 cloud_sunny_bottom_height;
+    /* 0x014 */ f32 cloud_sunny_top_height;
+    /* 0x018 */ f32 cloud_cloudy_wind_influence_rate;
+    /* 0x01C */ f32 cloud_cloudy_bottom_height;
+    /* 0x020 */ f32 cloud_cloudy_top_height;
+    /* 0x024 */ f32 cloud_cloudy_height_shrink_rate;
+    /* 0x028 */ f32 cloud_cloudy_alpha;
+    /* 0x02C */ f32 cloud_sunny_size;
+    /* 0x030 */ f32 cloud_cloudy_size;
+    /* 0x034 */ f32 cloud_sunny_height_shrink_rate;
+    /* 0x038 */ f32 cloud_sunny_alpha;
+    /* 0x03C */ f32 field_0x3c;
+    /* 0x040 */ f32 field_0x40;
+    /* 0x044 */ f32 field_0x44;
+    /* 0x048 */ f32 field_0x48;
+    /* 0x04C */ f32 field_0x4c;
+    /* 0x050 */ f32 field_0x50;
+    /* 0x054 */ f32 field_0x54;
+    /* 0x058 */ f32 field_0x58;
+    /* 0x05C */ f32 field_0x5c;
+    /* 0x060 */ f32 field_0x60;
+    /* 0x064 */ f32 field_0x64;
+    /* 0x068 */ u8 field_0x68;
+    /* 0x069 */ u8 field_0x69;
+    /* 0x06A */ s16 housi_max_number;
+    /* 0x06C */ f32 housi_max_alpha;
+    /* 0x070 */ f32 housi_max_scale;
+    /* 0x074 */ u8 field_0x74;
+    /* 0x075 */ u8 field_0x75;
+    /* 0x076 */ u8 field_0x76;
+    /* 0x077 */ u8 field_0x77;
+    /* 0x078 */ u8 field_0x78;
+    /* 0x079 */ u8 field_0x79;
+    /* 0x07A */ u8 field_0x7a;
+    /* 0x07C */ f32 field_0x7c;
+    /* 0x080 */ f32 field_0x80;
+    /* 0x084 */ f32 field_0x84;
+    /* 0x088 */ s16 field_0x88;
+    /* 0x08A */ u8 field_0x8a;
+    /* 0x08C */ cXyz field_0x8c;
+    /* 0x098 */ cXyz field_0x98;
+    /* 0x0A4 */ u8 field_0xA4[0x0A8 - 0x0A4];
+    /* 0x0A8 */ GXColor moon_col;
+    /* 0x0AC */ f32 moon_scale;
+    /* 0x0B0 */ cXyz field_0xb0;
+    /* 0x0BC */ f32 field_0xbc;
+    /* 0x0C0 */ f32 field_0xc0;
+    /* 0x0C4 */ s16 field_0xc4;
+    /* 0x0C8 */ f32 field_0xc8;
+    /* 0x0CC */ f32 field_0xcc;
+    /* 0x0D0 */ u8 field_0xd0;
+    /* 0x0D1 */ u8 field_0xd1;
+    /* 0x0D2 */ u8 field_0xd2;
+    /* 0x0D3 */ u8 field_0xd3;
+    /* 0x0D4 */ u8 field_0xd4;
+    /* 0x0D5 */ u8 field_0xd5;
+    /* 0x0D6 */ u8 field_0xd6;
+    /* 0x0D7 */ u8 field_0xd7;
+    /* 0x0D8 */ u8 field_0xd8;
+    /* 0x0D9 */ u8 field_0xd9;
+    /* 0x0DA */ u8 field_0xda;
+    /* 0x0DB */ u8 field_0xdb;
+    /* 0x0DC */ u8 field_0xdc;
+    /* 0x0DD */ u8 field_0xdd;
+    /* 0x0DE */ u8 field_0xde;
+    /* 0x0E0 */ s16 field_0xe0;
+    /* 0x0E4 */ f32 field_0xe4;
+    /* 0x0E8 */ color_RGB_class sun_col;
+    /* 0x0EB */ u8 field_0xeb;
+    /* 0x0EC */ color_RGB_class sun_col2;
+    /* 0x0EF */ u8 field_0xef;
+    /* 0x0F0 */ u8 field_0xf0;
+    /* 0x0F1 */ u8 field_0xf1;
+    /* 0x0F2 */ u8 field_0xf2;
+    /* 0x0F3 */ u8 field_0xf3;
+    /* 0x0F4 */ u8 field_0xf4;
+    /* 0x0F5 */ u8 field_0xf5;
+    /* 0x0F6 */ u8 field_0xf6;
+    /* 0x0F7 */ u8 field_0xf7;
+    /* 0x0F8 */ u8 field_0xf8;
+    /* 0x0F9 */ u8 field_0xf9;
+    /* 0x0FA */ u8 field_0xfa;
+    /* 0x0FB */ u8 field_0xfb;
+    /* 0x0FC */ u8 field_0xfc;
+    /* 0x0FD */ u8 field_0xfd;
+    /* 0x0FE */ u8 field_0xfe;
+    /* 0x0FF */ u8 field_0xFF[0x108 - 0x0FF];
+    /* 0x108 */ u8 field_0x108;
+    /* 0x109 */ u8 field_0x109;
+    /* 0x10A */ u8 field_0x10a;
+    /* 0x10B */ u8 field_0x10b;
+    /* 0x10C */ u8 field_0x10c;
+    /* 0x10D */ u8 field_0x10d;
+    /* 0x10E */ u8 field_0x10e;
+    /* 0x10F */ u8 field_0x10f;
+    /* 0x110 */ u8 field_0x110;
+    /* 0x111 */ u8 field_0x111;
+    /* 0x112 */ u8 field_0x112;
+    /* 0x113 */ u8 field_0x113;
+    /* 0x114 */ u8 field_0x114;
+    /* 0x115 */ u8 field_0x115;
+    /* 0x116 */ u8 field_0x116;
+    /* 0x117 */ u8 field_0x117[0x120 - 0x117];
+    /* 0x120 */ f32 field_0x120;
+    /* 0x124 */ f32 field_0x124;
+    /* 0x128 */ u8 constellation_maker_ON;
+    /* 0x12C */ cXyz constellation_maker_pos[10];
+    /* 0x1A4 */ f32 lightning_scale_x_min;
+    /* 0x1A8 */ f32 lightning_scale_x_max;
+    /* 0x1AC */ f32 lightning_scale_y_min;
+    /* 0x1B0 */ f32 lightning_scale_y_max;
+    /* 0x1B4 */ s16 lightning_tilt_angle;
+    /* 0x1B6 */ s16 field_0x1b6;
+    /* 0x1B8 */ cXyz collect_light_reflect_pos;
+    /* 0x1C4 */ u8 lightning_debug_mode;
+    /* 0x1C5 */ u8 field_0x1c5;
+    /* 0x1C6 */ u8 sun_adjust_ON;
+    /* 0x1C8 */ f32 moya_alpha;
+    /* 0x1CC */ color_RGB_class thunder_col;
+    /* 0x1D0 */ f32 thunder_height;
+    /* 0x1D4 */ f32 thunder_blacken_rate;
+    /* 0x1D8 */ f32 water_in_col_ratio_R;
+    /* 0x1DC */ f32 water_in_col_ratio_G;
+    /* 0x1E0 */ f32 water_in_col_ratio_B;
+    /* 0x1E4 */ u8 field_0x1e4;
+    /* 0x1E5 */ u8 field_0x1e5;
+    /* 0x1E6 */ u8 field_0x1e6;
+    /* 0x1E8 */ f32 field_0x1e8;
+    /* 0x1EC */ f32 field_0x1ec;
+    /* 0x1F0 */ f32 field_0x1f0;
+    /* 0x1F4 */ f32 field_0x1f4;
+    /* 0x1F8 */ f32 field_0x1f8;
+    /* 0x1FC */ u8 field_0x1fc;
+    /* 0x1FD */ u8 field_0x1fd;
+    /* 0x1FE */ u8 field_0x1fe;
+    /* 0x1FF */ u8 field_0x1ff;
+    /* 0x200 */ u8 field_0x200;
+    /* 0x204 */ f32 mist_tag_fog_near;
+    /* 0x208 */ f32 mist_tag_fog_far;
+    /* 0x20C */ u8 demo_adjust_SW;
+    /* 0x20D */ u8 wipe_test_ON;
+    /* 0x210 */ f32 field_0x210;
+    /* 0x214 */ u8 fade_test_speed;
+    /* 0x215 */ u8 field_0x215;
+    /* 0x218 */ f32 smell_railtag_space;
+    /* 0x21C */ color_RGB_class smell_col;
+    /* 0x21F */ u8 field_0x21f;
+    /* 0x220 */ color_RGB_class smell_col2;
+    /* 0x224 */ f32 smell_alpha;
+    /* 0x228 */ u8 smell_adjust_ON;
+    /* 0x22A */ u16 field_0x22a;
+    /* 0x22C */ u8 field_0x22c;
+    /* 0x22D */ u8 field_0x22d;
+    /* 0x22E */ u8 field_0x22E[0x231 - 0x22E];
+    /* 0x231 */ u8 light_adjust_ON;
+    /* 0x232 */ u8 field_0x232[0x23C - 0x232];
+    /* 0x23C */ color_RGB_class adjust_light_ambcol;
+    /* 0x240 */ s16 adjust_light_dif0_col_R;
+    /* 0x242 */ s16 adjust_light_dif0_col_G;
+    /* 0x244 */ s16 adjust_light_dif0_col_B;
+    /* 0x246 */ color_RGB_class adjust_light_dif1_col;
+    /* 0x24C */ Vec adjust_light_main_pos;
+    /* 0x258 */ GXColorS10 mist_twilight_c1_col;
+    /* 0x260 */ GXColor mist_twilight_c2_col;
+    /* 0x264 */ color_RGB_class field_0x264;
+    /* 0x267 */ u8 field_0x267;
+    /* 0x268 */ u8 field_0x268;
+    /* 0x26A */ s16 adjust_custom_R;
+    /* 0x26C */ s16 adjust_custom_G;
+    /* 0x26E */ s16 adjust_custom_B;
+    /* 0x270 */ u8 adjust_light_mode;
+    /* 0x274 */ f32 adjust_height;
+    /* 0x278 */ f32 field_0x278;
+    /* 0x27C */ f32 field_0x27c;
+    /* 0x280 */ f32 field_0x280;
+    /* 0x284 */ f32 field_0x284;
+    /* 0x288 */ f32 field_0x288;
+    /* 0x28C */ f32 field_0x28c;
+    /* 0x290 */ u8 shadow_adjust_ON;
+    /* 0x294 */ f32 shadow_normal_alpha;
+    /* 0x298 */ f32 shadow_max_alpha;
+    /* 0x29C */ u8 field_0x29c;
+    /* 0x29D */ u8 field_0x29d;
+    /* 0x29E */ u8 field_0x29e;
+    /* 0x29F */ u8 field_0x29f;
+    /* 0x2A0 */ u8 field_0x2a0;
+    /* 0x2A1 */ u8 field_0x2a1;
+    /* 0x2A2 */ u8 field_0x2a2;
+    /* 0x2A3 */ u8 field_0x2a3;
+    /* 0x2A4 */ u8 field_0x2a4;
+    /* 0x2A5 */ u8 field_0x2a5;
+    /* 0x2A6 */ u8 field_0x2a6;
+    /* 0x2A7 */ u8 field_0x2a7;
+    /* 0x2A8 */ u8 field_0x2a8;
+    /* 0x2A9 */ u8 field_0x2a9;
+    /* 0x2AA */ u8 field_0x2aa;
+    /* 0x2AB */ color_RGB_class camera_light_col;
+    /* 0x2AE */ u8 field_0x2ae;
+    /* 0x2B0 */ f32 camera_light_y_shift;
+    /* 0x2B4 */ f32 camera_light_power;
+    /* 0x2B8 */ f32 camera_light_cutoff;
+    /* 0x2BC */ u8 camera_light_sp;
+    /* 0x2BD */ u8 camera_light_da;
+    /* 0x2BE */ u8 room_light_type;
+    /* 0x2C0 */ s16 demo_focus_pos;
+    /* 0x2C4 */ f32 demo_focus_offset_x;
+    /* 0x2C8 */ f32 demo_focus_offset_y;
+    /* 0x2CC */ color_RGB_class grass_ambcol;
+    /* 0x2CF */ u8 field_0x2cf;
+    /* 0x2D0 */ u8 grass_adjust_ON;
+    /* 0x2D4 */ f32 grass_shine_value;
+    /* 0x2D8 */ s16 stars_max_number;
+    /* 0x2DA */ u8 display_save_location;
+    /* 0x2DB */ u8 door_light_influence_ratio;
+    /* 0x2DC */ s16 unk_light_influence_ratio;
+    /* 0x2DE */ u8 fish_pond_colreg_adjust_ON;
+    /* 0x2E0 */ GXColorS10 fish_pond_colreg_c0;
+    /* 0x2E8 */ u8 water_mud_adjust_ON;
+    /* 0x2EA */ s16 field_0x2ea;
+    /* 0x2EC */ s16 field_0x2ec;
+    /* 0x2EE */ u8 fish_pond_tree_adjust_ON;
+    /* 0x2EF */ color_RGB_class fish_pond_tree_ambcol;
+    /* 0x2F2 */ u8 field_0x2f2;
+    /* 0x2F3 */ color_RGB_class fish_pond_tree_dif0_col;
+    /* 0x2F6 */ u8 field_0x2f6;
+    /* 0x2F7 */ color_RGB_class fish_pond_tree_dif1_col;
+    /* 0x2FA */ u8 field_0x2fa;
+    /* 0x2FB */ u8 rainbow_adjust_ON;
+    /* 0x2FC */ s16 rainbow_separation_dist;
+    /* 0x2FE */ u8 rainbow_max_alpha;
+    /* 0x2FF */ u8 field_0x2ff;
+    /* 0x300 */ u8 grass_light_debug;
+    /* 0x301 */ u8 grass_light_influence_ratio;
+    /* 0x302 */ s16 field_0x302;
+    /* 0x304 */ f32 field_0x304;
+    /* 0x308 */ u8 field_0x308;
+    /* 0x309 */ color_RGB_class moya_col;
+    /* 0x30C */ u8 field_0x30c;
+    /* 0x30D */ u8 field_0x30d;
+    /* 0x30E */ u8 twilight_sense_saturation_mode;
+    /* 0x30F */ u8 twilight_sense_pat;
+    /* 0x310 */ u8 twilight_sense_pat_tv_display_ON;
+    /* 0x311 */ u8 field_0x311;
+    /* 0x312 */ u8 field_0x312;
+    /* 0x313 */ u8 camera_light_adjust_ON;
+    /* 0x314 */ f32 field_0x314;
+    /* 0x318 */ f32 terrain_height_crr;
+    /* 0x31C */ f32 influence_multiplier;
+    /* 0x320 */ f32 cutoff_multiplier;
+    /* 0x324 */ color_RGB_class possessed_zelda_light_col;
+    /* 0x327 */ u8 field_0x327;
+    /* 0x328 */ f32 possessed_zelda_light_height;
+    /* 0x32C */ f32 possessed_zelda_light_power;
+    /* 0x330 */ color_RGB_class beast_ganon_light_col;
+    /* 0x333 */ u8 field_0x333;
+    /* 0x334 */ f32 beast_ganon_light_height;
+    /* 0x338 */ f32 beast_ganon_light_power;
+    /* 0x33C */ color_RGB_class water_in_light_col;
+};
+
+class dKankyo_efflightHIO_c : public JORReflexible {
+public:
+    dKankyo_efflightHIO_c();
+
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_efflightHIO_c() {}
+
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 adjust_ON;
+    /* 0x08 */ f32 power;
+    /* 0x0C */ f32 fluctuation;
+    /* 0x10 */ dKy_flush_info step1;
+    /* 0x14 */ dKy_flush_info step2;
+    /* 0x18 */ dKy_flush_info step3;
+    /* 0x1C */ dKy_flush_info step4;
+};
+
+class dKankyo_demolightHIO_c : public JORReflexible {
+public:
+    dKankyo_demolightHIO_c();
+
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_demolightHIO_c() {}
+
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 adjust_ON;
+    /* 0x08 */ LIGHT_INFLUENCE light;
+};
+
+class dKankyo_windHIO_c : public JORReflexible {
+public:
+    dKankyo_windHIO_c();
+
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_windHIO_c() {}
+
+    /* 0x04 */ u8 field_0x04[0x05 - 0x04];
+    /* 0x05 */ u8 display_wind_dir;
+    /* 0x06 */ u8 use_HOSTIO_adjustment;
+    /* 0x08 */ int field_0x8;
+    /* 0x0C */ s16 global_x_angle;
+    /* 0x0E */ s16 global_y_angle;
+    /* 0x10 */ f32 global_wind_power;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ u8 display_wind_trajectory;
+    /* 0x22 */ s16 lightsword_x_angle;
+    /* 0x24 */ f32 lightsword_init_scale;
+    /* 0x28 */ f32 lightsword_end_scale;
+    /* 0x2C */ f32 influence;
+    /* 0x30 */ f32 influence_attenuation;
+    /* 0x34 */ f32 lightsword_move_speed;
+    /* 0x38 */ f32 wind_change_speed;
+    /* 0x3C */ s16 minigame_no_wind_duration;
+    /* 0x3E */ s16 minigame_low_wind_duration;
+    /* 0x40 */ s16 minigame_high_wind_duration;
+};
+
+class dKankyo_dungeonlightHIO_c : public JORReflexible {
+public:
+    dKankyo_dungeonlightHIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_dungeonlightHIO_c() {}
+
+    /* 0x4 */ u8 field_0x4;
+    /* 0x5 */ u8 field_0x5;
+    /* 0x6 */ u8 displayDebugSphere;
+    /* 0x7 */ u8 usedLights;
+    /* 0x8 */ u8 field_0x8;
+    /* 0x9 */ u8 field_0x9;
+};
+
+class dKankyo_ParticlelightHIO_c : public JORReflexible {
+public:
+    dKankyo_ParticlelightHIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_ParticlelightHIO_c() {}
+
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 field_0x5;
+    /* 0x06 */ GXColor prim_col;
+    /* 0x0A */ GXColor env_col;
+    /* 0x10 */ f32 blend_ratio;
+    /* 0x14 */ int field_0x14;
+    /* 0x18 */ u8 type;
+    /* 0x19 */ u8 field_0x19;
+    /* 0x1A */ u8 field_0x1a;
+    /* 0x1B */ u8 field_0x1B[0x20 - 0x1B];
+};
+
+class dKankyo_HIO_c : public JORReflexible {
+public:
+    dKankyo_HIO_c();
+
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_HIO_c() {}
+
+    /* 0x004 */ u8 wether_effect;
+    /* 0x005 */ u8 wether_palette;
+    /* 0x006 */ u8 time_change;
+    /* 0x007 */ u8 display_env_tag_debug;
+    /* 0x008 */ u8 display_wether_debug;
+    /* 0x009 */ u8 field_0x9;
+    /* 0x00A */ u8 field_0xa;
+    /* 0x00B */ u8 display_schedule_bit;
+    /* 0x00C */ f32 field_0xc;
+    /* 0x010 */ u8 field_0x10;
+    /* 0x011 */ u8 start_rain;
+    /* 0x012 */ u8 effect_light_monitor;
+    /* 0x013 */ u8 point_light_monitor;
+    /* 0x014 */ u8 field_0x14;
+    /* 0x015 */ u8 field_0x15;
+    /* 0x016 */ u8 field_0x16;
+    /* 0x017 */ u8 field_0x17;
+    /* 0x018 */ u8 no_setting_tevstr;
+    /* 0x019 */ u8 no_color_type;
+    /* 0x01A */ s8 field_0x1a;
+    /* 0x01C */ dKankyo_lightHIO_c light;
+    /* 0x0A0 */ dKankyo_vrboxHIO_c vrbox;
+    /* 0x0C0 */ dKankyo_bloomHIO_c bloom;
+    /* 0x3C8 */ dKankyo_navyHIO_c navy;
+    /* 0x708 */ dKankyo_efflightHIO_c effLight;
+    /* 0x728 */ dKankyo_demolightHIO_c demoLight;
+    /* 0x750 */ dKankyo_windHIO_c wind;
+    /* 0x794 */ dKankyo_dungeonlightHIO_c dungeonLight;
+    /* 0x7A0 */ dKankyo_ParticlelightHIO_c particleLight;
 };
 
 extern dKankyo_HIO_c g_kankyoHIO;
@@ -611,7 +1072,7 @@ int dKy_WolfEyeLight_set(cXyz* pos_p, f32 angle_x, f32 angle_y, f32 cutoff, GXCo
 BOOL dKy_TeachWind_existence_chk();
 u8 dKy_darkworld_stage_check(char const* stageName, int roomNo);
 BOOL dKy_withwarp_capture_check();
-bool dKy_darkworld_check();
+u8 dKy_darkworld_check();
 void dKy_undwater_filter_draw();
 BOOL dKy_camera_water_in_status_check();
 int dKy_Outdoor_check();
@@ -675,10 +1136,7 @@ void dKy_bgparts_activelight_cut(int bgpart_id);
 int dKy_Indoor_check();
 void dKy_GfFog_tevstr_set(dKy_tevstr_c* tevstr_p);
 void dKy_setLight_mine(dKy_tevstr_c* tevstr_p);
-
-#if DEBUG
-inline void dKankyo_lightHIOInfoUpDateF() {
-}
-#endif
+u8 dKy_get_schbit();
+int dKy_get_schbit_timer();
 
 #endif /* D_KANKYO_D_KANKYO_H */

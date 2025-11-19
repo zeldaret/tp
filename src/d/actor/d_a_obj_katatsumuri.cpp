@@ -622,10 +622,10 @@ void daObjKAT_c::Z_BufferChk() {
 
 #if DEBUG
 #define KAT_Z_BUFFERCHK_MAX_X 640.0f
-#define KAT_Z_BUFFERCHK_MAX_Y 456.0f
+#define KAT_Z_BUFFERCHK_MAX_Y FB_HEIGHT
 #else
-#define KAT_Z_BUFFERCHK_MAX_X 608.0f
-#define KAT_Z_BUFFERCHK_MAX_Y 448.0f
+#define KAT_Z_BUFFERCHK_MAX_X FB_WIDTH
+#define KAT_Z_BUFFERCHK_MAX_Y FB_HEIGHT
 #endif
     if (projected.x > 0.0f && projected.x < KAT_Z_BUFFERCHK_MAX_X && projected.y > unkFloat1 &&
         projected.y < KAT_Z_BUFFERCHK_MAX_Y - unkFloat1)

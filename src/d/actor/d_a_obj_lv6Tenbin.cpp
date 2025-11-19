@@ -1,418 +1,402 @@
 /**
  * @file d_a_obj_lv6Tenbin.cpp
- * 
-*/
+ *
+ */
 
-#include "d/dolzel_rel.h" // IWYU pragma: keep
-
+#include "d/dolzel_rel.h"  // IWYU pragma: keep
 #include "d/actor/d_a_obj_lv6Tenbin.h"
-#include "dol2asm.h"
-
-
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__14daTenbin_HIO_cFv();
-extern "C" void __dt__14mDoHIO_entry_cFv();
-extern "C" void setBaseMtx__10daTenbin_cFv();
-extern "C" void CreateHeap__10daTenbin_cFv();
-extern "C" void create__10daTenbin_cFv();
-extern "C" void rideCallBackRight__10daTenbin_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
-extern "C" void rideCallBackLeft__10daTenbin_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
-extern "C" void Execute__10daTenbin_cFPPA3_A4_f();
-extern "C" void procMain__10daTenbin_cFv();
-extern "C" void init_modeWait__10daTenbin_cFv();
-extern "C" void modeWait__10daTenbin_cFv();
-extern "C" void balanceCheck__10daTenbin_cFv();
-extern "C" void Draw__10daTenbin_cFv();
-extern "C" void Delete__10daTenbin_cFv();
-extern "C" static void daTenbin_Draw__FP10daTenbin_c();
-extern "C" static void daTenbin_Execute__FP10daTenbin_c();
-extern "C" static void daTenbin_Delete__FP10daTenbin_c();
-extern "C" static void daTenbin_Create__FP10fopAc_ac_c();
-extern "C" void __dt__14daTenbin_HIO_cFv();
-extern "C" void __sinit_d_a_obj_lv6Tenbin_cpp();
-extern "C" extern char const* const d_a_obj_lv6Tenbin__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void dBgS_MoveBGProc_Typical__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool Create__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void Set__4cBgWFP6cBgD_tUlPA3_A4_f();
-extern "C" void __ct__4dBgWFv();
-extern "C" void Move__4dBgWFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void ChkUsed__9cBgW_BgIdCFv();
-extern "C" void cLib_addCalc__FPfffff();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
+#include "d/actor/d_a_cstatue.h"
+#include "d/actor/d_a_player.h"
 
 //
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80C779B0-80C779B4 000000 0004+00 2/2 0/0 0/0 .rodata          @3668 */
-SECTION_RODATA static f32 const lit_3668 = 480.0f;
-COMPILER_STRIP_GATE(0x80C779B0, &lit_3668);
-
-/* 80C779B4-80C779B8 000004 0004+00 0/1 0/0 0/0 .rodata          @3669 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3669 = 160.0f;
-COMPILER_STRIP_GATE(0x80C779B4, &lit_3669);
-#pragma pop
-
-/* 80C779B8-80C779BC 000008 0004+00 4/6 0/0 0/0 .rodata          @3670 */
-SECTION_RODATA static u8 const lit_3670[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C779B8, &lit_3670);
-
-/* 80C779BC-80C779C0 00000C 0004+00 0/1 0/0 0/0 .rodata          @3671 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3671 = 45.0f;
-COMPILER_STRIP_GATE(0x80C779BC, &lit_3671);
-#pragma pop
-
-/* 80C779C0-80C779C4 000010 0004+00 0/1 0/0 0/0 .rodata          @3672 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3672 = 50.0f;
-COMPILER_STRIP_GATE(0x80C779C0, &lit_3672);
-#pragma pop
-
-/* 80C779C4-80C779C8 000014 0004+00 0/1 0/0 0/0 .rodata          @3673 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3673 = 3.0f / 50.0f;
-COMPILER_STRIP_GATE(0x80C779C4, &lit_3673);
-#pragma pop
-
-/* 80C779C8-80C779CC 000018 0004+00 0/1 0/0 0/0 .rodata          @3674 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3674 = 5.0f;
-COMPILER_STRIP_GATE(0x80C779C8, &lit_3674);
-#pragma pop
-
-/* 80C779CC-80C779D0 00001C 0004+00 0/2 0/0 0/0 .rodata          @3675 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3675 = 1.0f;
-COMPILER_STRIP_GATE(0x80C779CC, &lit_3675);
-#pragma pop
-
-/* 80C779D0-80C779D4 000020 0004+00 0/1 0/0 0/0 .rodata          @3676 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3676 = 90.0f;
-COMPILER_STRIP_GATE(0x80C779D0, &lit_3676);
-#pragma pop
-
-/* 80C779D4-80C779D8 000024 0004+00 0/1 0/0 0/0 .rodata          @3677 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3677 = 30.0f;
-COMPILER_STRIP_GATE(0x80C779D4, &lit_3677);
-#pragma pop
-
-/* 80C779D8-80C779DC 000028 0004+00 0/1 0/0 0/0 .rodata          @3678 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3678 = 10.0f;
-COMPILER_STRIP_GATE(0x80C779D8, &lit_3678);
-#pragma pop
-
-/* 80C779DC-80C779E0 00002C 0004+00 0/1 0/0 0/0 .rodata          @3679 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3679 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80C779DC, &lit_3679);
-#pragma pop
-
-/* 80C779E0-80C779E4 000030 0004+00 0/1 0/0 0/0 .rodata          @3680 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3680 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C779E0, &lit_3680);
-#pragma pop
-
-/* 80C77A08-80C77A20 000000 0018+00 2/2 0/0 0/0 .data            l_cull_box */
-SECTION_DATA static u8 l_cull_box[24] = {
-    0xC3, 0x96, 0x00, 0x00, 0xC3, 0xFA, 0x00, 0x00, 0xC3, 0xC8, 0x00, 0x00,
-    0x44, 0x96, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0x44, 0xA2, 0x80, 0x00,
-};
-
-/* 80C77A20-80C77A2C -00001 000C+00 1/1 0/0 0/0 .data            @3913 */
-SECTION_DATA static void* lit_3913[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)modeWait__10daTenbin_cFv,
-};
-
-/* 80C77A2C-80C77A38 000024 000C+00 1/1 0/0 0/0 .data            mode_proc$3912 */
-SECTION_DATA static u8 mode_proc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C77A38-80C77A58 -00001 0020+00 1/0 0/0 0/0 .data            l_daTenbin_Method */
-static actor_method_class l_daTenbin_Method = {
-    (process_method_func)daTenbin_Create__FP10fopAc_ac_c,
-    (process_method_func)daTenbin_Delete__FP10daTenbin_c,
-    (process_method_func)daTenbin_Execute__FP10daTenbin_c,
-    0,
-    (process_method_func)daTenbin_Draw__FP10daTenbin_c,
-};
-
-/* 80C77A58-80C77A88 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv6Tenbin */
-extern actor_process_profile_definition g_profile_Obj_Lv6Tenbin = {
-  fpcLy_CURRENT_e,        // mLayerID
-  3,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_Obj_Lv6Tenbin,     // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daTenbin_c),     // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  623,                    // mPriority
-  &l_daTenbin_Method,     // sub_method
-  0x00060100,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
-/* 80C77A88-80C77AB0 000080 0028+00 1/1 0/0 0/0 .data            __vt__10daTenbin_c */
-SECTION_DATA extern void* __vt__10daTenbin_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__10daTenbin_cFv,
-    (void*)Create__16dBgS_MoveBgActorFv,
-    (void*)Execute__10daTenbin_cFPPA3_A4_f,
-    (void*)Draw__10daTenbin_cFv,
-    (void*)Delete__10daTenbin_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
-
-/* 80C77AB0-80C77ABC 0000A8 000C+00 2/2 0/0 0/0 .data            __vt__14daTenbin_HIO_c */
-SECTION_DATA extern void* __vt__14daTenbin_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14daTenbin_HIO_cFv,
-};
-
-/* 80C77ABC-80C77AC8 0000B4 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
 /* 80C768EC-80C76988 0000EC 009C+00 1/1 0/0 0/0 .text            __ct__14daTenbin_HIO_cFv */
 daTenbin_HIO_c::daTenbin_HIO_c() {
-    // NONMATCHING
+    mPlateSpacing = 480.0f;
+    mFallAmount = 160.0f;
+    mPlateYAngle = 0.0f;
+    mXAmplitude = 45.0f;
+    mZAmplitude = 45.0f;
+    mShakeStrength = 50.0f;
+    mShakeDamping = 0.06f;
+    mXZMaximumChange = 5.0f;
+    mXZMinimumChange = 1.0f;
+    field_0x2C = 90.0f;
+    mYAmplitude = 30.0f;
+    mMovementStrength = 10.0f;
+    mRotationDamping = 0.01f;
+    mYMaximumChange = 5.0f;
+    mYMinimumChange = 0.3f;
+    mWaitTime = 15;
 }
 
-/* 80C76988-80C769D0 000188 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-// mDoHIO_entry_c::~mDoHIO_entry_c() {
-extern "C" void __dt__14mDoHIO_entry_cFv() {
-    // NONMATCHING
+#if DEBUG
+void daTenbin_HIO_c::genMessage(JORMContext* context) {
+    context->genSlider("台の間隔", &mPlateSpacing, 0.0f, 10000.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("下がる量", &mFallAmount, 0.0f, 1000.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("皿のYangle", &mPlateYAngle, 0.0f, 90.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("WaitTime", &mWaitTime, 0, 255, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genLabel("\n====揺れ====", 0, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genLabel("--- Ｘ，Ｚ回転 ---", 0, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("振幅Ｘ", &mXAmplitude, 0.0f, 180.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("振幅Ｚ", &mZAmplitude, 0.0f, 180.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("揺れ強さ", &mShakeStrength, 0.0f, 10000.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("揺れ減衰", &mShakeDamping, 0.0f, 1.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("最大減衰量", &mXZMaximumChange, 0.0f, 100.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("最小減衰量", &mXZMinimumChange, 0.0f, 100.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genLabel("--- Ｙ移動 ---", 0, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("振幅Ｙ", &mYAmplitude, 0.0f, 180.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("移動強さ", &mMovementStrength, 0.0f, 10000.0f, 0, NULL, -1, -1, 0x200,
+                       0x18);
+    context->genSlider("揺れ減衰", &mRotationDamping, 0.0f, 1.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("最大減衰量", &mYMaximumChange, 0.0f, 100.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("最小減衰量", &mYMinimumChange, 0.0f, 100.0f, 0, NULL, -1, -1, 0x200, 0x18);
 }
+#endif
 
-/* ############################################################################################## */
-/* 80C779E4-80C779E8 000034 0004+00 2/2 0/0 0/0 .rodata          @3735 */
-SECTION_RODATA static u32 const lit_3735 = 0x43360B61;
-COMPILER_STRIP_GATE(0x80C779E4, &lit_3735);
-
-/* 80C77AD0-80C77ADC 000008 000C+00 1/1 0/0 0/0 .bss             @3662 */
-static u8 lit_3662[12];
+/* 80C77A08-80C77A20 000000 0018+00 2/2 0/0 0/0 .data            l_cull_box */
+static cull_box l_cull_box = {-300.0f, -500.0f, -400.0f, 1200.0f, 300.0f, 1300.0f};
 
 /* 80C77ADC-80C77B20 000014 0044+00 5/5 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[68];
+static daTenbin_HIO_c l_HIO;
 
 /* 80C769D0-80C76BCC 0001D0 01FC+00 2/2 0/0 0/0 .text            setBaseMtx__10daTenbin_cFv */
 void daTenbin_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+    mDoMtx_stack_c::transM(l_HIO.mPlateSpacing, field_0x5BC, 0.0f);
+    mDoMtx_stack_c::ZXYrotM(0, cM_deg2s(l_HIO.mPlateYAngle), 0);
+    mDoMtx_stack_c::ZXYrotM(field_0x5D4.x, field_0x5D4.y, field_0x5D4.z);
+    mDoMtx_stack_c::transM(field_0x5F4.x, field_0x5F4.y, field_0x5F4.z);
+    mModel1->setBaseScale(scale);
+    mModel1->setBaseTRMtx(mDoMtx_stack_c::get());
+    MTXCopy(mDoMtx_stack_c::get(), field_0x620);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
+    mDoMtx_stack_c::transM(-l_HIO.mPlateSpacing, field_0x5C0, 0.0f);
+    mDoMtx_stack_c::ZXYrotM(0, cM_deg2s(l_HIO.mPlateYAngle), 0);
+    mDoMtx_stack_c::ZXYrotM(field_0x5D4.x, field_0x5D4.y, field_0x5D4.z);
+    mDoMtx_stack_c::transM(field_0x5F4.x, field_0x5F4.y, field_0x5F4.z);
+    mModel2->setBaseScale(scale);
+    mModel2->setBaseTRMtx(mDoMtx_stack_c::get());
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
-/* ############################################################################################## */
-/* 80C779FC-80C779FC 00004C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C779FC = "L6Tenbin";
-#pragma pop
-
 /* 80C76BCC-80C76D10 0003CC 0144+00 1/0 0/0 0/0 .text            CreateHeap__10daTenbin_cFv */
-void daTenbin_c::CreateHeap() {
-    // NONMATCHING
+int daTenbin_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("L6Tenbin", 5);
+    JUT_ASSERT(261, modelData != NULL);
+    mModel1 = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
+    if (mModel1 == NULL) {
+        return FALSE;
+    }
+    modelData = (J3DModelData*)dComIfG_getObjectRes("L6Tenbin", 4);
+    JUT_ASSERT(273, modelData != NULL);
+    mModel2 = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
+    if (mModel2 == NULL) {
+        return FALSE;
+    }
+    mdBgW = new dBgW();
+    if (mdBgW != NULL && !mdBgW->Set((cBgD_t*)dComIfG_getObjectRes("L6Tenbin", 8), 1, &field_0x620)) {
+        mdBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
+    } else {
+        mdBgW = NULL;
+        return FALSE;
+    }
+    return TRUE;
 }
 
 /* 80C76D10-80C76EE0 000510 01D0+00 1/1 0/0 0/0 .text            create__10daTenbin_cFv */
-void daTenbin_c::create() {
-    // NONMATCHING
+int daTenbin_c::create() {
+    fopAcM_ct(this, daTenbin_c);
+    int phase = dComIfG_resLoad(&mPhase, "L6Tenbin");
+    if (phase == cPhs_COMPLEATE_e) {
+        if (MoveBGCreate("L6Tenbin", 8, dBgS_MoveBGProc_Typical, 0x6a00, 0) == cPhs_ERROR_e) {
+            return cPhs_ERROR_e;
+        }
+        fopAcM_SetMtx(this, mModel2->getBaseTRMtx());
+        fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z,
+                              l_cull_box.max.x, l_cull_box.max.y, l_cull_box.max.y);
+        mpBgW->SetRideCallback(rideCallBackLeft);
+        mdBgW->SetRideCallback(rideCallBackRight);
+        field_0x5B2 = 0;
+        field_0x5B4 = 0;
+        field_0x5B6 = 0;
+        field_0x5B8 = 0;
+        field_0x650 = -1;
+        field_0x5BC = 0.0f;
+        field_0x5C0 = 0.0f;
+        mUnkFallAmt1 = 0.0f;
+        mUnkFallAmt2 = 0.0f;
+        field_0x5D4.x = 0;
+        field_0x5D4.y = 0;
+        field_0x5D4.z = 0;
+        mShakeStrength = 0.0f;
+        field_0x5F4.x = 0.0f;
+        field_0x5F4.y = 0.0f;
+        field_0x5F4.z = 0.0f;
+        mMovementStrength = 0.0f;
+        mZAmplitude = 0.0f;
+        mXAmplitude = 0.0f;
+        mShakeDamping = 0.0f;
+        mXZMaximumChange = 0.0f;
+        mXZMinimumChange = 0.0f;
+        field_0x600 = 0.0f;
+        mYAmplitude = 0.0f;
+        mRotationDamping = 0.0f;
+        mYMaximumChange = 0.0f;
+        mYMinimumChange = 0.0f;
+        field_0x618 = true;
+        field_0x5D0 = 0;
+        setBaseMtx();
+        if (mdBgW != NULL) {
+            dComIfG_Bgsp().Regist(mdBgW, this);
+            mdBgW->Move();
+        }
+        MoveBGExecute();
+        init_modeWait();
+#if DEBUG
+        l_HIO.entryHIO("天秤");
+#endif
+    }
+    return phase;
 }
 
 /* 80C76EE0-80C77078 0006E0 0198+00 1/1 0/0 0/0 .text
  * rideCallBackRight__10daTenbin_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c */
-void daTenbin_c::rideCallBackRight(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
-    // NONMATCHING
+void daTenbin_c::rideCallBackRight(dBgW* i_dBgW, fopAc_ac_c* i_act1, fopAc_ac_c* i_act2) {
+    (void)i_dBgW;
+    daTenbin_c* i_tenbin = (daTenbin_c*)i_act1;
+    daPy_py_c* player = dComIfGp_getLinkPlayer();
+    if (fopAcM_GetName(i_act2) == PROC_SPINNER) {
+        if (player->checkSpinnerRide()) {
+            i_tenbin->field_0x5B2 += 2;
+        }
+    }
+    if (fopAcM_GetName(i_act2) == PROC_ALINK && dComIfGp_checkPlayerStatus0(0, 0x100) == 0) {
+        i_tenbin->field_0x5B2 += 2;
+        if (player->checkBootsOrArmorHeavy()) {
+            i_tenbin->field_0x5B2 += 60000;
+        }
+        if (player->getGrabActorID() != -1) {
+            fopAc_ac_c* found = fopAcM_SearchByID(player->getGrabActorID());
+            if (fopAcM_GetName(found) == PROC_CSTATUE) {
+                i_tenbin->field_0x5B2++;
+                i_tenbin->field_0x650 = fopAcM_GetID(found);
+            }
+        }
+    }
+    if (fopAcM_GetName(i_act2) == PROC_CSTATUE) {
+        daCstatue_c* i_statue = (daCstatue_c*)i_act2;
+        if (i_statue->checkNormalType()) {
+            i_tenbin->field_0x5B2 += 4;
+        } else if (fopAcM_GetID(i_statue) != i_tenbin->field_0x650) {
+            i_tenbin->field_0x5B2++;
+        }
+    }
 }
 
 /* 80C77078-80C77200 000878 0188+00 1/1 0/0 0/0 .text
  * rideCallBackLeft__10daTenbin_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c */
-void daTenbin_c::rideCallBackLeft(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
-    // NONMATCHING
+void daTenbin_c::rideCallBackLeft(dBgW* i_dBgW, fopAc_ac_c* i_act1, fopAc_ac_c* i_act2) {
+    (void)i_dBgW;
+    daTenbin_c* i_tenbin = (daTenbin_c*)i_act1;
+    daPy_py_c* player = dComIfGp_getLinkPlayer();
+    if (fopAcM_GetName(i_act2) == PROC_SPINNER) {
+        if (player->checkSpinnerRide()) {
+            i_tenbin->field_0x5B4 += 2;
+        }
+    }
+    if (fopAcM_GetName(i_act2) == PROC_ALINK && dComIfGp_checkPlayerStatus0(0, 0x100) == 0) {
+        i_tenbin->field_0x5B4 += 2;
+        if (player->checkEquipHeavyBoots()) {
+            i_tenbin->field_0x5B4 += 60000;
+        }
+        if (player->getGrabActorID() != -1) {
+            fopAc_ac_c* found = fopAcM_SearchByID(player->getGrabActorID());
+            if (fopAcM_GetName(found) == PROC_CSTATUE) {
+                i_tenbin->field_0x5B4++;
+                i_tenbin->field_0x650 = fopAcM_GetID(found);
+            }
+        }
+    }
+    if (fopAcM_GetName(i_act2) == PROC_CSTATUE) {
+        daCstatue_c* i_statue = (daCstatue_c*)i_act2;
+        if (i_statue->checkNormalType()) {
+            i_tenbin->field_0x5B4 += 4;
+        } else if (fopAcM_GetID(i_statue) != i_tenbin->field_0x650) {
+            i_tenbin->field_0x5B4++;
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 80C779E8-80C779EC 000038 0004+00 1/1 0/0 0/0 .rodata          @3908 */
-SECTION_RODATA static f32 const lit_3908 = 0.5f;
-COMPILER_STRIP_GATE(0x80C779E8, &lit_3908);
 
 /* 80C77200-80C772BC 000A00 00BC+00 1/0 0/0 0/0 .text            Execute__10daTenbin_cFPPA3_A4_f */
-void daTenbin_c::Execute(Mtx** param_0) {
-    // NONMATCHING
+int daTenbin_c::Execute(Mtx** i_pMtx) {
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x - l_HIO.mPlateSpacing / 2.0f, l_cull_box.min.y,
+                          l_cull_box.min.z, l_cull_box.max.x + l_HIO.mPlateSpacing / 2.0f,
+                          l_cull_box.max.y, l_cull_box.max.y);
+    procMain();
+    setBaseMtx();
+    *i_pMtx = &mModel2->getBaseTRMtx();
+    if (mdBgW != NULL) {
+        mdBgW->Move();
+    }
+    field_0x5B2 = 0;
+    field_0x5B4 = 0;
+    field_0x650 = -1;
+    return TRUE;
 }
-
-/* ############################################################################################## */
-/* 80C77B20-80C77B24 000058 0004+00 1/1 0/0 0/0 .bss             None */
-static u8 data_80C77B20[4];
 
 /* 80C772BC-80C77464 000ABC 01A8+00 1/1 0/0 0/0 .text            procMain__10daTenbin_cFv */
 void daTenbin_c::procMain() {
-    // NONMATCHING
+    typedef void (daTenbin_c::*func_call)(void);
+    static const func_call mode_proc[] = {&daTenbin_c::modeWait};
+    (this->*mode_proc[mMode])();
+    // casts here are necessary to match debug
+    field_0x5D4.z = mShakeStrength * cM_scos(field_0x5D0 * (s16)cM_deg2s(mZAmplitude));
+    field_0x5D4.x = mShakeStrength * cM_ssin(field_0x5D0 * (s16)cM_deg2s(mXAmplitude));
+    cLib_addCalc(&mShakeStrength, 0.0f, mShakeDamping, mXZMaximumChange, mXZMinimumChange);
+    field_0x5F4.y = mMovementStrength * cM_ssin(field_0x5D0 * (s16)cM_deg2s(mYAmplitude));
+    cLib_addCalc(&mMovementStrength, 0.0f, mRotationDamping, mYMaximumChange, mYMinimumChange);
+    field_0x5D0++;
 }
 
 /* 80C77464-80C77470 000C64 000C+00 1/1 0/0 0/0 .text            init_modeWait__10daTenbin_cFv */
 void daTenbin_c::init_modeWait() {
-    // NONMATCHING
+    mMode = 0;
 }
-
-/* ############################################################################################## */
-/* 80C779EC-80C779F0 00003C 0004+00 0/1 0/0 0/0 .rodata          @3971 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3971 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80C779EC, &lit_3971);
-#pragma pop
-
-/* 80C779F0-80C779F4 000040 0004+00 0/1 0/0 0/0 .rodata          @3972 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3972 = 8.0f;
-COMPILER_STRIP_GATE(0x80C779F0, &lit_3972);
-#pragma pop
-
-/* 80C779F4-80C779F8 000044 0004+00 0/1 0/0 0/0 .rodata          @3973 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3973 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C779F4, &lit_3973);
-#pragma pop
-
-/* 80C779F8-80C779FC 000048 0004+00 0/1 0/0 0/0 .rodata          @3974 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3974 = -1.0f;
-COMPILER_STRIP_GATE(0x80C779F8, &lit_3974);
-#pragma pop
 
 /* 80C77470-80C77668 000C70 01F8+00 1/0 0/0 0/0 .text            modeWait__10daTenbin_cFv */
 void daTenbin_c::modeWait() {
-    // NONMATCHING
+    balanceCheck();
+    if (mWaitTime == 0) {
+        f32 v1 = cLib_addCalc(&field_0x5BC, mUnkFallAmt1, 0.4f, 8.0f, 0.1f);
+        f32 v2 = cLib_addCalc(&field_0x5C0, mUnkFallAmt2, 0.4f, 8.0f, 0.1f);
+        if (v1 != 0.0f || v2 != 0.0f) {
+            mDoAud_seStartLevel(Z2SE_OBJ_L6_BALANCE_MV, &current.pos, 0,
+                                dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        }
+        if (v1 == 0.0f && v2 == 0.0f && mShakeStrength == 0.0f && !field_0x618) {
+            mDoAud_seStart(Z2SE_OBJ_L6_BALANCE_ST, &current.pos, 0,
+                           dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            mShakeStrength = l_HIO.mShakeStrength;
+            mZAmplitude = l_HIO.mZAmplitude;
+            mXAmplitude = l_HIO.mXAmplitude;
+            mShakeDamping = l_HIO.mShakeDamping;
+            mXZMaximumChange = l_HIO.mXZMaximumChange;
+            mXZMinimumChange = l_HIO.mXZMinimumChange;
+            mMovementStrength = l_HIO.mMovementStrength;
+            field_0x600 = l_HIO.field_0x2C;
+            mYAmplitude = l_HIO.mYAmplitude;
+            mRotationDamping = l_HIO.mRotationDamping;
+            mYMaximumChange = l_HIO.mYMaximumChange;
+            mYMinimumChange = l_HIO.mYMinimumChange;
+            field_0x618 = true;
+        }
+    }
+    field_0x5B6 = field_0x5B2;
+    field_0x5B8 = field_0x5B4;
 }
 
 /* 80C77668-80C7772C 000E68 00C4+00 1/1 0/0 0/0 .text            balanceCheck__10daTenbin_cFv */
 void daTenbin_c::balanceCheck() {
-    // NONMATCHING
+    if (field_0x5B6 != field_0x5B2 || field_0x5B8 != field_0x5B4) {
+        if (field_0x5B2 == field_0x5B4) {
+            mUnkFallAmt1 = 0.0f;
+            mUnkFallAmt2 = 0.0f;
+        } else if (field_0x5B2 > field_0x5B4) {
+            mUnkFallAmt1 = -l_HIO.mFallAmount;
+            mUnkFallAmt2 = l_HIO.mFallAmount;
+        } else if (field_0x5B2 < field_0x5B4) {
+            mUnkFallAmt1 = l_HIO.mFallAmount;
+            mUnkFallAmt2 = -l_HIO.mFallAmount;
+        }
+        mWaitTime = l_HIO.mWaitTime;
+        mShakeStrength = 0.0f;
+        mMovementStrength = 0.0f;
+        field_0x618 = false;
+    }
+    if (mWaitTime != 0) {
+        mWaitTime--;
+    }
 }
 
 /* 80C7772C-80C77810 000F2C 00E4+00 1/0 0/0 0/0 .text            Draw__10daTenbin_cFv */
-void daTenbin_c::Draw() {
-    // NONMATCHING
+int daTenbin_c::Draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mModel1, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mModel2, &tevStr);
+    fopAcM_setEffectMtx(this, mModel1->getModelData());
+    fopAcM_setEffectMtx(this, mModel2->getModelData());
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mModel1);
+    mDoExt_modelUpdateDL(mModel2);
+    dComIfGd_setList();
+    return TRUE;
 }
 
 /* 80C77810-80C77878 001010 0068+00 1/0 0/0 0/0 .text            Delete__10daTenbin_cFv */
-void daTenbin_c::Delete() {
-    // NONMATCHING
+int daTenbin_c::Delete() {
+    dComIfG_resDelete(&mPhase, "L6Tenbin");
+    if (mdBgW != NULL && mdBgW->ChkUsed()) {
+        dComIfG_Bgsp().Release(mdBgW);
+    }
+#if DEBUG
+    l_HIO.removeHIO();
+#endif
+    return TRUE;
 }
 
 /* 80C77878-80C778A4 001078 002C+00 1/0 0/0 0/0 .text            daTenbin_Draw__FP10daTenbin_c */
-static void daTenbin_Draw(daTenbin_c* param_0) {
-    // NONMATCHING
+static int daTenbin_Draw(daTenbin_c* i_this) {
+    return i_this->MoveBGDraw();
 }
 
 /* 80C778A4-80C778C4 0010A4 0020+00 1/0 0/0 0/0 .text            daTenbin_Execute__FP10daTenbin_c */
-static void daTenbin_Execute(daTenbin_c* param_0) {
-    // NONMATCHING
+static int daTenbin_Execute(daTenbin_c* i_this) {
+    return i_this->MoveBGExecute();
 }
 
 /* 80C778C4-80C778E4 0010C4 0020+00 1/0 0/0 0/0 .text            daTenbin_Delete__FP10daTenbin_c */
-static void daTenbin_Delete(daTenbin_c* param_0) {
-    // NONMATCHING
+static int daTenbin_Delete(daTenbin_c* i_this) {
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    return i_this->MoveBGDelete();
 }
 
 /* 80C778E4-80C77904 0010E4 0020+00 1/0 0/0 0/0 .text            daTenbin_Create__FP10fopAc_ac_c */
-static void daTenbin_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int daTenbin_Create(fopAc_ac_c* i_this) {
+    daTenbin_c* this_tenbin = (daTenbin_c*)i_this;
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    return this_tenbin->create();
 }
 
-/* 80C77904-80C77960 001104 005C+00 2/1 0/0 0/0 .text            __dt__14daTenbin_HIO_cFv */
-daTenbin_HIO_c::~daTenbin_HIO_c() {
-    // NONMATCHING
-}
+/* 80C77A38-80C77A58 -00001 0020+00 1/0 0/0 0/0 .data            l_daTenbin_Method */
+static actor_method_class l_daTenbin_Method = {
+    (process_method_func)daTenbin_Create,  
+    (process_method_func)daTenbin_Delete,
+    (process_method_func)daTenbin_Execute, 
+    NULL,
+    (process_method_func)daTenbin_Draw,
+};
 
-/* 80C77960-80C7799C 001160 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_lv6Tenbin_cpp */
-void __sinit_d_a_obj_lv6Tenbin_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80C77960, __sinit_d_a_obj_lv6Tenbin_cpp);
-#pragma pop
+/* 80C77A58-80C77A88 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv6Tenbin */
+extern actor_process_profile_definition g_profile_Obj_Lv6Tenbin = {
+    fpcLy_CURRENT_e,         // mLayerID
+    3,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_Obj_Lv6Tenbin,      // mProcName
+    &g_fpcLf_Method.base,    // sub_method
+    sizeof(daTenbin_c),      // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    623,                     // mPriority
+    &l_daTenbin_Method,      // sub_method
+    0x00060100,              // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
+};
 
 /* 80C779FC-80C779FC 00004C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

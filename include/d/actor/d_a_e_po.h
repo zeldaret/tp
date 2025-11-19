@@ -133,43 +133,12 @@ public:
     /* 0xE54 */ dCcU_AtInfo mAtInfo;
     /* 0xE78 */ u32 mParticleKey6;
     /* 0xE7C */ u32 mParticleKey5[2];
-    /* 0xE84 */ u32 mParticleKey[4];
-    /* 0xE94 */ u32 mParticleKey2[4];
-    /* 0xEA4 */ u32 mParticleKey3[2];
-    /* 0xEAC */ u32 mParticleKey4[2];
+    /* 0xE84 */ u32 mParticleKeys[12];
     /* 0xEB4 */ dPa_hermiteEcallBack_c field_0xEB4;
     /* 0xECC */ u8 field_0xECC;
     /* 0xECD */ u8 field_0xECD[0xee0 - 0xECD];  // Padding
 };
 
 STATIC_ASSERT(sizeof(e_po_class) == 0xee0);
-
-class daE_PO_HIO_c {
-public:
-    /* 8074C54C */ daE_PO_HIO_c();
-    /* 80756DE8 */ virtual ~daE_PO_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x04[4];
-    /* 0x08 */ f32 mBaseSize;
-    /* 0x0c */ f32 mSearchDist;
-    /* 0x10 */ f32 mAttackDist;
-    /* 0x14 */ f32 mMovementSpeed;
-    /* 0x18 */ f32 mType0AtRange;
-    /* 0x1c */ s16 mKanteraColor1R;
-    /* 0x1e */ s16 mKanteraColor1G;
-    /* 0x20 */ s16 mKanteraColor1B;
-    /* 0x22 */ s16 mKanteraColor2R;
-    /* 0x24 */ s16 mKanteraColor2G;
-    /* 0x26 */ s16 mKanteraColor2B;
-    /* 0x28 */ s16 mKanteraColor1A;
-    /* 0x2a */ s16 mReviveTime1;
-    /* 0x2c */ s16 mReviveTime2;
-    /* 0x2e */ s16 mReviveTime3;
-    /* 0x30 */ s16 mReviveTime4;
-    /* 0x32 */ s16 mFallChanceTime;
-    /* 0x34 */ s16 mAttackChanceTime;
-    /* 0x36 */ s16 field_0x36;
-    /* 0x38 */ f32 mModelSize;
-};
 
 #endif /* D_A_E_PO_H */

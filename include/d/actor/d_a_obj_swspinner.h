@@ -24,8 +24,8 @@ public:
     /* 80D00890 */ int Draw();
     /* 80D00954 */ int Delete();
 
-    u8 getSwBit() { return fopAcM_GetParamBit(this, 0, 8); }
-    u8 getSwBit2() { return fopAcM_GetParamBit(this, 8, 8); }
+    u8 getSwbit() { return fopAcM_GetParamBit(this, 0, 8); }
+    u8 getSwbit2() { return fopAcM_GetParamBit(this, 8, 8); }
     int GetRotSpeedY() { return mRotSpeedY; }
     f32 GetR() { return 100.0f; }
 

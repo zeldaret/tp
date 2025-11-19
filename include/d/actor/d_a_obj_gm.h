@@ -58,7 +58,7 @@ public:
     /* 0x94C */ dCcD_Stts mStts;
     /* 0x988 */ dCcD_Sph mSph;
     /* 0xAC0 */ dCcU_AtInfo mAtInfo;
-    /* 0xAE4 */ u8 field_0xae4;
+    /* 0xAE4 */ s8 field_0xae4;
     /* 0xAE8 */ u32 field_0xae8;
     /* 0xAEC */ u32 field_0xaec;
     /* 0xAF0 */ bool mIsFirstSpawn;

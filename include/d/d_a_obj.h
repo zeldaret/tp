@@ -20,9 +20,9 @@ void quat_rotBaseY(Quaternion*, cXyz const&);
 void HitSeStart(cXyz const*, int, dCcD_GObjInf const*, u32);
 
 template <typename T>
-int PrmAbstract(const fopAc_ac_c* i_actor, T i_prmA, T i_prmB) {
+T PrmAbstract(const fopAc_ac_c* i_actor, T i_nbits, T i_shift) {
     u32 param = fopAcM_GetParam(i_actor);
-    return ((1 << i_prmA) - 1) & (param >> i_prmB);
+    return T((param >> i_shift) & ((1 << i_nbits) - 1));
 }
 
 class HioVarious_c : public JORReflexible {

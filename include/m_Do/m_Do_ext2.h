@@ -12,8 +12,8 @@ public:
     void check();
     void diff();
 
-    static void easyCreate(void*, s32);
-    static void easyCreate(void*, u32);
+    static FixedMemoryCheck* easyCreate(void*, s32);
+    static FixedMemoryCheck* easyCreate(void*, u32);
     static void checkAll();
     static void diffAll();
     static void saveAll();

@@ -21,13 +21,26 @@ struct daNpcKasiHana_HIOParam {
     /* 0x78 */ f32 escape_spd;          // 逃げる速度 - Escape Speed
 };
 
-class daNpcKasiHana_HIO_c
-#ifdef DEBUG
-: public mDoHIO_entry_c
-#endif
-{
-    /* 0x8 */ daNpcKasiHana_HIOParam param;
+class daNpcKasiHana_Param_c {
+public:
+    /* 80A2067C */ virtual ~daNpcKasiHana_Param_c() {}
+
+    static daNpcKasiHana_HIOParam const m;
 };
+
+#if DEBUG
+class daNpcKasiHana_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpcKasiHana_HIO_c();
+    void genMessage(JORMContext*);
+
+    daNpcKasiHana_HIOParam m;
+};
+
+#define NPC_KASI_HANA_HIO_CLASS daNpcKasiHana_HIO_c
+#else
+#define NPC_KASI_HANA_HIO_CLASS daNpcKasiHana_Param_c
+#endif
 
 class daNpcKasi_Mng_c {
 public:
@@ -36,6 +49,7 @@ public:
         mCenterPos.set(0.0f, 0.0f, 0.0f);
         mSygnal = 0;
     }
+    ~daNpcKasi_Mng_c() {}
     /* 80A1AFAC */ void calcEscapeForm();
     /* 80A1B0D8 */ BOOL calcCenterPos();
     /* 80A1B1C8 */ f32 getDistFromCenter();
@@ -57,7 +71,7 @@ public:
     /* 80A1BCF0 */ void deleteAllMember();
     /* 80A1BD6C */ void chgWeightHeavy();
     /* 80A1BDD8 */ void chgWeightLight();
-    /* 80A2065C */ cXyz getCenterPos();
+    /* 80A2065C */ cXyz getCenterPos() { return mCenterPos; }
 
     void setKyuPos(const cXyz& i_pos) { mKyuPos = i_pos; }
     void setMichPos(const cXyz& i_pos) { mMichPos = i_pos; }
@@ -69,6 +83,24 @@ public:
     fopAc_ac_c* getHanaActor() { return mHanaActorMngr.getActorP(); }
     fopAc_ac_c* getKyuActor() { return mKyuActorMngr.getActorP(); }
     fopAc_ac_c* getMichActor() { return mMichActorMngr.getActorP(); }
+
+    void setKyuActor(fopAc_ac_c* kyu_p) {
+        if (kyu_p != NULL) {
+            mKyuActorMngr.entry(kyu_p);
+        }
+    }
+
+    void setMichActor(fopAc_ac_c* mich_p) {
+        if (mich_p != NULL) {
+            mMichActorMngr.entry(mich_p);
+        }
+    }
+
+    void setDanchoActor(fopAc_ac_c* dancho_p) {
+        if (dancho_p != NULL) {
+            mDanchoActorMngr.entry(dancho_p);
+        }
+    }
 
     /* 0x00 */ daNpcF_ActorMngr_c mHanaActorMngr;
     /* 0x08 */ daNpcF_ActorMngr_c mKyuActorMngr;
@@ -145,9 +177,9 @@ public:
     /* 80A2016C */ BOOL _Evt_Kasi_Cheer2(int);
     /* 80A20244 */ BOOL _Evt_Kasi_Cheer2_CutInit(int const&);
     /* 80A20350 */ BOOL _Evt_Kasi_Cheer2_CutMain(int const&, int);
-    /* 80A20678 */ void adjustShapeAngle();
+    /* 80A20678 */ void adjustShapeAngle() {}
 
-    int getMessageNo() { return home.angle.x; }
+    s16 getMessageNo() { return s16(home.angle.x); }
     s8 getType() {
         s8 rv = fopAcM_GetParam(this) & 0xFF;
         
@@ -162,7 +194,7 @@ public:
     BOOL is_escape() { return mEscape; }
     void chgWeightHeavy() { mCcStts.SetWeight(0xFE); }
     void chgWeightLight() { mCcStts.SetWeight(0xD8); }
-    u8 getRailNo() { return fopAcM_GetParam(this) >> 8; }
+    int getRailNo() { return s8((fopAcM_GetParam(this) >> 8) & 0xFF); }
     bool chkAction(actionFunc action) { return action == mAction; }
     int getSwitchBitNo() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
     BOOL pl_front_check() { return actor_front_check(daPy_getPlayerActorClass()); }
@@ -179,7 +211,7 @@ private:
     /* 0x0BF0 */ daNpcF_Lookat_c mLookat;
     /* 0x0C8C */ daNpcF_ActorMngr_c mActorMngr[1];
     /* 0x0C94 */ daNpcF_Path_c mPath;
-    /* 0x12C4 */ daNpcKasiHana_HIO_c* mHIO;
+    /* 0x12C4 */ NPC_KASI_HANA_HIO_CLASS* mHIO;
     /* 0x12C8 */ dCcD_Cyl mCyl;
     /* 0x1404 */ s8 mType;
     /* 0x1405 */ u8 field_0x1405;

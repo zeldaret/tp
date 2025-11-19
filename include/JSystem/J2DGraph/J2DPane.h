@@ -211,7 +211,10 @@ public:
     /* 0xD8 */ f32 mTranslateY;
     /* 0xDC */ JSUTree<J2DPane> mPaneTree;
     /* 0xF8 */ const J2DAnmTransform* mTransform;
+
+    #if !(PLATFORM_WII || PLATFORM_SHIELD)
     /* 0xFC */ u32 _fc;
+    #endif
 };
 
 #endif /* J2DPANE_H */

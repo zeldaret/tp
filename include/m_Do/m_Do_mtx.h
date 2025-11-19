@@ -45,7 +45,7 @@ inline void mDoMtx_multVecArray(Mtx m, const Vec* src, Vec* dst, u32 count) {
 }
 
 inline void mDoMtx_copy(const Mtx src, Mtx dst) {
-    MTXCopy(src, dst);
+    PSMTXCopy(src, dst);
 }
 
 inline void mDoMtx_trans(Mtx m, f32 x, f32 y, f32 z) {
@@ -343,7 +343,7 @@ public:
      * Copies a given matrix `m` to the `now` matrix
      * @param m The source matrix to copy
      */
-    static void copy(const Mtx m) { MTXCopy(m, now); }
+    static void copy(const Mtx m) { PSMTXCopy(m, now); }
 
     static void rotAxisRadS(const Vec* axis, f32 rad) {
         MTXRotAxisRad(now, axis, rad);

@@ -107,7 +107,4 @@ public:
 
 #include "f_op/f_op_actor_mng.h"
 
-struct JKRExpHeap {};
-
-
 #endif /* D_A_BALLOON_2D_H */
