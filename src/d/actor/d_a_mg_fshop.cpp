@@ -1662,8 +1662,14 @@ static int daFshop_Create(fopAc_ac_c* actor) {
         fopAcM_createChild(PROC_FSHOP, fopAcM_GetID(actor), 0xFFFFFF23, &actor->current.pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1, NULL);
 
         u8 sp10 = 1;
-        #if VERSION == VERSION_GCN_PAL || VERSION == VERSION_WII_PAL || PLATFORM_SHIELD
-        if (dComIfGs_getPalLanguage() == 1) {
+        #if VERSION == VERSION_GCN_PAL || VERSION == VERSION_WII_PAL
+        if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_ENGLISH) {
+            sp10 = 2;
+        } else {
+            sp10 = 0;
+        }
+        #elif PLATFORM_SHIELD
+        if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_GERMAN) {
             sp10 = 2;
         } else {
             sp10 = 0;
