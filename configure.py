@@ -995,7 +995,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01", "ShieldD"), "JSystem/JAudio2/JAUBankTable.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JAudio2/JAUClusterSound.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JAudio2/JAUInitializer.cpp"),
-            Object(Equivalent, "JSystem/JAudio2/JAUSectionHeap.cpp"),
+            Object(Equivalent, "JSystem/JAudio2/JAUSectionHeap.cpp"), #weak function order
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JAudio2/JAUSeqCollection.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JAudio2/JAUSoundAnimator.cpp"),
