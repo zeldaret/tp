@@ -5724,4 +5724,5 @@ extern actor_process_profile_definition g_profile_B_ZANT = {
 };
 
 AUDIO_INSTANCES;
+template<>
 JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

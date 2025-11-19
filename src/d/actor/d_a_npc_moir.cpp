@@ -783,9 +783,7 @@ void daNpcMoiR_c::playExpression() {
     daNpcF_anmPlayData* pDat2[1] = {&dat2};
     daNpcF_anmPlayData dat3 = {ANM_FH_SERIOUS, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[1] = {&dat3};
-    // FIXME: daNpcF hack in configure.py prevents us from converting more of these,
-    //  otherwise this function will not inline in GCN.
-    daNpcF_anmPlayData dat4 = {ANM_F_TAKAJO_HI, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat4 = {ANM_F_TAKAJO_HI, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&dat4};
     daNpcF_anmPlayData dat5 = {ANM_FH_TAKAJO_HI, 0.0f, 0};
     daNpcF_anmPlayData* pDat5[1] = {&dat5};
@@ -795,9 +793,9 @@ void daNpcMoiR_c::playExpression() {
     daNpcF_anmPlayData* pDat7[1] = {&dat7};
     daNpcF_anmPlayData dat8 = {ANM_F_HOLD_S, 0.0f, 0};
     daNpcF_anmPlayData* pDat8[1] = {&dat8};
-    daNpcF_anmPlayData dat9 = {ANM_FH_HOLD_S, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat9 = {ANM_FH_HOLD_S, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat9[1] = {&dat9};
-    daNpcF_anmPlayData dat10 = {ANM_NONE, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat10 = {ANM_NONE, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat10[1] = {&dat10};
     daNpcF_anmPlayData* pDat11[1] = {&dat0};
 

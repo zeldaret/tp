@@ -1259,6 +1259,7 @@ static int daArrow_delete(daArrow_c* i_this) {
 }
 
 AUDIO_INSTANCES;
+template<>
 JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;
 
 /* 8049DE8C-8049DEAC -00001 0020+00 1/0 0/0 0/0 .data            l_daArrowMethodTable */

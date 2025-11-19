@@ -41,9 +41,9 @@ public:
     /* 80B9E388 */ int Draw();
     /* 80B9E478 */ int Delete();
 
-    u8 getSwBit1() { return fopAcM_GetParamBit(this, 0, 8); }
-    u8 getSwBit2() { return fopAcM_GetParamBit(this, 8, 8); }
-    u8 getSwBit3() { return fopAcM_GetParamBit(this, 16, 8); }
+    int getSwBit1() { return fopAcM_GetParamBit(this, 0, 8); }
+    int getSwBit2() { return fopAcM_GetParamBit(this, 8, 8); }
+    int getSwBit3() { return fopAcM_GetParamBit(this, 16, 8); }
 
     s32 getEvetID() {
         return fopAcM_GetParamBit(this, 0x18, 8);
@@ -51,6 +51,7 @@ public:
 
     u8 getWaitTime() { return shape_angle.z; }
     int getItemTbleNum() { return shape_angle.x >> 8 & 0xff; }
+    int getState() { return shape_angle.x; }
 
     static const dCcD_SrcGObjInf mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;
@@ -76,7 +77,7 @@ private:
     /* 0x7a8 */ dBgS_ObjAcch mAcch;
     /* 0x980 */ dBgW* field_0x980;
     /* 0x984 */ u8 field_0x984;
-    /* 0x988 */ u32 field_0x988;
+    /* 0x988 */ u32 mEmID;
     /* 0x98c */ u8 field_0x98c;
     /* 0x98d */ u8 field_0x98d[0x994 - 0x98d];
     /* 0x994 */ u8 field_0x994;

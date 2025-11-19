@@ -467,12 +467,7 @@ int daNpcT_Path_c::chkPassed1(cXyz i_pnt, int i_num) {
     cXyz next_pos;
     cXyz sp5C;
 
-#if VERSION != VERSION_SHIELD_DEBUG
-    // FIXME: fakematch. I literally don't know how else to get this to match....
-    u16 cur_idx = get_u16_Idx();
-#else
-    u16 cur_idx = getIdx();
-#endif
+    u16 cur_idx = (int)(u16)getIdx();
     u16 prev_idx, next_idx;
     prev_idx = next_idx = cur_idx;
 

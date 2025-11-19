@@ -6409,4 +6409,5 @@ extern actor_process_profile_definition g_profile_MG_ROD = {
 
 AUDIO_INSTANCES
 #include "JSystem/JAudio2/JAUSectionHeap.h"
+template<>
 JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

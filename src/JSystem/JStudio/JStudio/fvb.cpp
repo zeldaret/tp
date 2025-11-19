@@ -155,7 +155,7 @@ void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
             JGADGET_WARNMSG(211, "unknown paragraph : " << u32Type);
         }
         pData = dat.next;
-        JUT_ASSERT(214, pData!=0);
+        JUT_ASSERT(214, pData!=NULL);
     }
 end:
     JGADGET_ASSERTWARN(216, pData==pNext);
@@ -414,7 +414,7 @@ bool TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_out, u32 f
     ASSERT(puBlock_out != 0);
 
     const void* pData = *ppData_inout;
-    ASSERT(pData != 0);
+    ASSERT(pData != NULL);
 
     const data::TParse_THeader header(pData);
     *ppData_inout = header.getContent();
@@ -449,7 +449,7 @@ bool TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 fla
     ASSERT(puData_out != 0);
 
     const void* pData = *ppData_inout;
-    ASSERT(pData != 0);
+    ASSERT(pData != NULL);
     data::TParse_TBlock blk(pData);
     *ppData_inout = blk.getNext();
     *puData_out = blk.get_size();

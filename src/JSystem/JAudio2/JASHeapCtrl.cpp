@@ -118,7 +118,7 @@ bool JASHeap::free() {
     JSUTreeIterator<JASHeap> stack_20;
     for (JSUTreeIterator<JASHeap> it(mTree.getFirstChild()); it != mTree.getEndChild(); it = stack_20) {
         stack_20 = it;
-        stack_20++;
+        ++stack_20;
         it->free();
     }
     JSUTree<JASHeap>* parentTree = mTree.getParent();
