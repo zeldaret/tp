@@ -30,6 +30,7 @@
     "build/*/baseline.json": true,
     "build/**/*.MAP": true,
     "build/**/*.o": true,
+    "build/**/*.s": true,
     "build/**/*.plf": true,
     "build/**/*.rel": true,
     "orig/**/*.rel": true,
