@@ -429,6 +429,10 @@ enum Motion {
     /* 0x28 */ MOT_SAVED,
 };
 
+enum Type {
+    /* 0x0 */ TYPE_0,
+};
+
 enum Event {
     /* 0x0 */ EVT_NONE,
     /* 0x1 */ EVT_TUTRIAL_BEGIN,
@@ -967,7 +971,7 @@ u8 daNpc_Pachi_Taro_c::getType() {
 
     switch (param) {
         case 0:
-            return 0;
+            return TYPE_0;
 
         default:
             return 1;
@@ -977,7 +981,7 @@ u8 daNpc_Pachi_Taro_c::getType() {
 /* 80A9CD40-80A9CD60 000BA0 0020+00 1/1 0/0 0/0 .text            isDelete__18daNpc_Pachi_Taro_cFv */
 BOOL daNpc_Pachi_Taro_c::isDelete() {
     switch (mType) {
-        case 0:
+        case TYPE_0:
             return FALSE;
 
         default:
@@ -1002,7 +1006,7 @@ void daNpc_Pachi_Taro_c::reset() {
     memset(&mNextAction, 0, size);
 
     switch (mType) {
-        case 0:
+        case TYPE_0:
             field_0xfd4 = 2;
             field_0xfde = 0;
             field_0xfdf = 0;
@@ -1011,7 +1015,7 @@ void daNpc_Pachi_Taro_c::reset() {
             field_0xfe3 = 1;
             mMesPat = 0;
             dComIfGs_setTmpReg(0xF4FF, 0);
-            mPrevEvtNo = 0;
+            mPrevEvtNo = EVT_NONE;
             field_0x1004 = 0;
             break;
     }
@@ -1111,7 +1115,7 @@ void daNpc_Pachi_Taro_c::setAfterTalkMotion() {
 /* 80A9D164-80A9D27C 000FC4 0118+00 1/1 0/0 0/0 .text            srchActors__18daNpc_Pachi_Taro_cFv */
 void daNpc_Pachi_Taro_c::srchActors() {
     switch (mType) {
-        case 0:
+        case TYPE_0:
             if (mActorMngrs[0].getActorP() == NULL) {
                 mActorMngrs[0].entry(getNearestActorP(PROC_NPC_PACHI_MARO));
             }
@@ -1422,7 +1426,7 @@ BOOL daNpc_Pachi_Taro_c::selectAction() {
     #endif
 
     switch (mType) {
-        case 0:
+        case TYPE_0:
             mNextAction = &daNpc_Pachi_Taro_c::wait;
             break;
 
@@ -1462,16 +1466,16 @@ int daNpc_Pachi_Taro_c::wait(void* param_1) {
     int unused = 0;
     
     switch (mMode) {
-        case 0:
-        case 1:
+        case MODE_ENTER:
+        case MODE_INIT:
             if (!mStagger.checkStagger()) {
                 mMesPat = -1;
                 mFaceMotionSeqMngr.setNo(FACE_MOT_NONE, -1.0f, FALSE, 0);
                 mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
-                mMode = 2;
+                mMode = MODE_RUN;
             }
             // fallthrough
-        case 2:
+        case MODE_RUN:
             if (!mStagger.checkStagger()) {
                 if (mPlayerActorMngr.getActorP() != NULL) {
                     if (field_0xfe3 != 0) {
@@ -1485,7 +1489,7 @@ int daNpc_Pachi_Taro_c::wait(void* param_1) {
                     }
 
                     if (!srchPlayerActor() && home.angle.y == mCurAngle.y) {
-                        mMode = 1;
+                        mMode = MODE_INIT;
                     }
                 } else {
                     mJntAnm.lookNone(0);
@@ -1493,11 +1497,11 @@ int daNpc_Pachi_Taro_c::wait(void* param_1) {
                     if (home.angle.y != mCurAngle.y) {
                         if (field_0xe34 != 0) {
                             if (field_0xfe2 != 0 && step(home.angle.y, 31, 36, 15, 0)) {
-                                mMode = 1;
+                                mMode = MODE_INIT;
                             }
                         } else {
                             setAngle(home.angle.y);
-                            mMode = 1;
+                            mMode = MODE_INIT;
                         }
 
                         attention_info.flags = 0;
@@ -1513,7 +1517,7 @@ int daNpc_Pachi_Taro_c::wait(void* param_1) {
                 }
 
                 if (field_0x1004 == 0) {
-                    mEvtNo = 1;
+                    mEvtNo = EVT_TUTRIAL_BEGIN;
                     mPrevEvtNo = mEvtNo;
                     dComIfGp_getEvent().setSkipProc(this, dEv_defaultSkipProc, 0);
                 } else if (field_0x1004 == 1) {
@@ -1522,7 +1526,7 @@ int daNpc_Pachi_Taro_c::wait(void* param_1) {
             }
             break;
 
-        case 3:
+        case MODE_EXIT:
             break;
     }
 
@@ -1621,16 +1625,16 @@ u16 daNpc_Pachi_Taro_c::chkDistTag() {
     actor_p = mActorMngrs[2].getActorP();
     if (actor_p != NULL && ((daTagPati_c*)actor_p)->is_CoHit()) {
         OS_REPORT("---- tag hit1!!\n");
-        return 10;
+        return EVT_TUTRIAL_CAUTION;
     }
 
     actor_p = mActorMngrs[3].getActorP();
     if (actor_p != NULL && ((daTagPati_c*)actor_p)->is_CoHit()) {
         OS_REPORT("---- tag hit2!!\n");
-        return 10;
+        return EVT_TUTRIAL_CAUTION;
     }
 
-    return 0;
+    return EVT_NONE;
 }
 
 /* 80A9E458-80A9E56C 0022B8 0114+00 1/1 0/0 0/0 .text chkEscapeTag__18daNpc_Pachi_Taro_cFv */
@@ -1642,7 +1646,7 @@ u16 daNpc_Pachi_Taro_c::chkEscapeTag() {
         cXyz lookPos(640.3426f, 900.0f, -1783.4485f);
         allTagPosSet(tagPos);
         allLookPosSet(lookPos);
-        return 7;
+        return EVT_TUTRIAL_SELECT_GIVEUP;
     }
     
     actor_p = mActorMngrs[5].getActorP();
@@ -1651,10 +1655,10 @@ u16 daNpc_Pachi_Taro_c::chkEscapeTag() {
         cXyz lookPos(781.49524f, 900.0f, -2103.6f);
         allTagPosSet(tagPos);
         allLookPosSet(lookPos);
-        return 7;
+        return EVT_TUTRIAL_SELECT_GIVEUP;
     }
 
-    return 0;
+    return EVT_NONE;
 }
 
 /* 80A9E56C-80A9E700 0023CC 0194+00 1/1 0/0 0/0 .text            chkTarget__18daNpc_Pachi_Taro_cFv */
@@ -1692,14 +1696,14 @@ u16 daNpc_Pachi_Taro_c::chkTarget() {
 
     dComIfGs_setTmpReg(0xF3FF, 0);
 
-    u16 rv = 0;
+    u16 rv = EVT_NONE;
 
     if (field_0xfdf == 0) {
         switch (sVar1) {
             case 0:
                 if (field_0xfe0 == 0) {
                     field_0xfe0 = 1;
-                    rv = 6;
+                    rv = EVT_HIT_KAKASI_BODY;
                     mHitMsgIdx = sVar1;
                 }
                 break;
@@ -1707,7 +1711,7 @@ u16 daNpc_Pachi_Taro_c::chkTarget() {
             case 1:
             case 2:
                 field_0xfdf = 1;
-                rv = 6;
+                rv = EVT_HIT_KAKASI_BODY;
                 mHitMsgIdx = sVar1;
                 break;
 
@@ -1719,7 +1723,7 @@ u16 daNpc_Pachi_Taro_c::chkTarget() {
 
     field_0xfde = dComIfGs_getTmpReg(0xF4FF);
     if (field_0xfde == 7) {
-        rv = 3;
+        rv = EVT_TUTRIAL_CLEAR;
     } else if (field_0xfde != 0) {
         fopAcM_onSwitch(this, getBitSW());
     }
@@ -1773,20 +1777,20 @@ void daNpc_Pachi_Taro_c::allLookPosSet(cXyz const& i_pos) {
 /* 80A9E8A0-80A9E910 002700 0070+00 2/0 0/0 0/0 .text            talk__18daNpc_Pachi_Taro_cFPv */
 int daNpc_Pachi_Taro_c::talk(void* param_1) {
     switch (mMode) {
-        case 0:
-        case 1:
+        case MODE_ENTER:
+        case MODE_INIT:
             if (!mStagger.checkStagger()) {
                 clrMesPat();
-                mMode = 2;
+                mMode = MODE_RUN;
             }
             // fallthrough
-        case 2:
-            mEvtNo = 4;
+        case MODE_RUN:
+            mEvtNo = EVT_TUTRIAL_TALK;
             mPrevEvtNo = mEvtNo;
             evtChange();
             break;
 
-        case 3:
+        case MODE_EXIT:
             break;
     }
 
@@ -1795,20 +1799,20 @@ int daNpc_Pachi_Taro_c::talk(void* param_1) {
 
 int daNpc_Pachi_Taro_c::test(void* param_1) {
     switch (mMode) {
-        case 0:
-        case 1:
+        case MODE_ENTER:
+        case MODE_INIT:
             speedF = 0.0f;
             speed.setall(0.0f);
-            mMode = 2;
+            mMode = MODE_RUN;
             // fallthrough
-        case 2:
+        case MODE_RUN:
             mFaceMotionSeqMngr.setNo(mpHIO->m.common.face_expression, -1.0f, FALSE, 0);
             mMotionSeqMngr.setNo(mpHIO->m.common.motion, -1.0f, FALSE, 0);
             mJntAnm.lookNone(0);
             attention_info.flags = 0;
             break;
 
-        case 3:
+        case MODE_EXIT:
             break;
     }
 
@@ -1824,32 +1828,32 @@ BOOL daNpc_Pachi_Taro_c::evtEndProc() {
     clr_tagHit();
 
     switch (mPrevEvtNo) {
-        case 7:
+        case EVT_TUTRIAL_SELECT_GIVEUP:
             field_0xfe2 = 0;
             field_0xfe3 = 0;
 
             if (mFlow.getChoiceNo() == 0) {
-                mEvtNo = 9;
+                mEvtNo = EVT_TUTRIAL_GIVEUP;
             } else {
-                mEvtNo = 8;
+                mEvtNo = EVT_TUTRIAL_CONTINUE;
             }
 
             mPrevEvtNo = mEvtNo;
             evtChange();
             break;
 
-        case 4:
-        case 6:
-        case 9:
+        case EVT_TUTRIAL_TALK:
+        case EVT_HIT_KAKASI_BODY:
+        case EVT_TUTRIAL_GIVEUP:
             ((daNpc_Pachi_Maro_c*)actor_p)->setFMotion_LookNone();
             break;
 
-        case 1:
+        case EVT_TUTRIAL_BEGIN:
             daNpcT_onEvtBit(608);
             // fallthrough
         default:
             field_0xfe2 = 1;
-            mPrevEvtNo = 0;
+            mPrevEvtNo = EVT_NONE;
             break;
     }
 
