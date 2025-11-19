@@ -658,10 +658,7 @@ bool J2DWindowEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white) 
         return false;
     }
 
-    bool bVar1 = false;
-    if ((u32)black != 0 || (u32)white != 0xffffffff) {
-        bVar1 = true;
-    }
+    bool bVar1 = (u32)black != 0 || (u32)white != 0xffffffff;
     u8 uVar3 = bVar1 ? 2 : 1;
     for (int i = 0; i < 4; i++) {
         mFrameMaterial[i]->getTevBlock()->setTevStageNum(uVar3);

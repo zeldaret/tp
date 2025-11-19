@@ -198,17 +198,24 @@ int daE_WS_c::checkPlayerPos() {
 }
 
 /* 807E4568-807E470C 000C48 01A4+00 1/1 0/0 0/0 .text            checkAttackEnd__8daE_WS_cFv */
-// NONMATCHING
 bool daE_WS_c::checkAttackEnd() {
     cXyz player_pos;
     mDoMtx_stack_c::copy(daPy_getLinkPlayerActorClass()->getModelJointMtx(0));
     mDoMtx_stack_c::multVecZero(&player_pos);
 
-    if (!(daPy_getPlayerActorClass()->checkClimbMove() ||
+    BOOL r30 = false;
+    if (
+        daPy_getPlayerActorClass()->checkClimbMove() ||
         dComIfGp_checkPlayerStatus1(0, 0x02000000) ||
         dComIfGp_checkPlayerStatus1(0, 0x10000) ||
-        calcTargetDist(current.pos, player_pos) < 200.0f) ||
-        (!checkInSearchRange(current.pos, field_0x65c) || checkBeforeBg(shape_angle.y)))
+        calcTargetDist(current.pos, player_pos) < 200.0f
+    ) {
+        r30 = true;
+    }
+    if (!r30 ||
+        !checkInSearchRange(current.pos, field_0x65c) ||
+        checkBeforeBg(shape_angle.y)
+    )
     {
         setActionMode(ACTION_WAIT_e);
         speedF = 0.0f;

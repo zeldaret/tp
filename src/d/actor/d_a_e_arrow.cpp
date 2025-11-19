@@ -237,7 +237,7 @@ static void hit_check(e_arrow_class* i_this) {
 /* 8067D21C-8067D40C 000B3C 01F0+00 1/1 0/0 0/0 .text            e_arrow_shot__FP13e_arrow_class */
 static void e_arrow_shot(e_arrow_class* i_this) {
     switch (i_this->mMode) {
-    case 0:
+    case 0: {
         i_this->speedF = 100.0f;
         i_this->mMode = 1;
 
@@ -254,6 +254,7 @@ static void e_arrow_shot(e_arrow_class* i_this) {
             i_this->field_0x5d0 = parent_p->speed.x;
             i_this->field_0x5d4 = parent_p->speed.z;
         }
+    }
     case 1:
         if (i_this->mFlags & 0x20) {
             fopAc_ac_c* coach_p = fopAcM_SearchByName(PROC_NPC_COACH);
