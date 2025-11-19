@@ -480,12 +480,12 @@ int dTimer_c::getRestTimeMs() {
 }
 
 /* 8025DB10-8025DB38 258450 0028+00 1/1 0/0 4/4 .text            isStart__8dTimer_cFv */
-u8 dTimer_c::isStart() {
+bool dTimer_c::isStart() {
     if (field_0x16A != 1 && m_mode == 4) {
-        return 1;
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 /* 8025DB38-8025DBE0 258478 00A8+00 1/1 0/0 0/0 .text            __ct__21dDlst_TimerScrnDraw_cFv */
@@ -1592,7 +1592,7 @@ static int dTimer_Create(msg_class* i_this) {
 }
 
 /* 80260F8C-80261034 25B8CC 00A8+00 0/0 1/1 9/9 .text            dTimer_createTimer__FlUlUcUcffff */
-s32 dTimer_createTimer(s32 i_mode, u32 i_limitMs, u8 i_type, u8 param_3, f32 param_4, f32 param_5,
+fpc_ProcID dTimer_createTimer(s32 i_mode, u32 i_limitMs, u8 i_type, u8 param_3, f32 param_4, f32 param_5,
                        f32 param_6, f32 param_7) {
     if (dComIfG_getTimerMode() == -1) {
         return fopMsgM_Timer_create(PROC_TIMER, i_mode, i_limitMs, i_type, param_3, param_4,
@@ -1645,12 +1645,12 @@ static int dTimer_createStart2D(s32 param_0, u16 param_1) {
 }
 
 /* 802611F0-80261244 25BB30 0054+00 0/0 0/0 5/5 .text            dTimer_isStart__Fv */
-u8 dTimer_isStart() {
+bool dTimer_isStart() {
     if (dComIfG_getTimerPtr() != NULL) {
         return dComIfG_getTimerPtr()->isStart();
     }
 
-    return 0;
+    return false;
 }
 
 /* 80261244-80261298 25BB84 0054+00 0/0 0/0 2/2 .text            dTimer_getRestTimeMs__Fv */

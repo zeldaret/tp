@@ -49,7 +49,7 @@ public:
     /* 80BFA4DC */ int entry(daGlwSph_c*);
     /* 80BFA528 */ void remove(daGlwSph_c*);
     /* 80BFA55C */ int _setting_main();
-    /* 80BFA5C4 */ bool _chkAllGet_main();
+    /* 80BFA5C4 */ BOOL _chkAllGet_main();
     /* 80BFA60C */ void SphSeProc();
     /* 80BFA6D8 */ static void clrSphSe();
     /* 80BFA6E8 */ static u16 getSphSe();
@@ -59,7 +59,7 @@ public:
         _setting_main();
     }
 
-    bool isAllGet() {
+    BOOL isAllGet() {
         return _chkAllGet_main();
     }
 
@@ -100,7 +100,7 @@ public:
         ACTION_MOVE_e,
     };
 
-    /* 80BF9430 */ _GlSph_Mng_c& getSphMng();
+    /* 80BF9430 */ static _GlSph_Mng_c& getSphMng();
     /* 80BF943C */ void setBaseMtx();
     /* 80BF94AC */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80BF94CC */ int CreateHeap();
