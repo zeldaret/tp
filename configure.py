@@ -187,7 +187,7 @@ if not config.non_matching:
 
 # Tool versions
 config.binutils_tag = "2.42-1"
-config.compilers_tag = "20250812"
+config.compilers_tag = "20251118"
 config.dtk_tag = "v1.6.2"
 config.objdiff_tag = "v3.0.1"
 config.sjiswrap_tag = "v1.2.2"
@@ -400,7 +400,7 @@ def MWVersion(cfg_version: str | None) -> str:
             # This was probably a change made in some compiler version in the early days of transitioning GC to Wii development,
             # but we don't have that version. GC/3.0a3 appears to have the best overall codegen of any available GC/Wii compiler
             # However GC/3.0a5 is required for the linker version, GC/3.0a3 won't work.
-            return "GC/3.0a3t"
+            return "GC/3.0a3p1"
         case "ShieldD":
             return "Wii/1.0"
         case "Shield":
