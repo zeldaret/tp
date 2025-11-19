@@ -8493,7 +8493,7 @@ void dKy_depth_dist_set(void* process_p) {
         if (var_f31 < 2000.0f && var_f31 < kankyo->field_0x1268) {
             mDoLib_project(&actor_p->eyePos, &sp30);
 
-            if ((sp30.x >= 0.0f && sp30.x < 608.0f) && (sp30.y >= 0.0f && sp30.y < 600.0f)) {
+            if ((sp30.x >= 0.0f && sp30.x < FB_WIDTH) && (sp30.y >= 0.0f && sp30.y < 600.0f)) {
                 cXyz sp18;
                 cXyz spC;
                 dKyr_get_vectle_calc(&camera_p->lookat.eye, &camera_p->lookat.center, &sp18);

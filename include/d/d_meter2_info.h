@@ -312,6 +312,11 @@ bool dMeter2Info_isItemOpenCheck();
 bool dMeter2Info_isMapOpenCheck();
 s16 dMeter2Info_getNowLifeGauge();
 
+#if WIDESCREEN_SUPPORT
+void dMeter2Info_onWide2D();
+void dMeter2Info_offWide2D();
+#endif
+
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
 }

@@ -1394,7 +1394,7 @@ bool daE_SM_c::CheckViewArea() {
     mDoLib_project(&current.pos, &vec);
     bool rv = false;
 
-    if (vec.x >= 0.0f && vec.x <= 608.0f && vec.y >= 0.0f && vec.y <= 448.0f) {
+    if (vec.x >= 0.0f && vec.x <= FB_WIDTH && vec.y >= 0.0f && vec.y <= FB_HEIGHT) {
         rv = true;
     }
 

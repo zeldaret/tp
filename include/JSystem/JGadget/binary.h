@@ -14,7 +14,7 @@ struct TEBit {
 const void* parseVariableUInt_16_32_following(const void* pu16, u32* pu32First, u32* pu32Second,
                                               TEBit* tebit);
 
-inline u32 align_roundUp(u32 arg0, u32 uAlign) {
+inline u32 align_roundUp(unsigned int arg0, unsigned int uAlign) {
     return (arg0 + uAlign - 1) & ~(uAlign - 1);
 }
 

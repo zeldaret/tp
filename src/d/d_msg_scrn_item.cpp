@@ -413,10 +413,14 @@ void dMsgScrnItem_c::drawSelf() {
     }
 
     f32 globalPosX = mpTm_c[0]->getGlobalPosX();
+    
+    #if WIDESCREEN_SUPPORT
     if (mDoGph_gInf_c::isWide()) {
         drawOutFont(g_MsgObject_HIO_c.mBoxItemTextPosX + 7.0f + YREG_F(2),
                     g_MsgObject_HIO_c.mBoxItemTextPosY, 1.0f);
-    } else {
+    } else
+    #endif
+    {
         drawOutFont(g_MsgObject_HIO_c.mBoxItemTextPosX - 2.0f + YREG_F(2),
                     g_MsgObject_HIO_c.mBoxItemTextPosY, 1.0f);
     }
@@ -577,8 +581,8 @@ void dMsgScrnItem_c::fukiPosCalc(u8 param_1) {
             f3 = cStack_7c.y;
         } else {
             mDoLib_project(&iVar6->pos, &local_70);
-            if (local_70.x >= 0.0f && local_70.x <= 608.0f && local_70.y >= 0.0f &&
-                local_70.y <= 448.0f)
+            if (local_70.x >= 0.0f && local_70.x <= FB_WIDTH && local_70.y >= 0.0f &&
+                local_70.y <= FB_HEIGHT)
             {
                 f3 = 0.5f * (cStack_7c.y + local_70.y);
             } else {

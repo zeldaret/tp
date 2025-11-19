@@ -1936,12 +1936,12 @@ void dComIfG_playerStatusD() {
     dComIfGs_onEventBit(0x5d80);
 
     if (!mDoCPd_c::isConnect(PAD_3)) {
-        g_fmapHIO.mRangeCheckInterval = 0;
+        g_fmapHIO.mAllRegionsUnlocked = 0;
     } else {
-        g_fmapHIO.mRangeCheckInterval = 1;
+        g_fmapHIO.mAllRegionsUnlocked = 1;
     }
 
-    g_fmapHIO.mRegionImageDebug = 1;
+    g_fmapHIO.mPortalWarpON = 1;
     g_fmapHIO.update();
 
     g_mwHIO.setArrowFlag(1);

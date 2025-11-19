@@ -676,13 +676,15 @@ public:
 
     void setBalloonScore(u32 i_score) { mBalloonScore = i_score; }
     void setRaceGameTime(u32 i_time) { mRaceGameTime = i_time; }
+    void setHookGameTime(u32 i_time) { mHookGameTime = i_time; }
 
     u32 getRaceGameTime() const { return mRaceGameTime; }
     u32 getBalloonScore() const { return mBalloonScore; }
+    u32 getHookGameTime() const { return mHookGameTime; }
 
 private:
     /* 0x00 */ u8 unk0[1][4];
-    /* 0x04 */ u32 mStarTime;
+    /* 0x04 */ u32 mHookGameTime;
     /* 0x08 */ u32 mBalloonScore;
     /* 0x0C */ u32 mRaceGameTime;
     /* 0x10 */ u32 unk16;

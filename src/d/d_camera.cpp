@@ -2127,10 +2127,10 @@ f32 dCamera_c::radiusActorInSight(fopAc_ac_c* i_actor1, fopAc_ac_c* i_actor2, cX
     dDlst_window_c* window = get_window(field_0x0);
     scissor_class* scissor = window->getScissor();
     f32 dVar3 = cAngle::d2r(i_fovY) * 0.5f;
-    f32 tmp = (scissor->height - mTrimHeight * 2.0f) / 448.0f * dVar3;
+    f32 tmp = (scissor->height - mTrimHeight * 2.0f) / FB_HEIGHT * dVar3;
     f32 fVar8 = tmp * (mTrimHeight < 0.01f ? 0.95f : 1.0f);
     dVar3 *= mWindowAspect;
-    f32 fVar7 = dVar3 * (scissor->width / 608.0f) * 0.85f;
+    f32 fVar7 = dVar3 * (scissor->width / FB_WIDTH) * 0.85f;
 
     cXyz pos1 = attentionPos(i_actor1);
     pos1.y += (positionOf(i_actor1).y - attentionPos(i_actor1).y) * 0.5f;
@@ -7861,9 +7861,11 @@ bool dCamera_c::rideCamera(s32 param_0) {
 
     cSAngle sp144 = cSAngle::_0;
 
+    #if WIDESCREEN_SUPPORT
     if (mDoGph_gInf_c::isWide()) {
         val22 *= WideTurnSaving;
     }
+    #endif
 
     RideData* wk = (RideData*)mWork;
 
@@ -9328,11 +9330,13 @@ bool dCamera_c::eventCamera(s32 param_0) {
     }
 
     getEvIntData(&sp1C, "WideMode", 0);
+    #if WIDESCREEN_SUPPORT
     if (sp1C == 1) {
         mDoGph_gInf_c::onWideZoom();
     } else if (sp1C == 2) {
         mDoGph_gInf_c::offWideZoom();
     }
+    #endif
 
 #if DEBUG
     if (mCamSetup.CheckFlag(0x8000)) {
@@ -10039,7 +10043,7 @@ static int camera_draw(camera_process_class* i_this) {
     int camera_id = get_camera_id(a_this);
 
     int trim_height = body->TrimHeight();
-    window->setScissor(0.0f, trim_height, 608.0f, 448.0f - trim_height * 2.0f);
+    window->setScissor(0.0f, trim_height, FB_WIDTH, FB_HEIGHT - trim_height * 2.0f);
     C_MTXPerspective(i_this->projMtx, i_this->fovy, i_this->aspect, i_this->near, i_this->far);
     mDoMtx_lookAt(i_this->viewMtx, &i_this->lookat.eye, &i_this->lookat.center,
                   &i_this->lookat.up, i_this->bank);

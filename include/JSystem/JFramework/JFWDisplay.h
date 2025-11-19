@@ -72,6 +72,10 @@ public:
 
     static JFWDisplay* getManager() { return sManager; }
 
+    static JFWDisplay* createManager(JKRHeap* i_heap, JUTXfb::EXfbNumber i_xfbNum, bool param_2) {
+        return createManager(NULL, i_heap, i_xfbNum, param_2);
+    }
+
     bool startFadeOut(int param_0) {
         if (mFader != NULL) {
             return mFader->startFadeOut(param_0);

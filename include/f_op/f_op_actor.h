@@ -328,7 +328,7 @@ public:
     void onWolfBiteDamage() { mFlags |= fopEn_flag_WolfBiteDamage; }
     void onWolfDownStartFlg() { mFlags |= (fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart); }
     void onWolfDownPullEndFlg() { mFlags |= fopEn_flag_WolfDownPullEnd; }
-    void onWolfNoLock() { mFlags |= fopEn_flag_WolfNoLock; }
+    void onWolfNoLock() { mFlags |= (u16)fopEn_flag_WolfNoLock; }
     void onDownFlg() { mFlags |= fopEn_flag_Down; }
     void onHeadLockFlg() { mFlags |= fopEn_flag_HeadLock; }
 

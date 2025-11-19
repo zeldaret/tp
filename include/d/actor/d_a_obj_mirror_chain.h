@@ -38,7 +38,7 @@ public:
     /* 80C96E40 */ int createHeap();
     /* 80C975EC */ void initBaseMtx();
     /* 80C97618 */ void setBaseMtx();
-    /* 80C976B8 */ int draw();
+    /* 80C976B8 */ inline int draw();
     /* 80C97988 */ int execute();
     inline ~daObjMirrorChain_c();
     inline void create_init();

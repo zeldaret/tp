@@ -189,15 +189,17 @@ static int daAndsw2_actionOnAll(daAndsw2_c* i_this) {
     case 0:
     case 1:
     case 5:
-    case 6:
+    case 6: {
         BOOL temp_r0 = i_this->chkAllSw2() != 0;
         var_r29 = temp_r0;
         break;
+    }
     case 2:
-    case 3:
+    case 3: {
         BOOL temp_r0_2 = i_this->chkSwStatus() != 0;
         var_r29 = temp_r0_2;
         break;
+    }
     case 4:
         if (!dComIfGs_isSwitch(i_this->getSwbit(), fopAcM_GetRoomNo(i_this))) {
             BOOL temp_r0 = i_this->chkSwStatus2() != 0;
@@ -302,15 +304,17 @@ static int daAndsw2_actionOff(daAndsw2_c* i_this) {
     case 0:
     case 1:
     case 5:
-    case 6:
+    case 6: {
         BOOL temp_r0 = i_this->chkAllSw2() != 0;
         var_r29 = temp_r0;
         break;
+    }
     case 2:
-    case 3:
+    case 3: {
         BOOL temp_r0_2 = i_this->chkSwStatus() != 0;
         var_r29 = temp_r0_2;
         break;
+    }
     case 4:
         break;
     }

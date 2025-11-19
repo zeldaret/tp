@@ -84,7 +84,7 @@ public:
 
     static J3DMtxCalc* mCurrentMtxCalc;
 
-    u8 getKind() { return mKind & 15; }
+    u8 getKind() const { return mKind & 15; }
 
 private:
     friend struct J3DJointFactory;

@@ -242,7 +242,7 @@ bool daObjCRVFENCE_c::checkViewArea(cXyz* param_1) {
 
     #ifdef DEBUG
     if (sp24.x >= 0.0f) {
-        if (sp24.y <= 640.0f) {
+        if (sp24.y <= FB_WIDTH) {
             bVar1 = true;
         }
     }
@@ -251,7 +251,7 @@ bool daObjCRVFENCE_c::checkViewArea(cXyz* param_1) {
         bVar1 = false;
 
         if (sp24.y >= 0.0f) {
-            if (sp24.y <= 456.0f) {
+            if (sp24.y <= FB_HEIGHT) {
                 bVar1 = true;
             }
         }
@@ -261,7 +261,7 @@ bool daObjCRVFENCE_c::checkViewArea(cXyz* param_1) {
         }
     }
     #else
-    if (sp24.x >= 0.0f && sp24.x <= 608.0f && sp24.y >= 0.0f && sp24.y <= 448.0f) {
+    if (sp24.x >= 0.0f && sp24.x <= FB_WIDTH && sp24.y >= 0.0f && sp24.y <= FB_HEIGHT) {
         rv = true;
     }
     #endif

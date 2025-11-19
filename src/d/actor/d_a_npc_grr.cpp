@@ -1399,7 +1399,8 @@ int daNpc_grR_c::talk(void* param_1) {
                 } else if (mType == TYPE_SPAWATER) {
                     /* dSv_event_flag_c::F_0399 - Kakariko Village - Conversation with Gor Liggs - hot spring game available */
                     if (daNpcF_chkEvtBit(399)) {
-                        if (mFlow.getChoiceNo() == 0) {
+                        int choiceNo = mFlow.getChoiceNo();
+                        if (choiceNo == 0) {
                             dStage_changeScene(0x24, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
                         } else {
                             rv = TRUE;

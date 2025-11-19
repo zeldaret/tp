@@ -342,7 +342,9 @@ int daObjMHole_c::draw() {
                     Mtx effect_mtx;
                     MTXLightPerspective(effect_mtx, dComIfGd_getView()->fovy,
                                           dComIfGd_getView()->aspect, 1.0f, 1.0f, -0.01f, 0.0f);
+                    #if WIDESCREEN_SUPPORT
                     mDoGph_gInf_c::setWideZoomLightProjection(effect_mtx);
+                    #endif
                     tex_mtx_info->setEffectMtx(effect_mtx);
                     modelData->simpleCalcMaterial((MtxP)j3dDefaultMtx);
                 }

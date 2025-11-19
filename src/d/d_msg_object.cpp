@@ -1510,8 +1510,8 @@ void dMsgObject_c::fukiPosCalc(bool param_1) {
                 temp = cStack_48.y;
             } else {
                 mDoLib_project(&field_0x100->pos, &local_3c);
-                if (local_3c.x >= 0.0f && local_3c.x <= 608.0f && local_3c.y >= 0.0f &&
-                    local_3c.y <= 448.0f)
+                if (local_3c.x >= 0.0f && local_3c.x <= FB_WIDTH && local_3c.y >= 0.0f &&
+                    local_3c.y <= FB_HEIGHT)
                 {
                     temp = 0.5f * (cStack_48.y + local_3c.y);
                 } else {

@@ -491,8 +491,8 @@ void dMsgScrnHowl_c::drawWave() {
     s32 local_94 = 0;
     Vec fVar12 = field_0x128;
     Vec this_02 = field_0x140;
-    f32 fVar1 = mDoGph_gInf_c::getWidthF() / 608.0f;
-    f32 fVar2 = mDoGph_gInf_c::getHeightF() / 448.0f;
+    f32 fVar1 = mDoGph_gInf_c::getWidthF() / FB_WIDTH;
+    f32 fVar2 = mDoGph_gInf_c::getHeightF() / FB_HEIGHT;
     grafContext->scissor(
         (fVar12.x - mDoGph_gInf_c::getMinXF()) / fVar1 - 16.0f,
         (fVar12.y / fVar2) / fVar2 - 16.0f,
@@ -596,8 +596,8 @@ void dMsgScrnHowl_c::drawGuide() {
     Vec local_b0 = field_0x128;
     Vec local_bc = field_0x140;
     grafContext->scissor(
-        (local_b0.x - mDoGph_gInf_c::getMinXF()) / (mDoGph_gInf_c::getWidthF() / 608.0f),
-        field_0x2118, (local_bc.x - local_b0.x) / (mDoGph_gInf_c::getWidthF() / 608.0f),
+        (local_b0.x - mDoGph_gInf_c::getMinXF()) / (mDoGph_gInf_c::getWidthF() / FB_WIDTH),
+        field_0x2118, (local_bc.x - local_b0.x) / (mDoGph_gInf_c::getWidthF() / FB_WIDTH),
         field_0x2120);
     grafContext->setScissor();
     f32 local_cc = mpLineH[0]->getGlobalPosX();
@@ -727,10 +727,10 @@ void dMsgScrnHowl_c::drawGuide2() {
     }
     Vec local_58 = field_0x128;
     Vec local_64 = field_0x140;
-    f32 local_70 = mDoGph_gInf_c::getHeightF() / 448.0f;
+    f32 local_70 = mDoGph_gInf_c::getHeightF() / FB_HEIGHT;
     grafContext->scissor(
-        (local_58.x - mDoGph_gInf_c::getMinXF()) / (mDoGph_gInf_c::getWidthF() / 608.0f),
-        field_0x2118, (local_64.x - local_58.x) / (mDoGph_gInf_c::getWidthF() / 608.0f),
+        (local_58.x - mDoGph_gInf_c::getMinXF()) / (mDoGph_gInf_c::getWidthF() / FB_WIDTH),
+        field_0x2118, (local_64.x - local_58.x) / (mDoGph_gInf_c::getWidthF() / FB_WIDTH),
         field_0x2120);
     grafContext->setScissor();
     f32 local_74 = mpLineH[0]->getGlobalPosX();
@@ -835,8 +835,8 @@ void dMsgScrnHowl_c::drawEffect() {
     Vec vec2 = field_0x140;
     mDoGph_gInf_c::getHeightF();
     grafContext->scissor(
-        (vec1.x - mDoGph_gInf_c::getMinXF()) / (mDoGph_gInf_c::getWidthF() / 608.0f), field_0x2118,
-        12.0f + ((vec2.x - vec1.x) / (mDoGph_gInf_c::getWidthF() / 608.0f)), field_0x2120);
+        (vec1.x - mDoGph_gInf_c::getMinXF()) / (mDoGph_gInf_c::getWidthF() / FB_WIDTH), field_0x2118,
+        12.0f + ((vec2.x - vec1.x) / (mDoGph_gInf_c::getWidthF() / FB_WIDTH)), field_0x2120);
     grafContext->setScissor();
     u8 timer = daAlink_getAlinkActorClass()->getWolfHowlMgrP()->getReleaseTimer();
     u8 screenAlpha = mpScreen->search('line00')->getAlpha();

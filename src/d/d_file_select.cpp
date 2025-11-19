@@ -2585,7 +2585,7 @@ void dFile_select_c::screenSet() {
     black.a = 0;
     white.a = 0xff;
     ResTIMG* uVar20 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
-    field_0x2378 = new J2DPicture('PICT01', JGeometry::TBox2<f32>(0.0f, 608.0f, 0.0f, 448.0f), uVar20, NULL);
+    field_0x2378 = new J2DPicture('PICT01', JGeometry::TBox2<f32>(0.0f, FB_WIDTH, 0.0f, FB_HEIGHT), uVar20, NULL);
     field_0x2378->setBlackWhite(black, white);
     field_0x2378->setAlpha(0);
 }

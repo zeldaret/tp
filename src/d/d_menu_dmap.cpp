@@ -850,14 +850,14 @@ void dMenu_DmapBg_c::draw() {
     grafContext->setup2D();
 
     GXGetScissor(&scissor_left, &scissor_top, &scissor_width, &scissor_height);
-    grafContext->scissor(field_0xd94, 0.0f, 608.0f, 448.0f);
+    grafContext->scissor(field_0xd94, 0.0f, FB_WIDTH, FB_HEIGHT);
     grafContext->setScissor();
 
     mBaseScreen->draw(field_0xd94, field_0xd98, grafContext);
     dMenu_Dmap_c::myclass->drawFloorScreenBack(mFloorScreen, field_0xd94, field_0xd98, grafContext);
 
-    f32 dVar21 = mDoGph_gInf_c::getWidthF() / 608.0f;
-    f32 dVar16 = mDoGph_gInf_c::getHeightF() / 448.0f;
+    f32 dVar21 = mDoGph_gInf_c::getWidthF() / FB_WIDTH;
+    f32 dVar16 = mDoGph_gInf_c::getHeightF() / FB_HEIGHT;
     mMapScreen[0]->draw(field_0xd94, field_0xd98, grafContext);
 
     if (mpBackTexture != NULL) {

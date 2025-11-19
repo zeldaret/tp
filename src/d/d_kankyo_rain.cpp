@@ -124,8 +124,8 @@ void dKyr_lenzflare_move() {
     cXyz center;
     mDoLib_project(lenz_packet->mPositions, &proj);
 
-    center.x = 304.0f;
-    center.y = 224.0f;
+    center.x = FB_WIDTH / 2;
+    center.y = FB_HEIGHT / 2;
     center.z = 0.0f;
     dKyr_get_vectle_calc(&center, &proj, &vect);
 
@@ -239,7 +239,7 @@ void dKyr_sun_move() {
             chkpnt.x -= sun_chkpnt[i][0];
             chkpnt.y -= sun_chkpnt[i][1];
 
-            if (chkpnt.x > 0.0f && chkpnt.x < 608.0f && chkpnt.y > border_y && chkpnt.y < 458.0f - border_y) {
+            if (chkpnt.x > 0.0f && chkpnt.x < FB_WIDTH && chkpnt.y > border_y && chkpnt.y < 458.0f - border_y) {
                 if (sun_packet->field_0x44[i] >= 0xFFFFFF) {
                     numPointsVisible++;
                     if (i == 0) {
@@ -271,8 +271,8 @@ void dKyr_sun_move() {
         lenz_packet->field_0x90 = 0.0f;
 
         cXyz center;
-        center.x = 304.0f;
-        center.y = 224.0f;
+        center.x = FB_WIDTH / 2;
+        center.y = FB_HEIGHT / 2;
         center.z = 0.0f;
 
         lenz_packet->mDistFalloff = center.abs(proj);
@@ -4438,6 +4438,9 @@ void drawCloudShadow(Mtx drawMtx, u8** tex) {
 
             f32 scale = 0.49f;
             C_MTXLightPerspective(sp120, window_cam->fovy, window_cam->aspect, scale, -scale, 0.5f, 0.5f);
+            #if WIDESCREEN_SUPPORT
+            mDoGph_gInf_c::setWideZoomLightProjection(sp120);
+            #endif
             cMtx_concat(sp120, j3dSys.getViewMtx(), spF0);
 
             rot += 2.0f;
@@ -4674,7 +4677,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
 
     if (g_env_light.daytime > 105.0f && g_env_light.daytime < 240.0f && !dComIfGp_event_runCheck() && sun_packet != NULL && sun_packet->mSunAlpha > 0.0f) {
         mDoLib_project(&sun_packet->mPos[0], &proj);
-        if (proj.x > 0.0f && proj.x < 608.0f && proj.y > spC4 && proj.y < (458.0f - spC4)) {
+        if (proj.x > 0.0f && proj.x < FB_WIDTH && proj.y > spC4 && proj.y < (458.0f - spC4)) {
             pass = 0;
         }
     }
@@ -4940,7 +4943,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                                 z = 100.0f;
                                 mDoLib_project(&spF0, &proj);
 
-                                if (proj.x > -x && proj.x < (608.0f + x) && proj.y > -y && proj.y < (458.0f + z)) {
+                                if (proj.x > -x && proj.x < (FB_WIDTH + x) && proj.y > -y && proj.y < (458.0f + z)) {
                                     break;
                                 }
 
@@ -4990,7 +4993,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                                     z = 100.0f;
                                     mDoLib_project(&spE4, &proj);
 
-                                    if (proj.x > -x && proj.x < (608.0f + x) && proj.y > -y && proj.y < (458.0f + z)) {
+                                    if (proj.x > -x && proj.x < (FB_WIDTH + x) && proj.y > -y && proj.y < (458.0f + z)) {
                                         break;
                                     }
 
@@ -6040,7 +6043,7 @@ static void dKyr_evil_draw2(Mtx drawMtx, u8** tex) {
 
                         mDoLib_project(&sp7C, &proj);
 
-                        if (!(proj.x > -sp34.x) || !(proj.x < (608.0f + sp34.x)) ||
+                        if (!(proj.x > -sp34.x) || !(proj.x < (FB_WIDTH + sp34.x)) ||
                             !(proj.y > -sp34.y) || !(proj.y < (458.0f + sp34.z)))
                         {
                             continue;
@@ -6268,7 +6271,7 @@ void dKyr_evil_draw(Mtx drawMtx, u8** tex) {
 
                         mDoLib_project(&spA4, &proj);
 
-                        if (!(proj.x > -sp44.x) || !(proj.x < (608.0f + sp44.x)) ||
+                        if (!(proj.x > -sp44.x) || !(proj.x < (FB_WIDTH + sp44.x)) ||
                             !(proj.y > -sp44.y) || !(proj.y < (458.0f + sp44.z)))
                         {
                             continue;

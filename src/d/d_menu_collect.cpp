@@ -2584,7 +2584,7 @@ f32 dMenu_Collect3D_c::mViewOffsetY = -100.0f;
 
 /* 801B75E8-801B7660 1B1F28 0078+00 0/0 1/1 0/0 .text setupItem3D__17dMenu_Collect3D_cFPA4_f */
 void dMenu_Collect3D_c::setupItem3D(Mtx param_0) {
-    GXSetViewport(0.0f, mViewOffsetY, 608.0f, 448.0f, 0.0f, 1.0f);
+    GXSetViewport(0.0f, mViewOffsetY, FB_WIDTH, FB_HEIGHT, 0.0f, 1.0f);
     mViewOffsetY = -100.0f;
     Mtx44 projection;
     C_MTXPerspective(projection, 45.0f, mDoGph_gInf_c::getAspect(), 1.0f, 100000.0f);

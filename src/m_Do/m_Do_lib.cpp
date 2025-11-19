@@ -4,6 +4,7 @@
  */
 
 #include "m_Do/m_Do_lib.h"
+#include "m_Do/m_Do_graphic.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
@@ -95,16 +96,16 @@ void mDoLib_project(Vec* src, Vec* dst) {
     float xSize;
     float ySize;
     if (viewPort->x_orig != 0.0f) {
-        xOffset = (0.5f * ((2.0f * viewPort->x_orig) + viewPort->width)) - 304.0f;
-        xSize = 608.0f;
+        xOffset = (0.5f * ((2.0f * viewPort->x_orig) + viewPort->width)) - (FB_WIDTH / 2);
+        xSize = FB_WIDTH;
     } else {
         xOffset = viewPort->x_orig;
         xSize = viewPort->width;
     }
 
     if (viewPort->y_orig != 0.0f) {
-        yOffset = (0.5f * ((2.0f * viewPort->y_orig) + viewPort->height)) - 224.0f;
-        ySize = 448.0f;
+        yOffset = (0.5f * ((2.0f * viewPort->y_orig) + viewPort->height)) - (FB_HEIGHT / 2);
+        ySize = FB_HEIGHT;
     } else {
         yOffset = viewPort->y_orig;
         ySize = viewPort->height;

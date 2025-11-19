@@ -436,21 +436,21 @@ int _GlSph_Mng_c::_setting_main() {
 
 /* 80BFA5C4-80BFA60C 001364 0048+00 0/0 0/0 1/1 .text            _chkAllGet_main__12_GlSph_Mng_cFv
  */
-bool _GlSph_Mng_c::_chkAllGet_main() {
+BOOL _GlSph_Mng_c::_chkAllGet_main() {
     _GlSph_LstInfo_c* info = mListBuf;
 
     for (int i = 0; i < 120; i++) {
         if (info->isSet()) {
             daGlwSph_c* psph = info->getpSph();
             if (psph != NULL && !psph->is_getted()) {
-                return false;
+                return FALSE;
             }
         }
 
         info++;
     }
 
-    return true;
+    return TRUE;
 }
 
 /* 80BFAFE8 0002+00 data_80BFAFE8 mSphSe__12_GlSph_Mng_c */

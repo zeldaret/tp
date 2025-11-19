@@ -72,6 +72,19 @@ inline T cLib_maxLimit(T val, T max) {
 }
 
 template <typename T>
+inline T cLib_minLimit(T val, T min) {
+    T ret;
+
+    if (val < min) {
+        ret = min;
+    } else {
+        ret = val;
+    }
+
+    return (T)ret;
+}
+
+template <typename T>
 T cLib_getRndValue(T min, T range) {
     return (T)(min + cM_rndF((f32)range));
 }

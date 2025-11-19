@@ -236,7 +236,7 @@ public:
     /* 0x04F69 */ u8 mNeedLightDropNum;
     /* 0x04F6A */ u8 field_0x4f6a[18];
     /* 0x04F7C */ u8 mMesgBgm;
-    /* 0x04F7D */ bool mPauseFlag;
+    /* 0x04F7D */ u8 mPauseFlag;
     /* 0x04F7E */ u8 mItemLifeCountType;
     /* 0x04F7F */ u8 mOxygenShowFlag;
     /* 0x04F80 */ u8 mShow2D;
@@ -715,7 +715,7 @@ public:
 
     void setDirection(u8 i_dir) { mItemInfo.mDirection = i_dir; }
 
-    bool& isPauseFlag() { return mItemInfo.mPauseFlag; }
+    u8 isPauseFlag() { return mItemInfo.mPauseFlag; }
     void offPauseFlag() { mItemInfo.mPauseFlag = false; }
     void onPauseFlag() { mItemInfo.mPauseFlag = true; }
     u8 getOxygenShowFlag() { return mItemInfo.mOxygenShowFlag; }
@@ -2159,6 +2159,14 @@ inline s8 dComIfGs_Grass_hide_Check() {
     return g_dComIfG_gameInfo.field_0x1ddfc;
 }
 
+inline int dComIfGs_getHookGameTime() {
+    return g_dComIfG_gameInfo.info.getMiniGame().getHookGameTime();
+}
+
+inline void dComIfGs_setHookGameTime(u32 i_time) {
+    g_dComIfG_gameInfo.info.getMiniGame().setHookGameTime(i_time);
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();
@@ -3095,7 +3103,7 @@ inline bool dComIfGp_isBottleSetFlag(u8 flag) {
     return g_dComIfG_gameInfo.play.isBottleSetFlag(flag);
 }
 
-inline bool dComIfGp_isPauseFlag() {
+inline u8 dComIfGp_isPauseFlag() {
     return g_dComIfG_gameInfo.play.isPauseFlag();
 }
 
@@ -4067,6 +4075,10 @@ inline void dComIfGp_particle_levelEmitterOnEventMove(u32 param_0) {
 
 inline JPABaseEmitter* dComIfGp_particle_getEmitter(u32 param_0) {
     return g_dComIfG_gameInfo.play.getParticle()->getEmitter(param_0);
+}
+
+inline void dComIfGp_particle_levelExecute(u32 param_0) {
+    g_dComIfG_gameInfo.play.getParticle()->levelExecute(param_0);
 }
 
 inline u32 dComIfGp_particle_setSimpleFoot(u32 param_0, u32* param_1, cBgS_PolyInfo& param_2,

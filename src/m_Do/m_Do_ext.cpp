@@ -775,7 +775,7 @@ static JKRSolidHeap* mDoExt_createSolidHeap(u32 i_size, JKRHeap* i_heap, u32 i_a
 
     JKRSolidHeap* createdHeap;
     if (i_size == 0 || i_size == 0xFFFFFFFF) {
-        createdHeap = JKRSolidHeap::create(0xFFFFFFFFFF, i_heap, false);
+        createdHeap = JKRSolidHeap::create(0xFFFFFFFF, i_heap, false);
     } else {
         i_size = ALIGN_NEXT(i_size, 0x10);
         i_size += 0x80;
@@ -1380,11 +1380,11 @@ void mDoExt_McaMorf::getTransform(u16 param_0, J3DTransformInfo* param_1) {
 mDoExt_McaMorfSO::mDoExt_McaMorfSO(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
                                    mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
                                    int param_4, f32 param_5, int param_6, int param_7,
-                                   Z2Creature* param_8, u32 param_9, u32 param_10) {
+                                   Z2Creature* param_8, u32 i_modelFlag, u32 i_differedDlistFlag) {
     mTranslate = false;
     mMorfNone = false;
-    create(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9,
-           param_10);
+    create(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8,
+           i_modelFlag, i_differedDlistFlag);
 }
 
 /* 80010888-800108F0 00B1C8 0068+00 1/0 0/0 0/0 .text            __dt__16mDoExt_McaMorfSOFv */
@@ -1398,7 +1398,7 @@ mDoExt_McaMorfSO::~mDoExt_McaMorfSO() {
 int mDoExt_McaMorfSO::create(J3DModelData* i_modelData, mDoExt_McaMorfCallBack1_c* param_1,
                              mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
                              int param_4, f32 param_5, int param_6, int param_7,
-                             Z2Creature* i_sound, u32 param_9, u32 param_10) {
+                             Z2Creature* i_sound, u32 i_modelFlag, u32 i_differedDlistFlag) {
     mpModel = NULL;
     mpTransformInfo = NULL;
     mpQuat = NULL;
@@ -1408,20 +1408,22 @@ int mDoExt_McaMorfSO::create(J3DModelData* i_modelData, mDoExt_McaMorfCallBack1_
         return 0;
     }
 
-    if (i_modelData->getMaterialNodePointer(0)->getSharedDisplayListObj() != NULL && param_9 == 0) {
+    if (i_modelData->getMaterialNodePointer(0)->getSharedDisplayListObj() != NULL &&
+        i_modelFlag == 0)
+    {
         if (i_modelData->isLocked()) {
-            param_9 = 0x20000;
+            i_modelFlag = 0x20000;
         } else {
-            param_9 = 0x80000;
+            i_modelFlag = 0x80000;
         }
     }
 
-    mpModel = mDoExt_J3DModel__create(i_modelData, param_9, param_10);
+    mpModel = mDoExt_J3DModel__create(i_modelData, i_modelFlag, i_differedDlistFlag);
     if (mpModel == NULL) {
         return 0;
     }
 
-    if (param_9 != 0x80000) {
+    if (i_modelFlag != 0x80000) {
         mDoExt_changeMaterial(mpModel);
     }
 
