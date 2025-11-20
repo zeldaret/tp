@@ -203,6 +203,46 @@ enum grDS_RES_File_ID {
     /* 0x62 */ EVT_EVENT_LIST = 0x62,
 };
 
+enum Bou3_Joint {
+    /* 0x00 */ JNT_CENTER,
+    /* 0x01 */ JNT_BACKBONE1,
+    /* 0x02 */ JNT_BACKBONE2,
+    /* 0x03 */ JNT_NECK,
+    /* 0x04 */ JNT_HEAD,
+    /* 0x05 */ JNT_CHIN,
+    /* 0x06 */ JNT_MAYU_L,
+    /* 0x07 */ JNT_MAYU_R,
+    /* 0x08 */ JNT_MOUTH,
+    /* 0x09 */ JNT_SHOULDERL,
+    /* 0x0A */ JNT_ARML1,
+    /* 0x0B */ JNT_ARML2,
+    /* 0x0C */ JNT_HANDL,
+    /* 0x0D */ JNT_FINGERL1,
+    /* 0x0E */ JNT_THAMBL,
+    /* 0x0F */ JNT_SHOULDERR,
+    /* 0x10 */ JNT_ARMR1,
+    /* 0x11 */ JNT_ARMR2,
+    /* 0x12 */ JNT_HANDR,
+    /* 0x13 */ JNT_FINGERR1,
+    /* 0x14 */ JNT_THAMBR,
+    /* 0x15 */ JNT_HARA,
+    /* 0x16 */ JNT_WAIST,
+    /* 0x17 */ JNT_CLOTCHL,
+    /* 0x18 */ JNT_LEGL1,
+    /* 0x19 */ JNT_LEGL2,
+    /* 0x1A */ JNT_FOOTL,
+    /* 0x1B */ JNT_CLOTCHR,
+    /* 0x1C */ JNT_LEGR1,
+    /* 0x1D */ JNT_LEGR2,
+    /* 0x1E */ JNT_FOOTR,
+    /* 0x1F */ JNT_HARA_TOPF,
+    /* 0x20 */ JNT_HARA_UNDERF,
+    /* 0x21 */ JNT_HARA_UNDERL,
+    /* 0x22 */ JNT_HARA_UNDERR,
+    /* 0x23 */ JNT_OBIL,
+    /* 0x24 */ JNT_OBIR,
+};
+
 /* 80B41E18-80B41E1C -00001 0004+00 1/2 0/0 0/0 .data            l_resALink */
 static char* l_resALink = "alSumou";
 
@@ -2674,7 +2714,7 @@ bool daNpcWrestler_c::checkOutOfArenaW() {
     }
 
     int jointNo = mType == 0 ? 0x1A : 0x18;
-    int jointNo2 = mType == 0 ? 0x1E : 0x1B;
+    int jointNo2 = mType == 0 ? JNT_FOOTR : 0x1B;
     f32 fVar1 = std::pow(mArenaExtent, 2);
 
     field_0x89c = getJointPos(jointNo);
@@ -3440,10 +3480,9 @@ bool daNpcWrestler_c::sumouTackleShock(void* param_1) {
 
 /* 80B38C90-80B39334 009AF0 06A4+00 2/0 0/0 0/0 .text            sumouTackleStagger__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::sumouTackleStagger(void* param_1) {
-    // NONMATCHING - regalloc
     daPy_py_c* player = daPy_getPlayerActorClass();
     int jointNo = mType == 0 ? 0x1A : 0x18;
-    int jointNo2 = mType == 0 ? 0x1E : 0x1B;
+    int jointNo2 = mType == 0 ? JNT_FOOTR : 0x1B;
     f32 fVar1, fVar2;
 
     switch (field_0xe96) {
@@ -3494,6 +3533,7 @@ bool daNpcWrestler_c::sumouTackleStagger(void* param_1) {
         case 3:
             player->setSumouForceGraspCancel();
             break;
+            
         default:
             JUT_ASSERT(4311, FALSE);
             break;

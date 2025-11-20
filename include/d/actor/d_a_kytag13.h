@@ -11,9 +11,11 @@
  *
  * @details
  *
- */
-class kytag13_class : public fopAc_ac_c {
+*/
+
+class kytag13_class {
 public:
+    /* 0x000 */ fopAc_ac_c actor;
     /* 0x568 */ u8 field_0x568[0x574 - 0x568];
     /* 0x574 */ f32 mSpeed;
     /* 0x578 */ u16 mMax;
