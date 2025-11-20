@@ -594,38 +594,38 @@ int daBgObj_c::CreateHeapType0() {
                 return 0;
             }
 
-            mpBtkAnmMtx[0][i] = NULL;
-            mpBrkAnmMtx[0][i] = NULL;
+            mpBtkAnms[0][i] = NULL;
+            mpBrkAnms[0][i] = NULL;
 
             J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(
                 daSetBgObj_c::getArcName(this), getBtkName(0, i));
             if (btk != NULL) {
-                mpBtkAnmMtx[0][i] = new mDoExt_btkAnm();
-                if (mpBtkAnmMtx[0][i] == NULL ||
-                    !mpBtkAnmMtx[0][i]->init(modelData, btk, TRUE, 2, 1.0f, 0, -1))
+                mpBtkAnms[0][i] = new mDoExt_btkAnm();
+                if (mpBtkAnms[0][i] == NULL ||
+                    !mpBtkAnms[0][i]->init(modelData, btk, TRUE, 2, 1.0f, 0, -1))
                 {
                     return 0;
                 }
 
-                mpBtkAnmMtx[0][i]->setPlaySpeed(1.0f);
+                mpBtkAnms[0][i]->setPlaySpeed(1.0f);
             }
 
             J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(
                 daSetBgObj_c::getArcName(this), getBrkName(0, i));
             if (brk != NULL) {
-                mpBrkAnmMtx[0][i] = new mDoExt_brkAnm();
-                if (mpBrkAnmMtx[0][i] == NULL ||
-                    !mpBrkAnmMtx[0][i]->init(modelData, brk, TRUE, 2, 1.0f, 0, -1))
+                mpBrkAnms[0][i] = new mDoExt_brkAnm();
+                if (mpBrkAnms[0][i] == NULL ||
+                    !mpBrkAnms[0][i]->init(modelData, brk, TRUE, 2, 1.0f, 0, -1))
                 {
                     return 0;
                 }
 
-                mpBrkAnmMtx[0][i]->setPlaySpeed(1.0f);
+                mpBrkAnms[0][i]->setPlaySpeed(1.0f);
             }
 
             mpModelMtx[1][i] = NULL;
-            mpBtkAnmMtx[1][i] = NULL;
-            mpBrkAnmMtx[1][i] = NULL;
+            mpBtkAnms[1][i] = NULL;
+            mpBrkAnms[1][i] = NULL;
         }
     }
 
@@ -638,8 +638,8 @@ int daBgObj_c::CreateHeapType1() {
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
             mpModelMtx[i][j] = NULL;
-            mpBtkAnmMtx[i][j] = NULL;
-            mpBrkAnmMtx[i][j] = NULL;
+            mpBtkAnms[i][j] = NULL;
+            mpBrkAnms[i][j] = NULL;
 
             J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(
                 daSetBgObj_c::getArcName(this), getBmdName(i, j));
@@ -652,29 +652,29 @@ int daBgObj_c::CreateHeapType1() {
                 J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(
                     daSetBgObj_c::getArcName(this), getBtkName(i, j));
                 if (btk != NULL) {
-                    mpBtkAnmMtx[i][j] = new mDoExt_btkAnm();
-                    if (mpBtkAnmMtx[i][j] == NULL ||
-                        !mpBtkAnmMtx[i][j]->init(modelData, btk, TRUE, 2, 1.0f, 0,
+                    mpBtkAnms[i][j] = new mDoExt_btkAnm();
+                    if (mpBtkAnms[i][j] == NULL ||
+                        !mpBtkAnms[i][j]->init(modelData, btk, TRUE, 2, 1.0f, 0,
                                                  -1))
                     {
                         return 0;
                     }
 
-                    mpBtkAnmMtx[i][j]->setPlaySpeed(1.0f);
+                    mpBtkAnms[i][j]->setPlaySpeed(1.0f);
                 }
 
                 J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(
                     daSetBgObj_c::getArcName(this), getBrkName(i, j));
                 if (brk != NULL) {
-                    mpBrkAnmMtx[i][j] = new mDoExt_brkAnm();
-                    if (mpBrkAnmMtx[i][j] == NULL ||
-                        !mpBrkAnmMtx[i][j]->init(modelData, brk, TRUE, 2, 1.0f, 0,
+                    mpBrkAnms[i][j] = new mDoExt_brkAnm();
+                    if (mpBrkAnms[i][j] == NULL ||
+                        !mpBrkAnms[i][j]->init(modelData, brk, TRUE, 2, 1.0f, 0,
                                                  -1))
                     {
                         return 0;
                     }
 
-                    mpBrkAnmMtx[i][j]->setPlaySpeed(1.0f);
+                    mpBrkAnms[i][j]->setPlaySpeed(1.0f);
                 }
             }
         }
@@ -1340,12 +1340,12 @@ int daBgObj_c::Execute(Mtx** param_0) {
     (this->*mExecuteFunc[mSpecData.mSpecType])();
 
     for (int i = 0; i < 2; i++) {
-        if (mpBtkAnmMtx[field_0xcc8][i] != NULL) {
-            mpBtkAnmMtx[field_0xcc8][i]->play();
+        if (mpBtkAnms[field_0xcc8][i] != NULL) {
+            mpBtkAnms[field_0xcc8][i]->play();
         }
 
-        if (mpBrkAnmMtx[field_0xcc8][i] != NULL) {
-            mpBrkAnmMtx[field_0xcc8][i]->play();
+        if (mpBrkAnms[field_0xcc8][i] != NULL) {
+            mpBrkAnms[field_0xcc8][i]->play();
         }
     }
 
@@ -1381,12 +1381,12 @@ int daBgObj_c::Draw() {
             indirectProc(mpModelMtx[field_0xcc8][i]);
             dKy_bg_MAxx_proc(mpModelMtx[field_0xcc8][i]);
 
-            if (mpBtkAnmMtx[field_0xcc8][i] != NULL) {
-                mpBtkAnmMtx[field_0xcc8][i]->entry(mpModelMtx[field_0xcc8][i]->getModelData());
+            if (mpBtkAnms[field_0xcc8][i] != NULL) {
+                mpBtkAnms[field_0xcc8][i]->entry(mpModelMtx[field_0xcc8][i]->getModelData());
             }
 
-            if (mpBrkAnmMtx[field_0xcc8][i] != NULL) {
-                mpBrkAnmMtx[field_0xcc8][i]->entry(mpModelMtx[field_0xcc8][i]->getModelData());
+            if (mpBrkAnms[field_0xcc8][i] != NULL) {
+                mpBrkAnms[field_0xcc8][i]->entry(mpModelMtx[field_0xcc8][i]->getModelData());
             }
 
             mDoExt_modelUpdateDL(mpModelMtx[field_0xcc8][i]);

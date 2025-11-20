@@ -97,8 +97,8 @@ public:
 
     /* 0x5A0 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ J3DModel* mpModelMtx[2][2];
-    /* 0x5B8 */ mDoExt_btkAnm* mpBtkAnmMtx[2][2];
-    /* 0x5C8 */ mDoExt_brkAnm* mpBrkAnmMtx[2][2];
+    /* 0x5B8 */ mDoExt_btkAnm* mpBtkAnms[2][2];
+    /* 0x5C8 */ mDoExt_brkAnm* mpBrkAnms[2][2];
     /* 0x5D8 */ dBgW* mpBgW2;
     /* 0x5DC */ dCcD_Stts mStts;
     /* 0x618 */ dCcD_Tri mTris[4];
