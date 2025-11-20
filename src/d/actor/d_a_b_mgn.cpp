@@ -1327,15 +1327,15 @@ void daB_MGN_c::executeCircle() {
 }
 
 /* 80608EF8-80609D70 0038B8 0E78+00 2/1 0/0 0/0 .text            executeDash__9daB_MGN_cFv */
-// NONMATCHING - small regalloc, equivalent
+// NONMATCHING - regalloc + extra mr, equivalent
 void daB_MGN_c::executeDash() {
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    daPy_py_c* player_sp14 = daPy_getPlayerActorClass();
 
     switch (mMoveMode) {
     case 10:
     case 11: {
         cXyz gate_offset(0.0f, 0.0f, -800.0f);
-        cXyz player_pos(player->current.pos);
+        cXyz player_pos(player_sp14->current.pos);
 
         s16 angle = cLib_targetAngleY(&player_pos, &gate_offset);
         if (field_0xaff >= 5) {
@@ -1449,7 +1449,7 @@ void daB_MGN_c::executeDash() {
         mJewelColorMode = 2;
     case 1:
         attention_info.flags = 0;
-        if (player->checkNowWolf()) {
+        if (player_sp14->checkNowWolf()) {
             attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         }
 
@@ -1499,7 +1499,7 @@ void daB_MGN_c::executeDash() {
         field_0xb09 = 1;
         attention_info.flags = 0;
 
-        if (player->checkNowWolf()) {
+        if (player_sp14->checkNowWolf()) {
             attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
 
             cXyz sp48;

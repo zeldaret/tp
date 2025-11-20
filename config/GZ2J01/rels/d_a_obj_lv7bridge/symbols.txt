@@ -75,4 +75,4 @@ __vt__8cM3dGCyl = .data:0x0000011C; // type:object size:0xC scope:global
 __vt__12dBgS_ObjAcch = .data:0x00000128; // type:object size:0x24 scope:global
 __vt__12J3DFrameCtrl = .data:0x0000014C; // type:object size:0xC scope:global
 __vt__13daObjLv7Brg_c = .data:0x00000158; // type:object size:0x28 scope:global
-lbl_559_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$3943 = .bss:0x00000000; // type:object size:0x1 data:byte

@@ -410,37 +410,40 @@ static void dummy2() {
     J3DTevOrder tevOrder;
     J3DTevSwapModeTable tevSwapModeTable;
     J3DIndTexOrder indTexOrder;
-    J3DIndTexMtx indTexMtx;
-    J3DIndTexCoordScale indTexCoordScale;
+
+    J3DTevStage* tevStage_p;
+    J3DTevStageInfo tevStageInfo;
+    tevStage_p->setTevStageInfo(tevStageInfo);
+    J3DTevStage tevStage;
 
     J3DColorBlock* colorBlock = NULL;
-    colorBlock->setColorChanNum((const u8*)NULL);
+    colorBlock->setColorChanNum((u8)NULL);
     colorBlock->setMatColor(0, gxColor);
     colorBlock->setColorChan(0, colorChan);
     colorBlock->setAmbColor(0, gxColor);
 
     J3DTexGenBlock* texGenBlock = NULL;
-    texGenBlock->setTexGenNum((const u32*)NULL);
+    texGenBlock->setTexGenNum((u32)NULL);
     texGenBlock->setTexCoord(0, NULL);
 
     J3DTevBlock* tevBlock = NULL;
-    tevBlock->setTevStageNum((const u8*)NULL);
+    tevBlock->setTevStageNum((u8)0);
     tevBlock->setTevColor(0, J3DGXColorS10());
     tevBlock->setTevKColor(0, gxColor);
     tevBlock->setTevOrder(0, tevOrder);
-    tevBlock->setTevKColorSel(0, (const u8*)NULL);
-    tevBlock->setTevKAlphaSel(0, (const u8*)NULL);
+    tevBlock->setTevKColorSel(0, (u8)0);
+    tevBlock->setTevKAlphaSel(0, (u8)0);
     tevBlock->setTevSwapModeTable(0, tevSwapModeTable);
-    tevBlock->setTexNo(0, (const u16*)NULL);
-    J3DTevStage tevStage;
+    tevBlock->setTexNo(0, (u16)0);
     tevBlock->setTevStage(0, tevStage);
     tevBlock->setIndTevStage(0, indTevStage);
 
     J3DIndBlock* indBlock = NULL;
     indBlock->setIndTexStageNum(0);
+    J3DIndTexMtx indTexMtx;
     indBlock->setIndTexMtx(0, indTexMtx);
+    J3DIndTexCoordScale indTexCoordScale;
     indBlock->setIndTexCoordScale(0, indTexCoordScale);
-    indTexCoordScale.~J3DIndTexCoordScale();
 
     J3DPEBlock* peBlock = NULL;
     J3DAlphaComp alphaComp;
@@ -450,7 +453,7 @@ static void dummy2() {
     J3DZMode zMode;
     peBlock->setZMode(zMode);
     u8 compLoc;
-    peBlock->setZCompLoc(&compLoc);
+    peBlock->setZCompLoc(compLoc);
 
     colorBlock->getColorChanNum();
     colorBlock->getMatColor(0);
