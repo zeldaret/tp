@@ -2249,7 +2249,7 @@ void daHorse_c::setMatrix() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     m_model->setBaseTRMtx(mDoMtx_stack_c::get());
-#if PLATFORM_WII || PLATFORM_SHIELD
+#if PLATFORM_SHIELD
     m_model->setBaseScale(scale);
 #endif
 
