@@ -111,7 +111,7 @@ void daObjIce_s_c::setBaseMtx() {
 static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
     (void)param_1;
     daObjIce_s_c* ice = (daObjIce_s_c*)param_2;
-    daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();
+    daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz& playerPos = fopAcM_GetPosition(player);
     cXyz* pBallCenter = player->getIronBallCenterPos();
 
