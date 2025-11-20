@@ -947,7 +947,7 @@ int daHorse_c::setSingleAnime(u16 i_anmIdx, f32 i_speed, f32 i_startF, s16 i_end
         }
 
         bck = (J3DAnmTransform*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), i_anmIdx);
-#if PLATFORM_GCN
+#if PLATFORM_GCN || PLATFORM_WII
         i_anmIdx |= 0x8000;
 #else
         i_anmIdx |= (u16)0x8000;
@@ -1675,7 +1675,7 @@ void daHorse_c::setMoveAnime(f32 i_morf) {
             };
 
             if (frame_ctrl->checkPass(footEffectRate[i] * frame_ctrl->getEnd())) {
-#if PLATFORM_GCN
+#if PLATFORM_GCN || PLATFORM_WII
                 field_0x16b6 |= (1 << i);
 #else
                 field_0x16b6 |= (u8)(1 << i);
@@ -3880,7 +3880,7 @@ int daHorse_c::procStop() {
     if (frame <= var_f30) {
         for (int i = 0; i < 4; i++, ++var_r29) { // needs to be pre-increment
             if ((frame >= var_r29->_0 && frame <= var_r29->_4) || frame >= var_r29->_8) {
-#if PLATFORM_GCN
+#if PLATFORM_GCN || PLATFORM_WII
                 field_0x16b6 |= (1 << i);
 #else
                 field_0x16b6 |= (u8)(1 << i);
@@ -3921,7 +3921,7 @@ int daHorse_c::procTurnInit(int param_0) {
     field_0x171e = shape_angle.y + 0x8000;
 
     if (!dComIfGp_event_runCheck() && !checkStateFlg0(FLG0_UNK_4000000)) {
-#if PLATFORM_GCN
+#if PLATFORM_GCN || PLATFORM_WII
         field_0x170a += 0x8000;
 #else
         field_0x170a += (s16)0x8000;
@@ -4333,7 +4333,7 @@ void daHorse_c::searchSceneChangeArea(fopAc_ac_c* i_scnChg) {
         if (m_scnChg_num == 50) {
             // "Exceeded buffer!!!!!\n"
             OS_PANIC(0x1CD6, "バッファ越え！！！！！\n");
-#if PLATFORM_GCN
+#if PLATFORM_GCN || PLATFORM_WII
             m_scnChg_num = 49;
 #endif
         }
