@@ -447,7 +447,7 @@ public:
         field_0x14 = 0.0f;
     }
 
-    bool getOldFrameFlg() { return mOldFrameFlg; }
+    u8 getOldFrameFlg() { return mOldFrameFlg; }
     void onOldFrameFlg() { mOldFrameFlg = true; }
     void offOldFrameFlg() { mOldFrameFlg = false; }
     f32 getOldFrameRate() { return mOldFrameRate; }
@@ -458,7 +458,7 @@ public:
     f32 getOldFrameMorfCounter() { return mOldFrameMorfCounter; }
 
 private:
-    /* 0x00 */ bool mOldFrameFlg;
+    /* 0x00 */ u8 mOldFrameFlg;
     /* 0x04 */ f32 mOldFrameMorfCounter;
     /* 0x08 */ f32 field_0x8;
     /* 0x0C */ f32 mOldFrameRate;
