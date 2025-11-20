@@ -83,7 +83,7 @@ public:
     /* 80AE9820 */ inline void lookat();
     /* 80AE9A00 */ void setMotionAnm(int, f32);
     /* 80AE9AD0 */ inline BOOL drawDbgInfo();
-    /* 80AEA340 */ inline void adjustShapeAngle();
+    /* 80AEA340 */ inline void adjustShapeAngle() {}
 
     s16 getMessageNo() { return fopAcM_GetParam(this) >> 0x10; }
 
