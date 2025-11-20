@@ -12,11 +12,61 @@
 
 class daKago_c;
 
+class daMidna_hio_c1 {
+public:
+    /* 0x00 */ u8 forced_display;
+    /* 0x01 */ u8 hio_priority;
+    /* 0x02 */ s16 hair_color_1r;
+    /* 0x04 */ s16 hair_color_1g;
+    /* 0x06 */ s16 hair_color_1b;
+    /* 0x08 */ s16 hair_k_color_1r;
+    /* 0x0A */ s16 hair_k_color_1g;
+    /* 0x0C */ s16 hair_k_color_1b;
+    /* 0x0E */ s16 hair_k_color_2r;
+    /* 0x10 */ s16 hair_k_color_2g;
+    /* 0x12 */ s16 hair_k_color_2b;
+    /* 0x14 */ f32 scale;
+    /* 0x18 */ f32 y_pos;
+    /* 0x1C */ f32 z_pos;
+};
+
+class daMidna_hio_c0 {
+public:
+    static daMidna_hio_c1 const m;
+};
+
+STATIC_ASSERT(sizeof(daMidna_hio_c0::m) == 0x20);
+
+#if DEBUG
+class daMidna_hio_c : public JORReflexible {
+public:
+    daMidna_hio_c();
+    void genMessage(JORMContext*);
+    virtual ~daMidna_hio_c() {}
+
+    /* 0x4 */ s8 id;
+    /* 0x8 */ daMidna_hio_c1 m;
+};
+#define NPC_MIDNA_HIO_CLASS daMidna_hio_c
+#else
+#define NPC_MIDNA_HIO_CLASS daMidna_hio_c0
+#endif
+
+class daMidna_McaMorfCB1_c : public mDoExt_McaMorfCallBack1_c {
+public:
+    /* 804BC36C */ int execute(u16, J3DTransformInfo*);
+    /* 804C6398 */ virtual ~daMidna_McaMorfCB1_c() {}
+
+    void setScale(cXyz* i_scale) { mpScale = i_scale; }
+
+    /* 0x4 */ cXyz* mpScale;
+};
+
 class daMidna_matAnm_c : public J3DMaterialAnm {
 public:
     /* 804BC218 */ void init();
     /* 804BC248 */ void calc(J3DMaterial*) const;
-    /* 804C63E0 */ ~daMidna_matAnm_c() {}
+    /* 804C63E0 */ inline ~daMidna_matAnm_c() {}
 
     daMidna_matAnm_c() { init(); }
 
@@ -43,30 +93,6 @@ public:
 
 STATIC_ASSERT(sizeof(daMidna_matAnm_c) == 0x104);
 
-class daMidna_hio_c0 {
-public:
-    struct param {
-        /* 0x00 */ u8 field_0x00[0x14];
-        /* 0x14 */ f32 mScale;
-        /* 0x18 */ f32 field_0x18;
-        /* 0x1C */ f32 field_0x1c;
-    };
-
-    static param const m;
-};
-
-STATIC_ASSERT(sizeof(daMidna_hio_c0::param) == 0x20);
-
-class daMidna_McaMorfCB1_c : public mDoExt_McaMorfCallBack1_c {
-public:
-    /* 804BC36C */ int execute(u16, J3DTransformInfo*);
-    /* 804C6398 */ virtual ~daMidna_McaMorfCB1_c() {}
-
-    void setScale(cXyz* i_scale) { mpScale = i_scale; }
-
-    /* 0x4 */ cXyz* mpScale;
-};
-
 struct daMidna_anmData_s {
     /* 0x0 */ u16 mResID;
     /* 0x2 */ u16 mTexID;
@@ -89,7 +115,8 @@ typedef int (daMidna_c::*daMidna_func)();
  *
  * @details
  *
- */
+*/
+
 class daMidna_c : public fopAc_ac_c {
 public:
     enum daMidna_ERFLG0 {
@@ -455,13 +482,13 @@ private:
     /* 0x6E8 */ J3DGXColor field_0x6e8;
     /* 0x6EC */ J3DGXColor field_0x6ec;
     /* 0x6F0 */ daMidna_matAnm_c* mpEyeMatAnm[2];
-    /* 0x6F8 */ daMidna_hio_c0* mpHIO;
+    /* 0x6F8 */ NPC_MIDNA_HIO_CLASS* mpHIO;
     /* 0x6FC */ Z2Creature mSound;
     /* 0x78C */ dMsgFlow_c mMsgFlow;
     /* 0x7D8 */ dBgS_LinkLinChk mLinChk;
     /* 0x848 */ u8 mMotionNum;
     /* 0x849 */ u8 mFaceNum;
-    /* 0x84A */ u8 field_0x84a;
+    /* 0x84A */ u8 mFrameCounter;
     /* 0x84B */ u8 mFaceBckTimer;
     /* 0x84C */ u8 mEyeMoveTimer;
     /* 0x84D */ s8 mReverb;
@@ -469,20 +496,20 @@ private:
     /* 0x84F */ u8 mDemoType;
     /* 0x850 */ u8 field_0x850;
     /* 0x851 */ u8 field_0x851;
-    /* 0x852 */ u8 field_0x852[8];
-    /* 0x85A */ s16 field_0x85a;
+    /* 0x852 */ u8 field_0x852[0x85a - 0x852];
+    /* 0x85A */ s16 mPrevShapeAngleY;
     /* 0x85C */ s16 mHairAngleZ[5];
     /* 0x866 */ s16 mHairAngleY[5];
-    /* 0x870 */ u8 field_0x870[2];
+    /* 0x870 */ u8 field_0x870[0x872 - 0x870];
     /* 0x872 */ s16 field_0x872;
     /* 0x874 */ s16 mBackboneAngleZ;
-    /* 0x876 */ s16 field_0x876;
+    /* 0x876 */ s16 mPlayerAngleY;
     /* 0x878 */ u16 mLeftHandShapeIdx;
     /* 0x87A */ u16 mRightHandShapeIdx;
     /* 0x87C */ s16 mDemoAngle;
-    /* 0x87E */ s16 field_0x87e;
+    /* 0x87E */ s16 mJntNo;
     /* 0x880 */ csXyz mNeckAngle;
-    /* 0x886 */ u8 field_0x886[6];
+    /* 0x886 */ u8 field_0x886[0x88c - 0x886];
     /* 0x88C */ int mStaffID;
     /* 0x890 */ u32 mStateFlg0;
     /* 0x894 */ u32 mStateFlg1;
