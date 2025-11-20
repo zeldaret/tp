@@ -980,15 +980,12 @@ def generate_build_ninja(
                         cflags.insert(0, "-lang=c")
 
                 cflags_str = make_flags_str(cflags)
+                shift_jis = pch.get("shift_jis", config.shift_jis)
 
                 n.comment(f"Precompiled header {pch_out_name}")
                 n.build(
                     outputs=pch_out_abs_path,
-                    rule=(
-                        "mwcc_pch_sjis"
-                        if pch.get("shift_jis", config.shift_jis)
-                        else "mwcc_pch"
-                    ),
+                    rule="mwcc_pch_sjis" if shift_jis else "mwcc_pch",
                     inputs=f"include/{src_path_rel_str}",
                     variables={
                         "mw_version": Path(pch["mw_version"]),
@@ -997,7 +994,7 @@ def generate_build_ninja(
                         "basefile": pch_out_abs_path.with_suffix(""),
                         "basefilestem": pch_out_abs_path.stem,
                     },
-                    implicit=[*mwcc_implicit],
+                    implicit=mwcc_pch_sjis_implicit if shift_jis else mwcc_pch_implicit,
                 )
                 n.newline()
 
