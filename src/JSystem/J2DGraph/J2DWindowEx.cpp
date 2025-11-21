@@ -666,16 +666,15 @@ bool J2DWindowEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white) 
     setTevOrder(bVar1);
     setTevStage(bVar1);
     if (bVar1) {
-        J2DGXColorS10 color0;
-        J2DGXColorS10 color1;
-        color0.r = black.r;
-        color0.g = black.g;
-        color0.b = black.b;
-        color0.a = black.a;
-        color1.r = white.r;
-        color1.g = white.g;
-        color1.b = white.b;
-        color1.a = white.a;
+        J2DGXColorS10 color0, color1;
+        color0.r = (int)((J2DGXColorS10*)&black)->r;
+        color0.g = (int)((J2DGXColorS10*)&black)->g;
+        color0.b = (int)((J2DGXColorS10*)&black)->b;
+        color0.a = (int)((J2DGXColorS10*)&black)->a;
+        color1.r = (int)((J2DGXColorS10*)&white)->r;
+        color1.g = (int)((J2DGXColorS10*)&white)->g;
+        color1.b = (int)((J2DGXColorS10*)&white)->b;
+        color1.a = (int)((J2DGXColorS10*)&white)->a;
 
         for (int i = 0; i < 4; i++) {
             mFrameMaterial[i]->getTevBlock()->setTevColor(0, color0);
@@ -685,8 +684,7 @@ bool J2DWindowEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white) 
     return true;
 }
 
-/* 80302A4C-80302BE8 2FD38C 019C+00 4/4 0/0 0/0 .text
- * getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor */
+/* 80302A4C-80302BE8 2FD38C 019C+00 4/4 0/0 0/0 .text            getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor */
 bool J2DWindowEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* param_1) const {
     if (mFrameMaterial[0] == NULL) {
         return false;

@@ -1149,7 +1149,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPicture.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBox.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DWindowEx.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DPictureEx.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPictureEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBoxEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DAnmLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DAnimation.cpp"),
