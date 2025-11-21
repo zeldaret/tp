@@ -547,10 +547,10 @@ void daNpc_Doc_c::beforeMove() {
         }
     }
 
-    fopAcM_OffStatus(this, 0x8000000);
+    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, 0x8000000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw) {
