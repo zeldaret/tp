@@ -61,9 +61,9 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_begin() {
         adaptor_object_begin_();
         JStage::TLight* pLightObj = get_pJSG_();
         const JStudio::TObject* pObject = adaptor_getObject();
-        JUT_ASSERT(60, pObject != NULL);
+        JUT_ASSERT(60, pObject!=NULL);
         const JStudio::TControl* pControl = pObject->getControl();
-        JUT_ASSERT(62, pControl != NULL);
+        JUT_ASSERT(62, pControl!=NULL);
         GXColor lightColor = pLightObj->JSGGetColor();
         adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, lightColor);
         JStudio::TControl::TTransform_position_direction lightObjTransform;
