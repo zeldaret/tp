@@ -1944,7 +1944,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_tk"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_tkc"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_tkj2"),
-    ActorRel(NonMatching, "d_a_npc_tks"),
+    ActorRel(NonMatching, "d_a_npc_tks"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_toby"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_tr"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_uri"),

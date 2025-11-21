@@ -322,7 +322,8 @@ int daNpc_Doc_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 809A7628-809A7660 000A88 0038+00 1/1 0/0 0/0 .text            getType__11daNpc_Doc_cFv */
 int daNpc_Doc_c::getType() {
-    switch (fopAcM_GetParam(this) & 0xFF) {
+    u8 r31 = fopAcM_GetParam(this) & 0xFF;
+    switch (r31) {
     case 0:
         return 0;
     case 1:
