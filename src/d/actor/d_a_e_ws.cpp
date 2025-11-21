@@ -10,6 +10,24 @@
 #include <cmath.h>
 #include "f_op/f_op_actor_enemy.h"
 
+class daE_WS_HIO_c : public JORReflexible {
+public:
+    /* 807E3A0C */ daE_WS_HIO_c();
+    /* 807E6E44 */ virtual ~daE_WS_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 id;
+    /* 0x08 */ f32 base_size;
+    /* 0x0C */ f32 move_range;
+    /* 0x10 */ f32 search_range;
+    /* 0x14 */ f32 search_y_range;
+    /* 0x18 */ f32 dist_to_ground;
+    /* 0x1C */ f32 search_angle;
+    /* 0x20 */ f32 attack_speed;
+    /* 0x24 */ u8 debug_ON;
+};
+
 namespace {
 /* 807E7448-807E7488 000038 0040+00 1/1 0/0 0/0 .data            cc_ws_src__22@unnamed@d_a_e_ws_cpp@
  */

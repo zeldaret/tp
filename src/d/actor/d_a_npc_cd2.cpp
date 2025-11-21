@@ -2136,12 +2136,12 @@ daNpcCd2_HIO_c::daNpcCd2_HIO_c() {
         for (int j = 0; j < 19; j++) {
             memcpy(&field_0x0004[i].field_0x004[j].field_0x04, a_jntTbl_M[i][j], 20);
         }
-        memcpy(&field_0x0004[i].mMaxLmtY_BACKBONE, a_prmTbl_M + i * 0x40, 0x40);
+        memcpy(&field_0x0004[i].mMaxLmtX_BACKBONE, a_prmTbl_M + i * 0x40, 0x40);
     }
     for (int i = 0; i < 14; i++) {
         for (int j = 0; j < 21; j++) {
             memcpy(&field_0x20c4[i].field_0x004[j].field_0x04, a_jntTbl_W[i][j], 20);
         }
-        memcpy(&field_0x20c4[i].mMaxLmtY_BACKBONE, a_prmTbl_W + i * 0x40, 0x40);
+        memcpy(&field_0x20c4[i].mMaxLmtX_BACKBONE, a_prmTbl_W + i * 0x40, 0x40);
     }
 }

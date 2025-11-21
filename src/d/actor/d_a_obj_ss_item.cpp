@@ -336,6 +336,47 @@ int daObj_SSItem_c::wait(void* param_0) {
     }
 }
 
+int daObj_SSItem_c::buy(void* param_0) {
+    switch (mEventType) {
+    case 0:
+        break;
+    case 1:
+        dComIfGp_event_reset();
+
+        if (getParentPtr() != NULL) {
+            ((daMyna_c *)getParentPtr())->deleteItem(fopAcM_GetID(this));
+        }
+
+        fopAcM_delete(this);
+        break;
+    case 2:
+        break;
+    }
+
+    return 1;
+}
+
+int daObj_SSItem_c::cancel(void* param_0) {
+    switch (mEventType) {
+    case 0:
+        break;
+    case 1:
+        if (field_0xAFC == 0) {
+            dComIfGp_event_reset();
+
+            current.pos.set(field_0xAF0);
+
+            setProcess(&daObj_SSItem_c::wait);
+        }
+
+        break;
+    case 2:
+        break;
+    }
+
+    return 1;
+}
+
 /* 80CE7D8C-80CE7DAC 0011EC 0020+00 1/0 0/0 0/0 .text            daObj_SSItem_Create__FPv */
 static int daObj_SSItem_Create(void* i_this) {
     return static_cast<daObj_SSItem_c*>(i_this)->create();
