@@ -954,17 +954,17 @@ bool renderingPlusDoor_c::checkDispDoorS(int param_0, int param_1, f32 param_2) 
     return false;
 }
 
+static Vec const l_100x100BoxVertexList[4] = {
+    {-50.0f, -50.0f, 0.0f},
+    {50.0f, -50.0f, 0.0f},
+    {50.0f, 50.0f, 0.0f},
+    {-50.0f, 50.0f, 0.0f},
+};
+
 /* 80040838-800409B4 03B178 017C+00 1/1 0/0 0/0 .text
  * drawNormalDoorS__19renderingPlusDoor_cFPC21stage_tgsc_data_classiib */
 void renderingPlusDoor_c::drawNormalDoorS(stage_tgsc_data_class const* i_doorData, int i_roomNo,
                                           int param_2, bool param_3) {
-    static Vec const l_100x100BoxVertexList[4] = {
-        {-50.0f, -50.0f, 0.0f},
-        {50.0f, -50.0f, 0.0f},
-        {50.0f, 50.0f, 0.0f},
-        {-50.0f, 50.0f, 0.0f},
-    };
-
     if (i_roomNo == dComIfGp_roomControl_getStayNo() || param_2 == dComIfGp_roomControl_getStayNo())
     {
         GXSetTevColor(GX_TEVREG1, l_doorWhite);
