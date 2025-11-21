@@ -27,6 +27,7 @@ public:
 
     u8 getSwitchNo() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
     void setAnmSpeed(f32 speed) { mpTableUpBckAnm->setPlaySpeed(speed); }
+    void setEffect() { field_0x874 = true; }
 
     /* 0x568 */ J3DModel* mpTableModel;
     /* 0x56C */ J3DModel* mpMirrorModel;

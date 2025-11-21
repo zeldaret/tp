@@ -1176,20 +1176,23 @@ int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* c
     if (!mpQuat) {
         goto cleanup;
     }
-    J3DTransformInfo* info = mpTransformInfo;
-    Quaternion* quat = mpQuat;
-    J3DModelData* r23 = mpModel->getModelData();
-    u16 jointNum = r23->getJointNum();
-    for (int i = 0; i < jointNum; i++) {
-        J3DJoint* joint = r23->getJointNodePointer(i);
-        *info = joint->getTransformInfo();
-        JMAEulerToQuat(info->mRotation.x, info->mRotation.y, info->mRotation.z, quat);
-        info++;
-        quat++;
+    {
+        J3DTransformInfo* info = mpTransformInfo;
+        Quaternion* quat = mpQuat;
+        J3DModelData* r23 = mpModel->getModelData();
+        int jointNum = r23->getJointNum();
+        for (int i = 0; i < jointNum; i++) {
+            J3DJoint* joint = r23->getJointNodePointer(i);
+            J3DTransformInfo& transInfo = joint->getTransformInfo();
+            *info = transInfo;
+            JMAEulerToQuat(info->mRotation.x, info->mRotation.y, info->mRotation.z, quat);
+            info++;
+            quat++;
+        }
+        mpCallback1 = callback1;
+        mpCallback2 = callback2;
+        return 1;
     }
-    mpCallback1 = callback1;
-    mpCallback2 = callback2;
-    return 1;
     cleanup:
     if (mpSound) {
         mpSound->stopAnime();
@@ -1351,7 +1354,7 @@ void mDoExt_McaMorf::modelCalc() {
             mpAnm->setFrame(mFrameCtrl.getFrame());
         }
 
-        mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc((J3DMtxCalc*)this);
+        mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc(this);
         mpModel->calc();
     }
 }
@@ -1441,17 +1444,19 @@ int mDoExt_McaMorfSO::create(J3DModelData* i_modelData, mDoExt_McaMorfCallBack1_
         mpQuat = new Quaternion[i_modelData->getJointNum()];
 
         if (mpQuat != NULL) {
-            J3DTransformInfo* transInfo = mpTransformInfo;
+            J3DTransformInfo* transInfo_p = mpTransformInfo;
             Quaternion* quat = mpQuat;
             J3DModelData* modelData = mpModel->getModelData();
-            u16 jointNum = modelData->getJointNum();
+            int jointNum = modelData->getJointNum();
 
             for (int i = 0; i < jointNum; i++) {
-                *transInfo = modelData->getJointNodePointer(i)->getTransformInfo();
-                JMAEulerToQuat(transInfo->mRotation.x, transInfo->mRotation.y,
-                               transInfo->mRotation.z, quat);
+                J3DJoint* joint = modelData->getJointNodePointer(i);
+                J3DTransformInfo& transInfo = joint->getTransformInfo();;
+                *transInfo_p = transInfo;
+                JMAEulerToQuat(transInfo_p->mRotation.x, transInfo_p->mRotation.y,
+                               transInfo_p->mRotation.z, quat);
 
-                transInfo++;
+                transInfo_p++;
                 quat++;
             }
 
@@ -1633,7 +1638,7 @@ void mDoExt_McaMorfSO::updateDL() {
             mpAnm->setFrame(mFrameCtrl.getFrame());
         }
 
-        mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc((J3DMtxCalc*)this);
+        mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc(this);
         mDoExt_modelUpdateDL(mpModel);
         mPrevMorf = mCurMorf;
     }
@@ -1655,7 +1660,7 @@ void mDoExt_McaMorfSO::modelCalc() {
             mpAnm->setFrame(mFrameCtrl.getFrame());
         }
 
-        mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc((J3DMtxCalc*)this);
+        mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc(this);
         mpModel->calc();
     }
 }
@@ -2058,7 +2063,7 @@ void mDoExt_McaMorf2::modelCalc() {
             field_0x40->setFrame(mFrameCtrl.getFrame());
         }
 
-        mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc((J3DMtxCalc*)this);
+        mpModel->getModelData()->getJointNodePointer(0)->setMtxCalc(this);
         mpModel->calc();
     }
 }

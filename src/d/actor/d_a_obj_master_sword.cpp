@@ -39,7 +39,7 @@ void daObjMasterSword_c::executeWait() {
         for (int i = 0; i < dComIfGp_getAttention()->GetActionCount(); i++) {
             if (dComIfGp_getAttention()->ActionTarget(i) == this) {
                 if (dComIfGp_getAttention()->getActionBtnB() != NULL &&
-                    dComIfGp_getAttention()->getActionBtnB()->mType == 4)
+                    dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_CARRY_e)
                 {
                     dComIfGp_setDoStatusForce(8, 0);
                 }

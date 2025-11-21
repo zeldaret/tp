@@ -115,7 +115,7 @@ void dOvlpFd3_dlst_c::draw() {
 
 /* 8025343C-80253518 24DD7C 00DC+00 1/1 0/0 0/0 .text            __ct__10dOvlpFd3_cFv */
 dOvlpFd3_c::dOvlpFd3_c() {
-    setExecute(&execFirstSnap);
+    setExecute(&dOvlpFd3_c::execFirstSnap);
     dComIfGp_2dShowOff();
 
     mTimer = 2;
@@ -132,7 +132,7 @@ dOvlpFd3_c::dOvlpFd3_c() {
 void dOvlpFd3_c::execFirstSnap() {
     if (cLib_calcTimer(&field_0x11f) == 0 && field_0x11c != 0) {
         if (cLib_calcTimer(&mTimer) == 0) {
-            setExecute(&execFadeOut);
+            setExecute(&dOvlpFd3_c::execFadeOut);
             fopOvlpM_Done(this);
             mTimer = 0xFF;
         }
@@ -148,7 +148,7 @@ void dOvlpFd3_c::execFadeOut() {
     if (mTimer == 0) {
         if (fopOvlpM_IsOutReq(this)) {
             fopOvlpM_SceneIsStart();
-            setExecute(&execNextSnap);
+            setExecute(&dOvlpFd3_c::execNextSnap);
             field_0x110 = -0x4000;
             mTimer = 1;
         }
@@ -173,7 +173,7 @@ void dOvlpFd3_c::execNextSnap() {
             field_0x110 += field_0x112;
 
             dComIfGp_setWindowNum(1);
-            setExecute(&execFadeIn);
+            setExecute(&dOvlpFd3_c::execFadeIn);
         }
     }
 }

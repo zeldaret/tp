@@ -163,7 +163,7 @@ void daObj_Oiltubo_c::restart() {
     current.angle.set(0, home.angle.y, 0);
     shape_angle = current.angle;
 
-    setProcess(&wait);
+    setProcess(&daObj_Oiltubo_c::wait);
 }
 
 /* 80CA7068-80CA720C 0009C8 01A4+00 1/1 0/0 0/0 .text            initialize__15daObj_Oiltubo_cFv */

@@ -243,7 +243,7 @@ u16 daObj_SSItem_c::getValue() {
 void daObj_SSItem_c::restart() {
     current.angle.set(0, home.angle.y, 0);
     shape_angle = current.angle;
-    setProcess(&wait);
+    setProcess(&daObj_SSItem_c::wait);
 }
 
 /* 80CE7950-80CE7B04 000DB0 01B4+00 1/1 0/0 0/0 .text            initialize__14daObj_SSItem_cFv */

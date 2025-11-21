@@ -531,7 +531,7 @@ BOOL daAlink_c::checkNextActionGrab() {
 
     setCarryArmAngle(0.0f, 1.0f);
 
-    if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == 5 && fopAcM_CheckStatus(temp_r3, 0x2000000)) {
+    if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == fopAc_attn_DOOR_e && fopAcM_CheckStatus(temp_r3, 0x2000000)) {
         setDoStatus(6);
     } else if ((field_0x27f4 == NULL) || !checkGrabTalkActor(field_0x27f4) || !setTalkStatus()) {
         if (checkModeFlg(0x400)) {
@@ -2601,7 +2601,7 @@ int daAlink_c::procGoronMove() {
 
     int temp_r28 = cLib_distanceAngleS(field_0x2fe2, shape_angle.y);
 
-    if (mAttention->getActionBtnB() != NULL && mAttention->getActionBtnB()->mType == 4) {
+    if (mAttention->getActionBtnB() != NULL && mAttention->getActionBtnB()->mType == fopAc_attn_CARRY_e) {
         setDoStatus(0x91);
 
         if (doTrigger()) {

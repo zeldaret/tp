@@ -15,13 +15,11 @@ JAUSeqDataBlock::JAUSeqDataBlock() : field_0x0(this) {}
 /* 802A6928-802A6974 2A1268 004C+00 1/1 0/0 0/0 .text getSeqData__16JAUSeqDataBlocksF10JAISoundID
  */
 u8* JAUSeqDataBlocks::getSeqData(JAISoundID param_0) {
-    // fake match. Should be
-    // if (param_0.isAnonymous()) {
-    // But doesn't match
-    if ((u32)param_0 == 0xffffffff) {
+    if (param_0.isAnonymous()) {
         return NULL;
     }
-    for (JSULink<JAUSeqDataBlock>* link = getFirst(); link != NULL;
+    JSULink<JAUSeqDataBlock>* link;
+    for (link = getFirst(); link != NULL;
             link = link->getNext())
     {
         if ((u32)link->getObject()->field_0x10 == (u32)param_0) {
@@ -86,7 +84,7 @@ JAUDynamicSeqDataBlocks::JAUDynamicSeqDataBlocks() {
 /* 802A6AA0-802A6AA8 -00001 0008+00 0/0 0/0 0/0 .text
  * setSeqDataArchive__23JAUDynamicSeqDataBlocksFP10JKRArchive   */
 void JAUDynamicSeqDataBlocks::setSeqDataArchive(JKRArchive* param_0) {
-    *(u32*)(((u8*)this) + 36) /* this->field_0x24 */ = (u32)(param_0);
+    seqDataArchive_ = param_0;
 }
 
 /* 802A6AA8-802A6B8C 2A13E8 00E4+00 0/0 1/1 0/0 .text

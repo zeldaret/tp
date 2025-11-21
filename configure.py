@@ -1105,7 +1105,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTResource.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTTexture.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTPalette.cpp"),
-            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTNameTab.cpp"),
+            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01", "ShieldD"), "JSystem/JUtility/JUTNameTab.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTGraphFifo.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTFont.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTResFont.cpp"),
