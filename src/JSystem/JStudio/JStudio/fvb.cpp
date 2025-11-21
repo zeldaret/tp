@@ -17,8 +17,8 @@ TObject::~TObject() {
 }
 
 void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
-    JUT_ASSERT(35, pfv_!=0);
-    JUT_ASSERT(36, pControl!=0);
+    JUT_ASSERT(35, pfv_!=NULL);
+    JUT_ASSERT(36, pControl!=NULL);
     TFunctionValueAttributeSet set = pfv_->getAttributeSet();
     const void* pNext = (const void*)rBlock.getNext();
     const void* pData = (const void*)rBlock.getContent();
@@ -37,7 +37,7 @@ void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
             break;
         case 0x10: {
             JGADGET_ASSERTWARN(61, u32Size>=4);
-            JUT_ASSERT(62, pContent!=0);
+            JUT_ASSERT(62, pContent!=NULL);
             TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
             JGADGET_ASSERTWARN(64, pfvaRefer!=NULL);
             if (pfvaRefer == NULL) {
@@ -63,7 +63,7 @@ void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
         } break;
         case 0x11: {
             JGADGET_ASSERTWARN(93, u32Size>=4);
-            JUT_ASSERT(94, pContent!=0);
+            JUT_ASSERT(94, pContent!=NULL);
             TFunctionValueAttribute_refer* pfvaRefer = set.refer_get();
             JGADGET_ASSERTWARN(96, pfvaRefer!=NULL);
             if (pfvaRefer == NULL) {
@@ -88,7 +88,7 @@ void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
         } break;
         case 0x12: {
             JGADGET_ASSERTWARN(121, u32Size==8);
-            JUT_ASSERT(122, pContent!=0);
+            JUT_ASSERT(122, pContent!=NULL);
             TFunctionValueAttribute_range* pfvaRange = set.range_get();
             JGADGET_ASSERTWARN(124, pfvaRange!=NULL);
             if (pfvaRange == NULL) {
@@ -100,7 +100,7 @@ void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
         } break;
         case 0x13: {
             JGADGET_ASSERTWARN(138, u32Size==4);
-            JUT_ASSERT(139, pContent!=0);
+            JUT_ASSERT(139, pContent!=NULL);
             TFunctionValueAttribute_range* pfvaRange = set.range_get();
             JGADGET_ASSERTWARN(141, pfvaRange!=NULL);
             if (pfvaRange == NULL) {
@@ -113,7 +113,7 @@ void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
         } break;
         case 0x14: {
             JGADGET_ASSERTWARN(156, u32Size==4);
-            JUT_ASSERT(157, pContent!=0);
+            JUT_ASSERT(157, pContent!=NULL);
             TFunctionValueAttribute_range* pfvaRange = set.range_get();
             JGADGET_ASSERTWARN(159, pfvaRange!=NULL);
             if (pfvaRange == NULL) {
@@ -126,7 +126,7 @@ void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
         } break;
         case 0x15: {
             JGADGET_ASSERTWARN(174, u32Size==4);
-            JUT_ASSERT(175, pContent!=0);
+            JUT_ASSERT(175, pContent!=NULL);
             TFunctionValueAttribute_range* pfvaRange = set.range_get();
             JGADGET_ASSERTWARN(177, pfvaRange!=NULL);
             if (pfvaRange == NULL) {
@@ -140,7 +140,7 @@ void TObject::prepare(data::TParse_TBlock const& rBlock, TControl* pControl) {
         } break;
         case 0x16: {
             JGADGET_ASSERTWARN(193, u32Size==4);
-            JUT_ASSERT(194, pContent!=0);
+            JUT_ASSERT(194, pContent!=NULL);
             TFunctionValueAttribute_interpolate* pfvaInterpolate = set.interpolate_get();
             JGADGET_ASSERTWARN(197, pfvaInterpolate!=NULL);
             if (pfvaInterpolate == NULL) {

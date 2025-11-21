@@ -345,10 +345,10 @@ BOOL fopAcM_createHeap(fopAc_ac_c* i_this, u32 size, u32 align) {
         align = 0x20;
 
     i_this->heap = mDoExt_createSolidHeapFromGameToCurrent(size, align);
-    if (i_this->heap == 0) {
+    if (i_this->heap == NULL) {
         // "fopAcM_createHeap allocation failure\n"
         OSReport_Error("fopAcM_createHeap 確保失敗\n");
-        JUT_CONFIRM(0, i_this->heap != 0);
+        JUT_CONFIRM(0, i_this->heap != NULL);
         return FALSE;
     }
 
