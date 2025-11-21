@@ -100,22 +100,5 @@ public:
 
 STATIC_ASSERT(sizeof(daE_HP_c) == 0xdfc);
 
-class daE_HP_HIO_c : public JORReflexible {
-public:
-    /* 806E5DEC */ daE_HP_HIO_c();
-    /* 806E9D38 */ virtual ~daE_HP_HIO_c() {}
-
-#if DEBUG
-    void genMessage(JORMContext*);
-#endif
-
-    s8 mChild;
-    f32 modelSize;
-    s16 waitTimeAfterAttack;
-    s16 resurrectionTime;
-    s16 attackDelayOnApproach;
-    u8 rangeDisplay;
-};
-
 
 #endif /* D_A_E_HP_H */
