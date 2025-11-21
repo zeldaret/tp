@@ -845,8 +845,7 @@ int daBdoorL1_c::checkArea() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz local_48;
     cXyz local_54;
-    // Fake Match. Not the first time this solves this. Something is up with the check wolf (maybe only in REL).
-    if (dComIfGp_getLinkPlayer()->mNoResetFlg1 & daPy_py_c::FLG1_IS_WOLF) {
+    if (daPy_py_c::checkNowWolf()) {
         local_48 = player->attention_info.position - current.pos;
         local_54 = player->current.pos - current.pos;
     } else {
@@ -857,7 +856,7 @@ int daBdoorL1_c::checkArea() {
     if (fabsf(local_48.x) > 200.0f) {
         return 0;
     }
-    if (dComIfGp_getLinkPlayer()->mNoResetFlg1 & daPy_py_c::FLG1_IS_WOLF) {
+    if (daPy_py_c::checkNowWolf()) {
         mDoMtx_stack_c::multVec(&local_54, &local_54);
         if (fabsf(local_54.x) > 130.0f) {
             return 0;

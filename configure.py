@@ -686,7 +686,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_file_sel_info.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_bright_check.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_scope.cpp"),
-            Object(Equivalent, "d/d_select_cursor.cpp"), # vtable order
+            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_select_cursor.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_select_icon.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_shop_camera.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_shop_item_ctrl.cpp"),
@@ -1886,7 +1886,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_jagar"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_kasi_hana"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_kasi_kyu"),
-    ActorRel(Equivalent, "d_a_npc_kasi_mich"),  # idk this why can't link
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_kasi_mich"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01", "Shield"), "d_a_npc_kdk"),
     ActorRel(NonMatching, "d_a_npc_kn"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_knj"),
@@ -1980,7 +1980,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_bubblePilar"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_catdoor"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_cb"),
-    ActorRel(Equivalent, "d_a_obj_cblock"), # weird weak data issue
+    ActorRel(Equivalent, "d_a_obj_cblock"), # weird weak data issue - needs a ...data pool, but no functions use it
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_cdoor"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_chandelier"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_chest"),
@@ -2134,7 +2134,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mhole"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mie"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_6pole"),
-    ActorRel(Equivalent, "d_a_obj_mirror_chain"), # stack order
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_chain"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_sand"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_screw"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_mirror_table"),
@@ -2190,8 +2190,8 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_snowEffTag"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_snow_soup"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_so"),
-    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_spinLift"), # extra weak dtors?
-    ActorRel(Equivalent, "d_a_obj_ss_drink"), # vtable order
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_spinLift"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_ss_drink"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_ss_item"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_stairBlock"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_stone"),
@@ -2204,7 +2204,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swBallC"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swLight"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swchain"),
-    ActorRel(Equivalent, "d_a_obj_swhang"), # vtable order
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swhang"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_sword"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swpush2"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swspinner"),

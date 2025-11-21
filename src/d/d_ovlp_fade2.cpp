@@ -106,7 +106,7 @@ void dOvlpFd2_dlst_c::draw() {
 
 /* 80252990-802529F4 24D2D0 0064+00 1/1 0/0 0/0 .text            __ct__10dOvlpFd2_cFv */
 dOvlpFd2_c::dOvlpFd2_c() {
-    setExecute(&execFirstSnap);
+    setExecute(&dOvlpFd2_c::execFirstSnap);
     dComIfGp_2dShowOff();
     mTimer = 2;
 }
@@ -115,7 +115,7 @@ dOvlpFd2_c::dOvlpFd2_c() {
 void dOvlpFd2_c::execFirstSnap() {
     if (field_0x11c != 0) {
         if (cLib_calcTimer<s8>(&mTimer) == 0) {
-            setExecute(&execFadeOut);
+            setExecute(&dOvlpFd2_c::execFadeOut);
             fopOvlpM_Done(this);
             mTimer = -12;
         }
@@ -138,7 +138,7 @@ void dOvlpFd2_c::execFadeOut() {
         if (mTimer == 0) {
             if (fopOvlpM_IsOutReq(this)) {
                 fopOvlpM_SceneIsStart();
-                setExecute(&execNextSnap);
+                setExecute(&dOvlpFd2_c::execNextSnap);
                 field_0x110 = -0x4000;
                 mTimer = 15;
             }
@@ -154,7 +154,7 @@ void dOvlpFd2_c::execFadeOut() {
         cLib_calcTimer<s8>(&mTimer);
     }
 
-    field_0x114 += TREG_S(0) + 0x800;
+    field_0x114 += (s16)(TREG_S(0) + 0x800);
     cLib_addCalc2(&field_0x118, TREG_F(1) + 1.0f, 1.0f, TREG_F(2) + 0.05f);
 }
 
@@ -167,7 +167,7 @@ void dOvlpFd2_c::execNextSnap() {
 
             dComIfGp_setWindowNum(1);
             dComIfGp_2dShowOff();
-            setExecute(&execFadeIn);
+            setExecute(&dOvlpFd2_c::execFadeIn);
         }
     }
 }

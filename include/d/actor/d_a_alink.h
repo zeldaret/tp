@@ -3359,11 +3359,7 @@ public:
     BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
     BOOL checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
 
-    // this might be a fake match, but helps fix usage in many functions
-#pragma push
-#pragma optimization_level 2
     BOOL checkAttentionLock() { return mAttention->Lockon(); }
-#pragma pop
 
     bool checkUpperAnime(u16 i_idx) const { return mUpperAnmHeap[UPPER_2].getIdx() == i_idx; }
     bool checkUnderAnime(u16 i_idx) const { return mUnderAnmHeap[UNDER_2].getIdx() == i_idx; }

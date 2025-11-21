@@ -112,7 +112,6 @@ daNpc_grS_c::cutFunc daNpc_grS_c::mEvtCutList[2] = {
 
 /* 809E40CC-809E4250 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpc_grS_cFv */
 daNpc_grS_c::daNpc_grS_c() {
-    // NONMATCHING
 }
 
 /* 809E42E0-809E44E0 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpc_grS_cFv */

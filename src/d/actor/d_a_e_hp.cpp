@@ -1325,7 +1325,6 @@ int daE_HP_c::create() {
 
 /* 806E9900-806E9ABC 003C00 01BC+00 1/1 0/0 0/0 .text            __ct__8daE_HP_cFv */
 daE_HP_c::daE_HP_c() {
-    // NONMATCHING
 }
 
 /* 806E9CD0-806E9CF0 003FD0 0020+00 1/0 0/0 0/0 .text            daE_HP_Create__FP8daE_HP_c */
