@@ -19,7 +19,6 @@ static u8 l_begin;
 #endif
 
 /* 80C96698-80C96DAC 000078 0714+00 1/0 0/0 0/0 .text            draw__22dScissorBegin_packet_cFv */
-// NONMATCHING - slight stack order issue
 void dScissorBegin_packet_c::draw() {
     GXGetScissor(&l_scissor[0], &l_scissor[1], &l_scissor[2], &l_scissor[3]);
 
@@ -39,8 +38,7 @@ void dScissorBegin_packet_c::draw() {
     f32 sp68 = l_scissor[1];
     f32 sp64 = sp68 + l_scissor[3];
 
-    cXyz spEC[4];
-    cXyz sp11C;
+    cXyz spEC[5];
     int sp60 = 4;
     view_class* view_p = dComIfGd_getView();
     f32 sp58 = -view_p->near;

@@ -311,7 +311,6 @@ void daE_WS_c::executeWait() {
 }
 
 /* 807E4AB8-807E4E68 001198 03B0+00 1/1 0/0 0/0 .text            executeAttack__8daE_WS_cFv */
-// NONMATCHING
 void daE_WS_c::executeAttack() {
     cXyz player_pos;
     mDoMtx_stack_c::copy(daPy_getLinkPlayerActorClass()->getModelJointMtx(0));
@@ -326,13 +325,15 @@ void daE_WS_c::executeAttack() {
     case 1:
         setFootSound();
 
-        if (!checkAttackEnd()) {
-            if (cLib_chaseAngleS(&shape_angle.y, calcTargetAngle(current.pos, player_pos), 0x300)) {
-                mMode = 2;
-                setBck(10, 2, 3.0f, 1.0f);
-                mSound.startCreatureVoice(Z2SE_EN_WS_V_YOKOKU, -1);
-                mMoveWaitTimer = 10;
-            }
+        if (checkAttackEnd()) {
+            return;
+        }
+
+        if (cLib_chaseAngleS(&shape_angle.y, calcTargetAngle(current.pos, player_pos), 0x300)) {
+            mMode = 2;
+            setBck(10, 2, 3.0f, 1.0f);
+            mSound.startCreatureVoice(Z2SE_EN_WS_V_YOKOKU, -1);
+            mMoveWaitTimer = 10;
         }
         break;
     case 2:
@@ -347,11 +348,24 @@ void daE_WS_c::executeAttack() {
         }
 
         break;
-    case 3:
+    case 3: {
         setFootSound();
         cLib_chaseAngleS(&shape_angle.y, calcTargetAngle(current.pos, player_pos), 0x400);
 
-        if (checkBeforeBg(shape_angle.y) || (mCcSph.ChkAtHit() && fopAcM_GetName(dCc_GetAc(mCcSph.GetAtHitObj()->GetAc())) == PROC_ALINK) || !checkInSearchRange(current.pos, field_0x65c)) {
+        BOOL r28 = false;
+        if (checkBeforeBg(shape_angle.y)) {
+            r28 = true;
+        }
+        if (mCcSph.ChkAtHit()) {
+            cCcD_Obj* r27 = mCcSph.GetAtHitObj();
+            if (fopAcM_GetName(dCc_GetAc(r27->GetAc())) == PROC_ALINK) {
+                r28 = true;
+            }
+        }
+        if (!checkInSearchRange(current.pos, field_0x65c)) {
+            r28 = true;
+        }
+        if (r28) {
             mMode = 4;
             speedF = 0.0f;
             setBck(4, 0, 3.0f, 1.0f);
@@ -362,6 +376,7 @@ void daE_WS_c::executeAttack() {
             return;
         }
         break;
+    }
     case 4:
         if (mpModelMorf->checkFrame(7.5f)) {
             mSound.startCreatureVoice(Z2SE_EN_WS_V_ATTACK, -1);
@@ -370,7 +385,7 @@ void daE_WS_c::executeAttack() {
         if (mpModelMorf->isStop()) {
             setActionMode(ACTION_WAIT_e);
         }
-        break;
+        /* fallthrough */
     }
 
     current.angle.y = shape_angle.y;

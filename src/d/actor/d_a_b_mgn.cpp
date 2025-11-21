@@ -2269,7 +2269,7 @@ void daB_MGN_c::executeFall() {
     }
 
     switch (mMoveMode) {
-    case 0:
+    case 0: {
         onBodyCo();
         f32 var_f31 = player->speedF * 60.0f;
         s16 sp8 = player->current.angle.y;
@@ -2309,6 +2309,7 @@ void daB_MGN_c::executeFall() {
         mpMgnBtk->init(mpMgnModelMorf->getModel()->getModelData(),
                           (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_mgn", 0x3a), 1, 0, 0.0f, 0,
                           -1);
+    }
     case 1:
         cLib_chaseF(&field_0xae8, 1.0f, 0.02f);
 
@@ -2531,7 +2532,7 @@ void daB_MGN_c::executeOpening() {
     cXyz sp94(0.0f, 220.0f, -1390.0f);
 
     switch (mMoveMode) {
-    case 0:
+    case 0: {
         attention_info.flags = 0;
 
         if (!eventInfo.checkCommandDemoAccrpt()) {
@@ -2590,6 +2591,7 @@ void daB_MGN_c::executeOpening() {
         Z2GetAudioMgr()->bgmStreamPrepare(0x2000062);
         Z2GetAudioMgr()->bgmStreamPlay();
         return;
+    }
     case 1:
         cLib_addCalc2(&field_0xadc, 0.0f, 0.1f, 5.0f);
         cLib_addCalcAngleS2(&field_0xae2, 0x50, 8, 8);
@@ -2813,7 +2815,7 @@ void daB_MGN_c::executeDeath() {
     s16 sp8 = nREG_S(0) + 0x6800;
 
     switch (mMoveMode) {
-    case 0:
+    case 0: {
         if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
             eventInfo.onCondition(2);
@@ -2865,6 +2867,7 @@ void daB_MGN_c::executeDeath() {
 
         mSound.startCreatureVoice(Z2SE_EN_MGN_DEMO_END, -1);
         return;
+    }
     case 1:
         current.pos = sp48;
         current.angle.y = 0x6800;

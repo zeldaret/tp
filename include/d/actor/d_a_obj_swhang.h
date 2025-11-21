@@ -50,8 +50,6 @@ public:
     /* 80CFC6AC */ void modeOffWait();
     /* 80CFCA34 */ void init_modeOnWait();
     /* 80CFCA40 */ void modeOnWait();
-    /* 80CFCCE0 */ bool eventStart();
-    /* 80CFD034 */ virtual ~daObjSwHang_c() {}
 
     daObjSwHang_c() : dEvLib_callback_c(this) {}
 
@@ -60,6 +58,9 @@ public:
     /* 80CFC254 */ virtual int Execute(Mtx**);
     /* 80CFCD04 */ virtual int Draw();
     /* 80CFCD98 */ virtual int Delete();
+
+    /* 80CFCCE0 */ virtual bool eventStart();
+    /* 80CFD034 */ virtual ~daObjSwHang_c() {}
 
     cXyz getHangPos() { return mHangPos; }
 

@@ -1902,15 +1902,18 @@ void vrkumo_move() {
     }
 
     for (int i = 0; i < 100; i++) {
+        s16 sp8;
+        f32 sp34;
+        f32 var_f31;
         switch (vrkumo_packet->mVrkumoEff[i].mStatus) {
         case 0:
-            s16 sp8 = cM_rndF(65535.0f);
-            f32 sp34 = cM_rndF(18000.0f);
+            sp8 = cM_rndF(65535.0f);
+            sp34 = cM_rndF(18000.0f);
             if (sp34 > 15000.0f) {
                 sp34 = 14000.0 + cM_rndF(1000.0f);
             }
 
-            f32 var_f31 = sp34 * cM_ssin(sp8);
+            var_f31 = sp34 * cM_ssin(sp8);
             // @bug - parenthesis should not be on the condition
             if ((f32)fabs(var_f31 < 5000.0f)) {
                 if (var_f31 > 0.0f) {
@@ -4577,7 +4580,6 @@ inline float cosf(float x) {
 }
 
 /* 8006A090-8006B190 0649D0 1100+00 0/0 1/1 0/0 .text            drawVrkumo__FPA4_fR8_GXColorPPUc */
-// NONMATCHING - regalloc, j/k getting put in too low of registers?
 void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
     dKankyo_sun_Packet* sun_packet = g_env_light.mpSunPacket;
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
