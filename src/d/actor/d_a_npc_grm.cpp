@@ -428,7 +428,7 @@ BOOL daNpc_grM_c::evtProc() {
     dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
     if (play->getEvent().runCheck()) {
 #else
-    if (dComIfGp_event_runCheck())
+    if (dComIfGp_event_runCheck()) {
 #endif
         if (eventInfo.checkCommandTalk()) {
             if (!checkChangeEvt()) {
