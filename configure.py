@@ -755,7 +755,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_msg_string_base.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_string.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_flow.cpp"),
-            Object(MatchingFor("GZ2E01", "GZ2P01"), "d/d_name.cpp"),
+            Object(MatchingFor(ALL_GCN), "d/d_name.cpp"),
             Object(NonMatching, "d/d_npc_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ovlp_fade.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ovlp_fade2.cpp"),
