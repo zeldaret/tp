@@ -1076,9 +1076,14 @@ bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* whit
     *white = 0xffffffff;
 
     if (bVar1) {
+        #if DEBUG
+        J2DGXColorS10 tevColor0 = *mMaterial->getTevBlock()->getTevColor(0);
+        J2DGXColorS10 tevColor1 = *mMaterial->getTevBlock()->getTevColor(1);
+        #else
         J2DGXColorS10 tevColor0, tevColor1;
         tevColor0 = *mMaterial->getTevBlock()->getTevColor(0);
         tevColor1 = *mMaterial->getTevBlock()->getTevColor(1);
+        #endif
         *black = (u8)tevColor0.r << 24 | (u8)tevColor0.g << 16 | (u8)tevColor0.b << 8 | (u8)tevColor0.a;
         *white = (u8)tevColor1.r << 24 | (u8)tevColor1.g << 16 | (u8)tevColor1.b << 8 | (u8)tevColor1.a;
     }
@@ -1216,10 +1221,14 @@ void J2DPictureEx::setAnimation(J2DAnmVtxColor* anm) {
         for (u8 i = 0; i < 4; i++) {
             if (field_0x158[i] != 0xFFFF) {
                 for (u16 j = 0; j < anm_table_num; j++) {
-                    // J3DAnmVtxColorIndexData* data;
+                    #if DEBUG
+                    J3DAnmVtxColorIndexData* data = anm->getAnmVtxColorIndexData(0, j);
+                    u16* index2 = anm->getVtxColorIndexPointer(0) + (uintptr_t)data->mpData;
+                    #else
                     J3DAnmVtxColorIndexData* data = anm->getAnmVtxColorIndexData(0, j);
                     u16* index = anm->getVtxColorIndexPointer(0);
                     u16* index2 = index + (uintptr_t)data->mpData;
+                    #endif
                     for (u16 k = 0; k < data->mNum; k++) {
                         if (index2[k] == field_0x158[i]) {
                             field_0x198 = anm;
