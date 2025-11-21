@@ -1136,7 +1136,7 @@ BOOL daNpc_Pachi_Besu_c::talk(void* param_1) {
 
 #ifdef DEBUG
 BOOL daNpc_Pachi_Besu_c::test(void* param_1) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
