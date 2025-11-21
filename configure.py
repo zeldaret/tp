@@ -1879,7 +1879,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_gra"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_grc"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_grd"),
-    ActorRel(NonMatching, "d_a_npc_grm"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_npc_grm"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_grmc"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_gro"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_grr"),
