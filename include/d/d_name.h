@@ -88,6 +88,10 @@ public:
     /* 8024F1E8 */ void MojiSelectAnm3();
     /* 8024F1EC */ int mojiChange(u8);
     /* 8024F55C */ void selectMojiSet();
+    #if REGION_JPN
+    int checkDakuon(int, u8);
+    int setDakuon(int, u8);
+    #endif
     /* 8024F59C */ int getMoji();
     /* 8024F634 */ void setMoji(int);
     /* 8024F88C */ void setNameText();
