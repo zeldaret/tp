@@ -606,7 +606,7 @@ config.libs = [
             Object(NonMatching, "d/d_home_button.cpp"),
             Object(NonMatching, "d/d_cursor_mng.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_stage.cpp"),
-            Object(Equivalent, "d/d_map.cpp"), # weak func order
+            Object(MatchingFor(ALL_GCN), "d/d_map.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_com_inf_game.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_com_static.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_com_inf_actor.cpp"),

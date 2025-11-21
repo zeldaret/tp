@@ -519,7 +519,7 @@ int dMpath_c::setPointer(dDrawPath_c::room_class* i_room, s8* param_1, s8* param
 #pragma optimization_level 2
 void dMpath_c::setPointer(s8 i_roomNo, void* i_data, int i_mapLayerNo) {
     s32 roomNo;
-    dDrawPath_c::room_class* room = ((map_path_class*)i_data)->m_entries;
+    dDrawPath_c::room_class* room = (dDrawPath_c::room_class*)((map_path_class*)i_data)->m_entries;
 
     if (room != NULL) {
         roomNo = i_roomNo;

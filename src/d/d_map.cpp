@@ -3,10 +3,7 @@
  *
  */
 
-// not sure if this object is supposed to have a PCH -
-// including it completely messes up weak function ordering
-
-#define NO_INLINE_DLSTBASE_DRAW
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_map.h"
 #include "JSystem/JUtility/JUTTexture.h"
@@ -1303,9 +1300,4 @@ dTres_c::typeGroupData_c* dMap_c::getFirstData(u8 param_0) {
  * getNextData__6dMap_cFPQ27dTres_c15typeGroupData_c            */
 dTres_c::typeGroupData_c* dMap_c::getNextData(dTres_c::typeGroupData_c* param_0) {
     return renderingPlusDoorAndCursor_c::getNextData(param_0);
-}
-
-// TODO: this is supposed to be auto-generated, but its not getting put in the right order
-void dDlst_base_c::draw() {
-    /* empty function */
 }
