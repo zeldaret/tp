@@ -173,15 +173,15 @@ cPhs__Step daNpc_grM_c::create() {
             return cPhs_ERROR_e;
         }
 
-        // OS_REPORT("\t(%s:%d) flowNo:%d, MaxItem:%d, group:%d<%08x> ");
+        OS_REPORT("\t(%s:%d) flowNo:%d, MaxItem:%d, group:%d<%08x> ");
 
         if (isDelete()) {
-            // OS_REPORT("===>isDelete:TRUE\n");
+            OS_REPORT("===>isDelete:TRUE\n");
 
             return cPhs_ERROR_e;
         }
 
-        // OS_REPORT("\n");
+        OS_REPORT("\n");
 
         J3DModel* model = mpMorf[0]->getModel();
         fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
@@ -423,13 +423,13 @@ void daNpc_grM_c::srchActors() {
 /* 809D4BBC-809D4E2C 000C3C 0270+00 1/0 0/0 0/0 .text            evtProc__11daNpc_grM_cFv */
 BOOL daNpc_grM_c::evtProc() {
     BOOL ret = FALSE;
-// #if VERSION != VERSION_SHIELD_DEBUG
+#if VERSION != VERSION_SHIELD_DEBUG
     // TODO: gameInfo fake match to force reuse of pointer
     dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
     if (play->getEvent().runCheck()) {
-// #else
-//         if (dComIfGp_event_runCheck())
-// #endif
+#else
+    if (dComIfGp_event_runCheck())
+#endif
         if (eventInfo.checkCommandTalk()) {
             if (!checkChangeEvt()) {
                 evtTalk();
@@ -439,11 +439,11 @@ BOOL daNpc_grM_c::evtProc() {
                    dComIfGp_getEventManager().endCheck(mEvtId))
         {
             if (evtEndProc()) {
-// #if VERSION != VERSION_SHIELD_DEBUG
+#if VERSION != VERSION_SHIELD_DEBUG
                 play->getEvent().reset();
-// #else
-//                 dComIfGp_event_reset();
-// #endif
+#else
+                dComIfGp_event_reset();
+#endif
                 mEvtId = -1;
             }
         } else {
