@@ -172,7 +172,7 @@ int renderingDmap_c::getLineWidth(int param_0) {
 }
 
 /* 80395860-80395950 -00001 00F0+00 1/1 0/0 0/0 .rodata          l_paletteDmap_m */
-static u32 const l_paletteDmap_m[60] = {
+static u32 const l_paletteDmap_m[60] ALIGN_DECL(32) = {
     0x00000000,
     0x00000000,
     0x80008000,

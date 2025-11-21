@@ -204,7 +204,6 @@ public:
 
 class dMenu_DmapMapCtrl_c : public dMenu_StageMapCtrl_c {
 public:
-    /* 801BD144 */ virtual ~dMenu_DmapMapCtrl_c() {}
     /* 801C2028 */ virtual bool isEnableZoomMove() const;
     /* 801C1B14 */ virtual void calcZoomCenter(f32*, f32*);
     /* 801C2598 */ virtual void getInitWholeMapScale(f32*, f32, f32, f32, f32);

@@ -748,9 +748,10 @@ void JMessage::TRenderingProcessor::do_tag_(u32 uTag, void const* pData, u32 uSi
         case 0:
         case 1:
         case 2:
-        case 3:
+        case 3: {
             JGADGET_WARNMSG1(1047, "system-tag-code ignored : ", uCode & 0xFFFF);
             break;
+        }
         case 6:
             break;
         case 7:

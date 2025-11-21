@@ -1096,7 +1096,6 @@ static daNpcMoiR_c::Action2Fn dummy_4854() {
 
 /* 80A7D934-80A7DD94 0018B4 0460+00 1/0 0/0 0/0 .text            wait_type0__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::wait_type0(void* param_1) {
-    // NONMATCHING
     switch (field_0xe08) {
         case 0:
             setExpression(EXPR_NONE, -1.0f);
@@ -1175,7 +1174,6 @@ void daNpcMoiR_c::setExpression(int i_expression, f32 i_morf) {
 
 /* 80A7DE04-80A7E668 001D84 0864+00 2/0 0/0 0/0 .text            wait_type1__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::wait_type1(void* param_1) {
-    // NONMATCHING
     f32 fVar1;
 
     switch (field_0xe08) {
@@ -1275,7 +1273,6 @@ bool daNpcMoiR_c::wait_type1(void* param_1) {
 
 /* 80A7E668-80A7E8C0 0025E8 0258+00 1/0 0/0 0/0 .text            wait_type2__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::wait_type2(void* param_1) {
-    // NONMATCHING
     switch (field_0xe08) {
         case 0:
             setExpression(EXPR_FH_TAKAJO_HI, -1.0f);
@@ -1421,7 +1418,6 @@ bool daNpcMoiR_c::talk(void* param_1) {
 
 /* 80A7EFBC-80A7F40C 002F3C 0450+00 2/0 0/0 0/0 .text            multiTalk__11daNpcMoiR_cFPv */
 BOOL daNpcMoiR_c::multiTalk(void* param_1) {
-    // NONMATCHING
     BOOL rv = FALSE;
     fopAc_ac_c* speakers[4] = {this, mActorMngr[1].getActorP(), mActorMngr[2].getActorP(), mActorMngr[3].getActorP()};
 
@@ -1479,7 +1475,6 @@ BOOL daNpcMoiR_c::multiTalk(void* param_1) {
 
 /* 80A7F40C-80A7F9AC 00338C 05A0+00 2/0 0/0 0/0 .text            fight__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::fight(void* param_1) {
-    // NONMATCHING
     f32 fVar1;
     int iVar1 = 1;
 

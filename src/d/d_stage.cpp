@@ -2293,7 +2293,7 @@ static int dStage_mapPathInitCommonLayer(dStage_dt_c* i_stage, void* i_data, int
 static int dStage_fieldMapMapPathInit(dStage_dt_c* i_stage, void* i_data, int param_2,
                                          void* param_3) {
     map_path_class* map_path = (map_path_class*)((int*)i_data + 1);
-    dDrawPath_c::room_class* room_p = map_path->m_entries;
+    dDrawPath_c::room_class* room_p = (dDrawPath_c::room_class*)map_path->m_entries;
     if (room_p == NULL) {
         return 1;
     }

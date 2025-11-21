@@ -93,11 +93,7 @@ struct TAdaptor_sound : public JStudio::TAdaptor_sound {
 
     void set_bPermit_onExit_notEnd_(bool param_1) { field_0x11c = param_1; }
 
-    #ifndef NONMATCHING
     static TVVOSetValue_ saoVVOSetValue_[6];
-    #else
-    static u8 saoVVOSetValue_[72];
-    #endif
 
     /* 0x114 */ TCreateObject* pCreateObject_;
     /* 0x118 */ JAISoundHandle opJAISoundHandle_;
