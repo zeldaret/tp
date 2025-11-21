@@ -375,7 +375,7 @@ void daObj_SSDrink_c::setMtx() {
 
 /* 80CE60E8-80CE6170 0011E8 0088+00 1/1 0/0 0/0 .text            setAttnPos__15daObj_SSDrink_cFv */
 void daObj_SSDrink_c::setAttnPos() {
-    if (!checkProcess(&daObj_SSDrink_c::drink)) {
+    if (!checkProcess(&daObj_SSDrink_c::talk)) {
         attention_info.position = current.pos;
     }
 

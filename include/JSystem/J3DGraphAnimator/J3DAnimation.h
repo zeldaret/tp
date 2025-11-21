@@ -944,7 +944,7 @@ public:
     }
     s16 getEnd() const { return mEnd; }
     void setEnd(s16 end) { mEnd = end; }
-    s32 getLoop() { return mLoop; }
+    s16 getLoop() const { return mLoop; }
     void setLoop(s16 loop) { mLoop = loop; }
     f32 getRate() const { return mRate; }
     void setRate(f32 rate) { mRate = rate; }

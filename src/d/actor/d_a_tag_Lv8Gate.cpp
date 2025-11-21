@@ -128,58 +128,77 @@ static int daTagLv8Gate_Execute(daTagLv8Gate_c* i_this) {
 }
 
 /* 80D51F48-80D522F0 000388 03A8+00 1/1 0/0 0/0 .text            execute__14daTagLv8Gate_cFv */
-int daTagLv8Gate_c::execute() {
-    dComIfG_inf_c& game_info = g_dComIfG_gameInfo;  // Fake match?
-
-    if (game_info.getPlay().getEvent().runCheck() && !eventInfo.checkCommandTalk()) {
-        s32 cut_index = dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0);
+inline int daTagLv8Gate_c::execute() {
+    #if VERSION != VERSION_SHIELD_DEBUG
+    // TODO: gameInfo fake match to force reuse of pointer
+    dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+    if (play->getEvent().runCheck() && !eventInfo.checkCommandTalk()) {
+    #else
+    if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
+    #endif
+        dEvent_manager_c& eventManager = dComIfGp_getEventManager();
+        s32 cut_index = eventManager.getMyStaffId(l_arcName, NULL, 0);
 
         if (cut_index != -1) {
-            int* cut_name = (int*)dComIfGp_getEventManager().getMyNowCutName(cut_index);
+            int* cut_name = (int*)eventManager.getMyNowCutName(cut_index);
 
-            if (dComIfGp_getEventManager().getIsAddvance(cut_index)) {
+            if (eventManager.getIsAddvance(cut_index)) {
                 switch (*cut_name) {
-                case '0001':
-                    dComIfGp_getEvent().setSkipProc(this, dEv_noFinishSkipProc, 0);
+                case '0001': {
+                    dComIfGp_getEvent().startCheckSkipEdge(this);
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&current.pos, shape_angle.y,
                                                                      0);
 
                     fopAc_ac_c* mirror_table = fopAcM_SearchByName(PROC_Obj_MirrorTable);
                     if (mirror_table != NULL) {
-                        static_cast<daObjMirrorTable_c*>(mirror_table)->field_0x874 = true;
+                        static_cast<daObjMirrorTable_c*>(mirror_table)->setEffect();
                     }
                     break;
-
+                }
                 case '0002':
                     dStage_changeScene(getSceneNo(), 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
                     break;
+
+                default:
+                    JUT_ASSERT(139, FALSE);
                 }
             }
 
+            #if VERSION != VERSION_SHIELD_DEBUG
+            dEvt_control_c& eventControl = play->getEvent();
+            #endif
             if (dComIfGp_getEvent().checkSkipEdge()) {
+                #if VERSION != VERSION_SHIELD_DEBUG
+                dComIfGp_getEvent().reset();
+                #else
                 dComIfGp_event_reset();
+                #endif
                 dStage_changeScene(getSceneNo(), 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
             }
 
             switch (*cut_name) {
             case '0001':
             case '0002':
-                dComIfGp_evmng_cutEnd(cut_index);
+                eventManager.cutEnd(cut_index);
+                break;
+            default:
+                JUT_ASSERT(154, FALSE);
                 break;
             }
 
             if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1) {
-                if (dComIfGp_evmng_endCheck(mEventID)) {
+                if (eventManager.endCheck(mEventID)) {
                     mEventID = -1;
                 }
             }
         }
     } else {
         if (daPy_getPlayerActorClass()->checkPriActorOwn(this)) {
+            JUT_ASSERT(169, NULL != dComIfGp_getAttention());
             for (int i = 0; i < dComIfGp_getAttention()->GetActionCount(); i++) {
                 if (dComIfGp_getAttention()->ActionTarget(i) == this) {
                     if (dComIfGp_getAttention()->getActionBtnB() != NULL &&
-                        dComIfGp_getAttention()->getActionBtnB()->mType == 4)
+                        dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_CARRY_e)
                     {
                         dComIfGp_setDoStatusForce(7, 0);
                     }
@@ -189,7 +208,7 @@ int daTagLv8Gate_c::execute() {
 
         if (fopAcM_checkCarryNow(this)) {
             fopAcM_cancelCarryNow(this);
-            attention_info.flags &= ~fopAc_AttnFlag_CARRY_e;
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             eventInfo.setArchiveName(l_arcName);
             dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
             mEventID = dComIfGp_getEventManager().getEventIdx(this, "LV8_GATE_ENTRY", -1);

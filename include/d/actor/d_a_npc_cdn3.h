@@ -93,6 +93,7 @@ public:
     /* 8097C844 */ int sing(void*);
     /* 8097C910 */ int create();
     /* 8097CC58 */ void create_init();
+    inline int createHeap();
     /* 8097D078 */ void setMtx();
     /* 8097D120 */ void lookat();
     /* 8097D684 */ virtual ~daNpcCdn3_c();
@@ -102,17 +103,23 @@ public:
     inline int draw();
 
     int getTimeHour() {
+        int hour;
         if (mIsDarkWorld) {
-            return dKy_getDarktime_hour();
-        } 
-        return dKy_getdaytime_hour();
+            hour = dKy_getDarktime_hour();
+        } else {
+            hour = dKy_getdaytime_hour();
+        }
+        return hour;
     }
 
     int getTimeMinute() {
+        int minute;
         if (mIsDarkWorld) {
-            return dKy_getDarktime_minute();
-        } 
-        return dKy_getdaytime_minute();
+            minute = dKy_getDarktime_minute();
+        } else {
+            minute = dKy_getdaytime_minute();
+        }
+        return minute;
     }
 
     int getTime() {
@@ -120,20 +127,23 @@ public:
     }
 
     int getDayOfWeek() {
+        int day;
         if (mIsDarkWorld) {
-            return dKy_getDarktime_week();
+            day = dKy_getDarktime_week();
         } else {
-            return dKy_get_dayofweek();
+            day = dKy_get_dayofweek();
         }
+        return day;
     }
 
-    void setSpeed(f32* param_1, f32 param_2, f32 param_3, int param_4) {
-        f32 target = field_0xb5c * (param_3 * field_0xb5c);
-        f32 step = field_0xb5c * (param_2 * field_0xb5c);
-        if (param_3 < target) {
-            target = param_3;
+    void setSpeed(f32 param_0, f32 param_1, f32* param_2, int param_3) {
+        (void)param_3;
+        f32 target = field_0xb5c * (param_1 * field_0xb5c);
+        f32 step = field_0xb5c * (param_0 * field_0xb5c);
+        if (param_1 < target) {
+            target = param_1;
         }
-        cLib_chaseF(param_1, target, step);
+        cLib_chaseF(param_2, target, step);
     }
 
     int getGroupID() { return fopAcM_GetParam(this) & 0xff; }
@@ -142,15 +152,17 @@ public:
     int getType() { return argument & 0x7f; }
     int getSeqNum() { return shape_angle.x & 0x3f; }
     int getFlowNodeNum() { return shape_angle.z; }
-    u16 getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
-    u16 getEndTime() { return (fopAcM_GetParam(this) >> 16) & 0xff; }
+    u8 getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
+    u8 getEndTime() { return (fopAcM_GetParam(this) >> 16) & 0xff; }
 
     void initParamTime() {
-        u16 startTime = getStartTime();
-        u16 endTime = getEndTime();
+        u16 x;
+        u16 y;
+        u8 startTime = getStartTime();
+        u8 endTime = getEndTime();
         if (startTime != 0xff && endTime != 0xff) {
-            u16 x = startTime / 10;
-            u16 y = (startTime % 10) * 10;
+            x = startTime / 10;
+            y = (startTime % 10) * 10;
             field_0xb8c = y + x * 60;
             x = endTime / 10;
             y = (endTime % 10) * 10;
@@ -179,78 +191,77 @@ public:
     }
 
     int getObjNum() {
-        u8 uVar3 = (shape_angle.x >> 6) & 0xf;
-        int rv;
+        int uVar3 = (shape_angle.x >> 6) & 0xf;
         if (isM_()) {
             switch (uVar3) {
             case 0:
-                rv = 0;
+                uVar3 = 0;
                 break;
             case 1:
-                rv = 1;
+                uVar3 = 1;
                 break;
             case 2:
-                rv = 2;
+                uVar3 = 2;
                 break;
             case 3:
-                rv = 4;
+                uVar3 = 4;
                 break;
             case 4:
-                rv = 6;
+                uVar3 = 6;
                 break;
             case 5:
-                rv = 0;
+                uVar3 = 0;
                 break;
             case 6:
-                rv = 0;
+                uVar3 = 0;
                 break;
             case 7:
-                rv = 9;
+                uVar3 = 9;
                 break;
             default:
-                rv = 0;
+                uVar3 = 0;
                 break;
             }
                 /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[281]) && rv == 9) {
-                rv = 0xb;
+            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[281]) && uVar3 == 9) {
+                uVar3 = 0xb;
             }
         } else {
             switch (uVar3) {
             case 0:
-                rv = 0;
+                uVar3 = 0;
                 break;
             case 1:
-                rv = 8;
+                uVar3 = 8;
                 break;
             case 2:
-                rv = 3;
+                uVar3 = 3;
                 break;
             case 3:
-                rv = 5;
+                uVar3 = 5;
                 break;
             case 4:
-                rv = 7;
+                uVar3 = 7;
                 break;
             case 5:
-                rv = 0;
+                uVar3 = 0;
                 break;
             case 6:
-                rv = 0;
+                uVar3 = 0;
                 break;
             case 7:
-                rv = 10;
+                uVar3 = 10;
                 break;
             default:
-                rv = 0;
+                uVar3 = 0;
                 break;
             }
                 /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[281]) && rv == 10) {
-                rv = 12;
+            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[281]) && uVar3 == 10) {
+                uVar3 = 12;
             }
         }
-        return rv;
+        return uVar3;
     }
 
     void initCollision() {
@@ -277,11 +288,11 @@ public:
         if (strcmp(dComIfGp_getStartStageName(), "F_SP116") != 0) {
             return 0;
         } else {
-            if (mSeqNum == 17 &&
+            if (m_seqNum == 17 &&
                 (getType() == 4 || getType() == 5 || getType() == 6 || getType() == 16))
             {
                 return 1;
-            } else if (mSeqNum == 37 && getType() == 7) {
+            } else if (m_seqNum == 37 && getType() == 7) {
                 return 1;
             } else {
                 return 0;
@@ -314,7 +325,14 @@ public:
     }
 
     int orderEvent() {
-        if ((!mIsDarkWorld || daPy_py_c::checkNowWolfEyeUp()) && mFlowNodeNum > 0 && ((attention_info.flags & fopAc_AttnFlag_SPEAK_e) || (attention_info.flags & fopAc_AttnFlag_TALK_e))) {
+#if PLATFORM_SHIELD
+        if (mFlowNodeNum > 0) {
+#else
+        if ((!mIsDarkWorld || daPy_py_c::checkNowWolfEyeUp()) &&
+            mFlowNodeNum > 0 &&
+            ((attention_info.flags & fopAc_AttnFlag_SPEAK_e) ||
+                (attention_info.flags & fopAc_AttnFlag_TALK_e))) {
+#endif
             eventInfo.onCondition(dEvtCnd_CANTALK_e);
         }
         return 1;
@@ -323,7 +341,12 @@ public:
     inline bool searchFirstScheduleTag();
     inline bool searchNextScheduleTag();
 
-    static actionFunc ActionTable[8][2];
+    struct ActionPair {
+        actionFunc mInitFn;
+        actionFunc mExecFn;
+    };
+
+    static const ActionPair ActionTable[8];
     static seqFunc* m_funcTbl[44];
     static seqFunc m_seq00_funcTbl[2];
     static seqFunc m_seq01_funcTbl[2];
@@ -375,7 +398,7 @@ public:
     /* 0xAD0 */ PathTrace_c m_path;
     /* 0xAE8 */ daNpcT_ActorMngr_c m_targetAct;
     /* 0xB00 */ dMsgFlow_c mMsgFlow;
-    /* 0xB4C */ daNpcCdn3_c::actionFunc* mAction;
+    /* 0xB4C */ const actionFunc* mAction;
     /* 0xB50 */ Mode_e mMode;
     /* 0xB54 */ Mode_e mPrevMode;
     /* 0xB58 */ int mObjNum;
@@ -386,7 +409,7 @@ public:
     /* 0xB6C */ int mMsgIndex;
     /* 0xB70 */ int mFlowNodeNum;
     /* 0xB74 */ int field_0xb74;
-    /* 0xB78 */ int mSeqNum;
+    /* 0xB78 */ int m_seqNum;
     /* 0xB7C */ int field_0xb7c;
     /* 0xB80 */ J3DAnmTransform* field_0xb80;
     /* 0xB84 */ daTagSchedule_c* mTagSched;
@@ -398,7 +421,7 @@ public:
     /* 0xB94 */ u8 field_0xb94;
     /* 0xB95 */ u8 field_0xb95;
     /* 0xB96 */ u8 field_0xb96;
-    /* 0xB97 */ u8 field_0xb97;
+    /* 0xB97 */ u8 m_seqStep;
     /* 0xB98 */ u8 field_0xb98;
     /* 0xB99 */ u8 field_0xb99;
 };

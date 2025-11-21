@@ -35,18 +35,18 @@ struct daNpcCd2_HIO_MChild_c {
     /* 8015A808 */ daNpcCd2_HIO_MChild_c() {}
 
     /* 0x004 */ daNpcCd2_HIO_Jnt_c field_0x004[19];
-    /* 0x1CE */ s16 mMaxLmtY_BACKBONE;
-    /* 0x1CA */ s16 mMaxLmtX_BACKBONE;
-    /* 0x1CC */ s16 mMinLmtY_BACKBONE;
-    /* 0x1CE */ s16 mMinLmtX_BACKBONE;
-    /* 0x1D0 */ s16 mMaxLmtY_NECK;
-    /* 0x1D2 */ s16 mMaxLmtX_NECK;
-    /* 0x1D4 */ s16 mMinLmtY_NECK;
-    /* 0x1D6 */ s16 mMinLmtX_NECK;
-    /* 0x1D0 */ s16 mMaxLmtY_HEAD;
-    /* 0x1D2 */ s16 mMaxLmtX_HEAD;
-    /* 0x1D4 */ s16 mMinLmtY_HEAD;
-    /* 0x1D6 */ s16 mMinLmtX_HEAD;
+    /* 0x1CE */ s16 mMaxLmtX_BACKBONE;
+    /* 0x1CA */ s16 mMaxLmtY_BACKBONE;
+    /* 0x1CC */ s16 mMinLmtX_BACKBONE;
+    /* 0x1CE */ s16 mMinLmtY_BACKBONE;
+    /* 0x1D0 */ s16 mMaxLmtX_NECK;
+    /* 0x1D2 */ s16 mMaxLmtY_NECK;
+    /* 0x1D4 */ s16 mMinLmtX_NECK;
+    /* 0x1D6 */ s16 mMinLmtY_NECK;
+    /* 0x1D0 */ s16 mMaxLmtX_HEAD;
+    /* 0x1D2 */ s16 mMaxLmtY_HEAD;
+    /* 0x1D4 */ s16 mMinLmtX_HEAD;
+    /* 0x1D6 */ s16 mMinLmtY_HEAD;
     /* 0x1E0 */ f32 mScale;
     /* 0x1E4 */ s16 mAttn;
     /* 0x1E8 */ f32 mAnmPlaySpeed;
@@ -64,18 +64,18 @@ struct daNpcCd2_HIO_WChild_c {
     /* 8015A730 */ daNpcCd2_HIO_WChild_c() {}
 
     /* 0x004 */ daNpcCd2_HIO_Jnt_c field_0x004[21];
-    /* 0x1FE */ s16 mMaxLmtY_BACKBONE;
-    /* 0x1FA */ s16 mMaxLmtX_BACKBONE;
-    /* 0x1FC */ s16 mMinLmtY_BACKBONE;
-    /* 0x1FE */ s16 mMinLmtX_BACKBONE;
-    /* 0x200 */ s16 mMaxLmtY_NECK;
-    /* 0x202 */ s16 mMaxLmtX_NECK;
-    /* 0x204 */ s16 mMinLmtY_NECK;
-    /* 0x206 */ s16 mMinLmtX_NECK;
-    /* 0x200 */ s16 mMaxLmtY_HEAD;
-    /* 0x202 */ s16 mMaxLmtX_HEAD;
-    /* 0x204 */ s16 mMinLmtY_HEAD;
-    /* 0x206 */ s16 mMinLmtX_HEAD;
+    /* 0x1FE */ s16 mMaxLmtX_BACKBONE;
+    /* 0x1FA */ s16 mMaxLmtY_BACKBONE;
+    /* 0x1FC */ s16 mMinLmtX_BACKBONE;
+    /* 0x1FE */ s16 mMinLmtY_BACKBONE;
+    /* 0x200 */ s16 mMaxLmtX_NECK;
+    /* 0x202 */ s16 mMaxLmtY_NECK;
+    /* 0x204 */ s16 mMinLmtX_NECK;
+    /* 0x206 */ s16 mMinLmtY_NECK;
+    /* 0x200 */ s16 mMaxLmtX_HEAD;
+    /* 0x202 */ s16 mMaxLmtY_HEAD;
+    /* 0x204 */ s16 mMinLmtX_HEAD;
+    /* 0x206 */ s16 mMinLmtY_HEAD;
     /* 0x218 */ f32 mScale;
     /* 0x21C */ s16 mAttn;
     /* 0x220 */ f32 mAnmPlaySpeed;
@@ -148,123 +148,75 @@ inline f32 Cd2_HIO_cylH(int param_1) {
 }
 
 inline s16 Cd2_HIO_maxLmtX_BACKBONE(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtX_BACKBONE;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtX_BACKBONE;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMaxLmtX_BACKBONE :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtX_BACKBONE);
 }
 
 inline s16 Cd2_HIO_maxLmtY_BACKBONE(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtY_BACKBONE;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtY_BACKBONE;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMaxLmtY_BACKBONE :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtY_BACKBONE);
 }
 
 inline s16 Cd2_HIO_maxLmtX_NECK(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtX_NECK;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtX_NECK;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMaxLmtX_NECK :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtX_NECK);
 }
 
 inline s16 Cd2_HIO_maxLmtY_NECK(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtY_NECK;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtY_NECK;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMaxLmtY_NECK :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtY_NECK);
 }
 
 inline s16 Cd2_HIO_maxLmtX_HEAD(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtX_HEAD;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtX_HEAD;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMaxLmtX_HEAD :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtX_HEAD);
 }
 
 inline s16 Cd2_HIO_maxLmtY_HEAD(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtY_HEAD;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtY_HEAD;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMaxLmtY_HEAD :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMaxLmtY_HEAD);
 }
 
 inline s16 Cd2_HIO_minLmtX_BACKBONE(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtX_BACKBONE;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtX_BACKBONE;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMinLmtX_BACKBONE :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtX_BACKBONE);
 }
 
 inline s16 Cd2_HIO_minLmtY_BACKBONE(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtY_BACKBONE;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtY_BACKBONE;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMinLmtY_BACKBONE :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtY_BACKBONE);
 }
 
 inline s16 Cd2_HIO_minLmtX_NECK(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtX_NECK;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtX_NECK;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMinLmtX_NECK :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtX_NECK);
 }
 
 inline s16 Cd2_HIO_minLmtY_NECK(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtY_NECK;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtY_NECK;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMinLmtY_NECK :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtY_NECK);
 }
 
 inline s16 Cd2_HIO_minLmtX_HEAD(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtX_HEAD;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtX_HEAD;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMinLmtX_HEAD :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtX_HEAD);
 }
 
 inline s16 Cd2_HIO_minLmtY_HEAD(int param_1) {
-    s16 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtY_HEAD;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtY_HEAD;
-    }
-    return rv;
+    return (s16)(param_1 < 16 ?
+        l_Cd2_HIO.field_0x0004[param_1].mMinLmtY_HEAD :
+        l_Cd2_HIO.field_0x20c4[param_1 - 16].mMinLmtY_HEAD);
 }
 
 class PathTrace_c {

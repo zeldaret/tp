@@ -29,20 +29,28 @@ void JUTNameTab::setResource(const ResNTAB* pNameTable) {
 }
 
 s32 JUTNameTab::getIndex(const char* pName) const {
+    JUT_ASSERT(101, mNameTable != NULL);
+
     const ResNTAB::Entry* pEntry = mNameTable->mEntries;
     u16 keyCode = calcKeyCode(pName);
 
-    for (u16 i = 0; i < mNameNum; pEntry++, i++)
-        if (pEntry->mKeyCode == keyCode &&
-            strcmp((mNameTable->mEntries[i].mOffs + ((const char*)mNameTable)), pName) == 0)
+    for (u16 i = 0; i < mNameNum; i++) {
+        if (
+            pEntry->mKeyCode == keyCode &&
+            strcmp((mNameTable->mEntries[i].mOffs + ((const char*)mNameTable)), pName) == 0
+        ) {
             return i;
+        }
+        pEntry++;
+    }
 
     return -1;
 }
 
 const char* JUTNameTab::getName(u16 index) const {
+    JUT_ASSERT(138, mNameTable != NULL);
     if (index < mNameNum)
-        return mNameTable->getName(index);
+        return ((const char*)mNameTable) + mNameTable->mEntries[index].mOffs;
     return NULL;
 }
 
