@@ -12,11 +12,6 @@
 #include "f_op/f_op_camera_mng.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
-#include "dol2asm.h"
-
-//
-// Declarations:
-//
 
 static int daVrbox2_color_set(vrbox2_class* param_0);
 
@@ -32,22 +27,36 @@ static void texScrollCheck(f32& param_0) {
 /* 80498ACC-804990DC 0000CC 0610+00 1/0 0/0 0/0 .text            daVrbox2_Draw__FP12vrbox2_class */
 // NONMATCHING - reg alloc
 static int daVrbox2_Draw(vrbox2_class* i_this) {
-    camera_class* camera_p = dComIfGp_getCamera(0);
-    dKankyo_sunlenz_Packet* lenz_p = g_env_light.mpSunLenzPacket;
-    J3DModel* kumo_model_p = i_this->mpKumoModel;
-    J3DModel* sun_model_p = i_this->model2;
-    J3DModel* sun2_model_p = i_this->model2_und;
-    J3DModel* kasumim_model_p = i_this->mpKasumimModel;
-    dKankyo_sun_Packet* sun_p = g_env_light.mpSunPacket;
+    camera_class* camera_p;
+    dKankyo_sunlenz_Packet* lenz_p;
+    J3DModel* kumo_model_p;
+    J3DModel* sun_model_p;
+    J3DModel* sun2_model_p;
+    J3DModel* kasumim_model_p;
+    dKankyo_sun_Packet* sun_p;
+    dStage_FileList_dt_c* filelist_p;
+    J3DModelData* sp38;
+    J3DModelData* sp34;
+    J3DModelData* sp30;
+    s16 temp_r19;
+    s16 temp_r18;
+
+    camera_p = dComIfGp_getCamera(0);
+    lenz_p = g_env_light.mpSunLenzPacket;
+    kumo_model_p = i_this->mpKumoModel;
+    sun_model_p = i_this->model2;
+    sun2_model_p = i_this->model2_und;
+    kasumim_model_p = i_this->mpKasumimModel;
+    sun_p = g_env_light.mpSunPacket;
 
     f32 var_f31 = 0.0f;
-    dStage_FileList_dt_c* filelist_p = NULL;
+    filelist_p = NULL;
     dKy_GxFog_set();
 
     // these casts look like fake matches, but this ptr is used as both J3DModel and J3DModelData?
-    J3DModelData* sp38 = (J3DModelData*)kumo_model_p;
-    J3DModelData* sp34 = (J3DModelData*)sun_model_p;
-    J3DModelData* sp30 = (J3DModelData*)kasumim_model_p;
+    sp38 = (J3DModelData*)kumo_model_p;
+    sp34 = (J3DModelData*)sun_model_p;
+    sp30 = (J3DModelData*)kasumim_model_p;
     for (int i = sp38->getMaterialNum() - 1; i >= 0; i--) {
         J3DMaterial* material_p = sp38->getMaterialNodePointer(i);
 
@@ -142,8 +151,8 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
         }
 #endif
 
-        s16 temp_r19 = cLib_targetAngleX(&camera_p->lookat.eye, &sp14);
-        s16 temp_r18 = cLib_targetAngleY(&camera_p->lookat.eye, &sp14);
+        temp_r19 = cLib_targetAngleX(&camera_p->lookat.eye, &sp14);
+        temp_r18 = cLib_targetAngleY(&camera_p->lookat.eye, &sp14);
         mDoMtx_stack_c::transS(sp14.x, sp14.y, sp14.z);
         mDoMtx_stack_c::YrotM((s16)temp_r18);
         mDoMtx_stack_c::XrotM(0x7FFF + -temp_r19);
