@@ -1619,7 +1619,7 @@ f32 Z2SeqMgr::getChildTrackVolume(JAISoundHandle* i_handle, int i_track) {
         if (seq != NULL && seq->getChildTrack(i_track) != NULL) {
             JAISoundChild* child = seq->getChild(i_track);
             if (child != NULL) {
-                volume = child->mMove.mParams.mVolume;
+                volume = child->mMove.params_.mVolume;
             }
         }
     }

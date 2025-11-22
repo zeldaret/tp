@@ -108,7 +108,7 @@ void JAISeq::releaseChildTracks_() {
 
 /* 802A0EDC-802A0F90 29B81C 00B4+00 1/1 0/0 0/0 .text            prepare_getSeqData___6JAISeqFv */
 bool JAISeq::prepare_getSeqData_() {
-    JAISoundID id(soundID);  // fakematch, should be using getID but it messes up stack
+    JAISoundID id(soundID_);  // fakematch, should be using getID but it messes up stack
     if (id.isAnonymous()) {
         return true;
     }
@@ -212,7 +212,7 @@ bool JAISeq::JAISound_tryDie_() {
         return true;
     }
 
-    fader.forceOut();
+    fader_.forceOut();
     status_.state.flags.flag1 = 1;
 
     {
@@ -231,7 +231,7 @@ void JAISeq::mixOut_(const JASSoundParams& params, JAISoundActivity activity) {
     inner_.outputTrack.pause(activity.field_0x0.flags.flag2 || status_.isPaused());
 
     JASSoundParams outParams;
-    params_.mixOutAll(params, &outParams, fader.getIntensity());
+    params_.mixOutAll(params, &outParams, fader_.getIntensity());
 
     if (field_0x3a8) {
         field_0x3a8->virtual4(this, outParams);

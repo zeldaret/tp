@@ -126,7 +126,7 @@ void JAISeqMgr::stopSoundID(JAISoundID id) {
 void JAISeqMgr::mixOut() {
     JSULink<JAISeq>* i;
     for (i = mSeqList.getFirst(); i != NULL; i = i->getNext()) {
-        i->getObject()->JAISeqMgr_mixOut_(mMove.mParams, mActivity);
+        i->getObject()->JAISeqMgr_mixOut_(mMove.params_, mActivity);
     }
 }
 

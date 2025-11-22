@@ -37,7 +37,7 @@ bool Z2SoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* handlePtr,
             break;
         }
     }
-    if (i_soundID.mId.mBytes.b1 != 0 && i_soundID.mId.mBytes.b1 != 9) {
+    if (i_soundID.id_.info.type.parts.groupID != 0 && i_soundID.id_.info.type.parts.groupID != 9) {
         if (Z2GetSceneMgr()->isInDarkness()) {
             i_fxMix = 1.0f;
         } else {

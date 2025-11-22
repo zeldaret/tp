@@ -56,26 +56,26 @@ struct JAISoundParamsTransition {
     };  // Size: 0xC
 
     void init() {
-        mVolume.zero();
-        mPitch.zero();
-        mFxMix.zero();
-        mPan.zero();
-        mDolby.zero();
+        volume_.zero();
+        pitch_.zero();
+        fxMix_.zero();
+        pan_.zero();
+        dolby_.zero();
     }
 
-    void apply(JASSoundParams* pParams) {
-        pParams->mVolume = mVolume.apply(pParams->mVolume);
-        pParams->mPitch = mPitch.apply(pParams->mPitch);
-        pParams->mFxMix = mFxMix.apply(pParams->mFxMix);
-        pParams->mDolby = mDolby.apply(pParams->mDolby);
-        pParams->mPan = mPan.apply(pParams->mPan);
+    void apply(JASSoundParams* params) {
+        params->mVolume = volume_.apply(params->mVolume);
+        params->mPitch = pitch_.apply(params->mPitch);
+        params->mFxMix = fxMix_.apply(params->mFxMix);
+        params->mDolby = dolby_.apply(params->mDolby);
+        params->mPan = pan_.apply(params->mPan);
     }
 
-    /* 0x00 */ TTransition mVolume;
-    /* 0x0C */ TTransition mPitch;
-    /* 0x18 */ TTransition mFxMix;
-    /* 0x24 */ TTransition mPan;
-    /* 0x30 */ TTransition mDolby;
+    /* 0x00 */ TTransition volume_;
+    /* 0x0C */ TTransition pitch_;
+    /* 0x18 */ TTransition fxMix_;
+    /* 0x24 */ TTransition pan_;
+    /* 0x30 */ TTransition dolby_;
 };  // Size: 0x3C
 
 /**
@@ -83,14 +83,14 @@ struct JAISoundParamsTransition {
  * 
  */
 struct JAISoundParamsMove {
-    JAISoundParamsMove() : mParams() {}
+    JAISoundParamsMove() : params_() {}
 
     void init() {
-        mParams.init();
-        mTransition.init();
+        params_.init();
+        transition_.init();
     }
 
-    void calc() { mTransition.apply(&mParams); }
+    void calc() { transition_.apply(&params_); }
 
     /* 802A2DB4 */ void moveVolume(f32 newValue, u32 maxSteps);
     /* 802A2E0C */ void movePitch(f32 newValue, u32 maxSteps);
@@ -98,8 +98,8 @@ struct JAISoundParamsMove {
     /* 802A2EBC */ void movePan(f32 newValue, u32 maxSteps);
     /* 802A2F14 */ void moveDolby(f32 newValue, u32 maxSteps);
 
-    /* 0x00 */ JASSoundParams mParams;
-    /* 0x14 */ JAISoundParamsTransition mTransition;
+    /* 0x00 */ JASSoundParams params_;
+    /* 0x14 */ JAISoundParamsTransition transition_;
 };  // Size: 0x50
 
 /**
@@ -107,16 +107,16 @@ struct JAISoundParamsMove {
  * 
  */
 struct JAISoundParams {
-    JAISoundParams() : mMove() {}
+    JAISoundParams() : move_() {}
     void mixOutAll(const JASSoundParams& inParams, JASSoundParams* outParams, f32);
 
     void init() {
-        mMove.init();
-        mProperty.init();
+        move_.init();
+        property_.init();
     }
 
-    /* 0x0 */ JAISoundParamsProperty mProperty;
-    /* 0xC */ JAISoundParamsMove mMove;
+    /* 0x0 */ JAISoundParamsProperty property_;
+    /* 0xC */ JAISoundParamsMove move_;
 };  // Size: 0x5C
 
 #endif /* JAISOUNDPARAMS_H */

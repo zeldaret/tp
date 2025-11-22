@@ -1994,7 +1994,7 @@ void Z2SceneMgr::sceneBgmStart() {
 
     if (!BGM_ID.isAnonymous() && Z2GetStatusMgr()->getDemoStatus() != 11) {
         bool var;
-        switch (BGM_ID.mId.mBytes.b0) {
+        switch (BGM_ID.id_.info.type.parts.sectionID) {
         case 1:
             var = false;
             switch (Z2GetSeqMgr()->getSubBgmID()) {

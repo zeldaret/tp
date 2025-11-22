@@ -17,7 +17,7 @@ JAISe::JAISe(JAISeMgr* seMgr, JAISoundStrategyMgr<JAISe>* soundStrategyMgr, u32 
 void JAISe::mixOut_(const JASSoundParams& params) {
     inner_.track.setTempoRate(inner_.mTempoMgr.getTempo());
     JASSoundParams mixParams;
-    params_.mixOutAll(params, &mixParams, fader.getIntensity());
+    params_.mixOutAll(params, &mixParams, fader_.getIntensity());
 
     if (inner_.field_0x278) {
         inner_.field_0x278->virtual4(this, mixParams);
@@ -57,7 +57,7 @@ void JAISe::startTrack_(const JASSoundParams& params) {
     if (audible_) {
         initTrack_JAISound_(&inner_.track);
     } else {
-        params_.mixOutAll(params, &inner_.mSoundParams, fader.getIntensity());
+        params_.mixOutAll(params, &inner_.mSoundParams, fader_.getIntensity());
         inner_.track.setChannelMgrCount(1);
         inner_.track.assignExtBuffer(0, &inner_.mSoundParams);
     }
@@ -115,10 +115,10 @@ void JAISe::JAISeCategoryMgr_calc_() {
         }
     }
 
-    if (isStopping() || mPriority == -1) {
+    if (isStopping() || priority_ == -1) {
         inner_.mPriority = -1;
     } else {
-        inner_.mPriority = inner_.mProperPriority + mPriority;
+        inner_.mPriority = inner_.mProperPriority + priority_;
     }
 }
 

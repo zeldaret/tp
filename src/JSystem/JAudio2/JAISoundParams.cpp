@@ -5,46 +5,46 @@
 void JAISoundParamsMove::moveVolume(f32 newValue, u32 maxSteps) {
     JUT_ASSERT(12, (newValue>=0.f));
     if (maxSteps == 0) {
-        mParams.mVolume = newValue;
-        mTransition.mVolume.remainingSteps_ = 0;
+        params_.mVolume = newValue;
+        transition_.volume_.remainingSteps_ = 0;
     } else {
-        mTransition.mVolume.set(newValue, mParams.mVolume, maxSteps);
+        transition_.volume_.set(newValue, params_.mVolume, maxSteps);
     }
 }
 
 void JAISoundParamsMove::movePitch(f32 newValue, u32 maxSteps) {
     JUT_ASSERT(27, (newValue>=0.f));
     if (maxSteps == 0) {
-        mParams.mPitch = newValue;
-        mTransition.mPitch.remainingSteps_ = 0;
+        params_.mPitch = newValue;
+        transition_.pitch_.remainingSteps_ = 0;
     } else {
-        mTransition.mPitch.set(newValue, mParams.mPitch, maxSteps);
+        transition_.pitch_.set(newValue, params_.mPitch, maxSteps);
     }
 }
 
 void JAISoundParamsMove::moveFxMix(f32 newValue, u32 maxSteps) {
     if (maxSteps == 0) {
-        mParams.mFxMix = newValue;
-        mTransition.mFxMix.remainingSteps_ = 0;
+        params_.mFxMix = newValue;
+        transition_.fxMix_.remainingSteps_ = 0;
     } else {
-        mTransition.mFxMix.set(newValue, mParams.mFxMix, maxSteps);
+        transition_.fxMix_.set(newValue, params_.mFxMix, maxSteps);
     }
 }
 
 void JAISoundParamsMove::movePan(f32 newValue, u32 maxSteps) {
     if (maxSteps == 0) {
-        mParams.mPan = newValue;
-        mTransition.mPan.remainingSteps_ = 0;
+        params_.mPan = newValue;
+        transition_.pan_.remainingSteps_ = 0;
     } else {
-        mTransition.mPan.set(newValue, mParams.mPan, maxSteps);
+        transition_.pan_.set(newValue, params_.mPan, maxSteps);
     }
 }
 
 void JAISoundParamsMove::moveDolby(f32 newValue, u32 maxSteps) {
     if (maxSteps == 0) {
-        mParams.mDolby = newValue;
-        mTransition.mDolby.remainingSteps_ = 0;
+        params_.mDolby = newValue;
+        transition_.dolby_.remainingSteps_ = 0;
     } else {
-        mTransition.mDolby.set(newValue, mParams.mDolby, maxSteps);
+        transition_.dolby_.set(newValue, params_.mDolby, maxSteps);
     }
 }

@@ -362,7 +362,7 @@ void Z2SoundMgr::multiVolumeSoundID(JAISoundID i_soundID, f32 i_multi) {
             mSeMgr.getCategory(Z2GetSoundInfo()->getCategory(i_soundID))->getSeList();
         for (JSULink<JAISe>* link = list->getFirst(); link != NULL; link = link->getNext()) {
             if (link->getObject()->getID() == i_soundID) {
-                link->getObject()->getAuxiliary().mParams.mVolume *= i_multi;
+                link->getObject()->getAuxiliary().params_.mVolume *= i_multi;
             }
         }
     }

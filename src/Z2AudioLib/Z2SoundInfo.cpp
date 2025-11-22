@@ -40,7 +40,7 @@ u16 Z2SoundInfo::getBgmSeqResourceID(JAISoundID param_0) const {
 
 /* 802BB090-802BB0D8 2B59D0 0048+00 1/0 0/0 0/0 .text getSoundType__11Z2SoundInfoCF10JAISoundID */
 int Z2SoundInfo::getSoundType(JAISoundID param_0) const {
-    switch (param_0.mId.mBytes.b0) {
+    switch (param_0.id_.info.type.parts.sectionID) {
     case 0:
         return 0;
     case 1:
@@ -53,7 +53,7 @@ int Z2SoundInfo::getSoundType(JAISoundID param_0) const {
 
 /* 802BB0D8-802BB0E0 2B5A18 0008+00 1/0 0/0 0/0 .text getCategory__11Z2SoundInfoCF10JAISoundID */
 int Z2SoundInfo::getCategory(JAISoundID param_0) const {
-    return param_0.mId.mBytes.b1;
+    return param_0.id_.info.type.parts.groupID;
 }
 
 /* 802BB0E0-802BB158 2B5A20 0078+00 1/0 0/0 0/0 .text getPriority__11Z2SoundInfoCF10JAISoundID */
@@ -257,13 +257,13 @@ void Z2SoundInfo::getStreamInfo(JAISoundID param_1, JAIStream* param_2) const {
                 if (child != NULL) {
                     switch (uVar2) {
                     case 1:
-                        child->mMove.mParams.mPan = 0.5f;
+                        child->mMove.params_.mPan = 0.5f;
                         break;
                     case 2:
-                        child->mMove.mParams.mPan = 0.0f;
+                        child->mMove.params_.mPan = 0.0f;
                         break;
                     case 3:
-                        child->mMove.mParams.mPan = 1.0f;
+                        child->mMove.params_.mPan = 1.0f;
                         break;
                     }
                 }

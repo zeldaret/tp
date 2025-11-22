@@ -21,15 +21,15 @@ u8 JAUSoundTable::getTypeID(JAISoundID param_0) const {
     if (param_0.isAnonymous()) {
         return 0xff;
     }
-    JAUSoundTableSection* section = field_0x0.getSection(param_0.mId.mBytes.b0);
+    JAUSoundTableSection* section = field_0x0.getSection(param_0.id_.info.type.parts.sectionID);
     if (section == NULL) {
         return 0xff;
     }
-    JAUSoundTableGroup* group = field_0x0.getGroup(section, param_0.mId.mBytes.b1);
+    JAUSoundTableGroup* group = field_0x0.getGroup(section, param_0.id_.info.type.parts.groupID);
     if (group == NULL) {
         return 0xff;
     }
-    return group->getTypeID(param_0.mId.mAdvancedId.mShortId);
+    return group->getTypeID(param_0.id_.info.waveID);
 }
 
 /* 802A728C-802A73D4 2A1BCC 0148+00 0/0 7/7 0/0 .text getData__13JAUSoundTableCF10JAISoundID */
@@ -37,15 +37,15 @@ JAUSoundTableItem* JAUSoundTable::getData(JAISoundID param_0) const {
     if (param_0.isAnonymous()) {
         return NULL;
     }
-    JAUSoundTableSection* section = field_0x0.getSection(param_0.mId.mBytes.b0);
+    JAUSoundTableSection* section = field_0x0.getSection(param_0.id_.info.type.parts.sectionID);
     if (section == NULL) {
         return NULL;
     }
-    JAUSoundTableGroup* group = field_0x0.getGroup(section, param_0.mId.mBytes.b1);
+    JAUSoundTableGroup* group = field_0x0.getGroup(section, param_0.id_.info.type.parts.groupID);
     if (group == NULL) {
         return NULL;
     }
-    return getItem(group, param_0.mId.mAdvancedId.mShortId);
+    return getItem(group, param_0.id_.info.waveID);
 }
 
 /* 802A73D4-802A7420 2A1D14 004C+00 0/0 1/1 0/0 .text            init__17JAUSoundNameTableFPCv */

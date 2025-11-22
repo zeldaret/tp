@@ -63,11 +63,11 @@ s32 JAISoundStatus_::unlockIfLocked() {
 /* 802A2280-802A22F8 29CBC0 0078+00 0/0 4/4 0/0 .text
  * mixOutAll__14JAISoundParamsFRC14JASSoundParamsP14JASSoundParamsf */
 void JAISoundParams::mixOutAll(const JASSoundParams& inParams, JASSoundParams* outParams, f32 param_2) {
-    outParams->mVolume = mMove.mParams.mVolume * (inParams.mVolume * mProperty.field_0x0) * param_2;
-    outParams->mFxMix = mMove.mParams.mFxMix + (inParams.mFxMix + mProperty.field_0x4);
-    outParams->mPitch = mMove.mParams.mPitch * (inParams.mPitch * mProperty.field_0x8);
-    outParams->mPan = (inParams.mPan + mMove.mParams.mPan) - 0.5f;
-    outParams->mDolby = inParams.mDolby + mMove.mParams.mDolby;
+    outParams->mVolume = move_.params_.mVolume * (inParams.mVolume * property_.field_0x0) * param_2;
+    outParams->mFxMix = move_.params_.mFxMix + (inParams.mFxMix + property_.field_0x4);
+    outParams->mPitch = move_.params_.mPitch * (inParams.mPitch * property_.field_0x8);
+    outParams->mPan = (inParams.mPan + move_.params_.mPan) - 0.5f;
+    outParams->mDolby = inParams.mDolby + move_.params_.mDolby;
 }
 
 /* 802A22F8-802A2328 29CC38 0030+00 0/0 3/3 0/0 .text            __ct__8JAISoundFv */
@@ -77,21 +77,21 @@ JAISound::JAISound() : params_() {}
  * start_JAISound___8JAISoundF10JAISoundIDPCQ29JGeometry8TVec3<f>P11JAIAudience */
 void JAISound::start_JAISound_(JAISoundID id, const JGeometry::TVec3<f32>* posPtr, JAIAudience* audience) {
     handle_ = NULL;
-    soundID = id;
+    soundID_ = id;
     status_.init();
     params_.init();
-    fader.forceIn();
+    fader_.forceIn();
     audience_ = audience;
-    prepareCount = 0;
-    mCount = 0;
+    prepareCount_ = 0;
+    count_ = 0;
 
     if (posPtr != NULL && audience_ != NULL) {
-        audible_ = audience_->newAudible(*posPtr, soundID, NULL, 0);
+        audible_ = audience_->newAudible(*posPtr, soundID_, NULL, 0);
     } else {
         audible_ = NULL;
     }
 
-    mPriority = 0;
+    priority_ = 0;
 }
 
 /* 802A244C-802A2474 29CD8C 0028+00 0/0 2/2 0/0 .text            acceptsNewAudible__8JAISoundCFv */
@@ -113,7 +113,7 @@ void JAISound::newAudible(const JGeometry::TVec3<f32>& param_0,
     }
 
     JUT_ASSERT(157, audience_);
-    audible_ = audience_->newAudible(param_0, soundID, param_1, param_2);
+    audible_ = audience_->newAudible(param_0, soundID_, param_1, param_2);
 }
 
 /* 802A24DC-802A2598 29CE1C 00BC+00 0/0 24/24 0/0 .text            stop__8JAISoundFUl */
@@ -122,7 +122,7 @@ void JAISound::stop(u32 fadeTime) {
     if (fadeTime == 0) {
         stop();
     } else {
-        fader.fadeOut(fadeTime);
+        fader_.fadeOut(fadeTime);
         removeLifeTime_();
         status_.state.flags.flag5 = 1;
         status_.state.flags.flag1 = 1;
@@ -157,7 +157,7 @@ void JAISound::die_JAISound_() {
         audible_ = NULL;
         audience_ = NULL;
     }
-    fader.forceOut();
+    fader_.forceOut();
     releaseHandle();
     status_.state.unk = 6;
 }
@@ -165,9 +165,9 @@ void JAISound::die_JAISound_() {
 /* 802A266C-802A26B8 29CFAC 004C+00 0/0 3/3 0/0 .text increasePrepareCount_JAISound___8JAISoundFv
  */
 void JAISound::increasePrepareCount_JAISound_() {
-    if ((++prepareCount & 0xFF) == 0) {
-        JASReport("It cost %d steps to prepare Sound(ID:%08x, Address%08x).\n", prepareCount,
-                  *(u32*)&soundID, this);
+    if ((++prepareCount_ & 0xFF) == 0) {
+        JASReport("It cost %d steps to prepare Sound(ID:%08x, Address%08x).\n", prepareCount_,
+                  *(u32*)&soundID_, this);
     }
 }
 
@@ -181,35 +181,35 @@ bool JAISound::calc_JAISound_() {
     JUT_ASSERT(230, status_.isAlive());
     bool isPlaying = status_.isPlaying();
     if (isPlaying) {
-        mCount++;
+        count_++;
     }
 
     bool isPaused = status_.isPaused();
     if (isPaused == false) {
-        fader.calc();
+        fader_.calc();
     }
 
     bool playing = isPlaying && isPaused == false;
     if (playing) {
-        params_.mMove.calc();
+        params_.move_.calc();
         if (audible_ != NULL) {
             audible_->calc();
         }
         if (status_.field_0x1.flags.flag2 != 0) {
-            if (lifeTime == 0) {
+            if (lifeTime_ == 0) {
                 stop_JAISound_();
             } else {
-                lifeTime--;
+                lifeTime_--;
             }
         }
     }
 
     if (audience_ != NULL && audible_ != NULL) {
-        if ((mPriority = audience_->calcPriority(audible_)) == 0xFFFFFFFF && status_.field_0x1.flags.flag1 == 0) {
+        if ((priority_ = audience_->calcPriority(audible_)) == 0xFFFFFFFF && status_.field_0x1.flags.flag1 == 0) {
             stop_JAISound_();
         }
     } else {
-        mPriority = 0;
+        priority_ = 0;
     }
 
     return playing;

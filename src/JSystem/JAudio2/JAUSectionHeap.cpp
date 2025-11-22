@@ -52,7 +52,7 @@ namespace {
             }
         }
         virtual s32 getStreamFileEntry(JAISoundID id) {
-            u32 short_id = id.mId.mAdvancedId.mShortId;
+            u32 short_id = id.id_.info.waveID;
             if (short_id >= field_0x4) {
                 return -1;
             }

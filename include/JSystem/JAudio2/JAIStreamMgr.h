@@ -14,13 +14,13 @@ class JAIStreamDataMgr;
  */
 class JAIStreamMgr : public JASGlobalInstance<JAIStreamMgr> {
 public:
-    /* 802A3B68 */ JAIStreamMgr(bool);
-    /* 802A3C3C */ bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    /* 802A3B68 */ JAIStreamMgr(bool setInstance);
+    /* 802A3C3C */ bool startSound(JAISoundID id, JAISoundHandle* handle, const JGeometry::TVec3<f32>* posPtr);
     /* 802A3D70 */ void freeDeadStream_();
     /* 802A3EBC */ void calc();
     /* 802A4028 */ void stop();
-    /* 802A4068 */ void stop(u32);
-    /* 802A40B8 */ void stopSoundID(JAISoundID);
+    /* 802A4068 */ void stop(u32 fadeTime);
+    /* 802A40B8 */ void stopSoundID(JAISoundID id);
     /* 802A4118 */ void mixOut();
     /* 802A4174 */ JAIStream* newStream_();
     /* 802B9978 */ bool isActive() const { return mStreamList.getNumLinks() != 0; }
@@ -29,15 +29,18 @@ public:
     JAISoundParamsMove* getParams() { return &mParams; }
     JAIStreamAramMgr* getStreamAramMgr() { return mStreamAramMgr; }
     JSUList<JAIStream>* getStreamList() { return &mStreamList; }
-    void setStreamDataMgr(JAIStreamDataMgr* param_0) {
+
+    void setStreamDataMgr(JAIStreamDataMgr* streamDataMgr) {
         JUT_ASSERT(139, !isActive());
-        streamDataMgr_ = param_0;
+        streamDataMgr_ = streamDataMgr;
     }
-    void setStreamAramMgr(JAIStreamAramMgr* param_0) {
+
+    void setStreamAramMgr(JAIStreamAramMgr* streamDataMgr) {
         JUT_ASSERT(157, !isActive());
-        mStreamAramMgr = param_0;
+        mStreamAramMgr = streamDataMgr;
     }
-    void pause(bool i_pause) { mActivity.field_0x0.flags.flag2 = i_pause; }
+
+    void pause(bool paused) { mActivity.field_0x0.flags.flag2 = paused; }
 
 private:
     /* 0x00 */ JAISoundActivity mActivity;

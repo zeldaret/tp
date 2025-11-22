@@ -148,7 +148,7 @@ void JAISeCategoryMgr::pause(bool param_0) {
 void JAISeCategoryMgr::JAISeMgr_mixOut_(const JAISoundParamsMove& params,
                                         JAISoundActivity activity) {
     JASSoundParams mixParams;
-    mixParams.combine(params.mParams, mParams.mParams);
+    mixParams.combine(params.params_, mParams.params_);
     JSULink<JAISe>* i = mSeList.getFirst();
     int maxActiveSe = getMaxActiveSe();
     int sp28;
@@ -320,14 +320,14 @@ bool JAISeMgr::startSound(JAISoundID id, JAISoundHandle* handle, const JGeometry
         category = soundInfoPtr->getCategory(id);
         priority = soundInfoPtr->getPriority(id);
     } else {
-        category = id.mId.mBytes.b1;
+        category = id.id_.info.type.parts.groupID;
         priority = 0;
     }
 
     JAISe* se = newSe_(category, priority);
     if (se == NULL) {
         #if !PLATFORM_SHIELD
-        JASReport("cannot new Se %08x.", id.mId.mFullId);
+        JASReport("cannot new Se %08x.", id.id_.composite_);
         #endif
         return false;
     } 

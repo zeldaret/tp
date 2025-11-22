@@ -12,31 +12,30 @@
  */
 class JAISoundID {
 public:
-    operator u32() const { return this->mId.mFullId; }
+    operator u32() const { return id_.composite_; }
 
-    JAISoundID(u32 pId) { mId.mFullId = pId; };
+    JAISoundID(u32 id) { id_.composite_ = id; };
 
-    JAISoundID(JAISoundID const& other) { mId = other.mId; };
+    JAISoundID(const JAISoundID& other) { id_ = other.id_; };
 
     JAISoundID() {}
 
-    bool isAnonymous() const { return mId.mFullId == 0xFFFFFFFF; }
-    void setAnonymous() { mId.mFullId = 0xFFFFFFFF; }
+    bool isAnonymous() const { return id_.composite_ == 0xFFFFFFFF; }
+    void setAnonymous() { id_.composite_ = 0xFFFFFFFF; }
 
     union {
-        u32 mFullId;
+        u32 composite_;
         struct {
-            u8 b0;
-            u8 b1;
-            u8 b2;
-            u8 b3;
-        } mBytes;
-        struct {
-            u16 mSoundType;
-            u16 mShortId;
-        } mAdvancedId;  // Debug doesn't have an inline for referencing the short ID so I assume
-                        // it's similar to this
-    } mId;
+            union {
+                u16 value;
+                struct {
+                    u8 sectionID;
+                    u8 groupID;
+                } parts;
+            } type;
+            u16 waveID;
+        } info;
+    } id_;
 };
 
 class JASTrack;
@@ -53,7 +52,7 @@ struct JAISoundStatus_ {
         field_0x0.value = 0;
         field_0x1.value = 0;
         *((u16*)&state) = 0;
-        user_data = 0;
+        userdata_ = 0;
     }
 
     bool isAlive() const { return state.unk != 6; }
@@ -105,7 +104,7 @@ struct JAISoundStatus_ {
             u8 flag8 : 1;
         } flags;
     } state;
-    /* 0x4 */ u32 user_data;
+    /* 0x4 */ u32 userdata_;
 };  // Size: 0x8
 
 /**
@@ -206,17 +205,17 @@ public:
  */
 class JAITempoMgr {
 public:
-    /* 0x00 */ f32 mTempo;
-    /* 0x04 */ JAISoundParamsTransition::TTransition field_0x4;
+    /* 0x00 */ f32 tempo_;
+    /* 0x04 */ JAISoundParamsTransition::TTransition transition_;
 
     JAITempoMgr() { init(); }
     void init() { setTempo(1.0f); }
-    void setTempo(f32 param_0) {
-        mTempo = param_0;
-        field_0x4.zero();
+    void setTempo(f32 tempo) {
+        tempo_ = tempo;
+        transition_.zero();
     }
-    f32 getTempo() const { return mTempo; }
-    void calc() { mTempo = field_0x4.apply(mTempo); }
+    f32 getTempo() const { return tempo_; }
+    void calc() { tempo_ = transition_.apply(tempo_); }
 };
 
 class JAISoundHandle;
@@ -259,14 +258,14 @@ public:
     virtual JAITempoMgr* getTempoMgr() = 0;
     virtual bool JAISound_tryDie_() = 0;
 
-    JAISoundID getID() const { return soundID; }
+    JAISoundID getID() const { return soundID_; }
     u8 getAnimationState() const { return status_.state.flags.animationState; }
     bool isAnimated() const { return getAnimationState() != 0; }
     void setAnimationState(u8 state) {
         status_.state.flags.animationState = state;
     }
-    u32 getUserData() const { return status_.user_data; }
-    void setUserData(u32 userData) { status_.user_data = userData; }
+    u32 getUserData() const { return status_.userdata_; }
+    void setUserData(u32 userData) { status_.userdata_ = userData; }
     JAIAudible* getAudible() const { return audible_; }
     bool isHandleAttached() const { return handle_ != NULL; }
     bool hasLifeTime() const { return status_.field_0x1.flags.flag2; }
@@ -285,7 +284,7 @@ public:
     }
 
     bool isStopping() const {
-        return status_.state.flags.flag1 && (!status_.state.flags.flag5 || fader.isOut());
+        return status_.state.flags.flag1 && (!status_.state.flags.flag5 || fader_.isOut());
     }
 
     void pause(bool param_0) {
@@ -293,14 +292,14 @@ public:
     }
 
     void updateLifeTime(u32 lifeTime) {
-        if (lifeTime > this->lifeTime) {
-            this->lifeTime = lifeTime;
+        if (lifeTime > lifeTime_) {
+            lifeTime_ = lifeTime;
         }
     }
 
     void setLifeTime(u32 lifeTime, bool param_1) {
         JUT_ASSERT(333, status_.state.flags.calcedOnce == 0);
-        this->lifeTime = lifeTime;
+        lifeTime_ = lifeTime;
         setComesBack(param_1);
         status_.field_0x1.flags.flag2 = 1;
     }
@@ -320,26 +319,26 @@ public:
         return audible_ != NULL;
     }
 
-    JAISoundFader& getFader() { return fader; }
-    void fadeIn(u32 maxSteps) { fader.fadeInFromOut(maxSteps); }
-    void fadeOut(u32 maxSteps) { fader.fadeOut(maxSteps); }
+    JAISoundFader& getFader() { return fader_; }
+    void fadeIn(u32 maxSteps) { fader_.fadeInFromOut(maxSteps); }
+    void fadeOut(u32 maxSteps) { fader_.fadeOut(maxSteps); }
 
-    JAISoundParamsProperty& getProperty() { return params_.mProperty; }
+    JAISoundParamsProperty& getProperty() { return params_.property_; }
 
-    s32 getCount() const { return mCount; }
+    s32 getCount() const { return count_; }
 
-    JAISoundParamsMove& getAuxiliary() { return params_.mMove; }
+    JAISoundParamsMove& getAuxiliary() { return params_.move_; }
 
     /* 0x04 */ JAISoundHandle* handle_;
     /* 0x08 */ JAIAudible* audible_;
     /* 0x0C */ JAIAudience* audience_;
-    /* 0x10 */ u32 lifeTime;
-    /* 0x14 */ s32 prepareCount;
-    /* 0x18 */ JAISoundID soundID;
+    /* 0x10 */ u32 lifeTime_;
+    /* 0x14 */ s32 prepareCount_;
+    /* 0x18 */ JAISoundID soundID_;
     /* 0x1C */ JAISoundStatus_ status_;
-    /* 0x24 */ JAISoundFader fader;
-    /* 0x34 */ u32 mPriority;
-    /* 0x38 */ s32 mCount;
+    /* 0x24 */ JAISoundFader fader_;
+    /* 0x34 */ u32 priority_;
+    /* 0x38 */ s32 count_;
     /* 0x3C */ JAISoundParams params_;
 };  // Size: 0x98
 

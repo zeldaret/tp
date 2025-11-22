@@ -167,7 +167,7 @@ void Z2WolfHowlMgr::calcVolumeMod(f32 param_0) {
 /* 802CACB0-802CACCC 2C55F0 001C+00 1/1 0/0 0/0 .text            getNowPitch__13Z2WolfHowlMgrFv */
 f32 Z2WolfHowlMgr::getNowPitch() {
     if (field_0x00) {
-        return field_0x00->getAuxiliary().mParams.mPitch;
+        return field_0x00->getAuxiliary().params_.mPitch;
     }
 
     return 1.0f;

@@ -348,7 +348,7 @@ JAISoundHandle* Z2CreatureLink::startLinkSoundLevel(JAISoundID i_soundID, u32 pa
             var_f30 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 80.0f, 0.3f, 0.5f, 1.1f, Z2Calc::CURVE_SIGN_0);
             break;
         case Z2SE_AL_LIGHTNING_SW_GLOW:
-            f32 temp_f1_2 = (*temp_r3)->getAuxiliary().mTransition.mVolume.targetValue_;
+            f32 temp_f1_2 = (*temp_r3)->getAuxiliary().transition_.volume_.targetValue_;
             if (Z2GetStatusMgr()->getDemoStatus() == 2 && temp_f1_2 != 0.3f) {
                 var_f31 = 0.3f;
                 var_r30 = 45;
@@ -578,7 +578,7 @@ bool Z2LinkSoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* param_
         }
     }
 
-    if (i_soundID.mId.mBytes.b1 == 3 && param_3 > 26) {
+    if (i_soundID.id_.info.type.parts.groupID == 3 && param_3 > 26) {
         if (param_3 == 44) {
             param_3 = 23;
         } else {
