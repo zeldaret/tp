@@ -5,6 +5,16 @@
 #include "JSystem/JMessage/JMessage.h"
 #include "SSystem/SComponent/c_xyz.h"
 
+#if REGION_JPN
+#define D_MSG_CLASS_PAGE_CNT_MAX 30
+#define D_MSG_CLASS_CHAR_CNT_MAX 0x210
+#define D_MSG_CLASS_LINE_MAX 9
+#else
+#define D_MSG_CLASS_PAGE_CNT_MAX 40
+#define D_MSG_CLASS_CHAR_CNT_MAX 0x200
+#define D_MSG_CLASS_LINE_MAX 12
+#endif
+
 class JMSMesgEntry_c {
 public:
     /* 0x0 */ u32 string_offset;
@@ -150,7 +160,7 @@ struct jmessage_tReference : public JMessage::TReference {
     void setNowLightCount(u8 count) { mNowLightCount = count; }
     void setCharCnt(s16 cnt) { mCharCnt = cnt; }
     void offButtonTagStopFlag() { mButtonTagStopFlag = false; }
-    void onLightBatchFlag() { mLightBatchFlag = true; } 
+    void onLightBatchFlag() { mLightBatchFlag = true; }
     void addNowLightCount() { mNowLightCount++; }
     void addLineCount() { mLineCount++; }
     void addEndLineCount() { mEndLineCount++; }
@@ -258,7 +268,7 @@ struct jmessage_tReference : public JMessage::TReference {
     s16 getCharCnt() { return mCharCnt; }
 
     struct CharSoundInfo {
-        u16 data[0x200];
+        u16 data[D_MSG_CLASS_CHAR_CNT_MAX];
         s16 field_0x40c;
         s16 field_0x40e;
         s16 mCountBackUp;
@@ -291,8 +301,8 @@ struct jmessage_tReference : public JMessage::TReference {
     /* 0x045C */ f32 mCharAllAlphaRate;
     /* 0x0460 */ f32 mAddCharAlpha;
     /* 0x0464 */ f32 mCharAlpha;
-    /* 0x0468 */ f32 mStrLength[40];
-    /* 0x0508 */ f32 mSpaceLength[40];
+    /* 0x0468 */ f32 mStrLength[D_MSG_CLASS_PAGE_CNT_MAX];
+    /* 0x0508 */ f32 mSpaceLength[D_MSG_CLASS_PAGE_CNT_MAX];
     /* 0x05A8 */ f32 mSelLength[3];
     /* 0x05B4 */ u32 mDemoFrame;
     /* 0x05B8 */ u32 mRevoMessageID;
@@ -311,19 +321,19 @@ struct jmessage_tReference : public JMessage::TReference {
     /* 0x05DC */ u8 mNowLightCount;
     /* 0x05DD */ u8 mDrawLightCount;
     /* 0x05DE */ u16 mMsgID;
-    /* 0x05E0 */ u16 mLineScale[40];
+    /* 0x05E0 */ u16 mLineScale[D_MSG_CLASS_PAGE_CNT_MAX];
     /* 0x0630 */ u16 mTopTagScale;
     /* 0x0632 */ u16 mNowTagScale;
     /* 0x0634 */ char mWord[10][100];
-    /* 0x0A1C */ char mText[0x200];
-    /* 0x0C1C */ char mTextS[0x200];
-    /* 0x0E1C */ char mRuby[0x200];
+    /* 0x0A1C */ char mText[D_MSG_CLASS_CHAR_CNT_MAX];
+    /* 0x0C1C */ char mTextS[D_MSG_CLASS_CHAR_CNT_MAX];
+    /* 0x0E1C */ char mRuby[D_MSG_CLASS_CHAR_CNT_MAX];
     /* 0x101C */ char mSelText[3][50];
     /* 0x10B2 */ char mSelRuby[3][80];
-    /* 0x11A2 */ s8 mPageLine[40];
-    /* 0x11CA */ s8 mPageLineMax[40];
-    /* 0x11F2 */ u8 mPageType[40];
-    /* 0x121A */ u8 mLineArrange[40];
+    /* 0x11A2 */ s8 mPageLine[D_MSG_CLASS_PAGE_CNT_MAX];
+    /* 0x11CA */ s8 mPageLineMax[D_MSG_CLASS_PAGE_CNT_MAX];
+    /* 0x11F2 */ u8 mPageType[D_MSG_CLASS_PAGE_CNT_MAX];
+    /* 0x121A */ u8 mLineArrange[D_MSG_CLASS_PAGE_CNT_MAX];
     /* 0x1242 */ u8 mSelectNum;
     /* 0x1243 */ u8 mSelectType;
     /* 0x1244 */ u8 mSelectPos;
@@ -358,7 +368,6 @@ struct jmessage_tMeasureProcessor : public JMessage::TRenderingProcessor {
     /* 8022B458 */ void do_rubyset(void const*, u32);
     /* 8022B4E0 */ void push_word(char*);
 
-    /* 8022B5F4 */ virtual ~jmessage_tMeasureProcessor() {}
     /* 80229AC4 */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 80229CB4 */ virtual void do_end();
     /* 80229E3C */ virtual void do_character(int iCharacter);
@@ -396,7 +405,6 @@ struct jmessage_tSequenceProcessor : public JMessage::TSequenceProcessor {
     /* 8022CB10 */ void messageSePlay(u8, u8, cXyz*);
     /* 8022CBE8 */ void calcStringLength();
 
-    /* 8023299C */ virtual ~jmessage_tSequenceProcessor() {}
     /* 8022B654 */ virtual void do_reset();
     /* 8022B658 */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 8022BA3C */ virtual void do_end();
@@ -460,7 +468,6 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
     /* 8022F734 */ void push_word();
     /* 8022F784 */ void getCharInfo(f32, f32, f32, f32, f32);
 
-    /* 8023293C */ virtual ~jmessage_tRenderingProcessor() {}
     /* 8022CDC8 */ virtual void do_reset();
     /* 8022CDCC */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 8022CFD8 */ virtual void do_end();
@@ -499,7 +506,7 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
     /* 0x060 */ f32 mSelTextInitPosX[3];
     /* 0x06C */ f32 mSelTextInitPosY[3];
     /* 0x078 */ f32 mTextInitOffsetPos;
-    /* 0x07C */ f32 field_0x7c[40];
+    /* 0x07C */ f32 field_0x7c[D_MSG_CLASS_PAGE_CNT_MAX];
     /* 0x11C */ int field_0x11c;
     /* 0x120 */ u32 mCCColor;
     /* 0x124 */ u32 mGCColor;
@@ -529,8 +536,6 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
 
 struct jmessage_string_tControl : public JMessage::TControl {
     /* 8022FB5C */ jmessage_string_tControl();
-
-    /* 802328DC */ virtual ~jmessage_string_tControl() {}
 };
 
 struct jmessage_string_tReference : public JMessage::TReference {
@@ -572,19 +577,14 @@ struct jmessage_string_tReference : public JMessage::TReference {
     void setLineMax(u8 lineMax) { mLineMax = lineMax; }
     COutFont_c* getOutFontPtr() { return mOutFontPtr; }
 
-    /* 8022F94C */ virtual ~jmessage_string_tReference() {}
+    /* 8022F94C */ virtual ~jmessage_string_tReference();
 
     /* 0x08 */ J2DTextBox* mPanePtr;
     /* 0x0C */ J2DTextBox* mRubyPanePtr;
     /* 0x10 */ COutFont_c* mOutFontPtr;
     /* 0x14 */ JUTFont* mpFont;
-#if VERSION == VERSION_GCN_JPN
-    /* 0x18 */ f32 mLineLength[9];
-    /* 0x3C */ f32 mOutfontLength[9];
-#else
-    /* 0x18 */ f32 mLineLength[12];
-    /* 0x48 */ f32 mOutfontLength[12];
-#endif
+    /* 0x18 */ f32 mLineLength[D_MSG_CLASS_LINE_MAX];
+    /* 0x3C */ f32 mOutfontLength[D_MSG_CLASS_LINE_MAX];
     /* 0x78 */ u32 mCCColor;
     /* 0x7C */ u32 mGCColor;
     /* 0x80 */ s16 mLineCount;
@@ -597,7 +597,6 @@ struct jmessage_string_tMeasureProcessor : public JMessage::TRenderingProcessor 
     /* 8022FB98 */ jmessage_string_tMeasureProcessor(jmessage_string_tReference const* pReference);
     /* 8023098C */ void do_rubyset(void const*, u32);
 
-    /* 80230A5C */ virtual ~jmessage_string_tMeasureProcessor() {}
     /* 8022FBE4 */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 8022FC14 */ virtual void do_end();
     /* 8022FC28 */ virtual void do_character(int iCharacter);
@@ -610,7 +609,6 @@ struct jmessage_string_tSequenceProcessor : public JMessage::TSequenceProcessor 
     /* 80230A08 */ jmessage_string_tSequenceProcessor(jmessage_string_tReference const* pReference,
                                                       jmessage_string_tControl* pControl);
 
-    /* 80232858 */ virtual ~jmessage_string_tSequenceProcessor() {}
     /* 80230ABC */ virtual void do_reset();
     /* 80230AC0 */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 80230B7C */ virtual void do_end();
@@ -639,7 +637,6 @@ struct jmessage_string_tRenderingProcessor : public JMessage::TRenderingProcesso
     /* 802326E4 */ void do_numset(s16);
     /* 802327BC */ void push_word(char const*);
 
-    /* 802327F8 */ virtual ~jmessage_string_tRenderingProcessor() {}
     /* 80230C5C */ virtual void do_reset();
     /* 80230CA0 */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 80230CE8 */ virtual void do_end();
@@ -655,18 +652,15 @@ struct jmessage_string_tRenderingProcessor : public JMessage::TRenderingProcesso
     /* 0x048 */ f32 field_0x48;
     /* 0x04C */ f32 field_0x4c;
     /* 0x050 */ f32 field_0x50;
-    /* 0x054 */ char field_0x54[0x200];
-    /* 0x254 */ char field_0x254[0x200];
+    /* 0x054 */ char field_0x54[D_MSG_CLASS_CHAR_CNT_MAX];
+    /* 0x254 */ char field_0x254[D_MSG_CLASS_CHAR_CNT_MAX];
     /* 0x454 */ char field_0x454[0x486 - 0x454];
     /* 0x486 */ char field_0x486[0x20]; // Unknown length
-    /* 0x4a6 */ u8 field_0x4a6[0x54e - 0x4a6];
+    /* 0x4A6 */ u8 field_0x4a6[0x54e - 0x4a6];
     /* 0x54E */ s16 field_0x54e;
     /* 0x550 */ s16 field_0x550;
     /* 0x552 */ s16 field_0x552;
     /* 0x554 */ u8 field_0x554;
-#if VERSION == VERSION_GCN_JPN
-    /* 0x558 */ u8 field_0x558[0x578 - 0x558];
-#endif
 };
 
 #define MSGTAG_GROUP(g) (g << 16)

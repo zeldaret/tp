@@ -73,10 +73,17 @@ void dFile_warning_c::screenSet() {
     JUT_ASSERT(0, mpRootPane != NULL);
     field_0x34 = mpRootPane->getTranslateY();
 
+#if REGION_JPN
+    mFileWarn.Scr->search('ms_for_2')->hide();
+    mFileWarn.Scr->search('ms_for_3')->hide();
+
+    field_0x20 = static_cast<J2DTextBox*>(mFileWarn.Scr->search('w_msg_jp'));
+#else
     mFileWarn.Scr->search('w_msg_jp')->hide();
     mFileWarn.Scr->search('ms_for_2')->hide();
 
     field_0x20 = static_cast<J2DTextBox*>(mFileWarn.Scr->search('ms_for_3'));
+#endif
     field_0x20->show();
     field_0x20->setFont(mFileWarn.mFont);
     field_0x20->setString(0x200, "");
