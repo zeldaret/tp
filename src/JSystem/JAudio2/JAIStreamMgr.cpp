@@ -15,7 +15,7 @@ JAIStreamMgr::JAIStreamMgr(bool param_0) : JASGlobalInstance<JAIStreamMgr>(param
     streamDataMgr_ = NULL;
     mStreamAramMgr = NULL;
     field_0x6c = NULL;
-    field_0x54 = NULL;
+    mAudience = NULL;
     mParams.init();
     mActivity.init();
 }
@@ -42,7 +42,7 @@ bool JAIStreamMgr::startSound(JAISoundID param_1, JAISoundHandle* param_2,
     if (stream == NULL) {
         return false;
     }
-    stream->JAIStreamMgr_startID_(param_1, streamFileEntry, param_3, field_0x54, iVar2);
+    stream->JAIStreamMgr_startID_(param_1, streamFileEntry, param_3, mAudience, iVar2);
     if (piVar5 != NULL) {
         piVar5->getStreamInfo(param_1, stream);
     }

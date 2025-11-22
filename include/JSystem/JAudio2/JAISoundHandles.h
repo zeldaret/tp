@@ -18,6 +18,11 @@ public:
 
     bool isSoundAttached() const { return sound_ != NULL; }
 
+    JAISound* getSound() {
+        JUT_ASSERT(41, sound_ != NULL);
+        return sound_;
+    }
+
     JAISound* operator->() const {
         JUT_ASSERT(58, sound_ != NULL);
         return sound_;
@@ -27,9 +32,7 @@ public:
 
     void releaseSound();
 
-    JAISound* getSound() { return sound_; }
-
-    JAISound* sound_;  // member from assert in operator->()
+    JAISound* sound_;
 };
 
 /**

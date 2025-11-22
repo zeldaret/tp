@@ -8,9 +8,9 @@ void JAISoundChild::init() {
     mParams.init();
 }
 
-void JAISoundChild::mixOut(JASTrack* pTrack) {
+void JAISoundChild::mixOut(JASTrack* track) {
     mParams = mMove.mParams;
-    pTrack->assignExtBuffer(0, &mParams);
+    track->assignExtBuffer(0, &mParams);
 }
 
 void JAISoundChild::calc() {

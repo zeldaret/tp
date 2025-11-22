@@ -28,7 +28,7 @@ struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     f32 getCameraInWaterDepth() { return mUnderwaterDepth; }
     f32 getCameraInWaterDepthRatio() { return mCameraInWaterDepthRatio; }
     u8 getHour() { return mHour; }
-    bool isPaused() { return mPauseFlag; }
+    u8 isPaused() { return mPauseFlag; }
     bool isHeartGuageOn() { return mHeartGaugeOn; }
     void getCameraMapInfo(u32 info) { mCameraMapInfo = info; }
     void setPauseFlag(u8 flag) { mPauseFlag = flag; }

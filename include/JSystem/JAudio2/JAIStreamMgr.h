@@ -25,6 +25,7 @@ public:
     /* 802A4174 */ JAIStream* newStream_();
     /* 802B9978 */ bool isActive() const { return mStreamList.getNumLinks() != 0; }
 
+    JAIAudience* getAudience() { return mAudience; }
     JAISoundParamsMove* getParams() { return &mParams; }
     JAIStreamAramMgr* getStreamAramMgr() { return mStreamAramMgr; }
     JSUList<JAIStream>* getStreamList() { return &mStreamList; }
@@ -41,7 +42,7 @@ public:
 private:
     /* 0x00 */ JAISoundActivity mActivity;
     /* 0x04 */ JAISoundParamsMove mParams;
-    /* 0x54 */ JAIAudience* field_0x54;
+    /* 0x54 */ JAIAudience* mAudience;
     /* 0x58 */ JSUList<JAIStream> mStreamList;
     /* 0x64 */ JAIStreamDataMgr* streamDataMgr_;
     /* 0x68 */ JAIStreamAramMgr* mStreamAramMgr;

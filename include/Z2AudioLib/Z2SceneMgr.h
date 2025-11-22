@@ -35,7 +35,7 @@ public:
     s8 getCurrentRoomNum() { return roomNum; }
     bool isInGame() { return inGame; }
     void setInGame(bool i_inGame) { inGame = i_inGame; }
-    bool isInDarkness() const { return inDarkness; }
+    bool isInDarkness() { return inDarkness; }
     s8 getRoomReverb() { return dComIfGp_getReverb(roomNum); }
     bool isMovieDemo() { return sceneNum == 2 || sceneNum == 8 || sceneNum == 9; }
     s32 getSeLoadStatus(u32 wave) { return getWaveLoadStatus(wave, 0); }

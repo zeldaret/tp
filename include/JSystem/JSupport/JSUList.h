@@ -82,7 +82,7 @@ public:
 
     u32 getNumLinks() const { return mLength; }
 
-private:
+protected:
     JSUPtrLink* mHead;
     JSUPtrLink* mTail;
     u32 mLength;
@@ -118,7 +118,7 @@ public:
 
     JSULink<T>* getEnd() const { return NULL; }
 
-    u32 getNumLinks() const { return this->JSUPtrList::getNumLinks(); }
+    u32 getNumLinks() const { return mLength; }
 };
 
 /**

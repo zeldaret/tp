@@ -46,7 +46,7 @@ struct Z2SoundFader {
     }
 
     u32 getCount() {
-        return mTransition.mCount;
+        return mTransition.remainingSteps_;
     }
 
     f32 getIntensity() {
@@ -55,7 +55,7 @@ struct Z2SoundFader {
 
     f32 getDest() {
         if (getCount() != 0) {
-            return mTransition.mDest;
+            return mTransition.targetValue_;
         } else {
             return mIntensity;
         }

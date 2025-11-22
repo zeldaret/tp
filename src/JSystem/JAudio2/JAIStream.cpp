@@ -145,7 +145,7 @@ void JAIStream::prepare_startStream_() {
 void JAIStream::JAIStreamMgr_mixOut_(JASSoundParams const& param_1, JAISoundActivity param_2) {
     bool local_54;
     JASSoundParams local_4c;
-    params.mixOutAll(param_1, &local_4c, (status_.isMute() || param_2.field_0x0.flags.flag1) ? 0.0f : fader.getIntensity());
+    params_.mixOutAll(param_1, &local_4c, (status_.isMute() || param_2.field_0x0.flags.flag1) ? 0.0f : fader.getIntensity());
     if (field_0x2bc != NULL) {
         field_0x2bc->virtual4(this, local_4c);
     }
