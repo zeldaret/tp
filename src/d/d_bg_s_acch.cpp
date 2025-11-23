@@ -328,9 +328,9 @@ void dBgS_Acch::CrrPos(dBgS& i_bgs) {
         JUT_ASSERT(792, pm_pos != NULL);
         JUT_ASSERT(793, pm_old_pos != NULL);
 
-        JUT_ASSERT(833, fpclassify(pm_pos->x) == 1);
-        JUT_ASSERT(834, fpclassify(pm_pos->y) == 1);
-        JUT_ASSERT(835, fpclassify(pm_pos->z) == 1);
+        JUT_ASSERT(833, !isnan(pm_pos->x));
+        JUT_ASSERT(834, !isnan(pm_pos->y));
+        JUT_ASSERT(835, !isnan(pm_pos->z));
 
         JUT_ASSERT(837, -1.0e32f < pm_pos->x && pm_pos->x < 1.0e32f);
         JUT_ASSERT(838, -1.0e32f < pm_pos->y);
@@ -405,7 +405,7 @@ void dBgS_Acch::CrrPos(dBgS& i_bgs) {
             m_roof_height = i_bgs.RoofChk(&m_roof);
 
             if (m_roof_height != G_CM3D_F_INF) {
-                f32 y = GetPos()->y;
+                f32 y = pm_pos->y;
 
                 if (y + m_roof_crr_height > m_roof_height) {
                     field_0xcc = m_roof_height - m_roof_crr_height;
@@ -419,8 +419,8 @@ void dBgS_Acch::CrrPos(dBgS& i_bgs) {
             GroundCheck(i_bgs);
             GroundRoofProc(i_bgs);
         } else {
-            if (field_0xcc < GetPos()->y) {
-                GetPos()->y = field_0xcc;
+            if (field_0xcc < pm_pos->y) {
+                pm_pos->y = field_0xcc;
             }
         }
 
@@ -430,42 +430,53 @@ void dBgS_Acch::CrrPos(dBgS& i_bgs) {
             m_wtr.SetHeight(-G_CM3D_F_INF);
 
             f32 var_f29;
-            f32 var_f30;
+            f32 top;
 
             f32 temp_f1_5 = m_ground_h;
             if (temp_f1_5 == -G_CM3D_F_INF) {
-                var_f29 = GetPos()->y - 50.0f;
+                var_f29 = pm_pos->y - 50.0f;
             } else {
                 var_f29 = temp_f1_5;
             }
 
             if (m_wtr_mode == 1) {
-                var_f30 = var_f29 + m_wtr_chk_offset;
+                top = var_f29 + m_wtr_chk_offset;
             } else {
                 dBgS_RoofChk roof_chk;
                 roof_chk.SetUnderwaterRoof();
                 roof_chk.SetPos(*pm_pos);
 
-                var_f30 = i_bgs.RoofChk(&roof_chk);
-                if (var_f30 == G_CM3D_F_INF) {
-                    var_f30 = GetPos()->y + 1000000.0f;
+                top = i_bgs.RoofChk(&roof_chk);
+                if (top == G_CM3D_F_INF) {
+                    top = pm_pos->y + 1000000.0f;
                 }
             }
 
-            cXyz wtr_pos;
-            wtr_pos = *pm_pos;
-            wtr_pos.y = var_f29;
+            cXyz ground;
+            ground = *pm_pos;
+            ground.y = var_f29;
 
-            m_wtr.Set(wtr_pos, var_f30);
+            m_wtr.Set(ground, top);
             m_wtr.SetPassChkInfo(*this);
 
             if (i_bgs.WaterChk(&m_wtr)) {
                 SetWaterHit();
-                if (m_wtr.GetHeight() > GetPos()->y) {
+                if (m_wtr.GetHeight() > pm_pos->y) {
                     SetWaterIn();
                 }
+
+                JUT_ASSERT(1095, m_wtr.GetHeight() >= ground.y);
+                JUT_ASSERT(1096, m_wtr.GetHeight() <= top);
             }
         }
+
+        JUT_ASSERT(1124, !isnan(pm_pos->x));
+        JUT_ASSERT(1125, !isnan(pm_pos->y));
+        JUT_ASSERT(1126, !isnan(pm_pos->z));
+
+        JUT_ASSERT(1128, -1.0e32f < pm_pos->x && pm_pos->x < 1.0e32f);
+        JUT_ASSERT(1129, -1.0e32f < pm_pos->y && pm_pos->y < 1.0e32f);
+        JUT_ASSERT(1130, -1.0e32f < pm_pos->z && pm_pos->z < 1.0e32f);
     }
 }
 

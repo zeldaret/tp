@@ -22,6 +22,7 @@
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_overlap_mng.h"
 
+namespace {
 /* 80854D4C-80854D8C 000000 0040+00 1/1 0/0 0/0 .data cc_sph_src__22@unnamed@d_a_kago_cpp@ */
 static dCcD_SrcSph cc_sph_src = {
     {
@@ -33,6 +34,38 @@ static dCcD_SrcSph cc_sph_src = {
     {
             {{0.0f, 0.0f, 0.0f}, 80.0f} // mSph
     } // mSphAttr
+};
+};  // namespace
+
+class daKago_HIO_c : public JORReflexible {
+public:
+    /* 808495AC */ daKago_HIO_c();
+    /* 80854A4C */ virtual ~daKago_HIO_c() {}
+
+    void genMessage(JORMContext* ctx);
+
+    /* 0x04 */ s8 mChild;
+    /* 0x08 */ f32 mRevoconUpDown;
+    /* 0x0C */ f32 mRevoconUpDownMax;
+    /* 0x10 */ f32 mRevoconLeftRight;
+    /* 0x14 */ f32 mRevoconLeftRightMax;
+    /* 0x18 */ f32 mBasicSize;
+    /* 0x1C */ f32 mFlightSpeed;
+    /* 0x20 */ f32 mFlightGroundAltitude;
+    /* 0x24 */ f32 mFlightCeilingAltitude;
+    /* 0x28 */ f32 mShadowDensity;
+    /* 0x2C */ f32 mDescentRateIncrement;
+    /* 0x30 */ f32 mAscentRateDecel;
+    /* 0x34 */ f32 mDashTime;
+    /* 0x38 */ f32 mDashTimeMultiplier;
+    /* 0x3C */ f32 mWallHitInvulnTime;
+    /* 0x40 */ f32 mDashCooldownTime;
+    /* 0x44 */ f32 mZOffset;
+    /* 0x48 */ f32 mZOffsetHori;
+    /* 0x4C */ u8 mAngleTrackingMode;
+    /* 0x50 */ f32 mYOffsetFromWaterSurface;
+    /* 0x54 */ f32 mWaterSplashTime;
+    /* 0x58 */ f32 mSplashGenTimeDuringDash;
 };
 
 /* 808495AC-80849660 0000EC 00B4+00 1/1 0/0 0/0 .text            __ct__12daKago_HIO_cFv */
@@ -249,7 +282,6 @@ static u8 l_HIOInit;
 static daKago_HIO_c l_HIO;
 
 /* 80849BA8-8084A070 0006E8 04C8+00 4/4 0/0 0/0 .text checkGroundHeight__8daKago_cF4cXyzPf */
-// NONMATCHING - fpr regalloc
 f32 daKago_c::checkGroundHeight(cXyz i_pos, f32* o_step) {
     f32 retVal;
 
@@ -366,7 +398,6 @@ f32 daKago_c::checkGroundHeight(cXyz i_pos, f32* o_step) {
 }
 
 /* 8084A070-8084A210 000BB0 01A0+00 4/4 0/0 0/0 .text            checkRoofHeight__8daKago_cF4cXyz */
-// NONMATCHING - regalloc
 f32 daKago_c::checkRoofHeight(cXyz param_0) {
     f32 roofChkYVal = mRoofHeight;
     BOOL unkFlag1 = FALSE;

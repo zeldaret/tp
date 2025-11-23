@@ -17,7 +17,7 @@
 	(sizeof(x) == sizeof(double)) ? __fpclassifyd((double)(x)) : \
 	__fpclassifyl((long double)(x)) )
 #define signbit(x) ((sizeof(x) == sizeof(float)) ? __signbitf(x) : __signbitd(x))
-#define isfinite(x) ((fpclassify(x) > 2))
+#define isfinite(x) ((fpclassify(x) > FP_INFINITE))
 #define isnan(x) (fpclassify(x) == FP_NAN)
 #define isinf(x) (fpclassify(x) == FP_INFINITE)
 

@@ -1923,19 +1923,17 @@ void daAlink_c::setMatrixWorldAxisRot(MtxP param_0, s16 param_1, s16 param_2, s1
 }
 
 /* 8009DD90-8009E7B8 0986D0 0A28+00 2/2 0/0 0/0 .text            jointControll__9daAlink_cFi */
-// NONMATCHING - 0x20 bytes missing from stack at 0x58 (release)/0x60 (debug)
 int daAlink_c::jointControll(int param_0) {
     csXyz sp18(0, 0, 0);
     int var_r27 = 0;
 
-    mDoExt_MtxCalcOldFrame* temp = field_0x2060;
-    J3DTransformInfo* temp_r3 = temp->getOldFrameTransInfo(param_0);
-    J3DTransformInfo sp80 = *temp_r3;
+    J3DTransformInfo sp80;
+    J3DTransformInfo sp60 = *field_0x2060->getOldFrameTransInfo(param_0);
 
     Quaternion sp50;
     Quaternion sp40;
     Quaternion sp30;
-    Quaternion sp20 = *temp->getOldFrameQuaternion(param_0);
+    Quaternion sp20 = *field_0x2060->getOldFrameQuaternion(param_0);
 
     csXyz sp10(0, 1, 2);
 
@@ -2114,7 +2112,7 @@ int daAlink_c::jointControll(int param_0) {
             spC = field_0x2060->getOldFrameQuaternion(param_0);
         }
 
-        mDoMtx_stack_c::transS(sp80.mTranslate.x, sp80.mTranslate.y, sp80.mTranslate.z);
+        mDoMtx_stack_c::transS(sp60.mTranslate.x, sp60.mTranslate.y, sp60.mTranslate.z);
         mDoMtx_stack_c::quatM(&sp20);
         mDoMtx_stack_c::inverse();
         cMtx_concat(temp_r26, mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);

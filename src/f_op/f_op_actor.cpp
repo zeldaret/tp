@@ -308,9 +308,9 @@ static int fopAc_Execute(void* i_this) {
 
     l_HIO.field_0x7 = l_HIO.mStopExecute;
 
-    JUT_ASSERT(662, !(fpclassify(actor->current.pos.x) == 1));
-    JUT_ASSERT(663, !(fpclassify(actor->current.pos.y) == 1));
-    JUT_ASSERT(664, !(fpclassify(actor->current.pos.z) == 1));
+    JUT_ASSERT(662, !isnan(actor->current.pos.x));
+    JUT_ASSERT(663, !isnan(actor->current.pos.y));
+    JUT_ASSERT(664, !isnan(actor->current.pos.z));
 
     if (!(-1.0e32f < actor->current.pos.x && actor->current.pos.x < 1.0e32f && -1.0e32f < actor->current.pos.y && actor->current.pos.y < 1.0e32f && -1.0e32f < actor->current.pos.z && actor->current.pos.z < 1.0e32f))
     {
@@ -358,9 +358,9 @@ static int fopAc_Execute(void* i_this) {
                 fopAcM_delete(actor);
             }
 
-            JUT_ASSERT(750, !(fpclassify(actor->current.pos.x) == 1));
-            JUT_ASSERT(751, !(fpclassify(actor->current.pos.y) == 1));
-            JUT_ASSERT(752, !(fpclassify(actor->current.pos.z) == 1));
+            JUT_ASSERT(750, !isnan(actor->current.pos.x));
+            JUT_ASSERT(751, !isnan(actor->current.pos.y));
+            JUT_ASSERT(752, !isnan(actor->current.pos.z));
 
             if (actor->current.pos.y < -1e31f) {
                 actor->current.pos.y = -1e31f;
