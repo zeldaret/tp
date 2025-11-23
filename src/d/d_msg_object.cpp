@@ -134,7 +134,11 @@ dMsgObject_HIO_c::dMsgObject_HIO_c() {
     mBoxMidnaHaloAlpha = 1.0f;
     mBoxWolfHaloAlpha = 0.3f;
     mBoxTalkHaloAlpha = 1.0f;
+#if REGION_JPN
+    mBoxTalkScaleX = 1.1f;
+#else
     mBoxTalkScaleX = 1.2f;
+#endif
     mBoxNaviScaleX = 1.0f;
     mBoxMidnaScaleX = 1.0f;
     mBoxItemScaleX = 1.05f;
@@ -1652,7 +1656,7 @@ void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount)
     static char arcName[22];
 
     int msgGroup = dStage_stagInfo_GetMsgGroup(dComIfGp_getStage()->getStagInfo());
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL
     switch (dComIfGs_getPalLanguage()) {
     case dSv_player_config_c::LANGAUGE_GERMAN:
         sprintf(arcName, "/res/Msgde/bmgres%d.arc", msgGroup);
@@ -1669,6 +1673,8 @@ void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount)
     default:
         sprintf(arcName, "/res/Msguk/bmgres%d.arc", msgGroup);
     }
+    #elif REGION_JPN
+    sprintf(arcName, "/res/Msgjp/bmgres%d.arc", msgGroup);
     #else
     sprintf(arcName, "/res/Msgus/bmgres%d.arc", msgGroup);
     #endif

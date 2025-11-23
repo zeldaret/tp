@@ -1771,7 +1771,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_gs"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_hb_leaf"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_hm"),
-    ActorRel(MatchingFor("GZ2E01"), "d_a_e_hp"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_e_hp"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_hz"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_hzelda"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_is"),

@@ -219,17 +219,27 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
     *o_buffer = 0;
     bool stack9 = false;
     bool stack8 = false;
-    int param_2b = i_value;
+    int param_2b = i_value; // sp40
+    int tens_digit; // sp3C
+    int ones_digit; // sp38
+    int seconds; // r27
+    int minutes; // sp34
 
     if (i_type == 0x10000) {
         sprintf(o_buffer, "%d", i_value);
-    } else if (i_type == 0x10001) {
-        int tens_digit = i_value / 10;
-        int ones_digit = i_value % 10;
+        return;
+    }
+
+    if (i_type == 0x10001) {
+        tens_digit = i_value / 10;
+        ones_digit = i_value % 10;
         sprintf(o_buffer, "%d-%d", tens_digit, ones_digit);
-    } else if (i_type == 4 && param_4 == true) {
-        int seconds = i_value / 1000;
-        int minutes = seconds / 60;
+        return;
+    }
+
+    if (i_type == 4 && param_4 == true) {
+        seconds = i_value / 1000;
+        minutes = seconds / 60;
         seconds -= minutes * 60;
         if (minutes > 99) {
             minutes = 99;
@@ -238,7 +248,12 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
         if (minutes != 0 || seconds != 0) {
             sprintf(o_buffer, "%d:%02d", minutes, seconds);
         }
-    } else if (i_type == 3 && param_4 == true) {
+
+        return;
+    }
+
+    if (i_type == 3 && param_4 == true) {
+        (void)seconds; // dummy use to force into register instead of stack
         f32 iVar8b;
         f32 dayTime = g_env_light.getDaytime();
         f32 hour = dayTime / 15.0f;
@@ -266,20 +281,20 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
             bmg_section_t* pSection = (bmg_section_t*)(((u8*)pHeader) + filepos);
 
             for (; filepos < filesize; filepos += pSection->size) {
-                switch(pSection->magic) {
-                    case 'FLW1':
-                        break;
-                    case 'FLI1':
-                        break;
-                    case 'INF1':
-                        pInfoBlock = (dMsgUnit_inf1_section_t*)pSection;
-                        break;
-                    case 'DAT1':
-                        pMsgDataBlock = pSection;
-                        break;
-                    case 'STR1':
-                        pStrAttributeBlock = (str1_section_t*)pSection;
-                        break;
+                switch (pSection->magic) {
+                case 'FLW1':
+                    break;
+                case 'FLI1':
+                    break;
+                case 'INF1':
+                    pInfoBlock = (dMsgUnit_inf1_section_t*)pSection;
+                    break;
+                case 'DAT1':
+                    pMsgDataBlock = pSection;
+                    break;
+                case 'STR1':
+                    pStrAttributeBlock = (str1_section_t*)pSection;
+                    break;
                 }
                 pSection = (bmg_section_t*)((u8*)pSection + pSection->size);
             }
@@ -287,39 +302,45 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
             // This section is weird. The debug seems like entriesStr is outside the condition
             // but the normal build doesn't really work with that. Same for pInfoBlock->entries.
 
-            #ifdef DEBUG
-            dMsgUnit_inf1_entry* entry = &pInfoBlock->entries[i_type];
-            u32 dat1EntryOffset = entry->dat1EntryOffset;
-            u16 startFrame = entry->startFrame;
-            u16 endFrame = entry->endFrame;
-            const char* entriesStr = pStrAttributeBlock->entries->str;
-            #else
-            u16 startFrame = pInfoBlock->entries[i_type].startFrame;
-            u16 endFrame = pInfoBlock->entries[i_type].endFrame;
-            const char* entriesStr;
-            #endif
-
+#ifdef DEBUG
+            dMsgUnit_inf1_entry* entriesInf = &pInfoBlock->entries[i_type];
+            u32 dat1EntryOffset = entriesInf->dat1EntryOffset;
             const char* uVar5;
-            if (i_value == 1
-                #ifdef DEBUG
-                || (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_SPANISH && i_value == 0)
-                #elif VERSION == VERSION_GCN_PAL
-                || (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_FRENCH && i_value == 0)
-                #endif
-            ) {
-                #ifdef DEBUG
-                uVar5 = entriesStr + endFrame;
+            u16 vals[14];
+            vals[0] = entriesInf->startFrame;
+            vals[1] = entriesInf->endFrame;
+            (void)entriesInf;  // dummy use to force into register instead of stack
+            str1_entry_t* entriesStr = pStrAttributeBlock->entries;
+#else
+            u32 dat1EntryOffset = pInfoBlock->entries[i_type].dat1EntryOffset;
+            const char* uVar5;
+            u16 vals[14];
+            vals[0] = pInfoBlock->entries[i_type].startFrame;
+            vals[1] = pInfoBlock->entries[i_type].endFrame;
+#endif
+
+#if REGION_PAL
+            if (i_value == 1 ||
+                (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_FRENCH &&
+                    i_value == 0)) {
+#elif !REGION_USA
+            if (i_value == 1 ||
+                (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_SPANISH &&
+                    i_value == 0)) {
+#else
+            if (i_value == 1) {
+#endif
+#ifdef DEBUG
+                uVar5 = entriesStr->str + vals[0];
+#else
+                uVar5 = pStrAttributeBlock->entries->str + vals[0];
+#endif
             } else {
-                uVar5 = entriesStr + startFrame;
-                #elif VERSION == VERSION_GCN_PAL
-                uVar5 = pStrAttributeBlock->entries->str + startFrame;
-            } else {
-                uVar5 = pStrAttributeBlock->entries->str + endFrame;
-                #else
-                uVar5 = pStrAttributeBlock->entries->str + endFrame;
-            } else {
-                uVar5 = pStrAttributeBlock->entries->str + startFrame;
-                #endif
+#ifdef DEBUG
+                uVar5 = entriesStr->str + vals[1];
+#else
+                uVar5 = pStrAttributeBlock->entries->str + vals[1];
+#endif
             }
 
             if (strcmp(uVar5, "") == 0) {
@@ -328,7 +349,6 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
                 sprintf(o_buffer, "%d %s", i_value, uVar5);
             }
         }
-
         if (i_type == 3 && param_4 == true) {
             char buffer[20];
             setTag(4, 0, buffer, false);
