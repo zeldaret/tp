@@ -1327,15 +1327,15 @@ void daB_MGN_c::executeCircle() {
 }
 
 /* 80608EF8-80609D70 0038B8 0E78+00 2/1 0/0 0/0 .text            executeDash__9daB_MGN_cFv */
-// NONMATCHING - small regalloc, equivalent
+// NONMATCHING - regalloc + extra mr, equivalent
 void daB_MGN_c::executeDash() {
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    daPy_py_c* player_sp14 = daPy_getPlayerActorClass();
 
     switch (mMoveMode) {
     case 10:
     case 11: {
         cXyz gate_offset(0.0f, 0.0f, -800.0f);
-        cXyz player_pos(player->current.pos);
+        cXyz player_pos(player_sp14->current.pos);
 
         s16 angle = cLib_targetAngleY(&player_pos, &gate_offset);
         if (field_0xaff >= 5) {
@@ -1449,7 +1449,7 @@ void daB_MGN_c::executeDash() {
         mJewelColorMode = 2;
     case 1:
         attention_info.flags = 0;
-        if (player->checkNowWolf()) {
+        if (player_sp14->checkNowWolf()) {
             attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         }
 
@@ -1499,7 +1499,7 @@ void daB_MGN_c::executeDash() {
         field_0xb09 = 1;
         attention_info.flags = 0;
 
-        if (player->checkNowWolf()) {
+        if (player_sp14->checkNowWolf()) {
             attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
 
             cXyz sp48;
@@ -2269,7 +2269,7 @@ void daB_MGN_c::executeFall() {
     }
 
     switch (mMoveMode) {
-    case 0:
+    case 0: {
         onBodyCo();
         f32 var_f31 = player->speedF * 60.0f;
         s16 sp8 = player->current.angle.y;
@@ -2309,6 +2309,7 @@ void daB_MGN_c::executeFall() {
         mpMgnBtk->init(mpMgnModelMorf->getModel()->getModelData(),
                           (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_mgn", 0x3a), 1, 0, 0.0f, 0,
                           -1);
+    }
     case 1:
         cLib_chaseF(&field_0xae8, 1.0f, 0.02f);
 
@@ -2531,7 +2532,7 @@ void daB_MGN_c::executeOpening() {
     cXyz sp94(0.0f, 220.0f, -1390.0f);
 
     switch (mMoveMode) {
-    case 0:
+    case 0: {
         attention_info.flags = 0;
 
         if (!eventInfo.checkCommandDemoAccrpt()) {
@@ -2590,6 +2591,7 @@ void daB_MGN_c::executeOpening() {
         Z2GetAudioMgr()->bgmStreamPrepare(0x2000062);
         Z2GetAudioMgr()->bgmStreamPlay();
         return;
+    }
     case 1:
         cLib_addCalc2(&field_0xadc, 0.0f, 0.1f, 5.0f);
         cLib_addCalcAngleS2(&field_0xae2, 0x50, 8, 8);
@@ -2813,7 +2815,7 @@ void daB_MGN_c::executeDeath() {
     s16 sp8 = nREG_S(0) + 0x6800;
 
     switch (mMoveMode) {
-    case 0:
+    case 0: {
         if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xffff, 0);
             eventInfo.onCondition(2);
@@ -2865,6 +2867,7 @@ void daB_MGN_c::executeDeath() {
 
         mSound.startCreatureVoice(Z2SE_EN_MGN_DEMO_END, -1);
         return;
+    }
     case 1:
         current.pos = sp48;
         current.angle.y = 0x6800;

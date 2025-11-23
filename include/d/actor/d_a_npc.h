@@ -488,10 +488,6 @@ public:
     void setIdx(int i_idx) { mIdx = i_idx; }
 
     const int getIdx() { return mIdx; }
-#if VERSION != VERSION_SHIELD_DEBUG
-    // fakematch inline to fix daNpcT_Path_c::chkPassed1
-    const u16 get_u16_Idx() { return mIdx; }
-#endif
 
     dPath* getPathInfo() { return mPathInfo; }
 
@@ -1149,7 +1145,10 @@ public:
         /* 5 */ LOOK_ATTN,
     };
 
-    daNpcF_c() { initialize(); }
+    daNpcF_c() {
+        FORCE_DONT_INLINE;
+        initialize();
+    }
     /* 80152014 */ BOOL execute();
     /* 801522AC */ int draw(BOOL, BOOL, f32, _GXColorS10*, BOOL);
     /* 80152614 */ static void tgHitCallBack(fopAc_ac_c*, dCcD_GObjInf*, fopAc_ac_c*,

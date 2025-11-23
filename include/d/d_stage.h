@@ -4,7 +4,6 @@
 #include "SSystem/SComponent/c_lib.h"
 #include "d/d_kankyo.h"
 #include "d/d_kankyo_data.h"
-#include "d/d_map_path_dmap.h"
 #include "f_op/f_op_actor_mng.h"
 #include "global.h"
 
@@ -217,7 +216,7 @@ struct stage_tgsc_class {
 // MPAT
 struct map_path_class {
     /* 0x0 */ int num;
-    /* 0x4 */ dDrawPath_c::room_class* m_entries;
+    /* 0x4 */ void* m_entries;
 };
 
 // RTBL

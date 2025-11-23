@@ -50,18 +50,11 @@ public:
                dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
     }
 
-    void setAction(Mode_e i_action) {
-        mMode = i_action;
-        mAction = ActionTable[mMode];
+    inline void setAction(Mode_e i_action);
+    inline void callInit();
+    inline void callExecute();
 
-        callInit();
-    }
-
-    void callInit() { (this->*mAction[0])(); }
-
-    void callExecute() { (this->*mAction[1])(); }
-
-    static actionFunc ActionTable[][2];
+    static const actionFunc ActionTable[][2];
 
 private:
     /* 0x568 */ J3DModel* mpModel;

@@ -12,7 +12,7 @@ dMeter_menuHIO_c::dMeter_menuHIO_c() {
 
 #if DEBUG
 void dMeter_menuHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -60,7 +60,7 @@ dMeter_drawCollectHIO_c::dMeter_drawCollectHIO_c() {
 
 #if DEBUG
 void dMeter_drawCollectHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -96,7 +96,7 @@ dMeter_drawOptionHIO_c::dMeter_drawOptionHIO_c() {
 
 #if DEBUG
 void dMeter_drawOptionHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -140,7 +140,7 @@ dMeter_drawLetterHIO_c::dMeter_drawLetterHIO_c() {
 
 #if DEBUG
 void dMeter_drawLetterHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -239,7 +239,7 @@ dMeter_drawFishingHIO_c::dMeter_drawFishingHIO_c() {
 
 #if DEBUG
 void dMeter_drawFishingHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -272,7 +272,7 @@ dMeter_drawInsectHIO_c::dMeter_drawInsectHIO_c() {
 
 #if DEBUG
 void dMeter_drawInsectHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -288,7 +288,7 @@ dMeter_drawCalibrationHIO_c::dMeter_drawCalibrationHIO_c() {
 
 #if DEBUG
 void dMeter_drawCalibrationHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -330,7 +330,7 @@ dMeter_drawSkillHIO_c::dMeter_drawSkillHIO_c() {
 
 #if DEBUG
 void dMeter_drawSkillHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -558,7 +558,7 @@ dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
 
 #if DEBUG
 void dMeter_drawEmpButtonHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -737,7 +737,7 @@ dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c() {
 
 #if DEBUG
 void dMeter_drawMiniGameHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -812,7 +812,7 @@ dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c() {
 
 #if DEBUG
 void dMeter_drawLightDropHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -1470,7 +1470,7 @@ void dMeter_drawHIO_c::updateOffWide() {}
 
 #if DEBUG
 void dMeter_drawHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dMeter_drawHIO_c::updateFMsgDebug() {
@@ -1598,7 +1598,7 @@ void dMeter_ringHIO_c::updateOffWide() {}
 
 #if DEBUG
 void dMeter_ringHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -1712,7 +1712,7 @@ dMeter_mapIconHIO_c::dMeter_mapIconHIO_c() {
 
 #if DEBUG
 void dMeter_mapIconHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 
@@ -1928,7 +1928,7 @@ dMeter_fmapHIO_c::~dMeter_fmapHIO_c() {
 
 #if DEBUG
 void dMeter_fmapHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dMeter_fmapHIO_c::listenPropertyEvent(const JORPropertyEvent*) {
@@ -1964,7 +1964,7 @@ dMeter_cursorHIO_c::dMeter_cursorHIO_c() {
 
 #if DEBUG
 void dMeter_cursorHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 #endif
 

@@ -34,6 +34,7 @@ public:
     /* 80BC5CF8 */ int CreateHeap();
     /* 80BC5E98 */ int create();
     /* 80BC6260 */ int Execute(Mtx**);
+    void block_mode_proc_call();
     /* 80BC6270 */ void initWait();
     /* 80BC627C */ void modeWait();
     /* 80BC6414 */ void initWalk();
@@ -70,6 +71,10 @@ private:
     /* 0xCA3 */ u8 field_0xca3;
     /* 0xCA4 */ s16 walkTimer;
     /* 0xCA6 */ s16 field_0xca6;
+#if DEBUG
+    /* 0xCB0 */ cXyz field_0xcb0_debug[2];
+    /* 0xCC8 */ cXyz field_0xcc8_debug[2];
+#endif
 };
 
 STATIC_ASSERT(sizeof(daObjCBlk_c) == 0xca8);

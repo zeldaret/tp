@@ -45,11 +45,11 @@ static const char* l_mojiHira3[65] = {
 
 /* 803C2268-803C236C -00001 0104+00 0/3 0/0 0/0 .data            l_mojikata */
 static const char* l_mojikata[65] = {
-    "ア", "イ",       "ウ", "エ", "オ", "カ", "キ", "ク", "ケ", "コ", "サ", "シ", "ス",
-    "セ", "\x83\x5C", "タ", "チ", "ツ", "テ", "ト", "ナ", "ニ", "ヌ", "ネ", "ノ", "ハ",
-    "ヒ", "フ",       "ヘ", "ホ", "マ", "ミ", "ム", "メ", "モ", "ヤ", "　", "ユ", "　",
-    "ヨ", "ラ",       "リ", "ル", "レ", "ロ", "ワ", "　", "ヲ", "　", "ン", "ァ", "ィ",
-    "ゥ", "ェ",       "ォ", "ャ", "　", "ュ", "　", "ョ", "ッ", "　", "ー", "゛", "゜",
+    "ア", "イ", "ウ", "エ", "オ", "カ", "キ", "ク", "ケ", "コ", "サ", "シ", "ス",
+    "セ", "ソ", "タ", "チ", "ツ", "テ", "ト", "ナ", "ニ", "ヌ", "ネ", "ノ", "ハ",
+    "ヒ", "フ", "ヘ", "ホ", "マ", "ミ", "ム", "メ", "モ", "ヤ", "　", "ユ", "　",
+    "ヨ", "ラ", "リ", "ル", "レ", "ロ", "ワ", "　", "ヲ", "　", "ン", "ァ", "ィ",
+    "ゥ", "ェ", "ォ", "ャ", "　", "ュ", "　", "ョ", "ッ", "　", "ー", "゛", "゜",
 };
 
 /* 803C236C-803C2470 -00001 0104+00 0/1 0/0 0/0 .data            l_mojikata2 */
@@ -78,7 +78,7 @@ static const char* l_mojiEisu[65] = {
     "X", "k", "x", ",", "L", "Y", "l", "y", ".", "M", "Z", "m", "z", " ",
 };
 
-#if VERSION == VERSION_GCN_PAL
+#if REGION_PAL
 static char* l_mojiEisuPal_1[65] = {
     "A", "N", "AA", "BB", "1", "B", "O", "CC", "DD", "2", "C", "P", "EE", "FF", "3", "D", "Q",
     "GG", "HH", "4", "E", "R", "II", "JJ", "5", "F", "S", "KK", "LL", "6", "G", "T", "MM", "NN",
@@ -181,13 +181,13 @@ void dName_c::init() {
     field_0x2ac = mSelProc;
     field_0x2ad = mSelProc;
     field_0x2ae = field_0x2ac;
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL || REGION_JPN
     mMojiSet = MOJI_HIRA;
     #else
     mMojiSet = MOJI_EIGO;
     #endif
     mPrevMojiSet = 255;
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL || REGION_JPN
     mSelMenu = MENU_HIRA;
     mPrevSelMenu = MENU_HIRA;
     #else
@@ -206,7 +206,7 @@ void dName_c::initial() {
         mNextNameStr[0] = 0;
     }
 
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL || REGION_JPN
     if (mSelProc == PROC_MOJI_SELECT) {
         mMenuIcon[mMojiSet]->scale(g_nmHIO.mMenuScale, g_nmHIO.mMenuScale);
         mMenuText[mMojiSet]->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
@@ -251,15 +251,30 @@ void dName_c::_move() {
     stick->checkTrigger();
     (this->*SelProc[mSelProc])();
 
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL || REGION_JPN
     if (mDoCPd_c::getTrigY(PAD_1)) {
         mDoAud_seStart(Z2SE_SY_DUMMY, 0, 0, 0);
         mPrevMojiSet = mMojiSet;
         mMojiSet++;
+        #if REGION_JPN
+        if (mMojiSet > MOJI_EIGO) {
+        #else
         if (mMojiSet > MOJI_KATA) {
+        #endif
             mMojiSet = MOJI_HIRA;
         }
         mojiListChange();
+    } else {
+    #endif
+    #if REGION_JPN
+    if (mDoCPd_c::getTrigX(PAD_1)) {
+        if (mCurPos != 0) {
+            if (mojiChange(mCurPos - 1) == 1) {
+                mDoAud_seStart(Z2SE_SY_DUMMY, 0, 0, 0);
+            } else {
+                mDoAud_seStart(Z2SE_SYS_ERROR, 0, 0, 0);
+            }
+        }
     } else {
     #endif
     if (mDoCPd_c::getTrigRight(PAD_1)) {
@@ -289,7 +304,7 @@ void dName_c::_move() {
             backSpace();
         }
     } else if (mDoCPd_c::getTrigStart(PAD_1)) {
-        #if VERSION == VERSION_GCN_PAL
+        #if REGION_PAL
         if ((mSelProc != PROC_MENU_SELECT || mSelMenu != MENU_EIGO) &&
             (mSelProc == PROC_MENU_SELECT || mSelProc == PROC_MOJI_SELECT))
         {
@@ -300,7 +315,7 @@ void dName_c::_move() {
         #endif
             mDoAud_seStart(Z2SE_SY_CURSOR_OPTION, 0, 0, 0);
             mPrevSelMenu = mSelMenu;
-            #if VERSION == VERSION_GCN_PAL
+            #if REGION_PAL
             mSelMenu = MENU_EIGO;
             #else
             mSelMenu = MENU_END;
@@ -320,7 +335,10 @@ void dName_c::_move() {
             }
         }
     }
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_JPN
+    }
+    #endif
+    #if REGION_PAL || REGION_JPN
     }
     #endif
 
@@ -330,7 +348,12 @@ void dName_c::_move() {
 /* 8024EC10-8024EC4C 249550 003C+00 3/3 0/0 0/0 .text            nameCheck__7dName_cFv */
 int dName_c::nameCheck() {
     for (int i = 8, len = 7; i > 0; i--) {
+        #if REGION_JPN
+        // '　' (full-width space)
+        if (mChrInfo[len].mCharacter != ' ' && mChrInfo[len].mCharacter != '\x81\x40') {
+        #else
         if (mChrInfo[len].mCharacter != ' ') {
+        #endif
             return len + 1;
         }
         len--;
@@ -344,8 +367,18 @@ void dName_c::playNameSet(int nameLength) {
     char* str = mInputStr;
 
     for (int i = 0; i < nameLength; i++) {
+        #if REGION_JPN
+        if (mChrInfo[i].mMojiSet == 2) {
+            *str = mChrInfo[i].mCharacter;
+            str += 1;
+        } else {
+            *(u16*)str = mChrInfo[i].mCharacter;
+            str += 2;
+        }
+        #else
         *str = mChrInfo[i].mCharacter;
         str++;
+        #endif
     }
 
     *str = 0;
@@ -581,15 +614,153 @@ int dName_c::mojiChange(u8 idx) {
 
 /* 8024F55C-8024F59C 249E9C 0040+00 1/1 0/0 0/0 .text            selectMojiSet__7dName_cFv */
 void dName_c::selectMojiSet() {
+    #if REGION_JPN
+    int moji = getMoji();
+    if (moji != -1) {
+        if (moji == '゛' || moji == '゜') {
+            if (mCurPos != 0) {
+                if (checkDakuon(moji, mCurPos - 1) == 1) {
+                    mDoAud_seStart(Z2SE_SY_NAME_INPUT, NULL, 0, 0);
+                    setDakuon(moji, mCurPos - 1);
+                } else {
+                    mDoAud_seStart(Z2SE_SYS_ERROR, NULL, 0, 0);
+                }
+            }
+        } else {
+            setMoji(moji);
+        }
+    }
+    setNameText();
+    #else
     setMoji(getMoji());
     setNameText();
+    #endif
 }
+
+#if REGION_JPN
+int dName_c::checkDakuon(int param_0, u8 param_1) {
+    if (mChrInfo[param_1].mMojiSet == MOJI_EIGO) {
+        return 0;
+    }
+
+    if (param_1 == 0 && mChrInfo[param_1].field_0x3 == 0) {
+        return 0;
+    }
+
+    if (param_0 == '゜' && mChrInfo[param_1].mColumn != 5) {
+        return 0;
+    }
+
+    if (param_0 == '゛' &&
+        (mChrInfo[param_1].mCharacter == 'ウ' || mChrInfo[param_1].mCharacter == 'ヴ'))
+    {
+        return 1;
+    }
+
+    if (param_0 == '゛' && mChrInfo[param_1].mColumn != 1 && mChrInfo[param_1].mColumn != 2 &&
+        mChrInfo[param_1].mColumn != 3 && mChrInfo[param_1].mColumn != 5)
+    {
+        return 0;
+    }
+
+    return 1;
+}
+
+int dName_c::setDakuon(int param_1, u8 param_2) {
+    int c;
+
+    if (param_1 == '゛') {
+        switch (mChrInfo[param_2].mColumn) {
+        case 0: {
+            c = -1;
+            if (mChrInfo[param_2].mCharacter == 'ウ' || mChrInfo[param_2].mCharacter == 'ヴ') {
+                c = 4;
+                mChrInfo[param_2].mCharacter = 'ヴ';
+            }
+            break;
+        }
+        case 1: {
+            int c2 = mChrInfo[param_2].mMojiSet != MOJI_HIRA ? 'カ' : 'か';
+            c = (mChrInfo[param_2].mCharacter - c2) % 2;
+            break;
+        }
+        case 2: {
+            int c2 = mChrInfo[param_2].mMojiSet != MOJI_HIRA ? 'サ' : 'さ';
+            c = (mChrInfo[param_2].mCharacter - c2) % 2;
+            break;
+        }
+        case 3: {
+            int c2;
+            if (mChrInfo[param_2].mCharacter <=
+                ((mChrInfo[param_2].mMojiSet != MOJI_HIRA ? 'ヂ' : 'ぢ')))
+            {
+                c2 = mChrInfo[param_2].mMojiSet != MOJI_HIRA ? 'タ' : 'た';
+                c = (mChrInfo[param_2].mCharacter - c2) % 2;
+            } else {
+                if (mChrInfo[param_2].mCharacter <= (mChrInfo[param_2].mMojiSet != 0 ? 'ド' : 'ど'))
+                {
+                    if (mChrInfo[param_2].mCharacter >=
+                        (mChrInfo[param_2].mMojiSet != 0 ? 'テ' : 'て'))
+                    {
+                        c2 = mChrInfo[param_2].mMojiSet != MOJI_HIRA ? 'テ' : 'て';
+                        c = (mChrInfo[param_2].mCharacter - c2) % 2;
+                        break;
+                    }
+                }
+
+                c2 = mChrInfo[param_2].mMojiSet != MOJI_HIRA ? 'ッ' : 'っ';
+                c = (mChrInfo[param_2].mCharacter - c2) % 3;
+                if (c == 2) {
+                    c = 1;
+                } else if (c == 1) {
+                    c = 0;
+                } else if (c == 0) {
+                    c = 3;
+                }
+            }
+            break;
+        }
+        case 5: {
+            int c2 = mChrInfo[param_2].mMojiSet != MOJI_HIRA ? 'ハ' : 'は';
+            c = (mChrInfo[param_2].mCharacter - c2) % 3;
+            break;
+        }
+        }
+
+        if (c != 1) {
+            if (c == 2) {
+                mChrInfo[param_2].mCharacter -= 1;
+            } else if (c == 0) {
+                mChrInfo[param_2].mCharacter += 1;
+            } else if (c == 3) {
+                mChrInfo[param_2].mCharacter += 2;
+            }
+
+            setNameText();
+
+            return 1;
+        }
+    } else if (param_1 == '゜') {
+        int c2 = mChrInfo[param_2].mMojiSet != MOJI_HIRA ? 'ハ' : 'は';
+        c = (mChrInfo[param_2].mCharacter - c2) % 3;
+        if (c != 2) {
+            mChrInfo[param_2].mCharacter = mChrInfo[param_2].mCharacter + (2 - c);
+            setNameText();
+
+            return 1;
+        }
+    }
+
+    return 0;
+}
+#endif
 
 /* 8024F59C-8024F634 249EDC 0098+00 1/1 0/0 0/0 .text            getMoji__7dName_cFv */
 int dName_c::getMoji() {
+    int result = -1;
     const char* moji;
 
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL
     switch (mMojiSet) {
     case MOJI_HIRA:
         moji = l_mojiEisuPal_1[mCharRow + mCharColumn * 5];
@@ -612,7 +783,17 @@ int dName_c::getMoji() {
     }
     #endif
 
-    return *moji;
+    #if REGION_JPN
+    if (*(u8*)moji >> 4 == 0x8 || *(u8*)moji >> 4 == 0x9) {
+        result = *(u16*)moji;
+    } else {
+        result = *(char*)moji;
+    }
+    #else
+    result = *moji;
+    #endif
+
+    return result;
 }
 
 /* 8024F634-8024F88C 249F74 0258+00 1/1 0/0 0/0 .text            setMoji__7dName_cFi */
@@ -624,14 +805,24 @@ void dName_c::setMoji(int moji) {
 
         s32 notEmpty = false;
         for (int i = mCurPos; i < 8; i++) {
+            #if REGION_JPN
+            // '　' (full-width space)
+            if (mChrInfo[i].mCharacter != '\x81\x40') {
+            #else
             if (mChrInfo[i].mCharacter != ' ') {
+            #endif
                 notEmpty = true;
                 break;
             }
         }
 
         if (notEmpty) {
+            #if REGION_JPN
+            // '　' (full-width space)
+            if (mChrInfo[7].mCharacter == '\x81\x40') {
+            #else
             if (mChrInfo[7].mCharacter == ' ') {
+            #endif
                 for (int i = 6; i >= mCurPos; i--) {
                     mChrInfo[i + 1] = mChrInfo[i];
                 }
@@ -640,7 +831,7 @@ void dName_c::setMoji(int moji) {
                 mChrInfo[mCurPos].mRow = mCharRow;
                 mChrInfo[mCurPos].mMojiSet = mMojiSet;
                 mChrInfo[mCurPos].field_0x3 = 1;
-                #if VERSION == VERSION_GCN_PAL
+                #if REGION_PAL
                 mChrInfo[mCurPos].mCharacter = moji & 0xFF;
                 #else
                 mChrInfo[mCurPos].mCharacter = moji;
@@ -657,7 +848,7 @@ void dName_c::setMoji(int moji) {
             mChrInfo[mCurPos].mRow = mCharRow;
             mChrInfo[mCurPos].mMojiSet = mMojiSet;
             mChrInfo[mCurPos].field_0x3 = 1;
-            #if VERSION == VERSION_GCN_PAL
+            #if REGION_PAL
             mChrInfo[mCurPos].mCharacter = moji & 0xFF;
             #else
             mChrInfo[mCurPos].mCharacter = moji;
@@ -676,21 +867,41 @@ void dName_c::setMoji(int moji) {
 /* 8024F88C-8024F914 24A1CC 0088+00 4/4 0/0 0/0 .text            setNameText__7dName_cFv */
 void dName_c::setNameText() {
     for (int i = 0; i < 8; i++) {
+        //"\x1bCD\x1bCR\x1bCC[000000]\x1bGM[0]%c\x1bHM\x1bCC[ffffff]\x1bGM[0]%c"
+        //"\x1bCD\x1bCR\x1bCC[000000]\x1bGM[0]%c%c\x1bHM\x1bCC[ffffff]\x1bGM[0]%c%c"
         if (mChrInfo[i].field_0x3 != 0) {
-            sprintf(mNameText[i],
-                    "\x1b"
-                    "CD\x1b"
-                    "CR\x1b"
-                    "CC[000000]\x1bGM[0]%c\x1bHM\x1b"
-                    "CC[ffffff]\x1bGM[0]%c",
-                    #if VERSION == VERSION_GCN_PAL
-                    (u8)mChrInfo[i].mCharacter & 0xFF,
-                    (u8)mChrInfo[i].mCharacter & 0xFF
-                    #else
-                    (u8)mChrInfo[i].mCharacter,
-                    (u8)mChrInfo[i].mCharacter
-                    #endif
-            );
+            #if REGION_JPN
+            if (mChrInfo[i].mMojiSet == 2) {
+            #endif
+                sprintf(mNameText[i],
+                        "\x1b"
+                        "CD\x1b"
+                        "CR\x1b"
+                        "CC[000000]\x1bGM[0]%c\x1bHM\x1b"
+                        "CC[ffffff]\x1bGM[0]%c",
+                        #if REGION_PAL
+                        (u8)mChrInfo[i].mCharacter & 0xFF,
+                        (u8)mChrInfo[i].mCharacter & 0xFF
+                        #else
+                        (u8)mChrInfo[i].mCharacter,
+                        (u8)mChrInfo[i].mCharacter
+                        #endif
+                );
+            #if REGION_JPN
+            } else {
+                sprintf(mNameText[i],
+                        "\x1b"
+                        "CD\x1b"
+                        "CR\x1b"
+                        "CC[000000]\x1bGM[0]%c%c\x1bHM\x1b"
+                        "CC[ffffff]\x1bGM[0]%c%c",
+                        (mChrInfo[i].mCharacter & 0xff00) >> 8,
+                        (mChrInfo[i].mCharacter & 0xff),
+                        (mChrInfo[i].mCharacter & 0xff00) >> 8,
+                        (mChrInfo[i].mCharacter & 0xff)
+                );
+            }
+            #endif
         }
     }
 }
@@ -715,13 +926,23 @@ void dName_c::nameCursorMove() {
 /* 8024F994-8024FAF4 24A2D4 0160+00 3/3 0/0 0/0 .text            selectCursorMove__7dName_cFv */
 void dName_c::selectCursorMove() {
     int idx;
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL
     if (mCharColumn < 3) {
         idx = 0;
     } else if (mCharColumn < 6) {
         idx = 1;
     } else if (mCharColumn >= 6) {
         idx = 2;
+    }
+    #elif REGION_JPN
+    if (mCharColumn < 3) {
+        idx = 0;
+    } else if (mCharColumn < 6) {
+        idx = 1;
+    } else if (mCharColumn < 8) {
+        idx = 2;
+    } else if (mCharColumn >= 8) {
+        idx = 3;
     }
     #else
     idx = 3;
@@ -743,13 +964,30 @@ void dName_c::selectCursorMove() {
 /* 8024FAF4-8024FB08 24A434 0014+00 1/1 0/0 0/0 .text            menuCursorPosSet__7dName_cFv */
 void dName_c::menuCursorPosSet() {
     mPrevSelMenu = mSelMenu;
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL
     if (mCharColumn < 3) {
         mSelMenu = MENU_HIRA;
     } else if (mCharColumn < 6) {
         mSelMenu = MENU_KATA;
     } else if (mCharColumn >= 6) {
         mSelMenu = MENU_EIGO;
+    }
+    #elif REGION_JPN
+    if (mCharColumn < 3) {
+        mSelMenu = MENU_HIRA;
+        return;
+    }
+    if (mCharColumn < 6) {
+        mSelMenu = MENU_KATA;
+        return;
+    }
+    if (mCharColumn < 8) {
+        mSelMenu = MENU_EIGO;
+        return;
+    }
+    if (mCharColumn >= 8) {
+        mSelMenu = MENU_END;
+        return;
     }
     #else
     mSelMenu = MENU_END;
@@ -758,12 +996,16 @@ void dName_c::menuCursorPosSet() {
 
 /* 8024FB08-8024FDA0 24A448 0298+00 1/0 0/0 0/0 .text            MenuSelect__7dName_cFv */
 void dName_c::MenuSelect() {
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL || REGION_JPN
     if (stick->checkRightTrigger()) {
         mDoAud_seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0);
         mPrevSelMenu = mSelMenu;
         mSelMenu++;
+        #if REGION_PAL
         if (mSelMenu > MENU_EIGO) {
+        #else
+        if (mSelMenu > MENU_END) {
+        #endif
             mSelMenu = MENU_HIRA;
         }
         MenuSelectAnmInit();
@@ -772,7 +1014,11 @@ void dName_c::MenuSelect() {
         mDoAud_seStart(Z2SE_SY_CURSOR_OPTION, NULL, 0, 0);
         mPrevSelMenu = mSelMenu;
         if (mSelMenu == MENU_HIRA) {
+            #if REGION_JPN
+            mSelMenu = MENU_END;
+            #else
             mSelMenu = MENU_EIGO;
+            #endif
         } else {
             mSelMenu--;
         }
@@ -795,7 +1041,7 @@ void dName_c::MenuSelect() {
             MenuSelectAnmInit();
             mSelProc = PROC_MENU_SEL_ANM2;
         } else if (mDoCPd_c::getTrigA(PAD_1)) {
-            #if VERSION == VERSION_GCN_PAL
+            #if REGION_PAL
             if (mSelMenu == MENU_EIGO) {
             #else
             if (mSelMenu == MENU_END) {
@@ -810,7 +1056,7 @@ void dName_c::MenuSelect() {
             }
             menuAbtnSelect();
         } else if (mDoCPd_c::getTrigStart(PAD_1)) {
-            #if VERSION == VERSION_GCN_PAL
+            #if REGION_PAL
             if (mSelMenu == MENU_EIGO) {
             #else
             if (mSelMenu == MENU_END) {
@@ -859,7 +1105,7 @@ void dName_c::MenuSelectAnm2() {
     if (canMove == true) {
         if (prevMenu_i != mojiSet_i) {
             mMenuText[prevMenu_i]->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xFF));
-            #if VERSION == VERSION_GCN_PAL
+            #if REGION_PAL || REGION_JPN
             mMenuIcon[mojiSet_i]->scale(g_nmHIO.mMenuScale, g_nmHIO.mMenuScale);
             mMenuText[mojiSet_i]->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
             #endif
@@ -878,7 +1124,7 @@ void dName_c::menuAbtnSelect() {
     switch (mSelMenu) {
     case MENU_HIRA:
     case MENU_KATA:
-    #if VERSION != VERSION_GCN_PAL
+    #if !REGION_PAL
     case MENU_EIGO:
     #endif
         if (mSelMenu != mMojiSet) {
@@ -887,7 +1133,7 @@ void dName_c::menuAbtnSelect() {
             mojiListChange();
         }
         break;
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL
     case MENU_EIGO:
     #else
     case MENU_END:
@@ -911,29 +1157,44 @@ void dName_c::backSpace() {
     if (mCurPos != 0) {
         mDoAud_seStart(Z2SE_SY_NAME_DELETE, NULL, 0, 0);
 
+        #if REGION_JPN
+        // '　' (full-width space)
+        if (mCurPos == 8 && mChrInfo[7].mCharacter != '\x81\x40') {
+        #else
         if (mCurPos == 8 && mChrInfo[7].mCharacter != ' ') {
+        #endif
             mChrInfo[7].mColumn = 7;
             mChrInfo[7].mRow = 1;
-            #if VERSION == VERSION_GCN_PAL
+            #if REGION_PAL || REGION_JPN
             mChrInfo[7].mMojiSet = MOJI_HIRA;
             #else
             mChrInfo[7].mMojiSet = MOJI_EIGO;
             #endif
             mChrInfo[7].field_0x3 = 1;
+            #if REGION_JPN
+            // '　' (full-width space)
+            mChrInfo[7].mCharacter = '\x81\x40';
+            #else
             mChrInfo[7].mCharacter = ' ';
+            #endif
         } else {
             for (int i = mCurPos - 1; i < 7; i++) {
                 mChrInfo[i] = mChrInfo[i + 1];
             }
             mChrInfo[7].mColumn = 7;
             mChrInfo[7].mRow = 1;
-            #if VERSION == VERSION_GCN_PAL
+            #if REGION_PAL || REGION_JPN
             mChrInfo[7].mMojiSet = MOJI_HIRA;
             #else
             mChrInfo[7].mMojiSet = MOJI_EIGO;
             #endif
             mChrInfo[7].field_0x3 = 1;
+            #if REGION_JPN
+            // '　' (full-width space)
+            mChrInfo[7].mCharacter = '\x81\x40';
+            #else
             mChrInfo[7].mCharacter = ' ';
+            #endif
         }
 
         setNameText();
@@ -945,7 +1206,7 @@ void dName_c::backSpace() {
 
 /* 802501B0-80250284 24AAF0 00D4+00 2/2 0/0 0/0 .text            mojiListChange__7dName_cFv */
 void dName_c::mojiListChange() {
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL
     char** mojiSet;
 
     switch (mMojiSet) {
@@ -993,7 +1254,7 @@ void dName_c::mojiListChange() {
         strcpy(mMojiText[i], buf);
     }
 
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL || REGION_JPN
     if (mSelProc == PROC_MOJI_SELECT) {
         mMenuIcon[mMojiSet]->scale(g_nmHIO.mMenuScale, g_nmHIO.mMenuScale);
         mMenuText[mMojiSet]->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
@@ -1024,7 +1285,7 @@ void dName_c::menuCursorMove2() {
     if (menu_i != mojiSet_i) {
         mMenuIcon[menu_i]->scale(g_nmHIO.mMenuScale, g_nmHIO.mMenuScale);
         mMenuText[menu_i]->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
-        #if VERSION == VERSION_GCN_PAL
+        #if REGION_PAL || REGION_JPN
         mMenuIcon[mojiSet_i]->scale(1.0f, 1.0f);
         mMenuText[mojiSet_i]->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xFF));
         #endif
@@ -1049,13 +1310,13 @@ void dName_c::selectCursorPosSet(int row) {
             mCharColumn = 3;
             break;
         case MENU_EIGO:
-            #if VERSION == VERSION_GCN_PAL
+            #if REGION_PAL
             mCharColumn = 8;
             #else
             mCharColumn = 6;
             #endif
             break;
-        #if VERSION != VERSION_GCN_PAL
+        #if !REGION_PAL
         case MENU_END:
             mCharColumn = 8;
             break;
@@ -1083,7 +1344,7 @@ void dName_c::screenSet() {
     static u64 l_cur1TagName[8] = {
         's_0r', 's_01r', 's_02r', 's_03r', 's_04r', 's_05r', 's_06r', 's_07r',
     };
-#if VERSION == VERSION_GCN_JPN
+#if REGION_JPN
     static u64 l_menu_icon_tag[4] = {
         'j_hira_n',
         'j_kata_n',
@@ -1165,6 +1426,15 @@ void dName_c::screenSet() {
         panes1[i]->setAnimation(mCursorColorKey);
     }
 
+    #if REGION_JPN
+    nameIn.NameInScr->search('pal_n')->hide();
+    mMenuPane = nameIn.NameInScr->search('jpn_n');
+    mMenuPane->show();
+
+    nameIn.NameInScr->search('p_ABC_n')->scale(0.0f, 0.0f);
+    nameIn.NameInScr->search('p_abc_n')->scale(0.0f, 0.0f);
+    nameIn.NameInScr->search('p_end_n')->scale(0.0f, 0.0f);
+    #else
     nameIn.NameInScr->search('jpn_n')->hide();
     mMenuPane = nameIn.NameInScr->search('pal_n');
     mMenuPane->show();
@@ -1173,13 +1443,16 @@ void dName_c::screenSet() {
     nameIn.NameInScr->search('j_kata_n')->scale(0.0f, 0.0f);
     nameIn.NameInScr->search('j_eigo_n')->scale(0.0f, 0.0f);
     nameIn.NameInScr->search('j_end_n')->scale(0.0f, 0.0f);
+    #endif
 
     J2DTextBox* menuPane[3];
     for (int i = 0; i < 4; i++) {
+        #if !REGION_JPN
         if (i == 2) {
             mMenuIcon[i] = NULL;
             mMenuText[i] = NULL;
         } else {
+        #endif
             mMenuIcon[i] = new CPaneMgr(nameIn.NameInScr, l_menu_icon_tag[i], 1, NULL);
 
             char buf[16];
@@ -1195,10 +1468,12 @@ void dName_c::screenSet() {
                 menuPane[j]->setFont(nameIn.font);
                 menuPane[j]->setString(buf);
             }
+        #if !REGION_JPN
         }
+        #endif
     }
 
-    #if VERSION != VERSION_GCN_PAL
+    #if !(REGION_PAL || REGION_JPN)
     mMenuIcon[0]->hide();
     mMenuIcon[1]->hide();
     #endif
@@ -1218,13 +1493,13 @@ void dName_c::screenSet() {
         ((J2DTextBox*)nameTagPane[i])->setFont(nameIn.font);
         ((J2DTextBox*)nameTagPane[i])->setString(72, "");
         ((J2DTextBox*)nameTagPane[i])->setWhite(JUtility::TColor(0xC8, 0xC8, 0xC8, 0xFF));
-        #if VERSION == VERSION_GCN_PAL
+        #if REGION_PAL
         ((J2DTextBox*)nameTagPane[i])->resize(24.0f, 23.0f);
         #endif
         mNameText[i] = ((J2DTextBox*)nameTagPane[i])->getStringPtr();
     }
 
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL
     int idx = 2;
 
     static u8 palMoji00[13] = {
@@ -1291,13 +1566,18 @@ void dName_c::displayInit() {
         mNameCursor[i]->hide();
         mChrInfo[i].mColumn = 7;
         mChrInfo[i].mRow = 1;
-        #if VERSION == VERSION_GCN_PAL
+        #if REGION_PAL || REGION_JPN
         mChrInfo[i].mMojiSet = MOJI_HIRA;
         #else
         mChrInfo[i].mMojiSet = MOJI_EIGO;
         #endif
         mChrInfo[i].field_0x3 = 1;
+        #if REGION_JPN
+        // '　' (full-width space)
+        mChrInfo[i].mCharacter = '\x81\x40';
+        #else
         mChrInfo[i].mCharacter = ' ';
+        #endif
     }
 
     mIsInputEnd = false;
@@ -1309,7 +1589,7 @@ void dName_c::NameStrSet() {
 
     int i = 0;
     while (*moji != 0) {
-        #if VERSION == VERSION_GCN_PAL
+        #if REGION_PAL
         mChrInfo[i].mCharacter = static_cast<u8>(*moji);
 
         for (int j = 0; j < 65; j++) {
@@ -1383,13 +1663,13 @@ s32 dName_c::getMenuPosIdx(u8 selPos) {
         result = 1;
         break;
     case 2:
-        #if VERSION == VERSION_GCN_PAL
+        #if REGION_PAL
         result = 3;
         #else
         result = 2;
         #endif
         break;
-    #if VERSION != VERSION_GCN_PAL
+    #if !REGION_PAL
     case 3:
         result = 3;
         break;

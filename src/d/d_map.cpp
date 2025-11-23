@@ -3,10 +3,7 @@
  *
  */
 
-// not sure if this object is supposed to have a PCH -
-// including it completely messes up weak function ordering
-
-#define NO_INLINE_DLSTBASE_DRAW
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_map.h"
 #include "JSystem/JUtility/JUTTexture.h"
@@ -1232,12 +1229,13 @@ void dMap_c::_move(f32 i_centerX, f32 i_centerZ, int i_roomNo, f32 param_3) {
         break;
     case 2:
         switch (field_0x8f) {
-        case 2:
+        case 2: {
             f32 temp_f31 = (f32)field_0x90 / 5.0f;
             setMapPaletteColorAlphaPer(0x2F, 0x32, temp_f31);
             setMapPaletteColorAlphaPer(0x21, 0x2B, temp_f31);
             break;
-        case 3:
+        }
+        case 3: {
             calcMapCenterXZ(field_0x88, &mCenterX, &mCenterZ);
             f32 sp24, sp20;
             calcMapCenterXZ(field_0x84, &sp24, &sp20);
@@ -1268,11 +1266,13 @@ void dMap_c::_move(f32 i_centerX, f32 i_centerZ, int i_roomNo, f32 param_3) {
             mCenterX += sp14;
             mCenterZ -= sp10;
             break;
-        case 4:
+        }
+        case 4: {
             f32 temp_f31_3 = 1.0f - ((f32)field_0x90 / 5.0f);
             setMapPaletteColorAlphaPer(0x2F, 0x32, temp_f31_3);
             setMapPaletteColorAlphaPer(0x21, 0x2B, temp_f31_3);
             break;
+        }
         case 6:
             copyPalette();
             break;
@@ -1300,9 +1300,4 @@ dTres_c::typeGroupData_c* dMap_c::getFirstData(u8 param_0) {
  * getNextData__6dMap_cFPQ27dTres_c15typeGroupData_c            */
 dTres_c::typeGroupData_c* dMap_c::getNextData(dTres_c::typeGroupData_c* param_0) {
     return renderingPlusDoorAndCursor_c::getNextData(param_0);
-}
-
-// TODO: this is supposed to be auto-generated, but its not getting put in the right order
-void dDlst_base_c::draw() {
-    /* empty function */
 }

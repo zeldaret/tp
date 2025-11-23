@@ -39,9 +39,9 @@ public:
 
     void prepare(const data::TParse_TBlock& block, TControl* control);
 
-    TFunctionValue* const& referFunctionValue() { return pfv_; }
+    TFunctionValue* const referFunctionValue() { return pfv_; }
 
-private:
+protected:
     /* 0x0C */ JGadget::TLinkListNode mNode;
     /* 0x14 */ TFunctionValue* pfv_;
 };

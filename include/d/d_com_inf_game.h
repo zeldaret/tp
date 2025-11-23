@@ -2159,6 +2159,14 @@ inline s8 dComIfGs_Grass_hide_Check() {
     return g_dComIfG_gameInfo.field_0x1ddfc;
 }
 
+inline int dComIfGs_getHookGameTime() {
+    return g_dComIfG_gameInfo.info.getMiniGame().getHookGameTime();
+}
+
+inline void dComIfGs_setHookGameTime(u32 i_time) {
+    g_dComIfG_gameInfo.info.getMiniGame().setHookGameTime(i_time);
+}
+
 void dComIfGp_setSelectItem(int index);
 s32 dComIfGp_offHeapLockFlag(int flag);
 void dComIfGp_createSubExpHeap2D();

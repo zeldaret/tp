@@ -1100,6 +1100,7 @@ int daNpc_myna2_c::ECut_gameFailure(int i_staffId) {
         }
     }
 
+    int choiceNo;
     switch (prm) {
     case 0:
         calcHovering(0, 1);
@@ -1110,7 +1111,8 @@ int daNpc_myna2_c::ECut_gameFailure(int i_staffId) {
     case 10:
         calcHovering(0, 1);
         if (talkProc(NULL, 1, NULL)) {
-            if (mFlow.getChoiceNo() == 0) {
+            choiceNo = mFlow.getChoiceNo();
+            if (choiceNo == 0) {
                 dStage_changeScene(6, 0.0f, 10, fopAcM_GetRoomNo(this), 0, -1);
             } else {
                 rt = 1;
@@ -1159,6 +1161,7 @@ int daNpc_myna2_c::ECut_gameGoal(int i_staffId) {
         }
     }
 
+    int choiceNo;
     switch (prm) {
     case 0:
         calcHovering(0, 1);
@@ -1169,7 +1172,8 @@ int daNpc_myna2_c::ECut_gameGoal(int i_staffId) {
     case 10:
         calcHovering(0, 1);
         if (talkProc(NULL, 1, NULL)) {
-            if (mFlow.getChoiceNo() == 0) {
+            choiceNo = mFlow.getChoiceNo();
+            if (choiceNo == 0) {
                 dStage_changeScene(11, 0.0f, 10, fopAcM_GetRoomNo(this), 0, -1);
             } else {
                 rt = 1;
@@ -1232,6 +1236,7 @@ int daNpc_myna2_c::ECut_gameGoalSuccess(int i_staffId) {
         }
     }
 
+    int choiceNo;
     switch (prm) {
     case 0:
         calcHovering(0, 1);
@@ -1253,7 +1258,8 @@ int daNpc_myna2_c::ECut_gameGoalSuccess(int i_staffId) {
     case 25:
         calcHovering(0, 1);
         if (talkProc(NULL, 1, NULL)) {
-            if (mFlow.getChoiceNo() == 0) {
+            choiceNo = mFlow.getChoiceNo();
+            if (choiceNo == 0) {
                 dStage_changeScene(11, 0.0f, 10, fopAcM_GetRoomNo(this), 0, -1);
             } else {
                 rt = 1;

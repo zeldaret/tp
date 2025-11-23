@@ -43,6 +43,8 @@ public:
     /* 80CE7CC4 */ void setMtx();
     /* 80CE7D28 */ void setAttnPos();
     /* 80CE7D5C */ int wait(void* param_0);
+    int buy(void* param_0);
+    int cancel(void* param_0);
 
     static dCcD_SrcGObjInf const mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;

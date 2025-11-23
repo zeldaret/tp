@@ -7,21 +7,41 @@
 
 #include "d/actor/d_a_obj_mirror_6pole.h"
 #include "d/d_procname.h"
-
-/* 80C95E18-80C95E2C 000078 0014+00 1/0 0/0 0/0 .text            initWait__18daObjMirror6Pole_cFv */
-void daObjMirror6Pole_c::initWait() {
-    mpBck->setPlaySpeed(0.0f);
-}
+#include "f_op/f_op_actor_mng.h"
 
 /* 80C9654C-80C96550 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "MR-6Pole";
 
 /* 80C96580-80C965B0 000054 0030+00 3/4 0/0 0/0 .data            ActionTable__18daObjMirror6Pole_c
  */
-actionFunc daObjMirror6Pole_c::ActionTable[][2] = {
+const actionFunc daObjMirror6Pole_c::ActionTable[][2] = {
     {&daObjMirror6Pole_c::initWait, &daObjMirror6Pole_c::executeWait},
     {&daObjMirror6Pole_c::initDemo, &daObjMirror6Pole_c::executeDemo},
 };
+
+void daObjMirror6Pole_c::setAction(Mode_e i_action) {
+    JUT_ASSERT(89, i_action < MODE_MAX_e);
+    Mode_e oldMode = mMode;
+    mMode = i_action;
+    mAction = (actionFunc*)ActionTable[mMode];
+
+    callInit();
+}
+
+void daObjMirror6Pole_c::callInit() {
+    JUT_ASSERT(123, mAction != NULL);
+    (this->*mAction[0])();
+}
+
+void daObjMirror6Pole_c::callExecute() {
+    JUT_ASSERT(136, mAction != NULL);
+    (this->*mAction[1])();
+}
+
+/* 80C95E18-80C95E2C 000078 0014+00 1/0 0/0 0/0 .text            initWait__18daObjMirror6Pole_cFv */
+void daObjMirror6Pole_c::initWait() {
+    mpBck->setPlaySpeed(0.0f);
+}
 
 /* 80C95E2C-80C95E88 00008C 005C+00 1/0 0/0 0/0 .text            executeWait__18daObjMirror6Pole_cFv
  */
@@ -67,27 +87,26 @@ void daObjMirror6Pole_c::create_init() {
 /* 80C95F50-80C95F70 0001B0 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__18daObjMirror6Pole_cFP10fopAc_ac_c       */
 int daObjMirror6Pole_c::createHeapCallBack(fopAc_ac_c* i_this) {
-    return static_cast<daObjMirror6Pole_c*>(i_this)->CreateHeap();
+    daObjMirror6Pole_c* a_this = (daObjMirror6Pole_c*)i_this;
+    return a_this->CreateHeap();
 }
 
 /* 80C95F70-80C961D8 0001D0 0268+00 1/1 0/0 0/0 .text            CreateHeap__18daObjMirror6Pole_cFv
  */
 int daObjMirror6Pole_c::CreateHeap() {
+    BOOL r26 = FALSE;
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 7);
+    JUT_ASSERT(318, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;
     }
 
     J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 4);
+    JUT_ASSERT(327, bck != NULL);
     mpBck = new mDoExt_bckAnm();
 
-    f32 speed;
-    if (isSwitch()) {
-        speed = 1.0f;
-    } else {
-        speed = 0.0f;
-    }
+    f32 speed = isSwitch() ? 1.0f : 0.0f;
 
     if (mpBck == NULL || !mpBck->init(bck, FALSE, J3DFrameCtrl::EMode_NONE, speed, 0, -1, false)) {
         return 0;
@@ -117,6 +136,7 @@ int daObjMirror6Pole_c::create() {
 
 /* 80C96220-80C96328 000480 0108+00 1/0 0/0 0/0 .text daObjMirror6Pole_Create__FP10fopAc_ac_c */
 static int daObjMirror6Pole_Create(fopAc_ac_c* i_this) {
+    fopAcM_RegisterCreateID(daObjMirror6Pole_c, i_this, "Obj_Mirror6Pole");
     return static_cast<daObjMirror6Pole_c*>(i_this)->create();
 }
 
@@ -127,6 +147,7 @@ daObjMirror6Pole_c::~daObjMirror6Pole_c() {
 /* 80C96328-80C96378 000588 0050+00 1/0 0/0 0/0 .text
  * daObjMirror6Pole_Delete__FP18daObjMirror6Pole_c              */
 static int daObjMirror6Pole_Delete(daObjMirror6Pole_c* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "Obj_Mirror6Pole");
     i_this->~daObjMirror6Pole_c();
     return 1;
 }

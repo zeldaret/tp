@@ -766,13 +766,13 @@ int daAlink_c::procCanoeRowInit(int param_0) {
             }
 
             if (spC == 1) {
-                var_r29 = var_r28 == 2 ? ANM_CANOE_ROW_RIGHT_BACK : ANM_CANOE_ROW_LEFT_BACK;
+                var_r29 = (daAlink_ANM)(var_r28 == 2 ? (int)ANM_CANOE_ROW_RIGHT_BACK : (int)ANM_CANOE_ROW_LEFT_BACK);
 
                 if ((var_r29 == ANM_CANOE_ROW_RIGHT_BACK && mProcVar5.field_0x3012 == 0) || (var_r29 == ANM_CANOE_ROW_LEFT_BACK && mProcVar5.field_0x3012 == 1)) {
                     return procCanoePaddleShiftInit(var_r29);
                 }
             } else {
-                var_r29 = var_r28 == 2 ? ANM_CANOE_ROW_RIGHT : ANM_CANOE_ROW_LEFT;
+                var_r29 = (daAlink_ANM)(var_r28 == 2 ? (int)ANM_CANOE_ROW_RIGHT : (int)ANM_CANOE_ROW_LEFT);
 
                 if ((var_r29 == ANM_CANOE_ROW_RIGHT && mProcVar5.field_0x3012 == 0) || (var_r29 == ANM_CANOE_ROW_LEFT && mProcVar5.field_0x3012 == 1)) {
                     return procCanoePaddleShiftInit(var_r29);

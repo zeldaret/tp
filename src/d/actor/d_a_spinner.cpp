@@ -985,4 +985,5 @@ extern actor_process_profile_definition g_profile_SPINNER = {
 
 AUDIO_INSTANCES
 struct JAUSectionHeap;
+template<>
 JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance; 

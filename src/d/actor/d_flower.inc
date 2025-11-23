@@ -810,7 +810,6 @@ void dFlower_packet_c::draw() {
 }
 
 /* 80522774-8052299C 006B14 0228+00 1/1 0/0 0/0 .text            calc__16dFlower_packet_cFv */
-// NONMATCHING
 void dFlower_packet_c::calc() {
     dFlower_anm_c* anm_p = getAnm();
 

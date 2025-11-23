@@ -3322,7 +3322,8 @@ int daNpc_Kn_c::ECut_secondEncount(int i_idx) {
         break;
     case 10:
         if (talkProc(0, 0, NULL, 0)) {
-            if (mFlow.getChoiceNo() == 0) {
+            int choiceNo = mFlow.getChoiceNo();
+            if (choiceNo == 0) {
                 int sp8 = 0;
                 switch (mType) {
                 case 1:

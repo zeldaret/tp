@@ -14,7 +14,7 @@ public:
     static daTagHstop_c* getTop() { return m_top; }
 
     daTagHstop_c* getNext() { return mNext; }
-    bool getActiveFlg() const { return mActive; }
+    u8 getActiveFlg() const { return mActive; }
 
     void onTagStop() {
         if (field_0x573 == 0) {
@@ -28,7 +28,7 @@ public:
     /* 0x568 */ daTagHstop_c* mNext;
     /* 0x568 */ daTagHstop_c* mPrev;
     /* 0x570 */ u8 mPrm0;
-    /* 0x571 */ bool mActive;
+    /* 0x571 */ u8 mActive;
     /* 0x572 */ u8 mPrm1;
     /* 0x573 */ u8 field_0x573;
     /* 0x574 */ int field_0x574;

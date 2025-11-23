@@ -39,8 +39,8 @@ public:
     /* 801958E0 */ void setBckAnimation(J2DAnmTransformKey*);
     /* 80195940 */ void moveCenter(J2DPane*, f32, f32);
 
-    /* 80194C30 */ virtual void draw();
     /* 801949EC */ virtual ~dSelect_cursor_c();
+    /* 80194C30 */ virtual void draw();
 
     void setPos(f32 x, f32 y) {
         mPositionX = x;

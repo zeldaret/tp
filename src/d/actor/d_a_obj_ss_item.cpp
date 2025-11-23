@@ -243,7 +243,7 @@ u16 daObj_SSItem_c::getValue() {
 void daObj_SSItem_c::restart() {
     current.angle.set(0, home.angle.y, 0);
     shape_angle = current.angle;
-    setProcess(&wait);
+    setProcess(&daObj_SSItem_c::wait);
 }
 
 /* 80CE7950-80CE7B04 000DB0 01B4+00 1/1 0/0 0/0 .text            initialize__14daObj_SSItem_cFv */
@@ -334,6 +334,47 @@ int daObj_SSItem_c::wait(void* param_0) {
     default:
         return 1;
     }
+}
+
+int daObj_SSItem_c::buy(void* param_0) {
+    switch (mEventType) {
+    case 0:
+        break;
+    case 1:
+        dComIfGp_event_reset();
+
+        if (getParentPtr() != NULL) {
+            ((daMyna_c *)getParentPtr())->deleteItem(fopAcM_GetID(this));
+        }
+
+        fopAcM_delete(this);
+        break;
+    case 2:
+        break;
+    }
+
+    return 1;
+}
+
+int daObj_SSItem_c::cancel(void* param_0) {
+    switch (mEventType) {
+    case 0:
+        break;
+    case 1:
+        if (field_0xAFC == 0) {
+            dComIfGp_event_reset();
+
+            current.pos.set(field_0xAF0);
+
+            setProcess(&daObj_SSItem_c::wait);
+        }
+
+        break;
+    case 2:
+        break;
+    }
+
+    return 1;
 }
 
 /* 80CE7D8C-80CE7DAC 0011EC 0020+00 1/0 0/0 0/0 .text            daObj_SSItem_Create__FPv */

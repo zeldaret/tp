@@ -510,7 +510,7 @@ u8 dSm_read_stageset(u8* i_data) {
     return sp8;
 }
 
-// NONMATCHING - regalloc / stack
+// DEBUG NONMATCHING - regalloc / stack
 int dScnMenu_Draw(dScnMenu_c* i_this) {
     static dDlst_2DQuad_c effectQuad;
     static dDlst_2DQuad_c effectQuad2[40];
@@ -1132,7 +1132,7 @@ void setEnvData(menu_data_class* i_data) {
     }
 }
 
-// NONMATCHING - some stack issues
+// DEBUG NONMATCHING - some stack issues
 int dScnMenu_Execute(dScnMenu_c* i_this) {
     static const u8 l_autoCancel[2][2] = {
         {99, 99},
@@ -1567,7 +1567,6 @@ u8 search(menu_info_class* i_info) {
     return rt;
 }
 
-// NONMATCHING - small regalloc
 int phase_2(dScnMenu_c* i_this) {
     if (!i_this->command->sync() || !i_this->fontCommand->sync()) {
         return cPhs_INIT_e;
@@ -1606,7 +1605,7 @@ int phase_2(dScnMenu_c* i_this) {
         category_offset += menu_info->stage_data[i].field_0x41 * sizeof(menu_data_class);
     }
 
-    i_this->category_info = (menu_category_class*)((uintptr_t)i_this->command->getMemAddress() + category_offset);
+    i_this->category_info = (menu_category_class*)(&((u8*)i_this->command->getMemAddress())[category_offset]);
     JUT_ASSERT(3282, i_this->category_info != NULL);
 
     category_info = i_this->category_info;

@@ -22,6 +22,7 @@ protected:
 
 struct TObject_ID : public TIDData {
     TObject_ID(const void* id, u32 id_size) : TIDData(id, id_size) {}
+    ~TObject_ID() {}
     TIDData const& getIDData() const { return *this; }
     const u8 *getID() const { return TIDData::getID(); }
 };

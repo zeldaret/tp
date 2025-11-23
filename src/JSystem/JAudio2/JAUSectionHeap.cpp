@@ -67,6 +67,14 @@ namespace {
     };
 }
 
+namespace {
+    bool JKRSolidHeap_isEmpty(JKRSolidHeap* pHeap) {
+        u32 beforeSize = pHeap->getFreeSize();
+        pHeap->freeAll();
+        return pHeap->getFreeSize() - beforeSize == 0;
+    }
+}
+
 /* 802A4EE8-802A4F68 29F828 0080+00 1/1 0/0 0/0 .text __ct__Q210JAUSection12TSectionDataFv */
 JAUSection::TSectionData::TSectionData() {
     resetRegisteredWaveBankTables();
@@ -119,8 +127,8 @@ void JAUSection::finishBuild() {
 
 /* 802A5160-802A51E4 29FAA0 0084+00 2/0 0/0 0/0 .text            dispose__10JAUSectionFv */
 void JAUSection::dispose() {
-    /* JUT_ASSERT(267, ! data_.registeredBankTables.any());
-    JUT_ASSERT(268, ! data_.registeredWaveBankTables.any()); */
+    JUT_ASSERT(267, ! data_.registeredBankTables.any());
+    JUT_ASSERT(268, ! data_.registeredWaveBankTables.any());
     if (data_.mBstDst) {
         sectionHeap_->sectionHeapData_.soundTable->~JAUSoundTable();
         sectionHeap_->sectionHeapData_.soundTable = NULL;
@@ -309,7 +317,7 @@ JASWaveBank* JAUSection::newWaveBank(u32 bank_no, void const* param_1) {
     s32 r27 = getHeap_()->getFreeSize();
     JASWaveBank* waveBank = JASWSParser::createWaveBank(param_1, getHeap_());
     if (waveBank) {
-        JUT_ASSERT(536, sectionHeap_->getWaveBankTable().getWaveBank( bank_no ) == 0);
+        JUT_ASSERT(536, sectionHeap_->getWaveBankTable().getWaveBank( bank_no ) == NULL);
         sectionHeap_->getWaveBankTable().registWaveBank(bank_no, waveBank);
         data_.registeredWaveBankTables.set(bank_no, true);
         data_.field_0xa0 += r27 - getHeap_()->getFreeSize();
@@ -347,10 +355,10 @@ JASBank* JAUSection::newBank(void const* param_0, u32 param_1) {
     JASBank* bank = JASBNKParser::createBank(param_0, getHeap_());
     if (bank) {
         if (buildingBankTable_) {
-            JUT_ASSERT(660, buildingBankTable_->getBank( bank_no ) == 0);
+            JUT_ASSERT(660, buildingBankTable_->getBank( bank_no ) == NULL);
             buildingBankTable_->registBank(bank_no, bank);
         } else {
-            JUT_ASSERT(665, JASDefaultBankTable::getInstance() ->getBank( bank_no ) == 0);
+            JUT_ASSERT(665, JASDefaultBankTable::getInstance() ->getBank( bank_no ) == NULL);
             JASDefaultBankTable::getInstance()->registBank(bank_no, bank);
             data_.registeredBankTables.set(bank_no, true);
         }
@@ -362,7 +370,6 @@ JASBank* JAUSection::newBank(void const* param_0, u32 param_1) {
 }
 
 /* 802A5B84-802A5CAC 2A04C4 0128+00 0/0 1/1 0/0 .text            newVoiceBank__10JAUSectionFUlUl */
-// NONMATCHING regalloc
 JASVoiceBank* JAUSection::newVoiceBank(u32 bank_no, u32 param_1) {
     {
         JUT_ASSERT(685, isOpen());
@@ -371,18 +378,17 @@ JASVoiceBank* JAUSection::newVoiceBank(u32 bank_no, u32 param_1) {
         JUT_ASSERT(688, waveBank != NULL);
         TPushCurrentHeap push(getHeap_()); 
         JASBank* voiceBank = new JASVoiceBank();
-        JASVoiceBank* voiceBank2 = (JASVoiceBank*)voiceBank;
         if (voiceBank) {
             if (buildingBankTable_) {
-                JUT_ASSERT(696, buildingBankTable_->getBank( bank_no ) == 0);
+                JUT_ASSERT(696, buildingBankTable_->getBank( bank_no ) == NULL);
                 buildingBankTable_->registBank(bank_no, voiceBank);
             } else {
-                JUT_ASSERT(701, JASDefaultBankTable::getInstance() ->getBank( bank_no ) == 0);
+                JUT_ASSERT(701, JASDefaultBankTable::getInstance() ->getBank( bank_no ) == NULL);
                 JASDefaultBankTable::getInstance()->registBank(bank_no, voiceBank);
                 data_.registeredBankTables.set(bank_no, true);
             }
-            voiceBank2->assignWaveBank(waveBank);
-            return voiceBank2;
+            voiceBank->assignWaveBank(waveBank);
+            return (JASVoiceBank*)voiceBank;
         }
     }
     return NULL;
@@ -451,11 +457,6 @@ bool JAUSectionHeap::loadDynamicSeq(JAISoundID param_0, bool param_1) {
  * releaseIdleDynamicSeqDataBlock__14JAUSectionHeapFv           */
 void JAUSectionHeap::releaseIdleDynamicSeqDataBlock() {
     sectionHeapData_.seqDataBlocks.releaseIdleDynamicSeqDataBlock(sectionHeapData_.seqDataUser);
-}
-
-namespace {
-    // TODO
-    bool JKRSolidHeap_isEmpty(JKRSolidHeap*) { return 1; }
 }
 
 /* 802A5F24-802A5F9C 2A0864 0078+00 1/1 0/0 0/0 .text JAUNewSectionHeap__FP12JKRSolidHeapb */
