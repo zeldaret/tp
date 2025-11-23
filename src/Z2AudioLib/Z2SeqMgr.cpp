@@ -288,7 +288,7 @@ void Z2SeqMgr::subBgmStart(u32 i_bgmID) {
     case Z2BGM_BOSS_SNOWWOMAN_D1:
         Z2GetStatusMgr()->setDemoName("force_start");
         count_in = 0;
-        count_out = struct_80450862;
+        count_out = Z2Param::BGM_CROSS_FADEOUT_TIME;
         break;
     case Z2BGM_TARO_RESCUE:
         count_in = 0;
@@ -367,11 +367,11 @@ void Z2SeqMgr::subBgmStart(u32 i_bgmID) {
     case Z2BGM_IB_MBOSS_D01:
     case Z2BGM_GG_MBOSS_D01:
         count_in = 0;
-        count_out = struct_80450862;
+        count_out = Z2Param::BGM_CROSS_FADEOUT_TIME;
         break;
     default:
-        count_in = struct_80450861;
-        count_out = struct_80450862;
+        count_in = Z2Param::BGM_CROSS_FADEIN_TIME;
+        count_out = Z2Param::BGM_CROSS_FADEOUT_TIME;
         break;
     }
 
@@ -521,7 +521,7 @@ void Z2SeqMgr::subBgmStopInner() {
         return;
     }
 
-    int count = struct_80450862;
+    int count = Z2Param::BGM_CROSS_FADEOUT_TIME;
     switch (getSubBgmID()) {
     case Z2BGM_MAGNE_GORON:
     case Z2BGM_MAGNE_GORON_D01:
@@ -548,7 +548,7 @@ void Z2SeqMgr::subBgmStopInner() {
 
     mSubBgmHandle->stop(count);
     mSubBgmHandle.releaseSound();
-    mMainBgmMaster.fadeIn(struct_80450862);
+    mMainBgmMaster.fadeIn(Z2Param::BGM_CROSS_FADEOUT_TIME);
     field_0xb8 = -1;
 }
 
@@ -571,7 +571,7 @@ void Z2SeqMgr::bgmStreamPrepare(u32 i_bgmID) {
         return;
     case 0x2000023:
         if (mMainBgmHandle) {
-            mMainBgmHandle->stop(struct_80450862);
+            mMainBgmHandle->stop(Z2Param::BGM_CROSS_FADEOUT_TIME);
         }
         return;
     case 0x2000038:
@@ -593,7 +593,7 @@ void Z2SeqMgr::bgmStreamPrepare(u32 i_bgmID) {
         break;
     }
 
-    mStreamBgmMaster.fadeOut(struct_80450862);
+    mStreamBgmMaster.fadeOut(Z2Param::BGM_CROSS_FADEOUT_TIME);
 }
 
 
@@ -683,7 +683,7 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
         switch (param_0) {
         case 4:
         case 0xc:
-            muteSceneBgm(struct_80450860, 0.0f);
+            muteSceneBgm(Z2Param::SCENE_CHANGE_BGM_FADEOUT_TIME, 0.0f);
             // fallthrough
         case 7:
             mute = true;
@@ -693,7 +693,7 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
             break;
         }
         if (!mute) {
-            unMuteSceneBgm(struct_80450860);
+            unMuteSceneBgm(Z2Param::SCENE_CHANGE_BGM_FADEOUT_TIME);
         }
         break;
     case Z2BGM_DUNGEON_LV2:
@@ -909,7 +909,7 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
                 volume = 0.0f;
             } else {
                 volume = Z2Calc::getParamByExp(param_0, 3100.0f, 200.0f, 0.3f, 0.0f, 1.0f,
-                                                Z2Calc::CURVE_SIGN_1);
+                                                Z2Calc::CURVE_POSITIVE);
             }
             volume3 = volume;
             if (param_0 < 200) {
@@ -918,7 +918,7 @@ void Z2SeqMgr::changeBgmStatus(s32 param_0) {
                 volume = 0.0f;
             } else {
                 volume = Z2Calc::getParamByExp(param_0, 1600.0f, 200.0f, 0.3f, 0.0f, 1.0f,
-                                                Z2Calc::CURVE_SIGN_1);
+                                                Z2Calc::CURVE_POSITIVE);
             }
             volume4 = volume;
         } else {
@@ -1259,7 +1259,7 @@ void Z2SeqMgr::changeFishingBgm(s32 param_0) {
         if (getSubBgmID() == Z2BGM_FISHING_HIT) {
             subBgmStop();
         }
-        unMuteSceneBgm(struct_80450862);
+        unMuteSceneBgm(Z2Param::BGM_CROSS_FADEOUT_TIME);
         break;
     case 1:
         if (getSubBgmID() == Z2BGM_FISHING_HIT) {
@@ -1372,7 +1372,7 @@ void Z2SeqMgr::fanfareFramework() {
     }
 
     if (!isItemGetDemo() && mFanfareMute.getDest() != 1.0f) {
-        mFanfareMute.fadeIn(struct_80450861);
+        mFanfareMute.fadeIn(Z2Param::BGM_CROSS_FADEIN_TIME);
     }
     if (mFanfareCount != 0) {
         mFanfareCount--;
@@ -1454,7 +1454,7 @@ void Z2SeqMgr::processBgmFramework() {
     fieldBgmFramework();
 
     if (!mStreamBgmHandle && mStreamBgmMaster.getDest() != 1.0f) {
-        mStreamBgmMaster.fadeIn(struct_80450861);
+        mStreamBgmMaster.fadeIn(Z2Param::BGM_CROSS_FADEIN_TIME);
     }
 
     if (field_0xb8 != -1) {
@@ -1465,7 +1465,7 @@ void Z2SeqMgr::processBgmFramework() {
             field_0xb8 = -1;
         }
     } else if (!mSubBgmHandle && mMainBgmMaster.getDest() != 1.0f) {
-        mMainBgmMaster.fadeIn(struct_80450861);
+        mMainBgmMaster.fadeIn(Z2Param::BGM_CROSS_FADEIN_TIME);
     }
 
     if (mFlags.mTimeProcVolMod) {
@@ -1484,7 +1484,7 @@ void Z2SeqMgr::processBgmFramework() {
         switch (getMainBgmID()) {
         case Z2BGM_DEATH_MOUNTAIN01:
             volume = Z2Calc::getParamByExp(link_y, sDeathMtTop, sDeathMtBottom, 0.3f, 0.0f, 1.0f,
-                                           Z2Calc::CURVE_SIGN_0);
+                                           Z2Calc::CURVE_NEGATIVE);
             field_0x84.move(volume, 0);
             break;
         case Z2BGM_RAKKA_HOUSE:
@@ -1493,7 +1493,7 @@ void Z2SeqMgr::processBgmFramework() {
                 field_0x84.forceIn();
             } else if (link_y < -7500.0f) {
                 volume = Z2Calc::getParamByExp(link_y, -10500.0f, -7500.0f, 0.3f, 0.0f, 1.0f,
-                                               Z2Calc::CURVE_SIGN_1);
+                                               Z2Calc::CURVE_POSITIVE);
                 field_0x84.move(volume, 0);
             }
             break;
@@ -1507,7 +1507,7 @@ void Z2SeqMgr::processBgmFramework() {
                 field_0x84.forceOut();
             } else if (depth > 0.0f) {
                 volume = Z2Calc::getParamByExp(depth, sUnderWaterDepthMax, 0.0f, 0.3f, 0.1f, 1.0f,
-                                               Z2Calc::CURVE_SIGN_1);
+                                               Z2Calc::CURVE_POSITIVE);
                 field_0x84.move(volume, 0);
             } else if (field_0x84.getDest() != 1.0f) {
                 field_0x84.fadeIn(30);
@@ -1519,7 +1519,7 @@ void Z2SeqMgr::processBgmFramework() {
                     field_0x84.move(0.3f, 0);
                 } else if (link_y > -13000.0f) {
                     volume = Z2Calc::getParamByExp(link_y, -1500.0f, -13000.0f, 0.3f, 0.3f, 1.0f,
-                                                   Z2Calc::CURVE_SIGN_0);
+                                                   Z2Calc::CURVE_NEGATIVE);
                     field_0x84.move(volume, 0);
                 } else {
                     field_0x84.forceIn();
@@ -1529,7 +1529,7 @@ void Z2SeqMgr::processBgmFramework() {
                     field_0x84.fadeOut(30);
                 } else if (link_y > -45000.0f) {
                     volume = Z2Calc::getParamByExp(link_y, -3000.0f, -45000.0f, 0.3f, 0.0f, 1.0f,
-                                                   Z2Calc::CURVE_SIGN_0);
+                                                   Z2Calc::CURVE_NEGATIVE);
                     field_0x84.move(volume, 0);
                 } else {
                     field_0x84.forceIn();
@@ -1539,7 +1539,7 @@ void Z2SeqMgr::processBgmFramework() {
                     field_0x84.forceOut();
                 } else if (link_y > -1500.0f) {
                     volume = Z2Calc::getParamByExp(link_y, 900.0f, -1500.0f, 0.3f, 0.0f, 0.3f,
-                                                   Z2Calc::CURVE_SIGN_0);
+                                                   Z2Calc::CURVE_NEGATIVE);
                     field_0x84.move(volume, 0);
                 } else {
                     field_0x84.move(0.3f, 0);
@@ -1671,7 +1671,7 @@ void Z2SeqMgr::setBattleBgmOff(bool i_value) {
     if (mFlags.mBattleBgmOff != i_value && i_value &&
         (getSubBgmID() == Z2BGM_BATTLE_NORMAL || getSubBgmID() == Z2BGM_BATTLE_TWILIGHT))
     {
-        stopBattleBgm(struct_80450862, struct_80450861);
+        stopBattleBgm(Z2Param::BGM_CROSS_FADEOUT_TIME, Z2Param::BGM_CROSS_FADEIN_TIME);
     }
     mFlags.mBattleBgmOff = i_value;
 }
@@ -1683,15 +1683,15 @@ void Z2SeqMgr::setBattleSearched(bool i_value) {
     {
         if (getSubBgmID() == Z2BGM_BATTLE_NORMAL && mBattleSeqState == 1) {
             if (i_value) {
-                setChildTrackVolume(&mSubBgmHandle, 2, 1.0f, struct_80450864, -1.0f, -1.0f);
-                setChildTrackVolume(&mSubBgmHandle, 3, 1.0f, struct_80450864, -1.0f, -1.0f);
-                setChildTrackVolume(&mSubBgmHandle, 12, 1.0f, struct_80450864, -1.0f, -1.0f);
-                setChildTrackVolume(&mSubBgmHandle, 14, 1.0f, struct_80450864, -1.0f, -1.0f);
+                setChildTrackVolume(&mSubBgmHandle, 2, 1.0f, Z2Param::FOUND_TRACK_FI_TIME, -1.0f, -1.0f);
+                setChildTrackVolume(&mSubBgmHandle, 3, 1.0f, Z2Param::FOUND_TRACK_FI_TIME, -1.0f, -1.0f);
+                setChildTrackVolume(&mSubBgmHandle, 12, 1.0f, Z2Param::FOUND_TRACK_FI_TIME, -1.0f, -1.0f);
+                setChildTrackVolume(&mSubBgmHandle, 14, 1.0f, Z2Param::FOUND_TRACK_FI_TIME, -1.0f, -1.0f);
             } else {
-                setChildTrackVolume(&mSubBgmHandle, 2, 0.0f, struct_80450865, -1.0f, -1.0f);
-                setChildTrackVolume(&mSubBgmHandle, 3, 0.0f, struct_80450865, -1.0f, -1.0f);
-                setChildTrackVolume(&mSubBgmHandle, 12, 0.0f, struct_80450865, -1.0f, -1.0f);
-                setChildTrackVolume(&mSubBgmHandle, 14, 0.0f, struct_80450865, -1.0f, -1.0f);
+                setChildTrackVolume(&mSubBgmHandle, 2, 0.0f, Z2Param::FOUND_TRACK_FO_TIME, -1.0f, -1.0f);
+                setChildTrackVolume(&mSubBgmHandle, 3, 0.0f, Z2Param::FOUND_TRACK_FO_TIME, -1.0f, -1.0f);
+                setChildTrackVolume(&mSubBgmHandle, 12, 0.0f, Z2Param::FOUND_TRACK_FO_TIME, -1.0f, -1.0f);
+                setChildTrackVolume(&mSubBgmHandle, 14, 0.0f, Z2Param::FOUND_TRACK_FO_TIME, -1.0f, -1.0f);
             }
         }
         mFlags.mBattleSearched = i_value;
@@ -1757,24 +1757,24 @@ void Z2SeqMgr::setBattleDistState(u8 i_state) {
                     if (mBattleSeqState == 0) {
                         startBattleBgm(true);
                     } else if (mBattleSeqState == 1) {
-                        setChildTrackVolume(&mSubBgmHandle, data_8045086C, 1.0f, struct_80450866, -1.0f, -1.0f);
+                        setChildTrackVolume(&mSubBgmHandle, data_8045086C, 1.0f, Z2Param::CLOSE_BATTLE_TRACK_FI_TIME, -1.0f, -1.0f);
                     }
                     break;
                 case 1:
                     if (mBattleSeqState == 0) {
                         startBattleBgm(true);
                     } else if (mBattleSeqState == 1) {
-                        setChildTrackVolume(&mSubBgmHandle, data_8045086C, 0.0f, struct_80450867, -1.0f, -1.0f);
+                        setChildTrackVolume(&mSubBgmHandle, data_8045086C, 0.0f, Z2Param::CLOSE_BATTLE_TRACK_FO_TIME, -1.0f, -1.0f);
                     }
                     break;
                 case 2:
                     if (mBattleSeqState == 1) {
-                        setChildTrackVolume(&mSubBgmHandle, data_8045086C, 0.0f, struct_80450867, -1.0f, -1.0f);
+                        setChildTrackVolume(&mSubBgmHandle, data_8045086C, 0.0f, Z2Param::CLOSE_BATTLE_TRACK_FO_TIME, -1.0f, -1.0f);
                     }
                     break;
                 case 3:
                     if (mBattleSeqState == 1 || mBattleSeqState == 2) {
-                        stopBattleBgm(struct_80450862, struct_80450861);
+                        stopBattleBgm(Z2Param::BGM_CROSS_FADEOUT_TIME, Z2Param::BGM_CROSS_FADEIN_TIME);
                     }
                     break;
                 }
@@ -1788,7 +1788,7 @@ void Z2SeqMgr::setBattleDistState(u8 i_state) {
 void Z2SeqMgr::setBattleSeqState(u8 i_state) {
     if (!mFlags.mBattleBgmOff && Z2GetSceneMgr()->isSceneExist() && mBattleSeqState != i_state) {
         if (i_state == 0) {
-            stopBattleBgm(struct_80450862, struct_80450861);
+            stopBattleBgm(Z2Param::BGM_CROSS_FADEOUT_TIME, Z2Param::BGM_CROSS_FADEIN_TIME);
         } else if (getSubBgmID() == Z2BGM_BATTLE_NORMAL &&
             !(getMainBgmID() == Z2BGM_FIELD_LINK_DAY && !Z2GetSoundObjMgr()->isTwilightBattle()))
         {
@@ -1827,8 +1827,8 @@ void Z2SeqMgr::setBattleSeqState(u8 i_state) {
 void Z2SeqMgr::setBattleLastHit(u8 param_0) {
     if (getSubBgmID() == Z2BGM_BATTLE_NORMAL) {
         setBattleDistIgnore(true);
-        mSubBgmMaster.move(Z2Param::ENEMY_LASTHIT_MUTE_VOLUME, struct_80450868);
-        field_0xc1 = struct_8045086B;
+        mSubBgmMaster.move(Z2Param::ENEMY_LASTHIT_MUTE_VOLUME, Z2Param::ENDING_BLOW_VOL_DOWN_TIME);
+        field_0xc1 = Z2Param::ENDING_BLOW_MIN_FINISH_TIME;
         mBattleLastHit = param_0;
     }
 }
@@ -1856,14 +1856,14 @@ void Z2SeqMgr::battleBgmFramework() {
             if (field_0xc1 != 0) {
                 field_0xc1--;
                 if (field_0xc1 < mBattleLastHit && mSubBgmMaster.getDest() != 1.0f) {
-                    mSubBgmMaster.fadeIn(struct_8045086A);
+                    mSubBgmMaster.fadeIn(Z2Param::ENDING_BLOW_VOL_LOWER_RECOVER_TIME);
                 }
                 if (field_0xc1 == 0) {
                     setBattleDistIgnore(false);
                     if (Z2GetSoundObjMgr()->checkBattleFinish()) {
                         setBattleSeqState(3);
                     } else if (mSubBgmMaster.getDest() != 1.0f) {
-                        mSubBgmMaster.fadeIn(struct_8045086A);
+                        mSubBgmMaster.fadeIn(Z2Param::ENDING_BLOW_VOL_LOWER_RECOVER_TIME);
                     }
                 }
             }
@@ -1873,7 +1873,7 @@ void Z2SeqMgr::battleBgmFramework() {
             setBattleDistIgnore(false);
             mFlags.mBattleSearched = 0;
             field_0xc1 = 0;
-            mBattleLastHit = struct_80450869;
+            mBattleLastHit = Z2Param::ENDING_BLOW_VOL_LOWER_TIME;
         }
     }
 }
@@ -1897,14 +1897,14 @@ void Z2SeqMgr::startBattleBgm(bool i_fade) {
                 if (ivar2 < 0) {
                     ivar2 = 0;
                 }
-                if (ivar2 > struct_80450861) {
-                    ivar2 = struct_80450861;
+                if (ivar2 > Z2Param::BGM_CROSS_FADEIN_TIME) {
+                    ivar2 = Z2Param::BGM_CROSS_FADEIN_TIME;
                 }
                 u8 count_in, count_out;
                 switch (bgm_id) {
                 case Z2BGM_BATTLE_NORMAL:
-                    count_in = struct_80450861 - ivar2;
-                    count_out = struct_80450862 - ivar2 / 2;
+                    count_in = Z2Param::BGM_CROSS_FADEIN_TIME - ivar2;
+                    count_out = Z2Param::BGM_CROSS_FADEOUT_TIME - ivar2 / 2;
                     if (!mFlags.mBattleSearched) {
                         setChildTrackVolume(&mSubBgmHandle, 2, 0.0f, 0, -1.0f, -1.0f);
                         setChildTrackVolume(&mSubBgmHandle, 3, 0.0f, 0, -1.0f, -1.0f);
@@ -1942,18 +1942,18 @@ void Z2SeqMgr::stopBattleBgm(u8 param_0, u8 param_1) {
         if (ivar6 < 0) {
             ivar6 = 0;
         }
-        if (ivar6 > struct_80450861) {
-            ivar6 = struct_80450861;
+        if (ivar6 > Z2Param::BGM_CROSS_FADEIN_TIME) {
+            ivar6 = Z2Param::BGM_CROSS_FADEIN_TIME;
         }
         if (getSubBgmID() == Z2BGM_BATTLE_NORMAL) {
-            param_0 = struct_80450861 + ivar6;
-            param_1 = struct_80450862 + ivar6 / 2;
+            param_0 = Z2Param::BGM_CROSS_FADEIN_TIME + ivar6;
+            param_1 = Z2Param::BGM_CROSS_FADEOUT_TIME + ivar6 / 2;
             mSubBgmHandle->fadeOut(param_0);
             mBattleSeqCount = param_0;
         } else if (getSubBgmID() == Z2BGM_BATTLE_TWILIGHT) {
             if (mSubBgmStatus > 1) {
-                param_0 = struct_80450861 + ivar6 / 4;
-                param_1 = struct_80450861 + ivar6 / 4;
+                param_0 = Z2Param::BGM_CROSS_FADEIN_TIME + ivar6 / 4;
+                param_1 = Z2Param::BGM_CROSS_FADEIN_TIME + ivar6 / 4;
             } else {
                 param_0 = 25 + ivar6 / 4;
                 param_1 = 25 + ivar6 / 4;

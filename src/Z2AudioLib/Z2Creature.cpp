@@ -117,7 +117,7 @@ Z2Creature::~Z2Creature() {
 
 /* 802C04E8-802C0530 2BAE28 0048+00 4/2 2/2 0/0 .text            deleteObject__10Z2CreatureFv */
 void Z2Creature::deleteObject() {
-    mSoundObjAnime.mpAnimation = NULL;
+    mSoundObjAnime.animation_ = NULL;
     mSoundObjAnime.deleteObject();
     mSoundObjSimple1.deleteObject();
     mSoundObjSimple2.deleteObject();
@@ -185,9 +185,9 @@ Z2SoundHandlePool* Z2Creature::startCreatureSound(JAISoundID i_soundID, u32 para
                 switch (i_soundID) {
                     case Z2SE_FAIRY_S_FLY:
                         f32 pitch = Z2Calc::getParamByExp((f32)param_1, 30.0f, 100.0f, 0.3f,
-                                                          0.8f, 1.2f, Z2Calc::CURVE_SIGN_0);
+                                                          0.8f, 1.2f, Z2Calc::CURVE_NEGATIVE);
                         f32 volume = Z2Calc::getParamByExp((f32)param_1, 30.0f, 100.0f, 0.3f,
-                                                           0.5f, 1.0f, Z2Calc::CURVE_SIGN_0);
+                                                           0.5f, 1.0f, Z2Calc::CURVE_NEGATIVE);
                         (*handle)->getAuxiliary().moveVolume(volume, 0);
                         (*handle)->getAuxiliary().movePitch(pitch, 0);
                 }
@@ -210,10 +210,10 @@ Z2SoundHandlePool* Z2Creature::startCreatureSoundLevel(JAISoundID i_soundID, u32
                     f32 volume = 0.0f;
                     if (param_1 != 0) {
                         volume = Z2Calc::getParamByExp((f32)param_1, 0.0f, 92.0f, 0.25f,
-                                                        0.4f, 1.0f, Z2Calc::CURVE_SIGN_0);
+                                                        0.4f, 1.0f, Z2Calc::CURVE_NEGATIVE);
                     }
                     f32 pitch = Z2Calc::getParamByExp((f32)param_1, 0.0f, 92.0f, 0.3f,
-                                                        0.5f, 1.2f, Z2Calc::CURVE_SIGN_0);
+                                                        0.5f, 1.2f, Z2Calc::CURVE_NEGATIVE);
                     
                     (*handle)->getAuxiliary().moveVolume(volume, 0);
                     (*handle)->getAuxiliary().movePitch(pitch, 0);
@@ -450,7 +450,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSound(JAISoundID i_soundID, u32
     case Z2_ENEMY_SM2:
         if (i_soundID == Z2SE_EN_SM_HIT) {
             field_0xa3 = 1;
-            Z2GetSeqMgr()->setBattleLastHit(struct_80450869);
+            Z2GetSeqMgr()->setBattleLastHit(Z2Param::ENDING_BLOW_VOL_LOWER_TIME);
         }
         break;
     }
@@ -489,7 +489,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSoundLevel(JAISoundID i_soundID
     case Z2_ENEMY_FZ:
         if (handle != NULL && *handle && i_soundID == Z2SE_EN_FZ_MOVE) {
             f32 volume = Z2Calc::getParamByExp(param_1, 1.0f, 50.0f, 0.4f, 0.1f, 1.1f,
-                                               Z2Calc::CURVE_SIGN_1);
+                                               Z2Calc::CURVE_POSITIVE);
             (*handle)->getAuxiliary().moveVolume(volume, 0);
         }
         break;
@@ -499,9 +499,9 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSoundLevel(JAISoundID i_soundID
     case Z2_ENEMY_RB:
         if (handle != NULL && *handle && i_soundID == Z2SE_EN_RB_MOVE) {
             f32 volume = Z2Calc::getParamByExp(param_1, 4.0f, 35.0f, 0.6f, 0.7f, 1.0f,
-                                               Z2Calc::CURVE_SIGN_1);
+                                               Z2Calc::CURVE_POSITIVE);
             f32 pitch = Z2Calc::getParamByExp(param_1, 4.0f, 35.0f, 0.4f, 0.8f, 1.0f,
-                                              Z2Calc::CURVE_SIGN_1);
+                                              Z2Calc::CURVE_POSITIVE);
             (*handle)->getAuxiliary().moveVolume(volume, 0);
             (*handle)->getAuxiliary().movePitch(pitch, 0);
             break;
@@ -510,9 +510,9 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureSoundLevel(JAISoundID i_soundID
     default:
         if (handle != NULL && *handle && i_soundID == Z2SE_EN_PH_PROPELLER) {
             f32 volume = Z2Calc::getParamByExp(param_1, 0.0f, 30.0f, 0.4f, 0.0f, 1.0f,
-                                               Z2Calc::CURVE_SIGN_1);
+                                               Z2Calc::CURVE_POSITIVE);
             f32 pitch = Z2Calc::getParamByExp(param_1, 4000.0f, 13000.0f, 0.4f, 0.8f, 1.2f,
-                                              Z2Calc::CURVE_SIGN_1);
+                                              Z2Calc::CURVE_POSITIVE);
             (*handle)->getAuxiliary().moveVolume(volume, 0);
             (*handle)->getAuxiliary().movePitch(pitch, 0);
         }
@@ -592,13 +592,13 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCreatureVoice(JAISoundID i_soundID, s8 
     case Z2_ENEMY_SH:
         if (i_soundID == Z2SE_EN_SH_V_DEAD) {
             field_0xa3 = 1;
-            Z2GetSeqMgr()->setBattleLastHit(struct_80450869);
+            Z2GetSeqMgr()->setBattleLastHit(Z2Param::ENDING_BLOW_VOL_LOWER_TIME);
         }
         break;
     case Z2_ENEMY_BS:
         if (i_soundID == Z2SE_EN_BS_V_DEAD) {
             field_0xa3 = 1;
-            Z2GetSeqMgr()->setBattleLastHit(struct_80450869);
+            Z2GetSeqMgr()->setBattleLastHit(Z2Param::ENDING_BLOW_VOL_LOWER_TIME);
         }
         break;
     case Z2_ENEMY_MS:
@@ -649,7 +649,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCollisionSE(u32 param_0, u32 param_1) {
     switch (mEnemyID) {
     case Z2_ENEMY_WS:
         field_0xa3 = 1;
-        Z2GetSeqMgr()->setBattleLastHit(struct_80450869);
+        Z2GetSeqMgr()->setBattleLastHit(Z2Param::ENDING_BLOW_VOL_LOWER_TIME);
         return mSoundObjAnime.startCollisionSE(param_0, param_1, NULL);
     case Z2_ENEMY_BI:
         if (getSupervisor() != NULL) {
@@ -673,7 +673,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCollisionSE(u32 param_0, u32 param_1) {
         case 0x20:
         case 0x24:
             field_0xa3 = 1;
-            var1 = struct_80450869;
+            var1 = Z2Param::ENDING_BLOW_VOL_LOWER_TIME;
             if (param_0 == Z2SE_HIT_SWORD || param_0 == Z2SE_HIT_SWORD_STAB
                                           || param_0 == Z2SE_HIT_WOLFBITE) {
                 var1 = 0x14;
@@ -683,7 +683,7 @@ Z2SoundHandlePool* Z2CreatureEnemy::startCollisionSE(u32 param_0, u32 param_1) {
         case 0x21:
             if (mEnemyID == 0x2b) {
                 field_0xa3 = 1;
-                Z2GetSeqMgr()->setBattleLastHit(struct_80450869);
+                Z2GetSeqMgr()->setBattleLastHit(Z2Param::ENDING_BLOW_VOL_LOWER_TIME);
             } else if (mEnemyID == 0x16) {
                 Z2GetSeqMgr()->setBattleSeqState(2);
             }
@@ -1003,9 +1003,9 @@ Z2SoundHandlePool* Z2CreatureOI::startCreatureSoundLevel(JAISoundID i_soundID, u
         Z2SoundHandlePool* handle4 = field_0xe4.startLevelSound(i_soundID, param_1, param_2);
 
         f32 volume = Z2Calc::getParamByExp(param_1, 0.0f, 42.0f, 0.4f, 0.0f, 1.0f,
-                                           Z2Calc::CURVE_SIGN_1);
+                                           Z2Calc::CURVE_POSITIVE);
         f32 pitch = Z2Calc::getParamByExp(param_1, 0.0f, 42.0f, 0.4f, 0.9f, 1.1f,
-                                          Z2Calc::CURVE_SIGN_1);
+                                          Z2Calc::CURVE_POSITIVE);
         
         if (handle1 != NULL && *handle1 != NULL) {
             (*handle1)->getAuxiliary().moveVolume(volume, 0);
@@ -1055,9 +1055,9 @@ Z2SoundHandlePool* Z2CreatureOI::startTentacleSoundLevel(JAISoundID i_soundID, u
         mTentacleSounds[param_1].startLevelSound(i_soundID, param_3, param_4);
     if (handle != NULL && *handle) {
         f32 volume = Z2Calc::getParamByExp(param_2, 0.0f, 60.0f, 0.4f, 0.0f, 1.0f,
-                                           Z2Calc::CURVE_SIGN_1);
+                                           Z2Calc::CURVE_POSITIVE);
         f32 pitch = Z2Calc::getParamByExp(param_2, 0.0f, 60.0f, 0.4f, 0.9f, 1.1f,
-                                          Z2Calc::CURVE_SIGN_1);
+                                          Z2Calc::CURVE_POSITIVE);
         (*handle)->getAuxiliary().moveVolume(volume, 0);
         (*handle)->getAuxiliary().movePitch(pitch, 0);
         return handle;
@@ -1105,12 +1105,12 @@ static void Z2_B_zan_modPitch(Z2SoundHandlePool* i_handle, u32 param_1) {
             pitch = 0.5f;
         } else if (param_1 > 100) {
             pitch = Z2Calc::getParamByExp(400 - param_1, 0.0f, 300.0f, 0.4f, 0.5f, 1.0f,
-                                          Z2Calc::CURVE_SIGN_0);
+                                          Z2Calc::CURVE_NEGATIVE);
         } else {
             pitch = Z2Calc::getParamByExp(100 - param_1, 0.0f, 50.0f, 0.4f, 1.0f, 1.5f,
-                                          Z2Calc::CURVE_SIGN_0);
+                                          Z2Calc::CURVE_NEGATIVE);
             volume = Z2Calc::getParamByExp(param_1, 50.0f, 100.0f, 0.4f, 0.4f, 1.0f,
-                                           Z2Calc::CURVE_SIGN_0);
+                                           Z2Calc::CURVE_NEGATIVE);
         }
         (*i_handle)->getAuxiliary().movePitch(pitch, 0);
         (*i_handle)->getAuxiliary().moveVolume(volume, 0);

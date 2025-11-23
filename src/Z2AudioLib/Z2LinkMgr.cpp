@@ -320,16 +320,16 @@ JAISoundHandle* Z2CreatureLink::startLinkSoundLevel(JAISoundID i_soundID, u32 pa
             }
             break;
         case Z2SE_AL_SPINNER_RIDE:
-            var_f30 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 30.0f, 0.3f, 0.8f, 1.0f, Z2Calc::CURVE_SIGN_0);
+            var_f30 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 30.0f, 0.3f, 0.8f, 1.0f, Z2Calc::CURVE_NEGATIVE);
 
             if (mMoveSpeed == 0 && mMovingTime > 120) {
-                var_f31 = Z2Calc::getParamByExp(mMovingTime, 180.0f, 120.0f, 0.6f, 0.0f, 0.4f, Z2Calc::CURVE_SIGN_0);
+                var_f31 = Z2Calc::getParamByExp(mMovingTime, 180.0f, 120.0f, 0.6f, 0.0f, 0.4f, Z2Calc::CURVE_NEGATIVE);
             } else {
-                var_f31 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 30.0f, 0.6f, 0.4f, 1.0f, Z2Calc::CURVE_SIGN_0);
+                var_f31 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 30.0f, 0.6f, 0.4f, 1.0f, Z2Calc::CURVE_NEGATIVE);
             }
             break;
         case Z2SE_AL_SPINNER_RAIL:
-            var_f30 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 80.0f, 0.3f, 0.8f, 1.2f, Z2Calc::CURVE_SIGN_0);
+            var_f30 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 80.0f, 0.3f, 0.8f, 1.2f, Z2Calc::CURVE_NEGATIVE);
             break;
         case Z2SE_AL_SNOBO_RIDE:
         case Z2SE_AL_SNOBO_BREAK:
@@ -342,10 +342,10 @@ JAISoundHandle* Z2CreatureLink::startLinkSoundLevel(JAISoundID i_soundID, u32 pa
                 var_f31 = 0.0f;
                 var_r30 = 10;
             } else {
-                var_f31 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 80.0f, 0.25f, 0.4f, 1.0f, Z2Calc::CURVE_SIGN_0);
+                var_f31 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 80.0f, 0.25f, 0.4f, 1.0f, Z2Calc::CURVE_NEGATIVE);
             }
 
-            var_f30 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 80.0f, 0.3f, 0.5f, 1.1f, Z2Calc::CURVE_SIGN_0);
+            var_f30 = Z2Calc::getParamByExp(mMoveSpeed, 0.0f, 80.0f, 0.3f, 0.5f, 1.1f, Z2Calc::CURVE_NEGATIVE);
             break;
         case Z2SE_AL_LIGHTNING_SW_GLOW:
             f32 temp_f1_2 = (*temp_r3)->getAuxiliary().transition_.volume_.targetValue_;
@@ -807,20 +807,20 @@ Z2SoundHandlePool* Z2SoundObjCoach::startWheelSound(f32 param_0) {
             handle = startLevelSound(Z2SE_COACH_WHEEL_ROLL_A, 0, -1);
             if (handle != NULL && *handle) {
                 f32 pitch = Z2Calc::getParamByExp(param_0, 0.0f, 35.0f, 0.25f, 0.88f, 1.25f,
-                                                  Z2Calc::CURVE_SIGN_1);
+                                                  Z2Calc::CURVE_POSITIVE);
                 (*handle)->getAuxiliary().movePitch(pitch, 0);
                 f32 volume = Z2Calc::getParamByExp(param_0, 0.0f, 35.0f, 0.3f, 0.7f, 1.0f,
-                                                   Z2Calc::CURVE_SIGN_1);
+                                                   Z2Calc::CURVE_POSITIVE);
                 (*handle)->getAuxiliary().moveVolume(volume, 0);
             }
         } else {
             handle = startLevelSound(Z2SE_COACH_WHEEL_ROLL_B, 0, -1);
             if (handle != NULL && *handle) {
                 f32 pitch = Z2Calc::getParamByExp(param_0, 35.0f, 50.0f, 0.25f, 0.88f, 1.25f,
-                                                  Z2Calc::CURVE_SIGN_1);
+                                                  Z2Calc::CURVE_POSITIVE);
                 (*handle)->getAuxiliary().movePitch(pitch, 0);
                 f32 volume = Z2Calc::getParamByExp(param_0, 35.0f, 50.0f, 0.3f, 0.8f, 1.0f,
-                                                   Z2Calc::CURVE_SIGN_1);
+                                                   Z2Calc::CURVE_POSITIVE);
                 (*handle)->getAuxiliary().moveVolume(volume, 0);
             }
         }
@@ -836,10 +836,10 @@ Z2SoundHandlePool* Z2SoundObjCoach::startFireSound(u16 param_0) {
     
     if (handle != NULL && *handle) {
         f32 pitch = Z2Calc::getParamByExp(param_0, 0.0f, 1500.0f, 0.2f, 0.85f, 1.25f,
-                                          Z2Calc::CURVE_SIGN_1);
+                                          Z2Calc::CURVE_POSITIVE);
         (*handle)->getAuxiliary().movePitch(pitch, 0);
         f32 volume = Z2Calc::getParamByExp(param_0, 0.0f, 1500.0f, 0.2f, 0.6f, 1.0f,
-                                           Z2Calc::CURVE_SIGN_1);
+                                           Z2Calc::CURVE_POSITIVE);
         (*handle)->getAuxiliary().moveVolume(volume, 0);
     }
 
@@ -853,10 +853,10 @@ Z2SoundHandlePool* Z2SoundObjCoach::startSound(JAISoundID i_soundID, u32 param_1
 
     if (handle != NULL && *handle && i_soundID == Z2SE_COACH_SHAKE) {
         f32 pitch = Z2Calc::getParamByExp(field_0x20, 0.0f, 50.0f, 0.2f, 0.85f, 1.25f,
-                                          Z2Calc::CURVE_SIGN_1);
+                                          Z2Calc::CURVE_POSITIVE);
         (*handle)->getAuxiliary().movePitch(pitch, 0);
         f32 volume = Z2Calc::getParamByExp(field_0x20, 0.0f, 50.0f, 0.2f, 0.8f, 1.0f,
-                                           Z2Calc::CURVE_SIGN_1);
+                                           Z2Calc::CURVE_POSITIVE);
         (*handle)->getAuxiliary().moveVolume(volume, 0);
     }
 

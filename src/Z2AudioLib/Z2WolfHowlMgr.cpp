@@ -153,7 +153,7 @@ void Z2WolfHowlMgr::calcVolumeMod(f32 param_0) {
         } else {
             f32 dVar7 = 1.0f;
             if (mReleaseTimer != 0x0) {
-                dVar7 = getParamByExp(mReleaseTimer, 30.0f, 0.0f, 2.0f, 0.0f, 1.0f, Z2Calc::CURVE_SIGN_1);
+                dVar7 = getParamByExp(mReleaseTimer, 30.0f, 0.0f, 2.0f, 0.0f, 1.0f, Z2Calc::CURVE_POSITIVE);
             }
             field_0x18 = dVar7;
             if (field_0x00) {
@@ -184,7 +184,7 @@ void Z2WolfHowlMgr::calcPitchMod(f32 param_0, f32 param_1) {
     f32 dVar12 = 1.0f;
     field_0x20 = getNowPitch();
     if (mReleaseTimer != 0) {
-        f32 dVar11 = getParamByExp(mReleaseTimer, 30.0f, 0.0f, 1.0f, 0.97f, 1.0f, Z2Calc::CURVE_SIGN_0);
+        f32 dVar11 = getParamByExp(mReleaseTimer, 30.0f, 0.0f, 1.0f, 0.97f, 1.0f, Z2Calc::CURVE_NEGATIVE);
         dVar11 = field_0x24 * dVar11;
         if (field_0x00) {
             field_0x00->getAuxiliary().movePitch(dVar11, 0);
@@ -480,7 +480,7 @@ void Z2WolfHowlMgr::startWindStoneSound(s8 param_0, Vec* param_1) {
                 dVar13 = 0.0f;
             } else if (fVar14 < 2000.0f) {
                 dVar13 = Z2Calc::getParamByExp(fVar14, 150.0f, 2000.0f, 
-                    0.45f, 0.05f, dVar13, Z2Calc::CURVE_SIGN_0);
+                    0.45f, 0.05f, dVar13, Z2Calc::CURVE_NEGATIVE);
             }
             Z2GetSeqMgr()->setWindStoneVol(dVar13, 0);
             field_0x04->getAuxiliary().moveVolume(0.4f, 0);

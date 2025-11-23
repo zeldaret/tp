@@ -101,7 +101,7 @@ void Z2Audible::setOuterParams(JASSoundParams const& param_0, JASSoundParams con
     f32 dVar12 = Z2Calc::linearTransform(iStack_94, 0.0f, 15.0f, 1.0f, 0.3f, true);
     if (param_1.mVolume > dVar12 && dVar9 > 0.001f) {
         dVar10 = Z2Calc::getParamByExp(dVar9, 0.3f, 0.001f, 0.1f, dVar12, 1.0f,
-                                       Z2Calc::CURVE_SIGN_1);
+                                       Z2Calc::CURVE_POSITIVE);
         if (dVar10 < 0.0f) {
             dVar10 = 0.0f;
         }
@@ -109,9 +109,9 @@ void Z2Audible::setOuterParams(JASSoundParams const& param_0, JASSoundParams con
     f32 dVar15 = dVar10 - this_01->field_0x28;
     f32 dVar11 = 1.0f;
     if (dVar15 > 0.0f) {
-        dVar11 = Z2Calc::getParamByExp(J3DUD::JMAAbs(dVar15), 1.0f, 0.0f, 0.1f, 0.1f, 0.5f, Z2Calc::CURVE_SIGN_1);
+        dVar11 = Z2Calc::getParamByExp(J3DUD::JMAAbs(dVar15), 1.0f, 0.0f, 0.1f, 0.1f, 0.5f, Z2Calc::CURVE_POSITIVE);
     } else {
-        dVar11 = Z2Calc::getParamByExp(J3DUD::JMAAbs(dVar15), -1.0f, 0.0f, 0.1f, 1.0f / 30.0f, 0.5f, Z2Calc::CURVE_SIGN_1);
+        dVar11 = Z2Calc::getParamByExp(J3DUD::JMAAbs(dVar15), -1.0f, 0.0f, 0.1f, 1.0f / 30.0f, 0.5f, Z2Calc::CURVE_POSITIVE);
     }
     dVar10 = this_01->field_0x28 + (dVar15 * dVar11);
     if (dVar10 < 0.0f) {
@@ -122,10 +122,10 @@ void Z2Audible::setOuterParams(JASSoundParams const& param_0, JASSoundParams con
     local_b0.mVolume = param_1.mVolume * dVar10;
     this_01->field_0x28 = dVar10;
     f32 dVar13 = Z2Calc::getParamByExp(local_b0.mVolume * J3DUD::JMAAbs(local_b8.x), 1.0f, 0.0f, 0.1f,
-        1.0f / 30.0f, 1.0 / 3.0f, Z2Calc::CURVE_SIGN_1);
+        1.0f / 30.0f, 1.0 / 3.0f, Z2Calc::CURVE_POSITIVE);
     f32 dVar14 = Z2Calc::getParamByExp(local_b0.mVolume * J3DUD::JMAAbs(local_b8.y), 1.0f,
         0.0f, 0.1f,
-        1.0f / 30.0f, 1.0f / 3.0f, Z2Calc::CURVE_SIGN_1);
+        1.0f / 30.0f, 1.0f / 3.0f, Z2Calc::CURVE_POSITIVE);
     if (dVar13 > 1.0f / 3.0f) {
         dVar13 = 1.0f / 3.0f;
     }
@@ -721,11 +721,11 @@ f32 Z2Audience::calcRelPosPan(Vec const& param_0, int param_1) {
         if (dVar6 < 0.5f) {
             dVar6 = Z2Calc::getParamByExp(
                 dVar6, 0.0f, 0.5f,
-                dVar7, 0.0f, 0.5f, Z2Calc::CURVE_SIGN_1);
+                dVar7, 0.0f, 0.5f, Z2Calc::CURVE_POSITIVE);
         } else {
             dVar6 = Z2Calc::getParamByExp(
                 dVar6, 0.5f, 1.0f,
-                dVar7, 0.5f, 1.0f, Z2Calc::CURVE_SIGN_0);
+                dVar7, 0.5f, 1.0f, Z2Calc::CURVE_NEGATIVE);
         }
     }
     if (dVar6 > 1.0f) {
@@ -751,12 +751,12 @@ f32 Z2Audience::calcRelPosDolby(Vec const& param_0, int param_1) {
         return Z2Calc::getParamByExp(
             fVar1, mSetting.field_0x44, 0.0f,
             0.3f, 0.0f,
-            mSetting.field_0x4c, Z2Calc::CURVE_SIGN_1);
+            mSetting.field_0x4c, Z2Calc::CURVE_POSITIVE);
     }
     return Z2Calc::getParamByExp(
         fVar1, 0.0f, mSetting.field_0x48,
         0.3f, mSetting.field_0x4c,
-        1.0f, Z2Calc::CURVE_SIGN_0);
+        1.0f, Z2Calc::CURVE_NEGATIVE);
 }
 
 /* 802BDBDC-802BDC44 2B851C 0068+00 1/1 0/0 0/0 .text            calcVolume___10Z2AudienceCFfi */

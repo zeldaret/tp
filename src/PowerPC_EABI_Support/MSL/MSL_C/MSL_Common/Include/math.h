@@ -34,6 +34,10 @@ double cos(double);
 float cosf(float);
 double exp(double);
 
+inline float expf(float x) {
+    return exp(x);
+}
+
 extern double __frsqrte(double);
 extern float __fres(float);
 

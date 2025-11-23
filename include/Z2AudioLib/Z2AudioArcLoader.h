@@ -8,9 +8,9 @@ public:
     Z2AudioArcLoader(JAUSection*);
     virtual ~Z2AudioArcLoader() {}
 
-    virtual bool readCommandMore(u32);
-    void readBFCA(const void*);
-    virtual void readBSTN(const void*, u32);
+    virtual bool readCommandMore(u32 command);
+    void readBFCA(const void* addr);
+    virtual void readBSTN(const void* addr, u32);
 };
 
 #endif /* Z2AUDIOARCLOADER_H */

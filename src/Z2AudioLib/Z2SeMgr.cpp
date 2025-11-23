@@ -197,7 +197,7 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
             return false;
         }
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 100.0f, 0.2f, 0.0f, 1.0f,
-                                         Z2Calc::CURVE_SIGN_0);
+                                         Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_MAGIC_METER_DEC:
         if (mSoundHandles.getHandleSoundID(Z2SE_MAGIC_METER_DEC) != NULL
@@ -262,23 +262,23 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
     }
     case Z2SE_OBJ_CHANDLV5_SWING:
         i_volume = Z2Calc::getParamByExp(param_2, 35.0f, 261.0f, 0.4f, 0.05f, 1.0f,
-                                         Z2Calc::CURVE_SIGN_2);
+                                         Z2Calc::CURVE_LINEAR);
         break;
     case Z2SE_OBJ_IRONBALL_HIT:
         if (param_2 > 150) {
             i_volume = 1.4f;
         } else {
             i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 47.0f, 0.4f, 0.5f, 0.9f,
-                                             Z2Calc::CURVE_SIGN_2);
+                                             Z2Calc::CURVE_LINEAR);
         }
         break;
     case Z2SE_OBJ_IRONBALL_HIT_SNOW:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 41.0f, 0.4f, 0.3f, 1.0f,
-                                         Z2Calc::CURVE_SIGN_2);
+                                         Z2Calc::CURVE_LINEAR);
         break;
     case Z2SE_OBJ_IRONBALL_HIT_ICE:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 41.0f, 0.4f, 0.3f, 1.0f,
-                                         Z2Calc::CURVE_SIGN_2);
+                                         Z2Calc::CURVE_LINEAR);
         break;
     case Z2SE_OBJ_L8_B_FOG_FLY: {
         Vec tmp = Z2GetAudience()->getAudioCamPos(0);
@@ -297,21 +297,21 @@ bool Z2SeMgr::seStart(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, s8 i_
         break;
     case Z2SE_OBJ_AMATA_ACTION:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 400.0f, 0.4f, 0.5f, 1.0f,
-                                         Z2Calc::CURVE_SIGN_0);
+                                         Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 400.0f, 0.4f, 0.8f, 1.1f,
-                                        Z2Calc::CURVE_SIGN_0);
+                                        Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_TOY_BONE_BOUND:
         i_volume = Z2Calc::getParamByExp(param_2, 15.0f, 60.0f, 0.4f, 0.0f, 1.0f,
-                                         Z2Calc::CURVE_SIGN_1);
+                                         Z2Calc::CURVE_POSITIVE);
         break;
     case Z2SE_FN_ROPE_CREAK_ADD:
         param_2 = Z2Calc::getParamByExp(param_2, 0.0f, 127.0f, 0.2f, 0.0f, 127.0f,
-                                        Z2Calc::CURVE_SIGN_0);
+                                        Z2Calc::CURVE_NEGATIVE);
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 127.0f, 0.2f, 0.2f, 1.0f,
-                                         Z2Calc::CURVE_SIGN_0);
+                                         Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 127.0f, 0.0f, 0.2f, 0.8f, 1.2f,
-                                        Z2Calc::CURVE_SIGN_1);
+                                        Z2Calc::CURVE_POSITIVE);
         break;
     case Z2SE_OBJ_DARK_GATE_RIPPLE:
         if (Z2GetSceneMgr()->getCurrentSceneNum() == 3) {
@@ -369,25 +369,25 @@ bool Z2SeMgr::seStartLevel(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, 
     switch (i_soundID) {
     case Z2SE_OBJ_FLAG_TRAILING:
         i_volume = Z2Calc::getParamByExp(param_2, 25.0f, 127.0f, 0.4f, 0.1f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 25.0f, 127.0f, 0.4f, 0.7f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_BRIDGE_TRAILING:
     case Z2SE_OBJ_BROKENBRIDGE:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 127.0f, 0.4f, 0.1f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 127.0f, 0.4f, 0.7f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_BOOMSHTR_SWITCH:
         if (param_2 < 10) {
             param_2 = 10;
         }
         i_volume = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.0f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_1);
+                                       Z2Calc::CURVE_POSITIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.7f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_1);
+                                      Z2Calc::CURVE_POSITIVE);
         break;
     case Z2SE_OBJ_FAN_WIND_S:
         modHeightAtCamera(&i_pos);
@@ -399,37 +399,37 @@ bool Z2SeMgr::seStartLevel(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, 
             param_2 = 10;
         }
         i_volume = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.0f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_1);
+                                       Z2Calc::CURVE_POSITIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.7f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_1);
+                                      Z2Calc::CURVE_POSITIVE);
         break;
     case Z2SE_OBJ_AMI_ROLL:
         if (param_2 < 10) {
             param_2 = 10;
         }
         i_volume = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.0f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_1);
+                                       Z2Calc::CURVE_POSITIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.7f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_1);
+                                      Z2Calc::CURVE_POSITIVE);
         break;
     case Z2SE_OBJ_BRDG_MOVE:
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 127.0f, 2.0f, 0.7f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_1);
+                                      Z2Calc::CURVE_POSITIVE);
         break;
     case Z2SE_ENV_WIND_SARUDAN:
         i_volume = Z2Calc::getParamByExp(param_2, 25.0f, 127.0f, 0.4f, 0.4f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 25.0f, 127.0f, 0.4f, 0.8f, 1.0f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_CHANDLV9_SWING:
         if (param_2 < 10) {
             param_2 = 10;
         }
         i_volume = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.0f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_1);
+                                       Z2Calc::CURVE_POSITIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 10.0f, 127.0f, 2.0f, 0.7f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_1);
+                                      Z2Calc::CURVE_POSITIVE);
         break;
     case Z2SE_OBJ_BOMB_HOUSE_BURN:
         if (param_2 > 300) {
@@ -479,70 +479,70 @@ bool Z2SeMgr::seStartLevel(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, 
         break;
     case Z2SE_OBJ_SPNR_GEAR_S:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 4000.0f, 0.4f, 0.3f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 4000.0f, 0.4f, 0.7f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_SPNR_GEAR_L:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 3500.0f, 0.4f, 0.3f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 3500.0f, 0.4f, 0.7f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_TOGE_SPIN:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 26.0f, 0.4f, 0.6f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 26.0f, 0.4f, 0.8f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_STN_WL_RL:
     case Z2SE_OBJ_STN_WL_RL_OP:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 64.0f, 0.4f, 0.3f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 64.0f, 0.4f, 0.6f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_SPNR_SW_RL:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 4500.0f, 0.4f, 0.6f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 4500.0f, 0.4f, 0.7f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_TOGE_ROLL_MV:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 40.0f, 0.4f, 0.0f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 40.0f, 0.4f, 0.8f, 1.2f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_L8_L_TORCH_SW:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 120.0f, 0.4f, 0.0f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 120.0f, 0.4f, 0.9f, 1.0f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_L8_B_FOG_STAY:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 100.0f, 0.4f, 0.0f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_L8_B_FALL_S:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 100.0f, 0.4f, 0.0f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_L8_B_FALL_L:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 100.0f, 0.4f, 0.0f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_L8_L_LIFT_MV:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 5.0f, 0.4f, 0.5f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 5.0f, 0.4f, 0.7f, 1.0f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_AMATA_CRK:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 400.0f, 0.4f, 0.5f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         i_pitch = Z2Calc::getParamByExp(param_2, 0.0f, 400.0f, 0.4f, 0.8f, 1.1f,
-                                      Z2Calc::CURVE_SIGN_0);
+                                      Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_OBJ_HYRULE_BARRIER:
         if (Z2GetSceneMgr()->getCurrentSceneNum() != 0x16) {
@@ -559,14 +559,14 @@ bool Z2SeMgr::seStartLevel(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, 
                 gate_volume = 0.0f;
             } else if (dist < 4000.0f) {
                 gate_volume = Z2Calc::getParamByExp(dist, 2000.0f, 5000.0f, 0.45f, 0.0f, 1.0f,
-                                                    Z2Calc::CURVE_SIGN_0);
+                                                    Z2Calc::CURVE_NEGATIVE);
             }
             Z2GetSeqMgr()->setTwilightGateVol(gate_volume);
         }
         break;
     case Z2SE_OBJ_HASU_WTR:
         i_volume = Z2Calc::getParamByExp(param_2, 0.0f, 50.0f, 0.4f, 0.5f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         break;
     case Z2SE_ENV_PEOPLE_CROWD: {
         f32 scale = 1.0f;
@@ -625,7 +625,7 @@ bool Z2SeMgr::seStartLevel(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, 
             break;
         }
         i_volume = Z2Calc::getParamByExp(mCrowdSize * scale, 5.0f, 90.0f, 0.2f, 0.0f, 1.0f,
-                                       Z2Calc::CURVE_SIGN_0);
+                                       Z2Calc::CURVE_NEGATIVE);
         break;
     }
     case Z2SE_AL_COPYROD_WAIT:

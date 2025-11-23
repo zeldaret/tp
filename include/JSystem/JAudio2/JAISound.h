@@ -259,14 +259,14 @@ public:
     virtual bool JAISound_tryDie_() = 0;
 
     JAISoundID getID() const { return soundID_; }
-    u8 getAnimationState() const { return status_.state.flags.animationState; }
+    u32 getAnimationState() const { return status_.state.flags.animationState; }
     bool isAnimated() const { return getAnimationState() != 0; }
-    void setAnimationState(u8 state) {
+    void setAnimationState(u32 state) {
         status_.state.flags.animationState = state;
     }
     u32 getUserData() const { return status_.userdata_; }
     void setUserData(u32 userData) { status_.userdata_ = userData; }
-    JAIAudible* getAudible() const { return audible_; }
+    JAIAudible* getAudible() { return audible_; }
     bool isHandleAttached() const { return handle_ != NULL; }
     bool hasLifeTime() const { return status_.field_0x1.flags.flag2; }
 

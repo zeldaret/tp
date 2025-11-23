@@ -222,12 +222,12 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
             }
         }
         if (spot == ARRAY_SIZE(sSpotName)) {
-            spot = SPOT_NONE;
+            spot = Z2SCENE_NONE;
         }
     }
 
     switch (spot) {
-    case SPOT_ENEMY_TEST:
+    case Z2SCENE_ENEMY_TEST:
         bgm_wave2 = 2;
         if (room < 30) {
             se_wave1 = 0x8a;
@@ -236,7 +236,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_ORDON_RANCH:
+    case Z2SCENE_ORDON_RANCH:
         if (layer == 1) {
             if (dComIfGs_isSaveSwitch(0x67)) {
                 bgm_id = Z2BGM_TOAL_NIGHT;
@@ -257,7 +257,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         field_0x1b = true;
         break;
 
-    case SPOT_ORDON_VILLAGE:
+    case Z2SCENE_ORDON_VILLAGE:
         field_0x1b = true;
         se_wave1 = 0x26;
         if (room == 0) {
@@ -338,7 +338,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_ORDON_INTERIOR:
+    case Z2SCENE_ORDON_INTERIOR:
         se_wave1 = 0x26;
         switch (room) {
         case 0:
@@ -419,7 +419,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         field_0x1b = true;
         break;
 
-    case SPOT_ORDON_SPRING:
+    case Z2SCENE_ORDON_SPRING:
         se_wave1 = 0x26;
         se_wave2 = 0x2d;
         switch (layer) {
@@ -471,7 +471,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_TWILIGHT_HYRULE_CASTLE:
+    case Z2SCENE_TWILIGHT_HYRULE_CASTLE:
         se_wave1 = 0x2e;
         if (inDarkness) {
             se_wave2 = 0x30;
@@ -508,7 +508,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_CASTLE_THRONE_ROOM:
+    case Z2SCENE_CASTLE_THRONE_ROOM:
         if (layer == 8) {
             demo_wave = 0x68;
         } else if (layer == 9) {
@@ -516,7 +516,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_CORO_SHOP:
+    case Z2SCENE_CORO_SHOP:
         se_wave1 = 0x31;
         if (inDarkness) {
             bgm_id = Z2BGM_TWILIGHT;
@@ -537,7 +537,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_FARON_WOODS:
+    case Z2SCENE_FARON_WOODS:
         se_wave1 = 0x31;
         if (layer == 11) {
             demo_wave = 0x6c;
@@ -595,7 +595,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_KAKARIKO_VILLAGE:
+    case Z2SCENE_KAKARIKO_VILLAGE:
         se_wave1 = 0x34;
         if (layer == 8) {
             demo_wave = 0x6e;
@@ -657,7 +657,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_KAKARIKO_INTERIOR:
+    case Z2SCENE_KAKARIKO_INTERIOR:
         se_wave1 = 0x34;
         if (inDarkness) {
             se_wave2 = 0x36;
@@ -724,7 +724,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_SANCTUARY_BASEMENT:
+    case Z2SCENE_SANCTUARY_BASEMENT:
         se_wave1 = 0x34;
         if (inDarkness) {
             bgm_id = Z2BGM_TWILIGHT;
@@ -738,7 +738,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_KAKARIKO_GRAVEYARD:
+    case Z2SCENE_KAKARIKO_GRAVEYARD:
         se_wave1 = 0x34;
         if (inDarkness) {
             bgm_id = Z2BGM_TWILIGHT;
@@ -759,7 +759,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_DEATH_MOUNTAIN:
+    case Z2SCENE_DEATH_MOUNTAIN:
         se_wave1 = 0x34;
         if (layer == 8) {
             demo_wave = 0x7f;
@@ -780,7 +780,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_HIDDEN_VILLAGE:
+    case Z2SCENE_HIDDEN_VILLAGE:
         if (layer == 0) {
             Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
             if (dComIfGs_isSwitch(0x2e, 0) && !dComIfGs_isSwitch(0x11, 0)) {
@@ -795,7 +795,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         se_wave2 = 0x4f;
         break;
 
-    case SPOT_IMPAZ_HOUSE:
+    case Z2SCENE_IMPAZ_HOUSE:
         bgm_id = Z2BGM_INDOOR;
         bgm_wave1 = 8;
         se_wave1 = 0x34;
@@ -803,7 +803,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         field_0x1b = true;
         break;
 
-    case SPOT_SUMO_HALL:
+    case Z2SCENE_SUMO_HALL:
         if (layer == 8) {
             demo_wave = 0x7f;
             se_wave1 = 0;
@@ -817,7 +817,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_LAKE_HYLIA:
+    case Z2SCENE_LAKE_HYLIA:
         se_wave1 = 0x3b;
         if (layer == 8) {
             demo_wave = 0x72;
@@ -852,7 +852,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_UPPER_ZORAS_RIVER:
+    case Z2SCENE_UPPER_ZORAS_RIVER:
         se_wave1 = 0x55;
         if (layer == 8) {
             demo_wave = 0x7f;
@@ -869,7 +869,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_FISHING_POND:
+    case Z2SCENE_FISHING_POND:
         if (layer == 8) {
             demo_wave = 0x7f;
             se_wave1 = 0;
@@ -884,7 +884,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_HENA_CABIN:
+    case Z2SCENE_HENA_CABIN:
         se_wave1 = 0x3b;
         bgm_id = Z2BGM_INDOOR;
         bgm_wave1 = 8;
@@ -892,7 +892,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         se_wave2 = 0x3e;
         break;
 
-    case SPOT_ZORAS_RIVER:
+    case Z2SCENE_ZORAS_RIVER:
         se_wave1 = 0x55;
         if (inDarkness) {
             bgm_id = Z2BGM_CARGO_GAME_TW;
@@ -913,7 +913,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_ZORAS_DOMAIN:
+    case Z2SCENE_ZORAS_DOMAIN:
         se_wave1 = 0x3b;
         if (layer == 8 || layer == 9) {
             demo_wave = 0x82;
@@ -935,7 +935,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_CASTLE_TOWN:
+    case Z2SCENE_CASTLE_TOWN:
         se_wave1 = 0x42;
         if (layer == 8) {
             demo_wave = 0x68;
@@ -963,7 +963,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_CASTLE_TOWN_INTERIOR:
+    case Z2SCENE_CASTLE_TOWN_INTERIOR:
         if (room == 6) {
             se_wave1 = 0x2e;
             se_wave2 = 0x2f;
@@ -991,7 +991,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_CASTLE_TOWN_SHOPS:
+    case Z2SCENE_CASTLE_TOWN_SHOPS:
         se_wave1 = 0x42;
         se_wave2 = 0x5b;
         switch (room) {
@@ -1029,7 +1029,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_STAR_TENT:
+    case Z2SCENE_STAR_TENT:
         se_wave1 = 0x42;
         se_wave2 = 0x87;
             /* dSv_event_flag_c::F_289 - Castle Town - Heard conversation about entering Star Game 1 */
@@ -1039,7 +1039,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         bgm_wave1 = 0x46;
         break;
 
-    case SPOT_SACRED_GROVE:
+    case Z2SCENE_SACRED_GROVE:
         se_wave1 = 0x31;
         bgm_wave2 = 0x1b;
         se_wave2 = 0x45;
@@ -1068,7 +1068,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_SNOWPEAK:
+    case Z2SCENE_SNOWPEAK:
         if (layer == 8) {
             se_wave1 = 0;
             se_wave2 = 0;
@@ -1083,7 +1083,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         height_vol_mod = true;
         break;
 
-    case SPOT_GERUDO_DESERT:
+    case Z2SCENE_GERUDO_DESERT:
         se_wave1 = 0x48;
         se_wave2 = 0x49;
         if (layer == 8 || layer == 9 || layer == 10) {
@@ -1098,7 +1098,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_ARBITERS_GROUNDS_EXTERIOR:
+    case Z2SCENE_ARBITERS_GROUNDS_EXTERIOR:
         if (room == 1) {
             Z2GetSoundObjMgr()->setForceBattleArea(true, 1000, 2000, 9000);
             bgm_wave1 = 0x3d;
@@ -1108,7 +1108,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         se_wave2 = 0x49;
         break;
 
-    case SPOT_MIRROR_CHAMBER:
+    case Z2SCENE_MIRROR_CHAMBER:
         switch (layer) {
         case 7:
         case 8:
@@ -1133,7 +1133,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         se_wave2 = 0x49;
         break;
 
-    case SPOT_HYRULE_FIELD:
+    case Z2SCENE_HYRULE_FIELD:
         se_wave1 = 0x4a;
         if (room == 10 && layer == 11) {
             demo_wave = 0x74;
@@ -1222,7 +1222,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_CASTLE_TOWN_GATES:
+    case Z2SCENE_CASTLE_TOWN_GATES:
         se_wave1 = 0x4a;
         if (layer == 8) {
             demo_wave = 0x73;
@@ -1259,7 +1259,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_HYLIA_BRIDGE_BATTLE:
+    case Z2SCENE_HYLIA_BRIDGE_BATTLE:
         se_wave1 = 0x54;
         bgm_wave1 = 0x3d;
         se_wave2 = 0x4e;
@@ -1268,7 +1268,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_ELDIN_BRIDGE_BATTLE:
+    case Z2SCENE_ELDIN_BRIDGE_BATTLE:
         se_wave1 = 0x4a;
         if (layer == 11) {
             se_wave1 = 0;
@@ -1288,7 +1288,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_SHADES_REALM:
+    case Z2SCENE_SHADES_REALM:
         se_wave1 = 0x4a;
         if (dComIfGs_getStartPoint() == 2) {
             bgm_wave2 = 0x50;
@@ -1310,7 +1310,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_FOREST_TEMPLE:
+    case Z2SCENE_FOREST_TEMPLE:
         bgm_id = Z2BGM_DUNGEON_FOREST;
         bgm_wave1 = 0xa;
         bgm_wave2 = 0x40;
@@ -1319,7 +1319,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSeqMgr()->changeBgmStatus(room);
         break;
 
-    case SPOT_FOREST_TEMPLE_MINIBOSS:
+    case Z2SCENE_FOREST_TEMPLE_MINIBOSS:
         bgm_id = Z2BGM_DUNGEON_FOREST;
         bgm_wave1 = 0xa;
         bgm_wave2 = 0xb;
@@ -1327,10 +1327,10 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         se_wave2 = 3;
         field_0x1b = true;
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
-        Z2GetSeqMgr()->unMuteSceneBgm(struct_80450860);
+        Z2GetSeqMgr()->unMuteSceneBgm(Z2Param::SCENE_CHANGE_BGM_FADEOUT_TIME);
         break;
 
-    case SPOT_FOREST_TEMPLE_BOSS:
+    case Z2SCENE_FOREST_TEMPLE_BOSS:
         se_wave1 = 1;
         if (dComIfGs_isStageSwitch(2, 1)) {
             bgm_id = Z2BGM_DUNGEON_FOREST;
@@ -1344,10 +1344,10 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
             field_0x1b = true;
             Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         }
-        Z2GetSeqMgr()->unMuteSceneBgm(struct_80450860);
+        Z2GetSeqMgr()->unMuteSceneBgm(Z2Param::SCENE_CHANGE_BGM_FADEOUT_TIME);
         break;
 
-    case SPOT_GORON_MINES:
+    case Z2SCENE_GORON_MINES:
         bgm_id = Z2BGM_DUNGEON_LV2;
         bgm_wave1 = 0x13;
         bgm_wave2 = 0x3c;
@@ -1356,7 +1356,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         se_wave2 = 6;
         break;
 
-    case SPOT_GORON_MINES_MINIBOSS:
+    case Z2SCENE_GORON_MINES_MINIBOSS:
         bgm_id = Z2BGM_DUNGEON_LV2;
         bgm_wave1 = 0x13;
         se_wave1 = 5;
@@ -1366,7 +1366,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_GORON_MINES_BOSS:
+    case Z2SCENE_GORON_MINES_BOSS:
         se_wave1 = 5;
         if (dComIfGs_isStageSwitch(3, 0x7c)) {
             bgm_id = Z2BGM_DUNGEON_LV2;
@@ -1382,7 +1382,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_LAKEBED_TEMPLE:
+    case Z2SCENE_LAKEBED_TEMPLE:
         bgm_id = Z2BGM_DUNGEON_LV3;
         bgm_wave1 = 0x15;
         bgm_wave2 = 0x40;
@@ -1390,7 +1390,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         se_wave2 = 0xa;
         break;
 
-    case SPOT_LAKEBED_TEMPLE_MINIBOSS:
+    case Z2SCENE_LAKEBED_TEMPLE_MINIBOSS:
         bgm_id = Z2BGM_DUNGEON_LV3;
         bgm_wave1 = 0x15;
         bgm_wave2 = 0x17;
@@ -1400,7 +1400,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_LAKEBED_TEMPLE_BOSS:
+    case Z2SCENE_LAKEBED_TEMPLE_BOSS:
         se_wave1 = 9;
         if (dComIfGs_isStageSwitch(4, 0xe)) {
             bgm_id = Z2BGM_DUNGEON_LV3;
@@ -1416,7 +1416,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_ARBITERS_GROUNDS:
+    case Z2SCENE_ARBITERS_GROUNDS:
         bgm_id = Z2BGM_DUNGEON_LV4;
         bgm_wave1 = 0x1a;
         bgm_wave2 = 0x41;
@@ -1427,7 +1427,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_ARBITERS_GROUNDS_MINIBOSS:
+    case Z2SCENE_ARBITERS_GROUNDS_MINIBOSS:
         bgm_id = Z2BGM_DUNGEON_LV4;
         bgm_wave1 = 0x1a;
         bgm_wave2 = 0x22;
@@ -1437,7 +1437,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_ARBITERS_GROUNDS_BOSS:
+    case Z2SCENE_ARBITERS_GROUNDS_BOSS:
         se_wave1 = 0xd;
         if (dComIfGs_isStageSwitch(0xa, 0xa)) {
             bgm_id = Z2BGM_DUNGEON_LV4;
@@ -1453,7 +1453,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_SNOWPEAK_RUINS:
+    case Z2SCENE_SNOWPEAK_RUINS:
         bgm_id = Z2BGM_DUNGEON_LV5;
         bgm_wave1 = 0x1d;
         bgm_wave2 = 0x40;
@@ -1462,7 +1462,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSeqMgr()->changeBgmStatus(room);
         break;
 
-    case SPOT_SNOWPEAK_RUINS_MINIBOSS:
+    case Z2SCENE_SNOWPEAK_RUINS_MINIBOSS:
         bgm_id = Z2BGM_DUNGEON_LV5;
         bgm_wave1 = 0x1d;
         bgm_wave2 = 0x38;
@@ -1473,7 +1473,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSeqMgr()->changeBgmStatus(room);
         break;
 
-    case SPOT_SNOWPEAK_RUINS_BOSS:
+    case Z2SCENE_SNOWPEAK_RUINS_BOSS:
         Z2GetSeqMgr()->unMuteSceneBgm(60);
         se_wave1 = 0x11;
         if (dComIfGs_isStageSwitch(8, 0x19)) {
@@ -1490,7 +1490,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_TEMPLE_OF_TIME:
+    case Z2SCENE_TEMPLE_OF_TIME:
         bgm_id = Z2BGM_DUNGEON_LV6;
         bgm_wave1 = 0x26;
         bgm_wave2 = 0x40;
@@ -1498,7 +1498,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         se_wave2 = 0x16;
         break;
 
-    case SPOT_TEMPLE_OF_TIME_MINIBOSS:
+    case Z2SCENE_TEMPLE_OF_TIME_MINIBOSS:
         bgm_id = Z2BGM_DUNGEON_LV6;
         bgm_wave1 = 0x26;
         bgm_wave2 = 0x3f;
@@ -1508,7 +1508,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_TEMPLE_OF_TIME_BOSS:
+    case Z2SCENE_TEMPLE_OF_TIME_BOSS:
         se_wave1 = 0x15;
         if (dComIfGs_isStageSwitch(7, 0x18)) {
             bgm_id = Z2BGM_DUNGEON_LV6;
@@ -1524,7 +1524,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_CITY_IN_THE_SKY:
+    case Z2SCENE_CITY_IN_THE_SKY:
         if (room == 16) {
             bgm_id = Z2BGM_OBACHAN;
             bgm_wave1 = 0x40;
@@ -1536,7 +1536,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         se_wave2 = 0x1a;
         break;
 
-    case SPOT_CITY_IN_THE_SKY_MINIBOSS:
+    case Z2SCENE_CITY_IN_THE_SKY_MINIBOSS:
         bgm_id = Z2BGM_DUNGEON_LV7;
         bgm_wave1 = 0x27;
         bgm_wave2 = 0x43;
@@ -1546,7 +1546,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_CITY_IN_THE_SKY_BOSS:
+    case Z2SCENE_CITY_IN_THE_SKY_BOSS:
         se_wave1 = 0x19;
         if (dComIfGs_isStageSwitch(0x16, 0x25)) {
             bgm_id = Z2BGM_DUNGEON_LV7;
@@ -1562,7 +1562,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_PALACE_OF_TWILIGHT:
+    case Z2SCENE_PALACE_OF_TWILIGHT:
         if (layer == 8) {
             if (room == 0 || room == 9) {
                 demo_wave = 0x77;
@@ -1581,8 +1581,8 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         se_wave2 = 0x1e;
         break;
 
-    case SPOT_PALACE_OF_TWILIGHT_MINIBOSS_A:
-    case SPOT_PALACE_OF_TWILIGHT_MINIBOSS_B:
+    case Z2SCENE_PALACE_OF_TWILIGHT_MINIBOSS_A:
+    case Z2SCENE_PALACE_OF_TWILIGHT_MINIBOSS_B:
         bgm_id = Z2BGM_DUNGEON_LV8;
         bgm_wave1 = 0x28;
         bgm_wave2 = 0x48;
@@ -1592,7 +1592,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_PALACE_OF_TWILIGHT_THRONE_ROOM:
+    case Z2SCENE_PALACE_OF_TWILIGHT_THRONE_ROOM:
         if (layer == 8) {
             demo_wave = 0x81;
         } else if (layer == 9) {
@@ -1613,7 +1613,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_PALACE_OF_TWILIGHT_BOSS:
+    case Z2SCENE_PALACE_OF_TWILIGHT_BOSS:
         se_wave1 = 0x1d;
         bgm_wave1 = 0x39;
         se_wave2 = 0x20;
@@ -1624,7 +1624,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_HYRULE_CASTLE:
+    case Z2SCENE_HYRULE_CASTLE:
         if (room >= 1 && room <= 6) {
             bgm_id = 0x2000040;
             bgm_wave2 = 0x58;
@@ -1642,7 +1642,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_FINAL_BATTLE_THRONE_ROOM:
+    case Z2SCENE_FINAL_BATTLE_THRONE_ROOM:
         if (room == 50) {
             if (layer == 8) {
                 demo_wave = 0x7b;
@@ -1663,7 +1663,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_FINAL_BATTLE_FIELD:
+    case Z2SCENE_FINAL_BATTLE_FIELD:
         bgm_wave1 = 0x4b;
         se_wave2 = 0x63;
         se_wave1 = 0x8c;
@@ -1671,7 +1671,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         Z2GetSoundObjMgr()->setForceBattleArea(true, 700, 1100, 1500);
         break;
 
-    case SPOT_FINAL_BATTLE_CUTSCENE:
+    case Z2SCENE_FINAL_BATTLE_CUTSCENE:
         if (layer == 8) {
             demo_wave = 0x7c;
             fVar1 = 0.1f;
@@ -1685,11 +1685,11 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_LIGHT_SPIRIT_CHAMBER:
+    case Z2SCENE_LIGHT_SPIRIT_CHAMBER:
         demo_wave = 0x7c;
         break;
 
-    case SPOT_CAVE_OF_ORDEALS:
+    case Z2SCENE_CAVE_OF_ORDEALS:
         se_wave2 = 0x51;
         if (room != 49 || layer < 5 || layer > 8) {
             bgm_id = Z2BGM_SUB_DUNGEON;
@@ -1697,38 +1697,38 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         }
         break;
 
-    case SPOT_ICE_BLOCK_PUZZLE:
+    case Z2SCENE_ICE_BLOCK_PUZZLE:
         se_wave1 = 0x11;
         se_wave2 = 0x12;
         bgm_id = Z2BGM_SUB_DUNGEON;
         bgm_wave1 = 0x45;
         break;
 
-    case SPOT_GORGE_LANTERN_CAVE:
-    case SPOT_LAKE_LANTERN_CAVE:
+    case Z2SCENE_GORGE_LANTERN_CAVE:
+    case Z2SCENE_LAKE_LANTERN_CAVE:
         se_wave2 = 0x52;
         bgm_id = Z2BGM_SUB_DUNGEON;
         bgm_wave1 = 0x45;
         break;
 
-    case SPOT_ELDIN_MAGNET_CAVE:
+    case Z2SCENE_ELDIN_MAGNET_CAVE:
         se_wave1 = 5;
         se_wave2 = 6;
         bgm_id = Z2BGM_SUB_DUNGEON;
         bgm_wave1 = 0x45;
         break;
 
-    case SPOT_GROTTO_GRASS_1:
-    case SPOT_GROTTO_GRASS_2:
-    case SPOT_GROTTO_ROCK_1:
-    case SPOT_GROTTO_ROCK_2:
-    case SPOT_GROTTO_POND:
+    case Z2SCENE_GROTTO_GRASS_1:
+    case Z2SCENE_GROTTO_GRASS_2:
+    case Z2SCENE_GROTTO_ROCK_1:
+    case Z2SCENE_GROTTO_ROCK_2:
+    case Z2SCENE_GROTTO_POND:
         se_wave2 = 0x50;
         bgm_id = Z2BGM_SUB_DUNGEON;
         bgm_wave1 = 0x45;
         break;
 
-    case SPOT_FARON_WOODS_CAVE:
+    case Z2SCENE_FARON_WOODS_CAVE:
         se_wave2 = 0x53;
         if (inDarkness) {
             bgm_id = Z2BGM_TWILIGHT;
@@ -1744,15 +1744,15 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[104])
             /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
         && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[250])
-        && demo_wave == 0 && spot != SPOT_ELDIN_BRIDGE_BATTLE)
+        && demo_wave == 0 && spot != Z2SCENE_ELDIN_BRIDGE_BATTLE)
     {
         bgm_wave1 = 0x36;
-        if (spot == SPOT_CASTLE_TOWN_SHOPS && room == 5) {
+        if (spot == Z2SCENE_CASTLE_TOWN_SHOPS && room == 5) {
             bgm_id = -1;
         } else {
             bgm_id = Z2BGM_MIDNA_SOS;
-            if ((spot == SPOT_CASTLE_TOWN_INTERIOR && room == 5)
-                || spot == SPOT_CASTLE_TOWN_SHOPS || spot == SPOT_STAR_TENT)
+            if ((spot == Z2SCENE_CASTLE_TOWN_INTERIOR && room == 5)
+                || spot == Z2SCENE_CASTLE_TOWN_SHOPS || spot == Z2SCENE_STAR_TENT)
             {
                 Z2GetSeqMgr()->muteSceneBgm(33, 0.5f);
             } else {
@@ -1760,8 +1760,8 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
             }
         }
         time_proc_vol_mod = false;
-    } else if (sceneNum == SPOT_CASTLE_TOWN_SHOPS && roomNum == 1
-        && !(spot == SPOT_CASTLE_TOWN && room == 3))
+    } else if (sceneNum == Z2SCENE_CASTLE_TOWN_SHOPS && roomNum == 1
+        && !(spot == Z2SCENE_CASTLE_TOWN && room == 3))
     {
         bgm_id = Z2BGM_FORTUNE;
         bgm_wave1 = 0x37;
@@ -1775,7 +1775,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         JSULink<JAIStream>* stream;
         for (stream = stream_list->getFirst(); stream != NULL; stream = stream->getNext()) {
             if (bVar2 || sound_table->getTypeID(stream->getObject()->getID()) != 0x71) {
-                stream->getObject()->stop(struct_80450860);
+                stream->getObject()->stop(Z2Param::SCENE_CHANGE_BGM_FADEOUT_TIME);
             }
         }
     }
@@ -1844,7 +1844,7 @@ void Z2SceneMgr::framework() {
         if (timer < 10000) {
             timer++;
         }
-        if (!field_0x1b && Z2GetStatusMgr()->getDemoStatus() != 3 && timer == struct_80450863) {
+        if (!field_0x1b && Z2GetStatusMgr()->getDemoStatus() != 3 && timer == Z2Param::BATTLE_BGM_WAIT_TIME) {
             Z2GetSeqMgr()->setBattleBgmOff(false);
         }
     } else {
@@ -2015,7 +2015,7 @@ void Z2SceneMgr::sceneBgmStart() {
             case Z2BGM_DUNGEON_LV8:
             case Z2BGM_DUNGEON_LV9_02:
             case Z2BGM_SNOW_MOUNTAIN:
-                if (sceneNum == SPOT_CASTLE_TOWN_SHOPS) {
+                if (sceneNum == Z2SCENE_CASTLE_TOWN_SHOPS) {
                     Z2GetSeqMgr()->changeBgmStatus(5);
                 } else {
                     Z2GetSeqMgr()->changeBgmStatus(roomNum);
@@ -2028,27 +2028,27 @@ void Z2SceneMgr::sceneBgmStart() {
                 Z2GetSeqMgr()->changeBgmStatus(0);
                 break;
             case Z2BGM_CHURCH2:
-                if (sceneNum == SPOT_SANCTUARY_BASEMENT) {
+                if (sceneNum == Z2SCENE_SANCTUARY_BASEMENT) {
                     Z2GetSeqMgr()->muteSceneBgm(0, 0.5f);
                 }
                 break;
             case Z2BGM_MIDNA_SOS:
-                if ((sceneNum == SPOT_CASTLE_TOWN_INTERIOR && roomNum == 5)
-                    || sceneNum == SPOT_CASTLE_TOWN_SHOPS || sceneNum == SPOT_STAR_TENT)
+                if ((sceneNum == Z2SCENE_CASTLE_TOWN_INTERIOR && roomNum == 5)
+                    || sceneNum == Z2SCENE_CASTLE_TOWN_SHOPS || sceneNum == Z2SCENE_STAR_TENT)
                 {
                     Z2GetSeqMgr()->muteSceneBgm(0, 0.5f);
                 }
                 break;
             case Z2BGM_TOAL_NIGHT:
-                if (sceneNum == SPOT_ORDON_INTERIOR && roomNum == 2) {
+                if (sceneNum == Z2SCENE_ORDON_INTERIOR && roomNum == 2) {
                     Z2GetSeqMgr()->changeBgmStatus(2);
                 } else {
                     Z2GetSeqMgr()->changeBgmStatus(0);
                 }
                 break;
             case Z2BGM_FILONE_FOREST:
-                if (sceneNum == SPOT_CORO_SHOP
-                    || (sceneNum == SPOT_FARON_WOODS && roomNum == 14))
+                if (sceneNum == Z2SCENE_CORO_SHOP
+                    || (sceneNum == Z2SCENE_FARON_WOODS && roomNum == 14))
                 {
                     Z2GetSeqMgr()->changeBgmStatus(2);
                 } else {

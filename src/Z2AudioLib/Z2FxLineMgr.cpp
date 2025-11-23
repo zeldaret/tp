@@ -156,67 +156,67 @@ void Z2FxLineMgr::setSceneFx(s32 sceneNum) {
         setLineID(11, true, false);
     } else {
         switch (sceneNum) {
-        case SPOT_SHADES_REALM:
+        case Z2SCENE_SHADES_REALM:
             setLineID(9, true, false);
             break;
-        case SPOT_KAKARIKO_VILLAGE:
-        case SPOT_DEATH_MOUNTAIN:
-        case SPOT_HIDDEN_VILLAGE:
-        case SPOT_ZORAS_RIVER:
-        case SPOT_HYRULE_FIELD:
+        case Z2SCENE_KAKARIKO_VILLAGE:
+        case Z2SCENE_DEATH_MOUNTAIN:
+        case Z2SCENE_HIDDEN_VILLAGE:
+        case Z2SCENE_ZORAS_RIVER:
+        case Z2SCENE_HYRULE_FIELD:
             setLineID(10, true, false);
             break;
-        case SPOT_SACRED_GROVE:
-        case SPOT_FOREST_TEMPLE:
-        case SPOT_FOREST_TEMPLE_MINIBOSS:
-        case SPOT_FOREST_TEMPLE_BOSS:
-        case SPOT_GORGE_LANTERN_CAVE:
-        case SPOT_LAKE_LANTERN_CAVE:
-        case SPOT_FARON_WOODS_CAVE:
+        case Z2SCENE_SACRED_GROVE:
+        case Z2SCENE_FOREST_TEMPLE:
+        case Z2SCENE_FOREST_TEMPLE_MINIBOSS:
+        case Z2SCENE_FOREST_TEMPLE_BOSS:
+        case Z2SCENE_GORGE_LANTERN_CAVE:
+        case Z2SCENE_LAKE_LANTERN_CAVE:
+        case Z2SCENE_FARON_WOODS_CAVE:
             if (Z2GetSceneMgr()->getCurrentRoomNum() == 2) {
                 return;
             }
             // fallthrough
-        case SPOT_FARON_WOODS:
+        case Z2SCENE_FARON_WOODS:
             setLineID(1, true, false);
             break;
-        case SPOT_GORON_MINES:
-        case SPOT_GORON_MINES_MINIBOSS:
-        case SPOT_GORON_MINES_BOSS:
-        case SPOT_ELDIN_MAGNET_CAVE:
+        case Z2SCENE_GORON_MINES:
+        case Z2SCENE_GORON_MINES_MINIBOSS:
+        case Z2SCENE_GORON_MINES_BOSS:
+        case Z2SCENE_ELDIN_MAGNET_CAVE:
             setLineID(2, true, false);
             break;
-        case SPOT_LAKE_HYLIA:
-        case SPOT_LAKEBED_TEMPLE:
-        case SPOT_LAKEBED_TEMPLE_MINIBOSS:
-        case SPOT_LAKEBED_TEMPLE_BOSS:
+        case Z2SCENE_LAKE_HYLIA:
+        case Z2SCENE_LAKEBED_TEMPLE:
+        case Z2SCENE_LAKEBED_TEMPLE_MINIBOSS:
+        case Z2SCENE_LAKEBED_TEMPLE_BOSS:
             if (Z2GetSceneMgr()->getCurrentRoomNum() == 1) {
                 setLineID(3, true, false);
             }
             break;
-        case SPOT_ARBITERS_GROUNDS:
-        case SPOT_ARBITERS_GROUNDS_MINIBOSS:
-        case SPOT_ARBITERS_GROUNDS_BOSS:
+        case Z2SCENE_ARBITERS_GROUNDS:
+        case Z2SCENE_ARBITERS_GROUNDS_MINIBOSS:
+        case Z2SCENE_ARBITERS_GROUNDS_BOSS:
             setLineID(4, true, false);
             break;
-        case SPOT_SNOWPEAK_RUINS:
-        case SPOT_SNOWPEAK_RUINS_MINIBOSS:
-        case SPOT_SNOWPEAK_RUINS_BOSS:
-        case SPOT_ICE_BLOCK_PUZZLE:
+        case Z2SCENE_SNOWPEAK_RUINS:
+        case Z2SCENE_SNOWPEAK_RUINS_MINIBOSS:
+        case Z2SCENE_SNOWPEAK_RUINS_BOSS:
+        case Z2SCENE_ICE_BLOCK_PUZZLE:
             setLineID(5, true, false);
             break;
-        case SPOT_TEMPLE_OF_TIME:
-        case SPOT_TEMPLE_OF_TIME_MINIBOSS:
-        case SPOT_TEMPLE_OF_TIME_BOSS:
+        case Z2SCENE_TEMPLE_OF_TIME:
+        case Z2SCENE_TEMPLE_OF_TIME_MINIBOSS:
+        case Z2SCENE_TEMPLE_OF_TIME_BOSS:
             setLineID(6, true, false);
             break;
-        case SPOT_CITY_IN_THE_SKY:
-        case SPOT_CITY_IN_THE_SKY_MINIBOSS:
-        case SPOT_CITY_IN_THE_SKY_BOSS:
+        case Z2SCENE_CITY_IN_THE_SKY:
+        case Z2SCENE_CITY_IN_THE_SKY_MINIBOSS:
+        case Z2SCENE_CITY_IN_THE_SKY_BOSS:
             setLineID(7, true, false);
             break;
-        case SPOT_HYRULE_CASTLE:
-        case SPOT_FINAL_BATTLE_THRONE_ROOM:
+        case Z2SCENE_HYRULE_CASTLE:
+        case Z2SCENE_FINAL_BATTLE_THRONE_ROOM:
             setLineID(8, true, false);
             break;
         default:

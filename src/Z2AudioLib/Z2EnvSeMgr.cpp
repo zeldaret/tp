@@ -112,7 +112,7 @@ bool Z2EnvSeBase::startEnvSe(JAISoundID param_1, f32 param_2, f32 param_3, f32 p
         dVar16 = Z2Calc::getParamByExp(
             fVar1, 1500.0f, 0.0f,
             0.1f, 0.0f,
-            dVar16, Z2Calc::CURVE_SIGN_0);
+            dVar16, Z2Calc::CURVE_NEGATIVE);
         param_3 *= dVar16;
     }
     bool rv = Z2GetSoundStarter()->startSound(param_1, &mHandle, (JGeometry::TVec3<f32>*)mPos, 0, param_2, param_6, param_3, param_4, param_5,  param_7);
@@ -140,7 +140,7 @@ bool Z2EnvSeBase::startEnvSeLevel(JAISoundID param_1, f32 param_2, f32 param_3, 
         dVar16 = Z2Calc::getParamByExp(
             fVar1, 1500.0f, 0.0f,
             0.1f, 0.0f,
-            dVar16, Z2Calc::CURVE_SIGN_0);
+            dVar16, Z2Calc::CURVE_NEGATIVE);
         param_3 *= dVar16;
     }
     bool rv = Z2GetSoundStarter()->startLevelSound(param_1, &mHandle, (JGeometry::TVec3<f32>*)mPos);
@@ -705,36 +705,36 @@ bool Z2EnvSeMgr::startStaticEnvSe(s8 param_1) {
             dVar22 *= Z2Calc::getParamByExp(mSnowPower,
                 64.0f, 127.0f,
                 0.4f, 0.35f,
-                1.0f, Z2Calc::CURVE_SIGN_1);
+                1.0f, Z2Calc::CURVE_POSITIVE);
             dVar20 *= Z2Calc::getParamByExp(mSnowPower,
                 64.0f, 127.0f,
                 0.4f, 1.15f,
-                1.6f, Z2Calc::CURVE_SIGN_1);
+                1.6f, Z2Calc::CURVE_POSITIVE);
             dVar21 *= Z2Calc::getParamByExp(mSnowPower,
                 64.0f, 127.0f,
                 0.3f, 0.2f,
-                1.0f, Z2Calc::CURVE_SIGN_1);
+                1.0f, Z2Calc::CURVE_POSITIVE);
             dVar18 *= Z2Calc::getParamByExp(mSnowPower,
                 127.0f, 64.0f,
                 0.4f, 0.65f,
-                0.9f, Z2Calc::CURVE_SIGN_0);
+                0.9f, Z2Calc::CURVE_NEGATIVE);
         } else {
              dVar22 *= Z2Calc::getParamByExp(mSnowPower,
                 0.0f, 64.0f,
                 0.4f, 0.2f,
-                0.35f, Z2Calc::CURVE_SIGN_0);
+                0.35f, Z2Calc::CURVE_NEGATIVE);
             dVar20 *= Z2Calc::getParamByExp(mSnowPower,
                 0.0f, 64.0f,
                 0.3f, 1.0f,
-                1.15f, Z2Calc::CURVE_SIGN_0);
+                1.15f, Z2Calc::CURVE_NEGATIVE);
             dVar21 *= Z2Calc::getParamByExp(mSnowPower,
                 0.0f, 64.0f,
                 0.3f, 0.1f,
-                0.2f, Z2Calc::CURVE_SIGN_0);
+                0.2f, Z2Calc::CURVE_NEGATIVE);
             dVar18 *= ::Z2Calc::getParamByExp(mSnowPower,
                 64.0f, 0.0f,
                 0.4f, 0.9f,
-                1.0f, Z2Calc::CURVE_SIGN_1);
+                1.0f, Z2Calc::CURVE_POSITIVE);
         }
         break;
     case 11:
@@ -871,13 +871,13 @@ bool Z2EnvSeMgr::startRainSe(s32 param_1, s8 param_2) {
         f32 dVar16 =
             Z2Calc::linearTransform(field_0xe0.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.1f, true);
         f32 dVar17 = Z2Calc::getParamByExp(field_0xb0.calcNoise1f(), 0.0f, 1.0f, 0.3f, 0.0f, 0.3f,
-                                           Z2Calc::CURVE_SIGN_1);
+                                           Z2Calc::CURVE_POSITIVE);
         f32 dVar18 = Z2Calc::getParamByExp(field_0xc0.calcNoise1f(), 0.0f, 1.0f, 0.3f, 1.0f, 0.7f,
-                                           Z2Calc::CURVE_SIGN_1);
+                                           Z2Calc::CURVE_POSITIVE);
         f32 dVar19 = Z2Calc::getParamByExp(field_0xf0.calcNoise1f(), 0.0f, 1.0f, 0.3f, 0.0f, 1.0f,
-                                           Z2Calc::CURVE_SIGN_1);
+                                           Z2Calc::CURVE_POSITIVE);
         f32 dVar20 = Z2Calc::getParamByExp(field_0x100.calcNoise1f(), 0.0f, 1.0f, 0.3f, 0.0f, 1.0f,
-                                           Z2Calc::CURVE_SIGN_1);
+                                           Z2Calc::CURVE_POSITIVE);
         if (Z2GetSceneMgr()->isInDarkness()) {
             dVar13 *= 0.5f;
             dVar14 *= 0.5f;
@@ -1368,9 +1368,9 @@ bool Z2EnvSeMgr::startEtcSe(s8 param_1) {
         break;
     case 0x10:
         local_98 = Z2Calc::getParamByExp(getFogDensity(), 0.4f, 1.0f, 0.2f, 0.2f, 1.0f,
-                                             Z2Calc::CURVE_SIGN_0);
+                                             Z2Calc::CURVE_NEGATIVE);
         local_9c = Z2Calc::getParamByExp(getFogDensity(), 0.4f, 1.0f, 0.2f, 0.75f, 1.0f,
-                                             Z2Calc::CURVE_SIGN_0);
+                                             Z2Calc::CURVE_NEGATIVE);
         local_a0 = field_0x2e8.calcNoise1f();
         rv = field_0x240.startEnvSeLevel(Z2SE_ENV_PUPPET_FOG_L, 0.3f,
                                          (dVar19 * ((0.332f + 0.668f * local_a0) * local_98)),

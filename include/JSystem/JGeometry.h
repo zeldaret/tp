@@ -216,7 +216,7 @@ struct TVec3<f32> : public Vec {
     }
 
     inline TVec3<f32>& operator=(const TVec3<f32>& b) {
-        set(b.x, b.y, b.z);
+        setTVec3f(&b.x, &this->x);
         return *this;
     }    
 

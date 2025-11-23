@@ -195,7 +195,7 @@ void Z2StatusMgr::setDemoName(char* demoName) {
         if (mDemoStatus == 3) {
             Z2GetSeqMgr()->setBattleBgmOff(false);
         } else if (mDemoStatus == 4) {
-            Z2GetSeqMgr()->unMuteSceneBgm(struct_80450861);
+            Z2GetSeqMgr()->unMuteSceneBgm(Z2Param::BGM_CROSS_FADEIN_TIME);
         } else if (mDemoStatus == 5) {
             Z2GetSeqMgr()->subBgmStop();
         } else if (mDemoStatus == 9) {
@@ -326,7 +326,7 @@ void Z2StatusMgr::setCameraInWaterDepth(f32 depth) {
                     mCameraInWaterDepthRatio = 1.0f;
                 } else {
                     mCameraInWaterDepthRatio =
-                        Z2Calc::getParamByExp(depth, 0.0f, 2000.0f, 0.2f, 0.0f, 1.0f, Z2Calc::CURVE_SIGN_0);
+                        Z2Calc::getParamByExp(depth, 0.0f, 2000.0f, 0.2f, 0.0f, 1.0f, Z2Calc::CURVE_NEGATIVE);
                 }
                 Z2GetFxLineMgr()->setUnderWaterFx(true);
             }

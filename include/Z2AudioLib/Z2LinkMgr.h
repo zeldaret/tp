@@ -45,8 +45,8 @@ public:
     void setInWater(bool status) { mInWater = status; }
     bool isInWater() { return mInWater; }
     u8 getLinkState() { return mLinkState; }
-    u8 getMoveSpeed() const { return mMoveSpeed; }
-    bool isRiding() const { return mRiding; }
+    u8 getMoveSpeed() { return mMoveSpeed; }
+    bool isRiding() { return mRiding; }
     void setLinkState(u8 i_state) { mLinkState = i_state; }
     Z2SoundObjSimple& getKantera() { return mKantera; }
     u8 getLinkHp() const { return mLinkHp; }

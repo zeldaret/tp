@@ -137,7 +137,7 @@ public:
     void onEnemyDamage() { setBattleSeqState(2); }
 
     void bgmAllMute(u32 count, f32 val) {
-        mAllBgmMaster.mTransition.set(val, mAllBgmMaster.mIntensity, count);
+        mAllBgmMaster.move(val, count);
     }
 
     void bgmAllUnMute(u32 count) {
