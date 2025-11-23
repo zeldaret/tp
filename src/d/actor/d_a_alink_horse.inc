@@ -1027,7 +1027,7 @@ void daAlink_c::setBaseBoarAnime() {
 void daAlink_c::setBaseRideAnime() {
     if (checkHorseRide()) {
         daHorse_c* horse_p = dComIfGp_getHorseActor();
-        daAlink_ANM sp8[2];
+        daAlink_ANM sp8[3];
         getBaseHorseAnime(sp8);
         setDoubleAnime(horse_p->getBlendRate(), 1.0f, 1.0f, sp8[0], sp8[1], 10,
                        horse_p->getMorfFrame());
