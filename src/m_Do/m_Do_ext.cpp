@@ -3540,8 +3540,13 @@ static ResFONT* mDoExt_resfont0;
 /* 80014994-800149F0 00F2D4 005C+00 1/1 0/0 0/0 .text            mDoExt_initFont0__Fv */
 static void mDoExt_initFont0() {
     static char const fontdata[] = "rodan_b_24_22.bfn";
+#if REGION_JPN
+    mDoExt_initFontCommon(&mDoExt_font0, &mDoExt_resfont0, mDoExt_getZeldaHeap(),
+                          fontdata, dComIfGp_getFontArchive(), 0, 200, 512);
+#else
     mDoExt_initFontCommon(&mDoExt_font0, &mDoExt_resfont0, mDoExt_getZeldaHeap(),
                           fontdata, dComIfGp_getFontArchive(), 1, 0, 0);
+#endif
 }
 
 /* 800149F0-80014A2C 00F330 003C+00 0/0 51/51 2/2 .text            mDoExt_getMesgFont__Fv */
@@ -3564,7 +3569,11 @@ void mDoExt_removeMesgFont() {
             delete mDoExt_font0;
             mDoExt_font0 = NULL;
             if (mDoExt_resfont0 != NULL) {
+#if REGION_JPN
+                JKRFileLoader::removeResource(mDoExt_resfont0, NULL);
+#else
                 JKRFree(mDoExt_resfont0);
+#endif
                 mDoExt_resfont0 = NULL;
             }
         }
