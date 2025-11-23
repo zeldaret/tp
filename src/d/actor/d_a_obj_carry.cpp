@@ -3693,7 +3693,6 @@ bool daObjCarry_c::cc_damage_proc_kibako() {
 }
 
 /* 80476CE4-80476E04 007D64 0120+00 1/0 0/0 0/0 .text cc_damage_proc_ironball__12daObjCarry_cFv */
-// NONMATCHING - regalloc, equivalent
 bool daObjCarry_c::cc_damage_proc_ironball() {
     bool var_r26 = false;
     bool var_r27 = true;

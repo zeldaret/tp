@@ -78,6 +78,7 @@
 #define INFINITY ((float)(_HUGE_ENUF * _HUGE_ENUF))
 #define HUGE_VAL ((double)INFINITY)
 #define HUGE_VALL ((long double)INFINITY)
+static const float INF = 2000000000.0f;
 
 #define DOUBLE_INF HUGE_VAL
 

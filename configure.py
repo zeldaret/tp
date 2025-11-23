@@ -1836,7 +1836,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_horse"),
     ActorRel(NonMatching, "d_a_hozelda"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_izumi_gate"),
-    ActorRel(NonMatching, "d_a_kago"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_kago"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kytag01"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kytag02"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kytag03"),

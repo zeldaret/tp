@@ -7,10 +7,9 @@
 
 #include "d/d_bg_s_lin_chk.h"
 #include "f_op/f_op_actor_mng.h"
+#include "dol2asm.h"
 
 #define CHECK_FLOAT_RANGE(line, x) JUT_ASSERT(line, -1.0e32f < x && x < 1.0e32f);
-
-static const f32 INF = 2000000000.0f;
 
 /* 80077C68-80077CDC 0725A8 0074+00 8/8 3/3 388/388 .text            __ct__11dBgS_LinChkFv */
 dBgS_LinChk::dBgS_LinChk() {
