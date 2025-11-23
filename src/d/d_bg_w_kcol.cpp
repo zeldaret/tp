@@ -510,25 +510,16 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
                                                             *pcross = sp9C;
                                                             sp120 = sp9C;
 
-                                                            JUT_ASSERT(0x2e2,
-                                                                       fpclassify(pcross->x) !=
-                                                                           FP_QNAN);
-                                                            JUT_ASSERT(0x2e3,
-                                                                       fpclassify(pcross->y) !=
-                                                                           FP_QNAN);
-                                                            JUT_ASSERT(0x2e4,
-                                                                       fpclassify(pcross->z) !=
-                                                                           FP_QNAN);
-                                                            JUT_ASSERT(
-                                                                0x2e9,
+                                                            JUT_ASSERT(738, !isnan(pcross->x));
+                                                            JUT_ASSERT(739, !isnan(pcross->y));
+                                                            JUT_ASSERT(740, !isnan(pcross->z));
+                                                            JUT_ASSERT(745,
                                                                 -FP_INFINITE < pcross->x &&
                                                                     pcross->x < FP_INFINITE);
-                                                            JUT_ASSERT(
-                                                                0x2eb,
+                                                            JUT_ASSERT(747,
                                                                 -FP_INFINITE < pcross->y &&
                                                                     pcross->y < FP_INFINITE);
-                                                            JUT_ASSERT(
-                                                                0x2ed,
+                                                            JUT_ASSERT(749,
                                                                 -FP_INFINITE < pcross->z &&
                                                                     pcross->z < FP_INFINITE);
 
@@ -1054,12 +1045,6 @@ struct wcs_data {
 
 static wcs_data l_wcsbuf[84];
 
-/* 80452730-80452738 000D30 0008+00 2/2 0/0 0/0 .sdata2          @5298 */
-SECTION_SDATA2 static f64 lit_5298 = 0.5f;
-
-/* 80452738-80452740 000D38 0008+00 2/2 0/0 0/0 .sdata2          @5299 */
-SECTION_SDATA2 static f64 lit_5299 = 3.0f;
-
 /* 80452740-80452748 000D40 0008+00 2/2 0/0 0/0 .sdata2          @5300 */
 SECTION_SDATA2 static u8 lit_5300[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1431,8 +1416,8 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                                 pwi->GetPos()->x += sp_38 * sp_98->x;
                                 pwi->GetPos()->z += sp_38 * sp_98->z;
 
-                                JUT_ASSERT(0x77e, !(fpclassify(pwi->GetPos()->x) == FP_QNAN));
-                                JUT_ASSERT(0x77f, !(fpclassify(pwi->GetPos()->z) == FP_QNAN));
+                                JUT_ASSERT(0x77e, !isnan(pwi->GetPos()->x));
+                                JUT_ASSERT(0x77f, !isnan(pwi->GetPos()->z));
                                 JUT_ASSERT(0x782, -INFINITY < pwi->GetPos()->x &&
                                                       pwi->GetPos()->x < INFINITY);
                                 JUT_ASSERT(0x784, -INFINITY < pwi->GetPos()->z &&
@@ -1475,8 +1460,8 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
 
                                     f32 sp_1c;
                                     f32 sp_18;
-                                    JUT_ASSERT(0x7b3, !(fpclassify(cx0_60) == FP_QNAN));
-                                    JUT_ASSERT(0x7b4, !(fpclassify(cy0_5c) == FP_QNAN));
+                                    JUT_ASSERT(0x7b3, !isnan(cx0_60));
+                                    JUT_ASSERT(0x7b4, !isnan(cy0_5c));
 
                                     cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index_8c), cx1_58,
                                                      cy1_54, onx_2c, ony_28, &sp_1c, &sp_18);
@@ -1501,16 +1486,16 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                                 } else if (!(sp_30 > sp_3c || fabsf(sp_30 - sp_3c) < 0.008f)) {
                                     f32 sp_1c;
                                     f32 sp_18;
-                                    JUT_ASSERT(0x7e2, !(fpclassify(cx1_58) == FP_QNAN));
-                                    JUT_ASSERT(0x7e3, !(fpclassify(cy1_54) == FP_QNAN));
+                                    JUT_ASSERT(0x7e2, !isnan(cx1_58));
+                                    JUT_ASSERT(0x7e3, !isnan(cy1_54));
 
                                     cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index_8c), cx1_58, cy1_54, onx_2c, ony_28, &sp_1c, &sp_18);
 
                                     pwi->GetPos()->x += (cx1_58 - sp_1c);
                                     pwi->GetPos()->z += (cy1_54 - sp_18);
 
-                                    JUT_ASSERT(0x7ed, !(fpclassify(pwi->GetPos()->x) == FP_QNAN));
-                                    JUT_ASSERT(0x7ed, !(fpclassify(pwi->GetPos()->z) == FP_QNAN));
+                                    JUT_ASSERT(0x7ed, !isnan(pwi->GetPos()->x));
+                                    JUT_ASSERT(0x7ed, !isnan(pwi->GetPos()->z));
 
                                     JUT_ASSERT(0x7f1, -INF < pwi->GetPos()->x &&
                                                           pwi->GetPos()->x < INF)
@@ -1834,8 +1819,8 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
                             }
                             pwi->GetPos()->x += sp38 * sp98->x;
                             pwi->GetPos()->z += sp38 * sp98->z;
-                            JUT_ASSERT(0x989, fpclassify(pwi->GetPos()->x) != FP_QNAN);
-                            JUT_ASSERT(0x98a, fpclassify(pwi->GetPos()->z) != FP_QNAN);
+                            JUT_ASSERT(0x989, !isnan(pwi->GetPos()->x));
+                            JUT_ASSERT(0x98a, !isnan(pwi->GetPos()->z));
                             JUT_ASSERT(0x98d, -INFINITY < pwi->GetPos()->x && pwi->GetPos()->x < INFINITY);
                             JUT_ASSERT(0x98f, -INFINITY < pwi->GetPos()->z && pwi->GetPos()->z < INFINITY);
                             pwi->CalcMovePosWork();
@@ -1862,16 +1847,16 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
                                     continue;
                                 }
 
-                                JUT_ASSERT(0x9be, !(fpclassify(cx0) == FP_QNAN));
-                                JUT_ASSERT(0x9bf, !(fpclassify(cy0) == FP_QNAN));
+                                JUT_ASSERT(0x9be, !isnan(cx0));
+                                JUT_ASSERT(0x9bf, !isnan(cy0));
                                 f32 sp24;
                                 f32 sp20;
                                 cM2d_CrossCirLin(*pwi->GetWallCirP(sp8C), cx0, cy0, onx, ony,
                                                  &sp24, &sp20);
                                 pwi->GetPos()->x += cx0 - sp24;
                                 pwi->GetPos()->z += cy0 - sp20;
-                                JUT_ASSERT(0x9d1, !(fpclassify(pwi->GetPos()->x) == FP_QNAN));
-                                JUT_ASSERT(0x9d2, !(fpclassify(pwi->GetPos()->z) == FP_QNAN));
+                                JUT_ASSERT(0x9d1, !isnan(pwi->GetPos()->x));
+                                JUT_ASSERT(0x9d2, !isnan(pwi->GetPos()->z));
 
 
                                 JUT_ASSERT(0x9d5, -INFINITY < pwi->GetPos()->x && pwi->GetPos()->x < INFINITY);
@@ -1890,16 +1875,16 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
                                     continue;
                                 }
 
-                                JUT_ASSERT(0x9f4, !(fpclassify(cx1) == FP_QNAN));
-                                JUT_ASSERT(0x9f5, !(fpclassify(cy1) == FP_QNAN));
+                                JUT_ASSERT(0x9f4, !isnan(cx1));
+                                JUT_ASSERT(0x9f5, !isnan(cy1));
                                 f32 sp1C;
                                 f32 sp18;
                                 cM2d_CrossCirLin(*pwi->GetWallCirP(sp8C), cx1, cy1, onx, ony, &sp1C,
                                                  &sp18);
                                 pwi->GetPos()->x += cx1 - sp1C;
                                 pwi->GetPos()->z += cy1 - sp18;
-                                JUT_ASSERT(0xa06, !(fpclassify(pwi->GetPos()->x) == FP_QNAN));
-                                JUT_ASSERT(0xa07, !(fpclassify(pwi->GetPos()->z) == FP_QNAN));
+                                JUT_ASSERT(0xa06, !isnan(pwi->GetPos()->x));
+                                JUT_ASSERT(0xa07, !isnan(pwi->GetPos()->z));
 
                                 JUT_ASSERT(0xa0a, -INFINITY < pwi->GetPos()->x && pwi->GetPos()->x < INFINITY);
 
@@ -2029,7 +2014,7 @@ bool dBgWKCol::RoofChk(dBgS_RoofChk* param_0) {
                         param_0->SetPolyIndex(*sp20);
                         param_0->SetNowY(tmp_height_kcw);
                         sp0A = true;
-                        JUT_ASSERT(0xac8, fpclassify(tmp_height_kcw) != FP_QNAN);
+                        JUT_ASSERT(0xac8, !isnan(tmp_height_kcw));
                         JUT_ASSERT(0xacb, -FP_INFINITE < tmp_height_kcw && tmp_height_kcw < FP_INFINITE);
                         bool sp08 = true;
                         if (!(tmp_height_kcw - m_pkc_head->m_area_min_pos.y >= 0.0f)) {
@@ -2149,7 +2134,7 @@ bool dBgWKCol::SplGrpChk(dBgS_SplGrpChk* param_0) {
 
                         sp09 = true;
 
-                        JUT_ASSERT(0xb73, fpclassify(tmp_height_kcw) != FP_QNAN);
+                        JUT_ASSERT(0xb73, !isnan(tmp_height_kcw));
                         JUT_ASSERT(0xb76,
                                    -FP_INFINITE < tmp_height_kcw && tmp_height_kcw < FP_INFINITE);
                     }

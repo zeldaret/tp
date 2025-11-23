@@ -1257,8 +1257,8 @@ bool dBgW::RwgWallCorrect(dBgS_Acch* pwi, u16 i_poly_idx) {
 
                                     if (spE0 < spE4) {
                                         if (!(spE0 > spDC) && !(fabsf(spE0 - spDC) < 0.008f)) {
-                                            JUT_ASSERT(0, !(fpclassify(cx0) == 1));
-                                            JUT_ASSERT(0, !(fpclassify(cy0) == 1));
+                                            JUT_ASSERT(0, !isnan(cx0));
+                                            JUT_ASSERT(0, !isnan(cy0));
 
                                             f32 spF0, spF4;
                                             cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx0, cy0,
@@ -1266,8 +1266,8 @@ bool dBgW::RwgWallCorrect(dBgS_Acch* pwi, u16 i_poly_idx) {
                                             pwi->GetPos()->x += cx0 - spF0;
                                             pwi->GetPos()->z += cy0 - spF4;
 
-                                            JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->x) == 1));
-                                            JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->z) == 1));
+                                            JUT_ASSERT(0, !isnan(pwi->GetPos()->x));
+                                            JUT_ASSERT(0, !isnan(pwi->GetPos()->z));
 
                                             pwi->CalcMovePosWork();
                                             pwi->SetWallCirHit(cir_index);
@@ -1279,8 +1279,8 @@ bool dBgW::RwgWallCorrect(dBgS_Acch* pwi, u16 i_poly_idx) {
                                             pwi->SetWallHit();
                                         }
                                     } else if (!(spE4 > spDC) && !(fabsf(spE4 - spDC) < 0.008f)) {
-                                        JUT_ASSERT(0, !(fpclassify(cx1) == 1));
-                                        JUT_ASSERT(0, !(fpclassify(cy1) == 1));
+                                        JUT_ASSERT(0, !isnan(cx1));
+                                        JUT_ASSERT(0, !isnan(cy1));
 
                                         f32 spF8, spFC;
                                         cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx1, cy1,
@@ -1288,8 +1288,8 @@ bool dBgW::RwgWallCorrect(dBgS_Acch* pwi, u16 i_poly_idx) {
                                         pwi->GetPos()->x += cx1 - spF8;
                                         pwi->GetPos()->z += cy1 - spFC;
 
-                                        JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->x) == 1));
-                                        JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->z) == 1));
+                                        JUT_ASSERT(0, !isnan(pwi->GetPos()->x));
+                                        JUT_ASSERT(0, !isnan(pwi->GetPos()->z));
 
                                         pwi->CalcMovePosWork();
                                         pwi->SetWallCirHit(cir_index);
@@ -1694,8 +1694,8 @@ bool dBgW::WallCorrectSort(dBgS_Acch* pwi) {
 
                                 if (spE0 < spE4) {
                                     if (!(spE0 > spDC) && !(fabsf(spE0 - spDC) < 0.008f)) {
-                                        JUT_ASSERT(0, !(fpclassify(cx0) == 1));
-                                        JUT_ASSERT(0, !(fpclassify(cy0) == 1));
+                                        JUT_ASSERT(0, !isnan(cx0));
+                                        JUT_ASSERT(0, !isnan(cy0));
 
                                         f32 spF0, spF4;
                                         cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx0, cy0,
@@ -1703,8 +1703,8 @@ bool dBgW::WallCorrectSort(dBgS_Acch* pwi) {
                                         pwi->GetPos()->x += cx0 - spF0;
                                         pwi->GetPos()->z += cy0 - spF4;
 
-                                        JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->x) == 1));
-                                        JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->z) == 1));
+                                        JUT_ASSERT(0, !isnan(pwi->GetPos()->x));
+                                        JUT_ASSERT(0, !isnan(pwi->GetPos()->z));
 
                                         pwi->CalcMovePosWork();
                                         pwi->SetWallCirHit(cir_index);
@@ -1716,8 +1716,8 @@ bool dBgW::WallCorrectSort(dBgS_Acch* pwi) {
                                         pwi->SetWallHit();
                                     }
                                 } else if (!(spE4 > spDC) && !(fabsf(spE4 - spDC) < 0.008f)) {
-                                    JUT_ASSERT(0, !(fpclassify(cx1) == 1));
-                                    JUT_ASSERT(0, !(fpclassify(cy1) == 1));
+                                    JUT_ASSERT(0, !isnan(cx1));
+                                    JUT_ASSERT(0, !isnan(cy1));
 
                                     f32 spF8, spFC;
                                     cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx1, cy1, onx,
@@ -1725,8 +1725,8 @@ bool dBgW::WallCorrectSort(dBgS_Acch* pwi) {
                                     pwi->GetPos()->x += cx1 - spF8;
                                     pwi->GetPos()->z += cy1 - spFC;
 
-                                    JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->x) == 1));
-                                    JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->z) == 1));
+                                    JUT_ASSERT(0, !isnan(pwi->GetPos()->x));
+                                    JUT_ASSERT(0, !isnan(pwi->GetPos()->z));
 
                                     pwi->CalcMovePosWork();
                                     pwi->SetWallCirHit(cir_index);
