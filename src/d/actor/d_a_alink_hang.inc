@@ -291,12 +291,12 @@ int daAlink_c::procHangStartInit() {
 
     if (checkHangFootWall()) {
         if (!hang_ready && cM_rnd() < 0.7f) {
-            setSingleAnimeParam(ANM_CLIMB_HANG_MISS, &daAlinkHIO_ladder_c0::m.field_0x14);
-            field_0x3478 = daAlinkHIO_ladder_c0::m.field_0x14.mCancelFrame;
+            setSingleAnimeParam(ANM_CLIMB_HANG_MISS, &daAlinkHIO_ladder_c0::m.mWallAttachMissAnm);
+            field_0x3478 = daAlinkHIO_ladder_c0::m.mWallAttachMissAnm.mCancelFrame;
             voiceStart(Z2SE_AL_V_FOOT_MISS);
         } else {
-            setSingleAnimeParam(ANM_CLIMB_HANG, &daAlinkHIO_ladder_c0::m.field_0x0);
-            field_0x3478 = daAlinkHIO_ladder_c0::m.field_0x0.mCancelFrame;
+            setSingleAnimeParam(ANM_CLIMB_HANG, &daAlinkHIO_ladder_c0::m.mWallAttachAnm);
+            field_0x3478 = daAlinkHIO_ladder_c0::m.mWallAttachAnm.mCancelFrame;
             voiceStart(Z2SE_AL_V_JUMP_HANG);
         }
 
@@ -488,8 +488,8 @@ int daAlink_c::procHangWaitInit() {
     commonProcInit(PROC_HANG_WAIT);
 
     if (checkNoResetFlg2(FLG2_UNK_2000) && checkHangFootWall()) {
-        setSingleAnime(ANM_CLIMB_HANG, 0.0f, daAlinkHIO_ladder_c0::m.field_0x0.mEndFrame,
-                       daAlinkHIO_ladder_c0::m.field_0x0.mEndFrame, 5.0f);
+        setSingleAnime(ANM_CLIMB_HANG, 0.0f, daAlinkHIO_ladder_c0::m.mWallAttachAnm.mEndFrame,
+                       daAlinkHIO_ladder_c0::m.mWallAttachAnm.mEndFrame, 5.0f);
         field_0x2f92 = 0xFE;
         field_0x2f93 = 0xFE;
     } else {
@@ -1281,8 +1281,8 @@ void daAlink_c::setLadderPos(int param_0) {
 /* 800FD288-800FD2AC 0F7BC8 0024+00 2/2 0/0 0/0 .text            getLadderMoveAnmSpeed__9daAlink_cFv
  */
 f32 daAlink_c::getLadderMoveAnmSpeed() {
-    return getAnmSpeedStickRate(daAlinkHIO_ladder_c0::m.field_0x48,
-                                daAlinkHIO_ladder_c0::m.field_0x4C);
+    return getAnmSpeedStickRate(daAlinkHIO_ladder_c0::m.mMoveMinASpeed,
+                                daAlinkHIO_ladder_c0::m.mMoveMaxSpeed);
 }
 
 /* 800FD2AC-800FD4A8 0F7BEC 01FC+00 3/3 0/0 0/0 .text            changeLadderMoveProc__9daAlink_cFi
@@ -1384,8 +1384,8 @@ int daAlink_c::procLadderUpStartInit() {
     mNormalSpeed = 0.0f;
     speedF = 0.0f;
 
-    setSingleAnimeBaseSpeed(ANM_LADDER_UP_START, daAlinkHIO_ladder_c0::m.field_0x28,
-                            daAlinkHIO_ladder_c0::m.field_0x2C);
+    setSingleAnimeBaseSpeed(ANM_LADDER_UP_START, daAlinkHIO_ladder_c0::m.mClimbUpStartASpeed,
+                            daAlinkHIO_ladder_c0::m.mClimbUpStartInterp);
     field_0x2f99 = 0x10;
     field_0x3588 = l_waitBaseAnime;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
@@ -1431,8 +1431,8 @@ int daAlink_c::procLadderUpEndInit(int param_0) {
     commonProcInit(PROC_LADDER_UP_END);
 
     daAlink_ANM anm_id = param_0 != 0 ? ANM_LADDER_UP_END_LEFT : ANM_LADDER_UP_END_RIGHT;
-    setSingleAnimeBaseSpeed(anm_id, daAlinkHIO_ladder_c0::m.field_0x30,
-                            daAlinkHIO_ladder_c0::m.field_0x34);
+    setSingleAnimeBaseSpeed(anm_id, daAlinkHIO_ladder_c0::m.mClimbUpEndASpeed,
+                            daAlinkHIO_ladder_c0::m.mClimbUpEndInterp);
     field_0x2f99 = 14;
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
@@ -1459,7 +1459,7 @@ int daAlink_c::procLadderUpEnd() {
 
     if (checkAnmEnd(frame_ctrl)) {
         checkNextAction(0);
-    } else if (!(frame_ctrl->getFrame() > daAlinkHIO_ladder_c0::m.field_0x58) ||
+    } else if (!(frame_ctrl->getFrame() > daAlinkHIO_ladder_c0::m.mClimbUpEndCF) ||
                !checkNextAction(1))
     {
         if (frame_ctrl->getFrame() >= 23.0f) {
@@ -1493,8 +1493,8 @@ int daAlink_c::procLadderDownStartInit() {
     shape_angle.y = field_0x306e + 0x8000;
     current.angle.y = field_0x306e;
 
-    setSingleAnimeBaseSpeed(ANM_LADDER_DOWN_START, daAlinkHIO_ladder_c0::m.field_0x38,
-                            daAlinkHIO_ladder_c0::m.field_0x3C);
+    setSingleAnimeBaseSpeed(ANM_LADDER_DOWN_START, daAlinkHIO_ladder_c0::m.mClimbDownStartASpeed,
+                            daAlinkHIO_ladder_c0::m.mClimbDownStartInterp);
     field_0x2f99 = 0x10;
     field_0x3588 = l_waitBaseAnime;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
@@ -1548,8 +1548,8 @@ int daAlink_c::procLadderDownEndInit(int param_0) {
     commonProcInit(PROC_LADDER_DOWN_END);
 
     daAlink_ANM anm_id = param_0 != 0 ? ANM_LADDER_DOWN_END_LEFT : ANM_LADDER_DOWN_END_RIGHT;
-    setSingleAnimeBaseSpeed(anm_id, daAlinkHIO_ladder_c0::m.field_0x40,
-                            daAlinkHIO_ladder_c0::m.field_0x44);
+    setSingleAnimeBaseSpeed(anm_id, daAlinkHIO_ladder_c0::m.mClimbDownEndASpeed,
+                            daAlinkHIO_ladder_c0::m.mClimbDownEndInterp);
     field_0x2f99 = 14;
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
@@ -1571,7 +1571,7 @@ int daAlink_c::procLadderDownEnd() {
 
     if (checkAnmEnd(frame_ctrl)) {
         checkNextAction(0);
-    } else if (!(frame_ctrl->getFrame() > daAlinkHIO_ladder_c0::m.field_0x54) ||
+    } else if (!(frame_ctrl->getFrame() > daAlinkHIO_ladder_c0::m.mClimbDownEndCF) ||
                !checkNextAction(1))
     {
         if (frame_ctrl->getFrame() >= 11.0f) {
@@ -1629,7 +1629,7 @@ int daAlink_c::procLadderMoveInit(int param_0, int param_1, cXyz* param_2) {
         }
     }
 
-    setSingleAnimeBaseSpeed(anm, anm_speed, daAlinkHIO_ladder_c0::m.field_0x50);
+    setSingleAnimeBaseSpeed(anm, anm_speed, daAlinkHIO_ladder_c0::m.mMoveInterp);
     field_0x2f98 = param_1;
 
     if (!param_1) {
@@ -1679,14 +1679,14 @@ int daAlink_c::procLadderMove() {
 
 /* 800FE010-800FE034 0F8950 0024+00 3/3 0/0 0/0 .text getClimbMoveUpDownAnmSpeed__9daAlink_cFv */
 f32 daAlink_c::getClimbMoveUpDownAnmSpeed() {
-    return getAnmSpeedStickRate(daAlinkHIO_ladder_c0::m.field_0x64,
-                                daAlinkHIO_ladder_c0::m.field_0x68);
+    return getAnmSpeedStickRate(daAlinkHIO_ladder_c0::m.mWallVerticalMinAnmSpeed,
+                                daAlinkHIO_ladder_c0::m.mWallVerticalMaxAnmSpeed);
 }
 
 /* 800FE034-800FE058 0F8974 0024+00 4/4 0/0 0/0 .text getClimbMoveSideAnmSpeed__9daAlink_cFv */
 f32 daAlink_c::getClimbMoveSideAnmSpeed() {
-    return getAnmSpeedStickRate(daAlinkHIO_ladder_c0::m.field_0x5C,
-                                daAlinkHIO_ladder_c0::m.field_0x60);
+    return getAnmSpeedStickRate(daAlinkHIO_ladder_c0::m.mWallHorizontalMinAnmSpeed,
+                                daAlinkHIO_ladder_c0::m.mWallHorizontalMaxAnmSpeed);
 }
 
 /* 800FE058-800FE114 0F8998 00BC+00 9/9 0/0 0/0 .text checkClimbCode__9daAlink_cFR13cBgS_PolyInfo
@@ -2145,12 +2145,12 @@ int daAlink_c::procClimbUpStartInit(int param_0) {
     mNormalSpeed = 0.0f;
 
     if (param_0 || var_r29 || cM_rnd() < 0.3f) {
-        setSingleAnimeParam(ANM_CLIMB_HANG, &daAlinkHIO_ladder_c0::m.field_0x0);
-        field_0x3478 = daAlinkHIO_ladder_c0::m.field_0x0.mCancelFrame;
+        setSingleAnimeParam(ANM_CLIMB_HANG, &daAlinkHIO_ladder_c0::m.mWallAttachAnm);
+        field_0x3478 = daAlinkHIO_ladder_c0::m.mWallAttachAnm.mCancelFrame;
         voiceStart(Z2SE_AL_V_JUMP_HANG);
     } else {
-        setSingleAnimeParam(ANM_CLIMB_HANG_MISS, &daAlinkHIO_ladder_c0::m.field_0x14);
-        field_0x3478 = daAlinkHIO_ladder_c0::m.field_0x14.mCancelFrame;
+        setSingleAnimeParam(ANM_CLIMB_HANG_MISS, &daAlinkHIO_ladder_c0::m.mWallAttachMissAnm);
+        field_0x3478 = daAlinkHIO_ladder_c0::m.mWallAttachMissAnm.mCancelFrame;
         voiceStart(Z2SE_AL_V_FOOT_MISS);
     }
 
@@ -2158,7 +2158,7 @@ int daAlink_c::procClimbUpStartInit(int param_0) {
     dComIfGp_setPlayerStatus0(0, 8);
 
     if (param_0) {
-        current.pos.y = field_0x34ec.y + daAlinkHIO_ladder_c0::m.field_0x6C;
+        current.pos.y = field_0x34ec.y + daAlinkHIO_ladder_c0::m.mWallApproachOffset;
     }
 
     field_0x2f99 = 2;
@@ -2226,12 +2226,12 @@ int daAlink_c::procClimbDownStartInit(s16 param_0) {
     deleteEquipItem(TRUE, FALSE);
 
     if (cM_rnd() < 0.7f) {
-        setSingleAnimeParam(ANM_CLIMB_HANG, &daAlinkHIO_ladder_c0::m.field_0x0);
-        field_0x3478 = daAlinkHIO_ladder_c0::m.field_0x0.mCancelFrame;
+        setSingleAnimeParam(ANM_CLIMB_HANG, &daAlinkHIO_ladder_c0::m.mWallAttachAnm);
+        field_0x3478 = daAlinkHIO_ladder_c0::m.mWallAttachAnm.mCancelFrame;
         mProcVar0.field_0x3008 = 0;
     } else {
-        setSingleAnimeParam(ANM_CLIMB_HANG_MISS, &daAlinkHIO_ladder_c0::m.field_0x14);
-        field_0x3478 = daAlinkHIO_ladder_c0::m.field_0x14.mCancelFrame;
+        setSingleAnimeParam(ANM_CLIMB_HANG_MISS, &daAlinkHIO_ladder_c0::m.mWallAttachMissAnm);
+        field_0x3478 = daAlinkHIO_ladder_c0::m.mWallAttachMissAnm.mCancelFrame;
         mProcVar0.field_0x3008 = 1;
         voiceStart(Z2SE_AL_V_FOOT_MISS);
     }

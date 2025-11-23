@@ -3140,7 +3140,48 @@ daAlinkHIO_boom_c::~daAlinkHIO_boom_c() {}
 daAlinkHIO_bow_c::~daAlinkHIO_bow_c() {}
 
 void daAlinkHIO_ladder_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // Reset
+    ctx->genButton("リセット", 0x4000003, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Climb up start A speed
+    ctx->genSlider("登開始Ａ速度", &m.mClimbUpStartASpeed, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Climb up start interpolation
+    ctx->genSlider("登開始補間", &m.mClimbUpStartInterp, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Climb up end A speed
+    ctx->genSlider("登終了Ａ速度", &m.mClimbUpEndASpeed, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Climb up end CF (transition frame?)
+    ctx->genSlider("登終了ＣＦ", &m.mClimbUpEndCF, 0.0f, 45.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Climb up end interpolation
+    ctx->genSlider("登終了補間", &m.mClimbUpEndInterp, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Climb down start A speed
+    ctx->genSlider("降開始Ａ速度", &m.mClimbDownStartASpeed, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Climb down start interpolation
+    ctx->genSlider("降開始補間", &m.mClimbDownStartInterp, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Climb down end A speed
+    ctx->genSlider("降終了Ａ速度", &m.mClimbDownEndASpeed, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Climb down end CF (transition frame?)
+    ctx->genSlider("降終了ＣＦ", &m.mClimbDownEndCF, 0.0f, 20.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Climb down end interpolation
+    ctx->genSlider("降終了補間", &m.mClimbDownEndInterp, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Movement minimum A speed
+    ctx->genSlider("移動最低Ａ速度", &m.mMoveMinASpeed, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Movement maximum speed
+    ctx->genSlider("移動最高Ａ速度", &m.mMoveMaxSpeed, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Movement interpolation
+    ctx->genSlider("移動補間", &m.mMoveInterp, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Wall attach animation
+    daAlinkHIO_setAnmGenMessage(&m.mWallAttachAnm, ctx, "壁飛付", 13.0f, 1);
+    // Wall approach offset
+    ctx->genSlider("壁飛付オフセット", &m.mWallApproachOffset, 0.0f, 300.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Wall attach miss animation
+    daAlinkHIO_setAnmGenMessage(&m.mWallAttachMissAnm, ctx, "壁飛付ミス", 47.0f, 1);
+    // Wall vertical movement minimum anm speed
+    ctx->genSlider("壁縦移動最低Ａ速度", &m.mWallVerticalMinAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Wall vertical movement maximum anm speed
+    ctx->genSlider("壁縦移動最高Ａ速度", &m.mWallVerticalMaxAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Wall horizontal movement minimum anm speed
+    ctx->genSlider("壁横移動最低Ａ速度", &m.mWallHorizontalMinAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    // Wall horizontal movement maximum anm speed
+    ctx->genSlider("壁横移動最高Ａ速度", &m.mWallHorizontalMaxAnmSpeed, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
 }
 
 daAlinkHIO_ladder_c::daAlinkHIO_ladder_c() {

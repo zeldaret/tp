@@ -2244,26 +2244,26 @@ private:
 
 class daAlinkHIO_ladder_c1 {
 public:
-    /* 0x00 */ daAlinkHIO_anm_c field_0x0;
-    /* 0x14 */ daAlinkHIO_anm_c field_0x14;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2C;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-    /* 0x3C */ f32 field_0x3C;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ f32 field_0x44;
-    /* 0x48 */ f32 field_0x48;
-    /* 0x4C */ f32 field_0x4C;
-    /* 0x50 */ f32 field_0x50;
-    /* 0x54 */ f32 field_0x54;
-    /* 0x58 */ f32 field_0x58;
-    /* 0x5C */ f32 field_0x5C;
-    /* 0x60 */ f32 field_0x60;
-    /* 0x64 */ f32 field_0x64;
-    /* 0x68 */ f32 field_0x68;
-    /* 0x6C */ f32 field_0x6C;
+    /* 0x00 */ daAlinkHIO_anm_c mWallAttachAnm;
+    /* 0x14 */ daAlinkHIO_anm_c mWallAttachMissAnm;
+    /* 0x28 */ f32 mClimbUpStartASpeed;
+    /* 0x2C */ f32 mClimbUpStartInterp;
+    /* 0x30 */ f32 mClimbUpEndASpeed;
+    /* 0x34 */ f32 mClimbUpEndInterp;
+    /* 0x38 */ f32 mClimbDownStartASpeed;
+    /* 0x3C */ f32 mClimbDownStartInterp;
+    /* 0x40 */ f32 mClimbDownEndASpeed;
+    /* 0x44 */ f32 mClimbDownEndInterp;
+    /* 0x48 */ f32 mMoveMinASpeed;
+    /* 0x4C */ f32 mMoveMaxSpeed;
+    /* 0x50 */ f32 mMoveInterp;
+    /* 0x54 */ f32 mClimbDownEndCF;
+    /* 0x58 */ f32 mClimbUpEndCF;
+    /* 0x5C */ f32 mWallHorizontalMinAnmSpeed;
+    /* 0x60 */ f32 mWallHorizontalMaxAnmSpeed;
+    /* 0x64 */ f32 mWallVerticalMinAnmSpeed;
+    /* 0x68 */ f32 mWallVerticalMaxAnmSpeed;
+    /* 0x6C */ f32 mWallApproachOffset;
 };  // Size: 0x70
 
 class daAlinkHIO_ladder_c0 {
