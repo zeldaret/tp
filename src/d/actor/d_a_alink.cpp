@@ -9942,7 +9942,7 @@ void daAlink_c::setSpeedAndAngleAtn() {
  * checkRequestTalkActor__9daAlink_cFP10dAttList_cP10fopAc_ac_c */
 int daAlink_c::checkRequestTalkActor(dAttList_c* param_0, fopAc_ac_c* param_1) {
     if (param_0 != NULL &&
-        (param_0->mType == 3 || (param_0->mType == 1 && mTargetedActor == param_1)))
+        (param_0->mType == fopAc_attn_SPEAK_e || (param_0->mType == fopAc_attn_TALK_e && mTargetedActor == param_1)))
     {
         return true;
     }

@@ -20,6 +20,16 @@ public:
         return retVal;
     }
 
+    BOOL isDistChkTag1() { return field_0x6E0 == 0; }
+    BOOL isDistChkTag2() { return field_0x6E0 == 1; }
+    BOOL isEscapeChkTag1() { return field_0x6E0 == 2; }
+    BOOL isEscapeChkTag2() { return field_0x6E0 == 3; }
+    BOOL is_CoHit() const { return field_0x6E4; }
+    void clr_CoHit() { 
+        mCyl.ClrCoHit();
+        field_0x6E4 = 0;
+    }
+
     /* 0x568 */ dCcD_Cyl mCyl;
     /* 0x6A4 */ dCcD_Stts mStts;
     /* 0x6E0 */ u32 field_0x6E0;

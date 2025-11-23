@@ -1336,7 +1336,7 @@ void dSv_MiniGame_c::init() {
         }
     }
 
-    mStarTime = 120000;
+    mHookGameTime = 120000;
     mBalloonScore = 0;
     mRaceGameTime = 0;
     unk16 = 0;

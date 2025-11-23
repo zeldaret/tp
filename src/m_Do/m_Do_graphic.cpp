@@ -1411,7 +1411,7 @@ static void setLight() {
 }
 
 static void captureScreenSetProjection(Mtx44& m) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 static void captureScreenSetPort() {
@@ -1420,11 +1420,11 @@ static void captureScreenSetPort() {
 }
 
 static void captureScreenSetScissor(scissor_class* scissor) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 static void captureScreenPerspDrawInfo(JPADrawInfo&) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 /* 8000A58C-8000A604 004ECC 0078+00 1/1 0/0 0/0 .text            drawItem3D__Fv */

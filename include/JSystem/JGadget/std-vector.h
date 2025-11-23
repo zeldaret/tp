@@ -170,7 +170,7 @@ struct TVector_pointer_void : public TVector<void*, TAllocator<void*> > {
     void** erase(void**, void**);
 
     void clear() { erase(begin(), end()); }
-    void push_back(const void*& value) { insert(end(), (void* const&)value); }
+    void push_back(void* const& value) { insert(end(), (void* const&)value); }
 };
 
 template <typename T>
@@ -185,7 +185,7 @@ struct TVector_pointer : TVector_pointer_void {
     T* end() { return (T*)TVector_pointer_void::end(); }
 
     void push_back(const T& ref) {
-        static_cast<TVector_pointer_void*>(this)->push_back((const void*&)ref);
+        static_cast<TVector_pointer_void*>(this)->push_back((void* const&)ref);
     }
 };
 

@@ -32,12 +32,7 @@ class dDlst_base_c {
 public:
     dDlst_base_c() {}
 
-    // hack, remove later
-    #ifdef NO_INLINE_DLSTBASE_DRAW
-    virtual void draw();
-    #else
     virtual void draw() {}
-    #endif
 };
 
 class dDlst_snapShot_c : public dDlst_base_c {

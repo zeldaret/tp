@@ -83,9 +83,9 @@ enum fopAc_Cull_e {
 };
 
 enum fopAc_attention_type {
-    fopAc_attn_LOCK_e,
-    fopAc_attn_TALK_e,
-    fopAc_attn_BATTLE_e,
+    /* 0x0 */ fopAc_attn_LOCK_e,
+    /* 0x1 */ fopAc_attn_TALK_e,
+    /* 0x2 */ fopAc_attn_BATTLE_e,
 
 #if !PLATFORM_GCN
     fopAc_attn_UNK_3,
@@ -93,17 +93,17 @@ enum fopAc_attention_type {
     fopAc_attn_UNK_5,
 #endif
 
-    fopAc_attn_SPEAK_e,
-    fopAc_attn_CARRY_e,
-    fopAc_attn_DOOR_e,
-    fopAc_attn_JUEL_e,
+    /* 0x3 */ fopAc_attn_SPEAK_e,
+    /* 0x4 */ fopAc_attn_CARRY_e,
+    /* 0x5 */ fopAc_attn_DOOR_e,
+    /* 0x6 */ fopAc_attn_JUEL_e,
 
 #if !PLATFORM_GCN
     fopAc_attn_UNK_10,
 #endif
 
-    fopAc_attn_ETC_e,
-    fopAc_attn_CHECK_e,
+    /* 0x7 */ fopAc_attn_ETC_e,
+    /* 0x8 */ fopAc_attn_CHECK_e,
 
     fopAc_attn_MAX_e,
 };

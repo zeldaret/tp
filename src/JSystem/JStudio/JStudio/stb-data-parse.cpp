@@ -14,7 +14,7 @@ namespace stb {
 namespace data {
 
 void TParse_TSequence::getData(TData* pData) const {
-    ASSERT(pData != 0);
+    ASSERT(pData != NULL);
 
     pData->content = NULL;
     pData->next = NULL;
@@ -35,7 +35,7 @@ void TParse_TSequence::getData(TData* pData) const {
 }
 
 void TParse_TParagraph::getData(TData* pData) const {
-    ASSERT(pData != 0);
+    ASSERT(pData != NULL);
 
     const void* data = getRaw();
     u32 result;

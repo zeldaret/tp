@@ -964,4 +964,5 @@ extern actor_process_profile_definition g_profile_CANOE = {
 };
 
 AUDIO_INSTANCES
+template<>
 JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

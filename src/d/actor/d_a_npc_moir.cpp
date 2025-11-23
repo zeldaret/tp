@@ -783,9 +783,7 @@ void daNpcMoiR_c::playExpression() {
     daNpcF_anmPlayData* pDat2[1] = {&dat2};
     daNpcF_anmPlayData dat3 = {ANM_FH_SERIOUS, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[1] = {&dat3};
-    // FIXME: daNpcF hack in configure.py prevents us from converting more of these,
-    //  otherwise this function will not inline in GCN.
-    daNpcF_anmPlayData dat4 = {ANM_F_TAKAJO_HI, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat4 = {ANM_F_TAKAJO_HI, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&dat4};
     daNpcF_anmPlayData dat5 = {ANM_FH_TAKAJO_HI, 0.0f, 0};
     daNpcF_anmPlayData* pDat5[1] = {&dat5};
@@ -795,9 +793,9 @@ void daNpcMoiR_c::playExpression() {
     daNpcF_anmPlayData* pDat7[1] = {&dat7};
     daNpcF_anmPlayData dat8 = {ANM_F_HOLD_S, 0.0f, 0};
     daNpcF_anmPlayData* pDat8[1] = {&dat8};
-    daNpcF_anmPlayData dat9 = {ANM_FH_HOLD_S, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat9 = {ANM_FH_HOLD_S, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat9[1] = {&dat9};
-    daNpcF_anmPlayData dat10 = {ANM_NONE, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat10 = {ANM_NONE, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat10[1] = {&dat10};
     daNpcF_anmPlayData* pDat11[1] = {&dat0};
 
@@ -1098,7 +1096,6 @@ static daNpcMoiR_c::Action2Fn dummy_4854() {
 
 /* 80A7D934-80A7DD94 0018B4 0460+00 1/0 0/0 0/0 .text            wait_type0__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::wait_type0(void* param_1) {
-    // NONMATCHING
     switch (field_0xe08) {
         case 0:
             setExpression(EXPR_NONE, -1.0f);
@@ -1177,7 +1174,6 @@ void daNpcMoiR_c::setExpression(int i_expression, f32 i_morf) {
 
 /* 80A7DE04-80A7E668 001D84 0864+00 2/0 0/0 0/0 .text            wait_type1__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::wait_type1(void* param_1) {
-    // NONMATCHING
     f32 fVar1;
 
     switch (field_0xe08) {
@@ -1277,7 +1273,6 @@ bool daNpcMoiR_c::wait_type1(void* param_1) {
 
 /* 80A7E668-80A7E8C0 0025E8 0258+00 1/0 0/0 0/0 .text            wait_type2__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::wait_type2(void* param_1) {
-    // NONMATCHING
     switch (field_0xe08) {
         case 0:
             setExpression(EXPR_FH_TAKAJO_HI, -1.0f);
@@ -1423,7 +1418,6 @@ bool daNpcMoiR_c::talk(void* param_1) {
 
 /* 80A7EFBC-80A7F40C 002F3C 0450+00 2/0 0/0 0/0 .text            multiTalk__11daNpcMoiR_cFPv */
 BOOL daNpcMoiR_c::multiTalk(void* param_1) {
-    // NONMATCHING
     BOOL rv = FALSE;
     fopAc_ac_c* speakers[4] = {this, mActorMngr[1].getActorP(), mActorMngr[2].getActorP(), mActorMngr[3].getActorP()};
 
@@ -1481,7 +1475,6 @@ BOOL daNpcMoiR_c::multiTalk(void* param_1) {
 
 /* 80A7F40C-80A7F9AC 00338C 05A0+00 2/0 0/0 0/0 .text            fight__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::fight(void* param_1) {
-    // NONMATCHING
     f32 fVar1;
     int iVar1 = 1;
 

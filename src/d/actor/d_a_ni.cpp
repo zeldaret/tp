@@ -318,7 +318,7 @@ static BOOL move_gake_check(ni_class* i_this, f32 param_1) {
 
 /* 8094C7B4-8094CE7C 000C74 06C8+00 1/1 0/0 0/0 .text            ni_normal__FP8ni_class */
 static void ni_normal(ni_class* i_this) {
-    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;  // temp var and casts necessary atm. fake match?
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
     cXyz sp50;
     cXyz sp5C;
@@ -377,9 +377,8 @@ static void ni_normal(ni_class* i_this) {
         i_this->field_0x60e = 30;
     }
 
-    if ((s16)(a_this->shape_angle.y - i_this->mAngleToPlayer) < 0x2000 &&
-        (s16)(a_this->shape_angle.y - i_this->mAngleToPlayer) > 0x2000)
-    {
+    s16 sp0A = a_this->shape_angle.y - i_this->mAngleToPlayer;
+    if (sp0A < 0x2000 && sp0A > 0x2000) {
         i_this->field_0x60e = 0;
     }
 
@@ -427,7 +426,7 @@ static void ni_normal(ni_class* i_this) {
 
 /* 8094CE7C-8094D2A4 00133C 0428+00 1/1 0/0 0/0 .text            ni_away__FP8ni_class */
 static void ni_away(ni_class* i_this) {
-    ni_class* a_this = (ni_class*)i_this;  // temp var and cast necessary to match atm. fake match?
+    ni_class* a_this = (ni_class*)i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz sp4C;
     cXyz sp58;
@@ -476,7 +475,7 @@ static void ni_away(ni_class* i_this) {
         }
 
         if (a_this->mTimers[1] == 0) {
-            a_this->mMoveAngle = cM_atan2s(sp4C.x, sp4C.z);
+            a_this->mMoveAngle = (s16)cM_atan2s(sp4C.x, sp4C.z);
 
             if (fopAcM_wayBgCheck(a_this, 100.0f, 30.0f)) {
                 a_this->mTimers[1] = 30;
@@ -584,7 +583,7 @@ static void ni_swim(ni_class* i_this) {
 
 /* 8094D60C-8094D7BC 001ACC 01B0+00 1/1 0/0 0/0 .text            ni_carry__FP8ni_class */
 static int ni_carry(ni_class* i_this) {
-    ni_class* a_this = (ni_class*)i_this;  // temp var and cast necessary to match atm. fake match?
+    ni_class* a_this = (ni_class*)i_this;
     cXyz sp40;
     cXyz sp4C;
     cXyz sp58;
@@ -1424,7 +1423,7 @@ static void play_camera(ni_class* i_this) {
 
 /* 8094F5D8-809502B4 003A98 0CDC+00 2/1 0/0 0/0 .text            action__FP8ni_class */
 static void action(ni_class* i_this) {
-    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;  // necessary for reg alloc
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     cXyz sp148;
     cXyz sp154;
 

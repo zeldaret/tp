@@ -422,7 +422,7 @@ void Z2SoundObjAnime::updateSoundLifeTime_(f32 param_0, f32 param_1) {
             switch (getHandle(i)->getSound()->getAnimationState()) {
                 case 0:
                     break;
-                case 1:
+                case 1: {
                     JAUSoundAnimationSound* sound =
                         (JAUSoundAnimationSound*)getHandle(i)->getSound()->getUserData();
                     bool bvar1 = param_1 == 0.0f && sound->stopsWhenSpeedIsZero();
@@ -446,6 +446,7 @@ void Z2SoundObjAnime::updateSoundLifeTime_(f32 param_0, f32 param_1) {
                         }
                     }
                     break;
+                }
                 case 2:
                     break;
             }

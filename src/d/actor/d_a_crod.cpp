@@ -165,13 +165,11 @@ void daCrod_c::setMatrix() {
 
 /* 804A3500-804A3580 000740 0080+00 1/1 0/0 0/0 .text            posMove__8daCrod_cFv */
 void daCrod_c::posMove() {
-    f32 cosx = cM_scos(current.angle.x);
-    f32 cosy = cM_scos(current.angle.y);
-    f32 speedfy = (speedF * cosy);
-    //probably fake match
-    f32 speedz;
-    speed.set(speedF * cM_ssin(current.angle.y) * cM_scos(current.angle.x),
-              speedF * cM_ssin(current.angle.x), speedz = speedfy * cosx);
+    speed.set(
+        speedF * cM_ssin(current.angle.y) * cM_scos(current.angle.x),
+        speedF * cM_ssin(current.angle.x),
+        speedF * cM_scos(current.angle.y) * cM_scos(current.angle.x)
+    );
     current.pos += speed;
 }
 

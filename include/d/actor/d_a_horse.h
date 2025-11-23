@@ -562,8 +562,19 @@ public:
     static const daHorse_hio_c1 m;
 };
 
-class daHorse_hio_c {
+class daHorse_hio_c : public JORReflexible {
 public:
+    daHorse_hio_c() {
+#if DEBUG
+        mParameters = daHorse_hio_c0::m;
+#endif
+    }
+#if DEBUG
+    virtual ~daHorse_hio_c() {}
+    void genMessage(JORMContext*);
+    /* 0x4 */ s8 id;
+    /* 0x8 */ daHorse_hio_c1 mParameters;
+#endif
 };
 
 #endif /* D_A_HORSE_H */

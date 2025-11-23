@@ -1585,3 +1585,6 @@ extern actor_process_profile_definition g_profile_BOOMERANG = {
 };
 
 AUDIO_INSTANCES;
+class JAUSectionHeap;
+template<>
+JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

@@ -1258,5 +1258,5 @@ extern actor_process_profile_definition g_profile_CSTATUE = {
 AUDIO_INSTANCES;
 
 #include "JSystem/JAudio2/JAUSectionHeap.h"
-template <>
+template<>
 JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

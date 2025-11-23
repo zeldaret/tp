@@ -180,9 +180,9 @@ public:
     u8 isSelectMessage() { return mSelectMessage; }
     void onNonStopJunpFlowFlag() { mNonStopJunpFlowFlag = 1; }
     u16 getSelectNum() { return query005(NULL, NULL, 0); }
-    s16 getChoiceNo() { return mChoiceNo; }
+    int getChoiceNo() { return (s16)mChoiceNo; }
     void setMsg(u32 msg) { mMsg = msg; }
-    bool checkEndFlow() { return field_0x26 == 1; }
+    bool checkEndFlow() { return (u32)field_0x26 == 1; }
 
     static queryFunc mQueryList[53];
     static eventFunc mEventList[43];

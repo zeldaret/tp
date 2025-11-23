@@ -5667,7 +5667,7 @@ void dKankyo_lightHIO_c::dKankyo_lightHIOInfoUpDateF() {
 }
 
 void dKankyo_lightHIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_vrboxHIO_c::dKankyo_vrboxHIO_c() {
@@ -5691,15 +5691,15 @@ dKankyo_vrboxHIO_c::dKankyo_vrboxHIO_c() {
 }
 
 void dKankyo_vrboxHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_vrboxHIO_c::dKankyo_vrboxHIOInfoUpDateF() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_vrboxHIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_bloomHIO_c::dKankyo_bloomHIO_c() {
@@ -5714,63 +5714,63 @@ dKankyo_bloomHIO_c::dKankyo_bloomHIO_c() {
 }
 
 void dKankyo_bloomHIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_bloomHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_dungeonlightHIO_c::listenPropertyEvent(const JORPropertyEvent* property) {}
 
 dKankyo_navyHIO_c::dKankyo_navyHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_navyHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_efflightHIO_c::dKankyo_efflightHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_efflightHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_windHIO_c::dKankyo_windHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_demolightHIO_c::dKankyo_demolightHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_demolightHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_windHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_dungeonlightHIO_c::dKankyo_dungeonlightHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_dungeonlightHIO_c::genMessage(JORMContext* mctx) {}
 
 dKankyo_ParticlelightHIO_c::dKankyo_ParticlelightHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_ParticlelightHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_ParticlelightHIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_HIO_c::dKankyo_HIO_c() {
@@ -5779,7 +5779,7 @@ dKankyo_HIO_c::dKankyo_HIO_c() {
 }
 
 void dKankyo_HIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 #endif

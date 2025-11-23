@@ -34,16 +34,12 @@ private:
 };
 
 #ifdef DEBUG
-// these macros are probably wrong, needs work
+
 #define JGADGET_ASSERTWARN(line, COND) \
-    if (!(COND)) {                                                            \
-        JGadget_outMessage out(JGadget_outMessage::warning, __FILE__, line);  \
-        out << #COND;                                                         \
-    }
+    ((COND)) || (JGadget_outMessage(JGadget_outMessage::warning, __FILE__, line) << #COND, false);
 
 #define JGADGET_WARNMSG(line, msg)                                            \
-        JGadget_outMessage out(JGadget_outMessage::warning, __FILE__, line);  \
-        out << msg;
+        JGadget_outMessage(JGadget_outMessage::warning, __FILE__, line) << msg, false;
 
 #define JGADGET_WARNMSG1(line, msg, arg)                                      \
         JGadget_outMessage out(JGadget_outMessage::warning, __FILE__, line);  \

@@ -11,6 +11,26 @@
 #include "d/d_lib.h"
 #include "JSystem/JUtility/JUTFont.h"
 
+#if REGION_JPN
+#define CHAR_CODE_MALE_ICON 0x8189
+#define CHAR_CODE_FEMALE_ICON 0x818A
+#define CHAR_CODE_STAR_ICON 0x819A
+#define CHAR_CODE_REFMARK 0x81A6
+#define CHAR_CODE_THIN_LEFT_ARROW 0x81A9
+#define CHAR_CODE_THIN_RIGHT_ARROW 0x81A8
+#define CHAR_CODE_THIN_UP_ARROW 0x81AA
+#define CHAR_CODE_THIN_DOWN_ARROW 0x81AB
+#else
+#define CHAR_CODE_MALE_ICON 0xB2
+#define CHAR_CODE_FEMALE_ICON 0xB3
+#define CHAR_CODE_STAR_ICON 0xB1
+#define CHAR_CODE_REFMARK 0x89
+#define CHAR_CODE_THIN_LEFT_ARROW 0xB9
+#define CHAR_CODE_THIN_RIGHT_ARROW 0xBC
+#define CHAR_CODE_THIN_UP_ARROW 0xBD
+#define CHAR_CODE_THIN_DOWN_ARROW 0xBE
+#endif
+
 /* 80228578-802285CC 222EB8 0054+00 1/1 0/0 0/0 .text            checkCharInfoCharactor__Fi */
 static bool checkCharInfoCharactor(int c) {
     if (c != 0x8140 && c != 0x8141 && c != 0x8142 && c != 0x0020 && c != 0x0022 && c != 0x0027 &&
@@ -420,6 +440,19 @@ void jmessage_tReference::calcDistance() {
 u8 jmessage_tReference::getLineMax() {
     int line_max;
 
+#if REGION_JPN
+    if (isKanban()) {
+        line_max = 6;
+    } else if (isBook()) {
+        line_max = 7;
+    } else if (isStaffRoll()) {
+        line_max = 10;
+    } else if (isSaveSeq()) {
+        line_max = 5;
+    } else {
+        line_max = 3;
+    }
+#else
     if (isKanban()) {
         line_max = 7;
     } else if (isBook()) {
@@ -431,6 +464,7 @@ u8 jmessage_tReference::getLineMax() {
     } else {
         line_max = 4;
     }
+#endif
 
     return line_max;
 }
@@ -732,7 +766,7 @@ void jmessage_tReference::addCharactor(u16 i_character) {
 
 /* 802297B0-802297E4 2240F0 0034+00 3/3 0/0 0/0 .text resetCharactor__19jmessage_tReferenceFv */
 void jmessage_tReference::resetCharactor() {
-    for (int i = 0; i < 0x200; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mCharactor.data); i++) {
         mCharactor.data[i] = 0;
     }
 
@@ -896,7 +930,7 @@ void jmessage_tMeasureProcessor::do_begin(void const* pEntry, char const* pszTex
     mSeSpeaker = ((JMSMesgEntry_c*)pEntry)->se_speaker;
     mSeMood = ((JMSMesgEntry_c*)pEntry)->se_mood;
 
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < D_MSG_CLASS_PAGE_CNT_MAX; i++) {
         pReference->setLineLength(i, 0.0f, 0.0f);
         pReference->setPageLine(i, 0);
         pReference->setPageLineMax(i, 0);
@@ -913,9 +947,11 @@ void jmessage_tMeasureProcessor::do_begin(void const* pEntry, char const* pszTex
                 pReference->setLineArrange(i, 1);
             }
 
+#if !REGION_JPN
             if (((JMSMesgEntry_c*)pEntry)->unk_0xd == 0) {
                 pReference->setLineArrange(i, 1);
             }
+#endif
         }
     }
 
@@ -1524,28 +1560,28 @@ bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_siz
             push_word(buffer);
             return true;
         case MSGTAG_MALE_ICON:
-            push_word(changeCodeToChar(0xB2));
+            push_word(changeCodeToChar(CHAR_CODE_MALE_ICON));
             return true;
         case MSGTAG_FEMALE_ICON:
-            push_word(changeCodeToChar(0xB3));
+            push_word(changeCodeToChar(CHAR_CODE_FEMALE_ICON));
             return true;
         case MSGTAG_STAR_ICON:
-            push_word(changeCodeToChar(0xB1));
+            push_word(changeCodeToChar(CHAR_CODE_STAR_ICON));
             return true;
         case MSGTAG_REFMARK:
-            push_word(changeCodeToChar(0x89));
+            push_word(changeCodeToChar(CHAR_CODE_REFMARK));
             return true;
         case MSGTAG_THIN_LEFT_ARROW:
-            push_word(changeCodeToChar(0xB9));
+            push_word(changeCodeToChar(CHAR_CODE_THIN_LEFT_ARROW));
             return true;
         case MSGTAG_THIN_RIGHT_ARROW:
-            push_word(changeCodeToChar(0xBC));
+            push_word(changeCodeToChar(CHAR_CODE_THIN_RIGHT_ARROW));
             return true;
         case MSGTAG_THIN_UP_ARROW:
-            push_word(changeCodeToChar(0xBD));
+            push_word(changeCodeToChar(CHAR_CODE_THIN_UP_ARROW));
             return true;
         case MSGTAG_THIN_DOWN_ARROW:
-            push_word(changeCodeToChar(0xBE));
+            push_word(changeCodeToChar(CHAR_CODE_THIN_DOWN_ARROW));
             return true;
         case MSGTAG_BULLET:
         case MSGTAG_BULLET_SPACE:
@@ -1596,6 +1632,11 @@ void jmessage_tMeasureProcessor::do_scale(f32 i_scale) {
         mPageLineMax--;
         JUT_ASSERT(0x930, mPageLineMax > 0);
 
+#if REGION_JPN
+        if (field_0x3e == 0) {
+            pReference->setPageType(field_0x40, 2);
+        }
+#else
         if (field_0x3e == 0) {
             pReference->setPageType(field_0x40, 2);
         } else if (field_0x3e == 2 && mPageLineMax == 3) {
@@ -1604,7 +1645,9 @@ void jmessage_tMeasureProcessor::do_scale(f32 i_scale) {
             } else {
                 pReference->setPageType(field_0x40, 8);
             }
-        } else {
+        }
+#endif
+        else {
             pReference->setPageType(field_0x40, 3);
             if (field_0x3e == 1 && pReference->getPageType(field_0x40) == 2) {
                 pReference->setPageType(field_0x40, 4);
@@ -1764,6 +1807,13 @@ void jmessage_tMeasureProcessor::do_pageType(int param_0) {
 /* 8022B454-8022B458 225D94 0004+00 1/1 0/0 0/0 .text do_name1__26jmessage_tMeasureProcessorFv */
 void jmessage_tMeasureProcessor::do_name1() {
     const char* name = dComIfGs_getPlayerName();
+#if REGION_JPN
+    int c = (((char)name[0] & 0xFF) << 8) | ((char)name[1] & 0xFF);
+    // if first character is hiragana or katakana
+    if ((c >= 0x829F && c <= 0x82F1) || (c >= 0x8340 && c <= 0x8396)) {
+        push_word(changeCodeToChar(c));
+    }
+#endif
 }
 
 /* 8022B458-8022B4E0 225D98 0088+00 1/1 0/0 0/0 .text
@@ -2036,7 +2086,7 @@ bool jmessage_tSequenceProcessor::do_isReady() {
                 field_0xae = 1;
                 field_0xa4 = 0;
                 pReference->onBatchFlag();
-                pReference->setCharCnt(0x200);
+                pReference->setCharCnt(D_MSG_CLASS_CHAR_CNT_MAX);
                 field_0xa4 = field_0xa8;
                 return true;
             }
@@ -2056,7 +2106,7 @@ bool jmessage_tSequenceProcessor::do_isReady() {
                 field_0xae = 1;
                 field_0xa4 = 0;
                 pReference->onBatchFlag();
-                pReference->setCharCnt(0x200);
+                pReference->setCharCnt(D_MSG_CLASS_CHAR_CNT_MAX);
                 return true;
             }
             
@@ -2079,7 +2129,7 @@ bool jmessage_tSequenceProcessor::do_isReady() {
                 if (mDoCPd_c::getTrigA(PAD_1) || field_0xb2 != 0) {
                     field_0xa4 = 0;
                     pReference->onBatchFlag();
-                    pReference->setCharCnt(0x200);
+                    pReference->setCharCnt(D_MSG_CLASS_CHAR_CNT_MAX);
                 }
                 break;
             case 1:
@@ -2088,7 +2138,7 @@ bool jmessage_tSequenceProcessor::do_isReady() {
             case 9:
                 field_0xa4 = 0;
                 pReference->onBatchFlag();
-                pReference->setCharCnt(0x200);
+                pReference->setCharCnt(D_MSG_CLASS_CHAR_CNT_MAX);
                 break;
             case 2:
                 if (field_0xb2 != 0) {
@@ -2103,7 +2153,11 @@ bool jmessage_tSequenceProcessor::do_isReady() {
             }
 
             field_0xa6++;
+#if REGION_JPN
+            if (field_0xa6 >= 1) {
+#else
             if (field_0xa6 >= 2) {
+#endif
                 field_0xa4 = field_0xa8;
                 field_0xa6 = 0;
             }
@@ -2519,6 +2573,13 @@ bool jmessage_tSequenceProcessor::do_jump_isReady() {
 /* 8022C904-8022C908 227244 0004+00 1/1 0/0 0/0 .text do_name1__27jmessage_tSequenceProcessorFv */
 void jmessage_tSequenceProcessor::do_name1() {
     const char* name = dComIfGs_getPlayerName();
+#if REGION_JPN
+    int c = (((char)name[0] & 0xFF) << 8) | ((char)name[1] & 0xFF);
+    // if first character is hiragana or katakana
+    if ((c >= 0x829F && c <= 0x82F1) || (c >= 0x8340 && c <= 0x8396)) {
+        push_word();
+    }
+#endif
 }
 
 /* 8022C908-8022CA24 227248 011C+00 2/1 0/0 0/0 .text do_space__27jmessage_tSequenceProcessorFUl
@@ -2713,7 +2774,7 @@ jmessage_tRenderingProcessor::jmessage_tRenderingProcessor(jmessage_tReference c
     field_0x151 = 0;
     field_0x138 = 0.0f;
 
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < ARRAY_SIZE(field_0x7c); i++) {
         field_0x7c[i] = 0.0f;
     }
 }
@@ -2767,7 +2828,7 @@ void jmessage_tRenderingProcessor::do_begin(void const* pEntry, char const* pszT
 
     mpOutFont->initialize();
 
-    for (int i = 0; i < 40; i++) {
+    for (int i = 0; i < ARRAY_SIZE(field_0x7c); i++) {
         field_0x7c[i] = 0.0f;
     }
 
@@ -3367,6 +3428,73 @@ void jmessage_tRenderingProcessor::do_heightcenter() {
         }
         break;
     }
+#if REGION_JPN
+    case 2:
+        if ((s8)pReference->getLineMax() == 3) {
+            int nowPageLine = pReference->getNowPageLine();
+            field_0x138 = pReference->getLineSpace() * (0.5f * (pReference->getLineMax() - (s16)nowPageLine));
+            var_f31 += field_0x138;
+            break;
+        }
+        if (field_0x142 == 0) {
+            field_0x138 = pReference->getLineSpace();
+            var_f31 += field_0x138;
+        } else if (field_0x142 == 1) {
+            field_0x138 = 0.5f * pReference->getLineSpace();
+            var_f31 += field_0x138;
+        }
+        break;
+    case 3: {
+        if (field_0x142 == 1) {
+            int nowPageLine = pReference->getNowPageLine();
+            field_0x138 = pReference->getLineSpace() * (0.5f * (pReference->getLineMax() - (s16)nowPageLine));
+            var_f31 += field_0x138;
+            break;
+        }
+        break;
+    }
+    case 4: {
+        if (field_0x142 == 1) {
+            var_f31 += 0.5f * pReference->getLineSpace();
+        }
+
+        f32 sp8 = pReference->getLineScale(field_0x142) / 100.0f;
+        f32 dVar15 = (pReference->getLineSpace() - (sp8 * pReference->getFontSizeY())) / 2;
+        field_0x138 += dVar15;
+        var_f31 += dVar15;
+        break;
+    }
+    case 5: {
+        if (field_0x142 >= 1) {
+            field_0x138 = 0.5f * pReference->getLineSpace();
+            var_f31 += field_0x138;
+        }
+
+        f32 sp8 = pReference->getLineScale(field_0x142) / 100.0f;
+        f32 dVar15 = (pReference->getLineSpace() - (sp8 * pReference->getFontSizeY())) / 2;
+        field_0x138 += dVar15;
+        var_f31 += dVar15;
+
+        break;
+    }
+    case 6:
+        if (field_0x142 <= 1) {
+            field_0x138 = 0.5f * pReference->getLineSpace();
+            var_f31 += field_0x138;
+        }
+        break;
+    case 7:
+        if (field_0x142 == 1 || field_0x142 == 2) {
+            field_0x138 = 0.5f * pReference->getLineSpace();
+            var_f31 += field_0x138;
+        }
+        break;
+    case 8:
+        if (field_0x142 == 2) {
+            field_0x138 = 0.5f * pReference->getLineSpace();
+            var_f31 += field_0x138;
+        }
+#else
     case 2:
         if (field_0x142 == 0) {
             field_0x138 = pReference->getLineSpace();
@@ -3429,6 +3557,7 @@ void jmessage_tRenderingProcessor::do_heightcenter() {
             field_0x138 = 0.5f * pReference->getLineSpace();
             var_f31 += field_0x138;
         }
+#endif
     }
 
     if (field_0x142 == 0) {
@@ -3620,7 +3749,7 @@ void jmessage_tRenderingProcessor::do_strcat(char* i_str, bool param_2, bool par
             } else {
                 JUT_WARN(5316, "%s", "TextBox Alloc Byte Over!!");
             }
-        } else if (field_0x11c < 0x200) {
+        } else if (field_0x11c < D_MSG_CLASS_CHAR_CNT_MAX) {
             if (param_2) {
                 field_0x146++;
                 if (pReference->getBatchColorFlag() != 0) {
@@ -3655,7 +3784,7 @@ void jmessage_tRenderingProcessor::do_strcat(char* i_str, bool param_2, bool par
                         int length = 0;
                         length = strlen(buffer);
 
-                        if (field_0x11c + length < 0x200) {
+                        if (field_0x11c + length < D_MSG_CLASS_CHAR_CNT_MAX) {
                             field_0x148 = strlen(pReference->getTextPtr());
                             field_0x14a = strlen(pReference->getTextSPtr());
 
@@ -3756,6 +3885,13 @@ void jmessage_tRenderingProcessor::do_rubystrcat(char* i_src, char* i_dst, f32 i
  */
 void jmessage_tRenderingProcessor::do_name1() {
     const char* name = dComIfGs_getPlayerName();
+#if REGION_JPN
+    int c = (((char)name[0] & 0xFF) << 8) | ((char)name[1] & 0xFF);
+    // if first character is hiragana or katakana
+    if ((c >= 0x829F && c <= 0x82F1) || (c >= 0x8340 && c <= 0x8396)) {
+        push_word();
+    }
+#endif
 }
 
 /* 8022F540-8022F734 229E80 01F4+00 1/1 0/0 0/0 .text do_numset__28jmessage_tRenderingProcessorFs
@@ -3836,12 +3972,15 @@ jmessage_string_tReference::jmessage_string_tReference() {
     mRubyPanePtr = NULL;
     mpFont = mDoExt_getMesgFont();
 
-    for (int i = 0; i < 12; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mLineLength); i++) {
         mLineLength[i] = 0.0f;
         mOutfontLength[i] = 0.0f;
     }
 
     resetCharactor();
+}
+
+jmessage_string_tReference::~jmessage_string_tReference() {
 }
 
 /* 8022F9AC-8022FA2C 22A2EC 0080+00 0/0 3/3 0/0 .text
@@ -3852,14 +3991,14 @@ void jmessage_string_tReference::init(J2DTextBox* panePtr, J2DTextBox* runyPaneP
     mRubyPanePtr = runyPanePtr;
     mOutFontPtr = outFontPtr;
     mLineCount = 0;
-    mLineMax = 12;
+    mLineMax = D_MSG_CLASS_LINE_MAX;
     mNowPage = 0;
     mFlags = flags;
     if (font != NULL) {
         mpFont = font;
     }
 
-    for (int i = 0; i < 12; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mLineLength); i++) {
         mLineLength[i] = 0.0f;
         mOutfontLength[i] = 0.0f;
     }
@@ -4299,28 +4438,28 @@ bool jmessage_string_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u3
             stack_pushCurrent(buffer);
             break;
         case MSGTAG_MALE_ICON:
-            stack_pushCurrent(changeCodeToChar(0xB2));
+            stack_pushCurrent(changeCodeToChar(CHAR_CODE_MALE_ICON));
             break;
         case MSGTAG_FEMALE_ICON:
-            stack_pushCurrent(changeCodeToChar(0xB3));
+            stack_pushCurrent(changeCodeToChar(CHAR_CODE_FEMALE_ICON));
             break;
         case MSGTAG_STAR_ICON:
-            stack_pushCurrent(changeCodeToChar(0xB1));
+            stack_pushCurrent(changeCodeToChar(CHAR_CODE_STAR_ICON));
             break;
         case MSGTAG_REFMARK:
-            stack_pushCurrent(changeCodeToChar(0x89));
+            stack_pushCurrent(changeCodeToChar(CHAR_CODE_REFMARK));
             break;
         case MSGTAG_THIN_LEFT_ARROW:
-            stack_pushCurrent(changeCodeToChar(0xB9));
+            stack_pushCurrent(changeCodeToChar(CHAR_CODE_THIN_LEFT_ARROW));
             break;
         case MSGTAG_THIN_RIGHT_ARROW:
-            stack_pushCurrent(changeCodeToChar(0xBC));
+            stack_pushCurrent(changeCodeToChar(CHAR_CODE_THIN_RIGHT_ARROW));
             break;
         case MSGTAG_THIN_UP_ARROW:
-            stack_pushCurrent(changeCodeToChar(0xBD));
+            stack_pushCurrent(changeCodeToChar(CHAR_CODE_THIN_UP_ARROW));
             break;
         case MSGTAG_THIN_DOWN_ARROW:
-            stack_pushCurrent(changeCodeToChar(0xBE));
+            stack_pushCurrent(changeCodeToChar(CHAR_CODE_THIN_DOWN_ARROW));
             break;
         case MSGTAG_BULLET:
         case MSGTAG_BULLET_SPACE:
@@ -4942,28 +5081,28 @@ bool jmessage_string_tRenderingProcessor::do_tag(u32 i_tag, void const* i_data, 
             push_word(buffer);
             break;
         case MSGTAG_MALE_ICON:
-            push_word(changeCodeToChar(0xB2));
+            push_word(changeCodeToChar(CHAR_CODE_MALE_ICON));
             break;
         case MSGTAG_FEMALE_ICON:
-            push_word(changeCodeToChar(0xB3));
+            push_word(changeCodeToChar(CHAR_CODE_FEMALE_ICON));
             break;
         case MSGTAG_STAR_ICON:
-            push_word(changeCodeToChar(0xB1));
+            push_word(changeCodeToChar(CHAR_CODE_STAR_ICON));
             break;
         case MSGTAG_REFMARK:
-            push_word(changeCodeToChar(0x89));
+            push_word(changeCodeToChar(CHAR_CODE_REFMARK));
             break;
         case MSGTAG_THIN_LEFT_ARROW:
-            push_word(changeCodeToChar(0xB9));
+            push_word(changeCodeToChar(CHAR_CODE_THIN_LEFT_ARROW));
             break;
         case MSGTAG_THIN_RIGHT_ARROW:
-            push_word(changeCodeToChar(0xBC));
+            push_word(changeCodeToChar(CHAR_CODE_THIN_RIGHT_ARROW));
             break;
         case MSGTAG_THIN_UP_ARROW:
-            push_word(changeCodeToChar(0xBD));
+            push_word(changeCodeToChar(CHAR_CODE_THIN_UP_ARROW));
             break;
         case MSGTAG_THIN_DOWN_ARROW:
-            push_word(changeCodeToChar(0xBE));
+            push_word(changeCodeToChar(CHAR_CODE_THIN_DOWN_ARROW));
             break;
         case MSGTAG_BULLET:
             do_outfont(42);
@@ -5134,7 +5273,7 @@ void jmessage_string_tRenderingProcessor::do_heightcenter() {
 void jmessage_string_tRenderingProcessor::do_strcat(char* i_str) {
     if (getLineCountNowPage() >= 0) {
         field_0x54e += strlen(i_str);
-        if (field_0x54e < 512) {
+        if (field_0x54e < ARRAY_SIZE(field_0x54)) {
             strcat(field_0x54, i_str);
         } else {
             JUT_WARN(7531, "%s", "Message Alloc Byte Over!!");
@@ -5187,7 +5326,7 @@ void jmessage_string_tRenderingProcessor::do_rubyset(void const* i_data, u32 i_s
 void jmessage_string_tRenderingProcessor::do_rubystrcat(char* i_str) {
     if (getLineCountNowPage() >= 0) {
         field_0x550 += strlen(i_str);
-        if (field_0x550 < 512) {
+        if (field_0x550 < ARRAY_SIZE(field_0x254)) {
             strcat(field_0x254, i_str);
         } else {
             JUT_WARN(7613, "%s", "Message Alloc Byte Over!!");
