@@ -186,8 +186,8 @@ COMPILER_STRIP_GATE(0x8072588C, &lit_3884);
 static bool e_mm_hookCheck(e_mm_mt_class* i_this) {
 
     cCcD_Obj* hitObject;
-    Vec local_24;
-    Vec VStack_18;
+    cXyz VStack_18;
+    u32 uVar3;
 
     if (i_this->argument == 1) {
         return false;
@@ -197,19 +197,26 @@ static bool e_mm_hookCheck(e_mm_mt_class* i_this) {
     if (iVar1 != 0) { 
         hitObject = i_this->mSphere.GetTgHitObj();
 
-        if (hitObject->ChkAtType(AT_TYPE_HOOKSHOT)) {
+        if (hitObject->ChkAtType(AT_TYPE_HOOKSHOT) != 0) {
             //LAB
 
         }
+    }
+
+    if(iVar1 = fopAcM_CheckStatus(i_this, 0x100000) == 0) {
+        // if(/*param_1[1].tevStr.field_0x46 != '\0'*/){
+        //     daPy_py_c* pdVar3 = daPy_getPlayerActorClass();
+
+        // }
     }
 
     // if (fopAcM_CheckStatus(i_this, 0x100000) == 0){
     //     if (i_this->mSphere.)
     // }
 
-    local_24.x = i_this->current.pos.x;
-    local_24.z = i_this->current.pos.z;
-
+   
+    cXyz local_24;
+    local_24.set(i_this->current.pos);
     if (false) {
         local_24.y = i_this->current.pos.y - 20;
     } else {
@@ -219,16 +226,9 @@ static bool e_mm_hookCheck(e_mm_mt_class* i_this) {
     mDoMtx_stack_c::transS(i_this->current.pos);
     mDoMtx_stack_c::ZXYrotM(i_this->shape_angle);
     mDoMtx_stack_c::inverse();
-    
     mDoMtx_stack_c::multVec(&local_24, &VStack_18);
-    // daPy_getPlayerActorClass()->setHookshotCarryOffset(fopAcM_GetID(this), &offset);
 
-
-    if (i_this == 0){
-        
-    } else {
-
-    }
+    daPy_getPlayerActorClass()->setHookshotCarryOffset(fopAcM_GetID(i_this), &VStack_18);
     return 1;
 }
 
@@ -250,14 +250,14 @@ static void e_mm_mt_normal(e_mm_mt_class* i_this) {
         i_this->eyePos = local_28->eyePos;
         i_this->attention_info.position = i_this->eyePos;
         fopAcM_OffStatus(i_this,0); // unsure. Delete if posssible
-        if (i_this->field_0x660[36]) {
+        // if () {
 
 
 
 
-        } else {
-            i_this->mSphere.OffAtSetBit();
-        }
+        // } else {
+        //     i_this->mSphere.OffAtSetBit();
+        // }
         // if (((i_this->actor_status & 0x00FF0000) >> 16) != 1){
         //     i_this->mSphere.OffAtSetBit();
         // }
@@ -381,6 +381,54 @@ COMPILER_STRIP_GATE(0x807258C4, &lit_4092);
 /* 80723744-807239CC 000844 0288+00 1/1 0/0 0/0 .text            e_mm_mt_carry__FP13e_mm_mt_class */
 static void e_mm_mt_carry(e_mm_mt_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    switch(i_this->mMode){
+        case 0: 
+            cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
+            i_this->mMode = 1;
+            s16 angle_delta_y = i_this->mRotation.y - (player->shape_angle.y + 0x4000);
+            if (angle_delta_y < 0x4001 && angle_delta_y > -0x4001){
+                i_this->mCarryAngle  = 0;
+            } else {
+                i_this->mCarryAngle= 0x8000;
+            }
+            break;
+        
+        case 1:
+            if(fopAcM_checkCarryNow(i_this) == 0) {
+             //
+             i_this->mAction = 3;
+             i_this->mSphere.OnCoSetBit();
+             i_this->field_0x68A[0] = 0;
+             if(i_this->speedF > 1.0f || i_this->speedF > 10.0f){
+
+                i_this->speedF = i_this->speedF * 0.25f + 30.0f;
+                i_this->speed.y = 30.0f;
+                i_this->current.angle.y = player->shape_angle.y;
+                i_this->mMode = 0;
+             } else {
+                i_this->speedF = 0.0f;
+                i_this->speed.y = 0.0f;
+                i_this->mMode  = 5;
+                if(i_this->mAcch.ChkWaterHit() == 0){
+                    mDoAud_seStart(Z2SE_EN_MM_MET_PUT_LND, &i_this->current.pos, 0, 0);
+                } else {
+                    mDoAud_seStart(Z2SE_EN_MM_MET_PUT_WTR, &i_this->current.pos, 0, 0);
+                }
+             }
+            }
+            break;
+    }
+    if(i_this->mAcch.GetGroundH() == -G_CM3D_F_INF){
+        //
+    }
+
+    i_this->eyePos = i_this->current.pos;
+    i_this->attention_info.position = i_this->current.pos;
+    cLib_addCalcAngleS2(&i_this->mRotation.y, i_this->shape_angle.y + i_this->mCarryAngle + 0x4000,
+                            1, i_this->mCarryAngleSpeed);
+    cLib_addCalcAngleS2(&i_this->mRotation.z, -0x8000,1, i_this->mCarryAngleSpeed);
+    cLib_addCalcAngleS2(&i_this->mCarryAngleSpeed, 0x2000, 1, 0x100);
 }
 
 /* ############################################################################################## */
@@ -393,8 +441,41 @@ COMPILER_STRIP_GATE(0x807258C8, &lit_4146);
 
 /* 807239CC-80723B70 000ACC 01A4+00 1/1 0/0 0/0 .text            wall_angle_get__FP13e_mm_mt_class
  */
-static void wall_angle_get(e_mm_mt_class* i_this) {
+static int wall_angle_get(e_mm_mt_class* i_this) {
     // NONMATCHING
+    char cVar2;
+    s32 sVar1;
+    cXyz local_d8;
+    cXyz cStack_cc;
+    cXyz cStack_b4;
+    cXyz local_b4 [2];
+    dBgS_LinChk dStack_9c;
+
+    cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
+
+    cXyz local_c0 = cXyz(0.0, 0.0, 200.0);
+    MtxPosition(&local_c0, &cStack_b4);
+    cStack_b4 += i_this->current.pos;
+    local_c0 = cXyz(5.0, 0., 200.0);
+
+    int iVar4 = 0;
+    for(int iVar3 = 0; iVar3 < 2; iVar3++){
+        cXyz *dst = (cXyz*)((int)(local_b4[0].x) + iVar4);
+        MtxPosition(&local_c0, dst);
+        local_c0.x = local_c0.x * -1.0;
+        //
+        //Set()
+
+    }
+
+    local_d8 = local_b4[1] - local_b4[0]; 
+    local_c0 = local_d8;
+
+    sVar1 = local_c0.atan2sX_Z();
+    
+    return (int)(sVar1 + 0x4000);
+
+
 }
 
 /* ############################################################################################## */
@@ -473,6 +554,112 @@ COMPILER_STRIP_GATE(0x807258F0, &lit_4348);
 /* 80723B70-80724190 000C70 0620+00 1/1 0/0 0/0 .text            e_mm_mt_drop__FP13e_mm_mt_class */
 static void e_mm_mt_drop(e_mm_mt_class* i_this) {
     // NONMATCHING
+    if((e_mm_hookCheck(i_this) & 0xFF) == 0){
+        if(i_this->mMode == 5){
+            cLib_addCalc0(&i_this->speedF, 1.0, 2.0);
+        }
+        else if(i_this->mMode < 5 && i_this->mMode > -1){
+            if(i_this->mTimer[1] == 0 && i_this->mAcch.ChkWallHit()){
+                s16 wall_angle = wall_angle_get(i_this);
+                if(wall_angle != 0x23){
+                    s16 angle_delta = i_this->current.angle.y - wall_angle; 
+                    i_this->mSpin = angle_delta * -0.3;
+                    i_this->current.angle.y += (s16)(0x8000- (angle_delta << 1)); 
+                    if(i_this->mAcch.ChkWaterHit() == 0){
+                        mDoAud_seStart(Z2SE_EN_MM_MET_BOUND_LND, &i_this->current.pos, (u32)(i_this->speed.y), 0);
+                    } else {
+                        mDoAud_seStart(Z2SE_EN_MM_MET_BOUND_WTR, &i_this->current.pos, (u32)(i_this->speed.y), 0);
+                    }
+                    i_this->speedF *= 0.5f;
+                    i_this->mTimer[1] = 10;
+                }
+            }
+            if(i_this->mAcch.ChkGroundHit()){
+                if(i_this->mMode < 4){
+                    i_this->mMode += 1;
+                }
+                if(i_this->field_0x696[18] >= -30.0f){
+                    i_this->mMode = 5;
+                    if(i_this->mAcch.ChkWaterHit() == 0){
+                        mDoAud_seStart(Z2SE_EN_MM_MET_BOUND_LND, &i_this->current.pos, 0, 0);
+                    }else{
+                        mDoAud_seStart(Z2SE_EN_MM_MET_BOUND_WTR, &i_this->current.pos, 0, 0);
+                    }
+                } else {
+                    // i_this->speed.y = i_this->field_0x6A8 * -0.4f;
+                    i_this->speedF *= 0.75;
+                    if(i_this->mAcch.ChkWaterHit() == 0){
+                        mDoAud_seStart(Z2SE_EN_MM_MET_BOUND_LND, &i_this->current.pos, (u32)(i_this->speed.y), 0);
+                    }else{
+                        mDoAud_seStart(Z2SE_EN_MM_MET_BOUND_WTR, &i_this->current.pos, (u32)(i_this->speed.y), 0);
+                    }
+                    
+                    if(i_this->mSpin == 0){
+                        i_this->mSpin = cM_rndFX(1300.0f);
+                    }
+                }
+            }
+        }
+        cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
+        cXyz local_28(0.0f, 0.0f, i_this->speedF);
+        cXyz local_34;
+        MtxPosition(&local_28, &local_34);
+        i_this->speed.x = local_34.x;
+        i_this->speed.z = local_34.z;
+        i_this->current.pos.x += i_this->speed.x;
+        i_this->current.pos.y += i_this->speed.y;
+        i_this->current.pos.z += i_this->speed.z;
+        i_this->speed.y -= 5;
+        i_this->eyePos = i_this->current.pos;
+        i_this->attention_info.position = i_this->current.pos;
+        cLib_addCalcAngleS2(&i_this->mRotation.z,-0x8000,1,0x1000);
+        cLib_onBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
+        i_this->attention_info.distances[7] = '\a';
+        i_this->mRotation.y += i_this->mSpin;
+        if(i_this->speedF < 20.0f){
+            i_this->mSphere.OffAtSetBit();
+        } else {
+            i_this->mSphere.OnAtSetBit();
+            i_this->mSph.OffAtVsBitSet(12);
+            i_this->mSph.OnAtVsBitSet(2);
+            i_this->mSph.SetAtHitMark(1);
+            if(i_this->mInvulnerabilityTimer == 0 && i_this->mSphere.ChkAtHit()){
+                i_this->mInvulnerabilityTimer = 4;
+                i_this->speedF *= 0.5f;
+            }
+        }
+        if(fopAcM_checkCarryNow(i_this) == 0){ 
+            if(fopAcM_CheckStatus(i_this, 0x200) != 0 && i_this->mInvulnerabilityTimer == 0){
+                i_this->mAction = 1;
+                i_this->mMode = -10;
+                i_this->field_0x68A[0] = 0;
+                i_this->mSphere.OffCoSetBit();
+                i_this->shape_angle = i_this->mRotation;
+
+                fopAc_ac_c* pfVar4 = dComIfGp_getPlayer(0);
+                s16 sVar1 = i_this->shape_angle.y - (pfVar4->shape_angle.y + 0x4000);
+                if(sVar1 < 0x4001 && sVar1 > -0x4001){
+                    i_this->mCarryAngle = 0;
+                } else {
+                    i_this-> mCarryAngle = -0x8000;
+                }
+
+            }
+        } else {
+            i_this->mAction = 2;
+            i_this->mMode = 0;
+            //
+            //
+            i_this->mSpin = 0;
+            i_this->mCarryAngleSpeed = 0;
+            if(i_this->mAcch.ChkWaterHit() != 0){
+                mDoAud_seStart(Z2SE_EN_MM_MET_LIFT_WTR, &i_this->current.pos, 0,0);
+            }
+            i_this->mSphere.OffAtSetBit();
+        }
+    }
+    return;
+
 }
 
 /* ############################################################################################## */
@@ -729,8 +916,93 @@ SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
 };
 
 /* 80724EE0-80725218 001FE0 0338+00 1/0 0/0 0/0 .text            daE_MM_MT_Create__FP10fopAc_ac_c */
-static void daE_MM_MT_Create(fopAc_ac_c* i_this) {
+static int daE_MM_MT_Create(fopAc_ac_c* i_this) {
     // NONMATCHING
+    cPhs__Step cVar1;
+    bool bVar2;
+    float fVar3;
+    
+    e_mm_mt_class* a_this = (e_mm_mt_class*) i_this;
+
+    if(fopAcM_CheckCondition(i_this, fopAcCnd_INIT_e) == 0){
+        if(i_this != NULL){
+            fopAcM_ct(a_this, e_mm_mt_class);
+            
+
+            fVar3 = cM_rndF(65535.0);
+            
+            a_this->mAcch.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(a_this), a_this, 1, &a_this->mAcchCir,
+              fopAcM_GetSpeed_p(a_this), NULL, NULL);
+            dBgS_ObjAcch();
+            daE_MM_MT_Execute(a_this);
+
+        }
+        fopAcM_OnCondition(i_this, fopAcCnd_INIT_e);
+    }
+
+    if(dComIfG_resLoad(&a_this->mPhase, "E_MM_MT") == cPhs_COMPLEATE_e){
+        OSReport("E_MM_MT PARAM %x\n", fopAcM_GetParam(i_this));
+        a_this->parameters = fopAcM_GetParam(i_this);
+        OSReport("E_MM_MT//////////////E_MM_MT SET 1 !!\n");
+        if(fopAcM_entrySolidHeap(i_this, useHeapInit, 0x850)){
+            OSReport("//////////////E_MM_MT SET 2 !!\n");
+            fopAcM_SetMtx(a_this, a_this->mpModel->getBaseTRMtx());
+            fopAcM_SetMin(a_this, -200.0f, -200.0f, -200.0f);
+            fopAcM_SetMax(a_this, 200.0f, 200.0f, 200.0f);
+            a_this->mStts.Init(100,0,i_this);
+            if(i_this->argument == 1){
+                //setweight
+            } else {
+                //setweight
+
+            }
+
+            i_this->health = 2000;
+            i_this->field_0x560 = 2000;
+
+            static dCcD_SrcSph cc_sph_src = { // needs to be right
+            {
+                {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x0}},  // mObj
+                {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                // mGObjAt
+                {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2},                // mGObjTg
+                {0x0},                                             // mGObjCo
+            },                                                     // mObjInf
+            {
+                {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
+            }  // mSphAttr
+            };
+
+
+            a_this->mSphere.Set(cc_sph_src);
+            a_this->mSphere.SetStts(&a_this->mStts);
+            if(i_this->argument == 1){
+                fopAcM_OffStatus(i_this, 0x80000);
+                a_this->mSphere.SetAtType(0xd8fbbdff);
+                //8d8
+                a_this->mSphere.SetAtAtp(2);
+
+            } else {
+                //
+                a_this->mSph.Set(cc_sph_src);
+                //
+            }
+
+
+            a_this->mAcch.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(i_this), i_this, 1,
+                            &a_this->mAcchCir, fopAcM_GetSpeed_p(a_this), NULL, NULL);
+
+            a_this->mAcchCir.SetWall(50.0f, 50.0f);
+            a_this->mSound.init(&i_this->current.pos, &a_this->eyePos, 3, 1);
+            a_this->mAtInfo.mpSound = &a_this->mSound;
+            a_this->mAtInfo.mPowerType = 9;
+            i_this->attention_info.distances[4] = 7;
+            a_this->field_0x664 = (short)(int)cM_rndF(65535.0f);
+            daE_MM_MT_Execute(a_this);
+        } else {
+            cVar1 = cPhs_ERROR_e;
+        }
+    }
+    return cVar1;
 }
 
 /* 80725218-80725260 002318 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
