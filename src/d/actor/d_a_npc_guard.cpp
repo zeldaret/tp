@@ -80,9 +80,11 @@ void daNpcGuard_c::initPath() {
 /* 809EFF1C-809F0100 00023C 01E4+00 1/0 0/0 0/0 .text            executePath__12daNpcGuard_cFv */
 void daNpcGuard_c::executePath() {
     if (m_path.isPath()) {
-        if (m_path.checkPoint(cXyz(current.pos), speedF)) {
-            if (m_path.checkPathEnd(cXyz(current.pos), speedF) && !m_path.isClose()) {
-                setAction(MODE_FIGHT_WAIT_e);
+        if (m_path.checkPoint(current.pos, speedF)) {
+            if (m_path.checkPathEnd(current.pos, speedF)) {
+                if (!m_path.isClose()) {
+                    setAction(MODE_FIGHT_WAIT_e);
+                }
             }
             m_path.setNextPoint(current.pos);
         }
