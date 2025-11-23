@@ -7,177 +7,6 @@
 
 #include "d/actor/d_a_npc_guard.h"
 #include "d/d_bg_s.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" static void createHeapCallBack__FP10fopAc_ac_c();
-extern "C" void setAction__12daNpcGuard_cFQ212daNpcGuard_c6Mode_e();
-extern "C" void callInit__12daNpcGuard_cFv();
-extern "C" void callExecute__12daNpcGuard_cFv();
-extern "C" void initPath__12daNpcGuard_cFv();
-extern "C" void executePath__12daNpcGuard_cFv();
-extern "C" void __dt__8cM3dGPlaFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void initRun__12daNpcGuard_cFv();
-extern "C" void executeRun__12daNpcGuard_cFv();
-extern "C" void initFightWait__12daNpcGuard_cFv();
-extern "C" void executeFightWait__12daNpcGuard_cFv();
-extern "C" void initFightStep__12daNpcGuard_cFv();
-extern "C" void executeFightStep__12daNpcGuard_cFv();
-extern "C" void initFightMenace__12daNpcGuard_cFv();
-extern "C" void executeFightMenace__12daNpcGuard_cFv();
-extern "C" void initFear__12daNpcGuard_cFv();
-extern "C" void executeFear__12daNpcGuard_cFv();
-extern "C" void initEscape__12daNpcGuard_cFv();
-extern "C" void executeEscape__12daNpcGuard_cFv();
-extern "C" void setAngle__12daNpcGuard_cFv();
-extern "C" void setSpeed__12daNpcGuard_cFffPfi();
-extern "C" void pathMoveF__12daNpcGuard_cFv();
-extern "C" static void daNpcGuard_Create__FPv();
-extern "C" void create__12daNpcGuard_cFv();
-extern "C" void create_init__12daNpcGuard_cFv();
-extern "C" void setMtx__12daNpcGuard_cFv();
-extern "C" void lookat__12daNpcGuard_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __dt__8dCcD_SphFv();
-extern "C" void __ct__8dCcD_SphFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" static void daNpcGuard_Delete__FPv();
-extern "C" void __dt__12daNpcGuard_cFv();
-extern "C" static void daNpcGuard_Execute__FPv();
-extern "C" void execute__12daNpcGuard_cFv();
-extern "C" static void daNpcGuard_Draw__FPv();
-extern "C" static bool daNpcGuard_IsDelete__FPv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void func_809F24B4(void* _this, int*);
-extern "C" void func_809F24D0(void* _this, f32, f32);
-extern "C" void func_809F250C(void* _this, int, int);
-extern "C" void __sinit_d_a_npc_guard_cpp();
-extern "C" static void func_809F26E8();
-extern "C" static void func_809F26F0();
-extern "C" void __dt__18daNpcT_ActorMngr_cFv();
-extern "C" void __dt__10daNpcCd2_cFv();
-extern "C" void __dt__16dNpcLib_lookat_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" extern char const* const d_a_npc_guard__stringBase0;
-extern "C" u8 ActionTable__12daNpcGuard_c[168];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void setMorf__13mDoExt_morf_cFf();
-extern "C" void play__16mDoExt_McaMorfSOFUlSc();
-extern "C" void modelCalc__16mDoExt_McaMorfSOFv();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb();
-extern "C" void fopAcM_getPolygonAngle__FPC8cM3dGPlas();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWallR__12dBgS_AcchCirFf();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void initialize__18daNpcT_ActorMngr_cFv();
-extern "C" void getActorP__18daNpcT_ActorMngr_cFv();
-extern "C" void NpcCreate__10daNpcCd2_cFi();
-extern "C" void ObjCreate__10daNpcCd2_cFi();
-extern "C" void isM___10daNpcCd2_cFv();
-extern "C" void getAnmP__10daNpcCd2_cFii();
-extern "C" void setAttention__10daNpcCd2_cFi();
-extern "C" void loadResrc__10daNpcCd2_cFii();
-extern "C" void removeResrc__10daNpcCd2_cFii();
-extern "C" void setEnvTevCol__10daNpcCd2_cFv();
-extern "C" void setRoomNo__10daNpcCd2_cFv();
-extern "C" void setAnm__10daNpcCd2_cFP18J3DAnmTransformKeyffiii();
-extern "C" void drawShadow__10daNpcCd2_cFf();
-extern "C" void drawObj__10daNpcCd2_cFiP8J3DModelf();
-extern "C" void drawNpc__10daNpcCd2_cFv();
-extern "C" void setPath__11PathTrace_cFiiiP4cXyzb();
-extern "C" void checkPoint__11PathTrace_cF4cXyzf();
-extern "C" void checkPathEnd__11PathTrace_cF4cXyzf();
-extern "C" void getTargetPoint__11PathTrace_cFP3Vec();
-extern "C" void setNextPoint__11PathTrace_cFR4cXyz();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __ct__16dNpcLib_lookat_cFv();
-extern "C" void init__16dNpcLib_lookat_cFP8J3DModelPiP5csXyzP5csXyz();
-extern "C" void action__16dNpcLib_lookat_cF4cXyz4cXyzP10fopAc_ac_cPA4_fi();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void cM_rndF__Ff();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_distanceAngleS__Fss();
-extern "C" void __ct__17Z2CreatureCitizenFv();
-extern "C" void __dt__17Z2CreatureCitizenFv();
-extern "C" void playVoice__17Z2CreatureCitizenFi();
-extern "C" void __dl__FPv();
-extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 const m_cylDat__10daNpcCd2_c[68];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
 
 int daNpcGuard_c::createHeap() {
     int rv = NpcCreate(m_type);
@@ -247,31 +76,6 @@ void daNpcGuard_c::initPath() {
     setAnm((J3DAnmTransformKey*)getAnmP(4, mObjNum), 1.0f, 12.0f, 2, 0, -1);
     field_0xd9c = 1;
 }
-
-/* 809F2EC0-809F2EE0 -00001 0020+00 1/0 0/0 0/0 .data            daNpcGuard_METHODS */
-static actor_method_class daNpcGuard_METHODS = {
-    (process_method_func)daNpcGuard_Create__FPv,  (process_method_func)daNpcGuard_Delete__FPv,
-    (process_method_func)daNpcGuard_Execute__FPv, (process_method_func)daNpcGuard_IsDelete__FPv,
-    (process_method_func)daNpcGuard_Draw__FPv,
-};
-
-/* 809F2EE0-809F2F10 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_GUARD */
-extern actor_process_profile_definition g_profile_NPC_GUARD = {
-    fpcLy_CURRENT_e,         // mLayerID
-    7,                       // mListID
-    fpcPi_CURRENT_e,         // mListPrio
-    PROC_NPC_GUARD,          // mProcName
-    &g_fpcLf_Method.base,    // sub_method
-    sizeof(daNpcGuard_c),    // mSize
-    0,                       // mSizeOther
-    0,                       // mParameters
-    &g_fopAc_Method.base,    // sub_method
-    406,                     // mPriority
-    &daNpcGuard_METHODS,     // sub_method
-    0x00040107,              // mStatus
-    fopAc_NPC_e,             // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // cullType
-};
 
 /* 809EFF1C-809F0100 00023C 01E4+00 1/0 0/0 0/0 .text            executePath__12daNpcGuard_cFv */
 void daNpcGuard_c::executePath() {
@@ -658,7 +462,6 @@ void daNpcGuard_c::initCollision() {
 }
 
 /* 809F14CC-809F17D0 0017EC 0304+00 1/1 0/0 0/0 .text            create_init__12daNpcGuard_cFv */
-// NONMATCHING
 void daNpcGuard_c::create_init() {
     gravity = -3.0f;
     fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
@@ -702,7 +505,6 @@ void daNpcGuard_c::setMtx() {
 }
 
 /* 809F1878-809F1D6C 001B98 04F4+00 1/1 0/0 0/0 .text            lookat__12daNpcGuard_cFv */
-// NONMATCHING
 void daNpcGuard_c::lookat() {
     csXyz vecs1[3] = {
         csXyz(Cd2_HIO_maxLmtX_BACKBONE(m_type), Cd2_HIO_maxLmtY_BACKBONE(m_type), 0),
@@ -785,7 +587,6 @@ void daNpcGuard_c::setCollision() {
 }
 
 /* 809F2044-809F2374 002364 0330+00 1/1 0/0 0/0 .text            execute__12daNpcGuard_cFv */
-// NONMATCHING
 int daNpcGuard_c::execute() {
     mAcchCir.SetWallH(Cd2_HIO_chkWallH(m_type));
     mAcchCir.SetWallR(m_type != 0 ? 90.0f : 45.0f);
@@ -837,3 +638,28 @@ static int daNpcGuard_Draw(void* i_this) {
 static int daNpcGuard_IsDelete(void* i_this) {
     return 1;
 }
+
+/* 809F2EC0-809F2EE0 -00001 0020+00 1/0 0/0 0/0 .data            daNpcGuard_METHODS */
+static actor_method_class daNpcGuard_METHODS = {
+    (process_method_func)daNpcGuard_Create,  (process_method_func)daNpcGuard_Delete,
+    (process_method_func)daNpcGuard_Execute, (process_method_func)daNpcGuard_IsDelete,
+    (process_method_func)daNpcGuard_Draw,
+};
+
+/* 809F2EE0-809F2F10 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_GUARD */
+extern actor_process_profile_definition g_profile_NPC_GUARD = {
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_NPC_GUARD,          // mProcName
+    &g_fpcLf_Method.base,    // sub_method
+    sizeof(daNpcGuard_c),    // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    406,                     // mPriority
+    &daNpcGuard_METHODS,     // sub_method
+    0x00040107,              // mStatus
+    fopAc_NPC_e,             // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
+};
