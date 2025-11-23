@@ -75,6 +75,14 @@ void* __memcpy(void*, const void*, int);
 
 #define SQUARE(x) ((x) * (x))
 
+// floating-point constants
+#define _HUGE_ENUF 1e+300
+#define INFINITY ((float)(_HUGE_ENUF * _HUGE_ENUF))
+#define HUGE_VAL ((double)INFINITY)
+#define HUGE_VALL ((long double)INFINITY)
+#define DOUBLE_INF HUGE_VAL
+static const float INF = 2000000000.0f;
+
 // hack to make strings with no references compile properly
 #define DEAD_STRING(s) OSReport(s)
 
