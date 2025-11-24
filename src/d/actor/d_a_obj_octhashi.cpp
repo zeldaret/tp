@@ -25,7 +25,6 @@ const static dCcD_SrcSph ccSphSrc = {
     } // mSphAttr
 };
 
-/* 80CA6550-80CA6550 0000D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 static char* l_arcName[1] = {
     "Octhashi"
 };
@@ -429,5 +428,3 @@ extern actor_process_profile_definition g_profile_OCTHASHI = {
   fopAc_ACTOR_e,           // mActorType
   fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
-
-/* 80CA6550-80CA6550 0000D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

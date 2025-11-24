@@ -8,25 +8,6 @@
 #include "d/actor/d_a_npc_p2.h"
 #include "dol2asm.h"
 
-//
-// Forward References:
-//
-
-extern "C" static bool daNpc_P2Create__FPv();
-extern "C" static bool daNpc_P2Delete__FPv();
-extern "C" static bool daNpc_P2Execute__FPv();
-extern "C" static bool daNpc_P2Draw__FPv();
-extern "C" static bool daNpc_P2IsDelete__FPv();
-
-//
-// External References:
-//
-
-
-//
-// Declarations:
-//
-
 /* 80A92BF8-80A92C00 000078 0008+00 1/0 0/0 0/0 .text            daNpc_P2Create__FPv */
 static bool daNpc_P2Create(void* param_0) {
     return true;
@@ -55,11 +36,11 @@ static bool daNpc_P2IsDelete(void* param_0) {
 /* ############################################################################################## */
 /* 80A92C28-80A92C48 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_P2MethodTable */
 static actor_method_class daNpc_P2MethodTable = {
-    (process_method_func)daNpc_P2Create__FPv,
-    (process_method_func)daNpc_P2Delete__FPv,
-    (process_method_func)daNpc_P2Execute__FPv,
-    (process_method_func)daNpc_P2IsDelete__FPv,
-    (process_method_func)daNpc_P2Draw__FPv,
+    (process_method_func)daNpc_P2Create,
+    (process_method_func)daNpc_P2Delete,
+    (process_method_func)daNpc_P2Execute,
+    (process_method_func)daNpc_P2IsDelete,
+    (process_method_func)daNpc_P2Draw,
 };
 
 /* 80A92C48-80A92C78 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_P2 */

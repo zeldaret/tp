@@ -172,8 +172,6 @@ static int daCoachFire_Create(fopAc_ac_c* i_this) {
 /* 80658454-8065845A 00006C 0006+00 0/0 0/0 0/0 .rodata          None */
 static char* stringBase_80658454 = "Coach";
 
-/* 80658454-80658454 00006C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 8065845C-8065847C -00001 0020+00 1/0 0/0 0/0 .data            l_daCoachFire_Method */
 static actor_method_class l_daCoachFire_Method = {
     (process_method_func)daCoachFire_Create,  (process_method_func)daCoachFire_Delete,

@@ -7557,8 +7557,6 @@ static int daNpc_Ks_Create(fopAc_ac_c* a_this) {
 
 AUDIO_INSTANCES;
 
-/* 80A5E438-80A5E438 00053C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 80A5FD74-80A5FD94 -00001 0020+00 1/0 0/0 0/0 .data            l_daNpc_Ks_Method */
 static actor_method_class l_daNpc_Ks_Method = {
     (process_method_func)daNpc_Ks_Create,

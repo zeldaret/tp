@@ -1887,5 +1887,3 @@ extern actor_process_profile_definition g_profile_NPC_CD3 = {
   fopAc_NPC_e,            // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 8097F5AC-8097F5AC 00006C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

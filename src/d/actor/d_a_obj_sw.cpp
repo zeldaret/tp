@@ -831,8 +831,6 @@ static int daObj_Sw_Create(fopAc_ac_c* a_this) {
     return phase;
 }
 
-/* 80CF30EC-80CF30EC 0000EC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 80CF3210-80CF3230 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Sw_Method */
 static actor_method_class l_daObj_Sw_Method = {
     (process_method_func)daObj_Sw_Create,  (process_method_func)daObj_Sw_Delete,

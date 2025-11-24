@@ -785,5 +785,3 @@ extern actor_process_profile_definition g_profile_E_NZ = {
   fopAc_ENEMY_e,         // mActorType
   fopAc_CULLBOX_0_e,     // cullType
 };
-
-/* 8072C240-8072C240 0000C0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

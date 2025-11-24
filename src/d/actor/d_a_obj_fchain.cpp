@@ -347,5 +347,3 @@ extern actor_process_profile_definition g_profile_Obj_Fchain = {
   fopAc_ENV_e,            // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80BE74CC-80BE74CC 000094 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

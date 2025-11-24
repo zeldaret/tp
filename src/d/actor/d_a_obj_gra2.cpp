@@ -2239,8 +2239,6 @@ daObj_GrA_c::MotionFunc daObj_GrA_c::mFaceMotionList[14] = {
     &daObj_GrA_c::face999,
 };
 
-/* 80C0FE14-80C0FE14 000398 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 80C10734-80C10754 -00001 0020+00 1/0 0/0 0/0 .data            daObj_GrA_MethodTable */
 static actor_method_class daObj_GrA_MethodTable = {
     (process_method_func)daObj_GrA_Create,

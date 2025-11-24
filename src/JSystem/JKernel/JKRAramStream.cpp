@@ -67,7 +67,6 @@ s32 JKRAramStream::readFromAram() {
 }
 
 /* ############################################################################################## */
-/* 8039D120-8039D120 029780 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
     u32 dstSize = command->mSize;
     u32 offset = command->mOffset;

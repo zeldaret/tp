@@ -1094,6 +1094,3 @@ u8 dMsgScrnHowl_c::getGuideDataType(int param_0) {
     }
     return 0;
 }
-
-
-/* 80399A20-80399A20 026080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

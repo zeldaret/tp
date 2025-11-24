@@ -568,5 +568,3 @@ extern actor_process_profile_definition g_profile_OBJ_YBAG = {
 };
 
 AUDIO_INSTANCES;
-
-/* 80D3DD6C-80D3DD6C 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

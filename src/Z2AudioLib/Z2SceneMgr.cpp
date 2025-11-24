@@ -2146,5 +2146,3 @@ bool Z2SceneMgr::loadBgmWave(u32 wave) {
     }
     return false;
 }
-
-/* 8039BFA8-8039BFA8 028608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

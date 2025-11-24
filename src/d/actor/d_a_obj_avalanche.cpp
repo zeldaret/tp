@@ -350,5 +350,3 @@ extern actor_process_profile_definition g_profile_Obj_Avalanche = {
     fopAc_ACTOR_e,            // mActorType
     fopAc_CULLBOX_CUSTOM_e,   // cullType
 };
-
-/* 80BA7D3C-80BA7D3C 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
