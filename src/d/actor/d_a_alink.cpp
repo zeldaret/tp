@@ -10223,15 +10223,15 @@ void daAlink_c::decideDoStatus() {
             } else if (mAttList != NULL) {
                 s16 actor_name = fopAcM_GetName(field_0x27f4);
 
-                if (mAttList->mType == 5 ||
-                    (mAttList->mType == 6 &&
+                if (mAttList->mType == fopAc_attn_DOOR_e ||
+                    (mAttList->mType == fopAc_attn_JUEL_e &&
                      (!checkWolf() || static_cast<daTbox_c*>(field_0x27f4)->checkSmallTbox())))
                 {
                     setDoStatus(6);
-                } else if (mAttList->mType == 7 && actor_name == PROC_KYTAG05) {
+                } else if (mAttList->mType == fopAc_attn_ETC_e && actor_name == PROC_KYTAG05) {
                     setDoStatus(0x89);
                 } else if (checkWolf()) {
-                    if (mAttList->mType == 4 && !fopAcM_checkCarryNow(field_0x27f4) &&
+                    if (mAttList->mType == fopAc_attn_CARRY_e && !fopAcM_checkCarryNow(field_0x27f4) &&
                         fopAcM_CheckCarryType(field_0x27f4, fopAcM_CARRY_LIGHT))
                     {
                         if (actor_name == PROC_B_MGN) {
@@ -10250,21 +10250,21 @@ void daAlink_c::decideDoStatus() {
                     } else if (mTargetedActor != NULL &&
                                fopAcM_GetName(mTargetedActor) == PROC_B_MGN &&
                                mAttention->getActionBtnB() != NULL &&
-                               mAttention->getActionBtnB()->mType == 4 &&
+                               mAttention->getActionBtnB()->mType == fopAc_attn_CARRY_e &&
                                mAttention->getActionBtnB()->getActor() == mTargetedActor)
                     {
                         setDoStatus(0x91);
                     } else if (mTargetedActor != NULL &&
                                fopAcM_GetName(mTargetedActor) == PROC_E_YM &&
                                mAttention->getActionBtnB() != NULL &&
-                               mAttention->getActionBtnB()->mType == 7 &&
+                               mAttention->getActionBtnB()->mType == fopAc_attn_ETC_e &&
                                mAttention->getActionBtnB()->getActor() == mTargetedActor)
                     {
                         onEndResetFlg1(ERFLG1_UNK_100000);
                         if (mWolfEyeUp != 0) {
                             setWolfDigStatus(2);
                         }
-                    } else if (mAttList->mType == 7 && field_0x27f4 != NULL) {
+                    } else if (mAttList->mType == fopAc_attn_ETC_e && field_0x27f4 != NULL) {
                         if (actor_name == PROC_Obj_Digpl || actor_name == PROC_Obj_Digholl ||
                             actor_name == PROC_Obj_DigSnow || actor_name == PROC_Obj_Lv4DigSand ||
                             actor_name == PROC_E_YM)
@@ -10289,7 +10289,7 @@ void daAlink_c::decideDoStatus() {
                     } else {
                         setTalkStatus();
                     }
-                } else if (mAttList->mType == 7) {
+                } else if (mAttList->mType == fopAc_attn_ETC_e) {
                     if ((!checkMagicArmorHeavy() &&
                          (actor_name == PROC_HORSE || actor_name == PROC_E_WB) &&
                          checkReinRideBgCheck()) ||
@@ -10310,11 +10310,11 @@ void daAlink_c::decideDoStatus() {
                     }
                 } else if (mTargetedActor != NULL && checkGoatCatchActor(mTargetedActor) &&
                            mAttention->getActionBtnB() != NULL &&
-                           mAttention->getActionBtnB()->mType == 4 &&
+                           mAttention->getActionBtnB()->mType == fopAc_attn_CARRY_e &&
                            mAttention->getActionBtnB()->getActor() == mTargetedActor)
                 {
                     setDoStatus(0x91);
-                } else if (mAttList->mType == 4) {
+                } else if (mAttList->mType == fopAc_attn_CARRY_e) {
                     if (!fopAcM_checkCarryNow(field_0x27f4)) {
                         if (checkGoatCatchActor(field_0x27f4)) {
                             setDoStatus(0x91);
@@ -11356,7 +11356,7 @@ int daAlink_c::checkNormalAction() {
         }
 
         if (dComIfGp_getDoStatus() == 6) {
-            if (mAttList->mType == 5) {
+            if (mAttList->mType == fopAc_attn_DOOR_e) {
                 if (!checkStageName("F_SP103") ||
                     !fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchBouDoor, NULL))
                 {

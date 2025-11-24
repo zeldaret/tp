@@ -2715,7 +2715,7 @@ BOOL daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_actor_p) {
             for (int i = 0; i < dComIfGp_getAttention()->GetActionCount(); i++) {
                 if (dComIfGp_getAttention()->ActionTarget(i) == i_actor_p &&
                     dComIfGp_getAttention()->getActionBtnB() != NULL &&
-                    dComIfGp_getAttention()->getActionBtnB()->mType == 3)
+                    dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_SPEAK_e)
                 {
                     ret = TRUE;
                 }
@@ -2724,7 +2724,7 @@ BOOL daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_actor_p) {
             for (int i = 0; i < dComIfGp_getAttention()->GetLockonCount(); i++) {
                 if (dComIfGp_getAttention()->LockonTarget(i) == i_actor_p &&
                     dComIfGp_getAttention()->getActionBtnB() != NULL &&
-                    dComIfGp_getAttention()->getActionBtnB()->mType == 1)
+                    dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_TALK_e)
                 {
                     ret = TRUE;
                 }
