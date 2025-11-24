@@ -1044,17 +1044,12 @@ struct wcs_data {
 
 static wcs_data l_wcsbuf[84];
 
+#ifdef DEBUG
 /* 80452740-80452748 000D40 0008+00 2/2 0/0 0/0 .sdata2          @5300 */
 SECTION_SDATA2 static u8 lit_5300[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-
-/* 80452748-80452750 000D48 0004+04 2/2 0/0 0/0 .sdata2          @5301 */
-SECTION_SDATA2 static f32 lit_5301[1 + 1 /* padding */] = {
-    1.0f / 125.0f,
-    /* padding */
-    0.0f,
-};
+#endif
 
 /* 80080330-800811A0 07AC70 0E70+00 1/0 0/0 0/0 .text WallCorrectSort__8dBgWKColFP9dBgS_Acch */
 bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
