@@ -532,7 +532,6 @@ void daNpc_Doc_c::action() {
 }
 
 /* 809A7F3C-809A80B8 00139C 017C+00 1/0 0/0 0/0 .text            beforeMove__11daNpc_Doc_cFv */
-// NONMATCHING - small regalloc with getOffHour
 void daNpc_Doc_c::beforeMove() {
     if (mType == 0 && field_0xe34 == 0) {
         int hour = 0;

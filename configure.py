@@ -1869,7 +1869,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_clerkt"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_coach"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_df"),
-    ActorRel(NonMatching, "d_a_npc_doc"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_npc_doc"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_doorboy"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_drainSol"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_du"),
@@ -1961,7 +1961,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_zelR"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_zelRo"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_zelda"),
-    ActorRel(Equivalent, "d_a_npc_zra"), # weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_npc_zra"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_zrc"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_zrz"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_Lv5Key"),

@@ -107,7 +107,7 @@ public:
     int getOffHour() {
         u16 var_r31 = (u16)home.angle.z;
         var_r31 &= (u16)0x3E0;
-        var_r31 >>= 5;
+        var_r31 = var_r31 >> 5;
 
         if (var_r31 < 24) {
             return var_r31;

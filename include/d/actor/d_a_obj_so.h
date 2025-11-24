@@ -86,11 +86,14 @@ public:
     /* 0x1BC4 */ u8 field_0x1bc4[0x1bcc - 0x1bc4];
     /* 0x1BCC */ u8 field_0x1bcc;
 
-    u8 partBreak() {
+    bool partBreak() {
         for (int i = 0; i < 8; i++) {
-            if (field_0x1a98[i] == 2) return 1;
+            if (field_0x1a98[i] == 2) {
+                return true;
+            }
         }
-        return 0;
+
+        return false;
     }
 };
 
