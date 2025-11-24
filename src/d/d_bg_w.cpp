@@ -309,7 +309,7 @@ void cBgW::MakeNodeTreeGrpRp(int i_grp_idx) {
             *pm_node_tree[pm_bgd->m_g_tbl[i_grp_idx].m_tree_idx].GetMaxP());
     }
 
-    s32 child_idx = pm_bgd->m_g_tbl[i_grp_idx].m_first_child;
+    int child_idx = pm_bgd->m_g_tbl[i_grp_idx].m_first_child;
     while (true) {
         if (child_idx == 0xFFFF)
             break;
@@ -518,7 +518,7 @@ bool cBgW::LineCheckGrpRp(cBgS_LinChk* i_linchk, int i_grp_idx, int depth) {
         chk = true;
     }
 
-    s32 child_idx = pm_bgd->m_g_tbl[i_grp_idx].m_first_child;
+    int child_idx = pm_bgd->m_g_tbl[i_grp_idx].m_first_child;
     while (true) {
         if (child_idx == 0xFFFF)
             break;
@@ -655,7 +655,7 @@ bool cBgW::GroundCrossGrpRp(cBgS_GndChk* i_gndchk, int i_grp_idx, int i_depth) {
         chk = true;
     }
 
-    s32 child_idx = pm_bgd->m_g_tbl[i_grp_idx].m_first_child;
+    int child_idx = pm_bgd->m_g_tbl[i_grp_idx].m_first_child;
     while (true) {
         if (child_idx == 0xFFFF)
             break;
@@ -772,7 +772,7 @@ void cBgW::ShdwDrawGrpRp(cBgS_ShdwDraw* i_shdw, int i_idx) {
             ShdwDrawRp(i_shdw, pm_bgd->m_g_tbl[i_idx].m_tree_idx);
         }
 
-        s32 child_idx = pm_bgd->m_g_tbl[i_idx].m_first_child;
+        int child_idx = pm_bgd->m_g_tbl[i_idx].m_first_child;
         while (true) {
             if (child_idx == 0xFFFF) {
                 break;
@@ -806,7 +806,7 @@ bool cBgW::ChkGrpThrough(int param_0, cBgS_GrpPassChk* param_1, int param_2) {
 }
 
 /* 8007B0E4-8007B164 075A24 0080+00 2/0 1/0 0/0 .text GetGrpRoomIndex__4cBgWCFRC13cBgS_PolyInfo */
-s32 cBgW::GetGrpRoomIndex(cBgS_PolyInfo const& poly) const {
+int cBgW::GetGrpRoomIndex(cBgS_PolyInfo const& poly) const {
     int grp_index = GetTriGrp(poly.GetPolyIndex());
 
     u16 parent_idx = pm_bgd->m_g_tbl[grp_index].m_parent;
@@ -839,7 +839,7 @@ void cBgW::GetTrans(cXyz* o_trans) const {
 /* 8007B1B4-8007B240 075AF4 008C+00 2/0 1/0 0/0 .text
  * GetTriPnt__4cBgWCFRC13cBgS_PolyInfoP4cXyzP4cXyzP4cXyz        */
 bool cBgW::GetTriPnt(cBgS_PolyInfo const& poly, cXyz* o_pntA, cXyz* o_pntB, cXyz* o_pntC) const {
-    u16 poly_index = poly.GetPolyIndex();
+    int poly_index = poly.GetPolyIndex();
     cBgD_Tri_t* tri = &pm_bgd->m_t_tbl[poly_index];
 
     o_pntA->set(pm_vtx_tbl[tri->m_vtx_idx0]);
@@ -857,7 +857,8 @@ void cBgW::GetTopUnder(f32* o_top, f32* o_under) const {
 /* 8007B270-8007B2B0 075BB0 0040+00 2/0 1/0 0/0 .text            GetTriPla__4cBgWCFRC13cBgS_PolyInfo
  */
 cM3dGPla cBgW::GetTriPla(cBgS_PolyInfo const& poly) const {
-    u16 poly_index = poly.GetPolyIndex();
+    int poly_index = poly.GetPolyIndex();
+    JUT_ASSERT(1956, 0 <= poly_index && poly_index < pm_bgd->m_t_num);
     return pm_tri[poly_index].m_plane;
 }
 
@@ -887,12 +888,12 @@ u32 cBgW::GetMaskPolyInf0_NoShift(int poly_index, u32 mask) const {
 
 /* 8007B3AC-8007B3D8 075CEC 002C+00 1/0 1/0 0/0 .text            GetExitId__4dBgWFRC13cBgS_PolyInfo
  */
-s32 dBgW::GetExitId(cBgS_PolyInfo const& poly) {
+int dBgW::GetExitId(cBgS_PolyInfo const& poly) {
     return GetPolyInf0(poly.GetPolyIndex(), 0x3F, 0);
 }
 
 /* 8007B3D8-8007B404 075D18 002C+00 1/0 1/0 0/0 .text GetPolyColor__4dBgWFRC13cBgS_PolyInfo */
-s32 dBgW::GetPolyColor(cBgS_PolyInfo const& poly) {
+int dBgW::GetPolyColor(cBgS_PolyInfo const& poly) {
     return GetPolyInf0(poly.GetPolyIndex(), 0x3FC0, 6);
 }
 
@@ -985,7 +986,7 @@ int dBgW::GetLinkNo(cBgS_PolyInfo const& poly) {
 }
 
 /* 8007B6D8-8007B704 076018 002C+00 1/0 1/0 0/0 .text GetWallCode__4dBgWFRC13cBgS_PolyInfo */
-s32 dBgW::GetWallCode(cBgS_PolyInfo const& poly) {
+int dBgW::GetWallCode(cBgS_PolyInfo const& poly) {
     return GetPolyInf1(poly.GetPolyIndex(), 0xF00, 8);
 }
 
@@ -1028,22 +1029,22 @@ u32 cBgW::GetPolyInf2(int poly_index, u32 mask, u32 shift) const {
 }
 
 /* 8007B87C-8007B8A8 0761BC 002C+00 1/0 1/0 0/0 .text GetCamMoveBG__4dBgWFRC13cBgS_PolyInfo */
-s32 dBgW::GetCamMoveBG(cBgS_PolyInfo const& poly) {
+int dBgW::GetCamMoveBG(cBgS_PolyInfo const& poly) {
     return GetPolyInf2(poly.GetPolyIndex(), 0xFF, 0);
 }
 
 /* 8007B8A8-8007B8D8 0761E8 0030+00 1/0 1/0 0/0 .text GetRoomCamId__4dBgWFRC13cBgS_PolyInfo */
-s32 dBgW::GetRoomCamId(cBgS_PolyInfo const& poly) {
+int dBgW::GetRoomCamId(cBgS_PolyInfo const& poly) {
     return GetPolyInf2(poly.GetPolyIndex(), 0xFF00, 8);
 }
 
 /* 8007B8D8-8007B904 076218 002C+00 1/0 1/0 0/0 .text GetRoomPathId__4dBgWFRC13cBgS_PolyInfo */
-s32 dBgW::GetRoomPathId(cBgS_PolyInfo const& poly) {
+int dBgW::GetRoomPathId(cBgS_PolyInfo const& poly) {
     return GetPolyInf2(poly.GetPolyIndex(), 0xFF0000, 16);
 }
 
 /* 8007B904-8007B930 076244 002C+00 1/0 1/0 0/0 .text GetRoomPathPntNo__4dBgWFRC13cBgS_PolyInfo */
-s32 dBgW::GetRoomPathPntNo(cBgS_PolyInfo const& poly) {
+int dBgW::GetRoomPathPntNo(cBgS_PolyInfo const& poly) {
     return GetPolyInf2(poly.GetPolyIndex(), 0xFF000000, 24);
 }
 
@@ -1256,8 +1257,8 @@ bool dBgW::RwgWallCorrect(dBgS_Acch* pwi, u16 i_poly_idx) {
 
                                     if (spE0 < spE4) {
                                         if (!(spE0 > spDC) && !(fabsf(spE0 - spDC) < 0.008f)) {
-                                            JUT_ASSERT(0, !(fpclassify(cx0) == 1));
-                                            JUT_ASSERT(0, !(fpclassify(cy0) == 1));
+                                            JUT_ASSERT(0, !isnan(cx0));
+                                            JUT_ASSERT(0, !isnan(cy0));
 
                                             f32 spF0, spF4;
                                             cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx0, cy0,
@@ -1265,8 +1266,8 @@ bool dBgW::RwgWallCorrect(dBgS_Acch* pwi, u16 i_poly_idx) {
                                             pwi->GetPos()->x += cx0 - spF0;
                                             pwi->GetPos()->z += cy0 - spF4;
 
-                                            JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->x) == 1));
-                                            JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->z) == 1));
+                                            JUT_ASSERT(0, !isnan(pwi->GetPos()->x));
+                                            JUT_ASSERT(0, !isnan(pwi->GetPos()->z));
 
                                             pwi->CalcMovePosWork();
                                             pwi->SetWallCirHit(cir_index);
@@ -1278,8 +1279,8 @@ bool dBgW::RwgWallCorrect(dBgS_Acch* pwi, u16 i_poly_idx) {
                                             pwi->SetWallHit();
                                         }
                                     } else if (!(spE4 > spDC) && !(fabsf(spE4 - spDC) < 0.008f)) {
-                                        JUT_ASSERT(0, !(fpclassify(cx1) == 1));
-                                        JUT_ASSERT(0, !(fpclassify(cy1) == 1));
+                                        JUT_ASSERT(0, !isnan(cx1));
+                                        JUT_ASSERT(0, !isnan(cy1));
 
                                         f32 spF8, spFC;
                                         cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx1, cy1,
@@ -1287,8 +1288,8 @@ bool dBgW::RwgWallCorrect(dBgS_Acch* pwi, u16 i_poly_idx) {
                                         pwi->GetPos()->x += cx1 - spF8;
                                         pwi->GetPos()->z += cy1 - spFC;
 
-                                        JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->x) == 1));
-                                        JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->z) == 1));
+                                        JUT_ASSERT(0, !isnan(pwi->GetPos()->x));
+                                        JUT_ASSERT(0, !isnan(pwi->GetPos()->z));
 
                                         pwi->CalcMovePosWork();
                                         pwi->SetWallCirHit(cir_index);
@@ -1368,7 +1369,7 @@ bool dBgW::WallCorrectGrpRp(dBgS_Acch* i_acch, int i_idx, int i_depth) {
         chk = true;
     }
 
-    s32 child_idx = pm_bgd->m_g_tbl[i_idx].m_first_child;
+    int child_idx = pm_bgd->m_g_tbl[i_idx].m_first_child;
     while (true) {
         if (child_idx == 0xFFFF) {
             break;
@@ -1526,7 +1527,7 @@ bool dBgW::WallCorrectGrpRpSort(dBgS_Acch* i_acch, int i_idx, int i_depth) {
         WallCorrectRpSort(i_acch, pm_bgd->m_g_tbl[i_idx].m_tree_idx);
     }
 
-    s32 child_idx = pm_bgd->m_g_tbl[i_idx].m_first_child;
+    int child_idx = pm_bgd->m_g_tbl[i_idx].m_first_child;
     while (true) {
         if (child_idx == 0xFFFF) {
             break;
@@ -1693,8 +1694,8 @@ bool dBgW::WallCorrectSort(dBgS_Acch* pwi) {
 
                                 if (spE0 < spE4) {
                                     if (!(spE0 > spDC) && !(fabsf(spE0 - spDC) < 0.008f)) {
-                                        JUT_ASSERT(0, !(fpclassify(cx0) == 1));
-                                        JUT_ASSERT(0, !(fpclassify(cy0) == 1));
+                                        JUT_ASSERT(0, !isnan(cx0));
+                                        JUT_ASSERT(0, !isnan(cy0));
 
                                         f32 spF0, spF4;
                                         cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx0, cy0,
@@ -1702,8 +1703,8 @@ bool dBgW::WallCorrectSort(dBgS_Acch* pwi) {
                                         pwi->GetPos()->x += cx0 - spF0;
                                         pwi->GetPos()->z += cy0 - spF4;
 
-                                        JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->x) == 1));
-                                        JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->z) == 1));
+                                        JUT_ASSERT(0, !isnan(pwi->GetPos()->x));
+                                        JUT_ASSERT(0, !isnan(pwi->GetPos()->z));
 
                                         pwi->CalcMovePosWork();
                                         pwi->SetWallCirHit(cir_index);
@@ -1715,8 +1716,8 @@ bool dBgW::WallCorrectSort(dBgS_Acch* pwi) {
                                         pwi->SetWallHit();
                                     }
                                 } else if (!(spE4 > spDC) && !(fabsf(spE4 - spDC) < 0.008f)) {
-                                    JUT_ASSERT(0, !(fpclassify(cx1) == 1));
-                                    JUT_ASSERT(0, !(fpclassify(cy1) == 1));
+                                    JUT_ASSERT(0, !isnan(cx1));
+                                    JUT_ASSERT(0, !isnan(cy1));
 
                                     f32 spF8, spFC;
                                     cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx1, cy1, onx,
@@ -1724,8 +1725,8 @@ bool dBgW::WallCorrectSort(dBgS_Acch* pwi) {
                                     pwi->GetPos()->x += cx1 - spF8;
                                     pwi->GetPos()->z += cy1 - spFC;
 
-                                    JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->x) == 1));
-                                    JUT_ASSERT(0, !(fpclassify(pwi->GetPos()->z) == 1));
+                                    JUT_ASSERT(0, !isnan(pwi->GetPos()->x));
+                                    JUT_ASSERT(0, !isnan(pwi->GetPos()->z));
 
                                     pwi->CalcMovePosWork();
                                     pwi->SetWallCirHit(cir_index);
@@ -1831,7 +1832,7 @@ bool dBgW::RoofChkGrpRp(dBgS_RoofChk* i_roofchk, int i_idx, int i_depth) {
         chk = true;
     }
 
-    s32 child_idx = data->m_first_child;
+    int child_idx = data->m_first_child;
     while (true) {
         if (child_idx == 0xFFFF) {
             break;
@@ -1928,7 +1929,7 @@ bool dBgW::SplGrpChkGrpRp(dBgS_SplGrpChk* i_splchk, int i_idx, int i_depth) {
         chk = true;
     }
 
-    s32 child_idx = data->m_first_child;
+    int child_idx = data->m_first_child;
     while (true) {
         if (child_idx == 0xFFFF) {
             break;
@@ -2007,7 +2008,7 @@ void dBgW::CaptPolyGrpRp(dBgS_CaptPoly& i_captpoly, int i_idx, int i_depth) {
         CaptPolyRp(i_captpoly, pm_bgd->m_g_tbl[i_idx].m_tree_idx);
     }
 
-    s32 child_idx = pm_bgd->m_g_tbl[i_idx].m_first_child;
+    int child_idx = pm_bgd->m_g_tbl[i_idx].m_first_child;
     while (true) {
         if (child_idx == 0xFFFF) {
             break;
@@ -2111,7 +2112,7 @@ bool dBgW::SphChkGrpRp(dBgS_SphChk* i_sphchk, void* i_data, int i_idx, int i_dep
         chk = true;
     }
 
-    s32 child_idx = data->m_first_child;
+    int child_idx = data->m_first_child;
     while (true) {
         if (child_idx == 0xFFFF) {
             break;

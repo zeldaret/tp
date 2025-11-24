@@ -411,7 +411,7 @@ static void dummy2() {
     J3DTevSwapModeTable tevSwapModeTable;
     J3DIndTexOrder indTexOrder;
 
-    J3DTevStage* tevStage_p;
+    J3DTevStage* tevStage_p = NULL;
     J3DTevStageInfo tevStageInfo;
     tevStage_p->setTevStageInfo(tevStageInfo);
     J3DTevStage tevStage;
@@ -452,7 +452,7 @@ static void dummy2() {
     peBlock->setBlend(blend);
     J3DZMode zMode;
     peBlock->setZMode(zMode);
-    u8 compLoc;
+    u8 compLoc = 0;
     peBlock->setZCompLoc(compLoc);
 
     colorBlock->getColorChanNum();
@@ -770,28 +770,67 @@ JKRExpHeap* mDoExt_getHostIOHeap() {
     return HostIOHeap;
 }
 
+#ifdef DEBUG
+extern u8 lbl_8074C3B9[1];
+#endif
+
 /* 8000EE40-8000EED8 009780 0098+00 3/3 0/0 0/0 .text mDoExt_createSolidHeap__FUlP7JKRHeapUl */
 static JKRSolidHeap* mDoExt_createSolidHeap(u32 i_size, JKRHeap* i_heap, u32 i_alignment) {
     if (i_heap == NULL) {
-        i_heap = JKRHeap::getCurrentHeap();
+        i_heap = JKRGetCurrentHeap();
     }
 
     JKRSolidHeap* createdHeap;
-    if (i_size == 0 || i_size == 0xFFFFFFFF) {
-        createdHeap = JKRSolidHeap::create(0xFFFFFFFF, i_heap, false);
+    if (i_size == 0 || i_size == -1) {
+        #ifdef DEBUG
+        if (lbl_8074C3B9[0] != 0) {
+            OS_REPORT("\x1b[44mmDoExt_createSolidHeap サイズ未設定\n\x1b[m");
+            OS_REPORT("最大空き容量確保します %08x\n\x1b[m", i_heap->getFreeSize());
+        }
+        #endif
+        createdHeap = JKRCreateSolidHeap(-1, i_heap, false);
     } else {
+        u32 solidHeapSize = ALIGN_NEXT(sizeof(JKRSolidHeap), 0x10);
         i_size = ALIGN_NEXT(i_size, 0x10);
-        i_size += 0x80;
+        i_size += solidHeapSize;
 
         if (0x10 < i_alignment) {
             i_size = (i_alignment - 0x10 + i_size);
         }
-        createdHeap = JKRSolidHeap::create(i_size, i_heap, false);
+        createdHeap = JKRCreateSolidHeap(i_size, i_heap, false);
     }
 
     if (createdHeap != NULL) {
-        createdHeap->setErrorFlag(true);
+        JKRSetErrorFlag(createdHeap, true);
+        #ifdef DEBUG
+        if (lbl_8074C3B9[0] != 0) {
+            u32 heapSize = createdHeap->getHeapSize();
+            OS_REPORT(
+                "JKRCreateSolidHeap %08x i_size=%08x solidHeapSize=%08x\n",
+                createdHeap,
+                i_size,
+                heapSize
+            );
+        }
+        #endif
     }
+
+#ifdef DEBUG
+    if (createdHeap == NULL) {
+        OS_WARNING(
+            "mDoExt_createMaxSolidHeap : ソリッドヒープ%fKの確保に失敗 連続空き容量=%fK 残り空き容量=%f\n",
+            i_size / 1024.0f,
+            i_heap->getFreeSize() / 1024.0f,
+            i_heap->getTotalFreeSize() / 1024.0f
+        );
+        static BOOL dumped = FALSE;
+        if (dumped == FALSE) {
+            dumped = TRUE;
+            i_heap->dump_sort();
+        }
+        return createdHeap;
+    }
+#endif
 
     return createdHeap;
 }
@@ -3501,8 +3540,13 @@ static ResFONT* mDoExt_resfont0;
 /* 80014994-800149F0 00F2D4 005C+00 1/1 0/0 0/0 .text            mDoExt_initFont0__Fv */
 static void mDoExt_initFont0() {
     static char const fontdata[] = "rodan_b_24_22.bfn";
+#if REGION_JPN
+    mDoExt_initFontCommon(&mDoExt_font0, &mDoExt_resfont0, mDoExt_getZeldaHeap(),
+                          fontdata, dComIfGp_getFontArchive(), 0, 200, 512);
+#else
     mDoExt_initFontCommon(&mDoExt_font0, &mDoExt_resfont0, mDoExt_getZeldaHeap(),
                           fontdata, dComIfGp_getFontArchive(), 1, 0, 0);
+#endif
 }
 
 /* 800149F0-80014A2C 00F330 003C+00 0/0 51/51 2/2 .text            mDoExt_getMesgFont__Fv */
@@ -3525,7 +3569,11 @@ void mDoExt_removeMesgFont() {
             delete mDoExt_font0;
             mDoExt_font0 = NULL;
             if (mDoExt_resfont0 != NULL) {
+#if REGION_JPN
+                JKRFileLoader::removeResource(mDoExt_resfont0, NULL);
+#else
                 JKRFree(mDoExt_resfont0);
+#endif
                 mDoExt_resfont0 = NULL;
             }
         }

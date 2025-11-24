@@ -25,7 +25,6 @@ struct dMenu_DmapMapCtrl_c;
 class renderingDmap_c : public renderingPlusDoor_c {
 public:
     /* 801C0380 */ virtual ~renderingDmap_c() {}
-    /* 801C051C */ renderingDmap_c() {}
 
     /* 801C0C48 */ virtual const GXColor* getColor(int);
     /* 801C0C10 */ virtual int getLineWidth(int);

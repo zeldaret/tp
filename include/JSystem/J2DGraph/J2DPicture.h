@@ -90,8 +90,8 @@ public:
     /* 802FF320 */ virtual void prepend(JUTTexture* param_0, f32 param_1) {
         insert(param_0, 0, param_1);
     }
-    /* 801BDD70 */ virtual bool insert(ResTIMG const*, u8, f32) {
-        // NONMATCHING
+    /* 801BDD70 */ virtual bool insert(ResTIMG const* param_0, u8 param_1, f32 param_2) {
+        return insert(param_0, NULL, param_1, param_2);
     }
     /* 802FD168 */ virtual bool insert(ResTIMG const*, JUTPalette*, u8, f32);
     /* 80020368 */ virtual bool insert(char const* param_0, u8 param_1, f32 param_2) {

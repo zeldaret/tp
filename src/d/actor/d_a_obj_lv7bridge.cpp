@@ -26,7 +26,7 @@ daObjLv7Brg_HIO_c::daObjLv7Brg_HIO_c() {
 }
 
 void daObjLv7Brg_HIO_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 static daObjLv7Brg_HIO_c l_HIO;

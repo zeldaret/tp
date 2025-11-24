@@ -25,7 +25,7 @@ daLv6SzGate_HIO_c::daLv6SzGate_HIO_c() {
 }
 
 void daLv6SzGate_HIO_c::genMessage(JORMContext* arg) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 /* 80C75900-80C75A54 000180 0154+00 2/2 0/0 0/0 .text            setBaseMtx__13daLv6SzGate_cFv */
