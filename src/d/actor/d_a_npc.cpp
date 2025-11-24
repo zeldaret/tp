@@ -3009,6 +3009,4 @@ const dCcD_SrcGObjInf daNpcT_c::mCcDObjData = {
 
 #include "d/actor/d_a_npc2.cpp"
 
-#include "d/actor/d_a_npc3.cpp"
-
 #include "d/actor/d_a_npc4.cpp"
