@@ -891,7 +891,6 @@ bool dBgWKCol::ChkShdwDrawThrough(dBgPc* pcode) {
 }
 
 /* 8007FF1C-80080330 07A85C 0414+00 1/0 0/0 0/0 .text CaptPoly__8dBgWKColFR13dBgS_CaptPoly */
-// NONMATCHING
 void dBgWKCol::CaptPoly(dBgS_CaptPoly& i_captpoly) {
     const cM3dGAab* pbounds = i_captpoly.GetBndP();
     cXyz min(*pbounds->GetMinP());
@@ -938,42 +937,42 @@ void dBgWKCol::CaptPoly(dBgS_CaptPoly& i_captpoly) {
                 sp48 = (int)~m_pkc_head->m_area_z_width_mask;
             }
 
-            s32 sp44;
-            s32 sp40;
-            s32 sp3C;
-            s32 sp38;
-            s32 sp34;
-            s32 sp30;
+            int sp44;
+            int sp40;
+            int sp3C;
+            int sp38;
+            int sp34;
+            int sp30;
             if (sp4C < sp48) {
                 u16* sp2C = 0;
                 u16* sp28 = 0;
-                s32 sp24 = sp4C;
+                int sp24 = sp4C;
 
                 do {
                     sp34 = 1000000;
-                    s32 sp20 = sp54;
+                    int sp20 = sp54;
 
                     do {
                         sp38 = 1000000;
                         sp30 = 0;
-                        s32 sp1C = sp5C;
+                        int sp1C = sp5C;
 
                         do {
                             u16* sp18 = (u16*)m_pkc_head->m_block_data;
                             int r29 = m_pkc_head->m_block_width_shift;
-                            s32 sp14 =
+                            int sp14 =
                                 4 * (((u32)sp24 >> r29) << m_pkc_head->m_area_xy_blocks_shift |
                                      ((u32)sp20 >> r29) << m_pkc_head->m_area_x_blocks_shift |
                                      (u32)sp1C >> r29);
-                            while ((sp14 = (*(s32*)((s32)sp18 + sp14))) >= 0) {
-                                sp18 = (u16*)((s32)sp18 + sp14);
+                            while ((sp14 = (*(int*)((int)sp18 + sp14))) >= 0) {
+                                sp18 = (u16*)((int)sp18 + sp14);
                                 r29--;
                                 sp14 = (((u32)sp24 >> r29 & 1) << 2 |
                                         ((u32)sp20 >> r29 & 1) << 1 |
                                         ((u32)sp1C >> r29 & 1) << 0) << 2;
                             }
 
-                            u16* r28 = (u16*)((s32)sp18 + (sp14 & 0x7FFFFFFF));
+                            u16* r28 = (u16*)((int)sp18 + (sp14 & 0x7FFFFFFF));
 
                             r29 = 1 << r29;
                             int sp10 = r29 - 1;
