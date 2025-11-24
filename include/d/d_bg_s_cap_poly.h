@@ -2,6 +2,7 @@
 #define D_BG_D_BG_S_CAPT_POLY_H
 
 #include "d/d_bg_s_chk.h"
+#include "SSystem/SComponent/c_m3d_g_aab.h"
 
 struct dBgS_CaptPoly;
 

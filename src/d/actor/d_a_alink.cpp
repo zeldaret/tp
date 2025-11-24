@@ -1923,7 +1923,6 @@ int daAlink_c::jointControll(int param_0) {
     int var_r27 = 0;
 
     J3DTransformInfo jointTrans;
-
     J3DTransformInfo rootTrans = *field_0x2060->getOldFrameTransInfo(param_0);
 
     Quaternion sp50;

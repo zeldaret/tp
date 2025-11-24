@@ -684,7 +684,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_no_chg_room.cpp"),
             Object(NonMatching, "d/actor/d_a_npc.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_npc_cd.cpp"),
-            Object(NonMatching, "d/actor/d_a_npc_cd2.cpp"),
+            Object(NonMatching, "d/actor/d_a_npc_cd2.cpp"), # stripped vtable order
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_obj_item.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_insect.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_obj_ss_base.cpp"),
@@ -1836,7 +1836,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_horse"),
     ActorRel(NonMatching, "d_a_hozelda"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_izumi_gate"),
-    ActorRel(NonMatching, "d_a_kago"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_kago"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kytag01"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kytag02"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kytag03"),
