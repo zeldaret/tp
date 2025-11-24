@@ -1008,7 +1008,6 @@ static f32 depth_check(dmg_rod_class* i_this, cXyz* param_1) {
     pos.z = param_1->z;
     gnd_chk.SetPos(&pos);
 
-    // f32 temp_f31 = i_this->field_0x590 - dComIfG_Bgsp().GroundCross(&sp14);
     return i_this->field_0x590 - dComIfG_Bgsp().GroundCross(&gnd_chk);
 }
 
@@ -1833,6 +1832,7 @@ static void ground_action(dmg_rod_class* i_this) {
             i_this->field_0xffc = cM_rndFX(32768.0f);
             i_this->field_0x1000 = cM_rndFX(32768.0f);
 
+            // NONMATCHING
             if (cM_rndF(1.0f) < 0.5f) {
                 *(u16*)&actor->current.angle.z = 0xB000;
             } else {
@@ -3328,6 +3328,8 @@ static void lure_main(dmg_rod_class* i_this) {
             }
         } else if (i_this->field_0x100d != 0) {
             i_this->field_0x100d = 0;
+
+            // NONMATCHING
             if (cM_rndF(1.0f) < 0.5f) {
                 *(u16*)&actor->current.angle.z = 0xB000;
             } else {
@@ -4942,7 +4944,7 @@ static void play_camera(dmg_rod_class* i_this) {
             i_this->field_0x1402 = -6000;
         }
 
-        i_this->field_0x1404 = -cM_atan2s(sp174.y, JMAFastSqrt(sp174.x * sp174.x + sp174.z * sp174.z));
+        i_this->field_0x1404 = -cM_atan2s(sp174.y, JMAFastSqrt(SQUARE(sp174.x) + SQUARE(sp174.z)));
         i_this->field_0x1464 = sp174.abs();
         i_this->play_cam_center_target = camera0->lookat.center;
     case 901:
@@ -6157,7 +6159,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                     }
                 }
 
-                modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(a_this->arcname, 9));
+                modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 9);
                 JUT_ASSERT(11453, modelData != NULL);
 
                 a_this->ring_model = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
@@ -6167,7 +6169,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             }
         }
 
-        a_this->rod_modelMorf = new mDoExt_McaMorf(static_cast<J3DModelData*>(dComIfG_getObjectRes(a_this->arcname, 4)), NULL, NULL, NULL, 0, 1.0f, 0, -1, 1, 0, 0x80000, 0x11000084);
+        a_this->rod_modelMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 4), NULL, NULL, NULL, 0, 1.0f, 0, -1, 1, 0, 0x80000, 0x11000084);
         if (a_this->rod_modelMorf == NULL || a_this->rod_modelMorf->getModel() == NULL) {
             return 0;
         }
@@ -6180,7 +6182,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             }
         }
 
-        modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(a_this->arcname, 9));
+        modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 9);
         JUT_ASSERT(11499, modelData != NULL);
 
         for (int i = 0; i < 6; i++) {
@@ -6190,7 +6192,6 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             }
         }
 
-        // bmd_idx;
         for (int i = 0; i < 15; i++) {
             if ((i & 1) || i == 2) {
                 bmd_idx = 41;
@@ -6198,7 +6199,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 bmd_idx = 42;
             }
 
-            modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("Alink", bmd_idx));
+            modelData = (J3DModelData*)dComIfG_getObjectRes("Alink", bmd_idx);
             JUT_ASSERT(11523, modelData != NULL);
 
             a_this->rod_uki_model[i] = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
