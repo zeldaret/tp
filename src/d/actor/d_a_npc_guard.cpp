@@ -336,7 +336,7 @@ void daNpcGuard_c::setAngle() {
 }
 
 /* 809F0DE0-809F0ED4 001100 00F4+00 1/1 0/0 0/0 .text            setSpeed__12daNpcGuard_cFffPfi */
-inline void daNpcGuard_c::setSpeed(f32 param_1, f32 param_2, f32* i_speed, int param_4) {
+void daNpcGuard_c::setSpeed(f32 param_1, f32 param_2, f32* i_speed, int param_4) {
     f32 target = field_0xd8c * (param_2 * field_0xd8c);
     f32 step = field_0xd8c * (param_1 * field_0xd8c);
 
@@ -408,25 +408,6 @@ void daNpcGuard_c::pathMoveF() {
 /* 809F12D0-809F12F0 0015F0 0020+00 1/0 0/0 0/0 .text            daNpcGuard_Create__FPv */
 static int daNpcGuard_Create(void* i_this) {
     return static_cast<daNpcGuard_c*>(i_this)->create();
-}
-
-/* 809F12F0-809F14CC 001610 01DC+00 1/1 0/0 0/0 .text            create__12daNpcGuard_cFv */
-int daNpcGuard_c::create() {
-    fopAcM_ct(this, daNpcGuard_c);
-
-    m_type = cLib_getRndValue(0, 2);
-    mObjNum = 2;
-    int phase = loadResrc(m_type, mObjNum);
-    if (phase == cPhs_COMPLEATE_e) {
-        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x2220)) {
-            // Failed to create actor!
-            OS_REPORT("アクター生成失敗しました！\n");
-            return cPhs_ERROR_e;
-        }
-        create_init();
-    }
-
-    return phase;
 }
 
 void daNpcGuard_c::initCollision() {
@@ -541,6 +522,25 @@ void daNpcGuard_c::lookat() {
         cStack_80 = cXyz::Zero;
     }
     mLookat.action(cStack_80, eyePos, this, afStack_38, NULL != mActorMngr.getActorP());
+}
+
+/* 809F12F0-809F14CC 001610 01DC+00 1/1 0/0 0/0 .text            create__12daNpcGuard_cFv */
+int daNpcGuard_c::create() {
+    fopAcM_ct(this, daNpcGuard_c);
+
+    m_type = cLib_getRndValue(0, 2);
+    mObjNum = 2;
+    int phase = loadResrc(m_type, mObjNum);
+    if (phase == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x2220)) {
+            // Failed to create actor!
+            OS_REPORT("アクター生成失敗しました！\n");
+            return cPhs_ERROR_e;
+        }
+        create_init();
+    }
+
+    return phase;
 }
 
 /* 809F1F40-809F1F74 002260 0034+00 1/0 0/0 0/0 .text            daNpcGuard_Delete__FPv */
