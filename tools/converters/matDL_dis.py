@@ -330,7 +330,7 @@ def convert_binary_to_matDL_c_source(src_path, dest_path, symbol_name, scope):
     with open(src_path, "rb") as binary_file, open(dest_path, "w") as c_file:
         c_file.write("#ifndef LOAD_BP_REG\n")
         c_file.write("#define U32_AS_U8(v) ((u8)((v) >> 24)), ((u8)((v) >> 16)), ((u8)((v) >> 8)), ((u8)((v) >> 0))\n")
-        c_file.write("#define U24_AS_U8(v) ((u8)((v) >> 16)), ((u8)((v) >> 8)), ((u8)((v) >> 0))\n")
+        c_file.write("#define U24_AS_U8(v) (((v) >> 16) & 0xff), (((v) >> 8)& 0xff), (((v) >> 0) & 0xff)\n")
         c_file.write("#define U16_AS_U8(v) ((u8)((v) >> 8)), ((u8)((v) >> 0))\n")
         c_file.write("#define IMAGE_ADDR(addr) (u32)(addr) >> 5\n")
         c_file.write("#define LOAD_BP_REG(reg, value) GX_CMD_LOAD_BP_REG, reg, U24_AS_U8(value)\n")
