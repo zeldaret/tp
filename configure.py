@@ -1644,7 +1644,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_rd"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_econt"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_fr"),
-    ActorRel(Equivalent, "d_a_grass"), # __sinit regalloc
+    ActorRel(MatchingFor(ALL_GCN), "d_a_grass"),
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_kytag05"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kytag10"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kytag11"),
