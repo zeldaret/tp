@@ -330,8 +330,8 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
         int sp8C;
         int sp88;
         int sp84 = (u32)sp108.x;
-        if (sp84 > (s32)~m_pkc_head->m_area_x_width_mask) {
-            sp84 = (s32)~m_pkc_head->m_area_x_width_mask;
+        if (sp84 > (int)~m_pkc_head->m_area_x_width_mask) {
+            sp84 = (int)~m_pkc_head->m_area_x_width_mask;
         }
 
         if (sp90 < sp84) {
@@ -387,7 +387,7 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
                             do {
                                 u32 block = (u32)m_pkc_head->m_block_data;
                                 u32 shift = m_pkc_head->m_block_width_shift;
-                                s32 offset = (((u32)z_sp40 >> shift) << m_pkc_head->m_area_xy_blocks_shift |
+                                int offset = (((u32)z_sp40 >> shift) << m_pkc_head->m_area_xy_blocks_shift |
                                               ((u32)y_sp3C >> shift) << m_pkc_head->m_area_x_blocks_shift |
                                                (u32)x_sp38 >> shift) << 2;
 
@@ -591,7 +591,7 @@ bool dBgWKCol::GroundCross(cBgS_GndChk* i_chk) {
         int sp20 = 4 * (((u32)sp34 >> shift) << m_pkc_head->m_area_xy_blocks_shift |
                        ((u32)sp30 >> shift) << m_pkc_head->m_area_x_blocks_shift |
                        (u32)sp38 >> shift);
-        while ((sp20 = (*(s32*)(block + sp20))) >= 0) {
+        while ((sp20 = (*(int*)(block + sp20))) >= 0) {
             block += sp20;
             shift--;
             sp20 = (((u32)sp34 >> shift & 1) << 2 |
@@ -670,32 +670,32 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
     localMax_spC8.y += 1.0f;
     localMax_spC8.z += 1.0f;
 
-    s32 minX_spA0 = (u32)localMin_spD4.x;
+    int minX_spA0 = (u32)localMin_spD4.x;
     if (minX_spA0 < 0) {
         minX_spA0 = 0;
     }
-    s32 maxX_sp9C = (u32)localMax_spC8.x;
-    if (maxX_sp9C > (s32)~m_pkc_head->m_area_x_width_mask) {
+    int maxX_sp9C = (u32)localMax_spC8.x;
+    if (maxX_sp9C > (int)~m_pkc_head->m_area_x_width_mask) {
         maxX_sp9C = ~m_pkc_head->m_area_x_width_mask;
     }
 
     if (minX_spA0 < maxX_sp9C) {
-        s32 minY_sp98 = (u32)localMin_spD4.y;
+        int minY_sp98 = (u32)localMin_spD4.y;
         if (minY_sp98 < 0) {
             minY_sp98 = 0;
         }
-        s32 maxY_sp94 = (u32)localMax_spC8.y;
-        if (maxY_sp94 > (s32)~m_pkc_head->m_area_y_width_mask) {
+        int maxY_sp94 = (u32)localMax_spC8.y;
+        if (maxY_sp94 > (int)~m_pkc_head->m_area_y_width_mask) {
             maxY_sp94 = ~m_pkc_head->m_area_y_width_mask;
         }
 
         if (minY_sp98 < maxY_sp94) {
-            s32 minZ_sp90 = (u32)localMin_spD4.z;
+            int minZ_sp90 = (u32)localMin_spD4.z;
             if (minZ_sp90 < 0) {
                 minZ_sp90 = 0;
             }
-            s32 maxZ_sp8C = (u32)localMax_spC8.z;
-            if (maxZ_sp8C > (s32)~m_pkc_head->m_area_z_width_mask) {
+            int maxZ_sp8C = (u32)localMax_spC8.z;
+            if (maxZ_sp8C > (int)~m_pkc_head->m_area_z_width_mask) {
                 maxZ_sp8C = ~m_pkc_head->m_area_z_width_mask;
             }
 
@@ -705,16 +705,16 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                     *el_sp88 = 0;
                 }
 
-                s32 remX_sp84;
-                s32 remY_sp80;
-                s32 remZ_sp7C;
+                int remX_sp84;
+                int remY_sp80;
+                int remZ_sp7C;
 
-                s32 stepY_sp78;
-                s32 stepZ_sp74;
+                int stepY_sp78;
+                int stepZ_sp74;
 
-                s32 best1_sp70;
-                s32 best2_sp6C;
-                s32 best3_sp68;
+                int best1_sp70;
+                int best2_sp6C;
+                int best3_sp68;
 
                 u16* topPrism1_sp64 = NULL;
                 u16* topPrism2_sp60 = NULL;
@@ -725,10 +725,10 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                 u16* prev3_sp50;
 
                 prev3_sp50 = NULL;
-                s32 z_sp4C = minZ_sp90;
+                int z_sp4C = minZ_sp90;
                 do {
                     stepZ_sp74 = 1000000;
-                    s32 y_sp48 = minY_sp98;
+                    int y_sp48 = minY_sp98;
 
                     do {
                         stepY_sp78 = 1000000;
@@ -736,11 +736,11 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                         best2_sp6C = NULL;
                         best3_sp68 = NULL;
 
-                        s32 x_sp44 = minX_spA0;
+                        int x_sp44 = minX_spA0;
                         do {
                             u32 block_sp40 = (u32)m_pkc_head->m_block_data;
                             u32 shift_sp3C = m_pkc_head->m_block_width_shift;
-                            s32 offset_sp38 = 4 * (((u32)z_sp4C >> shift_sp3C) << m_pkc_head->m_area_xy_blocks_shift |
+                            int offset_sp38 = 4 * (((u32)z_sp4C >> shift_sp3C) << m_pkc_head->m_area_xy_blocks_shift |
                                         ((u32)y_sp48 >> shift_sp3C) << m_pkc_head->m_area_x_blocks_shift |
                                         (u32)x_sp44 >> shift_sp3C);
 
@@ -803,7 +803,7 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                                     u32 temp_sp0C;
                                     bool temp2_sp08 = true;
 
-                                    if ((s32)(prism_sp34[0] >> 5) > (s32)MAX_DRAW_BIT) {
+                                    if ((int)(prism_sp34[0] >> 5) > (int)MAX_DRAW_BIT) {
                                         OS_PANIC(0x47c,
                                                  "Failed assertion shift <= MAX_DRAW_BIT");
 
@@ -891,6 +891,7 @@ bool dBgWKCol::ChkShdwDrawThrough(dBgPc* pcode) {
 }
 
 /* 8007FF1C-80080330 07A85C 0414+00 1/0 0/0 0/0 .text CaptPoly__8dBgWKColFR13dBgS_CaptPoly */
+// NONMATCHING
 void dBgWKCol::CaptPoly(dBgS_CaptPoly& i_captpoly) {
     const cM3dGAab* pbounds = i_captpoly.GetBndP();
     cXyz min(*pbounds->GetMinP());
@@ -1075,31 +1076,31 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
     VECSubtract(&sp_1a4, sp_13c, &sp_1a4);
     VECSubtract(&sp_198, sp_13c, &sp_198);
     u32 sp_138 = sp_1a4.x;
-    if ((s32)sp_138 < 0) {
+    if ((int)sp_138 < 0) {
         sp_138 = 0;
     }
     u32 sp_134 = sp_198.x;
-    if ((s32)sp_134 > (s32)~m_pkc_head->m_area_x_width_mask) {
+    if ((int)sp_134 > (int)~m_pkc_head->m_area_x_width_mask) {
         sp_134 = ~m_pkc_head->m_area_x_width_mask;
     }
-    if ((s32)sp_138 >= (s32)sp_134) {
+    if ((int)sp_138 >= (int)sp_134) {
         return false;
     }
 
     u32 sp_130 = sp_1a4.y;
-    if ((s32)sp_130 < 0) {
+    if ((int)sp_130 < 0) {
         sp_130 = 0;
     }
     u32 sp_12c = sp_198.y;
-    if ((s32)sp_12c > (s32)~m_pkc_head->m_area_y_width_mask) {
+    if ((int)sp_12c > (int)~m_pkc_head->m_area_y_width_mask) {
         sp_12c = ~m_pkc_head->m_area_y_width_mask;
     }
-    if ((s32)sp_130 >= (s32)sp_12c) {
+    if ((int)sp_130 >= (int)sp_12c) {
         return false;
     }
 
     u32 sp_128 = sp_1a4.z;
-    if ((s32)sp_128 < 0) {
+    if ((int)sp_128 < 0) {
         sp_128 = 0;
     }
     u32 sp_124 = sp_198.z;
@@ -1107,7 +1108,7 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
         sp_124 = ~m_pkc_head->m_area_z_width_mask;
     }
 
-    if ((s32)sp_128 >= (s32)sp_124) {
+    if ((int)sp_128 >= (int)sp_124) {
         return false;
     }
 
@@ -1117,17 +1118,17 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
     u16* sp_114 = NULL;
     u16* sp_110 = NULL;
     u16* sp_10c = NULL;
-    s32 sp_108;
-    s32 sp_104;
-    s32 sp_100;
+    int sp_108;
+    int sp_104;
+    int sp_100;
     sp_18c.y = 0.0f;
-    s32 sp_fc;
-    s32 sp_f8;
-    s32 sp_f4;
-    s32 sp_f0;
-    s32 sp_ec;
+    int sp_fc;
+    int sp_f8;
+    int sp_f4;
+    int sp_f0;
+    int sp_ec;
     wcs_data* sp_e8 = NULL;
-    s32 wcsIndex_e4 = 0;
+    int wcsIndex_e4 = 0;
     u32 sp_e0 = sp_128;
     do {
         sp_f8 = 1000000;
@@ -1141,11 +1142,11 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
             do {
                 KC_PrismData* block_d4 = m_pkc_head->m_block_data;
                 u32 shift_d0 = m_pkc_head->m_block_width_shift;
-                s32 sp_cc = 4 * (
+                int sp_cc = 4 * (
                     (sp_e0 >> shift_d0) << m_pkc_head->m_area_xy_blocks_shift |
                     (sp_dc >> shift_d0) << m_pkc_head->m_area_x_blocks_shift |
                     (sp_d8 >> shift_d0));
-                for (; sp_cc >= 0; sp_cc = *(s32*)((int)block_d4 + sp_cc)) {
+                for (; sp_cc >= 0; sp_cc = *(int*)((int)block_d4 + sp_cc)) {
                     block_d4 = (KC_PrismData*)((int)block_d4 + sp_cc);
                     shift_d0--;
                     sp_cc = (
@@ -1306,7 +1307,7 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
         cXyz sp_150;
         if (GetTriPnt(sp_9c, &sp_168, &sp_15c, &sp_150)) {
             f32 sp_90 = 1.0f / sp_94;
-            for (s32 cir_index_8c = 0; cir_index_8c < pwi->GetTblSize(); cir_index_8c++) {
+            for (int cir_index_8c = 0; cir_index_8c < pwi->GetTblSize(); cir_index_8c++) {
                 f32 sp_88 = sp_90 * pwi->GetWallR(cir_index_8c);
                 sp_18c.x = sp_98->x * sp_88;
                 sp_18c.z = sp_98->z * sp_88;
@@ -1326,10 +1327,10 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                     continue;
                 }
 
-                s32 sp_80;
-                s32 sp_7c;
-                s32 sp_78;
-                s32 sp_74 = 0;
+                int sp_80;
+                int sp_7c;
+                int sp_78;
+                int sp_74 = 0;
 
                 if (cM3d_IsZero(sp_144[0])) {
                     sp_74++;
@@ -1922,20 +1923,20 @@ bool dBgWKCol::RoofChk(dBgS_RoofChk* param_0) {
     PSVECSubtract(sp40, &m_pkc_head->m_area_min_pos, &sp74);
 
     u32 sp3C = sp74.x;
-    if ((s32)sp3C < 0) {
+    if ((int)sp3C < 0) {
         return false;
     }
 
-    if ((s32)sp3C > (s32)~m_pkc_head->m_area_x_width_mask) {
+    if ((int)sp3C > (int)~m_pkc_head->m_area_x_width_mask) {
         return false;
     }
 
     u32 sp38 = sp74.z;
-    if ((s32)sp38 < 0) {
+    if ((int)sp38 < 0) {
         return false;
     }
 
-    if ((s32)sp38 > (s32)~m_pkc_head->m_area_z_width_mask) {
+    if ((int)sp38 > (int)~m_pkc_head->m_area_z_width_mask) {
         return false;
     }
 
@@ -1952,10 +1953,10 @@ bool dBgWKCol::RoofChk(dBgS_RoofChk* param_0) {
     do {
         uintptr_t sp2C = (uintptr_t)m_pkc_head->m_block_data;
         u32 sp28 = m_pkc_head->m_block_width_shift;
-        s32 sp24 = 4 * (((u32)sp38 >> sp28) << m_pkc_head->m_area_xy_blocks_shift |
+        int sp24 = 4 * (((u32)sp38 >> sp28) << m_pkc_head->m_area_xy_blocks_shift |
                        ((u32)sp34 >> sp28) << m_pkc_head->m_area_x_blocks_shift |
                        (u32)sp3C >> sp28);
-        while ((sp24 = (*(s32*)(sp2C + (sp24 & 0x7fffffff)))) >= 0) {
+        while ((sp24 = (*(int*)(sp2C + (sp24 & 0x7fffffff)))) >= 0) {
             sp2C += sp24;
             sp28--;
             sp24 = (((u32)sp38 >> sp28 & 1) << 2 |
@@ -1968,8 +1969,8 @@ bool dBgWKCol::RoofChk(dBgS_RoofChk* param_0) {
         KC_PrismData* sp1C;
         Vec* sp18;
         Vec* sp14;
-        s32 sp10;
-        s32 sp0C;
+        int sp10;
+        int sp0C;
 
         while (*++sp20 != 0) {
             sp1C = getPrismData(*sp20);
@@ -2032,7 +2033,7 @@ bool dBgWKCol::RoofChk(dBgS_RoofChk* param_0) {
         sp28 = 1 << sp28;
         sp10 = sp28 - 1;
         sp34 += sp28 - (sp34 & sp10);
-    } while ((s32)sp34 <= (s32)sp30);
+    } while ((int)sp34 <= (int)sp30);
 
     return sp0A;
 }
@@ -2045,33 +2046,33 @@ bool dBgWKCol::SplGrpChk(dBgS_SplGrpChk* param_0) {
     PSVECSubtract(sp3C, &m_pkc_head->m_area_min_pos, &sp54);
 
     u32 sp38 = sp54.x;
-    if ((s32)sp38 < 0) {
+    if ((int)sp38 < 0) {
         return false;
     }
 
-    if ((s32)sp38 > (s32)~m_pkc_head->m_area_x_width_mask) {
+    if ((int)sp38 > (int)~m_pkc_head->m_area_x_width_mask) {
         return false;
     }
 
     u32 sp34 = sp54.z;
-    if ((s32)sp34 < 0) {
+    if ((int)sp34 < 0) {
         return false;
     }
 
-    if ((s32)sp34 > (s32)~m_pkc_head->m_area_z_width_mask) {
+    if ((int)sp34 > (int)~m_pkc_head->m_area_z_width_mask) {
         return false;
     }
 
     u32 sp30 = sp54.y;
-    if ((s32)sp30 < 0) {
+    if ((int)sp30 < 0) {
         sp30 = 0;
     }
 
     u32 sp2C = param_0->GetRoof() - m_pkc_head->m_area_min_pos.y;
-    if ((s32)sp2C > (s32)~m_pkc_head->m_area_y_width_mask) {
+    if ((int)sp2C > (int)~m_pkc_head->m_area_y_width_mask) {
         sp2C = ~m_pkc_head->m_area_y_width_mask;
     }
-    if ((s32)sp30 >= (s32)sp2C) {
+    if ((int)sp30 >= (int)sp2C) {
         return false;
     }
 
@@ -2079,10 +2080,10 @@ bool dBgWKCol::SplGrpChk(dBgS_SplGrpChk* param_0) {
     do {
         u32 sp28 = (u32)m_pkc_head->m_block_data;
         u32 sp24 = m_pkc_head->m_block_width_shift;
-        s32 sp20 = 4 * (((u32)sp34 >> sp24) << m_pkc_head->m_area_xy_blocks_shift |
+        int sp20 = 4 * (((u32)sp34 >> sp24) << m_pkc_head->m_area_xy_blocks_shift |
                          ((u32)sp2C >> sp24) << m_pkc_head->m_area_x_blocks_shift |
                          (u32)sp38 >> sp24);
-        while ((sp20 = *(s32*)(sp28 + sp20)) >= 0) {
+        while ((sp20 = *(int*)(sp28 + sp20)) >= 0) {
             sp28 += sp20;
             sp24--;
             sp20 = 4 *
@@ -2148,7 +2149,7 @@ bool dBgWKCol::SplGrpChk(dBgS_SplGrpChk* param_0) {
         u32 sp0C = sp24 - 1;
         sp2C = sp2C & ~sp0C;
         sp2C--;
-    } while ((s32)sp2C >= (s32)sp30);
+    } while ((int)sp2C >= (int)sp30);
 
     return sp09;
 }
@@ -2320,8 +2321,8 @@ void dBgWKCol::GetTopUnder(f32* param_0, f32* param_1) const {
 
 /* 800829F0-80082A20 07D330 0030+00 1/0 0/0 0/0 .text
  * GetGrpRoomIndex__8dBgWKColCFRC13cBgS_PolyInfo                */
-s32 dBgWKCol::GetGrpRoomIndex(const cBgS_PolyInfo& poly) const {
-    s32 poly_index = poly.GetPolyIndex();
+int dBgWKCol::GetGrpRoomIndex(const cBgS_PolyInfo& poly) const {
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2329,8 +2330,8 @@ s32 dBgWKCol::GetGrpRoomIndex(const cBgS_PolyInfo& poly) const {
 }
 
 /* 80082A20-80082A50 07D360 0030+00 1/0 0/0 0/0 .text GetExitId__8dBgWKColFRC13cBgS_PolyInfo */
-s32 dBgWKCol::GetExitId(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+int dBgWKCol::GetExitId(const cBgS_PolyInfo& poly) {
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2338,8 +2339,8 @@ s32 dBgWKCol::GetExitId(const cBgS_PolyInfo& poly) {
 }
 
 /* 80082A50-80082A80 07D390 0030+00 1/0 0/0 0/0 .text GetPolyColor__8dBgWKColFRC13cBgS_PolyInfo */
-s32 dBgWKCol::GetPolyColor(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+int dBgWKCol::GetPolyColor(const cBgS_PolyInfo& poly) {
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2373,7 +2374,7 @@ int dBgWKCol::GetSpecialCode(int poly_index) {
 /* 80082B0C-80082B3C 07D44C 0030+00 1/0 0/0 0/0 .text GetMagnetCode__8dBgWKColFRC13cBgS_PolyInfo
  */
 int dBgWKCol::GetMagnetCode(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2383,7 +2384,7 @@ int dBgWKCol::GetMagnetCode(const cBgS_PolyInfo& poly) {
 /* 80082B3C-80082B6C 07D47C 0030+00 1/0 0/0 0/0 .text
  * GetMonkeyBarsCode__8dBgWKColFRC13cBgS_PolyInfo               */
 int dBgWKCol::GetMonkeyBarsCode(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2473,7 +2474,7 @@ bool dBgWKCol::GetShdwThrough(int poly_index) {
 
 /* 80082D24-80082D54 07D664 0030+00 1/0 0/0 0/0 .text GetLinkNo__8dBgWKColFRC13cBgS_PolyInfo */
 int dBgWKCol::GetLinkNo(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2481,8 +2482,8 @@ int dBgWKCol::GetLinkNo(const cBgS_PolyInfo& poly) {
 }
 
 /* 80082D54-80082D84 07D694 0030+00 1/0 0/0 0/0 .text GetWallCode__8dBgWKColFRC13cBgS_PolyInfo */
-s32 dBgWKCol::GetWallCode(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+int dBgWKCol::GetWallCode(const cBgS_PolyInfo& poly) {
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2491,7 +2492,7 @@ s32 dBgWKCol::GetWallCode(const cBgS_PolyInfo& poly) {
 
 /* 80082D84-80082DB4 07D6C4 0030+00 1/0 0/0 0/0 .text GetPolyAtt0__8dBgWKColFRC13cBgS_PolyInfo */
 int dBgWKCol::GetPolyAtt0(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2500,7 +2501,7 @@ int dBgWKCol::GetPolyAtt0(const cBgS_PolyInfo& poly) {
 
 /* 80082DB4-80082DE4 07D6F4 0030+00 1/0 0/0 0/0 .text GetPolyAtt1__8dBgWKColFRC13cBgS_PolyInfo */
 int dBgWKCol::GetPolyAtt1(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2510,7 +2511,7 @@ int dBgWKCol::GetPolyAtt1(const cBgS_PolyInfo& poly) {
 /* 80082DE4-80082E14 07D724 0030+00 1/0 0/0 0/0 .text GetGroundCode__8dBgWKColFRC13cBgS_PolyInfo
  */
 int dBgWKCol::GetGroundCode(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2534,8 +2535,8 @@ u32 dBgWKCol::GetAttackThrough(int poly_index) {
 }
 
 /* 80082E6C-80082E9C 07D7AC 0030+00 1/0 0/0 0/0 .text GetCamMoveBG__8dBgWKColFRC13cBgS_PolyInfo */
-s32 dBgWKCol::GetCamMoveBG(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+int dBgWKCol::GetCamMoveBG(const cBgS_PolyInfo& poly) {
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2543,8 +2544,8 @@ s32 dBgWKCol::GetCamMoveBG(const cBgS_PolyInfo& poly) {
 }
 
 /* 80082E9C-80082ECC 07D7DC 0030+00 1/0 0/0 0/0 .text GetRoomCamId__8dBgWKColFRC13cBgS_PolyInfo */
-s32 dBgWKCol::GetRoomCamId(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+int dBgWKCol::GetRoomCamId(const cBgS_PolyInfo& poly) {
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2553,8 +2554,8 @@ s32 dBgWKCol::GetRoomCamId(const cBgS_PolyInfo& poly) {
 
 /* 80082ECC-80082EFC 07D80C 0030+00 1/0 0/0 0/0 .text GetRoomPathId__8dBgWKColFRC13cBgS_PolyInfo
  */
-s32 dBgWKCol::GetRoomPathId(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+int dBgWKCol::GetRoomPathId(const cBgS_PolyInfo& poly) {
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2563,8 +2564,8 @@ s32 dBgWKCol::GetRoomPathId(const cBgS_PolyInfo& poly) {
 
 /* 80082EFC-80082F2C 07D83C 0030+00 1/0 0/0 0/0 .text
  * GetRoomPathPntNo__8dBgWKColFRC13cBgS_PolyInfo                */
-s32 dBgWKCol::GetRoomPathPntNo(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+int dBgWKCol::GetRoomPathPntNo(const cBgS_PolyInfo& poly) {
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2574,7 +2575,7 @@ s32 dBgWKCol::GetRoomPathPntNo(const cBgS_PolyInfo& poly) {
 /* 80082F2C-80082F5C 07D86C 0030+00 1/0 0/0 0/0 .text
  * GetPolyGrpRoomInfId__8dBgWKColFRC13cBgS_PolyInfo             */
 u8 dBgWKCol::GetPolyGrpRoomInfId(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -2584,7 +2585,7 @@ u8 dBgWKCol::GetPolyGrpRoomInfId(const cBgS_PolyInfo& poly) {
 /* 80082F5C-80082F8C 07D89C 0030+00 1/0 0/0 0/0 .text GetGrpSoundId__8dBgWKColFRC13cBgS_PolyInfo
  */
 int dBgWKCol::GetGrpSoundId(const cBgS_PolyInfo& poly) {
-    s32 poly_index = poly.GetPolyIndex();
+    int poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
