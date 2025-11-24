@@ -442,7 +442,7 @@ void daAlink_c::setEffect() {
             spB8.z += 40.0f * cM_scos(current.angle.y);
             spAC.y -= daAlinkHIO_wlSwim_c0::m.field_0x48;
         } else {
-            spAC.y -= daAlinkHIO_swim_c0::m.mInitHeight;
+            spAC.y -= daAlinkHIO_swim_c0::m.mStartHeight;
         }
 
         spB8.y = mWaterY;

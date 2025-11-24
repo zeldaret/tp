@@ -1203,7 +1203,7 @@ int daAlink_c::setLadderInit() {
     if (checkModeFlg(0x40000)) {
         setLadderPos(getLadderUnitCount() - 2);
 
-        while (mWaterY - current.pos.y > daAlinkHIO_swim_c0::m.mInitHeight) {
+        while (mWaterY - current.pos.y > daAlinkHIO_swim_c0::m.mStartHeight) {
             current.pos.y += 37.5f;
         }
 
@@ -2614,14 +2614,14 @@ int daAlink_c::procClimbToRoof() {
 
 /* 801005CC-801005F0 0FAF0C 0024+00 2/2 0/0 0/0 .text getRoofHangFMoveAnmSpeed__9daAlink_cCFv */
 f32 daAlink_c::getRoofHangFMoveAnmSpeed() const {
-    return getAnmSpeedStickRate(daAlinkHIO_roofHang_c0::m.field_0x24,
-                                daAlinkHIO_roofHang_c0::m.field_0x28);
+    return getAnmSpeedStickRate(daAlinkHIO_roofHang_c0::m.mVertMoveMinASpeed,
+                                daAlinkHIO_roofHang_c0::m.mVertMoveMaxASpeed);
 }
 
 /* 801005F0-80100614 0FAF30 0024+00 2/2 0/0 0/0 .text getRoofHangSMoveAnmSpeed__9daAlink_cCFv */
 f32 daAlink_c::getRoofHangSMoveAnmSpeed() const {
-    return getAnmSpeedStickRate(daAlinkHIO_roofHang_c0::m.field_0x38,
-                                daAlinkHIO_roofHang_c0::m.field_0x3C);
+    return getAnmSpeedStickRate(daAlinkHIO_roofHang_c0::m.mHorizMoveMinASpeed,
+                                daAlinkHIO_roofHang_c0::m.mHorizMoveMaxASpeed);
 }
 
 /* 80100614-80100668 0FAF54 0054+00 3/3 0/0 0/0 .text
@@ -2734,7 +2734,7 @@ int daAlink_c::checkNextActionRoofHang() {
 int daAlink_c::procRoofHangStartInit(cBgS_PolyInfo const& param_0, cXyz const& param_1,
                                      int param_2) {
     commonProcInit(PROC_ROOF_HANG_START);
-    setSingleAnimeParam(ANM_ROOF_HANG, &daAlinkHIO_roofHang_c0::m.field_0x0);
+    setSingleAnimeParam(ANM_ROOF_HANG, &daAlinkHIO_roofHang_c0::m.mRoofHangAnm);
     mPolyInfo2.SetPolyInfo(param_0);
 
     current.pos = param_1;
@@ -2766,7 +2766,7 @@ int daAlink_c::procRoofHangStart() {
     if (mProcVar0.field_0x3008 == 0 &&
         (checkAnmEnd(frame_ctrl) ||
          (checkInputOnR() &&
-          frame_ctrl->getFrame() > daAlinkHIO_roofHang_c0::m.field_0x0.mCancelFrame)))
+          frame_ctrl->getFrame() > daAlinkHIO_roofHang_c0::m.mRoofHangAnm.mCancelFrame)))
     {
         checkNextActionRoofHang();
     } else if (checkAnmEnd(frame_ctrl)) {
@@ -2797,7 +2797,7 @@ int daAlink_c::procRoofHangWaitInit(int param_0) {
         }
     }
 
-    setSingleAnimeBaseSpeed(ANM_ROOF_HANG_WAIT, daAlinkHIO_roofHang_c0::m.field_0x1C, daAlinkHIO_roofHang_c0::m.field_0x20);
+    setSingleAnimeBaseSpeed(ANM_ROOF_HANG_WAIT, daAlinkHIO_roofHang_c0::m.mStandbyASpeed, daAlinkHIO_roofHang_c0::m.mStandbyInterp);
 
     current.angle.y = shape_angle.y;
     setSpecialGravity(0.0f, maxFallSpeed, 0);
@@ -2846,7 +2846,7 @@ int daAlink_c::procRoofHangFrontMoveInit() {
         frame = mUnderFrameCtrl[0].getFrame();
     }
 
-    setSingleAnimeBaseSpeed(ANM_ROOF_HANG_MOVE, anm_speed, daAlinkHIO_roofHang_c0::m.field_0x2C);
+    setSingleAnimeBaseSpeed(ANM_ROOF_HANG_MOVE, anm_speed, daAlinkHIO_roofHang_c0::m.mVertMoveInterp);
 
     if (frame >= 0) {
         mUnderFrameCtrl[0].setFrame(frame);
@@ -2875,9 +2875,9 @@ int daAlink_c::procRoofHangFrontMove() {
         checkNextActionRoofHang();
     } else {
         if (!checkAttentionLock()) {
-            cLib_addCalcAngleS(&current.angle.y, field_0x2fe2, daAlinkHIO_roofHang_c0::m.field_0x14,
-                               daAlinkHIO_roofHang_c0::m.field_0x16,
-                               daAlinkHIO_roofHang_c0::m.field_0x18);
+            cLib_addCalcAngleS(&current.angle.y, field_0x2fe2, daAlinkHIO_roofHang_c0::m.mTurnAngleRate,
+                               daAlinkHIO_roofHang_c0::m.mMaxTurnAngle,
+                               daAlinkHIO_roofHang_c0::m.mMinTurnAngle);
 
             if (field_0x2f98 == 0) {
                 shape_angle.y = current.angle.y;
@@ -2893,8 +2893,8 @@ int daAlink_c::procRoofHangFrontMove() {
             frame = frameCtrl->getFrame();
         }
 
-        mNormalSpeed = getAnmSpeedStickRate(daAlinkHIO_roofHang_c0::m.field_0x30,
-                                            daAlinkHIO_roofHang_c0::m.field_0x34) *
+        mNormalSpeed = getAnmSpeedStickRate(daAlinkHIO_roofHang_c0::m.mVertMoveMinSpeed,
+                                            daAlinkHIO_roofHang_c0::m.mVertMoveMaxSpeed) *
                        cM_fsin((frame * M_PI) * 0.083333336f);
         if (mNormalSpeed < 0.0f) {
             mNormalSpeed = 0.0f;
@@ -2951,7 +2951,7 @@ int daAlink_c::procRoofHangSideMoveInit() {
     }
 
     setSingleAnimeBaseSpeed(anm_id, getRoofHangSMoveAnmSpeed(),
-                            daAlinkHIO_roofHang_c0::m.field_0x40);
+                            daAlinkHIO_roofHang_c0::m.mHorizMoveInterp);
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
     f32 tmp_0 = 0.0f;
@@ -2996,7 +2996,7 @@ int daAlink_c::procRoofHangTurnInit() {
 
     f32 anm_speed;
     if ((s16)(field_0x2fe2 - shape_angle.y) < 0) {
-        anm_speed = -daAlinkHIO_roofHang_c0::m.field_0x44;
+        anm_speed = -daAlinkHIO_roofHang_c0::m.mInvertASpeed;
         mProcVar0.field_0x3008 = 1;
         shape_angle.y += 0x8000;
         setOldRootQuaternion(0, -0x8000, 0);
@@ -3005,7 +3005,7 @@ int daAlink_c::procRoofHangTurnInit() {
         field_0x3478 = 0.0f;
         field_0x347c = 10.0f;
     } else {
-        anm_speed = daAlinkHIO_roofHang_c0::m.field_0x44;
+        anm_speed = daAlinkHIO_roofHang_c0::m.mInvertASpeed;
         mProcVar0.field_0x3008 = 0;
         mProcVar2.field_0x300c = field_0x2fe2 + 0x8000;
         field_0x3478 = 10.0f;
@@ -3013,7 +3013,7 @@ int daAlink_c::procRoofHangTurnInit() {
     }
 
     current.angle.y = shape_angle.y;
-    setSingleAnimeBaseSpeed(ANM_ROOF_HANG_TURN, anm_speed, daAlinkHIO_roofHang_c0::m.field_0x48);
+    setSingleAnimeBaseSpeed(ANM_ROOF_HANG_TURN, anm_speed, daAlinkHIO_roofHang_c0::m.mInvertInterp);
 
     if (mProcVar0.field_0x3008 != 0) {
         setFaceBasicTexture(FTANM_UNK_4);
@@ -3071,7 +3071,7 @@ void daAlink_c::setRoofHangSwitch() {
 int daAlink_c::procRoofSwitchHangInit(fopAc_ac_c* param_0) {
     commonProcInit(PROC_ROOF_SWITCH_HANG);
     deleteEquipItem(TRUE, FALSE);
-    setSingleAnimeParam(ANM_ROOF_HANG, &daAlinkHIO_roofHang_c0::m.field_0x0);
+    setSingleAnimeParam(ANM_ROOF_HANG, &daAlinkHIO_roofHang_c0::m.mRoofHangAnm);
 
     setSpecialGravity(0.0f, maxFallSpeed, 0);
     f32 tmp_0 = 0.0f;
@@ -3103,8 +3103,8 @@ int daAlink_c::procRoofSwitchHang() {
     setRoofHangSwitch();
 
     if (checkAnmEnd(mUnderFrameCtrl)) {
-        setSingleAnimeBaseSpeed(ANM_ROOF_HANG_WAIT, daAlinkHIO_roofHang_c0::m.field_0x1C,
-                                daAlinkHIO_roofHang_c0::m.field_0x20);
+        setSingleAnimeBaseSpeed(ANM_ROOF_HANG_WAIT, daAlinkHIO_roofHang_c0::m.mStandbyASpeed,
+                                daAlinkHIO_roofHang_c0::m.mStandbyInterp);
         mProcVar2.field_0x300c = 1;
     } else if (mProcVar2.field_0x300c != 0) {
         setDoStatus(0x33);
