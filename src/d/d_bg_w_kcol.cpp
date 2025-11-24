@@ -257,7 +257,6 @@ bool dBgWKCol::chkPolyThrough(dBgPc* ppoly, cBgS_PolyPassChk* ppolypasschk,
 
 /* 8007EE34-8007F628 079774 07F4+00 1/0 0/0 0/0 .text            LineCheck__8dBgWKColFP11cBgS_LinChk
  */
-// NONMATCHING
 bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
     cXyz* pstart = plinchk->GetStartP();
     cXyz* pcross = plinchk->GetCrossP();
@@ -643,7 +642,7 @@ bool dBgWKCol::GroundCross(cBgS_GndChk* i_chk) {
 }
 
 /* 8007F9A4-8007FF00 07A2E4 055C+00 1/0 0/0 0/0 .text ShdwDraw__8dBgWKColFP13cBgS_ShdwDraw */
-// NONMATCHING
+// NONMATCHING - stack
 void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
     dBgPc polyCode_sp108;
 
@@ -1055,6 +1054,7 @@ SECTION_SDATA2 static u8 lit_5300[8] = {
 #endif
 
 /* 80080330-800811A0 07AC70 0E70+00 1/0 0/0 0/0 .text WallCorrectSort__8dBgWKColFP9dBgS_Acch */
+// NONMATCHING - regalloc
 bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
     bool sp_10 = false;
 
@@ -1516,6 +1516,7 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
 
 /* 800811A0-80081E18 07BAE0 0C78+00 1/0 0/0 0/0 .text            WallCorrect__8dBgWKColFP9dBgS_Acch
  */
+// NONMATCHING - missing mr
 bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
     bool sp10 = false;
 
