@@ -885,13 +885,13 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
 
 
 /* 8007FF00-8007FF1C 07A840 001C+00 1/1 0/0 0/0 .text ChkShdwDrawThrough__8dBgWKColFP5dBgPc */
-u8 dBgWKCol::ChkShdwDrawThrough(dBgPc* pcode) {
+bool dBgWKCol::ChkShdwDrawThrough(dBgPc* pcode) {
     if (pcode->getShdwThrough()) {
         return true;
     } else if (pcode->getArrowThrough()) {
-        return TRUE;
+        return true;
     }
-    return FALSE;
+    return false;
 }
 
 /* 8007FF1C-80080330 07A85C 0414+00 1/0 0/0 0/0 .text CaptPoly__8dBgWKColFR13dBgS_CaptPoly */
