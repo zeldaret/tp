@@ -47,7 +47,7 @@ public:
     /* 8007E9D4 */ bool GetTriPnt(KC_PrismData const*, Vec*, Vec*, Vec*) const;
     /* 8007EB70 */ void getPolyCode(int, dBgPc*) const;
     /* 8007EBC4 */ bool chkPolyThrough(dBgPc*, cBgS_PolyPassChk*, cBgS_GrpPassChk*, cXyz&) const;
-    /* 8007FF00 */ bool ChkShdwDrawThrough(dBgPc*);
+    /* 8007FF00 */ u8 ChkShdwDrawThrough(dBgPc*);
 
     /* 8007E74C */ virtual ~dBgWKCol();
     /* 8007E86C */ virtual bool ChkNotReady() const;
