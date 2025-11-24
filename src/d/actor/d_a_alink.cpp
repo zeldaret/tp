@@ -5900,8 +5900,8 @@ void daAlink_c::setSwordAtCollision(int param_0) {
             mAtCyl.MoveCAt(sp74);
         }
 
-        g_dComIfG_gameInfo.play.mCcs.Set(&mAtCyl);
-        g_dComIfG_gameInfo.play.mCcs.SetMass(&mAtCyl, 1);
+        dComIfG_Ccsp()->Set(&mAtCyl);
+        dComIfG_Ccsp()->SetMass(&mAtCyl, 1);
         return;
     }
 
@@ -5927,8 +5927,8 @@ void daAlink_c::setSwordAtCollision(int param_0) {
     mAtCps[2].SetAtVec(sp5C);
 
     for (int i = 0; i < 3; i++) {
-        g_dComIfG_gameInfo.play.mCcs.Set(&mAtCps[i]);
-        g_dComIfG_gameInfo.play.mCcs.SetMass(&mAtCps[i], 1);
+        dComIfG_Ccsp()->Set(&mAtCps[i]);
+        dComIfG_Ccsp()->SetMass(&mAtCps[i], 1);
     }
 }
 
@@ -5995,8 +5995,8 @@ void daAlink_c::setWolfAtCollision() {
         if (mProcID == PROC_WOLF_ROLL_ATTACK) {
             mAtCyl.SetC(current.pos);
 
-            g_dComIfG_gameInfo.play.mCcs.Set(&mAtCyl);
-            g_dComIfG_gameInfo.play.mCcs.SetMass(&mAtCyl, 1);
+            dComIfG_Ccsp()->Set(&mAtCyl);
+            dComIfG_Ccsp()->SetMass(&mAtCyl, 1);
         } else {
             sp8.set(current.pos.x + field_0x3438 * cM_ssin(shape_angle.y), current.pos.y,
                     current.pos.z + field_0x3438 * cM_scos(shape_angle.y));
@@ -6021,8 +6021,8 @@ void daAlink_c::setWolfAtCollision() {
                 mAtCyl.MoveCAt(sp8);
             }
 
-            g_dComIfG_gameInfo.play.mCcs.Set(&mAtCyl);
-            g_dComIfG_gameInfo.play.mCcs.SetMass(&mAtCyl, 1);
+            dComIfG_Ccsp()->Set(&mAtCyl);
+            dComIfG_Ccsp()->SetMass(&mAtCyl, 1);
         }
 
         onNoResetFlg0(FLG0_UNK_40);
@@ -6125,7 +6125,7 @@ void daAlink_c::setAtCollision() {
             mGuardAtCps.SetAtVec(spA4);
 
             dComIfG_Ccsp()->Set(&mGuardAtCps);
-            g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&mGuardAtCps, 1);
+            dComIfG_Ccsp()->SetMass(&mGuardAtCps, 1);
         } else {
             mGuardAtCps.ResetAtHit();
         }
@@ -6203,7 +6203,7 @@ void daAlink_c::setAtCollision() {
             }
 
             dComIfG_Ccsp()->Set(&field_0xFB8);
-            g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&field_0xFB8, 1);
+            dComIfG_Ccsp()->SetMass(&field_0xFB8, 1);
         } else {
             field_0xFB8.ResetAtHit();
         }
@@ -6218,7 +6218,7 @@ void daAlink_c::setAtCollision() {
             }
 
             dComIfG_Ccsp()->Set(&field_0xFB8);
-            g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&field_0xFB8, 1);
+            dComIfG_Ccsp()->SetMass(&field_0xFB8, 1);
 
             if (mItemVar0.field_0x3018 == 5 || mItemVar0.field_0x3018 == 7 || mItemVar0.field_0x3018 == 6) {
                 field_0x1778.SetC(mIronBallCenterPos);
@@ -6254,7 +6254,7 @@ void daAlink_c::setAtCollision() {
             spC8 = cXyz::Zero;
             field_0xFB8.SetAtVec(spC8);
             dComIfG_Ccsp()->Set(&field_0xFB8);
-            g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&field_0xFB8, 1);
+            dComIfG_Ccsp()->SetMass(&field_0xFB8, 1);
             decSwordBlur();
 
             if (mProcID == PROC_BOARD_CUT_TURN) {
@@ -6268,7 +6268,7 @@ void daAlink_c::setAtCollision() {
             spC8.set(current.pos.x, current.pos.y - 80.0f, current.pos.z);
             mAtCyl.SetC(spC8);
             dComIfG_Ccsp()->Set(&mAtCyl);
-            g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&mAtCyl, 1);
+            dComIfG_Ccsp()->SetMass(&mAtCyl, 1);
             decSwordBlur();
         } else if (!checkNoResetFlg0(FLG0_UNK_40)) {
             setSwordAtCollision(1);
@@ -6533,16 +6533,15 @@ void daAlink_c::setCollision() {
         field_0x306c = shape_angle.y + mBodyAngle.y;
     }
 
-    // fakematch, should be dComIfG_Ccsp() (same for rest of function)
-    g_dComIfG_gameInfo.play.mCcs.Set(&field_0x850[0]);
-    g_dComIfG_gameInfo.play.mCcs.SetMass(&field_0x850[0], 1);
+    dComIfG_Ccsp()->Set(&field_0x850[0]);
+    dComIfG_Ccsp()->SetMass(&field_0x850[0], 1);
 
     if (checkWolf()) {
         setWolfAtCollision();
 
         for (i = 1; i < 3; i++) {
-            g_dComIfG_gameInfo.play.mCcs.Set(&field_0x850[i]);
-            g_dComIfG_gameInfo.play.mCcs.SetMass(&field_0x850[i], 1);
+            dComIfG_Ccsp()->Set(&field_0x850[i]);
+            dComIfG_Ccsp()->SetMass(&field_0x850[i], 1);
         }
 
         if (checkModeFlg(0x100000)) {
@@ -6552,12 +6551,12 @@ void daAlink_c::setCollision() {
             field_0xFB8.OnCoSetBit();
         }
 
-        g_dComIfG_gameInfo.play.mCcs.Set(&field_0xFB8);
-        g_dComIfG_gameInfo.play.mCcs.SetMass(&field_0xFB8, 1);
+        dComIfG_Ccsp()->Set(&field_0xFB8);
+        dComIfG_Ccsp()->SetMass(&field_0xFB8, 1);
     } else {
         for (i = 1; i < 3; i++) {
-            g_dComIfG_gameInfo.play.mCcs.Set(&field_0x850[i]);
-            g_dComIfG_gameInfo.play.mCcs.SetMass(&field_0x850[i], 1);
+            dComIfG_Ccsp()->Set(&field_0x850[i]);
+            dComIfG_Ccsp()->SetMass(&field_0x850[i], 1);
         }
 
         setAtCollision();
