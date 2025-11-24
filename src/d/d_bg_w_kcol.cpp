@@ -912,8 +912,8 @@ void dBgWKCol::CaptPoly(dBgS_CaptPoly& i_captpoly) {
     }
 
     int sp58 = (u32)(max.x - area_min->x);
-    if (sp5C > (int)~m_pkc_head->m_area_x_width_mask) {
-        sp5C = (int)~m_pkc_head->m_area_x_width_mask;
+    if (sp58 > (int)~m_pkc_head->m_area_x_width_mask) {
+        sp58 = (int)~m_pkc_head->m_area_x_width_mask;
     }
 
     if (sp5C < sp58) {
@@ -951,7 +951,7 @@ void dBgWKCol::CaptPoly(dBgS_CaptPoly& i_captpoly) {
 
                 do {
                     sp34 = 1000000;
-                    s32 sp20 = sp4C;
+                    s32 sp20 = sp54;
 
                     do {
                         sp38 = 1000000;
@@ -959,27 +959,27 @@ void dBgWKCol::CaptPoly(dBgS_CaptPoly& i_captpoly) {
                         s32 sp1C = sp5C;
 
                         do {
-                            u16* block_18 = (u16*)m_pkc_head->m_block_data;
-                            sp20 = m_pkc_head->m_block_width_shift;
+                            u16* sp18 = (u16*)m_pkc_head->m_block_data;
+                            int r29 = m_pkc_head->m_block_width_shift;
                             s32 sp14 =
-                                4 * (((u32)sp24 >> sp20) << m_pkc_head->m_area_xy_blocks_shift |
-                                     ((u32)sp20 >> sp20) << m_pkc_head->m_area_x_blocks_shift |
-                                     (u32)sp1C >> sp20);
-                            while ((sp14 = (*(s32*)((s32)block_18 + sp14))) >= 0) {
-                                block_18 = (u16*)((s32)block_18 + sp14);
-                                sp20--;
-                                sp14 = (((u32)sp24 >> sp20 & 1) << 2 |
-                                        ((u32)sp20 >> sp20 & 1) << 1 |
-                                        ((u32)sp1C >> sp20 & 1) << 0) << 2;
+                                4 * (((u32)sp24 >> r29) << m_pkc_head->m_area_xy_blocks_shift |
+                                     ((u32)sp20 >> r29) << m_pkc_head->m_area_x_blocks_shift |
+                                     (u32)sp1C >> r29);
+                            while ((sp14 = (*(s32*)((s32)sp18 + sp14))) >= 0) {
+                                sp18 = (u16*)((s32)sp18 + sp14);
+                                r29--;
+                                sp14 = (((u32)sp24 >> r29 & 1) << 2 |
+                                        ((u32)sp20 >> r29 & 1) << 1 |
+                                        ((u32)sp1C >> r29 & 1) << 0) << 2;
                             }
 
-                            block_18 = (u16*)((s32)block_18 + (sp14 & 0x7FFFFFFF));
+                            u16* r28 = (u16*)((s32)sp18 + (sp14 & 0x7FFFFFFF));
 
-                            sp20 = 1 << sp20;
-                            int sp10 = sp20 - 1;
-                            sp44 = (sp1C & sp10) - sp20;
-                            sp40 = (sp20 & sp10) - sp20;
-                            sp3C = (sp24 & sp10) - sp20;
+                            r29 = 1 << r29;
+                            int sp10 = r29 - 1;
+                            sp44 = r29 - (sp1C & sp10);
+                            sp40 = r29 - (sp20 & sp10);
+                            sp3C = r29 - (sp24 & sp10);
 
                             if (sp3C < sp34) {
                                 sp34 = sp3C;
@@ -989,32 +989,32 @@ void dBgWKCol::CaptPoly(dBgS_CaptPoly& i_captpoly) {
                                 sp38 = sp40;
                             }
 
-                            if (sp40 > sp30 && block_18[1] != 0) {
+                            if (sp40 > sp30 && r28[1] != 0) {
                                 sp30 = sp40;
-                                sp2C = block_18;
+                                sp2C = r28;
                             }
 
-                            if (block_18 != sp28) {
-                                while ((block_18++)[1] != 0) {
-                                    KC_PrismData* spC = getPrismData(block_18[0]);
+                            if (r28 != sp28) {
+                                while ((r28++)[1] != 0) {
+                                    KC_PrismData* spC = getPrismData(r28[0]);
                                     Vec* sp8 = &m_pkc_head->m_nrm_data[spC->fnrm_i];
 
                                     dBgPc spD8;
-                                    getPolyCode(block_18[0], &spD8);
+                                    getPolyCode(r28[0], &spD8);
 
                                     cXyz sp8C(*sp8);
                                     if (!chkPolyThrough(&spD8, i_captpoly.GetPolyPassChk(), i_captpoly.GetGrpPassChk(), sp8C)) {
                                         cXyz sp80;
                                         cXyz sp74;
                                         cXyz sp68;
-                                        if (GetTriPnt(block_18[0], &sp80, &sp74, &sp68)) {
+                                        if (GetTriPnt(r28[0], &sp80, &sp74, &sp68)) {
                                             static Vec vtx_tbl[3];
                                             vtx_tbl[0] = sp80;
                                             vtx_tbl[1] = sp74;
                                             vtx_tbl[2] = sp68;
 
                                             cM3dGPla plane;
-                                            plane = GetTriPla(block_18[0]);
+                                            plane = GetTriPla(r28[0]);
 
                                             i_captpoly.m_callback(i_captpoly, (cBgD_Vtx_t*)&vtx_tbl, 0, 1, 2, &plane);
                                         }
