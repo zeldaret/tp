@@ -1708,13 +1708,12 @@ int daHorse_c::checkHorseNoMove(int param_0) {
         spA = field_0x1714;
     }
 
-    f32 sp18;
     f32 sp28;
-    f32 var_f27;
-    f32 var_f28;
+    f32 var_f31;
     f32 var_f30;
     f32 var_f29;
-    f32 var_f31;
+    f32 var_f28;
+    f32 var_f27;
     
     if (param_0 != 0) {
         if (checkEndResetStateFlg0(ERFLG0_UNK_200) || (checkStateFlg0(FLG0_UNK_100000) && (m_procID == PROC_MOVE_e || m_procID == PROC_TURN_e || m_procID == PROC_STOP_e) && ((current.pos.z < -33500.0f && abs(shape_angle.y) > 0x4000) || (current.pos.z > -20500.0f && abs(shape_angle.y) < 0x4000)))) {
@@ -1730,7 +1729,6 @@ int daHorse_c::checkHorseNoMove(int param_0) {
         var_f31 *= var_f31;
 
         var_f31 = 200.0f + (300.0f * var_f31);
-
         var_f29 = cM_ssin(current.angle.y);
         var_f28 = cM_scos(current.angle.y);
         sp28 = -var_f31 * cM_ssin(spA);
@@ -1755,8 +1753,9 @@ int daHorse_c::checkHorseNoMove(int param_0) {
 
     onStateFlg0(FLG0_UNK_100);
     BOOL line_cross = dComIfG_Bgsp().LineCross(&m_linechk);
+    offStateFlg0(FLG0_UNK_100);
 
-    if (offStateFlg0(FLG0_UNK_100), line_cross) {
+    if (line_cross) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(m_linechk, &plane);
         sp50 = m_linechk.GetCross();
@@ -1785,8 +1784,9 @@ int daHorse_c::checkHorseNoMove(int param_0) {
 
     sp50.y = 200.0f + current.pos.y;
 
+    f32 sp18;
     if (param_0 != 0 && speedF > (0.5f * m_normalMaxSpeedF)) {
-        sp18 = 500.0f;
+        sp18 = 500.0;
     } else {
         sp18 = 200.0f;
     }
