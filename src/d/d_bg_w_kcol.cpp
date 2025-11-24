@@ -1216,9 +1216,9 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                                             sp_e8 = &l_wcsbuf[wcsIndex_e4];
                                             wcsIndex_e4++;
                                         } else {
-#ifdef DEBUG
+                                            #ifdef DEBUG
                                             lit_5300[0] = 1;
-#endif
+                                            #endif
                                         }
                                     } else if (*sp_c8 != sp_e8->_4) {
                                         if (sp_ac > sp_e8->_0) {
@@ -1230,9 +1230,9 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                                                 // local_118->_0 = l_wcsbuf[local_11c]._0;
                                                 wcsIndex_e4++;
                                             } else {
-#ifdef DEBUG
+                                                #ifdef DEBUG
                                                 lit_5300[0] = 1;
-#endif
+                                                #endif
                                             }
                                         } else {
                                             wcs_data* sp_a8 = sp_e8;
@@ -1245,9 +1245,9 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                                                         sp_a8->next = &l_wcsbuf[wcsIndex_e4];
                                                         wcsIndex_e4++;
                                                     } else {
-#ifdef DEBUG
-                                                        lit_5300[0] = 0;
-#endif
+                                                        #ifdef DEBUG
+                                                        lit_5300[0] = 1;
+                                                        #endif
                                                     }
 
                                                     break;
@@ -1265,9 +1265,9 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                                                         sp_a8->next = &l_wcsbuf[wcsIndex_e4];
                                                         wcsIndex_e4++;
                                                     } else {
-#ifdef DEBUG
+                                                        #ifdef DEBUG
                                                         lit_5300[0] = 1;
-#endif
+                                                        #endif
                                                     }
 
                                                     break;
