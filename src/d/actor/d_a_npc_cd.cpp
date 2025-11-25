@@ -1264,5 +1264,3 @@ daNpcCd_HIO_c::daNpcCd_HIO_c() {
         memcpy(&field_0x1648[i].field_0x124, a_prmTbl_W + i * 0x40, 0x40);
     }
 }
-
-/* 80392FE8-80392FE8 01F648 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

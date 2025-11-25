@@ -1302,5 +1302,3 @@ extern actor_process_profile_definition g_profile_PERU = {
   fopAc_NPC_e,            // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80D4C1B0-80D4C1B0 000150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

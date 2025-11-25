@@ -2451,8 +2451,8 @@ void daHorse_c::setCollision() {
     dComIfG_Ccsp()->Set(&m_tgco_cyl[0]);
     dComIfG_Ccsp()->Set(&m_tgco_cyl[1]);
     dComIfG_Ccsp()->Set(&m_tgco_cyl[2]);
-    g_dComIfG_gameInfo.play.mCcs.SetMass(&m_tgco_cyl[0], 1);  // fakematch
-    g_dComIfG_gameInfo.play.mCcs.SetMass(&m_tgco_cyl[2], 1);  // fakematch
+    dComIfG_Ccsp()->SetMass(&m_tgco_cyl[0], 1);
+    dComIfG_Ccsp()->SetMass(&m_tgco_cyl[2], 1);
     dComIfG_Ccsp()->Set(&m_head_sph);
     dComIfG_Ccsp()->Set(&m_boar_cyl);
 
@@ -2461,7 +2461,7 @@ void daHorse_c::setCollision() {
 
     if (checkResetStateFlg0(RFLG0_UNK_20)) {
         dComIfG_Ccsp()->Set(&m_at_cyl);
-        g_dComIfG_gameInfo.play.mCcs.SetMass(&m_at_cyl, 1);  // fakematch
+        dComIfG_Ccsp()->SetMass(&m_at_cyl, 1);
     } else {
         m_at_cyl.ResetAtHit();
     }

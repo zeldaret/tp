@@ -884,7 +884,7 @@ CaptureScreen.cpp:
 d/d_debug_viewer.cpp:
 	.text       start:0x80119B80 end:0x8011A610
 	.ctors      start:0x8062F83C end:0x8062F840
-	.sbss       start:0x8074C848 end:0x8074C85C
+	.sbss       start:0x8074C848 end:0x8074C858
 	.bss        start:0x807B4F40 end:0x807B5EE0
 
 d/d_debug_pad.cpp:
@@ -892,7 +892,7 @@ d/d_debug_pad.cpp:
 	.ctors      start:0x8062F840 end:0x8062F844
 	.rodata     start:0x80646EB8 end:0x80646EE0
 	.data       start:0x806A3990 end:0x806A39D8
-	.sbss       start:0x8074C85C end:0x8074C868
+	.sbss       start:0x8074C858 end:0x8074C868
 
 d/d_debug_camera.cpp:
 	.text       start:0x8011AAC0 end:0x80122210

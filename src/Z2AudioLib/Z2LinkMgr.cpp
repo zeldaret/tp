@@ -546,7 +546,6 @@ Z2LinkSoundStarter::Z2LinkSoundStarter() : Z2SoundStarter(false) {}
 
 /* 802C4928-802C4FFC 2BF268 06D4+00 2/0 0/0 0/0 .text
  * startSound__18Z2LinkSoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
-// NONMATCHING stack alloc
 bool Z2LinkSoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* param_1,
                                     JGeometry::TVec3<f32> const* param_2, u32 param_3,
                                     f32 param_4, f32 param_5, f32 param_6, f32 param_7,
@@ -732,7 +731,6 @@ Z2RideSoundStarter::Z2RideSoundStarter(Z2CreatureRide* ride) : Z2SoundStarter(fa
 
 /* 802C5284-802C54B8 2BFBC4 0234+00 2/0 0/0 0/0 .text
  * startSound__18Z2RideSoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
-// NONMATCHING regalloc / extra load
 bool Z2RideSoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* param_1,
                                     JGeometry::TVec3<f32> const* param_2, u32 param_3,
                                     f32 param_4, f32 param_5, f32 param_6, f32 param_7,

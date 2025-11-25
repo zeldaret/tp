@@ -2239,8 +2239,6 @@ static int daDoor20_Create(fopAc_ac_c* i_this) {
     return static_cast<daDoor20_c*>(i_this)->create();
 }
 
-/* 804668D8-804668D8 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 804672A0-804672C0 -00001 0020+00 1/0 0/0 0/0 .data            l_daDoor20_Method */
 static actor_method_class l_daDoor20_Method = {
     (process_method_func)daDoor20_Create,  (process_method_func)daDoor20_Delete,

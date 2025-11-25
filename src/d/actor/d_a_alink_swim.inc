@@ -349,7 +349,7 @@ int daAlink_c::checkNextActionSwim() {
         return 1;
     }
 
-    if (mAttList != NULL && mAttList->mType == 7 && checkNoResetFlg0(FLG0_SWIM_UP) &&
+    if (mAttList != NULL && mAttList->mType == fopAc_attn_ETC_e && checkNoResetFlg0(FLG0_SWIM_UP) &&
         fopAcM_GetName(field_0x27f4) == PROC_CANOE)
     {
         setDoStatus(0x17);

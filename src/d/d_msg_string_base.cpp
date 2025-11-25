@@ -200,5 +200,3 @@ void dMsgStringBase_c::drawOutFontLocal(J2DTextBox* param_0, f32 param_1) {
 /* ############################################################################################## */
 /* 80399CA3-80399CB0 026303 0008+05 0/0 0/0 0/0 .rodata          None */
 static char const* const stringBase_80399CA3 = "\x1B" "CR[%d]";
-
-/* 80399C98-80399C98 0262F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

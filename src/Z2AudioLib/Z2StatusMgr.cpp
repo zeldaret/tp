@@ -334,5 +334,3 @@ void Z2StatusMgr::setCameraInWaterDepth(f32 depth) {
     }
     mUnderwaterDepth = depth;
 }
-
-/* 8039BC88-8039BC88 0282E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

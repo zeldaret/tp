@@ -367,5 +367,3 @@ extern actor_process_profile_definition g_profile_Obj_RIVERROCK = {
   fopAc_ACTOR_e,            // mActorType
   fopAc_CULLBOX_CUSTOM_e,   // cullType
 };
-
-/* 80CBDB14-80CBDB14 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

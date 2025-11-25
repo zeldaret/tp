@@ -88,8 +88,6 @@ static int daObjSMark_Create(fopAc_ac_c* i_this) {
     return static_cast<daObjSMark_c*>(i_this)->create();
 }
 
-/* 8059A404-8059A404 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* ############################################################################################## */
 /* 8059A414-8059A434 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjSMark_Method */
 static actor_method_class l_daObjSMark_Method = {

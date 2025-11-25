@@ -180,5 +180,3 @@ extern actor_process_profile_definition g_profile_NPC_FISH = {
     fopAc_ACTOR_e,
     fopAc_CULLBOX_6_e,
 };
-
-/* 805424DC-805424DC 00001C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

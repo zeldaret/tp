@@ -231,7 +231,6 @@ int daObjIBone_c::execute() {
     return 1;
 }
 
-/* 80C281C4-80C281C4 0000A4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 static const char* l_effbmdName = "BreakBoarBone.bmd";  // unused
 
 /* 80C27E48-80C27FEC 000808 01A4+00 1/1 0/0 0/0 .text            setBreakEffect__12daObjIBone_cFv */

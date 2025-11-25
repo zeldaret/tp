@@ -6,6 +6,7 @@
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "bitset.h"
+#include <stdint.h>
 
 /**
  * @ingroup jsystem-jaudio

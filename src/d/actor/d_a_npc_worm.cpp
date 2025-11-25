@@ -436,5 +436,3 @@ extern actor_process_profile_definition g_profile_NPC_WORM = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_0_e,      // cullType
 };
-
-/* 80B2F124-80B2F124 0000A4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

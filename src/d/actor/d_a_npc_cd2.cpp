@@ -182,7 +182,6 @@ SECTION_RODATA static anmTblPrm const l_objTbl[13] = {
     {"object", 14}, {"object", 12}, {"object", 6},  {"object", 7}, {"object", 10},
     {"object", 11}, {"object", 15}, {"object", 16},
 };
-COMPILER_STRIP_GATE(0x80393520, &l_objTbl);
 
 /* 80393588-803935F0 -00001 0068+00 1/1 0/0 0/0 .rodata          l_objTWTbl */
 static anmTblPrm const l_objTWTbl[13] = {
@@ -220,7 +219,6 @@ SECTION_RODATA static anmTblPrm const l_bckTbl_W[54] = {
     {"Wspecial", -1}, {"Wspecial", -1}, {"Wgeneral", 12}, {"Wgeneral", 3},  {"Wgeneral", 4},
     {"Wgeneral", 5},  {"Wgeneral", 6},  {"Wgeneral", 9},  {"Wgeneral", 15},
 };
-COMPILER_STRIP_GATE(0x803937A0, &l_bckTbl_W);
 
 /* 80393950-80393994 01FFB0 0044+00 0/0 0/0 4/4 .rodata          m_cylDat__10daNpcCd2_c */
 dCcD_SrcCyl const daNpcCd2_c::m_cylDat = {

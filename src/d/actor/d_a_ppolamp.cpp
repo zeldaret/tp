@@ -216,5 +216,3 @@ extern actor_process_profile_definition g_profile_PPolamp = {
 };
 
 AUDIO_INSTANCES;
-
-/* 80D4D2C8-80D4D2C8 00004C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

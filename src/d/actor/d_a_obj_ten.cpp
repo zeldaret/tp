@@ -863,5 +863,3 @@ extern actor_process_profile_definition g_profile_Obj_Ten = {
   fopAc_ENV_e,            // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80D0B9E4-80D0B9E4 0000F4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
