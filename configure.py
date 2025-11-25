@@ -1621,7 +1621,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_crod"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_demo00"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_disappear"),
-    ActorRel(NonMatching, "d_a_mg_rod"),
+    ActorRel(Equivalent, "d_a_mg_rod"), # regalloc; weak func order; inlining issues
     ActorRel(MatchingFor(ALL_GCN), "d_a_midna"),
     ActorRel(Equivalent, "d_a_nbomb"),  # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_life_container"),
