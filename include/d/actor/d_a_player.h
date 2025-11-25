@@ -955,6 +955,7 @@ public:
     void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }
     void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
     void onDkCaught2() { onNoResetFlg0(FLG0_DK_CAUGHT); }
+    void onFishingRodCastingEnd() { onNoResetFlg1(FLG1_UNK_8000); }
     void onFishingRodReelEnd() { onEndResetFlg0(ERFLG0_UNK_20000); }
     void onFishingHit() { onEndResetFlg0(ERFLG0_UNK_10000); }
     void onFishingKeep() { onEndResetFlg2(ERFLG2_UNK_1); }

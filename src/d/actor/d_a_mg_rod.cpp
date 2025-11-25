@@ -324,9 +324,9 @@ static void rod_control(dmg_rod_class* i_this) {
         i_this->field_0x6c4 = daAlink_getAlinkActorClass()->getFishingRodAngleY();
         if (i_this->kind == MG_ROD_KIND_LURE && daAlink_getAlinkActorClass()->checkFishingRodGrabLeft()) {
             MTXCopy(daAlink_getAlinkActorClass()->getLeftItemMatrix(), *calc_mtx);
-            cMtx_YrotM(*calc_mtx, (JREG_S(3) + 0x20B6));
-            cMtx_XrotM(*calc_mtx, (JREG_S(4) + 0x8000));
-            cMtx_ZrotM(*calc_mtx, (JREG_S(5) - 0x4000));
+            cMtx_YrotM(*calc_mtx, (s16)(JREG_S(3) + 0x20B6));
+            cMtx_XrotM(*calc_mtx, (s16)(JREG_S(4) + 0x8000));
+            cMtx_ZrotM(*calc_mtx, (s16)(JREG_S(5) - 0x4000));
         } else {
             MTXCopy(daAlink_getAlinkActorClass()->getRightItemMatrix(), *calc_mtx);
             if (i_this->kind == MG_ROD_KIND_LURE) {
@@ -362,8 +362,8 @@ static void rod_control(dmg_rod_class* i_this) {
         MTXCopy(model->getAnmMtx(2), *calc_mtx);
         cMtx_XrotM(*calc_mtx, -0x4000);
     } else {
-        cMtx_YrotM(*calc_mtx, (YREG_S(0) - 17000));
-        cMtx_XrotM(*calc_mtx, (YREG_S(1) + 0xA134));
+        cMtx_YrotM(*calc_mtx, (s16)(YREG_S(0) - 17000));
+        cMtx_XrotM(*calc_mtx, (s16)(YREG_S(1) + 0xA134));
         MtxTrans(KREG_F(3), -1.0f + KREG_F(4), -10.0f + KREG_F(5), 1);
     }
 
@@ -1832,11 +1832,10 @@ static void ground_action(dmg_rod_class* i_this) {
             i_this->field_0xffc = cM_rndFX(32768.0f);
             i_this->field_0x1000 = cM_rndFX(32768.0f);
 
-            // NONMATCHING
             if (cM_rndF(1.0f) < 0.5f) {
-                *(u16*)&actor->current.angle.z = 0xB000;
+                actor->current.angle.z = (f32)0xB000;
             } else {
-                *(u16*)&actor->current.angle.z = *(u32*)-0xB000;
+                actor->current.angle.z = (f32)-0xB000;
             }
 
             i_this->field_0x10a8++;
@@ -2526,6 +2525,7 @@ static void lure_hit(dmg_rod_class* i_this, mg_fish_class* i_mg_fish) {
 }
 
 /* 804B02C4-804B0A90 006DC4 07CC+00 1/1 0/0 0/0 .text            lure_catch__FP13dmg_rod_class */
+// NONMATCHING - regalloc, equivalent
 static void lure_catch(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* mgfish_a = fopAcM_SearchByID(i_this->mg_fish_id);
@@ -3329,11 +3329,10 @@ static void lure_main(dmg_rod_class* i_this) {
         } else if (i_this->field_0x100d != 0) {
             i_this->field_0x100d = 0;
 
-            // NONMATCHING
             if (cM_rndF(1.0f) < 0.5f) {
-                *(u16*)&actor->current.angle.z = 0xB000;
+                actor->current.angle.z = (f32)0xB000;
             } else {
-                *(u16*)&actor->current.angle.z = *(u32*)-0xB000;
+                actor->current.angle.z = (f32)-0xB000;
             }
         }
 
@@ -4494,6 +4493,8 @@ static void cam_3d_morf(dmg_rod_class* i_this, f32 i_scale) {
 }
 
 /* 804B5F44-804B805C 00CA44 2118+00 1/1 0/0 0/0 .text            play_camera__FP13dmg_rod_class */
+// NONMATCHING - JMAFastSqrt needs to not be inlined
+// tricks like FORCE_DONT_INLINE can stop inlining for most of the inlines in this function, but it's unclear how to stop just one inline
 static void play_camera(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
@@ -5474,8 +5475,9 @@ static void play_camera_u(dmg_rod_class* i_this) {
         cLib_addCalc2(&i_this->play_cam_center.x, spA8.x, 0.1f, temp_f31);
         cLib_addCalc2(&i_this->play_cam_center.y, spA8.y, 0.1f, temp_f31);
         cLib_addCalc2(&i_this->play_cam_center.z, spA8.z, 0.1f, temp_f31);
-
-    block_41:
+        // fallthrough
+    }
+    block_41: {
         if (nREG_S(6) == (int)daAlink_getAlinkActorClass()->getFishingReelFrame()) {
             daAlink_getAlinkActorClass()->fishingCastWaitAnimeStop();
         }
