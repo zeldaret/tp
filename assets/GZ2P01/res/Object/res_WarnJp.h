@@ -1,0 +1,16 @@
+#ifndef RES_WARNJP_H
+#define RES_WARNJP_H
+
+enum dRes_INDEX_WARNJP {
+    /* DAT  */
+    dRes_INDEX_WARNJP_BTI_STRAP_16_9_832X456_JP_e=0x3,
+    dRes_INDEX_WARNJP_BTI_STRAP_608X456_JP_e=0x4,
+};
+
+enum dRes_ID_WARNJP {
+    /* DAT  */
+    dRes_ID_WARNJP_BTI_STRAP_16_9_832X456_JP_e=0x3,
+    dRes_ID_WARNJP_BTI_STRAP_608X456_JP_e=0x4,
+};
+
+#endif /* !RES_WARNJP_H */

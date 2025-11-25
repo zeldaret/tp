@@ -1,0 +1,40 @@
+#ifndef RES_STG_00_H
+#define RES_STG_00_H
+
+enum dRes_INDEX_STG_00 {
+    /* BMDR */
+    dRes_INDEX_STG_00_BMD_DOOR_KNOB_00_e=0x5,
+    dRes_INDEX_STG_00_BMD_DOOR_SHUTTER_00_e=0x6,
+    dRes_INDEX_STG_00_BMD_DOOR_STOP_e=0x7,
+    /* DAT  */
+    dRes_INDEX_STG_00_DAT_COLORDATA_TBL_e=0xA,
+    dRes_INDEX_STG_00_DAT_POL_ARG_e=0xB,
+    dRes_INDEX_STG_00_DAT_POL_EFFCOL_e=0xC,
+    dRes_INDEX_STG_00_DAT_POL_EFFCOL2_e=0xD,
+    dRes_INDEX_STG_00_DAT_POL_EFFTBL_e=0xE,
+    dRes_INDEX_STG_00_DAT_POL_EFFTBL2_e=0xF,
+    dRes_INDEX_STG_00_DAT_POL_SOUND_e=0x10,
+    /* DZS  */
+    dRes_INDEX_STG_00_DZS_ROOM0_e=0x13,
+    dRes_INDEX_STG_00_DZS_STAGE_e=0x14,
+};
+
+enum dRes_ID_STG_00 {
+    /* BMDR */
+    dRes_ID_STG_00_BMD_DOOR_KNOB_00_e=0x5,
+    dRes_ID_STG_00_BMD_DOOR_SHUTTER_00_e=0x6,
+    dRes_ID_STG_00_BMD_DOOR_STOP_e=0x7,
+    /* DAT  */
+    dRes_ID_STG_00_DAT_COLORDATA_TBL_e=0xA,
+    dRes_ID_STG_00_DAT_POL_ARG_e=0xB,
+    dRes_ID_STG_00_DAT_POL_EFFCOL_e=0xC,
+    dRes_ID_STG_00_DAT_POL_EFFCOL2_e=0xD,
+    dRes_ID_STG_00_DAT_POL_EFFTBL_e=0xE,
+    dRes_ID_STG_00_DAT_POL_EFFTBL2_e=0xF,
+    dRes_ID_STG_00_DAT_POL_SOUND_e=0x10,
+    /* DZS  */
+    dRes_ID_STG_00_DZS_ROOM0_e=0x13,
+    dRes_ID_STG_00_DZS_STAGE_e=0x14,
+};
+
+#endif /* !RES_STG_00_H */
