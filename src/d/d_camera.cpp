@@ -16,6 +16,7 @@
 #include "d/actor/d_a_tag_mhint.h"
 #include "d/actor/d_a_tag_mstop.h"
 #include "d/actor/d_a_tag_mwait.h"
+#include "d/d_bg_s_sph_chk.h"
 #include "d/d_com_inf_actor.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_debug_viewer.h"
