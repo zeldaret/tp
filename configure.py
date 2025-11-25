@@ -1589,7 +1589,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_kytag17"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_brakeeff"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_burnbox"),
-    ActorRel(NonMatching, "d_a_obj_carry"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_carry"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ito"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_movebox"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_swpush"),
