@@ -186,14 +186,14 @@ static s8 e_mk_bo_shot(e_mk_bo_class* i_this) {
 /* 8071D694-8071DBA0 000A94 050C+00 1/1 0/0 0/0 .text            e_mk_bo_start__FP13e_mk_bo_class */
 static s8 e_mk_bo_start(e_mk_bo_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
-    e_mk_class* e_mk_ = (e_mk_class*)fopAcM_SearchByID(actor->parentActorID);
+    fopAc_ac_c* a_parent = fopAcM_SearchByID(actor->parentActorID);
 
     s8 rt = 2;
-    if (e_mk_ == NULL) {
+    if (a_parent == NULL) {
         return rt;
     }
 
-    e_mk_class* e_mk = e_mk_;
+    e_mk_class* e_mk = (e_mk_class*) a_parent;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz sp38;
 
@@ -223,7 +223,7 @@ static s8 e_mk_bo_start(e_mk_bo_class* i_this) {
             rt = 0;
         }
 
-        i_this->field_0x5e0 = e_mk_->enemy.current.pos;
+        i_this->field_0x5e0 = a_parent->current.pos;
         i_this->field_0x5e0.y += 160.0f;
 
         sp38 = i_this->field_0x5e0 - actor->current.pos;
@@ -261,14 +261,14 @@ static s8 e_mk_bo_start(e_mk_bo_class* i_this) {
 /* 8071DBA0-8071DF04 000FA0 0364+00 1/1 0/0 0/0 .text            e_mk_bo_r04__FP13e_mk_bo_class */
 static s8 e_mk_bo_r04(e_mk_bo_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
-    e_mk_class* e_mk_ = (e_mk_class*)fopAcM_SearchByID(actor->parentActorID);
+    fopAc_ac_c* a_parent = fopAcM_SearchByID(actor->parentActorID);
 
     s8 rt = 2;
-    if (e_mk_ == NULL) {
+    if (a_parent == NULL) {
         return rt;
     }
 
-    e_mk_class* e_mk = e_mk_;
+    e_mk_class* e_mk = (e_mk_class*) a_parent;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz sp1C;
 
@@ -278,7 +278,7 @@ static s8 e_mk_bo_r04(e_mk_bo_class* i_this) {
         i_this->field_0x998 = 1;
         i_this->field_0x5dc = 1;
 
-        actor->current.angle.y = e_mk_->enemy.shape_angle.y + (VREG_S(7) - 0x3000);
+        actor->current.angle.y = a_parent->shape_angle.y + (VREG_S(7) - 0x3000);
         i_this->field_0x5fa = actor->current.angle.y;
         i_this->timers[0] = JREG_S(7) + 65;
         i_this->timers[1] = 30;
@@ -289,7 +289,7 @@ static s8 e_mk_bo_r04(e_mk_bo_class* i_this) {
             i_this->field_0x5ee = JREG_S(9) + 350;
             actor->current.angle.x = JREG_S(2) + 1700;
         } else {
-            i_this->field_0x5e0 = e_mk_->enemy.current.pos;
+            i_this->field_0x5e0 = a_parent->current.pos;
             i_this->field_0x5e0.y += 160.0f;
 
             sp1C = i_this->field_0x5e0 - actor->current.pos;
@@ -405,7 +405,7 @@ static void e_mk_bo_demo_ground(e_mk_bo_class* i_this) {
     }
 
     fopAc_ac_c* a_parent = fopAcM_SearchByID(actor->parentActorID);
-    fopAc_ac_c* a_parent_ = a_parent;
+    e_mk_class* e_mk = (e_mk_class*)a_parent;
 }
 
 /* 8071E200-8071E6C4 001600 04C4+00 1/1 0/0 0/0 .text e_mk_bo_demo_spin__FP13e_mk_bo_class */
@@ -511,16 +511,16 @@ static void action(e_mk_bo_class* i_this) {
     cXyz sp24;
     cXyz sp18;
 
-    e_mk_class* e_mk = (e_mk_class*)fopAcM_SearchByID(actor->parentActorID);
-    e_mk_class* e_mk_ = e_mk;
+    fopAc_ac_c* a_parent = fopAcM_SearchByID(actor->parentActorID);
+    e_mk_class* e_mk = (e_mk_class*)a_parent;
     s8 var_r28;
     u32 sound = Z2SE_MK_DARK_BOOMERANG;
 
     switch (i_this->action) {
     case 0:
-        if (e_mk_->field_0xc30 == 1) {
+        if (e_mk->field_0xc30 == 1) {
             var_r28 = e_mk_bo_start(i_this);
-        } else if (e_mk_->field_0xc30 == 3 || fopAcM_GetRoomNo(actor) == 4) {
+        } else if (e_mk->field_0xc30 == 3 || fopAcM_GetRoomNo(actor) == 4) {
             var_r28 = e_mk_bo_r04(i_this);
         } else {
             var_r28 = e_mk_bo_shot(i_this);
@@ -726,15 +726,11 @@ static int daE_MK_BO_IsDelete(e_mk_bo_class* i_this) {
     return 1;
 }
 
-static void dummy() {
-    OS_REPORT("Delete -> E_MK_BO(id=%d)\n");
-}
-
 /* 8071EED4-8071EF24 0022D4 0050+00 1/0 0/0 0/0 .text            daE_MK_BO_Delete__FP13e_mk_bo_class
  */
 static int daE_MK_BO_Delete(e_mk_bo_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_MK_BO");
     dComIfG_resDelete(&i_this->phase, "E_mk");
 
     if (actor->heap != NULL) {
