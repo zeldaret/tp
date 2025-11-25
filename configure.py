@@ -1719,7 +1719,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_gnd"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_go"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_gos"),
-    ActorRel(Equivalent, "d_a_b_mgn"), # extra mr/regalloc
+    ActorRel(MatchingFor(ALL_GCN), "d_a_b_mgn"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_ob"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_oh"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_oh2"),
