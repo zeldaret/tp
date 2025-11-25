@@ -709,7 +709,7 @@ int daObjDmElevator_c::Delete() {
     mSoundObj.deleteObject();
 
     if ((mpBgW != NULL) && mpBgW->ChkUsed()) {
-        g_dComIfG_gameInfo.play.mBgs.Release(mpBgW);
+        dComIfG_Bgsp().Release(mpBgW);
     }
 
     dComIfG_resDelete(&mPhaseReq, l_el_arcName);

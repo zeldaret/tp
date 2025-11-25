@@ -441,7 +441,7 @@ bool daNpcAsh_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
         mAnm_p->changeAnm(bckAnm);
     }
 
-    if (cM3d_IsZero_inverted(mExpressionMorf)) {
+    if (cM3d_IsZero(mExpressionMorf) == FALSE) {
         if (jointNo == 12) {
             mAnm_p->onMorfNone();
         } else if (jointNo == 4) {
