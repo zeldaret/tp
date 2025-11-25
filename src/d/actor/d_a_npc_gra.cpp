@@ -8,6 +8,7 @@
 #include "d/d_meter2_info.h"
 #include "d/actor/d_a_obj_onsenTaru.h"
 #include "JSystem/JHostIO/JORFile.h"
+#include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_gra.h"
 #include "d/actor/d_a_tag_gra.h"
 #include "Z2AudioLib/Z2Instances.h"

@@ -6,14 +6,15 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_pumpkin.h"
+#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
+#include "d/actor/d_a_npc_jagar.h"
 #include "d/d_cc_d.h"
+#include "d/d_cc_uty.h"
 #if DEBUG
 #include "SSystem/SComponent/c_counter.h"
 #include "JSystem/JHostIO/JORFile.h"
 #endif
-#include "d/actor/d_a_npc.h"
-#include "d/d_cc_uty.h"
-#include "d/actor/d_a_npc_jagar.h"
 
 /* ############################################################################################## */
 /* 80CB8370-80CB83A4 000000 0034+00 5/5 0/0 0/0 .rodata          m__21daObj_Pumpkin_Param_c */

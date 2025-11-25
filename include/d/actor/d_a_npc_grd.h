@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_GRD_H
 #define D_A_NPC_GRD_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 
 struct daNpc_Grd_HIOParam {
     /* 0x00 */ daNpcF_HIOParam common;

@@ -552,7 +552,7 @@ u32 dBgS::ChkGrpInf(cBgS_PolyInfo const& poly, u32 param_1) {
 }
 
 /* 80075100-8007519C 06FA40 009C+00 0/0 16/16 60/60 .text GetRoomId__4dBgSFRC13cBgS_PolyInfo */
-s32 dBgS::GetRoomId(cBgS_PolyInfo const& poly) {
+int dBgS::GetRoomId(cBgS_PolyInfo const& poly) {
     if (!poly.ChkSetInfo()) {
         return -1;
     }

@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_rafrel.h"
+#include "d/actor/d_a_npc.h"
 
 /* 80AC0324-80AC0328 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpcRafrel_Param_c l_HIO;

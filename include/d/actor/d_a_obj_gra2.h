@@ -1,7 +1,8 @@
 #ifndef D_A_OBJ_GRA2_H
 #define D_A_OBJ_GRA2_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc2.h"
+#include "d/d_particle_copoly.h"
 #include "f_op/f_op_actor_mng.h"
 
 

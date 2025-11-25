@@ -118,7 +118,7 @@ public:
     s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
     int GetGrpSoundId(cBgS_PolyInfo const&);
     u32 ChkGrpInf(cBgS_PolyInfo const&, u32);
-    s32 GetRoomId(cBgS_PolyInfo const&);
+    int GetRoomId(cBgS_PolyInfo const&);
     bool GetPolyAttackThrough(cBgS_PolyInfo const&);
     u32 ChkPolyHSStick(cBgS_PolyInfo const&);
     void WallCorrect(dBgS_Acch*);

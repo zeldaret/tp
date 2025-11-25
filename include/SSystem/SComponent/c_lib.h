@@ -92,7 +92,7 @@ T cLib_getRndValue(T min, T range) {
 template <typename T>
 T cLib_calcTimer(T* value) {
     if (*(T*)value != 0) {
-        *value = *value - 1;
+        --*value;
     }
     return *value;
 }

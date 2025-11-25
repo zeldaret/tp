@@ -9,9 +9,9 @@
 #include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* ############################################################################################## */

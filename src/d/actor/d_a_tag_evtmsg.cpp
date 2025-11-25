@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_evtmsg.h"
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
 

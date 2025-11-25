@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 
