@@ -19,18 +19,23 @@ public:
     /* 0x658 */ u32 parameters; 
     /* 0x65C */ J3DModel* mpModel;
     /* 0x660 */ u32 mShadowKey;
-    /* 0x664 */ s16 field_0x664;
+    /* 0x664 */ s16 lifetime;
     /* 0x666 */ s16 mAction;
     /* 0x668 */ s16 mMode;
-    /* 0x66A */ u8 field_0x66A[0x682 - 0x66A];
-    /* 0x682 */ s16 mTimer[2]; 
-    /* 0x686 */ u8 field_0x686[0x688 - 0x686];
+    /* 0x66A */ u8 field_0x66A[0x672 - 0x66A];
+    /* 0x672 */ u8 field_0x672;
+                u8 field_0x673[0x684 - 0x673];
+    /* 0x684 */ s16 mTimer[2]; 
     /* 0x688 */ s16 mInvulnerabilityTimer;
-    /* 0x68A */ s8 field_0x68A[2];
+    /* 0x68A */ bool field_0x68A[2];
     /* 0x68C */ csXyz mRotation;
     /* 0x692 */ s16 mCarryAngleSpeed;
     /* 0x694 */ s16 mCarryAngle;
-    /* 0x696 */ u8 field_0x696[0x6A4 - 0x696];
+    /* 0x696 */ u8 field_0x696[0x698 - 0x696];
+    /* 0x698 */ u32 field_0x698;
+    /* 0x69C */ f32 field_0x69C;
+                s16 field_0x6A0;
+                s16 field_0x6A2;
     /* 0x6A4 */ s16 mSpin;
                 u8 field_0x6A6[0x6AC - 0x6A6];
     /* 0x6AC */ dBgS_AcchCir mAcchCir;
@@ -39,7 +44,10 @@ public:
     /* 0x900 */ dCcD_Sph mSphere;
     /* 0xA38 */ dCcD_Sph mSph;
     /* 0xB70 */ dCcU_AtInfo mAtInfo;
-    /* 0xB94 */ u8 field_0xB94[0xBA4 - 0xB94];
+    /* 0xB94 */ u8 field_0xB94[0xB98 - 0xB94];
+    /* 0xB98 */ u8 field_0xB98;
+    /* 0xB99 */ u8 field_0xB99;
+                u8 field_0xBA0[0xBA4 - 0xB9A];
 
 };
 
