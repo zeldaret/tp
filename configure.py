@@ -632,7 +632,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_event_lib.cpp"), # debug weak func order
             Object(Equivalent, "d/d_event_debug.cpp"), # RTTI
             Object(MatchingFor(ALL_GCN), "d/d_simple_model.cpp"),
-            Object(NonMatching, "d/d_particle.cpp"),
+            Object(Equivalent, "d/d_particle.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN, "Shield"), "d/d_particle_name.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_particle_copoly.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_path.cpp"),

@@ -3,6 +3,15 @@
 // Translation Unit: d/d_particle
 //
 
+// d_particle is odd in that it doesn't appear to include dolzel.pch.
+// It uses ...data pooling, but weak data from the PCH (e.g. Z2Calc::cNullVec)
+// isn't present like would be expected for a TU using pooling.
+//
+// Note that it _is_ possible that it does include the PCH and there's just some
+// not-yet-understood behavior causing the weak data to be stripped anyway.
+// Notably, TWW's version of this TU _does_ use the PCH, but it also includes
+// weak data from it (unlike here).
+
 #include "d/d_particle.h"
 #include "d/d_jnt_col.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -140,7 +149,7 @@ static u8 struct_80450E9D;
 
 /* 8004979C-800497B0 0440DC 0014+00 1/0 0/0 0/0 .text
  * setup__19dPa_light8EcallBackFP14JPABaseEmitterPC4cXyzPC5csXyzSc */
-// 
+//
 void dPa_light8EcallBack::setup(JPABaseEmitter* param_0, cXyz const* param_1,
                                     csXyz const* param_2, s8 param_3) {
     param_0->setDrawTimes(2);
@@ -535,7 +544,7 @@ bool dPa_modelEcallBack::model_c::set(J3DModelData* param_0, dKy_tevstr_c const&
     *(Arr*)&field_0x8.TevColor = *(Arr*)&param_1.TevColor;
     *(int*)&field_0x8.TevKColor = *(int*)&param_1.TevKColor;
     *(int*)&field_0x8.mLightInf = *(int*)&param_1.mLightInf;
-    
+
     field_0x8.mFogStartZ = param_1.mFogStartZ;
     field_0x8.mFogEndZ = param_1.mFogEndZ;
     field_0x8.pat_ratio = param_1.pat_ratio;
@@ -586,7 +595,7 @@ void dPa_modelEcallBack::model_c::setup() {
 void dPa_modelEcallBack::model_c::cleanup() {
     if (field_0x4 == NULL) {
         return;
-    }  
+    }
 
     if (field_0x392 == 0) {
         field_0x0->removeTexNoAnimator((J3DAnmTexPattern*)field_0x4);
@@ -658,10 +667,6 @@ void dPa_modelEcallBack::create(u8 param_0) {
     mModel = new model_c[param_0];
     struct_80450E9C = param_0;
     struct_80450E9D = 0;
-}
-
-/* 8004AB88-8004ABC4 0454C8 003C+00 2/2 0/0 0/0 .text __dt__Q218dPa_modelEcallBack7model_cFv */
-dPa_modelEcallBack::model_c::~model_c() {
 }
 
 /* 8004ABC4-8004AC00 045504 003C+00 1/1 0/0 0/0 .text            remove__18dPa_modelEcallBackFv */
@@ -2109,7 +2114,6 @@ void dPa_light8PcallBack::draw(JPABaseEmitter* param_1, JPABaseParticle* param_2
 
 /* 8004E6A8-8004ED44 048FE8 069C+00 1/0 0/0 0/0 .text
  * draw__25dPa_gen_b_light8PcallBackFP14JPABaseEmitterP15JPABaseParticle */
-// NONMATCHING - fpr regalloc
 void dPa_gen_b_light8PcallBack::draw(JPABaseEmitter* param_1, JPABaseParticle* param_2) {
     Mtx local_80;
     JGeometry::TVec3<f32> local_8c;
@@ -2128,13 +2132,13 @@ void dPa_gen_b_light8PcallBack::draw(JPABaseEmitter* param_1, JPABaseParticle* p
     f32 dVar9 = JMASSin(param_2->getRotateAngle());
     f32 dVar10 = JMASCos(param_2->getRotateAngle());
     param_1->getGlobalParticleScale(local_bc);
-    local_bc.x *= param_2->getWidth(param_1);
-    local_bc.y *= param_2->getHeight(param_1);
-    local_80[0][0] = dVar10 * local_bc.x;
-    local_80[0][1] = -dVar9 * local_bc.y;
+    f32 var_f29 = local_bc.x * param_2->getWidth(param_1);
+    f32 var_f28 = local_bc.y * param_2->getHeight(param_1);
+    local_80[0][0] = dVar10 * var_f29;
+    local_80[0][1] = -dVar9 * var_f28;
     local_80[0][3] = local_8c.x;
-    local_80[1][0] = dVar9 * local_bc.x;
-    local_80[1][1] = dVar10 * local_bc.y;
+    local_80[1][0] = dVar9 * var_f29;
+    local_80[1][1] = dVar10 * var_f28;
     local_80[1][3] = local_8c.y;
     local_80[2][2] = 1.0f;
     local_80[2][3] = local_8c.z;
