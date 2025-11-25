@@ -622,7 +622,7 @@ int daNpcF_c::draw(BOOL i_isTest, BOOL param_1, f32 i_shadowDepth, _GXColorS10* 
             damage_ratio = 0.0f;
         }
 
-        if (cM3d_IsZero_inverted(damage_ratio)) {
+        if (cM3d_IsZero(damage_ratio) == FALSE) {
             tevStr.TevColor.r = (s16)(damage_ratio * 20.0f);
             tevStr.TevColor.g = 0;
         } else if (i_isTest) {
@@ -765,7 +765,7 @@ void daNpcF_c::setMtx2() {
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     model->setUserArea((uintptr_t)this);
 
-    if (cM3d_IsZero_inverted(mExpressionMorf)) {
+    if (cM3d_IsZero(mExpressionMorf) == FALSE) {
         mAnm_p->onMorfNone();
     } else {
         mAnm_p->offMorfNone();

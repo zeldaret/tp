@@ -2186,7 +2186,7 @@ static void pota_set(mg_fish_class* i_this) {
 
 /* 8053055C-80530924 00691C 03C8+00 1/1 0/0 0/0 .text            mf_catch__FP13mg_fish_class */
 static void mf_catch(mg_fish_class* i_this) {
-    daAlink_c* player = g_dComIfG_gameInfo.play.mPlayer[0];
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     if (i_this->actor.health == 2) {
         fopAcM_delete(&i_this->actor);
         return;
@@ -2480,7 +2480,7 @@ static void mf_esa_hit(mg_fish_class* i_this) {
 
 /* 805313D8-8053198C 007798 05B4+00 1/1 0/0 0/0 .text            mf_esa_catch__FP13mg_fish_class */
 static s32 mf_esa_catch(mg_fish_class* i_this) {
-    daAlink_c* player = g_dComIfG_gameInfo.play.mPlayer[0];
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
     dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByID(i_this->mRodId);
 
     if (rod == NULL) {
