@@ -7,7 +7,7 @@ enum dRes_INDEX_O_GD_ARIM {
     /* BRK  */
     dRes_INDEX_O_GD_ARIM_BRK_ARI_M_e=0x8,
     /* BTK  */
-    dRes_INDEX_O_GD_ARIM_BTK_ARI_M_1_e=0xB,
+    dRes_INDEX_O_GD_ARIM_BTK_ARI_M_e=0xB,
 };
 
 enum dRes_ID_O_GD_ARIM {
@@ -16,7 +16,7 @@ enum dRes_ID_O_GD_ARIM {
     /* BRK  */
     dRes_ID_O_GD_ARIM_BRK_ARI_M_e=0x8,
     /* BTK  */
-    dRes_ID_O_GD_ARIM_BTK_ARI_M_1_e=0xB,
+    dRes_ID_O_GD_ARIM_BTK_ARI_M_e=0xB,
 };
 
 enum O_GD_ARI_M_JNT {

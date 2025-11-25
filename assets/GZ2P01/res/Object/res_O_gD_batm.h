@@ -7,7 +7,7 @@ enum dRes_INDEX_O_GD_BATM {
     /* BRK  */
     dRes_INDEX_O_GD_BATM_BRK_BAT_M_e=0x8,
     /* BTK  */
-    dRes_INDEX_O_GD_BATM_BTK_BAT_M_1_e=0xB,
+    dRes_INDEX_O_GD_BATM_BTK_BAT_M_e=0xB,
 };
 
 enum dRes_ID_O_GD_BATM {
@@ -16,7 +16,7 @@ enum dRes_ID_O_GD_BATM {
     /* BRK  */
     dRes_ID_O_GD_BATM_BRK_BAT_M_e=0x8,
     /* BTK  */
-    dRes_ID_O_GD_BATM_BTK_BAT_M_1_e=0xB,
+    dRes_ID_O_GD_BATM_BTK_BAT_M_e=0xB,
 };
 
 enum O_GD_BAT_M_JNT {

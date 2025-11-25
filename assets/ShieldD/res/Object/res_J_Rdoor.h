@@ -5,14 +5,14 @@ enum dRes_INDEX_J_RDOOR {
     /* BMDR */
     dRes_INDEX_J_RDOOR_BMD_J_RDOOR_e=0x4,
     /* DZB  */
-    dRes_INDEX_J_RDOOR_DZB_J_RDOOR_1_e=0x7,
+    dRes_INDEX_J_RDOOR_DZB_J_RDOOR_e=0x7,
 };
 
 enum dRes_ID_J_RDOOR {
     /* BMDR */
     dRes_ID_J_RDOOR_BMD_J_RDOOR_e=0x4,
     /* DZB  */
-    dRes_ID_J_RDOOR_DZB_J_RDOOR_1_e=0x7,
+    dRes_ID_J_RDOOR_DZB_J_RDOOR_e=0x7,
 };
 
 enum J_RDOOR_JNT {

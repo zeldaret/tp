@@ -5,14 +5,14 @@ enum dRes_INDEX_K_SAKU00 {
     /* BMDR */
     dRes_INDEX_K_SAKU00_BMD_K_SAKU00_e=0x4,
     /* DZB  */
-    dRes_INDEX_K_SAKU00_DZB_K_SAKU00_1_e=0x7,
+    dRes_INDEX_K_SAKU00_DZB_K_SAKU00_e=0x7,
 };
 
 enum dRes_ID_K_SAKU00 {
     /* BMDR */
     dRes_ID_K_SAKU00_BMD_K_SAKU00_e=0x4,
     /* DZB  */
-    dRes_ID_K_SAKU00_DZB_K_SAKU00_1_e=0x7,
+    dRes_ID_K_SAKU00_DZB_K_SAKU00_e=0x7,
 };
 
 enum K_SAKU00_JNT {

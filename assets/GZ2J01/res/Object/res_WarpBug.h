@@ -5,18 +5,18 @@ enum dRes_INDEX_WARPBUG {
     /* BMDR */
     dRes_INDEX_WARPBUG_BMD_KISEI_e=0x5,
     /* BRK  */
-    dRes_INDEX_WARPBUG_BRK_KISEI_1_e=0x8,
+    dRes_INDEX_WARPBUG_BRK_KISEI_e=0x8,
     /* BTK  */
-    dRes_INDEX_WARPBUG_BTK_KISEI_2_e=0xB,
+    dRes_INDEX_WARPBUG_BTK_KISEI_e=0xB,
 };
 
 enum dRes_ID_WARPBUG {
     /* BMDR */
     dRes_ID_WARPBUG_BMD_KISEI_e=0x5,
     /* BRK  */
-    dRes_ID_WARPBUG_BRK_KISEI_1_e=0x8,
+    dRes_ID_WARPBUG_BRK_KISEI_e=0x8,
     /* BTK  */
-    dRes_ID_WARPBUG_BTK_KISEI_2_e=0xB,
+    dRes_ID_WARPBUG_BTK_KISEI_e=0xB,
 };
 
 enum KISEI_JNT {

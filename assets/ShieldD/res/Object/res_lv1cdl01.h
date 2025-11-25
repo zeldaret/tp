@@ -5,14 +5,14 @@ enum dRes_INDEX_LV1CDL01 {
     /* BMDR */
     dRes_INDEX_LV1CDL01_BMD_D_LV1CANDL_01_e=0x4,
     /* DZB  */
-    dRes_INDEX_LV1CDL01_DZB_D_LV1CANDL_01_1_e=0x7,
+    dRes_INDEX_LV1CDL01_DZB_D_LV1CANDL_01_e=0x7,
 };
 
 enum dRes_ID_LV1CDL01 {
     /* BMDR */
     dRes_ID_LV1CDL01_BMD_D_LV1CANDL_01_e=0x4,
     /* DZB  */
-    dRes_ID_LV1CDL01_DZB_D_LV1CANDL_01_1_e=0x7,
+    dRes_ID_LV1CDL01_DZB_D_LV1CANDL_01_e=0x7,
 };
 
 enum D_LV1CANDL_01_JNT {

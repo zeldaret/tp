@@ -5,14 +5,14 @@ enum dRes_INDEX_HSOFA {
     /* BMDR */
     dRes_INDEX_HSOFA_BMD_YSOFA_e=0x4,
     /* DZB  */
-    dRes_INDEX_HSOFA_DZB_YSOFA_1_e=0x7,
+    dRes_INDEX_HSOFA_DZB_YSOFA_e=0x7,
 };
 
 enum dRes_ID_HSOFA {
     /* BMDR */
     dRes_ID_HSOFA_BMD_YSOFA_e=0x4,
     /* DZB  */
-    dRes_ID_HSOFA_DZB_YSOFA_1_e=0x7,
+    dRes_ID_HSOFA_DZB_YSOFA_e=0x7,
 };
 
 enum YSOFA_JNT {

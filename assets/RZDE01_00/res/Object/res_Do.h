@@ -24,9 +24,9 @@ enum dRes_INDEX_DO {
     dRes_INDEX_DO_BMD_DO_e=0x19,
     dRes_INDEX_DO_BMD_DO_FUR_e=0x1A,
     /* BTK  */
-    dRes_INDEX_DO_BTK_DO_1_e=0x1D,
+    dRes_INDEX_DO_BTK_DO_e=0x1D,
     /* BTP  */
-    dRes_INDEX_DO_BTP_DO_2_e=0x20,
+    dRes_INDEX_DO_BTP_DO_e=0x20,
 };
 
 enum dRes_ID_DO {
@@ -52,9 +52,9 @@ enum dRes_ID_DO {
     dRes_ID_DO_BMD_DO_e=0x19,
     dRes_ID_DO_BMD_DO_FUR_e=0x1A,
     /* BTK  */
-    dRes_ID_DO_BTK_DO_1_e=0x1D,
+    dRes_ID_DO_BTK_DO_e=0x1D,
     /* BTP  */
-    dRes_ID_DO_BTP_DO_2_e=0x20,
+    dRes_ID_DO_BTP_DO_e=0x20,
 };
 
 enum DO_JNT {

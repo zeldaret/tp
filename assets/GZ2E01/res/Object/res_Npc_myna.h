@@ -21,7 +21,7 @@ enum dRes_INDEX_NPC_MYNA {
     /* BMDR */
     dRes_INDEX_NPC_MYNA_BMD_MYNA_e=0x16,
     /* BTP  */
-    dRes_INDEX_NPC_MYNA_BTP_MYNA_1_e=0x19,
+    dRes_INDEX_NPC_MYNA_BTP_MYNA_e=0x19,
 };
 
 enum dRes_ID_NPC_MYNA {
@@ -44,7 +44,7 @@ enum dRes_ID_NPC_MYNA {
     /* BMDR */
     dRes_ID_NPC_MYNA_BMD_MYNA_e=0x16,
     /* BTP  */
-    dRes_ID_NPC_MYNA_BTP_MYNA_1_e=0x19,
+    dRes_ID_NPC_MYNA_BTP_MYNA_e=0x19,
 };
 
 enum MYNA_JNT {

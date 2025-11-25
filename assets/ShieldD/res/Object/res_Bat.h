@@ -12,8 +12,8 @@ enum dRes_INDEX_BAT {
     dRes_INDEX_BAT_BRK_BAT_M_e=0xE,
     dRes_INDEX_BAT_BRK_BAT_O_e=0xF,
     /* BTK  */
-    dRes_INDEX_BAT_BTK_BAT_M_1_e=0x12,
-    dRes_INDEX_BAT_BTK_BAT_O_1_e=0x13,
+    dRes_INDEX_BAT_BTK_BAT_M_e=0x12,
+    dRes_INDEX_BAT_BTK_BAT_O_e=0x13,
 };
 
 enum dRes_ID_BAT {
@@ -27,8 +27,8 @@ enum dRes_ID_BAT {
     dRes_ID_BAT_BRK_BAT_M_e=0xE,
     dRes_ID_BAT_BRK_BAT_O_e=0xF,
     /* BTK  */
-    dRes_ID_BAT_BTK_BAT_M_1_e=0x12,
-    dRes_ID_BAT_BTK_BAT_O_1_e=0x13,
+    dRes_ID_BAT_BTK_BAT_M_e=0x12,
+    dRes_ID_BAT_BTK_BAT_O_e=0x13,
 };
 
 enum BAT_JNT {

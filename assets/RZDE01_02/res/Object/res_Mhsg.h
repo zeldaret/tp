@@ -10,12 +10,12 @@ enum dRes_INDEX_MHSG {
     dRes_INDEX_MHSG_BMD_MHSG6_e=0x8,
     dRes_INDEX_MHSG_BMD_MHSG9_e=0x9,
     /* DZB  */
-    dRes_INDEX_MHSG_DZB_MHSG12_1_e=0xC,
-    dRes_INDEX_MHSG_DZB_MHSG15_1_e=0xD,
-    dRes_INDEX_MHSG_DZB_MHSG3_1_e=0xE,
-    dRes_INDEX_MHSG_DZB_MHSG4H_1_e=0xF,
-    dRes_INDEX_MHSG_DZB_MHSG6_1_e=0x10,
-    dRes_INDEX_MHSG_DZB_MHSG9_1_e=0x11,
+    dRes_INDEX_MHSG_DZB_MHSG12_e=0xC,
+    dRes_INDEX_MHSG_DZB_MHSG15_e=0xD,
+    dRes_INDEX_MHSG_DZB_MHSG3_e=0xE,
+    dRes_INDEX_MHSG_DZB_MHSG4H_e=0xF,
+    dRes_INDEX_MHSG_DZB_MHSG6_e=0x10,
+    dRes_INDEX_MHSG_DZB_MHSG9_e=0x11,
 };
 
 enum dRes_ID_MHSG {
@@ -27,12 +27,12 @@ enum dRes_ID_MHSG {
     dRes_ID_MHSG_BMD_MHSG6_e=0x8,
     dRes_ID_MHSG_BMD_MHSG9_e=0x9,
     /* DZB  */
-    dRes_ID_MHSG_DZB_MHSG12_1_e=0xC,
-    dRes_ID_MHSG_DZB_MHSG15_1_e=0xD,
-    dRes_ID_MHSG_DZB_MHSG3_1_e=0xE,
-    dRes_ID_MHSG_DZB_MHSG4H_1_e=0xF,
-    dRes_ID_MHSG_DZB_MHSG6_1_e=0x10,
-    dRes_ID_MHSG_DZB_MHSG9_1_e=0x11,
+    dRes_ID_MHSG_DZB_MHSG12_e=0xC,
+    dRes_ID_MHSG_DZB_MHSG15_e=0xD,
+    dRes_ID_MHSG_DZB_MHSG3_e=0xE,
+    dRes_ID_MHSG_DZB_MHSG4H_e=0xF,
+    dRes_ID_MHSG_DZB_MHSG6_e=0x10,
+    dRes_ID_MHSG_DZB_MHSG9_e=0x11,
 };
 
 enum MHSG12_JNT {

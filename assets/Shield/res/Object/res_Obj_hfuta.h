@@ -5,14 +5,14 @@ enum dRes_INDEX_OBJ_HFUTA {
     /* BMDR */
     dRes_INDEX_OBJ_HFUTA_BMD_M_HAIHAIFUTA_e=0x4,
     /* DZB  */
-    dRes_INDEX_OBJ_HFUTA_DZB_M_HAIHAIFUTA_1_e=0x7,
+    dRes_INDEX_OBJ_HFUTA_DZB_M_HAIHAIFUTA_e=0x7,
 };
 
 enum dRes_ID_OBJ_HFUTA {
     /* BMDR */
     dRes_ID_OBJ_HFUTA_BMD_M_HAIHAIFUTA_e=0x4,
     /* DZB  */
-    dRes_ID_OBJ_HFUTA_DZB_M_HAIHAIFUTA_1_e=0x7,
+    dRes_ID_OBJ_HFUTA_DZB_M_HAIHAIFUTA_e=0x7,
 };
 
 enum M_HAIHAIFUTA_JNT {

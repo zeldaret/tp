@@ -6,9 +6,9 @@ enum dRes_INDEX_J_KAZED {
     dRes_INDEX_J_KAZED_BCK_J_KAZED_e=0x5,
     dRes_INDEX_J_KAZED_BCK_J_KAZED_B_e=0x6,
     /* BMDR */
-    dRes_INDEX_J_KAZED_BMD_J_KAZED_1_e=0x9,
+    dRes_INDEX_J_KAZED_BMD_J_KAZED_e=0x9,
     /* DZB  */
-    dRes_INDEX_J_KAZED_DZB_J_KAZED_2_e=0xC,
+    dRes_INDEX_J_KAZED_DZB_J_KAZED_e=0xC,
 };
 
 enum dRes_ID_J_KAZED {
@@ -16,9 +16,9 @@ enum dRes_ID_J_KAZED {
     dRes_ID_J_KAZED_BCK_J_KAZED_e=0x5,
     dRes_ID_J_KAZED_BCK_J_KAZED_B_e=0x6,
     /* BMDR */
-    dRes_ID_J_KAZED_BMD_J_KAZED_1_e=0x9,
+    dRes_ID_J_KAZED_BMD_J_KAZED_e=0x9,
     /* DZB  */
-    dRes_ID_J_KAZED_DZB_J_KAZED_2_e=0xC,
+    dRes_ID_J_KAZED_DZB_J_KAZED_e=0xC,
 };
 
 enum J_KAZED_JNT {

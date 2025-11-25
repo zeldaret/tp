@@ -5,14 +5,14 @@ enum dRes_INDEX_L4GATE {
     /* BMDR */
     dRes_INDEX_L4GATE_BMD_P_LV4GATE_e=0x4,
     /* DZB  */
-    dRes_INDEX_L4GATE_DZB_P_LV4GATE_1_e=0x7,
+    dRes_INDEX_L4GATE_DZB_P_LV4GATE_e=0x7,
 };
 
 enum dRes_ID_L4GATE {
     /* BMDR */
     dRes_ID_L4GATE_BMD_P_LV4GATE_e=0x4,
     /* DZB  */
-    dRes_ID_L4GATE_DZB_P_LV4GATE_1_e=0x7,
+    dRes_ID_L4GATE_DZB_P_LV4GATE_e=0x7,
 };
 
 enum P_LV4GATE_JNT {

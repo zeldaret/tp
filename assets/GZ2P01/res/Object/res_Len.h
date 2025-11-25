@@ -9,9 +9,9 @@ enum dRes_INDEX_LEN {
     /* BMDR */
     dRes_INDEX_LEN_BMD_LEN_e=0xB,
     /* BTK  */
-    dRes_INDEX_LEN_BTK_LEN_1_e=0xE,
+    dRes_INDEX_LEN_BTK_LEN_e=0xE,
     /* BTP  */
-    dRes_INDEX_LEN_BTP_LEN_2_e=0x11,
+    dRes_INDEX_LEN_BTP_LEN_e=0x11,
 };
 
 enum dRes_ID_LEN {
@@ -22,9 +22,9 @@ enum dRes_ID_LEN {
     /* BMDR */
     dRes_ID_LEN_BMD_LEN_e=0xB,
     /* BTK  */
-    dRes_ID_LEN_BTK_LEN_1_e=0xE,
+    dRes_ID_LEN_BTK_LEN_e=0xE,
     /* BTP  */
-    dRes_ID_LEN_BTP_LEN_2_e=0x11,
+    dRes_ID_LEN_BTP_LEN_e=0x11,
 };
 
 enum LEN_JNT {

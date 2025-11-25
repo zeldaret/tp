@@ -7,7 +7,7 @@ enum dRes_INDEX_P_L4CWALL {
     dRes_INDEX_P_L4CWALL_BMD_P_LV4_CWALL_e=0x5,
     dRes_INDEX_P_L4CWALL_BMD_P_LV4_HANDLE_e=0x6,
     /* DZB  */
-    dRes_INDEX_P_L4CWALL_DZB_P_LV4_CWALL_1_e=0x9,
+    dRes_INDEX_P_L4CWALL_DZB_P_LV4_CWALL_e=0x9,
 };
 
 enum dRes_ID_P_L4CWALL {
@@ -16,7 +16,7 @@ enum dRes_ID_P_L4CWALL {
     dRes_ID_P_L4CWALL_BMD_P_LV4_CWALL_e=0x5,
     dRes_ID_P_L4CWALL_BMD_P_LV4_HANDLE_e=0x6,
     /* DZB  */
-    dRes_ID_P_L4CWALL_DZB_P_LV4_CWALL_1_e=0x9,
+    dRes_ID_P_L4CWALL_DZB_P_LV4_CWALL_e=0x9,
 };
 
 enum P_LV4_CHAIN_JNT {

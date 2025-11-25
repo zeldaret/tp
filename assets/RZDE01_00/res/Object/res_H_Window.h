@@ -5,14 +5,14 @@ enum dRes_INDEX_H_WINDOW {
     /* BMDE */
     dRes_INDEX_H_WINDOW_BMD_H_WINDOW_e=0x4,
     /* DZB  */
-    dRes_INDEX_H_WINDOW_DZB_H_WINDOW_1_e=0x7,
+    dRes_INDEX_H_WINDOW_DZB_H_WINDOW_e=0x7,
 };
 
 enum dRes_ID_H_WINDOW {
     /* BMDE */
     dRes_ID_H_WINDOW_BMD_H_WINDOW_e=0x4,
     /* DZB  */
-    dRes_ID_H_WINDOW_DZB_H_WINDOW_1_e=0x7,
+    dRes_ID_H_WINDOW_DZB_H_WINDOW_e=0x7,
 };
 
 enum H_WINDOW_JNT {

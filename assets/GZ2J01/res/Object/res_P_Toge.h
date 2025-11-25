@@ -6,7 +6,7 @@ enum dRes_INDEX_P_TOGE {
     dRes_INDEX_P_TOGE_BMD_LV4_TOGE_e=0x4,
     dRes_INDEX_P_TOGE_BMD_LV4_TOGE_WOLF_e=0x5,
     /* DZB  */
-    dRes_INDEX_P_TOGE_DZB_LV4_TOGE_1_e=0x8,
+    dRes_INDEX_P_TOGE_DZB_LV4_TOGE_e=0x8,
 };
 
 enum dRes_ID_P_TOGE {
@@ -14,7 +14,7 @@ enum dRes_ID_P_TOGE {
     dRes_ID_P_TOGE_BMD_LV4_TOGE_e=0x4,
     dRes_ID_P_TOGE_BMD_LV4_TOGE_WOLF_e=0x5,
     /* DZB  */
-    dRes_ID_P_TOGE_DZB_LV4_TOGE_1_e=0x8,
+    dRes_ID_P_TOGE_DZB_LV4_TOGE_e=0x8,
 };
 
 enum LV4_TOGE_JNT {

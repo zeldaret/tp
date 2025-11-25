@@ -9,9 +9,9 @@ enum dRes_INDEX_BOU {
     /* BMDR */
     dRes_INDEX_BOU_BMD_BOU_e=0xB,
     /* BTK  */
-    dRes_INDEX_BOU_BTK_BOU_1_e=0xE,
+    dRes_INDEX_BOU_BTK_BOU_e=0xE,
     /* BTP  */
-    dRes_INDEX_BOU_BTP_BOU_2_e=0x11,
+    dRes_INDEX_BOU_BTP_BOU_e=0x11,
 };
 
 enum dRes_ID_BOU {
@@ -22,9 +22,9 @@ enum dRes_ID_BOU {
     /* BMDR */
     dRes_ID_BOU_BMD_BOU_e=0xB,
     /* BTK  */
-    dRes_ID_BOU_BTK_BOU_1_e=0xE,
+    dRes_ID_BOU_BTK_BOU_e=0xE,
     /* BTP  */
-    dRes_ID_BOU_BTP_BOU_2_e=0x11,
+    dRes_ID_BOU_BTP_BOU_e=0x11,
 };
 
 enum BOU_JNT {

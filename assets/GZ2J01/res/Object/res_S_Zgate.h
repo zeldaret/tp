@@ -5,14 +5,14 @@ enum dRes_INDEX_S_ZGATE {
     /* BMDR */
     dRes_INDEX_S_ZGATE_BMD_S_ZGATE_e=0x4,
     /* DZB  */
-    dRes_INDEX_S_ZGATE_DZB_S_ZGATE_1_e=0x7,
+    dRes_INDEX_S_ZGATE_DZB_S_ZGATE_e=0x7,
 };
 
 enum dRes_ID_S_ZGATE {
     /* BMDR */
     dRes_ID_S_ZGATE_BMD_S_ZGATE_e=0x4,
     /* DZB  */
-    dRes_ID_S_ZGATE_DZB_S_ZGATE_1_e=0x7,
+    dRes_ID_S_ZGATE_DZB_S_ZGATE_e=0x7,
 };
 
 enum S_ZGATE_JNT {

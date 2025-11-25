@@ -11,10 +11,10 @@ enum dRes_INDEX_MOI {
     dRes_INDEX_MOI_BMD_MOI_SAYA_e=0xC,
     dRes_INDEX_MOI_BMD_MOI_SWA_e=0xD,
     /* BTK  */
-    dRes_INDEX_MOI_BTK_MOI_1_e=0x10,
+    dRes_INDEX_MOI_BTK_MOI_e=0x10,
     /* BTP  */
-    dRes_INDEX_MOI_BTP_MOI_2_e=0x13,
-    dRes_INDEX_MOI_BTP_MOI_F_TALK_A_1_e=0x14,
+    dRes_INDEX_MOI_BTP_MOI_e=0x13,
+    dRes_INDEX_MOI_BTP_MOI_F_TALK_A_e=0x14,
 };
 
 enum dRes_ID_MOI {
@@ -27,10 +27,10 @@ enum dRes_ID_MOI {
     dRes_ID_MOI_BMD_MOI_SAYA_e=0xC,
     dRes_ID_MOI_BMD_MOI_SWA_e=0xD,
     /* BTK  */
-    dRes_ID_MOI_BTK_MOI_1_e=0x10,
+    dRes_ID_MOI_BTK_MOI_e=0x10,
     /* BTP  */
-    dRes_ID_MOI_BTP_MOI_2_e=0x13,
-    dRes_ID_MOI_BTP_MOI_F_TALK_A_1_e=0x14,
+    dRes_ID_MOI_BTP_MOI_e=0x13,
+    dRes_ID_MOI_BTP_MOI_F_TALK_A_e=0x14,
 };
 
 enum MOI_JNT {

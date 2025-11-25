@@ -6,7 +6,7 @@ enum dRes_INDEX_STG_00 {
     dRes_INDEX_STG_00_BMD_DOOR_SHUTTER_00_e=0x7,
     dRes_INDEX_STG_00_BMD_DOOR_STOP_e=0x8,
     /* BTK  */
-    dRes_INDEX_STG_00_BTK_DOOR_SHUTTER_00_1_e=0xB,
+    dRes_INDEX_STG_00_BTK_DOOR_SHUTTER_00_e=0xB,
     /* DAT  */
     dRes_INDEX_STG_00_DAT_COLORDATA_TBL_e=0xE,
     dRes_INDEX_STG_00_DAT_POL_ARG_e=0xF,
@@ -27,7 +27,7 @@ enum dRes_ID_STG_00 {
     dRes_ID_STG_00_BMD_DOOR_SHUTTER_00_e=0x7,
     dRes_ID_STG_00_BMD_DOOR_STOP_e=0x8,
     /* BTK  */
-    dRes_ID_STG_00_BTK_DOOR_SHUTTER_00_1_e=0xB,
+    dRes_ID_STG_00_BTK_DOOR_SHUTTER_00_e=0xB,
     /* DAT  */
     dRes_ID_STG_00_DAT_COLORDATA_TBL_e=0xE,
     dRes_ID_STG_00_DAT_POL_ARG_e=0xF,

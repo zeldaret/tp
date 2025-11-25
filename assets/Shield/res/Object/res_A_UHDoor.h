@@ -5,14 +5,14 @@ enum dRes_INDEX_A_UHDOOR {
     /* BMDR */
     dRes_INDEX_A_UHDOOR_BMD_A_UHDOOR_e=0x4,
     /* DZB  */
-    dRes_INDEX_A_UHDOOR_DZB_A_UHDOOR_1_e=0x7,
+    dRes_INDEX_A_UHDOOR_DZB_A_UHDOOR_e=0x7,
 };
 
 enum dRes_ID_A_UHDOOR {
     /* BMDR */
     dRes_ID_A_UHDOOR_BMD_A_UHDOOR_e=0x4,
     /* DZB  */
-    dRes_ID_A_UHDOOR_DZB_A_UHDOOR_1_e=0x7,
+    dRes_ID_A_UHDOOR_DZB_A_UHDOOR_e=0x7,
 };
 
 enum A_UHDOOR_JNT {

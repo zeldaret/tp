@@ -25,9 +25,9 @@ enum dRes_INDEX_B_BQ {
     /* BMDV */
     dRes_INDEX_B_BQ_BMD_BQ_e=0x1D,
     /* BRK  */
-    dRes_INDEX_B_BQ_BRK_BQ_DEAD_1_e=0x20,
+    dRes_INDEX_B_BQ_BRK_BQ_DEAD_e=0x20,
     /* BTK  */
-    dRes_INDEX_B_BQ_BTK_BQ_TODOME_1_e=0x23,
+    dRes_INDEX_B_BQ_BTK_BQ_TODOME_e=0x23,
 };
 
 enum dRes_ID_B_BQ {
@@ -54,9 +54,9 @@ enum dRes_ID_B_BQ {
     /* BMDV */
     dRes_ID_B_BQ_BMD_BQ_e=0x1D,
     /* BRK  */
-    dRes_ID_B_BQ_BRK_BQ_DEAD_1_e=0x20,
+    dRes_ID_B_BQ_BRK_BQ_DEAD_e=0x20,
     /* BTK  */
-    dRes_ID_B_BQ_BTK_BQ_TODOME_1_e=0x23,
+    dRes_ID_B_BQ_BTK_BQ_TODOME_e=0x23,
 };
 
 enum BQ_EYEBALL_JNT {

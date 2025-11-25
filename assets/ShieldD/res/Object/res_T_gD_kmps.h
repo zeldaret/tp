@@ -5,14 +5,14 @@ enum dRes_INDEX_T_GD_KMPS {
     /* BCK  */
     dRes_INDEX_T_GD_KMPS_BCK_T_GD_KMPS_e=0x4,
     /* BMDE */
-    dRes_INDEX_T_GD_KMPS_BMD_T_GD_KMPS_1_e=0x7,
+    dRes_INDEX_T_GD_KMPS_BMD_T_GD_KMPS_e=0x7,
 };
 
 enum dRes_ID_T_GD_KMPS {
     /* BCK  */
     dRes_ID_T_GD_KMPS_BCK_T_GD_KMPS_e=0x4,
     /* BMDE */
-    dRes_ID_T_GD_KMPS_BMD_T_GD_KMPS_1_e=0x7,
+    dRes_ID_T_GD_KMPS_BMD_T_GD_KMPS_e=0x7,
 };
 
 enum T_GD_KMPS_JNT {

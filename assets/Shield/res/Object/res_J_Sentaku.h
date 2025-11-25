@@ -5,14 +5,14 @@ enum dRes_INDEX_J_SENTAKU {
     /* BMDR */
     dRes_INDEX_J_SENTAKU_BMD_J_SENTAKU_e=0x4,
     /* BTK  */
-    dRes_INDEX_J_SENTAKU_BTK_J_SENTAKU_1_e=0x7,
+    dRes_INDEX_J_SENTAKU_BTK_J_SENTAKU_e=0x7,
 };
 
 enum dRes_ID_J_SENTAKU {
     /* BMDR */
     dRes_ID_J_SENTAKU_BMD_J_SENTAKU_e=0x4,
     /* BTK  */
-    dRes_ID_J_SENTAKU_BTK_J_SENTAKU_1_e=0x7,
+    dRes_ID_J_SENTAKU_BTK_J_SENTAKU_e=0x7,
 };
 
 enum J_SENTAKU_JNT {

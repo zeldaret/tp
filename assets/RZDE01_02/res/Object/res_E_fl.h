@@ -10,7 +10,7 @@ enum dRes_INDEX_E_FL {
     /* BMDE */
     dRes_INDEX_E_FL_BMD_FL_MODEL_e=0xB,
     /* BRK  */
-    dRes_INDEX_E_FL_BRK_FL_MODEL_1_e=0xE,
+    dRes_INDEX_E_FL_BRK_FL_MODEL_e=0xE,
 };
 
 enum dRes_ID_E_FL {
@@ -22,7 +22,7 @@ enum dRes_ID_E_FL {
     /* BMDE */
     dRes_ID_E_FL_BMD_FL_MODEL_e=0xB,
     /* BRK  */
-    dRes_ID_E_FL_BRK_FL_MODEL_1_e=0xE,
+    dRes_ID_E_FL_BRK_FL_MODEL_e=0xE,
 };
 
 enum FL_MODEL_JNT {

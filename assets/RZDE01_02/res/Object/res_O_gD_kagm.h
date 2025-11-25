@@ -5,22 +5,22 @@ enum dRes_INDEX_O_GD_KAGM {
     /* BCK  */
     dRes_INDEX_O_GD_KAGM_BCK_O_GD_KAG_M_e=0x6,
     /* BMDE */
-    dRes_INDEX_O_GD_KAGM_BMD_O_GD_KAG_M_1_e=0x9,
+    dRes_INDEX_O_GD_KAGM_BMD_O_GD_KAG_M_e=0x9,
     /* BRK  */
     dRes_INDEX_O_GD_KAGM_BRK_KAG_M_e=0xC,
     /* BTK  */
-    dRes_INDEX_O_GD_KAGM_BTK_KAG_M_1_e=0xF,
+    dRes_INDEX_O_GD_KAGM_BTK_KAG_M_e=0xF,
 };
 
 enum dRes_ID_O_GD_KAGM {
     /* BCK  */
     dRes_ID_O_GD_KAGM_BCK_O_GD_KAG_M_e=0x6,
     /* BMDE */
-    dRes_ID_O_GD_KAGM_BMD_O_GD_KAG_M_1_e=0x9,
+    dRes_ID_O_GD_KAGM_BMD_O_GD_KAG_M_e=0x9,
     /* BRK  */
     dRes_ID_O_GD_KAGM_BRK_KAG_M_e=0xC,
     /* BTK  */
-    dRes_ID_O_GD_KAGM_BTK_KAG_M_1_e=0xF,
+    dRes_ID_O_GD_KAGM_BTK_KAG_M_e=0xF,
 };
 
 enum O_GD_KAG_M_JNT {

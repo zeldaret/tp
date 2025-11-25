@@ -12,9 +12,9 @@ enum dRes_INDEX_CSTAF {
     dRes_INDEX_CSTAF_BRK_CS_F_A_START_e=0xF,
     dRes_INDEX_CSTAF_BRK_CS_F_A_STOP_e=0x10,
     /* BTK  */
-    dRes_INDEX_CSTAF_BTK_CS_F_A_START_1_e=0x13,
+    dRes_INDEX_CSTAF_BTK_CS_F_A_START_e=0x13,
     /* DZB  */
-    dRes_INDEX_CSTAF_DZB_CS_F_A_1_e=0x16,
+    dRes_INDEX_CSTAF_DZB_CS_F_A_e=0x16,
 };
 
 enum dRes_ID_CSTAF {
@@ -28,9 +28,9 @@ enum dRes_ID_CSTAF {
     dRes_ID_CSTAF_BRK_CS_F_A_START_e=0xF,
     dRes_ID_CSTAF_BRK_CS_F_A_STOP_e=0x10,
     /* BTK  */
-    dRes_ID_CSTAF_BTK_CS_F_A_START_1_e=0x13,
+    dRes_ID_CSTAF_BTK_CS_F_A_START_e=0x13,
     /* DZB  */
-    dRes_ID_CSTAF_DZB_CS_F_A_1_e=0x16,
+    dRes_ID_CSTAF_DZB_CS_F_A_e=0x16,
 };
 
 enum CS_F_A_JNT {

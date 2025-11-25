@@ -20,14 +20,14 @@ enum dRes_INDEX_YKM {
     /* BMDR */
     dRes_INDEX_YKM_BMD_YKM_e=0x16,
     /* BTK  */
-    dRes_INDEX_YKM_BTK_YKM_1_e=0x19,
+    dRes_INDEX_YKM_BTK_YKM_e=0x19,
     /* BTP  */
-    dRes_INDEX_YKM_BTP_YKM_2_e=0x1C,
-    dRes_INDEX_YKM_BTP_YKM_F_ASK_1_e=0x1D,
-    dRes_INDEX_YKM_BTP_YKM_F_LAUGH_1_e=0x1E,
-    dRes_INDEX_YKM_BTP_YKM_F_REGRET_1_e=0x1F,
-    dRes_INDEX_YKM_BTP_YKM_FH_LAUGH_1_e=0x20,
-    dRes_INDEX_YKM_BTP_YKM_FH_REGRET_1_e=0x21,
+    dRes_INDEX_YKM_BTP_YKM_e=0x1C,
+    dRes_INDEX_YKM_BTP_YKM_F_ASK_e=0x1D,
+    dRes_INDEX_YKM_BTP_YKM_F_LAUGH_e=0x1E,
+    dRes_INDEX_YKM_BTP_YKM_F_REGRET_e=0x1F,
+    dRes_INDEX_YKM_BTP_YKM_FH_LAUGH_e=0x20,
+    dRes_INDEX_YKM_BTP_YKM_FH_REGRET_e=0x21,
 };
 
 enum dRes_ID_YKM {
@@ -49,14 +49,14 @@ enum dRes_ID_YKM {
     /* BMDR */
     dRes_ID_YKM_BMD_YKM_e=0x16,
     /* BTK  */
-    dRes_ID_YKM_BTK_YKM_1_e=0x19,
+    dRes_ID_YKM_BTK_YKM_e=0x19,
     /* BTP  */
-    dRes_ID_YKM_BTP_YKM_2_e=0x1C,
-    dRes_ID_YKM_BTP_YKM_F_ASK_1_e=0x1D,
-    dRes_ID_YKM_BTP_YKM_F_LAUGH_1_e=0x1E,
-    dRes_ID_YKM_BTP_YKM_F_REGRET_1_e=0x1F,
-    dRes_ID_YKM_BTP_YKM_FH_LAUGH_1_e=0x20,
-    dRes_ID_YKM_BTP_YKM_FH_REGRET_1_e=0x21,
+    dRes_ID_YKM_BTP_YKM_e=0x1C,
+    dRes_ID_YKM_BTP_YKM_F_ASK_e=0x1D,
+    dRes_ID_YKM_BTP_YKM_F_LAUGH_e=0x1E,
+    dRes_ID_YKM_BTP_YKM_F_REGRET_e=0x1F,
+    dRes_ID_YKM_BTP_YKM_FH_LAUGH_e=0x20,
+    dRes_ID_YKM_BTP_YKM_FH_REGRET_e=0x21,
 };
 
 enum YKM_JNT {

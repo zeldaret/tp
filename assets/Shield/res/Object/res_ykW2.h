@@ -25,10 +25,10 @@ enum dRes_INDEX_YKW2 {
     dRes_INDEX_YKW2_BCK_YKW_SB_WAIT_e=0x19,
     dRes_INDEX_YKW2_BCK_YKW_SECRET_e=0x1A,
     /* BTK  */
-    dRes_INDEX_YKW2_BTK_YKW_SECRET_1_e=0x1D,
+    dRes_INDEX_YKW2_BTK_YKW_SECRET_e=0x1D,
     /* BTP  */
-    dRes_INDEX_YKW2_BTP_YKW_F_FUN_1_e=0x20,
-    dRes_INDEX_YKW2_BTP_YKW_F_SAD_1_e=0x21,
+    dRes_INDEX_YKW2_BTP_YKW_F_FUN_e=0x20,
+    dRes_INDEX_YKW2_BTP_YKW_F_SAD_e=0x21,
     /* EVT  */
     dRes_INDEX_YKW2_DAT_EVENT_LIST_e=0x24,
 };
@@ -57,10 +57,10 @@ enum dRes_ID_YKW2 {
     dRes_ID_YKW2_BCK_YKW_SB_WAIT_e=0x19,
     dRes_ID_YKW2_BCK_YKW_SECRET_e=0x1A,
     /* BTK  */
-    dRes_ID_YKW2_BTK_YKW_SECRET_1_e=0x1D,
+    dRes_ID_YKW2_BTK_YKW_SECRET_e=0x1D,
     /* BTP  */
-    dRes_ID_YKW2_BTP_YKW_F_FUN_1_e=0x20,
-    dRes_ID_YKW2_BTP_YKW_F_SAD_1_e=0x21,
+    dRes_ID_YKW2_BTP_YKW_F_FUN_e=0x20,
+    dRes_ID_YKW2_BTP_YKW_F_SAD_e=0x21,
     /* EVT  */
     dRes_ID_YKW2_DAT_EVENT_LIST_e=0x24,
 };

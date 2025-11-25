@@ -25,7 +25,7 @@ enum dRes_INDEX_B_TNP2 {
     dRes_INDEX_B_TNP2_BRK_TN2_BODY_e=0x18,
     dRes_INDEX_B_TNP2_BRK_TN2_COLOR_1_e=0x19,
     dRes_INDEX_B_TNP2_BRK_TN2_COLOR_2_e=0x1A,
-    dRes_INDEX_B_TNP2_BRK_TN2_SHIELD_1_e=0x1B,
+    dRes_INDEX_B_TNP2_BRK_TN2_SHIELD_e=0x1B,
 };
 
 enum dRes_ID_B_TNP2 {
@@ -52,7 +52,7 @@ enum dRes_ID_B_TNP2 {
     dRes_ID_B_TNP2_BRK_TN2_BODY_e=0x18,
     dRes_ID_B_TNP2_BRK_TN2_COLOR_1_e=0x19,
     dRes_ID_B_TNP2_BRK_TN2_COLOR_2_e=0x1A,
-    dRes_ID_B_TNP2_BRK_TN2_SHIELD_1_e=0x1B,
+    dRes_ID_B_TNP2_BRK_TN2_SHIELD_e=0x1B,
 };
 
 enum TN2_JNT {

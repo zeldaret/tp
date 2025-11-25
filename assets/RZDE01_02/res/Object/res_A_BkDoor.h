@@ -6,8 +6,8 @@ enum dRes_INDEX_A_BKDOOR {
     dRes_INDEX_A_BKDOOR_BMD_A_BKDOORL_e=0x4,
     dRes_INDEX_A_BKDOOR_BMD_A_BKDOORR_e=0x5,
     /* DZB  */
-    dRes_INDEX_A_BKDOOR_DZB_A_BKDOORL_1_e=0x8,
-    dRes_INDEX_A_BKDOOR_DZB_A_BKDOORR_1_e=0x9,
+    dRes_INDEX_A_BKDOOR_DZB_A_BKDOORL_e=0x8,
+    dRes_INDEX_A_BKDOOR_DZB_A_BKDOORR_e=0x9,
 };
 
 enum dRes_ID_A_BKDOOR {
@@ -15,8 +15,8 @@ enum dRes_ID_A_BKDOOR {
     dRes_ID_A_BKDOOR_BMD_A_BKDOORL_e=0x4,
     dRes_ID_A_BKDOOR_BMD_A_BKDOORR_e=0x5,
     /* DZB  */
-    dRes_ID_A_BKDOOR_DZB_A_BKDOORL_1_e=0x8,
-    dRes_ID_A_BKDOOR_DZB_A_BKDOORR_1_e=0x9,
+    dRes_ID_A_BKDOOR_DZB_A_BKDOORL_e=0x8,
+    dRes_ID_A_BKDOOR_DZB_A_BKDOORR_e=0x9,
 };
 
 enum A_BKDOORL_JNT {

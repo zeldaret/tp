@@ -7,7 +7,7 @@ enum dRes_INDEX_OBJ_BKEY2 {
     /* BMDG */
     dRes_INDEX_OBJ_BKEY2_BMD_O_LV2_LOCK_KUASRI_e=0x8,
     /* BMDR */
-    dRes_INDEX_OBJ_BKEY2_BMD_O_LV2_BKEY_LOCK_1_e=0xB,
+    dRes_INDEX_OBJ_BKEY2_BMD_O_LV2_BKEY_LOCK_e=0xB,
 };
 
 enum dRes_ID_OBJ_BKEY2 {
@@ -16,7 +16,7 @@ enum dRes_ID_OBJ_BKEY2 {
     /* BMDG */
     dRes_ID_OBJ_BKEY2_BMD_O_LV2_LOCK_KUASRI_e=0x8,
     /* BMDR */
-    dRes_ID_OBJ_BKEY2_BMD_O_LV2_BKEY_LOCK_1_e=0xB,
+    dRes_ID_OBJ_BKEY2_BMD_O_LV2_BKEY_LOCK_e=0xB,
 };
 
 enum O_LV2_LOCK_KUASRI_JNT {

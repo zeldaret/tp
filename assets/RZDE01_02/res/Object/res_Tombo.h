@@ -10,8 +10,8 @@ enum dRes_INDEX_TOMBO {
     dRes_INDEX_TOMBO_BRK_TON_M_e=0xC,
     dRes_INDEX_TOMBO_BRK_TON_O_e=0xD,
     /* BTK  */
-    dRes_INDEX_TOMBO_BTK_TON_M_1_e=0x10,
-    dRes_INDEX_TOMBO_BTK_TON_O_1_e=0x11,
+    dRes_INDEX_TOMBO_BTK_TON_M_e=0x10,
+    dRes_INDEX_TOMBO_BTK_TON_O_e=0x11,
 };
 
 enum dRes_ID_TOMBO {
@@ -23,8 +23,8 @@ enum dRes_ID_TOMBO {
     dRes_ID_TOMBO_BRK_TON_M_e=0xC,
     dRes_ID_TOMBO_BRK_TON_O_e=0xD,
     /* BTK  */
-    dRes_ID_TOMBO_BTK_TON_M_1_e=0x10,
-    dRes_ID_TOMBO_BTK_TON_O_1_e=0x11,
+    dRes_ID_TOMBO_BTK_TON_M_e=0x10,
+    dRes_ID_TOMBO_BTK_TON_O_e=0x11,
 };
 
 enum TON_JNT {

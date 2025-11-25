@@ -8,7 +8,7 @@ enum dRes_INDEX_OBJ_SO {
     dRes_INDEX_OBJ_SO_BMD_K_SARUORI03_e=0x6,
     dRes_INDEX_OBJ_SO_BMD_K_SARU_ORI00_e=0x7,
     /* DZB  */
-    dRes_INDEX_OBJ_SO_DZB_K_SARUORI01_1_e=0xA,
+    dRes_INDEX_OBJ_SO_DZB_K_SARUORI01_e=0xA,
 };
 
 enum dRes_ID_OBJ_SO {
@@ -18,7 +18,7 @@ enum dRes_ID_OBJ_SO {
     dRes_ID_OBJ_SO_BMD_K_SARUORI03_e=0x6,
     dRes_ID_OBJ_SO_BMD_K_SARU_ORI00_e=0x7,
     /* DZB  */
-    dRes_ID_OBJ_SO_DZB_K_SARUORI01_1_e=0xA,
+    dRes_ID_OBJ_SO_DZB_K_SARUORI01_e=0xA,
 };
 
 enum K_SARUORI01_JNT {

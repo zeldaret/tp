@@ -6,8 +6,8 @@ enum dRes_INDEX_OBJ_BEF {
     dRes_INDEX_OBJ_BEF_BMD_EF_HAKO_BURN_e=0x5,
     dRes_INDEX_OBJ_BEF_BMD_EF_TARU_BURN_e=0x6,
     /* BRK  */
-    dRes_INDEX_OBJ_BEF_BRK_EF_HAKO_BURN_1_e=0x9,
-    dRes_INDEX_OBJ_BEF_BRK_EF_TARU_BURN_1_e=0xA,
+    dRes_INDEX_OBJ_BEF_BRK_EF_HAKO_BURN_e=0x9,
+    dRes_INDEX_OBJ_BEF_BRK_EF_TARU_BURN_e=0xA,
     /* DZB  */
     dRes_INDEX_OBJ_BEF_DZB_KKIBA_00_e=0xD,
 };
@@ -17,8 +17,8 @@ enum dRes_ID_OBJ_BEF {
     dRes_ID_OBJ_BEF_BMD_EF_HAKO_BURN_e=0x5,
     dRes_ID_OBJ_BEF_BMD_EF_TARU_BURN_e=0x6,
     /* BRK  */
-    dRes_ID_OBJ_BEF_BRK_EF_HAKO_BURN_1_e=0x9,
-    dRes_ID_OBJ_BEF_BRK_EF_TARU_BURN_1_e=0xA,
+    dRes_ID_OBJ_BEF_BRK_EF_HAKO_BURN_e=0x9,
+    dRes_ID_OBJ_BEF_BRK_EF_TARU_BURN_e=0xA,
     /* DZB  */
     dRes_ID_OBJ_BEF_DZB_KKIBA_00_e=0xD,
 };

@@ -14,11 +14,11 @@ enum dRes_INDEX_RAFREL {
     /* BMDR */
     dRes_INDEX_RAFREL_BMD_RAF_e=0x11,
     /* BTK  */
-    dRes_INDEX_RAFREL_BTK_RAF_1_e=0x14,
+    dRes_INDEX_RAFREL_BTK_RAF_e=0x14,
     /* BTP  */
-    dRes_INDEX_RAFREL_BTP_RAF_2_e=0x17,
-    dRes_INDEX_RAFREL_BTP_RAF_F_THINK_1_e=0x18,
-    dRes_INDEX_RAFREL_BTP_RAF_FH_THINK_1_e=0x19,
+    dRes_INDEX_RAFREL_BTP_RAF_e=0x17,
+    dRes_INDEX_RAFREL_BTP_RAF_F_THINK_e=0x18,
+    dRes_INDEX_RAFREL_BTP_RAF_FH_THINK_e=0x19,
     /* EVT  */
     dRes_INDEX_RAFREL_DAT_EVENT_LIST_e=0x1C,
 };
@@ -36,11 +36,11 @@ enum dRes_ID_RAFREL {
     /* BMDR */
     dRes_ID_RAFREL_BMD_RAF_e=0x11,
     /* BTK  */
-    dRes_ID_RAFREL_BTK_RAF_1_e=0x14,
+    dRes_ID_RAFREL_BTK_RAF_e=0x14,
     /* BTP  */
-    dRes_ID_RAFREL_BTP_RAF_2_e=0x17,
-    dRes_ID_RAFREL_BTP_RAF_F_THINK_1_e=0x18,
-    dRes_ID_RAFREL_BTP_RAF_FH_THINK_1_e=0x19,
+    dRes_ID_RAFREL_BTP_RAF_e=0x17,
+    dRes_ID_RAFREL_BTP_RAF_F_THINK_e=0x18,
+    dRes_ID_RAFREL_BTP_RAF_FH_THINK_e=0x19,
     /* EVT  */
     dRes_ID_RAFREL_DAT_EVENT_LIST_e=0x1C,
 };

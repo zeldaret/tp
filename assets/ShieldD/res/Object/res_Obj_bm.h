@@ -9,7 +9,7 @@ enum dRes_INDEX_OBJ_BM {
     dRes_INDEX_OBJ_BM_BCK_OC_DOWN_e=0xA,
     /* BMDR */
     dRes_INDEX_OBJ_BM_BMD_BM_e=0xD,
-    dRes_INDEX_OBJ_BM_BMD_EF_BIMOBEAM_1_e=0xE,
+    dRes_INDEX_OBJ_BM_BMD_EF_BIMOBEAM_e=0xE,
     dRes_INDEX_OBJ_BM_BMD_P_BMF_e=0xF,
     /* BRK  */
     dRes_INDEX_OBJ_BM_BRK_LOOK_e=0x12,
@@ -17,7 +17,7 @@ enum dRes_INDEX_OBJ_BM {
     dRes_INDEX_OBJ_BM_BRK_TURN_e=0x14,
     dRes_INDEX_OBJ_BM_BRK_UP_e=0x15,
     /* BTK  */
-    dRes_INDEX_OBJ_BM_BTK_EF_BIMOBEAM_2_e=0x18,
+    dRes_INDEX_OBJ_BM_BTK_EF_BIMOBEAM_e=0x18,
     dRes_INDEX_OBJ_BM_BTK_EF_BIMOBEAM_ON_e=0x19,
     dRes_INDEX_OBJ_BM_BTK_EF_BIMOBEAMB_OFF_e=0x1A,
     /* DZB  */
@@ -33,7 +33,7 @@ enum dRes_ID_OBJ_BM {
     dRes_ID_OBJ_BM_BCK_OC_DOWN_e=0xA,
     /* BMDR */
     dRes_ID_OBJ_BM_BMD_BM_e=0xD,
-    dRes_ID_OBJ_BM_BMD_EF_BIMOBEAM_1_e=0xE,
+    dRes_ID_OBJ_BM_BMD_EF_BIMOBEAM_e=0xE,
     dRes_ID_OBJ_BM_BMD_P_BMF_e=0xF,
     /* BRK  */
     dRes_ID_OBJ_BM_BRK_LOOK_e=0x12,
@@ -41,7 +41,7 @@ enum dRes_ID_OBJ_BM {
     dRes_ID_OBJ_BM_BRK_TURN_e=0x14,
     dRes_ID_OBJ_BM_BRK_UP_e=0x15,
     /* BTK  */
-    dRes_ID_OBJ_BM_BTK_EF_BIMOBEAM_2_e=0x18,
+    dRes_ID_OBJ_BM_BTK_EF_BIMOBEAM_e=0x18,
     dRes_ID_OBJ_BM_BTK_EF_BIMOBEAM_ON_e=0x19,
     dRes_ID_OBJ_BM_BTK_EF_BIMOBEAMB_OFF_e=0x1A,
     /* DZB  */

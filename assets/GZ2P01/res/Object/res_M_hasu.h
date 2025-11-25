@@ -5,14 +5,14 @@ enum dRes_INDEX_M_HASU {
     /* BMDR */
     dRes_INDEX_M_HASU_BMD_M_HASU_e=0x4,
     /* DZB  */
-    dRes_INDEX_M_HASU_DZB_M_HASU_1_e=0x7,
+    dRes_INDEX_M_HASU_DZB_M_HASU_e=0x7,
 };
 
 enum dRes_ID_M_HASU {
     /* BMDR */
     dRes_ID_M_HASU_BMD_M_HASU_e=0x4,
     /* DZB  */
-    dRes_ID_M_HASU_DZB_M_HASU_1_e=0x7,
+    dRes_ID_M_HASU_DZB_M_HASU_e=0x7,
 };
 
 enum M_HASU_JNT {

@@ -6,7 +6,7 @@ enum dRes_INDEX_M_CRACK {
     dRes_INDEX_M_CRACK_BMD_M_CRACK_e=0x4,
     dRes_INDEX_M_CRACK_BMD_M_CRACK_B_e=0x5,
     /* DZB  */
-    dRes_INDEX_M_CRACK_DZB_M_CRACK_1_e=0x8,
+    dRes_INDEX_M_CRACK_DZB_M_CRACK_e=0x8,
 };
 
 enum dRes_ID_M_CRACK {
@@ -14,7 +14,7 @@ enum dRes_ID_M_CRACK {
     dRes_ID_M_CRACK_BMD_M_CRACK_e=0x4,
     dRes_ID_M_CRACK_BMD_M_CRACK_B_e=0x5,
     /* DZB  */
-    dRes_ID_M_CRACK_DZB_M_CRACK_1_e=0x8,
+    dRes_ID_M_CRACK_DZB_M_CRACK_e=0x8,
 };
 
 enum M_CRACK_JNT {

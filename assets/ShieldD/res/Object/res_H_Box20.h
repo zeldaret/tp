@@ -5,14 +5,14 @@ enum dRes_INDEX_H_BOX20 {
     /* BMDR */
     dRes_INDEX_H_BOX20_BMD_H_BOX20_e=0x4,
     /* DZB  */
-    dRes_INDEX_H_BOX20_DZB_H_BOX20_1_e=0x7,
+    dRes_INDEX_H_BOX20_DZB_H_BOX20_e=0x7,
 };
 
 enum dRes_ID_H_BOX20 {
     /* BMDR */
     dRes_ID_H_BOX20_BMD_H_BOX20_e=0x4,
     /* DZB  */
-    dRes_ID_H_BOX20_DZB_H_BOX20_1_e=0x7,
+    dRes_ID_H_BOX20_DZB_H_BOX20_e=0x7,
 };
 
 enum H_BOX20_JNT {

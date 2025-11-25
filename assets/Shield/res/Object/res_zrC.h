@@ -15,13 +15,13 @@ enum dRes_INDEX_ZRC {
     /* BTK  */
     dRes_INDEX_ZRC_BTK_ZRC_e=0x10,
     /* BTP  */
-    dRes_INDEX_ZRC_BTP_ZRC_1_e=0x13,
-    dRes_INDEX_ZRC_BTP_ZRC_F_SAD_1_e=0x14,
-    dRes_INDEX_ZRC_BTP_ZRC_F_SMILE_1_e=0x15,
-    dRes_INDEX_ZRC_BTP_ZRC_F_STEP_1_e=0x16,
-    dRes_INDEX_ZRC_BTP_ZRC_F_TALK_A_1_e=0x17,
-    dRes_INDEX_ZRC_BTP_ZRC_FH_SAD_1_e=0x18,
-    dRes_INDEX_ZRC_BTP_ZRC_FH_SMILE_1_e=0x19,
+    dRes_INDEX_ZRC_BTP_ZRC_e=0x13,
+    dRes_INDEX_ZRC_BTP_ZRC_F_SAD_e=0x14,
+    dRes_INDEX_ZRC_BTP_ZRC_F_SMILE_e=0x15,
+    dRes_INDEX_ZRC_BTP_ZRC_F_STEP_e=0x16,
+    dRes_INDEX_ZRC_BTP_ZRC_F_TALK_A_e=0x17,
+    dRes_INDEX_ZRC_BTP_ZRC_FH_SAD_e=0x18,
+    dRes_INDEX_ZRC_BTP_ZRC_FH_SMILE_e=0x19,
 };
 
 enum dRes_ID_ZRC {
@@ -38,13 +38,13 @@ enum dRes_ID_ZRC {
     /* BTK  */
     dRes_ID_ZRC_BTK_ZRC_e=0x10,
     /* BTP  */
-    dRes_ID_ZRC_BTP_ZRC_1_e=0x13,
-    dRes_ID_ZRC_BTP_ZRC_F_SAD_1_e=0x14,
-    dRes_ID_ZRC_BTP_ZRC_F_SMILE_1_e=0x15,
-    dRes_ID_ZRC_BTP_ZRC_F_STEP_1_e=0x16,
-    dRes_ID_ZRC_BTP_ZRC_F_TALK_A_1_e=0x17,
-    dRes_ID_ZRC_BTP_ZRC_FH_SAD_1_e=0x18,
-    dRes_ID_ZRC_BTP_ZRC_FH_SMILE_1_e=0x19,
+    dRes_ID_ZRC_BTP_ZRC_e=0x13,
+    dRes_ID_ZRC_BTP_ZRC_F_SAD_e=0x14,
+    dRes_ID_ZRC_BTP_ZRC_F_SMILE_e=0x15,
+    dRes_ID_ZRC_BTP_ZRC_F_STEP_e=0x16,
+    dRes_ID_ZRC_BTP_ZRC_F_TALK_A_e=0x17,
+    dRes_ID_ZRC_BTP_ZRC_FH_SAD_e=0x18,
+    dRes_ID_ZRC_BTP_ZRC_FH_SMILE_e=0x19,
 };
 
 #endif /* !RES_ZRC_H */

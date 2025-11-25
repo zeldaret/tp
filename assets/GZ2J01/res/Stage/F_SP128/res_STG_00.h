@@ -12,7 +12,7 @@ enum dRes_INDEX_STG_00 {
     dRes_INDEX_STG_00_BMD_DOOR_KNOB_01_e=0xF,
     dRes_INDEX_STG_00_BMD_DOOR_KNOB_02_e=0x10,
     /* BTK  */
-    dRes_INDEX_STG_00_BTK_VRBOX_SUN_1_e=0x13,
+    dRes_INDEX_STG_00_BTK_VRBOX_SUN_e=0x13,
     /* DAT  */
     dRes_INDEX_STG_00_DAT_COLORDATA_TBL_e=0x16,
     dRes_INDEX_STG_00_DAT_POL_ARG_e=0x17,
@@ -46,7 +46,7 @@ enum dRes_ID_STG_00 {
     dRes_ID_STG_00_BMD_DOOR_KNOB_01_e=0xF,
     dRes_ID_STG_00_BMD_DOOR_KNOB_02_e=0x10,
     /* BTK  */
-    dRes_ID_STG_00_BTK_VRBOX_SUN_1_e=0x13,
+    dRes_ID_STG_00_BTK_VRBOX_SUN_e=0x13,
     /* DAT  */
     dRes_ID_STG_00_DAT_COLORDATA_TBL_e=0x16,
     dRes_ID_STG_00_DAT_POL_ARG_e=0x17,

@@ -8,9 +8,9 @@ enum dRes_INDEX_SEIREI {
     /* BMDE */
     dRes_INDEX_SEIREI_BMD_SEIA_e=0xA,
     /* BRK  */
-    dRes_INDEX_SEIREI_BRK_SEIA_1_e=0xD,
+    dRes_INDEX_SEIREI_BRK_SEIA_e=0xD,
     /* BTK  */
-    dRes_INDEX_SEIREI_BTK_SEIA_2_e=0x10,
+    dRes_INDEX_SEIREI_BTK_SEIA_e=0x10,
 };
 
 enum dRes_ID_SEIREI {
@@ -20,9 +20,9 @@ enum dRes_ID_SEIREI {
     /* BMDE */
     dRes_ID_SEIREI_BMD_SEIA_e=0xA,
     /* BRK  */
-    dRes_ID_SEIREI_BRK_SEIA_1_e=0xD,
+    dRes_ID_SEIREI_BRK_SEIA_e=0xD,
     /* BTK  */
-    dRes_ID_SEIREI_BTK_SEIA_2_e=0x10,
+    dRes_ID_SEIREI_BTK_SEIA_e=0x10,
 };
 
 enum SEIA_JNT {

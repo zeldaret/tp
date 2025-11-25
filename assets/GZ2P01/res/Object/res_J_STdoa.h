@@ -5,14 +5,14 @@ enum dRes_INDEX_J_STDOA {
     /* BMDR */
     dRes_INDEX_J_STDOA_BMD_J_STDOA_e=0x4,
     /* DZB  */
-    dRes_INDEX_J_STDOA_DZB_J_STDOA_1_e=0x7,
+    dRes_INDEX_J_STDOA_DZB_J_STDOA_e=0x7,
 };
 
 enum dRes_ID_J_STDOA {
     /* BMDR */
     dRes_ID_J_STDOA_BMD_J_STDOA_e=0x4,
     /* DZB  */
-    dRes_ID_J_STDOA_DZB_J_STDOA_1_e=0x7,
+    dRes_ID_J_STDOA_DZB_J_STDOA_e=0x7,
 };
 
 enum J_STDOA_JNT {

@@ -5,18 +5,18 @@ enum dRes_INDEX_V_SHUTTER {
     /* BCK  */
     dRes_INDEX_V_SHUTTER_BCK_V_SHUTTER_e=0x5,
     /* BMDR */
-    dRes_INDEX_V_SHUTTER_BMD_V_SHUTTER_1_e=0x8,
+    dRes_INDEX_V_SHUTTER_BMD_V_SHUTTER_e=0x8,
     /* DZB  */
-    dRes_INDEX_V_SHUTTER_DZB_V_SHUTTER_2_e=0xB,
+    dRes_INDEX_V_SHUTTER_DZB_V_SHUTTER_e=0xB,
 };
 
 enum dRes_ID_V_SHUTTER {
     /* BCK  */
     dRes_ID_V_SHUTTER_BCK_V_SHUTTER_e=0x5,
     /* BMDR */
-    dRes_ID_V_SHUTTER_BMD_V_SHUTTER_1_e=0x8,
+    dRes_ID_V_SHUTTER_BMD_V_SHUTTER_e=0x8,
     /* DZB  */
-    dRes_ID_V_SHUTTER_DZB_V_SHUTTER_2_e=0xB,
+    dRes_ID_V_SHUTTER_DZB_V_SHUTTER_e=0xB,
 };
 
 enum V_SHUTTER_JNT {

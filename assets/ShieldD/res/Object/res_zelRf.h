@@ -8,9 +8,9 @@ enum dRes_INDEX_ZELRF {
     /* BMDR */
     dRes_INDEX_ZELRF_BMD_ZELRF_e=0xA,
     /* BTK  */
-    dRes_INDEX_ZELRF_BTK_ZELRF_1_e=0xD,
+    dRes_INDEX_ZELRF_BTK_ZELRF_e=0xD,
     /* BTP  */
-    dRes_INDEX_ZELRF_BTP_ZELRF_2_e=0x10,
+    dRes_INDEX_ZELRF_BTP_ZELRF_e=0x10,
 };
 
 enum dRes_ID_ZELRF {
@@ -20,9 +20,9 @@ enum dRes_ID_ZELRF {
     /* BMDR */
     dRes_ID_ZELRF_BMD_ZELRF_e=0xA,
     /* BTK  */
-    dRes_ID_ZELRF_BTK_ZELRF_1_e=0xD,
+    dRes_ID_ZELRF_BTK_ZELRF_e=0xD,
     /* BTP  */
-    dRes_ID_ZELRF_BTP_ZELRF_2_e=0x10,
+    dRes_ID_ZELRF_BTP_ZELRF_e=0x10,
 };
 
 enum ZELRF_JNT {

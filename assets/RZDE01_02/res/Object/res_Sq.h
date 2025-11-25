@@ -16,7 +16,7 @@ enum dRes_INDEX_SQ {
     /* BMDR */
     dRes_INDEX_SQ_BMD_SQ_e=0x11,
     /* BTK  */
-    dRes_INDEX_SQ_BTK_SQ_1_e=0x14,
+    dRes_INDEX_SQ_BTK_SQ_e=0x14,
 };
 
 enum dRes_ID_SQ {
@@ -34,7 +34,7 @@ enum dRes_ID_SQ {
     /* BMDR */
     dRes_ID_SQ_BMD_SQ_e=0x11,
     /* BTK  */
-    dRes_ID_SQ_BTK_SQ_1_e=0x14,
+    dRes_ID_SQ_BTK_SQ_e=0x14,
 };
 
 enum SQ_JNT {

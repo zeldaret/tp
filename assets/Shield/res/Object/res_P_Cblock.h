@@ -7,7 +7,7 @@ enum dRes_INDEX_P_CBLOCK {
     dRes_INDEX_P_CBLOCK_BMD_P_CHAIN_e=0x5,
     dRes_INDEX_P_CBLOCK_BMD_P_HANDLE_e=0x6,
     /* DZB  */
-    dRes_INDEX_P_CBLOCK_DZB_P_CBLOCK_1_e=0x9,
+    dRes_INDEX_P_CBLOCK_DZB_P_CBLOCK_e=0x9,
 };
 
 enum dRes_ID_P_CBLOCK {
@@ -16,7 +16,7 @@ enum dRes_ID_P_CBLOCK {
     dRes_ID_P_CBLOCK_BMD_P_CHAIN_e=0x5,
     dRes_ID_P_CBLOCK_BMD_P_HANDLE_e=0x6,
     /* DZB  */
-    dRes_ID_P_CBLOCK_DZB_P_CBLOCK_1_e=0x9,
+    dRes_ID_P_CBLOCK_DZB_P_CBLOCK_e=0x9,
 };
 
 enum P_CBLOCK_JNT {

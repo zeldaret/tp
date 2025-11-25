@@ -5,7 +5,7 @@ enum dRes_INDEX_V_OSUDOOR {
     /* BMDR */
     dRes_INDEX_V_OSUDOOR_BMD_V_OSUDOOR_e=0x5,
     /* DZB  */
-    dRes_INDEX_V_OSUDOOR_DZB_V_OSUDOOR_1_e=0x8,
+    dRes_INDEX_V_OSUDOOR_DZB_V_OSUDOOR_e=0x8,
     /* EVT  */
     dRes_INDEX_V_OSUDOOR_DAT_EVENT_LIST_e=0xB,
 };
@@ -14,7 +14,7 @@ enum dRes_ID_V_OSUDOOR {
     /* BMDR */
     dRes_ID_V_OSUDOOR_BMD_V_OSUDOOR_e=0x5,
     /* DZB  */
-    dRes_ID_V_OSUDOOR_DZB_V_OSUDOOR_1_e=0x8,
+    dRes_ID_V_OSUDOOR_DZB_V_OSUDOOR_e=0x8,
     /* EVT  */
     dRes_ID_V_OSUDOOR_DAT_EVENT_LIST_e=0xB,
 };

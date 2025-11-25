@@ -5,14 +5,14 @@ enum dRes_INDEX_NAGAISU {
     /* BMDR */
     dRes_INDEX_NAGAISU_BMD_YNAGAISU_e=0x4,
     /* DZB  */
-    dRes_INDEX_NAGAISU_DZB_YNAGAISU_1_e=0x7,
+    dRes_INDEX_NAGAISU_DZB_YNAGAISU_e=0x7,
 };
 
 enum dRes_ID_NAGAISU {
     /* BMDR */
     dRes_ID_NAGAISU_BMD_YNAGAISU_e=0x4,
     /* DZB  */
-    dRes_ID_NAGAISU_DZB_YNAGAISU_1_e=0x7,
+    dRes_ID_NAGAISU_DZB_YNAGAISU_e=0x7,
 };
 
 enum YNAGAISU_JNT {

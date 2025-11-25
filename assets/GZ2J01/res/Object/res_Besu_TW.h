@@ -10,8 +10,8 @@ enum dRes_INDEX_BESU_TW {
     /* BMDR */
     dRes_INDEX_BESU_TW_BMD_BESU_TW_e=0xB,
     /* BTP  */
-    dRes_INDEX_BESU_TW_BTP_BESU_F_DEMO_FEAR_1_e=0xE,
-    dRes_INDEX_BESU_TW_BTP_BESU_F_DEMO_WAIT_1_e=0xF,
+    dRes_INDEX_BESU_TW_BTP_BESU_F_DEMO_FEAR_e=0xE,
+    dRes_INDEX_BESU_TW_BTP_BESU_F_DEMO_WAIT_e=0xF,
 };
 
 enum dRes_ID_BESU_TW {
@@ -23,8 +23,8 @@ enum dRes_ID_BESU_TW {
     /* BMDR */
     dRes_ID_BESU_TW_BMD_BESU_TW_e=0xB,
     /* BTP  */
-    dRes_ID_BESU_TW_BTP_BESU_F_DEMO_FEAR_1_e=0xE,
-    dRes_ID_BESU_TW_BTP_BESU_F_DEMO_WAIT_1_e=0xF,
+    dRes_ID_BESU_TW_BTP_BESU_F_DEMO_FEAR_e=0xE,
+    dRes_ID_BESU_TW_BTP_BESU_F_DEMO_WAIT_e=0xF,
 };
 
 enum BESU_TW_JNT {

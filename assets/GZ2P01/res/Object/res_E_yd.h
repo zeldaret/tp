@@ -24,7 +24,7 @@ enum dRes_INDEX_E_YD {
     dRes_INDEX_E_YD_BMD_YL_e=0x19,
     dRes_INDEX_E_YD_BMD_YT_e=0x1A,
     /* BRK  */
-    dRes_INDEX_E_YD_BRK_YD_1_e=0x1D,
+    dRes_INDEX_E_YD_BRK_YD_e=0x1D,
     /* TEXT */
     dRes_INDEX_E_YD_BTI_YD_STALK_e=0x20,
 };
@@ -52,7 +52,7 @@ enum dRes_ID_E_YD {
     dRes_ID_E_YD_BMD_YL_e=0x19,
     dRes_ID_E_YD_BMD_YT_e=0x1A,
     /* BRK  */
-    dRes_ID_E_YD_BRK_YD_1_e=0x1D,
+    dRes_ID_E_YD_BRK_YD_e=0x1D,
     /* TEXT */
     dRes_ID_E_YD_BTI_YD_STALK_e=0x20,
 };

@@ -5,22 +5,22 @@ enum dRes_INDEX_OBJ_BTL {
     /* BMDE */
     dRes_INDEX_OBJ_BTL_BMD_AL_BOTTLE_e=0x6,
     /* BRK  */
-    dRes_INDEX_OBJ_BTL_BRK_AL_BOTTLE_1_e=0x9,
+    dRes_INDEX_OBJ_BTL_BRK_AL_BOTTLE_e=0x9,
     /* BTK  */
     dRes_INDEX_OBJ_BTL_BTK_BOTTLE_D_YURE_e=0xC,
     /* BTP  */
-    dRes_INDEX_OBJ_BTL_BTP_AL_BOTTLE_2_e=0xF,
+    dRes_INDEX_OBJ_BTL_BTP_AL_BOTTLE_e=0xF,
 };
 
 enum dRes_ID_OBJ_BTL {
     /* BMDE */
     dRes_ID_OBJ_BTL_BMD_AL_BOTTLE_e=0x6,
     /* BRK  */
-    dRes_ID_OBJ_BTL_BRK_AL_BOTTLE_1_e=0x9,
+    dRes_ID_OBJ_BTL_BRK_AL_BOTTLE_e=0x9,
     /* BTK  */
     dRes_ID_OBJ_BTL_BTK_BOTTLE_D_YURE_e=0xC,
     /* BTP  */
-    dRes_ID_OBJ_BTL_BTP_AL_BOTTLE_2_e=0xF,
+    dRes_ID_OBJ_BTL_BTP_AL_BOTTLE_e=0xF,
 };
 
 enum AL_BOTTLE_JNT {

@@ -6,8 +6,8 @@ enum dRes_INDEX_P_DTILE {
     dRes_INDEX_P_DTILE_BMD_P_DTILE_L_e=0x4,
     dRes_INDEX_P_DTILE_BMD_P_DTILE_S_e=0x5,
     /* DZB  */
-    dRes_INDEX_P_DTILE_DZB_P_DTILE_L_1_e=0x8,
-    dRes_INDEX_P_DTILE_DZB_P_DTILE_S_1_e=0x9,
+    dRes_INDEX_P_DTILE_DZB_P_DTILE_L_e=0x8,
+    dRes_INDEX_P_DTILE_DZB_P_DTILE_S_e=0x9,
 };
 
 enum dRes_ID_P_DTILE {
@@ -15,8 +15,8 @@ enum dRes_ID_P_DTILE {
     dRes_ID_P_DTILE_BMD_P_DTILE_L_e=0x4,
     dRes_ID_P_DTILE_BMD_P_DTILE_S_e=0x5,
     /* DZB  */
-    dRes_ID_P_DTILE_DZB_P_DTILE_L_1_e=0x8,
-    dRes_ID_P_DTILE_DZB_P_DTILE_S_1_e=0x9,
+    dRes_ID_P_DTILE_DZB_P_DTILE_L_e=0x8,
+    dRes_ID_P_DTILE_DZB_P_DTILE_S_e=0x9,
 };
 
 enum P_DTILE_L_JNT {

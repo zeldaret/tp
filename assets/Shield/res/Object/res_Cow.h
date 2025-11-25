@@ -30,7 +30,7 @@ enum dRes_INDEX_COW {
     /* BMDR */
     dRes_INDEX_COW_BMD_COW_e=0x1F,
     /* BTP  */
-    dRes_INDEX_COW_BTP_COW_1_e=0x22,
+    dRes_INDEX_COW_BTP_COW_e=0x22,
 };
 
 enum dRes_ID_COW {
@@ -62,7 +62,7 @@ enum dRes_ID_COW {
     /* BMDR */
     dRes_ID_COW_BMD_COW_e=0x1F,
     /* BTP  */
-    dRes_ID_COW_BTP_COW_1_e=0x22,
+    dRes_ID_COW_BTP_COW_e=0x22,
 };
 
 enum COW_JNT {

@@ -5,22 +5,22 @@ enum dRes_INDEX_O_GD_TKC {
     /* BCK  */
     dRes_INDEX_O_GD_TKC_BCK_O_GD_TKC_e=0x6,
     /* BMDR */
-    dRes_INDEX_O_GD_TKC_BMD_O_GD_TKC_1_e=0x9,
+    dRes_INDEX_O_GD_TKC_BMD_O_GD_TKC_e=0x9,
     /* BTK  */
-    dRes_INDEX_O_GD_TKC_BTK_O_GD_TKC_2_e=0xC,
+    dRes_INDEX_O_GD_TKC_BTK_O_GD_TKC_e=0xC,
     /* BTP  */
-    dRes_INDEX_O_GD_TKC_BTP_O_GD_TKC_3_e=0xF,
+    dRes_INDEX_O_GD_TKC_BTP_O_GD_TKC_e=0xF,
 };
 
 enum dRes_ID_O_GD_TKC {
     /* BCK  */
     dRes_ID_O_GD_TKC_BCK_O_GD_TKC_e=0x6,
     /* BMDR */
-    dRes_ID_O_GD_TKC_BMD_O_GD_TKC_1_e=0x9,
+    dRes_ID_O_GD_TKC_BMD_O_GD_TKC_e=0x9,
     /* BTK  */
-    dRes_ID_O_GD_TKC_BTK_O_GD_TKC_2_e=0xC,
+    dRes_ID_O_GD_TKC_BTK_O_GD_TKC_e=0xC,
     /* BTP  */
-    dRes_ID_O_GD_TKC_BTP_O_GD_TKC_3_e=0xF,
+    dRes_ID_O_GD_TKC_BTP_O_GD_TKC_e=0xF,
 };
 
 enum O_GD_TKC_JNT {

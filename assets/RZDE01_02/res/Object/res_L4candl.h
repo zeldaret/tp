@@ -5,14 +5,14 @@ enum dRes_INDEX_L4CANDL {
     /* BMDR */
     dRes_INDEX_L4CANDL_BMD_L_LV4CANDL_e=0x4,
     /* DZB  */
-    dRes_INDEX_L4CANDL_DZB_L_LV4CANDL_1_e=0x7,
+    dRes_INDEX_L4CANDL_DZB_L_LV4CANDL_e=0x7,
 };
 
 enum dRes_ID_L4CANDL {
     /* BMDR */
     dRes_ID_L4CANDL_BMD_L_LV4CANDL_e=0x4,
     /* DZB  */
-    dRes_ID_L4CANDL_DZB_L_LV4CANDL_1_e=0x7,
+    dRes_ID_L4CANDL_DZB_L_LV4CANDL_e=0x7,
 };
 
 enum L_LV4CANDL_JNT {

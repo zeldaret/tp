@@ -21,9 +21,9 @@ enum dRes_INDEX_BESU0 {
     /* BTK  */
     dRes_INDEX_BESU0_BTK_BESU_e=0x16,
     /* BTP  */
-    dRes_INDEX_BESU0_BTP_BESU_1_e=0x19,
-    dRes_INDEX_BESU0_BTP_BESU_F_YOKERU_1_e=0x1A,
-    dRes_INDEX_BESU0_BTP_BESU_FH_BIKKURI_1_e=0x1B,
+    dRes_INDEX_BESU0_BTP_BESU_e=0x19,
+    dRes_INDEX_BESU0_BTP_BESU_F_YOKERU_e=0x1A,
+    dRes_INDEX_BESU0_BTP_BESU_FH_BIKKURI_e=0x1B,
 };
 
 enum dRes_ID_BESU0 {
@@ -46,9 +46,9 @@ enum dRes_ID_BESU0 {
     /* BTK  */
     dRes_ID_BESU0_BTK_BESU_e=0x16,
     /* BTP  */
-    dRes_ID_BESU0_BTP_BESU_1_e=0x19,
-    dRes_ID_BESU0_BTP_BESU_F_YOKERU_1_e=0x1A,
-    dRes_ID_BESU0_BTP_BESU_FH_BIKKURI_1_e=0x1B,
+    dRes_ID_BESU0_BTP_BESU_e=0x19,
+    dRes_ID_BESU0_BTP_BESU_F_YOKERU_e=0x1A,
+    dRes_ID_BESU0_BTP_BESU_FH_BIKKURI_e=0x1B,
 };
 
 #endif /* !RES_BESU0_H */

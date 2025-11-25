@@ -5,14 +5,14 @@ enum dRes_INDEX_DOORBOY {
     /* BMDR */
     dRes_INDEX_DOORBOY_BMD_DOORBOY_e=0x4,
     /* BTP  */
-    dRes_INDEX_DOORBOY_BTP_DOORBOY_1_e=0x7,
+    dRes_INDEX_DOORBOY_BTP_DOORBOY_e=0x7,
 };
 
 enum dRes_ID_DOORBOY {
     /* BMDR */
     dRes_ID_DOORBOY_BMD_DOORBOY_e=0x4,
     /* BTP  */
-    dRes_ID_DOORBOY_BTP_DOORBOY_1_e=0x7,
+    dRes_ID_DOORBOY_BTP_DOORBOY_e=0x7,
 };
 
 enum DOORBOY_JNT {

@@ -5,14 +5,14 @@ enum dRes_INDEX_M_ITA {
     /* BMDR */
     dRes_INDEX_M_ITA_BMD_M_FLOATINGDUST00_e=0x4,
     /* DZB  */
-    dRes_INDEX_M_ITA_DZB_M_FLOATINGDUST00_1_e=0x7,
+    dRes_INDEX_M_ITA_DZB_M_FLOATINGDUST00_e=0x7,
 };
 
 enum dRes_ID_M_ITA {
     /* BMDR */
     dRes_ID_M_ITA_BMD_M_FLOATINGDUST00_e=0x4,
     /* DZB  */
-    dRes_ID_M_ITA_DZB_M_FLOATINGDUST00_1_e=0x7,
+    dRes_ID_M_ITA_DZB_M_FLOATINGDUST00_e=0x7,
 };
 
 enum M_FLOATINGDUST00_JNT {

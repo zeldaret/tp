@@ -7,7 +7,7 @@ enum dRes_INDEX_R05_00 {
     dRes_INDEX_R05_00_BMD_MODEL1_e=0x9,
     dRes_INDEX_R05_00_BMD_MODEL2_e=0xA,
     /* BTK  */
-    dRes_INDEX_R05_00_BTK_MODEL1_1_e=0xD,
+    dRes_INDEX_R05_00_BTK_MODEL1_e=0xD,
     /* DZR  */
     dRes_INDEX_R05_00_DZR_ROOM_e=0x10,
     /* EVT  */
@@ -15,9 +15,9 @@ enum dRes_INDEX_R05_00 {
     dRes_INDEX_R05_00_STB_POU_e=0x14,
     dRes_INDEX_R05_00_STB_POU2_e=0x15,
     /* KCL  */
-    dRes_INDEX_R05_00_KCL_ROOM_1_e=0x18,
+    dRes_INDEX_R05_00_KCL_ROOM_e=0x18,
     /* PLC  */
-    dRes_INDEX_R05_00_PLC_ROOM_2_e=0x1B,
+    dRes_INDEX_R05_00_PLC_ROOM_e=0x1B,
 };
 
 enum dRes_ID_R05_00 {
@@ -26,7 +26,7 @@ enum dRes_ID_R05_00 {
     dRes_ID_R05_00_BMD_MODEL1_e=0x9,
     dRes_ID_R05_00_BMD_MODEL2_e=0xA,
     /* BTK  */
-    dRes_ID_R05_00_BTK_MODEL1_1_e=0xD,
+    dRes_ID_R05_00_BTK_MODEL1_e=0xD,
     /* DZR  */
     dRes_ID_R05_00_DZR_ROOM_e=0x10,
     /* EVT  */
@@ -34,9 +34,9 @@ enum dRes_ID_R05_00 {
     dRes_ID_R05_00_STB_POU_e=0x14,
     dRes_ID_R05_00_STB_POU2_e=0x15,
     /* KCL  */
-    dRes_ID_R05_00_KCL_ROOM_1_e=0x18,
+    dRes_ID_R05_00_KCL_ROOM_e=0x18,
     /* PLC  */
-    dRes_ID_R05_00_PLC_ROOM_2_e=0x1B,
+    dRes_ID_R05_00_PLC_ROOM_e=0x1B,
 };
 
 #endif /* !RES_R05_00_H */

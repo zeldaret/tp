@@ -27,9 +27,9 @@ enum dRes_INDEX_NPC_NE {
     dRes_INDEX_NPC_NE_BMD_NE_e=0x1C,
     dRes_INDEX_NPC_NE_BMD_NE_DISH_e=0x1D,
     /* BTK  */
-    dRes_INDEX_NPC_NE_BTK_NE_1_e=0x20,
+    dRes_INDEX_NPC_NE_BTK_NE_e=0x20,
     /* BTP  */
-    dRes_INDEX_NPC_NE_BTP_NE_2_e=0x23,
+    dRes_INDEX_NPC_NE_BTP_NE_e=0x23,
 };
 
 enum dRes_ID_NPC_NE {
@@ -58,9 +58,9 @@ enum dRes_ID_NPC_NE {
     dRes_ID_NPC_NE_BMD_NE_e=0x1C,
     dRes_ID_NPC_NE_BMD_NE_DISH_e=0x1D,
     /* BTK  */
-    dRes_ID_NPC_NE_BTK_NE_1_e=0x20,
+    dRes_ID_NPC_NE_BTK_NE_e=0x20,
     /* BTP  */
-    dRes_ID_NPC_NE_BTP_NE_2_e=0x23,
+    dRes_ID_NPC_NE_BTP_NE_e=0x23,
 };
 
 enum NE_JNT {

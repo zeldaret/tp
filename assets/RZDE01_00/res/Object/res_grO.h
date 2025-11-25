@@ -16,10 +16,10 @@ enum dRes_INDEX_GRO {
     dRes_INDEX_GRO_BMD_GRO_A_e=0x12,
     dRes_INDEX_GRO_BMD_GRO_PIPE_e=0x13,
     /* BTK  */
-    dRes_INDEX_GRO_BTK_GRO_A_1_e=0x16,
+    dRes_INDEX_GRO_BTK_GRO_A_e=0x16,
     /* BTP  */
-    dRes_INDEX_GRO_BTP_GRO_A_2_e=0x19,
-    dRes_INDEX_GRO_BTP_GRO_F_TALK_B_1_e=0x1A,
+    dRes_INDEX_GRO_BTP_GRO_A_e=0x19,
+    dRes_INDEX_GRO_BTP_GRO_F_TALK_B_e=0x1A,
     /* EVT  */
     dRes_INDEX_GRO_DAT_EVENT_LIST_e=0x1D,
 };
@@ -39,10 +39,10 @@ enum dRes_ID_GRO {
     dRes_ID_GRO_BMD_GRO_A_e=0x12,
     dRes_ID_GRO_BMD_GRO_PIPE_e=0x13,
     /* BTK  */
-    dRes_ID_GRO_BTK_GRO_A_1_e=0x16,
+    dRes_ID_GRO_BTK_GRO_A_e=0x16,
     /* BTP  */
-    dRes_ID_GRO_BTP_GRO_A_2_e=0x19,
-    dRes_ID_GRO_BTP_GRO_F_TALK_B_1_e=0x1A,
+    dRes_ID_GRO_BTP_GRO_A_e=0x19,
+    dRes_ID_GRO_BTP_GRO_F_TALK_B_e=0x1A,
     /* EVT  */
     dRes_ID_GRO_DAT_EVENT_LIST_e=0x1D,
 };

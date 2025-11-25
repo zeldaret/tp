@@ -10,12 +10,12 @@ enum dRes_INDEX_URI {
     /* BMDR */
     dRes_INDEX_URI_BMD_URI_e=0xC,
     /* BTK  */
-    dRes_INDEX_URI_BTK_URI_1_e=0xF,
+    dRes_INDEX_URI_BTK_URI_e=0xF,
     /* BTP  */
-    dRes_INDEX_URI_BTP_URI_2_e=0x12,
-    dRes_INDEX_URI_BTP_URI_F_TALK_A_1_e=0x13,
-    dRes_INDEX_URI_BTP_URI_K_F_HAPPY_1_e=0x14,
-    dRes_INDEX_URI_BTP_URI_K_FH_HAPPY_1_e=0x15,
+    dRes_INDEX_URI_BTP_URI_e=0x12,
+    dRes_INDEX_URI_BTP_URI_F_TALK_A_e=0x13,
+    dRes_INDEX_URI_BTP_URI_K_F_HAPPY_e=0x14,
+    dRes_INDEX_URI_BTP_URI_K_FH_HAPPY_e=0x15,
 };
 
 enum dRes_ID_URI {
@@ -27,12 +27,12 @@ enum dRes_ID_URI {
     /* BMDR */
     dRes_ID_URI_BMD_URI_e=0xC,
     /* BTK  */
-    dRes_ID_URI_BTK_URI_1_e=0xF,
+    dRes_ID_URI_BTK_URI_e=0xF,
     /* BTP  */
-    dRes_ID_URI_BTP_URI_2_e=0x12,
-    dRes_ID_URI_BTP_URI_F_TALK_A_1_e=0x13,
-    dRes_ID_URI_BTP_URI_K_F_HAPPY_1_e=0x14,
-    dRes_ID_URI_BTP_URI_K_FH_HAPPY_1_e=0x15,
+    dRes_ID_URI_BTP_URI_e=0x12,
+    dRes_ID_URI_BTP_URI_F_TALK_A_e=0x13,
+    dRes_ID_URI_BTP_URI_K_F_HAPPY_e=0x14,
+    dRes_ID_URI_BTP_URI_K_FH_HAPPY_e=0x15,
 };
 
 enum URI_JNT {

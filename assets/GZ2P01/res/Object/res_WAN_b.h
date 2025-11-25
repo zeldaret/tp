@@ -5,14 +5,14 @@ enum dRes_INDEX_WAN_B {
     /* BMDR */
     dRes_INDEX_WAN_B_BMD_WAN_B_e=0x4,
     /* BTP  */
-    dRes_INDEX_WAN_B_BTP_WAN_B_1_e=0x7,
+    dRes_INDEX_WAN_B_BTP_WAN_B_e=0x7,
 };
 
 enum dRes_ID_WAN_B {
     /* BMDR */
     dRes_ID_WAN_B_BMD_WAN_B_e=0x4,
     /* BTP  */
-    dRes_ID_WAN_B_BTP_WAN_B_1_e=0x7,
+    dRes_ID_WAN_B_BTP_WAN_B_e=0x7,
 };
 
 enum WAN_B_JNT {

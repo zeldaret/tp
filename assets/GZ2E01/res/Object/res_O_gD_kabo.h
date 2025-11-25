@@ -7,7 +7,7 @@ enum dRes_INDEX_O_GD_KABO {
     /* BRK  */
     dRes_INDEX_O_GD_KABO_BRK_KAB_O_e=0x8,
     /* BTK  */
-    dRes_INDEX_O_GD_KABO_BTK_KAB_O_1_e=0xB,
+    dRes_INDEX_O_GD_KABO_BTK_KAB_O_e=0xB,
 };
 
 enum dRes_ID_O_GD_KABO {
@@ -16,7 +16,7 @@ enum dRes_ID_O_GD_KABO {
     /* BRK  */
     dRes_ID_O_GD_KABO_BRK_KAB_O_e=0x8,
     /* BTK  */
-    dRes_ID_O_GD_KABO_BTK_KAB_O_1_e=0xB,
+    dRes_ID_O_GD_KABO_BTK_KAB_O_e=0xB,
 };
 
 enum O_GD_KAB_O_JNT {

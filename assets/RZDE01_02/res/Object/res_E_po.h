@@ -24,7 +24,7 @@ enum dRes_INDEX_E_PO {
     dRes_INDEX_E_PO_BCK_PO_WAIT02_e=0x16,
     dRes_INDEX_E_PO_BCK_PW_DEATH_e=0x17,
     /* BMDR */
-    dRes_INDEX_E_PO_BMD_EF_GLOW_1_e=0x1A,
+    dRes_INDEX_E_PO_BMD_EF_GLOW_e=0x1A,
     dRes_INDEX_E_PO_BMD_PO_e=0x1B,
     dRes_INDEX_E_PO_BMD_PO_LAMP_e=0x1C,
     dRes_INDEX_E_PO_BMD_PW_e=0x1D,
@@ -53,7 +53,7 @@ enum dRes_ID_E_PO {
     dRes_ID_E_PO_BCK_PO_WAIT02_e=0x16,
     dRes_ID_E_PO_BCK_PW_DEATH_e=0x17,
     /* BMDR */
-    dRes_ID_E_PO_BMD_EF_GLOW_1_e=0x1A,
+    dRes_ID_E_PO_BMD_EF_GLOW_e=0x1A,
     dRes_ID_E_PO_BMD_PO_e=0x1B,
     dRes_ID_E_PO_BMD_PO_LAMP_e=0x1C,
     dRes_ID_E_PO_BMD_PW_e=0x1D,

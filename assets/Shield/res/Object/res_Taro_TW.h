@@ -8,9 +8,9 @@ enum dRes_INDEX_TARO_TW {
     /* BMDR */
     dRes_INDEX_TARO_TW_BMD_TARO_TW_e=0xA,
     /* BTK  */
-    dRes_INDEX_TARO_TW_BTK_TARO_DEMO_WAIT_1_e=0xD,
+    dRes_INDEX_TARO_TW_BTK_TARO_DEMO_WAIT_e=0xD,
     /* BTP  */
-    dRes_INDEX_TARO_TW_BTP_TARO_F_DEMO_WAIT_1_e=0x10,
+    dRes_INDEX_TARO_TW_BTP_TARO_F_DEMO_WAIT_e=0x10,
 };
 
 enum dRes_ID_TARO_TW {
@@ -20,9 +20,9 @@ enum dRes_ID_TARO_TW {
     /* BMDR */
     dRes_ID_TARO_TW_BMD_TARO_TW_e=0xA,
     /* BTK  */
-    dRes_ID_TARO_TW_BTK_TARO_DEMO_WAIT_1_e=0xD,
+    dRes_ID_TARO_TW_BTK_TARO_DEMO_WAIT_e=0xD,
     /* BTP  */
-    dRes_ID_TARO_TW_BTP_TARO_F_DEMO_WAIT_1_e=0x10,
+    dRes_ID_TARO_TW_BTP_TARO_F_DEMO_WAIT_e=0x10,
 };
 
 enum TARO_TW_JNT {

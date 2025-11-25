@@ -5,14 +5,14 @@ enum dRes_INDEX_MR_SCREW {
     /* BMDR */
     dRes_INDEX_MR_SCREW_BMD_U_MR_TWISTPOLE_e=0x4,
     /* DZB  */
-    dRes_INDEX_MR_SCREW_DZB_U_MR_TWISTPOLE_1_e=0x7,
+    dRes_INDEX_MR_SCREW_DZB_U_MR_TWISTPOLE_e=0x7,
 };
 
 enum dRes_ID_MR_SCREW {
     /* BMDR */
     dRes_ID_MR_SCREW_BMD_U_MR_TWISTPOLE_e=0x4,
     /* DZB  */
-    dRes_ID_MR_SCREW_DZB_U_MR_TWISTPOLE_1_e=0x7,
+    dRes_ID_MR_SCREW_DZB_U_MR_TWISTPOLE_e=0x7,
 };
 
 enum U_MR_TWISTPOLE_JNT {

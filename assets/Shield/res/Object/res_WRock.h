@@ -5,14 +5,14 @@ enum dRes_INDEX_WROCK {
     /* BMDR */
     dRes_INDEX_WROCK_BMD_WROCK_e=0x4,
     /* DZB  */
-    dRes_INDEX_WROCK_DZB_WROCK_1_e=0x7,
+    dRes_INDEX_WROCK_DZB_WROCK_e=0x7,
 };
 
 enum dRes_ID_WROCK {
     /* BMDR */
     dRes_ID_WROCK_BMD_WROCK_e=0x4,
     /* DZB  */
-    dRes_ID_WROCK_DZB_WROCK_1_e=0x7,
+    dRes_ID_WROCK_DZB_WROCK_e=0x7,
 };
 
 enum WROCK_JNT {

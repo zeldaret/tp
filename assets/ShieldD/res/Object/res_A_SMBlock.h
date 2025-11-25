@@ -5,14 +5,14 @@ enum dRes_INDEX_A_SMBLOCK {
     /* BMDR */
     dRes_INDEX_A_SMBLOCK_BMD_A_SMBLOCK_e=0x4,
     /* DZB  */
-    dRes_INDEX_A_SMBLOCK_DZB_A_SMBLOCK_1_e=0x7,
+    dRes_INDEX_A_SMBLOCK_DZB_A_SMBLOCK_e=0x7,
 };
 
 enum dRes_ID_A_SMBLOCK {
     /* BMDR */
     dRes_ID_A_SMBLOCK_BMD_A_SMBLOCK_e=0x4,
     /* DZB  */
-    dRes_ID_A_SMBLOCK_DZB_A_SMBLOCK_1_e=0x7,
+    dRes_ID_A_SMBLOCK_DZB_A_SMBLOCK_e=0x7,
 };
 
 enum A_SMBLOCK_JNT {

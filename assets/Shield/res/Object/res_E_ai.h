@@ -13,7 +13,7 @@ enum dRes_INDEX_E_AI {
     dRes_INDEX_E_AI_BMD_AI_e=0xD,
     /* BRK  */
     dRes_INDEX_E_AI_BRK_AI_DAMAGE_e=0x10,
-    dRes_INDEX_E_AI_BRK_AI_MOVE_1_e=0x11,
+    dRes_INDEX_E_AI_BRK_AI_MOVE_e=0x11,
     dRes_INDEX_E_AI_BRK_AI_START_e=0x12,
     dRes_INDEX_E_AI_BRK_AI_STOP_e=0x13,
 };
@@ -30,7 +30,7 @@ enum dRes_ID_E_AI {
     dRes_ID_E_AI_BMD_AI_e=0xD,
     /* BRK  */
     dRes_ID_E_AI_BRK_AI_DAMAGE_e=0x10,
-    dRes_ID_E_AI_BRK_AI_MOVE_1_e=0x11,
+    dRes_ID_E_AI_BRK_AI_MOVE_e=0x11,
     dRes_ID_E_AI_BRK_AI_START_e=0x12,
     dRes_ID_E_AI_BRK_AI_STOP_e=0x13,
 };

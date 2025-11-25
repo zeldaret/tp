@@ -11,8 +11,8 @@ enum dRes_INDEX_I_CHO {
     dRes_INDEX_I_CHO_BRK_CHO_M_e=0xD,
     dRes_INDEX_I_CHO_BRK_CHO_O_e=0xE,
     /* BTK  */
-    dRes_INDEX_I_CHO_BTK_CHO_M_1_e=0x11,
-    dRes_INDEX_I_CHO_BTK_CHO_O_1_e=0x12,
+    dRes_INDEX_I_CHO_BTK_CHO_M_e=0x11,
+    dRes_INDEX_I_CHO_BTK_CHO_O_e=0x12,
 };
 
 enum dRes_ID_I_CHO {
@@ -25,8 +25,8 @@ enum dRes_ID_I_CHO {
     dRes_ID_I_CHO_BRK_CHO_M_e=0xD,
     dRes_ID_I_CHO_BRK_CHO_O_e=0xE,
     /* BTK  */
-    dRes_ID_I_CHO_BTK_CHO_M_1_e=0x11,
-    dRes_ID_I_CHO_BTK_CHO_O_1_e=0x12,
+    dRes_ID_I_CHO_BTK_CHO_M_e=0x11,
+    dRes_ID_I_CHO_BTK_CHO_O_e=0x12,
 };
 
 enum CHO_JNT {

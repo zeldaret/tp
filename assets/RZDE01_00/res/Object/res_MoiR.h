@@ -14,10 +14,10 @@ enum dRes_INDEX_MOIR {
     dRes_INDEX_MOIR_BMD_MOIR_e=0xF,
     dRes_INDEX_MOIR_BMD_MOIR_HEADGEAR_e=0x10,
     /* BTK  */
-    dRes_INDEX_MOIR_BTK_MOIR_1_e=0x13,
+    dRes_INDEX_MOIR_BTK_MOIR_e=0x13,
     /* BTP  */
-    dRes_INDEX_MOIR_BTP_MOIR_2_e=0x16,
-    dRes_INDEX_MOIR_BTP_MOIR_FH_SERIOUS_1_e=0x17,
+    dRes_INDEX_MOIR_BTP_MOIR_e=0x16,
+    dRes_INDEX_MOIR_BTP_MOIR_FH_SERIOUS_e=0x17,
 };
 
 enum dRes_ID_MOIR {
@@ -33,10 +33,10 @@ enum dRes_ID_MOIR {
     dRes_ID_MOIR_BMD_MOIR_e=0xF,
     dRes_ID_MOIR_BMD_MOIR_HEADGEAR_e=0x10,
     /* BTK  */
-    dRes_ID_MOIR_BTK_MOIR_1_e=0x13,
+    dRes_ID_MOIR_BTK_MOIR_e=0x13,
     /* BTP  */
-    dRes_ID_MOIR_BTP_MOIR_2_e=0x16,
-    dRes_ID_MOIR_BTP_MOIR_FH_SERIOUS_1_e=0x17,
+    dRes_ID_MOIR_BTP_MOIR_e=0x16,
+    dRes_ID_MOIR_BTP_MOIR_FH_SERIOUS_e=0x17,
 };
 
 enum MOIR_JNT {

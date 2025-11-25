@@ -12,8 +12,8 @@ enum dRes_INDEX_I_DAN {
     dRes_INDEX_I_DAN_BRK_DAN_M_e=0xE,
     dRes_INDEX_I_DAN_BRK_DAN_O_e=0xF,
     /* BTK  */
-    dRes_INDEX_I_DAN_BTK_DAN_M_1_e=0x12,
-    dRes_INDEX_I_DAN_BTK_DAN_O_1_e=0x13,
+    dRes_INDEX_I_DAN_BTK_DAN_M_e=0x12,
+    dRes_INDEX_I_DAN_BTK_DAN_O_e=0x13,
 };
 
 enum dRes_ID_I_DAN {
@@ -27,8 +27,8 @@ enum dRes_ID_I_DAN {
     dRes_ID_I_DAN_BRK_DAN_M_e=0xE,
     dRes_ID_I_DAN_BRK_DAN_O_e=0xF,
     /* BTK  */
-    dRes_ID_I_DAN_BTK_DAN_M_1_e=0x12,
-    dRes_ID_I_DAN_BTK_DAN_O_1_e=0x13,
+    dRes_ID_I_DAN_BTK_DAN_M_e=0x12,
+    dRes_ID_I_DAN_BTK_DAN_O_e=0x13,
 };
 
 enum DAN_JNT {

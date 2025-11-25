@@ -5,7 +5,7 @@ enum dRes_INDEX_PPOLAMP {
     /* BCK  */
     dRes_INDEX_PPOLAMP_BCK_EF_GLOW_e=0x4,
     /* BMDR */
-    dRes_INDEX_PPOLAMP_BMD_EF_GLOW_1_e=0x7,
+    dRes_INDEX_PPOLAMP_BMD_EF_GLOW_e=0x7,
     dRes_INDEX_PPOLAMP_BMD_P_POLAMP_e=0x8,
 };
 
@@ -13,7 +13,7 @@ enum dRes_ID_PPOLAMP {
     /* BCK  */
     dRes_ID_PPOLAMP_BCK_EF_GLOW_e=0x4,
     /* BMDR */
-    dRes_ID_PPOLAMP_BMD_EF_GLOW_1_e=0x7,
+    dRes_ID_PPOLAMP_BMD_EF_GLOW_e=0x7,
     dRes_ID_PPOLAMP_BMD_P_POLAMP_e=0x8,
 };
 

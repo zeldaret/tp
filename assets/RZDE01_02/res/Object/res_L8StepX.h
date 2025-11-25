@@ -5,14 +5,14 @@ enum dRes_INDEX_L8STEPX {
     /* BMDR */
     dRes_INDEX_L8STEPX_BMD_LV8_STEPX_e=0x4,
     /* DZB  */
-    dRes_INDEX_L8STEPX_DZB_LV8_STEPX_1_e=0x7,
+    dRes_INDEX_L8STEPX_DZB_LV8_STEPX_e=0x7,
 };
 
 enum dRes_ID_L8STEPX {
     /* BMDR */
     dRes_ID_L8STEPX_BMD_LV8_STEPX_e=0x4,
     /* DZB  */
-    dRes_ID_L8STEPX_DZB_LV8_STEPX_1_e=0x7,
+    dRes_ID_L8STEPX_DZB_LV8_STEPX_e=0x7,
 };
 
 enum LV8_STEPX_JNT {

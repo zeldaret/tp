@@ -15,9 +15,9 @@ enum dRes_INDEX_E_HM {
     /* BMDR */
     dRes_INDEX_E_HM_BMD_HM_e=0x11,
     /* BRK  */
-    dRes_INDEX_E_HM_BRK_HM_1_e=0x14,
+    dRes_INDEX_E_HM_BRK_HM_e=0x14,
     /* BTK  */
-    dRes_INDEX_E_HM_BTK_HM_2_e=0x17,
+    dRes_INDEX_E_HM_BTK_HM_e=0x17,
 };
 
 enum dRes_ID_E_HM {
@@ -34,9 +34,9 @@ enum dRes_ID_E_HM {
     /* BMDR */
     dRes_ID_E_HM_BMD_HM_e=0x11,
     /* BRK  */
-    dRes_ID_E_HM_BRK_HM_1_e=0x14,
+    dRes_ID_E_HM_BRK_HM_e=0x14,
     /* BTK  */
-    dRes_ID_E_HM_BTK_HM_2_e=0x17,
+    dRes_ID_E_HM_BTK_HM_e=0x17,
 };
 
 enum HM_JNT {

@@ -8,8 +8,8 @@ enum dRes_INDEX_AUTOMATA {
     /* BMDR */
     dRes_INDEX_AUTOMATA_BMD_AUTOMATA_e=0x9,
     /* BTK  */
-    dRes_INDEX_AUTOMATA_BTK_ATMA_RUN_A_1_e=0xC,
-    dRes_INDEX_AUTOMATA_BTK_ATMA_RUN_B_1_e=0xD,
+    dRes_INDEX_AUTOMATA_BTK_ATMA_RUN_A_e=0xC,
+    dRes_INDEX_AUTOMATA_BTK_ATMA_RUN_B_e=0xD,
 };
 
 enum dRes_ID_AUTOMATA {
@@ -19,8 +19,8 @@ enum dRes_ID_AUTOMATA {
     /* BMDR */
     dRes_ID_AUTOMATA_BMD_AUTOMATA_e=0x9,
     /* BTK  */
-    dRes_ID_AUTOMATA_BTK_ATMA_RUN_A_1_e=0xC,
-    dRes_ID_AUTOMATA_BTK_ATMA_RUN_B_1_e=0xD,
+    dRes_ID_AUTOMATA_BTK_ATMA_RUN_A_e=0xC,
+    dRes_ID_AUTOMATA_BTK_ATMA_RUN_B_e=0xD,
 };
 
 enum AUTOMATA_JNT {

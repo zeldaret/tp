@@ -5,7 +5,7 @@ enum dRes_INDEX_K_L3BDOOR {
     /* BMDR */
     dRes_INDEX_K_L3BDOOR_BMD_K_L3BDOOR_e=0x5,
     /* DZB  */
-    dRes_INDEX_K_L3BDOOR_DZB_K_L3BDOOR_1_e=0x8,
+    dRes_INDEX_K_L3BDOOR_DZB_K_L3BDOOR_e=0x8,
     /* EVT  */
     dRes_INDEX_K_L3BDOOR_DAT_EVENT_LIST_e=0xB,
 };
@@ -14,7 +14,7 @@ enum dRes_ID_K_L3BDOOR {
     /* BMDR */
     dRes_ID_K_L3BDOOR_BMD_K_L3BDOOR_e=0x5,
     /* DZB  */
-    dRes_ID_K_L3BDOOR_DZB_K_L3BDOOR_1_e=0x8,
+    dRes_ID_K_L3BDOOR_DZB_K_L3BDOOR_e=0x8,
     /* EVT  */
     dRes_ID_K_L3BDOOR_DAT_EVENT_LIST_e=0xB,
 };

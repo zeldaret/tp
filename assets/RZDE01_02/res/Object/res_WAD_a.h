@@ -5,14 +5,14 @@ enum dRes_INDEX_WAD_A {
     /* BMDR */
     dRes_INDEX_WAD_A_BMD_WAD_A_e=0x4,
     /* BTP  */
-    dRes_INDEX_WAD_A_BTP_WAD_A_1_e=0x7,
+    dRes_INDEX_WAD_A_BTP_WAD_A_e=0x7,
 };
 
 enum dRes_ID_WAD_A {
     /* BMDR */
     dRes_ID_WAD_A_BMD_WAD_A_e=0x0,
     /* BTP  */
-    dRes_ID_WAD_A_BTP_WAD_A_1_e=0x1,
+    dRes_ID_WAD_A_BTP_WAD_A_e=0x1,
 };
 
 enum WAD_A_JNT {

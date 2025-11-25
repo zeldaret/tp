@@ -7,9 +7,9 @@ enum dRes_INDEX_SEIC {
     /* BMDR */
     dRes_INDEX_SEIC_BMD_SEIC_NOMAL_e=0x9,
     /* BRK  */
-    dRes_INDEX_SEIC_BRK_SEIC_NOMAL_1_e=0xC,
+    dRes_INDEX_SEIC_BRK_SEIC_NOMAL_e=0xC,
     /* BTK  */
-    dRes_INDEX_SEIC_BTK_SEIC_NOMAL_2_e=0xF,
+    dRes_INDEX_SEIC_BTK_SEIC_NOMAL_e=0xF,
 };
 
 enum dRes_ID_SEIC {
@@ -18,9 +18,9 @@ enum dRes_ID_SEIC {
     /* BMDR */
     dRes_ID_SEIC_BMD_SEIC_NOMAL_e=0x9,
     /* BRK  */
-    dRes_ID_SEIC_BRK_SEIC_NOMAL_1_e=0xC,
+    dRes_ID_SEIC_BRK_SEIC_NOMAL_e=0xC,
     /* BTK  */
-    dRes_ID_SEIC_BTK_SEIC_NOMAL_2_e=0xF,
+    dRes_ID_SEIC_BTK_SEIC_NOMAL_e=0xF,
 };
 
 enum SEIC_NOMAL_JNT {

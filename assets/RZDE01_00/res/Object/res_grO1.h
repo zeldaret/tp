@@ -19,10 +19,10 @@ enum dRes_INDEX_GRO1 {
     /* BMDR */
     dRes_INDEX_GRO1_BMD_MARO_BOKIN_e=0x14,
     /* BTP  */
-    dRes_INDEX_GRO1_BTP_GRO_F_BOW_1_e=0x17,
-    dRes_INDEX_GRO1_BTP_GRO_F_CALL_1_e=0x18,
-    dRes_INDEX_GRO1_BTP_GRO_F_CALL_B_1_e=0x19,
-    dRes_INDEX_GRO1_BTP_GRO_FH_CALL_WAIT_1_e=0x1A,
+    dRes_INDEX_GRO1_BTP_GRO_F_BOW_e=0x17,
+    dRes_INDEX_GRO1_BTP_GRO_F_CALL_e=0x18,
+    dRes_INDEX_GRO1_BTP_GRO_F_CALL_B_e=0x19,
+    dRes_INDEX_GRO1_BTP_GRO_FH_CALL_WAIT_e=0x1A,
 };
 
 enum dRes_ID_GRO1 {
@@ -43,10 +43,10 @@ enum dRes_ID_GRO1 {
     /* BMDR */
     dRes_ID_GRO1_BMD_MARO_BOKIN_e=0x14,
     /* BTP  */
-    dRes_ID_GRO1_BTP_GRO_F_BOW_1_e=0x17,
-    dRes_ID_GRO1_BTP_GRO_F_CALL_1_e=0x18,
-    dRes_ID_GRO1_BTP_GRO_F_CALL_B_1_e=0x19,
-    dRes_ID_GRO1_BTP_GRO_FH_CALL_WAIT_1_e=0x1A,
+    dRes_ID_GRO1_BTP_GRO_F_BOW_e=0x17,
+    dRes_ID_GRO1_BTP_GRO_F_CALL_e=0x18,
+    dRes_ID_GRO1_BTP_GRO_F_CALL_B_e=0x19,
+    dRes_ID_GRO1_BTP_GRO_FH_CALL_WAIT_e=0x1A,
 };
 
 enum MARO_BOKIN_JNT {

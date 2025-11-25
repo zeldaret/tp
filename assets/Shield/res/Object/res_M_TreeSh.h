@@ -5,14 +5,14 @@ enum dRes_INDEX_M_TREESH {
     /* BMDR */
     dRes_INDEX_M_TREESH_BMD_M_TREESH_e=0x4,
     /* DZB  */
-    dRes_INDEX_M_TREESH_DZB_M_TREESH_1_e=0x7,
+    dRes_INDEX_M_TREESH_DZB_M_TREESH_e=0x7,
 };
 
 enum dRes_ID_M_TREESH {
     /* BMDR */
     dRes_ID_M_TREESH_BMD_M_TREESH_e=0x4,
     /* DZB  */
-    dRes_ID_M_TREESH_DZB_M_TREESH_1_e=0x7,
+    dRes_ID_M_TREESH_DZB_M_TREESH_e=0x7,
 };
 
 enum M_TREESH_JNT {

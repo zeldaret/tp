@@ -49,10 +49,10 @@ enum dRes_INDEX_E_VA {
     dRes_INDEX_E_VA_BMD_VA_CARD_A_e=0x34,
     dRes_INDEX_E_VA_BMD_VA_CARD_B_e=0x35,
     dRes_INDEX_E_VA_BMD_VA_CARD_C_e=0x36,
-    dRes_INDEX_E_VA_BMD_VA_END_EF_1_e=0x37,
+    dRes_INDEX_E_VA_BMD_VA_END_EF_e=0x37,
     /* BRK  */
-    dRes_INDEX_E_VA_BRK_VA_END_EF_2_e=0x3A,
-    dRes_INDEX_E_VA_BRK_VA_WEAPON_1_e=0x3B,
+    dRes_INDEX_E_VA_BRK_VA_END_EF_e=0x3A,
+    dRes_INDEX_E_VA_BRK_VA_WEAPON_e=0x3B,
     /* TEX  */
     dRes_INDEX_E_VA_BTI_VA_ROPE_e=0x3E,
 };
@@ -105,10 +105,10 @@ enum dRes_ID_E_VA {
     dRes_ID_E_VA_BMD_VA_CARD_A_e=0x34,
     dRes_ID_E_VA_BMD_VA_CARD_B_e=0x35,
     dRes_ID_E_VA_BMD_VA_CARD_C_e=0x36,
-    dRes_ID_E_VA_BMD_VA_END_EF_1_e=0x37,
+    dRes_ID_E_VA_BMD_VA_END_EF_e=0x37,
     /* BRK  */
-    dRes_ID_E_VA_BRK_VA_END_EF_2_e=0x3A,
-    dRes_ID_E_VA_BRK_VA_WEAPON_1_e=0x3B,
+    dRes_ID_E_VA_BRK_VA_END_EF_e=0x3A,
+    dRes_ID_E_VA_BRK_VA_WEAPON_e=0x3B,
     /* TEX  */
     dRes_ID_E_VA_BTI_VA_ROPE_e=0x3E,
 };

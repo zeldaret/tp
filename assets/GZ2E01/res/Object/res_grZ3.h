@@ -12,7 +12,7 @@ enum dRes_INDEX_GRZ3 {
     dRes_INDEX_GRZ3_BCK_GRZ_ROTATE_e=0xA,
     dRes_INDEX_GRZ3_BCK_GRZ_TO_STONE_NORMAL_e=0xB,
     /* BTP  */
-    dRes_INDEX_GRZ3_BTP_GRZ_F_RECOVER_1_e=0xE,
+    dRes_INDEX_GRZ3_BTP_GRZ_F_RECOVER_e=0xE,
 };
 
 enum dRes_ID_GRZ3 {
@@ -26,7 +26,7 @@ enum dRes_ID_GRZ3 {
     dRes_ID_GRZ3_BCK_GRZ_ROTATE_e=0xA,
     dRes_ID_GRZ3_BCK_GRZ_TO_STONE_NORMAL_e=0xB,
     /* BTP  */
-    dRes_ID_GRZ3_BTP_GRZ_F_RECOVER_1_e=0xE,
+    dRes_ID_GRZ3_BTP_GRZ_F_RECOVER_e=0xE,
 };
 
 #endif /* !RES_GRZ3_H */

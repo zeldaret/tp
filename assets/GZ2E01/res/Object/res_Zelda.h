@@ -9,10 +9,10 @@ enum dRes_INDEX_ZELDA {
     /* BMDE */
     dRes_INDEX_ZELDA_BMD_ZELDA_e=0xB,
     /* BTK  */
-    dRes_INDEX_ZELDA_BTK_ZELDA_1_e=0xE,
+    dRes_INDEX_ZELDA_BTK_ZELDA_e=0xE,
     /* BTP  */
-    dRes_INDEX_ZELDA_BTP_ZELDA_2_e=0x11,
-    dRes_INDEX_ZELDA_BTP_ZELDA_SIT_1_e=0x12,
+    dRes_INDEX_ZELDA_BTP_ZELDA_e=0x11,
+    dRes_INDEX_ZELDA_BTP_ZELDA_SIT_e=0x12,
 };
 
 enum dRes_ID_ZELDA {
@@ -23,10 +23,10 @@ enum dRes_ID_ZELDA {
     /* BMDE */
     dRes_ID_ZELDA_BMD_ZELDA_e=0xB,
     /* BTK  */
-    dRes_ID_ZELDA_BTK_ZELDA_1_e=0xE,
+    dRes_ID_ZELDA_BTK_ZELDA_e=0xE,
     /* BTP  */
-    dRes_ID_ZELDA_BTP_ZELDA_2_e=0x11,
-    dRes_ID_ZELDA_BTP_ZELDA_SIT_1_e=0x12,
+    dRes_ID_ZELDA_BTP_ZELDA_e=0x11,
+    dRes_ID_ZELDA_BTP_ZELDA_SIT_e=0x12,
 };
 
 enum ZELDA_JNT {

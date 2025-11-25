@@ -5,7 +5,7 @@ enum dRes_INDEX_POUBOX1 {
     /* BCK  */
     dRes_INDEX_POUBOX1_BCK_H_POUBOX01_e=0x5,
     /* BMDR */
-    dRes_INDEX_POUBOX1_BMD_H_POUBOX01_1_e=0x8,
+    dRes_INDEX_POUBOX1_BMD_H_POUBOX01_e=0x8,
     /* DZB  */
     dRes_INDEX_POUBOX1_DZB_H_POUBOX02_e=0xB,
 };
@@ -14,7 +14,7 @@ enum dRes_ID_POUBOX1 {
     /* BCK  */
     dRes_ID_POUBOX1_BCK_H_POUBOX01_e=0x5,
     /* BMDR */
-    dRes_ID_POUBOX1_BMD_H_POUBOX01_1_e=0x8,
+    dRes_ID_POUBOX1_BMD_H_POUBOX01_e=0x8,
     /* DZB  */
     dRes_ID_POUBOX1_DZB_H_POUBOX02_e=0xB,
 };

@@ -5,7 +5,7 @@ enum dRes_INDEX_LV8GATE {
     /* BCK  */
     dRes_INDEX_LV8GATE_BCK_P_L8WHOLE_e=0x5,
     /* BMDR */
-    dRes_INDEX_LV8GATE_BMD_P_L8WHOLE_1_e=0x8,
+    dRes_INDEX_LV8GATE_BMD_P_L8WHOLE_e=0x8,
     /* EVT  */
     dRes_INDEX_LV8GATE_DAT_EVENT_LIST_e=0xB,
 };
@@ -14,7 +14,7 @@ enum dRes_ID_LV8GATE {
     /* BCK  */
     dRes_ID_LV8GATE_BCK_P_L8WHOLE_e=0x5,
     /* BMDR */
-    dRes_ID_LV8GATE_BMD_P_L8WHOLE_1_e=0x8,
+    dRes_ID_LV8GATE_BMD_P_L8WHOLE_e=0x8,
     /* EVT  */
     dRes_ID_LV8GATE_DAT_EVENT_LIST_e=0xB,
 };

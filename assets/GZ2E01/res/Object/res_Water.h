@@ -15,13 +15,13 @@ enum dRes_INDEX_WATER {
     dRes_INDEX_WATER_BMD_WATER_e=0x11,
     dRes_INDEX_WATER_BMD_WATER_B_e=0x12,
     /* BRK  */
-    dRes_INDEX_WATER_BRK_WATER_A_OP_1_e=0x15,
-    dRes_INDEX_WATER_BRK_WATER_B_OP_1_e=0x16,
+    dRes_INDEX_WATER_BRK_WATER_A_OP_e=0x15,
+    dRes_INDEX_WATER_BRK_WATER_B_OP_e=0x16,
     /* BTK  */
-    dRes_INDEX_WATER_BTK_WATER_1_e=0x19,
-    dRes_INDEX_WATER_BTK_WATER_B_1_e=0x1A,
+    dRes_INDEX_WATER_BTK_WATER_e=0x19,
+    dRes_INDEX_WATER_BTK_WATER_B_e=0x1A,
     /* DZB  */
-    dRes_INDEX_WATER_DZB_WATER_2_e=0x1D,
+    dRes_INDEX_WATER_DZB_WATER_e=0x1D,
 };
 
 enum dRes_ID_WATER {
@@ -38,13 +38,13 @@ enum dRes_ID_WATER {
     dRes_ID_WATER_BMD_WATER_e=0x11,
     dRes_ID_WATER_BMD_WATER_B_e=0x12,
     /* BRK  */
-    dRes_ID_WATER_BRK_WATER_A_OP_1_e=0x15,
-    dRes_ID_WATER_BRK_WATER_B_OP_1_e=0x16,
+    dRes_ID_WATER_BRK_WATER_A_OP_e=0x15,
+    dRes_ID_WATER_BRK_WATER_B_OP_e=0x16,
     /* BTK  */
-    dRes_ID_WATER_BTK_WATER_1_e=0x19,
-    dRes_ID_WATER_BTK_WATER_B_1_e=0x1A,
+    dRes_ID_WATER_BTK_WATER_e=0x19,
+    dRes_ID_WATER_BTK_WATER_B_e=0x1A,
     /* DZB  */
-    dRes_ID_WATER_DZB_WATER_2_e=0x1D,
+    dRes_ID_WATER_DZB_WATER_e=0x1D,
 };
 
 enum WATER_JNT {

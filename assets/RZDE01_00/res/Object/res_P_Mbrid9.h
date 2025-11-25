@@ -7,7 +7,7 @@ enum dRes_INDEX_P_MBRID9 {
     /* BMDR */
     dRes_INDEX_P_MBRID9_BMD_X_MBRIDGE_9_e=0x8,
     /* DZB  */
-    dRes_INDEX_P_MBRID9_DZB_X_MBRIDGE_9_1_e=0xB,
+    dRes_INDEX_P_MBRID9_DZB_X_MBRIDGE_9_e=0xB,
 };
 
 enum dRes_ID_P_MBRID9 {
@@ -16,7 +16,7 @@ enum dRes_ID_P_MBRID9 {
     /* BMDR */
     dRes_ID_P_MBRID9_BMD_X_MBRIDGE_9_e=0x8,
     /* DZB  */
-    dRes_ID_P_MBRID9_DZB_X_MBRIDGE_9_1_e=0xB,
+    dRes_ID_P_MBRID9_DZB_X_MBRIDGE_9_e=0xB,
 };
 
 enum X_MBRIDGE_9_JNT {

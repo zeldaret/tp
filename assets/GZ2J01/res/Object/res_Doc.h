@@ -12,10 +12,10 @@ enum dRes_INDEX_DOC {
     /* BMDR */
     dRes_INDEX_DOC_BMD_DOC_e=0xE,
     /* BTK  */
-    dRes_INDEX_DOC_BTK_DOC_1_e=0x11,
+    dRes_INDEX_DOC_BTK_DOC_e=0x11,
     /* BTP  */
-    dRes_INDEX_DOC_BTP_DOC_2_e=0x14,
-    dRes_INDEX_DOC_BTP_DOC_TALK_B_1_e=0x15,
+    dRes_INDEX_DOC_BTP_DOC_e=0x14,
+    dRes_INDEX_DOC_BTP_DOC_TALK_B_e=0x15,
 };
 
 enum dRes_ID_DOC {
@@ -29,10 +29,10 @@ enum dRes_ID_DOC {
     /* BMDR */
     dRes_ID_DOC_BMD_DOC_e=0xE,
     /* BTK  */
-    dRes_ID_DOC_BTK_DOC_1_e=0x11,
+    dRes_ID_DOC_BTK_DOC_e=0x11,
     /* BTP  */
-    dRes_ID_DOC_BTP_DOC_2_e=0x14,
-    dRes_ID_DOC_BTP_DOC_TALK_B_1_e=0x15,
+    dRes_ID_DOC_BTP_DOC_e=0x14,
+    dRes_ID_DOC_BTP_DOC_TALK_B_e=0x15,
 };
 
 enum DOC_JNT {

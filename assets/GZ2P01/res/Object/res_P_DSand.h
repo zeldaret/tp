@@ -5,14 +5,14 @@ enum dRes_INDEX_P_DSAND {
     /* BMDR */
     dRes_INDEX_P_DSAND_BMD_P_DSAND_e=0x4,
     /* DZB  */
-    dRes_INDEX_P_DSAND_DZB_P_DSAND_1_e=0x7,
+    dRes_INDEX_P_DSAND_DZB_P_DSAND_e=0x7,
 };
 
 enum dRes_ID_P_DSAND {
     /* BMDR */
     dRes_ID_P_DSAND_BMD_P_DSAND_e=0x4,
     /* DZB  */
-    dRes_ID_P_DSAND_DZB_P_DSAND_1_e=0x7,
+    dRes_ID_P_DSAND_DZB_P_DSAND_e=0x7,
 };
 
 enum P_DSAND_JNT {

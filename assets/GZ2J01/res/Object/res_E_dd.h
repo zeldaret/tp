@@ -24,11 +24,11 @@ enum dRes_INDEX_E_DD {
     /* BMDR */
     dRes_INDEX_E_DD_BMD_DD_e=0x19,
     /* BRK  */
-    dRes_INDEX_E_DD_BRK_DD_1_e=0x1C,
+    dRes_INDEX_E_DD_BRK_DD_e=0x1C,
     dRes_INDEX_E_DD_BRK_DD_DEAD_e=0x1D,
-    dRes_INDEX_E_DD_BRK_DD_FIRE_A_1_e=0x1E,
-    dRes_INDEX_E_DD_BRK_DD_FIRE_B_1_e=0x1F,
-    dRes_INDEX_E_DD_BRK_DD_FIRE_C_1_e=0x20,
+    dRes_INDEX_E_DD_BRK_DD_FIRE_A_e=0x1E,
+    dRes_INDEX_E_DD_BRK_DD_FIRE_B_e=0x1F,
+    dRes_INDEX_E_DD_BRK_DD_FIRE_C_e=0x20,
 };
 
 enum dRes_ID_E_DD {
@@ -54,11 +54,11 @@ enum dRes_ID_E_DD {
     /* BMDR */
     dRes_ID_E_DD_BMD_DD_e=0x19,
     /* BRK  */
-    dRes_ID_E_DD_BRK_DD_1_e=0x1C,
+    dRes_ID_E_DD_BRK_DD_e=0x1C,
     dRes_ID_E_DD_BRK_DD_DEAD_e=0x1D,
-    dRes_ID_E_DD_BRK_DD_FIRE_A_1_e=0x1E,
-    dRes_ID_E_DD_BRK_DD_FIRE_B_1_e=0x1F,
-    dRes_ID_E_DD_BRK_DD_FIRE_C_1_e=0x20,
+    dRes_ID_E_DD_BRK_DD_FIRE_A_e=0x1E,
+    dRes_ID_E_DD_BRK_DD_FIRE_B_e=0x1F,
+    dRes_ID_E_DD_BRK_DD_FIRE_C_e=0x20,
 };
 
 enum DD_JNT {

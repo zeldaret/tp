@@ -5,14 +5,14 @@ enum dRes_INDEX_CATDOOR {
     /* BMDR */
     dRes_INDEX_CATDOOR_BMD_CATDOOR_e=0x4,
     /* DZB  */
-    dRes_INDEX_CATDOOR_DZB_CATDOOR_1_e=0x7,
+    dRes_INDEX_CATDOOR_DZB_CATDOOR_e=0x7,
 };
 
 enum dRes_ID_CATDOOR {
     /* BMDR */
     dRes_ID_CATDOOR_BMD_CATDOOR_e=0x4,
     /* DZB  */
-    dRes_ID_CATDOOR_DZB_CATDOOR_1_e=0x7,
+    dRes_ID_CATDOOR_DZB_CATDOOR_e=0x7,
 };
 
 enum CATDOOR_JNT {

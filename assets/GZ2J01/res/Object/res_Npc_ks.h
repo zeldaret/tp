@@ -60,8 +60,8 @@ enum dRes_INDEX_NPC_KS {
     dRes_INDEX_NPC_KS_BMD_SARU_BARA_e=0x3C,
     dRes_INDEX_NPC_KS_BMD_SARU_STICK_e=0x3D,
     /* BTP  */
-    dRes_INDEX_NPC_KS_BTP_SARU_1_e=0x40,
-    dRes_INDEX_NPC_KS_BTP_SARU_RELIEF_1_e=0x41,
+    dRes_INDEX_NPC_KS_BTP_SARU_e=0x40,
+    dRes_INDEX_NPC_KS_BTP_SARU_RELIEF_e=0x41,
 };
 
 enum dRes_ID_NPC_KS {
@@ -123,8 +123,8 @@ enum dRes_ID_NPC_KS {
     dRes_ID_NPC_KS_BMD_SARU_BARA_e=0x3C,
     dRes_ID_NPC_KS_BMD_SARU_STICK_e=0x3D,
     /* BTP  */
-    dRes_ID_NPC_KS_BTP_SARU_1_e=0x40,
-    dRes_ID_NPC_KS_BTP_SARU_RELIEF_1_e=0x41,
+    dRes_ID_NPC_KS_BTP_SARU_e=0x40,
+    dRes_ID_NPC_KS_BTP_SARU_RELIEF_e=0x41,
 };
 
 enum SARU_JNT {

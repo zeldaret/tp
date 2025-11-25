@@ -9,9 +9,9 @@ enum dRes_INDEX_KOLIN2 {
     /* BMDR */
     dRes_INDEX_KOLIN2_BMD_KOLIN_CLOTH_e=0xB,
     /* BTK  */
-    dRes_INDEX_KOLIN2_BTK_KOLIN_CLOTH_TRY_1_e=0xE,
+    dRes_INDEX_KOLIN2_BTK_KOLIN_CLOTH_TRY_e=0xE,
     /* BTP  */
-    dRes_INDEX_KOLIN2_BTP_KOLIN_F_CLOTH_TRY_1_e=0x11,
+    dRes_INDEX_KOLIN2_BTP_KOLIN_F_CLOTH_TRY_e=0x11,
 };
 
 enum dRes_ID_KOLIN2 {
@@ -22,9 +22,9 @@ enum dRes_ID_KOLIN2 {
     /* BMDR */
     dRes_ID_KOLIN2_BMD_KOLIN_CLOTH_e=0xB,
     /* BTK  */
-    dRes_ID_KOLIN2_BTK_KOLIN_CLOTH_TRY_1_e=0xE,
+    dRes_ID_KOLIN2_BTK_KOLIN_CLOTH_TRY_e=0xE,
     /* BTP  */
-    dRes_ID_KOLIN2_BTP_KOLIN_F_CLOTH_TRY_1_e=0x11,
+    dRes_ID_KOLIN2_BTP_KOLIN_F_CLOTH_TRY_e=0x11,
 };
 
 enum KOLIN_CLOTH_JNT {

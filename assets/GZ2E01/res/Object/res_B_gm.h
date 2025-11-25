@@ -29,14 +29,14 @@ enum dRes_INDEX_B_GM {
     dRes_INDEX_B_GM_BCK_GOMA_UP02_e=0x1D,
     dRes_INDEX_B_GM_BCK_GOMA_WAIT_e=0x1E,
     /* BMDR */
-    dRes_INDEX_B_GM_BMD_GM_BEAM_1_e=0x21,
+    dRes_INDEX_B_GM_BMD_GM_BEAM_e=0x21,
     dRes_INDEX_B_GM_BMD_S_L6SPOT_e=0x22,
     /* BMDV */
     dRes_INDEX_B_GM_BMD_GOMA_e=0x25,
     /* BTK  */
     dRes_INDEX_B_GM_BTK_EYE_ZOOM_e=0x28,
-    dRes_INDEX_B_GM_BTK_GM_BEAM_2_e=0x29,
-    dRes_INDEX_B_GM_BTK_S_L6SPOT_1_e=0x2A,
+    dRes_INDEX_B_GM_BTK_GM_BEAM_e=0x29,
+    dRes_INDEX_B_GM_BTK_S_L6SPOT_e=0x2A,
 };
 
 enum dRes_ID_B_GM {
@@ -67,14 +67,14 @@ enum dRes_ID_B_GM {
     dRes_ID_B_GM_BCK_GOMA_UP02_e=0x1D,
     dRes_ID_B_GM_BCK_GOMA_WAIT_e=0x1E,
     /* BMDR */
-    dRes_ID_B_GM_BMD_GM_BEAM_1_e=0x21,
+    dRes_ID_B_GM_BMD_GM_BEAM_e=0x21,
     dRes_ID_B_GM_BMD_S_L6SPOT_e=0x22,
     /* BMDV */
     dRes_ID_B_GM_BMD_GOMA_e=0x25,
     /* BTK  */
     dRes_ID_B_GM_BTK_EYE_ZOOM_e=0x28,
-    dRes_ID_B_GM_BTK_GM_BEAM_2_e=0x29,
-    dRes_ID_B_GM_BTK_S_L6SPOT_1_e=0x2A,
+    dRes_ID_B_GM_BTK_GM_BEAM_e=0x29,
+    dRes_ID_B_GM_BTK_S_L6SPOT_e=0x2A,
 };
 
 enum GM_BEAM_JNT {

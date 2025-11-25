@@ -8,9 +8,9 @@ enum dRes_INDEX_B_MGNE {
     dRes_INDEX_B_MGNE_BMD_EF_GDGATE_e=0x9,
     /* BRK  */
     dRes_INDEX_B_MGNE_BRK_EF_GDGATE_APPEAR_e=0xC,
-    dRes_INDEX_B_MGNE_BRK_EF_GDGATE_START_1_e=0xD,
+    dRes_INDEX_B_MGNE_BRK_EF_GDGATE_START_e=0xD,
     /* BTK  */
-    dRes_INDEX_B_MGNE_BTK_EF_GDGATE_1_e=0x10,
+    dRes_INDEX_B_MGNE_BTK_EF_GDGATE_e=0x10,
 };
 
 enum dRes_ID_B_MGNE {
@@ -20,9 +20,9 @@ enum dRes_ID_B_MGNE {
     dRes_ID_B_MGNE_BMD_EF_GDGATE_e=0x9,
     /* BRK  */
     dRes_ID_B_MGNE_BRK_EF_GDGATE_APPEAR_e=0xC,
-    dRes_ID_B_MGNE_BRK_EF_GDGATE_START_1_e=0xD,
+    dRes_ID_B_MGNE_BRK_EF_GDGATE_START_e=0xD,
     /* BTK  */
-    dRes_ID_B_MGNE_BTK_EF_GDGATE_1_e=0x10,
+    dRes_ID_B_MGNE_BTK_EF_GDGATE_e=0x10,
 };
 
 enum EF_GDGATE_JNT {

@@ -6,9 +6,9 @@ enum dRes_INDEX_H_ONSEN {
     dRes_INDEX_H_ONSEN_BMD_H_ONSEN_e=0x5,
     dRes_INDEX_H_ONSEN_BMD_H_ONSENB_e=0x6,
     /* BTK  */
-    dRes_INDEX_H_ONSEN_BTK_H_ONSEN_1_e=0x9,
+    dRes_INDEX_H_ONSEN_BTK_H_ONSEN_e=0x9,
     /* DZB  */
-    dRes_INDEX_H_ONSEN_DZB_H_ONSEN_2_e=0xC,
+    dRes_INDEX_H_ONSEN_DZB_H_ONSEN_e=0xC,
 };
 
 enum dRes_ID_H_ONSEN {
@@ -16,9 +16,9 @@ enum dRes_ID_H_ONSEN {
     dRes_ID_H_ONSEN_BMD_H_ONSEN_e=0x5,
     dRes_ID_H_ONSEN_BMD_H_ONSENB_e=0x6,
     /* BTK  */
-    dRes_ID_H_ONSEN_BTK_H_ONSEN_1_e=0x9,
+    dRes_ID_H_ONSEN_BTK_H_ONSEN_e=0x9,
     /* DZB  */
-    dRes_ID_H_ONSEN_DZB_H_ONSEN_2_e=0xC,
+    dRes_ID_H_ONSEN_DZB_H_ONSEN_e=0xC,
 };
 
 enum H_ONSEN_JNT {

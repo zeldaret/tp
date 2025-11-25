@@ -5,22 +5,22 @@ enum dRes_INDEX_O_GD_TONO {
     /* BCK  */
     dRes_INDEX_O_GD_TONO_BCK_O_GD_TON_O_e=0x6,
     /* BMDE */
-    dRes_INDEX_O_GD_TONO_BMD_O_GD_TON_O_1_e=0x9,
+    dRes_INDEX_O_GD_TONO_BMD_O_GD_TON_O_e=0x9,
     /* BRK  */
     dRes_INDEX_O_GD_TONO_BRK_TON_O_e=0xC,
     /* BTK  */
-    dRes_INDEX_O_GD_TONO_BTK_TON_O_1_e=0xF,
+    dRes_INDEX_O_GD_TONO_BTK_TON_O_e=0xF,
 };
 
 enum dRes_ID_O_GD_TONO {
     /* BCK  */
     dRes_ID_O_GD_TONO_BCK_O_GD_TON_O_e=0x6,
     /* BMDE */
-    dRes_ID_O_GD_TONO_BMD_O_GD_TON_O_1_e=0x9,
+    dRes_ID_O_GD_TONO_BMD_O_GD_TON_O_e=0x9,
     /* BRK  */
     dRes_ID_O_GD_TONO_BRK_TON_O_e=0xC,
     /* BTK  */
-    dRes_ID_O_GD_TONO_BTK_TON_O_1_e=0xF,
+    dRes_ID_O_GD_TONO_BTK_TON_O_e=0xF,
 };
 
 enum O_GD_TON_O_JNT {

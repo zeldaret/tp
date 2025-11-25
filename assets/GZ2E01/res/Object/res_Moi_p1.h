@@ -9,8 +9,8 @@ enum dRes_INDEX_MOI_P1 {
     dRes_INDEX_MOI_P1_BCK_MOI_S_PUT_e=0x7,
     dRes_INDEX_MOI_P1_BCK_MOI_S_PUTTALK_e=0x8,
     /* BTP  */
-    dRes_INDEX_MOI_P1_BTP_MOI_F_HOLD_S_1_e=0xB,
-    dRes_INDEX_MOI_P1_BTP_MOI_FH_HOLD_S_1_e=0xC,
+    dRes_INDEX_MOI_P1_BTP_MOI_F_HOLD_S_e=0xB,
+    dRes_INDEX_MOI_P1_BTP_MOI_FH_HOLD_S_e=0xC,
 };
 
 enum dRes_ID_MOI_P1 {
@@ -21,8 +21,8 @@ enum dRes_ID_MOI_P1 {
     dRes_ID_MOI_P1_BCK_MOI_S_PUT_e=0x7,
     dRes_ID_MOI_P1_BCK_MOI_S_PUTTALK_e=0x8,
     /* BTP  */
-    dRes_ID_MOI_P1_BTP_MOI_F_HOLD_S_1_e=0xB,
-    dRes_ID_MOI_P1_BTP_MOI_FH_HOLD_S_1_e=0xC,
+    dRes_ID_MOI_P1_BTP_MOI_F_HOLD_S_e=0xB,
+    dRes_ID_MOI_P1_BTP_MOI_FH_HOLD_S_e=0xC,
 };
 
 #endif /* !RES_MOI_P1_H */

@@ -12,9 +12,9 @@ enum dRes_INDEX_ZRCB {
     /* BMDR */
     dRes_INDEX_ZRCB_BMD_ZRCB_e=0xD,
     /* BTP  */
-    dRes_INDEX_ZRCB_BTP_ZRCB_F_SUFFER_A_1_e=0x10,
-    dRes_INDEX_ZRCB_BTP_ZRCB_F_SUFFER_B_1_e=0x11,
-    dRes_INDEX_ZRCB_BTP_ZRCB_F_WAIT_A_1_e=0x12,
+    dRes_INDEX_ZRCB_BTP_ZRCB_F_SUFFER_A_e=0x10,
+    dRes_INDEX_ZRCB_BTP_ZRCB_F_SUFFER_B_e=0x11,
+    dRes_INDEX_ZRCB_BTP_ZRCB_F_WAIT_A_e=0x12,
 };
 
 enum dRes_ID_ZRCB {
@@ -28,9 +28,9 @@ enum dRes_ID_ZRCB {
     /* BMDR */
     dRes_ID_ZRCB_BMD_ZRCB_e=0xD,
     /* BTP  */
-    dRes_ID_ZRCB_BTP_ZRCB_F_SUFFER_A_1_e=0x10,
-    dRes_ID_ZRCB_BTP_ZRCB_F_SUFFER_B_1_e=0x11,
-    dRes_ID_ZRCB_BTP_ZRCB_F_WAIT_A_1_e=0x12,
+    dRes_ID_ZRCB_BTP_ZRCB_F_SUFFER_A_e=0x10,
+    dRes_ID_ZRCB_BTP_ZRCB_F_SUFFER_B_e=0x11,
+    dRes_ID_ZRCB_BTP_ZRCB_F_WAIT_A_e=0x12,
 };
 
 enum ZRCB_JNT {

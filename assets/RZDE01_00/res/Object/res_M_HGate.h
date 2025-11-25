@@ -5,14 +5,14 @@ enum dRes_INDEX_M_HGATE {
     /* BMDR */
     dRes_INDEX_M_HGATE_BMD_M_HASHIGATE_e=0x4,
     /* DZB  */
-    dRes_INDEX_M_HGATE_DZB_M_HASHIGATE_1_e=0x7,
+    dRes_INDEX_M_HGATE_DZB_M_HASHIGATE_e=0x7,
 };
 
 enum dRes_ID_M_HGATE {
     /* BMDR */
     dRes_ID_M_HGATE_BMD_M_HASHIGATE_e=0x4,
     /* DZB  */
-    dRes_ID_M_HGATE_DZB_M_HASHIGATE_1_e=0x7,
+    dRes_ID_M_HGATE_DZB_M_HASHIGATE_e=0x7,
 };
 
 enum M_HASHIGATE_JNT {

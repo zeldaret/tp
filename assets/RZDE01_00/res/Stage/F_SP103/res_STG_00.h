@@ -14,7 +14,7 @@ enum dRes_INDEX_STG_00 {
     dRes_INDEX_STG_00_BIN_BANK_e=0x14,
     dRes_INDEX_STG_00_BIN_NAME_e=0x15,
     /* BTK  */
-    dRes_INDEX_STG_00_BTK_VRBOX_SUN_1_e=0x18,
+    dRes_INDEX_STG_00_BTK_VRBOX_SUN_e=0x18,
     /* DAT  */
     dRes_INDEX_STG_00_DAT_COLORDATA_TBL_e=0x1B,
     dRes_INDEX_STG_00_DAT_POL_ARG_e=0x1C,
@@ -54,7 +54,7 @@ enum dRes_ID_STG_00 {
     dRes_ID_STG_00_BIN_BANK_e=0x14,
     dRes_ID_STG_00_BIN_NAME_e=0x15,
     /* BTK  */
-    dRes_ID_STG_00_BTK_VRBOX_SUN_1_e=0x18,
+    dRes_ID_STG_00_BTK_VRBOX_SUN_e=0x18,
     /* DAT  */
     dRes_ID_STG_00_DAT_COLORDATA_TBL_e=0x1B,
     dRes_ID_STG_00_DAT_POL_ARG_e=0x1C,

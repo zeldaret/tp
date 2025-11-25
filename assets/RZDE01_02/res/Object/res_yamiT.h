@@ -10,7 +10,7 @@ enum dRes_INDEX_YAMIT {
     /* BMDR */
     dRes_INDEX_YAMIT_BMD_YAMIT_e=0xC,
     /* BTP  */
-    dRes_INDEX_YAMIT_BTP_YAMIT_1_e=0xF,
+    dRes_INDEX_YAMIT_BTP_YAMIT_e=0xF,
     /* EVT  */
     dRes_INDEX_YAMIT_DAT_EVENT_LIST_e=0x12,
 };
@@ -24,7 +24,7 @@ enum dRes_ID_YAMIT {
     /* BMDR */
     dRes_ID_YAMIT_BMD_YAMIT_e=0xC,
     /* BTP  */
-    dRes_ID_YAMIT_BTP_YAMIT_1_e=0xF,
+    dRes_ID_YAMIT_BTP_YAMIT_e=0xF,
     /* EVT  */
     dRes_ID_YAMIT_DAT_EVENT_LIST_e=0x12,
 };

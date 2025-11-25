@@ -5,14 +5,14 @@ enum dRes_INDEX_MCN_A_TW {
     /* BMDR */
     dRes_INDEX_MCN_A_TW_BMD_MCN_A_TW_e=0x4,
     /* BTP  */
-    dRes_INDEX_MCN_A_TW_BTP_MCN_A_TW_1_e=0x7,
+    dRes_INDEX_MCN_A_TW_BTP_MCN_A_TW_e=0x7,
 };
 
 enum dRes_ID_MCN_A_TW {
     /* BMDR */
     dRes_ID_MCN_A_TW_BMD_MCN_A_TW_e=0x4,
     /* BTP  */
-    dRes_ID_MCN_A_TW_BTP_MCN_A_TW_1_e=0x7,
+    dRes_ID_MCN_A_TW_BTP_MCN_A_TW_e=0x7,
 };
 
 enum MCN_A_TW_JNT {

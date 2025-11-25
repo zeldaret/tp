@@ -11,7 +11,7 @@ enum dRes_INDEX_TARO0 {
     /* BTK  */
     dRes_INDEX_TARO0_BTK_TARO_e=0xC,
     /* BTP  */
-    dRes_INDEX_TARO0_BTP_TARO_F_CLOSE_1_e=0xF,
+    dRes_INDEX_TARO0_BTP_TARO_F_CLOSE_e=0xF,
 };
 
 enum dRes_ID_TARO0 {
@@ -24,7 +24,7 @@ enum dRes_ID_TARO0 {
     /* BTK  */
     dRes_ID_TARO0_BTK_TARO_e=0xC,
     /* BTP  */
-    dRes_ID_TARO0_BTP_TARO_F_CLOSE_1_e=0xF,
+    dRes_ID_TARO0_BTP_TARO_F_CLOSE_e=0xF,
 };
 
 #endif /* !RES_TARO0_H */

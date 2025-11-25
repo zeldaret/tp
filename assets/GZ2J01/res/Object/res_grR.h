@@ -19,14 +19,14 @@ enum dRes_INDEX_GRR {
     /* BMDR */
     dRes_INDEX_GRR_BMD_GRR_e=0x15,
     /* BTK  */
-    dRes_INDEX_GRR_BTK_GRR_1_e=0x18,
+    dRes_INDEX_GRR_BTK_GRR_e=0x18,
     /* BTP  */
-    dRes_INDEX_GRR_BTP_GRR_2_e=0x1B,
-    dRes_INDEX_GRR_BTP_GRR_F_KEEE_1_e=0x1C,
-    dRes_INDEX_GRR_BTP_GRR_F_KEEETALK_1_e=0x1D,
-    dRes_INDEX_GRR_BTP_GRR_F_LAUGH_1_e=0x1E,
-    dRes_INDEX_GRR_BTP_GRR_FH_KEEE_1_e=0x1F,
-    dRes_INDEX_GRR_BTP_GRR_FH_LAUGH_1_e=0x20,
+    dRes_INDEX_GRR_BTP_GRR_e=0x1B,
+    dRes_INDEX_GRR_BTP_GRR_F_KEEE_e=0x1C,
+    dRes_INDEX_GRR_BTP_GRR_F_KEEETALK_e=0x1D,
+    dRes_INDEX_GRR_BTP_GRR_F_LAUGH_e=0x1E,
+    dRes_INDEX_GRR_BTP_GRR_FH_KEEE_e=0x1F,
+    dRes_INDEX_GRR_BTP_GRR_FH_LAUGH_e=0x20,
 };
 
 enum dRes_ID_GRR {
@@ -47,14 +47,14 @@ enum dRes_ID_GRR {
     /* BMDR */
     dRes_ID_GRR_BMD_GRR_e=0x15,
     /* BTK  */
-    dRes_ID_GRR_BTK_GRR_1_e=0x18,
+    dRes_ID_GRR_BTK_GRR_e=0x18,
     /* BTP  */
-    dRes_ID_GRR_BTP_GRR_2_e=0x1B,
-    dRes_ID_GRR_BTP_GRR_F_KEEE_1_e=0x1C,
-    dRes_ID_GRR_BTP_GRR_F_KEEETALK_1_e=0x1D,
-    dRes_ID_GRR_BTP_GRR_F_LAUGH_1_e=0x1E,
-    dRes_ID_GRR_BTP_GRR_FH_KEEE_1_e=0x1F,
-    dRes_ID_GRR_BTP_GRR_FH_LAUGH_1_e=0x20,
+    dRes_ID_GRR_BTP_GRR_e=0x1B,
+    dRes_ID_GRR_BTP_GRR_F_KEEE_e=0x1C,
+    dRes_ID_GRR_BTP_GRR_F_KEEETALK_e=0x1D,
+    dRes_ID_GRR_BTP_GRR_F_LAUGH_e=0x1E,
+    dRes_ID_GRR_BTP_GRR_FH_KEEE_e=0x1F,
+    dRes_ID_GRR_BTP_GRR_FH_LAUGH_e=0x20,
 };
 
 enum GRR_JNT {

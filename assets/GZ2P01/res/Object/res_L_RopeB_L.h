@@ -5,14 +5,14 @@ enum dRes_INDEX_L_ROPEB_L {
     /* BMDR */
     dRes_INDEX_L_ROPEB_L_BMD_L_ROPEB_L_e=0x4,
     /* DZB  */
-    dRes_INDEX_L_ROPEB_L_DZB_L_ROPEB_L_1_e=0x7,
+    dRes_INDEX_L_ROPEB_L_DZB_L_ROPEB_L_e=0x7,
 };
 
 enum dRes_ID_L_ROPEB_L {
     /* BMDR */
     dRes_ID_L_ROPEB_L_BMD_L_ROPEB_L_e=0x4,
     /* DZB  */
-    dRes_ID_L_ROPEB_L_DZB_L_ROPEB_L_1_e=0x7,
+    dRes_ID_L_ROPEB_L_DZB_L_ROPEB_L_e=0x7,
 };
 
 enum L_ROPEB_L_JNT {

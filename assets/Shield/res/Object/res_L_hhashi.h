@@ -8,7 +8,7 @@ enum dRes_INDEX_L_HHASHI {
     dRes_INDEX_L_HHASHI_BMD_L_HHASHI00_e=0x8,
     dRes_INDEX_L_HHASHI_BMD_L_HHASHI02_1_e=0x9,
     /* DZB  */
-    dRes_INDEX_L_HHASHI_DZB_L_HHASHI00_1_e=0xC,
+    dRes_INDEX_L_HHASHI_DZB_L_HHASHI00_e=0xC,
 };
 
 enum dRes_ID_L_HHASHI {
@@ -18,7 +18,7 @@ enum dRes_ID_L_HHASHI {
     dRes_ID_L_HHASHI_BMD_L_HHASHI00_e=0x8,
     dRes_ID_L_HHASHI_BMD_L_HHASHI02_1_e=0x9,
     /* DZB  */
-    dRes_ID_L_HHASHI_DZB_L_HHASHI00_1_e=0xC,
+    dRes_ID_L_HHASHI_DZB_L_HHASHI00_e=0xC,
 };
 
 enum L_HHASHI02_JNT {

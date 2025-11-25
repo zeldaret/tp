@@ -9,9 +9,9 @@ enum dRes_INDEX_YAMID {
     /* BMDR */
     dRes_INDEX_YAMID_BMD_YAMID_e=0xC,
     /* BTK  */
-    dRes_INDEX_YAMID_BTK_YAMID_1_e=0xF,
+    dRes_INDEX_YAMID_BTK_YAMID_e=0xF,
     /* BTP  */
-    dRes_INDEX_YAMID_BTP_YAMID_2_e=0x12,
+    dRes_INDEX_YAMID_BTP_YAMID_e=0x12,
     /* EVT  */
     dRes_INDEX_YAMID_DAT_EVENT_LIST_e=0x15,
 };
@@ -24,9 +24,9 @@ enum dRes_ID_YAMID {
     /* BMDR */
     dRes_ID_YAMID_BMD_YAMID_e=0xC,
     /* BTK  */
-    dRes_ID_YAMID_BTK_YAMID_1_e=0xF,
+    dRes_ID_YAMID_BTK_YAMID_e=0xF,
     /* BTP  */
-    dRes_ID_YAMID_BTP_YAMID_2_e=0x12,
+    dRes_ID_YAMID_BTP_YAMID_e=0x12,
     /* EVT  */
     dRes_ID_YAMID_DAT_EVENT_LIST_e=0x15,
 };

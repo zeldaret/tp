@@ -10,7 +10,7 @@ enum dRes_INDEX_GRA_TOWN {
     /* BMDR */
     dRes_INDEX_GRA_TOWN_BMD_GRA_SHAKU_e=0xB,
     /* BTP  */
-    dRes_INDEX_GRA_TOWN_BTP_GRA_A_F_SALES_TALK_1_e=0xE,
+    dRes_INDEX_GRA_TOWN_BTP_GRA_A_F_SALES_TALK_e=0xE,
 };
 
 enum dRes_ID_GRA_TOWN {
@@ -22,7 +22,7 @@ enum dRes_ID_GRA_TOWN {
     /* BMDR */
     dRes_ID_GRA_TOWN_BMD_GRA_SHAKU_e=0xB,
     /* BTP  */
-    dRes_ID_GRA_TOWN_BTP_GRA_A_F_SALES_TALK_1_e=0xE,
+    dRes_ID_GRA_TOWN_BTP_GRA_A_F_SALES_TALK_e=0xE,
 };
 
 enum GRA_SHAKU_JNT {

@@ -79,9 +79,9 @@ enum dRes_INDEX_B_DR {
     /* BTK  */
     dRes_INDEX_B_DR_BTK_AL_FDRCUT_e=0x54,
     dRes_INDEX_B_DR_BTK_AL_FDRCUTB_e=0x55,
-    dRes_INDEX_B_DR_BTK_AL_FDRFINISH_1_e=0x56,
+    dRes_INDEX_B_DR_BTK_AL_FDRFINISH_e=0x56,
     /* BTP  */
-    dRes_INDEX_B_DR_BTP_AL_FDRFINISH_2_e=0x59,
+    dRes_INDEX_B_DR_BTP_AL_FDRFINISH_e=0x59,
 };
 
 enum dRes_ID_B_DR {
@@ -162,9 +162,9 @@ enum dRes_ID_B_DR {
     /* BTK  */
     dRes_ID_B_DR_BTK_AL_FDRCUT_e=0x54,
     dRes_ID_B_DR_BTK_AL_FDRCUTB_e=0x55,
-    dRes_ID_B_DR_BTK_AL_FDRFINISH_1_e=0x56,
+    dRes_ID_B_DR_BTK_AL_FDRFINISH_e=0x56,
     /* BTP  */
-    dRes_ID_B_DR_BTP_AL_FDRFINISH_2_e=0x59,
+    dRes_ID_B_DR_BTP_AL_FDRFINISH_e=0x59,
 };
 
 enum DR_JNT {

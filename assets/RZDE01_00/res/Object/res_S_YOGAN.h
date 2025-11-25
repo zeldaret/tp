@@ -5,22 +5,22 @@ enum dRes_INDEX_S_YOGAN {
     /* BMDR */
     dRes_INDEX_S_YOGAN_BMD_S_YOGAN_e=0x6,
     /* BRK  */
-    dRes_INDEX_S_YOGAN_BRK_S_YOGAN_1_e=0x9,
+    dRes_INDEX_S_YOGAN_BRK_S_YOGAN_e=0x9,
     /* BTK  */
-    dRes_INDEX_S_YOGAN_BTK_S_YOGAN_2_e=0xC,
+    dRes_INDEX_S_YOGAN_BTK_S_YOGAN_e=0xC,
     /* DZB  */
-    dRes_INDEX_S_YOGAN_DZB_S_YOGAN_3_e=0xF,
+    dRes_INDEX_S_YOGAN_DZB_S_YOGAN_e=0xF,
 };
 
 enum dRes_ID_S_YOGAN {
     /* BMDR */
     dRes_ID_S_YOGAN_BMD_S_YOGAN_e=0x6,
     /* BRK  */
-    dRes_ID_S_YOGAN_BRK_S_YOGAN_1_e=0x9,
+    dRes_ID_S_YOGAN_BRK_S_YOGAN_e=0x9,
     /* BTK  */
-    dRes_ID_S_YOGAN_BTK_S_YOGAN_2_e=0xC,
+    dRes_ID_S_YOGAN_BTK_S_YOGAN_e=0xC,
     /* DZB  */
-    dRes_ID_S_YOGAN_DZB_S_YOGAN_3_e=0xF,
+    dRes_ID_S_YOGAN_DZB_S_YOGAN_e=0xF,
 };
 
 enum S_YOGAN_JNT {

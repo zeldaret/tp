@@ -5,14 +5,14 @@ enum dRes_INDEX_M_IGATE {
     /* BMDR */
     dRes_INDEX_M_IGATE_BMD_M_IZUMIGATE_e=0x4,
     /* DZB  */
-    dRes_INDEX_M_IGATE_DZB_M_IZUMIGATE_1_e=0x7,
+    dRes_INDEX_M_IGATE_DZB_M_IZUMIGATE_e=0x7,
 };
 
 enum dRes_ID_M_IGATE {
     /* BMDR */
     dRes_ID_M_IGATE_BMD_M_IZUMIGATE_e=0x4,
     /* DZB  */
-    dRes_ID_M_IGATE_DZB_M_IZUMIGATE_1_e=0x7,
+    dRes_ID_M_IGATE_DZB_M_IZUMIGATE_e=0x7,
 };
 
 enum M_IZUMIGATE_JNT {

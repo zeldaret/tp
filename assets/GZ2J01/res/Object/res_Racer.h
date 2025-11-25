@@ -15,7 +15,7 @@ enum dRes_INDEX_RACER {
     /* BTP  */
     dRes_INDEX_RACER_BTP_HU_EYE_e=0x13,
     /* DZB  */
-    dRes_INDEX_RACER_DZB_CHARIOT_1_e=0x16,
+    dRes_INDEX_RACER_DZB_CHARIOT_e=0x16,
     /* TEX  */
     dRes_INDEX_RACER_BTI_TAZUNA_e=0x19,
 };
@@ -34,7 +34,7 @@ enum dRes_ID_RACER {
     /* BTP  */
     dRes_ID_RACER_BTP_HU_EYE_e=0x13,
     /* DZB  */
-    dRes_ID_RACER_DZB_CHARIOT_1_e=0x16,
+    dRes_ID_RACER_DZB_CHARIOT_e=0x16,
     /* TEX  */
     dRes_ID_RACER_BTI_TAZUNA_e=0x19,
 };

@@ -12,9 +12,9 @@ enum dRes_INDEX_ZRA_TW {
     /* BMDR */
     dRes_INDEX_ZRA_TW_BMD_ZRA_TW_e=0xD,
     /* BTP  */
-    dRes_INDEX_ZRA_TW_BTP_ZRA_FH_SADSIT_A_1_e=0x10,
-    dRes_INDEX_ZRA_TW_BTP_ZRA_FH_SADSIT_D_1_e=0x11,
-    dRes_INDEX_ZRA_TW_BTP_ZRA_FH_SADSIT_E_1_e=0x12,
+    dRes_INDEX_ZRA_TW_BTP_ZRA_FH_SADSIT_A_e=0x10,
+    dRes_INDEX_ZRA_TW_BTP_ZRA_FH_SADSIT_D_e=0x11,
+    dRes_INDEX_ZRA_TW_BTP_ZRA_FH_SADSIT_E_e=0x12,
 };
 
 enum dRes_ID_ZRA_TW {
@@ -28,9 +28,9 @@ enum dRes_ID_ZRA_TW {
     /* BMDR */
     dRes_ID_ZRA_TW_BMD_ZRA_TW_e=0xD,
     /* BTP  */
-    dRes_ID_ZRA_TW_BTP_ZRA_FH_SADSIT_A_1_e=0x10,
-    dRes_ID_ZRA_TW_BTP_ZRA_FH_SADSIT_D_1_e=0x11,
-    dRes_ID_ZRA_TW_BTP_ZRA_FH_SADSIT_E_1_e=0x12,
+    dRes_ID_ZRA_TW_BTP_ZRA_FH_SADSIT_A_e=0x10,
+    dRes_ID_ZRA_TW_BTP_ZRA_FH_SADSIT_D_e=0x11,
+    dRes_ID_ZRA_TW_BTP_ZRA_FH_SADSIT_E_e=0x12,
 };
 
 enum ZRA_TW_JNT {

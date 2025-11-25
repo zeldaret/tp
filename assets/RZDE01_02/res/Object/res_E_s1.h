@@ -30,7 +30,7 @@ enum dRes_INDEX_E_S1 {
     /* BMDP */
     dRes_INDEX_E_S1_BMD_S1_e=0x1F,
     /* BTK  */
-    dRes_INDEX_E_S1_BTK_S1_1_e=0x22,
+    dRes_INDEX_E_S1_BTK_S1_e=0x22,
 };
 
 enum dRes_ID_E_S1 {
@@ -62,7 +62,7 @@ enum dRes_ID_E_S1 {
     /* BMDP */
     dRes_ID_E_S1_BMD_S1_e=0x1F,
     /* BTK  */
-    dRes_ID_E_S1_BTK_S1_1_e=0x22,
+    dRes_ID_E_S1_BTK_S1_e=0x22,
 };
 
 enum S1_JNT {

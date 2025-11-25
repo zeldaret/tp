@@ -5,14 +5,14 @@ enum dRes_INDEX_V_ICE_L {
     /* BMDR */
     dRes_INDEX_V_ICE_L_BMD_ICE_L_e=0x4,
     /* DZB  */
-    dRes_INDEX_V_ICE_L_DZB_ICE_L_1_e=0x7,
+    dRes_INDEX_V_ICE_L_DZB_ICE_L_e=0x7,
 };
 
 enum dRes_ID_V_ICE_L {
     /* BMDR */
     dRes_ID_V_ICE_L_BMD_ICE_L_e=0x4,
     /* DZB  */
-    dRes_ID_V_ICE_L_DZB_ICE_L_1_e=0x7,
+    dRes_ID_V_ICE_L_DZB_ICE_L_e=0x7,
 };
 
 enum ICE_L_JNT {

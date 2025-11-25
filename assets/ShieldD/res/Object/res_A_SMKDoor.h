@@ -5,7 +5,7 @@ enum dRes_INDEX_A_SMKDOOR {
     /* BMDR */
     dRes_INDEX_A_SMKDOOR_BMD_A_SMKDOOR_e=0x5,
     /* DZB  */
-    dRes_INDEX_A_SMKDOOR_DZB_A_SMKDOOR_1_e=0x8,
+    dRes_INDEX_A_SMKDOOR_DZB_A_SMKDOOR_e=0x8,
     /* EVT  */
     dRes_INDEX_A_SMKDOOR_DAT_EVENT_LIST_e=0xB,
 };
@@ -14,7 +14,7 @@ enum dRes_ID_A_SMKDOOR {
     /* BMDR */
     dRes_ID_A_SMKDOOR_BMD_A_SMKDOOR_e=0x5,
     /* DZB  */
-    dRes_ID_A_SMKDOOR_DZB_A_SMKDOOR_1_e=0x8,
+    dRes_ID_A_SMKDOOR_DZB_A_SMKDOOR_e=0x8,
     /* EVT  */
     dRes_ID_A_SMKDOOR_DAT_EVENT_LIST_e=0xB,
 };

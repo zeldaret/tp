@@ -7,7 +7,7 @@ enum dRes_INDEX_B_HASHI {
     /* BMDR */
     dRes_INDEX_B_HASHI_BMD_LV9_R07_PILLAR_e=0x8,
     /* DZB  */
-    dRes_INDEX_B_HASHI_DZB_LV9_R07_PILLAR_1_e=0xB,
+    dRes_INDEX_B_HASHI_DZB_LV9_R07_PILLAR_e=0xB,
 };
 
 enum dRes_ID_B_HASHI {
@@ -16,7 +16,7 @@ enum dRes_ID_B_HASHI {
     /* BMDR */
     dRes_ID_B_HASHI_BMD_LV9_R07_PILLAR_e=0x8,
     /* DZB  */
-    dRes_ID_B_HASHI_DZB_LV9_R07_PILLAR_1_e=0xB,
+    dRes_ID_B_HASHI_DZB_LV9_R07_PILLAR_e=0xB,
 };
 
 enum LV9_R07_PILLAR_HAHEN_JNT {

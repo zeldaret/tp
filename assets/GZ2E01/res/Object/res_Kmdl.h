@@ -14,7 +14,7 @@ enum dRes_INDEX_KMDL {
     dRes_INDEX_KMDL_BMD_AL_HEAD_e=0x10,
     dRes_INDEX_KMDL_BMD_AL_SWB_e=0x11,
     /* BTK  */
-    dRes_INDEX_KMDL_BTK_EF_KTGLOW_1_e=0x14,
+    dRes_INDEX_KMDL_BTK_EF_KTGLOW_e=0x14,
 };
 
 enum dRes_ID_KMDL {
@@ -30,7 +30,7 @@ enum dRes_ID_KMDL {
     dRes_ID_KMDL_BMD_AL_HEAD_e=0x10,
     dRes_ID_KMDL_BMD_AL_SWB_e=0x11,
     /* BTK  */
-    dRes_ID_KMDL_BTK_EF_KTGLOW_1_e=0x14,
+    dRes_ID_KMDL_BTK_EF_KTGLOW_e=0x14,
 };
 
 enum AL_KANTERA_JNT {

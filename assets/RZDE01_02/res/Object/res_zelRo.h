@@ -8,9 +8,9 @@ enum dRes_INDEX_ZELRO {
     /* BMDR */
     dRes_INDEX_ZELRO_BMD_ZELRO_e=0xA,
     /* BTK  */
-    dRes_INDEX_ZELRO_BTK_ZELRO_1_e=0xD,
+    dRes_INDEX_ZELRO_BTK_ZELRO_e=0xD,
     /* BTP  */
-    dRes_INDEX_ZELRO_BTP_ZELRO_2_e=0x10,
+    dRes_INDEX_ZELRO_BTP_ZELRO_e=0x10,
 };
 
 enum dRes_ID_ZELRO {
@@ -20,9 +20,9 @@ enum dRes_ID_ZELRO {
     /* BMDR */
     dRes_ID_ZELRO_BMD_ZELRO_e=0xA,
     /* BTK  */
-    dRes_ID_ZELRO_BTK_ZELRO_1_e=0xD,
+    dRes_ID_ZELRO_BTK_ZELRO_e=0xD,
     /* BTP  */
-    dRes_ID_ZELRO_BTP_ZELRO_2_e=0x10,
+    dRes_ID_ZELRO_BTP_ZELRO_e=0x10,
 };
 
 enum ZELRO_JNT {

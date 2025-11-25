@@ -7,8 +7,8 @@ enum dRes_INDEX_L5_R50 {
     dRes_INDEX_L5_R50_BMD_R50_P2_e=0x5,
     dRes_INDEX_L5_R50_BMD_T_R50FURNITURE_e=0x6,
     /* DZB  */
-    dRes_INDEX_L5_R50_DZB_R50_P1_1_e=0x9,
-    dRes_INDEX_L5_R50_DZB_R50_P2_1_e=0xA,
+    dRes_INDEX_L5_R50_DZB_R50_P1_e=0x9,
+    dRes_INDEX_L5_R50_DZB_R50_P2_e=0xA,
 };
 
 enum dRes_ID_L5_R50 {
@@ -17,8 +17,8 @@ enum dRes_ID_L5_R50 {
     dRes_ID_L5_R50_BMD_R50_P2_e=0x5,
     dRes_ID_L5_R50_BMD_T_R50FURNITURE_e=0x6,
     /* DZB  */
-    dRes_ID_L5_R50_DZB_R50_P1_1_e=0x9,
-    dRes_ID_L5_R50_DZB_R50_P2_1_e=0xA,
+    dRes_ID_L5_R50_DZB_R50_P1_e=0x9,
+    dRes_ID_L5_R50_DZB_R50_P2_e=0xA,
 };
 
 enum R50_P1_JNT {

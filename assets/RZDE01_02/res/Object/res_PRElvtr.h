@@ -5,14 +5,14 @@ enum dRes_INDEX_PRELVTR {
     /* BMDR */
     dRes_INDEX_PRELVTR_BMD_P_RELVTR_e=0x4,
     /* DZB  */
-    dRes_INDEX_PRELVTR_DZB_P_RELVTR_1_e=0x7,
+    dRes_INDEX_PRELVTR_DZB_P_RELVTR_e=0x7,
 };
 
 enum dRes_ID_PRELVTR {
     /* BMDR */
     dRes_ID_PRELVTR_BMD_P_RELVTR_e=0x4,
     /* DZB  */
-    dRes_ID_PRELVTR_DZB_P_RELVTR_1_e=0x7,
+    dRes_ID_PRELVTR_DZB_P_RELVTR_e=0x7,
 };
 
 enum P_RELVTR_JNT {

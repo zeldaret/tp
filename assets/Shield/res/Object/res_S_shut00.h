@@ -5,7 +5,7 @@ enum dRes_INDEX_S_SHUT00 {
     /* BMDR */
     dRes_INDEX_S_SHUT00_BMD_S_SHUT_ROU_e=0x5,
     /* DZB  */
-    dRes_INDEX_S_SHUT00_DZB_S_SHUT_ROU_1_e=0x8,
+    dRes_INDEX_S_SHUT00_DZB_S_SHUT_ROU_e=0x8,
     /* EVT  */
     dRes_INDEX_S_SHUT00_DAT_EVENT_LIST_e=0xB,
 };
@@ -14,7 +14,7 @@ enum dRes_ID_S_SHUT00 {
     /* BMDR */
     dRes_ID_S_SHUT00_BMD_S_SHUT_ROU_e=0x5,
     /* DZB  */
-    dRes_ID_S_SHUT00_DZB_S_SHUT_ROU_1_e=0x8,
+    dRes_ID_S_SHUT00_DZB_S_SHUT_ROU_e=0x8,
     /* EVT  */
     dRes_ID_S_SHUT00_DAT_EVENT_LIST_e=0xB,
 };

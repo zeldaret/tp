@@ -9,10 +9,10 @@ enum dRes_INDEX_MARO {
     /* BMDR */
     dRes_INDEX_MARO_BMD_MARO_e=0xB,
     /* BTK  */
-    dRes_INDEX_MARO_BTK_MARO_1_e=0xE,
+    dRes_INDEX_MARO_BTK_MARO_e=0xE,
     /* BTP  */
-    dRes_INDEX_MARO_BTP_MARO_2_e=0x11,
-    dRes_INDEX_MARO_BTP_MARO_F_TALK_A_1_e=0x12,
+    dRes_INDEX_MARO_BTP_MARO_e=0x11,
+    dRes_INDEX_MARO_BTP_MARO_F_TALK_A_e=0x12,
 };
 
 enum dRes_ID_MARO {
@@ -23,10 +23,10 @@ enum dRes_ID_MARO {
     /* BMDR */
     dRes_ID_MARO_BMD_MARO_e=0xB,
     /* BTK  */
-    dRes_ID_MARO_BTK_MARO_1_e=0xE,
+    dRes_ID_MARO_BTK_MARO_e=0xE,
     /* BTP  */
-    dRes_ID_MARO_BTP_MARO_2_e=0x11,
-    dRes_ID_MARO_BTP_MARO_F_TALK_A_1_e=0x12,
+    dRes_ID_MARO_BTP_MARO_e=0x11,
+    dRes_ID_MARO_BTP_MARO_F_TALK_A_e=0x12,
 };
 
 enum MARO_JNT {

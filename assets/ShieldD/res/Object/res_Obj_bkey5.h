@@ -7,7 +7,7 @@ enum dRes_INDEX_OBJ_BKEY5 {
     /* BMDG */
     dRes_INDEX_OBJ_BKEY5_BMD_O_LV5_LOCK_KUSARI_e=0x8,
     /* BMDV */
-    dRes_INDEX_OBJ_BKEY5_BMD_O_LV5_BKEY_LOCK_1_e=0xB,
+    dRes_INDEX_OBJ_BKEY5_BMD_O_LV5_BKEY_LOCK_e=0xB,
 };
 
 enum dRes_ID_OBJ_BKEY5 {
@@ -16,7 +16,7 @@ enum dRes_ID_OBJ_BKEY5 {
     /* BMDG */
     dRes_ID_OBJ_BKEY5_BMD_O_LV5_LOCK_KUSARI_e=0x8,
     /* BMDV */
-    dRes_ID_OBJ_BKEY5_BMD_O_LV5_BKEY_LOCK_1_e=0xB,
+    dRes_ID_OBJ_BKEY5_BMD_O_LV5_BKEY_LOCK_e=0xB,
 };
 
 enum O_LV5_LOCK_KUSARI_JNT {

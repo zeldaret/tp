@@ -5,14 +5,14 @@ enum dRes_INDEX_OBJ_KBOX {
     /* BMDR */
     dRes_INDEX_OBJ_KBOX_BMD_K_SKIBA_00_e=0x4,
     /* DZB  */
-    dRes_INDEX_OBJ_KBOX_DZB_K_SKIBA_00_1_e=0x7,
+    dRes_INDEX_OBJ_KBOX_DZB_K_SKIBA_00_e=0x7,
 };
 
 enum dRes_ID_OBJ_KBOX {
     /* BMDR */
     dRes_ID_OBJ_KBOX_BMD_K_SKIBA_00_e=0x4,
     /* DZB  */
-    dRes_ID_OBJ_KBOX_DZB_K_SKIBA_00_1_e=0x7,
+    dRes_ID_OBJ_KBOX_DZB_K_SKIBA_00_e=0x7,
 };
 
 enum K_SKIBA_00_JNT {

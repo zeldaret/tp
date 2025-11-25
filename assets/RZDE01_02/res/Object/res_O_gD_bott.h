@@ -5,22 +5,22 @@ enum dRes_INDEX_O_GD_BOTT {
     /* BMDE */
     dRes_INDEX_O_GD_BOTT_BMD_O_GD_BOTTLE_e=0x6,
     /* BRK  */
-    dRes_INDEX_O_GD_BOTT_BRK_O_GD_BOTTLE_1_e=0x9,
+    dRes_INDEX_O_GD_BOTT_BRK_O_GD_BOTTLE_e=0x9,
     /* BTK  */
-    dRes_INDEX_O_GD_BOTT_BTK_O_GD_BOTTLE_2_e=0xC,
+    dRes_INDEX_O_GD_BOTT_BTK_O_GD_BOTTLE_e=0xC,
     /* BTP  */
-    dRes_INDEX_O_GD_BOTT_BTP_O_GD_BOTTLE_3_e=0xF,
+    dRes_INDEX_O_GD_BOTT_BTP_O_GD_BOTTLE_e=0xF,
 };
 
 enum dRes_ID_O_GD_BOTT {
     /* BMDE */
     dRes_ID_O_GD_BOTT_BMD_O_GD_BOTTLE_e=0x6,
     /* BRK  */
-    dRes_ID_O_GD_BOTT_BRK_O_GD_BOTTLE_1_e=0x9,
+    dRes_ID_O_GD_BOTT_BRK_O_GD_BOTTLE_e=0x9,
     /* BTK  */
-    dRes_ID_O_GD_BOTT_BTK_O_GD_BOTTLE_2_e=0xC,
+    dRes_ID_O_GD_BOTT_BTK_O_GD_BOTTLE_e=0xC,
     /* BTP  */
-    dRes_ID_O_GD_BOTT_BTP_O_GD_BOTTLE_3_e=0xF,
+    dRes_ID_O_GD_BOTT_BTP_O_GD_BOTTLE_e=0xF,
 };
 
 enum O_GD_BOTTLE_JNT {

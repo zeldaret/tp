@@ -9,9 +9,9 @@ enum dRes_INDEX_YKW {
     /* BMDR */
     dRes_INDEX_YKW_BMD_YKW_e=0xB,
     /* BTK  */
-    dRes_INDEX_YKW_BTK_YKW_1_e=0xE,
+    dRes_INDEX_YKW_BTK_YKW_e=0xE,
     /* BTP  */
-    dRes_INDEX_YKW_BTP_YKW_2_e=0x11,
+    dRes_INDEX_YKW_BTP_YKW_e=0x11,
 };
 
 enum dRes_ID_YKW {
@@ -22,9 +22,9 @@ enum dRes_ID_YKW {
     /* BMDR */
     dRes_ID_YKW_BMD_YKW_e=0xB,
     /* BTK  */
-    dRes_ID_YKW_BTK_YKW_1_e=0xE,
+    dRes_ID_YKW_BTK_YKW_e=0xE,
     /* BTP  */
-    dRes_ID_YKW_BTP_YKW_2_e=0x11,
+    dRes_ID_YKW_BTP_YKW_e=0x11,
 };
 
 enum YKW_JNT {

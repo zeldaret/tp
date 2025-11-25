@@ -10,10 +10,10 @@ enum dRes_INDEX_ARU {
     /* BMDR */
     dRes_INDEX_ARU_BMD_ARU_e=0xC,
     /* BTK  */
-    dRes_INDEX_ARU_BTK_ARU_1_e=0xF,
+    dRes_INDEX_ARU_BTK_ARU_e=0xF,
     /* BTP  */
-    dRes_INDEX_ARU_BTP_ARU_2_e=0x12,
-    dRes_INDEX_ARU_BTP_ARU_FH_NORMAL_1_e=0x13,
+    dRes_INDEX_ARU_BTP_ARU_e=0x12,
+    dRes_INDEX_ARU_BTP_ARU_FH_NORMAL_e=0x13,
 };
 
 enum dRes_ID_ARU {
@@ -25,10 +25,10 @@ enum dRes_ID_ARU {
     /* BMDR */
     dRes_ID_ARU_BMD_ARU_e=0xC,
     /* BTK  */
-    dRes_ID_ARU_BTK_ARU_1_e=0xF,
+    dRes_ID_ARU_BTK_ARU_e=0xF,
     /* BTP  */
-    dRes_ID_ARU_BTP_ARU_2_e=0x12,
-    dRes_ID_ARU_BTP_ARU_FH_NORMAL_1_e=0x13,
+    dRes_ID_ARU_BTP_ARU_e=0x12,
+    dRes_ID_ARU_BTP_ARU_FH_NORMAL_e=0x13,
 };
 
 enum ARU_JNT {

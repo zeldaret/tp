@@ -17,15 +17,15 @@ enum dRes_INDEX_ZRA {
     dRes_INDEX_ZRA_BPK_ZRA_e=0x14,
     dRes_INDEX_ZRA_BPK_ZRA_WATER02_e=0x15,
     /* BRK  */
-    dRes_INDEX_ZRA_BRK_ZRA_1_e=0x18,
-    dRes_INDEX_ZRA_BRK_ZRA_WATER02_1_e=0x19,
+    dRes_INDEX_ZRA_BRK_ZRA_e=0x18,
+    dRes_INDEX_ZRA_BRK_ZRA_WATER02_e=0x19,
     /* BTK  */
-    dRes_INDEX_ZRA_BTK_ZRA_2_e=0x1C,
+    dRes_INDEX_ZRA_BTK_ZRA_e=0x1C,
     dRes_INDEX_ZRA_BTK_ZRA_RESET_e=0x1D,
     dRes_INDEX_ZRA_BTK_ZRA_W_EYEBALL_e=0x1E,
-    dRes_INDEX_ZRA_BTK_ZRA_WATER02_2_e=0x1F,
+    dRes_INDEX_ZRA_BTK_ZRA_WATER02_e=0x1F,
     /* BTP  */
-    dRes_INDEX_ZRA_BTP_ZRA_3_e=0x22,
+    dRes_INDEX_ZRA_BTP_ZRA_e=0x22,
     /* EVT  */
     dRes_INDEX_ZRA_DAT_EVENT_LIST_e=0x25,
 };
@@ -46,15 +46,15 @@ enum dRes_ID_ZRA {
     dRes_ID_ZRA_BPK_ZRA_e=0x14,
     dRes_ID_ZRA_BPK_ZRA_WATER02_e=0x15,
     /* BRK  */
-    dRes_ID_ZRA_BRK_ZRA_1_e=0x18,
-    dRes_ID_ZRA_BRK_ZRA_WATER02_1_e=0x19,
+    dRes_ID_ZRA_BRK_ZRA_e=0x18,
+    dRes_ID_ZRA_BRK_ZRA_WATER02_e=0x19,
     /* BTK  */
-    dRes_ID_ZRA_BTK_ZRA_2_e=0x1C,
+    dRes_ID_ZRA_BTK_ZRA_e=0x1C,
     dRes_ID_ZRA_BTK_ZRA_RESET_e=0x1D,
     dRes_ID_ZRA_BTK_ZRA_W_EYEBALL_e=0x1E,
-    dRes_ID_ZRA_BTK_ZRA_WATER02_2_e=0x1F,
+    dRes_ID_ZRA_BTK_ZRA_WATER02_e=0x1F,
     /* BTP  */
-    dRes_ID_ZRA_BTP_ZRA_3_e=0x22,
+    dRes_ID_ZRA_BTP_ZRA_e=0x22,
     /* EVT  */
     dRes_ID_ZRA_DAT_EVENT_LIST_e=0x25,
 };

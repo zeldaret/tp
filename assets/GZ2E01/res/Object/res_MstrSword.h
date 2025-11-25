@@ -5,18 +5,18 @@ enum dRes_INDEX_MSTRSWORD {
     /* BMDR */
     dRes_INDEX_MSTRSWORD_BMD_O_AL_SWM_e=0x5,
     /* BRK  */
-    dRes_INDEX_MSTRSWORD_BRK_O_AL_SWM_1_e=0x8,
+    dRes_INDEX_MSTRSWORD_BRK_O_AL_SWM_e=0x8,
     /* BTK  */
-    dRes_INDEX_MSTRSWORD_BTK_O_AL_SWM_2_e=0xB,
+    dRes_INDEX_MSTRSWORD_BTK_O_AL_SWM_e=0xB,
 };
 
 enum dRes_ID_MSTRSWORD {
     /* BMDR */
     dRes_ID_MSTRSWORD_BMD_O_AL_SWM_e=0x5,
     /* BRK  */
-    dRes_ID_MSTRSWORD_BRK_O_AL_SWM_1_e=0x8,
+    dRes_ID_MSTRSWORD_BRK_O_AL_SWM_e=0x8,
     /* BTK  */
-    dRes_ID_MSTRSWORD_BTK_O_AL_SWM_2_e=0xB,
+    dRes_ID_MSTRSWORD_BTK_O_AL_SWM_e=0xB,
 };
 
 enum O_AL_SWM_JNT {

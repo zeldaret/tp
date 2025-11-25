@@ -13,7 +13,7 @@ enum dRes_INDEX_FR {
     /* BMDR */
     dRes_INDEX_FR_BMD_FR_e=0xE,
     /* BTK  */
-    dRes_INDEX_FR_BTK_FR_1_e=0x11,
+    dRes_INDEX_FR_BTK_FR_e=0x11,
 };
 
 enum dRes_ID_FR {
@@ -28,7 +28,7 @@ enum dRes_ID_FR {
     /* BMDR */
     dRes_ID_FR_BMD_FR_e=0xE,
     /* BTK  */
-    dRes_ID_FR_BTK_FR_1_e=0x11,
+    dRes_ID_FR_BTK_FR_e=0x11,
 };
 
 enum FR_JNT {

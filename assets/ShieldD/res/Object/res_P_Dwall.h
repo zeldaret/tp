@@ -5,14 +5,14 @@ enum dRes_INDEX_P_DWALL {
     /* BMDR */
     dRes_INDEX_P_DWALL_BMD_P_DWALL_e=0x4,
     /* DZB  */
-    dRes_INDEX_P_DWALL_DZB_P_DWALL_1_e=0x7,
+    dRes_INDEX_P_DWALL_DZB_P_DWALL_e=0x7,
 };
 
 enum dRes_ID_P_DWALL {
     /* BMDR */
     dRes_ID_P_DWALL_BMD_P_DWALL_e=0x4,
     /* DZB  */
-    dRes_ID_P_DWALL_DZB_P_DWALL_1_e=0x7,
+    dRes_ID_P_DWALL_DZB_P_DWALL_e=0x7,
 };
 
 enum P_DWALL_JNT {

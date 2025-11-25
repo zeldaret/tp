@@ -74,12 +74,12 @@ enum dRes_INDEX_B_ZAN {
     dRes_INDEX_B_ZAN_BMD_ZZ_e=0x4C,
     /* BRK  */
     dRes_INDEX_B_ZAN_BRK_ZAN_MAHOJIN_END_e=0x4F,
-    dRes_INDEX_B_ZAN_BRK_ZZ_1_e=0x50,
+    dRes_INDEX_B_ZAN_BRK_ZZ_e=0x50,
     /* BTK  */
-    dRes_INDEX_B_ZAN_BTK_ZAN_MAHOJIN_1_e=0x53,
+    dRes_INDEX_B_ZAN_BTK_ZAN_MAHOJIN_e=0x53,
     dRes_INDEX_B_ZAN_BTK_ZAN_MAHOJIN_START_e=0x54,
     /* DZB  */
-    dRes_INDEX_B_ZAN_DZB_ZZ_2_e=0x57,
+    dRes_INDEX_B_ZAN_DZB_ZZ_e=0x57,
 };
 
 enum dRes_ID_B_ZAN {
@@ -155,12 +155,12 @@ enum dRes_ID_B_ZAN {
     dRes_ID_B_ZAN_BMD_ZZ_e=0x4C,
     /* BRK  */
     dRes_ID_B_ZAN_BRK_ZAN_MAHOJIN_END_e=0x4F,
-    dRes_ID_B_ZAN_BRK_ZZ_1_e=0x50,
+    dRes_ID_B_ZAN_BRK_ZZ_e=0x50,
     /* BTK  */
-    dRes_ID_B_ZAN_BTK_ZAN_MAHOJIN_1_e=0x53,
+    dRes_ID_B_ZAN_BTK_ZAN_MAHOJIN_e=0x53,
     dRes_ID_B_ZAN_BTK_ZAN_MAHOJIN_START_e=0x54,
     /* DZB  */
-    dRes_ID_B_ZAN_DZB_ZZ_2_e=0x57,
+    dRes_ID_B_ZAN_DZB_ZZ_e=0x57,
 };
 
 enum EF_TK2BALL_JNT {

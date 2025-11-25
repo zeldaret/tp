@@ -8,7 +8,7 @@ enum dRes_INDEX_ZANB {
     /* BMDR */
     dRes_INDEX_ZANB_BMD_ZANB_e=0x9,
     /* BTK  */
-    dRes_INDEX_ZANB_BTK_ZANB_1_e=0xC,
+    dRes_INDEX_ZANB_BTK_ZANB_e=0xC,
 };
 
 enum dRes_ID_ZANB {
@@ -18,7 +18,7 @@ enum dRes_ID_ZANB {
     /* BMDR */
     dRes_ID_ZANB_BMD_ZANB_e=0x9,
     /* BTK  */
-    dRes_ID_ZANB_BTK_ZANB_1_e=0xC,
+    dRes_ID_ZANB_BTK_ZANB_e=0xC,
 };
 
 enum ZANB_JNT {

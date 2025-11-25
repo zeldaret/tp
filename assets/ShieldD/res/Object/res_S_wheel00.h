@@ -5,14 +5,14 @@ enum dRes_INDEX_S_WHEEL00 {
     /* BMDR */
     dRes_INDEX_S_WHEEL00_BMD_S_WHEEL00_e=0x4,
     /* DZB  */
-    dRes_INDEX_S_WHEEL00_DZB_S_WHEEL00_1_e=0x7,
+    dRes_INDEX_S_WHEEL00_DZB_S_WHEEL00_e=0x7,
 };
 
 enum dRes_ID_S_WHEEL00 {
     /* BMDR */
     dRes_ID_S_WHEEL00_BMD_S_WHEEL00_e=0x4,
     /* DZB  */
-    dRes_ID_S_WHEEL00_DZB_S_WHEEL00_1_e=0x7,
+    dRes_ID_S_WHEEL00_DZB_S_WHEEL00_e=0x7,
 };
 
 enum S_WHEEL00_JNT {

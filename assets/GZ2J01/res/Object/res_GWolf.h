@@ -16,9 +16,9 @@ enum dRes_INDEX_GWOLF {
     /* BMDR */
     dRes_INDEX_GWOLF_BMD_GW_e=0x13,
     /* BRK  */
-    dRes_INDEX_GWOLF_BRK_GW_1_e=0x16,
+    dRes_INDEX_GWOLF_BRK_GW_e=0x16,
     /* BTK  */
-    dRes_INDEX_GWOLF_BTK_GW_2_e=0x19,
+    dRes_INDEX_GWOLF_BTK_GW_e=0x19,
     /* EVT  */
     dRes_INDEX_GWOLF_DAT_EVENT_LIST_e=0x1C,
 };
@@ -38,9 +38,9 @@ enum dRes_ID_GWOLF {
     /* BMDR */
     dRes_ID_GWOLF_BMD_GW_e=0x13,
     /* BRK  */
-    dRes_ID_GWOLF_BRK_GW_1_e=0x16,
+    dRes_ID_GWOLF_BRK_GW_e=0x16,
     /* BTK  */
-    dRes_ID_GWOLF_BTK_GW_2_e=0x19,
+    dRes_ID_GWOLF_BTK_GW_e=0x19,
     /* EVT  */
     dRes_ID_GWOLF_DAT_EVENT_LIST_e=0x1C,
 };

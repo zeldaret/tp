@@ -5,18 +5,18 @@ enum dRes_INDEX_O_GD_TAMA {
     /* BMDR */
     dRes_INDEX_O_GD_TAMA_BMD_O_GD_INOCHIDAMA_e=0x5,
     /* BRK  */
-    dRes_INDEX_O_GD_TAMA_BRK_O_GD_INOCHIDAMA_1_e=0x8,
+    dRes_INDEX_O_GD_TAMA_BRK_O_GD_INOCHIDAMA_e=0x8,
     /* BTK  */
-    dRes_INDEX_O_GD_TAMA_BTK_O_GD_INOCHIDAMA_2_e=0xB,
+    dRes_INDEX_O_GD_TAMA_BTK_O_GD_INOCHIDAMA_e=0xB,
 };
 
 enum dRes_ID_O_GD_TAMA {
     /* BMDR */
     dRes_ID_O_GD_TAMA_BMD_O_GD_INOCHIDAMA_e=0x5,
     /* BRK  */
-    dRes_ID_O_GD_TAMA_BRK_O_GD_INOCHIDAMA_1_e=0x8,
+    dRes_ID_O_GD_TAMA_BRK_O_GD_INOCHIDAMA_e=0x8,
     /* BTK  */
-    dRes_ID_O_GD_TAMA_BTK_O_GD_INOCHIDAMA_2_e=0xB,
+    dRes_ID_O_GD_TAMA_BTK_O_GD_INOCHIDAMA_e=0xB,
 };
 
 enum O_GD_INOCHIDAMA_JNT {

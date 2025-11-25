@@ -7,9 +7,9 @@ enum dRes_INDEX_MIDP {
     /* BMDR */
     dRes_INDEX_MIDP_BMD_MIDP_e=0x9,
     /* BTK  */
-    dRes_INDEX_MIDP_BTK_MIDP_1_e=0xC,
+    dRes_INDEX_MIDP_BTK_MIDP_e=0xC,
     /* BTP  */
-    dRes_INDEX_MIDP_BTP_MIDP_2_e=0xF,
+    dRes_INDEX_MIDP_BTP_MIDP_e=0xF,
 };
 
 enum dRes_ID_MIDP {
@@ -18,9 +18,9 @@ enum dRes_ID_MIDP {
     /* BMDR */
     dRes_ID_MIDP_BMD_MIDP_e=0x9,
     /* BTK  */
-    dRes_ID_MIDP_BTK_MIDP_1_e=0xC,
+    dRes_ID_MIDP_BTK_MIDP_e=0xC,
     /* BTP  */
-    dRes_ID_MIDP_BTP_MIDP_2_e=0xF,
+    dRes_ID_MIDP_BTP_MIDP_e=0xF,
 };
 
 enum MIDP_JNT {

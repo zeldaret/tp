@@ -6,8 +6,8 @@ enum dRes_INDEX_P_LBSWBC {
     dRes_INDEX_P_LBSWBC_BMD_P_LBSWB_e=0x5,
     dRes_INDEX_P_LBSWBC_BMD_P_LBSWC_e=0x6,
     /* BTK  */
-    dRes_INDEX_P_LBSWBC_BTK_P_LBSWB_1_e=0x9,
-    dRes_INDEX_P_LBSWBC_BTK_P_LBSWC_1_e=0xA,
+    dRes_INDEX_P_LBSWBC_BTK_P_LBSWB_e=0x9,
+    dRes_INDEX_P_LBSWBC_BTK_P_LBSWC_e=0xA,
     /* EVT  */
     dRes_INDEX_P_LBSWBC_DAT_EVENT_LIST_e=0xD,
 };
@@ -17,8 +17,8 @@ enum dRes_ID_P_LBSWBC {
     dRes_ID_P_LBSWBC_BMD_P_LBSWB_e=0x5,
     dRes_ID_P_LBSWBC_BMD_P_LBSWC_e=0x6,
     /* BTK  */
-    dRes_ID_P_LBSWBC_BTK_P_LBSWB_1_e=0x9,
-    dRes_ID_P_LBSWBC_BTK_P_LBSWC_1_e=0xA,
+    dRes_ID_P_LBSWBC_BTK_P_LBSWB_e=0x9,
+    dRes_ID_P_LBSWBC_BTK_P_LBSWC_e=0xA,
     /* EVT  */
     dRes_ID_P_LBSWBC_DAT_EVENT_LIST_e=0xD,
 };

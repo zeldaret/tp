@@ -15,12 +15,12 @@ enum dRes_INDEX_POST {
     dRes_INDEX_POST_BMD_POST_FLAG_e=0x10,
     dRes_INDEX_POST_BMD_POST_LETTER_e=0x11,
     /* BTK  */
-    dRes_INDEX_POST_BTK_POST_1_e=0x14,
+    dRes_INDEX_POST_BTK_POST_e=0x14,
     /* BTP  */
-    dRes_INDEX_POST_BTP_POST_2_e=0x17,
-    dRes_INDEX_POST_BTP_POST_F_HAPPY_1_e=0x18,
-    dRes_INDEX_POST_BTP_POST_F_TALK_A_1_e=0x19,
-    dRes_INDEX_POST_BTP_POST_FH_HAPPY_1_e=0x1A,
+    dRes_INDEX_POST_BTP_POST_e=0x17,
+    dRes_INDEX_POST_BTP_POST_F_HAPPY_e=0x18,
+    dRes_INDEX_POST_BTP_POST_F_TALK_A_e=0x19,
+    dRes_INDEX_POST_BTP_POST_FH_HAPPY_e=0x1A,
 };
 
 enum dRes_ID_POST {
@@ -37,12 +37,12 @@ enum dRes_ID_POST {
     dRes_ID_POST_BMD_POST_FLAG_e=0x10,
     dRes_ID_POST_BMD_POST_LETTER_e=0x11,
     /* BTK  */
-    dRes_ID_POST_BTK_POST_1_e=0x14,
+    dRes_ID_POST_BTK_POST_e=0x14,
     /* BTP  */
-    dRes_ID_POST_BTP_POST_2_e=0x17,
-    dRes_ID_POST_BTP_POST_F_HAPPY_1_e=0x18,
-    dRes_ID_POST_BTP_POST_F_TALK_A_1_e=0x19,
-    dRes_ID_POST_BTP_POST_FH_HAPPY_1_e=0x1A,
+    dRes_ID_POST_BTP_POST_e=0x17,
+    dRes_ID_POST_BTP_POST_F_HAPPY_e=0x18,
+    dRes_ID_POST_BTP_POST_F_TALK_A_e=0x19,
+    dRes_ID_POST_BTP_POST_FH_HAPPY_e=0x1A,
 };
 
 enum POST_JNT {

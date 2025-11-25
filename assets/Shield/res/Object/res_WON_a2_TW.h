@@ -5,14 +5,14 @@ enum dRes_INDEX_WON_A2_TW {
     /* BMDR */
     dRes_INDEX_WON_A2_TW_BMD_WON_A2_TW_e=0x4,
     /* BTP  */
-    dRes_INDEX_WON_A2_TW_BTP_WON_A2_TW_1_e=0x7,
+    dRes_INDEX_WON_A2_TW_BTP_WON_A2_TW_e=0x7,
 };
 
 enum dRes_ID_WON_A2_TW {
     /* BMDR */
     dRes_ID_WON_A2_TW_BMD_WON_A2_TW_e=0x4,
     /* BTP  */
-    dRes_ID_WON_A2_TW_BTP_WON_A2_TW_1_e=0x7,
+    dRes_ID_WON_A2_TW_BTP_WON_A2_TW_e=0x7,
 };
 
 enum WON_A2_TW_JNT {

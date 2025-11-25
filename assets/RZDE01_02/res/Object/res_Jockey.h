@@ -15,10 +15,10 @@ enum dRes_INDEX_JOCKEY {
     /* BMDR */
     dRes_INDEX_JOCKEY_BMD_THEB_e=0x12,
     /* BTK  */
-    dRes_INDEX_JOCKEY_BTK_THEB_1_e=0x15,
+    dRes_INDEX_JOCKEY_BTK_THEB_e=0x15,
     /* BTP  */
-    dRes_INDEX_JOCKEY_BTP_THEB_2_e=0x18,
-    dRes_INDEX_JOCKEY_BTP_THEB_F_TALK_A_1_e=0x19,
+    dRes_INDEX_JOCKEY_BTP_THEB_e=0x18,
+    dRes_INDEX_JOCKEY_BTP_THEB_F_TALK_A_e=0x19,
     /* EVT  */
     dRes_INDEX_JOCKEY_DAT_EVENT_LIST_e=0x1C,
 };
@@ -37,10 +37,10 @@ enum dRes_ID_JOCKEY {
     /* BMDR */
     dRes_ID_JOCKEY_BMD_THEB_e=0x12,
     /* BTK  */
-    dRes_ID_JOCKEY_BTK_THEB_1_e=0x15,
+    dRes_ID_JOCKEY_BTK_THEB_e=0x15,
     /* BTP  */
-    dRes_ID_JOCKEY_BTP_THEB_2_e=0x18,
-    dRes_ID_JOCKEY_BTP_THEB_F_TALK_A_1_e=0x19,
+    dRes_ID_JOCKEY_BTP_THEB_e=0x18,
+    dRes_ID_JOCKEY_BTP_THEB_F_TALK_A_e=0x19,
     /* EVT  */
     dRes_ID_JOCKEY_DAT_EVENT_LIST_e=0x1C,
 };

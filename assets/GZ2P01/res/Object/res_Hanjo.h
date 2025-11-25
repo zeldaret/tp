@@ -12,9 +12,9 @@ enum dRes_INDEX_HANJO {
     /* BMDR */
     dRes_INDEX_HANJO_BMD_HANJO_e=0xE,
     /* BTK  */
-    dRes_INDEX_HANJO_BTK_HANJO_1_e=0x11,
+    dRes_INDEX_HANJO_BTK_HANJO_e=0x11,
     /* BTP  */
-    dRes_INDEX_HANJO_BTP_HANJO_2_e=0x14,
+    dRes_INDEX_HANJO_BTP_HANJO_e=0x14,
 };
 
 enum dRes_ID_HANJO {
@@ -28,9 +28,9 @@ enum dRes_ID_HANJO {
     /* BMDR */
     dRes_ID_HANJO_BMD_HANJO_e=0xE,
     /* BTK  */
-    dRes_ID_HANJO_BTK_HANJO_1_e=0x11,
+    dRes_ID_HANJO_BTK_HANJO_e=0x11,
     /* BTP  */
-    dRes_ID_HANJO_BTP_HANJO_2_e=0x14,
+    dRes_ID_HANJO_BTP_HANJO_e=0x14,
 };
 
 enum HANJO_JNT {

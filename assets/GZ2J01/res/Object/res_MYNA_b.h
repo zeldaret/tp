@@ -21,7 +21,7 @@ enum dRes_INDEX_MYNA_B {
     /* BMDR */
     dRes_INDEX_MYNA_B_BMD_MYNA_B_e=0x17,
     /* BTP  */
-    dRes_INDEX_MYNA_B_BTP_MYNA_B_1_e=0x1A,
+    dRes_INDEX_MYNA_B_BTP_MYNA_B_e=0x1A,
     /* EVT  */
     dRes_INDEX_MYNA_B_DAT_EVENT_LIST_e=0x1D,
 };
@@ -46,7 +46,7 @@ enum dRes_ID_MYNA_B {
     /* BMDR */
     dRes_ID_MYNA_B_BMD_MYNA_B_e=0x17,
     /* BTP  */
-    dRes_ID_MYNA_B_BTP_MYNA_B_1_e=0x1A,
+    dRes_ID_MYNA_B_BTP_MYNA_B_e=0x1A,
     /* EVT  */
     dRes_ID_MYNA_B_DAT_EVENT_LIST_e=0x1D,
 };

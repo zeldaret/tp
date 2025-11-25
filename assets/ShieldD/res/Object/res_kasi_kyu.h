@@ -5,14 +5,14 @@ enum dRes_INDEX_KASI_KYU {
     /* BMDR */
     dRes_INDEX_KASI_KYU_BMD_KYU_e=0x4,
     /* BTP  */
-    dRes_INDEX_KASI_KYU_BTP_KYU_1_e=0x7,
+    dRes_INDEX_KASI_KYU_BTP_KYU_e=0x7,
 };
 
 enum dRes_ID_KASI_KYU {
     /* BMDR */
     dRes_ID_KASI_KYU_BMD_KYU_e=0x4,
     /* BTP  */
-    dRes_ID_KASI_KYU_BTP_KYU_1_e=0x7,
+    dRes_ID_KASI_KYU_BTP_KYU_e=0x7,
 };
 
 enum KYU_JNT {

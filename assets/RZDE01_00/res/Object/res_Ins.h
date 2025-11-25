@@ -15,16 +15,16 @@ enum dRes_INDEX_INS {
     /* BMDR */
     dRes_INDEX_INS_BMD_INS_e=0x11,
     /* BTK  */
-    dRes_INDEX_INS_BTK_INS_1_e=0x14,
+    dRes_INDEX_INS_BTK_INS_e=0x14,
     /* BTP  */
-    dRes_INDEX_INS_BTP_INS_2_e=0x17,
-    dRes_INDEX_INS_BTP_INS_F_HAPPY_1_e=0x18,
-    dRes_INDEX_INS_BTP_INS_F_MAD_1_e=0x19,
-    dRes_INDEX_INS_BTP_INS_F_SNIFF_1_e=0x1A,
-    dRes_INDEX_INS_BTP_INS_F_SURPRISED_1_e=0x1B,
-    dRes_INDEX_INS_BTP_INS_FH_HAPPY_1_e=0x1C,
-    dRes_INDEX_INS_BTP_INS_FH_MAD_1_e=0x1D,
-    dRes_INDEX_INS_BTP_INS_FH_SURPRISED_1_e=0x1E,
+    dRes_INDEX_INS_BTP_INS_e=0x17,
+    dRes_INDEX_INS_BTP_INS_F_HAPPY_e=0x18,
+    dRes_INDEX_INS_BTP_INS_F_MAD_e=0x19,
+    dRes_INDEX_INS_BTP_INS_F_SNIFF_e=0x1A,
+    dRes_INDEX_INS_BTP_INS_F_SURPRISED_e=0x1B,
+    dRes_INDEX_INS_BTP_INS_FH_HAPPY_e=0x1C,
+    dRes_INDEX_INS_BTP_INS_FH_MAD_e=0x1D,
+    dRes_INDEX_INS_BTP_INS_FH_SURPRISED_e=0x1E,
 };
 
 enum dRes_ID_INS {
@@ -41,16 +41,16 @@ enum dRes_ID_INS {
     /* BMDR */
     dRes_ID_INS_BMD_INS_e=0x11,
     /* BTK  */
-    dRes_ID_INS_BTK_INS_1_e=0x14,
+    dRes_ID_INS_BTK_INS_e=0x14,
     /* BTP  */
-    dRes_ID_INS_BTP_INS_2_e=0x17,
-    dRes_ID_INS_BTP_INS_F_HAPPY_1_e=0x18,
-    dRes_ID_INS_BTP_INS_F_MAD_1_e=0x19,
-    dRes_ID_INS_BTP_INS_F_SNIFF_1_e=0x1A,
-    dRes_ID_INS_BTP_INS_F_SURPRISED_1_e=0x1B,
-    dRes_ID_INS_BTP_INS_FH_HAPPY_1_e=0x1C,
-    dRes_ID_INS_BTP_INS_FH_MAD_1_e=0x1D,
-    dRes_ID_INS_BTP_INS_FH_SURPRISED_1_e=0x1E,
+    dRes_ID_INS_BTP_INS_e=0x17,
+    dRes_ID_INS_BTP_INS_F_HAPPY_e=0x18,
+    dRes_ID_INS_BTP_INS_F_MAD_e=0x19,
+    dRes_ID_INS_BTP_INS_F_SNIFF_e=0x1A,
+    dRes_ID_INS_BTP_INS_F_SURPRISED_e=0x1B,
+    dRes_ID_INS_BTP_INS_FH_HAPPY_e=0x1C,
+    dRes_ID_INS_BTP_INS_FH_MAD_e=0x1D,
+    dRes_ID_INS_BTP_INS_FH_SURPRISED_e=0x1E,
 };
 
 enum INS_JNT {

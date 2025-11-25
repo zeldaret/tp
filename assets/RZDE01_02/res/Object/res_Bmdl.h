@@ -14,7 +14,7 @@ enum dRes_INDEX_BMDL {
     dRes_INDEX_BMDL_BMD_BL_HANDS_e=0x10,
     dRes_INDEX_BMDL_BMD_BL_HEAD_e=0x11,
     /* BTK  */
-    dRes_INDEX_BMDL_BTK_EF_KTGLOW_1_e=0x14,
+    dRes_INDEX_BMDL_BTK_EF_KTGLOW_e=0x14,
 };
 
 enum dRes_ID_BMDL {
@@ -30,7 +30,7 @@ enum dRes_ID_BMDL {
     dRes_ID_BMDL_BMD_BL_HANDS_e=0x10,
     dRes_ID_BMDL_BMD_BL_HEAD_e=0x11,
     /* BTK  */
-    dRes_ID_BMDL_BTK_EF_KTGLOW_1_e=0x14,
+    dRes_ID_BMDL_BTK_EF_KTGLOW_e=0x14,
 };
 
 enum AL_KANTERA_JNT {

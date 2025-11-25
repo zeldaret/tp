@@ -6,8 +6,8 @@ enum dRes_INDEX_K_JGJS {
     dRes_INDEX_K_JGJS_BMD_K_JG_00_e=0x4,
     dRes_INDEX_K_JGJS_BMD_K_JS_00_e=0x5,
     /* DZB  */
-    dRes_INDEX_K_JGJS_DZB_K_JG_00_1_e=0x8,
-    dRes_INDEX_K_JGJS_DZB_K_JS_00_1_e=0x9,
+    dRes_INDEX_K_JGJS_DZB_K_JG_00_e=0x8,
+    dRes_INDEX_K_JGJS_DZB_K_JS_00_e=0x9,
 };
 
 enum dRes_ID_K_JGJS {
@@ -15,8 +15,8 @@ enum dRes_ID_K_JGJS {
     dRes_ID_K_JGJS_BMD_K_JG_00_e=0x4,
     dRes_ID_K_JGJS_BMD_K_JS_00_e=0x5,
     /* DZB  */
-    dRes_ID_K_JGJS_DZB_K_JG_00_1_e=0x8,
-    dRes_ID_K_JGJS_DZB_K_JS_00_1_e=0x9,
+    dRes_ID_K_JGJS_DZB_K_JG_00_e=0x8,
+    dRes_ID_K_JGJS_DZB_K_JS_00_e=0x9,
 };
 
 enum K_JG_00_JNT {

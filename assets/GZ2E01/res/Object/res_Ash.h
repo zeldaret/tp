@@ -8,9 +8,9 @@ enum dRes_INDEX_ASH {
     /* BMDR */
     dRes_INDEX_ASH_BMD_ASH_e=0xB,
     /* BTK  */
-    dRes_INDEX_ASH_BTK_ASH_1_e=0xE,
+    dRes_INDEX_ASH_BTK_ASH_e=0xE,
     /* BTP  */
-    dRes_INDEX_ASH_BTP_ASH_2_e=0x11,
+    dRes_INDEX_ASH_BTP_ASH_e=0x11,
     /* EVT  */
     dRes_INDEX_ASH_DAT_EVENT_LIST_e=0x14,
 };
@@ -22,9 +22,9 @@ enum dRes_ID_ASH {
     /* BMDR */
     dRes_ID_ASH_BMD_ASH_e=0xB,
     /* BTK  */
-    dRes_ID_ASH_BTK_ASH_1_e=0xE,
+    dRes_ID_ASH_BTK_ASH_e=0xE,
     /* BTP  */
-    dRes_ID_ASH_BTP_ASH_2_e=0x11,
+    dRes_ID_ASH_BTP_ASH_e=0x11,
     /* EVT  */
     dRes_ID_ASH_DAT_EVENT_LIST_e=0x14,
 };

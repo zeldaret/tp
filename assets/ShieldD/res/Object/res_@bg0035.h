@@ -6,11 +6,11 @@ enum dRes_INDEX__BG0035 {
     dRes_INDEX__BG0035_BMD_MODEL0_e=0x6,
     dRes_INDEX__BG0035_BMD_MODEL0_1_e=0x7,
     /* BRK  */
-    dRes_INDEX__BG0035_BRK_MODEL0_1_e=0xA,
-    dRes_INDEX__BG0035_BRK_MODEL0_1_1_e=0xB,
+    dRes_INDEX__BG0035_BRK_MODEL0_e=0xA,
+    dRes_INDEX__BG0035_BRK_MODEL0_1_e=0xB,
     /* BTK  */
-    dRes_INDEX__BG0035_BTK_MODEL0_2_e=0xE,
-    dRes_INDEX__BG0035_BTK_MODEL0_1_2_e=0xF,
+    dRes_INDEX__BG0035_BTK_MODEL0_e=0xE,
+    dRes_INDEX__BG0035_BTK_MODEL0_1_e=0xF,
     /* SPEC */
     dRes_INDEX__BG0035_DAT_SPEC_e=0x12,
 };
@@ -20,11 +20,11 @@ enum dRes_ID__BG0035 {
     dRes_ID__BG0035_BMD_MODEL0_e=0x6,
     dRes_ID__BG0035_BMD_MODEL0_1_e=0x7,
     /* BRK  */
-    dRes_ID__BG0035_BRK_MODEL0_1_e=0xA,
-    dRes_ID__BG0035_BRK_MODEL0_1_1_e=0xB,
+    dRes_ID__BG0035_BRK_MODEL0_e=0xA,
+    dRes_ID__BG0035_BRK_MODEL0_1_e=0xB,
     /* BTK  */
-    dRes_ID__BG0035_BTK_MODEL0_2_e=0xE,
-    dRes_ID__BG0035_BTK_MODEL0_1_2_e=0xF,
+    dRes_ID__BG0035_BTK_MODEL0_e=0xE,
+    dRes_ID__BG0035_BTK_MODEL0_1_e=0xF,
     /* SPEC */
     dRes_ID__BG0035_DAT_SPEC_e=0x12,
 };

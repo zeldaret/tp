@@ -10,9 +10,9 @@ enum dRes_INDEX_BANS {
     /* BMDE */
     dRes_INDEX_BANS_BMD_BANS_e=0xC,
     /* BTK  */
-    dRes_INDEX_BANS_BTK_BANS_1_e=0xF,
+    dRes_INDEX_BANS_BTK_BANS_e=0xF,
     /* BTP  */
-    dRes_INDEX_BANS_BTP_BANS_2_e=0x12,
+    dRes_INDEX_BANS_BTP_BANS_e=0x12,
 };
 
 enum dRes_ID_BANS {
@@ -24,9 +24,9 @@ enum dRes_ID_BANS {
     /* BMDE */
     dRes_ID_BANS_BMD_BANS_e=0xC,
     /* BTK  */
-    dRes_ID_BANS_BTK_BANS_1_e=0xF,
+    dRes_ID_BANS_BTK_BANS_e=0xF,
     /* BTP  */
-    dRes_ID_BANS_BTP_BANS_2_e=0x12,
+    dRes_ID_BANS_BTP_BANS_e=0x12,
 };
 
 enum BANS_JNT {

@@ -7,8 +7,8 @@ enum dRes_INDEX_JAGAR3 {
     dRes_INDEX_JAGAR3_BCK_JAGA_FH_TALK_B_e=0x5,
     dRes_INDEX_JAGAR3_BCK_JAGA_TALK_A_e=0x6,
     /* BTP  */
-    dRes_INDEX_JAGAR3_BTP_JAGA_F_TALK_B_1_e=0x9,
-    dRes_INDEX_JAGAR3_BTP_JAGA_FH_TALK_B_1_e=0xA,
+    dRes_INDEX_JAGAR3_BTP_JAGA_F_TALK_B_e=0x9,
+    dRes_INDEX_JAGAR3_BTP_JAGA_FH_TALK_B_e=0xA,
 };
 
 enum dRes_ID_JAGAR3 {
@@ -17,8 +17,8 @@ enum dRes_ID_JAGAR3 {
     dRes_ID_JAGAR3_BCK_JAGA_FH_TALK_B_e=0x5,
     dRes_ID_JAGAR3_BCK_JAGA_TALK_A_e=0x6,
     /* BTP  */
-    dRes_ID_JAGAR3_BTP_JAGA_F_TALK_B_1_e=0x9,
-    dRes_ID_JAGAR3_BTP_JAGA_FH_TALK_B_1_e=0xA,
+    dRes_ID_JAGAR3_BTP_JAGA_F_TALK_B_e=0x9,
+    dRes_ID_JAGAR3_BTP_JAGA_FH_TALK_B_e=0xA,
 };
 
 #endif /* !RES_JAGAR3_H */

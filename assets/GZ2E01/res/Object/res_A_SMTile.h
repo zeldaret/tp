@@ -5,14 +5,14 @@ enum dRes_INDEX_A_SMTILE {
     /* BMDR */
     dRes_INDEX_A_SMTILE_BMD_A_SMTRIMARK_e=0x4,
     /* BRK  */
-    dRes_INDEX_A_SMTILE_BRK_A_SMTRIMARK_1_e=0x7,
+    dRes_INDEX_A_SMTILE_BRK_A_SMTRIMARK_e=0x7,
 };
 
 enum dRes_ID_A_SMTILE {
     /* BMDR */
     dRes_ID_A_SMTILE_BMD_A_SMTRIMARK_e=0x4,
     /* BRK  */
-    dRes_ID_A_SMTILE_BRK_A_SMTRIMARK_1_e=0x7,
+    dRes_ID_A_SMTILE_BRK_A_SMTRIMARK_e=0x7,
 };
 
 enum A_SMTRIMARK_JNT {

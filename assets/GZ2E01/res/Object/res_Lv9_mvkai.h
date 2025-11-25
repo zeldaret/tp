@@ -5,14 +5,14 @@ enum dRes_INDEX_LV9_MVKAI {
     /* BMDR */
     dRes_INDEX_LV9_MVKAI_BMD_LV9_MOOBKAI_e=0x4,
     /* DZB  */
-    dRes_INDEX_LV9_MVKAI_DZB_LV9_MOOBKAI_1_e=0x7,
+    dRes_INDEX_LV9_MVKAI_DZB_LV9_MOOBKAI_e=0x7,
 };
 
 enum dRes_ID_LV9_MVKAI {
     /* BMDR */
     dRes_ID_LV9_MVKAI_BMD_LV9_MOOBKAI_e=0x4,
     /* DZB  */
-    dRes_ID_LV9_MVKAI_DZB_LV9_MOOBKAI_1_e=0x7,
+    dRes_ID_LV9_MVKAI_DZB_LV9_MOOBKAI_e=0x7,
 };
 
 enum LV9_MOOBKAI_JNT {

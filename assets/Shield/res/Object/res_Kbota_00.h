@@ -5,14 +5,14 @@ enum dRes_INDEX_KBOTA_00 {
     /* BMDR */
     dRes_INDEX_KBOTA_00_BMD_KBOTA_00_e=0x4,
     /* DZB  */
-    dRes_INDEX_KBOTA_00_DZB_KBOTA_00_1_e=0x7,
+    dRes_INDEX_KBOTA_00_DZB_KBOTA_00_e=0x7,
 };
 
 enum dRes_ID_KBOTA_00 {
     /* BMDR */
     dRes_ID_KBOTA_00_BMD_KBOTA_00_e=0x4,
     /* DZB  */
-    dRes_ID_KBOTA_00_DZB_KBOTA_00_1_e=0x7,
+    dRes_ID_KBOTA_00_DZB_KBOTA_00_e=0x7,
 };
 
 enum KBOTA_00_JNT {

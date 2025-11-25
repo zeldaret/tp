@@ -5,18 +5,18 @@ enum dRes_INDEX_P_L4SAND {
     /* BMDR */
     dRes_INDEX_P_L4SAND_BMD_LV4R50_RYUSA_e=0x5,
     /* BTK  */
-    dRes_INDEX_P_L4SAND_BTK_LV4R50_RYUSA_1_e=0x8,
+    dRes_INDEX_P_L4SAND_BTK_LV4R50_RYUSA_e=0x8,
     /* DZB  */
-    dRes_INDEX_P_L4SAND_DZB_LV4R50_RYUSA_2_e=0xB,
+    dRes_INDEX_P_L4SAND_DZB_LV4R50_RYUSA_e=0xB,
 };
 
 enum dRes_ID_P_L4SAND {
     /* BMDR */
     dRes_ID_P_L4SAND_BMD_LV4R50_RYUSA_e=0x5,
     /* BTK  */
-    dRes_ID_P_L4SAND_BTK_LV4R50_RYUSA_1_e=0x8,
+    dRes_ID_P_L4SAND_BTK_LV4R50_RYUSA_e=0x8,
     /* DZB  */
-    dRes_ID_P_L4SAND_DZB_LV4R50_RYUSA_2_e=0xB,
+    dRes_ID_P_L4SAND_DZB_LV4R50_RYUSA_e=0xB,
 };
 
 enum LV4R50_RYUSA_JNT {

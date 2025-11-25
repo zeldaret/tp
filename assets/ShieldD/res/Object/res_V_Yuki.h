@@ -5,7 +5,7 @@ enum dRes_INDEX_V_YUKI {
     /* BCK  */
     dRes_INDEX_V_YUKI_BCK_V_YUKI_e=0x6,
     /* BMDR */
-    dRes_INDEX_V_YUKI_BMD_V_YUKI_1_e=0x9,
+    dRes_INDEX_V_YUKI_BMD_V_YUKI_e=0x9,
     /* DZB  */
     dRes_INDEX_V_YUKI_DZB_AFTER_e=0xC,
     dRes_INDEX_V_YUKI_DZB_BEFORE_e=0xD,
@@ -17,7 +17,7 @@ enum dRes_ID_V_YUKI {
     /* BCK  */
     dRes_ID_V_YUKI_BCK_V_YUKI_e=0x6,
     /* BMDR */
-    dRes_ID_V_YUKI_BMD_V_YUKI_1_e=0x9,
+    dRes_ID_V_YUKI_BMD_V_YUKI_e=0x9,
     /* DZB  */
     dRes_ID_V_YUKI_DZB_AFTER_e=0xC,
     dRes_ID_V_YUKI_DZB_BEFORE_e=0xD,

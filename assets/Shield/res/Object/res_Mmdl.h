@@ -21,7 +21,7 @@ enum dRes_INDEX_MMDL {
     dRes_INDEX_MMDL_BRK_ML_HEAD_POWER_UP_A_e=0x19,
     dRes_INDEX_MMDL_BRK_ML_HEAD_POWER_UP_B_e=0x1A,
     /* BTK  */
-    dRes_INDEX_MMDL_BTK_EF_KTGLOW_1_e=0x1D,
+    dRes_INDEX_MMDL_BTK_EF_KTGLOW_e=0x1D,
 };
 
 enum dRes_ID_MMDL {
@@ -44,7 +44,7 @@ enum dRes_ID_MMDL {
     dRes_ID_MMDL_BRK_ML_HEAD_POWER_UP_A_e=0x19,
     dRes_ID_MMDL_BRK_ML_HEAD_POWER_UP_B_e=0x1A,
     /* BTK  */
-    dRes_ID_MMDL_BTK_EF_KTGLOW_1_e=0x1D,
+    dRes_ID_MMDL_BTK_EF_KTGLOW_e=0x1D,
 };
 
 enum AL_KANTERA_JNT {

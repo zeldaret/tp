@@ -25,7 +25,7 @@ enum dRes_INDEX_E_PM {
     dRes_INDEX_E_PM_BCK_PM_WALK_e=0x18,
     dRes_INDEX_E_PM_BCK_TR_FOGBLOW_e=0x19,
     /* BMDR */
-    dRes_INDEX_E_PM_BMD_EF_GLOW_1_e=0x1C,
+    dRes_INDEX_E_PM_BMD_EF_GLOW_e=0x1C,
     dRes_INDEX_E_PM_BMD_PM_e=0x1D,
     dRes_INDEX_E_PM_BMD_PM_LAMP_e=0x1E,
     dRes_INDEX_E_PM_BMD_PM_TRUMPET_e=0x1F,
@@ -58,7 +58,7 @@ enum dRes_ID_E_PM {
     dRes_ID_E_PM_BCK_PM_WALK_e=0x18,
     dRes_ID_E_PM_BCK_TR_FOGBLOW_e=0x19,
     /* BMDR */
-    dRes_ID_E_PM_BMD_EF_GLOW_1_e=0x1C,
+    dRes_ID_E_PM_BMD_EF_GLOW_e=0x1C,
     dRes_ID_E_PM_BMD_PM_e=0x1D,
     dRes_ID_E_PM_BMD_PM_LAMP_e=0x1E,
     dRes_ID_E_PM_BMD_PM_TRUMPET_e=0x1F,

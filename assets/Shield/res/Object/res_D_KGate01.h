@@ -5,14 +5,14 @@ enum dRes_INDEX_D_KGATE01 {
     /* BMDR */
     dRes_INDEX_D_KGATE01_BMD_D_KIKOGATE_B_e=0x4,
     /* DZB  */
-    dRes_INDEX_D_KGATE01_DZB_D_KIKOGATE_B_1_e=0x7,
+    dRes_INDEX_D_KGATE01_DZB_D_KIKOGATE_B_e=0x7,
 };
 
 enum dRes_ID_D_KGATE01 {
     /* BMDR */
     dRes_ID_D_KGATE01_BMD_D_KIKOGATE_B_e=0x4,
     /* DZB  */
-    dRes_ID_D_KGATE01_DZB_D_KIKOGATE_B_1_e=0x7,
+    dRes_ID_D_KGATE01_DZB_D_KIKOGATE_B_e=0x7,
 };
 
 enum D_KIKOGATE_B_JNT {

@@ -5,14 +5,14 @@ enum dRes_INDEX_H_BOUMATO {
     /* BMDR */
     dRes_INDEX_H_BOUMATO_BMD_H_BOUMATO_e=0x4,
     /* DZB  */
-    dRes_INDEX_H_BOUMATO_DZB_H_BOUMATO_1_e=0x7,
+    dRes_INDEX_H_BOUMATO_DZB_H_BOUMATO_e=0x7,
 };
 
 enum dRes_ID_H_BOUMATO {
     /* BMDR */
     dRes_ID_H_BOUMATO_BMD_H_BOUMATO_e=0x4,
     /* DZB  */
-    dRes_ID_H_BOUMATO_DZB_H_BOUMATO_1_e=0x7,
+    dRes_ID_H_BOUMATO_DZB_H_BOUMATO_e=0x7,
 };
 
 enum H_BOUMATO_JNT {

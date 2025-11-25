@@ -12,7 +12,7 @@ enum dRes_INDEX_INS1 {
     dRes_INDEX_INS1_BCK_INS_TALK_A_WAIT_e=0xA,
     dRes_INDEX_INS1_BCK_INS_WAIT_A_e=0xB,
     /* BTK  */
-    dRes_INDEX_INS1_BTK_INS_SNIFF_1_e=0xE,
+    dRes_INDEX_INS1_BTK_INS_SNIFF_e=0xE,
 };
 
 enum dRes_ID_INS1 {
@@ -26,7 +26,7 @@ enum dRes_ID_INS1 {
     dRes_ID_INS1_BCK_INS_TALK_A_WAIT_e=0xA,
     dRes_ID_INS1_BCK_INS_WAIT_A_e=0xB,
     /* BTK  */
-    dRes_ID_INS1_BTK_INS_SNIFF_1_e=0xE,
+    dRes_ID_INS1_BTK_INS_SNIFF_e=0xE,
 };
 
 #endif /* !RES_INS1_H */

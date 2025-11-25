@@ -14,11 +14,11 @@ enum dRes_INDEX_GRS {
     dRes_INDEX_GRS_BMD_GRS_e=0x10,
     dRes_INDEX_GRS_BMD_GRS_STICK_e=0x11,
     /* BTK  */
-    dRes_INDEX_GRS_BTK_GRS_1_e=0x14,
+    dRes_INDEX_GRS_BTK_GRS_e=0x14,
     /* BTP  */
-    dRes_INDEX_GRS_BTP_GRS_2_e=0x17,
-    dRes_INDEX_GRS_BTP_GRS_F_INTENS_1_e=0x18,
-    dRes_INDEX_GRS_BTP_GRS_FH_INTENS_1_e=0x19,
+    dRes_INDEX_GRS_BTP_GRS_e=0x17,
+    dRes_INDEX_GRS_BTP_GRS_F_INTENS_e=0x18,
+    dRes_INDEX_GRS_BTP_GRS_FH_INTENS_e=0x19,
     /* EVT  */
     dRes_INDEX_GRS_DAT_EVENT_LIST_e=0x1C,
 };
@@ -36,11 +36,11 @@ enum dRes_ID_GRS {
     dRes_ID_GRS_BMD_GRS_e=0x10,
     dRes_ID_GRS_BMD_GRS_STICK_e=0x11,
     /* BTK  */
-    dRes_ID_GRS_BTK_GRS_1_e=0x14,
+    dRes_ID_GRS_BTK_GRS_e=0x14,
     /* BTP  */
-    dRes_ID_GRS_BTP_GRS_2_e=0x17,
-    dRes_ID_GRS_BTP_GRS_F_INTENS_1_e=0x18,
-    dRes_ID_GRS_BTP_GRS_FH_INTENS_1_e=0x19,
+    dRes_ID_GRS_BTP_GRS_e=0x17,
+    dRes_ID_GRS_BTP_GRS_F_INTENS_e=0x18,
+    dRes_ID_GRS_BTP_GRS_FH_INTENS_e=0x19,
     /* EVT  */
     dRes_ID_GRS_DAT_EVENT_LIST_e=0x1C,
 };

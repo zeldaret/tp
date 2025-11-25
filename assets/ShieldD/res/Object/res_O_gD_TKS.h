@@ -5,18 +5,18 @@ enum dRes_INDEX_O_GD_TKS {
     /* BCK  */
     dRes_INDEX_O_GD_TKS_BCK_O_GD_TKS_e=0x5,
     /* BMDR */
-    dRes_INDEX_O_GD_TKS_BMD_O_GD_TKS_1_e=0x8,
+    dRes_INDEX_O_GD_TKS_BMD_O_GD_TKS_e=0x8,
     /* BTP  */
-    dRes_INDEX_O_GD_TKS_BTP_O_GD_TKS_2_e=0xB,
+    dRes_INDEX_O_GD_TKS_BTP_O_GD_TKS_e=0xB,
 };
 
 enum dRes_ID_O_GD_TKS {
     /* BCK  */
     dRes_ID_O_GD_TKS_BCK_O_GD_TKS_e=0x5,
     /* BMDR */
-    dRes_ID_O_GD_TKS_BMD_O_GD_TKS_1_e=0x8,
+    dRes_ID_O_GD_TKS_BMD_O_GD_TKS_e=0x8,
     /* BTP  */
-    dRes_ID_O_GD_TKS_BTP_O_GD_TKS_2_e=0xB,
+    dRes_ID_O_GD_TKS_BTP_O_GD_TKS_e=0xB,
 };
 
 enum O_GD_TKS_JNT {

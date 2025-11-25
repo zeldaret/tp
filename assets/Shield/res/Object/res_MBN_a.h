@@ -5,14 +5,14 @@ enum dRes_INDEX_MBN_A {
     /* BMDR */
     dRes_INDEX_MBN_A_BMD_MBN_A_e=0x4,
     /* BTP  */
-    dRes_INDEX_MBN_A_BTP_MBN_A_1_e=0x7,
+    dRes_INDEX_MBN_A_BTP_MBN_A_e=0x7,
 };
 
 enum dRes_ID_MBN_A {
     /* BMDR */
     dRes_ID_MBN_A_BMD_MBN_A_e=0x4,
     /* BTP  */
-    dRes_ID_MBN_A_BTP_MBN_A_1_e=0x7,
+    dRes_ID_MBN_A_BTP_MBN_A_e=0x7,
 };
 
 enum MBN_A_JNT {

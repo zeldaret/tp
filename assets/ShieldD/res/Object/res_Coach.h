@@ -34,14 +34,14 @@ enum dRes_INDEX_COACH {
     dRes_INDEX_COACH_BMD_THEB_e=0x26,
     dRes_INDEX_COACH_BMD_YELIA_e=0x27,
     /* BTK  */
-    dRes_INDEX_COACH_BTK_THEB_1_e=0x2A,
+    dRes_INDEX_COACH_BTK_THEB_e=0x2A,
     /* BTP  */
     dRes_INDEX_COACH_BTP_HU_EYE_e=0x2D,
-    dRes_INDEX_COACH_BTP_THEB_2_e=0x2E,
-    dRes_INDEX_COACH_BTP_THEB_F_TALK_A_1_e=0x2F,
+    dRes_INDEX_COACH_BTP_THEB_e=0x2E,
+    dRes_INDEX_COACH_BTP_THEB_F_TALK_A_e=0x2F,
     /* DZB  */
-    dRes_INDEX_COACH_DZB_COACH_1_e=0x32,
-    dRes_INDEX_COACH_DZB_HARNESS_1_e=0x33,
+    dRes_INDEX_COACH_DZB_COACH_e=0x32,
+    dRes_INDEX_COACH_DZB_HARNESS_e=0x33,
     /* EVT  */
     dRes_INDEX_COACH_DAT_EVENT_LIST_e=0x36,
     /* TEX  */
@@ -81,14 +81,14 @@ enum dRes_ID_COACH {
     dRes_ID_COACH_BMD_THEB_e=0x26,
     dRes_ID_COACH_BMD_YELIA_e=0x27,
     /* BTK  */
-    dRes_ID_COACH_BTK_THEB_1_e=0x2A,
+    dRes_ID_COACH_BTK_THEB_e=0x2A,
     /* BTP  */
     dRes_ID_COACH_BTP_HU_EYE_e=0x2D,
-    dRes_ID_COACH_BTP_THEB_2_e=0x2E,
-    dRes_ID_COACH_BTP_THEB_F_TALK_A_1_e=0x2F,
+    dRes_ID_COACH_BTP_THEB_e=0x2E,
+    dRes_ID_COACH_BTP_THEB_F_TALK_A_e=0x2F,
     /* DZB  */
-    dRes_ID_COACH_DZB_COACH_1_e=0x32,
-    dRes_ID_COACH_DZB_HARNESS_1_e=0x33,
+    dRes_ID_COACH_DZB_COACH_e=0x32,
+    dRes_ID_COACH_DZB_HARNESS_e=0x33,
     /* EVT  */
     dRes_ID_COACH_DAT_EVENT_LIST_e=0x36,
     /* TEX  */

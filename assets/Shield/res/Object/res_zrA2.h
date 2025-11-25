@@ -15,8 +15,8 @@ enum dRes_INDEX_ZRA2 {
     dRes_INDEX_ZRA2_BCK_ZRA_SPA_WAIT_A_e=0xD,
     dRes_INDEX_ZRA2_BCK_ZRA_SPA_WAIT_B_e=0xE,
     /* BTP  */
-    dRes_INDEX_ZRA2_BTP_ZRA_F_SPA_TALK_B_1_e=0x11,
-    dRes_INDEX_ZRA2_BTP_ZRA_FH_SPA_WAIT_B_1_e=0x12,
+    dRes_INDEX_ZRA2_BTP_ZRA_F_SPA_TALK_B_e=0x11,
+    dRes_INDEX_ZRA2_BTP_ZRA_FH_SPA_WAIT_B_e=0x12,
 };
 
 enum dRes_ID_ZRA2 {
@@ -33,8 +33,8 @@ enum dRes_ID_ZRA2 {
     dRes_ID_ZRA2_BCK_ZRA_SPA_WAIT_A_e=0xD,
     dRes_ID_ZRA2_BCK_ZRA_SPA_WAIT_B_e=0xE,
     /* BTP  */
-    dRes_ID_ZRA2_BTP_ZRA_F_SPA_TALK_B_1_e=0x11,
-    dRes_ID_ZRA2_BTP_ZRA_FH_SPA_WAIT_B_1_e=0x12,
+    dRes_ID_ZRA2_BTP_ZRA_F_SPA_TALK_B_e=0x11,
+    dRes_ID_ZRA2_BTP_ZRA_FH_SPA_WAIT_B_e=0x12,
 };
 
 #endif /* !RES_ZRA2_H */

@@ -5,7 +5,7 @@ enum dRes_INDEX_KASI_HANA {
     /* BMDR */
     dRes_INDEX_KASI_HANA_BMD_HANA_e=0x5,
     /* BTP  */
-    dRes_INDEX_KASI_HANA_BTP_HANA_1_e=0x8,
+    dRes_INDEX_KASI_HANA_BTP_HANA_e=0x8,
     /* EVT  */
     dRes_INDEX_KASI_HANA_DAT_EVENT_LIST_e=0xB,
 };
@@ -14,7 +14,7 @@ enum dRes_ID_KASI_HANA {
     /* BMDR */
     dRes_ID_KASI_HANA_BMD_HANA_e=0x5,
     /* BTP  */
-    dRes_ID_KASI_HANA_BTP_HANA_1_e=0x8,
+    dRes_ID_KASI_HANA_BTP_HANA_e=0x8,
     /* EVT  */
     dRes_ID_KASI_HANA_DAT_EVENT_LIST_e=0xB,
 };

@@ -43,11 +43,11 @@ enum dRes_INDEX_E_MK {
     dRes_INDEX_E_MK_BCK_OK_DEMO_DROP_e=0x2B,
     /* BMDR */
     dRes_INDEX_E_MK_BMD_BM_e=0x2E,
-    dRes_INDEX_E_MK_BMD_EF_SHIPPU_1_e=0x2F,
+    dRes_INDEX_E_MK_BMD_EF_SHIPPU_e=0x2F,
     dRes_INDEX_E_MK_BMD_MK_e=0x30,
     dRes_INDEX_E_MK_BMD_OK_e=0x31,
     /* BTK  */
-    dRes_INDEX_E_MK_BTK_EF_SHIPPU_2_e=0x34,
+    dRes_INDEX_E_MK_BTK_EF_SHIPPU_e=0x34,
     /* BTP  */
     dRes_INDEX_E_MK_BTP_MK_EYE_e=0x37,
 };
@@ -94,11 +94,11 @@ enum dRes_ID_E_MK {
     dRes_ID_E_MK_BCK_OK_DEMO_DROP_e=0x2B,
     /* BMDR */
     dRes_ID_E_MK_BMD_BM_e=0x2E,
-    dRes_ID_E_MK_BMD_EF_SHIPPU_1_e=0x2F,
+    dRes_ID_E_MK_BMD_EF_SHIPPU_e=0x2F,
     dRes_ID_E_MK_BMD_MK_e=0x30,
     dRes_ID_E_MK_BMD_OK_e=0x31,
     /* BTK  */
-    dRes_ID_E_MK_BTK_EF_SHIPPU_2_e=0x34,
+    dRes_ID_E_MK_BTK_EF_SHIPPU_e=0x34,
     /* BTP  */
     dRes_ID_E_MK_BTP_MK_EYE_e=0x37,
 };

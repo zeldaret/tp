@@ -9,9 +9,9 @@ enum dRes_INDEX_GRD {
     /* BMDR */
     dRes_INDEX_GRD_BMD_GRD_e=0xB,
     /* BTK  */
-    dRes_INDEX_GRD_BTK_GRD_1_e=0xE,
+    dRes_INDEX_GRD_BTK_GRD_e=0xE,
     /* BTP  */
-    dRes_INDEX_GRD_BTP_GRD_2_e=0x11,
+    dRes_INDEX_GRD_BTP_GRD_e=0x11,
 };
 
 enum dRes_ID_GRD {
@@ -22,9 +22,9 @@ enum dRes_ID_GRD {
     /* BMDR */
     dRes_ID_GRD_BMD_GRD_e=0xB,
     /* BTK  */
-    dRes_ID_GRD_BTK_GRD_1_e=0xE,
+    dRes_ID_GRD_BTK_GRD_e=0xE,
     /* BTP  */
-    dRes_ID_GRD_BTP_GRD_2_e=0x11,
+    dRes_ID_GRD_BTP_GRD_e=0x11,
 };
 
 enum GRD_JNT {

@@ -5,14 +5,14 @@ enum dRes_INDEX_HSMATO {
     /* BMDR */
     dRes_INDEX_HSMATO_BMD_K_HSMA00_e=0x4,
     /* DZB  */
-    dRes_INDEX_HSMATO_DZB_K_HSMA00_1_e=0x7,
+    dRes_INDEX_HSMATO_DZB_K_HSMA00_e=0x7,
 };
 
 enum dRes_ID_HSMATO {
     /* BMDR */
     dRes_ID_HSMATO_BMD_K_HSMA00_e=0x4,
     /* DZB  */
-    dRes_ID_HSMATO_DZB_K_HSMA00_1_e=0x7,
+    dRes_ID_HSMATO_DZB_K_HSMA00_e=0x7,
 };
 
 enum K_HSMA00_JNT {

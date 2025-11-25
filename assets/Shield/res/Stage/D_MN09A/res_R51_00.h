@@ -12,9 +12,9 @@ enum dRes_INDEX_R51_00 {
     dRes_INDEX_R51_00_STB_R50_TODEMO_e=0xF,
     dRes_INDEX_R51_00_STB_R51_START_e=0x10,
     /* KCL  */
-    dRes_INDEX_R51_00_KCL_ROOM_1_e=0x13,
+    dRes_INDEX_R51_00_KCL_ROOM_e=0x13,
     /* PLC  */
-    dRes_INDEX_R51_00_PLC_ROOM_2_e=0x16,
+    dRes_INDEX_R51_00_PLC_ROOM_e=0x16,
 };
 
 enum dRes_ID_R51_00 {
@@ -28,9 +28,9 @@ enum dRes_ID_R51_00 {
     dRes_ID_R51_00_STB_R50_TODEMO_e=0xF,
     dRes_ID_R51_00_STB_R51_START_e=0x10,
     /* KCL  */
-    dRes_ID_R51_00_KCL_ROOM_1_e=0x13,
+    dRes_ID_R51_00_KCL_ROOM_e=0x13,
     /* PLC  */
-    dRes_ID_R51_00_PLC_ROOM_2_e=0x16,
+    dRes_ID_R51_00_PLC_ROOM_e=0x16,
 };
 
 #endif /* !RES_R51_00_H */

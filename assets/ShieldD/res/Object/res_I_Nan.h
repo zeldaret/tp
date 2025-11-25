@@ -10,8 +10,8 @@ enum dRes_INDEX_I_NAN {
     dRes_INDEX_I_NAN_BRK_NAN_M_e=0xC,
     dRes_INDEX_I_NAN_BRK_NAN_O_e=0xD,
     /* BTK  */
-    dRes_INDEX_I_NAN_BTK_NAN_M_1_e=0x10,
-    dRes_INDEX_I_NAN_BTK_NAN_O_1_e=0x11,
+    dRes_INDEX_I_NAN_BTK_NAN_M_e=0x10,
+    dRes_INDEX_I_NAN_BTK_NAN_O_e=0x11,
 };
 
 enum dRes_ID_I_NAN {
@@ -23,8 +23,8 @@ enum dRes_ID_I_NAN {
     dRes_ID_I_NAN_BRK_NAN_M_e=0xC,
     dRes_ID_I_NAN_BRK_NAN_O_e=0xD,
     /* BTK  */
-    dRes_ID_I_NAN_BTK_NAN_M_1_e=0x10,
-    dRes_ID_I_NAN_BTK_NAN_O_1_e=0x11,
+    dRes_ID_I_NAN_BTK_NAN_M_e=0x10,
+    dRes_ID_I_NAN_BTK_NAN_O_e=0x11,
 };
 
 enum NAN_JNT {

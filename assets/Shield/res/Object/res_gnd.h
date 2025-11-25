@@ -7,13 +7,13 @@ enum dRes_INDEX_GND {
     /* BMDR */
     dRes_INDEX_GND_BMD_GND_e=0xB,
     /* BPK  */
-    dRes_INDEX_GND_BPK_GND_1_e=0xE,
+    dRes_INDEX_GND_BPK_GND_e=0xE,
     /* BRK  */
-    dRes_INDEX_GND_BRK_GND_2_e=0x11,
+    dRes_INDEX_GND_BRK_GND_e=0x11,
     /* BTK  */
-    dRes_INDEX_GND_BTK_GND_3_e=0x14,
+    dRes_INDEX_GND_BTK_GND_e=0x14,
     /* BTP  */
-    dRes_INDEX_GND_BTP_GND_4_e=0x17,
+    dRes_INDEX_GND_BTP_GND_e=0x17,
 };
 
 enum dRes_ID_GND {
@@ -22,13 +22,13 @@ enum dRes_ID_GND {
     /* BMDR */
     dRes_ID_GND_BMD_GND_e=0xB,
     /* BPK  */
-    dRes_ID_GND_BPK_GND_1_e=0xE,
+    dRes_ID_GND_BPK_GND_e=0xE,
     /* BRK  */
-    dRes_ID_GND_BRK_GND_2_e=0x11,
+    dRes_ID_GND_BRK_GND_e=0x11,
     /* BTK  */
-    dRes_ID_GND_BTK_GND_3_e=0x14,
+    dRes_ID_GND_BTK_GND_e=0x14,
     /* BTP  */
-    dRes_ID_GND_BTP_GND_4_e=0x17,
+    dRes_ID_GND_BTP_GND_e=0x17,
 };
 
 enum GND_JNT {

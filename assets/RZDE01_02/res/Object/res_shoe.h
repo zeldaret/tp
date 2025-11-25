@@ -8,7 +8,7 @@ enum dRes_INDEX_SHOE {
     dRes_INDEX_SHOE_BMD_SHOE_e=0x8,
     dRes_INDEX_SHOE_BMD_SHOE_CLOTH_e=0x9,
     /* BTP  */
-    dRes_INDEX_SHOE_BTP_SHOE_1_e=0xC,
+    dRes_INDEX_SHOE_BTP_SHOE_e=0xC,
 };
 
 enum dRes_ID_SHOE {
@@ -18,7 +18,7 @@ enum dRes_ID_SHOE {
     dRes_ID_SHOE_BMD_SHOE_e=0x8,
     dRes_ID_SHOE_BMD_SHOE_CLOTH_e=0x9,
     /* BTP  */
-    dRes_ID_SHOE_BTP_SHOE_1_e=0xC,
+    dRes_ID_SHOE_BTP_SHOE_e=0xC,
 };
 
 enum SHOE_JNT {

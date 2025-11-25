@@ -5,14 +5,14 @@ enum dRes_INDEX_MG_F_KS {
     /* BMDR */
     dRes_INDEX_MG_F_KS_BMD_KS_e=0x4,
     /* BRK  */
-    dRes_INDEX_MG_F_KS_BRK_KS_1_e=0x7,
+    dRes_INDEX_MG_F_KS_BRK_KS_e=0x7,
 };
 
 enum dRes_ID_MG_F_KS {
     /* BMDR */
     dRes_ID_MG_F_KS_BMD_KS_e=0x4,
     /* BRK  */
-    dRes_ID_MG_F_KS_BRK_KS_1_e=0x7,
+    dRes_ID_MG_F_KS_BRK_KS_e=0x7,
 };
 
 enum KS_JNT {

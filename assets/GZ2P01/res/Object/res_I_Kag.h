@@ -11,8 +11,8 @@ enum dRes_INDEX_I_KAG {
     dRes_INDEX_I_KAG_BRK_KAG_M_e=0xD,
     dRes_INDEX_I_KAG_BRK_KAG_O_e=0xE,
     /* BTK  */
-    dRes_INDEX_I_KAG_BTK_KAG_M_1_e=0x11,
-    dRes_INDEX_I_KAG_BTK_KAG_O_1_e=0x12,
+    dRes_INDEX_I_KAG_BTK_KAG_M_e=0x11,
+    dRes_INDEX_I_KAG_BTK_KAG_O_e=0x12,
 };
 
 enum dRes_ID_I_KAG {
@@ -25,8 +25,8 @@ enum dRes_ID_I_KAG {
     dRes_ID_I_KAG_BRK_KAG_M_e=0xD,
     dRes_ID_I_KAG_BRK_KAG_O_e=0xE,
     /* BTK  */
-    dRes_ID_I_KAG_BTK_KAG_M_1_e=0x11,
-    dRes_ID_I_KAG_BTK_KAG_O_1_e=0x12,
+    dRes_ID_I_KAG_BTK_KAG_M_e=0x11,
+    dRes_ID_I_KAG_BTK_KAG_O_e=0x12,
 };
 
 enum KAG_JNT {

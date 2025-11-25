@@ -27,9 +27,9 @@ enum dRes_INDEX_TKS {
     /* BMDR */
     dRes_INDEX_TKS_BMD_TKS_e=0x1E,
     /* BTK  */
-    dRes_INDEX_TKS_BTK_TKS_1_e=0x21,
+    dRes_INDEX_TKS_BTK_TKS_e=0x21,
     /* BTP  */
-    dRes_INDEX_TKS_BTP_TKS_2_e=0x24,
+    dRes_INDEX_TKS_BTP_TKS_e=0x24,
     /* EVT  */
     dRes_INDEX_TKS_DAT_EVENT_LIST_e=0x27,
 };
@@ -60,9 +60,9 @@ enum dRes_ID_TKS {
     /* BMDR */
     dRes_ID_TKS_BMD_TKS_e=0x1E,
     /* BTK  */
-    dRes_ID_TKS_BTK_TKS_1_e=0x21,
+    dRes_ID_TKS_BTK_TKS_e=0x21,
     /* BTP  */
-    dRes_ID_TKS_BTP_TKS_2_e=0x24,
+    dRes_ID_TKS_BTP_TKS_e=0x24,
     /* EVT  */
     dRes_ID_TKS_DAT_EVENT_LIST_e=0x27,
 };

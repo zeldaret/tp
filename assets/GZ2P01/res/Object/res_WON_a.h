@@ -5,14 +5,14 @@ enum dRes_INDEX_WON_A {
     /* BMDR */
     dRes_INDEX_WON_A_BMD_WON_A_e=0x4,
     /* BTP  */
-    dRes_INDEX_WON_A_BTP_WON_A_1_e=0x7,
+    dRes_INDEX_WON_A_BTP_WON_A_e=0x7,
 };
 
 enum dRes_ID_WON_A {
     /* BMDR */
     dRes_ID_WON_A_BMD_WON_A_e=0x4,
     /* BTP  */
-    dRes_ID_WON_A_BTP_WON_A_1_e=0x7,
+    dRes_ID_WON_A_BTP_WON_A_e=0x7,
 };
 
 enum WON_A_JNT {

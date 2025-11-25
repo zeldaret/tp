@@ -38,16 +38,16 @@ enum dRes_INDEX_B_OH {
     dRes_INDEX_B_OH_BMD_OH_CORE_e=0x2A,
     dRes_INDEX_B_OH_BMD_OI_HEAD_e=0x2B,
     /* BRK  */
-    dRes_INDEX_B_OH_BRK_EF_OISUI_1_e=0x2E,
+    dRes_INDEX_B_OH_BRK_EF_OISUI_e=0x2E,
     dRes_INDEX_B_OH_BRK_OH_LOOP_e=0x2F,
     /* BTK  */
     dRes_INDEX_B_OH_BTK_AL_FOICUT_e=0x32,
     dRes_INDEX_B_OH_BTK_AL_FOICUTB_e=0x33,
-    dRes_INDEX_B_OH_BTK_AL_FOIFINISH_1_e=0x34,
-    dRes_INDEX_B_OH_BTK_EF_OISUI_2_e=0x35,
-    dRes_INDEX_B_OH_BTK_OH_LOOP_1_e=0x36,
+    dRes_INDEX_B_OH_BTK_AL_FOIFINISH_e=0x34,
+    dRes_INDEX_B_OH_BTK_EF_OISUI_e=0x35,
+    dRes_INDEX_B_OH_BTK_OH_LOOP_e=0x36,
     /* BTP  */
-    dRes_INDEX_B_OH_BTP_AL_FOIFINISH_2_e=0x39,
+    dRes_INDEX_B_OH_BTP_AL_FOIFINISH_e=0x39,
 };
 
 enum dRes_ID_B_OH {
@@ -87,16 +87,16 @@ enum dRes_ID_B_OH {
     dRes_ID_B_OH_BMD_OH_CORE_e=0x2A,
     dRes_ID_B_OH_BMD_OI_HEAD_e=0x2B,
     /* BRK  */
-    dRes_ID_B_OH_BRK_EF_OISUI_1_e=0x2E,
+    dRes_ID_B_OH_BRK_EF_OISUI_e=0x2E,
     dRes_ID_B_OH_BRK_OH_LOOP_e=0x2F,
     /* BTK  */
     dRes_ID_B_OH_BTK_AL_FOICUT_e=0x32,
     dRes_ID_B_OH_BTK_AL_FOICUTB_e=0x33,
-    dRes_ID_B_OH_BTK_AL_FOIFINISH_1_e=0x34,
-    dRes_ID_B_OH_BTK_EF_OISUI_2_e=0x35,
-    dRes_ID_B_OH_BTK_OH_LOOP_1_e=0x36,
+    dRes_ID_B_OH_BTK_AL_FOIFINISH_e=0x34,
+    dRes_ID_B_OH_BTK_EF_OISUI_e=0x35,
+    dRes_ID_B_OH_BTK_OH_LOOP_e=0x36,
     /* BTP  */
-    dRes_ID_B_OH_BTP_AL_FOIFINISH_2_e=0x39,
+    dRes_ID_B_OH_BTP_AL_FOIFINISH_e=0x39,
 };
 
 enum EF_OISUI_JNT {

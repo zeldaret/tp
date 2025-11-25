@@ -5,14 +5,14 @@ enum dRes_INDEX_WINDSTONE {
     /* BMDR */
     dRes_INDEX_WINDSTONE_BMD_MODEL0_e=0x4,
     /* DZB  */
-    dRes_INDEX_WINDSTONE_DZB_MODEL0_1_e=0x7,
+    dRes_INDEX_WINDSTONE_DZB_MODEL0_e=0x7,
 };
 
 enum dRes_ID_WINDSTONE {
     /* BMDR */
     dRes_ID_WINDSTONE_BMD_MODEL0_e=0x4,
     /* DZB  */
-    dRes_ID_WINDSTONE_DZB_MODEL0_1_e=0x7,
+    dRes_ID_WINDSTONE_DZB_MODEL0_e=0x7,
 };
 
 enum MODEL0_JNT {

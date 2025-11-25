@@ -5,14 +5,14 @@ enum dRes_INDEX_V_ICELEAF {
     /* BCK  */
     dRes_INDEX_V_ICELEAF_BCK_ICELEAF_e=0x4,
     /* BMDE */
-    dRes_INDEX_V_ICELEAF_BMD_ICELEAF_1_e=0x7,
+    dRes_INDEX_V_ICELEAF_BMD_ICELEAF_e=0x7,
 };
 
 enum dRes_ID_V_ICELEAF {
     /* BCK  */
     dRes_ID_V_ICELEAF_BCK_ICELEAF_e=0x4,
     /* BMDE */
-    dRes_ID_V_ICELEAF_BMD_ICELEAF_1_e=0x7,
+    dRes_ID_V_ICELEAF_BMD_ICELEAF_e=0x7,
 };
 
 enum ICELEAF_JNT {

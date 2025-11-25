@@ -5,14 +5,14 @@ enum dRes_INDEX_H_KINOBOU {
     /* BMDR */
     dRes_INDEX_H_KINOBOU_BMD_H_KINOBOU_e=0x4,
     /* DZB  */
-    dRes_INDEX_H_KINOBOU_DZB_H_KINOBOU_1_e=0x7,
+    dRes_INDEX_H_KINOBOU_DZB_H_KINOBOU_e=0x7,
 };
 
 enum dRes_ID_H_KINOBOU {
     /* BMDR */
     dRes_ID_H_KINOBOU_BMD_H_KINOBOU_e=0x4,
     /* DZB  */
-    dRes_ID_H_KINOBOU_DZB_H_KINOBOU_1_e=0x7,
+    dRes_ID_H_KINOBOU_DZB_H_KINOBOU_e=0x7,
 };
 
 enum H_KINOBOU_JNT {

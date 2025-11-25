@@ -5,14 +5,14 @@ enum dRes_INDEX_L7GATEL {
     /* BMDR */
     dRes_INDEX_L7GATEL_BMD_S_LV7GATE_L_e=0x4,
     /* DZB  */
-    dRes_INDEX_L7GATEL_DZB_S_LV7GATE_L_1_e=0x7,
+    dRes_INDEX_L7GATEL_DZB_S_LV7GATE_L_e=0x7,
 };
 
 enum dRes_ID_L7GATEL {
     /* BMDR */
     dRes_ID_L7GATEL_BMD_S_LV7GATE_L_e=0x4,
     /* DZB  */
-    dRes_ID_L7GATEL_DZB_S_LV7GATE_L_1_e=0x7,
+    dRes_ID_L7GATEL_DZB_S_LV7GATE_L_e=0x7,
 };
 
 enum S_LV7GATE_L_JNT {

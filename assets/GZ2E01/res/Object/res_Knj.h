@@ -7,7 +7,7 @@ enum dRes_INDEX_KNJ {
     /* BMDR */
     dRes_INDEX_KNJ_BMD_KNJ_e=0x9,
     /* BRK  */
-    dRes_INDEX_KNJ_BRK_KNJ_1_e=0xC,
+    dRes_INDEX_KNJ_BRK_KNJ_e=0xC,
     /* BTP  */
     dRes_INDEX_KNJ_BTP_KNJ_HIKARI_e=0xF,
     dRes_INDEX_KNJ_BTP_KNJ_HONOO_e=0x10,
@@ -23,7 +23,7 @@ enum dRes_ID_KNJ {
     /* BMDR */
     dRes_ID_KNJ_BMD_KNJ_e=0x9,
     /* BRK  */
-    dRes_ID_KNJ_BRK_KNJ_1_e=0xC,
+    dRes_ID_KNJ_BRK_KNJ_e=0xC,
     /* BTP  */
     dRes_ID_KNJ_BTP_KNJ_HIKARI_e=0xF,
     dRes_ID_KNJ_BTP_KNJ_HONOO_e=0x10,

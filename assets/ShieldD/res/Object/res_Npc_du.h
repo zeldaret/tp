@@ -9,7 +9,7 @@ enum dRes_INDEX_NPC_DU {
     /* BMDR */
     dRes_INDEX_NPC_DU_BMD_DU_e=0xA,
     /* BTP  */
-    dRes_INDEX_NPC_DU_BTP_DU_1_e=0xD,
+    dRes_INDEX_NPC_DU_BTP_DU_e=0xD,
 };
 
 enum dRes_ID_NPC_DU {
@@ -20,7 +20,7 @@ enum dRes_ID_NPC_DU {
     /* BMDR */
     dRes_ID_NPC_DU_BMD_DU_e=0xA,
     /* BTP  */
-    dRes_ID_NPC_DU_BTP_DU_1_e=0xD,
+    dRes_ID_NPC_DU_BTP_DU_e=0xD,
 };
 
 enum DU_JNT {

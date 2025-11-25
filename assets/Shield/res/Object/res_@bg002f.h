@@ -6,8 +6,8 @@ enum dRes_INDEX__BG002F {
     dRes_INDEX__BG002F_BMD_MODEL0_e=0x5,
     dRes_INDEX__BG002F_BMD_MODEL0_1_e=0x6,
     /* BTK  */
-    dRes_INDEX__BG002F_BTK_MODEL0_1_e=0x9,
-    dRes_INDEX__BG002F_BTK_MODEL0_1_1_e=0xA,
+    dRes_INDEX__BG002F_BTK_MODEL0_e=0x9,
+    dRes_INDEX__BG002F_BTK_MODEL0_1_e=0xA,
     /* SPEC */
     dRes_INDEX__BG002F_DAT_SPEC_e=0xD,
 };
@@ -17,8 +17,8 @@ enum dRes_ID__BG002F {
     dRes_ID__BG002F_BMD_MODEL0_e=0x5,
     dRes_ID__BG002F_BMD_MODEL0_1_e=0x6,
     /* BTK  */
-    dRes_ID__BG002F_BTK_MODEL0_1_e=0x9,
-    dRes_ID__BG002F_BTK_MODEL0_1_1_e=0xA,
+    dRes_ID__BG002F_BTK_MODEL0_e=0x9,
+    dRes_ID__BG002F_BTK_MODEL0_1_e=0xA,
     /* SPEC */
     dRes_ID__BG002F_DAT_SPEC_e=0xD,
 };

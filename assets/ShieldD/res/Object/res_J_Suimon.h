@@ -8,7 +8,7 @@ enum dRes_INDEX_J_SUIMON {
     /* BMDR */
     dRes_INDEX_J_SUIMON_BMD_J_SUIMON_e=0x9,
     /* DZB  */
-    dRes_INDEX_J_SUIMON_DZB_J_SUIMON_1_e=0xC,
+    dRes_INDEX_J_SUIMON_DZB_J_SUIMON_e=0xC,
 };
 
 enum dRes_ID_J_SUIMON {
@@ -18,7 +18,7 @@ enum dRes_ID_J_SUIMON {
     /* BMDR */
     dRes_ID_J_SUIMON_BMD_J_SUIMON_e=0x9,
     /* DZB  */
-    dRes_ID_J_SUIMON_DZB_J_SUIMON_1_e=0xC,
+    dRes_ID_J_SUIMON_DZB_J_SUIMON_e=0xC,
 };
 
 enum J_SUIMON_JNT {

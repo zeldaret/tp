@@ -10,9 +10,9 @@ enum dRes_INDEX_TKJ {
     /* BMDR */
     dRes_INDEX_TKJ_BMD_TKJ_e=0xC,
     /* BTK  */
-    dRes_INDEX_TKJ_BTK_TKJ_1_e=0xF,
+    dRes_INDEX_TKJ_BTK_TKJ_e=0xF,
     /* BTP  */
-    dRes_INDEX_TKJ_BTP_TKJ_2_e=0x12,
+    dRes_INDEX_TKJ_BTP_TKJ_e=0x12,
 };
 
 enum dRes_ID_TKJ {
@@ -24,9 +24,9 @@ enum dRes_ID_TKJ {
     /* BMDR */
     dRes_ID_TKJ_BMD_TKJ_e=0xC,
     /* BTK  */
-    dRes_ID_TKJ_BTK_TKJ_1_e=0xF,
+    dRes_ID_TKJ_BTK_TKJ_e=0xF,
     /* BTP  */
-    dRes_ID_TKJ_BTP_TKJ_2_e=0x12,
+    dRes_ID_TKJ_BTP_TKJ_e=0x12,
 };
 
 enum TKJ_JNT {

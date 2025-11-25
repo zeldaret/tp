@@ -5,14 +5,14 @@ enum dRes_INDEX_HSWITCH {
     /* BMDR */
     dRes_INDEX_HSWITCH_BMD_P_HSWITCH_e=0x4,
     /* DZB  */
-    dRes_INDEX_HSWITCH_DZB_P_HSWITCH_1_e=0x7,
+    dRes_INDEX_HSWITCH_DZB_P_HSWITCH_e=0x7,
 };
 
 enum dRes_ID_HSWITCH {
     /* BMDR */
     dRes_ID_HSWITCH_BMD_P_HSWITCH_e=0x4,
     /* DZB  */
-    dRes_ID_HSWITCH_DZB_P_HSWITCH_1_e=0x7,
+    dRes_ID_HSWITCH_DZB_P_HSWITCH_e=0x7,
 };
 
 enum P_HSWITCH_JNT {

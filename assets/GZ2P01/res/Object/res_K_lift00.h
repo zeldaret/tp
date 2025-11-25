@@ -7,7 +7,7 @@ enum dRes_INDEX_K_LIFT00 {
     dRes_INDEX_K_LIFT00_BMD_K_LIFT01_e=0x5,
     dRes_INDEX_K_LIFT00_BMD_P_CHAIN_e=0x6,
     /* DZB  */
-    dRes_INDEX_K_LIFT00_DZB_K_LIFT00_1_e=0x9,
+    dRes_INDEX_K_LIFT00_DZB_K_LIFT00_e=0x9,
 };
 
 enum dRes_ID_K_LIFT00 {
@@ -16,7 +16,7 @@ enum dRes_ID_K_LIFT00 {
     dRes_ID_K_LIFT00_BMD_K_LIFT01_e=0x5,
     dRes_ID_K_LIFT00_BMD_P_CHAIN_e=0x6,
     /* DZB  */
-    dRes_ID_K_LIFT00_DZB_K_LIFT00_1_e=0x9,
+    dRes_ID_K_LIFT00_DZB_K_LIFT00_e=0x9,
 };
 
 enum K_LIFT00_JNT {

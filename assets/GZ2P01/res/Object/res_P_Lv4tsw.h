@@ -5,14 +5,14 @@ enum dRes_INDEX_P_LV4TSW {
     /* BMDR */
     dRes_INDEX_P_LV4TSW_BMD_LV4_TURNSW_e=0x4,
     /* DZB  */
-    dRes_INDEX_P_LV4TSW_DZB_LV4_TURNSW_1_e=0x7,
+    dRes_INDEX_P_LV4TSW_DZB_LV4_TURNSW_e=0x7,
 };
 
 enum dRes_ID_P_LV4TSW {
     /* BMDR */
     dRes_ID_P_LV4TSW_BMD_LV4_TURNSW_e=0x4,
     /* DZB  */
-    dRes_ID_P_LV4TSW_DZB_LV4_TURNSW_1_e=0x7,
+    dRes_ID_P_LV4TSW_DZB_LV4_TURNSW_e=0x7,
 };
 
 enum LV4_TURNSW_JNT {

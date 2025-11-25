@@ -17,11 +17,11 @@ enum dRes_INDEX_E_DK {
     dRes_INDEX_E_DK_BMD_DK_e=0x12,
     dRes_INDEX_E_DK_BMD_DK_CORE_e=0x13,
     /* BRK  */
-    dRes_INDEX_E_DK_BRK_DK_ATTACK_1_e=0x16,
-    dRes_INDEX_E_DK_BRK_DK_WAIT_1_e=0x17,
+    dRes_INDEX_E_DK_BRK_DK_ATTACK_e=0x16,
+    dRes_INDEX_E_DK_BRK_DK_WAIT_e=0x17,
     /* BTK  */
-    dRes_INDEX_E_DK_BTK_DK_ATTACK_2_e=0x1A,
-    dRes_INDEX_E_DK_BTK_DK_WAIT_2_e=0x1B,
+    dRes_INDEX_E_DK_BTK_DK_ATTACK_e=0x1A,
+    dRes_INDEX_E_DK_BTK_DK_WAIT_e=0x1B,
 };
 
 enum dRes_ID_E_DK {
@@ -40,11 +40,11 @@ enum dRes_ID_E_DK {
     dRes_ID_E_DK_BMD_DK_e=0x12,
     dRes_ID_E_DK_BMD_DK_CORE_e=0x13,
     /* BRK  */
-    dRes_ID_E_DK_BRK_DK_ATTACK_1_e=0x16,
-    dRes_ID_E_DK_BRK_DK_WAIT_1_e=0x17,
+    dRes_ID_E_DK_BRK_DK_ATTACK_e=0x16,
+    dRes_ID_E_DK_BRK_DK_WAIT_e=0x17,
     /* BTK  */
-    dRes_ID_E_DK_BTK_DK_ATTACK_2_e=0x1A,
-    dRes_ID_E_DK_BTK_DK_WAIT_2_e=0x1B,
+    dRes_ID_E_DK_BTK_DK_ATTACK_e=0x1A,
+    dRes_ID_E_DK_BTK_DK_WAIT_e=0x1B,
 };
 
 enum DK_JNT {

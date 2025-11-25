@@ -31,7 +31,7 @@ enum dRes_INDEX_E_GB {
     dRes_INDEX_E_GB_BMD_GF_e=0x1F,
     dRes_INDEX_E_GB_BMD_GS_e=0x20,
     /* BRK  */
-    dRes_INDEX_E_GB_BRK_GF_DIE_1_e=0x23,
+    dRes_INDEX_E_GB_BRK_GF_DIE_e=0x23,
 };
 
 enum dRes_ID_E_GB {
@@ -64,7 +64,7 @@ enum dRes_ID_E_GB {
     dRes_ID_E_GB_BMD_GF_e=0x1F,
     dRes_ID_E_GB_BMD_GS_e=0x20,
     /* BRK  */
-    dRes_ID_E_GB_BRK_GF_DIE_1_e=0x23,
+    dRes_ID_E_GB_BRK_GF_DIE_e=0x23,
 };
 
 enum GB_JNT {

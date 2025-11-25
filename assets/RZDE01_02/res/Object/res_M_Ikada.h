@@ -5,14 +5,14 @@ enum dRes_INDEX_M_IKADA {
     /* BMDR */
     dRes_INDEX_M_IKADA_BMD_M_IKADA_e=0x4,
     /* DZB  */
-    dRes_INDEX_M_IKADA_DZB_M_IKADA_1_e=0x7,
+    dRes_INDEX_M_IKADA_DZB_M_IKADA_e=0x7,
 };
 
 enum dRes_ID_M_IKADA {
     /* BMDR */
     dRes_ID_M_IKADA_BMD_M_IKADA_e=0x4,
     /* DZB  */
-    dRes_ID_M_IKADA_DZB_M_IKADA_1_e=0x7,
+    dRes_ID_M_IKADA_DZB_M_IKADA_e=0x7,
 };
 
 enum M_IKADA_JNT {

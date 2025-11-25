@@ -12,9 +12,9 @@ enum dRes_INDEX_GRZ {
     /* BMDR */
     dRes_INDEX_GRZ_BMD_GRZ_e=0xE,
     /* BTK  */
-    dRes_INDEX_GRZ_BTK_GRZ_1_e=0x11,
+    dRes_INDEX_GRZ_BTK_GRZ_e=0x11,
     /* BTP  */
-    dRes_INDEX_GRZ_BTP_GRZ_2_e=0x14,
+    dRes_INDEX_GRZ_BTP_GRZ_e=0x14,
 };
 
 enum dRes_ID_GRZ {
@@ -28,9 +28,9 @@ enum dRes_ID_GRZ {
     /* BMDR */
     dRes_ID_GRZ_BMD_GRZ_e=0xE,
     /* BTK  */
-    dRes_ID_GRZ_BTK_GRZ_1_e=0x11,
+    dRes_ID_GRZ_BTK_GRZ_e=0x11,
     /* BTP  */
-    dRes_ID_GRZ_BTP_GRZ_2_e=0x14,
+    dRes_ID_GRZ_BTP_GRZ_e=0x14,
 };
 
 enum GRZ_JNT {

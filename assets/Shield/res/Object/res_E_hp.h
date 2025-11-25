@@ -16,7 +16,7 @@ enum dRes_INDEX_E_HP {
     dRes_INDEX_E_HP_BCK_HP_WAIT02_e=0xE,
     dRes_INDEX_E_HP_BCK_HP_WAIT03_e=0xF,
     /* BMDR */
-    dRes_INDEX_E_HP_BMD_EF_GLOW_1_e=0x12,
+    dRes_INDEX_E_HP_BMD_EF_GLOW_e=0x12,
     dRes_INDEX_E_HP_BMD_HP_e=0x13,
     dRes_INDEX_E_HP_BMD_HP_ORI_e=0x14,
 };
@@ -36,7 +36,7 @@ enum dRes_ID_E_HP {
     dRes_ID_E_HP_BCK_HP_WAIT02_e=0xE,
     dRes_ID_E_HP_BCK_HP_WAIT03_e=0xF,
     /* BMDR */
-    dRes_ID_E_HP_BMD_EF_GLOW_1_e=0x12,
+    dRes_ID_E_HP_BMD_EF_GLOW_e=0x12,
     dRes_ID_E_HP_BMD_HP_e=0x13,
     dRes_ID_E_HP_BMD_HP_ORI_e=0x14,
 };

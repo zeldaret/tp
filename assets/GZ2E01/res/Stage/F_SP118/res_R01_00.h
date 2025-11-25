@@ -10,9 +10,9 @@ enum dRes_INDEX_R01_00 {
     /* EVT  */
     dRes_INDEX_R01_00_DAT_EVENT_LIST_e=0xE,
     /* KCL  */
-    dRes_INDEX_R01_00_KCL_ROOM_1_e=0x11,
+    dRes_INDEX_R01_00_KCL_ROOM_e=0x11,
     /* PLC  */
-    dRes_INDEX_R01_00_PLC_ROOM_2_e=0x14,
+    dRes_INDEX_R01_00_PLC_ROOM_e=0x14,
 };
 
 enum dRes_ID_R01_00 {
@@ -24,9 +24,9 @@ enum dRes_ID_R01_00 {
     /* EVT  */
     dRes_ID_R01_00_DAT_EVENT_LIST_e=0xE,
     /* KCL  */
-    dRes_ID_R01_00_KCL_ROOM_1_e=0x11,
+    dRes_ID_R01_00_KCL_ROOM_e=0x11,
     /* PLC  */
-    dRes_ID_R01_00_PLC_ROOM_2_e=0x14,
+    dRes_ID_R01_00_PLC_ROOM_e=0x14,
 };
 
 #endif /* !RES_R01_00_H */

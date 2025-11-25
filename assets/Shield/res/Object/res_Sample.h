@@ -7,14 +7,14 @@ enum dRes_INDEX_SAMPLE {
     dRes_INDEX_SAMPLE_TXT_FILE1_e=0x9,
     dRes_INDEX_SAMPLE_TXT_FILE2_e=0xA,
     /* BMDR */
-    dRes_INDEX_SAMPLE_BMD_FILE1_1_e=0xD,
-    dRes_INDEX_SAMPLE_BMD_FILE2_1_e=0xE,
+    dRes_INDEX_SAMPLE_BMD_FILE1_e=0xD,
+    dRes_INDEX_SAMPLE_BMD_FILE2_e=0xE,
     /* EVT  */
     dRes_INDEX_SAMPLE_DAT_EVENT_LIST_e=0x11,
     /* DIR5 */
     dRes_INDEX_SAMPLE__A_e=0x14,
     /* DZB  */
-    dRes_INDEX_SAMPLE_DZB_FILE2_2_e=0x17,
+    dRes_INDEX_SAMPLE_DZB_FILE2_e=0x17,
     dRes_INDEX_SAMPLE_DZB_FILE_e=0x18,
     /* BCK  */
     dRes_INDEX_SAMPLE_BCK_TEST_e=0x1B,
@@ -26,14 +26,14 @@ enum dRes_ID_SAMPLE {
     dRes_ID_SAMPLE_TXT_FILE1_e=0x18,
     dRes_ID_SAMPLE_TXT_FILE2_e=0x23,
     /* BMDR */
-    dRes_ID_SAMPLE_BMD_FILE1_1_e=0x19,
-    dRes_ID_SAMPLE_BMD_FILE2_1_e=0x1A,
+    dRes_ID_SAMPLE_BMD_FILE1_e=0x19,
+    dRes_ID_SAMPLE_BMD_FILE2_e=0x1A,
     /* EVT  */
     dRes_ID_SAMPLE_DAT_EVENT_LIST_e=0x1B,
     /* DIR5 */
     dRes_ID_SAMPLE__A_e=0x1F,
     /* DZB  */
-    dRes_ID_SAMPLE_DZB_FILE2_2_e=0x21,
+    dRes_ID_SAMPLE_DZB_FILE2_e=0x21,
     dRes_ID_SAMPLE_DZB_FILE_e=0x24,
     /* BCK  */
     dRes_ID_SAMPLE_BCK_TEST_e=0x22,

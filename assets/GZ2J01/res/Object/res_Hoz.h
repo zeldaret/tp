@@ -10,9 +10,9 @@ enum dRes_INDEX_HOZ {
     /* BMDR */
     dRes_INDEX_HOZ_BMD_HOZ_e=0xD,
     /* BTK  */
-    dRes_INDEX_HOZ_BTK_HOZ_1_e=0x10,
+    dRes_INDEX_HOZ_BTK_HOZ_e=0x10,
     /* BTP  */
-    dRes_INDEX_HOZ_BTP_HOZ_2_e=0x13,
+    dRes_INDEX_HOZ_BTP_HOZ_e=0x13,
     /* EVT  */
     dRes_INDEX_HOZ_DAT_EVENT_LIST_e=0x16,
 };
@@ -26,9 +26,9 @@ enum dRes_ID_HOZ {
     /* BMDR */
     dRes_ID_HOZ_BMD_HOZ_e=0xD,
     /* BTK  */
-    dRes_ID_HOZ_BTK_HOZ_1_e=0x10,
+    dRes_ID_HOZ_BTK_HOZ_e=0x10,
     /* BTP  */
-    dRes_ID_HOZ_BTP_HOZ_2_e=0x13,
+    dRes_ID_HOZ_BTP_HOZ_e=0x13,
     /* EVT  */
     dRes_ID_HOZ_DAT_EVENT_LIST_e=0x16,
 };

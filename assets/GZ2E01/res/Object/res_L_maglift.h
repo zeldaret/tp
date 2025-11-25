@@ -5,14 +5,14 @@ enum dRes_INDEX_L_MAGLIFT {
     /* BMDR */
     dRes_INDEX_L_MAGLIFT_BMD_L_MAGLIFT_00_e=0x4,
     /* DZB  */
-    dRes_INDEX_L_MAGLIFT_DZB_L_MAGLIFT_00_1_e=0x7,
+    dRes_INDEX_L_MAGLIFT_DZB_L_MAGLIFT_00_e=0x7,
 };
 
 enum dRes_ID_L_MAGLIFT {
     /* BMDR */
     dRes_ID_L_MAGLIFT_BMD_L_MAGLIFT_00_e=0x4,
     /* DZB  */
-    dRes_ID_L_MAGLIFT_DZB_L_MAGLIFT_00_1_e=0x7,
+    dRes_ID_L_MAGLIFT_DZB_L_MAGLIFT_00_e=0x7,
 };
 
 enum L_MAGLIFT_00_JNT {

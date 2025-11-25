@@ -9,9 +9,9 @@ enum dRes_INDEX_YAMIS {
     /* BMDR */
     dRes_INDEX_YAMIS_BMD_YAMIS_e=0xC,
     /* BTK  */
-    dRes_INDEX_YAMIS_BTK_YAMIS_1_e=0xF,
+    dRes_INDEX_YAMIS_BTK_YAMIS_e=0xF,
     /* BTP  */
-    dRes_INDEX_YAMIS_BTP_YAMIS_2_e=0x12,
+    dRes_INDEX_YAMIS_BTP_YAMIS_e=0x12,
     /* EVT  */
     dRes_INDEX_YAMIS_DAT_EVENT_LIST_e=0x15,
 };
@@ -24,9 +24,9 @@ enum dRes_ID_YAMIS {
     /* BMDR */
     dRes_ID_YAMIS_BMD_YAMIS_e=0xC,
     /* BTK  */
-    dRes_ID_YAMIS_BTK_YAMIS_1_e=0xF,
+    dRes_ID_YAMIS_BTK_YAMIS_e=0xF,
     /* BTP  */
-    dRes_ID_YAMIS_BTP_YAMIS_2_e=0x12,
+    dRes_ID_YAMIS_BTP_YAMIS_e=0x12,
     /* EVT  */
     dRes_ID_YAMIS_DAT_EVENT_LIST_e=0x15,
 };

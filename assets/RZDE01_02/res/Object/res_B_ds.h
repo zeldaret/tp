@@ -74,12 +74,12 @@ enum dRes_INDEX_B_DS {
     dRes_INDEX_B_DS_BMD_ZNTA_e=0x4B,
     /* BRK  */
     dRes_INDEX_B_DS_BRK_DS_MONYOU_DAMAGE_e=0x4E,
-    dRes_INDEX_B_DS_BRK_DS_OP_MONYOU_1_e=0x4F,
+    dRes_INDEX_B_DS_BRK_DS_OP_MONYOU_e=0x4F,
     dRes_INDEX_B_DS_BRK_ZK_DAMAGE_e=0x50,
-    dRes_INDEX_B_DS_BRK_ZK_DSOP_1_e=0x51,
+    dRes_INDEX_B_DS_BRK_ZK_DSOP_e=0x51,
     /* BTK  */
-    dRes_INDEX_B_DS_BTK_DS_MONYOU_DAMAGE_1_e=0x54,
-    dRes_INDEX_B_DS_BTK_DS_OP_MONYOU_2_e=0x55,
+    dRes_INDEX_B_DS_BTK_DS_MONYOU_DAMAGE_e=0x54,
+    dRes_INDEX_B_DS_BTK_DS_OP_MONYOU_e=0x55,
 };
 
 enum dRes_ID_B_DS {
@@ -155,12 +155,12 @@ enum dRes_ID_B_DS {
     dRes_ID_B_DS_BMD_ZNTA_e=0x4B,
     /* BRK  */
     dRes_ID_B_DS_BRK_DS_MONYOU_DAMAGE_e=0x4E,
-    dRes_ID_B_DS_BRK_DS_OP_MONYOU_1_e=0x4F,
+    dRes_ID_B_DS_BRK_DS_OP_MONYOU_e=0x4F,
     dRes_ID_B_DS_BRK_ZK_DAMAGE_e=0x50,
-    dRes_ID_B_DS_BRK_ZK_DSOP_1_e=0x51,
+    dRes_ID_B_DS_BRK_ZK_DSOP_e=0x51,
     /* BTK  */
-    dRes_ID_B_DS_BTK_DS_MONYOU_DAMAGE_1_e=0x54,
-    dRes_ID_B_DS_BTK_DS_OP_MONYOU_2_e=0x55,
+    dRes_ID_B_DS_BTK_DS_MONYOU_DAMAGE_e=0x54,
+    dRes_ID_B_DS_BTK_DS_OP_MONYOU_e=0x55,
 };
 
 enum DS_JNT {

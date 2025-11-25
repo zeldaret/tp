@@ -10,8 +10,8 @@ enum dRes_INDEX_KAT {
     dRes_INDEX_KAT_BRK_KAT_M_e=0xC,
     dRes_INDEX_KAT_BRK_KAT_O_e=0xD,
     /* BTK  */
-    dRes_INDEX_KAT_BTK_KAT_M_1_e=0x10,
-    dRes_INDEX_KAT_BTK_KAT_O_1_e=0x11,
+    dRes_INDEX_KAT_BTK_KAT_M_e=0x10,
+    dRes_INDEX_KAT_BTK_KAT_O_e=0x11,
 };
 
 enum dRes_ID_KAT {
@@ -23,8 +23,8 @@ enum dRes_ID_KAT {
     dRes_ID_KAT_BRK_KAT_M_e=0xC,
     dRes_ID_KAT_BRK_KAT_O_e=0xD,
     /* BTK  */
-    dRes_ID_KAT_BTK_KAT_M_1_e=0x10,
-    dRes_ID_KAT_BTK_KAT_O_1_e=0x11,
+    dRes_ID_KAT_BTK_KAT_M_e=0x10,
+    dRes_ID_KAT_BTK_KAT_O_e=0x11,
 };
 
 enum KAT_JNT {

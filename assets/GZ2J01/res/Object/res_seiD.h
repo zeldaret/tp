@@ -5,18 +5,18 @@ enum dRes_INDEX_SEID {
     /* BMDE */
     dRes_INDEX_SEID_BMD_SEID_NOMAL_e=0x5,
     /* BRK  */
-    dRes_INDEX_SEID_BRK_SEID_NOMAL_1_e=0x8,
+    dRes_INDEX_SEID_BRK_SEID_NOMAL_e=0x8,
     /* BTK  */
-    dRes_INDEX_SEID_BTK_SEID_NOMAL_2_e=0xB,
+    dRes_INDEX_SEID_BTK_SEID_NOMAL_e=0xB,
 };
 
 enum dRes_ID_SEID {
     /* BMDE */
     dRes_ID_SEID_BMD_SEID_NOMAL_e=0x5,
     /* BRK  */
-    dRes_ID_SEID_BRK_SEID_NOMAL_1_e=0x8,
+    dRes_ID_SEID_BRK_SEID_NOMAL_e=0x8,
     /* BTK  */
-    dRes_ID_SEID_BTK_SEID_NOMAL_2_e=0xB,
+    dRes_ID_SEID_BTK_SEID_NOMAL_e=0xB,
 };
 
 enum SEID_NOMAL_JNT {

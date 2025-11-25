@@ -10,9 +10,9 @@ enum dRes_INDEX_SEIB {
     /* BMDE */
     dRes_INDEX_SEIB_BMD_SEIB_NOMAL_e=0xC,
     /* BRK  */
-    dRes_INDEX_SEIB_BRK_SEIB_NOMAL_1_e=0xF,
+    dRes_INDEX_SEIB_BRK_SEIB_NOMAL_e=0xF,
     /* BTK  */
-    dRes_INDEX_SEIB_BTK_SEIB_NOMAL_2_e=0x12,
+    dRes_INDEX_SEIB_BTK_SEIB_NOMAL_e=0x12,
 };
 
 enum dRes_ID_SEIB {
@@ -24,9 +24,9 @@ enum dRes_ID_SEIB {
     /* BMDE */
     dRes_ID_SEIB_BMD_SEIB_NOMAL_e=0xC,
     /* BRK  */
-    dRes_ID_SEIB_BRK_SEIB_NOMAL_1_e=0xF,
+    dRes_ID_SEIB_BRK_SEIB_NOMAL_e=0xF,
     /* BTK  */
-    dRes_ID_SEIB_BTK_SEIB_NOMAL_2_e=0x12,
+    dRes_ID_SEIB_BTK_SEIB_NOMAL_e=0x12,
 };
 
 enum SEIB_NOMAL_JNT {

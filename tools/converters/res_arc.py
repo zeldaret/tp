@@ -217,23 +217,28 @@ def convert_binary_to_resource_enum(src_path: Path, dest_path: Path) -> None:
         for file in files:
             parts = file.file_name.split(".")
             santitized_file_name = sanitize_string(parts[0].upper()) # Sanitize identifier
-                
-            seen_count = appearance_count[santitized_file_name]
-            appearance_count[santitized_file_name] += 1
 
             ext = ""
             if len(parts) > 1:
                 ext = sanitize_string(parts[1].upper())
 
-            duplicate_tag = "_"
+            file_str = f"{file_stem_upper}_{ext}_{santitized_file_name}"
+
+            idx = f"dRes_INDEX_{file_str}"
+            seen_count = appearance_count[idx]
+            appearance_count[idx] = seen_count + 1
             if seen_count > 0:
-                duplicate_tag = f"_{seen_count}_"
+                idx += f"_{seen_count}"
+
+            id  = f"dRes_ID_{file_str}"
+            seen_count = appearance_count[id]
+            appearance_count[id] = seen_count + 1
+            if seen_count > 0:
+                id += f"_{seen_count}"
 
             # tiny optimization to do less string formatting
-            begin_part = f"{INDENT}dRes_"
-            mid_part = f"_{file_stem_upper}_{ext}_{santitized_file_name}{duplicate_tag}e=0x"
-            out_idxs.append(f"{begin_part}INDEX{mid_part}{file.index:X},")
-            out_ids.append(f"{begin_part}ID{mid_part}{file.id:X},")
+            out_idxs.append(f"{INDENT}{idx}_e=0x{file.index:X},")
+            out_ids.append(f"{INDENT}{id}_e=0x{file.id:X},")
     
     out_lines.append(f"enum dRes_INDEX_{file_stem_upper} {{")
     out_lines.extend(out_idxs)

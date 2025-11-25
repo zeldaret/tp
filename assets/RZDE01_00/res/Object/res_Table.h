@@ -5,7 +5,7 @@ enum dRes_INDEX_TABLE {
     /* BMDR */
     dRes_INDEX_TABLE_BMD_V_CHIZU_e=0x5,
     /* DZB  */
-    dRes_INDEX_TABLE_DZB_V_CHIZU_1_e=0x8,
+    dRes_INDEX_TABLE_DZB_V_CHIZU_e=0x8,
     /* EVT  */
     dRes_INDEX_TABLE_DAT_EVENT_LIST_e=0xB,
 };
@@ -14,7 +14,7 @@ enum dRes_ID_TABLE {
     /* BMDR */
     dRes_ID_TABLE_BMD_V_CHIZU_e=0x5,
     /* DZB  */
-    dRes_ID_TABLE_DZB_V_CHIZU_1_e=0x8,
+    dRes_ID_TABLE_DZB_V_CHIZU_e=0x8,
     /* EVT  */
     dRes_ID_TABLE_DAT_EVENT_LIST_e=0xB,
 };

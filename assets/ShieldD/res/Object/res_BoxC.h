@@ -9,7 +9,7 @@ enum dRes_INDEX_BOXC {
     /* BMDV */
     dRes_INDEX_BOXC_BMD_BOXC_e=0xE,
     /* BRK  */
-    dRes_INDEX_BOXC_BRK_EF_BOXC_1_e=0x11,
+    dRes_INDEX_BOXC_BRK_EF_BOXC_e=0x11,
     /* DZB  */
     dRes_INDEX_BOXC_DZB_BOXCC_e=0x14,
     dRes_INDEX_BOXC_DZB_BOXCO_e=0x15,
@@ -25,7 +25,7 @@ enum dRes_ID_BOXC {
     /* BMDV */
     dRes_ID_BOXC_BMD_BOXC_e=0xE,
     /* BRK  */
-    dRes_ID_BOXC_BRK_EF_BOXC_1_e=0x11,
+    dRes_ID_BOXC_BRK_EF_BOXC_e=0x11,
     /* DZB  */
     dRes_ID_BOXC_DZB_BOXCC_e=0x14,
     dRes_ID_BOXC_DZB_BOXCO_e=0x15,

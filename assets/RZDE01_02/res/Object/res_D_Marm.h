@@ -10,13 +10,13 @@ enum dRes_INDEX_D_MARM {
     dRes_INDEX_D_MARM_BMD_D_MARM_E_e=0xB,
     dRes_INDEX_D_MARM_BMD_D_MARM_F_e=0xC,
     /* BRK  */
-    dRes_INDEX_D_MARM_BRK_D_MARM_F_1_e=0xF,
+    dRes_INDEX_D_MARM_BRK_D_MARM_F_e=0xF,
     /* BTK  */
-    dRes_INDEX_D_MARM_BTK_D_MARM_F_2_e=0x12,
+    dRes_INDEX_D_MARM_BTK_D_MARM_F_e=0x12,
     /* DZB  */
-    dRes_INDEX_D_MARM_DZB_D_MARM_A_1_e=0x15,
-    dRes_INDEX_D_MARM_DZB_D_MARM_C_1_e=0x16,
-    dRes_INDEX_D_MARM_DZB_D_MARM_F_3_e=0x17,
+    dRes_INDEX_D_MARM_DZB_D_MARM_A_e=0x15,
+    dRes_INDEX_D_MARM_DZB_D_MARM_C_e=0x16,
+    dRes_INDEX_D_MARM_DZB_D_MARM_F_e=0x17,
     /* TEX  */
     dRes_INDEX_D_MARM_BTI_P_LV2_WIRE_e=0x1A,
 };
@@ -30,13 +30,13 @@ enum dRes_ID_D_MARM {
     dRes_ID_D_MARM_BMD_D_MARM_E_e=0xB,
     dRes_ID_D_MARM_BMD_D_MARM_F_e=0xC,
     /* BRK  */
-    dRes_ID_D_MARM_BRK_D_MARM_F_1_e=0xF,
+    dRes_ID_D_MARM_BRK_D_MARM_F_e=0xF,
     /* BTK  */
-    dRes_ID_D_MARM_BTK_D_MARM_F_2_e=0x12,
+    dRes_ID_D_MARM_BTK_D_MARM_F_e=0x12,
     /* DZB  */
-    dRes_ID_D_MARM_DZB_D_MARM_A_1_e=0x15,
-    dRes_ID_D_MARM_DZB_D_MARM_C_1_e=0x16,
-    dRes_ID_D_MARM_DZB_D_MARM_F_3_e=0x17,
+    dRes_ID_D_MARM_DZB_D_MARM_A_e=0x15,
+    dRes_ID_D_MARM_DZB_D_MARM_C_e=0x16,
+    dRes_ID_D_MARM_DZB_D_MARM_F_e=0x17,
     /* TEX  */
     dRes_ID_D_MARM_BTI_P_LV2_WIRE_e=0x1A,
 };

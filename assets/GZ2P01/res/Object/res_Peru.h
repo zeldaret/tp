@@ -21,12 +21,12 @@ enum dRes_INDEX_PERU {
     /* BMDR */
     dRes_INDEX_PERU_BMD_GZ_NE_e=0x18,
     /* BTK  */
-    dRes_INDEX_PERU_BTK_GZ_NE_1_e=0x1B,
+    dRes_INDEX_PERU_BTK_GZ_NE_e=0x1B,
     /* BTP  */
-    dRes_INDEX_PERU_BTP_GZ_NE_2_e=0x1E,
-    dRes_INDEX_PERU_BTP_GZ_NE_F_KIZUKU_1_e=0x1F,
-    dRes_INDEX_PERU_BTP_GZ_NE_F_NAKU_1_e=0x20,
-    dRes_INDEX_PERU_BTP_GZ_NE_F_SNIFF_1_e=0x21,
+    dRes_INDEX_PERU_BTP_GZ_NE_e=0x1E,
+    dRes_INDEX_PERU_BTP_GZ_NE_F_KIZUKU_e=0x1F,
+    dRes_INDEX_PERU_BTP_GZ_NE_F_NAKU_e=0x20,
+    dRes_INDEX_PERU_BTP_GZ_NE_F_SNIFF_e=0x21,
     /* EVT  */
     dRes_INDEX_PERU_DAT_EVENT_LIST_e=0x24,
 };
@@ -51,12 +51,12 @@ enum dRes_ID_PERU {
     /* BMDR */
     dRes_ID_PERU_BMD_GZ_NE_e=0x18,
     /* BTK  */
-    dRes_ID_PERU_BTK_GZ_NE_1_e=0x1B,
+    dRes_ID_PERU_BTK_GZ_NE_e=0x1B,
     /* BTP  */
-    dRes_ID_PERU_BTP_GZ_NE_2_e=0x1E,
-    dRes_ID_PERU_BTP_GZ_NE_F_KIZUKU_1_e=0x1F,
-    dRes_ID_PERU_BTP_GZ_NE_F_NAKU_1_e=0x20,
-    dRes_ID_PERU_BTP_GZ_NE_F_SNIFF_1_e=0x21,
+    dRes_ID_PERU_BTP_GZ_NE_e=0x1E,
+    dRes_ID_PERU_BTP_GZ_NE_F_KIZUKU_e=0x1F,
+    dRes_ID_PERU_BTP_GZ_NE_F_NAKU_e=0x20,
+    dRes_ID_PERU_BTP_GZ_NE_F_SNIFF_e=0x21,
     /* EVT  */
     dRes_ID_PERU_DAT_EVENT_LIST_e=0x24,
 };

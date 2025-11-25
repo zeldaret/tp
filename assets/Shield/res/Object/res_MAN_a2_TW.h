@@ -5,14 +5,14 @@ enum dRes_INDEX_MAN_A2_TW {
     /* BMDR */
     dRes_INDEX_MAN_A2_TW_BMD_MAN_A2_TW_e=0x4,
     /* BTP  */
-    dRes_INDEX_MAN_A2_TW_BTP_MAN_A2_TW_1_e=0x7,
+    dRes_INDEX_MAN_A2_TW_BTP_MAN_A2_TW_e=0x7,
 };
 
 enum dRes_ID_MAN_A2_TW {
     /* BMDR */
     dRes_ID_MAN_A2_TW_BMD_MAN_A2_TW_e=0x4,
     /* BTP  */
-    dRes_ID_MAN_A2_TW_BTP_MAN_A2_TW_1_e=0x7,
+    dRes_ID_MAN_A2_TW_BTP_MAN_A2_TW_e=0x7,
 };
 
 enum MAN_A2_TW_JNT {

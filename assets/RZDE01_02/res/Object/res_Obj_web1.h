@@ -5,18 +5,18 @@ enum dRes_INDEX_OBJ_WEB1 {
     /* BMDR */
     dRes_INDEX_OBJ_WEB1_BMD_K_KUM_YUKA00_e=0x5,
     /* BRK  */
-    dRes_INDEX_OBJ_WEB1_BRK_K_KUM_YUKA00_1_e=0x8,
+    dRes_INDEX_OBJ_WEB1_BRK_K_KUM_YUKA00_e=0x8,
     /* DZB  */
-    dRes_INDEX_OBJ_WEB1_DZB_K_KUM_YUKA00_2_e=0xB,
+    dRes_INDEX_OBJ_WEB1_DZB_K_KUM_YUKA00_e=0xB,
 };
 
 enum dRes_ID_OBJ_WEB1 {
     /* BMDR */
     dRes_ID_OBJ_WEB1_BMD_K_KUM_YUKA00_e=0x5,
     /* BRK  */
-    dRes_ID_OBJ_WEB1_BRK_K_KUM_YUKA00_1_e=0x8,
+    dRes_ID_OBJ_WEB1_BRK_K_KUM_YUKA00_e=0x8,
     /* DZB  */
-    dRes_ID_OBJ_WEB1_DZB_K_KUM_YUKA00_2_e=0xB,
+    dRes_ID_OBJ_WEB1_DZB_K_KUM_YUKA00_e=0xB,
 };
 
 enum K_KUM_YUKA00_JNT {

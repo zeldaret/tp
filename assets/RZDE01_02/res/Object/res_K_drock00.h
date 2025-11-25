@@ -5,14 +5,14 @@ enum dRes_INDEX_K_DROCK00 {
     /* BMDR */
     dRes_INDEX_K_DROCK00_BMD_K_DROPROCK01_e=0x4,
     /* DZB  */
-    dRes_INDEX_K_DROCK00_DZB_K_DROPROCK01_1_e=0x7,
+    dRes_INDEX_K_DROCK00_DZB_K_DROPROCK01_e=0x7,
 };
 
 enum dRes_ID_K_DROCK00 {
     /* BMDR */
     dRes_ID_K_DROCK00_BMD_K_DROPROCK01_e=0x4,
     /* DZB  */
-    dRes_ID_K_DROCK00_DZB_K_DROPROCK01_1_e=0x7,
+    dRes_ID_K_DROCK00_DZB_K_DROPROCK01_e=0x7,
 };
 
 enum K_DROPROCK01_JNT {

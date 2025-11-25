@@ -9,11 +9,11 @@ enum dRes_INDEX_I_KUW {
     dRes_INDEX_I_KUW_BMD_KUW_M_e=0xA,
     dRes_INDEX_I_KUW_BMD_KUW_O_e=0xB,
     /* BRK  */
-    dRes_INDEX_I_KUW_BRK_KUW_M_1_e=0xE,
-    dRes_INDEX_I_KUW_BRK_KUW_O_1_e=0xF,
+    dRes_INDEX_I_KUW_BRK_KUW_M_e=0xE,
+    dRes_INDEX_I_KUW_BRK_KUW_O_e=0xF,
     /* BTK  */
-    dRes_INDEX_I_KUW_BTK_KUW_M_2_e=0x12,
-    dRes_INDEX_I_KUW_BTK_KUW_O_2_e=0x13,
+    dRes_INDEX_I_KUW_BTK_KUW_M_e=0x12,
+    dRes_INDEX_I_KUW_BTK_KUW_O_e=0x13,
 };
 
 enum dRes_ID_I_KUW {
@@ -24,11 +24,11 @@ enum dRes_ID_I_KUW {
     dRes_ID_I_KUW_BMD_KUW_M_e=0xA,
     dRes_ID_I_KUW_BMD_KUW_O_e=0xB,
     /* BRK  */
-    dRes_ID_I_KUW_BRK_KUW_M_1_e=0xE,
-    dRes_ID_I_KUW_BRK_KUW_O_1_e=0xF,
+    dRes_ID_I_KUW_BRK_KUW_M_e=0xE,
+    dRes_ID_I_KUW_BRK_KUW_O_e=0xF,
     /* BTK  */
-    dRes_ID_I_KUW_BTK_KUW_M_2_e=0x12,
-    dRes_ID_I_KUW_BTK_KUW_O_2_e=0x13,
+    dRes_ID_I_KUW_BTK_KUW_M_e=0x12,
+    dRes_ID_I_KUW_BTK_KUW_O_e=0x13,
 };
 
 enum KUW_M_JNT {

@@ -20,17 +20,17 @@ enum dRes_INDEX_E_PZ {
     dRes_INDEX_E_PZ_BCK_PZ_WAIT_e=0x15,
     /* BMDR */
     dRes_INDEX_E_PZ_BMD_EF_PORTAL_e=0x18,
-    dRes_INDEX_E_PZ_BMD_EF_PZBALL_1_e=0x19,
+    dRes_INDEX_E_PZ_BMD_EF_PZBALL_e=0x19,
     /* BMDV */
     dRes_INDEX_E_PZ_BMD_PZ_e=0x1C,
     /* BRK  */
     dRes_INDEX_E_PZ_BRK_EF_PORTAL_RED_APP_e=0x1F,
     dRes_INDEX_E_PZ_BRK_EF_PORTAL_RED_DISAPP_e=0x20,
-    dRes_INDEX_E_PZ_BRK_EF_PZBALL_2_e=0x21,
-    dRes_INDEX_E_PZ_BRK_PZ_1_e=0x22,
+    dRes_INDEX_E_PZ_BRK_EF_PZBALL_e=0x21,
+    dRes_INDEX_E_PZ_BRK_PZ_e=0x22,
     /* BTK  */
-    dRes_INDEX_E_PZ_BTK_EF_PORTAL_1_e=0x25,
-    dRes_INDEX_E_PZ_BTK_PZ_2_e=0x26,
+    dRes_INDEX_E_PZ_BTK_EF_PORTAL_e=0x25,
+    dRes_INDEX_E_PZ_BTK_PZ_e=0x26,
 };
 
 enum dRes_ID_E_PZ {
@@ -52,17 +52,17 @@ enum dRes_ID_E_PZ {
     dRes_ID_E_PZ_BCK_PZ_WAIT_e=0x15,
     /* BMDR */
     dRes_ID_E_PZ_BMD_EF_PORTAL_e=0x18,
-    dRes_ID_E_PZ_BMD_EF_PZBALL_1_e=0x19,
+    dRes_ID_E_PZ_BMD_EF_PZBALL_e=0x19,
     /* BMDV */
     dRes_ID_E_PZ_BMD_PZ_e=0x1C,
     /* BRK  */
     dRes_ID_E_PZ_BRK_EF_PORTAL_RED_APP_e=0x1F,
     dRes_ID_E_PZ_BRK_EF_PORTAL_RED_DISAPP_e=0x20,
-    dRes_ID_E_PZ_BRK_EF_PZBALL_2_e=0x21,
-    dRes_ID_E_PZ_BRK_PZ_1_e=0x22,
+    dRes_ID_E_PZ_BRK_EF_PZBALL_e=0x21,
+    dRes_ID_E_PZ_BRK_PZ_e=0x22,
     /* BTK  */
-    dRes_ID_E_PZ_BTK_EF_PORTAL_1_e=0x25,
-    dRes_ID_E_PZ_BTK_PZ_2_e=0x26,
+    dRes_ID_E_PZ_BTK_EF_PORTAL_e=0x25,
+    dRes_ID_E_PZ_BTK_PZ_e=0x26,
 };
 
 enum EF_PORTAL_JNT {

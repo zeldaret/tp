@@ -9,8 +9,8 @@ enum dRes_INDEX_TOBY0 {
     /* BTK  */
     dRes_INDEX_TOBY0_BTK_TOBY_e=0xA,
     /* BTP  */
-    dRes_INDEX_TOBY0_BTP_TOBY_1_e=0xD,
-    dRes_INDEX_TOBY0_BTP_TOBY_F_TALK_A_1_e=0xE,
+    dRes_INDEX_TOBY0_BTP_TOBY_e=0xD,
+    dRes_INDEX_TOBY0_BTP_TOBY_F_TALK_A_e=0xE,
 };
 
 enum dRes_ID_TOBY0 {
@@ -21,8 +21,8 @@ enum dRes_ID_TOBY0 {
     /* BTK  */
     dRes_ID_TOBY0_BTK_TOBY_e=0xA,
     /* BTP  */
-    dRes_ID_TOBY0_BTP_TOBY_1_e=0xD,
-    dRes_ID_TOBY0_BTP_TOBY_F_TALK_A_1_e=0xE,
+    dRes_ID_TOBY0_BTP_TOBY_e=0xD,
+    dRes_ID_TOBY0_BTP_TOBY_F_TALK_A_e=0xE,
 };
 
 #endif /* !RES_TOBY0_H */

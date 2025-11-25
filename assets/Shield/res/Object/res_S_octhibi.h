@@ -5,14 +5,14 @@ enum dRes_INDEX_S_OCTHIBI {
     /* BMDR */
     dRes_INDEX_S_OCTHIBI_BMD_S_OCT_HIBI_e=0x4,
     /* DZB  */
-    dRes_INDEX_S_OCTHIBI_DZB_S_OCT_HIBI_1_e=0x7,
+    dRes_INDEX_S_OCTHIBI_DZB_S_OCT_HIBI_e=0x7,
 };
 
 enum dRes_ID_S_OCTHIBI {
     /* BMDR */
     dRes_ID_S_OCTHIBI_BMD_S_OCT_HIBI_e=0x4,
     /* DZB  */
-    dRes_ID_S_OCTHIBI_DZB_S_OCT_HIBI_1_e=0x7,
+    dRes_ID_S_OCTHIBI_DZB_S_OCT_HIBI_e=0x7,
 };
 
 enum S_OCT_HIBI_JNT {

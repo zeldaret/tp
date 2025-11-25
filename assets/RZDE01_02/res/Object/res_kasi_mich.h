@@ -5,14 +5,14 @@ enum dRes_INDEX_KASI_MICH {
     /* BMDR */
     dRes_INDEX_KASI_MICH_BMD_MICH_e=0x4,
     /* BTP  */
-    dRes_INDEX_KASI_MICH_BTP_MICH_1_e=0x7,
+    dRes_INDEX_KASI_MICH_BTP_MICH_e=0x7,
 };
 
 enum dRes_ID_KASI_MICH {
     /* BMDR */
     dRes_ID_KASI_MICH_BMD_MICH_e=0x4,
     /* BTP  */
-    dRes_ID_KASI_MICH_BTP_MICH_1_e=0x7,
+    dRes_ID_KASI_MICH_BTP_MICH_e=0x7,
 };
 
 enum MICH_JNT {

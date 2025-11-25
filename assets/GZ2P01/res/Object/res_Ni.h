@@ -15,7 +15,7 @@ enum dRes_INDEX_NI {
     /* BMDR */
     dRes_INDEX_NI_BMD_NI_e=0x10,
     /* BTK  */
-    dRes_INDEX_NI_BTK_NI_1_e=0x13,
+    dRes_INDEX_NI_BTK_NI_e=0x13,
 };
 
 enum dRes_ID_NI {
@@ -32,7 +32,7 @@ enum dRes_ID_NI {
     /* BMDR */
     dRes_ID_NI_BMD_NI_e=0x10,
     /* BTK  */
-    dRes_ID_NI_BTK_NI_1_e=0x13,
+    dRes_ID_NI_BTK_NI_e=0x13,
 };
 
 enum NI_JNT {

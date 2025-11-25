@@ -5,14 +5,14 @@ enum dRes_INDEX_SEKIZO {
     /* BMDR */
     dRes_INDEX_SEKIZO_BMD_A_SMGSEKIZO_e=0x4,
     /* DZB  */
-    dRes_INDEX_SEKIZO_DZB_A_SMGSEKIZO_1_e=0x7,
+    dRes_INDEX_SEKIZO_DZB_A_SMGSEKIZO_e=0x7,
 };
 
 enum dRes_ID_SEKIZO {
     /* BMDR */
     dRes_ID_SEKIZO_BMD_A_SMGSEKIZO_e=0x4,
     /* DZB  */
-    dRes_ID_SEKIZO_DZB_A_SMGSEKIZO_1_e=0x7,
+    dRes_ID_SEKIZO_DZB_A_SMGSEKIZO_e=0x7,
 };
 
 enum A_SMGSEKIZO_JNT {

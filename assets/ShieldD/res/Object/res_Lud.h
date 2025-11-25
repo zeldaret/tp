@@ -9,9 +9,9 @@ enum dRes_INDEX_LUD {
     /* BMDR */
     dRes_INDEX_LUD_BMD_LUD_e=0xB,
     /* BTK  */
-    dRes_INDEX_LUD_BTK_LUD_1_e=0xE,
+    dRes_INDEX_LUD_BTK_LUD_e=0xE,
     /* BTP  */
-    dRes_INDEX_LUD_BTP_LUD_2_e=0x11,
+    dRes_INDEX_LUD_BTP_LUD_e=0x11,
 };
 
 enum dRes_ID_LUD {
@@ -22,9 +22,9 @@ enum dRes_ID_LUD {
     /* BMDR */
     dRes_ID_LUD_BMD_LUD_e=0xB,
     /* BTK  */
-    dRes_ID_LUD_BTK_LUD_1_e=0xE,
+    dRes_ID_LUD_BTK_LUD_e=0xE,
     /* BTP  */
-    dRes_ID_LUD_BTP_LUD_2_e=0x11,
+    dRes_ID_LUD_BTP_LUD_e=0x11,
 };
 
 enum LUD_JNT {

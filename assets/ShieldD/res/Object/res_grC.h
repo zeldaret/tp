@@ -24,12 +24,12 @@ enum dRes_INDEX_GRC {
     /* BTK  */
     dRes_INDEX_GRC_BTK_GRC_A_e=0x19,
     /* BTP  */
-    dRes_INDEX_GRC_BTP_GRC_A_1_e=0x1C,
-    dRes_INDEX_GRC_BTP_GRC_F_CHEERFUL_T_1_e=0x1D,
-    dRes_INDEX_GRC_BTP_GRC_F_GRUMPY_T_1_e=0x1E,
-    dRes_INDEX_GRC_BTP_GRC_F_SAD_TALK_1_e=0x1F,
-    dRes_INDEX_GRC_BTP_GRC_FH_CLOSEEYE_1_e=0x20,
-    dRes_INDEX_GRC_BTP_GRC_FH_SAD_TALK_1_e=0x21,
+    dRes_INDEX_GRC_BTP_GRC_A_e=0x1C,
+    dRes_INDEX_GRC_BTP_GRC_F_CHEERFUL_T_e=0x1D,
+    dRes_INDEX_GRC_BTP_GRC_F_GRUMPY_T_e=0x1E,
+    dRes_INDEX_GRC_BTP_GRC_F_SAD_TALK_e=0x1F,
+    dRes_INDEX_GRC_BTP_GRC_FH_CLOSEEYE_e=0x20,
+    dRes_INDEX_GRC_BTP_GRC_FH_SAD_TALK_e=0x21,
 };
 
 enum dRes_ID_GRC {
@@ -55,12 +55,12 @@ enum dRes_ID_GRC {
     /* BTK  */
     dRes_ID_GRC_BTK_GRC_A_e=0x19,
     /* BTP  */
-    dRes_ID_GRC_BTP_GRC_A_1_e=0x1C,
-    dRes_ID_GRC_BTP_GRC_F_CHEERFUL_T_1_e=0x1D,
-    dRes_ID_GRC_BTP_GRC_F_GRUMPY_T_1_e=0x1E,
-    dRes_ID_GRC_BTP_GRC_F_SAD_TALK_1_e=0x1F,
-    dRes_ID_GRC_BTP_GRC_FH_CLOSEEYE_1_e=0x20,
-    dRes_ID_GRC_BTP_GRC_FH_SAD_TALK_1_e=0x21,
+    dRes_ID_GRC_BTP_GRC_A_e=0x1C,
+    dRes_ID_GRC_BTP_GRC_F_CHEERFUL_T_e=0x1D,
+    dRes_ID_GRC_BTP_GRC_F_GRUMPY_T_e=0x1E,
+    dRes_ID_GRC_BTP_GRC_F_SAD_TALK_e=0x1F,
+    dRes_ID_GRC_BTP_GRC_FH_CLOSEEYE_e=0x20,
+    dRes_ID_GRC_BTP_GRC_FH_SAD_TALK_e=0x21,
 };
 
 #endif /* !RES_GRC_H */

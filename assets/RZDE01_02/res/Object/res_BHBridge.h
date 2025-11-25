@@ -5,14 +5,14 @@ enum dRes_INDEX_BHBRIDGE {
     /* BMDR */
     dRes_INDEX_BHBRIDGE_BMD_M_BHBRIDGE_e=0x4,
     /* DZB  */
-    dRes_INDEX_BHBRIDGE_DZB_M_BHBRIDGE_1_e=0x7,
+    dRes_INDEX_BHBRIDGE_DZB_M_BHBRIDGE_e=0x7,
 };
 
 enum dRes_ID_BHBRIDGE {
     /* BMDR */
     dRes_ID_BHBRIDGE_BMD_M_BHBRIDGE_e=0x4,
     /* DZB  */
-    dRes_ID_BHBRIDGE_DZB_M_BHBRIDGE_1_e=0x7,
+    dRes_ID_BHBRIDGE_DZB_M_BHBRIDGE_e=0x7,
 };
 
 enum M_BHBRIDGE_JNT {

@@ -5,7 +5,7 @@ enum dRes_INDEX__BG0039 {
     /* BMDR */
     dRes_INDEX__BG0039_BMD_MODEL0_e=0x5,
     /* BTK  */
-    dRes_INDEX__BG0039_BTK_MODEL0_1_e=0x8,
+    dRes_INDEX__BG0039_BTK_MODEL0_e=0x8,
     /* SPEC */
     dRes_INDEX__BG0039_DAT_SPEC_e=0xB,
 };
@@ -14,7 +14,7 @@ enum dRes_ID__BG0039 {
     /* BMDR */
     dRes_ID__BG0039_BMD_MODEL0_e=0x5,
     /* BTK  */
-    dRes_ID__BG0039_BTK_MODEL0_1_e=0x8,
+    dRes_ID__BG0039_BTK_MODEL0_e=0x8,
     /* SPEC */
     dRes_ID__BG0039_DAT_SPEC_e=0xB,
 };

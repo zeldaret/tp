@@ -6,11 +6,11 @@ enum dRes_INDEX_OBJ_KI {
     dRes_INDEX_OBJ_KI_BDL_Y_KI_e=0x5,
     dRes_INDEX_OBJ_KI_BDL_Y_KIA_e=0x6,
     /* BMDR */
-    dRes_INDEX_OBJ_KI_BMD_Y_KI_1_e=0x9,
-    dRes_INDEX_OBJ_KI_BMD_Y_KIA_1_e=0xA,
+    dRes_INDEX_OBJ_KI_BMD_Y_KI_e=0x9,
+    dRes_INDEX_OBJ_KI_BMD_Y_KIA_e=0xA,
     /* DZB  */
-    dRes_INDEX_OBJ_KI_DZB_Y_KI_2_e=0xD,
-    dRes_INDEX_OBJ_KI_DZB_Y_KIA_2_e=0xE,
+    dRes_INDEX_OBJ_KI_DZB_Y_KI_e=0xD,
+    dRes_INDEX_OBJ_KI_DZB_Y_KIA_e=0xE,
 };
 
 enum dRes_ID_OBJ_KI {
@@ -18,11 +18,11 @@ enum dRes_ID_OBJ_KI {
     dRes_ID_OBJ_KI_BDL_Y_KI_e=0x5,
     dRes_ID_OBJ_KI_BDL_Y_KIA_e=0x6,
     /* BMDR */
-    dRes_ID_OBJ_KI_BMD_Y_KI_1_e=0x9,
-    dRes_ID_OBJ_KI_BMD_Y_KIA_1_e=0xA,
+    dRes_ID_OBJ_KI_BMD_Y_KI_e=0x9,
+    dRes_ID_OBJ_KI_BMD_Y_KIA_e=0xA,
     /* DZB  */
-    dRes_ID_OBJ_KI_DZB_Y_KI_2_e=0xD,
-    dRes_ID_OBJ_KI_DZB_Y_KIA_2_e=0xE,
+    dRes_ID_OBJ_KI_DZB_Y_KI_e=0xD,
+    dRes_ID_OBJ_KI_DZB_Y_KIA_e=0xE,
 };
 
 enum Y_KI_JNT {

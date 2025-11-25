@@ -8,8 +8,8 @@ enum dRes_INDEX_M_TURARA {
     dRes_INDEX_M_TURARA_BMD_M_TURARA_e=0x8,
     dRes_INDEX_M_TURARA_BMD_M_TURARAB_e=0x9,
     /* DZB  */
-    dRes_INDEX_M_TURARA_DZB_M_TURARA_1_e=0xC,
-    dRes_INDEX_M_TURARA_DZB_M_TURARAB_1_e=0xD,
+    dRes_INDEX_M_TURARA_DZB_M_TURARA_e=0xC,
+    dRes_INDEX_M_TURARA_DZB_M_TURARAB_e=0xD,
 };
 
 enum dRes_ID_M_TURARA {
@@ -19,8 +19,8 @@ enum dRes_ID_M_TURARA {
     dRes_ID_M_TURARA_BMD_M_TURARA_e=0x8,
     dRes_ID_M_TURARA_BMD_M_TURARAB_e=0x9,
     /* DZB  */
-    dRes_ID_M_TURARA_DZB_M_TURARA_1_e=0xC,
-    dRes_ID_M_TURARA_DZB_M_TURARAB_1_e=0xD,
+    dRes_ID_M_TURARA_DZB_M_TURARA_e=0xC,
+    dRes_ID_M_TURARA_DZB_M_TURARAB_e=0xD,
 };
 
 enum KK_TURARA_JNT {

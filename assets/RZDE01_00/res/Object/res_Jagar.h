@@ -13,9 +13,9 @@ enum dRes_INDEX_JAGAR {
     /* BTK  */
     dRes_INDEX_JAGAR_BTK_JAGA_e=0x10,
     /* BTP  */
-    dRes_INDEX_JAGAR_BTP_JAGA_1_e=0x13,
-    dRes_INDEX_JAGAR_BTP_JAGA_F_TALK_A_1_e=0x14,
-    dRes_INDEX_JAGAR_BTP_JAGA_FH_TALK_A_1_e=0x15,
+    dRes_INDEX_JAGAR_BTP_JAGA_e=0x13,
+    dRes_INDEX_JAGAR_BTP_JAGA_F_TALK_A_e=0x14,
+    dRes_INDEX_JAGAR_BTP_JAGA_FH_TALK_A_e=0x15,
 };
 
 enum dRes_ID_JAGAR {
@@ -30,9 +30,9 @@ enum dRes_ID_JAGAR {
     /* BTK  */
     dRes_ID_JAGAR_BTK_JAGA_e=0x10,
     /* BTP  */
-    dRes_ID_JAGAR_BTP_JAGA_1_e=0x13,
-    dRes_ID_JAGAR_BTP_JAGA_F_TALK_A_1_e=0x14,
-    dRes_ID_JAGAR_BTP_JAGA_FH_TALK_A_1_e=0x15,
+    dRes_ID_JAGAR_BTP_JAGA_e=0x13,
+    dRes_ID_JAGAR_BTP_JAGA_F_TALK_A_e=0x14,
+    dRes_ID_JAGAR_BTP_JAGA_FH_TALK_A_e=0x15,
 };
 
 enum JAGAR_JNT {

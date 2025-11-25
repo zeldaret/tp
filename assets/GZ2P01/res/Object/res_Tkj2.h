@@ -14,7 +14,7 @@ enum dRes_INDEX_TKJ2 {
     /* BTK  */
     dRes_INDEX_TKJ2_BTK_TJK_e=0x11,
     /* BTP  */
-    dRes_INDEX_TKJ2_BTP_TKJ_1_e=0x14,
+    dRes_INDEX_TKJ2_BTP_TKJ_e=0x14,
 };
 
 enum dRes_ID_TKJ2 {
@@ -30,7 +30,7 @@ enum dRes_ID_TKJ2 {
     /* BTK  */
     dRes_ID_TKJ2_BTK_TJK_e=0x11,
     /* BTP  */
-    dRes_ID_TKJ2_BTP_TKJ_1_e=0x14,
+    dRes_ID_TKJ2_BTP_TKJ_e=0x14,
 };
 
 enum TKJ_JNT {

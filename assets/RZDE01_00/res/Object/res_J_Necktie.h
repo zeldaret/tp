@@ -5,14 +5,14 @@ enum dRes_INDEX_J_NECKTIE {
     /* BMDR */
     dRes_INDEX_J_NECKTIE_BMD_J_NECKTIE_e=0x4,
     /* BTK  */
-    dRes_INDEX_J_NECKTIE_BTK_J_NECKTIE_1_e=0x7,
+    dRes_INDEX_J_NECKTIE_BTK_J_NECKTIE_e=0x7,
 };
 
 enum dRes_ID_J_NECKTIE {
     /* BMDR */
     dRes_ID_J_NECKTIE_BMD_J_NECKTIE_e=0x4,
     /* BTK  */
-    dRes_ID_J_NECKTIE_BTK_J_NECKTIE_1_e=0x7,
+    dRes_ID_J_NECKTIE_BTK_J_NECKTIE_e=0x7,
 };
 
 enum J_NECKTIE_JNT {

@@ -8,11 +8,11 @@ enum dRes_INDEX_I_ARI {
     dRes_INDEX_I_ARI_BMD_ARI_M_e=0x9,
     dRes_INDEX_I_ARI_BMD_ARI_O_e=0xA,
     /* BRK  */
-    dRes_INDEX_I_ARI_BRK_ARI_M_1_e=0xD,
-    dRes_INDEX_I_ARI_BRK_ARI_O_1_e=0xE,
+    dRes_INDEX_I_ARI_BRK_ARI_M_e=0xD,
+    dRes_INDEX_I_ARI_BRK_ARI_O_e=0xE,
     /* BTK  */
-    dRes_INDEX_I_ARI_BTK_ARI_M_2_e=0x11,
-    dRes_INDEX_I_ARI_BTK_ARI_O_2_e=0x12,
+    dRes_INDEX_I_ARI_BTK_ARI_M_e=0x11,
+    dRes_INDEX_I_ARI_BTK_ARI_O_e=0x12,
 };
 
 enum dRes_ID_I_ARI {
@@ -22,11 +22,11 @@ enum dRes_ID_I_ARI {
     dRes_ID_I_ARI_BMD_ARI_M_e=0x9,
     dRes_ID_I_ARI_BMD_ARI_O_e=0xA,
     /* BRK  */
-    dRes_ID_I_ARI_BRK_ARI_M_1_e=0xD,
-    dRes_ID_I_ARI_BRK_ARI_O_1_e=0xE,
+    dRes_ID_I_ARI_BRK_ARI_M_e=0xD,
+    dRes_ID_I_ARI_BRK_ARI_O_e=0xE,
     /* BTK  */
-    dRes_ID_I_ARI_BTK_ARI_M_2_e=0x11,
-    dRes_ID_I_ARI_BTK_ARI_O_2_e=0x12,
+    dRes_ID_I_ARI_BTK_ARI_M_e=0x11,
+    dRes_ID_I_ARI_BTK_ARI_O_e=0x12,
 };
 
 enum ARI_M_JNT {

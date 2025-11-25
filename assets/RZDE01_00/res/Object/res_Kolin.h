@@ -9,10 +9,10 @@ enum dRes_INDEX_KOLIN {
     /* BMDR */
     dRes_INDEX_KOLIN_BMD_KOLIN_e=0xB,
     /* BTK  */
-    dRes_INDEX_KOLIN_BTK_KOLIN_1_e=0xE,
+    dRes_INDEX_KOLIN_BTK_KOLIN_e=0xE,
     /* BTP  */
-    dRes_INDEX_KOLIN_BTP_KOLIN_2_e=0x11,
-    dRes_INDEX_KOLIN_BTP_KOLIN_F_TALK_A_1_e=0x12,
+    dRes_INDEX_KOLIN_BTP_KOLIN_e=0x11,
+    dRes_INDEX_KOLIN_BTP_KOLIN_F_TALK_A_e=0x12,
 };
 
 enum dRes_ID_KOLIN {
@@ -23,10 +23,10 @@ enum dRes_ID_KOLIN {
     /* BMDR */
     dRes_ID_KOLIN_BMD_KOLIN_e=0xB,
     /* BTK  */
-    dRes_ID_KOLIN_BTK_KOLIN_1_e=0xE,
+    dRes_ID_KOLIN_BTK_KOLIN_e=0xE,
     /* BTP  */
-    dRes_ID_KOLIN_BTP_KOLIN_2_e=0x11,
-    dRes_ID_KOLIN_BTP_KOLIN_F_TALK_A_1_e=0x12,
+    dRes_ID_KOLIN_BTP_KOLIN_e=0x11,
+    dRes_ID_KOLIN_BTP_KOLIN_F_TALK_A_e=0x12,
 };
 
 enum KOLIN_JNT {

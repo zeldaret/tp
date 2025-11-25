@@ -7,7 +7,7 @@ enum dRes_INDEX_OBJ_TOB7 {
     dRes_INDEX_OBJ_TOB7_BMD_K_TOBIY01_e=0x5,
     dRes_INDEX_OBJ_TOB7_BMD_S_PANEL_LEAF_e=0x6,
     /* DZB  */
-    dRes_INDEX_OBJ_TOB7_DZB_K_TOBIY00_1_e=0x9,
+    dRes_INDEX_OBJ_TOB7_DZB_K_TOBIY00_e=0x9,
 };
 
 enum dRes_ID_OBJ_TOB7 {
@@ -16,7 +16,7 @@ enum dRes_ID_OBJ_TOB7 {
     dRes_ID_OBJ_TOB7_BMD_K_TOBIY01_e=0x5,
     dRes_ID_OBJ_TOB7_BMD_S_PANEL_LEAF_e=0x6,
     /* DZB  */
-    dRes_ID_OBJ_TOB7_DZB_K_TOBIY00_1_e=0x9,
+    dRes_ID_OBJ_TOB7_DZB_K_TOBIY00_e=0x9,
 };
 
 enum K_TOBIY00_JNT {

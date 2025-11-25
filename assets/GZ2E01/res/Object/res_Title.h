@@ -7,11 +7,11 @@ enum dRes_INDEX_TITLE {
     /* BMDR */
     dRes_INDEX_TITLE_BMD_TITLELOGO_R_e=0xA,
     /* BPK  */
-    dRes_INDEX_TITLE_BPK_TITLELOGO_1_e=0xD,
+    dRes_INDEX_TITLE_BPK_TITLELOGO_e=0xD,
     /* BRK  */
-    dRes_INDEX_TITLE_BRK_TITLELOGO_2_e=0x10,
+    dRes_INDEX_TITLE_BRK_TITLELOGO_e=0x10,
     /* BTK  */
-    dRes_INDEX_TITLE_BTK_TITLELOGO_3_e=0x13,
+    dRes_INDEX_TITLE_BTK_TITLELOGO_e=0x13,
 };
 
 enum dRes_ID_TITLE {
@@ -20,11 +20,11 @@ enum dRes_ID_TITLE {
     /* BMDR */
     dRes_ID_TITLE_BMD_TITLELOGO_R_e=0xA,
     /* BPK  */
-    dRes_ID_TITLE_BPK_TITLELOGO_1_e=0xD,
+    dRes_ID_TITLE_BPK_TITLELOGO_e=0xD,
     /* BRK  */
-    dRes_ID_TITLE_BRK_TITLELOGO_2_e=0x10,
+    dRes_ID_TITLE_BRK_TITLELOGO_e=0x10,
     /* BTK  */
-    dRes_ID_TITLE_BTK_TITLELOGO_3_e=0x13,
+    dRes_ID_TITLE_BTK_TITLELOGO_e=0x13,
 };
 
 enum TITLELOGO_R_JNT {
