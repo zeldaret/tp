@@ -201,6 +201,7 @@ config.asflags = [
     "--strip-local-absolute",
     "-I include",
     f"-I build/{config.version}/include",
+    f"-I assets/{config.version}/res",
     f"--defsym version={version_num}",
 ]
 config.ldflags = [

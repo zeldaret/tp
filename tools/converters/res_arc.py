@@ -6,9 +6,12 @@ from os import walk, makedirs
 from pathlib import Path
 from typing import NamedTuple, DefaultDict
 import re
+from sys import argv
+
+debug_print = lambda *args, **kwargs : None
 
 DTK_PATH = str(Path("./build/tools/dtk.exe"))
-OUT_PATH = "build/res"
+OUT_PATH = "assets"
 INDENT = " " * 4
 ADD_EXT_TO_ENUM = False
 SKIP_STAGE_ARCS = True
@@ -289,6 +292,10 @@ def extract_enum_from_file(src_path:Path, dst_path:Path) -> None:
     convert_binary_to_resource_enum(src_path, dst_path)
 
 def main() -> None:
+    global debug_print 
+    if "--debug" in argv:
+        debug_print = print
+
     for dir, dirnames, filenames in walk("./orig/"):
         dirpath = Path(dir)
         if "res" not in dirpath.parts: continue
@@ -302,9 +309,10 @@ def main() -> None:
                 # find the res folder, truncate the path to be the part after the res folder
                 out_path = Path("/".join(file_path.parts[file_path.parts.index("res") + 1:]))
                 # set the output path to be the designated output + the version + the file's heirarchy
-                out_path = OUT_PATH / (version / out_path)
+                out_path = OUT_PATH / (version / ("res" / out_path))
                 # we're going to output to a header file, prefix it with "res_"
                 out_path = out_path.with_name("res_" + out_path.name).with_suffix(".h")
+                debug_print(out_path)
                 try:
                     extract_enum_from_file(file_path, out_path)
                 except AssertionError as e:
