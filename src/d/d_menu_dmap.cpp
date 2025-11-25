@@ -295,7 +295,13 @@ void dMenu_DmapBg_c::buttonIconScreenInit() {
     static u64 const cont_bt[5] = {'cont_bt', 'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4'};
     static u64 const font_at[5] = {'font_at', 'font_at1', 'font_at2', 'font_at3', 'font_at4'};
     static u64 const font_bt[5] = {'font_bt', 'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4'};
-    static u64 const c_tag[2] = {'f_text_s', 'f_text'};
+    static u64 const c_tag[2] = {
+        #if VERSION == VERSION_GCN_JPN
+        'c_text_s', 'c_text'
+        #else
+        'f_text_s', 'f_text'
+        #endif
+    };
 
     mButtonScreen = new J2DScreen();
     JUT_ASSERT(916, mButtonScreen != NULL);
@@ -335,12 +341,21 @@ void dMenu_DmapBg_c::buttonIconScreenInit() {
     mpJButton = NULL;
 
     for (int i = 0; i < 5; i++) {
+        #if VERSION == VERSION_GCN_JPN
+        ((J2DTextBox*)mButtonScreen->search(cont_at[i]))->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)mButtonScreen->search(cont_bt[i]))->setFont(mDoExt_getMesgFont());
+        ((J2DTextBox*)mButtonScreen->search(cont_at[i]))->setString(32, "");
+        ((J2DTextBox*)mButtonScreen->search(cont_bt[i]))->setString(32, "");
+        ((J2DTextBox*)mButtonScreen->search(font_at[i]))->hide();
+        ((J2DTextBox*)mButtonScreen->search(font_bt[i]))->hide();
+        #else
         ((J2DTextBox*)mButtonScreen->search(font_at[i]))->setFont(mDoExt_getMesgFont());
         ((J2DTextBox*)mButtonScreen->search(font_bt[i]))->setFont(mDoExt_getMesgFont());
         ((J2DTextBox*)mButtonScreen->search(font_at[i]))->setString(32, "");
         ((J2DTextBox*)mButtonScreen->search(font_bt[i]))->setString(32, "");
         ((J2DTextBox*)mButtonScreen->search(cont_at[i]))->hide();
         ((J2DTextBox*)mButtonScreen->search(cont_bt[i]))->hide();
+        #endif
     }
 
     field_0xcf4 = new CPaneMgr(mButtonScreen, 'c_n', 2, NULL);
@@ -366,7 +381,13 @@ void dMenu_DmapBg_c::buttonIconScreenInit() {
 
 /* 801B8DE4-801B8EBC 1B3724 00D8+00 7/7 0/0 0/0 .text setAButtonString__14dMenu_DmapBg_cFUl */
 void dMenu_DmapBg_c::setAButtonString(u32 i_msgNo) {
-    static u64 const cont_at[5] = {'font_at', 'font_at1', 'font_at2', 'font_at3', 'font_at4'};
+    static u64 const cont_at[5] = {
+        #if VERSION == VERSION_GCN_JPN
+        'cont_at', 'cont_at1', 'cont_at2', 'cont_at3', 'cont_at4'
+        #else
+        'font_at', 'font_at1', 'font_at2', 'font_at3', 'font_at4'
+        #endif
+    };
     for (int i = 0; i < 5; i++) {
         if (i_msgNo == 0) {
             strcpy(((J2DTextBox*)mButtonScreen->search(cont_at[i]))->getStringPtr(), "");
@@ -378,7 +399,13 @@ void dMenu_DmapBg_c::setAButtonString(u32 i_msgNo) {
 
 /* 801B8EBC-801B8F94 1B37FC 00D8+00 8/8 0/0 0/0 .text setBButtonString__14dMenu_DmapBg_cFUl */
 void dMenu_DmapBg_c::setBButtonString(u32 i_msgNo) {
-    static u64 const cont_bt[5] = {'font_bt', 'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4'};
+    static u64 const cont_bt[5] = {
+        #if VERSION == VERSION_GCN_JPN
+        'cont_bt', 'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4'
+        #else
+        'font_bt', 'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4'
+        #endif
+    };
     for (int i = 0; i < 5; i++) {
         if (i_msgNo == 0) {
             strcpy(((J2DTextBox*)mButtonScreen->search(cont_bt[i]))->getStringPtr(), "");
@@ -399,7 +426,13 @@ dMenu_Dmap_c* dMenu_Dmap_c::myclass;
 
 /* 801B8F94-801B90BC 1B38D4 0128+00 1/1 0/0 0/0 .text setCButtonString__14dMenu_DmapBg_cFUl */
 void dMenu_DmapBg_c::setCButtonString(u32 i_msgNo) {
-    static u64 const c_tag[2] = {'f_text_s', 'f_text'};
+    static u64 const c_tag[2] = {
+        #if VERSION == VERSION_GCN_JPN
+        'c_text_s', 'c_text'
+        #else
+        'f_text_s', 'f_text'
+        #endif
+    };
     int i;
 
     u32 msgNo;
@@ -482,8 +515,13 @@ void dMenu_DmapBg_c::baseScreenInit() {
     mpDrawCursor->setAlphaRate(1.0f);
     mpDrawCursor->setParam(0.95f, 0.9f, 0.1f, 0.6f, 0.5f);
 
+    #if VERSION == VERSION_GCN_JPN
+    J2DTextBox* uVar9 = (J2DTextBox*)mBaseScreen->search('t_t00');
+    mBaseScreen->search('f_t_00')->hide();
+    #else
     J2DTextBox* uVar9 = (J2DTextBox*)mBaseScreen->search('f_t_00');
     mBaseScreen->search('t_t00')->hide();
+    #endif
     uVar9->setFont(mDoExt_getSubFont());
     uVar9->setString(32, "");
 
@@ -509,82 +547,90 @@ void dMenu_DmapBg_c::setFloorMessage() {
         0x036E, 0x036F, 0x03DC, 0x03DD, 0x03D9, 0x03D8,
     };
 
-    floor_textbox_1[0] = (J2DTextBox*)mFloorScreen->search('ffoor7_1');
-    floor_textbox_2[0] = (J2DTextBox*)mFloorScreen->search('ffoor7_2');
-    floor_textbox_3[0] = (J2DTextBox*)mFloorScreen->search('ffoor7_3');
-    mFloorScreen->search('floor7_1')->hide();
-    mFloorScreen->search('floor7_2')->hide();
-    mFloorScreen->search('floor7_3')->hide();
+    #if VERSION == VERSION_GCN_JPN
+    #define FLOOR_TAG(A, B) ('ffoor0_0' | (A<<16) | (B))
+    #define FFOOR_TAG(A, B) ('floor0_0' | (A<<16) | (B))
+    #else
+    #define FLOOR_TAG(A, B) ('floor0_0' | (A<<16) | (B))
+    #define FFOOR_TAG(A, B) ('ffoor0_0' | (A<<16) | (B))
+    #endif
+
+    floor_textbox_1[0] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(7, 1));
+    floor_textbox_2[0] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(7, 2));
+    floor_textbox_3[0] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(7, 3));
+    mFloorScreen->search(FLOOR_TAG(7, 1))->hide();
+    mFloorScreen->search(FLOOR_TAG(7, 2))->hide();
+    mFloorScreen->search(FLOOR_TAG(7, 3))->hide();
     floor_textbox_1[0]->setFont(mDoExt_getSubFont());
     floor_textbox_2[0]->setFont(mDoExt_getSubFont());
     floor_textbox_3[0]->setFont(mDoExt_getSubFont());
 
-    floor_textbox_1[1] = (J2DTextBox*)mFloorScreen->search('ffoor0_1');
-    floor_textbox_2[1] = (J2DTextBox*)mFloorScreen->search('ffoor0_2');
-    floor_textbox_3[1] = (J2DTextBox*)mFloorScreen->search('ffoor0_3');
-    mFloorScreen->search('floor0_1')->hide();
-    mFloorScreen->search('floor0_2')->hide();
-    mFloorScreen->search('floor0_3')->hide();
+    floor_textbox_1[1] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(0, 1));
+    floor_textbox_2[1] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(0, 2));
+    floor_textbox_3[1] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(0, 3));
+    mFloorScreen->search(FLOOR_TAG(0, 1))->hide();
+    mFloorScreen->search(FLOOR_TAG(0, 2))->hide();
+    mFloorScreen->search(FLOOR_TAG(0, 3))->hide();
     floor_textbox_1[1]->setFont(mDoExt_getSubFont());
     floor_textbox_2[1]->setFont(mDoExt_getSubFont());
     floor_textbox_3[1]->setFont(mDoExt_getSubFont());
 
-    floor_textbox_1[2] = (J2DTextBox*)mFloorScreen->search('ffoor1_1');
-    floor_textbox_2[2] = (J2DTextBox*)mFloorScreen->search('ffoor1_2');
-    floor_textbox_3[2] = (J2DTextBox*)mFloorScreen->search('ffoor1_3');
-    mFloorScreen->search('floor1_1')->hide();
-    mFloorScreen->search('floor1_2')->hide();
-    mFloorScreen->search('floor1_3')->hide();
+    floor_textbox_1[2] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(1, 1));
+    floor_textbox_2[2] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(1, 2));
+    floor_textbox_3[2] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(1, 3));
+    mFloorScreen->search(FLOOR_TAG(1, 1))->hide();
+    mFloorScreen->search(FLOOR_TAG(1, 2))->hide();
+    mFloorScreen->search(FLOOR_TAG(1, 3))->hide();
     floor_textbox_1[2]->setFont(mDoExt_getSubFont());
     floor_textbox_2[2]->setFont(mDoExt_getSubFont());
     floor_textbox_3[2]->setFont(mDoExt_getSubFont());
 
-    floor_textbox_1[3] = (J2DTextBox*)mFloorScreen->search('ffoor2_1');
-    floor_textbox_2[3] = (J2DTextBox*)mFloorScreen->search('ffoor2_2');
-    floor_textbox_3[3] = (J2DTextBox*)mFloorScreen->search('ffoor2_3');
-    mFloorScreen->search('floor2_1')->hide();
-    mFloorScreen->search('floor2_2')->hide();
-    mFloorScreen->search('floor2_3')->hide();
+    floor_textbox_1[3] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(2, 1));
+    floor_textbox_2[3] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(2, 2));
+    floor_textbox_3[3] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(2, 3));
+    mFloorScreen->search(FLOOR_TAG(2, 1))->hide();
+    mFloorScreen->search(FLOOR_TAG(2, 2))->hide();
+    mFloorScreen->search(FLOOR_TAG(2, 3))->hide();
     floor_textbox_1[3]->setFont(mDoExt_getSubFont());
     floor_textbox_2[3]->setFont(mDoExt_getSubFont());
     floor_textbox_3[3]->setFont(mDoExt_getSubFont());
 
-    floor_textbox_1[4] = (J2DTextBox*)mFloorScreen->search('ffoor3_1');
-    floor_textbox_2[4] = (J2DTextBox*)mFloorScreen->search('ffoor3_2');
-    floor_textbox_3[4] = (J2DTextBox*)mFloorScreen->search('ffoor3_3');
-    mFloorScreen->search('floor3_1')->hide();
-    mFloorScreen->search('floor3_2')->hide();
-    mFloorScreen->search('floor3_3')->hide();
+    floor_textbox_1[4] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(3, 1));
+    floor_textbox_2[4] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(3, 2));
+    floor_textbox_3[4] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(3, 3));
+    mFloorScreen->search(FLOOR_TAG(3, 1))->hide();
+    mFloorScreen->search(FLOOR_TAG(3, 2))->hide();
+    mFloorScreen->search(FLOOR_TAG(3, 3))->hide();
     floor_textbox_1[4]->setFont(mDoExt_getSubFont());
     floor_textbox_2[4]->setFont(mDoExt_getSubFont());
     floor_textbox_3[4]->setFont(mDoExt_getSubFont());
 
-    floor_textbox_1[5] = (J2DTextBox*)mFloorScreen->search('ffoor4_1');
-    floor_textbox_2[5] = (J2DTextBox*)mFloorScreen->search('ffoor4_2');
-    floor_textbox_3[5] = (J2DTextBox*)mFloorScreen->search('ffoor4_3');
-    mFloorScreen->search('floor4_1')->hide();
-    mFloorScreen->search('floor4_2')->hide();
-    mFloorScreen->search('floor4_3')->hide();
+    floor_textbox_1[5] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(4, 1));
+    floor_textbox_2[5] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(4, 2));
+    floor_textbox_3[5] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(4, 3));
+    mFloorScreen->search(FLOOR_TAG(4, 1))->hide();
+    mFloorScreen->search(FLOOR_TAG(4, 2))->hide();
+    mFloorScreen->search(FLOOR_TAG(4, 3))->hide();
     floor_textbox_1[5]->setFont(mDoExt_getSubFont());
     floor_textbox_2[5]->setFont(mDoExt_getSubFont());
     floor_textbox_3[5]->setFont(mDoExt_getSubFont());
 
-    floor_textbox_1[6] = (J2DTextBox*)mFloorScreen->search('ffoor5_1');
-    floor_textbox_2[6] = (J2DTextBox*)mFloorScreen->search('ffoor5_2');
-    floor_textbox_3[6] = (J2DTextBox*)mFloorScreen->search('ffoor5_3');
-    mFloorScreen->search('floor5_1')->hide();
-    mFloorScreen->search('floor5_2')->hide();
-    mFloorScreen->search('floor5_3')->hide();
+    floor_textbox_1[6] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(5, 1));
+    floor_textbox_2[6] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(5, 2));
+    floor_textbox_3[6] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(5, 3));
+    mFloorScreen->search(FLOOR_TAG(5, 1))->hide();
+    mFloorScreen->search(FLOOR_TAG(5, 2))->hide();
+    mFloorScreen->search(FLOOR_TAG(5, 3))->hide();
     floor_textbox_1[6]->setFont(mDoExt_getSubFont());
     floor_textbox_2[6]->setFont(mDoExt_getSubFont());
     floor_textbox_3[6]->setFont(mDoExt_getSubFont());
 
-    floor_textbox_1[7] = (J2DTextBox*)mFloorScreen->search('ffoor6_1');
-    floor_textbox_2[7] = (J2DTextBox*)mFloorScreen->search('ffoor6_2');
-    floor_textbox_3[7] = (J2DTextBox*)mFloorScreen->search('ffoor6_3');
-    mFloorScreen->search('floor6_1')->hide();
-    mFloorScreen->search('floor6_2')->hide();
-    mFloorScreen->search('floor6_3')->hide();
+    floor_textbox_1[7] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(6, 1));
+    floor_textbox_2[7] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(6, 2));
+    floor_textbox_3[7] = (J2DTextBox*)mFloorScreen->search(FFOOR_TAG(6, 3));
+    mFloorScreen->search(FLOOR_TAG(6, 1))->hide();
+    mFloorScreen->search(FLOOR_TAG(6, 2))->hide();
+    mFloorScreen->search(FLOOR_TAG(6, 3))->hide();
     floor_textbox_1[7]->setFont(mDoExt_getSubFont());
     floor_textbox_2[7]->setFont(mDoExt_getSubFont());
     floor_textbox_3[7]->setFont(mDoExt_getSubFont());
@@ -1998,7 +2044,6 @@ bool dMenu_Dmap_c::isClose() {
 }
 
 /* 801BE7E0-801BEAFC 1B9120 031C+00 0/0 1/1 0/0 .text            _draw__12dMenu_Dmap_cFv */
-// NONMATCHING - not sure what the 2nd param of getGlobalVtxCenter is supposed to be
 void dMenu_Dmap_c::_draw() {
     if (mMapCtrl != NULL) {
         mMapCtrl->draw();
@@ -2044,7 +2089,9 @@ void dMenu_Dmap_c::_draw() {
                 spC.y = mpDrawBg->mMapScreen[0]->search('center_n')->getGlbBounds().i.y + (mpDrawBg->mMapScreen[0]->search('center_n')->getHeight() / 2);
                 
                 CPaneMgr sp70;
-                Vec sp34 = sp70.getGlobalVtxCenter(mpDrawBg->getMapPane(), false, 0);
+                //!@bug It's unclear what this is supposed to be, but a stack pointer being converted to a bool is probably not intended.
+                u8 sp40[0x30];
+                Vec sp34 = sp70.getGlobalVtxCenter(mpDrawBg->getMapPane(), (bool)sp40, 0);
 
                 spC.x = sp34.x;
                 spC.y = sp34.y;

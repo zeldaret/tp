@@ -23,12 +23,13 @@ jstudio_tAdaptor_message::~jstudio_tAdaptor_message() {}
 void jstudio_tAdaptor_message::adaptor_do_MESSAGE(JStudio::data::TEOperationData iType,
                                                   const void* pContent, u32 uSize) {
     switch (iType) {
-    case JStudio::data::UNK_0x19:
+    case JStudio::data::UNK_0x19: {
         JUT_ASSERT(107, pContent!=NULL);
         JUT_ASSERT(108, uSize==4);
         u32 content = *(u32*)pContent;
         dMsgObject_setDemoMessage(content);
         break;
+    }
     default:
 #ifdef DEBUG
         JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
@@ -281,7 +282,6 @@ static void* dDemo_getJaiPointer(char const* arcName, u32 anmID, int param_2, u1
 
 /* 80038518-800387A8 032E58 0290+00 0/0 0/0 2/2 .text
  * dDemo_setDemoData__FP10fopAc_ac_cUcP14mDoExt_McaMorfPCciPUsUlSc */
-// NONMATCHING - reg alloc
 int dDemo_setDemoData(fopAc_ac_c* i_actor, u8 i_flags, mDoExt_McaMorf* i_morf, char const* i_arcName,
                       int param_4, u16* param_5, u32 param_6, s8 i_reverb) {
     dDemo_actor_c* demo_actor = dDemo_c::getActor(i_actor->demoActorID);

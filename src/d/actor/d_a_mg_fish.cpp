@@ -2651,7 +2651,6 @@ static void mf_aqua(mg_fish_class* i_this) {
 
 
 /* 80531CD4-805322E0 008094 060C+00 1/1 0/0 0/0 .text            ri_aqua__FP13mg_fish_class */
-// NONMATCHING - equivalent, but missing fmr instruction
 static void ri_aqua(mg_fish_class* i_this) {
     // Two different vectors in Debug, but this messes up the stack for GZ2E01.
     // cXyz commonXyz2;

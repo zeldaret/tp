@@ -255,7 +255,6 @@ void daPropY_c::init_modeStop() {
 }
 
 /* 80C85DD0-80C85F14 000A50 0144+00 1/0 0/0 0/0 .text            modeStop__9daPropY_cFv */
-// NONMATCHING - fsubs instead of fsub
 void daPropY_c::modeStop() {
     s16 var_r30;
     if (mTurnType == 0) {
@@ -264,7 +263,12 @@ void daPropY_c::modeStop() {
         var_r30 = cLib_addCalcAngleS(&shape_angle.y, field_0x5b6, 1, (182.04445f * fopAcM_GetSpeedF(this)), 1);
     }
 
+    // probably not a real version difference - GCN has fsub for some reason instead of fsubs
+#if PLATFORM_GCN
+    field_0x5c4 = field_0x5c0 * ((f32)std::fabs((f64)var_r30) / field_0x5bc);
+#else
     field_0x5c4 = field_0x5c0 * (std::fabs((f32)var_r30) / field_0x5bc);
+#endif
     mDoAud_seStartLevel(Z2SE_OBJ_AMI_ROLL, &current.pos, field_0x5c4, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 
     if (var_r30 == 0) {

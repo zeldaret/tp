@@ -655,7 +655,6 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 80C1B1F4-80C1B4E8 001CB4 02F4+00 1/0 0/0 0/0 .text            daOBJ_HB_Create__FP10fopAc_ac_c */
 static cPhs__Step daOBJ_HB_Create(fopAc_ac_c* a_this) {
-    // NONMATCHING
     fopAcM_ct(a_this, obj_hb_class);
     obj_hb_class* i_this = (obj_hb_class*)a_this;
 

@@ -566,5 +566,3 @@ extern actor_process_profile_definition g_profile_OBJ_MIE = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80C95B80-80C95B80 0000D4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

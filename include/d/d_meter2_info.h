@@ -102,6 +102,7 @@ public:
     CPaneMgr* getMeterItemPanePtr(s32 i_idx) { return mMeterItemPanePtr[i_idx]; }
     void offUseButton(int i_buttonBit) { mUseButton &= ~(u16)i_buttonBit; }
     u16 getOilGaugeBackUp() { return mOilGaugeBackUp; }
+    void setOilGaugeBackUp(u16 arg0) { mOilGaugeBackUp = arg0; }
     u8 getInsectSelectType() { return mInsectSelectType; }
     void setInsectSelectType(u8 i_type) { mInsectSelectType = i_type; }
     u8 getWarpStatus() { return mWarpStatus; }
@@ -366,7 +367,7 @@ inline u16 dMeter2Info_getOilGaugeBackUp() {
 }
 
 inline void dMeter2Info_setOilGaugeBackUp(u16 param_1) {
-    g_meter2_info.mOilGaugeBackUp = param_1;
+    g_meter2_info.setOilGaugeBackUp(param_1);
 }
 
 inline void dMeter2Info_setSaveStageName(const char* i_stageName) {

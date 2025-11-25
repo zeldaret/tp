@@ -661,5 +661,3 @@ extern actor_process_profile_definition g_profile_Obj_TobyHouse = {
 };
 
 AUDIO_INSTANCES;
-
-/* 80D177C0-80D177C0 000074 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

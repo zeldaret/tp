@@ -761,7 +761,6 @@ BOOL daNpcKasiMich_c::chkFindPlayer() {
 
 /* 80A27F08-80A282B4 001E28 03AC+00 8/0 0/0 0/0 .text            wait__15daNpcKasiMich_cFi */
 int daNpcKasiMich_c::wait(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -777,7 +776,7 @@ int daNpcKasiMich_c::wait(int param_1) {
             mMode = 1;
             break;
 
-        case 1:
+        case 1: {
             chkFindPlayer();
 
             if (mActorMngr[0].getActorP() != NULL) {
@@ -846,7 +845,7 @@ int daNpcKasiMich_c::wait(int param_1) {
                 orderEvent(field_0x1469, l_evtNames[mOrderEvtNo], 0xFFFF, 40, 0xFF, 1);
             }
             break;
-
+        }
         default:
             JUT_ASSERT(1301, FALSE);
             break;
@@ -973,9 +972,15 @@ int daNpcKasiMich_c::getWolfPathNearIdx() {
     return rv;
 }
 
+void dummy() {
+    daNpcKasiMich_c::actionFunc temp;
+    temp = &daNpcKasiMich_c::wait;
+    temp = &daNpcKasiMich_c::wait;
+    temp = &daNpcKasiMich_c::wait;
+}
+
 /* 80A286FC-80A287A0 00261C 00A4+00 2/0 0/0 0/0 .text            chace_st__15daNpcKasiMich_cFi */
 int daNpcKasiMich_c::chace_st(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -988,7 +993,7 @@ int daNpcKasiMich_c::chace_st(int param_1) {
 
         case 1:
             if (_turn_to_link(0xC00)) {
-                setAction(&daNpcKasiMich_c::wait);
+                setAction(&daNpcKasiMich_c::chace);
             }
             break;
     }
@@ -998,7 +1003,6 @@ int daNpcKasiMich_c::chace_st(int param_1) {
 
 /* 80A287A0-80A28910 0026C0 0170+00 4/0 0/0 0/0 .text            chace__15daNpcKasiMich_cFi */
 int daNpcKasiMich_c::chace(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1021,12 +1025,17 @@ int daNpcKasiMich_c::chace(int param_1) {
                     setAction(&daNpcKasiMich_c::wait);
                 }
             } else {
-                setAction(&daNpcKasiMich_c::wait);
+                setAction(&daNpcKasiMich_c::chace_st);
             }
             break;
     }
 
     return 1;
+}
+
+void dummy2() {
+    daNpcKasiMich_c::actionFunc temp;
+    temp = &daNpcKasiMich_c::chace;
 }
 
 /* 80A28910-80A289CC 002830 00BC+00 1/1 0/0 0/0 .text            getChacePos__15daNpcKasiMich_cFv */
@@ -1052,7 +1061,6 @@ cXyz daNpcKasiMich_c::getChacePos() {
 
 /* 80A289CC-80A28A8C 0028EC 00C0+00 2/0 0/0 0/0 .text            turn_link__15daNpcKasiMich_cFi */
 int daNpcKasiMich_c::turn_link(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1065,7 +1073,7 @@ int daNpcKasiMich_c::turn_link(int param_1) {
 
         case 1:
             if (_turn_to_link(0x1000)) {
-                setAction(&daNpcKasiMich_c::chace);
+                setAction(&daNpcKasiMich_c::wait);
                 break;
             }
     }
@@ -1075,7 +1083,6 @@ int daNpcKasiMich_c::turn_link(int param_1) {
 
 /* 80A28A8C-80A28B70 0029AC 00E4+00 1/0 0/0 0/0 .text            turn_home__15daNpcKasiMich_cFi */
 int daNpcKasiMich_c::turn_home(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1093,7 +1100,7 @@ int daNpcKasiMich_c::turn_home(int param_1) {
             shape_angle.y = current.angle.y;
 
             if (bVar1) {
-                setAction(&daNpcKasiMich_c::wait);
+                setAction(&daNpcKasiMich_c::wait_dummy);
             }
             break;
     }
@@ -1103,7 +1110,6 @@ int daNpcKasiMich_c::turn_home(int param_1) {
 
 /* 80A28B70-80A28C40 002A90 00D0+00 1/0 0/0 0/0 .text            turn_center__15daNpcKasiMich_cFi */
 int daNpcKasiMich_c::turn_center(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1117,7 +1123,7 @@ int daNpcKasiMich_c::turn_center(int param_1) {
 
         case 1:
             if (_turn_pos(mCenterPos, 0x1000)) {
-                setAction(&daNpcKasiMich_c::chace_st);
+                setAction(&daNpcKasiMich_c::wait_dummy);
             }
             break;
     }
@@ -1197,14 +1203,13 @@ int daNpcKasiMich_c::kya2(int param_1) {
 
 /* 80A28E28-80A28EFC 002D48 00D4+00 1/0 0/0 0/0 .text            kya_stop__15daNpcKasiMich_cFi */
 int daNpcKasiMich_c::kya_stop(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
         
         case 0:
             if (mMotion != MOT_MICH_KYA_TALK) {
-                setAction(&daNpcKasiMich_c::chace);
+                setAction(&daNpcKasiMich_c::wait);
             } else {
                 mMode = 1;
             }
@@ -1212,7 +1217,7 @@ int daNpcKasiMich_c::kya_stop(int param_1) {
 
         case 1:
             if (mAnm_p->getFrame() == 19.0f || mAnm_p->getFrame() == 1.0f) {
-                setAction(&daNpcKasiMich_c::wait);
+                setAction(&daNpcKasiMich_c::wait_dummy);
             }
             break;
     }
@@ -1272,7 +1277,6 @@ int daNpcKasiMich_c::escape(int param_1) {
 
 /* 80A2908C-80A29164 002FAC 00D8+00 1/0 0/0 0/0 .text            iyan_look__15daNpcKasiMich_cFi */
 int daNpcKasiMich_c::iyan_look(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;
@@ -1294,13 +1298,6 @@ int daNpcKasiMich_c::iyan_look(int param_1) {
     }
 
     return 1;
-}
-
-void daNpcKasiMich_c::dummy() {
-    setAction(&daNpcKasiMich_c::wait_dummy);
-    setAction(&daNpcKasiMich_c::wait);
-    setAction(&daNpcKasiMich_c::wait_dummy);
-    setAction(&daNpcKasiMich_c::wait_dummy);
 }
 
 /* 80A29164-80A291E8 003084 0084+00 1/0 0/0 0/0 .text            turn_hana__15daNpcKasiMich_cFi */
@@ -1345,7 +1342,6 @@ int daNpcKasiMich_c::wait_dummy(int param_1) {
 
 /* 80A2926C-80A29458 00318C 01EC+00 1/0 0/0 0/0 .text            cheer__15daNpcKasiMich_cFi */
 int daNpcKasiMich_c::cheer(int param_1) {
-    // NONMATCHING
     switch (mMode) {
         case -1:
             break;

@@ -7,6 +7,7 @@
 
 #include "JSystem/JUtility/JUTXfb.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/gx.h"
 
 void JUTXfb::clearIndex() {
@@ -29,10 +30,10 @@ JUTXfb::JUTXfb(GXRenderModeObj const* pObj, JKRHeap* pHeap, JUTXfb::EXfbNumber x
     if (pObj) {
         initiate(pObj->fbWidth, pObj->xfbHeight, pHeap, xfbNum);
     } else {
-        u16 fbWidth = JUTVideo::getManager()->getRenderMode()->fbWidth;
+        u16 fbWidth = (u32)JUTVideo::getManager()->getRenderMode()->fbWidth;
+        u16 xfbHeight = (u32)JUTVideo::getManager()->getRenderMode()->xfbHeight;
         u16 efbHeight = (u32)JUTVideo::getManager()->getRenderMode()->efbHeight;
-        u16 xfb_height = JUTVideo::getManager()->getRenderMode()->xfbHeight;
-        f32 scale_factor = GXGetYScaleFactor(efbHeight, xfb_height);
+        f32 scale_factor = GXGetYScaleFactor(efbHeight, xfbHeight);
         u16 xfb_lines = GXGetNumXfbLines(efbHeight, scale_factor);
 
         initiate(fbWidth, xfb_lines, pHeap, xfbNum);
@@ -55,6 +56,7 @@ void JUTXfb::delXfb(int xfbIdx) {
 }
 
 JUTXfb* JUTXfb::createManager(JKRHeap* pHeap, JUTXfb::EXfbNumber xfbNum) {
+    JUT_CONFIRM(273, sManager == NULL);
     if (sManager == NULL) {
         sManager = new JUTXfb(NULL, pHeap, xfbNum);
     }
@@ -62,24 +64,23 @@ JUTXfb* JUTXfb::createManager(JKRHeap* pHeap, JUTXfb::EXfbNumber xfbNum) {
 }
 
 void JUTXfb::destroyManager() {
+    JUT_CONFIRM(344, sManager);
     delete sManager;
     sManager = NULL;
 }
 
 void JUTXfb::initiate(u16 width, u16 height, JKRHeap* pHeap, JUTXfb::EXfbNumber xfbNum) {
     if (pHeap == NULL) {
-        pHeap = JKRHeap::getSystemHeap();
+        pHeap = JKRGetSystemHeap();
     }
 
-    int size = ((u32)width + 0xf & 0xfff0) * (u32)height * 2;
+    int size = (u16)((u16)width + 0xf & ~0xf) * height * 2;
 
-    void* buf = ::operator new[](size, pHeap, 0x20);
-    mBuffer[0] = buf;
+    mBuffer[0] = ::operator new[](size, pHeap, 0x20);
     mXfbAllocated[0] = true;
 
     if (xfbNum >= 2) {
-        buf = ::operator new[](size, pHeap, 0x20);
-        mBuffer[1] = buf;
+        mBuffer[1] = ::operator new[](size, pHeap, 0x20);
         mXfbAllocated[1] = true;
     } else {
         mBuffer[1] = NULL;
@@ -87,8 +88,7 @@ void JUTXfb::initiate(u16 width, u16 height, JKRHeap* pHeap, JUTXfb::EXfbNumber 
     }
 
     if (xfbNum >= 3) {
-        buf = ::operator new[](size, pHeap, 0x20);
-        mBuffer[2] = buf;
+        mBuffer[2] = ::operator new[](size, pHeap, 0x20);
         mXfbAllocated[2] = true;
     } else {
         mBuffer[2] = NULL;

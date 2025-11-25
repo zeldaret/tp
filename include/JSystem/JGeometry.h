@@ -488,8 +488,8 @@ template <typename T>
 struct TBox2 : public TBox<TVec2<T> > {
     TBox2() {}
     TBox2(const TVec2<f32>& _i, const TVec2<f32>& _f) { 
-        i.set(_i);
-        f.set(_f);
+        TBox<TVec2<T> >::i.set(_i);
+        TBox<TVec2<T> >::f.set(_f);
     }
     TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
 

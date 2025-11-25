@@ -1101,7 +1101,6 @@ BOOL daNpc_Pachi_Maro_c::setAction(actionFunc action) {
 
 /* 80A99604-80A9986C 001A64 0268+00 2/0 0/0 0/0 .text            wait__18daNpc_Pachi_Maro_cFPv */
 int daNpc_Pachi_Maro_c::wait(void* param_1) {
-    // NONMATCHING
     int unused = 0;
     
     switch (mMode) {

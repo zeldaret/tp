@@ -199,7 +199,6 @@ daNpc_zrC_c::EventFn daNpc_zrC_c::mEvtCutList[2] = {
 
 /* 80B8DC0C-80B8DD90 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpc_zrC_cFv */
 daNpc_zrC_c::daNpc_zrC_c() {
-    // NONMATCHING
 }
 
 /* 80B8DE20-80B8E03C 000300 021C+00 1/0 0/0 0/0 .text            __dt__11daNpc_zrC_cFv */

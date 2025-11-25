@@ -1275,8 +1275,7 @@ int daBoomerang_c::procMove() {
 
     if (!dComIfGp_event_runCheck()) {
         dComIfG_Ccsp()->Set(&m_windAtCyl);
-        g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&m_windAtCyl, 1);
-        //dComIfG_Ccsp()->SetMass(&m_windAtCyl, 1);
+        dComIfG_Ccsp()->SetMass(&m_windAtCyl, 1);
     } else {
         m_atCps.ResetAtHit();
         m_windAtCyl.ResetAtHit();
@@ -1585,3 +1584,6 @@ extern actor_process_profile_definition g_profile_BOOMERANG = {
 };
 
 AUDIO_INSTANCES;
+class JAUSectionHeap;
+template<>
+JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

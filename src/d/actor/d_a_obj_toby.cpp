@@ -748,5 +748,3 @@ extern actor_process_profile_definition g_profile_OBJ_TOBY = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80D156B8-80D156B8 0000D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

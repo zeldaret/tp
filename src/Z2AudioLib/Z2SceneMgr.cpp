@@ -187,7 +187,6 @@ void Z2SceneMgr::setFadeInStart(u8 param_0) {
 }
 
 /* 802B6AF8-802B995C 2B1438 2E64+00 8/0 1/1 0/0 .text            setSceneName__10Z2SceneMgrFPcll */
-// NONMATCHING JSULink<JAIStream>::getNext() inlining
 void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
     JAISoundID bgm_id = -1;
     JAISound* sound;
@@ -1982,9 +1981,12 @@ void Z2SceneMgr::load2ndDynamicWave() {
 }
 
 /* 802BA294-802BA56C 2B4BD4 02D8+00 1/0 2/2 0/0 .text            sceneBgmStart__10Z2SceneMgrFv */
-// NONMATCHING regalloc
+// NONMATCHING - extra BGM_ID load
 void Z2SceneMgr::sceneBgmStart() {
+    OS_REPORT("[Z2SceneMgr::sceneBgmStart] %08x", BGM_ID.mId.mFullId);
+
     inGame = true;
+    BOOL r28 = FALSE;
     setSceneExist(true);
     Z2GetStatusMgr()->setPauseFlag(0);
 
@@ -1992,7 +1994,7 @@ void Z2SceneMgr::sceneBgmStart() {
         return;
     }
 
-    if (!BGM_ID.isAnonymous() && Z2GetStatusMgr()->getDemoStatus() != 11) {
+    if (!BGM_ID.isAnonymous() && !r28 && Z2GetStatusMgr()->getDemoStatus() != 11) {
         bool var;
         switch (BGM_ID.mId.mBytes.b0) {
         case 1:
@@ -2144,5 +2146,3 @@ bool Z2SceneMgr::loadBgmWave(u32 wave) {
     }
     return false;
 }
-
-/* 8039BFA8-8039BFA8 028608 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

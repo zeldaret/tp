@@ -19,6 +19,7 @@
 
 /* 8086AD40-8086ADA0 008020 0060+00 1/0 0/0 0/0 .data            l_Egnd_mantPAL */
 #include "assets/l_Egnd_mantPAL.h"
+#include "d/d_s_play.h"
 
 /* 8086ADA0-8086B58C 008080 07EC+00 0/0 0/0 0/0 .data            l_pos */
 static u32 l_pos[507] = {
@@ -263,7 +264,6 @@ static void* tex_d[2] = {
 static char lbl_277_bss_0;
 
 /* 80861298-808616B8 000078 0420+00 1/0 0/0 0/0 .text            draw__15daMant_packet_cFv */
-// NONMATCHING - missing some weird stack duplication
 void daMant_packet_c::draw() {
     void* image = tex_d[0];
     void* lut = pal_d;
@@ -298,10 +298,8 @@ void daMant_packet_c::draw() {
     dKy_Global_amb_set(this->mTevStr);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
 
-    GXColor local_84 = {1, 0, 0, 0};
-    GXSetTevColor(GX_TEVREG0, local_84);
-    GXColor local_8c = {1, 0, 0, 0};
-    GXSetTevKColor(GX_KCOLOR0, local_8c);
+    GXSetTevColor(GX_TEVREG0, (GXColor){1, 0, 0, 0});
+    GXSetTevKColor(GX_KCOLOR0, (GXColor){1, 0, 0, 0});
 
     GXSetTevKColorSel(GX_TEVSTAGE0, GX_TEV_KCSEL_K0);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_KONST, GX_CC_TEXC, GX_CC_RASC, GX_CC_C0);
@@ -334,10 +332,8 @@ void daMant_packet_c::draw() {
     GXInitTexObjLOD(&GStack_74, GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, 0, 0, GX_ANISO_1);
     GXLoadTexObj(&GStack_74, GX_TEXMAP0);
 
-    GXColor local_94 = {0, 0, 0, 0};
-    GXSetTevColor(GX_TEVREG0, local_94);
-    GXColor local_9c = {0, 0, 0, 0};
-    GXSetTevKColor(GX_KCOLOR0, local_9c);
+    GXSetTevColor(GX_TEVREG0, (GXColor){0, 0, 0, 0});
+    GXSetTevKColor(GX_KCOLOR0, (GXColor){0, 0, 0, 0});
 
     GXSetCullMode(GX_CULL_FRONT);
     GXLoadPosMtxImm(this->mMtx2, GX_PNMTX0);
@@ -368,154 +364,192 @@ static int daMant_Draw(mant_class* i_this) {
 }
 
 /* 8086176C-80861F60 00054C 07F4+00 1/1 0/0 0/0 .text joint_control__FP10mant_classP8mant_j_siff */
-// NONMATCHING - regalloc
 static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f32 param_4, f32 param_5) {
     static f32 d_p[12] = {
         1.4000001f, 0.6f, 0.35f, 0.3f, 0.3f, 0.3f, 0.25f, 0.2f, 0.2f, 0.2f, 0.15f, 0.1f
     };
 
-    cXyz local_134, local_140, local_14c, local_158, local_164;
-    BOOL bVar2 = FALSE;
-    f32 dVar14, dVar16, dVar17, dVar18, dVar19, dVar20;
-    f32 fVar1;
-    b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->parentActorID);
+    mant_class* mant_sp38 = i_this;
+
+    cXyz spFC;
+    cXyz spF0;
+    cXyz spE4;
+
+    int sp34;
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+    cXyz* var_r30;
+    cXyz* sp24;
+    BOOL sp20 = FALSE;
+
+    cXyz spD8;
+    Vec spCC;
+
+    b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(mant_sp38->parentActorID);
+
+    f32 var_f31;
+    f32 var_f30;
+    f32 var_f29;
+    f32 var_f28;
+    f32 var_f27;
+    f32 var_f26;
+
+    f32 sp18;
+    f32 sp14;
 
     if (gndActor->mDrawHorse != 0) {
-        bVar2 = TRUE;
-        local_158 = gndActor->field_0x1fb8;
+        sp20 = TRUE;
+        spD8 = gndActor->field_0x1fb8;
     } else if (i_this->field_0x3966 != 0) {
-        local_158 = i_this->field_0x3928[0] + ((i_this->field_0x3928[1] - i_this->field_0x3928[0]) * 0.5f);
-        local_158.y += -60.0f;
+        spD8 = i_this->field_0x3928[0] + ((i_this->field_0x3928[1] - i_this->field_0x3928[0]) * 0.5f);
+        spD8.y += -60.0f + KREG_F(11);
     }
 
-    cXyz* vec_p = param_2->field_0x0;
-    cXyz* pcVar9 = param_2->field_0x9c;
-    dBgS_GndChk(dStack_f8);
-    local_164 = param_2->field_0x0[0];
-    local_164.y += 50.0f;
+    var_r30 = param_2->field_0x0;
+    sp24 = param_2->field_0x9c;
+    dBgS_GndChk(sp108);
+    spCC = param_2->field_0x0[0];
+    spCC.y += 50.0f;
 
-    dStack_f8.SetPos((Vec*)&local_164);
-    dVar17 = dComIfG_Bgsp().GroundCross(&dStack_f8) + 3.0f;
+    sp108.SetPos(&spCC);
+    var_f27 = dComIfG_Bgsp().GroundCross(&sp108) + 3.0f;
 
-    if (dVar17 - param_2->field_0x0[0].y > 50.0f) {
-        dVar17 = param_2->field_0x0[0].y;
+    if (var_f27 - var_r30[0].y > 50.0f) {
+        var_f27 = var_r30[0].y;
     }
 
-    cXyz cStack_170, local_17c;
-    cXyz local_188(0.0f, 0.0f, 0.0f);
-    cXyz local_194(0.0f, 0.0f, 0.0f);
-    cXyz local_1a0(0.0f, 0.0f, 0.0f);
+    cXyz spC0;
+    cXyz spB4;
+    cXyz spA8(0.0f, 0.0f, 0.0f);
+    cXyz sp9C(0.0f, 0.0f, 0.0f);
+    cXyz sp90(0.0f, 0.0f, 0.0f);
 
     cMtx_YrotS(*calc_mtx, param_2->field_0x013a);
-    local_134.x = 0.0f;
-    local_134.y = 0.0f;
-    local_134.z = i_this->field_0x3954 * (cM_ssin(param_3 * 23000) * 0.05f + 1.0f);
-    MtxPosition(&local_134, &cStack_170);
+    spFC.x = 0.0f;
+    spFC.y = 0.0f;
+    spFC.z = i_this->field_0x3954 * (cM_ssin(param_3 * 23000) * 0.05f + 1.0f);
+    MtxPosition(&spFC, &spC0);
 
-    cXyz local_1ac;
+    cXyz sp84;
 
-    s16 sVar3 = param_3 + -6;
-    if (sVar3 < 0) {
-        sVar3 *= -1;
+    s16 sp0C;
+    s16 sp0A;
+
+    s16 sp08 = param_3 + -6;
+    if (sp08 < 0) {
+        sp08 *= -1;
     }
 
-    sVar3 *= -4000;
-    local_134.x = 0.0f;
-    local_134.y = 0.0f;
-    local_134.z = i_this->field_0x394c;
-    local_134.z *= i_this->scale.y;
+    sp08 *= (s16)(-4000 + VREG_S(5));
+    spFC.x = 0.0f;
+    spFC.y = 0.0f;
+    spFC.z = i_this->field_0x394c;
+    spFC.z *= i_this->scale.y;
 
-    for (int i = 0; i < 13; i++, vec_p++, pcVar9++) {
-        if (0 < i) {
-            dVar16 = i_this->field_0x3950;
+    for (sp34 = 0; sp34 < 13; sp34++, var_r30++, sp24++) {
+        if (0 < sp34) {
+            sp14 = i_this->field_0x3950;
 
-            local_17c = cStack_170 * d_p[i - 1];
+            spB4 = spC0 * (d_p[sp34 - 1] + NREG_F(sp34));
 
-            dVar18 = i_this->field_0x3958;
-            dVar18 *= 1.0f - i * 0.07f;
+            sp18 = i_this->field_0x3958;
+            sp18 *= 1.0f  + VREG_F(0) - sp34 * (0.07f + VREG_F(1));
 
-            local_1ac.zero();
-
+            sp84.zero();
 
             // (1.0f / 100.0f)
             if (param_4 > 0.01f) {
-                dVar16 = 0.0f;
-                f32 dVar14 = param_4 * (i * 0.2f + 1.0f);
+                sp14 = 0.0f + VREG_F(15);
+                var_f26 = param_4 * (sp34 * (0.2f + VREG_F(16)) + 1.0f);
                 cMtx_YrotS(*calc_mtx, param_2->field_0x013a);
                 cMtx_XrotM(*calc_mtx, param_2->field_0x0138);
 
-                local_140.x = (dVar14 * 2.0f) * cM_ssin(i_this->field_0x25a0 * 0x1000 + (i * -7500) + sVar3);
-                local_140.y = (dVar14 * 5.0f) * cM_ssin(i_this->field_0x25a0 * 0x1800 + (i * -7000) + sVar3);
-                local_140.z = -15.0f;
-                MtxPosition(&local_140, &local_1ac);
+                spF0.x = ((2.0f + VREG_F(17)) * var_f26) *
+                    cM_ssin(i_this->field_0x25a0 * (0x1000 + JREG_S(0)) +
+                        (sp34 * (-7500 + JREG_S(1))) + sp08);
+                spF0.y = ((5.0f + VREG_F(18)) * var_f26) *
+                    cM_ssin(i_this->field_0x25a0 * (0x1800 + JREG_S(2)) +
+                        (sp34 * (-7000 + JREG_S(3))) + sp08);
+                spF0.z = -15.0f + VREG_F(19);
+                MtxPosition(&spF0, &sp84);
             }
 
             if (param_5 > 0.01f) {
-                dVar14 = param_5 * (i * 0.2f + 1.0f);
+                var_f26 = param_5 * (sp34 * (0.2f + VREG_F(16)) + 1.0f);
                 cMtx_YrotS(*calc_mtx, param_2->field_0x013a + -6000);
                 cMtx_XrotM(*calc_mtx, -5000);
 
-                local_140.x = (dVar14 * 2.0f) * cM_ssin(i_this->field_0x25a0 * 0x448 + (i * -7000) + sVar3);
-                local_140.y = (dVar14 * 6.0f) * cM_ssin(i_this->field_0x25a0 * 0xc48 + (i * -7500) + sVar3);
-                local_140.z = param_5 * -15.0f;
-                MtxPosition(&local_140, &local_14c);
-                local_1ac += local_14c;
+                spF0.x = ((2.0f + VREG_F(17)) * var_f26) *
+                    cM_ssin(i_this->field_0x25a0 * (0x448 + JREG_S(0)) +
+                    (sp34 * (-7000 + JREG_S(1))) + sp08);
+                spF0.y = ((6.0f + VREG_F(18)) * var_f26) *
+                    cM_ssin(i_this->field_0x25a0 * (0xc48 + JREG_S(2)) +
+                    (sp34 * (-7500 + JREG_S(3))) + sp08);
+                spF0.z = (-15.0f + VREG_F(19)) * param_5;
+                MtxPosition(&spF0, &spE4);
+                sp84 += spE4;
             }
 
             if (i_this->field_0x3960 > 0.1f) {
-                local_1ac.y = i_this->field_0x3960 * cM_ssin(i_this->field_0x25a0 * 0x1100 + (i * -7000) + sVar3);
+                sp84.y = i_this->field_0x3960 *
+                    cM_ssin(i_this->field_0x25a0 * (0x1100 + JREG_S(2)) +
+                        (sp34 * (-7000 + JREG_S(3))) + sp08);
             }
 
-            dVar20 = (vec_p->x - vec_p[-1].x) + pcVar9->x + local_17c.x + local_1ac.x;
-            dVar19 = (vec_p->z - vec_p[-1].z) + pcVar9->z + local_17c.z + local_1ac.z;
-            dVar14 = local_1ac.y + (vec_p->y + pcVar9->y + dVar18);
+            sp30 = (var_r30->x - var_r30[-1].x) + sp24->x + spB4.x + sp84.x;
+            sp28 = (var_r30->z - var_r30[-1].z) + sp24->z + spB4.z + sp84.z;
+            var_f31 = var_r30->y + sp24->y + sp18 + sp84.y;
 
-            if (bVar2) {
-                dVar18 = dVar17;
-                local_14c = local_158 - *vec_p;
-                fVar1 = JMAFastSqrt(local_14c.x * local_14c.x + local_14c.z * local_14c.z);
-                if (fVar1 < 85.0f) {
-                    dVar18 = local_158.y + 1.0f * JMAFastSqrt(7225.0f - fVar1 * fVar1);
+            if (sp20) {
+                var_f30 = var_f27;
+                spE4 = spD8 - *var_r30;
+                var_f29 = JMAFastSqrt(spE4.x * spE4.x + spE4.z * spE4.z);
+                var_f28 = 85.0f + KREG_F(12);
+                if (var_f29 < var_f28) {
+                    var_f30 = spD8.y + 1.0f * JMAFastSqrt(var_f28 * var_f28 - var_f29 * var_f29) *
+                        (1.0f + KREG_F(13));
                 }
 
-                if (dVar14 < dVar18) {
-                    dVar14 = dVar18;
+                if (var_f31 < var_f30) {
+                    var_f31 = var_f30;
                 }
             } else if (i_this->field_0x3966 != 0) {
-                dVar18 = dVar17;
-                local_14c = local_158 - *vec_p;
-                fVar1 = JMAFastSqrt(local_14c.x * local_14c.x + local_14c.z * local_14c.z);
-
-                if (fVar1 < 85.0f) {
-                    dVar18 = local_158.y + JMAFastSqrt(7225.0f - fVar1 * fVar1);
+                var_f30 = var_f27;
+                spE4 = spD8 - *var_r30;
+                var_f29 = JMAFastSqrt(spE4.x * spE4.x + spE4.z * spE4.z);
+                var_f28 = 85.0f + KREG_F(12);
+                if (var_f29 < var_f28) {
+                    var_f30 = spD8.y + JMAFastSqrt(var_f28 * var_f28 - var_f29 * var_f29) *
+                        (1.0f + KREG_F(13));
                 }
 
-                if (dVar14 < dVar18) {
-                    dVar14 = dVar18;
+                if (var_f31 < var_f30) {
+                    var_f31 = var_f30;
                 }
             } else {
-                if (dVar14 < dVar17) {
-                    dVar14 = dVar17;
+                if (var_f31 < var_f27) {
+                    var_f31 = var_f27;
                 }
             }
 
-            dVar14 -= vec_p[-1].y;
-            s16 sVar4 = -cM_atan2s(dVar14, dVar19);
-            s16 sVar5 = (s16)cM_atan2s(dVar20, JMAFastSqrt(dVar14 * dVar14 + dVar19 * dVar19));
+            sp2C = var_f31 - var_r30[-1].y;
+            sp0C = -cM_atan2s(sp2C, sp28);
+            sp0A = (s16)cM_atan2s(sp30, JMAFastSqrt(sp2C * sp2C + sp28 * sp28));
 
-            cMtx_XrotS(*calc_mtx, sVar4);
-            cMtx_YrotM(*calc_mtx, sVar5);
-            MtxPosition(&local_134, &local_14c);
+            cMtx_XrotS(*calc_mtx, sp0C);
+            cMtx_YrotM(*calc_mtx, sp0A);
+            MtxPosition(&spFC, &spE4);
 
-            *pcVar9 = *vec_p;
+            *sp24 = *var_r30;
 
-            vec_p->x = vec_p[-1].x + local_14c.x;
-            vec_p->y = vec_p[-1].y + local_14c.y;
-            vec_p->z = vec_p[-1].z + local_14c.z;
+            var_r30->x = var_r30[-1].x + spE4.x;
+            var_r30->y = var_r30[-1].y + spE4.y;
+            var_r30->z = var_r30[-1].z + spE4.z;
 
-            pcVar9->x = dVar16 * (vec_p->x - pcVar9->x);
-            pcVar9->y = dVar16 * (vec_p->y - pcVar9->y);
-            pcVar9->z = dVar16 * (vec_p->z - pcVar9->z);
+            sp24->x = sp14 * (var_r30->x - sp24->x);
+            sp24->y = sp14 * (var_r30->y - sp24->y);
+            sp24->z = sp14 * (var_r30->z - sp24->z);
         }
     }
 }
@@ -612,7 +646,14 @@ static int mant_cut_type;
 /* 808624E8-80862908 0012C8 0420+00 2/1 0/0 0/0 .text            daMant_Execute__FP10mant_class */
 static int daMant_Execute(mant_class* i_this) {
     f32 var_f31, var_f30;
-    int iVar8, unaff_r29, iVar2, uVar1, uVar4;
+    int iVar8;
+    s16 unaff_r29;
+    int iVar2, uVar1, uVar4;
+
+    fopAc_ac_c* mant_actor = (fopAc_ac_c*)i_this;
+
+    fopAc_ac_c* unusedPlayerActor = dComIfGp_getPlayer(0);
+    daPy_py_c* unusedPlayer = (daPy_py_c*)unusedPlayerActor;
 
     i_this->field_0x25a0++;
     lbl_277_bss_0++;
@@ -621,7 +662,7 @@ static int daMant_Execute(mant_class* i_this) {
         i_this->field_0x399e--;
     }
 
-    b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(i_this->parentActorID);
+    b_gnd_class* gndActor = (b_gnd_class*)fopAcM_SearchByID(mant_actor->parentActorID);
 
     if (gndActor && gndActor->mDrawHorse != 0) {
         i_this->field_0x394c = 21.0f;
@@ -647,7 +688,7 @@ static int daMant_Execute(mant_class* i_this) {
     i_this->field_0x3965 = 0;
     i_this->field_0x3966 = 0;
 
-    i_this->field_0x3940 = i_this->current.pos;
+    i_this->field_0x3940 = mant_actor->current.pos;
 
     iVar8 = 0;
 
@@ -674,7 +715,7 @@ static int daMant_Execute(mant_class* i_this) {
 
     for (int i = 0; i < iVar8; i++) {
         var_f31 += cM_ssin(unaff_r29);
-        var_f30 -= cM_scos(unaff_r29);
+        var_f30 += -cM_scos(unaff_r29);
 
         uVar4 = (int)(var_f31 + 64.0f) | (int)(var_f30 + 64.0f) << 7;
 
@@ -725,8 +766,7 @@ static int daMant_Execute(mant_class* i_this) {
 
             if (0 <= uVar1 && uVar1 < 0x4000) {
                 int iVar5 = (uVar1 & 7) + (uVar1 & 0x78) * 4 + (uVar1 >> 4 & 0x18) + (uVar1 & 0x3e00);
-                l_Egnd_mantTEX_U[iVar5] = 0;
-                l_Egnd_mantTEX[iVar5] = 0;
+                l_Egnd_mantTEX[iVar5] = l_Egnd_mantTEX_U[iVar5] = 0;
             }
         }
     }
@@ -747,6 +787,8 @@ static int daMant_Delete(mant_class* i_this) {
 /* 80862918-80862AC0 0016F8 01A8+00 1/0 0/0 0/0 .text            daMant_Create__FP10fopAc_ac_c */
 static int daMant_Create(fopAc_ac_c* i_this) {
     mant_class* m_this = (mant_class*)i_this;
+
+    fpc_ProcID unusedId = fopAcM_GetID(m_this);
 
     fopAcM_ct(m_this, mant_class);
     //m_this->field_0x0570.field_0x74 = 0;

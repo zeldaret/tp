@@ -236,5 +236,3 @@ extern actor_process_profile_definition g_profile_Obj_Bhbridge = {
   fopAc_ACTOR_e,           // mActorType
   fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
-
-/* 80BB5F84-80BB5F84 000084 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -512,7 +512,6 @@ void Z2SeqMgr::subBgmStop() {
 
 
 /* 802AF9D0-802AFB94 2AA310 01C4+00 2/2 0/0 0/0 .text            subBgmStopInner__8Z2SeqMgrFv */
-// NONMATCHING regalloc
 void Z2SeqMgr::subBgmStopInner() {
     if (field_0xb8 == -1) {
         return;

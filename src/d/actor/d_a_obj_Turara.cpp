@@ -89,10 +89,8 @@ static u32 const l_bmdIdx[2] = {5, 8};
 /* 80B9CD74-80B9CED8 0002D4 0164+00 1/0 0/0 0/0 .text            CreateHeap__10daTurara_cFv */
 int daTurara_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("M_Turara", l_bmdIdx[field_0x98c]);
+    JUT_ASSERT(260, modelData != NULL);
 
-    if (modelData == NULL) {
-        // FIXME: For shield decomp matching, needs a JUT assert.
-    }
     if (field_0x98c == 0) {
         mpModel[0] = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     } else {
@@ -103,15 +101,12 @@ int daTurara_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*) dComIfG_getObjectRes("M_Turara", 9);
-    if (modelData == NULL) {
-        // FIXME: For shield decomp matching, needs a JUT assert.
-    }
+    JUT_ASSERT(279, modelData != NULL);
     mpModel[1] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel[1] == NULL) {
         return 0;
     }
-    dBgW* my_dBgW = new dBgW;
-    field_0x980 = my_dBgW;
+    field_0x980 = new dBgW;
     if (field_0x980 == NULL || field_0x980->Set((cBgD_t *)dComIfG_getObjectRes("M_Turara", 0xd),
                                                 1, &mBgMtx) != 0) {
         field_0x980 = NULL;
@@ -123,19 +118,17 @@ int daTurara_c::CreateHeap() {
 /* 80B9CED8-80B9D29C 000438 03C4+00 1/1 0/0 0/0 .text            create__10daTurara_cFv */
 int daTurara_c::create() {
     fopAcM_ct(this, daTurara_c);
-    u8 my_bit = getSwBit3();
-    if (fopAcM_isSwitch(this, my_bit)) {
+    if (fopAcM_isSwitch(this, getSwBit3())) {
         return cPhs_ERROR_e;
     }
     int phase = dComIfG_resLoad(&mPhaseReq,"M_Turara");
     if (phase == cPhs_COMPLEATE_e) {
-        u8 my_bool = 0;
-        field_0x98c = shape_angle.x;
+        u8 r26 = 0;
+        field_0x98c = getState();
         if (field_0x98c != 0) {
             if (field_0x98c == 1) {
-                my_bool = 1;
-                u8 my_bit1 = getSwBit1();
-                fopAcM_onSwitch(this, my_bit1);
+                r26 = 1;
+                fopAcM_onSwitch(this, getSwBit1());
             }
             fopAcM_SetGroup(this,0);
             field_0x98c = 1;
@@ -160,8 +153,7 @@ int daTurara_c::create() {
         mCylCollider.Set(mCcDCyl);
         mCylCollider.SetStts(&mColliderStts);
         mCylCollider.OffAtSetBit();
-        u8 my_bit1 = getSwBit1();
-        if (fopAcM_isSwitch(this, my_bit1)) {
+        if (fopAcM_isSwitch(this, getSwBit1())) {
             field_0x984 = 1;
             mCylCollider.OffCoSetBit();
             if (mpBgW) {
@@ -171,7 +163,7 @@ int daTurara_c::create() {
                 dComIfG_Bgsp().Regist(field_0x980, this);
                 field_0x980->Move();
             }
-            if (my_bool) {
+            if (r26) {
                 mMode = 3;
             } else {
                 setFallStat();
@@ -185,7 +177,9 @@ int daTurara_c::create() {
         fopAcM_setCullSizeBox2(this, mpModel[field_0x984]->getModelData());
         setBaseMtx();
         field_0x994 = 1;
-        // FIXME: Needs entryHIO here.
+        #ifdef DEBUG
+        l_HIO.entryHIO("つらら");
+        #endif
     }
     return phase;
 }
@@ -226,9 +220,9 @@ void daTurara_c::move() {
         mCylCollider.SetR(130.0f);
     }
     mCylCollider.SetH(510.0f);
-    cXyz my_vec(current.pos);
-    my_vec.y -= 50.0f;
-    mCylCollider.SetC(my_vec);
+    cXyz sp08(current.pos);
+    sp08.y -= 50.0f;
+    mCylCollider.SetC(sp08);
     dComIfG_Ccsp()->Set(&mCylCollider);
 }
 
@@ -247,21 +241,19 @@ void daTurara_c::modeWait() {
         }
     }
     if (mCylCollider.ChkTgHit()) {
-        dCcD_GObjInf* my_actor = mCylCollider.GetTgHitGObj();
-        if (my_actor->GetAtType() == AT_TYPE_BOMB) {
+        dCcD_GObjInf* r29 = mCylCollider.GetTgHitGObj();
+        if (r29->GetAtType() == AT_TYPE_BOMB) {
             if (getEvetID() != 0xff) {
                 orderEvent(getEvetID(), 0xFF, 1);
             } else {
                 eventStart();
             }
-        } else if (my_actor->GetAtType() == AT_TYPE_IRON_BALL) {
-            dComIfGp_particle_set(0x8a8f, &current.pos, NULL, NULL, NULL, 0xff, NULL, -1, NULL, NULL, NULL);
-            dComIfGp_particle_set(0x8a90, &current.pos, NULL, NULL, NULL, 0xff, NULL, -1, NULL, NULL, NULL);
-            dComIfGp_particle_set(0x8a91, &current.pos, NULL, NULL, NULL, 0xff, NULL, -1, NULL, NULL, NULL);
-            s8 roomNo = fopAcM_GetRoomNo(this);
-            mDoAud_seStart(Z2SE_OBJ_ICICLE_BRK, &current.pos, 0, dComIfGp_getReverb(roomNo));
-            u8 swbit3 = getSwBit3();
-            fopAcM_onSwitch(this, swbit3);
+        } else if (r29->GetAtType() == AT_TYPE_IRON_BALL) {
+            dComIfGp_particle_set(0x8a8f, &current.pos, NULL, NULL);
+            dComIfGp_particle_set(0x8a90, &current.pos, NULL, NULL);
+            dComIfGp_particle_set(0x8a91, &current.pos, NULL, NULL);
+            mDoAud_seStart(Z2SE_OBJ_ICICLE_BRK, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            fopAcM_onSwitch(this, getSwBit3());
             fopAcM_delete(this);
         }
     }
@@ -346,35 +338,30 @@ void daTurara_c::init_modeDropEnd() {
     }
     mCylCollider.OffCoSetBit();
     mCylCollider.OffAtSetBit();
-    u8 swbit1 = getSwBit1();
-    fopAcM_onSwitch(this, swbit1);
-    s8 roomNo = fopAcM_GetRoomNo(this);
-    mDoAud_seStart(Z2SE_OBJ_ICICLE_LAND, &current.pos, 0, dComIfGp_getReverb(roomNo));
+    fopAcM_onSwitch(this, getSwBit1());
+    mDoAud_seStart(Z2SE_OBJ_ICICLE_LAND, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     mMode = 3;
 }
 
 /* 80B9DE48-80B9E078 0013A8 0230+00 1/0 0/0 0/0 .text            modeDropEnd__10daTurara_cFv */
 void daTurara_c::modeDropEnd() {
     if (mCylCollider.ChkTgHit()) {
-        dCcD_GObjInf* my_actor = mCylCollider.GetTgHitGObj();
-        u32 att_type = my_actor->GetAtType();
-        if ((att_type & AT_TYPE_UNK) || (att_type & AT_TYPE_20000000)) {
+        dCcD_GObjInf* r29 = mCylCollider.GetTgHitGObj();
+        if ((r29->GetAtType() & AT_TYPE_UNK) || (r29->GetAtType() & AT_TYPE_20000000)) {
             if (field_0x980) {
                 dComIfG_Bgsp().Release(field_0x980);
                 field_0x980->Move();
             }
-            csXyz my_vec(0, home.angle.y, 0);
+            csXyz sp10(0, home.angle.y, 0);
             fopAcM_createItemFromTable(&current.pos, getItemTbleNum(), -1,
-                                       fopAcM_GetHomeRoomNo(this), &my_vec, 0, (cXyz*)NULL,
+                                       fopAcM_GetHomeRoomNo(this), &sp10, 0, (cXyz*)NULL,
                                        NULL, NULL, false);
         }
         dComIfGp_particle_set(0x8a8f, &current.pos, NULL, NULL);
         dComIfGp_particle_set(0x8a90, &current.pos, NULL, NULL);
         dComIfGp_particle_set(0x8a91, &current.pos, NULL, NULL);
-        s8 roomNo = fopAcM_GetRoomNo(this);
-        mDoAud_seStart(Z2SE_OBJ_ICICLE_BRK, &current.pos, 0, dComIfGp_getReverb(roomNo));
-        u8 swbit3 = getSwBit3();
-        fopAcM_onSwitch(this, swbit3);
+        mDoAud_seStart(Z2SE_OBJ_ICICLE_BRK, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        fopAcM_onSwitch(this, getSwBit3());
         fopAcM_delete(this);
     }
 }
@@ -390,28 +377,25 @@ void daTurara_c::init_modeDropEnd2() {
     }
     mCylCollider.OffCoSetBit();
     mCylCollider.OffAtSetBit();
-    s8 roomNo = fopAcM_GetRoomNo(this);
-    mDoAud_seStart(Z2SE_OBJ_ICICLE_BRK, &current.pos, 0, dComIfGp_getReverb(roomNo));
+    mDoAud_seStart(Z2SE_OBJ_ICICLE_BRK, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     current.pos.y -= 100.0f;
     cXyz first_vec(current.pos);
     first_vec.y += 100.0f;
-    s16 my_proc = PROC_E_KK;
-    field_0x988 = fopAcM_create(my_proc, getSwBit1() << 0x10 | 3, &first_vec, fopAcM_GetRoomNo(this), 0, 0, 0xffffffff);
-    // FIXME: JUT assert needed here
+    mEmID = fopAcM_create(PROC_E_KK, getSwBit1() << 0x10 | 3, &first_vec, fopAcM_GetRoomNo(this), 0, 0, -1);
+    JUT_ASSERT(770, mEmID != fpcM_ERROR_PROCESS_ID_e);
     cXyz second_vec(0.7f, 0.7f, 0.7f);
     dComIfGp_particle_set(0x8a8f, &first_vec, NULL, &second_vec);
     dComIfGp_particle_set(0x8a90, &first_vec, NULL, &second_vec);
     dComIfGp_particle_set(0x8a91, &first_vec, NULL, &second_vec);
     dComIfGp_particle_set(0x8a92, &first_vec, NULL, &second_vec);
-    u8 swbit = getSwBit3();
-    fopAcM_onSwitch(this, swbit);
+    fopAcM_onSwitch(this, getSwBit3());
     field_0x994 = 0;
     mMode = 4;
 }
 
 /* 80B9E338-80B9E388 001898 0050+00 1/0 0/0 0/0 .text            modeDropEnd2__10daTurara_cFv */
 void daTurara_c::modeDropEnd2() {
-    if (fopAcM_SearchByID(field_0x988)) {
+    if (fopAcM_SearchByID(mEmID)) {
         fopAcM_delete(this);
     }
 }
@@ -487,5 +471,3 @@ extern actor_process_profile_definition g_profile_Obj_Turara = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80B9E970-80B9E970 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

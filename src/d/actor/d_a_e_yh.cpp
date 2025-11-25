@@ -2305,5 +2305,3 @@ extern actor_process_profile_definition g_profile_E_YH = {
   fopAc_ENEMY_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 808043DC-808043DC 000160 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

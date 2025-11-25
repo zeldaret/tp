@@ -267,5 +267,3 @@ extern actor_process_profile_definition g_profile_Obj_TvCdlst = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80B9F8F4-80B9F8F4 000064 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -106,14 +106,12 @@ void daObjIce_s_c::setBaseMtx() {
 
 /* 80C20F48-80C21234 000688 02EC+00 1/1 0/0 0/0 .text
  * rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c              */
- // NONMATCHING
- // reg alloc
+// NONMATCHING - regalloc, equivalent
 static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
     (void)param_1;
-    cXyz* icePos;
     daObjIce_s_c* ice = (daObjIce_s_c*)param_2;
     daPy_py_c* player = daPy_getPlayerActorClass();
-    cXyz& playerPos = fopAcM_GetPosition(player);
+    cXyz* playerPos = &fopAcM_GetPosition(player);
     cXyz* pBallCenter = player->getIronBallCenterPos();
 
     // !@bug misplaced ! operator. This condition is probably always false
@@ -123,10 +121,10 @@ static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3
         ice->field_0x5ac = 0x500;
     } else {
         ice->field_0x5a4 = -1.3f;
-        ice->Check_LinkRideOn(playerPos);
+        ice->Check_LinkRideOn(*playerPos);
     }
 
-    icePos = &fopAcM_GetPosition(param_2);
+    cXyz* icePos = (cXyz*)&fopAcM_GetPosition(param_2);
     if (pBallCenter != NULL && icePos != NULL && icePos->absXZ(*pBallCenter) < ice->field_0x5c8.x * 600.0f) {
         ice->field_0x5d8 = 0x300;
         ice->field_0x5a4 = -11.0f;
@@ -137,7 +135,7 @@ static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3
         ice->field_0x5d8 = 0x300;
         ice->field_0x5a4 = -11.0f;
         ice->field_0x5ac = 0x1000;
-        ice->Check_RideOn(playerPos);
+        ice->Check_RideOn(*playerPos);
     }
     if (ice->field_0x5c5 == 0xff &&
         fopAcM_GetName(param_3) == PROC_ALINK)
@@ -145,7 +143,7 @@ static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3
         ice->field_0x5d8 = 0x300;
         ice->field_0x5a4 = -11.0f;
         ice->field_0x5ac = 0x1000;
-        ice->Check_RideOn(playerPos);
+        ice->Check_RideOn(*playerPos);
     }
 }
 
@@ -319,5 +317,3 @@ extern actor_process_profile_definition g_profile_Obj_Ice_s = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80C21B8C-80C21B8C 000094 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

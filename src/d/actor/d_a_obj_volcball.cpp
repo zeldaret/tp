@@ -262,7 +262,6 @@ void daObjVolcBall_c::actionWarning() {
 
 /* 80D22944-80D22C6C 000EA4 0328+00 1/0 0/0 0/0 .text            actionEruption__15daObjVolcBall_cFv
  */
-// NONMATCHING small regalloc
 void daObjVolcBall_c::actionEruption() {
     if (!dComIfGp_getVibration().CheckQuake()) {
         startQuake();

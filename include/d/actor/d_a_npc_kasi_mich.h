@@ -75,7 +75,6 @@ public:
     /* 80A28F74 */ int escape(int);
     /* 80A2908C */ int iyan_look(int);
     /* 80A29164 */ int turn_hana(int);
-    void dummy();
     /* 80A291E8 */ int wait_dummy(int);
     /* 80A2926C */ int cheer(int);
     /* 80A29458 */ BOOL _turn_to_link(s16);

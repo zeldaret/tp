@@ -104,7 +104,7 @@ static char* l_arcNames[3] = {
 };
 
 /* 80AEA5AC-80AEA5B0 000074 0004+00 0/1 0/0 0/0 .data            l_evtNames */
-static char* l_evtNames[1] = {l_arcNames[0]};
+static char* l_evtNames[1] = {NULL};
 
 /* 80AEA5B0-80AEA5B4 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
 static char* l_myName = "Shoe";
@@ -773,10 +773,6 @@ void daNpcShoe_c::setMotionAnm(int i_idx, f32 i_morf) {
 BOOL daNpcShoe_c::drawDbgInfo() {
     return FALSE;
 }
-
-/* 80AEA340-80AEA344 002AE0 0004+00 1/0 0/0 0/0 .text            adjustShapeAngle__11daNpcShoe_cFv
- */
-void daNpcShoe_c::adjustShapeAngle() {}
 
 /* 80AEA608-80AEA628 -00001 0020+00 1/0 0/0 0/0 .data            daNpcShoe_MethodTable */
 static actor_method_class daNpcShoe_MethodTable = {

@@ -557,5 +557,3 @@ extern actor_process_profile_definition g_profile_OBJ_MSIMA = {
 };
 
 AUDIO_INSTANCES;
-
-/* 80C9CDEC-80C9CDEC 0000A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

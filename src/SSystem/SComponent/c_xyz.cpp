@@ -59,7 +59,7 @@ cXyz cXyz::outprod(const Vec& vec) const {
 /* 80266CE4-80266D30 004C+00 s=0 e=10 z=1  None .text      norm__4cXyzCFv */
 cXyz cXyz::norm() const {
     Vec ret;
-    JUT_CONFIRM(251, isNearZeroSquare() == 0);
+    JUT_CONFIRM(251, isNearZeroSquare() == FALSE);
     PSVECNormalize(this, &ret);
     return ret;
 }

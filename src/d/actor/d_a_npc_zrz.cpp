@@ -179,7 +179,6 @@ daNpc_zrZ_c::EventFn daNpc_zrZ_c::mEvtCutList[8] = {
 };
 
 /* 80B93DCC-80B93F84 0000EC 01B8+00 1/1 0/0 0/0 .text            __ct__11daNpc_zrZ_cFv */
-// NONMATCHING inlining
 daNpc_zrZ_c::daNpc_zrZ_c() {
     /* empty function */
 }
@@ -1308,7 +1307,6 @@ void daNpc_zrZ_c::lightPowerCalc(int param_0) {
 }
 
 /* 80B972EC-80B974BC 00360C 01D0+00 1/1 0/0 0/0 .text            lightColorProc__11daNpc_zrZ_cFv */
-// NONMATCHING regalloc
 void daNpc_zrZ_c::lightColorProc() {
     static int const key_frame[4] = {
         0, 50, 190, 220,

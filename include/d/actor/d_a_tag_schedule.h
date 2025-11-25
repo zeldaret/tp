@@ -11,13 +11,17 @@ public:
     }
 
     int getSeqNum() { return (fopAcM_GetParam(this) >> 6) & 0x3f; }
-    u16 getStartTime() { return (fopAcM_GetParam(this) >> 12) & 0xff; }
+    u8 getStartTime() { return (fopAcM_GetParam(this) >> 12) & 0xff; }
     u8 getStartEnd() { return (fopAcM_GetParam(this) >> 20) & 0xff; }
     int getGroupID() { return fopAcM_GetParam(this) & 0x3f; }
     int getWeekNum() { return mWeekNum; }
-    void setWeekNum(int weekNum) { mWeekNum = weekNum; }
+#if PLATFORM_SHIELD
+    void setWeekNum(u32 weekNum) { mWeekNum = weekNum % 7; }
+#else
+    void setWeekNum(int weekNum) { mWeekNum = weekNum % (u32)7; }
+#endif
     u8 getPathID() { return shape_angle.x & 0xff; }
-    s16 getFlowNodeNum() { return shape_angle.z; }
+    int getFlowNodeNum() { return shape_angle.z; }
 
     /* 0x568 */ int mWeekNum;
 };

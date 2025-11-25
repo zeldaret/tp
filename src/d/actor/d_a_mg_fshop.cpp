@@ -1686,7 +1686,11 @@ static int daFshop_Create(fopAc_ac_c* actor) {
 
             int sp24;
             if (sp10 == 1) {
+#if VERSION == VERSION_GCN_JPN
+                sp24 = dComIfGs_getEventReg(check_kind[i]);
+#else
                 sp24 = 2.54f * dComIfGs_getEventReg(check_kind[i]);
+#endif
             } else {
                 sp24 = dComIfGs_getEventReg(check_kind[i]);
             }

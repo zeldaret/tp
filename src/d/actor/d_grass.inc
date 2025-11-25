@@ -398,7 +398,7 @@ void dGrass_data_c::hitCheck(int i_roomNo, u16 i_particleName) {
         if (field_0x02 >= 16) {
             dGrass_anm_c* anm_p = daGrass_c::getGrass()->getAnm(field_0x02);
             s16 spC = anm_p->m_angY & 0xE000;
-            int sp10 = field_0x02 & 15;
+            int sp10 = (field_0x02 & 15) & 0xFFFF;
             dGrass_anm_c* temp_r27 = daGrass_c::getGrass()->getAnm(sp10);
 
             if (anm_p->m_state == 2) {
@@ -481,6 +481,8 @@ dGrass_packet_c::dGrass_packet_c() {
     m_Mkusa_9q_cDL_size = 0xC0;
     field_0x1d714 = 0;
 
+    OS_REPORT("草群メモリ=%fＫ\n", 117.7734375f);
+    
     m_deleteRoom = &dGrass_packet_c::deleteRoom;
 }
 

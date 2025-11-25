@@ -229,7 +229,7 @@ void daBaseNpc_lookat_c::limitter(s16 i_value, s16* o_value_p, s16 i_max, s16 i_
 
 /* 8014DBB4-8014E634 1484F4 0A80+00 0/0 0/0 1/1 .text
  * calc__18daBaseNpc_lookat_cFP10fopAc_ac_cPA4_fs               */
-// regalloc, equivalent ?
+// NONMATCHING - regalloc, equivalent ? (matches debug)
 void daBaseNpc_lookat_c::calc(fopAc_ac_c* param_0, Mtx param_1, s16 param_2) {
     if (mpAttnPos == NULL) {
         for (int i = 0; i < 4; i++) {

@@ -72,15 +72,6 @@
 #define nofralloc
 #endif
 
-// floating-point constants
-// TODO: move to different header
-#define _HUGE_ENUF 1e+300
-#define INFINITY ((float)(_HUGE_ENUF * _HUGE_ENUF))
-#define HUGE_VAL ((double)INFINITY)
-#define HUGE_VALL ((long double)INFINITY)
-
-#define DOUBLE_INF HUGE_VAL
-
 #pragma section ".dead"
 #pragma section ".ctors$10"
 #pragma section ".ctors$15"

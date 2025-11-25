@@ -77,7 +77,6 @@ static void daKytag12_light_swprd_proc(kytag12_class* i_this) {
 
 /* 8085BD0C-8085D1DC 00024C 14D0+00 2/1 0/0 0/0 .text
  * daKytag12_Execute_standard__FP13kytag12_class                */
-// NONMATCHING minor regalloc
 static int daKytag12_Execute_standard(kytag12_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
@@ -467,7 +466,6 @@ static int daKytag12_Execute_standard(kytag12_class* i_this) {
 
 /* 8085D1DC-8085DFF0 00171C 0E14+00 1/1 0/0 0/0 .text daKytag12_Execute_arrival__FP13kytag12_class
  */
-// NONMATCHING minor regalloc
 static int daKytag12_Execute_arrival(kytag12_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);

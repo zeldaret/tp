@@ -467,12 +467,7 @@ int daNpcT_Path_c::chkPassed1(cXyz i_pnt, int i_num) {
     cXyz next_pos;
     cXyz sp5C;
 
-#if VERSION != VERSION_SHIELD_DEBUG
-    // FIXME: fakematch. I literally don't know how else to get this to match....
-    u16 cur_idx = get_u16_Idx();
-#else
-    u16 cur_idx = getIdx();
-#endif
+    u16 cur_idx = (int)(u16)getIdx();
     u16 prev_idx, next_idx;
     prev_idx = next_idx = cur_idx;
 
@@ -2720,7 +2715,7 @@ BOOL daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_actor_p) {
             for (int i = 0; i < dComIfGp_getAttention()->GetActionCount(); i++) {
                 if (dComIfGp_getAttention()->ActionTarget(i) == i_actor_p &&
                     dComIfGp_getAttention()->getActionBtnB() != NULL &&
-                    dComIfGp_getAttention()->getActionBtnB()->mType == 3)
+                    dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_SPEAK_e)
                 {
                     ret = TRUE;
                 }
@@ -2729,7 +2724,7 @@ BOOL daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_actor_p) {
             for (int i = 0; i < dComIfGp_getAttention()->GetLockonCount(); i++) {
                 if (dComIfGp_getAttention()->LockonTarget(i) == i_actor_p &&
                     dComIfGp_getAttention()->getActionBtnB() != NULL &&
-                    dComIfGp_getAttention()->getActionBtnB()->mType == 1)
+                    dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_TALK_e)
                 {
                     ret = TRUE;
                 }

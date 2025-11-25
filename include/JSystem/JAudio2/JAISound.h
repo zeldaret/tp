@@ -15,7 +15,7 @@ public:
 
     JAISoundID(u32 pId) { mId.mFullId = pId; };
 
-    JAISoundID(JAISoundID const& other) { mId = other.mId; };
+    JAISoundID(JAISoundID const& other) { mId.mFullId = other.mId.mFullId; };
 
     JAISoundID() {}
 

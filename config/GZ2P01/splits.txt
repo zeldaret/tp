@@ -788,7 +788,7 @@ d/actor/d_a_npc_cd2.cpp:
 	.rodata     start:0x80394A50 end:0x80395588
 	.data       start:0x803B7EA0 end:0x803BBA80
 	.bss        start:0x8042A5B0 end:0x8042E898
-	.sbss       start:0x80452FC0 end:0x80452FD8
+	.sbss       start:0x80452FC0 end:0x80452FD0
 	.sdata2     start:0x804554A0 end:0x80455510
 
 d/actor/d_a_obj_item.cpp:
@@ -797,6 +797,7 @@ d/actor/d_a_obj_item.cpp:
 	.rodata     start:0x80395588 end:0x80395598
 	.data       start:0x803BBA80 end:0x803BBD58
 	.sdata      start:0x80452668 end:0x80452670
+	.sbss       start:0x80452FD0 end:0x80452FD8
 	.sdata2     start:0x80455510 end:0x804555A0
 
 d/d_insect.cpp:

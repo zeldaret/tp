@@ -527,7 +527,6 @@ static BOOL forward_overhead_bg_chk(cXyz* ppos, f32 dist) {
 }
 
 /* 8005D18C-8005E8B0 057ACC 1724+00 0/0 1/1 0/0 .text            dKyr_rain_move__Fv */
-// NONMATCHING reg alloc, equivalent?
 void dKyr_rain_move() {
     dKankyo_rain_Packet* rain_packet;
     camera_class* camera;
@@ -1902,15 +1901,18 @@ void vrkumo_move() {
     }
 
     for (int i = 0; i < 100; i++) {
+        s16 sp8;
+        f32 sp34;
+        f32 var_f31;
         switch (vrkumo_packet->mVrkumoEff[i].mStatus) {
         case 0:
-            s16 sp8 = cM_rndF(65535.0f);
-            f32 sp34 = cM_rndF(18000.0f);
+            sp8 = cM_rndF(65535.0f);
+            sp34 = cM_rndF(18000.0f);
             if (sp34 > 15000.0f) {
                 sp34 = 14000.0 + cM_rndF(1000.0f);
             }
 
-            f32 var_f31 = sp34 * cM_ssin(sp8);
+            var_f31 = sp34 * cM_ssin(sp8);
             // @bug - parenthesis should not be on the condition
             if ((f32)fabs(var_f31 < 5000.0f)) {
                 if (var_f31 > 0.0f) {
@@ -4577,7 +4579,6 @@ inline float cosf(float x) {
 }
 
 /* 8006A090-8006B190 0649D0 1100+00 0/0 1/1 0/0 .text            drawVrkumo__FPA4_fR8_GXColorPPUc */
-// NONMATCHING - regalloc, j/k getting put in too low of registers?
 void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
     dKankyo_sun_Packet* sun_packet = g_env_light.mpSunPacket;
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
@@ -5342,7 +5343,6 @@ void dKyr_odour_move() {
 }
 
 /* 8006BE0C-8006C790 06674C 0984+00 0/0 1/1 0/0 .text            dKyr_odour_draw__FPA4_fPPUc */
-// NONMATCHING - regalloc
 void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
     dKankyo_odour_Packet* odour_packet = envlight->mOdourData.mpOdourPacket;

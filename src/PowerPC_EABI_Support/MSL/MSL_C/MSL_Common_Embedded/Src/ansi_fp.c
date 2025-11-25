@@ -522,7 +522,7 @@ void __num2dec_internal(decimal* d, double x) {
         d->sign = sign;
         d->exp = 0;
         d->sig.length = 1;
-        d->sig.text[0] = fpclassify(x) == 1 ? 'N' : 'I';
+        d->sig.text[0] = isnan(x)? 'N' : 'I';
         return;
     }
 

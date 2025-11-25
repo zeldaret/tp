@@ -676,8 +676,6 @@ static int daObj_Kago_IsDelete(void* param_1) {
 
 AUDIO_INSTANCES;
 
-/* 80C33D94-80C33D94 000114 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 80C33E24-80C33E44 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Kago_MethodTable */
 static actor_method_class daObj_Kago_MethodTable = {
     (process_method_func)daObj_Kago_Create,
