@@ -1,0 +1,50 @@
+#ifndef RES_STG_00_H
+#define RES_STG_00_H
+
+enum dRes_INDEX_STG_00 {
+    /* BMDR */
+    dRes_INDEX_STG_00_BMD_DOOR_KNOB_00_e=0x6,
+    dRes_INDEX_STG_00_BMD_DOOR_KNOB_01_e=0x7,
+    dRes_INDEX_STG_00_BMD_DOOR_KNOB_02_e=0x8,
+    dRes_INDEX_STG_00_BMD_DOOR_KNOB_03_e=0x9,
+    /* BNK  */
+    dRes_INDEX_STG_00_BIN_BANK_e=0xC,
+    dRes_INDEX_STG_00_BIN_NAME_e=0xD,
+    /* DAT  */
+    dRes_INDEX_STG_00_DAT_COLORDATA_TBL_e=0x10,
+    dRes_INDEX_STG_00_DAT_POL_ARG_e=0x11,
+    dRes_INDEX_STG_00_DAT_POL_EFFCOL_e=0x12,
+    dRes_INDEX_STG_00_DAT_POL_EFFCOL2_e=0x13,
+    dRes_INDEX_STG_00_DAT_POL_EFFTBL_e=0x14,
+    dRes_INDEX_STG_00_DAT_POL_EFFTBL2_e=0x15,
+    dRes_INDEX_STG_00_DAT_POL_SOUND_e=0x16,
+    /* DZS  */
+    dRes_INDEX_STG_00_DZS_ROOM5_e=0x19,
+    dRes_INDEX_STG_00_DZS_ROOM6_e=0x1A,
+    dRes_INDEX_STG_00_DZS_STAGE_e=0x1B,
+};
+
+enum dRes_ID_STG_00 {
+    /* BMDR */
+    dRes_ID_STG_00_BMD_DOOR_KNOB_00_e=0x6,
+    dRes_ID_STG_00_BMD_DOOR_KNOB_01_e=0x7,
+    dRes_ID_STG_00_BMD_DOOR_KNOB_02_e=0x8,
+    dRes_ID_STG_00_BMD_DOOR_KNOB_03_e=0x9,
+    /* BNK  */
+    dRes_ID_STG_00_BIN_BANK_e=0xC,
+    dRes_ID_STG_00_BIN_NAME_e=0xD,
+    /* DAT  */
+    dRes_ID_STG_00_DAT_COLORDATA_TBL_e=0x10,
+    dRes_ID_STG_00_DAT_POL_ARG_e=0x11,
+    dRes_ID_STG_00_DAT_POL_EFFCOL_e=0x12,
+    dRes_ID_STG_00_DAT_POL_EFFCOL2_e=0x13,
+    dRes_ID_STG_00_DAT_POL_EFFTBL_e=0x14,
+    dRes_ID_STG_00_DAT_POL_EFFTBL2_e=0x15,
+    dRes_ID_STG_00_DAT_POL_SOUND_e=0x16,
+    /* DZS  */
+    dRes_ID_STG_00_DZS_ROOM5_e=0x19,
+    dRes_ID_STG_00_DZS_ROOM6_e=0x1A,
+    dRes_ID_STG_00_DZS_STAGE_e=0x1B,
+};
+
+#endif /* !RES_STG_00_H */
