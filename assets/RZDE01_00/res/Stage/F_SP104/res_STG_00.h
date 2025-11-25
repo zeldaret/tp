@@ -1,0 +1,68 @@
+#ifndef RES_STG_00_H
+#define RES_STG_00_H
+
+enum dRes_INDEX_STG_00 {
+    /* BMDP */
+    dRes_INDEX_STG_00_BMD_VRBOX_KASUMIM_e=0x8,
+    dRes_INDEX_STG_00_BMD_VRBOX_KUMO_e=0x9,
+    dRes_INDEX_STG_00_BMD_VRBOX_SORA_e=0xA,
+    dRes_INDEX_STG_00_BMD_VRBOX_SUN_e=0xB,
+    /* BTK  */
+    dRes_INDEX_STG_00_BTK_VRBOX_SUN_1_e=0xE,
+    /* DAT  */
+    dRes_INDEX_STG_00_DAT_COLORDATA_TBL_e=0x11,
+    dRes_INDEX_STG_00_DAT_POL_ARG_e=0x12,
+    dRes_INDEX_STG_00_DAT_POL_EFFCOL_e=0x13,
+    dRes_INDEX_STG_00_DAT_POL_EFFCOL2_e=0x14,
+    dRes_INDEX_STG_00_DAT_POL_EFFTBL_e=0x15,
+    dRes_INDEX_STG_00_DAT_POL_EFFTBL2_e=0x16,
+    dRes_INDEX_STG_00_DAT_POL_SOUND_e=0x17,
+    /* DZS  */
+    dRes_INDEX_STG_00_DZS_STAGE_e=0x1A,
+    /* EVT  */
+    dRes_INDEX_STG_00_DAT_EVENT_LIST_e=0x1D,
+    /* TEX  */
+    dRes_INDEX_STG_00_BTI_CLOUDTX_01_e=0x20,
+    dRes_INDEX_STG_00_BTI_CLOUDTX_02_e=0x21,
+    dRes_INDEX_STG_00_BTI_CLOUDTX_03_e=0x22,
+    dRes_INDEX_STG_00_BTI_F_MOON_e=0x23,
+    dRes_INDEX_STG_00_BTI_F_MOON_A_e=0x24,
+    dRes_INDEX_STG_00_BTI_F_MOON_A_A00_e=0x25,
+    dRes_INDEX_STG_00_BTI_F_MOON_A_A01_e=0x26,
+    dRes_INDEX_STG_00_BTI_F_MOON_A_A02_e=0x27,
+    dRes_INDEX_STG_00_BTI_F_MOON_A_A03_e=0x28,
+};
+
+enum dRes_ID_STG_00 {
+    /* BMDP */
+    dRes_ID_STG_00_BMD_VRBOX_KASUMIM_e=0x8,
+    dRes_ID_STG_00_BMD_VRBOX_KUMO_e=0x9,
+    dRes_ID_STG_00_BMD_VRBOX_SORA_e=0xA,
+    dRes_ID_STG_00_BMD_VRBOX_SUN_e=0xB,
+    /* BTK  */
+    dRes_ID_STG_00_BTK_VRBOX_SUN_1_e=0xE,
+    /* DAT  */
+    dRes_ID_STG_00_DAT_COLORDATA_TBL_e=0x11,
+    dRes_ID_STG_00_DAT_POL_ARG_e=0x12,
+    dRes_ID_STG_00_DAT_POL_EFFCOL_e=0x13,
+    dRes_ID_STG_00_DAT_POL_EFFCOL2_e=0x14,
+    dRes_ID_STG_00_DAT_POL_EFFTBL_e=0x15,
+    dRes_ID_STG_00_DAT_POL_EFFTBL2_e=0x16,
+    dRes_ID_STG_00_DAT_POL_SOUND_e=0x17,
+    /* DZS  */
+    dRes_ID_STG_00_DZS_STAGE_e=0x1A,
+    /* EVT  */
+    dRes_ID_STG_00_DAT_EVENT_LIST_e=0x1D,
+    /* TEX  */
+    dRes_ID_STG_00_BTI_CLOUDTX_01_e=0x20,
+    dRes_ID_STG_00_BTI_CLOUDTX_02_e=0x21,
+    dRes_ID_STG_00_BTI_CLOUDTX_03_e=0x22,
+    dRes_ID_STG_00_BTI_F_MOON_e=0x23,
+    dRes_ID_STG_00_BTI_F_MOON_A_e=0x24,
+    dRes_ID_STG_00_BTI_F_MOON_A_A00_e=0x25,
+    dRes_ID_STG_00_BTI_F_MOON_A_A01_e=0x26,
+    dRes_ID_STG_00_BTI_F_MOON_A_A02_e=0x27,
+    dRes_ID_STG_00_BTI_F_MOON_A_A03_e=0x28,
+};
+
+#endif /* !RES_STG_00_H */
