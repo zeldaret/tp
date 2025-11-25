@@ -1141,7 +1141,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTevs.cpp"),
             Object(Equivalent, "JSystem/J2DGraph/J2DMaterial.cpp"), # weak func order
             Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DMaterialFactory.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DMaterialFactory.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPrint.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPane.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
@@ -1149,7 +1149,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPicture.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBox.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DWindowEx.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DPictureEx.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPictureEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBoxEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DAnmLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DAnimation.cpp"),

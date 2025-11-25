@@ -77,7 +77,7 @@ public:
     u8 getCaptureFlag() const { return mFlags & 1; }
     u8 getEmbPaletteDelFlag() const { return mFlags & 2; }
     void setEmbPaletteDelFlag(bool flag) { mFlags = (mFlags & 1) | (flag << 1);}
-    u8 getTlutName() const { return mTlutName; }
+    int getTlutName() const { return mTlutName; }
     bool operator==(const JUTTexture& other) {
         return mTexInfo == other.mTexInfo
             && field_0x2c == other.field_0x2c
