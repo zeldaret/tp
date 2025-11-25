@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_obj_yel_bag.h"
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_com_inf_game.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "SSystem/SComponent/c_lib.h"

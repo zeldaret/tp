@@ -5,6 +5,7 @@
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
+#include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_chin.h"
 #include "d/d_debug_viewer.h"
 #include "d/d_meter2_info.h"

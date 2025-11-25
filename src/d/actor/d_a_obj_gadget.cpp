@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_obj_gadget.h"
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_path.h"
 #include "d/d_cc_d.h"
 #include "Z2AudioLib/Z2Instances.h"

@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_doorboy.h"
+#include "d/actor/d_a_npc.h"
 
 enum DoorBoy_RES_File_ID {
     /* BMDR */

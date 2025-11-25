@@ -6,11 +6,12 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_mie.h"
-#include "d/actor/d_a_npc_pouya.h"
 #include "d/actor/d_a_npc.h"
-#include "SSystem/SComponent/c_counter.h"
+#include "d/actor/d_a_npc4.h"
+#include "d/actor/d_a_npc_pouya.h"
 #include "d/d_path.h"
 #include "d/d_cc_d.h"
+#include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 /* 80C95B88-80C95B90 000000 0008+00 3/3 0/0 0/0 .data            l_bmdData */
