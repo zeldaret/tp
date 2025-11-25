@@ -1612,7 +1612,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_msg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_push"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_telop"),
-    ActorRel(NonMatching, "d_a_tbox"),
+    ActorRel(Equivalent, "d_a_tbox"),  # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tbox2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_vrbox"),
     ActorRel(NonMatching, "d_a_vrbox2"),
