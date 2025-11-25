@@ -292,7 +292,8 @@ J2DTevOrder J2DMaterialFactory::newTevOrder(int param_0, int param_1) const {
 
 /* 802F3A1C-802F3AB4 2EE35C 0098+00 1/1 0/0 0/0 .text            newTevColor__18J2DMaterialFactoryCFii */
 J2DGXColorS10 J2DMaterialFactory::newTevColor(int param_0, int param_1) const {
-    #if DEBUG
+    // FAKEMATCH
+    #if DEBUG || VERSION == PLATFORM_WII
     GXColorS10 color = {0, 0, 0, 0};
     J2DGXColorS10 rv = color;
     #else

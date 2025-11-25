@@ -1055,6 +1055,7 @@ bool J2DPictureEx::setBlackWhite(JUtility::TColor param_0, JUtility::TColor para
 /* 80306664-80306824 300FA4 01C0+00 4/4 0/0 0/0 .text
  * getBlackWhite__12J2DPictureExCFPQ28JUtility6TColorPQ28JUtility6TColor */
 bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* white) const {
+    // FAKEMATCH
     if (mMaterial == NULL) {
         return false;
     }

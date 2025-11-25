@@ -551,7 +551,7 @@ public:
     u8 getB() const { return field_0x0 >> 2 & 3; }
     u8 getA() const { return field_0x0 & 3; }
 
-// private:
+private:
     /* 0x0 */ u8 field_0x0;
 };
 
