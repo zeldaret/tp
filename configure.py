@@ -506,7 +506,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_graphic.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_machine.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_mtx.cpp"),
-            Object(NonMatching, "m_Do/m_Do_ext.cpp"),
+            Object(NonMatching, "m_Do/m_Do_ext.cpp"), # weak func order; unused weak func inlining issues
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_Reset.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_dvd_thread.cpp"),
@@ -2053,7 +2053,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ice_l"),
     ActorRel(NonMatching, "d_a_obj_ice_s"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_iceblock"),
-    ActorRel(NonMatching, "d_a_obj_iceleaf"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_iceleaf"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ihasi"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ikada"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_inobone"),
