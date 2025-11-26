@@ -959,7 +959,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASVoiceBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicInst.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDrumSet.cpp"),
-            Object(Equivalent, "JSystem/JAudio2/JASBasicWaveBank.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWSParser.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"), # missing bss var
