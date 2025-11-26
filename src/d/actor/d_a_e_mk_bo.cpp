@@ -15,11 +15,11 @@
 /* 8071CCEC-8071CE30 0000EC 0144+00 1/0 0/0 0/0 .text            daE_MK_BO_Draw__FP13e_mk_bo_class
  */
 static int daE_MK_BO_Draw(e_mk_bo_class* i_this) {
-    fopAc_ac_c* actor = &i_this->enemy;
-
     if (i_this->field_0x9b4 != 0) {
         return 1;
     }
+
+    fopAc_ac_c* actor = &i_this->enemy;
 
     g_env_light.settingTevStruct(0, &actor->current.pos, &actor->tevStr);
     g_env_light.setLightTevColorType_MAJI(i_this->model, &actor->tevStr);
@@ -33,7 +33,8 @@ static int daE_MK_BO_Draw(e_mk_bo_class* i_this) {
     mDoExt_modelUpdateDL(i_this->model);
 
     if (i_this->field_0x9b5 != 0) {
-        i_this->pbtk->entry(i_this->efModelMorf->getModel()->getModelData());
+        J3DModel* model = i_this->efModelMorf->getModel();
+        i_this->pbtk->entry(model->getModelData());
         i_this->efModelMorf->entryDL();
     }
 
@@ -57,7 +58,8 @@ static void hit_check(e_mk_bo_class* i_this) {
         }
 
         if (i_this->ccAtSph.ChkAtHit()) {
-            fopAc_ac_c* at_hit_actor = dCc_GetAc(i_this->ccAtSph.GetAtHitObj()->GetAc());
+            cCcD_Obj* at_hit_obj = i_this->ccAtSph.GetAtHitObj();
+            fopAc_ac_c* at_hit_actor = dCc_GetAc(at_hit_obj->GetAc());
             if (at_hit_actor != NULL && fopAcM_GetName(at_hit_actor) == PROC_ALINK && daPy_getPlayerActorClass()->checkPlayerGuard()) {
                 dComIfGp_getVibration().StartShock(4, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
             }
@@ -184,16 +186,18 @@ static s8 e_mk_bo_shot(e_mk_bo_class* i_this) {
 /* 8071D694-8071DBA0 000A94 050C+00 1/1 0/0 0/0 .text            e_mk_bo_start__FP13e_mk_bo_class */
 static s8 e_mk_bo_start(e_mk_bo_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
-    e_mk_class* e_mk = (e_mk_class*)fopAcM_SearchByID(actor->parentActorID);
+    fopAc_ac_c* a_parent = fopAcM_SearchByID(actor->parentActorID);
 
     s8 rt = 2;
-    if (e_mk == NULL) {
+    if (a_parent == NULL) {
         return rt;
     }
 
+    e_mk_class* e_mk = (e_mk_class*) a_parent;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz sp38;
 
+    f32 temp_f31;
     switch (i_this->field_0x5dc) {
     case 0:
         i_this->field_0x998 = 1;
@@ -219,7 +223,7 @@ static s8 e_mk_bo_start(e_mk_bo_class* i_this) {
             rt = 0;
         }
 
-        i_this->field_0x5e0 = e_mk->enemy.current.pos;
+        i_this->field_0x5e0 = a_parent->current.pos;
         i_this->field_0x5e0.y += 160.0f;
 
         sp38 = i_this->field_0x5e0 - actor->current.pos;
@@ -228,7 +232,7 @@ static s8 e_mk_bo_start(e_mk_bo_class* i_this) {
         cLib_addCalcAngleS2(&i_this->field_0x5ec, i_this->field_0x5ee, 1, 0x40);
         cLib_addCalcAngleS2(&i_this->field_0x5ee, 0x2000, 1, 4);
 
-        f32 temp_f31 = sp38.abs();
+        temp_f31 = sp38.abs();
         if (e_mk->mDemoMode != 0 || (e_mk->mAction == 2 && e_mk->mMode >= 20)) {
             if (temp_f31 < 350.0f + YREG_F(18)) {
                 i_this->field_0x600 = 1;
@@ -257,22 +261,24 @@ static s8 e_mk_bo_start(e_mk_bo_class* i_this) {
 /* 8071DBA0-8071DF04 000FA0 0364+00 1/1 0/0 0/0 .text            e_mk_bo_r04__FP13e_mk_bo_class */
 static s8 e_mk_bo_r04(e_mk_bo_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
-    e_mk_class* e_mk = (e_mk_class*)fopAcM_SearchByID(actor->parentActorID);
+    fopAc_ac_c* a_parent = fopAcM_SearchByID(actor->parentActorID);
 
     s8 rt = 2;
-    if (e_mk == NULL) {
+    if (a_parent == NULL) {
         return rt;
     }
 
+    e_mk_class* e_mk = (e_mk_class*) a_parent;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz sp1C;
 
+    f32 temp_f31;
     switch (i_this->field_0x5dc) {
     case 0:
         i_this->field_0x998 = 1;
         i_this->field_0x5dc = 1;
 
-        actor->current.angle.y = (VREG_S(7) + e_mk->enemy.shape_angle.y) - 0x3000;
+        actor->current.angle.y = a_parent->shape_angle.y + (VREG_S(7) - 0x3000);
         i_this->field_0x5fa = actor->current.angle.y;
         i_this->timers[0] = JREG_S(7) + 65;
         i_this->timers[1] = 30;
@@ -283,7 +289,7 @@ static s8 e_mk_bo_r04(e_mk_bo_class* i_this) {
             i_this->field_0x5ee = JREG_S(9) + 350;
             actor->current.angle.x = JREG_S(2) + 1700;
         } else {
-            i_this->field_0x5e0 = e_mk->enemy.current.pos;
+            i_this->field_0x5e0 = a_parent->current.pos;
             i_this->field_0x5e0.y += 160.0f;
 
             sp1C = i_this->field_0x5e0 - actor->current.pos;
@@ -292,7 +298,7 @@ static s8 e_mk_bo_r04(e_mk_bo_class* i_this) {
             cLib_addCalcAngleS2(&i_this->field_0x5ec, i_this->field_0x5ee, 1, 0x40);
             cLib_addCalcAngleS2(&i_this->field_0x5ee, 0x2000, 1, JREG_S(8) + 4);
 
-            f32 temp_f31 = sp1C.abs();
+            temp_f31 = sp1C.abs();
             if (i_this->timers[1] == 0 && temp_f31 < 350.0f + YREG_F(18)) {
                 i_this->field_0x600 = 1;
                 e_mk->field_0x707 = 3;
@@ -337,7 +343,7 @@ static void e_mk_bo_hasira(e_mk_bo_class* i_this) {
             daPillar_c* pillar = e_mk->mHasira;
             cXyz spC;
 
-            mDoMtx_stack_c::transS(e_mk->mHasira->current.pos.x, e_mk->mHasira->current.pos.y, pillar->current.pos.z);
+            mDoMtx_stack_c::transS(e_mk->mHasira->current.pos.x, e_mk->mHasira->current.pos.y, e_mk->mHasira->current.pos.z);
             mDoMtx_stack_c::YrotM(pillar->mRotY);
             mDoMtx_stack_c::XrotM(e_mk->mHasira->shape_angle.x);
             mDoMtx_stack_c::YrotM(-pillar->mRotY);
@@ -399,6 +405,7 @@ static void e_mk_bo_demo_ground(e_mk_bo_class* i_this) {
     }
 
     fopAc_ac_c* a_parent = fopAcM_SearchByID(actor->parentActorID);
+    e_mk_class* e_mk = (e_mk_class*)a_parent;
 }
 
 /* 8071E200-8071E6C4 001600 04C4+00 1/1 0/0 0/0 .text e_mk_bo_demo_spin__FP13e_mk_bo_class */
@@ -430,7 +437,8 @@ static void e_mk_bo_demo_spin(e_mk_bo_class* i_this) {
         }
 
         if (i_this->timers[0] <= 10 && (i_this->counter & 15) == 0) {
-            static cXyz sc(1.0f, 1.0f, 1.0f);
+            f32 temp_f30 = 1.0f;
+            static cXyz sc(temp_f30, temp_f30, temp_f30);
             dComIfGp_particle_set(dPa_RM(ID_ZI_S_OTIBA_A), &actor->home.pos, &actor->tevStr, &actor->shape_angle, &sc);
         }
 
@@ -503,7 +511,8 @@ static void action(e_mk_bo_class* i_this) {
     cXyz sp24;
     cXyz sp18;
 
-    e_mk_class* e_mk = (e_mk_class*)fopAcM_SearchByID(actor->parentActorID);
+    fopAc_ac_c* a_parent = fopAcM_SearchByID(actor->parentActorID);
+    e_mk_class* e_mk = (e_mk_class*)a_parent;
     s8 var_r28;
     u32 sound = Z2SE_MK_DARK_BOOMERANG;
 
@@ -518,7 +527,7 @@ static void action(e_mk_bo_class* i_this) {
             sound = Z2SE_EN_MK_BOOM_FLY;
         }
 
-        actor->shape_angle.y += 0x2000;
+        actor->shape_angle.y += (s16) 0x2000;
 
         if ((i_this->counter & 7) == 0) {
             i_this->sound.startSound(sound, 0, -1);
@@ -721,7 +730,7 @@ static int daE_MK_BO_IsDelete(e_mk_bo_class* i_this) {
  */
 static int daE_MK_BO_Delete(e_mk_bo_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
-    fpc_ProcID id = fopAcM_GetID(actor);
+    fopAcM_RegisterDeleteID(i_this, "E_MK_BO");
     dComIfG_resDelete(&i_this->phase, "E_mk");
 
     if (actor->heap != NULL) {
@@ -764,7 +773,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 8071F168-8071F3D0 002568 0268+00 1/0 0/0 0/0 .text            daE_MK_BO_Create__FP10fopAc_ac_c */
 static int daE_MK_BO_Create(fopAc_ac_c* i_this) {
     e_mk_bo_class* a_this = (e_mk_bo_class*)i_this;
-    fopAcM_ct(i_this, e_mk_bo_class);
+    fopAcM_ct(&a_this->enemy, e_mk_bo_class);
 
     int phase_state = dComIfG_resLoad(&a_this->phase, "E_mk");
     if (phase_state == cPhs_COMPLEATE_e) {
