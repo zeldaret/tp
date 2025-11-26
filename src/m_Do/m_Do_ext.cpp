@@ -1253,7 +1253,6 @@ int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* c
 }
 
 /* 80010074-8001037C 00A9B4 0308+00 1/0 0/0 0/0 .text            calc__14mDoExt_McaMorfFv */
-// NONMATCHING regalloc
 void mDoExt_McaMorf::calc() {
     if (mpModel == NULL) {
         return;
@@ -1524,7 +1523,6 @@ int mDoExt_McaMorfSO::create(J3DModelData* i_modelData, mDoExt_McaMorfCallBack1_
 }
 
 /* 80010B68-80010E70 00B4A8 0308+00 1/0 0/0 0/0 .text            calc__16mDoExt_McaMorfSOFv */
-// NONMATCHING regalloc
 void mDoExt_McaMorfSO::calc() {
     if (mpModel != NULL) {
         u16 jnt_no = getJoint()->getJntNo();
