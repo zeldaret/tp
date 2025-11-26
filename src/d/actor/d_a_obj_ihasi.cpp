@@ -119,7 +119,7 @@ static int useHeapInit(fopAc_ac_c* i_actor) {
     obj_ihasi_class* i_this = (obj_ihasi_class*)i_actor;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_ihasi", 5);
-    JUT_ASSERT_MSG(0x115, modelData != NULL, "modelData != 0");
+    JUT_ASSERT(0x115, modelData != NULL);
 
     i_this->mpModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (i_this->mpModel1 == NULL) {
@@ -138,7 +138,7 @@ static int useHeapInit(fopAc_ac_c* i_actor) {
     i_this->mpBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_ihasi", 6);
-    JUT_ASSERT_MSG(0x12B, modelData != NULL, "modelData != 0");
+    JUT_ASSERT(0x12B, modelData != NULL);
 
     i_this->mpModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (i_this->mpModel2 == NULL) {
