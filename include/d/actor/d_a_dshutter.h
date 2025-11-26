@@ -11,9 +11,30 @@
  *
  * @details
  *
- */
+*/
+
 class daDsh_c : public dBgS_MoveBgActor {
 public:
+    #if DEBUG
+    class Hio_c : public mDoHIO_entry_c {
+    public:
+        void genMessage(JORMContext*);
+
+        /* 0x08 */ f32 open_acceleration;
+        /* 0x0C */ f32 open_spd;
+        /* 0x10 */ f32 open_bound_max_spd;
+        /* 0x14 */ f32 open_bound_rate;
+        /* 0x18 */ f32 close_acceleration;
+        /* 0x1C */ f32 close_spd;
+        /* 0x20 */ f32 close_bound_max_spd;
+        /* 0x24 */ f32 close_bound_rate;
+        /* 0x28 */ s16 open_vibration_time;
+        /* 0x2A */ s16 close_vibration_time;
+    };
+
+    static Hio_c mHIO;
+    #endif
+
     class action_c {
     public:
         typedef int (daDsh_c::*actionFunc)();
@@ -51,19 +72,79 @@ public:
     inline int create();
 
     u8 getType() { return (fopAcM_GetParam(this) >> 8) & 0xF; }
-    int getSw() { return fopAcM_GetParam(this) & 0xFF; }
+    u8 getSw() { return fopAcM_GetParam(this) & 0xFF; }
 
-    u8 getOpenTiltTime() { return 0; }
-    f32 getOpenAccel() { return OPEN_ACCEL; }
-    f32 getOpenSpeed() { return OPEN_SPEED; }
-    f32 getOpenBoundSpeed() { return OPEN_BOUND_SPEED; }
-    f32 getOpenBoundRatio() { return OPEN_BOUND_RATIO; }
+    s16 getOpenTiltTime() { 
+        #if DEBUG
+        return mHIO.open_vibration_time;
+        #else
+        return 0;
+        #endif
+    }
+    f32 getOpenAccel() { 
+        #if DEBUG
+        return mHIO.open_acceleration;
+        #else
+        return OPEN_ACCEL;
+        #endif
+    }
+    f32 getOpenSpeed() {
+        #if DEBUG
+        return mHIO.open_spd;
+        #else
+        return OPEN_SPEED;
+        #endif
+    }
+    f32 getOpenBoundSpeed() {
+        #if DEBUG
+        return mHIO.open_bound_max_spd;
+        #else
+        return OPEN_BOUND_SPEED;
+        #endif
+    }
+    f32 getOpenBoundRatio() {
+        #if DEBUG
+        return mHIO.open_bound_rate;
+        #else
+        return OPEN_BOUND_RATIO;
+        #endif
+    }
 
-    u8 getCloseTiltTime() { return 0; }
-    f32 getCloseAccel() { return CLOSE_ACCEL; }
-    f32 getCloseSpeed() { return CLOSE_SPEED; }
-    f32 getCloseBoundSpeed() { return CLOSE_BOUND_SPEED; }
-    f32 getCloseBoundRatio() { return CLOSE_BOUND_RATIO; }
+    s16 getCloseTiltTime() {
+        #if DEBUG
+        return mHIO.close_vibration_time;
+        #else
+        return 0;
+        #endif
+    }
+    f32 getCloseAccel() {
+        #if DEBUG
+        return mHIO.close_acceleration;
+        #else
+        return CLOSE_ACCEL;
+        #endif
+    }
+    f32 getCloseSpeed() {
+        #if DEBUG
+        return mHIO.close_spd;
+        #else
+        return CLOSE_SPEED;
+        #endif
+    }
+    f32 getCloseBoundSpeed() {
+        #if DEBUG
+        return mHIO.close_bound_max_spd;
+        #else
+        return CLOSE_BOUND_SPEED;
+        #endif
+    }
+    f32 getCloseBoundRatio() {
+        #if DEBUG
+        return mHIO.close_bound_rate;
+        #else
+        return CLOSE_BOUND_RATIO;
+        #endif
+    }
 
     static f32 const OPEN_SIZE;
     static f32 const OPEN_ACCEL;

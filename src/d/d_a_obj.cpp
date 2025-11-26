@@ -1,7 +1,7 @@
 /**
  * d_a_obj.cpp
  *
- */
+*/
 
 #include "d/dolzel.h" // IWYU pragma: keep
 
@@ -13,64 +13,71 @@
 
 namespace daObj {
 
-/* 80037038-80037180 031978 0148+00 4/4 0/0 0/0 .text eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi
- */
+/* 80037038-80037180 031978 0148+00 4/4 0/0 0/0 .text            eff_break_tsubo__5daObjFP10fopAc_ac_c4cXyzi */
 void eff_break_tsubo(fopAc_ac_c* i_actor, cXyz i_scale, int i_type) {
     J3DModelData* tubo_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", 0x20);
     J3DAnmTexPattern* tubo_btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("Always", 0x42);
+    JUT_ASSERT(29, tubo_bmd != NULL);
+    JUT_ASSERT(30, tubo_btp != NULL);
 
     JPABaseEmitter* emitter = dComIfGp_particle_set(
         ID_ZI_J_M_TUBOHAHEN, &i_actor->current.pos, NULL, NULL, 0xFF,
-        &dPa_modelEcallBack::mEcallback, fopAcM_GetRoomNo(i_actor), NULL, NULL, &i_scale);
+        &dPa_modelEcallBack::getEcallback(), fopAcM_GetRoomNo(i_actor), NULL, NULL, &i_scale);
 
-    dPa_modelEcallBack::setModel(emitter, tubo_bmd, i_actor->tevStr, 3, tubo_btp, 0, i_type);
+    dPa_modelEcallBack::setModel(emitter, tubo_bmd, i_actor->tevStr, 3, tubo_btp, i_type);
 
     dComIfGp_particle_set(ID_ZI_J_TUBOHAHEN, &i_actor->current.pos, NULL, NULL, 0xFF,
                           dPa_control_c::getTsuboSelectTexEcallBack(i_type),
                           fopAcM_GetRoomNo(i_actor), NULL, NULL, &i_scale);
 }
 
-/* 80037180-80037210 031AC0 0090+00 0/0 0/0 2/2 .text make_eff_break_kotubo__5daObjFP10fopAc_ac_c
- */
+/* 80037180-80037210 031AC0 0090+00 0/0 0/0 2/2 .text            make_eff_break_kotubo__5daObjFP10fopAc_ac_c */
 void make_eff_break_kotubo(fopAc_ac_c* i_actor) {
     static cXyz scale(1.0f, 1.0f, 1.0f);
 
     eff_break_tsubo(i_actor, scale, 0);
 }
 
-/* 80037210-800372A0 031B50 0090+00 0/0 0/0 2/2 .text make_eff_break_kotubo2__5daObjFP10fopAc_ac_c
- */
+/* 80037210-800372A0 031B50 0090+00 0/0 0/0 2/2 .text            make_eff_break_kotubo2__5daObjFP10fopAc_ac_c */
 void make_eff_break_kotubo2(fopAc_ac_c* i_actor) {
     static cXyz scale(1.0f, 1.0f, 1.0f);
 
     eff_break_tsubo(i_actor, scale, 1);
 }
 
-/* 800372A0-80037330 031BE0 0090+00 0/0 0/0 1/1 .text
- * make_eff_break_gm_kotubo__5daObjFP10fopAc_ac_c               */
+void make_eff_break_ootubo(fopAc_ac_c* i_actor) {
+    static cXyz scale(1.0f, 1.0f, 1.0f);
+}
+
+/* 800372A0-80037330 031BE0 0090+00 0/0 0/0 1/1 .text            make_eff_break_gm_kotubo__5daObjFP10fopAc_ac_c */
 void make_eff_break_gm_kotubo(fopAc_ac_c* i_actor) {
     static cXyz scale(1.0f, 1.0f, 1.0f);
 
     eff_break_tsubo(i_actor, scale, 3);
 }
 
-/* 80037330-800373C0 031C70 0090+00 0/0 0/0 1/1 .text
- * make_eff_break_gm_ootubo__5daObjFP10fopAc_ac_c               */
+/* 80037330-800373C0 031C70 0090+00 0/0 0/0 1/1 .text            make_eff_break_gm_ootubo__5daObjFP10fopAc_ac_c */
 void make_eff_break_gm_ootubo(fopAc_ac_c* i_actor) {
     static cXyz scale(2.0f, 2.0f, 2.0f);
 
     eff_break_tsubo(i_actor, scale, 4);
 }
 
-/* 800373C0-800373F0 031D00 0030+00 0/0 0/0 4/4 .text
- * posMoveF_stream__5daObjFP10fopAc_ac_cPC4cXyzPC4cXyzff        */
+void get_wind_spd(fopAc_ac_c* i_actor, f32 param_2) {
+    static cXyz total_spd;
+}
+
+void get_path_spd(cBgS_PolyInfo& param_1, f32 param_2) {
+    static cXyz path_spd;
+}
+
+/* 800373C0-800373F0 031D00 0030+00 0/0 0/0 4/4 .text            posMoveF_stream__5daObjFP10fopAc_ac_cPC4cXyzPC4cXyzff */
 void posMoveF_stream(fopAc_ac_c* i_actor, cXyz const* param_1, cXyz const* param_2, f32 param_3,
                      f32 param_4) {
     posMoveF_grade(i_actor, param_1, param_2, param_3, param_4, NULL, 0.0f, 0.0f, NULL);
 }
 
-/* 800373F0-800374EC 031D30 00FC+00 1/1 0/0 0/0 .text
- * posMoveF_resist_acc__Q25daObj21@unnamed@d_a_obj_cpp@FP4cXyzPC10fopAc_ac_cPC4cXyzff */
+/* 800373F0-800374EC 031D30 00FC+00 1/1 0/0 0/0 .text            posMoveF_resist_acc__Q25daObj21@unnamed@d_a_obj_cpp@FP4cXyzPC10fopAc_ac_cPC4cXyzff */
 
 namespace {
 void posMoveF_resist_acc(cXyz* pos, const fopAc_ac_c* i_actor, cXyz const* stream_spd, f32 param_3,
@@ -86,9 +93,7 @@ void posMoveF_resist_acc(cXyz* pos, const fopAc_ac_c* i_actor, cXyz const* strea
     pos->set(sp14);
 }
 
-/* 800374EC-80037620 031E2C 0134+00 1/1 0/0 0/0 .text
- * posMoveF_grade_acc__Q25daObj21@unnamed@d_a_obj_cpp@FP4cXyzPC10fopAc_ac_cPC4cXyzffPC4cXyzPC4cXyz
- */
+/* 800374EC-80037620 031E2C 0134+00 1/1 0/0 0/0 .text            posMoveF_grade_acc__Q25daObj21@unnamed@d_a_obj_cpp@FP4cXyzPC10fopAc_ac_cPC4cXyzffPC4cXyzPC4cXyz */
 void posMoveF_grade_acc(cXyz* pos, const fopAc_ac_c* i_actor, cXyz const* param_2, f32 friction,
                         f32 no_grade_cos, const cXyz* param_5, const cXyz* param_6) {
     pos->set(cXyz::Zero);
@@ -116,8 +121,7 @@ void posMoveF_grade_acc(cXyz* pos, const fopAc_ac_c* i_actor, cXyz const* param_
 }
 }  // namespace
 
-/* 80037620-80037788 031F60 0168+00 1/1 0/0 0/0 .text
- * posMoveF_grade__5daObjFP10fopAc_ac_cPC4cXyzPC4cXyzffPC4cXyzffPC4cXyz */
+/* 80037620-80037788 031F60 0168+00 1/1 0/0 0/0 .text            posMoveF_grade__5daObjFP10fopAc_ac_cPC4cXyzPC4cXyzffPC4cXyzffPC4cXyz */
 void posMoveF_grade(fopAc_ac_c* i_actor, cXyz const* param_1, cXyz const* stream_spd, f32 param_3,
                     f32 param_4, cXyz const* param_5, f32 friction, f32 no_grade_cos,
                     cXyz const* param_8) {
@@ -156,8 +160,7 @@ void posMoveF_grade(fopAc_ac_c* i_actor, cXyz const* param_1, cXyz const* stream
     fopAcM_posMove(i_actor, param_1);
 }
 
-/* 80037788-80037900 0320C8 0178+00 0/0 0/0 1/1 .text quat_rotBaseY__5daObjFP10QuaternionRC4cXyz
- */
+/* 80037788-80037900 0320C8 0178+00 0/0 0/0 1/1 .text            quat_rotBaseY__5daObjFP10QuaternionRC4cXyz */
 void quat_rotBaseY(Quaternion* quat, cXyz const& param_1) {
     static const Quaternion zero_quat = {0.0f, 0.0f, 0.0f, 1.0f};
 
@@ -168,7 +171,11 @@ void quat_rotBaseY(Quaternion* quat, cXyz const& param_1) {
         f32 var_f30 = sp4C.abs2();
         if (var_f30 > 9.999999E-9f) {
             cXyz sp58 = param_1 / var_f31;
+            #if DEBUG
+            f32 var_f1 = acosf(cXyz::BaseY.inprod(sp58));
+            #else
             f32 var_f1 = acos(cXyz::BaseY.inprod(sp58));
+            #endif
             sp4C /= JMAFastSqrt(var_f30);
             mDoMtx_quatRotAxisRad(quat, &sp4C, var_f1);
         } else {
@@ -179,8 +186,7 @@ void quat_rotBaseY(Quaternion* quat, cXyz const& param_1) {
     }
 }
 
-/* 80037900-80037A4C 032240 014C+00 0/0 0/0 3/3 .text
- * HitSeStart__5daObjFPC4cXyziPC12dCcD_GObjInfUl                */
+/* 80037900-80037A4C 032240 014C+00 0/0 0/0 3/3 .text            HitSeStart__5daObjFPC4cXyziPC12dCcD_GObjInfUl */
 void HitSeStart(cXyz const* i_sePos, int i_roomNo, dCcD_GObjInf const* i_CcObj, u32 param_3) {
     int hit_se = const_cast<dCcD_GObjInf*>(i_CcObj)->GetTgHitObjSe();
     fopAc_ac_c* hit_actor = const_cast<dCcD_GObjInf*>(i_CcObj)->GetTgHitAc();
@@ -227,5 +233,229 @@ static cXyz dummy1(cCcD_CylAttr* cyl) {
 static cXyz dummy2(cCcD_SphAttr* sph) {
     return sph->GetCoCP();
 }
+
+#if DEBUG
+
+HioVarious_c HioVarious_c::M_hio;
+
+HioVarious_c::HioVarious_c() {
+    field_0x84 = -1;
+
+    for (int i = 0; i < 16; i++) {
+        field_0x4[i] = NULL;
+        field_0x44[i] = NULL;
+    }
+}
+
+void HioVarious_c::init(JORReflexible* node_ptr, const char* node_name) {
+    JUT_ASSERT(849, node_ptr && node_name);
+
+    int i = 0;
+    for (; i < 16; i++) {
+        if (M_hio.field_0x4[i] == NULL) {
+            M_hio.field_0x4[i] = node_ptr;
+            M_hio.field_0x44[i] = node_name;
+            JORMContext* ctx = attachJORMContext(12);
+            ctx->startNode(&M_hio, 1, node_name, node_ptr, 0, 0);
+            node_ptr->genMessage(ctx);
+            ctx->endNode();
+            releaseJORMContext(ctx);
+            break;
+        }
+    }
+
+    if (i >= 16) {
+        // Generic object node buffer full (%s %d)
+        OS_REPORT_ERROR("汎用オブジェノードバッファがパンク(%s %d)\n", __FILE__, 872);
+    }
+}
+
+void HioVarious_c::clean(JORReflexible* node_ptr) {
+    JUT_ASSERT(882, node_ptr);
+
+    int i = 0;
+    for (; i < 16; i++) {
+        if (M_hio.field_0x4[i] == node_ptr) {
+            JORMContext* ctx = attachJORMContext(5);
+            M_hio.field_0x4[i] = NULL;
+            M_hio.field_0x44[i] = NULL;
+            ctx->invalidNode(node_ptr, 3);
+            releaseJORMContext(ctx);
+            break;
+        }
+    }
+
+    if (i >= 16) {
+        OS_REPORT_ERROR("汎用オブジェノード削除失敗(%s %d)\n", "d_a_obj.cpp", 898); // Failed to delete generic object node (%s %d)
+    }
+}
+
+void HioVarious_c::genMessage(JORMContext* ctx) {
+    for (int i = 0; i < 16; i++) {
+        if (field_0x4[i] != NULL) {
+            ctx->genNode(field_0x44[i], this->field_0x4[i], 0, 0);
+        }
+    }
+}
+
+HioThrow_c HioThrow_c::M_hio;
+cXyz HioThrow_c::M_throw_pos_st = cXyz::Zero;
+cXyz HioThrow_c::M_throw_pos_now = cXyz::Zero;
+
+HioThrow_c::HioThrow_c() {
+    field_0xa4 = -1;
+
+    for (int i = 0; i < 20; i++) {
+        field_0x4[i] = NULL;
+        field_0x54[i] = NULL;
+    }
+}
+
+void HioThrow_c::init(JORReflexible* node_ptr, const char* node_name) {
+    JUT_ASSERT(945, node_ptr && node_name);
+
+    int i = 0;
+    for (; i < 20; i++) {
+        if (M_hio.field_0x4[i] == NULL) {
+            M_hio.field_0x4[i] = node_ptr;
+            M_hio.field_0x54[i] = node_name;
+            JORMContext* ctx = attachJORMContext(12);
+            ctx->startNode(&M_hio, 1, node_name, node_ptr, 0, 0);
+            node_ptr->genMessage(ctx);
+            ctx->endNode();
+            releaseJORMContext(ctx);
+            break;
+        }
+    }
+
+    if (i >= 20) {
+        OS_REPORT_ERROR("投げ物ノードバッファがパンク(%s %d)\n", "d_a_obj.cpp", 970); // Throw node buffer full (%s %d)
+    }
+}
+
+void HioThrow_c::clean(JORReflexible* node_ptr) {
+    JUT_ASSERT(980, node_ptr);
+
+    int i = 0;
+    for (; i < 20; i++) {
+        if (M_hio.field_0x4[i] == node_ptr) {
+            JORMContext* ctx = attachJORMContext(5);
+            M_hio.field_0x4[i] = NULL;
+            M_hio.field_0x54[i] = NULL;
+            ctx->invalidNode(node_ptr, 3);
+            releaseJORMContext(ctx);
+            break;
+        }
+    }
+
+    if (i >= 20) {
+        OS_REPORT_ERROR("投げ物ノード削除失敗(%s %d)\n", "d_a_obj.cpp", 997); // Failed to delete thrown object node (%s %d)
+    }
+}
+
+void HioThrow_c::genMessage(JORMContext* ctx) {
+    for (int i = 0; i < 20; i++) {
+        if (field_0x4[i] != NULL) {
+            ctx->genNode(field_0x54[i], this->field_0x4[i], 0, 0);
+        }
+    }
+}
+
+void HioThrow_c::listen(u32 param_1, const JOREvent* event) {
+    JORReflexible::listen(param_1, event);
+}
+
+void HioThrow_c::genObjectInfo(const JORGenEvent* event) {
+    JORReflexible::genObjectInfo(event);
+}
+
+void HioThrow_c::listenNodeEvent(const JORNodeEvent* event) {
+    JORReflexible::listenNodeEvent(event);
+}
+
+void HioThrow_c::listenPropertyEvent(const JORPropertyEvent* event) {
+    JORReflexible::listenPropertyEvent(event);
+}
+
+HioField_c HioField_c::M_hio;
+
+HioField_c::HioField_c() {
+    field_0x84 = -1;
+
+    for (int i = 0; i < 16; i++) {
+        field_0x4[i] = NULL;
+        field_0x44[i] = NULL;
+    }
+}
+
+void HioField_c::genMessage(JORMContext* ctx) {
+    for (int i = 0; i < 16; i++) {
+        if (field_0x4[i] != NULL) {
+            ctx->genNode(field_0x44[i], this->field_0x4[i], 0, 0);
+        }
+    }
+}
+
+HioSpot_c HioSpot_c::M_hio;
+
+HioSpot_c::HioSpot_c() {
+    field_0x84 = -1;
+
+    for (int i = 0; i < 16; i++) {
+        field_0x4[i] = NULL;
+        field_0x44[i] = NULL;
+    }
+}
+
+void HioSpot_c::genMessage(JORMContext* ctx) {
+    for (int i = 0; i < 16; i++) {
+        if (field_0x4[i] != NULL) {
+            ctx->genNode(field_0x44[i], this->field_0x4[i], 0, 0);
+        }
+    }
+}
+
+HioObj_c HioObj_c::M_hio;
+
+// FAKEMATCH
+__declspec(section ".rodata")
+const char* HioObj_c::M_node_name[4] = {
+    "汎用オブジェ",         // General purpose object
+    "投げ物",               // Throwing
+    "フィールドオブジェ",   // Field object
+    "スポット",             // Spot
+};
+
+// FAKEMATCH
+__declspec(section ".rodata")
+const JORReflexible* HioObj_c::M_node_ptr[4] = {
+    &daObj::HioVarious_c::M_hio,
+    &daObj::HioThrow_c::M_hio,
+    &daObj::HioField_c::M_hio,
+    &daObj::HioSpot_c::M_hio,
+};
+
+HioObj_c::HioObj_c() {
+    M_no = -1;
+}
+
+void HioObj_c::init() {
+    /* NONMATCHING */
+    JUT_ASSERT(1332, M_hio.M_no < 0);
+    M_hio.M_no = mDoHIO_CREATE_CHILD("オブジェクト", &M_hio); // object
+}
+
+void HioObj_c::clean() {
+    mDoHIO_deleteChild(M_hio.M_no);
+    M_hio.M_no = -1;
+}
+
+void HioObj_c::genMessage(JORMContext* ctx) {
+    for (int i = 0; i < 4; i++) {
+        ctx->genNode(M_node_name[i], (JORReflexible*)M_node_ptr[i], 0, 0);
+    }
+}
+
+#endif
 
 }  // namespace daObj

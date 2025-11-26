@@ -5,6 +5,8 @@
 #include "f_op/f_op_actor_mng.h"
 
 class dPath;
+class daPasserMng_Hio_c;
+class daPasserMng_Attr_c;
 
 /**
  * @ingroup actors-unsorted
@@ -13,12 +15,14 @@ class dPath;
  *
  * @details
  *
- */
+*/
+
 class daPasserMng_c : public fopAc_ac_c {
 public:
+    inline daPasserMng_c();
     /* 80D45738 */ int execute();
     /* 80D4597C */ int getPasserParam();
-    /* 80D45E14 */ int getLuggageParamHigh(u32);
+    /* 80D45E14 */ inline int getLuggageParamHigh(u32);
     /* 80D46768 */ int create();
     /* 80D467C0 */ void create_init();
     ~daPasserMng_c() { delete [] childProcIds; }
@@ -26,7 +30,7 @@ public:
     u8 getDetailLevel() { return argument; }
     u8 getPathID() { return fopAcM_GetParam(this); }
     u8 getIntervalTime() { return fopAcM_GetParam(this) >> 24; }
-    int getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
+    u8 getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
     u8 getEndTime() { return (fopAcM_GetParam(this) >> 16) & 0xff; }
     u8 getMaxNum() { return shape_angle.x; }
     u8 getGroupNo() { return (shape_angle.x >> 8) & 0xff; }
@@ -254,9 +258,12 @@ public:
         u8 field_0x00;
         int field_0x04[0];
     };
-
     static Group* mGroupTbl[4];
 
+    #if DEBUG
+    static daPasserMng_Attr_c const M_attr;
+    static daPasserMng_Hio_c M_hio;
+    #endif
 private:
     /* 0x568 */ fpc_ProcID* childProcIds;
     /* 0x56C */ dPath* mPath;
@@ -271,9 +278,8 @@ private:
     /* 0x594 */ s16 field_0x594;
     /* 0x596 */ u8 field_0x596;
     /* 0x597 */ u8 field_0x597;
-    };
+};
 
 STATIC_ASSERT(sizeof(daPasserMng_c) == 0x598);
-
 
 #endif /* D_A_PASSER_MNG_H */

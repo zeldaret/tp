@@ -554,7 +554,7 @@ void daObjCarry_c::offSttsFlag(int idx, u8 flag) {
 }
 
 /* 80031D8C-80031DAC 02C6CC 0020+00 0/0 0/0 1/1 .text            chkSttsFlag__12daObjCarry_cFiUc */
-u8 daObjCarry_c::chkSttsFlag(int idx, u8 flag) {
+bool daObjCarry_c::chkSttsFlag(int idx, u8 flag) {
     return (u8)(mSttsFlag[idx] & flag) ? 1 : 0;
 }
 
