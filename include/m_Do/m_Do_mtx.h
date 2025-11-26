@@ -28,8 +28,12 @@ inline void mDoMtx_multVecSR(const Mtx m, const Vec* src, Vec* dst) {
     MTXMultVecSR(m, src, dst);
 }
 
+inline void mDoMtx_concat(const Mtx a, const Mtx b, Mtx c) {
+    PSMTXConcat(a, b, c);
+}
+
 inline void cMtx_concat(const Mtx a, const Mtx b, Mtx ab) {
-    MTXConcat(a, b, ab);
+    mDoMtx_concat(a, b, ab);
 }
 
 inline void cMtx_scale(Mtx m, f32 x, f32 y, f32 z) {
@@ -124,10 +128,6 @@ inline void mDoMtx_quatRotAxisRad(Quaternion* q, const Vec* axis, f32 rad) {
 
 inline void mDoMtx_identity(Mtx m) {
     PSMTXIdentity(m);
-}
-
-inline void mDoMtx_concat(const Mtx a, const Mtx b, Mtx c) {
-    PSMTXConcat(a, b, c);
 }
 
 inline void mDoMtx_inverse(const Mtx a, Mtx b) {

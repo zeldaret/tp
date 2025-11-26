@@ -1261,7 +1261,6 @@ void mDoExt_McaMorf::calc() {
     u16 jntNo = getJoint()->getJntNo();
     j3dSys.setCurrentMtxCalc(this);
 
-    Mtx sp68;
     J3DTransformInfo sp48;
     J3DTransformInfo sp28;
     J3DTransformInfo* var_r29;
@@ -1313,6 +1312,7 @@ void mDoExt_McaMorf::calc() {
         JMAEulerToQuat(sp28.mRotation.x, sp28.mRotation.y, sp28.mRotation.z, &sp8);
         JMAQuatLerp(var_r27, &sp8, var_f31, var_r27);
 
+        Mtx sp68;
         mDoMtx_quat(sp68, var_r27);
 
         var_r29->mTranslate.x = var_r29->mTranslate.x * var_f30 + sp28.mTranslate.x * var_f31;
@@ -1342,7 +1342,7 @@ void mDoExt_McaMorf::setAnm(J3DAnmTransform* param_0, int param_1, f32 param_2, 
             mFrameCtrl.init(mpAnm->getFrameMax());
         }
     } else {
-        mFrameCtrl.init(param_5);
+        mFrameCtrl.init((s16)param_5);
     }
     if (param_0 && param_1 < 0) {
         param_1 = param_0->getAttribute();
@@ -1623,7 +1623,7 @@ void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf, f3
             mFrameCtrl.init(mpAnm->getFrameMax());
         }
     } else {
-        mFrameCtrl.init(i_end);
+        mFrameCtrl.init((s16)i_end);
     }
 
     if (i_anm != NULL && i_attr < 0) {
@@ -1636,7 +1636,7 @@ void mDoExt_McaMorfSO::setAnm(J3DAnmTransform* i_anm, int i_attr, f32 i_morf, f3
     if (i_rate >= 0.0f) {
         setFrame(i_start);
     } else {
-        setFrame(mFrameCtrl.getEnd());
+        setFrame(getEndFrame());
     }
 
     setLoopFrame(getFrame());
@@ -2015,7 +2015,7 @@ void mDoExt_McaMorf2::setAnm(J3DAnmTransform* param_0, J3DAnmTransform* param_1,
             mFrameCtrl.init(mpAnm->getFrameMax());
         }
     } else {
-        mFrameCtrl.init(i_end);
+        mFrameCtrl.init((s16)i_end);
     }
 
     if (i_attr < 0) {
@@ -2028,7 +2028,7 @@ void mDoExt_McaMorf2::setAnm(J3DAnmTransform* param_0, J3DAnmTransform* param_1,
     if (i_speed >= 0.0f) {
         setFrame(i_start);
     } else {
-        setFrame(mFrameCtrl.getEnd());
+        setFrame(getEndFrame());
     }
 
     setLoopFrame(getFrame());
@@ -2305,7 +2305,7 @@ void mDoExt_3DlineMat0_c::setMaterial() {
     dKy_GxFog_set();
     GXCallDisplayList(l_matDL, 0x80);
     GXLoadPosMtxImm(j3dSys.getViewMtx(), GX_PNMTX0);
-    GXLoadNrmMtxImm(g_mDoMtx_identity, GX_PNMTX0);
+    GXLoadNrmMtxImm(cMtx_getIdentity(), GX_PNMTX0);
 }
 
 /* 80012774-80012874 00D0B4 0100+00 1/0 0/0 0/0 .text            draw__19mDoExt_3DlineMat0_cFv */
@@ -2324,13 +2324,12 @@ void mDoExt_3DlineMat0_c::draw() {
         GXSetArray(GX_VA_NRM, ((mDoExt_3Dline_c*)((int)var_r28 + field_0x16 * 4))->field_0x10, 3);
 
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, var_r26);
-        for (u16 j = 0; j < (u16)var_r26;) {
+        for (u16 j = 0; j < (u16)var_r26; j++) {
             GXPosition1x16(j);
             GXNormal1x16(j);
-            j++;
 
-            GXPosition1x16(j);
-            GXNormal1x16(j++);
+            GXPosition1x16(++j);
+            GXNormal1x16(j);
         }
         GXEnd();
         var_r28++;

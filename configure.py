@@ -610,7 +610,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_com_inf_game.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_com_static.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_com_inf_actor.cpp"),
-            Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bomb.cpp"),
+            Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bomb.cpp"), # debug weak func order
             Object(MatchingFor(ALL_GCN), "d/d_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_save.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "d/d_save_init.cpp"),
@@ -962,7 +962,7 @@ config.libs = [
             Object(Equivalent, "JSystem/JAudio2/JASBasicWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWSParser.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"), # missing bss var
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWaveArcLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASChannel.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASLfo.cpp"),
@@ -1140,7 +1140,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTevs.cpp"),
             Object(Equivalent, "JSystem/J2DGraph/J2DMaterial.cpp"), # weak func order
-            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"), # weak func order (J3DTevBlock)
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DMaterialFactory.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPrint.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPane.cpp"),

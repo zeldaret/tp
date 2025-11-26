@@ -144,7 +144,7 @@ public:
 
     void onFlag(u32 flag) { mFlags |= flag; }
     void offFlag(u32 flag) { mFlags &= ~flag; }
-    bool checkFlag(u32 flag) const { return (mFlags & flag) != 0; }
+    bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
 
     void setMaterial(J3DMaterial* pMaterial) {
         J3D_ASSERT_NULLPTR(509, pMaterial != NULL);
