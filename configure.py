@@ -702,7 +702,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_shop_item_ctrl.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_shop_system.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_gameover.cpp"),
-            Object(NonMatching, "d/d_kankyo.cpp"),
+            Object(MatchingFor(ALL_GCN), "d/d_kankyo.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_kyeff.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "d/d_kyeff2.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ky_thunder.cpp"),
