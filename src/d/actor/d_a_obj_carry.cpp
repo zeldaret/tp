@@ -1908,9 +1908,9 @@ int daObjCarry_c::execute() {
     attention_info.position.z = current.pos.z;
     eyePos = attention_info.position;
 
-    field_0xda9 = fopAcM_checkCarryNow(this);
-    field_0xdac = mCyl.ChkCoHit();
-    field_0xdad = (bool) mAcch.ChkWaterIn();
+    field_0xda9 = fopAcM_checkCarryNow(this) != 0;
+    field_0xdac = mCyl.ChkCoHit() != 0;
+    field_0xdad = mAcch.ChkWaterIn() != 0;
 
     if (field_0xdaa != 0) {
         fopAcM_SetModel(this, mpModel);
