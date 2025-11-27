@@ -7007,7 +7007,7 @@ void daAlink_c::setWolfLockDomeModel() {
 
     mEquipItem = 0x109;
     mItemVar0.field_0x3018 = 0;
-    mSearchBallScale = daAlinkHIO_wlAtLock_c0::m.mAttackSpeed;
+    mSearchBallScale = daAlinkHIO_wlAtLock_c0::m.mStartRadius;
 
     dComIfGp_setPlayerStatus1(0, 0x800000);
     seStartOnlyReverb(Z2SE_MIDNA_BIND_AREA_OPEN);
@@ -7352,9 +7352,9 @@ int daAlink_c::procWolfRollAttackMove() {
             seStartOnlyReverbLevel(Z2SE_MIDNA_BIND_AREA_SUS);
             mProcVar1.field_0x300a--;
 
-            if (mSearchBallScale < daAlinkHIO_wlAtLock_c0::m.mAutoActivationTime &&
-                cLib_chaseF(&mSearchBallScale, daAlinkHIO_wlAtLock_c0::m.mAutoActivationTime,
-                            daAlinkHIO_wlAtLock_c0::m.mAutoActivationTime))
+            if (mSearchBallScale < daAlinkHIO_wlAtLock_c0::m.mMaxRadius &&
+                cLib_chaseF(&mSearchBallScale, daAlinkHIO_wlAtLock_c0::m.mMaxRadius,
+                            daAlinkHIO_wlAtLock_c0::m.mRadiusAcceleration))
             {
                 mItemVar0.field_0x3018 = 1;
             }
@@ -7850,7 +7850,7 @@ int daAlink_c::procWolfWaitAttackInit(int i_attackType) {
     f32 var_f2;
     if (mComboCutCount == 4) {
         setCylAtParam(0x80000000, dCcG_At_Spl_UNK_1, 3, 4, 3, atk_hio->mAttackRadius,
-                      atk_hio->mAttackRadius);
+                      atk_hio->mAttackHeight);
         field_0x3478 = atk_hio->mAttackAnm.mCancelFrame;
         mProcVar0.field_0x3008 = atk_hio->mStopTime;
         var_f2 = atk_hio->mAttackAnm.mStartFrame;
@@ -8234,11 +8234,11 @@ int daAlink_c::procWolfLockAttackInit(int param_0) {
     }
 
     f32 var_f29 = l_eyePosDelta.abs();
-    f32 var_f31 = var_f29 / daAlinkHIO_wlAtLock_c0::m.mStartRadius;
+    f32 var_f31 = var_f29 / daAlinkHIO_wlAtLock_c0::m.mAttackSpeed;
     if (var_f31 < 1.0f)
         var_f31 = 1.0f;
 
-    f32 var_f28 = daAlinkHIO_wlAtLock_c0::m.mStartRadius / var_f29;
+    f32 var_f28 = daAlinkHIO_wlAtLock_c0::m.mAttackSpeed / var_f29;
     mNormalSpeed = var_f28 * l_eyePosDelta.absXZ();
     setSpecialGravity((l_eyePosDelta.y * -2.0f) / (var_f31 * var_f31), maxFallSpeed, 0);
     speed.y = -gravity * var_f31;

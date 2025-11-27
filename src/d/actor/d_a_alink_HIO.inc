@@ -5919,7 +5919,7 @@ size_t daAlinkHIO_c::makeFileOutData(char* param_0, char* param_1) {
 
 void daAlinkHIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    listenPropertyEvent(event);
+    JORReflexible::listenPropertyEvent(event);
     JORFile aJStack_168;
 
     switch (event->id) {
@@ -5936,7 +5936,7 @@ void daAlinkHIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
         break;
     }
     case 0x4000004: {
-        if (aJStack_168.open(6, "", 0, 0, 0) != 0) {
+        if (aJStack_168.open(6, "すべてのファイル(*.*)\0*.*\0", 0, 0, 0) != 0) {
             char* buffer1 = new (0x20) char[0x10000];
             char* buffer2 = new (0x20) char[0x10000];
 
@@ -5976,7 +5976,7 @@ void daAlinkHIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
         break;
     }
     case 0x4000005: {
-        if (aJStack_168.open(1, "", (char*)0x0, (char*)0x0, (char*)0x0) != 0) {
+        if (aJStack_168.open(1, "すべてのファイル(*.*)\0*.*\0", (char*)0x0, (char*)0x0, (char*)0x0) != 0) {
             char* buffer1 = new (0x20) char[0x10000];
 
             if (buffer1 != NULL) {

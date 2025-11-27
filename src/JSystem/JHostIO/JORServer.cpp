@@ -104,7 +104,7 @@ void JORReflexible::listenPropertyEvent(const JORPropertyEvent* pEvent) {
         case 'EDBX':
             JORPropertyEvent* event = (JORPropertyEvent*)pEvent;
             JSUMemoryInputStream stream(&event->field_0x18, event->field_0x14);
-            stream >> event->id;
+            stream >> (char*)event->id;
             break;
         }
         return;
