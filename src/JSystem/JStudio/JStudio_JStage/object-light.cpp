@@ -61,9 +61,9 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_begin() {
         adaptor_object_begin_();
         JStage::TLight* pLightObj = get_pJSG_();
         const JStudio::TObject* pObject = adaptor_getObject();
-        JUT_ASSERT(60, pObject != NULL);
+        JUT_ASSERT(60, pObject!=NULL);
         const JStudio::TControl* pControl = pObject->getControl();
-        JUT_ASSERT(62, pControl != NULL);
+        JUT_ASSERT(62, pControl!=NULL);
         GXColor lightColor = pLightObj->JSGGetColor();
         adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, lightColor);
         JStudio::TControl::TTransform_position_direction lightObjTransform;
@@ -108,7 +108,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_update(u32 param_1) {
     JStudio::TControl::TTransform_position_direction aTStack_1b0;
     adaptor_getVariableValue_Vec(&VStack_198.position, sauVariableValue_3_POSITION_XYZ);
     switch (field_0x11c) {
-    case 1:
+    case 1: {
         f32 dVar10 = adaptor_getVariableValue(10)->getValue();
         f32 dVar11 = adaptor_getVariableValue(11)->getValue();
         f32 temp = MTXDegToRad(dVar11);
@@ -119,6 +119,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_update(u32 param_1) {
         VStack_198.direction.y = sinVal;
         VStack_198.direction.z = dVar12 * i_cosf(temp2);
         break;
+    }
     case 2:
         Vec VStack_1c0;
         adaptor_getVariableValue_Vec(&VStack_1c0, sauVariableValue_3_TARGET_POSITION_XYZ);

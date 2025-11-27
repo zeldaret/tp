@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_impal.h"
+#include "d/actor/d_a_npc.h"
 
 /* 80A0C270-80A0C2E0 000000 0070+00 12/12 0/0 0/0 .rodata          m__18daNpcImpal_Param_c */
 daNpcImpal_HIOParam const daNpcImpal_Param_c::m = {

@@ -468,5 +468,3 @@ int JUTResFont::convertSjis(int inChr, u16* inLead) const {
 
     return tmp2 + (tmp - 0x88) * 0xbc + -0x5e + lead;
 }
-
-/* 8039D45C-8039D45C 029ABC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

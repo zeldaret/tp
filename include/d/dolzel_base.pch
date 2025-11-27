@@ -12,16 +12,22 @@
 // Fixes weak function ordering
 #include "cmath.h" // IWYU pragma: export
 #include "string.h" // IWYU pragma: export
-#include "d/d_com_inf_game.h" // IWYU pragma: export
-#include "d/d_bg_s_sph_chk.h" // IWYU pragma: export
+#include "JSystem/JUtility/JUTGamePad.h" // IWYU pragma: export
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" // IWYU pragma: export
+#include "JSystem/JHostIO/JORReflexible.h" // IWYU pragma: export
+#include "SSystem/SComponent/c_m3d_g_pla.h" // IWYU pragma: export
+#include "SSystem/SComponent/c_bg_s_chk.h" // IWYU pragma: export
+#include "f_op/f_op_actor.h" // IWYU pragma: export
+#include "d/d_bg_s_gnd_chk.h" // IWYU pragma: export
+#include "d/d_bg_s_chk.h" // IWYU pragma: export
 #include "d/d_bg_w.h" // IWYU pragma: export
+#include "d/d_com_inf_game.h" // IWYU pragma: export
 #include "m_Do/m_Do_graphic.h" // IWYU pragma: export
 #include "JSystem/J2DGraph/J2DOrthoGraph.h" // IWYU pragma: export
 #include "JSystem/J2DGraph/J2DPane.h" // IWYU pragma: export
 #include "JSystem/J2DGraph/J2DPictureEx.h" // IWYU pragma: export
 #include "JSystem/J2DGraph/J2DScreen.h" // IWYU pragma: export
 #include "JSystem/J2DGraph/J2DTextBoxEx.h" // IWYU pragma: export
-#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" // IWYU pragma: export
 #include "JSystem/JUtility/JUTFont.h" // IWYU pragma: export
 #include "JSystem/JUtility/JUTReport.h" // IWYU pragma: export
 

@@ -391,5 +391,3 @@ extern actor_process_profile_definition g_profile_GRDWATER = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80C149F4-80C149F4 000014 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

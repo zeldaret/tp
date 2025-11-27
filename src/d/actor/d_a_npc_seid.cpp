@@ -521,8 +521,6 @@ static int daNpc_seiD_IsDelete(void* param_1) {
     return 1;
 }
 
-/* 80ACB408-80ACB408 0000AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 80ACB520-80ACB540 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_seiD_MethodTable */
 static actor_method_class daNpc_seiD_MethodTable = {
     (process_method_func)daNpc_seiD_Create,

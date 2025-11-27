@@ -2,7 +2,7 @@
 #define D_A_OBJ_TKS_H
 
 #include "f_op/f_op_actor_mng.h"
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 
 struct daObjTks_HIOParam {
     /* 0x00 */ daNpcF_HIOParam common;

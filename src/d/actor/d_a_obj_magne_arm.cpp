@@ -212,8 +212,8 @@ int daObjMarm_c::Create() {
         mIsYRotForward = 0;
     }
 
-    if (g_dComIfG_gameInfo.play.mBgs.Regist((dBgW_Base*)mpBgW1, this) != NULL ||
-        g_dComIfG_gameInfo.play.mBgs.Regist((dBgW_Base*)mpBgW2, this) != NULL)
+    if (dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW1, this) != NULL ||
+        dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW2, this) != NULL)
     {
         return FALSE;
     }

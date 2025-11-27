@@ -6,7 +6,8 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_kytag04.h"
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
+#include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 
 /* 8046CB58-8046CFE8 000078 0490+00 1/0 0/0 0/0 .text            daKytag04_Draw__FP13kytag04_class

@@ -1,8 +1,9 @@
 #ifndef D_PARTICLE_D_PARTICLE_H
 #define D_PARTICLE_D_PARTICLE_H
 
-#include "JSystem/JParticle/JPAParticle.h"
+#include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "JSystem/JParticle/JPAEmitter.h"
+#include "JSystem/JParticle/JPAParticle.h"
 #include "d/d_particle_name.h"
 #include "d/d_kankyo.h"
 
@@ -21,26 +22,6 @@ public:
     /* 8004FB18 */ virtual ~dPa_levelEcallBack() { cleanup(); }
     virtual void setup(JPABaseEmitter*, const cXyz*, const csXyz*, s8) = 0;
     /* 8004FB8C */ virtual void cleanup() {}
-};
-
-class dPa_hermiteEcallBack_c : public dPa_levelEcallBack {
-public:
-    dPa_hermiteEcallBack_c() {}
-
-    /* 8004F6B8 */ void setOldPosP(cXyz const*, cXyz const*);
-
-    /* 8004FCC8 */ virtual ~dPa_hermiteEcallBack_c() {}
-    /* 8004F6C4 */ virtual void executeAfter(JPABaseEmitter*);
-    /* 8004FABC */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-
-    void setRate(f32 rate) { mRate = rate; }
-
-private:
-    /* 0x04 */ f32 mRate;
-    /* 0x08 */ int mMaxCnt;
-    /* 0x0C */ cXyz const* field_0xc;
-    /* 0x10 */ cXyz const* field_0x10;
-    /* 0x14 */ cXyz const* field_0x14;
 };
 
 class mDoDvdThd_toMainRam_c;
@@ -73,70 +54,10 @@ public:
     /* 0x10 */ dPa_simpleData_c* mData;
 };  // Size: 0x14
 
-class dPa_followEcallBack : public dPa_levelEcallBack {
-public:
-    /* 80049580 */ dPa_followEcallBack(u8 param_0 = 0, u8 param_1 = 0);
-
-    /* 80050200 */ virtual ~dPa_followEcallBack() {}
-    /* 800495BC */ virtual void execute(JPABaseEmitter*);
-    /* 800496B0 */ virtual void draw(JPABaseEmitter*);
-    /* 800496B4 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
-    /* 80050284 */ virtual void cleanup() { end(); }
-    /* 8004974C */ virtual void end();
-
-    void remove() { end(); }
-    JPABaseEmitter* getEmitter() { return mpEmitter; }
-    bool isEnd() {
-        return field_0x10 & 1;
-    }
-
-    /* 0x04 */ JPABaseEmitter* mpEmitter;
-    /* 0x08 */ const cXyz* field_0x8;
-    /* 0x0C */ const csXyz* field_0xc;
-    /* 0x10 */ u8 field_0x10;
-    /* 0x11 */ u8 field_0x11;
-    /* 0x12 */ u8 field_0x12;
-    /* 0x13 */ u8 field_0x13;
-};
-
 class dPa_windPcallBack : public JPAParticleCallBack {
 public:
     /* 8004FF2C */ virtual ~dPa_windPcallBack() {}
     /* 8004B4E0 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
-};
-
-class dPa_wbPcallBack_c : public JPAParticleCallBack {
-public:
-    /* 8004FECC */ virtual ~dPa_wbPcallBack_c() {}
-    /* 8004DC28 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
-};
-
-class dPa_setColorEcallBack : public dPa_levelEcallBack {
-public:
-    dPa_setColorEcallBack(const GXColor& color) { mColor = color; }
-
-    /* 800502E4 */ virtual ~dPa_setColorEcallBack() {}
-    /* 800502B0 */ virtual void draw(JPABaseEmitter*) { GXSetTevColor(GX_TEVREG1, mColor); }
-    /* 800502E0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
-
-    /* 0x4 */ GXColor mColor;
-};
-
-class dPa_selectTexEcallBack : public dPa_levelEcallBack {
-public:
-    dPa_selectTexEcallBack(u8 param_0) { field_0x4 = param_0; }
-
-    /* 8004FF8C */ virtual ~dPa_selectTexEcallBack() {}
-    /* 8004ADC4 */ virtual void draw(JPABaseEmitter*);
-    /* 80050010 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
-
-    /* 0x4 */ u8 field_0x4;
-};
-
-class dPa_particleTracePcallBack_c : public JPAParticleCallBack {
-public:
-    /* 8004FC68 */ virtual ~dPa_particleTracePcallBack_c() {}
-    /* 8004FAD4 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
 };
 
 class dPa_modelPcallBack : public JPAParticleCallBack {
@@ -152,7 +73,6 @@ public:
         /* 8004A7AC */ void setup();
         /* 8004A88C */ void cleanup();
         /* 8004A8DC */ void draw(f32 (*)[4]);
-        /* 8004AB88 */ ~model_c();
         /* 8004FB90 */ model_c() { field_0x0 = NULL; }
 
         void reset() {
@@ -184,7 +104,6 @@ public:
     /* 8004AD58 */ static model_c* getModel(JPABaseEmitter*);
     /* 8004AD90 */ static u8 getRotAxis(JPABaseEmitter*);
 
-    /* 80050378 */ virtual ~dPa_modelEcallBack() {}
     /* 8004AA34 */ virtual void draw(JPABaseEmitter*);
     /* 80050014 */ virtual void drawAfter(JPABaseEmitter* param_0) { cleanupModel(param_0); }
     /* 8004AAA8 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
@@ -202,11 +121,48 @@ public:
     static model_c* mModel;
 };
 
-class dPa_light8PcallBack : public JPAParticleCallBack {
+class dPa_selectTexEcallBack : public dPa_levelEcallBack {
 public:
-    /* 8004FE0C */ virtual ~dPa_light8PcallBack() {}
-    /* 8004DD10 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004DD1C */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
+    dPa_selectTexEcallBack(u8 param_0) { field_0x4 = param_0; }
+
+    /* 8004FF8C */ virtual ~dPa_selectTexEcallBack() {}
+    /* 8004ADC4 */ virtual void draw(JPABaseEmitter*);
+    /* 80050010 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
+
+    /* 0x4 */ u8 field_0x4;
+};
+
+class dPa_followEcallBack : public dPa_levelEcallBack {
+public:
+    /* 80049580 */ dPa_followEcallBack(u8 param_0 = 0, u8 param_1 = 0);
+
+    /* 80050200 */ virtual ~dPa_followEcallBack() {}
+    /* 800495BC */ virtual void execute(JPABaseEmitter*);
+    /* 800496B0 */ virtual void draw(JPABaseEmitter*);
+    /* 800496B4 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
+    /* 80050284 */ virtual void cleanup() { end(); }
+    /* 8004974C */ virtual void end();
+
+    void remove() { end(); }
+    JPABaseEmitter* getEmitter() { return mpEmitter; }
+    bool isEnd() {
+        return field_0x10 & 1;
+    }
+
+    /* 0x04 */ JPABaseEmitter* mpEmitter;
+    /* 0x08 */ const cXyz* field_0x8;
+    /* 0x0C */ const csXyz* field_0xc;
+    /* 0x10 */ u8 field_0x10;
+    /* 0x11 */ u8 field_0x11;
+    /* 0x12 */ u8 field_0x12;
+    /* 0x13 */ u8 field_0x13;
+};
+
+class dPa_fsenthPcallBack : public JPAParticleCallBack {
+public:
+    /* 8004FE6C */ virtual ~dPa_fsenthPcallBack() {}
+    /* 8004DCA0 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
+    /* 8004DD0C */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
 };
 
 class dPa_light8EcallBack : public dPa_levelEcallBack {
@@ -217,19 +173,26 @@ public:
     /* 8004979C */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
-class dPa_gen_d_light8PcallBack : public JPAParticleCallBack {
+class dPa_gen_b_light8EcallBack : public dPa_levelEcallBack {
 public:
-    /* 8004FD4C */ virtual ~dPa_gen_d_light8PcallBack() {}
-    /* 8004DD18 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004ED44 */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
+    /* 800500B8 */ virtual ~dPa_gen_b_light8EcallBack() {}
+    /* 8004A364 */ virtual void draw(JPABaseEmitter*);
+    /* 8005013C */ virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
+    /* 800497B0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
 class dPa_gen_d_light8EcallBack : public dPa_levelEcallBack {
 public:
-    /* 800503FC */ virtual ~dPa_gen_d_light8EcallBack() {}
     /* 8004A388 */ virtual void draw(JPABaseEmitter*);
     /* 80050098 */ virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     /* 800497CC */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
+};
+
+class dPa_light8PcallBack : public JPAParticleCallBack {
+public:
+    /* 8004FE0C */ virtual ~dPa_light8PcallBack() {}
+    /* 8004DD10 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
+    /* 8004DD1C */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
 };
 
 class dPa_gen_b_light8PcallBack : public JPAParticleCallBack {
@@ -239,19 +202,54 @@ public:
     /* 8004E6A8 */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
 };
 
-class dPa_gen_b_light8EcallBack : public dPa_levelEcallBack {
+class dPa_gen_d_light8PcallBack : public JPAParticleCallBack {
 public:
-    /* 800500B8 */ virtual ~dPa_gen_b_light8EcallBack() {}
-    /* 8004A364 */ virtual void draw(JPABaseEmitter*);
-    /* 8005013C */ virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
-    /* 800497B0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
+    /* 8004FD4C */ virtual ~dPa_gen_d_light8PcallBack() {}
+    /* 8004DD18 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
+    /* 8004ED44 */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
 };
 
-class dPa_fsenthPcallBack : public JPAParticleCallBack {
+class dPa_wbPcallBack_c : public JPAParticleCallBack {
 public:
-    /* 8004FE6C */ virtual ~dPa_fsenthPcallBack() {}
-    /* 8004DCA0 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
-    /* 8004DD0C */ virtual void draw(JPABaseEmitter*, JPABaseParticle*);
+    /* 8004FECC */ virtual ~dPa_wbPcallBack_c() {}
+    /* 8004DC28 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
+};
+
+class dPa_particleTracePcallBack_c : public JPAParticleCallBack {
+public:
+    /* 8004FC68 */ virtual ~dPa_particleTracePcallBack_c() {}
+    /* 8004FAD4 */ virtual void execute(JPABaseEmitter*, JPABaseParticle*);
+};
+
+class dPa_hermiteEcallBack_c : public dPa_levelEcallBack {
+public:
+    dPa_hermiteEcallBack_c() {}
+
+    /* 8004F6B8 */ void setOldPosP(cXyz const*, cXyz const*);
+
+    /* 8004FCC8 */ virtual ~dPa_hermiteEcallBack_c() {}
+    /* 8004F6C4 */ virtual void executeAfter(JPABaseEmitter*);
+    /* 8004FABC */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
+
+    void setRate(f32 rate) { mRate = rate; }
+
+private:
+    /* 0x04 */ f32 mRate;
+    /* 0x08 */ int mMaxCnt;
+    /* 0x0C */ cXyz const* field_0xc;
+    /* 0x10 */ cXyz const* field_0x10;
+    /* 0x14 */ cXyz const* field_0x14;
+};
+
+class dPa_setColorEcallBack : public dPa_levelEcallBack {
+public:
+    dPa_setColorEcallBack(const GXColor& color) { mColor = color; }
+
+    /* 800502E4 */ virtual ~dPa_setColorEcallBack() {}
+    /* 800502B0 */ virtual void draw(JPABaseEmitter*) { GXSetTevColor(GX_TEVREG1, mColor); }
+    /* 800502E0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
+
+    /* 0x4 */ GXColor mColor;
 };
 
 class dPa_simpleData_c {

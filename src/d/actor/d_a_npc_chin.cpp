@@ -5,6 +5,7 @@
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
+#include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_chin.h"
 #include "d/d_debug_viewer.h"
 #include "d/d_meter2_info.h"
@@ -2242,5 +2243,3 @@ extern actor_process_profile_definition g_profile_NPC_CHIN = {
     fopAc_NPC_e,            // mActorType
     fopAc_CULLBOX_CUSTOM_e, // cullType
   };
-
-/* 80991D40-80991D40 000448 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

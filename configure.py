@@ -189,7 +189,7 @@ if not config.non_matching:
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20251118"
 config.dtk_tag = "v1.7.1"
-config.objdiff_tag = "v3.4.1"
+config.objdiff_tag = "v3.4.4"
 config.sjiswrap_tag = "v1.2.2"
 config.wibo_tag = "1.0.0-beta.5"
 
@@ -506,7 +506,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_graphic.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_machine.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_mtx.cpp"),
-            Object(NonMatching, "m_Do/m_Do_ext.cpp"),
+            Object(NonMatching, "m_Do/m_Do_ext.cpp"), # weak func order; unused weak func inlining issues
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_Reset.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_dvd_thread.cpp"),
@@ -632,7 +632,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_event_lib.cpp"), # debug weak func order
             Object(Equivalent, "d/d_event_debug.cpp"), # RTTI
             Object(MatchingFor(ALL_GCN), "d/d_simple_model.cpp"),
-            Object(NonMatching, "d/d_particle.cpp"),
+            Object(Equivalent, "d/d_particle.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN, "Shield"), "d/d_particle_name.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_particle_copoly.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_path.cpp"),
@@ -677,7 +677,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_model.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_eye_hl.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_error_msg.cpp"),
-            Object(NonMatching, "d/d_debug_viewer.cpp"),
+            Object(Equivalent, "d/d_debug_viewer.cpp"), # debug weak func order
             Object(NonMatching, "d/d_debug_camera.cpp"),
             Object(NonMatching, "d/actor/d_a_alink.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_itembase.cpp"),
@@ -702,7 +702,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_shop_item_ctrl.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_shop_system.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_gameover.cpp"),
-            Object(NonMatching, "d/d_kankyo.cpp"),
+            Object(MatchingFor(ALL_GCN), "d/d_kankyo.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_kyeff.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "d/d_kyeff2.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ky_thunder.cpp"),
@@ -714,7 +714,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_menu_map_common.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_fishing.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_fmap.cpp"),
-            Object(NonMatching, "d/d_menu_fmap_map.cpp"),
+            Object(MatchingFor(ALL_GCN), "d/d_menu_fmap_map.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_fmap2D.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_insect.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_item_explain.cpp"),
@@ -1042,7 +1042,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SoundObjMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2Creature.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2LinkMgr.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2EnvSeMgr.cpp"),
+            Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2EnvSeMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2WolfHowlMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SpeechMgr2.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2AudioMgr.cpp"),
@@ -1141,7 +1141,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTevs.cpp"),
             Object(Equivalent, "JSystem/J2DGraph/J2DMaterial.cpp"), # weak func order
             Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DMaterialFactory.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DMaterialFactory.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPrint.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPane.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
@@ -1149,7 +1149,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPicture.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBox.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DWindowEx.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DPictureEx.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPictureEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBoxEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DAnmLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DAnimation.cpp"),
@@ -1589,7 +1589,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_kytag17"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_brakeeff"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_burnbox"),
-    ActorRel(NonMatching, "d_a_obj_carry"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_carry"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ito"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_movebox"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_swpush"),
@@ -1612,7 +1612,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_msg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_push"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_telop"),
-    ActorRel(NonMatching, "d_a_tbox"),
+    ActorRel(Equivalent, "d_a_tbox"),  # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tbox2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_vrbox"),
     ActorRel(NonMatching, "d_a_vrbox2"),
@@ -1621,7 +1621,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_crod"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_demo00"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_disappear"),
-    ActorRel(NonMatching, "d_a_mg_rod"),
+    ActorRel(Equivalent, "d_a_mg_rod"), # regalloc; weak func order; inlining issues
     ActorRel(MatchingFor(ALL_GCN), "d_a_midna"),
     ActorRel(Equivalent, "d_a_nbomb"),  # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_life_container"),
@@ -1719,7 +1719,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_gnd"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_go"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_gos"),
-    ActorRel(Equivalent, "d_a_b_mgn"), # extra mr/regalloc
+    ActorRel(MatchingFor(ALL_GCN), "d_a_b_mgn"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_ob"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_oh"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_b_oh2"),
@@ -1851,7 +1851,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_mant"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_mg_fshop"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_mirror"),
-    ActorRel(NonMatching, "d_a_movie_player", extra_cflags=["-O3,p"]),
+    ActorRel(NonMatching, "d_a_movie_player"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_myna"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_ni"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_aru"),
@@ -2053,7 +2053,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ice_l"),
     ActorRel(NonMatching, "d_a_obj_ice_s"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_iceblock"),
-    ActorRel(NonMatching, "d_a_obj_iceleaf"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_iceleaf"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ihasi"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ikada"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_inobone"),

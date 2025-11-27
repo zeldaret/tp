@@ -216,7 +216,6 @@ static int daObj_Wflag_Create(fopAc_ac_c* i_this) {
     return rv;
 }
 
-/* 80D378C0-80D378C0 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 static actor_method_class l_daObj_Wflag_Method = {
     (process_method_func)daObj_Wflag_Create,
     (process_method_func)daObj_Wflag_Delete,

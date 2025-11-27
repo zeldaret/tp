@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_ZRZ_H
 #define D_A_NPC_ZRZ_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 
 class daGraveStone_c;
 class daObjZraRock_c;

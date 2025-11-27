@@ -392,5 +392,3 @@ extern actor_process_profile_definition g_profile_OBJ_BOUMATO = {
   fopAc_ACTOR_e,              // mActorType
   fopAc_CULLBOX_CUSTOM_e,     // cullType
 };
-
-/* 80BBC518-80BBC518 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

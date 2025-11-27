@@ -146,7 +146,11 @@ struct TLinkList : public TNodeLinkList {
         friend bool operator!=(iterator a, iterator b) { return !(a == b); }
 
         T* operator->() const { return Element_toValue(base.operator->()); }
-        T& operator*() const { return *operator->(); }
+        T& operator*() const {
+            T* p = operator->();
+            JUT_ASSERT(541, p!=NULL);
+            return *p;
+        }
 
         typedef s32 difference_type;
         typedef T value_type;

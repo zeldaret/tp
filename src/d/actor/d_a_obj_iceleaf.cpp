@@ -95,7 +95,6 @@ static dCcD_SrcCyl l_cyl_src = {
 };
 
 /* 80C249E4-80C24BC4 000344 01E0+00 1/1 0/0 0/0 .text            Create__14daObjIceLeaf_cFv */
-// NONMATCHING - regalloc
 int daObjIceLeaf_c::Create() {
     J3DJoint* joint = mpModel->getModelData()->getJointNodePointer(0);
     mTransformInfo = joint->getTransformInfo();

@@ -4,6 +4,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "d/d_bg_plc.h"
+#include "d/d_bg_s_sph_chk.h"
 #include "d/d_bg_w_base.h"
 
 class cBgS_GrpPassChk;

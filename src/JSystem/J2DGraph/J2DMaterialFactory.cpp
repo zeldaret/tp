@@ -290,24 +290,32 @@ J2DTevOrder J2DMaterialFactory::newTevOrder(int param_0, int param_1) const {
     return J2DTevOrder();
 }
 
-/* 802F3A1C-802F3AB4 2EE35C 0098+00 1/1 0/0 0/0 .text newTevColor__18J2DMaterialFactoryCFii */
-// NONMATCHING - J2DGXColorS10 init issues
+/* 802F3A1C-802F3AB4 2EE35C 0098+00 1/1 0/0 0/0 .text            newTevColor__18J2DMaterialFactoryCFii */
 J2DGXColorS10 J2DMaterialFactory::newTevColor(int param_0, int param_1) const {
+    // FAKEMATCH
+    #if DEBUG || VERSION == VERSION_WII_USA_R0 || VERSION == VERSION_WII_USA_R2
     GXColorS10 color = {0, 0, 0, 0};
-    J2DGXColorS10 rv = J2DGXColorS10(color);
+    J2DGXColorS10 rv = color;
+    #else
+    GXColorS10 color = {0, 0, 0, 0};
+    J2DGXColorS10 rv;
+    rv.r = color.r;
+    rv.g = color.g;
+    rv.b = color.b;
+    rv.a = color.a;
+    #endif
     J2DMaterialInitData* iVar2 = &field_0x4[field_0x8[param_0]];
+
     if (iVar2->field_0x92[param_1] != 0xffff) {
         return field_0x38[iVar2->field_0x92[param_1]];
     }
+    
     return rv;
 }
 
-/* ############################################################################################## */
-
-/* 802F3AB4-802F3B54 2EE3F4 00A0+00 1/1 0/0 0/0 .text newTevKColor__18J2DMaterialFactoryCFii */
+/* 802F3AB4-802F3B54 2EE3F4 00A0+00 1/1 0/0 0/0 .text            newTevKColor__18J2DMaterialFactoryCFii */
 JUtility::TColor J2DMaterialFactory::newTevKColor(int param_0, int param_1) const {
-    GXColor x = {0xFF, 0xFF, 0xFF, 0xFF};
-    JUtility::TColor local_20 = GXColor(x);
+    JUtility::TColor local_20 = (GXColor){0xFF, 0xFF, 0xFF, 0xFF};
     J2DMaterialInitData* iVar2 = &field_0x4[field_0x8[param_0]];
     if (iVar2->field_0x4a[param_1] != 0xffff) {
         return field_0x3c[iVar2->field_0x4a[param_1]];

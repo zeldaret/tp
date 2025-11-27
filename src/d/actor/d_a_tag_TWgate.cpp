@@ -1121,5 +1121,3 @@ extern actor_process_profile_definition g_profile_Tag_TWGate = {
     fopAc_ACTOR_e,
     fopAc_CULLBOX_CUSTOM_e,
 };
-
-/* 80D55848-80D55848 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

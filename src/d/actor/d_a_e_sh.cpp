@@ -1303,5 +1303,3 @@ extern actor_process_profile_definition g_profile_E_SH = {
     fopAc_ENEMY_e,          // mActorType
     fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80791EC0-80791EC0 000150 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

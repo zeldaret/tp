@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_zrz.h"
+#include "d/actor/d_a_npc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/actor/d_a_obj_grave_stone.h"
@@ -343,7 +344,7 @@ int daNpc_zrZ_c::draw(int i_isTest, int param_1, f32 i_shadowDepth, _GXColorS10*
             damage_ratio = 0.0f;
         }
 
-        if (cM3d_IsZero_inverted(damage_ratio)) {
+        if (cM3d_IsZero(damage_ratio) == FALSE) {
             tevStr.TevColor.r = (s16)(damage_ratio * 20.0f);
             tevStr.TevColor.g = 0;
         } else if (i_isTest) {

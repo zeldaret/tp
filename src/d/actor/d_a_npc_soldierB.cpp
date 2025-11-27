@@ -5,9 +5,10 @@
 
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
-#include "Z2AudioLib/Z2Instances.h"
-#include "d/actor/d_a_npc_soldierA.h"
 #include "d/actor/d_a_npc_soldierB.h"
+#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc_soldierA.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 enum Joint {
     /* 0x00 */ JNT_CENTER,

@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_kasi_mich.h"
+#include "d/actor/d_a_npc.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 enum kasi_mich_RES_File_ID {
@@ -945,7 +946,7 @@ void* daNpcKasiMich_c::_srch_escape_tag(void* i_actor, void* i_data) {
 int daNpcKasiMich_c::getWolfPathNearIdx() {
     int iVar1 = 0;
     f32 fVar1 = 0.0f;
-    u16 numPnts = mPath.getNumPnts();
+    int numPnts = mPath.getNumPnts();
     cXyz sp44, sp50;
 
     int rv = 0;

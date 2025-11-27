@@ -75,5 +75,3 @@ void dDlst_KanteraIcon_c::draw() {
 
 /* 801AED1C-801AED64 1A965C 0048+00 1/0 0/0 0/0 .text            __dt__19dDlst_KanteraIcon_cFv */
 dDlst_KanteraIcon_c::~dDlst_KanteraIcon_c() {}
-
-/* 80394F50-80394F50 0215B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

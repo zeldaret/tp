@@ -429,5 +429,3 @@ extern actor_process_profile_definition g_profile_Obj_HHASHI = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 805815AC-805815AC 000100 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

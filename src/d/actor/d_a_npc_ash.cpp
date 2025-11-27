@@ -5,10 +5,11 @@
 
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
+#include "d/actor/d_a_npc_ash.h"
+#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_tag_evtarea.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/actor/d_a_npc_ash.h"
-#include "d/actor/d_a_tag_evtarea.h"
 
 /* 8095D640-8095D6AC 000000 006C+00 14/14 0/0 0/0 .rodata          m__16daNpcAsh_Param_c */
 const daNpcAsh_HIOParam daNpcAsh_Param_c::m = {
@@ -441,7 +442,7 @@ bool daNpcAsh_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
         mAnm_p->changeAnm(bckAnm);
     }
 
-    if (cM3d_IsZero_inverted(mExpressionMorf)) {
+    if (cM3d_IsZero(mExpressionMorf) == FALSE) {
         if (jointNo == 12) {
             mAnm_p->onMorfNone();
         } else if (jointNo == 4) {

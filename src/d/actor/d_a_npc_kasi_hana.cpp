@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_kasi_hana.h"
+#include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_chin.h"
 #include "d/actor/d_a_npc_kasi_kyu.h"
 #include "d/actor/d_a_npc_kasi_mich.h"
@@ -1577,7 +1578,7 @@ void* daNpcKasiHana_c::_srch_escape_tag(void* i_actor, void* i_data) {
 int daNpcKasiHana_c::getWolfPathNearIdx() {
     int iVar1 = 0;
     f32 fVar1 = 0.0f;
-    u16 numPnts = mPath.getNumPnts();
+    int numPnts = mPath.getNumPnts();
     cXyz sp44, sp50;
 
     int rv = 0;
