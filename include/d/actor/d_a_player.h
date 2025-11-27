@@ -912,8 +912,8 @@ public:
 
     BOOL checkStatusWindowDraw() const { return checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
-    BOOL getHeavyStateAndBoots() { return checkNoResetFlg0(FLG0_HVY_STATE); } //
-    BOOL checkEnemyAttentionLock() const { return checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); } //
+    BOOL getHeavyStateAndBoots() { return checkNoResetFlg0(FLG0_HVY_STATE); }
+    BOOL checkEnemyAttentionLock() const { return checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
     BOOL getGrabUpStart() const { return checkResetFlg0(RFLG0_UNK_8000); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
     bool checkGoatStopGame() const { return mSpecialMode == 0x2A; }
@@ -921,23 +921,23 @@ public:
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     s16 getDamageWaitTimer() const { return mDamageTimer; }
-    BOOL checkWaterInMove() const { return checkNoResetFlg0(FLG0_UNDERWATER); } //
+    BOOL checkWaterInMove() const { return checkNoResetFlg0(FLG0_UNDERWATER); }
     BOOL checkSceneChangeAreaStart() const { return checkNoResetFlg2(FLG2_SCN_CHG_START); }
-    BOOL checkFrontRollCrash() const { return checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); } //
-    BOOL checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); } //
-    BOOL checkFreezeDamage() const { return checkNoResetFlg1(FLG1_ICE_FREEZE); } //
-    BOOL checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); } //
+    BOOL checkFrontRollCrash() const { return checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
+    BOOL checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
+    BOOL checkFreezeDamage() const { return checkNoResetFlg1(FLG1_ICE_FREEZE); }
+    BOOL checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); }
     BOOL checkDamageImpact() const { return checkResetFlg1(RFLG1_DAMAGE_IMPACT); }
-    BOOL getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); } //
-    BOOL getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); } //
-    BOOL checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); } //
+    BOOL getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); }
+    BOOL getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
+    BOOL checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
     BOOL checkHorseZelda() const { return checkNoResetFlg2(FLG2_HORSE_ZELDA); }
     BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     BOOL checkBoardNoFootAngle() const { return checkResetFlg1(RFLG1_UNK_40); }
-    BOOL checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); } //
+    BOOL checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
     BOOL checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
-    BOOL checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); } //
-    BOOL checkAttentionLock() const { return checkResetFlg0(RFLG0_UNK_10000); } //
+    BOOL checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
+    BOOL checkAttentionLock() const { return checkResetFlg0(RFLG0_UNK_10000); }
     BOOL checkFishingRodUseStart() const { return checkResetFlg1(RFLG1_UNK_80); }
     BOOL checkFishingRodUseAccept() const { return checkResetFlg1(RFLG1_UNK_200); }
 
