@@ -287,7 +287,7 @@ int daB_MGN_c::JointCallBack(J3DJoint* i_joint, int param_1) {
 }
 
 /* 80610440-80610444 000008 0004+00 2/2 0/0 0/0 .bss             None */
-static u8 l_initHIO_139_bss_0;
+static u8 l_initHIO;
 
 /* 80610450-80610474 000018 0024+00 6/6 0/0 0/0 .bss             l_HIO */
 static daB_MGN_HIO_c l_HIO;
@@ -3433,7 +3433,7 @@ int daB_MGN_c::_delete() {
     dComIfG_resDelete(&mMgnePhase, "B_mgne");
 
     if (mInitHIO) {
-        l_initHIO_139_bss_0 = FALSE;
+        l_initHIO = FALSE;
         mDoHIO_DELETE_CHILD(l_HIO.no);
     }
 
@@ -3581,8 +3581,8 @@ int daB_MGN_c::create() {
                 return cPhs_ERROR_e;
             }
 
-            if (!l_initHIO_139_bss_0) {
-                l_initHIO_139_bss_0 = TRUE;
+            if (!l_initHIO) {
+                l_initHIO = TRUE;
                 mInitHIO = TRUE;
                 l_HIO.no = mDoHIO_CREATE_CHILD("豚ガノン", &l_HIO);
             }
