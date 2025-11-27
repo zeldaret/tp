@@ -402,6 +402,21 @@ void mDoExt_brkAnmRemove(J3DModelData* i_modelData) {
 
 // this needs a lot of work still
 static void dummy2() {
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+    FORCE_DONT_INLINE;
+
     J3DGXColor gxColor;
     J3DColorChan colorChan;
     J3DTexCoord texCoord;
