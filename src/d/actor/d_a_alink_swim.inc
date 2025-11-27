@@ -121,7 +121,7 @@ void daAlink_c::setWaterInAnmRate(daPy_frameCtrl_c* i_frameCtrl, f32 i_rate) {
         if (checkZoraWearAbility()) {
             i_rate *= daAlinkHIO_magneBoots_c0::m.mZoraWaterAnmSpeed;
         } else {
-            i_rate *= daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate;
+            i_rate *= daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate;
         }
     }
 
@@ -376,7 +376,7 @@ int daAlink_c::checkSwimAction(int param_0) {
         if (getMoveBGActorName(mLinkAcch.m_gnd, NULL) == PROC_Obj_ITA) {
             var_f31 = 200.0f;
         } else {
-            var_f31 = daAlinkHIO_wlSwim_c0::m.field_0x48;
+            var_f31 = daAlinkHIO_wlSwim_c0::m.mStartHeight;
         }
     } else {
         var_f31 = daAlinkHIO_swim_c0::m.mStartHeight;
@@ -389,12 +389,12 @@ int daAlink_c::checkSwimAction(int param_0) {
         
         if (checkWolf()) {
             if (checkWolfDashMode()) {
-                var_f29 = daAlinkHIO_wlSwim_c0::m.field_0x50;
+                var_f29 = daAlinkHIO_wlSwim_c0::m.mMaxSpeed;
             } else {
-                var_f29 = daAlinkHIO_wlSwim_c0::m.field_0x80;
+                var_f29 = daAlinkHIO_wlSwim_c0::m.mMaxSpeedWeak;
             }
 
-            var_f28 = daAlinkHIO_wlSwim_c0::m.field_0x58;
+            var_f28 = daAlinkHIO_wlSwim_c0::m.mMaxFallSpeed;
         } else {
             var_f29 = getSwimFrontMaxSpeed();
             var_f28 = getSwimMaxFallSpeed();
@@ -524,7 +524,7 @@ int daAlink_c::checkSwimUpAction() {
 
     if (!getZoraSwim()) {
         if (checkWolf()) {
-            field_0x3480 = daAlinkHIO_wlSwim_c0::m.field_0x48;
+            field_0x3480 = daAlinkHIO_wlSwim_c0::m.mStartHeight;
         } else {
             cLib_addCalc(&field_0x3480, daAlinkHIO_swim_c0::m.mStartHeight, 0.5f, 15.0f, 1.0f);
         }
@@ -534,7 +534,7 @@ int daAlink_c::checkSwimUpAction() {
 
     f32 var_f31;
     if (checkWolf()) {
-        var_f31 = daAlinkHIO_wlSwim_c0::m.field_0x4C;
+        var_f31 = daAlinkHIO_wlSwim_c0::m.mSurfacingHeight;
     } else {
         var_f31 = daAlinkHIO_swim_c0::m.mFloatUpHeight;
     }
@@ -614,7 +614,7 @@ BOOL daAlink_c::checkSwimFall() {
 int daAlink_c::checkSwimOutAction() {
     f32 var_f31;
     if (checkWolf()) {
-        var_f31 = daAlinkHIO_wlSwim_c0::m.field_0x48;
+        var_f31 = daAlinkHIO_wlSwim_c0::m.mStartHeight;
     } else {
         var_f31 = daAlinkHIO_swim_c0::m.mStartHeight;
     }
@@ -915,9 +915,9 @@ void daAlink_c::setSwimUpDownOffset() {
     f32 var_f1;
     if (checkWolf()) {
         if (checkHeavyStateOn(1, 1)) {
-            var_f1 = daAlinkHIO_wlSwim_c0::m.field_0x98;
+            var_f1 = daAlinkHIO_wlSwim_c0::m.mHeavyIdleUpDownSwayAmount;
         } else {
-            var_f1 = daAlinkHIO_wlSwim_c0::m.field_0x6C;
+            var_f1 = daAlinkHIO_wlSwim_c0::m.mIdleUpDownSwayAmount;
         }
     } else {
         var_f1 = daAlinkHIO_swim_c0::m.mWaitUpDownShakeAmount;

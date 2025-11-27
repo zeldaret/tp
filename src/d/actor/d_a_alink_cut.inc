@@ -178,7 +178,11 @@ bool daAlink_c::checkCutTurnInput() const {
 /* 800D1424-800D1430 0CBD64 000C+00 7/7 0/0 0/0 .text            getCutTurnDirection__9daAlink_cCFv
  */
 int daAlink_c::getCutTurnDirection() const {
-    return field_0x3180 < 0;
+    if (field_0x3180 < 0) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 /* 800D1430-800D1454 0CBD70 0024+00 17/17 0/0 0/0 .text            resetCombo__9daAlink_cFi */

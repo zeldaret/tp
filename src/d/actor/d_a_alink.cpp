@@ -4583,7 +4583,7 @@ int daAlink_c::setStartProcInit() {
             } else if (checkSwimAction(1)) {
                 if (start_mode == 1) {
                     if (checkWolf()) {
-                        mNormalSpeed = 0.5f * daAlinkHIO_wlSwim_c0::m.field_0x50;
+                        mNormalSpeed = 0.5f * daAlinkHIO_wlSwim_c0::m.mMaxSpeed;
                     } else {
                         mNormalSpeed = 0.5f * daAlinkHIO_swim_c0::m.mForwardMaxSpeed;
                     }
@@ -6604,7 +6604,7 @@ void daAlink_c::setFrameCtrl(daPy_frameCtrl_c* i_ctrl, u8 i_attr, s16 i_start, s
         if (checkZoraWearAbility()) {
             i_rate *= daAlinkHIO_magneBoots_c0::m.mZoraWaterAnmSpeed;
         } else {
-            i_rate *= daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate;
+            i_rate *= daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate;
         }
     }
 
@@ -6806,7 +6806,7 @@ int daAlink_c::setDoubleAnime(f32 i_blendRate, f32 i_anmSpeedA, f32 i_anmSpeedB,
             if (checkZoraWearAbility()) {
                 i_morf *= (1.0f / daAlinkHIO_magneBoots_c0::m.mZoraWaterAnmSpeed);
             } else {
-                i_morf *= (1.0f / daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate);
+                i_morf *= (1.0f / daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate);
             }
         }
     } else if (i_anmA == ANM_WAIT_B && checkModeFlg(1) && i_morf > 0.0f) {
@@ -6816,7 +6816,7 @@ int daAlink_c::setDoubleAnime(f32 i_blendRate, f32 i_anmSpeedA, f32 i_anmSpeedB,
             if (checkZoraWearAbility()) {
                 i_morf *= (1.0f / daAlinkHIO_magneBoots_c0::m.mZoraWaterAnmSpeed);
             } else {
-                i_morf *= (1.0f / daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate);
+                i_morf *= (1.0f / daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate);
             }
         }
     }
@@ -6885,7 +6885,7 @@ void daAlink_c::commonSingleAnime(J3DAnmTransform* param_0, J3DAnmTransform* par
         if (checkZoraWearAbility() && mProcID != PROC_FRONT_ROLL && mEquipItem == 0x103) {
             param_2 *= daAlinkHIO_magneBoots_c0::m.mWaterVelRateSword * (1.0f / daAlinkHIO_magneBoots_c0::m.mZoraWaterAnmSpeed);
         } else if (!checkZoraWearAbility()) {
-            param_2 *= daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate * (1.0f / daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate);
+            param_2 *= daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate * (1.0f / daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate);
         }
     }
 
@@ -7105,7 +7105,7 @@ int daAlink_c::setUpperAnime(u16 i_anmResID, daAlink_c::daAlink_UPPER param_1, f
     }
 
     if (!checkZoraWearAbility() && (checkEquipAnime() || checkCutDashAnime()) && (checkNoResetFlg0(FLG0_UNDERWATER) || !checkNoResetFlg0(FLG0_SWIM_UP))) {
-        i_speed *= daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate * (1.0f / daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate);
+        i_speed *= daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate * (1.0f / daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate);
     }
 
     setFrameCtrl(&mUpperFrameCtrl[param_1], var_r30->getAttribute(), i_startFrame, i_endFrame, i_speed, var_f31);
@@ -8634,10 +8634,10 @@ void daAlink_c::setFrontWallType() {
                 f32 sp14;
                 f32 sp10;
                 if (checkWolf()) {
-                    sp14 = 0.01f + daAlinkHIO_wlSwim_c0::m.field_0x7C;
-                    sp10 = daAlinkHIO_wlSwim_c0::m.field_0x94;
+                    sp14 = 0.01f + daAlinkHIO_wlSwim_c0::m.mClimbHeight;
+                    sp10 = daAlinkHIO_wlSwim_c0::m.mClimbBelowWaterSurface;
                 } else {
-                    sp14 = 0.01f + daAlinkHIO_swim_c0::m.mStartHeight;
+                    sp14 = 0.01f + daAlinkHIO_swim_c0::m.mClimbHeight;
                     sp10 = daAlinkHIO_swim_c0::m.mClimbWaterSurfaceUnder;
                 }
 
@@ -9620,7 +9620,7 @@ void daAlink_c::setNormalSpeedF(f32 i_incSpeed, f32 param_1) {
     if (checkNoResetFlg3(FLG3_UNK_1000)) {
         f32 sp18;
         if (checkWolf()) {
-            sp18 = daAlinkHIO_wlSwim_c0::m.field_0x48;
+            sp18 = daAlinkHIO_wlSwim_c0::m.mStartHeight;
         } else {
             sp18 = daAlinkHIO_swim_c0::m.mStartHeight;
         }
@@ -12511,11 +12511,11 @@ void daAlink_c::initGravity() {
     if (checkWolf()) {
         if (checkModeFlg(MODE_SWIMMING)) {
             if (checkHeavyStateOn(1, 1)) {
-                gravity = -daAlinkHIO_wlSwim_c0::m.field_0x9C;
-                max_fall_speed = daAlinkHIO_wlSwim_c0::m.field_0xA0;
+                gravity = -daAlinkHIO_wlSwim_c0::m.mHeavyBuoyancy;
+                max_fall_speed = daAlinkHIO_wlSwim_c0::m.mHeavyMaxFallSpeed;
             } else {
-                gravity = -daAlinkHIO_wlSwim_c0::m.field_0x60;
-                max_fall_speed = daAlinkHIO_wlSwim_c0::m.field_0x58;
+                gravity = -daAlinkHIO_wlSwim_c0::m.mBuoyancy;
+                max_fall_speed = daAlinkHIO_wlSwim_c0::m.mMaxFallSpeed;
             }
         } else {
             gravity = daAlinkHIO_wlAutoJump_c0::m.mGravity;
@@ -12822,16 +12822,16 @@ void daAlink_c::posMove() {
             speed.y = 0.0f;
         } else if (checkWolf()) {
             if (checkHeavyStateOn(1, 1)) {
-                speed.y += daAlinkHIO_wlSwim_c0::m.field_0x9C;
+                speed.y += daAlinkHIO_wlSwim_c0::m.mHeavyBuoyancy;
 
-                if (speed.y > daAlinkHIO_wlSwim_c0::m.field_0xA4) {
-                    speed.y = daAlinkHIO_wlSwim_c0::m.field_0xA4;
+                if (speed.y > daAlinkHIO_wlSwim_c0::m.mHeavyMaxSurfacingSpeed) {
+                    speed.y = daAlinkHIO_wlSwim_c0::m.mHeavyMaxSurfacingSpeed;
                 }
             } else {
-                speed.y += daAlinkHIO_wlSwim_c0::m.field_0x60;
+                speed.y += daAlinkHIO_wlSwim_c0::m.mBuoyancy;
 
-                if (speed.y > daAlinkHIO_wlSwim_c0::m.field_0x5C) {
-                    speed.y = daAlinkHIO_wlSwim_c0::m.field_0x5C;
+                if (speed.y > daAlinkHIO_wlSwim_c0::m.mMaxSurfacingSpeed) {
+                    speed.y = daAlinkHIO_wlSwim_c0::m.mMaxSurfacingSpeed;
                 }
             }
         } else if (!checkEquipHeavyBoots() && getZoraSwim()) {

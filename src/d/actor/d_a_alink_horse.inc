@@ -2222,12 +2222,12 @@ int daAlink_c::procHorseCutTurnInit() {
         resetUnderAnime(UNDER_2, -1.0f);
     }
 
-    setSingleAnimeParam(ANM_HORSE_CUT_TURN, &daAlinkHIO_hoCutCharge_c0::m.mCutAnm);
+    setSingleAnimeParam(ANM_HORSE_CUT_TURN, &daAlinkHIO_hoCutCharge_c0::m.mSpinAnm);
     setCutType(43);
     setSyncRide(1);
     field_0x3478 = daAlinkHIO_hoCutCharge_c0::m.mSpinAttackRadius;
     setCylAtParam(getSwordAtType(), dCcG_At_Spl_UNK_1, 3, 1, 3, field_0x3478 * 0.5f, 200.0f);
-    mProcVar4.field_0x3010 = daAlinkHIO_hoCutCharge_c0::m.mSpinAttackEndFrame;
+    mProcVar4.field_0x3010 = daAlinkHIO_hoCutCharge_c0::m.mSpinStopTime;
     voiceStart(Z2SE_AL_V_KAITEN);
     setCutWaterDropEffect();
     setHorseZeldaDamage();
@@ -2246,7 +2246,7 @@ int daAlink_c::procHorseCutTurn() {
         procHorseWaitInit();
         field_0x2060->initOldFrameMorf(4.0f, 0, 0x23);
     } else {
-        if (temp_r30->getFrame() > daAlinkHIO_hoCutCharge_c0::m.mCutAnm.mCancelFrame) {
+        if (temp_r30->getFrame() > daAlinkHIO_hoCutCharge_c0::m.mSpinAnm.mCancelFrame) {
             if (orderTalk(1)) {
                 return 1;
             }

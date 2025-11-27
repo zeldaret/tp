@@ -159,7 +159,7 @@ void daAlink_c::setGrabUpperAnime(f32 param_0) {
         if (checkZoraWearAbility()) {
             param_0 *= 1.0f / daAlinkHIO_magneBoots_c0::m.mZoraWaterAnmSpeed;
         } else {
-            param_0 *= 1.0f / daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate;
+            param_0 *= 1.0f / daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate;
         }
     }
 
@@ -1071,7 +1071,7 @@ int daAlink_c::procGrabWaitInit() {
         if (checkZoraWearAbility() ) {
             var_f31 *= 1.0f / daAlinkHIO_magneBoots_c0::m.mZoraWaterAnmSpeed;
         } else {
-            var_f31 *= 1.0f / daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate;
+            var_f31 *= 1.0f / daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate;
         }
     }
 

@@ -310,7 +310,7 @@ public:
     /* 800196A0 */ void drawBallModel(dKy_tevstr_c*);
 
     bool checkWolfNoLock() const { return mFlags & fopEn_flag_WolfNoLock; }
-    bool checkHeadLockFlg() const { return mFlags & fopEn_flag_HeadLock; }
+    BOOL checkHeadLockFlg() const { return mFlags & fopEn_flag_HeadLock; }
     bool checkWolfBiteDamage() const { return mFlags & fopEn_flag_WolfBiteDamage; }
     bool checkWolfDownPullFlg() const { return mFlags & fopEn_flag_WolfDownPull; }
     bool checkDownFlg() { return mFlags & fopEn_flag_Down; }

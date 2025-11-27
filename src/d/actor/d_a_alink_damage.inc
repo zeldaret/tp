@@ -2068,7 +2068,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
         mUnderFrameCtrl[0].setAttribute(0);
         setFaceBasicTexture(FTANM_UNK_90);
         mMidnaAnm = 1;
-        var_f31 = daAlinkHIO_wlSwim_c0::m.field_0x48;
+        var_f31 = daAlinkHIO_wlSwim_c0::m.mStartHeight;
     } else {
         setSingleAnime(ANM_SWIM_DMG_FREEZE, daAlinkHIO_damNormal_c0::m.mIceDamageASpeed,
                        0.0f, 5, 10.0f);

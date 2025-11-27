@@ -3194,8 +3194,8 @@ int daAlink_c::procWolfSmellWaitInit() {
         return 1;
     }
 
-    setSingleAnimeWolfBaseSpeed(WANM_SMELL, daAlinkHIO_wlChain_c0::m.field_0x54,
-                                daAlinkHIO_wlChain_c0::m.field_0x58);
+    setSingleAnimeWolfBaseSpeed(WANM_SMELL, daAlinkHIO_wlChain_c0::m.mSniffAnmSpeed,
+                                daAlinkHIO_wlChain_c0::m.mSniffInterp);
     current.angle.y = shape_angle.y;
     mNormalSpeed = 0.0f;
     return 1;
