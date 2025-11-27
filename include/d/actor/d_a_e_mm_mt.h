@@ -2,6 +2,7 @@
 #define D_A_E_MM_MT_H
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_cc_uty.h"
+#include "d/actor/d_a_e_mm.h"
 
 
 /**
@@ -14,6 +15,7 @@
  */
 class e_mm_mt_class : public fopEn_enemy_c {
 public:
+    /* 0x000 */ //fopEn_enemy_c enemy;
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ Z2CreatureEnemy mSound;
     /* 0x658 */ u32 parameters; 
@@ -23,8 +25,10 @@ public:
     /* 0x666 */ s16 mAction;
     /* 0x668 */ s16 mMode;
     /* 0x66A */ u8 field_0x66A[0x672 - 0x66A];
-    /* 0x672 */ u8 field_0x672;
-                u8 field_0x673[0x684 - 0x673];
+    /* 0x672 */ s8 field_0x672;
+                u8 field_0x673;
+                cXyz field_0x674;
+                u8 field_0x680[0x684 - 0x680];
     /* 0x684 */ s16 mTimer[2]; 
     /* 0x688 */ s16 mInvulnerabilityTimer;
     /* 0x68A */ bool field_0x68A[2];
@@ -37,7 +41,8 @@ public:
                 s16 field_0x6A0;
                 s16 field_0x6A2;
     /* 0x6A4 */ s16 mSpin;
-                u8 field_0x6A6[0x6AC - 0x6A6];
+                u8 field_0x6A6[0x6A8 - 0x6A6];
+                f32 field_0x6A8;
     /* 0x6AC */ dBgS_AcchCir mAcchCir;
     /* 0x6EC */ dBgS_ObjAcch mAcch;
     /* 0x8C4 */ dCcD_Stts mStts;
@@ -45,7 +50,7 @@ public:
     /* 0xA38 */ dCcD_Sph mSph;
     /* 0xB70 */ dCcU_AtInfo mAtInfo;
     /* 0xB94 */ u8 field_0xB94[0xB98 - 0xB94];
-    /* 0xB98 */ u8 field_0xB98;
+    /* 0xB98 */ s8 field_0xB98;
     /* 0xB99 */ u8 field_0xB99;
                 u8 field_0xBA0[0xBA4 - 0xB9A];
 
