@@ -1088,7 +1088,7 @@ u8 dMsgScrnHowl_c::getGuideDataType(int param_0) {
     for (int i = 0; i < mCorrectLineMax; i++) {
         uVar3 += daAlink_getAlinkActorClass()->getCorrectLine(i).length;
         if (uVar2 <= param_0 && uVar3 > param_0) {
-            return daAlink_getAlinkActorClass()->getCorrectLine(i).barType;
+            return daAlink_getAlinkActorClass()->getCorrectLine(i).type;
         }
         uVar2 = uVar3;
     }

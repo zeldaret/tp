@@ -9,12 +9,13 @@ s8 dComIfGp_getReverb(int roomNo);
 class Z2SceneMgr : public JASGlobalInstance<Z2SceneMgr> {
 public:
     Z2SceneMgr();
-    void setInDarkness(bool);
-    void setSceneExist(bool);
-    void setFadeOutStart(u8);
-    void setFadeInStart(u8);
-    void setSceneName(char*, s32, s32);
-    void sceneChange(JAISoundID, u8, u8, u8, u8, u8, bool);
+    void setInDarkness(bool inDarkness);
+    void setSceneExist(bool isSceneExist);
+    void setFadeOutStart(u8 fadeType);
+    void setFadeInStart(u8 fadeType);
+    void setSceneName(char* spot, s32 room, s32 layer);
+    void sceneChange(JAISoundID bgm, u8 seWave1, u8 seWave2, u8 bgmWave1, u8 bgmWave2,
+                     u8 demoWave, bool);
     void framework();
     void load1stDynamicWave();
     void _load1stWaveInner_1();
@@ -24,18 +25,22 @@ public:
     void sceneBgmStart();
     void loadStaticWaves();
     BOOL checkFirstWaves();
-    bool eraseSeWave(u32);
-    bool eraseBgmWave(u32);
-    s32 getWaveLoadStatus(u32, u32);
-    bool loadSeWave(u32);
-    bool loadBgmWave(u32);
+    bool eraseSeWave(u32 wave);
+    bool eraseBgmWave(u32 wave);
+    s32 getWaveLoadStatus(u32 wave, u32 bank);
+    bool loadSeWave(u32 wave);
+    bool loadBgmWave(u32 wave);
+
+    #if PLATFORM_SHIELD
+    bool loadSceneWave(u32 wave, u32 bank);
+    #endif
 
     bool isSceneExist() { return sceneExist; }
     int getCurrentSceneNum() { return sceneNum; }
     s8 getCurrentRoomNum() { return roomNum; }
     bool isInGame() { return inGame; }
-    void setInGame(bool i_inGame) { inGame = i_inGame; }
-    bool isInDarkness() { return inDarkness; }
+    void setInGame(bool isInGame) { inGame = isInGame; }
+    bool isInDarkness() { return inDarkness_; }
     s8 getRoomReverb() { return dComIfGp_getReverb(roomNum); }
     bool isMovieDemo() { return sceneNum == 2 || sceneNum == 8 || sceneNum == 9; }
     s32 getSeLoadStatus(u32 wave) { return getWaveLoadStatus(wave, 0); }
@@ -64,7 +69,7 @@ private:
     /* 0x1B */ bool field_0x1b;
     /* 0x1C */ bool inGame;
     /* 0x1D */ bool sceneExist;
-    /* 0x1E */ bool inDarkness;
+    /* 0x1E */ bool inDarkness_;
 };  // Size = 0x20
 
 inline Z2SceneMgr* Z2GetSceneMgr() {

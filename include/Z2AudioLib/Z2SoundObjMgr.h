@@ -95,7 +95,7 @@ public:
     bool removeEnemy(JSULink<Z2CreatureEnemy>* enemyLink);
     u8 isTwilightBattle();
 
-    u8 getEnemyNumNear() { return enemuNumNear_; }
+    u8 getEnemyNumNear() const { return enemuNumNear_; }
     u8 getEnemyNumVeryFar() { return enemuNumVeryFar_; }
     bool isForceBattle() { return forceBattle_; }
     JSUList<Z2CreatureEnemy>* getEnemyList() { return this; }

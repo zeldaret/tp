@@ -103,10 +103,10 @@ void JAISeqMgr::stop() {
 }
 
 /* 802A1E3C-802A1E8C 29C77C 0050+00 0/0 1/1 0/0 .text            stop__9JAISeqMgrFUl */
-void JAISeqMgr::stop(u32 param_0) {
+void JAISeqMgr::stop(u32 fadeTime) {
     JSULink<JAISeq>* i;
     for (i = mSeqList.getFirst(); i != NULL; i = i->getNext()) {
-        i->getObject()->stop(param_0);
+        i->getObject()->stop(fadeTime);
     }
 }
 

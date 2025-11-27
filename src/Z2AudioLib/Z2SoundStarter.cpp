@@ -15,10 +15,10 @@ bool Z2SoundStarter::startSound(JAISoundID soundID, JAISoundHandle* handlePtr, c
 /* 802AAC3C-802AAEDC 2A557C 02A0+00 2/1 2/2 0/0 .text
  * startSound__14Z2SoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
 bool Z2SoundStarter::startSound(JAISoundID soundID, JAISoundHandle* handlePtr,
-                                const JGeometry::TVec3<f32>* posPtr, u32 category, f32 fxMix,
+                                const JGeometry::TVec3<f32>* posPtr, u32 mapinfo, f32 fxMix,
                                 f32 pitch, f32 volume, f32 pan, f32 dolby, u32 moveSteps) {
     JUT_ASSERT(45, handlePtr);
-    if (category == 6) {
+    if (mapinfo == 6) {
         switch (soundID) {
         case Z2SE_CM_BODYFALL_S:
             soundID = Z2SE_CM_BODYFALL_ASASE_S;
@@ -50,8 +50,8 @@ bool Z2SoundStarter::startSound(JAISoundID soundID, JAISoundHandle* handlePtr,
 
     bool startSoundRes = Z2GetAudioMgr()->startSound(soundID, handlePtr, posPtr);
     if (*handlePtr) {
-        if (category != 0) {
-            setPortData(handlePtr, 6, category, -1);
+        if (mapinfo != 0) {
+            setPortData(handlePtr, 6, mapinfo, -1);
         }
         if (fxMix > 0.0f) {
             (*handlePtr)->getAuxiliary().moveFxMix(fxMix, moveSteps);

@@ -59,7 +59,7 @@ struct JAISoundStatus_ {
     bool isDead() const { return state.unk == 6;}
 
     bool isPlaying() const { return state.unk == 5; }
-    bool isPrepared() { return state.unk >= 3; }
+    bool isPrepared() const { return state.unk >= 3; }
     bool isMute() const { return field_0x0.flags.mute; }
     bool isPaused() const { return field_0x0.flags.paused; }
     void pauseWhenOut() {
@@ -275,7 +275,7 @@ public:
         status_.field_0x1.flags.flag2 = 0;
     }
 
-    bool isPrepared() { return status_.isPrepared(); }
+    bool isPrepared() const { return status_.isPrepared(); }
     void unlockIfLocked() { status_.unlockIfLocked(); }
     void lockWhenPrepared() { status_.lockWhenPrepared(); }
     void stop_JAISound_() {

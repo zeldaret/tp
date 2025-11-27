@@ -18,7 +18,7 @@ public:
     void deleteObject();
     Z2SoundHandlePool* startCollisionSE(u32 hitID, u32 mapinfo, Z2SoundObjBase* other);
 
-    bool isAlive() const { return alive_; }
+    bool isAlive() { return alive_; }
     void setSoundStarter(Z2SoundStarter* soundStarter) { soundStarter_ = soundStarter; }
 
     virtual void framework(u32 mapinfo, s8 reverb);

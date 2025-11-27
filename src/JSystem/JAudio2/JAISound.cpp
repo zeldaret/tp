@@ -105,7 +105,7 @@ bool JAISound::acceptsNewAudible() const {
 
 /* 802A2474-802A24DC 29CDB4 0068+00 0/0 2/2 0/0 .text
 /*  * newAudible__8JAISoundFRCQ29JGeometry8TVec3<f>PCQ29JGeometry8TVec3<f>UlP11JAIAudience */
-void JAISound::newAudible(const JGeometry::TVec3<f32>& param_0,
+void JAISound::newAudible(const JGeometry::TVec3<f32>& pos,
                           const JGeometry::TVec3<f32>* param_1, u32 param_2, JAIAudience* audience) {
     JUT_ASSERT(151, acceptsNewAudible());
     if (audience != NULL) {
@@ -113,7 +113,7 @@ void JAISound::newAudible(const JGeometry::TVec3<f32>& param_0,
     }
 
     JUT_ASSERT(157, audience_);
-    audible_ = audience_->newAudible(param_0, soundID_, param_1, param_2);
+    audible_ = audience_->newAudible(pos, soundID_, param_1, param_2);
 }
 
 /* 802A24DC-802A2598 29CE1C 00BC+00 0/0 24/24 0/0 .text            stop__8JAISoundFUl */

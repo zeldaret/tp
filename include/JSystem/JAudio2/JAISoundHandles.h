@@ -41,18 +41,18 @@ public:
  */
 class JAISoundHandles {
 public:
-    JAISoundHandles(JAISoundHandle* pHandle, int param_1) {
-        mSoundHandle = pHandle;
-        numHandles_ = param_1;
+    JAISoundHandles(JAISoundHandle* handle, int handleNum) {
+        handle_ = handle;
+        numHandles_ = handleNum;
     };
 
-    JAISoundHandle& operator[](int n) { return mSoundHandle[n]; }
+    JAISoundHandle& operator[](int n) { return handle_[n]; }
 
-    JAISoundHandle* getHandleSoundID(JAISoundID);
+    JAISoundHandle* getHandleSoundID(JAISoundID id);
     JAISoundHandle* getFreeHandle();
 
 private:
-    JAISoundHandle* mSoundHandle;
+    JAISoundHandle* handle_;
     int numHandles_;
 };
 

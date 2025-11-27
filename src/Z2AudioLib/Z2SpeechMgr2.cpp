@@ -1,7 +1,3 @@
-//
-// Z2SpeechMgr2
-//
-
 #include "Z2AudioLib/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"
@@ -9,56 +5,76 @@
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "JSystem/JMath/JMath.h"
 
-typedef struct {
-    const u8* field_0x0;
-    const u8* field_0x4;
-    u8 field_0x8;
-    u8 field_0x9;
-    u8 field_0xa;
-    u8 field_0xb;
-
-} sPrmStruct;
-
 struct Z2MdnPrm {
-    static u8 const sReply[100];
+    struct Unit {
+        u8 start;
+        u8 end;
+    };
+
+    struct Prm {
+        const Unit* main;
+        const u8* tail;
+        u8 mainNum;
+        u8 tailNum1;
+        u8 tailNum2;
+    };
+
+    static Unit const sReply[50];
     static u8 const sReplyTail[10];
-    static u8 const sJoke[100];
+
+    static Unit const sJoke[50];
     static u8 const sJokeTail[10];
-    static u8 const sSexy[100];
+
+    static Unit const sSexy[50];
     static u8 const sSexyTail[10];
-    static u8 const sRidicule[100];
+
+    static Unit const sRidicule[50];
     static u8 const sRidiculeTail[10];
-    static u8 const sBoring[108];
-    static u8 const sIrritated[94];
-    static u8 const sIrritatedTail[10];
-    static u8 const sOrder[114];
-    static u8 const sResent[106];
-    static u8 const sCheerful[106];
-    static u8 const sConfused[106];
-    static u8 const sHostility[104];
-    static u8 const sTired[106];
-    static u8 const sSerious[106];
-    static u8 const sReplyb[84];
-    static u8 const sApologize[100];
-    static u8 const sApologizeTail[9];
-    static u8 const sDeside[100];
-    static u8 const sAfford[104];
-    static u8 const sAffordTail[12];
-    static sPrmStruct const sPrm[17];
+
+    static Unit const sBoring[54];
     static u8 const sBoringTail[6];
+
+    static Unit const sIrritated[47];
+    static u8 const sIrritatedTail[10];
+
+    static Unit const sOrder[57];
     static u8 const sOrderTail[6];
+
+    static Unit const sResent[53];
     static u8 const sResentTail[5];
+
+    static Unit const sCheerful[53];
     static u8 const sCheerfulTail[8];
+
+    static Unit const sConfused[53];
     static u8 const sConfusedTail[5];
+
+    static Unit const sHostility[52];
     static u8 const sHostilityTail[7];
+
+    static Unit const sTired[53];
     static u8 const sTiredTail[8];
+
+    static Unit const sSerious[53];
     static u8 const sSeriousTail[7];
+
+    static Unit const sReplyb[42];
     static u8 const sReplybTail[7];
+
+    static Unit const sApologize[50];
+    static u8 const sApologizeTail[9];
+
+    static Unit const sDeside[50];
     static u8 const sDesideTail[8];
+
+    static Unit const sAfford[52];
+    static u8 const sAffordTail[12];
+
+    static Prm const sPrm[17];
 };
 
 /* 8039C260-8039C2C4 0288C0 0064+00 1/0 0/0 0/0 .rodata          sReply__8Z2MdnPrm */
-u8 const Z2MdnPrm::sReply[100] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sReply[50] = {
     0x6A, 0x8A, 0x50, 0x5F, 0x53, 0x37, 0x37, 0x4F, 0x4F, 0x5E, 0xAA, 0x46, 0x52, 0x5A, 0x5A,
     0x4F, 0x4F, 0x45, 0x45, 0x56, 0x64, 0x79, 0x79, 0x79, 0x87, 0x95, 0x95, 0x89, 0x89, 0x4C,
     0x4C, 0x4B, 0x52, 0x41, 0x41, 0x5B, 0x5F, 0x71, 0x53, 0x47, 0x89, 0x7D, 0x77, 0x88, 0x88,
@@ -74,7 +90,7 @@ u8 const Z2MdnPrm::sReplyTail[10] = {
 };
 
 /* 8039C2D0-8039C334 028930 0064+00 1/0 0/0 0/0 .rodata          sJoke__8Z2MdnPrm */
-u8 const Z2MdnPrm::sJoke[100] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sJoke[50] = {
     0x68, 0x57, 0x57, 0x55, 0x55, 0x51, 0x5B, 0x64, 0x6B, 0x7B, 0x7B, 0x5C, 0x77, 0x97, 0x8D,
     0x97, 0x97, 0x8D, 0x66, 0x69, 0xA2, 0x5C, 0x87, 0x4F, 0x69, 0x5F, 0x5F, 0x83, 0x83, 0x82,
     0x7F, 0x96, 0x96, 0xB0, 0x70, 0xA1, 0x6D, 0x6D, 0x6D, 0x59, 0x4C, 0x4B, 0x5A, 0x40, 0x4A,
@@ -83,13 +99,14 @@ u8 const Z2MdnPrm::sJoke[100] = {
     0x64, 0x60, 0xB1, 0x6C, 0x6D, 0x6D, 0x7E, 0x7A, 0x97, 0x97, 0x99, 0xA5, 0x89, 0x90, 0xA4,
     0x45, 0x45, 0x29, 0x4C, 0x4B, 0x64, 0x64, 0x60, 0x5C, 0xB1,
 };
+
 /* 8039C334-8039C340 028994 000A+02 1/0 0/0 0/0 .rodata          sJokeTail__8Z2MdnPrm */
 u8 const Z2MdnPrm::sJokeTail[10] = {
     0x51, 0x97, 0x60, 0xB0, 0x6F, 0x5E, 0x5A, 0xA6, 0x4F, 0x4F,
 };
 
 /* 8039C340-8039C3A4 0289A0 0064+00 1/0 0/0 0/0 .rodata          sSexy__8Z2MdnPrm */
-u8 const Z2MdnPrm::sSexy[100] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sSexy[50] = {
     0x5E, 0x60, 0x5F, 0x63, 0x63, 0x72, 0x72, 0x78, 0x4D, 0x7A, 0x6E, 0x6E, 0x6E, 0x6E, 0x6E,
     0x59, 0x59, 0x7A, 0x7A, 0xA5, 0x90, 0x8D, 0x86, 0x62, 0x72, 0x79, 0x79, 0x86, 0x7F, 0x8B,
     0x85, 0x7B, 0x7B, 0x5E, 0x5E, 0x6D, 0x6D, 0x88, 0x5F, 0xA3, 0xA3, 0x95, 0x95, 0x7F, 0x79,
@@ -105,7 +122,7 @@ u8 const Z2MdnPrm::sSexyTail[10] = {
 };
 
 /* 8039C3B0-8039C414 028A10 0064+00 1/0 0/0 0/0 .rodata          sRidicule__8Z2MdnPrm */
-u8 const Z2MdnPrm::sRidicule[100] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sRidicule[50] = {
     0xA7, 0x5A, 0x5A, 0x52, 0x52, 0x85, 0x85, 0x8C, 0x63, 0x73, 0x73, 0x90, 0x50, 0x46, 0x74,
     0x74, 0xA3, 0xA7, 0x41, 0x51, 0x58, 0x34, 0x34, 0x2A, 0x5A, 0x81, 0x5D, 0x42, 0x4B, 0x70,
     0x70, 0xB1, 0xB1, 0xB1, 0xB1, 0x65, 0x6A, 0xB1, 0x54, 0xA8, 0xA8, 0x6B, 0x6C, 0x55, 0x55,
@@ -121,7 +138,7 @@ u8 const Z2MdnPrm::sRidiculeTail[10] = {
 };
 
 /* 8039C420-8039C48C 028A80 006C+00 1/0 0/0 0/0 .rodata          sBoring__8Z2MdnPrm */
-u8 const Z2MdnPrm::sBoring[108] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sBoring[54] = {
     0x8E, 0x9C, 0x9C, 0x5A, 0x5A, 0x52, 0x52, 0x5B, 0x5C, 0x56, 0x5C, 0x52, 0x52, 0x2D, 0x2D, 0x5B,
     0x59, 0x56, 0x56, 0x56, 0x56, 0x6B, 0x6B, 0x58, 0x4C, 0x8E, 0x8E, 0x59, 0x61, 0x54, 0xA0, 0x4D,
     0x5D, 0x59, 0x48, 0x30, 0x30, 0x5B, 0x5B, 0x5B, 0x4A, 0x64, 0x64, 0x7A, 0x7A, 0x92, 0x62, 0x62,
@@ -137,7 +154,7 @@ u8 const Z2MdnPrm::sBoringTail[6] = {
 };
 
 /* 8039C48C-8039C4EC 028AEC 005E+02 1/0 0/0 0/0 .rodata          sIrritated__8Z2MdnPrm */
-u8 const Z2MdnPrm::sIrritated[94] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sIrritated[47] = {
     0x6C, 0x91, 0x67, 0x8B, 0x8B, 0xA2, 0xA2, 0xAB, 0x48, 0x64, 0x73, 0x61, 0x61, 0x64, 0x64, 0x6D,
     0x60, 0x7E, 0x4A, 0x55, 0x6A, 0x63, 0x66, 0x78, 0x5C, 0x5A, 0x6E, 0x79, 0x75, 0x62, 0x62, 0x57,
     0x85, 0x3F, 0x3C, 0x83, 0x83, 0x9B, 0x78, 0x65, 0x65, 0x67, 0x65, 0x65, 0x87, 0x88, 0x88, 0x3D,
@@ -152,7 +169,7 @@ u8 const Z2MdnPrm::sIrritatedTail[10] = {
 };
 
 /* 8039C4F8-8039C56C 028B58 0072+02 1/0 0/0 0/0 .rodata          sOrder__8Z2MdnPrm */
-u8 const Z2MdnPrm::sOrder[114] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sOrder[57] = {
     0x77, 0x5F, 0x5F, 0x73, 0x73, 0x66, 0x66, 0x6B, 0x6B, 0x7A, 0x7A, 0x60, 0x54, 0x5F, 0x5F,
     0x69, 0x69, 0x5A, 0x86, 0x84, 0x84, 0x96, 0x96, 0x94, 0x94, 0x8A, 0x87, 0x84, 0x5A, 0x2C,
     0x4E, 0x52, 0x52, 0x52, 0x52, 0x51, 0x51, 0x6E, 0x62, 0x5E, 0x6C, 0xA3, 0xA3, 0x5B, 0x62,
@@ -169,7 +186,7 @@ u8 const Z2MdnPrm::sOrderTail[6] = {
 };
 
 /* 8039C56C-8039C5D8 028BCC 006A+02 1/0 0/0 0/0 .rodata          sResent__8Z2MdnPrm */
-u8 const Z2MdnPrm::sResent[106] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sResent[53] = {
     0x6F, 0x5F, 0x5F, 0x66, 0x66, 0x66, 0x66, 0x55, 0x55, 0x55, 0x55, 0x4B, 0x4B, 0x6B, 0x6B, 0x86,
     0x86, 0x4A, 0x4A, 0x6D, 0x6D, 0x6D, 0x6D, 0x8C, 0x8C, 0x84, 0x84, 0x64, 0x64, 0x6C, 0x6C, 0x92,
     0x92, 0x6A, 0x5F, 0x6F, 0x6F, 0x62, 0x62, 0x62, 0x75, 0x5A, 0x5A, 0x5A, 0x5A, 0x60, 0x60, 0x6A,
@@ -185,7 +202,7 @@ u8 const Z2MdnPrm::sResentTail[5] = {
 };
 
 /* 8039C5D8-8039C644 028C38 006A+02 1/0 0/0 0/0 .rodata          sCheerful__8Z2MdnPrm */
-u8 const Z2MdnPrm::sCheerful[106] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sCheerful[53] = {
     0x64, 0x6D, 0x6D, 0x6D, 0x99, 0x6D, 0x40, 0x51, 0x51, 0x6F, 0x6F, 0x66, 0x66, 0x60, 0xA7, 0xAF,
     0xB3, 0x61, 0x61, 0xA7, 0xA7, 0x5E, 0x8B, 0x75, 0x77, 0x72, 0x72, 0x93, 0x93, 0x8B, 0x8B, 0x88,
     0x88, 0x77, 0x77, 0x80, 0x80, 0x80, 0x80, 0x67, 0x67, 0x4D, 0x4A, 0x69, 0x44, 0xA1, 0x64, 0xA8,
@@ -201,7 +218,7 @@ u8 const Z2MdnPrm::sCheerfulTail[8] = {
 };
 
 /* 8039C644-8039C6B0 028CA4 006A+02 1/0 0/0 0/0 .rodata          sConfused__8Z2MdnPrm */
-u8 const Z2MdnPrm::sConfused[106] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sConfused[53] = {
     0x83, 0x80, 0x80, 0x82, 0x82, 0x82, 0x82, 0x5B, 0x75, 0x84, 0x84, 0x84, 0x84, 0x75, 0x75, 0x62,
     0x62, 0x62, 0x4D, 0x56, 0x56, 0x59, 0x59, 0x59, 0x59, 0x74, 0x74, 0x85, 0x7D, 0x8D, 0x8D, 0x70,
     0x70, 0x5A, 0x5A, 0x6B, 0x6B, 0x6B, 0x6B, 0x70, 0x79, 0x73, 0x73, 0x71, 0x71, 0x75, 0x75, 0x7B,
@@ -217,7 +234,7 @@ u8 const Z2MdnPrm::sConfusedTail[5] = {
 };
 
 /* 8039C6B0-8039C718 028D10 0068+00 1/0 0/0 0/0 .rodata          sHostility__8Z2MdnPrm */
-u8 const Z2MdnPrm::sHostility[104] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sHostility[52] = {
     0x85, 0x71, 0x71, 0x73, 0x73, 0x3B, 0x62, 0x84, 0x94, 0x94, 0x94, 0xAF, 0x98, 0xAD, 0xAD,
     0x5A, 0x5A, 0x63, 0x63, 0x97, 0x90, 0x90, 0x7B, 0x73, 0x73, 0x63, 0x63, 0x55, 0x55, 0x65,
     0x66, 0x7F, 0x7F, 0x87, 0x87, 0x8A, 0x8A, 0x94, 0x5D, 0x5C, 0x5A, 0x67, 0x67, 0x68, 0x68,
@@ -233,7 +250,7 @@ u8 const Z2MdnPrm::sHostilityTail[7] = {
 };
 
 /* 8039C718-8039C784 028D78 006A+02 1/0 0/0 0/0 .rodata          sTired__8Z2MdnPrm */
-u8 const Z2MdnPrm::sTired[106] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sTired[53] = {
     0x70, 0x70, 0x70, 0x5C, 0x5C, 0x5C, 0x6F, 0x6F, 0x6F, 0x93, 0x8C, 0x9A, 0x9D, 0x89, 0x99, 0x7A,
     0x91, 0x8D, 0x8D, 0x8D, 0x8D, 0x69, 0x69, 0x72, 0x72, 0x65, 0x65, 0x65, 0x9E, 0x98, 0x98, 0x2A,
     0x50, 0x54, 0x54, 0x49, 0x64, 0x59, 0x59, 0x62, 0x62, 0x62, 0x44, 0x5E, 0x9F, 0x91, 0x63, 0x63,
@@ -249,7 +266,7 @@ u8 const Z2MdnPrm::sTiredTail[8] = {
 };
 
 /* 8039C784-8039C7F0 028DE4 006A+02 1/0 0/0 0/0 .rodata          sSerious__8Z2MdnPrm */
-u8 const Z2MdnPrm::sSerious[106] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sSerious[53] = {
     0x52, 0x65, 0x65, 0x72, 0x5A, 0x61, 0x61, 0x7B, 0x80, 0x92, 0x93, 0x9D, 0x9D, 0x70, 0x79, 0x76,
     0x62, 0x57, 0x5A, 0x53, 0x53, 0x59, 0x59, 0x65, 0x63, 0x60, 0x60, 0x6A, 0x83, 0x80, 0x7F, 0x5D,
     0x5C, 0x45, 0x5D, 0x71, 0x72, 0x65, 0x65, 0x65, 0x66, 0x4B, 0xB2, 0x60, 0x5C, 0x5C, 0x5C, 0x5B,
@@ -265,7 +282,7 @@ u8 const Z2MdnPrm::sSeriousTail[7] = {
 };
 
 /* 8039C7F0-8039C844 028E50 0054+00 1/0 0/0 0/0 .rodata          sReplyb__8Z2MdnPrm */
-u8 const Z2MdnPrm::sReplyb[84] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sReplyb[42] = {
     0x5C, 0x45, 0x45, 0x71, 0x9F, 0x57, 0xB4, 0xB4, 0x56, 0x62, 0x8E, 0x61, 0x61, 0xB0,
     0xB0, 0x3C, 0x59, 0x4A, 0x64, 0xA4, 0xA4, 0x5A, 0x5A, 0x5A, 0x5A, 0x72, 0x72, 0x4B,
     0x6B, 0x97, 0x97, 0x59, 0x60, 0x60, 0x60, 0x69, 0x3E, 0x3E, 0x57, 0x42, 0x5E, 0x76,
@@ -280,7 +297,7 @@ u8 const Z2MdnPrm::sReplybTail[7] = {
 };
 
 /* 8039C844-8039C8A8 028EA4 0064+00 1/0 0/0 0/0 .rodata          sApologize__8Z2MdnPrm */
-u8 const Z2MdnPrm::sApologize[100] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sApologize[50] = {
     0x6A, 0x6A, 0x6A, 0x51, 0x51, 0x51, 0x51, 0x51, 0x51, 0x51, 0x57, 0x57, 0x57, 0x63, 0x61,
     0x54, 0x54, 0x54, 0x54, 0x58, 0x58, 0x58, 0x58, 0x45, 0x45, 0x56, 0x56, 0x5B, 0x5B, 0x37,
     0x53, 0x53, 0x53, 0x59, 0x59, 0x59, 0x49, 0x58, 0x58, 0x55, 0x56, 0x56, 0x83, 0x7F, 0x7F,
@@ -296,7 +313,7 @@ u8 const Z2MdnPrm::sApologizeTail[9] = {
 };
 
 /* 8039C8B4-8039C918 028F14 0064+00 1/0 0/0 0/0 .rodata          sDeside__8Z2MdnPrm */
-u8 const Z2MdnPrm::sDeside[100] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sDeside[50] = {
     0x77, 0x77, 0x77, 0x58, 0x58, 0x6F, 0x78, 0x5F, 0x66, 0x5E, 0x6E, 0x62, 0x62, 0x2E, 0x5A,
     0x58, 0x54, 0x52, 0x52, 0x5C, 0x59, 0x56, 0x56, 0x4B, 0x4B, 0x63, 0x63, 0x4D, 0x4E, 0x4A,
     0x69, 0x71, 0x71, 0x76, 0x80, 0x80, 0x80, 0x73, 0x73, 0x5C, 0x7C, 0x64, 0x83, 0x89, 0x89,
@@ -312,7 +329,7 @@ u8 const Z2MdnPrm::sDesideTail[8] = {
 };
 
 /* 8039C918-8039C980 028F78 0068+00 1/0 0/0 0/0 .rodata          sAfford__8Z2MdnPrm */
-u8 const Z2MdnPrm::sAfford[104] = {
+Z2MdnPrm::Unit const Z2MdnPrm::sAfford[52] = {
     0x4E, 0x45, 0x52, 0x5B, 0x56, 0x5B, 0x59, 0x52, 0x52, 0x57, 0x5C, 0x50, 0x50, 0x49, 0x80,
     0x6E, 0x6E, 0x5A, 0x5C, 0x60, 0x6A, 0x62, 0x62, 0x6A, 0x71, 0x48, 0x4C, 0x5B, 0x5A, 0x40,
     0x40, 0x49, 0x49, 0x50, 0x51, 0x51, 0x51, 0x3A, 0x5A, 0x5A, 0x5A, 0x5A, 0x5A, 0x57, 0x57,
@@ -328,24 +345,24 @@ u8 const Z2MdnPrm::sAffordTail[12] = {
 };
 
 /* 8039C98C-8039CA58 -00001 00CC+00 2/2 0/0 0/0 .rodata          sPrm__8Z2MdnPrm */
-sPrmStruct const Z2MdnPrm::sPrm[17] = {
-    { Z2MdnPrm::sReply,     Z2MdnPrm::sReplyTail,     0x32, 0x06, 0x04, 0x00},
-    { Z2MdnPrm::sJoke,      Z2MdnPrm::sJokeTail,      0x32, 0x03, 0x07, 0x00},
-    { Z2MdnPrm::sSexy,      Z2MdnPrm::sSexyTail,      0x32, 0x03, 0x07, 0x00},
-    { Z2MdnPrm::sRidicule,  Z2MdnPrm::sRidiculeTail,  0x32, 0x03, 0x07, 0x00},
-    { Z2MdnPrm::sBoring,    Z2MdnPrm::sBoringTail,    0x36, 0x01, 0x05, 0x00},
-    { Z2MdnPrm::sIrritated, Z2MdnPrm::sIrritatedTail, 0x2F, 0x03, 0x07, 0x00},
-    { Z2MdnPrm::sOrder,     Z2MdnPrm::sOrderTail,     0x39, 0x02, 0x04, 0x00},
-    { Z2MdnPrm::sResent,    Z2MdnPrm::sResentTail,    0x35, 0x02, 0x03, 0x00},
-    { Z2MdnPrm::sCheerful,  Z2MdnPrm::sCheerfulTail,  0x35, 0x01, 0x07, 0x00},
-    { Z2MdnPrm::sConfused,  Z2MdnPrm::sConfusedTail,  0x35, 0x03, 0x02, 0x00},
-    { Z2MdnPrm::sHostility, Z2MdnPrm::sHostilityTail, 0x34, 0x02, 0x05, 0x00},
-    { Z2MdnPrm::sTired,     Z2MdnPrm::sTiredTail,     0x35, 0x03, 0x05, 0x00},
-    { Z2MdnPrm::sSerious,   Z2MdnPrm::sSeriousTail,   0x35, 0x02, 0x05, 0x00},
-    { Z2MdnPrm::sReplyb,    Z2MdnPrm::sReplybTail,    0x2A, 0x04, 0x03, 0x00},
-    { Z2MdnPrm::sApologize, Z2MdnPrm::sApologizeTail, 0x32, 0x04, 0x05, 0x00},
-    { Z2MdnPrm::sDeside,    Z2MdnPrm::sDesideTail,    0x32, 0x01, 0x07, 0x00},
-    { Z2MdnPrm::sAfford,    Z2MdnPrm::sAffordTail,    0x34, 0x02, 0x0A, 0x00},
+const Z2MdnPrm::Prm Z2MdnPrm::sPrm[17] = {
+    {Z2MdnPrm::sReply,     Z2MdnPrm::sReplyTail,     ARRAY_SIZE(Z2MdnPrm::sReply),      6, 4},
+    {Z2MdnPrm::sJoke,      Z2MdnPrm::sJokeTail,      ARRAY_SIZE(Z2MdnPrm::sJoke),       3, 7},
+    {Z2MdnPrm::sSexy,      Z2MdnPrm::sSexyTail,      ARRAY_SIZE(Z2MdnPrm::sSexy),       3, 7},
+    {Z2MdnPrm::sRidicule,  Z2MdnPrm::sRidiculeTail,  ARRAY_SIZE(Z2MdnPrm::sRidicule),   3, 7},
+    {Z2MdnPrm::sBoring,    Z2MdnPrm::sBoringTail,    ARRAY_SIZE(Z2MdnPrm::sBoring),     1, 5},
+    {Z2MdnPrm::sIrritated, Z2MdnPrm::sIrritatedTail, ARRAY_SIZE(Z2MdnPrm::sIrritated),  3, 7},
+    {Z2MdnPrm::sOrder,     Z2MdnPrm::sOrderTail,     ARRAY_SIZE(Z2MdnPrm::sOrder),      2, 4},
+    {Z2MdnPrm::sResent,    Z2MdnPrm::sResentTail,    ARRAY_SIZE(Z2MdnPrm::sResent),     2, 3},
+    {Z2MdnPrm::sCheerful,  Z2MdnPrm::sCheerfulTail,  ARRAY_SIZE(Z2MdnPrm::sCheerful),   1, 7},
+    {Z2MdnPrm::sConfused,  Z2MdnPrm::sConfusedTail,  ARRAY_SIZE(Z2MdnPrm::sConfused),   3, 2},
+    {Z2MdnPrm::sHostility, Z2MdnPrm::sHostilityTail, ARRAY_SIZE(Z2MdnPrm::sHostility), 2, 5},
+    {Z2MdnPrm::sTired,     Z2MdnPrm::sTiredTail,     ARRAY_SIZE(Z2MdnPrm::sTired),     3, 5},
+    {Z2MdnPrm::sSerious,   Z2MdnPrm::sSeriousTail,   ARRAY_SIZE(Z2MdnPrm::sSerious),   2, 5},
+    {Z2MdnPrm::sReplyb,    Z2MdnPrm::sReplybTail,    ARRAY_SIZE(Z2MdnPrm::sReplyb),    4, 3},
+    {Z2MdnPrm::sApologize, Z2MdnPrm::sApologizeTail, ARRAY_SIZE(Z2MdnPrm::sApologize), 4, 5},
+    {Z2MdnPrm::sDeside,    Z2MdnPrm::sDesideTail,    ARRAY_SIZE(Z2MdnPrm::sDeside),    1, 7},
+    {Z2MdnPrm::sAfford,    Z2MdnPrm::sAffordTail,    ARRAY_SIZE(Z2MdnPrm::sAfford),    2, 10},
 };
 
 /* 802CBC60-802CBCEC 2C65A0 008C+00 0/0 1/1 0/0 .text            __ct__12Z2SpeechMgr2Fv */
@@ -356,6 +373,7 @@ Z2SpeechMgr2::Z2SpeechMgr2() : JASGlobalInstance<Z2SpeechMgr2>(true), random(0) 
     mVoice = 0;
     field_0x3ff = 0;
     field_0x401 = 0;
+
     for (int i = 0; i < 64; i++) {
         field_0x402[i] = -1;
     }
@@ -363,8 +381,8 @@ Z2SpeechMgr2::Z2SpeechMgr2() : JASGlobalInstance<Z2SpeechMgr2>(true), random(0) 
 
 /* 802CBD88-802CBF60 2C66C8 01D8+00 1/0 1/1 0/0 .text            setString__12Z2SpeechMgr2FPCUssUcUs
  */
-void Z2SpeechMgr2::setString(u16 const* s, s16 i_textNum, u8 i_speaker, u16 i_mood) {
-    switch (i_speaker) {
+void Z2SpeechMgr2::setString(const u16* s, s16 textNum, u8 speakerID, u16 mood) {
+    switch (speakerID) {
     case 0x13:
     case 0x15:
         mVoice = 1;
@@ -467,19 +485,19 @@ void Z2SpeechMgr2::setString(u16 const* s, s16 i_textNum, u8 i_speaker, u16 i_mo
     }
 
     if (mVoice == 1 || mVoice == 2) {
-        if (i_mood == 0) {
+        if (mood == 0) {
             mMood = 0;
         } else {
-            if (i_mood > 17) {
+            if (mood > 17) {
                 if ((mVoice == 21) || (mVoice == 20)) {
                     mMood = 0;
                 }
             } else {
-                mMood = i_mood - 1;
+                mMood = mood - 1;
             }
         }
     } else {
-        mMood = i_mood;
+        mMood = mood;
     }
     
     for (int i = 0; i < 500; i++) {
@@ -488,18 +506,19 @@ void Z2SpeechMgr2::setString(u16 const* s, s16 i_textNum, u8 i_speaker, u16 i_mo
 
     JUT_ASSERT(383, s != NULL);
 
-    if (i_textNum > 500) {
+    if (textNum > 500) {
         mTextNum = 500;
-        JUT_WARN_DEVICE(387, 1, "TOO MANY TEXT : now(%d) > max(%d)", i_textNum, 500);
+        JUT_WARN_DEVICE(387, 1, "TOO MANY TEXT : now(%d) > max(%d)", textNum, 500);
     } else {
-        mTextNum = i_textNum;
+        mTextNum = textNum;
     }
 
-    #ifdef DEBUG
-    for (int i = 0; i <= mTextNum; i++) {
+    #if VERSION == VERSION_SHIELD_DEBUG
+    for (int i = 0; i <= mTextNum; i++)
     #else
-    for (int i = 0; i < mTextNum; i++) {
+    for (int i = 0; i < mTextNum; i++)
     #endif
+    {
         mText[i] = s[i];
     }
     
@@ -516,22 +535,24 @@ void Z2SpeechMgr2::setString(u16 const* s, s16 i_textNum, u8 i_speaker, u16 i_mo
 }
 
 /* 802CBF60-802CC190 2C68A0 0230+00 1/0 2/2 0/0 .text            setTextCount__12Z2SpeechMgr2Fs */
-void Z2SpeechMgr2::setTextCount(s16 i_textCount) {
+void Z2SpeechMgr2::setTextCount(s16 textCount) {
     if (mVoice != 99) {
         field_0x3ff = 0x0;
 
-        #ifndef DEBUG
-        i_textCount = (i_textCount == 0) ? 0 : i_textCount - 1;
+        #if VERSION != VERSION_SHIELD_DEBUG
+        textCount = (textCount == 0) ? 0 : textCount - 1;
         #endif
 
         bool all_text = false;
-        if (mTextCount == 0 && i_textCount >= mTextNum) {
+        if (mTextCount == 0 && textCount >= mTextNum) {
             all_text = true;
         }
-        mTextCount = i_textCount;
+
+        mTextCount = textCount;
         if (mTextCount >= mTextNum) {
             mTextCount = mTextNum;
         }
+
         if (mVoice == 1 || mVoice == 2) {
             if (!field_0x0.isSoundAttached()) {
                 speakOneWord(false);
@@ -576,8 +597,8 @@ void Z2SpeechMgr2::setTextCount(s16 i_textCount) {
                     sound_id = Z2SE_SY_TEXT_OUT_ZANT;
                     break;
                 }
-                mSpeech.startSound(sound_id, &field_0x4, NULL, 0, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f,
-                                   0);
+
+                mSpeech.startSound(sound_id, &field_0x4, NULL, 0, 0.0f, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             }
         }
     }
@@ -594,11 +615,12 @@ void Z2SpeechMgr2::speakOneWord(bool param_0) {
         } else if (isNonVerbal()) {
             return;
         }
-        u32 sound = mMood + Z2SE_HYL_MDN_RPLY;
-        f32 fVar1 = Z2GetSceneMgr()->getRoomReverb() / 127.0f;
-        bool soundStarted =
-            mSpeech.startSound(sound, &field_0x0, NULL, 0, fVar1, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+
+        u32 soundID = mMood + Z2SE_HYL_MDN_RPLY;
+        f32 fxMix = Z2GetSceneMgr()->getRoomReverb() / 127.0f;
+        bool soundStarted = mSpeech.startSound(soundID, &field_0x0, NULL, 0, fxMix, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         mSpeech.setPortData(&field_0x0, 8, field_0x402[field_0x401 - 1] + 1, -1);
+
         if (field_0x400 == 0) {
             selectUnit(param_0);
         }
@@ -608,39 +630,39 @@ void Z2SpeechMgr2::speakOneWord(bool param_0) {
 /* 802CC2FC-802CC4C0 2C6C3C 01C4+00 2/2 0/0 0/0 .text            isNonVerbal__12Z2SpeechMgr2Fv */
 bool Z2SpeechMgr2::isNonVerbal() {
     switch(mText[mTextCount]) {
-    case 0:
-    case 0x20:
-    case 0x21:
-    case 0x22:
-    case 0x23:
-    case 0x24:
-    case 0x25:
-    case 0x26:
-    case 0x27:
-    case 0x28:
-    case 0x29:
-    case 0x2a:
-    case 0x2b:
-    case 0x2c:
-    case 0x2d:
-    case 0x2e:
-    case 0x2f:
-    case 0x3a:
-    case 0x3b:
-    case 0x3c:
-    case 0x3d:
-    case 0x3e:
-    case 0x3f:
-    case 0x4b:
-    case 0x4c:
-    case 0x4d:
-    case 0x4e:
-    case 0x4f:
-    case 0x5b:
-    case 0x5c:
-    case 0x5d:
-    case 0x5e:
-    case 0x5f:
+    case '\0':
+    case ' ':
+    case '!':
+    case '\"':
+    case '#':
+    case '$':
+    case '%':
+    case '&':
+    case '\'':
+    case '(':
+    case ')':
+    case '*':
+    case '+':
+    case ',':
+    case '-':
+    case '.':
+    case '/':
+    case ':':
+    case ';':
+    case '<':
+    case '=':
+    case '>':
+    case '?':
+    case 'K':
+    case 'L':
+    case 'M':
+    case 'N':
+    case 'O':
+    case '[':
+    case '\\':
+    case ']':
+    case '^':
+    case '_':
     case 0x813f:
     case 0x8140:
     case 0x8141:
@@ -681,7 +703,8 @@ bool Z2SpeechMgr2::isNonVerbal() {
         return true;
     }
 
-    if(mText[mTextCount] == 0x0a) {
+    #if VERSION != VERSION_SHIELD_DEBUG
+    if(mText[mTextCount] == 0xA) {
         switch (mVoice) {
         case 1:
         case 2:
@@ -690,11 +713,13 @@ bool Z2SpeechMgr2::isNonVerbal() {
             return true;
         }
     }
+    #endif
+
     return false;
 }
 
 typedef struct {
-    s8 field_0x0;
+    s8 unitIndex;
     u8 field_0x1;
 } Z2ConnectCost;
 
@@ -707,7 +732,7 @@ void Z2SpeechMgr2::selectUnit(bool param_0) {
         return;
     }
 
-    s8 ZVar2 = random.get_uint8(Z2MdnPrm::sPrm[mMood].field_0x8);
+    s8 unitIndex = random.get_uint8(Z2MdnPrm::sPrm[mMood].mainNum);
     s8 ZVar3;
     s8 cVar5;
 
@@ -717,10 +742,10 @@ void Z2SpeechMgr2::selectUnit(bool param_0) {
 
         while (true) {
             bool bVar1 = false;
-            ZVar2 = random.get_uint8(Z2MdnPrm::sPrm[mMood].field_0x8);
+            unitIndex = random.get_uint8(Z2MdnPrm::sPrm[mMood].mainNum);
 
             for (int i = 0; i < field_0x401; i++) {
-                if (field_0x402[i] == ZVar2) {
+                if (field_0x402[i] == unitIndex) {
                     bVar1 = true;
                     break;
                 }
@@ -731,7 +756,7 @@ void Z2SpeechMgr2::selectUnit(bool param_0) {
             }
 
             for (int i = 0; i < cVar5; i++) {
-                if (ZVar2 == cost[i].field_0x0) {
+                if (unitIndex == cost[i].unitIndex) {
                     bVar1 = true;
                     break;
                 }
@@ -741,9 +766,9 @@ void Z2SpeechMgr2::selectUnit(bool param_0) {
                 continue;
             }
 
-            const u8 (*prm)[2] = (u8 (*)[2])Z2MdnPrm::sPrm[mMood].field_0x0;
-            u8 local_3f = JMAAbs(prm[ZVar2][0] - prm[ZVar4][1]);
-            Z2ConnectCost connectCost = {ZVar2, local_3f};
+            const Z2MdnPrm::Unit* units = Z2MdnPrm::sPrm[mMood].main;
+            u8 local_3f = JMAAbs(units[unitIndex].start - units[ZVar4].end);
+            Z2ConnectCost connectCost = {unitIndex, local_3f};
             cost[cVar5] = connectCost;
             cVar5++;
 
@@ -753,16 +778,16 @@ void Z2SpeechMgr2::selectUnit(bool param_0) {
         }
         
         u16 tmp = cost[0].field_0x1;
-        ZVar2 = cost[0].field_0x0;
+        unitIndex = cost[0].unitIndex;
         for (int i = 0; i < 5; i++) {
             if (cost[i].field_0x1 < tmp) {
                 tmp = cost[i].field_0x1;
-                ZVar2 = cost[i].field_0x0;
+                unitIndex = cost[i].unitIndex;
             }
         }
     }
 
-    field_0x402[field_0x401] = ZVar2;
+    field_0x402[field_0x401] = unitIndex;
     field_0x401++;
 }
 
@@ -772,34 +797,33 @@ void Z2SpeechMgr2::selectTail() {
     s8 cVar9 = 0;
     s8 ZVar1 = field_0x402[field_0x401 - 1];
     s8 ZVar6;
-    u8 bVar3;
+    u8 bVar3 = 0;
 
     while (true) {
         bool bVar5 = false;
 
         switch (mVoice) {
         case 2:
-            bVar3 = Z2MdnPrm::sPrm[mMood].field_0x9;
+            bVar3 = Z2MdnPrm::sPrm[mMood].tailNum1;
             ZVar6 = random.get_uint8(bVar3);
             break;
         case 1:
-            bVar3 = Z2MdnPrm::sPrm[mMood].field_0xa;
-            ZVar6 = Z2MdnPrm::sPrm[mMood].field_0x9 + random.get_uint8(bVar3);
+            bVar3 = Z2MdnPrm::sPrm[mMood].tailNum2;
+            ZVar6 = Z2MdnPrm::sPrm[mMood].tailNum1 + random.get_uint8(bVar3);
             break;
         default:
             return;
         }
 
         for (int i = 0; i < cVar9; i++) {
-            if (ZVar6 == cost[i].field_0x0) {
+            if (ZVar6 == cost[i].unitIndex) {
                 bVar5 = true;
                 break;
             }
         }
 
         if (!bVar5) {
-            u8 local_3f = JMAAbs(Z2MdnPrm::sPrm[mMood].field_0x4[ZVar6]
-                                    - Z2MdnPrm::sPrm[mMood].field_0x0[ZVar1 * 2 + 1]);
+            u8 local_3f = JMAAbs(Z2MdnPrm::sPrm[mMood].tail[ZVar6] - Z2MdnPrm::sPrm[mMood].main[ZVar1].end);
             Z2ConnectCost connectCost = {ZVar6, local_3f};
             cost[cVar9] = connectCost;
             cVar9++;
@@ -807,15 +831,15 @@ void Z2SpeechMgr2::selectTail() {
             if (cVar9 == bVar3 || cVar9 == 5) {
                 s8 tmp_r8;
                 u16 tmp_r9 = cost[0].field_0x1;
-                tmp_r8 = cost[0].field_0x0;
-                int local_3c = bVar3 >= 5 ? 5 : bVar3;
+                tmp_r8 = cost[0].unitIndex;
+                int local_3c = bVar3 < 5 ? bVar3 : 5;
                 for (int i = 0; i < local_3c; i++) {
                     if (cost[i].field_0x1 < tmp_r9) {
                         tmp_r9 = cost[i].field_0x1;
-                        tmp_r8 = cost[i].field_0x0;
+                        tmp_r8 = cost[i].unitIndex;
                     }
                 }
-                field_0x402[field_0x401 - 1] = tmp_r8 + Z2MdnPrm::sPrm[mMood].field_0x8;
+                field_0x402[field_0x401 - 1] = tmp_r8 + Z2MdnPrm::sPrm[mMood].mainNum;
                 return;
             }
         }
@@ -841,15 +865,15 @@ void Z2SpeechMgr2::framework() {
 
 /* 802CCA18-802CCF88 2C7358 0570+00 0/0 2/2 0/0 .text playOneShotVoice__12Z2SpeechMgr2FUcUsP3VecSc
  */
-void Z2SpeechMgr2::playOneShotVoice(u8 i_speaker, u16 param_1, Vec* i_pos, s8 param_3) {
-    if (i_speaker == 0) {
+void Z2SpeechMgr2::playOneShotVoice(u8 speakerID, u16 param_1, Vec* posPtr, s8 param_3) {
+    if (speakerID == 0) {
         return;
     }
 
     f32 fxmix = Z2GetSceneMgr()->getRoomReverb() / 127.0f;
 
     if (mVoice == 1 || mVoice == 2) {
-        JAISoundID sound_id;
+        JAISoundID sound_id(-1);
         switch (param_1) {
         case 25:
             sound_id = Z2SE_MSG_V_MDN_D21;
@@ -883,13 +907,13 @@ void Z2SpeechMgr2::playOneShotVoice(u8 i_speaker, u16 param_1, Vec* i_pos, s8 pa
         }
 
         if (sound_id != -1) {
-            mSpeech.startSound(sound_id, &field_0x0, (JGeometry::TVec3<f32>*)i_pos,
-                               i_speaker, fxmix, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            mSpeech.startSound(sound_id, &field_0x0, (JGeometry::TVec3<f32>*)posPtr,
+                               speakerID, fxmix, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         }
     
     } else {
         JAISoundID sound_id = Z2SE_MESSAGE_SE_COMMON;
-        switch (i_speaker) {
+        switch (speakerID) {
         case 3:
             if (param_1 == 1) {
                 Z2GetSeqMgr()->subBgmStart(Z2BGM_ITEM_GET_MINI);
@@ -987,7 +1011,7 @@ void Z2SpeechMgr2::playOneShotVoice(u8 i_speaker, u16 param_1, Vec* i_pos, s8 pa
         if (field_0x0) {
             field_0x0.releaseSound();
         }
-        mSpeech.startSound(sound_id, &field_0x0, (JGeometry::TVec3<f32>*)i_pos, i_speaker,
+        mSpeech.startSound(sound_id, &field_0x0, (JGeometry::TVec3<f32>*)posPtr, speakerID,
                            fxmix, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         if (field_0x0) {
             mSpeech.setPortData(&field_0x0, 8, param_1, -1);
@@ -1000,6 +1024,7 @@ bool Z2SpeechMgr2::isMidnaSpeak() {
     if ((mVoice == 1 || mVoice == 2) && field_0x0) {
         return true;
     } 
+
     return false;
 }
 
@@ -1008,48 +1033,48 @@ Z2SpeechStarter::Z2SpeechStarter() : Z2SoundStarter(false) {}
 
 /* 802CCFF8-802CD248 2C7938 0250+00 1/0 0/0 0/0 .text
  * startSound__15Z2SpeechStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
-bool Z2SpeechStarter::startSound(JAISoundID i_soundID, JAISoundHandle* i_handle,
-                                 JGeometry::TVec3<f32> const* i_pos, u32 param_3, f32 i_fxmix,
-                                 f32 i_pitch, f32 i_volume, f32 i_pan, f32 i_dolby, u32 i_count) {
+bool Z2SpeechStarter::startSound(JAISoundID soundID, JAISoundHandle* handlePtr,
+                                 const JGeometry::TVec3<f32>* posPtr, u32 portData, f32 fxmix,
+                                 f32 pitch, f32 volume, f32 pan, f32 dolby, u32 moveSteps) {
+    JUT_ASSERT(1076, handlePtr);
+
     if (Z2GetSceneMgr()->isInDarkness() && Z2GetSceneMgr()->getDemoSeWaveNum() != 0x77
                                         && Z2GetSceneMgr()->getDemoSeWaveNum() != 0x78) {
-        i_fxmix = 1.0f;
+        fxmix = 1.0f;
     } else {
         f32 tmp = Z2GetStatusMgr()->getCameraInWaterDepthRatio() > 0.0f;
         if (tmp) {
-            i_fxmix = tmp;
-        } else if (Z2GetSceneMgr()->getDemoSeWaveNum() == 0x6c
-                || Z2GetSceneMgr()->getDemoSeWaveNum() == 0x77)
-        {
-            i_fxmix = 0.07f;
+            fxmix = tmp;
+        } else if (Z2GetSceneMgr()->getDemoSeWaveNum() == 0x6c || Z2GetSceneMgr()->getDemoSeWaveNum() == 0x77) {
+            fxmix = 0.07f;
         } else {
-            i_fxmix += Z2GetEnvSeMgr()->getFogDensity() * 0.5f;
-            if (i_fxmix > 1.0f) {
-                i_fxmix = 1.0f;
+            fxmix += Z2GetEnvSeMgr()->getFogDensity() * 0.5f;
+            if (fxmix > 1.0f) {
+                fxmix = 1.0f;
             }
         }
     }
 
-    bool ret = Z2GetAudioMgr()->startSound(i_soundID, i_handle, i_pos);
+    bool ret = Z2GetAudioMgr()->startSound(soundID, handlePtr, posPtr);
 
-    if (*i_handle) {
-        if (param_3 != 0) {
-            setPortData(i_handle, 6, param_3, -1);
+    if (*handlePtr) {
+        if (portData != 0) {
+            setPortData(handlePtr, 6, portData, -1);
         }
-        if (i_fxmix > 0.0f) {
-            (*i_handle)->getAuxiliary().moveFxMix(i_fxmix, i_count);
+        if (fxmix > 0.0f) {
+            (*handlePtr)->getAuxiliary().moveFxMix(fxmix, moveSteps);
         }
-        if (i_pitch != 1.0f) {
-            (*i_handle)->getAuxiliary().movePitch(i_pitch, i_count);
+        if (pitch != 1.0f) {
+            (*handlePtr)->getAuxiliary().movePitch(pitch, moveSteps);
         }
-        if (i_volume != 1.0f) {
-            (*i_handle)->getAuxiliary().moveVolume(i_volume, i_count);
+        if (volume != 1.0f) {
+            (*handlePtr)->getAuxiliary().moveVolume(volume, moveSteps);
         }
-        if (i_pan != -1.0f) {
-            (*i_handle)->getAuxiliary().movePan(i_pan, i_count);
+        if (pan != -1.0f) {
+            (*handlePtr)->getAuxiliary().movePan(pan, moveSteps);
         }
-        if (i_dolby != -1.0f) {
-            (*i_handle)->getAuxiliary().moveDolby(i_dolby, i_count);
+        if (dolby != -1.0f) {
+            (*handlePtr)->getAuxiliary().moveDolby(dolby, moveSteps);
         }
     }
 

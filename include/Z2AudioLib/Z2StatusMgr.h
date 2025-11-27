@@ -2,7 +2,7 @@
 #define Z2STATUSMGR_H
 
 #include "JSystem/JAudio2/JASGadget.h"
-#include "dolphin/mtx.h"
+#include <dolphin/mtx.h>
 
 struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     Z2StatusMgr();
@@ -13,13 +13,13 @@ struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     void menuIn();
     void menuOut();
     bool isMovieDemo();
-    void setDemoName(char*);
+    void setDemoName(char* demoName);
     void processTime();
     bool checkDayTime();
-    void setEventBit(void*);
-    void setCameraPolygonPos(Vec*);
+    void setEventBit(void* eventBit);
+    void setCameraPolygonPos(Vec* polygonPos);
     void setCameraGroupInfo(u8);
-    void setCameraInWaterDepth(float);
+    void setCameraInWaterDepth(f32 depth);
 
     u8 getDemoStatus() { return mDemoStatus; }
     void setHour(s32 hour) { mHour = hour; }

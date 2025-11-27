@@ -104,11 +104,11 @@ u16 seqCallback(JASTrack* track, u16 command) {
 /* 802A9E80-802A9EE8 2A47C0 0068+00 0/0 1/1 0/0 .text            __ct__10Z2SoundMgrFv */
 Z2SoundMgr::Z2SoundMgr() :
     JASGlobalInstance<Z2SoundMgr>(true),
-    mSeMgr(true),
-    mSeqMgr(true),
-    mStreamMgr(true)
+    seMgr_(true),
+    seqMgr_(true),
+    streamMgr_(true)
 {
-    mSoundID.setAnonymous();
+    soundID_.setAnonymous();
 }
 
 /* 802A9EE8-802AA1B0 2A4828 02C8+00 1/0 0/0 0/0 .text
@@ -120,7 +120,7 @@ bool Z2SoundMgr::startSound(JAISoundID soundID, JAISoundHandle* handle, const JG
         if (Z2GetSoundInfo()->getSwBit(soundID) & 8) {
             OS_REPORT("[Z2SoundMgr::startSound] se seq Mute! id = %08x\n", *(u32*)&soundID);
             Z2GetSeqMgr()->bgmAllMute(3, 0.3f);
-            mSoundID = soundID;
+            soundID_ = soundID;
         }
 
         #if PLATFORM_WII || PLATFORM_SHIELD
@@ -131,7 +131,7 @@ bool Z2SoundMgr::startSound(JAISoundID soundID, JAISoundHandle* handle, const JG
         }
         #endif
         
-        bool result = mSeMgr.startSound(soundID, handle, posPtr);
+        bool result = seMgr_.startSound(soundID, handle, posPtr);
         return result;
     }
     case 1:
@@ -139,7 +139,7 @@ bool Z2SoundMgr::startSound(JAISoundID soundID, JAISoundHandle* handle, const JG
             Z2GetSeqMgr()->bgmStart(Z2BGM_LUTERA2, 0, 0);
             Z2GetSeqMgr()->unMuteSceneBgm(0);
             Z2GetSeqMgr()->changeBgmStatus(0);
-            return mSeMgr.startSound(Z2SE_NO_SOUND, handle, posPtr);
+            return seMgr_.startSound(Z2SE_NO_SOUND, handle, posPtr);
         } else {
             bool loaded = false;
             JAUSectionHeap* sectionHeap = JASGlobalInstance<JAUSectionHeap>::getInstance();
@@ -164,18 +164,18 @@ bool Z2SoundMgr::startSound(JAISoundID soundID, JAISoundHandle* handle, const JG
 
             }
 
-            return mSeqMgr.startSound(soundID, handle, posPtr);
+            return seqMgr_.startSound(soundID, handle, posPtr);
         }
     case 2:
         if (soundID == 0x2000001 || soundID == 0x200004d) {
-            mStreamMgr.stop(180);
-            return mSeMgr.startSound(Z2SE_NO_SOUND, handle, posPtr);
+            streamMgr_.stop(180);
+            return seMgr_.startSound(Z2SE_NO_SOUND, handle, posPtr);
         }
         if (soundID == 0x2000005) {
-            mSeMgr.getCategory(9)->pause(false);
-            mSeMgr.getCategory(9)->getParams()->moveVolume(1.0f, 45);
+            seMgr_.getCategory(9)->pause(false);
+            seMgr_.getCategory(9)->getParams()->moveVolume(1.0f, 45);
         }
-        return mStreamMgr.startSound(soundID, handle, posPtr);
+        return streamMgr_.startSound(soundID, handle, posPtr);
     default:
         char error[32];
         sprintf(error, "Unknown Sound-Type id :%08x\n", *(u32*)&soundID);
@@ -187,31 +187,31 @@ bool Z2SoundMgr::startSound(JAISoundID soundID, JAISoundHandle* handle, const JG
 
 /* 802AA1B0-802AA270 2A4AF0 00C0+00 2/2 0/0 0/0 .text            calc__10Z2SoundMgrFv */
 void Z2SoundMgr::calc() {
-    mSeMgr.calc();
-    if (!mSoundID.isAnonymous() && !isPlayingSoundID(mSoundID)) {
+    seMgr_.calc();
+    if (!soundID_.isAnonymous() && !isPlayingSoundID(soundID_)) {
         if (Z2GetSceneMgr()->isSceneExist()) {
             Z2GetSeqMgr()->bgmAllUnMute(3);
         }
-        mSoundID.setAnonymous();
+        soundID_.setAnonymous();
     }
-    mSeqMgr.calc();
-    mStreamMgr.calc();
+    seqMgr_.calc();
+    streamMgr_.calc();
 }
 
 /* 802AA270-802AA33C 2A4BB0 00CC+00 1/1 2/2 0/0 .text            setIIR__10Z2SoundMgrFP8JAISoundPCs
  */
-void Z2SoundMgr::setIIR(JAISound* param_0, s16 const* param_1) {
-    if (param_0 != NULL) {
-        JASTrack* track = param_0->getTrack();
+void Z2SoundMgr::setIIR(JAISound* sound, const s16* iir) {
+    if (sound != NULL) {
+        JASTrack* track = sound->getTrack();
         JUT_ASSERT(340, track);
         for (u32 i = 0; i < 4; i++) {
             JASTrack* child = track->getChild(i);
             if (child != NULL && child->getStatus() == 1) {
-                child->setIIR(param_1);
+                child->setIIR(iir);
                 for (u32 j = 0; j < 4; j++) {
                     JASTrack* child2 = child->getChild(j);
                     if (child2 != NULL && child2->getStatus() == 1) {
-                        child2->setIIR(param_1);
+                        child2->setIIR(iir);
                     }
                 }
             }
@@ -225,9 +225,9 @@ static s16 const cResetFilterTable[8] = {
 };
 
 /* 802AA33C-802AA430 2A4C7C 00F4+00 1/1 0/0 0/0 .text setFilterOff__10Z2SoundMgrFP8JAISound */
-void Z2SoundMgr::setFilterOff(JAISound* param_0) {
-    if (param_0 != NULL) {
-        JASTrack* track = param_0->getTrack();
+void Z2SoundMgr::setFilterOff(JAISound* sound) {
+    if (sound != NULL) {
+        JASTrack* track = sound->getTrack();
         JUT_ASSERT(403, track);
         for (u32 i = 0; i < 4; i++) {
             JASTrack* child = track->getChild(i);
@@ -249,12 +249,12 @@ void Z2SoundMgr::setFilterOff(JAISound* param_0) {
 /* 802AA430-802AA528 2A4D70 00F8+00 0/0 1/1 0/0 .text            resetFilterAll__10Z2SoundMgrFv */
 void Z2SoundMgr::resetFilterAll() {
     int i = 1;
-    if (Z2Param::SYSTEM_SE_USE_DARK_SE_SETTING != 0) {
+    if (Z2Param::SYSTEM_SE_USE_DARK_SE_SETTING) {
         i = 0;
     }
 
     for (; i < 9; i++) {
-        JAISeCategoryMgr* category = mSeMgr.getCategory(i);
+        JAISeCategoryMgr* category = seMgr_.getCategory(i);
         int se_count = category->getMaxActiveSe();
         if (se_count > 0) {
             for (JSULink<JAISe>* link = category->getSeList()->getFirst();
@@ -276,18 +276,19 @@ void Z2SoundMgr::resetFilterAll() {
 
 /* 802AA528-802AA67C 2A4E68 0154+00 2/2 0/0 0/0 .text            mixOut__10Z2SoundMgrFv */
 void Z2SoundMgr::mixOut() {
-    if (Z2Param::DARK_SE_FILTER_ON != 0 && Z2GetSceneMgr()->isInDarkness()) {
+    if (Z2Param::DARK_SE_FILTER_ON && Z2GetSceneMgr()->isInDarkness()) {
         int i = 1;
-        if (Z2Param::SYSTEM_SE_USE_DARK_SE_SETTING != 0) {
+        if (Z2Param::SYSTEM_SE_USE_DARK_SE_SETTING) {
             i = 0;
         }
+
         for (; i < 9; i++) {
-            JAISeCategoryMgr* category = mSeMgr.getCategory(i);
+            JAISeCategoryMgr* category = seMgr_.getCategory(i);
             int se_count = category->getMaxActiveSe();
             if (se_count > 0) {
                 for (JSULink<JAISe>* link = category->getSeList()->getFirst();
                     link != NULL && se_count > 0 && !link->getObject()->isFarAway();
-                    link = link->getNext(), se_count--)
+                    link = link->getNext(), --se_count)
                 {
                     setIIR(link->getObject(), JASCalc::CUTOFF_TO_IIR_TABLE[Z2Param::DARK_SE_LOW_PASS_FILTER_SETTING]);
                 }
@@ -301,9 +302,10 @@ void Z2SoundMgr::mixOut() {
             }
         }
     }
-    mSeMgr.mixOut();
-    mSeqMgr.mixOut();
-    mStreamMgr.mixOut();
+
+    seMgr_.mixOut();
+    seqMgr_.mixOut();
+    streamMgr_.mixOut();
 }
 
 /* 802AA67C-802AA6B0 2A4FBC 0034+00 0/0 1/1 0/0 .text            framework__10Z2SoundMgrFv */
@@ -314,45 +316,44 @@ void Z2SoundMgr::framework() {
 
 /* 802AA6B0-802AA7DC 2A4FF0 012C+00 0/0 1/1 0/0 .text            pauseAllGameSound__10Z2SoundMgrFb
  */
-void Z2SoundMgr::pauseAllGameSound(bool i_pause) {
-    mSeMgr.getCategory(0)->pause(i_pause);
-    mSeMgr.getCategory(1)->pause(i_pause);
-    mSeMgr.getCategory(2)->pause(i_pause);
-    mSeMgr.getCategory(3)->pause(i_pause);
-    mSeMgr.getCategory(4)->pause(i_pause);
-    mSeMgr.getCategory(5)->pause(i_pause);
-    mSeMgr.getCategory(6)->pause(i_pause);
-    mSeMgr.getCategory(7)->pause(i_pause);
-    mSeMgr.getCategory(8)->pause(i_pause);
-    mSeMgr.getCategory(9)->pause(i_pause);
-    mSeqMgr.pause(i_pause);
-    mStreamMgr.pause(i_pause);
-    if (i_pause) {
+void Z2SoundMgr::pauseAllGameSound(bool paused) {
+    seMgr_.getCategory(0)->pause(paused);
+    seMgr_.getCategory(1)->pause(paused);
+    seMgr_.getCategory(2)->pause(paused);
+    seMgr_.getCategory(3)->pause(paused);
+    seMgr_.getCategory(4)->pause(paused);
+    seMgr_.getCategory(5)->pause(paused);
+    seMgr_.getCategory(6)->pause(paused);
+    seMgr_.getCategory(7)->pause(paused);
+    seMgr_.getCategory(8)->pause(paused);
+    seMgr_.getCategory(9)->pause(paused);
+    seqMgr_.pause(paused);
+    streamMgr_.pause(paused);
+
+    if (paused) {
         Z2GetSeMgr()->seMoveVolumeAll(0.0f, 10);
-        mSeqMgr.getParams()->moveVolume(0.0f, 10);
-        mStreamMgr.getParams()->moveVolume(0.0f, 10);
-    }
-    else {
+        seqMgr_.getParams()->moveVolume(0.0f, 10);
+        streamMgr_.getParams()->moveVolume(0.0f, 10);
+    } else {
         Z2GetSeMgr()->seMoveVolumeAll(1.0f, 10);
-        mSeqMgr.getParams()->moveVolume(1.0f, 10);
-        mStreamMgr.getParams()->moveVolume(1.0f, 10);
+        seqMgr_.getParams()->moveVolume(1.0f, 10);
+        streamMgr_.getParams()->moveVolume(1.0f, 10);
     }
 }
 
-
 /* 802AA7DC-802AA84C 2A511C 0070+00 0/0 1/1 0/0 .text stopSoundID__10Z2SoundMgrF10JAISoundID */
 void Z2SoundMgr::stopSoundID(JAISoundID soundID) {
-    mSeMgr.stopSoundID(soundID);
-    mSeqMgr.stopSoundID(soundID);
-    mStreamMgr.stopSoundID(soundID);
+    seMgr_.stopSoundID(soundID);
+    seqMgr_.stopSoundID(soundID);
+    streamMgr_.stopSoundID(soundID);
 }
 
 /* 802AA84C-802AA8C8 2A518C 007C+00 0/0 1/1 0/0 .text            stopSync__10Z2SoundMgrFv */
 void Z2SoundMgr::stopSync() {
     stop();
-    while (mSeMgr.getNumActiveSe() > 0 || mSeqMgr.getNumActiveSeqs() > 0) {
+    while (seMgr_.getNumActiveSe() > 0 || seqMgr_.getNumActiveSeqs() > 0) {
         calc();
-        if (mSeMgr.getNumActiveSe() == 0 && mSeqMgr.getNumActiveSeqs() == 0) {
+        if (seMgr_.getNumActiveSe() == 0 && seqMgr_.getNumActiveSeqs() == 0) {
             break;
         }
         mixOut();
@@ -362,28 +363,29 @@ void Z2SoundMgr::stopSync() {
 
 /* 802AA8C8-802AA908 2A5208 0040+00 1/1 0/0 0/0 .text            stop__10Z2SoundMgrFv */
 void Z2SoundMgr::stop() {
-    mSeMgr.stop();
-    mSeqMgr.stop();
-    mStreamMgr.stop();
+    seMgr_.stop();
+    seqMgr_.stop();
+    streamMgr_.stop();
 }
 
 /* 802AA908-802AA9E8 2A5248 00E0+00 0/0 1/1 0/0 .text            initParams__10Z2SoundMgrFv */
 void Z2SoundMgr::initParams() {
-    mSeMgr.initParams();
-    mSeqMgr.getParams()->init();
-    mStreamMgr.getParams()->init();
-}
+    JUT_ASSERT(613, ! seMgr_.isActive());
+    JUT_ASSERT(614, ! seqMgr_.isActive());
 
+    seMgr_.initParams();
+    seqMgr_.getParams()->init();
+    streamMgr_.getParams()->init();
+}
 
 /* 802AA9E8-802AAAC4 2A5328 00DC+00 0/0 1/1 0/0 .text
  * multiVolumeSoundID__10Z2SoundMgrF10JAISoundIDf               */
-void Z2SoundMgr::multiVolumeSoundID(JAISoundID soundID, f32 i_multi) {
+void Z2SoundMgr::multiVolumeSoundID(JAISoundID soundID, f32 volume) {
     if (!soundID.isAnonymous() && Z2GetSoundInfo()->getSoundType(soundID) == 0) {
-        const JSUList<JAISe>* list =
-            mSeMgr.getCategory(Z2GetSoundInfo()->getCategory(soundID))->getSeList();
-        for (JSULink<JAISe>* link = list->getFirst(); link != NULL; link = link->getNext()) {
+        int category = Z2GetSoundInfo()->getCategory(soundID);
+        for (JSULink<JAISe>* link = seMgr_.getCategory(category)->getSeList()->getFirst(); link != NULL; link = link->getNext()) {
             if (link->getObject()->getID() == soundID) {
-                link->getObject()->getAuxiliary().params_.mVolume *= i_multi;
+                link->getObject()->getAuxiliary().params_.mVolume *= volume;
             }
         }
     }
@@ -395,16 +397,15 @@ bool Z2SoundMgr::isPlayingSoundID(JAISoundID soundID) {
     if (soundID.isAnonymous()) {
         return false;
     }
+
     if (Z2GetSoundInfo()->getSoundType(soundID) == 0) {
-        const JSUList<JAISe>* list =
-            mSeMgr.getCategory(Z2GetSoundInfo()->getCategory(soundID))->getSeList();
-        for (JSULink<JAISe>* link = list->getFirst(); link != NULL; link = link->getNext()) {
+        int category = Z2GetSoundInfo()->getCategory(soundID);
+        for (JSULink<JAISe>* link = seMgr_.getCategory(category)->getSeList()->getFirst(); link != NULL; link = link->getNext()) {
             if (link->getObject()->getID() == soundID) {
                 return true;
             }
         }
     }
+
     return false;
 }
-
-/* 8039B9D0-8039B9D0 028030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -11,7 +11,7 @@ struct Z2SoundStarter : public JAISoundStarter, public JASGlobalInstance<Z2Sound
     virtual ~Z2SoundStarter() {}
     virtual bool startSound(JAISoundID soundID, JAISoundHandle* handlePtr, const JGeometry::TVec3<f32>* posPtr);
     virtual bool startSound(JAISoundID soundID, JAISoundHandle* handlePtr,
-                            const JGeometry::TVec3<f32>* posPtr, u32 category, f32 fxMix,
+                            const JGeometry::TVec3<f32>* posPtr, u32 mapinfo, f32 fxMix,
                             f32 pitch, f32 volume, f32 pan, f32 dolby, u32 moveSteps);
 };
 
