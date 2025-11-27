@@ -9,7 +9,7 @@
 #include "Z2AudioLib/Z2Audience.h"
 #include "JSystem/JAudio2/JAUSoundAnimator.h"
 
-#if PLATFFORM_WII || PLATFORM_SHIELD
+#if PLATFORM_WII || PLATFORM_SHIELD
 #include "Z2AudioLib/Z2AudioCS.h"
 #endif
 
