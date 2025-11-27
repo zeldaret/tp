@@ -396,5 +396,3 @@ extern actor_process_profile_definition g_profile_Obj_Lv6SwTurn = {
     fopAc_ACTOR_e,             // mActorType
     fopAc_CULLBOX_CUSTOM_e,    // cullType
 };
-
-/* 80C846C4-80C846C4 000020 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

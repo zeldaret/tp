@@ -240,5 +240,3 @@ extern actor_process_profile_definition g_profile_OBJ_LBOX = {
 /* 80C53F98-80C53FA0 000B18 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 
 /* 80C53FA0-80C53FA8 000B20 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-
-/* 80C53FFC-80C53FFC 000040 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -1683,8 +1683,6 @@ static cPhs__Step daE_GB_Create(fopAc_ac_c* a_this) {
 /* 806C6B94-806C6D34 004F94 01A0+00 1/1 0/0 0/0 .text            __ct__10e_gb_classFv */
 e_gb_class::e_gb_class() {}
 
-/* 806C76B8-806C76B8 0001D0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 806C784C-806C786C -00001 0020+00 1/0 0/0 0/0 .data            l_daE_GB_Method */
 static actor_method_class l_daE_GB_Method = {
     (process_method_func)daE_GB_Create,

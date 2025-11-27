@@ -697,5 +697,3 @@ bool dMsgScrnItem_c::isOugiID() {
     }
     return false;
 }
-
-/* 80399990-80399990 025FF0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

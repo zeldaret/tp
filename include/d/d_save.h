@@ -457,8 +457,8 @@ public:
     void init();
     void addFishCount(u8 i_fishIndex);
     u16 getFishCount(u8 i_fishIndex) const { return mFishCount[i_fishIndex]; }
-    u8 getMaxSize(s32 i_sizeIndex) { return mMaxSize[i_sizeIndex]; }
-    void setMaxSize(s32 i_sizeIndex, u8 i_size) { mMaxSize[i_sizeIndex] = i_size; }
+    u8 getMaxSize(int i_sizeIndex) const { return mMaxSize[i_sizeIndex]; }
+    void setMaxSize(int i_sizeIndex, u8 i_size) { mMaxSize[i_sizeIndex] = i_size; }
 
 private:
     /* 0x00 */ u16 mFishCount[16];

@@ -10,10 +10,6 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_lib.h"
 
-//
-// External References:
-//
-
 static const char* l_arcName = "K_saku00";
 
 static const f32 l_cull_box[6] = {-200.f, -100.f, -200.f, 200.f, 100.f, 200.f};
@@ -23,10 +19,6 @@ static const Vec l_check_area[4] = {
     200.0,  0.0, 100.0,   // max
     -250.0, 0.0, 100.0,   // unknown
 };
-
-//
-// Declarations:
-//
 
 /* 80BB9A58-80BB9AE4 000078 008C+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjBmSh_cFv */
 void daObjBmSh_c::initBaseMtx() {
@@ -325,11 +317,11 @@ int daObjBmSh_Create(fopAc_ac_c* i_this) {
 
 /* 80BBA8F8-80BBA918 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjBmSh_Method */
 static actor_method_class l_daObjBmSh_Method = {
-    (process_method_func)daObjBmSh_Create,   // daObjBmSh_Create__FP10fopAc_ac_c
-    (process_method_func)daObjBmSh_Delete,   // daObjBmSh_Delete__FP11daObjBmSh_c
-    (process_method_func)daObjBmSh_Execute,  // daObjBmSh_Execute__FP11daObjBmSh_c
-    NULL,                                    //
-    (process_method_func)daObjBmSh_Draw,     // daObjBmSh_Draw__FP11daObjBmSh_c
+    (process_method_func)daObjBmSh_Create,
+    (process_method_func)daObjBmSh_Delete,
+    (process_method_func)daObjBmSh_Execute,
+    NULL,
+    (process_method_func)daObjBmSh_Draw,
 };
 
 /* 80BBA918-80BBA948 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_BoomShutter */

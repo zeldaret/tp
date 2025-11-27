@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_grr.h"
+#include "d/actor/d_a_npc.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 enum grR_RES_File_ID {

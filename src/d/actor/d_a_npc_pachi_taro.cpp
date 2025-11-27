@@ -8,6 +8,8 @@
 #include "d/actor/d_a_npc_pachi_taro.h"
 #include "JSystem/JHostIO/JORFile.h"
 #include "d/actor/d_a_tag_pachi.h"
+#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/actor/d_a_npc_pachi_maro.h"
 #include "d/actor/d_a_npc_pachi_besu.h"
 #include "d/d_debug_viewer.h"

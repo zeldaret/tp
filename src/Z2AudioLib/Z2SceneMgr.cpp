@@ -1946,7 +1946,7 @@ void Z2SceneMgr::load2ndDynamicWave() {
 }
 
 /* 802BA294-802BA56C 2B4BD4 02D8+00 1/0 2/2 0/0 .text            sceneBgmStart__10Z2SceneMgrFv */
-// NONMATCHING regalloc
+// NONMATCHING - extra BGM_ID load
 void Z2SceneMgr::sceneBgmStart() {
     OS_REPORT("[Z2SceneMgr::sceneBgmStart] %08x\n", *(u32*)&BGM_ID);
     inGame = true;

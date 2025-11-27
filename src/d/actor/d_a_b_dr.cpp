@@ -11,7 +11,7 @@
 #include "d/d_menu_window.h"
 #include "d/d_s_play.h"
 #include "d/d_debug_viewer.h"
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_camera.h"
 #include "c/c_damagereaction.h"
 #include "f_op/f_op_camera_mng.h"

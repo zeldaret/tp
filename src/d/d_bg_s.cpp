@@ -537,11 +537,12 @@ s32 dBgS::GetRoomPathPntNo(cBgS_PolyInfo const& poly) {
 /* 80075080-800750D0 06F9C0 0050+00 0/0 2/2 0/0 .text GetGrpSoundId__4dBgSFRC13cBgS_PolyInfo */
 int dBgS::GetGrpSoundId(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
-    if (m_chk_element[bg_index].ChkUsed()) {
-        return m_chk_element[bg_index].m_bgw_base_ptr->GetGrpSoundId(poly);
+    JUT_ASSERT(1761, 0 <= bg_index && bg_index < 256);
+    if (!m_chk_element[bg_index].ChkUsed()) {
+        return 0xFF;
     }
-
-    return 0xFF;
+    dBgW_Base* r30 = m_chk_element[bg_index].m_bgw_base_ptr;
+    return r30->GetGrpSoundId(poly);
 }
 
 /* 800750D0-80075100 06FA10 0030+00 0/0 1/1 0/0 .text ChkGrpInf__4dBgSFRC13cBgS_PolyInfoUl */
@@ -551,7 +552,7 @@ u32 dBgS::ChkGrpInf(cBgS_PolyInfo const& poly, u32 param_1) {
 }
 
 /* 80075100-8007519C 06FA40 009C+00 0/0 16/16 60/60 .text GetRoomId__4dBgSFRC13cBgS_PolyInfo */
-s32 dBgS::GetRoomId(cBgS_PolyInfo const& poly) {
+int dBgS::GetRoomId(cBgS_PolyInfo const& poly) {
     if (!poly.ChkSetInfo()) {
         return -1;
     }
@@ -576,21 +577,23 @@ s32 dBgS::GetRoomId(cBgS_PolyInfo const& poly) {
  * GetPolyAttackThrough__4dBgSFRC13cBgS_PolyInfo                */
 bool dBgS::GetPolyAttackThrough(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
-    if (m_chk_element[bg_index].ChkUsed()) {
-        return m_chk_element[bg_index].m_bgw_base_ptr->GetAttackThrough(poly.GetPolyIndex()) != 0;
+    JUT_ASSERT(1894, 0 <= bg_index && bg_index < 256);
+    if (!m_chk_element[bg_index].ChkUsed()) {
+        return false;
     }
-
-    return false;
+    dBgW_Base* r30 = m_chk_element[bg_index].m_bgw_base_ptr;
+    return r30->GetAttackThrough(poly.GetPolyIndex()) != 0;
 }
 
 /* 800751F8-8007524C 06FB38 0054+00 0/0 1/1 0/0 .text ChkPolyHSStick__4dBgSFRC13cBgS_PolyInfo */
 u32 dBgS::ChkPolyHSStick(cBgS_PolyInfo const& poly) {
     int bg_index = poly.GetBgIndex();
-    if (m_chk_element[bg_index].ChkUsed()) {
-        return m_chk_element[bg_index].m_bgw_base_ptr->GetPolyHSStick(poly.GetPolyIndex());
+    JUT_ASSERT(1912, 0 <= bg_index && bg_index < 256);
+    if (!m_chk_element[bg_index].ChkUsed()) {
+        return 0;
     }
-
-    return 0;
+    dBgW_Base* r30 = m_chk_element[bg_index].m_bgw_base_ptr;
+    return r30->GetPolyHSStick(poly.GetPolyIndex());
 }
 
 /* 8007524C-80075374 06FB8C 0128+00 0/0 1/1 0/0 .text            WallCorrect__4dBgSFP9dBgS_Acch */
@@ -831,7 +834,7 @@ void dBgS_MoveBGProc_Trans(dBgW* i_bgw, void* i_actor_ptr, cBgS_PolyInfo const& 
 /* 80075B84-80075BF4 0704C4 0070+00 0/0 1/1 2/2 .text
  * RideCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_c           */
 void dBgS::RideCallBack(cBgS_PolyInfo const& poly, fopAc_ac_c* param_1) {
-    u16 bg_index = poly.GetBgIndex();
+    int bg_index = poly.GetBgIndex();
     dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
     if (base->ChkUsed()) {
         base->CallRideCallBack(m_chk_element[bg_index].m_actor_ptr, param_1);
@@ -841,7 +844,7 @@ void dBgS::RideCallBack(cBgS_PolyInfo const& poly, fopAc_ac_c* param_1) {
 /* 80075BF4-80075C6C 070534 0078+00 0/0 0/0 2/2 .text
  * ArrowStickCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_cR4cXyz */
 void dBgS::ArrowStickCallBack(cBgS_PolyInfo const& poly, fopAc_ac_c* param_1, cXyz& param_2) {
-    u16 bg_index = poly.GetBgIndex();
+    int bg_index = poly.GetBgIndex();
     dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
     if (base->ChkUsed()) {
         base->CallArrowStickCallBack(m_chk_element[bg_index].m_actor_ptr, param_1, param_2);
@@ -852,18 +855,18 @@ void dBgS::ArrowStickCallBack(cBgS_PolyInfo const& poly, fopAc_ac_c* param_1, cX
  * PushPullCallBack__4dBgSFRC13cBgS_PolyInfoP10fopAc_ac_csQ29dBgW_Base13PushPullLabel */
 fopAc_ac_c* dBgS::PushPullCallBack(cBgS_PolyInfo const& param_0, fopAc_ac_c* i_pushActor, s16 i_angle,
                             dBgW_Base::PushPullLabel i_label) {
-    u16 bg_index = param_0.GetBgIndex();
+    int bg_index = param_0.GetBgIndex();
     dBgW_Base* base = m_chk_element[bg_index].m_bgw_base_ptr;
     if (!base->ChkUsed()) {
-        return false;
+        return NULL;
     }
 
     if (m_chk_element[bg_index].m_actor_ptr == NULL) {
-        return false;
+        return NULL;
     }
 
     if (base->GetPushPullCallback() == NULL) {
-        return false;
+        return NULL;
     }
 
     return base->GetPushPullCallback()(m_chk_element[bg_index].m_actor_ptr, i_pushActor, i_angle,

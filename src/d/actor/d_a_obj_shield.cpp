@@ -416,6 +416,3 @@ extern actor_process_profile_definition g_profile_Obj_Shield = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-
-/* 80CD832C-80CD832C 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

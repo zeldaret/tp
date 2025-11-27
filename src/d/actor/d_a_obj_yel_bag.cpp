@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_obj_yel_bag.h"
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_com_inf_game.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "SSystem/SComponent/c_lib.h"
@@ -568,5 +569,3 @@ extern actor_process_profile_definition g_profile_OBJ_YBAG = {
 };
 
 AUDIO_INSTANCES;
-
-/* 80D3DD6C-80D3DD6C 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

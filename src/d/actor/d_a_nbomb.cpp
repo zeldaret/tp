@@ -704,7 +704,7 @@ BOOL daNbomb_c::procExplodeInit() {
     mExplodeMode = 0;
     mExplosionStrength = 0.0f;
 
-    mProcFunc = &procExplode;
+    mProcFunc = &daNbomb_c::procExplode;
 
     speedF = 0.0f;
     speed = cXyz::Zero;
@@ -717,8 +717,8 @@ BOOL daNbomb_c::procExplodeInit() {
     mCcSph.OnAtSetBit();
     mCcSph.SetR(player->getBombAtR());
     mCcSph.SetC(current.pos);
-    g_dComIfG_gameInfo.play.mCcs.Set(&mCcSph);
-    g_dComIfG_gameInfo.play.mCcs.SetMass(&mCcSph, 1);
+    dComIfG_Ccsp()->Set(&mCcSph);
+    dComIfG_Ccsp()->SetMass(&mCcSph, 1);
 
     mSound.startSound(sound, 0, mSoundReverb);
 
@@ -779,8 +779,8 @@ BOOL daNbomb_c::procExplode() {
 
         if (mExTime > -3) {
             mCcSph.SetC(current.pos);
-            g_dComIfG_gameInfo.play.mCcs.Set(&mCcSph);
-            g_dComIfG_gameInfo.play.mCcs.SetMass(&mCcSph, 1);
+            dComIfG_Ccsp()->Set(&mCcSph);
+            dComIfG_Ccsp()->SetMass(&mCcSph, 1);
         }
     } else {
         dKy_actor_addcol_set(0, 0, 0, 0);
@@ -792,7 +792,7 @@ BOOL daNbomb_c::procExplode() {
 
 /* 804C93E0-804C955C 002700 017C+00 6/6 0/0 0/0 .text            procCarryInit__9daNbomb_cFv */
 BOOL daNbomb_c::procCarryInit() {
-    mProcFunc = &procCarry;
+    mProcFunc = &daNbomb_c::procCarry;
 
     offStateFlg0(FLG0_UNK_10000);
     field_0xc20 = cXyz::Zero;
@@ -898,7 +898,7 @@ BOOL daNbomb_c::procWaitInit() {
         onStateFlg0(FLG0_UNK_20000);
     }
 
-    mProcFunc = &procWait;
+    mProcFunc = &daNbomb_c::procWait;
     fopAcM_SetParam(this, PRM_BOMB_WAIT);
     mCcSph.OnCoSetBit();
     return true;
@@ -1097,7 +1097,7 @@ BOOL daNbomb_c::procWait() {
 
 /* 804CA268-804CA2EC 003588 0084+00 1/1 0/0 0/0 .text            procFlowerWaitInit__9daNbomb_cFv */
 BOOL daNbomb_c::procFlowerWaitInit() {
-    mProcFunc = &procFlowerWait;
+    mProcFunc = &daNbomb_c::procFlowerWait;
 
     mCcSph.OnCoSetBit();
     mCcSph.OffTgSetBit();
@@ -1135,11 +1135,11 @@ BOOL daNbomb_c::procFlowerWait() {
 /* 804CA3B8-804CA4E0 0036D8 0128+00 2/2 0/0 0/0 .text
  * procBoomerangMoveInit__9daNbomb_cFP12dCcD_GObjInf            */
 BOOL daNbomb_c::procBoomerangMoveInit(dCcD_GObjInf* unused) {
-    if (mProcFunc == &procBoomerangMove) {
+    if (mProcFunc == &daNbomb_c::procBoomerangMove) {
         return false;
     }
 
-    mProcFunc = &procBoomerangMove;
+    mProcFunc = &daNbomb_c::procBoomerangMove;
 
     if (fopAcM_GetParam(this) == PRM_FLOWER_BOMB ||
         fopAcM_GetParam(this) == PRM_ENEMY_BOMB_BOOMERANG)
@@ -1211,7 +1211,7 @@ BOOL daNbomb_c::procBoomerangMove() {
 
 /* 804CA688-804CA780 0039A8 00F8+00 2/2 0/0 0/0 .text            procInsectMoveInit__9daNbomb_cFv */
 BOOL daNbomb_c::procInsectMoveInit() {
-    mProcFunc = &procInsectMove;
+    mProcFunc = &daNbomb_c::procInsectMove;
 
     fopAcM_SetParam(this, PRM_INSECT_BOMB_MOVE);
     mpBck->init((J3DAnmTransform*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x14), TRUE,

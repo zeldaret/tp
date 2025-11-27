@@ -134,7 +134,11 @@ dMsgObject_HIO_c::dMsgObject_HIO_c() {
     mBoxMidnaHaloAlpha = 1.0f;
     mBoxWolfHaloAlpha = 0.3f;
     mBoxTalkHaloAlpha = 1.0f;
+#if REGION_JPN
+    mBoxTalkScaleX = 1.1f;
+#else
     mBoxTalkScaleX = 1.2f;
+#endif
     mBoxNaviScaleX = 1.0f;
     mBoxMidnaScaleX = 1.0f;
     mBoxItemScaleX = 1.05f;
@@ -411,7 +415,6 @@ int dMsgObject_c::_create(msg_class* param_1) {
     return 4;
 }
 
-/* 80399660-80399660 025CC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80399660 = "zel_00.bmg";
@@ -1652,7 +1655,7 @@ void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount)
     static char arcName[22];
 
     int msgGroup = dStage_stagInfo_GetMsgGroup(dComIfGp_getStage()->getStagInfo());
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL
     switch (dComIfGs_getPalLanguage()) {
     case dSv_player_config_c::LANGAUGE_GERMAN:
         sprintf(arcName, "/res/Msgde/bmgres%d.arc", msgGroup);
@@ -1669,6 +1672,8 @@ void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount)
     default:
         sprintf(arcName, "/res/Msguk/bmgres%d.arc", msgGroup);
     }
+    #elif REGION_JPN
+    sprintf(arcName, "/res/Msgjp/bmgres%d.arc", msgGroup);
     #else
     sprintf(arcName, "/res/Msgus/bmgres%d.arc", msgGroup);
     #endif

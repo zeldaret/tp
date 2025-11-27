@@ -1085,8 +1085,7 @@ void Z2EnvSeMgr::setHyrulSewerOpen(bool isSewerOpen) {
 }
 
 /* 802C8300-802C8730 2C2C40 0430+00 2/1 1/1 0/0 .text            startRiverSe__10Z2EnvSeMgrFSc */
-// NONMATCHING JAISound stack issues
-bool Z2EnvSeMgr::startRiverSe(s8 reverb) {
+bool Z2EnvSeMgr::startRiverSe(s8 param_1) {
     #ifdef DEBUG
     const char** spotName = sSpotName;
     #endif
@@ -1101,14 +1100,8 @@ bool Z2EnvSeMgr::startRiverSe(s8 reverb) {
             if (Z2GetStatusMgr()->mPolygonPosition.y < -14500.0f) {
                 break;
             }
-        case Z2SCENE_KAKARIKO_VILLAGE:
-            // fake match: should be 2000.0f according to debug, but that generates an extra entry in sdata2            
-            #ifdef DEBUG
-            if (Z2GetStatusMgr()->mPolygonPosition.y > 2000.0f)
-            #else
-            if (Z2GetStatusMgr()->mPolygonPosition.y > -14500.0f)
-            #endif
-            {
+        case 8:
+            if ((Z2GetStatusMgr()->mPolygonPosition.y > 2000.0f)) {
                 break;
             }
         case Z2SCENE_ZORAS_DOMAIN:
@@ -1125,63 +1118,70 @@ bool Z2EnvSeMgr::startRiverSe(s8 reverb) {
     if (mRiverSeMgr.getPosCount() < 0) {
         return false;
     }
+    JAISoundID sp3C = -1;
+    bool r30 = false;
+    f32 f31;
+    f32 f29;
+    f32 dolbyPower;
+    f32 f30;
+    f32 f27;
+    f27 = param_1 / 127.0f;
+    f31 = field_0x1ac * mRiverSeMgr.getMaxVolume();
+    f29 = mRiverSeMgr.getPanPower();
+    dolbyPower = mRiverSeMgr.getDolbyPower();
+    f30 = field_0x1b0;
 
-    JAISoundID aJStack_742 = 0xffffffff;
-    bool uVar8 = false;
-    f32 dVar16 = reverb / 127.0f;
-    f32 dVar18 = field_0x1ac * mRiverSeMgr.getMaxVolume();
-    f32 dVar13 = mRiverSeMgr.getPanPower();
-    f32 dolbyPower = mRiverSeMgr.getDolbyPower();
-    f32 dVar17 = field_0x1b0;
-    f32 fArr0;
-    f32 fArr1;
-    f32 fArr2;
-    f32 fArr3;
+    f32 sp18;
+    f32 sp14;
+    f32 sp10;
+    f32 sp0C;
 
     switch (field_0x188) {
     case 0:
         return false;
     case 1:
-        aJStack_742 = Z2SE_ENV_RIVER_SMALL;
-        fArr3 = dolbyPower;
-        dVar18 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.7f, 1.0f, true);
-        dVar17 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.1f, true);
-        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dolbyPower, dVar17, 0);
+        sp3C = Z2SE_ENV_RIVER_SMALL;
+        sp18 = dolbyPower;
+        f31 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.7f, 1.0f,
+                                          true);
+        f30 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.1f,
+                                          true);
+        r30 = field_0x180.startEnvSeLevel(sp3C, f27, f31, f29, dolbyPower, f30, 0);
         break;
     case 2:
-        aJStack_742 = Z2SE_ENV_RIVER_NORMAL;
+        sp3C = Z2SE_ENV_RIVER_NORMAL;
         mRiverSeMgr.getMaxPowL();
         mRiverSeMgr.getMaxPowR();
-        fArr2 = mRiverSeMgr.getDolbyPower();
-        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dolbyPower, dVar17, 0);
+        sp14 = mRiverSeMgr.getDolbyPower();
+        r30 = field_0x180.startEnvSeLevel(sp3C, f27, f31, f29, dolbyPower, f30, 0);
         break;
     case 3:
         if (field_0x1b8 > 0) {
-            dVar18 *= (field_0x1b8 + 50) / 150.0f;
+            f31 *= (field_0x1b8 + 50) / 150.0f;
         } else {
             if (field_0x1b8 < 0) {
-                dVar18 *= (field_0x1b8 + 150) / 150.0f;
+                f31 *= (field_0x1b8 + 150) / 150.0f;
             } else {
-                dVar18 *= 0.3f;
+                f31 *= 0.3f;
             }
         }
-        aJStack_742 = Z2SE_ENV_SEWER;
-        fArr1 = dolbyPower;
-        dVar18 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.6f, 1.0f, true);
-        dVar17 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.0f, true);
-        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dolbyPower, dVar17, 0);
+        sp3C = Z2SE_ENV_SEWER;
+        sp10 = dolbyPower;
+        f31 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.6f, 1.0f, true);
+        f30 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.0f, true);
+        r30 = field_0x180.startEnvSeLevel(sp3C, f27, f31, f29, dolbyPower, f30, 0);
         break;
     case 5:
-        aJStack_742 = Z2SE_ENV_SPIRIT_FOUNTAIN;
-        fArr0 = dolbyPower;
-        dVar18 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.6f, 1.0f, true);
-        dVar17 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.0f, true);
-        uVar8 = field_0x180.startEnvSeLevel(aJStack_742, dVar16, dVar18, dVar13, dolbyPower, dVar17, 0);
+        sp3C = Z2SE_ENV_SPIRIT_FOUNTAIN;
+        sp0C = dolbyPower;
+        f31 *= Z2Calc::linearTransform(field_0x18c.calcNoise1f(), 0.0f, 1.0f, 0.6f, 1.0f, true);
+        f30 *= Z2Calc::linearTransform(field_0x19c.calcNoise1f(), 0.0f, 1.0f, 0.8f, 1.0f, true);
+        r30 = field_0x180.startEnvSeLevel(sp3C, f27, f31, f29, dolbyPower, f30, 0);
         break;
     }
 
     mRiverSeMgr.resetMultiSePos();
-    return uVar8;
+    return r30;
 }
 
 /* 802C8730-802C886C 2C3070 013C+00 1/1 1/1 0/0 .text            initFallSe__10Z2EnvSeMgrFUcUcUcUc

@@ -1327,7 +1327,6 @@ void daB_MGN_c::executeCircle() {
 }
 
 /* 80608EF8-80609D70 0038B8 0E78+00 2/1 0/0 0/0 .text            executeDash__9daB_MGN_cFv */
-// NONMATCHING - regalloc + extra mr, equivalent
 void daB_MGN_c::executeDash() {
     daPy_py_c* player_sp14 = daPy_getPlayerActorClass();
 
@@ -1339,9 +1338,9 @@ void daB_MGN_c::executeDash() {
 
         s16 angle = cLib_targetAngleY(&player_pos, &gate_offset);
         if (field_0xaff >= 5) {
-            angle += cM_rndFX(6.0f) * 4096.0f;
+            angle = angle + cM_rndFX(6.0f) * 4096.0f;
         } else {
-            angle += cM_rndFX(4.0f) * 4096.0f;
+            angle = angle + cM_rndFX(4.0f) * 4096.0f;
         }
 
         if (mMoveMode == 11) {

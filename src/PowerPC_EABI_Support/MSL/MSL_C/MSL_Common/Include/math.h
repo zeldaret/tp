@@ -105,7 +105,7 @@ inline float sqrtf(float mag) {
         return mag * tmpd;
     } else if (mag < 0.0) {
         return NAN;
-    } else if (fpclassify(mag) == 1) {
+    } else if (isnan(mag)) {
         return NAN;
     } else {
         return mag;

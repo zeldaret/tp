@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_obj_gadget.h"
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_path.h"
 #include "d/d_cc_d.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -666,5 +667,3 @@ extern actor_process_profile_definition g_profile_OBJ_GADGET = {
   fopAc_ACTOR_e,             // mActorType
   fopAc_CULLBOX_CUSTOM_e,    // cullType
 };
-
-/* 80BF4A24-80BF4A24 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

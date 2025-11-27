@@ -258,5 +258,3 @@ extern actor_process_profile_definition g_profile_Obj_TwGate = {
   fopAc_ACTOR_e,                 // mActorType
   fopAc_CULLBOX_CUSTOM_e,        // cullType
 };
-
-/* 80D20554-80D20554 00024C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

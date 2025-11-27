@@ -554,5 +554,3 @@ extern actor_process_profile_definition g_profile_Obj_Flag3 = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80BF0554-80BF0554 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

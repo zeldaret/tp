@@ -83,8 +83,6 @@ int daObjBkDoor_c::Create() {
 }
 
 /* ############################################################################################## */
-/* 80579538-80579538 0000A8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 80578EA0-80578F20 000200 0080+00 1/0 0/0 0/0 .text            CreateHeap__13daObjBkDoor_cFv */
 int daObjBkDoor_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[mOrientation]);

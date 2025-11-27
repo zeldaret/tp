@@ -568,5 +568,3 @@ extern actor_process_profile_definition g_profile_OBJ_KBOX = {
 };
 
 AUDIO_INSTANCES;
-
-/* 80C3F108-80C3F108 0000B0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

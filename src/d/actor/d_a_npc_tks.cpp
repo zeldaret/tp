@@ -6,8 +6,9 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_tks.h"
-#include "d/d_a_obj.h"
+#include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_tkc.h"
+#include "d/d_a_obj.h"
 #include "d/d_meter2_info.h"
 #include "f_op/f_op_kankyo_mng.h"
 

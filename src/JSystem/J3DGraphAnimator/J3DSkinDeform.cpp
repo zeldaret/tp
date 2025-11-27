@@ -401,7 +401,12 @@ void J3DSkinDeform::changeFastSkinDL(J3DModelData* pModelData) {
                     for (int local_4c = 0; local_4c < uVar9; local_4c++) {
                         u8* dst = &local_44[local_34 * local_4c];
                         memcpy(puVar10, dst + 1, local_34 - 1);
-                        puVar10 = ((local_34 + puVar10) - 1);
+                        // FAKEMATCH
+                        #if DEBUG || VERSION == VERSION_WII_USA_R0 || VERSION == VERSION_WII_USA_R2
+                        puVar10 += local_34 - 1;
+                        #else
+                        puVar10 = (local_34 + puVar10) - 1;
+                        #endif
                     }
                     local_44 += local_34 * uVar9;
                 }

@@ -750,5 +750,3 @@ extern actor_process_profile_definition g_profile_Obj_Batta = {
   fopAc_ENV_e,            // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80BACA64-80BACA64 0000F4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

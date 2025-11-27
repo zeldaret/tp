@@ -739,5 +739,3 @@ extern actor_process_profile_definition g_profile_Obj_Tombo = {
   fopAc_ENV_e,            // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80D1B7E8-80D1B7E8 000110 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

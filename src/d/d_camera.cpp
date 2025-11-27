@@ -16,6 +16,7 @@
 #include "d/actor/d_a_tag_mhint.h"
 #include "d/actor/d_a_tag_mstop.h"
 #include "d/actor/d_a_tag_mwait.h"
+#include "d/d_bg_s_sph_chk.h"
 #include "d/d_com_inf_actor.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_debug_viewer.h"
@@ -9947,15 +9948,15 @@ static void store(camera_process_class* i_camera) {
         error = true;
         OS_REPORT("camera: ERROR: bad direction !!\n");
     }
-    if (fovy < 0.0f || fpclassify(fovy) == FP_QNAN) {
+    if (fovy < 0.0f || isnan(fovy)) {
         error = true;
         OS_REPORT("camera: ERROR: bad fovy !!\n");
     }
-    if (fpclassify(eye.x) == FP_QNAN || fpclassify(eye.y) == FP_QNAN || fpclassify(eye.z) == FP_QNAN) {
+    if (isnan(eye.x) || isnan(eye.y) || isnan(eye.z)) {
         error = true;
         OS_REPORT("camera: ERROR: bad eye !!\n");
     }
-    if (fpclassify(center.x) == FP_QNAN || fpclassify(center.y) == FP_QNAN || fpclassify(center.z) == FP_QNAN) {
+    if (isnan(center.x) || isnan(center.y) || isnan(center.z)) {
         error = true;
         OS_REPORT("camera: ERROR: bad eye !!\n");
     }

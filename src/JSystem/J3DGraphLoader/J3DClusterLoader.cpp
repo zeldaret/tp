@@ -116,5 +116,3 @@ void J3DClusterLoader_v15::readCluster(const J3DClusterBlock* block) {
 
     DCStoreRange(arr, vtxPosSize);
 }
-
-/* 803A2098-803A2098 02E6F8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

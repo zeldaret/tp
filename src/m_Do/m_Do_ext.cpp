@@ -1253,7 +1253,6 @@ int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* c
 }
 
 /* 80010074-8001037C 00A9B4 0308+00 1/0 0/0 0/0 .text            calc__14mDoExt_McaMorfFv */
-// NONMATCHING regalloc
 void mDoExt_McaMorf::calc() {
     if (mpModel == NULL) {
         return;
@@ -1524,7 +1523,6 @@ int mDoExt_McaMorfSO::create(J3DModelData* i_modelData, mDoExt_McaMorfCallBack1_
 }
 
 /* 80010B68-80010E70 00B4A8 0308+00 1/0 0/0 0/0 .text            calc__16mDoExt_McaMorfSOFv */
-// NONMATCHING regalloc
 void mDoExt_McaMorfSO::calc() {
     if (mpModel != NULL) {
         u16 jnt_no = getJoint()->getJntNo();
@@ -3540,8 +3538,13 @@ static ResFONT* mDoExt_resfont0;
 /* 80014994-800149F0 00F2D4 005C+00 1/1 0/0 0/0 .text            mDoExt_initFont0__Fv */
 static void mDoExt_initFont0() {
     static char const fontdata[] = "rodan_b_24_22.bfn";
+#if REGION_JPN
+    mDoExt_initFontCommon(&mDoExt_font0, &mDoExt_resfont0, mDoExt_getZeldaHeap(),
+                          fontdata, dComIfGp_getFontArchive(), 0, 200, 512);
+#else
     mDoExt_initFontCommon(&mDoExt_font0, &mDoExt_resfont0, mDoExt_getZeldaHeap(),
                           fontdata, dComIfGp_getFontArchive(), 1, 0, 0);
+#endif
 }
 
 /* 800149F0-80014A2C 00F330 003C+00 0/0 51/51 2/2 .text            mDoExt_getMesgFont__Fv */
@@ -3564,7 +3567,11 @@ void mDoExt_removeMesgFont() {
             delete mDoExt_font0;
             mDoExt_font0 = NULL;
             if (mDoExt_resfont0 != NULL) {
+#if REGION_JPN
+                JKRFileLoader::removeResource(mDoExt_resfont0, NULL);
+#else
                 JKRFree(mDoExt_resfont0);
+#endif
                 mDoExt_resfont0 = NULL;
             }
         }

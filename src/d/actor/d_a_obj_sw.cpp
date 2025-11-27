@@ -287,9 +287,12 @@ static void demo_camera(obj_sw_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_class* zero_camera_p = dComIfGp_getCamera(0);
     cXyz sp24, sp30;
 
     switch (i_this->mDemoMode) {
+    case 0:
+        break;
     case 1:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
@@ -351,7 +354,7 @@ static void demo_camera(obj_sw_class* i_this) {
             cLib_addCalc2(&i_this->mDemoCamEye.z, sp30.z, 0.1f, 200.0f);
         }
 
-        player->changeDemoParam1(i_this->field_0x596 * 10);
+        player->changeDemoParam1(s16(i_this->field_0x596 * 10));
         if (mDoCPd_c::getTrigA(0) != 0) {
             i_this->field_0x5a8[7].mSound.startSound(Z2SE_KOSARU_V_THROW, 0, -1);
             player->changeDemoMode(24, 0, 0, 0);
@@ -827,8 +830,6 @@ static int daObj_Sw_Create(fopAc_ac_c* a_this) {
 
     return phase;
 }
-
-/* 80CF30EC-80CF30EC 0000EC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 
 /* 80CF3210-80CF3230 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Sw_Method */
 static actor_method_class l_daObj_Sw_Method = {

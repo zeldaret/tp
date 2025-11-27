@@ -2904,5 +2904,3 @@ extern actor_process_profile_definition g_profile_E_OC = {
 };
 
 AUDIO_INSTANCES;
-
-/* 80735D0C-80735D0C 0001E4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
