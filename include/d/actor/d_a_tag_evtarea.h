@@ -13,8 +13,7 @@ public:
     /* 8048C94C */ BOOL chkPointInArea(cXyz, cXyz);
 
     /* 8048CD08 */ BOOL chkPointInArea(cXyz param_0) {
-        cXyz local_28;
-        local_28.set(0.0f, 0.0f, 0.0f);
+        cXyz local_28(0.0f, 0.0f, 0.0f);
         return chkPointInArea(param_0, local_28);
     }
 
