@@ -311,13 +311,13 @@ public:
 
     bool checkWolfNoLock() const { return mFlags & fopEn_flag_WolfNoLock; }
     bool checkHeadLockFlg() const { return mFlags & fopEn_flag_HeadLock; }
-    bool checkWolfBiteDamage() const { return mFlags & fopEn_flag_WolfBiteDamage; }
+    BOOL checkWolfBiteDamage() const { return mFlags & fopEn_flag_WolfBiteDamage; }
     bool checkWolfDownPullFlg() const { return mFlags & fopEn_flag_WolfDownPull; }
     bool checkDownFlg() { return mFlags & fopEn_flag_Down; }
     bool checkCutDownHitFlg() const { return mFlags & fopEn_flag_CutDownHit; }
     bool checkWolfDownStartFlg() const { return mFlags & fopEn_flag_WolfDownStart; }
     bool checkDeadFlg() const { return mFlags & fopEn_flag_Dead; }
-    bool checkThrowMode(u8 param_1) const { return mThrowMode & param_1; }
+    BOOL checkThrowMode(u8 param_1) const { return mThrowMode & param_1; }
 
     u32* getMidnaBindID(int i_idx) { return mMidnaBindID + i_idx; }
     u8 getMidnaBindMode() { return mMidnaBindMode; }
@@ -332,13 +332,25 @@ public:
     void onDownFlg() { mFlags |= fopEn_flag_Down; }
     void onHeadLockFlg() { mFlags |= fopEn_flag_HeadLock; }
 
+    #if DEBUG
+    void offWolfBiteDamage() { mFlags &= (u16)~fopEn_flag_WolfBiteDamage; }
+    #else
     void offWolfBiteDamage() { mFlags &= ~fopEn_flag_WolfBiteDamage; }
+    #endif
     void offCutDownHitFlg() { mFlags &= ~fopEn_flag_CutDownHit; }
     void offWolfDownPullFlg() { mFlags &= ~fopEn_flag_WolfDownPull; }
     void offDownFlg() { mFlags &= ~(fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart | fopEn_flag_CutDownHit | fopEn_flag_Down); }
+    #if DEBUG
+    void offWolfNoLock() { mFlags &= (u16)~fopEn_flag_WolfNoLock; }
+    #else
     void offWolfNoLock() { mFlags &= ~fopEn_flag_WolfNoLock; }
+    #endif
     void offHeadLockFlg() { mFlags &= ~fopEn_flag_HeadLock; }
-    void offThrowMode(u8 throwMode) { mThrowMode &= ~throwMode; }
+    #if DEBUG
+    void offThrowMode(u8 throwMode) { mThrowMode &= (u8)~throwMode; }
+    #else
+    void offThrowMode(u8 throwMode) { mThrowMode &= ~(throwMode & 0xFF); }
+    #endif
 
     void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
     void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }
