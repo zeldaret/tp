@@ -692,7 +692,7 @@ config.libs = [
             Object(NonMatching, "d/d_camera.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_envse.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_file_select.cpp"),
-            Object(NonMatching, "d/d_file_sel_warning.cpp"),
+            Object(MatchingFor(ALL_GCN), "d/d_file_sel_warning.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_file_sel_info.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bright_check.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_scope.cpp"),
