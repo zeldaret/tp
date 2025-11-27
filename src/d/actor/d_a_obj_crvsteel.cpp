@@ -104,6 +104,7 @@ int daObjCRVSTEEL_c::create() {
         gravity = -9.0f;
         int dzb_id = dComIfG_getObjctResName2Index(l_arcName, "U_CrvSteelGate.dzb");
         if (dzb_id == -1) {
+            // "dzb data not found!<%s>"
             OS_REPORT("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
             JUT_ASSERT(443, dzb_id != -1);
         }
