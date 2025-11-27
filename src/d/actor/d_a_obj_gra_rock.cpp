@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_obj_gra_rock.h"
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_bg_w.h"
 
 static void dummy() {
@@ -347,5 +348,3 @@ extern actor_process_profile_definition g_profile_Obj_GraRock = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80C12440-80C12440 000084 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

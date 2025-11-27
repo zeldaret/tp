@@ -121,8 +121,8 @@ static bool reportOK() {
 static JUtility::TColor ShadowDarkColor(0, 0, 0, 0x80);
 static JUtility::TColor ShadowLightColor(0xFF, 0xFF, 0xFF, 0x80);
 
-// NONMATCHING - string being put in stack instead of register
 int dDbVw_Report(int x, int y, char const* string, ...) {
+    string;
     char buffer[256];
 
     if (reportOK()) {

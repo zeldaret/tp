@@ -4016,7 +4016,7 @@ static const char* tex_name[] = {"tt_heart_00.bti", "tt_heart_01.bti", "tt_heart
  */
 bool dMeter2Draw_c::getCanoeFishing() {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
-        g_dComIfG_gameInfo.play.mPlayer[0]->checkCanoeRide())
+        ((daPy_py_c*)dComIfGp_getPlayer(0))->checkCanoeRide())
     {
         return TRUE;
     } else {

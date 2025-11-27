@@ -9,7 +9,6 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
 
-/* 80C1F8B0-80C1F8B0 000010 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 static const char* l_resNameIdx[2] = {"hsMato", "L7HsMato"};
 
 /* 80C1F42C-80C1F448 0000EC 001C+00 1/1 0/0 0/0 .text            __ct__16daHsTarget_HIO_cFv */

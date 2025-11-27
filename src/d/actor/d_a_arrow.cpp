@@ -270,8 +270,8 @@ void daArrow_c::setArrowAt(f32 param_0) {
     static_cast<cM3dGCps*>(&field_0x688)->Set(current.pos, target, radius);
     field_0x688.CalcAtVec();
 
-    g_dComIfG_gameInfo.play.mCcs.Set(&field_0x688); // fake match: debug rom shows dComIfG_Ccsp()
-    g_dComIfG_gameInfo.play.mCcs.SetMass(&field_0x688, 1); // fake match: debug rom shows dComIfG_Ccsp()
+    dComIfG_Ccsp()->Set(&field_0x688);
+    dComIfG_Ccsp()->SetMass(&field_0x688, 1);
 }
 
 /* 8049A9CC-8049AC84 000E4C 02B8+00 2/2 0/0 0/0 .text            arrowShooting__9daArrow_cFv */

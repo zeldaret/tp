@@ -5,8 +5,9 @@
 
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/actor/d_a_npc_ashB.h"
+#include "d/actor/d_a_npc.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 
 /* 809620E4-80962154 000000 0070+00 11/11 0/0 0/0 .rodata          m__17daNpcAshB_Param_c */
 const daNpcAshB_HIOParam daNpcAshB_Param_c::m = {

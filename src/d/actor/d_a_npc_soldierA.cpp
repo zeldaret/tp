@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_soldierA.h"
+#include "d/actor/d_a_npc.h"
 #include "d/d_debug_viewer.h"
 #include "Z2AudioLib/Z2Instances.h"
 

@@ -5,8 +5,9 @@
 
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
-#include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_npc_grd.h"
+#include "d/actor/d_a_npc.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 enum Animation {
     /* 0x00 */ ANM_UNK_0,

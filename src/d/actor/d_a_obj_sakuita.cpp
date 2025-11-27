@@ -254,5 +254,3 @@ extern actor_process_profile_definition g_profile_Obj_Sakuita = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80CC5114-80CC5114 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

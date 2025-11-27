@@ -527,7 +527,6 @@ static BOOL forward_overhead_bg_chk(cXyz* ppos, f32 dist) {
 }
 
 /* 8005D18C-8005E8B0 057ACC 1724+00 0/0 1/1 0/0 .text            dKyr_rain_move__Fv */
-// NONMATCHING reg alloc, equivalent?
 void dKyr_rain_move() {
     dKankyo_rain_Packet* rain_packet;
     camera_class* camera;
@@ -5344,7 +5343,6 @@ void dKyr_odour_move() {
 }
 
 /* 8006BE0C-8006C790 06674C 0984+00 0/0 1/1 0/0 .text            dKyr_odour_draw__FPA4_fPPUc */
-// NONMATCHING - regalloc
 void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
     dKankyo_odour_Packet* odour_packet = envlight->mOdourData.mpOdourPacket;

@@ -241,7 +241,7 @@ public:
     void ClrTg() { mTg = 0; }
     void SetAtApid(fpc_ProcID id) { mAtApid = id; }
     void SetTgApid(fpc_ProcID id) { mTgApid = id; }
-    u8 GetRoomId() { return mRoomId; }
+    int GetRoomId() { return mRoomId; }
     void SetRoomId(int id) { mRoomId = id; }
     fpc_ProcID GetAtOldApid() { return mAtOldApid; }
     fpc_ProcID GetTgOldApid() { return mTgOldApid; }

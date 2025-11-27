@@ -8,6 +8,7 @@
 #include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_ep.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/actor/d_a_npc_moi.h"
 #include "d/actor/d_a_npc_uri.h"
 

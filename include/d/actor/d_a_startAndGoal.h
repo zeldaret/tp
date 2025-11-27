@@ -1,7 +1,7 @@
 #ifndef D_A_STARTANDGOAL_H
 #define D_A_STARTANDGOAL_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 
 class daStartAndGoal_Path_c : public daNpcF_Path_c {
 public:

@@ -4,6 +4,7 @@
 #include "JSystem/JMessage/JMessage.h"
 #include "JSystem/JUtility/JUTFont.h"
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_item_data.h"
 #include "d/d_meter2.h"
 #include "d/d_meter2_info.h"

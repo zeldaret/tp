@@ -341,5 +341,3 @@ u32 J3DModelLoader::calcSizeMaterialDL(const J3DMaterialDLBlock* block, u32 flag
 	}
 	return size;
 }
-
-/* 803A20E8-803A20E8 02E748 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

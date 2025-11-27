@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_KASI_HANA_H
 #define D_A_NPC_KASI_HANA_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/actor/d_a_tag_escape.h"
 
 /**

@@ -321,13 +321,11 @@ bool JPABaseParticle::canCreateChild(JPAEmitterWorkData* work) {
 /* 80280548-80280568 27AE88 0020+00 0/0 3/3 0/0 .text
  * getWidth__15JPABaseParticleCFPC14JPABaseEmitter              */
 f32 JPABaseParticle::getWidth(JPABaseEmitter const* emtr) const {
-    f32 scale = 2.0f * mParticleScaleX;
-    return scale * emtr->mpEmtrMgr->pWd->mGlobalPtclScl.x;
+    return mParticleScaleX * 2.0f * emtr->mpEmtrMgr->pWd->mGlobalPtclScl.x;
 }
 
 /* 80280568-80280588 27AEA8 0020+00 0/0 3/3 0/0 .text
  * getHeight__15JPABaseParticleCFPC14JPABaseEmitter             */
 f32 JPABaseParticle::getHeight(JPABaseEmitter const* emtr) const {
-    f32 scale = 2.0f * mParticleScaleY;
-    return scale * emtr->mpEmtrMgr->pWd->mGlobalPtclScl.y;
+    return mParticleScaleY * 2.0f * emtr->mpEmtrMgr->pWd->mGlobalPtclScl.y;
 }

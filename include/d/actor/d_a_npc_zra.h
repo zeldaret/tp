@@ -1,7 +1,8 @@
 #ifndef D_A_NPC_ZRA_H
 #define D_A_NPC_ZRA_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
+#include "d/d_particle_copoly.h"
 
 class daNpc_zrA_HIO_c;
 /**
@@ -22,7 +23,6 @@ public:
     /* 80B78CA0 */ BOOL chkPassedChase(u16, cXyz);
     /* 80B78CFC */ int getDstPosChase(u16, cXyz, cXyz&);
     /* 80B78E08 */ f32 chkPassDst(u16, cXyz);
-    /* 80B7EF88 */ ~daNpc_zrA_Path_c() {}
     int getEndIdx() { return mPathInfo->m_num - 1; }
 };
 

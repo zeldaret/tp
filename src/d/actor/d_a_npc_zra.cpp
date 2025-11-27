@@ -2327,6 +2327,12 @@ void daNpc_zrA_c::setExpressionTalkAfter() {
     }
 }
 
+// fakematch to get the clib_calctimer functions to appear in the correct order.
+//  Perhaps clever inline keyword usage can fix the problem, but this is easier.
+int dummy_clib_u8(u8* arg) {
+    return cLib_calcTimer<u8>(arg);
+}
+
 /* 80B7EBA0-80B7EC54 006780 00B4+00 1/1 0/0 0/0 .text            setPrtcl__11daNpc_zrA_cFv */
 void daNpc_zrA_c::setPrtcl() {
     u32 flags = 0x40002;

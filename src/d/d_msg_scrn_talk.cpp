@@ -549,6 +549,3 @@ void dMsgScrnTalk_c::fukiPosCalc(u8 param_1) {
         mpMg_c[1]->translate(local_b8.x + field_0xf4, local_b8.y);
     }
 }
-
-
-/* 80399BB0-80399BB0 026210 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

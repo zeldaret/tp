@@ -424,24 +424,31 @@ void dMenu_FmapMap_c::_delete() {
 const dMfm_HIO_prm_res_src_s dMfm_HIO_prm_res_src_s::m_other = {30};
 
 /* 801CEE94-801CF0B4 1C97D4 0220+00 1/0 0/0 0/0 .text            draw__15dMenu_FmapMap_cFv */
-// NONMATCHING instructions out of order
 void dMenu_FmapMap_c::draw() {
-    f32 fVar3 = mFlashTimer < dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2 ?
-        (f32)(dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2 - mFlashTimer)
-            / (f32)(dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2) :
-        (f32)(mFlashTimer - dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2)
-            / (f32)(dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2);
-    setPointColor(1.0f - fVar3);
+    { int unused; }
+
+    f32 f30 = 0.0f;
+    if (mFlashTimer < dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2) {
+        f30 =
+            (int)(dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2 - mFlashTimer) /
+            (f32)(int)(dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2);
+    } else {
+        f30 =
+            (int)(mFlashTimer - dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2) /
+            (f32)(int)(dMfm_HIO_prm_res_src_s::m_other.mFlashDuration / 2);
+    }
+    setPointColor(1.0f - f30);
 
     GXColor color;
-    f32 fVar4 = getRateWithFrameCount(m_res->field_0x168);
-    f32 fVar5 = cM_ssin(fVar4 * 0x10000 - 0x8000) * 0.5f + 0.5f;
-    twoColorLineInterporation(m_res->field_0xd8, m_res->field_0xdc, fVar5, color);
+    f32 f31;
+    f31 = getRateWithFrameCount(m_res->field_0x168);
+    f31 = cM_ssin(f31 * 0x10000 - 0x8000) * 0.5f + 0.5f;
+    twoColorLineInterporation(m_res->field_0xd8, m_res->field_0xdc, f31, color);
     setFmapPaletteColor(PALETTE_19, color);
 
-    f32 fVar6 = getRateWithFrameCount(m_res->field_0x16a);
-    f32 fVar7 = cM_ssin(fVar6 * 0x10000 - 0x8000) * 0.5f + 0.5f;
-    twoColorLineInterporation(m_res->field_0xe0, m_res->field_0xe4, fVar7, color);
+    f31 = getRateWithFrameCount(m_res->field_0x16a);
+    f31 = cM_ssin(f31 * 0x10000 - 0x8000) * 0.5f + 0.5f;
+    twoColorLineInterporation(m_res->field_0xe0, m_res->field_0xe4, f31, color);
     setFmapPaletteColor(PALETTE_1A, color);
 
     renderingMap();

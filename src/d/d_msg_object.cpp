@@ -415,7 +415,6 @@ int dMsgObject_c::_create(msg_class* param_1) {
     return 4;
 }
 
-/* 80399660-80399660 025CC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80399660 = "zel_00.bmg";

@@ -666,8 +666,7 @@ bool J2DWindowEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white) 
     setTevOrder(bVar1);
     setTevStage(bVar1);
     if (bVar1) {
-        J2DGXColorS10 color0;
-        J2DGXColorS10 color1;
+        J2DGXColorS10 color0, color1;
         color0.r = black.r;
         color0.g = black.g;
         color0.b = black.b;
@@ -685,8 +684,7 @@ bool J2DWindowEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white) 
     return true;
 }
 
-/* 80302A4C-80302BE8 2FD38C 019C+00 4/4 0/0 0/0 .text
- * getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor */
+/* 80302A4C-80302BE8 2FD38C 019C+00 4/4 0/0 0/0 .text            getBlackWhite__11J2DWindowExCFPQ28JUtility6TColorPQ28JUtility6TColor */
 bool J2DWindowEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* param_1) const {
     if (mFrameMaterial[0] == NULL) {
         return false;

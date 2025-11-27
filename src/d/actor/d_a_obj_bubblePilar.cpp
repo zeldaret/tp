@@ -264,5 +264,3 @@ extern actor_process_profile_definition g_profile_Obj_awaPlar = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80BC40B4-80BC40B4 000044 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

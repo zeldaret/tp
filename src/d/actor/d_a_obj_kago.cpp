@@ -9,9 +9,9 @@
 #include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* ############################################################################################## */
@@ -675,8 +675,6 @@ static int daObj_Kago_IsDelete(void* param_1) {
 }
 
 AUDIO_INSTANCES;
-
-/* 80C33D94-80C33D94 000114 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 
 /* 80C33E24-80C33E44 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Kago_MethodTable */
 static actor_method_class daObj_Kago_MethodTable = {

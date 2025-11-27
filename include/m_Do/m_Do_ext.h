@@ -169,8 +169,7 @@ public:
     J3DAnmTransform* getBckAnm() { return mAnm; }
 
     void removeJoint(J3DModelData* i_modelData, u16 i_idx) {
-        J3DJoint* mpJnt = i_modelData->getJointNodePointer(i_idx);
-        mpJnt->setMtxCalc(0);
+        i_modelData->getJointNodePointer(i_idx)->setMtxCalc(0);
     }
 
 private:

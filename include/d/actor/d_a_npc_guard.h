@@ -44,13 +44,13 @@ public:
     /* 809F0A50 */ void initEscape();
     /* 809F0B20 */ void executeEscape();
     /* 809F0DD4 */ void setAngle();
-    /* 809F0DE0 */ void setSpeed(f32, f32, f32*, int);
+    /* 809F0DE0 */ inline void setSpeed(f32, f32, f32*, int);
     /* 809F0ED4 */ void pathMoveF();
     /* 809F12F0 */ int create();
-    /* 809F14CC */ void create_init();
-    /* 809F17D0 */ void setMtx();
-    /* 809F1878 */ void lookat();
-    /* 809F1F74 */ virtual ~daNpcGuard_c();
+    /* 809F14CC */ inline void create_init();
+    /* 809F17D0 */ inline void setMtx();
+    /* 809F1878 */ inline void lookat();
+    /* 809F1F74 */ inline virtual ~daNpcGuard_c();
     /* 809F2044 */ int execute();
 
     inline int createHeap();

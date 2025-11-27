@@ -901,5 +901,3 @@ extern actor_process_profile_definition g_profile_Obj_ChainWall = {
 };
 
 AUDIO_INSTANCES
-
-/* 80BDA0AC-80BDA0AC 000108 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
