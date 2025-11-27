@@ -17,7 +17,6 @@
 struct daNpc_ykM_HIOParam {
     /* 0x00 */ daNpcT_HIOParam common;
     /* 0x8C */ s16 step_speed;                 // ステップの速さ  (Step Speed)
-    /* 0x8E */ s16 field_0x8e;
     /* 0x90 */ f32 attention_dist;             // 注目距離        (Attention Distance)
     /* 0x94 */ f32 conversation_dist;          // 会話距離        (Conversation Distance)
     /* 0x98 */ f32 jump_speed;                 // 飛び出し速度    (Jump Speed)
@@ -29,23 +28,35 @@ struct daNpc_ykM_HIOParam {
     /* 0xB0 */ f32 slide_acceleration;         // 滑り加速        (Slide Acceleration)
     /* 0xB4 */ f32 slide_speed;                // 滑り速度        (Slide Speed)
     /* 0xB8 */ s16 wait_time;                  // ウエイト時間    (Wait Time)
-    /* 0xBA */ s16 field_0xba;
     /* 0xBC */ f32 run_speed;                  // 走り速度        (Run Speed)
     /* 0xC0 */ s16 competition_prm_a;          // 競争パラメ−タａ (Competition Parameter A)
     /* 0xC2 */ s16 competition_prm_b;          // 競争パラメ−タｂ (Competition Parameter B)
     /* 0xC4 */ f32 competition_prm_c;          // 競争パラメ−タｃ (Competition Parameter C)
 };
 
-class daNpc_ykM_Param_c : public JORReflexible {
+class daNpc_ykM_Param_c {
 public:
-#if DEBUG
-    virtual void genMessage(JORMContext*);
-#endif
-
     /* 80B5D6C8 */ virtual ~daNpc_ykM_Param_c() {}
 
     static daNpc_ykM_HIOParam const m;
 };
+
+#if DEBUG
+class daNpc_ykM_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpc_ykM_HIO_c();
+    virtual ~daNpc_ykM_HIO_c() {}
+
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+
+    daNpc_ykM_HIOParam m;
+};
+
+#define NPC_YKM_HIO_CLASS daNpc_ykM_HIO_c
+#else
+#define NPC_YKM_HIO_CLASS daNpc_ykM_Param_c
+#endif
 
 class daNpc_ykM_c : public daNpcT_c {
 public:
@@ -252,7 +263,9 @@ public:
             char** i_arcNames)
         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
-        i_arcNames) {}
+        i_arcNames) {
+        OS_REPORT("|%06d:%x|daNpc_ykM_c -> コンストラクト\n", g_Counter.mCounter0, this);
+    }
     /* 80B5D688 */ u16 getEyeballMaterialNo() { return 2; }
     /* 80B5D690 */ s32 getHeadJointNo() { return JNT_HEAD; }
     /* 80B5D698 */ s32 getNeckJointNo() { return JNT_NECK; }
@@ -262,27 +275,24 @@ public:
 
     u32 getFlowNodeNo() {
         u32 rv = (u16)home.angle.x;
-
+        u32 result;
         if (rv == 0xFFFF) {
-            return -1;
+            result = -1;
+        } else {
+            result = (u16)rv;
         }
-
-        return rv;
+        return result;
     }
 
-    int getBitTRB() { return (fopAcM_GetParam(this) & 0x3F0000) >> 16; }
+    int getBitTRB() { return (u8)((fopAcM_GetParam(this) & 0x3F0000) >> 16); }
     u8 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
-
-    void dComIfGs_setRaceGameTime(u32 i_time) {
-        g_dComIfG_gameInfo.info.getMiniGame().setRaceGameTime(i_time);
-    }
 
     static char* mCutNameList[10];
     static cutFunc mCutList[10];
 private:
     /* 0x0E40 */ mDoExt_McaMorfSO* mFishModelMorf;
     /* 0x0E44 */ mDoExt_McaMorfSO* mLeafModelMorf;
-    /* 0x0E48 */ u8 field_0xe48[0xe4c - 0xe48];
+    /* 0x0E48 */ NPC_YKM_HIO_CLASS* mpHIO;
     /* 0x0E4C */ J3DModel* field_0xe4c[3];
     /* 0x0E58 */ dCcD_Cyl field_0xe58;
     /* 0x0F94 */ dCcD_Sph field_0xf94[4];
@@ -296,7 +306,7 @@ private:
     /* 0x1508 */ cXyz field_0x1508;
     /* 0x1514 */ cXyz field_0x1514;
     /* 0x1520 */ cXyz field_0x1520;
-    /* 0x152C */ u8 field_0x152c[0x1534 - 0x152c];
+    /* 0x152C */ csXyz field_0x152c;
     /* 0x1534 */ fpc_ProcID field_0x1534;
     /* 0x1538 */ int field_0x1538;
     /* 0x153C */ int field_0x153c;
