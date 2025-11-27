@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_shoe.h"
+#include "d/actor/d_a_npc.h"
 
 /* 80AEA3B0-80AEA41C 000000 006C+00 11/11 0/0 0/0 .rodata          m__17daNpcShoe_Param_c */
 const daNpcShoe_HIOParam daNpcShoe_Param_c::m = {

@@ -2,6 +2,7 @@
 #define D_A_NPC_WRESTLER_H
 
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 
 /**
  * @ingroup actors-npcs

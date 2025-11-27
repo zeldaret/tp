@@ -1733,7 +1733,6 @@ void daObjCarry_c::resetIconPosForLightBallB() {
 }
 
 /* 804718E8-8047233C 002968 0A54+00 1/1 0/0 0/0 .text            execute__12daObjCarry_cFv */
-// NONMATCHING - sp10 supposed to have an extra copy on the stack
 int daObjCarry_c::execute() {
     mRecover = 0;
 
@@ -1749,9 +1748,7 @@ int daObjCarry_c::execute() {
             cLib_chaseF(&field_0xe20, 2.0f, 0.05f + KREG_F(1));
         }
 
-        GXColor color = {0x5F, 0x5F, 0x5F, 0xFF};
-        GXColor spC = color;
-        GXColor sp8 = spC;
+        GXColor color = (GXColor){0x5F, 0x5F, 0x5F, 0xFF};
         int var_r27 = dKy_BossLight_set(&current.pos, &color, field_0xe20 + KREG_F(0), 0);
         if (!var_r27) {
             OS_REPORT_ERROR("光球：ライト登録できませんでした\n");
@@ -1911,9 +1908,9 @@ int daObjCarry_c::execute() {
     attention_info.position.z = current.pos.z;
     eyePos = attention_info.position;
 
-    field_0xda9 = fopAcM_checkCarryNow(this);
-    field_0xdac = mCyl.ChkCoHit();
-    field_0xdad = mAcch.ChkWaterIn();
+    field_0xda9 = fopAcM_checkCarryNow(this) != 0;
+    field_0xdac = mCyl.ChkCoHit() != 0;
+    field_0xdad = mAcch.ChkWaterIn() != 0;
 
     if (field_0xdaa != 0) {
         fopAcM_SetModel(this, mpModel);
@@ -3693,7 +3690,6 @@ bool daObjCarry_c::cc_damage_proc_kibako() {
 }
 
 /* 80476CE4-80476E04 007D64 0120+00 1/0 0/0 0/0 .text cc_damage_proc_ironball__12daObjCarry_cFv */
-// NONMATCHING - regalloc, equivalent
 bool daObjCarry_c::cc_damage_proc_ironball() {
     bool var_r26 = false;
     bool var_r27 = true;

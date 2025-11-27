@@ -1,25 +1,27 @@
 /**
-* @file d_a_obj_ihasi.cpp
+ * @file d_a_obj_ihasi.cpp
  *
  */
 
-#include "d/dolzel_rel.h" // IWYU pragma: keep
+#include "d/dolzel_rel.h"  // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_ihasi.h"
 #include "d/d_com_inf_game.h"
 
 /* 80C26018-80C2611C 000078 0104+00 1/0 0/0 0/0 .text daObj_Ihasi_Draw__FP15obj_ihasi_class */
 static int daObj_Ihasi_Draw(obj_ihasi_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+
     if (i_this->mFlag1 != 1) {
-        g_env_light.settingTevStruct(0x20, &i_this->current.pos, &i_this->tevStr);
-        g_env_light.setLightTevColorType_MAJI(i_this->mpModel1, &i_this->tevStr);
+        g_env_light.settingTevStruct(0x20, &a_this->current.pos, &a_this->tevStr);
+        g_env_light.setLightTevColorType_MAJI(i_this->mpModel1, &a_this->tevStr);
 
         dComIfGd_setListBG();
         mDoExt_modelUpdateDL(i_this->mpModel1);
         dComIfGd_setList();
     } else {
-        g_env_light.settingTevStruct(0x10, &i_this->current.pos, &i_this->tevStr);
-        g_env_light.setLightTevColorType_MAJI(i_this->mpModel2, &i_this->tevStr);
+        g_env_light.settingTevStruct(0x10, &a_this->current.pos, &a_this->tevStr);
+        g_env_light.setLightTevColorType_MAJI(i_this->mpModel2, &a_this->tevStr);
 
         i_this->mpBtkAnm->entry(i_this->mpModel2->getModelData());
         mDoExt_modelUpdateDL(i_this->mpModel2);
@@ -29,14 +31,23 @@ static int daObj_Ihasi_Draw(obj_ihasi_class* i_this) {
 }
 
 /* 80C2611C-80C26120 00017C 0004+00 1/1 0/0 0/0 .text            ih_normal__FP15obj_ihasi_class */
-static void ih_normal(obj_ihasi_class* i_this) {}
+static void ih_normal(obj_ihasi_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+}
 
 /* 80C26120-80C26124 000180 0004+00 1/1 0/0 0/0 .text            ih_disappear__FP15obj_ihasi_class
  */
-static void ih_disappear(obj_ihasi_class* i_this) {}
+static void ih_disappear(obj_ihasi_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+}
 
 /* 80C26124-80C26204 000184 00E0+00 1/1 0/0 0/0 .text            action__FP15obj_ihasi_class */
 static void action(obj_ihasi_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz sp14;
+    cXyz sp8;
+
     switch (i_this->mFlag1) {
     case 0:
         ih_normal(i_this);
@@ -46,7 +57,7 @@ static void action(obj_ihasi_class* i_this) {
         break;
     }
 
-    mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
+    mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y, a_this->current.pos.z);
 
     if (i_this->mFlag1 == 1) {
         mDoMtx_stack_c::transM(34800.0f, -300.0f, -26735.0f);
@@ -57,17 +68,17 @@ static void action(obj_ihasi_class* i_this) {
         MTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
         i_this->mpBgW->Move();
     }
-
-    return;
 }
 
 /* 80C26204-80C262C4 000264 00C0+00 2/1 0/0 0/0 .text daObj_Ihasi_Execute__FP15obj_ihasi_class */
 static int daObj_Ihasi_Execute(obj_ihasi_class* i_this) {
-    i_this->field_0x57c += 1;
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+
+    i_this->field_0x57c += (s8)1;
 
     for (int i = 0; i < 2; i++) {
         if (i_this->mArr[i] != 0) {
-            i_this->mArr[i] -= 1;
+            i_this->mArr[i] -= (s8)1;
         }
     }
 
@@ -78,7 +89,7 @@ static int daObj_Ihasi_Execute(obj_ihasi_class* i_this) {
         dComIfG_Bgsp().Release(i_this->mpBgW);
         i_this->mpBgW = NULL;
         /* dSv_event_flag_c::M_050 - Main Event - Eldin Bridge disappears */
-        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x53]);
+        dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[0x53]);
     }
 
     action(i_this);
@@ -92,6 +103,8 @@ static int daObj_Ihasi_IsDelete(obj_ihasi_class* param_0) {
 
 /* 80C262CC-80C26324 00032C 0058+00 1/0 0/0 0/0 .text daObj_Ihasi_Delete__FP15obj_ihasi_class */
 static int daObj_Ihasi_Delete(obj_ihasi_class* _this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)_this;
+    fopAcM_RegisterDeleteID(_this, "Obj_Ihasi");
     dComIfG_resDelete(&_this->mPhaseReq, "Obj_ihasi");
 
     if (_this->mpBgW != NULL) {
@@ -103,11 +116,12 @@ static int daObj_Ihasi_Delete(obj_ihasi_class* _this) {
 
 /* 80C26324-80C264F8 000384 01D4+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_actor) {
-    obj_ihasi_class* i_this = static_cast<obj_ihasi_class*>(i_actor);
+    obj_ihasi_class* i_this = (obj_ihasi_class*)i_actor;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_ihasi", 5);
-    i_this->mpModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    JUT_ASSERT(0x115, modelData != NULL);
 
+    i_this->mpModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (i_this->mpModel1 == NULL) {
         return 0;
     }
@@ -117,15 +131,16 @@ static int useHeapInit(fopAc_ac_c* i_actor) {
         return 0;
     }
 
-    cBgD_t* pdzb = (cBgD_t*)dComIfG_getObjectRes("Obj_ihasi", 0xc);
-    if (i_this->mpBgW->Set(pdzb, 1, &i_this->mMtx) == 1) {
+    if (i_this->mpBgW->Set((cBgD_t*)dComIfG_getObjectRes("Obj_ihasi", 0xc), 1, &i_this->mMtx) == 1) {
         return 0;
     }
 
     i_this->mpBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
 
-    J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes("Obj_ihasi", 6);
-    i_this->mpModel2 = mDoExt_J3DModel__create(modelData2, 0x80000, 0x11000284);
+    modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_ihasi", 6);
+    JUT_ASSERT(0x12B, modelData != NULL);
+
+    i_this->mpModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (i_this->mpModel2 == NULL) {
         return 0;
     }
@@ -135,8 +150,7 @@ static int useHeapInit(fopAc_ac_c* i_actor) {
         return 0;
     }
 
-    J3DAnmTextureSRTKey* key = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Obj_ihasi", 9);
-    if (i_this->mpBtkAnm->init(i_this->mpModel2->getModelData(), key, 1, 0, 1.0f, 0, -1) == 0) {
+    if (i_this->mpBtkAnm->init(i_this->mpModel2->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Obj_ihasi", 9), 1, 0, 1.0f, 0, -1) == 0) {
         return 0;
     }
 
@@ -146,39 +160,44 @@ static int useHeapInit(fopAc_ac_c* i_actor) {
 /* 80C26540-80C26880 0005A0 0340+00 1/0 0/0 0/0 .text            daObj_Ihasi_Create__FP10fopAc_ac_c
  */
 static int daObj_Ihasi_Create(fopAc_ac_c* i_actor) {
-    fopAcM_ct(i_actor, obj_ihasi_class);
     obj_ihasi_class* i_this = static_cast<obj_ihasi_class*>(i_actor);
+    fopAcM_ct(i_this, obj_ihasi_class);
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&i_this->mPhaseReq, "Obj_ihasi");
 
     if (step == cPhs_COMPLEATE_e) {
-        u32 param;
-        csXyz angle;
+        OS_REPORT("OBJ_IHASI PARAM %x\n", fopAcM_GetParam(i_actor));
+        u32 param1;
+        u32 param2;
         cXyz pos;
+        csXyz angle;
 
-            /* dSv_event_flag_c::M_050 - Main Event - Eldin Bridge disappears */
-        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x53])) {
+        /* dSv_event_flag_c::M_050 - Main Event - Eldin Bridge disappears */
+        if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[0x53])) {
             angle.set(0x0, -0x8000, 0x0);
             pos.set(34750.0f, -300.0f, -44000.0f);
 
-            param = fopAcM_GetParam(i_actor) & 0xff000000 | 0xfffe00;
-            fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
+            param1 = fopAcM_GetParam(i_actor) & 0xff000000 | 0xfffe00;
+            fopAcM_create(PROC_E_S1, param1, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
 
             pos.set(35250.0f, -300.0f, -43500.0f);
-            angle.y += 0x5555;
-            fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
+            angle.y += (s16)0x5555;
+            fopAcM_create(PROC_E_S1, param1, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
 
             pos.set(34250.0f, -300.0f, -43500.0f);
-            angle.y += 0x5555;
-            fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
+            angle.y += (s16)0x5555;
+            fopAcM_create(PROC_E_S1, param1, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
 
             return cPhs_ERROR_e;
         }
+        OS_REPORT("OBJ_IHASI//////////////OBJ_IHASI SET 1 !!\n");
 
         if (!fopAcM_entrySolidHeap(i_actor, useHeapInit, 0x43b0)) {
+            OS_REPORT("//////////////OBJ_IHASI SET NON !!\n");
             return cPhs_ERROR_e;
         }
 
+        OS_REPORT("//////////////OBJ_IHASI SET 2 !!\n");
         if (dComIfG_Bgsp().Regist(i_this->mpBgW, i_this)) {
             return cPhs_ERROR_e;
         }
@@ -191,14 +210,14 @@ static int daObj_Ihasi_Create(fopAc_ac_c* i_actor) {
 
             angle.set(0x0, -0x8000, 0x0);
             pos.set(34800.0f, -300.0f, -30340.0f);
-            param = fopAcM_GetParam(i_actor) & 0xff000000 | 0xfffe00;
-            fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
+            param2 = fopAcM_GetParam(i_actor) & 0xff000000 | 0xfffe00;
+            fopAcM_create(PROC_E_S1, param2, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
 
             pos.set(35087.0f, -300.0f, -29879.0f);
-            fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
+            fopAcM_create(PROC_E_S1, param2, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
 
             pos.set(34500.0f, -300.0f, -29879.0f);
-            fopAcM_create(PROC_E_S1, param, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
+            fopAcM_create(PROC_E_S1, param2, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
         }
 
         daObj_Ihasi_Execute(i_this);

@@ -153,7 +153,6 @@ static const char* l_eventName = "ELEVATOR_MOVE";
 /* 80BDF970-80BDF974 -00001 0004+00 0/1 0/0 0/0 .data            l_eventName2 */
 static const char* l_eventName2 = "ELEVATOR_MOVE2";
 
-/* 80BDF8EC-80BDF8EC 00007C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 static const char* l_staffName = "dmele";
 
 /* 80BDDEFC-80BDE0A4 00067C 01A8+00 1/0 0/0 0/0 .text            Create__17daObjDmElevator_cFv */
@@ -710,7 +709,7 @@ int daObjDmElevator_c::Delete() {
     mSoundObj.deleteObject();
 
     if ((mpBgW != NULL) && mpBgW->ChkUsed()) {
-        g_dComIfG_gameInfo.play.mBgs.Release(mpBgW);
+        dComIfG_Bgsp().Release(mpBgW);
     }
 
     dComIfG_resDelete(&mPhaseReq, l_el_arcName);

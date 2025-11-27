@@ -4,6 +4,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 #include "d/d_bg_plc.h"
+#include "d/d_bg_s_sph_chk.h"
 #include "d/d_bg_w_base.h"
 
 class cBgS_GrpPassChk;
@@ -69,9 +70,9 @@ public:
     /* 80081E18 */ virtual bool RoofChk(dBgS_RoofChk*);
     /* 80082184 */ virtual bool SplGrpChk(dBgS_SplGrpChk*);
     /* 800824EC */ virtual bool SphChk(dBgS_SphChk*, void*);
-    /* 800829F0 */ virtual s32 GetGrpRoomIndex(cBgS_PolyInfo const&) const;
-    /* 80082A20 */ virtual s32 GetExitId(cBgS_PolyInfo const&);
-    /* 80082A50 */ virtual s32 GetPolyColor(cBgS_PolyInfo const&);
+    /* 800829F0 */ virtual int GetGrpRoomIndex(cBgS_PolyInfo const&) const;
+    /* 80082A20 */ virtual int GetExitId(cBgS_PolyInfo const&);
+    /* 80082A50 */ virtual int GetPolyColor(cBgS_PolyInfo const&);
     /* 80082A80 */ virtual BOOL GetHorseNoEntry(cBgS_PolyInfo const&);
     /* 80082AB0 */ virtual int GetSpecialCode(cBgS_PolyInfo const&);
     /* 80082AE0 */ virtual int GetSpecialCode(int);
@@ -88,16 +89,16 @@ public:
     /* 80082CCC */ virtual u32 GetUnderwaterRoofCode(int);
     /* 80082B3C */ virtual int GetMonkeyBarsCode(cBgS_PolyInfo const&);
     /* 80082D24 */ virtual int GetLinkNo(cBgS_PolyInfo const&);
-    /* 80082D54 */ virtual s32 GetWallCode(cBgS_PolyInfo const&);
+    /* 80082D54 */ virtual int GetWallCode(cBgS_PolyInfo const&);
     /* 80082D84 */ virtual int GetPolyAtt0(cBgS_PolyInfo const&);
     /* 80082DB4 */ virtual int GetPolyAtt1(cBgS_PolyInfo const&);
     /* 80082DE4 */ virtual int GetGroundCode(cBgS_PolyInfo const&);
     /* 80082E14 */ virtual u32 GetIronBallThrough(int);
     /* 80082E40 */ virtual u32 GetAttackThrough(int);
-    /* 80082E6C */ virtual s32 GetCamMoveBG(cBgS_PolyInfo const&);
-    /* 80082E9C */ virtual s32 GetRoomCamId(cBgS_PolyInfo const&);
-    /* 80082ECC */ virtual s32 GetRoomPathId(cBgS_PolyInfo const&);
-    /* 80082EFC */ virtual s32 GetRoomPathPntNo(cBgS_PolyInfo const&);
+    /* 80082E6C */ virtual int GetCamMoveBG(cBgS_PolyInfo const&);
+    /* 80082E9C */ virtual int GetRoomCamId(cBgS_PolyInfo const&);
+    /* 80082ECC */ virtual int GetRoomPathId(cBgS_PolyInfo const&);
+    /* 80082EFC */ virtual int GetRoomPathPntNo(cBgS_PolyInfo const&);
     /* 80082F2C */ virtual u8 GetPolyGrpRoomInfId(cBgS_PolyInfo const&);
     /* 80082F5C */ virtual int GetGrpSoundId(cBgS_PolyInfo const&);
     /* 80082F8C */ virtual void CrrPos(cBgS_PolyInfo const&, void*, bool, cXyz*, csXyz*,

@@ -79,7 +79,8 @@ struct wd_ss;
  *
  * @details
  *
- */
+*/
+
 class dmg_rod_class {
 public:
     f32 getRodStickX() { return rod_stick_x; }
@@ -205,8 +206,8 @@ public:
     /* 0x10A7 */ s8 field_0x10a7;
     /* 0x10A8 */ s8 field_0x10a8;
     /* 0x10A9 */ s8 field_0x10a9;
-    /* 0x10AA */ u8 field_0x10aa;
-    /* 0x10AB */ u8 field_0x10ab;
+    /* 0x10AA */ u8 vibmode;
+    /* 0x10AB */ u8 vib_timer;
     /* 0x10AC */ fpc_ProcID mg_fish_id;
     /* 0x10B0 */ s16 field_0x10b0;
     /* 0x10B4 */ Z2Creature sound;

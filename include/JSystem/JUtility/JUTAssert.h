@@ -30,8 +30,11 @@
 #define JUT_LOG(LINE, ...)                                                                         \
     JUTAssertion::setLogMessage_f(JUTAssertion::getSDevice(), __FILE__, LINE, __VA_ARGS__)
 
-#define JUT_CONFIRM(LINE, COND)                                                                    \
+#define JUT_SET_CONFIRM(LINE, COND)                                                                \
     JUTAssertion::setConfirmMessage(JUTAssertion::getSDevice(), __FILE__, LINE, COND, #COND)
+
+#define JUT_CONFIRM(LINE, COND)                                                                    \
+    JUT_SET_CONFIRM(LINE, COND)
 
 #else
 #define JUT_ASSERT(...) (void)0;

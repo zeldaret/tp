@@ -359,5 +359,3 @@ extern actor_process_profile_definition g_profile_OBJ_AUTOMATA = {
   fopAc_ACTOR_e,               // mActorType
   fopAc_CULLBOX_CUSTOM_e,      // cullType
 };
-
-/* 80BA6CA4-80BA6CA4 000094 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

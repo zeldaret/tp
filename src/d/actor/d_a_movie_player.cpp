@@ -9,6 +9,11 @@
 // in other TUs, but not here.
 #pragma dont_inline on
 
+// Unsure about the optimization level here. Shield looks like it definitely uses O4,p for this TU,
+// but gamecube has functions that imply O3,p and others that match better on O4,p.
+#pragma optimization_level 4
+#pragma optimize_for_size off
+
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
@@ -196,22 +201,22 @@ static void __THPAudioInitialize(THPAudioDecodeInfo* info, u8* ptr) {
 static u8 THPStatistics[1120] ALIGN_DECL(32);
 
 /* 80879A40-80879A44 0004A0 0004+00 1/2 0/0 0/0 .bss             Ydchuff */
-static THPHuffmanTab* Ydchuff;
+static THPHuffmanTab* Ydchuff ALIGN_DECL(32);
 
 /* 80879A44-80879A48 0004A4 0004+00 1/2 0/0 0/0 .bss             Udchuff */
-static THPHuffmanTab* Udchuff;
+static THPHuffmanTab* Udchuff ALIGN_DECL(32);
 
 /* 80879A48-80879A4C 0004A8 0004+00 1/2 0/0 0/0 .bss             Vdchuff */
-static THPHuffmanTab* Vdchuff;
+static THPHuffmanTab* Vdchuff ALIGN_DECL(32);
 
 /* 80879A4C-80879A50 0004AC 0004+00 1/2 0/0 0/0 .bss             Yachuff */
-static THPHuffmanTab* Yachuff;
+static THPHuffmanTab* Yachuff ALIGN_DECL(32);
 
 /* 80879A50-80879A54 0004B0 0004+00 1/2 0/0 0/0 .bss             Uachuff */
-static THPHuffmanTab* Uachuff;
+static THPHuffmanTab* Uachuff ALIGN_DECL(32);
 
 /* 80879A54-80879A60 0004B4 0004+08 1/2 0/0 0/0 .bss             Vachuff */
-static THPHuffmanTab* Vachuff;
+static THPHuffmanTab* Vachuff ALIGN_DECL(32);
 
 /* 80879A60-80879B60 0004C0 0100+00 0/2 0/0 0/0 .bss             __THPIDCTWorkspace */
 static f32 __THPIDCTWorkspace[64] ALIGN_DECL(32);
@@ -226,13 +231,13 @@ static u8* __THPHuffmanSizeTab;
 static u16* __THPHuffmanCodeTab;
 
 /* 80879B6C-80879B80 0005CC 0004+10 0/5 0/0 0/0 .bss             Gbase */
-static THPSample* Gbase;
+static THPSample* Gbase ALIGN_DECL(32);
 
 /* 80879B80-80879B84 0005E0 0004+00 0/5 0/0 0/0 .bss             Gwid */
 static u32 Gwid ALIGN_DECL(32);
 
 /* 80879B84-80879B88 0005E4 0004+00 0/5 0/0 0/0 .bss             Gq */
-static f32* Gq;
+static f32* Gq ALIGN_DECL(32);
 
 /* 80879B88-80879B94 0005E8 000C+00 0/2 0/0 0/0 .bss             __THPLCWork512 */
 static u8* __THPLCWork512[3];
@@ -508,12 +513,12 @@ static const f64 __THPAANScaleFactor[8] = {
 };
 
 /* 808731B4-80873574 000AD4 03C0+00 1/1 0/0 0/0 .text            __THPReadQuantizationTable */
-// NONMATCHING - regalloc
 static u8 __THPReadQuantizationTable() {
-    u16 length, id, i, row, col;
+    int length;
+    u16 id, i, row, col;
 	f32 q_temp[64];
 
-	length = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
+	length = ((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]) & 0xffff;
 	__THPInfo->c += 2;
 	length -= 2;
 
@@ -535,7 +540,7 @@ static u8 __THPReadQuantizationTable() {
 		}
 
 		length -= 65;
-		if (!length) {
+		if ((u16)length == 0) {
 			break;
 		}
 	}
@@ -655,12 +660,15 @@ static void __THPPrepBitStream() {
 
     ptr = (u32*)((u32)__THPInfo->c & 0xFFFFFFFC);
     offset = (u32)__THPInfo->c & 3;
+    ASSERTLINE(3799, __THPInfo->cnt <= 33);
 
     if (__THPInfo->cnt != 33) {
         __THPInfo->cnt -= (3 - offset) * 8;
     } else {
         __THPInfo->cnt = (offset * 8) + 1;
     }
+
+    ASSERTLINE(3810, __THPInfo->cnt <= 33);
 
     __THPInfo->c = (u8*)ptr;
     __THPInfo->currByte = *ptr;
@@ -722,17 +730,17 @@ static void __THPDecompressYUV(void* tileY, void* tileU, void* tileV) {
     if (__THPInfo->xPixelSize == 512 && targetY == 448) {
         while (currentY < targetY) {
             __THPDecompressiMCURow512x448();
-            currentY += 16;
+            currentY += (u16)16;
         }
     } else if (__THPInfo->xPixelSize == 640 && targetY == 480) {
         while (currentY < targetY) {
             __THPDecompressiMCURow640x480();
-            currentY += 16;
+            currentY += (u16)16;
         }
     } else {
         while (currentY < targetY) {
             __THPDecompressiMCURowNxN();
-            currentY += 16;
+            currentY += (u16)16;
         }
     }
 
@@ -1648,6 +1656,8 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
 #endif
                 // clang-format on
 
+                ASSERTLINE(4309, info->cnt <=33);
+
                 // clang-format off
 #ifdef __MWERKS__
                 asm
@@ -1669,6 +1679,7 @@ static void __THPHuffDecodeDCTCompY(register THPFileInfo* info, THPCoeff* block)
                 }
 #endif
                 // clang-format on
+                ASSERTLINE(4336, info->cnt <=33);
             }
 
             if (__cntlzw((u32)diff) > 32 - t) {
@@ -2065,6 +2076,7 @@ static s32 __THPHuffDecodeTab(register THPFileInfo* info, register THPHuffmanTab
     }
 #endif
     // clang-format on
+    ASSERTLINE(1164, info->cnt <=33);
 _done:
     return code;
 
@@ -2154,6 +2166,7 @@ _FCEB_Done:
     }
 #endif
     // clang-format on
+    ASSERTLINE(1259, info->cnt <=33);
     return tmp;
 
     // clang-format off
@@ -2174,6 +2187,7 @@ _FCEB_Done:
     }
 #endif
     // clang-format on
+    ASSERTLINE(1278, info->cnt <=33);
     return tmp;
 
 _Read4 : {
@@ -2206,7 +2220,8 @@ _Read4 : {
     // clang-format on
 }
 
-    info->cnt = cnt;
+info->cnt = cnt;
+ASSERTLINE(1311, info->cnt <=33);
 __CODE_PLUS_VP_CNT:
     return (h->Vij[(s32)(code + h->valPtr[cnt])]);
 
@@ -2230,6 +2245,7 @@ _getfullword:
     }
 #endif
     // clang-format on
+    ASSERTLINE(1339, info->cnt <=33);
     return (s32)cnt;
 
 _FailedCheckEnoughbits_Updated:
@@ -2249,6 +2265,7 @@ _FailedCheckEnoughbits_Updated:
     } while (code > h->maxCode[cnt]);
 
     info->cnt = cnt + 1;
+    ASSERTLINE(1357, info->cnt <=33);
     goto __CODE_PLUS_VP_CNT;
 
 _FailedCheckNoBits0:
@@ -2298,6 +2315,7 @@ _FailedCheckNoBits1:
 }
 
     info->cnt = (u32)tmp;
+    ASSERTLINE(1419, info->cnt <=33);
     return (h->Vij[(s32)(code + h->valPtr[cnt])]);
 }
 
@@ -2322,8 +2340,9 @@ static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
     __dcbz((void*)block, 32);
     diff = 0;
     __dcbz((void*)block, 64);
-
+    
     if (t) {
+        ASSERTLINE(5023, info->cnt <=33);
         // clang-format off
 #ifdef __MWERKS__
         asm
@@ -2342,6 +2361,8 @@ static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
         }
 #endif
         // clang-format on
+
+        ASSERTLINE(5043, info->cnt <=33);
 
         // clang-format off
 #ifdef __MWERKS__
@@ -2364,6 +2385,8 @@ static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
         }
 #endif
         // clang-format on
+
+        ASSERTLINE(5070, info->cnt <=33);
 
         if (__cntlzw((u32)diff) > 32 - t) {
             diff += ((0xFFFFFFFF << t) + 1);
@@ -2400,6 +2423,8 @@ static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
 #endif
             // clang-format on
 
+            ASSERTLINE(5110, info->cnt <=33);
+
             // clang-format off
 #ifdef __MWERKS__
             asm
@@ -2421,6 +2446,8 @@ static void __THPHuffDecodeDCTCompU(register THPFileInfo* info, THPCoeff* block)
             }
 #endif
             // clang-format on
+
+            ASSERTLINE(5137, info->cnt <=33);
 
             if (__cntlzw((u32)rrrr) > 32 - ssss) {
                 rrrr += ((0xFFFFFFFF << ssss) + 1);
@@ -2460,6 +2487,7 @@ static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
     __dcbz((void*)block, 64);
 
     if (t) {
+        ASSERTLINE(5208, info->cnt <=33);
         // clang-format off
 #ifdef __MWERKS__
         asm
@@ -2478,6 +2506,8 @@ static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
         }
 #endif
         // clang-format on
+
+        ASSERTLINE(5228, info->cnt <=33);
 
         // clang-format off
 #ifdef __MWERKS__
@@ -2500,6 +2530,8 @@ static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
         }
 #endif
         // clang-format on
+
+        ASSERTLINE(5255, info->cnt <=33);
 
         if (__cntlzw((u32)diff) > 32 - t) {
             diff += ((0xFFFFFFFF << t) + 1);
@@ -2541,6 +2573,8 @@ static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
 #endif
             // clang-format on
 
+            ASSERTLINE(5296, info->cnt <=33);
+
             // clang-format off
 #ifdef __MWERKS__
             asm
@@ -2562,6 +2596,8 @@ static void __THPHuffDecodeDCTCompV(register THPFileInfo* info, THPCoeff* block)
             }
 #endif
             // clang-format on
+
+            ASSERTLINE(5323, info->cnt <=33);
 
             if (__cntlzw((u32)rrrr) > 32 - ssss) {
                 rrrr += ((0xFFFFFFFF << ssss) + 1);
@@ -2607,7 +2643,7 @@ static BOOL THPInit() {
 #endif
 
 /* 80879BD0-80879DA0 000630 01D0+00 28/29 0/0 0/0 .bss             daMP_ActivePlayer */
-static daMP_THPPlayer daMP_ActivePlayer ALIGN_DECL(16);
+static daMP_THPPlayer daMP_ActivePlayer;
 
 /* 80879DA0-80879DA4 000800 0004+00 2/3 0/0 0/0 .bss             daMP_ReadThreadCreated */
 static BOOL daMP_ReadThreadCreated;
@@ -2713,7 +2749,8 @@ void* daMP_Reader(void*) {
 		offset += initReadSize;
 		initReadSize = daMP_NEXT_READ_SIZE(buf);
 
-		curFrame = (frame + daMP_ActivePlayer.initReadFrame) % daMP_ActivePlayer.header.numFrames;
+        u32 numFrames = daMP_ActivePlayer.header.numFrames;
+		curFrame = (frame + daMP_ActivePlayer.initReadFrame) % numFrames;
 		if (curFrame == daMP_ActivePlayer.header.numFrames - 1) {
 			if (daMP_ActivePlayer.playFlag & 1)
 				offset = daMP_ActivePlayer.header.movieDataOffsets;
@@ -3045,9 +3082,11 @@ static void* daMP_AudioDecoder(void* param_0) {
 /* 80876344-808763EC 003C64 00A8+00 1/1 0/0 0/0 .text            daMP_AudioDecoderForOnMemory__FPv
  */
 static void* daMP_AudioDecoderForOnMemory(void* param_0) {
+    s32 size;
 	s32 readSize;
 	daMP_THPReadBuffer readBuffer;
     s32 frame;
+    s32 remaining;
 
 	readSize = daMP_ActivePlayer.initReadSize;
 	readBuffer.ptr = (u8*)param_0;
@@ -3057,7 +3096,7 @@ static void* daMP_AudioDecoderForOnMemory(void* param_0) {
 		readBuffer.frameNumber = frame;
 		daMP_AudioDecode(&readBuffer);
 
-		s32 remaining = (frame + daMP_ActivePlayer.initReadFrame) % daMP_ActivePlayer.header.numFrames;
+		remaining = (frame + daMP_ActivePlayer.initReadFrame) % daMP_ActivePlayer.header.numFrames;
 		if (remaining == daMP_ActivePlayer.header.numFrames - 1) {
 			if ((daMP_ActivePlayer.playFlag & 1)) {
 				readSize = *(s32*)readBuffer.ptr;
@@ -3066,7 +3105,7 @@ static void* daMP_AudioDecoderForOnMemory(void* param_0) {
 				OSSuspendThread(&daMP_AudioDecodeThread);
 			}
 		} else {
-			s32 size = *(s32*)readBuffer.ptr;
+			size = *(s32*)readBuffer.ptr;
 			readBuffer.ptr += readSize;
 			readSize = size;
 		}
@@ -3085,6 +3124,7 @@ static OSMessage daMP_DecodedAudioBufferMessage[3];
 static BOOL daMP_CreateAudioDecodeThread(OSPriority prio, u8* param_1) {
     if (param_1 != NULL) {
         if (!OSCreateThread(&daMP_AudioDecodeThread, daMP_AudioDecoderForOnMemory, param_1, daMP_AudioDecodeThreadStack + sizeof(daMP_AudioDecodeThreadStack), sizeof(daMP_AudioDecodeThreadStack), prio, 1)) {
+            OS_REPORT("Can't create audio decode thread\n");
             return FALSE;
         }
     } else {
@@ -3155,7 +3195,7 @@ static void daMP_THPGXYuv2RgbSetup(const GXRenderModeObj* rmode) {
 
     #if WIDESCREEN_SUPPORT
     if (!mDoGph_gInf_c::isWide()) {
-        var_f31 = ((u16)h - (w * 808.0f) / FB_WIDTH) * 0.5f;
+        var_f31 = (rmode->efbHeight - (h * 808.0f) / 608.0f) * 0.5f;
     }
     #endif
 
@@ -3288,6 +3328,8 @@ static u16 daMP_VolumeTable[] = {
 
 /* 80876E0C-80877074 00472C 0268+00 1/1 0/0 0/0 .text            daMP_MixAudio__FPsPsUl */
 // NONMATCHING - missing extsh
+#pragma push
+#pragma optimization_level 3
 static void daMP_MixAudio(s16* destination, s16*, u32 sample) {
     if (daMP_ActivePlayer.open && daMP_ActivePlayer.internalState == 2 && daMP_ActivePlayer.audioExist) {
 		u32 sampleNum;
@@ -3370,6 +3412,7 @@ static void daMP_MixAudio(s16* destination, s16*, u32 sample) {
 		memset(destination, 0, sample * 4);
 	}
 }
+#pragma pop
 
 /* 80944888-809448A0 0CB2E8 0004+14 3/3 0/0 0/0 .bss             daMP_Initialized */
 static BOOL daMP_Initialized;
@@ -3441,7 +3484,7 @@ static void daMP_PushUsedTextureSet(void* tex) {
 /* 808771B0-808771F4 004AD0 0044+00 2/2 0/0 0/0 .text            daMP_PopUsedTextureSet__Fv */
 static void* daMP_PopUsedTextureSet() {
     OSMessage tex;
-    if (OSReceiveMessage(&daMP_DecodedAudioBufferQueue, &tex, OS_MESSAGE_NOBLOCK) == 1) {
+    if (OSReceiveMessage(&daMP_UsedTextureSetQueue, &tex, OS_MESSAGE_NOBLOCK) == 1) {
         return tex;
     }
 
@@ -3451,6 +3494,8 @@ static void* daMP_PopUsedTextureSet() {
 /* 808771F4-808772CC 004B14 00D8+00 1/1 0/0 0/0 .text            daMP_THPPlayerInit__Fl */
 static int daMP_THPPlayerInit(s32 param_0) {
     BOOL enable;
+
+    ASSERTMSGLINE(7593, param_0 >= 0 && param_0 <= 2, "audioSystem flag is invalid\n");
 
     memset(&daMP_ActivePlayer, 0, sizeof(daMP_ActivePlayer));
     LCEnable();
@@ -3488,7 +3533,6 @@ static void daMP_THPPlayerQuit() {
 }
 
 /* 8087730C-808776EC 004C2C 03E0+00 1/1 0/0 0/0 .text            daMP_THPPlayerOpen__FPCci */
-// NONMATCHING - regalloc
 static BOOL daMP_THPPlayerOpen(char const* filename, BOOL onMemory) {
     s32 offset;
 	s32 i;
@@ -3622,6 +3666,8 @@ static BOOL daMP_THPPlayerSetBuffer(u8* buffer) {
 	u8* ptr;
 	u32 ysize;
 	u32 uvsize;
+
+    ASSERTMSGLINE(7939, buffer != NULL, "buffer is NULL");
 
 	if (daMP_ActivePlayer.open && daMP_ActivePlayer.state == 0) {
 		ptr = buffer;
@@ -3840,7 +3886,8 @@ static BOOL daMP_THPPlayerPrepare(s32 frame, s32 flag, s32 audioTrack) {
             }
 
 			if (daMP_ActivePlayer.header.numFrames > frame) {
-				if (DVDReadPrio(&daMP_ActivePlayer.fileInfo, daMP_WorkBuffer, 0x20, daMP_ActivePlayer.header.offsetDataOffsets + (frame - 1) * 4, 2) < 0) {
+                int offset = daMP_ActivePlayer.header.offsetDataOffsets + (frame - 1) * 4;
+				if (DVDReadPrio(&daMP_ActivePlayer.fileInfo, daMP_WorkBuffer, 0x20, offset, 2) < 0) {
 					OSReport("Fail to read the offset data from THP file.\n");
                     return FALSE;
                 }
@@ -3866,7 +3913,8 @@ static BOOL daMP_THPPlayerPrepare(s32 frame, s32 flag, s32 audioTrack) {
 			daMP_ActivePlayer.curAudioTrack = audioTrack;
 		}
 
-		daMP_ActivePlayer.playFlag = flag & 1;
+        flag &= 1;
+		daMP_ActivePlayer.playFlag = flag;
 		daMP_ActivePlayer.videoDecodeCount = 0;
 
 		if (daMP_ActivePlayer.onMemory) {
@@ -4099,8 +4147,11 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
     
     if (!daMP_THPPlayerOpen(moviePath, 0)) {
         OSReport("Fail to open the thp file\n");
-        JUT_ASSERT(0, FALSE);
+        #if DEBUG
+        JUT_ASSERT(9135, FALSE);
+        #else
         return 0;
+        #endif
     }
 
     daMP_THPPlayerGetVideoInfo(&daMP_videoInfo);
@@ -4118,16 +4169,22 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
     daMP_buffer = mDoExt_getArchiveHeap()->alloc(daMP_THPPlayerCalcNeedMemory(), 0x20);
     if (daMP_buffer == NULL) {
         OSReport("Can't allocate the memory");
-        JUT_ASSERT(0, FALSE);
+        #if DEBUG
+        JUT_ASSERT(9162, FALSE);
+        #else
         return 0;
+        #endif
     }
 
     daMP_THPPlayerSetBuffer((u8*)daMP_buffer);
 
     if (!daMP_THPPlayerPrepare(0, 0, daMP_audioInfo.sndNumTracks != 1 ? OSGetTick() % daMP_audioInfo.sndNumTracks : 0)) {
         OSReport("Fail to prepare\n");
-        JUT_ASSERT(0, FALSE);
+        #if DEBUG
+        JUT_ASSERT(9190, FALSE);
+        #else
         return 0;
+        #endif
     }
 
     return 1;
@@ -4173,9 +4230,8 @@ static void daMP_ActivePlayer_Draw() {
 static BOOL daMP_Fail_alloc;
 
 /* 80878A6C-80878B38 00638C 00CC+00 1/1 0/0 0/0 .text            daMP_Get_MovieRestFrame__Fv */
-// NONMATCHING - ending section isnt right
 static u32 daMP_Get_MovieRestFrame() {
-    u32 temp_r31;
+    int temp_r31;
     if (daMP_Fail_alloc != 0 || daMP_THPPlayerGetState() == 5) {
         return 0;
     }
@@ -4186,15 +4242,20 @@ static u32 daMP_Get_MovieRestFrame() {
         return -1;
     }
 
-    u32 temp_r3 = daMP_THPPlayerGetTotalFrame();
-    if (temp_r3 == 0) {
-        return 0;
-    }
-    if (temp_r3 <= 1) {
+    int temp_r3 = daMP_THPPlayerGetTotalFrame();
+    if ((u32)temp_r3 == 0) {
         return 0;
     }
 
-    return temp_r3 - temp_r31;
+    if ((u32)temp_r3 <= 1) {
+        return 0;
+    }
+
+    if ((u32)temp_r3 - 1 <= temp_r31) {
+        return 0;
+    }
+
+    return (temp_r3 - 1) - temp_r31;
 }
 
 /* 80878B38-80878BB8 006458 0080+00 1/1 0/0 0/0 .text            daMP_Set_PercentMovieVolume__Ff */
@@ -4215,7 +4276,7 @@ static void daMP_Set_PercentMovieVolume(f32 volume) {
 
 /* 80878BB8-80878BDC 0064D8 0024+00 1/1 0/0 0/0 .text            daMP_c_Get_arg_demoNo__6daMP_cFv */
 int daMP_c::daMP_c_Get_arg_demoNo() {
-    return (fopAcM_GetParam(this) >> 7) & 0x7F;
+    return ((u32)(fopAcM_GetParam(this) >> 7)) & 0x7F;
 }
 
 /* 80878C04-80878C28 006524 0024+00 1/1 0/0 0/0 .text            daMP_c_Get_arg_movieNo__6daMP_cFv
@@ -4296,6 +4357,10 @@ int daMP_c::daMP_c_Callback_Finish(daMP_c* i_this) {
 
 /* 80878F38-80878F70 006858 0038+00 1/0 0/0 0/0 .text daMP_c_Callback_Main__6daMP_cFP6daMP_c */
 int daMP_c::daMP_c_Callback_Main(daMP_c* i_this) {
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    mDoGph_gInf_c::resetDimming();
+    #endif
+
     if (daMP_Fail_alloc) {
         return 1;
     }

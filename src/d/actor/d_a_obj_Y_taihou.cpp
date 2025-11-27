@@ -448,5 +448,3 @@ extern actor_process_profile_definition g_profile_Obj_Ytaihou = {
 };
 
 AUDIO_INSTANCES;
-
-/* 80BA11D4-80BA11D4 000080 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

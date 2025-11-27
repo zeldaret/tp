@@ -6,8 +6,9 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_fairy.h"
-#include "JSystem/JHostIO/JORFile.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_s_play.h"
+#include "JSystem/JHostIO/JORFile.h"
 
 enum fairy_RES_File_ID {
     /* BCK */

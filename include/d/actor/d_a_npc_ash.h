@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_ASH_H
 #define D_A_NPC_ASH_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 
 struct daNpcAsh_HIOParam {
     /* 0x00 */ daNpcF_HIOParam common;

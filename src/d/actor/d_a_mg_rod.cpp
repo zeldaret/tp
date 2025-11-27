@@ -29,9 +29,7 @@ public:
     /* 804A95EC */ dmg_rod_HIO_c();
     /* 804BB070 */ virtual ~dmg_rod_HIO_c() {}
 
-#if DEBUG
     void genMessage(JORMContext*);
-#endif
 
     /* 0x04 */ s8 id;
     /* 0x08 */ f32 field_0x8;
@@ -66,6 +64,27 @@ dmg_rod_HIO_c::dmg_rod_HIO_c() {
     field_0x1c = 1.5f;
     force_fish_msg_output = 0;
 }
+
+#if DEBUG
+void dmg_rod_HIO_c::genMessage(JORMContext* ctx) {
+    // Fishing System
+    ctx->genLabel("　釣りシステム　", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->startComboBox("強制魚メッセージ出力", &force_fish_msg_output, 0, NULL, 0xFFFF, 0xFFFF, 0x100, 0x1A);
+    ctx->genComboBoxItem("通常", 0); // Normal
+    ctx->genComboBoxItem("バス", 1); // Bass
+    ctx->genComboBoxItem("ドジョウ", 2); //Loach
+    ctx->genComboBoxItem("パイク", 3); // Pike
+    ctx->genComboBoxItem("ナマズ", 4); // Catfish
+    ctx->genComboBoxItem("マス", 5); // Trout
+    ctx->genComboBoxItem("ギル", 6); // Gill
+    ctx->genComboBoxItem("小バス", 7); // Small Bass
+    ctx->genComboBoxItem("小ドジョウ", 8); // Small Loach
+    ctx->genComboBoxItem("小パイク", 9); // Small Pike
+    ctx->genComboBoxItem("小ナマズ", 10); // Small Catfish
+    ctx->genComboBoxItem("小マス", 11); // Small Trout
+    ctx->endComboBox();
+}
+#endif
 
 /* 804A964C-804A9734 00014C 00E8+00 1/1 0/0 0/0 .text            frog_nodeCallBack__FP8J3DJointi */
 static int frog_nodeCallBack(J3DJoint* i_joint, int param_1) {
@@ -155,6 +174,7 @@ static int Worm_nodeCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 804A99E0-804A9EAC 0004E0 04CC+00 1/0 0/0 0/0 .text            dmg_rod_Draw__FP13dmg_rod_class */
 static int dmg_rod_Draw(dmg_rod_class* i_this) {
+    int unused;
     fopAc_ac_c* actor = &i_this->actor;
     g_env_light.settingTevStruct(0, &actor->current.pos, &actor->tevStr);
 
@@ -258,6 +278,7 @@ static int dmg_rod_Draw(dmg_rod_class* i_this) {
 static void rod_control(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
+    cXyz* temp_r28;
     int i;
 
     cXyz sp98;
@@ -268,7 +289,7 @@ static void rod_control(dmg_rod_class* i_this) {
     csXyz sp30;
     s16 spE, spC, spA, sp8;
 
-    cXyz* temp_r28 = i_this->mg_rod.field_0x0;
+    temp_r28 = i_this->mg_rod.field_0x0;
 
     if (i_this->kind == MG_ROD_KIND_LURE && (i_this->action == ACTION_LURE_ONBOAT || (i_this->action == ACTION_LURE_STANDBY && i_this->timers[4] != 0))) {
         daCanoe_c* boat = (daCanoe_c*)fopAcM_SearchByID(i_this->boat_actor_id);
@@ -303,9 +324,9 @@ static void rod_control(dmg_rod_class* i_this) {
         i_this->field_0x6c4 = daAlink_getAlinkActorClass()->getFishingRodAngleY();
         if (i_this->kind == MG_ROD_KIND_LURE && daAlink_getAlinkActorClass()->checkFishingRodGrabLeft()) {
             MTXCopy(daAlink_getAlinkActorClass()->getLeftItemMatrix(), *calc_mtx);
-            cMtx_YrotM(*calc_mtx, (JREG_S(3) + 0x20B6));
-            cMtx_XrotM(*calc_mtx, (JREG_S(4) + 0x8000));
-            cMtx_ZrotM(*calc_mtx, (JREG_S(5) - 0x4000));
+            cMtx_YrotM(*calc_mtx, (s16)(JREG_S(3) + 0x20B6));
+            cMtx_XrotM(*calc_mtx, (s16)(JREG_S(4) + 0x8000));
+            cMtx_ZrotM(*calc_mtx, (s16)(JREG_S(5) - 0x4000));
         } else {
             MTXCopy(daAlink_getAlinkActorClass()->getRightItemMatrix(), *calc_mtx);
             if (i_this->kind == MG_ROD_KIND_LURE) {
@@ -341,8 +362,8 @@ static void rod_control(dmg_rod_class* i_this) {
         MTXCopy(model->getAnmMtx(2), *calc_mtx);
         cMtx_XrotM(*calc_mtx, -0x4000);
     } else {
-        cMtx_YrotM(*calc_mtx, (YREG_S(0) - 17000));
-        cMtx_XrotM(*calc_mtx, (YREG_S(1) + 0xA134));
+        cMtx_YrotM(*calc_mtx, (s16)(YREG_S(0) - 17000));
+        cMtx_XrotM(*calc_mtx, (s16)(YREG_S(1) + 0xA134));
         MtxTrans(KREG_F(3), -1.0f + KREG_F(4), -10.0f + KREG_F(5), 1);
     }
 
@@ -354,7 +375,7 @@ static void rod_control(dmg_rod_class* i_this) {
     MtxPosition(&sp98, &sp68);
     sp98 = sp68 - *temp_r28;
 
-    sp30.y = cM_atan2s(sp98.x, sp98.z);
+    sp30.y = (s16)cM_atan2s(sp98.x, sp98.z);
     sp30.x = -cM_atan2s(sp98.y, JMAFastSqrt(SQUARE(sp98.x) + SQUARE(sp98.z)));
     cMtx_YrotS(*calc_mtx, sp30.y);
     cMtx_XrotM(*calc_mtx, sp30.x);
@@ -454,7 +475,8 @@ static void rod_control(dmg_rod_class* i_this) {
             };
 
             f32 temp_f28 = rod_wd[i] * (0.05166f + NREG_F(3));
-            mDoMtx_stack_c::scaleM(temp_f28, temp_f28, (0.073f + NREG_F(1)) * sp98.abs());
+            f32 temp_f24 = (0.073f + NREG_F(1)) * sp98.abs();
+            mDoMtx_stack_c::scaleM(temp_f28, temp_f28, temp_f24);
 
             if (i == 0) {
                 mDoMtx_stack_c::scaleM(1.0f, 1.0f, 0.5f + NREG_F(4));
@@ -491,7 +513,8 @@ static void rod_control(dmg_rod_class* i_this) {
             };
 
             f32 temp_f28 = rod_wd[i] * (0.05166f + NREG_F(3));
-            mDoMtx_stack_c::scaleM(temp_f28, temp_f28, (0.073f + NREG_F(1)) * sp98.abs());
+            f32 temp_f27 = (0.073f + NREG_F(1)) * sp98.abs();
+            mDoMtx_stack_c::scaleM(temp_f28, temp_f28, temp_f27);
 
             i_this->rod_uki_model[i]->setBaseTRMtx(mDoMtx_stack_c::get());
         }
@@ -500,6 +523,7 @@ static void rod_control(dmg_rod_class* i_this) {
 
 /* 804AAB78-804AAB98 001678 0020+00 1/1 0/0 0/0 .text            rod_main__FP13dmg_rod_class */
 static void rod_main(dmg_rod_class* i_this) {
+    fopAc_ac_c* actor = &i_this->actor;
     rod_control(i_this);
 }
 
@@ -521,7 +545,7 @@ static void line_control1(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     int i;
 
-    cXyz sp4C;
+    cXyz work;
     cXyz sp40;
     Vec sp34;
     dBgS_GndChk sp6C;
@@ -529,14 +553,14 @@ static void line_control1(dmg_rod_class* i_this) {
     cXyz sp28;
 
     if (i_this->field_0x6e0 > 0.1f) {
-        sp4C = i_this->mg_rod.field_0x0[14] - i_this->mg_rod.field_0x0[12];
-        cMtx_YrotS(*calc_mtx, cM_atan2s(sp4C.x, sp4C.z));
-        cMtx_XrotM(*calc_mtx, -cM_atan2s(sp4C.y, JMAFastSqrt(SQUARE(sp4C.x) + SQUARE(sp4C.z))));
+        work = i_this->mg_rod.field_0x0[14] - i_this->mg_rod.field_0x0[12];
+        cMtx_YrotS(*calc_mtx, cM_atan2s(work.x, work.z));
+        cMtx_XrotM(*calc_mtx, -cM_atan2s(work.y, JMAFastSqrt(SQUARE(work.x) + SQUARE(work.z))));
 
-        sp4C.x = 0.0f;
-        sp4C.y = 0.0f;
-        sp4C.z = i_this->field_0x6e0 * (500.0f + NREG_F(7));
-        MtxPosition(&sp4C, &sp28);
+        work.x = 0.0f;
+        work.y = 0.0f;
+        work.z = i_this->field_0x6e0 * (500.0f + NREG_F(7));
+        MtxPosition(&work, &sp28);
         cLib_addCalc0(&i_this->field_0x6e0, 1.0f, 0.2f + NREG_F(8));
     } else {
         sp28.set(0.0f, 0.0f, 0.0f);
@@ -546,32 +570,36 @@ static void line_control1(dmg_rod_class* i_this) {
         cMtx_YrotS(*calc_mtx, i_this->field_0x6c4);
         cMtx_XrotM(*calc_mtx, (NREG_S(7) - 21500));
 
-        sp4C.x = 0.0f;
-        sp4C.y = 0.0f;
-        sp4C.z = 1000.0f + NREG_F(17);
-        MtxPosition(&sp4C, &sp28);
+        work.x = 0.0f;
+        work.y = 0.0f;
+        work.z = 1000.0f + NREG_F(17);
+        MtxPosition(&work, &sp28);
     }
 
     cXyz* temp_r30 = i_this->mg_line.pos;
     *temp_r30 = i_this->field_0x6ac;
 
-    sp4C.x = 0.0f;
-    sp4C.y = 0.0f;
-    sp4C.z = i_this->field_0xf5c;
+    work.x = 0.0f;
+    work.y = 0.0f;
+    work.z = i_this->field_0xf5c;
 
     temp_r30++;
 
     BOOL sp10 = 1;
-    if (i_this->kind == MG_ROD_KIND_LURE && (i_this->action == ACTION_LURE_ACTION || i_this->action == ACTION_LURE_CAST || i_this->action == ACTION_LURE_HIT || i_this->action == ACTION_LURE_ONBOAT || i_this->action == ACTION_LURE_STANDBY)) {
+    if (
+        i_this->kind == MG_ROD_KIND_LURE &&
+        (i_this->action == ACTION_LURE_ACTION || i_this->action == ACTION_LURE_CAST || i_this->action == ACTION_LURE_HIT ||
+        i_this->action == ACTION_LURE_ONBOAT || i_this->action == ACTION_LURE_STANDBY)
+    ) {
         sp10 = 0;
     }
 
-    f32 var_f31 = i_this->field_0xf64;
+    f32 var_f30, var_f27, var_f26, temp_f29, temp_f28, var_f31;
+    var_f31 = i_this->field_0xf64;
 
     for (i = 1; i < 100; i++, temp_r30++) {
-        f32 temp_f29 = sp28.x + (temp_r30[0].x - temp_r30[-1].x);
-        f32 temp_f28 = sp28.z + (temp_r30[0].z - temp_r30[-1].z);
-        f32 var_f26;
+        temp_f29 = sp28.x + (temp_r30[0].x - temp_r30[-1].x);
+        temp_f28 = sp28.z + (temp_r30[0].z - temp_r30[-1].z);
 
         if (sp10 != 0) {
             sp34.x = temp_r30->x;
@@ -579,12 +607,12 @@ static void line_control1(dmg_rod_class* i_this) {
             sp34.z = temp_r30->z;
             sp6C.SetPos(&sp34);
 
-            f32 var_f30 = KREG_F(7) + (2.0f + dComIfG_Bgsp().GroundCross(&sp6C));
+            var_f30 = KREG_F(7) + (2.0f + dComIfG_Bgsp().GroundCross(&sp6C));
             if (var_f30 < i_this->field_0x590) {
                 var_f30 = i_this->field_0x590;
             }
 
-            f32 var_f27 = sp28.y + (temp_r30[0].y + var_f31);
+            var_f27 = sp28.y + (temp_r30[0].y + var_f31);
             if (var_f27 < var_f30) {
                 var_f27 = var_f30;
             }
@@ -611,7 +639,7 @@ static void line_control1(dmg_rod_class* i_this) {
 
         cMtx_YrotS(*calc_mtx, sp8);
         cMtx_XrotM(*calc_mtx, spA);
-        MtxPosition(&sp4C, &sp40);
+        MtxPosition(&work, &sp40);
 
         old_line_pos[i] = *temp_r30;
 
@@ -644,15 +672,15 @@ static void line_control2(dmg_rod_class* i_this) {
     sp34.z = i_this->field_0xf5c;
 
     for (i = 98; i >= 1; i--, var_r28--) {
-        f32 temp_f30 = (var_r28[0].x - var_r28[1].x) + i_this->field_0xc20[i + TREG_S(9)];
-        f32 temp_f29 = (var_r28[0].z - var_r28[1].z) + i_this->field_0xdb0[i + TREG_S(9)];
+        f32 temp_f30, sp14, temp_f29, var_f31, var_f28;
+        temp_f30 = (var_r28[0].x - var_r28[1].x) + i_this->field_0xc20[i + TREG_S(9)];
+        temp_f29 = (var_r28[0].z - var_r28[1].z) + i_this->field_0xdb0[i + TREG_S(9)];
 
         sp1C.x = var_r28->x;
         sp1C.y = 50.0f + var_r28->y;
         sp1C.z = var_r28->z;
         spD8.SetPos(&sp1C);
 
-        f32 var_f31;
         if (dComIfG_Bgsp().GetTriPla(spD8, &sp54) && cBgW_CheckBGround(sp54.mNormal.y)) {
             var_f31 = KREG_F(7) + (2.0f + dComIfG_Bgsp().GroundCross(&spD8));
         } else if (i_this->lure_type == MG_LURE_SP) {
@@ -661,12 +689,12 @@ static void line_control2(dmg_rod_class* i_this) {
             var_f31 = i_this->field_0x590;
         }
 
-        f32 var_f28 = var_r28[0].y;
+        var_f28 = var_r28[0].y;
         if (var_f28 < var_f31) {
             var_f28 = var_f31;
         }
 
-        f32 sp14 = var_f28 - var_r28[1].y;
+        sp14 = var_f28 - var_r28[1].y;
 
         s16 spA, sp8;
         sp8 = (s16)cM_atan2s(temp_f30, temp_f29);
@@ -732,32 +760,30 @@ static void line_control2(dmg_rod_class* i_this) {
                     MtxPosition(&sp34, &sp28);
                     actor->current.pos += sp28;
                 } else {
-                    i_this->field_0xdb0[i] = 0.0f;
-                    i_this->field_0xc20[i] = 0.0f;
+                    i_this->field_0xc20[i] = i_this->field_0xdb0[i] = 0.0f;
                 }
             }
         }
     }
 }
 
-/* 804AB588-804ABCE0 002088 0758+00 1/1 0/0 0/0 .text            line_control1_u__FP13dmg_rod_class
- */
+/* 804AB588-804ABCE0 002088 0758+00 1/1 0/0 0/0 .text            line_control1_u__FP13dmg_rod_class */
 static void line_control1_u(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     int i;
 
-    cXyz sp98;
-    cXyz sp8C;
-    Vec sp80;
-    dBgS_GndChk spA4;
+    cXyz work;
+    cXyz offset;
+    Vec gnd_chk_pos;
+    dBgS_GndChk gnd_chk;
     cXyz sp74(0.0f, 0.0f, 0.0f);
 
     cMtx_YrotS(*calc_mtx, player->shape_angle.y);
-    sp98.x = 0.0f;
-    sp98.y = i_this->field_0x6e0 * (20.0f + BREG_F(8));
-    sp98.z = i_this->field_0x6e0 * (30.0f + BREG_F(9));
-    MtxPosition(&sp98, &sp74);
+    work.x = 0.0f;
+    work.y = i_this->field_0x6e0 * (20.0f + BREG_F(8));
+    work.z = i_this->field_0x6e0 * (30.0f + BREG_F(9));
+    MtxPosition(&work, &sp74);
     sp74.y += i_this->field_0x6e4;
 
     cLib_addCalc0(&i_this->field_0x6e4, 1.0f, 3.0f + ZREG_F(17));
@@ -765,140 +791,137 @@ static void line_control1_u(dmg_rod_class* i_this) {
     cXyz* temp_r28 = i_this->mg_line.pos;
     *temp_r28 = i_this->field_0x6ac;
 
-    f32 sp4C, sp48, sp44, sp40;
-    f32 sp3C, sp38;
+    f32 fVar1, fVar2, fVar3, fVar4;
+    f32 fVar5, fVar6;
 
     if (i_this->action == ACTION_UKI_CATCH) {
         fopAc_ac_c* mg_fish = fopAcM_SearchByID(i_this->mg_fish_id);
-        f32 sp30 = i_this->play_cam_timer * 2;
-        if (sp30 > 300.0f) {
-            sp30 = 300.0f;
+        f32 fVar7 = i_this->play_cam_timer * 2;
+        if (fVar7 > 300.0f) {
+            fVar7 = 300.0f;
         }
-        temp_r28[0].y = 700.0f + mg_fish->current.pos.y + sp30;
+        temp_r28[0].y = 700.0f + mg_fish->current.pos.y + fVar7;
     }
 
-    sp98.x = 0.0f;
-    sp98.y = 0.0f;
-    sp98.z = i_this->field_0xf5c;
+    work.x = 0.0f;
+    work.y = 0.0f;
+    work.z = i_this->field_0xf5c;
 
     temp_r28++;
 
-    f32 sp2C;
-    f32 sp28 = i_this->field_0xf64;
-    f32 sp24 = i_this->field_0xf68;
+    f32 fVar8;
+    f32 fVar9 = i_this->field_0xf64;
+    f32 fVar10 = i_this->field_0xf68;
     if (i_this->hook_kind == 1) {
-        sp28 *= 1.5f;
-        sp24 *= 1.5f;
+        fVar9 *= 1.5f;
+        fVar10 *= 1.5f;
     }
 
     cXyz sp68;
-    f32 sp20;
-    dKyw_get_AllWind_vec(&i_this->hook_pos, &sp68, &sp20);
+    f32 fVar11;
+    dKyw_get_AllWind_vec(&i_this->hook_pos, &sp68, &fVar11);
 
-    if (sp20 < 0.4f) {
-        sp20 = 0.0f;
+    if (fVar11 < 0.4f) {
+        fVar11 = 0.0f;
     } else {
-        sp20 -= 0.4f;
-        if (sp20 > 1.0f) {
-            sp20 = 1.0f;
+        fVar11 -= 0.4f;
+        if (fVar11 > 1.0f) {
+            fVar11 = 1.0f;
         }
     }
 
-    f32 sp1C, sp18, sp14;
-    if (sp20 > 0.01f) {
-        sp20 *= 40.0f;
-        sp1C = sp68.x * sp20;
-        sp18 = sp68.z * sp20;
+    f32 fVar12, fVar13, fVar14;
+    if (fVar11 > 0.01f) {
+        fVar11 *= 40.0f;
+        fVar12 = sp68.x * fVar11;
+        fVar13 = sp68.z * fVar11;
 
         if ((i_this->field_0x578 & 15) == 0) {
-            i_this->field_0x109e = 2000.0f + (60.0f * sp20) + cM_rndF(60.0f * sp20);
+            i_this->field_0x109e = 2000.0f + (60.0f * fVar11) + cM_rndF(60.0f * fVar11);
         }
 
         i_this->field_0x109c += i_this->field_0x109e;
     } else {
-        sp68.z = 0.0f;
-        sp68.y = 0.0f;
-        sp68.x = 0.0f;
+        sp68.x = sp68.y = sp68.z = 0.0f;
     }
 
-    cXyz sp5C;
-    int sp10 = 0;
-    fopAcM_getWaterStream(&actor->current.pos, i_this->acchcir, &sp5C, &sp10, 0);
+    cXyz speed;
+    int iVar1 = 0;
+    fopAcM_getWaterStream(&actor->current.pos, i_this->acchcir, &speed, &iVar1, 0);
 
     for (i = 1; i < 100; i++, temp_r28++) {
-        if (sp20 > 0.01f && temp_r28[0].y > (20.0f + i_this->field_0x590)) {
-            sp14 = 0.1f + (0.003f * i);
-            sp68.x = sp1C * (1.0f + (sp14 * cM_ssin(i_this->field_0x109c - (i * 600))));
-            sp68.y = JREG_F(7) * (sp20 * (sp14 * cM_ssin(i_this->field_0x109c - (i * 650))));
-            sp68.z = sp18 * (1.0f + (sp14 * cM_ssin(i_this->field_0x109c - (i * 630))));
+        if (fVar11 > 0.01f && temp_r28[0].y > (20.0f + i_this->field_0x590)) {
+            fVar14 = 0.1f + (0.003f * i);
+            sp68.x = fVar12 * (1.0f + (fVar14 * cM_ssin(i_this->field_0x109c - (i * 600))));
+            sp68.y = JREG_F(7) * (fVar11 * (fVar14 * cM_ssin(i_this->field_0x109c - (i * 650))));
+            sp68.z = fVar13 * (1.0f + (fVar14 * cM_ssin(i_this->field_0x109c - (i * 630))));
         } else {
-            if (sp10 != 0) {
-                sp68.x = sp10 * (0.5f * sp5C.x);
-                sp68.z = sp10 * (0.5f * sp5C.z);
+            if (iVar1 != 0) {
+                sp68.x = iVar1 * (0.5f * speed.x);
+                sp68.z = iVar1 * (0.5f * speed.z);
             } else {
-                sp68.z = 0.0f;
-                sp68.x = 0.0f;
+                sp68.x = sp68.z = 0.0f;
             }
             sp68.y = 0.0f;
         }
 
-        sp4C = sp68.x + (sp74.x + (temp_r28[0].x - temp_r28[-1].x));
-        sp44 = sp68.z + (sp74.z + (temp_r28[0].z - temp_r28[-1].z));
+        fVar1 = sp68.x + (sp74.x + (temp_r28[0].x - temp_r28[-1].x));
+        fVar3 = sp68.z + (sp74.z + (temp_r28[0].z - temp_r28[-1].z));
 
-        sp80.x = temp_r28[0].x;
-        sp80.y = 50.0f + temp_r28[0].y;
-        sp80.z = temp_r28[0].z;
-        spA4.SetPos(&sp80);
+        gnd_chk_pos.x = temp_r28[0].x;
+        gnd_chk_pos.y = 50.0f + temp_r28[0].y;
+        gnd_chk_pos.z = temp_r28[0].z;
+        gnd_chk.SetPos(&gnd_chk_pos);
 
-        sp3C = KREG_F(7) + (2.0f + dComIfG_Bgsp().GroundCross(&spA4));
+        fVar5 = KREG_F(7) + (2.0f + dComIfG_Bgsp().GroundCross(&gnd_chk));
         if (i >= 50 && i <= 90) {
             f32 var_f31 = (0.07f + KREG_F(9)) * (20.0f - fabsf(i - 70.0f));
             if (var_f31 > 1.0f) {
                 var_f31 = 1.0f;
             }
             var_f31 *= var_f31;
-            sp2C = AREG_F(14) + (5.0f + (i_this->field_0x590 + (i_this->field_0xf74 * var_f31)));
+            fVar8 = AREG_F(14) + (5.0f + (i_this->field_0x590 + (i_this->field_0xf74 * var_f31)));
         } else {
-            sp2C = 5.0f + i_this->field_0x590 + AREG_F(14);
+            fVar8 = 5.0f + i_this->field_0x590 + AREG_F(14);
         }
 
-        sp38 = ((0.5f + TREG_F(5)) * (sp2C - temp_r28[0].y)) - 0.25f;
-        if (sp38 < sp28) {
-            sp38 = sp28;
-        } else if (sp38 > 2.0f) {
-            sp38 = 2.0f;
+        fVar6 = ((0.5f + TREG_F(5)) * (fVar8 - temp_r28[0].y)) - 0.25f;
+        if (fVar6 < fVar9) {
+            fVar6 = fVar9;
+        } else if (fVar6 > 2.0f) {
+            fVar6 = 2.0f;
         }
 
-        if (i >= (TREG_S(9) + BREG_S(5) + 71) && temp_r28[0].y < sp2C) {
+        if (i >= (TREG_S(9) + BREG_S(5) + 71) && temp_r28[0].y < fVar8) {
             f32 temp_f31 = (0.02f + VREG_F(3)) * (AREG_S(7) + (i - (TREG_S(9) + BREG_S(5) + 61)));
-            sp38 = sp24 * (temp_f31 * temp_f31);
+            fVar6 = fVar10 * (temp_f31 * temp_f31);
         }
 
-        sp40 = sp68.y + (sp74.y + (temp_r28[0].y + sp38));
+        fVar4 = sp68.y + (sp74.y + (temp_r28[0].y + fVar6));
 
-        if ((sp40 <= sp2C || sp40 <= sp3C) && (i == (TREG_S(9) + BREG_S(6) + 72))) {
+        if ((fVar4 <= fVar8 || fVar4 <= fVar5) && (i == (TREG_S(9) + BREG_S(6) + 72))) {
             cLib_addCalc0(&i_this->field_0x6e0, 1.0f, 0.08f + BREG_F(19));
         }
 
-        if (sp40 <= sp3C) {
-            sp40 = sp3C;
-            if (i == 99 && sp40 > sp2C) {
+        if (fVar4 <= fVar5) {
+            fVar4 = fVar5;
+            if (i == 99 && fVar4 > fVar8) {
                 i_this->field_0x102e = 1;
             }
         }
 
-        sp48 = (sp40 - temp_r28[-1].y);
+        fVar2 = (fVar4 - temp_r28[-1].y);
 
-        s16 spA, sp8;
-        sp8 = (s16)cM_atan2s(sp4C, sp44);
-        spA = -cM_atan2s(sp48, JMAFastSqrt(SQUARE(sp4C) + SQUARE(sp44)));
+        s16 x_rot, y_rot;
+        y_rot = (s16)cM_atan2s(fVar1, fVar3);
+        x_rot = -cM_atan2s(fVar2, JMAFastSqrt(SQUARE(fVar1) + SQUARE(fVar3)));
 
-        cMtx_YrotS(*calc_mtx, sp8);
-        cMtx_XrotM(*calc_mtx, spA);
-        MtxPosition(&sp98, &sp8C);
-        temp_r28[0].x = temp_r28[-1].x + sp8C.x;
-        temp_r28[0].y = temp_r28[-1].y + sp8C.y;
-        temp_r28[0].z = temp_r28[-1].z + sp8C.z;
+        cMtx_YrotS(*calc_mtx, y_rot);
+        cMtx_XrotM(*calc_mtx, x_rot);
+        MtxPosition(&work, &offset);
+        temp_r28[0].x = temp_r28[-1].x + offset.x;
+        temp_r28[0].y = temp_r28[-1].y + offset.y;
+        temp_r28[0].z = temp_r28[-1].z + offset.z;
 
         if (i == 99) {
             i_this->field_0x764 = *temp_r28;
@@ -906,60 +929,64 @@ static void line_control1_u(dmg_rod_class* i_this) {
     }
 }
 
-/* 804ABCE0-804ABED8 0027E0 01F8+00 2/2 0/0 0/0 .text            line_control2_u__FP13dmg_rod_class
- */
+/* 804ABCE0-804ABED8 0027E0 01F8+00 2/2 0/0 0/0 .text            line_control2_u__FP13dmg_rod_class */
 static void line_control2_u(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     int i;
-    cXyz sp30;
-    cXyz sp24;
-    Vec sp18;
-    s16 spA, sp8;
-    dBgS_GndChk sp3C;
+    cXyz work;
+    cXyz offset;
+    Vec pos;
+    s16 x_rot, y_rot;
+    dBgS_GndChk gnd_chk;
 
     i_this->mg_line.pos[99] = actor->current.pos;
-    cXyz* var_r31 = &i_this->mg_line.pos[98];
+    cXyz* linePosP = &i_this->mg_line.pos[98];
 
-    sp30.x = 0.0f;
-    sp30.y = 0.0f;
-    sp30.z = i_this->field_0xf5c;
+    work.x = 0.0f;
+    work.y = 0.0f;
+    work.z = i_this->field_0xf5c;
 
-    for (i = 98; i >= 1; i--, var_r31--) {
-        f32 temp_f31 = var_r31[0].x - var_r31[1].x;
-        f32 var_f28;
-        f32 temp_f30 = var_r31[0].z - var_r31[1].z;
+    for (i = 98; i >= 1; i--, linePosP--) {
+        f32 x_delta = linePosP[0].x - linePosP[1].x;
+        f32 y_delta;
+        f32 z_delta = linePosP[0].z - linePosP[1].z;
 
         if (i_this->action == ACTION_UKI_STANDBY) {
-            sp18.x = var_r31->x;
-            sp18.y = 50.0f + var_r31->y;
-            sp18.z = var_r31->z;
-            sp3C.SetPos(&sp18);
+            pos.x = linePosP->x;
+            pos.y = 50.0f + linePosP->y;
+            pos.z = linePosP->z;
+            gnd_chk.SetPos(&pos);
 
-            f32 temp_f27 = KREG_F(7) + (2.0f + dComIfG_Bgsp().GroundCross(&sp3C));
-            f32 var_f29 = var_r31->y;
-            if (var_f29 < temp_f27) {
-                var_f29 = temp_f27;
+            f32 gnd_cross_offset = KREG_F(7) + (2.0f + dComIfG_Bgsp().GroundCross(&gnd_chk));
+            f32 y = linePosP->y;
+            if (y < gnd_cross_offset) {
+                y = gnd_cross_offset;
             }
-            var_f28 = var_f29 - var_r31[1].y;
+            y_delta = y - linePosP[1].y;
         } else {
-            var_f28 = var_r31[0].y - var_r31[1].y;
+            y_delta = linePosP[0].y - linePosP[1].y;
         }
 
-        sp8 = (s16)cM_atan2s(temp_f31, temp_f30);
-        spA = -cM_atan2s(var_f28, JMAFastSqrt(SQUARE(temp_f31) + SQUARE(temp_f30)));
+        y_rot = (s16)cM_atan2s(x_delta, z_delta);
+        x_rot = -cM_atan2s(y_delta, JMAFastSqrt(SQUARE(x_delta) + SQUARE(z_delta)));
 
-        cMtx_YrotS(*calc_mtx, sp8);
-        cMtx_XrotM(*calc_mtx, spA);
-        MtxPosition(&sp30, &sp24);
-        var_r31[0].x = var_r31[1].x + sp24.x;
-        var_r31[0].y = var_r31[1].y + sp24.y;
-        var_r31[0].z = var_r31[1].z + sp24.z;
+        cMtx_YrotS(*calc_mtx, y_rot);
+        cMtx_XrotM(*calc_mtx, x_rot);
+        MtxPosition(&work, &offset);
+        linePosP[0].x = linePosP[1].x + offset.x;
+        linePosP[0].y = linePosP[1].y + offset.y;
+        linePosP[0].z = linePosP[1].z + offset.z;
     }
 }
 
 /* 804ABED8-804ABFA4 0029D8 00CC+00 1/1 0/0 0/0 .text            line_main__FP13dmg_rod_class */
 static void line_main(dmg_rod_class* i_this) {
-    if (i_this->kind == MG_ROD_KIND_LURE && i_this->action != ACTION_LURE_CATCH && i_this->action == ACTION_LURE_HIT && (i_this->reel_btn_flags != 0 || mDoCPd_c::getHoldX(PAD_1))) {
+    fopAc_ac_c* actor = &i_this->actor;
+
+    if (
+        i_this->kind == MG_ROD_KIND_LURE && i_this->action != ACTION_LURE_CATCH && i_this->action == ACTION_LURE_HIT &&
+        (i_this->reel_btn_flags != 0 || mDoCPd_c::getHoldX(PAD_1))
+    ) {
         cLib_addCalc2(&i_this->field_0xf5c, 0.5f, 1.0f, 0.1f + YREG_F(11));
     }
 
@@ -971,18 +998,17 @@ static void line_main(dmg_rod_class* i_this) {
     }
 }
 
-/* 804ABFA4-804AC04C 002AA4 00A8+00 2/2 0/0 0/0 .text depth_check__FP13dmg_rod_classP4cXyz */
+/* 804ABFA4-804AC04C 002AA4 00A8+00 2/2 0/0 0/0 .text            depth_check__FP13dmg_rod_classP4cXyz */
 static f32 depth_check(dmg_rod_class* i_this, cXyz* param_1) {
-    dBgS_GndChk sp14;
-    Vec sp8;
+    dBgS_GndChk gnd_chk;
+    Vec pos;
 
-    sp8.x = param_1->x;
-    sp8.y = 50.0f + i_this->field_0x590;
-    sp8.z = param_1->z;
-    sp14.SetPos(&sp8);
+    pos.x = param_1->x;
+    pos.y = 50.0f + i_this->field_0x590;
+    pos.z = param_1->z;
+    gnd_chk.SetPos(&pos);
 
-    f32 temp_f31 = i_this->field_0x590 - dComIfG_Bgsp().GroundCross(&sp14);
-    return temp_f31;
+    return i_this->field_0x590 - dComIfG_Bgsp().GroundCross(&gnd_chk);
 }
 
 /* 804AC04C-804AC1C0 002B4C 0174+00 1/1 0/0 0/0 .text sibuki_set__FP13dmg_rod_classfP4cXyzi */
@@ -996,7 +1022,7 @@ static void sibuki_set(dmg_rod_class* i_this, f32 i_size, cXyz* i_pos, BOOL para
         static cXyz sc(i_size, i_size, i_size);
 
         for (int i = 0; i < 4; i++) {
-            static u16 w_eff_id[] = {0x01B8, 0x01B9, 0x01BA, 0x01BB};
+            static u16 w_eff_id[] = {ID_ZI_J_DOWNWTRA_A, ID_ZI_J_DOWNWTRA_B, ID_ZI_J_DOWNWTRA_C, ID_ZI_J_DOWNWTRA_D};
             i_this->sibuki_eff[i] = dComIfGp_particle_set(i_this->sibuki_eff[i], w_eff_id[i], &pos, &actor->tevStr, NULL, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
         }
     }
@@ -1016,12 +1042,13 @@ static void* s_boat_sub(void* i_actor, void* i_data) {
 static void lure_onboat(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    cXyz sp20;
+    cXyz pos_delta;
     cXyz sp14;
 
     i_this->field_0x100d = 0;
 
-    if (fopAcM_SearchByID(i_this->boat_actor_id) == NULL) {
+    fopAc_ac_c* actor_p = fopAcM_SearchByID(i_this->boat_actor_id);
+    if (actor_p == NULL) {
         fopAcM_delete(actor);
         return;
     }
@@ -1040,9 +1067,9 @@ static void lure_onboat(dmg_rod_class* i_this) {
     i_this->field_0x6f8 = 15.0f + BREG_F(4);
     actor->current.pos = i_this->field_0x764;
 
-    sp20 = i_this->field_0x6ac - actor->current.pos;
-    actor->current.angle.x = -cM_atan2s(sp20.y, sp20.z);
-    actor->current.angle.y = cM_atan2s(sp20.x, JMAFastSqrt(SQUARE(sp20.y) + SQUARE(sp20.z)));
+    pos_delta = i_this->field_0x6ac - actor->current.pos;
+    actor->current.angle.x = -cM_atan2s(pos_delta.y, pos_delta.z);
+    actor->current.angle.y = (s16)cM_atan2s(pos_delta.x, JMAFastSqrt(SQUARE(pos_delta.y) + SQUARE(pos_delta.z)));
 
     if (daAlink_getAlinkActorClass()->checkFishingRodGrab(actor)) {
         i_this->action = ACTION_LURE_STANDBY;
@@ -1054,7 +1081,9 @@ static void lure_onboat(dmg_rod_class* i_this) {
         i_this->field_0x14f8 = 0;
 
         camera_class* camera = dComIfGp_getCamera(0);
-        i_this->field_0x1418 = cM_atan2s(camera->lookat.center.x - camera->lookat.eye.x, camera->lookat.center.z - camera->lookat.eye.z);
+        f32 x_delta = camera->lookat.center.x - camera->lookat.eye.x;
+        f32 z_delta = camera->lookat.center.z - camera->lookat.eye.z;
+        i_this->field_0x1418 = cM_atan2s(x_delta, z_delta);
 
         daAlink_getAlinkActorClass()->setCanoeFishingWaitAngle(i_this->field_0x1418);
         daAlink_getAlinkActorClass()->seStartOnlyReverb(Z2SE_AL_ROD_TAKEOUT);
@@ -1065,8 +1094,8 @@ static void lure_onboat(dmg_rod_class* i_this) {
 static int lure_standby(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
-    cXyz sp70;
-    cXyz sp64;
+    cXyz work;
+    cXyz offset;
 
     int sp14 = 0;
     int sp10 = 0;
@@ -1086,9 +1115,9 @@ static int lure_standby(dmg_rod_class* i_this) {
     i_this->field_0xf64 = -30.0f + KREG_F(8);
     actor->current.pos = i_this->field_0x764;
 
-    sp70 = i_this->field_0x6ac - actor->current.pos;
-    actor->current.angle.x = -cM_atan2s(sp70.y, sp70.z);
-    actor->current.angle.y = cM_atan2s(sp70.x, JMAFastSqrt(SQUARE(sp70.y) + SQUARE(sp70.z)));
+    work = i_this->field_0x6ac - actor->current.pos;
+    actor->current.angle.x = -cM_atan2s(work.y, work.z);
+    actor->current.angle.y = (s16)cM_atan2s(work.x, JMAFastSqrt(SQUARE(work.y) + SQUARE(work.z)));
 
     if (i_this->timers[1] != 0) {
         i_this->field_0x14f8 = -7000;
@@ -1134,9 +1163,9 @@ static int lure_standby(dmg_rod_class* i_this) {
     }
 
     daAlink_getAlinkActorClass()->setFishingArnmAngle(i_this->field_0x14f8);
-    sp70 = actor->current.pos - actor->old.pos;
+    work = actor->current.pos - actor->old.pos;
     
-    f32 temp_f29 = (0.005f + NREG_F(9)) * sp70.abs();
+    f32 temp_f29 = (0.005f + NREG_F(9)) * work.abs();
     if (temp_f29 > (0.4f + NREG_F(8))) {
         i_this->field_0x6e0 = temp_f29;
         if (i_this->field_0x6e0 > 1.0f) {
@@ -1155,15 +1184,15 @@ static int lure_standby(dmg_rod_class* i_this) {
             cMtx_YrotS(*calc_mtx, i_this->field_0x6c4);
 
             if (i_this->field_0x6e8 == 1) {
-                sp70.x = -100.0f + hREG_F(1);
+                work.x = -100.0f + hREG_F(1);
             } else {
-                sp70.x = 100.0f + hREG_F(6);
+                work.x = 100.0f + hREG_F(6);
             }
 
-            sp70.y = hREG_F(2);
-            sp70.z = hREG_F(3);
-            MtxPosition(&sp70, &sp64);
-            actor->current.pos = sp64 + player->eyePos;
+            work.y = hREG_F(2);
+            work.z = hREG_F(3);
+            MtxPosition(&work, &offset);
+            actor->current.pos = offset + player->eyePos;
             sp14 = 1;
         }
 
@@ -1186,9 +1215,9 @@ static int lure_standby(dmg_rod_class* i_this) {
 
             if (i_this->field_0x6e8 != 0) {
                 actor->speed.y = 25.0f + JREG_F(14);
-                sp70.x = 0.0f;
-                sp70.y = WREG_F(15);
-                sp70.z = WREG_F(16);
+                work.x = 0.0f;
+                work.y = WREG_F(15);
+                work.z = WREG_F(16);
 
                 if (i_this->field_0x6e8 == 1) {
                     i_this->field_0x14fa = -5000;
@@ -1197,20 +1226,19 @@ static int lure_standby(dmg_rod_class* i_this) {
                 }
             } else {
                 actor->speed.y = 35.0f + JREG_F(14);
-                sp70.x = 0.0f;
-                sp70.y = 50.0f + WREG_F(5);
-                sp70.z = -50.0f + WREG_F(6);
+                work.x = 0.0f;
+                work.y = 50.0f + WREG_F(5);
+                work.z = -50.0f + WREG_F(6);
                 i_this->field_0x14fa = 0;
             }
 
-            MtxPosition(&sp70, &sp64);
-            actor->current.pos += sp64;
+            MtxPosition(&work, &offset);
+            actor->current.pos += offset;
 
             i_this->field_0x1410 = 0.05f + ZREG_F(11);
             i_this->field_0xf64 = KREG_F(8);
             i_this->field_0x14f8 = XREG_S(8) - 5000;
-            i_this->field_0x594 = 0.0f;
-            i_this->field_0x6e0 = 0.0f;
+            i_this->field_0x6e0 = i_this->field_0x594 = 0.0f;
         }
     } else if (sp10 != 0) {
         if (sp10 == 1) {
@@ -1222,9 +1250,12 @@ static int lure_standby(dmg_rod_class* i_this) {
         daAlink_getAlinkActorClass()->seStartOnlyReverb(Z2SE_AL_ROD_SWING_LURE);
         daAlink_getAlinkActorClass()->seStartOnlyReverb(Z2SE_AL_REEL_ROLL_THROW);
         i_this->field_0x1514 = 30;
-    } else if (i_this->field_0x14f8 < 5000) {
+    } 
+    #if VERSION != VERSION_SHIELD_DEBUG
+    else if (i_this->field_0x14f8 < 5000) {
         dComIfGp_setCStickStatusForce(80, 2, 0);
     }
+    #endif
 
     i_this->field_0x6f8 = (500.0f + NREG_F(19)) * i_this->field_0x6e0;
 
@@ -1246,7 +1277,7 @@ static int lure_standby(dmg_rod_class* i_this) {
     return sp14;
 }
 
-/* 804ACB94-804ACC1C 003694 0088+00 2/2 0/0 0/0 .text lure_bound_se_set__FP13dmg_rod_class */
+/* 804ACB94-804ACC1C 003694 0088+00 2/2 0/0 0/0 .text            lure_bound_se_set__FP13dmg_rod_class */
 static void lure_bound_se_set(dmg_rod_class* i_this) {
     if (i_this->lure_type != MG_LURE_FR) {
         if (i_this->lure_type == MG_LURE_SP) {
@@ -1286,13 +1317,13 @@ static void lure_cast(dmg_rod_class* i_this) {
         actor->speedF *= 0.95f + VREG_F(11);
         sp40.x = 50.0f + VREG_F(12);
         sp40.y = (0.0105f + TREG_F(10)) * sp4C.abs();
-        i_this->field_0x75c += 0x1100;
-        i_this->field_0x75e += 0x880;
+        i_this->field_0x75c += (s16)0x1100;
+        i_this->field_0x75e += (s16)0x880;
     } else {
         sp40.x = 0.0f;
         sp40.y = (0.011f + TREG_F(11)) * sp4C.abs();
-        i_this->field_0x75c += 0x2200;
-        i_this->field_0x75e += 0x1100;
+        i_this->field_0x75c += (s16)0x2200;
+        i_this->field_0x75e += (s16)0x1100;
     }
 
     cLib_addCalc2(&i_this->field_0x6f8, sp40.x, 0.1f, 5.0f);
@@ -1408,12 +1439,8 @@ static void lure_cast(dmg_rod_class* i_this) {
             i_this->field_0x140c = 5.0f;
         }
 
-        i_this->field_0x14d4 = 0.0f;
-        i_this->field_0x14d0 = 0.0f;
-        i_this->field_0x114c = 0;
-        i_this->field_0x114a = 0;
-        i_this->field_0x1150 = 0;
-        i_this->field_0x114e = 0;
+        i_this->field_0x14d0 = i_this->field_0x14d4 = 0.0f;
+        i_this->field_0x114e = i_this->field_0x1150 = i_this->field_0x114a = i_this->field_0x114c = 0;
         i_this->field_0x1008 = 0;
         i_this->field_0x100c = 0;
         i_this->field_0x100a = 0;
@@ -1428,8 +1455,7 @@ static void lure_cast(dmg_rod_class* i_this) {
     i_this->sound.startCreatureSoundLevel(Z2SE_AL_ROD_CASTING_LOOP, 0, -1);
 }
 
-/* 804AD46C-804AD5AC 003F6C 0140+00 1/1 0/0 0/0 .text            simple_bg_check__FP13dmg_rod_classf
- */
+/* 804AD46C-804AD5AC 003F6C 0140+00 1/1 0/0 0/0 .text            simple_bg_check__FP13dmg_rod_classf */
 static int simple_bg_check(dmg_rod_class* i_this, f32 param_1) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
     cXyz sp24;
@@ -1807,9 +1833,9 @@ static void ground_action(dmg_rod_class* i_this) {
             i_this->field_0x1000 = cM_rndFX(32768.0f);
 
             if (cM_rndF(1.0f) < 0.5f) {
-                actor->current.angle.z = -0x5000;
+                actor->current.angle.z = (f32)0xB000;
             } else {
-                actor->current.angle.z = 0x5000;
+                actor->current.angle.z = (f32)-0xB000;
             }
 
             i_this->field_0x10a8++;
@@ -1877,7 +1903,7 @@ static void ground_action(dmg_rod_class* i_this) {
     cLib_addCalc2(&actor->speedF, var_f31, 1.0f, 5.0f + BREG_F(12));
 }
 
-/* 804AE778-804AEA80 005278 0308+00 1/1 0/0 0/0 .text wd_action__FP13dmg_rod_classfP5wd_ss */
+/* 804AE778-804AEA80 005278 0308+00 1/1 0/0 0/0 .text            wd_action__FP13dmg_rod_classfP5wd_ss */
 static void wd_action(dmg_rod_class* i_this, f32 param_1, wd_ss* i_wd_s) {
     fopAc_ac_c* actor = &i_this->actor;
     cXyz sp28;
@@ -1993,8 +2019,7 @@ static void heart_action(dmg_rod_class* i_this, f32 param_1) {
     }
 }
 
-/* 804AEBF0-804AEE18 0056F0 0228+00 1/1 0/0 0/0 .text            action_eff_set__FP13dmg_rod_class
- */
+/* 804AEBF0-804AEE18 0056F0 0228+00 1/1 0/0 0/0 .text            action_eff_set__FP13dmg_rod_class */
 static void action_eff_set(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     if (!((i_this->field_0x590 - actor->current.pos.y) > 15.0f)) {
@@ -2301,8 +2326,7 @@ static void lure_action(dmg_rod_class* i_this) {
     }
 }
 
-/* 804AFA70-804B02C4 006570 0854+00 1/1 0/0 0/0 .text lure_hit__FP13dmg_rod_classP13mg_fish_class
- */
+/* 804AFA70-804B02C4 006570 0854+00 1/1 0/0 0/0 .text            lure_hit__FP13dmg_rod_classP13mg_fish_class */
 static void lure_hit(dmg_rod_class* i_this, mg_fish_class* i_mg_fish) {
     fopAc_ac_c* sp1C = &i_this->actor;
     fopAc_ac_c* sp18 = dComIfGp_getPlayer(0);
@@ -2454,20 +2478,20 @@ static void lure_hit(dmg_rod_class* i_this, mg_fish_class* i_mg_fish) {
                     }
 
                     if (i_mg_fish->mGedouKind == 3) {
-                        i_this->field_0x10aa = 5;
-                        i_this->field_0x10ab = 20;
+                        i_this->vibmode = VIBMODE_S_POWER5;
+                        i_this->vib_timer = 20;
                     } else if (i_mg_fish->mJointScale >= 0.7f) {
-                        i_this->field_0x10aa = 8;
-                        i_this->field_0x10ab = 40;
+                        i_this->vibmode = VIBMODE_S_POWER8;
+                        i_this->vib_timer = 40;
                     } else if (i_mg_fish->mJointScale >= 0.65f) {
-                        i_this->field_0x10aa = 7;
-                        i_this->field_0x10ab = 35;
+                        i_this->vibmode = VIBMODE_S_POWER7;
+                        i_this->vib_timer = 35;
                     } else if (i_mg_fish->mJointScale >= 0.6f) {
-                        i_this->field_0x10aa = 6;
-                        i_this->field_0x10ab = 30;
+                        i_this->vibmode = VIBMODE_S_POWER6;
+                        i_this->vib_timer = 30;
                     } else {
-                        i_this->field_0x10aa = 5;
-                        i_this->field_0x10ab = 25;
+                        i_this->vibmode = VIBMODE_S_POWER5;
+                        i_this->vib_timer = 25;
                     }
 
                     daAlink_getAlinkActorClass()->onFishingHit();
@@ -2502,7 +2526,7 @@ static void lure_hit(dmg_rod_class* i_this, mg_fish_class* i_mg_fish) {
 
 /* 804B02C4-804B0A90 006DC4 07CC+00 1/1 0/0 0/0 .text            lure_catch__FP13dmg_rod_class */
 static void lure_catch(dmg_rod_class* i_this) {
-    fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
+    fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     fopAc_ac_c* mgfish_a = fopAcM_SearchByID(i_this->mg_fish_id);
     mg_fish_class* mgfish = (mg_fish_class*)mgfish_a;
 
@@ -2510,27 +2534,27 @@ static void lure_catch(dmg_rod_class* i_this) {
     i_this->field_0x6f8 = 0.0f;
     i_this->field_0xf5c = 2.3f + AREG_F(5);
     i_this->field_0x100d = 0;
-    csXyz sp18;
+    csXyz angle;
 
     if (mgfish->mActionPhase < 2 && i_this->play_cam_timer > 25) {
-        s16 spA = DREG_S(6) + 2000;
+        s16 target = DREG_S(6) + 2000;
         if (mgfish->mJointScale > 0.5f) {
-            spA += (s16)((mgfish->mJointScale - 0.5f) * (20000.0f + DREG_F(19)));
+            target += (s16)((mgfish->mJointScale - 0.5f) * (20000.0f + DREG_F(19)));
         }
 
-        if (spA > 6000) {
-            spA = 6000;
+        if (target > 6000) {
+            target = 6000;
         }
 
-        cLib_addCalcAngleS2(&i_this->field_0x10b0, spA, 8, 300);
+        cLib_addCalcAngleS2(&i_this->field_0x10b0, target, 8, 300);
     } else {
         i_this->field_0x10b0 = 0;
     }
 
-    sp18.x = i_this->field_0x10b0;
-    sp18.y = 0;
-    sp18.z = i_this->field_0x10b0;
-    daAlink_getAlinkActorClass()->setFishingArm1Angle(sp18);
+    angle.x = i_this->field_0x10b0;
+    angle.y = 0;
+    angle.z = i_this->field_0x10b0;
+    daAlink_getAlinkActorClass()->setFishingArm1Angle(angle);
 
     if (i_this->field_0x14c2 != 0) {
         i_this->field_0x14c2++;
@@ -3303,10 +3327,11 @@ static void lure_main(dmg_rod_class* i_this) {
             }
         } else if (i_this->field_0x100d != 0) {
             i_this->field_0x100d = 0;
+
             if (cM_rndF(1.0f) < 0.5f) {
-                actor->current.angle.z = -0x5000;
+                actor->current.angle.z = (f32)0xB000;
             } else {
-                actor->current.angle.z = 0x5000;
+                actor->current.angle.z = (f32)-0xB000;
             }
         }
 
@@ -4467,6 +4492,8 @@ static void cam_3d_morf(dmg_rod_class* i_this, f32 i_scale) {
 }
 
 /* 804B5F44-804B805C 00CA44 2118+00 1/1 0/0 0/0 .text            play_camera__FP13dmg_rod_class */
+// NONMATCHING - JMAFastSqrt needs to not be inlined
+// tricks like FORCE_DONT_INLINE can stop inlining for most of the inlines in this function, but it's unclear how to stop just one inline
 static void play_camera(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
@@ -4522,12 +4549,11 @@ static void play_camera(dmg_rod_class* i_this) {
         i_this->play_cam_mode = 2;
         camera->mCamera.Stop();
         i_this->play_cam_timer = 0;
-        i_this->field_0x1420 = 500.0f;
-        i_this->field_0x141c = 500.0f;
+        i_this->field_0x141c = i_this->field_0x1420 = 500.0f;
         i_this->field_0x1424 = 180.0f + WREG_F(0);
         i_this->field_0x1428 = 100.0f + WREG_F(1);
 
-        camera_class* sp58 = dComIfGp_getCamera(0);
+        camera_class* sp58 = (camera_class*)dComIfGp_getCamera(0);
         i_this->field_0x144c = sp58->lookat.eye;
         i_this->field_0x1458 = sp58->lookat.center;
         i_this->play_cam_eye = i_this->field_0x144c;
@@ -4546,7 +4572,7 @@ static void play_camera(dmg_rod_class* i_this) {
         f32 sp60 = 100.0f + WREG_F(1);
         f32 sp5C = 30.0f;
 
-        if (i_this->play_cam_timer > YREG_S(6) + 8) {
+        if (i_this->play_cam_timer > (s16)(8 + YREG_S(6))) {
             cLib_addCalcAngleS2(&i_this->field_0x1418, daAlink_getAlinkActorClass()->getFishingRodAngleY(), 6, 2000);
         }
 
@@ -4805,7 +4831,7 @@ static void play_camera(dmg_rod_class* i_this) {
             cLib_addCalc2(&i_this->play_cam_center.y, sp150.y, 0.1f, 10.0f);
             cLib_addCalc2(&i_this->play_cam_center.z, sp150.z, 0.1f, 10.0f);
         }
-        if (i_this->play_cam_timer >= XREG_S(4) + 68) {
+        if (i_this->play_cam_timer >= (s16)(XREG_S(4) + 68)) {
             i_this->play_cam_mode = 2;
             i_this->play_cam_timer = 20;
             i_this->field_0x1418 = daAlink_getAlinkActorClass()->shape_angle.y;
@@ -4967,7 +4993,7 @@ static void play_camera(dmg_rod_class* i_this) {
                     i_this->msgflow.init(actor, 0x2C9, 0, NULL);
                     henna->field_0x6ba = 50;
                     henna->field_0x7b8 = 0;
-                } else if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[467])) {
+                } else if (!dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[467])) {
                     if (i_this->field_0x1470 == 0) {
                         sp174.x = -2800.0f;
                         sp174.z = 4608.0f;
@@ -5007,12 +5033,14 @@ static void play_camera(dmg_rod_class* i_this) {
             }
         }
         break;
+
     case 950:
         i_this->play_cam_mode = 951;
         i_this->play_cam_timer = 0;
         i_this->play_cam_fovy = 60.0f;
         i_this->play_cam_center = actor->current.pos;
         i_this->play_cam_center.y += AREG_F(7) - 25.0f;
+        // fallthrough
     case 951:
         dComIfGp_setDoStatusForce(34, 0);
         i_this->field_0xf78 = 0.1f + TREG_F(19);
@@ -5034,21 +5062,28 @@ static void play_camera(dmg_rod_class* i_this) {
             static f32 old_stick_x = 0.0f;
             static f32 old_stick_sx = 0.0f;
 
-            if ((mDoCPd_c::getStickX3D(PAD_1) >= 0.8f && old_stick_x < 0.8f) || (mDoCPd_c::getStickX3D(PAD_1) <= -0.8f && old_stick_x > -0.8f) ||
-                (mDoCPd_c::getSubStickX3D(PAD_1) >= 0.8f && old_stick_sx < 0.8f) || (mDoCPd_c::getSubStickX3D(PAD_1) <= -0.8f && old_stick_sx > -0.8f))
-            {
+            if (
+                (mDoCPd_c::getStickX3D(PAD_1) >= 0.8f && old_stick_x < 0.8f) || (mDoCPd_c::getStickX3D(PAD_1) <= -0.8f && old_stick_x > -0.8f) 
+                #if VERSION != VERSION_SHIELD_DEBUG
+                || (mDoCPd_c::getSubStickX3D(PAD_1) >= 0.8f && old_stick_sx < 0.8f) || (mDoCPd_c::getSubStickX3D(PAD_1) <= -0.8f && old_stick_sx > -0.8f)
+                #endif
+            ) {
                 int sp20 = 0;
                 int sp1C = 1;
-                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[466])) {
+                if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[466])) {
                     sp20 = 1;
                 }
 
-                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[469])) {
+                if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[469])) {
                     sp1C = 0;
                 }
 
                 if (i_this->play_cam_timer >= 15) {
-                    if (mDoCPd_c::getStickX3D(PAD_1) >= 0.5f || mDoCPd_c::getSubStickX3D(PAD_1) >= 0.5f) {
+                    if (mDoCPd_c::getStickX3D(PAD_1) >= 0.5f
+                        #if VERSION != VERSION_SHIELD_DEBUG
+                        || mDoCPd_c::getSubStickX3D(PAD_1) >= 0.5f
+                        #endif
+                    ) {
                         i_this->field_0xf81++;
                         if (i_this->field_0xf81 > (s8)(sp20 + 3)) {
                             i_this->field_0xf81 = sp1C;
@@ -5163,6 +5198,7 @@ static void play_camera(dmg_rod_class* i_this) {
 
         camera->mCamera.Stop();
         camera->mCamera.SetTrimSize(1);
+        // fallthrough
     case 1051:
         if (daAlink_getAlinkActorClass()->checkCanoeRide()) {
             fopAc_ac_c* boat = fopAcM_SearchByID(i_this->boat_actor_id);
@@ -5187,9 +5223,11 @@ static void play_camera(dmg_rod_class* i_this) {
                     } else {
                         i_this->msgflow.init(actor, 0x2C2, 0, NULL);
                     }
+
                     i_this->play_cam_mode = 1055;
                 }
             }
+
             i_this->msgflow.doFlow(actor, NULL, 0);
         }
         break;
@@ -5229,7 +5267,7 @@ static void play_camera(dmg_rod_class* i_this) {
                 camera->mCamera.SetTrimSize(0);
                 i_this->play_cam_mode = 0;
                 i_this->field_0x146c = 30;
-                dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[466]);
+                dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[466]);
                 i_this->field_0xf81 = 1;
             }
         }
@@ -5435,8 +5473,9 @@ static void play_camera_u(dmg_rod_class* i_this) {
         cLib_addCalc2(&i_this->play_cam_center.x, spA8.x, 0.1f, temp_f31);
         cLib_addCalc2(&i_this->play_cam_center.y, spA8.y, 0.1f, temp_f31);
         cLib_addCalc2(&i_this->play_cam_center.z, spA8.z, 0.1f, temp_f31);
-
-    block_41:
+        // fallthrough
+    }
+    block_41: {
         if (nREG_S(6) == (int)daAlink_getAlinkActorClass()->getFishingReelFrame()) {
             daAlink_getAlinkActorClass()->fishingCastWaitAnimeStop();
         }
@@ -5709,8 +5748,7 @@ static void play_camera_u(dmg_rod_class* i_this) {
     }
 }
 
-/* 804B9318-804BA098 00FE18 0D80+00 2/1 0/0 0/0 .text            dmg_rod_Execute__FP13dmg_rod_class
- */
+/* 804B9318-804BA098 00FE18 0D80+00 2/1 0/0 0/0 .text            dmg_rod_Execute__FP13dmg_rod_class */
 static int dmg_rod_Execute(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
 
@@ -5720,19 +5758,23 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
     } else {
         data_804BBBD4 = 0;
     }
-    #elif VERSION == VERSION_GCN_PAL
+    #elif VERSION == VERSION_SHIELD
+    data_804BBBD4 = 0;
+    #elif REGION_PAL
     if (dComIfGs_getPalLanguage() == 0) {
         data_804BBBD4 = 2;
     } else {
         data_804BBBD4 = 0;
     }
+    #elif REGION_JPN
+    data_804BBBD4 = 0;
     #else
     data_804BBBD4 = 1;
     #endif
 
-    if (i_this->field_0x10ab != 0) {
-        i_this->field_0x10ab--;
-        dComIfGp_getVibration().StartShock(i_this->field_0x10aa, 1, cXyz(0.0f, 1.0f, 0.0f));
+    if (i_this->vib_timer != 0) {
+        i_this->vib_timer--;
+        dComIfGp_getVibration().StartShock(i_this->vibmode, 1, cXyz(0.0f, 1.0f, 0.0f));
     }
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {}
@@ -5771,14 +5813,14 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
     i_this->field_0xf6e = 0;
 
     if (0.0f != i_this->field_0x590 && (g_Counter.mTimer & 15) == 0) {
-        dBgS_ObjGndChk_Spl sp160;
-        Vec sp108;
+        dBgS_ObjGndChk_Spl gnd_chk_spl;
+        Vec pos;
 
-        sp108.x = actor->current.pos.x;
-        sp108.y = 500.0f + actor->current.pos.y;
-        sp108.z = actor->current.pos.z;
-        sp160.SetPos(&sp108);
-        i_this->field_0x590 = dComIfG_Bgsp().GroundCross(&sp160);
+        pos.x = actor->current.pos.x;
+        pos.y = 500.0f + actor->current.pos.y;
+        pos.z = actor->current.pos.z;
+        gnd_chk_spl.SetPos(&pos);
+        i_this->field_0x590 = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
     }
 
     i_this->field_0x578++;
@@ -5989,7 +6031,7 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
 
                     s16 sp8 = 500.0f * cM_ssin(i_this->field_0x578 * 1100);
                     if (i_this->reel_btn_flags != 0) {
-                        sp8 += 0x2000;
+                        sp8 += (s16)0x2000;
                     }
 
                     cLib_addCalcAngleS2(&obj_life->shape_angle.x, sp8, 15, 0x200);
@@ -6004,7 +6046,7 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
                 if (spCC.abs() < 50.0f) {
                     i_this->field_0x10a9 = 1;
                     obj_life->startCtrl();
-                    dComIfGp_getVibration().StartShock(3, 1, cXyz(0.0f, 1.0f, 0.0f));
+                    dComIfGp_getVibration().StartShock(VIBMODE_S_POWER3, 1, cXyz(0.0f, 1.0f, 0.0f));
                 }
             }
         }
@@ -6022,8 +6064,7 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
     return 1;
 }
 
-/* 804BA098-804BA14C 010B98 00B4+00 1/0 0/0 0/0 .text            dmg_rod_IsDelete__FP13dmg_rod_class
- */
+/* 804BA098-804BA14C 010B98 00B4+00 1/0 0/0 0/0 .text            dmg_rod_IsDelete__FP13dmg_rod_class */
 static int dmg_rod_IsDelete(dmg_rod_class* i_this) {
     if (i_this->play_cam_mode != 0) {
         camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
@@ -6036,11 +6077,10 @@ static int dmg_rod_IsDelete(dmg_rod_class* i_this) {
     return 1;
 }
 
-/* 804BA14C-804BA1F4 010C4C 00A8+00 1/0 0/0 0/0 .text            dmg_rod_Delete__FP13dmg_rod_class
- */
+/* 804BA14C-804BA1F4 010C4C 00A8+00 1/0 0/0 0/0 .text            dmg_rod_Delete__FP13dmg_rod_class */
 static int dmg_rod_Delete(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
-    fpc_ProcID id = fopAcM_GetID(actor);
+    fpc_ProcID id = fopAcM_GetID(i_this);
     dComIfG_resDelete(&i_this->phase, i_this->arcname);
 
     if (i_this->HIOInit) {
@@ -6061,14 +6101,18 @@ static int dmg_rod_Delete(dmg_rod_class* i_this) {
 /* 804BA1F4-804BA83C 010CF4 0648+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
     dmg_rod_class* a_this = (dmg_rod_class*)i_this;
+    int bmd_idx;
+    u32 mdlflg;
+    J3DModel* model;
     J3DModelData* modelData;
+    f32* line_sizep;
 
     if (a_this->kind == MG_ROD_KIND_LURE) {
         if (!a_this->linemat.init(1, MG_ROD_LURE_LINE_LEN, 1)) {
             return 0;
         }
 
-        f32* line_sizep = a_this->linemat.getSize(0);
+        line_sizep = a_this->linemat.getSize(0);
 
         for (int i = 0; i < MG_ROD_LURE_LINE_LEN; i++, line_sizep++) {
             *line_sizep = 0.1f + (0.1f * XREG_S(0));
@@ -6079,13 +6123,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, lure_bmd[i]);
             JUT_ASSERT(11397, modelData != NULL);
 
-            u32 mdlflg;
-            if (i == 4) {
-                mdlflg = 0;
-            } else {
-                mdlflg = 0x80000;
-            }
-
+            mdlflg = i == 4 ? 0 : J3DMdlFlag_DifferedDLBuffer;
             a_this->lure_model[i] = mDoExt_J3DModel__create(modelData, mdlflg, 0x11000084);
             if (a_this->lure_model[i] == NULL) {
                 return 0;
@@ -6111,11 +6149,11 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                     a_this->field_0x101e = cM_rndF(65536.0f);
                 }
 
-                modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 5);
+                modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(a_this->arcname, 5));
                 JUT_ASSERT(11440, modelData != NULL);
 
                 for (int j = 0; j < 2; j++) {
-                    a_this->hook_model[j] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+                    a_this->hook_model[j] = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
                     if (a_this->hook_model[j] == NULL) {
                         return 0;
                     }
@@ -6124,7 +6162,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 9);
                 JUT_ASSERT(11453, modelData != NULL);
 
-                a_this->ring_model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+                a_this->ring_model = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
                 if (a_this->ring_model == NULL) {
                     return 0;
                 }
@@ -6136,7 +6174,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             return 0;
         }
     
-        J3DModel* model = a_this->rod_modelMorf->getModel();
+        model = a_this->rod_modelMorf->getModel();
         model->setUserArea((uintptr_t)a_this);
         for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
             if (i == 1 || i == 3) {
@@ -6148,14 +6186,13 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         JUT_ASSERT(11499, modelData != NULL);
 
         for (int i = 0; i < 6; i++) {
-            a_this->unk_ring_model[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            a_this->unk_ring_model[i] = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
             if (a_this->unk_ring_model[i] == NULL) {
                 return 0;
             }
         }
 
         for (int i = 0; i < 15; i++) {
-            int bmd_idx;
             if ((i & 1) || i == 2) {
                 bmd_idx = 41;
             } else {
@@ -6165,7 +6202,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             modelData = (J3DModelData*)dComIfG_getObjectRes("Alink", bmd_idx);
             JUT_ASSERT(11523, modelData != NULL);
 
-            a_this->rod_uki_model[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            a_this->rod_uki_model[i] = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
             if (a_this->rod_uki_model[i] == NULL) {
                 return 0;
             }
@@ -6175,7 +6212,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             return 0;
         }
 
-        f32* line_sizep = a_this->linemat.getSize(0);
+        line_sizep = a_this->linemat.getSize(0);
         for (int i = 0; i < MG_ROD_UKI_LINE_LEN; i++, line_sizep++) {
             *line_sizep = 0.1f + (0.1f * XREG_S(0));
         }
@@ -6183,7 +6220,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 0x2D);
         JUT_ASSERT(11547, modelData != NULL);
 
-        a_this->uki_model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+        a_this->uki_model = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
         if (a_this->uki_model == NULL) {
             return 0;
         }
@@ -6191,7 +6228,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 0x2E);
         JUT_ASSERT(11556, modelData != NULL);
 
-        a_this->uki_saki_model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+        a_this->uki_saki_model = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
         if (a_this->uki_saki_model == NULL) {
             return 0;
         }
@@ -6201,14 +6238,14 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         for (int i = 0; i < 2; i++) {
             static int hook_bmd[] = {44, 43,};
             modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, hook_bmd[i]);
-            a_this->hook_model[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            a_this->hook_model[i] = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
             if (a_this->hook_model[i] == NULL) {
                 return 0;
             }
 
             static int esa_bmd[] = {36, 48};
             modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, esa_bmd[i]);
-            a_this->esa_model[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            a_this->esa_model[i] = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
             if (a_this->esa_model[i] == NULL) {
                 return 0;
             }
@@ -6227,7 +6264,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, bmd_idx);
             JUT_ASSERT(11624, modelData != NULL);
 
-            a_this->rod_uki_model[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            a_this->rod_uki_model[i] = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
             if (a_this->rod_uki_model[i] == NULL) {
                 return 0;
             }
@@ -6283,12 +6320,16 @@ static int dmg_rod_Create(fopAc_ac_c* i_this) {
     } else {
         data_804BBBD4 = 0;
     }
-    #elif VERSION == VERSION_GCN_PAL
+    #elif VERSION == VERSION_SHIELD
+    data_804BBBD4 = 0;
+    #elif REGION_PAL
     if (dComIfGs_getPalLanguage() == 0) {
         data_804BBBD4 = 2;
     } else {
         data_804BBBD4 = 0;
     }
+    #elif REGION_JPN
+    data_804BBBD4 = 0;
     #else
     data_804BBBD4 = 1;
     #endif
@@ -6360,8 +6401,7 @@ static int dmg_rod_Create(fopAc_ac_c* i_this) {
             }
 
             a_this->timers[1] = 20;
-            a_this->lure_type = MG_LURE_PE;
-            a_this->field_0xf81 = 1;
+            a_this->field_0xf81 = a_this->lure_type = MG_LURE_PE;
 
             u8 lure_ct = dComIfGs_getEventReg(0xF11F) & 0xFF;
             OS_REPORT(" SP LURE CT %d\n", lure_ct);

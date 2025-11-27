@@ -72,7 +72,6 @@ static void damage_check(obj_web0_class* i_this) {
 }
 
 /* 80D34794-80D34B24 000354 0390+00 2/1 0/0 0/0 .text daObj_Web0_Execute__FP14obj_web0_class */
-// NONMATCHING - reg alloc
 static int daObj_Web0_Execute(obj_web0_class* i_this) {
     fopAc_ac_c* base_p = i_this;
     fopAc_ac_c* player = (fopAc_ac_c*) dComIfGp_getPlayer(0);

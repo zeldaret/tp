@@ -3578,7 +3578,6 @@ public:
     void setFishingArm1Angle(const csXyz& i_angle) { mFishingArm1Angle = i_angle; }
     void setFishingArm2Angle(const csXyz& i_angle) { field_0x3160 = i_angle; }
 
-    void onFishingRodCastingEnd() { onNoResetFlg1(FLG1_UNK_8000); }
     void endFishingCastWait() { offNoResetFlg2(FLG2_UNK_20000000); }
 
     void startFishingCastWait() {

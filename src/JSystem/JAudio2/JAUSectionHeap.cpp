@@ -317,7 +317,7 @@ JASWaveBank* JAUSection::newWaveBank(u32 bank_no, void const* param_1) {
     s32 r27 = getHeap_()->getFreeSize();
     JASWaveBank* waveBank = JASWSParser::createWaveBank(param_1, getHeap_());
     if (waveBank) {
-        JUT_ASSERT(536, sectionHeap_->getWaveBankTable().getWaveBank( bank_no ) == 0);
+        JUT_ASSERT(536, sectionHeap_->getWaveBankTable().getWaveBank( bank_no ) == NULL);
         sectionHeap_->getWaveBankTable().registWaveBank(bank_no, waveBank);
         data_.registeredWaveBankTables.set(bank_no, true);
         data_.field_0xa0 += r27 - getHeap_()->getFreeSize();
@@ -355,10 +355,10 @@ JASBank* JAUSection::newBank(void const* param_0, u32 param_1) {
     JASBank* bank = JASBNKParser::createBank(param_0, getHeap_());
     if (bank) {
         if (buildingBankTable_) {
-            JUT_ASSERT(660, buildingBankTable_->getBank( bank_no ) == 0);
+            JUT_ASSERT(660, buildingBankTable_->getBank( bank_no ) == NULL);
             buildingBankTable_->registBank(bank_no, bank);
         } else {
-            JUT_ASSERT(665, JASDefaultBankTable::getInstance() ->getBank( bank_no ) == 0);
+            JUT_ASSERT(665, JASDefaultBankTable::getInstance() ->getBank( bank_no ) == NULL);
             JASDefaultBankTable::getInstance()->registBank(bank_no, bank);
             data_.registeredBankTables.set(bank_no, true);
         }
@@ -380,10 +380,10 @@ JASVoiceBank* JAUSection::newVoiceBank(u32 bank_no, u32 param_1) {
         JASBank* voiceBank = new JASVoiceBank();
         if (voiceBank) {
             if (buildingBankTable_) {
-                JUT_ASSERT(696, buildingBankTable_->getBank( bank_no ) == 0);
+                JUT_ASSERT(696, buildingBankTable_->getBank( bank_no ) == NULL);
                 buildingBankTable_->registBank(bank_no, voiceBank);
             } else {
-                JUT_ASSERT(701, JASDefaultBankTable::getInstance() ->getBank( bank_no ) == 0);
+                JUT_ASSERT(701, JASDefaultBankTable::getInstance() ->getBank( bank_no ) == NULL);
                 JASDefaultBankTable::getInstance()->registBank(bank_no, voiceBank);
                 data_.registeredBankTables.set(bank_no, true);
             }

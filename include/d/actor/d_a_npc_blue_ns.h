@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_BLUE_NS_H
 #define D_A_NPC_BLUE_NS_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/actor/d_a_tag_yami.h"
 #include "d/actor/d_a_obj_carry.h"
 

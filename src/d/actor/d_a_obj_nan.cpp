@@ -784,5 +784,3 @@ extern actor_process_profile_definition g_profile_Obj_Nan = {
   fopAc_ENV_e,            // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80CA32A0-80CA32A0 0000E4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

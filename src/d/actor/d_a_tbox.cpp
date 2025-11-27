@@ -577,7 +577,6 @@ void daTbox_c::demoProcOpen() {
 }
 
 /* 8049216C-8049233C 00152C 01D0+00 1/1 0/0 0/0 .text            lightColorProc__8daTbox_cFv */
-// NONMATCHING - regalloc
 void daTbox_c::lightColorProc() {
     static int const key_frame[7] = {0x00, 0x07, 0x1e, 0x25, 0x2c, 0x5c, 0x8c};
     static GXColorS10 const key_color[7] = {
@@ -602,16 +601,17 @@ void daTbox_c::lightColorProc() {
         }
 
         int num_frames = var_r24 - var_r25;
-        s16 step_r = std::fabs<int>(key_color[var_r30 + 1].r - key_color[var_r30].r) / num_frames;
-        s16 step_g = std::fabs<int>(key_color[var_r30 + 1].g - key_color[var_r30].g) / num_frames;
-        s16 step_b = std::fabs<int>(key_color[var_r30 + 1].b - key_color[var_r30].b) / num_frames;
-        step_r++;
-        step_g++;
-        step_b++;
+        GXColorS10 color;
+        color.r = std::fabs<int>(key_color[var_r30 + 1].r - key_color[var_r30].r) / num_frames;
+        color.g = std::fabs<int>(key_color[var_r30 + 1].g - key_color[var_r30].g) / num_frames;
+        color.b = std::fabs<int>(key_color[var_r30 + 1].b - key_color[var_r30].b) / num_frames;
+        color.r++;
+        color.g++;
+        color.b++;
 
-        cLib_chaseS(&mLight.mColor.r, key_color[var_r28].r, step_r);
-        cLib_chaseS(&mLight.mColor.g, key_color[var_r28].g, step_g);
-        cLib_chaseS(&mLight.mColor.b, key_color[var_r28].b, step_b);
+        cLib_chaseS(&mLight.mColor.r, key_color[var_r28].r, color.r);
+        cLib_chaseS(&mLight.mColor.g, key_color[var_r28].g, color.g);
+        cLib_chaseS(&mLight.mColor.b, key_color[var_r28].b, color.b);
     }
 }
 
@@ -1950,16 +1950,6 @@ static int daTbox_MoveBGExecute(daTbox_c* i_this) {
 /* 80496044-80496070 005404 002C+00 1/0 0/0 0/0 .text            daTbox_MoveBGDraw__FP8daTbox_c */
 static int daTbox_MoveBGDraw(daTbox_c* i_this) {
     return i_this->MoveBGDraw();
-}
-
-/* 804961B0-804961B8 005570 0008+00 1/0 0/0 0/0 .text            Create__8daTbox_cFv */
-int daTbox_c::Create() {
-    return true;
-}
-
-/* 804961B8-804961C0 005578 0008+00 1/0 0/0 0/0 .text            checkSmallTbox__8daTbox_cFv */
-BOOL daTbox_c::checkSmallTbox() {
-    return true;
 }
 
 /* 80496730-80496750 -00001 0020+00 1/0 0/0 0/0 .data            daTbox_METHODS */

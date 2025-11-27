@@ -1,7 +1,7 @@
 #ifndef F_OP_ACTOR_H_
 #define F_OP_ACTOR_H_
 
-#include "d/d_kankyo.h"
+#include "d/d_kankyo_tev_str.h"
 #include "f_pc/f_pc_leaf.h"
 #include "global.h"
 

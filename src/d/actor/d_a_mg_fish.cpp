@@ -95,7 +95,7 @@ static void hit_vib_set(mg_fish_class* i_this) {
     static s32 vib_p[4] = { 1, 2, 3, 4 };
 
     dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByID(i_this->mRodId);
-    if (rod != NULL && rod->field_0x10ab == 0) {
+    if (rod != NULL && rod->vib_timer == 0) {
         s32 vib_index = (rod->field_0xf60 - 100.0f) * 0.02f;
         if (vib_index < 0) {
             vib_index = 0;
@@ -1584,8 +1584,8 @@ static void mf_lure_search(mg_fish_class* i_this) {
         rod->field_0x1410 = 0.0f;
         dKy_Sound_set(i_this->actor.current.pos, 40.0f * i_this->mJointScale,
             fopAcM_GetID(i_this), 5);
-        rod->field_0x10ab = 5;
-        rod->field_0x10aa = 3;
+        rod->vib_timer = 5;
+        rod->vibmode = VIBMODE_S_POWER3;
 
         break;
     }
@@ -2186,7 +2186,7 @@ static void pota_set(mg_fish_class* i_this) {
 
 /* 8053055C-80530924 00691C 03C8+00 1/1 0/0 0/0 .text            mf_catch__FP13mg_fish_class */
 static void mf_catch(mg_fish_class* i_this) {
-    daAlink_c* player = g_dComIfG_gameInfo.play.mPlayer[0];
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     if (i_this->actor.health == 2) {
         fopAcM_delete(&i_this->actor);
         return;
@@ -2480,7 +2480,7 @@ static void mf_esa_hit(mg_fish_class* i_this) {
 
 /* 805313D8-8053198C 007798 05B4+00 1/1 0/0 0/0 .text            mf_esa_catch__FP13mg_fish_class */
 static s32 mf_esa_catch(mg_fish_class* i_this) {
-    daAlink_c* player = g_dComIfG_gameInfo.play.mPlayer[0];
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
     dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByID(i_this->mRodId);
 
     if (rod == NULL) {
@@ -2651,7 +2651,6 @@ static void mf_aqua(mg_fish_class* i_this) {
 
 
 /* 80531CD4-805322E0 008094 060C+00 1/1 0/0 0/0 .text            ri_aqua__FP13mg_fish_class */
-// NONMATCHING - equivalent, but missing fmr instruction
 static void ri_aqua(mg_fish_class* i_this) {
     // Two different vectors in Debug, but this messes up the stack for GZ2E01.
     // cXyz commonXyz2;

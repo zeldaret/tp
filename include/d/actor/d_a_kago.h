@@ -228,35 +228,4 @@ private:
 
 STATIC_ASSERT(sizeof(daKago_c) == 0xBA4);
 
-class daKago_HIO_c : public JORReflexible {
-public:
-    /* 808495AC */ daKago_HIO_c();
-    /* 80854A4C */ virtual ~daKago_HIO_c() {}
-
-    void genMessage(JORMContext* ctx);
-
-    /* 0x04 */ s8 mChild;
-    /* 0x08 */ f32 mRevoconUpDown;
-    /* 0x0C */ f32 mRevoconUpDownMax;
-    /* 0x10 */ f32 mRevoconLeftRight;
-    /* 0x14 */ f32 mRevoconLeftRightMax;
-    /* 0x18 */ f32 mBasicSize;
-    /* 0x1C */ f32 mFlightSpeed;
-    /* 0x20 */ f32 mFlightGroundAltitude;
-    /* 0x24 */ f32 mFlightCeilingAltitude;
-    /* 0x28 */ f32 mShadowDensity;
-    /* 0x2C */ f32 mDescentRateIncrement;
-    /* 0x30 */ f32 mAscentRateDecel;
-    /* 0x34 */ f32 mDashTime;
-    /* 0x38 */ f32 mDashTimeMultiplier;
-    /* 0x3C */ f32 mWallHitInvulnTime;
-    /* 0x40 */ f32 mDashCooldownTime;
-    /* 0x44 */ f32 mZOffset;
-    /* 0x48 */ f32 mZOffsetHori;
-    /* 0x4C */ u8 mAngleTrackingMode;
-    /* 0x50 */ f32 mYOffsetFromWaterSurface;
-    /* 0x54 */ f32 mWaterSplashTime;
-    /* 0x58 */ f32 mSplashGenTimeDuringDash;
-};
-
 #endif /* D_A_KAGO_H */

@@ -1,11 +1,8 @@
 #ifndef D_BG_D_BG_S_POLY_PASS_CHK_H
 #define D_BG_D_BG_S_POLY_PASS_CHK_H
 
+#include "SSystem/SComponent/c_bg_s_poly_pass_chk.h"
 
-class cBgS_PolyPassChk {
-public:
-    virtual ~cBgS_PolyPassChk() {}
-};
 
 class dBgS_PolyPassChk : public cBgS_PolyPassChk {
 public:

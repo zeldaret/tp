@@ -1,7 +1,8 @@
 #ifndef D_A_NPC_GRA_H
 #define D_A_NPC_GRA_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
+#include "d/d_particle_copoly.h"
 
 
 class daNpc_grA_HIOParam {

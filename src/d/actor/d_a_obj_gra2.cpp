@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_gra2.h"
-#include "Z2AudioLib/Z2Instances.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/actor/d_a_tag_gra.h"
 #include "d/d_bg_w.h"
 #include "d/d_cc_uty.h"
@@ -16,9 +16,8 @@
 #include "d/d_debug_viewer.h"
 #endif
 #include "d/d_msg_object.h"
-#include "d/d_attention.h"
 #include "f_op/f_op_camera_mng.h"
-#include <cmath.h>
+#include "Z2AudioLib/Z2Instances.h"
 
 class daObj_GrA_Param_c {
 public:
@@ -2238,8 +2237,6 @@ daObj_GrA_c::MotionFunc daObj_GrA_c::mFaceMotionList[14] = {
     &daObj_GrA_c::face017,
     &daObj_GrA_c::face999,
 };
-
-/* 80C0FE14-80C0FE14 000398 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 
 /* 80C10734-80C10754 -00001 0020+00 1/0 0/0 0/0 .data            daObj_GrA_MethodTable */
 static actor_method_class daObj_GrA_MethodTable = {

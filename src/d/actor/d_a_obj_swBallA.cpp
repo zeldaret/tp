@@ -393,5 +393,3 @@ extern actor_process_profile_definition g_profile_Obj_SwBallA = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80CF4410-80CF4410 00002C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

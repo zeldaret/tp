@@ -381,5 +381,3 @@ extern actor_process_profile_definition g_profile_Obj_BmWindow = {
     fopAc_ACTOR_e,            // mActorType
     fopAc_CULLBOX_CUSTOM_e,   // cullType
 };
-
-/* 80BB9800-80BB9800 0000C4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

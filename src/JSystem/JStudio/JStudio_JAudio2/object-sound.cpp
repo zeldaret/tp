@@ -8,6 +8,9 @@
 #include "JSystem/JStudio/JStudio_JAudio2/control.h"
 #include "JSystem/JStudio/JStudio_JStage/control.h"
 
+namespace JStudio_JAudio2 {
+namespace {
+    
 /* 8028D728-8028D750 288068 0028+00 1/1 0/0 0/0 .text
  * setValue_VOLUME___Q215JStudio_JAudio226@unnamed@object_sound_cpp@FP8JAISoundf */
 static void setValue_VOLUME_(JAISound *param_1, float param_2) {
@@ -40,6 +43,9 @@ static void setValue_TEMPO_(JAISound *param_1, float param_2) {
 static void setValue_ECHO_(JAISound *param_1, float param_2) {
     param_1->getAuxiliary().moveFxMix(param_2, 0);
 }
+
+};  // namespace
+};  // namespace JStudio_JAudio2
 
 /* 8028D828-8028D8F4 288168 00CC+00 0/0 1/1 0/0 .text
  * __ct__Q215JStudio_JAudio214TAdaptor_soundFPQ215JStudio_JAudio213TCreateObject */
@@ -139,10 +145,11 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_update(u32 param_1) {
     field_0x130 = *pVVar2;
     if (field_0x11d) {
         switch(field_0x120) {
-        case 2:
+        case 2: {
             JAISoundStarter* soundStarter = pCreateObject_->get_pJAISoundStarter_();
             soundStarter->startLevelSound(field_0x124, &opJAISoundHandle_, field_0x12c);
             break;
+        }
         case 1:
             field_0x120 = 2;
             break;

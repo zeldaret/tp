@@ -80,11 +80,11 @@ public:
     /* 80B0BBC8 */ int CreateHeap();
     /* 80B0BD24 */ int create();
 
-    void setBump() { mFlags |= 4; }
-    void setEventWolf() { mFlags |= 0x80; }
-    void setEvent() { mFlags |= 0x8; }
-    void setAway() { mFlags |= 2; }
-    void setAttack() { mFlags |= 1; }
+    void setBump() { mFlags |= (u16)4; }
+    void setEventWolf() { mFlags |= (u16)0x80; }
+    void setEvent() { mFlags |= (u16)0x8; }
+    void setAway() { mFlags |= (u16)2; }
+    void setAttack() { mFlags |= (u16)1; }
 
     void setHawkPath(u8 i_pathNo) {
         if (i_pathNo != 0xFF) {
@@ -93,13 +93,13 @@ public:
     }
 
     BOOL isAttackLink() { return field_0x71a != 0; }
-    void setAttackLink() { mFlags |= 0x10; }
-    void setBackHanjo() { mFlags |= 0x20; }
-    void setHanjoHand() { mFlags |= 0x40; }
-    void setQuickHanjoHand() { mFlags |= 0x200; }
+    void setAttackLink() { mFlags |= (u16)0x10; }
+    void setBackHanjo() { mFlags |= (u16)0x20; }
+    void setHanjoHand() { mFlags |= (u16)0x40; }
+    void setQuickHanjoHand() { mFlags |= (u16)0x200; }
     BOOL isHanjoHand() { return mIsHanjoHand != 0; }
 
-    void setResistanceDemo() { mFlags |= 0x100; }
+    void setResistanceDemo() { mFlags |= (u16)0x100; }
 
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ mDoExt_McaMorfSO* mpMorf;

@@ -216,7 +216,6 @@ int daObjIce_l_c::Create() {
 
 /* 80C203C4-80C206AC 000A44 02E8+00 1/0 0/0 0/0 .text            Execute__12daObjIce_l_cFPPA3_A4_f
  */
-// NONMATCHING
 int daObjIce_l_c::Execute(Mtx** param_0) {
     daPy_py_c* player_p = daPy_getPlayerActorClass();
     cXyz& pos = fopAcM_GetPosition(player_p);

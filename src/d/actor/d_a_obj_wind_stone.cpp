@@ -54,7 +54,6 @@ int daWindStone_c::createHeap() {
 SECTION_RODATA static u8 const lit_3760[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-COMPILER_STRIP_GATE(0x80D38608, &lit_3760);
 
 /* 80D37C20-80D37E2C 0002A0 020C+00 1/1 0/0 0/0 .text            create__13daWindStone_cFv */
 int daWindStone_c::create() {

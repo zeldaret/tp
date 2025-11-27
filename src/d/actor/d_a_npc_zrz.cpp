@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_zrz.h"
+#include "d/actor/d_a_npc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/actor/d_a_obj_grave_stone.h"
@@ -179,7 +180,6 @@ daNpc_zrZ_c::EventFn daNpc_zrZ_c::mEvtCutList[8] = {
 };
 
 /* 80B93DCC-80B93F84 0000EC 01B8+00 1/1 0/0 0/0 .text            __ct__11daNpc_zrZ_cFv */
-// NONMATCHING inlining
 daNpc_zrZ_c::daNpc_zrZ_c() {
     /* empty function */
 }
@@ -344,7 +344,7 @@ int daNpc_zrZ_c::draw(int i_isTest, int param_1, f32 i_shadowDepth, _GXColorS10*
             damage_ratio = 0.0f;
         }
 
-        if (cM3d_IsZero_inverted(damage_ratio)) {
+        if (cM3d_IsZero(damage_ratio) == FALSE) {
             tevStr.TevColor.r = (s16)(damage_ratio * 20.0f);
             tevStr.TevColor.g = 0;
         } else if (i_isTest) {
@@ -1308,7 +1308,6 @@ void daNpc_zrZ_c::lightPowerCalc(int param_0) {
 }
 
 /* 80B972EC-80B974BC 00360C 01D0+00 1/1 0/0 0/0 .text            lightColorProc__11daNpc_zrZ_cFv */
-// NONMATCHING regalloc
 void daNpc_zrZ_c::lightColorProc() {
     static int const key_frame[4] = {
         0, 50, 190, 220,

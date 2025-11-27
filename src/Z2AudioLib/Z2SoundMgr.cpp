@@ -385,5 +385,3 @@ bool Z2SoundMgr::isPlayingSoundID(JAISoundID i_soundID) {
     }
     return false;
 }
-
-/* 8039B9D0-8039B9D0 028030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

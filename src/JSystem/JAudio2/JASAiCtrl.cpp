@@ -364,5 +364,3 @@ void JASDriver::mixInterleaveTrack(s16* buffer, u32 param_1, MixCallback param_2
 u32 JASDriver::getSubFrameCounter() {
     return sSubFrameCounter;
 }
-
-/* 8039B2F0-8039B2F0 027950 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

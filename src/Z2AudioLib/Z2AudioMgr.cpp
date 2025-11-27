@@ -32,7 +32,6 @@ Z2AudioMgr::Z2AudioMgr() : mSoundStarter(true) {
 
 /* 802CD34C-802CD7F8 2C7C8C 04AC+00 0/0 1/1 0/0 .text
  * init__10Z2AudioMgrFP12JKRSolidHeapUlPvP10JKRArchive          */
-// NONMATCHING JASPoolAllocObject<_> locations
 void Z2AudioMgr::init(JKRSolidHeap* param_0, u32 param_1, void* param_2, JKRArchive* param_3) {
     JAU_JASInitializer stack_60;
     stack_60.field_0x04 = param_1;

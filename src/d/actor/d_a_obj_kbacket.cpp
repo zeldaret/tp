@@ -7,11 +7,10 @@
 
 #include "d/actor/d_a_obj_kbacket.h"
 #include "SSystem/SComponent/c_counter.h"
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 
 //
 // Declarations:

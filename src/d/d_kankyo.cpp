@@ -8,6 +8,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_kytag08.h"
 #include "d/actor/d_a_player.h"
+#include "d/d_bg_s_gnd_chk.h"
 #include "d/d_debug_viewer.h"
 #include "d/d_debug_pad.h"
 #include "d/d_kankyo_rain.h"
@@ -5667,7 +5668,7 @@ void dKankyo_lightHIO_c::dKankyo_lightHIOInfoUpDateF() {
 }
 
 void dKankyo_lightHIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_vrboxHIO_c::dKankyo_vrboxHIO_c() {
@@ -5691,15 +5692,15 @@ dKankyo_vrboxHIO_c::dKankyo_vrboxHIO_c() {
 }
 
 void dKankyo_vrboxHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_vrboxHIO_c::dKankyo_vrboxHIOInfoUpDateF() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_vrboxHIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_bloomHIO_c::dKankyo_bloomHIO_c() {
@@ -5714,63 +5715,63 @@ dKankyo_bloomHIO_c::dKankyo_bloomHIO_c() {
 }
 
 void dKankyo_bloomHIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_bloomHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_dungeonlightHIO_c::listenPropertyEvent(const JORPropertyEvent* property) {}
 
 dKankyo_navyHIO_c::dKankyo_navyHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_navyHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_efflightHIO_c::dKankyo_efflightHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_efflightHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_windHIO_c::dKankyo_windHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_demolightHIO_c::dKankyo_demolightHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_demolightHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_windHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_dungeonlightHIO_c::dKankyo_dungeonlightHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_dungeonlightHIO_c::genMessage(JORMContext* mctx) {}
 
 dKankyo_ParticlelightHIO_c::dKankyo_ParticlelightHIO_c() {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_ParticlelightHIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 void dKankyo_ParticlelightHIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 dKankyo_HIO_c::dKankyo_HIO_c() {
@@ -5779,7 +5780,7 @@ dKankyo_HIO_c::dKankyo_HIO_c() {
 }
 
 void dKankyo_HIO_c::genMessage(JORMContext* mctx) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 #endif
@@ -7511,6 +7512,13 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
     param_3->b = (sp18 * (sp50.b * (1.0f - param_6))) + (param_5->b * param_6);
 }
 
+// Dummy data to force 0x30 bytes of padding between parcent_table and dScnKy_env_light's vtable.
+// This extra space is likely allocated for stripped vtables - debug indicates that dBgS_ObjGndChk
+// is used somewhere which has a 0x30 byte vtable, but I can't find a way to generate it without
+// also reserving space for cBgS_GrpPassChk and cBgS_PolyPassChk which ends up making .data too
+// large.
+static u8 dummy_padding_data_0x354[0x30] = {};
+
 /* 801A9BE4-801A9CBC 1A4524 00D8+00 0/0 3/3 0/0 .text
  * dKy_ParticleColor_get_actor__FP4cXyzP12dKy_tevstr_cP8_GXColorP8_GXColorP8_GXColorP8_GXColorf */
 void dKy_ParticleColor_get_actor(cXyz* param_0, dKy_tevstr_c* tevstr_p, GXColor* param_2,
@@ -7860,12 +7868,12 @@ void dKy_WaterIn_Light_set() {
         sp8 = 3;
     }
 
-#if PLATFORM_SHIELD
-    for (int i = 0; i < 6; i++)
+#if PLATFORM_GCN
+#define WATERIN_LIGHT_SET_LOOP_MAX 1
 #else
-    int i = 0;
+#define WATERIN_LIGHT_SET_LOOP_MAX 6
 #endif
-    {
+    for (int i = 0; i < WATERIN_LIGHT_SET_LOOP_MAX; i++) {
         if (kankyo->field_0x0c18[i].field_0x26 != 1) {
             dKy_twi_wolflight_set(i);
             kankyo->field_0x0c18[i].mColor.r = 0x8A;
@@ -7977,9 +7985,7 @@ void dKy_WaterIn_Light_set() {
             kankyo->field_0x0c18[i].field_0x26 = 1;
             sp10 = 1;
 
-#if PLATFORM_SHIELD
             break;
-#endif
         }
     }
 }

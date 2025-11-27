@@ -30,13 +30,13 @@ public:
     u32 getHSStick() const { return BGPC_CHECK_BIT(m_code.code0, 18); }
     u32 getBoomerangThrough() const { return BGPC_CHECK_BIT(m_code.code0, 19); }
     u32 getRopeThrough() const { return BGPC_CHECK_BIT(m_code.code0, 20); }
-    u32 getHorseNoEntry() const { return BGPC_CHECK_BIT(m_code.code0, 21) != 0; }
+    u32 getHorseNoEntry() const { return BGPC_CHECK_BIT(m_code.code0, 21); }
     u32 getShdwThrough() const { return BGPC_CHECK_BIT(m_code.code0, 22); }
     u32 getBombThrough() const { return BGPC_CHECK_BIT(m_code.code0, 23); }
     s32 getSpl() const { return BGPC_GET_BITS(m_code.code0, 24, 4); }
     u32 getMagnet() const { return BGPC_GET_BITS(m_code.code0, 28, 2); }
     u32 getUnderwaterRoof() const { return BGPC_CHECK_BIT(m_code.code0, 30); }
-    u32 getMonkeyBars() const { return BGPC_CHECK_BIT(m_code.code0, 31) != 0; }
+    u32 getMonkeyBars() const { return (m_code.code0 >> 31) & 1; }
 
     s32 getLinkNo() const { return BGPC_GET_BITS(m_code.code1, 0, 8); }
     s32 getWallCode() const { return BGPC_GET_BITS(m_code.code1, 8, 4); }

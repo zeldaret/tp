@@ -1096,8 +1096,6 @@ static int daObj_So_Create(fopAc_ac_c* a_this) {
     return phase;
 }
 
-/* 80CE3B60-80CE3B60 000178 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-
 /* 80CE3BBC-80CE3BDC -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_So_Method */
 static actor_method_class l_daObj_So_Method = {
     (process_method_func)daObj_So_Create,

@@ -12,11 +12,6 @@
 #include "f_op/f_op_camera_mng.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
-#include "dol2asm.h"
-
-//
-// Declarations:
-//
 
 static int daVrbox2_color_set(vrbox2_class* param_0);
 
@@ -32,22 +27,36 @@ static void texScrollCheck(f32& param_0) {
 /* 80498ACC-804990DC 0000CC 0610+00 1/0 0/0 0/0 .text            daVrbox2_Draw__FP12vrbox2_class */
 // NONMATCHING - reg alloc
 static int daVrbox2_Draw(vrbox2_class* i_this) {
-    camera_class* camera_p = dComIfGp_getCamera(0);
-    dKankyo_sunlenz_Packet* lenz_p = g_env_light.mpSunLenzPacket;
-    J3DModel* kumo_model_p = i_this->mpKumoModel;
-    J3DModel* sun_model_p = i_this->model2;
-    J3DModel* sun2_model_p = i_this->model2_und;
-    J3DModel* kasumim_model_p = i_this->mpKasumimModel;
-    dKankyo_sun_Packet* sun_p = g_env_light.mpSunPacket;
+    camera_class* camera_p;
+    dKankyo_sunlenz_Packet* lenz_p;
+    J3DModel* kumo_model_p;
+    J3DModel* sun_model_p;
+    J3DModel* sun2_model_p;
+    J3DModel* kasumim_model_p;
+    dKankyo_sun_Packet* sun_p;
+    dStage_FileList_dt_c* filelist_p;
+    J3DModelData* sp38;
+    J3DModelData* sp34;
+    J3DModelData* sp30;
+    s16 temp_r19;
+    s16 temp_r18;
+
+    camera_p = dComIfGp_getCamera(0);
+    lenz_p = g_env_light.mpSunLenzPacket;
+    kumo_model_p = i_this->mpKumoModel;
+    sun_model_p = i_this->model2;
+    sun2_model_p = i_this->model2_und;
+    kasumim_model_p = i_this->mpKasumimModel;
+    sun_p = g_env_light.mpSunPacket;
 
     f32 var_f31 = 0.0f;
-    dStage_FileList_dt_c* filelist_p = NULL;
+    filelist_p = NULL;
     dKy_GxFog_set();
 
     // these casts look like fake matches, but this ptr is used as both J3DModel and J3DModelData?
-    J3DModelData* sp38 = (J3DModelData*)kumo_model_p;
-    J3DModelData* sp34 = (J3DModelData*)sun_model_p;
-    J3DModelData* sp30 = (J3DModelData*)kasumim_model_p;
+    sp38 = (J3DModelData*)kumo_model_p;
+    sp34 = (J3DModelData*)sun_model_p;
+    sp30 = (J3DModelData*)kasumim_model_p;
     for (int i = sp38->getMaterialNum() - 1; i >= 0; i--) {
         J3DMaterial* material_p = sp38->getMaterialNodePointer(i);
 
@@ -142,8 +151,8 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
         }
 #endif
 
-        s16 temp_r19 = cLib_targetAngleX(&camera_p->lookat.eye, &sp14);
-        s16 temp_r18 = cLib_targetAngleY(&camera_p->lookat.eye, &sp14);
+        temp_r19 = cLib_targetAngleX(&camera_p->lookat.eye, &sp14);
+        temp_r18 = cLib_targetAngleY(&camera_p->lookat.eye, &sp14);
         mDoMtx_stack_c::transS(sp14.x, sp14.y, sp14.z);
         mDoMtx_stack_c::YrotM((s16)temp_r18);
         mDoMtx_stack_c::XrotM(0x7FFF + -temp_r19);
@@ -206,8 +215,18 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
 /* 804990DC-804997E8 0006DC 070C+00 1/1 0/0 0/0 .text daVrbox2_color_set__FP12vrbox2_class */
 static int daVrbox2_color_set(vrbox2_class* i_this) {
     fopAc_ac_c* actor = i_this;
+    J3DMaterial* material_0;
+    J3DModelData* modelData;
+    J3DTexMtxInfo* mtx_info;
+    GXColor k_color;
+    camera_class* camera_p;
+    GXColorS10 color;
+    cXyz* windVec_p;
+    u32 sp10;
+    cXyz* sp0C;
+    dKankyo_sun_Packet* sun_p;
 
-    dKankyo_sun_Packet* sun_p = g_env_light.mpSunPacket;
+    sun_p = g_env_light.mpSunPacket;
 
     if ((g_env_light.vrbox_kasumi_outer_col.r + g_env_light.vrbox_kasumi_outer_col.g +
          g_env_light.vrbox_kasumi_outer_col.b + g_env_light.vrbox_sky_col.r + g_env_light.vrbox_sky_col.g +
@@ -217,19 +236,19 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
         return 1;
     }
 
-    camera_class* camera_p = dComIfGp_getCamera(0);
+    camera_p = dComIfGp_getCamera(0);
 
     cXyz cam_eye;
     cXyz cam_center;
     cXyz camFwdXZ;
     cXyz wind_vec;
 
-    cXyz* windVec_p = dKyw_get_wind_vec();
+    windVec_p = dKyw_get_wind_vec();
     f32 wind_pow = dKyw_get_wind_pow();
 
     wind_vec = *windVec_p;
 
-    u32 sp10 = dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
+    sp10 = dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
 
     cam_eye = camera_p->lookat.eye;
     cam_center = camera_p->lookat.center;
@@ -242,105 +261,102 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
     f32 var_f29 = temp_f30 * 0.0005f * wind_pow;
 
     if (strcmp(dComIfGp_getStartStageName(), "R_SP30") == 0) {
-        cXyz* sp0C = dKyw_get_wind_vec();
+        sp0C = dKyw_get_wind_vec();
         var_f29 = temp_f30 * 0.0005f * (wind_pow + 0.3f);
     }
 
-    J3DModelData* modelData = i_this->mpKumoModel->getModelData();
-    J3DMaterial* material_0 = modelData->getMaterialNodePointer(0);
+    modelData = i_this->mpKumoModel->getModelData();
+    material_0 = modelData->getMaterialNodePointer(0);
     if (material_0 != NULL) {
         material_0->setCullMode(0);
 
         if (material_0->getTexMtx(0) != NULL) {
-            J3DTexMtxInfo& mtx_info = material_0->getTexMtx(0)->getTexMtxInfo();
-            mtx_info.mSRT.mTranslationX += var_f29;
-            texScrollCheck(mtx_info.mSRT.mTranslationX);
+            mtx_info = &material_0->getTexMtx(0)->getTexMtxInfo();
+            mtx_info->mSRT.mTranslationX += var_f29;
+            texScrollCheck(mtx_info->mSRT.mTranslationX);
         }
 
         if (material_0->getTexMtx(1) != NULL) {
-            J3DTexMtxInfo& mtx_info = material_0->getTexMtx(1)->getTexMtxInfo();
-            mtx_info.mSRT.mTranslationX += var_f29 * 1.75f;
-            texScrollCheck(mtx_info.mSRT.mTranslationX);
+            mtx_info = &material_0->getTexMtx(1)->getTexMtxInfo();
+            mtx_info->mSRT.mTranslationX += var_f29 * 1.75f;
+            texScrollCheck(mtx_info->mSRT.mTranslationX);
         }
     }
 
-    J3DMaterial* material_1 = modelData->getMaterialNodePointer(1);
-    if (material_1 != NULL) {
-        if (material_1->getTexMtx(0) != NULL) {
-            J3DTexMtxInfo& mtx_info = material_1->getTexMtx(0)->getTexMtxInfo();
-            mtx_info.mSRT.mTranslationX += var_f29 * 4.4f;
-            texScrollCheck(mtx_info.mSRT.mTranslationX);
+    material_0 = modelData->getMaterialNodePointer(1);
+    if (material_0 != NULL) {
+        if (material_0->getTexMtx(0) != NULL) {
+            mtx_info = &material_0->getTexMtx(0)->getTexMtxInfo();
+            mtx_info->mSRT.mTranslationX += var_f29 * 4.4f;
+            texScrollCheck(mtx_info->mSRT.mTranslationX);
         }
 
-        if (material_1->getTexMtx(1) != NULL) {
-            J3DTexMtxInfo& mtx_info = material_1->getTexMtx(1)->getTexMtxInfo();
-            mtx_info.mSRT.mTranslationX += var_f29 * 2.2f;
-            texScrollCheck(mtx_info.mSRT.mTranslationX);
+        if (material_0->getTexMtx(1) != NULL) {
+            mtx_info = &material_0->getTexMtx(1)->getTexMtxInfo();
+            mtx_info->mSRT.mTranslationX += var_f29 * 2.2f;
+            texScrollCheck(mtx_info->mSRT.mTranslationX);
         }
     }
 
     modelData = i_this->mpKumoModel->getModelData();
-    GXColor k_color;
-    GXColorS10 color;
 
-    J3DMaterial* kumo_material0 = modelData->getMaterialNodePointer(0);
-    if (kumo_material0 != NULL) {
-        kumo_material0->setCullMode(0);
-        kumo_material0->change();
+    material_0 = modelData->getMaterialNodePointer(0);
+    if (material_0 != NULL) {
+        material_0->setCullMode(0);
+        material_0->change();
 
         k_color.r = g_env_light.vrbox_kumo_bottom_col.r;
         k_color.g = g_env_light.vrbox_kumo_bottom_col.g;
         k_color.b = g_env_light.vrbox_kumo_bottom_col.b;
         k_color.a = g_env_light.vrbox_kumo_top_col.a;
-        kumo_material0->setTevKColor(0, (J3DGXColor*)&k_color);
+        material_0->setTevKColor(0, (J3DGXColor*)&k_color);
 
         color.r = g_env_light.vrbox_kumo_shadow_col.r;
         color.g = g_env_light.vrbox_kumo_shadow_col.g;
         color.b = g_env_light.vrbox_kumo_shadow_col.b;
         color.a = (u8)g_env_light.vrbox_kumo_top_col.a;
-        kumo_material0->setTevColor(0, (J3DGXColorS10*)&color);
+        material_0->setTevColor(0, (J3DGXColorS10*)&color);
     }
 
-    J3DMaterial* kumo_material1 = modelData->getMaterialNodePointer(1);
-    if (kumo_material1 != NULL) {
-        kumo_material1->setCullMode(0);
-        kumo_material1->change();
+    material_0 = modelData->getMaterialNodePointer(1);
+    if (material_0 != NULL) {
+        material_0->setCullMode(0);
+        material_0->change();
 
         k_color.r = g_env_light.vrbox_kumo_bottom_col.r;
         k_color.g = g_env_light.vrbox_kumo_bottom_col.g;
         k_color.b = g_env_light.vrbox_kumo_bottom_col.b;
         k_color.a = g_env_light.vrbox_kumo_top_col.a;
-        kumo_material1->setTevKColor(0, (J3DGXColor*)&k_color);
+        material_0->setTevKColor(0, (J3DGXColor*)&k_color);
 
         color.r = g_env_light.vrbox_kumo_shadow_col.r;
         color.g = g_env_light.vrbox_kumo_shadow_col.g;
         color.b = g_env_light.vrbox_kumo_shadow_col.b;
         color.a = g_env_light.vrbox_kumo_top_col.a;
-        kumo_material1->setTevColor(0, (J3DGXColorS10*)&color);
+        material_0->setTevColor(0, (J3DGXColorS10*)&color);
     }
 
     modelData = i_this->mpKasumimModel->getModelData();
-    J3DMaterial* kasumim_material0 = modelData->getMaterialNodePointer(0);
-    if (kasumim_material0 != NULL) {
-        kasumim_material0->setCullMode(0);
-        kasumim_material0->change();
+    material_0 = modelData->getMaterialNodePointer(0);
+    if (material_0 != NULL) {
+        material_0->setCullMode(0);
+        material_0->change();
 
         color.r = g_env_light.vrbox_kasumi_outer_col.r;
         color.g = g_env_light.vrbox_kasumi_outer_col.g;
         color.b = g_env_light.vrbox_kasumi_outer_col.b;
         color.a = g_env_light.vrbox_kasumi_outer_col.a;
-        kasumim_material0->setTevColor(0, (J3DGXColorS10*)&color);
+        material_0->setTevColor(0, (J3DGXColorS10*)&color);
     }
 
     if (sun_p != NULL) {
-        J3DModelData* modelData = i_this->model2->getModelData();
+        modelData = i_this->model2->getModelData();
         for (int i = 0; i < 3; i++) {
-            J3DMaterial* material_p = modelData->getMaterialNodePointer(i);
+            material_0 = modelData->getMaterialNodePointer(i);
 
-            if (material_p != NULL) {
-                material_p->setCullMode(0);
-                material_p->change();
-
+            if (material_0 != NULL) {
+                material_0->setCullMode(0);
+                material_0->change();
                 color.r = sun_p->mColor.r;
                 color.g = sun_p->mColor.g;
                 color.b = sun_p->mColor.b;
@@ -364,8 +380,8 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
                     k_color.a = color.a;
                 }
 
-                material_p->setTevColor(0, (J3DGXColorS10*)&color);
-                material_p->setTevKColor(0, (J3DGXColor*)&k_color);
+                material_0->setTevColor(0, (J3DGXColorS10*)&color);
+                material_0->setTevKColor(0, (J3DGXColor*)&k_color);
             }
         }
     }
