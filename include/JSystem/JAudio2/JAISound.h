@@ -16,7 +16,7 @@ public:
 
     JAISoundID(u32 id) { id_.composite_ = id; };
 
-    JAISoundID(const JAISoundID& other) { id_ = other.id_; };
+    JAISoundID(const JAISoundID& other) { id_.composite_ = other.id_.composite_; };
 
     JAISoundID() {}
 
