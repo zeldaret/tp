@@ -36,9 +36,6 @@ public:
     static Z2AudioMgr* getInterface() { return mAudioMgrPtr; }
     static Z2AudioMgr* mAudioMgrPtr;
 
-#if DEBUG
-    u8 padding[0xC];
-#endif
     /* 0x0514 */ virtual bool startSound(JAISoundID soundID, JAISoundHandle* handle, const JGeometry::TVec3<f32>* posPtr);
     /* 0x0518 */ bool mResettingFlag;
     /* 0x0519 */ bool field_0x519;
