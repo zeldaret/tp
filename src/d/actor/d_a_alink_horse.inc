@@ -1118,7 +1118,7 @@ BOOL daAlink_c::checkHorseGetOffWallCheck(cXyz* i_lineStartPos, cXyz* i_lineEndP
         return TRUE;
     }
 
-    if (getGroundAngle(&mLinkLinChk, param_2) < -cM_deg2s(daAlinkHIO_wlSlide_c0::m.field_0x5C)) {
+    if (getGroundAngle(&mLinkLinChk, param_2) < -cM_deg2s(daAlinkHIO_wlSlide_c0::m.mSlidingAngle)) {
         return TRUE;
     }
 

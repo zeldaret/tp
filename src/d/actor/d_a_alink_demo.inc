@@ -3462,7 +3462,7 @@ int daAlink_c::procWolfSnowEscape() {
 
         if (mProcVar2.field_0x300c == 0) {
             mProcVar2.field_0x300c = 1;
-            setSingleAnimeWolfParam(WANM_SLIDE_FORWARD_START, &daAlinkHIO_wlSlide_c0::m.field_0x0);
+            setSingleAnimeWolfParam(WANM_SLIDE_FORWARD_START, &daAlinkHIO_wlSlide_c0::m.mFrontSlideAnm);
             field_0x3588 = l_wolfBaseAnime;
             field_0x3478 = 1.0f / (f32)frameCtrl_p->getEnd();
             field_0x2f99 = 13;

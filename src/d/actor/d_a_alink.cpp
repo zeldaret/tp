@@ -5140,7 +5140,7 @@ void daAlink_c::setPolygonSpeed() {
                     var_f29 = daAlinkHIO_move_c0::m.mMaxSpeed;
                 }
             } else if (checkWolf()) {
-                var_f29 = daAlinkHIO_wlSlide_c0::m.field_0x70;
+                var_f29 = daAlinkHIO_wlSlide_c0::m.mClimbingMaxSpeedWeak;
             } else {
                 var_f29 = daAlinkHIO_slide_c0::m.mMaxClimbSpeed;
             }
