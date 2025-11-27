@@ -708,7 +708,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_ky_thunder.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_kantera_icon_meter.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_calibration.cpp"),
-            Object(NonMatching, "d/d_menu_collect.cpp"),
+            Object(NonMatching, "d/d_menu_collect.cpp"), # weak func order (dMenu_Collect2D_c::draw())
             Object(MatchingFor(ALL_GCN), "d/d_menu_dmap.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_dmap_map.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_map_common.cpp"),
@@ -724,7 +724,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_menu_save.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_skill.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_window_HIO.cpp"),
-            Object(Equivalent, "d/d_menu_window.cpp"), # weak func order
+            Object(Equivalent, "d/d_menu_window.cpp"), # weak func order (dDlst_MENU_CAPTURE_c::draw)
             Object(MatchingFor(ALL_GCN), "d/d_meter_HIO.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_meter_button.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_meter_haihai.cpp"),
@@ -1000,7 +1000,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JAUBankTable.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUClusterSound.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUInitializer.cpp"),
-            Object(Equivalent, "JSystem/JAudio2/JAUSectionHeap.cpp"), #weak function order
+            Object(Equivalent, "JSystem/JAudio2/JAUSectionHeap.cpp"), # weak function order
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSeqCollection.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSoundAnimator.cpp"),

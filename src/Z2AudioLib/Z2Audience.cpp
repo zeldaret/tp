@@ -853,23 +853,3 @@ f32 Z2Audience::calcPitch_(Z2AudibleChannel* param_0, Z2Audible const* param_1,
 int Z2Audience::getMaxChannels() {
     return mMaxChannels;
 }
-
-static void dummyMempool() {
-
-}
-
-
-
-// padding (???)
-s8 data_80451355;
-s8 data_80451356;
-s8 data_80451357;
-
-/* ############################################################################################## */
-/* 80451358-80451360 -00001 0008+00 0/0 1/1 0/0 .sbss            None */
-/* 80451358 0001+00 data_80451358 None */
-/* 80451359 0007+00 data_80451359 None */
-// extern u8 struct_80451358[8];
-// u8 struct_80451358[8];
-s8 data_80451358;
-s8 data_80451359;
