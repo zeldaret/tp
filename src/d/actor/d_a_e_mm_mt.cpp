@@ -32,9 +32,6 @@ static int daE_MM_MT_Draw(e_mm_mt_class* i_this) {
     return 1;
 }
 
-
-
-
 /* 8072305C-80723270 00015C 0214+00 2/2 0/0 0/0 .text            e_mm_hookCheck__FP13e_mm_mt_class
  */
 static bool e_mm_hookCheck(e_mm_mt_class* i_this) {
@@ -93,40 +90,41 @@ static bool e_mm_hookCheck(e_mm_mt_class* i_this) {
 /* 80723270-807234E8 000370 0278+00 1/1 0/0 0/0 .text            e_mm_mt_normal__FP13e_mm_mt_class
  */
 static void e_mm_mt_normal(e_mm_mt_class* i_this) {
-    // NONMATCHING
-    fopAc_ac_c* a_this;
-    dBgS_LinChk lin_chk;
-    cXyz acStack_28 [2];
+    fopAc_ac_c* helmasaurActor;
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    fopAc_ac_c* player = (fopAc_ac_c*) dComIfGp_getPlayer(0);
+    
+    
+    if (fopAcM_SearchByID(a_this->parentActorID, &helmasaurActor)) {
+        a_this->scale.x = helmasaurActor->scale.x;
+        e_mm_class* helmasaur = (e_mm_class*)helmasaurActor;
+        a_this->shape_angle.y = helmasaurActor->shape_angle.y - 0x4000;
 
-    a_this = dComIfGp_getPlayer(0);
-    if (fopAcM_SearchByID(i_this->parentActorID, &a_this) != 0) {
-        i_this->scale.x = a_this->scale.x;
-        i_this->shape_angle.y = a_this->shape_angle.y - 0x4000;
-
-
-        MtxPosition(acStack_28, &i_this->current.pos);
-        i_this->eyePos = a_this->eyePos;
-        i_this->attention_info.position = i_this->eyePos;
-        fopAcM_OffStatus(i_this,0); // unsure. Delete if posssible
-        
-        if(i_this->mInvulnerabilityTimer == 0 && i_this->field_0xB98){
+        PSMTXCopy(helmasaur->modelMorf->getModel()->getAnmMtx(11), *calc_mtx);
+        cXyz acStack_28(0.0f, 0.0f, 0.0f);
+        MtxPosition(&acStack_28, &a_this->current.pos);
+        a_this->eyePos = helmasaur->enemy.eyePos;
+        a_this->attention_info.position = i_this->eyePos;
+        fopAcM_OffStatus(i_this, 0);
+        a_this->attention_info.flags = 0;
+        if(i_this->mInvulnerabilityTimer == 0 && helmasaur->field_0xb98){
             i_this->mSphere.OnAtSetBit();
             if(i_this->mSphere.ChkAtShieldHit()){
                 i_this->mInvulnerabilityTimer = 15;
-                i_this->field_0xB99 |= 1;
+                helmasaur->field_0xb99 |= 1;
                 i_this->mAtInfo.mpCollider = i_this->mSphere.GetAtHitObj(); 
                 i_this->mSphere.SetAtSe(9);
             }
         } else {
             i_this->mSphere.OffAtSetBit();
         }
-        if(i_this->argument != 1 
+        if(a_this->argument != 1 
             && ((i_this->mSphere.ChkTgHit() 
             && i_this->mSphere.GetTgHitObj()->ChkAtType(AT_TYPE_HOOKSHOT)) 
-            || fopAcM_CheckStatus(i_this, 0x100000))) {
-                i_this->field_0xB99 |= 4;
+            || fopAcM_CheckStatus(a_this, 0x100000))) {
+                helmasaur->field_0xb99 |= 4;
         }
-        if(i_this->field_0x672 == 0){
+        if(helmasaur->field_0x672 == 0){
             i_this->mAction = 1;
             i_this->mMode = 0;
             i_this->field_0x68A[0] = 0;
@@ -136,12 +134,14 @@ static void e_mm_mt_normal(e_mm_mt_class* i_this) {
             i_this->mSphere.SetTgSe(9);
             i_this->mSphere.OffTgHookShotNoHitMark();
             i_this->mSphere.OffTgNoHitMark();
+            i_this->mSphere.OffCoSetBit();
             fopAcM_SetGroup(i_this, 3);
             fopAcM_OffStatus(i_this, 0);
-            i_this->attention_info.flags &= 0xFFFFFFFB;
-            i_this->attention_info.distances[2] = 0;
+            a_this->attention_info.flags &= 0xFFFFFFFB;
+            a_this->attention_info.distances[2] = 0;
             fopAcM_OnStatus(i_this, 0x400);
-            s16 angle = i_this->shape_angle.y - a_this->shape_angle.y + 0x4000;
+            s16 actor_angle = player->shape_angle.y + 0x4000;
+            s16 angle = a_this->shape_angle.y - actor_angle;
             if(angle > 0x4000 || angle < -0x4000){
                 i_this->mCarryAngle = -0x8000;
                 return;
@@ -225,13 +225,12 @@ COMPILER_STRIP_GATE(0x807258B4, &lit_4017);
 /* 807234E8-80723744 0005E8 025C+00 1/1 0/0 0/0 .text            e_mm_mt_hagare__FP13e_mm_mt_class
  */
 static void e_mm_mt_hagare(e_mm_mt_class* i_this) {
-    // NONMATCHING
-
-    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    fopAc_ac_c* player = (fopAc_ac_c*) dComIfGp_getPlayer(0);
     cXyz local_30;
     cXyz local_3c = player->current.pos - i_this->current.pos;
-    local_30 = local_3c;
-    local_30.y += 150.0f;
+    local_30.x = local_3c.x;
+    local_30.z = local_3c.z;
+    local_30.y = local_3c.y + 150.0f;
     i_this->current.angle.y = local_30.atan2sX_Z();
     cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
     cMtx_YrotM(*calc_mtx, local_30.atan2sY_XZ());
@@ -255,7 +254,7 @@ static void e_mm_mt_hagare(e_mm_mt_class* i_this) {
             i_this->attention_info.position = i_this->current.pos;
             s16 sVar6;
             if(i_this->mCarryAngle == 0){
-                sVar6 = -0.4000;
+                sVar6 = -0x4000;
             } else {
                 sVar6 = 0x4000;
             }
@@ -687,18 +686,286 @@ COMPILER_STRIP_GATE(0x80725920, &lit_4740);
 
 /* 80724190-80724D40 001290 0BB0+00 1/1 0/0 0/0 .text            action__FP13e_mm_mt_class */
 static void action(e_mm_mt_class* i_this) {
-    // NONMATCHING
-    fopAc_ac_c *local_88 = dComIfGp_getPlayer(0);
-    fopAc_ac_c *local_8c;
-    //
-    s32 sVar1 = fopAcM_SearchByID(i_this->parentActorID, &local_8c);
-    fopAc_ac_c* pfVar15 = 0x0;
-    if((sVar1 != 0) && (local_8c != NULL)){
-        pfVar15 = local_8c;
+    fopAc_ac_c* unusedPlayer = dComIfGp_getPlayer(0);
+    fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(i_this);
+    cXyz tgHitPosDist;
+    cXyz tgHitPosAbove;
+
+    fopAc_ac_c* helamsaurActor;
+
+    s16 distAngle = 0;
+    e_mm_class* helmasaur = NULL;
+    if (fopAcM_SearchByID(actor->parentActorID, &helamsaurActor) && helamsaurActor != NULL) {
+        helmasaur = (e_mm_class*)helamsaurActor;
     }
-    if(pfVar15 != NULL){
-        
+
+    cXyz* ccMove_p = i_this->mStts.GetCCMoveP();
+    if (helmasaur != NULL) {
+        helmasaur->field_0x674.x = ccMove_p->x;
+        helmasaur->field_0x674.z = ccMove_p->z;
     }
+
+    switch (i_this->mAction) {
+    case 0:
+        e_mm_mt_normal(i_this);
+        i_this->mAcch.CrrPos(dComIfG_Bgsp());
+        if (helmasaur != NULL) {
+            distAngle = cLib_distanceAngleS(helmasaur->enemy.shape_angle.y - (s16)0x8000,
+                                            fopAcM_searchPlayerAngleY(actor));
+            if (distAngle > 0x3000 || distAngle < -0x3000 || i_this->mAction != 0) {
+                i_this->mSphere.OnTgShield();
+                i_this->mSphere.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+                i_this->mSphere.SetTgSe(9);
+                i_this->mSphere.OnTgNoHitMark();
+            } else {
+                i_this->mSphere.OffTgShield();
+                i_this->mSphere.SetTgHitMark(CcG_Tg_UNK_MARK_0);
+                i_this->mSphere.SetTgSe(0);
+                i_this->mSphere.OffTgNoHitMark();
+            }
+        }
+
+        break;
+    case 1:
+        e_mm_mt_hagare(i_this);
+        i_this->mAcch.CrrPos(dComIfG_Bgsp());
+        i_this->mRotation = actor->shape_angle;
+
+        break;
+    case 2:
+        e_mm_mt_carry(i_this);
+        i_this->mInvulnerabilityTimer = 3;
+        i_this->mAcchCir.SetWall(20.0f, 20.0f);
+        i_this->mAcch.CrrPos(dComIfG_Bgsp());
+
+        break;
+    case 3:
+        e_mm_mt_drop(i_this);
+        i_this->field_0x6A8 = actor->speed.y;
+
+        if (i_this->mSphere.ChkCoHit()) {
+            cXyz* ccMove_p = i_this->mStts.GetCCMoveP();
+
+            if (ccMove_p != NULL) {
+                actor->current.pos.x += ccMove_p->x * 0.5f;
+                actor->current.pos.z += ccMove_p->z * 0.5f;
+
+                if (fabsf(ccMove_p->x) >= 2.0f || fabsf(ccMove_p->z) >= 2.0f) {
+                    cLib_addCalc2(&i_this->field_0x69C, NREG_F(5) + 1000.0f, 0.1f,
+                                  NREG_F(6) + 200.0f);
+                    s16 playerAngleY = fopAcM_searchPlayerAngleY(actor);
+                    s16 playerAngleDelta = i_this->mRotation.y - playerAngleY;
+                    if (playerAngleDelta > 0x4000 || playerAngleDelta < -0x4000) {
+                        playerAngleY += (s16)0x8000;
+                    }
+                    cLib_addCalcAngleS2(&i_this->mRotation.y, playerAngleY, 4, 0x100);
+                }
+            }
+        }
+        i_this->mAcchCir.SetWall(50.0f, 50.0f);
+        i_this->mAcch.CrrPos(dComIfG_Bgsp());
+        break;
+    }
+
+    fopEn_enemy_c* enemy = (fopEn_enemy_c*)actor;
+    setMidnaBindEffect(enemy, &i_this->mSound, &actor->current.pos,
+                       &actor->scale);
+
+    if (i_this->mInvulnerabilityTimer == 0) {
+        i_this->mStts.Move();
+        if (i_this->mSphere.ChkTgHit()) {
+            i_this->mInvulnerabilityTimer = 10;
+            i_this->mAtInfo.mpCollider = i_this->mSphere.GetTgHitObj();
+            if (i_this->mSphere.GetTgHitObj()->ChkAtType(0x80)) {
+                i_this->mSound.startCollisionSE(0x40018, 45);
+            }
+            if (helmasaur != NULL && helmasaur->field_0x672 != 0) {
+                if (i_this->mSphere.GetTgSe() == 9 ||
+                   (i_this->mSphere.GetTgHitObj()->ChkAtType(0x8000000) &&
+                    helmasaur->action == 2)) {
+                    tgHitPosDist = actor->current.pos - *i_this->mSphere.GetTgHitPosP();
+                    csXyz hitMarkAngle;
+                    tgHitPosAbove.set(*i_this->mSphere.GetTgHitPosP());
+                    if (i_this->mSphere.GetTgHitObj()->ChkAtType(16)) {
+                        tgHitPosAbove.y += 100.0f;
+                    }
+                    hitMarkAngle.x = 0;
+                    hitMarkAngle.y = (s16)tgHitPosDist.atan2sX_Z();
+                    hitMarkAngle.z = 0;
+                    def_se_set(&i_this->mSound, i_this->mAtInfo.mpCollider, 40, actor);
+
+                    cCcD_Obj* collider = i_this->mAtInfo.mpCollider;
+                    dComIfGp_setHitMark(2, actor, &tgHitPosAbove, &hitMarkAngle, NULL, 0);
+                    helmasaur->field_0xb99 |= (s8)0x2;
+                    i_this->mSphere.ClrTgHit();
+                } else {
+                    if ((helmasaur->field_0xb99 & 0x8) == 0 &&
+                        (helmasaur->field_0xb99 & 0x10) == 0)
+                    {
+                        s16 health = actor->health;
+                        cc_at_check(actor, &i_this->mAtInfo);
+                        helmasaur->atInfo.mpCollider = i_this->mAtInfo.mpCollider;
+                        helmasaur->field_0x6ac = i_this->mAtInfo.mHitDirection.y;
+                        i_this->mInvulnerabilityTimer = 8;
+
+                        if ((s32)actor->health <= 2000 - helmasaur->enemy.field_0x560) {
+                            helmasaur->field_0xb99 |= (s8)0x10;
+                            if (i_this->mAtInfo.mHitType == 1 ||
+                                i_this->mAtInfo.mpCollider->ChkAtType(8))
+                            {
+                                if (!daPy_getPlayerActorClass()->checkCutJumpCancelTurn()) {
+                                    dScnPly_c::setPauseTimer(5);
+                                }
+                            }
+
+                            i_this->mSphere.OnTgShield();
+                            i_this->mSphere.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+                            i_this->mSphere.SetTgSe(9);
+                            i_this->mSphere.OffTgNoHitMark();
+                        } else {
+                            if (health != actor->health) {
+                                i_this->mSound.startCreatureVoice(Z2SE_EN_MM_V_DAMAGE, -1);
+                            } else {
+                                i_this->mSound.startCreatureVoice(Z2SE_EN_MM_V_NO_DAMAGE, -1);
+                            }
+
+                            if (i_this->mAtInfo.mHitType == 1 ||
+                                i_this->mAtInfo.mpCollider->ChkAtType(8))
+                            {
+                                if (!daPy_getPlayerActorClass()->checkCutJumpCancelTurn()) {
+                                    dScnPly_c::setPauseTimer(2);
+                                }
+                            }
+
+                            helmasaur->field_0xb99 |= (s8)0x8;
+                        }
+
+                        i_this->mSphere.ClrTgHit();
+                    }
+                }
+            } else {
+                tgHitPosDist = actor->current.pos - *i_this->mSphere.GetTgHitPosP();
+                csXyz local_84;
+                tgHitPosAbove.set(*i_this->mSphere.GetTgHitPosP());
+
+                if (i_this->mSphere.GetTgHitObj()->ChkAtType(16)) {
+                    tgHitPosAbove.y += 100.0f;
+                }
+
+                local_84.x = 0;
+                local_84.y = (s16)tgHitPosDist.atan2sX_Z();
+                local_84.z = 0;
+                cCcD_Obj* collider = i_this->mAtInfo.mpCollider;
+                def_se_set(&i_this->mSound, i_this->mAtInfo.mpCollider, 40, actor);
+                dComIfGp_setHitMark(2, actor, &tgHitPosAbove, &local_84, NULL, 0);
+
+                fopAc_ac_c* local_a4 = at_power_check(&i_this->mAtInfo);
+
+                if (i_this->mAtInfo.mHitType == 1) {
+                    if (daPy_getPlayerActorClass()->getCutType() == 8 ||
+                        daPy_getPlayerActorClass()->getCutType() == 9 ||
+                        daPy_getPlayerActorClass()->getCutType() == 23 ||
+                        daPy_getPlayerActorClass()->getCutType() == 24) {
+                        actor->speedF = cM_rndF(10.0f) + 40.0f +  TREG_F(16);
+                        i_this->mSpin = (s16)(cM_rndF(2000.0f) + 5500.0f);
+                        i_this->field_0x69C = (f32)(s16)(cM_rndF(1000.0f) + 5000.0f);
+                    } else {
+                        actor->speedF = TREG_F(17) + 30.0f;
+                        i_this->mSpin = (s16)cM_rndFX(3000.0f);
+                        i_this->field_0x69C = NREG_F(10) + 4000.0f;
+                    }
+                } else {
+                    if (local_a4 != 0) {
+                        actor->speedF = local_a4->speedF * 0.7f;
+                        actor->current.angle.y = local_a4->current.angle.y + (s16)cM_rndFX(5000.0f);
+                    }
+                    i_this->mSpin = (s16)cM_rndFX(3000.0f);
+                    i_this->field_0x69C = NREG_F(10) + 4000.0f;
+                }
+
+                i_this->mSphere.ClrTgHit();
+            }
+        }
+    }
+
+    if (helmasaur != NULL && helmasaur->field_0x672 != 0 && helmasaur->field_0xb99 != 4)
+    {
+        i_this->mpModel->setBaseTRMtx(helmasaur->modelMorf->getModel()->getAnmMtx(11));
+    } else {
+        i_this->field_0x6A0 = i_this->field_0x69C * cM_ssin(i_this->lifetime * (NREG_S(3) + 3000));
+        i_this->field_0x6A2 = i_this->field_0x69C * cM_ssin(i_this->lifetime * (NREG_S(4) + 4000));
+
+        cLib_addCalc0(&i_this->field_0x69C, 0.1f, NREG_F(1) + 50.0f);
+        cLib_addCalcAngleS2(&i_this->mSpin, 0, 1, TREG_S(5) + 50);
+        mDoMtx_stack_c::transS(actor->current.pos.x, actor->current.pos.y,
+                               actor->current.pos.z);
+        cMtx_YrotS(*calc_mtx, i_this->mRotation.y);
+
+        if (fopAcM_checkCarryNow(actor)) {
+            tgHitPosDist.x = 30.0f;
+        } else {
+            tgHitPosDist.x = 0.0f;
+        }
+
+        tgHitPosDist.y = 0.0f;
+        tgHitPosDist.z = 0.0f;
+        MtxPosition(&tgHitPosDist, &tgHitPosAbove);
+        mDoMtx_stack_c::transM(tgHitPosAbove.x, tgHitPosAbove.y, tgHitPosAbove.z);
+
+        mDoMtx_stack_c::YrotM((s16)i_this->mRotation.y);
+        mDoMtx_stack_c::XrotM((s16)i_this->field_0x6A0);
+        mDoMtx_stack_c::ZrotM(i_this->mRotation.z + i_this->field_0x6A2);
+        mDoMtx_stack_c::scaleM(actor->scale.x, actor->scale.x, actor->scale.x);
+        i_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    }
+
+    cXyz curPos = actor->current.pos;
+    if (helmasaur != NULL && helmasaur->field_0x672 != 0) {
+        fopAc_ac_c* parentActor;
+        if (fopAcM_SearchByID(actor->parentActorID, &parentActor) && parentActor != 0) {
+            cMtx_YrotS(*calc_mtx, parentActor->shape_angle.y);
+            if (actor->argument != 1) {
+                tgHitPosDist.x = JREG_F(8);
+                tgHitPosDist.y = JREG_F(9) + -60.0f;
+                tgHitPosDist.z = JREG_F(10) + 20.0f;
+            } else {
+                tgHitPosDist.x = JREG_F(11);
+                tgHitPosDist.y = JREG_F(12) + -90.0f;
+                tgHitPosDist.z = JREG_F(13) + 50.0f;
+            }
+            MtxPosition(&tgHitPosDist, &curPos);
+            curPos += actor->current.pos;
+        } else {
+            helmasaur->field_0x672 = 0;
+        }
+    } else {
+        cMtx_XrotS(*calc_mtx, i_this->mRotation.z);
+        tgHitPosDist.x = 0.0f;
+        tgHitPosDist.y = -(actor->scale.x * 30.0f);
+        tgHitPosDist.z = 0.0f;
+        MtxPosition(&tgHitPosDist, &curPos);
+        curPos += actor->current.pos;
+    }
+    i_this->mSph.SetC(curPos);
+
+    if (i_this->mAction == 1) {
+        i_this->mSph.SetR((JREG_F(15) + 60.0f) * actor->scale.x);
+    } else if (i_this->mAction == 2) {
+        i_this->mSph.SetR((JREG_F(16) + 100.0f) * actor->scale.x);
+    } else {
+        i_this->mSph.SetR((JREG_F(17) + 50.0f) * actor->scale.x);
+    }
+
+    dComIfG_Ccsp()->Set(&i_this->mSph);
+
+    if (i_this->mInvulnerabilityTimer != 0) {
+        curPos.y += 20000.0f;
+    }
+    i_this->mSphere.SetC(curPos);
+
+    i_this->mSphere.SetR((JREG_F(14) + 40.0f) * actor->scale.x);
+
+    dComIfG_Ccsp()->Set(&i_this->mSphere);
 }
 
 /* 80724D40-80724DF4 001E40 00B4+00 2/1 0/0 0/0 .text daE_MM_MT_Execute__FP13e_mm_mt_class */
