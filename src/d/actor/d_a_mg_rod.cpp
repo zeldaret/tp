@@ -75,13 +75,13 @@ void dmg_rod_HIO_c::genMessage(JORMContext* ctx) {
     ctx->genComboBoxItem("ドジョウ", 2); //Loach
     ctx->genComboBoxItem("パイク", 3); // Pike
     ctx->genComboBoxItem("ナマズ", 4); // Catfish
-    ctx->genComboBoxItem("マス", 5); // ???
+    ctx->genComboBoxItem("マス", 5); // Trout
     ctx->genComboBoxItem("ギル", 6); // Gill
     ctx->genComboBoxItem("小バス", 7); // Small Bass
     ctx->genComboBoxItem("小ドジョウ", 8); // Small Loach
     ctx->genComboBoxItem("小パイク", 9); // Small Pike
     ctx->genComboBoxItem("小ナマズ", 10); // Small Catfish
-    ctx->genComboBoxItem("小マス", 11); // ???
+    ctx->genComboBoxItem("小マス", 11); // Small Trout
     ctx->endComboBox();
 }
 #endif
@@ -2525,9 +2525,8 @@ static void lure_hit(dmg_rod_class* i_this, mg_fish_class* i_mg_fish) {
 }
 
 /* 804B02C4-804B0A90 006DC4 07CC+00 1/1 0/0 0/0 .text            lure_catch__FP13dmg_rod_class */
-// NONMATCHING - regalloc, equivalent
 static void lure_catch(dmg_rod_class* i_this) {
-    fopAc_ac_c* actor = &i_this->actor;
+    fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     fopAc_ac_c* mgfish_a = fopAcM_SearchByID(i_this->mg_fish_id);
     mg_fish_class* mgfish = (mg_fish_class*)mgfish_a;
 
@@ -4550,12 +4549,11 @@ static void play_camera(dmg_rod_class* i_this) {
         i_this->play_cam_mode = 2;
         camera->mCamera.Stop();
         i_this->play_cam_timer = 0;
-        i_this->field_0x1420 = 500.0f;
-        i_this->field_0x141c = 500.0f;
+        i_this->field_0x141c = i_this->field_0x1420 = 500.0f;
         i_this->field_0x1424 = 180.0f + WREG_F(0);
         i_this->field_0x1428 = 100.0f + WREG_F(1);
 
-        camera_class* sp58 = dComIfGp_getCamera(0);
+        camera_class* sp58 = (camera_class*)dComIfGp_getCamera(0);
         i_this->field_0x144c = sp58->lookat.eye;
         i_this->field_0x1458 = sp58->lookat.center;
         i_this->play_cam_eye = i_this->field_0x144c;
@@ -4574,7 +4572,7 @@ static void play_camera(dmg_rod_class* i_this) {
         f32 sp60 = 100.0f + WREG_F(1);
         f32 sp5C = 30.0f;
 
-        if (i_this->play_cam_timer > YREG_S(6) + 8) {
+        if (i_this->play_cam_timer > (s16)(8 + YREG_S(6))) {
             cLib_addCalcAngleS2(&i_this->field_0x1418, daAlink_getAlinkActorClass()->getFishingRodAngleY(), 6, 2000);
         }
 
@@ -4833,7 +4831,7 @@ static void play_camera(dmg_rod_class* i_this) {
             cLib_addCalc2(&i_this->play_cam_center.y, sp150.y, 0.1f, 10.0f);
             cLib_addCalc2(&i_this->play_cam_center.z, sp150.z, 0.1f, 10.0f);
         }
-        if (i_this->play_cam_timer >= XREG_S(4) + 68) {
+        if (i_this->play_cam_timer >= (s16)(XREG_S(4) + 68)) {
             i_this->play_cam_mode = 2;
             i_this->play_cam_timer = 20;
             i_this->field_0x1418 = daAlink_getAlinkActorClass()->shape_angle.y;
