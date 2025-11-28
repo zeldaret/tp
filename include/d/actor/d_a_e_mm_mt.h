@@ -13,9 +13,9 @@
  * @details 
  * 
  */
-class e_mm_mt_class : public fopEn_enemy_c {
+class e_mm_mt_class {
 public:
-    /* 0x000 */ //fopEn_enemy_c enemy;
+    /* 0x000 */ fopEn_enemy_c enemy;
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ Z2CreatureEnemy mSound;
     /* 0x658 */ u32 parameters; 
@@ -36,7 +36,7 @@ public:
     /* 0x692 */ s16 mCarryAngleSpeed;
     /* 0x694 */ s16 mCarryAngle;
     /* 0x696 */ u8 field_0x696[0x698 - 0x696];
-    /* 0x698 */ u32 field_0x698;
+    /* 0x698 */ s32 field_0x698;
     /* 0x69C */ f32 field_0x69C;
                 s16 field_0x6A0;
                 s16 field_0x6A2;
