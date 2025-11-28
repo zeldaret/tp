@@ -49,6 +49,8 @@ public:
     /* 802A683C */ SeqDataReturnValue getSeqData(JAISoundID, JAISeqData*);
     /* 802A6894 */ ~JAUSeqDataMgr_SeqCollection();
 
+    const void* getResource() const { return field_0x4; }
+
     /* 0x14 */ JAISeqDataUser* user_;
 };
 

@@ -8,7 +8,7 @@
 #include "d/actor/d_a_tag_mstop.h"
 #include "d/actor/d_a_midna.h"
 #include "d/actor/d_a_player.h"
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "f_op/f_op_actor_mng.h"
 
 /* 805A6138-805A6318 000078 01E0+00 1/1 0/0 0/0 .text            create__12daTagMstop_cFv */

@@ -41,6 +41,16 @@ struct TUtil<f32> {
         root = 0.5f * root * (3.0f - x * (root * root));
         return root;
     }
+
+    static inline f32 sqrt(f32 x) {
+        if (x <= 0.0f) {
+            return x;
+        }
+
+        f32 root = __frsqrte(x);
+        root = 0.5f * root * (3.0f - x * (root * root));
+        return x * root;
+    }
 };
 
 template<>
@@ -216,7 +226,7 @@ struct TVec3<f32> : public Vec {
     }
 
     inline TVec3<f32>& operator=(const TVec3<f32>& b) {
-        set(b.x, b.y, b.z);
+        setTVec3f(&b.x, &this->x);
         return *this;
     }    
 
@@ -389,16 +399,20 @@ template <typename T>
 struct TVec2 {
     TVec2() {}
     TVec2(T v) { set(v); }
-    TVec2(T x, T y) { set(x, y); }
+
+    template <typename U>
+    TVec2(U x, U y) { set(x, y); }
 
     void set(T v) { y = x = v; }
 
-    void set(T x, T y) {
+    template <typename U>
+    void set(U x, U y) {
         this->x = x;
         this->y = y;
     }
 
-    void set(const TVec2& other) {
+    template <typename U>
+    void set(const TVec2<U>& other) {
         x = other.x;
         y = other.y;
     }
@@ -435,12 +449,7 @@ struct TVec2 {
     }
 
     f32 length() const {
-        f32 sqr = squared();
-        if (sqr <= 0.0f) {
-            return sqr;
-        }
-        sqr *= fsqrt_step(sqr);
-        return sqr;
+        return TUtil<f32>::sqrt(squared());
     }
 
     T x;
@@ -481,9 +490,12 @@ template<> struct TBox<TVec2<f32> > {
 };
 
 template <typename T>
-struct TBox2 : TBox<TVec2<T> > {
+struct TBox2 : public TBox<TVec2<T> > {
     TBox2() {}
-    TBox2(const TVec2<f32>& i, const TVec2<f32>& f) { set(i, f); }
+    TBox2(const TVec2<f32>& _i, const TVec2<f32>& _f) { 
+        TBox<TVec2<T> >::i.set(_i);
+        TBox<TVec2<T> >::f.set(_f);
+    }
     TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
 
     void absolute() {

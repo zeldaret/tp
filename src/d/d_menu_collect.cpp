@@ -273,13 +273,33 @@ void dMenu_Collect2D_c::screenSet() {
     static const u64 text_a_tag[5] = {'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5'};
     static const u64 text_b_tag[5] = {'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5'};
 
+#if REGION_JPN
+    static_cast<J2DTextBox*>(mpScreen->search('t_t00'))->setFont(mDoExt_getRubyFont());
+    static_cast<J2DTextBox*>(mpScreen->search('t_t00'))->setString(0x20, "");
+    dMeter2Info_getStringKanji(
+        0x3E1, static_cast<J2DTextBox*>(mpScreen->search('t_t00'))->getStringPtr(), NULL);
+    mpScreen->search('f_t00')->hide();
+#else
     static_cast<J2DTextBox*>(mpScreen->search('f_t00'))->setFont(mDoExt_getRubyFont());
     static_cast<J2DTextBox*>(mpScreen->search('f_t00'))->setString(0x20, "");
     dMeter2Info_getStringKanji(
         0x3E1, static_cast<J2DTextBox*>(mpScreen->search('f_t00'))->getStringPtr(), NULL);
     mpScreen->search('t_t00')->hide();
+#endif
 
     for (int i = 0; i < 3; i++) {
+#if REGION_JPN
+        static_cast<J2DTextBox*>(mpScreen->search(text_sv[i]))->setFont(mDoExt_getMesgFont());
+        static_cast<J2DTextBox*>(mpScreen->search(text_op[i]))->setFont(mDoExt_getMesgFont());
+        static_cast<J2DTextBox*>(mpScreen->search(text_sv[i]))->setString(0x20, "");
+        static_cast<J2DTextBox*>(mpScreen->search(text_op[i]))->setString(0x20, "");
+        dMeter2Info_getStringKanji(
+            0x60, static_cast<J2DTextBox*>(mpScreen->search(text_sv[i]))->getStringPtr(), NULL);
+        dMeter2Info_getStringKanji(
+            0x5F, static_cast<J2DTextBox*>(mpScreen->search(text_op[i]))->getStringPtr(), NULL);
+        mpScreen->search(ftext_sv[i])->hide();
+        mpScreen->search(ftext_op[i])->hide();
+#else
         static_cast<J2DTextBox*>(mpScreen->search(ftext_sv[i]))->setFont(mDoExt_getMesgFont());
         static_cast<J2DTextBox*>(mpScreen->search(ftext_op[i]))->setFont(mDoExt_getMesgFont());
         static_cast<J2DTextBox*>(mpScreen->search(ftext_sv[i]))->setString(0x20, "");
@@ -290,6 +310,7 @@ void dMenu_Collect2D_c::screenSet() {
             0x5F, static_cast<J2DTextBox*>(mpScreen->search(ftext_op[i]))->getStringPtr(), NULL);
         mpScreen->search(text_sv[i])->hide();
         mpScreen->search(text_op[i])->hide();
+#endif
     }
 
     for (int i = 0; i < 5; i++) {
@@ -301,6 +322,27 @@ void dMenu_Collect2D_c::screenSet() {
         static_cast<J2DTextBox*>(mpScreenIcon->search(text_b_tag[i]))->setString(0x20, "");
     }
 
+#if REGION_JPN
+    static_cast<J2DTextBox*>(mpScreen->search('item_n00'))->setFont(mDoExt_getMesgFont());
+    static_cast<J2DTextBox*>(mpScreen->search('item_n01'))->setFont(mDoExt_getMesgFont());
+    static_cast<J2DTextBox*>(mpScreen->search('item_n02'))->setFont(mDoExt_getMesgFont());
+    static_cast<J2DTextBox*>(mpScreen->search('item_n03'))->setFont(mDoExt_getMesgFont());
+    static_cast<J2DTextBox*>(mpScreen->search('item_n00'))->setString(0x20, "");
+    static_cast<J2DTextBox*>(mpScreen->search('item_n01'))->setString(0x20, "");
+    static_cast<J2DTextBox*>(mpScreen->search('item_n02'))->setString(0x20, "");
+    static_cast<J2DTextBox*>(mpScreen->search('item_n03'))->setString(0x20, "");
+    static_cast<J2DTextBox*>(mpScreen->search('i_text1'))->setFont(mDoExt_getMesgFont());
+    static_cast<J2DTextBox*>(mpScreen->search('i_text0'))->setFont(mDoExt_getMesgFont());
+    static_cast<J2DTextBox*>(mpScreen->search('i_text1'))->setString(0x100, "");
+    static_cast<J2DTextBox*>(mpScreen->search('i_text0'))->setString(0x100, "");
+
+    mpScreen->search('item_n04')->hide();
+    mpScreen->search('item_n05')->hide();
+    mpScreen->search('item_n06')->hide();
+    mpScreen->search('item_n07')->hide();
+    mpScreen->search('f_text1')->hide();
+    mpScreen->search('f_text0')->hide();
+#else
     static_cast<J2DTextBox*>(mpScreen->search('item_n04'))->setFont(mDoExt_getMesgFont());
     static_cast<J2DTextBox*>(mpScreen->search('item_n05'))->setFont(mDoExt_getMesgFont());
     static_cast<J2DTextBox*>(mpScreen->search('item_n06'))->setFont(mDoExt_getMesgFont());
@@ -320,6 +362,7 @@ void dMenu_Collect2D_c::screenSet() {
     mpScreen->search('item_n03')->hide();
     mpScreen->search('i_text1')->hide();
     mpScreen->search('i_text0')->hide();
+#endif
 
     field_0x22d[0][0] = 0;
     field_0x22d[1][0] = 0;
@@ -729,8 +772,7 @@ void dMenu_Collect2D_c::setBackAlpha() {
 
 /* 801B1FAC-801B27EC 1AC8EC 0840+00 1/1 0/0 0/0 .text            cursorMove__17dMenu_Collect2D_cFv
  */
-// NONMATCHING
-// goto logic is wrong
+// Not sure if this works without gotos
 void dMenu_Collect2D_c::cursorMove() {
     u8 dVar1 = mCursorX;
     u8 dVar2 = mCursorY;
@@ -797,30 +839,27 @@ void dMenu_Collect2D_c::cursorMove() {
 LAB_802ba744:
     if (mpStick->checkUpTrigger()) {
         if (mCursorY != 0) {
-            bool bVar3;
-            restart_loop:
-            do {
-                mCursorY--;
-                if (mCursorY == 2) {
-                    u8 local_3c[9] = {3,3,4,3,4,5,4,5,5};
-                    u8 local_48[9] = {2,1,2,0,1,2,0,1,0};
-                    for (int i = 0; i < 9; i++) {
-                        if (getItemTag(local_3c[i], local_48[i], true)) {
-                            mCursorX = local_3c[i];
-                            mCursorY = local_48[i];
-                            break;
-                        }
+        begin:
+            mCursorY--;
+            if (mCursorY == 2) {
+                u8 local_3c[9] = {3,3,4,3,4,5,4,5,5};
+                u8 local_48[9] = {2,1,2,0,1,2,0,1,0};
+                for (int i = 0; i < 9; i++) {
+                    if (getItemTag(local_3c[i], local_48[i], true)) {
+                        mCursorX = local_3c[i];
+                        mCursorY = local_48[i];
+                        break;
                     }
                 }
-                if (dVar2 == 5) {
-
-                    if (dVar1 == 0) {
-                        if (field_0x25a < 5) {
-                            mCursorX = field_0x259;
-                            mCursorY = field_0x25a;
-                            break;
-                        }
-                        bVar3 = false;
+            }
+            if (dVar2 == 5) {
+                if (dVar1 == 0) {
+                    if (field_0x25a < 5) {
+                        mCursorX = field_0x259;
+                        mCursorY = field_0x25a;
+                        goto LAB_802bab54;
+                    } else {
+                        bool bVar3 = false;
                         for (int i = 0; i < 4; i++) {
                             if (getItemTag(i, mCursorY, true)) {
                                 mCursorX = i;
@@ -834,73 +873,77 @@ LAB_802ba744:
                             bVar3 = true;
                         }
                         if (bVar3) {
-                            break;
+                            goto LAB_802bab54;
                         }
-                        goto restart_loop;
                     }
-                    if (field_0x25a < 5) {
-                        mCursorX = field_0x259;
-                        mCursorY = field_0x25a;
-                        break;
-                    }
-                    bVar3 = false;
+                } else if (field_0x25a < 5) {
+                    mCursorX = field_0x259;
+                    mCursorY = field_0x25a;
+                    goto LAB_802bab54;
+                } else {
+                    bool bVar4 = false;
                     for (int i = 3; i < 7; i++) {
                         if (getItemTag(i, mCursorY, true)) {
                             mCursorX = i;
-                            bVar3 = true;
+                            bVar4 = true;
                             break;
                         }
                     }
                     if (mCursorY == 0) {
                         mCursorX = dVar1;
                         mCursorY = dVar2;
-                        bVar3 = true;
+                        bVar4 = true;
                     }
-                }
-            } while (!bVar3);
-            if (!getItemTag(mCursorX, mCursorY, true)) {
-                if (mCursorY != 0) {
-                    goto restart_loop;
-                }
-            }
-            mCursorY = dVar2;
-        }
-    } else {
-        if (mpStick->checkDownTrigger()) {
-            if (mCursorY < 4) {
-                do {
-                    mCursorY++;
-                    if (mCursorY == 3) {
-                        u8 local_50[8] = {3, 2, 3, 1, 2, 0, 1, 0};
-                        u8 local_58[8] = {3, 3, 4, 3, 4, 3, 4, 4};
-                        for (int i = 0; i < 8; i++) {
-                            if (getItemTag(local_50[i], local_58[i], true)) {
-                                mCursorX = local_50[i];
-                                mCursorY = local_58[i];
-                                break;
-                            }
-                        }
-                    }
-                    if (getItemTag(mCursorX, mCursorY, true)) {
+                    if (bVar4) {
                         goto LAB_802bab54;
                     }
-                } while (mCursorY < 4);
-                mCursorY = 5;
-                if (mCursorX <= 2) {
-                    mCursorX = 0;
-                } else {
-                    mCursorX = 1;
                 }
-            } else if (mCursorY == 4) {
-                mCursorY = 5;
-                if (mCursorX <= 3) {
-                    mCursorX = 0;
-                } else {
-                    mCursorX = 1;
+                goto begin;
+            } else {
+                if (getItemTag(mCursorX, mCursorY, true)) {
+                    goto LAB_802bab54;
                 }
+                if (mCursorY != 0) {
+                    goto begin;
+                }
+                mCursorY = dVar2;
+            }
+        }
+    } else if (mpStick->checkDownTrigger()) {
+        if (mCursorY < 4) {
+            do {
+                mCursorY++;
+                if (mCursorY == 3) {
+                    u8 local_50[8] = {3, 2, 3, 1, 2, 0, 1, 0};
+                    u8 local_58[8] = {3, 3, 4, 3, 4, 3, 4, 4};
+                    for (int i = 0; i < 8; i++) {
+                        if (getItemTag(local_50[i], local_58[i], true)) {
+                            mCursorX = local_50[i];
+                            mCursorY = local_58[i];
+                            break;
+                        }
+                    }
+                }
+                if (getItemTag(mCursorX, mCursorY, true)) {
+                    goto LAB_802bab54;
+                }
+            } while (mCursorY < 4);
+            mCursorY = 5;
+            if (mCursorX <= 2) {
+                mCursorX = 0;
+            } else {
+                mCursorX = 1;
+            }
+        } else if (mCursorY == 4) {
+            mCursorY = 5;
+            if (mCursorX <= 3) {
+                mCursorX = 0;
+            } else {
+                mCursorX = 1;
             }
         }
     }
+
 LAB_802bab54:
     if (mCursorX != dVar1 || mCursorY != dVar2) {
         field_0x259 = dVar1;
@@ -2072,19 +2115,39 @@ void dMenu_Collect2D_c::_draw() {
     mpScreen->draw(0.0f, 0.0f, grafPort);
 
     if (mItemNameString == 0) {
+#if REGION_JPN
+        char* stringPtr1 = static_cast<J2DTextBox*>(mpScreen->search('i_text1'))->getStringPtr();
+#else
         char* stringPtr1 = static_cast<J2DTextBox*>(mpScreen->search('f_text1'))->getStringPtr();
+#endif
         strcpy(stringPtr1, "");
 
+#if REGION_JPN
+        char* stringPtr0 = static_cast<J2DTextBox*>(mpScreen->search('i_text0'))->getStringPtr();
+#else
         char* stringPtr0 = static_cast<J2DTextBox*>(mpScreen->search('f_text0'))->getStringPtr();
+#endif
         strcpy(stringPtr0, "");
     } else {
+#if REGION_JPN
+        J2DTextBox* textBox1 = static_cast<J2DTextBox*>(mpScreen->search('i_text1'));
+#else
         J2DTextBox* textBox1 = static_cast<J2DTextBox*>(mpScreen->search('f_text1'));
+#endif
         mpString->getString(mItemNameString, textBox1, NULL, NULL, NULL, 0);
 
+#if REGION_JPN
+        J2DTextBox* textBox0 = static_cast<J2DTextBox*>(mpScreen->search('i_text0'));
+#else
         J2DTextBox* textBox0 = static_cast<J2DTextBox*>(mpScreen->search('f_text0'));
+#endif
         mpString->getString(mItemNameString, textBox0, NULL, NULL, NULL, 0);
 
+#if REGION_JPN
+        textBox0 = static_cast<J2DTextBox*>(mpScreen->search('i_text0'));
+#else
         textBox0 = static_cast<J2DTextBox*>(mpScreen->search('f_text0'));
+#endif
         mpString->drawOutFontLocal(textBox0, -1.0f);
     }
     mpDrawCursor->draw();
@@ -2174,6 +2237,17 @@ void dMenu_Collect2D_c::setItemNameString(u8 param_0, u8 param_1) {
         if (uVar6 == 0) {
             setItemNameStringNull();
         } else {
+#if REGION_JPN
+            char* stringPtr =
+                static_cast<J2DTextBox*>(mpScreen->search('item_n00'))->getStringPtr();
+            dMeter2Info_getStringKanji(uVar6, stringPtr, NULL);
+            stringPtr = static_cast<J2DTextBox*>(mpScreen->search('item_n01'))->getStringPtr();
+            dMeter2Info_getStringKanji(uVar6, stringPtr, NULL);
+            stringPtr = static_cast<J2DTextBox*>(mpScreen->search('item_n02'))->getStringPtr();
+            dMeter2Info_getStringKanji(uVar6, stringPtr, NULL);
+            stringPtr = static_cast<J2DTextBox*>(mpScreen->search('item_n03'))->getStringPtr();
+            dMeter2Info_getStringKanji(uVar6, stringPtr, NULL);
+#else
             char* stringPtr =
                 static_cast<J2DTextBox*>(mpScreen->search('item_n04'))->getStringPtr();
             dMeter2Info_getStringKanji(uVar6, stringPtr, NULL);
@@ -2183,6 +2257,7 @@ void dMenu_Collect2D_c::setItemNameString(u8 param_0, u8 param_1) {
             dMeter2Info_getStringKanji(uVar6, stringPtr, NULL);
             stringPtr = static_cast<J2DTextBox*>(mpScreen->search('item_n07'))->getStringPtr();
             dMeter2Info_getStringKanji(uVar6, stringPtr, NULL);
+#endif
         }
     }
 }
@@ -2191,6 +2266,15 @@ void dMenu_Collect2D_c::setItemNameString(u8 param_0, u8 param_1) {
  */
 void dMenu_Collect2D_c::setItemNameStringNull() {
     mItemNameString = 0;
+#if REGION_JPN
+    J2DTextBox* textBox = (J2DTextBox*)mpScreen->search('item_n00');
+    strcpy(textBox->getStringPtr(), "");
+    textBox = (J2DTextBox*)mpScreen->search('item_n01');
+    strcpy(textBox->getStringPtr(), "");
+    textBox = (J2DTextBox*)mpScreen->search('item_n02');
+    strcpy(textBox->getStringPtr(), "");
+    textBox = (J2DTextBox*)mpScreen->search('item_n03');
+#else
     J2DTextBox* textBox = (J2DTextBox*)mpScreen->search('item_n04');
     strcpy(textBox->getStringPtr(), "");
     textBox = (J2DTextBox*)mpScreen->search('item_n05');
@@ -2198,6 +2282,7 @@ void dMenu_Collect2D_c::setItemNameStringNull() {
     textBox = (J2DTextBox*)mpScreen->search('item_n06');
     strcpy(textBox->getStringPtr(), "");
     textBox = (J2DTextBox*)mpScreen->search('item_n07');
+#endif
     strcpy(textBox->getStringPtr(), "");
 }
 
@@ -2584,7 +2669,7 @@ f32 dMenu_Collect3D_c::mViewOffsetY = -100.0f;
 
 /* 801B75E8-801B7660 1B1F28 0078+00 0/0 1/1 0/0 .text setupItem3D__17dMenu_Collect3D_cFPA4_f */
 void dMenu_Collect3D_c::setupItem3D(Mtx param_0) {
-    GXSetViewport(0.0f, mViewOffsetY, 608.0f, 448.0f, 0.0f, 1.0f);
+    GXSetViewport(0.0f, mViewOffsetY, FB_WIDTH, FB_HEIGHT, 0.0f, 1.0f);
     mViewOffsetY = -100.0f;
     Mtx44 projection;
     C_MTXPerspective(projection, 45.0f, mDoGph_gInf_c::getAspect(), 1.0f, 100000.0f);
@@ -2594,22 +2679,20 @@ void dMenu_Collect3D_c::setupItem3D(Mtx param_0) {
 
 /* 801B7660-801B774C 1B1FA0 00EC+00 1/1 0/0 0/0 .text toItem3Dpos__17dMenu_Collect3D_cFfffP4cXyz
  */
-// NONMATCHING
-// This is mostly matching like this using O2 but still regalloc (f29/f31). The main issue is the use of dVar12
 #pragma push
 #pragma optimization_level 2
 void dMenu_Collect3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, cXyz* param_3) {
     Mtx adStack_98;
     Mtx auStack_c8;
-    f32 dVar7 =
+    param_0 =
         (2.0f * ((param_0 - mDoGph_gInf_c::getMinXF()) / mDoGph_gInf_c::getWidthF()) - 1.0f);
-    f32 dVar11 = (2.0f * ((param_1 - -100.0f) / 448.0f) - 1.0f);
+    param_1 = (2.0f * ((param_1 - -100.0f) / 448.0f) - 1.0f);
     calcViewMtx(adStack_98);
     MTXInverse(adStack_98, auStack_c8);
     f32 tangent = tan(0.39269909262657166);
     f32 dVar12 = -param_2;
-    cXyz cStack_d4((dVar7 * param_2) * (mDoGph_gInf_c::getAspect() * tangent),
-                   (tangent * (dVar11 * dVar12)), dVar12);
+    cXyz cStack_d4((param_0 * param_2) * (mDoGph_gInf_c::getAspect() * tangent),
+                   (tangent * (param_1 * dVar12)), dVar12);
     MTXMultVec(auStack_c8, &cStack_d4, param_3);
 }
 #pragma pop

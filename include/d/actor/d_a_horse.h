@@ -204,7 +204,7 @@ public:
     /* 80841084 */ void setBoarHit(fopAc_ac_c*, int);
     /* 8084116C */ void savePos();
     /* 808411D0 */ int callHorseSubstance(cXyz const*);
-    /* 80841468 */ int setHorsePosAndAngleSubstance(cXyz const*, s16);
+    /* 80841468 */ void setHorsePosAndAngleSubstance(cXyz const*, s16);
     /* 808415B4 */ BOOL checkPlayerHeavy();
     /* 80841628 */ void setTgCoGrp(u32, u32);
     /* 80841698 */ void onRideFlgSubstance();
@@ -468,7 +468,7 @@ public:
     /* 0x18BC */ void (daHorse_c::*m_setReinPosHand)(int);
     /* 0x18C8 */ void (daHorse_c::*m_setReinPosNormal)();
     /* 0x18D4 */ int (daHorse_c::*m_callHorse)(const cXyz*);
-    /* 0x18E0 */ int (daHorse_c::*m_setHorsePosAngle)(const cXyz* i_pos, s16 i_angle);
+    /* 0x18E0 */ void (daHorse_c::*m_setHorsePosAngle)(const cXyz* i_pos, s16 i_angle);
     /* 0x18EC */ void (daHorse_c::*m_onRideFlg)();
     /* 0x18F8 */ void (daHorse_c::*m_offRideFlg)();
 };
@@ -562,8 +562,19 @@ public:
     static const daHorse_hio_c1 m;
 };
 
-class daHorse_hio_c {
+class daHorse_hio_c : public JORReflexible {
 public:
+    daHorse_hio_c() {
+#if DEBUG
+        mParameters = daHorse_hio_c0::m;
+#endif
+    }
+#if DEBUG
+    virtual ~daHorse_hio_c() {}
+    void genMessage(JORMContext*);
+    /* 0x4 */ s8 id;
+    /* 0x8 */ daHorse_hio_c1 mParameters;
+#endif
 };
 
 #endif /* D_A_HORSE_H */

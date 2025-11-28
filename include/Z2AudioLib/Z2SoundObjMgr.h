@@ -3,6 +3,8 @@
 
 #include "JSystem/JAudio2/JASGadget.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "Z2AudioLib/Z2SoundObject.h"
+#include "global.h"
 
 class Z2CreatureEnemy;
 
@@ -83,32 +85,39 @@ enum Z2EnemyID {
 class Z2SoundObjMgr : public JASGlobalInstance<Z2SoundObjMgr>, protected JSUList<Z2CreatureEnemy> {
 public:
     Z2SoundObjMgr();
-    void setForceBattleArea(bool, u16, u16, u16);
+    void setForceBattleArea(bool forceBattle, u16, u16, u16);
     void searchEnemy();
-    void setGhostEnemyState(u8);
-    u8 getEnemyID(char const*, JSULink<Z2CreatureEnemy>*);
+    void setGhostEnemyState(u8 state);
+    u8 getEnemyID(const char* enemyName, JSULink<Z2CreatureEnemy>* enemyLink);
     void setBattleInit();
     bool checkBattleFinish();
     void deleteEnemyAll();
-    bool removeEnemy(JSULink<Z2CreatureEnemy>*);
+    bool removeEnemy(JSULink<Z2CreatureEnemy>* enemyLink);
     u8 isTwilightBattle();
 
-    u8 getEnemyNumNear() { return mEnemyNumNear; }
-    u8 getEnemyNumVeryFar() { return mEnemyNumVeryFar; }
-    bool isForceBattle() { return mForceBattle; }
+    u8 getEnemyNumNear() const { return enemuNumNear_; }
+    u8 getEnemyNumVeryFar() { return enemuNumVeryFar_; }
+    bool isForceBattle() { return forceBattle_; }
     JSUList<Z2CreatureEnemy>* getEnemyList() { return this; }
 
+    #if VERSION == VERSION_SHIELD_DEBUG
+    JSUList<Z2SoundObjBase>* getAllList() { return &allList_; }
+    #endif
+
 private:
-    /* 0x0C */ Z2EnemyArea mEnemyArea;
+    #if VERSION == VERSION_SHIELD_DEBUG
+    /* 0x0C */ JSUList<Z2SoundObjBase> allList_;
+    #endif
+    /* 0x0C */ Z2EnemyArea enemyArea_;
     /* 0x14 */ u8 field_0x14;
-    /* 0x15 */ u8 mEnemyNumNear;
+    /* 0x15 */ u8 enemuNumNear_;
     /* 0x16 */ u8 field_0x16;
-    /* 0x17 */ u8 mEnemyNumVeryFar;
+    /* 0x17 */ u8 enemuNumVeryFar_;
     /* 0x18 */ u8 field_0x18;
-    /* 0x19 */ u8 mGhostEnemyState;
+    /* 0x19 */ u8 ghostEnemyState_;
     /* 0x1A */ u8 field_0x1a;
-    /* 0x1B */ u8 mTwilightBattle;
-    /* 0x1C */ bool mForceBattle;
+    /* 0x1B */ u8 twilightBattle_;
+    /* 0x1C */ bool forceBattle_;
 };  // Size = 0x20
 
 inline Z2SoundObjMgr* Z2GetSoundObjMgr() {

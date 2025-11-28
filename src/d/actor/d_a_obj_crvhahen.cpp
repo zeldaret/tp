@@ -151,7 +151,7 @@ bool daObjCRVHAHEN_c::checkViewArea(cXyz* i_this) {
 
     bool ret = false;
 
-    if (proj.x >= 0.0f && proj.x <= 608.0f && proj.y >= 0.0f && proj.y <= 448.0f) {
+    if (proj.x >= 0.0f && proj.x <= FB_WIDTH && proj.y >= 0.0f && proj.y <= FB_HEIGHT) {
         ret = true;
     }
 

@@ -1593,7 +1593,6 @@ int daNpc_Bou_c::talkwithJagar(void* param_0) {
 
 /* 80970F9C-8097146C 0040FC 04D0+00 3/0 0/0 0/0 .text            talk__11daNpc_Bou_cFPv */
 int daNpc_Bou_c::talk(void* param_0) {
-    // NONMATCHING
     daNpc_Jagar_c* jagar_p = NULL;
     switch (mMode) {
         case 0:

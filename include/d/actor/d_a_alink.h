@@ -3359,11 +3359,7 @@ public:
     BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
     BOOL checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
 
-    // this might be a fake match, but helps fix usage in many functions
-#pragma push
-#pragma optimization_level 2
     BOOL checkAttentionLock() { return mAttention->Lockon(); }
-#pragma pop
 
     bool checkUpperAnime(u16 i_idx) const { return mUpperAnmHeap[UPPER_2].getIdx() == i_idx; }
     bool checkUnderAnime(u16 i_idx) const { return mUnderAnmHeap[UNDER_2].getIdx() == i_idx; }
@@ -3582,7 +3578,6 @@ public:
     void setFishingArm1Angle(const csXyz& i_angle) { mFishingArm1Angle = i_angle; }
     void setFishingArm2Angle(const csXyz& i_angle) { field_0x3160 = i_angle; }
 
-    void onFishingRodCastingEnd() { onNoResetFlg1(FLG1_UNK_8000); }
     void endFishingCastWait() { offNoResetFlg2(FLG2_UNK_20000000); }
 
     void startFishingCastWait() {
@@ -3764,8 +3759,8 @@ public:
     u8 getCorrectLineNum() { return mZ2WolfHowlMgr.getCorrectLineNum(); }
     u32 getWolfHowlTimer() { return mZ2WolfHowlMgr.getTimer(); }
     s8 getOnLineNum() { return mZ2WolfHowlMgr.getOnLineNum(); }
-    SongNote getCorrectLine(u8 param_0) { return mZ2WolfHowlMgr.getCorrectLine(param_0); }
-    void startWindStoneSound(s8 id, Vec* pos) { mZ2WolfHowlMgr.startWindStoneSound(id, pos); }
+    Z2WolfHowlLine getCorrectLine(u8 i_lineIndex) { return mZ2WolfHowlMgr.getCorrectLine(i_lineIndex); }
+    void startWindStoneSound(s8 i_curveID, Vec* i_pos) { mZ2WolfHowlMgr.startWindStoneSound(i_curveID, i_pos); }
     J3DModelData* getItemModelData() { return mpItemModelData; }
 
     cXyz* getIronBallChainPos() const { return mIronBallChainPos; }

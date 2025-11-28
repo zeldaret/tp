@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_ASHB_H
 #define D_A_NPC_ASHB_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 
 struct daNpcAshB_HIOParam {
     /* 0x00 */ daNpcF_HIOParam common;
@@ -108,8 +108,8 @@ public:
     /* 8095E9C8 */ bool ctrlJoint(J3DJoint*, J3DModel*);
     /* 8095EB94 */ static BOOL createHeapCallBack(fopAc_ac_c*);
     /* 8095EBB4 */ static BOOL ctrlJointCallBack(J3DJoint*, int);
-    /* 8095EC00 */ bool setExpressionAnm(int, bool);
-    /* 8095EE00 */ bool setExpressionBtp(int);
+    /* 8095EC00 */ inline bool setExpressionAnm(int, bool);
+    /* 8095EE00 */ inline bool setExpressionBtp(int);
     /* 8095EEE0 */ void setMotionAnm(int, f32);
     /* 8095F0A4 */ void reset();
     /* 8095F21C */ inline bool setAction(ActionFn i_actionFn);

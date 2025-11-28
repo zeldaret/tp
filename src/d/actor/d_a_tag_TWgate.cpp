@@ -446,6 +446,7 @@ void daTagTWGate_c::executeDemoOrdin2() {
             break;
         }
     }
+    int choiceNo;
     switch(*cutName) {
     case '0001':
     case '0003':
@@ -453,7 +454,8 @@ void daTagTWGate_c::executeDemoOrdin2() {
         break;
     case '0002':
         if (talkProc(NULL, 1, NULL)) {
-            if (mMsgFlow.getChoiceNo() == 0) {
+            choiceNo = mMsgFlow.getChoiceNo();
+            if (choiceNo == 0) {
                 setAction(ACT_DEMO_ORDIN_3);
             }
             evtMng.cutEnd(staffId);
@@ -637,6 +639,7 @@ void daTagTWGate_c::executeDemoRanail2() {
             break;
         }
     }
+    int choiceNo;
     switch(*cutName) {
     case '0001':
     case '0003':
@@ -644,7 +647,8 @@ void daTagTWGate_c::executeDemoRanail2() {
         break;
     case '0002':
         if (talkProc(NULL, 1, NULL)) {
-            if (mMsgFlow.getChoiceNo() == 0) {
+            choiceNo = mMsgFlow.getChoiceNo();
+            if (choiceNo == 0) {
                 setAction(ACT_DEMO_RANAIL_3);
             }
             evtMng.cutEnd(staffId);
@@ -829,6 +833,7 @@ void daTagTWGate_c::executeDemoHyral2() {
             break;
         }
     }
+    int choiceNo;
     switch(*piVar3) {
     case '0001':
     case '0003':
@@ -836,7 +841,7 @@ void daTagTWGate_c::executeDemoHyral2() {
         break;
     case '0002':
         if (talkProc(NULL, 1, NULL)) {
-            s16 choiceNo = mMsgFlow.getChoiceNo();
+            choiceNo = mMsgFlow.getChoiceNo();
             if (choiceNo == 0) {
                 setAction(ACT_DEMO_HYRAL_3);
             }
@@ -1116,5 +1121,3 @@ extern actor_process_profile_definition g_profile_Tag_TWGate = {
     fopAc_ACTOR_e,
     fopAc_CULLBOX_CUSTOM_e,
 };
-
-/* 80D55848-80D55848 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -14,8 +14,6 @@
 #include "d/d_com_inf_game.h"
 #include "cmath.h"
 
-// NONMATCHING - getRightHandPos is not generated at the end of the TU 
-
 /* 80BD6A4C-80BD6A88 0000EC 003C+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjCwall_cFv */
 void daObjCwall_c::initBaseMtx() {
     mWallModel->setBaseScale(scale);
@@ -903,5 +901,3 @@ extern actor_process_profile_definition g_profile_Obj_ChainWall = {
 };
 
 AUDIO_INSTANCES
-
-/* 80BDA0AC-80BDA0AC 000108 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

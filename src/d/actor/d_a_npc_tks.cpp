@@ -6,8 +6,9 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_tks.h"
-#include "d/d_a_obj.h"
+#include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_tkc.h"
+#include "d/d_a_obj.h"
 #include "d/d_meter2_info.h"
 #include "f_op/f_op_kankyo_mng.h"
 
@@ -357,7 +358,6 @@ cPhs__Step daNpcTks_c::Create() {
 
 /* 80B14ED0-80B1521C 000990 034C+00 1/1 0/0 0/0 .text            CreateHeap__10daNpcTks_cFv */
 int daNpcTks_c::CreateHeap() {
-    // NONMATCHING
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_TKS);
 
     JUT_ASSERT(410, NULL != mdlData_p);
@@ -390,7 +390,9 @@ int daNpcTks_c::CreateHeap() {
     setMotion(MOT_WAIT_A, -1.0f, 0);
 
     if (mTksTsubo.mTsuboType < 2) {
-        mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(mTksTsubo.mTsuboType != 0 ? l_arcNames[2] : l_arcNames[1], 3));
+        const char* sp30 = mTksTsubo.mTsuboType != 0 ? l_arcNames[2] : l_arcNames[1];
+        int sp2C = mTksTsubo.mTsuboType != 0 ? 3 : 3;
+        mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(sp30, sp2C));
 
         JUT_ASSERT(453, NULL != mdlData_p);
         
@@ -589,7 +591,6 @@ void daNpcTks_c::setMotion(int i_motion, f32 i_morf, int param_3) {
 
 /* 80B1C4F8-80B1CB4C 007FB8 0654+00 1/0 0/0 0/0 .text            main__10daNpcTks_cFv */
 BOOL daNpcTks_c::main() {
-    // NONMATCHING
     if (field_0x138a && mTksTsubo.mCyl.ChkTgHit()) {
         if (mTksTsubo.mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_BOOMERANG)) {
             setAction(&daNpcTks_c::damage);
@@ -783,8 +784,8 @@ BOOL daNpcTks_c::setAction(actionFunc action) {
 
 int daNpcTks_c::getPlayerArea() {
     f32 fVar3, fVar2, fVar1;
-    fVar1 = pow(daNpcTks_Param_c::m.area_a_dist, 2.0);
-    fVar2 = pow(daNpcTks_Param_c::m.area_b_dist, 2.0);
+    fVar1 = std::pow(daNpcTks_Param_c::m.area_a_dist, 2.0f);
+    fVar2 = std::pow(daNpcTks_Param_c::m.area_b_dist, 2.0f);
     fVar3 = fopAcM_searchPlayerDistanceXZ2(this);
 
     if (fVar3 > 0.0f && fVar3 <= fVar2) {
@@ -913,21 +914,23 @@ void daNpcTks_c::lookat() {
 }
 
 void daNpcTks_c::playTsuboAnm() {
-    if (mTksTsubo.field_0x586 != 0) {
-        if ((mAnmFlags & ANM_PLAY_MORF) != 0) {
-            f32 playSpeed = mTksTsubo.mpModelMorf->getPlaySpeed();
-
-            if ((mTksTsubo.mAnmFlags & ANM_PAUSE_MORF) != 0) {
-                mTksTsubo.mpModelMorf->setPlaySpeed(0.0f);
-                mTksTsubo.mpModelMorf->play(0, 0);
-                mTksTsubo.mpModelMorf->setPlaySpeed(playSpeed);
-            } else {
-                mTksTsubo.mpModelMorf->play(0, 0);
-            }
-        }
-
-        mTksTsubo.mAnmFlags &= 0xFFFFEF38;
+    if (mTksTsubo.field_0x586 == 0) {
+        return;
     }
+
+    if ((mAnmFlags & ANM_PLAY_MORF) != 0) {
+        f32 playSpeed = mTksTsubo.mpModelMorf->getPlaySpeed();
+
+        if ((mTksTsubo.mAnmFlags & ANM_PAUSE_MORF) != 0) {
+            mTksTsubo.mpModelMorf->setPlaySpeed(0.0f);
+            mTksTsubo.mpModelMorf->play(0, 0);
+            mTksTsubo.mpModelMorf->setPlaySpeed(playSpeed);
+        } else {
+            mTksTsubo.mpModelMorf->play(0, 0);
+        }
+    }
+
+    mTksTsubo.mAnmFlags &= 0xFFFFEF38;
 };
 
 BOOL daNpcTks_c::checkFindPlayer() {

@@ -569,7 +569,6 @@ bool dMenuFmapIconDisp_c::getPosition(int* o_stageNo, int* o_roomNo, f32* o_posX
 
 /* 8003E6E8-8003EB10 039028 0428+00 2/0 3/3 0/0 .text            isDrawDisp__19dMenuFmapIconDisp_cFv
  */
-// NONMATCHING regalloc
 bool dMenuFmapIconDisp_c::isDrawDisp() {
     dMenu_Fmap_stage_arc_data_c* stage_arc = mpStageData->getStageArc();
     if (stage_arc == NULL) {

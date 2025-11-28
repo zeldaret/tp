@@ -44,8 +44,8 @@ public:
     /* 80CE6454 */ int talk(void*);
     /* 80CE6514 */ int drink(void*);
 
-    /* 80CE59FC */ virtual void setSoldOut();
     /* 80CE4F78 */ virtual ~daObj_SSDrink_c();
+    /* 80CE59FC */ virtual void setSoldOut();
 
     static dCcD_SrcGObjInf const mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;

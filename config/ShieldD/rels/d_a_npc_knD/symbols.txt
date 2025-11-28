@@ -582,5 +582,7 @@ mFindActorPtrs__10daNpc_Kn_c = .bss:0x00000098; // type:object size:0xC8 scope:g
 mFindCount__10daNpc_Kn_c = .bss:0x00000160; // type:object size:0x4 scope:global
 @126080 = .bss:0x00000164; // type:object size:0xC scope:local
 l_HIO = .bss:0x00000170; // type:object size:0xBC scope:global
+@GUARD@setSwordChargePtcl__10daNpc_Kn_cFv@lightAParticleScale = .bss:0x0000022C; // type:object size:0x1 scope:local align:1
 @LOCAL@setSwordChargePtcl__10daNpc_Kn_cFv@lightAParticleScale = .bss:0x00000230; // type:object size:0xC scope:local
+@GUARD@setSwordChargePtcl__10daNpc_Kn_cFv@lightALocalTrans@0 = .bss:0x0000023C; // type:object size:0x1 scope:local align:1
 @LOCAL@setSwordChargePtcl__10daNpc_Kn_cFv@lightALocalTrans@0 = .bss:0x00000240; // type:object size:0xC scope:local

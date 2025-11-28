@@ -12,7 +12,7 @@ class JASTaskThread;
 class JASDvd {
 public:
     /* 8028FEFC */ static JASTaskThread* getThreadPointer();
-    /* 8028FF04 */ static bool createThread(s32, int, u32);
+    /* 8028FF04 */ static bool createThread(s32 priority, int msgCount, u32 stackSize);
 
     static JASTaskThread* sThread;
 };

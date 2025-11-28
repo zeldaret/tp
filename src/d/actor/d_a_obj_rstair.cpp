@@ -346,7 +346,9 @@ int daObjRotStair_c::Draw() {
                 Mtx lightMtx;
                 C_MTXLightPerspective(lightMtx, dComIfGd_getView()->fovy,
                                       dComIfGd_getView()->aspect, 1.0f, 1.0f, -0.01f, 0);
+                #if WIDESCREEN_SUPPORT
                 mDoGph_gInf_c::setWideZoomLightProjection(lightMtx);
+                #endif
                 texMtxInfo->setEffectMtx(lightMtx);
                 modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
             }
@@ -418,5 +420,3 @@ extern actor_process_profile_definition g_profile_Obj_RotStair = {
   fopAc_ACTOR_e,           // mActorType
   fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
-
-/* 80CC2730-80CC2730 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

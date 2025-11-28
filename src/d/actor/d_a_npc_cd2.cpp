@@ -182,7 +182,6 @@ SECTION_RODATA static anmTblPrm const l_objTbl[13] = {
     {"object", 14}, {"object", 12}, {"object", 6},  {"object", 7}, {"object", 10},
     {"object", 11}, {"object", 15}, {"object", 16},
 };
-COMPILER_STRIP_GATE(0x80393520, &l_objTbl);
 
 /* 80393588-803935F0 -00001 0068+00 1/1 0/0 0/0 .rodata          l_objTWTbl */
 static anmTblPrm const l_objTWTbl[13] = {
@@ -220,7 +219,6 @@ SECTION_RODATA static anmTblPrm const l_bckTbl_W[54] = {
     {"Wspecial", -1}, {"Wspecial", -1}, {"Wgeneral", 12}, {"Wgeneral", 3},  {"Wgeneral", 4},
     {"Wgeneral", 5},  {"Wgeneral", 6},  {"Wgeneral", 9},  {"Wgeneral", 15},
 };
-COMPILER_STRIP_GATE(0x803937A0, &l_bckTbl_W);
 
 /* 80393950-80393994 01FFB0 0044+00 0/0 0/0 4/4 .rodata          m_cylDat__10daNpcCd2_c */
 dCcD_SrcCyl const daNpcCd2_c::m_cylDat = {
@@ -387,6 +385,8 @@ static anmTblPrm const l_btpTWTbl[30] = {
     l_resWONa[1],  7, l_resWGNa[1],  7, l_resWANb[1],  7, l_resWANa2[1], 7, l_resWADa2[1], 7,
     l_resMATa2[1], -1, l_resWCNa2[1], 7, l_resWONa2[1], 7, l_resWGNa2[1], 7, l_resWANb2[1], 7,
 };
+
+// TODO: these four tables should be converted into proper structs instead of byte arrays
 
 /* 803B6604-803B7DC4 013724 17C0+00 0/1 0/0 0/0 .data            a_jntTbl_M$3910 */
 #pragma push
@@ -1391,8 +1391,10 @@ J3DAnmTransform* daNpcCd2_c::getAnmP(int param_1, int param_2) {
             break;
         }
         break;
-    case 4:
-    case 5:
+    case 6:
+    case 0x17:
+    case 0x1b:
+    case 0x1f:
         switch (param_2) {
         case 1:
         case 8:
@@ -1416,11 +1418,11 @@ J3DAnmTransform* daNpcCd2_c::getAnmP(int param_1, int param_2) {
             break;
         }
         break;
-    case 6:
-    case 0x17:
-    case 0x1b:
-    case 0x1f:
-    switch (param_2) {
+    case 7:
+    case 0x18:
+    case 0x1c:
+    case 0x20:
+        switch (param_2) {
         case 1:
         case 8:
             a_anmNum = 0x20;
@@ -1443,10 +1445,8 @@ J3DAnmTransform* daNpcCd2_c::getAnmP(int param_1, int param_2) {
             break;
         }
         break;
-    case 7:
-    case 0x18:
-    case 0x1c:
-    case 0x20:
+    case 4:
+    case 5:
         switch(param_2) {
         case 0:
             break;
@@ -1489,6 +1489,17 @@ J3DAnmTransform* daNpcCd2_c::getAnmP(int param_1, int param_2) {
     case 0x14:
     case 0x15:
         switch(param_2) {
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+            break;
         case 6:
         case 7:
             a_anmNum = 0x22;
@@ -1883,21 +1894,13 @@ daTagEscape_c* daNpcCd2_c::getEscapeTag() {
 
 /* 80159818-801598E8 154158 00D0+00 0/0 0/0 5/5 .text            checkFearSituation__10daNpcCd2_cFv
  */
-// NONMATCHING - r30 needs to be assigned to r4 and r5
 bool daNpcCd2_c::checkFearSituation() {
     f32 dVar10 =
         fopAcM_GetPosition_p(this)->y - fopAcM_GetPosition_p(daPy_getPlayerActorClass())->y;
-    bool rv;
-    bool bVar5;
-    rv = false;
-    bVar5 = ((!mIsDarkWorld && daPy_py_c::checkNowWolf()) && dVar10 < 200.0f);
-    if (bVar5) {
-        f32 maxDist = pow(500.0f, 2.0f);
-        if (fopAcM_searchPlayerDistanceXZ2(this) < maxDist) {
-            rv = true;
-        }
-    }
-    return rv;
+    return !mIsDarkWorld &&
+        daPy_py_c::checkNowWolf() &&
+        dVar10 < 200.0f &&
+        fopAcM_searchPlayerDistanceXZ2(this) < std::pow(500.0f, 2.0f);
 }
 
 /* 801598E8-8015994C 154228 0064+00 1/1 0/0 0/0 .text            getNpcMdlDataP__10daNpcCd2_cFi */
@@ -2136,12 +2139,12 @@ daNpcCd2_HIO_c::daNpcCd2_HIO_c() {
         for (int j = 0; j < 19; j++) {
             memcpy(&field_0x0004[i].field_0x004[j].field_0x04, a_jntTbl_M[i][j], 20);
         }
-        memcpy(&field_0x0004[i].mMaxLmtY_BACKBONE, a_prmTbl_M + i * 0x40, 0x40);
+        memcpy(&field_0x0004[i].mMaxLmtX_BACKBONE, a_prmTbl_M + i * 0x40, 0x40);
     }
     for (int i = 0; i < 14; i++) {
         for (int j = 0; j < 21; j++) {
             memcpy(&field_0x20c4[i].field_0x004[j].field_0x04, a_jntTbl_W[i][j], 20);
         }
-        memcpy(&field_0x20c4[i].mMaxLmtY_BACKBONE, a_prmTbl_W + i * 0x40, 0x40);
+        memcpy(&field_0x20c4[i].mMaxLmtX_BACKBONE, a_prmTbl_W + i * 0x40, 0x40);
     }
 }

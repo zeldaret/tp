@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_KASI_MICH_H
 #define D_A_NPC_KASI_MICH_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/actor/d_a_tag_escape.h"
 
 /**
@@ -75,7 +75,6 @@ public:
     /* 80A28F74 */ int escape(int);
     /* 80A2908C */ int iyan_look(int);
     /* 80A29164 */ int turn_hana(int);
-    void dummy();
     /* 80A291E8 */ int wait_dummy(int);
     /* 80A2926C */ int cheer(int);
     /* 80A29458 */ BOOL _turn_to_link(s16);
@@ -96,9 +95,9 @@ public:
     int getMessageNo() { return home.angle.x; }
     u8 getRailNo() { return fopAcM_GetParam(this) >> 8; }
     void setSygnal(int i_sygnal) { mSygnal = i_sygnal; }
-    void setChacePos(cXyz& i_chacePos) { mChacePos = i_chacePos; }
-    void setCenterPos(cXyz& i_centerPos) { mCenterPos = i_centerPos; }
-    void setPlPoint(int i_plPoint) { mPlPoint = i_plPoint; }
+    void setChacePos(const cXyz& i_chacePos) { mChacePos = i_chacePos; }
+    void setCenterPos(const cXyz& i_centerPos) { mCenterPos = i_centerPos; }
+    void setPlPoint(const int& i_plPoint) { mPlPoint = i_plPoint; }
     void off_talked() { mTalked = false; }
     BOOL is_talked() { return mTalked; }
     BOOL is_fear() { return mFear; }

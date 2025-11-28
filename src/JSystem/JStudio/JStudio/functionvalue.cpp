@@ -46,9 +46,6 @@ ExtrapolateParameter TFunctionValue::toFunction_outside(int idx) {
 TFunctionValue::TFunctionValue() {}
 TFunctionValue::~TFunctionValue() {}
 
-TFunctionValueAttribute_refer::TFunctionValueAttribute_refer() :
-    JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>()) {}
-
 void TFunctionValueAttribute_refer::refer_initialize() {
     clear();
 }

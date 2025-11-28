@@ -919,15 +919,17 @@ public:
 class J3DFrameCtrl {
 public:
     enum Attribute_e {
-        EMode_NONE,
-        EMode_RESET,
-        EMode_LOOP,
-        EMode_REVERSE,
-        EMode_LOOP_REVERSE,
+        /*  -1 */ EMode_NULL = -1,
+        /* 0x0 */ EMode_NONE,
+        /* 0x1 */ EMode_RESET,
+        /* 0x2 */ EMode_LOOP,
+        /* 0x3 */ EMode_REVERSE,
+        /* 0x4 */ EMode_LOOP_REVERSE,
     };
 
     J3DFrameCtrl() { this->init(0); }
     void init(s16);
+    void init(int endFrame) { init((s16)endFrame); }
     BOOL checkPass(f32);
     void update();
     virtual ~J3DFrameCtrl() {}
@@ -943,7 +945,7 @@ public:
     }
     s16 getEnd() const { return mEnd; }
     void setEnd(s16 end) { mEnd = end; }
-    s32 getLoop() { return mLoop; }
+    s16 getLoop() const { return mLoop; }
     void setLoop(s16 loop) { mLoop = loop; }
     f32 getRate() const { return mRate; }
     void setRate(f32 rate) { mRate = rate; }
@@ -986,8 +988,7 @@ struct J3DMtxCalcAnimationAdaptorDefault : public J3DMtxCalcAnimationAdaptorBase
         J3DTransformInfo transform;
         J3DTransformInfo* transform_p;
         if (pMtxCalc->getAnmTransform() != NULL) {
-            u16 jnt_no = J3DMtxCalc::getJoint()->getJntNo();
-            pMtxCalc->getAnmTransform()->getTransform(jnt_no, &transform);
+            pMtxCalc->getAnmTransform()->getTransform(J3DMtxCalc::getJoint()->getJntNo(), &transform);
             transform_p = &transform;
         } else {
             transform_p = &J3DMtxCalc::getJoint()->getTransformInfo();

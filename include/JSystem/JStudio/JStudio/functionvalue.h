@@ -79,7 +79,7 @@ public:
 
 class TFunctionValueAttribute_refer : public JGadget::TVector_pointer<TFunctionValue*> {
 public:
-    inline TFunctionValueAttribute_refer();
+    TFunctionValueAttribute_refer() : JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>()) {}
     ~TFunctionValueAttribute_refer() {}
 
     /* 802816E8 */ void refer_initialize();

@@ -124,8 +124,8 @@ void dKyr_lenzflare_move() {
     cXyz center;
     mDoLib_project(lenz_packet->mPositions, &proj);
 
-    center.x = 304.0f;
-    center.y = 224.0f;
+    center.x = FB_WIDTH / 2;
+    center.y = FB_HEIGHT / 2;
     center.z = 0.0f;
     dKyr_get_vectle_calc(&center, &proj, &vect);
 
@@ -239,7 +239,7 @@ void dKyr_sun_move() {
             chkpnt.x -= sun_chkpnt[i][0];
             chkpnt.y -= sun_chkpnt[i][1];
 
-            if (chkpnt.x > 0.0f && chkpnt.x < 608.0f && chkpnt.y > border_y && chkpnt.y < 458.0f - border_y) {
+            if (chkpnt.x > 0.0f && chkpnt.x < FB_WIDTH && chkpnt.y > border_y && chkpnt.y < 458.0f - border_y) {
                 if (sun_packet->field_0x44[i] >= 0xFFFFFF) {
                     numPointsVisible++;
                     if (i == 0) {
@@ -271,8 +271,8 @@ void dKyr_sun_move() {
         lenz_packet->field_0x90 = 0.0f;
 
         cXyz center;
-        center.x = 304.0f;
-        center.y = 224.0f;
+        center.x = FB_WIDTH / 2;
+        center.y = FB_HEIGHT / 2;
         center.z = 0.0f;
 
         lenz_packet->mDistFalloff = center.abs(proj);
@@ -527,7 +527,6 @@ static BOOL forward_overhead_bg_chk(cXyz* ppos, f32 dist) {
 }
 
 /* 8005D18C-8005E8B0 057ACC 1724+00 0/0 1/1 0/0 .text            dKyr_rain_move__Fv */
-// NONMATCHING reg alloc, equivalent?
 void dKyr_rain_move() {
     dKankyo_rain_Packet* rain_packet;
     camera_class* camera;
@@ -1902,15 +1901,18 @@ void vrkumo_move() {
     }
 
     for (int i = 0; i < 100; i++) {
+        s16 sp8;
+        f32 sp34;
+        f32 var_f31;
         switch (vrkumo_packet->mVrkumoEff[i].mStatus) {
         case 0:
-            s16 sp8 = cM_rndF(65535.0f);
-            f32 sp34 = cM_rndF(18000.0f);
+            sp8 = cM_rndF(65535.0f);
+            sp34 = cM_rndF(18000.0f);
             if (sp34 > 15000.0f) {
                 sp34 = 14000.0 + cM_rndF(1000.0f);
             }
 
-            f32 var_f31 = sp34 * cM_ssin(sp8);
+            var_f31 = sp34 * cM_ssin(sp8);
             // @bug - parenthesis should not be on the condition
             if ((f32)fabs(var_f31 < 5000.0f)) {
                 if (var_f31 > 0.0f) {
@@ -4438,6 +4440,9 @@ void drawCloudShadow(Mtx drawMtx, u8** tex) {
 
             f32 scale = 0.49f;
             C_MTXLightPerspective(sp120, window_cam->fovy, window_cam->aspect, scale, -scale, 0.5f, 0.5f);
+            #if WIDESCREEN_SUPPORT
+            mDoGph_gInf_c::setWideZoomLightProjection(sp120);
+            #endif
             cMtx_concat(sp120, j3dSys.getViewMtx(), spF0);
 
             rot += 2.0f;
@@ -4574,7 +4579,6 @@ inline float cosf(float x) {
 }
 
 /* 8006A090-8006B190 0649D0 1100+00 0/0 1/1 0/0 .text            drawVrkumo__FPA4_fR8_GXColorPPUc */
-// NONMATCHING - regalloc, j/k getting put in too low of registers?
 void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
     dKankyo_sun_Packet* sun_packet = g_env_light.mpSunPacket;
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
@@ -4674,7 +4678,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
 
     if (g_env_light.daytime > 105.0f && g_env_light.daytime < 240.0f && !dComIfGp_event_runCheck() && sun_packet != NULL && sun_packet->mSunAlpha > 0.0f) {
         mDoLib_project(&sun_packet->mPos[0], &proj);
-        if (proj.x > 0.0f && proj.x < 608.0f && proj.y > spC4 && proj.y < (458.0f - spC4)) {
+        if (proj.x > 0.0f && proj.x < FB_WIDTH && proj.y > spC4 && proj.y < (458.0f - spC4)) {
             pass = 0;
         }
     }
@@ -4940,7 +4944,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                                 z = 100.0f;
                                 mDoLib_project(&spF0, &proj);
 
-                                if (proj.x > -x && proj.x < (608.0f + x) && proj.y > -y && proj.y < (458.0f + z)) {
+                                if (proj.x > -x && proj.x < (FB_WIDTH + x) && proj.y > -y && proj.y < (458.0f + z)) {
                                     break;
                                 }
 
@@ -4990,7 +4994,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                                     z = 100.0f;
                                     mDoLib_project(&spE4, &proj);
 
-                                    if (proj.x > -x && proj.x < (608.0f + x) && proj.y > -y && proj.y < (458.0f + z)) {
+                                    if (proj.x > -x && proj.x < (FB_WIDTH + x) && proj.y > -y && proj.y < (458.0f + z)) {
                                         break;
                                     }
 
@@ -5339,7 +5343,6 @@ void dKyr_odour_move() {
 }
 
 /* 8006BE0C-8006C790 06674C 0984+00 0/0 1/1 0/0 .text            dKyr_odour_draw__FPA4_fPPUc */
-// NONMATCHING - regalloc
 void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
     dKankyo_odour_Packet* odour_packet = envlight->mOdourData.mpOdourPacket;
@@ -6040,7 +6043,7 @@ static void dKyr_evil_draw2(Mtx drawMtx, u8** tex) {
 
                         mDoLib_project(&sp7C, &proj);
 
-                        if (!(proj.x > -sp34.x) || !(proj.x < (608.0f + sp34.x)) ||
+                        if (!(proj.x > -sp34.x) || !(proj.x < (FB_WIDTH + sp34.x)) ||
                             !(proj.y > -sp34.y) || !(proj.y < (458.0f + sp34.z)))
                         {
                             continue;
@@ -6268,7 +6271,7 @@ void dKyr_evil_draw(Mtx drawMtx, u8** tex) {
 
                         mDoLib_project(&spA4, &proj);
 
-                        if (!(proj.x > -sp44.x) || !(proj.x < (608.0f + sp44.x)) ||
+                        if (!(proj.x > -sp44.x) || !(proj.x < (FB_WIDTH + sp44.x)) ||
                             !(proj.y > -sp44.y) || !(proj.y < (458.0f + sp44.z)))
                         {
                             continue;

@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_RAFREL_H
 #define D_A_NPC_RAFREL_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 
 /**
  * @ingroup actors-npcs
@@ -10,7 +10,35 @@
  *
  * @details
  *
- */
+*/
+
+struct daNpcRafrel_HIOParam {
+    /* 0x00 */ daNpcF_HIOParam common;
+    /* 0x6C */ f32 demo_start_dist;
+    /* 0x70 */ u8 demo_start_area;
+};
+
+class daNpcRafrel_Param_c {
+public:
+    /* 80ABF974 */ virtual ~daNpcRafrel_Param_c() {}
+
+    static const daNpcRafrel_HIOParam m;
+};
+
+class daNpcRafrel_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpcRafrel_HIO_c();
+    void genMessage(JORMContext*);
+
+    /* 0x8 */ daNpcRafrel_HIOParam m;
+};
+
+#if DEBUG
+#define NPC_RAFREL_HIO_CLASS daNpcRafrel_HIO_c
+#else
+#define NPC_RAFREL_HIO_CLASS daNpcRafrel_Param_c
+#endif
+
 class daNpcRafrel_c : public daNpcF_c {
 public:
     /* 80AB962C */ daNpcRafrel_c();
@@ -31,11 +59,11 @@ public:
     /* 80ABBE84 */ bool talk(void*);
     /* 80ABC50C */ bool demo(void*);
     /* 80ABCA40 */ bool leave(void*);
-    /* 80ABCD74 */ int EvCut_Introduction(int);
-    /* 80ABCE74 */ int EvCut_Meeting(int);
-    /* 80ABD124 */ int EvCut_Appear(int);
-    /* 80ABD8A0 */ int EvCut_WiretapSponsor(int);
-    /* 80ABDB7C */ int EvCut_WiretapEntrant(int);
+    /* 80ABCD74 */ inline int EvCut_Introduction(int);
+    /* 80ABCE74 */ inline int EvCut_Meeting(int);
+    /* 80ABD124 */ inline int EvCut_Appear(int);
+    /* 80ABD8A0 */ inline int EvCut_WiretapSponsor(int);
+    /* 80ABDB7C */ inline int EvCut_WiretapEntrant(int);
 
     /* 80ABE470 */ inline void playMotion();
     /* 80ABEE98 */ inline void lookat();
@@ -46,8 +74,8 @@ public:
     /* 80ABE1D0 */ virtual inline BOOL main();
     /* 80ABE9FC */ virtual inline BOOL ctrlBtk();
     /* 80ABEAD8 */ virtual inline void setAttnPos();
-    /* 80ABA6E4 */ virtual bool setExpressionAnm(int, bool);
-    /* 80ABA8EC */ virtual bool setExpressionBtp(int);
+    /* 80ABA6E4 */ virtual inline bool setExpressionAnm(int, bool);
+    /* 80ABA8EC */ virtual inline bool setExpressionBtp(int);
     /* 80ABBBB0 */ virtual void setExpression(int, f32);
     /* 80ABA9CC */ virtual void setMotionAnm(int, f32);
     /* 80ABBB10 */ virtual void setMotion(int, f32, int);
@@ -83,11 +111,11 @@ private:
     /* 0xB48 */ Z2Creature mSound;
     /* 0xBD8 */ J3DModel* mpItemModel;
     /* 0xBDC */ daNpcF_MatAnm_c* mpMatAnm;
-    /* 0xBE0 */ daNpcF_Lookat_c field_0xbe0;
+    /* 0xBE0 */ daNpcF_Lookat_c mLookat;
     /* 0xC7C */ daNpcF_ActorMngr_c field_0xc7c[4];
     /* 0xC9C */ fopAc_ac_c* field_0xc9c;
-    /* 0xCA0 */ u8 field_0xCA0[0xCA4 - 0xCA0];
-    /* 0xCA4 */ dCcD_Cyl field_0xca4;
+    /* 0xCA0 */ NPC_RAFREL_HIO_CLASS* mpHIO;
+    /* 0xCA4 */ dCcD_Cyl mCyl;
     /* 0xDE0 */ bool (daNpcRafrel_c::*field_0xde0)(void*);
     /* 0xDEC */ request_of_phase_process_class mPhase[2];
     /* 0xE04 */ JPABaseEmitter* field_0xdfc;
@@ -99,25 +127,11 @@ private:
     /* 0xE10 */ u16 field_0xe10;
     /* 0xE12 */ s16 field_0xe12;
     /* 0xE14 */ u8 field_0xe14;
-    /* 0xE15 */ u8 field_0xe15;
+    /* 0xE15 */ bool field_0xe15;
     /* 0xE16 */ u8 field_0xe16;
     /* 0xE17 */ u8 mType;
 };
 
 STATIC_ASSERT(sizeof(daNpcRafrel_c) == 0xe18);
-
-struct daNpcRafrel_HIOParam {
-    /* 0x00 */ daNpcF_HIOParam common;
-    /* 0x6C */ f32 field_0x6c;
-    /* 0x70 */ u32 field_0x70;
-};
-
-class daNpcRafrel_Param_c {
-public:
-    /* 80ABF974 */ virtual ~daNpcRafrel_Param_c() {}
-
-    static const daNpcRafrel_HIOParam m;
-};
-
 
 #endif /* D_A_NPC_RAFREL_H */

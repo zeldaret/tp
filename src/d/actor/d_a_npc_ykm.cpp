@@ -5,15 +5,20 @@
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
-#include "d/actor/d_a_npc_ykm.h"
+#include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include "d/actor/d_a_midna.h"
+#include "d/actor/d_a_npc_ykm.h"
+
+#include "JSystem/JHostIO/JORFile.h"
 #include "d/actor/d_a_obj_gadget.h"
 #include "d/actor/d_a_tag_evtarea.h"
+#include "d/d_debug_viewer.h"
 #include "d/d_item.h"
-#include "d/actor/d_a_midna.h"
 #include "d/d_meter2_info.h"
 #include "d/d_timer.h"
 #include "d/d_tresure.h"
+
 
 enum ykM_RES_File_ID {
     /* BCK */
@@ -168,6 +173,149 @@ enum RES_Name {
     /* 0x3 */ YKM2,
     /* 0x4 */ YKM3,
 };
+
+/* 80B5D794-80B5D85C 000000 00C8+00 23/23 0/0 0/0 .rodata          m__17daNpc_ykM_Param_c */
+daNpc_ykM_HIOParam const daNpc_ykM_Param_c::m = {
+    500.0f,
+    -4.0f,
+    1.0f,
+    1600.0f,
+    255.0f,
+    170.0f,
+    30.0f,
+    120.0f,
+    0.0f,
+    -15.0f,
+    25.0f,
+    -25.0f,
+    30.0f,
+    -15.0f,
+    20.0f,
+    -20.0f,
+    0.8f,
+    12.0f,
+    7,
+    6,
+    9,
+    6,
+    110.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    60,
+    8,
+    0,
+    0,
+    0,
+    0,
+    0,
+    4.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    30,
+    500.0f,
+    300.0f,
+    18.0f,
+    50.0f,
+    3.0f,
+    20.0f,
+    50.0f,
+    56.0f,
+    0.8f,
+    52.0f,
+    0x78,
+    28.0f,
+    1,
+    5,
+    0.6f,
+};
+
+#if DEBUG
+daNpc_ykM_HIO_c::daNpc_ykM_HIO_c() {
+    m = daNpc_ykM_Param_c::m;
+}
+
+void daNpc_ykM_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
+    size_t len;
+    char buf[0x7d0];
+
+    JORReflexible::listenPropertyEvent(event);
+    JORFile file;
+    switch ((int)event->id) {
+    case 0x40000002:
+        if (file.open(6, "すべてのファイル(*.*)\0*.*\0", NULL, NULL, NULL)) {
+            memset(buf, 0, sizeof(buf));
+            len = 0;
+            daNpcT_cmnListenPropertyEvent(buf, (int*)&len, &m.common);
+            sprintf(buf + len, "%d,   	//  ステップの速さ\n", m.step_speed);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  注目距離\n", m.attention_dist);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  会話距離\n", m.conversation_dist);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  飛び出し速度\n", m.jump_speed);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  飛び出し角度\n", m.push_out_angle);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  飛ばしフレ－ム\n", m.skip_frame);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  飛ばし速度\n", m.fly_speed);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  飛ばし角度\n", m.fly_angle);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  ジャンプ初速\n", m.jump_init_speed);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  滑り加速\n", m.slide_acceleration);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  滑り速度\n", m.slide_speed);
+            len = strlen(buf);
+            sprintf(buf + len, "%d,   	//  ウエイト時間\n", m.wait_time);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  走り速度\n", m.run_speed);
+            len = strlen(buf);
+            sprintf(buf + len, "%d,   	//  競争パラメ－タａ\n", m.competition_prm_a);
+            len = strlen(buf);
+            sprintf(buf + len, "%d,   	//  競争パラメ－タｂ\n", m.competition_prm_b);
+            len = strlen(buf);
+            sprintf(buf + len, "%.3ff,	//  競争パラメ－タｃ\n", m.competition_prm_c);
+            len = strlen(buf);
+            file.writeData(buf, len);
+            file.close();
+            OS_REPORT("write append success!::%6d\n", len);
+        } else {
+            OS_REPORT("write append failure!\n");
+        }
+        break;
+    }
+}
+
+
+void daNpc_ykM_HIO_c::genMessage(JORMContext* ctx) {
+    daNpcT_cmnGenMessage(ctx, &m.common);
+    ctx->genSlider("ステップの速さ  ", &m.step_speed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("注目距離        ", &m.attention_dist, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("会話距離        ", &m.conversation_dist, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("飛び出し速度    ", &m.jump_speed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("飛び出し角度    ", &m.push_out_angle, 0.0f, 90.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("飛ばしフレ－ム  ", &m.skip_frame, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("飛ばし速度      ", &m.fly_speed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("飛ばし角度      ", &m.fly_angle, 0.0f, 90.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("ジャンプ初速    ", &m.jump_init_speed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("滑り加速        ", &m.slide_acceleration, 0.0f, 8.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("滑り速度        ", &m.slide_speed, 0.0f, 128.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("ウエイト時間    ", &m.wait_time, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("走り速度        ", &m.run_speed, 0.0f, 64.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("競争パラメ－タａ", &m.competition_prm_a, -100.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("競争パラメ－タｂ", &m.competition_prm_b, 1.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("競争パラメ－タｃ", &m.competition_prm_c, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+}
+#endif
 
 /* 80B5DB08-80B5DB38 000020 0030+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[6][2] = {
@@ -403,8 +551,19 @@ daNpc_ykM_c::cutFunc daNpc_ykM_c::mCutList[10] = {
     &daNpc_ykM_c::cutHug,
 };
 
+/* 80B5ED74-80B5ED80 000054 000C+00 0/1 0/0 0/0 .bss             l_SBRaceStartPos */
+static cXyz l_SBRaceStartPos;
+
+/* 80B5ED8C-80B5ED94 00006C 0006+02 0/1 0/0 0/0 .bss             l_SBRaceStartAngle */
+static csXyz l_SBRaceStartAngle;
+
+/* 80B5EDA0-80B5EDA4 000080 0004+00 0/1 0/0 0/0 .bss             l_HIO */
+static NPC_YKM_HIO_CLASS l_HIO;
+
 /* 80B534EC-80B53698 0000EC 01AC+00 1/0 0/0 0/0 .text            __dt__11daNpc_ykM_cFv */
 daNpc_ykM_c::~daNpc_ykM_c() {
+    OS_REPORT("|%06d:%x|daNpc_ykM_c -> デストラクト\n", g_Counter.mCounter0, this);
+
     if (mpMorf[0] != NULL) {
         mpMorf[0]->stopZelAnime();
     }
@@ -417,6 +576,12 @@ daNpc_ykM_c::~daNpc_ykM_c() {
         mLeafModelMorf->stopZelAnime();
     }
 
+#if DEBUG
+    if (mpHIO != NULL) {
+        mpHIO->removeHIO();
+    }
+#endif
+
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
 
     if (field_0x157b != 0) {
@@ -425,69 +590,6 @@ daNpc_ykM_c::~daNpc_ykM_c() {
 
     daNpcT_offTmpBit(0x54); // dSv_event_tmp_flag_c::T_0084 - Snowpeak mountain - Racing with Yeto
 }
-
-/* 80B5D794-80B5D85C 000000 00C8+00 23/23 0/0 0/0 .rodata          m__17daNpc_ykM_Param_c */
-daNpc_ykM_HIOParam const daNpc_ykM_Param_c::m = {
-    500.0f,
-    -4.0f,
-    1.0f,
-    1600.0f,
-    255.0f,
-    170.0f,
-    30.0f,
-    120.0f,
-    0.0f,
-    -15.0f,
-    25.0f,
-    -25.0f,
-    30.0f,
-    -15.0f,
-    20.0f,
-    -20.0f,
-    0.8f,
-    12.0f,
-    7,
-    6,
-    9,
-    6,
-    110.0f,
-    0.0f,
-    0.0f,
-    0.0f,
-    60,
-    8,
-    0,
-    0,
-    0,
-    0,
-    0,
-    4.0f,
-    0.0f,
-    0.0f,
-    0.0f,
-    0.0f,
-    0.0f,
-    0.0f,
-    0.0f,
-    30,
-    0,
-    500.0f,
-    300.0f,
-    18.0f,
-    50.0f,
-    3.0f,
-    20.0f,
-    50.0f,
-    56.0f,
-    0.8f,
-    52.0f,
-    0x78,
-    0,
-    28.0f,
-    1,
-    5,
-    0.6f,
-};
 
 /* 80B53698-80B53990 000298 02F8+00 1/1 0/0 0/0 .text            create__11daNpc_ykM_cFv */
 cPhs__Step daNpc_ykM_c::create() {
@@ -500,7 +602,7 @@ cPhs__Step daNpc_ykM_c::create() {
     cPhs__Step phase = (cPhs__Step)loadRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("\t(%s:%d) flowNo:%d, PathID:%02x, BitTRB:%02x<%08x> ", fopAcM_getProcNameString(this), mType, mFlowNodeNo,
-                  (getPathID() >> 32) & 0xFF, getBitTRB() & 0xFF, fopAcM_GetParam(this));
+                  getPathID(), getBitTRB() & 0xFF, fopAcM_GetParam(this));
 
         if (isDelete()) {
             OS_REPORT("===>isDelete:TRUE\n");
@@ -517,15 +619,21 @@ cPhs__Step daNpc_ykM_c::create() {
             return cPhs_ERROR_e;
         }
 
+        J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -400.0f, -100.0f, -500.0f, 400.0f, 600.0f, 500.0f);
 
         mSound.init(&current.pos, &eyePos, 3, 1);
-        
+
+#if DEBUG
+        mpHIO = &l_HIO;
+        mpHIO->entryHIO("雪男");
+#endif
+
         reset();
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
-        mCcStts.Init(daNpc_ykM_Param_c::m.common.weight, 0, this);
+        mCcStts.Init(mpHIO->m.common.weight, 0, this);
 
         for (int i = 0; i < 4; i++) {
             field_0xf94[i].Set(mCcDSph);
@@ -619,8 +727,8 @@ int daNpc_ykM_c::CreateHeap() {
         }
 
         sp40 = BMD_INDEX_LEAF;
-        arcNameIdx = l_bmdData[BMD_INDEX_LEAF][1];
-        resIndex = l_bmdData[BMD_INDEX_LEAF][0];
+        arcNameIdx = l_bmdData[sp40][1];
+        resIndex = l_bmdData[sp40][0];
         mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[arcNameIdx], resIndex);
 
         JUT_ASSERT(1622, NULL != mdlData_p);
@@ -663,8 +771,14 @@ int daNpc_ykM_c::CreateHeap() {
 
 /* 80B540BC-80B540F0 000CBC 0034+00 1/1 0/0 0/0 .text            Delete__11daNpc_ykM_cFv */
 int daNpc_ykM_c::Delete() {
+    OS_REPORT("|%06d:%x|daNpc_ykM_c -> Delete\n", g_Counter.mCounter0, this);
+    fpc_ProcID unusedId = fopAcM_GetID(this);
     this->~daNpc_ykM_c();
     return 1;
+}
+
+static void dummy_string() {
+    OS_REPORT("Delete -> NPC_YKM(id=%d)\n", 0);
 }
 
 /* 80B540F0-80B54110 000CF0 0020+00 2/2 0/0 0/0 .text            Execute__11daNpc_ykM_cFv */
@@ -675,6 +789,7 @@ int daNpc_ykM_c::Execute() {
 /* 80B54110-80B541F8 000D10 00E8+00 1/1 0/0 0/0 .text            Draw__11daNpc_ykM_cFv */
 int daNpc_ykM_c::Draw() {
     J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
+    int rv = 0;
 
     if (mpMatAnm[0] != NULL) {
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
@@ -684,7 +799,7 @@ int daNpc_ykM_c::Draw() {
         mdlData_p->getMaterialNodePointer(3)->getShape()->hide();
     }
 
-    int rv = draw(
+    rv = draw(
         #ifdef DEBUG
         chkAction(&daNpc_ykM_c::test),
         #else
@@ -721,10 +836,14 @@ int daNpc_ykM_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 
 /* 80B54270-80B5430C 000E70 009C+00 2/2 0/0 0/0 .text            srchGadget__11daNpc_ykM_cFPvPv */
 void* daNpc_ykM_c::srchGadget(void* i_actor, void* i_data) {
-    if (mFindCount < 50 && i_actor != NULL && i_actor != i_data) {
-        if (fopAcM_IsExecuting(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_OBJ_GADGET) {
-            mFindActorPtrs[mFindCount] = (fopAc_ac_c*)i_actor;
-            mFindCount++;
+    fopAc_ac_c* data = (fopAc_ac_c*)i_data;
+    if (mFindCount < 50) {
+        fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
+        if (actor != NULL && actor != data) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(actor) == PROC_OBJ_GADGET) {
+                mFindActorPtrs[mFindCount] = actor;
+                mFindCount++;
+            }
         }
     }
 
@@ -769,10 +888,14 @@ fopAc_ac_c* daNpc_ykM_c::getCheeseP() {
 
 /* 80B544B0-80B5454C 0010B0 009C+00 1/1 0/0 0/0 .text            srchYkm__11daNpc_ykM_cFPvPv */
 void* daNpc_ykM_c::srchYkm(void* i_actor, void* i_data) {
-    if (mFindCount < 50 && i_actor != NULL && i_actor != i_data) {
-        if (fopAcM_IsExecuting(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_NPC_YKM) {
-            mFindActorPtrs[mFindCount] = (fopAc_ac_c*)i_actor;
-            mFindCount++;
+    fopAc_ac_c* data = (fopAc_ac_c*)i_data;
+    if (mFindCount < 50) {
+        fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
+        if (actor != NULL && actor != data) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(actor) == PROC_NPC_YKM) {
+                mFindActorPtrs[mFindCount] = actor;
+                mFindCount++;
+            }
         }
     }
 
@@ -788,7 +911,8 @@ fopAc_ac_c* daNpc_ykM_c::getOtherYkmP(int param_1) {
     fopAcM_Search(srchYkm, this);
 
     for (int i = 0; i < mFindCount; i++) {
-        if (param_1 == (((daNpc_ykM_c*)mFindActorPtrs[i])->getType() & 0xFF) && fopAcM_searchActorDistance(this, mFindActorPtrs[i]) < fVar1) {
+        if (param_1 == ((daNpc_ykM_c*)mFindActorPtrs[i])->getType() &&
+            fopAcM_searchActorDistance(this, mFindActorPtrs[i]) < fVar1) {
             fVar1 = fopAcM_searchActorDistance(this, mFindActorPtrs[i]);
             actor = mFindActorPtrs[i];
         }
@@ -799,10 +923,14 @@ fopAc_ac_c* daNpc_ykM_c::getOtherYkmP(int param_1) {
 
 /* 80B54628-80B546C4 001228 009C+00 1/1 0/0 0/0 .text            srchYkw__11daNpc_ykM_cFPvPv */
 void* daNpc_ykM_c::srchYkw(void* i_actor, void* i_data) {
-    if (mFindCount < 50 && i_actor != NULL && i_actor != i_data) {
-        if (fopAcM_IsExecuting(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_NPC_YKW) {
-            mFindActorPtrs[mFindCount] = (fopAc_ac_c*)i_actor;
-            mFindCount++;
+    fopAc_ac_c* data = (fopAc_ac_c*)i_data;
+    if (mFindCount < 50) {
+        fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
+        if (actor != NULL && actor != data) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(actor) == PROC_NPC_YKW) {
+                mFindActorPtrs[mFindCount] = actor;
+                mFindCount++;
+            }
         }
     }
 
@@ -818,7 +946,7 @@ fopAc_ac_c* daNpc_ykM_c::getOtherYkwP(int param_1) {
     fopAcM_Search(srchYkw, this);
 
     for (int i = 0; i < mFindCount; i++) {
-        if (param_1 == (((daNpc_ykW_c*)mFindActorPtrs[i])->getType() & 0xFF) && fopAcM_searchActorDistance(this, mFindActorPtrs[i]) < fVar1) {
+        if (param_1 == ((daNpc_ykW_c*)mFindActorPtrs[i])->getType() && fopAcM_searchActorDistance(this, mFindActorPtrs[i]) < fVar1) {
             fVar1 = fopAcM_searchActorDistance(this, mFindActorPtrs[i]);
             actor = mFindActorPtrs[i];
         }
@@ -829,7 +957,8 @@ fopAc_ac_c* daNpc_ykM_c::getOtherYkwP(int param_1) {
 
 /* 80B547A0-80B54808 0013A0 0068+00 3/2 0/0 1/1 .text            getType__11daNpc_ykM_cFv */
 u8 daNpc_ykM_c::getType() {
-    switch (fopAcM_GetParam(this) & 0xFF) {
+    u8 param = fopAcM_GetParam(this) & 0xFF;
+    switch (param) {
         case 0:
             return TYPE_0;
 
@@ -907,6 +1036,8 @@ void daNpc_ykM_c::reset() {
 
         mRoomPath = NULL;
         if (mType == TYPE_4 && mPath.chkNextId()) {
+            //TODO: Separate decl is fakematch, this is fixed by properly matching
+            //      daNpcT_DmgStagger_c::initialize in debug but doing so breaks other functions.
             dPath* path = mPath.getPathInfo();
             mRoomPath = dPath_GetRoomPath(path->m_nextID, fopAcM_GetRoomNo(this));
         }
@@ -916,6 +1047,7 @@ void daNpc_ykM_c::reset() {
     angle.y = home.angle.y;
 
     switch (mType) {
+        case TYPE_0:
         case TYPE_COOK:
             break;
         case TYPE_2:
@@ -970,10 +1102,10 @@ void daNpc_ykM_c::setParam() {
 
     if (mType != TYPE_5 && mType != TYPE_6) {
         u32 uVar1 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
-        dComIfGp_getAttention()->getDistTable(71).mDistMax = daNpc_ykM_Param_c::m.attention_dist;
-        dComIfGp_getAttention()->getDistTable(71).mDistMaxRelease = daNpc_ykM_Param_c::m.attention_dist;
-        dComIfGp_getAttention()->getDistTable(70).mDistMax = daNpc_ykM_Param_c::m.conversation_dist;
-        dComIfGp_getAttention()->getDistTable(70).mDistMaxRelease = daNpc_ykM_Param_c::m.conversation_dist;
+        dComIfGp_getAttention()->getDistTable(71).mDistMax = mpHIO->m.attention_dist;
+        dComIfGp_getAttention()->getDistTable(71).mDistMaxRelease = mpHIO->m.attention_dist;
+        dComIfGp_getAttention()->getDistTable(70).mDistMax = mpHIO->m.conversation_dist;
+        dComIfGp_getAttention()->getDistTable(70).mDistMaxRelease = mpHIO->m.conversation_dist;
         u32 uVar2 = 4;
 
         if (mType == TYPE_COOK || mType == TYPE_2) {
@@ -1007,16 +1139,16 @@ void daNpc_ykM_c::setParam() {
         attention_info.flags = 0;
     }
 
-    scale.set(daNpc_ykM_Param_c::m.common.scale, daNpc_ykM_Param_c::m.common.scale, daNpc_ykM_Param_c::m.common.scale);
-    mCcStts.SetWeight(daNpc_ykM_Param_c::m.common.weight);
-    mCylH = daNpc_ykM_Param_c::m.common.height;
-    mWallR = daNpc_ykM_Param_c::m.common.width;
-    mAttnFovY = daNpc_ykM_Param_c::m.common.fov;
+    scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale, mpHIO->m.common.scale);
+    mCcStts.SetWeight(mpHIO->m.common.weight);
+    mCylH = mpHIO->m.common.height;
+    mWallR = mpHIO->m.common.width;
+    mAttnFovY = mpHIO->m.common.fov;
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(daNpc_ykM_Param_c::m.common.knee_length);
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
 
     fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x100);
-    mRealShadowSize = daNpc_ykM_Param_c::m.common.real_shadow_size;
+    mRealShadowSize = mpHIO->m.common.real_shadow_size;
 
     if (field_0x157b != 0) {
         fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
@@ -1027,9 +1159,9 @@ void daNpc_ykM_c::setParam() {
         mRealShadowSize = 1800.0f;
     }
 
-    mExpressionMorfFrame = daNpc_ykM_Param_c::m.common.expression_morf_frame;
-    mMorfFrames = daNpc_ykM_Param_c::m.common.morf_frame;
-    gravity = daNpc_ykM_Param_c::m.common.gravity;
+    mExpressionMorfFrame = mpHIO->m.common.expression_morf_frame;
+    mMorfFrames = mpHIO->m.common.morf_frame;
+    gravity = mpHIO->m.common.gravity;
     field_0x1574 = 0;
     field_0x1575 = 0;
     field_0xd8a.y = 0;
@@ -1118,6 +1250,8 @@ void daNpc_ykM_c::setAfterTalkMotion() {
 /* 80B550A4-80B55254 001CA4 01B0+00 1/1 0/0 0/0 .text            srchActors__11daNpc_ykM_cFv */
 void daNpc_ykM_c::srchActors() {
     switch (mType) {
+        case TYPE_0:
+            break;
         case TYPE_COOK:
             if (mActorMngr[6].getActorP() == NULL) {
                 mActorMngr[6].entry(getEvtAreaTagP(14, 0));
@@ -1193,14 +1327,14 @@ BOOL daNpc_ykM_c::evtCutProc() {
 
 /* 80B553BC-80B55658 001FBC 029C+00 1/0 0/0 0/0 .text            action__11daNpc_ykM_cFv */
 void daNpc_ykM_c::action() {
-    fopAc_ac_c* actor;
+    fopAc_ac_c* actor = NULL;
 
-    int i = 0;
-    do {
+    for (int i = 0; i < 4; i++) {
         actor = hitChk(&field_0xf94[i], -1);
-        if (actor != NULL) break;
-        i++;
-    } while (i < 4);
+        if (actor != NULL) {
+            break;
+        }
+    }
 
     if (actor == NULL) {
         actor = hitChk(&field_0xe58, -1);
@@ -1258,41 +1392,46 @@ void daNpc_ykM_c::beforeMove() {
 
 /* 80B5571C-80B55A64 00231C 0348+00 1/0 0/0 0/0 .text            afterMoved__11daNpc_ykM_cFv */
 void daNpc_ykM_c::afterMoved() {
-    f32 fVar1;
+    f32 var_f31;
+    f32 var_f30;
+    f32 var_f29;
+    f32 var_f28;
 
     if (field_0x157b != 0 && field_0x157e == 0) {
-        if (dComIfG_Bgsp().GetPolyAtt0(mAcch.m_gnd) == 13 && 3.0f < speedF) {
+        int polyAtt0 = dComIfG_Bgsp().GetPolyAtt0(mAcch.m_gnd);
+        if (polyAtt0 == 13 && 3.0f < speedF) {
             cXyz sp70(current.pos);
             sp70.y -= 30.0f;
-            field_0x1570 = dComIfGp_particle_setPolyColor(field_0x1570, 0x8B8F, mAcch.m_gnd, &sp70, &tevStr, &mCurAngle,
+            field_0x1570 = dComIfGp_particle_setPolyColor(field_0x1570, dPa_RM(ID_ZI_S_LK_SB_A),
+                                                          mAcch.m_gnd, &sp70, &tevStr, &mCurAngle,
                                                           NULL, 0, NULL, -1, NULL);
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x1570);
             if (emitter != NULL) {
                 cXyz sp7c;
-                fVar1 = speedF / daNpc_ykM_Param_c::m.slide_speed;
+                var_f31 = speedF / mpHIO->m.slide_speed;
 
-                if (fVar1 > 1.0f) {
-                    fVar1 = 1.0f;
+                if (var_f31 > 1.0f) {
+                    var_f31 = 1.0f;
                 }
 
-                emitter->setRate(fVar1 * 2.0f + 1.0f);
-                emitter->setAwayFromCenterSpeed(fVar1 * 4.0f + 1.0f);
-                sp7c.x = fVar1 * 0.3f + 0.7f;
+                emitter->setRate(var_f31 * 2.0f + 1.0f);
+                emitter->setAwayFromCenterSpeed(var_f31 * 4.0f + 1.0f);
+                sp7c.x = var_f31 * 0.3f + 0.7f;
                 sp7c.y = sp7c.x;
                 sp7c.z = sp7c.x;
                 emitter->setGlobalParticleScale(sp7c);
-                emitter->setGlobalAlpha(fVar1 * 205.0f + 50.0f);
+                emitter->setGlobalAlpha(var_f31 * 205.0f + 50.0f);
             }
         }
 
-        f32 fVar2 = mGroundH - current.pos.y;
-        fVar1 = current.pos.absXZ(old.pos) * cM_ssin(mGroundAngle);
-        
-        if (fVar1 < 0.0f) {
-            fVar1 = 0.0f;
+        var_f29 = mGroundH - current.pos.y;
+        var_f30 = current.pos.absXZ(old.pos) * cM_ssin(mGroundAngle);
+
+        if (var_f30 < 0.0f) {
+            var_f30 = 0.0f;
         }
 
-        if (fVar2 <= 0.000001f && fVar2 >= -mAcchCir.GetWallH() - fVar1) {
+        if (var_f29 <= 0.000001f && var_f29 >= -mAcchCir.GetWallH() - var_f30) {
             current.pos.y = mGroundH;
             mAcch.SetGroundHit();
             speed.y = 0.0f;
@@ -1318,15 +1457,15 @@ void daNpc_ykM_c::setAttnPos() {
     f32 fVar1 = cM_s2rad((s16)(mCurAngle.y - field_0xd7e.y));
     mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp104,
         getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
-        field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleX_min,
-        field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleX_max,
-        field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleY_min,
-        field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleY_max,
-        field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleX_min,
-        field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleX_max,
-        field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleY_min,
-        field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleY_max,
-        daNpc_ykM_Param_c::m.common.neck_rotation_ratio, fVar1, &sp110);
+        field_0x1575 != 0 ? 0.0f : mpHIO->m.common.body_angleX_min,
+        field_0x1575 != 0 ? 0.0f : mpHIO->m.common.body_angleX_max,
+        field_0x1575 != 0 ? 0.0f : mpHIO->m.common.body_angleY_min,
+        field_0x1575 != 0 ? 0.0f : mpHIO->m.common.body_angleY_max,
+        field_0x1574 != 0 ? 0.0f : mpHIO->m.common.head_angleX_min,
+        field_0x1574 != 0 ? 0.0f : mpHIO->m.common.head_angleX_max,
+        field_0x1574 != 0 ? 0.0f : mpHIO->m.common.head_angleY_min,
+        field_0x1574 != 0 ? 0.0f : mpHIO->m.common.head_angleY_max,
+        mpHIO->m.common.neck_rotation_ratio, fVar1, &sp110);
 
     if (mJntAnm.getMode() == daNpcT_JntAnm_c::LOOK_MODE_8) {
         mJntAnm.calcJntRad(0.1f, 1.0f, fVar1);
@@ -1391,7 +1530,7 @@ void daNpc_ykM_c::setAttnPos() {
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y + field_0xd8a.y, TRUE, 1.0f, 0);
 
     sp104.set(0.0f, 0.0f, 50.0f);
-    sp104.y = daNpc_ykM_Param_c::m.common.attention_offset + field_0x1568;
+    sp104.y = mpHIO->m.common.attention_offset + field_0x1568;
 
     if (field_0x1581 != 0) {
         sp104.set(55.0f, 440.0f, 55.0f);
@@ -1409,8 +1548,10 @@ void daNpc_ykM_c::setCollision() {
     cXyz sp28;
 
     if (!mHide && field_0x1580 == 0) {
+        u32 coSPrm = 121;
         u32 tgType = 0xD8FBFDFF;
         u32 tgSPrm = 31;
+        int atType = AT_TYPE_IRON_BALL;
         u32 atSPrm = 0;
 
         if (dComIfGp_event_runCheck() || field_0x1581 != 0) {
@@ -1433,10 +1574,10 @@ void daNpc_ykM_c::setCollision() {
         int jointNo[4] = {JNT_BB2, JNT_HANDL, JNT_HANDR, JNT_TAIL};
         f32 fVar1[4] = {140.0f, 60.0f, 60.0f, 140.0f};
         for (int i = 0; i < 4; i++) {
-            field_0xf94[i].SetCoSPrm(0x79);
+            field_0xf94[i].SetCoSPrm(coSPrm);
             field_0xf94[i].SetTgType(tgType);
             field_0xf94[i].SetTgSPrm(tgSPrm);
-            field_0xf94[i].SetAtType(AT_TYPE_IRON_BALL);
+            field_0xf94[i].SetAtType(atType);
             field_0xf94[i].SetAtSPrm(atSPrm);
             field_0xf94[i].OnTgNoHitMark();
 
@@ -1454,10 +1595,10 @@ void daNpc_ykM_c::setCollision() {
             dComIfG_Ccsp()->Set(&field_0xf94[i]);
         }
 
-        field_0xe58.SetCoSPrm(0x79);
+        field_0xe58.SetCoSPrm(coSPrm);
         field_0xe58.SetTgType(tgType);
         field_0xe58.SetTgSPrm(tgSPrm);
-        field_0xe58.SetAtType(AT_TYPE_IRON_BALL);
+        field_0xe58.SetAtType(atType);
         field_0xe58.SetAtSPrm(atSPrm);
         field_0xe58.OnTgNoHitMark();
         field_0xe58.SetH(mCylH);
@@ -1488,6 +1629,19 @@ void daNpc_ykM_c::setCollision() {
 
 /* 80B5641C-80B56424 00301C 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpc_ykM_cFv */
 int daNpc_ykM_c::drawDbgInfo() {
+#if DEBUG
+    if (mpHIO->m.common.debug_info_ON != 0) {
+        f32 fVar1 = dComIfGp_getAttention()->getDistTable(attention_info.distances[6]).mDistMax;
+        f32 fVar2 = dComIfGp_getAttention()->getDistTable(attention_info.distances[1]).mDistMax;
+        dDbVw_drawCircleOpa(attention_info.position, fVar1, (GXColor){0x0, 0xc8, 0x0, 0xff}, 1, 12);
+        dDbVw_drawCircleOpa(attention_info.position, fVar2, (GXColor){0xc8, 0x0, 0x0, 0xff}, 1, 12);
+        dDbVw_drawSphereXlu(eyePos, 18.0f, (GXColor){0x80, 0x80, 0x80, 0xa0}, 1);
+        dDbVw_drawSphereXlu(attention_info.position, 9.0f, (GXColor){0x80, 0x80, 0x80, 0xa0}, 1);
+        if (mPath.getPathInfo() != 0) {
+            mPath.drawDbgInfo(attention_info.position.y, 3);
+        }
+    }
+#endif
     return 0;
 }
 
@@ -1529,7 +1683,7 @@ void daNpc_ykM_c::drawOtherMdl() {
             mDoMtx_stack_c::copy(model->getAnmMtx(jointNo[i]));
 
             Mtx mtx;
-            MTXCopy(mDoMtx_stack_c::get(), mtx);
+            cMtx_copy(mDoMtx_stack_c::get(), mtx);
             field_0xe4c[i]->setBaseTRMtx(mtx);
             mDoExt_modelUpdateDL(field_0xe4c[i]);
             dComIfGd_addRealShadow(mShadowKey, field_0xe4c[i]);
@@ -1573,9 +1727,10 @@ bool daNpc_ykM_c::setFishAnm(int i_index, int i_attr, f32 i_morf) {
 
     J3DAnmTransform* anmTransform = NULL;
 
+    int index = i_index;
     if (mFishModelMorf != NULL) {
-        if (fishAnmData[i_index].resIdx > 0) {
-            anmTransform = getTrnsfrmKeyAnmP(l_resNameList[fishAnmData[i_index].arcIdx], fishAnmData[i_index].resIdx);
+        if (fishAnmData[index].resIdx > 0) {
+            anmTransform = getTrnsfrmKeyAnmP(l_resNameList[fishAnmData[index].arcIdx], fishAnmData[index].resIdx);
         }
 
         if (anmTransform != NULL) {
@@ -1600,13 +1755,14 @@ bool daNpc_ykM_c::setLeafAnm(int i_index, f32 i_morf) {
 
     J3DAnmTransform* anmTransform = NULL;
 
+    int index = i_index;
     if (mLeafModelMorf != NULL) {
-        if (leafAnmData[i_index].resIdx > 0) {
-            anmTransform = getTrnsfrmKeyAnmP(l_resNameList[leafAnmData[i_index].arcIdx], leafAnmData[i_index].resIdx);
+        if (leafAnmData[index].resIdx > 0) {
+            anmTransform = getTrnsfrmKeyAnmP(l_resNameList[leafAnmData[index].arcIdx], leafAnmData[index].resIdx);
         }
 
         if (anmTransform != NULL) {
-            mLeafModelMorf->setAnm(anmTransform, leafAnmData[i_index].attr, i_morf, 1.0f, 0.0f, -1.0f);
+            mLeafModelMorf->setAnm(anmTransform, leafAnmData[index].attr, i_morf, 1.0f, 0.0f, -1.0f);
         }
     }
 
@@ -1615,9 +1771,7 @@ bool daNpc_ykM_c::setLeafAnm(int i_index, f32 i_morf) {
 
 /* 80B567B4-80B5680C 0033B4 0058+00 1/0 0/0 0/0 .text afterSetMotionAnm__11daNpc_ykM_cFiifi */
 bool daNpc_ykM_c::afterSetMotionAnm(int i_index, int i_attr, f32 i_morf, int param_3) {
-    if (mCreating == true) {
-        i_morf = 0.0f;
-    }
+    f32 morf = mCreating == true ? 0.0f : i_morf;
 
     switch (i_index) {
         case 0x23:
@@ -1625,41 +1779,49 @@ bool daNpc_ykM_c::afterSetMotionAnm(int i_index, int i_attr, f32 i_morf, int par
             break;
     }
 
-    return setFishAnm(i_index, i_attr, i_morf);
+    return setFishAnm(i_index, i_attr, morf);
 }
 
 /* 80B5680C-80B56954 00340C 0148+00 1/1 0/0 0/0 .text            selectAction__11daNpc_ykM_cFv */
 int daNpc_ykM_c::selectAction() {
     mpNextAction = NULL;
 
+#if DEBUG
+    if (mpHIO->m.common.debug_mode_ON != NULL) {
+        mpNextAction = &daNpc_ykM_c::cook;
+
+        return 1;
+    }
+#endif
+
     switch (mType) {
-        case TYPE_COOK:
-            mpNextAction = &daNpc_ykM_c::cook;
-            break;
+    case TYPE_COOK:
+        mpNextAction = &daNpc_ykM_c::cook;
+        break;
 
-        case TYPE_2:
-            if (field_0x157b != 0) {
-                mpNextAction = &daNpc_ykM_c::race;
-                mAcch.SetWallNone();
-            } else {
-                mpNextAction = &daNpc_ykM_c::wait;
-                mAcch.ClrWallNone();
-            }
-            break;
-
-        case TYPE_4:
-            if (field_0x157b != 0) {
-                mpNextAction = &daNpc_ykM_c::race;
-                mAcch.SetWallNone();
-            } else {
-                mpNextAction = &daNpc_ykM_c::wait;
-                mAcch.ClrWallNone();
-            }
-            break;
-
-        default:
+    case TYPE_2:
+        if (field_0x157b != 0) {
+            mpNextAction = &daNpc_ykM_c::race;
+            mAcch.SetWallNone();
+        } else {
             mpNextAction = &daNpc_ykM_c::wait;
-            break;
+            mAcch.ClrWallNone();
+        }
+        break;
+
+    case TYPE_4:
+        if (field_0x157b != 0) {
+            mpNextAction = &daNpc_ykM_c::race;
+            mAcch.SetWallNone();
+        } else {
+            mpNextAction = &daNpc_ykM_c::wait;
+            mAcch.ClrWallNone();
+        }
+        break;
+
+    default:
+        mpNextAction = &daNpc_ykM_c::wait;
+        break;
     }
 
     return 1;
@@ -1707,8 +1869,8 @@ BOOL daNpc_ykM_c::chkContinueAttnPlayer() {
 
 /* 80B56AB4-80B56B84 0036B4 00D0+00 1/1 0/0 0/0 .text            chkTouchPlayer__11daNpc_ykM_cFv */
 BOOL daNpc_ykM_c::chkTouchPlayer() {
+    fopAc_ac_c* actor = NULL;
     if (20.0f < speedF) {
-        fopAc_ac_c* actor;
         for (int i = 0; i < 4; i++) {
             if (field_0xf94[i].ChkCoHit()) {
                 actor = field_0xf94[i].GetCoHitAc();
@@ -1731,20 +1893,17 @@ BOOL daNpc_ykM_c::chkTouchPlayer() {
     return FALSE;
 }
 
-static u8 const lit_5936[8] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-
 /* 80B56B84-80B572C8 003784 0744+00 3/0 0/0 0/0 .text            cutSlideDown__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
-    fopAc_ac_c* actor_p;
+    fopAc_ac_c* actor_p = NULL;
     cXyz work;
     csXyz angle;
     int rv = 0;
+    int* piVar1 = NULL;
     int prm = -1;
     int timer = 0;
-    
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
         prm = *piVar1;
     }
@@ -1754,9 +1913,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
         timer = *piVar1;
     }
 
-    dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
-
-    if (eventManager->getIsAddvance(i_cutIndex) != 0) {
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex) != 0) {
         switch (prm) {
             case 0:
                 mEventTimer = timer;
@@ -1806,7 +1963,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
             case 5:
                 mMotionSeqMngr.setNo(MOTION_FISH_JUMP, 0.0f, TRUE, 0);
                 actor_p = getOtherYkmP(5);
-                
+
                 JUT_ASSERT(3475, NULL != actor_p);
 
                 setPos(actor_p->current.pos);
@@ -1823,7 +1980,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
         }
     }
 
-    cXyz i_sePos;
+    int unusedIntArr1[2] = {-1, -1};
     switch (prm) {
         case 0:
             if (cLib_calcTimer(&mEventTimer) == 0) {
@@ -1852,7 +2009,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
                 } else if (mpMorf[0]->checkFrame(50.0f)) {
                     mSound.startCreatureVoice(Z2SE_YKM_V_ATTACK_TREE, -1);
                 } else if (mpMorf[0]->checkFrame(62.0f)) {
-                    i_sePos.set(-14483.0f, 2023.0f, -9768.0f);
+                    cXyz i_sePos(-14483.0f, 2023.0f, -9768.0f);
                     mDoAud_seStart(Z2SE_YM_ATTACK_TREE, &i_sePos, 0, 0);
                     dComIfGp_getVibration().StartShock(5, 15, cXyz(0.0f, 1.0f, 0.0f));
                 }
@@ -1900,18 +2057,16 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
     return rv;
 }
 
-static u8 const lit_6143[8] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-
 /* 80B572C8-80B57638 003EC8 0370+00 1/0 0/0 0/0 .text            cutMeetingAgain__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutMeetingAgain(int i_cutIndex) {
     cXyz work;
     int rv = 0;
+    int* piVar1 = NULL;
     int prm = -1;
     int timer = 0;
+    int unusedInt1 = 0;
     
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
         prm = *piVar1;
     }
@@ -1921,11 +2076,12 @@ int daNpc_ykM_c::cutMeetingAgain(int i_cutIndex) {
         timer = *piVar1;
     }
 
-    dComIfGp_evmng_getMyIntegerP(i_cutIndex, "msgNo");
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "msgNo");
+    if (piVar1 != NULL) {
+        unusedInt1 = *piVar1;
+    }
 
-    dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
-
-    if (eventManager->getIsAddvance(i_cutIndex)) {
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
         switch (prm) {
             case 0:
                 daNpcT_offTmpBit(0xB); // General use - General use temporary flag (flow control) A
@@ -1960,6 +2116,7 @@ int daNpc_ykM_c::cutMeetingAgain(int i_cutIndex) {
         }
     }
 
+    int unusedIntArr1[2] = {-1, -1};
     switch (prm) {
         case 0:
             mJntAnm.lookPlayer(0);
@@ -1991,9 +2148,11 @@ int daNpc_ykM_c::cutMeetingAgain(int i_cutIndex) {
 
 /* 80B57638-80B5806C 004238 0A34+00 3/0 0/0 0/0 .text            cutGetTomatoPuree__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
+    fopAc_ac_c* actor_p = NULL;
     cXyz work;
     csXyz angle;
     int rv = 0;
+    int* piVar1 = NULL;
     int prm = -1;
     int timer = 0;
     int msgNo = 0;
@@ -2003,7 +2162,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
     mDoMtx_stack_c::multVec(&field_0x1508, &field_0x1508);
     field_0x1508 += current.pos;
 
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
         prm = *piVar1;
     }
@@ -2069,7 +2228,6 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
     }
 
     int iVar2[2] = {-1, -1};
-    daObj_Gadget_c* actor_p;
     f32 fVar1;
     int iVar1;
     switch (prm) {
@@ -2102,7 +2260,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
             mJntAnm.lookPlayer(0);
 
             if (mPlayerAngle != mCurAngle.y) {
-                step(mPlayerAngle, -1, -1, daNpc_ykM_Param_c::m.step_speed, 0);
+                step(mPlayerAngle, -1, -1, mpHIO->m.step_speed, 0);
             }
 
             shape_angle.y = mPlayerAngle;
@@ -2119,22 +2277,24 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
 
             if (mEventTimer != 0 || dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
                 if (cLib_calcTimer(&mEventTimer) == 0) {
-                    actor_p = (daObj_Gadget_c*)mActorMngr[3].getActorP();
+                    actor_p = (fopAc_ac_c*)mActorMngr[3].getActorP();
                     if (actor_p != NULL) {
-                        actor_p->setCoNone();
-                        actor_p->offHide();
+                        ((daObj_Gadget_c*)actor_p)->setCoNone();
+                        ((daObj_Gadget_c*)actor_p)->offHide();
                         actor_p->current.angle.y = shape_angle.y + 0x8000;
-                        actor_p->popup(daNpc_ykM_Param_c::m.jump_speed, daNpc_ykM_Param_c::m.push_out_angle, &daPy_getPlayerActorClass()->attention_info.position);
+                        ((daObj_Gadget_c*)actor_p)->popup(mpHIO->m.jump_speed,
+                            mpHIO->m.push_out_angle,
+                            &daPy_getPlayerActorClass()->attention_info.position);
                     }
                 }
             }
 
             if (mMotionSeqMngr.getStepNo() == 0) {
-                if (mpMorf[0]->checkFrame(daNpc_ykM_Param_c::m.skip_frame)) {
+                if (mpMorf[0]->checkFrame(mpHIO->m.skip_frame)) {
                     mSound.startCreatureVoice(Z2SE_YKM_V_GETFOOD, -1);
-                    fVar1 = daNpc_ykM_Param_c::m.fly_speed;
-                    iVar1 = cM_deg2s(daNpc_ykM_Param_c::m.fly_angle);
-                    daPy_getPlayerActorClass()->setThrowDamage(shape_angle.y, fVar1 * cM_scos(iVar1), fVar1 * cM_ssin(iVar1), 0, 1, 0);
+                    fVar1 = mpHIO->m.fly_speed;
+                    s16 iVar2 = cM_deg2s(mpHIO->m.fly_angle);
+                    daPy_getPlayerActorClass()->setThrowDamage(shape_angle.y, fVar1 * cM_scos(iVar2), fVar1 * cM_ssin(iVar2), 0, 1, 0);
                 }
             } else {
                 rv = 1;
@@ -2148,7 +2308,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
                         field_0x1577 = 1;
                         actor_p = (daObj_Gadget_c*)mActorMngr[3].getActorP();
                         if (actor_p != NULL) {
-                            actor_p->onHide();
+                            ((daObj_Gadget_c*)actor_p)->onHide();
                         }
                     }
                 } else {
@@ -2200,13 +2360,13 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
             mDoMtx_stack_c::multVecZero(&field_0xd6c);
             mJntAnm.lookPos(&field_0xd6c, 0);
         } else {
-            fopAc_ac_c* actor = mActorMngr[3].getActorP();
-            if (actor == NULL) {
+            actor_p = mActorMngr[3].getActorP();
+            if (actor_p == NULL) {
                 mJntAnm.lookNone(0);
                 return rv;
             }
-                
-            field_0xd6c = actor->current.pos;
+
+            field_0xd6c = actor_p->current.pos;
         }
     } else if (prm == 7) {
         mJntAnm.lookPos(&field_0x1508, 0);
@@ -2218,9 +2378,11 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
 
 /* 80B5806C-80B58A38 004C6C 09CC+00 3/0 0/0 0/0 .text            cutGetTaste__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
+    fopAc_ac_c* actor_p = NULL;
     cXyz work;
     csXyz angle;
     int rv = 0;
+    int* piVar1 = NULL;
     int prm = -1;
     int timer = 0;
     int msgNo = 0;
@@ -2230,7 +2392,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
     mDoMtx_stack_c::multVec(&field_0x1508, &field_0x1508);
     field_0x1508 += current.pos;
 
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
         prm = *piVar1;
     }
@@ -2287,7 +2449,6 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
         }
     }
     int iVar2[2] = {-1, -1};
-    daObj_Gadget_c* actor_p;
     f32 fVar1;
     int iVar1;
     switch (prm) {
@@ -2308,7 +2469,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
             mJntAnm.lookPlayer(0);
 
             if (mPlayerAngle != mCurAngle.y) {
-                step(mPlayerAngle, -1, -1, daNpc_ykM_Param_c::m.step_speed, 0);
+                step(mPlayerAngle, -1, -1, mpHIO->m.step_speed, 0);
             }
 
             shape_angle.y = mPlayerAngle;
@@ -2327,20 +2488,21 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
                 if (cLib_calcTimer(&mEventTimer) == 0) {
                     actor_p = (daObj_Gadget_c*)mActorMngr[4].getActorP();
                     if (actor_p != NULL) {
-                        actor_p->setCoNone();
-                        actor_p->offHide();
+                        ((daObj_Gadget_c*)actor_p)->setCoNone();
+                        ((daObj_Gadget_c*)actor_p)->offHide();
                         actor_p->current.angle.y = shape_angle.y + 0x8000;
-                        actor_p->popup(daNpc_ykM_Param_c::m.jump_speed, daNpc_ykM_Param_c::m.push_out_angle, &daPy_getPlayerActorClass()->attention_info.position);
+                        ((daObj_Gadget_c*)actor_p)->popup(mpHIO->m.jump_speed, mpHIO->m.push_out_angle, &daPy_getPlayerActorClass()->attention_info.position);
                     }
                 }
             }
 
             if (mMotionSeqMngr.getStepNo() == 0) {
-                if (mpMorf[0]->checkFrame(daNpc_ykM_Param_c::m.skip_frame)) {
+                if (mpMorf[0]->checkFrame(mpHIO->m.skip_frame)) {
                     mSound.startCreatureVoice(Z2SE_YKM_V_GETFOOD, -1);
-                    fVar1 = daNpc_ykM_Param_c::m.fly_speed;
-                    iVar1 = cM_deg2s(daNpc_ykM_Param_c::m.fly_angle);
-                    daPy_getPlayerActorClass()->setThrowDamage(shape_angle.y, fVar1 * cM_scos(iVar1), fVar1 * cM_ssin(iVar1), 0, 1, 0);
+                    fVar1 = mpHIO->m.fly_speed;
+                    s16 iVar3 = cM_deg2s(mpHIO->m.fly_angle);
+                    daPy_getPlayerActorClass()->setThrowDamage(shape_angle.y,
+                        fVar1 * cM_scos(iVar3), fVar1 * cM_ssin(iVar3), 0, 1, 0);
                 }
             } else {
                 rv = 1;
@@ -2354,7 +2516,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
                         field_0x1578 = 1;
                         actor_p = (daObj_Gadget_c*)mActorMngr[4].getActorP();
                         if (actor_p != NULL) {
-                            actor_p->onHide();
+                            ((daObj_Gadget_c*)actor_p)->onHide();
                         }
                     }
                 } else {
@@ -2405,13 +2567,13 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
             mDoMtx_stack_c::multVecZero(&field_0xd6c);
             mJntAnm.lookPos(&field_0xd6c, 0);
         } else {
-            fopAc_ac_c* actor = mActorMngr[4].getActorP();
-            if (actor == NULL) {
+            actor_p = mActorMngr[4].getActorP();
+            if (actor_p == NULL) {
                 mJntAnm.lookNone(0);
                 return rv;
             }
-                
-            field_0xd6c = actor->current.pos;
+
+            field_0xd6c = actor_p->current.pos;
         }
     } else if (prm == 7) {
         mJntAnm.lookPos(&field_0x1508, 0);
@@ -2423,13 +2585,15 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
 
 /* 80B58A38-80B59500 005638 0AC8+00 1/0 0/0 0/0 .text            cutLv5DungeonClear__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
+    fopAc_ac_c* actor_p = NULL;
     daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();
     cXyz work;
     int rv = 0;
+    int* piVar1 = NULL;
     int prm = -1;
     int timer = 0;
 
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
         prm = *piVar1;
     }
@@ -2439,8 +2603,6 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
         timer = *piVar1;
     }
 
-    fopAc_ac_c* actor_p;
-    s16 sVar1;
     s16 angleY;
     if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
         switch (prm) {
@@ -2571,7 +2733,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                     current.angle.y = cLib_targetAngleY(&current.pos, &actor_p->current.pos);
                     cLib_addCalcAngleS2(&shape_angle.y, current.angle.y, 4, 0x800);
                     mCurAngle.y = shape_angle.y;
-                    speedF = daNpc_ykM_Param_c::m.run_speed;
+                    speedF = mpHIO->m.run_speed;
                 }
             }
 
@@ -2591,8 +2753,9 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 }
 
                 if (rv != 0) {
-                    sVar1 = fopAcM_searchActorAngleY(this, player);
-                    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&player->current.pos, sVar1 + 0x4000, 0);
+                    angleY = fopAcM_searchActorAngleY(this, player);
+                    angleY += (s16)0x4000;
+                    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&player->current.pos, angleY, 0);
                     field_0x1580 = 1;
                 }
             }
@@ -2675,9 +2838,10 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
 /* 80B59500-80B59748 006100 0248+00 1/0 0/0 0/0 .text            cutFindWolf__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutFindWolf(int i_cutIndex) {
     int rv = 0;
+    int* piVar1 = NULL;
     int prm = -1;
 
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
         prm = *piVar1;
     }
@@ -2698,12 +2862,13 @@ int daNpc_ykM_c::cutFindWolf(int i_cutIndex) {
         }
     }
 
+    int unusedIntArr1[2] = {-1, -1};
     switch (prm) {
         case 0:
             mJntAnm.lookPlayer(0);
 
             if (mPlayerAngle != mCurAngle.y) {
-                step(mPlayerAngle, 15, 30, daNpc_ykM_Param_c::m.step_speed, 0);
+                step(mPlayerAngle, 15, 30, mpHIO->m.step_speed, 0);
             } else {
                 rv = 1;
             }
@@ -2721,19 +2886,17 @@ int daNpc_ykM_c::cutFindWolf(int i_cutIndex) {
     return rv;
 }
 
-static u8 const lit_7359[8] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-
 /* 80B59748-80B59B90 006348 0448+00 1/0 0/0 0/0 .text cutStartSnowboardRace__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutStartSnowboardRace(int i_cutIndex) {
+    fopAc_ac_c* actor_p = NULL;
     cXyz work;
     csXyz angle;
     int rv = 0;
+    int* piVar1 = NULL;
     int prm = -1;
     int timer = 0;
 
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
         prm = *piVar1;
     }
@@ -2743,7 +2906,6 @@ int daNpc_ykM_c::cutStartSnowboardRace(int i_cutIndex) {
         timer = *piVar1;
     }
 
-    fopAc_ac_c* actor_p;
     if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
         switch (prm) {
             case 0:
@@ -2843,13 +3005,15 @@ int daNpc_ykM_c::cutStartSnowboardRace(int i_cutIndex) {
 
 /* 80B59B90-80B5A0B8 006790 0528+00 1/0 0/0 0/0 .text cutEndSnowboardRace__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
+    fopAc_ac_c* actor_p = NULL;
     cXyz work;
     csXyz angle;
     int rv = 0;
+    int* piVar1 = NULL;
     int prm = -1;
     int timer = 0;
 
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
         prm = *piVar1;
     }
@@ -2859,7 +3023,6 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
         timer = *piVar1;
     }
 
-    fopAc_ac_c* actor_p;
     if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
         switch (prm) {
             case 0:
@@ -2930,7 +3093,7 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
         }
     }
 
-    int iVar1;
+    int unusedIntArr1[2] = {-1, -1};
     switch (prm) {
         case 0:
             action();
@@ -2949,22 +3112,25 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
             rv = 1;
             break;
 
-        case 3:
+        case 3: {
             if (talkProc(NULL, FALSE, NULL, FALSE)) {
-                switch ((int)mFlow.getEventId(&iVar1)) {
-                    case 13:
-                        mEvtNo = EVENT_START_SNOWBOARDRACE;
-                        evtChange();
-                        break;
+                int iVar1;
+                int eventId = mFlow.getEventId(&iVar1);
+                switch (eventId) {
+                case 13:
+                    mEvtNo = EVENT_START_SNOWBOARDRACE;
+                    evtChange();
+                    break;
 
-                    default:
-                        if (mFlow.checkEndFlow()) {
-                            rv = 1;
-                        }
-                        break;
+                default:
+                    if (mFlow.checkEndFlow()) {
+                        rv = 1;
+                    }
+                    break;
                 }
             }
             break;
+        }
 
         case 4:
             rv = 1;
@@ -2981,16 +3147,23 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
 
 /* 80B5A0B8-80B5A128 006CB8 0070+00 1/0 0/0 0/0 .text            cutHug__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutHug(int i_cutIndex) {
-    dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
-    dComIfGp_getEventManager().getIsAddvance(i_cutIndex);
-    field_0xe26 = false;
-    return 0;
-}
+    int prm;
+    int rv = 0;
+    int* piVar1 = NULL;
+    prm = -1;
 
-/* 80B5D9F8-80B5DA00 000264 0008+00 0/0 0/0 0/0 .rodata          @7385 */
-static u8 const lit_7385[8] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    if (piVar1 != NULL) {
+        prm = *piVar1;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+        (void)0;
+    }
+    field_0xe26 = false;
+
+    return rv;
+}
 
 /* 80B5A128-80B5A224 006D28 00FC+00 1/1 0/0 0/0 .text            setDialogueMotion__11daNpc_ykM_cFv */
 void daNpc_ykM_c::setDialogueMotion() {
@@ -2998,6 +3171,7 @@ void daNpc_ykM_c::setDialogueMotion() {
     uVar1 >>= 1;
     
     if (0.5f < cM_rnd()) {
+        int dummy; // force r31 to be used for stack pointer instead of r1
         if (cM_rnd() - 0.5f < 0.0f) {
             uVar1--;
         } else {
@@ -3013,15 +3187,17 @@ void daNpc_ykM_c::setDialogueMotion() {
     };
 
     if ((field_0x154c & 1) != 0) {
-        mMotionSeqMngr.setNo(motionTbl2[uVar1 & 3], -1.0f, FALSE, 0);
+        uVar1 &= 0x3;
+        mMotionSeqMngr.setNo(motionTbl2[uVar1], -1.0f, FALSE, 0);
     } else {
-        mMotionSeqMngr.setNo(motionTbl1[uVar1 & 1], -1.0f, FALSE, 0);
+        uVar1 &= 0x1;
+        mMotionSeqMngr.setNo(motionTbl1[uVar1], -1.0f, FALSE, 0);
     }
 }
 
 /* 80B5A224-80B5A3FC 006E24 01D8+00 1/1 0/0 0/0 .text            dialogue__11daNpc_ykM_cFv */
 int daNpc_ykM_c::dialogue() {
-    daNpc_ykW_c* actor_p;
+    daNpc_ykW_c* actor_p = NULL;
 
     switch (field_0x1548) {
         case 0:
@@ -3082,8 +3258,8 @@ int daNpc_ykM_c::dialogue() {
 
 /* 80B5A3FC-80B5ABA8 006FFC 07AC+00 3/0 0/0 0/0 .text            wait__11daNpc_ykM_cFPv */
 BOOL daNpc_ykM_c::wait(void* param_1) {
+    daTag_EvtArea_c* actor_p = NULL;
     daPy_py_c* player = daPy_getPlayerActorClass();
-    daTag_EvtArea_c* actor_p;
 
     switch (mMode) {
         case 0:
@@ -3173,7 +3349,7 @@ BOOL daNpc_ykM_c::wait(void* param_1) {
 
                     if (home.angle.y != mCurAngle.y) {
                         if (field_0xe34 != 0) {
-                            if (step(home.angle.y, 15, 30, daNpc_ykM_Param_c::m.step_speed, 0)) {
+                            if (step(home.angle.y, 15, 30, mpHIO->m.step_speed, 0)) {
                                 mMode = 1;
                             }
                         } else {
@@ -3237,8 +3413,9 @@ BOOL daNpc_ykM_c::wait(void* param_1) {
 
 /* 80B5ABA8-80B5B260 0077A8 06B8+00 1/0 0/0 0/0 .text            cook__11daNpc_ykM_cFPv */
 BOOL daNpc_ykM_c::cook(void* param_1) {
+    fopAc_ac_c* actor_p = NULL;
     daPy_py_c* player = daPy_getPlayerActorClass();
-    int waitTime = daNpc_ykM_Param_c::m.wait_time;
+    int waitTime = mpHIO->m.wait_time;
     BOOL bVar1 = FALSE;
 
     field_0x1508.set(0.0f, 200.0f, 450.0f);
@@ -3246,8 +3423,6 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
     mDoMtx_stack_c::multVec(&field_0x1508, &field_0x1508);
     field_0x1508 += current.pos;
 
-    fopAc_ac_c* actor_p;
-    f32 fVar1;
     switch (mMode) {
         case 0:
         case 1:
@@ -3259,18 +3434,16 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
                 mMode = 2;
             }
             // fallthrough
-        case 2:
-            if (!daPy_py_c::checkNowWolf() && !checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1) && !checkItemGet(fpcNm_ITEM_TASTE, 1) && 
+        case 2: {
+            if (!daPy_py_c::checkNowWolf() && !checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1) && !checkItemGet(fpcNm_ITEM_TASTE, 1) &&
                 !daNpcT_chkEvtBit(10) /* dSv_event_flag_c::F_0006 - Snowpeak Ruins - First conversation with Yeto in kitchen */) {
                 actor_p = mActorMngr[6].getActorP();
-
-                if (actor_p != NULL) {
-                    if (((daTag_EvtArea_c*)actor_p)->chkPointInArea(player->current.pos)) {
-                        mEvtNo = EVENT_MEETING_AGAIN;
-                        field_0xe33 = true;
+                if (actor_p != NULL &&
+                    ((daTag_EvtArea_c*)actor_p)->chkPointInArea(player->current.pos)) {
+                    mEvtNo = EVENT_MEETING_AGAIN;
+                    field_0xe33 = true;
                     }
                 }
-            }
 
             if (!mStagger.checkStagger()) {
                 if (daNpcT_chkEvtBit(10) /* dSv_event_flag_c::F_0006 - Snowpeak Ruins - First conversation with Yeto in kitchen */) {
@@ -3306,17 +3479,20 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
                             field_0x1538 = cLib_getRndValue(waitTime / 2, waitTime);
                             field_0x1538 <<= 1;
                         } else {
-                            fVar1 = cM_rnd();
-                            if (bVar1 && 0.6f < fVar1) {
+                            f32 rnd = cM_rnd();
+                            if (bVar1 && 0.6f < rnd) {
                                 mJntAnm.lookAround2(0, 0x2D);
-                            } else if (0.5f < cM_rnd()) {
-                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
-                                mMotionSeqMngr.setNo(MOTION_TALK_E, -1.0f, FALSE, 0);
-                                mJntAnm.lookNone(0);
                             } else {
-                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
-                                mMotionSeqMngr.setNo(MOTION_TALK_D, -1.0f, FALSE, 0);
-                                mJntAnm.lookNone(0);
+                                rnd = cM_rnd();
+                                if (0.5f < rnd) {
+                                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                                    mMotionSeqMngr.setNo(MOTION_TALK_E, -1.0f, FALSE, 0);
+                                    mJntAnm.lookNone(0);
+                                } else {
+                                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                                    mMotionSeqMngr.setNo(MOTION_TALK_D, -1.0f, FALSE, 0);
+                                    mJntAnm.lookNone(0);
+                                }
                             }
 
                             field_0x1538 = waitTime;
@@ -3327,15 +3503,16 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
                 }
 
                 switch (mJntAnm.getMode()) {
-                    case daNpcT_JntAnm_c::LOOK_NONE:
-                        break;
+                case daNpcT_JntAnm_c::LOOK_NONE:
+                    break;
 
-                    case daNpcT_JntAnm_c::LOOK_POS:
-                    case daNpcT_JntAnm_c::LOOK_MODE_8:
-                        mSound.startCreatureVoiceLevel(Z2SE_YKM_V_HUMMING, -1);
+                case daNpcT_JntAnm_c::LOOK_POS:
+                case daNpcT_JntAnm_c::LOOK_MODE_8:
+                    mSound.startCreatureVoiceLevel(Z2SE_YKM_V_HUMMING, -1);
                 }
             }
             break;
+        }
 
         case 3:
             break;
@@ -3348,7 +3525,7 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
 BOOL daNpc_ykM_c::race(void* param_1) {
     cXyz work;
     fopAc_ac_c* actors[2] = {this, daPy_getPlayerActorClass()};
-    s16 sVar1;
+    s16 angleY;
 
     switch (mMode) {
         case 0:
@@ -3366,9 +3543,13 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                 field_0x14fc.x = mRoomPath->m_points[mRoomPath->m_num - 1].m_position.x;
                 field_0x14fc.y = mRoomPath->m_points[mRoomPath->m_num - 1].m_position.y;
                 field_0x14fc.z = mRoomPath->m_points[mRoomPath->m_num - 1].m_position.z;
-                sVar1 = cLib_targetAngleY(&field_0x14fc, &daPy_getPlayerActorClass()->current.pos);
+                angleY = cLib_targetAngleY(&field_0x14fc, &daPy_getPlayerActorClass()->current.pos);
 
-                if (field_0x1560 < 0 || (field_0x14fc.abs2(daPy_getPlayerActorClass()->current.pos) < 640000.0f && (sVar1 < -0x4000 || sVar1 > 0x4000))) {
+                if (field_0x1560 < 0 ||
+#if DEBUG
+                    field_0x1558.field_0x0 >= 0 &&
+#endif
+                    (field_0x14fc.abs2(daPy_getPlayerActorClass()->current.pos) < 640000.0f && (angleY < -0x4000 || angleY > 0x4000))) {
                     field_0x1560 = -1;
                     mGndChk.SetPos(&daPy_getPlayerActorClass()->current.pos);
 
@@ -3385,7 +3566,8 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                                     }
 
                                     dComIfG_TimerEnd(5, -1);
-                                    if (dComIfG_getTimerNowTimeMs() < dComIfGs_getRaceGameTime() || dComIfGs_getRaceGameTime() == 0) {
+                                    if (dComIfG_getTimerNowTimeMs() < dComIfGs_getRaceGameTime() ||
+                                        dComIfGs_getRaceGameTime() == 0) {
                                         dComIfGs_setRaceGameTime(dComIfG_getTimerNowTimeMs());
                                     }
                                 }
@@ -3395,8 +3577,11 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                         mEvtNo = EVENT_END_SNOWBOARDRACE;
                     }
                 }
-
+#if DEBUG
+                else if (field_0x1558.field_0x0 < 0) {
+#else
                 if (field_0x1560 >= 0 && field_0x1558.field_0x0 < 0) {
+#endif
                     field_0x157c = 1;
                 }
             }
@@ -3423,7 +3608,6 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                 }
 
                 if (field_0x157e == 0) {
-                    int idx;
                     while (true) {
                         if (mPath.chkPassed1(current.pos, mPath.getNumPnts())) {
                             if (u8(mPath.getArg0()) == 0) {
@@ -3445,23 +3629,21 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                                 }
 
                                 field_0x1514 = current.pos;
-                                idx = mPath.getIdx();
-                                field_0x1520 = mPath.getPntPos(idx);
+                                field_0x1520 = mPath.getPntPos(mPath.getIdx());
                                 current.angle.y = cLib_targetAngleY(&field_0x1514, &field_0x1520);
                                 int iVar3 = (int)((field_0x1520 - field_0x1514).absXZ() / speedF) + 1;
                                 speed.y = (field_0x1520.y - field_0x1514.y) + fabsf(gravity) * iVar3 * iVar3 * 0.5f;
                                 speed.y /= iVar3;
                             }
                         } else {
-                            idx = mPath.getIdx();
-                            work = mPath.getPntPos(idx);
+                            work = mPath.getPntPos(mPath.getIdx());
                         }
                         break;
                     }
                 }
 
                 if (field_0x1585 == 0 && field_0x157e == 0) {
-                    s16 angleY = cLib_targetAngleY(&current.pos, &work);
+                    angleY = cLib_targetAngleY(&current.pos, &work);
                     current.angle.y = angleY;
                     cLib_addCalcAngleS2(&shape_angle.y, current.angle.y, 8, 0x100);
                     mCurAngle.y = shape_angle.y;
@@ -3487,27 +3669,27 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                     cLib_addCalcAngleS2(&mCurAngle.x, mGroundAngle, 6, 0x200);
                     cLib_addCalcAngleS2(&mCurAngle.z, angleY, 6, 0x200);
                     int iVar1 = field_0x1560 - field_0x1558.field_0x0;
-                    f32 fVar2 = daNpc_ykM_Param_c::m.slide_speed * cM_scos(mGroundAngle);
+                    f32 fVar2 = mpHIO->m.slide_speed * cM_scos(mGroundAngle);
 
                     if (mStagger.checkStagger()) {
                         fVar2 *= 0.0f;
                     } else {
                         if (chkTouchPlayer() && field_0x1540 == 0) {
-                            sVar1 = fopAcM_searchPlayerAngleY(this);
+                            s16 sVar2 = fopAcM_searchPlayerAngleY(this);
                             f32 fVar3 = daPy_getPlayerActorClass()->speedF;
-                            int iVar3 = cM_deg2s(daNpc_ykM_Param_c::m.fly_angle);
-                            daPy_getPlayerActorClass()->setThrowDamage(sVar1, fVar3 * cM_scos(iVar3), fVar3 * cM_ssin(iVar3), 0, 0, 0);
+                            s16 iVar3 = cM_deg2s(mpHIO->m.fly_angle);
+                            daPy_getPlayerActorClass()->setThrowDamage(sVar2, fVar3 * cM_scos(iVar3), fVar3 * cM_ssin(iVar3), 0, 0, 0);
                             field_0x1540 = 8;
                         }
 
-                        iVar1 += daNpc_ykM_Param_c::m.competition_prm_a;
-                        int iVar2 = cLib_minMaxLimit<int>(iVar1, 0, daNpc_ykM_Param_c::m.competition_prm_b);
-                        if (iVar2 > 0) {
-                            fVar2 *= abs(iVar2) * 0.1f * daNpc_ykM_Param_c::m.competition_prm_c + 1.0f;
+                        iVar1 += mpHIO->m.competition_prm_a;
+                        iVar1 = cLib_minMaxLimit<int>(iVar1, 0, mpHIO->m.competition_prm_b);
+                        if (iVar1 > 0) {
+                            fVar2 *= abs(iVar1) * 0.1f * mpHIO->m.competition_prm_c + 1.0f;
                         }
                     }
 
-                    cLib_chaseF(&speedF, fVar2, daNpc_ykM_Param_c::m.slide_acceleration);
+                    cLib_chaseF(&speedF, fVar2, mpHIO->m.slide_acceleration);
                     mSound.startCreatureSoundLevel(Z2SE_YM_SNOBO_RIDE, speedF, -1);
                     mSound.startCreatureVoiceLevel(Z2SE_YM_V_SNOBO_RIDING, -1);
                 }
@@ -3526,8 +3708,6 @@ BOOL daNpc_ykM_c::race(void* param_1) {
 
 /* 80B5BE08-80B5C0C4 008A08 02BC+00 3/0 0/0 0/0 .text            talk__11daNpc_ykM_cFPv */
 BOOL daNpc_ykM_c::talk(void* param_1) {
-    int iVar1;
-
     switch (mMode) {
         case 0:
         case 1:
@@ -3548,25 +3728,27 @@ BOOL daNpc_ykM_c::talk(void* param_1) {
                 mMode = 2;
             }
             // fallthrough
-        case 2:
+        case 2: {
             if (!mStagger.checkStagger()) {
                 if (mTwilight || mPlayerAngle == mCurAngle.y || mType == TYPE_COOK || mType == TYPE_2) {
                     if (talkProc(NULL, FALSE, NULL, FALSE)) {
                         field_0x1583 = 0;
 
-                        switch ((int)mFlow.getEventId(&iVar1)) {
-                            case 13:
-                                mEvtNo = EVENT_START_SNOWBOARDRACE;
-                                evtChange();
-                                break;
+                        int iVar1;
+                        int eventId = mFlow.getEventId(&iVar1);
+                        switch (eventId) {
+                        case 13:
+                            mEvtNo = EVENT_START_SNOWBOARDRACE;
+                            evtChange();
+                            break;
 
-                            default:
-                                if (mFlow.checkEndFlow()) {
-                                    mPlayerActorMngr.entry(daPy_getPlayerActorClass());
-                                    dComIfGp_event_reset();
-                                    mMode = 3;
-                                }
-                                break;
+                        default:
+                            if (mFlow.checkEndFlow()) {
+                                mPlayerActorMngr.entry(daPy_getPlayerActorClass());
+                                dComIfGp_event_reset();
+                                mMode = 3;
+                            }
+                            break;
                         }
                     }
 
@@ -3577,9 +3759,11 @@ BOOL daNpc_ykM_c::talk(void* param_1) {
                     }
                 } else {
                     mJntAnm.lookPlayer(0);
-                    step(mPlayerAngle, 15, 30, daNpc_ykM_Param_c::m.step_speed, 0);
+                    step(mPlayerAngle, 15, 30, mpHIO->m.step_speed, 0);
                 }
             }
+            break;
+        }
 
         case 3:
             break;
@@ -3590,64 +3774,53 @@ BOOL daNpc_ykM_c::talk(void* param_1) {
 
 #ifdef DEBUG
 BOOL daNpc_ykM_c::test(void* param_1) {
+    int rv = FALSE;
     switch (mMode) {
-        case 1:
-            speedF = 0.0f;
-            speed.setall(0.0f);
-            mMode = 2;
-            // fallthrough
-        case 2:
-            mFaceMotionSeqMngr.setNo(daNpc_ykM_Param_c::m.common.face_expression, -1.0f, FALSE, 0);
-            mMotionSeqMngr.setNo(daNpc_ykM_Param_c::m.common.motion, -1.0f, FALSE, 0);
-            mJntAnm.lookNone(0);
-            attention_info.flags = 0;
-            break;
+    case 0:
+    case 1:
+        speedF = 0.0f;
+        speed.setall(0.0f);
+        mMode = 2;
+        // fallthrough
+    case 2:
+        mFaceMotionSeqMngr.setNo(mpHIO->m.common.face_expression, -1.0f, FALSE, 0);
+        mMotionSeqMngr.setNo(mpHIO->m.common.motion, -1.0f, FALSE, 0);
+        mJntAnm.lookNone(0);
+        attention_info.flags = 0;
+        break;
 
-        case 3:
-            break;
+    case 3:
+        break;
     }
 
-    return FALSE;
+    return rv;
 }
 #endif
 
 /* 80B5C0C4-80B5C0E4 008CC4 0020+00 1/0 0/0 0/0 .text            daNpc_ykM_Create__FPv */
-static int daNpc_ykM_Create(void* a_this) {
-    daNpc_ykM_c* i_this = (daNpc_ykM_c*)a_this;
-    return i_this->create();
+static int daNpc_ykM_Create(void* i_this) {
+    return ((daNpc_ykM_c*)i_this)->create();
 }
 
 /* 80B5C0E4-80B5C104 008CE4 0020+00 1/0 0/0 0/0 .text            daNpc_ykM_Delete__FPv */
-static int daNpc_ykM_Delete(void* a_this) {
-    daNpc_ykM_c* i_this = (daNpc_ykM_c*)a_this;
-    return i_this->Delete();
+static int daNpc_ykM_Delete(void* i_this) {
+    return ((daNpc_ykM_c*)i_this)->Delete();
 }
 
 /* 80B5C104-80B5C124 008D04 0020+00 1/0 0/0 0/0 .text            daNpc_ykM_Execute__FPv */
-static int daNpc_ykM_Execute(void* a_this) {
-    daNpc_ykM_c* i_this = (daNpc_ykM_c*)a_this;
-    return i_this->Execute();
+static int daNpc_ykM_Execute(void* i_this) {
+    return ((daNpc_ykM_c*)i_this)->Execute();
 }
 
 /* 80B5C124-80B5C144 008D24 0020+00 1/0 0/0 0/0 .text            daNpc_ykM_Draw__FPv */
-static int daNpc_ykM_Draw(void* a_this) {
-    daNpc_ykM_c* i_this = (daNpc_ykM_c*)a_this;
-    return i_this->Draw();
+static int daNpc_ykM_Draw(void* i_this) {
+    return ((daNpc_ykM_c*)i_this)->Draw();
 }
 
 /* 80B5C144-80B5C14C 008D44 0008+00 1/0 0/0 0/0 .text            daNpc_ykM_IsDelete__FPv */
 static int daNpc_ykM_IsDelete(void* a_this) {
     return 1;
 }
-
-/* 80B5ED74-80B5ED80 000054 000C+00 0/1 0/0 0/0 .bss             l_SBRaceStartPos */
-static cXyz l_SBRaceStartPos;
-
-/* 80B5ED8C-80B5ED94 00006C 0006+02 0/1 0/0 0/0 .bss             l_SBRaceStartAngle */
-static csXyz l_SBRaceStartAngle;
-
-/* 80B5EDA0-80B5EDA4 000080 0004+00 0/1 0/0 0/0 .bss             l_HIO */
-static daNpc_ykM_Param_c l_HIO;
 
 AUDIO_INSTANCES;
 

@@ -32,13 +32,13 @@ public:
         if (getDrawFlag() == 1) {
             setDrawFlag();
             dComIfGp_onPauseFlag();
-            GXSetTexCopySrc(0, 0, 608, 448);
-            GXSetTexCopyDst(304, 224, (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format, GX_ENABLE);
+            GXSetTexCopySrc(0, 0, FB_WIDTH, FB_HEIGHT);
+            GXSetTexCopyDst(FB_WIDTH / 2, FB_HEIGHT / 2, (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format, GX_ENABLE);
             GXCopyTex(mDoGph_gInf_c::getFrameBufferTex(), GX_FALSE);
             GXPixModeSync();
         } else {
             GXTexObj tex;
-            GXInitTexObj(&tex, mDoGph_gInf_c::getFrameBufferTex(), 304, 224,
+            GXInitTexObj(&tex, mDoGph_gInf_c::getFrameBufferTex(), FB_WIDTH / 2, FB_HEIGHT / 2,
                         (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format, GX_CLAMP, GX_CLAMP, GX_FALSE);
             GXInitTexObjLOD(&tex, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
             GXLoadTexObj(&tex, GX_TEXMAP0);

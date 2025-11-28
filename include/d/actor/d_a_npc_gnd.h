@@ -72,11 +72,11 @@ public:
     /* 809BCA14 */ void setCollision();
     /* 809BCB48 */ int drawDbgInfo();
     /* 809BCB50 */ bool afterSetMotionAnm(int, int, f32, int);
-    /* 809BCCE8 */ void selectAction();
-    /* 809BCD30 */ void chkAction(int (daNpc_Gnd_c::*)(void*));
-    /* 809BCD5C */ void setAction(int (daNpc_Gnd_c::*)(void*));
-    /* 809BCE04 */ void wait(void*);
-    /* 809BD050 */ void talk(void*);
+    /* 809BCCE8 */ int selectAction();
+    /* 809BCD30 */ int chkAction(int (daNpc_Gnd_c::*)(void*));
+    /* 809BCD5C */ int setAction(int (daNpc_Gnd_c::*)(void*));
+    /* 809BCE04 */ int wait(void*);
+    /* 809BD050 */ int talk(void*);
     /* 809BE2D0 */ daNpc_Gnd_c(
         daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
         daNpcT_motionAnmData_c const* i_motionAnmData,
@@ -96,16 +96,15 @@ public:
     /* 809BE424 */ s32 getNeckJointNo() { return 3; }
     /* 809BE42C */ s32 getBackboneJointNo() { return 1; }
 
-    static char* mCutNameList;
+    static char* mCutNameList[1];
     static cutFunc mCutList[1];
 
 private:
     /* 0xE40 */ NPC_GND_HIO_CLASS* mpHIO;
     /* 0xE44 */ dCcD_Cyl mCyl1;
     /* 0xF80 */ u8 mType;
-    /* 0xF81 */ u8 field_0xf81[0xF84 - 0xF81];
-    /* 0xF84 */ u8 field_0xF84;
-    /* 0xF85 */ u8 field_0xF85[0xF9C - 0xF85];
+    /* 0xF84 */ int (daNpc_Gnd_c::*mNextAction)(void*);
+    /* 0xF90 */ int (daNpc_Gnd_c::*mAction)(void*);
     /* 0xF9C */ u8 field_0xF9C;
 };
 

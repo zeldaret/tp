@@ -385,15 +385,12 @@ static int daGrass_Delete(daGrass_c* i_this) {
 }
 
 int daGrass_c::execute() {
-    // fake match, inlines save to register instead of reloading
-    // dComIfG_Ccsp()->PrepareMass();
-    g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Prepare();
+    dComIfG_Ccsp()->PrepareMass();
 
     executeGrass();
     executeFlower();
 
-    // dComIfG_Ccsp()->MassClear();
-    g_dComIfG_gameInfo.play.mCcs.MassClear();
+    dComIfG_Ccsp()->MassClear();
     return 1;
 }
 

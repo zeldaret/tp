@@ -29,6 +29,10 @@ void* VIGetCurrentFrameBuffer(void);
 u32 VIGetScanMode(void);
 u32 VIGetDTVStatus(void);
 
+void VISetTrapFilter(u8);
+void VIEnableDimming(BOOL);
+void VISetGamma(int);
+
 #ifdef __cplusplus
 }
 #endif

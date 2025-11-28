@@ -12,7 +12,6 @@ public:
     JSURandomOutputStream() {}
     virtual ~JSURandomOutputStream() {}
 
-    /* vt[3] */ virtual s32 skip(s32, s8);
     /* vt[4] */ virtual s32 writeData(const void*, s32) = 0;
     /* vt[5] */ virtual s32 getLength() const = 0;
     /* vt[6] */ virtual s32 getPosition() const = 0;

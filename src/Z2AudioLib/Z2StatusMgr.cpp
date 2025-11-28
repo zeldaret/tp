@@ -1,15 +1,94 @@
-//
-// Z2StatusMgr
-//
-
 #include "Z2AudioLib/Z2StatusMgr.h"
-#include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2Param.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
 
+static const char* sSpotName[] = {
+    "F_SP00",
+    "F_SP103",
+    "R_SP01",
+    "F_SP104",
+    "R_SP107",
+    "F_SP108",
+    "R_SP108",
+    "F_SP117",
+    "F_SP109",
+    "R_SP109",
+    "R_SP209",
+    "F_SP110",
+    "R_SP110",
+    "F_SP111",
+    "F_SP128",
+    "R_SP128",
+    "F_SP115",
+    "F_SP112",
+    "F_SP126",
+    "F_SP127",
+    "R_SP127",
+    "F_SP113",
+    "F_SP116",
+    "R_SP116",
+    "R_SP160",
+    "R_SP161",
+    "F_SP114",
+    "F_SP118",
+    "F_SP124",
+    "F_SP125",
+    "F_SP121",
+    "F_SP122",
+    "F_SP123",
+    "F_SP200",
+    "F_SP102",
+    "",
+    "R_SP300",
+    "R_SP301",
+    "T_ENEMY",
+    "D_MN54",
+    "D_MN05",
+    "D_MN05B",
+    "D_MN05A",
+    "D_MN04",
+    "D_MN04B",
+    "D_MN04A",
+    "D_MN01",
+    "D_MN01B",
+    "D_MN01A",
+    "D_MN10",
+    "D_MN10B",
+    "D_MN10A",
+    "D_MN11",
+    "D_MN11B",
+    "D_MN11A",
+    "D_MN06",
+    "D_MN06B",
+    "D_MN06A",
+    "D_MN07",
+    "D_MN07B",
+    "D_MN07A",
+    "D_MN08",
+    "D_MN08B",
+    "D_MN08C",
+    "D_MN08A",
+    "D_MN08D",
+    "D_MN09",
+    "D_MN09A",
+    "D_MN09B",
+    "D_MN09C",
+    "D_SB00",
+    "D_SB01",
+    "D_SB02",
+    "D_SB03",
+    "D_SB04",
+    "D_SB05",
+    "D_SB06",
+    "D_SB07",
+    "D_SB08",
+    "D_SB09",
+    "D_SB10",
+};
+
 /* 802B5F1C-802B5F70 2B085C 0054+00 0/0 1/1 0/0 .text            __ct__11Z2StatusMgrFv */
-Z2StatusMgr::Z2StatusMgr() : JASGlobalInstance(this) {
+Z2StatusMgr::Z2StatusMgr() : JASGlobalInstance(true) {
     mHour = 0;
     mMinute = 0;
     mWeekday = 0;
@@ -45,13 +124,16 @@ void Z2StatusMgr::processHeartGaugeSound() {
         if (Z2GetLink() == NULL) {
             return;
         }
-        u32 linkHp = Z2GetLink()->getLinkHp();
+    
+        u8 linkHp = Z2GetLink()->getLinkHp();
         if (linkHp == 0) {
             return;
         }
+    
         if (Z2GetSeqMgr()->isItemGetDemo()) {
             return;
         }
+    
         if (linkHp <= 2) {
             Z2GetSeMgr()->seStartLevel(Z2SE_ALMOST_DIE_ALERM_3, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         } else if (linkHp <= 4) {
@@ -99,90 +181,6 @@ bool Z2StatusMgr::isMovieDemo() {
     return mDemoStatus == 2 || mDemoStatus == 8 || mDemoStatus == 9;
 }
 
-static void dummyStrings() {
-    DEAD_STRING("F_SP00");
-    DEAD_STRING("F_SP103");
-    DEAD_STRING("R_SP01");
-    DEAD_STRING("F_SP104");
-    DEAD_STRING("R_SP107");
-    DEAD_STRING("F_SP108");
-    DEAD_STRING("R_SP108");
-    DEAD_STRING("F_SP117");
-    DEAD_STRING("F_SP109");
-    DEAD_STRING("R_SP109");
-    DEAD_STRING("R_SP209");
-    DEAD_STRING("F_SP110");
-    DEAD_STRING("R_SP110");
-    DEAD_STRING("F_SP111");
-    DEAD_STRING("F_SP128");
-    DEAD_STRING("R_SP128");
-    DEAD_STRING("F_SP115");
-    DEAD_STRING("F_SP112");
-    DEAD_STRING("F_SP126");
-    DEAD_STRING("F_SP127");
-    DEAD_STRING("R_SP127");
-    DEAD_STRING("F_SP113");
-    DEAD_STRING("F_SP116");
-    DEAD_STRING("R_SP116");
-    DEAD_STRING("R_SP160");
-    DEAD_STRING("R_SP161");
-    DEAD_STRING("F_SP114");
-    DEAD_STRING("F_SP118");
-    DEAD_STRING("F_SP124");
-    DEAD_STRING("F_SP125");
-    DEAD_STRING("F_SP121");
-    DEAD_STRING("F_SP122");
-    DEAD_STRING("F_SP123");
-    DEAD_STRING("F_SP200");
-    DEAD_STRING("F_SP102");
-    DEAD_STRING("");
-    DEAD_STRING("R_SP300");
-    DEAD_STRING("R_SP301");
-    DEAD_STRING("T_ENEMY");
-    DEAD_STRING("D_MN54");
-    DEAD_STRING("D_MN05");
-    DEAD_STRING("D_MN05B");
-    DEAD_STRING("D_MN05A");
-    DEAD_STRING("D_MN04");
-    DEAD_STRING("D_MN04B");
-    DEAD_STRING("D_MN04A");
-    DEAD_STRING("D_MN01");
-    DEAD_STRING("D_MN01B");
-    DEAD_STRING("D_MN01A");
-    DEAD_STRING("D_MN10");
-    DEAD_STRING("D_MN10B");
-    DEAD_STRING("D_MN10A");
-    DEAD_STRING("D_MN11");
-    DEAD_STRING("D_MN11B");
-    DEAD_STRING("D_MN11A");
-    DEAD_STRING("D_MN06");
-    DEAD_STRING("D_MN06B");
-    DEAD_STRING("D_MN06A");
-    DEAD_STRING("D_MN07");
-    DEAD_STRING("D_MN07B");
-    DEAD_STRING("D_MN07A");
-    DEAD_STRING("D_MN08");
-    DEAD_STRING("D_MN08B");
-    DEAD_STRING("D_MN08C");
-    DEAD_STRING("D_MN08A");
-    DEAD_STRING("D_MN08D");
-    DEAD_STRING("D_MN09");
-    DEAD_STRING("D_MN09A");
-    DEAD_STRING("D_MN09B");
-    DEAD_STRING("D_MN09C");
-    DEAD_STRING("D_SB00");
-    DEAD_STRING("D_SB01");
-    DEAD_STRING("D_SB02");
-    DEAD_STRING("D_SB03");
-    DEAD_STRING("D_SB04");
-    DEAD_STRING("D_SB05");
-    DEAD_STRING("D_SB06");
-    DEAD_STRING("D_SB07");
-    DEAD_STRING("D_SB08");
-    DEAD_STRING("D_SB09");
-    DEAD_STRING("D_SB10");
-}
-
 /* 802B61E8-802B671C 2B0B28 0534+00 1/0 7/7 11/11 .text            setDemoName__11Z2StatusMgrFPc */
 void Z2StatusMgr::setDemoName(char* demoName) {
     if (mDemoStatus == 11) {
@@ -191,20 +189,26 @@ void Z2StatusMgr::setDemoName(char* demoName) {
             Z2GetSceneMgr()->sceneBgmStart();
         }
     }
+
     if (demoName == NULL) {
+        OS_REPORT("[Z2StatusMgr::setDemoName] → No demo\n");
         if (mDemoStatus == 3) {
             Z2GetSeqMgr()->setBattleBgmOff(false);
         } else if (mDemoStatus == 4) {
-            Z2GetSeqMgr()->unMuteSceneBgm(struct_80450861);
+            Z2GetSeqMgr()->unMuteSceneBgm(Z2Param::BGM_CROSS_FADEIN_TIME);
         } else if (mDemoStatus == 5) {
+            OS_REPORT("[Z2StatusMgr::setDemoName] HIDDEN_VIL DEMO_END\n");
             Z2GetSeqMgr()->subBgmStop();
         } else if (mDemoStatus == 9) {
-            Z2GetSeqMgr()->bgmStreamStop(0x3c);
+            Z2GetSeqMgr()->bgmStreamStop(60);
         }
+
         if (mDemoStatus != 8) {
             mDemoStatus = 0;
         }
     } else {
+        OS_REPORT("[Z2StatusMgr::setDemoName] demoName : %s\n", demoName);
+
         bool bVar1 = false;
         if (mDemoStatus == 8) {
             if (strcmp(demoName, "force_end") == 0) {
@@ -235,45 +239,47 @@ void Z2StatusMgr::setDemoName(char* demoName) {
             mDemoStatus = 10;
         } else {
             switch (Z2GetSceneMgr()->getCurrentSceneNum()) {
-            case 0xe:
+            case Z2SCENE_HIDDEN_VILLAGE:
                 if (strcmp(demoName, "R00_start") == 0) {
                     mDemoStatus = 5;
                     Z2GetSeqMgr()->subBgmStart(Z2BGM_HIDDEN_VIL_D1);
+                    OS_REPORT("[Z2StatusMgr::setDemoName] HIDDEN_VIL DEMO_START\n");
                 }
                 break;
-            case 5:
+            case Z2SCENE_FARON_WOODS:
                 if (strcmp(demoName, "B_W_START") == 0) {
                     Z2GetSeqMgr()->bgmStreamPrepare(0x200005f);
                     Z2GetSeqMgr()->bgmStreamPlay();
                     mDemoStatus = 9;
                 }
                 break;
-            case 4:
+            case Z2SCENE_TWILIGHT_HYRULE_CASTLE:
                 if (strcmp(demoName, "L0_rampart01") == 0) {
                     bVar1 = true;
                 }
                 break;
-            case 0x28:
+            case Z2SCENE_FOREST_TEMPLE:
                 if (strcmp(demoName, "R22-opening") == 0) {
                     bVar1 = true;
                 }
                 break;
-            case 0x2b:
+            case Z2SCENE_GORON_MINES:
                 if (strcmp(demoName, "R01-start") == 0) {
                     bVar1 = true;
                 }
                 break;
-            case 0x2e:
+            case Z2SCENE_LAKEBED_TEMPLE:
                 if (strcmp(demoName, "LV3R00OP") == 0) {
                     bVar1 = true;
                 }
                 break;
-            case 0x31:
+            case Z2SCENE_ARBITERS_GROUNDS:
                 if (strcmp(demoName, "R00_start") == 0) {
                     bVar1 = true;
                 }
                 break;
             }
+
             if (bVar1) {
                 Z2GetSeqMgr()->setBattleBgmOff(true);
                 mDemoStatus = 3;
@@ -300,14 +306,14 @@ bool Z2StatusMgr::checkDayTime() {
 }
 
 /* 802B6758-802B6760 -00001 0008+00 0/0 0/0 0/0 .text            setEventBit__11Z2StatusMgrFPv */
-void Z2StatusMgr::setEventBit(void* i_eventBit) {
-    mEventBit = i_eventBit;
+void Z2StatusMgr::setEventBit(void* eventBit) {
+    mEventBit = eventBit;
 }
 
 /* 802B6760-802B6784 2B10A0 0024+00 0/0 1/1 0/0 .text setCameraPolygonPos__11Z2StatusMgrFP3Vec */
-void Z2StatusMgr::setCameraPolygonPos(Vec* i_polygonPos) {
-    if (i_polygonPos != NULL) {
-        mPolygonPosition = *i_polygonPos;
+void Z2StatusMgr::setCameraPolygonPos(Vec* polygonPos) {
+    if (polygonPos != NULL) {
+        mPolygonPosition = *polygonPos;
     }
 }
 
@@ -326,13 +332,12 @@ void Z2StatusMgr::setCameraInWaterDepth(f32 depth) {
                     mCameraInWaterDepthRatio = 1.0f;
                 } else {
                     mCameraInWaterDepthRatio =
-                        Z2Calc::getParamByExp(depth, 0.0f, 2000.0f, 0.2f, 0.0f, 1.0f, Z2Calc::CURVE_SIGN_0);
+                        Z2Calc::getParamByExp(depth, 0.0f, 2000.0f, 0.2f, 0.0f, 1.0f, Z2Calc::CURVE_NEGATIVE);
                 }
                 Z2GetFxLineMgr()->setUnderWaterFx(true);
             }
         }
     }
+
     mUnderwaterDepth = depth;
 }
-
-/* 8039BC88-8039BC88 0282E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

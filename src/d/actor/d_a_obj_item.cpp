@@ -16,21 +16,6 @@
 #include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_mtx.h"
 
-//
-// Forward References:
-//
-
-extern "C" void itemGetNextExecute__8daItem_cFv();
-extern "C" void checkPlayerGet__8daItem_cFv();
-
-//
-// External References:
-//
-
-extern "C" extern void* __vt__16Z2SoundObjSimple[8];
-extern "C" void __dl__FPv();
-extern "C" void __dt__14Z2SoundObjBaseFv();
-
 /* 8015ADCC-8015B0B8 15570C 02EC+00 1/1 0/0 0/0 .text            Reflect__FP4cXyzRC13cBgS_PolyInfof
  */
 static f32 Reflect(cXyz* i_vec, cBgS_PolyInfo const& i_polyinfo, f32 i_scale) {
@@ -105,8 +90,6 @@ void daItem_c::setBaseMtx_1() {
 
 /* 8015B254-8015B320 155B94 00CC+00 2/2 0/0 0/0 .text
  * itemGetCoCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
-// NONMATCHING - matches, but pushes up weak daPy_py_c functions incorrectly
-// might need other TUs that use daPy_py_c weaks to be finished first
 static void itemGetCoCallBack(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
                               fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {
     daItem_c* a_coActorA = (daItem_c*)i_coActorA;
@@ -322,12 +305,6 @@ int daItem_c::_daItem_create() {
     }
 
     return phase_state;
-}
-
-/* 8015BA3C-8015BA9C 15637C 0060+00 0/0 1/1 0/0 .text            __dt__16Z2SoundObjSimpleFv */
-// Z2SoundObjSimple::~Z2SoundObjSimple() {
-extern "C" void __dt__16Z2SoundObjSimpleFv() {
-    // NONMATCHING
 }
 
 /* 8015BA9C-8015BD84 1563DC 02E8+00 1/1 0/0 0/0 .text            _daItem_execute__8daItem_cFv */

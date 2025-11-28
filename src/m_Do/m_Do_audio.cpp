@@ -134,5 +134,3 @@ bool mDoAud_resetRecover() {
     }
     return 1;
 }
-
-/* 80373D68-80373D68 0003C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

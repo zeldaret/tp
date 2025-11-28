@@ -596,5 +596,3 @@ void J2DTextBoxEx::setAnimation(J2DAnmVtxColor* param_0) {
 void J2DTextBoxEx::setAnimation(J2DAnmBase* anm) {
     J2DPane::setAnimation(anm);
 }
-
-/* 803A1DF0-803A1DF0 02E450 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

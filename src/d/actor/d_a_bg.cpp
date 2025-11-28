@@ -55,7 +55,7 @@ int daBg_btkAnm_c::create(J3DModelData* i_modelData, J3DAnmTextureSRTKey* i_btk,
         return 0;
     }
 
-    if (!mpBtk->init(i_modelData, i_btk, i_anmPlay, -1, 1.0f, 0, -1)) {
+    if (!mpBtk->init(i_modelData, i_btk, i_anmPlay, J3DFrameCtrl::EMode_NULL, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -90,7 +90,7 @@ int daBg_brkAnm_c::create(J3DModelData* i_modelData, J3DAnmTevRegKey* i_brk, int
         return 0;
     }
 
-    if (!mpBrk->init(i_modelData, i_brk, i_anmPlay, -1, 1.0f, 0, -1)) {
+    if (!mpBrk->init(i_modelData, i_brk, i_anmPlay, J3DFrameCtrl::EMode_NULL, 1.0f, 0, -1)) {
         return 0;
     }
 

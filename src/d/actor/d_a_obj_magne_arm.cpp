@@ -163,8 +163,9 @@ void rideCallBack(dBgW* param_0, fopAc_ac_c* i_this, fopAc_ac_c* i_rideActor) {
 /* 805929A0-805929A4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "D_Marm";
 
-/* 80592977-8059297E 00012F 0007+00 0/0 0/0 0/0 .rodata          None */
-SECTION_DEAD static char const* const stringBase_80592977 = "D_MN54";
+static void dummyStrings() {
+    DEAD_STRING("D_MN54");
+}
 
 /* 805929A4-805929BC 000024 0018+00 1/1 0/0 0/0 .data            l_cull_box */
 static Vec l_cull_box[2] = {{-500.0f, -3000.0f, -500.0f}, {500.0f, 3000.0f, 2500.0f}};
@@ -212,8 +213,8 @@ int daObjMarm_c::Create() {
         mIsYRotForward = 0;
     }
 
-    if (g_dComIfG_gameInfo.play.mBgs.Regist((dBgW_Base*)mpBgW1, this) != NULL ||
-        g_dComIfG_gameInfo.play.mBgs.Regist((dBgW_Base*)mpBgW2, this) != NULL)
+    if (dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW1, this) != NULL ||
+        dComIfG_Bgsp().Regist((dBgW_Base*)mpBgW2, this) != NULL)
     {
         return FALSE;
     }

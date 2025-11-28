@@ -905,7 +905,7 @@ static void e_yk_path_fly(e_yk_class* i_this) {
         }
 
         // fallthrough
-    case 2:
+    case 2: {
         i_this->mActionPhase = 3;
 
         dPnt* point = i_this->mpPath->m_points;
@@ -916,6 +916,7 @@ static void e_yk_path_fly(e_yk_class* i_this) {
         i_this->mPathPntPos.y = point->m_position.y + cM_rndFX(150.0f);
         i_this->mPathPntPos.z = point->m_position.z + cM_rndFX(150.0f);
         break;
+    }
     case 3:
         cXyz pos = i_this->mPathPntPos - i_this->current.pos;
 
@@ -1563,7 +1564,7 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
 
             yk->mWallCollisionCircle.SetWall(50.0f,50.0f);
             yk->mCreature.init(&yk->current.pos,&yk->eyePos,3,1);
-            yk->mCreature.setEnemyName("E_yk\0\0");
+            yk->mCreature.setEnemyName("E_yk");
 
             yk->mAtColliderInfo.mpSound = &yk->mCreature;
             yk->mAtColliderInfo.mPowerType = 1;

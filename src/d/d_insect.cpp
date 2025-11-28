@@ -12,24 +12,6 @@
 #include "m_Do/m_Do_lib.h"
 #include "dol2asm.h"
 
-#if VERSION == VERSION_GCN_USA
-// This is a HACK to get d_insect data at correct address due to
-// issues with the d_a_obj_item vtable. TODO: fix daItem_c vtable
-#pragma push
-#pragma force_active on
-SECTION_DATA extern void* __vt__8daItem_c__HACK[] = {
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-};
-#pragma pop
-#endif
-
 /* 8015E010-8015E078 158950 0068+00 0/0 0/0 13/13 .text            __ct__9dInsect_cFv */
 dInsect_c::dInsect_c() {
     m_itemId = -1;
@@ -113,8 +95,8 @@ void dInsect_c::CalcZBuffer(f32 param_0) {
         camera_trim_height = 0.0f;
     }
 
-    if (pos_projected.x > 0.0f && pos_projected.x < 608.0f &&
-        pos_projected.y > camera_trim_height && pos_projected.y < 448.0f - camera_trim_height)
+    if (pos_projected.x > 0.0f && pos_projected.x < FB_WIDTH &&
+        pos_projected.y > camera_trim_height && pos_projected.y < FB_HEIGHT - camera_trim_height)
     {
         dComIfGd_peekZ(pos_projected.x, pos_projected.y, &field_0x578);
     } else {

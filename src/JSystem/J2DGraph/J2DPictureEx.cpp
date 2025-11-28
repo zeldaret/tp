@@ -1054,8 +1054,8 @@ bool J2DPictureEx::setBlackWhite(JUtility::TColor param_0, JUtility::TColor para
 
 /* 80306664-80306824 300FA4 01C0+00 4/4 0/0 0/0 .text
  * getBlackWhite__12J2DPictureExCFPQ28JUtility6TColorPQ28JUtility6TColor */
-// NONMATCHING regswap
 bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* white) const {
+    // FAKEMATCH
     if (mMaterial == NULL) {
         return false;
     }
@@ -1077,8 +1077,14 @@ bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* whit
     *white = 0xffffffff;
 
     if (bVar1) {
+        #if DEBUG || VERSION == VERSION_WII_USA_R0 || VERSION == VERSION_WII_USA_R2
         J2DGXColorS10 tevColor0 = *mMaterial->getTevBlock()->getTevColor(0);
         J2DGXColorS10 tevColor1 = *mMaterial->getTevBlock()->getTevColor(1);
+        #else
+        J2DGXColorS10 tevColor0, tevColor1;
+        tevColor0 = *mMaterial->getTevBlock()->getTevColor(0);
+        tevColor1 = *mMaterial->getTevBlock()->getTevColor(1);
+        #endif
         *black = (u8)tevColor0.r << 24 | (u8)tevColor0.g << 16 | (u8)tevColor0.b << 8 | (u8)tevColor0.a;
         *white = (u8)tevColor1.r << 24 | (u8)tevColor1.g << 16 | (u8)tevColor1.b << 8 | (u8)tevColor1.a;
     }
@@ -1207,7 +1213,6 @@ void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* anm) {
 
 /* 80306B7C-80306C70 3014BC 00F4+00 1/0 0/0 0/0 .text
  * setAnimation__12J2DPictureExFP14J2DAnmVtxColor               */
-// NONMATCHING regswap
 void J2DPictureEx::setAnimation(J2DAnmVtxColor* anm) {
     field_0x198 = anm;
     field_0x19c = 0;
@@ -1215,12 +1220,18 @@ void J2DPictureEx::setAnimation(J2DAnmVtxColor* anm) {
     if (anm != NULL) {
         u16 anm_table_num = anm->getAnmTableNum(0);
         for (u8 i = 0; i < 4; i++) {
-            if (field_0x158[i] != 0xffff) {
+            if (field_0x158[i] != 0xFFFF) {
                 for (u16 j = 0; j < anm_table_num; j++) {
+                    #if DEBUG
                     J3DAnmVtxColorIndexData* data = anm->getAnmVtxColorIndexData(0, j);
-                    u16* index = anm->getVtxColorIndexPointer(0) + (uintptr_t)data->mpData;
+                    u16* index2 = anm->getVtxColorIndexPointer(0) + (uintptr_t)data->mpData;
+                    #else
+                    J3DAnmVtxColorIndexData* data = anm->getAnmVtxColorIndexData(0, j);
+                    u16* index = anm->getVtxColorIndexPointer(0);
+                    u16* index2 = index + (uintptr_t)data->mpData;
+                    #endif
                     for (u16 k = 0; k < data->mNum; k++) {
-                        if (index[k] == field_0x158[i]) {
+                        if (index2[k] == field_0x158[i]) {
                             field_0x198 = anm;
                             field_0x19c |= 1 << i;
                             goto next;

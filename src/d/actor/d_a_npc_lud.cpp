@@ -90,6 +90,7 @@ enum FaceMotion {
     /* 0x07 */ FACE_MOT_UNK_7 = 7,
     /* 0x08 */ FACE_MOT_UNK_8 = 8,
     /* 0x09 */ FACE_MOT_UNK_9 = 9,
+    /* 0x0A */ FACE_MOT_UNK_10 = 10,
     /* 0x0B */ FACE_MOT_UNK_11 = 11,
     /* 0x0C */ FACE_MOT_UNK_12 = 12,
     /* 0x0D */ FACE_MOT_UNK_13 = 13,
@@ -629,10 +630,10 @@ BOOL daNpc_Lud_c::checkChangeEvt() {
 /* 80A6BE6C-80A6BEE4 0013AC 0078+00 1/0 0/0 0/0 .text            setAfterTalkMotion__11daNpc_Lud_cFv
  */
 void daNpc_Lud_c::setAfterTalkMotion() {
-    int iVar2 = MOT_UNK_18;
+    int iVar2 = FACE_MOT_UNK_18;
     switch (mFaceMotionSeqMngr.getNo()) {
-    case MOT_UNK_1:
-        iVar2 = MOT_UNK_10;
+    case FACE_MOT_UNK_1:
+        iVar2 = FACE_MOT_UNK_10;
         break;
     }
     mFaceMotionSeqMngr.setNo(iVar2, -1.0f, 0, 0);

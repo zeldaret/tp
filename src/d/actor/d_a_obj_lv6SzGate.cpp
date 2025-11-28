@@ -25,7 +25,7 @@ daLv6SzGate_HIO_c::daLv6SzGate_HIO_c() {
 }
 
 void daLv6SzGate_HIO_c::genMessage(JORMContext* arg) {
-    // NONMATCHING
+    // DEBUG NONMATCHING
 }
 
 /* 80C75900-80C75A54 000180 0154+00 2/2 0/0 0/0 .text            setBaseMtx__13daLv6SzGate_cFv */
@@ -96,7 +96,7 @@ cPhs__Step daLv6SzGate_c::create() {
                               l_cull_box.max.x, l_cull_box.max.y, l_cull_box.max.y);
 
         if (field_0x5e8 != NULL) {
-            g_dComIfG_gameInfo.play.mBgs.Regist(field_0x5e8, this);
+            dComIfG_Bgsp().Regist(field_0x5e8, this);
             field_0x5e8->Move();
         }
         field_0x5e2 = getSw();

@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_DOORBOY_H
 #define D_A_NPC_DOORBOY_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_msg_object.h"
 
 /**

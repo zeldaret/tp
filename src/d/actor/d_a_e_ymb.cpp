@@ -2946,7 +2946,6 @@ void daE_YMB_c::getBellyBitePos(cXyz* i_pos) {
 
 /* 80820128-808203D8 00A108 02B0+00 2/2 0/0 0/0 .text            getDownLockPoint__9daE_YMB_cFv */
 int daE_YMB_c::getDownLockPoint() {
-    // NONMATCHING
     if (field_0x6f4 >= 7) {
         return 1;
     }

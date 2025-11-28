@@ -366,5 +366,3 @@ extern actor_process_profile_definition g_profile_SWC00 = {
   fopAc_ACTOR_e,         // mActorType
   fopAc_CULLBOX_0_e,     // cullType
 };
-
-/* 805A1DAC-805A1DAC 000018 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

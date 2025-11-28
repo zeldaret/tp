@@ -280,7 +280,7 @@ f_pc/f_pc_layer.cpp:
 f_pc/f_pc_leaf.cpp:
 	.text       start:0x80021A00 end:0x80021B88
 	.data       start:0x8039DB48 end:0x8039DB60
-	.sbss       start:0x8044AE70 end:0x8044AE80
+	.sbss       start:0x8044AE70 end:0x8044AE78
 
 f_pc/f_pc_layer_iter.cpp:
 	.text       start:0x80021B88 end:0x80021CD4
@@ -300,6 +300,7 @@ f_pc/f_pc_load.cpp:
 f_pc/f_pc_manager.cpp:
 	.text       start:0x800220A0 end:0x80022428
 	.bss        start:0x803EEEF0 end:0x803EEF98
+	.sbss       start:0x8044AE78 end:0x8044AE80
 
 f_pc/f_pc_method.cpp:
 	.text       start:0x80022428 end:0x800224F0
@@ -590,13 +591,14 @@ d/d_bg_plc.cpp:
 d/d_bg_s.cpp:
 	.text       start:0x80074134 end:0x80075EEC
 	.data       start:0x803A5768 end:0x803A57A0
-	.sbss       start:0x8044B0A0 end:0x8044B0B0
+	.sbss       start:0x8044B0A0 end:0x8044B0A8
 	.sdata2     start:0x8044C7F8 end:0x8044C800
 
 d/d_bg_s_acch.cpp:
 	.text       start:0x80075EEC end:0x800774DC
 	.data       start:0x803A57A0 end:0x803A57D0
 	.bss        start:0x8041EC60 end:0x8041ECC0
+	.sbss       start:0x8044B0A8 end:0x8044B0B0
 	.sdata2     start:0x8044C800 end:0x8044C828
 
 d/d_bg_s_chk.cpp:
@@ -1395,7 +1397,7 @@ SSystem/SComponent/c_API.cpp:
 
 SSystem/SComponent/c_malloc.cpp:
 	.text       start:0x80265650 end:0x802656BC
-	.sbss       start:0x8044B290 end:0x8044B2A0
+	.sbss       start:0x8044B290 end:0x8044B298
 
 SSystem/SComponent/c_API_controller_pad.cpp:
 	.text       start:0x802656BC end:0x802656F8
@@ -1415,6 +1417,7 @@ SSystem/SComponent/c_cc_s.cpp:
 	.text       start:0x80266E9C end:0x8026824C
 	.data       start:0x803BD888 end:0x803BD8B8
 	.bss        start:0x8042AE00 end:0x8042AE18
+	.sbss       start:0x8044B298 end:0x8044B2A0
 	.sdata2     start:0x8044F158 end:0x8044F190
 
 SSystem/SComponent/c_counter.cpp:
@@ -2213,7 +2216,7 @@ Z2AudioLib/Z2Audience.cpp:
 	.rodata     start:0x80396380 end:0x80396390
 	.data       start:0x803C4DD8 end:0x803C4E10
 	.bss        start:0x8042E318 end:0x8042E338
-	.sbss       start:0x8044B490 end:0x8044B4A0
+	.sbss       start:0x8044B490 end:0x8044B498
 	.sdata2     start:0x8044FBC0 end:0x8044FC58
 
 Z2AudioLib/Z2SoundObject.cpp:
@@ -2233,6 +2236,7 @@ Z2AudioLib/Z2Creature.cpp:
 	.text       start:0x802C2864 end:0x802C56B8
 	.ctors      start:0x80375DC4 end:0x80375DC8
 	.data       start:0x803C5370 end:0x803C5A30
+	.sbss       start:0x8044B498 end:0x8044B4A0
 	.sdata2     start:0x8044FCF8 end:0x8044FDB8
 
 Z2AudioLib/Z2LinkMgr.cpp:
@@ -3560,13 +3564,14 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c:
 	.text       start:0x80374084 end:0x803745DC
 	.rodata     start:0x8039CD68 end:0x8039CE70
 	.data       start:0x803CD3E8 end:0x803CD410
-	.bss        start:0x80449960 end:0x80449970
+	.bss        start:0x80449960 end:0x80449968
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/targcont.c:
 	.text       start:0x803745DC end:0x80374610
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/target_options.c:
 	.text       start:0x80374610 end:0x8037462C
+	.bss        start:0x80449968 end:0x80449970
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Export/mslsupp.c:
 	.text       start:0x8037462C end:0x803747A4

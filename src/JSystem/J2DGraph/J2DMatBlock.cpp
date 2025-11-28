@@ -33,7 +33,8 @@ void J2DColorBlock::setGX() {
     GXSetNumChans(mColorChanNum);
     const GXChannelID mapping[4] = {GX_COLOR0, GX_ALPHA0, GX_COLOR1, GX_ALPHA1};
     for (int i = 0; i < mColorChanNum << 1; i++) {
-        GXSetChanCtrl(mapping[i], GX_DISABLE, GX_SRC_REG, (GXColorSrc)mColorChan[i].getMatSrc(), GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+        GXColorSrc mat_src = (GXColorSrc)mColorChan[i].getMatSrc();
+        GXSetChanCtrl(mapping[i], GX_DISABLE, GX_SRC_REG, mat_src, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
     }
     GXSetCullMode((GXCullMode)mCullMode);
 }
@@ -55,6 +56,7 @@ void J2DTexGenBlock::setGX() {
     for (int i = 0; i < mTexGenNum; i++) {
         GXSetTexCoordGen((GXTexCoordID)i, (GXTexGenType)mTexGenCoord[i].getTexGenType(), (GXTexGenSrc)mTexGenCoord[i].getTexGenSrc(), mTexGenCoord[i].getTexGenMtx());
     }
+    
     for (u8 i = 0; i < 8; i++) {
         if (mTexMtx[i]) {
             mTexMtx[i]->load(i);
@@ -65,14 +67,14 @@ void J2DTexGenBlock::setGX() {
 /* 802EB620-802EB6A4 2E5F60 0084+00 1/0 1/1 0/0 .text            __dt__14J2DTexGenBlockFv */
 J2DTexGenBlock::~J2DTexGenBlock() {
     for (int i = 0; i < 8; i++) {
-        if (mTexMtx[i] != NULL) {
-            delete mTexMtx[i];
-        }
+        delete mTexMtx[i];
     }
 }
 
 /* 802EB6A4-802EB7E0 2E5FE4 013C+00 0/0 3/3 0/0 .text setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx */
 void J2DTexGenBlock::setTexMtx(u32 param_0, J2DTexMtx& param_1) {
+    J3D_PANIC(103, param_0 < 8, "Error : range over.");
+    
     if (!mTexMtx[param_0]) {
         mTexMtx[param_0] = new J2DTexMtx(param_1.getTexMtxInfo());
         if (!mTexMtx[param_0]) {
@@ -86,8 +88,11 @@ void J2DTexGenBlock::setTexMtx(u32 param_0, J2DTexMtx& param_1) {
 
 /* 802EB7E0-802EB87C 2E6120 009C+00 0/0 1/1 0/0 .text getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx */
 void J2DTexGenBlock::getTexMtx(u32 param_0, J2DTexMtx& param_1) {
+    J3D_PANIC(123, param_0 < 8, "Error : range over.");
+    
     if (mTexMtx[param_0]) {
-        param_1.setTexMtxInfo(mTexMtx[param_0]->getTexMtxInfo());
+        J2DTexMtxInfo& texMtxInfo = mTexMtx[param_0]->getTexMtxInfo();
+        param_1.setTexMtxInfo(texMtxInfo);
     }
 }
 
@@ -143,9 +148,9 @@ void J2DTevBlock1::initialize() {
     mFont = NULL;
 }
 
-/* 802EBC0C-802EBCC0 2E654C 00B4+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock1FUc
- */
+/* 802EBC0C-802EBCC0 2E654C 00B4+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock1FUc */
 bool J2DTevBlock1::prepareTexture(u8 param_0) {
+    bool rv;
     if (param_0 == 0) {
         return true;
     }
@@ -159,11 +164,16 @@ bool J2DTevBlock1::prepareTexture(u8 param_0) {
         mUndeleteFlag = (mUndeleteFlag & 0x80) | 1;
     }
 
-    return param_0 <= 1;
+    if (param_0 > 1) {
+        rv = false;
+    } else {
+        rv = true;
+    }
+    
+    return rv;
 }
 
-/* 802EBCC0-802EBDE4 2E6600 0124+00 1/0 0/0 0/0 .text
- * insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette      */
+/* 802EBCC0-802EBDE4 2E6600 0124+00 1/0 0/0 0/0 .text            insertTexture__12J2DTevBlock1FUlPC7ResTIMGP10JUTPalette */
 bool J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette* p_tlut) {
     if (param_0 != 0 || p_timg == NULL) {
         return false;
@@ -195,8 +205,7 @@ bool J2DTevBlock1::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
     return true;
 }
 
-/* 802EBDE4-802EBE8C 2E6724 00A8+00 1/0 0/0 0/0 .text
- * insertTexture__12J2DTevBlock1FUlP10JUTTexture                */
+/* 802EBDE4-802EBE8C 2E6724 00A8+00 1/0 0/0 0/0 .text            insertTexture__12J2DTevBlock1FUlP10JUTTexture */
 bool J2DTevBlock1::insertTexture(u32 param_0, JUTTexture* p_tex) {
     if (mTexture[0] != NULL && mTexture[0]->getTexInfo() != NULL) {
         return false;
@@ -217,7 +226,7 @@ bool J2DTevBlock1::insertTexture(u32 param_0, JUTTexture* p_tex) {
     return true;
 }
 
-/* 802EBE8C-802EC01C 2E67CC 0190+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock1FUlPC7ResTIMG */
+/* 802EBE8C-802EC01C 2E67CC 0190+00 1/0 0/0 0/0 .text            setTexture__12J2DTevBlock1FUlPC7ResTIMG */
 bool J2DTevBlock1::setTexture(u32 param_0, ResTIMG const* p_timg) {
     if (param_0 != 0) {
         return false;
@@ -263,8 +272,7 @@ bool J2DTevBlock1::setTexture(u32 param_0, ResTIMG const* p_timg) {
     return true;
 }
 
-/* 802EC01C-802EC0A8 2E695C 008C+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock1FUlP10JUTTexture
- */
+/* 802EC01C-802EC0A8 2E695C 008C+00 1/0 0/0 0/0 .text            setTexture__12J2DTevBlock1FUlP10JUTTexture */
 bool J2DTevBlock1::setTexture(u32 param_0, JUTTexture* p_tex) {
     if (param_0 != 0) {
         return false;
@@ -299,8 +307,7 @@ bool J2DTevBlock1::removeTexture(u32 param_0) {
     return true;
 }
 
-/* 802EC124-802EC1D8 2E6A64 00B4+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock1FP7ResFONT
- */
+/* 802EC124-802EC1D8 2E6A64 00B4+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock1FP7ResFONT */
 bool J2DTevBlock1::setFont(ResFONT* p_font) {
     if (p_font == NULL) {
         return false;
@@ -320,8 +327,7 @@ bool J2DTevBlock1::setFont(ResFONT* p_font) {
     return true;
 }
 
-/* 802EC1D8-802EC258 2E6B18 0080+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock1FP7JUTFont
- */
+/* 802EC1D8-802EC258 2E6B18 0080+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock1FP7JUTFont */
 bool J2DTevBlock1::setFont(JUTFont* p_font) {
     if (p_font == NULL) {
         return false;
@@ -336,7 +342,7 @@ bool J2DTevBlock1::setFont(JUTFont* p_font) {
     return true;
 }
 
-/* 802EC258-802EC318 2E6B98 00C0+00 1/0 0/0 0/0 .text setPalette__12J2DTevBlock1FUlPC7ResTLUT */
+/* 802EC258-802EC318 2E6B98 00C0+00 1/0 0/0 0/0 .text            setPalette__12J2DTevBlock1FUlPC7ResTLUT */
 bool J2DTevBlock1::setPalette(u32 param_0, ResTLUT const* p_tlut) {
     if (param_0 != 0) {
         return false;
@@ -364,8 +370,7 @@ bool J2DTevBlock1::setPalette(u32 param_0, ResTLUT const* p_tlut) {
     return true;
 }
 
-/* 802EC318-802EC328 2E6C58 0010+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock1FUcb
- */
+/* 802EC318-802EC328 2E6C58 0010+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock1FUcb */
 void J2DTevBlock1::shiftDeleteFlag(u8, bool) {
     mUndeleteFlag &= 0x80;
 }
@@ -373,7 +378,7 @@ void J2DTevBlock1::shiftDeleteFlag(u8, bool) {
 /* 802EC328-802EC570 2E6C68 0248+00 1/0 0/0 0/0 .text            setGX__12J2DTevBlock1Fv */
 void J2DTevBlock1::setGX() {
     loadTexture(GX_TEXMAP0, 0);
-    GXSetTevOrder(GX_TEVSTAGE0, mTevOrder[0].getTexCoord(), mTevOrder[0].getTexMap(), mTevOrder[0].getColor());
+    GXSetTevOrder(GX_TEVSTAGE0, (GXTexCoordID)mTevOrder[0].getTexCoord(), (GXTexMapID)mTevOrder[0].getTexMap(), (GXChannelID)mTevOrder[0].getColor());
 
     for (int i = 0; i < 4; i++) {
         GXSetTevColorS10(i != 3 ? GXTevRegID(i + 1) : GX_TEVPREV, mTevColor[i]);
@@ -409,8 +414,7 @@ void J2DTevBlock1::setGX() {
     mIndTevStage->load(0);
 }
 
-/* 802EC570-802EC5B8 2E6EB0 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock1F11_GXTexMapIDUl
- */
+/* 802EC570-802EC5B8 2E6EB0 0048+00 1/0 0/0 0/0 .text            loadTexture__12J2DTevBlock1F11_GXTexMapIDUl */
 void J2DTevBlock1::loadTexture(GXTexMapID texmapID, u32 texIndex) {
     if (texIndex == 0 && mTexture[texIndex] != NULL && mTexture[texIndex]->getTexInfo() != NULL) {
         mTexture[texIndex]->load(texmapID);
@@ -494,8 +498,7 @@ bool J2DTevBlock2::prepareTexture(u8 param_0) {
     return true;
 }
 
-/* 802ECAE8-802ECDE8 2E7428 0300+00 1/0 0/0 0/0 .text
- * insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette      */
+/* 802ECAE8-802ECDE8 2E7428 0300+00 1/0 0/0 0/0 .text            insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette */
 bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette* p_tlut) {
     if (param_0 >= 2 || p_timg == NULL) {
         return false;
@@ -583,8 +586,7 @@ bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
     return true;
 }
 
-/* 802ECDE8-802ECF48 2E7728 0160+00 1/0 0/0 0/0 .text
- * insertTexture__12J2DTevBlock2FUlP10JUTTexture                */
+/* 802ECDE8-802ECF48 2E7728 0160+00 1/0 0/0 0/0 .text            insertTexture__12J2DTevBlock2FUlP10JUTTexture */
 bool J2DTevBlock2::insertTexture(u32 param_0, JUTTexture* p_tex) {
     if (param_0 >= 2 || p_tex == NULL) {
         return false;
@@ -627,7 +629,7 @@ bool J2DTevBlock2::insertTexture(u32 param_0, JUTTexture* p_tex) {
     return true;
 }
 
-/* 802ECF48-802ED16C 2E7888 0224+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock2FUlPC7ResTIMG */
+/* 802ECF48-802ED16C 2E7888 0224+00 1/0 0/0 0/0 .text            setTexture__12J2DTevBlock2FUlPC7ResTIMG */
 bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
     if (param_0 >= 2) {
         return false;
@@ -635,10 +637,11 @@ bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
 
     u8 tlutid = 0;
     if (p_timg != NULL && p_timg->indexTexture) {
-        if (mTexture[param_0 == 0] != NULL) {
-            const ResTIMG* timg = mTexture[param_0 == 0]->getTexInfo();
+        u8 idx = param_0 == 0 ? 1 : 0;
+        if (mTexture[idx] != NULL) {
+            const ResTIMG* timg = mTexture[idx]->getTexInfo();
             if (timg != NULL && timg->indexTexture) {
-                int tlutname = mTexture[param_0 == 0]->getTlutName();
+                int tlutname = mTexture[idx]->getTlutName();
                 u8 tlut_no = tlutname - (tlutname >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
 
                 if (tlut_no == 0) {
@@ -688,8 +691,7 @@ bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
     return true;
 }
 
-/* 802ED16C-802ED21C 2E7AAC 00B0+00 1/0 0/0 0/0 .text setTexture__12J2DTevBlock2FUlP10JUTTexture
- */
+/* 802ED16C-802ED21C 2E7AAC 00B0+00 1/0 0/0 0/0 .text            setTexture__12J2DTevBlock2FUlP10JUTTexture */
 bool J2DTevBlock2::setTexture(u32 param_0, JUTTexture* p_tex) {
     if (param_0 >= 2) {
         return false;
@@ -731,8 +733,7 @@ bool J2DTevBlock2::removeTexture(u32 param_0) {
     return true;
 }
 
-/* 802ED2F0-802ED3A4 2E7C30 00B4+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock2FP7ResFONT
- */
+/* 802ED2F0-802ED3A4 2E7C30 00B4+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock2FP7ResFONT */
 bool J2DTevBlock2::setFont(ResFONT* p_font) {
     if (p_font == NULL) {
         return false;
@@ -752,8 +753,7 @@ bool J2DTevBlock2::setFont(ResFONT* p_font) {
     return true;
 }
 
-/* 802ED3A4-802ED424 2E7CE4 0080+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock2FP7JUTFont
- */
+/* 802ED3A4-802ED424 2E7CE4 0080+00 1/0 0/0 0/0 .text            setFont__12J2DTevBlock2FP7JUTFont */
 bool J2DTevBlock2::setFont(JUTFont* p_font) {
     if (p_font == NULL) {
         return false;
@@ -768,7 +768,7 @@ bool J2DTevBlock2::setFont(JUTFont* p_font) {
     return true;
 }
 
-/* 802ED424-802ED4FC 2E7D64 00D8+00 1/0 0/0 0/0 .text setPalette__12J2DTevBlock2FUlPC7ResTLUT */
+/* 802ED424-802ED4FC 2E7D64 00D8+00 1/0 0/0 0/0 .text            setPalette__12J2DTevBlock2FUlPC7ResTLUT */
 bool J2DTevBlock2::setPalette(u32 param_0, ResTLUT const* p_tlut) {
     if (param_0 >= 2) {
         return false;
@@ -796,8 +796,7 @@ bool J2DTevBlock2::setPalette(u32 param_0, ResTLUT const* p_tlut) {
     return true;
 }
 
-/* 802ED4FC-802ED584 2E7E3C 0088+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock2FUcb
- */
+/* 802ED4FC-802ED584 2E7E3C 0088+00 1/0 0/0 0/0 .text            shiftDeleteFlag__12J2DTevBlock2FUcb */
 void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
     u8 tmpFlags = mUndeleteFlag & 0x80;
     mUndeleteFlag = mUndeleteFlag & 0x7F;
@@ -808,7 +807,7 @@ void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
         mUndeleteFlag = (mUndeleteFlag & ((1 << param_0) - 1)) | ((mUndeleteFlag & ~((1 << (param_0 + 1)) - 1)) >> 1);
     }
 
-    mUndeleteFlag |= tmpFlags;
+    mUndeleteFlag = (mUndeleteFlag | tmpFlags) & 0xFF;
 }
 
 /* 802ED584-802ED874 2E7EC4 02F0+00 1/0 0/0 0/0 .text            setGX__12J2DTevBlock2Fv */
@@ -816,12 +815,15 @@ void J2DTevBlock2::setGX() {
     for (int i = 0; i < 2; i++) {
         loadTexture(GXTexMapID(i), i);
     }
+
     for (int i = 0; i < mTevStageNum; i++) {
-        GXSetTevOrder(GXTevStageID(i), mTevOrder[i].getTexCoord(), mTevOrder[i].getTexMap(), mTevOrder[i].getColor());
+        GXSetTevOrder(GXTevStageID(i), (GXTexCoordID)mTevOrder[i].getTexCoord(), (GXTexMapID)mTevOrder[i].getTexMap(), (GXChannelID)mTevOrder[i].getColor());
     }
+
     for (int i = 0; i < 4; i++) {
         GXSetTevColorS10(i != 3 ? GXTevRegID(i + 1) : GX_TEVPREV, mTevColor[i]);
     }
+
     GXSetNumTevStages(mTevStageNum);
     for (int i = 0; i < mTevStageNum; i++) {
         GXSetTevColorIn(GXTevStageID(i), GXTevColorArg(mTevStage[i].getColorA()),
@@ -841,25 +843,28 @@ void J2DTevBlock2::setGX() {
         GXSetTevKColorSel(GXTevStageID(i), mTevKColorSel[i] != 0xff ? GXTevKColorSel(mTevKColorSel[i]) : GX_TEV_KCSEL_1);
         GXSetTevKAlphaSel(GXTevStageID(i), mTevKAlphaSel[i] != 0xff ? GXTevKAlphaSel(mTevKAlphaSel[i]) : GX_TEV_KASEL_1);
     }
+
     for (int i = 0; i < 4; i++) {
         GXSetTevKColor(GXTevKColorID(i), mTevKColor[i]);
     }
+
     for (int i = 0; i < mTevStageNum; i++) {
         GXSetTevSwapMode(GXTevStageID(i), GXTevSwapSel(mTevStage[i].getRasSel()), GXTevSwapSel(mTevStage[i].getTexSel()));
     }
+
     for (int i = 0; i < 4; i++) {
         GXSetTevSwapModeTable(GXTevSwapSel(i), GXTevColorChan(mTevSwapModeTable[i].getR()),
                               GXTevColorChan(mTevSwapModeTable[i].getG()),
                               GXTevColorChan(mTevSwapModeTable[i].getB()),
                               GXTevColorChan(mTevSwapModeTable[i].getA()));
     }
+
     for (u8 i = 0; i < mTevStageNum; i++) {
         mIndTevStage[i].load(i);
     }
 }
 
-/* 802ED874-802ED8BC 2E81B4 0048+00 1/0 0/0 0/0 .text loadTexture__12J2DTevBlock2F11_GXTexMapIDUl
- */
+/* 802ED874-802ED8BC 2E81B4 0048+00 1/0 0/0 0/0 .text            loadTexture__12J2DTevBlock2F11_GXTexMapIDUl */
 void J2DTevBlock2::loadTexture(GXTexMapID texmapID, u32 texIndex) {
     if (texIndex < 2 && mTexture[texIndex] != NULL && mTexture[texIndex]->getTexInfo() != NULL) {
         mTexture[texIndex]->load(texmapID);
@@ -1284,7 +1289,7 @@ void J2DTevBlock4::setGX() {
         loadTexture(GXTexMapID(i), i);
     }
     for (int i = 0; i < mTevStageNum; i++) {
-        GXSetTevOrder(GXTevStageID(i), mTevOrder[i].getTexCoord(), mTevOrder[i].getTexMap(), mTevOrder[i].getColor());
+        GXSetTevOrder(GXTevStageID(i), (GXTexCoordID)mTevOrder[i].getTexCoord(), (GXTexMapID)mTevOrder[i].getTexMap(), (GXChannelID)mTevOrder[i].getColor());
     }
     for (int i = 0; i < 4; i++) {
         GXSetTevColorS10(i != 3 ? GXTevRegID(i + 1) : GX_TEVPREV, mTevColor[i]);
@@ -1747,7 +1752,7 @@ void J2DTevBlock8::setGX() {
         loadTexture(GXTexMapID(i), i);
     }
     for (int i = 0; i < mTevStageNum; i++) {
-        GXSetTevOrder(GXTevStageID(i), mTevOrder[i].getTexCoord(), mTevOrder[i].getTexMap(), mTevOrder[i].getColor());
+        GXSetTevOrder(GXTevStageID(i), (GXTexCoordID)mTevOrder[i].getTexCoord(), (GXTexMapID)mTevOrder[i].getTexMap(), (GXChannelID)mTevOrder[i].getColor());
     }
     for (int i = 0; i < 4; i++) {
         GXSetTevColorS10(i != 3 ? GXTevRegID(i + 1) : GX_TEVPREV, mTevColor[i]);
@@ -1823,7 +1828,6 @@ J2DTevBlock16::~J2DTevBlock16() {
 /* 802F03EC-802F0660 2EAD2C 0274+00 1/0 0/0 0/0 .text            initialize__13J2DTevBlock16Fv */
 // NONMATCHING - inlines
 void J2DTevBlock16::initialize() {
-
     for (int i = 0; i < 8; i++) {
         mTexNo[i] = 0xffff;
     }
@@ -2211,7 +2215,7 @@ void J2DTevBlock16::setGX() {
         loadTexture(GXTexMapID(i), i);
     }
     for (int i = 0; i < mTevStageNum; i++) {
-        GXSetTevOrder(GXTevStageID(i), mTevOrder[i].getTexCoord(), mTevOrder[i].getTexMap(), mTevOrder[i].getColor());
+        GXSetTevOrder(GXTevStageID(i), (GXTexCoordID)mTevOrder[i].getTexCoord(), (GXTexMapID)mTevOrder[i].getTexMap(), (GXChannelID)mTevOrder[i].getColor());
     }
     for (int i = 0; i < 4; i++) {
         GXSetTevColorS10(i != 3 ? GXTevRegID(i + 1) : GX_TEVPREV, mTevColor[i]);

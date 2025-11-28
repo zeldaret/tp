@@ -3,16 +3,26 @@
 
 #include "JSystem/JUtility/TColor.h"
 #include "JSystem/JHostIO/JORReflexible.h"
+#include "JSystem/JHostIO/JORServer.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "global.h"
 
+struct subJOREventCallbackListNode : public JOREventCallbackListNode {
+    subJOREventCallbackListNode() : JOREventCallbackListNode(0x81000000, 0x81000000, true) {}
+
+    virtual int JORAct(u32, const char*);
+    virtual ~subJOREventCallbackListNode() {}
+};
+
 class JKRAramArchive;
 
-class dMeter_menuHIO_c {
+class dMeter_menuHIO_c : public JORReflexible {
 public:
     /* 801FE330 */ dMeter_menuHIO_c();
     /* 8020123C */ virtual ~dMeter_menuHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x0 */  // vtable
     /* 0x4 */ u8 field_0x4[2];
@@ -21,10 +31,12 @@ public:
 
 STATIC_ASSERT(sizeof(dMeter_menuHIO_c) == 8);
 
-class dMeter_drawCollectHIO_c {
+class dMeter_drawCollectHIO_c : public JORReflexible {
 public:
     dMeter_drawCollectHIO_c();
     virtual ~dMeter_drawCollectHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     enum {
         /* 0x0 */ VESSEL_HEART,
@@ -70,10 +82,12 @@ public:
     /* 0x9C */ bool mButtonDebugON;
 };  // Size = 0xA0
 
-class dMeter_drawOptionHIO_c {
+class dMeter_drawOptionHIO_c : public JORReflexible {
 public:
     /* 801FE4EC */ dMeter_drawOptionHIO_c();
     /* 80200F98 */ virtual ~dMeter_drawOptionHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     enum OptionType {
         /* 0x0 */ ATTENTION,
@@ -106,10 +120,12 @@ public:
     /* 0x6D */ u8 mBackgroundAlpha;
 };  // Size: 0x70
 
-class dMeter_drawLetterHIO_c {
+class dMeter_drawLetterHIO_c : public JORReflexible {
 public:
     /* 801FE5CC */ dMeter_drawLetterHIO_c();
     /* 80200F50 */ virtual ~dMeter_drawLetterHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     enum {
         /* 0x0 */ WINDOW_FRAME,
@@ -146,10 +162,12 @@ public:
     /* 0x5F */ bool mDebugON;
 };  // Size: 0x60
 
-class dMeter_drawFishingHIO_c {
+class dMeter_drawFishingHIO_c : public JORReflexible {
 public:
     /* 801FE730 */ dMeter_drawFishingHIO_c();
     /* 80200F08 */ virtual ~dMeter_drawFishingHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     enum {
         /* 0x0 */ HYLIAN_BASS,
@@ -196,10 +214,12 @@ public:
     /* 0x250 */ bool mDebug;
 };  // Size: 0x254
 
-class dMeter_drawInsectHIO_c {
+class dMeter_drawInsectHIO_c : public JORReflexible {
 public:
     /* 801FE8DC */ dMeter_drawInsectHIO_c();
     /* 80200EC0 */ virtual ~dMeter_drawInsectHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     enum Type {
         /* 0x0 */ DEFAULT,
@@ -227,10 +247,12 @@ public:
     /* 0x3D */ bool mDebugON;
 };  // Size: 0x40
 
-class dMeter_drawCalibrationHIO_c {
+class dMeter_drawCalibrationHIO_c : public JORReflexible {
 public:
     /* 801FE954 */ dMeter_drawCalibrationHIO_c();
     /* 80200E78 */ virtual ~dMeter_drawCalibrationHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x00 */  // vtable
     /* 0x04 */ u8 field_0x4[4];
@@ -242,10 +264,12 @@ public:
     /* 0x16 */ bool mDebug;
 };  // Size: 0x18
 
-class dMeter_drawSkillHIO_c {
+class dMeter_drawSkillHIO_c : public JORReflexible {
 public:
     /* 801FE990 */ dMeter_drawSkillHIO_c();
     /* 80200E30 */ virtual ~dMeter_drawSkillHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     enum {
         /* 0x0 */ WINDOW,
@@ -280,10 +304,12 @@ public:
     /* 0x5B */ bool mDebug;
 };  // Size: 0x5C
 
-class dMeter_drawEmpButtonHIO_c {
+class dMeter_drawEmpButtonHIO_c : public JORReflexible {
 public:
     /* 801FEAF0 */ dMeter_drawEmpButtonHIO_c();
     /* 80200DA0 */ virtual ~dMeter_drawEmpButtonHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x000 */  // vtable
     /* 0x004 */ u8 field_0x4[4];
@@ -381,18 +407,14 @@ public:
     /* 0x17C */ f32 mHawkeyeZoomPosY;
     /* 0x180 */ f32 mHawkeyeZoomScale;
     /* 0x184 */ f32 mHawkeyeZoomScale_4x3;
-    /* 0x188 */ f32 mHawkeyeTextIconPosX;
-    /* 0x18C */ f32 mHawkeyeZoomTextPosX;
-    /* 0x190 */ f32 mHawkeyeIconPosX;
+    /* 0x188 */ f32 mHawkeyeIconPosX[3];
     /* 0x194 */ f32 mHawkeyeTextIconPosY_4x3;
     /* 0x198 */ f32 mHawkeyeTextPosY_4x3;
     /* 0x19C */ f32 mHawkeyeIconPosY_4x3;
     /* 0x1A0 */ f32 mHawkeyeTextIconPosY;
     /* 0x1A4 */ f32 mHawkeyeZoomTextPosY;
     /* 0x1A8 */ f32 mHawkeyeIconPosY;
-    /* 0x1AC */ f32 mHawkeyeTextIconScale;
-    /* 0x1B0 */ f32 mHawkeyeTextScale;
-    /* 0x1B4 */ f32 mHawkeyeIconScale;
+    /* 0x1AC */ f32 mHawkeyeIconScale[3];
     /* 0x1B8 */ JUtility::TColor mPointerONBlack[2];
     /* 0x1C0 */ JUtility::TColor mPointerONWhite[2];
     /* 0x1C8 */ JUtility::TColor mPointerOFFBlack;
@@ -432,10 +454,12 @@ public:
     /* 0x25A */ bool mHawkeyeZoomDebugON;
 };  // Size: 0x25C
 
-class dMeter_drawMiniGameHIO_c {
+class dMeter_drawMiniGameHIO_c : public JORReflexible {
 public:
     /* 801FEFF0 */ dMeter_drawMiniGameHIO_c();
     /* 80200DE8 */ virtual ~dMeter_drawMiniGameHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x000 */  // vtable
     /* 0x004 */ u8 field_0x4[4];
@@ -506,10 +530,12 @@ public:
     /* 0x18C */ s16 mReadyFightPikariAppearFrames;
 };  // Size: 0x190
 
-class dMeter_drawLightDropHIO_c {
+class dMeter_drawLightDropHIO_c : public JORReflexible {
 public:
     /* 801FF31C */ dMeter_drawLightDropHIO_c();
     /* 80200D58 */ virtual ~dMeter_drawLightDropHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x00 */  // vtable
     /* 0x04 */ u8 field_0x4[4];
@@ -555,11 +581,22 @@ public:
 class dMeter_drawHIO_c : public JORReflexible {
 public:
     /* 801FF5B8 */ dMeter_drawHIO_c();
-    /* 80201128 */ virtual ~dMeter_drawHIO_c() {}
+    /* 80201128 */ virtual ~dMeter_drawHIO_c() {
+        #if DEBUG
+        field_0x8_debug = 0;
+        #endif
+    }
 
     #ifdef DEBUG
     virtual void listenPropertyEvent(const JORPropertyEvent*);
     virtual void genMessage(JORMContext*);
+
+    void updateFMsgDebug();
+    #endif
+
+    #if WIDESCREEN_SUPPORT
+    void updateOnWide();
+    void updateOffWide();
     #endif
 
     /* 0x000 */  // vtable
@@ -916,10 +953,17 @@ public:
 
 STATIC_ASSERT(sizeof(dMeter_drawHIO_c) == 3880);
 
-class dMeter_ringHIO_c {
+class dMeter_ringHIO_c : public JORReflexible {
 public:
     /* 802001AC */ dMeter_ringHIO_c();
     /* 802010E0 */ virtual ~dMeter_ringHIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    #if WIDESCREEN_SUPPORT
+    void updateOnWide();
+    void updateOffWide();
+    #endif
 
     enum {
         /* 0x0 */ SET_ITEM,
@@ -1007,10 +1051,12 @@ public:
 
 STATIC_ASSERT(sizeof(dMeter_ringHIO_c) == 344);
 
-class dMeter_mapIconHIO_c {
+class dMeter_mapIconHIO_c : public JORReflexible {
 public:
     /* 802004B4 */ dMeter_mapIconHIO_c();
     /* 80201028 */ virtual ~dMeter_mapIconHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     enum {
         /* 0x00 */ ICON_PORTAL,
@@ -1141,6 +1187,8 @@ public:
     /* 802006C8 */ dMeter_fmapHIO_c();
 #ifdef DEBUG
     void update();
+    void createEvtCallBackObject();
+    void deleteEvtCallBackObject();
 
     virtual void listenPropertyEvent(const JORPropertyEvent*);
     virtual void genMessage(JORMContext*);
@@ -1148,11 +1196,17 @@ public:
     /* 80200BCC */ virtual ~dMeter_fmapHIO_c();
 
     /* 0x004 */ s8 field_0x4;
-    /* 0x008 */ JKRAramArchive* mpArchive;
-    /* 0x00C */ void* field_0xc;
-    /* 0x010 */ void* field_0x10;
+    #if DEBUG
+    /* 0x008 */ subJOREventCallbackListNode* mpEvtCallBack;
+    #endif
+    /* 0x008 */ JKRAramArchive* mpArcData;
+    /* 0x00C */ void* mpArcFile;
+    /* 0x010 */ void* mpDecompBuf;
     /* 0x014 */ void* field_0x14;
     /* 0x018 */ void* field_0x18;
+    #if DEBUG
+    /* 0x020 */ u8 unk_0x20[4];
+    #endif
     /* 0x01C */ MapBlinkAnime mMapBlink[3];
     /* 0x094 */ s16 mDisplayFrameNum;
     /* 0x096 */ s16 mUndisplayFrameNum;
@@ -1255,10 +1309,12 @@ public:
 
 STATIC_ASSERT(sizeof(dMeter_fmapHIO_c) == 1188);
 
-class dMeter_cursorHIO_c {
+class dMeter_cursorHIO_c : public JORReflexible {
 public:
     /* 80200CD4 */ dMeter_cursorHIO_c();
     /* 80201098 */ virtual ~dMeter_cursorHIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ cXyz mSeraShopObjZoom;

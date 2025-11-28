@@ -53,6 +53,7 @@ extern J2DTexMtxInfo const j2dDefaultTexMtxInfo;
 class J2DTexMtx {
 public:
     J2DTexMtx() { mInfo = j2dDefaultTexMtxInfo; }
+    ~J2DTexMtx() {}
     J2DTexMtx(const J2DTexMtxInfo& info) { mInfo = info; }
     /* 802E9C90 */ void load(u32);
     /* 802E9CC4 */ void calc();
@@ -287,9 +288,9 @@ public:
     }
     void setTexCoordInfo(const J2DTexCoordInfo& info) { mTexCoordInfo = info; }
     void setTexGenMtx(u8 texGenMtx) { mTexCoordInfo.mTexGenMtx = texGenMtx; }
-    s32 getTexGenType() { return mTexCoordInfo.mTexGenType; }
-    s32 getTexGenSrc() { return mTexCoordInfo.mTexGenSrc; }
-    s32 getTexGenMtx() { return mTexCoordInfo.mTexGenMtx; }
+    u8 getTexGenType() const { return mTexCoordInfo.mTexGenType; }
+    u8 getTexGenSrc() const { return mTexCoordInfo.mTexGenSrc; }
+    u8 getTexGenMtx() const { return mTexCoordInfo.mTexGenMtx; }
 
 private:
     /* 0x0 */ J2DTexCoordInfo mTexCoordInfo;
@@ -330,9 +331,9 @@ public:
     }
 
     void setTevOrderInfo(const J2DTevOrderInfo& info) {mTevOrderInfo = info; }
-    GXChannelID getColor() const { return (GXChannelID)mTevOrderInfo.mColor; }
-    GXTexMapID getTexMap() const { return (GXTexMapID)mTevOrderInfo.mTexMap; }
-    GXTexCoordID getTexCoord() const { return (GXTexCoordID)mTevOrderInfo.mTexCoord; }
+    u8 getColor() const { return mTevOrderInfo.mColor; }
+    u8 getTexMap() const { return mTevOrderInfo.mTexMap; }
+    u8 getTexCoord() const { return mTevOrderInfo.mTexCoord; }
 
     /* 0x0 */ J2DTevOrderInfo mTevOrderInfo;
 };
@@ -461,36 +462,36 @@ public:
         field_0x5 = field_0x5 & ~0xc0 | reg << 6;
     }
 
-    u8 getColorA() { return (field_0x2 & 0xf0) >> 4; }
-    u8 getColorB() { return field_0x2 & 0x0f; }
-    u8 getColorC() { return (field_0x3 & 0xf0) >> 4; }
-    u8 getColorD() { return field_0x3 & 0x0f; }
-    u8 getAlphaA() { return (field_0x6 & 0xe0) >> 5; }
-    u8 getAlphaB() { return (field_0x6 & 0x1c) >> 2; }
-    u8 getAlphaC() { return (field_0x6 & 0x03) << 1 | (field_0x7 & 0x80) >> 7; }
-    u8 getAlphaD() { return (field_0x7 & 0x70) >> 4; }
-    u8 getCOp() {
+    u8 getColorA() const { return (field_0x2 & 0xf0) >> 4; }
+    u8 getColorB() const { return field_0x2 & 0x0f; }
+    u8 getColorC() const { return (field_0x3 & 0xf0) >> 4; }
+    u8 getColorD() const { return field_0x3 & 0x0f; }
+    u8 getAlphaA() const { return (field_0x6 & 0xe0) >> 5; }
+    u8 getAlphaB() const { return (field_0x6 & 0x1c) >> 2; }
+    u8 getAlphaC() const { return (field_0x6 & 0x03) << 1 | (field_0x7 & 0x80) >> 7; }
+    u8 getAlphaD() const { return (field_0x7 & 0x70) >> 4; }
+    u8 getCOp() const {
         if (getCBias() != 3) {
             return (field_0x1 & 4) >> 2;
         }
         return ((field_0x1 & 4) >> 2) + 8 + ((field_0x1 & 0x30) >> 3);
     }
-    u8 getCBias() { return field_0x1 & 0x03; }
-    u8 getCScale() { return (field_0x1 & 0x30) >> 4; }
-    u8 getCClamp() { return (field_0x1 & 0x08) >> 3; }
-    u8 getCReg() { return (field_0x1 & 0xc0) >> 6; }
-    u8 getAOp() {
+    u8 getCBias() const { return field_0x1 & 0x03; }
+    u8 getCScale() const { return (field_0x1 & 0x30) >> 4; }
+    u8 getCClamp() const { return (field_0x1 & 0x08) >> 3; }
+    u8 getCReg() const { return (field_0x1 & 0xc0) >> 6; }
+    u8 getAOp() const {
         if (getABias() != 3) {
             return (field_0x5 & 4) >> 2;
         }
         return ((field_0x5 & 4) >> 2) + 8 + ((field_0x5 & 0x30) >> 3);
     }
-    u8 getABias() { return field_0x5 & 0x03; }
-    u8 getAScale() { return (field_0x5 & 0x30) >> 4; }
-    u8 getAClamp() { return (field_0x5 & 0x08) >> 3; }
-    u8 getAReg() { return (field_0x5 & 0xc0) >> 6; }
-    u8 getRasSel() { return field_0x7 & 3; }
-    u8 getTexSel() { return (field_0x7 & 0x0c) >> 2; }
+    u8 getABias() const { return field_0x5 & 0x03; }
+    u8 getAScale() const { return (field_0x5 & 0x30) >> 4; }
+    u8 getAClamp() const { return (field_0x5 & 0x08) >> 3; }
+    u8 getAReg() const { return (field_0x5 & 0xc0) >> 6; }
+    u8 getRasSel() const { return field_0x7 & 3; }
+    u8 getTexSel() const { return (field_0x7 & 0x0c) >> 2; }
 
     void operator=(J2DTevStage const& other) {
         field_0x1 = other.field_0x1;
@@ -533,7 +534,8 @@ extern const u8 data_804561AC;
 /**
  * @ingroup jsystem-j2d
  * 
- */
+*/
+
 class J2DTevSwapModeTable {
 public:
     /* 802F1934 */ J2DTevSwapModeTable() { field_0x0 = data_804561AC; }
@@ -544,10 +546,10 @@ public:
     void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info) {
         field_0x0 = J2DCalcTevSwapTable(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
     }
-    u8 getR() { return field_0x0 >> 6 & 3; }
-    u8 getG() { return field_0x0 >> 4 & 3; }
-    u8 getB() { return field_0x0 >> 2 & 3; }
-    u8 getA() { return field_0x0 & 3; }
+    u8 getR() const { return field_0x0 >> 6 & 3; }
+    u8 getG() const { return field_0x0 >> 4 & 3; }
+    u8 getB() const { return field_0x0 >> 2 & 3; }
+    u8 getA() const { return field_0x0 & 3; }
 
 private:
     /* 0x0 */ u8 field_0x0;
@@ -584,7 +586,7 @@ public:
         mColorChan = J2DCalcColorChanID(info.field_0x1);
     }
 
-    u16 getMatSrc() const { return mColorChan & 1; }
+    u8 getMatSrc() const { return mColorChan & 1; }
 
 private:
     /* 0x0 */ u16 mColorChan;

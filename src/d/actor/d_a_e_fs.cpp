@@ -480,7 +480,7 @@ static bool checkViewArea(cXyz* i_pos) {
     Vec proj;
     mDoLib_project(i_pos, &proj);
     bool ret = false;
-    if (proj.x >= 0.0f && proj.x <= 608.0f && proj.y >= 0.0f && proj.y <= 448.0f) {
+    if (proj.x >= 0.0f && proj.x <= FB_WIDTH && proj.y >= 0.0f && proj.y <= FB_HEIGHT) {
         ret = true;
     }
     return ret;

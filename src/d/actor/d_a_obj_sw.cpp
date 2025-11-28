@@ -120,7 +120,6 @@ static void anm_init(obj_sc_s* i_this, int param_2, f32 i_morf, u8 i_mode, f32 i
 
 /* 80CF09A8-80CF1008 0003E8 0660+00 1/1 0/0 0/0 .text            sc_build__FP12obj_sw_class */
 static void sc_build(obj_sw_class* i_this) {
-    // NONMATCHING
     fopAc_ac_c* a_this = &i_this->actor;
     obj_sc_s* sc_p = i_this->field_0x5a8;
     cXyz sp24, sp30;
@@ -285,13 +284,15 @@ static void sc_move(obj_sw_class* i_this) {
 
 /* 80CF1384-80CF1970 000DC4 05EC+00 1/1 0/0 0/0 .text            demo_camera__FP12obj_sw_class */
 static void demo_camera(obj_sw_class* i_this) {
-    // NONMATCHING
     fopAc_ac_c* a_this = &i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_class* zero_camera_p = dComIfGp_getCamera(0);
     cXyz sp24, sp30;
 
     switch (i_this->mDemoMode) {
+    case 0:
+        break;
     case 1:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
@@ -353,7 +354,7 @@ static void demo_camera(obj_sw_class* i_this) {
             cLib_addCalc2(&i_this->mDemoCamEye.z, sp30.z, 0.1f, 200.0f);
         }
 
-        player->changeDemoParam1(i_this->field_0x596 * 10);
+        player->changeDemoParam1(s16(i_this->field_0x596 * 10));
         if (mDoCPd_c::getTrigA(0) != 0) {
             i_this->field_0x5a8[7].mSound.startSound(Z2SE_KOSARU_V_THROW, 0, -1);
             player->changeDemoMode(24, 0, 0, 0);
@@ -408,7 +409,6 @@ static void demo_camera(obj_sw_class* i_this) {
 
 /* 80CF1970-80CF2160 0013B0 07F0+00 1/1 0/0 0/0 .text            sc_action__FP12obj_sw_class */
 static void sc_action(obj_sw_class* i_this) {
-    // NONMATCHING
     fopAc_ac_c* a_this = &i_this->actor;
     cXyz sp90;
     int swBit = fopAcM_GetParam(a_this) >> 24;
@@ -545,7 +545,6 @@ static void sc_action(obj_sw_class* i_this) {
 
 /* 80CF2160-80CF2604 001BA0 04A4+00 1/1 0/0 0/0 .text            sw_action__FP12obj_sw_class */
 static void sw_action(obj_sw_class* i_this) {
-    // NONMATCHING
     f32 tmp;
     f32 fVar1;
     f32 fVar2;
@@ -722,7 +721,6 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 80CF29D4-80CF2F38 002414 0564+00 1/0 0/0 0/0 .text            daObj_Sw_Create__FP10fopAc_ac_c */
 static int daObj_Sw_Create(fopAc_ac_c* a_this) {
-    // NONMATCHING
     obj_sw_class* i_this = (obj_sw_class*)a_this;
     int phase;
     u32 i_size;
@@ -832,8 +830,6 @@ static int daObj_Sw_Create(fopAc_ac_c* a_this) {
 
     return phase;
 }
-
-/* 80CF30EC-80CF30EC 0000EC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 
 /* 80CF3210-80CF3230 -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Sw_Method */
 static actor_method_class l_daObj_Sw_Method = {

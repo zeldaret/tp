@@ -457,8 +457,8 @@ public:
     void init();
     void addFishCount(u8 i_fishIndex);
     u16 getFishCount(u8 i_fishIndex) const { return mFishCount[i_fishIndex]; }
-    u8 getMaxSize(s32 i_sizeIndex) { return mMaxSize[i_sizeIndex]; }
-    void setMaxSize(s32 i_sizeIndex, u8 i_size) { mMaxSize[i_sizeIndex] = i_size; }
+    u8 getMaxSize(int i_sizeIndex) const { return mMaxSize[i_sizeIndex]; }
+    void setMaxSize(int i_sizeIndex, u8 i_size) { mMaxSize[i_sizeIndex] = i_size; }
 
 private:
     /* 0x00 */ u16 mFishCount[16];
@@ -661,7 +661,7 @@ public:
     void onEventBit(const u16 i_no);
     void offEventBit(const u16 i_no);
     int isEventBit(const u16 i_no) const;
-    void setEventReg(const u16 i_reg, u8 i_no);
+    void setEventReg(u16 i_reg, u8 i_no);
     u8 getEventReg(u16 i_reg) const;
 
     void* getPEventBit() { return (void*)mEvent; }
@@ -676,13 +676,15 @@ public:
 
     void setBalloonScore(u32 i_score) { mBalloonScore = i_score; }
     void setRaceGameTime(u32 i_time) { mRaceGameTime = i_time; }
+    void setHookGameTime(u32 i_time) { mHookGameTime = i_time; }
 
     u32 getRaceGameTime() const { return mRaceGameTime; }
     u32 getBalloonScore() const { return mBalloonScore; }
+    u32 getHookGameTime() const { return mHookGameTime; }
 
 private:
     /* 0x00 */ u8 unk0[1][4];
-    /* 0x04 */ u32 mStarTime;
+    /* 0x04 */ u32 mHookGameTime;
     /* 0x08 */ u32 mBalloonScore;
     /* 0x0C */ u32 mRaceGameTime;
     /* 0x10 */ u32 unk16;

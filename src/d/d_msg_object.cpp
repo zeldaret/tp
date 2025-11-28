@@ -134,7 +134,11 @@ dMsgObject_HIO_c::dMsgObject_HIO_c() {
     mBoxMidnaHaloAlpha = 1.0f;
     mBoxWolfHaloAlpha = 0.3f;
     mBoxTalkHaloAlpha = 1.0f;
+#if REGION_JPN
+    mBoxTalkScaleX = 1.1f;
+#else
     mBoxTalkScaleX = 1.2f;
+#endif
     mBoxNaviScaleX = 1.0f;
     mBoxMidnaScaleX = 1.0f;
     mBoxItemScaleX = 1.05f;
@@ -411,21 +415,19 @@ int dMsgObject_c::_create(msg_class* param_1) {
     return 4;
 }
 
-/* 80399660-80399660 025CC0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399660 = "zel_00.bmg";
-SECTION_DEAD static char const* const stringBase_8039966B = "zel_01.bmg";
-SECTION_DEAD static char const* const stringBase_80399676 = "zel_02.bmg";
-SECTION_DEAD static char const* const stringBase_80399681 = "zel_03.bmg";
-SECTION_DEAD static char const* const stringBase_8039968C = "zel_04.bmg";
-SECTION_DEAD static char const* const stringBase_80399697 = "zel_05.bmg";
-SECTION_DEAD static char const* const stringBase_803996A2 = "zel_06.bmg";
-SECTION_DEAD static char const* const stringBase_803996AD = "zel_07.bmg";
-SECTION_DEAD static char const* const stringBase_803996B8 = "zel_08.bmg";
-SECTION_DEAD static char const* const stringBase_803996C3 = "zel_99.bmg";
-SECTION_DEAD static char const* const stringBase_803996CE = "";
-#pragma pop
+static void dummyStrings() {
+    DEAD_STRING("zel_00.bmg");
+    DEAD_STRING("zel_01.bmg");
+    DEAD_STRING("zel_02.bmg");
+    DEAD_STRING("zel_03.bmg");
+    DEAD_STRING("zel_04.bmg");
+    DEAD_STRING("zel_05.bmg");
+    DEAD_STRING("zel_06.bmg");
+    DEAD_STRING("zel_07.bmg");
+    DEAD_STRING("zel_08.bmg");
+    DEAD_STRING("zel_99.bmg");
+    DEAD_STRING("");
+}
 
 /* 8043028C-8043069C 05CFAC 0410+00 7/7 51/51 0/0 .bss             g_MsgObject_HIO_c */
 dMsgObject_HIO_c g_MsgObject_HIO_c;
@@ -1510,8 +1512,8 @@ void dMsgObject_c::fukiPosCalc(bool param_1) {
                 temp = cStack_48.y;
             } else {
                 mDoLib_project(&field_0x100->pos, &local_3c);
-                if (local_3c.x >= 0.0f && local_3c.x <= 608.0f && local_3c.y >= 0.0f &&
-                    local_3c.y <= 448.0f)
+                if (local_3c.x >= 0.0f && local_3c.x <= FB_WIDTH && local_3c.y >= 0.0f &&
+                    local_3c.y <= FB_HEIGHT)
                 {
                     temp = 0.5f * (cStack_48.y + local_3c.y);
                 } else {
@@ -1652,7 +1654,7 @@ void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount)
     static char arcName[22];
 
     int msgGroup = dStage_stagInfo_GetMsgGroup(dComIfGp_getStage()->getStagInfo());
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL
     switch (dComIfGs_getPalLanguage()) {
     case dSv_player_config_c::LANGAUGE_GERMAN:
         sprintf(arcName, "/res/Msgde/bmgres%d.arc", msgGroup);
@@ -1669,6 +1671,8 @@ void dMsgObject_c::readMessageGroupLocal(mDoDvdThd_mountXArchive_c** p_arcMount)
     default:
         sprintf(arcName, "/res/Msguk/bmgres%d.arc", msgGroup);
     }
+    #elif REGION_JPN
+    sprintf(arcName, "/res/Msgjp/bmgres%d.arc", msgGroup);
     #else
     sprintf(arcName, "/res/Msgus/bmgres%d.arc", msgGroup);
     #endif

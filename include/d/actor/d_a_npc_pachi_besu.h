@@ -126,6 +126,13 @@ public:
     int getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
     int getBitSW() { return (fopAcM_GetParam(this) & 0xFF0000) >> 16; }
     void setFMotion_None() { mFMotion = 0; }
+    void setFMotion_Hit() { mFMotion = 1; }
+    void setFMotion_Mad() { mFMotion = 2; }
+    void setFMotion_LookBros() { mFMotion = 3; }
+    void setFMotion_LookNone() { mFMotion = 4; }
+    void talkOff() { mTalk = 0; }
+    void setTagPos(cXyz const& i_pos) { mTagPos = i_pos; }
+    void setLookPos(cXyz const& i_pos) { mLookPos = i_pos; }
 
     static char* mCutNameList[11];
     static cutFunc mCutList[11];
@@ -134,9 +141,9 @@ private:
     /* 0xE40 */ daNpc_Pachi_Besu_HIO_c* mHIO;
     /* 0xE44 */ dCcD_Cyl mCyl;
     /* 0xF80 */ u8 mType;
-    /* 0xF81 */ u8 field_0xf81;
-    /* 0xF84 */ cXyz field_0xf84;
-    /* 0xF90 */ cXyz field_0xf90;
+    /* 0xF81 */ u8 mTalk;
+    /* 0xF84 */ cXyz mTagPos;
+    /* 0xF90 */ cXyz mLookPos;
     /* 0xF9C */ u16 field_0xf9c;
     /* 0xF9E */ u8 mFMotion;
     /* 0xFA0 */ daNpcT_ActorMngr_c mActorMngrs[2];

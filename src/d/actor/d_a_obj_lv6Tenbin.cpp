@@ -398,5 +398,3 @@ extern actor_process_profile_definition g_profile_Obj_Lv6Tenbin = {
     fopAc_ACTOR_e,           // mActorType
     fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
-
-/* 80C779FC-80C779FC 00004C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

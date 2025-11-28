@@ -73,9 +73,9 @@ static void messageSet(u32 status, bool i_drawBg) {
 
     JUT_ASSERT(102, strlen(msg_p)-1 < 512);
 
-    J2DTextBox tpane('TEXT1', JGeometry::TBox2<f32>(0.0f, 0.0f, 608.0f, 200.0f), (ResFONT*)font_data, msg_p, 512, HBIND_CENTER, VBIND_CENTER);
-    J2DTextBox spane('TEXT2', JGeometry::TBox2<f32>(0.0f, 0.0f, 608.0f, 200.0f), (ResFONT*)font_data, msg_p, 512, HBIND_CENTER, VBIND_CENTER);
-    J2DPicture ppane('PICT1', JGeometry::TBox2<f32>(0.0f, 0.0f, 608.0f, 448.0f), (ResTIMG*)black_tex, NULL);
+    J2DTextBox tpane('TEXT1', JGeometry::TBox2<f32>(0.0f, 0.0f, FB_WIDTH, 200.0f), (ResFONT*)font_data, msg_p, 512, HBIND_CENTER, VBIND_CENTER);
+    J2DTextBox spane('TEXT2', JGeometry::TBox2<f32>(0.0f, 0.0f, FB_WIDTH, 200.0f), (ResFONT*)font_data, msg_p, 512, HBIND_CENTER, VBIND_CENTER);
+    J2DPicture ppane('PICT1', JGeometry::TBox2<f32>(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT), (ResTIMG*)black_tex, NULL);
 
     JUTResFont font((ResFONT*)font_data, NULL);
     JUTFont* pfont = (JUTFont*)&font;
@@ -146,36 +146,36 @@ static void messageSet(u32 status, bool i_drawBg) {
 
     #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
     f32 temp_0 = 0.0f; // fixes load order
-    f32 y = temp_0 + ((448.0f - height) / 2);
+    f32 y = temp_0 + ((FB_HEIGHT - height) / 2);
 
     if (i_drawBg) {
         ppane.mAlpha = 0x82;
-        ppane.draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
+        ppane.draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, false, false, false);
     }
 
-    spane.draw(2.0f, y + 10.0f + 2.0f, 608.0f, HBIND_CENTER);
-    tpane.draw(0.0f, y + 10.0f, 608.0f, HBIND_CENTER);
+    spane.draw(2.0f, y + 10.0f + 2.0f, FB_WIDTH, HBIND_CENTER);
+    tpane.draw(0.0f, y + 10.0f, FB_WIDTH, HBIND_CENTER);
     #else
     f32 temp_0 = 0.0f; // fixes load order
-    f32 x = temp_0 + ((608.0f - maxWidth) / 2);
-    f32 y = temp_0 + ((448.0f - height) / 2);
+    f32 x = temp_0 + ((FB_WIDTH - maxWidth) / 2);
+    f32 y = temp_0 + ((FB_HEIGHT - height) / 2);
 
     if (i_drawBg) {
         ppane.mAlpha = 0x82;
-        ppane.draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
+        ppane.draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, false, false, false);
     }
 
     #if VERSION == VERSION_GCN_PAL
     if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_ENGLISH) {
-        spane.draw(x + 2.0f, y + 10.0f + 2.0f, 608.0f, HBIND_LEFT);
-        tpane.draw(x, y + 10.0f, 608.0f, HBIND_LEFT);
+        spane.draw(x + 2.0f, y + 10.0f + 2.0f, FB_WIDTH, HBIND_LEFT);
+        tpane.draw(x, y + 10.0f, FB_WIDTH, HBIND_LEFT);
     } else {
-        spane.draw(2.0f, y + 10.0f + 2.0f, 608.0f, HBIND_CENTER);
-        tpane.draw(0.0f, y + 10.0f, 608.0f, HBIND_CENTER);
+        spane.draw(2.0f, y + 10.0f + 2.0f, FB_WIDTH, HBIND_CENTER);
+        tpane.draw(0.0f, y + 10.0f, FB_WIDTH, HBIND_CENTER);
     }
     #else
-    spane.draw(x + 2.0f, y + 10.0f + 2.0f, 608.0f, HBIND_LEFT);
-    tpane.draw(x, y + 10.0f, 608.0f, HBIND_LEFT);
+    spane.draw(x + 2.0f, y + 10.0f + 2.0f, FB_WIDTH, HBIND_LEFT);
+    tpane.draw(x, y + 10.0f, FB_WIDTH, HBIND_LEFT);
     #endif
     #endif
 }
@@ -188,8 +188,8 @@ void dDvdErrorMsg_c::draw(s32 status) {
     GXSetAlphaUpdate(GX_FALSE);
     j3dSys.drawInit();
 
-    J2DOrthoGraph draw2D(0.0f, 0.0f, 608.0f, 448.0f, -1.0f, 1.0f);
-    draw2D.setOrtho(0.0f, 0.0f, 608.0f, 448.0f, -1.0f, 1.0f);
+    J2DOrthoGraph draw2D(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, -1.0f, 1.0f);
+    draw2D.setOrtho(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, -1.0f, 1.0f);
     draw2D.setPort();
     dComIfGp_setCurrentGrafPort(&draw2D);
 
@@ -244,8 +244,8 @@ static void drawCapture(u8 alpha) {
     static bool l_texCopied = false;
 
     if (!l_texCopied) {
-        GXSetTexCopySrc(0, 0, 608, 448);
-        GXSetTexCopyDst(304, 224, (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format, GX_TRUE);
+        GXSetTexCopySrc(0, 0, FB_WIDTH, FB_HEIGHT);
+        GXSetTexCopyDst(FB_WIDTH / 2, FB_HEIGHT / 2, (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format, GX_TRUE);
         GXCopyTex(mDoGph_gInf_c::getFrameBufferTex(), GX_FALSE);
         l_texCopied = true;
     }
@@ -255,7 +255,7 @@ static void drawCapture(u8 alpha) {
     GXSetAlphaUpdate(GX_FALSE);
     j3dSys.drawInit();
 
-    GXInitTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), mDoGph_gInf_c::getFrameBufferTex(), 304, 224, (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXInitTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), mDoGph_gInf_c::getFrameBufferTex(), FB_WIDTH / 2, FB_HEIGHT / 2, (GXTexFmt)mDoGph_gInf_c::getFrameBufferTimg()->format, GX_CLAMP, GX_CLAMP, GX_FALSE);
     GXInitTexObjLOD(mDoGph_gInf_c::getFrameBufferTexObj(), GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
     GXLoadTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), GX_TEXMAP0);
     GXSetNumChans(0);

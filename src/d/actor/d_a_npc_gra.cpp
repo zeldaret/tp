@@ -8,6 +8,7 @@
 #include "d/d_meter2_info.h"
 #include "d/actor/d_a_obj_onsenTaru.h"
 #include "JSystem/JHostIO/JORFile.h"
+#include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_gra.h"
 #include "d/actor/d_a_tag_gra.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -357,7 +358,6 @@ daNpc_grA_c::cut_type daNpc_grA_c::mEvtCutList[] = {
 
 /* 809BE94C-809BEB24 0000EC 01D8+00 1/1 0/0 0/0 .text            __ct__11daNpc_grA_cFv */
 daNpc_grA_c::daNpc_grA_c() : daNpcF_c() {
-    // NONMATCHING
 }
 
 /* 809BEB64-809BEDA4 000304 0240+00 1/0 0/0 0/0 .text            __dt__11daNpc_grA_cFv */

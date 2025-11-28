@@ -5,10 +5,11 @@
 
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
+#include "d/actor/d_a_npc_the.h"
+#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_tag_evtarea.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
-#include "d/actor/d_a_npc_the.h"
-#include "d/actor/d_a_tag_evtarea.h"
 
 /* 80AFBE0C-80AFBE78 000000 006C+00 11/11 0/0 0/0 .rodata          m__16daNpcThe_Param_c */
 const daNpcThe_HIOParam daNpcThe_Param_c::m = {

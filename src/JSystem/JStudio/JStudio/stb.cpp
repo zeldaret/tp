@@ -198,29 +198,31 @@ void TObject::process_sequence_() {
     switch (type) {
     case 0:
         JUT_EXPECT(u32Value == 0);
-        JUT_EXPECT(pContent == 0);
+        JUT_EXPECT(pContent == NULL);
         break;
     case 1:
-        JUT_EXPECT(pContent == 0);
+        JUT_EXPECT(pContent == NULL);
         setFlag_operation_(u32Value);
         break;
     case 2:
-        JUT_EXPECT(pContent == 0);
+        JUT_EXPECT(pContent == NULL);
         setWait(u32Value);
         break;
-    case 3:
-        JUT_EXPECT(pContent == 0);
+    case 3: {
+        JUT_EXPECT(pContent == NULL);
         s32 off = toInt32FromUInt24_(u32Value);
         void* nextseq = (void*)getSequence_offset(off);
         setSequence_next(nextseq);
         break;
-    case 4:
-        JUT_EXPECT(pContent == 0);
+    }
+    case 4: {
+        JUT_EXPECT(pContent == NULL);
         u32 val = toInt32FromUInt24_(u32Value);
         suspend(val);
         break;
-    case 0x80:
-        ASSERT(pContent != 0);
+    }
+    case 0x80: {
+        ASSERT(pContent != NULL);
         void* p = (void*)pContent;
         data::TParse_TParagraph para(NULL);
         while (p < pNext) {
@@ -234,10 +236,11 @@ void TObject::process_sequence_() {
                 on_paragraph(para_dat.type, para_dat.content, para_dat.param);
             }
             p = (void*)para_dat.next;
-            ASSERT(p != 0);
+            ASSERT(p != NULL);
         }
         JUT_EXPECT(p == pNext);
         break;
+    }
     default:
         JUTWarn w;
         w << "unknown sequence : " << dat.type;
@@ -248,32 +251,34 @@ void TObject::process_sequence_() {
 void TObject::process_paragraph_reserved_(u32 arg1, const void* pContent, u32 uSize) {
     switch (arg1) {
     case 0x1:
-        ASSERT(pContent != 0);
+        ASSERT(pContent != NULL);
         ASSERT(uSize == 4);
         setFlag_operation_(*(u32*)pContent);
         break;
     case 0x2:
-        ASSERT(pContent != 0);
+        ASSERT(pContent != NULL);
         ASSERT(uSize == 4);
         setWait(*(u32*)pContent);
         break;
-    case 0x3:
-        ASSERT(pContent != 0);
+    case 0x3: {
+        ASSERT(pContent != NULL);
         ASSERT(uSize == 4);
         const void* seq = getSequence_offset(*(s32*)pContent);
         setSequence_next(seq);
         break;
+    }
     case 0x80:
         on_data(NULL, 0, pContent, uSize);
         break;
-    case 0x81:
+    case 0x81: {
         data::TParse_TParagraph_dataID dataID(pContent);
         const void* temp = dataID.getContent();
         on_data(dataID.get_ID(), dataID.get_IDSize(), temp,
                 uSize - ((uintptr_t)temp - (uintptr_t)dataID.getRaw()));
         break;
+    }
     case 0x82:
-        ASSERT(pContent != 0);
+        ASSERT(pContent != NULL);
         break;
     }
 }
@@ -300,7 +305,7 @@ void TControl::appendObject(TObject* p) {
 }
 
 void TControl::removeObject(TObject* p) {
-    ASSERT(p != 0);
+    ASSERT(p != NULL);
     ASSERT(p->getControl() == this);
     p->setControl_(NULL);
     mObjectContainer.Erase(p);
@@ -308,7 +313,7 @@ void TControl::removeObject(TObject* p) {
 
 void TControl::destroyObject(TObject* p) {
     removeObject(p);
-    ASSERT(pFactory != 0);
+    ASSERT(pFactory != NULL);
     pFactory->destroy(p);
 }
 
@@ -376,11 +381,11 @@ TParse::TParse(TControl* pControl) : pControl(pControl) {}
 TParse::~TParse() {}
 
 bool TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 flags) {
-    ASSERT(ppData_inout != 0);
-    ASSERT(puBlock_out != 0);
+    ASSERT(ppData_inout != NULL);
+    ASSERT(puBlock_out != NULL);
 
     const void* pData = *ppData_inout;
-    ASSERT(pData != 0);
+    ASSERT(pData != NULL);
 
     const data::TParse_THeader header(pData);
     *ppData_inout = header.getContent();
@@ -411,11 +416,11 @@ bool TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 f
 }
 
 bool TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 flags) {
-    ASSERT(ppData_inout != 0);
-    ASSERT(puData_out != 0);
+    ASSERT(ppData_inout != NULL);
+    ASSERT(puData_out != NULL);
 
     const void* pData = *ppData_inout;
-    ASSERT(pData != 0);
+    ASSERT(pData != NULL);
 
     data::TParse_TBlock blk(pData);
     *ppData_inout = blk.getNext();
@@ -433,7 +438,7 @@ bool TParse::parseBlock_block(const data::TParse_TBlock& ppBlock, u32 flags) {
 
 bool TParse::parseBlock_object(const data::TParse_TBlock_object& ppObject, u32 flags) {
     TControl* pControl = getControl();
-    ASSERT(pControl != 0);
+    ASSERT(pControl != NULL);
 
     if (ppObject.get_type() == data::BLOCK_NONE) {
         TObject_control& ref = pControl->referObject_control();

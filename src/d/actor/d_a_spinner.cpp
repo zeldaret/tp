@@ -903,7 +903,7 @@ int daSpinner_c::execute() {
 
     mCyl.MoveCAt(current.pos);
     dComIfG_Ccsp()->Set(&mCyl);
-    g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&mCyl, 1);
+    dComIfG_Ccsp()->SetMass(&mCyl, 1);
 
     if (reflectAccept()) {
         if (mpPathMove != NULL) {
@@ -985,4 +985,5 @@ extern actor_process_profile_definition g_profile_SPINNER = {
 
 AUDIO_INSTANCES
 struct JAUSectionHeap;
+template<>
 JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance; 

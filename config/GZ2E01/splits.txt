@@ -1008,7 +1008,7 @@ d/d_menu_collect.cpp:
 d/d_menu_dmap.cpp:
 	.text       start:0x801B7F20 end:0x801C084C
 	.ctors      start:0x8037385C end:0x80373860
-	.rodata     start:0x80395518 end:0x80395860
+	.rodata     start:0x80395518 end:0x8039584B
 	.data       start:0x803BC7E0 end:0x803BCB60
 	.sbss       start:0x80451078 end:0x80451088
 	.sdata2     start:0x80453FE8 end:0x80454060
@@ -2013,7 +2013,7 @@ JSystem/JAudio2/JASAiCtrl.cpp:
 
 JSystem/JAudio2/JASAudioThread.cpp:
 	.text       start:0x8029CCDC end:0x8029D0B4
-	.rodata     start:0x8039B338 end:0x8039B360
+	.rodata     start:0x8039B338 end:0x8039B34C
 	.data       start:0x803C78E0 end:0x803C78F0
 	.bss        start:0x80431C68 end:0x80431C78
 	.sbss       start:0x804512D8 end:0x804512E0
@@ -2280,7 +2280,7 @@ Z2AudioLib/Z2Audience.cpp:
 	.rodata     start:0x8039C220 end:0x8039C230
 	.data       start:0x803CAC98 end:0x803CACD0
 	.bss        start:0x804341D8 end:0x804341F8
-	.sbss       start:0x80451350 end:0x80451360
+	.sbss       start:0x80451350 end:0x80451358
 	.sdata2     start:0x80455AA0 end:0x80455B38
 
 Z2AudioLib/Z2SoundObject.cpp:
@@ -2300,6 +2300,7 @@ Z2AudioLib/Z2Creature.cpp:
 	.text       start:0x802C03C8 end:0x802C321C
 	.ctors      start:0x80373924 end:0x80373928
 	.data       start:0x803CB230 end:0x803CB8F0
+	.sbss       start:0x80451358 end:0x80451360
 	.sdata2     start:0x80455BD8 end:0x80455C98
 
 Z2AudioLib/Z2LinkMgr.cpp:

@@ -9,6 +9,29 @@
 #include "d/actor/d_a_obj_swspinner.h"
 #include "d/d_s_play.h"
 
+#if DEBUG
+class daObjLv7Brg_HIO_c : public JORReflexible {
+public:
+    daObjLv7Brg_HIO_c();
+    virtual ~daObjLv7Brg_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    u8 field_0x04[0x08 - 0x04];
+    f32 field_0x08;
+    f32 field_0x0c;
+};
+
+daObjLv7Brg_HIO_c::daObjLv7Brg_HIO_c() {
+}
+
+void daObjLv7Brg_HIO_c::genMessage(JORMContext* ctx) {
+    // DEBUG NONMATCHING
+}
+
+static daObjLv7Brg_HIO_c l_HIO;
+#endif
+
 /* 80C86378-80C863EC 000078 0074+00 1/1 0/0 0/0 .text            searchSwSpinner__FPvPv */
 static void* searchSwSpinner(void* i_actor, void* i_data) {
     fopAc_ac_c* swspinner = (fopAc_ac_c*)i_actor;
@@ -329,19 +352,32 @@ void daObjLv7Brg_c::mode_action() {
         if (5100.0f == field_0xa78) {
             var_f31 = 0.0f;
         } else {
+#if DEBUG
+            var_f31 = l_HIO.field_0x08;
+#else
             var_f31 = 30.0f;
+#endif
         }
     } else if (0.0f == field_0xa78) {
         var_f31 = 0.0f;
     } else {
+#if DEBUG
+        var_f31 = -l_HIO.field_0x0c;
+#else
         var_f31 = -45.0f;
+#endif
     }
 
     cLib_addCalc(&speedF, var_f31, 0.02f, 1.0f, 0.1f);
     field_0xa78 += speedF;
 
     if (0.0f != speedF) {
-        fopAcM_seStartLevel(this, 0x8025F, (127.0f * speedF) / 30.0f);
+#if DEBUG
+        u32 var_r28 = 127.0f * speedF / l_HIO.field_0x08;
+#else
+        u32 var_r28 = 127.0f * speedF / 30.0f;
+#endif
+        fopAcM_seStartLevel(this, 0x8025F, var_r28);
     }
 
     if (0.0f != speedF && 0.0f == temp_f29) {

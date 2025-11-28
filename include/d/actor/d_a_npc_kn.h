@@ -3,6 +3,46 @@
 
 #include "d/actor/d_a_npc.h"
 
+struct daNpc_Kn_HIOParam {
+    /* 0x00 */ daNpcT_HIOParam common;
+    /* 0x8C */ s16 alpha;
+    /* 0x8E */ s16 attack_wait_time;
+    /* 0x90 */ s16 followup_wait_time; // ?
+    /* 0x94 */ f32 small_slide_distance;
+    /* 0x98 */ f32 big_slide_distance;
+    /* 0x9C */ f32 warp_distance;
+    /* 0xA0 */ f32 attack_disappear_speed_h;  // ?
+    /* 0xA4 */ f32 attack_disappear_speed_v;  // ?
+    /* 0xA8 */ s16 rotation_num;
+    /* 0xAA */ s16 rotation_speed;
+    /* 0xAC */ s16 attack_start_min_time;
+    /* 0xAE */ s16 attack_start_time_range;
+    /* 0xB0 */ f32 move_speed;
+};
+
+class daNpc_Kn_Param_c {
+public:
+    /* 80A3C124 */ virtual ~daNpc_Kn_Param_c() {}
+
+    static const daNpc_Kn_HIOParam m;
+};
+
+#if DEBUG
+class daNpc_Kn_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpc_Kn_HIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+
+    daNpc_Kn_HIOParam m;
+};
+
+#define NPC_KN_HIO_CLASS daNpc_Kn_HIO_c
+#else
+#define NPC_KN_HIO_CLASS daNpc_Kn_Param_c
+#endif
+
 /**
  * @ingroup actors-npcs
  * @class daNpc_Kn_c
@@ -36,9 +76,6 @@ public:
 
     class daNpc_Kn_prtclMngr_c {
     public:
-        /* 80A2AF98 */ ~daNpc_Kn_prtclMngr_c() {};
-        /* 80A3C1C4 */ daNpc_Kn_prtclMngr_c() {};
-
         /* 0x00 */ bool mpModel;
         /* 0x04 */ cXyz mPos;
         /* 0x10 */ csXyz mAngle;
@@ -373,10 +410,10 @@ public:
     /* 80A2D060 */ virtual bool afterSetMotionAnm(int, int, f32, int);
     
     static const dCcD_SrcGObjInf mCcDObjData;
-    static dCcD_SrcCyl mCcDCyl;
-    static dCcD_SrcSph mCcDSph;
     static char* mCutNameList[21];
     static cutFunc mCutList[21];
+    static dCcD_SrcCyl mCcDCyl;
+    static dCcD_SrcSph mCcDSph;
     static s16 mSrchName;
     static fopAc_ac_c* mFindActorPtrs[50];
     static u8 mFindCount[4];
@@ -385,7 +422,7 @@ private:
     /* 0x0E44 */ J3DModel* mpPodModel;
     /* 0x0E48 */ mDoExt_invisibleModel mInvisModel;
     /* 0x0E50 */ dKy_tevstr_c mTevStr;
-    /* 0x11D8 */ u8 field_0x11D8[0x11DC - 0x11D8];
+    /* 0x11D8 */ NPC_KN_HIO_CLASS* mpHIO;
     /* 0x11DC */ dCcD_Cyl mCylCc;
     /* 0x1318 */ dCcD_Sph mSphCc[2];
     /* 0x1588 */ mDoExt_bckAnm mPodBck;
@@ -422,29 +459,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpc_Kn_c) == 0x1758);
-
-struct daNpc_Kn_HIOParam {
-    /* 0x00 */ daNpcT_HIOParam common;
-    /* 0x8C */ s16 alpha;
-    /* 0x8E */ s16 attack_wait_time;
-    /* 0x90 */ s16 followup_wait_time; // ?
-    /* 0x94 */ f32 small_slide_distance;
-    /* 0x98 */ f32 big_slide_distance;
-    /* 0x9C */ f32 warp_distance;
-    /* 0xA0 */ f32 attack_disappear_speed_h;  // ?
-    /* 0xA4 */ f32 attack_disappear_speed_v;  // ?
-    /* 0xA8 */ s16 rotation_num;
-    /* 0xAA */ s16 rotation_speed;
-    /* 0xAC */ s16 attack_start_min_time;
-    /* 0xAE */ s16 attack_start_time_range;
-    /* 0xB0 */ f32 move_speed;
-};
-
-class daNpc_Kn_Param_c {
-public:
-    /* 80A3C124 */ virtual ~daNpc_Kn_Param_c() {}
-
-    static const daNpc_Kn_HIOParam m;
-};
 
 #endif /* D_A_NPC_KN_H */

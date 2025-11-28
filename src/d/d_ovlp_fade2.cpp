@@ -13,8 +13,8 @@
 
 /* 8025247C-80252990 24CDBC 0514+00 1/0 0/0 0/0 .text            draw__15dOvlpFd2_dlst_cFv */
 void dOvlpFd2_dlst_c::draw() {
-    GXSetViewport(0.0f, 0.0f, 608.0f, 448.0f, 0.0f, 1.0f);
-    GXSetScissor(0, 0, 608, 448);
+    GXSetViewport(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0.0f, 1.0f);
+    GXSetScissor(0, 0, FB_WIDTH, FB_HEIGHT);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_RGBA4, 0);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
@@ -50,8 +50,8 @@ void dOvlpFd2_dlst_c::draw() {
     C_MTXPerspective(m, 60.0f, mDoGph_gInf_c::getWidthF() / mDoGph_gInf_c::getHeightF(), 100.0f,
                      100000.0f);
     GXSetProjection(m, GX_PERSPECTIVE);
-    GXInitTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), mDoGph_gInf_c::getFrameBufferTex(), 304,
-                 224, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+    GXInitTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), mDoGph_gInf_c::getFrameBufferTex(), FB_WIDTH / 2,
+                 FB_HEIGHT / 2, GX_TF_RGBA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
     GXInitTexObjLOD(mDoGph_gInf_c::getFrameBufferTexObj(), GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f,
                     GX_FALSE, GX_FALSE, GX_ANISO_1);
     GXLoadTexObj(mDoGph_gInf_c::getFrameBufferTexObj(), GX_TEXMAP0);
@@ -106,7 +106,7 @@ void dOvlpFd2_dlst_c::draw() {
 
 /* 80252990-802529F4 24D2D0 0064+00 1/1 0/0 0/0 .text            __ct__10dOvlpFd2_cFv */
 dOvlpFd2_c::dOvlpFd2_c() {
-    setExecute(&execFirstSnap);
+    setExecute(&dOvlpFd2_c::execFirstSnap);
     dComIfGp_2dShowOff();
     mTimer = 2;
 }
@@ -115,7 +115,7 @@ dOvlpFd2_c::dOvlpFd2_c() {
 void dOvlpFd2_c::execFirstSnap() {
     if (field_0x11c != 0) {
         if (cLib_calcTimer<s8>(&mTimer) == 0) {
-            setExecute(&execFadeOut);
+            setExecute(&dOvlpFd2_c::execFadeOut);
             fopOvlpM_Done(this);
             mTimer = -12;
         }
@@ -138,7 +138,7 @@ void dOvlpFd2_c::execFadeOut() {
         if (mTimer == 0) {
             if (fopOvlpM_IsOutReq(this)) {
                 fopOvlpM_SceneIsStart();
-                setExecute(&execNextSnap);
+                setExecute(&dOvlpFd2_c::execNextSnap);
                 field_0x110 = -0x4000;
                 mTimer = 15;
             }
@@ -154,7 +154,7 @@ void dOvlpFd2_c::execFadeOut() {
         cLib_calcTimer<s8>(&mTimer);
     }
 
-    field_0x114 += TREG_S(0) + 0x800;
+    field_0x114 += (s16)(TREG_S(0) + 0x800);
     cLib_addCalc2(&field_0x118, TREG_F(1) + 1.0f, 1.0f, TREG_F(2) + 0.05f);
 }
 
@@ -167,7 +167,7 @@ void dOvlpFd2_c::execNextSnap() {
 
             dComIfGp_setWindowNum(1);
             dComIfGp_2dShowOff();
-            setExecute(&execFadeIn);
+            setExecute(&dOvlpFd2_c::execFadeIn);
         }
     }
 }

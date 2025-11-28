@@ -10,9 +10,13 @@
 #include "d/actor/d_a_obj_carry.h"
 #include "d/d_s_play.h"
 
+#if DEBUG
+#include "d/d_debug_viewer.h"
+#endif
+
 /* 806B64AC-806B6520 0000EC 0074+00 1/1 0/0 0/0 .text            __ct__12daE_FB_HIO_cFv */
 daE_FB_HIO_c::daE_FB_HIO_c() {
-    field_0x4 = -1;
+    mId = -1;
     model_size = 1.5f;
     player_detection_range = 1500.0f;
     next_attack_waiting_time = 30;
@@ -126,7 +130,7 @@ static f32 dummy_117095() {
 }
 #endif
 
-bool lbl_188_bss_45;
+bool l_HIOInit;
 
 /* 806B91FC-806B9220 000054 0024+00 6/7 0/0 0/0 .bss             l_HIO */
 static daE_FB_HIO_c l_HIO;
@@ -141,7 +145,8 @@ int daE_FB_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
-    J3DMaterial* material = model->getModelData()->getMaterialNodePointer(0);
+    J3DModelData* modelData = model->getModelData();
+    J3DMaterial* material = modelData->getMaterialNodePointer(0);
     material->getTevColor(1)->r = l_HIO.color_register_1r;
     material->getTevColor(1)->g = l_HIO.color_register_1g;
     material->getTevColor(1)->b = l_HIO.color_register_1b;
@@ -152,10 +157,25 @@ int daE_FB_c::draw() {
     cXyz my_vec;
     my_vec.set(current.pos.x, 10.0f + current.pos.y, current.pos.z);
 
+    #if DEBUG
+    if (WREG_S(0) != 0) {
+        fopAc_ac_c* player = dComIfGp_getPlayer(0);
+        cXyz cStack_44;
+        cStack_44.set(player->current.pos);
+        cStack_44.y += 100.0f;
+        GXColor local_48;
+        local_48.r = 0x82;
+        local_48.g = 0xff;
+        local_48.b = 0x82;
+        local_48.a = 0xfa;
+        dDbVw_drawLineXlu(attention_info.position, cStack_44, local_48, 1, 0xc);
+    }
+    #endif
+
     GXTexObj* tex_obj = dDlst_shadowControl_c::getSimpleTex();
-    mShadowKey = dComIfGd_setShadow(mShadowKey, 1, model, &my_vec, 1300.0f, 0.0f,
-                                    current.pos.y, mObjAcch.GetGroundH(), mObjAcch.m_gnd,
-                                    &tevStr, 0, 1.0f, tex_obj);
+    mShadowKey =
+        dComIfGd_setShadow(mShadowKey, 1, model, &my_vec, BREG_F(19) + 1300.0f, 0.0f, current.pos.y,
+                           mObjAcch.GetGroundH(), mObjAcch.m_gnd, &tevStr, 0, 1.0f, tex_obj);
     return 1;
 }
 
@@ -864,8 +884,8 @@ int daE_FB_c::_delete() {
     }
 
     if (mHIOInit) {
-        lbl_188_bss_7C = 0;
-        // TODO: dbg HIO stuff.
+        l_HIOInit = 0;
+        mDoHIO_DELETE_CHILD(l_HIO.mId);
     }
 
     if (heap != NULL) {
@@ -941,7 +961,7 @@ cPhs__Step daE_FB_c::create() {
             attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             fopAcM_SetGroup(this, 0);
             mStts.Init(0xFF, 0, this);
-            mAtSph.Set(cc_fb_src);
+            mAtSph.Set(cc_fb_at_src);
             mAtSph.SetStts(&mStts);
             setActionMode(3, 0);
         } else {
@@ -953,10 +973,10 @@ cPhs__Step daE_FB_c::create() {
                 return cPhs_ERROR_e;
             }
 
-            if (lbl_188_bss_45 == false) {
-                lbl_188_bss_45 = true;
+            if (l_HIOInit == false) {
+                l_HIOInit = true;
                 mHIOInit = 1;
-                l_HIO.field_0x4 = -1;
+                l_HIO.mId = mDoHIO_CREATE_CHILD("フリザド（大）", &l_HIO);
             }
 
             attention_info.flags = fopAc_AttnFlag_BATTLE_e;

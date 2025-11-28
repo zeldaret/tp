@@ -6,6 +6,7 @@
  * tgHitCallBack__10daNpc_Kn_cFP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf */
 void daNpc_Kn_c::tgHitCallBack(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf,
                                fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf) {
+    daNpc_Kn_c* kn_actor = (daNpc_Kn_c*)i_tgActor;
     u8 cut_type = 0;
     if (i_atActor != NULL) {
         if (fopAcM_GetProfName(i_atActor) == PROC_ALINK) {
@@ -15,7 +16,7 @@ void daNpc_Kn_c::tgHitCallBack(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf,
         }
     }
 
-    ((daNpc_Kn_c*)i_tgActor)->setCutType(cut_type);
+    kn_actor->setCutType(cut_type);
 }
 
 /* 80A38550-80A3858C 00DC30 003C+00 1/1 0/0 0/0 .text            getTrnsfrmAnmP__10daNpc_Kn_cFPCci
@@ -45,7 +46,9 @@ J3DAnmTextureSRTKey* daNpc_Kn_c::getTexSRTKeyAnmP(char const* i_arcName, int i_r
  * setBckAnm__10daNpc_Kn_cFP15J3DAnmTransformfiiib              */
 BOOL daNpc_Kn_c::setBckAnm(J3DAnmTransform* i_bck, f32 i_speed, int i_mode, int i_startF,
                            int i_endF, bool i_modify) {
-    return mBckAnm.init(i_bck, TRUE, i_mode, i_speed, i_startF, i_endF, i_modify);
+    s16 start_f = i_startF;
+    s16 end_f = i_endF;
+    return mBckAnm.init(i_bck, TRUE, i_mode, i_speed, start_f, end_f, i_modify);
 }
 
 /* 80A38684-80A3877C 00DD64 00F8+00 1/1 0/0 0/0 .text
@@ -114,9 +117,11 @@ void daNpc_Kn_c::deleteRes(const s8* i_ptrn_list, const char** i_arcname_list) {
 
 /* 80A38930-80A38BB8 00E010 0288+00 1/1 0/0 0/0 .text            execute__10daNpc_Kn_cFv */
 int daNpc_Kn_c::execute() {
+    BOOL evt_proc = FALSE;
     setParam();
 
-    if (!evtProc()) {
+    evt_proc = evtProc();
+    if (evt_proc == FALSE) {
         action();
     }
 
@@ -271,7 +276,7 @@ void daNpc_Kn_c::setEnvTevColor() {
 
 /* 80A39008-80A3904C 00E6E8 0044+00 2/2 0/0 0/0 .text            setRoomNo__10daNpc_Kn_cFv */
 void daNpc_Kn_c::setRoomNo() {
-    s32 room_id = dComIfG_Bgsp().GetRoomId(mGndChk);
+    s8 room_id = dComIfG_Bgsp().GetRoomId(mGndChk);
     fopAcM_SetRoomNo(this, room_id);
     mCcStts.SetRoomId(room_id);
 }
@@ -425,17 +430,20 @@ void daNpc_Kn_c::playAllAnm() {
 /* 80A3949C-80A39558 00EB7C 00BC+00 1/0 0/0 0/0 .text            ctrlBtk__10daNpc_Kn_cFv */
 int daNpc_Kn_c::ctrlBtk() {
     if (mpMatAnm != NULL) {
-        if (field_0xe30 != 0 && mBtkAnm.getBtkAnm()) {
-            mpMatAnm->setNowOffsetX(cM_ssin(mJntAnm.getEyeAngleY()) * 0.2f);
-            mpMatAnm->setNowOffsetY(cM_ssin(mJntAnm.getEyeAngleX()) * 0.2f);
+        if (field_0xe30 != 0) {
+            J3DAnmTextureSRTKey* btk_anm = mBtkAnm.getBtkAnm();
+            if (btk_anm) {
+                mpMatAnm->setNowOffsetX(cM_ssin(mJntAnm.getEyeAngleY()) * 0.2f);
+                mpMatAnm->setNowOffsetY(cM_ssin(mJntAnm.getEyeAngleX()) * 0.2f);
 
-            if (field_0xe31 != 0) {
-                mpMatAnm->setMorfFrm(field_0xe31);
-                field_0xe31 = 0;
+                if (field_0xe31 != 0) {
+                    mpMatAnm->setMorfFrm(field_0xe31);
+                    field_0xe31 = 0;
+                }
+
+                mpMatAnm->onEyeMoveFlag();
+                return 1;
             }
-
-            mpMatAnm->onEyeMoveFlag();
-            return 1;
         }
 
         if (field_0xe31 != 0) {
@@ -564,7 +572,8 @@ int daNpc_Kn_c::ctrlMsgAnm(int* o_faceAnmAttr_p, int* o_anmAttr_p, fopAc_ac_c* i
 /* 80A3989C-80A39BBC 00EF7C 0320+00 1/0 0/0 0/0 .text ctrlJoint__10daNpc_Kn_cFP8J3DJointP8J3DModel
  */
 int daNpc_Kn_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
-    int joint_no = i_joint->getJntNo();
+    J3DJoint* my_joint = i_joint;
+    int joint_no = my_joint->getJntNo();
     cXyz pos;
     csXyz angle;
     mDoMtx_stack_c::copy(i_model->getAnmMtx(joint_no));
@@ -626,11 +635,17 @@ int daNpc_Kn_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 }
 
 /* 80A39BBC-80A39DBC 00F29C 0200+00 1/0 0/0 0/0 .text            evtProc__10daNpc_Kn_cFv */
-// NONMATCHING - gameinfo load issues
 int daNpc_Kn_c::evtProc() {
     BOOL ret = FALSE;
 
-    if (dComIfGp_event_runCheck() != 0) {
+#if VERSION != VERSION_SHIELD_DEBUG
+    // TODO: gameInfo fake match to force reuse of pointer
+    dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+    if (play->getEvent().runCheck())
+#else
+    if (dComIfGp_event_runCheck())
+#endif
+    {
         if (eventInfo.checkCommandTalk()) {
             if (!checkChangeEvt()) {
                 evtTalk();
@@ -638,7 +653,11 @@ int daNpc_Kn_c::evtProc() {
             ret = TRUE;
         } else if (eventInfo.checkCommandDemoAccrpt() && dComIfGp_getEventManager().endCheck(mEvtId)) {
             if (evtEndProc()) {
+#if VERSION != VERSION_SHIELD_DEBUG
+                play->getEvent().reset();
+#else
                 dComIfGp_event_reset();
+#endif
                 mEvtId = -1;
             }
         } else {
@@ -763,7 +782,8 @@ void daNpc_Kn_c::setFootPrtcl(cXyz* param_0, f32 param_1) {
 
 /* 80A3A254-80A3A25C 00F934 0008+00 1/0 0/0 0/0 .text            checkCullDraw__10daNpc_Kn_cFv */
 bool daNpc_Kn_c::checkCullDraw() {
-    return false;
+    bool ret = false;
+    return ret;
 }
 
 /* 80A3A25C-80A3A2A8 00F93C 004C+00 1/0 0/0 0/0 .text            twilight__10daNpc_Kn_cFv */
@@ -788,8 +808,7 @@ void daNpc_Kn_c::evtOrder() {
         fopAcM_orderOtherEventId(this, mEvtId, 0xff, 0xffff, 6, 1);
 
     } else {
-        u32 flag_check = attention_info.flags;
-        if (flag_check & fopAc_AttnFlag_SPEAK_e || flag_check & fopAc_AttnFlag_TALK_e) {
+        if (attention_info.flags & fopAc_AttnFlag_SPEAK_e || attention_info.flags & fopAc_AttnFlag_TALK_e) {
             eventInfo.onCondition(dEvtCnd_CANTALK_e);
 
             if (chkXYItems()) {
@@ -939,6 +958,7 @@ void daNpc_Kn_c::setPos(cXyz i_pos) {
     i_pos.y += 500.0f;
     mGndChk.SetPos(&i_pos);
     i_pos.y = dComIfG_Bgsp().GroundCross(&mGndChk);
+    JUT_ASSERT(1841, -(1000000000.0f) != i_pos.y);
 
     current.pos = i_pos;
     old.pos = current.pos;
@@ -977,9 +997,9 @@ BOOL daNpc_Kn_c::chkActorInSight(fopAc_ac_c* actor, f32 i_fovY, s16 i_angleY) {
 BOOL daNpc_Kn_c::chkPointInArea(cXyz i_pos, cXyz i_center, f32 i_boundXZ, f32 i_boundY1, f32 i_boundY2,
                                 s16 i_angle) {
     cXyz bounds, center;
-    f32 min_y = i_boundY2;
     f32 max_y = i_boundY1;
-    if (i_boundY1 < i_boundY2) {
+    f32 min_y = i_boundY2;
+    if (max_y < min_y) {
         min_y = i_boundY1;
         max_y = i_boundY2;
     }
@@ -1000,7 +1020,8 @@ BOOL daNpc_Kn_c::chkPointInArea(cXyz i_pos, cXyz i_center, cXyz i_bounds, s16 i_
 int daNpc_Kn_c::chkFindPlayer(BOOL i_release, s16 i_angleY) {
     cXyz attn_pos = getAttnPos(daPy_getPlayerActorClass());
 
-    int dist_index = i_release == FALSE ? attention_info.distances[3] : attention_info.distances[1];
+    int dist_index = i_release == FALSE ? attention_info.distances[fopAc_attn_SPEAK_e]
+                                        : attention_info.distances[fopAc_attn_TALK_e];
     f32 dist_max = i_release == FALSE ? dComIfGp_getAttention()->getDistTable(dist_index).mDistMax :
                                         dComIfGp_getAttention()->getDistTable(dist_index).mDistMaxRelease;
     f32 lower_y = -1.0f * dComIfGp_getAttention()->getDistTable(dist_index).mLowerY;
@@ -1022,8 +1043,10 @@ int daNpc_Kn_c::chkFindPlayer(BOOL i_release, s16 i_angleY) {
         fov = 135.0f;
     }
 
-    int pnt_chk = chkPointInArea(attn_pos, attention_info.position, dist_max, lower_y, upper_y, 0);
-    if (pnt_chk && chkActorInSight(daPy_getPlayerActorClass(), fov, i_angleY)) {
+    // writing like the following may be a fakematch, but it fixes dbg asm:
+    int pnt_chk[1];
+    pnt_chk[0] = chkPointInArea(attn_pos, attention_info.position, dist_max, lower_y, upper_y, 0);
+    if (pnt_chk[0] && chkActorInSight(daPy_getPlayerActorClass(), fov, i_angleY)) {
         return TRUE;
     }
 
@@ -1050,8 +1073,7 @@ cXyz daNpc_Kn_c::getAttnPos(fopAc_ac_c* i_actor) {
     cXyz attn_pos(i_actor->attention_info.position);
 
     if (fopAcM_GetName(i_actor) == PROC_ALINK) {
-        f32 offset = static_cast<daPy_py_c*>(i_actor)->getAttentionOffsetY();
-        attn_pos.y -= offset;
+        attn_pos.y -= static_cast<daPy_py_c*>(i_actor)->getAttentionOffsetY();
     }
 
     return attn_pos;
@@ -1182,6 +1204,7 @@ BOOL daNpc_Kn_c::talkProc(int* param_0, int param_1, fopAc_ac_c** i_partnerList_
 }
 
 // FIXME: dummy functions to get rodata to align.
+#if !DEBUG
 static f64 dummy_lits_00(int sel) {
     switch (sel) {
     case 0:
@@ -1192,6 +1215,7 @@ static f64 dummy_lits_00(int sel) {
         return 0.0;
     }
 }
+#endif
 
 static f32 dummy_lits_01(int sel) {
     switch (sel) {
@@ -1206,22 +1230,16 @@ static f32 dummy_lits_01(int sel) {
 
 /* 80A3B5EC-80A3B708 010CCC 011C+00 1/1 0/0 0/0 .text            setHitodamaPrtcl__10daNpc_Kn_cFv */
 void daNpc_Kn_c::setHitodamaPrtcl() {
+    JPABaseEmitter* emitter = NULL;
     cXyz pos(eyePos);
 
     for (int i = 0; i < 2; i++) {
         static const u16 id[2] = {0x8497,0x8498};
         mHitodamaPrtclKey[i] = dComIfGp_particle_set(mHitodamaPrtclKey[i], id[i], &pos, &mCurAngle, 0);
 
-        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mHitodamaPrtclKey[i]);
+        emitter = dComIfGp_particle_getEmitter(mHitodamaPrtclKey[i]);
         if (emitter != NULL) {
-            u8 alpha;
-
-            if (dComIfGs_wolfeye_effect_check() == FALSE) {
-                alpha = 0xFF;
-            } else {
-                alpha = 0;
-            }
-
+            u8 alpha = (dComIfGs_wolfeye_effect_check() == FALSE) ? 0xFF : 0;
             emitter->setGlobalTranslation(pos.x, pos.y, pos.z);
             emitter->setGlobalAlpha(alpha);
         }
@@ -1234,3 +1252,10 @@ void daNpc_Kn_c::decTmr() {
         mTimer--;
     }
 }
+
+#if DEBUG
+void dummy_lit_125958() {
+    OS_REPORT("name:%s\n");
+    OS_REPORT("JNT_%s_e,\t//  (%2d)%s\n");
+}
+#endif

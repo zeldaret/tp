@@ -13,7 +13,7 @@ JKRSolidHeap* JKRSolidHeap::create(u32 size, JKRHeap* heap, bool useErrorHandler
         heap = getRootHeap();
     }
 
-    if (size == 0xffffffff) {
+    if (size == -1) {
         size = heap->getMaxAllocatableSize(0x10);
     }
 

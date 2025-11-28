@@ -1,7 +1,7 @@
 #ifndef D_A_NPC_SOLDIERA_H
 #define D_A_NPC_SOLDIERA_H
 
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
 
 /**
  * @ingroup actors-npcs
@@ -10,7 +10,7 @@
  *
  * @details
  *
-*/
+ */
 
 struct daNpc_SoldierA_HIOParam {
     /* 0x00 */ daNpcF_HIOParam common;
@@ -41,7 +41,7 @@ class daNpc_SoldierA_c : public daNpcF_c {
 public:
     typedef int (daNpc_SoldierA_c::*actionFunc)(void*);
     typedef int (daNpc_SoldierA_c::*cutFunc)(int);
-    
+
     /* 80AEF58C */ daNpc_SoldierA_c();
     /* 80AEF7A0 */ ~daNpc_SoldierA_c();
     /* 80AEF9A0 */ cPhs__Step create();
@@ -76,6 +76,8 @@ public:
     /* 80AF1A48 */ int ECut_talkLake(int);
     /* 80AF1B8C */ int ECut_listenLake(int);
     /* 80AF1CA4 */ int test(void*);
+
+    u8 getType() { return mType; }
 
     static char* mEvtCutNameList[3];
     static cutFunc mEvtCutList[3];

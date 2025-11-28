@@ -35,10 +35,8 @@ void dNpcLib_lookat_c::init(J3DModel* i_mdl_p, int* param_1, csXyz* param_2, csX
 /* 80251534-80251B60 24BE74 062C+00 0/0 0/0 2/2 .text
  * action__16dNpcLib_lookat_cF4cXyz4cXyzP10fopAc_ac_cPA4_fi     */
 // NONMATCHING - regswap, equivalent
-void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, Mtx param_3,
-                              int param_4) {
+void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, Mtx param_3, int param_4) {
     cXyz sp90;
-    int i;
 
     Mtx spA0;
     cMtx_copy(param_3, spA0);

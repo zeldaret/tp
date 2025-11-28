@@ -548,5 +548,3 @@ extern actor_process_profile_definition g_profile_NPC_SEIC = {
   fopAc_ACTOR_e,           // mActorType
   fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
-
-/* 80AC92C8-80AC92C8 0000AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -64,7 +64,7 @@ int daObj_Stick_c::create() {
         mStts.Init(0xFF, 0, this);
         mSph.Set(daObj_Stick_c::mCcDSph);
         mSph.SetStts(&mStts);
-        mAcch.CrrPos(g_dComIfG_gameInfo.play.mBgs);
+        mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundHeight = mAcch.m_ground_h;
 

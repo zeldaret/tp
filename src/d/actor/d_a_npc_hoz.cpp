@@ -637,7 +637,8 @@ BOOL daNpc_Hoz_c::evtEndProc() {
         field_0xf8a = 1;
         field_0xf8c = 0;
 
-        if (mFlow.getChoiceNo() == 0) {
+        int choiceNo = mFlow.getChoiceNo();
+        if (choiceNo == 0) {
             dMeter2Info_setMiniGameItem(3);
             dMeter2Info_onMenuInForce(2);
         }
@@ -1315,16 +1316,19 @@ int daNpc_Hoz_c::talk(void* param_0) {
             dComIfGp_event_reset();
             mMode = 3;
 
+            int choiceNo;
             switch (mType) {
             case 1:
                 if (dComIfGs_isSwitch(field_0xf88, fopAcM_GetRoomNo(this))) {
-                    if (mFlow.getChoiceNo() == 0) {
+                    choiceNo = mFlow.getChoiceNo();
+                    if (choiceNo == 0) {
                         field_0xf8c = 1;
                         mEvtNo = 1;
                         evtChange();
                     }
                 } else if (dMeter2Info_getRentalBombBag() == 0xFF) {
-                    if (mFlow.getChoiceNo() == 0) {
+                    choiceNo = mFlow.getChoiceNo();
+                    if (choiceNo == 0) {
                         dMeter2Info_setMiniGameItem(3);
                         dMeter2Info_onMenuInForce(2);
                     }
@@ -1332,7 +1336,8 @@ int daNpc_Hoz_c::talk(void* param_0) {
                 break;
             case 2:
                 if (daNpcT_chkTmpBit(0x43)) {
-                    if (mFlow.getChoiceNo() == 0) {
+                    choiceNo = mFlow.getChoiceNo();
+                    if (choiceNo == 0) {
                         field_0xf8c = 1;
                         mEvtNo = 1;
                         evtChange();
@@ -1341,7 +1346,8 @@ int daNpc_Hoz_c::talk(void* param_0) {
                 break;
             case 5:
                 field_0xf8a = 1;
-                if (mFlow.getChoiceNo() == 0) {
+                choiceNo = mFlow.getChoiceNo();
+                if (choiceNo == 0) {
                     field_0xf8c = 1;
                     mEvtNo = 1;
                     evtChange();

@@ -10,6 +10,23 @@
 #include "d/d_debug_viewer.h"
 #include "f_op/f_op_actor_enemy.h"
 
+class daE_HP_HIO_c : public JORReflexible {
+public:
+    /* 806E5DEC */ daE_HP_HIO_c();
+    /* 806E9D38 */ virtual ~daE_HP_HIO_c() {}
+
+#if DEBUG
+    void genMessage(JORMContext*);
+#endif
+
+    s8 mChild;
+    f32 modelSize;
+    s16 waitTimeAfterAttack;
+    s16 resurrectionTime;
+    s16 attackDelayOnApproach;
+    u8 rangeDisplay;
+};
+
 namespace {
 /* 806EA320-806EA364 000038 0044+00 0/1 0/0 0/0 .data            cc_hp_src__22@unnamed@d_a_e_hp_cpp@
  */
@@ -744,10 +761,21 @@ void daE_HP_c::executeDead() {
         movemode++;
     }
     case 1: {
-        if (dComIfGp_event_runCheck() != FALSE) {
+#if VERSION != VERSION_SHIELD_DEBUG
+        // TODO: gameInfo fake match to force reuse of pointer
+        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+        if (play->getEvent().runCheck())
+#else
+        if (dComIfGp_event_runCheck())
+#endif
+        {
             if (eventInfo.checkCommandDemoAccrpt()) {
                 if (dComIfGp_getEventManager().endCheck(field_0x778)) {
+#if VERSION != VERSION_SHIELD_DEBUG
+                    play->getEvent().reset();
+#else
                     dComIfGp_event_reset();
+#endif
                 } else if (strcmp(dComIfGp_getEventManager().getRunEventName(),
                                   "DEFAULT_GETITEM") == 0 &&
                            field_0x784 != -1)
@@ -1325,7 +1353,6 @@ int daE_HP_c::create() {
 
 /* 806E9900-806E9ABC 003C00 01BC+00 1/1 0/0 0/0 .text            __ct__8daE_HP_cFv */
 daE_HP_c::daE_HP_c() {
-    // NONMATCHING
 }
 
 /* 806E9CD0-806E9CF0 003FD0 0020+00 1/0 0/0 0/0 .text            daE_HP_Create__FP8daE_HP_c */

@@ -39,7 +39,7 @@ int daObjLv5Key_c::Init() {
     setStatus(STATUS_WAIT);
 
     mAction = NULL;
-    setAction(&Wait, 1);
+    setAction(&daObjLv5Key_c::Wait, 1);
     return cPhs_COMPLEATE_e;
 }
 
@@ -137,9 +137,9 @@ void daObjLv5Key_c::Wait(int param_0) {
     case 1:
         if (is_open_start()) {
             setBgc();
-            setAction(&Open, 1);
+            setAction(&daObjLv5Key_c::Open, 1);
         } else if (is_shake_start()) {
-            setAction(&Shake, 1);
+            setAction(&daObjLv5Key_c::Shake, 1);
         }
     }
 }
@@ -158,7 +158,7 @@ void daObjLv5Key_c::Open(int param_0) {
         mBck.play();
 
         if (mBck.isStop()) {
-            setAction(&Fall, 1);
+            setAction(&daObjLv5Key_c::Fall, 1);
         }
     }
 }
@@ -174,7 +174,7 @@ void daObjLv5Key_c::Fall(int param_0) {
         fopAcM_SetGravity(this, -6.0f);
         mMode = 1;
         break;
-    case 1:
+    case 1: {
         fopAcM_calcSpeed(this);
         fopAcM_posMove(this, NULL);
 
@@ -194,6 +194,7 @@ void daObjLv5Key_c::Fall(int param_0) {
             mMode = 2;
         }
         break;
+    }
     case 2:
         RotateAngle();
 
@@ -207,7 +208,7 @@ void daObjLv5Key_c::Fall(int param_0) {
         current.pos.y = prev_y;
 
         if (mAcch.ChkGroundHit()) {
-            setAction(&Land, 1);
+            setAction(&daObjLv5Key_c::Land, 1);
         }
     }
 }
@@ -267,7 +268,7 @@ void daObjLv5Key_c::Shake(int param_0) {
             decShakeNum();
 
             if (is_shake_end()) {
-                setAction(&Wait, 1);
+                setAction(&daObjLv5Key_c::Wait, 1);
             }
         }
     }

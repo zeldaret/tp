@@ -3,15 +3,10 @@
 
 #include "dolphin/mtx.h"
 #include "f_pc/f_pc_base.h"
+#include "SSystem/SComponent/c_bg_s_grp_pass_chk.h"
+#include "SSystem/SComponent/c_bg_s_poly_pass_chk.h"
 
 struct cBgD_Vtx_t : public Vec {};
-
-class cBgS_GrpPassChk {
-public:
-    virtual ~cBgS_GrpPassChk() {}
-};
-
-class cBgS_PolyPassChk;
 
 class cBgS_Chk {
 public:

@@ -1,5 +1,7 @@
-#include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc4.h"
+#include "d/actor/d_a_npc2.h"
 #include "d/actor/d_a_npc_tk.h"
+#include "d/d_debug_viewer.h"
 #include "d/d_msg_object.h"
 #include "d/actor/d_a_tag_evtarea.h"
 #include "dol2asm.h"
@@ -47,14 +49,24 @@ static BOOL daNpcF_subIdx(int i_step, int i_num, u16& i_idx, BOOL i_isClosed) {
 
 /* 801505F8-80150654 14AF38 005C+00 4/4 0/0 0/0 .text            daNpcF_incIdx__FiRUsii */
 static BOOL daNpcF_incIdx(int i_num, u16& i_idx, BOOL i_isClosed, int i_reverse) {
-    return i_reverse ? daNpcF_subIdx(1, i_num, i_idx, i_isClosed) :
-                       daNpcF_addIdx(1, i_num, i_idx, i_isClosed);
+    BOOL result = FALSE;
+    if (i_reverse) {
+        result = daNpcF_subIdx(1, i_num, i_idx, i_isClosed);
+    } else {
+        result = daNpcF_addIdx(1, i_num, i_idx, i_isClosed);
+    }
+    return result;
 }
 
 /* 80150654-801506B0 14AF94 005C+00 3/3 0/0 0/0 .text            daNpcF_decIdx__FiRUsii */
 static BOOL daNpcF_decIdx(int i_num, u16& i_idx, BOOL i_isClosed, int i_reverse) {
-    return i_reverse ? daNpcF_addIdx(1, i_num, i_idx, i_isClosed) :
-                       daNpcF_subIdx(1, i_num, i_idx, i_isClosed);
+    BOOL result = FALSE;
+    if (i_reverse) {
+        result = daNpcF_addIdx(1, i_num, i_idx, i_isClosed);
+    } else {
+        result = daNpcF_subIdx(1, i_num, i_idx, i_isClosed);
+    }
+    return result;
 }
 
 /* 801506B0-801506BC 14AFF0 000C+00 0/0 0/0 130/130 .text initialize__18daNpcF_ActorMngr_cFv */
@@ -82,7 +94,8 @@ void daNpcF_ActorMngr_c::remove() {
 fopAc_ac_c* daNpcF_ActorMngr_c::getActorP() {
     fopAc_ac_c* actor = NULL;
 
-    if (fopAcM_SearchByID(mActorID, &actor) == 1 && actor != NULL) {
+    BOOL foundActor = fopAcM_SearchByID(mActorID, &actor);
+    if (foundActor == TRUE && actor != NULL) {
         return actor;
     }
 
@@ -106,28 +119,26 @@ void daNpcF_MatAnm_c::calc(J3DMaterial* i_material) const {
 
     for (u32 i = 0; i < 8; i++) {
         if (J3DMaterialAnm::getTexMtxAnm(i).getAnmFlag()) {
-            J3DTexMtxInfo* curr_mtx_info =
-                &i_material->getTexGenBlock()->getTexMtx(i)->getTexMtxInfo();
+            J3DTextureSRTInfo* curr_mtx_info =
+                &i_material->getTexGenBlock()->getTexMtx(i)->getTexMtxInfo().mSRT;
 
             if (mMorfFrm != 0) {
                 f32 tmp8 = 1.0f / (mMorfFrm + 1);
-                f32 tmp9 = (1.0f - tmp8);
-                f32 tmp10 = field_0xF4 * (1.0f - tmp8);
 
-                curr_mtx_info->mSRT.mTranslationX =
-                    tmp10 + curr_mtx_info->mSRT.mTranslationX * tmp8;
-                curr_mtx_info->mSRT.mTranslationY =
-                    field_0xF8 * tmp9 + curr_mtx_info->mSRT.mTranslationY * tmp8;
+                curr_mtx_info->mTranslationX =
+                    field_0xF4 * (1.0f - tmp8) + curr_mtx_info->mTranslationX * tmp8;
+                curr_mtx_info->mTranslationY =
+                    field_0xF8 * (1.0f - tmp8) + curr_mtx_info->mTranslationY * tmp8;
 
             } else {
                 if (mEyeMoveFlag != 0) {
-                    curr_mtx_info->mSRT.mTranslationX = mNowOffsetX;
-                    curr_mtx_info->mSRT.mTranslationY = mNowOffsetY;
+                    curr_mtx_info->mTranslationX = mNowOffsetX;
+                    curr_mtx_info->mTranslationY = mNowOffsetY;
                 }
             }
 
-            field_0xF4 = curr_mtx_info->mSRT.mTranslationX;
-            field_0xF8 = curr_mtx_info->mSRT.mTranslationY;
+            field_0xF4 = curr_mtx_info->mTranslationX;
+            field_0xF8 = curr_mtx_info->mTranslationY;
         }
     }
 }
@@ -167,7 +178,33 @@ void daNpcF_Path_c::initialize() {
 
 #if DEBUG
 void daNpcF_Path_c::drawDbgInfoXyz() {
-    // UNFINISHED
+    GXColor green = {0x80, 0xff, 0x80, 0xff};
+    GXColor blue = {0x80, 0x80, 0xff, 0xff};
+    GXColor red = {0xff, 0x80, 0x80, 0xff};
+    GXColor yellow = {0xff, 0xff, 0x80, 0xff};
+
+    cXyz unkXyz1;
+    cXyz unkXyz2;
+
+    for (int i = 0; i <= getNumPnts(); i++) {
+        if (i < getNumPnts()) {
+            unkXyz1.set(getPntPos(i).x, getPntPos(i).y, getPntPos(i).z);
+            if (i != 0) {
+                unkXyz2.set(getPntPos(i - 1).x, getPntPos(i - 1).y, getPntPos(i - 1).z);
+                dDbVw_drawLineOpa(unkXyz1, unkXyz2, red, 1, 12);
+            }
+
+            if (i == getIdx()) {
+                dDbVw_drawSphereOpa(unkXyz1, 50.0f, yellow, 1);
+            } else {
+                dDbVw_drawSphereOpa(unkXyz1, 9.0f, (GXColor){0xff, 0xff, 0xff, 0xff}, 1);
+            }
+        } else if (mIsClosed) {
+            unkXyz1.set(getPntPos(i - 1).x, getPntPos(i - 1).y, getPntPos(i - 1).z);
+            unkXyz2.set(getPntPos(0).x, getPntPos(0).y, getPntPos(0).z);
+            dDbVw_drawLineOpa(unkXyz1, unkXyz2, red, 1, 12);
+        }
+    }
 }
 #endif
 
@@ -233,8 +270,9 @@ int daNpcF_Path_c::getBeforeIdx() {
 
 /* 80150CA8-80150D44 14B5E8 009C+00 0/0 0/0 1/1 .text getBeforePos__13daNpcF_Path_cFR4cXyz */
 BOOL daNpcF_Path_c::getBeforePos(cXyz& o_pos) {
+    BOOL ret = FALSE;
     u16 idx = mIdx;
-    BOOL ret = daNpcF_decIdx(mPathInfo->m_num, idx, chkClose(), mIsReversed);
+    ret = daNpcF_decIdx(mPathInfo->m_num, idx, chkClose(), mIsReversed);
 
     o_pos = getPntPos(idx);
     return ret;
@@ -243,9 +281,10 @@ BOOL daNpcF_Path_c::getBeforePos(cXyz& o_pos) {
 /* 80150D44-80150DE0 14B684 009C+00 0/0 0/0 1/1 .text            getNextPos__13daNpcF_Path_cFR4cXyz
  */
 BOOL daNpcF_Path_c::getNextPos(cXyz& o_pos) {
+    BOOL ret = FALSE;
     u16 idx = mIdx;
 
-    BOOL ret = daNpcF_incIdx(mPathInfo->m_num, idx, chkClose(), mIsReversed);
+    ret = daNpcF_incIdx(mPathInfo->m_num, idx, chkClose(), mIsReversed);
 
     o_pos = getPntPos(idx);
     return ret;
@@ -253,17 +292,17 @@ BOOL daNpcF_Path_c::getNextPos(cXyz& o_pos) {
 
 /* 80150DE0-80150EB4 14B720 00D4+00 0/0 0/0 16/16 .text getDstPos__13daNpcF_Path_cF4cXyzR4cXyz */
 int daNpcF_Path_c::getDstPos(cXyz i_pos1, cXyz& o_pos2) {
-    BOOL ret = false;
+    BOOL ret = FALSE;
 
     while (!ret) {
         o_pos2 = getPntPos(getIdx());
 
-        if (!chkPassed(i_pos1)) {
+        if (chkPassed(i_pos1)) {
+            if (setNextIdx()) {
+                ret = true;
+            }
+        } else {
             break;
-        }
-
-        if (setNextIdx()) {
-            ret = true;
         }
     }
 
@@ -370,7 +409,7 @@ void daNpcF_Lookat_c::calc(fopAc_ac_c* i_actor, Mtx i_baseTransformMtx, csXyz** 
             cLib_addCalc2(&sp1C, angY, 0.25f, (f32)(0x800 / j));
 
             if (i_debug) {
-                OS_REPORT("|%d| a:%f(%d), b:%f(%d), axis:%d\n", i, sp1C, o_lookatAngle[i]->y, angY, mRotAngle[i].y, i_snap);
+                OS_REPORT("|%d| a:%f(%d), b:%f(%d), axis:%d\n", i, sp1C, o_lookatAngle[i]->y, angY, mRotAngle[i].y, i_axis);
             }
 
             if (i_axis > 0 && angY - sp1C < 0.0f) {
@@ -443,8 +482,7 @@ void daNpcF_Lookat_c::initCalc(fopAc_ac_c* i_actor, Mtx i_baseTransformMtx, cXyz
     mDoMtx_stack_c::multVec(&local_90, &param_5);
 
     for (int i = 0; i < 3; i++) {
-        cXyz* vec = &param_2[i];
-        local_90 = vec[1] - vec[0];
+        local_90 = (param_2 + i)[1] - (param_2 + i)[0];
         param_4[i] = local_90.abs();
         param_3[i].setall(0);
         param_3[i].x = -cM_atan2s(local_90.y, local_90.absXZ());
@@ -474,8 +512,7 @@ void daNpcF_Lookat_c::update(cXyz* param_0, csXyz* param_1, f32* param_2) {
     for (int i = 0; i < 3; i++) {
         mDoMtx_stack_c::XYZrotS(param_1[i]);
         cMtx_copy(mDoMtx_stack_c::get(), mtx);
-        pparam0i = &param_0[i];
-        mDoMtx_stack_c::transS(pparam0i[0]);
+        mDoMtx_stack_c::transS(param_0[i]);
 
         ang.x += mAngularMoveDis[i].x;
         ang.y += mAngularMoveDis[i].y;
@@ -483,7 +520,7 @@ void daNpcF_Lookat_c::update(cXyz* param_0, csXyz* param_1, f32* param_2) {
         mDoMtx_stack_c::concat(mtx);
 
         vec.set(0.0f, 0.0f, param_2[i]);
-        mDoMtx_stack_c::multVec(&vec, &pparam0i[1]);
+        mDoMtx_stack_c::multVec(&vec, &param_0[i] + 1);
     }
 }
 
@@ -491,23 +528,34 @@ void daNpcF_Lookat_c::update(cXyz* param_0, csXyz* param_1, f32* param_2) {
  * calcMoveDisAngle__15daNpcF_Lookat_cFiP4cXyzP5csXyz4cXyzii    */
 void daNpcF_Lookat_c::calcMoveDisAngle(int i_no, cXyz* param_1, csXyz* param_2, cXyz param_3,
                                        int i_axis, int i_debug) {
+    cXyz vec1;
+    cXyz vec2;
+
     if (i_axis == 0) {
         field_0x94[i_no] = false;
     }
 
+    s16 pitch1, yaw1, pitch2, yaw2, mvx, mvy;
     if (!field_0x94[i_no]) {
-        cXyz vec1 = param_3 - param_1[i_no];
+        vec1 = param_3 - param_1[i_no];
         if (!vec1.isZero()) {
             vec1.normalize();
-            cXyz vec2 = param_1[3] - param_1[i_no];
+            vec2 = param_1[3] - param_1[i_no];
             if (!vec2.isZero()) {
                 vec2.normalize();
-                s16 ivar3 = -cM_atan2s(vec1.y, vec1.absXZ());
-                s16 ivar4 = cM_atan2s(vec1.x, vec1.z);
-                s16 ivar5 = -cM_atan2s(vec2.y, vec2.absXZ());
-                s16 ivar6 = cM_atan2s(vec2.x, vec2.z);
-                mAngularMoveDis[i_no].x += (s16)(ivar3 - ivar5);
-                mAngularMoveDis[i_no].y += (s16)(ivar4 - ivar6);
+                pitch1 = -cM_atan2s(vec1.y, vec1.absXZ());
+                yaw1 = cM_atan2s(vec1.x, vec1.z);
+                pitch2 = -cM_atan2s(vec2.y, vec2.absXZ());
+                yaw2 = cM_atan2s(vec2.x, vec2.z);
+                mvx = pitch1 - pitch2;
+                mvy = yaw1 - yaw2;
+                mAngularMoveDis[i_no].x += mvx;
+                mAngularMoveDis[i_no].y += mvy;
+                if (i_debug) {
+                    OS_REPORT("*******%d: mvy:%d, mAngularMoveDis:%d, angle:%d(%d/%d)\n",
+                              i_no, mvy, mAngularMoveDis[i_no].y, param_2[i_no].y,
+                              mMinAngle[i_no].y, mMaxAngle[i_no].y);
+                }
             }
         }
     }
@@ -516,6 +564,11 @@ void daNpcF_Lookat_c::calcMoveDisAngle(int i_no, cXyz* param_1, csXyz* param_2, 
                        mMinAngle[i_no].x, mMaxAngle[i_no].x);
     adjustMoveDisAngle(mAngularMoveDis[i_no].y, param_2[i_no].y,
                        mMinAngle[i_no].y, mMaxAngle[i_no].y);
+
+    if (i_debug) {
+        OS_REPORT("+++++++%d: mvy:%d, mAngularMoveDis:%d\n",
+                  i_no, mvy, mAngularMoveDis[i_no].y);
+    }
 
     if (i_axis < 0 && mAngularMoveDis[i_no].y > 0) {
         field_0x94[i_no] = false;
@@ -622,7 +675,7 @@ int daNpcF_c::draw(BOOL i_isTest, BOOL param_1, f32 i_shadowDepth, _GXColorS10* 
             damage_ratio = 0.0f;
         }
 
-        if (cM3d_IsZero_inverted(damage_ratio)) {
+        if (cM3d_IsZero(damage_ratio) == FALSE) {
             tevStr.TevColor.r = (s16)(damage_ratio * 20.0f);
             tevStr.TevColor.g = 0;
         } else if (i_isTest) {
@@ -643,19 +696,17 @@ int daNpcF_c::draw(BOOL i_isTest, BOOL param_1, f32 i_shadowDepth, _GXColorS10* 
         } else {
             g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         }
-        g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
+        g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
         if (!drawDbgInfo()) {
             if (mAnmFlags & ANM_PLAY_BTP) {
-                mBtpAnm.entry(&modelData->getMaterialTable(), (s16)mBtpAnm.getFrame());
+                mBtpAnm.entry(modelData);
             }
             if (mAnmFlags & ANM_PLAY_BTK) {
-                frame = mBtkAnm.getFrame();
-                mBtkAnm.entry(&modelData->getMaterialTable(), frame);
+                mBtkAnm.entry(modelData);
             }
             if (mAnmFlags & ANM_PLAY_BRK) {
-                frame = mBrkAnm.getFrame();
-                mBrkAnm.entry(&modelData->getMaterialTable(), frame);
+                mBrkAnm.entry(modelData);
             }
 
             if (param_1) {
@@ -696,14 +747,34 @@ int daNpcF_c::draw(BOOL i_isTest, BOOL param_1, f32 i_shadowDepth, _GXColorS10* 
 void daNpcF_c::tgHitCallBack(fopAc_ac_c* i_this, dCcD_GObjInf* param_1, fopAc_ac_c* i_actor,
                              dCcD_GObjInf* param_3) {
     if (i_actor != NULL && fopAcM_GetProfName(i_actor) == PROC_ALINK) {
+        daNpcF_c* npc = static_cast<daNpcF_c*>(i_this);
         if (daPy_getPlayerActorClass() == i_actor) {
-            u8 cut_type = static_cast<daPy_py_c*>(i_actor)->getCutType();
-            static_cast<daNpcF_c*>(i_this)->setCutType(cut_type);
+            npc->setCutType(static_cast<daPy_py_c*>(i_actor)->getCutType());
         } else {
-            static_cast<daNpcF_c*>(i_this)->setCutType(daPy_py_c::CUT_TYPE_NM_VERTICAL);
+            npc->setCutType(daPy_py_c::CUT_TYPE_NM_VERTICAL);
         }
     }
 }
+
+/* 803B37E0-803B3824 010900 0044+00 0/0 0/0 36/36 .data            mCcDCyl__8daNpcF_c */
+dCcD_SrcCyl daNpcF_c::mCcDCyl = {
+    daNpcF_c::mCcDObjInfo,
+    {
+                {0.0f, 0.0f, 0.0f},  // mCenter
+                0.0f,  // mRadius
+                0.0f  // mHeight
+            }  // mCyl
+};
+
+/* 803B3824-803B3864 010944 0040+00 0/0 0/0 2/2 .data            mCcDSph__8daNpcF_c */
+dCcD_SrcSph daNpcF_c::mCcDSph = {
+    daNpcF_c::mCcDObjInfo,
+    {
+                {{0.0f, 0.0f, 0.0f}, 0.0f}  // mSph
+    }  // mSphAttr
+};
+
+char daNpcF_c::mFileNameBuf[0x15];
 
 /* 804257E8-80425978 052508 0190+00 4/4 0/0 0/0 .bss             mFindActorPList__8daNpcF_c */
 fopAc_ac_c* daNpcF_c::mFindActorPList[100];
@@ -713,12 +784,15 @@ s32 daNpcF_c::mFindCount;
 
 /* 80152654-801526E8 14CF94 0094+00 0/0 0/0 12/12 .text            srchAttnActor1__8daNpcF_cFPvPv */
 void* daNpcF_c::srchAttnActor1(void* i_proc, void* param_1) {
+    void* param_1_copy = param_1;
+    fopAc_ac_c* actor = NULL;
     if (mFindCount < 100 && fopAcM_IsActor(i_proc)
         && (fopAcM_GetName(i_proc) == PROC_NI || fopAcM_GetName(i_proc) == PROC_COW
             || fopAcM_GetName(i_proc) == PROC_NPC_NE || fopAcM_GetName(i_proc) == PROC_DO
             || fopAcM_GetName(i_proc) == PROC_SQ || fopAcM_GetName(i_proc) == PROC_BD))
     {
-        mFindActorPList[mFindCount] = static_cast<fopAc_ac_c*>(i_proc);
+        actor = static_cast<fopAc_ac_c*>(i_proc);
+        mFindActorPList[mFindCount] = actor;
         mFindCount++;
     }
     return NULL;
@@ -729,10 +803,13 @@ s16 daNpcF_c::mSrchActorName;
 
 /* 801526E8-8015276C 14D028 0084+00 1/1 0/0 0/0 .text            srchActor__8daNpcF_cFPvPv */
 void* daNpcF_c::srchActor(void* i_proc, void* i_this) {
-    if (mFindCount < 100 && fopAc_IsActor(i_proc) && i_proc != i_this
+    void* i_this_copy = i_this;
+    fopAc_ac_c* actor = NULL;
+    if (mFindCount < 100 && fopAcM_IsActor(i_proc) && i_proc != i_this
         && mSrchActorName == fopAcM_GetName(i_proc))
     {
-        mFindActorPList[mFindCount] = static_cast<fopAc_ac_c*>(i_proc);
+        actor = static_cast<fopAc_ac_c*>(i_proc);
+        mFindActorPList[mFindCount] = actor;
         mFindCount++;
     }
 
@@ -742,6 +819,7 @@ void* daNpcF_c::srchActor(void* i_proc, void* i_this) {
 /* 8015276C-801527FC 14D0AC 0090+00 2/0 0/0 40/9 .text            setMtx__8daNpcF_cFv */
 void daNpcF_c::setMtx() {
     J3DModel* model = mAnm_p->getModel();
+    J3DModelData* modelData = model->getModelData();
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(mCurAngle);
     mDoMtx_stack_c::scaleM(scale);
@@ -759,13 +837,14 @@ void daNpcF_c::setMtx() {
 /* 801527FC-801528C8 14D13C 00CC+00 2/0 0/0 38/0 .text            setMtx2__8daNpcF_cFv */
 void daNpcF_c::setMtx2() {
     J3DModel* model = mAnm_p->getModel();
+    J3DModelData* modelData = model->getModelData();
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(mCurAngle);
     mDoMtx_stack_c::scaleM(scale);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     model->setUserArea((uintptr_t)this);
 
-    if (cM3d_IsZero_inverted(mExpressionMorf)) {
+    if (cM3d_IsZero(mExpressionMorf) == FALSE) {
         mAnm_p->onMorfNone();
     } else {
         mAnm_p->offMorfNone();
@@ -872,30 +951,36 @@ void daNpcF_c::initialize() {
 /* 80152B2C-80152B68 14D46C 003C+00 0/0 0/0 69/69 .text            getTrnsfrmKeyAnmP__8daNpcF_cFPci
  */
 J3DAnmTransformKey* daNpcF_c::getTrnsfrmKeyAnmP(char* i_arcName, int i_resIdx) {
-    return (J3DAnmTransformKey*)dComIfG_getObjectRes(i_arcName, i_resIdx);
+    J3DAnmTransformKey* key = (J3DAnmTransformKey*)dComIfG_getObjectRes(i_arcName, i_resIdx);
+    return key;
 }
 
 /* 80152B68-80152BA4 14D4A8 003C+00 0/0 0/0 31/31 .text            getTexPtrnAnmP__8daNpcF_cFPci */
 J3DAnmTexPattern* daNpcF_c::getTexPtrnAnmP(char* i_arcName, int i_resIdx) {
-    return (J3DAnmTexPattern*)dComIfG_getObjectRes(i_arcName, i_resIdx);
+    J3DAnmTexPattern* pattern = (J3DAnmTexPattern*)dComIfG_getObjectRes(i_arcName, i_resIdx);
+    return pattern;
 }
 
 /* 80152BA4-80152BE0 14D4E4 003C+00 0/0 0/0 50/50 .text            getTexSRTKeyAnmP__8daNpcF_cFPci
  */
 J3DAnmTextureSRTKey* daNpcF_c::getTexSRTKeyAnmP(char* i_arcName, int i_resIdx) {
-    return (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(i_arcName, i_resIdx);
+    J3DAnmTextureSRTKey* key = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(i_arcName, i_resIdx);
+    return key;
 }
 
 /* 80152BE0-80152C1C 14D520 003C+00 0/0 0/0 2/2 .text            getTevRegKeyAnmP__8daNpcF_cFPci */
 J3DAnmTevRegKey* daNpcF_c::getTevRegKeyAnmP(char* i_arcName, int i_resIdx) {
-    return (J3DAnmTevRegKey*)dComIfG_getObjectRes(i_arcName, i_resIdx);
+    J3DAnmTevRegKey* key = (J3DAnmTevRegKey*)dComIfG_getObjectRes(i_arcName, i_resIdx);
+    return key;
 }
 
 /* 80152C1C-80152C80 14D55C 0064+00 0/0 0/0 38/38 .text
  * setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii          */
 BOOL daNpcF_c::setMcaMorfAnm(J3DAnmTransformKey* i_anm, f32 i_speed, f32 i_morf, int i_mode,
                              int i_start, int i_end) {
-    mAnm_p->setAnm(i_anm, i_mode, i_morf, i_speed, (f32)i_start, (f32)i_end);
+    f32 start = i_start;
+    f32 end = i_end;
+    mAnm_p->setAnm(i_anm, i_mode, i_morf, i_speed, start, end);
     return true;
 }
 
@@ -903,7 +988,9 @@ BOOL daNpcF_c::setMcaMorfAnm(J3DAnmTransformKey* i_anm, f32 i_speed, f32 i_morf,
  * setBckAnm__8daNpcF_cFP15J3DAnmTransformfiiib                 */
 BOOL daNpcF_c::setBckAnm(J3DAnmTransform* i_bck, f32 i_speed, int i_mode, int i_start, int i_end,
                          bool i_modify) {
-    return mBckAnm.init(i_bck, true, i_mode, i_speed, (s16)i_start, (s16)i_end, i_modify);
+    s16 start = i_start;
+    s16 end = i_end;
+    return mBckAnm.init(i_bck, true, i_mode, i_speed, start, end, i_modify);
 }
 
 /* 80152CC4-80152D04 14D604 0040+00 0/0 0/0 32/32 .text
@@ -935,7 +1022,7 @@ void daNpcF_c::setEnvTevColor() {
 
 /* 80152DE0-80152E24 14D720 0044+00 1/1 0/0 40/40 .text            setRoomNo__8daNpcF_cFv */
 void daNpcF_c::setRoomNo() {
-    int room_id = dComIfG_Bgsp().GetRoomId(mGndChk);
+    s8 room_id = dComIfG_Bgsp().GetRoomId(mGndChk);
     fopAcM_SetRoomNo(this, room_id);
     mCcStts.SetRoomId(room_id);
 }
@@ -949,6 +1036,7 @@ BOOL daNpcF_c::chkEndAnm(f32 param_0) {
     case J3DFrameCtrl::EMode_RESET:
         return mAnm_p->isStop() && mAnm_p->getPlaySpeed() == 0.0f && param_0 != 0.0f;
     case J3DFrameCtrl::EMode_REVERSE:
+    case J3DFrameCtrl::EMode_LOOP_REVERSE:
     default:
         return false;
     }
@@ -970,6 +1058,7 @@ BOOL daNpcF_c::chkEndAnm(J3DFrameCtrl* frameCtrl, f32 prevRate) {
     case J3DFrameCtrl::EMode_RESET:
         return frameCtrl->checkState(1) && frameCtrl->getRate() == 0.0f && prevRate != 0.0f;
     case J3DFrameCtrl::EMode_REVERSE:
+    case J3DFrameCtrl::EMode_LOOP_REVERSE:
     default:
         return false;
     }
@@ -1151,7 +1240,7 @@ void daNpcF_c::setLookatMtx(int i_jointNo, int* i_jointList, f32 i_neckHeadAngle
         mLookatAngle[1].y = (s16)((f32)mLookatAngle[2].y * i_neckHeadAngleRatio);
         mLookatAngle[1].z = (s16)((f32)mLookatAngle[2].z * i_neckHeadAngleRatio);
 
-        MTXCopy(mDoMtx_stack_c::get(), baseMtx);
+        cMtx_copy(mDoMtx_stack_c::get(), baseMtx);
         pos.set(baseMtx[0][3], baseMtx[1][3], baseMtx[2][3]);
         baseMtx[0][3] = baseMtx[1][3] = baseMtx[2][3] = 0.0f;
 
@@ -1164,7 +1253,7 @@ void daNpcF_c::setLookatMtx(int i_jointNo, int* i_jointList, f32 i_neckHeadAngle
             }
         }
         mDoMtx_stack_c::inverse();
-        MTXCopy(mDoMtx_stack_c::get(), invParentMtx);
+        cMtx_copy(mDoMtx_stack_c::get(), invParentMtx);
 
         mDoMtx_stack_c::transS(pos);
         mDoMtx_stack_c::XYZrotM(mCurAngle);
@@ -1183,12 +1272,15 @@ void daNpcF_c::setLookatMtx(int i_jointNo, int* i_jointList, f32 i_neckHeadAngle
 /* 80153578-80153658 14DEB8 00E0+00 0/0 0/0 13/13 .text            hitChk2__8daNpcF_cFP8dCcD_Cylii
  */
 BOOL daNpcF_c::hitChk2(dCcD_Cyl* i_ccCyl, BOOL param_1, BOOL param_2) {
+    fopAc_ac_c* hit_actor = NULL;
+    s16 actorAngleY;
     static_cast<dCcD_Stts*>(i_ccCyl->GetStts())->Move();
 
     if (mDamageTimer == 0 && i_ccCyl->ChkTgHit()) {
-        fopAc_ac_c* hit_actor = i_ccCyl->GetTgHitAc();
+        hit_actor = i_ccCyl->GetTgHitAc();
         if (hit_actor != NULL) {
-            field_0x990 = fopAcM_searchActorAngleY(this, hit_actor) - mCurAngle.y;
+            actorAngleY = fopAcM_searchActorAngleY(this, hit_actor);
+            field_0x990 = actorAngleY - mCurAngle.y;
             if (fopAcM_GetName(hit_actor) == PROC_NPC_TK) {
                 if (param_1) {
                     static_cast<daNPC_TK_c*>(hit_actor)->setBump();
@@ -1219,8 +1311,8 @@ void daNpcF_c::setDamage(int i_timer, int i_expression, int i_motion) {
         setMotion(i_motion, 0.0f, true);
     }
 
-    field_0x984[0] = 8192.0f;
-    field_0x984[2] = 12743.0f;
+    field_0x984[0] = cM_deg2s(45.0f);
+    field_0x984[2] = cM_deg2s(70.0f);
     field_0x992 = 0x4000;
     mTotalDamageTimer = i_timer;
     mDamageTimer = mTotalDamageTimer;
@@ -1236,8 +1328,7 @@ int daNpcF_c::ctrlMsgAnm(int& o_expression, int& o_motion, fopAc_ac_c* param_2, 
     o_motion = -1;
 
     if (param_3 || eventInfo.checkCommandTalk() || mStaffID != -1) {
-        fopAc_ac_c* talkPartner = dComIfGp_event_getTalkPartner();
-        if (talkPartner == param_2) {
+        if (dComIfGp_event_getTalkPartner() == param_2) {
             msg_class* msg_p = dMsgObject_c::getActor();
             JUT_ASSERT(2780, NULL != msg_p);
 
@@ -1250,7 +1341,7 @@ int daNpcF_c::ctrlMsgAnm(int& o_expression, int& o_motion, fopAc_ac_c* param_2, 
                     field_0x9a4 = msg_p->msg_idx;
                 }
 
-                if (dMsgObject_c::isMouthCheck()) {
+                if (dMsgObject_isMouthCheck()) {
                     mAnmFlags &= ~ANM_PAUSE_EXPRESSION;
                 } else {
                     mAnmFlags |= ANM_PAUSE_EXPRESSION;
@@ -1284,7 +1375,13 @@ void daNpcF_c::orderEvent(int i_speak, char* i_evtName, u16 param_2, u16 i_prior
     if (i_evtName != NULL) {
         mEventIdx = dComIfGp_getEventManager().getEventIdx(this, i_evtName, 0xff);
         fopAcM_orderOtherEventId(this, mEventIdx, i_mapToolID, param_2, i_priority, i_flag);
-    } else if (!mTwilight || daPy_py_c::checkNowWolfEyeUp()) {
+    } else if (
+#if PLATFORM_SHIELD
+        true
+#else
+        !mTwilight|| daPy_py_c::checkNowWolfEyeUp()
+#endif
+    ) {
         if ((attention_info.flags & fopAc_AttnFlag_SPEAK_e) || (attention_info.flags & fopAc_AttnFlag_TALK_e)) {
             eventInfo.onCondition(dEvtCnd_CANTALK_e);
             if (i_speak) {
@@ -1312,10 +1409,10 @@ void daNpcF_c::changeEvent(char* i_arcName, char* i_evtName, u16 param_2, u16 pa
 /* 801539F0-80153A78 14E330 0088+00 0/0 0/0 21/21 .text chkActorInSight__8daNpcF_cFP10fopAc_ac_cf
  */
 BOOL daNpcF_c::chkActorInSight(fopAc_ac_c* i_actor, f32 i_fovY) {
-    s16 tmp = mHeadAngle.y;
-    s16 angle = fopAcM_searchActorAngleY(this, i_actor) - tmp;
-    s16 abs_angle = abs(angle);
-    return i_fovY == 180.0f || abs_angle < cM_deg2s(i_fovY);
+    s16 angle = mHeadAngle.y;
+    angle = fopAcM_searchActorAngleY(this, i_actor) - angle;
+    angle = abs(angle);
+    return i_fovY == 180.0f || angle < cM_deg2s(i_fovY);
 }
 
 /* 80153A78-80153BDC 14E3B8 0164+00 1/1 0/0 0/0 .text
@@ -1329,8 +1426,8 @@ BOOL daNpcF_c::chkActorInSight(fopAc_ac_c* i_actor, f32 i_fovY) {
  * @return Whether the actor's position vector lies in the elliptic cylinder.
  */
 BOOL daNpcF_c::chkActorInArea(fopAc_ac_c* i_actor, cXyz i_center, cXyz i_bounds, s16 i_angleY) {
-    cXyz delta, relPos;
     BOOL ret = false;
+    cXyz delta, relPos;
 
     mDoMtx_stack_c::YrotS(-i_angleY);
     mDoMtx_stack_c::transM(-i_center.x, -i_center.y, -i_center.z);
@@ -1382,9 +1479,8 @@ BOOL daNpcF_c::chkActorInAttnArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorA
 /* 80153D1C-80153D84 14E65C 0068+00 0/0 0/0 118/118 .text initTalk__8daNpcF_cFiPP10fopAc_ac_c */
 BOOL daNpcF_c::initTalk(int i_flowID, fopAc_ac_c** param_1) {
     mFlow.init(this, i_flowID, 0, param_1);
-    f32 tmp = 0.0f;
-    speedF = tmp;
-    speed.set(tmp, tmp, tmp);
+    speedF = 0.0f;
+    speed.setall(0.0f);
     mOrderSpeakEvt = false;
     field_0x9ec = false;
     return true;
@@ -1397,9 +1493,9 @@ BOOL daNpcF_c::talkProc(int* param_0, BOOL param_1, fopAc_ac_c** i_talkPartners_
     motion = -1;
     expression = -1;
 
-    if (dMsgObject_c::isMsgSendControl()) {
+    if (dMsgObject_isMsgSendControl()) {
         if (param_1) {
-            dMsgObject_c::offMsgSendControl();
+            dMsgObject_offMsgSendControl();
         }
     } else if (mFlow.doFlow(this, i_talkPartners_p, 0)) {
         ret = true;
@@ -1430,7 +1526,7 @@ BOOL daNpcF_c::talkProc(int* param_0, BOOL param_1, fopAc_ac_c** i_talkPartners_
 BOOL daNpcF_c::turn(s16 i_targetAngle, f32 i_rate, int i_direction) {
     int target_angle = i_targetAngle;
     if (mTurnAmount == 0) {
-        mTurnStepNum = fabsf(cM_sht2d((s16)(current.angle.y - target_angle)));
+        mTurnStepNum = fabsf(cM_sht2d((s16)(current.angle.y - i_targetAngle)));
         mTurnStepNum = (mTurnStepNum / 180.0f) * i_rate;
         mTurnStepNum = (int)mTurnStepNum + 1;
         if (mTurnStepNum < 8.0f) {
@@ -1441,16 +1537,15 @@ BOOL daNpcF_c::turn(s16 i_targetAngle, f32 i_rate, int i_direction) {
 
     s16 turn_start_angle = mTurnStartAngle;
     if (i_direction == 0) {
-        i_direction = (s16)(target_angle - turn_start_angle) >= 0 ? 1 : -1;
+        i_direction = (s16)(i_targetAngle - mTurnStartAngle) >= 0 ? 1 : -1;
     }
 
-    u16 angle_diff = target_angle - turn_start_angle;
-    int signed_angle_diff = angle_diff;
+    u32 turn_angle = (u16)(target_angle - turn_start_angle);
     if (i_direction < 0) {
-        signed_angle_diff = -(u16)(0xffff - angle_diff);
+        turn_angle = -(u16)(0xffff - turn_angle);
     }
 
-    int turn_angle = (int)(signed_angle_diff * cM_ssin(mTurnAmount));
+    turn_angle = (int)((int)turn_angle * cM_ssin(mTurnAmount));
     mTurnAmount = (int)((f32)mTurnAmount + (f32)0x4000 / mTurnStepNum);
     if ((u16)mTurnAmount >= 0x4000) {
         current.angle.y = i_targetAngle;
@@ -1465,7 +1560,8 @@ BOOL daNpcF_c::turn(s16 i_targetAngle, f32 i_rate, int i_direction) {
 /* 801540A4-80154250 14E9E4 01AC+00 0/0 0/0 58/58 .text            step__8daNpcF_cFsiii */
 BOOL daNpcF_c::step(s16 i_targetAngle, int i_expression, int i_motion, int i_rate) {
     if (mTurnMode == 0) {
-        if ((int)fabsf(cM_sht2d((s16)(i_targetAngle - mCurAngle.y))) > 40) {
+        s16 angleDiff = i_targetAngle - mCurAngle.y;
+        if ((int)fabsf(cM_sht2d(angleDiff)) > 40) {
             if (i_expression >= 0) {
                 setExpression(i_expression, -1.0f);
             }
@@ -1563,8 +1659,10 @@ fopAc_ac_c* daNpcF_c::getAttnActorP(BOOL i_playerAttn, fpcLyIt_JudgeFunc i_searc
         fpcM_Search(i_searchFunc, this);
 
         int i, j;
+        BOOL sp30;
+        int unusedInt1;
         for (i = 0; i < mFindCount; i++) {
-            BOOL sp30 = chkPointInArea(getAttentionPos(mFindActorPList[i]), attention_info.position,
+            sp30 = chkPointInArea(getAttentionPos(mFindActorPList[i]), attention_info.position,
                                        var_f30, i_offsetY1, i_offsetY2, 0);
             if (sp30 && chkActorInSight2(mFindActorPList[i], i_fovY, i_sightAngle)) {
                 for (j = 0; j < 5; j++) {
@@ -1593,8 +1691,9 @@ fopAc_ac_c* daNpcF_c::getAttnActorP(BOOL i_playerAttn, fpcLyIt_JudgeFunc i_searc
         if (actor != NULL) {
             sp34 = 900;
             i = 0;
+            j = unusedInt1 = 0;
 
-            for (j = 0; j < 5; j++) {
+            for (; j < 5; j++) {
                 if (mAttnActorTimer[j] < sp34) {
                     sp34 = mAttnActorTimer[j];
                     i = j;
@@ -1633,10 +1732,10 @@ BOOL daNpcF_c::chkActorInSight2(fopAc_ac_c* i_actor, f32 i_fovY, s16 i_sightAngl
         if (ang_diff < 0) {
             ang_diff = -ang_diff;
         }
-        return ang_diff <= fov_y;
-    } else {
-        return true;
+        return (ang_diff > fov_y) == FALSE;
     }
+
+    return true;
 }
 
 /* 80154834-801548F4 14F174 00C0+00 2/2 0/0 0/0 .text chkPointInArea__8daNpcF_cF4cXyz4cXyzfffs */
@@ -1644,10 +1743,10 @@ BOOL daNpcF_c::chkPointInArea(cXyz i_point, cXyz param_1, f32 i_radius, f32 i_of
                               f32 i_offsetY2, s16 i_angleY) {
     cXyz bounds, center;
 
-    f32 lower = i_offsetY2;
     f32 upper = i_offsetY1;
+    f32 lower = i_offsetY2;
 
-    if (i_offsetY1 < i_offsetY2) {
+    if (upper < lower) {
         lower = i_offsetY1;
         upper = i_offsetY2;
     }
@@ -1706,9 +1805,10 @@ BOOL daNpcF_c::chkFindPlayer2(BOOL i_hasAttn, s16 i_angle) {
         fovy = 135.0f;
     }
 
-    sp20 = chkPointInArea(attn_pos, attention_info.position, dist_max, lower_y, upper_y, 0);
-    if (sp20 && chkActorInSight2(daPy_getPlayerActorClass(), fovy, i_angle)) {
-        return true;
+    if (chkPointInArea(attn_pos, attention_info.position, dist_max, lower_y, upper_y, 0)) {
+        if (chkActorInSight2(daPy_getPlayerActorClass(), fovy, i_angle)) {
+            return true;
+        }
     }
 
     return false;
@@ -1750,6 +1850,7 @@ BOOL daNpcF_pntVsLineSegmentLengthSquare2D(f32 i_pntX, f32 i_pntZ, f32 i_startX,
                                            f32 i_endX, f32 i_endZ, f32* o_projX, f32* o_projZ,
                                            f32* o_dist2) {
     BOOL ret = false;
+    f32 prm;
     f32 len2;
     f32 line_x = i_endX - i_startX;
     f32 line_z = i_endZ - i_startZ;
@@ -1760,7 +1861,7 @@ BOOL daNpcF_pntVsLineSegmentLengthSquare2D(f32 i_pntX, f32 i_pntZ, f32 i_startX,
         return false;
     }
 
-    f32 prm = (line_x * (i_pntX - i_startX) + line_z * (i_pntZ - i_startZ)) / len2;
+    prm = (line_x * (i_pntX - i_startX) + line_z * (i_pntZ - i_startZ)) / len2;
 
     if (0.0f <= prm && prm <= 1.0f) {
         ret = true;
@@ -1801,7 +1902,9 @@ BOOL daNpcF_chkPassed(cXyz i_pos, dPnt* i_points, u16 i_idx, u16 i_num, BOOL i_i
     
     f32 dist;
     s16 angle;
-    if (prev_idx != i_idx || next_idx != i_idx) {
+    if (prev_idx == i_idx && next_idx == i_idx) {
+        JUT_ASSERT(0xff9, FALSE);
+    } else {
         if (prev_idx < i_idx && i_idx < next_idx) {
             dist = (next_pos - prev_pos).absXZ();
             angle = cM_atan2s(next_pos.x - prev_pos.x, next_pos.z - prev_pos.z);
@@ -1826,6 +1929,8 @@ BOOL daNpcF_chkPassed(cXyz i_pos, dPnt* i_points, u16 i_idx, u16 i_num, BOOL i_i
             prev_pos.z = pos.z + dist * -2.0f * cM_scos(angle);
             next_pos.x = pos.x + dist * 2.0f * cM_ssin(angle);
             next_pos.z = pos.z + dist * 2.0f * cM_scos(angle);
+        } else {
+            JUT_ASSERT(0x1029, FALSE);
         }
 
         f32 proj_x, proj_z, proj2_x, proj2_z;
@@ -1836,18 +1941,17 @@ BOOL daNpcF_chkPassed(cXyz i_pos, dPnt* i_points, u16 i_idx, u16 i_num, BOOL i_i
         } else {
             daNpcF_pntVsLineSegmentLengthSquare2D(cur_pos.x, cur_pos.z, prev_pos.x, prev_pos.z,
                                                 next_pos.x, next_pos.z, &proj2_x, &proj2_z, &dist);
-            s16 angle2;
             if (i_isReversed) {
-                angle2 = cM_atan2s(prev_pos.x - next_pos.x, prev_pos.z - next_pos.z);
+                angle = cM_atan2s(prev_pos.x - next_pos.x, prev_pos.z - next_pos.z);
             } else {
-                angle2 = cM_atan2s(next_pos.x - prev_pos.x, next_pos.z - prev_pos.z);
+                angle = cM_atan2s(next_pos.x - prev_pos.x, next_pos.z - prev_pos.z);
             }
-            u16 angle_diff = abs((s16)(angle2 - cM_atan2s(proj2_x - proj_x, proj2_z - proj_z)));
-            return angle_diff > 0x4000;
+            angle = angle - cM_atan2s(proj2_x - proj_x, proj2_z - proj_z);
+            return (u16)abs(angle) > 0x4000;
         }
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 /* 8015556C-80155634 14FEAC 00C8+00 1/1 0/0 8/8 .text daNpcF_getGroundAngle__FP13cBgS_PolyInfos */
@@ -1855,39 +1959,40 @@ s16 daNpcF_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
     cM3dGPla plane;
 
     if (dComIfG_Bgsp().ChkPolySafe(*param_0)) {
-        if (!dComIfG_Bgsp().GetTriPla(*param_0, &plane) || !cBgW_CheckBGround(plane.mNormal.y)) {
+        BOOL triPla = dComIfG_Bgsp().GetTriPla(*param_0, &plane);
+        if (!triPla || !cBgW_CheckBGround(plane.mNormal.y)) {
             return 0;
         } else {
             return fopAcM_getPolygonAngle(&plane, param_1);
         }
-    } else {
-        return 0;
     }
+
+    return 0;
 }
 
 /* 80155634-80155674 14FF74 0040+00 0/0 0/0 69/69 .text            daNpcF_chkEvtBit__FUl */
 BOOL daNpcF_chkEvtBit(u32 i_no) {
-    return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_no]);
+    return dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[i_no]);
 }
 
 /* 80155674-801556B4 14FFB4 0040+00 0/0 0/0 13/13 .text            daNpcF_onEvtBit__FUl */
 void daNpcF_onEvtBit(u32 i_no) {
-    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[i_no]);
+    dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[i_no]);
 }
 
 /* 801556B4-801556F4 14FFF4 0040+00 0/0 0/0 6/6 .text            daNpcF_chkTmpBit__FUl */
 BOOL daNpcF_chkTmpBit(u32 i_no) {
-    return dComIfGs_isTmpBit(dSv_event_tmp_flag_c::tempBitLabels[i_no]);
+    return dComIfGs_isTmpBit((u16)dSv_event_tmp_flag_c::tempBitLabels[i_no]);
 }
 
 /* 801556F4-80155734 150034 0040+00 0/0 0/0 6/6 .text            daNpcF_onTmpBit__FUl */
 void daNpcF_onTmpBit(u32 i_no) {
-    dComIfGs_onTmpBit(dSv_event_tmp_flag_c::tempBitLabels[i_no]);
+    dComIfGs_onTmpBit((u16)dSv_event_tmp_flag_c::tempBitLabels[i_no]);
 }
 
 /* 80155734-80155774 150074 0040+00 1/1 0/0 36/36 .text            daNpcF_offTmpBit__FUl */
 void daNpcF_offTmpBit(u32 i_no) {
-    dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[i_no]);
+    dComIfGs_offTmpBit((u16)dSv_event_tmp_flag_c::tempBitLabels[i_no]);
 }
 
 /* 80155774-80155854 1500B4 00E0+00 0/0 2/2 5/5 .text            daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz */
@@ -1897,13 +2002,14 @@ int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2,
     dStage_roomDt_c* room_p = dComIfGp_roomControl_getStatusRoomDt(i_roomNo);
     stage_actor_data_class* entries = room_p->getPlayer()->m_entries;
 
-    for (int i = 0; i < room_p->getPlayerNum(); entries++, i++) {
+    for (int i = 0; i < room_p->getPlayerNum(); i++) {
         if (param_0 == (u8)entries->base.angle.z) {
             param_2 = entries->base.position;
             param_3 = entries->base.angle;
             rv = 1;
             break;
         }
+        entries++;
     }
 
     return rv;
@@ -1914,10 +2020,12 @@ BOOL daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_actor_p) {
     BOOL ret = FALSE;
 
     if (daPy_getPlayerActorClass()->checkPriActorOwn(i_actor_p)) {
+        JUT_ASSERT(0x10dd, NULL != dComIfGp_getAttention());
+
         for (int i = 0; i < dComIfGp_getAttention()->GetActionCount(); i++) {
             if (dComIfGp_getAttention()->ActionTarget(i) == i_actor_p &&
                 dComIfGp_getAttention()->getActionBtnB() &&
-                dComIfGp_getAttention()->getActionBtnB()->mType == 3)
+                dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_SPEAK_e)
             {
                 ret = TRUE;
             }
@@ -1926,7 +2034,11 @@ BOOL daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_actor_p) {
         for (int i = 0; i < dComIfGp_getAttention()->GetLockonCount(); i++) {
             if (dComIfGp_getAttention()->LockonTarget(i) == i_actor_p &&
                 dComIfGp_getAttention()->getActionBtnB() &&
-                dComIfGp_getAttention()->getActionBtnB()->mType == 1)
+                (dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_TALK_e
+#if DEBUG
+                || dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_UNK_4
+#endif
+                ))
             {
                 ret = TRUE;
             }
@@ -1951,14 +2063,19 @@ BOOL daNpcF_chkPointInArea(cXyz i_point, cXyz i_center, cXyz i_bounds, s16 i_ang
 
     cXyz delta = i_center - i_point;
 
+    f32 tmp_float1;
+    f32 tmp_float2;
+    f32 tmp_float3;
     if (delta.y <= -i_bounds.y || i_bounds.y <= delta.y) {
         return FALSE;
     } else {
-        f32 tmp_float1 = (delta_x * delta_x) / (bound_x * bound_x);
-        f32 tmp_float2 = (delta_z * delta_z) / (bound_z * bound_z);
-        f32 tmp_float3 = tmp_float1 + tmp_float2;
-        return tmp_float3 <= 1.0f;
+        if ((delta_x * delta_x) / (bound_x * bound_x) +
+            (delta_z * delta_z) / (bound_z * bound_z) <= 1.0f) {
+            return TRUE;
+        }
     }
+
+    return FALSE;
 }
 
 /* 80155AD4-80155AE8 150414 0014+00 1/1 0/0 1/1 .text            daNpcF_getDistTableIdx__Fii */
@@ -1967,12 +2084,168 @@ u8 daNpcF_getDistTableIdx(int param_0, int param_1) {
 }
 
 #if DEBUG
-void daNpcF_commonListenPropertyEvent(char*, int*, daNpcF_HIOParam*) {
-    // TODO.
+void daNpcF_commonListenPropertyEvent(char* param_1, int* param_2, daNpcF_HIOParam* param_3) {
+    sprintf(param_1 + *param_2, "%.3ff,\t//  注目オフセット\n", param_3->attention_offset);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  重力\n", param_3->gravity);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  スケ−ル\n", param_3->scale);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  リアル影サイズ\n", param_3->real_shadow_size);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  体重\n", param_3->weight);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  高さ\n", param_3->height);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  ひざ丈\n", param_3->knee_length);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  幅\n", param_3->width);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  腰のＸ角上限\n", param_3->body_angleX_max);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  腰のＸ角下限\n", param_3->body_angleX_min);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  腰のＹ角上限\n", param_3->body_angleY_max);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  腰のＹ角下限\n", param_3->body_angleY_min);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  頭のＸ角上限\n", param_3->head_angleX_max);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  頭のＸ角下限\n", param_3->head_angleX_min);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  頭のＹ角上限\n", param_3->head_angleY_max);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  頭のＹ角下限\n", param_3->head_angleY_min);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  首の回転比率\n", param_3->neck_rotation_ratio);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  補間フレ−ム\n", param_3->morf_frame);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  会話距離\n", param_3->talk_distance);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  会話角度\n", param_3->talk_angle);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  注目距離\n", param_3->attention_distance);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  注目角度\n", param_3->attention_angle);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  視界\n", param_3->fov);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  サ−チ距離\n", param_3->search_distance);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  サ−チ高さ\n", param_3->search_height);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%.3ff,\t//  サ−チ低さ\n", param_3->search_depth);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  注目時間\n", param_3->attention_time);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  ダメ－ジ期間\n", param_3->damage_time);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  表情\n", param_3->face_expression);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  動作\n", param_3->motion);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  注視モ−ド\n", param_3->look_mode);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  デバグモ−ドＯＮ\n", param_3->debug_mode_ON);
+    *param_2 = strlen(param_1);
+    sprintf(param_1 + *param_2, "%d,   \t//  デバグ情報ＯＮ\n", param_3->debug_info_ON);
+    *param_2 = strlen(param_1);
+    return;
 }
 
-void daNpcF_commonGenMessage(JORMContext*, daNpcF_HIOParam*) {
-    // TODO
+void daNpcF_commonGenMessage(JORMContext* i_ctx, daNpcF_HIOParam* i_hio) {
+    i_ctx->genSlider("注目オフセット  ", &i_hio->attention_offset, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("重力            ", &i_hio->gravity, -100.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("スケ−ル        ", &i_hio->scale, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("リアル影サイズ  ", &i_hio->real_shadow_size, 0.0f, 10000.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("体重            ", &i_hio->weight, 0.0f, 255.0f, 0, NULL, 0xffff, 0xffff,0x200, 0x18);
+    i_ctx->genSlider("高さ            ", &i_hio->height, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff,0x200, 0x18);
+    i_ctx->genSlider("ひざ丈          ", &i_hio->knee_length, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff,0x200, 0x18);
+    i_ctx->genSlider("幅              ", &i_hio->width, 0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff,0x200, 0x18);
+    i_ctx->genSlider("腰のＸ角上限    ", &i_hio->body_angleX_max, -90.0f, 90.0f, 0, NULL, 0xffff,0xffff, 0x200, 0x18);
+    i_ctx->genSlider("腰のＸ角下限    ", &i_hio->body_angleX_min, -90.0f, 90.0f, 0, NULL, 0xffff,0xffff, 0x200, 0x18);
+    i_ctx->genSlider("腰のＹ角上限    ", &i_hio->body_angleY_max, -180.0, 179.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("腰のＹ角下限    ", &i_hio->body_angleY_min, -180.0, 179.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("頭のＸ角上限    ", &i_hio->head_angleX_max, -90.0f, 90.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("頭のＸ角下限    ", &i_hio->head_angleX_min, -90.0f, 90.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("頭のＹ角上限    ", &i_hio->head_angleY_max, -180.0f, 179.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("頭のＹ角下限    ", &i_hio->head_angleY_min, -180.0f, 179.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("首の回転比率    ", &i_hio->neck_rotation_ratio, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("補間フレ－ム    ", &i_hio->morf_frame, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->startComboBox("会話距離        ", &i_hio->talk_distance, 0, NULL, 0xffff, 0xffff, 0x100, 0x1a);
+    i_ctx->genComboBoxItem("  50", 0);
+    i_ctx->genComboBoxItem(" 100", 1);
+    i_ctx->genComboBoxItem(" 150", 2);
+    i_ctx->genComboBoxItem(" 200", 3);
+    i_ctx->genComboBoxItem(" 250", 4);
+    i_ctx->genComboBoxItem(" 300", 5);
+    i_ctx->genComboBoxItem(" 350", 6);
+    i_ctx->genComboBoxItem(" 400", 7);
+    i_ctx->genComboBoxItem(" 450", 8);
+    i_ctx->genComboBoxItem(" 500", 9);
+    i_ctx->genComboBoxItem(" 550", 10);
+    i_ctx->genComboBoxItem(" 600", 11);
+    i_ctx->genComboBoxItem(" 650", 12);
+    i_ctx->genComboBoxItem(" 700", 13);
+    i_ctx->genComboBoxItem(" 750", 14);
+    i_ctx->genComboBoxItem(" 800", 15);
+    i_ctx->genComboBoxItem(" 850", 16);
+    i_ctx->genComboBoxItem(" 900", 17);
+    i_ctx->genComboBoxItem(" 950", 18);
+    i_ctx->genComboBoxItem("1000", 19);
+    i_ctx->endComboBox();
+    i_ctx->startComboBox("会話角度        ", &i_hio->talk_angle, 0, NULL, 0xffff, 0xffff, 0x100, 0x1a);
+    i_ctx->genComboBoxItem("  30", 0);
+    i_ctx->genComboBoxItem("  45", 1);
+    i_ctx->genComboBoxItem("  60", 2);
+    i_ctx->genComboBoxItem("  90", 3);
+    i_ctx->genComboBoxItem(" 110", 4);
+    i_ctx->genComboBoxItem(" 135", 5);
+    i_ctx->genComboBoxItem(" 180", 6);
+    i_ctx->endComboBox();
+    i_ctx->startComboBox("注目距離        ", &i_hio->attention_distance, 0, NULL, 0xffff, 0xffff, 0x100, 0x1a);
+    i_ctx->genComboBoxItem("  50", 0);
+    i_ctx->genComboBoxItem(" 100", 1);
+    i_ctx->genComboBoxItem(" 150", 2);
+    i_ctx->genComboBoxItem(" 200", 3);
+    i_ctx->genComboBoxItem(" 250", 4);
+    i_ctx->genComboBoxItem(" 300", 5);
+    i_ctx->genComboBoxItem(" 350", 6);
+    i_ctx->genComboBoxItem(" 400", 7);
+    i_ctx->genComboBoxItem(" 450", 8);
+    i_ctx->genComboBoxItem(" 500", 9);
+    i_ctx->genComboBoxItem(" 550", 10);
+    i_ctx->genComboBoxItem(" 600", 11);
+    i_ctx->genComboBoxItem(" 650", 12);
+    i_ctx->genComboBoxItem(" 700", 13);
+    i_ctx->genComboBoxItem(" 750", 14);
+    i_ctx->genComboBoxItem(" 800", 15);
+    i_ctx->genComboBoxItem(" 850", 16);
+    i_ctx->genComboBoxItem(" 900", 17);
+    i_ctx->genComboBoxItem(" 950", 18);
+    i_ctx->genComboBoxItem("1000", 19);
+    i_ctx->endComboBox();
+    i_ctx->startComboBox("注目角度        ", &i_hio->attention_angle, 0, NULL, 0xffff, 0xffff, 0x100, 0x1a);
+    i_ctx->genComboBoxItem("  30", 0);
+    i_ctx->genComboBoxItem("  45", 1);
+    i_ctx->genComboBoxItem("  60", 2);
+    i_ctx->genComboBoxItem("  90", 3);
+    i_ctx->genComboBoxItem(" 110", 4);
+    i_ctx->genComboBoxItem(" 135", 5);
+    i_ctx->genComboBoxItem(" 180", 6);
+    i_ctx->endComboBox();
+    i_ctx->genSlider("視界            ", &i_hio->fov, 0.0f, 180.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("サ－チ距離      ", &i_hio->search_distance, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("サ－チ高さ      ", &i_hio->search_height, -10000.0,10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("サ－チ低さ      ", &i_hio->search_depth, -10000.0,10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("注目時間        ", &i_hio->attention_time, 0, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("ダメ－ジ期間    ", &i_hio->damage_time, 0,10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("表情            ", &i_hio->face_expression, 0,10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("動作            ", &i_hio->motion, 0, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genSlider("注視モ－ド      ", &i_hio->look_mode, 0, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genCheckBox("デバグモ－ドＯＮ", &i_hio->debug_mode_ON, 1, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    i_ctx->genCheckBox("デバグ情報ＯＮ  ", &i_hio->debug_info_ON, 1, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 #endif
 
@@ -2019,221 +2292,41 @@ dCcD_SrcGObjInf const daNpcF_c::mCcDObjInfo = {
     {0}
 };
 
-/* 80392720-80392725 01ED80 0005+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392720 = ".bck";
-#pragma pop
-
-/* 80392725-8039272A 01ED85 0005+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392725 = ".btp";
-#pragma pop
-
-/* 8039272A-8039272F 01ED8A 0005+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039272A = ".btk";
-#pragma pop
-
-/* 8039272F-8039274A 01ED8F 001B+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039272F = "%.3ff,\t//  注目オフセット\n";
-#pragma pop
-
-/* 8039274A-8039275B 01EDAA 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039274A = "%.3ff,\t//  重力\n";
-#pragma pop
-
-/* 8039275B-80392770 01EDBB 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039275B = "%.3ff,\t//  スケ−ル\n";
-#pragma pop
-
-/* 80392770-8039278B 01EDD0 001B+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392770 = "%.3ff,\t//  リアル影サイズ\n";
-#pragma pop
-
-/* 8039278B-8039279C 01EDEB 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039278B = "%.3ff,\t//  体重\n";
-#pragma pop
-
-/* 8039279C-803927AD 01EDFC 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039279C = "%.3ff,\t//  高さ\n";
-#pragma pop
-
-/* 803927AD-803927C0 01EE0D 0013+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803927AD = "%.3ff,\t//  ひざ丈\n";
-#pragma pop
-
-/* 803927C0-803927CF 01EE20 000F+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803927C0 = "%.3ff,\t//  幅\n";
-#pragma pop
-
-/* 803927CF-803927E8 01EE2F 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803927CF = "%.3ff,\t//  腰のＸ角上限\n";
-#pragma pop
-
-/* 803927E8-80392801 01EE48 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803927E8 = "%.3ff,\t//  腰のＸ角下限\n";
-#pragma pop
-
-/* 80392801-8039281A 01EE61 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392801 = "%.3ff,\t//  腰のＹ角上限\n";
-#pragma pop
-
-/* 8039281A-80392833 01EE7A 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039281A = "%.3ff,\t//  腰のＹ角下限\n";
-#pragma pop
-
-/* 80392833-8039284C 01EE93 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392833 = "%.3ff,\t//  頭のＸ角上限\n";
-#pragma pop
-
-/* 8039284C-80392865 01EEAC 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039284C = "%.3ff,\t//  頭のＸ角下限\n";
-#pragma pop
-
-/* 80392865-8039287E 01EEC5 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392865 = "%.3ff,\t//  頭のＹ角上限\n";
-#pragma pop
-
-/* 8039287E-80392897 01EEDE 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039287E = "%.3ff,\t//  頭のＹ角下限\n";
-#pragma pop
-
-/* 80392897-803928B0 01EEF7 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392897 = "%.3ff,\t//  首の回転比率\n";
-#pragma pop
-
-/* 803928B0-803928C9 01EF10 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803928B0 = "%.3ff,\t//  補間フレ−ム\n";
-#pragma pop
-
-/* 803928C9-803928DE 01EF29 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803928C9 = "%d,   \t//  会話距離\n";
-#pragma pop
-
-/* 803928DE-803928F3 01EF3E 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803928DE = "%d,   \t//  会話角度\n";
-#pragma pop
-
-/* 803928F3-80392908 01EF53 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803928F3 = "%d,   \t//  注目距離\n";
-#pragma pop
-
-/* 80392908-8039291D 01EF68 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392908 = "%d,   \t//  注目角度\n";
-#pragma pop
-
-/* 8039291D-8039292E 01EF7D 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039291D = "%.3ff,\t//  視界\n";
-#pragma pop
-
-/* 8039292E-80392945 01EF8E 0017+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039292E = "%.3ff,\t//  サ−チ距離\n";
-#pragma pop
-
-/* 80392945-8039295C 01EFA5 0017+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392945 = "%.3ff,\t//  サ−チ高さ\n";
-#pragma pop
-
-/* 8039295C-80392973 01EFBC 0017+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039295C = "%.3ff,\t//  サ−チ低さ\n";
-#pragma pop
-
-/* 80392973-80392988 01EFD3 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392973 = "%d,   \t//  注目時間\n";
-#pragma pop
-
-/* 80392988-803929A1 01EFE8 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392988 = "%d,   \t//  ダメ−ジ期間\n";
-#pragma pop
-
-/* 803929A1-803929B2 01F001 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_803929A1 =
-    "\x25\x64\x2C\x20\x20\x20\x09\x2F\x2F\x20\x20\x95\x5C\x8F\xEE\x0A";
-#pragma pop
-
-/* 803929B2-803929C3 01F012 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803929B2 = "%d,   \t//  動作\n";
-#pragma pop
-
-/* 803929C3-803929DA 01F023 0017+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803929C3 = "%d,   \t//  注視モ−ド\n";
-#pragma pop
-
-/* 803929DA-803929F7 01F03A 001D+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803929DA = "%d,   \t//  デバグモ−ドＯＮ\n";
-#pragma pop
-
-/* 803929F7-80392A18 01F057 001B+06 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803929F7 = "%d,   \t//  デバグ情報ＯＮ\n";
-#pragma pop
+static void dummyStrings() {
+    DEAD_STRING(".bck");
+    DEAD_STRING(".btp");
+    DEAD_STRING(".btk");
+    DEAD_STRING("%.3ff,\t//  注目オフセット\n");
+    DEAD_STRING("%.3ff,\t//  重力\n");
+    DEAD_STRING("%.3ff,\t//  スケ−ル\n");
+    DEAD_STRING("%.3ff,\t//  リアル影サイズ\n");
+    DEAD_STRING("%.3ff,\t//  体重\n");
+    DEAD_STRING("%.3ff,\t//  高さ\n");
+    DEAD_STRING("%.3ff,\t//  ひざ丈\n");
+    DEAD_STRING("%.3ff,\t//  幅\n");
+    DEAD_STRING("%.3ff,\t//  腰のＸ角上限\n");
+    DEAD_STRING("%.3ff,\t//  腰のＸ角下限\n");
+    DEAD_STRING("%.3ff,\t//  腰のＹ角上限\n");
+    DEAD_STRING("%.3ff,\t//  腰のＹ角下限\n");
+    DEAD_STRING("%.3ff,\t//  頭のＸ角上限\n");
+    DEAD_STRING("%.3ff,\t//  頭のＸ角下限\n");
+    DEAD_STRING("%.3ff,\t//  頭のＹ角上限\n");
+    DEAD_STRING("%.3ff,\t//  頭のＹ角下限\n");
+    DEAD_STRING("%.3ff,\t//  首の回転比率\n");
+    DEAD_STRING("%.3ff,\t//  補間フレ−ム\n");
+    DEAD_STRING("%d,   \t//  会話距離\n");
+    DEAD_STRING("%d,   \t//  会話角度\n");
+    DEAD_STRING("%d,   \t//  注目距離\n");
+    DEAD_STRING("%d,   \t//  注目角度\n");
+    DEAD_STRING("%.3ff,\t//  視界\n");
+    DEAD_STRING("%.3ff,\t//  サ−チ距離\n");
+    DEAD_STRING("%.3ff,\t//  サ−チ高さ\n");
+    DEAD_STRING("%.3ff,\t//  サ−チ低さ\n");
+    DEAD_STRING("%d,   \t//  注目時間\n");
+    DEAD_STRING("%d,   \t//  ダメ−ジ期間\n");
+    DEAD_STRING("%d,   \t//  表情\n");
+    DEAD_STRING("%d,   \t//  動作\n");
+    DEAD_STRING("%d,   \t//  注視モ−ド\n");
+    DEAD_STRING("%d,   \t//  デバグモ−ドＯＮ\n");
+    DEAD_STRING("%d,   \t//  デバグ情報ＯＮ\n");
+}

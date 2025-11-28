@@ -79,7 +79,6 @@ public:
  */
 class JPAParticleCallBack {
 public:
-    JPAParticleCallBack() {}
     virtual ~JPAParticleCallBack() = 0;
     virtual void execute(JPABaseEmitter*, JPABaseParticle*) {}
     virtual void draw(JPABaseEmitter*, JPABaseParticle*) {}

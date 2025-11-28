@@ -88,7 +88,7 @@ public:
     void genMessage(JORMContext*);
 #endif
 
-    /* 0x04 */ s8 field_0x4;
+    /* 0x04 */ s8 mId;
     /* 0x08 */ f32 model_size;
     /* 0x0C */ f32 player_detection_range;
     /* 0x10 */ s16 next_attack_waiting_time;

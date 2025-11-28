@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_drainSol.h"
+#include "d/actor/d_a_npc.h"
 
 /* 809AFACC-809AFAD4 000000 0008+00 1/1 0/0 0/0 .data            l_bmdGetParamList */
 static int l_bmdGetParamList[] = {

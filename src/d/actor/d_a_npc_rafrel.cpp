@@ -6,9 +6,8 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_rafrel.h"
-
-/* 80AC0324-80AC0328 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpcRafrel_Param_c l_HIO;
+#include "d/actor/d_a_npc.h"
+#include "d/d_debug_viewer.h"
 
 /* 80ABFEA0-80ABFFFC 000020 015C+00 1/2 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[29] = {
@@ -106,35 +105,6 @@ static char* l_evtNames[7] = {
     "RESIST_WIRETAP_RAFREL",
 };
 
-/* 80AC00C4-80AC00C8 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
-static char* l_myName = "Rafrel";
-
-/* 80AC0110-80AC0164 000290 0054+00 0/2 0/0 0/0 .data            mEvtSeqList__13daNpcRafrel_c */
-typedef BOOL (daNpcRafrel_c::*EventFn)(int);
-EventFn daNpcRafrel_c::mEvtSeqList[] = {
-    NULL,
-    &daNpcRafrel_c::EvCut_Introduction,
-    &daNpcRafrel_c::EvCut_Meeting,
-    &daNpcRafrel_c::EvCut_Appear,
-    &daNpcRafrel_c::EvCut_WiretapEntrant,
-    &daNpcRafrel_c::EvCut_WiretapEntrant,
-    &daNpcRafrel_c::EvCut_WiretapSponsor,
-};
-
-/* 80AB962C-80AB97B0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__13daNpcRafrel_cFv */
-daNpcRafrel_c::daNpcRafrel_c() {}
-
-/* 80AB9840-80AB9A40 000300 0200+00 1/0 0/0 0/0 .text            __dt__13daNpcRafrel_cFv */
-daNpcRafrel_c::~daNpcRafrel_c() {
-    for (int i = 0; l_loadRes_list[mType][i] >= 0; i++) {
-        dComIfG_resDelete(&mPhase[i], l_arcNames[l_loadRes_list[mType][i]]);
-    }
-
-    if (heap != NULL) {
-        mAnm_p->stopZelAnime();
-    }
-}
-
 /* 80ABF9E0-80ABFA54 000000 0074+00 13/13 0/0 0/0 .rodata          m__19daNpcRafrel_Param_c */
 const daNpcRafrel_HIOParam daNpcRafrel_Param_c::m = {
     35.0f,
@@ -171,8 +141,61 @@ const daNpcRafrel_HIOParam daNpcRafrel_Param_c::m = {
     0,
     0,
     320.0f,
-    0x00000000,
+    0,
 };
+
+/* 80AC00C4-80AC00C8 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
+static char* l_myName = "Rafrel";
+
+#if DEBUG
+// Fixes Debug function order
+#pragma nosyminline on
+
+daNpcRafrel_HIO_c::daNpcRafrel_HIO_c() {
+    m = daNpcRafrel_Param_c::m;
+}
+
+void daNpcRafrel_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genSlider("デモ開始距離", &m.demo_start_dist, 0.0f, 500.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genCheckBox("デモ開始エリア", &m.demo_start_area, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    daNpcF_commonGenMessage(ctx, &m.common);
+}
+#endif
+
+/* 80AC0324-80AC0328 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
+static NPC_RAFREL_HIO_CLASS l_HIO;
+
+/* 80AC0110-80AC0164 000290 0054+00 0/2 0/0 0/0 .data            mEvtSeqList__13daNpcRafrel_c */
+typedef BOOL (daNpcRafrel_c::*EventFn)(int);
+EventFn daNpcRafrel_c::mEvtSeqList[] = {
+    NULL,
+    &daNpcRafrel_c::EvCut_Introduction,
+    &daNpcRafrel_c::EvCut_Meeting,
+    &daNpcRafrel_c::EvCut_Appear,
+    &daNpcRafrel_c::EvCut_WiretapEntrant,
+    &daNpcRafrel_c::EvCut_WiretapEntrant,
+    &daNpcRafrel_c::EvCut_WiretapSponsor,
+};
+
+/* 80AB962C-80AB97B0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__13daNpcRafrel_cFv */
+daNpcRafrel_c::daNpcRafrel_c() {}
+
+/* 80AB9840-80AB9A40 000300 0200+00 1/0 0/0 0/0 .text            __dt__13daNpcRafrel_cFv */
+daNpcRafrel_c::~daNpcRafrel_c() {
+    for (int i = 0; l_loadRes_list[mType][i] >= 0; i++) {
+        dComIfG_resDelete(&mPhase[i], l_arcNames[l_loadRes_list[mType][i]]);
+    }
+
+    if (heap != NULL) {
+        mAnm_p->stopZelAnime();
+    }
+
+    #if DEBUG
+    if (mpHIO != NULL) {
+        mpHIO->removeHIO();
+    }
+    #endif
+}
 
 /* 80AB9A40-80AB9E3C 000500 03FC+00 1/1 0/0 0/0 .text            Create__13daNpcRafrel_cFv */
 int daNpcRafrel_c::Create() {
@@ -240,17 +263,22 @@ int daNpcRafrel_c::Create() {
 
         mSound.init(&current.pos, &eyePos, 3, 1);
 
-        mAcchCir.SetWall(daNpcRafrel_Param_c::m.common.width, daNpcRafrel_Param_c::m.common.knee_length);
+        #if DEBUG
+        mpHIO = &l_HIO;
+        mpHIO->entryHIO("ラフレル");
+        #endif
+
+        mAcchCir.SetWall(mpHIO->m.common.width, mpHIO->m.common.knee_length);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mAcch.SetRoofNone();
         mAcch.SetWaterNone();
         mAcch.CrrPos(dComIfG_Bgsp());
 
-        mCcStts.Init(daNpcRafrel_Param_c::m.common.weight, 0, this);
-        field_0xca4.Set(mCcDCyl);
-        field_0xca4.SetStts(&mCcStts);
-        field_0xca4.SetTgType(0);
-        field_0xca4.SetTgSPrm(0);
+        mCcStts.Init(mpHIO->m.common.weight, 0, this);
+        mCyl.Set(mCcDCyl);
+        mCyl.SetStts(&mCcStts);
+        mCyl.SetTgType(0);
+        mCyl.SetTgSPrm(0);
 
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
@@ -342,6 +370,8 @@ int daNpcRafrel_c::CreateHeap() {
 
 /* 80ABA380-80ABA3B4 000E40 0034+00 1/1 0/0 0/0 .text            Delete__13daNpcRafrel_cFv */
 int daNpcRafrel_c::Delete() {
+    "Delete -> NPC_RAFREL(id=%d)\n";
+    
     fpc_ProcID id = fopAcM_GetID(this);
     this->~daNpcRafrel_c();
     return 1;
@@ -355,8 +385,9 @@ int daNpcRafrel_c::Execute() {
 
 /* 80ABA3D8-80ABA4A8 000E98 00D0+00 1/1 0/0 0/0 .text            Draw__13daNpcRafrel_cFv */
 int daNpcRafrel_c::Draw() {
-    mAnm_p->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
-    draw(FALSE, FALSE, daNpcRafrel_Param_c::m.common.real_shadow_size, NULL, FALSE);
+    J3DModelData* modelData = mAnm_p->getModel()->getModelData();
+    modelData->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
+    draw(FALSE, FALSE, mpHIO->m.common.real_shadow_size, NULL, FALSE);
 
     if (mpItemModel != NULL) {
         enum { JNT_19 = 19, JNT_20 = 20};
@@ -370,10 +401,10 @@ int daNpcRafrel_c::Draw() {
     return 1;
 }
 
-/* 80ABA4A8-80ABA678 000F68 01D0+00 1/1 0/0 0/0 .text
- * ctrlJoint__13daNpcRafrel_cFP8J3DJointP8J3DModel              */
+/* 80ABA4A8-80ABA678 000F68 01D0+00 1/1 0/0 0/0 .text            ctrlJoint__13daNpcRafrel_cFP8J3DJointP8J3DModel              */
 int daNpcRafrel_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int jnt_no = i_joint->getJntNo();
+    u16 jointNo = jnt_no;
     int spC[] = {1, 3, 4};
 
     if (jnt_no == 0) {
@@ -393,30 +424,29 @@ int daNpcRafrel_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     case 1:
     case 3:
     case 4:
-        setLookatMtx(jnt_no, spC, daNpcRafrel_Param_c::m.common.neck_rotation_ratio);
+        setLookatMtx(jnt_no, spC, mpHIO->m.common.neck_rotation_ratio);
     case 2:
     default:
         i_model->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
         cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
 
         if ((jnt_no == 4 || jnt_no == 9) && (mAnmFlags & 0x100)) {
-            J3DAnmTransform* temp_r27 = mBckAnm.getBckAnm();
+            J3DAnmTransform* anm = mBckAnm.getBckAnm();
             mBckAnm.changeBckOnly(mAnm_p->getAnm());
-            mAnm_p->changeAnm(temp_r27);
+            mAnm_p->changeAnm(anm);
         }
     }
 
     return 1;
 }
 
-/* 80ABA678-80ABA698 001138 0020+00 1/1 0/0 0/0 .text
- * createHeapCallBack__13daNpcRafrel_cFP10fopAc_ac_c            */
+/* 80ABA678-80ABA698 001138 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__13daNpcRafrel_cFP10fopAc_ac_c */
 int daNpcRafrel_c::createHeapCallBack(fopAc_ac_c* i_this) {
-    return ((daNpcRafrel_c*)i_this)->CreateHeap();
+    daNpcRafrel_c* actor = (daNpcRafrel_c*)i_this;
+    return actor->CreateHeap();
 }
 
-/* 80ABA698-80ABA6E4 001158 004C+00 1/1 0/0 0/0 .text
- * ctrlJointCallBack__13daNpcRafrel_cFP8J3DJointi               */
+/* 80ABA698-80ABA6E4 001158 004C+00 1/1 0/0 0/0 .text            ctrlJointCallBack__13daNpcRafrel_cFP8J3DJointi */
 int daNpcRafrel_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
     if (param_1 == NULL) {
         J3DModel* mdl_p = j3dSys.getModel();
@@ -430,17 +460,30 @@ int daNpcRafrel_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
     return 1;
 }
 
+/* 80ABE1D0-80ABE470 004C90 02A0+00 1/0 0/0 0/0 .text            main__13daNpcRafrel_cFv */
+BOOL daNpcRafrel_c::main() {
+    if (field_0xde0 != NULL) {
+        (this->*field_0xde0)(NULL);
+    }
+
+    if (field_0xe00 != fpcM_ERROR_PROCESS_ID_e && dComIfGp_event_runCheck() != 0) {
+        if (strcmp(dComIfGp_getEventManager().getRunEventName(), "DEFAULT_GETITEM") == 0) {
+            dComIfGp_event_setItemPartnerId(field_0xe00);
+            field_0xe00 = -1;
+        }
+    }
+
+    playExpression();
+    playMotion();
+    return 1;
+}
+
 /* 80ABA6E4-80ABA8EC 0011A4 0208+00 2/0 0/0 0/0 .text setExpressionAnm__13daNpcRafrel_cFib */
 bool daNpcRafrel_c::setExpressionAnm(int i_idx, bool i_modify) {
     mAnmFlags &= ~ANM_EXPRESSION_FLAGS;
 
-    J3DAnmTransform* bckAnm;
-    if (l_bckGetParamList[i_idx].fileIdx >= 0) {
-        bckAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx],
-                                   l_bckGetParamList[i_idx].fileIdx);
-    } else {
-        bckAnm = NULL;
-    }
+    J3DAnmTransform* bckAnm = l_bckGetParamList[i_idx].fileIdx >= 0 ?
+                              getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx], l_bckGetParamList[i_idx].fileIdx) : NULL;
 
     s32 attr = l_bckGetParamList[i_idx].attr;
     bool res = false;
@@ -492,8 +535,7 @@ bool daNpcRafrel_c::setExpressionAnm(int i_idx, bool i_modify) {
     return false;
 }
 
-/* 80ABA8EC-80ABA9CC 0013AC 00E0+00 1/0 0/0 0/0 .text            setExpressionBtp__13daNpcRafrel_cFi
- */
+/* 80ABA8EC-80ABA9CC 0013AC 00E0+00 1/0 0/0 0/0 .text            setExpressionBtp__13daNpcRafrel_cFi */
 bool daNpcRafrel_c::setExpressionBtp(int i_idx) {
     J3DAnmTexPattern* btpAnm = getTexPtrnAnmP(l_arcNames[l_btpGetParamList[i_idx].arcIdx],
                                               l_btpGetParamList[i_idx].fileIdx);
@@ -511,6 +553,7 @@ bool daNpcRafrel_c::setExpressionBtp(int i_idx) {
         return true;
     }
 
+    OS_REPORT("%s: 表情Btpアニメーションの登録に失敗しました！\n", __FILE__);
     return false;
 }
 
@@ -563,7 +606,7 @@ void daNpcRafrel_c::setMotionAnm(int i_idx, f32 i_morf) {
 void daNpcRafrel_c::reset() {
     initialize();
     mpMatAnm->initialize();
-    field_0xbe0.initialize();
+    mLookat.initialize();
 
     for (int i = 0; i < 4; i++) {
         field_0xc7c[i].initialize();
@@ -575,8 +618,8 @@ void daNpcRafrel_c::reset() {
     field_0xe0e = -1;
     field_0xe10 = 0;
 
-    current.pos = home.pos;
-    old.pos = current.pos;
+    current.pos.set(home.pos);
+    old.pos.set(current.pos);
 
     current.angle.set(0, home.angle.y, 0);
     old.angle = current.angle;
@@ -627,9 +670,9 @@ void daNpcRafrel_c::setParam() {
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(2, 5);
     } else {
-        attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcRafrel_Param_c::m.common.attention_distance, daNpcRafrel_Param_c::m.common.attention_angle);
+        attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(mpHIO->m.common.attention_distance, mpHIO->m.common.attention_angle);
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
-        attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcRafrel_Param_c::m.common.talk_distance, daNpcRafrel_Param_c::m.common.talk_angle);
+        attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(mpHIO->m.common.talk_distance, mpHIO->m.common.talk_angle);
     
         if (mType == 1 && field_0xe15 != 0 && field_0xe16 == 0) {
             Vec sp8 = {current.pos.x + 150.0f, current.pos.y, current.pos.z - 100.0f};
@@ -638,19 +681,96 @@ void daNpcRafrel_c::setParam() {
             }
         }
     }
+
+    #if DEBUG
+    mAcchCir.SetWallR(mpHIO->m.common.width);
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
+    gravity = mpHIO->m.common.gravity;
+    #endif
+}
+
+/* 80ABE9FC-80ABEAD8 0054BC 00DC+00 1/0 0/0 0/0 .text            ctrlBtk__13daNpcRafrel_cFv */
+BOOL daNpcRafrel_c::ctrlBtk() {
+    if (mpMatAnm != NULL) {
+        J3DAnmTextureSRTKey* temp_r29 = NULL;
+        temp_r29 = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx], l_btkGetParamList[0].fileIdx);
+        if (temp_r29 == mBtkAnm.getBtkAnm()) {
+            mpMatAnm->setNowOffsetX(cM_ssin(mEyeAngle.y) * 0.2f * -1.0f);
+            mpMatAnm->setNowOffsetY(cM_ssin(mEyeAngle.x) * 0.2f);
+            mpMatAnm->onEyeMoveFlag();
+            return TRUE;
+        } else {
+            mpMatAnm->offEyeMoveFlag();
+        }
+    }
+
+    return FALSE;
+}
+
+/* 80ABF074-80ABF07C 005B34 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__13daNpcRafrel_cFv */
+BOOL daNpcRafrel_c::drawDbgInfo() {
+#if DEBUG
+    if (!mpHIO->m.common.debug_info_ON) {
+        return false;
+    }
+    
+    f32 distMax1 = dComIfGp_getAttention()
+                        ->getDistTable(attention_info.distances[fopAc_attn_SPEAK_e])
+                        .mDistMax;
+    f32 distMax2 = dComIfGp_getAttention()
+                        ->getDistTable(attention_info.distances[fopAc_attn_TALK_e])
+                        .mDistMax;
+    s16 targetAngleX = cLib_targetAngleX(&current.pos, &eyePos);
+    s16 targetAngleY = cLib_targetAngleY(&current.pos, &eyePos);
+    cXyz pos(eyePos);
+    pos.y += 100.0f;
+
+    dDbVw_drawArrowOpa(pos, eyePos,
+                        (GXColor){0xFF, 0xFF, 0xFF, 0xFF}, 1, 12);
+    dDbVw_drawCircleOpa(attention_info.position, distMax1,
+                        (GXColor){0x0, 0xc8, 0x0, 0xff}, 1, 12);
+    dDbVw_drawCircleOpa(attention_info.position, distMax2,
+                        (GXColor){0xc8, 0x0, 0x0, 0xff}, 1, 12);
+
+    f32 fov = mType == 0 ? 135.0f : mpHIO->m.common.fov;
+    if (fov != 180.0f) {
+        cXyz end;
+        cXyz cStack_54(0.0f, 0.0f, mpHIO->m.common.search_distance);
+        mDoMtx_stack_c::transS(attention_info.position);
+        mDoMtx_stack_c::YrotM(mHeadAngle.y);
+        mDoMtx_stack_c::YrotM(cM_deg2s(-fov));
+        mDoMtx_stack_c::multVec(&cStack_54, &end);
+        dDbVw_drawLineOpa(attention_info.position, end, (GXColor){0x0, 0x0, 0xc8, 0xff},
+                            1, 12);
+
+        mDoMtx_stack_c::transS(attention_info.position);
+        mDoMtx_stack_c::YrotM(mHeadAngle.y);
+        mDoMtx_stack_c::YrotM(cM_deg2s(fov));
+        mDoMtx_stack_c::multVec(&cStack_54, &end);
+        dDbVw_drawLineOpa(attention_info.position, end, (GXColor){0x0, 0x0, 0xc8, 0xff},
+                            1, 12);
+    }
+
+    dDbVw_drawCircleOpa(attention_info.position, mpHIO->m.common.search_distance,
+                        (GXColor){0x0, 0x0, 0xc8, 0xff}, 1, 12);
+    dDbVw_drawSphereXlu(eyePos, 18.0f, (GXColor){0x80, 0x80, 0x80, 0xa0}, 1);
+    dDbVw_drawSphereXlu(mLookPos, 18.0f, (GXColor){0x80, 0x80, 0x80, 0xa0}, 1);
+#endif
+
+    return false;
 }
 
 void daNpcRafrel_c::playExpression() {
-    daNpcF_anmPlayData dat0 = {1, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat0 = {1, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm0[1] = {&dat0};
 
-    daNpcF_anmPlayData dat1 = {2, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat1 = {2, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm1[1] = {&dat1};
 
-    daNpcF_anmPlayData dat2 = {3, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat2 = {3, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm2[1] = {&dat2};
 
-    daNpcF_anmPlayData dat3 = {4, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat3 = {4, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm3[1] = {&dat3};
 
     daNpcF_anmPlayData dat4 = {5, 0.0f, 0};
@@ -662,7 +782,7 @@ void daNpcRafrel_c::playExpression() {
     daNpcF_anmPlayData dat6 = {7, 0.0f, 0};
     daNpcF_anmPlayData* anm6[1] = {&dat6};
 
-    daNpcF_anmPlayData dat7 = {0, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat7 = {0, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm7[1] = {&dat7};
 
     daNpcF_anmPlayData** anmData_p[8] = {
@@ -683,63 +803,63 @@ void daNpcRafrel_c::playExpression() {
 
 /* 80ABE470-80ABE9FC 004F30 058C+00 1/1 0/0 0/0 .text            playMotion__13daNpcRafrel_cFv */
 void daNpcRafrel_c::playMotion() {
-    daNpcF_anmPlayData anm0_phase1 = {8, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData anm0_phase1 = {8, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm0[] = {&anm0_phase1};
     
-    daNpcF_anmPlayData anm1_phase1 = {9, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData anm1_phase1 = {9, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm1[] = {&anm1_phase1};
 
-    daNpcF_anmPlayData anm2_phase1 = {16, daNpcRafrel_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData anm2_phase1 = {16, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData anm2_phase2 = {17, 0.0f, 0};
     daNpcF_anmPlayData* anm2[] = {&anm2_phase1, &anm2_phase2};
 
-    daNpcF_anmPlayData anm3_phase1 = {21, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData anm3_phase1 = {21, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm3[] = {&anm3_phase1};
 
-    daNpcF_anmPlayData anm4_phase1 = {25, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData anm4_phase1 = {25, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm4[] = {&anm4_phase1};
 
-    daNpcF_anmPlayData anm5_phase1 = {24, daNpcRafrel_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData anm5_phase1 = {24, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData anm5_phase2 = {25, 0.0f, 0};
     daNpcF_anmPlayData* anm5[] = {&anm5_phase1, &anm5_phase2};
 
-    daNpcF_anmPlayData anm6_phase1 = {20, daNpcRafrel_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData anm6_phase1 = {20, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData anm6_phase2 = {21, 0.0f, 0};
     daNpcF_anmPlayData* anm6[] = {&anm6_phase1, &anm6_phase2};
 
-    daNpcF_anmPlayData anm7_phase1 = {22, daNpcRafrel_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData anm7_phase1 = {22, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData anm7_phase2 = {23, 0.0f, 0};
     daNpcF_anmPlayData* anm7[] = {&anm7_phase1, &anm7_phase2};
 
-    daNpcF_anmPlayData anm8_phase1 = {23, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData anm8_phase1 = {23, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm8[] = {&anm8_phase1};
 
-    daNpcF_anmPlayData anm9_phase1 = {17, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData anm9_phase1 = {17, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm9[] = {&anm9_phase1};
 
-    daNpcF_anmPlayData anm10_phase1 = {10, daNpcRafrel_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData anm10_phase1 = {10, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData anm10_phase2 = {9, 0.0f, 0};
     daNpcF_anmPlayData* anm10[] = {&anm10_phase1, &anm10_phase2};
 
-    daNpcF_anmPlayData anm11_phase1 = {11, daNpcRafrel_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData anm11_phase1 = {11, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData anm11_phase2 = {12, 0.0f, 0};
     daNpcF_anmPlayData* anm11[] = {&anm11_phase1, &anm11_phase2};
 
-    daNpcF_anmPlayData anm12_phase1 = {15, daNpcRafrel_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData anm12_phase1 = {15, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData anm12_phase2 = {17, 0.0f, 0};
     daNpcF_anmPlayData* anm12[] = {&anm12_phase1, &anm12_phase2};
 
-    daNpcF_anmPlayData anm13_phase1 = {12, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData anm13_phase1 = {12, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm13[] = {&anm13_phase1};
 
-    daNpcF_anmPlayData anm14_phase1 = {26, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData anm14_phase1 = {26, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm14[] = {&anm14_phase1};
 
     daNpcF_anmPlayData anm15_phase1 = {27, 0.0f, 1};
     daNpcF_anmPlayData anm15_phase2 = {28, 6.0f, 0};
     daNpcF_anmPlayData* anm15[] = {&anm15_phase1, &anm15_phase2};
 
-    daNpcF_anmPlayData anm16_phase1 = {18, daNpcRafrel_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData anm16_phase1 = {18, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* anm16[] = {&anm16_phase1, NULL};
 
     daNpcF_anmPlayData anm17_phase1 = {14, 0.0f, 0};
@@ -788,7 +908,7 @@ void daNpcRafrel_c::setAttnPos() {
     mHeadAngle.x = cLib_targetAngleX(&mHeadPos, &sp20);
     mHeadAngle.y = cLib_targetAngleY(&mHeadPos, &sp20);
 
-    cXyz* var_r27 = field_0xbe0.getAttnPos();
+    cXyz* var_r27 = mLookat.getAttnPos();
     if (var_r27 != NULL) {
         cXyz sp14 = *var_r27 - eyePos;
         mEyeAngle.y = -mLookatAngle[2].y - mCurAngle.y;
@@ -802,7 +922,7 @@ void daNpcRafrel_c::setAttnPos() {
     if (mType == 1) {
         attention_info.position.set(current.pos.x, current.pos.y + 220.0f, current.pos.z);
     } else {
-        attention_info.position.set(mHeadPos.x, mHeadPos.y + daNpcRafrel_Param_c::m.common.attention_offset, mHeadPos.z);
+        attention_info.position.set(mHeadPos.x, mHeadPos.y + mpHIO->m.common.attention_offset, mHeadPos.z);
     }
 
     cXyz cyl_center;
@@ -810,18 +930,18 @@ void daNpcRafrel_c::setAttnPos() {
     mDoMtx_stack_c::multVecZero(&cyl_center);
     cyl_center.y = current.pos.y;
 
-    field_0xca4.SetC(cyl_center);
-    field_0xca4.SetH(daNpcRafrel_Param_c::m.common.height);
+    mCyl.SetC(cyl_center);
+    mCyl.SetH(mpHIO->m.common.height);
 
     f32 var_f31;
     if (mType == 0) {
         var_f31 = 50.0f;
     } else {
-        var_f31 = daNpcRafrel_Param_c::m.common.width;
+        var_f31 = mpHIO->m.common.width;
     }
 
-    field_0xca4.SetR(var_f31);
-    dComIfG_Ccsp()->Set(&field_0xca4);
+    mCyl.SetR(var_f31);
+    dComIfG_Ccsp()->Set(&mCyl);
 }
 
 /* 80ABEE98-80ABF074 005958 01DC+00 1/1 0/0 0/0 .text            lookat__13daNpcRafrel_cFv */
@@ -830,14 +950,14 @@ void daNpcRafrel_c::lookat() {
     J3DModel* model_p = mAnm_p->getModel();
 
     int var_r28 = 0;
-    f32 body_angleX_min = daNpcRafrel_Param_c::m.common.body_angleX_min;
-    f32 body_angleX_max = daNpcRafrel_Param_c::m.common.body_angleX_max;
-    f32 body_angleY_min = daNpcRafrel_Param_c::m.common.body_angleY_min;
-    f32 body_angleY_max = daNpcRafrel_Param_c::m.common.body_angleY_max;
-    f32 head_angleX_min = daNpcRafrel_Param_c::m.common.head_angleX_min;
-    f32 head_angleX_max = daNpcRafrel_Param_c::m.common.head_angleX_max;
-    f32 head_angleY_min = daNpcRafrel_Param_c::m.common.head_angleY_min;
-    f32 head_angleY_max = daNpcRafrel_Param_c::m.common.head_angleY_max;
+    f32 body_angleX_min = mpHIO->m.common.body_angleX_min;
+    f32 body_angleX_max = mpHIO->m.common.body_angleX_max;
+    f32 body_angleY_min = mpHIO->m.common.body_angleY_min;
+    f32 body_angleY_max = mpHIO->m.common.body_angleY_max;
+    f32 head_angleX_min = mpHIO->m.common.head_angleX_min;
+    f32 head_angleX_max = mpHIO->m.common.head_angleX_max;
+    f32 head_angleY_min = mpHIO->m.common.head_angleY_min;
+    f32 head_angleY_max = mpHIO->m.common.head_angleY_max;
 
     s16 temp_r26 = mCurAngle.y - mOldAngle.y;
     cXyz sp30[] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
@@ -863,16 +983,16 @@ void daNpcRafrel_c::lookat() {
         if (field_0xe0e != LOOK_PLAYER && field_0xe0e != LOOK_PLAYER_TALK) {
             mLookPos.y -= 40.0f;
         }
-        field_0xbe0.setAttnPos(&mLookPos);
+        mLookat.setAttnPos(&mLookPos);
     } else {
-        field_0xbe0.setAttnPos(NULL);
+        mLookat.setAttnPos(NULL);
     }
 
-    field_0xbe0.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max,
+    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max,
                      0.0f, 0.0f, 0.0f, 0.0f,
                      head_angleX_min, head_angleX_max, head_angleY_min, head_angleY_max,
                      mCurAngle.y, sp30);
-    field_0xbe0.calc(this, model_p->getBaseTRMtx(), sp24, var_r28, temp_r26, 0);
+    mLookat.calc(this, model_p->getBaseTRMtx(), sp24, var_r28, temp_r26, 0);
 }
 
 /* 80ABADC4-80ABAFBC 001884 01F8+00 1/1 0/0 0/0 .text            setWaitAction__13daNpcRafrel_cFv */
@@ -961,7 +1081,7 @@ void daNpcRafrel_c::searchActors() {
 }
 
 BOOL daNpcRafrel_c::chkFindPlayer() {
-    f32 var_f31 = mType == 0 ? 135.0f : daNpcRafrel_Param_c::m.common.fov;
+    f32 var_f31 = mType == 0 ? 135.0f : mpHIO->m.common.fov;
 
     if (!chkActorInSight(daPy_getPlayerActorClass(), var_f31)) {
         field_0xc7c[0].remove();
@@ -996,13 +1116,14 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
         speedF = 0.0f;
         field_0xe10 = 2;
         break;
+
     case 2: {
         if (isSneaking()) {
             setLookMode(LOOK_NONE, NULL);
         } else if (field_0xe14 != 0 && mType == 1) {
             setLookMode(LOOK_PLAYER, NULL);
             if (mCurAngle.y == field_0xe12) {
-                s16 spA = cM_deg2s(daNpcRafrel_Param_c::m.common.body_angleY_max + daNpcRafrel_Param_c::m.common.head_angleY_max);
+                s16 spA = cM_deg2s(mpHIO->m.common.body_angleY_max + mpHIO->m.common.head_angleY_max);
                 if (fopAcM_seenPlayerAngleY(this) > spA) {
                     field_0xe12 = fopAcM_searchPlayerAngleY(this);
                 }
@@ -1037,7 +1158,7 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
             }
         }
 
-        if (field_0xe15 == 0 && mType == 1 && fopAcM_searchPlayerDistance(this) < daNpcRafrel_Param_c::m.field_0x6c) {
+        if (field_0xe15 == 0 && mType == 1 && fopAcM_searchPlayerDistance(this) < mpHIO->m.demo_start_dist) {
             daNpcF_offTmpBit(0xB);
             daNpcF_offTmpBit(0xC);
             daNpcF_offTmpBit(0xD);
@@ -1106,7 +1227,10 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
         }
         break;
     }
+
     case 3:
+        break;
+
     default:
         JUT_ASSERT(1634, FALSE);
         break;
@@ -1143,8 +1267,7 @@ void daNpcRafrel_c::setMotion(int param_0, f32 param_1, int param_2) {
     }
 }
 
-/* 80ABBBB0-80ABBBDC 002670 002C+00 1/0 0/0 0/0 .text            setExpression__13daNpcRafrel_cFif
- */
+/* 80ABBBB0-80ABBBDC 002670 002C+00 1/0 0/0 0/0 .text            setExpression__13daNpcRafrel_cFif */
 void daNpcRafrel_c::setExpression(int i_expression, f32 i_morf) {
     if (i_expression >= 0 && i_expression < 8) {
         mExpression = i_expression;
@@ -1166,6 +1289,7 @@ bool daNpcRafrel_c::wait_type2(void* param_0) {
         setLookMode(LOOK_NONE, NULL);
         field_0xe10 = 2;
         break;
+        
     case 2:
         switch (field_0xe08) {
         case 0:
@@ -1194,7 +1318,10 @@ bool daNpcRafrel_c::wait_type2(void* param_0) {
             break;
         }
         break;
+
     case 3:
+        break;
+
     default:
         JUT_ASSERT(1688, FALSE);
         break;
@@ -1243,7 +1370,7 @@ bool daNpcRafrel_c::talk(void* param_0) {
 
                 int itemNo = 0;
                 u16 eventId = mFlow.getEventId(&itemNo);
-                OS_REPORT("会話終了時 イベントID=%d アイテムNo=%d\n", itemNo);
+                OS_REPORT("会話終了時 イベントID=%d アイテムNo=%d\n", eventId, itemNo);
 
                 if (eventId == 1) {
                     field_0xe00 = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1, -1, NULL, NULL);
@@ -1291,6 +1418,7 @@ bool daNpcRafrel_c::talk(void* param_0) {
 /* 80ABC50C-80ABCA40 002FCC 0534+00 1/0 0/0 0/0 .text            demo__13daNpcRafrel_cFPv */
 bool daNpcRafrel_c::demo(void* param_0) {
     dEvent_manager_c* evtmgr = &dComIfGp_getEventManager();
+    int unused = 0;
 
     switch (field_0xe10) {
     case 0:
@@ -1311,13 +1439,21 @@ bool daNpcRafrel_c::demo(void* param_0) {
                     mOrderEvtNo = actIdx;
                 }
 
-                JUT_ASSERT(1820, NULL != mEvtSeqList[mOrderEvtNo]);
+                JUT_ASSERT(1810, NULL != mEvtSeqList[mOrderEvtNo]);
                 if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {
                     evtmgr->cutEnd(staffId);
                 }
+
+                unused = 1;
             }
 
+
             if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && evtmgr->endCheck(mEventIdx)) {
+                switch (mOrderEvtNo) {
+                    default:
+                        break;
+                }
+
                 dComIfGp_event_reset();
                 mOrderEvtNo = 0;
                 mEventIdx = -1;
@@ -1329,7 +1465,10 @@ bool daNpcRafrel_c::demo(void* param_0) {
             setWaitAction();
         }
         break;
+
     case 3:
+        break;
+
     default:
         JUT_ASSERT(1842, FALSE);
         break;
@@ -1350,6 +1489,7 @@ bool daNpcRafrel_c::leave(void* param_0) {
         speedF = 0.0f;
         field_0xe10 = 2;
         break;
+
     case 2:
         if (mMotionPhase > 0) {
             step(cLib_targetAngleY(&current.pos,  &sp8), 0x12, 15.0f);
@@ -1360,7 +1500,10 @@ bool daNpcRafrel_c::leave(void* param_0) {
             }
         }
         break;
+
     case 3:
+        break;
+
     default:
         JUT_ASSERT(1881, FALSE);
         break;
@@ -1378,8 +1521,7 @@ int daNpcRafrel_c::EvCut_Introduction(int i_staffId) {
         return 0;
     }
 
-    int is_advance = evtmgr->getIsAddvance(i_staffId);
-    if (is_advance) {
+    if (evtmgr->getIsAddvance(i_staffId)) {
         switch (*idata) {
         case 0:
         case 2:
@@ -1406,8 +1548,7 @@ int daNpcRafrel_c::EvCut_Meeting(int i_staffId) {
         return 0;
     }
 
-    int is_advance = evtmgr->getIsAddvance(i_staffId);
-    if (is_advance) {
+    if (evtmgr->getIsAddvance(i_staffId)) {
         switch (*idata) {
         case 0:
             setExpression(7, -1.0f);
@@ -1452,11 +1593,11 @@ int daNpcRafrel_c::EvCut_Meeting(int i_staffId) {
 
 /* 80ABD124-80ABD8A0 003BE4 077C+00 1/0 0/0 0/0 .text            EvCut_Appear__13daNpcRafrel_cFi */
 int daNpcRafrel_c::EvCut_Appear(int i_staffId) {
-    dEvent_manager_c* evtmgr = &dComIfGp_getEventManager();
+    char* cutname;
+    dEvent_manager_c& evtmgr = dComIfGp_getEventManager();
+    cutname = evtmgr.getMyNowCutName(i_staffId);
 
-    char* cutname = evtmgr->getMyNowCutName(i_staffId);
-    int is_advance = evtmgr->getIsAddvance(i_staffId);
-    if (is_advance) {
+    if (evtmgr.getIsAddvance(i_staffId)) {
         switch (*(u32*)cutname) {
         case '0001':
             setLookMode(LOOK_NONE, NULL);
@@ -1493,8 +1634,8 @@ int daNpcRafrel_c::EvCut_Appear(int i_staffId) {
                 dComIfGp_event_setItemPartnerId(field_0xe00);
                 field_0xe00 = fpcM_ERROR_PROCESS_ID_e;
             }
-            break;
         }
+        break;
         default:
             JUT_ASSERT(2040, FALSE);
         }
@@ -1545,14 +1686,14 @@ int daNpcRafrel_c::EvCut_Appear(int i_staffId) {
         JUT_ASSERT(2087, FALSE);
     }
 
-    int sp10 = mMsgTimer;
-    int sp18, sp14;
-    if (ctrlMsgAnm(sp18, sp14, this, 0)) {
+    int expression, motion;
+    int prevMsgTimer = mMsgTimer;
+    if (ctrlMsgAnm(expression, motion, this, 0)) {
         if (field_0x9eb == 0) {
-            setExpression(sp18, -1.0f);
-            setMotion(sp14, -1.0f, 0);
+            setExpression(expression, -1.0f);
+            setMotion(motion, -1.0f, 0);
         }
-    } else if (sp10 != 0 && mMsgTimer == 0 && field_0x9eb == 0) {
+    } else if (prevMsgTimer != 0 && mMsgTimer == 0 && field_0x9eb == 0) {
         setExpressionTalkAfter();
     }
 
@@ -1561,52 +1702,52 @@ int daNpcRafrel_c::EvCut_Appear(int i_staffId) {
 
 /* 80ABD8A0-80ABDB7C 004360 02DC+00 1/0 0/0 0/0 .text EvCut_WiretapSponsor__13daNpcRafrel_cFi */
 int daNpcRafrel_c::EvCut_WiretapSponsor(int i_staffId) {
-    dEvent_manager_c* evtmgr = &dComIfGp_getEventManager();
-    
-    fopAc_ac_c* sp18[] = {
+    int* cutname;
+    dEvent_manager_c& evtmgr = dComIfGp_getEventManager();
+    fopAc_ac_c* actors[] = {
         this,
         field_0xc7c[1].getActorP(),
         field_0xc7c[2].getActorP(),
         field_0xc7c[3].getActorP(),
     };
+    cutname = (int*)evtmgr.getMyNowCutName(i_staffId);
 
-    char* cutname = evtmgr->getMyNowCutName(i_staffId);
-    if (evtmgr->getIsAddvance(i_staffId)) {
-        switch (*(u32*)cutname) {
+    if (evtmgr.getIsAddvance(i_staffId)) {
+        switch (*cutname) {
         case '0001':
-            dComIfGp_setMesgCameraInfoActor(sp18[0], sp18[1], sp18[2], sp18[3], NULL, NULL, NULL, NULL, NULL, NULL);
-            initTalk(field_0xe0c, sp18);
+            dComIfGp_setMesgCameraInfoActor(actors[0], actors[1], actors[2], actors[3], NULL, NULL, NULL, NULL, NULL, NULL);
+            initTalk(field_0xe0c, actors);
             break;
         default:
             JUT_ASSERT(2138, FALSE);
         }
     }
 
-    int temp_r26 = mMsgTimer;
-    int sp14, sp10;
-    if (ctrlMsgAnm(sp14, sp10, this, 0)) {
-        setExpression(sp14, -1.0f);
-        setMotion(sp10, -1.0f, 0);
-    } else if (temp_r26 != 0 && mMsgTimer == 0) {
+    int expression, motion;
+    int prevMsgTimer = mMsgTimer;
+    if (ctrlMsgAnm(expression, motion, this, 0)) {
+        setExpression(expression, -1.0f);
+        setMotion(motion, -1.0f, 0);
+    } else if (prevMsgTimer != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
 
-    switch (*(u32*)cutname) {
+    switch (*cutname) {
     case '0001': {
-        if (talkProc(NULL, 1, sp18)) {
+        if (talkProc(NULL, 1, actors)) {
             return 1;
         }
 
-        fopAc_ac_c* var_r28 = dComIfGp_event_getTalkPartner();
-        if (var_r28 == this) {
-            var_r28 = field_0xc7c[2].getActorP();
+        fopAc_ac_c* actor_p = dComIfGp_event_getTalkPartner();
+        if (actor_p == this) {
+            actor_p = field_0xc7c[2].getActorP();
         }
 
-        setLookMode(LOOK_ACTOR, var_r28);
+        setLookMode(LOOK_ACTOR, actor_p);
         break;
     }
     default:
-        JUT_ASSERT(2138, FALSE);
+        JUT_ASSERT(2168, FALSE);
     }
 
     return 0;
@@ -1614,15 +1755,14 @@ int daNpcRafrel_c::EvCut_WiretapSponsor(int i_staffId) {
 
 /* 80ABDB7C-80ABDDE4 00463C 0268+00 2/0 0/0 0/0 .text EvCut_WiretapEntrant__13daNpcRafrel_cFi */
 int daNpcRafrel_c::EvCut_WiretapEntrant(int i_staffId) {
-    dEvent_manager_c* evtmgr = &dComIfGp_getEventManager();
+    dEvent_manager_c& evtmgr = dComIfGp_getEventManager();
     
     int* idata = dComIfGp_evmng_getMyIntegerP(i_staffId, "prm");
     if (idata == NULL) {
         return 0;
     }
 
-    int is_advance = evtmgr->getIsAddvance(i_staffId);
-    if (is_advance) {
+    if (evtmgr.getIsAddvance(i_staffId)) {
         switch (*idata) {
         case 0:
             setExpression(7, -1.0f);
@@ -1633,27 +1773,27 @@ int daNpcRafrel_c::EvCut_WiretapEntrant(int i_staffId) {
         }
     }
 
-    int temp_r26 = mMsgTimer;
-    int sp14, sp10;
-    if (ctrlMsgAnm(sp14, sp10, this, 0)) {
-        setExpression(sp14, -1.0f);
-        setMotion(sp10, -1.0f, 0);
-    } else if (temp_r26 != 0 && mMsgTimer == 0) {
+    int expression, motion;
+    int prevMsgTimer = mMsgTimer;
+    if (ctrlMsgAnm(expression, motion, this, 0)) {
+        setExpression(expression, -1.0f);
+        setMotion(motion, -1.0f, 0);
+    } else if (prevMsgTimer != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
 
     switch (*idata) {
     case 0: {
-        fopAc_ac_c* var_r28 = dComIfGp_event_getTalkPartner();
-        if (var_r28 == this) {
-            var_r28 = field_0xc7c[2].getActorP();
+        fopAc_ac_c* actor_p = dComIfGp_event_getTalkPartner();
+        if (actor_p == this) {
+            actor_p = field_0xc7c[2].getActorP();
         }
 
-        setLookMode(LOOK_ACTOR, var_r28);
+        setLookMode(LOOK_ACTOR, actor_p);
         return 1;
     }
     default:
-        JUT_ASSERT(2138, FALSE);
+        JUT_ASSERT(2224, FALSE);
     }
 
     return 0;
@@ -1682,46 +1822,6 @@ static int daNpcRafrel_Draw(void* i_this) {
 /* 80ABDE64-80ABDE6C 004924 0008+00 1/0 0/0 0/0 .text            daNpcRafrel_IsDelete__FPv */
 static int daNpcRafrel_IsDelete(void* i_this) {
     return 1;
-}
-
-/* 80ABE1D0-80ABE470 004C90 02A0+00 1/0 0/0 0/0 .text            main__13daNpcRafrel_cFv */
-BOOL daNpcRafrel_c::main() {
-    if (field_0xde0 != NULL) {
-        (this->*field_0xde0)(NULL);
-    }
-
-    if (field_0xe00 != fpcM_ERROR_PROCESS_ID_e && dComIfGp_event_runCheck() != 0) {
-        if (strcmp(dComIfGp_getEventManager().getRunEventName(), "DEFAULT_GETITEM") == 0) {
-            dComIfGp_event_setItemPartnerId(field_0xe00);
-            field_0xe00 = -1;
-        }
-    }
-
-    playExpression();
-    playMotion();
-    return 1;
-}
-
-/* 80ABE9FC-80ABEAD8 0054BC 00DC+00 1/0 0/0 0/0 .text            ctrlBtk__13daNpcRafrel_cFv */
-BOOL daNpcRafrel_c::ctrlBtk() {
-    if (mpMatAnm != NULL) {
-        J3DAnmTextureSRTKey* temp_r29 = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx], l_btkGetParamList[0].fileIdx);
-        if (temp_r29 == mBtkAnm.getBtkAnm()) {
-            mpMatAnm->setNowOffsetX(cM_ssin(mEyeAngle.y) * 0.2f * -1.0f);
-            mpMatAnm->setNowOffsetY(cM_ssin(mEyeAngle.x) * 0.2f);
-            mpMatAnm->onEyeMoveFlag();
-            return TRUE;
-        } else {
-            mpMatAnm->offEyeMoveFlag();
-        }
-    }
-
-    return FALSE;
-}
-
-/* 80ABF074-80ABF07C 005B34 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__13daNpcRafrel_cFv */
-BOOL daNpcRafrel_c::drawDbgInfo() {
-    return false;
 }
 
 /* 80AC01D8-80AC01F8 -00001 0020+00 1/0 0/0 0/0 .data            daNpcRafrel_MethodTable */

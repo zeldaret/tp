@@ -1923,19 +1923,17 @@ void daAlink_c::setMatrixWorldAxisRot(MtxP param_0, s16 param_1, s16 param_2, s1
 }
 
 /* 8009DD90-8009E7B8 0986D0 0A28+00 2/2 0/0 0/0 .text            jointControll__9daAlink_cFi */
-// NONMATCHING - 0x20 bytes missing from stack at 0x58 (release)/0x60 (debug)
 int daAlink_c::jointControll(int param_0) {
     csXyz sp18(0, 0, 0);
     int var_r27 = 0;
 
-    mDoExt_MtxCalcOldFrame* temp = field_0x2060;
-    J3DTransformInfo* temp_r3 = temp->getOldFrameTransInfo(param_0);
-    J3DTransformInfo sp80 = *temp_r3;
+    J3DTransformInfo sp80;
+    J3DTransformInfo sp60 = *field_0x2060->getOldFrameTransInfo(param_0);
 
     Quaternion sp50;
     Quaternion sp40;
     Quaternion sp30;
-    Quaternion sp20 = *temp->getOldFrameQuaternion(param_0);
+    Quaternion sp20 = *field_0x2060->getOldFrameQuaternion(param_0);
 
     csXyz sp10(0, 1, 2);
 
@@ -2114,7 +2112,7 @@ int daAlink_c::jointControll(int param_0) {
             spC = field_0x2060->getOldFrameQuaternion(param_0);
         }
 
-        mDoMtx_stack_c::transS(sp80.mTranslate.x, sp80.mTranslate.y, sp80.mTranslate.z);
+        mDoMtx_stack_c::transS(sp60.mTranslate.x, sp60.mTranslate.y, sp60.mTranslate.z);
         mDoMtx_stack_c::quatM(&sp20);
         mDoMtx_stack_c::inverse();
         cMtx_concat(temp_r26, mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
@@ -5902,8 +5900,8 @@ void daAlink_c::setSwordAtCollision(int param_0) {
             mAtCyl.MoveCAt(sp74);
         }
 
-        g_dComIfG_gameInfo.play.mCcs.Set(&mAtCyl);
-        g_dComIfG_gameInfo.play.mCcs.SetMass(&mAtCyl, 1);
+        dComIfG_Ccsp()->Set(&mAtCyl);
+        dComIfG_Ccsp()->SetMass(&mAtCyl, 1);
         return;
     }
 
@@ -5929,8 +5927,8 @@ void daAlink_c::setSwordAtCollision(int param_0) {
     mAtCps[2].SetAtVec(sp5C);
 
     for (int i = 0; i < 3; i++) {
-        g_dComIfG_gameInfo.play.mCcs.Set(&mAtCps[i]);
-        g_dComIfG_gameInfo.play.mCcs.SetMass(&mAtCps[i], 1);
+        dComIfG_Ccsp()->Set(&mAtCps[i]);
+        dComIfG_Ccsp()->SetMass(&mAtCps[i], 1);
     }
 }
 
@@ -5997,8 +5995,8 @@ void daAlink_c::setWolfAtCollision() {
         if (mProcID == PROC_WOLF_ROLL_ATTACK) {
             mAtCyl.SetC(current.pos);
 
-            g_dComIfG_gameInfo.play.mCcs.Set(&mAtCyl);
-            g_dComIfG_gameInfo.play.mCcs.SetMass(&mAtCyl, 1);
+            dComIfG_Ccsp()->Set(&mAtCyl);
+            dComIfG_Ccsp()->SetMass(&mAtCyl, 1);
         } else {
             sp8.set(current.pos.x + field_0x3438 * cM_ssin(shape_angle.y), current.pos.y,
                     current.pos.z + field_0x3438 * cM_scos(shape_angle.y));
@@ -6023,8 +6021,8 @@ void daAlink_c::setWolfAtCollision() {
                 mAtCyl.MoveCAt(sp8);
             }
 
-            g_dComIfG_gameInfo.play.mCcs.Set(&mAtCyl);
-            g_dComIfG_gameInfo.play.mCcs.SetMass(&mAtCyl, 1);
+            dComIfG_Ccsp()->Set(&mAtCyl);
+            dComIfG_Ccsp()->SetMass(&mAtCyl, 1);
         }
 
         onNoResetFlg0(FLG0_UNK_40);
@@ -6127,7 +6125,7 @@ void daAlink_c::setAtCollision() {
             mGuardAtCps.SetAtVec(spA4);
 
             dComIfG_Ccsp()->Set(&mGuardAtCps);
-            g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&mGuardAtCps, 1);
+            dComIfG_Ccsp()->SetMass(&mGuardAtCps, 1);
         } else {
             mGuardAtCps.ResetAtHit();
         }
@@ -6205,7 +6203,7 @@ void daAlink_c::setAtCollision() {
             }
 
             dComIfG_Ccsp()->Set(&field_0xFB8);
-            g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&field_0xFB8, 1);
+            dComIfG_Ccsp()->SetMass(&field_0xFB8, 1);
         } else {
             field_0xFB8.ResetAtHit();
         }
@@ -6220,7 +6218,7 @@ void daAlink_c::setAtCollision() {
             }
 
             dComIfG_Ccsp()->Set(&field_0xFB8);
-            g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&field_0xFB8, 1);
+            dComIfG_Ccsp()->SetMass(&field_0xFB8, 1);
 
             if (mItemVar0.field_0x3018 == 5 || mItemVar0.field_0x3018 == 7 || mItemVar0.field_0x3018 == 6) {
                 field_0x1778.SetC(mIronBallCenterPos);
@@ -6256,7 +6254,7 @@ void daAlink_c::setAtCollision() {
             spC8 = cXyz::Zero;
             field_0xFB8.SetAtVec(spC8);
             dComIfG_Ccsp()->Set(&field_0xFB8);
-            g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&field_0xFB8, 1);
+            dComIfG_Ccsp()->SetMass(&field_0xFB8, 1);
             decSwordBlur();
 
             if (mProcID == PROC_BOARD_CUT_TURN) {
@@ -6270,7 +6268,7 @@ void daAlink_c::setAtCollision() {
             spC8.set(current.pos.x, current.pos.y - 80.0f, current.pos.z);
             mAtCyl.SetC(spC8);
             dComIfG_Ccsp()->Set(&mAtCyl);
-            g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&mAtCyl, 1);
+            dComIfG_Ccsp()->SetMass(&mAtCyl, 1);
             decSwordBlur();
         } else if (!checkNoResetFlg0(FLG0_UNK_40)) {
             setSwordAtCollision(1);
@@ -6535,16 +6533,15 @@ void daAlink_c::setCollision() {
         field_0x306c = shape_angle.y + mBodyAngle.y;
     }
 
-    // fakematch, should be dComIfG_Ccsp() (same for rest of function)
-    g_dComIfG_gameInfo.play.mCcs.Set(&field_0x850[0]);
-    g_dComIfG_gameInfo.play.mCcs.SetMass(&field_0x850[0], 1);
+    dComIfG_Ccsp()->Set(&field_0x850[0]);
+    dComIfG_Ccsp()->SetMass(&field_0x850[0], 1);
 
     if (checkWolf()) {
         setWolfAtCollision();
 
         for (i = 1; i < 3; i++) {
-            g_dComIfG_gameInfo.play.mCcs.Set(&field_0x850[i]);
-            g_dComIfG_gameInfo.play.mCcs.SetMass(&field_0x850[i], 1);
+            dComIfG_Ccsp()->Set(&field_0x850[i]);
+            dComIfG_Ccsp()->SetMass(&field_0x850[i], 1);
         }
 
         if (checkModeFlg(0x100000)) {
@@ -6554,12 +6551,12 @@ void daAlink_c::setCollision() {
             field_0xFB8.OnCoSetBit();
         }
 
-        g_dComIfG_gameInfo.play.mCcs.Set(&field_0xFB8);
-        g_dComIfG_gameInfo.play.mCcs.SetMass(&field_0xFB8, 1);
+        dComIfG_Ccsp()->Set(&field_0xFB8);
+        dComIfG_Ccsp()->SetMass(&field_0xFB8, 1);
     } else {
         for (i = 1; i < 3; i++) {
-            g_dComIfG_gameInfo.play.mCcs.Set(&field_0x850[i]);
-            g_dComIfG_gameInfo.play.mCcs.SetMass(&field_0x850[i], 1);
+            dComIfG_Ccsp()->Set(&field_0x850[i]);
+            dComIfG_Ccsp()->SetMass(&field_0x850[i], 1);
         }
 
         setAtCollision();
@@ -9951,7 +9948,7 @@ void daAlink_c::setSpeedAndAngleAtn() {
  * checkRequestTalkActor__9daAlink_cFP10dAttList_cP10fopAc_ac_c */
 int daAlink_c::checkRequestTalkActor(dAttList_c* param_0, fopAc_ac_c* param_1) {
     if (param_0 != NULL &&
-        (param_0->mType == 3 || (param_0->mType == 1 && mTargetedActor == param_1)))
+        (param_0->mType == fopAc_attn_SPEAK_e || (param_0->mType == fopAc_attn_TALK_e && mTargetedActor == param_1)))
     {
         return true;
     }
@@ -10226,15 +10223,15 @@ void daAlink_c::decideDoStatus() {
             } else if (mAttList != NULL) {
                 s16 actor_name = fopAcM_GetName(field_0x27f4);
 
-                if (mAttList->mType == 5 ||
-                    (mAttList->mType == 6 &&
+                if (mAttList->mType == fopAc_attn_DOOR_e ||
+                    (mAttList->mType == fopAc_attn_JUEL_e &&
                      (!checkWolf() || static_cast<daTbox_c*>(field_0x27f4)->checkSmallTbox())))
                 {
                     setDoStatus(6);
-                } else if (mAttList->mType == 7 && actor_name == PROC_KYTAG05) {
+                } else if (mAttList->mType == fopAc_attn_ETC_e && actor_name == PROC_KYTAG05) {
                     setDoStatus(0x89);
                 } else if (checkWolf()) {
-                    if (mAttList->mType == 4 && !fopAcM_checkCarryNow(field_0x27f4) &&
+                    if (mAttList->mType == fopAc_attn_CARRY_e && !fopAcM_checkCarryNow(field_0x27f4) &&
                         fopAcM_CheckCarryType(field_0x27f4, fopAcM_CARRY_LIGHT))
                     {
                         if (actor_name == PROC_B_MGN) {
@@ -10253,21 +10250,21 @@ void daAlink_c::decideDoStatus() {
                     } else if (mTargetedActor != NULL &&
                                fopAcM_GetName(mTargetedActor) == PROC_B_MGN &&
                                mAttention->getActionBtnB() != NULL &&
-                               mAttention->getActionBtnB()->mType == 4 &&
+                               mAttention->getActionBtnB()->mType == fopAc_attn_CARRY_e &&
                                mAttention->getActionBtnB()->getActor() == mTargetedActor)
                     {
                         setDoStatus(0x91);
                     } else if (mTargetedActor != NULL &&
                                fopAcM_GetName(mTargetedActor) == PROC_E_YM &&
                                mAttention->getActionBtnB() != NULL &&
-                               mAttention->getActionBtnB()->mType == 7 &&
+                               mAttention->getActionBtnB()->mType == fopAc_attn_ETC_e &&
                                mAttention->getActionBtnB()->getActor() == mTargetedActor)
                     {
                         onEndResetFlg1(ERFLG1_UNK_100000);
                         if (mWolfEyeUp != 0) {
                             setWolfDigStatus(2);
                         }
-                    } else if (mAttList->mType == 7 && field_0x27f4 != NULL) {
+                    } else if (mAttList->mType == fopAc_attn_ETC_e && field_0x27f4 != NULL) {
                         if (actor_name == PROC_Obj_Digpl || actor_name == PROC_Obj_Digholl ||
                             actor_name == PROC_Obj_DigSnow || actor_name == PROC_Obj_Lv4DigSand ||
                             actor_name == PROC_E_YM)
@@ -10292,7 +10289,7 @@ void daAlink_c::decideDoStatus() {
                     } else {
                         setTalkStatus();
                     }
-                } else if (mAttList->mType == 7) {
+                } else if (mAttList->mType == fopAc_attn_ETC_e) {
                     if ((!checkMagicArmorHeavy() &&
                          (actor_name == PROC_HORSE || actor_name == PROC_E_WB) &&
                          checkReinRideBgCheck()) ||
@@ -10313,11 +10310,11 @@ void daAlink_c::decideDoStatus() {
                     }
                 } else if (mTargetedActor != NULL && checkGoatCatchActor(mTargetedActor) &&
                            mAttention->getActionBtnB() != NULL &&
-                           mAttention->getActionBtnB()->mType == 4 &&
+                           mAttention->getActionBtnB()->mType == fopAc_attn_CARRY_e &&
                            mAttention->getActionBtnB()->getActor() == mTargetedActor)
                 {
                     setDoStatus(0x91);
-                } else if (mAttList->mType == 4) {
+                } else if (mAttList->mType == fopAc_attn_CARRY_e) {
                     if (!fopAcM_checkCarryNow(field_0x27f4)) {
                         if (checkGoatCatchActor(field_0x27f4)) {
                             setDoStatus(0x91);
@@ -11359,7 +11356,7 @@ int daAlink_c::checkNormalAction() {
         }
 
         if (dComIfGp_getDoStatus() == 6) {
-            if (mAttList->mType == 5) {
+            if (mAttList->mType == fopAc_attn_DOOR_e) {
                 if (!checkStageName("F_SP103") ||
                     !fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchBouDoor, NULL))
                 {

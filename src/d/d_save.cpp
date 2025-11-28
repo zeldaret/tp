@@ -1317,7 +1317,7 @@ BOOL dSv_event_c::isEventBit(const u16 i_no) const {
 }
 
 /* 800349E0-80034A04 02F320 0024+00 0/0 12/12 17/17 .text            setEventReg__11dSv_event_cFUsUc */
-void dSv_event_c::setEventReg(const u16 i_reg, u8 i_no) {
+void dSv_event_c::setEventReg(u16 i_reg, u8 i_no) {
     mEvent[i_reg >> 8] &= ~(u8)i_reg;
     mEvent[i_reg >> 8] |= i_no;
 }
@@ -1336,7 +1336,7 @@ void dSv_MiniGame_c::init() {
         }
     }
 
-    mStarTime = 120000;
+    mHookGameTime = 120000;
     mBalloonScore = 0;
     mRaceGameTime = 0;
     unk16 = 0;

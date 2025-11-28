@@ -117,7 +117,7 @@ static u8 const l_blurTop[12] = {
 
 /* 804A2868-804A287A 000018 000C+06 0/0 0/0 0/0 .rodata          l_blurRoot */
 // unused
-static u8 const l_blurRoot[12 + 6] = {
+static u8 const l_blurRoot[12] = {
     0xC2,
     0x20,
     0x00,
@@ -130,6 +130,10 @@ static u8 const l_blurRoot[12 + 6] = {
     0x00,
     0x00,
     0x00,
+};
+
+// TODO: what is this?
+static const u8 lbl_46_rodata_24[6] = {
     0xB4,
     0xA0,
     0x8C,
@@ -1271,8 +1275,7 @@ int daBoomerang_c::procMove() {
 
     if (!dComIfGp_event_runCheck()) {
         dComIfG_Ccsp()->Set(&m_windAtCyl);
-        g_dComIfG_gameInfo.play.mCcs.mMass_Mng.Set(&m_windAtCyl, 1);
-        //dComIfG_Ccsp()->SetMass(&m_windAtCyl, 1);
+        dComIfG_Ccsp()->SetMass(&m_windAtCyl, 1);
     } else {
         m_atCps.ResetAtHit();
         m_windAtCyl.ResetAtHit();
@@ -1581,3 +1584,6 @@ extern actor_process_profile_definition g_profile_BOOMERANG = {
 };
 
 AUDIO_INSTANCES;
+class JAUSectionHeap;
+template<>
+JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

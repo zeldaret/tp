@@ -122,5 +122,3 @@ void JASAudioThread::DSPCallback(void*) {
 		}
 	}
 }
-
-/* 8039B338-8039B338 027998 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

@@ -12,8 +12,6 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
 
-// NONMATCHING - dEvLib_callback_c issues
-
 /* 80CFD1DC-80CFD1F0 000000 0014+00 4/4 0/0 0/0 .rodata          l_bmdIdx */
 static u32 const l_bmdIdx[5] = {
     4, 4, 4, 4, 4,
@@ -561,5 +559,3 @@ extern actor_process_profile_definition g_profile_Obj_SwHang = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80CFD274-80CFD274 000098 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

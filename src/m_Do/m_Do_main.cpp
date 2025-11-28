@@ -807,7 +807,7 @@ void main01(void) {
 }
 
 #if DEBUG
-// NONMATCHING
+// DEBUG NONMATCHING
 void parse_args(int argc, const char* argv[]) {
     int i;
 

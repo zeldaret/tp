@@ -293,19 +293,38 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
             int uVar13;
             for (;
                 (int)pDListPos - (int)pDList < pModelData->getShapeNodePointer(i)->getShapeDraw(j)->getDisplayListSize();
-                pDListPos += r23 * uVar13)
+                pDListPos += r23 * uVar13
+                //TODO: This loop's logic has drastically different codegen between GCN and Shield
+                //      in a way that so far can't be pinned down as just compiler differences. This
+                //      may have been refactored in the J3D version used for Shield, but note that
+                //      it's very possible that this is a fakematch and there's some other way of
+                //      expressing it that matches for both versions.
+#if PLATFORM_GCN
+                , pDListPos += 3
+#endif
+                )
             {
                 u8 command = *pDListPos;
+#if !PLATFORM_GCN
                 pDListPos++;
+#endif
                 if (command != GX_TRIANGLEFAN && command != GX_TRIANGLESTRIP) {
                     break;
                 }
-                
+
+#if PLATFORM_GCN
+                uVar13 = *(u16*)(pDListPos + 1);
+#else
                 uVar13 = *(u16*)pDListPos;
                 pDListPos += 2;
+#endif
                 for (int local_60 = 0; local_60 < uVar13; local_60++) {
-                    u8* iVar5 = pDListPos + r23 * local_60;
-                    u8 bVar3 = *(iVar5 + pnmtx_num) / 3U;
+#if PLATFORM_GCN
+                    u8* iVar5 = ((u8*)(pDListPos + 3) + r23 * local_60);
+#else
+                    u8* iVar5 = ((u8*)pDListPos + r23 * local_60);
+#endif
+                    u8 bVar3 = *(u8*)(iVar5 + pnmtx_num) / 3U;
                     u16 vtx_idx = *(u16*)(iVar5 + vtx_num);
                     u16 nrm_idx = *(u16*)(iVar5 + nrm_num);
                     u16 uVar3 = *(u16*)(iVar5 + tex_num);
@@ -382,7 +401,12 @@ void J3DSkinDeform::changeFastSkinDL(J3DModelData* pModelData) {
                     for (int local_4c = 0; local_4c < uVar9; local_4c++) {
                         u8* dst = &local_44[local_34 * local_4c];
                         memcpy(puVar10, dst + 1, local_34 - 1);
-                        puVar10 = ((local_34 + puVar10) - 1);
+                        // FAKEMATCH
+                        #if DEBUG || VERSION == VERSION_WII_USA_R0 || VERSION == VERSION_WII_USA_R2
+                        puVar10 += local_34 - 1;
+                        #else
+                        puVar10 = (local_34 + puVar10) - 1;
+                        #endif
                     }
                     local_44 += local_34 * uVar9;
                 }
@@ -563,8 +587,8 @@ void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
     J3DJointTree* jointTree = pMtxBuffer->getJointTree();
     int vtxNum = pVtxBuffer->getVertexData()->getVtxNum();
     int sp8 = jointTree->getDrawMtxNum();
-    void* currentVtxPos = pVtxBuffer->getCurrentVtxPos();
-    void* transformedVtxPos = pVtxBuffer->getTransformedVtxPos(0);
+    void* currentVtxPos = (void*)pVtxBuffer->getCurrentVtxPos();
+    void* transformedVtxPos = (void*)pVtxBuffer->getTransformedVtxPos(0);
 
     for (int i = 0; i < vtxNum; i++) {
         anmMtx = anmMtxs[jointTree->getDrawMtxFlag(mPosData[i])];
@@ -590,8 +614,8 @@ void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
     J3DJointTree* jointTree = pMtxBuffer->getJointTree();
     int vtxNum = pVtxBuffer->getVertexData()->getVtxNum();
     int sp8 = jointTree->getDrawMtxNum();
-    void* currentVtxPos = pVtxBuffer->getCurrentVtxPos();
-    void* transformedVtxPos = pVtxBuffer->getTransformedVtxPos(0);
+    void* currentVtxPos = (void*)pVtxBuffer->getCurrentVtxPos();
+    void* transformedVtxPos = (void*)pVtxBuffer->getTransformedVtxPos(0);
 
     for (int i = 0; i < vtxNum; i++) {
         anmMtx = anmMtxs[jointTree->getDrawMtxFlag(mPosData[i])];
@@ -608,8 +632,8 @@ void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
 void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* pVtxBuffer) const {
     pVtxBuffer->swapTransformedVtxNrm();
     int nrmNum = pVtxBuffer->getVertexData()->getNrmNum();
-    void* currentVtxNrm = pVtxBuffer->getCurrentVtxNrm();
-    void* transformedVtxNrm = pVtxBuffer->getTransformedVtxNrm(0);
+    void* currentVtxNrm = (void*)pVtxBuffer->getCurrentVtxNrm();
+    void* transformedVtxNrm = (void*)pVtxBuffer->getTransformedVtxNrm(0);
 
     for (int i = 0; i < nrmNum; i++) {
         J3DPSMulMtxVec(mNrmMtx[mNrmData[i]], (Vec*)((u8*)currentVtxNrm + i * 3 * 4), (Vec*)((u8*)transformedVtxNrm + i * 3 * 4));
@@ -628,8 +652,8 @@ void J3DSkinDeform::deformVtxNrm_S16(J3DVertexBuffer* pVtxBuffer) const {
     pVtxBuffer->swapTransformedVtxNrm();
 
     int nrmNum = pVtxBuffer->getVertexData()->getNrmNum();
-    void* currentVtxNrm = pVtxBuffer->getCurrentVtxNrm();
-    void* transformedVtxNrm = pVtxBuffer->getTransformedVtxNrm(0);
+    void* currentVtxNrm = (void*)pVtxBuffer->getCurrentVtxNrm();
+    void* transformedVtxNrm = (void*)pVtxBuffer->getTransformedVtxNrm(0);
 
     for (int i = 0; i < nrmNum; i++) {
         J3DPSMulMtxVec(mNrmMtx[mNrmData[i]], (S16Vec*)(((s16*)currentVtxNrm) + (i * 3)), (S16Vec*)(((s16*)transformedVtxNrm) + (i * 3)));

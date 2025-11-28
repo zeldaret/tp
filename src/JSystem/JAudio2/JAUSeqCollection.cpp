@@ -60,7 +60,7 @@ JAUSeqDataMgr_SeqCollection::JAUSeqDataMgr_SeqCollection() {
 /* 802A67D0-802A67DC 2A1110 000C+00 1/0 0/0 0/0 .text
  * setSeqDataUser__27JAUSeqDataMgr_SeqCollectionFP14JAISeqDataUser */
 bool JAUSeqDataMgr_SeqCollection::setSeqDataUser(JAISeqDataUser* param_0) {
-    JUT_ASSERT(60, user_ == 0);
+    JUT_ASSERT(60, user_ == NULL);
     user_ = param_0;
     return true;
 }
@@ -82,7 +82,7 @@ JAUSeqDataMgr_SeqCollection::SeqDataReturnValue JAUSeqDataMgr_SeqCollection::get
     if (!isValid()) {
         return SeqDataReturnValue_0;
     }
-    if (JAUSeqCollection::getSeqData(param_0.mId.mBytes.b1, param_0.mId.mAdvancedId.mShortId, param_1)) {
+    if (JAUSeqCollection::getSeqData(param_0.id_.info.type.parts.groupID, param_0.id_.info.waveID, param_1)) {
         return SeqDataReturnValue_2;
     }
     return SeqDataReturnValue_0;

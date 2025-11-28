@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_push.h"
+#include "d/actor/d_a_npc4.h"
 #include "d/d_procname.h"
 
 /* 804902B8-80490418 000078 0160+00 2/1 0/0 0/0 .text            srchActor__12daTag_Push_cFPvPv */

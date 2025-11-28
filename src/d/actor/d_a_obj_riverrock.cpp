@@ -341,10 +341,6 @@ int daObjRIVERROCK_c::Delete() {
     return 1;
 }
 
-// /* 80CBD9C4-80CBDA0C 0013E4 0048+00 2/1 0/0 0/0 .text            __dt__20daObjRIVERROCK_HIO_cFv */
-// daObjRIVERROCK_HIO_c::~daObjRIVERROCK_HIO_c() {
-// }
-
 /* 80CBDB44-80CBDB64 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjRIVERROCK_Method */
 static actor_method_class l_daObjRIVERROCK_Method = {
     (process_method_func)daObjRIVERROCK_Create,
@@ -371,5 +367,3 @@ extern actor_process_profile_definition g_profile_Obj_RIVERROCK = {
   fopAc_ACTOR_e,            // mActorType
   fopAc_CULLBOX_CUSTOM_e,   // cullType
 };
-
-/* 80CBDB14-80CBDB14 0000B8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
