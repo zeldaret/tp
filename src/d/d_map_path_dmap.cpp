@@ -1008,7 +1008,7 @@ bool renderingDAmap_c::isDrawRoomIcon(int param_0, int param_1) const {
 // drawTreasure and drawTreasureAfterPlayer match required a change of param_3 to int rather than bool.
 // Nothing else made sense considering the assembly generated.
 bool renderingDAmap_c::isDrawIconSingle(dTres_c::data_s const* data, int param_1, int param_2,
-                                        bool param_3, bool param_4, Vec const* param_5) const {
+                                        int param_3, bool param_4, Vec const* param_5) const {
     bool draw_room_icon = isDrawRoomIcon(data->mRoomNo, param_1);
     bool tmp = false;
 

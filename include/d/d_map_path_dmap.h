@@ -127,7 +127,7 @@ public:
     /* 800402E8 */ virtual int getNextDrawLayerNo(int);
 
     // See cpp for argument type change comment
-    /* 800409E0 */ virtual bool isDrawIconSingle(dTres_c::data_s const*, int, int, bool, bool,
+    /* 800409E0 */ virtual bool isDrawIconSingle(dTres_c::data_s const*, int, int, int, bool,
                                                  Vec const*) const;
     /* 80040AE4 */ virtual int getIconGroupNumber(u8) const;
     virtual bool hasMap() const = 0;
