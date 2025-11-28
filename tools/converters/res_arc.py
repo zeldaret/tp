@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# this command optionally takes -i and -o for input arc files and output enum files, and --debug which prints out the file it's currently working on.
+# Iterates over all files in the orig directory, outputs the enum containing IDs and indices for each files contained in the arc.
+# Outputs files to the ./assets/VERSION/ folder. Its path will match the path in the ./orig/files directory.
+# Currently does not iterate over files on a disk image, all arc files must be present in a directory such that os.walk can see them
+
 from binary_funcs import read_bytes_until_null, read_u32, read_u16, read_u8, skip_bytes
 import subprocess
 from os import walk, makedirs
@@ -7,6 +12,7 @@ from pathlib import Path
 from typing import NamedTuple, DefaultDict
 import re
 from sys import argv
+import argparse
 
 debug_print = lambda *args, **kwargs : None
 
@@ -297,9 +303,24 @@ def extract_enum_from_file(src_path:Path, dst_path:Path) -> None:
     convert_binary_to_resource_enum(src_path, dst_path)
 
 def main() -> None:
+    args = argparse.ArgumentParser()
+    args.add_argument("--debug", action="store_true", help="Prints each file as it is converted")
+    group = args.add_argument_group("IO", description="optional")
+    group.add_argument("-i", "--input", help="input arc file to convert")
+    group.add_argument("-o", "--output", help="output enum file path")
+
+    args = args.parse_args()
     global debug_print 
-    if "--debug" in argv:
+    if args.debug:
         debug_print = print
+
+    if bool(args.input) ^ bool(args.output):
+        print("If input or output is provided, both must be present")
+        exit(1)
+
+    if bool(args.input) and bool(args.output):
+        extract_enum_from_file(Path(args.input), Path(args.output))
+        exit()
 
     for dir, dirnames, filenames in walk("./orig/"):
         dirpath = Path(dir)
