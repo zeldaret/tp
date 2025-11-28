@@ -150,7 +150,7 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
     BOOL ind_flag = (i_flags & 0x1000000) ? TRUE : FALSE;
     if (i_material == NULL) {
         i_material = new J3DMaterial();
-        JUT_ASSERT_MSG(269, i_material, "Error : allocate memory.");
+        J3D_ASSERT_ALLOCMEM(269, i_material);
     }
     i_material->mColorBlock = J3DMaterial::createColorBlock(color_flag);
     i_material->mTexGenBlock = J3DMaterial::createTexGenBlock(texgen_flag);
@@ -252,14 +252,14 @@ J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* i_material, 
                                                        u32 i_flags) const {
     if (i_material == NULL) {
         i_material = new J3DPatchedMaterial();
-        JUT_ASSERT_MSG(430, i_material, "Error : allocate memory.");
+        J3D_ASSERT_ALLOCMEM(430, i_material);
     }
     bool bVar1 = i_flags & 0x3000000 ? true : false;
     i_material->mColorBlock = J3DMaterial::createColorBlock(0x40000000);
     i_material->mTexGenBlock = new J3DTexGenBlockPatched();
-    JUT_ASSERT_MSG(440, i_material->mTexGenBlock, "Error : allocate memory.");
+    J3D_ASSERT_ALLOCMEM(440, i_material->mTexGenBlock);
     i_material->mTevBlock = new J3DTevBlockPatched();
-    JUT_ASSERT_MSG(442, i_material->mTevBlock, "Error : allocate memory.");
+    J3D_ASSERT_ALLOCMEM(442, i_material->mTevBlock);
     i_material->mIndBlock = J3DMaterial::createIndBlock(bVar1);
     i_material->mPEBlock = J3DMaterial::createPEBlock(0x10000000, getMaterialMode(i_idx));
     i_material->mIndex = i_idx;

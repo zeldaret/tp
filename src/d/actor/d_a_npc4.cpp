@@ -1,5 +1,7 @@
 #include "d/actor/d_a_npc4.h"
+#include "d/actor/d_a_npc2.h"
 #include "d/actor/d_a_npc_tk.h"
+#include "d/d_debug_viewer.h"
 #include "d/d_msg_object.h"
 #include "d/actor/d_a_tag_evtarea.h"
 #include "dol2asm.h"
@@ -2290,221 +2292,41 @@ dCcD_SrcGObjInf const daNpcF_c::mCcDObjInfo = {
     {0}
 };
 
-/* 80392720-80392725 01ED80 0005+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392720 = ".bck";
-#pragma pop
-
-/* 80392725-8039272A 01ED85 0005+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392725 = ".btp";
-#pragma pop
-
-/* 8039272A-8039272F 01ED8A 0005+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039272A = ".btk";
-#pragma pop
-
-/* 8039272F-8039274A 01ED8F 001B+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039272F = "%.3ff,\t//  注目オフセット\n";
-#pragma pop
-
-/* 8039274A-8039275B 01EDAA 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039274A = "%.3ff,\t//  重力\n";
-#pragma pop
-
-/* 8039275B-80392770 01EDBB 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039275B = "%.3ff,\t//  スケ−ル\n";
-#pragma pop
-
-/* 80392770-8039278B 01EDD0 001B+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392770 = "%.3ff,\t//  リアル影サイズ\n";
-#pragma pop
-
-/* 8039278B-8039279C 01EDEB 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039278B = "%.3ff,\t//  体重\n";
-#pragma pop
-
-/* 8039279C-803927AD 01EDFC 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039279C = "%.3ff,\t//  高さ\n";
-#pragma pop
-
-/* 803927AD-803927C0 01EE0D 0013+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803927AD = "%.3ff,\t//  ひざ丈\n";
-#pragma pop
-
-/* 803927C0-803927CF 01EE20 000F+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803927C0 = "%.3ff,\t//  幅\n";
-#pragma pop
-
-/* 803927CF-803927E8 01EE2F 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803927CF = "%.3ff,\t//  腰のＸ角上限\n";
-#pragma pop
-
-/* 803927E8-80392801 01EE48 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803927E8 = "%.3ff,\t//  腰のＸ角下限\n";
-#pragma pop
-
-/* 80392801-8039281A 01EE61 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392801 = "%.3ff,\t//  腰のＹ角上限\n";
-#pragma pop
-
-/* 8039281A-80392833 01EE7A 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039281A = "%.3ff,\t//  腰のＹ角下限\n";
-#pragma pop
-
-/* 80392833-8039284C 01EE93 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392833 = "%.3ff,\t//  頭のＸ角上限\n";
-#pragma pop
-
-/* 8039284C-80392865 01EEAC 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039284C = "%.3ff,\t//  頭のＸ角下限\n";
-#pragma pop
-
-/* 80392865-8039287E 01EEC5 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392865 = "%.3ff,\t//  頭のＹ角上限\n";
-#pragma pop
-
-/* 8039287E-80392897 01EEDE 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039287E = "%.3ff,\t//  頭のＹ角下限\n";
-#pragma pop
-
-/* 80392897-803928B0 01EEF7 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392897 = "%.3ff,\t//  首の回転比率\n";
-#pragma pop
-
-/* 803928B0-803928C9 01EF10 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803928B0 = "%.3ff,\t//  補間フレ−ム\n";
-#pragma pop
-
-/* 803928C9-803928DE 01EF29 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803928C9 = "%d,   \t//  会話距離\n";
-#pragma pop
-
-/* 803928DE-803928F3 01EF3E 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803928DE = "%d,   \t//  会話角度\n";
-#pragma pop
-
-/* 803928F3-80392908 01EF53 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803928F3 = "%d,   \t//  注目距離\n";
-#pragma pop
-
-/* 80392908-8039291D 01EF68 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392908 = "%d,   \t//  注目角度\n";
-#pragma pop
-
-/* 8039291D-8039292E 01EF7D 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039291D = "%.3ff,\t//  視界\n";
-#pragma pop
-
-/* 8039292E-80392945 01EF8E 0017+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039292E = "%.3ff,\t//  サ−チ距離\n";
-#pragma pop
-
-/* 80392945-8039295C 01EFA5 0017+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392945 = "%.3ff,\t//  サ−チ高さ\n";
-#pragma pop
-
-/* 8039295C-80392973 01EFBC 0017+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039295C = "%.3ff,\t//  サ−チ低さ\n";
-#pragma pop
-
-/* 80392973-80392988 01EFD3 0015+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392973 = "%d,   \t//  注目時間\n";
-#pragma pop
-
-/* 80392988-803929A1 01EFE8 0019+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80392988 = "%d,   \t//  ダメ−ジ期間\n";
-#pragma pop
-
-/* 803929A1-803929B2 01F001 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-// MWCC ignores mapping of some japanese characters using the
-// byte 0x5C (ASCII '\'). This is why this string is hex-encoded.
-SECTION_DEAD static char const* const stringBase_803929A1 =
-    "\x25\x64\x2C\x20\x20\x20\x09\x2F\x2F\x20\x20\x95\x5C\x8F\xEE\x0A";
-#pragma pop
-
-/* 803929B2-803929C3 01F012 0011+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803929B2 = "%d,   \t//  動作\n";
-#pragma pop
-
-/* 803929C3-803929DA 01F023 0017+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803929C3 = "%d,   \t//  注視モ−ド\n";
-#pragma pop
-
-/* 803929DA-803929F7 01F03A 001D+00 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803929DA = "%d,   \t//  デバグモ−ドＯＮ\n";
-#pragma pop
-
-/* 803929F7-80392A18 01F057 001B+06 0/0 0/0 0/0 .rodata          None */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_803929F7 = "%d,   \t//  デバグ情報ＯＮ\n";
-#pragma pop
+static void dummyStrings() {
+    DEAD_STRING(".bck");
+    DEAD_STRING(".btp");
+    DEAD_STRING(".btk");
+    DEAD_STRING("%.3ff,\t//  注目オフセット\n");
+    DEAD_STRING("%.3ff,\t//  重力\n");
+    DEAD_STRING("%.3ff,\t//  スケ−ル\n");
+    DEAD_STRING("%.3ff,\t//  リアル影サイズ\n");
+    DEAD_STRING("%.3ff,\t//  体重\n");
+    DEAD_STRING("%.3ff,\t//  高さ\n");
+    DEAD_STRING("%.3ff,\t//  ひざ丈\n");
+    DEAD_STRING("%.3ff,\t//  幅\n");
+    DEAD_STRING("%.3ff,\t//  腰のＸ角上限\n");
+    DEAD_STRING("%.3ff,\t//  腰のＸ角下限\n");
+    DEAD_STRING("%.3ff,\t//  腰のＹ角上限\n");
+    DEAD_STRING("%.3ff,\t//  腰のＹ角下限\n");
+    DEAD_STRING("%.3ff,\t//  頭のＸ角上限\n");
+    DEAD_STRING("%.3ff,\t//  頭のＸ角下限\n");
+    DEAD_STRING("%.3ff,\t//  頭のＹ角上限\n");
+    DEAD_STRING("%.3ff,\t//  頭のＹ角下限\n");
+    DEAD_STRING("%.3ff,\t//  首の回転比率\n");
+    DEAD_STRING("%.3ff,\t//  補間フレ−ム\n");
+    DEAD_STRING("%d,   \t//  会話距離\n");
+    DEAD_STRING("%d,   \t//  会話角度\n");
+    DEAD_STRING("%d,   \t//  注目距離\n");
+    DEAD_STRING("%d,   \t//  注目角度\n");
+    DEAD_STRING("%.3ff,\t//  視界\n");
+    DEAD_STRING("%.3ff,\t//  サ−チ距離\n");
+    DEAD_STRING("%.3ff,\t//  サ−チ高さ\n");
+    DEAD_STRING("%.3ff,\t//  サ−チ低さ\n");
+    DEAD_STRING("%d,   \t//  注目時間\n");
+    DEAD_STRING("%d,   \t//  ダメ−ジ期間\n");
+    DEAD_STRING("%d,   \t//  表情\n");
+    DEAD_STRING("%d,   \t//  動作\n");
+    DEAD_STRING("%d,   \t//  注視モ−ド\n");
+    DEAD_STRING("%d,   \t//  デバグモ−ドＯＮ\n");
+    DEAD_STRING("%d,   \t//  デバグ情報ＯＮ\n");
+}

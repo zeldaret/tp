@@ -62,9 +62,8 @@ int daStairBlock_c::CreateHeap() {
             return 0;
         }
 
-        J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes("StaBlock", l_bckIdx[i]);
-        s32 res = mBckAnm[i].init(bck, 1, 0, 1.0f, 0, -1, false);
-        JUT_ASSERT_MSG(290, res == 1, "res == 1");
+        s32 res = mBckAnm[i].init((J3DAnmTransform*)dComIfG_getObjectRes("StaBlock", l_bckIdx[i]), 1, 0, 1.0f, 0, -1, false);
+        JUT_ASSERT(290, res == 1);
 
         mBckAnm[i].setEndFrame(mBckAnm[i].getEndFrame() - 1.0f);
     }
