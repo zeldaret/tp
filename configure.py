@@ -356,6 +356,49 @@ cflags_dolphin = [
     "-DSDK_REVISION=2",
 ]
 
+# Revolution library flags
+cflags_revolution_base = [
+    "-nodefaults",
+    "-proc gekko",
+    "-align powerpc",
+    "-enum int",
+    "-fp hardware",
+    "-Cpp_exceptions off",
+    '-pragma "cats off"',
+    '-pragma "warn_notinlined off"',
+    "-maxerrors 1",
+    "-nosyspath",
+    "-char unsigned",
+    "-sym on",
+    "-inline auto",
+    "-ipa file",
+    "-i include",
+    f"-i build/{config.version}/include",
+    "-ir src/revolution",
+    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
+    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include",
+    "-i src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
+    "-i src/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include",
+    "-i src/PowerPC_EABI_Support/Runtime/Inc",
+    "-i src/PowerPC_EABI_Support/MetroTRK",
+    "-i include/revolution",
+    f"-DVERSION={version_num}",
+    "-D__GEKKO__",
+    "-D__REVOLUTION_SDK__",
+]
+
+cflags_revolution_retail = [
+    *cflags_revolution_base,
+    "-O4,p",
+]
+
+cflags_revolution_debug = [
+    *cflags_revolution_base,
+    "-opt off",
+    "-DDEBUG=1",
+    "-DSDK_AUG2010",
+]
+
 # Framework flags
 cflags_framework = [
     *cflags_base,
@@ -424,6 +467,23 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    if config.version == "ShieldD":
+        return {
+            "lib": lib_name,
+            "mw_version": "Wii/1.0",
+            "cflags": cflags_revolution_debug,
+            "progress_category": "sdk",
+            "objects": objects,
+        }
+    else:
+        return {
+            "lib": lib_name,
+            "mw_version": "GC/3.0a3",
+            "cflags": cflags_revolution_retail,
+            "progress_category": "sdk",
+            "objects": objects,
+        }
 
 # Helper function for REL script objects
 def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
@@ -1387,6 +1447,44 @@ config.libs = [
         [
             Object(MatchingFor(ALL_GCN), "dolphin/gd/GDBase.c"),
             Object(MatchingFor(ALL_GCN), "dolphin/gd/GDGeometry.c"),
+        ],
+    ),
+    RevolutionLib(
+        "os",
+        [
+            Object(MatchingFor("ShieldD"), "revolution/os/OS.c"),
+            Object(NonMatching, "revolution/os/OSAddress.c"),
+            Object(NonMatching, "revolution/os/OSAlarm.c"),
+            Object(NonMatching, "revolution/os/OSAlloc.c"),
+            Object(NonMatching, "revolution/os/OSArena.c"),
+            Object(NonMatching, "revolution/os/OSAudioSystem.c"),
+            Object(NonMatching, "revolution/os/OSCache.c"),
+            Object(NonMatching, "revolution/os/OSContext.c"),
+            Object(NonMatching, "revolution/os/OSError.c"),
+            Object(NonMatching, "revolution/os/OSExec.c"),
+            Object(NonMatching, "revolution/os/OSFatal.c"),
+            Object(NonMatching, "revolution/os/OSFont.c"),
+            Object(NonMatching, "revolution/os/OSInterrupt.c"),
+            Object(NonMatching, "revolution/os/OSLink.c"),
+            Object(NonMatching, "revolution/os/OSMessage.c"),
+            Object(NonMatching, "revolution/os/OSMemory.c"),
+            Object(NonMatching, "revolution/os/OSMutex.c"),
+            Object(NonMatching, "revolution/os/OSReboot.c"),
+            Object(NonMatching, "revolution/os/OSReset.c"),
+            Object(NonMatching, "revolution/os/OSRtc.c"),
+            Object(NonMatching, "revolution/os/OSStopwatch.c"),
+            Object(NonMatching, "revolution/os/OSSync.c"),
+            Object(NonMatching, "revolution/os/OSThread.c"),
+            Object(NonMatching, "revolution/os/OSTime.c"),
+            Object(NonMatching, "revolution/os/OSUtf.c"),
+            Object(NonMatching, "revolution/os/OSIpc.c"),
+            Object(NonMatching, "revolution/os/OSStateTM.c"),
+            Object(NonMatching, "revolution/os/OSPlayRecord.c"),
+            Object(NonMatching, "revolution/os/OSNet.c"),
+            Object(NonMatching, "revolution/os/OSNandbootInfo.c"),
+            Object(NonMatching, "revolution/os/OSPlayTime.c"),
+            Object(NonMatching, "revolution/os/OSLaunch.c"),
+            Object(NonMatching, "revolution/os/__ppc_eabi_init.cpp"),
         ],
     ),
     {

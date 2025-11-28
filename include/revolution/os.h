@@ -96,6 +96,11 @@ void* OSGetArenaHi(void);
 void* OSGetArenaLo(void);
 void OSSetArenaHi(void* newHi);
 void OSSetArenaLo(void* newLo);
+
+void OSSetMEM2ArenaHi(void*);
+void* OSGetMEM2ArenaLo(void);
+void* OSGetMEM2ArenaHi(void);
+
 void* OSAllocFromMEM1ArenaLo(u32 size, u32 align);
 void* OSAllocFromMEM1ArenaHi(u32 size, u32 align);
 
@@ -132,6 +137,16 @@ typedef struct OSBootInfo_s {
     void* FSTLocation;
     u32 FSTMaxLength;
 } OSBootInfo;
+
+typedef struct OSIOSRev {
+    u8 reserved;
+    u8 major;
+    u8 minor;
+    u8 micro;
+    u8 month;
+    u8 date;
+    u16 year;
+} OSIOSRev;
 
 typedef struct OSStopwatch {
     char* name;
@@ -242,6 +257,9 @@ void* OSUncachedToCached(void* ucaddr);
 #define OSCachedToUncached(caddr)    ((void*) ((u8*)(caddr)  + (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 #define OSUncachedToCached(ucaddr)   ((void*) ((u8*)(ucaddr) - (OS_BASE_UNCACHED - OS_BASE_CACHED)))
 #endif
+
+#define OSIsMEM1Region(addr) (((u32)(addr) & 0x30000000) == 0x00000000)
+#define OSIsMEM2Region(addr) (((u32)(addr) & 0x30000000) == 0x10000000)
 
 // unsorted externs
 extern OSTime __OSGetSystemTime(void);
