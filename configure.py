@@ -625,7 +625,7 @@ config.libs = [
             Object(NonMatching, "d/d_resorce.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_map_path.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_map_path_fmap.cpp"),
-            Object(NonMatching, "d/d_map_path_dmap.cpp"),
+            Object(MatchingFor(ALL_GCN), "d/d_map_path_dmap.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_event.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_event_data.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_event_manager.cpp"),
