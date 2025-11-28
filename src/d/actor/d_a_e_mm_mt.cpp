@@ -78,7 +78,7 @@ static bool e_mm_hookCheck(e_mm_mt_class* i_this) {
         } else {
             local_24.y += 20.0f;
         }
-        // local_24.y += ((i_this->mAction == 1) ? -20.0f : 20.0f);
+
         mDoMtx_stack_c::transS(i_this->enemy.current.pos);
         mDoMtx_stack_c::ZXYrotM(i_this->enemy.shape_angle);
         mDoMtx_stack_c::inverse();
@@ -685,21 +685,21 @@ static void e_mm_mt_drop(e_mm_mt_class* i_this) {
 // COMPILER_STRIP_GATE(0x80725914, &lit_4737);
 // #pragma pop
 
-/* 80725918-8072591C 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4738 */
-// #pragma push
-// #pragma force_active on
-// SECTION_RODATA static f32 const lit_4738 = -90.0f;
-// COMPILER_STRIP_GATE(0x80725918, &lit_4738);
-// #pragma pop
+// /* 80725918-8072591C 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4738 */
+// // #pragma push
+// // #pragma force_active on
+// // SECTION_RODATA static f32 const lit_4738 = -90.0f;
+// // COMPILER_STRIP_GATE(0x80725918, &lit_4738);
+// // #pragma pop
 
-// /* 8072591C-80725920 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4739 */
+/* 8072591C-80725920 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4739 */
 // #pragma push
 // #pragma force_active on
 // SECTION_RODATA static f32 const lit_4739 = 60.0f;
 // COMPILER_STRIP_GATE(0x8072591C, &lit_4739);
 // #pragma pop
 
-// /* 80725920-80725924 0000C8 0004+00 0/1 0/0 0/0 .rodata          @4740 */
+/* 80725920-80725924 0000C8 0004+00 0/1 0/0 0/0 .rodata          @4740 */
 // #pragma push
 // #pragma force_active on
 // SECTION_RODATA static f32 const lit_4740 = 20000.0f;
@@ -1171,7 +1171,6 @@ static int daE_MM_MT_Create(fopAc_ac_c* i_this) {
         helmasaurShell->lifetime = (short)(int)cM_rndF(65535.0f);
         daE_MM_MT_Execute(helmasaurShell);
     } 
-    //return cPhs_ERROR_e;
     return phase;
 }
 
