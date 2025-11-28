@@ -339,6 +339,10 @@ def main() -> None:
                 # we're going to output to a header file
                 out_path = out_path.with_name(out_path.name).with_suffix(".h")
                 debug_print(out_path)
+
+                if (SKIP_STAGE_ARCS and "Stage" in out_path.parts):
+                    continue
+
                 try:
                     extract_enum_from_file(file_path, out_path)
                 except AssertionError as e:
