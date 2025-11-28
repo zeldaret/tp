@@ -910,34 +910,34 @@ public:
 
     u8 getCutCount() const { return mComboCutCount; }
 
-    bool checkStatusWindowDraw() { return checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
+    BOOL checkStatusWindowDraw() const { return checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
-    bool getHeavyStateAndBoots() { return checkNoResetFlg0(FLG0_HVY_STATE); }
-    bool checkEnemyAttentionLock() const { return checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
-    u32 getGrabUpStart() const { return checkResetFlg0(RFLG0_UNK_8000); }
+    BOOL getHeavyStateAndBoots() { return checkNoResetFlg0(FLG0_HVY_STATE); }
+    BOOL checkEnemyAttentionLock() const { return checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
+    BOOL getGrabUpStart() const { return checkResetFlg0(RFLG0_UNK_8000); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
     bool checkGoatStopGame() const { return mSpecialMode == 0x2A; }
-    bool onGoatStopGame() { return mSpecialMode = 0x2A; }
+    void onGoatStopGame() { mSpecialMode = 0x2A; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     s16 getDamageWaitTimer() const { return mDamageTimer; }
-    bool checkWaterInMove() const { return checkNoResetFlg0(FLG0_UNDERWATER); }
-    u32 checkSceneChangeAreaStart() const { return checkNoResetFlg2(FLG2_SCN_CHG_START); }
-    bool checkFrontRollCrash() const { return checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
-    bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
-    bool checkFreezeDamage() const { return checkNoResetFlg1(FLG1_ICE_FREEZE); }
-    bool checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); }
+    BOOL checkWaterInMove() const { return checkNoResetFlg0(FLG0_UNDERWATER); }
+    BOOL checkSceneChangeAreaStart() const { return checkNoResetFlg2(FLG2_SCN_CHG_START); }
+    BOOL checkFrontRollCrash() const { return checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
+    BOOL checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
+    BOOL checkFreezeDamage() const { return checkNoResetFlg1(FLG1_ICE_FREEZE); }
+    BOOL checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); }
     BOOL checkDamageImpact() const { return checkResetFlg1(RFLG1_DAMAGE_IMPACT); }
-    bool getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); }
-    bool getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
-    bool checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
+    BOOL getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); }
+    BOOL getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
+    BOOL checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
     BOOL checkHorseZelda() const { return checkNoResetFlg2(FLG2_HORSE_ZELDA); }
     BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
     BOOL checkBoardNoFootAngle() const { return checkResetFlg1(RFLG1_UNK_40); }
-    bool checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
+    BOOL checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
     BOOL checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
-    bool checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
-    bool checkAttentionLock() const { return checkResetFlg0(RFLG0_UNK_10000); }
+    BOOL checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
+    BOOL checkAttentionLock() const { return checkResetFlg0(RFLG0_UNK_10000); }
     BOOL checkFishingRodUseStart() const { return checkResetFlg1(RFLG1_UNK_80); }
     BOOL checkFishingRodUseAccept() const { return checkResetFlg1(RFLG1_UNK_200); }
 
@@ -967,10 +967,10 @@ public:
     void onTraningShieldAttack() { onNoResetFlg3(FLG3_UNK_8); }
 
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
-    u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
-    u32 checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
-    u32 checkBoarSingleBattleSecond() const { return checkNoResetFlg2(FLG2_UNK_1000000); }
-    u32 getFootOnGround() const { return checkResetFlg1(daPy_RFLG1(RFLG1_UNK_10 | RFLG1_UNK_20)); }
+    BOOL getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
+    BOOL checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
+    BOOL checkBoarSingleBattleSecond() const { return checkNoResetFlg2(FLG2_UNK_1000000); }
+    BOOL getFootOnGround() const { return checkResetFlg1(daPy_RFLG1(RFLG1_UNK_10 | RFLG1_UNK_20)); }
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
     bool onWolfEnemyHangBite(fopAc_ac_c* param_0) { return onWolfEnemyBiteAll(param_0, FLG2_WOLF_ENEMY_HANG_BITE); }
@@ -978,7 +978,7 @@ public:
     void offHorseZelda() { offNoResetFlg2(FLG2_HORSE_ZELDA); }
     void onHorseZelda() { onNoResetFlg2(FLG2_HORSE_ZELDA); }
 
-    u32 checkItemSightBgHit() const { return checkResetFlg0(RFLG0_UNK_2000000); }
+    BOOL checkItemSightBgHit() const { return checkResetFlg0(RFLG0_UNK_2000000); }
 
     void setCanoeSlider() { mSpecialMode = 0x2D; }
     
@@ -1173,9 +1173,9 @@ public:
     // not sure how to define this properly
     // static void onWolfEnemyCatch(fopAc_ac_c* i_actorP) { onWolfEnemyBiteAll(i_actorP,8);}
 
-    bool checkWolfEnemyCatchOwn(fopAc_ac_c* i_actorP) { return checkWolfEnemyBiteAllOwn(i_actorP); }
-    bool checkWolfEnemyHangBiteOwn(const fopAc_ac_c* i_actorP) const { return checkWolfEnemyBiteAllOwn(i_actorP); }
-    bool checkWolfEnemyLeftThrow() const { return checkNoResetFlg2(FLG2_WOLF_ENEMY_LEFT_THROW); }
+    BOOL checkWolfEnemyCatchOwn(fopAc_ac_c* i_actorP) { return checkWolfEnemyBiteAllOwn(i_actorP); }
+    BOOL checkWolfEnemyHangBiteOwn(const fopAc_ac_c* i_actorP) const { return checkWolfEnemyBiteAllOwn(i_actorP); }
+    BOOL checkWolfEnemyLeftThrow() const { return checkNoResetFlg2(FLG2_WOLF_ENEMY_LEFT_THROW); }
 
     void onWolfLightDropGet() {
         onEndResetFlg0(ERFLG0_UNK_20000000);
