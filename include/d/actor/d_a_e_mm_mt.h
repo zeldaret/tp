@@ -18,7 +18,8 @@ public:
     /* 0x000 */ fopEn_enemy_c enemy;
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ Z2CreatureEnemy mSound;
-    /* 0x658 */ u32 parameters; 
+    /* 0x658 */ u8 parameters; 
+    /* 0x65A */ u8 field_0x65A[3]; 
     /* 0x65C */ J3DModel* mpModel;
     /* 0x660 */ u32 mShadowKey;
     /* 0x664 */ s16 lifetime;
@@ -55,11 +56,6 @@ public:
                 u8 field_0xBA0[0xBA4 - 0xB9A];
 
 };
-
-//fop offset = 
-//e_mm_mt class = 0x950 (shield) - 0x900 (gcn) = 0x50
-
-//(dBgS_AcchCir *)(param_1[1].tevStr.mLightObj.mLightObj.unknown + 1) wherever this lives is where mAcchCir lives
 
 STATIC_ASSERT(sizeof(e_mm_mt_class) == 0xba4);
 
