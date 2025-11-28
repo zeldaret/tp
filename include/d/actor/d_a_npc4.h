@@ -9,6 +9,7 @@
 #include "f_op/f_op_actor.h"
 #include "f_pc/f_pc_base.h"
 #include "m_Do/m_Do_ext.h"
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 
 class daNpcF_ActorMngr_c {
 private:

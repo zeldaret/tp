@@ -1,7 +1,6 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
 #include "JSystem/JAudio2/JAUStreamFileTable.h"
-#include "dolphin/os.h"
 
 /* 802A7420-802A742C 2A1D60 000C+00 0/0 1/1 0/0 .text            __ct__18JAUStreamFileTableFv */
 JAUStreamFileTable::JAUStreamFileTable() {
@@ -40,7 +39,7 @@ const char* JAUStreamFileTable::getFilePath(int index) const {
 /* 802A74AC-802A74E8 2A1DEC 003C+00 1/0 0/0 0/0 .text
  * getStreamFileEntry__32JAUStreamDataMgr_StreamFileTableF10JAISoundID */
 s32 JAUStreamDataMgr_StreamFileTable::getStreamFileEntry(JAISoundID soundId) {
-    const char* filePath = getFilePath(soundId.mId.mAdvancedId.mShortId);
+    const char* filePath = getFilePath(soundId.id_.info.waveID);
     if (filePath == NULL) {
         return -1;
     }

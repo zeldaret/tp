@@ -506,7 +506,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_graphic.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_machine.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_mtx.cpp"),
-            Object(NonMatching, "m_Do/m_Do_ext.cpp"), # weak func order; unused weak func inlining issues
+            Object(Equivalent, "m_Do/m_Do_ext.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_Reset.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_dvd_thread.cpp"),
@@ -610,7 +610,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_com_inf_game.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_com_static.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_com_inf_actor.cpp"),
-            Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bomb.cpp"),
+            Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bomb.cpp"), # debug weak func order
             Object(MatchingFor(ALL_GCN), "d/d_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_save.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "d/d_save_init.cpp"),
@@ -692,7 +692,7 @@ config.libs = [
             Object(NonMatching, "d/d_camera.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_envse.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_file_select.cpp"),
-            Object(NonMatching, "d/d_file_sel_warning.cpp"),
+            Object(MatchingFor(ALL_GCN), "d/d_file_sel_warning.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_file_sel_info.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bright_check.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_scope.cpp"),
@@ -708,7 +708,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_ky_thunder.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_kantera_icon_meter.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_calibration.cpp"),
-            Object(NonMatching, "d/d_menu_collect.cpp"),
+            Object(NonMatching, "d/d_menu_collect.cpp"), # weak func order (dMenu_Collect2D_c::draw())
             Object(MatchingFor(ALL_GCN), "d/d_menu_dmap.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_dmap_map.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_map_common.cpp"),
@@ -724,7 +724,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_menu_save.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_skill.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_window_HIO.cpp"),
-            Object(Equivalent, "d/d_menu_window.cpp"), # weak func order
+            Object(Equivalent, "d/d_menu_window.cpp"), # weak func order (dDlst_MENU_CAPTURE_c::draw)
             Object(MatchingFor(ALL_GCN), "d/d_meter_HIO.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_meter_button.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_meter_haihai.cpp"),
@@ -959,10 +959,10 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASVoiceBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicInst.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDrumSet.cpp"),
-            Object(Equivalent, "JSystem/JAudio2/JASBasicWaveBank.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWSParser.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"), # missing bss var
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWaveArcLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASChannel.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASLfo.cpp"),
@@ -1000,7 +1000,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JAUBankTable.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUClusterSound.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUInitializer.cpp"),
-            Object(Equivalent, "JSystem/JAudio2/JAUSectionHeap.cpp"), #weak function order
+            Object(Equivalent, "JSystem/JAudio2/JAUSectionHeap.cpp"), # weak function order
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSeqCollection.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSoundAnimator.cpp"),
@@ -1140,7 +1140,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTevs.cpp"),
             Object(Equivalent, "JSystem/J2DGraph/J2DMaterial.cpp"), # weak func order
-            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"), # weak func order (J3DTevBlock)
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DMaterialFactory.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPrint.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPane.cpp"),
@@ -1855,13 +1855,13 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_myna"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_ni"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_aru"),
-    ActorRel(Equivalent, "d_a_npc_ash"),  # weak func order
-    ActorRel(Equivalent, "d_a_npc_ashB"),  # weak func order
+    ActorRel(Equivalent, "d_a_npc_ash"),  # weak func order (sinShort)
+    ActorRel(Equivalent, "d_a_npc_ashB"),  # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_bou"),
-    ActorRel(Equivalent, "d_a_npc_bouS"),  # weak func order
-    ActorRel(Equivalent, "d_a_npc_cdn3"), # weak func order
+    ActorRel(Equivalent, "d_a_npc_bouS"),  # weak func order (sinShort)
+    ActorRel(Equivalent, "d_a_npc_cdn3"), # weak func order (~csXyz); vtable order
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_chat"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_chin"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_clerka"),

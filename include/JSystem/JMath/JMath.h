@@ -89,6 +89,10 @@ inline f32 fastReciprocal(f32 value) {
     return JMAFastReciprocal(value);
 }
 
+inline void fastVECNormalize(const Vec* src, Vec* dst) {
+    return JMAFastVECNormalize(src, dst);
+}
+
 inline void gekko_ps_copy3(register void* dst, register const void* src) {
     register f32 src0;
     register f32 src1;

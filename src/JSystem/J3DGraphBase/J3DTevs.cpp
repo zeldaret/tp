@@ -387,7 +387,7 @@ extern J3DNBTScaleInfo const j3dDefaultNBTScaleInfo = {
 };
 
 /* 80434C98-80436A60 0619B8 1DC7+01 1/1 0/0 0/0 .bss             j3dTexCoordTable */
-static u8 j3dTexCoordTable[7623 + 1 /* padding */];
+static u8 j3dTexCoordTable[7623];
 
 /* 80324194-8032423C 31EAD4 00A8+00 0/0 1/1 0/0 .text            makeTexCoordTable__Fv */
 void makeTexCoordTable() {

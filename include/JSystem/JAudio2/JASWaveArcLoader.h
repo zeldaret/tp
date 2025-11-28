@@ -54,7 +54,7 @@ struct JASWaveArc : JASDisposer {
     /* 80298FA0 */ virtual void onLoadDone() {}
     /* 80298FA4 */ virtual void onEraseDone() {}
 
-    s32 getStatus() { return mStatus; }
+    s32 getStatus() const { return mStatus; }
 
     struct loadToAramCallbackParams {
         // not official struct name

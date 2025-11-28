@@ -16,8 +16,6 @@ template <>
 struct SMatrix34C<f32> {
     f32 data[3][4];
 
-    void identity() { MTXIdentity(data); }
-
     typedef f32 ArrType[4];
     void set(const ArrType* src) {  
         JMath::gekko_ps_copy12(data, src);
@@ -54,7 +52,9 @@ struct SMatrix33C {
 };
 
 template <typename T>
-struct TMatrix34 : public T {};
+struct TMatrix34 : public T {
+    void identity() { MTXIdentity(data); }
+};
 
 template <typename T>
 struct TRotation3 : public T {};
@@ -77,9 +77,11 @@ struct TRotation3<SMatrix33C<T> > : public SMatrix33C<T> {
 };
 
 template <typename T>
-struct TPosition3 : public T {};
+struct TPosition3 : public T {
+    TPosition3() {}
+};
 
-typedef TPosition3<TRotation3<TMatrix34<SMatrix34C<f32> > > > TPosition3f32;
+typedef TPosition3<TMatrix34<SMatrix34C<f32> > > TPosition3f32;
 
 }  // namespace JGeometry
 

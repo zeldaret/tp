@@ -1,34 +1,32 @@
-//
-// JASCalc
-//
-
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
 #include "JSystem/JAudio2/JASCalc.h"
-#include <dolphin/os.h>
-#include "math.h"
-#include "limits.h"
+#include <math.h>
+#include <limits.h>
 
 /* 8028F2E8-8028F318 289C28 0030+00 0/0 1/1 0/0 .text            imixcopy__7JASCalcFPCsPCsPsUl */
-void JASCalc::imixcopy(const s16 *s1, const s16 *s2, s16 *dst, u32 n) {
+void JASCalc::imixcopy(const s16* s1, const s16* s2, s16* dst, u32 n) {
     for (n; n != 0; n--) {
-        *dst++ = *((s16 *)s1)++;
-        *dst++ = *((s16 *)s2)++;
+        *dst++ = *((s16*)s1)++;
+        *dst++ = *((s16*)s2)++;
     }
 }
 
 /* 8028F318-8028F354 289C58 003C+00 1/1 0/0 0/0 .text            bcopyfast__7JASCalcFPCvPvUl */
-void JASCalc::bcopyfast(const void *src, void *dest, u32 size) {
-    u32 copy1, copy2, copy3, copy4;
+void JASCalc::bcopyfast(const void* src, void* dest, u32 size) {
+    JUT_ASSERT(226, (reinterpret_cast<u32>(src) & 0x03) == 0);
+    JUT_ASSERT(227, (reinterpret_cast<u32>(dest) & 0x03) == 0);
+    JUT_ASSERT(228, (size & 0x0f) == 0);
 
-    u32 *usrc = (u32 *)src;
-    u32 *udest = (u32 *)dest;
+    u32 copy1, copy2, copy3, copy4;
+    u32* usrc = (u32*)src;
+    u32* udest = (u32*)dest;
 
     for (size = size / (4 * sizeof(u32)); size != 0; size--) {
-        copy1 = *((u32 *)usrc)++;
-        copy2 = *((u32 *)usrc)++;
-        copy3 = *((u32 *)usrc)++;
-        copy4 = *((u32 *)usrc)++;
+        copy1 = *((u32*)usrc)++;
+        copy2 = *((u32*)usrc)++;
+        copy3 = *((u32*)usrc)++;
+        copy4 = *((u32*)usrc)++;
 
         *udest++ = copy1;
         *udest++ = copy2;
@@ -38,12 +36,12 @@ void JASCalc::bcopyfast(const void *src, void *dest, u32 size) {
 }
 
 /* 8028F354-8028F454 289C94 0100+00 0/0 3/3 0/0 .text            bcopy__7JASCalcFPCvPvUl */
-void JASCalc::bcopy(const void *src, void *dest, u32 size) {
-    u32 *usrc;
-    u32 *udest;
+void JASCalc::bcopy(const void* src, void* dest, u32 size) {
+    u32* usrc;
+    u32* udest;
 
-    u8 *bsrc = (u8 *)src;
-    u8 *bdest = (u8 *)dest;
+    u8* bsrc = (u8*)src;
+    u8* bdest = (u8*)dest;
 
     u8 endbitsSrc = (reinterpret_cast<u32>(bsrc) & 0x03);
     u8 enbitsDst = (reinterpret_cast<u32>(bdest) & 0x03);
@@ -82,8 +80,11 @@ void JASCalc::bcopy(const void *src, void *dest, u32 size) {
 }
 
 /* 8028F454-8028F480 289D94 002C+00 1/1 0/0 0/0 .text            bzerofast__7JASCalcFPvUl */
-void JASCalc::bzerofast(void *dest, u32 size) {
-    u32 *udest = (u32 *)dest;
+void JASCalc::bzerofast(void* dest, u32 size) {
+    JUT_ASSERT(336, (reinterpret_cast<u32>(dest) & 0x03) == 0);
+    JUT_ASSERT(337, (size & 0x0f) == 0);
+
+    u32* udest = (u32*)dest;
 
     for (size = size / (4 * sizeof(u32)); size != 0; size--) {
         *udest++ = 0;
@@ -94,9 +95,9 @@ void JASCalc::bzerofast(void *dest, u32 size) {
 }
 
 /* 8028F480-8028F578 289DC0 00F8+00 0/0 6/6 0/0 .text            bzero__7JASCalcFPvUl */
-void JASCalc::bzero(void *dest, u32 size) {
-    u32 *udest;
-    u8 *bdest = (u8 *)dest;
+void JASCalc::bzero(void* dest, u32 size) {
+    u32* udest;
+    u8* bdest = (u8*)dest;
     if ((size & 0x1f) == 0 && (reinterpret_cast<u32>(dest) & 0x1f) == 0) {
         DCZeroRange(dest, size);
         return;
@@ -136,7 +137,6 @@ void JASCalc::bzero(void *dest, u32 size) {
     }
 }
 
-/* ############################################################################################## */
 /* 8039ABB8-8039AFB8 027218 0400+00 0/0 4/4 0/0 .rodata          CUTOFF_TO_IIR_TABLE__7JASCalc */
 s16 const JASCalc::CUTOFF_TO_IIR_TABLE[128][4] = {
     0x0F5C, 0x0A3D, 0x4665, 0x1E73,

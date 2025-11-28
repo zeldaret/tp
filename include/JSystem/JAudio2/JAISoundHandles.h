@@ -18,6 +18,11 @@ public:
 
     bool isSoundAttached() const { return sound_ != NULL; }
 
+    JAISound* getSound() {
+        JUT_ASSERT(41, sound_ != NULL);
+        return sound_;
+    }
+
     JAISound* operator->() const {
         JUT_ASSERT(58, sound_ != NULL);
         return sound_;
@@ -27,9 +32,7 @@ public:
 
     void releaseSound();
 
-    JAISound* getSound() { return sound_; }
-
-    JAISound* sound_;  // member from assert in operator->()
+    JAISound* sound_;
 };
 
 /**
@@ -38,18 +41,18 @@ public:
  */
 class JAISoundHandles {
 public:
-    JAISoundHandles(JAISoundHandle* pHandle, int param_1) {
-        mSoundHandle = pHandle;
-        numHandles_ = param_1;
+    JAISoundHandles(JAISoundHandle* handle, int handleNum) {
+        handle_ = handle;
+        numHandles_ = handleNum;
     };
 
-    JAISoundHandle& operator[](int n) { return mSoundHandle[n]; }
+    JAISoundHandle& operator[](int n) { return handle_[n]; }
 
-    JAISoundHandle* getHandleSoundID(JAISoundID);
+    JAISoundHandle* getHandleSoundID(JAISoundID id);
     JAISoundHandle* getFreeHandle();
 
 private:
-    JAISoundHandle* mSoundHandle;
+    JAISoundHandle* handle_;
     int numHandles_;
 };
 

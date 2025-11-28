@@ -1083,6 +1083,7 @@ void dComIfGs_Grass_hide_Set(s8 param_0);
 void dComIfGs_onGetMagicUseFlag();
 void dComIfG_playerStatusD();
 void dComIfG_playerStatusD_pre_clear();
+void dComIfGs_staffroll_next_go();
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();

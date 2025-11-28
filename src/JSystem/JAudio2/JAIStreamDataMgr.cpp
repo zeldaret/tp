@@ -2,6 +2,10 @@
 
 #include "JSystem/JAudio2/JAIStreamDataMgr.h"
 
-JAIStreamDataMgr::~JAIStreamDataMgr() {}
+JAIStreamDataMgr::~JAIStreamDataMgr() {
+    JUT_ASSERT(11, false);
+}
 
-JAIStreamAramMgr::~JAIStreamAramMgr() {}
+JAIStreamAramMgr::~JAIStreamAramMgr() {
+    JUT_ASSERT(16, false);
+}
