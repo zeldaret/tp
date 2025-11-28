@@ -157,7 +157,8 @@ struct JAUSoundTable : public JASGlobalInstance<JAUSoundTable> {
         return (JAUSoundTableItem*)((u8*)field_0x0.field_0x0 + offset);
     }
 
-    const void* getResource() { return field_0x0.field_0x0; }
+    const void* getResource() const { return field_0x0.field_0x0; }
+    bool isValid() const { return field_0x0.field_0x0 != NULL; }
 
     JAUSoundTable_<JAUSoundTableRoot,JAUSoundTableSection,JAUSoundTableGroup,void> field_0x0;
 };

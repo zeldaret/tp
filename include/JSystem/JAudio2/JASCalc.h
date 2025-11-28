@@ -8,11 +8,11 @@
  * 
  */
 struct JASCalc {
-    /* 8028F2E8 */ static void imixcopy(s16 const*, s16 const*, s16*, u32);
-    /* 8028F318 */ static void bcopyfast(void const*, void*, u32);
-    /* 8028F354 */ static void bcopy(void const*, void*, u32);
-    /* 8028F454 */ static void bzerofast(void*, u32);
-    /* 8028F480 */ static void bzero(void*, u32);
+    /* 8028F2E8 */ static void imixcopy(const s16*, const s16*, s16*, u32);
+    /* 8028F318 */ static void bcopyfast(const void* src, void* dest, u32 size);
+    /* 8028F354 */ static void bcopy(const void* src, void* dest, u32 size);
+    /* 8028F454 */ static void bzerofast(void* dest, u32 size);
+    /* 8028F480 */ static void bzero(void* dest, u32 size);
     /* 8028F578 */ static f32 pow2(f32);
 
     // Could not make it work as inline - specialization is in JASCalc.cpp
@@ -39,7 +39,7 @@ struct JASCalc {
     f32 fake2(long x);
     f32 fake3();
 
-    static s16 const CUTOFF_TO_IIR_TABLE[128][4];
+    static const s16 CUTOFF_TO_IIR_TABLE[128][4];
 };
 
 #endif /* JASCALC_H */

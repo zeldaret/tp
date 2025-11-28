@@ -12,6 +12,7 @@
 #include "Z2AudioLib/Z2SoundObjMgr.h"
 #include "Z2AudioLib/Z2SpeechMgr2.h"
 #include "Z2AudioLib/Z2StatusMgr.h"
+#include "Z2AudioLib/Z2DebugSys.h"
 #include "global.h"
 
 class JKRArchive;
@@ -21,23 +22,21 @@ class Z2AudioMgr : public Z2SeMgr, public Z2SeqMgr, public Z2SceneMgr, public Z2
 public:
     Z2AudioMgr();
     ~Z2AudioMgr() {}
-    void init(JKRSolidHeap*, u32, void*, JKRArchive*);
-    void setOutputMode(u32);
+    void init(JKRSolidHeap* heap, u32 memSize, void* baaData, JKRArchive* seqArc);
+    void setOutputMode(u32 mode);
     void zeldaGFrameWork();
     void gframeProcess();
     void resetProcess(u32, bool);
     void resetRecover();
     bool hasReset() const;
+    bool startLevelSound(JAISoundID soundID, JAISoundHandle* handle, const JGeometry::TVec3<f32>* posPtr);
 
     bool isResetting() { return mResettingFlag; }
 
     static Z2AudioMgr* getInterface() { return mAudioMgrPtr; }
     static Z2AudioMgr* mAudioMgrPtr;
 
-#if DEBUG
-    u8 padding[0xC];
-#endif
-    /* 0x0514 */ virtual bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    /* 0x0514 */ virtual bool startSound(JAISoundID soundID, JAISoundHandle* handle, const JGeometry::TVec3<f32>* posPtr);
     /* 0x0518 */ bool mResettingFlag;
     /* 0x0519 */ bool field_0x519;
     /* 0x051C */ JASAudioReseter mAudioReseter;
@@ -47,6 +46,9 @@ public:
     /* 0x0D4C */ Z2Audience mAudience;
     /* 0x0F2C */ Z2SpeechMgr2 mSpeechMgr;
     /* 0x1370 */ Z2FxLineMgr mFxLineMgr;
+    #if DEBUG
+    /* 0x13BC */ Z2DebugSys mDebugSys;
+    #endif
 };  // Size: 0x138C
 
 #if VERSION != VERSION_SHIELD_DEBUG

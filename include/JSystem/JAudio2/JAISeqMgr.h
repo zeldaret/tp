@@ -18,29 +18,33 @@ public:
         RELEASE_SEQ_1 = 1,
         RELEASE_SEQ_2 = 2,
     };
-    /* 802A1914 */ JAISeqMgr(bool);
+    /* 802A1914 */ JAISeqMgr(bool setInstance);
     /* 802A1A08 */ void freeDeadSeq_();
-    /* 802A1B48 */ bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*);
+    /* 802A1B48 */ bool startSound(JAISoundID id, JAISoundHandle* handle, const JGeometry::TVec3<f32>* posPtr);
     /* 802A1C90 */ void calc();
     /* 802A1DFC */ void stop();
-    /* 802A1E3C */ void stop(u32);
-    /* 802A1E8C */ void stopSoundID(JAISoundID);
+    /* 802A1E3C */ void stop(u32 fadeTime);
+    /* 802A1E8C */ void stopSoundID(JAISoundID id);
     /* 802A1EFC */ void mixOut();
     /* 802A1F58 */ JAISeq* beginStartSeq_();
-    /* 802A1FE8 */ bool endStartSeq_(JAISeq*, JAISoundHandle*);
+    /* 802A1FE8 */ bool endStartSeq_(JAISeq* seq, JAISoundHandle* handle);
 
     /* 802A20F0 */ virtual ~JAISeqMgr() {}
-    /* 802A1804 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);
-    /* 802A1870 */ virtual int releaseSeqData(JAISeqDataRegion const&);
+    /* 802A1804 */ virtual bool isUsingSeqData(const JAISeqDataRegion& seqDataRegion);
+    /* 802A1870 */ virtual int releaseSeqData(const JAISeqDataRegion& seqDataRegion);
 
-    void setAudience(JAIAudience* param_0) { mAudience = param_0; }
+    void setAudience(JAIAudience* audience) { mAudience = audience; }
+    JAIAudience* getAudience() { return mAudience; }
+
     JAISeqDataMgr* getSeqDataMgr() { return seqDataMgr_; }
-    void setSeqDataMgr(JAISeqDataMgr* param_0) {
+
+    void setSeqDataMgr(JAISeqDataMgr* seqDataMgr) {
         JUT_ASSERT(124, !isActive());
         resetSeqDataMgr();
-        seqDataMgr_ = param_0;
+        seqDataMgr_ = seqDataMgr;
         seqDataMgr_->setSeqDataUser(this);
     }
+
     void resetSeqDataMgr() {
         JUT_ASSERT(131, !isActive());
         if (seqDataMgr_) {
@@ -48,10 +52,11 @@ public:
             seqDataMgr_ = NULL;
         }
     }
+
     JAISoundParamsMove* getParams() { return &mMove; }
-    bool isActive() { return mSeqList.getNumLinks() != 0; }
+    bool isActive() const { return mSeqList.getNumLinks() != 0; }
     int getNumActiveSeqs() const { return mSeqList.getNumLinks(); }
-    void pause(bool i_pause) { mActivity.field_0x0.flags.flag2 = i_pause; }
+    void pause(bool paused) { mActivity.field_0x0.flags.flag2 = paused; }
 
 private:
     /* 0x04 */ JAISoundActivity mActivity;

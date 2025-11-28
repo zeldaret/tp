@@ -1,6 +1,8 @@
 #ifndef JAUAUDIBLEPARAM_H
 #define JAUAUDIBLEPARAM_H
 
+#include <dolphin/types.h>
+
 /**
  * @ingroup jsystem-jaudio
  * 
@@ -9,6 +11,7 @@ struct JAUAudibleParam {
     f32 getDopplerPower() const {
         return (u32)((*(u8*)&field_0x0.raw >> 4) & 0xf) * (1.0f / 15.0f);
     }
+
     union {
         struct {
             u16 f0;

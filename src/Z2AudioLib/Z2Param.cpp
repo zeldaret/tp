@@ -5,7 +5,6 @@
 
 #include "Z2AudioLib/Z2Param.h"
 
-/* ############################################################################################## */
 /* 804507D8-804507DC 000258 0004+00 0/0 4/4 0/0 .sdata           DISTANCE_MAX__7Z2Param */
 f32 Z2Param::DISTANCE_MAX = 2000.0f;
 
@@ -123,28 +122,31 @@ f32 Z2Param::VOL_SE_OBJECT_PAUSING = 72.0f / 127.0f;
 f32 Z2Param::VOL_SE_ATMOSPHERE_PAUSING = 72.0f / 127.0f;
 
 /* 80450860-80450864 -00001 0004+00 0/0 15/15 0/0 .sdata           None */
-u8 struct_80450860 = 0x21;
-u8 struct_80450861 = 0x3C;
-u8 struct_80450862 = 0x3C;
-u8 struct_80450863 = 0x1E;
+u8 Z2Param::SCENE_CHANGE_BGM_FADEOUT_TIME = 33;
+
+u8 Z2Param::BGM_CROSS_FADEIN_TIME = 60;
+
+u8 Z2Param::BGM_CROSS_FADEOUT_TIME = 60;
+
+u8 Z2Param::BATTLE_BGM_WAIT_TIME = 30;
 
 /* 80450864-80450868 -00001 0004+00 0/0 2/2 0/0 .sdata           None */
-#pragma push
-#pragma force_active on
-u8 struct_80450864 = 0x14;
-u8 struct_80450865 = 0x1E;
-u8 struct_80450866 = 0x0A;
-u8 struct_80450867 = 0x1E;
-#pragma pop
+u8 Z2Param::FOUND_TRACK_FI_TIME = 20;
+
+u8 Z2Param::FOUND_TRACK_FO_TIME = 30;
+
+u8 Z2Param::CLOSE_BATTLE_TRACK_FI_TIME = 10;
+
+u8 Z2Param::CLOSE_BATTLE_TRACK_FO_TIME = 30;
 
 /* 80450868-8045086C -00001 0004+00 0/0 5/5 0/0 .sdata           None */
-#pragma push
-#pragma force_active on
-u8 struct_80450868 = 0x01;
-u8 struct_80450869 = 0x0A;
-u8 struct_8045086A = 0x1E;
-u8 struct_8045086B = 0x14;
-#pragma pop
+u8 Z2Param::ENDING_BLOW_VOL_DOWN_TIME = 1;
+
+u8 Z2Param::ENDING_BLOW_VOL_LOWER_TIME = 10;
+
+u8 Z2Param::ENDING_BLOW_VOL_LOWER_RECOVER_TIME = 30;
+
+u8 Z2Param::ENDING_BLOW_MIN_FINISH_TIME = 20;
 
 /* 8045086C-80450870 0002EC 0004+00 0/0 3/3 0/0 .sdata           None */
 u8 data_8045086C = 1;
@@ -158,12 +160,10 @@ f32 Z2Param::ENEMY_LASTHIT_MUTE_VOLUME;
 
 /* 80451340-80451348 -00001 0008+00 0/0 2/2 0/0 .sbss            None */
 /* 80451340 0001+00 data_80451340 None */
+u8 Z2Param::DARK_SE_FILTER_ON;
+
 /* 80451341 0001+00 data_80451341 None */
+u8 Z2Param::DARK_SE_LOW_PASS_FILTER_SETTING;
+
 /* 80451342 0006+00 data_80451342 None */
-#pragma push
-#pragma force_active on
-u8 struct_80451340;
-u8 struct_80451341;
-u8 struct_80451342;
-u8 pad_80451344[4];
-#pragma pop
+u8 Z2Param::SYSTEM_SE_USE_DARK_SE_SETTING;

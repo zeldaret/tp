@@ -4,4 +4,6 @@
 
 JAISeqDataUser::~JAISeqDataUser() {}
 
-JAISeqDataMgr::~JAISeqDataMgr() {}
+JAISeqDataMgr::~JAISeqDataMgr() {
+    JUT_ASSERT(14, false);
+}

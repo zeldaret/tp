@@ -52,7 +52,7 @@ namespace {
             }
         }
         virtual s32 getStreamFileEntry(JAISoundID id) {
-            u32 short_id = id.mId.mAdvancedId.mShortId;
+            u32 short_id = id.id_.info.waveID;
             if (short_id >= field_0x4) {
                 return -1;
             }
@@ -455,8 +455,8 @@ bool JAUSectionHeap::loadDynamicSeq(JAISoundID param_0, bool param_1) {
 
 /* 802A5EF8-802A5F24 2A0838 002C+00 0/0 1/1 0/0 .text
  * releaseIdleDynamicSeqDataBlock__14JAUSectionHeapFv           */
-void JAUSectionHeap::releaseIdleDynamicSeqDataBlock() {
-    sectionHeapData_.seqDataBlocks.releaseIdleDynamicSeqDataBlock(sectionHeapData_.seqDataUser);
+u32 JAUSectionHeap::releaseIdleDynamicSeqDataBlock() {
+    return sectionHeapData_.seqDataBlocks.releaseIdleDynamicSeqDataBlock(sectionHeapData_.seqDataUser);
 }
 
 /* 802A5F24-802A5F9C 2A0864 0078+00 1/1 0/0 0/0 .text JAUNewSectionHeap__FP12JKRSolidHeapb */

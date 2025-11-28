@@ -94,8 +94,16 @@ template <typename T>
 class JASMemPool : public JASGenericMemPool {
 public:
     void newMemPool(int param_0) { JASGenericMemPool::newMemPool(sizeof(T), param_0); }
-    void* alloc(u32 n) { return JASGenericMemPool::alloc(n); }
-    void free(void* ptr, u32 n) { JASGenericMemPool::free(ptr, n); }
+
+    void* alloc(u32 n) {
+        JUT_ASSERT(182, n == sizeof(T));
+        return JASGenericMemPool::alloc(n);
+    }
+
+    void free(void* ptr, u32 n) {
+        JUT_ASSERT(187, n == sizeof(T));
+        JASGenericMemPool::free(ptr, n);
+    }
 };
 
 namespace JASKernel { JKRHeap* getSystemHeap(); };

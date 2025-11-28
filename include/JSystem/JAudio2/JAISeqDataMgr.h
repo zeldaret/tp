@@ -9,8 +9,8 @@
  * 
  */
 struct JAISeqData {
-    JAISeqData(void* param_0, u32 param_1) {
-        field_0x0 = param_0;
+    JAISeqData(const void* param_0, u32 param_1) {
+        field_0x0 = (void*)param_0;
         field_0x4 = param_1;
     }
 
@@ -28,7 +28,7 @@ struct JAISeqData {
  * 
  */
 struct JAISeqDataRegion {
-    bool intersects(JAISeqData& seqData) const {
+    bool intersects(const JAISeqData& seqData) const {
         if ((uintptr_t)addr + size < (uintptr_t)seqData.field_0x0) {
             return false;
         }
