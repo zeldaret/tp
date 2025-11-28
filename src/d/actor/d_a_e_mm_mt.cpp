@@ -818,7 +818,13 @@ static int daE_MM_MT_Create(fopAc_ac_c* i_this) {
         helmasaurShell->mSphere.SetStts(&helmasaurShell->mStts);
         if(i_this->argument == 1){
             fopAcM_OffStatus(i_this, 0x80000);
-            helmasaurShell->mSphere.SetAtType(0xd8fbbdff);
+            helmasaurShell->mSphere.SetAtType(
+                #if VERSION == VERSION_GCN_JPN
+                AT_TYPE_CSTATUE_SWING
+                #else
+                0xD8FBBDFF // ?
+                #endif
+            );
             helmasaurShell->mStts.SetWeight(0xFE);
             helmasaurShell->mSphere.SetAtAtp(2);
         } else {
