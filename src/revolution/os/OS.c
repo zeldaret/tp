@@ -9,11 +9,11 @@
 
 #define NOP 0x60000000
 
-extern u8 OSGetAppType(void);
-
 // external functions
 extern void EnableMetroTRKInterrupts(void);
 extern void __OSInitMemoryProtection(void);
+extern void IPCCltInit(void);
+extern BOOL __DVDCheckDevice(void);
 
 #define DB_EXCEPTIONRET_OFFSET 0xC
 #define DB_EXCEPTIONDEST_OFFSET 0x8
@@ -24,15 +24,15 @@ extern void __OSInitMemoryProtection(void);
 #ifdef SDK_AUG2010
 #define BUILD_DATE "Aug 23 2010"
 #define BUILD_TIME "17:27:45"
-#else
-#define BUILD_DATE  "Aug 23 2010"
-#define BUILD_TIME "06:26:41"
+#elif SDK_SEP2006
+#define BUILD_DATE  "Sep 21 2006"
+#define BUILD_TIME "14:32:13"
 #endif
 
 #ifdef SDK_AUG2010
 const char* __OSVersion = "<< RVL_SDK - OS \tdebug build: "BUILD_DATE" "BUILD_TIME" (0x4302_145) >>";
-#else
-const char* __OSVersion = "<< RVL_SDK - OS \trelease build: "BUILD_DATE" "BUILD_TIME" (0x2301) >>";
+#elif SDK_SEP2006
+const char* __OSVersion = "<< RVL_SDK - OS \trelease build: "BUILD_DATE" "BUILD_TIME" (0x4200_60422) >>";
 #endif
 
 static DVDDriveInfo DriveInfo;
@@ -248,8 +248,10 @@ u32 OSGetConsoleType(void) {
                 return 0x10000021;
             }
 
+        #if SDK_AUG2010
         case 0x300:
             return 0x100;
+        #endif
 
         default:
             break;
@@ -363,7 +365,7 @@ static void ClearMEM2Arena(void) {
         } else {
             MemClear(OSGetMEM2ArenaLo(), (u32)__OSRebootParams.regionStart - (u32)OSGetMEM2ArenaLo());
 
-            if ((u32) OSGetMEM2ArenaHi() > (u32)__OSRebootParams.regionEnd) {
+            if ((u32)OSGetMEM2ArenaHi() > (u32)__OSRebootParams.regionEnd) {
                 MemClear(__OSRebootParams.regionEnd, (u32)OSGetMEM2ArenaHi() - (u32)__OSRebootParams.regionEnd);
             }
         }
@@ -405,11 +407,12 @@ static void CheckTargets(void) {
     }
 }
 
+#ifdef SDK_AUG2010
 static void CheckFirmare(void) {
     OSIOSRev iosRev;
     u32 firmware;
-    GXColor sp14 = {0x00, 0x00, 0xFF, 0x00};
-    GXColor sp10 = {0xFF, 0xFF, 0xFF, 0x00};
+    GXColor bg = {0x00, 0x00, 0xFF, 0x00};
+    GXColor fg = {0xFF, 0xFF, 0xFF, 0x00};
 
     __OSGetIOSRev(&iosRev);
     firmware = iosRev.major << 0x10;
@@ -418,10 +421,11 @@ static void CheckFirmare(void) {
 
     if (iosRev.major != (*(u32*)0x80003188 >> 0x10) || (iosRev.major == (*(u32*)0x80003188 >> 0x10) && firmware < *(u32*)0x80003188)) {
         OSReport("OS ERROR: This firmware is an improper version for this SDK. Please use a correct Firmware.\n");
-        OSFatal(sp10, sp14, "\n\nERROR #002\nAn error has occurred.\nPress the Eject Button, remove the\nGame Disc, and turn off the power to \nthe console. \nPlease read the Wii Operations Manual \nfor further instructions.\n");
+        OSFatal(fg, bg, "\n\nERROR #002\nAn error has occurred.\nPress the Eject Button, remove the\nGame Disc, and turn off the power to \nthe console. \nPlease read the Wii Operations Manual \nfor further instructions.\n");
         OSPanic(__FILE__, 1243, "Failed to run app");
     }
 }
+#endif
 
 static void ReportOSInfo(void) {
     u32 consoleType;
@@ -429,7 +433,7 @@ static void ReportOSInfo(void) {
     OSIOSRev ios;
 
     OSReport("\nRevolution OS\n");
-    OSReport("Kernel built : %s %s\n", "Aug 23 2010", "17:27:45");
+    OSReport("Kernel built : %s %s\n", BUILD_DATE, BUILD_TIME);
     OSReport("Console Type : " );
 
     consoleType = OSGetConsoleType();
@@ -446,16 +450,16 @@ static void ReportOSInfo(void) {
         case 0x20:
             OSReport("Pre-production board 2-2\n");
             break;
+        #if SDK_AUG2010
         case 0x100:
             OSReport("RVA 1\n");
             break;
+        #endif
         default:
             OSReport("Retail %d\n", consoleType);
             break;
         }
-
         break;
-
     case 0x10000000:
         switch (consoleType) {
         case 0x10000021:
@@ -480,9 +484,7 @@ static void ReportOSInfo(void) {
             OSReport("Emulation platform (%08x)\n", consoleType);
             break;
         }
-
         break;
-
     case 0x20000000:
         OSReport("TDEV-based emulation HW%d\n", (consoleType & ~0xF0000000) - 3);
         break;
@@ -490,7 +492,6 @@ static void ReportOSInfo(void) {
         OSReport("%08x\n", consoleType);
         break;
     }
-
 
     __OSGetIOSRev(&ios);
     OSReport("Firmware     : %d.%d.%d ", ios.major, ios.minor, ios.micro);
@@ -638,7 +639,9 @@ void OSInit(void) {
 
         if (!__OSInIPL) {
             CheckTargets();
+            #ifdef SDK_AUG2010
             CheckFirmare();
+            #endif
             DVDInit();
 
             if (__OSIsGcam) {
@@ -931,6 +934,25 @@ u32 __OSGetDIConfig(void) {
 void OSRegisterVersion(const char* id) {
     OSReport("%s\n", id);
 }
+
+#if SDK_SEP2006
+static const char* AppGameNameForSysMenu = "HAEA";
+
+const char* OSGetAppGamename(void) {
+    const char* appNameSrc = (char*)OSPhysicalToCached(0x3180);
+
+    if (__OSInIPL) {
+        appNameSrc = AppGameNameForSysMenu;
+    }
+
+    GameNameBuffer[0] = *appNameSrc++;
+    GameNameBuffer[1] = *appNameSrc++;
+    GameNameBuffer[2] = *appNameSrc++;
+    GameNameBuffer[3] = *appNameSrc;
+    GameNameBuffer[4] = 0x00;
+    return GameNameBuffer;
+}
+#endif
 
 u8 OSGetAppType(void) {
     if (__OSInIPL) {

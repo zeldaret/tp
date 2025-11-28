@@ -12,6 +12,12 @@ extern char* __OSExceptionNames[17]; // D ONLY
 
 u32 __OSIsDebuggerPresent(void);
 void __OSPSInit(void);
+void __OSInitIPCBuffer(void);
+void __OSInitAlarm(void);
+void __OSInitSTM(void);
+void __OSInitNet(void);
+void __OSInitPlayTime(void);
+void __OSStartPlayRecord(void);
 
 // OSAlloc
 extern volatile int __OSCurrHeap;

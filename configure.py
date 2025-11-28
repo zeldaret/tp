@@ -390,6 +390,7 @@ cflags_revolution_base = [
 cflags_revolution_retail = [
     *cflags_revolution_base,
     "-O4,p",
+    "-DSDK_SEP2006",
 ]
 
 cflags_revolution_debug = [

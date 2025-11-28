@@ -97,14 +97,18 @@ void* OSGetArenaLo(void);
 void OSSetArenaHi(void* newHi);
 void OSSetArenaLo(void* newLo);
 
-void OSSetMEM2ArenaHi(void*);
+void OSSetMEM1ArenaHi(void* newHi);
+void OSSetMEM1ArenaLo(void* newLo);
+void OSSetMEM2ArenaHi(void* newHi);
+void OSSetMEM2ArenaLo(void* newLo);
+
+void* OSGetMEM1ArenaLo(void);
+void* OSGetMEM1ArenaHi(void);
 void* OSGetMEM2ArenaLo(void);
 void* OSGetMEM2ArenaHi(void);
 
 void* OSAllocFromMEM1ArenaLo(u32 size, u32 align);
 void* OSAllocFromMEM1ArenaHi(u32 size, u32 align);
-
-u32 OSGetPhysicalMemSize(void);
 
 void __OSPSInit(void);
 void __OSFPRInit(void);
@@ -202,6 +206,8 @@ BOOL OSRestoreInterrupts(BOOL level);
 u32 OSGetSoundMode(void);
 void OSSetSoundMode(u32 mode);
 
+u8 OSGetAppType(void);
+
 __declspec(weak) void OSReport(const char* msg, ...);
 __declspec(weak) void OSVReport(const char* msg, va_list list);
 __declspec(weak) void OSPanic(const char* file, int line, const char* msg, ...);
@@ -267,15 +273,6 @@ __declspec(weak) extern int __OSIsGcam;
 extern OSExecParams __OSRebootParams;
 extern OSTime __OSStartTime;
 extern int __OSInIPL;
-
-// helper for assert line numbers in different revisions
-#if SDK_REVISION < 1
-    #define LINE(l0, l1, l2) (l0)
-#elif SDK_REVISION < 2
-    #define LINE(l0, l1, l2) (l1)
-#else
-    #define LINE(l0, l1, l2) (l2)
-#endif
 
 #ifdef DEBUG
 #define ASSERTLINE(line, cond) \
