@@ -2273,7 +2273,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_zraMark"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_zra_freeze"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_zra_rock"),
-    ActorRel(NonMatching, "d_a_passer_mng"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_passer_mng"),
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_arena"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_peru"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_ppolamp"),
