@@ -2,6 +2,7 @@
 #define D_A_PASSER_MNG_H
 
 #include "SSystem/SComponent/c_lib.h"
+#include "d/d_kankyo.h"
 #include "f_op/f_op_actor_mng.h"
 
 class dPath;
@@ -28,7 +29,7 @@ public:
     u8 getIntervalTime() { return fopAcM_GetParam(this) >> 24; }
     int getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
     u8 getEndTime() { return (fopAcM_GetParam(this) >> 16) & 0xff; }
-    u8 getMaxNum() { return shape_angle.x; }
+    u8 getMaxNum() { return shape_angle.x & 0xFF; }
     u8 getGroupNo() { return (shape_angle.x >> 8) & 0xff; }
 
     int getTimeHour() {
