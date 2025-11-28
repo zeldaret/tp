@@ -315,8 +315,8 @@ def main() -> None:
                 out_path = Path("/".join(file_path.parts[file_path.parts.index("res") + 1:]))
                 # set the output path to be the designated output + the version + the file's heirarchy
                 out_path = OUT_PATH / (version / ("res" / out_path))
-                # we're going to output to a header file, prefix it with "res_"
-                out_path = out_path.with_name("res_" + out_path.name).with_suffix(".h")
+                # we're going to output to a header file
+                out_path = out_path.with_name(out_path.name).with_suffix(".h")
                 debug_print(out_path)
                 try:
                     extract_enum_from_file(file_path, out_path)
