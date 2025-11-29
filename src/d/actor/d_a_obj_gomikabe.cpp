@@ -309,7 +309,7 @@ int daObjGOMIKABE_c::create() {
     if (rv == cPhs_COMPLEATE_e) {
         s32 dzb_id = dComIfG_getObjctResName2Index(l_arcName, "M_Gomikabe.dzb");
         if (dzb_id == -1) {
-            // dzb data not found!
+            // "dzb data not found!<%s>"
             OS_REPORT("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
             JUT_ASSERT(969, dzb_id != -1);
         }

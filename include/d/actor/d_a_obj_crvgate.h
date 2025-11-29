@@ -1,9 +1,11 @@
 #ifndef D_A_OBJ_CRVGATE_H
 #define D_A_OBJ_CRVGATE_H
 
-#include "d/d_bg_s_acch.h"
+#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_camera_mng.h"
+#include "d/actor/d_a_obj_eff.h"
 #include "d/d_bg_s_movebg_actor.h"
-#include "d/d_cc_d.h"
+#include "d/d_cc_uty.h"
 
 /**
  * @ingroup actors-objects
@@ -71,9 +73,9 @@ private:
     /* 0x5E0 */ cXyz mPos;
     /* 0x5EC */ cXyz mPosAccel;
     /* 0x5F8 */ cXyz mPosTmp;
-    /* 0x604 */ u8 field_0x604[6];
-    /* 0x60A */ csXyz mMoveAngle;
-    /* 0x610 */ csXyz mDoorVib;
+    /* 0x604 */ csXyz field_0x604;
+    /* 0x60A */ S16Vec mMoveAngle;
+    /* 0x610 */ S16Vec mDoorVib;
     /* 0x618 */ f32 mMinHeight;
     /* 0x61C */ cXyz mXyzSph[3];
     /* 0x640 */ fpc_ProcID mDoorPairProcID;
@@ -92,7 +94,8 @@ private:
     /* 0x89C */ dCcD_Stts mStts;
     /* 0x8D8 */ dCcD_Sph mSph[3];
     /* 0xC80 */ dCcD_Cyl mCyl;
-    /* 0xDBC */ u8 field_0xdbc[40];
+    /* 0xDBC */ dCcU_AtInfo mAtInfo;
+    /* 0xDE0 */ u8 field_0xde0[4];
 };
 
 STATIC_ASSERT(sizeof(daObjCRVGATE_c) == 0xde4);
