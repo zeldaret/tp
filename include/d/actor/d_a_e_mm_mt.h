@@ -16,50 +16,42 @@
 class e_mm_mt_class {
 public:
     /* 0x000 */ fopEn_enemy_c enemy;
-    /* 0x5AC */ request_of_phase_process_class mPhase;
-    /* 0x5B4 */ Z2CreatureEnemy mSound;
-    /* 0x658 */ u32 parameters; 
-    /* 0x65C */ J3DModel* mpModel;
-    /* 0x660 */ u32 mShadowKey;
-    /* 0x664 */ s16 lifetime;
-    /* 0x666 */ s16 mAction;
-    /* 0x668 */ s16 mMode;
+    /* 0x5AC */ request_of_phase_process_class m_phase;
+    /* 0x5B4 */ Z2CreatureEnemy m_sound;
+    /* 0x658 */ u8 parameters;
+    /* 0x65A */ u8 field_0x65A[3];              
+    /* 0x65C */ J3DModel* mp_model;
+    /* 0x660 */ u32 m_shadowKey;
+    /* 0x664 */ s16 m_lifetime;
+    /* 0x666 */ s16 m_action;
+    /* 0x668 */ s16 m_mode;
     /* 0x66A */ u8 field_0x66A[0x672 - 0x66A];
     /* 0x672 */ s8 field_0x672;
-                u8 field_0x673;
-                cXyz field_0x674;
-                u8 field_0x680[0x684 - 0x680];
-    /* 0x684 */ s16 mTimer[2]; 
-    /* 0x688 */ s16 mInvulnerabilityTimer;
+    /* 0x673 */ u8 field_0x673;
+    /* 0x674 */ cXyz field_0x674;
+    /* 0x680 */ u8 field_0x680[0x684 - 0x680];
+    /* 0x684 */ s16 m_timer[2]; 
+    /* 0x688 */ s16 m_invulnerabilityTimer;
     /* 0x68A */ bool field_0x68A[2];
-    /* 0x68C */ csXyz mRotation;
-    /* 0x692 */ s16 mCarryAngleSpeed;
-    /* 0x694 */ s16 mCarryAngle;
+    /* 0x68C */ csXyz m_rotation;
+    /* 0x692 */ s16 m_carryAngleSpeed;
+    /* 0x694 */ s16 m_carryAngle;
     /* 0x696 */ u8 field_0x696[0x698 - 0x696];
-    /* 0x698 */ s32 field_0x698;
+    /* 0x698 */ int field_0x698;
     /* 0x69C */ f32 field_0x69C;
-                s16 field_0x6A0;
-                s16 field_0x6A2;
-    /* 0x6A4 */ s16 mSpin;
-                u8 field_0x6A6[0x6A8 - 0x6A6];
-                f32 field_0x6A8;
-    /* 0x6AC */ dBgS_AcchCir mAcchCir;
-    /* 0x6EC */ dBgS_ObjAcch mAcch;
-    /* 0x8C4 */ dCcD_Stts mStts;
-    /* 0x900 */ dCcD_Sph mSphere;
-    /* 0xA38 */ dCcD_Sph mSph;
-    /* 0xB70 */ dCcU_AtInfo mAtInfo;
-    /* 0xB94 */ u8 field_0xB94[0xB98 - 0xB94];
-    /* 0xB98 */ s8 field_0xB98;
-    /* 0xB99 */ u8 field_0xB99;
-                u8 field_0xBA0[0xBA4 - 0xB9A];
-
+    /* 0x6A0 */ s16 field_0x6A0;
+    /* 0x6A2 */ s16 field_0x6A2;
+    /* 0x6A4 */ s16 m_spin;
+    /* 0x6A6 */ u8 field_0x6A6[0x6A8 - 0x6A6];
+    /* 0x6A8 */ f32 field_0x6A8;
+    /* 0x6AC */ dBgS_AcchCir m_acchCir;
+    /* 0x6EC */ dBgS_ObjAcch m_acch;
+    /* 0x8C4 */ dCcD_Stts m_stts;
+    /* 0x900 */ dCcD_Sph m_sphere;
+    /* 0xA38 */ dCcD_Sph m_sph;
+    /* 0xB70 */ dCcU_AtInfo m_atInfo;
+    /* 0xB94 */ u8 field_0xB94[0xBA4 - 0xB94];
 };
-
-//fop offset = 
-//e_mm_mt class = 0x950 (shield) - 0x900 (gcn) = 0x50
-
-//(dBgS_AcchCir *)(param_1[1].tevStr.mLightObj.mLightObj.unknown + 1) wherever this lives is where mAcchCir lives
 
 STATIC_ASSERT(sizeof(e_mm_mt_class) == 0xba4);
 
