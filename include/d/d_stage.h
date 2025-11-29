@@ -2,6 +2,7 @@
 #define D_D_STAGE_H
 
 #include "SSystem/SComponent/c_lib.h"
+#include "d/d_bg_parts.h"
 #include "d/d_kankyo.h"
 #include "d/d_kankyo_data.h"
 #include "f_op/f_op_actor_mng.h"
@@ -1019,7 +1020,7 @@ public:
     /* 0x68 */ int mVrboxcolNumInfo;
 };  // Size: 0x6C
 
-class dBgW_base;
+class dBgW_Base;
 
 class dStage_roomStatus_c {
 public:
@@ -1032,7 +1033,7 @@ public:
     /* 0x3F8 */ s8 mMemBlockID;
     /* 0x3F9 */ u8 mRegionNo;
     /* 0x3FC */ int mProcID;
-    /* 0x400 */ dBgW_base* mpBgW;
+    /* 0x400 */ dBgW_Base* mpBgW;
 
     int getZoneNo() const { return mZoneNo; }
 };  // Size: 0x404
@@ -1090,6 +1091,13 @@ public:
     /* 80024954 */ static bool resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int i_TimePass) { m_time_pass = i_TimePass; }
     /* 8025BAAC */ static void setZoneNo(int, int);
+    static dBgp_c* getBgp(int i_roomNo) {
+#ifdef DEBUG
+        // NONMATCHING
+#else
+        return NULL;
+#endif
+    }
     static BOOL GetTimePass() { return m_time_pass; }
 
     static s8 getStayNo() { return mStayNo; }
@@ -1120,6 +1128,26 @@ public:
     static void setStatusProcID(int i_roomNo, fpc_ProcID i_id) { mStatus[i_roomNo].mProcID = i_id; }
     static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
     static void setRegionNo(int i_roomNo, u8 i_regionNo) { mStatus[i_roomNo].mRegionNo = i_regionNo; }
+
+    u8 checkStatusFlag(int i_roomNo, u8 flag) const {
+        return cLib_checkBit(mStatus[i_roomNo].mFlag, flag);
+    }
+
+    void onStatusFlag(int i_roomNo, u8 flag) {
+        JUT_ASSERT(2691, 0 <= i_roomNo && i_roomNo < 64);
+        return cLib_onBit(mStatus[i_roomNo].mFlag, flag);
+    }
+
+    void offStatusFlag(int i_roomNo, u8 flag) {
+        JUT_ASSERT(2695, 0 <= i_roomNo && i_roomNo < 64);
+        return cLib_offBit(mStatus[i_roomNo].mFlag, flag);
+    }
+
+    static void setFileList2(int i_roomNo, dStage_FileList2_dt_c* list) {
+        JUT_ASSERT(2711, 0 <= i_roomNo && i_roomNo < 64);
+        mStatus[i_roomNo].mRoomDt.setFileList2Info(list);
+    }
+
     static void setZoneCount(int i_roomNo, int count) {
         JUT_ASSERT(2737, 0 <= i_roomNo && i_roomNo < 64);
         mStatus[i_roomNo].mZoneCount = count;
@@ -1130,27 +1158,9 @@ public:
         mStatus[i_roomNo].mMemBlockID = i_blockID;
     }
 
-    static void setFileList2(int i_roomNo, dStage_FileList2_dt_c* list) {
-        JUT_ASSERT(2711, 0 <= i_roomNo && i_roomNo < 64);
-        mStatus[i_roomNo].mRoomDt.setFileList2Info(list);
-    }
-
-    static void setBgW(int param_0, dBgW_base* i_bgw) {
-        mStatus[param_0].mpBgW = i_bgw;
-    }
-
-    u8 checkStatusFlag(int i_roomNo, u8 flag) const {
-        return cLib_checkBit(mStatus[i_roomNo].mFlag, flag);
-    }
-
-    void offStatusFlag(int i_roomNo, u8 flag) {
-        JUT_ASSERT(2695, 0 <= i_roomNo && i_roomNo < 64);
-        return cLib_offBit(mStatus[i_roomNo].mFlag, flag);
-    }
-
-    void onStatusFlag(int i_roomNo, u8 flag) {
-        JUT_ASSERT(2691, 0 <= i_roomNo && i_roomNo < 64);
-        return cLib_onBit(mStatus[i_roomNo].mFlag, flag);
+    static void setBgW(int i_roomNo, dBgW_Base* i_bgw) {
+        JUT_ASSERT(2778, 0 <= i_roomNo && i_roomNo < 64);
+        mStatus[i_roomNo].mpBgW = i_bgw;
     }
 
     static JKRExpHeap* getMemoryBlockHeap(int i_no) { return mMemoryBlock[i_no]; }
