@@ -201,6 +201,7 @@ config.asflags = [
     "--strip-local-absolute",
     "-I include",
     f"-I build/{config.version}/include",
+    f"-I assets/{config.version}",
     f"--defsym version={version_num}",
 ]
 config.ldflags = [
@@ -244,6 +245,7 @@ cflags_base = [
     "-fp_contract on",
     "-i include",
     f"-i build/{config.version}/include",
+    f"-i assets/{config.version}",
     "-i src",
     "-ir src/dolphin",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
