@@ -3,8 +3,8 @@
  *
  */
 
- #include "d/dolzel_rel.h"  // IWYU pragma: keep
- 
+#include "d/dolzel_rel.h"  // IWYU pragma: keep
+
 #include "d/actor/d_a_obj_crvgate.h"
 #include "d/d_s_play.h"
 
@@ -98,7 +98,7 @@ int daObjCRVGATE_c::checkOpen() {
     }
 
     daPy_py_c* player = daPy_getPlayerActorClass();
-    s16 height_diff = this->current.angle.y - player->current.angle.y;
+    s16 height_diff = current.angle.y - player->current.angle.y;
 
     if (abs(height_diff) < 0x5000) {
         return 0;
@@ -496,9 +496,7 @@ void daObjCRVGATE_c::OpenAction() {
             cLib_addCalcAngleS(&mDoorAngle, doorAngle1, 6, 0x2000, 0x50);
         }
     } else {
-        if (mXyzSph[1].absXZ(*player_pos) < 300.0f &&
-            player->checkFrontRollCrash())
-        {
+        if (mXyzSph[1].absXZ(*player_pos) < 300.0f && player->checkFrontRollCrash()) {
             mDoorSwingTargetAngle = -0x1000;  //??
             mDoorSwingTargetAngle = (mDoorAngle - 0x1000);
             mFlagDoorMove = true;
@@ -709,20 +707,19 @@ static int daObjCRVGATE_Execute(daObjCRVGATE_c* i_this) {
 /* 80BD2670-80BD2758 002350 00E8+00 1/0 0/0 0/0 .text            CreateHeap__14daObjCRVGATE_cFv */
 int daObjCRVGATE_c::CreateHeap() {
     J3DModelData* model_data_gate =
-    (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanGate.bmd");
-    
+        (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanGate.bmd");
+
     JUT_ASSERT(762, model_data_gate != NULL)
-    
+
     mpModelGate = mDoExt_J3DModel__create(model_data_gate, 0x80000, 0x11000084);
-    
+
     if (mpModelGate == NULL) {
         return 0;
     }
-    
+
     J3DModelData* model_data_key;
     if (mKeyParam == 0x00) {
-        model_data_key =
-            (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanKey.bmd");
+        model_data_key = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanKey.bmd");
         mpModelKey = mDoExt_J3DModel__create(model_data_key, 0x80000, 0x11000084);
     }
 
@@ -735,11 +732,11 @@ int daObjCRVGATE_c::CreateHeap() {
 
 /* 80BD2758-80BD28C0 002438 0168+00 1/1 0/0 0/0 .text            SetDoor__14daObjCRVGATE_cFv */
 void daObjCRVGATE_c::SetDoor() {
-    cXyz child_pos(this->current.pos.x + cM_scos(shape_angle.y) * 700.0f, this->current.pos.y,
-                   this->current.pos.z - cM_ssin(shape_angle.y) * 700.0f);
+    cXyz child_pos(current.pos.x + cM_scos(shape_angle.y) * 700.0f, current.pos.y,
+                   current.pos.z - cM_ssin(shape_angle.y) * 700.0f);
 
-    mPos.set(this->current.pos.x + cM_scos(shape_angle.y) * 350.0f, 120.0f + this->current.pos.y,
-             this->current.pos.z - cM_ssin(shape_angle.y) * 350.0f);
+    mPos.set(current.pos.x + cM_scos(shape_angle.y) * 350.0f, 120.0f + current.pos.y,
+             current.pos.z - cM_ssin(shape_angle.y) * 350.0f);
 
     csXyz child_angle(shape_angle.x, shape_angle.y + 0x8000, shape_angle.z);
 
@@ -775,7 +772,8 @@ int daObjCRVGATE_c::create() {
             OS_REPORT("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
             JUT_ASSERT(783, dzb_id != -1)
         }
-        phase = (cPhs__Step)MoveBGCreate(l_arcName, dzb_id, dBgS_MoveBGProc_TypicalRotY, 0x1480, NULL);
+        phase =
+            (cPhs__Step)MoveBGCreate(l_arcName, dzb_id, dBgS_MoveBGProc_TypicalRotY, 0x1480, NULL);
 
         if (phase == cPhs_ERROR_e) {
             return phase;
