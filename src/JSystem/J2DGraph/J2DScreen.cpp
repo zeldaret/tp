@@ -390,7 +390,7 @@ bool J2DScreen::createMaterial(JSURandomInputStream* p_stream, u32 param_1, JKRA
         if (param_1 & 0x1F0000) {
             u32 offset =
                 buffer[0x14] << 0x18 | buffer[0x15] << 0x10 | buffer[0x16] << 8 | buffer[0x17];
-            ResNTAB* sec_s = (ResNTAB*)((u8*)buffer + offset);
+            ResNTAB* sec_s = (ResNTAB*)(buffer + offset);
             u16 entryNum = sec_s->mEntryNum;
             u16 lastOffset = sec_s->mEntries[entryNum - 1].mOffs;
             char* ptr = (char*)sec_s;
@@ -403,7 +403,7 @@ bool J2DScreen::createMaterial(JSURandomInputStream* p_stream, u32 param_1, JKRA
             u8* nametab = new u8[size];
             if (nametab != NULL) {
                 for (u16 i = 0; i < size; i++) {
-                    nametab[i] = ((u8*)sec_s)[i];
+                    nametab[i] = (buffer + offset)[i];
                 }
 
                 mNameTable = new JUTNameTab((ResNTAB*)nametab);
