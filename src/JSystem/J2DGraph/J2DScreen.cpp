@@ -361,7 +361,6 @@ J2DResReference* J2DScreen::getResReference(JSURandomInputStream* p_stream, u32 
 
 /* 802F937C-802F9600 2F3CBC 0284+00 1/1 0/0 0/0 .text
  * createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
-// NONMATCHING - nametab section has issues
 bool J2DScreen::createMaterial(JSURandomInputStream* p_stream, u32 param_1, JKRArchive* p_archive) {
     s32 position = p_stream->getPosition();
 
