@@ -5,89 +5,89 @@
 #include "JSystem/JAudio2/JASGadget.h"
 
 struct Z2SoundFader {
-    void move(f32 value, u32 moveTime) {
-        if (moveTime != 0) {
-            transition_.set(value, intensity_, moveTime);
+    void move(f32 vol, u32 count) {
+        if (count != 0) {
+            mTransition.set(vol, mIntensity, count);
         } else {
-            intensity_ = value;
-            transition_.zero();
+            mIntensity = vol;
+            mTransition.zero();
         }
     }
 
     void forceIn() {
-        intensity_ = 1.0f;
-        transition_.zero();
+        mIntensity = 1.0f;
+        mTransition.zero();
     }
 
     void forceOut() {
-        intensity_ = 0.0f;
-        transition_.zero();
+        mIntensity = 0.0f;
+        mTransition.zero();
     }
 
-    void fadeIn(u32 fadeTime) {
-        if (fadeTime != 0) {
-            transition_.set(1.0f, intensity_, fadeTime);
+    void fadeIn(u32 count) {
+        if (count != 0) {
+            mTransition.set(1.0f, mIntensity, count);
         } else {
             forceIn();
         }
     }
 
-    void fadeOut(u32 fadeTime) {
-        if (fadeTime != 0) {
-            transition_.set(0.0f, intensity_, fadeTime);
+    void fadeOut(u32 count) {
+        if (count != 0) {
+            mTransition.set(0.0f, mIntensity, count);
         } else {
             forceOut();
         }
     }
 
-    void fadeInFromOut(u32 fadeTime) {
-        intensity_ = 0.0f;
-        fadeIn(fadeTime);
+    void fadeInFromOut(u32 count) {
+        mIntensity = 0.0f;
+        fadeIn(count);
     }
 
     u32 getCount() {
-        return transition_.remainingSteps_;
+        return mTransition.mCount;
     }
 
-    f32 getIntensity() const {
-        return intensity_;
+    f32 getIntensity() {
+        return mIntensity;
     }
 
     f32 getDest() {
         if (getCount() != 0) {
-            return transition_.targetValue_;
+            return mTransition.mDest;
         } else {
-            return intensity_;
+            return mIntensity;
         }
     }
 
     void calc() {
-        intensity_ = transition_.apply(intensity_);
+        mIntensity = mTransition.apply(mIntensity);
     }
 
     f32 get() {
         return getIntensity();
     }
 
-    /* 0x0 */ f32 intensity_;
-    /* 0x4 */ JAISoundParamsTransition::TTransition transition_;
+    /* 0x0 */ float mIntensity;
+    /* 0x4 */ JAISoundParamsTransition::TTransition mTransition;
 };  // Size = 0x10
 
 class Z2SeqMgr : public JASGlobalInstance<Z2SeqMgr> {
 public:
     Z2SeqMgr();
 
-    void bgmStart(u32 bgmID, u32 fadeTime, s32);
-    void bgmStop(u32 fadeTime, s32);
-    void subBgmStart(u32 bgmID);
+    void bgmStart(u32 i_bgmID, u32, s32);
+    void bgmStop(u32 i_bgmID, s32);
+    void subBgmStart(u32);
     void subBgmStop();
     void subBgmStopInner();
-    void bgmStreamPrepare(u32 bgmID);
+    void bgmStreamPrepare(u32);
     bool bgmStreamCheckReady();
     void bgmStreamPlay();
-    void bgmStreamStop(u32 fadeTime);
-    void changeBgmStatus(s32 status);
-    void changeSubBgmStatus(s32 status);
+    void bgmStreamStop(u32);
+    void changeBgmStatus(s32);
+    void changeSubBgmStatus(s32);
     void onVariantBgmJumpEnd(bool);
     void changeFishingBgm(s32);
     void talkInBgm();
@@ -96,24 +96,23 @@ public:
     void menuOutBgm();
     void fanfareFramework();
     void stopWolfHowlSong();
-    void setHeightVolMod(bool isVolMod, u32 fadeTime);
-    void setTimeProcVolMod(bool isVolMod, u32 fadeTime);
+    void setHeightVolMod(bool, u32);
+    void setTimeProcVolMod(bool, u32);
     void processBgmFramework();
-    bool checkBgmIDPlaying(u32 bgmID);
-    f32 getChildTrackVolume(JAISoundHandle* handle, int trackId);
-    void setChildTrackVolume(JAISoundHandle* handle, int trackId, f32 volume,
-                             u32 moveTime, f32 pan, f32 dolby);
+    bool checkBgmIDPlaying(u32);
+    f32 getChildTrackVolume(JAISoundHandle*, int);
+    void setChildTrackVolume(JAISoundHandle*, int, float, u32, float, float);
     void resetBattleBgmParams();
-    void setBattleBgmOff(bool isBgmOff);
-    void setBattleSearched(bool isBattleSearched);
-    void setBattleDistIgnore(bool isBattleDistIgnore);
-    void setBattleGhostMute(bool isBattleGhostMute);
-    void setBattleDistState(u8 state);
-    void setBattleSeqState(u8 state);
-    void setBattleLastHit(u8 lastHit);
+    void setBattleBgmOff(bool);
+    void setBattleSearched(bool);
+    void setBattleDistIgnore(bool);
+    void setBattleGhostMute(bool);
+    void setBattleDistState(u8);
+    void setBattleSeqState(u8);
+    void setBattleLastHit(u8);
     void battleBgmFramework();
-    void startBattleBgm(bool isFadeIn);
-    void stopBattleBgm(u8 subFadeoutTime, u8 mainFadeinTime);
+    void startBattleBgm(bool);
+    void stopBattleBgm(u8, u8);
     void fieldBgmStart();
     void fieldRidingMute();
     void onFieldBgmJumpStart();
@@ -121,33 +120,28 @@ public:
     void fieldBgmFramework();
     void mbossBgmMuteProcess();
     void bgmSetSwordUsing(s32);
-    void bgmNowBattle(f32);
+    void bgmNowBattle(float);
     void taktModeMute();
     void taktModeMuteOff();
-
     void setFieldBgmPlay(bool value) { mFlags.mFieldBgmPlay = value; }
-
-    /* 802B99AC */ void unMuteSceneBgm(u32 fadeTime) {
+    /* 802B99AC */ void unMuteSceneBgm(u32 count) {
         mBgmPause.move(1.0f, 0);
-        mSceneBgm.move(1.0f, fadeTime);
+        mSceneBgm.move(1.0f, count);
     }
-
-    /* 802B9A24 */ void muteSceneBgm(u32 fadeTime, f32 vol) { mSceneBgm.move(vol, fadeTime); }
-
+    /* 802B9A24 */ void muteSceneBgm(u32 count, f32 vol) { mSceneBgm.move(vol, count); }
     /* 802B9AD0 */ void setTwilightGateVol(f32 vol) {
         mTwilightGateVol = vol < 0.0f ? 0.0f : vol > 1.0f ? 1.0f : vol;
     }
-
-    /* 802B9AFC */ void setWindStoneVol(f32 vol, u32 fadeTime) { mWindStone.move(vol, fadeTime); };
+    /* 802B9AFC */ void setWindStoneVol(f32 vol, u32 count) { mWindStone.move(vol, count); };
 
     void onEnemyDamage() { setBattleSeqState(2); }
 
-    void bgmAllMute(u32 fadeTime, f32 val) {
-        mAllBgmMaster.move(val, fadeTime);
+    void bgmAllMute(u32 count, f32 val) {
+        mAllBgmMaster.mTransition.set(val, mAllBgmMaster.mIntensity, count);
     }
 
-    void bgmAllUnMute(u32 fadeTime) {
-        mAllBgmMaster.move(1.0f, fadeTime);
+    void bgmAllUnMute(u32 count) {
+        mAllBgmMaster.move(1.0f, count);
     }
 
     bool isItemGetDemo() {
@@ -155,40 +149,35 @@ public:
     }
 
     u32 getMainBgmID() {
-        u32 id;
         if (mMainBgmHandle) {
-            id = mMainBgmHandle->getID();
-        } else {
-            id = -1;
+            return mMainBgmHandle->getID();
         }
 
-        return id;
+        return -1;
     }
 
     u32 getSubBgmID() {
-        u32 id;
         if (mSubBgmHandle) {
-            id = mSubBgmHandle->getID();
-        } else {
-            id = -1;
+            return mSubBgmHandle->getID();
         }
 
-        return id;
+        return -1;
     }
 
     u32 getStreamBgmID() {
-        u32 id;
         if (mStreamBgmHandle) {
-            id = mStreamBgmHandle->getID();
-        } else {
-            id = -1;
+            return mStreamBgmHandle->getID();
         }
 
-        return id;
+        return -1;
     }
 
     bool checkBgmPlaying() {
-        return mMainBgmHandle || mStreamBgmHandle;
+        bool ret = false;
+        if (mMainBgmHandle || mStreamBgmHandle) {
+            ret = true;
+        }
+        return ret;
     }
 
     u32 checkPlayingSubBgmFlag() {

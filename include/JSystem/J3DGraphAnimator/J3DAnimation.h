@@ -929,7 +929,6 @@ public:
 
     J3DFrameCtrl() { this->init(0); }
     void init(s16);
-    void init(int endFrame) { init((s16)endFrame); }
     BOOL checkPass(f32);
     void update();
     virtual ~J3DFrameCtrl() {}
@@ -988,7 +987,8 @@ struct J3DMtxCalcAnimationAdaptorDefault : public J3DMtxCalcAnimationAdaptorBase
         J3DTransformInfo transform;
         J3DTransformInfo* transform_p;
         if (pMtxCalc->getAnmTransform() != NULL) {
-            pMtxCalc->getAnmTransform()->getTransform(J3DMtxCalc::getJoint()->getJntNo(), &transform);
+            u16 jnt_no = J3DMtxCalc::getJoint()->getJntNo();
+            pMtxCalc->getAnmTransform()->getTransform(jnt_no, &transform);
             transform_p = &transform;
         } else {
             transform_p = &J3DMtxCalc::getJoint()->getTransformInfo();

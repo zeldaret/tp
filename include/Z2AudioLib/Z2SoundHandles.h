@@ -14,38 +14,33 @@ public:
     Z2SoundHandles();
     ~Z2SoundHandles();
 
-    void initHandlesPool(u8 handleNum);
+    void initHandlesPool(u8 pNumHandles);
     void deleteHandlesPool();
     Z2SoundHandlePool* getFreeHandle();
-    Z2SoundHandlePool* getLowPrioSound(JAISoundID soundID);
+    Z2SoundHandlePool* getLowPrioSound(JAISoundID pSoundId);
 
     bool isActive() const;
 
-    Z2SoundHandlePool* getHandleSoundID(JAISoundID soundID);
-    Z2SoundHandlePool* getHandleUserData(u32 userData);
+    Z2SoundHandlePool* getHandleSoundID(JAISoundID pSoundId);
+    Z2SoundHandlePool* getHandleUserData(u32 pUserData);
 
-    void stopAllSounds(u32 fadeTime);
+    void stopAllSounds(u32 fadeout);
 
-    void stopSound(JAISoundID soundID, u32 fadeTime) {
+    void stopSound(JAISoundID soundID, u32 param_1) {
         // u32 cast is a fakematch
         JAISoundHandle* phandle = getHandleSoundID((u32)soundID);
         if (phandle != NULL) {
-            (*phandle)->stop(fadeTime);
+            (*phandle)->stop(param_1);
         }
     }
 
     void setPos(const JGeometry::TVec3<f32>& pos);
 
     int getNumHandles() const { return getNumLinks(); }
-
-    Z2SoundHandlePool* getHandle(int index) {
-        JUT_ASSERT(49, index >= 0);
-        JUT_ASSERT(50, index < getNumLinks());
-        return (Z2SoundHandlePool*)getNth(index);
-    }
+    Z2SoundHandlePool* getHandle(int index) { return (Z2SoundHandlePool*)getNth(index); }
 
 private:
-    /* 0xC */ u8 handleNum_;
+    /* 0xC */ u8 mNumHandles;
 };
 
 #endif /* Z2SOUNDHANDLES_H */

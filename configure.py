@@ -189,7 +189,7 @@ if not config.non_matching:
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20251118"
 config.dtk_tag = "v1.7.1"
-config.objdiff_tag = "v3.4.4"
+config.objdiff_tag = "v3.4.1"
 config.sjiswrap_tag = "v1.2.2"
 config.wibo_tag = "1.0.0-beta.5"
 
@@ -201,7 +201,6 @@ config.asflags = [
     "--strip-local-absolute",
     "-I include",
     f"-I build/{config.version}/include",
-    f"-I assets/{config.version}",
     f"--defsym version={version_num}",
 ]
 config.ldflags = [
@@ -245,7 +244,6 @@ cflags_base = [
     "-fp_contract on",
     "-i include",
     f"-i build/{config.version}/include",
-    f"-i assets/{config.version}",
     "-i src",
     "-ir src/dolphin",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
@@ -453,9 +451,12 @@ def JSystemLib(lib_name: str, objects: List[Object], progress_category: str="thi
     }
 
 
-Matching = True                   # Object matches and should be linked
-NonMatching = False               # Object does not match and should not be linked
-Equivalent = config.non_matching  # Object should be linked when configured with --non-matching
+# When --non-matching is used, compile ALL files from source
+# This allows modifying any file without editing configure.py
+Matching = config.non_matching if config.non_matching else True
+NonMatching = config.non_matching
+Equivalent = config.non_matching
+Modded = config.non_matching
 
 
 ALL_GCN = ["GZ2E01", "GZ2P01", "GZ2J01"]
@@ -463,6 +464,10 @@ ALL_GCN = ["GZ2E01", "GZ2P01", "GZ2J01"]
 
 # Object is only matching for specific versions
 def MatchingFor(*versions) -> bool:
+    # When --non-matching, always compile from source
+    if config.non_matching:
+        return True
+    
     fullset = set()
     for vers in versions:
         if isinstance(vers, (list, tuple, set)):
@@ -508,7 +513,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_graphic.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_machine.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_mtx.cpp"),
-            Object(Equivalent, "m_Do/m_Do_ext.cpp"), # weak func order
+            Object(NonMatching, "m_Do/m_Do_ext.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_Reset.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_dvd_thread.cpp"),
@@ -612,7 +617,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_com_inf_game.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_com_static.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_com_inf_actor.cpp"),
-            Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bomb.cpp"), # debug weak func order
+            Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bomb.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_save.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "d/d_save_init.cpp"),
@@ -627,7 +632,7 @@ config.libs = [
             Object(NonMatching, "d/d_resorce.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_map_path.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_map_path_fmap.cpp"),
-            Object(MatchingFor(ALL_GCN), "d/d_map_path_dmap.cpp"),
+            Object(NonMatching, "d/d_map_path_dmap.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_event.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_event_data.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_event_manager.cpp"),
@@ -694,7 +699,7 @@ config.libs = [
             Object(NonMatching, "d/d_camera.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_envse.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_file_select.cpp"),
-            Object(MatchingFor(ALL_GCN), "d/d_file_sel_warning.cpp"),
+            Object(NonMatching, "d/d_file_sel_warning.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_file_sel_info.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bright_check.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_scope.cpp"),
@@ -704,13 +709,13 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_shop_item_ctrl.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_shop_system.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_gameover.cpp"),
-            Object(MatchingFor(ALL_GCN), "d/d_kankyo.cpp"),
+            Object(NonMatching, "d/d_kankyo.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_kyeff.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "d/d_kyeff2.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ky_thunder.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_kantera_icon_meter.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_calibration.cpp"),
-            Object(NonMatching, "d/d_menu_collect.cpp"), # weak func order (dMenu_Collect2D_c::draw())
+            Object(NonMatching, "d/d_menu_collect.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_dmap.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_dmap_map.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_map_common.cpp"),
@@ -726,7 +731,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_menu_save.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_skill.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_window_HIO.cpp"),
-            Object(Equivalent, "d/d_menu_window.cpp"), # weak func order (dDlst_MENU_CAPTURE_c::draw)
+            Object(Equivalent, "d/d_menu_window.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN), "d/d_meter_HIO.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_meter_button.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_meter_haihai.cpp"),
@@ -850,7 +855,7 @@ config.libs = [
         "JFramework",
         [
             Object(MatchingFor("ShieldD"), "JSystem/JFramework/JFWSystem.cpp"), # retail-only regalloc
-            Object(MatchingFor(ALL_GCN), "JSystem/JFramework/JFWDisplay.cpp"),
+            Object(Modded, "JSystem/JFramework/JFWDisplay.cpp"),
         ],
     ),
     JSystemLib(
@@ -961,10 +966,10 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASVoiceBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicInst.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDrumSet.cpp"),
-            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicWaveBank.cpp"),
+            Object(Equivalent, "JSystem/JAudio2/JASBasicWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWSParser.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"), # missing bss var
+            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWaveArcLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASChannel.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASLfo.cpp"),
@@ -1002,7 +1007,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JAUBankTable.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUClusterSound.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUInitializer.cpp"),
-            Object(Equivalent, "JSystem/JAudio2/JAUSectionHeap.cpp"), # weak function order
+            Object(Equivalent, "JSystem/JAudio2/JAUSectionHeap.cpp"), #weak function order
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSeqCollection.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSoundAnimator.cpp"),
@@ -1142,11 +1147,11 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTevs.cpp"),
             Object(Equivalent, "JSystem/J2DGraph/J2DMaterial.cpp"), # weak func order
-            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"), # weak func order (J3DTevBlock)
+            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DMaterialFactory.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPrint.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPane.cpp"),
-            Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DScreen.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DWindow.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPicture.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBox.cpp"),
@@ -1183,7 +1188,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DShapeTable.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DJointTree.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DModelData.cpp"),
-            Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DModel.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DAnimation.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DMaterialAnm.cpp"),
@@ -1786,7 +1791,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_mk"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_mk_bo"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_mm"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_e_mm_mt"),
+    ActorRel(NonMatching, "d_a_e_mm_mt"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_ms"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_nz"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_oc"),
@@ -1857,13 +1862,13 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_myna"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_ni"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_aru"),
-    ActorRel(Equivalent, "d_a_npc_ash"),  # weak func order (sinShort)
-    ActorRel(Equivalent, "d_a_npc_ashB"),  # weak func order (sinShort)
+    ActorRel(Equivalent, "d_a_npc_ash"),  # weak func order
+    ActorRel(Equivalent, "d_a_npc_ashB"),  # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_bou"),
-    ActorRel(Equivalent, "d_a_npc_bouS"),  # weak func order (sinShort)
-    ActorRel(Equivalent, "d_a_npc_cdn3"), # weak func order (~csXyz); vtable order
+    ActorRel(Equivalent, "d_a_npc_bouS"),  # weak func order
+    ActorRel(Equivalent, "d_a_npc_cdn3"), # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_chat"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_chin"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_clerka"),
@@ -2055,7 +2060,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ice_l"),
     ActorRel(NonMatching, "d_a_obj_ice_s"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_iceblock"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_iceleaf"),
+    ActorRel(NonMatching, "d_a_obj_iceleaf"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ihasi"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ikada"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_inobone"),
@@ -2275,7 +2280,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_zraMark"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_zra_freeze"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_zra_rock"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_passer_mng"),
+    ActorRel(NonMatching, "d_a_passer_mng"),
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_arena"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_peru"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_ppolamp"),

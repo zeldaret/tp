@@ -25,7 +25,6 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     enum Status {
         STATUS_FREE,
         STATUS_RUN,
-        STATUS_STOP,
     };
 
     struct TChannelMgr : public JASPoolAllocObject_MultiThreaded<TChannelMgr> {
@@ -35,11 +34,9 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
         /* 80293220 */ bool noteOff(u32, u16);
         /* 802932A0 */ void setPauseFlag(bool);
 
-        static const int CHANNEL_MAX = 8;
-
-        /* 0x00 */ JASChannel* mChannels[CHANNEL_MAX];
+        /* 0x00 */ JASChannel* mChannels[8];
         /* 0x20 */ JASChannelParams mParams;
-        /* 0x38 */ s16 field_0x38[CHANNEL_MAX];
+        /* 0x38 */ short field_0x38[8];
         /* 0x48 */ JASSoundParams* mSoundParams;
         /* 0x4c */ JASTrack* mTrack;
     };
@@ -141,7 +138,7 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
         JUT_ASSERT(115, index < MAX_CHILDREN)
         return mChildren[index];
     }
-    int getChannelMgrCount() const { return mChannelMgrCount; }
+    int getChannelMgrCount() { return mChannelMgrCount; }
     f32 getVibDepth() const { return mVibDepth; }
     void setVibDepth(f32 param_0) { mVibDepth = param_0; }
     f32 getVibPitch() const { return mVibPitch; }
@@ -155,7 +152,7 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     u32 getTremDelay() const { return mTremDelay; }
     void setTremDelay(u32 param_0) { mTremDelay = param_0; }
     u8 getStatus() const { return mStatus; }
-    void setAutoDelete(bool param_0) { mFlags.autoDelete = param_0; }
+    void setAutoDelete(u8 param_0) { mFlags.autoDelete = param_0; }
     f32 getPanPower() const { return mPanPower; }
     void setPanPower(f32 param_0) { mPanPower = param_0; }
     u32 getSkipSample() const { return mSkipSample; }

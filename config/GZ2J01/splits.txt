@@ -2216,7 +2216,7 @@ Z2AudioLib/Z2Audience.cpp:
 	.rodata     start:0x80396380 end:0x80396390
 	.data       start:0x803C4DD8 end:0x803C4E10
 	.bss        start:0x8042E318 end:0x8042E338
-	.sbss       start:0x8044B490 end:0x8044B498
+	.sbss       start:0x8044B490 end:0x8044B4A0
 	.sdata2     start:0x8044FBC0 end:0x8044FC58
 
 Z2AudioLib/Z2SoundObject.cpp:
@@ -2236,7 +2236,6 @@ Z2AudioLib/Z2Creature.cpp:
 	.text       start:0x802C2864 end:0x802C56B8
 	.ctors      start:0x80375DC4 end:0x80375DC8
 	.data       start:0x803C5370 end:0x803C5A30
-	.sbss       start:0x8044B498 end:0x8044B4A0
 	.sdata2     start:0x8044FCF8 end:0x8044FDB8
 
 Z2AudioLib/Z2LinkMgr.cpp:

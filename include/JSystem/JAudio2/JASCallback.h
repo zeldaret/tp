@@ -12,21 +12,28 @@ typedef long JASCallback(void*);
 struct JASCallbackMgr {
 	struct TCallback {
 		TCallback()
-		    : callback_(NULL)
-		    , arg_(NULL) {
+		    : mFunction(NULL)
+		    , mArgument(NULL) {
 		}
 
-		/* 0x00 */ JASCallback* callback_;
-		/* 0x04 */ void* arg_;
+		/** @fabricated */
+		bool isMatch(JASCallback* function, void* argument) { return (mFunction == function && mArgument == argument); }
+
+		/** @fabricated */
+		void clear() {
+			mFunction = NULL;
+			mArgument = NULL;
+		}
+
+		/* 0x00 */ JASCallback* mFunction;
+		/* 0x04 */ void* mArgument;
 	};
 
-	bool regist(JASCallback* callback, void* argument);
-	int reject(JASCallback* callback, void* argument);
+	bool regist(JASCallback*, void*);
+	int reject(JASCallback*, void*);
 	void callback();
 
-	static const int NUM_CALLBACKS = 32;
-
-	/* 0x00 */ TCallback callbacks_[NUM_CALLBACKS];
+	/* 0x00 */ TCallback mCallbacks[0x20];
 };
 
 #endif /* JASCALLBACK_H */

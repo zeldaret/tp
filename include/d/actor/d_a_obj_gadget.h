@@ -88,7 +88,7 @@ public:
             old.pos = current.pos;
         }
 
-        s16 iVar1 = cM_deg2s(param_2);
+        int iVar1 = cM_deg2s(param_2);
         speed.setall(0.0f);
         speed.y = param_1 * cM_ssin(iVar1);
         speedF = param_1 * cM_scos(iVar1);

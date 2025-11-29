@@ -9,10 +9,8 @@ public:
     Z2LinkSoundStarter();
 
     inline virtual ~Z2LinkSoundStarter();
-    virtual bool startSound(JAISoundID soundID, JAISoundHandle* handle,
-                            const JGeometry::TVec3<f32>* posPtr, u32 mapinfo,
-                            f32 fxMix, f32 pitch, f32 volume, f32 pan,
-                            f32 dolby, u32 moveSteps);
+    virtual bool startSound(JAISoundID, JAISoundHandle*, JGeometry::TVec3<f32> const*, u32, f32,
+                            f32, f32, f32, f32, u32);
 };
 
 class Z2CreatureLink : public Z2Creature, public Z2LinkSoundStarter {
@@ -21,41 +19,41 @@ public:
     ~Z2CreatureLink();
 
     void setLinkGroupInfo(u8);
-    void setLinkHp(s32 linkHp, s32);
-    void setLinkSwordType(s32 swordType, s32);
-    void setLinkShieldType(s32 shieldType, s32);
-    void setLinkBootsType(s32 bootsType);
+    void setLinkHp(s32, s32);
+    void setLinkSwordType(s32, s32);
+    void setLinkShieldType(s32, s32);
+    void setLinkBootsType(s32);
     virtual void deleteObject();
-    void init(Vec* animePosPtr, Vec* simplePosPtr, Vec* simple2PosPtr);
-    void initKantera(Vec* posPtr);
-    void deleteKantera();
-    void setKanteraState(u8 state);
-    virtual void framework(u32 mapinfo, s8 reverb);
-    void setSinkDepth(s8 sinkDepth);
-    void setRiding(bool isRiding);
-    void setMagnetized(bool isMagnetized);
-    void setWolfEyeOpen(bool wolfEyeOpen);
-    Z2SoundHandlePool* startLinkSound(JAISoundID, u32 mapinfo, s8 reverb);
-    JAISoundHandle* startLinkSoundLevel(JAISoundID, u32 mapinfo, s8 reverb);
-    Z2SoundHandlePool* startLinkVoice(JAISoundID, s8 reverb);
-    Z2SoundHandlePool* startLinkVoiceLevel(JAISoundID, s8 reverb);
-    void startLinkSwordSound(JAISoundID, u32 mapinfo, s8 reverb);
-    virtual Z2SoundHandlePool* startCollisionSE(u32 hitID, u32 mapinfo);
-    Z2SoundHandlePool* startHitItemSE(u32 soundID, u32 mapinfo, Z2SoundObjBase* other, f32 speed);
-    void setResumeAttack(bool resumeAttack);
+    void init(Vec*, Vec*, Vec*);
+    void initKantera(Vec*);
+    void deleteKantera(void);
+    void setKanteraState(u8);
+    virtual void framework(u32, s8);
+    void setSinkDepth(s8);
+    void setRiding(bool);
+    void setMagnetized(bool);
+    void setWolfEyeOpen(bool);
+    Z2SoundHandlePool* startLinkSound(JAISoundID, u32, s8);
+    JAISoundHandle* startLinkSoundLevel(JAISoundID, u32, s8);
+    Z2SoundHandlePool* startLinkVoice(JAISoundID, s8);
+    Z2SoundHandlePool* startLinkVoiceLevel(JAISoundID, s8);
+    void startLinkSwordSound(JAISoundID, u32, s8);
+    virtual Z2SoundHandlePool* startCollisionSE(u32, u32);
+    Z2SoundHandlePool* startHitItemSE(u32, u32, Z2SoundObjBase*, float);
+    void setResumeAttack(bool);
 
-    void setInWater(bool inWater) { mInWater = inWater; }
+    void setInWater(bool status) { mInWater = status; }
     bool isInWater() { return mInWater; }
     u8 getLinkState() { return mLinkState; }
-    u8 getMoveSpeed() { return mMoveSpeed; }
-    bool isRiding() { return mRiding; }
-    void setLinkState(u8 state) { mLinkState = state; }
+    u8 getMoveSpeed() const { return mMoveSpeed; }
+    bool isRiding() const { return mRiding; }
+    void setLinkState(u8 i_state) { mLinkState = i_state; }
     Z2SoundObjSimple& getKantera() { return mKantera; }
-    u8 getLinkHp() { return mLinkHp; }
+    u8 getLinkHp() const { return mLinkHp; }
     u8 getMovingTime() { return mMovingTime; }
-    bool isWolfSmellOpen() { return mWolfEyeOpen; }
-    void setUsingIronBall(bool isUsingIronBall) { mUsingIronBall = isUsingIronBall; }
-    void setMarkState(u8 state) { mMarkState = state; }
+    u8 isWolfSmellOpen() const { return mWolfEyeOpen; }
+    void setUsingIronBall(bool i_using) { mUsingIronBall = i_using; }
+    void setMarkState(u8 i_state) { mMarkState = i_state; }
 
     static Z2CreatureLink* mLinkPtr;
 
@@ -65,7 +63,7 @@ public:
 private:
     /* 0x90 Z2LinkSoundStarter */
     /* 0x94 */ Z2SoundObjSimple mKantera;
-    /* 0xB4 */ Vec field_0xb4;
+    /* 0xB4 */ cXyz field_0xb4;
     /* 0xC0 */ u8 mLinkState;
     /* 0xC1 */ u8 field_0xc1;
     /* 0xC2 */ u8 mMarkState;
@@ -101,12 +99,11 @@ inline Z2CreatureLink* Z2GetLink() {
 
 class Z2CreatureRide;
 struct Z2RideSoundStarter : public Z2SoundStarter {
-    /* 802C5234 */ Z2RideSoundStarter(Z2CreatureRide* ride);
+    /* 802C5234 */ Z2RideSoundStarter(Z2CreatureRide*);
 
-    /* 802C5284 */ virtual bool startSound(JAISoundID soundID, JAISoundHandle* handle,
-                                           const JGeometry::TVec3<f32>* posPtr, u32 mapinfo,
-                                           f32 fxMix, f32 pitch, f32 volume, f32 pan,
-                                           f32 dolby, u32 moveSteps);
+    /* 802C5284 */ virtual bool startSound(JAISoundID, JAISoundHandle*,
+                                           JGeometry::TVec3<f32> const*, u32, f32, f32, f32, f32,
+                                           f32, u32);
 
     /* 0x4 */ Z2CreatureRide* mRide;
 };
@@ -115,8 +112,8 @@ class Z2CreatureRide : public Z2Creature, public Z2RideSoundStarter {
 public:
     Z2CreatureRide();
     ~Z2CreatureRide();
-    void init(Vec* animePosPtr, Vec* simplePosPtr, u8 animeHandleNum, u8 simpleHandleNum);
-    void setLinkRiding(bool isRiding);
+    void init(Vec*, Vec*, u8, u8);
+    void setLinkRiding(bool);
 
     bool isLinkRiding() { return mLinkRiding; }
 
@@ -130,10 +127,10 @@ private:
 class Z2SoundObjCoach : public Z2SoundObjBase {
 public:
     /* 802C54B8 */ Z2SoundObjCoach();
-    /* 802C54FC */ void init(Vec* posPtr, u8 handleNum);
+    /* 802C54FC */ void init(Vec*, u8);
     /* 802C551C */ Z2SoundHandlePool* startWheelSound(f32);
     /* 802C56C0 */ Z2SoundHandlePool* startFireSound(u16);
-    /* 802C57C0 */ Z2SoundHandlePool* startSound(JAISoundID soundID, u32 mapinfo, s8 reverb);
+    /* 802C57C0 */ Z2SoundHandlePool* startSound(JAISoundID, u32, s8);
 
 private:
     /* 0x20 */ f32 field_0x20;

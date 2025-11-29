@@ -26,8 +26,4 @@ namespace JASDriver {
     extern u32 JAS_SYSTEM_OUTPUT_MODE;
 };
 
-inline void JAISetOutputMode(u32 mode) {
-    JASDriver::setOutputMode(mode);
-}
-
 #endif /* JASDRIVERIF_H */

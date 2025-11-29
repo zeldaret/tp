@@ -3,9 +3,7 @@
 
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JGadget/define.h"
-#include "JSystem/JGadget/search.h"
 #include <iterator.h>
-
 
 namespace JGadget {
 struct TLinkListNode {
@@ -119,27 +117,19 @@ public:
 };  // Size: 0xC
 
 template <typename T, int I>
-struct TLinkList : TNodeLinkList {
+struct TLinkList : public TNodeLinkList {
     TLinkList() : TNodeLinkList() {}
 
-    struct iterator : TNodeLinkList::iterator {
+    struct iterator {
         iterator() {}
-        explicit iterator(TNodeLinkList::iterator iter) : TNodeLinkList::iterator(iter) {}
-
-        iterator& operator=(const iterator& rhs) {
-            //TODO: Probably fakematch? Not sure what's going on here exactly
-            (TIterator<std::bidirectional_iterator_tag, T, long, T*, T&>&)*this =
-                (const TIterator<std::bidirectional_iterator_tag, T, long, T*, T&>&)rhs;
-            this->node = rhs.node;
-            return *this;
-        }
+        explicit iterator(TNodeLinkList::iterator iter) : base(iter) {}
 
         iterator& operator++() {
-            TNodeLinkList::iterator::operator++();
+            ++base;
             return *this;
         }
         iterator& operator--() {
-            TNodeLinkList::iterator::operator--();
+            --base;
             return *this;
         }
         iterator operator++(int) {
@@ -152,12 +142,10 @@ struct TLinkList : TNodeLinkList {
             --*this;
             return old;
         }
-        friend bool operator==(iterator a, iterator b) {
-            return (TNodeLinkList::iterator&)a == (TNodeLinkList::iterator&)b;
-        }
+        friend bool operator==(iterator a, iterator b) { return a.base == b.base; }
         friend bool operator!=(iterator a, iterator b) { return !(a == b); }
 
-        T* operator->() const { return Element_toValue(TNodeLinkList::iterator::operator->()); }
+        T* operator->() const { return Element_toValue(base.operator->()); }
         T& operator*() const {
             T* p = operator->();
             JUT_ASSERT(541, p!=NULL);
@@ -169,20 +157,21 @@ struct TLinkList : TNodeLinkList {
         typedef T* pointer;
         typedef T& reference;
         typedef std::bidirectional_iterator_tag iterator_category;
+
+    public:
+        /* 0x00 */ TNodeLinkList::iterator base;
     };
 
-    struct const_iterator : TNodeLinkList::const_iterator {
-        explicit const_iterator(TNodeLinkList::const_iterator iter) :
-            TNodeLinkList::const_iterator(iter) {}
-        explicit const_iterator(iterator iter) :
-            TNodeLinkList::const_iterator((TNodeLinkList::iterator&)iter) {}
+    struct const_iterator {
+        explicit const_iterator(TNodeLinkList::const_iterator iter) : base(iter) {}
+        explicit const_iterator(iterator iter) : base(iter.base) {}
 
         const_iterator& operator++() {
-            TNodeLinkList::const_iterator::operator++();
+            ++base;
             return *this;
         }
         const_iterator& operator--() {
-            TNodeLinkList::const_iterator::operator++();
+            --base;
             return *this;
         }
         const_iterator operator++(int) {
@@ -195,17 +184,14 @@ struct TLinkList : TNodeLinkList {
             --*this;
             return old;
         }
-        friend bool operator==(const_iterator a, const_iterator b) {
-            return (TNodeLinkList::const_iterator&)a == (TNodeLinkList::const_iterator&)b;
-        }
+        friend bool operator==(const_iterator a, const_iterator b) { return a.base == b.base; }
         friend bool operator!=(const_iterator a, const_iterator b) { return !(a == b); }
 
-        const T* operator->() const { return Element_toValue(TNodeLinkList::const_iterator::operator->()); }
-        const T& operator*() const {
-            const T* p = &*operator->();
-            JUT_ASSERT(0x24a, p!=NULL);
-            return *p;
-        }
+        const T* operator->() const { return Element_toValue(base.operator->()); }
+        const T& operator*() const { return *operator->(); }
+
+    public:
+        /* 0x00 */ TNodeLinkList::const_iterator base;
     };
 
     static TLinkListNode* Element_toNode(T* p) {
@@ -226,7 +212,7 @@ struct TLinkList : TNodeLinkList {
     }
 
     iterator Insert(iterator iter, T* element) {
-        return iterator(TNodeLinkList::Insert((TNodeLinkList::iterator&)iter, Element_toNode(element)));
+        return iterator(TNodeLinkList::Insert(iter.base, Element_toNode(element)));
     }
     iterator Erase(T* element) { return iterator(TNodeLinkList::Erase(Element_toNode(element))); }
 

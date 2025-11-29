@@ -83,6 +83,17 @@ void* __memcpy(void*, const void*, int);
 #define DOUBLE_INF HUGE_VAL
 static const float INF = 2000000000.0f;
 
+// Boofener: Deltatime system for frame-independent physics
+extern float g_deltaTime;
+extern float g_targetFrameTime;
+extern float g_targetFramerate;
+extern int g_shouldUpdateLogic;  // Skip logic updates on render-only frames (0=false, 1=true)
+#define FRAMERATE_SCALE g_deltaTime
+void updateDeltaTime();
+void setTargetFramerate(float fps);
+float getTargetFramerate();
+int shouldUpdateGameLogic();
+
 // hack to make strings with no references compile properly
 #define DEAD_STRING(s) OSReport(s)
 
