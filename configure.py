@@ -1181,7 +1181,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DShapeTable.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DJointTree.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DModelData.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DModel.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DAnimation.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DMaterialAnm.cpp"),
