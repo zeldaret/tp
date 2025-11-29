@@ -37,17 +37,17 @@ public:
     /* 8029F868 */ virtual JAITempoMgr* getTempoMgr();
     /* 8029F5C8 */ virtual bool JAISound_tryDie_();
 
-    /* 8029F03C */ JAISe(JAISeMgr*, JAISoundStrategyMgr<JAISe>*, u32);
-    /* 8029F0F8 */ void mixOut_(JASSoundParams const&);
+    /* 8029F03C */ JAISe(JAISeMgr* seMgr, JAISoundStrategyMgr<JAISe>* soundStrategyMgr, u32 priority);
+    /* 8029F0F8 */ void mixOut_(const JASSoundParams& params);
     /* 8029F214 */ void stopTrack_();
-    /* 8029F250 */ void startTrack_(JASSoundParams const&);
-    /* 8029F304 */ void JAISeCategoryMgr_mixOut_(bool, JASSoundParams const&, JAISoundActivity);
+    /* 8029F250 */ void startTrack_(const JASSoundParams& params);
+    /* 8029F304 */ void JAISeCategoryMgr_mixOut_(bool, const JASSoundParams& params, JAISoundActivity activity);
     /* 8029F4CC */ void JAISeCategoryMgr_calc_();
-    /* 8029F650 */ void JAISeMgr_startID_(JAISoundID, JGeometry::TVec3<f32> const*, JAIAudience*);
+    /* 8029F650 */ void JAISeMgr_startID_(JAISoundID id, const JGeometry::TVec3<f32>* posPtr, JAIAudience* audience);
     /* 8029F6EC */ bool prepare_getSeqData_();
     /* 8029F78C */ void prepare_();
 
-    JAISeqData* getSeqData() { return &inner_.mSeqData; }
+    const JAISeqData* getSeqData() const { return &inner_.mSeqData; }
     u32 JAISeCategoryMgr_getProperPriority_() const { return inner_.mProperPriority; }
     u32 JAISeCategoryMgr_getPriority_() const { return inner_.mPriority; }
     bool isFarAway() const { return inner_.mPriority == -1; }

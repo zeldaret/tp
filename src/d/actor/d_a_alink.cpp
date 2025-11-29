@@ -1,7 +1,10 @@
-// d_a_alink.cpp - Player (Link) Actor
-// Boofener: 60fps modifications using FRAMERATE_SCALE deltatime system (see global.h)
+/**
+ * d_a_alink.cpp
+ * Player (Link) Actor
+ */
 
 #include "d/dolzel.h" // IWYU pragma: keep
+
 #include "d/actor/d_a_alink.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -4528,7 +4531,7 @@ int daAlink_c::setStartProcInit() {
         } else {
             procAutoJumpInit(1);
         }
-        mNormalSpeed = 55.0f * FRAMERATE_SCALE; // Boofener: Scale horizontal speed for 60fps
+        mNormalSpeed = 55.0f;
         speed.y = 0.0f;
     } else if (checkCanoeStart()) {
         procCanoeJumpRideInit(NULL);
@@ -5550,7 +5553,7 @@ int daAlink_c::simpleAnmPlay(J3DAnmBase* i_anm) {
     }
 
     int ret = 0;
-    f32 frame = i_anm->getFrame() + 1.0f; // Boofener: NOT scaled - animations advance 1 frame per update
+    f32 frame = i_anm->getFrame() + 1.0f;
 
     if (frame >= i_anm->getFrameMax()) {
         if (i_anm->getAttribute() == 2) {
@@ -6601,8 +6604,6 @@ void daAlink_c::setFrameCtrl(daPy_frameCtrl_c* i_ctrl, u8 i_attr, s16 i_start, s
         }
     }
 
-    i_rate *= FRAMERATE_SCALE; // Boofener: Scale all animation rates for 60fps
-
     i_ctrl->setFrameCtrl(i_attr, i_start, i_end, i_rate, i_frame);
 }
 
@@ -6883,9 +6884,6 @@ void daAlink_c::commonSingleAnime(J3DAnmTransform* param_0, J3DAnmTransform* par
             param_2 *= daAlinkHIO_magneBoots_c0::m.mWaterStartWalkAnmRate * (1.0f / daAlinkHIO_magneBoots_c0::m.mWaterWalkAnmRate);
         }
     }
-
-    // Boofener: Don't scale animation rates - they should match frame duration
-    // param_2 *= FRAMERATE_SCALE;
 
     setFrameCtrl(&mUnderFrameCtrl[0], param_0->getAttribute(), param_3, var_r30, param_2, var_f31);
     param_0->setFrame(var_f31);
@@ -9684,7 +9682,7 @@ void daAlink_c::setNormalSpeedF(f32 i_incSpeed, f32 param_1) {
     f32 move_speed;
     f32 target_speed;
     if (var_f31 < mNormalSpeed || 0.0f == var_f31) {
-        f32 temp_f29 = mNormalSpeed - (var_f31/2);
+        f32 temp_f29 = mNormalSpeed - var_f31;
         move_speed = temp_f29 > param_1 ? param_1 : temp_f29;
         i_incSpeed = 0.0f;
         target_speed = var_f31;
@@ -12543,8 +12541,7 @@ void daAlink_c::setSpecialGravity(f32 i_gravity, f32 i_speed, int i_offFlag) {
         onNoResetFlg3(FLG3_UNK_4000);
     }
 
-    // Boofener: Scale gravity at source for 60fps - now gravity applications don't need scaling
-    gravity = i_gravity * FRAMERATE_SCALE;
+    gravity = i_gravity;
     maxFallSpeed = i_speed;
 }
 
@@ -12749,8 +12746,7 @@ void daAlink_c::posMove() {
         mNormalSpeed = 0.0f;
     }
 
-    // Boofener: Scale all horizontal movement by deltatime
-    speedF = mNormalSpeed * (1.0f - fabsf(mSpeedModifier)) * FRAMERATE_SCALE;
+    speedF = mNormalSpeed * (1.0f - fabsf(mSpeedModifier));
 
     f32 mod = field_0x33a0 * (1.0f - field_0x2060->getOldFrameRate()) * mSpeedModifier;
     if (speedF < 0.0f) {
@@ -12773,7 +12769,7 @@ void daAlink_c::posMove() {
     if (mProcID == PROC_AUTO_JUMP && checkGrabGlide() &&
         (field_0xC04[0].ChkTgHit() || field_0xC04[1].ChkTgHit() || field_0xC04[2].ChkTgHit()))
     {
-        speedF *= FRAMERATE_SCALE;
+        speedF *= 0.5f;
     }
 
     speed.x = speedF * cM_ssin(current.angle.y);
@@ -12822,20 +12818,20 @@ void daAlink_c::posMove() {
             speed.y = 0.0f;
         } else if (checkWolf()) {
             if (checkHeavyStateOn(1, 1)) {
-                speed.y += daAlinkHIO_wlSwim_c0::m.field_0x9C * FRAMERATE_SCALE;
+                speed.y += daAlinkHIO_wlSwim_c0::m.field_0x9C;
 
                 if (speed.y > daAlinkHIO_wlSwim_c0::m.field_0xA4) {
                     speed.y = daAlinkHIO_wlSwim_c0::m.field_0xA4;
                 }
             } else {
-                speed.y += daAlinkHIO_wlSwim_c0::m.field_0x60 * FRAMERATE_SCALE;
+                speed.y += daAlinkHIO_wlSwim_c0::m.field_0x60;
 
                 if (speed.y > daAlinkHIO_wlSwim_c0::m.field_0x5C) {
                     speed.y = daAlinkHIO_wlSwim_c0::m.field_0x5C;
                 }
             }
         } else if (!checkEquipHeavyBoots() && getZoraSwim()) {
-            speed.y = -var_f31 * cM_ssin(var_r26) * FRAMERATE_SCALE;
+            speed.y = -var_f31 * cM_ssin(var_r26);
         } else if ((checkBootsOrArmorHeavy() && mProcID != PROC_DEAD) || mProcID == PROC_SWIM_DIVE)
         {
             speed.y += gravity;
@@ -12851,13 +12847,13 @@ void daAlink_c::posMove() {
             if (checkZoraWearAbility() &&
                 mWaterY > current.pos.y + daAlinkHIO_swim_c0::m.mNormalFloatDepth)
             {
-                speed.y += daAlinkHIO_swim_c0::m.mZoraFloatDepth * FRAMERATE_SCALE;
+                speed.y += daAlinkHIO_swim_c0::m.mZoraFloatDepth;
 
                 if (speed.y < 0.0f) {
                     speed.y = 0.0f;
                 }
             } else {
-                speed.y += daAlinkHIO_swim_c0::m.mBuoyancy * FRAMERATE_SCALE;
+                speed.y += daAlinkHIO_swim_c0::m.mBuoyancy;
             }
 
             if (speed.y > daAlinkHIO_swim_c0::m.mMaxFloatUpSpeed) {
@@ -12900,17 +12896,11 @@ void daAlink_c::posMove() {
             Vec spFC = {0.0f, 0.0f, 0.0f};
             spFC.z = speedF;
             mDoMtx_stack_c::multVecSR(&spFC, &speed);
-            // Ogathereal: Scale Y velocity at application point for 60fps
-            current.pos.x += speed.x;
-            current.pos.y += speed.y * FRAMERATE_SCALE;
-            current.pos.z += speed.z;
+            current.pos += speed;
             current.pos.x += field_0x342c;
             current.pos.z += field_0x3430;
         } else {
-            // Ogathereal: Scale Y velocity at application point for 60fps
-            current.pos.x += speed.x;
-            current.pos.y += speed.y * FRAMERATE_SCALE;
-            current.pos.z += speed.z;
+            current.pos += speed;
             current.pos.x += field_0x342c;
             current.pos.z += field_0x3430;
 
@@ -15923,11 +15913,8 @@ int daAlink_c::procFrontRollInit() {
                    daAlinkHIO_frontRoll_c0::m.mRollAnm.mEndFrame,
                    daAlinkHIO_frontRoll_c0::m.mRollAnm.mInterpolation);
 
-    // Boofener: speedF at this point has already been scaled down by FRAMERATE_SCALE,
-    // so unscale it before calculating roll speed to get proper vanilla mNormalSpeed value
-    f32 unscaledSpeedF = speedF / FRAMERATE_SCALE;
     mNormalSpeed =
-        unscaledSpeedF * daAlinkHIO_frontRoll_c0::m.mSpeedRate + daAlinkHIO_frontRoll_c0::m.mInitSpeed;
+        speedF * daAlinkHIO_frontRoll_c0::m.mSpeedRate + daAlinkHIO_frontRoll_c0::m.mInitSpeed;
 
     f32 var_f30 = daAlinkHIO_frontRoll_c0::m.mInitSpeed + daAlinkHIO_move_c0::m.mMaxSpeed * daAlinkHIO_frontRoll_c0::m.mSpeedRate;
     if (mNormalSpeed > var_f30) {
@@ -15974,7 +15961,7 @@ int daAlink_c::procFrontRoll() {
 
     cM3dGPla poly;
     if (getSlidePolygon(&poly)) {
-        cLib_chaseF(&mNormalSpeed, 0.0f, 2.5f * FRAMERATE_SCALE); // Boofener: Scale deceleration for 60fps
+        cLib_chaseF(&mNormalSpeed, 0.0f, 2.5f);
     }
 
     if (checkInputOnR()) {
@@ -15993,7 +15980,7 @@ int daAlink_c::procFrontRoll() {
             dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             if (!checkInputOnR()) {
-                mNormalSpeed -= daAlinkHIO_frontRoll_c0::m.mMinSpeed * FRAMERATE_SCALE; // Boofener: 0.5× speed subtraction for 60fps
+                mNormalSpeed -= daAlinkHIO_frontRoll_c0::m.mMinSpeed;
                 if (mNormalSpeed < 0.0f) {
                     mNormalSpeed = 0.0f;
                 }
@@ -16003,7 +15990,7 @@ int daAlink_c::procFrontRoll() {
         }
     } else if (frameCtrl_p->getFrame() > daAlinkHIO_frontRoll_c0::m.mRollAnm.mCancelFrame) {
         onModeFlg(4);
-        cLib_chaseF(&mNormalSpeed, 0.0f, 2.5f * FRAMERATE_SCALE); // Boofener: Scale deceleration for 60fps
+        cLib_chaseF(&mNormalSpeed, 0.0f, 2.5f);
 
         if (checkZeroSpeedF()) {
             onModeFlg(1);
@@ -16012,7 +15999,7 @@ int daAlink_c::procFrontRoll() {
         if (mProcVar2.field_0x300c != 0) {
             procCutFinishInit(2);
         } else if (!checkNextAction(1)) {
-            cLib_chaseF(&mNormalSpeed, 0.0f, 2.5f * FRAMERATE_SCALE); // Boofener: Scale deceleration for 60fps
+            cLib_chaseF(&mNormalSpeed, 0.0f, 2.5f);
         }
     } else if (mDemo.getDemoMode() != 0x28 &&
                speedF >= daAlinkHIO_frontRoll_c0::m.mCrashSpeedThreshold &&
@@ -16054,7 +16041,7 @@ int daAlink_c::procFrontRoll() {
                 field_0x2f93 = 6;
             }
 
-            cLib_chaseF(&mNormalSpeed, 0.0f, 1.0f * FRAMERATE_SCALE); // Boofener: Scale deceleration rate
+            cLib_chaseF(&mNormalSpeed, 0.0f, 1.0f);
         } else if (frameCtrl_p->getFrame() > 6.0f) {
             field_0x2f9d = 4;
         }
@@ -16072,7 +16059,7 @@ int daAlink_c::procFrontRollCrashInit() {
                    daAlinkHIO_frontRoll_c0::m.mCrashAnm.mInterpolation);
 
     mNormalSpeed = daAlinkHIO_frontRoll_c0::m.mCrashSpeedH;
-    speed.y = daAlinkHIO_frontRoll_c0::m.mCrashSpeedV * FRAMERATE_SCALE;
+    speed.y = daAlinkHIO_frontRoll_c0::m.mCrashSpeedV;
 
     if (checkNoResetFlg0(FLG0_UNDERWATER)) {
         mNormalSpeed *= daAlinkHIO_magneBoots_c0::m.mWaterVelocityX;
@@ -16231,7 +16218,7 @@ int daAlink_c::procSideRoll() {
     cM3dGPla poly;
 
     if (getSlidePolygon(&poly)) {
-        cLib_chaseF(&mNormalSpeed, 0.0f, 2.5f * FRAMERATE_SCALE); // Boofener: Scale deceleration rate
+        cLib_chaseF(&mNormalSpeed, 0.0f, 2.5f);
     }
 
     if (checkNoResetFlg0(FLG0_UNK_2)) {
@@ -16304,12 +16291,12 @@ int daAlink_c::procBackJumpInit(int param_0) {
     if (param_0) {
         setSingleAnimeParam(ANM_BACKFLIP, &daAlinkHIO_cutDown_c0::m.mRecoverAnm);
         mNormalSpeed = daAlinkHIO_cutDown_c0::m.mRecoverSpeedV;
-        speed.y = daAlinkHIO_cutDown_c0::m.mSpeedV * FRAMERATE_SCALE;
+        speed.y = daAlinkHIO_cutDown_c0::m.mSpeedV;
         voiceStart(Z2SE_AL_V_TODOME_RETURN);
     } else {
         setSingleAnimeParam(ANM_BACKFLIP, &daAlinkHIO_backJump_c0::m.mBackflipAnm);
         mNormalSpeed = daAlinkHIO_backJump_c0::m.mBackflipSpeedH;
-        speed.y = daAlinkHIO_backJump_c0::m.mBackflipSpeedV * FRAMERATE_SCALE;
+        speed.y = daAlinkHIO_backJump_c0::m.mBackflipSpeedV;
         voiceStart(Z2SE_AL_V_BACKTEN);
     }
 
@@ -16571,10 +16558,8 @@ int daAlink_c::procAutoJumpInit(int param_0) {
     speed.y = mNormalSpeed * cM_ssin(angle);
     mNormalSpeed *= cM_scos(angle);
 
-    // Boofener: Vertical velocity scaled at posMove(), horizontal speed scaled later in speedF calculation
-
     if (cucco_jump) {
-        mNormalSpeed = daAlinkHIO_autoJump_c0::m.mCuccoStartSpeed; // Boofener: Horizontal speed scaled later in speedF calculation
+        mNormalSpeed = daAlinkHIO_autoJump_c0::m.mCuccoStartSpeed;
     }
 
     field_0x3588 = l_waitBaseAnime;
@@ -16723,9 +16708,10 @@ int daAlink_c::procDiveJumpInit() {
     deleteEquipItem(TRUE, TRUE);
     setHeavyBoots(0);
 
-    speed.y = daAlinkHIO_autoJump_c0::m.mDiveSpeedV * FRAMERATE_SCALE;
+    speed.y = daAlinkHIO_autoJump_c0::m.mDiveSpeedV;
     mNormalSpeed = daAlinkHIO_autoJump_c0::m.mDiveSpeedH;
     gravity = daAlinkHIO_autoJump_c0::m.mDiveGravity;
+
     mProcVar2.field_0x300c = 0;
     current.angle.y = shape_angle.y;
     field_0x33b0 = 92.0f;
@@ -17012,7 +16998,7 @@ int daAlink_c::procSmallJumpInit(int param_0) {
                        daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mEndFrame,
                        daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mInterpolation);
         setJumpMode();
-        speed.y = 24.0f * FRAMERATE_SCALE;
+        speed.y = 24.0f;
         voiceStart(Z2SE_AL_V_JUMP_S);
         field_0x2f99 = 15;
         field_0x33b0 = field_0x3588.y;
@@ -17064,16 +17050,16 @@ int daAlink_c::procSmallJump() {
         }
     } else if (mUnderFrameCtrl[0].checkPass(6.0f)) {
         setJumpMode();
-        mNormalSpeed = daAlinkHIO_smallJump_c0::m.mSpeedH / FRAMERATE_SCALE; // Boofener: Compensate for scaling in speedF calculation
+        mNormalSpeed = daAlinkHIO_smallJump_c0::m.mSpeedH;
 
         if (checkHeavyStateOn(1, 1) && !checkNoResetFlg0(FLG0_UNDERWATER)) {
             f32 temp = daAlinkHIO_smallJump_c0::m.mTargetHeightOffset +
                         (field_0x3478 - current.pos.y);
-            speed.y = JMAFastSqrt(2.0f * (temp * -gravity * 2.25f)); // Boofener: gravity is already scaled
+            speed.y = JMAFastSqrt(2.0f * (temp * -(gravity * 2.25f)));
         } else {
             speed.y =
-                JMAFastSqrt(2.0f * ((-gravity) * (daAlinkHIO_smallJump_c0::m.mTargetHeightOffset +
-                                                 (field_0x3478 - current.pos.y)))); // Boofener: gravity is already scaled
+                JMAFastSqrt(2.0f * (-gravity * (daAlinkHIO_smallJump_c0::m.mTargetHeightOffset +
+                                                 (field_0x3478 - current.pos.y))));
         }
 
         voiceStart(Z2SE_AL_V_JUMP_S);

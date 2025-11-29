@@ -22,13 +22,6 @@ build/
 .ninja_*
 build.ninja
 
-# PyInstaller artifacts
-setup/dist/
-setup/build/
-setup/AppDir/
-setup/appimagetool-*.AppImage
-setup/*.AppImage
-
 # decompctx output
 ctx.*
 *.ctx
@@ -38,8 +31,8 @@ objdiff.json
 compile_commands.json
 
 # Miscellaneous
-# /*.txt - Commented out to allow documentation files
-# *.exe - Commented out to allow build_tp.bat helper
+/*.txt
+*.exe
 
 # MacOS
 .DS_Store

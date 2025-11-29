@@ -1083,6 +1083,7 @@ void dComIfGs_Grass_hide_Set(s8 param_0);
 void dComIfGs_onGetMagicUseFlag();
 void dComIfG_playerStatusD();
 void dComIfG_playerStatusD_pre_clear();
+void dComIfGs_staffroll_next_go();
 
 inline void dComIfGs_init() {
     g_dComIfG_gameInfo.info.init();
@@ -1910,7 +1911,7 @@ inline void dComIfGs_onLightDropGetFlag(u8 i_nowLevel) {
     g_dComIfG_gameInfo.info.getPlayer().getLightDrop().onLightDropGetFlag(i_nowLevel);
 }
 
-inline void dComIfGs_setTmpReg(const u16 i_reg, u8 i_no) {
+inline void dComIfGs_setTmpReg(u16 i_reg, u8 i_no) {
     g_dComIfG_gameInfo.info.getTmp().setEventReg(i_reg, i_no);
 }
 
@@ -1922,7 +1923,7 @@ inline u8 dComIfGs_getEventReg(u16 reg) {
     return g_dComIfG_gameInfo.info.getEvent().getEventReg(reg);
 }
 
-inline void dComIfGs_setEventReg(const u16 reg, u8 value) {
+inline void dComIfGs_setEventReg(u16 reg, u8 value) {
     g_dComIfG_gameInfo.info.getEvent().setEventReg(reg, value);
 }
 

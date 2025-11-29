@@ -41,6 +41,16 @@ struct TUtil<f32> {
         root = 0.5f * root * (3.0f - x * (root * root));
         return root;
     }
+
+    static inline f32 sqrt(f32 x) {
+        if (x <= 0.0f) {
+            return x;
+        }
+
+        f32 root = __frsqrte(x);
+        root = 0.5f * root * (3.0f - x * (root * root));
+        return x * root;
+    }
 };
 
 template<>
@@ -216,7 +226,7 @@ struct TVec3<f32> : public Vec {
     }
 
     inline TVec3<f32>& operator=(const TVec3<f32>& b) {
-        set(b.x, b.y, b.z);
+        setTVec3f(&b.x, &this->x);
         return *this;
     }    
 
@@ -439,12 +449,7 @@ struct TVec2 {
     }
 
     f32 length() const {
-        f32 sqr = squared();
-        if (sqr <= 0.0f) {
-            return sqr;
-        }
-        sqr *= fsqrt_step(sqr);
-        return sqr;
+        return TUtil<f32>::sqrt(squared());
     }
 
     T x;

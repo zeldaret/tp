@@ -80,7 +80,6 @@ public:
         mCurrentHeap = heap ? heap : JKRHeap::getCurrentHeap();
     }
 
-protected:
     void resume() { OSResumeThread(mThreadRecord); }
     BOOL sendMessage(OSMessage message) {
         return OSSendMessage(&mMessageQueue, message, OS_MESSAGE_NOBLOCK);

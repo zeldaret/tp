@@ -66,6 +66,8 @@ public:
     bool isBuilding() const { return field_0x2c; }
     bool isOpen() const;
     JAUSectionHeap* asSectionHeap() { return (JAUSection*)sectionHeap_ == this ? sectionHeap_ : NULL; }
+    const TSectionData& getSectionData() const { return data_; }
+
     JKRHeap* getHeap_();
 
     /* 0x28 */ u32 field_0x28;
@@ -95,7 +97,7 @@ public:
 
     /* 802A5E60 */ void setSeqDataArchive(JKRArchive*);
     /* 802A5EC0 */ bool loadDynamicSeq(JAISoundID, bool);
-    /* 802A5EF8 */ void releaseIdleDynamicSeqDataBlock();
+    /* 802A5EF8 */ u32 releaseIdleDynamicSeqDataBlock();
     /* 802A5FE0 */ JAUSectionHeap(JKRSolidHeap*, bool, s32);
     /* 802A6094 */ JAUSection* getOpenSection();
     /* 802A60A0 */ bool setSeqDataUser(JAISeqDataUser*);

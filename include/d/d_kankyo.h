@@ -2,11 +2,13 @@
 #define D_KANKYO_D_KANKYO_H
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
-#include "d/d_kankyo_wether.h"
+#include "JSystem/JHostIO/JORReflexible.h"
+#include "d/d_bg_s_gnd_chk.h"
 #include "d/d_kankyo_data.h"
+#include "d/d_kankyo_tev_str.h"
+#include "d/d_kankyo_wether.h"
 #include "f_pc/f_pc_base.h"
 #include "m_Do/m_Do_ext.h"
-#include "JSystem/JHostIO/JORReflexible.h"
 
 class JPABaseEmitter;
 class cBgS_PolyInfo;
@@ -144,43 +146,6 @@ struct LightStatus {
     /* 0xE0 */ f32 field_0xe0;
     /* 0xE4 */ f32 field_0xe4;
 };  // Size: 0xE8
-
-class dKy_tevstr_c {
-public:
-    // Supposedly exists but didn't work. Might be too big to inline.
-    // See dPa_modelEcallBack::model_c::set.
-    // inline dKy_tevstr_c& operator=(const dKy_tevstr_c& b);
-
-    /* 0x000 */ J3DLightObj mLightObj;
-    /* 0x074 */ J3DLightObj mLights[6];
-    /* 0x32C */ cXyz field_0x32c;  // some light pos, unsure how it differs
-    /* 0x338 */ cXyz mLightPosWorld;
-    /* 0x344 */ f32 field_0x344;
-    /* 0x348 */ GXColorS10 AmbCol;
-    /* 0x350 */ GXColorS10 FogCol;
-    /* 0x358 */ GXColorS10 TevColor;
-    /* 0x360 */ GXColor TevKColor;
-    /* 0x364 */ GXColor mLightInf;
-    /* 0x368 */ f32 mFogStartZ;
-    /* 0x36C */ f32 mFogEndZ;
-    /* 0x370 */ f32 pat_ratio;
-    /* 0x374 */ f32 field_0x374;
-    /* 0x378 */ u16 Material_id;  // Used for some sort of special material handling when non-0
-    /* 0x37A */ u8 Type;
-    /* 0x37B */ u8 mInitTimer;
-    /* 0x37C */ u8 UseCol;
-    /* 0x37D */ u8 PrevCol;
-    /* 0x37E */ u8 wether_pat1;
-    /* 0x37F */ u8 wether_pat0;
-    /* 0x380 */ s8 room_no;  // Room Color
-    /* 0x381 */ u8 YukaCol;  // Floor (Poly) Color
-    /* 0x382 */ u8 mLightMode;
-    /* 0x383 */ u8 Material_use_fg;
-    /* 0x384 */ u8 field_0x384;
-    /* 0x385 */ u8 field_0x385;
-};  // Size = 0x388
-
-STATIC_ASSERT(sizeof(dKy_tevstr_c) == 0x388);
 
 class fopAc_ac_c;
 class dKyd_lightSchejule;
@@ -513,6 +478,26 @@ STATIC_ASSERT(sizeof(dScnKy_env_light_c) == 4880);
 inline dScnKy_env_light_c* dKy_getEnvlight() {
     return &g_env_light;
 }
+
+class dKankyo_ParticlelightHIO_c : public JORReflexible {
+public:
+    dKankyo_ParticlelightHIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_ParticlelightHIO_c() {}
+
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 field_0x5;
+    /* 0x06 */ GXColor prim_col;
+    /* 0x0A */ GXColor env_col;
+    /* 0x10 */ f32 blend_ratio;
+    /* 0x14 */ int field_0x14;
+    /* 0x18 */ u8 type;
+    /* 0x19 */ u8 field_0x19;
+    /* 0x1A */ u8 field_0x1a;
+    /* 0x1B */ u8 field_0x1B[0x20 - 0x1B];
+};
 
 class dKankyo_lightHIO_c : public JORReflexible {
 public:
@@ -892,6 +877,22 @@ public:
     /* 0x1C */ dKy_flush_info step4;
 };
 
+class dKankyo_dungeonlightHIO_c : public JORReflexible {
+public:
+    dKankyo_dungeonlightHIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+    virtual ~dKankyo_dungeonlightHIO_c() {}
+
+    /* 0x4 */ u8 field_0x4;
+    /* 0x5 */ u8 field_0x5;
+    /* 0x6 */ u8 displayDebugSphere;
+    /* 0x7 */ u8 usedLights;
+    /* 0x8 */ u8 field_0x8;
+    /* 0x9 */ u8 field_0x9;
+};
+
 class dKankyo_demolightHIO_c : public JORReflexible {
 public:
     dKankyo_demolightHIO_c();
@@ -932,42 +933,6 @@ public:
     /* 0x3C */ s16 minigame_no_wind_duration;
     /* 0x3E */ s16 minigame_low_wind_duration;
     /* 0x40 */ s16 minigame_high_wind_duration;
-};
-
-class dKankyo_dungeonlightHIO_c : public JORReflexible {
-public:
-    dKankyo_dungeonlightHIO_c();
-
-    void listenPropertyEvent(const JORPropertyEvent*);
-    void genMessage(JORMContext*);
-    virtual ~dKankyo_dungeonlightHIO_c() {}
-
-    /* 0x4 */ u8 field_0x4;
-    /* 0x5 */ u8 field_0x5;
-    /* 0x6 */ u8 displayDebugSphere;
-    /* 0x7 */ u8 usedLights;
-    /* 0x8 */ u8 field_0x8;
-    /* 0x9 */ u8 field_0x9;
-};
-
-class dKankyo_ParticlelightHIO_c : public JORReflexible {
-public:
-    dKankyo_ParticlelightHIO_c();
-
-    void listenPropertyEvent(const JORPropertyEvent*);
-    void genMessage(JORMContext*);
-    virtual ~dKankyo_ParticlelightHIO_c() {}
-
-    /* 0x04 */ u8 field_0x4;
-    /* 0x05 */ u8 field_0x5;
-    /* 0x06 */ GXColor prim_col;
-    /* 0x0A */ GXColor env_col;
-    /* 0x10 */ f32 blend_ratio;
-    /* 0x14 */ int field_0x14;
-    /* 0x18 */ u8 type;
-    /* 0x19 */ u8 field_0x19;
-    /* 0x1A */ u8 field_0x1a;
-    /* 0x1B */ u8 field_0x1B[0x20 - 0x1B];
 };
 
 class dKankyo_HIO_c : public JORReflexible {

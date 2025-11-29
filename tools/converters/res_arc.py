@@ -1,14 +1,23 @@
 #!/usr/bin/env python3
 
+# this command optionally takes -i and -o for input arc files and output enum files, and --debug which prints out the file it's currently working on.
+# Iterates over all files in the orig directory, outputs the enum containing IDs and indices for each files contained in the arc.
+# Outputs files to the ./assets/VERSION/ folder. Its path will match the path in the ./orig/files directory.
+# Currently does not iterate over files on a disk image, all arc files must be present in a directory such that os.walk can see them
+
 from binary_funcs import read_bytes_until_null, read_u32, read_u16, read_u8, skip_bytes
 import subprocess
 from os import walk, makedirs
 from pathlib import Path
 from typing import NamedTuple, DefaultDict
 import re
+from sys import argv
+import argparse
+
+debug_print = lambda *args, **kwargs : None
 
 DTK_PATH = str(Path("./build/tools/dtk.exe"))
-OUT_PATH = "build/res"
+OUT_PATH = "assets"
 INDENT = " " * 4
 ADD_EXT_TO_ENUM = False
 SKIP_STAGE_ARCS = True
@@ -214,23 +223,28 @@ def convert_binary_to_resource_enum(src_path: Path, dest_path: Path) -> None:
         for file in files:
             parts = file.file_name.split(".")
             santitized_file_name = sanitize_string(parts[0].upper()) # Sanitize identifier
-                
-            seen_count = appearance_count[santitized_file_name]
-            appearance_count[santitized_file_name] += 1
 
             ext = ""
             if len(parts) > 1:
                 ext = sanitize_string(parts[1].upper())
 
-            duplicate_tag = "_"
+            file_str = f"{file_stem_upper}_{ext}_{santitized_file_name}"
+
+            idx = f"dRes_INDEX_{file_str}"
+            seen_count = appearance_count[idx]
+            appearance_count[idx] = seen_count + 1
             if seen_count > 0:
-                duplicate_tag = f"_{seen_count}_"
+                idx += f"_{seen_count}"
+
+            id  = f"dRes_ID_{file_str}"
+            seen_count = appearance_count[id]
+            appearance_count[id] = seen_count + 1
+            if seen_count > 0:
+                id += f"_{seen_count}"
 
             # tiny optimization to do less string formatting
-            begin_part = f"{INDENT}dRes_"
-            mid_part = f"_{file_stem_upper}_{ext}_{santitized_file_name}{duplicate_tag}e=0x"
-            out_idxs.append(f"{begin_part}INDEX{mid_part}{file.index:X},")
-            out_ids.append(f"{begin_part}ID{mid_part}{file.id:X},")
+            out_idxs.append(f"{INDENT}{idx}_e=0x{file.index:X},")
+            out_ids.append(f"{INDENT}{id}_e=0x{file.id:X},")
     
     out_lines.append(f"enum dRes_INDEX_{file_stem_upper} {{")
     out_lines.extend(out_idxs)
@@ -289,6 +303,25 @@ def extract_enum_from_file(src_path:Path, dst_path:Path) -> None:
     convert_binary_to_resource_enum(src_path, dst_path)
 
 def main() -> None:
+    args = argparse.ArgumentParser()
+    args.add_argument("--debug", action="store_true", help="Prints each file as it is converted")
+    group = args.add_argument_group("IO", description="optional")
+    group.add_argument("-i", "--input", help="input arc file to convert")
+    group.add_argument("-o", "--output", help="output enum file path")
+
+    args = args.parse_args()
+    global debug_print 
+    if args.debug:
+        debug_print = print
+
+    if bool(args.input) ^ bool(args.output):
+        print("If input or output is provided, both must be present")
+        exit(1)
+
+    if bool(args.input) and bool(args.output):
+        extract_enum_from_file(Path(args.input), Path(args.output))
+        exit()
+
     for dir, dirnames, filenames in walk("./orig/"):
         dirpath = Path(dir)
         if "res" not in dirpath.parts: continue
@@ -302,9 +335,14 @@ def main() -> None:
                 # find the res folder, truncate the path to be the part after the res folder
                 out_path = Path("/".join(file_path.parts[file_path.parts.index("res") + 1:]))
                 # set the output path to be the designated output + the version + the file's heirarchy
-                out_path = OUT_PATH / (version / out_path)
-                # we're going to output to a header file, prefix it with "res_"
-                out_path = out_path.with_name("res_" + out_path.name).with_suffix(".h")
+                out_path = OUT_PATH / (version / ("res" / out_path))
+                # we're going to output to a header file
+                out_path = out_path.with_name(out_path.name).with_suffix(".h")
+                debug_print(out_path)
+
+                if (SKIP_STAGE_ARCS and "Stage" in out_path.parts):
+                    continue
+
                 try:
                     extract_enum_from_file(file_path, out_path)
                 except AssertionError as e:

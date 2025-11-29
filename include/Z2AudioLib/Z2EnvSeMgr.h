@@ -12,10 +12,10 @@ enum WindType {
 };
 
 struct Z2EnvSeBase {
-    /* 802C589C */ Z2EnvSeBase(Vec* param_0 = NULL);
+    /* 802C589C */ Z2EnvSeBase(Vec* posPtr = NULL);
     /* 802C58AC */ ~Z2EnvSeBase();
-    /* 802C5908 */ bool startEnvSe(JAISoundID, f32, f32, f32, f32, f32, u32);
-    /* 802C5AB4 */ bool startEnvSeLevel(JAISoundID, f32, f32, f32, f32, f32, u32);
+    /* 802C5908 */ bool startEnvSe(JAISoundID soundID, f32 fxMix, f32 volume, f32 pan, f32 dolby, f32 pitch, u32 moveSteps);
+    /* 802C5AB4 */ bool startEnvSeLevel(JAISoundID soundID, f32 fxMix, f32 volume, f32 pan, f32 dolby, f32 pitch, u32 moveSteps);
 
     JAISoundHandle* getHandle() { return &mHandle; }
     void setPos(Vec* pos) { mPos = pos; }
@@ -27,12 +27,12 @@ struct Z2EnvSeBase {
 struct Z2EnvSeAutoPan : public Z2EnvSeBase {
     /* 802C5ECC */ Z2EnvSeAutoPan();
     /* 802C5F28 */ ~Z2EnvSeAutoPan();
-    /* 802C5F7C */ void setPanParam(f32, f32, bool, bool, f32, f32);
+    /* 802C5F7C */ void setPanParam(f32 pan, f32 dolby, bool, bool, f32, f32);
     /* 802C5F98 */ void calcPan();
-    /* 802C60E0 */ bool startEnvSeAutoPanLevel(JAISoundID, f32, f32, f32);
+    /* 802C60E0 */ bool startEnvSeAutoPanLevel(JAISoundID soundID, f32 fxMix, f32 volume, f32 pitch);
 
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
+    /* 0x08 */ f32 mPan;
+    /* 0x0C */ f32 mDolby;
     /* 0x10 */ f32 field_0x10;
     /* 0x14 */ f32 field_0x14;
     /* 0x18 */ bool field_0x18;
@@ -40,14 +40,14 @@ struct Z2EnvSeAutoPan : public Z2EnvSeBase {
 };  // Size: 0x1C
 
 struct Z2EnvSeDir : public Z2EnvSeBase {
-    /* 802C5C9C */ Z2EnvSeDir(Vec* param_0 = NULL);
+    /* 802C5C9C */ Z2EnvSeDir(Vec* dir = NULL);
     /* 802C5D1C */ ~Z2EnvSeDir();
-    /* 802C5D70 */ void setPanDir(Vec*);
+    /* 802C5D70 */ void setPanDir(Vec* dir);
     /* 802C5D9C */ void calcPan(f32);
-    /* 802C5E90 */ bool startEnvSeDirLevel(JAISoundID, f32, f32);
+    /* 802C5E90 */ bool startEnvSeDirLevel(JAISoundID soundID, f32 fxMix, f32 volume);
 
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
+    /* 0x08 */ f32 mPan;
+    /* 0x0C */ f32 mDolby;
     /* 0x10 */ Vec mPanDir;
 };  // Size: 0x1C
 
@@ -57,40 +57,40 @@ struct Z2EnvSeMgr : public JASGlobalInstance<Z2EnvSeMgr> {
     /* 802C66B0 */ void framework();
     /* 802C6998 */ void resetScene();
     /* 802C699C */ void resetSceneInner();
-    /* 802C6AC0 */ void initSceneEnvSe(s32, s8, f32);
+    /* 802C6AC0 */ void initSceneEnvSe(s32 sceneID, s8 room, f32);
     /* 802C6C1C */ void playSceneEnvSe();
     /* 802C6C84 */ void initStaticEnvSe(u8, u8, u8, u8, Vec*);
-    /* 802C70C8 */ bool startStaticEnvSe(s8);
-    /* 802C780C */ void registWindowPos(Vec*);
+    /* 802C70C8 */ bool startStaticEnvSe(s8 reverb);
+    /* 802C780C */ void registWindowPos(Vec* posPtr);
     /* 802C7830 */ bool startRainSe(s32, s8);
-    /* 802C7CF4 */ void startNearThunderSe(s8);
-    /* 802C7E68 */ void startFarThunderSe(Vec*, s8);
-    /* 802C7FB4 */ void setSnowPower(s8);
+    /* 802C7CF4 */ void startNearThunderSe(s8 reverb);
+    /* 802C7E68 */ void startFarThunderSe(Vec* posPtr, s8 reverb);
+    /* 802C7FB4 */ void setSnowPower(s8 reverb);
     /* 802C7FBC */ void initStrongWindSe();
-    /* 802C7FC8 */ void setWindDirection(Vec*);
-    /* 802C800C */ bool startStrongWindSe(s8);
+    /* 802C7FC8 */ void setWindDirection(Vec* dir);
+    /* 802C800C */ bool startStrongWindSe(s8 reverb);
     /* 802C80F8 */ void initRiverSe(u8, u8, u8, u8);
-    /* 802C8234 */ void registRiverSePos(Vec*);
-    /* 802C8258 */ void setHyrulSewerOpen(bool);
-    /* 802C8300 */ bool startRiverSe(s8);
+    /* 802C8234 */ void registRiverSePos(Vec* posPtr);
+    /* 802C8258 */ void setHyrulSewerOpen(bool isSewerOpen);
+    /* 802C8300 */ bool startRiverSe(s8 reverb);
     /* 802C8730 */ void initFallSe(u8, u8, u8, u8);
-    /* 802C886C */ void registFallSePos(Vec*);
-    /* 802C8890 */ bool startFallSe(s8);
+    /* 802C886C */ void registFallSePos(Vec* posPtr);
+    /* 802C8890 */ bool startFallSe(s8 reverb);
     /* 802C8A90 */ void initEtcSe(u8, u8, u8, u8);
-    /* 802C8C24 */ void registEtcSePos(Vec*);
-    /* 802C8C48 */ bool startEtcSe(s8);
-    /* 802C92C8 */ void registWolfSmellSePos(Vec*);
-    /* 802C92EC */ bool startFogWipeTrigger(Vec*);
-    /* 802C93A0 */ void setFogWipeWidth(f32);
+    /* 802C8C24 */ void registEtcSePos(Vec* posPtr);
+    /* 802C8C48 */ bool startEtcSe(s8 reverb);
+    /* 802C92C8 */ void registWolfSmellSePos(Vec* posPtr);
+    /* 802C92EC */ void startFogWipeTrigger(Vec* pos);
+    /* 802C93A0 */ void setFogWipeWidth(f32 width);
     /* 802C93E4 */ f32 getFogDensity();
     /* 802C9400 */ bool startFogSe();
     /* 802C950C */ void initLv3WaterSe(u8, u8, u8, u8);
-    /* 802C9F58 */ void registLv3WaterSePos(u8, Vec*);
-    /* 802CA794 */ void startLv3WaterSe(s8);
+    /* 802C9F58 */ void registLv3WaterSePos(u8, Vec* posPtr);
+    /* 802CA794 */ void startLv3WaterSe(s8 reverb);
 
-    void setWindType(u8 i_type) { mWindType = i_type; }
-    void registSmellSePos(Vec* param_0) { registEtcSePos(param_0); }
-    void startSmellSe(s8 param_0) { startEtcSe(param_0); }
+    void setWindType(u8 type) { mWindType = type; }
+    void registSmellSePos(Vec* posPtr) { registEtcSePos(posPtr); }
+    void startSmellSe(s8 reverb) { startEtcSe(reverb); }
     void initSmellSe(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
         initEtcSe(param_0, param_1, param_2, param_3);
     }

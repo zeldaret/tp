@@ -40,24 +40,28 @@ struct Z2Param {
     static f32 VOL_SE_ATMOSPHERE_PAUSING;
     static f32 MIN_DISTANCE_VOLUME;
     static f32 ENEMY_LASTHIT_MUTE_VOLUME;
+
+    // made up names based on HIO labels
+    static u8 SCENE_CHANGE_BGM_FADEOUT_TIME;
+    static u8 BGM_CROSS_FADEIN_TIME;
+    static u8 BGM_CROSS_FADEOUT_TIME;
+    static u8 BATTLE_BGM_WAIT_TIME;
+
+    static u8 FOUND_TRACK_FI_TIME;
+    static u8 FOUND_TRACK_FO_TIME;
+    static u8 CLOSE_BATTLE_TRACK_FI_TIME;
+    static u8 CLOSE_BATTLE_TRACK_FO_TIME;
+
+    static u8 ENDING_BLOW_VOL_DOWN_TIME;
+    static u8 ENDING_BLOW_VOL_LOWER_TIME;
+    static u8 ENDING_BLOW_VOL_LOWER_RECOVER_TIME;
+    static u8 ENDING_BLOW_MIN_FINISH_TIME;
+
+    static u8 DARK_SE_FILTER_ON;
+    static u8 DARK_SE_LOW_PASS_FILTER_SETTING;
+    static u8 SYSTEM_SE_USE_DARK_SE_SETTING;
 };
 
-extern u8 struct_80450860;
-extern u8 struct_80450861;
-extern u8 struct_80450862;
-extern u8 struct_80450863;
-extern u8 struct_80450864;
-extern u8 struct_80450865;
-extern u8 struct_80450866;
-extern u8 struct_80450867;
-extern u8 struct_80450868;
-extern u8 struct_80450869;
-extern u8 struct_8045086A;
-extern u8 struct_8045086B;
 extern u8 data_8045086C;
-
-extern u8 struct_80451340;
-extern u8 struct_80451341;
-extern u8 struct_80451342;
 
 #endif /* Z2PARAM_H */

@@ -26,24 +26,19 @@ struct J3DTransformInfo {
     inline J3DTransformInfo& operator=(const register J3DTransformInfo& b) {
         register const J3DTransformInfo& var_r31 = b;
         register J3DTransformInfo& var_r30 = *this;
-
         register f32 var_f31;
-        register f32 var_f0;
-        register int var_r0;
         asm {
-            psq_l var_f31, 0x0(var_r31), 0, 0
-            psq_st var_f31, 0x0(var_r30), 0, 0
-            lfs var_f31, 0x8(var_r31)
-            stfs var_f31, 0x8(var_r30)
-            lwz var_r0, 0xc(var_r31)
-            stw var_r0, 0xc(var_r30)
-            lha var_r0, 0x10(var_r31)
-            sth var_r0, 0x10(var_r30)
-            psq_l var_f31, 0x14(var_r31), 0, 0
-            psq_st var_f31, 0x14(var_r30), 0, 0
-            lfs var_f0, 0x1c(var_r31)
-            stfs var_f0, 0x1c(var_r30)
+            psq_l var_f31, J3DTransformInfo.mScale(var_r31), 0, 0
+            psq_st var_f31, J3DTransformInfo.mScale(var_r30), 0, 0
         }
+        mScale.z = b.mScale.z;
+        *(u32*)&mRotation = *(u32*)&b.mRotation;
+        mRotation.z = b.mRotation.z;
+        asm {
+            psq_l var_f31, J3DTransformInfo.mTranslate(var_r31), 0, 0
+            psq_st var_f31, J3DTransformInfo.mTranslate(var_r30), 0, 0
+        }
+        mTranslate.z = b.mTranslate.z;
         return *this;
     }
 #endif

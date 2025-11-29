@@ -127,7 +127,6 @@ protected:
     /* 0x5C */ JSUList<JKRDisposer> mDisposerList;
     /* 0x68 */ bool mErrorFlag;
     /* 0x69 */ bool mInitFlag;
-    /* 0x6A */ u8 padding_0x6a[2];
 
 public:
     static bool initArena(char** memory, u32* size, int maxHeaps);

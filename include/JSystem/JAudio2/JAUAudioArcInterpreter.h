@@ -37,7 +37,7 @@ public:
         mReadPtr += 4;
         return temp;
     }
-    const void* getContent_(u32 param_0) { return mBase + param_0; }
+    const void* getContent_(u32 param_0) const { return mBase + param_0; }
 
 
     /* 0x04 */ const u8* mReadPtr;

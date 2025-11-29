@@ -4,7 +4,6 @@
  */
 
 #include "m_Do/m_Do_main.h"
-#include "global.h"  // Boofener: For deltatime system
 #include "DynamicLink.h"
 #include "JSystem/JAudio2/JASAudioThread.h"
 #include "JSystem/JAudio2/JAUSoundTable.h"
@@ -39,74 +38,6 @@
 #if PLATFORM_WII || PLATFORM_SHIELD
 #include <revolution/sc.h>
 #endif
-
-// Boofener: Deltatime and frame-skipping system for high FPS
-float g_deltaTime = 0.5f;
-float g_targetFrameTime = 1.0f / 30.0f;
-float g_targetFramerate = 60.0f;
-int g_shouldUpdateLogic = 1;
-static u32 s_lastVICount = 0;
-static u32 s_lastLogicUpdateVICount = 0;
-static OSTime s_lastFrameTime = 0;
-static OSTime s_lastLogicUpdateTime = 0;
-static int s_initialized = 0;
-static float s_VICountsPerLogicUpdate = 1.0f;  // At 60fps logic, this is 1 VI per update
-
-void setTargetFramerate(float fps) {
-    g_targetFramerate = fps;
-}
-
-float getTargetFramerate() {
-    return g_targetFramerate;
-}
-
-int shouldUpdateGameLogic() {
-    // For framerates > 60fps, use OSTime since VBI is capped at 60Hz
-    if (g_targetFramerate > 60.0f) {
-        OSTime currentTime = OSGetTime();
-        float deltaMilliseconds = (float)OSTicksToMilliseconds(currentTime - s_lastLogicUpdateTime);
-        float deltaSeconds = deltaMilliseconds / 1000.0f;
-        float logicUpdateInterval = 1.0f / 60.0f;  // Cap logic at 60fps
-
-        if (deltaSeconds >= logicUpdateInterval) {
-            s_lastLogicUpdateTime = currentTime;
-            return 1;
-        }
-        return 0;
-    }
-
-    // For 60fps and below, always update logic every frame
-    return 1;
-}
-
-void updateDeltaTime() {
-    OSTime currentTime = OSGetTime();
-    u32 currentVICount = VIGetRetraceCount();
-
-    if (!s_initialized) {
-        s_lastFrameTime = currentTime;
-        s_lastLogicUpdateTime = currentTime;
-        s_lastVICount = currentVICount;
-        s_initialized = true;
-        g_deltaTime = 0.5f;
-        return;
-    }
-
-    // Boofener: For framerates > 60fps, keep deltaTime fixed at 60fps equivalent
-    // This prevents slow-motion during render-only frames
-    if (g_targetFramerate > 60.0f) {
-        g_deltaTime = 0.5f;  // Always run physics at 60fps speed
-        s_lastFrameTime = currentTime;
-        return;
-    }
-
-    // Boofener: Calculate deltaTime based on target framerate
-    // 30fps: deltaTime = 1.0, 60fps: deltaTime = 0.5
-    g_deltaTime = 30.0f / g_targetFramerate;
-
-    s_lastVICount = currentVICount;
-    s_lastFrameTime = currentTime;
-}
 
 class mDoMain_HIO_c : public mDoHIO_entry_c {
 public:
@@ -829,37 +760,29 @@ void main01(void) {
         static u32 frame;
         frame++;
 
-        // Boofener: Update deltatime for frame-independent physics (60/120/144fps support)
-        updateDeltaTime();
-
-        // Boofener: For high framerates (120fps+), skip logic updates on some frames
-        g_shouldUpdateLogic = shouldUpdateGameLogic();
-
-        if (g_shouldUpdateLogic) {
-            #if DEBUG
-            if (memorycheck_check_frame != 0 && frame % memorycheck_check_frame == 0) {
-                FixedMemoryCheck::checkAll();
-            }
-            #endif
-
-            if (fillcheck_check_frame != 0 && frame % fillcheck_check_frame == 0) {
-                mDoMch_HeapCheckAll();
-            }
-
-            if (mDoDvdThd::SyncWidthSound) {
-                mDoMemCd_UpDate();
-            }
-
-            mDoCPd_c::read();   // read controller input
-
-            #if DEBUG
-            if (mDoMch::GXWarningExecuteFrame) {
-                GXSetVerifyLevel(GX_WARN_ALL);
-            }
-            #endif
-
-            fapGm_Execute();    // handle game execution
+        #if DEBUG
+        if (memorycheck_check_frame != 0 && frame % memorycheck_check_frame == 0) {
+            FixedMemoryCheck::checkAll();
         }
+        #endif
+
+        if (fillcheck_check_frame != 0 && frame % fillcheck_check_frame == 0) {
+            mDoMch_HeapCheckAll();
+        }
+
+        if (mDoDvdThd::SyncWidthSound) {
+            mDoMemCd_UpDate();
+        }
+
+        mDoCPd_c::read();   // read controller input
+
+        #if DEBUG
+        if (mDoMch::GXWarningExecuteFrame) {
+            GXSetVerifyLevel(GX_WARN_ALL);
+        }
+        #endif
+
+        fapGm_Execute();    // handle game execution
 
         #if DEBUG
         if (mDoMch::GXWarningExecuteFrame) {

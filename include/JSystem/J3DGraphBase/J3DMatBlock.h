@@ -1641,7 +1641,7 @@ struct J3DIndTexMtx : public J3DIndTexMtxInfo {
     J3DIndTexMtx(J3DIndTexMtxInfo const& info) { *(J3DIndTexMtxInfo*)this = info; }
     /* 8000E064 */ ~J3DIndTexMtx() {}
     void load(u32 param_1) const {
-        J3DGDSetIndTexMtx((GXIndTexMtxID)(param_1 + 1), (Mtx3P)field_0x0, field_0x18);
+        J3DGDSetIndTexMtx((GXIndTexMtxID)(param_1 + GX_ITM_0), (Mtx3P)field_0x0, field_0x18);
     }
 };  // Size: 0x1C
 
