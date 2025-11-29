@@ -148,7 +148,7 @@ s32 J2DScreen::makeHierarchyPanes(J2DPane* p_basePane, JSURandomInputStream* p_s
         case 'EXT1':
             p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
             return 1;
-        case 'BGN1':
+        case 'BGN1': {
             p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
 
             s32 ret = makeHierarchyPanes(next_pane, p_stream, param_2, p_archive);
@@ -156,6 +156,7 @@ s32 J2DScreen::makeHierarchyPanes(J2DPane* p_basePane, JSURandomInputStream* p_s
                 return ret;
             }
             break;
+        }
         case 'END1':
             p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
             return 0;
@@ -401,25 +402,26 @@ bool J2DScreen::createMaterial(JSURandomInputStream* p_stream, u32 param_1, JKRA
             size++; 
 
             u8* nametab = new u8[size];
-            if (nametab != NULL) {
-                for (u16 i = 0; i < size; i++) {
-                    nametab[i] = (buffer + offset)[i];
-                }
-
-                mNameTable = new JUTNameTab((ResNTAB*)nametab);
-                if (mNameTable == NULL) {
-                    delete[] nametab;
-                } else {
-                    success:
-                    delete[] buffer;
-                    return true;
-                }
+            if (nametab == NULL) {
+                goto failure;
             }
-        } else {
-            goto success;
+            for (u16 i = 0; i < size; i++) {
+                nametab[i] = (buffer + offset)[i];
+            }
+
+            mNameTable = new JUTNameTab((ResNTAB*)nametab);
+            if (mNameTable == NULL) {
+                delete[] nametab;
+                goto failure;
+            }
         }
+
+    success:
+        delete[] buffer;
+        return true;
     }
 
+failure:
     delete[] buffer;
     clean();
     return false;
