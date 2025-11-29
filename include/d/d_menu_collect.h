@@ -185,6 +185,8 @@ private:
     /* 0x25F */ u8 field_0x25f;
     /* 0x260 */ u8 field_0x260;
     /* 0x261 */ u8 field_0x261;
+    /* 0x262 */ u8 mFramerateMenuOpen;  // Boofener: Framerate selector menu state
+    /* 0x263 */ u8 mFramerateSelection;  // Boofener: Currently selected framerate option (0-4)
 };
 
 class dMenu_Collect3D_c {

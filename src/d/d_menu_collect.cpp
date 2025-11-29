@@ -34,6 +34,9 @@
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "d/d_menu_window.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "m_Do/m_Do_controller_pad.h"  // Boofener: For Z button check
+#include "JSystem/JUtility/JUTFont.h"  // Boofener: For framerate menu text rendering
+#include "JSystem/JGeometry.h"  // Boofener: For TBox2 menu background
 
 typedef void (dMenu_Collect2D_c::*initFunc)();
 static initFunc init[] = {
@@ -85,6 +88,8 @@ dMenu_Collect2D_c::dMenu_Collect2D_c(JKRExpHeap* param_0, STControl* param_1, CS
     mHeartPiecePosX = 0.0f;
     mHeartPiecePosY = 0.0f;
     mHeartPieceScale = 1.0f;
+    mFramerateMenuOpen = 0;  // Boofener: Framerate menu starts closed
+    mFramerateSelection = 1;  // Boofener: Default to 60fps (index 1)
     mpSubHeap = JKRCreateExpHeap(0x00046000, mpHeap, 0);
 }
 
@@ -1622,6 +1627,41 @@ void dMenu_Collect2D_c::wait_init() {
 
 /* 801B48D0-801B4E14 1AF210 0544+00 1/0 0/0 0/0 .text            wait_proc__17dMenu_Collect2D_cFv */
 void dMenu_Collect2D_c::wait_proc() {
+    // Boofener: Handle framerate menu toggle with Z button
+    if (mDoCPd_c::getTrigZ(PAD_1)) {
+        mFramerateMenuOpen = !mFramerateMenuOpen;
+        if (mFramerateMenuOpen) {
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_CHANGE_WINDOW, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                     -1.0f, 0);
+        }
+    }
+
+    // Boofener: Handle framerate menu input
+    if (mFramerateMenuOpen) {
+        mpStick->checkTrigger();
+        if (mpStick->checkUpTrigger() && mFramerateSelection > 0) {
+            mFramerateSelection--;
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        } else if (mpStick->checkDownTrigger() && mFramerateSelection < 1) {
+            mFramerateSelection++;
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MENU_CURSOR_COMMON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        }
+
+        // Boofener: Apply framerate when A button is pressed
+        if (mDoCPd_c::getTrigA(PAD_1)) {
+            float newFramerate = 60.0f;
+            switch (mFramerateSelection) {
+                case 0: newFramerate = 30.0f; break;
+                case 1: newFramerate = 60.0f; break;
+            }
+            setTargetFramerate(newFramerate);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            mFramerateMenuOpen = 0;
+        }
+
+        return;  // Don't process normal menu input while framerate menu is open
+    }
+
     if (dMw_A_TRIGGER()) {
         if (mCursorX == 0 && mCursorY == 5) {
             if (mDoGph_gInf_c::getFader()->mStatus == 1) {
@@ -2150,6 +2190,55 @@ void dMenu_Collect2D_c::_draw() {
 #endif
         mpString->drawOutFontLocal(textBox0, -1.0f);
     }
+
+    // Boofener: Draw framerate selector menu
+    if (mFramerateMenuOpen) {
+        const char* framerateOptions[] = {"30 FPS", "60 FPS"};
+
+        // Draw semi-transparent background box
+        f32 menuX = 250.0f;
+        f32 menuY = 150.0f;
+        f32 menuWidth = 140.0f;
+        f32 menuHeight = 80.0f;
+
+        JGeometry::TBox2<f32> menuBox(menuX, menuY, menuX + menuWidth, menuY + menuHeight);
+        grafPort->setColor(JUtility::TColor(0, 0, 0, 180));
+        grafPort->fillBox(menuBox);
+
+        // Draw title and options
+        JUTFont* font = mDoExt_getMesgFont();
+        if (font) {
+            font->setGX();
+            font->setCharColor(JUtility::TColor(255, 255, 255, 255));
+
+            // Draw title
+            font->drawString_scale(menuX + 20.0f, menuY + 20.0f, 12.0f, 12.0f, "FRAMERATE", true);
+
+            // Get current active framerate for display
+            float currentFPS = getTargetFramerate();
+            int activeFPSIndex = 1; // Default to 60fps
+            if (currentFPS <= 30.0f) activeFPSIndex = 0;
+            else activeFPSIndex = 1;
+
+            // Draw each option
+            for (int i = 0; i < 2; i++) {
+                f32 optionY = menuY + 50.0f + (i * 22.0f);
+
+                // Draw cursor for selected option
+                if (i == mFramerateSelection) {
+                    font->drawString_scale(menuX + 10.0f, optionY, 10.0f, 10.0f, ">", true);
+                }
+
+                // Draw active indicator for current framerate
+                if (i == activeFPSIndex) {
+                    font->drawString_scale(menuX + 110.0f, optionY, 10.0f, 10.0f, "*", true);
+                }
+
+                font->drawString_scale(menuX + 30.0f, optionY, 10.0f, 10.0f, framerateOptions[i], true);
+            }
+        }
+    }
+
     mpDrawCursor->draw();
 }
 
