@@ -61,8 +61,7 @@ int daBg_btkAnm_c::create(J3DModelData* i_modelData, J3DAnmTextureSRTKey* i_btk,
 
     J3DAnmTextureSRTKey* btk = mpBtk->getBtkAnm();
     for (u16 i = 0; i < btk->getUpdateMaterialNum(); i++) {
-        u16 id = btk->getUpdateMaterialID(i);
-        if (!createMatAnm(i_modelData, id)) {
+        if (!createMatAnm(i_modelData, btk->getUpdateMaterialID(i))) {
             return 0;
         }
     }
@@ -96,15 +95,13 @@ int daBg_brkAnm_c::create(J3DModelData* i_modelData, J3DAnmTevRegKey* i_brk, int
 
     J3DAnmTevRegKey* brk = mpBrk->getBrkAnm();
     for (u16 i = 0; i < brk->getCRegUpdateMaterialNum(); i++) {
-        u16 id = brk->getCRegUpdateMaterialID(i);
-        if (!createMatAnm(i_modelData, id)) {
+        if (!createMatAnm(i_modelData, brk->getCRegUpdateMaterialID(i))) {
             return 0;
         }
     }
 
     for (u16 i = 0; i < brk->getKRegUpdateMaterialNum(); i++) {
-        u16 id = brk->getKRegUpdateMaterialID(i);
-        if (!createMatAnm(i_modelData, id)) {
+        if (!createMatAnm(i_modelData, brk->getKRegUpdateMaterialID(i))) {
             return 0;
         }
     }
@@ -140,7 +137,7 @@ int daBg_c::createHeap() {
     int roomNo = fopAcM_GetParam(this);
     daBg_Part* bgPart = mBgParts;
 
-    for (int i = 0; i < 6; bgPart++, i++) {
+    for (int i = 0; i < 6; i++) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getStageRes(arcName, l_modelName[i]);
         if (modelData == NULL) {
             modelData = (J3DModelData*)dComIfG_getStageRes(arcName, l_modelName2[i]);
@@ -188,10 +185,11 @@ int daBg_c::createHeap() {
             }
 
             for (u16 j = 0; j < modelData->getMaterialNum(); j++) {
+                const char* name;
                 JUTNameTab* nametab = modelData->getMaterialName();
                 J3DMaterial* material = modelData->getMaterialNodePointer(j);
 
-                const char* name = nametab->getName(j);
+                name = nametab->getName(j);
 
                 if (name[3] == 'M' && name[4] == 'A') {
                     if (!memcmp(&name[5], "00", 2)) {
@@ -216,6 +214,8 @@ int daBg_c::createHeap() {
 
             dKy_tevstr_init(bgPart->tevstr, roomNo, 0xFF);
         }
+
+        bgPart++;
     }
 
     cBgD_t* dzb = (cBgD_t*)dComIfG_getStageRes(arcName, "room.dzb");
@@ -230,7 +230,7 @@ int daBg_c::createHeap() {
             return 0;
         }
 
-        dStage_roomControl_c::setBgW(roomNo, (dBgW_base*)mpBgW);
+        dStage_roomControl_c::setBgW(roomNo, (dBgW_Base*)mpBgW);
         mpBgW->SetPriority(dBgW_Base::PRIORITY_0);
     } else {
         void* kcl = dComIfG_getStageRes(arcName, "room.kcl");
@@ -258,6 +258,11 @@ int daBg_c::createHeap() {
 daBg_c::~daBg_c() {
     int roomNo = fopAcM_GetParam(this);
 
+    dBgp_c* bgp = dStage_roomControl_c::getBgp(roomNo);
+    if (bgp != NULL) {
+        bgp->releaseBg();
+    }
+
     if (heap != NULL && mpBgW != NULL) {
         dComIfG_Bgsp().Release((dBgW_Base*)mpBgW);
         dStage_roomControl_c::setBgW(roomNo, NULL);
@@ -280,7 +285,6 @@ static int daBg_Draw(daBg_c* i_this) {
 }
 
 /* 804588C4-80458F38 000D44 0674+00 1/1 0/0 0/0 .text            draw__6daBg_cFv */
-// NONMATCHING - just regalloc + some reorder issues
 int daBg_c::draw() {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
 
@@ -300,7 +304,7 @@ int daBg_c::draw() {
     mDoLib_clipper::changeFar(1000000.0f);
 
     J3DModelData* modelData;
-    for (int i = 0; i < 6; bgPart++, i++) {
+    for (int i = 0; i < 6; i++) {
         sp8 = 0;
         spA = 0;
         sp9 = 0;
@@ -327,7 +331,8 @@ int daBg_c::draw() {
             for (u16 j = 0; j < modelData->getShapeNum(); j++) {
                 J3DShape* shape = modelData->getShapeNodePointer(j);
 
-                if (mDoLib_clipper::clip(j3dSys.getViewMtx(), shape->getMin(), shape->getMax())) {
+                if (mDoLib_clipper::clip(j3dSys.getViewMtx(), (Vec*)shape->getMin(),
+                                         (Vec*)shape->getMax())) {
                     shape->hide();
                 } else {
                     shape->show();
@@ -360,7 +365,7 @@ int daBg_c::draw() {
                             field_0x5f0 = 0;
                         }
 
-                            /* Main Event - Get shadow crystal (can now transform) */
+                        /* Main Event - Get shadow crystal (can now transform) */
                         if (dComIfGs_isEventBit(dSv_event_flag_c::M_077)) {
                             field_0x5f0 = 9;
                         }
@@ -371,16 +376,18 @@ int daBg_c::draw() {
                             field_0x5f1 = 0;
                         }
                     } else if (!memcmp(&name[3], "MA09", 4)) {
-                        bgPart->btk_speed = 1.0f - (1.0f - g_env_light.mWaterSurfaceShineRate) * 0.9f;
+                        bgPart->btk_speed =
+                            1.0f - (1.0f - g_env_light.mWaterSurfaceShineRate) * 0.9f;
                     } else if (!memcmp(&name[3], "MA05", 4)) {
                         bgPart->tevstr->Material_id |= (u8)j;
                     }
 
                     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") ||
-                        !strcmp(dComIfGp_getStartStageName(), "R_SP127")) {
+                        !strcmp(dComIfGp_getStartStageName(), "R_SP127"))
+                    {
                         if (!memcmp(&name[3], "MA00_Enkei_Tree_Color", 21) ||
-                            !memcmp(&name[3], "MA00_Gake", 9) ||
-                            !memcmp(&name[3], "MA00_Kusa", 9)) {
+                            !memcmp(&name[3], "MA00_Gake", 9) || !memcmp(&name[3], "MA00_Kusa", 9))
+                        {
                             J3DGXColorS10 colorS10;
                             J3DGXColor color;
 
@@ -408,12 +415,12 @@ int daBg_c::draw() {
                                 break;
                             }
 
-                            #ifdef DEBUG
-                            s16 sp56 = 0xFF;
+#ifdef DEBUG
+                            sp50.a = 0xFF;
                             if (g_kankyoHIO.navy.fish_pond_colreg_adjust_ON) {
                                 sp50 = g_kankyoHIO.navy.fish_pond_colreg_c0;
                             }
-                            #endif
+#endif
 
                             f32 var_f31 = bgPart->tevstr->AmbCol.r / 10.0f;
                             var_f31 *= var_f31;
@@ -451,10 +458,17 @@ int daBg_c::draw() {
             mDoExt_modelEntryDL(bg_model);
             dComIfGd_setListBG();
         }
+
+        bgPart++;
     }
 
     dComIfGd_setList();
     g_env_light.settingTevStruct(0x10, NULL, dComIfGp_roomControl_getTevStr(roomNo));
+
+    dBgp_c* bgp = dStage_roomControl_c::getBgp(roomNo);
+    if (bgp != NULL) {
+        bgp->draw(this);
+    }
 
     return 1;
 }
@@ -465,7 +479,8 @@ int daBg_c::execute() {
     for (int i = 0; i < 6; i++) {
         if (bgPart->btk != NULL) {
             if (field_0x5f1 != 0) {
-                bgPart->btk->playspeed((field_0x5f1 - 1) / 100.0f);
+                f32 speed = (field_0x5f1 - 1) / 100.0f;
+                bgPart->btk->playspeed(speed);
             }
 
             if (bgPart->btk_speed >= 0.0f) {
@@ -489,9 +504,13 @@ static int daBg_Execute(daBg_c* i_this) {
     return i_this->execute();
 }
 
+int daBg_c::isDelete() {
+    return 1;
+}
+
 /* 8045901C-80459024 00149C 0008+00 1/0 0/0 0/0 .text            daBg_IsDelete__FP6daBg_c */
 static int daBg_IsDelete(daBg_c* i_this) {
-    return 1;
+    return i_this->isDelete();
 }
 
 /* 80459024-8045904C 0014A4 0028+00 1/0 0/0 0/0 .text            daBg_Delete__FP6daBg_c */
@@ -512,6 +531,7 @@ int daBg_c::create() {
     int roomNo = fopAcM_GetParam(this);
     field_0x5f0 = 0;
     field_0x5f1 = 0;
+    dBgp_c* bgp = dStage_roomControl_c::getBgp(roomNo);
 
     if (this->heap == NULL) {
         fopAcM_ct(this, daBg_c);
@@ -539,7 +559,6 @@ int daBg_c::create() {
         }
 
         daBg_Part* bgPart = mBgParts;
-        J3DModelData* modelData;
         for (int i = 0; i < 6; i++) {
             if (bgPart->model != NULL) {
                 J3DModelData* modelData = bgPart->model->getModelData();
@@ -555,13 +574,15 @@ int daBg_c::create() {
             bgPart++;
         }
 
+        J3DModelData* modelData;
         f32 transX;
         f32 transY;
         s16 angle;
         if (dComIfGp_getMapTrans(roomNo, &transX, &transY, &angle)) {
             daBg_Part* bgPart = mBgParts;
+            J3DModel* model;
             for (int i = 0; i < 6; i++) {
-                J3DModel* model = bgPart->model;
+                model = bgPart->model;
 
                 if (model != NULL) {
                     mDoMtx_stack_c::transS(transX, 0.0f, transY);
@@ -598,6 +619,16 @@ int daBg_c::create() {
 
         dKy_tevstr_c* tevstr = dComIfGp_roomControl_getTevStr(roomNo);
         dKy_tevstr_init(tevstr, roomNo, 0xFF);
+
+        if (bgp != NULL) {
+            bgp->registBg(this);
+        }
+    }
+
+    if (bgp != NULL) {
+        if (!bgp->execute(false)) {
+            return cPhs_INIT_e;
+        }
     }
 
     dComIfGp_roomControl_onStatusFlag(roomNo, 0x10);
