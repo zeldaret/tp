@@ -212,7 +212,6 @@ u16 J3DSkinDeform::sWorkArea_MtxReg[1024];
 
 /* 8032CF44-8032D378 327884 0434+00 0/0 1/1 0/0 .text
  * initMtxIndexArray__13J3DSkinDeformFP12J3DModelData           */
-// NONMATCHING - matches debug, not retail
 int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
     J3D_ASSERT_NULLPTR(507, pModelData != NULL);
     if (mPosData != NULL && mNrmData != NULL) {
@@ -576,7 +575,6 @@ void J3DSkinDeform::deformFastVtxNrm_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuff
 
 /* 8032DB50-8032DC74 328490 0124+00 1/1 0/0 0/0 .text
  * deformVtxPos_F32__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer */
-// NONMATCHING - J3DPSMulMtxVec regalloc
 void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* pMtxBuffer) const {
     Mtx* anmMtx = NULL;
     Mtx* anmMtxs[2];
@@ -601,7 +599,6 @@ void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
 
 /* 8032DC74-8032DDB8 3285B4 0144+00 1/1 0/0 0/0 .text
  * deformVtxPos_S16__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer */
-// NONMATCHING - J3DPSMulMtxVec regalloc
 void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* pMtxBuffer) const {
     Mtx* anmMtx = NULL;
     Mtx* anmMtxs[2];
@@ -628,7 +625,6 @@ void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
 
 /* 8032DDB8-8032DEBC 3286F8 0104+00 1/1 0/0 0/0 .text
  * deformVtxNrm_F32__13J3DSkinDeformCFP15J3DVertexBuffer        */
-// NONMATCHING - J3DPSMulMtxVec regalloc
 void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* pVtxBuffer) const {
     pVtxBuffer->swapTransformedVtxNrm();
     int nrmNum = pVtxBuffer->getVertexData()->getNrmNum();
@@ -645,7 +641,6 @@ void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* pVtxBuffer) const {
 
 /* 8032DEBC-8032DFDC 3287FC 0120+00 1/1 0/0 0/0 .text
  * deformVtxNrm_S16__13J3DSkinDeformCFP15J3DVertexBuffer        */
-// NONMATCHING - J3DPSMulMtxVec regalloc
 void J3DSkinDeform::deformVtxNrm_S16(J3DVertexBuffer* pVtxBuffer) const {
     int vtxNrmFrac = pVtxBuffer->getVertexData()->getVtxNrmFrac();
     J3DGQRSetup7(vtxNrmFrac, 7, vtxNrmFrac, 7);
