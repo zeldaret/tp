@@ -16,8 +16,8 @@
 
 class daE_FZ_HIO_c {
 public:
-    /* 806BE94C */ daE_FZ_HIO_c();
-    /* 806C1440 */ virtual ~daE_FZ_HIO_c() {};
+    daE_FZ_HIO_c();
+    virtual ~daE_FZ_HIO_c() {};
 
 public:
     /* 0x04 */ s8 field_0x04;

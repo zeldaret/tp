@@ -9,8 +9,8 @@
 
 class daPoFire_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80CB294C */ daPoFire_HIO_c();
-    /* 80CB3D24 */ virtual ~daPoFire_HIO_c() {}
+    daPoFire_HIO_c();
+    virtual ~daPoFire_HIO_c() {}
 
     void genMessage(JORMContext*);
 

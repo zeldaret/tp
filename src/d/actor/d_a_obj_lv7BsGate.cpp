@@ -9,8 +9,8 @@
 
 class daLv7BsGate_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80C848AC */ daLv7BsGate_HIO_c();
-    /* 80C85164 */ virtual ~daLv7BsGate_HIO_c() {}
+    daLv7BsGate_HIO_c();
+    virtual ~daLv7BsGate_HIO_c() {}
 
     void genMessage(JORMContext*);
 

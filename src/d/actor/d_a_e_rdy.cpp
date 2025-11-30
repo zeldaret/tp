@@ -22,8 +22,8 @@
 
 class daE_RDY_HIO_c : public JORReflexible {
 public:
-    /* 8076BDCC */ daE_RDY_HIO_c();
-    /* 80779880 */ virtual ~daE_RDY_HIO_c() {}
+    daE_RDY_HIO_c();
+    virtual ~daE_RDY_HIO_c() {}
 
     void genMessage(JORMContext*);
 

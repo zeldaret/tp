@@ -7,8 +7,8 @@
 #include "dolphin/types.h"
 
 struct JASDSPChannel {
-    /* 8029D340 */ void drop();
-    /* 8029D948 */ static JASDSPChannel* getHandle(u32);
+    void drop();
+    static JASDSPChannel* getHandle(u32);
 
     inline u32 getStatus() {return mStatus;}
     u32 mStatus;

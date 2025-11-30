@@ -9,8 +9,8 @@
 
 class daUdFloor_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80C8BD0C */ daUdFloor_HIO_c();
-    /* 80C8CB44 */ virtual ~daUdFloor_HIO_c() {}
+    daUdFloor_HIO_c();
+    virtual ~daUdFloor_HIO_c() {}
 
     void genMessage(JORMContext*);
 

@@ -14,7 +14,7 @@
 
 struct daYkgr_HIO_c : public mDoHIO_entry_c {
     daYkgr_HIO_c();
-    /* 805A8D98 */ virtual ~daYkgr_HIO_c() {}
+    virtual ~daYkgr_HIO_c() {}
 
     void genMessage(JORMContext*);
 

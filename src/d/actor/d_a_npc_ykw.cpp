@@ -25,7 +25,7 @@ public:
     daNpc_ykW_HIO_c() {
         m = daNpc_ykW_Param_c::m;
     }
-    /* 80B67B74 */ virtual ~daNpc_ykW_HIO_c() {}
+    virtual ~daNpc_ykW_HIO_c() {}
 
     void listenPropertyEvent(const JORPropertyEvent*);
 

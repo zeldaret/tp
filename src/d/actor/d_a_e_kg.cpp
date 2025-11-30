@@ -11,8 +11,8 @@
 
 class daE_KG_HIO_c {
 public:
-    /* 806F7EEC */ daE_KG_HIO_c();
-    /* 806F9EE8 */ virtual ~daE_KG_HIO_c() {}
+    daE_KG_HIO_c();
+    virtual ~daE_KG_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mSize;

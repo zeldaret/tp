@@ -21,7 +21,7 @@
 
 class daObj_GrA_Param_c {
 public:
-    /* 80C04B1C */ virtual ~daObj_GrA_Param_c() {}
+    virtual ~daObj_GrA_Param_c() {}
 
     static const daObj_GrA_HIO_Param_c m;
 };

@@ -12,8 +12,8 @@
 
 class daOBJ_RW_HIO_c : public JORReflexible {
 public:
-    /* 80CC298C */ daOBJ_RW_HIO_c();
-    /* 80CC3A5C */ virtual ~daOBJ_RW_HIO_c() {}
+    daOBJ_RW_HIO_c();
+    virtual ~daOBJ_RW_HIO_c() {}
 
     void genMessage(JORMContext*);
 

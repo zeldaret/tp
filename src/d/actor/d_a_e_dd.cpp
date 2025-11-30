@@ -13,8 +13,8 @@
 
 class daE_DD_HIO_c : public JORReflexible {
 public:
-    /* 806A226C */ daE_DD_HIO_c();
-    /* 806A6D08 */ virtual ~daE_DD_HIO_c() {}
+    daE_DD_HIO_c();
+    virtual ~daE_DD_HIO_c() {}
 
     void genMessage(JORMContext*);
 

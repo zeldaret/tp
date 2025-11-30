@@ -11,8 +11,8 @@
 #include "m_Do/m_Do_graphic.h"
 
 struct daLv3Water2_HIO_c : public mDoHIO_entry_c {
-    /* 80C5A40C */ daLv3Water2_HIO_c();
-    /* 80C5B14C */ ~daLv3Water2_HIO_c() {}
+    daLv3Water2_HIO_c();
+    ~daLv3Water2_HIO_c() {}
 
     void genMessage(JORMContext*);
 

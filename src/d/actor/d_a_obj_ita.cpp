@@ -12,8 +12,8 @@
 
 class daObj_ITA_HIO_c : public JORReflexible {
 public:
-    /* 80C2836C */ daObj_ITA_HIO_c();
-    /* 80C29184 */ virtual ~daObj_ITA_HIO_c() {}
+    daObj_ITA_HIO_c();
+    virtual ~daObj_ITA_HIO_c() {}
 
     void genMessage(JORMContext* ctx) {
         ctx->genLabel("ヒメクジ", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);

@@ -11,8 +11,8 @@
 
 class daE_OT_HIO_c {
 public:
-    /* 8073A2CC */ daE_OT_HIO_c();
-    /* 8073C9B0 */ virtual ~daE_OT_HIO_c() {}
+    daE_OT_HIO_c();
+    virtual ~daE_OT_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mAttackSpeed;

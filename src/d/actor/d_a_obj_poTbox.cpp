@@ -9,8 +9,8 @@
 
 class daPoTbox_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80CB424C */ daPoTbox_HIO_c();
-    /* 80CB4F14 */ virtual ~daPoTbox_HIO_c() {}
+    daPoTbox_HIO_c();
+    virtual ~daPoTbox_HIO_c() {}
 
     void genMessage(JORMContext*);
 

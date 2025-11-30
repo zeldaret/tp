@@ -17,8 +17,8 @@
 
 class daB_YOI_HIO_c {
 public:
-    /* 8063A14C */ daB_YOI_HIO_c();
-    /* 8063DBD0 */ virtual ~daB_YOI_HIO_c() {}
+    daB_YOI_HIO_c();
+    virtual ~daB_YOI_HIO_c() {}
 
     /* 0x4 */ s8 field_0x4;
     /* 0x8 */ f32 mScaleY;

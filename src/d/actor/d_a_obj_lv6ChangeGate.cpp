@@ -10,8 +10,8 @@
 
 class daLv6ChangeGate_HIO_c : public fOpAcm_HIO_entry_c {
 public:
-    /* 80C70C4C */ daLv6ChangeGate_HIO_c();
-    /* 80C71EE8 */ virtual ~daLv6ChangeGate_HIO_c() {}
+    daLv6ChangeGate_HIO_c();
+    virtual ~daLv6ChangeGate_HIO_c() {}
 
     void genMessage(JORMContext*);
 

@@ -76,7 +76,7 @@ public:
         };
         memcpy(&m, &aParam, sizeof(aParam));
     }
-    /* 806553A8 */ virtual ~daBalloon2D_HIO_c() {}
+    virtual ~daBalloon2D_HIO_c() {}
 
 #if DEBUG
     void genMessage(JORMContext*);

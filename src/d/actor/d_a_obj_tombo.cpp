@@ -16,8 +16,8 @@
 
 class daObj_TomHIO_c : public JORReflexible {
 public:
-    /* 80D191CC */ daObj_TomHIO_c();
-    /* 80D1B618 */ virtual ~daObj_TomHIO_c() {}
+    daObj_TomHIO_c();
+    virtual ~daObj_TomHIO_c() {}
 
     #ifdef DEBUG
     void genMessage(JORMContext* context) {

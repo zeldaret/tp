@@ -49,7 +49,7 @@ public:
         field_0x6e = 20000;
         field_0x78 = -40.0f;
     }
-    /* 80705574 */ virtual ~e_krHIO_c() {}
+    virtual ~e_krHIO_c() {}
     void genMessage(JORMContext*);
 
     /* 0x04 */ u8 field_0x4;

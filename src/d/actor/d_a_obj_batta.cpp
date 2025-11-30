@@ -15,8 +15,8 @@
 
 class daObj_BattaHIO_c : public JORReflexible {
 public:
-    /* 80BA9E2C */ daObj_BattaHIO_c();
-    /* 80BAC874 */ virtual ~daObj_BattaHIO_c() {}
+    daObj_BattaHIO_c();
+    virtual ~daObj_BattaHIO_c() {}
 
     void genMessage(JORMContext* ctx);
 

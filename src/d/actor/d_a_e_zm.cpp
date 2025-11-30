@@ -49,8 +49,8 @@ enum Mode {
 
 class daE_ZM_HIO_c : public JORReflexible {
 public:
-    /* 8082F94C */ daE_ZM_HIO_c();
-    /* 80832800 */ virtual ~daE_ZM_HIO_c() {}
+    daE_ZM_HIO_c();
+    virtual ~daE_ZM_HIO_c() {}
 
     void genMessage(JORMContext*);
 

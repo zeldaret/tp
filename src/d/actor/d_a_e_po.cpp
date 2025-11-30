@@ -22,8 +22,8 @@ static s16 mRollHp = 90;
 
 class daE_PO_HIO_c {
 public:
-    /* 8074C54C */ daE_PO_HIO_c();
-    /* 80756DE8 */ virtual ~daE_PO_HIO_c() {}
+    daE_PO_HIO_c();
+    virtual ~daE_PO_HIO_c() {}
 
     /* 0x04 */ s8 field_0x04[4];
     /* 0x08 */ f32 mBaseSize;

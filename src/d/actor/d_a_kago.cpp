@@ -38,8 +38,8 @@ static dCcD_SrcSph cc_sph_src = {
 
 class daKago_HIO_c : public JORReflexible {
 public:
-    /* 808495AC */ daKago_HIO_c();
-    /* 80854A4C */ virtual ~daKago_HIO_c() {}
+    daKago_HIO_c();
+    virtual ~daKago_HIO_c() {}
 
     void genMessage(JORMContext* ctx);
 

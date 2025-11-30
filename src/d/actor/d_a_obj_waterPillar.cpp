@@ -10,8 +10,8 @@
 #include "SSystem/SComponent/c_math.h"
 
 struct daWtPillar_HIO_c : public mDoHIO_entry_c {
-    /* 80D2C6CC */ daWtPillar_HIO_c();
-    /* 80D2DF34 */ virtual ~daWtPillar_HIO_c() {}
+    daWtPillar_HIO_c();
+    virtual ~daWtPillar_HIO_c() {}
 
     void genMessage(JORMContext*);
 

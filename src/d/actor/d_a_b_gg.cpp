@@ -15,8 +15,8 @@
 
 class daB_GG_HIO_c : public JORReflexible {
 public:
-    /* 805DE40C */ daB_GG_HIO_c();
-    /* 805EC9C4 */ virtual ~daB_GG_HIO_c() {}
+    daB_GG_HIO_c();
+    virtual ~daB_GG_HIO_c() {}
     void genMessage(JORMContext*) {}
 
     /* 0x04 */ s8 id;

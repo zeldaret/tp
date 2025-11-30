@@ -50,8 +50,8 @@ static s8 r11yuka_image[192] = {
 
 class daObj_Toby_HIO_c : public JORReflexible{
 public:
-    /* 80D1378C */ daObj_Toby_HIO_c();
-    /* 80D15534 */ virtual ~daObj_Toby_HIO_c() {}
+    daObj_Toby_HIO_c();
+    virtual ~daObj_Toby_HIO_c() {}
 
     void genMessage(JORMContext*);
 

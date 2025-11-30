@@ -17,9 +17,9 @@
 
 class daE_YM_HIO_c {
 public:
-    /* 8080812C */ daE_YM_HIO_c();
+    daE_YM_HIO_c();
 
-    /* 80815458 */ virtual ~daE_YM_HIO_c() {}
+    virtual ~daE_YM_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mModelSize;

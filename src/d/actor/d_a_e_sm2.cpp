@@ -15,8 +15,8 @@
 
 class daE_SM2_HIO_c : public fOpAcm_HIO_entry_c {
 public:
-    /* 80798B4C */ daE_SM2_HIO_c();
-    /* 8079CE94 */ virtual ~daE_SM2_HIO_c() {}
+    daE_SM2_HIO_c();
+    virtual ~daE_SM2_HIO_c() {}
 
     void genMessage(JORMContext*);
 

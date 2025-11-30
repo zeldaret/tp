@@ -12,8 +12,8 @@
 
 class daTaFence_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80D04E6C */ daTaFence_HIO_c();
-    /* 80D06000 */ virtual ~daTaFence_HIO_c() {}
+    daTaFence_HIO_c();
+    virtual ~daTaFence_HIO_c() {}
 
     void genMessage(JORMContext*);
 

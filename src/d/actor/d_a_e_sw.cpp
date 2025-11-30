@@ -15,8 +15,8 @@
 class daE_SW_HIO_c {
 public:
     /* サンドワーム (Sandworm) */
-    /* 807A740C */ daE_SW_HIO_c();
-    /* 807AF870 */ virtual ~daE_SW_HIO_c() {}
+    daE_SW_HIO_c();
+    virtual ~daE_SW_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 basic_size;                  // 基本サイズ (Basic Size)

@@ -211,8 +211,8 @@ enum Action_Phase {
 
 class daE_ST_HIO_c : public JORReflexible {
 public:
-    /* 8079DDEC */ daE_ST_HIO_c();
-    /* 807A61FC */ virtual ~daE_ST_HIO_c() {}
+    daE_ST_HIO_c();
+    virtual ~daE_ST_HIO_c() {}
 
     void genMessage(JORMContext*);
 

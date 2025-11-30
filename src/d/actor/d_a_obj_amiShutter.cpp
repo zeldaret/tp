@@ -17,8 +17,8 @@ struct daAmiShutter_HIO_c : public mDoHIO_entry_c {
     /* 0x10 */ u8 mWaitTime;
     /* 0x11 */ u8 field_0x11;
 
-    /* 80BA14CC */ daAmiShutter_HIO_c();
-    /* 80BA21E0 */ ~daAmiShutter_HIO_c() {}
+    daAmiShutter_HIO_c();
+    ~daAmiShutter_HIO_c() {}
 
     void genMessage(JORMContext*);
 };

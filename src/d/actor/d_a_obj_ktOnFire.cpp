@@ -10,8 +10,8 @@
 
 class daKtOnFire_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 8058C60C */ daKtOnFire_HIO_c();
-    /* 8058CEA8 */ ~daKtOnFire_HIO_c() {}
+    daKtOnFire_HIO_c();
+    ~daKtOnFire_HIO_c() {}
 
     void genMessage(JORMContext*);
 

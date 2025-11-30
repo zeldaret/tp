@@ -9,8 +9,8 @@
 
 class daSpinLift_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80CE3DAC */ daSpinLift_HIO_c();
-    /* 80CE4C10 */ ~daSpinLift_HIO_c() {};
+    daSpinLift_HIO_c();
+    ~daSpinLift_HIO_c() {};
 
 #ifdef DEBUG
     void genMessage(JORMContext*);

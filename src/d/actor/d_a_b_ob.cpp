@@ -72,8 +72,8 @@ enum B_oh_RES_File_ID {
 class daB_OB_HIO_c {
 public:
 public:
-    /* 8061056C */ daB_OB_HIO_c();
-    /* 8061A808 */ virtual ~daB_OB_HIO_c() {}
+    daB_OB_HIO_c();
+    virtual ~daB_OB_HIO_c() {}
 
     /* 0x04 */ s8 field_0x04;
     /* 0x08 */ f32 mCoreSize;

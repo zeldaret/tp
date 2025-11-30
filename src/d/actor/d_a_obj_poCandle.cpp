@@ -9,8 +9,8 @@
 
 class daPoCandle_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80CB1A6C */ daPoCandle_HIO_c();
-    /* 80CB2508 */ virtual ~daPoCandle_HIO_c() {}
+    daPoCandle_HIO_c();
+    virtual ~daPoCandle_HIO_c() {}
 
     void genMessage(JORMContext*);
 

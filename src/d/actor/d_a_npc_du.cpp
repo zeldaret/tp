@@ -71,8 +71,8 @@ enum Action_Mode {
 
 class daNpc_Du_HIO_c : public JORReflexible {
 public:
-    /* 809AFD4C */ daNpc_Du_HIO_c();
-    /* 809B17A0 */ virtual ~daNpc_Du_HIO_c() {}
+    daNpc_Du_HIO_c();
+    virtual ~daNpc_Du_HIO_c() {}
     void genMessage(JORMContext*);
 
     /* 0x4 */ s8 id;

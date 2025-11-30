@@ -10,8 +10,8 @@
 
 class daTurara_HIO_c : public fOpAcm_HIO_entry_c {
 public:
-    /* 80B9CB8C */ daTurara_HIO_c();
-    /* 80B9E5B4 */ virtual ~daTurara_HIO_c() {}
+    daTurara_HIO_c();
+    virtual ~daTurara_HIO_c() {}
 
     void genMessage(JORMContext*);
 

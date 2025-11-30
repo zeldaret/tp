@@ -11,8 +11,8 @@
 
 class daE_ZS_HIO_c {
 public:
-    /* 808330AC */ daE_ZS_HIO_c();
-    /* 80834DDC */ virtual ~daE_ZS_HIO_c() {}
+    daE_ZS_HIO_c();
+    virtual ~daE_ZS_HIO_c() {}
 
     /* 0x4 */ s8 field_0x4;
     /* 0x8 */ f32 field_0x8;

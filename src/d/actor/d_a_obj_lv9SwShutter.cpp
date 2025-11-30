@@ -9,8 +9,8 @@
 
 class daLv9SwShutter_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80C8CEAC */ daLv9SwShutter_HIO_c();
-    /* 80C8D730 */ virtual ~daLv9SwShutter_HIO_c() {}
+    daLv9SwShutter_HIO_c();
+    virtual ~daLv9SwShutter_HIO_c() {}
 
     void genMessage(JORMContext*);
 

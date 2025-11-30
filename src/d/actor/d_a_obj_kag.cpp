@@ -29,8 +29,8 @@ enum I_Kag_RES_File_ID {
 
 class daObj_KagHIO_c : public JORReflexible {
 public:
-    /* 80C2E40C */ daObj_KagHIO_c();
-    /* 80C31060 */ virtual ~daObj_KagHIO_c() {}
+    daObj_KagHIO_c();
+    virtual ~daObj_KagHIO_c() {}
 
     void genMessage(JORMContext*);
 

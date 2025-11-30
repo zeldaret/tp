@@ -14,8 +14,8 @@
 
 class daObj_KuwHIO_c : public JORReflexible{
 public:
-    /* 80C4A1EC */ daObj_KuwHIO_c();
-    /* 80C4D3E8 */ virtual ~daObj_KuwHIO_c() {}
+    daObj_KuwHIO_c();
+    virtual ~daObj_KuwHIO_c() {}
 
     void genMessage(JORMContext* ctx);
 

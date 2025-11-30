@@ -19,10 +19,10 @@
 
 class daE_GOB_HIO_c : public JORReflexible {
 public:
-    /* 806D808C */ daE_GOB_HIO_c();
+    daE_GOB_HIO_c();
 
     void genMessage(JORMContext*);
-    /* 806DECD0 */ virtual ~daE_GOB_HIO_c() {}
+    virtual ~daE_GOB_HIO_c() {}
 
     /* 0x04 */ s8 id;
     /* 0x08 */ f32 size;

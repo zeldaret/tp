@@ -9,8 +9,8 @@
 
 class daPropY_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80C8546C */ daPropY_HIO_c();
-    /* 80C86084 */ virtual ~daPropY_HIO_c() {}
+    daPropY_HIO_c();
+    virtual ~daPropY_HIO_c() {}
 
     void genMessage(JORMContext*);
 

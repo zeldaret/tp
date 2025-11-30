@@ -29,8 +29,8 @@ class dmg_rod_class;
 
 class daNpc_Henna_HIO_c : public JORReflexible {
 public:
-    /* 80542F0C */ daNpc_Henna_HIO_c();
-    /* 80549E40 */ virtual ~daNpc_Henna_HIO_c() {}
+    daNpc_Henna_HIO_c();
+    virtual ~daNpc_Henna_HIO_c() {}
     void genMessage(JORMContext*);
 
     s8 id;

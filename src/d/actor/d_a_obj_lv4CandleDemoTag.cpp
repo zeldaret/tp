@@ -12,8 +12,8 @@
 
 class dalv4CandleDemoTag_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80C5C9EC */ dalv4CandleDemoTag_HIO_c();
-    /* 80C5D07C */ virtual ~dalv4CandleDemoTag_HIO_c() {}
+    dalv4CandleDemoTag_HIO_c();
+    virtual ~dalv4CandleDemoTag_HIO_c() {}
 
     void genMessage(JORMContext*);
 

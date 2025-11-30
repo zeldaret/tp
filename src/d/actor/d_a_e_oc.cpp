@@ -38,8 +38,8 @@ enum OC_ACTIONS {
 
 class daE_OC_HIO_c : public JORReflexible {
 public:
-    /* 8072C5CC */ daE_OC_HIO_c();
-    /* 80735630 */ virtual ~daE_OC_HIO_c() {}
+    daE_OC_HIO_c();
+    virtual ~daE_OC_HIO_c() {}
 
     /* 0x04 */ s8 field_0x04;
     /* 0x05 */ u8 radius_representation;

@@ -22,8 +22,8 @@ enum OBJ_GM_RES_File_ID {
 
 class daObj_Gm_HIO_c : public JORReflexible {
 public:
-    /* 80BFB14C */ daObj_Gm_HIO_c();
-    /* 80BFD284 */ virtual ~daObj_Gm_HIO_c() {}
+    daObj_Gm_HIO_c();
+    virtual ~daObj_Gm_HIO_c() {}
 
     void genMessage(JORMContext*);
 

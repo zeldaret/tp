@@ -22,8 +22,8 @@
  */
 class daE_YK_HIO_c : public JORReflexible {
 public:
-    /* 8080482C */ daE_YK_HIO_c();
-    /* 808077E0 */ virtual ~daE_YK_HIO_c() {}
+    daE_YK_HIO_c();
+    virtual ~daE_YK_HIO_c() {}
     void genMessage(JORMContext*);
 
     /* 0x00 */ // vtable

@@ -6,7 +6,7 @@
 #include "string.h"
 
 struct JPAResourceLoader {
-    /* 8027D8A0 */ JPAResourceLoader(u8 const*, JPAResourceManager*);
+    JPAResourceLoader(u8 const*, JPAResourceManager*);
 };
 
 JPAResourceManager::JPAResourceManager(void const* pData, JKRHeap* pHeap) {

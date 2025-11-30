@@ -9,9 +9,9 @@
 
 class dMsgScrnLight_HIO_c {
 public:
-    /* 8024575C */ dMsgScrnLight_HIO_c();
-    /* 802457C4 */ void updateColor(u8);
-    /* 80246348 */ virtual ~dMsgScrnLight_HIO_c() {}
+    dMsgScrnLight_HIO_c();
+    void updateColor(u8);
+    virtual ~dMsgScrnLight_HIO_c() {}
 
     enum {
         COLOR_DEFAULT_e,

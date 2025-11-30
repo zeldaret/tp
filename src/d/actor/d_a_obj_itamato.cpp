@@ -20,7 +20,7 @@ struct daObj_ItaMato_HIOParam {
 
 class daObj_ItaMato_Param_c {
 public:
-    /* 80C2AB04 */ virtual ~daObj_ItaMato_Param_c() {}
+    virtual ~daObj_ItaMato_Param_c() {}
 
     static daObj_ItaMato_HIOParam const m;
 };

@@ -130,8 +130,8 @@ enum Action_Phase {
 
 class daE_SF_HIO_c {
 public:
-    /* 8078512C */ daE_SF_HIO_c();
-    /* 8078977C */ virtual ~daE_SF_HIO_c() {}
+    daE_SF_HIO_c();
+    virtual ~daE_SF_HIO_c() {}
 
     /* スタルフォス - Stalfos */
     /* 0x04 */ s8 id;

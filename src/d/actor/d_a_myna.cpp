@@ -91,7 +91,7 @@ static int jntNodeCallBack(J3DJoint* i_jnt, int param_1) {
 
 class daMyna_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 8094A960 */ virtual ~daMyna_HIO_c() {}
+    virtual ~daMyna_HIO_c() {}
 
     daMyna_HIO_c() {
         static struct {

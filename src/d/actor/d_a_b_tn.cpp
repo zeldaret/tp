@@ -16,8 +16,8 @@
 
 class daB_TN_HIO_c {
 public:
-    /* 8061EBEC */ daB_TN_HIO_c();
-    /* 8062D98C */ virtual ~daB_TN_HIO_c() {};
+    daB_TN_HIO_c();
+    virtual ~daB_TN_HIO_c() {};
 
     /* 0x04 */ s8 mUnk1;
     /* 0x08 */ f32 mScale;

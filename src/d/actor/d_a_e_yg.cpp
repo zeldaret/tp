@@ -86,8 +86,8 @@ enum Action_Mode {
 
 class daE_YG_HIO_c : public JORReflexible {
 public:
-    /* 807F834C */ daE_YG_HIO_c();
-    /* 807FC168 */ virtual ~daE_YG_HIO_c() {}
+    daE_YG_HIO_c();
+    virtual ~daE_YG_HIO_c() {}
     void genMessage(JORMContext*);
 
     /* 0x04 */ s8 id;

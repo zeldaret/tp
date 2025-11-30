@@ -14,8 +14,8 @@
 
 class daLv3Water_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80C587CC */ daLv3Water_HIO_c();
-    /* 80C59C34 */ virtual ~daLv3Water_HIO_c() {}
+    daLv3Water_HIO_c();
+    virtual ~daLv3Water_HIO_c() {}
 
     void genMessage(JORMContext*);
 

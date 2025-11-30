@@ -33,7 +33,7 @@ extern u8 HeapDummyCreate;
 
 class l_HIO : public JORReflexible {
 public:
-    /* 8001E098 */ ~l_HIO() {
+    ~l_HIO() {
         #if DEBUG
         erase();
         #endif

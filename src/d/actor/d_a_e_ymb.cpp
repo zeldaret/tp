@@ -16,8 +16,8 @@
 
 struct daE_YMB_HIO_c {
 public:
-    /* 8081610C */ daE_YMB_HIO_c();
-    /* 80821460 */ virtual ~daE_YMB_HIO_c() {}
+    daE_YMB_HIO_c();
+    virtual ~daE_YMB_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 model_size;                  // モデルサイズ (Model Size)

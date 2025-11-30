@@ -22,8 +22,8 @@
 
 class daE_PM_HIO_c {
 public:
-    /* 80741EEC */ daE_PM_HIO_c();
-    /* 8074BA68 */ virtual ~daE_PM_HIO_c() {}
+    daE_PM_HIO_c();
+    virtual ~daE_PM_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mLampParticleScale;

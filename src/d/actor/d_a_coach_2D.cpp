@@ -87,7 +87,7 @@ public:
         memcpy(&param, &aParam, sizeof(Param));
     }
 
-    /* 80657738 */ virtual ~daCoach2D_HIO_c() {}
+    virtual ~daCoach2D_HIO_c() {}
     void genMessage(JORMContext*) {}
 
     /* 0x4 */ Param param;

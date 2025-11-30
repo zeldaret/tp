@@ -17,8 +17,8 @@
 
 class daE_RDB_HIO_c : public JORReflexible {
 public:
-    /* 807650CC */ daE_RDB_HIO_c();
-    /* 8076AF64 */ virtual ~daE_RDB_HIO_c() {};
+    daE_RDB_HIO_c();
+    virtual ~daE_RDB_HIO_c() {};
 
     void genMessage(JORMContext*);
     /* 0x04 */ s8 mID;

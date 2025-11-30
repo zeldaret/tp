@@ -9,8 +9,8 @@
 
 class daKekaiTrap_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80C87CAC */ daKekaiTrap_HIO_c();
-    /* 80C88438 */ virtual ~daKekaiTrap_HIO_c() {}
+    daKekaiTrap_HIO_c();
+    virtual ~daKekaiTrap_HIO_c() {}
 
     void genMessage(JORMContext*);
 

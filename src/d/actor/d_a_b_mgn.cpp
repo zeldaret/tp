@@ -169,8 +169,8 @@ enum Joint {
 
 class daB_MGN_HIO_c : public JORReflexible {
 public:
-    /* 8060572C */ daB_MGN_HIO_c();
-    /* 8060F8D0 */ virtual ~daB_MGN_HIO_c() {}
+    daB_MGN_HIO_c();
+    virtual ~daB_MGN_HIO_c() {}
 
     void genMessage(JORMContext*);
 

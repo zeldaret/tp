@@ -17,8 +17,8 @@
 
 class daFr_HIO_c : public JORReflexible {
 public:
-    /* 805198EC */ daFr_HIO_c();
-    /* 8051B920 */ virtual ~daFr_HIO_c() {}
+    daFr_HIO_c();
+    virtual ~daFr_HIO_c() {}
 
 #if DEBUG
     void genMessage(JORMContext*);

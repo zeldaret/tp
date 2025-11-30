@@ -12,8 +12,8 @@
 
 class daE_WS_HIO_c : public JORReflexible {
 public:
-    /* 807E3A0C */ daE_WS_HIO_c();
-    /* 807E6E44 */ virtual ~daE_WS_HIO_c() {}
+    daE_WS_HIO_c();
+    virtual ~daE_WS_HIO_c() {}
 
     void genMessage(JORMContext*);
 

@@ -17,8 +17,8 @@
 
 class daE_S1_HIO_c {
 public:
-    /* 8077AB8C */ daE_S1_HIO_c();
-    /* 80780840 */ virtual ~daE_S1_HIO_c() {}
+    daE_S1_HIO_c();
+    virtual ~daE_S1_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mBaseSize;

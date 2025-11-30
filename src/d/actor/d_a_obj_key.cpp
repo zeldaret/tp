@@ -19,8 +19,8 @@
 
 class daObj_Key_HIO_c : public JORReflexible{
 public:
-    /* 80C3F40C */ daObj_Key_HIO_c();
-    /* 80C40F28 */ virtual ~daObj_Key_HIO_c() {}
+    daObj_Key_HIO_c();
+    virtual ~daObj_Key_HIO_c() {}
 
     void genMessage(JORMContext*);
 

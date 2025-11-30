@@ -21,8 +21,8 @@
 
 class daE_WB_HIO_c : public JORReflexible {
 public:
-    /* 807D248C */ daE_WB_HIO_c();
-    /* 807E20DC */ virtual ~daE_WB_HIO_c() {};
+    daE_WB_HIO_c();
+    virtual ~daE_WB_HIO_c() {};
     void genMessage(JORMContext*);
 
     /* イノシシ - Wild Boar */

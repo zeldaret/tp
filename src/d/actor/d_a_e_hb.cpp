@@ -27,8 +27,8 @@ public:
     virtual void genMessage(JORMContext*);
 #endif
 
-    /* 804FBD6C */ daE_HB_HIO_c();
-    /* 805005D0 */ virtual ~daE_HB_HIO_c() {}
+    daE_HB_HIO_c();
+    virtual ~daE_HB_HIO_c() {}
 
     /* 0x04 */ s8 id;
     /* 0x08 */ f32 base_size;

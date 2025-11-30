@@ -71,8 +71,8 @@ enum Type {
 
 class daE_GM_HIO_c {
 public:
-    /* 806D126C */ daE_GM_HIO_c();
-    /* 806D7428 */ virtual ~daE_GM_HIO_c() {}
+    daE_GM_HIO_c();
+    virtual ~daE_GM_HIO_c() {}
 
     /* 子ゴーマ - Baby Ghoma */
     /* 0x04 */ s8 id;

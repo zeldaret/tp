@@ -13,8 +13,8 @@
 
 class daE_NZ_HIO_c : public JORReflexible {
 public:
-    /* 807299EC */ daE_NZ_HIO_c();
-    /* 8072BC88 */ virtual ~daE_NZ_HIO_c() {}
+    daE_NZ_HIO_c();
+    virtual ~daE_NZ_HIO_c() {}
 
     void genMessage(JORMContext*);
 

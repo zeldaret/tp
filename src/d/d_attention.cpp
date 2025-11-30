@@ -16,8 +16,8 @@
 
 class dAttDrawParam_c : public JORReflexible {
 public:
-    /* 80070158 */ dAttDrawParam_c();
-    /* 80073FC4 */ virtual ~dAttDrawParam_c() {}
+    dAttDrawParam_c();
+    virtual ~dAttDrawParam_c() {}
 
     void genMessage(JORMContext*);
 

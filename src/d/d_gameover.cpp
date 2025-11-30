@@ -15,8 +15,8 @@
 
 class dGov_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 8019AFE0 */ dGov_HIO_c();
-    /* 8019C06C */ virtual ~dGov_HIO_c() {}
+    dGov_HIO_c();
+    virtual ~dGov_HIO_c() {}
 
     void genMessage(JORMContext*);
 

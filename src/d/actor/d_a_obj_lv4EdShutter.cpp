@@ -9,8 +9,8 @@
 
 class daLv4EdShutter_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80C5DDAC */ daLv4EdShutter_HIO_c();
-    /* 80C5E72C */ virtual ~daLv4EdShutter_HIO_c() {}
+    daLv4EdShutter_HIO_c();
+    virtual ~daLv4EdShutter_HIO_c() {}
 
     void genMessage(JORMContext*);
 

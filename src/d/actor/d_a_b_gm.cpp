@@ -56,8 +56,8 @@ enum daB_GM_ACTION {
 
 class daB_GM_HIO_c {
 public:
-    /* 805ED94C */ daB_GM_HIO_c();
-    /* 805F3E64 */ virtual ~daB_GM_HIO_c() {}
+    daB_GM_HIO_c();
+    virtual ~daB_GM_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 model_size;

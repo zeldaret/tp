@@ -15,7 +15,7 @@
 
 class dDlst_blo_c : public dDlst_base_c {
 public:
-    /* 80053B64 */ virtual void draw();
+    virtual void draw();
     bool create(JKRArchive* param_1, char* param_2) {
         return mScreen.setPriority(param_2,0x20000,param_1) != 0;
     }
@@ -41,7 +41,7 @@ public:
 
 class dDlst_2Dm_c {
 public:
-    /* 8005312C */ virtual void draw();
+    virtual void draw();
 
     /* 0x04 */ s16 field_0x4;
     /* 0x06 */ s16 field_0x6;
@@ -65,7 +65,7 @@ public:
 
 class dDlst_2DTri_c {
 public:
-    /* 80051AF0 */ virtual void draw();
+    virtual void draw();
 
     /* 0x04 */ s16 field_0x4;
     /* 0x06 */ s16 field_0x6;
@@ -78,7 +78,7 @@ public:
 class dDlst_2DT_c : public dDlst_base_c {
 public:
     dDlst_2DT_c() {}
-    /* 80051F98 */ virtual void draw();
+    virtual void draw();
 
     /* 0x04 */ u8* field_0x4;
     /* 0x08 */ u32 field_0x8;
@@ -98,7 +98,7 @@ public:
 
 class dDlst_2DPoint_c {
 public:
-    /* 80051E5C */ virtual void draw();
+    virtual void draw();
 
     /* 0x04 */ s16 field_0x4;
     /* 0x06 */ s16 field_0x6;
@@ -131,7 +131,7 @@ public:
 
 class dDlst_2DMt_c {
 public:
-    /* 8005364C */ virtual void draw();
+    virtual void draw();
 
     /* 0x04 */ u8 field_0x4;
     /* 0x08 */ dDlst_2DMt_tex_c* field_0x8;
@@ -143,7 +143,7 @@ public:
 
 class dDlst_2DM_c {
 public:
-    /* 80052C58 */ virtual void draw();
+    virtual void draw();
 
     /* 0x04 */ s16 field_0x4;
     /* 0x06 */ s16 field_0x6;
@@ -168,7 +168,7 @@ public:
 
 class ShdwDrawPoly_c : public cBgS_ShdwDraw {
 public:
-    /* 80054A6C */ virtual ~ShdwDrawPoly_c() {}
+    virtual ~ShdwDrawPoly_c() {}
 
     void setCenter(cXyz* center) { mCenter = center; }
     cXyz* getCenter() { return mCenter; }

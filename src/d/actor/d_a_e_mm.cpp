@@ -22,8 +22,8 @@ enum daE_MM_ACTION {
 
 class daE_MM_HIO_c : public JORReflexible {
 public:
-    /* 8071F9CC */ daE_MM_HIO_c();
-    /* 80722780 */ virtual ~daE_MM_HIO_c() {}
+    daE_MM_HIO_c();
+    virtual ~daE_MM_HIO_c() {}
 
     void genMessage(JORMContext*);
 

@@ -12,8 +12,8 @@
 
 class daLv6TogeTrap_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80C79E4C */ daLv6TogeTrap_HIO_c();
-    /* 80C7C504 */ virtual ~daLv6TogeTrap_HIO_c() {}
+    daLv6TogeTrap_HIO_c();
+    virtual ~daLv6TogeTrap_HIO_c() {}
 
     void genMessage(JORMContext*);
 

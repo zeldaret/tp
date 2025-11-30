@@ -26,8 +26,8 @@
 
 class dmg_rod_HIO_c : public JORReflexible {
 public:
-    /* 804A95EC */ dmg_rod_HIO_c();
-    /* 804BB070 */ virtual ~dmg_rod_HIO_c() {}
+    dmg_rod_HIO_c();
+    virtual ~dmg_rod_HIO_c() {}
 
     void genMessage(JORMContext*);
 

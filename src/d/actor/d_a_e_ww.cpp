@@ -100,8 +100,8 @@ enum Action_Mode {
 
 class daE_WW_HIO_c : public JORReflexible {
 public:
-    /* 807E76EC */ daE_WW_HIO_c();
-    /* 807EEEBC */ virtual ~daE_WW_HIO_c() {}
+    daE_WW_HIO_c();
+    virtual ~daE_WW_HIO_c() {}
 
     void genMessage(JORMContext*);
 

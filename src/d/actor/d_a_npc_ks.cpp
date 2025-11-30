@@ -24,8 +24,8 @@
 
 class daNpc_Ks_HIO_c : public JORReflexible {
 public:
-    /* 80A48F8C */ daNpc_Ks_HIO_c();
-    /* 80A5DA90 */ virtual ~daNpc_Ks_HIO_c() {};
+    daNpc_Ks_HIO_c();
+    virtual ~daNpc_Ks_HIO_c() {};
 
     void genMessage(JORMContext*);
 

@@ -68,8 +68,8 @@ enum Core_Action {
 
 class daE_Sm_HIO_c : public JORReflexible {
 public:
-    /* 8079222C */ daE_Sm_HIO_c();
-    /* 807980E8 */ virtual ~daE_Sm_HIO_c() {}
+    daE_Sm_HIO_c();
+    virtual ~daE_Sm_HIO_c() {}
 
     void genMessage(JORMContext*);
 

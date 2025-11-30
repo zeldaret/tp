@@ -14,8 +14,8 @@
 
 class daSyRock_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80D022AC */ daSyRock_HIO_c();
-    /* 80D03C44 */ ~daSyRock_HIO_c() {}
+    daSyRock_HIO_c();
+    ~daSyRock_HIO_c() {}
 
     void genMessage(JORMContext*);
 

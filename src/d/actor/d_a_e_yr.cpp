@@ -48,7 +48,7 @@ public:
         mDetectAngleGround = 20000;
     }
 
-    /* 808282CC */ virtual ~e_yrHIO_c() {}
+    virtual ~e_yrHIO_c() {}
 
 #if DEBUG
     void genMessage(JORMContext*);

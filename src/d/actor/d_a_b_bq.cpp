@@ -53,8 +53,8 @@ enum B_bq_RES_File_ID {
 
 class daB_BQ_HIO_c {
 public:
-    /* 805B356C */ daB_BQ_HIO_c();
-    /* 805B9FFC */ virtual ~daB_BQ_HIO_c() {}
+    daB_BQ_HIO_c();
+    virtual ~daB_BQ_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mModelSize;

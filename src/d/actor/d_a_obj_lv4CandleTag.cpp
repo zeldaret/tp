@@ -4,8 +4,8 @@
 
 class dalv4CandleTag_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80C5D44C */ dalv4CandleTag_HIO_c();
-    /* 80C5D9C0 */ virtual ~dalv4CandleTag_HIO_c() {}
+    dalv4CandleTag_HIO_c();
+    virtual ~dalv4CandleTag_HIO_c() {}
 
     void genMessage(JORMContext*);
 

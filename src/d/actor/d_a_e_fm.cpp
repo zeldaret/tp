@@ -18,10 +18,10 @@
 
 class daE_FM_HIO_c : public JORReflexible {
 public:
-    /* 804EF0EC */ daE_FM_HIO_c();
+    daE_FM_HIO_c();
 
     void genMessage(JORMContext*);
-    /* 804FA3D8 */ virtual ~daE_FM_HIO_c() {}
+    virtual ~daE_FM_HIO_c() {}
 
     /* 0x04 */ s8 no;
     /* 0x08 */ f32 base_size;
