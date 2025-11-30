@@ -1911,7 +1911,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_midp"),
     ActorRel(MatchingFor(ALL_GCN, "ShieldD"), "d_a_npc_mk"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_moi"),
-    ActorRel(NonMatching, "d_a_npc_moir"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_npc_moir"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_myna2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_ne"),
     ActorRel(MatchingFor(ALL_GCN, "ShieldD"), "d_a_npc_p2"),

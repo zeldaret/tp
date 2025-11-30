@@ -1962,8 +1962,14 @@ void daNpcMoiR_c::checkHeadGear() {
     }
 }
 
+static void dummy() {
+    // This dummy function is needed to fix JMath::TSinCosTable::sinShort not being inlined in daNpcMoiR_c::ctrlBtk.
+    // It's unclear why that happens, or why an unused dummy function calling the inline fixes it.
+    // Seems like a compiler bug of some sort.
+    cM_ssin(0);
+}
+
 /* 80A8210C-80A821E0 00608C 00D4+00 1/0 0/0 0/0 .text            ctrlBtk__11daNpcMoiR_cFv */
-// NONMATCHING inlining issues
 BOOL daNpcMoiR_c::ctrlBtk() {
     if (mpMatAnm != NULL) {
         J3DAnmTextureSRTKey* anm = NULL;
