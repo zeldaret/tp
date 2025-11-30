@@ -1016,7 +1016,6 @@ static u8 lit_5300[8] = {
 };
 #endif
 
-// NONMATCHING - regalloc
 bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
     bool sp_10 = false;
 
@@ -1150,7 +1149,7 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                 if (sp_c8 == sp_120 || sp_c8 == sp_11c || sp_c8 == sp_118) {
                 } else {
                     while (*++sp_c8 != 0) {
-                        KC_PrismData* sp_c0 = getPrismData(*sp_c8);
+                        KC_PrismData* sp_c0 = (KC_PrismData*)getPrismData(*sp_c8);
                         Vec* sp_bc = m_pkc_head->m_nrm_data + sp_c0->fnrm_i;
                         if (!cBgW_CheckBGround(sp_bc->y)) {
                             f32 sp_b8 = JMAFastSqrt(sp_bc->x * sp_bc->x + sp_bc->z * sp_bc->z);
@@ -1252,8 +1251,8 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
         if (sp_a4 == NULL) {
             break;
         }
-        u32 sp_a0 = (u16)sp_a4->_4;
-        KC_PrismData* sp_9c = getPrismData(sp_a0);
+        int sp_a0 = sp_a4->_4;
+        KC_PrismData* sp_9c = (KC_PrismData*)getPrismData(sp_a0);
         Vec* sp_98 = m_pkc_head->m_nrm_data + sp_9c->fnrm_i;
         f32 sp_94 = JMAFastSqrt(sp_98->x * sp_98->x + sp_98->z * sp_98->z);
         cXyz sp_168;
@@ -1261,7 +1260,7 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
         cXyz sp_150;
         if (GetTriPnt(sp_9c, &sp_168, &sp_15c, &sp_150)) {
             f32 sp_90 = 1.0f / sp_94;
-            for (s32 cir_index_8c = 0; cir_index_8c < pwi->GetTblSize(); cir_index_8c++) {
+            for (int cir_index_8c = 0; cir_index_8c < pwi->GetTblSize(); cir_index_8c++) {
                 f32 sp_88 = sp_90 * pwi->GetWallR(cir_index_8c);
                 sp_18c.x = sp_98->x * sp_88;
                 sp_18c.z = sp_98->z * sp_88;
