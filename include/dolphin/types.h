@@ -56,6 +56,16 @@ typedef unsigned int uint;
 #endif
 #endif
 
+#ifndef DECL_WEAK
+#if defined(__MWERKS__) || defined(__GNUC__)
+#define DECL_WEAK __declspec(weak)
+#elif defined(_MSC_VER)
+#define DECL_WEAK
+#else
+#error unknown compiler
+#endif
+#endif
+
 #ifndef NULL
 #ifdef  __cplusplus
 #define NULL 0

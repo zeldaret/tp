@@ -1,18 +1,29 @@
 #include "math_ppc.h"
 #include "fdlibm.h"
 
-__declspec(weak) float acosf(float x) {
+// TODO: where should this go?
+#ifndef DECL_WEAK
+#if defined(__MWERKS__) || defined(__GNUC__)
+#define DECL_WEAK __declspec(weak)
+#elif defined(_MSC_VER)
+#define DECL_WEAK
+#else
+#error unknown compiler
+#endif
+#endif
+
+DECL_WEAK float acosf(float x) {
     return acos(x);
 }
 
-__declspec(weak) float cosf(float x) {
+DECL_WEAK float cosf(float x) {
     return cos(x);
 }
 
-__declspec(weak) float sinf(float x) {
+DECL_WEAK float sinf(float x) {
     return sin(x);
 }
 
-__declspec(weak) float tanf(float x) {
+DECL_WEAK float tanf(float x) {
     return tan(x);
 }
