@@ -2955,7 +2955,7 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
     s16 sp18;
     s16 sp16 = field_0x2fe6 + mBodyAngle.y;
     if ((mProcID == PROC_GOAT_CATCH && mProcVar1.field_0x300a == 0) || (mProcID == PROC_HAND_PAT && mProcVar2.field_0x300c == 0)) {
-#ifdef DEBUG
+#if VERSION == VERSION_SHIELD_DEBUG
         sp16 += (s16)0x8000;
 #else
         sp16 -= (s16)0x8000;

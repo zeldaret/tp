@@ -198,7 +198,7 @@ void daAlinkHIO_data_c::update() {
 void daAlinkHIO_data_c::listenPropertyEvent(const JORPropertyEvent* event) {
     JORReflexible::listenPropertyEvent(event);
 
-    switch (event->id)
+    switch ((u32)event->id)
     case 0x4000003:
         update();
 }
@@ -5922,7 +5922,7 @@ void daAlinkHIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
     JORReflexible::listenPropertyEvent(event);
     JORFile aJStack_168;
 
-    switch (event->id) {
+    switch ((u32)event->id) {
     case 0x4000002: {
         OS_REPORT("X = %f, Y = %f, Z = %f,\n", player->current.pos.x, player->current.pos.y,
                   player->current.pos.z);

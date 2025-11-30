@@ -151,7 +151,7 @@ void dEvM_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
 
     JORReflexible::listenPropertyEvent(param_0);
 
-    switch (param_0->id) {
+    switch ((u32)param_0->id) {
     case BTN_READ:
         if(!debug_data) {
             // "Fly? Soar?" or maybe something along the lines of "Order change?", not entirely sure of translation...
@@ -262,7 +262,7 @@ void dEvM_play_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
     JORReflexible::listenPropertyEvent(param_0);
 
     mEventCameraMode = UNSET;
-    switch (param_0->id) {
+    switch ((u32)param_0->id) {
     case BTN_PLAYBACK:
         mEventCameraMode = PLAYBACK;
         break;
@@ -313,7 +313,7 @@ void dEvM_bit_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
     int i;
     JORReflexible::listenPropertyEvent(param_0);
 
-    switch (param_0->id) {
+    switch ((u32)param_0->id) {
     case BTN_UPDATE:
         update();
     case BTN_UPDATE + 1:
@@ -389,14 +389,14 @@ void dEvM_reg_HIO_c::listenPropertyEvent(const JORPropertyEvent* param_0) {
     int i;
     JORReflexible::listenPropertyEvent(param_0);
 
-    switch(param_0->id) {
+    switch((u32)param_0->id) {
     case BTN_UPDATE:
         update();
     case BTN_UPDATE + 1:
         break;
     default:
         for (i = 0; i < mFlagTables->mTotalRegNum; i++) {
-            if (mRootRegIdx == mFlagTables->mRegTable[i].mRootReg && param_0->id == mFlagTables->mRegTable[i].mIsSet) {
+            if (mRootRegIdx == mFlagTables->mRegTable[i].mRootReg && (u32)param_0->id == mFlagTables->mRegTable[i].mIsSet) {
                 if (mFlagTables == &dEvDb_flag_base_table)
                     dComIfGs_setEventReg(mFlagTables->mRegTable[i].mFlagValue, mFlagTables->mRegTable[i].mIsSet);
                 else
