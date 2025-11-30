@@ -195,8 +195,6 @@ void J3DSkinDeform::initSkinInfo(J3DModelData* pModelData) {
 
 u16 J3DSkinDeform::sWorkArea_MtxReg[1024];
 
-/* 8032CF44-8032D378 327884 0434+00 0/0 1/1 0/0 .text
- * initMtxIndexArray__13J3DSkinDeformFP12J3DModelData           */
 int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
     J3D_ASSERT_NULLPTR(507, pModelData != NULL);
     if (mPosData != NULL && mNrmData != NULL) {
@@ -349,8 +347,6 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
     return kJ3DError_Success;
 }
 
-/* 8032D378-8032D5C4 327CB8 024C+00 0/0 1/1 0/0 .text
- * changeFastSkinDL__13J3DSkinDeformFP12J3DModelData            */
 // NONMATCHING - instruction ordering/optimization issue, matches debug
 // the compiler needs to delay adding +3 to dl until the end of the while loop for the function to match
 // but instead it puts the +3 at the start of the for loop and reworks the other instructions
@@ -549,8 +545,6 @@ void J3DSkinDeform::deformFastVtxNrm_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuff
     pVtxBuffer->setCurrentVtxNrm(transformedVtxNrm);
 }
 
-/* 8032DB50-8032DC74 328490 0124+00 1/1 0/0 0/0 .text
- * deformVtxPos_F32__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer */
 void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* pMtxBuffer) const {
     Mtx* anmMtx = NULL;
     Mtx* anmMtxs[2];
@@ -573,8 +567,6 @@ void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
     pVtxBuffer->setCurrentVtxPos(transformedVtxPos);
 }
 
-/* 8032DC74-8032DDB8 3285B4 0144+00 1/1 0/0 0/0 .text
- * deformVtxPos_S16__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer */
 void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* pMtxBuffer) const {
     Mtx* anmMtx = NULL;
     Mtx* anmMtxs[2];
@@ -599,8 +591,6 @@ void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
     pVtxBuffer->setCurrentVtxPos(transformedVtxPos);
 }
 
-/* 8032DDB8-8032DEBC 3286F8 0104+00 1/1 0/0 0/0 .text
- * deformVtxNrm_F32__13J3DSkinDeformCFP15J3DVertexBuffer        */
 void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* pVtxBuffer) const {
     pVtxBuffer->swapTransformedVtxNrm();
     int nrmNum = pVtxBuffer->getVertexData()->getNrmNum();
@@ -615,8 +605,6 @@ void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* pVtxBuffer) const {
     pVtxBuffer->setCurrentVtxNrm(transformedVtxNrm);
 }
 
-/* 8032DEBC-8032DFDC 3287FC 0120+00 1/1 0/0 0/0 .text
- * deformVtxNrm_S16__13J3DSkinDeformCFP15J3DVertexBuffer        */
 void J3DSkinDeform::deformVtxNrm_S16(J3DVertexBuffer* pVtxBuffer) const {
     int vtxNrmFrac = pVtxBuffer->getVertexData()->getVtxNrmFrac();
     J3DGQRSetup7(vtxNrmFrac, 7, vtxNrmFrac, 7);
