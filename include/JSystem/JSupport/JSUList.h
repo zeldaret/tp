@@ -200,15 +200,15 @@ public:
 
     JSUTree<T>* getLastChild() const { return (JSUTree<T>*)this->getLastLink(); }
 
-    JSUTree<T>* getNextChild() const { return (JSUTree<T>*)JSUPtrLink::mNext; }
+    JSUTree<T>* getNextChild() const { return (JSUTree<T>*)this->mNext; }
 
-    JSUTree<T>* getPrevChild() const { return (JSUTree<T>*)JSUPtrLink::mPrev; }
+    JSUTree<T>* getPrevChild() const { return (JSUTree<T>*)this->mPrev; }
 
     u32 getNumChildren() const { return this->getNumLinks(); }
 
-    T* getObject() const { return (T*)JSUPtrLink::mObject; }
+    T* getObject() const { return (T*)this->mObject; }
 
-    JSUTree<T>* getParent() const { return (JSUTree<T>*)JSUPtrLink::mList; }
+    JSUTree<T>* getParent() const { return (JSUTree<T>*)this->mList; }
 };
 
 /**
