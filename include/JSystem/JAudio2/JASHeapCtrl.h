@@ -17,15 +17,15 @@ class JKRSolidHeap;
  */
 class JASHeap {
 public:
-    /* 80290140 */ JASHeap(JASDisposer* param_0 = NULL);
-    /* 802901AC */ void initRootHeap(void*, u32);
-    /* 8029021C */ bool alloc(JASHeap*, u32);
-    /* 802903F4 */ bool allocTail(JASHeap*, u32);
-    /* 802904E4 */ bool free();
-    /* 80290608 */ void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
-    /* 802906F0 */ JASHeap* getTailHeap();
-    /* 8029077C */ u32 getTailOffset();
-    /* 802907E0 */ u32 getCurOffset();
+    JASHeap(JASDisposer* param_0 = NULL);
+    void initRootHeap(void*, u32);
+    bool alloc(JASHeap*, u32);
+    bool allocTail(JASHeap*, u32);
+    bool free();
+    void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
+    JASHeap* getTailHeap();
+    u32 getTailOffset();
+    u32 getCurOffset();
 
     void* getBase() { return mBase; }
     bool isAllocated() { return mBase; }
@@ -44,11 +44,11 @@ public:
  * 
  */
 struct JASGenericMemPool {
-    /* 80290848 */ JASGenericMemPool();
-    /* 80290860 */ ~JASGenericMemPool();
-    /* 802908C8 */ void newMemPool(u32, int);
-    /* 80290948 */ void* alloc(u32);
-    /* 80290994 */ void free(void*, u32);
+    JASGenericMemPool();
+    ~JASGenericMemPool();
+    void newMemPool(u32, int);
+    void* alloc(u32);
+    void free(void*, u32);
 
     /* 0x00 */ void* field_0x0;
     /* 0x04 */ u32 freeMemCount;
@@ -235,11 +235,11 @@ public:
 };
 
 namespace JASKernel {
-    /* 802909B8 */ void setupRootHeap(JKRSolidHeap*, u32);
-    /* 80290AC0 */ JKRHeap* getSystemHeap();
-    /* 80290AC8 */ JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* getCommandHeap();
-    /* 80290AD0 */ void setupAramHeap(u32, u32);
-    /* 80290B08 */ JASHeap* getAramHeap();
+    void setupRootHeap(JKRSolidHeap*, u32);
+    JKRHeap* getSystemHeap();
+    JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* getCommandHeap();
+    void setupAramHeap(u32, u32);
+    JASHeap* getAramHeap();
 
     extern JASHeap audioAramHeap;
     extern u32 sAramBase;

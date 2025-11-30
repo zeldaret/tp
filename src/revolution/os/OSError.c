@@ -9,18 +9,18 @@ OSErrorHandler __OSErrorTable[17];
 #define FPSCR_ENABLE (FPSCR_VE | FPSCR_OE | FPSCR_UE | FPSCR_ZE | FPSCR_XE)
 u32 __OSFpscrEnableBits = FPSCR_ENABLE;
 
-__declspec(weak) void OSReport(const char* msg, ...) {
+DECL_WEAK void OSReport(const char* msg, ...) {
     va_list marker;
     va_start(marker, msg);
     vprintf(msg, marker);
     va_end(marker);
 }
 
-__declspec(weak) void OSVReport(const char* msg, va_list list) {
+DECL_WEAK void OSVReport(const char* msg, va_list list) {
     vprintf(msg, list);
 }
 
-__declspec(weak) void OSPanic(const char* file, int line, const char* msg, ...) {
+DECL_WEAK void OSPanic(const char* file, int line, const char* msg, ...) {
     va_list marker;
     u32 i;
     u32* p;

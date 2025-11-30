@@ -567,7 +567,9 @@ void L2GlobalInvalidate(void) {
 
     PPCMtl2cr(PPCMfl2cr() & ~0x00200000);
     while (PPCMfl2cr() & 0x00000001u) {
-
+        #ifdef SDK_SEP2006
+        DBPrintf(">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n");
+        #endif
     }
 }
 
@@ -624,16 +626,28 @@ void DMAErrorHandler(OSError error, OSContext* context, ...) {
 void __OSCacheInit() {
     if (!(PPCMfhid0() & HID0_ICE)) {
         ICEnable();
+        #ifdef SDK_SEP2006
+        DBPrintf("L1 i-caches initialized\n");
+        #endif
     }
 
     if (!(PPCMfhid0() & HID0_DCE)) {
         DCEnable();
+        #ifdef SDK_SEP2006
+        DBPrintf("L1 d-caches initialized\n");
+        #endif
     }
 
     if (!(PPCMfl2cr() & L2CR_L2E)) {
         L2Init();
         L2Enable();
+        #ifdef SDK_SEP2006
+        DBPrintf("L2 cache initialized\n");
+        #endif
     }
 
     OSSetErrorHandler(OS_ERROR_MACHINE_CHECK, DMAErrorHandler);
+    #ifdef SDK_SEP2006
+    DBPrintf("Locked cache machine check handler installed\n");
+    #endif
 }

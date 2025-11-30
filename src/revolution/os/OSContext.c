@@ -562,6 +562,10 @@ _restoreAndExit:
 void __OSContextInit(void) {
     __OSSetExceptionHandler(__OS_EXCEPTION_FLOATING_POINT, OSSwitchFPUContext);
     __OSFPUContext = NULL;
+
+    #ifdef SDK_SEP2006
+    DBPrintf("FPU-unavailable handler installed\n");
+    #endif
 }
 
 #ifdef __GEKKO__

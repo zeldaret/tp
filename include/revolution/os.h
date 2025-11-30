@@ -212,24 +212,24 @@ void OSSetSoundMode(u32 mode);
 
 u8 OSGetAppType(void);
 
-__declspec(weak) void OSReport(const char* msg, ...);
-__declspec(weak) void OSVReport(const char* msg, va_list list);
-__declspec(weak) void OSPanic(const char* file, int line, const char* msg, ...);
+DECL_WEAK void OSReport(const char* msg, ...);
+DECL_WEAK void OSVReport(const char* msg, va_list list);
+DECL_WEAK void OSPanic(const char* file, int line, const char* msg, ...);
 void OSFatal(GXColor fg, GXColor bg, const char* msg);
 
 // do these belong here?
-__declspec(weak) void OSAttention(const char* msg, ...);
-__declspec(weak) void OSReport_Error(const char* fmt, ...);
-__declspec(weak) void OSReport_FatalError(const char* fmt, ...);
-__declspec(weak) void OSReport_System(const char* fmt, ...);
-__declspec(weak) void OSReport_Warning(const char* fmt, ...);
-__declspec(weak) void OSReportDisable(void);
-__declspec(weak) void OSReportEnable(void);
-__declspec(weak) void OSReportForceEnableOff(void);
-__declspec(weak) void OSReportForceEnableOn(void);
-__declspec(weak) void OSVReport(const char* format, va_list list);
+DECL_WEAK void OSAttention(const char* msg, ...);
+DECL_WEAK void OSReport_Error(const char* fmt, ...);
+DECL_WEAK void OSReport_FatalError(const char* fmt, ...);
+DECL_WEAK void OSReport_System(const char* fmt, ...);
+DECL_WEAK void OSReport_Warning(const char* fmt, ...);
+DECL_WEAK void OSReportDisable(void);
+DECL_WEAK void OSReportEnable(void);
+DECL_WEAK void OSReportForceEnableOff(void);
+DECL_WEAK void OSReportForceEnableOn(void);
+DECL_WEAK void OSVReport(const char* format, va_list list);
 
-__declspec(weak) void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
+DECL_WEAK void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 
 #ifdef DEBUG
 #define OS_REPORT(...) OSReport(__VA_ARGS__)
@@ -273,7 +273,7 @@ void* OSUncachedToCached(void* ucaddr);
 
 // unsorted externs
 extern OSTime __OSGetSystemTime(void);
-__declspec(weak) extern int __OSIsGcam;
+DECL_WEAK extern int __OSIsGcam;
 extern OSExecParams __OSRebootParams;
 extern OSTime __OSStartTime;
 extern int __OSInIPL;
@@ -307,19 +307,20 @@ extern BOOL __OSInReboot;
 #define ASSERT(cond) ASSERTLINE(__LINE__, cond)
 
 inline s16 __OSf32tos16(register f32 inF) {
+#ifdef __MWERKS__
     register s16 out;
     u32 tmp;
     register u32* tmpPtr = &tmp;
     // clang-format off
-#ifdef __MWERKS__
+
     asm {
         psq_st inF, 0(tmpPtr), 0x1, 5
         lha out, 0(tmpPtr)
     }
-#endif
-    // clang-format on
 
+    // clang-format on
     return out;
+#endif
 }
 
 inline void OSf32tos16(f32* f, s16* out) {
@@ -327,19 +328,20 @@ inline void OSf32tos16(f32* f, s16* out) {
 }
 
 inline u8 __OSf32tou8(register f32 inF) {
+#ifdef __MWERKS__
     register u8 out;
     u32 tmp;
     register u32* tmpPtr = &tmp;
     // clang-format off
-#ifdef __MWERKS__
+
     asm {
         psq_st inF, 0(tmpPtr), 0x1, 2
         lbz out, 0(tmpPtr)
     }
-#endif
-    // clang-format on
 
+    // clang-format on
     return out;
+#endif
 }
 
 inline void OSf32tou8(f32* f, u8* out) {

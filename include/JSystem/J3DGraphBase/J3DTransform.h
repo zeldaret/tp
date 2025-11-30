@@ -65,12 +65,13 @@ void J3DMtxProjConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4]);
 void J3DPSMtxArrayConcat(f32 (*)[4], f32 (*)[4], f32 (*)[4], u32);
 
 inline void J3DPSMtx33Copy(register Mtx3P src, register Mtx3P dst) {
+#ifdef __MWERKS__
     register f32 fr4;
     register f32 fr3;
     register f32 fr2;
     register f32 fr1;
     register f32 fr0;
-#ifdef __MWERKS__
+
     asm {
         psq_l fr4, 0(src), 0, 0
         psq_l fr3, 8(src), 0, 0
@@ -87,13 +88,13 @@ inline void J3DPSMtx33Copy(register Mtx3P src, register Mtx3P dst) {
 }
 
 inline void J3DPSMtx33CopyFrom34(register MtxP src, register Mtx3P dst) {
+#ifdef __MWERKS__
     register f32 x_y1;
     register f32 z1;
     register f32 x_y2;
     register f32 z2;
     register f32 x_y3;
     register f32 z3;
-#ifdef __MWERKS__
     asm {
         psq_l x_y1, 0(src), 0, 0
         lfs z1, 8(src)

@@ -392,14 +392,12 @@ cflags_revolution_base = [
 cflags_revolution_retail = [
     *cflags_revolution_base,
     "-O4,p",
-    "-DSDK_SEP2006",
 ]
 
 cflags_revolution_debug = [
     *cflags_revolution_base,
     "-opt off",
     "-DDEBUG=1",
-    "-DSDK_AUG2010",
 ]
 
 # Framework flags
@@ -475,7 +473,15 @@ def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         return {
             "lib": lib_name,
             "mw_version": "Wii/1.0",
-            "cflags": cflags_revolution_debug,
+            "cflags": [*cflags_revolution_debug, "-DSDK_AUG2010"],
+            "progress_category": "sdk",
+            "objects": objects,
+        }
+    elif config.version == "Shield":
+        return {
+            "lib": lib_name,
+            "mw_version": "Wii/1.0",
+            "cflags": [*cflags_revolution_retail, "-DSDK_AUG2010"],
             "progress_category": "sdk",
             "objects": objects,
         }
@@ -483,7 +489,7 @@ def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         return {
             "lib": lib_name,
             "mw_version": "GC/3.0a3",
-            "cflags": cflags_revolution_retail,
+            "cflags": [*cflags_revolution_retail, "-DSDK_SEP2006"],
             "progress_category": "sdk",
             "objects": objects,
         }
@@ -1458,29 +1464,29 @@ config.libs = [
             Object(MatchingFor("ShieldD"), "revolution/os/OS.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSAddress.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSAlarm.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSAlloc.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSArena.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSAudioSystem.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSCache.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSAlloc.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSArena.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSAudioSystem.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSCache.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSContext.c"),
             Object(NonMatching, "revolution/os/OSError.c"),
             Object(NonMatching, "revolution/os/OSExec.c"),
             Object(NonMatching, "revolution/os/OSFatal.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSFont.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSInterrupt.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSLink.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSMessage.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSFont.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSInterrupt.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSLink.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSMessage.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSMemory.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSMutex.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSMutex.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSReboot.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSReset.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSRtc.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSRtc.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSStopwatch.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSSync.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSSync.c"),
             Object(NonMatching, "revolution/os/OSThread.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSTime.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSUtf.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/OSIpc.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSTime.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSUtf.c"),
+            Object(MatchingFor("ShieldD", "RZDE01_00"), "revolution/os/OSIpc.c"),
             Object(NonMatching, "revolution/os/OSStateTM.c"),
             Object(NonMatching, "revolution/os/OSPlayRecord.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSStateFlags.c"),

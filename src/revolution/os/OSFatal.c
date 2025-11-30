@@ -124,11 +124,14 @@ static void ConfigureVideo(u16 xfbW, u16 xfbH) {
         }
         break;
     case 5:
+        #ifdef SDK_AUG2010
         if (__VIRegs[54] & 1) {
             mode.viTVmode = 22;
             mode.viYOrigin = 0;
             mode.xFBmode = 0;
-        } else {
+        } else
+        #endif
+        {
             mode.viTVmode = 20;
             mode.viYOrigin = 0;
             mode.xFBmode = 1;
@@ -206,9 +209,12 @@ void OSFatal(GXColor fg, GXColor bg, const char* msg) {
     GXAbortFrame();
     OSSetArenaLo((void*)0x81400000);
     
+    #ifdef SDK_AUG2010
     if (!bootInfo->FSTLocation) {
         OSSetArenaHi(*(void**)OSPhysicalToCached(0x3110));
-    } else {
+    } else
+    #endif
+    {
         OSSetArenaHi(bootInfo->FSTLocation);
     }
 
