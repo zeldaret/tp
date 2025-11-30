@@ -944,7 +944,7 @@ config.libs = [
             Object(NonMatching, "JSystem/JAudio2/JASTaskThread.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDvdThread.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASCallback.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASHeapCtrl.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASHeapCtrl.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASResArcLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASProbe.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASReport.cpp"),
