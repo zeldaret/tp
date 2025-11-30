@@ -39,9 +39,12 @@ static DVDDriveInfo DriveInfo;
 static DVDCommandBlock DriveBlock;
 OSExecParams __OSRebootParams;
 
+#ifdef SDK_SEP2006
+static char GameNameBuffer[5];
+#endif
+
 extern u32 __DVDLongFileNameFlag;
 extern u32 __PADSpec;
-extern BOOL __OSInReboot;
 
 // defined in link script
 extern u8 __ArenaLo[];

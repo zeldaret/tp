@@ -42,6 +42,10 @@ typedef u32 OSTick;
 #include <revolution/os/OSSemaphore.h>
 #include <revolution/os/OSUtf.h>
 #include <revolution/os/OSTimer.h>
+#include <revolution/os/OSPlayTime.h>
+#include <revolution/os/OSStateFlags.h>
+#include <revolution/os/OSIpc.h>
+#include <revolution/os/OSNandbootInfo.h>
 
 // private macro, maybe shouldn't be defined here?
 #define OFFSET(addr, align) (((u32)(addr) & ((align)-1)))
@@ -273,6 +277,7 @@ __declspec(weak) extern int __OSIsGcam;
 extern OSExecParams __OSRebootParams;
 extern OSTime __OSStartTime;
 extern int __OSInIPL;
+extern BOOL __OSInReboot;
 
 #ifdef DEBUG
 #define ASSERTLINE(line, cond) \

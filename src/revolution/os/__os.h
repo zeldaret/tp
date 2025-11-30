@@ -2,6 +2,7 @@
 #define _REVOLUTION_OS_INTERNAL_H_
 
 #include <revolution/os.h>
+#include <revolution/esp.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,11 +14,14 @@ extern char* __OSExceptionNames[17]; // D ONLY
 u32 __OSIsDebuggerPresent(void);
 void __OSPSInit(void);
 void __OSInitIPCBuffer(void);
-void __OSInitAlarm(void);
 void __OSInitSTM(void);
 void __OSInitNet(void);
 void __OSInitPlayTime(void);
 void __OSStartPlayRecord(void);
+
+// OSAlarm
+void __OSInitAlarm(void);
+void __OSCancelInternalAlarms(void* userdata);
 
 // OSAlloc
 extern volatile int __OSCurrHeap;
@@ -40,6 +44,7 @@ void __OSGetExecParams(OSExecParams* params);
 void __OSSetExecParams(const OSExecParams* params, OSExecParams* addr);
 void __OSBootDolSimple(u32 doloffset, u32 restartCode, void* regionStart, void* regionEnd, BOOL argsUseDefault, s32 argc, char** argv);
 void __OSBootDol(u32 doloffset, u32 restartCode, const char** argv);
+extern u32 __OSNextPartitionType;
 
 // OSInterrupt
 extern void __RAS_OSDisableInterrupts_begin(void);
@@ -65,10 +70,13 @@ void __OSUnlockAllMutex(OSThread* thread);
 int __OSCheckDeadLock(OSThread* thread);
 int __OSCheckMutexes(OSThread* thread);
 
+// OSPlayTime
+void __OSGetPlayTime(ESTicketView* ticket, __OSPlayTimeType* type, u32* playTime);
+
 // OSReset
 void __OSDoHotReset(u32 resetCode);
-void __OSShutdownDevices(BOOL doRecal);
-int __OSCallResetFunctions(BOOL final);
+void __OSShutdownDevices(u32 event);
+int __OSCallShutdownFunctions(BOOL final, u32 event);
 
 // OSResetSW
 void __OSResetSWInterruptHandler(s16 exception, OSContext* context);
@@ -128,6 +136,12 @@ __declspec(section ".init") extern void __init_data(void);
 OSTime __get_clock(void);
 u32 __get_time(void);
 int __to_gm_time(void);
+
+
+// unsorted
+void __OSWriteExpiredFlag(void);
+void __OSReturnToMenuForError(void);
+void __OSHotResetForError(void);
 
 #ifdef __cplusplus
 }
