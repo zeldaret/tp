@@ -195,7 +195,8 @@ void J3DSkinDeform::initSkinInfo(J3DModelData* pModelData) {
 
 u16 J3DSkinDeform::sWorkArea_MtxReg[1024];
 
-// NONMATCHING - matches debug, not retail
+/* 8032CF44-8032D378 327884 0434+00 0/0 1/1 0/0 .text
+ * initMtxIndexArray__13J3DSkinDeformFP12J3DModelData           */
 int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
     J3D_ASSERT_NULLPTR(507, pModelData != NULL);
     if (mPosData != NULL && mNrmData != NULL) {
@@ -348,75 +349,78 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
     return kJ3DError_Success;
 }
 
-// NONMATCHING - regalloc, display list access issues
+/* 8032D378-8032D5C4 327CB8 024C+00 0/0 1/1 0/0 .text
+ * changeFastSkinDL__13J3DSkinDeformFP12J3DModelData            */
+// NONMATCHING - instruction ordering/optimization issue, matches debug
+// the compiler needs to delay adding +3 to dl until the end of the while loop for the function to match
+// but instead it puts the +3 at the start of the for loop and reworks the other instructions
+// can get a 99.93% match on retail by moving where dl is incremented, but it seems fake as it breaks debug, and introduces an operand swap on src
 void J3DSkinDeform::changeFastSkinDL(J3DModelData* pModelData) {
     J3D_ASSERT_NULLPTR(740, pModelData != NULL);
     for (u16 i = 0; i < pModelData->getShapeNum(); i++) {
         u32 kSize[4] = {0,1,1,2};
-        int local_30 = -1;
-        int local_34 = 0;
+        int pnmtxIdxOffs = -1;
+        int vtxSize = 0;
+
         J3DShape* pShapeNode = pModelData->getShapeNodePointer(i);
         for (GXVtxDescList* vtxDesc = pShapeNode->getVtxDesc(); vtxDesc->attr != GX_VA_NULL; vtxDesc++) {
             if (vtxDesc->attr == GX_VA_PNMTXIDX) {
-                local_30 = local_34;
+                pnmtxIdxOffs = vtxSize;
             }
-            local_34 += kSize[vtxDesc->type];
+            vtxSize += kSize[vtxDesc->type];
         }
 
-        if (local_30 != -1) {
+        if (pnmtxIdxOffs != -1) {
             for (u16 j = 0; j < (u16)pShapeNode->getMtxGroupNum(); j++) {
-                u8* pDList = pShapeNode->getShapeDraw(j)->getDisplayList();
-                u8* local_44 = pDList;
-                u8* puVar10 = pDList;
-                while (local_44 - pDList < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
-                    u8 command = *local_44;
-                    local_44++;
-                    *puVar10++ = command;
-                    if (command != GX_TRIANGLEFAN && command != GX_TRIANGLESTRIP)
+                u8* displayListStart = pShapeNode->getShapeDraw(j)->getDisplayList();
+                u8* dl = displayListStart;
+                u8* dst = displayListStart;
+                while ((dl - displayListStart) < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
+                    u8 cmd = *dl;
+                    dl++;
+                    *dst++ = cmd;
+
+                    if (cmd != GX_TRIANGLEFAN && cmd != GX_TRIANGLESTRIP)
                         break;
 
-                    int uVar9 = *(u16*)local_44;
-                    local_44 += 2;
-                    *(u16*)puVar10 = uVar9;
-                    puVar10 += 2;
-                    for (int local_4c = 0; local_4c < uVar9; local_4c++) {
-                        u8* dst = &local_44[local_34 * local_4c];
-                        memcpy(puVar10, dst + 1, local_34 - 1);
-                        // FAKEMATCH
-                        #if DEBUG || VERSION == VERSION_WII_USA_R0 || VERSION == VERSION_WII_USA_R2
-                        puVar10 += local_34 - 1;
-                        #else
-                        puVar10 = (local_34 + puVar10) - 1;
-                        #endif
+                    int vtxCount = *(u16*)dl;
+                    dl += 2;
+                    *(u16*)dst = vtxCount;
+                    dst += 2;
+
+                    for (int k = 0; k < vtxCount; k++) {
+                        u8* src = &dl[vtxSize * k];
+                        memcpy(dst, src + 1, (int)(vtxSize - 1)); // The -1 is to remove GX_VA_PNMTXIDX
+                        dst += (int)(vtxSize - 1);
                     }
-                    local_44 += local_34 * uVar9;
+                    dl += vtxSize * vtxCount;
                 }
 
-                int dlistSize = ((int)puVar10 - (int)pDList + 0x1f) & ~0x1f;
-                while ((int)puVar10 - (int)pDList < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
-                    *puVar10++ = 0;
+                int dlistSize = ((int)dst - (int)displayListStart + 0x1f) & ~0x1f;
+                while ((int)dst - (int)displayListStart < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
+                    *dst++ = 0;
                 }
 
                 pShapeNode->getShapeDraw(j)->setDisplayListSize(dlistSize);
-                DCStoreRange(pDList, pShapeNode->getShapeDraw(j)->getDisplayListSize());
+                DCStoreRange(displayListStart, pShapeNode->getShapeDraw(j)->getDisplayListSize());
             }
         }
     }
 
     for (u16 i = 0; i < pModelData->getShapeNum(); i++) {
-        J3DShape* pShape = pModelData->getShapeNodePointer(i);
-        GXVtxDescList* local_5c = pShape->getVtxDesc();
-        GXVtxDescList* local_60 = local_5c;
-        for (; local_5c->attr != GX_VA_NULL; local_5c++) {
-            if (local_5c->attr != GX_VA_PNMTXIDX) {
-                local_60->attr = local_5c->attr;
-                local_60->type = local_5c->type;
-                local_60++;
+        J3DShape* shape = pModelData->getShapeNodePointer(i);
+        GXVtxDescList* desc = shape->getVtxDesc();
+        GXVtxDescList* descDst = desc;
+        for (; desc->attr != GX_VA_NULL; desc++) {
+            if (desc->attr != GX_VA_PNMTXIDX) {
+                descDst->attr = desc->attr;
+                descDst->type = desc->type;
+                descDst++;
             }
         }
-        local_60->attr = GX_VA_NULL;
-        local_60->type = GX_NONE;
-        pShape->makeVcdVatCmd();
+        descDst->attr = GX_VA_NULL;
+        descDst->type = GX_NONE;
+        shape->makeVcdVatCmd();
     }
 }
 
@@ -545,7 +549,8 @@ void J3DSkinDeform::deformFastVtxNrm_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuff
     pVtxBuffer->setCurrentVtxNrm(transformedVtxNrm);
 }
 
-// NONMATCHING - J3DPSMulMtxVec regalloc
+/* 8032DB50-8032DC74 328490 0124+00 1/1 0/0 0/0 .text
+ * deformVtxPos_F32__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer */
 void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* pMtxBuffer) const {
     Mtx* anmMtx = NULL;
     Mtx* anmMtxs[2];
@@ -568,7 +573,8 @@ void J3DSkinDeform::deformVtxPos_F32(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
     pVtxBuffer->setCurrentVtxPos(transformedVtxPos);
 }
 
-// NONMATCHING - J3DPSMulMtxVec regalloc
+/* 8032DC74-8032DDB8 3285B4 0144+00 1/1 0/0 0/0 .text
+ * deformVtxPos_S16__13J3DSkinDeformCFP15J3DVertexBufferP12J3DMtxBuffer */
 void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* pMtxBuffer) const {
     Mtx* anmMtx = NULL;
     Mtx* anmMtxs[2];
@@ -593,7 +599,8 @@ void J3DSkinDeform::deformVtxPos_S16(J3DVertexBuffer* pVtxBuffer, J3DMtxBuffer* 
     pVtxBuffer->setCurrentVtxPos(transformedVtxPos);
 }
 
-// NONMATCHING - J3DPSMulMtxVec regalloc
+/* 8032DDB8-8032DEBC 3286F8 0104+00 1/1 0/0 0/0 .text
+ * deformVtxNrm_F32__13J3DSkinDeformCFP15J3DVertexBuffer        */
 void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* pVtxBuffer) const {
     pVtxBuffer->swapTransformedVtxNrm();
     int nrmNum = pVtxBuffer->getVertexData()->getNrmNum();
@@ -608,7 +615,8 @@ void J3DSkinDeform::deformVtxNrm_F32(J3DVertexBuffer* pVtxBuffer) const {
     pVtxBuffer->setCurrentVtxNrm(transformedVtxNrm);
 }
 
-// NONMATCHING - J3DPSMulMtxVec regalloc
+/* 8032DEBC-8032DFDC 3287FC 0120+00 1/1 0/0 0/0 .text
+ * deformVtxNrm_S16__13J3DSkinDeformCFP15J3DVertexBuffer        */
 void J3DSkinDeform::deformVtxNrm_S16(J3DVertexBuffer* pVtxBuffer) const {
     int vtxNrmFrac = pVtxBuffer->getVertexData()->getVtxNrmFrac();
     J3DGQRSetup7(vtxNrmFrac, 7, vtxNrmFrac, 7);
