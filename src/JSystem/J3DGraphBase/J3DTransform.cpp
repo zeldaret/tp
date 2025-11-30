@@ -6,11 +6,13 @@
 #include "JSystem/JMath/JMath.h"
 
 void __MTGQR7(register u32 v) {
+#ifdef __MWERKS__
     // clang-format off
 	asm {
 	    mtspr GQR7, v
     }
     // clang-format on
+#endif
 }
 
 void J3DGQRSetup7(u32 r0, u32 r1, u32 r2, u32 r3) {

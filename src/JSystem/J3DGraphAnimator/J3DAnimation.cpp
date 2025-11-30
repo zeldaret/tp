@@ -511,6 +511,7 @@ inline f32 J3DHermiteInterpolation(register f32 pp1, register s16 const* pp2,
                                    register s16 const* pp3, register s16 const* pp4,
                                    register s16 const* pp5, register s16 const* pp6,
                                    register s16 const* pp7) {
+#ifdef __MWERKS__
     register f32 p1 = pp1;
     register f32 ff8;
     register f32 ff7;
@@ -552,6 +553,7 @@ inline f32 J3DHermiteInterpolation(register f32 pp1, register s16 const* pp2,
     }
     // clang-format on
     return fout;
+#endif
 }
 
 template<typename T>

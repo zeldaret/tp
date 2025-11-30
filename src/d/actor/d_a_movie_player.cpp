@@ -708,12 +708,12 @@ static void __THPDecompressYUV(void* tileY, void* tileU, void* tileV) {
 }
 
 static void __THPGQRRestore() {
+#ifdef __MWERKS__
     register u32 tmp1, tmp2;
     tmp1 = __THPOldGQR5;
     tmp2 = __THPOldGQR6;
 
     // clang-format off
-#ifdef __MWERKS__
     asm {
         mtspr   GQR5, tmp1;
         mtspr   GQR6, tmp2;
@@ -723,22 +723,18 @@ static void __THPGQRRestore() {
 }
 
 static void __THPGQRSetup() {
+#ifdef __MWERKS__
     register u32 tmp1, tmp2;
 
     // clang-format off
-#ifdef __MWERKS__
     asm {
         mfspr   tmp1, GQR5;
         mfspr   tmp2, GQR6;
     }
-#endif
-    // clang-format on
 
     __THPOldGQR5 = tmp1;
     __THPOldGQR6 = tmp2;
 
-    // clang-format off
-#ifdef __MWERKS__
     asm {
         li      r3, 0x0007
         oris    r3, r3, 0x0007
@@ -813,6 +809,7 @@ static void __THPDecompressiMCURow512x448() {
 }
 
 static void __THPInverseDCTY8(register THPCoeff* in, register u32 xPos) {
+#ifdef __MWERKS__
     register f32 *q, *ws;
     register f32 tmp0, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9;
     register f32 tmp10, tmp11, tmp12, tmp13;
@@ -830,7 +827,6 @@ static void __THPInverseDCTY8(register THPCoeff* in, register u32 xPos) {
         register u32 itmp0, itmp1, itmp2, itmp3;
 
         // clang-format off
-#ifdef __MWERKS__
         asm {
             li          itmp2, 8
             mtctr       itmp2
@@ -989,7 +985,6 @@ static void __THPInverseDCTY8(register THPCoeff* in, register u32 xPos) {
         _loopEnd:
 
         }
-#endif
         // clang-format on
     }
 
@@ -1003,7 +998,6 @@ static void __THPInverseDCTY8(register THPCoeff* in, register u32 xPos) {
         register THPSample *out0, *out1;
 
         // clang-format off
-#ifdef __MWERKS__
         asm {
             psq_l       tmp10, 8*0*sizeof(f32)(ws), 0, 0
             slwi off0, wid, 3;
@@ -1121,12 +1115,13 @@ static void __THPInverseDCTY8(register THPCoeff* in, register u32 xPos) {
             psq_st      tmp21, 8(out1), 0, 6
 
         }
-#endif
         // clang-format on
     }
+#endif
 }
 
 static void __THPInverseDCTNoYPos(register THPCoeff* in, register u32 xPos) {
+#ifdef __MWERKS__
     register f32 *q, *ws;
     register f32 tmp0, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, tmp9;
     register f32 tmp10, tmp11, tmp12, tmp13;
@@ -1142,7 +1137,6 @@ static void __THPInverseDCTNoYPos(register THPCoeff* in, register u32 xPos) {
     {
         register u32 itmp0, itmp1, itmp2, itmp3;
         // clang-format off
-#ifdef __MWERKS__
         asm {
             li          itmp2, 8
             mtctr       itmp2
@@ -1301,7 +1295,6 @@ static void __THPInverseDCTNoYPos(register THPCoeff* in, register u32 xPos) {
         _loopEnd:
 
         }
-#endif
         // clang-format on
     }
 
@@ -1315,7 +1308,6 @@ static void __THPInverseDCTNoYPos(register THPCoeff* in, register u32 xPos) {
         register THPSample *out0, *out1;
 
         // clang-format off
-#ifdef __MWERKS__
         asm {
             psq_l       tmp10, 8*0*sizeof(f32)(ws), 0, 0
             slwi        xPos, xPos, 2
@@ -1430,9 +1422,9 @@ static void __THPInverseDCTNoYPos(register THPCoeff* in, register u32 xPos) {
             psq_st      tmp20, 0(out1), 0, 6
             psq_st      tmp21, 8(out1), 0, 6
         }
-#endif
         // clang-format on
     }
+#endif
 }
 
 static void __THPDecompressiMCURow640x480() {

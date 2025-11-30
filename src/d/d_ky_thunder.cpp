@@ -223,8 +223,11 @@ int dThunder_c::create() {
 
     var_f29_2 = spB8.x * spB8.x + spB8.z * spB8.z;
     if (var_f29_2 > 0.0f) {
+        // fakematch?
+        #ifdef __MWERKS__
         f32 tmp = __frsqrtes(var_f29_2);
         var_f29_2 = tmp * var_f29_2;
+        #endif
     }
 
     s16 temp_r28 = cM_atan2s(spB8.x, spB8.z);

@@ -29,6 +29,7 @@ static f32 dummyLiteralOrder() {
 }
 
 void J3DTexMtxInfo::setEffectMtx(Mtx param_0) {
+#ifdef __MWERKS__
     JMath::gekko_ps_copy12(&mEffectMtx, param_0);
     register f32 zero = 0.0f;
     register f32* mtx = (f32*)mEffectMtx;
@@ -37,6 +38,7 @@ void J3DTexMtxInfo::setEffectMtx(Mtx param_0) {
     };
     mEffectMtx[3][2] = 0.0f;
     mEffectMtx[3][3] = 1.0f;
+#endif
 }
 
 J3DIndTexMtxInfo& J3DIndTexMtxInfo::operator=(J3DIndTexMtxInfo const& param_0) {

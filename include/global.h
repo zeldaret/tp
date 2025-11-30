@@ -58,12 +58,14 @@
 #define STATIC_ASSERT(...)
 #endif
 
+#ifdef __MWERKS__
 // Intrinsics
 extern int __cntlzw(unsigned int);
 extern int __rlwimi(int, int, int, int, int);
 extern void __dcbz(void*, int);
 extern void __sync();
 extern int __abs(int);
+#endif
 
 #ifndef __MWERKS__
 void* __memcpy(void*, const void*, int);
