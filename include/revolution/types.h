@@ -54,8 +54,10 @@ typedef unsigned int uint;
 #endif
 
 #ifndef DECL_WEAK
-#if defined(__MWERKS__) || defined(__GNUC__)
+#if defined(__MWERKS__)
 #define DECL_WEAK __declspec(weak)
+#elif defined(__GNUC__)
+#define DECL_WEAK __attribute__((weak))
 #elif defined(_MSC_VER)
 #define DECL_WEAK
 #else
