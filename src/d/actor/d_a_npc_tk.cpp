@@ -41,10 +41,6 @@ public:
     u8 field_0x3c;
 };
 
-//
-// Declarations:
-//
-
 daNPC_TK_HIO_c::daNPC_TK_HIO_c() {
     field_0x4 = -1;
     field_0x8 = 1.0f;

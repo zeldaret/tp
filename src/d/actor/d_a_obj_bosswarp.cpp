@@ -13,10 +13,6 @@
 #include "d/actor/d_a_obj_life_container.h"
 #include "d/actor/d_a_obj_ystone.h"
 
-//
-// Declarations:
-//
-
 static char* l_arcName = "ef_Portal";
 
 static char const* l_clearEvName[9] = {

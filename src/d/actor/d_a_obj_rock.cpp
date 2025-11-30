@@ -11,10 +11,6 @@
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
-//
-// Declarations:
-//
-
 static int daObj_Rock_Draw(obj_rock_class* i_this) {
     int room = fopAcM_GetRoomNo(i_this);
     rock_ss* rock = i_this->mRocks;

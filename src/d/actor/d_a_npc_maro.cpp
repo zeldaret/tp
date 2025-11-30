@@ -18,10 +18,6 @@
 #include "d/d_item.h"
 #include "d/d_timer.h"
 
-//
-// Declarations:
-//
-
 daNpc_Maro_c::actionFunc dummy_lit_4085() {
     return &daNpc_Maro_c::choccai;
 }

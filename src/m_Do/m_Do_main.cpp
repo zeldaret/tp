@@ -591,7 +591,7 @@ bool Debug_console(u32 i_padNo) {
 #endif
 
 s32 LOAD_COPYDATE(void*) {
-    DVDFileInfo ALIGN_DECL(32) fileInfo;
+    DVDFileInfo ATTRIBUTE_ALIGN(32) fileInfo;
     u8 buffer[32];
 
     BOOL status = DVDOpen(COPYDATE_PATH, &fileInfo);

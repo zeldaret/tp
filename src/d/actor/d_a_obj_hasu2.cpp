@@ -7,10 +7,6 @@
 
 #include "d/actor/d_a_obj_hasu2.h"
 
-//
-// Declarations:
-//
-
 static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
     (void)param_0;
     if (fopAcM_GetName(param_2) == PROC_ALINK) {

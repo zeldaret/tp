@@ -8,10 +8,6 @@
 #include "d/actor/d_a_obj_burnbox.h"
 #include "d/d_com_inf_game.h"
 
-//
-// Declarations:
-//
-
 void daObjBurnBox_c::initBaseMtx() {
     mpBoxModel->setBaseScale(scale);
     setBaseMtx();

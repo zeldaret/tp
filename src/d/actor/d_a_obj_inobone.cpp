@@ -8,10 +8,6 @@
 #include "d/actor/d_a_obj_inobone.h"
 #include "d/actor/d_a_player.h"
 
-//
-// Declarations:
-//
-
 static void bornTgCallBack(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf,
                            fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf) {
     daObjIBone_c* a_tgActor = (daObjIBone_c*)i_tgActor;

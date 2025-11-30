@@ -1015,7 +1015,7 @@ struct wcs_data {
 static wcs_data l_wcsbuf[84];
 
 #ifdef DEBUG
-static const u8 lit_5300[8] = {
+static u8 lit_5300[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 #endif

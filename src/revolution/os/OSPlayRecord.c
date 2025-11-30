@@ -2,7 +2,7 @@
 #include <revolution/nand.h>
 
 static BOOL PlayRecordGet = FALSE;
-static OSPlayRecord PlayRecord __attribute__ ((aligned(32)));
+static OSPlayRecord PlayRecord ATTRIBUTE_ALIGN(32);
 static NANDFileInfo FileInfo;
 static NANDCommandBlock Block;
 static s32 PlayRecordState = 9;

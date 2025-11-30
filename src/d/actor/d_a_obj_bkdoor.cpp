@@ -13,10 +13,6 @@
 #include "d/d_lib.h"
 #include "f_op/f_op_actor_mng.h"
 
-//
-// Declarations:
-//
-
 static void* search_door(void* i_actor, void* i_this) {
     if (i_actor != NULL && fopAcM_GetProfName(i_actor) == PROC_Obj_BkDoor &&
         fopAcM_GetParamBit(i_this, 0, 1) != fopAcM_GetParamBit(i_actor, 0, 1))

@@ -8,10 +8,6 @@
 #include "d/actor/d_a_obj_catdoor.h"
 #include "d/d_com_inf_game.h"
 
-//
-// Declarations:
-//
-
 static const char* l_arcName = "CatDoor";
 
 u32 const daObjCatDoor_c::M_attr = 0x001E0578;

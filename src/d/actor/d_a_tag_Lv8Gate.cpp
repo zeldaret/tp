@@ -8,10 +8,6 @@
 #include "d/d_procname.h"
 #include "d/actor/d_a_obj_mirror_table.h"
 
-//
-// Declarations:
-//
-
 static char* l_arcName = "Lv8Gate";
 
 static int createSolidHeap(fopAc_ac_c* i_this) {

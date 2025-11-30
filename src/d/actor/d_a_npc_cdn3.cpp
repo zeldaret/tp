@@ -9,10 +9,6 @@
 #include "d/d_msg_object.h"
 #include "d/d_s_play.h"
 
-//
-// Declarations:
-//
-
 const daNpcCdn3_c::ActionPair daNpcCdn3_c::ActionTable[8] = {
     {&daNpcCdn3_c::initWait, &daNpcCdn3_c::executeWait},
     {&daNpcCdn3_c::initPath, &daNpcCdn3_c::executePath},

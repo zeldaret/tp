@@ -13,10 +13,6 @@
 #include "d/d_s_play.h"
 #include "SSystem/SComponent/c_math.h"
 
-//
-// Declarations:
-//
-
 static const char* getBmdName(int param_0, int param_1) {
     static char l_bmdName[16];
 

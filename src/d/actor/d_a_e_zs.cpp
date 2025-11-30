@@ -19,10 +19,6 @@ public:
     /* 0xc */ f32 field_0xc;
 };
 
-//
-// Declarations:
-//
-
 namespace {
 static dCcD_SrcCyl cc_zs_src = {
     {

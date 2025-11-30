@@ -12,10 +12,6 @@
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
-//
-// Declarations:
-//
-
 static const char* l_arcName1 = "J_Tobi";
 
 static const char* l_arcName2 = "J_Umak";

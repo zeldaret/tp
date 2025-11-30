@@ -13,10 +13,6 @@
 #include "d/d_event_lib.h"
 #include "f_op/f_op_actor_mng.h"
 
-//
-// Declarations:
-//
-
 static const char* l_arcName = "M_Volcbal";
 
 static daObjVolcBall_c::volc_param_c l_param[] = {

@@ -8,10 +8,6 @@
 #include "d/actor/d_a_cstatue.h"
 #include "d/actor/d_a_player.h"
 
-//
-// Declarations:
-//
-
 daTenbin_HIO_c::daTenbin_HIO_c() {
     mPlateSpacing = 480.0f;
     mFallAmount = 160.0f;

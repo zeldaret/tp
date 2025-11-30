@@ -11,10 +11,6 @@
 #include "d/d_meter2_info.h"
 #include "d/d_timer.h"
 
-//
-// Declarations:
-//
-
 enum Event {
     EVT_NONE,
     EVT_GAME_START,

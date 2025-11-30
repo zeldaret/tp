@@ -8,10 +8,6 @@
 #include "d/actor/d_a_obj_zdoor.h"
 #include "d/actor/d_a_player.h"
 
-//
-// Declarations:
-//
-
 static const cM3dGCylS l_cyl_data[3] = {
     {{
          0.0f,

@@ -110,7 +110,7 @@ private:
 
 struct mDoDvdThdStack {
     u8 stack[4096];
-} __attribute__((aligned(16)));
+} ATTRIBUTE_ALIGN(16);
 
 struct mDoDvdThd {
     static s32 main(void*);

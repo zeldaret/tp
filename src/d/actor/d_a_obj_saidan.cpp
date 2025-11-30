@@ -9,10 +9,6 @@
 
 #include "d/d_com_inf_game.h"
 
-//
-// Declarations:
-//
-
 static daSaidan_HIO_c l_HIO;
 
 daSaidan_HIO_c::daSaidan_HIO_c() {

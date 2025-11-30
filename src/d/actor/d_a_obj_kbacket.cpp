@@ -12,10 +12,6 @@
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
 
-//
-// Declarations:
-//
-
 static s32 l_bmdData[4] = { 8, 0, 9, 0 };
 
 static char* l_resNameList[1] = { "Kakashi" };

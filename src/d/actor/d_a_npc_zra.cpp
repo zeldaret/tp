@@ -30,10 +30,6 @@ public:
 #define HIO_PARAM(_) (daNpc_zrA_Param_c::m)
 #endif
 
-//
-// Declarations:
-//
-
 static daNpc_zrA_Param_c l_HIO;
 
 daNpc_zrA_Param_c::param const daNpc_zrA_Param_c::m = {

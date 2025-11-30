@@ -6,10 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_henna0.h"
-//
-// Declarations:
-//
-
 extern actor_process_profile_definition g_profile_NPC_HENNA0 = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID

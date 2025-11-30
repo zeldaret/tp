@@ -10,10 +10,6 @@
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_mtx.h"
 
-//
-// Declarations:
-//
-
 daNPC_TR_HIO_c::daNPC_TR_HIO_c() {
     field_0x4 = -1;
     field_0x8 = 0.8f;

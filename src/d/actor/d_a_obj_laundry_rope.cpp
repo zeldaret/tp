@@ -13,10 +13,6 @@
 #include "d/d_kankyo_wether.h"
 #include "d/d_path.h"
 
-//
-// Declarations:
-//
-
 daObjLndRope_Attr_c const daObjLndRope_c::mAttr = {-5.0f, 0.2f, 0.5f, 0.8f, 0.0f};
 
 static const s8 l_laundryList[13] = {-1, -1, 3, 0, -1, 1, 1, -1, 2, 2, -1, 2, -1};

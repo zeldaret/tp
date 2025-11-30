@@ -3,10 +3,6 @@
 #include "d/actor/d_a_obj_ss_base.h"
 #include "f_op/f_op_actor_mng.h"
 
-//
-// Declarations:
-//
-
 daObj_SSBase_c::daObj_SSBase_c() {
     mpParentPtr = NULL;
     field_0x570 = 0;

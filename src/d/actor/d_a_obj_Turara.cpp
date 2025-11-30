@@ -27,10 +27,6 @@ public:
 
 STATIC_ASSERT(sizeof(daTurara_HIO_c) == 0x20);
 
-//
-// Declarations:
-//
-
 daTurara_HIO_c::daTurara_HIO_c() {
     field_0x04 = 450.f;
     mGravity = 10.0f;

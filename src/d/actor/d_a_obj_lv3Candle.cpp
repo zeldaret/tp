@@ -9,10 +9,6 @@
 
 #include "d/d_com_inf_game.h"
 
-//
-// Declarations:
-//
-
 static daLv3Candle_HIO_c l_HIO;
 
 daLv3Candle_HIO_c::daLv3Candle_HIO_c() {

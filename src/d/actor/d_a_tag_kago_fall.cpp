@@ -10,10 +10,6 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_graphic.h"
 
-//
-// Declarations:
-//
-
 static u32 m_master_id = -1;
 
 int daTagKagoFall_c::create() {

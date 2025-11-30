@@ -162,7 +162,7 @@ int renderingDmap_c::getLineWidth(int param_0) {
     return var_r31;
 }
 
-static u32 const l_paletteDmap_m[60] ALIGN_DECL(32) = {
+static u32 const l_paletteDmap_m[60] ATTRIBUTE_ALIGN(32) = {
     0x00000000,
     0x00000000,
     0x80008000,
@@ -663,7 +663,7 @@ f32 dMenu_DmapMapCtrl_c::getZoomCmPerPixel() {
     return var_f29;
 }
 
-static u32 l_data[61] ALIGN_DECL(32) = {
+static u32 l_data[61] ATTRIBUTE_ALIGN(32) = {
     0x80008000,
     0x80008000,
     0x00000000,

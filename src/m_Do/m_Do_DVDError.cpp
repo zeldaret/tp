@@ -16,7 +16,7 @@ static OSThread DvdErr_thread;
 
 #pragma push
 #pragma force_active on
-static u8 DvdErr_stack[3072] ALIGN_DECL(16);
+static u8 DvdErr_stack[3072] ATTRIBUTE_ALIGN(16);
 #pragma pop
 
 static OSAlarm Alarm;

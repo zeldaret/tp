@@ -8,10 +8,6 @@
 #include "d/actor/d_a_obj_TvCdlst.h"
 #include "include/d/d_com_inf_game.h"
 
-//
-// Declarations:
-//
-
 static daTvCdlst_HIO_c l_HIO;
 
 dCcD_SrcCyl daTvCdlst_c::mCcDCyl = {

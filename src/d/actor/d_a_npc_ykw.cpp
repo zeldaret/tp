@@ -41,10 +41,6 @@ public:
 #define HIO_PARAM(i_this) (&daNpc_ykW_Param_c::m)
 #endif
 
-//
-// Declarations:
-//
-
 static int l_bmdData[1][2] = {
     {11, 1},
 };

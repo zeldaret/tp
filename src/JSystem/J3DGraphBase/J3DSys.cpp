@@ -16,7 +16,7 @@ Vec J3DSys::mParentS;
 
 J3DTexCoordScaleInfo J3DSys::sTexCoordScaleTable[8];
 
-static u8 NullTexData[0x10] ALIGN_DECL(32) = {0};
+static u8 NullTexData[0x10] ATTRIBUTE_ALIGN(32) = {0};
 
 static Mtx j3dIdentityMtx = {
     1.0f, 0.0f, 0.0f, 0.0f,

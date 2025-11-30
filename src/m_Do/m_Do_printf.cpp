@@ -118,7 +118,7 @@ void OSReportInit() {
     }
 }
 
-static u8 mDoPrintf_FiberStack[2048] ALIGN_DECL(32);
+static u8 mDoPrintf_FiberStack[2048] ATTRIBUTE_ALIGN(32);
 
 void mDoPrintf_vprintf_Interrupt(char const* fmt, va_list args) {
     BOOL interruptStatus = OSDisableInterrupts();

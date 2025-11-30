@@ -9,10 +9,6 @@
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
 
-//
-// Declarations:
-//
-
 static int daObjHFtr_c_createHeap(fopAc_ac_c* param_0) {
     return ((daObjHFtr_c*)param_0)->createHeap();
 }

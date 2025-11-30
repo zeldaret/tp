@@ -31,10 +31,6 @@ public:
     /* 0x20 */ f32 mMoveRange;
 };
 
-//
-// Declarations:
-//
-
 dCcD_SrcSph E_YM_n::cc_sph_src = {
     {
         {0, {{0x400, 1, 13}, {0xD8FBFDFF, 3}, 0x75}},

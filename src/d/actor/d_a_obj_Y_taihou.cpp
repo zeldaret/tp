@@ -14,10 +14,6 @@
 #include "d/actor/d_a_player.h"
 
 
-//
-// Declarations:
-//
-
 static void ccHitCallback(fopAc_ac_c* param_0, dCcD_GObjInf* param_1, fopAc_ac_c* param_2,
                           dCcD_GObjInf* param_3) {
     if (fopAcM_checkCarryNow(param_2) != 0) {
