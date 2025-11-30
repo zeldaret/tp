@@ -148,7 +148,7 @@ void daNpc_Bans_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
     JORFile jorFile;
     int len;
 
-    switch (event->id) {
+    switch ((u32)event->id) {
         case 0x40000002:
             if (jorFile.open(6, "", NULL, NULL, NULL)) {
                 memset(buffer, 0, sizeof(buffer));

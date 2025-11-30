@@ -62,7 +62,7 @@ void daObj_ItaMato_HIO_c::listenPropertyEvent(const JORPropertyEvent* i_event) {
     JORReflexible::listenPropertyEvent(i_event);
     JORFile jorFile;
 
-    switch (i_event->id) {
+    switch ((u32)i_event->id) {
         case 0x40000002:
             if (jorFile.open(6, "すべてのファイル(*.*)", NULL, NULL, NULL)) {
                 memset(buffer, 0, sizeof(buffer));
