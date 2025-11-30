@@ -96,7 +96,7 @@ void daNpc_Kn_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
 
     JORFile aJStack_910;
     int len;
-    switch (reinterpret_cast<u32>(event->id)) {
+    switch ((u32)event->id) {
     case 0x40000002:
         if (aJStack_910.open(6, "すべてのファイル(*.*)\0*.*\0", NULL, NULL, NULL) != 0) {
             memset(msg_buffer, 0, sizeof(msg_buffer));
