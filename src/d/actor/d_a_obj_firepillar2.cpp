@@ -10,7 +10,6 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
 static int CheckCreateHeap(fopAc_ac_c* i_this) {
@@ -41,7 +40,7 @@ void daObjFPillar2_c::setBaseMtx() {
 
 static char* l_arcName = "Obj_yogan";
 
-SECTION_DATA static Vec l_cull_box[2] = {
+static Vec l_cull_box[2] = {
     {-150.0f, -10.0f, -150.0f},
     {150.0f, 1200.0f, 150.0f},
 };
@@ -207,37 +206,37 @@ void daObjFPillar2_c::action() {
 }
 
 
-SECTION_DATA static u16 l_pipe_fire_id[3] = {
+static u16 l_pipe_fire_id[3] = {
     0x84E1,
     0x84E2,
     0x84E3,
 };
 
-SECTION_DATA static u16 l_yogan_foot_id[3] = {
+static u16 l_yogan_foot_id[3] = {
     0x816F,
     0x8170,
     0x8171,
 };
 
-SECTION_DATA static u16 l_yogan_headL_id[3] = {
+static u16 l_yogan_headL_id[3] = {
     0x84E4,
     0x84E5,
     0x84E6,
 };
 
-SECTION_DATA static u16 l_yogan_headM_id[3] = {
+static u16 l_yogan_headM_id[3] = {
     0x84E7,
     0x84E8,
     0x84E9,
 };
 
-SECTION_DATA static u16 l_yogan_headS_id[3] = {
+static u16 l_yogan_headS_id[3] = {
     0x84EA,
     0x84EB,
     0x84EC,
 };
 
-SECTION_DATA static u16* l_yogan_head_id[3] = {
+static u16* l_yogan_head_id[3] = {
     l_yogan_headS_id,
     l_yogan_headM_id,
     l_yogan_headL_id,

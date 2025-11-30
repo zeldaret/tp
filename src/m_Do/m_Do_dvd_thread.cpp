@@ -9,7 +9,6 @@
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
-#include "dol2asm.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_ext.h"
 

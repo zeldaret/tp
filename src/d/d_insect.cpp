@@ -10,7 +10,6 @@
 #include "d/d_menu_insect.h"
 #include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_lib.h"
-#include "dol2asm.h"
 
 dInsect_c::dInsect_c() {
     m_itemId = -1;

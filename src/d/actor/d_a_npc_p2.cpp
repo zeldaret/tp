@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_p2.h"
-#include "dol2asm.h"
 
 static bool daNpc_P2Create(void* param_0) {
     return true;

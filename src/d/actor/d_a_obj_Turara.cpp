@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_Turara.h"
-#include "dol2asm.h"
 #include "SSystem/SComponent/c_math.h"
 
 class daTurara_HIO_c : public fOpAcm_HIO_entry_c {

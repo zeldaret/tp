@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_spinLift.h"
-#include "dol2asm.h"
 
 class daSpinLift_HIO_c : public mDoHIO_entry_c {
 public:

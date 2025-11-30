@@ -12,7 +12,6 @@
 #include "cmath.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_bg_w.h"
-#include "dol2asm.h"
 
 static fopAc_ac_c* PPCallBack(fopAc_ac_c* i_this, fopAc_ac_c* param_2, s16 param_3,
                            dBgW_Base::PushPullLabel param_4) {

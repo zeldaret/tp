@@ -10,7 +10,6 @@
 #include "d/d_cc_uty.h"
 #include "d/d_s_play.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 
 static int daObj_Tatigi_Draw(obj_tatigi_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)&i_this->mBase;

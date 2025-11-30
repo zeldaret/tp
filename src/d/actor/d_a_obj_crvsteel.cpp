@@ -7,7 +7,6 @@
 
 #include "d/actor/d_a_obj_crvsteel.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 
 static int daObjCRVSTEEL_Create(fopAc_ac_c* i_this) {
     return static_cast<daObjCRVSTEEL_c*>(i_this)->create();

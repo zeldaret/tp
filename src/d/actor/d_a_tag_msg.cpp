@@ -8,7 +8,6 @@
 #include "d/actor/d_a_tag_msg.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 
 static int createHeapCallBack(fopAc_ac_c* i_this) {
     return ((daTag_Msg_c*)i_this)->createHeap();
@@ -195,7 +194,7 @@ void daTag_Msg_c::getParam() {
     strcpy(mStaffName, "Tag_ms");
 }
 
-SECTION_DATA char* daTag_Msg_c::mEvtCutTBL[2] = {
+char* daTag_Msg_c::mEvtCutTBL[2] = {
     "SPEAK",
     "PAUSE",
 };

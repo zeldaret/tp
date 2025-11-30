@@ -12,7 +12,6 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_kankyo_wether.h"
 #include "d/d_path.h"
-#include "dol2asm.h"
 
 //
 // Declarations:

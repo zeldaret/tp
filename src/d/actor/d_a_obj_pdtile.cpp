@@ -11,7 +11,6 @@
 #include "d/d_bg_w.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 
 static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
     static_cast<daObjPDtile_c*>(param_2)->rideActor(param_3);

@@ -11,7 +11,6 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_bg_s.h"
 #include "d/d_bg_w.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
 struct Attr {
@@ -31,7 +30,7 @@ struct Attr {
     /* 0x20 */ f32 field_0x20;
 };
 
- SECTION_RODATA static Attr const L_attr = {
+static Attr const L_attr = {
     -3.0f, 0.005f, 0.0005f,
     0.5f, 0x03, 0x4B, 0x32, 0x2D, 0x28, 0x4E20,
     0x3CC3, 0x0F, 2.0f, 1.0f,
@@ -41,7 +40,7 @@ inline static const Attr& attr() {
     return L_attr;
 }
 
-SECTION_RODATA char const daObjLadder::Act_c::M_arcname[5] = "Mhsg";
+char const daObjLadder::Act_c::M_arcname[5] = "Mhsg";
 
 struct AttrType {
     /* 0x0 */ s16 field_0x0;
@@ -49,7 +48,7 @@ struct AttrType {
     /* 0x4 */ f32 field_0x4;
 };
 
-SECTION_DATA static AttrType L_attr_type[6] = {
+static AttrType L_attr_type[6] = {
     { 0x08, 0x10, 600.0f},
     { 0x09, 0x11, 900.0f},
     { 0x04, 0x0C, 1200.0f},

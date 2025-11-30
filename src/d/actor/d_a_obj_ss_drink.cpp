@@ -10,7 +10,6 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_msg_object.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 
 static char* l_resFileName = "Obj_btl";
 

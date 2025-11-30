@@ -9,7 +9,6 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_meter2_info.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 
 #ifdef DEBUG
 class daObjSmgDoor_HIO_c : public mDoHIO_entry_c {

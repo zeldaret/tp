@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_magLift.h"
-#include "dol2asm.h"
 #include "d/d_path.h"
 
 static daMagLift_HIO_c l_HIO;

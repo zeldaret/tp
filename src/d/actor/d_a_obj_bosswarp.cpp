@@ -12,7 +12,6 @@
 #include "d/d_procname.h"
 #include "d/actor/d_a_obj_life_container.h"
 #include "d/actor/d_a_obj_ystone.h"
-#include "dol2asm.h"
 
 //
 // Declarations:

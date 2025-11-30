@@ -20,7 +20,6 @@
 #include "d/d_meter_hakusha.h"
 #include "d/d_meter_map.h"
 #include "d/d_meter_string.h"
-#include "dol2asm.h"
 #include "f_op/f_op_msg_mng.h"
 #include "d/actor/d_a_horse.h"
 
@@ -3082,13 +3081,13 @@ static int dMeter2_Create(msg_class* i_this) {
     return static_cast<dMeter2_c*>(i_this)->_create();
 }
 
-SECTION_DATA static leafdraw_method_class l_dMeter2_Method = {
+static leafdraw_method_class l_dMeter2_Method = {
     (process_method_func)dMeter2_Create,  (process_method_func)dMeter2_Delete,
     (process_method_func)dMeter2_Execute, (process_method_func)dMeter2_IsDelete,
     (process_method_func)dMeter2_Draw,
 };
 
-SECTION_DATA extern msg_process_profile_definition g_profile_METER2 = {
+extern msg_process_profile_definition g_profile_METER2 = {
     -3,
     12,
     -3,

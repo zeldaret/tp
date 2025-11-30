@@ -16,7 +16,6 @@
 #include "d/d_com_static.h"
 #include "d/d_meter2_info.h"
 #include "d/d_msg_object.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_camera_mng.h"
 #include "types.h"
@@ -97,7 +96,7 @@ static s8 l_loadResPtrn9[9] = {
     0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, -1,
 };
 
-SECTION_DATA static s8* l_loadResPtrnList[17] = {
+static s8* l_loadResPtrnList[17] = {
     l_loadResPtrn6, l_loadResPtrn6, l_loadResPtrn0, l_loadResPtrn1,
     l_loadResPtrn0, l_loadResPtrn0, l_loadResPtrn3, l_loadResPtrn6,
     l_loadResPtrn2, l_loadResPtrn0, l_loadResPtrn6, l_loadResPtrn6,

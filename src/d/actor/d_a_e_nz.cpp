@@ -8,7 +8,6 @@
 #include "d/actor/d_a_e_nz.h"
 #include "c/c_damagereaction.h"
 #include "d/d_cc_d.h"
-#include "dol2asm.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_actor_enemy.h"
 

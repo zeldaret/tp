@@ -18,7 +18,6 @@
 #include "JSystem/JUtility/JUTResFont.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_mtx.h"

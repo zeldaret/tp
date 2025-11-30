@@ -11,7 +11,6 @@
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 
 typedef void (dFile_warning_c::*procFunc)();
 static procFunc fileWarningProc[] = {&dFile_warning_c::modeWait, &dFile_warning_c::modeMove};

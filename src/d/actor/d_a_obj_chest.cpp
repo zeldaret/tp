@@ -13,7 +13,6 @@
 #include "d/d_bg_s.h"
 #include "d/d_bg_w.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
 #include "d/actor/d_a_obj_eff.h"
 
 void daObjChest_c::initBaseMtx() {

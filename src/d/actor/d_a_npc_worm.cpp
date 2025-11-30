@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_worm.h"
-#include "dol2asm.h"
 
 static int nodeCallBack(J3DJoint* joint, int param_2) {
     if (param_2 == 0) {

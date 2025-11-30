@@ -2,7 +2,6 @@
 
 #include "d/actor/d_a_tag_event.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "d/actor/d_a_horse.h"
 
 static fopAc_ac_c* daTag_getBk(u32 param_0) {

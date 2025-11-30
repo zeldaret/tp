@@ -13,19 +13,13 @@
 #include "d/actor/d_a_tag_evtarea.h"
 #include "d/d_cc_uty.h"
 #include "Z2AudioLib/Z2Instances.h"
-#include "dol2asm.h"
-
-
-//
-// Declarations:
-//
 
 static int l_bmdData[4][2] = {
     {14, 1}, {26, 2},
     {25, 2}, {3, 4},
 };
 
-SECTION_DATA static daNpcT_evtData_c l_evtList[11] = {
+static daNpcT_evtData_c l_evtList[11] = {
     {"", 0},
     {"NO_RESPONSE", 0},
     {"CONVERSATION_ABOUT_SARU01", 5},
@@ -81,7 +75,7 @@ static s8* l_loadResPtrnList[5] = {
     l_loadResPtrn2, l_loadResPtrn9,
 };
 
-SECTION_DATA static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[10] = {
+static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[10] = {
     {-1, 0, 0, 20, 2, 1, 1}, 
     {7, 0, 1, 20, 2, 1, 1}, 
     {7, 0, 2, 34, 0, 2, 0},
@@ -94,7 +88,7 @@ SECTION_DATA static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[10] = {
      { 11, 2, 2, 38, 2, 2, 0},
 };
 
-    SECTION_DATA static int l_motionAnmData[161] = {
+static int l_motionAnmData[161] = {
     11, 2, 1, 17, 0, 1, 65536, 22, 2, 2, 17, 0, 1, 65536, 16, 2, 2, 17, 0, 1, 65536,
     13, 2, 2, 17, 0, 1, 65536, 21, 2, 2, 31, 2, 2, 0,     20, 0, 2, 30, 0, 2, 0,
     14, 0, 2, 29, 0, 2, 0,     8,  2, 1, 17, 0, 1, 65536, 6,  0, 1, 17, 0, 1, 65536,
@@ -124,7 +118,7 @@ static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[80] = {
     {-1, 0, 0},  {-1, 0, 0},  {8, -1, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {9, -1, 0},
     {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0}};
 
-SECTION_DATA char* daNpc_Hanjo_c::mCutNameList[6] = {
+char* daNpc_Hanjo_c::mCutNameList[6] = {
     "",
     "CONVERSATION_ABOUT_SARU",
     "CONVERSATION",

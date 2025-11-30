@@ -3,7 +3,6 @@
 #include "d/d_msg_string.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_msg_out_font.h"
-#include "dol2asm.h"
 
 dMsgString_c::dMsgString_c() {
     field_0x28 = 0;

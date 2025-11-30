@@ -3,7 +3,6 @@
 #include "d/actor/d_a_npc_cd2.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_path.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
 static int jntNodeCallBack(J3DJoint* i_jnt, int param_1) {
@@ -140,7 +139,7 @@ struct anmTblPrm {
     int index;
 };
 
-SECTION_RODATA static anmTblPrm const l_objTbl[13] = {
+static anmTblPrm const l_objTbl[13] = {
     {"object", 9},  {"object", 9},  {"object", 8},  {"object", 3}, {"object", 13},
     {"object", 14}, {"object", 12}, {"object", 6},  {"object", 7}, {"object", 10},
     {"object", 11}, {"object", 15}, {"object", 16},
@@ -166,7 +165,7 @@ static anmTblPrm const l_bckTbl_M[54] = {
     {"Mgeneral", -1}, {"Mgeneral", -1}, {"Mgeneral", -1}, {"Mgeneral", 10},
 };
 
-SECTION_RODATA static anmTblPrm const l_bckTbl_W[54] = {
+static anmTblPrm const l_bckTbl_W[54] = {
     {"Wgeneral", 31}, {"Wgeneral", 32}, {"Wgeneral", 34}, {"Wgeneral", 35}, {"Wgeneral", 13},
     {"Wgeneral", 14}, {"Wgeneral", 25}, {"Wgeneral", 26}, {"Wgeneral", 28}, {"Wgeneral", 10},
     {"Wgeneral", 11}, {"Wgeneral", 33}, {"Wgeneral", 29}, {"Wgeneral", 27}, {"Wgeneral", 22},

@@ -9,7 +9,6 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 
 static int daObj_Ndoor_Draw(obj_ndoor_class* i_this) {
     g_env_light.settingTevStruct(0x10, &i_this->current.pos, &i_this->tevStr);

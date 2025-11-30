@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_pleaf.h"
-#include "dol2asm.h"
 
 static char* l_resName = "J_Hatake";
 

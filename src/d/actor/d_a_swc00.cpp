@@ -10,7 +10,6 @@
 #include "d/actor/d_a_horse.h"
 #include "d/d_debug_viewer.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 

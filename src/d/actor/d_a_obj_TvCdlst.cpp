@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_TvCdlst.h"
-#include "dol2asm.h"
 #include "include/d/d_com_inf_game.h"
 
 //

@@ -2,7 +2,6 @@
 #define JASWAVEARCLOADER_H
 
 #include "JSystem/JAudio2/JASHeapCtrl.h"
-#include "dol2asm.h"
 #include <dolphin/os.h>
 
 class JKRHeap;

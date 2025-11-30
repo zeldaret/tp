@@ -14,7 +14,6 @@
 #include "d/d_item.h"
 #include "d/d_meter2_draw.h"
 #include "d/d_pane_class.h"
-#include "dol2asm.h"
 #include "d/d_demo.h"
 #include "d/actor/d_a_crod.h"
 #include "d/actor/d_a_mg_rod.h"

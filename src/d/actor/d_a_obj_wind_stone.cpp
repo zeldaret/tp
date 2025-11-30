@@ -8,7 +8,6 @@
 #include "d/actor/d_a_obj_wind_stone.h"
 #include "d/actor/d_a_alink.h"
 #include "d/d_meter2_info.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 static int daWindStone_c_createHeap(fopAc_ac_c* i_this) {
@@ -44,7 +43,7 @@ int daWindStone_c::createHeap() {
     return 1;
 }
 
-SECTION_RODATA static u8 const lit_3760[12] = {
+static u8 const lit_3760[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 

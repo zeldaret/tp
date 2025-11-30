@@ -28,7 +28,6 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_lib.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "dol2asm.h"
 
 static void dMsgObject_addFundRaising(s16 param_0);
 static void dMsgObject_addTotalPayment(s16 param_0);

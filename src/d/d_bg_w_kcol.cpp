@@ -2,7 +2,6 @@
 
 #include "d/d_bg_w_kcol.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "d/actor/d_a_horse.h"
 #include "d/d_bg_s_cap_poly.h"
 
@@ -1016,7 +1015,7 @@ struct wcs_data {
 static wcs_data l_wcsbuf[84];
 
 #ifdef DEBUG
-SECTION_SDATA2 static u8 lit_5300[8] = {
+static const u8 lit_5300[8] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 #endif

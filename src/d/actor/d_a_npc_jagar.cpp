@@ -8,7 +8,6 @@
 #include "d/actor/d_a_npc_jagar.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_npc_bou.h"
-#include "dol2asm.h"
 #include "d/d_meter2_info.h"
 #include "d/actor/d_a_tag_push.h"
 
@@ -180,7 +179,7 @@ static int l_bmdData[1][2] = {
     {BMDR_JAGAR, 1},
 };
 
-SECTION_DATA static daNpcT_evtData_c l_evtList[9] = {
+static daNpcT_evtData_c l_evtList[9] = {
     {"", 0},
     {"NO_RESPONSE", 0},
     {"CLIMBUP", 2},
@@ -315,7 +314,7 @@ static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[76] = {
     {13, -1, 1}, {12, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
 
-SECTION_DATA char* daNpc_Jagar_c::mCutNameList[7] = {
+char* daNpc_Jagar_c::mCutNameList[7] = {
     "",
     "CLIMBUP",
     "NEED_YOUR_HELP",

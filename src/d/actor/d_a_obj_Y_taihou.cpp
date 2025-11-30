@@ -8,7 +8,6 @@
 #include "d/actor/d_a_obj_Y_taihou.h"
 #include "d/d_bg_w.h"
 #include "d/d_cc_d.h"
-#include "dol2asm.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "SSystem/SComponent/c_math.h"
@@ -78,7 +77,7 @@ static void* searchIronBallCallback(void* i_actor, void* i_data) {
     return NULL;
 }
 
-SECTION_DATA static char const* l_arcName[1] = {"Y_taihou"};
+static char const* l_arcName[1] = {"Y_taihou"};
 
 int daObjYtaihou_c::create1st() {
     int phase = dComIfG_resLoad(this, l_arcName[0]);

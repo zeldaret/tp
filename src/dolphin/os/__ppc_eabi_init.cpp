@@ -2,7 +2,6 @@
 // __ppc_eabi_init
 //
 
-#include "dol2asm.h"
 #include "dolphin/base/PPCArch.h"
 
 #ifdef __cplusplus

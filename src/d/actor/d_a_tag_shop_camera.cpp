@@ -6,8 +6,6 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_shop_camera.h"
-#include "dol2asm.h"
-
 
 int daTag_ShopCamera_c::create() {
     fopAcM_ct(this, daTag_ShopCamera_c);
@@ -26,7 +24,6 @@ int daTag_ShopCamera_c::Execute() {
 int daTag_ShopCamera_c::Draw() {
     return 1;
 }
-
  
 void daTag_ShopCamera_c::initialize() {
     fopAcM_setCullSizeBox(this,-30.0f,-15.0f,-30.0f,30.0f,45.0f,30.0f);
@@ -55,24 +52,27 @@ static int daTag_ShopCamera_IsDelete(void* param_0) {
     return 1;
 }
 
-// settings these up properly causes the match to fail?
-
-SECTION_DATA static void* daTag_ShopCamera_MethodTable[8] = {
-    (void*)daTag_ShopCamera_Create,
-    (void*)daTag_ShopCamera_Delete,
-    (void*)daTag_ShopCamera_Execute,
-    (void*)daTag_ShopCamera_IsDelete,
-    (void*)daTag_ShopCamera_Draw,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class daTag_ShopCamera_MethodTable = {
+    (process_method_func)daTag_ShopCamera_Create,
+    (process_method_func)daTag_ShopCamera_Delete,
+    (process_method_func)daTag_ShopCamera_Execute,
+    (process_method_func)daTag_ShopCamera_IsDelete,
+    (process_method_func)daTag_ShopCamera_Draw,
 };
 
-SECTION_DATA extern void* g_profile_TAG_SHOPCAM[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x01260000, (void*)&g_fpcLf_Method,
-    (void*)0x0000056C, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x004A0000, (void*)&daTag_ShopCamera_MethodTable,
-    (void*)0x00064100, (void*)0x050E0000,
+extern actor_process_profile_definition g_profile_TAG_SHOPCAM = {
+    fpcLy_CURRENT_e,              // mLayerID
+    7,                            // mListID
+    fpcPi_CURRENT_e,              // mListPrio
+    PROC_TAG_SHOPCAM,             // mProcName
+    &g_fpcLf_Method.base,        // sub_method
+    sizeof(daTag_ShopCamera_c),     // mSize
+    0,                            // mSizeOther
+    0,                            // mParameters
+    &g_fopAc_Method.base,         // sub_method
+    74,                           // mPriority
+    &daTag_ShopCamera_MethodTable,  // sub_method
+    0x64100,                      // mStatus
+    5,                            // mActorType
+    fopAc_CULLBOX_CUSTOM_e,       // cullType
 };

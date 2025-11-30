@@ -1,4 +1,3 @@
-#include "dol2asm.h"
 #include <dolphin.h>
 #include "__ppc_eabi_linker.h"
 
@@ -9,18 +8,18 @@ extern void __init_user(void);
 extern void InitMetroTRK_BBA(void);
 extern void DBInit();
 
-SECTION_INIT extern void __check_pad3(void);
-SECTION_INIT extern void __set_debug_bba(void);
-SECTION_INIT extern u8 __get_debug_bba(void);
-SECTION_INIT extern void __start(void);
-SECTION_INIT extern void __init_registers(void);
-SECTION_INIT extern void __init_data(void);
-SECTION_INIT extern void __init_hardware(void);
-SECTION_INIT extern void __flush_cache(void* addr, u32 size);
+__declspec(section ".init") extern void __check_pad3(void);
+__declspec(section ".init") extern void __set_debug_bba(void);
+__declspec(section ".init") extern u8 __get_debug_bba(void);
+__declspec(section ".init") extern void __start(void);
+__declspec(section ".init") extern void __init_registers(void);
+__declspec(section ".init") extern void __init_data(void);
+__declspec(section ".init") extern void __init_hardware(void);
+__declspec(section ".init") extern void __flush_cache(void* addr, u32 size);
 
 extern u8 Debug_BBA_804516D0;
 
-SECTION_INIT void __check_pad3(void) {
+__declspec(section ".init") void __check_pad3(void) {
     if ((*(u16*)0x800030E4 & 0xEEF) == 0xEEF) {
         OSResetSystem(0, 0, 0);
     }
@@ -30,11 +29,11 @@ void __set_debug_bba(void) {
     Debug_BBA_804516D0 = 1;
 }
 
-SECTION_INIT u8 __get_debug_bba(void) {
+__declspec(section ".init") u8 __get_debug_bba(void) {
     return Debug_BBA_804516D0;
 }
 
-SECTION_INIT asm void __start(void) {
+__declspec(section ".init") asm void __start(void) {
     // clang-format off
     nofralloc
 
@@ -148,7 +147,7 @@ lbl_8000329C:
     // clang-format on
 }
 
-SECTION_INIT asm void __init_registers(void) {
+__declspec(section ".init") asm void __init_registers(void) {
     // clang-format off
     nofralloc
 
@@ -206,7 +205,7 @@ inline static void __init_bss_section(void* dst, u32 size)
     }
 }
 
-SECTION_INIT void __init_data() {
+__declspec(section ".init") void __init_data() {
     __rom_copy_info* dci;
     __bss_init_info* bii;
 
@@ -227,7 +226,7 @@ SECTION_INIT void __init_data() {
     }
 }
 
-SECTION_INIT asm void __init_hardware() {
+__declspec(section ".init") asm void __init_hardware() {
     // clang-format off
     nofralloc
 
@@ -243,7 +242,7 @@ SECTION_INIT asm void __init_hardware() {
     // clang-format on
 }
 
-SECTION_INIT asm void __flush_cache() {
+__declspec(section ".init") asm void __flush_cache() {
     // clang-format off
     nofralloc
 

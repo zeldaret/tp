@@ -9,7 +9,6 @@
 #include "d/actor/d_a_obj_kbox.h"
 #include "d/d_cc_d.h"
 #include "Z2AudioLib/Z2Instances.h"
-#include "dol2asm.h"
 
 daObj_Kbox_HIO_c::daObj_Kbox_HIO_c() {
     mId = -1;

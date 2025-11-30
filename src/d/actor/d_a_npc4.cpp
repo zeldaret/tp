@@ -4,7 +4,6 @@
 #include "d/d_debug_viewer.h"
 #include "d/d_msg_object.h"
 #include "d/actor/d_a_tag_evtarea.h"
-#include "dol2asm.h"
 
 static u16 daNpcF_putNurbs(dPnt* param_0, int param_1, int param_2, dPnt* param_3, int param_4);
 u8 daNpcF_getDistTableIdx(int param_0, int param_1);

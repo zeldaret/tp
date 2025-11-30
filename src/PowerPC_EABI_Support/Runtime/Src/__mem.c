@@ -1,7 +1,6 @@
-#include "dol2asm.h"
 #include <dolphin.h>
 
-SECTION_INIT void* memcpy(void* dst, const void* src, size_t n) {
+__declspec(section ".init") void* memcpy(void* dst, const void* src, size_t n) {
     const unsigned char* s;
     unsigned char* d;
 
@@ -21,7 +20,7 @@ SECTION_INIT void* memcpy(void* dst, const void* src, size_t n) {
     return dst;
 }
 
-SECTION_INIT void __fill_mem(void* dst, int val, size_t n) {
+__declspec(section ".init") void __fill_mem(void* dst, int val, size_t n) {
     unsigned long v = (unsigned char)val;
     unsigned long i;
 
@@ -79,7 +78,7 @@ SECTION_INIT void __fill_mem(void* dst, int val, size_t n) {
     return;
 }
 
-SECTION_INIT void* memset(void* dst, int val, size_t n) {
+__declspec(section ".init") void* memset(void* dst, int val, size_t n) {
     __fill_mem(dst, val, n);
 
     return dst;

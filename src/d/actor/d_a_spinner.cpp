@@ -7,7 +7,6 @@
 
 #include "d/actor/d_a_spinner.h"
 #include "d/actor/d_a_tag_sppath.h"
-#include "dol2asm.h"
 #include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_mirror.h"
 #include "Z2AudioLib/Z2Instances.h"

@@ -11,7 +11,6 @@
 #include "d/d_bg_w.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
-#include "dol2asm.h"
 
 #ifdef DEBUG
 class daObjLv4Chan_HIO_c : public mDoHIO_entry_c {

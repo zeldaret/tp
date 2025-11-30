@@ -9,7 +9,6 @@
 #include "d/actor/d_a_obj_crvlh_up.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 
 static int daObjCRVLH_UP_Create(fopAc_ac_c* i_this) {
     return ((daObjCRVLH_UP_c*)i_this)->create();

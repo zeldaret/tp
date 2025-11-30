@@ -7,7 +7,6 @@
 
 #include "d/actor/d_a_path_line.h"
 #include "f_op/f_op_actor_mng.h"
-#include "dol2asm.h"
 
 extern actor_process_profile_definition2 g_profile_PATH_LINE = {
   fpcLy_CURRENT_e,       // mLayerID

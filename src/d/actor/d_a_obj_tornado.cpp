@@ -8,7 +8,6 @@
 #include "d/actor/d_a_obj_tornado.h"
 #include "d/d_kankyo_rain.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 
 void daObjTrnd_c::setPntWind() {
     mWindInfluence.position = current.pos;

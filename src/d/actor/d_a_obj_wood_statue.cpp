@@ -11,7 +11,6 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_item_data.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 
 #ifdef DEBUG
 

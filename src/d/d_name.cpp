@@ -4,7 +4,6 @@
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_lib.h"
-#include "dol2asm.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "stdio.h"
@@ -85,10 +84,11 @@ static char* l_mojiEisuPal_2[65] = {
 static dNm_HIO_c g_nmHIO;
 
 typedef void (dName_c::*selProcFunc)(void);
-SECTION_DATA static selProcFunc SelProc[9] = {
+static selProcFunc SelProc[9] = {
     &dName_c::MojiSelect,     &dName_c::MojiSelectAnm,  &dName_c::MojiSelectAnm2,
     &dName_c::MojiSelectAnm3, &dName_c::MenuSelect,     &dName_c::MenuSelectAnm,
-    &dName_c::MenuSelectAnm2, &dName_c::MenuSelectAnm3, &dName_c::Wait};
+    &dName_c::MenuSelectAnm2, &dName_c::MenuSelectAnm3, &dName_c::Wait
+};
 
 dNm_HIO_c::dNm_HIO_c() {
     mMenuScale = 1.3f;

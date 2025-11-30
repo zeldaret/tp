@@ -8,7 +8,6 @@
 #include "d/actor/d_a_obj_sakuita.h"
 #include "d/d_a_obj.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 
 #ifdef DEBUG
 class daObjSakuita_Hio_c : public JORReflexible {
