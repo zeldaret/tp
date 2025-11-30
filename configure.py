@@ -731,7 +731,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "d/d_bg_s_wtr_chk.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_base.cpp"),
-            Object(NonMatching, "d/d_bg_w_kcol.cpp"),
+            Object(MatchingFor(ALL_GCN), "d/d_bg_w_kcol.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_sv.cpp"),
             Object(Equivalent, "d/d_cc_d.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN), "d/d_cc_mass_s.cpp"),
