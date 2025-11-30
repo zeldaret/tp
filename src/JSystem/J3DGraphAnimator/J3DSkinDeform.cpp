@@ -423,19 +423,19 @@ void J3DSkinDeform::changeFastSkinDL(J3DModelData* pModelData) {
     }
 
     for (u16 i = 0; i < pModelData->getShapeNum(); i++) {
-        J3DShape* pShape = pModelData->getShapeNodePointer(i);
-        GXVtxDescList* local_5c = pShape->getVtxDesc();
-        GXVtxDescList* local_60 = local_5c;
-        for (; local_5c->attr != GX_VA_NULL; local_5c++) {
-            if (local_5c->attr != GX_VA_PNMTXIDX) {
-                local_60->attr = local_5c->attr;
-                local_60->type = local_5c->type;
-                local_60++;
+        J3DShape* shape = pModelData->getShapeNodePointer(i);
+        GXVtxDescList* desc = shape->getVtxDesc();
+        GXVtxDescList* descDst = desc;
+        for (; desc->attr != GX_VA_NULL; desc++) {
+            if (desc->attr != GX_VA_PNMTXIDX) {
+                descDst->attr = desc->attr;
+                descDst->type = desc->type;
+                descDst++;
             }
         }
-        local_60->attr = GX_VA_NULL;
-        local_60->type = GX_NONE;
-        pShape->makeVcdVatCmd();
+        descDst->attr = GX_VA_NULL;
+        descDst->type = GX_NONE;
+        shape->makeVcdVatCmd();
     }
 }
 
