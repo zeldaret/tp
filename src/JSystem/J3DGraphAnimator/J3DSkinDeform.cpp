@@ -366,57 +366,58 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
 
 /* 8032D378-8032D5C4 327CB8 024C+00 0/0 1/1 0/0 .text
  * changeFastSkinDL__13J3DSkinDeformFP12J3DModelData            */
-// NONMATCHING - regalloc, display list access issues
+// NONMATCHING - instruction ordering/optimization issue, matches debug
+// the compiler needs to delay adding +3 to dl until the end of the while loop for the function to match
+// but instead it puts the +3 at the start of the for loop and reworks the other instructions
+// can get a 99.93% match on retail by moving where dl is incremented, but it seems fake as it breaks debug, and introduces an operand swap on src
 void J3DSkinDeform::changeFastSkinDL(J3DModelData* pModelData) {
     J3D_ASSERT_NULLPTR(740, pModelData != NULL);
     for (u16 i = 0; i < pModelData->getShapeNum(); i++) {
         u32 kSize[4] = {0,1,1,2};
-        int local_30 = -1;
-        int local_34 = 0;
+        int pnmtxIdxOffs = -1;
+        int vtxSize = 0;
+
         J3DShape* pShapeNode = pModelData->getShapeNodePointer(i);
         for (GXVtxDescList* vtxDesc = pShapeNode->getVtxDesc(); vtxDesc->attr != GX_VA_NULL; vtxDesc++) {
             if (vtxDesc->attr == GX_VA_PNMTXIDX) {
-                local_30 = local_34;
+                pnmtxIdxOffs = vtxSize;
             }
-            local_34 += kSize[vtxDesc->type];
+            vtxSize += kSize[vtxDesc->type];
         }
 
-        if (local_30 != -1) {
+        if (pnmtxIdxOffs != -1) {
             for (u16 j = 0; j < (u16)pShapeNode->getMtxGroupNum(); j++) {
-                u8* pDList = pShapeNode->getShapeDraw(j)->getDisplayList();
-                u8* local_44 = pDList;
-                u8* puVar10 = pDList;
-                while (local_44 - pDList < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
-                    u8 command = *local_44;
-                    local_44++;
-                    *puVar10++ = command;
-                    if (command != GX_TRIANGLEFAN && command != GX_TRIANGLESTRIP)
+                u8* displayListStart = pShapeNode->getShapeDraw(j)->getDisplayList();
+                u8* dl = displayListStart;
+                u8* dst = displayListStart;
+                while ((dl - displayListStart) < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
+                    u8 cmd = *dl;
+                    dl++;
+                    *dst++ = cmd;
+
+                    if (cmd != GX_TRIANGLEFAN && cmd != GX_TRIANGLESTRIP)
                         break;
 
-                    int uVar9 = *(u16*)local_44;
-                    local_44 += 2;
-                    *(u16*)puVar10 = uVar9;
-                    puVar10 += 2;
-                    for (int local_4c = 0; local_4c < uVar9; local_4c++) {
-                        u8* dst = &local_44[local_34 * local_4c];
-                        memcpy(puVar10, dst + 1, local_34 - 1);
-                        // FAKEMATCH
-                        #if DEBUG || VERSION == VERSION_WII_USA_R0 || VERSION == VERSION_WII_USA_R2
-                        puVar10 += local_34 - 1;
-                        #else
-                        puVar10 = (local_34 + puVar10) - 1;
-                        #endif
+                    int vtxCount = *(u16*)dl;
+                    dl += 2;
+                    *(u16*)dst = vtxCount;
+                    dst += 2;
+
+                    for (int k = 0; k < vtxCount; k++) {
+                        u8* src = &dl[vtxSize * k];
+                        memcpy(dst, src + 1, (int)(vtxSize - 1)); // The -1 is to remove GX_VA_PNMTXIDX
+                        dst += (int)(vtxSize - 1);
                     }
-                    local_44 += local_34 * uVar9;
+                    dl += vtxSize * vtxCount;
                 }
 
-                int dlistSize = ((int)puVar10 - (int)pDList + 0x1f) & ~0x1f;
-                while ((int)puVar10 - (int)pDList < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
-                    *puVar10++ = 0;
+                int dlistSize = ((int)dst - (int)displayListStart + 0x1f) & ~0x1f;
+                while ((int)dst - (int)displayListStart < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
+                    *dst++ = 0;
                 }
 
                 pShapeNode->getShapeDraw(j)->setDisplayListSize(dlistSize);
-                DCStoreRange(pDList, pShapeNode->getShapeDraw(j)->getDisplayListSize());
+                DCStoreRange(displayListStart, pShapeNode->getShapeDraw(j)->getDisplayListSize());
             }
         }
     }
