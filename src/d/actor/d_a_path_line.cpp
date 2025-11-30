@@ -9,8 +9,6 @@
 #include "f_op/f_op_actor_mng.h"
 #include "dol2asm.h"
 
-/* ############################################################################################## */
-/* 80485780-804857B4 -00001 0034+00 0/0 0/0 1/0 .data            g_profile_PATH_LINE */
 extern actor_process_profile_definition2 g_profile_PATH_LINE = {
   fpcLy_CURRENT_e,       // mLayerID
   9,                     // mListID

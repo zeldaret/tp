@@ -11,8 +11,6 @@
 // Declarations:
 //
 
-/* ############################################################################################## */
-/* 80A013E0-80A01410 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_HENNA0 */
 extern actor_process_profile_definition g_profile_NPC_HENNA0 = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID

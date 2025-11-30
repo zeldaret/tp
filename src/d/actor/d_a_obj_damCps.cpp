@@ -8,8 +8,6 @@
 #include "d/actor/d_a_obj_damCps.h"
 #include "dol2asm.h"
 
-/* ############################################################################################## */
-/* 80BDA460-80BDA490 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_DamCps */
 extern actor_process_profile_definition g_profile_Obj_DamCps = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
