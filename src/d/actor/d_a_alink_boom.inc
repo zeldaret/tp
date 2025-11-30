@@ -103,7 +103,7 @@ BOOL daAlink_c::checkBoomerangCarry(fopAc_ac_c* i_grabActor) {
 
         setGrabItemActor(i_grabActor);
         field_0x33e4 = 38.0f;
-        setGrabUpperAnime(daAlinkHIO_basic_c0::m.mAnmBlendFactor);
+        setGrabUpperAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
         return 1;
     }
 
@@ -421,7 +421,7 @@ int daAlink_c::procBoomerangMove() {
 
             if (field_0x2f98 != 3) {
                 field_0x2f98 = 3;
-                var_f31 = daAlinkHIO_basic_c0::m.mAnmBlendFactor;
+                var_f31 = daAlinkHIO_basic_c0::m.mBasicInterpolation;
             }
         } else {
             offModeFlg(1);

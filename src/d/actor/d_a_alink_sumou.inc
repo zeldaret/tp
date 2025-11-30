@@ -272,7 +272,7 @@ int daAlink_c::procSumouMove() {
             if (mSpeedModifier > 0.0f && checkInputOnR()) {
                 int direction = getDirectionFromAngle(mStickAngle);
                 if (direction == DIR_LEFT || direction == DIR_RIGHT) {
-                    var_r31 = field_0x33ac * (daAlinkHIO_pushpull_c0::m.field_0xE * field_0x33ac);
+                    var_r31 = field_0x33ac * (daAlinkHIO_pushpull_c0::m.mSumoRotationAngle * field_0x33ac);
 
                     if (direction == DIR_RIGHT) {
                         var_r31 = -var_r31;

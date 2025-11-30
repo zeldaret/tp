@@ -283,7 +283,7 @@ int daAlink_c::commonBottleDrink(int param_0) {
     {
         if (checkAnmEnd(frameCtrl_p)) {
             if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_42_e) {
-                setSingleAnimeParam(ANM_PICK_UP, &daAlinkHIO_pickUp_c0::m.field_0x14);
+                setSingleAnimeParam(ANM_PICK_UP, &daAlinkHIO_pickUp_c0::m.mPlaceAnm);
             } else {
                 allUnequip(mKeepItem == fpcNm_ITEM_KANTERA);
             }

@@ -240,8 +240,8 @@ int daAlink_c::procCoSwimSubjectivityInit() {
     setSubjectMode();
 
     if (checkWolf()) {
-        setSingleAnimeWolfBaseSpeed(WANM_SWIM_WAIT, daAlinkHIO_wlSwim_c0::m.field_0x88,
-                                    daAlinkHIO_wlSwim_c0::m.field_0x68);
+        setSingleAnimeWolfBaseSpeed(WANM_SWIM_WAIT, daAlinkHIO_wlSwim_c0::m.mIdleAnmSpeedWeak,
+                                    daAlinkHIO_wlSwim_c0::m.mIdleInterp);
     } else {
         setSingleAnimeBaseSpeed(ANM_SWIM_WAIT, daAlinkHIO_swim_c0::m.mWaitAnmSpeed,
                                 daAlinkHIO_swim_c0::m.mWaitInterpolation);
