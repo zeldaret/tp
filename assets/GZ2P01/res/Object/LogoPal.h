@@ -1,0 +1,16 @@
+#ifndef RES_LOGOPAL_H
+#define RES_LOGOPAL_H
+
+enum dRes_INDEX_LOGOPAL {
+    /* DAT  */
+    dRes_INDEX_LOGOPAL_BTI_DOLBY_P2_232_112_e=0x3,
+    dRes_INDEX_LOGOPAL_BTI_NINTENDO_376X104_e=0x4,
+};
+
+enum dRes_ID_LOGOPAL {
+    /* DAT  */
+    dRes_ID_LOGOPAL_BTI_DOLBY_P2_232_112_e=0x3,
+    dRes_ID_LOGOPAL_BTI_NINTENDO_376X104_e=0x4,
+};
+
+#endif /* !RES_LOGOPAL_H */

@@ -55,6 +55,7 @@ public:
     /* 804588C4 */ inline int draw();
     /* 8045906C */ inline int create();
     inline int execute();
+    inline int isDelete();
 
 private:
     /* 0x568 */ u8 field_0x568[0x570 - 0x568];

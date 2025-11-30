@@ -15,8 +15,8 @@ public:
         sInstance = inst;
     }
 
-    JASGlobalInstance(bool param_1) {
-        if (param_1) {
+    JASGlobalInstance(bool setInstance) {
+        if (setInstance) {
             JUT_ASSERT(186, sInstance == NULL);
             sInstance = (T*)this;
         }

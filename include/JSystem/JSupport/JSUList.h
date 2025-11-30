@@ -47,7 +47,7 @@ public:
 
     T* getObject() const { return static_cast<T*>(mObject); }
 
-    JSUList<T>* getSupervisor() const { return static_cast<JSUList<T>*>(this->getList()); }
+    JSUList<T>* getSupervisor() const { return static_cast<JSUList<T>*>(mList); }
 
     JSULink<T>* getNext() const { return static_cast<JSULink*>(mNext); }
 
@@ -82,7 +82,7 @@ public:
 
     u32 getNumLinks() const { return mLength; }
 
-private:
+protected:
     JSUPtrLink* mHead;
     JSUPtrLink* mTail;
     u32 mLength;
@@ -114,11 +114,11 @@ public:
 
     JSULink<T>* getLast() const { return (JSULink<T>*)getLastLink(); }
 
-    JSULink<T>* getNth(int index) { return (JSULink<T>*)getNthLink(index); }
+    JSULink<T>* getNth(u32 index) const { return (JSULink<T>*)getNthLink(index); }
 
     JSULink<T>* getEnd() const { return NULL; }
 
-    u32 getNumLinks() const { return this->JSUPtrList::getNumLinks(); }
+    u32 getNumLinks() const { return mLength; }
 };
 
 /**
@@ -196,19 +196,19 @@ public:
 
     JSUTree<T>* getEndChild() const { return NULL; }
 
-    JSUTree<T>* getFirstChild() const { return (JSUTree<T>*)this->getFirst(); }
+    JSUTree<T>* getFirstChild() const { return (JSUTree<T>*)this->getFirstLink(); }
 
-    JSUTree<T>* getLastChild() const { return (JSUTree<T>*)this->getLast(); }
+    JSUTree<T>* getLastChild() const { return (JSUTree<T>*)this->getLastLink(); }
 
-    JSUTree<T>* getNextChild() const { return (JSUTree<T>*)this->getNext(); }
+    JSUTree<T>* getNextChild() const { return (JSUTree<T>*)JSUPtrLink::mNext; }
 
-    JSUTree<T>* getPrevChild() const { return (JSUTree<T>*)this->getPrev(); }
+    JSUTree<T>* getPrevChild() const { return (JSUTree<T>*)JSUPtrLink::mPrev; }
 
     u32 getNumChildren() const { return this->getNumLinks(); }
 
-    T* getObject() const { return (T*)this->getObjectPtr(); }
+    T* getObject() const { return (T*)JSUPtrLink::mObject; }
 
-    JSUTree<T>* getParent() const { return (JSUTree<T>*)this->getList(); }
+    JSUTree<T>* getParent() const { return (JSUTree<T>*)JSUPtrLink::mList; }
 };
 
 /**

@@ -58,8 +58,7 @@ public:
     /* 804D5118 */ int create();
 
     static void reset(int roomNo) {
-        room_c* room = (room_c*)mRoom;  // tmp
-        room[roomNo].reset();
+        mRoom[roomNo].reset();
     }
 
     u32 getScale() { return fopAcM_GetParam(this) >> 0x1E; }

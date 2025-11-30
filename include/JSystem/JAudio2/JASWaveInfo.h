@@ -3,6 +3,8 @@
 
 #include "dolphin/types.h"
 
+class JASWaveArc;
+
 /**
  * @ingroup jsystem-jaudio
  * 
@@ -27,6 +29,29 @@ struct JASWaveInfo {
     /* 0x20 */ const u32* field_0x20;
 
     static u32 one;
+};
+
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
+class JASWaveHandle {
+public:
+    virtual ~JASWaveHandle() {}
+    virtual const JASWaveInfo* getWaveInfo() const = 0;
+    virtual int getWavePtr() const = 0;
+};
+
+/**
+ * @ingroup jsystem-jaudio
+ * 
+ */
+class JASWaveBank {
+public:
+    /* 80298B88 */ virtual ~JASWaveBank() {}
+    virtual JASWaveHandle* getWaveHandle(u32) const = 0;
+    virtual JASWaveArc* getWaveArc(u32) = 0;
+    virtual u32 getArcCount() const = 0;
 };
 
 #endif /* JASWAVEINFO_H */

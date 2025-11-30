@@ -661,7 +661,7 @@ public:
     void onEventBit(const u16 i_no);
     void offEventBit(const u16 i_no);
     int isEventBit(const u16 i_no) const;
-    void setEventReg(const u16 i_reg, u8 i_no);
+    void setEventReg(u16 i_reg, u8 i_no);
     u8 getEventReg(u16 i_reg) const;
 
     void* getPEventBit() { return (void*)mEvent; }

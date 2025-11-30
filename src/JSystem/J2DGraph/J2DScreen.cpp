@@ -148,7 +148,7 @@ s32 J2DScreen::makeHierarchyPanes(J2DPane* p_basePane, JSURandomInputStream* p_s
         case 'EXT1':
             p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
             return 1;
-        case 'BGN1':
+        case 'BGN1': {
             p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
 
             s32 ret = makeHierarchyPanes(next_pane, p_stream, param_2, p_archive);
@@ -156,6 +156,7 @@ s32 J2DScreen::makeHierarchyPanes(J2DPane* p_basePane, JSURandomInputStream* p_s
                 return ret;
             }
             break;
+        }
         case 'END1':
             p_stream->seek(header.mSize, JSUStreamSeekFrom_CUR);
             return 0;
@@ -360,7 +361,6 @@ J2DResReference* J2DScreen::getResReference(JSURandomInputStream* p_stream, u32 
 
 /* 802F937C-802F9600 2F3CBC 0284+00 1/1 0/0 0/0 .text
  * createMaterial__9J2DScreenFP20JSURandomInputStreamUlP10JKRArchive */
-// NONMATCHING - nametab section has issues
 bool J2DScreen::createMaterial(JSURandomInputStream* p_stream, u32 param_1, JKRArchive* p_archive) {
     s32 position = p_stream->getPosition();
 
@@ -390,7 +390,7 @@ bool J2DScreen::createMaterial(JSURandomInputStream* p_stream, u32 param_1, JKRA
         if (param_1 & 0x1F0000) {
             u32 offset =
                 buffer[0x14] << 0x18 | buffer[0x15] << 0x10 | buffer[0x16] << 8 | buffer[0x17];
-            ResNTAB* sec_s = (ResNTAB*)((u8*)buffer + offset);
+            ResNTAB* sec_s = (ResNTAB*)(buffer + offset);
             u16 entryNum = sec_s->mEntryNum;
             u16 lastOffset = sec_s->mEntries[entryNum - 1].mOffs;
             char* ptr = (char*)sec_s;
@@ -401,25 +401,26 @@ bool J2DScreen::createMaterial(JSURandomInputStream* p_stream, u32 param_1, JKRA
             size++; 
 
             u8* nametab = new u8[size];
-            if (nametab != NULL) {
-                for (u16 i = 0; i < size; i++) {
-                    nametab[i] = ((u8*)sec_s)[i];
-                }
-
-                mNameTable = new JUTNameTab((ResNTAB*)nametab);
-                if (mNameTable == NULL) {
-                    delete[] nametab;
-                } else {
-                    success:
-                    delete[] buffer;
-                    return true;
-                }
+            if (nametab == NULL) {
+                goto failure;
             }
-        } else {
-            goto success;
+            for (u16 i = 0; i < size; i++) {
+                nametab[i] = (buffer + offset)[i];
+            }
+
+            mNameTable = new JUTNameTab((ResNTAB*)nametab);
+            if (mNameTable == NULL) {
+                delete[] nametab;
+                goto failure;
+            }
         }
+
+    success:
+        delete[] buffer;
+        return true;
     }
 
+failure:
     delete[] buffer;
     clean();
     return false;

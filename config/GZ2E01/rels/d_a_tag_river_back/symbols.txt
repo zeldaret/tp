@@ -37,4 +37,4 @@ l_func$3711 = .data:0x0000005C; // type:object size:0x30 scope:local
 action_table$3769 = .data:0x0000008C; // type:object size:0x8 scope:local
 l_daTagRiverBack_Method = .data:0x00000094; // type:object size:0x20 scope:global
 g_profile_Tag_RiverBack = .data:0x000000B4; // type:object size:0x30 scope:global
-lbl_736_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$1712 = .bss:0x00000000; // type:object size:0x1 data:byte

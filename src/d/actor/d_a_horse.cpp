@@ -16,6 +16,7 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include "JSystem/JAudio2/JAUSectionHeap.h"
 #include <cmath.h>
 
 #define ANM_HS_BACK_WALK           6
@@ -1686,7 +1687,7 @@ void daHorse_c::setMoveAnime(f32 i_morf) {
 }
 
 /* 8083BF48-8083CA80 004108 0B38+00 6/6 0/0 0/0 .text            checkHorseNoMove__9daHorse_cFi */
-// NONMATCHING - some float regalloc, equivalent
+// NONMATCHING - instruction order, some float regalloc, equivalent
 int daHorse_c::checkHorseNoMove(int param_0) {
     cXyz sp50;
     cXyz sp44;
@@ -4703,3 +4704,5 @@ extern actor_process_profile_definition g_profile_HORSE = {
 };
 
 AUDIO_INSTANCES;
+template<>
+JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;

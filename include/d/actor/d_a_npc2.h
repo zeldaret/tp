@@ -1,7 +1,10 @@
 #ifndef D_A_NPC2
 #define D_A_NPC2
 
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "d/d_bg_s_acch.h"
 #include "d/d_bg_s_movebg_actor.h"
+#include "d/d_cc_d.h"
 #include "d/d_msg_flow.h"
 #include "d/d_path.h"
 

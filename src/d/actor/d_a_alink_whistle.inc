@@ -28,18 +28,16 @@ static fopAc_ac_c* daAlink_searchHawk(fopAc_ac_c* i_actor, void* i_data) {
     return NULL;
 }
 
-/* 80453020-80453024 001620 0004+00 1/1 0/0 0/0 .sdata2          grassWhistleIdx$33097 */
-static const u16 grassWhistleIdx[2] = {
-    3,
-    3,
-};
-
 /* 80111784-8011181C 10C0C4 0098+00 1/1 0/0 0/0 .text            setGrassWhistleModel__9daAlink_cFi
  */
 void daAlink_c::setGrassWhistleModel(int modelType) {
     static const char* grassWhistleArcName[] = {
         "J_Tobi",
         "J_Umak",
+    };
+    static const u16 grassWhistleIdx[2] = {
+        3,
+        3,
     };
 
     JKRHeap* prev_heap = setItemHeap();

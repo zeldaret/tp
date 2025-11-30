@@ -1279,6 +1279,7 @@ int daObjMovebox::Act_c::Mthd_Delete() {
     return rt;
 }
 
+namespace daObjMovebox {
 namespace {
 /* 80480920-80480AD4 002F20 01B4+00 1/0 0/0 0/0 .text
  * Mthd_Create__Q212daObjMovebox29@unnamed@d_a_obj_movebox_cpp@FPv */
@@ -1317,7 +1318,8 @@ static actor_method_class Mthd_Table = {
     (process_method_func)Mthd_Execute, (process_method_func)Mthd_IsDelete,
     (process_method_func)Mthd_Draw,
 };
-}  // namespace
+};  // namespace
+};  // namespace daObjMovebox
 
 /* 8048178C-804817BC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Movebox */
 extern actor_process_profile_definition g_profile_Obj_Movebox = {
@@ -1331,7 +1333,7 @@ extern actor_process_profile_definition g_profile_Obj_Movebox = {
     0,                            // mParameters
     &g_fopAc_Method.base,         // sub_method
     17,                           // mPriority
-    &Mthd_Table,                  // sub_method
+    &daObjMovebox::Mthd_Table,    // sub_method
     0x00040504,                   // mStatus
     fopAc_ACTOR_e,                // mActorType
     fopAc_CULLBOX_CUSTOM_e,       // cullType

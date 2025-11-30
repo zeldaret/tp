@@ -14,35 +14,36 @@ static const Vec cNullVec = {0.0f, 0.0f, 0.0f};
 #endif
 
 enum CurveSign {
-    CURVE_SIGN_0 = 0,
-    CURVE_SIGN_1 = 1,
-    CURVE_SIGN_2 = 2,
+    CURVE_NEGATIVE = 0,
+    CURVE_POSITIVE = 1,
+    CURVE_LINEAR   = 2,
 };
 
 struct FNoise1f {
-    FNoise1f(float param_0 = 0.1f, float param_1 = 0.0f, float param_2 = 0.01f) {
-        unk0 = param_0;
-        unk4 = param_0;
-        unk8 = param_2;
-        unk12 = param_1;
+    FNoise1f(f32 value = 0.1f, f32 threshold = 0.0f, f32 step = 0.01f) {
+        value_ = value;
+        targetValue_ = value;
+        step_ = step;
+        threshold_ = threshold;
     }
-    void setParam(float, float, float);
-    float tau(float);
-    float calcNoise1f();
 
-    float unk0;
-    float unk4;
-    float unk8;
-    float unk12;
+    void setParam(f32 value, f32 threshold, f32 step);
+    f32 tau(f32 input);
+    f32 calcNoise1f();
+
+    f32 value_;
+    f32 targetValue_;
+    f32 step_;
+    f32 threshold_;
 };
 
-float linearTransform(float, float, float, float, float, bool);
-float getParamByExp(float, float, float, float, float, float, Z2Calc::CurveSign);
-float getRandom(float, float, float);
-float getRandom_0_1(void);
+f32 linearTransform(f32 inValue, f32 inMin, f32 inMax, f32 outMin, f32 outMax, bool noClamp);
+f32 getParamByExp(f32 value, f32 inMin, f32 inMax, f32 exponent, f32 outMin, f32 outMax, CurveSign curveSign);
+f32 getRandom(f32 magnitude, f32 exponent, f32 bias);
+f32 getRandom_0_1();
 
-extern f32 cEqualCSlope;
-extern f32 cEqualPSlope;
+extern const f32 cEqualCSlope;
+extern const f32 cEqualPSlope;
 }  // namespace Z2Calc
 
 #endif /* Z2CALC_H */

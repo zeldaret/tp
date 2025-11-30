@@ -415,20 +415,19 @@ int dMsgObject_c::_create(msg_class* param_1) {
     return 4;
 }
 
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399660 = "zel_00.bmg";
-SECTION_DEAD static char const* const stringBase_8039966B = "zel_01.bmg";
-SECTION_DEAD static char const* const stringBase_80399676 = "zel_02.bmg";
-SECTION_DEAD static char const* const stringBase_80399681 = "zel_03.bmg";
-SECTION_DEAD static char const* const stringBase_8039968C = "zel_04.bmg";
-SECTION_DEAD static char const* const stringBase_80399697 = "zel_05.bmg";
-SECTION_DEAD static char const* const stringBase_803996A2 = "zel_06.bmg";
-SECTION_DEAD static char const* const stringBase_803996AD = "zel_07.bmg";
-SECTION_DEAD static char const* const stringBase_803996B8 = "zel_08.bmg";
-SECTION_DEAD static char const* const stringBase_803996C3 = "zel_99.bmg";
-SECTION_DEAD static char const* const stringBase_803996CE = "";
-#pragma pop
+static void dummyStrings() {
+    DEAD_STRING("zel_00.bmg");
+    DEAD_STRING("zel_01.bmg");
+    DEAD_STRING("zel_02.bmg");
+    DEAD_STRING("zel_03.bmg");
+    DEAD_STRING("zel_04.bmg");
+    DEAD_STRING("zel_05.bmg");
+    DEAD_STRING("zel_06.bmg");
+    DEAD_STRING("zel_07.bmg");
+    DEAD_STRING("zel_08.bmg");
+    DEAD_STRING("zel_99.bmg");
+    DEAD_STRING("");
+}
 
 /* 8043028C-8043069C 05CFAC 0410+00 7/7 51/51 0/0 .bss             g_MsgObject_HIO_c */
 dMsgObject_HIO_c g_MsgObject_HIO_c;

@@ -361,6 +361,7 @@ cPhs__Step daObjCRVFENCE_c::create() {
         int dzb_id = dComIfG_getObjctResName2Index(l_arcName, "CaravanFence.dzb");
 
         if (dzb_id == -1) {
+            // "dzb data not found!<%s>"
             OS_REPORT("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
 
             JUT_ASSERT(783, dzb_id != -1)

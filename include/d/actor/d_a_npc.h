@@ -115,6 +115,106 @@ public:
     /* 8014D0C0 */ virtual ~daNpcT_MotionSeqMngr_c() {}
 };
 
+class daNpcT_Hermite_c {
+public:
+    /* 0x00 */ f32 field_0x00;
+    /* 0x04 */ f32 H00;
+    /* 0x08 */ f32 H01;
+    /* 0x0C */ f32 H10;
+    /* 0x10 */ f32 H11;
+
+    /* 8014CBAC */ virtual ~daNpcT_Hermite_c() {}
+
+    f32 GetH00() { return H00; }
+    f32 GetH01() { return H01; }
+    f32 GetH10() { return H10; }
+    f32 GetH11() { return H11; }
+
+    void Set(f32 param_1) {
+        field_0x00 = param_1;
+        f32 cubed = param_1 * param_1 * param_1;
+        f32 sqr = param_1 * param_1;
+
+        H00 = 1.0f + (2.0f * cubed - 3.0f * sqr);
+        H01 = -2.0f * cubed + 3.0f * sqr;
+        H10 = param_1 + (cubed - 2.0f * sqr);
+        H11 = cubed - sqr;
+    }
+};
+
+class daNpcT_Path_c {
+public:
+    /* 0x00 */ dPath* mPathInfo;
+    /* 0x04 */ cXyz mPosition;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ u16 mIdx;
+    /* 0x1E */ u16 field_0x1E;
+    /* 0x20 */ u8 mDirection;
+    /* 0x21 */ u8 mIsClosed;
+
+    /* 80145B7C */ void hermite(cXyz&, cXyz&, cXyz&, cXyz&, daNpcT_Hermite_c&, cXyz&);
+    /* 80145C40 */ void initialize();
+    /* 80145C74 */ int setPathInfo(u8, s8, u8);
+    /* 80145D2C */ int setNextPathInfo(s8, u8);
+    /* 80145DA0 */ void reverse();
+    void setNextIdx() { setNextIdx(getNumPnts()); }
+    /* 80145DD0 */ int setNextIdx(int);
+    int getDstPos(cXyz i_pnt, cXyz* o_pos_p) {
+        return getDstPos(i_pnt, o_pos_p, getNumPnts());
+    }
+    /* 80145E38 */ int getDstPos(cXyz, cXyz*, int);
+    /* 80145FB4 */ int getDstPosH(cXyz, cXyz*, int, int);
+    /* 80146188 */ int chkPassed1(cXyz, int);
+    /* 801464D8 */ int chkPassed2(cXyz, cXyz*, int, int);
+#if DEBUG
+    int drawDbgInfo(f32, int);
+#endif
+
+    daNpcT_Path_c() {
+        initialize();
+    }
+
+    virtual ~daNpcT_Path_c() {}
+
+    Vec getPntPos(int i_idx) { return mPathInfo->m_points[i_idx].m_position; }
+
+    int getArg0() { return mPathInfo->m_points[mIdx].mArg0; }
+    int getArg1() { return mPathInfo->m_points[mIdx].mArg1; }
+    int getArg2() { return mPathInfo->m_points[mIdx].mArg2; }
+
+    int chkClose() {
+        return dPath_ChkClose(mPathInfo);
+    }
+
+    bool chkReverse() { return mDirection == 1; }
+
+    int getNumPnts() { return mPathInfo->m_num; }
+
+    void setIdx(int i_idx) { mIdx = i_idx; }
+
+    const int getIdx() { return mIdx; }
+
+    dPath* getPathInfo() { return mPathInfo; }
+
+    void onReverse() {
+        mDirection = 1;
+        field_0x1E = 1;
+    }
+
+    void offReverse() {
+        mDirection = 0;
+        field_0x1E = 1;
+    }
+
+    bool checkReverse() {
+        return mDirection == 1;
+    }
+
+    BOOL chkNextId() { return mPathInfo->m_nextID != 0xFFFF; }
+};
+
 class daNpcT_JntAnm_c {
 private:
     /* 0x000 */ daNpcT_ActorMngr_c mActrMngr;
@@ -350,6 +450,8 @@ public:
     /* 80147E3C */ void calc(BOOL);
 
     void initialize() {
+        //TODO: Separate decl is fakematch, but using 0 directly in the setall call causes
+        //      weird issues in some functions that call this.
         u8 zero = 0;
         for (int i = 0; i < 2; i++) {
             mAngle[i].setall(zero);
@@ -410,106 +512,6 @@ struct daNpcT_motionAnmData_c {
     /* 0x14 */ int mBtkArcIdx;
     /* 0x18 */ s16 field_0x18;
     /* 0x1A */ s16 field_0x1a;
-};
-
-class daNpcT_Hermite_c {
-public:
-    /* 0x00 */ f32 field_0x00;
-    /* 0x04 */ f32 H00;
-    /* 0x08 */ f32 H01;
-    /* 0x0C */ f32 H10;
-    /* 0x10 */ f32 H11;
-
-    /* 8014CBAC */ virtual ~daNpcT_Hermite_c() {}
-
-    f32 GetH00() { return H00; }
-    f32 GetH01() { return H01; }
-    f32 GetH10() { return H10; }
-    f32 GetH11() { return H11; }
-
-    void Set(f32 param_1) {
-        field_0x00 = param_1;
-        f32 cubed = param_1 * param_1 * param_1;
-        f32 sqr = param_1 * param_1;
-
-        H00 = 1.0f + (2.0f * cubed - 3.0f * sqr);
-        H01 = -2.0f * cubed + 3.0f * sqr;
-        H10 = param_1 + (cubed - 2.0f * sqr);
-        H11 = cubed - sqr;
-    }
-};
-
-class daNpcT_Path_c {
-public:
-    /* 0x00 */ dPath* mPathInfo;
-    /* 0x04 */ cXyz mPosition;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ u16 mIdx;
-    /* 0x1E */ u16 field_0x1E;
-    /* 0x20 */ u8 mDirection;
-    /* 0x21 */ u8 mIsClosed;
-
-    /* 80145B7C */ void hermite(cXyz&, cXyz&, cXyz&, cXyz&, daNpcT_Hermite_c&, cXyz&);
-    /* 80145C40 */ void initialize();
-    /* 80145C74 */ int setPathInfo(u8, s8, u8);
-    /* 80145D2C */ int setNextPathInfo(s8, u8);
-    /* 80145DA0 */ void reverse();
-    void setNextIdx() { setNextIdx(getNumPnts()); }
-    /* 80145DD0 */ int setNextIdx(int);
-    int getDstPos(cXyz i_pnt, cXyz* o_pos_p) {
-        return getDstPos(i_pnt, o_pos_p, getNumPnts());
-    }
-    /* 80145E38 */ int getDstPos(cXyz, cXyz*, int);
-    /* 80145FB4 */ int getDstPosH(cXyz, cXyz*, int, int);
-    /* 80146188 */ int chkPassed1(cXyz, int);
-    /* 801464D8 */ int chkPassed2(cXyz, cXyz*, int, int);
-#if DEBUG
-    int drawDbgInfo(f32, int);
-#endif
-
-    daNpcT_Path_c() {
-        initialize();
-    }
-
-    virtual ~daNpcT_Path_c() {}
-
-    Vec getPntPos(int i_idx) { return mPathInfo->m_points[i_idx].m_position; }
-
-    int getArg0() { return mPathInfo->m_points[mIdx].mArg0; }
-    int getArg1() { return mPathInfo->m_points[mIdx].mArg1; }
-    int getArg2() { return mPathInfo->m_points[mIdx].mArg2; }
-
-    int chkClose() {
-        return dPath_ChkClose(mPathInfo);
-    }
-
-    bool chkReverse() { return mDirection == 1; }
-
-    int getNumPnts() { return mPathInfo->m_num; }
-
-    void setIdx(int i_idx) { mIdx = i_idx; }
-
-    const int getIdx() { return mIdx; }
-
-    dPath* getPathInfo() { return mPathInfo; }
-
-    void onReverse() {
-        mDirection = 1;
-        field_0x1E = 1;
-    }
-
-    void offReverse() {
-        mDirection = 0;
-        field_0x1E = 1;
-    }
-
-    bool checkReverse() {
-        return mDirection == 1;
-    }
-
-    BOOL chkNextId() { return mPathInfo->m_nextID != 0xFFFF; }
 };
 
 class mDoExt_McaMorfSO;

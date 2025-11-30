@@ -82,7 +82,7 @@ JAUSeqDataMgr_SeqCollection::SeqDataReturnValue JAUSeqDataMgr_SeqCollection::get
     if (!isValid()) {
         return SeqDataReturnValue_0;
     }
-    if (JAUSeqCollection::getSeqData(param_0.mId.mBytes.b1, param_0.mId.mAdvancedId.mShortId, param_1)) {
+    if (JAUSeqCollection::getSeqData(param_0.id_.info.type.parts.groupID, param_0.id_.info.waveID, param_1)) {
         return SeqDataReturnValue_2;
     }
     return SeqDataReturnValue_0;

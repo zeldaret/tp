@@ -208,7 +208,6 @@ int daObjDust_c::Create() {
 }
 
 /* 80BE2B30-80BE2E9C 0008F0 036C+00 1/0 0/0 0/0 .text            Execute__11daObjDust_cFPPA3_A4_f */
-// NONMATCHING somehow this needs to not inline TSinCosTable<13,f32>::sinShort
 int daObjDust_c::Execute(Mtx** i_mtx) {
     fopAcM_seStartLevel(this, Z2SE_OBJ_FLOATBOARD, 0);
     daPy_py_c* player = daPy_getPlayerActorClass();
