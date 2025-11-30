@@ -613,17 +613,13 @@ bool dBgWKCol::GroundCross(cBgS_GndChk* i_chk) {
     return var_r24;
 }
 
-// NONMATCHING - stack
 void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
-    dBgPc polyCode_sp108;
-
     cM3dGAab* bnd_spAC = param_0->GetBndP();
     cXyz* minP_spA8 = bnd_spAC->GetMinP();
     cXyz* maxP_spA4 = bnd_spAC->GetMaxP();
 
-    Vec offset1_sp134;
-    Vec offset2_sp128;
-    Vec prismPos_sp11C;
+    dBgPc polyCode_sp108;
+    Vec sp11C[3];
 
     cXyz localMin_spD4;
     cXyz localMax_spC8;
@@ -799,7 +795,7 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                                         if (!ChkShdwDrawThrough(&polyCode_sp108)) {
                                             prismData_sp20 = getPrismData(prism_sp34[0]);
 
-                                            prismPos_sp11C =
+                                            sp11C[0] =
                                                 m_pkc_head->m_pos_data[prismData_sp20->pos_i];
 
                                             nrm1_sp1C =
@@ -815,8 +811,8 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                                             if (!cM3d_IsZero(dot)) {
                                                 PSVECScale(&cross1_spBC, &cross1_spBC,
                                                            prismData_sp20->height / dot);
-                                                PSVECAdd(&cross1_spBC, &prismPos_sp11C,
-                                                         &offset1_sp134);
+                                                PSVECAdd(&cross1_spBC, &sp11C[0],
+                                                         &sp11C[2]);
 
                                                 // Second edge direction
                                                 temp_sp10 = m_pkc_head->m_nrm_data +
@@ -828,13 +824,13 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                                                 if (!cM3d_IsZero(dot2)) {
                                                     PSVECScale(&cross2_spB0, &cross2_spB0,
                                                                prismData_sp20->height / dot2);
-                                                    PSVECAdd(&cross2_spB0, &prismPos_sp11C,
-                                                             &offset2_sp128);
+                                                    PSVECAdd(&cross2_spB0, &sp11C[0],
+                                                             &sp11C[1]);
 
                                                     cM3dGPla pla_spF4;
                                                     pla_spF4 = GetTriPla(prism_sp34[0]);
                                                     (param_0->mCallbackFun)(
-                                                        param_0, (cBgD_Vtx_t*)&prismPos_sp11C,
+                                                        param_0, (cBgD_Vtx_t*)&sp11C,
                                                         0, 1, 2, &pla_spF4);
                                                 }
                                             }
