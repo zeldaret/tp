@@ -1480,7 +1480,6 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
     return sp_10;
 }
 
-// NONMATCHING - missing mr
 bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
     bool sp10 = false;
 
@@ -1628,7 +1627,7 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
                 }
 
                 while (*++spA4 != 0) {
-                    KC_PrismData* sp9C = getPrismData(*spA4);
+                    KC_PrismData* sp9C = (KC_PrismData*)getPrismData(*spA4);
                     Vec* sp98 = m_pkc_head->m_nrm_data + sp9C->fnrm_i;
                     if (cBgW_CheckBGround(sp98->y)) {
                         continue;
