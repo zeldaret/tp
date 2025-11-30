@@ -54,7 +54,6 @@ BOOL daAlink_c::getE3Zhint() {
 
 #include "d/actor/d_a_alink_HIO.inc"
 
-/* 80452C50-80452C58 001250 0005+03 2/2 0/0 0/0 .sdata2          l_wArcName */
 static const char l_wArcName[] = "Wmdl";
 
 static const char l_bArcName[] = "Bmdl";
@@ -73,7 +72,6 @@ static const char l_sWShdArcName[] = "SWShd";
 
 static const char l_arcName[] = "Alink";
 
-/* 8009D884-8009D88C 0981C4 0008+00 0/0 0/0 13/13 .text            getAlinkArcName__9daAlink_cFv */
 const char* daAlink_c::getAlinkArcName() {
     return l_arcName;
 }
@@ -1684,23 +1682,16 @@ static dJntColData_c l_wolfJntColData[] = {
 
 #include "d/actor/d_a_alink_swindow.inc"
 
-/* 80140B88-80140B98 13B4C8 0010+00 1/1 0/0 0/0 .text            __ct__12daAlinkHIO_cFv */
 daAlinkHIO_c::daAlinkHIO_c() {}
 
-/* 80140B98-80140BD4 13B4D8 003C+00 1/1 0/0 0/0 .text            __dt__17daAlinkHIO_wolf_cFv */
 daAlinkHIO_wolf_c::~daAlinkHIO_wolf_c() {}
 
-/* 80140BD4-80140C10 13B514 003C+00 1/1 0/0 0/0 .text            __dt__16daAlinkHIO_cut_cFv */
 daAlinkHIO_cut_c::~daAlinkHIO_cut_c() {}
 
-/* 80140C10-80140C80 13B550 0070+00 1/0 0/0 0/0 .text            __dt__12daAlinkHIO_cFv */
 daAlinkHIO_c::~daAlinkHIO_c() {}
 
-/* 80450FC8-80450FCC -00001 0004+00 5/5 0/0 0/0 .sbss            None */
-/* 80450FC8 0001+00 data_80450FC8 None */
 bool daAlink_matAnm_c::m_eye_move_flg;
 
-/* 80450FC9 0003+00 data_80450FC9 None */
 u8 daAlink_matAnm_c::m_morf_frame;
 
 void daAlink_matAnm_c::init() {
@@ -6439,9 +6430,6 @@ BOOL daAlink_c::checkUnderMove1BckNoArc(daAlink_c::daAlink_ANM i_anmID) const {
            mUnderAnmHeap[1].getIdx() == getMainBckData(i_anmID)->m_underID;
 }
 
-/* 800AC610-800AC738 0A6F50 0128+00 3/3 0/0 0/0 .text
- * getUnderUpperAnime__9daAlink_cFQ29daAlink_c11daAlink_ANMPP15J3DAnmTransformPP15J3DAnmTransformiUl
- */
 int daAlink_c::getUnderUpperAnime(daAlink_c::daAlink_ANM i_anmID, J3DAnmTransform** i_underBck,
                                   J3DAnmTransform** i_upperBck, int i_anmPackID, u32 i_bufSize) {
     s32 var_r31;
@@ -6490,9 +6478,6 @@ void daAlink_c::setDoubleAnimeBlendRatio(f32 param_0) {
     mNowAnmPackUpper[1].setRatio(param_0);
 }
 
-/* 800AC754-800ACA14 0A7094 02C0+00 2/2 0/0 0/0 .text
- * commonDoubleAnime__9daAlink_cFP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformfffi
- */
 void daAlink_c::commonDoubleAnime(J3DAnmTransform* param_0, J3DAnmTransform* param_1,
                                       J3DAnmTransform* param_2, J3DAnmTransform* param_3,
                                       f32 param_4, f32 param_5, f32 param_6, int param_7) {
