@@ -104,7 +104,6 @@ bool JASHeap::allocTail(JASHeap* mother, u32 size) {
 }
 
 /* 802904E4-80290608 28AE24 0124+00 0/0 4/4 0/0 .text            free__7JASHeapFv */
-// NONMATCHING regswap
 bool JASHeap::free() {
     JASMutexLock lock(&mMutex);
     if (!isAllocated()) {
@@ -140,10 +139,9 @@ bool JASHeap::free() {
 
 /* 80290608-802906F0 28AF48 00E8+00 2/2 0/0 0/0 .text
  * insertChild__7JASHeapFP7JASHeapP7JASHeapPvUlb                */
-// NONMATCHING regalloc
 void JASHeap::insertChild(JASHeap* heap, JASHeap* next, void* param_2, u32 param_3, bool param_4) {
-    JUT_ASSERT(537, heap != NULL);
-    JUT_ASSERT(538, next == NULL || &mTree == next->mTree.getParent());
+    JUT_ASSERT(513, heap != NULL);
+    JUT_ASSERT(514, next == NULL || &mTree == next->mTree.getParent());
     JASMutexLock lock(&mMutex);
     if (!param_4) {
         JSUTreeIterator<JASHeap> it;

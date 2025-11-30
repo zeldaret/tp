@@ -26,7 +26,6 @@ public:
     /* 802906F0 */ JASHeap* getTailHeap();
     /* 8029077C */ u32 getTailOffset();
     /* 802907E0 */ u32 getCurOffset();
-    /* 80290B54 */ ~JASHeap() {}
 
     void* getBase() { return mBase; }
     bool isAllocated() { return mBase; }
@@ -70,7 +69,11 @@ namespace JASThreadingModel {
     };
 
     template <typename A0>
-    struct ObjectLevelLockable {
+    struct ObjectLevelLockable : public OSMutex {
+        ObjectLevelLockable() {
+            OSInitMutex(this);
+        }
+
         struct Lock {
             Lock(A0 const& mutex) {
                 mMutex = (A0*)&mutex;
@@ -84,7 +87,7 @@ namespace JASThreadingModel {
             A0* mMutex;
         };
     };
-};
+};  // namespace JASThreadingModel
 
 /**
  * @ingroup jsystem-jaudio
@@ -113,7 +116,7 @@ namespace JASKernel { JKRHeap* getSystemHeap(); };
  * 
  */
 template<u32 ChunkSize, template<typename> class T>
-class JASMemChunkPool : public OSMutex {
+class JASMemChunkPool : public T<JASMemChunkPool<ChunkSize, T> >::ObjectLevelLockable {
     struct MemoryChunk {
         MemoryChunk(MemoryChunk* nextChunk) {
             mNextChunk = nextChunk;
@@ -163,9 +166,9 @@ class JASMemChunkPool : public OSMutex {
     };
 public:
     JASMemChunkPool() {
-        OSInitMutex(this);
         field_0x18 = NULL;
-        createNewChunk();
+        bool ret = createNewChunk();
+        JUT_ASSERT(320, ret);
     }
 
     bool createNewChunk() {
@@ -179,6 +182,7 @@ public:
             if (field_0x18 != NULL) {
                 uVar2 = 1;
             } else {
+                JUT_WARN(428, "%s", "Not enough JASSystemHeap");
                 field_0x18 = new (JKRHeap::getSystemHeap(), 0) MemoryChunk(pMVar4);
                 if (field_0x18 != NULL) {
                     uVar2 = 1;
@@ -193,7 +197,8 @@ public:
 
     void* alloc(u32 size) {
         typename T<JASMemChunkPool<ChunkSize, T> >::Lock lock(*this);
-        if (field_0x18->getFreeSize() < size) {
+        u32 freeSize = field_0x18->getFreeSize();
+        if (freeSize < size) {
             if (ChunkSize < size) {
                 return NULL;
             }
