@@ -2988,13 +2988,8 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
 
         if (checkWolf()) {
             if (mProcID == PROC_WOLF_TIRED_WAIT) {
-                #ifndef DEBUG
                 temp_r24 = cLib_minMaxLimit<s16>((s16)temp_r24, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnUp, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnDown);
                 var_r28 = cLib_minMaxLimit<s16>((s16)var_r28, -daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH);
-                #else
-                // temp_r24 = cLib_minMaxLimit<s16>((s16)temp_r24, mpHIO->mWolf.field_0x3ac0, mpHIO->mWolf.field_0x3ac2);
-                // var_r28 = cLib_minMaxLimit<s16>((s16)var_r28, -daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH, daAlinkHIO_wolf_c0::m.mMaxTiredNeckTurnH);
-                #endif
             } else {
                 temp_r24 = cLib_minMaxLimit<s16>((s16)temp_r24, daAlinkHIO_wolf_c0::m.mMaxNeckTurnUp, daAlinkHIO_wolf_c0::m.mMaxNeckTurnDown);
                 var_r28 = cLib_minMaxLimit<s16>((s16)var_r28, -daAlinkHIO_wolf_c0::m.mMaxNeckTurnH, daAlinkHIO_wolf_c0::m.mMaxNeckTurnH);
