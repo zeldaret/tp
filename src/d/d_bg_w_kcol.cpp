@@ -483,15 +483,9 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
                                                             JUT_ASSERT(738, !isnan(pcross->x));
                                                             JUT_ASSERT(739, !isnan(pcross->y));
                                                             JUT_ASSERT(740, !isnan(pcross->z));
-                                                            JUT_ASSERT(745,
-                                                                -FP_INFINITE < pcross->x &&
-                                                                    pcross->x < FP_INFINITE);
-                                                            JUT_ASSERT(747,
-                                                                -FP_INFINITE < pcross->y &&
-                                                                    pcross->y < FP_INFINITE);
-                                                            JUT_ASSERT(749,
-                                                                -FP_INFINITE < pcross->z &&
-                                                                    pcross->z < FP_INFINITE);
+                                                            JUT_ASSERT(745, -INF < pcross->x && pcross->x < INF);
+                                                            JUT_ASSERT(747, -INF < pcross->y && pcross->y < INF);
+                                                            JUT_ASSERT(749, -INF < pcross->z && pcross->z < INF);
 
                                                             plinchk->SetPolyIndex(sp28[0]);
                                                         }
@@ -613,17 +607,13 @@ bool dBgWKCol::GroundCross(cBgS_GndChk* i_chk) {
     return var_r24;
 }
 
-// NONMATCHING - stack
 void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
-    dBgPc polyCode_sp108;
-
     cM3dGAab* bnd_spAC = param_0->GetBndP();
     cXyz* minP_spA8 = bnd_spAC->GetMinP();
     cXyz* maxP_spA4 = bnd_spAC->GetMaxP();
 
-    Vec offset1_sp134;
-    Vec offset2_sp128;
-    Vec prismPos_sp11C;
+    dBgPc polyCode_sp108;
+    Vec sp11C[3];
 
     cXyz localMin_spD4;
     cXyz localMax_spC8;
@@ -799,7 +789,7 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                                         if (!ChkShdwDrawThrough(&polyCode_sp108)) {
                                             prismData_sp20 = getPrismData(prism_sp34[0]);
 
-                                            prismPos_sp11C =
+                                            sp11C[0] =
                                                 m_pkc_head->m_pos_data[prismData_sp20->pos_i];
 
                                             nrm1_sp1C =
@@ -815,8 +805,8 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                                             if (!cM3d_IsZero(dot)) {
                                                 PSVECScale(&cross1_spBC, &cross1_spBC,
                                                            prismData_sp20->height / dot);
-                                                PSVECAdd(&cross1_spBC, &prismPos_sp11C,
-                                                         &offset1_sp134);
+                                                PSVECAdd(&cross1_spBC, &sp11C[0],
+                                                         &sp11C[2]);
 
                                                 // Second edge direction
                                                 temp_sp10 = m_pkc_head->m_nrm_data +
@@ -828,13 +818,13 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                                                 if (!cM3d_IsZero(dot2)) {
                                                     PSVECScale(&cross2_spB0, &cross2_spB0,
                                                                prismData_sp20->height / dot2);
-                                                    PSVECAdd(&cross2_spB0, &prismPos_sp11C,
-                                                             &offset2_sp128);
+                                                    PSVECAdd(&cross2_spB0, &sp11C[0],
+                                                             &sp11C[1]);
 
                                                     cM3dGPla pla_spF4;
                                                     pla_spF4 = GetTriPla(prism_sp34[0]);
                                                     (param_0->mCallbackFun)(
-                                                        param_0, (cBgD_Vtx_t*)&prismPos_sp11C,
+                                                        param_0, (cBgD_Vtx_t*)&sp11C,
                                                         0, 1, 2, &pla_spF4);
                                                 }
                                             }
@@ -1020,7 +1010,6 @@ static u8 lit_5300[8] = {
 };
 #endif
 
-// NONMATCHING - regalloc
 bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
     bool sp_10 = false;
 
@@ -1154,7 +1143,7 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                 if (sp_c8 == sp_120 || sp_c8 == sp_11c || sp_c8 == sp_118) {
                 } else {
                     while (*++sp_c8 != 0) {
-                        KC_PrismData* sp_c0 = getPrismData(*sp_c8);
+                        KC_PrismData* sp_c0 = (KC_PrismData*)getPrismData(*sp_c8);
                         Vec* sp_bc = m_pkc_head->m_nrm_data + sp_c0->fnrm_i;
                         if (!cBgW_CheckBGround(sp_bc->y)) {
                             f32 sp_b8 = JMAFastSqrt(sp_bc->x * sp_bc->x + sp_bc->z * sp_bc->z);
@@ -1256,8 +1245,8 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
         if (sp_a4 == NULL) {
             break;
         }
-        u32 sp_a0 = (u16)sp_a4->_4;
-        KC_PrismData* sp_9c = getPrismData(sp_a0);
+        int sp_a0 = sp_a4->_4;
+        KC_PrismData* sp_9c = (KC_PrismData*)getPrismData(sp_a0);
         Vec* sp_98 = m_pkc_head->m_nrm_data + sp_9c->fnrm_i;
         f32 sp_94 = JMAFastSqrt(sp_98->x * sp_98->x + sp_98->z * sp_98->z);
         cXyz sp_168;
@@ -1265,15 +1254,15 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
         cXyz sp_150;
         if (GetTriPnt(sp_9c, &sp_168, &sp_15c, &sp_150)) {
             f32 sp_90 = 1.0f / sp_94;
-            for (s32 cir_index_8c = 0; cir_index_8c < pwi->GetTblSize(); cir_index_8c++) {
-                f32 sp_88 = sp_90 * pwi->GetWallR(cir_index_8c);
+            for (int cir_index = 0; cir_index < pwi->GetTblSize(); cir_index++) {
+                f32 sp_88 = sp_90 * pwi->GetWallR(cir_index);
                 sp_18c.x = sp_98->x * sp_88;
                 sp_18c.z = sp_98->z * sp_88;
                 f32 sp_84;
-                if (!pwi->ChkWallHDirect(cir_index_8c)) {
-                    sp_84 = pwi->GetPos()->y + pwi->GetWallH(cir_index_8c) + pwi->GetWallAddY(sp_18c) - pwi->GetSpeedY();
+                if (!pwi->ChkWallHDirect(cir_index)) {
+                    sp_84 = pwi->GetPos()->y + pwi->GetWallH(cir_index) + pwi->GetWallAddY(sp_18c) - pwi->GetSpeedY();
                 } else {
-                    sp_84 = pwi->GetWallHDirect(cir_index_8c);
+                    sp_84 = pwi->GetWallHDirect(cir_index);
                 }
                 f32 sp_144[3];
                 sp_144[0] = sp_168.y - sp_84;
@@ -1325,39 +1314,39 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
                         if (!cM3d_IsZero(sp_6c)) {
                             f32 sp_68 = -sp_144[sp_7c] / sp_70;
                             f32 sp_64 = -sp_144[sp_78] / sp_6c;
-                            f32 cx0_60;
-                            f32 cy0_5c;
-                            f32 cx1_58;
-                            f32 cy1_54;
+                            f32 cx0;
+                            f32 cy0;
+                            f32 cx1;
+                            f32 cy1;
                             if (sp_80 == 0) {
-                                cx0_60 = sp_15c.x + sp_68 * (sp_168.x - sp_15c.x);
-                                cy0_5c = sp_15c.z + sp_68 * (sp_168.z - sp_15c.z);
-                                cx1_58 = sp_150.x + sp_64 * (sp_168.x - sp_150.x);
-                                cy1_54 = sp_150.z + sp_64 * (sp_168.z - sp_150.z);
+                                cx0 = sp_15c.x + sp_68 * (sp_168.x - sp_15c.x);
+                                cy0 = sp_15c.z + sp_68 * (sp_168.z - sp_15c.z);
+                                cx1 = sp_150.x + sp_64 * (sp_168.x - sp_150.x);
+                                cy1 = sp_150.z + sp_64 * (sp_168.z - sp_150.z);
                             } else if (sp_80 == 1) {
-                                cx0_60 = sp_168.x + sp_68 * (sp_15c.x - sp_168.x);
-                                cy0_5c = sp_168.z + sp_68 * (sp_15c.z - sp_168.z);
-                                cx1_58 = sp_150.x + sp_64 * (sp_15c.x - sp_150.x);
-                                cy1_54 = sp_150.z + sp_64 * (sp_15c.z - sp_150.z);
+                                cx0 = sp_168.x + sp_68 * (sp_15c.x - sp_168.x);
+                                cy0 = sp_168.z + sp_68 * (sp_15c.z - sp_168.z);
+                                cx1 = sp_150.x + sp_64 * (sp_15c.x - sp_150.x);
+                                cy1 = sp_150.z + sp_64 * (sp_15c.z - sp_150.z);
                             } else {
-                                cx0_60 = sp_168.x + sp_68 * (sp_150.x - sp_168.x);
-                                cy0_5c = sp_168.z + sp_68 * (sp_150.z - sp_168.z);
-                                cx1_58 = sp_15c.x + sp_64 * (sp_150.x - sp_15c.x);
-                                cy1_54 = sp_15c.z + sp_64 * (sp_150.z - sp_15c.z);
+                                cx0 = sp_168.x + sp_68 * (sp_150.x - sp_168.x);
+                                cy0 = sp_168.z + sp_68 * (sp_150.z - sp_168.z);
+                                cx1 = sp_15c.x + sp_64 * (sp_150.x - sp_15c.x);
+                                cy1 = sp_15c.z + sp_64 * (sp_150.z - sp_15c.z);
                             }
-                            cx0_60 += sp_18c.x;
-                            cy0_5c += sp_18c.z;
-                            cx1_58 += sp_18c.x;
-                            cy1_54 += sp_18c.z;
+                            cx0 += sp_18c.x;
+                            cy0 += sp_18c.z;
+                            cx1 += sp_18c.x;
+                            cy1 += sp_18c.z;
                             f32 sp_50;
                             f32 sp_4c;
                             f32 sp_48;
                             bool sp_0f =
-                                cM3d_Len2dSqPntAndSegLine(pwi->GetCx(), pwi->GetCz(), cx0_60, cy0_5c, cx1_58,
-                                                          cy1_54, &sp_4c, &sp_48, &sp_50);
+                                cM3d_Len2dSqPntAndSegLine(pwi->GetCx(), pwi->GetCz(), cx0, cy0, cx1,
+                                                          cy1, &sp_4c, &sp_48, &sp_50);
                             f32 sp_44 = sp_4c - pwi->GetCx();
                             f32 sp_40 = sp_48 - pwi->GetCz();
-                            f32 sp_3c = pwi->GetWallRR(cir_index_8c);
+                            f32 sp_3c = pwi->GetWallRR(cir_index);
                             if (sp_50 > sp_3c || sp_44 * sp_18c.x + sp_40 * sp_18c.z < 0.0f)
                             {
                                 continue;
@@ -1376,36 +1365,30 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
 
                                 JUT_ASSERT(0x77e, !isnan(pwi->GetPos()->x));
                                 JUT_ASSERT(0x77f, !isnan(pwi->GetPos()->z));
-                                JUT_ASSERT(0x782, -INF < pwi->GetPos()->x &&
-                                                      pwi->GetPos()->x < INF);
-                                JUT_ASSERT(0x784, -INF < pwi->GetPos()->z &&
-                                                      pwi->GetPos()->z < INF);
+                                JUT_ASSERT(0x782, -INF < pwi->GetPos()->x && pwi->GetPos()->x < INF);
+                                JUT_ASSERT(0x784, -INF < pwi->GetPos()->z && pwi->GetPos()->z < INF);
 
                                 pwi->CalcMovePosWork();
-                                pwi->SetWallCirHit(cir_index_8c);
-                                pwi->SetWallPolyIndex(cir_index_8c, sp_a0);
+                                pwi->SetWallCirHit(cir_index);
+                                pwi->SetWallPolyIndex(cir_index, sp_a0);
                                 s16 sp_16 = cM_atan2s(sp_98->x, sp_98->z);
-                                pwi->SetWallAngleY(cir_index_8c, sp_16);
+                                pwi->SetWallAngleY(cir_index, sp_16);
                                 sp_10 = true;
                             } else {
-                                cx0_60 -= sp_18c.x;
-                                cy0_5c -= sp_18c.z;
-                                cx1_58 -= sp_18c.x;
-                                cy1_54 -= sp_18c.z;
+                                cx0 -= sp_18c.x;
+                                cy0 -= sp_18c.z;
+                                cx1 -= sp_18c.x;
+                                cy1 -= sp_18c.z;
 
-                                JUT_ASSERT(0x797,
-                                           pwi->GetPos()->x == pwi->GetWallCirP(cir_index_8c)->GetCx())
-                                JUT_ASSERT(0x799, pwi->GetPos()->z ==
-                                                      pwi->GetWallCirP(cir_index_8c)->GetCy());
+                                JUT_ASSERT(0x797, pwi->GetPos()->x == pwi->GetWallCirP(cir_index)->GetCx())
+                                JUT_ASSERT(0x799, pwi->GetPos()->z == pwi->GetWallCirP(cir_index)->GetCy());
 
-                                f32 sp_34 =
-                                    cM3d_Len2dSq(cx0_60, cy0_5c, pwi->GetPos()->x, pwi->GetPos()->z);
-                                f32 sp_30 =
-                                    cM3d_Len2dSq(cx1_58, cy1_54, pwi->GetPos()->x, pwi->GetPos()->z);
-                                f32 onx_2c = -sp_98->x;
-                                f32 ony_28 = -sp_98->z;
+                                f32 sp_34 = cM3d_Len2dSq(cx0, cy0, pwi->GetPos()->x, pwi->GetPos()->z);
+                                f32 sp_30 = cM3d_Len2dSq(cx1, cy1, pwi->GetPos()->x, pwi->GetPos()->z);
+                                f32 onx = -sp_98->x;
+                                f32 ony = -sp_98->z;
 
-                                JUT_ASSERT(0x7a8, !(cM3d_IsZero(onx_2c) && cM3d_IsZero(ony_28)));
+                                JUT_ASSERT(0x7a8, !(cM3d_IsZero(onx) && cM3d_IsZero(ony)));
 
                                 if (sp_34 < sp_30) {
                                     if (sp_34 > sp_3c) {
@@ -1418,53 +1401,49 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
 
                                     f32 sp_1c;
                                     f32 sp_18;
-                                    JUT_ASSERT(0x7b3, !isnan(cx0_60));
-                                    JUT_ASSERT(0x7b4, !isnan(cy0_5c));
+                                    JUT_ASSERT(0x7b3, !isnan(cx0));
+                                    JUT_ASSERT(0x7b4, !isnan(cy0));
 
-                                    cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index_8c), cx0_60,
-                                                     cy0_5c, onx_2c, ony_28, &sp_1c, &sp_18);
+                                    cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx0,
+                                                     cy0, onx, ony, &sp_1c, &sp_18);
 
-                                    pwi->GetPos()->x += (cx0_60 - sp_1c);
-                                    pwi->GetPos()->z += (cy0_5c - sp_18);
+                                    pwi->GetPos()->x += (cx0 - sp_1c);
+                                    pwi->GetPos()->z += (cy0 - sp_18);
 
-                                    JUT_ASSERT(0x7bf, !isnan(pwi->GetPos()->x));
-                                    JUT_ASSERT(0x7c0, !isnan(pwi->GetPos()->z));
-                                    JUT_ASSERT(0x7c3, -INF < pwi->GetPos()->x &&
-                                                          pwi->GetPos()->x < INF)
-                                    JUT_ASSERT(0x7c5, -INF < pwi->GetPos()->z &&
-                                                          pwi->GetPos()->z < INF)
+                                    JUT_ASSERT(1983, !isnan(pwi->GetPos()->x));
+                                    JUT_ASSERT(1984, !isnan(pwi->GetPos()->z));
+                                    JUT_ASSERT(1987, -INF < pwi->GetPos()->x && pwi->GetPos()->x < INF)
+                                    JUT_ASSERT(1989, -INF < pwi->GetPos()->z && pwi->GetPos()->z < INF)
 
                                     pwi->CalcMovePosWork();
-                                    pwi->SetWallCirHit(cir_index_8c);
-                                    pwi->SetWallPolyIndex(cir_index_8c, sp_a0);
+                                    pwi->SetWallCirHit(cir_index);
+                                    pwi->SetWallPolyIndex(cir_index, sp_a0);
                                     s16 sp_14 = cM_atan2s(sp_98->x, sp_98->z);
-                                    pwi->SetWallAngleY(cir_index_8c, sp_14);
+                                    pwi->SetWallAngleY(cir_index, sp_14);
                                     sp_10 = true;
                                     pwi->SetWallHit();
                                 } else if (!(sp_30 > sp_3c || fabsf(sp_30 - sp_3c) < 0.008f)) {
                                     f32 sp_1c;
                                     f32 sp_18;
-                                    JUT_ASSERT(0x7e2, !isnan(cx1_58));
-                                    JUT_ASSERT(0x7e3, !isnan(cy1_54));
+                                    JUT_ASSERT(0x7e2, !isnan(cx1));
+                                    JUT_ASSERT(0x7e3, !isnan(cy1));
 
-                                    cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index_8c), cx1_58, cy1_54, onx_2c, ony_28, &sp_1c, &sp_18);
+                                    cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx1, cy1, onx, ony, &sp_1c, &sp_18);
 
-                                    pwi->GetPos()->x += (cx1_58 - sp_1c);
-                                    pwi->GetPos()->z += (cy1_54 - sp_18);
+                                    pwi->GetPos()->x += (cx1 - sp_1c);
+                                    pwi->GetPos()->z += (cy1 - sp_18);
 
-                                    JUT_ASSERT(0x7ed, !isnan(pwi->GetPos()->x));
-                                    JUT_ASSERT(0x7ed, !isnan(pwi->GetPos()->z));
+                                    JUT_ASSERT(2029, !isnan(pwi->GetPos()->x));
+                                    JUT_ASSERT(2030, !isnan(pwi->GetPos()->z));
 
-                                    JUT_ASSERT(0x7f1, -INF < pwi->GetPos()->x &&
-                                                          pwi->GetPos()->x < INF)
-                                    JUT_ASSERT(0x7f1, -INF < pwi->GetPos()->z &&
-                                                          pwi->GetPos()->z < INF)
+                                    JUT_ASSERT(2033, -INF < pwi->GetPos()->x && pwi->GetPos()->x < INF)
+                                    JUT_ASSERT(2035, -INF < pwi->GetPos()->z && pwi->GetPos()->z < INF)
 
                                     pwi->CalcMovePosWork();
-                                    pwi->SetWallCirHit(cir_index_8c);
-                                    pwi->SetWallPolyIndex(cir_index_8c, sp_a0);
+                                    pwi->SetWallCirHit(cir_index);
+                                    pwi->SetWallPolyIndex(cir_index, sp_a0);
                                     s16 sp_12 = cM_atan2s(sp_98->x, sp_98->z);
-                                    pwi->SetWallAngleY(cir_index_8c, sp_12);
+                                    pwi->SetWallAngleY(cir_index, sp_12);
                                     sp_10 = true;
                                     pwi->SetWallHit();
                                 }
@@ -1480,7 +1459,6 @@ bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
     return sp_10;
 }
 
-// NONMATCHING - missing mr
 bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
     bool sp10 = false;
 
@@ -1628,7 +1606,7 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
                 }
 
                 while (*++spA4 != 0) {
-                    KC_PrismData* sp9C = getPrismData(*spA4);
+                    KC_PrismData* sp9C = (KC_PrismData*)getPrismData(*spA4);
                     Vec* sp98 = m_pkc_head->m_nrm_data + sp9C->fnrm_i;
                     if (cBgW_CheckBGround(sp98->y)) {
                         continue;
@@ -1655,18 +1633,18 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
                     }
 
                     f32 sp90 = 1.0f / sp94;
-                    for (int sp8C = 0; sp8C < pwi->GetTblSize(); sp8C++) {
-                        f32 sp88 = sp90 * pwi->GetWallR(sp8C);
+                    for (int cir_index = 0; cir_index < pwi->GetTblSize(); cir_index++) {
+                        f32 sp88 = sp90 * pwi->GetWallR(cir_index);
                         sp154.x = sp98->x * sp88;
                         sp154.z = sp98->z * sp88;
 
                         f32 sp84;
-                        if (!pwi->ChkWallHDirect(sp8C)) {
+                        if (!pwi->ChkWallHDirect(cir_index)) {
                             sp84 = pwi->GetWallAddY(sp154) +
-                                   (pwi->GetPos()->y + pwi->GetWallH(sp8C)) -
+                                   (pwi->GetPos()->y + pwi->GetWallH(cir_index)) -
                                    pwi->GetSpeedY();
                         } else {
-                            sp84 = pwi->GetWallHDirect(sp8C);
+                            sp84 = pwi->GetWallHDirect(cir_index);
                         }
 
 
@@ -1762,7 +1740,7 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
 
                         f32 sp44 = sp4C - pwi->GetCx();
                         f32 sp40 = sp48 - pwi->GetCz();
-                        f32 sp3C = pwi->GetWallRR(sp8C);
+                        f32 sp3C = pwi->GetWallRR(cir_index);
                         if (sp50 > sp3C || sp44 * sp154.x + sp40 * sp154.z < 0.0f) {
                             continue;
                         }
@@ -1781,19 +1759,19 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
                             JUT_ASSERT(0x98d, -INF < pwi->GetPos()->x && pwi->GetPos()->x < INF);
                             JUT_ASSERT(0x98f, -INF < pwi->GetPos()->z && pwi->GetPos()->z < INF);
                             pwi->CalcMovePosWork();
-                            pwi->SetWallCirHit(sp8C);
-                            pwi->SetWallPolyIndex(sp8C,
+                            pwi->SetWallCirHit(cir_index);
+                            pwi->SetWallPolyIndex(cir_index,
                                                   *spA4);
                             s16 sp16 = cM_atan2s(sp98->x, sp98->z);
-                            pwi->SetWallAngleY(sp8C, sp16);
+                            pwi->SetWallAngleY(cir_index, sp16);
                             sp10 = true;
                         } else {
                             cx0 -= sp154.x;
                             cy0 -= sp154.z;
                             cx1 -= sp154.x;
                             cy1 -= sp154.z;
-                            JUT_ASSERT(0x9a2, pwi->GetPos()->x == pwi->GetWallCirP(sp8C)->GetCx());
-                            JUT_ASSERT(0x9a4, pwi->GetPos()->z == pwi->GetWallCirP(sp8C)->GetCy());
+                            JUT_ASSERT(0x9a2, pwi->GetPos()->x == pwi->GetWallCirP(cir_index)->GetCx());
+                            JUT_ASSERT(0x9a4, pwi->GetPos()->z == pwi->GetWallCirP(cir_index)->GetCy());
                             f32 sp34 = cM3d_Len2dSq(cx0, cy0, pwi->GetPos()->x, pwi->GetPos()->z);
                             f32 sp30 = cM3d_Len2dSq(cx1, cy1, pwi->GetPos()->x, pwi->GetPos()->z);
                             f32 onx = -sp98->x;
@@ -1808,7 +1786,7 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
                                 JUT_ASSERT(0x9bf, !isnan(cy0));
                                 f32 sp24;
                                 f32 sp20;
-                                cM2d_CrossCirLin(*pwi->GetWallCirP(sp8C), cx0, cy0, onx, ony,
+                                cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx0, cy0, onx, ony,
                                                  &sp24, &sp20);
                                 pwi->GetPos()->x += cx0 - sp24;
                                 pwi->GetPos()->z += cy0 - sp20;
@@ -1817,14 +1795,13 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
 
 
                                 JUT_ASSERT(0x9d5, -INF < pwi->GetPos()->x && pwi->GetPos()->x < INF);
-
                                 JUT_ASSERT(0x9d7, -INF < pwi->GetPos()->z && pwi->GetPos()->z < INF);
 
                                 pwi->CalcMovePosWork();
-                                pwi->SetWallCirHit(sp8C);
-                                pwi->SetWallPolyIndex(sp8C, *spA4);
+                                pwi->SetWallCirHit(cir_index);
+                                pwi->SetWallPolyIndex(cir_index, *spA4);
                                 s16 sp14 = cM_atan2s(sp98->x, sp98->z);
-                                pwi->SetWallAngleY(sp8C, sp14);
+                                pwi->SetWallAngleY(cir_index, sp14);
                                 sp10 = true;
                                 pwi->SetWallHit();
                             } else {
@@ -1836,7 +1813,7 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
                                 JUT_ASSERT(0x9f5, !isnan(cy1));
                                 f32 sp1C;
                                 f32 sp18;
-                                cM2d_CrossCirLin(*pwi->GetWallCirP(sp8C), cx1, cy1, onx, ony, &sp1C,
+                                cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index), cx1, cy1, onx, ony, &sp1C,
                                                  &sp18);
                                 pwi->GetPos()->x += cx1 - sp1C;
                                 pwi->GetPos()->z += cy1 - sp18;
@@ -1844,14 +1821,13 @@ bool dBgWKCol::WallCorrect(dBgS_Acch* pwi) {
                                 JUT_ASSERT(0xa07, !isnan(pwi->GetPos()->z));
 
                                 JUT_ASSERT(0xa0a, -INF < pwi->GetPos()->x && pwi->GetPos()->x < INF);
-
                                 JUT_ASSERT(0xa0c, -INF < pwi->GetPos()->z && pwi->GetPos()->z < INF);
 
                                 pwi->CalcMovePosWork();
-                                pwi->SetWallCirHit(sp8C);
-                                pwi->SetWallPolyIndex(sp8C, *spA4);
+                                pwi->SetWallCirHit(cir_index);
+                                pwi->SetWallPolyIndex(cir_index, *spA4);
                                 s16 sp12 = cM_atan2s(sp98->x, sp98->z);
-                                pwi->SetWallAngleY(sp8C, sp12);
+                                pwi->SetWallAngleY(cir_index, sp12);
                                 sp10 = true;
                                 pwi->SetWallHit();
                             }
@@ -1970,7 +1946,7 @@ bool dBgWKCol::RoofChk(dBgS_RoofChk* param_0) {
                         param_0->SetNowY(tmp_height_kcw);
                         sp0A = true;
                         JUT_ASSERT(0xac8, !isnan(tmp_height_kcw));
-                        JUT_ASSERT(0xacb, -FP_INFINITE < tmp_height_kcw && tmp_height_kcw < FP_INFINITE);
+                        JUT_ASSERT(0xacb, -INF < tmp_height_kcw && tmp_height_kcw < INF);
                         bool sp08 = true;
                         if (!(tmp_height_kcw - m_pkc_head->m_area_min_pos.y >= 0.0f)) {
                             OS_PANIC(0xacf, "Failed assertion tmp_height_kcw - m_pkc_head->m_area_min_pos.y >= 0.0f");
@@ -2088,8 +2064,7 @@ bool dBgWKCol::SplGrpChk(dBgS_SplGrpChk* param_0) {
                         sp09 = true;
 
                         JUT_ASSERT(0xb73, !isnan(tmp_height_kcw));
-                        JUT_ASSERT(0xb76,
-                                   -FP_INFINITE < tmp_height_kcw && tmp_height_kcw < FP_INFINITE);
+                        JUT_ASSERT(0xb76, -INF < tmp_height_kcw && tmp_height_kcw < INF);
                     }
                 }
             }
