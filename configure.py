@@ -392,14 +392,12 @@ cflags_revolution_base = [
 cflags_revolution_retail = [
     *cflags_revolution_base,
     "-O4,p",
-    "-DSDK_SEP2006",
 ]
 
 cflags_revolution_debug = [
     *cflags_revolution_base,
     "-opt off",
     "-DDEBUG=1",
-    "-DSDK_AUG2010",
 ]
 
 # Framework flags
@@ -475,7 +473,15 @@ def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         return {
             "lib": lib_name,
             "mw_version": "Wii/1.0",
-            "cflags": cflags_revolution_debug,
+            "cflags": [*cflags_revolution_debug, "-DSDK_AUG2010"],
+            "progress_category": "sdk",
+            "objects": objects,
+        }
+    elif config.version == "Shield":
+        return {
+            "lib": lib_name,
+            "mw_version": "Wii/1.0",
+            "cflags": [*cflags_revolution_retail, "-DSDK_AUG2010"],
             "progress_category": "sdk",
             "objects": objects,
         }
@@ -483,7 +489,7 @@ def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         return {
             "lib": lib_name,
             "mw_version": "GC/3.0a3",
-            "cflags": cflags_revolution_retail,
+            "cflags": [*cflags_revolution_retail, "-DSDK_SEP2006"],
             "progress_category": "sdk",
             "objects": objects,
         }

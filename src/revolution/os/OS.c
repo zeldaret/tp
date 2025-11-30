@@ -23,14 +23,22 @@ extern BOOL __DVDCheckDevice(void);
 
 #ifdef SDK_AUG2010
 #define BUILD_DATE "Aug 23 2010"
+#if DEBUG
 #define BUILD_TIME "17:27:45"
+#else
+#define BUILD_TIME "17:33:06"
+#endif
 #elif SDK_SEP2006
 #define BUILD_DATE  "Sep 21 2006"
 #define BUILD_TIME "14:32:13"
 #endif
 
 #ifdef SDK_AUG2010
+#if DEBUG
 const char* __OSVersion = "<< RVL_SDK - OS \tdebug build: "BUILD_DATE" "BUILD_TIME" (0x4302_145) >>";
+#else
+const char* __OSVersion = "<< RVL_SDK - OS \trelease build: "BUILD_DATE" "BUILD_TIME" (0x4302_145) >>";
+#endif
 #elif SDK_SEP2006
 const char* __OSVersion = "<< RVL_SDK - OS \trelease build: "BUILD_DATE" "BUILD_TIME" (0x4200_60422) >>";
 #endif
