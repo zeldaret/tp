@@ -45,7 +45,7 @@ public:
         mPosY = i_posY;
     }
 
-private:
+public:
     /* 0x04 */ u8 field_0x4;
     /* 0x05 */ u8 field_0x5[3];
     /* 0x08 */ J2DScreen* mScrn;
@@ -277,7 +277,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_basic_c1 m;
 };
 
@@ -324,7 +324,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_move_c1 m;
 };
 
@@ -366,7 +366,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_noActAtnMove_c1 m;
 };
 
@@ -404,7 +404,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_frontRoll_c1 m;
 };
 
@@ -430,7 +430,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_backJump_c1 m;
 };
 
@@ -460,7 +460,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_sideStep_c1 m;
 };
 
@@ -494,7 +494,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_slide_c1 m;
 };
 
@@ -536,7 +536,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_atnMove_c1 m;
 };
 
@@ -580,7 +580,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ daAlinkHIO_cutNormal_c1 m;
 };  // Size: 0x58
@@ -634,7 +634,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ daAlinkHIO_cutFinish_c1 m;
 };
@@ -669,7 +669,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_cutFnJU_c1 m;
 };  // Size: 0x88
 
@@ -702,7 +702,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ daAlinkHIO_cutDash_c1 m;
 };
@@ -732,7 +732,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_cutJump_c1 m;
 };  // Size: 0x78
 
@@ -779,7 +779,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_cutTurn_c1 m;
 };  // Size: 0xCC
 
@@ -818,7 +818,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ daAlinkHIO_hoCut_c1 m;
 };  // Size: 0x58
@@ -849,7 +849,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_hoCutCharge_c1 m;
 };  // Size: 0x88
 
@@ -879,7 +879,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_cutDown_c1 m;
 };  // Size: 0xA8
 
@@ -911,7 +911,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_cutHead_c1 m;
 };  // Size: 0x94
 
@@ -944,7 +944,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_cutLargeJump_c1 m;
 };  // Size: 0xA8
 
@@ -999,7 +999,7 @@ public:
 #ifdef DEBUG
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x034 */ daAlinkHIO_cutNormal_c mCutVertical;
     /* 0x08C */ daAlinkHIO_cutNormal_c mCutLeft;
     /* 0x0E4 */ daAlinkHIO_cutNormal_c mCutRight;
@@ -1055,7 +1055,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ daAlinkHIO_guardAttack_c1 m;
 };
@@ -1085,7 +1085,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_turnMove_c1 m;
 };
 
@@ -1123,7 +1123,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x034 */ daAlinkHIO_guardAttack_c mGuardAttack1;
     /* 0x090 */ daAlinkHIO_guardAttack_c mGuardAttack2;
     /* 0x0EC */ daAlinkHIO_turnMove_c mTurnMove;
@@ -1158,7 +1158,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_crouch_c1 m;
 };
 
@@ -1209,7 +1209,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     daAlinkHIO_autoJump_c1 m;
 };
 
@@ -1235,7 +1235,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     daAlinkHIO_smallJump_c1 m;
 };
 
@@ -1260,7 +1260,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     daAlinkHIO_wallCatch_c1 m;
 };
 
@@ -1282,7 +1282,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     daAlinkHIO_wallFall_c1 m;
 };
 
@@ -1307,7 +1307,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     daAlinkHIO_wallMove_c1 m;
 };
 
@@ -1335,7 +1335,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_smallJump_c mSmallJump;
     /* 0x00 */ daAlinkHIO_wallCatch_c mWallCatch;
     /* 0x00 */ daAlinkHIO_wallFall_c mWallFall;
@@ -1378,7 +1378,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     daAlinkHIO_pushpull_c1 m;
 };
 
@@ -1408,7 +1408,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     daAlinkHIO_damNormal_c1 m;
 };
 
@@ -1448,7 +1448,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     daAlinkHIO_damLaHu_c1 m;
 };
 
@@ -1472,7 +1472,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_damHorse_c1 m;
 };
 
@@ -1503,7 +1503,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_damFall_c1 m;
 };
 
@@ -1529,7 +1529,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_damCaught_c1 m;
 };
 
@@ -1561,7 +1561,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_damSwim_c1 m;
 };
 
@@ -1604,7 +1604,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_damage_c1 m;
     /* 0x34 */ daAlinkHIO_damNormal_c mDamNormal;
     /* 0x00 */ daAlinkHIO_damLaHu_c mDamLaHu0;
@@ -1645,7 +1645,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_horse_c1 m;
 };
 
@@ -1680,7 +1680,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_canoe_c1 m;
 };
 
@@ -1721,7 +1721,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_bow_c1 m;
 };
 
@@ -1753,7 +1753,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_boom_c1 m;
 };
 
@@ -1793,7 +1793,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_bomb_c1 m;
 };
 
@@ -1862,7 +1862,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_huLight_c1 m;
 };
 
@@ -1894,7 +1894,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_kandelaar_c1 m;
 };
 
@@ -1929,7 +1929,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_magneBoots_c1 m;
 };
 
@@ -1951,7 +1951,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_fmChain_c1 m;
 };
 
@@ -1987,7 +1987,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_hookshot_c1 m;
 };
 
@@ -2021,7 +2021,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_spinner_c1 m;
 };
 
@@ -2073,7 +2073,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_ironBall_c1 m;
 };
 
@@ -2099,7 +2099,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_copyRod_c1 m;
 };
 
@@ -2123,7 +2123,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_pickUp_c1 m;
 };
 
@@ -2166,7 +2166,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_board_c1 m;
 };
 
@@ -2195,7 +2195,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_bottle_c1 m;
 };
 
@@ -2224,7 +2224,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_bow_c mBow;
     /* 0x00 */ daAlinkHIO_boom_c mBoomerang;
     /* 0x00 */ daAlinkHIO_bomb_c mBomb;
@@ -2279,7 +2279,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_ladder_c1 m;
 };
 
@@ -2315,7 +2315,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_roofHang_c1 m;
 };
 
@@ -2349,7 +2349,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_grab_c1 m;
 };
 
@@ -2420,7 +2420,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_swim_c1 m;
 };
 
@@ -2492,7 +2492,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_wlMove_c1 m;
 };
 
@@ -2531,7 +2531,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlMoveNoP_c1 m;
 };
 
@@ -2566,7 +2566,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlAtnMove_c1 m;
 };
 
@@ -2594,7 +2594,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlHowl_c1 m;
 };
 
@@ -2624,7 +2624,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlSideStep_c1 m;
 };
 
@@ -2650,7 +2650,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlBackJump_c1 m;
 };
 
@@ -2691,7 +2691,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlAutoJump_c1 m;
 };
 
@@ -2716,7 +2716,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlPush_c1 m;
 };
 
@@ -2748,7 +2748,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlLie_c1 m;
 };
 
@@ -2783,7 +2783,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlWallHang_c1 m;
 };
 
@@ -2811,7 +2811,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlDamNormal_c1 m;
 };
 
@@ -2847,7 +2847,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlDamLaHu_c1 m;
 };
 
@@ -2872,7 +2872,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlDamCaught_c1 m;
 };
 
@@ -2901,7 +2901,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlDamFall_c1 m;
 };
 
@@ -2924,7 +2924,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_wlDamage_c1 m;
     /* 0x00 */ daAlinkHIO_wlDamNormal_c mNormal;
     /* 0x00 */ daAlinkHIO_wlDamLaHu_c mLarge;
@@ -2965,7 +2965,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlSlide_c1 m;
 };
 
@@ -2996,7 +2996,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlRope_c1 m;
 };
 
@@ -3038,7 +3038,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ f32 field_0x34;
     /* 0x38 */ daAlinkHIO_wlAtWait_c1 m;
 };  // Size: 0x74
@@ -3063,7 +3063,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_wlAtRoll_c1 m;
 };  // Size: 0x54
 
@@ -3094,7 +3094,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_wlAtNjump_c1 m;
 };  // Size: 0x70
 
@@ -3131,7 +3131,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_wlAtCjump_c1 m;
 };  // Size: 0x98
 
@@ -3155,7 +3155,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_wlAtLand_c1 m;
 };  // Size: 0x74
 
@@ -3187,7 +3187,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_wlAtDown_c1 m;
 };  // Size: 0xD0
 
@@ -3220,7 +3220,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_wlAtLock_c1 m;
 };  // Size: 0x88
 
@@ -3256,7 +3256,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_wlAtBite_c1 m;
 };  // Size: 0x90
 
@@ -3287,7 +3287,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x034 */ daAlinkHIO_wlAtWait_c mHorizontalAttack;
     /* 0x0A8 */ daAlinkHIO_wlAtWait_c mScratchAttack;
     /* 0x11C */ daAlinkHIO_wlAtWait_c mTailAttack;
@@ -3332,7 +3332,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlPoint_c1 m;
 };
 
@@ -3364,7 +3364,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlChain_c1 m;
 };
 
@@ -3417,7 +3417,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlSwim_c1 m;
 };
 
@@ -3442,7 +3442,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlGrab_c1 m;
 };
 
@@ -3468,7 +3468,7 @@ public:
 
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x00 */ daAlinkHIO_wlBall_c1 m;
 };
 
@@ -3506,7 +3506,7 @@ public:
 #ifdef DEBUG
     virtual void genMessage(JORMContext*);
 
-private:
+public:
     /* 0x34 */ daAlinkHIO_wlMove_c mWlMove;
     /* 0x00 */ daAlinkHIO_wlMoveNoP_c mWlMoveNoP;
     /* 0x00 */ daAlinkHIO_wlAtnMove_c mWlAtnMove;
