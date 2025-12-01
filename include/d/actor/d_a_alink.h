@@ -1973,9 +1973,7 @@ public:
     /* 0x64 */ f32 mBossShootSpeed;
     /* 0x68 */ f32 mBossReturnSpeed;
     /* 0x6C */ f32 mBossStickReturnSpeed;
-    /* 0x70 */ f32 mHookTipAnimationSteps;
-    /* 0x74 */ f32 mLockCursorSpinnerSpeed;
-};  // Size: 0x78
+};  // Size: 0x70
 
 class daAlinkHIO_hookshot_c0 {
 public:

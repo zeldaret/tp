@@ -2064,7 +2064,7 @@ void daAlink_lockCursor_c::update() {
         mLockCursorAngle = 21.0f;
     }
 
-    mLockCursorAngle += daAlinkHIO_hookshot_c0::m.mLockCursorSpinnerSpeed;
+    mLockCursorAngle += 0.9f;
 
     if (mLockCursorAngle >= 50.0f) {
         mLockCursorAngle += -29.0f;

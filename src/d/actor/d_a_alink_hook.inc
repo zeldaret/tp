@@ -840,7 +840,7 @@ void daAlink_c::setHookshotPos() {
                 seStartOnlyReverb(Z2SE_AL_HS_OPEN);
             }
 
-            field_0x33e0 += daAlinkHIO_hookshot_c0::m.mHookTipAnimationSteps;
+            field_0x33e0 += 1.0f;
             if (field_0x33e0 > mHookTipBck.getBckAnm()->getFrameMax()) {
                 field_0x33e0 = mHookTipBck.getBckAnm()->getFrameMax();
             }
