@@ -1883,6 +1883,8 @@ const daAlinkHIO_hookshot_c1 daAlinkHIO_hookshot_c0::m = {
     150.0f,
     225.0f,
     90.0f,
+    1.0f,
+    0.9f
 };
 
 const daAlinkHIO_spinner_c1 daAlinkHIO_spinner_c0::m = {

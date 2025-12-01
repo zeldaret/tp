@@ -1977,7 +1977,7 @@ void daAlink_blur_c::draw() {
 BOOL daAlink_lockCursor_c::create() {
     JKRArchive* arc = dComIfG_getObjectResInfo(l_arcName)->getArchive();
 
-    field_0x2c = 0.0f;
+    mLockCursorAngle = 0.0f;
     field_0x4 = false;
     field_0x30 = 0.0f;
 
@@ -2060,14 +2060,14 @@ extern "C" void setAnimation__7J2DPaneFP11J2DAnmColor() {
 }
 
 void daAlink_lockCursor_c::update() {
-    if (field_0x2c < 21.0f) {
-        field_0x2c = 21.0f;
+    if (mLockCursorAngle < 21.0f) {
+        mLockCursorAngle = 21.0f;
     }
 
-    field_0x2c += 0.9f;
+    mLockCursorAngle += daAlinkHIO_hookshot_c0::m.mLockCursorSpinnerSpeed;
 
-    if (field_0x2c >= 50.0f) {
-        field_0x2c += -29.0f;
+    if (mLockCursorAngle >= 50.0f) {
+        mLockCursorAngle += -29.0f;
     }
 
     field_0x30 += 0.9f;
@@ -2081,13 +2081,13 @@ void daAlink_lockCursor_c::update() {
 
 void daAlink_lockCursor_c::draw() {
     if (field_0x4 != 0) {
-        field_0x28->setFrame(field_0x2c);
+        field_0x28->setFrame(mLockCursorAngle);
 
         f32 var_f30;
-        if (field_0x2c > 21.0f) {
+        if (mLockCursorAngle > 21.0f) {
             var_f30 = 21.0f;
         } else {
-            var_f30 = field_0x2c;
+            var_f30 = mLockCursorAngle;
         }
 
         field_0x24->setFrame(var_f30);
@@ -2097,10 +2097,10 @@ void daAlink_lockCursor_c::draw() {
         field_0xc->scale(0.6f, 0.6f);
         field_0xc->translate(mPosX, mPosY);
 
-        if (!(field_0x2c < 15.0f)) {
+        if (!(mLockCursorAngle < 15.0f)) {
             f32 var_f31;
-            if (field_0x2c < 21.0f) {
-                var_f31 = ((field_0x2c - 15.0f) * 40.0f) * 0.16666667f;
+            if (mLockCursorAngle < 21.0f) {
+                var_f31 = ((mLockCursorAngle - 15.0f) * 40.0f) * 0.16666667f;
             } else {
                 var_f31 = ((field_0x4 * 0.00390625f) + 0.5f) * 40.0f;
             }
