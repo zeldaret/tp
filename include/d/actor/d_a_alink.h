@@ -6834,8 +6834,8 @@ public:
 
     s16 getProcNeckX() { return field_0x30a0; }
     s16 getMidnaProcNeckY() { return field_0x30d4; }
-    f32 getEyeMoveRateY() { return field_0x33f4; }
-    f32 getMidnaEyeMoveRateX() { return field_0x33f8; }
+    f32 getEyeMoveRateY() { return mCachedEyeOffsetY; }
+    f32 getMidnaEyeMoveRateX() { return mTempEyeOffset; }
 
     J3DModel* getMidnaModel() {
         if (mClothesChangeWaitTimer != 0) {
@@ -7311,7 +7311,7 @@ public:
     /* 0x0215C */ daPy_frameCtrl_c* field_0x215c;
     /* 0x02160 */ u16* field_0x2160;
     /* 0x02164 */ mDoExt_bckAnm field_0x2164;
-    /* 0x02180 */ daAlink_matAnm_c* field_0x2180[2];
+    /* 0x02180 */ daAlink_matAnm_c* mEyeMatController[2];
     /* 0x02188 */ dEyeHL_c mEyeHL1;
     /* 0x0219C */ dEyeHL_c mEyeHL2;
     /* 0x021B0 */ daPy_anmHeap_c mItemHeap[2];
@@ -7404,7 +7404,7 @@ public:
     /* 0x02FA4 */ u8 mRollCrashFlg;
     /* 0x02FA5 */ u8 mPolySound;
     /* 0x02FA6 */ u8 field_0x2fa6;
-    /* 0x02FA7 */ u8 field_0x2fa7;
+    /* 0x02FA7 */ u8 mEyeBlinkTimer;
     /* 0x02FA8 */ u8 mGndPolySpecialCode;
     /* 0x02FA9 */ u8 mWolfEyeUpTimer;
     /* 0x02FAA */ u8 mRideStatus;
@@ -7464,7 +7464,7 @@ public:
     /* 0x02FE8 */ u16 mProcID;
     /* 0x02FEA */ u16 field_0x2fea;
     /* 0x02FEC */ s16 field_0x2fec;
-    /* 0x02FEE */ s16 field_0x2fee;
+    /* 0x02FEE */ s16 mHeadTiltAngle;
     /* 0x02FF0 */ s16 field_0x2ff0;
     /* 0x02FF2 */ s16 field_0x2ff2;
     /* 0x02FF4 */ s16 field_0x2ff4;
@@ -7694,9 +7694,9 @@ public:
     /* 0x033E4 */ f32 field_0x33e4;
     /* 0x033E8 */ f32 field_0x33e8;
     /* 0x033EC */ f32 field_0x33ec;
-    /* 0x033F0 */ f32 field_0x33f0;
-    /* 0x033F4 */ f32 field_0x33f4;
-    /* 0x033F8 */ f32 field_0x33f8;
+    /* 0x033F0 */ f32 mCachedEyeOffsetX;
+    /* 0x033F4 */ f32 mCachedEyeOffsetY;
+    /* 0x033F8 */ f32 mTempEyeOffset;
     /* 0x033FC */ f32 field_0x33fc;
     /* 0x03400 */ f32 field_0x3400;
     /* 0x03404 */ f32 field_0x3404;
@@ -7704,7 +7704,7 @@ public:
     /* 0x0340C */ f32 field_0x340c;
     /* 0x03410 */ f32 field_0x3410;
     /* 0x03414 */ f32 field_0x3414;
-    /* 0x03418 */ f32 field_0x3418;
+    /* 0x03418 */ f32 mEyeOffsetX;
     /* 0x0341C */ f32 field_0x341c;
     /* 0x03420 */ f32 field_0x3420;
     /* 0x03424 */ f32 field_0x3424;

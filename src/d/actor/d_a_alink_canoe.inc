@@ -274,7 +274,7 @@ void daAlink_c::setSyncCanoePos() {
 
     daPy_addCalcShort(&mProcVar4.field_0x3010, var_r29, 3, 0x1000, 0x100);
     field_0x30a2 = mProcVar4.field_0x3010;
-    cLib_chaseF(&field_0x33f0, var_f31, 0.2f);
+    cLib_chaseF(&mCachedEyeOffsetX, var_f31, 0.2f);
 }
 
 int daAlink_c::canoeCommon() {

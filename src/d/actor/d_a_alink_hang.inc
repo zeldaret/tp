@@ -526,11 +526,11 @@ int daAlink_c::procHangMoveInit(int param_0) {
 
         if (param_0 == 2) {
             anm = ANM_CLIMB_SLIDE_LEFT;
-            field_0x33f0 = 1.0f;
+            mCachedEyeOffsetX = 1.0f;
             field_0x30a2 = 0x1800;
         } else {
             anm = ANM_CLIMB_SLIDE_RIGHT;
-            field_0x33f0 = -1.0f;
+            mCachedEyeOffsetX = -1.0f;
             field_0x30a2 = -0x1800;
         }
 
@@ -609,7 +609,7 @@ int daAlink_c::procHangMove() {
 
                         frameCtrl->setFrame(temp_f29 * (f32)frameCtrl->getEnd());
                         getNowAnmPackUnder(UNDER_0)->setFrame(frameCtrl->getFrame());
-                        field_0x33f0 = 0.0f;
+                        mCachedEyeOffsetX = 0.0f;
                         field_0x30a2 = 0;
                     }
 
@@ -1387,7 +1387,7 @@ int daAlink_c::procLadderUpEndInit(int param_0) {
     speedF = tmp_0;
 
     field_0x30a0 = -0x0800;
-    field_0x33f4 = -1.0f;
+    mCachedEyeOffsetY = -1.0f;
     mProcVar2.field_0x300c = 1;
     mProcVar4.field_0x3010 = 1;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
@@ -1411,7 +1411,7 @@ int daAlink_c::procLadderUpEnd() {
             mProcVar4.field_0x3010 = 0;
         } else if (frame_ctrl->getFrame() >= 11.0f) {
             field_0x30a0 = 0;
-            field_0x33f4 = 0.0f;
+            mCachedEyeOffsetY = 0.0f;
         }
 
         field_0x2f99 = 6;
@@ -1493,7 +1493,7 @@ int daAlink_c::procLadderDownEndInit(int param_0) {
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
     field_0x30a0 = 0x2800;
-    field_0x33f4 = 1.0f;
+    mCachedEyeOffsetY = 1.0f;
     mProcVar2.field_0x300c = 0;
     mProcVar4.field_0x3010 = 0;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
@@ -1514,7 +1514,7 @@ int daAlink_c::procLadderDownEnd() {
     {
         if (frame_ctrl->getFrame() >= 11.0f) {
             field_0x30a0 = 0;
-            field_0x33f4 = 0.0f;
+            mCachedEyeOffsetY = 0.0f;
         }
 
         field_0x2f99 = 6;
@@ -1571,10 +1571,10 @@ int daAlink_c::procLadderMoveInit(int param_0, int param_1, cXyz* param_2) {
 
     if (!param_1) {
         field_0x30a0 = -0x800;
-        field_0x33f4 = -1.0f;
+        mCachedEyeOffsetY = -1.0f;
     } else {
         field_0x30a0 = 0x2800;
-        field_0x33f4 = 1.0f;
+        mCachedEyeOffsetY = 1.0f;
     }
 
     field_0x2f99 = 14;
@@ -2233,10 +2233,10 @@ int daAlink_c::procClimbMoveUpDownInit(int param_0) {
 
     if (field_0x2f98 == 0) {
         field_0x30a0 = -0x1800;
-        field_0x33f4 = -1.0f;
+        mCachedEyeOffsetY = -1.0f;
     } else {
         field_0x30a0 = 0x2800;
-        field_0x33f4 = 1.0f;
+        mCachedEyeOffsetY = 1.0f;
     }
 
     field_0x2f99 = 10;
@@ -2300,10 +2300,10 @@ int daAlink_c::procClimbMoveSideInit() {
     commonProcInit(PROC_CLIMB_MOVE_SIDE);
 
     if (field_0x2f98 == 3) {
-        field_0x33f0 = -1.0f;
+        mCachedEyeOffsetX = -1.0f;
         field_0x30a2 = -0x1800;
     } else {
-        field_0x33f0 = 1.0f;
+        mCachedEyeOffsetX = 1.0f;
         field_0x30a2 = 0x1800;
     }
 
@@ -2408,16 +2408,16 @@ int daAlink_c::procClimbWaitInit(int param_0, int param_1) {
     if (param_0) {
         if (field_0x2f98 == 0) {
             field_0x30a0 = -0x1800;
-            field_0x33f4 = -1.0f;
+            mCachedEyeOffsetY = -1.0f;
         } else if (field_0x2f98 == 1) {
             field_0x30a0 = 0x2800;
-            field_0x33f4 = 1.0f;
+            mCachedEyeOffsetY = 1.0f;
         } else if (field_0x2f98 == 3) {
             field_0x30a2 = -0x1800;
-            field_0x33f0 = -1.0f;
+            mCachedEyeOffsetX = -1.0f;
         } else {
             field_0x30a2 = 0x1800;
-            field_0x33f0 = 1.0f;
+            mCachedEyeOffsetX = 1.0f;
         }
     }
 
@@ -2445,8 +2445,8 @@ int daAlink_c::procClimbWait() {
                 } else {
                     daPy_addCalcShort(&field_0x30a0, 0, 3, 0x800, 0x100);
                     daPy_addCalcShort(&field_0x30a2, 0, 3, 0x800, 0x100);
-                    field_0x33f0 = field_0x30a2 * 0.00016276042f;
-                    field_0x33f4 = -field_0x30a0 * -0.00016276042f;
+                    mCachedEyeOffsetX = field_0x30a2 * 0.00016276042f;
+                    mCachedEyeOffsetY = -field_0x30a0 * -0.00016276042f;
                 }
             }
         } else if (fabsf(frameCtrl->getRate()) > 0.01f) {

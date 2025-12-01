@@ -2933,32 +2933,32 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
 }
 
 void daAlink_c::setEyeMove(cXyz* param_0, s16 param_1, s16 param_2) {
-    u32 temp_r28 = field_0x2fa7;
-    f32 sp18 = field_0x3418;
+    u32 temp_r28 = mEyeBlinkTimer;
+    f32 sp18 = mEyeOffsetX;
     f32 sp14 = field_0x341c;
 
-    field_0x2fa7 = 75.0f + cM_rndF(30.0f);
-    field_0x3418 = 0.0f;
+    mEyeBlinkTimer = 75.0f + cM_rndF(30.0f);
+    mEyeOffsetX = 0.0f;
     field_0x341c = 0.0f;
-    field_0x33f8 = 0.0f;
+    mTempEyeOffset = 0.0f;
 
     f32 var_f31;
     f32 var_f30;
     if (param_0 != NULL) {
         var_f30 = 0.00012207031f * param_1;
         var_f31 = 0.00012207031f * param_2;
-    } else if (0.0f != field_0x33f0 || 0.0f != field_0x33f4) {
-        var_f30 = field_0x33f4;
-        var_f31 = field_0x33f0;
-        field_0x33f8 = field_0x33f0;
-    } else if ((mProcID == PROC_MOVE || mProcID == PROC_WOLF_MOVE) && !checkNoResetFlg1(FLG1_UNK_1000000) && field_0x2fee != 0) {
+    } else if (0.0f != mCachedEyeOffsetX || 0.0f != mCachedEyeOffsetY) {
+        var_f30 = mCachedEyeOffsetY;
+        var_f31 = mCachedEyeOffsetX;
+        mTempEyeOffset = mCachedEyeOffsetX;
+    } else if ((mProcID == PROC_MOVE || mProcID == PROC_WOLF_MOVE) && !checkNoResetFlg1(FLG1_UNK_1000000) && mHeadTiltAngle != 0) {
         var_f30 = 0.0f;
-        var_f31 = 0.00024414062f * -field_0x2fee;
-        field_0x33f8 = var_f31;
+        var_f31 = 0.00024414062f * -mHeadTiltAngle;
+        mTempEyeOffset = var_f31;
     } else if (checkSwimNeckUpDown()) {
-        if (field_0x3124 > 0) {
+        if (mSwimNeckDir> 0) {
             var_f30 = 0.5f;
-        } else if (field_0x3124 < 0) {
+        } else if (mSwimNeckDir< 0) {
             var_f30 = -0.5f;
         } else {
             var_f30 = 0.0f;
@@ -2966,34 +2966,34 @@ void daAlink_c::setEyeMove(cXyz* param_0, s16 param_1, s16 param_2) {
         var_f31 = 0.0f;
     } else if (!checkEventRun() && checkModeFlg(1) && checkNoResetFlg1(FLG1_UNK_2000) && (checkNoUpperAnime() || checkGrabAnime()) && (mProcID == PROC_WAIT || mProcID == PROC_GRAB_WAIT || mProcID == PROC_CROUCH || mProcID == PROC_HORSE_WAIT || mProcID == PROC_WOLF_WAIT)) {
         if (temp_r28 != 0) {
-            field_0x2fa7 = temp_r28 - 1;
-            field_0x3418 = sp18;
+            mEyeBlinkTimer = temp_r28 - 1;
+            mEyeOffsetX = sp18;
             field_0x341c = sp14;
         } else if (0.0f != sp18 || 0.0f != sp14) {
             if (checkGrabAnimeCarry() || cM_rnd() < 0.5f) {
-                field_0x3418 = 0.0f;
+                mEyeOffsetX = 0.0f;
                 field_0x341c = 0.0f;
             } else {
-                s16 temp_r29_2 = cM_atan2s(field_0x3418, field_0x341c);
+                s16 temp_r29_2 = cM_atan2s(mEyeOffsetX, field_0x341c);
                 temp_r29_2 += (s16)(((int)cM_rndF(3.0f) << 13) + 0x6000);
 
-                field_0x3418 = cM_ssin(temp_r29_2);
+                mEyeOffsetX = cM_ssin(temp_r29_2);
                 field_0x341c = cM_scos(temp_r29_2);
             }
         } else if (checkGrabAnimeCarry() && mGrabItemAcKeep.getActor() != NULL) {
-            field_0x3418 = -1.0f;
+            mEyeOffsetX = -1.0f;
         } else {
             s16 temp_r0 = (int)cM_rndF(8.0f) << 0xD;
-            field_0x3418 = cM_ssin(temp_r0);
+            mEyeOffsetX = cM_ssin(temp_r0);
             field_0x341c = cM_scos(temp_r0);
         }
-        var_f31 = field_0x3418;
+        var_f31 = mEyeOffsetX;
         var_f30 = field_0x341c;
     } else {
-        field_0x2180[0]->setNowOffsetX(0.0f);
-        field_0x2180[1]->setNowOffsetX(0.0f);
-        field_0x2180[0]->setNowOffsetY(0.0f);
-        field_0x2180[1]->setNowOffsetY(0.0f);
+        mLeftEyeBone->setNowOffsetX(0.0f);
+        mRightEyeBone->setNowOffsetX(0.0f);
+        mLeftEyeBone->setNowOffsetY(0.0f);
+        mRightEyeBone->setNowOffsetY(0.0f);
 
         if (daAlink_matAnm_c::getEyeMoveFlg()) {
             daAlink_matAnm_c::offEyeMoveFlg();
@@ -3029,10 +3029,10 @@ void daAlink_c::setEyeMove(cXyz* param_0, s16 param_1, s16 param_2) {
         }
 
         daAlink_matAnm_c::onEyeMoveFlg();
-        cLib_addCalc(field_0x2180[0]->getNowOffsetXP(), var_f29, 0.5f, 0.1f, 0.03f);
-        cLib_addCalc(field_0x2180[1]->getNowOffsetXP(), var_f28, 0.5f, 0.1f, 0.03f);
-        cLib_addCalc(field_0x2180[0]->getNowOffsetYP(), sp10, 0.5f, 0.08f, 0.02f);
-        field_0x2180[1]->setNowOffsetY(*field_0x2180[0]->getNowOffsetYP());
+        cLib_addCalc(mLeftEyeBone->getNowOffsetXP(), var_f29, 0.5f, 0.1f, 0.03f);
+        cLib_addCalc(mRightEyeBone->getNowOffsetXP(), var_f28, 0.5f, 0.1f, 0.03f);
+        cLib_addCalc(mLeftEyeBone->getNowOffsetYP(), sp10, 0.5f, 0.08f, 0.02f);
+        mRightEyeBone->setNowOffsetY(*mLeftEyeBone->getNowOffsetYP());
     }
 }
 
@@ -3118,7 +3118,7 @@ void daAlink_c::setMoveSlantAngle() {
 
     if (checkModeFlg(0x02020400) || mProcID == PROC_WOLF_CARGO_CARRY) {
         if (!checkBoardRide()) {
-            field_0x2fee = 0;
+            mHeadTiltAngle = 0;
             if (!checkCanoeRide()) {
                 mBodyAngle.z = 0;
             }
@@ -3179,17 +3179,17 @@ void daAlink_c::setMoveSlantAngle() {
         var_r29 = 0;
     }
 
-    cLib_addCalcAngleS(&field_0x2fee, var_r28, 4, 1200, 200);
+    cLib_addCalcAngleS(&mHeadTiltAngle, var_r28, 4, 1200, 200);
 
     if (checkWolf()) {
-        shape_angle.z = field_0x2fee;
+        shape_angle.z = mHeadTiltAngle;
         if (var_r29 == 0) {
             cLib_addCalcAngleS(&field_0x2fec, 0, 2, 4000, 1000);
         } else {
             cLib_addCalcAngleS(&field_0x2fec, var_r29, 4, 1200, 200);
         }
     } else if (mProcID != PROC_CAUGHT) {
-        shape_angle.z = (field_0x2fee >> 1);
+        shape_angle.z = (mHeadTiltAngle >> 1);
         mBodyAngle.z = shape_angle.z;
 
         if (mProcID == PROC_MOVE || mProcID == PROC_WAIT) {
@@ -9610,7 +9610,7 @@ bool daAlink_c::checkServiceWaitMode() {
            !checkWindSpeedOnXZ() &&
            field_0x3126 == 0 &&
            field_0x3128 == 0 &&
-           field_0x3124 == 0 &&
+           mSwimNeckDir== 0 &&
            !checkFishingRodAndLureItem() &&
            mSinkShapeOffset >= -30.0f;
 }
@@ -9743,7 +9743,7 @@ void daAlink_c::decideCommonDoStatus() {
                     }
                 } else if (checkAttentionLock()) {
                     setDoStatus(0x8B);
-                } else if (field_0x30d2 == 0 &&
+                } else if (mWolfDashTimer== 0 &&
                            (field_0x33a8 > getFrontRollRate() || checkAttentionLock()))
                 {
                     setDoStatus(9);
@@ -14432,8 +14432,8 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
     initGravity();
 
     field_0x308c = 0;
-    field_0x33f0 = 0.0f;
-    field_0x33f4 = 0.0f;
+    mCachedEyeOffsetX = 0.0f;
+    mCachedEyeOffsetY = 0.0f;
     field_0x30a0 = 0;
     field_0x30a2 = 0;
     field_0x30f0 = 0;
@@ -14824,7 +14824,7 @@ int daAlink_c::procWait() {
 
     if (!checkNextAction(0) && !checkFrontWallTypeAction()) {
         daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
-        field_0x33f0 = (s16)(shape_angle.y - field_0x2fe6) * 0.005f;
+        mCachedEyeOffsetX = (s16)(shape_angle.y - field_0x2fe6) * 0.005f;
 
         if (frameCtrl_p->checkAnmEnd() || checkUpperGuardAnime() ||
             !checkUnderMove0BckNoArc(ANM_WAIT_B_TO_A))
@@ -17050,8 +17050,8 @@ int daAlink_c::execute() {
     mResetFlg1 = 0;
 
     daAlink_matAnm_c::decMorfFrame();
-    field_0x2180[0]->offSetFlg();
-    field_0x2180[1]->offSetFlg();
+    mLeftEyeBone->offSetFlg();
+    mRightEyeBone->offSetFlg();
 
     field_0x2f99 = 0;
     field_0x2f9d = 0;
@@ -17185,11 +17185,11 @@ int daAlink_c::execute() {
         field_0x2fc4--;
     }
 
-    if (field_0x30d2 != 0) {
+    if (mWolfDashTimer!= 0) {
         field_0x30d2--;
     }
 
-    if (field_0x30d0 != 0) {
+    if (mWolfDashDistTimer!= 0) {
         field_0x30d0--;
     } else {
         offNoResetFlg1(FLG1_DASH_MODE);
