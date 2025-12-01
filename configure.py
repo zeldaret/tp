@@ -1714,7 +1714,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evtarea"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evtmsg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_howl"),
-    ActorRel(NonMatching, "d_a_tag_kmsg"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_kmsg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_lantern"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mist"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_msg"),
