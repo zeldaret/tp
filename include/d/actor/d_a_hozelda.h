@@ -48,6 +48,8 @@ struct daHoZelda_hio_c1 {
 };
 
 struct daHoZelda_hio_c0 {
+    daHoZelda_hio_c0() {}
+
     static daHoZelda_hio_c1 const m;
 };
 
