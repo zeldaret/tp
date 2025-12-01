@@ -149,8 +149,8 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
         shape_angle.y = current.angle.y;
     }
 
-    cLib_addCalcAngleS(&field_0x2fee, -var_r24 * 6, 10, 0x800, 0x40);
-    shape_angle.z = field_0x2fee >> 1;
+    cLib_addCalcAngleS(&headTiltAngle, -var_r24 * 6, 10, 0x800, 0x40);
+    shape_angle.z = headTiltAngle >> 1;
     mBodyAngle.z = shape_angle.z;
 
     if (mLinkAcch.ChkGroundHit() && dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd)) {

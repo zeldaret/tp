@@ -863,14 +863,14 @@ int daAlink_c::setSyncBoar(int param_0) {
     if (checkHorseTurnAnime()) {
         if (e_wb_p->getWaitRollAngle() == 0) {
             resetUpperAnime(UPPER_2, 4.0f);
-            field_0x33f0 = 0.0f;
+            cachedEyeOffsetX = 0.0f;
         } else {
-            field_0x33f0 = cLib_minMaxLimit(e_wb_p->getWaitRollAngle() * 0.002f, -1.0f, 1.0f);
+            cachedEyeOffsetX = cLib_minMaxLimit(e_wb_p->getWaitRollAngle() * 0.002f, -1.0f, 1.0f);
             // supposed to be std::abs
-            mNowAnmPackUpper[2].setRatio(fabsf(field_0x33f0));
+            mNowAnmPackUpper[2].setRatio(fabsf(cachedEyeOffsetX));
         }
     } else {
-        field_0x33f0 = 0.0f;
+        cachedEyeOffsetX = 0.0f;
     }
 
     return 1;
@@ -1653,7 +1653,7 @@ int daAlink_c::procHorseWaitInit() {
     checkHorseGetOffAndSetDoStatus();
 
     setSyncRide((!checkHorseNoUpperAnime() && !checkEquipAnime()) || checkInputOnR() || !checkHorseGetOff() || checkHorseGetOffDirection() == 2);
-    field_0x33f0 = 0.0f;
+    cachedEyeOffsetX = 0.0f;
     return 1;
 }
 
