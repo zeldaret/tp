@@ -24,12 +24,14 @@ static char* l_resNameList[3] = {
 };
 
 int daTag_KMsg_c::create() {
-    attention_info.position = current.pos;
-    eyePos = attention_info.position;
+    int r27 = 0;
+
+    eyePos = attention_info.position = current.pos;
+
     fopAcM_ct(this, daTag_KMsg_c);
-    int rv;
+
     if (getType() == KMSG_TYPE_3) {
-        rv = dComIfG_resLoad(&mPhase, "Lv6Gate");
+        int rv = dComIfG_resLoad(&mPhase, "Lv6Gate");
         if (rv != cPhs_COMPLEATE_e) {
             return rv;
         }
@@ -40,6 +42,22 @@ int daTag_KMsg_c::create() {
     mFlowNodeNo = getFlowNodeNo();
     mEventIdx = -1;
 
+    OS_REPORT(
+        "\t(%s:%d) flowNo:%d, BitSW:%02x, dis:%d, angle:%d, eye:%f, attn:%f, scale:%f,%f,%f<%08x>(%d/%04x)\n",
+        fopAcM_getProcNameString(this),
+        getType(),
+        getFlowNodeNo(),
+        getBitSW(),
+        getTalkDis(),
+        getTalkAngle(),
+        getEyePosOffset(),
+        getAttnPosOffset(),
+        scale.x, scale.y, scale.z,
+        fopAcM_GetParam(this),
+        getChkType(),
+        home.angle.x
+    );
+
     if (isDelete()) {
         return cPhs_ERROR_e;
     } else {
@@ -49,12 +67,11 @@ int daTag_KMsg_c::create() {
 
 int daTag_KMsg_c::Delete() {
     OS_REPORT("|%06d:%x|daTag_KMsg_c -> Delete\n", g_Counter.mCounter0, this);
-    fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "TAG_KMSG");
     this->~daTag_KMsg_c();
     return 1;
 }
 
-// NONMATCHING Various issues: stack, getTalkAngle
 int daTag_KMsg_c::Execute() {
     bool var_r28 = false;
     if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
@@ -70,11 +87,7 @@ int daTag_KMsg_c::Execute() {
                 attention_info.flags = 0;
             }
         } else {
-#if VERSION == VERSION_SHIELD_DEBUG
             attention_info.distances[fopAc_attn_TALK_e] = daNpcT_getDistTableIdx(getTalkDis(), getTalkAngle());
-#else
-            attention_info.distances[fopAc_attn_TALK_e] = daNpcT_getDistTableIdx(getTalkAngle(), getTalkDis());
-#endif
             attention_info.distances[fopAc_attn_SPEAK_e] = attention_info.distances[fopAc_attn_TALK_e];
             if (getAttnPosOffset() != G_CM3D_F_INF) {
                 attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
@@ -88,7 +101,9 @@ int daTag_KMsg_c::Execute() {
             attention_info.flags = 0;
         }
 
-        if (dComIfGp_event_runCheck()) {
+        // TODO: gameInfo fake match to force reuse of pointer
+        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+        if (play->getEvent().runCheck()) {
             if (eventInfo.checkCommandTalk()) {
                 u16 iVar10 = 0;
                 switch (getType()) {
@@ -104,7 +119,7 @@ int daTag_KMsg_c::Execute() {
                         }
                         mEventIdx =
                             dComIfGp_getEventManager().getEventIdx(this, l_evtList[iVar10].mEventName, 0xff);
-                        dComIfGp_getEvent().reset(this);
+                        play->getEvent().reset(this);
                         fopAcM_orderChangeEventId(this, mEventIdx, 1, 0xffff);
                     }
 
@@ -146,7 +161,7 @@ int daTag_KMsg_c::Execute() {
         } else {
             eventInfo.onCondition(1);
             if (getType() != KMSG_TYPE_1 && daNpcT_chkDoBtnIsSpeak(this)) {
-                if (getChkType() != KMSG_TYPE_0) {
+                if (getChkType()) {
                     dComIfGp_setDoStatusForce(0x80, 2);
                 } else {
                     dComIfGp_setDoStatus(8, 0);
@@ -193,9 +208,7 @@ int daTag_KMsg_c::Execute() {
             lin_chk.OnFrontFlag();
             lin_chk.Set(&vec54, &vec60, NULL);
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                cXyz vec48;
-                cXyz vec30 = vec54 - vec60;
-                vec48 = lin_chk.GetCross() + vec30.norm() * 10.0f;
+                cXyz vec48 = lin_chk.GetCross() + cXyz(vec54 - vec60).norm() * 10.0f;
                 attention_info.position.x = vec48.x;
                 attention_info.position.z = vec48.z;
             }
@@ -220,11 +233,7 @@ int daTag_KMsg_c::isDelete() {
     case KMSG_TYPE_2: 
         return 0;
     case KMSG_TYPE_3:
-        bool rv = false;
-        if (getBitSW() != 0xff && dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this))) {
-            rv = true;
-        }
-        return rv;
+        return getBitSW() != 0xff && dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this));
     case KMSG_TYPE_4:
         return 0;
     case KMSG_TYPE_5:
