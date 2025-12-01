@@ -1393,7 +1393,6 @@ void daNpc_ykM_c::afterMoved() {
     }
 }
 
-// NONMATCHING - HIO load issue
 void daNpc_ykM_c::setAttnPos() {
     fopAc_ac_c* otherYkmP = NULL;
     cXyz sp104(80.0f, 30.0f, 0.0f);
