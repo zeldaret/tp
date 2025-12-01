@@ -6834,7 +6834,7 @@ public:
 
     s16 getProcNeckX() { return field_0x30a0; }
     s16 getMidnaProcNeckY() { return field_0x30d4; }
-    f32 getEyeMoveRateY() { return mCachedEyeOffsetY; }
+    f32 getEyeMoveRateY() { return mEyeMoveRateY; }
     f32 getMidnaEyeMoveRateX() { return mTempEyeOffset; }
 
     J3DModel* getMidnaModel() {
@@ -7694,8 +7694,8 @@ public:
     /* 0x033E4 */ f32 field_0x33e4;
     /* 0x033E8 */ f32 field_0x33e8;
     /* 0x033EC */ f32 field_0x33ec;
-    /* 0x033F0 */ f32 mCachedEyeOffsetX;
-    /* 0x033F4 */ f32 mCachedEyeOffsetY;
+    /* 0x033F0 */ f32 mEyeMoveRateX;
+    /* 0x033F4 */ f32 mEyeMoveRateY;
     /* 0x033F8 */ f32 mTempEyeOffset;
     /* 0x033FC */ f32 field_0x33fc;
     /* 0x03400 */ f32 field_0x3400;

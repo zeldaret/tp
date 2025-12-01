@@ -1049,7 +1049,7 @@ int daAlink_c::procGrabWait() {
     s16 temp_r29 = shape_angle.y;
 
     if (!checkNextAction(0)) {
-        mCachedEyeOffsetX = 0.005f * (s16)(shape_angle.y - temp_r29);
+        mEyeMoveRateX = 0.005f * (s16)(shape_angle.y - temp_r29);
 
         if (checkAttentionLock() && (checkGrabAnimeUp() || checkGrabAnimeSide())) {
             setBlendAtnMoveAnime(-1.0f);

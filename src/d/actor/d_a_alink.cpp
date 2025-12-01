@@ -2947,18 +2947,18 @@ void daAlink_c::setEyeMove(cXyz* param_0, s16 param_1, s16 param_2) {
     if (param_0 != NULL) {
         var_f30 = 0.00012207031f * param_1;
         var_f31 = 0.00012207031f * param_2;
-    } else if (0.0f != mCachedEyeOffsetX || 0.0f != mCachedEyeOffsetY) {
-        var_f30 = mCachedEyeOffsetY;
-        var_f31 = mCachedEyeOffsetX;
-        mTempEyeOffset = mCachedEyeOffsetX;
+    } else if (0.0f != mEyeMoveRateX || 0.0f != mEyeMoveRateY) {
+        var_f30 = mEyeMoveRateY;
+        var_f31 = mEyeMoveRateX;
+        mTempEyeOffset = mEyeMoveRateX;
     } else if ((mProcID == PROC_MOVE || mProcID == PROC_WOLF_MOVE) && !checkNoResetFlg1(FLG1_UNK_1000000) && mHeadTiltAngle != 0) {
         var_f30 = 0.0f;
         var_f31 = 0.00024414062f * -mHeadTiltAngle;
         mTempEyeOffset = var_f31;
     } else if (checkSwimNeckUpDown()) {
-        if (mSwimNeckDir> 0) {
+        if (mSwimNeckDir > 0) {
             var_f30 = 0.5f;
-        } else if (mSwimNeckDir< 0) {
+        } else if (mSwimNeckDir < 0) {
             var_f30 = -0.5f;
         } else {
             var_f30 = 0.0f;
@@ -9610,7 +9610,7 @@ bool daAlink_c::checkServiceWaitMode() {
            !checkWindSpeedOnXZ() &&
            field_0x3126 == 0 &&
            field_0x3128 == 0 &&
-           mSwimNeckDir== 0 &&
+           mSwimNeckDir == 0 &&
            !checkFishingRodAndLureItem() &&
            mSinkShapeOffset >= -30.0f;
 }
@@ -9743,7 +9743,7 @@ void daAlink_c::decideCommonDoStatus() {
                     }
                 } else if (checkAttentionLock()) {
                     setDoStatus(0x8B);
-                } else if (mWolfDashTimer== 0 &&
+                } else if (mWolfDashDurationTimer== 0 &&
                            (field_0x33a8 > getFrontRollRate() || checkAttentionLock()))
                 {
                     setDoStatus(9);
@@ -14432,8 +14432,8 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
     initGravity();
 
     field_0x308c = 0;
-    mCachedEyeOffsetX = 0.0f;
-    mCachedEyeOffsetY = 0.0f;
+    mEyeMoveRateX = 0.0f;
+    mEyeMoveRateY = 0.0f;
     field_0x30a0 = 0;
     field_0x30a2 = 0;
     field_0x30f0 = 0;
@@ -14824,7 +14824,7 @@ int daAlink_c::procWait() {
 
     if (!checkNextAction(0) && !checkFrontWallTypeAction()) {
         daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
-        mCachedEyeOffsetX = (s16)(shape_angle.y - field_0x2fe6) * 0.005f;
+        mEyeMoveRateX = (s16)(shape_angle.y - field_0x2fe6) * 0.005f;
 
         if (frameCtrl_p->checkAnmEnd() || checkUpperGuardAnime() ||
             !checkUnderMove0BckNoArc(ANM_WAIT_B_TO_A))
@@ -17185,11 +17185,11 @@ int daAlink_c::execute() {
         field_0x2fc4--;
     }
 
-    if (mWolfDashTimer!= 0) {
+    if (mWolfDashDurationTimer!= 0) {
         field_0x30d2--;
     }
 
-    if (mWolfDashDistTimer!= 0) {
+    if (mWolfDashCooldownTimer!= 0) {
         field_0x30d0--;
     } else {
         offNoResetFlg1(FLG1_DASH_MODE);

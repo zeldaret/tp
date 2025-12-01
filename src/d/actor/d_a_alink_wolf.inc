@@ -138,8 +138,8 @@ void daAlink_c::changeCommon() {
         clearFirePointDamageEffect(i);
     }
 
-    mWolfDashDistTimer= 0;
-    mWolfDashTimer= 0;
+    mWolfDashCooldownTimer= 0;
+    mWolfDashDurationTimer= 0;
     field_0x2fc3 = 10;
 }
 
@@ -885,9 +885,9 @@ void daAlink_c::setBlendWolfMoveAnime(f32 param_0) {
         field_0x2fc1 = 0;
 
         if ((temp_f30 < sp20 || checkAttentionState() || checkHeavyStateOn(1, 1)) &&
-            mWolfDashDistTimer!= 0)
+            mWolfDashCooldownTimer!= 0)
         {
-            mWolfDashDistTimer= 0;
+            mWolfDashCooldownTimer= 0;
             offNoResetFlg1(FLG1_DASH_MODE);
         }
 
@@ -2502,7 +2502,7 @@ int daAlink_c::procWolfWait() {
     s16 old_shapeangle = shape_angle.y;
 
     if (!checkNextActionWolf(0) && !checkFrontWallTypeAction()) {
-        mCachedEyeOffsetX = (s16)(shape_angle.y - old_shapeangle) * 0.004999999888241291f;
+        mEyeMoveRateX = (s16)(shape_angle.y - old_shapeangle) * 0.004999999888241291f;
         setBlendWolfMoveAnime(-1.0f);
 
         if (checkServiceWaitMode()) {
@@ -2556,7 +2556,7 @@ int daAlink_c::procWolfDashInit() {
     mProcVar3.field_0x300e = 0;
 
     if (checkWolfSlowDash()) {
-        mWolfDashDistTimer= daAlinkHIO_wlMove_c0::m.mADashDurationSlow;
+        mWolfDashCooldownTimer= daAlinkHIO_wlMove_c0::m.mADashDurationSlow;
         field_0x594 = daAlinkHIO_wlMove_c0::m.mADashMaxSpeedSlow;
 
         if (mNormalSpeed < daAlinkHIO_wlMove_c0::m.mADashInitSpeedSlow) {
@@ -2570,7 +2570,7 @@ int daAlink_c::procWolfDashInit() {
             mNormalSpeed = daAlinkHIO_wlMove_c0::m.mADashInitSpeedSlow2;
         }
     } else {
-        mWolfDashDistTimer= daAlinkHIO_wlMove_c0::m.mADashDuration;
+        mWolfDashCooldownTimer= daAlinkHIO_wlMove_c0::m.mADashDuration;
         field_0x594 = daAlinkHIO_wlMove_c0::m.mADashMaxSpeed;
 
         if (mNormalSpeed < daAlinkHIO_wlMove_c0::m.mADashInitSpeed) {
@@ -2619,11 +2619,11 @@ int daAlink_c::procWolfDash() {
         }
 
         if (checkWolfSlowDash()) {
-            mWolfDashTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow;
+            mWolfDashDurationTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow;
         } else if (field_0x2fc7 == 2) {
-            mWolfDashTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow2;
+            mWolfDashDurationTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow2;
         } else {
-            mWolfDashTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTime;
+            mWolfDashDurationTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTime;
         }
 
         return checkNextActionWolf(0);
@@ -2633,11 +2633,11 @@ int daAlink_c::procWolfDash() {
         }
 
         if (checkWolfSlowDash()) {
-            mWolfDashTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow;
+            mWolfDashDurationTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow;
         } else if (field_0x2fc7 == 2) {
-            mWolfDashTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow2;
+            mWolfDashDurationTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow2;
         } else {
-            mWolfDashTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTime;
+            mWolfDashDurationTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTime;
         }
 
         checkNextActionWolf(1);
@@ -6460,7 +6460,7 @@ int daAlink_c::decideDoStatusSwimWolf() {
             fopAcM_setCarryNow(field_0x27f4, 0);
             onResetFlg0(RFLG0_UNK_8000);
         }
-    } else if (checkNoResetFlg0(FLG0_SWIM_UP) && mWolfDashTimer== 0 && !checkWolfSwimDashAnime() &&
+    } else if (checkNoResetFlg0(FLG0_SWIM_UP) && mWolfDashDurationTimer== 0 && !checkWolfSwimDashAnime() &&
                mProcID == PROC_WOLF_SWIM_MOVE)
     {
         setDoStatus(9);
@@ -6469,11 +6469,11 @@ int daAlink_c::decideDoStatusSwimWolf() {
             onNoResetFlg1(FLG1_DASH_MODE);
 
             if (field_0x2fc7 == 1 || field_0x2fc7 == 3) {
-                mWolfDashDistTimer= daAlinkHIO_wlMove_c0::m.mADashDurationSlow;
+                mWolfDashCooldownTimer= daAlinkHIO_wlMove_c0::m.mADashDurationSlow;
             } else if (field_0x2fc7 == 2) {
-                mWolfDashDistTimer= daAlinkHIO_wlMove_c0::m.mADashDurationSlow2;
+                mWolfDashCooldownTimer= daAlinkHIO_wlMove_c0::m.mADashDurationSlow2;
             } else {
-                mWolfDashDistTimer= daAlinkHIO_wlMove_c0::m.mADashDuration;
+                mWolfDashCooldownTimer= daAlinkHIO_wlMove_c0::m.mADashDuration;
             }
 
             setSingleAnimeWolfParam(WANM_SWIM_DASH, &daAlinkHIO_wlSwim_c0::m.mDashAnm);
@@ -6622,11 +6622,11 @@ int daAlink_c::procWolfSwimMove() {
                                     daAlinkHIO_wlSwim_c0::m.mMoveInterp);
 
         if (field_0x2fc7 == 1 || field_0x2fc7 == 3) {
-            mWolfDashTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow;
+            mWolfDashDurationTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow;
         } else if (field_0x2fc7 == 2) {
-            mWolfDashTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow2;
+            mWolfDashDurationTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTimeSlow2;
         } else {
-            mWolfDashTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTime;
+            mWolfDashDurationTimer= daAlinkHIO_wlMove_c0::m.mADashCooldownTime;
         }
     }
 
