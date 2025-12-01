@@ -584,7 +584,7 @@ void daAlink_c::setDemoData() {
 
         dComIfGp_clearPlayerStatus0(0, 0x600000);
         offNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER);
-        mWolfDashDistTimer = 0;
+        field_0x30d0 = 0;
 
         if (mProcID == PROC_SUBJECTIVITY) {
             if (checkWolf()) {
