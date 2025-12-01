@@ -1942,7 +1942,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_formation_mng"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_guard_mng"),
     ActorRel(NonMatching, "d_a_horse"),
-    ActorRel(NonMatching, "d_a_hozelda"),
+    ActorRel(Equivalent, "d_a_hozelda"), # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_izumi_gate"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kago"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kytag01"),
