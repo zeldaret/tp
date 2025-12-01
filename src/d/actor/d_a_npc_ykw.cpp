@@ -725,11 +725,7 @@ void daNpc_ykW_c::setParam() {
 
         attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(attnDist, attnAngle);
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
-#if DEBUG
-        attention_info.distances[fopAc_attn_JUEL_e] = daNpcT_getDistTableIdx(talkDist, talkAngle);
-#else
         attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talkDist, talkAngle);
-#endif
 
         if (daPy_py_c::checkNowWolf()) {
             newAttnFlags |= fopAc_AttnFlag_UNK_0x800000;
