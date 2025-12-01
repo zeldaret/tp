@@ -16,31 +16,37 @@ int JStudio::ctb::TObject_TxyzRy::getScheme() const {
 
 JStudio::ctb::TControl::TControl() : pFactory_(NULL) {}
 
-JStudio::ctb::TControl::~TControl() {}
-
-void JStudio::ctb::TControl::appendObject(JStudio::ctb::TObject* param_0) {
-    mList.Push_back(param_0);
+JStudio::ctb::TControl::~TControl() {
+    JGADGET_ASSERTWARN(94, ocObject_.empty());
 }
 
-void JStudio::ctb::TControl::removeObject(JStudio::ctb::TObject* param_0) {
-    mList.Erase(param_0);
+void JStudio::ctb::TControl::appendObject(JStudio::ctb::TObject* p) {
+    JUT_ASSERT(106, p!=NULL)
+    ocObject_.Push_back(p);
+}
+
+void JStudio::ctb::TControl::removeObject(JStudio::ctb::TObject* p) {
+    JUT_ASSERT(113, p!=NULL)
+    ocObject_.Erase(p);
 }
 
 void JStudio::ctb::TControl::destroyObject(JStudio::ctb::TObject* param_0) {
     removeObject(param_0);
-    getFactory()->destroy(param_0);
+    TFactory *pFactory = getFactory();
+    JUT_ASSERT(129, pFactory!=NULL);
+    pFactory->destroy(param_0);
 }
 
 void JStudio::ctb::TControl::destroyObject_all() {
-    while (!mList.empty()) {
-        destroyObject(&mList.back());
+    while (!ocObject_.empty()) {
+        destroyObject(&ocObject_.back());
     }
 }
 
 // NONMATCHING - TPRObject_ID_equal issues
 JStudio::ctb::TObject* JStudio::ctb::TControl::getObject(void const* param_0, u32 param_1) {
-    JGadget::TLinkList<TObject, -12>::iterator begin = mList.begin();
-    JGadget::TLinkList<TObject, -12>::iterator end = mList.end();
+    JGadget::TLinkList<TObject, -12>::iterator begin = ocObject_.begin();
+    JGadget::TLinkList<TObject, -12>::iterator end = ocObject_.end();
     JGadget::TLinkList<TObject, -12>::iterator local_50 = std::find_if(begin, end, object::TPRObject_ID_equal(param_0, param_1));
     if ((local_50 != end) != false) {
         return &*local_50;
@@ -49,10 +55,10 @@ JStudio::ctb::TObject* JStudio::ctb::TControl::getObject(void const* param_0, u3
 }
 
 JStudio::ctb::TObject* JStudio::ctb::TControl::getObject_index(u32 param_0) {
-    if (param_0 >= mList.size()) {
+    if (param_0 >= ocObject_.size()) {
         return 0;
     }
-    JGadget::TLinkList<TObject, -12>::iterator aiStack_14 = mList.begin();
+    JGadget::TLinkList<TObject, -12>::iterator aiStack_14 = ocObject_.begin();
     std::advance_fake(aiStack_14, param_0);
     return &*aiStack_14;
 }

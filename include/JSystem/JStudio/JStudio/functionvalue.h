@@ -545,7 +545,7 @@ inline f64 extrapolateParameter_clamp(f64 value, f64 max) {
         return 0.0;
 
     if (max <= value)
-        value = max;
+        return max;
 
     return value;
 }

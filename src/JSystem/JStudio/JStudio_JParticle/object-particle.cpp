@@ -281,10 +281,10 @@ JStudio_JParticle::TAdaptor_particle::TJPACallback_emitter_::execute(JPABaseEmit
         &VStack_19c.scaling,
         sauVariableValue_3_SCALING_XYZ);
     if (pThis_->field_0x1d8 == 0) {
-        JStudio::TControl::TTransform_translation_rotation_scaling* pVVar9 = &VStack_19c;
+        const JStudio::TControl::TTransform_translation_rotation_scaling* pVVar9 = &VStack_19c;
         switch(pThis_->field_0x1cc) {
         case 0:
-            pVVar9 = pControl->transformOnSet_transform_ifEnabled(&VStack_19c, &aTStack_1c0);
+            pVVar9 = pControl->transformOnSet_transform_ifEnabled(VStack_19c, &aTStack_1c0);
             break;
         case 1:
             break;

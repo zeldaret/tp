@@ -8,7 +8,7 @@
 
 JStudio_JStage::TAdaptor_ambientLight::TAdaptor_ambientLight(JStage::TSystem const* param_1,
                                                              JStage::TAmbientLight* param_2)
-    : TAdaptor_object_(param_1, param_2) {}
+    : TAdaptor_object_(this, param_1, param_2) {}
 
 JStudio_JStage::TAdaptor_ambientLight::~TAdaptor_ambientLight() {
     adaptor_do_end();
@@ -19,7 +19,8 @@ void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_prepare() {
 
 void JStudio_JStage::TAdaptor_ambientLight::adaptor_do_begin() {
     adaptor_object_begin_();
-    GXColor color = get_pJSG_()->JSGGetColor();
+    JStage::TAmbientLight* light = get_pJSG_();
+    GXColor color = light->JSGGetColor();
     adaptor_setVariableValue_GXColor(sauVariableValue_4_COLOR_RGBA, color);
 }
 

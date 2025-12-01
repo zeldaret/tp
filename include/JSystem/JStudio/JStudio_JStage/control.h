@@ -28,7 +28,7 @@ struct TCreateObject : public JStudio::TCreateObject {
 };
 
 struct TAdaptor_object_ {
-    TAdaptor_object_(JStage::TSystem const*param_2, JStage::TObject *param_3) :
+    TAdaptor_object_(const JStudio::TAdaptor *, JStage::TSystem const*param_2, JStage::TObject *param_3) :
         pJSGSystem_(param_2), pJSGObject_(param_3) {}
     void adaptor_object_data_(void const*, u32, void const*, u32);
     JStage::TObject* adaptor_object_findJSGObject_(char const*);
@@ -258,7 +258,7 @@ struct TAdaptor_light : public JStudio::TAdaptor_light, public TAdaptor_object_ 
         virtual void operator()(f32, JStudio::TAdaptor*) const;
         virtual ~TVVOutput_direction_() {}
 
-        void adaptor_setOutput_(TAdaptor* adaptor) {
+        void adaptor_setOutput_(TAdaptor* adaptor) const {
             adaptor->adaptor_referVariableValue(field_0x4)->setOutput(this);
         }
 

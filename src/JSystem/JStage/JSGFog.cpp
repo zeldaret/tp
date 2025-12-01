@@ -1,7 +1,7 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
 #include "JSystem/JStage/JSGFog.h"
-#include "math.h"
+#include "limits.h"
 
 JStage::TFog::~TFog() {}
 
@@ -22,7 +22,7 @@ f32 JStage::TFog::JSGGetStartZ() const {
 void JStage::TFog::JSGSetStartZ(f32) {}
 
 f32 JStage::TFog::JSGGetEndZ() const {
-    return FLT_MAX;
+    return std::numeric_limits<f32>::max();
 }
 
 void JStage::TFog::JSGSetEndZ(f32) {}
