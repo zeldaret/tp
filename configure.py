@@ -1235,7 +1235,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphBase/J3DTexture.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphBase/J3DPacket.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphBase/J3DShape.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphBase/J3DMaterial.cpp"),
             Object(Equivalent, "JSystem/J3DGraphBase/J3DMatBlock.cpp"), # virtual function order
@@ -1254,7 +1254,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DModel.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DAnimation.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DMaterialAnm.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DSkinDeform.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DSkinDeform.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DCluster.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DJoint.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphAnimator/J3DMaterialAttach.cpp"),
