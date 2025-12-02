@@ -6,8 +6,8 @@
 #include "d/actor/d_a_alink.h"
 
 f32 daAlink_c::getCrawlMoveAnmSpeed() {
-    return getAnmSpeedStickRate(daAlinkHIO_crouch_c0::m.mCrawlAnmSpeedMin,
-                                daAlinkHIO_crouch_c0::m.mCrawlAnmSpeedMax);
+    return getAnmSpeedStickRate(mpHIO->mCrouch.m.mCrawlAnmSpeedMin,
+                                mpHIO->mCrouch.m.mCrawlAnmSpeedMax);
 }
 
 f32 daAlink_c::getCrawlMoveSpeed() {
@@ -20,7 +20,7 @@ f32 daAlink_c::getCrawlMoveSpeed() {
         frame = frame_ctrl->getFrame();
     }
 
-    return (daAlinkHIO_crouch_c0::m.mCrawlMoveRate * frame_ctrl->getRate()) * cM_fsin(frame * 0.18479956686496735f);
+    return (mpHIO->mCrouch.m.mCrawlMoveRate * frame_ctrl->getRate()) * cM_fsin(frame * 0.18479956686496735f);
 }
 
 void daAlink_c::setCrawlMoveDirectionArrow() {
@@ -357,9 +357,9 @@ void daAlink_c::setCrawlMoveAngle() {
     cXyz sp2C;
     cXyz sp38;
 
-    cLib_addCalcAngleS(&shape_angle.y, field_0x2fe2, daAlinkHIO_crouch_c0::m.mCrawlTurnRate,
-                       daAlinkHIO_crouch_c0::m.mCrawlTurnMax,
-                       daAlinkHIO_crouch_c0::m.mCrawlTurnMin);
+    cLib_addCalcAngleS(&shape_angle.y, field_0x2fe2, mpHIO->mCrouch.m.mCrawlTurnRate,
+                       mpHIO->mCrouch.m.mCrawlTurnMax,
+                       mpHIO->mCrouch.m.mCrawlTurnMin);
 
     if (shape_angle.y != current.angle.y) {
         if ((s16)(shape_angle.y - current.angle.y) > 0) {
@@ -457,7 +457,7 @@ int daAlink_c::procCrawlStartInit() {
     commonProcInit(PROC_CRAWL_START);
 
     field_0x3588 = l_waitBaseAnime;
-    setSingleAnimeParam(ANM_CRAWL_START, &daAlinkHIO_crouch_c0::m.mCrawlStartAnm);
+    setSingleAnimeParam(ANM_CRAWL_START, &mpHIO->mCrouch.m.mCrawlStartAnm);
 
     mNormalSpeed = 0.0f;
     shape_angle.y = field_0x306e + 0x8000;
@@ -465,13 +465,13 @@ int daAlink_c::procCrawlStartInit() {
     current.pos.x = field_0x34ec.x + (35.0f * cM_ssin(field_0x306e));
     current.pos.z = field_0x34ec.z + (35.0f * cM_scos(field_0x306e));
 
-    if (daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mCancelFrame > daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mEndFrame) {
-        field_0x347c = daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mEndFrame;
+    if (mpHIO->mCrouch.m.mCrawlStartAnm.mCancelFrame > mpHIO->mCrouch.m.mCrawlStartAnm.mEndFrame) {
+        field_0x347c = mpHIO->mCrouch.m.mCrawlStartAnm.mEndFrame;
     } else {
-        field_0x347c = daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mCancelFrame;
+        field_0x347c = mpHIO->mCrouch.m.mCrawlStartAnm.mCancelFrame;
     }
 
-    field_0x3478 = 1.0f / (field_0x347c - daAlinkHIO_crouch_c0::m.mCrawlStartAnm.mStartFrame);
+    field_0x3478 = 1.0f / (field_0x347c - mpHIO->mCrouch.m.mCrawlStartAnm.mStartFrame);
     field_0x33cc = 0.0f;
 
     dComIfGp_setPlayerStatus0(0, 0x08000000);
@@ -534,7 +534,7 @@ int daAlink_c::procCrawlMoveInit(s16 param_0, s16 param_1) {
         }
 
         current.angle.y = shape_angle.y;
-        setSingleAnimeBaseSpeed(ANM_CRAWL, var_f31, daAlinkHIO_crouch_c0::m.mCrawlInterpolation);
+        setSingleAnimeBaseSpeed(ANM_CRAWL, var_f31, mpHIO->mCrouch.m.mCrawlInterpolation);
     }
 
     field_0x3198 = var_r29 ^ 1;
@@ -762,7 +762,7 @@ int daAlink_c::procCrawlEndInit(int param_0, s16 param_1, s16 param_2) {
     current.angle.y = shape_angle.y;
     field_0x2f99 = 0xC;
 
-    const daAlinkHIO_anm_c* temp_r30 = &daAlinkHIO_crouch_c0::m.mCrawlEndAnm;
+    const daAlinkHIO_anm_c* temp_r30 = &mpHIO->mCrouch.m.mCrawlEndAnm;
 
     f32 var_f30;
     if (param_0 != 0) {
@@ -816,7 +816,7 @@ int daAlink_c::procCrawlEnd() {
         if (!checkNextActionFromCrouch(0)) {
             procWaitInit();
         }
-    } else if (frame_ctrl->getFrame() < daAlinkHIO_crouch_c0::m.mCrawlEndAnm.mCancelFrame) {
+    } else if (frame_ctrl->getFrame() < mpHIO->mCrouch.m.mCrawlEndAnm.mCancelFrame) {
         checkNextActionFromCrouch(1);
     }
 

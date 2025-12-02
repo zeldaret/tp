@@ -164,15 +164,15 @@ void daAlink_c::preKandelaarDraw() {
     J3DMaterial* mat_p = mpKanteraGlowModel->getModelData()->getMaterialNodePointer(0);
 
     J3DGXColorS10 color;
-    color.r = daAlinkHIO_kandelaar_c0::m.mColorReg1R;
-    color.g = daAlinkHIO_kandelaar_c0::m.mColorReg1G;
-    color.b = daAlinkHIO_kandelaar_c0::m.mColorReg1B;
+    color.r = mpHIO->mItem.mLantern.m.mColorReg1R;
+    color.g = mpHIO->mItem.mLantern.m.mColorReg1G;
+    color.b = mpHIO->mItem.mLantern.m.mColorReg1B;
     color.a = 255;
     mat_p->setTevColor(1, &color);
 
-    color.r = daAlinkHIO_kandelaar_c0::m.mColorReg2R;
-    color.g = daAlinkHIO_kandelaar_c0::m.mColorReg2G;
-    color.b = daAlinkHIO_kandelaar_c0::m.mColorReg2B;
+    color.r = mpHIO->mItem.mLantern.m.mColorReg2R;
+    color.g = mpHIO->mItem.mLantern.m.mColorReg2G;
+    color.b = mpHIO->mItem.mLantern.m.mColorReg2B;
     mat_p->setTevColor(2, &color);
 
     cXyz proj;
@@ -293,10 +293,10 @@ int daAlink_c::commonKandelaarPour(int param_0) {
             } else if (simpleAnmPlay(field_0x0720)) {
                 if (param_0) {
                     setUpperAnimeParam(getMainBckData(ANM_OIL_BOTTLE_POUR_END)->m_upperID, UPPER_2,
-                                       &daAlinkHIO_kandelaar_c0::m.mEndUnkAnm);
+                                       &mpHIO->mItem.mLantern.m.mEndUnkAnm);
                 } else {
                     setSingleAnimeParam(ANM_OIL_BOTTLE_POUR_END,
-                                        &daAlinkHIO_kandelaar_c0::m.mEndUnkAnm);
+                                        &mpHIO->mItem.mLantern.m.mEndUnkAnm);
                 }
 
                 field_0x072c->setFrame(2.0f);
@@ -331,7 +331,7 @@ void daAlink_c::initKandelaarSwing() {
     field_0xFB8.ResetAtHit();
 
     if (!checkEventRun()) {
-        dComIfGp_setItemOilCount(-daAlinkHIO_kandelaar_c0::m.mShakeOilLoss);
+        dComIfGp_setItemOilCount(-mpHIO->mItem.mLantern.m.mShakeOilLoss);
     }
 
     field_0xFB8.OffAtSetBit();
@@ -368,13 +368,13 @@ int daAlink_c::procKandelaarSwingInit() {
         (checkStageName("F_SP108") &&
          fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchTagKtOnFire, NULL) != NULL))
     {
-        setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &daAlinkHIO_bottle_c0::m.mSwingDownAnm);
-        field_0x3478 = daAlinkHIO_bottle_c0::m.mSwingDownAnm.mCancelFrame;
+        setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &mpHIO->mItem.mBottle.m.mSwingDownAnm);
+        field_0x3478 = mpHIO->mItem.mBottle.m.mSwingDownAnm.mCancelFrame;
         field_0x347c = 5.0f;
         field_0x3480 = 12.0f;
     } else {
-        setSingleAnimeParam(ANM_LANTERN_SWING, &daAlinkHIO_kandelaar_c0::m.mShakeAnm);
-        field_0x3478 = daAlinkHIO_kandelaar_c0::m.mShakeAnm.mCancelFrame;
+        setSingleAnimeParam(ANM_LANTERN_SWING, &mpHIO->mItem.mLantern.m.mShakeAnm);
+        field_0x3478 = mpHIO->mItem.mLantern.m.mShakeAnm.mCancelFrame;
         field_0x347c = 4.0f;
         field_0x3480 = 11.0f;
     }
@@ -411,7 +411,7 @@ int daAlink_c::procKandelaarPourInit() {
     current.angle.y = shape_angle.y;
     mNormalSpeed = 0.0f;
     field_0x2f98 = 4;
-    setSingleAnimeParam(ANM_OIL_BOTTLE_POUR_START, &daAlinkHIO_kandelaar_c0::m.mBeginUnkAnm);
+    setSingleAnimeParam(ANM_OIL_BOTTLE_POUR_START, &mpHIO->mItem.mLantern.m.mBeginUnkAnm);
     commonKandelaarPourInit();
     return 1;
 }

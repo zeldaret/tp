@@ -260,7 +260,7 @@ int daAlink_c::checkMagneBootsFly() {
 
 int daAlink_c::procBootsEquipInit() {
     commonProcInit(PROC_BOOTS_EQUIP);
-    setSingleAnimeParam(ANM_HVY_BOOTS_PUT_ON, &daAlinkHIO_magneBoots_c0::m.mEquipAnm);
+    setSingleAnimeParam(ANM_HVY_BOOTS_PUT_ON, &mpHIO->mItem.mIronBoots.m.mEquipAnm);
 
     if (checkUpperReadyThrowAnime()) {
         resetUpperAnime(UPPER_2, -1.0f);
@@ -287,7 +287,7 @@ int daAlink_c::procBootsEquip() {
         }
 
         offModeFlg(2);
-    } else if (frameCtrl_p->getFrame() > daAlinkHIO_magneBoots_c0::m.mEquipAnm.mCancelFrame) {
+    } else if (frameCtrl_p->getFrame() > mpHIO->mItem.mIronBoots.m.mEquipAnm.mCancelFrame) {
         onModeFlg(4);
         checkNextAction(1);
     } else if (frameCtrl_p->getFrame() >= 5.0f) {
@@ -338,7 +338,7 @@ int daAlink_c::procMagneBootsFlyInit() {
     }
 
     field_0x3478 = 0.0f;
-    field_0x594 = daAlinkHIO_magneBoots_c0::m.mMaxMagneFlySpeed;
+    field_0x594 = mpHIO->mItem.mIronBoots.m.mMaxMagneFlySpeed;
     mProcVar2.field_0x300c = 0;
     voiceStart(Z2SE_AL_V_MAGNET_CAUGHT);
     return 1;
@@ -346,7 +346,7 @@ int daAlink_c::procMagneBootsFlyInit() {
 
 
 int daAlink_c::procMagneBootsFly() {
-    field_0x3478 += daAlinkHIO_magneBoots_c0::m.mMagneFlyAccelRate;
+    field_0x3478 += mpHIO->mItem.mIronBoots.m.mMagneFlyAccelRate;
     if (field_0x3478 > field_0x594) {
         field_0x3478 = field_0x594;
     }

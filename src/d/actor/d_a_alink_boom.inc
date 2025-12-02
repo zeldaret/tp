@@ -13,9 +13,9 @@ BOOL daAlink_c::checkBoomerangLockAccept() {
 f32 daAlink_c::getBoomSpeed() {
     f32 speed;
     if (checkBoomerangChargeEndWait()) {
-        speed = daAlinkHIO_boom_c0::m.mChargeFlySpeed;
+        speed = mpHIO->mItem.mBoomerang.m.mChargeFlySpeed;
     } else {
-        speed = daAlinkHIO_boom_c0::m.mFlySpeed;
+        speed = mpHIO->mItem.mBoomerang.m.mFlySpeed;
     }
 
     if (checkModeFlg(0x400)) {
@@ -29,14 +29,14 @@ f32 daAlink_c::getBoomSpeed() {
 }
 
 f32 daAlink_c::getBoomCatchSpeed() const {
-    return daAlinkHIO_boom_c0::m.mCatchSpeed;
+    return mpHIO->mItem.mBoomerang.m.mCatchSpeed;
 }
 
 f32 daAlink_c::getBoomFlyMax() const {
     if (checkModeFlg(0x400) && !checkCanoeRide()) {
-        return daAlinkHIO_boom_c0::m.mHorsebackFlyDistMax;
+        return mpHIO->mItem.mBoomerang.m.mHorsebackFlyDistMax;
     } else {
-        return daAlinkHIO_boom_c0::m.mFlyDistMax;
+        return mpHIO->mItem.mBoomerang.m.mFlyDistMax;
     }
 }
 
@@ -45,15 +45,15 @@ f32 daAlink_c::getBoomLockMax() {
 
     if (checkBossBabaRoom()) {
         return 2600.0f;
-    } else if (daAlinkHIO_boom_c0::m.mLockDistMax > fly_max) {
-        return daAlinkHIO_boom_c0::m.mLockDistMax;
+    } else if (mpHIO->mItem.mBoomerang.m.mLockDistMax > fly_max) {
+        return mpHIO->mItem.mBoomerang.m.mLockDistMax;
     } else {
         return fly_max;
     }
 }
 
 s16 daAlink_c::getBoomBgThroughTime() const {
-    return daAlinkHIO_boom_c0::m.mBgThroughTime;
+    return mpHIO->mItem.mBoomerang.m.mBgThroughTime;
 }
 
 bool daAlink_c::checkBossBabaRoom() {
@@ -103,7 +103,7 @@ BOOL daAlink_c::checkBoomerangCarry(fopAc_ac_c* i_grabActor) {
 
         setGrabItemActor(i_grabActor);
         field_0x33e4 = 38.0f;
-        setGrabUpperAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
+        setGrabUpperAnime(mpHIO->mBasic.m.mBasicInterpolation);
         return 1;
     }
 
@@ -118,7 +118,7 @@ void daAlink_c::initBoomerangUpperAnimeSpeed(int param_0) {
             mUpperFrameCtrl[2].setFrame(tmp);
             getNowAnmPackUpper(UPPER_2)->setFrame(tmp);
         } else {
-            mUpperFrameCtrl[2].setRate(daAlinkHIO_boom_c0::m.mIdleAnmSpeed);
+            mUpperFrameCtrl[2].setRate(mpHIO->mItem.mBoomerang.m.mIdleAnmSpeed);
         }
     }
 }
@@ -137,13 +137,13 @@ void daAlink_c::setBoomerangReadyQuake() {
     dComIfGp_getVibration().StartQuake(1, 1, cXyz(tmp_0, 1.0f, tmp_0));
 
     onNoResetFlg3(FLG3_UNK_4);
-    mItemVar0.field_0x3018 = daAlinkHIO_boom_c0::m.mChargeTime;
+    mItemVar0.field_0x3018 = mpHIO->mItem.mBoomerang.m.mChargeTime;
 }
 
 void daAlink_c::setBoomerangReadyAnime() {
     f32 var_f31;
     if (checkAttentionLock()) {
-        var_f31 = daAlinkHIO_boom_c0::m.mIdleAnmSpeed;
+        var_f31 = mpHIO->mItem.mBoomerang.m.mIdleAnmSpeed;
     } else {
         var_f31 = 0.0f;
     }
@@ -153,12 +153,12 @@ void daAlink_c::setBoomerangReadyAnime() {
 }
 
 void daAlink_c::setThrowBoomerangAnime() {
-    setUpperAnimeParam(0x53, UPPER_2, &daAlinkHIO_boom_c0::m.mThrowAnm);
+    setUpperAnimeParam(0x53, UPPER_2, &mpHIO->mItem.mBoomerang.m.mThrowAnm);
     cancelItemUseQuake(0);
 }
 
 void daAlink_c::setBoomerangCatchAnime() {
-    setUpperAnimeParam(0x52, UPPER_2, &daAlinkHIO_boom_c0::m.mCatchAnm);
+    setUpperAnimeParam(0x52, UPPER_2, &mpHIO->mItem.mBoomerang.m.mCatchAnm);
     setFacePriBck(0xE8);
     field_0x2f97 = 254;
 
@@ -190,8 +190,8 @@ void daAlink_c::throwBoomerang() {
         mFastShotTime = -1;
         daPy_boomerangMove_c::offEventKeepFlg();
     } else {
-        item->speedF = daAlinkHIO_pickUp_c0::m.field_0x28;
-        item->speed.y = daAlinkHIO_pickUp_c0::m.field_0x2C;
+        item->speedF = mpHIO->mItem.mPickUp.m.field_0x28;
+        item->speed.y = mpHIO->mItem.mPickUp.m.field_0x2C;
         item->current.angle.y = shape_angle.y;
 
         fopAcM_cancelCarryNow(item);
@@ -283,7 +283,7 @@ void daAlink_c::checkUpperItemActionBoomerangFly() {
 
 int daAlink_c::checkNextActionBoomerang() {
     if ((checkBoomerangCatchAnime() &&
-         mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCancelFrame) ||
+         mUpperFrameCtrl[2].getFrame() <= mpHIO->mItem.mBoomerang.m.mCatchAnm.mCancelFrame) ||
         checkNoResetFlg1(FLG1_UNK_2)) {
         return 0;
     }
@@ -363,7 +363,7 @@ int daAlink_c::procBoomerangSubjectInit() {
     mNormalSpeed = 0.0f;
     initBoomerangUpperAnimeSpeed(1);
     setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, 0.0f,
-                            daAlinkHIO_boom_c0::m.mStartInterpolation);
+                            mpHIO->mItem.mBoomerang.m.mStartInterpolation);
     dComIfGp_setPlayerStatus0(0, 0x80000);
     current.angle.y = shape_angle.y;
 
@@ -402,7 +402,7 @@ int daAlink_c::procBoomerangMoveInit() {
     }
 
     initBoomerangUpperAnimeSpeed(0);
-    setBlendAtnMoveAnime(daAlinkHIO_boom_c0::m.mStartInterpolation);
+    setBlendAtnMoveAnime(mpHIO->mItem.mBoomerang.m.mStartInterpolation);
 
     dComIfGp_setPlayerStatus0(0, 0x80000);
     return 1;
@@ -421,7 +421,7 @@ int daAlink_c::procBoomerangMove() {
 
             if (field_0x2f98 != 3) {
                 field_0x2f98 = 3;
-                var_f31 = daAlinkHIO_basic_c0::m.mBasicInterpolation;
+                var_f31 = mpHIO->mBasic.m.mBasicInterpolation;
             }
         } else {
             offModeFlg(1);
@@ -444,7 +444,7 @@ int daAlink_c::procBoomerangCatchInit() {
         return 0;
     }
 
-    setSingleAnimeParam(ANM_BOOMERANG_CATCH, &daAlinkHIO_boom_c0::m.mCatchAnm);
+    setSingleAnimeParam(ANM_BOOMERANG_CATCH, &mpHIO->mItem.mBoomerang.m.mCatchAnm);
     setBoomerangCatchAnime();
     offNoResetFlg0(FLG0_UNK_20);
 
@@ -455,7 +455,7 @@ int daAlink_c::procBoomerangCatch() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
     onEndResetFlg0(ERFLG0_UNK_8000000);
 
-    if (frameCtrl->getFrame() > daAlinkHIO_boom_c0::m.mCatchAnm.mCancelFrame) {
+    if (frameCtrl->getFrame() > mpHIO->mItem.mBoomerang.m.mCatchAnm.mCancelFrame) {
         onModeFlg(4);
     }
 

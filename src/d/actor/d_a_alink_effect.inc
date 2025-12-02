@@ -420,9 +420,9 @@ void daAlink_c::setEffect() {
         if (checkWolf()) {
             spB8.x += 40.0f * cM_ssin(current.angle.y);
             spB8.z += 40.0f * cM_scos(current.angle.y);
-            spAC.y -= daAlinkHIO_wlSwim_c0::m.mStartHeight;
+            spAC.y -= mpHIO->mWolf.mWlSwim.m.mStartHeight;
         } else {
-            spAC.y -= daAlinkHIO_swim_c0::m.mStartHeight;
+            spAC.y -= mpHIO->mSwim.m.mStartHeight;
         }
 
         spB8.y = mWaterY;
@@ -562,7 +562,7 @@ void daAlink_c::setEffect() {
                                                        &current.pos, &shape_angle);
             if (sp38 != NULL) {
                 cXyz sp58;
-                f32 var_f31 = temp_f30 / daAlinkHIO_board_c0::m.mEffectMaxSpeed;
+                f32 var_f31 = temp_f30 / mpHIO->mItem.mBoard.m.mEffectMaxSpeed;
                 if (var_f31 > 1.0f) {
                     var_f31 = 1.0f;
                 }
@@ -1494,7 +1494,7 @@ void daAlink_c::setMetamorphoseEffect() {
 void daAlink_c::setRunSplash() {
     if (mProcID == PROC_MOVE && checkNoResetFlg0(FLG0_UNK_80) && checkDashAnime()) {
         f32 temp_f31 = mWaterY - current.pos.y;
-        if (temp_f31 >= daAlinkHIO_basic_c0::m.mWaterSurfaceEffectHeight && temp_f31 < field_0x598 && dKy_pol_efftype_get(&mLinkAcch.m_wtr) == 2) {
+        if (temp_f31 >= mpHIO->mBasic.m.mWaterSurfaceEffectHeight && temp_f31 < field_0x598 && dKy_pol_efftype_get(&mLinkAcch.m_wtr) == 2) {
             cXyz sp8(current.pos.x, mWaterY, current.pos.z);
 
             JPABaseEmitter* temp_r3 = setEmitterPolyColor(&field_0x31f8, 0x1AF, mLinkAcch.m_wtr, &sp8, &current.angle);

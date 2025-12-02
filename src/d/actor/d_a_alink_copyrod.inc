@@ -12,19 +12,19 @@ BOOL daAlink_c::checkLv6BossRoom() {
 }
 
 f32 daAlink_c::getCopyRodBallSpeed() const {
-    return daAlinkHIO_copyRod_c0::m.mBallSpeed;
+    return mpHIO->mItem.mCopyRod.m.mBallSpeed;
 }
 
 f32 daAlink_c::getCopyRodBallReturnSpeed() const {
-    return daAlinkHIO_copyRod_c0::m.mBallReturnSpeed;
+    return mpHIO->mItem.mCopyRod.m.mBallReturnSpeed;
 }
 
 f32 daAlink_c::getCopyRodBallDisMax() const {
     if (checkLv6BossRoom()) {
-        return daAlinkHIO_copyRod_c0::m.mBossBallMaxDistance;
+        return mpHIO->mItem.mCopyRod.m.mBossBallMaxDistance;
     }
 
-    return daAlinkHIO_copyRod_c0::m.mBallMaxDistance;
+    return mpHIO->mItem.mCopyRod.m.mBallMaxDistance;
 }
 
 fopAc_ac_c* daAlink_c::getCopyRodControllActor() {
@@ -50,7 +50,7 @@ void daAlink_c::initCopyRodUpperAnimeSpeed(int param_0) {
             mUpperFrameCtrl[2].setFrame(0.0f);
             getNowAnmPackUpper(UPPER_2)->setFrame(0.0f);
         } else {
-            mUpperFrameCtrl[2].setRate(daAlinkHIO_boom_c0::m.mIdleAnmSpeed);
+            mUpperFrameCtrl[2].setRate(mpHIO->mItem.mBoomerang.m.mIdleAnmSpeed);
         }
     }
 }
@@ -86,9 +86,9 @@ void daAlink_c::setCopyRodControllUpperSpeedRate() {
         var_f31 = 1.0f;
     } else {
         if (mProcID == PROC_STEP_MOVE) {
-            var_f31 = fabsf(field_0x3478 / daAlinkHIO_move_c0::m.mMaxSpeed);
+            var_f31 = fabsf(field_0x3478 / mpHIO->mMove.m.mMaxSpeed);
         } else {
-            var_f31 = fabsf(mNormalSpeed / daAlinkHIO_move_c0::m.mMaxSpeed);
+            var_f31 = fabsf(mNormalSpeed / mpHIO->mMove.m.mMaxSpeed);
         }
 
         if (checkHeavyStateOn(1, 1)) {
@@ -132,7 +132,7 @@ void daAlink_c::setCopyRodModel() {
 void daAlink_c::setCopyRodReadyAnime() {
     f32 speed;
     if (checkAttentionLock()) {
-        speed = daAlinkHIO_boom_c0::m.mIdleAnmSpeed;
+        speed = mpHIO->mItem.mBoomerang.m.mIdleAnmSpeed;
     } else {
         speed = 0.0f;
     }
@@ -201,7 +201,7 @@ BOOL daAlink_c::checkUpperItemActionCopyRod() {
     }
 
     if (checkReadyItem() && !itemButton() && checkCopyRodReadyAnime()) {
-        setUpperAnimeParam(0x53, UPPER_2, &daAlinkHIO_boom_c0::m.mThrowAnm);
+        setUpperAnimeParam(0x53, UPPER_2, &mpHIO->mItem.mBoomerang.m.mThrowAnm);
         mSearchBallScale = getCopyRodBallDisMax();
 
         if (!mSight.getLockFlg()) {
@@ -226,7 +226,7 @@ void daAlink_c::checkUpperItemActionCopyRodFly() {
 
 int daAlink_c::checkNextActionCopyRod() {
     if ((checkBoomerangCatchAnime() &&
-         mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCancelFrame) ||
+         mUpperFrameCtrl[2].getFrame() <= mpHIO->mItem.mBoomerang.m.mCatchAnm.mCancelFrame) ||
         checkNoResetFlg1(FLG1_UNK_10000))
     {
         return 0;
@@ -275,7 +275,7 @@ int daAlink_c::procCopyRodSubjectInit() {
 
     mNormalSpeed = 0.0f;
     initCopyRodUpperAnimeSpeed(1);
-    setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, 0.0f, daAlinkHIO_boom_c0::m.mStartInterpolation);
+    setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, 0.0f, mpHIO->mItem.mBoomerang.m.mStartInterpolation);
 
     dComIfGp_setPlayerStatus0(0, 0x80);
     current.angle.y = shape_angle.y;
@@ -314,7 +314,7 @@ int daAlink_c::procCopyRodMoveInit() {
     }
 
     initCopyRodUpperAnimeSpeed(0);
-    setBlendAtnMoveAnime(daAlinkHIO_boom_c0::m.mStartInterpolation);
+    setBlendAtnMoveAnime(mpHIO->mItem.mBoomerang.m.mStartInterpolation);
 
     dComIfGp_setPlayerStatus0(0, 0x80);
     return 1;
@@ -333,7 +333,7 @@ int daAlink_c::procCopyRodMove() {
 
             if (field_0x2f98 != 3) {
                 field_0x2f98 = 3;
-                var_f31 = daAlinkHIO_basic_c0::m.mBasicInterpolation;
+                var_f31 = mpHIO->mBasic.m.mBasicInterpolation;
             }
         } else {
             offModeFlg(1);
@@ -354,16 +354,16 @@ int daAlink_c::procCopyRodSwingInit() {
         ((fopAcM_GetName(statue) == PROC_CSTATUE && statue->checkNotSmallType()) ||
          fopAcM_GetName(statue) != PROC_CSTATUE))
     {
-        setSingleAnimeParam(ANM_COPYROD_SWING_LARGE, &daAlinkHIO_copyRod_c0::m.mBigSwingAnm);
+        setSingleAnimeParam(ANM_COPYROD_SWING_LARGE, &mpHIO->mItem.mCopyRod.m.mBigSwingAnm);
         field_0x3478 = 13.0f;
         field_0x347c = 21.0f;
-        field_0x3480 = daAlinkHIO_copyRod_c0::m.mBigSwingAnm.mCancelFrame;
+        field_0x3480 = mpHIO->mItem.mCopyRod.m.mBigSwingAnm.mCancelFrame;
         field_0x3484 = 27.0f;
     } else {
-        setSingleAnimeParam(ANM_COPYROD_SWING, &daAlinkHIO_copyRod_c0::m.mSwingAnm);
+        setSingleAnimeParam(ANM_COPYROD_SWING, &mpHIO->mItem.mCopyRod.m.mSwingAnm);
         field_0x3478 = 4.0f;
         field_0x347c = 8.0f;
-        field_0x3480 = daAlinkHIO_copyRod_c0::m.mSwingAnm.mCancelFrame;
+        field_0x3480 = mpHIO->mItem.mCopyRod.m.mSwingAnm.mCancelFrame;
         field_0x3484 = 14.0f;
     }
 
