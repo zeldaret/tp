@@ -70,10 +70,10 @@ struct TAsinAcosTable {
 
 namespace JMath {
 
-TSinCosTable<13, f32> sincosTable_;
+TSinCosTable<13, f32> sincosTable_ ATTRIBUTE_ALIGN(32);
 
-TAtanTable atanTable_;
+TAtanTable atanTable_ ATTRIBUTE_ALIGN(32);
 
-TAsinAcosTable asinAcosTable_;
+TAsinAcosTable asinAcosTable_ ATTRIBUTE_ALIGN(32);
 
 }  // namespace JMath
