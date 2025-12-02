@@ -40,7 +40,7 @@ void daObjDamCps_HIO_c::genMessage(JORMContext* ctx) {
     // Damage Cylinder
     ctx->genLabel("ダメージ円柱", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Adjustment
-    ctx->genCheckBox("調整", &mAdj, '\x01', 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genCheckBox("調整", &mAdj, 1, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // X Angle
     ctx->genSlider("Ｘ角度", &mAngle.x, -0x7fff, 0x7fff, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Y Angle
@@ -98,7 +98,7 @@ int daObjDamCps_c::Create() {
 int daObjDamCps_c::create() {
     fopAcM_ct(this, daObjDamCps_c);
 
-    if (Create() == 0) {
+    if (!Create()) {
         return cPhs_ERROR_e;
     }
 
