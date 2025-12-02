@@ -192,10 +192,10 @@ void daAlink_c::setGrabItemPos() {
         s16 spC;
         if (sp18) {
             spE = (shape_angle.y + 0x8000);
-            spC = -field_0x2fee;
+            spC = -mHeadTiltAngle;
         } else {
             spE = shape_angle.y;
-            spC = (field_0x2fee + field_0x3082);
+            spC = (mHeadTiltAngle + field_0x3082);
         }
     
         if (checkGrabSideThrowAnime()) {
@@ -1049,7 +1049,7 @@ int daAlink_c::procGrabWait() {
     s16 temp_r29 = shape_angle.y;
 
     if (!checkNextAction(0)) {
-        field_0x33f0 = 0.005f * (s16)(shape_angle.y - temp_r29);
+        mEyeMoveRateX = 0.005f * (s16)(shape_angle.y - temp_r29);
 
         if (checkAttentionLock() && (checkGrabAnimeUp() || checkGrabAnimeSide())) {
             setBlendAtnMoveAnime(-1.0f);
