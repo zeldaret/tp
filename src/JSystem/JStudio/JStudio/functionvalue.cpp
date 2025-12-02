@@ -185,7 +185,7 @@ void TFunctionValueAttribute_range::range_set(f64 begin, f64 end) {
     fEnd_ = end;
     fDifference_ = end - begin;
 
-    JUT_ASSERT(458, fDifference_ >= TValue(0));
+    JUT_ASSERT(458, fDifference_>=TValue(0));
 }
 
 // /* 80281A08-80281D18 27C348 0310+00 2/2 0/0 0/0 .text

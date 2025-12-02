@@ -4,7 +4,7 @@
 
 JStudio_JStage::TAdaptor_actor::TAdaptor_actor(JStage::TSystem const* param_1,
                                                    JStage::TActor* param_2)         :
-                                                   TAdaptor_object_(param_1,param_2) {
+                                                   TAdaptor_object_(this, param_1,param_2) {
     field_0x130 = 0;
     field_0x134 = 0;
     field_0x138 = 0;
@@ -265,9 +265,9 @@ void JStudio_JStage::TAdaptor_actor::setJSG_SRT_(JStudio::TControl const* pContr
     adaptor_getVariableValue_Vec(&transform.translation, sauVariableValue_3_TRANSLATION_XYZ);
     adaptor_getVariableValue_Vec(&transform.rotation, sauVariableValue_3_ROTATION_XYZ);
     adaptor_getVariableValue_Vec(&transform.scaling, sauVariableValue_3_SCALING_XYZ);
-    JStudio::TControl::TTransform_translation_rotation_scaling* pTransform;
+    const JStudio::TControl::TTransform_translation_rotation_scaling* pTransform;
     if (field_0x144 == 0) {
-        pTransform = pControl->transformOnSet_transform_ifEnabled(&transform, &multipliedTransform);
+        pTransform = pControl->transformOnSet_transform_ifEnabled(transform, &multipliedTransform);
     } else {
         pTransform = &transform;
         switch (field_0x138) {

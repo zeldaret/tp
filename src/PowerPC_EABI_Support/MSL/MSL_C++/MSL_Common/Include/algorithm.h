@@ -73,6 +73,7 @@ ForwardIterator upper_bound(ForwardIterator first, ForwardIterator last, const T
 	return first;
 }
 
+// should be inline, but breaks JStudio/JStudio/ctb weak function order
 template<class InputIt, class UnaryPredicate>
 InputIt find_if(InputIt first, InputIt last, UnaryPredicate p) {
 	while (first != last && !p(*first)) {

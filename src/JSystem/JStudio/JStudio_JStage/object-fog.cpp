@@ -7,7 +7,7 @@
 #include "JSystem/JStudio/JStudio_JStage/object-fog.h"
 
 JStudio_JStage::TAdaptor_fog::TAdaptor_fog(JStage::TSystem const* param_0, JStage::TFog* param_1)
-    : TAdaptor_object_(param_0, param_1) {}
+    : TAdaptor_object_(this, param_0, param_1) {}
 
 JStudio_JStage::TAdaptor_fog::~TAdaptor_fog() {
     adaptor_do_end();

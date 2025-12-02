@@ -142,31 +142,31 @@ public:
         *pDst = rSrc;
     }
 
-    void transformOnSet_transform(TTransform_position* param_1, TTransform_position* param_2) const {
-        transformOnSet_transformTranslation(*param_1, param_2);
+    void transformOnSet_transform(const TTransform_position &param_1, TTransform_position* param_2) const {
+        transformOnSet_transformTranslation(param_1, param_2);
     }
 
-    void transformOnSet_transform(TTransform_translation_rotation_scaling* param_1,
+    void transformOnSet_transform(const TTransform_translation_rotation_scaling& param_1,
                                   TTransform_translation_rotation_scaling* param_2) const {
-        transformOnSet_transformTranslation(param_1->translation, &param_2->translation);
-        transformOnSet_transformRotation(param_1->rotation, &param_2->rotation);
-        transformOnSet_transformScaling(param_1->scaling, &param_2->scaling);
+        transformOnSet_transformTranslation(param_1.translation, &param_2->translation);
+        transformOnSet_transformRotation(param_1.rotation, &param_2->rotation);
+        transformOnSet_transformScaling(param_1.scaling, &param_2->scaling);
     }
 
-    TTransform_position* transformOnSet_transform_ifEnabled(TTransform_position* param_1,
+    const TTransform_position* transformOnSet_transform_ifEnabled(const TTransform_position& param_1,
                                                             TTransform_position* param_2) const {
         if (!transformOnSet_isEnabled()) {
-            return param_1;
+            return &param_1;
         }
         transformOnSet_transform(param_1, param_2);
         return param_2;
     }
 
-    TTransform_translation_rotation_scaling*
-    transformOnSet_transform_ifEnabled(TTransform_translation_rotation_scaling* param_1,
+    const TTransform_translation_rotation_scaling*
+    transformOnSet_transform_ifEnabled(const TTransform_translation_rotation_scaling& param_1,
                                        TTransform_translation_rotation_scaling* param_2) const {
         if (!transformOnSet_isEnabled()) {
-            return param_1;
+            return &param_1;
         }
         transformOnSet_transform(param_1, param_2);
         return param_2;
@@ -187,33 +187,33 @@ public:
         MTXMultVecSR(transformOnGet_getMatrix(), &rSrc, pDst);
     }
 
-    void transformOnGet_transform(TTransform_position_direction* param_1,
+    void transformOnGet_transform(const TTransform_position_direction& param_1,
                                   TTransform_position_direction* pDst) const {
         JUT_ASSERT(289, pDst!=NULL);
-        transformOnGet_transformTranslation(param_1->position, &pDst->position);
-        transformOnGet_transformDirection(param_1->direction, &pDst->direction);
+        transformOnGet_transformTranslation(param_1.position, &pDst->position);
+        transformOnGet_transformDirection(param_1.direction, &pDst->direction);
     }
 
-    TTransform_position_direction*
-    transformOnGet_transform_ifEnabled(TTransform_position_direction& param_1,
+    const TTransform_position_direction*
+    transformOnGet_transform_ifEnabled(const TTransform_position_direction& param_1,
                                        TTransform_position_direction* param_2) const {
         if (!transformOnGet_isEnabled()) {
             return &param_1;
         }
-        transformOnGet_transform(&param_1, param_2);
+        transformOnGet_transform(param_1, param_2);
         return param_2;
     }
 
-    void transformOnGet_transform(TTransform_position* param_1,
+    void transformOnGet_transform(const TTransform_position& param_1,
                                   TTransform_position* pDst) const {
-        transformOnGet_transformTranslation(*param_1, pDst);
+        transformOnGet_transformTranslation(param_1, pDst);
     }
 
-    TTransform_position*
-    transformOnGet_transform_ifEnabled(TTransform_position* param_1,
+    const TTransform_position*
+    transformOnGet_transform_ifEnabled(const TTransform_position& param_1,
                                        TTransform_position* param_2) const {
         if (!transformOnGet_isEnabled()) {
-            return param_1;
+            return &param_1;
         }
         transformOnGet_transform(param_1, param_2);
         return param_2;
@@ -257,18 +257,18 @@ public:
         MTXMultVecSR(transformOnSet_getMatrix(), &rSrc, pDst);
     }
 
-    void transformOnSet_transform(TTransform_position_direction* param_1,
+    void transformOnSet_transform(const TTransform_position_direction& param_1,
                                   TTransform_position_direction* pDst) const {
         JUT_ASSERT(219, pDst!=NULL);
-        transformOnSet_transformTranslation(param_1->position, &pDst->position);
-        transformOnSet_transformDirection(param_1->direction, &pDst->direction);
+        transformOnSet_transformTranslation(param_1.position, &pDst->position);
+        transformOnSet_transformDirection(param_1.direction, &pDst->direction);
     }
 
-    TTransform_position_direction*
-    transformOnSet_transform_ifEnabled(TTransform_position_direction* param_1,
+    const TTransform_position_direction*
+    transformOnSet_transform_ifEnabled(const TTransform_position_direction& param_1,
                                        TTransform_position_direction* param_2) const {
         if (!transformOnSet_isEnabled()) {
-            return param_1;
+            return &param_1;
         }
         transformOnSet_transform(param_1, param_2);
         return param_2;
