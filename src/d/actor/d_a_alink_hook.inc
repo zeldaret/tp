@@ -123,26 +123,26 @@ void daAlink_c::hsChainShape_c::draw() {
             }
         }
     } else {
-        const cXyz& sp3C = temp_r3->getHsChainRootPos();
-        const cXyz& sp38 = temp_r3->getHsChainTopPos();
-        cXyz spA4 = sp3C - sp38;
+        const cXyz& chainRootPos = temp_r3->getHsChainRootPos();
+        const cXyz& chainTopPos = temp_r3->getHsChainTopPos();
+        cXyz maxDistance = chainRootPos - chainTopPos;
 
-        f32 temp_f31 = spA4.abs();
+        f32 maxDistanceF = maxDistance.abs();
         f32 var_f30;
         cXyz sp98;
         csXyz sp6C;
 
-        if (temp_f31 > 1.0f) {
-            spA4 *= (1.0f / temp_f31);
+        if (maxDistanceF > 1.0f) {
+            maxDistance *= (1.0f / maxDistanceF);
             var_f30 = 0.0f;
 
-            sp98 = sp38;
-            sp6C.set(spA4.atan2sY_XZ(), spA4.atan2sX_Z(), 0);
-            sp98 = sp38;
+            sp98 = chainTopPos;
+            sp6C.set(maxDistance.atan2sY_XZ(), maxDistance.atan2sX_Z(), 0);
+            sp98 = chainTopPos;
 
             csXyz sp64(sp6C);
 
-            f32 sp34 = M_PI / temp_f31;
+            f32 sp34 = M_PI / maxDistanceF;
             
             f32 temp_f27;
             f32 var_f26 = 0.0f;
@@ -153,7 +153,7 @@ void daAlink_c::hsChainShape_c::draw() {
                 var_f28 *= -1.0f;
             }
 
-            while (temp_f31 > var_f30) {
+            while (maxDistanceF > var_f30) {
                 temp_f27 = var_f28 * cM_fsin(sp34 * var_f30);
                 s16 spC = cM_atan2s(temp_f27 - var_f26, 5.0f);
                 sp64.x = sp6C.x + spC;
@@ -180,15 +180,15 @@ void daAlink_c::hsChainShape_c::draw() {
 
         const cXyz& sp30 = temp_r3->getHsSubChainRootPos();
         const cXyz& sp2C = temp_r3->getHsSubChainTopPos();
-        spA4 = sp30 - sp2C;
+        maxDistance = sp30 - sp2C;
 
-        f32 temp_f1 = spA4.abs();
+        f32 temp_f1 = maxDistance.abs();
         if (temp_f1 > 1.0f) {
-            spA4 *= (1.0f / temp_f1);
+            maxDistance *= (1.0f / temp_f1);
             var_f30 = 0.0f;
             
             sp98 = sp2C;
-            sp6C.set(spA4.atan2sY_XZ(), spA4.atan2sX_Z(), 0);
+            sp6C.set(maxDistance.atan2sY_XZ(), maxDistance.atan2sX_Z(), 0);
 
             while (temp_f1 > var_f30) {
                 mDoMtx_stack_c::copy(j3dSys.getViewMtx());
@@ -200,7 +200,7 @@ void daAlink_c::hsChainShape_c::draw() {
 
                 sp5C->getShape()->simpleDrawCache();
 
-                sp98 += spA4 * 5.0f;
+                sp98 += maxDistance * 5.0f;
                 sp6C.z += 0x3000;
                 var_f30 += 5.0f;
             }
@@ -395,7 +395,7 @@ void daAlink_c::setHookshotModel() {
     mpHookshotLinChk->OffFullGrp();
     mpHookshotLinChk->OnWaterGrp();
 
-    J3DAnmTransform* bck2 = (J3DAnmTransform*)loadAram(0x17F, 0x800);
+    J3DAnmTransform* bck2 = (J3DAnmTransform*)loadAram(dRes_ID_ALANM_BCK_HS_TIP_OPEN_e, 0x800);
     mHookTipBck.init(bck2, 0, 2, 1.0f, 0, -1, false);
     mDoExt_setCurrentHeap(heap);
 
@@ -548,7 +548,7 @@ void daAlink_c::setHookshotReadyAnime() {
         speed = daAlinkHIO_hookshot_c0::m.mWaitAnmSpeed;
     }
 
-    setUpperAnimeBaseSpeed(0x18D, speed, 3.0f);
+    setUpperAnimeBaseSpeed(dRes_INDEX_ALANM_BCK_HSWAIT_e, speed, 3.0f);
     field_0x3020 = 0;
     initHookshotReady();
 }
