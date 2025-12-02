@@ -14,6 +14,7 @@
  *
  */
 class daObjDamCps_c : public fopAc_ac_c {
+#ifdef DEBUG
 public:
     daObjDamCps_c() {};
     void initBaseMtx();
@@ -24,13 +25,14 @@ public:
     int draw();
     int _delete();
     u8 getSwNo();
-
+    
 private:
     /* 0x0570 */ dCcD_Stts mStts;
     /* 0x05AC */ dCcD_Cps mCps;
     /* 0x06F0 */ cM3dGCpsS mCapsule;
     /* 0x070C */ Mtx mMtx;
     /* 0x073C */ cXyz mScale;
+#endif
 };
 
 class daObjDamCps_HIO_c : public mDoHIO_entry_c {

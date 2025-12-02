@@ -6,6 +6,8 @@
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_damCps.h"
+
+#ifdef DEBUG
 #include "d/d_debug_viewer.h"
 
 static daObjDamCps_HIO_c l_HIO;
@@ -100,9 +102,7 @@ int daObjDamCps_c::create() {
         return cPhs_ERROR_e;
     }
 
-#ifdef DEBUG
     l_HIO.entryHIO("ダメージ円柱");  // Damage Cylinder
-#endif
 
     return cPhs_COMPLEATE_e;
 }
@@ -170,9 +170,7 @@ int daObjDamCps_c::draw() {
 }
 
 int daObjDamCps_c::_delete() {
-#ifdef DEBUG
     l_HIO.removeHIO();
-#endif
     return 1;
 }
 
@@ -199,19 +197,24 @@ static actor_method_class l_daObjDamCps_Method = {
     (process_method_func)daObjDamCps_Execute, (process_method_func)NULL,
     (process_method_func)daObjDamCps_Draw,
 };
+#endif
 
 extern actor_process_profile_definition g_profile_Obj_DamCps = {
-    fpcLy_CURRENT_e,         // mLayerID
-    7,                       // mListID
-    fpcPi_CURRENT_e,         // mListPrio
-    PROC_Obj_DamCps,         // mProcName
-    &g_fpcLf_Method.base,    // sub_method
-    sizeof(daObjDamCps_c),   // mSize
-    0,                       // mSizeOther
-    0,                       // mParameters
-    &g_fopAc_Method.base,    // sub_method
-    629,                     // mPriority
-    &l_daObjDamCps_Method,   // sub_method
+    fpcLy_CURRENT_e,        // mLayerID
+    7,                      // mListID
+    fpcPi_CURRENT_e,        // mListPrio
+    PROC_Obj_DamCps,        // mProcName
+    &g_fpcLf_Method.base,   // sub_method
+    sizeof(daObjDamCps_c),  // mSize
+    0,                      // mSizeOther
+    0,                      // mParameters
+    &g_fopAc_Method.base,   // sub_method
+    629,                    // mPriority
+#ifdef DEBUG
+    &l_daObjDamCps_Method,  // sub_method
+#else
+    NULL,  // sub_method
+#endif
     0x00040100,              // mStatus
     fopAc_ACTOR_e,           // mActorType
     fopAc_CULLBOX_CUSTOM_e,  // cullType
