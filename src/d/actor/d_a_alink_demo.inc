@@ -146,7 +146,7 @@ int daAlink_c::checkDemoAction() {
         }
 
         if (mProcID == PROC_SPINNER_WAIT) {
-            return procFallInit(1, daAlinkHIO_autoJump_c0::m.mFallInterpolation);
+            return procFallInit(1, mpHIO->mAutoJump.m.mFallInterpolation);
         }
 
         if (checkModeFlg(0x4000000) || checkModeFlg(0x40000) || checkHorseRide() ||
@@ -463,7 +463,7 @@ int daAlink_c::checkDemoAction() {
         } else if (checkBoardRide()) {
             return checkNextActionBoard();
         } else if (checkSpinnerRide()) {
-            return procFallInit(1, daAlinkHIO_autoJump_c0::m.mFallInterpolation);
+            return procFallInit(1, mpHIO->mAutoJump.m.mFallInterpolation);
         }
 
         return commonCheckNextAction(0);
@@ -486,7 +486,7 @@ void daAlink_c::setDemoMoveData(u32* o_mode, cXyz const* i_goal) {
     f32 temp_f28;
     f32 var_f27;
     if (checkWolf()) {
-        var_f27 = daAlinkHIO_wlMoveNoP_c0::m.mMaxSpeed / daAlinkHIO_move_c0::m.mMaxSpeed;
+        var_f27 = mpHIO->mWolf.mWlMoveNoP.m.mMaxSpeed / mpHIO->mMove.m.mMaxSpeed;
         var_f27 *= var_f27;
     } else {
         var_f27 = 1.0f;
@@ -850,12 +850,12 @@ void daAlink_c::resetDemoBck() {
     mFaceBtkHeap.resetIdx();
 
     if (checkWolf()) {
-        setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMoveNoP_c0::m.mIdleAnmSpeed,
-                                    daAlinkHIO_wlMove_c0::m.mNormalInterpolation);
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT, mpHIO->mWolf.mWlMoveNoP.m.mIdleAnmSpeed,
+                                    mpHIO->mWolf.mWlMove.m.mNormalInterpolation);
         setFaceBasicAnime(ANM_WAIT);
     } else {
-        setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
-                                daAlinkHIO_basic_c0::m.mBasicInterpolation);
+        setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed,
+                                mpHIO->mBasic.m.mBasicInterpolation);
     }
 }
 
@@ -960,7 +960,7 @@ void daAlink_c::endDemoMode() {
                 checkWaitAction();
             }
         } else if (mProcID == PROC_MONKEY_MOVE) {
-            procFallInit(1, daAlinkHIO_autoJump_c0::m.mFallInterpolation);
+            procFallInit(1, mpHIO->mAutoJump.m.mFallInterpolation);
         } else if (checkCanoeRide()) {
             procCanoeWaitInit(0);
         }
@@ -1029,7 +1029,7 @@ int daAlink_c::setTalkStartBack(cXyz* param_0) {
             if (dComIfG_Bgsp().GroundCross(&mLinkGndChk) - current.pos.y >= l_autoDownHeight) {
                 current.angle.y = sp24.atan2sX_Z();
                 mNormalSpeed = 5.0f;
-                setSingleAnimeBaseSpeed(ANM_WALK, -daAlinkHIO_move_c0::m.mWalkAnmSpeed, 3.0f);
+                setSingleAnimeBaseSpeed(ANM_WALK, -mpHIO->mMove.m.mWalkAnmSpeed, 3.0f);
                 return 1;
             }
         }
@@ -1069,8 +1069,8 @@ void daAlink_c::setTalkAnime() {
     if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_8_e || mEquipItem == fpcNm_ITEM_KANTERA ||
         (checkNoResetFlg2(FLG2_UNK_1) && field_0x2fde == 0x48))
     {
-        setDoubleAnime(0.0f, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
-                       daAlinkHIO_move_c0::m.mWaitAnmSpeed, ANM_WAIT, ANM_WAIT, 2, 3.0f);
+        setDoubleAnime(0.0f, mpHIO->mMove.m.mWaitAnmSpeed,
+                       mpHIO->mMove.m.mWaitAnmSpeed, ANM_WAIT, ANM_WAIT, 2, 3.0f);
     } else {
         setSingleAnimeBase(ANM_TALK);
     }
@@ -1688,12 +1688,12 @@ int daAlink_c::procCoTalkInit() {
         mNormalSpeed = 0.0f;
 
         if (var_r30 == 0) {
-            setBlendWolfMoveAnime(daAlinkHIO_wlMove_c0::m.mIdleInterpolation);
+            setBlendWolfMoveAnime(mpHIO->mWolf.mWlMove.m.mIdleInterpolation);
         } else {
             if (var_r30 == 1) {
                 field_0x2f99 = 13;
                 setSingleAnimeWolfBaseSpeed(WANM_CROUCH_WALK, 0.0f,
-                                            daAlinkHIO_wlLie_c0::m.mProneMoveInterp);
+                                            mpHIO->mWolf.mWlLie.m.mProneMoveInterp);
             } else {
                 field_0x2f99 = 13;
                 daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
@@ -1765,7 +1765,7 @@ int daAlink_c::procCoTalk() {
     } else {
         if (mEquipItem == fpcNm_ITEM_KANTERA) {
             if (mUpperAnmHeap[0].getIdx() != getMainBckData(ANM_WAIT)->m_upperID) {
-                setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 3.0f);
+                setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed, 3.0f);
             }
         }
 
@@ -1866,9 +1866,9 @@ int daAlink_c::procCoUnequipInit() {
     mProcVar3.field_0x300e = 0;
 
     if (checkWolf()) {
-        setBlendWolfMoveAnime(daAlinkHIO_wlMove_c0::m.mNormalInterpolation);
+        setBlendWolfMoveAnime(mpHIO->mWolf.mWlMove.m.mNormalInterpolation);
     } else {
-        setBlendMoveAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
+        setBlendMoveAnime(mpHIO->mBasic.m.mBasicInterpolation);
 
         if (mDemo.getParam1() == 0) {
             if (mEquipItem != fpcNm_ITEM_NONE) {
@@ -2277,7 +2277,7 @@ int daAlink_c::procCoGetItem() {
                     field_0x2f99 = 12;
 
                     if (checkWolf()) {
-                        setBlendWolfMoveAnime(daAlinkHIO_wlMove_c0::m.mNormalInterpolation);
+                        setBlendWolfMoveAnime(mpHIO->mWolf.mWlMove.m.mNormalInterpolation);
                     } else {
                         if (mEquipItem == fpcNm_ITEM_KANTERA) {
                             field_0x2f94 = 0;
@@ -2289,7 +2289,7 @@ int daAlink_c::procCoGetItem() {
                                            3.0f);
                             field_0x2f99 = 0x60;
                         } else {
-                            setBlendMoveAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
+                            setBlendMoveAnime(mpHIO->mBasic.m.mBasicInterpolation);
                         }
                     }
                 }
@@ -2327,8 +2327,8 @@ int daAlink_c::procCoTurnBack() {
             if (checkWolf()) {
                 setBlendWolfMoveAnime(5.0f);
             } else {
-                setDoubleAnime(0.0f, daAlinkHIO_noActAtnMove_c0::m.mWaitAnmSpeed,
-                               daAlinkHIO_noActAtnMove_c0::m.mWaitAnmSpeed, ANM_WAIT_B, ANM_WAIT_B,
+                setDoubleAnime(0.0f, mpHIO->mNoActAtnMove.m.mWaitAnmSpeed,
+                               mpHIO->mNoActAtnMove.m.mWaitAnmSpeed, ANM_WAIT_B, ANM_WAIT_B,
                                2, 3.0f);
             }
 
@@ -2356,7 +2356,7 @@ int daAlink_c::procDoorOpenInit() {
     f32 start_f = 0.0f;
     s16 end_f = -1;
 
-    field_0x3478 = daAlinkHIO_basic_c0::m.mBasicInterpolation;
+    field_0x3478 = mpHIO->mBasic.m.mBasicInterpolation;
     mProcVar0.field_0x3008 = 0;
 
     if (mDemo.getParam0() == 4) {
@@ -2487,9 +2487,9 @@ int daAlink_c::procCoLookWaitInit() {
     mNormalSpeed = 0.0f;
 
     if (checkWolf()) {
-        setBlendWolfMoveAnime(daAlinkHIO_wlMove_c0::m.mNormalInterpolation);
+        setBlendWolfMoveAnime(mpHIO->mWolf.mWlMove.m.mNormalInterpolation);
     } else {
-        setBlendMoveAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
+        setBlendMoveAnime(mpHIO->mBasic.m.mBasicInterpolation);
     }
 
     current.angle.y = shape_angle.y;
@@ -2528,8 +2528,8 @@ int daAlink_c::procCoDemoPushPullWaitInit() {
     if (checkWolf()) {
         setSingleAnimeWolfBase(WANM_WAIT_PP);
     } else {
-        setSingleAnimeBaseSpeed(ANM_WAIT_PUSH_PULL, daAlinkHIO_pushpull_c0::m.mStandbyASpeed,
-                                daAlinkHIO_pushpull_c0::m.mStandbyInterpolation);
+        setSingleAnimeBaseSpeed(ANM_WAIT_PUSH_PULL, mpHIO->mPushpull.m.mStandbyASpeed,
+                                mpHIO->mPushpull.m.mStandbyInterpolation);
     }
 
     mNormalSpeed = 0.0f;
@@ -2545,15 +2545,15 @@ int daAlink_c::procCoDemoPushMoveInit() {
         if (mDemo.getParam0() != 0) {
             setSingleAnimeWolfBase(WANM_PUSH);
         } else {
-            setSingleAnimeWolf(WANM_PUSH_LIGHT, daAlinkHIO_wlPush_c0::m.mPushAnmSpeed,
-                               0.0f, 24, daAlinkHIO_wlPush_c0::m.mPushInterp);
+            setSingleAnimeWolf(WANM_PUSH_LIGHT, mpHIO->mWolf.mWlPush.m.mPushAnmSpeed,
+                               0.0f, 24, mpHIO->mWolf.mWlPush.m.mPushInterp);
         }
     } else {
         if (mDemo.getParam0() != 0) {
             setSingleAnimeBase(ANM_PUSH);
         } else {
-            setSingleAnimeBaseSpeed(ANM_PUSH_LIGHT, daAlinkHIO_pushpull_c0::m.mPushASpeed,
-                                    daAlinkHIO_pushpull_c0::m.mPushInterpolation);
+            setSingleAnimeBaseSpeed(ANM_PUSH_LIGHT, mpHIO->mPushpull.m.mPushASpeed,
+                                    mpHIO->mPushpull.m.mPushInterpolation);
         }
     }
 
@@ -2617,7 +2617,7 @@ int daAlink_c::procDemoBoomerangCatchInit() {
     deleteEquipItem(FALSE, FALSE);
     mEquipItem = fpcNm_ITEM_BOOMERANG;
     setItemActor();
-    setSingleAnimeParam(ANM_BOOMERANG_CATCH, &daAlinkHIO_boom_c0::m.mCatchAnm);
+    setSingleAnimeParam(ANM_BOOMERANG_CATCH, &mpHIO->mItem.mBoomerang.m.mCatchAnm);
     return 1;
 }
 
@@ -2625,7 +2625,7 @@ int daAlink_c::procDemoBoomerangCatch() {
     dComIfGp_evmng_cutEnd(mAlinkStaffId);
 
     if (checkAnmEnd(mUnderFrameCtrl)) {
-        setBlendMoveAnime(daAlinkHIO_basic_c0::m.mBasicInterpolation);
+        setBlendMoveAnime(mpHIO->mBasic.m.mBasicInterpolation);
     }
     return 1;
 }
@@ -2651,9 +2651,9 @@ int daAlink_c::procCoDeadInit(int param_0) {
     if (checkNoResetFlg2(FLG2_FORCE_GAMEOVER)) {
         if (param_0) {
             if (checkWolf()) {
-                setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.mIdleAnmSpeed, 3.0f);
+                setSingleAnimeWolfBaseSpeed(WANM_WAIT, mpHIO->mWolf.mWlMove.m.mIdleAnmSpeed, 3.0f);
             } else {
-                setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 3.0f);
+                setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed, 3.0f);
             }
         }
 
@@ -2904,9 +2904,9 @@ int daAlink_c::procCoCaughtInit() {
     }
 
     if (checkWolf()) {
-        setSingleAnimeWolfBaseMorf(WANM_WAIT_START, daAlinkHIO_wlDamCaught_c0::m.mWaitInterp);
+        setSingleAnimeWolfBaseMorf(WANM_WAIT_START, mpHIO->mWolf.mWlDamage.mCapture.m.mWaitInterp);
     } else {
-        setSingleAnimeBaseMorf(ANM_WAIT_START, daAlinkHIO_damCaught_c0::m.mStandbyInterp);
+        setSingleAnimeBaseMorf(ANM_WAIT_START, mpHIO->mDamage.mDamCaught.m.mStandbyInterp);
     }
 
     if (chk_40000) {
@@ -2999,7 +2999,7 @@ int daAlink_c::procHandPat() {
             dComIfGp_evmng_cutEnd(mAlinkStaffId);
 
             if (mProcVar3.field_0x300e == 0) {
-                setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 3.0f);
+                setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed, 3.0f);
                 mProcVar3.field_0x300e = 1;
             }
         }
@@ -3048,10 +3048,10 @@ int daAlink_c::procCoFogDeadInit() {
 
         if (checkWolf()) {
             setSingleAnimeWolfBaseSpeed(WANM_FALL_LAND, 0.0f,
-                                        daAlinkHIO_wlDamFall_c0::m.mAirAnmInterp);
+                                        mpHIO->mWolf.mWlDamage.mFall.m.mAirAnmInterp);
         } else {
             setSingleAnimeBaseSpeed(ANM_DMG_FALL, 0.0f,
-                                    daAlinkHIO_damFall_c0::m.mFallAnmMorf);
+                                    mpHIO->mDamage.mDamFall.m.mFallAnmMorf);
         }
     }
 
@@ -3097,8 +3097,8 @@ int daAlink_c::procWolfSmellWaitInit() {
         return 1;
     }
 
-    setSingleAnimeWolfBaseSpeed(WANM_SMELL, daAlinkHIO_wlChain_c0::m.mSniffAnmSpeed,
-                                daAlinkHIO_wlChain_c0::m.mSniffInterp);
+    setSingleAnimeWolfBaseSpeed(WANM_SMELL, mpHIO->mWolf.mWlChain.m.mSniffAnmSpeed,
+                                mpHIO->mWolf.mWlChain.m.mSniffInterp);
     current.angle.y = shape_angle.y;
     mNormalSpeed = 0.0f;
     return 1;
@@ -3245,7 +3245,7 @@ int daAlink_c::procCoGetReadySitInit() {
     commonProcInit(PROC_GET_READY_SIT);
 
     if (checkWolf()) {
-        setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.mIdleAnmSpeed, 3.0f);
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT, mpHIO->mWolf.mWlMove.m.mIdleAnmSpeed, 3.0f);
         mProcVar2.field_0x300c = 1;
     } else {
         setSingleAnime(ANM_TRES_OPEN_SMALL, 1.0f, 36.0f, -1, 3.0f);
@@ -3350,13 +3350,13 @@ int daAlink_c::procWolfSnowEscape() {
 
         if (mProcVar2.field_0x300c == 0) {
             mProcVar2.field_0x300c = 1;
-            setSingleAnimeWolfParam(WANM_SLIDE_FORWARD_START, &daAlinkHIO_wlSlide_c0::m.mFrontSlideAnm);
+            setSingleAnimeWolfParam(WANM_SLIDE_FORWARD_START, &mpHIO->mWolf.mWlSlide.m.mFrontSlideAnm);
             field_0x3588 = l_wolfBaseAnime;
             field_0x3478 = 1.0f / (f32)frameCtrl_p->getEnd();
             field_0x2f99 = 13;
             voiceStart(Z2SE_WL_V_SLIP_ROLL);
         } else {
-            setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.mIdleAnmSpeed, 3.0f);
+            setSingleAnimeWolfBaseSpeed(WANM_WAIT, mpHIO->mWolf.mWlMove.m.mIdleAnmSpeed, 3.0f);
             field_0x2f99 = 0x30;
             mProcVar3.field_0x300e = 1;
         }
@@ -3658,8 +3658,8 @@ int daAlink_c::procSwordReady() {
 
     if (checkAnmEnd(frame_ctrl)) {
         if (mProcVar2.field_0x300c == 0) {
-            setDoubleAnime(0.0f, daAlinkHIO_noActAtnMove_c0::m.mWaitAnmSpeed,
-                           daAlinkHIO_noActAtnMove_c0::m.mWaitAnmSpeed, ANM_WAIT_B, ANM_WAIT_B, 2,
+            setDoubleAnime(0.0f, mpHIO->mNoActAtnMove.m.mWaitAnmSpeed,
+                           mpHIO->mNoActAtnMove.m.mWaitAnmSpeed, ANM_WAIT_B, ANM_WAIT_B, 2,
                            3.0f);
         }
 
@@ -3751,10 +3751,10 @@ int daAlink_c::procCutFastReadyInit() {
 
     mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
-    setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 3.0f);
-    setUpperAnime(0x255, UPPER_2, daAlinkHIO_cut_c0::m.mEquipAnm.mSpeed, 12.0f,
-                  daAlinkHIO_cut_c0::m.mEquipAnm.mEndFrame,
-                  daAlinkHIO_cut_c0::m.mEquipAnm.mInterpolation);
+    setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed, 3.0f);
+    setUpperAnime(0x255, UPPER_2, mpHIO->mCut.m.mEquipAnm.mSpeed, 12.0f,
+                  mpHIO->mCut.m.mEquipAnm.mEndFrame,
+                  mpHIO->mCut.m.mEquipAnm.mInterpolation);
     onNoResetFlg0(FLG0_UNK_1000000);
     return 1;
 }
@@ -3953,8 +3953,8 @@ int daAlink_c::procDungeonWarpSceneStartInit() {
     commonProcInit(PROC_DUNGEON_WARP_SCN_START);
 
     setSpecialGravity(0.0f, maxFallSpeed, 0);
-    setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed,
-                            daAlinkHIO_basic_c0::m.mBasicInterpolation);
+    setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed,
+                            mpHIO->mBasic.m.mBasicInterpolation);
 
     if (checkDungeon() && !checkLv7DungeonShop()) {
         createNpcTks(&current.pos, fopAcM_GetRoomNo(this), 4);
@@ -4184,9 +4184,9 @@ int daAlink_c::procCoWarpInit(int param_0, int param_1) {
     deleteEquipItem(FALSE, TRUE);
 
     if (checkWolf()) {
-        setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.mIdleAnmSpeed, 3.0f);
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT, mpHIO->mWolf.mWlMove.m.mIdleAnmSpeed, 3.0f);
     } else {
-        setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 3.0f);
+        setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed, 3.0f);
     }
 
     u32 var_r29;
@@ -4305,9 +4305,9 @@ int daAlink_c::procCoWarp() {
 
         f32 var_f1;
         if (checkWolf()) {
-            var_f1 = daAlinkHIO_wlAutoJump_c0::m.mGravity;
+            var_f1 = mpHIO->mWolf.mWlAutoJump.m.mGravity;
         } else {
-            var_f1 = daAlinkHIO_autoJump_c0::m.mGravity;
+            var_f1 = mpHIO->mAutoJump.m.mGravity;
         }
 
         setSpecialGravity(var_f1, maxFallSpeed, 1);
@@ -4409,8 +4409,8 @@ int daAlink_c::commonLargeDamageUpInit(int param_0, int param_1, s16 param_2, s1
 
 int daAlink_c::commonFallInit(int param_0) {
     if (checkWolf()) {
-        return procWolfFallInit(param_0, daAlinkHIO_wlAutoJump_c0::m.mNormalFallInterp);
+        return procWolfFallInit(param_0, mpHIO->mWolf.mWlAutoJump.m.mNormalFallInterp);
     } else {
-        return procFallInit(param_0, daAlinkHIO_autoJump_c0::m.mFallInterpolation);
+        return procFallInit(param_0, mpHIO->mAutoJump.m.mFallInterpolation);
     }
 }

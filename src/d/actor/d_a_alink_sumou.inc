@@ -272,7 +272,7 @@ int daAlink_c::procSumouMove() {
             if (mSpeedModifier > 0.0f && checkInputOnR()) {
                 int direction = getDirectionFromAngle(mStickAngle);
                 if (direction == DIR_LEFT || direction == DIR_RIGHT) {
-                    var_r31 = field_0x33ac * (daAlinkHIO_pushpull_c0::m.mSumoRotationAngle * field_0x33ac);
+                    var_r31 = field_0x33ac * (mpHIO->mPushpull.m.mSumoRotationAngle * field_0x33ac);
 
                     if (direction == DIR_RIGHT) {
                         var_r31 = -var_r31;
@@ -317,7 +317,7 @@ int daAlink_c::procSumouSideMoveInit() {
     mSpecialMode = 0x16;
     field_0x2f98 = 3;
     current.angle.y = shape_angle.y + -0x4000;
-    field_0x594 = daAlinkHIO_atnMove_c0::m.mMaxSpeed;
+    field_0x594 = mpHIO->mAtnMove.m.mMaxSpeed;
     setSingleAnimeBase(ANM_SUMOU_FIGHT_WAIT);
 
     field_0x3198 = 0x141;
@@ -379,7 +379,7 @@ int daAlink_c::procSumouSideMove() {
         }
 
         if (field_0x33ac > (1.0f - fabsf(mNormalSpeed / field_0x594)) * 0.3f) {
-            var_f1 = daAlinkHIO_atnMove_c0::m.mAcceleration * field_0x33ac;
+            var_f1 = mpHIO->mAtnMove.m.mAcceleration * field_0x33ac;
         } else {
             var_f1 = 0.0f;
         }
@@ -387,7 +387,7 @@ int daAlink_c::procSumouSideMove() {
         var_f1 = 0.0f;
     }
 
-    setNormalSpeedF(var_f1, daAlinkHIO_atnMove_c0::m.mDeceleration);
+    setNormalSpeedF(var_f1, mpHIO->mAtnMove.m.mDeceleration);
 
     if (checkZeroSpeedF()) {
         onModeFlg(1);

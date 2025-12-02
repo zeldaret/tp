@@ -67,7 +67,7 @@ int daAlink_c::procGrassWhistleGetInit() {
     current.angle.y = shape_angle.y;
     field_0x2f98 = 4;
 
-    setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &daAlinkHIO_bottle_c0::m.mSwingDownAnm);
+    setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &mpHIO->mItem.mBottle.m.mSwingDownAnm);
     field_0x2f92 = 0xFE;
     field_0x280c.setData(field_0x27f4);
 
@@ -276,9 +276,9 @@ int daAlink_c::procCoHorseCallWaitInit(int param_0) {
     }
 
     if (checkWolf()) {
-        setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMove_c0::m.mIdleAnmSpeed, 3.0f);
+        setSingleAnimeWolfBaseSpeed(WANM_WAIT, mpHIO->mWolf.mWlMove.m.mIdleAnmSpeed, 3.0f);
     } else {
-        setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 3.0f);
+        setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed, 3.0f);
     }
 
     setGrassCancelStatus(0);

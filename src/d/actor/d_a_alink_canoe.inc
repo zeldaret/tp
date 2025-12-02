@@ -10,41 +10,41 @@
 
 f32 daAlink_c::getCanoeMaxSpeed() const {
     if (checkCanoeSlider()) {
-        return daAlinkHIO_canoe_c0::m.mMaxSpeed_RiverRide;
+        return mpHIO->mCanoe.m.mMaxSpeed_RiverRide;
     } else {
-        return daAlinkHIO_canoe_c0::m.mMaxSpeed;
+        return mpHIO->mCanoe.m.mMaxSpeed;
     }
 }
 
 f32 daAlink_c::getCanoeBackMaxSpeed() const {
-    return daAlinkHIO_canoe_c0::m.mBackMaxSpeed;
+    return mpHIO->mCanoe.m.mBackMaxSpeed;
 }
 
 f32 daAlink_c::getCanoeCres() const {
     if (checkCanoeSlider()) {
-        return daAlinkHIO_canoe_c0::m.mDeceleration_RiverRide;
+        return mpHIO->mCanoe.m.mDeceleration_RiverRide;
     } else {
-        return daAlinkHIO_canoe_c0::m.mDeceleration;
+        return mpHIO->mCanoe.m.mDeceleration;
     }
 }
 
 f32 daAlink_c::getCanoeSpeedRate() const {
     if (checkCanoeSlider()) {
-        return daAlinkHIO_canoe_c0::m.mSpeedRate_RiverRide;
+        return mpHIO->mCanoe.m.mSpeedRate_RiverRide;
     } else {
-        return daAlinkHIO_canoe_c0::m.mSpeedRate;
+        return mpHIO->mCanoe.m.mSpeedRate;
     }
 }
 
 s16 daAlink_c::getCanoeMaxRotSpeed() const {
     s16 var_r30;
     if (checkCanoeSlider()) {
-        var_r30 = daAlinkHIO_canoe_c0::m.mMaxTurnAngle_RiverRide;
+        var_r30 = mpHIO->mCanoe.m.mMaxTurnAngle_RiverRide;
     } else {
-        var_r30 = daAlinkHIO_canoe_c0::m.mMaxTurnAngle;
+        var_r30 = mpHIO->mCanoe.m.mMaxTurnAngle;
     }
 
-    return var_r30 * (((mUnderFrameCtrl[0].getRate() - daAlinkHIO_canoe_c0::m.mStickRowAnmSpeed) * 0.5f) + 1.0f);
+    return var_r30 * (((mUnderFrameCtrl[0].getRate() - mpHIO->mCanoe.m.mStickRowAnmSpeed) * 0.5f) + 1.0f);
 }
 
 cXyz* daAlink_c::getCanoeLocalPaddleTop() {
@@ -299,7 +299,7 @@ int daAlink_c::canoeCommon() {
             var_r29 = 0x20021;
         }
 
-        int var_r27 = cLib_minMaxLimit<int>(((fabsf(var_f31) - daAlinkHIO_canoe_c0::m.mStickRowAnmSpeed) / (daAlinkHIO_canoe_c0::m.mBtnRowStartAnmSpeed - daAlinkHIO_canoe_c0::m.mStickRowAnmSpeed)) * 127.0f, 0, 0x7F);
+        int var_r27 = cLib_minMaxLimit<int>(((fabsf(var_f31) - mpHIO->mCanoe.m.mStickRowAnmSpeed) / (mpHIO->mCanoe.m.mBtnRowStartAnmSpeed - mpHIO->mCanoe.m.mStickRowAnmSpeed)) * 127.0f, 0, 0x7F);
         mZ2Link.startLinkSwordSound(var_r29, var_r27, mVoiceReverbIntensity);
     }
 
@@ -335,10 +335,10 @@ int daAlink_c::procCanoeRideInit() {
     deleteEquipItem(0, 0);
     daCanoe_c* canoe = (daCanoe_c*)field_0x27f4;
 
-    setSingleAnime(ANM_HANG_CLIMB_TOP, daAlinkHIO_wallCatch_c0::m.mClimbAnm.mSpeed,
-                   daAlinkHIO_wallCatch_c0::m.mClimbStartFrame,
-                   daAlinkHIO_wallCatch_c0::m.mClimbAnm.mEndFrame,
-                   daAlinkHIO_wallCatch_c0::m.mClimbAnm.mInterpolation);
+    setSingleAnime(ANM_HANG_CLIMB_TOP, mpHIO->mWallHang.mWallCatch.m.mClimbAnm.mSpeed,
+                   mpHIO->mWallHang.mWallCatch.m.mClimbStartFrame,
+                   mpHIO->mWallHang.mWallCatch.m.mClimbAnm.mEndFrame,
+                   mpHIO->mWallHang.mWallCatch.m.mClimbAnm.mInterpolation);
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
     mNormalSpeed = 0.0f;
@@ -403,7 +403,7 @@ int daAlink_c::procCanoeJumpRideInit(fopAc_ac_c* param_0) {
     }
 
     setHeavyBoots(0);
-    setSingleAnimeParam(ANM_JUMP_LAND, &daAlinkHIO_autoJump_c0::m.mLandAnm);
+    setSingleAnimeParam(ANM_JUMP_LAND, &mpHIO->mAutoJump.m.mLandAnm);
     deleteEquipItem(0, 0);
 
     mRideAcKeep.setData(canoe);
@@ -445,7 +445,7 @@ int daAlink_c::procCanoeGetOffInit() {
     field_0x2f99 = 0;
     mNormalSpeed = 0.0f;
 
-    setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 6.0f);
+    setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed, 6.0f);
     setSpecialGravity(0.0f, maxFallSpeed, 0);
     mNormalSpeed = 0.0f;
     speed.y = 0.0f;
@@ -509,7 +509,7 @@ int daAlink_c::procCanoeGetOff() {
         if (mLinkAcch.ChkGroundHit()) {
             checkLandAction(0);
         } else if (speed.y < -gravity) {
-            procFallInit(2, daAlinkHIO_smallJump_c0::m.mFallInterpolation);
+            procFallInit(2, mpHIO->mWallHang.mSmallJump.m.mFallInterpolation);
         } else {
             field_0x2f99 = 7;
         }
@@ -517,7 +517,7 @@ int daAlink_c::procCanoeGetOff() {
         if (mProcVar3.field_0x300e == 0) {
             if (field_0x2060->getOldFrameRate() < 0.01f) {
                 mProcVar3.field_0x300e = 1;
-                setSingleAnimeParam(ANM_VJUMP_START, &daAlinkHIO_smallJump_c0::m.mSmallJumpAnm);
+                setSingleAnimeParam(ANM_VJUMP_START, &mpHIO->mWallHang.mSmallJump.m.mSmallJumpAnm);
                 field_0x33b0 = l_waitBaseAnime.y;
                 field_0x3588 = l_waitBaseAnime;
             }
@@ -525,7 +525,7 @@ int daAlink_c::procCanoeGetOff() {
             rideGetOff();
             offModeFlg(0x400);
             setJumpMode();
-            setSpecialGravity(daAlinkHIO_autoJump_c0::m.mGravity, maxFallSpeed, 0);
+            setSpecialGravity(mpHIO->mAutoJump.m.mGravity, maxFallSpeed, 0);
             mNormalSpeed = 15.0f;
             speed.y = 20.0f;
         }
@@ -756,12 +756,12 @@ int daAlink_c::procCanoeRowInit(int param_0) {
     }
 
     commonProcInit(PROC_CANOE_ROW);
-    f32 var_f31 = daAlinkHIO_canoe_c0::m.mBtnRowAnmSpeed;
+    f32 var_f31 = mpHIO->mCanoe.m.mBtnRowAnmSpeed;
     BOOL var_r24 = 0;
 
     if (var_r29 == ANM_CANOE_ROW_LEFT_BACK || var_r29 == ANM_CANOE_ROW_RIGHT_BACK) {
         mProcVar3.field_0x300e = 1;
-        if (temp_r26->speedF > 0.5f * (-var_f31 * daAlinkHIO_canoe_c0::m.mBackSpeedRate)) {
+        if (temp_r26->speedF > 0.5f * (-var_f31 * mpHIO->mCanoe.m.mBackSpeedRate)) {
             var_r24 = 1;
         }
 
@@ -783,7 +783,7 @@ int daAlink_c::procCanoeRowInit(int param_0) {
     }
 
     if (var_r24 != 0) {
-        var_f31 = daAlinkHIO_canoe_c0::m.mBtnRowStartAnmSpeed;
+        var_f31 = mpHIO->mCanoe.m.mBtnRowStartAnmSpeed;
     }
 
     setSingleAnime((daAlink_ANM)var_r29, var_f31, 0.0f, 35, 3.0f);
@@ -809,9 +809,9 @@ int daAlink_c::procCanoeRow() {
                 procCanoeWaitInit(0);
             }
         } else {
-            f32 var_f30 = daAlinkHIO_canoe_c0::m.mBtnRowAnmSpeed;
-            if ((mProcVar3.field_0x300e == 1 && temp_r29->speedF > 0.5f * (-var_f30 * daAlinkHIO_canoe_c0::m.mBackSpeedRate)) || (mProcVar3.field_0x300e == 0 && temp_r29->speedF < 0.5f * (var_f30 * getCanoeSpeedRate()))) {
-                var_f30 = daAlinkHIO_canoe_c0::m.mBtnRowStartAnmSpeed;
+            f32 var_f30 = mpHIO->mCanoe.m.mBtnRowAnmSpeed;
+            if ((mProcVar3.field_0x300e == 1 && temp_r29->speedF > 0.5f * (-var_f30 * mpHIO->mCanoe.m.mBackSpeedRate)) || (mProcVar3.field_0x300e == 0 && temp_r29->speedF < 0.5f * (var_f30 * getCanoeSpeedRate()))) {
+                var_f30 = mpHIO->mCanoe.m.mBtnRowStartAnmSpeed;
             }
 
             f32 sp8 = temp_r27->getRate();
@@ -851,7 +851,7 @@ int daAlink_c::procCanoeRow() {
                 if (mProcVar3.field_0x300e == 0) {
                     temp_r29->setAimSpeed(var_f31 * getCanoeSpeedRate());
                 } else {
-                    temp_r29->setAimSpeed(-var_f31 * daAlinkHIO_canoe_c0::m.mBackSpeedRate);
+                    temp_r29->setAimSpeed(-var_f31 * mpHIO->mCanoe.m.mBackSpeedRate);
                 }
             }
 
@@ -873,12 +873,12 @@ int daAlink_c::procCanoePaddleShiftInit(int param_0) {
 
     f32 speed;
     if (mProcVar5.field_0x3012 == 0) {
-        speed = daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mSpeed;
+        speed = mpHIO->mCanoe.m.mLeftRightChangeAnm.mSpeed;
     } else {
-        speed = -daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mSpeed;
+        speed = -mpHIO->mCanoe.m.mLeftRightChangeAnm.mSpeed;
     }
 
-    setSingleAnime(ANM_CANOE_CHANGE_HAND, speed, daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mStartFrame, daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mEndFrame, daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mInterpolation);
+    setSingleAnime(ANM_CANOE_CHANGE_HAND, speed, mpHIO->mCanoe.m.mLeftRightChangeAnm.mStartFrame, mpHIO->mCanoe.m.mLeftRightChangeAnm.mEndFrame, mpHIO->mCanoe.m.mLeftRightChangeAnm.mInterpolation);
 
     if (mProcVar5.field_0x3012 == 1) {
         field_0x2f92 = 0;
@@ -932,12 +932,12 @@ int daAlink_c::procCanoePaddlePutInit(int param_0) {
 
     f32 var_f31;
     if (mProcVar5.field_0x3012 == 0) {
-        var_f31 = daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mSpeed;
+        var_f31 = mpHIO->mCanoe.m.mLeftRightChangeAnm.mSpeed;
     } else {
-        var_f31 = -daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mSpeed;
+        var_f31 = -mpHIO->mCanoe.m.mLeftRightChangeAnm.mSpeed;
     }
 
-    setSingleAnime(ANM_CANOE_CHANGE_HAND, var_f31, daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mStartFrame, daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mEndFrame, daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mInterpolation);
+    setSingleAnime(ANM_CANOE_CHANGE_HAND, var_f31, mpHIO->mCanoe.m.mLeftRightChangeAnm.mStartFrame, mpHIO->mCanoe.m.mLeftRightChangeAnm.mEndFrame, mpHIO->mCanoe.m.mLeftRightChangeAnm.mInterpolation);
 
     if (mProcVar5.field_0x3012 == 1) {
         field_0x2f92 = 0;
@@ -1017,12 +1017,12 @@ int daAlink_c::procCanoePaddleGrab() {
         if (checkAnmEnd(temp_r29) != 0) {
             f32 var_f31;
             if (mProcVar5.field_0x3012 == 0) {
-                var_f31 = -daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mSpeed;
+                var_f31 = -mpHIO->mCanoe.m.mLeftRightChangeAnm.mSpeed;
             } else {
-                var_f31 = daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mSpeed;
+                var_f31 = mpHIO->mCanoe.m.mLeftRightChangeAnm.mSpeed;
             }
 
-            setSingleAnime(ANM_CANOE_CHANGE_HAND, var_f31, daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mStartFrame, daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mEndFrame, daAlinkHIO_canoe_c0::m.mLeftRightChangeAnm.mInterpolation);
+            setSingleAnime(ANM_CANOE_CHANGE_HAND, var_f31, mpHIO->mCanoe.m.mLeftRightChangeAnm.mStartFrame, mpHIO->mCanoe.m.mLeftRightChangeAnm.mEndFrame, mpHIO->mCanoe.m.mLeftRightChangeAnm.mInterpolation);
             mUpperFrameCtrl[0].setFrame(11.0f);
             getNowAnmPackUpper(UPPER_0)->setFrame(11.0f);
 
@@ -1545,7 +1545,7 @@ int daAlink_c::procCanoeBottleDrinkInit(u16 param_0) {
     temp_r3->setAimSpeed(0.0f);
     temp_r3->setAimAngle(shape_angle.y);
 
-    setUpperAnimeParam(getMainBckData(ANM_BOTTLE_DRINK_START)->m_upperID, UPPER_2, &daAlinkHIO_bottle_c0::m.mStartDrinkAnm);
+    setUpperAnimeParam(getMainBckData(ANM_BOTTLE_DRINK_START)->m_upperID, UPPER_2, &mpHIO->mItem.mBottle.m.mStartDrinkAnm);
     setFacePriAnime(ANM_BOTTLE_DRINK_START);
     keepItemData();
     setBottleModel(param_0);
@@ -1583,7 +1583,7 @@ int daAlink_c::procCanoeKandelaarPourInit() {
     canoe->setAimSpeed(0.0f);
     canoe->setAimAngle(shape_angle.y);
 
-    setUpperAnimeParam(getMainBckData(ANM_OIL_BOTTLE_POUR_START)->m_upperID, UPPER_2, &daAlinkHIO_kandelaar_c0::m.mBeginUnkAnm);
+    setUpperAnimeParam(getMainBckData(ANM_OIL_BOTTLE_POUR_START)->m_upperID, UPPER_2, &mpHIO->mItem.mLantern.m.mBeginUnkAnm);
     commonKandelaarPourInit();
     return 1;
 }
@@ -1613,7 +1613,7 @@ int daAlink_c::procFishingCastInit() {
         return 1;
     }
 
-    setSingleAnimeBaseSpeed(ANM_WAIT, daAlinkHIO_move_c0::m.mWaitAnmSpeed, 3.0f);
+    setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed, 3.0f);
     setUpperAnimeBase(0x260);
     field_0x2f96 = 0xFE;
     field_0x2f97 = 8;
@@ -1656,7 +1656,7 @@ int daAlink_c::procFishingCast() {
     }
 
     if (checkInputOnR()) {
-        cLib_addCalcAngleS(&shape_angle.y, field_0x2fe2, daAlinkHIO_move_c0::m.mTurnAngleRate, daAlinkHIO_move_c0::m.mMaxTurnAngle, daAlinkHIO_move_c0::m.mMinTurnAngle);
+        cLib_addCalcAngleS(&shape_angle.y, field_0x2fe2, mpHIO->mMove.m.mTurnAngleRate, mpHIO->mMove.m.mMaxTurnAngle, mpHIO->mMove.m.mMinTurnAngle);
         current.angle.y = shape_angle.y;
     }
 
@@ -1669,7 +1669,7 @@ int daAlink_c::procFishingCast() {
         mUnderFrameCtrl[0].setFrame(0.0f);
         getNowAnmPackUnder(UNDER_0)->setFrame(0.0f);
     } else if (mUnderFrameCtrl[0].getRate() < 0.01f) {
-        mUnderFrameCtrl[0].setRate(daAlinkHIO_move_c0::m.mWaitAnmSpeed);
+        mUnderFrameCtrl[0].setRate(mpHIO->mMove.m.mWaitAnmSpeed);
         mUpperFrameCtrl[2].setRate(1.0f);
     }
 

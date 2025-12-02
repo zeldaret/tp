@@ -4,6 +4,13 @@
 #include "d/actor/d_a_npc.h"
 
 class daNpc_ykW_HIO_c;
+class daNpc_ykW_Param_c;
+
+#if DEBUG
+#define NPC_YKW_HIO_CLASS daNpc_ykW_HIO_c
+#else
+#define NPC_YKW_HIO_CLASS daNpc_ykW_Param_c
+#endif
 
 /**
  * @ingroup actors-npcs
@@ -139,7 +146,7 @@ public:
         field_0x101c = 10;
     }
 
-    /* 0x0E40 */ daNpc_ykW_HIO_c* mpHIO;
+    /* 0x0E40 */ NPC_YKW_HIO_CLASS* mpHIO;
     /* 0x0E44 */ dCcD_Cyl mCyl;
     /* 0x0F80 */ u8 field_0xf80;
     /* 0x0F84 */ daNpcT_ActorMngr_c mActorMngrs[5];

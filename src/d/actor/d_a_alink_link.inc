@@ -6,6 +6,7 @@
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_canoe.h"
+#include "d/actor/d_a_kytag05.h"
 #include "d/actor/d_a_tag_mstop.h"
 #include "d/actor/d_a_tag_mhint.h"
 
@@ -131,10 +132,10 @@ BOOL daAlink_c::setBodyAngleToCamera() {
         if (!dComIfGp_checkPlayerStatus0(0, 0x202000) && mEquipItem == fpcNm_ITEM_IRONBALL) {
             var_r29 = -10000;
         } else {
-            var_r29 = daAlinkHIO_item_c0::m.mItemFPUpMaxUnk;
+            var_r29 = mpHIO->mItem.m.mItemFPUpMaxUnk;
         }
 
-        mBodyAngle.x = cLib_minMaxLimit<s16>((s16)sp8, var_r29, daAlinkHIO_item_c0::m.mItemFPMaxUnk);
+        mBodyAngle.x = cLib_minMaxLimit<s16>((s16)sp8, var_r29, mpHIO->mItem.m.mItemFPMaxUnk);
         checkBodyAngleX(mBodyAngle.x);
         field_0x310a = mBodyAngle.x;
         field_0x310c = shape_angle.y;
@@ -240,11 +241,11 @@ int daAlink_c::procCoSwimSubjectivityInit() {
     setSubjectMode();
 
     if (checkWolf()) {
-        setSingleAnimeWolfBaseSpeed(WANM_SWIM_WAIT, daAlinkHIO_wlSwim_c0::m.mIdleAnmSpeedWeak,
-                                    daAlinkHIO_wlSwim_c0::m.mIdleInterp);
+        setSingleAnimeWolfBaseSpeed(WANM_SWIM_WAIT, mpHIO->mWolf.mWlSwim.m.mIdleAnmSpeedWeak,
+                                    mpHIO->mWolf.mWlSwim.m.mIdleInterp);
     } else {
-        setSingleAnimeBaseSpeed(ANM_SWIM_WAIT, daAlinkHIO_swim_c0::m.mWaitAnmSpeed,
-                                daAlinkHIO_swim_c0::m.mWaitInterpolation);
+        setSingleAnimeBaseSpeed(ANM_SWIM_WAIT, mpHIO->mSwim.m.mWaitAnmSpeed,
+                                mpHIO->mSwim.m.mWaitInterpolation);
     }
 
     dComIfGp_setPlayerStatus0(0, 0x100000);

@@ -35,12 +35,6 @@ public:
 };
 #endif
 
-#if DEBUG
-#define HIO_PARAM(i_this) (&i_this->mpHIO->m)
-#else
-#define HIO_PARAM(i_this) (&daNpc_ykW_Param_c::m)
-#endif
-
 static int l_bmdData[1][2] = {
     {11, 1},
 };
@@ -359,7 +353,7 @@ int daNpc_ykW_c::create() {
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
 
-        mCcStts.Init(HIO_PARAM(this)->common.weight, 0, this);
+        mCcStts.Init(mpHIO->m.common.weight, 0, this);
 
         mCyl.Set(mCcDCyl);
         mCyl.SetStts(&mCcStts);
@@ -716,10 +710,10 @@ void daNpc_ykW_c::setParam() {
 
     if (field_0xf80 != 5 && field_0xf80 != 6) {
         u32 newAttnFlags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
-        s16 talkDist = HIO_PARAM(this)->common.talk_distance;
-        s16 talkAngle = HIO_PARAM(this)->common.talk_angle;
-        s16 attnDist = HIO_PARAM(this)->common.attention_distance;
-        s16 attnAngle = HIO_PARAM(this)->common.attention_angle;
+        s16 talkDist = mpHIO->m.common.talk_distance;
+        s16 talkAngle = mpHIO->m.common.talk_angle;
+        s16 attnDist = mpHIO->m.common.attention_distance;
+        s16 attnAngle = mpHIO->m.common.attention_angle;
 
         if (field_0xf80 == 1) {
             talkAngle = 4;
@@ -731,11 +725,7 @@ void daNpc_ykW_c::setParam() {
 
         attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(attnDist, attnAngle);
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
-#if DEBUG
-        attention_info.distances[fopAc_attn_JUEL_e] = daNpcT_getDistTableIdx(talkDist, talkAngle);
-#else
         attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talkDist, talkAngle);
-#endif
 
         if (daPy_py_c::checkNowWolf()) {
             newAttnFlags |= fopAc_AttnFlag_UNK_0x800000;
@@ -746,27 +736,27 @@ void daNpc_ykW_c::setParam() {
         attention_info.flags = 0;
     }
 
-    scale.set(HIO_PARAM(this)->common.scale,
-              HIO_PARAM(this)->common.scale,
-              HIO_PARAM(this)->common.scale);
-    mCcStts.SetWeight(HIO_PARAM(this)->common.weight);
-    mCylH = HIO_PARAM(this)->common.height;
-    mWallR = HIO_PARAM(this)->common.width;
-    mAttnFovY = HIO_PARAM(this)->common.fov;
+    scale.set(mpHIO->m.common.scale,
+              mpHIO->m.common.scale,
+              mpHIO->m.common.scale);
+    mCcStts.SetWeight(mpHIO->m.common.weight);
+    mCylH = mpHIO->m.common.height;
+    mWallR = mpHIO->m.common.width;
+    mAttnFovY = mpHIO->m.common.fov;
 
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(HIO_PARAM(this)->common.knee_length);
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
 
-    mRealShadowSize = HIO_PARAM(this)->common.real_shadow_size;
+    mRealShadowSize = mpHIO->m.common.real_shadow_size;
 
     if (field_0xf80 == 4) {
         fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
         mRealShadowSize = 1500.0f;
     }
 
-    mExpressionMorfFrame = HIO_PARAM(this)->common.expression_morf_frame;
-    mMorfFrames = HIO_PARAM(this)->common.morf_frame;
-    gravity = HIO_PARAM(this)->common.gravity;
+    mExpressionMorfFrame = mpHIO->m.common.expression_morf_frame;
+    mMorfFrames = mpHIO->m.common.morf_frame;
+    gravity = mpHIO->m.common.gravity;
     field_0x1060 = 0;
     field_0x1061 = 0;
 }
@@ -923,7 +913,7 @@ void daNpc_ykW_c::afterMoved() {
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x105c);
             if (emitter != NULL) {
                 cXyz unkXyz2;
-                f32 unkFloat1 = speedF / HIO_PARAM(this)->mSlidingSpeed;
+                f32 unkFloat1 = speedF / mpHIO->m.mSlidingSpeed;
                 if (unkFloat1 > 1.0f) {
                     unkFloat1 = 1.0f;
                 }
@@ -952,7 +942,6 @@ void daNpc_ykW_c::afterMoved() {
     }
 }
 
-// NONMATCHING - HIO load issue, regalloc
 void daNpc_ykW_c::setAttnPos() {
     cXyz unkXyz1(0.0f, 50.0f, 0.0f);
     if (field_0x106a != 0) {
@@ -969,22 +958,22 @@ void daNpc_ykW_c::setAttnPos() {
     if (&daNpc_ykW_c::sitWait == field_0xfd8) {
         mJntAnm.setParam(
             this, mpMorf[0]->getModel(), &unkXyz1, getBackboneJointNo(), getNeckJointNo(),
-            getHeadJointNo(), 0.0f, 0.0f, 0.0f, 0.0f, HIO_PARAM(this)->common.head_angleX_min,
-            HIO_PARAM(this)->common.head_angleX_max, HIO_PARAM(this)->common.head_angleY_min,
-            HIO_PARAM(this)->common.head_angleY_max, HIO_PARAM(this)->common.neck_rotation_ratio,
+            getHeadJointNo(), 0.0f, 0.0f, 0.0f, 0.0f, mpHIO->m.common.head_angleX_min,
+            mpHIO->m.common.head_angleX_max, mpHIO->m.common.head_angleY_min,
+            mpHIO->m.common.head_angleY_max, mpHIO->m.common.neck_rotation_ratio,
             unkFloat1, NULL);
     } else {
         mJntAnm.setParam(this, mpMorf[0]->getModel(), &unkXyz1, getBackboneJointNo(),
                          getNeckJointNo(), getHeadJointNo(),
-                         field_0x1061 != 0 ? 0.0f : HIO_PARAM(this)->common.body_angleX_min,
-                         field_0x1061 != 0 ? 0.0f : HIO_PARAM(this)->common.body_angleX_max,
-                         field_0x1061 != 0 ? 0.0f : HIO_PARAM(this)->common.body_angleY_min,
-                         field_0x1061 != 0 ? 0.0f : HIO_PARAM(this)->common.body_angleY_max,
-                         field_0x1060 != 0 ? 0.0f : HIO_PARAM(this)->common.head_angleX_min,
-                         field_0x1060 != 0 ? 0.0f : HIO_PARAM(this)->common.head_angleX_max,
-                         field_0x1060 != 0 ? 0.0f : HIO_PARAM(this)->common.head_angleY_min,
-                         field_0x1060 != 0 ? 0.0f : HIO_PARAM(this)->common.head_angleY_max,
-                         HIO_PARAM(this)->common.neck_rotation_ratio, unkFloat1, NULL);
+                         field_0x1061 != 0 ? 0.0f : mpHIO->m.common.body_angleX_min,
+                         field_0x1061 != 0 ? 0.0f : mpHIO->m.common.body_angleX_max,
+                         field_0x1061 != 0 ? 0.0f : mpHIO->m.common.body_angleY_min,
+                         field_0x1061 != 0 ? 0.0f : mpHIO->m.common.body_angleY_max,
+                         field_0x1060 != 0 ? 0.0f : mpHIO->m.common.head_angleX_min,
+                         field_0x1060 != 0 ? 0.0f : mpHIO->m.common.head_angleX_max,
+                         field_0x1060 != 0 ? 0.0f : mpHIO->m.common.head_angleY_min,
+                         field_0x1060 != 0 ? 0.0f : mpHIO->m.common.head_angleY_max,
+                         mpHIO->m.common.neck_rotation_ratio, unkFloat1, NULL);
     }
 
     mJntAnm.calcJntRad(0.2f, 1.0f, unkFloat1);
@@ -996,7 +985,7 @@ void daNpc_ykW_c::setAttnPos() {
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 1, 1.0f, 0);
 
     unkXyz1.set(0.0f, 0.0f, 0.0f);
-    unkXyz1.y = HIO_PARAM(this)->common.attention_offset;
+    unkXyz1.y = mpHIO->m.common.attention_offset;
 
     if (&daNpc_ykW_c::sitWait == field_0xfd8) {
         unkXyz1.y -= 50.0f;
@@ -1083,7 +1072,7 @@ void daNpc_ykW_c::setCollision() {
 
 int daNpc_ykW_c::drawDbgInfo() {
 #if DEBUG
-    if (HIO_PARAM(this)->common.debug_info_ON != 0) {
+    if (mpHIO->m.common.debug_info_ON != 0) {
         f32 juelDist = dComIfGp_getAttention()
                         ->getDistTable(attention_info.distances[fopAc_attn_JUEL_e])
                         .mDistMax;
@@ -1118,7 +1107,7 @@ int daNpc_ykW_c::selectAction() {
     field_0xfd8 = NULL;
 
 #if DEBUG
-    if (HIO_PARAM(this)->common.debug_mode_ON != 0) {
+    if (mpHIO->m.common.debug_mode_ON != 0) {
         field_0xfd8 = &daNpc_ykW_c::test;
         return 1;
     }
@@ -1452,7 +1441,7 @@ int daNpc_ykW_c::cutGoIntoBossRoom(int param_0) {
         pathPntPos1 = mPath.getPntPos(mPath.getNumPnts() - 1);
         targetAngleY = cLib_targetAngleY(fopAcM_GetPosition_p(this), &pathPntPos1);
         if (targetAngleY != mCurAngle.y) {
-            step(targetAngleY, 13, 22, HIO_PARAM(this)->mStepSpeed, 0);
+            step(targetAngleY, 13, 22, mpHIO->m.mStepSpeed, 0);
             break;
         }
 
@@ -1964,7 +1953,7 @@ int daNpc_ykW_c::cutFindWolf(int param_0) {
             mJntAnm.lookPlayer(0);
 
             if (mPlayerAngle != mCurAngle.y) {
-                if (step(mPlayerAngle, 0xd, 0x16, HIO_PARAM(this)->mStepSpeed, 0)) {
+                if (step(mPlayerAngle, 0xd, 0x16, mpHIO->m.mStepSpeed, 0)) {
                     mFaceMotionSeqMngr.setNo(13, -1.0, 0, 0);
                     mMotionSeqMngr.setNo(0, -1.0, 0, 0);
                 }
@@ -2512,7 +2501,7 @@ int daNpc_ykW_c::wait(void* param_0) {
                         mJntAnm.lookNone(0);
                         if (home.angle.y != mCurAngle.y) {
                             if (field_0xe34 != 0) {
-                                if (step(home.angle.y, 13, 22, HIO_PARAM(this)->mStepSpeed, 0) != 0)
+                                if (step(home.angle.y, 13, 22, mpHIO->m.mStepSpeed, 0) != 0)
                                 {
                                     mMode = 1;
                                 }
@@ -2632,8 +2621,8 @@ int daNpc_ykW_c::walk(void* param_0) {
     int dstPos;
     int dstPos2;
 
-    s16 downTime = HIO_PARAM(this)->mWalkingTime;
-    s16 walkingTime = HIO_PARAM(this)->mDownTime;
+    s16 downTime = mpHIO->m.mWalkingTime;
+    s16 walkingTime = mpHIO->m.mDownTime;
 
     switch (mMode) {
     case 0:
@@ -2873,17 +2862,17 @@ int daNpc_ykW_c::race(void* param_0) {
                 cLib_addCalcAngleS2(&mCurAngle.x, mGroundAngle, 6, 0x200);
                 cLib_addCalcAngleS2(&mCurAngle.z, targetAngleY, 6, 0x200);
                 int unkInt2 = field_0x104c - field_0x1044.field_0x0;
-                unkFloat1 = HIO_PARAM(this)->mSlidingSpeed * cM_scos(mGroundAngle);
+                unkFloat1 = mpHIO->m.mSlidingSpeed * cM_scos(mGroundAngle);
                 if (mStagger.checkStagger()) {
                     unkFloat1 *= 0.0f;
                 } else {
-                    unkInt2 += HIO_PARAM(this)->mCompetParamA;
-                    unkInt2 = cLib_minMaxLimit<int>(unkInt2, 0, HIO_PARAM(this)->mCompetParamB);
+                    unkInt2 += mpHIO->m.mCompetParamA;
+                    unkInt2 = cLib_minMaxLimit<int>(unkInt2, 0, mpHIO->m.mCompetParamB);
                     if (unkInt2 > 0) {
-                        unkFloat1 *= (f32)abs(unkInt2) * 0.1f * HIO_PARAM(this)->mCompetParamC + 1.0f;
+                        unkFloat1 *= (f32)abs(unkInt2) * 0.1f * mpHIO->m.mCompetParamC + 1.0f;
                     }
                 }
-                cLib_chaseF(&speedF, unkFloat1, HIO_PARAM(this)->mSlidingAccel);
+                cLib_chaseF(&speedF, unkFloat1, mpHIO->m.mSlidingAccel);
                 mSound.startCreatureSoundLevel(Z2SE_YW_SNOBO_RIDE, speedF, -1);
                 mSound.startCreatureVoiceLevel(Z2SE_YW_V_SNOBO_RIDING, -1);
             }
@@ -2982,7 +2971,7 @@ int daNpc_ykW_c::talk(void* param_0) {
                 }
             } else {
                 mJntAnm.lookPlayer(0);
-                step(mPlayerAngle, 13, 22, HIO_PARAM(this)->mStepSpeed, 0);
+                step(mPlayerAngle, 13, 22, mpHIO->m.mStepSpeed, 0);
                 break;
             }
         }
@@ -3006,8 +2995,8 @@ int daNpc_ykW_c::test(void* param_0) {
 
         mMode = 2;
     case 2:
-        mFaceMotionSeqMngr.setNo(HIO_PARAM(this)->common.face_expression, -1.0f, 0, 0);
-        mMotionSeqMngr.setNo(HIO_PARAM(this)->common.motion, -1.0f, 0, 0);
+        mFaceMotionSeqMngr.setNo(mpHIO->m.common.face_expression, -1.0f, 0, 0);
+        mMotionSeqMngr.setNo(mpHIO->m.common.motion, -1.0f, 0, 0);
 
         mJntAnm.lookNone(0);
 
