@@ -119,7 +119,7 @@ private:
         return shape_angle.x & 0xFF;
     }
 
-    s32 getParam(u8 shift, u8 bit) {
+    s32 getParam(int shift, int bit) {
         return fopAcM_GetParamBit(this, shift, bit);
     }
 
