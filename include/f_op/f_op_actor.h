@@ -314,7 +314,7 @@ public:
     BOOL checkWolfBiteDamage() const { return mFlags & fopEn_flag_WolfBiteDamage; }
     bool checkWolfDownPullFlg() const { return mFlags & fopEn_flag_WolfDownPull; }
     bool checkDownFlg() { return mFlags & fopEn_flag_Down; }
-    bool checkCutDownHitFlg() const { return mFlags & fopEn_flag_CutDownHit; }
+    BOOL checkCutDownHitFlg() const { return mFlags & fopEn_flag_CutDownHit; }
     bool checkWolfDownStartFlg() const { return mFlags & fopEn_flag_WolfDownStart; }
     bool checkDeadFlg() const { return mFlags & fopEn_flag_Dead; }
     BOOL checkThrowMode(u8 param_1) const { return mThrowMode & param_1; }
@@ -329,8 +329,13 @@ public:
     void onWolfDownStartFlg() { mFlags |= (fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart); }
     void onWolfDownPullEndFlg() { mFlags |= fopEn_flag_WolfDownPullEnd; }
     void onWolfNoLock() { mFlags |= (u16)fopEn_flag_WolfNoLock; }
+    #if DEBUG
+    void onDownFlg() { mFlags |= (u16)fopEn_flag_Down; }
+    void onHeadLockFlg() { mFlags |= (u16)fopEn_flag_HeadLock; }
+    #else
     void onDownFlg() { mFlags |= fopEn_flag_Down; }
     void onHeadLockFlg() { mFlags |= fopEn_flag_HeadLock; }
+    #endif
 
     #if DEBUG
     void offWolfBiteDamage() { mFlags &= (u16)~fopEn_flag_WolfBiteDamage; }
@@ -339,16 +344,15 @@ public:
     #endif
     void offCutDownHitFlg() { mFlags &= ~fopEn_flag_CutDownHit; }
     void offWolfDownPullFlg() { mFlags &= ~fopEn_flag_WolfDownPull; }
-    void offDownFlg() { mFlags &= ~(fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart | fopEn_flag_CutDownHit | fopEn_flag_Down); }
     #if DEBUG
+    void offDownFlg() { mFlags &= (u16)~(fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart | fopEn_flag_CutDownHit | fopEn_flag_Down); }
     void offWolfNoLock() { mFlags &= (u16)~fopEn_flag_WolfNoLock; }
-    #else
-    void offWolfNoLock() { mFlags &= ~fopEn_flag_WolfNoLock; }
-    #endif
-    void offHeadLockFlg() { mFlags &= ~fopEn_flag_HeadLock; }
-    #if DEBUG
+    void offHeadLockFlg() { mFlags &= (u16)~fopEn_flag_HeadLock; }
     void offThrowMode(u8 throwMode) { mThrowMode &= (u8)~throwMode; }
     #else
+    void offDownFlg() { mFlags &= ~(fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart | fopEn_flag_CutDownHit | fopEn_flag_Down); }
+    void offWolfNoLock() { mFlags &= ~fopEn_flag_WolfNoLock; }
+    void offHeadLockFlg() { mFlags &= ~fopEn_flag_HeadLock; }
     void offThrowMode(u8 throwMode) { mThrowMode &= ~(throwMode & 0xFF); }
     #endif
 
