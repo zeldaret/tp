@@ -71,7 +71,7 @@ static char* l_arcName[2] = {
     "P_L4Cwall",
 };
 
-static Vec l_cull_box[2] = {
+static cull_box l_cull_box = {
     {-300.0f, -100.0f, -650.0f},
     {300.0f, 500.0f, 300.0f},
 };
@@ -139,8 +139,8 @@ int daObjCwall_c::Create() {
     mCyl2.SetStts(&mStts);
     mSph.Set(l_sph_src);
     mSph.SetStts(&mStts);
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
     cXyz cStack_30(0.0f, 0.0f, 50.0f);
     mDoMtx_stack_c::YrotS(current.angle.y);
     mDoMtx_stack_c::multVec(&cStack_30, &cStack_30);

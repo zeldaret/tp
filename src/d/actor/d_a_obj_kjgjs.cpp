@@ -47,11 +47,11 @@ int daObjKJgjs_c::CreateHeap() {
     return mpModel != NULL ? 1 : 0;
 }
 
-static const Vec l_cull_box[4] = {
-    {-1260.0f, -3050.0f, -1260.0f},
-    {1260.0f, 2800.0f, 1260.0f},
-    {-76.37f, -10.83f, -78.51},
-    {75.52f, 10.95f, 78.06f},
+static const cull_box l_cull_box[2] = {
+    {{-1260.0f, -3050.0f, -1260.0f},
+    {1260.0f, 2800.0f, 1260.0f}},
+    {{-76.37f, -10.83f, -78.51},
+    {75.52f, 10.95f, 78.06f}},
 };
 
 int daObjKJgjs_c::Create() {
@@ -59,11 +59,11 @@ int daObjKJgjs_c::Create() {
     MTXCopy(mMtx[1], mpModel->mBaseTransformMtx);
     mpBgW->OffRoofRegist();
     if (!field_0x60c) {
-        fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z,
-                              l_cull_box[1].x, l_cull_box[1].y, l_cull_box[1].z);
+        fopAcM_setCullSizeBox(this, l_cull_box[0].min.x, l_cull_box[0].min.y, l_cull_box[0].min.z,
+                              l_cull_box[0].max.x, l_cull_box[0].max.y, l_cull_box[0].max.z);
     } else {
-        fopAcM_setCullSizeBox(this, l_cull_box[2].x, l_cull_box[2].y, l_cull_box[2].z,
-                              l_cull_box[3].x, l_cull_box[3].y, l_cull_box[3].z);
+        fopAcM_setCullSizeBox(this, l_cull_box[1].min.x, l_cull_box[1].min.y, l_cull_box[1].min.z,
+                              l_cull_box[1].max.x, l_cull_box[1].max.y, l_cull_box[1].max.z);
     }
     return 1;
 }

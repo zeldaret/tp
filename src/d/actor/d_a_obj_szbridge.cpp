@@ -11,7 +11,7 @@ static void rideCallback(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
     static_cast<daObjSZbridge_c*>(param_1)->rideActor(param_2);
 }
 
-static const Vec l_cull_box[2] = {
+static const cull_box l_cull_box = {
     {-310.0f, -30.0f, -760.0f},
     {310.0f, 360.0f, 760.0f},
 };
@@ -104,8 +104,8 @@ int daObjSZbridge_c::Create() {
 
     mpModel->setBaseTRMtx(field_0x5d8);
     fopAcM_SetMtx(this, field_0x5d8);
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
 
     for (int i = 0; i < 2; i++) {
         field_0x618[i] = -1;

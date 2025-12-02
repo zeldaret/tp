@@ -128,9 +128,9 @@ static char* l_joint_table[5] = {
     l_smallGear2_joint,
 };
 
-static f32 l_cull_box[6] = {
-    -1200.0f, -100.0f, -1200.0f,
-    1200.0f, 400.0f, 1200.0f,
+static cull_box l_cull_box = {
+    {-1200.0f, -100.0f, -1200.0f},
+    {1200.0f, 400.0f, 1200.0f},
 };
 
 static dCcD_SrcSph l_sph_src = {
@@ -181,7 +181,7 @@ int daObjLv6Bm_c::Create() {
     field_0x87c.Set(l_cyl_src);
     field_0x87c.SetStts(&mStts);
     
-    fopAcM_setCullSizeBox(this, l_cull_box[0], l_cull_box[1], l_cull_box[2], l_cull_box[3], l_cull_box[4], l_cull_box[5]);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x, l_cull_box.max.y, l_cull_box.max.z);
 
     JUTNameTab* name = mBeamosModel->getModelData()->getJointTree().getJointName();
     for (int i = 0; i < 5; i++) {

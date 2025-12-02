@@ -87,13 +87,13 @@ static char* l_eventName[2] = {
     "OLD_DOOR_IN",
 };
 
-static Vec l_cull_box[2] = {{-200.0f, 0.0f, -50.0f}, {200.0f, 400.0f, 50.0f}};
+static cull_box l_cull_box = {{-200.0f, 0.0f, -50.0f}, {200.0f, 400.0f, 50.0f}};
 
 int daObjSmgDoor_c::Create() {
     initBaseMtx();
     fopAcM_SetMtx(this, field_0x5b8);
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
     attention_info.position.y += 150.0f;
     eyePos.y += 150.0f;
     attention_info.flags = fopAc_AttnFlag_DOOR_e;

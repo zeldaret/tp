@@ -54,7 +54,7 @@ void daObjFallObj_c::setBaseMtx() {
 
 static char* l_arcName = "K_drock00";
 
-static Vec l_cull_box[2] = {
+static cull_box l_cull_box = {
     {-200.0f, -10000.0f, -200.0f},
     {200.0f, 600.0f, 200.0f},
 };
@@ -74,8 +74,8 @@ int daObjFallObj_c::Create() {
     mFallTime = getFallTime();
     initBaseMtx();
     fopAcM_SetMtx(this, mMtx);
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
     fopAcM_SetGravity(this, -6.0f);
     mSoundObj.init(&current.pos, 1);
     return 1;

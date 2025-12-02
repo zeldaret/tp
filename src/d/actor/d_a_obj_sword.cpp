@@ -10,7 +10,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_item_data.h"
 
-static Vec l_cull_box[2] = {{-200.0f, 0.0f, -200.0f}, {200.0f, 100.0f, 200.0f}};
+static cull_box l_cull_box = {{-200.0f, 0.0f, -200.0f}, {200.0f, 100.0f, 200.0f}};
 
 void daObjSword_c::initBaseMtx() {
     mpModel->setBaseScale(scale);
@@ -26,8 +26,8 @@ void daObjSword_c::setBaseMtx() {
 int daObjSword_c::Create() {
     initBaseMtx();
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
     fopAcM_OnCarryType(this, fopAcM_CARRY_UNK_30);
     show();
     execute();

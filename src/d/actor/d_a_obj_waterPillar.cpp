@@ -92,7 +92,7 @@ int daWtPillar_c::CreateHeap() {
     return 1;
 }
 
-Vec l_cull_box[2] = {
+cull_box l_cull_box = {
     {-30.0f, -10.0f, -30.0f},
     {30.0f, 60.0f, 30.0f}
 };
@@ -134,25 +134,27 @@ cPhs__Step daWtPillar_c::create() {
         mCapsuleCollider.SetStts(&mStts);
 
         //! @bug maxY is used as maxZ for setting cull size box, making it larger than intended
-        const f32 minX = l_cull_box[0].x * scale.x;
-        const f32 minY = l_cull_box[0].y * scale.y;
-        const f32 minZ = l_cull_box[0].z * scale.x;
-        const f32 maxX = l_cull_box[1].x * scale.x;
-        const f32 maxY = l_cull_box[1].y * scale.y;
+        const f32 minX = l_cull_box.min.x * scale.x;
+        const f32 minY = l_cull_box.min.y * scale.y;
+        const f32 minZ = l_cull_box.min.z * scale.x;
+        const f32 maxX = l_cull_box.max.x * scale.x;
+        const f32 maxY = l_cull_box.max.y * scale.y;
+        const f32 maxZ = l_cull_box.max.z * scale.x;
         fopAcM_setCullSizeBox(this, minX, minY, minZ, maxX, maxY, maxY);
 
         mAcchCir.SetWall(150.0f, 5.0f);
-        mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, 0, 0);
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), 0, 0);
         mAcch.ClrWaterNone();
         mAcch.SetWaterCheckOffset(10000.0f);
         mAcch.OnLineCheckNone();
 
-        mStalactiteShouldStartShaking = mIsCarryingStalactite = false;
+        mIsCarryingStalactite = false;
+        mStalactiteShouldStartShaking = 0;
 
         mSwitchNo = getParam(0, 8);
         mType = getParam(8, 4);
 
-        mMaxHeight = getParam(27, 6) * 100.0f;
+        mMaxHeight = getParam(27, 5) * 100.0f;
 
         // "== Maximum height %f ==\n"
         OS_REPORT("== 最大の高さ %f ==\n", mMaxHeight);
@@ -180,16 +182,27 @@ cPhs__Step daWtPillar_c::create() {
             OS_REPORT("== 水中にある (%f) (%f) type:%d ==\n", mMaxHeight, mRelativeWaterHeight, mType);
         }
 
-        mEffectOscillationAngleStep = mPillarIsPreparingToRise = mStartedRisingOrDoesNotRiseAndFall = field_0xB44 = 0;
-        mEffectOscillationVerticalOffset.set(0.0f, 0.0f, 0.0f);
-        mCurrentHeight = mEffectOscillationMinDecay = mEffectOscillationMaxDecay = mEffectOscillationDampingScale = mEffectOscillationAngle = mEffectOscillationAmplitude = 0.0f;
+        field_0xB44 = 0;
+        mStartedRisingOrDoesNotRiseAndFall = 0;
+        mPillarIsPreparingToRise = 0;
+        mEffectOscillationAngleStep = 0;
+        mEffectOscillationVerticalOffset.x = 0.0f;
+        mEffectOscillationVerticalOffset.y = 0.0f;
+        mEffectOscillationVerticalOffset.z = 0.0f;
+        mEffectOscillationAmplitude = 0.0f;
+        mEffectOscillationAngle = 0.0f;
+        mEffectOscillationDampingScale = 0.0f;
+        mEffectOscillationMaxDecay = 0.0f;
+        mEffectOscillationMinDecay = 0.0f;
+        mCurrentHeight = 0.0f;
 
         if(mSwitchNo != 0xFF) {
             actionSwWaitInit();
         }
         else if(mType == STATIC) {
             mCurrentHeight = mMaxHeight;
-            mStartedRisingOrDoesNotRiseAndFall = field_0xB44 = true;
+            field_0xB44 = true;
+            mStartedRisingOrDoesNotRiseAndFall = true;
             actionRockWaitInit();
         }
         else {

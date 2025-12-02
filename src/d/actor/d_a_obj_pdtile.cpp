@@ -26,7 +26,7 @@ static u32 l_bmdidx4[2] = {
     5, 4,
 };
 
-static Vec l_cull_box4[2][2] = {
+static cull_box l_cull_box4[2] = {
     {{-50.0f, -100.0f, -50.0f}, {50.0f, 20.49f, 50.0f}},
     {{-160.0f, -460.0f, -160.0f}, {160.0f, 20.0f, 160.0f}},
 };
@@ -37,7 +37,7 @@ static u32 l_dzbidx7 = 7;
 
 static u32 l_bmdidx7 = 4;
 
-static Vec l_cull_box7[2] = {
+static cull_box l_cull_box7 = {
     {-200.0f, -700.0f, -200.0f},
     {200.0f, 50.0f, 200.0f},
 };
@@ -48,7 +48,7 @@ static u32 l_dzbidx9 = 7;
 
 static u32 l_bmdidx9 = 4;
 
-static Vec l_cull_box9[2] = {
+static cull_box l_cull_box9 = {
     {-200.0f, -650.0f, -200.0f},
     {200.0f, 50.0f, 200.0f},
 };
@@ -59,25 +59,25 @@ int daObjPDtile_c::create1st() {
         mArcName = l_arcName9;
         mDzbId = l_dzbidx9;
         mBmdId = l_bmdidx9;
-        mCullBox = l_cull_box9;
+        mCullBox = &l_cull_box9;
         field_0x7cc = 1500.0f;
     } else if (mType == TYPE_2) {
         mArcName = l_arcName7;
         mDzbId = l_dzbidx7;
         mBmdId = l_bmdidx7;
-        mCullBox = l_cull_box7;
+        mCullBox = &l_cull_box7;
         field_0x7cc = 600.0f;
     } else if (mType == TYPE_0) {
         mArcName = l_arcName4;
         mDzbId = l_dzbidx4[0];
         mBmdId = l_bmdidx4[0];
-        mCullBox = l_cull_box4[0];
+        mCullBox = &l_cull_box4[0];
         field_0x7cc = 450.0f;
     } else {
         mArcName = l_arcName4;
         mDzbId = l_dzbidx4[1];
         mBmdId = l_bmdidx4[1];
-        mCullBox = l_cull_box4[1];
+        mCullBox = &l_cull_box4[1];
         field_0x7cc = 450.0f;
     }
     int rv = dComIfG_resLoad(this, mArcName);
@@ -203,8 +203,8 @@ int daObjPDtile_c::Create() {
     mModel->setBaseTRMtx(field_0x5d8);
     fopAcM_SetMtx(this, field_0x5d8);
     fopAcM_setCullSizeBox(this, 
-        mCullBox[0].x, mCullBox[0].y, mCullBox[0].z,
-        mCullBox[1].x, mCullBox[1].y, mCullBox[1].z);
+        mCullBox->min.x, mCullBox->min.y, mCullBox->min.z,
+        mCullBox->max.x, mCullBox->max.y, mCullBox->max.z);
     mpBgW->SetRideCallback(rideCallBack);
     field_0x610 = 0;
     field_0x614 = 0;

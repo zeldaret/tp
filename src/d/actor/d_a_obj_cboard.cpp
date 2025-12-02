@@ -26,7 +26,7 @@ static char* l_dzbName[5] = {
     "ClearB00.dzb", "ClearB01.dzb", "ClearB02.dzb", "ClearB03.dzb", "ClearB04.dzb",
 };
 
-static Vec l_cull_box[2] = {
+static cull_box l_cull_box = {
     {-100.0f, -10.0f, -100.0f},
     {100.0f, 10.0f, 100.0f},
 };
@@ -39,9 +39,9 @@ int daObjBoard_c::Create() {
 
     initBaseMtx();
     fopAcM_SetMtx(this, field_0x5a8);
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x * scale.x, l_cull_box[0].y,
-                          l_cull_box[0].z * scale.z, l_cull_box[1].x * scale.x, l_cull_box[1].y,
-                          l_cull_box[1].z * scale.z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x * scale.x, l_cull_box.min.y,
+                          l_cull_box.min.z * scale.z, l_cull_box.max.x * scale.x, l_cull_box.max.y,
+                          l_cull_box.max.z * scale.z);
     return 1;
 }
 

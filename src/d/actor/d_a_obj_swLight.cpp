@@ -80,7 +80,7 @@ const static dCcD_SrcSph l_sph_src_tg = {
 
 static char* l_arcName = "Obj_l8sw0";
 
-static Vec l_cull_box[2] = {{
+static cull_box l_cull_box = {{
                                 -500.0f,
                                 0.0f,
                                 -500.0f,
@@ -132,8 +132,8 @@ int daObjSwLight_c::Create() {
     mTgSph[1].SetTgType(0x200);
     mCyl.Set(l_cyl_src);
     mCyl.SetStts(&mStts);
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
     field_0xae8 = 0xffff;
 
     JUTNameTab* name = mpModel->getModelData()->getMaterialTable().getMaterialName();

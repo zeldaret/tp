@@ -52,7 +52,7 @@ static u32 const l_gate_heap[] = {0x1940, 0x1940, 0x1940};
 
 static u32 const l_key_heap[] = {0x1000, 0x1000, 0x1000};
 
-static Vec const l_cull_box[] = {
+static cull_box const l_cull_box = {
     {-300.0f, 0.0f, -350.0f},
     {300.0f, 450.0f, 350.0f},
 };
@@ -255,8 +255,8 @@ int daObjKGate_c::Create() {
         }
     }
 
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
 
     if (dComIfG_Bgsp().Regist(mpBgW, this)) {
 #ifdef DEBUG
