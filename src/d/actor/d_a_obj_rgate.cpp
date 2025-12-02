@@ -67,7 +67,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     return 1;
 }
 
-static const Vec l_cull_box[2] = {
+static const cull_box l_cull_box = {
     {-400.0f, 0.0f, -400.0f},
     {400.0f, 450.0f, 400.0f},
 };
@@ -235,8 +235,8 @@ int daObjRgate_c::Create() {
 
     initBaseMtx();
     fopAcM_SetMtx(this, field_0xb14);
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
 
     if (dComIfG_Bgsp().Regist(mpBgW, this)) {
 #ifdef DEBUG

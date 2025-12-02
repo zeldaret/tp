@@ -12,7 +12,7 @@
 
 static const char* l_arcName = "K_saku00";
 
-static const f32 l_cull_box[6] = {-200.f, -100.f, -200.f, 200.f, 100.f, 200.f};
+static const cull_box l_cull_box = {{-200.f, -100.f, -200.f}, {200.f, 100.f, 200.f}};
 static const Vec l_check_area[4] = {
     -250.0, 0.0, -100.0,  // min
     200.0,  0.0, -100.0,  // unknown

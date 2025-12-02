@@ -72,7 +72,7 @@ void daDoorPush_c::setBaseMtx() {
 
 static char* l_arcName = "V_OsuDoor";
 
-static Vec l_cull_box[2] = {
+static cull_box l_cull_box = {
     {-600.0f, 0.0f, -600.0f},
     {600.0f, 1000.0f, 600.0f},
 };
@@ -88,8 +88,8 @@ int daDoorPush_c::Create() {
     mIndex = 2;
     initBaseMtx();
     fopAcM_SetMtx(this, mActorMtx);
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
     mpBgW->SetPushPullCallback((dBgW_Base::PushPull_CallBack)PPCallBack);
     mpDoorBgW->SetPushPullCallback((dBgW_Base::PushPull_CallBack)PPCallBack2);
     eventInfo.setArchiveName(l_arcName);

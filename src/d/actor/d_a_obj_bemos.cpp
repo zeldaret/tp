@@ -231,7 +231,7 @@ static char* l_joint_table[5] = {
     l_head_joint, l_bigGear_joint, l_smallGear0_joint, l_smallGear1_joint, l_smallGear2_joint,
 };
 
-static Vec l_cull_box[2] = {
+static cull_box l_cull_box = {
     {-1200.0f, -100.0f, -1200.0f},
     {1200.0f, 400.0f, 1200.0f},
 };
@@ -287,8 +287,8 @@ int daObjBm_c::Create() {
         mCyl[i].SetStts(&mStts);
     }
 
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
     JUTNameTab* joint_name = mpModel->getModelData()->getJointTree().getJointName();
     for (int i = 0; i < 5; i++) {
         for (u16 j = 0; j < mpModel->getModelData()->getJointNum(); j++) {

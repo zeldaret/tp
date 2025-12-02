@@ -82,7 +82,7 @@ static void* searchLv3Water(void* param_0, void* i_this) {
 
 static const int l_bmdidx[2] = {4, 4};
 
-const Vec l_cull_box[4] = {
+const Vec l_cull_box[4] = { // cull_box struct not used due to mult later
     {-830.0f, -830.0f, -2500.0f}, {830.0f, 830.0f, 200.0f}, // Type 0
     {-560.0f, -560.0f, -350.0f}, {560.0f, 560.0f, 350.0f}   // Type 1
 };

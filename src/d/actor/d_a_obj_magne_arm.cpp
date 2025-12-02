@@ -147,9 +147,9 @@ static void dummyStrings() {
     DEAD_STRING("D_MN54");
 }
 
-static Vec l_cull_box[2] = {{-500.0f, -3000.0f, -500.0f}, {500.0f, 3000.0f, 2500.0f}};
+static cull_box l_cull_box = {{-500.0f, -3000.0f, -500.0f}, {500.0f, 3000.0f, 2500.0f}};
 
-static Vec l_cull_box2[2] = {{-500.0f, -4000.0f, -500.0f}, {500.0f, 3000.0f, 2500.0f}};
+static cull_box l_cull_box2 = {{-500.0f, -4000.0f, -500.0f}, {500.0f, 3000.0f, 2500.0f}};
 
 static Vec const l_offsetB = {-150.0f, 1200.0f, 0.0f};  // unused
 
@@ -200,11 +200,11 @@ int daObjMarm_c::Create() {
               fopAcM_GetSpeed_p(this), 0, 0);
 
     if (mMoveType == MOVETYPE_D_e) {
-        fopAcM_setCullSizeBox(this, l_cull_box2[0].x, l_cull_box2[0].y, l_cull_box2[0].z,
-                              l_cull_box2[1].x, l_cull_box2[1].y, l_cull_box2[1].z);
+        fopAcM_setCullSizeBox(this, l_cull_box2.min.x, l_cull_box2.min.y, l_cull_box2.min.z,
+                              l_cull_box2.max.x, l_cull_box2.max.y, l_cull_box2.max.z);
     } else {
-        fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z,
-                              l_cull_box[1].x, l_cull_box[1].y, l_cull_box[1].z);
+        fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z,
+                              l_cull_box.max.x, l_cull_box.max.y, l_cull_box.max.z);
     }
 
     fopAcM_setCullSizeFar(this, 10.0f);

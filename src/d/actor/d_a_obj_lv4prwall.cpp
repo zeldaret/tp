@@ -51,7 +51,7 @@ int daObjLv4PRwall_c::create1st() {
     return phase_state;
 }
 
-static const Vec l_cull_box[] = {
+static const Vec l_cull_box[] = { // cull_box struct not used due to mult later
     {-1600.0f, -100.0f, -1600.0f},
     {1600.0f, 1437.7f, 1600.0f},
     {-1100.04, -60.0f, -1100.5f},

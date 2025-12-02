@@ -92,7 +92,7 @@ int daWtPillar_c::CreateHeap() {
     return 1;
 }
 
-Vec l_cull_box[2] = {
+cull_box l_cull_box = {
     {-30.0f, -10.0f, -30.0f},
     {30.0f, 60.0f, 30.0f}
 };
@@ -134,11 +134,12 @@ cPhs__Step daWtPillar_c::create() {
         mCapsuleCollider.SetStts(&mStts);
 
         //! @bug maxY is used as maxZ for setting cull size box, making it larger than intended
-        const f32 minX = l_cull_box[0].x * scale.x;
-        const f32 minY = l_cull_box[0].y * scale.y;
-        const f32 minZ = l_cull_box[0].z * scale.x;
-        const f32 maxX = l_cull_box[1].x * scale.x;
-        const f32 maxY = l_cull_box[1].y * scale.y;
+        const f32 minX = l_cull_box.min.x * scale.x;
+        const f32 minY = l_cull_box.min.y * scale.y;
+        const f32 minZ = l_cull_box.min.z * scale.x;
+        const f32 maxX = l_cull_box.max.x * scale.x;
+        const f32 maxY = l_cull_box.max.y * scale.y;
+        const f32 maxZ = l_cull_box.max.z * scale.x;
         fopAcM_setCullSizeBox(this, minX, minY, minZ, maxX, maxY, maxY);
 
         mAcchCir.SetWall(150.0f, 5.0f);

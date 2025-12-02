@@ -69,7 +69,7 @@ static char* l_evArcName[6] = {
     "cs_ev_05"          // Ruined Theatre
 };
 
-static Vec l_cull_box[2] = {
+static cull_box l_cull_box = {
     {-300.0f, -100.0f, -300.0f}, // Min
     {300.0f, 400.0f, 300.0f}     // Max
 };
@@ -98,7 +98,7 @@ cPhs__Step daTagStatue_c::Create() {
 
     initBaseMtx();
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x, l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x, l_cull_box.max.y, l_cull_box.max.z);
 
     char* ev_arc_name = l_evArcName[mSkyCharacterEventBitIdIndex]; 
 

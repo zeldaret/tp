@@ -41,9 +41,9 @@ static char* l_evName = "SNOW_COLLAPSE";
 
 static char* l_staffName = "Obj_ava";
 
-static f32 l_cull_box[6] = {
-    -500.0f, -500.0f, -700.0f,
-    500.0f, 1000.0f, 700.0f,
+static cull_box l_cull_box = {
+    {-500.0f, -500.0f, -700.0f},
+    {500.0f, 1000.0f, 700.0f},
 };
 
 int daObjAvalanche_c::Create() {
@@ -67,8 +67,8 @@ int daObjAvalanche_c::Create() {
     }
     initBaseMtx();
     fopAcM_SetMtx(this, mModel->getBaseTRMtx());
-    fopAcM_setCullSizeBox(this, l_cull_box[0], l_cull_box[1], l_cull_box[2], l_cull_box[3],
-                          l_cull_box[4], l_cull_box[5]);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
     if (mpBgW2 != 0) {
         mpBgW2->Move();
     }
