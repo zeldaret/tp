@@ -204,12 +204,13 @@ void daBdoorL5_c::demoProc() {
         }
     }
     switch (demoAction) {
-    case 1:
+    case 1: {
         obj_keyhole_class* keyhole = (obj_keyhole_class*)fopAcM_SearchByID(mKeyHoleId);
         if ((keyhole != NULL && keyhole->checkOpenEnd()) || mKeyHoleId == -1) {
             dComIfGp_evmng_cutEnd(field_0x59c);
         }
         break;
+    }
     case 2:
         if (openProc() != 0) {
             openEnd();

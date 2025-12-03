@@ -117,9 +117,9 @@ JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_ENABLE(JStudio::data::TEOpera
     case JStudio::data::UNK_0x2:
         JUT_ASSERT(185, uSize==4);
         JUT_ASSERT(186, pContent!=NULL);
-        field_0x114 = *(u32*)pContent ? 1 : 0;
+        field_0x114 = *(u32*)pContent ? true : false;
         switch(field_0x108) {
-        case 1:
+        case 1: {
             JStage::TObject* parent = 0;
             int idx = -1;
             if (field_0x114 != 0) {
@@ -128,6 +128,7 @@ JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_ENABLE(JStudio::data::TEOpera
             }
             pJSGObject_->JSGSetParent(parent, idx);
             break;
+        }
         case 0:
             break;
         }
@@ -207,7 +208,7 @@ void JStudio_JStage::TAdaptor_camera::setJSG_position_(JStudio::TControl const* 
     } else {
         pViewPosition = &VStack_138;
         switch (field_0x108) {
-        case 0:
+        case 0: {
             int iVar1 =
                 transform_toGlobalFromLocal(&VStack_144, VStack_138, field_0x10c, field_0x110);
             if (iVar1 == 0) {
@@ -215,6 +216,7 @@ void JStudio_JStage::TAdaptor_camera::setJSG_position_(JStudio::TControl const* 
             }
             pViewPosition = &VStack_144;
             break;
+        }
         case 1:
             break;
         }

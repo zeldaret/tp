@@ -239,7 +239,7 @@ int daDoorPush_c::demoProc() {
         dComIfGp_evmng_getMyActIdx(field_0x644, action_table, ARRAY_SIZEU(action_table), 0, 0);
     if (dComIfGp_evmng_getIsAddvance(field_0x644) != 0) {
         switch (actIdx) {
-        case WAIT_e:
+        case WAIT_e: {
             int* integerP = dComIfGp_evmng_getMyIntegerP(field_0x644, "Timer");
             if (integerP == NULL) {
                 field_0x648 = 1;
@@ -247,6 +247,7 @@ int daDoorPush_c::demoProc() {
                 field_0x648 = *integerP;
             }
             break;
+        }
         case OPEN_e:
             rotateInit();
             field_0x641 = 0;

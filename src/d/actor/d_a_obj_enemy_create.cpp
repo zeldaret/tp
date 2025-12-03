@@ -54,7 +54,7 @@ void daObjE_CREATE_c::NormalAction() {
             mActionMode++;
         }
         break;
-    case MODE_KILL_CHECK:
+    case MODE_KILL_CHECK: {
         int killed_num;
         int enemyNum = mEnemyNum;
 
@@ -68,14 +68,15 @@ void daObjE_CREATE_c::NormalAction() {
 
         if (killed_num == enemyNum) {
             mActionMode++;
-            if (mDeactivateSw != 0xFF &&
-                !dComIfGs_isSwitch(mDeactivateSw, fopAcM_GetRoomNo(this))) {
+            if (mDeactivateSw != 0xFF && !dComIfGs_isSwitch(mDeactivateSw, fopAcM_GetRoomNo(this)))
+            {
                 dComIfGs_onSwitch(mDeactivateSw, fopAcM_GetRoomNo(this));
             }
 
             mKillCheckDelayTimer = 100;
         }
         break;
+    }
     case MODE_END:
         break;
     }

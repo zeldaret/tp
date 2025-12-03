@@ -92,7 +92,7 @@ static void dKy_event_proc() {
                     env_light->dice_wether_state = DICE_STATE_INIT_e;
                 }
                 break;
-            case DICE_STATE_INIT_e:
+            case DICE_STATE_INIT_e: {
                 u8 table_no = cM_rndF(12.99f);
                 if (table_no >= 8) {
                     env_light->dice_wether_state = DICE_STATE_NEXT_e;
@@ -132,6 +132,7 @@ static void dKy_event_proc() {
                     env_light->dice_wether_state++;
                 }
                 break;
+            }
             case DICE_STATE_EXEC_e:
                 if (current_time > env_light->dice_wether_time &&
                     current_time - env_light->dice_wether_time < 180.0f)
@@ -812,7 +813,7 @@ static void daKytag06_type_03_Execute(kytag06_class* i_this) {
                 dComIfGs_onSwitch(i_this->mSwNo, dComIfGp_roomControl_getStayNo());
             }
             break;
-        case 1:
+        case 1: {
             int old = i_this->field_0x578;
             i_this->field_0x578--;
 
@@ -820,6 +821,7 @@ static void daKytag06_type_03_Execute(kytag06_class* i_this) {
                 i_this->mMode++;
             }
             break;
+        }
         case 2:
             if ((g_Counter.mCounter0 & 7) == 0) {
                 // run block every 8 frames
@@ -861,7 +863,7 @@ static int daKytag06_Execute(kytag06_class* i_this) {
     dComIfGs_getTime();
 
     switch (i_this->mType) {
-    case 1:
+    case 1: {
         camera_class* camera = dComIfGp_getCamera(0);
 
         if (i_this->mpPath != NULL) {
@@ -899,6 +901,7 @@ static int daKytag06_Execute(kytag06_class* i_this) {
             }
         }
         break;
+    }
     case 2:
         if (i_this->mSwNo != 0xFF) {
             if (dComIfGs_isSwitch(i_this->mSwNo, dComIfGp_roomControl_getStayNo()) && i_this->mMode == 0) {
@@ -1040,6 +1043,7 @@ static int daKytag06_Execute(kytag06_class* i_this) {
         }
         break;
     case 4:
+        void(0);
         break;
     }
 

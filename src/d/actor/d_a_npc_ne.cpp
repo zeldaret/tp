@@ -1201,7 +1201,7 @@ static void npc_ne_pathwalk(npc_ne_class* i_this) {
         i_this->mMode = 1;
         // fallthrough
 
-    case 1:
+    case 1: {
         i_this->mPathPointNo += i_this->mPathDir;
         if (i_this->mPathPointNo >= (i_this->mpPath->m_num & 0xff)) {
             if (dPath_ChkClose(i_this->mpPath)) {
@@ -1222,7 +1222,7 @@ static void npc_ne_pathwalk(npc_ne_class* i_this) {
         i_this->mMode = 2;
         i_this->mAngleYStep = 0.0f;
         break;
-
+    }
     case 2:
         i_this->mLookTarget = i_this->mTargetPos;
         cXyz delta = i_this->mTargetPos - i_this->current.pos;

@@ -1458,7 +1458,7 @@ static void demo_camera(b_gm_class* i_this) {
             i_this->mDemoModeTimer = 0;
         }
         break;
-    case 42:
+    case 42: {
         if (i_this->mDemoModeTimer == 30) {
             daPy_getPlayerActorClass()->changeDemoMode(daPy_demo_c::DEMO_UNEQUIP_e, 0, 0, 0);
         }
@@ -1479,7 +1479,7 @@ static void demo_camera(b_gm_class* i_this) {
         if (i_this->mDemoModeTimer > 200) {
             cLib_addCalc2(&i_this->field_0x1cec.y, 100.0f, 0.05f, 0.7f);
         }
-        
+
         obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
         if (ystone != NULL) {
             if (i_this->mDemoModeTimer > 200) {
@@ -1500,6 +1500,7 @@ static void demo_camera(b_gm_class* i_this) {
             sp10 = 2;
         }
         break;
+    }
     case 50:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);

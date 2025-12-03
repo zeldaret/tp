@@ -1762,7 +1762,7 @@ cPhs__Step daE_SW_c::create() {
             mBgc.OnLineCheck();
             field_0x698 = 2;
             attention_info.distances[2] = 3;
-            d_setAction(daE_SW_c::d_wait);
+            d_setAction(&daE_SW_c::d_wait);
         } else {
             attention_info.distances[2] = 4;
 
@@ -1826,7 +1826,7 @@ extern actor_process_profile_definition g_profile_E_SW = {
 };
 
 void daE_SW_c::d_checkFall() {
-    if (d_checkAction(daE_SW_c::d_hook) || d_checkAction(daE_SW_c::d_fall) || d_checkAction(daE_SW_c::d_attk)) {
+    if (d_checkAction(&daE_SW_c::d_hook) || d_checkAction(&daE_SW_c::d_fall) || d_checkAction(&daE_SW_c::d_attk)) {
         return;
     }
 
@@ -1843,7 +1843,7 @@ void daE_SW_c::d_checkFall() {
     if (speed.y < 0.0f) {
         if ((fVar1 == -G_CM3D_F_INF || std::abs(fVar1 - current.pos.y) > 1000.0f) || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 4 || 
             dComIfG_Bgsp().GetGroundCode(gnd_chk) == 10 || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 5) {
-            d_setAction(daE_SW_c::d_fall);
+            d_setAction(&daE_SW_c::d_fall);
         }
     }
 }
@@ -1854,7 +1854,7 @@ void daE_SW_c::d_damage_check() {
     mStts.Move();
 
     if (field_0x6f2 == 0) {
-        if (d_checkAction(daE_SW_c::d_damage) || d_checkAction(daE_SW_c::d_die)) {
+        if (d_checkAction(&daE_SW_c::d_damage) || d_checkAction(&daE_SW_c::d_die)) {
             return;
         }
 
@@ -1862,7 +1862,7 @@ void daE_SW_c::d_damage_check() {
             field_0x98c.OffAtShieldHit();
 
             if (player->checkPlayerGuard()) {
-                d_setAction(daE_SW_c::d_chance);
+                d_setAction(&daE_SW_c::d_chance);
                 return;
             }
         }
@@ -1897,22 +1897,22 @@ void daE_SW_c::d_damage_check() {
                     player->getCutType() == daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH)) {
                     health = 0;
                     field_0x698 = 0;
-                    d_setAction(daE_SW_c::d_damage);
+                    d_setAction(&daE_SW_c::d_damage);
                 } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_IRON_BALL) || mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOMB) ||
                            mAtInfo.mpCollider->ChkAtType(AT_TYPE_MIDNA_LOCK)) {
                     health = 0;
                     field_0x698 = 0;
-                    d_setAction(daE_SW_c::d_damage);
+                    d_setAction(&daE_SW_c::d_damage);
                 } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
-                    d_setAction(daE_SW_c::d_hook);
+                    d_setAction(&daE_SW_c::d_hook);
                 } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK) || mAtInfo.mpCollider->ChkAtType(AT_TYPE_40) ||
                            mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
-                    if (!d_checkAction(daE_SW_c::d_chance2)) {
-                        d_setAction(daE_SW_c::d_chance2);
+                    if (!d_checkAction(&daE_SW_c::d_chance2)) {
+                        d_setAction(&daE_SW_c::d_chance2);
                     }
                 } else {
                     field_0x698--;
-                    d_setAction(daE_SW_c::d_damage);
+                    d_setAction(&daE_SW_c::d_damage);
                 }
             }
         }
@@ -1962,7 +1962,7 @@ void daE_SW_c::d_bm_chase() {
         fopAcM_SearchByID(field_0x688, (fopAc_ac_c**)&bomb);
 
         if (bomb == NULL || bomb->checkStateExplode()) {
-            d_setAction(daE_SW_c::d_wait);
+            d_setAction(&daE_SW_c::d_wait);
         } else {
             switch (mMoveMode) {
                 case 0:
@@ -1990,7 +1990,7 @@ void daE_SW_c::d_bm_chase() {
                     }
 
                     field_0x6a8 = bomb->current.pos;
-                    d_setAction(daE_SW_c::d_attk);
+                    d_setAction(&daE_SW_c::d_attk);
                     return;
 
                 default:
@@ -2091,9 +2091,9 @@ void daE_SW_c::d_wait() {
     shape_angle.y = current.angle.y;
 
     if (d_bomb_check()) {
-        d_setAction(daE_SW_c::d_bm_chase);
+        d_setAction(&daE_SW_c::d_bm_chase);
     } else if (field_0x6ec == 0 && d_chaseCheck()) {
-        d_setAction(daE_SW_c::d_chase);
+        d_setAction(&daE_SW_c::d_chase);
     }
 }
 
@@ -2140,17 +2140,17 @@ void daE_SW_c::d_chase() {
             setSmokeEffect();
 
             if (field_0x6ee == 0) {
-                d_setAction(daE_SW_c::d_wait);
+                d_setAction(&daE_SW_c::d_wait);
                 return;
             }
 
             if (player->current.pos.absXZ(current.pos) >= l_HIO.character_notice_dist) {
-                d_setAction(daE_SW_c::d_wait);
+                d_setAction(&daE_SW_c::d_wait);
                 return;
             }
             
             if (player->current.pos.absXZ(current.pos) < l_HIO.human_attack_init_range) {
-                d_setAction(daE_SW_c::d_attk);
+                d_setAction(&daE_SW_c::d_attk);
                 return;
             }
                 
@@ -2205,7 +2205,7 @@ void daE_SW_c::d_attk() {
             current.angle.y = sVar1;
             gravity = -4.0f;
 
-            if (d_checkOldAction(daE_SW_c::d_bm_chase)) {
+            if (d_checkOldAction(&daE_SW_c::d_bm_chase)) {
                 field_0x69e = cLib_targetAngleY(&current.pos, &field_0x6a8);
                 speedF = current.pos.abs(field_0x6a8) / 25.0f;
             } else {
@@ -2241,7 +2241,7 @@ void daE_SW_c::d_attk() {
                 field_0x6d8 = -60.0f;
 
                 if ((field_0x6bc & 1) == 0) {
-                    d_setAction(daE_SW_c::d_chance);
+                    d_setAction(&daE_SW_c::d_chance);
                 } else {
                     field_0x6e4 = 1;
                     setDiveEffect();
@@ -2280,7 +2280,7 @@ void daE_SW_c::d_attk() {
 
         case 4:
             if ((field_0x6bc & 3) == 0) {
-                d_setAction(daE_SW_c::d_wait);
+                d_setAction(&daE_SW_c::d_wait);
                 current.pos = old.pos;
                 break;
             } else {
@@ -2289,7 +2289,7 @@ void daE_SW_c::d_attk() {
                     return;
                 }
 
-                d_setAction(daE_SW_c::d_wait);
+                d_setAction(&daE_SW_c::d_wait);
                 field_0x6d8 = -120.0f;
                 cXyz sp30(current.pos);
                 sp30.y += 200.0f;
@@ -2324,7 +2324,7 @@ void daE_SW_c::d_chance() {
             bckSet(BCK_SW_CHANCE, 5.0f, 2, 1.0f);
             speedF = 0.0f;
 
-            if (d_checkOldAction(daE_SW_c::d_hook)) {
+            if (d_checkOldAction(&daE_SW_c::d_hook)) {
                 field_0x6ea = 200;
             } else {
                 field_0x6ea = 100;
@@ -2366,7 +2366,7 @@ void daE_SW_c::d_chance() {
             }
 
             if (field_0x6ea == 0 && mBgc.ChkGroundHit() && field_0x6bc == 3) {
-                d_setAction(daE_SW_c::d_dive);
+                d_setAction(&daE_SW_c::d_dive);
             }
             break;
     }
@@ -2390,7 +2390,7 @@ void daE_SW_c::d_chance2() {
 
             if (mBgc.ChkGroundHit()) {
                 mSound.startCreatureSound(Z2SE_EN_SW_BTBT, field_0x6e9, -1);
-                d_setAction(daE_SW_c::d_chance);
+                d_setAction(&daE_SW_c::d_chance);
             }
             break;
     }
@@ -2421,7 +2421,7 @@ void daE_SW_c::d_dive() {
 
             field_0x6e5 = 1;
             field_0x6d8 = -120.0f;
-            d_setAction(daE_SW_c::d_wait);
+            d_setAction(&daE_SW_c::d_wait);
             break;
 
         default:
@@ -2490,11 +2490,11 @@ void daE_SW_c::d_damage() {
             speed.y = 0.0f;
 
             if (field_0x698 <= 0) {
-                d_setAction(daE_SW_c::d_die);
+                d_setAction(&daE_SW_c::d_die);
                 return;
             }
 
-            d_setAction(daE_SW_c::d_chance);
+            d_setAction(&daE_SW_c::d_chance);
             return;
 
         default:
@@ -2611,7 +2611,7 @@ void daE_SW_c::d_hook() {
                 speedF = -10.0f;
                 gravity = -5.0f;
                 field_0x6d8 = 0.0f;
-                d_setAction(daE_SW_c::d_chance);
+                d_setAction(&daE_SW_c::d_chance);
             }
             break;
 

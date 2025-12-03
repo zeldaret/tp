@@ -417,7 +417,7 @@ void daNpc_Uri_c::reset() {
     cStack_a0.y = home.angle.y;
 
     switch (mType) {
-    case TYPE_1:
+    case TYPE_1: {
         mPath.setNextPathInfo(fopAcM_GetRoomNo(this), 0);
         int num = mPath.getNumPnts();
         acStack_38 = mPath.getPntPos(num - 2);
@@ -464,6 +464,7 @@ void daNpc_Uri_c::reset() {
             }
         }
         break;
+    }
     case TYPE_4:
         field_0x100d = 1;
         break;
@@ -1232,7 +1233,7 @@ int daNpc_Uri_c::cutFindWolf(int param_1) {
 
     if (dComIfGp_getEventManager().getIsAddvance(param_1)) {
         switch (iVar11) {
-        case 0:
+        case 0: {
             mFaceMotionSeqMngr.setNo(12, 0.0f, 0, 0);
             mMotionSeqMngr.setNo(23, 0.0f, 0, 0);
             mSound.startCreatureVoice(JAISoundID(Z2SE_URI_V_SCREAM_S), -1);
@@ -1256,6 +1257,7 @@ int daNpc_Uri_c::cutFindWolf(int param_1) {
              * night */
             dComIfGs_onTmpBit(0x1308);
             break;
+        }
         case 1:
             fopAc_ac_c* actor = mActorMngr[0].getActorP();
             if (actor) {

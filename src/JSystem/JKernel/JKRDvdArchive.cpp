@@ -75,7 +75,8 @@ bool JKRDvdArchive::open(s32 entryNum) {
                     JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, &mCompression, NULL);
     DCInvalidateRange(arcHeader, sizeof(SArcHeader));
 
-    int alignment = mMountDirection == MOUNT_DIRECTION_HEAD ? 0x20 : -0x20;
+    int alignment;
+    alignment = mMountDirection == MOUNT_DIRECTION_HEAD ? 0x20 : -0x20;
 
     mArcInfoBlock = (SArcDataInfo*)JKRAllocFromHeap(mHeap, arcHeader->file_data_offset, alignment);
     if (!mArcInfoBlock) {
@@ -93,8 +94,10 @@ bool JKRDvdArchive::open(s32 entryNum) {
     mStringTable = (char*)((int)&mArcInfoBlock->num_nodes + mArcInfoBlock->string_table_offset);
     mExpandedSize = NULL;
 
-    u8 useCompression = 0;
-    SDIFileEntry* fileEntry = mFiles;
+    u8 useCompression;
+    useCompression = 0;
+    SDIFileEntry* fileEntry;
+    fileEntry = mFiles;
     for (u32 i = 0; i < mArcInfoBlock->num_file_entries; fileEntry++, i++) {
         if (fileEntry->isUnknownFlag1()) {
             useCompression |= fileEntry->getCompressFlag();

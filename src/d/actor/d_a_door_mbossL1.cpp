@@ -569,7 +569,7 @@ void daMBdoorL1_c::demoProc() {
     int level = getNowLevel(this);
     if (dComIfGp_evmng_getIsAddvance(field_0x5e8)) {
         switch (demoAction) {
-        case 0:
+        case 0: {
             int* puVar6 = dComIfGp_evmng_getMyIntegerP(field_0x5e8, "Timer");
             if (puVar6 == NULL) {
                 field_0x5ec = 1;
@@ -577,6 +577,7 @@ void daMBdoorL1_c::demoProc() {
                 field_0x5ec = *puVar6;
             }
             break;
+        }
         case 1:
             if (level == 5 || level == 11) {
                 setAngleQuickly();
@@ -597,7 +598,7 @@ void daMBdoorL1_c::demoProc() {
             {
                 unlockInit();
                 fopAcM_onSwitch(this, (u8)cVar10);
-                dComIfGp_setItemKeyNumCount(0xffffffff);
+                dComIfGp_setItemKeyNumCount(-1);
                 fopAcM_seStart(this, Z2SE_OBJ_DOOR_CHAIN_LOCK_OPEN, 0);
             }
             break;

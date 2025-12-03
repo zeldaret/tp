@@ -214,7 +214,7 @@ int daObjAvalanche_c::demoProc() {
     int actIdx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, 2, 0, 0);
     if (dComIfGp_evmng_getIsAddvance(mStaffId)) {
         switch (actIdx) {
-        case 0:
+        case 0: {
             int* puVar3 = dComIfGp_evmng_getMyIntegerP(mStaffId, "Timer");
             if (puVar3 == NULL) {
                 mTimer = 1;
@@ -222,11 +222,13 @@ int daObjAvalanche_c::demoProc() {
                 mTimer = *puVar3;
             }
             break;
+        }
         case 1:
             mBckAnm->setPlaySpeed(1.0f);
             eyePos = current.pos;
             fopAcM_seStart(this, Z2SE_OBJ_SNOW_SLIDE, 0);
             setEffect();
+            OS_REPORT("崩れる雪：ＳＥセット\n"); // Avalanche: SE Set
             break;
         }
     }

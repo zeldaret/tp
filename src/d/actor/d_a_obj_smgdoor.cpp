@@ -162,7 +162,7 @@ int daObjSmgDoor_c::demoProc() {
 
     if (dComIfGp_evmng_getIsAddvance(mStaffId) != 0) {
         switch (demo_action) {
-        case 0:
+        case 0: {
             int* intP = dComIfGp_evmng_getMyIntegerP(mStaffId, "Timer");
             if (intP == NULL) {
                 field_0x5e9 = 1;
@@ -170,6 +170,7 @@ int daObjSmgDoor_c::demoProc() {
                 field_0x5e9 = *intP;
             }
             break;
+        }
         case 1:
             openInit();
             break;

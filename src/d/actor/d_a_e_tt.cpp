@@ -964,7 +964,7 @@ void daE_TT_c::executeFirstAttack() {
         }
         break;
 
-    case 11:
+    case 11: {
         f32 playerSpeedF = player->getSpeedF() * 17.0f;
         cXyz xyz(playerSpeedF * cM_ssin(player->shape_angle.y), 0.0f,
                  playerSpeedF * cM_scos(player->shape_angle.y));
@@ -992,6 +992,7 @@ void daE_TT_c::executeFirstAttack() {
             current.angle.y = shape_angle.y;
         }
         break;
+    }
 
     case 12:
         mSphere.OnAtSetBit();

@@ -662,45 +662,48 @@ static void e_yh_attack(e_yh_class* i_this) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_DB_V_BITE, -1);
         }
         break;
-        
-    case 2:
+
+    case 2: {
         if (i_this->field_0x698[1] != 0) {
             i_this->field_0xb18 = 1;
         }
-        
-        cLib_addCalc2(&a_this->current.pos.x, i_this->field_0x678.x, 0.8f, a_this->speed.x * i_this->field_0x690);
-        cLib_addCalc2(&a_this->current.pos.z, i_this->field_0x678.z, 0.8f, a_this->speed.z * i_this->field_0x690);
-        cLib_addCalc2(&a_this->current.pos.y, i_this->field_0x678.y, 0.8f, a_this->speed.y * i_this->field_0x690);
+
+        cLib_addCalc2(&a_this->current.pos.x, i_this->field_0x678.x, 0.8f,
+                      a_this->speed.x * i_this->field_0x690);
+        cLib_addCalc2(&a_this->current.pos.z, i_this->field_0x678.z, 0.8f,
+                      a_this->speed.z * i_this->field_0x690);
+        cLib_addCalc2(&a_this->current.pos.y, i_this->field_0x678.y, 0.8f,
+                      a_this->speed.y * i_this->field_0x690);
         cLib_addCalc2(&i_this->field_0x690, 0.2f, 1.0f, 0.05f);
         cLib_addCalcAngleS2(&a_this->shape_angle.z, i_this->field_0x864, 2, 0x2000);
-        
+
         daPy_py_c* pdVar6 = (daPy_py_c*)daPy_getPlayerActorClass();
         if (!pdVar6->getDkCaught()) {
             if (!pdVar6->getDkCaught2() && i_this->mAtSph.ChkAtHit()) {
                 cCcD_Obj* hitObj = i_this->mAtSph.GetAtHitObj();
-                
+
                 if (player == dCc_GetAc(hitObj->GetAc())) {
                     OS_REPORT("E_DB//////////////AT  SET 1 !!\n");
                     i_this->field_0x670 = 5;
                     i_this->field_0x690 = 20.0f;
                     anm_init(i_this, 8, 2.0f, 2, 1.0f);
                     i_this->field_0x698[0] = 120;
-                    
+
                     daPy_py_c* pyPlayer = (daPy_py_c*)daPy_getPlayerActorClass();
                     pyPlayer->setDkCaught(a_this);
-                    
-                    dComIfGp_getVibration().StartShock(6, 0x1f,  cXyz(0.0f, 1.0f, 0.0f));
+
+                    dComIfGp_getVibration().StartShock(6, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
                     break;
                 }
             }
         }
-        
+
         if (i_this->mpMorf->isStop()) {
             i_this->field_0x670 = 3;
             i_this->field_0x698[0] = 0;
         }
         break;
-        
+    }
     case 3:
         if (i_this->field_0x698[0] == 0) {
             i_this->field_0x66e = 3;
@@ -1350,8 +1353,8 @@ static s8 e_yh_escape(e_yh_class* i_this) {
             }
         }
         break;
-        
-    case 2:
+
+    case 2: {
         local_bc = a_this->home.pos - a_this->current.pos;
         local_bc.y = 0.0f;
         s16 homeAngle = cM_atan2s(local_bc.x, local_bc.z);
@@ -1363,7 +1366,8 @@ static s8 e_yh_escape(e_yh_class* i_this) {
             i_this->mSound.startCreatureSound(Z2SE_EN_DB_GRASS, 0, -1);
         }
         break;
-        
+    }
+
     case 3:
         local_116 = 0;
         cLib_addCalc0(&i_this->field_0x844, 1.0f, 1.0f);

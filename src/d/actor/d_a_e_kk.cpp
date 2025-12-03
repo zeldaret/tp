@@ -932,6 +932,9 @@ void daE_KK_c::executeWeaponMove() {
         current.angle.y = actor->shape_angle.y + 0x190;
     }
 
+    f32 temp;
+    f32 player_distance_y;
+
     switch (mMoveMode) {
     case 0:
         shape_angle.x = home.angle.x + 0x878C;
@@ -948,8 +951,7 @@ void daE_KK_c::executeWeaponMove() {
 
         mDistance = (fopAcM_searchPlayerDistance(this) - l_HIO.direct_attack_range) * 1.5f;
 
-        f32 temp = 2000.0f;
-        f32 player_distance_y;
+        temp = 2000.0f;
 
         if (fopAcM_searchPlayerDistanceY(this) < -300.0f) {
             player_distance_y = (fopAcM_searchPlayerDistanceY(this) + 300.0f) * -2.0f;
