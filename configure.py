@@ -805,7 +805,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_meter2.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_out_font.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_class.cpp"),
-            Object(Equivalent, "d/d_msg_object.cpp"),  # weak func order
+            Object(Equivalent, "d/d_msg_object.cpp"), # weak func order
             Object(MatchingFor("GZ2P01", "GZ2J01"), "d/d_msg_unit.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_scrn_3select.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_scrn_arrow.cpp"),
@@ -1069,7 +1069,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JAUBankTable.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUClusterSound.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUInitializer.cpp"),
-            Object(Equivalent, "JSystem/JAudio2/JAUSectionHeap.cpp"), # weak function order
+            Object(Equivalent, "JSystem/JAudio2/JAUSectionHeap.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSeqCollection.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSoundAnimator.cpp"),
@@ -1720,7 +1720,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_msg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_push"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_telop"),
-    ActorRel(Equivalent, "d_a_tbox"),  # weak func order
+    ActorRel(Equivalent, "d_a_tbox"), # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tbox2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_vrbox"),
     ActorRel(NonMatching, "d_a_vrbox2"),
@@ -1731,7 +1731,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_disappear"),
     ActorRel(Equivalent, "d_a_mg_rod"), # regalloc; weak func order; inlining issues
     ActorRel(MatchingFor(ALL_GCN), "d_a_midna"),
-    ActorRel(Equivalent, "d_a_nbomb"),  # weak func order
+    ActorRel(Equivalent, "d_a_nbomb"), # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_life_container"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_yousei"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_spinner"),
@@ -1963,12 +1963,12 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_myna"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_ni"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_aru"),
-    ActorRel(Equivalent, "d_a_npc_ash"),  # weak func order (sinShort)
-    ActorRel(Equivalent, "d_a_npc_ashB"),  # weak func order (sinShort)
+    ActorRel(Equivalent, "d_a_npc_ash"), # weak func order (sinShort)
+    ActorRel(Equivalent, "d_a_npc_ashB"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_bou"),
-    ActorRel(Equivalent, "d_a_npc_bouS"),  # weak func order (sinShort)
+    ActorRel(Equivalent, "d_a_npc_bouS"), # weak func order (sinShort)
     ActorRel(Equivalent, "d_a_npc_cdn3"), # weak func order (~csXyz); vtable order
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_chat"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_chin"),
@@ -1998,9 +1998,9 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_hanjo"),
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_npc_henna0"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_hoz"),
-    ActorRel(Equivalent, "d_a_npc_impal"),  # weak func order
+    ActorRel(Equivalent, "d_a_npc_impal"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_inko"),
-    ActorRel(Equivalent, "d_a_npc_ins"),  # weak func order
+    ActorRel(Equivalent, "d_a_npc_ins"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_jagar"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_kasi_hana"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_kasi_kyu"),
@@ -2009,7 +2009,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_kn"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_knj"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_kolinb"),
-    ActorRel(Equivalent, "d_a_npc_ks"),  # weak func order
+    ActorRel(Equivalent, "d_a_npc_ks"), # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_kyury"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_len"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_lf"),
@@ -2030,7 +2030,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_pouya"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_prayer"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_raca"),
-    ActorRel(Equivalent, "d_a_npc_rafrel"),  # weak func order
+    ActorRel(Equivalent, "d_a_npc_rafrel"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_saru"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_seib"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_seic"),
@@ -2038,7 +2038,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_seira"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_seira2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_seirei"),
-    ActorRel(Equivalent, "d_a_npc_shad"),  # weak func order
+    ActorRel(Equivalent, "d_a_npc_shad"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_shaman"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_shoe"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_shop0"),
@@ -2052,12 +2052,12 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_tk"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_tkc"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_tkj2"),
-    ActorRel(NonMatching, "d_a_npc_tks"), # weak func order (sinShort)
+    ActorRel(Equivalent, "d_a_npc_tks"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_toby"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_tr"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_uri"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_worm"),
-    ActorRel(NonMatching, "d_a_npc_wrestler"),
+    ActorRel(NonMatching, "d_a_npc_wrestler"), # regalloc; weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_yamid"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_yamis"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_yamit"),
@@ -2339,7 +2339,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_thashi"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_thdoor"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_timeFire"),
-    ActorRel(Equivalent, "d_a_obj_tks"), # weak function order
+    ActorRel(Equivalent, "d_a_obj_tks"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_tmoon"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_toaru_maki"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_toby"),
