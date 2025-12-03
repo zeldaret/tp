@@ -1703,7 +1703,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_swpush"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_timer"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_path_line"),
-    ActorRel(NonMatching, "d_a_scene_exit"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_scene_exit"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_set_bgobj"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_swhit0"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_allmato"),
