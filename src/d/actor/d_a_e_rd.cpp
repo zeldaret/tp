@@ -5507,8 +5507,8 @@ static void* s_wb_sub2(void* i_actor, void* i_data) {
 }
 
 static void* s_lv9dn_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_DN && ((e_dn_class*)i_actor)->field_0x10d8 != 0) {
-        ((e_dn_class*)i_actor)->field_0x10d8 = 0;
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_DN && ((e_dn_class*)i_actor)->status != 0) {
+        ((e_dn_class*)i_actor)->status = 0;
         return i_actor;
     }
 
@@ -5516,9 +5516,9 @@ static void* s_lv9dn_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_lv9dn_sub2(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_DN && ((e_dn_class*)i_actor)->field_0x10d8 == 0) {
-        ((e_dn_class*)i_actor)->field_0x10d8 = 1;
-        ((e_dn_class*)i_actor)->mMode = 0;
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_DN && ((e_dn_class*)i_actor)->status == 0) {
+        ((e_dn_class*)i_actor)->status = 1;
+        ((e_dn_class*)i_actor)->mode = 0;
     }
     
     return NULL;
@@ -5526,7 +5526,7 @@ static void* s_lv9dn_sub2(void* i_actor, void* i_data) {
 
 static void* s_lv9dn_sub3(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_DN) {
-        ((e_dn_class*)i_actor)->mMode = 2;
+        ((e_dn_class*)i_actor)->mode = 2;
     }
 
     return NULL;
