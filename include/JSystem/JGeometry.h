@@ -268,19 +268,15 @@ struct TVec3<f32> : public Vec {
         return inv_norm * sq; 
     }
 
-    void normalize(const TVec3<f32>& other) {
+    f32 normalize(const TVec3<f32>& other) {
         f32 sq = other.squared();
         if (sq <= TUtil<f32>::epsilon()) {
             zero();
-            return;
+            return 0.0f;
         }
-        f32 norm;
-        if (sq <= 0.0f) {
-            norm = sq;
-        } else {
-            norm = fsqrt_step(sq);
-        }
+        f32 norm = TUtil<f32>::inv_sqrt(sq);
         scale(norm, other);
+        return norm * sq;
     }
 
     f32 length() const {

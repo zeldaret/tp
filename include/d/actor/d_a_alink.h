@@ -7274,19 +7274,19 @@ public:
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
     BOOL checkClimbFall() { return checkLadderFall(); }
 
-    bool checkMidnaWolfDashAnime() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
-    bool checkMidnaClingAnime() const { return mMidnaAnm == 1; }
-    bool checkMidnaLowClingAnime() const { return mMidnaAnm == 2; }
-    bool checkMidnaLookAroundAnime() const { return mMidnaAnm == 3; }
-    bool checkMidnaPanicAnime() const { return mMidnaAnm == 5; }
-    bool checkMidnaWolfDeadAnime() const { return mMidnaAnm == 6; }
-    bool checkMidnaWolfSwimDeadAnime() const { return mMidnaAnm == 7; }
-    bool checkMidnaRopeWaitStaggerAnime() const { return mMidnaAnm == 8; }
-    bool checkMidnaRopeMoveStaggerAnime() const { return mMidnaAnm == 9; }
-    bool checkMidnaGanonCatchAnm() const { return mMidnaAnm == 10; }
-    bool checkMidnaGanonThrowLeftAnm() const { return mMidnaAnm == 11; }
-    bool checkMidnaGanonThrowRightAnm() const { return mMidnaAnm == 12; }
-    bool checkMidnaDigInAnime() const { return mMidnaAnm == 13; }
+    BOOL checkMidnaWolfDashAnime() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
+    BOOL checkMidnaClingAnime() const { return mMidnaAnm == 1; }
+    BOOL checkMidnaLowClingAnime() const { return mMidnaAnm == 2; }
+    BOOL checkMidnaLookAroundAnime() const { return mMidnaAnm == 3; }
+    BOOL checkMidnaPanicAnime() const { return mMidnaAnm == 5; }
+    BOOL checkMidnaWolfDeadAnime() const { return mMidnaAnm == 6; }
+    BOOL checkMidnaWolfSwimDeadAnime() const { return mMidnaAnm == 7; }
+    BOOL checkMidnaRopeWaitStaggerAnime() const { return mMidnaAnm == 8; }
+    BOOL checkMidnaRopeMoveStaggerAnime() const { return mMidnaAnm == 9; }
+    BOOL checkMidnaGanonCatchAnm() const { return mMidnaAnm == 10; }
+    BOOL checkMidnaGanonThrowLeftAnm() const { return mMidnaAnm == 11; }
+    BOOL checkMidnaGanonThrowRightAnm() const { return mMidnaAnm == 12; }
+    BOOL checkMidnaDigInAnime() const { return mMidnaAnm == 13; }
 
     void clearMidnaMsgNum() {
         mMidnaMsgNum = 0xffff;
@@ -7330,37 +7330,9 @@ public:
     MtxP getMagneBootsInvMtx() { return mMagneBootInvMtx; }
     s16 getMagneBootsModelShapeAngle() const { return field_0x3118; }
 
-    bool checkFishingCastMode() const {
-        bool var_r5;
-        bool var_r4 = 1;
-        bool var_r3 = 0;
-
-        if (mProcID == PROC_FISHING_CAST) {
-            var_r5 = 0;
-
-            if (mItemAcKeep.getActor() != NULL &&
-                mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt() != 0)
-            {
-                var_r5 = 1;
-            }
-
-            if (!var_r5) {
-                var_r3 = 1;
-            }
-        }
-
-        if (!var_r3) {
-            bool var_r3_2 = 0;
-            if (mProcID != PROC_FISHING_CAST && checkNoResetFlg2(FLG2_UNK_20000000)) {
-                var_r3_2 = 1;
-            }
-
-            if (!var_r3_2) {
-                var_r4 = 0;
-            }
-        }
-
-        return var_r4;
+    BOOL checkFishingCastMode() const {
+        return (mProcID == PROC_FISHING_CAST && !(mItemAcKeep.getActor() != NULL && mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt())) ||
+               (mProcID != PROC_FISHING_CAST && checkNoResetFlg2(FLG2_UNK_20000000) != 0);
     }
 
     BOOL setCanoeCast() {
