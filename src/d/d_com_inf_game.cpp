@@ -38,13 +38,15 @@ static __d_timer_info_c dComIfG_mTimerInfo;
 dComIfG_inf_c g_dComIfG_gameInfo;
 
 void dComIfG_play_c::init() {
-    for (int i = 0; i < 1; i++) {
-        mPlayer[i] = NULL;
-        mPlayerCameraID[i] = -1;
+    for (int i = 0; i < ARRAY_SIZE(mPlayerInfo); i++) {
+        mPlayerInfo[i].mpPlayer = NULL;
+        mPlayerInfo[i].mCameraID = -1;
     }
-    mCameraInfo[0].mCamera = NULL;
+    for (int i = 0; i < ARRAY_SIZE(mCameraInfo); i++) {
+        mCameraInfo[i].mCamera = NULL;
+    }
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mPlayerPtr); i++) {
         mPlayerPtr[i] = NULL;
     }
 
