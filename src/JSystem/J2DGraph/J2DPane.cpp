@@ -343,7 +343,8 @@ void J2DPane::place(JGeometry::TBox2<f32> const& box) {
 
     f32 xOff = tmpBox.i.x - mBounds.i.x;
     f32 yOff = tmpBox.i.y - mBounds.i.y;
-    for (J2DPane* child = getFirstChildPane(); child != NULL; child = child->getNextChildPane()) {
+    J2DPane* child;
+    for (child = getFirstChildPane(); child != NULL; child = child->getNextChildPane()) {
         child->mTranslateX += xOff;
         child->mTranslateY += yOff;
         if (xOff != 0 || yOff != 0) {
@@ -432,10 +433,9 @@ void J2DPane::rotate(f32 angle) {
 }
 
 void J2DPane::clip(JGeometry::TBox2<f32> const& bounds) {
-    JGeometry::TBox2<f32> boxA(bounds);
-    JGeometry::TBox2<f32> boxB(mGlobalBounds);
-    boxA.addPos(boxB.i);
-    mClipRect.intersect(boxA);
+    JGeometry::TBox2<f32> box(bounds);
+    box.addPos(JGeometry::TVec2<f32>(mGlobalBounds.i.x, mGlobalBounds.i.y));
+    mClipRect.intersect(box);
 }
 
 J2DPane* J2DPane::search(u64 tag) {

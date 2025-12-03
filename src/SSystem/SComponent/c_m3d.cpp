@@ -39,19 +39,20 @@ static f32 dummy(f32 x) {
 bool cM3d_Len2dSqPntAndSegLine(f32 param_1, f32 param_2, f32 param_3, f32 param_4, f32 p5, f32 p6,
                                f32* param_7, f32* param_8, f32* param_9) {
     bool retVal = false;
-    f32 param_5 = p5 - param_3;
-    f32 param_6 = p6 - param_4;
-    f32 len = param_5 * param_5 + param_6 * param_6;
+    f32 f31 = p5 - param_3;
+    f32 f30 = p6 - param_4;
+    f32 len = f31 * f31 + f30 * f30;
+    f32 f29;
     if (cM3d_IsZero(len)) {
         *param_9 = 0.0f;
-        return retVal;
+        return false;
     } else {
-        len = (param_5 * (param_1 - param_3) + param_6 * (param_2 - param_4)) / len;
-        if (len >= 0.0f && len <= 1.0f) {
+        f29 = (f31 * (param_1 - param_3) + f30 * (param_2 - param_4)) / len;
+        if (f29 >= 0.0f && f29 <= 1.0f) {
             retVal = true;
         }
-        *param_7 = param_3 + param_5 * len;
-        *param_8 = param_4 + param_6 * len;
+        *param_7 = param_3 + f31 * f29;
+        *param_8 = param_4 + f30 * f29;
         *param_9 = cM3d_Len2dSq(*param_7, *param_8, param_1, param_2);
         return retVal;
     }

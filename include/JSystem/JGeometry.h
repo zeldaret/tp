@@ -407,12 +407,12 @@ struct TVec2 {
     TVec2(T v) { set(v); }
 
     template <typename U>
-    TVec2(U x, U y) { set(x, y); }
+    TVec2(const U x, const U y) { set(x, y); }
 
     void set(T v) { y = x = v; }
 
     template <typename U>
-    void set(U x, U y) {
+    void set(const U x, const U y) {
         this->x = x;
         this->y = y;
     }
@@ -514,7 +514,7 @@ struct TBox2 : public TBox<TVec2<T> > {
         }
     }
 
-    void set(const TBox2& other) { set(other.i, other.f); }
+    void set(const TBox<TVec2<T> >& other) { set(other.i, other.f); }
     void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }
     void set(f32 x0, f32 y0, f32 x1, f32 y1) { this->i.set(x0, y0); this->f.set(x1, y1); }
 };

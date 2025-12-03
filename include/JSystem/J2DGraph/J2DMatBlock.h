@@ -2,6 +2,7 @@
 #define J2DMATBLOCK_H
 
 #include "JSystem/J2DGraph/J2DTevs.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/TColor.h"
 
 class JUTFont;
@@ -117,6 +118,7 @@ public:
     }
     virtual J2DTevOrder* getTevOrder(u32 index) { return &mTevOrder[index]; }
     virtual void setTevColor(u32 index, J2DGXColorS10 color) {
+        J3D_PANIC(250, index < 4, "Error : range over.");
         mTevColor[index] = color;
     }
     virtual J2DGXColorS10* getTevColor(u32 index) { return &mTevColor[index]; }
@@ -212,6 +214,7 @@ public:
     }
     virtual J2DTevOrder* getTevOrder(u32 index) { return &mTevOrder[index]; }
     virtual void setTevColor(u32 index, J2DGXColorS10 color) {
+        J3D_PANIC(360, index < 4, "Error : range over.");
         mTevColor[index] = color;
     }
     virtual J2DGXColorS10* getTevColor(u32 index) { return &mTevColor[index]; }
@@ -309,6 +312,7 @@ public:
     }
     virtual J2DTevOrder* getTevOrder(u32 index) { return &mTevOrder[index]; }
     virtual void setTevColor(u32 index, J2DGXColorS10 color) {
+        J3D_PANIC(468, index < 4, "Error : range over.");
         mTevColor[index] = color;
     }
     virtual J2DGXColorS10* getTevColor(u32 index) { return &mTevColor[index]; }
@@ -406,6 +410,7 @@ public:
     }
     virtual J2DTevOrder* getTevOrder(u32 index) { return &mTevOrder[index]; }
     virtual void setTevColor(u32 index, J2DGXColorS10 color) {
+        J3D_PANIC(579, index < 4, "Error : range over.");
         mTevColor[index] = color;
     }
     virtual J2DGXColorS10* getTevColor(u32 index) { return &mTevColor[index]; }
@@ -504,6 +509,7 @@ public:
     }
     virtual J2DTevOrder* getTevOrder(u32 index) { return &mTevOrder[index]; }
     virtual void setTevColor(u32 index, J2DGXColorS10 color) {
+        J3D_PANIC(691, index < 4, "Error : range over.");
         mTevColor[index] = color;
     }
     virtual J2DGXColorS10* getTevColor(u32 index) { return &mTevColor[index]; }
