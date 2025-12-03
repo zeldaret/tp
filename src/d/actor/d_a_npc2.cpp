@@ -1,5 +1,7 @@
 #include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc2.h"
+#include "d/d_bg_w.h"
+#include "d/d_debug_viewer.h"
 
 static s32 daBaseNpc_chkPnt(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, int param_4, int param_5);
 static u16 daBaseNpc_putNurbs(dPnt* i_CPnts, int i_CPntNum, int i_maxPntNum, dPnt* o_curve_p, BOOL i_isClosed);
