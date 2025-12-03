@@ -602,7 +602,6 @@ int daNpc_ykW_c::isDelete() {
     }
 }
 
-// NONMATCHING - m_nextID load issue
 void daNpc_ykW_c::reset() {
     cXyz unkXyz1;
     csXyz unkSxyz1;
