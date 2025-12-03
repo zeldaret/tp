@@ -28,10 +28,20 @@ template<> class __bitset_base<1> {
 public:
     __bitset_base() { data = 0; }
 
-    bool test(size_t pos) const { return data & (1 << pos); }
+    bool test(size_t pos) const {
+        u32 r31 = 1UL << pos;
+        return data & r31;
+    }
     bool any() const { return data != 0; }
-    void set(size_t pos, bool val) { data |= (1 << pos); }
-    void reset(size_t pos) { data &= ~(1 << pos); }
+    void set(size_t pos, bool val) {
+        u32 r31 = 1UL << pos;
+        if (val) {
+            data |= r31;
+        } else {
+            data &= ~r31;
+        }
+    }
+    void reset(size_t pos) { data &= ~(1UL << pos); }
 private:
     size_t data;
 };

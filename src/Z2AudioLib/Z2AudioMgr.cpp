@@ -24,7 +24,6 @@ Z2AudioMgr::Z2AudioMgr() : mSoundStarter(true) {
     field_0x519 = false;
 }
 
-// NONMATCHING JASPoolAllocObject<_> locations
 void Z2AudioMgr::init(JKRSolidHeap* heap, u32 memSize, void* baaData, JKRArchive* seqArc) {
     JAU_JASInitializer JASInitializer;
     JASInitializer.audioMemSize_ = memSize;
@@ -62,6 +61,10 @@ void Z2AudioMgr::init(JKRSolidHeap* heap, u32 memSize, void* baaData, JKRArchive
     categoryArrangement.mItems[8].mMaxInactiveSe = 5;
     categoryArrangement.mItems[9].mMaxActiveSe = 8;
     categoryArrangement.mItems[9].mMaxInactiveSe = 4;
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    categoryArrangement.mItems[10].mMaxInactiveSe = 4;
+    categoryArrangement.mItems[11].mMaxInactiveSe = 2;
+    #endif
     seMgr->setCategoryArrangement(categoryArrangement);
 
     seMgr->getCategory(0)->getParams()->moveVolume(Z2Param::VOL_SE_SYSTEM_DEFAULT, 0);
@@ -74,6 +77,9 @@ void Z2AudioMgr::init(JKRSolidHeap* heap, u32 memSize, void* baaData, JKRArchive
     seMgr->getCategory(7)->getParams()->moveVolume(Z2Param::VOL_SE_CHAR_VOICE_DEFAULT, 0);
     seMgr->getCategory(8)->getParams()->moveVolume(Z2Param::VOL_SE_OBJECT_DEFAULT, 0);
     seMgr->getCategory(9)->getParams()->moveVolume(Z2Param::VOL_SE_ATMOSPHERE_DEFAULT, 0);
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    seMgr->getCategory(10)->getParams()->moveVolume(1.0f, 0);
+    #endif
 
     seMgr->getParams()->moveVolume(1.0f, 0);
 

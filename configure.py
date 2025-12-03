@@ -1114,7 +1114,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2EnvSeMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2WolfHowlMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SpeechMgr2.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2AudioMgr.cpp"),
+            Object(Equivalent, "Z2AudioLib/Z2AudioMgr.cpp"), # weak func order
         ],
     },
     {
