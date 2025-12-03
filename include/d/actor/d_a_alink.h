@@ -5172,7 +5172,7 @@ public:
     BOOL checkHorseStart(u32, int);
     int setStartProcInit();
     int create();
-    s32 setRoomInfo();
+    int setRoomInfo();
     void setShapeAngleOnGround();
     void setStepsOffset();
     void iceSlipBgCheck();
@@ -6934,9 +6934,9 @@ public:
     virtual void setAnimeFrame(f32);
     virtual BOOL checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
-    virtual s32 getAtnActorID() const { return mAtnActorID; }
-    virtual s32 getItemID() const { return mItemAcKeep.getID(); }
-    virtual u32 getGrabActorID() const {
+    virtual fpc_ProcID getAtnActorID() const { return mAtnActorID; }
+    virtual fpc_ProcID getItemID() const { return mItemAcKeep.getID(); }
+    virtual fpc_ProcID getGrabActorID() const {
         if (mEquipItem == 0x102) {
             return mItemAcKeep.getID();
         } else {
@@ -7133,7 +7133,7 @@ public:
     }
     virtual BOOL checkWolfDownAttackPullOut() const { return mProcID == PROC_WOLF_DOWN_AT_LAND; }
     virtual BOOL checkBootsOrArmorHeavy() const;
-    virtual s32 getBottleOpenAppearItem() const;
+    virtual fpc_ProcID getBottleOpenAppearItem() const;
     virtual bool checkItemSwordEquip() const { return mEquipItem == 0x103; }
     virtual f32 getSinkShapeOffset() const { return mSinkShapeOffset; }
     virtual BOOL checkSinkDead() const { return field_0x2fbd == 0xFF; }
@@ -7231,7 +7231,7 @@ public:
     void offModeFlg(u32 flag) { mModeFlg &= ~flag; }
     bool swordButton() { return itemButtonCheck(8); }
     daPy_actorKeep_c* getThrowBoomerangAcKeep() { return &mThrowBoomerangAcKeep; }
-    s32 getStartRoomNo() { return fopAcM_GetParam(this) & 0x3F; }
+    int getStartRoomNo() { return fopAcM_GetParam(this) & 0x3F; }
     bool checkFisingRodLure() const { return mEquipItem == 0x105; }
     BOOL doTrigger() const { return mItemTrigger & BTN_A; }
     bool swordTrigger() { return itemTriggerCheck(BTN_B); }
@@ -7265,7 +7265,7 @@ public:
         field_0x2844.clearData();
     }
 
-    s32 checkPlayerDemoMode() const { return mDemo.getDemoType(); }
+    int checkPlayerDemoMode() const { return mDemo.getDemoType(); }
     BOOL checkSpecialDemoMode() const {
         return mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e;
     }
@@ -7274,19 +7274,19 @@ public:
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
     BOOL checkClimbFall() { return checkLadderFall(); }
 
-    bool checkMidnaWolfDashAnime() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
-    bool checkMidnaClingAnime() const { return mMidnaAnm == 1; }
-    bool checkMidnaLowClingAnime() const { return mMidnaAnm == 2; }
-    bool checkMidnaLookAroundAnime() const { return mMidnaAnm == 3; }
-    bool checkMidnaPanicAnime() const { return mMidnaAnm == 5; }
-    bool checkMidnaWolfDeadAnime() const { return mMidnaAnm == 6; }
-    bool checkMidnaWolfSwimDeadAnime() const { return mMidnaAnm == 7; }
-    bool checkMidnaRopeWaitStaggerAnime() const { return mMidnaAnm == 8; }
-    bool checkMidnaRopeMoveStaggerAnime() const { return mMidnaAnm == 9; }
-    bool checkMidnaGanonCatchAnm() const { return mMidnaAnm == 10; }
-    bool checkMidnaGanonThrowLeftAnm() const { return mMidnaAnm == 11; }
-    bool checkMidnaGanonThrowRightAnm() const { return mMidnaAnm == 12; }
-    bool checkMidnaDigInAnime() const { return mMidnaAnm == 13; }
+    BOOL checkMidnaWolfDashAnime() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
+    BOOL checkMidnaClingAnime() const { return mMidnaAnm == 1; }
+    BOOL checkMidnaLowClingAnime() const { return mMidnaAnm == 2; }
+    BOOL checkMidnaLookAroundAnime() const { return mMidnaAnm == 3; }
+    BOOL checkMidnaPanicAnime() const { return mMidnaAnm == 5; }
+    BOOL checkMidnaWolfDeadAnime() const { return mMidnaAnm == 6; }
+    BOOL checkMidnaWolfSwimDeadAnime() const { return mMidnaAnm == 7; }
+    BOOL checkMidnaRopeWaitStaggerAnime() const { return mMidnaAnm == 8; }
+    BOOL checkMidnaRopeMoveStaggerAnime() const { return mMidnaAnm == 9; }
+    BOOL checkMidnaGanonCatchAnm() const { return mMidnaAnm == 10; }
+    BOOL checkMidnaGanonThrowLeftAnm() const { return mMidnaAnm == 11; }
+    BOOL checkMidnaGanonThrowRightAnm() const { return mMidnaAnm == 12; }
+    BOOL checkMidnaDigInAnime() const { return mMidnaAnm == 13; }
 
     void clearMidnaMsgNum() {
         mMidnaMsgNum = 0xffff;
@@ -7330,37 +7330,9 @@ public:
     MtxP getMagneBootsInvMtx() { return mMagneBootInvMtx; }
     s16 getMagneBootsModelShapeAngle() const { return field_0x3118; }
 
-    bool checkFishingCastMode() const {
-        bool var_r5;
-        bool var_r4 = 1;
-        bool var_r3 = 0;
-
-        if (mProcID == PROC_FISHING_CAST) {
-            var_r5 = 0;
-
-            if (mItemAcKeep.getActor() != NULL &&
-                mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt() != 0)
-            {
-                var_r5 = 1;
-            }
-
-            if (!var_r5) {
-                var_r3 = 1;
-            }
-        }
-
-        if (!var_r3) {
-            bool var_r3_2 = 0;
-            if (mProcID != PROC_FISHING_CAST && checkNoResetFlg2(FLG2_UNK_20000000)) {
-                var_r3_2 = 1;
-            }
-
-            if (!var_r3_2) {
-                var_r4 = 0;
-            }
-        }
-
-        return var_r4;
+    BOOL checkFishingCastMode() const {
+        return (mProcID == PROC_FISHING_CAST && !(mItemAcKeep.getActor() != NULL && mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt())) ||
+               (mProcID != PROC_FISHING_CAST && checkNoResetFlg2(FLG2_UNK_20000000) != 0);
     }
 
     BOOL setCanoeCast() {
@@ -7807,10 +7779,10 @@ public:
     /* 0x02864 */ dMsgFlow_c mMsgFlow;
     /* 0x028B0 */ fpc_ProcID mShieldArrowIDs[16];
     /* 0x028F0 */ fpc_ProcID mMsgClassID;
-    /* 0x028F4 */ int mAtnActorID;
+    /* 0x028F4 */ fpc_ProcID mAtnActorID;
     /* 0x028F8 */ fpc_ProcID field_0x28f8;
     /* 0x028FC */ fpc_ProcID field_0x28fc;
-    /* 0x02900 */ u32 field_0x2900;
+    /* 0x02900 */ fpc_ProcID field_0x2900;
     /* 0x02904 */ daAlink_footData_c mFootData1[2];
     /* 0x02A4C */ daAlink_footData_c mFootData2[2];
     /* 0x02B94 */ f32 field_0x2b94;

@@ -366,12 +366,15 @@ void daNpc_Zelda_c::reset() {
 
     acStack_20.setall(0);
     acStack_20.y = home.angle.y;
+
     switch (field_0xf80) {
     case 0:
+        break;
     default:
-        setAngle(acStack_20);
         break;
     }
+
+    setAngle(acStack_20);
 }
 
 void daNpc_Zelda_c::afterJntAnm(int param_0) {

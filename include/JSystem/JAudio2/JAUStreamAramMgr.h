@@ -59,7 +59,6 @@ public:
         }
         return NULL;
     }
-    // NONMATCHING regalloc
     virtual bool deleteStreamAram(u32 param_0) {
         for (u32 i = 0; i < field_0x4c; i++) {
             if (!this->field_0x4.test(i)) {
@@ -80,7 +79,7 @@ public:
         if (!heap) {
             heap = JASKernel::getAramHeap();
         }
-        if (numReserve < 1) {
+        if (numReserve <= 0) {
             numReserve = 1;
         }
         JUT_ASSERT(83, numReserve <= MAX_CHUNKS);

@@ -7,7 +7,7 @@
 #include "JSystem/JUtility/JUTTexture.h"
 #include "dolphin/gx.h"
 
-// NONMATCHING - instruction order
+// NONMATCHING - instruction order. matches if const is removed from j2dDefaultColorChanInfo, but then it's in the wrong section
 void J2DColorBlock::initialize() {
     for (int i = 0; i < 2; i++) {
         mMatColor[i] = JUtility::TColor(j2dDefaultColInfo);

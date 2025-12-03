@@ -29,7 +29,7 @@ public:
 
     void* getBase() { return mBase; }
     bool isAllocated() { return mBase; }
-    u32 getSize() { return mSize; }
+    u32 getSize() const { return mSize; }
 
     /* 0x00 */ JSUTree<JASHeap> mTree;
     /* 0x1C */ OSMutex mMutex;

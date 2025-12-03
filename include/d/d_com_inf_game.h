@@ -290,7 +290,7 @@ public:
     dVibration_c& getVibration() { return mVibration; }
     camera_class* getCamera(int idx) { return mCameraInfo[idx].mCamera; }
     void* getPlayerPtr(int ptrIdx) { return mPlayerPtr[ptrIdx]; }
-    fopAc_ac_c* getPlayer(int idx) { return (fopAc_ac_c*)mPlayer[idx * 2]; }
+    fopAc_ac_c* getPlayer(int idx) { return mPlayerInfo[idx].mpPlayer; }
     dPa_control_c* getParticle() { return mParticle; }
     dEvent_manager_c& getEvtManager() { return mEvtManager; }
     dAttention_c* getAttention() { return &mAttention; }
@@ -653,16 +653,16 @@ public:
     void* getItemTable() { return mItemTable; }
 
     void setPlayerPtr(int i, fopAc_ac_c* ptr) { mPlayerPtr[i] = ptr; }
-    void setPlayer(int i, fopAc_ac_c* player) { mPlayer[i] = (daAlink_c*)player; }
-    void setPlayerInfo(int i, fopAc_ac_c* ptr, int camIdx) {
-        mPlayer[i] = (daAlink_c*)ptr;
-        mPlayerCameraID[camIdx] = 0;
+    void setPlayer(int i, fopAc_ac_c* player) { mPlayerInfo[i].mpPlayer = player; }
+    void setPlayerInfo(int i, fopAc_ac_c* player, int cam) {
+        mPlayerInfo[i].mpPlayer = player;
+        mPlayerInfo[i].mCameraID = cam;
     }
     void setPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] |= flag; }
     void clearPlayerStatus(int param_0, int i, u32 flag) { mPlayerStatus[param_0][i] &= ~flag; }
     u32 checkPlayerStatus(int param_0, int i, u32 flag) { return mPlayerStatus[param_0][i] & flag; }
 
-    int getPlayerCameraID(int i) { return mPlayerCameraID[i * 8]; }
+    int getPlayerCameraID(int i) { return mPlayerInfo[i].mCameraID; }
     int getCameraPlayer1ID(int i) { return mCameraInfo[i].field_0x5; }
     int getCameraPlayer2ID(int i) { return mCameraInfo[i].field_0x6; }
     int getCameraWinID(int i) { return mCameraInfo[i].field_0x4; }
@@ -814,8 +814,10 @@ public:
     /* 0x04E0E */ u16 mStatus;
     /* 0x04E10 */ dDlst_window_c mWindow[1];
     /* 0x04E3C */ dComIfG_camera_info_class mCameraInfo[1];
-    /* 0x04E74 */ daAlink_c* mPlayer[1];
-    /* 0x04E78 */ s8 mPlayerCameraID[1];
+    /* 0x04E74 */ struct {
+        /* 0x0 */ fopAc_ac_c* mpPlayer;
+        /* 0x4 */ s8 mCameraID;
+    } mPlayerInfo[1];
     /* 0x04E7C */ fopAc_ac_c* mPlayerPtr[2];  // 0: Player, 1: Horse ; type may be wrong
     /* 0x04E84 */ dComIfG_item_info_class mItemInfo;
     /* 0x04FB0 */ dComIfG_MesgCamInfo_c mMesgCamInfo;
@@ -3990,8 +3992,8 @@ inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
 
 inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
                                  const dKy_tevstr_c* param_3) {
-    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, 0, 0, 0xFF, 0, 0xFFFFFFFF, 0,
-                                 0, 0);
+    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, NULL, NULL, 0xFF, NULL, -1, NULL,
+                                 NULL, NULL);
 }
 
 inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos,

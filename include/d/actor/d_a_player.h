@@ -716,9 +716,9 @@ public:
     cXyz getRightHandPos() const { return mRightHandPos; }
     const cXyz getLeftHandPos() const { return mLeftHandPos; }
     const cXyz getItemPos() const { return mItemPos; }
-    bool getDkCaught() const { return checkNoResetFlg1(FLG1_DK_CAUGHT); }
-    bool getDkCaught2() const { return checkNoResetFlg0(FLG0_DK_CAUGHT); }
-    bool getStCaught() const { return checkNoResetFlg1(FLG1_UNK_80000000); }
+    BOOL getDkCaught() const { return checkNoResetFlg1(FLG1_DK_CAUGHT); }
+    BOOL getDkCaught2() const { return checkNoResetFlg0(FLG0_DK_CAUGHT); }
+    BOOL getStCaught() const { return checkNoResetFlg1(FLG1_UNK_80000000); }
 
     /* vt 0X008 */ virtual cXyz* getMidnaAtnPos() const { return NULL; }
     /* vt 0X00C */ virtual void setMidnaMsgNum(fopAc_ac_c*, u16) {}
@@ -779,9 +779,9 @@ public:
     /* vt 0X0E8 */ virtual void setAnimeFrame(f32) {}
     /* vt 0X0EC */ virtual BOOL checkWolfLock(fopAc_ac_c*) const { return FALSE; }
     /* vt 0X0F0 */ virtual bool cancelWolfLock(fopAc_ac_c*) { return FALSE; }
-    /* vt 0X0F4 */ virtual s32 getAtnActorID() const { return fpcM_ERROR_PROCESS_ID_e; }
-    /* vt 0X0F8 */ virtual s32 getItemID() const { return fpcM_ERROR_PROCESS_ID_e; }
-    /* vt 0X0FC */ virtual u32 getGrabActorID() const { return fpcM_ERROR_PROCESS_ID_e; }
+    /* vt 0X0F4 */ virtual fpc_ProcID getAtnActorID() const { return fpcM_ERROR_PROCESS_ID_e; }
+    /* vt 0X0F8 */ virtual fpc_ProcID getItemID() const { return fpcM_ERROR_PROCESS_ID_e; }
+    /* vt 0X0FC */ virtual fpc_ProcID getGrabActorID() const { return fpcM_ERROR_PROCESS_ID_e; }
     /* vt 0X100 */ virtual BOOL exchangeGrabActor(fopAc_ac_c*) { return FALSE; }
     /* vt 0X104 */ virtual BOOL setForceGrab(fopAc_ac_c*, int, int) { return FALSE; }
     /* vt 0X108 */ virtual void setForcePutPos(cXyz const&) {}
@@ -879,7 +879,7 @@ public:
     /* vt 0X278 */ virtual BOOL checkMetamorphose() const { return FALSE; }
     /* vt 0X27C */ virtual BOOL checkWolfDownAttackPullOut() const { return FALSE; }
     /* vt 0X280 */ virtual BOOL checkBootsOrArmorHeavy() const { return FALSE; }
-    /* vt 0X284 */ virtual s32 getBottleOpenAppearItem() const { return fpcM_ERROR_PROCESS_ID_e; }
+    /* vt 0X284 */ virtual fpc_ProcID getBottleOpenAppearItem() const { return fpcM_ERROR_PROCESS_ID_e; }
     /* vt 0X288 */ virtual bool checkItemSwordEquip() const { return FALSE; }
     /* vt 0X28C */ virtual f32 getSinkShapeOffset() const { return 0.0f; }
     /* vt 0X290 */ virtual BOOL checkSinkDead() const { return FALSE; }
@@ -1170,9 +1170,6 @@ public:
     static daMidna_c* getMidnaActor() { return m_midnaActor; }
     static void setMidnaActor(fopAc_ac_c* actor) { m_midnaActor = (daMidna_c*)actor; }
 
-    // not sure how to define this properly
-    // static void onWolfEnemyCatch(fopAc_ac_c* i_actorP) { onWolfEnemyBiteAll(i_actorP,8);}
-
     BOOL checkWolfEnemyCatchOwn(fopAc_ac_c* i_actorP) { return checkWolfEnemyBiteAllOwn(i_actorP); }
     BOOL checkWolfEnemyHangBiteOwn(const fopAc_ac_c* i_actorP) const { return checkWolfEnemyBiteAllOwn(i_actorP); }
     BOOL checkWolfEnemyLeftThrow() const { return checkNoResetFlg2(FLG2_WOLF_ENEMY_LEFT_THROW); }
@@ -1225,23 +1222,23 @@ public:
     void setSumouForceTackle() { mSpecialMode = 0x1B; }
     void setSumouForceGraspCancel() { mSpecialMode = 0x24; }
 
-    BOOL checkSumouPushFront() const { return mSpecialMode == 7; }
-    BOOL checkSumouPushBack() const { return mSpecialMode == 8; }
-    BOOL checkSumouTackleSuccess() const { return mSpecialMode == 0xF; }
-    BOOL checkSumouTackleSuccessPunch() const { return mSpecialMode == 0x10; }
-    BOOL checkSumouTackleMiss() const { return mSpecialMode == 0x11; }
-    BOOL checkSumouTackleDraw() const { return mSpecialMode == 0x12; }
-    BOOL checkSumouPunchSuccess() const { return mSpecialMode == 0x13; }
-    BOOL checkSumouPunchMiss() const { return mSpecialMode == 0x14; }
-    BOOL checkSumouPunchDraw() const { return mSpecialMode == 0x15; }
-    BOOL checkSumouWait() const { return mSpecialMode == 0x16; }
-    BOOL checkSumouLeftMove() const { return mSpecialMode == 0x17; }
-    BOOL checkSumouRightMove() const { return mSpecialMode == 0x18; }
-    BOOL checkSumouSlideLeft() const { return mSpecialMode == 0x19; }
-    BOOL checkSumouSlideRight() const { return mSpecialMode == 0x1A; }
-    BOOL checkSumouPunchStagger() const { return mSpecialMode == 0x1F; }
-    BOOL checkSumouTackleStagger() const { return mSpecialMode == 0x20; }
-    BOOL checkSumouGraspRelease() const { return mSpecialMode == 0x23; }
+    bool checkSumouPushFront() const { return mSpecialMode == 7; }
+    bool checkSumouPushBack() const { return mSpecialMode == 8; }
+    bool checkSumouTackleSuccess() const { return mSpecialMode == 0xF; }
+    bool checkSumouTackleSuccessPunch() const { return mSpecialMode == 0x10; }
+    bool checkSumouTackleMiss() const { return mSpecialMode == 0x11; }
+    bool checkSumouTackleDraw() const { return mSpecialMode == 0x12; }
+    bool checkSumouPunchSuccess() const { return mSpecialMode == 0x13; }
+    bool checkSumouPunchMiss() const { return mSpecialMode == 0x14; }
+    bool checkSumouPunchDraw() const { return mSpecialMode == 0x15; }
+    bool checkSumouWait() const { return mSpecialMode == 0x16; }
+    bool checkSumouLeftMove() const { return mSpecialMode == 0x17; }
+    bool checkSumouRightMove() const { return mSpecialMode == 0x18; }
+    bool checkSumouSlideLeft() const { return mSpecialMode == 0x19; }
+    bool checkSumouSlideRight() const { return mSpecialMode == 0x1A; }
+    bool checkSumouPunchStagger() const { return mSpecialMode == 0x1F; }
+    bool checkSumouTackleStagger() const { return mSpecialMode == 0x20; }
+    bool checkSumouGraspRelease() const { return mSpecialMode == 0x23; }
 
     void onHeavyState() { onNoResetFlg0(FLG0_UNK_40000000); }
     void onHeavyStateMidnaPanic() {

@@ -169,8 +169,8 @@ public:
     BOOL checkCommandCatch() { return mCommand == dEvtCmd_INCATCH_e; }
     BOOL checkCommandDoor() { return mCommand == dEvtCmd_INDOOR_e; }
     BOOL checkCommandDemoAccrpt() { return mCommand == dEvtCmd_INDEMO_e; }
-    bool checkCommandTalk() { return mCommand == dEvtCmd_INTALK_e; }
-    bool checkCommandItem() { return mCommand == dEvtCmd_INGETITEM_e; }
+    BOOL checkCommandTalk() { return mCommand == dEvtCmd_INTALK_e; }
+    BOOL checkCommandItem() { return mCommand == dEvtCmd_INGETITEM_e; }
 
     void setCommand(u16 command) { mCommand = command; }
     void setMapToolId(u8 id) { mMapToolId = id; }
@@ -309,14 +309,14 @@ public:
     void setBallModelEffect(dKy_tevstr_c*);
     void drawBallModel(dKy_tevstr_c*);
 
-    bool checkWolfNoLock() const { return mFlags & fopEn_flag_WolfNoLock; }
+    BOOL checkWolfNoLock() const { return mFlags & fopEn_flag_WolfNoLock; }
     BOOL checkHeadLockFlg() const { return mFlags & fopEn_flag_HeadLock; }
     BOOL checkWolfBiteDamage() const { return mFlags & fopEn_flag_WolfBiteDamage; }
     BOOL checkWolfDownPullFlg() const { return mFlags & fopEn_flag_WolfDownPull; }
-    bool checkDownFlg() { return mFlags & fopEn_flag_Down; }
+    BOOL checkDownFlg() { return mFlags & fopEn_flag_Down; }
     BOOL checkCutDownHitFlg() const { return mFlags & fopEn_flag_CutDownHit; }
     BOOL checkWolfDownStartFlg() const { return mFlags & fopEn_flag_WolfDownStart; }
-    bool checkDeadFlg() const { return mFlags & fopEn_flag_Dead; }
+    BOOL checkDeadFlg() const { return mFlags & fopEn_flag_Dead; }
     BOOL checkThrowMode(u8 param_1) const { return mThrowMode & param_1; }
 
     u32* getMidnaBindID(int i_idx) { return mMidnaBindID + i_idx; }

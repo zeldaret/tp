@@ -678,12 +678,12 @@ int daAlink_c::procCanoeWait() {
     return 1;
 }
 
-// NONMATCHING - incorrect code gen related to daAlink_ANM
+// NONMATCHING - regalloc, equivalent
 int daAlink_c::procCanoeRowInit(int param_0) {
     fopAc_ac_c* temp_r26 = mRideAcKeep.getActor();
     field_0x3198 = -2;
 
-    daAlink_ANM var_r29;
+    int var_r29;
     if (param_0 < 0) {
         if (checkInputOnR()) {
             s16 sp8 = (s16)(field_0x2fe2 - shape_angle.y);
@@ -722,19 +722,26 @@ int daAlink_c::procCanoeRowInit(int param_0) {
             }
 
             if (spC == 1) {
-                var_r29 = (daAlink_ANM)(var_r28 == 2 ? (int)ANM_CANOE_ROW_RIGHT_BACK : (int)ANM_CANOE_ROW_LEFT_BACK);
+                if (var_r28 == 2) {
+                    var_r29 = ANM_CANOE_ROW_RIGHT_BACK;
+                } else {
+                    var_r29 = ANM_CANOE_ROW_LEFT_BACK;
+                }
 
                 if ((var_r29 == ANM_CANOE_ROW_RIGHT_BACK && mProcVar5.field_0x3012 == 0) || (var_r29 == ANM_CANOE_ROW_LEFT_BACK && mProcVar5.field_0x3012 == 1)) {
                     return procCanoePaddleShiftInit(var_r29);
                 }
             } else {
-                var_r29 = (daAlink_ANM)(var_r28 == 2 ? (int)ANM_CANOE_ROW_RIGHT : (int)ANM_CANOE_ROW_LEFT);
+                if (var_r28 == 2) {
+                    var_r29 = ANM_CANOE_ROW_RIGHT;
+                } else {
+                    var_r29 = ANM_CANOE_ROW_LEFT;
+                }
 
                 if ((var_r29 == ANM_CANOE_ROW_RIGHT && mProcVar5.field_0x3012 == 0) || (var_r29 == ANM_CANOE_ROW_LEFT && mProcVar5.field_0x3012 == 1)) {
                     return procCanoePaddleShiftInit(var_r29);
                 }
             }
-
         } else {
             if (param_0 == -3) {
                 if (mProcVar5.field_0x3012 == 1) {
@@ -751,8 +758,11 @@ int daAlink_c::procCanoeRowInit(int param_0) {
                 var_r29 = ANM_CANOE_ROW_LEFT;
             }
         }
+
+        // Need something here that generates no code in order for debug branches to match.
+        (void)0;
     } else {
-        var_r29 = (daAlink_ANM)param_0;
+        var_r29 = param_0;
     }
 
     commonProcInit(PROC_CANOE_ROW);

@@ -221,13 +221,14 @@ int daTagLv7Gate_c::execute() {
     // Fakematch
     dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();
     if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk()) {
-        s32 cut_index = dComIfGp_evmng_getMyStaffId(l_arcName, NULL, 0);
+        dEvent_manager_c& evtMgr = dComIfGp_getEventManager();
+        s32 cut_index = evtMgr.getMyStaffId(l_arcName, NULL, 0);
         if (cut_index != -1) {
-            int* cut_name = (int*)play.getEvtManager().getMyNowCutName(cut_index); // Fakematch
+            int* cut_name = (int*)evtMgr.getMyNowCutName(cut_index); // Fakematch
 
             daPy_getPlayerActorClass()->onShieldBackBone();
 
-            if (dComIfGp_evmng_getIsAddvance(cut_index)) {
+            if (evtMgr.getIsAddvance(cut_index)) {
                 switch (*cut_name) {
                 case '0002':
                     field_0x5b1 = true;
@@ -237,25 +238,31 @@ int daTagLv7Gate_c::execute() {
                     break;
                 case '0003':
                     break;
+                default:
+                    JUT_ASSERT(455, FALSE);
+                    break;
                 }
             }
 
             switch (*cut_name) {
             case '0001':
-                dComIfGp_evmng_cutEnd(cut_index);
+                evtMgr.cutEnd(cut_index);
                 break;
             case '0002':
-                mDoAud_seStartLevel(Z2SE_EN_DR_DEMO_FIRST, &mPos1, 0, 0);
+                Z2GetAudioMgr()->seStartLevel(Z2SE_EN_DR_DEMO_FIRST, &mPos1, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                 if (!field_0x5b1) {
-                    dComIfGp_evmng_cutEnd(cut_index);
+                    evtMgr.cutEnd(cut_index);
                 }
                 break;
             case '0003':
                 break;
+            default:
+                JUT_ASSERT(477, FALSE);
+                break;
             }
 
             if (eventInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
-                dComIfGp_evmng_endCheck(mEvtId)) {
+                evtMgr.endCheck(mEvtId)) {
                 // dComIfGp_event_reset();
                 play.getEvent().reset(); // Fakematch
                 mEvtId = -1;

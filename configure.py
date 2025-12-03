@@ -1114,7 +1114,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2EnvSeMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2WolfHowlMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SpeechMgr2.cpp"),
-            Object(NonMatching, "Z2AudioLib/Z2AudioMgr.cpp"),
+            Object(Equivalent, "Z2AudioLib/Z2AudioMgr.cpp"), # weak func order
         ],
     },
     {
@@ -1703,7 +1703,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_swpush"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_timer"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_path_line"),
-    ActorRel(NonMatching, "d_a_scene_exit"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_scene_exit"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_set_bgobj"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_swhit0"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_allmato"),
