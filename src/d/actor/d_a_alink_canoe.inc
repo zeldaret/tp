@@ -742,7 +742,6 @@ int daAlink_c::procCanoeRowInit(int param_0) {
                     return procCanoePaddleShiftInit(var_r29);
                 }
             }
-
         } else {
             if (param_0 == -3) {
                 if (mProcVar5.field_0x3012 == 1) {

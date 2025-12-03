@@ -779,9 +779,9 @@ public:
     /* vt 0X0E8 */ virtual void setAnimeFrame(f32) {}
     /* vt 0X0EC */ virtual BOOL checkWolfLock(fopAc_ac_c*) const { return FALSE; }
     /* vt 0X0F0 */ virtual bool cancelWolfLock(fopAc_ac_c*) { return FALSE; }
-    /* vt 0X0F4 */ virtual s32 getAtnActorID() const { return fpcM_ERROR_PROCESS_ID_e; }
-    /* vt 0X0F8 */ virtual s32 getItemID() const { return fpcM_ERROR_PROCESS_ID_e; }
-    /* vt 0X0FC */ virtual u32 getGrabActorID() const { return fpcM_ERROR_PROCESS_ID_e; }
+    /* vt 0X0F4 */ virtual fpc_ProcID getAtnActorID() const { return fpcM_ERROR_PROCESS_ID_e; }
+    /* vt 0X0F8 */ virtual fpc_ProcID getItemID() const { return fpcM_ERROR_PROCESS_ID_e; }
+    /* vt 0X0FC */ virtual fpc_ProcID getGrabActorID() const { return fpcM_ERROR_PROCESS_ID_e; }
     /* vt 0X100 */ virtual BOOL exchangeGrabActor(fopAc_ac_c*) { return FALSE; }
     /* vt 0X104 */ virtual BOOL setForceGrab(fopAc_ac_c*, int, int) { return FALSE; }
     /* vt 0X108 */ virtual void setForcePutPos(cXyz const&) {}
@@ -879,7 +879,7 @@ public:
     /* vt 0X278 */ virtual BOOL checkMetamorphose() const { return FALSE; }
     /* vt 0X27C */ virtual BOOL checkWolfDownAttackPullOut() const { return FALSE; }
     /* vt 0X280 */ virtual BOOL checkBootsOrArmorHeavy() const { return FALSE; }
-    /* vt 0X284 */ virtual s32 getBottleOpenAppearItem() const { return fpcM_ERROR_PROCESS_ID_e; }
+    /* vt 0X284 */ virtual fpc_ProcID getBottleOpenAppearItem() const { return fpcM_ERROR_PROCESS_ID_e; }
     /* vt 0X288 */ virtual bool checkItemSwordEquip() const { return FALSE; }
     /* vt 0X28C */ virtual f32 getSinkShapeOffset() const { return 0.0f; }
     /* vt 0X290 */ virtual BOOL checkSinkDead() const { return FALSE; }

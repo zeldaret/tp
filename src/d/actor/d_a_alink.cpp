@@ -2689,7 +2689,7 @@ cXyz* daAlink_c::getNeckAimPos(cXyz* param_0, int* param_1, int param_2) {
                 }
             }
         } else {
-            field_0x28fc = -1;
+            field_0x28fc = fpcM_ERROR_PROCESS_ID_e;
             field_0x30f8 = 0;
         }
     }
@@ -4281,12 +4281,12 @@ void daAlink_c::playerInit() {
     field_0x2f97 = -1;
 
     for (int i = 0; i < 0x10; i++) {
-        mShieldArrowIDs[i] = -1;
+        mShieldArrowIDs[i] = fpcM_ERROR_PROCESS_ID_e;
     }
-    mAtnActorID = -1;
-    mMsgClassID = -1;
-    field_0x28f8 = -1;
-    field_0x28fc = -1;
+    mAtnActorID = fpcM_ERROR_PROCESS_ID_e;
+    mMsgClassID = fpcM_ERROR_PROCESS_ID_e;
+    field_0x28f8 = fpcM_ERROR_PROCESS_ID_e;
+    field_0x28fc = fpcM_ERROR_PROCESS_ID_e;
 
     field_0x2e54.init(&mLinkAcch, mpHIO->mBasic.m.mWaterSurfaceEffectHeight, field_0x598);
     field_0x3108 = shape_angle.y;
@@ -4583,7 +4583,7 @@ int daAlink_c::create() {
             field_0x2900 = fopAcM_create(PROC_Obj_IceLeaf, 0x1FFFF, &current.pos,
                                          fopAcM_GetRoomNo(this), &shape_angle, NULL, -1);
         } else {
-            field_0x2900 = -1;
+            field_0x2900 = fpcM_ERROR_PROCESS_ID_e;
         }
     }
 
@@ -4594,7 +4594,7 @@ int daAlink_c::create() {
         (startMode == 14 && !dComIfG_Bgsp().ChkMoveBG(mLinkAcch.m_gnd)) ||
         (startPoint == -4 &&
          !(var_r24 = fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchPortal, &current.pos))) ||
-        (field_0x2900 != -1 && !fopAcM_SearchByID(field_0x2900)) ||
+        (field_0x2900 != fpcM_ERROR_PROCESS_ID_e && !fopAcM_SearchByID(field_0x2900)) ||
         (checkCanoeStart() && !fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchCanoe, NULL)) ||
         (checkBoarStart() && !fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchBoar, NULL)) ||
         (startMode == 13 &&
@@ -4701,7 +4701,7 @@ static int daAlink_Create(fopAc_ac_c* i_this) {
     return static_cast<daAlink_c*>(i_this)->create();
 }
 
-s32 daAlink_c::setRoomInfo() {
+int daAlink_c::setRoomInfo() {
     s32 roomID;
 
     if (mProcID != PROC_TW_GATE) {

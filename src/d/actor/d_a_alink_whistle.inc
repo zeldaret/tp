@@ -146,7 +146,7 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
     mProcVar0.field_0x3008 = 0;
     mProcVar4.field_0x3010 = 0;
     mProcVar5.field_0x3012 = 0;
-    mMsgClassID = -1;
+    mMsgClassID = fpcM_ERROR_PROCESS_ID_e;
     mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
     field_0x2f98 = 4;

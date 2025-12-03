@@ -3814,7 +3814,7 @@ static void* daAlink_searchWolfHowl(fopAc_ac_c* i_actor, void* i_data) {
 }
 
 void daAlink_c::setWolfHowlNotHappen(int param_0) {
-    mMsgClassID = -1;
+    mMsgClassID = fpcM_ERROR_PROCESS_ID_e;
 
     if (field_0x3198 == 0xEE) {
         field_0x32cc = 0x532;
@@ -3945,7 +3945,7 @@ int daAlink_c::procWolfHowlDemoInit() {
 
     dCam_getBody()->StartEventCamera(12, fopAcM_GetID(this), 0);
     mProcVar1.field_0x300a = 0;
-    mMsgClassID = -1;
+    mMsgClassID = fpcM_ERROR_PROCESS_ID_e;
     field_0x32cc = 0x5DD;
     mProcVar2.field_0x300c = 0;
     mProcVar3.field_0x300e = -1;
