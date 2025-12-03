@@ -279,7 +279,7 @@ static void chain_control_01(obj_key_class* i_this) {
     J3DModel* parent_model;
     if (fopAcM_GetName(pparent) == PROC_E_DN) {
         e_dn_class* dn = (e_dn_class*)pparent;
-        parent_model = dn->mpModelMorf->getModel();
+        parent_model = dn->anm_p->getModel();
 
         MTXCopy(parent_model->getAnmMtx(1), *calc_mtx);
         spC4.set(5.0f + KREG_F(0), 30.0f + KREG_F(1), 20.0f + KREG_F(2));
