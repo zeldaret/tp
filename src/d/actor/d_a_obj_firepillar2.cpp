@@ -40,7 +40,7 @@ void daObjFPillar2_c::setBaseMtx() {
 
 static char* l_arcName = "Obj_yogan";
 
-static Vec l_cull_box[2] = {
+static cull_box l_cull_box = {
     {-150.0f, -10.0f, -150.0f},
     {150.0f, 1200.0f, 150.0f},
 };
@@ -92,8 +92,8 @@ int daObjFPillar2_c::Create() {
     if (getKind() == KIND_MAGMA_POLE) {
         mCps.SetAtSpl(dCcG_At_Spl_UNK_0);
     }
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x, l_cull_box[1].y,
-                          l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x, l_cull_box.max.y,
+                          l_cull_box.max.z);
     fopAcM_SetMtx(this, mMtx);
     mSoundObj.init(&mSoundPos, 1);
     if (getKind() == KIND_PIPE_FIRE) {

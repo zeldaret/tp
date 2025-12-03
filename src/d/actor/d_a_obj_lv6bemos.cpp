@@ -110,9 +110,9 @@ void daObjL6Bm_c::setBaseMtx() {
 
 static char* l_arcName = "Obj_lv6bm";
 
-static f32 l_cull_box[6] = {
-    -200.0f, -100.0f, -200.0f,
-    200.0f, 100.0f, 200.0f,
+static cull_box l_cull_box = {
+    {-200.0f, -100.0f, -200.0f},
+    {200.0f, 100.0f, 200.0f},
 };
 
 static dCcD_SrcCps l_cps_src = {
@@ -136,7 +136,7 @@ int daObjL6Bm_c::Create() {
     field_0x748.Set(l_sph_src);
     field_0x748.SetStts(&mStts);
 
-    fopAcM_setCullSizeBox(this, l_cull_box[0], l_cull_box[1], l_cull_box[2], l_cull_box[3], l_cull_box[4], l_cull_box[5]);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x, l_cull_box.max.y, l_cull_box.max.z);
 
     J3DJoint* neckJnt = mBeamosModel->getModelData()->getJointNodePointer(1);
     if (neckJnt != NULL) {

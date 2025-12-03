@@ -48,7 +48,7 @@ static cXyz l_smokeSetOffset(0.0f, 0.0f, -200.0f);
 static s32 unused_bss_70 = 0;
 #endif
 
-static Vec const l_cull_box[2] = {
+static cull_box const l_cull_box = {
     {-250.0f, 0.0f, -450.0f},
     {250.0f, 250.0f, 400.0f},
 };
@@ -139,8 +139,8 @@ int daObjCBlk_c::Create() {
         cyls[i].Set(l_cyl_src);
         cyls[i].SetStts(&stts);
     }
-    fopAcM_setCullSizeBox(this, l_cull_box[0].x, l_cull_box[0].y, l_cull_box[0].z, l_cull_box[1].x,
-                          l_cull_box[1].y, l_cull_box[1].z);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
     cXyz acStack_40(0.0f, 0.0f, 50.0f);
     mDoMtx_stack_c::YrotS(current.angle.y);
     mDoMtx_stack_c::multVec(&acStack_40, &acStack_40);

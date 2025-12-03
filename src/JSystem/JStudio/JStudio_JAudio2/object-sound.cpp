@@ -109,11 +109,11 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_update(u32 param_1) {
     JUT_ASSERT(196, pControl!=NULL);
     JStudio::TControl::TTransform_position VStack_148;
     JStudio::TControl::TTransform_position VStack_154;
-    JStudio::TControl::TTransform_position* pVVar2;
+    const JStudio::TControl::TTransform_position* pVVar2;
     adaptor_getVariableValue_Vec(&VStack_148,
                                  JStudio::TAdaptor_sound::sauVariableValue_3_POSITION_XYZ);
     if (field_0x144 == 0) {
-        pVVar2 = pControl->transformOnSet_transform_ifEnabled(&VStack_148, &VStack_154);
+        pVVar2 = pControl->transformOnSet_transform_ifEnabled(VStack_148, &VStack_154);
     } else {
         if (!JStudio_JStage::transform_toGlobalFromLocal(&VStack_154, VStack_148, field_0x13c, field_0x140)) {
             return;

@@ -9,39 +9,41 @@ namespace stb {
 namespace data {
 
 void TParse_TSequence::getData(TData* pData) const {
-    ASSERT(pData != NULL);
+    JUT_ASSERT(50, pData!=NULL);
 
     pData->content = NULL;
     pData->next = NULL;
     u32 head = get_head();
     u8 type = head >> 24;
     u32 param = head & 0xffffff;
-    pData->type = type;
+    pData->type = type & 0xff;
     pData->param = param;
-    if (type != 0) {
-        const void* next = (const void*)((int)getRaw() + 4);
-        if (type <= 0x7f) {
-            pData->next = next;
-        } else {
-            pData->content = next;
-            pData->next = (const void*)((int)next + param);
-        }
+
+    if (type == 0)
+        return;
+    
+    const void* next = (const void*)((int)getRaw() + 4);
+    if (type <= 0x7f) {
+        pData->next = next;
+    } else {
+        pData->content = next;
+        pData->next = (const void*)((int)next + param);
     }
 }
 
 void TParse_TParagraph::getData(TData* pData) const {
-    ASSERT(pData != NULL);
+    JUT_ASSERT(80, pData!=NULL);
 
     const void* data = getRaw();
     u32 result;
-    const void* next = parseVariableUInt_16_32_following(data, &result, &pData->type, NULL);
+    data = parseVariableUInt_16_32_following(data, &result, &pData->type, NULL);
     pData->param = result;
     if (result == 0) {
         pData->content = NULL;
-        pData->next = next;
+        pData->next = data;
     } else {
-        pData->content = next;
-        pData->next = (const void*)((int)next + align_roundUp(result, 4));
+        pData->content = data;
+        pData->next = (const void*)((int)data + align_roundUp(result, 4));
     }
 }
 

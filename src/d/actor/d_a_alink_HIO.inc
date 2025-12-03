@@ -1601,7 +1601,7 @@ void daAlinkHIO_guard_c::genMessage(JORMContext* ctx) {
     // Reset
     ctx->genButton("リセット", 0x4000003, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Shield
-    ctx->genNode("盾", &mGuardAttack1, 0, 0);
+    ctx->genNode("盾", &mAtPush, 0, 0);
     // Sidestep
     ctx->genNode("回り込み", &mTurnMove, 0, 0);
     // Crouch guard anm speed
@@ -1657,7 +1657,7 @@ void daAlinkHIO_guard_c::genMessage(JORMContext* ctx) {
 }
 
 daAlinkHIO_guard_c::daAlinkHIO_guard_c()
-    : mGuardAttack1(0, 17.0f), mGuardAttack2(1, 21.0f), mTurnMove() {
+    : mAtPush(0, 17.0f), mAtKick(1, 21.0f), mTurnMove() {
     static const char plabel[] = "const daAlinkHIO_guard_c1 daAlinkHIO_guard_c0::m = {\n";
     m_len = 128;
     mp_src_data = (void*)&daAlinkHIO_guard_c0::m;
@@ -2388,9 +2388,9 @@ void daAlinkHIO_damage_c::genMessage(JORMContext* ctx) {
     // Normal
     ctx->genNode("通常", &mDamNormal, 0, 0);
     // Large
-    ctx->genNode("大", &mDamLaHu0, 0, 0);
+    ctx->genNode("大", &mDamLarge, 0, 0);
     // Heavy large
-    ctx->genNode("強大", &mDamLaHu1, 0, 0);
+    ctx->genNode("強大", &mDamHuge, 0, 0);
     // On horse
     ctx->genNode("馬上", &mDamHorse, 0, 0);
     // Fall
@@ -2454,7 +2454,7 @@ void daAlinkHIO_damage_c::genMessage(JORMContext* ctx) {
 }
 
 daAlinkHIO_damage_c::daAlinkHIO_damage_c()
-    : mDamNormal(), mDamLaHu0(0), mDamLaHu1(1), mDamHorse(), mDamFall(), mDamCaught(), mDamSwim() {
+    : mDamNormal(), mDamLarge(0), mDamHuge(1), mDamHorse(), mDamFall(), mDamCaught(), mDamSwim() {
     static const char plabel[] = "const daAlinkHIO_damage_c1 daAlinkHIO_damage_c0::m = {\n";
     m_len = 88;
     mp_src_data = (void*)&daAlinkHIO_damage_c0::m;
@@ -4740,8 +4740,8 @@ void daAlinkHIO_wlDamage_c::genMessage(JORMContext* ctx) {
     ctx->genNode("通常", &mNormal, 0, 0);
     // Large
     ctx->genNode("大", &mLarge, 0, 0);
-    // Strong large
-    ctx->genNode("強大", &mStrongLarge, 0, 0);
+    // Huge
+    ctx->genNode("強大", &mHuge, 0, 0);
     // Fall
     ctx->genNode("落下", &mFall, 0, 0);
     // Capture
@@ -4756,7 +4756,7 @@ void daAlinkHIO_wlDamage_c::genMessage(JORMContext* ctx) {
 }
 
 daAlinkHIO_wlDamage_c::daAlinkHIO_wlDamage_c()
-    : mNormal(), mLarge(0), mStrongLarge(1), mFall(), mCapture() {
+    : mNormal(), mLarge(0), mHuge(1), mFall(), mCapture() {
     static const char plabel[] = "const daAlinkHIO_wlDamage_c1 daAlinkHIO_wlDamage_c0::m = {\n";
     m_len = 44;
     mp_src_data = (void*)&daAlinkHIO_wlDamage_c0::m;

@@ -53,9 +53,9 @@ void daObjPDoor_c::setBaseMtx() {
 
 static char* l_arcName = "V_OsuDoor";
 
-static f32 l_cull_box[6] = {
-    0.0f, 0.0f, -600.0f,
-    600.0f, 1000.0f, 600.0f,
+static cull_box l_cull_box = {
+    {0.0f, 0.0f, -600.0f},
+    {600.0f, 1000.0f, 600.0f},
 };
 
 int daObjPDoor_c::Create() {
@@ -76,8 +76,8 @@ int daObjPDoor_c::Create() {
     initBaseMtx();
     fopAcM_SetMtx(this, mModel->getBaseTRMtx());
     mpBgW->SetPushPullCallback(PPCallBack);
-    fopAcM_setCullSizeBox(this, l_cull_box[0], l_cull_box[1], l_cull_box[2], l_cull_box[3],
-                          l_cull_box[4], l_cull_box[5]);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x,
+                          l_cull_box.max.y, l_cull_box.max.z);
     return 1;
 }
 

@@ -420,9 +420,9 @@ void daAlink_c::setEffect() {
         if (checkWolf()) {
             spB8.x += 40.0f * cM_ssin(current.angle.y);
             spB8.z += 40.0f * cM_scos(current.angle.y);
-            spAC.y -= daAlinkHIO_wlSwim_c0::m.mStartHeight;
+            spAC.y -= mpHIO->mWolf.mWlSwim.m.mStartHeight;
         } else {
-            spAC.y -= daAlinkHIO_swim_c0::m.mStartHeight;
+            spAC.y -= mpHIO->mSwim.m.mStartHeight;
         }
 
         spB8.y = mWaterY;
@@ -562,7 +562,7 @@ void daAlink_c::setEffect() {
                                                        &current.pos, &shape_angle);
             if (sp38 != NULL) {
                 cXyz sp58;
-                f32 var_f31 = temp_f30 / daAlinkHIO_board_c0::m.mEffectMaxSpeed;
+                f32 var_f31 = temp_f30 / mpHIO->mItem.mBoard.m.mEffectMaxSpeed;
                 if (var_f31 > 1.0f) {
                     var_f31 = 1.0f;
                 }
@@ -1494,7 +1494,7 @@ void daAlink_c::setMetamorphoseEffect() {
 void daAlink_c::setRunSplash() {
     if (mProcID == PROC_MOVE && checkNoResetFlg0(FLG0_UNK_80) && checkDashAnime()) {
         f32 temp_f31 = mWaterY - current.pos.y;
-        if (temp_f31 >= daAlinkHIO_basic_c0::m.mWaterSurfaceEffectHeight && temp_f31 < field_0x598 && dKy_pol_efftype_get(&mLinkAcch.m_wtr) == 2) {
+        if (temp_f31 >= mpHIO->mBasic.m.mWaterSurfaceEffectHeight && temp_f31 < field_0x598 && dKy_pol_efftype_get(&mLinkAcch.m_wtr) == 2) {
             cXyz sp8(current.pos.x, mWaterY, current.pos.z);
 
             JPABaseEmitter* temp_r3 = setEmitterPolyColor(&field_0x31f8, 0x1AF, mLinkAcch.m_wtr, &sp8, &current.angle);
@@ -1977,7 +1977,7 @@ void daAlink_blur_c::draw() {
 BOOL daAlink_lockCursor_c::create() {
     JKRArchive* arc = dComIfG_getObjectResInfo(l_arcName)->getArchive();
 
-    field_0x2c = 0.0f;
+    mLockCursorAngle = 0.0f;
     field_0x4 = false;
     field_0x30 = 0.0f;
 
@@ -2060,14 +2060,14 @@ extern "C" void setAnimation__7J2DPaneFP11J2DAnmColor() {
 }
 
 void daAlink_lockCursor_c::update() {
-    if (field_0x2c < 21.0f) {
-        field_0x2c = 21.0f;
+    if (mLockCursorAngle < 21.0f) {
+        mLockCursorAngle = 21.0f;
     }
 
-    field_0x2c += 0.9f;
+    mLockCursorAngle += 0.9f;
 
-    if (field_0x2c >= 50.0f) {
-        field_0x2c += -29.0f;
+    if (mLockCursorAngle >= 50.0f) {
+        mLockCursorAngle += -29.0f;
     }
 
     field_0x30 += 0.9f;
@@ -2081,13 +2081,13 @@ void daAlink_lockCursor_c::update() {
 
 void daAlink_lockCursor_c::draw() {
     if (field_0x4 != 0) {
-        field_0x28->setFrame(field_0x2c);
+        field_0x28->setFrame(mLockCursorAngle);
 
         f32 var_f30;
-        if (field_0x2c > 21.0f) {
+        if (mLockCursorAngle > 21.0f) {
             var_f30 = 21.0f;
         } else {
-            var_f30 = field_0x2c;
+            var_f30 = mLockCursorAngle;
         }
 
         field_0x24->setFrame(var_f30);
@@ -2097,10 +2097,10 @@ void daAlink_lockCursor_c::draw() {
         field_0xc->scale(0.6f, 0.6f);
         field_0xc->translate(mPosX, mPosY);
 
-        if (!(field_0x2c < 15.0f)) {
+        if (!(mLockCursorAngle < 15.0f)) {
             f32 var_f31;
-            if (field_0x2c < 21.0f) {
-                var_f31 = ((field_0x2c - 15.0f) * 40.0f) * 0.16666667f;
+            if (mLockCursorAngle < 21.0f) {
+                var_f31 = ((mLockCursorAngle - 15.0f) * 40.0f) * 0.16666667f;
             } else {
                 var_f31 = ((field_0x4 * 0.00390625f) + 0.5f) * 40.0f;
             }

@@ -8,7 +8,7 @@
 
 JStudio_JStage::TAdaptor_camera::TAdaptor_camera(JStage::TSystem const* param_1,
                                                  JStage::TCamera* param_2)
-    : TAdaptor_object_(param_1, param_2) {
+    : TAdaptor_object_(this, param_1, param_2) {
     field_0x108 = 0;
     field_0x10c = 0;
     field_0x110 = -1;
@@ -201,9 +201,9 @@ void JStudio_JStage::TAdaptor_camera::setJSG_position_(JStudio::TControl const* 
     JStudio::TControl::TTransform_position VStack_138;
     JStudio::TControl::TTransform_position VStack_144;
     adaptor_getVariableValue_Vec(&VStack_138, sauVariableValue_3_POSITION_XYZ);
-    Vec* pViewPosition;
+    const Vec* pViewPosition;
     if (field_0x114 == 0) {
-        pViewPosition = param_1->transformOnSet_transform_ifEnabled(&VStack_138, &VStack_144);
+        pViewPosition = param_1->transformOnSet_transform_ifEnabled(VStack_138, &VStack_144);
     } else {
         pViewPosition = &VStack_138;
         switch (field_0x108) {
@@ -226,12 +226,12 @@ void JStudio_JStage::TAdaptor_camera::getJSG_position_(JStudio::TControl const* 
     Mtx mtx;
     JStudio::TControl::TTransform_position transform;
     JStudio::TControl::TTransform_position tempTransform;
-    JStudio::TControl::TTransform_position* outTransform;
+    const JStudio::TControl::TTransform_position* outTransform;
 
     get_pJSG_()->JSGGetViewPosition(&transform);
 
     if (!field_0x114) {
-        outTransform = param_1->transformOnGet_transform_ifEnabled(&transform, &tempTransform);
+        outTransform = param_1->transformOnGet_transform_ifEnabled(transform, &tempTransform);
     } else {
         outTransform = &transform;
         switch (field_0x108) {
@@ -262,11 +262,11 @@ void JStudio_JStage::TAdaptor_camera::getJSG_position_(JStudio::TControl const* 
 void JStudio_JStage::TAdaptor_camera::setJSG_targetPosition_(JStudio::TControl const* param_1) {
 	JStudio::TControl::TTransform_position transform;
 	JStudio::TControl::TTransform_position tempTransform;
-	JStudio::TControl::TTransform_position* outTransform;
+	const JStudio::TControl::TTransform_position* outTransform;
 	adaptor_getVariableValue_Vec(&transform, sauVariableValue_3_TARGET_POSITION_XYZ);
     if (field_0x120 == 0) {
         outTransform = param_1->transformOnSet_transform_ifEnabled(
-            &transform, &tempTransform);
+            transform, &tempTransform);
     } else {
         if (transform_toGlobalFromLocal(&tempTransform, transform,
                                             field_0x118, field_0x11c) == 0) {
@@ -281,12 +281,12 @@ void JStudio_JStage::TAdaptor_camera::getJSG_targetPosition_(JStudio::TControl c
     Mtx mtx;
     JStudio::TControl::TTransform_position transform;
     JStudio::TControl::TTransform_position tempTransform;
-    JStudio::TControl::TTransform_position* outTransform;
+    const JStudio::TControl::TTransform_position* outTransform;
 
     get_pJSG_()->JSGGetViewTargetPosition(&transform);
 
     if (!field_0x120) {
-        outTransform = param_1->transformOnGet_transform_ifEnabled(&transform, &tempTransform);
+        outTransform = param_1->transformOnGet_transform_ifEnabled(transform, &tempTransform);
     } else {
         outTransform = &transform;
         bool check;

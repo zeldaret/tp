@@ -347,10 +347,6 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
     return kJ3DError_Success;
 }
 
-// NONMATCHING - instruction ordering/optimization issue, matches debug
-// the compiler needs to delay adding +3 to dl until the end of the while loop for the function to match
-// but instead it puts the +3 at the start of the for loop and reworks the other instructions
-// can get a 99.93% match on retail by moving where dl is incremented, but it seems fake as it breaks debug, and introduces an operand swap on src
 void J3DSkinDeform::changeFastSkinDL(J3DModelData* pModelData) {
     J3D_ASSERT_NULLPTR(740, pModelData != NULL);
     for (u16 i = 0; i < pModelData->getShapeNum(); i++) {
@@ -389,7 +385,7 @@ void J3DSkinDeform::changeFastSkinDL(J3DModelData* pModelData) {
                         memcpy(dst, src + 1, (int)(vtxSize - 1)); // The -1 is to remove GX_VA_PNMTXIDX
                         dst += (int)(vtxSize - 1);
                     }
-                    dl += vtxSize * vtxCount;
+                    dl = (u8*)dl + vtxSize * vtxCount;
                 }
 
                 int dlistSize = ((int)dst - (int)displayListStart + 0x1f) & ~0x1f;

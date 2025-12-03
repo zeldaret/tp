@@ -20,9 +20,9 @@ void daObjFPillar_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
 }
 
-static f32 l_cull_box[6] = {
-    -30.0f, -10.0f, -30.0f,
-    30.0f, 60.0f, 30.0f,
+static cull_box l_cull_box = {
+    {-30.0f, -10.0f, -30.0f},
+    {30.0f, 60.0f, 30.0f},
 };
 
 static dCcD_SrcCps l_cps_src = {
@@ -42,12 +42,12 @@ int daObjFPillar_c::Create() {
     mStts.Init(0, 0xff, this);
     mCps.Set(l_cps_src);
     mCps.SetStts(&mStts);
-    f32 maxy = l_cull_box[4] * scale.y;
+    f32 maxy = l_cull_box.max.y * scale.y;
     fopAcM_setCullSizeBox(this,
-        (l_cull_box[0] * scale.x),
-        (l_cull_box[1] * scale.y),
-        (l_cull_box[2] * scale.x),
-        (l_cull_box[3] * scale.x),
+        (l_cull_box.min.x * scale.x),
+        (l_cull_box.min.y * scale.y),
+        (l_cull_box.min.z * scale.x),
+        (l_cull_box.max.x * scale.x),
         maxy,
         maxy);
     return 1;

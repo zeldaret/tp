@@ -379,6 +379,7 @@ public:
     void OnTgNoSlingHitInfSet() { mObjTg.OnSPrmBit(0x40); }
     void OnAtVsBitSet(u32 prm) { mObjAt.OnSPrmBit(prm); }
     void OffAtVsBitSet(u32 prm) { mObjAt.OffSPrmBit(prm); }
+    void OffTgNoAtHitInfSet() { mObjTg.OffSPrmBit(0x20); }
 
 };  // Size = 0x40
 

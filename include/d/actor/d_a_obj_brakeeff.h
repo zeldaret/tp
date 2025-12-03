@@ -1,10 +1,9 @@
 #ifndef D_A_OBJ_BRAKEEFF_H
 #define D_A_OBJ_BRAKEEFF_H
 
-#include "f_op/f_op_actor_mng.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "d/d_cc_d.h"
-#include "mtx.h"
+#include "f_op/f_op_actor.h"
 
 class J3DModel;
 class mDoExt_brkAnm;

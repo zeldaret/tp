@@ -665,6 +665,7 @@ void daNpc_Bans_c::reset() {
         default:
             daNpcT_offTmpBit(57); // dSv_event_tmp_flag_c::T_0057 - Kakariko Village (inside) - Barnes bomb shop <purchase>
             setAngle(angle);
+            break;
     }
 }
 

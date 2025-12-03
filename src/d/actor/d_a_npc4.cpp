@@ -394,14 +394,13 @@ void daNpcF_Lookat_c::calc(fopAc_ac_c* i_actor, Mtx i_baseTransformMtx, csXyz** 
     }
 }
 
-// NONMATCHING - regalloc, matches debug
 void daNpcF_Lookat_c::adjustMoveDisAngle(s16& delta, s16 angle, s16 min, s16 max) {
     int newAngle = 0;
 
     newAngle = angle + delta;
     if (max < newAngle) {
         if (angle < max) {
-            delta -= (newAngle - max);
+            delta = delta - (newAngle - max);
         } else {
             delta = 0;
         }
@@ -410,7 +409,7 @@ void daNpcF_Lookat_c::adjustMoveDisAngle(s16& delta, s16 angle, s16 min, s16 max
     newAngle = angle + delta;
     if (newAngle < min) {
         if (min < angle) {
-            delta -= (newAngle - min);
+            delta = delta - (newAngle - min);
         } else {
             delta = 0;
         }

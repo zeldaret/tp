@@ -4,7 +4,7 @@
 
 JStudio_JStage::TAdaptor_light::TAdaptor_light(JStage::TSystem const* param_1,
                                                JStage::TLight* param_2)
-    : JStudio_JStage::TAdaptor_object_(param_1, param_2) {
+    : JStudio_JStage::TAdaptor_object_(this, param_1, param_2) {
     field_0x11c = 0;
 }
 
@@ -55,7 +55,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_begin() {
         JStudio::TControl::TTransform_position_direction aTStack_b8;
         pLightObj->JSGGetPosition(&lightObjTransform.position);
         pLightObj->JSGGetDirection(&lightObjTransform.direction);
-        JStudio::TControl::TTransform_position_direction* finalTransform =
+        const JStudio::TControl::TTransform_position_direction* finalTransform =
         pControl->transformOnGet_transform_ifEnabled(lightObjTransform, &aTStack_b8);
         adaptor_setVariableValue_Vec(sauVariableValue_3_POSITION_XYZ, finalTransform->position);
         f32 dirx = finalTransform->direction.x;
@@ -106,8 +106,8 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_update(u32 param_1) {
         adaptor_getVariableValue_Vec(&VStack_1c0, sauVariableValue_3_TARGET_POSITION_XYZ);
         VECSubtract(&VStack_1c0, &VStack_198.position, &VStack_198.direction);
     }
-    JStudio::TControl::TTransform_position_direction* pTrans =
-        pControl->transformOnSet_transform_ifEnabled(&VStack_198, &aTStack_1b0);
+    const JStudio::TControl::TTransform_position_direction* pTrans =
+        pControl->transformOnSet_transform_ifEnabled(VStack_198, &aTStack_1b0);
     lightObj->JSGSetPosition(pTrans->position);
     lightObj->JSGSetDirection(pTrans->direction);
     pJSGObject_->JSGUpdate();
@@ -152,5 +152,7 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_ENABLE(JStudio::data::TEOperatio
 
 void JStudio_JStage::TAdaptor_light::TVVOutput_direction_::operator()(
     f32 param_0, JStudio::TAdaptor* param_1) const {
-    ((JStudio_JStage::TAdaptor_light*)param_1)->field_0x11c = field_0x8;
+    JStudio_JStage::TAdaptor_light* p = (JStudio_JStage::TAdaptor_light*)param_1;
+    JUT_ASSERT(246, p!=NULL);
+    p->field_0x11c = field_0x8;
 }

@@ -10,42 +10,42 @@
 
 void daAlink_c::getArrowFlyData(f32* o_distance, f32* o_speed, int i_forceCharge) const {
     if (mEquipItem == fpcNm_ITEM_PACHINKO) {
-        *o_distance = daAlinkHIO_bow_c0::m.mSlingshotDistance;
-        *o_speed = daAlinkHIO_bow_c0::m.mSlingshotSpeed;
+        *o_distance = mpHIO->mItem.mBow.m.mSlingshotDistance;
+        *o_speed = mpHIO->mItem.mBow.m.mSlingshotSpeed;
     } else if (dComIfGp_checkPlayerStatus0(0, 0x200000)) {
-        *o_distance = daAlinkHIO_bow_c0::m.mScopeArrowDistance;
-        *o_speed = daAlinkHIO_bow_c0::m.mScopeArrowSpeed;
+        *o_distance = mpHIO->mItem.mBow.m.mScopeArrowDistance;
+        *o_speed = mpHIO->mItem.mBow.m.mScopeArrowSpeed;
     } else if (field_0x301c == 0 || i_forceCharge) {
         if (field_0x301e == 1) {
-            *o_distance = daAlinkHIO_bow_c0::m.mChargeBombArrowDistance;
-            *o_speed = daAlinkHIO_bow_c0::m.mChargeBombArrowSpeed;
+            *o_distance = mpHIO->mItem.mBow.m.mChargeBombArrowDistance;
+            *o_speed = mpHIO->mItem.mBow.m.mChargeBombArrowSpeed;
         } else {
-            *o_distance = daAlinkHIO_bow_c0::m.mChargeArrowDistance;
-            *o_speed = daAlinkHIO_bow_c0::m.mChargeArrowSpeed;
+            *o_distance = mpHIO->mItem.mBow.m.mChargeArrowDistance;
+            *o_speed = mpHIO->mItem.mBow.m.mChargeArrowSpeed;
         }
     } else if (field_0x301e == 1) {
-        *o_distance = daAlinkHIO_bow_c0::m.mBombArrowDistance;
-        *o_speed = daAlinkHIO_bow_c0::m.mBombArrowSpeed;
+        *o_distance = mpHIO->mItem.mBow.m.mBombArrowDistance;
+        *o_speed = mpHIO->mItem.mBow.m.mBombArrowSpeed;
     } else {
-        *o_distance = daAlinkHIO_bow_c0::m.mArrowDistance;
-        *o_speed = daAlinkHIO_bow_c0::m.mArrowSpeed;
+        *o_distance = mpHIO->mItem.mBow.m.mArrowDistance;
+        *o_speed = mpHIO->mItem.mBow.m.mArrowSpeed;
     }
 }
 
 f32 daAlink_c::getArrowIncAtR() const {
-    return daAlinkHIO_bow_c0::m.mArrowAttackRadius;
+    return mpHIO->mItem.mBow.m.mArrowAttackRadius;
 }
 
 s16 daAlink_c::getBombArrowFlyExplodeTime() const {
-    return daAlinkHIO_bow_c0::m.mBombArrowFlyExplodeTime;
+    return mpHIO->mItem.mBow.m.mBombArrowFlyExplodeTime;
 }
 
 f32 daAlink_c::getArrowIncAtMaxStart() const {
-    return daAlinkHIO_bow_c0::m.mArrowIncAttackMaxStart;
+    return mpHIO->mItem.mBow.m.mArrowIncAttackMaxStart;
 }
 
 f32 daAlink_c::getArrowIncAtMax() const {
-    return daAlinkHIO_bow_c0::m.mArrowIncAttackMax;
+    return mpHIO->mItem.mBow.m.mArrowIncAttackMax;
 }
 
 BOOL daAlink_c::checkBowAndSlingItem(int i_itemNo) {
@@ -123,7 +123,7 @@ void daAlink_c::deleteArrow() {
 
     if (arrow_p != NULL && fopAcM_GetName(arrow_p) == PROC_ARROW) {
         if (arrow_p->checkBombArrow() &&
-            (mDamageTimer == daAlinkHIO_damage_c0::m.mInvincibleTime || checkModeFlg(8)))
+            (mDamageTimer == mpHIO->mDamage.m.mInvincibleTime || checkModeFlg(8)))
         {
             arrow_p->setBombArrowExplode();
             dComIfGp_addSelectItemNum(mSelectItemId, -1);
@@ -227,22 +227,22 @@ void daAlink_c::setBowReadyAnime() {
 }
 
 void daAlink_c::setBowReloadAnime() {
-    setUpperAnimeParam(9, UPPER_2, &daAlinkHIO_bow_c0::m.mLoadAnm);
+    setUpperAnimeParam(9, UPPER_2, &mpHIO->mItem.mBow.m.mLoadAnm);
     setFacePriTexture(FTANM_UNK_8);
     setFacePriBck(0xE5);
 
     if (mEquipItem == fpcNm_ITEM_PACHINKO) {
-        changeItemBck(0x1F0, daAlinkHIO_bow_c0::m.mLoadAnm.mStartFrame);
+        changeItemBck(0x1F0, mpHIO->mItem.mBow.m.mLoadAnm.mStartFrame);
         field_0x2f97 = 5;
         seStartOnlyReverb(Z2SE_AL_PACHINKO_DRAW);
     } else {
-        changeItemBck(0x41, daAlinkHIO_bow_c0::m.mLoadAnm.mStartFrame);
+        changeItemBck(0x41, mpHIO->mItem.mBow.m.mLoadAnm.mStartFrame);
         field_0x2f97 = 7;
         seStartOnlyReverb(Z2SE_AL_DRAW_BOW);
     }
 
     field_0x2f96 = 0;
-    field_0x301c = daAlinkHIO_bow_c0::m.mChargeArrowTime;
+    field_0x301c = mpHIO->mItem.mBow.m.mChargeArrowTime;
 }
 
 BOOL daAlink_c::checkUpperItemActionBow() {
@@ -273,7 +273,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
 
         if (checkReadyItem()) {
             if (mItemVar0.field_0x3018 != 0) {
-                setUpperAnimeParam(0xC, UPPER_2, &daAlinkHIO_bow_c0::m.mShootAnm);
+                setUpperAnimeParam(0xC, UPPER_2, &mpHIO->mItem.mBow.m.mShootAnm);
                 setFacePriBck(0xE8);
                 field_0x2f96 = 0;
 
@@ -291,7 +291,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
                     var_r29 = 0x44;
                 }
 
-                changeItemBck(var_r29, daAlinkHIO_bow_c0::m.mShootAnm.mStartFrame);
+                changeItemBck(var_r29, mpHIO->mItem.mBow.m.mShootAnm.mStartFrame);
                 mItemVar0.field_0x3018 = 0;
             } else if (mEquipItem == fpcNm_ITEM_PACHINKO) {
                 if (!itemButton()) {
@@ -335,7 +335,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
                     dComIfGp_setItemArrowNumCount(-1);
                     mItemAcKeep.clearData();
                     onResetFlg0(RFLG0_UNK_20000000);
-                    field_0x30a4 = daAlinkHIO_bow_c0::m.mBombArrowHoldTime;
+                    field_0x30a4 = mpHIO->mItem.mBow.m.mBombArrowHoldTime;
                 } else {
                     seStartOnlyReverb(Z2SE_AL_ARROW_EMPTY);
                 }
@@ -403,7 +403,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
         }
 
         if (checkAnmEnd(&mUpperFrameCtrl[2]) ||
-            (mUpperFrameCtrl[2].getFrame() > daAlinkHIO_bow_c0::m.mShootAnm.mCancelFrame &&
+            (mUpperFrameCtrl[2].getFrame() > mpHIO->mItem.mBow.m.mShootAnm.mCancelFrame &&
              itemButton()))
         {
             setBowReadyAnime();
@@ -415,7 +415,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
     }
 
     if (checkBowWaitAnime() || (mEquipItem == fpcNm_ITEM_PACHINKO && checkBowChargeWaitAnime())) {
-        field_0x33dc += daAlinkHIO_bow_c0::m.mShootAnm.mSpeed;
+        field_0x33dc += mpHIO->mItem.mBow.m.mShootAnm.mSpeed;
     } else {
         field_0x33dc = mUpperFrameCtrl[2].getFrame();
     }
@@ -556,7 +556,7 @@ int daAlink_c::procBowSubjectInit() {
     }
 
     setSingleAnimeBaseSpeed(ANM_ATN_WAIT_RIGHT, 0.0f,
-                            daAlinkHIO_bow_c0::m.mStartInterpolation);
+                            mpHIO->mItem.mBow.m.mStartInterpolation);
     mNormalSpeed = 0.0f;
     setBowOrSlingStatus();
     return 1;
@@ -580,7 +580,7 @@ int daAlink_c::procBowMoveInit() {
         onModeFlg(1);
     }
 
-    setBlendAtnMoveAnime(daAlinkHIO_bow_c0::m.mStartInterpolation);
+    setBlendAtnMoveAnime(mpHIO->mItem.mBow.m.mStartInterpolation);
     mProcVar2.field_0x300c = 0;
     setBowOrSlingStatus();
     return 1;
@@ -604,7 +604,7 @@ int daAlink_c::procBowMove() {
 
             if (field_0x2f98 != 3) {
                 field_0x2f98 = 3;
-                var_f31 = daAlinkHIO_basic_c0::m.mBasicInterpolation;
+                var_f31 = mpHIO->mBasic.m.mBasicInterpolation;
             }
             current.angle.y = shape_angle.y - 0x4000;
         } else {

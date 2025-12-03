@@ -55,8 +55,7 @@ struct data {
         }
 
         const void* getContent() const {
-            const THeaderData* header = (THeaderData*) getRaw();
-            return header->content;
+            return ((THeaderData*) getRaw())->content;
         }
     };
 
@@ -86,7 +85,7 @@ struct data {
         }
 
         const void* getBlockEnd_() const {
-            return get()->field_0x8;
+            return ((const TBlockData*)getRaw())->field_0x8;
         }
 
         const void* get_ID() const {
@@ -134,11 +133,11 @@ struct TControl {
     JStudio::ctb::TObject* getObject(void const*, u32);
     JStudio::ctb::TObject* getObject_index(u32);
 
-    TFactory* getFactory() { return pFactory_; }
+    TFactory* getFactory() const { return pFactory_; }
     void setFactory(TFactory* factory) { pFactory_ = factory; }
 
     /* 0x4 */ TFactory* pFactory_;
-    /* 0x8 */ JGadget::TLinkList<TObject, -12> mList;
+    /* 0x8 */ JGadget::TLinkList<TObject, -12> ocObject_;
 };
 
 struct TParse : public JGadget::binary::TParse_header_block {

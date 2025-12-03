@@ -196,7 +196,7 @@ public:
 
     const int getIdx() { return mIdx; }
 
-    dPath* getPathInfo() { return mPathInfo; }
+    const dPath* getPathInfo() { return mPathInfo; }
 
     void onReverse() {
         mDirection = 1;

@@ -48,6 +48,8 @@ struct daHoZelda_hio_c1 {
 };
 
 struct daHoZelda_hio_c0 {
+    daHoZelda_hio_c0() {}
+
     static daHoZelda_hio_c1 const m;
 };
 
@@ -55,7 +57,7 @@ class daHoZelda_hio_c : public JORReflexible {
 public:
     daHoZelda_hio_c() {
 #if DEBUG
-        mParameters = daHoZelda_hio_c0::m;
+        m = daHoZelda_hio_c0::m;
 #endif
     }
     
@@ -64,9 +66,15 @@ public:
 #if DEBUG
     void genMessage(JORMContext*);
     virtual ~daHoZelda_hio_c() {}
-    /* 0x8 */ daHoZelda_hio_c1 mParameters;
+    /* 0x8 */ daHoZelda_hio_c1 m;
 #endif
 };
+
+#if DEBUG
+#define HOZELDA_HIO_CLASS daHoZelda_hio_c
+#else
+#define HOZELDA_HIO_CLASS daHoZelda_hio_c0
+#endif
 
 /**
  * @ingroup actors-unsorted
@@ -125,7 +133,7 @@ public:
     /* 0x6A8 */ mDoExt_bckAnm mBowBck;
     /* 0x6C4 */ daPy_actorKeep_c mArrowAcKeep;
     /* 0x6CC */ daPy_actorKeep_c mGndAcKeep;
-    /* 0x6D4 */ daHoZelda_hio_c* mpHIO;
+    /* 0x6D4 */ HOZELDA_HIO_CLASS* mpHIO;
     /* 0x6D8 */ u8 mBowMode;
     /* 0x6D9 */ u8 mAnmTimer;
     /* 0x6DA */ u8 field_0x6da;

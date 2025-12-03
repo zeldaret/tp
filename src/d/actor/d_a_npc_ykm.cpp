@@ -1000,10 +1000,7 @@ void daNpc_ykM_c::reset() {
 
         mRoomPath = NULL;
         if (mType == TYPE_4 && mPath.chkNextId()) {
-            //TODO: Separate decl is fakematch, this is fixed by properly matching
-            //      daNpcT_DmgStagger_c::initialize in debug but doing so breaks other functions.
-            dPath* path = mPath.getPathInfo();
-            mRoomPath = dPath_GetRoomPath(path->m_nextID, fopAcM_GetRoomNo(this));
+            mRoomPath = dPath_GetRoomPath(mPath.getPathInfo()->m_nextID, fopAcM_GetRoomNo(this));
         }
     }
 
@@ -1393,7 +1390,6 @@ void daNpc_ykM_c::afterMoved() {
     }
 }
 
-// NONMATCHING - HIO load issue
 void daNpc_ykM_c::setAttnPos() {
     fopAc_ac_c* otherYkmP = NULL;
     cXyz sp104(80.0f, 30.0f, 0.0f);

@@ -7,51 +7,51 @@
 #include "d/actor/d_a_spinner.h"
 
 f32 daAlink_c::getSpinnerGravity() const {
-    return daAlinkHIO_spinner_c0::m.mGravity;
+    return mpHIO->mItem.mSpinner.m.mGravity;
 }
 
 f32 daAlink_c::getSpinnerMaxFallSpeed() const {
-    return daAlinkHIO_spinner_c0::m.mMaxFallSpeed;
+    return mpHIO->mItem.mSpinner.m.mMaxFallSpeed;
 }
 
 f32 daAlink_c::getSpinnerJumpRate() const {
-    return daAlinkHIO_spinner_c0::m.mJumpRate;
+    return mpHIO->mItem.mSpinner.m.mJumpRate;
 }
 
 s16 daAlink_c::getSpinnerRideMoveTime() {
     if (checkLv4BossRoom()) {
-        return daAlinkHIO_spinner_c0::m.mBossRideMoveTime;
+        return mpHIO->mItem.mSpinner.m.mBossRideMoveTime;
     }
 
-    return daAlinkHIO_spinner_c0::m.mRideMoveTime;
+    return mpHIO->mItem.mSpinner.m.mRideMoveTime;
 }
 
 f32 daAlink_c::getSpinnerRideSpeedF() {
     if (checkLv4BossRoom()) {
-        return daAlinkHIO_spinner_c0::m.mBossRideSpeed;
+        return mpHIO->mItem.mSpinner.m.mBossRideSpeed;
     }
 
-    return daAlinkHIO_spinner_c0::m.mRideSpeed;
+    return mpHIO->mItem.mSpinner.m.mRideSpeed;
 }
 
 f32 daAlink_c::getSpinnerRideDecSpeedMax() const {
-    return daAlinkHIO_spinner_c0::m.mDecelSpeedMax;
+    return mpHIO->mItem.mSpinner.m.mDecelSpeedMax;
 }
 
 f32 daAlink_c::getSpinnerRideDecSpeedMin() const {
-    return daAlinkHIO_spinner_c0::m.mDecelSpeedMin;
+    return mpHIO->mItem.mSpinner.m.mDecelSpeedMin;
 }
 
 f32 daAlink_c::getSpinnerRideDecSpeedRate() const {
-    return daAlinkHIO_spinner_c0::m.mDecelRate;
+    return mpHIO->mItem.mSpinner.m.mDecelRate;
 }
 
 s16 daAlink_c::getSpinnerRideRotAngleMax() const {
-    return daAlinkHIO_spinner_c0::m.mRideRotAngleMax;
+    return mpHIO->mItem.mSpinner.m.mRideRotAngleMax;
 }
 
 s16 daAlink_c::getSpinnerRideRotAngleMin() const {
-    return daAlinkHIO_spinner_c0::m.mRideRotAngleMin;
+    return mpHIO->mItem.mSpinner.m.mRideRotAngleMin;
 }
 
 void daAlink_c::onSpinnerPathForceRemove() {
@@ -106,9 +106,9 @@ int daAlink_c::procSpinnerReadyInit() {
 
     commonProcInit(PROC_SPINNER_READY);
     mRideAcKeep.setData(spinner);
-    setSingleAnime(ANM_VJUMP_START, daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mSpeed, 6.0f,
-                   daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mEndFrame,
-                   daAlinkHIO_smallJump_c0::m.mSmallJumpAnm.mInterpolation);
+    setSingleAnime(ANM_VJUMP_START, mpHIO->mWallHang.mSmallJump.m.mSmallJumpAnm.mSpeed, 6.0f,
+                   mpHIO->mWallHang.mSmallJump.m.mSmallJumpAnm.mEndFrame,
+                   mpHIO->mWallHang.mSmallJump.m.mSmallJumpAnm.mInterpolation);
     mNormalSpeed = 0.0f;
     setHeavyBoots(0);
 
@@ -161,7 +161,7 @@ int daAlink_c::procSpinnerWaitInit() {
 
     mRideStatus = 5;
     setBgCheckParam();
-    setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, daAlinkHIO_board_c0::m.mSitAnmSpeed, 4.0f);
+    setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, mpHIO->mItem.mBoard.m.mSitAnmSpeed, 4.0f);
     speed.y = 0.0f;
     setSpecialGravity(0.0f, maxFallSpeed, 0);
     mNormalSpeed = 0.0f;
@@ -185,7 +185,7 @@ int daAlink_c::procSpinnerWait() {
         checkEndResetFlg1(ERFLG1_UNK_1) || checkEndResetFlg0(ERFLG0_UNK_2)) {
         mNormalSpeed = 0.0f;
         setJumpMode();
-        return procFallInit(1, daAlinkHIO_autoJump_c0::m.mFallInterpolation);
+        return procFallInit(1, mpHIO->mAutoJump.m.mFallInterpolation);
     }
 
     if (spinner->checkSpinnerTagEnd()) {
@@ -218,7 +218,7 @@ int daAlink_c::procSpinnerWait() {
             }
             setJumpMode();
             mNormalSpeed = 0.0f;
-            return procFallInit(1, daAlinkHIO_autoJump_c0::m.mFallInterpolation);
+            return procFallInit(1, mpHIO->mAutoJump.m.mFallInterpolation);
         }
 
         daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
@@ -240,8 +240,8 @@ int daAlink_c::procSpinnerWait() {
             setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_CONTINUATION);
 
             if (field_0x3198 != ANM_RIDE_KICK && field_0x2060->getOldFrameRate() < 0.01f) {
-                setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, daAlinkHIO_board_c0::m.mSitAnmSpeed,
-                                        daAlinkHIO_board_c0::m.mFastPushInterpolation);
+                setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, mpHIO->mItem.mBoard.m.mSitAnmSpeed,
+                                        mpHIO->mItem.mBoard.m.mFastPushInterpolation);
                 field_0x3198 = ANM_RIDE_KICK;
                 fopAcM_seStartCurrent(spinner, Z2SE_OBJ_SPNR_SW_PUSH, 0);
             }
@@ -254,32 +254,32 @@ int daAlink_c::procSpinnerWait() {
 
             if ((field_0x3198 == ANM_RIDE_KICK && field_0x2060->getOldFrameRate() < 0.01f) ||
                 (field_0x3198 != ANM_RIDE_KICK && field_0x3198 != ANM_RIDE_WAIT)) {
-                setSingleAnimeBaseSpeed(ANM_RIDE_WAIT, daAlinkHIO_board_c0::m.mStandAnmSpeed,
-                                        daAlinkHIO_board_c0::m.mStandInterpolation);
+                setSingleAnimeBaseSpeed(ANM_RIDE_WAIT, mpHIO->mItem.mBoard.m.mStandAnmSpeed,
+                                        mpHIO->mItem.mBoard.m.mStandInterpolation);
                 field_0x3198 = ANM_RIDE_WAIT;
             }
         } else if (spinner->getButtonJump() && field_0x3198 != ANM_RIDE_JUMP) {
             field_0x3198 = ANM_RIDE_JUMP;
-            setSingleAnime(ANM_RIDE_JUMP, 0.0f, daAlinkHIO_board_c0::m.mAirborneAnm.mStartFrame,
-                           daAlinkHIO_board_c0::m.mAirborneAnm.mEndFrame,
-                           daAlinkHIO_board_c0::m.mAirborneAnm.mInterpolation);
+            setSingleAnime(ANM_RIDE_JUMP, 0.0f, mpHIO->mItem.mBoard.m.mAirborneAnm.mStartFrame,
+                           mpHIO->mItem.mBoard.m.mAirborneAnm.mEndFrame,
+                           mpHIO->mItem.mBoard.m.mAirborneAnm.mInterpolation);
             mProcVar4.field_0x3010 = 0;
         } else if (field_0x3198 == ANM_RIDE_JUMP) {
             if (!spinner->getJumpFlg()) {
-                setSingleAnime(ANM_RIDE_JUMP_LAND, daAlinkHIO_board_c0::m.mLandAnm.mSpeed,
-                               daAlinkHIO_board_c0::m.mLandAnm.mStartFrame, 16,
-                               daAlinkHIO_board_c0::m.mLandAnm.mInterpolation);
+                setSingleAnime(ANM_RIDE_JUMP_LAND, mpHIO->mItem.mBoard.m.mLandAnm.mSpeed,
+                               mpHIO->mItem.mBoard.m.mLandAnm.mStartFrame, 16,
+                               mpHIO->mItem.mBoard.m.mLandAnm.mInterpolation);
                 field_0x3198 = ANM_RIDE_JUMP_LAND;
             } else if (mProcVar4.field_0x3010 == 0 && field_0x2060->getOldFrameRate() < 0.01f) {
-                setSingleAnime(ANM_RIDE_JUMP, daAlinkHIO_board_c0::m.mAirborneAnm.mSpeed,
-                               daAlinkHIO_board_c0::m.mAirborneAnm.mStartFrame,
-                               daAlinkHIO_board_c0::m.mAirborneAnm.mEndFrame, -1.0f);
+                setSingleAnime(ANM_RIDE_JUMP, mpHIO->mItem.mBoard.m.mAirborneAnm.mSpeed,
+                               mpHIO->mItem.mBoard.m.mAirborneAnm.mStartFrame,
+                               mpHIO->mItem.mBoard.m.mAirborneAnm.mEndFrame, -1.0f);
                 mProcVar4.field_0x3010 = 1;
             }
         } else if ((field_0x3198 == ANM_RIDE_JUMP_LAND && frameCtrl->checkAnmEnd()) ||
                    (field_0x3198 != ANM_RIDE_JUMP_LAND && field_0x3198 != ANM_RIDE_CROUCH)) {
-            setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, daAlinkHIO_board_c0::m.mSitAnmSpeed,
-                                    daAlinkHIO_board_c0::m.mSitInterpolation);
+            setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, mpHIO->mItem.mBoard.m.mSitAnmSpeed,
+                                    mpHIO->mItem.mBoard.m.mSitInterpolation);
             field_0x3198 = ANM_RIDE_CROUCH;
         }
     }

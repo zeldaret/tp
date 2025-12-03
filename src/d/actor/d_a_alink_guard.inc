@@ -220,14 +220,13 @@ void daAlink_c::setSmallGuard(dCcD_GObjInf* i_objinf) {
         mBodyAngle.y = 0;
     } else {
         mBodyAngle.y =
-            cLib_minMaxLimit<s16>((s16)mBodyAngle.y, -daAlinkHIO_guard_c0::m.mSmallGuardLRAngleMax,
-                                  daAlinkHIO_guard_c0::m.mSmallGuardLRAngleMax);
+            cLib_minMaxLimit<s16>((s16)mBodyAngle.y, -mpHIO->mGuard.m.mSmallGuardLRAngleMax,
+                                  mpHIO->mGuard.m.mSmallGuardLRAngleMax);
     }
 
-    mBodyAngle.x = cLib_minMaxLimit<s16>(cM_atan2s(dmg_vec->y, dmg_vec->absXZ()), -daAlinkHIO_guard_c0::m.mSmallGuardFBAngleMax, daAlinkHIO_guard_c0::m.mSmallGuardFBAngleMax);
+    mBodyAngle.x = cLib_minMaxLimit<s16>(cM_atan2s(dmg_vec->y, dmg_vec->absXZ()), -mpHIO->mGuard.m.mSmallGuardFBAngleMax, mpHIO->mGuard.m.mSmallGuardFBAngleMax);
 }
 
-// NONMATCHING - extra useless mr
 int daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
     if (mProcID == PROC_GUARD_SLIP) {
         return 0;
@@ -254,7 +253,7 @@ int daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
         mProcVar2.field_0x300c = 0;
         mProcVar3.field_0x300e = 0;
     } else {
-        const daAlinkHIO_anm_c* var_r27 = &daAlinkHIO_guard_c0::m.mGuardHitAnm;
+        const daAlinkHIO_anm_c* var_r27 = &mpHIO->mGuard.m.mGuardHitAnm;
         daAlink_ANM var_r28;
         if (field_0x2f98 == 2) {
             var_r28 = ANM_GUARD_LEFT;
@@ -269,11 +268,11 @@ int daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
         if (abs(mProcVar2.field_0x300c) > 0x7000) {
             mProcVar2.field_0x300c = 0;
         } else {
-            mProcVar2.field_0x300c = cLib_minMaxLimit<s16>((s16)mProcVar2.field_0x300c, -daAlinkHIO_guard_c0::m.mGuardLRAngleMax, daAlinkHIO_guard_c0::m.mGuardLRAngleMax);
+            mProcVar2.field_0x300c = cLib_minMaxLimit<s16>((s16)mProcVar2.field_0x300c, -mpHIO->mGuard.m.mGuardLRAngleMax, mpHIO->mGuard.m.mGuardLRAngleMax);
         }
 
-        mProcVar3.field_0x300e = cLib_minMaxLimit<s16>(cM_atan2s(temp_r3->y, temp_r3->absXZ()), -daAlinkHIO_guard_c0::m.mGuardFBAngleMax, daAlinkHIO_guard_c0::m.mGuardFBAngleMax);
-        mProcVar1.field_0x300a = daAlinkHIO_guard_c0::m.mGuardBodyInterpolation + 1;
+        mProcVar3.field_0x300e = cLib_minMaxLimit<s16>(cM_atan2s(temp_r3->y, temp_r3->absXZ()), -mpHIO->mGuard.m.mGuardFBAngleMax, mpHIO->mGuard.m.mGuardFBAngleMax);
+        mProcVar1.field_0x300a = mpHIO->mGuard.m.mGuardBodyInterpolation + 1;
         mProcVar2.field_0x300c = (mProcVar2.field_0x300c - mBodyAngle.y) / mProcVar1.field_0x300a;
         mProcVar3.field_0x300e = (mProcVar3.field_0x300e - mBodyAngle.x) / mProcVar1.field_0x300a;
         mProcVar1.field_0x300a--;
@@ -287,10 +286,10 @@ int daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
 
     if (param_1 != NULL && param_1->GetTgHitAc() != NULL && fopAcM_GetName(param_1->GetTgHitAc()) == PROC_E_MM_MT && param_1->GetTgHitAc()->argument == 1) {
         if (checkBootsOrArmorHeavy()) {
-            mNormalSpeed = daAlinkHIO_guard_c0::m.mMagneHvyGuardSpeed;
+            mNormalSpeed = mpHIO->mGuard.m.mMagneHvyGuardSpeed;
             mProcVar5.field_0x3012 = 1;
         } else {
-            mNormalSpeed = daAlinkHIO_guard_c0::m.mMagneGuardSpeed;
+            mNormalSpeed = mpHIO->mGuard.m.mMagneGuardSpeed;
             mProcVar5.field_0x3012 = 0;
         }
 
@@ -299,12 +298,12 @@ int daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
         if ((!checkBootsOrArmorHeavy() && checkMiddleBossGoronRoom()) || checkStageName("D_MN07B")) {
             mNormalSpeed = 40.0f;
         } else {
-            mNormalSpeed = daAlinkHIO_guard_c0::m.mGuardSpeedHuge;
+            mNormalSpeed = mpHIO->mGuard.m.mGuardSpeedHuge;
         }
     } else if (checkLargeAttack(param_0)) {
-        mNormalSpeed = daAlinkHIO_guard_c0::m.mGuardSpeedLarge;
+        mNormalSpeed = mpHIO->mGuard.m.mGuardSpeedLarge;
     } else {
-        mNormalSpeed = daAlinkHIO_guard_c0::m.mGuardSpeedNormal;
+        mNormalSpeed = mpHIO->mGuard.m.mGuardSpeedNormal;
     }
 
     field_0x2f9d = 0x60;
@@ -363,7 +362,7 @@ int daAlink_c::procGuardAttackInit() {
     }
 
     commonProcInit(PROC_GUARD_ATTACK);
-    const daAlinkHIO_guardAttack_c1* temp_r30 = &daAlinkHIO_gAtPush_c0::m;
+    const daAlinkHIO_guardAttack_c1* temp_r30 = &mpHIO->mGuard.mAtPush.m;
     
     field_0x2f98 = 3;
     field_0x34d4 = l_rWaitBaseAnime;
@@ -393,7 +392,7 @@ int daAlink_c::procGuardAttackInit() {
 
     mGuardAtCps.ResetAtHit();
     mGuardAtCps.SetAtSe(2);
-    mGuardAtCps.SetR(daAlinkHIO_guard_c0::m.mAttackRadius);
+    mGuardAtCps.SetR(mpHIO->mGuard.m.mAttackRadius);
 
     current.angle.y = shape_angle.y;
 
@@ -410,7 +409,7 @@ int daAlink_c::procGuardAttack() {
 
     setUpperGuardAnime(-1.0f);
     field_0x2f99 = 4;
-    cLib_chaseF(&mNormalSpeed, 0.0f, daAlinkHIO_move_c0::m.mDeceleration);
+    cLib_chaseF(&mNormalSpeed, 0.0f, mpHIO->mMove.m.mDeceleration);
     setShapeAngleToAtnActor(1);
     current.angle.y = shape_angle.y;
 
@@ -481,7 +480,7 @@ int daAlink_c::procGuardAttack() {
 
 int daAlink_c::procGuardBreakInit() {
     commonProcInit(PROC_GUARD_BREAK);
-    setSingleAnimeParam(ANM_GUARD_BREAK, &daAlinkHIO_guard_c0::m.mGuardBreakAnm);
+    setSingleAnimeParam(ANM_GUARD_BREAK, &mpHIO->mGuard.m.mGuardBreakAnm);
 
     if (mEquipItem == fpcNm_ITEM_IRONBALL) {
         deleteEquipItem(0, 0);
@@ -506,7 +505,7 @@ int daAlink_c::procGuardBreak() {
             onEndResetFlg1(ERFLG1_UNK_20);
         }
         checkNextAction(0);
-    } else if (temp_r30->getFrame() > daAlinkHIO_guard_c0::m.mGuardBreakAnm.mCancelFrame) {
+    } else if (temp_r30->getFrame() > mpHIO->mGuard.m.mGuardBreakAnm.mCancelFrame) {
         if (!checkGuardActionChange()) {
             onEndResetFlg1(ERFLG1_UNK_20);
         }
@@ -540,14 +539,14 @@ int daAlink_c::procTurnMoveInit(int param_0) {
         var_r29 = ANM_SIDE_ROLL_LEFT;
     }
 
-    f32 temp_f31 = daAlinkHIO_turnMove_c0::m.mTurnAnm.mSpeed;
-    mProcVar1.field_0x300a = daAlinkHIO_turnMove_c0::m.mMaxTurnSpeed;
+    f32 temp_f31 = mpHIO->mGuard.mTurnMove.m.mTurnAnm.mSpeed;
+    mProcVar1.field_0x300a = mpHIO->mGuard.mTurnMove.m.mMaxTurnSpeed;
 
     if (checkNoResetFlg0(FLG0_UNDERWATER)) {
-        mProcVar1.field_0x300a = mProcVar1.field_0x300a * daAlinkHIO_magneBoots_c0::m.mWaterVelocityX;
+        mProcVar1.field_0x300a = mProcVar1.field_0x300a * mpHIO->mItem.mIronBoots.m.mWaterVelocityX;
     }
 
-    setSingleAnime(var_r29, temp_f31, daAlinkHIO_turnMove_c0::m.mTurnAnm.mStartFrame, daAlinkHIO_turnMove_c0::m.mTurnAnm.mEndFrame, daAlinkHIO_turnMove_c0::m.mTurnAnm.mInterpolation);
+    setSingleAnime(var_r29, temp_f31, mpHIO->mGuard.mTurnMove.m.mTurnAnm.mStartFrame, mpHIO->mGuard.mTurnMove.m.mTurnAnm.mEndFrame, mpHIO->mGuard.mTurnMove.m.mTurnAnm.mInterpolation);
 
     if (var_r29 == ANM_SIDE_ROLL_LEFT) {
         mProcVar2.field_0x300c = -0x7FF0;
@@ -591,7 +590,7 @@ int daAlink_c::procTurnMove() {
     onEndResetFlg0(ERFLG0_UNK_8000000);
     s16 temp_r28 = mProcVar2.field_0x300c;
 
-    cLib_addCalcAngleS(&mProcVar2.field_0x300c, 0, daAlinkHIO_turnMove_c0::m.mTurnSpeedRate, mProcVar1.field_0x300a, daAlinkHIO_turnMove_c0::m.mMinTurnSpeed);
+    cLib_addCalcAngleS(&mProcVar2.field_0x300c, 0, mpHIO->mGuard.mTurnMove.m.mTurnSpeedRate, mProcVar1.field_0x300a, mpHIO->mGuard.mTurnMove.m.mMinTurnSpeed);
 
     s16 temp_r29 = temp_r28 - mProcVar2.field_0x300c;
     if (temp_r28 > 0) {
@@ -623,11 +622,11 @@ int daAlink_c::procTurnMove() {
             offNoResetFlg2(FLG2_UNK_8000000);
         }
         checkNextAction(0);
-    } else if (mProcVar0.field_0x3008 != 0 && !checkNotJumpSinkLimit() && temp_r30->getFrame() > daAlinkHIO_turnMove_c0::m.mTwirlCutDelayF) {
+    } else if (mProcVar0.field_0x3008 != 0 && !checkNotJumpSinkLimit() && temp_r30->getFrame() > mpHIO->mGuard.mTurnMove.m.mTwirlCutDelayF) {
         procCutFinishJumpUpInit();
         dComIfGp_setPlayerStatus0(0, 4);
     } else {
-        if (temp_r30->getFrame() > daAlinkHIO_turnMove_c0::m.mTurnAnm.mCancelFrame) {
+        if (temp_r30->getFrame() > mpHIO->mGuard.mTurnMove.m.mTurnAnm.mCancelFrame) {
             onModeFlg(4);
 
             if (checkNextAction(1)) {

@@ -10,22 +10,15 @@
 #include "d/actor/d_a_b_gnd.h"
 #include "d/actor/d_a_arrow.h"
 
-
-#if DEBUG
-#define HIO mpHIO->mParameters
-#else
-#define HIO daHoZelda_hio_c0::m
-#endif
-
 static const char l_arcName[] = "HoZelda";
 
 #if DEBUG
 void daHoZelda_hio_c::genMessage(JORMContext* context) {
-    context->genSlider("弓サーチＹ角度", &mParameters.bow_search_y_angle, 0, 0x7fff, 0, NULL, -1, -1, 0x200, 0x18);
-    context->genSlider("弓開始角度", &mParameters.bow_start_angle, 0, 0x7fff, 0, NULL, -1, -1, 0x200, 0x18);
-    context->genSlider("弓開始距離", &mParameters.bow_start_distance, 0.0f, 10000.0f, 0, NULL, -1, -1, 0x200, 0x18);
-    context->genSlider("弓終了角度", &mParameters.bow_end_angle, 0, 0x7fff, 0, NULL, -1, -1, 0x200, 0x18);
-    context->genSlider("弓終了距離", &mParameters.bow_end_distance, 0.0f, 10000.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("弓サーチＹ角度", &m.bow_search_y_angle, 0, 0x7fff, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("弓開始角度", &m.bow_start_angle, 0, 0x7fff, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("弓開始距離", &m.bow_start_distance, 0.0f, 10000.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("弓終了角度", &m.bow_end_angle, 0, 0x7fff, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("弓終了距離", &m.bow_end_distance, 0.0f, 10000.0f, 0, NULL, -1, -1, 0x200, 0x18);
 }
 #endif
 
@@ -134,7 +127,7 @@ BOOL daHoZelda_c::createHeap() {
         return FALSE;
     }
 
-    mpHIO = new daHoZelda_hio_c();
+    mpHIO = new HOZELDA_HIO_CLASS();
     if (mpHIO == NULL) {
         return FALSE;
     }
@@ -482,7 +475,7 @@ void daHoZelda_c::setAnm() {
         }
 
         if (anm_idx[0] == 0xE && field_0x6da == 0 && !mDamageInit && field_0x6dd == 0 && player->checkHorseRide() && ganondorf != NULL && ganondorf->checkPiyo() != 1 &&
-            ((gnd_seen_angleY < HIO.bow_start_angle && gnd_lockon) || (mBowMode != 0 && gnd_seen_angleY < HIO.bow_end_angle && (gnd_lockon || mArrowAcKeep.getActor() != NULL))))
+            ((gnd_seen_angleY < mpHIO->m.bow_start_angle && gnd_lockon) || (mBowMode != 0 && gnd_seen_angleY < mpHIO->m.bow_end_angle && (gnd_lockon || mArrowAcKeep.getActor() != NULL))))
         {
             mBowMode = 1;
         } else {
@@ -848,7 +841,6 @@ void daHoZelda_c::setNeckAngle() {
     }
 }
 
-// NONMATCHING - load order with cLib_minMaxLimit
 void daHoZelda_c::searchBodyAngle() {
     fopAc_ac_c* gnd_actor = mGndAcKeep.getActor();
     s16 angle_x_target = 0;
@@ -863,16 +855,9 @@ void daHoZelda_c::searchBodyAngle() {
 
         if (sp8.abs() >= 1.0f) {
             angle_x_target = cLib_minMaxLimit<s16>(sp8.atan2sY_XZ(), -0x800, 0x2000);
-#if PLATFORM_SHIELD || PLATFORM_WII
             angle_y_target =
-                cLib_minMaxLimit<s16>(sp8.atan2sX_Z() - shape_angle.y, -HIO.bow_search_y_angle,
-                                      (s16)HIO.bow_search_y_angle);
-#else
-            // needs to load HIO.bow_search_y_angle before calling sp8.atan2sX_Z()
-            int ang1 = (s16)-HIO.bow_search_y_angle;
-            int ang2 = (s16)HIO.bow_search_y_angle;
-            angle_y_target = cLib_minMaxLimit<s16>(sp8.atan2sX_Z() - shape_angle.y, ang1, ang2);
-#endif
+                cLib_minMaxLimit<s16>(sp8.atan2sX_Z() - shape_angle.y, -mpHIO->m.bow_search_y_angle,
+                                      (s16)mpHIO->m.bow_search_y_angle);
         }
     }
 

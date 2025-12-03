@@ -129,8 +129,8 @@ static u32 const l_heap_size[5] = {
     0x1300, 0x1300, 0x1300, 0x1300, 0x20D0,
 };
 
-static f32 const l_cull_box[6] = {
-    -450.0f, 0.0f, -50.0f, 450.0f, 700.0f, 150.0f,
+static cull_box const l_cull_box = {
+    {-450.0f, 0.0f, -50.0f}, {450.0f, 700.0f, 150.0f},
 };
 
 static char* l_arcName[5] = {
@@ -209,7 +209,7 @@ int daObjKshtr_c::Create() {
 
     initBaseMtx();
     fopAcM_SetMtx(this, mMtx);
-    fopAcM_setCullSizeBox(this, l_cull_box[0], l_cull_box[1], l_cull_box[2], l_cull_box[3], l_cull_box[4], l_cull_box[5]);
+    fopAcM_setCullSizeBox(this, l_cull_box.min.x, l_cull_box.min.y, l_cull_box.min.z, l_cull_box.max.x, l_cull_box.max.y, l_cull_box.max.z);
 
     if (checkKey() == 1) {
         eventInfo.setArchiveName(l_arcName[mType]);
