@@ -2537,7 +2537,6 @@ int daNpc_Kn_c::teach06_divideMove(void* param_0) {
         if (!dComIfGp_event_runCheck()) {
             mActionMode = 15;
         }
-        break;
     }
     case 3:
     default:
@@ -2609,15 +2608,10 @@ int daNpc_Kn_c::teach06_superJumpWaitDivide(void* param_0) {
                     parent_p->setTalkFlag(2);
                 }
 
-                int spC;
-                s16 temp_r0_2 = fopAcM_searchPlayerAngleY(this) - current.angle.y;
-                if (temp_r0_2 < 0) {
-                    spC = -temp_r0_2;
-                } else {
-                    spC = temp_r0_2;
-                }
+                s16 srch_ply_angle = fopAcM_searchPlayerAngleY(this);
+                s16 angle = srch_ply_angle - current.angle.y;
 
-                if (spC < 0x4000) {
+                if ((angle < 0 ? -angle : angle) < 0x4000) {
                     mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
                     mMotionSeqMngr.setNo(0x12, -1.0f, 0, 0);
                     setAngle(fopAcM_searchPlayerAngleY(this));
@@ -2673,10 +2667,13 @@ int daNpc_Kn_c::teach06_superJumpWaitDivide(void* param_0) {
                 if (parent_p != NULL) {
                     parent_p->setTalkFlag(1);
                     parent_p->mFlowNodeNo = mFlowNodeNo;
+                } else {
+                    break;
                 }
             } else if (!daPy_getPlayerActorClass()->checkDamageImpact()) {
                 BOOL is_lockon = FALSE;
-                if (dComIfGp_getAttention()->LockonTruth()) {
+                dAttention_c* attention_p = dComIfGp_getAttention();
+                if (attention_p->LockonTruth()) {
                     is_lockon = TRUE;
                 }
 
@@ -2810,15 +2807,10 @@ int daNpc_Kn_c::teach07_superTurnAttackWait(void* param_0) {
                     mEvtNo = 0x18;
                 }
 
-                int spC;
-                s16 temp_r0_2 = fopAcM_searchPlayerAngleY(this) - current.angle.y;
-                if (temp_r0_2 < 0) {
-                    spC = -temp_r0_2;
-                } else {
-                    spC = temp_r0_2;
-                }
+                s16 srch_ply_angle = fopAcM_searchPlayerAngleY(this);
+                s16 angle = srch_ply_angle - current.angle.y;
 
-                if (spC < 0x4000) {
+                if ((angle < 0 ? -angle : angle) < 0x4000) {
                     mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
                     mMotionSeqMngr.setNo(0x12, -1.0f, 0, 0);
                     setAngle(fopAcM_searchPlayerAngleY(this));
@@ -2862,7 +2854,8 @@ int daNpc_Kn_c::teach07_superTurnAttackWait(void* param_0) {
             field_0x15bc = 0;
 
             BOOL is_lockon = FALSE;
-            if (dComIfGp_getAttention()->LockonTruth()) {
+            dAttention_c* attention_p = dComIfGp_getAttention();
+            if (attention_p->LockonTruth()) {
                 is_lockon = TRUE;
             }
 
@@ -2923,7 +2916,6 @@ int daNpc_Kn_c::teach07_divideMove(void* param_0) {
         if (!dComIfGp_event_runCheck()) {
             mActionMode = 21;
         }
-        break;
     }
     case 3:
     default:
@@ -2995,15 +2987,10 @@ int daNpc_Kn_c::teach07_superTurnAttackWaitDivide(void* param_0) {
                     parent_p->setTalkFlag(2);
                 }
 
-                int spC;
-                s16 temp_r0_2 = fopAcM_searchPlayerAngleY(this) - current.angle.y;
-                if (temp_r0_2 < 0) {
-                    spC = -temp_r0_2;
-                } else {
-                    spC = temp_r0_2;
-                }
+                s16 srch_ply_angle = fopAcM_searchPlayerAngleY(this);
+                s16 angle = srch_ply_angle - current.angle.y;
 
-                if (spC < 0x4000) {
+                if ((angle < 0 ? -angle : angle) < 0x4000) {
                     mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
                     mMotionSeqMngr.setNo(0x12, -1.0f, 0, 0);
                     setAngle(fopAcM_searchPlayerAngleY(this));
@@ -3046,8 +3033,8 @@ int daNpc_Kn_c::teach07_superTurnAttackWaitDivide(void* param_0) {
             if (parent_p != NULL) {
                 parent_p->setTalkFlag(1);
             }
+            break;
         }
-        break;
     }
     case 3:
     default:
@@ -3117,10 +3104,12 @@ int daNpc_Kn_c::teach07_warpDelete(void* param_0) {
 
 int daNpc_Kn_c::ECut_secondEncount(int i_idx) {
     dEvent_manager_c* event_manager = &dComIfGp_getEventManager();
+    daNpc_GWolf_c* gwolf_p = NULL;
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -3132,14 +3121,14 @@ int daNpc_Kn_c::ECut_secondEncount(int i_idx) {
             mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
             break;
         case 2: {
-            daNpc_GWolf_c* gwolf_p = (daNpc_GWolf_c*)fpcM_SearchByID(parentActorID);
+            gwolf_p = (daNpc_GWolf_c*)fpcM_SearchByID(parentActorID);
             if (fopAcM_GetName(gwolf_p) == PROC_NPC_GWOLF) {
                 gwolf_p->setMotion(4, -1.0f, FALSE);
             }
             break;
         }
         case 5: {
-            daNpc_GWolf_c* gwolf_p = (daNpc_GWolf_c*)fpcM_SearchByID(parentActorID);
+            gwolf_p = (daNpc_GWolf_c*)fpcM_SearchByID(parentActorID);
             if (gwolf_p != NULL) {
                 fopAcM_delete(gwolf_p);
             }
@@ -3273,10 +3262,12 @@ int daNpc_Kn_c::ECut_secondEncount(int i_idx) {
 int daNpc_Kn_c::ECut_thirdSkillExplain(int i_idx) {
     dEvent_manager_c* event_manager = &dComIfGp_getEventManager();
 
+    void* _ = NULL;
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -3359,9 +3350,7 @@ int daNpc_Kn_c::ECut_thirdSkillExplain(int i_idx) {
         }
         break;
     case 6:
-        if (mCurAngle.y == fopAcM_searchPlayerAngleY(this)) {
-            rt = 1;
-        } else {
+        if (mCurAngle.y != fopAcM_searchPlayerAngleY(this)) {
             if (step(fopAcM_searchPlayerAngleY(this), 1, 0x20, 20, 0)) {
                 rt = 1;
                 mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
@@ -3459,9 +3448,10 @@ int daNpc_Kn_c::ECut_thirdSkillGet(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -3594,9 +3584,10 @@ int daNpc_Kn_c::ECut_fourthSkillExplain(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -3647,6 +3638,7 @@ int daNpc_Kn_c::ECut_fourthSkillExplain(int i_idx) {
                 mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
                 mMotionSeqMngr.setNo(0, -1.0f, 1, 0);
             }
+            void(0);
             break;
         }
         case 30:
@@ -3792,9 +3784,10 @@ int daNpc_Kn_c::ECut_fourthSkillGet(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -3928,9 +3921,10 @@ int daNpc_Kn_c::ECut_fifthSkillExplain(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -4090,7 +4084,7 @@ int daNpc_Kn_c::ECut_fifthSkillExplain(int i_idx) {
                 sp34 += home.pos;
 
                 setPos(sp34);
-                setAngle(home.angle.y);
+                setAngle((s16) home.angle.y);
                 mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
                 mMotionSeqMngr.setNo(7, -1.0f, 1, 0);
             } else if (mpModelMorf[0]->getFrame() >= 8.0f && mpModelMorf[0]->getFrame() < 9.0f) {
@@ -4124,9 +4118,10 @@ int daNpc_Kn_c::ECut_fifthSkillGet(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -4260,9 +4255,10 @@ int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
     int sp8 = 0;
 
     int rt = 0;
+    int* prm_p = NULL;
     int prm = -1;
 
-    int* prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
+    prm_p = dComIfGp_evmng_getMyIntegerP(i_idx, "prm");
     if (prm_p != NULL) {
         prm = *prm_p;
     }
@@ -4416,7 +4412,7 @@ int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
                 sp34 += home.pos;
 
                 setPos(sp34);
-                setAngle(home.angle.y);
+                setAngle((s16) home.angle.y);
                 mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
                 mMotionSeqMngr.setNo(0, 0.0f, 1, 0);
             }
@@ -4984,14 +4980,22 @@ int daNpc_Kn_c::setSlipPrtcl() {
     mDoMtx_stack_c::multVecZero(&mParticleMngr[0].mPos);
     mParticleMngr[0].mPos.y -= 20.0f;
     mParticleMngr[0].mAngle = current.angle;
+    #ifdef DEBUG
+    mParticleMngr[0].mAngle.y -= (s16) 0x8000;
+    #else
     mParticleMngr[0].mAngle.y -= 0x8000;
+    #endif
     mParticleMngr[0].mpModel = true;
 
     mDoMtx_stack_c::copy(mpModelMorf[0]->getModel()->getAnmMtx(0x1b));
     mDoMtx_stack_c::multVecZero(&mParticleMngr[1].mPos);
     mParticleMngr[1].mPos.y -= 20.0f;
     mParticleMngr[1].mAngle = current.angle;
+    #ifdef DEBUG
+    mParticleMngr[1].mAngle.y -= (s16) 0x8000;
+    #else
     mParticleMngr[1].mAngle.y -= 0x8000;
+    #endif
     mParticleMngr[1].mpModel = true;
     return 1;
 }
