@@ -15587,9 +15587,8 @@ int daAlink_c::procFrontRollSuccessInit() {
         setFrontRollCrashShock(mRollCrashFlg);
         onResetFlg0(RFLG0_FRONT_ROLL_CRASH);
     } else {
-        f32 tmp_3 = 3.0f;
-        mUnderFrameCtrl[0].setFrame(tmp_3);
-        getNowAnmPackUnder(UNDER_0)->setFrame(tmp_3);
+        mUnderFrameCtrl[0].setFrame(3.0f);
+        getNowAnmPackUnder(UNDER_0)->setFrame(3.0f);
     }
 
     field_0x3588 = l_halfAtnWaitBaseAnime;

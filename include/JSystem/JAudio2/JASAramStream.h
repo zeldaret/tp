@@ -11,8 +11,6 @@ namespace JASDsp {
     class TChannel;
 }
 
-#define CHANNEL_MAX 6
-
 /**
  * @ingroup jsystem-jaudio
  * 
@@ -129,6 +127,8 @@ public:
     }
 
     static u32 getBlockSize() { return sBlockSize; }
+
+    static const int CHANNEL_MAX = 6;
 
     /* 0x000 */ OSMessageQueue field_0x000;
     /* 0x020 */ OSMessageQueue field_0x020;

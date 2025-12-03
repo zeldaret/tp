@@ -880,17 +880,17 @@ void daB_DR_c::mHabatakiAnmSet(int param_0) {
         }
         break;
     case ANM_DR_BRAKE_TO_HOVER:
-        if (mpModelMorf->isStop()) {
-            if (param_0 != 4) {
-                goto lbl_805bc4e0;  // fakematch?
-            }
-
-            setBck(ANM_DR_FLAP, 2, 3.0f, 1.0f);
+        if (!mpModelMorf->isStop()) {
+            break;
         }
-        break;
+        if (param_0 == 4) {
+            setBck(ANM_DR_FLAP, 2, 3.0f, 1.0f);
+            break;
+        }
+        /* fallthrough */
     default:
-    lbl_805bc4e0:
         setBck(ANM_DR_HOVERING, 2, 3.0f, 1.0f);
+        /* fallthrough */
     case ANM_DR_HOVERING:
         if ((int)mpModelMorf->getFrame() >= (int)(mpModelMorf->getEndFrame() - 1.0f) && param_0 == 4) {
             setBck(ANM_DR_FLAP, 2, 3.0f, 1.0f);

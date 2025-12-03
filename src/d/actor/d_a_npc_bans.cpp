@@ -658,15 +658,21 @@ void daNpc_Bans_c::reset() {
 
     switch (mType) {
         case TYPE_POST_TWILIGHT:
+            break;
         case TYPE_TWILIGHT:
+            break;
         case TYPE_COLIN_KIDNAPPED:
+            break;
         case TYPE_MAKING_BOMBS:
+            break;
         case TYPE_SHOP:
+            break;
         default:
-            daNpcT_offTmpBit(57); // dSv_event_tmp_flag_c::T_0057 - Kakariko Village (inside) - Barnes bomb shop <purchase>
-            setAngle(angle);
             break;
     }
+
+    daNpcT_offTmpBit(57); // dSv_event_tmp_flag_c::T_0057 - Kakariko Village (inside) - Barnes bomb shop <purchase>
+    setAngle(angle);
 }
 
 void daNpc_Bans_c::afterJntAnm(int param_1) {

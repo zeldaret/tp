@@ -411,7 +411,10 @@ void daNpc_Sha_c::reset() {
 
     switch (mType) {
         case 0:
+            break;
         case 1:
+            break;
+        default:
             break;
     }
 
