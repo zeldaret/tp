@@ -2220,7 +2220,6 @@ void daHorse_c::setDashEffect(u32* i_emitterID) {
                                          NULL, 0xFF, NULL, -1, 0, 0, 0);
 }
 
-// NONMATCHING - regalloc
 void daHorse_c::setEffect() {
     JPABaseEmitter* sp50;
     int sp4C;

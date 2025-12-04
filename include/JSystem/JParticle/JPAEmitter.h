@@ -264,7 +264,7 @@ public:
     /* 0xE8 */ JPAResource* mpRes;
     /* 0xEC */ JPAEmitterCallBack* mpEmtrCallBack;
     /* 0xF0 */ JPAParticleCallBack* mpPtclCallBack;
-    /* 0xF4 */ volatile u32 mStatus;
+    /* 0xF4 */ u32 mStatus;
     /* 0xF8 */ f32 mEmitCount;
     /* 0xFC */ f32 mScaleOut;
     /* 0x100 */ u32 mTick;
