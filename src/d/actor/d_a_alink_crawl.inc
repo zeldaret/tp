@@ -371,10 +371,11 @@ void daAlink_c::setCrawlMoveAngle() {
         }
 
         mLinkGndChk.SetPos(&sp20);
+        // Fakematch:
         // dBgS::GroundCross is implicitly inlined to cBgS::GroundCross, but for some
         // reason here that breaks the match. This is the only place in the code so
         // far (September 2025) where it causes issues.
-        sp2C.set(sp20.x - sp38.x, ((cBgS&)dComIfG_Bgsp()).GroundCross(&mLinkGndChk) - sp38.y,
+        sp2C.set(sp20.x - sp38.x, dComIfG_Bgsp().cBgS::GroundCross(&mLinkGndChk) - sp38.y,
                  sp20.z - sp38.z);
 
         if (cLib_distanceAngleS(sp2C.atan2sY_XZ(), shape_angle.x) > 0x800) {

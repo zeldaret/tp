@@ -116,7 +116,7 @@ bool cBgS::LineCross(cBgS_LinChk* p_line) {
         elm++;
     }
 
-    return p_line->ChkHit() ? true : false;
+    return p_line->ChkHit();
 }
 
 f32 cBgS::GroundCross(cBgS_GndChk* p_gnd) {
@@ -824,4 +824,10 @@ f32 dBgS_GetNY(cBgS_PolyInfo const& poly) {
 
     dComIfG_Bgsp().GetTriPla(poly, &pla);
     return pla.mNormal.y;
+}
+
+// TODO hack just to get the inlines to appear for debug
+static void dummy(dBgS& i_bgs) {
+    i_bgs.LineCross(NULL);
+    i_bgs.GroundCross(NULL);
 }
