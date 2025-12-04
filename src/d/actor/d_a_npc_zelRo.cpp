@@ -628,7 +628,8 @@ int daNpc_ZelRo_c::talk(void* param_1) {
 
 #ifdef DEBUG
 int daNpc_ZelRo_c::test(void* param_1) {
-
+    int rt = 0;
+    return rt;
 }
 #endif
 

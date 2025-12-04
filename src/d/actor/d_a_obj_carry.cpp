@@ -1292,7 +1292,8 @@ int daObjCarry_c::create() {
     }
 #endif
 
-    int create_phase = cPhs_NEXT_e;
+    int create_phase;
+    create_phase = cPhs_NEXT_e;
 
     switch (mType) {
     case TYPE_BALL_S:

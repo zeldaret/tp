@@ -818,13 +818,13 @@ static void demo_camera(e_th_class* i_this) {
             }
         }
         break;
-    case 10:
+    case 10: {
         if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(i_this, 2, 0xFFFF, 0);
             i_this->eventInfo.onCondition(2);
             return;
         }
-    
+
         camera->mCamera.Stop();
         i_this->mDemoCamMode = 11;
         i_this->mDemoCamTimer = 0;
@@ -864,6 +864,7 @@ static void demo_camera(e_th_class* i_this) {
         anm_init(i_this, 0xE, 2.0f, 0, 1.0f);
         i_this->mMode = 1;
         dComIfGs_onSaveSwitch(94);
+    }
     case 11:
         if (i_this->mDemoCamTimer == 55 && i_this->field_0x567 != 0) {
             daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 2, 0);

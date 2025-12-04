@@ -117,13 +117,14 @@ static int daObjKABUTO_Delete(daObjKABUTO_c* i_this) {
 
 void daObjKABUTO_c::ShopWaitAction() {
     switch (mMode) {
-    case 0:
+    case 0: {
         speedF = 0.0f;
         J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
         mpMorf->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
         mMode++;
         mTimers[0] = cM_rndF(50.0f) + 50.0f;
         break;
+    }
 
     case 1:
         mTimers[0]--;
@@ -148,13 +149,14 @@ void daObjKABUTO_c::ShopWaitAction() {
 
 void daObjKABUTO_c::WaitAction() {
     switch (mMode) {
-    case 0:
+    case 0: {
         speedF = 0.0f;
         J3DAnmTransform* anm = static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("Kab_m", 7));
         mpMorf->setAnm(anm, 2, 5.0f, 0.0f, 0.0f, -1.0f);
         mMode++;
         mTimers[0] = cM_rndF(50.0f) + 50.0f;
         break;
+    }
 
     case 1:
         if (fopAcM_searchActorDistance(this, daPy_getPlayerActorClass()) < 1500.0f) {

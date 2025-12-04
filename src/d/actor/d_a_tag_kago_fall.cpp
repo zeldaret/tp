@@ -136,7 +136,7 @@ void daTagKagoFall_c::actionWaitRiver() {
         }
         break;
 
-    case 4:
+    case 4: {
         daPy_getPlayerActorClass()->offNoResetFlg0(daPy_py_c::FLG0_UNK_10000);
 
         int msg = mMsgFlow.doFlow(this, NULL, 0);
@@ -151,6 +151,7 @@ void daTagKagoFall_c::actionWaitRiver() {
             mActionState = 5;
         }
         break;
+    }
 
     case 5:
         // Maybe contained some stripped out debug code?
@@ -233,7 +234,7 @@ void daTagKagoFall_c::actionWaitFall() {
 
         break;
 
-    case 3:
+    case 3: {
         player->setPlayerPosAndAngle(&mRestartPos, 0, 0);
         int msg = mMsgFlow.doFlow(this, NULL, 0);
         if (msg != 0) {
@@ -247,6 +248,7 @@ void daTagKagoFall_c::actionWaitFall() {
             mActionState = 10;
         }
         break;
+    }
 
     case 10:
         // Maybe contained some stripped out debug code?

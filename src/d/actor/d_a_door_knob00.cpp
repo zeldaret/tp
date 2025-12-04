@@ -353,7 +353,8 @@ int daKnob20_c::demoProc() {
             field_0x610 = 10;
             break;
         case 10:
-            int msgNo = knob_param_c::getMsgNo(this);
+            int msgNo;
+            msgNo = knob_param_c::getMsgNo(this);
             if (msgNo != 0xffff) {
                 field_0x5c0.init(this, msgNo, 0, NULL);
             }
@@ -391,6 +392,7 @@ int daKnob20_c::demoProc() {
     case 10:
         dComIfGp_event_offHindFlag(1);
         if (field_0x5c0.doFlow(this, NULL, 0) != 0) {
+            OS_REPORT("会話終了！\n"); // Conversation over!
             int msgNo = knob_param_c::getMsgNo(this);
             if (msgNo != 0xffff) {
                 field_0x5c0.init(this, msgNo, 0, NULL);
@@ -406,12 +408,14 @@ int daKnob20_c::demoProc() {
     case 9:
         dComIfGp_evmng_cutEnd(field_0x5bc);
         break;
-    case 14:
-        if (cLib_addCalcAngleS(&field_0x612, -0x2800, 20, 500, 10) == 0) {
+    case 14: {
+        s16 tmp = cLib_addCalcAngleS(&field_0x612, -0x2800, 20, 500, 10);
+        if (tmp == 0) {
             dComIfGp_evmng_cutEnd(field_0x5bc);
         }
         calcMtx();
         break;
+    }
     case 15:
         dComIfGp_evmng_cutEnd(field_0x5bc);
         calcMtx();

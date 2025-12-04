@@ -872,7 +872,7 @@ void daObjKGate_c::demoProc() {
 
     if (dComIfGp_evmng_getIsAddvance(mStaffID)) {
         switch (demo_action) {
-        case DEMO_ACT_WAIT:
+        case DEMO_ACT_WAIT: {
             int* timer_p = dComIfGp_evmng_getMyIntegerP(mStaffID, "Timer");
             if (timer_p == NULL) {
                 mTimer = 1;
@@ -880,6 +880,7 @@ void daObjKGate_c::demoProc() {
                 mTimer = *timer_p;
             }
             break;
+        }
         case DEMO_ACT_OPEN:
             mGateLMove = 1000;
             mGateRMove = -1000;

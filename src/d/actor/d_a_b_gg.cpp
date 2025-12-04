@@ -2652,11 +2652,12 @@ void daB_GG_c::FallChk() {
 }
 
 void daB_GG_c::G_AttackAction() {
+    int rnd;
     switch (mMode) {
     case 0:
         SpeedClear();
 
-        int rnd = cM_rndF(100.0f);
+        rnd = cM_rndF(100.0f);
         if (rnd > 70) {
             SetAnm(BCK_GGB_ATTACK_A, 0, 5.0f, 1.0f);
 
@@ -2723,7 +2724,7 @@ void daB_GG_c::G_AttackAction() {
             mCcCyl.OnTgShield();
             mCcShieldSph.OnTgShield();
 
-            int rnd = cM_rndF(100.0f);
+            rnd = cM_rndF(100.0f);
             if (rnd < 30 || mAnm == BCK_GGB_ATTACK_C) {
                 SetAction(ACTION_GROUND, SUBACT_MOVE, 0);
             } else if (mAnm != BCK_GGB_ATTACK_C && rnd > 50) {
@@ -2770,7 +2771,6 @@ void daB_GG_c::G_AttackAction() {
             mCcSph[i].OnAtSetBit();
             mCcSph[i].SetAtSpl((dCcG_At_Spl) 0xA);
         }
-        break;
     }
 
     F_AtHit();
@@ -2904,11 +2904,13 @@ void daB_GG_c::G_DamageAction() {
             speedF = 0.0f;
         }
 
-        s_TargetAngle += 0x4000;
+        s_TargetAngle += (s16) 0x4000;
         break;
     case 2:
-        cXyz* tg_hit_pos = mCcCyl.GetTgHitPosP();
-        s16 spA = cLib_targetAngleY(&current.pos, tg_hit_pos);
+        cXyz* tg_hit_pos;
+        s16 spA;
+        tg_hit_pos = mCcCyl.GetTgHitPosP();
+        spA = cLib_targetAngleY(&current.pos, tg_hit_pos);
         if ((spA - shape_angle.y) > 0) {
             if (mAnm != BCK_GGB_DAMAGE_R) {
                 SetAnm(BCK_GGB_DAMAGE_R, 0, 5.0f, 1.0f);
@@ -2923,7 +2925,9 @@ void daB_GG_c::G_DamageAction() {
 
         SetAction(ACTION_GROUND, SUBACT_DAMAGE, 3);
 
-        if (health < (s16)(field_0x560 * l_HIO.field_0x18) && field_0x5b0 == 0 && mType == TYPE_L7_MBOSS) {
+        if (health < (s16)(field_0x560 * l_HIO.field_0x18) && field_0x5b0 == 0 &&
+            mType == TYPE_L7_MBOSS)
+        {
             mpModelMorf->setPlaySpeed(1.0f);
             SetAction(ACTION_DEMO, 1, 0);
             mCamMode = 0;
@@ -2954,11 +2958,16 @@ void daB_GG_c::G_DamageAction() {
             mCamMode = 0;
         }
         break;
-    case 3:
-        int cut_count = daPy_getPlayerActorClass()->getCutCount();
+    case 3: {
+        u8 cut_count = daPy_getPlayerActorClass()->getCutCount();
         u32 cut_type = daPy_getPlayerActorClass()->getCutType();
 
-        if ((cut_type == daPy_py_c::CUT_TYPE_TURN_LEFT || cut_type == daPy_py_c::CUT_TYPE_TURN_RIGHT || cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT || cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT) && field_0x6bc > 0) {
+        if ((cut_type == daPy_py_c::CUT_TYPE_TURN_LEFT ||
+             cut_type == daPy_py_c::CUT_TYPE_TURN_RIGHT ||
+             cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT ||
+             cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT) &&
+            field_0x6bc > 0)
+        {
             mCcCyl.OnTgShield();
             mCcShieldSph.OnTgShield();
             mCcShieldSph.OnTgSetBit();
@@ -2984,6 +2993,7 @@ void daB_GG_c::G_DamageAction() {
 
         FallChk();
         break;
+    }
     case 4:
         sp38 = eyePos;
         sp38.y += 180.0f + NREG_F(7);

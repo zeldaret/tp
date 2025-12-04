@@ -9,6 +9,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_msg_object.h"
 #include "f_op/f_op_actor_mng.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 struct daTagTWGate_zevParam {
     /* 0x00 */ char* mArcName;
@@ -293,24 +294,21 @@ void daTagTWGate_c::executeDemoFilone3() {
         }
 
         switch (*cutName) {
-        case 0x30303031:
+        case 0x30303031: {
             int modelSts = downloadModels();
             if (modelSts == 1) {
                 dComIfGp_evmng_cutEnd(staffId);
             } else if (modelSts == -1) {
-                dComIfGp_setNextStage(l_zevParamTbl[mType].mStage,
-                                      l_zevParamTbl[mType].mPoint,
-                                      l_zevParamTbl[mType].mRoomNo,
-                                      l_zevParamTbl[mType].mLayer);
+                dComIfGp_setNextStage(l_zevParamTbl[mType].mStage, l_zevParamTbl[mType].mPoint,
+                                      l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
             }
             break;
-        case 0x30303032:
+        }
+        case 0x30303032: {
             if (dComIfGp_getEvent().chkFlag2(8)) {
                 dComIfGp_getEvent().onSkipFade();
-                dComIfGp_setNextStage(l_zevParamTbl[mType].mStage,
-                                      l_zevParamTbl[mType].mPoint,
-                                      l_zevParamTbl[mType].mRoomNo,
-                                      l_zevParamTbl[mType].mLayer);
+                dComIfGp_setNextStage(l_zevParamTbl[mType].mStage, l_zevParamTbl[mType].mPoint,
+                                      l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
             }
 
             u8 old_5e1 = field_0x5e1;
@@ -323,7 +321,7 @@ void daTagTWGate_c::executeDemoFilone3() {
                 mDoMtx_stack_c::transS(player->current.pos);
                 mDoMtx_stack_c::YrotM(sxyz.y);
                 mDoMtx_stack_c::transM(0.0f, 240.0f, -710.0f);
-                
+
                 cXyz pos;
                 pos.x = mDoMtx_stack_c::get()[0][3];
                 pos.y = mDoMtx_stack_c::get()[1][3];
@@ -333,6 +331,7 @@ void daTagTWGate_c::executeDemoFilone3() {
                 dComIfGp_evmng_cutEnd(staffId);
             }
             break;
+        }
         case 0x30303033:
             if (dComIfGp_getEvent().chkFlag2(8)) {
                 dComIfGp_getEvent().onSkipFade();
@@ -482,32 +481,30 @@ void daTagTWGate_c::executeDemoOrdin3() {
            mpMorf->setPlaySpeed(1.0f);
             field_0x5e0 = 1;
             break;
+        default:
+            JUT_PANIC(829, "0");
+            break;
         }
+
     }
     switch(*cutName) {
     case '0001':
-        int downloadResult = downloadModels();
+        int downloadResult;
+        downloadResult = downloadModels();
         if (downloadResult == 1) {
             evtMng.cutEnd(staffId);
         } else if (downloadResult == -1) {
-            dComIfGp_setNextStage(
-                l_zevParamTbl[mType].mStage,
-                l_zevParamTbl[mType].mPoint,
-                l_zevParamTbl[mType].mRoomNo,
-                l_zevParamTbl[mType].mLayer);
+            dComIfGp_setNextStage(l_zevParamTbl[mType].mStage, l_zevParamTbl[mType].mPoint,
+                                  l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
         }
         break;
     case '0002':
         if (dComIfGp_getEvent().checkSkipEdge()) {
             dComIfGp_getEvent().onSkipFade();
-            dComIfGp_setNextStage(
-                l_zevParamTbl[mType].mStage,
-                l_zevParamTbl[mType].mPoint,
-                l_zevParamTbl[mType].mRoomNo,
-                l_zevParamTbl[mType].mLayer);
+            dComIfGp_setNextStage(l_zevParamTbl[mType].mStage, l_zevParamTbl[mType].mPoint,
+                                  l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
         }
-        int dVar2 = daPy_py_c::checkNowWolf() ? 0x2e : 0x4a;
-        if (field_0x5e1++ == dVar2) {
+        if (field_0x5e1++ == (daPy_py_c::checkNowWolf() ? 0x2e : 0x4a)) {
             daPy_py_c* player = daPy_getPlayerActorClass();
             cXyz cStack_30;
             csXyz cStack_38(0, fopAcM_GetShapeAngle_p(player)->y + 0x8000, 0);
@@ -516,8 +513,8 @@ void daTagTWGate_c::executeDemoOrdin3() {
             mDoMtx_stack_c::transM(0.0f, 240.0f, -710.0f);
             mDoMtx_stack_c::multVecZero(&cStack_30);
             dComIfGp_particle_set(0x86c5, &cStack_30, &cStack_38, NULL);
-            Z2GetAudioMgr()->seStart(Z2SE_OBJ_DARK_GATE_RIPPLE, &cStack_30, 0, 0,
-                                     1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_OBJ_DARK_GATE_RIPPLE, &cStack_30, 0, 0, 1.0f, 1.0f, -1.0f,
+                                     -1.0f, 0);
             evtMng.cutEnd(staffId);
         }
         break;
@@ -533,6 +530,9 @@ void daTagTWGate_c::executeDemoOrdin3() {
         if (mpMorf->isStop()) {
             evtMng.cutEnd(staffId);
         }
+        break;
+    default:
+        JUT_PANIC(890, "0");
         break;
     }
 
@@ -668,32 +668,29 @@ void daTagTWGate_c::executeDemoRanail3() {
            mpMorf->setPlaySpeed(1.0f);
             field_0x5e0 = 1;
             break;
+        default:
+            JUT_PANIC(1099, "0");
+            break;
         }
     }
     switch(*cutName) {
-    case '0001':
-        int downloadResult = downloadModels();
+    case '0001': 
+        int downloadResult;
+        downloadResult = downloadModels();
         if (downloadResult == 1) {
             evtMng.cutEnd(staffId);
         } else if (downloadResult == -1) {
-            dComIfGp_setNextStage(
-                l_zevParamTbl[mType].mStage,
-                l_zevParamTbl[mType].mPoint,
-                l_zevParamTbl[mType].mRoomNo,
-                l_zevParamTbl[mType].mLayer);
+            dComIfGp_setNextStage(l_zevParamTbl[mType].mStage, l_zevParamTbl[mType].mPoint,
+                                  l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
         }
         break;
     case '0002':
         if (dComIfGp_getEvent().checkSkipEdge()) {
             dComIfGp_getEvent().onSkipFade();
-            dComIfGp_setNextStage(
-                l_zevParamTbl[mType].mStage,
-                l_zevParamTbl[mType].mPoint,
-                l_zevParamTbl[mType].mRoomNo,
-                l_zevParamTbl[mType].mLayer);
+            dComIfGp_setNextStage(l_zevParamTbl[mType].mStage, l_zevParamTbl[mType].mPoint,
+                                  l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
         }
-        int dVar2 = daPy_py_c::checkNowWolf() ? 0x2e : 0x4a;
-        if (field_0x5e1++ == dVar2) {
+        if (field_0x5e1++ == (daPy_py_c::checkNowWolf() ? 0x2e : 0x4a)) {
             daPy_py_c* player = daPy_getPlayerActorClass();
             cXyz cStack_30;
             csXyz cStack_38(0, fopAcM_GetShapeAngle_p(player)->y + 0x8000, 0);
@@ -702,8 +699,8 @@ void daTagTWGate_c::executeDemoRanail3() {
             mDoMtx_stack_c::transM(0.0f, 240.0f, -710.0f);
             mDoMtx_stack_c::multVecZero(&cStack_30);
             dComIfGp_particle_set(0x86c5, &cStack_30, &cStack_38, NULL);
-            Z2GetAudioMgr()->seStart(Z2SE_OBJ_DARK_GATE_RIPPLE, &cStack_30, 0, 0,
-                                     1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->seStart(Z2SE_OBJ_DARK_GATE_RIPPLE, &cStack_30, 0, 0, 1.0f, 1.0f, -1.0f,
+                                     -1.0f, 0);
             evtMng.cutEnd(staffId);
         }
         break;
@@ -719,6 +716,9 @@ void daTagTWGate_c::executeDemoRanail3() {
         if (mpMorf->isStop()) {
             evtMng.cutEnd(staffId);
         }
+        break;
+    default:
+        JUT_PANIC(1160, "0");
         break;
     }
 
@@ -854,7 +854,8 @@ void daTagTWGate_c::executeDemoHyral3() {
     }
     switch(*piVar3) {
     case '0001':
-        int downloadRes = downloadModels();
+        int downloadRes;
+        downloadRes = downloadModels();
         if (downloadRes == 1) {
             eventMgr.cutEnd(staffId);
         } else if (downloadRes == -1) {

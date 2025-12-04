@@ -594,7 +594,7 @@ BOOL daNpc_Hoz_c::evtEndProc() {
         field_0xf8b = 1;
         field_0xf8c = 0;
         break;
-    case 5:
+    case 5: {
         field_0xf8a = 1;
         field_0xf8c = 0;
 
@@ -604,6 +604,7 @@ BOOL daNpc_Hoz_c::evtEndProc() {
             dMeter2Info_onMenuInForce(2);
         }
         break;
+    }
     case 6:
         field_0xf8b = 1;
 

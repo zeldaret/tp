@@ -3,8 +3,9 @@
  * Enemy - Beehive
  */
 
-#include "d/dolzel_rel.h" // IWYU pragma: keep
-
+ #include "d/dolzel_rel.h" // IWYU pragma: keep
+ 
+#include "d/d_s_play.h"
 #include "d/actor/d_a_e_nest.h"
 #include "d/actor/d_a_npc_tk.h"
 #include "SSystem/SComponent/c_math.h"
@@ -431,13 +432,14 @@ static void e_nest_drop(e_nest_class* i_this) {
 }
 
 static s8 e_nest_carry(e_nest_class* i_this) {
+    fopAc_ac_c* a_this = static_cast<fopAc_ac_c*>(i_this);
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    i_this->speed.y = 0.0f;
+    a_this->speed.y = 0.0f;
     s8 ret = true;
-
+    
     switch (i_this->mMode) {
-    case 0:
-        cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
+    case 0: {
+        cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         i_this->mMode = 1;
         s16 angle_delta_y = i_this->mRotation.y - player->shape_angle.y;
         if (angle_delta_y > 0x4000 || angle_delta_y < -0x4000) {
@@ -447,21 +449,22 @@ static s8 e_nest_carry(e_nest_class* i_this) {
         }
         i_this->mTimers[0] = 20;
         break;
+    }
 
     case 1:
-        if (!fopAcM_checkCarryNow(i_this)) {
+        if (!fopAcM_checkCarryNow(a_this)) {
             i_this->mTimers[0] = 0;
             i_this->mCcSph.OnCoSetBit();
             i_this->mAction = e_nest_class::ACT_DROP;
-            if (i_this->speedF >= 1.0f) {
-                i_this->speedF = 30.0f;
-                i_this->speed.y = 30.0f;
-                i_this->current.angle.y = player->shape_angle.y;
+            if (fopAcM_GetSpeedF(a_this) >= 1.0f) {
+                a_this->speedF = 30.0f + NREG_F(7);
+                a_this->speed.y = 30.0f + NREG_F(8);
+                a_this->current.angle.y = player->shape_angle.y;
                 i_this->mMode = 0;
             } else {
-                i_this->speedF = 0.0f;
+                a_this->speedF = 0.0f;
                 i_this->mMode = 3;
-                i_this->mWobble = 500.0f;
+                i_this->mWobble = 500.0f + NREG_F(0);
             }
         } else {
             ret = false;

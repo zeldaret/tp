@@ -195,15 +195,18 @@ u32 JKRMemArchive::fetchResource_subroutine(u8* src, u32 srcLength, u8* dst, u32
         return srcLength;
 
     case COMPRESSION_YAY0:
-    case COMPRESSION_YAZ0:
+    case COMPRESSION_YAZ0: {
         u32 expendedSize = JKRDecompExpandSize(src);
+        #if VERSION != VERSION_SHIELD_DEBUG
         srcLength = expendedSize;
+        #endif
         if (expendedSize > dstLength) {
             srcLength = dstLength;
         }
 
         JKRDecompress(src, dst, srcLength, 0);
         return srcLength;
+    }
 
     default: {
         JUTException::panic(__FILE__, 723, "??? bad sequence\n");

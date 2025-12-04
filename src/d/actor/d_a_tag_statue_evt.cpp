@@ -1,6 +1,6 @@
 /*
-/* Translation Unit: d_a_tag_statue_evt
-/* Owl Statue Event Tag -- Awarding Sky Characters
+* Translation Unit: d_a_tag_statue_evt
+* Owl Statue Event Tag -- Awarding Sky Characters
  */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -272,18 +272,18 @@ int daTagStatue_c::demoProc() {
 
     if(dComIfGp_evmng_getIsAddvance(mStaffId)) {
         switch(act_id) {
-            case DEMO_ACTION_WAIT:
+            case DEMO_ACTION_WAIT: {
                 // Delay fading to black
                 int* timer_p = dComIfGp_evmng_getMyIntegerP(mStaffId, "Timer");
 
-                if(!timer_p) {
+                if (!timer_p) {
                     mTimer = 1;
-                }
-                else {
+                } else {
                     mTimer = *timer_p;
                 }
 
                 break;
+            }
             case DEMO_ACTION_MOVE_OWL_STATUE:
                 // Position and orient Owl Statue behind player
                 if(mSkyCharacterEventBitIdIndex != TAG_LOCATION_GERUDO_DESERT && mSkyCharacterEventBitIdIndex != TAG_LOCATION_LAKE_HYLIA && mSkyCharacterEventBitIdIndex != TAG_LOCATION_RUINED_THEATRE) {

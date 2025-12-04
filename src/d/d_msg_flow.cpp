@@ -581,7 +581,7 @@ int dMsgFlow_c::messageNodeProc(fopAc_ac_c* i_speaker_p, fopAc_ac_c** i_talkPart
             field_0x41 = 1;
             mNowMsgNo = aMsg_p->msg_idx;
             break;
-        case 6:
+        case 6: {
             field_0x40 = field_0x41;
 
             int mesgAnimeAttrInfo = -1;
@@ -603,6 +603,7 @@ int dMsgFlow_c::messageNodeProc(fopAc_ac_c* i_speaker_p, fopAc_ac_c** i_talkPart
             field_0x41 = 0;
             mNowMsgNo = aMsg_p->msg_idx;
             break;
+        }
         case 14:
         case 18:
             setNodeIndex(flowNode_p->next_node_idx, i_talkPartners);
@@ -635,7 +636,7 @@ int dMsgFlow_c::eventNodeProc(fopAc_ac_c* i_speaker_p, fopAc_ac_c** i_talkPartne
     int proc_status = (this->*mEventList[node->event_idx])(node, i_speaker_p);
 
     switch (node->event_idx) {
-    case 8:
+    case 8: {
         getParam(&mEventId, &field_0x30, node->params);
         setNodeIndex(mFlowIdxTBL[node->next_node_idx], i_talkPartners);
 
@@ -647,6 +648,7 @@ int dMsgFlow_c::eventNodeProc(fopAc_ac_c* i_speaker_p, fopAc_ac_c** i_talkPartne
         setNodeIndex(-1, i_talkPartners);
         mNodeIdx = prev_idx;
         break;
+    }
     case 9:
         if (getParam(node->params) == 0) {
             int msgNum;
