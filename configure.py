@@ -733,7 +733,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_base.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_kcol.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_sv.cpp"),
-            Object(Equivalent, "d/d_cc_d.cpp"), # weak func order
+            Object(Equivalent, "d/d_cc_d.cpp"), # weak func order (cCcD_ShapeAttr::GetCoCP)
             Object(MatchingFor(ALL_GCN), "d/d_cc_mass_s.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_cc_s.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_cc_uty.cpp"),
@@ -1286,7 +1286,7 @@ config.libs = [
         [
             Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JHIComm.cpp"),
             Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JHICommonMem.cpp"),
-            Object(Equivalent, "JSystem/JHostIO/JORServer.cpp"), # weak func order
+            Object(Equivalent, "JSystem/JHostIO/JORServer.cpp"), # debug weak func order
             Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JOREntry.cpp", extra_cflags=["-sym off"]), # debug weak func order
             Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JORFile.cpp", extra_cflags=["-sym off"]),
             Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JORMessageBox.cpp"),
@@ -1941,8 +1941,8 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_zs"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_formation_mng"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_guard_mng"),
-    ActorRel(NonMatching, "d_a_horse"),
-    ActorRel(Equivalent, "d_a_hozelda"), # weak func order
+    ActorRel(Equivalent, "d_a_horse"), # weak func order (J3DMtxCalcNoAnm)
+    ActorRel(Equivalent, "d_a_hozelda"), # weak func order (J3DMtxCalcNoAnm)
     ActorRel(MatchingFor(ALL_GCN), "d_a_izumi_gate"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kago"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_kytag01"),
