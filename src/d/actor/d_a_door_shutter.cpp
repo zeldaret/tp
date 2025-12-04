@@ -145,7 +145,7 @@ int daDoor20_c::CreateHeap() {
             anm = (J3DAnmTransform*)dComIfG_getObjectRes(getArcName(), "oj_DoorOpC.bck");
             break;
         case 2: 
-            J3DAnmTextureSRTKey* pbtk; // Force end-of-scope branch
+            J3DAnmTextureSRTKey* pbtk;
             pbtk = (J3DAnmTextureSRTKey*)dComIfG_getStageRes(getBtk());
             JUT_ASSERT(421, pbtk != NULL);
             field_0x5c0 = new mDoExt_btkAnm();

@@ -392,7 +392,7 @@ int daKnob20_c::demoProc() {
     case 10:
         dComIfGp_event_offHindFlag(1);
         if (field_0x5c0.doFlow(this, NULL, 0) != 0) {
-            OS_REPORT("会話終了！\n"); // "Conversation over!"
+            OS_REPORT("会話終了！\n"); // Conversation over!
             int msgNo = knob_param_c::getMsgNo(this);
             if (msgNo != 0xffff) {
                 field_0x5c0.init(this, msgNo, 0, NULL);

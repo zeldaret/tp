@@ -489,7 +489,7 @@ void daTagTWGate_c::executeDemoOrdin3() {
     }
     switch(*cutName) {
     case '0001':
-        int downloadResult; // Force end-of-scope branch
+        int downloadResult;
         downloadResult = downloadModels();
         if (downloadResult == 1) {
             evtMng.cutEnd(staffId);

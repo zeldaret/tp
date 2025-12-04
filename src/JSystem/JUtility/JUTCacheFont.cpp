@@ -277,7 +277,7 @@ void JUTCacheFont::setBlock() {
             break;
         case 'GLY1':
             memcpy(piVar5, pData, 0x20);
-            JKRAramBlock* iVar1; // Force end-of-scope branch
+            JKRAramBlock* iVar1;
             iVar1 = JKRMainRamToAram((u8*)pData + 0x20, aramAddress, pData[1] - 0x20,
                                      EXPAND_SWITCH_UNKNOWN0, 0, NULL, 0xffffffff, NULL);
             if (iVar1 == NULL) {

@@ -2907,7 +2907,7 @@ void daB_GG_c::G_DamageAction() {
         s_TargetAngle += (s16) 0x4000;
         break;
     case 2:
-        cXyz* tg_hit_pos; // Force end-of-scope branch
+        cXyz* tg_hit_pos;
         s16 spA;
         tg_hit_pos = mCcCyl.GetTgHitPosP();
         spA = cLib_targetAngleY(&current.pos, tg_hit_pos);

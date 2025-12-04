@@ -344,7 +344,7 @@ static void e_bi_ex(e_bi_class* i_this) {
             i_this->field_0x670 = 1;
             i_this->field_0x694 = 160;
             anm_init(i_this, BCK_BI_BOMBPOSE, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
-            f32 fVar1; // force end-of-scope branch
+            f32 fVar1;
             fVar1 = cM_rndF(0.2f) + 0.9f;
             i_this->field_0x6a2 = 0;
             i_this->field_0x6a4 = (3800.0f + JREG_F(5)) * fVar1;
