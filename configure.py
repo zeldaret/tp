@@ -397,6 +397,7 @@ cflags_revolution_retail = [
 cflags_revolution_debug = [
     *cflags_revolution_base,
     "-opt off",
+    "-inline off",
     "-DDEBUG=1",
 ]
 
@@ -1495,6 +1496,19 @@ config.libs = [
             Object(MatchingFor("ShieldD"), "revolution/os/OSPlayTime.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSLaunch.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/__ppc_eabi_init.cpp"),
+        ],
+    ),
+    RevolutionLib(
+        "dvd",
+        [
+            Object(NonMatching, "revolution/dvd/dvdfs.c", extra_cflags=["-char signed"]),
+            Object(NonMatching, "revolution/dvd/dvd.c", extra_cflags=["-char signed"]),
+            Object(NonMatching, "revolution/dvd/dvdqueue.c", extra_cflags=["-char signed"]),
+            Object(NonMatching, "revolution/dvd/dvderror.c", extra_cflags=["-char signed"]),
+            Object(NonMatching, "revolution/dvd/dvdidutils.c", extra_cflags=["-char signed"]),
+            Object(NonMatching, "revolution/dvd/dvdFatal.c", extra_cflags=["-char signed"]),
+            Object(NonMatching, "revolution/dvd/dvdDeviceError.c", extra_cflags=["-char signed"]),
+            Object(NonMatching, "revolution/dvd/dvd_broadway.c", extra_cflags=["-char signed"]),
         ],
     ),
     {

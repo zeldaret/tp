@@ -2,6 +2,10 @@
 #include <revolution/os.h>
 #include <revolution/esp.h>
 #include <revolution/nand.h>
+#include <revolution/vi.h>
+#include <string.h>
+
+#include "__os.h"
 
 OSAlarm __OSExpireAlarm;
 OSTime __OSExpireTime;

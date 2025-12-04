@@ -131,6 +131,8 @@ s32 NANDOpen(const char*, NANDFileInfo*, u8);
 s32 NANDPrivateOpen(const char*, NANDFileInfo*, u8);
 s32 NANDOpenAsync(const char*, NANDFileInfo*, u8, NANDCallback, NANDCommandBlock*);
 s32 NANDPrivateOpenAsync(const char*, NANDFileInfo*, const u8, NANDCallback, NANDCommandBlock*);
+s32 NANDPrivateCreateAsync(const char *path, u8 perm, u8 attr, NANDCallback cb, NANDCommandBlock* block);
+s32 NANDPrivateCreateDirAsync(const char *path, u8 perm, u8 attr, NANDCallback cb, NANDCommandBlock *block);
 
 s32 NANDClose(NANDFileInfo*);
 s32 NANDCloseAsync(NANDFileInfo*, NANDCallback, NANDCommandBlock*);

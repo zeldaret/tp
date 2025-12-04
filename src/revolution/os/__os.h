@@ -13,11 +13,7 @@ extern char* __OSExceptionNames[17]; // D ONLY
 
 u32 __OSIsDebuggerPresent(void);
 void __OSPSInit(void);
-void __OSInitIPCBuffer(void);
-void __OSInitSTM(void);
-void __OSInitNet(void);
-void __OSInitPlayTime(void);
-void __OSStartPlayRecord(void);
+void __OSGetIOSRev(OSIOSRev* rev);
 
 // OSAlarm
 void __OSInitAlarm(void);
@@ -44,6 +40,7 @@ void __OSGetExecParams(OSExecParams* params);
 void __OSSetExecParams(const OSExecParams* params, OSExecParams* addr);
 void __OSBootDolSimple(u32 doloffset, u32 restartCode, void* regionStart, void* regionEnd, BOOL argsUseDefault, s32 argc, char** argv);
 void __OSBootDol(u32 doloffset, u32 restartCode, const char** argv);
+void __OSLaunchMenu();
 extern u32 __OSNextPartitionType;
 
 // OSInterrupt
@@ -62,25 +59,37 @@ OSInterruptMask __OSUnmaskInterrupts(OSInterruptMask global);
 void __OSDispatchInterrupt(__OSException exception, OSContext* context);
 void __OSModuleInit(void);
 
+// OSIpc
+void __OSInitIPCBuffer(void);
+
+// OSLaunch
+void __OSRelaunchTitle(u32 resetCode);
+
 // OSMemory
 void __OSInitMemoryProtection(void);
+void __OSRestoreCodeExecOnMEM1(u32 param_0);
 
 // OSMutex
 void __OSUnlockAllMutex(OSThread* thread);
 int __OSCheckDeadLock(OSThread* thread);
 int __OSCheckMutexes(OSThread* thread);
 
+// OSNet
+void __OSInitNet(void);
+
 // OSPlayTime
-void __OSGetPlayTime(ESTicketView* ticket, __OSPlayTimeType* type, u32* playTime);
+void __OSInitPlayTime(void);
+s32 __OSGetPlayTime(ESTicketView* ticket, __OSPlayTimeType* type, u32* playTime);
+BOOL __OSWriteExpiredFlagIfSet(void);
+
+// OSPlayRecord
+void __OSStartPlayRecord(void);
 
 // OSReset
-void __OSDoHotReset(u32 resetCode);
 void __OSShutdownDevices(u32 event);
 int __OSCallShutdownFunctions(BOOL final, u32 event);
-
-// OSResetSW
-void __OSResetSWInterruptHandler(s16 exception, OSContext* context);
-void __OSSetResetButtonTimer(u8 min);
+void __OSReturnToMenuForError(void);
+void __OSHotResetForError(void);
 
 // OSRtc
 int __OSGetRTC(u32* rtc);
@@ -96,12 +105,22 @@ int __OSReadROM(void* buffer, s32 length, s32 offset);
 int __OSReadROMAsync(void* buffer, s32 length, s32 offset, void (*callback)());
 u8 __OSGetBootMode(void);
 void __OSSetBootMode(u8 ntd);
+BOOL __OSGetRTCFlags(u32* flags);
+BOOL __OSClearRTCFlags(void);
 
 // OSSync
 extern void __OSSystemCallVectorStart();
 extern void __OSSystemCallVectorEnd();
 
 void __OSInitSystemCall(void);
+
+// OSStateTM
+void __OSInitSTM(void);
+BOOL __OSWriteExpiredFlag(void);
+int __OSSetVIForceDimming(BOOL isEnabled, u32 yShift, u32 xShift);
+s32 __OSUnRegisterStateEvent(void);
+void __OSShutdownToSBY(void);
+void __OSHotReset(void);
 
 // OSThread
 void __OSThreadInit(void);
@@ -136,12 +155,6 @@ __declspec(section ".init") extern void __init_data(void);
 OSTime __get_clock(void);
 u32 __get_time(void);
 int __to_gm_time(void);
-
-
-// unsorted
-void __OSWriteExpiredFlag(void);
-void __OSReturnToMenuForError(void);
-void __OSHotResetForError(void);
 
 #ifdef __cplusplus
 }

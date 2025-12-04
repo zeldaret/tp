@@ -17,10 +17,10 @@ typedef struct OSShutdownFunctionQueue {
     OSShutdownFunctionInfo* tail;
 } OSShutdownFunctionQueue;
 
-typedef BOOL (*OSResetFunction)(BOOL, u32);
+typedef BOOL (*OSShutdownFunction)(BOOL, u32);
 
 struct OSShutdownFunctionInfo {
-    OSResetFunction func;
+    OSShutdownFunction func;
     u32 priority;
     OSShutdownFunctionInfo* next;
     OSShutdownFunctionInfo* prev;

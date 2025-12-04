@@ -1,6 +1,8 @@
 #include <revolution.h>
 #include <revolution/os.h>
+#include <revolution/os/OSPlayRecord.h>
 #include <revolution/sc.h>
+#include <string.h>
 
 #include "__os.h"
 #include "__dvd.h"

@@ -542,7 +542,7 @@ void OSCancelThread(OSThread* thread) {
 int OSJoinThread(OSThread* thread, void* val) {
     BOOL enabled = OSDisableInterrupts();
 
-    ASSERTMSG1LINE(LINE(1061, 1092, 1092), __OSIsThreadActive(thread) != 0, "OSJoinThread(): thread %p is not active.", thread);
+    ASSERTMSG1LINE(1061, __OSIsThreadActive(thread) != 0, "OSJoinThread(): thread %p is not active.", thread);
 
     if (!(thread->attr & 1) && (thread->state != OS_THREAD_STATE_MORIBUND) && (thread->queueJoin.head == NULL)) {
         OSSleepThread(&thread->queueJoin);
@@ -851,7 +851,7 @@ void OSSetThreadSpecific(s32 index, void* ptr) {
     OSThread* thread;
 
     thread = __OSCurrentThread;
-    ASSERTLINE(LINE(1573, 1604, 1604), 0 <= index && index < OS_THREAD_SPECIFIC_MAX);
+    ASSERTLINE(1573, 0 <= index && index < OS_THREAD_SPECIFIC_MAX);
 
     if (thread != 0 && index >= 0 && index < OS_THREAD_SPECIFIC_MAX) {
         thread->specific[index] = ptr;
@@ -862,7 +862,7 @@ void* OSGetThreadSpecific(s32 index) {
     OSThread* thread;
 
     thread = __OSCurrentThread;
-    ASSERTLINE(LINE(1584, 1615, 1615), 0 <= index && index < OS_THREAD_SPECIFIC_MAX);
+    ASSERTLINE(1584, 0 <= index && index < OS_THREAD_SPECIFIC_MAX);
 
     if (thread != 0 && index >= 0 && index < OS_THREAD_SPECIFIC_MAX) {
         return thread->specific[index];

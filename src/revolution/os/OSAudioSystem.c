@@ -1,6 +1,8 @@
 #include <revolution.h>
 #include <revolution/os.h>
 
+#include <string.h>
+
 #include "__os.h"
 
 // prototypes

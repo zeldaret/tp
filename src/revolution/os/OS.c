@@ -4,16 +4,17 @@
 #include <revolution/si.h>
 #include <revolution/db.h>
 #include <revolution/sc.h>
+#include <revolution/ipc.h>
 
 #include "__os.h"
+#include "__dvd.h"
+
+#include <string.h>
 
 #define NOP 0x60000000
 
 // external functions
 extern void EnableMetroTRKInterrupts(void);
-extern void __OSInitMemoryProtection(void);
-extern void IPCCltInit(void);
-extern BOOL __DVDCheckDevice(void);
 
 #define DB_EXCEPTIONRET_OFFSET 0xC
 #define DB_EXCEPTIONDEST_OFFSET 0x8

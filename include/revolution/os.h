@@ -46,6 +46,7 @@ typedef u32 OSTick;
 #include <revolution/os/OSStateFlags.h>
 #include <revolution/os/OSIpc.h>
 #include <revolution/os/OSNandbootInfo.h>
+#include <revolution/os/OSNet.h>
 
 // private macro, maybe shouldn't be defined here?
 #define OFFSET(addr, align) (((u32)(addr) & ((align)-1)))
@@ -68,16 +69,29 @@ OSThread* __OSCurrentThread AT_ADDRESS(OS_BASE_CACHED | 0x00E4);
 u32 __OSSimulatedMemSize AT_ADDRESS(OS_BASE_CACHED | 0x00F0);
 u32 __OSBusClock AT_ADDRESS(OS_BASE_CACHED | 0x00F8);
 u32 __OSCoreClock AT_ADDRESS(OS_BASE_CACHED | 0x00FC);
-volatile u16 __OSDeviceCode AT_ADDRESS(OS_BASE_CACHED | 0x30E6);
+vu16 __OSDeviceCode AT_ADDRESS(OS_BASE_CACHED | 0x30E6);
+vu8 __OSLockedFlag AT_ADDRESS(OS_BASE_CACHED | 0x3187);
 u16 __OSWirelessPadFixMode AT_ADDRESS(OS_BASE_CACHED | 0x30E0);
+vu32 __OSLaunchPartitionType AT_ADDRESS(OS_BASE_CACHED | 0x3194);
+vu8 __OSDeviceCheckCode AT_ADDRESS(OS_BASE_CACHED | 0x319C);
 
 // unknowns
 OSThread* __gUnkThread1 AT_ADDRESS(OS_BASE_CACHED | 0x00D8);
 int __gUnknown800030C0[2] AT_ADDRESS(OS_BASE_CACHED | 0x30C0);
 u8 __gUnknown800030E3 AT_ADDRESS(OS_BASE_CACHED | 0x30E3);
 #else
-#define __OSBusClock  (*(u32 *)(OS_BASE_CACHED | 0x00F8))
-#define __OSCoreClock (*(u32 *)(OS_BASE_CACHED | 0x00FC))
+#define __OSPhysicalMemSize     (*(u32*)(OS_BASE_CACHED | 0x0028))
+#define __OSTVMode              (*(volatile int*)(OS_BASE_CACHED | 0x00CC))
+#define __OSActiveThreadQueue   (*(OSThreadQueue*)(OS_BASE_CACHED | 0x00DC))
+#define __OSCurrentThread       ((OSThread*)(OS_BASE_CACHED | 0x00E4))
+#define __OSSimulatedMemSize    (*(u32*)(OS_BASE_CACHED | 0x00F0))
+#define __OSBusClock            (*(u32*)(OS_BASE_CACHED | 0x00F8))
+#define __OSCoreClock           (*(u32*)(OS_BASE_CACHED | 0x00FC))
+#define __OSDeviceCode          (*(vu16*)(OS_BASE_CACHED | 0x30E6))
+#define __OSLockedFlag          (*(vu8*)(OS_BASE_CACHED | 0x3187))
+#define __OSWirelessPadFixMode  (*(u16*)(OS_BASE_CACHED | 0x30E0))
+#define __OSLaunchPartitionType (*(vu32*)(OS_BASE_CACHED | 0x3194))
+#define __OSDeviceCheckCode     (*(vu8*)(OS_BASE_CACHED | 0x319C))
 #endif
 
 #define OS_BUS_CLOCK   __OSBusClock

@@ -1,6 +1,7 @@
 #include <revolution/os.h>
 #include <revolution/os/OSResetSW.h>
 #include <revolution/vi.h>
+#include <revolution/ipc.h>
 
 #include <revolution/private/iosrestypes.h>
 
@@ -29,6 +30,7 @@ static void __OSDefaultResetCallback(void);
 static void __OSDefaultPowerCallback(void);
 static void __OSRegisterStateEvent(void);
 
+static int AccessVIDimRegs(void);
 static void LockUp(void);
 
 OSPowerCallback OSSetPowerCallback(OSPowerCallback callback) {
