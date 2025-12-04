@@ -1628,7 +1628,6 @@ void daHorse_c::setMoveAnime(f32 i_morf) {
     }
 }
 
-// NONMATCHING - instruction order, some float regalloc, equivalent
 int daHorse_c::checkHorseNoMove(int param_0) {
     cXyz sp50;
     cXyz sp44;
@@ -1650,12 +1649,12 @@ int daHorse_c::checkHorseNoMove(int param_0) {
         spA = field_0x1714;
     }
 
-    f32 sp28;
-    f32 var_f31;
-    f32 var_f30;
     f32 var_f29;
     f32 var_f28;
+    f32 sp28;
     f32 var_f27;
+    f32 var_f31;
+    f32 var_f30;
     
     if (param_0 != 0) {
         if (checkEndResetStateFlg0(ERFLG0_UNK_200) || (checkStateFlg0(FLG0_UNK_100000) && (m_procID == PROC_MOVE_e || m_procID == PROC_TURN_e || m_procID == PROC_STOP_e) && ((current.pos.z < -33500.0f && abs(shape_angle.y) > 0x4000) || (current.pos.z > -20500.0f && abs(shape_angle.y) < 0x4000)))) {
@@ -1694,7 +1693,12 @@ int daHorse_c::checkHorseNoMove(int param_0) {
     m_linechk.Set(&start, &end, this);
 
     onStateFlg0(FLG0_UNK_100);
-    BOOL line_cross = dComIfG_Bgsp().LineCross(&m_linechk);
+    // Fakematch: Debug shows that dBgS::LineCross is called here, but the instruction order on
+    // retail only matches if cBgS::LineCross is called instead.
+    // An alternative way to match the instruction order is by changing dBgS::LineCross's return
+    // type to BOOL while keeping cBgS::LineCross's return type as bool, but that breaks other
+    // functions that call dBgS::LineCross.
+    BOOL line_cross = dComIfG_Bgsp().cBgS::LineCross(&m_linechk);
     offStateFlg0(FLG0_UNK_100);
 
     if (line_cross) {
