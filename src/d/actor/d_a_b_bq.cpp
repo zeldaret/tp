@@ -1254,7 +1254,7 @@ static void demo_camera(b_bq_class* i_this) {
             i_this->mDemoCamEye.z = tentacle->current.pos.z + i_this->field_0x1298;
 
             i_this->mDemoCamCenter.x = tentacle->current.pos.x;
-            i_this->mDemoCamCenter.y = tentacle->current.pos.y;
+            i_this->mDemoCamCenter.y = tentacle->current.pos.y + ZREG_F(1);
             i_this->mDemoCamCenter.z = tentacle->current.pos.z;
         } else {
             spFC = tentacle->current.pos;
@@ -1423,10 +1423,10 @@ static void demo_camera(b_bq_class* i_this) {
         i_this->mDemoCamEye = camera0->lookat.eye;
         i_this->mDemoCamCenter = camera0->lookat.center;
 
-        dComIfGp_getEvent().startCheckSkipEdge(i_this);
+        dComIfGp_getEvent().startCheckSkipEdge(a_this);
         // fallthrough
     case 11:
-        if (i_this->mDemoModeTimer == VREG_S(0) + 8) {
+        if (i_this->mDemoModeTimer == (s16)(VREG_S(0) + 8)) {
             daPy_getPlayerActorClass()->changeDemoMode(0x19, 0, 0, 0);
         }
 
@@ -1444,11 +1444,11 @@ static void demo_camera(b_bq_class* i_this) {
             i_this->mDemoCamEyeTarget.set(240.0f, 274.0f, 2075.0f);
 
             i_this->field_0x1288.x =
-                std::fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
+                fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
             i_this->field_0x1288.y =
-                std::fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
+                fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
             i_this->field_0x1288.z =
-                std::fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
+                fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
         }
 
         spFC.set(0.0f, 0.0f, 1700.0f);
@@ -1464,10 +1464,12 @@ static void demo_camera(b_bq_class* i_this) {
             spF0 = i_this->mDemoCamCenterTarget - i_this->mDemoCamCenter;
             f32 temp_f30 = spF0.abs();
 
-            var_f31 = temp_f31 * (BREG_F(19) + 0.1f) * cM_ssin((temp_f30 / temp_f31) * (f32)0x8000);
+            f32 f28 = temp_f31 * (BREG_F(19) + 0.1f);
+            s16 sp0C = (temp_f30 / temp_f31) * (f32)0x8000;
+            var_f31 = f28 * cM_ssin(sp0C);
         }
 
-        if (i_this->mDemoModeTimer != VREG_S(8) + 320) {
+        if (i_this->mDemoModeTimer != (s16)(VREG_S(8) + 320)) {
             break;
         }
 
@@ -1476,32 +1478,32 @@ static void demo_camera(b_bq_class* i_this) {
         i_this->mDemoCamCenterTarget.set(76.0f, 204.0f, 1782.0f);
         i_this->mDemoCamEyeTarget.set(-41.0f, 261.0f, 2095.0f);
 
-        i_this->field_0x127c.x = std::fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
-        i_this->field_0x127c.y = std::fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
-        i_this->field_0x127c.z = std::fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
+        i_this->field_0x127c.x = fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
+        i_this->field_0x127c.y = fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
+        i_this->field_0x127c.z = fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
 
         i_this->field_0x1288.x =
-            std::fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
+            fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
         i_this->field_0x1288.y =
-            std::fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
+            fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
         i_this->field_0x1288.z =
-            std::fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
+            fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
 
         i_this->field_0x129c = 0.0f;
         i_this->mDemoMode = 12;
         i_this->mDemoModeTimer = 0;
         // fallthrough
     case 12:
-        if (i_this->mDemoModeTimer == 260) {
+        if (i_this->mDemoModeTimer == (s16)(VREG_S(0) + 260)) {
             i_this->field_0x6f9 = 2;
         }
 
         cam_3d_morf(i_this, 0.1f);
         cLib_addCalc2(&i_this->field_0x129c, 0.005f, 1.0f, 0.00015f);
 
-        if (i_this->mDemoModeTimer == VREG_S(2) + 340) {
+        if (i_this->mDemoModeTimer == (s16)(VREG_S(2) + 340)) {
             i_this->mDemoCamCenter = tentacle->current.pos;
-            i_this->mDemoCamCenter.y = 0.0f;
+            i_this->mDemoCamCenter.y = VREG_F(6) + 0.0f;
 
             i_this->mDemoCamEye.set(1394.0f, 313.0f, -300.0f);
             i_this->mDemoMode = 13;
@@ -1537,43 +1539,43 @@ static void demo_camera(b_bq_class* i_this) {
             dComIfGp_getVibration().StopQuake(31);
         }
 
-        if (i_this->mDemoModeTimer == VREG_S(2) + 100) {
+        if (i_this->mDemoModeTimer == (s16)(VREG_S(2) + 100)) {
             i_this->field_0x6f9 = 2;
         }
 
-        if (i_this->mDemoModeTimer == VREG_S(4) + 53) {
+        if (i_this->mDemoModeTimer == (s16)(VREG_S(4) + 53)) {
             i_this->mColpatType = 15;
         }
 
-        if (i_this->mDemoModeTimer >= VREG_S(3) + 110) {
+        if (i_this->mDemoModeTimer >= (s16)(VREG_S(3) + 110)) {
             cLib_addCalc2(&i_this->mDemoCamCenter.x, tentacle->current.pos.x, 0.1f,
-                          VREG_S(5) + 20.0f);
+                          VREG_F(5) + 20.0f);
 
             if (tentacle->current.pos.y + 100.0f > 0.0f) {
                 cLib_addCalc2(&i_this->mDemoCamCenter.y, tentacle->current.pos.y + 100.0f, 0.8f,
-                              VREG_S(5) + 60.0f);
+                              VREG_F(5) + 60.0f);
             }
 
             cLib_addCalc2(&i_this->mDemoCamCenter.z, tentacle->current.pos.z, 0.1f,
-                          VREG_S(5) + 20.0f);
+                          VREG_F(5) + 20.0f);
 
-            if (i_this->mDemoModeTimer == VREG_S(4) + 113) {
+            if (i_this->mDemoModeTimer == (s16)(VREG_S(4) + 113)) {
                 i_this->field_0x6f9 = 2;
                 i_this->mColpatType = 1;
             }
 
-            if (i_this->mDemoModeTimer >= VREG_S(5) + 150) {
-                cLib_addCalc2(&i_this->mDemoCamEye.y, VREG_S(6) + 1413.0f, 0.1f,
-                              i_this->field_0x129c * (VREG_S(7) + 40.0f));
+            if (i_this->mDemoModeTimer >= (s16)(VREG_S(5) + 150)) {
+                cLib_addCalc2(&i_this->mDemoCamEye.y, VREG_F(6) + 1413.0f, 0.1f,
+                              i_this->field_0x129c * (VREG_F(7) + 40.0f));
                 cLib_addCalc2(&i_this->field_0x129c, 1.0f, 1.0f, 0.02f);
 
-                if (i_this->mDemoModeTimer == VREG_S(6) + 200) {
+                if (i_this->mDemoModeTimer == (s16)(VREG_S(6) + 200)) {
                     daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 2, 0);
                 }
             }
         }
 
-        if (i_this->mDemoModeTimer != VREG_S(7) + 280) {
+        if (i_this->mDemoModeTimer != (s16)(VREG_S(7) + 280)) {
             break;
         }
 
@@ -1582,16 +1584,16 @@ static void demo_camera(b_bq_class* i_this) {
         i_this->mDemoCamCenterTarget.set(0.0f, 278.0f, 1252.0f);
         i_this->mDemoCamEyeTarget.set(0.0f, 86.0f, 2167.0f);
 
-        i_this->field_0x127c.x = std::fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
-        i_this->field_0x127c.y = std::fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
-        i_this->field_0x127c.z = std::fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
+        i_this->field_0x127c.x = fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
+        i_this->field_0x127c.y = fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
+        i_this->field_0x127c.z = fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
 
         i_this->field_0x1288.x =
-            std::fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
+            fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
         i_this->field_0x1288.y =
-            std::fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
+            fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
         i_this->field_0x1288.z =
-            std::fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
+            fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
 
         i_this->field_0x129c = 0.0f;
         i_this->mDemoMode = 14;
@@ -1739,16 +1741,16 @@ static void demo_camera(b_bq_class* i_this) {
         i_this->mDemoCamCenterTarget.set(-2243.0f, 1340.0f, 977.0f);
         i_this->mDemoCamEyeTarget.set(-1226.0f, 980.0f, 1350.0f);
 
-        i_this->field_0x127c.x = std::fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
-        i_this->field_0x127c.y = std::fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
-        i_this->field_0x127c.z = std::fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
+        i_this->field_0x127c.x = fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
+        i_this->field_0x127c.y = fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
+        i_this->field_0x127c.z = fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
 
         i_this->field_0x1288.x =
-            std::fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
+            fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
         i_this->field_0x1288.y =
-            std::fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
+            fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
         i_this->field_0x1288.z =
-            std::fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
+            fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
 
         i_this->field_0x129c = 0.0f;
         i_this->mDemoMode = 34;
@@ -1759,7 +1761,7 @@ static void demo_camera(b_bq_class* i_this) {
             cam_3d_morf(i_this, 0.2f);
             cLib_addCalc2(&i_this->field_0x129c, 0.1f, 1.0f, 0.005f);
 
-            if (i_this->mDemoModeTimer > JREG_S(7) + 133) {
+            if (i_this->mDemoModeTimer > (s16)(JREG_S(7) + 133)) {
                 cLib_addCalc2(&i_this->mDemoCamFovy, 30.0f, 0.5f, 4.0f);
             }
         }
@@ -1783,7 +1785,7 @@ static void demo_camera(b_bq_class* i_this) {
         mDoMtx_stack_c::multVecZero(&sp114);
 
         cLib_addCalc2(&i_this->mDemoCamCenter.x, sp114.x, BREG_F(14) + 0.6f, 100.0f);
-        cLib_addCalc2(&i_this->mDemoCamCenter.y, sp114.y + 200.0f + BREG_F(12), BREG_F(14) + 0.6f,
+        cLib_addCalc2(&i_this->mDemoCamCenter.y, sp114.y + 200.0f + JREG_F(12), BREG_F(14) + 0.6f,
                       100.0f);
         cLib_addCalc2(&i_this->mDemoCamCenter.z, sp114.z, BREG_F(14) + 0.6f, 100.0f);
 
@@ -1812,9 +1814,9 @@ static void demo_camera(b_bq_class* i_this) {
         i_this->mDemoCamEye.set(95.0f, 50.0f, 2800.0f);
         i_this->mDemoCamEyeTarget.set(72.0f, 52.0f, 2153.0f);
 
-        i_this->field_0x127c.x = std::fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
-        i_this->field_0x127c.y = std::fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
-        i_this->field_0x127c.z = std::fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
+        i_this->field_0x127c.x = fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
+        i_this->field_0x127c.y = fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
+        i_this->field_0x127c.z = fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
 
         i_this->field_0x1288.set(0.0f, 0.0f, 0.0f);
         i_this->field_0x129c = 0.0f;
@@ -1854,12 +1856,12 @@ static void demo_camera(b_bq_class* i_this) {
             i_this->mColpatType = 4;
         }
 
-        if (i_this->mDemoModeTimer >= TREG_S(5) + 380) {
+        if (i_this->mDemoModeTimer >= (s16)(TREG_S(5) + 380)) {
             cam_3d_morf(i_this, 0.1f);
             cLib_addCalc2(&i_this->field_0x129c, 0.05f, 1.0f, 0.001f);
         }
 
-        if (i_this->mDemoModeTimer == TREG_S(6) + 430) {
+        if (i_this->mDemoModeTimer == (s16)(TREG_S(6) + 430)) {
             i_this->field_0x5c8 = 1;
             i_this->field_0x5cc = a_this->eyePos;
         }
@@ -1870,7 +1872,7 @@ static void demo_camera(b_bq_class* i_this) {
             spFC.set(BREG_F(5) + -30.0f, 0.0f, BREG_F(6) + 1938.0f);
         }
 
-        daPy_getPlayerActorClass()->setPlayerPosAndAngle(&spFC, 0x8000, 0);
+        daPy_getPlayerActorClass()->setPlayerPosAndAngle(&spFC, BREG_S(5) + 0x8000, 0);
 
         if (i_this->field_0x5c8 != 0) {
             i_this->field_0x5cc.y += i_this->field_0x5d8;
@@ -1890,7 +1892,7 @@ static void demo_camera(b_bq_class* i_this) {
                 } else {
                     i_this->field_0x5d8 = 0.0f;
                 }
-            } else if (i_this->mDemoModeTimer >= TREG_S(6) + 435) {
+            } else if (i_this->mDemoModeTimer >= (s16)(TREG_S(6) + 435)) {
                 i_this->field_0x5cc.z += BREG_F(9) + 6.0f;
             }
 
@@ -1923,8 +1925,11 @@ static void demo_camera(b_bq_class* i_this) {
                                          fopAcM_GetRoomNo(a_this), &a_this->shape_angle, &sp120,
                                          0.0f, 0.0f, -1);
 
-                fopAcM_delete(fopAcM_SearchByID(i_this->mTentacleIDs[0]));
-                fopAcM_delete(fopAcM_SearchByID(i_this->mTentacleIDs[1]));
+                fopAc_ac_c* sp28;
+                sp28 = fopAcM_SearchByID(i_this->mTentacleIDs[0]);
+                fopAcM_delete(sp28);
+                sp28 = fopAcM_SearchByID(i_this->mTentacleIDs[1]);
+                fopAcM_delete(sp28);
             }
 
             if (i_this->mDemoModeTimer == 535) {
@@ -1968,18 +1973,18 @@ static void demo_camera(b_bq_class* i_this) {
             i_this->mDemoCamEyeTarget.set(1214.0f, 350.0f, 2696.0f);
 
             i_this->field_0x127c.x =
-                std::fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
+                fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
             i_this->field_0x127c.y =
-                std::fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
+                fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
             i_this->field_0x127c.z =
-                std::fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
+                fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
 
             i_this->field_0x1288.x =
-                std::fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
+                fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
             i_this->field_0x1288.y =
-                std::fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
+                fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
             i_this->field_0x1288.z =
-                std::fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
+                fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
 
             i_this->field_0x129c = 0.0f;
         } else if (i_this->mDemoModeTimer < 140) {
@@ -1988,18 +1993,18 @@ static void demo_camera(b_bq_class* i_this) {
                 i_this->mDemoCamEyeTarget.set(23.0f, 108.0f, 2155.0f);
 
                 i_this->field_0x127c.x =
-                    std::fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
+                    fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
                 i_this->field_0x127c.y =
-                    std::fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
+                    fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
                 i_this->field_0x127c.z =
-                    std::fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
+                    fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
 
                 i_this->field_0x1288.x =
-                    std::fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
+                    fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
                 i_this->field_0x1288.y =
-                    std::fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
+                    fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
                 i_this->field_0x1288.z =
-                    std::fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
+                    fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
             }
 
             cam_3d_morf(i_this, 0.1f);
@@ -2037,18 +2042,18 @@ static void demo_camera(b_bq_class* i_this) {
                 i_this->mDemoCamEyeTarget.set(953.0f, 997.0f, -36.0f);
 
                 i_this->field_0x127c.x =
-                    std::fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
+                    fabsf(i_this->mDemoCamEyeTarget.x - i_this->mDemoCamEye.x);
                 i_this->field_0x127c.y =
-                    std::fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
+                    fabsf(i_this->mDemoCamEyeTarget.y - i_this->mDemoCamEye.y);
                 i_this->field_0x127c.z =
-                    std::fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
+                    fabsf(i_this->mDemoCamEyeTarget.z - i_this->mDemoCamEye.z);
 
                 i_this->field_0x1288.x =
-                    std::fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
+                    fabsf(i_this->mDemoCamCenterTarget.x - i_this->mDemoCamCenter.x);
                 i_this->field_0x1288.y =
-                    std::fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
+                    fabsf(i_this->mDemoCamCenterTarget.y - i_this->mDemoCamCenter.y);
                 i_this->field_0x1288.z =
-                    std::fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
+                    fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
 
                 cXyz pos(0.0f, 0.0f, 0.0f);
                 for (int i = 0; i < 5; i++) {
@@ -2123,7 +2128,7 @@ static void demo_camera(b_bq_class* i_this) {
             i_this->field_0x1151 = 1;
 
             dComIfGs_onStageBossEnemy();
-            int sw = (fopAcM_GetParam(a_this) >> 0x10) & 0xFF;
+            int sw = (fopAcM_GetParam(a_this) & 0x00FF0000) >> 0x10;
             dComIfGs_offSwitch(sw, fopAcM_GetRoomNo(a_this));
 
             fish_set(i_this);
@@ -2136,7 +2141,7 @@ static void demo_camera(b_bq_class* i_this) {
             Z2GetAudioMgr()->subBgmStop();
             OS_REPORT("//////////////B_BQ SKIP 11\n");
 
-            int sw = (fopAcM_GetParam(a_this) >> 8) & 0xFF;
+            int sw = (fopAcM_GetParam(a_this) & 0x0000FF00) >> 8;
             dComIfGs_onSwitch(sw, fopAcM_GetRoomNo(a_this));
             dStage_changeScene(1, 0.0f, 0, fopAcM_GetRoomNo(a_this), 0, -1);
             i_this->mDemoMode = 1000;

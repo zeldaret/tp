@@ -7,6 +7,7 @@
 #include "d/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_ext.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 
 /**
  * @ingroup actors-objects
