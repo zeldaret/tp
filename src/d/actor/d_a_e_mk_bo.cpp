@@ -46,7 +46,7 @@ static void hit_check(e_mk_bo_class* i_this) {
     e_mk_class* e_mk = (e_mk_class*)a_parent;
     cXyz sp24;
 
-    if (i_this->ccAtSph.ChkTgHit() || i_this->acch.ChkGroundHit() || i_this->acch.ChkWallHit() || (e_mk != NULL && e_mk->field_0xc30 == 1 && i_this->ccAtSph.ChkAtHit()) || i_this->ccAtSph.ChkAtShieldHit()) {
+    if (i_this->ccAtSph.ChkTgHit() || i_this->acch.ChkGroundHit() || i_this->acch.ChkWallHit() || (e_mk != NULL && e_mk->demoMode == e_mk_class::DEMO_MODE_START && i_this->ccAtSph.ChkAtHit()) || i_this->ccAtSph.ChkAtShieldHit()) {
         i_this->field_0x5f8 = 20;
         OS_REPORT("E_MK_BO HIT \n");
 
@@ -66,8 +66,8 @@ static void hit_check(e_mk_bo_class* i_this) {
             i_this->field_0x998 = 2;
         }
 
-        if (i_this->field_0x5dc <= 2) {
-            i_this->field_0x5dc = 3;
+        if (i_this->mode <= 2) {
+            i_this->mode = 3;
             i_this->field_0x5e0 = a_parent->current.pos;
             i_this->field_0x5e0.y += 100.0f;
 
@@ -95,17 +95,17 @@ static s8 e_mk_bo_shot(e_mk_bo_class* i_this) {
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
     cXyz sp3C;
 
-    switch (i_this->field_0x5dc) {
+    switch (i_this->mode) {
     case 0:
-        if (e_mk->field_0x70c != 0) {
-            i_this->field_0x5e0 = e_mk->field_0x70c->enemy.current.pos;
+        if (e_mk->db != NULL) {
+            i_this->field_0x5e0 = e_mk->db->enemy.current.pos;
             i_this->field_0x5e0.y += 100.0f;
         } else {
             i_this->field_0x5e0 = player->current.pos;
             i_this->field_0x5e0.y += 100.0f;
         }
 
-        i_this->field_0x5dc = 1;
+        i_this->mode = 1;
 
         sp3C = i_this->field_0x5e0 - actor->current.pos;
         actor->current.angle.y = cM_atan2s(sp3C.x, sp3C.z);
@@ -116,7 +116,7 @@ static s8 e_mk_bo_shot(e_mk_bo_class* i_this) {
     case 1:
         sp3C = i_this->field_0x5e0 - actor->current.pos;
         if (sp3C.abs() < 300.0f + TREG_F(18)) {
-            i_this->field_0x5dc = 2;
+            i_this->mode = 2;
             i_this->timers[0] = 30;
         }
         break;
@@ -136,17 +136,17 @@ static s8 e_mk_bo_shot(e_mk_bo_class* i_this) {
         cLib_addCalcAngleS2(&i_this->field_0x5ee, 0x2000, 1, 4);
 
         f32 temp_f31 = sp3C.abs();
-        if (e_mk->mDemoMode != 0 || (e_mk->mAction == 2 && e_mk->mMode >= 20)) {
+        if (e_mk->demoSubMode != 0 || (e_mk->action == e_mk_class::ACT_SHOOT && e_mk->mode >= 20)) {
             if (temp_f31 < 350.0f + YREG_F(18)) {
                 i_this->field_0x600 = 1;
-                e_mk->field_0x707 = 3;
+                e_mk->unkFlag4 = 3;
             } else if (temp_f31 < 600.0f + YREG_F(17)) {
-                e_mk->field_0x707 = 2;
+                e_mk->unkFlag4 = 2;
             }
-        } else if (e_mk->mAction == 3 && temp_f31 < 120.0f + YREG_F(19)) {
-            e_mk->field_0x707 = 4;
+        } else if (e_mk->action == e_mk_class::ACT_YORO && temp_f31 < 120.0f + YREG_F(19)) {
+            e_mk->unkFlag4 = 4;
             i_this->action = 1;
-            i_this->field_0x5dc = 0;
+            i_this->mode = 0;
             dComIfGp_setHitMark(3, actor, &actor->current.pos, &actor->shape_angle, NULL, 0);
             actor->speed.y = 30.0f;
             i_this->timers[0] = 40;
@@ -170,7 +170,7 @@ static s8 e_mk_bo_shot(e_mk_bo_class* i_this) {
         cCcD_Obj* at_hit_obj = i_this->ccAtSph.GetAtHitObj();
         if (fopAcM_GetName(dCc_GetAc(at_hit_obj->GetAc())) == PROC_ALINK) {
             OS_REPORT("E_MK_BO PL HIT !!!!\n");
-            e_mk->field_0x707 = 5;
+            e_mk->unkFlag4 = 5;
             i_this->field_0x5f8 = 10;
         }
     }
@@ -193,11 +193,11 @@ static s8 e_mk_bo_start(e_mk_bo_class* i_this) {
     cXyz sp38;
 
     f32 temp_f31;
-    switch (i_this->field_0x5dc) {
+    switch (i_this->mode) {
     case 0:
         i_this->field_0x998 = 1;
         i_this->field_0x5e0.set(0.0f, 5000.0f + JREG_F(18), -3900.0f);
-        i_this->field_0x5dc = 1;
+        i_this->mode = 1;
 
         sp38 = i_this->field_0x5e0 - actor->current.pos;
         actor->current.angle.y = cM_atan2s(sp38.x, sp38.z);
@@ -208,7 +208,7 @@ static s8 e_mk_bo_start(e_mk_bo_class* i_this) {
     case 1:
         sp38 = i_this->field_0x5e0 - actor->current.pos;
         if (sp38.abs() < 200.0f + TREG_F(18)) {
-            i_this->field_0x5dc = 2;
+            i_this->mode = 2;
             i_this->timers[0] = 30;
         }
         break;
@@ -228,12 +228,12 @@ static s8 e_mk_bo_start(e_mk_bo_class* i_this) {
         cLib_addCalcAngleS2(&i_this->field_0x5ee, 0x2000, 1, 4);
 
         temp_f31 = sp38.abs();
-        if (e_mk->mDemoMode != 0 || (e_mk->mAction == 2 && e_mk->mMode >= 20)) {
+        if (e_mk->demoSubMode != 0 || (e_mk->action == e_mk_class::ACT_SHOOT && e_mk->mode >= 20)) {
             if (temp_f31 < 350.0f + YREG_F(18)) {
                 i_this->field_0x600 = 1;
-                e_mk->field_0x707 = 3;
+                e_mk->unkFlag4 = 3;
             } else if (temp_f31 < 600.0f + YREG_F(17)) {
-                e_mk->field_0x707 = 2;
+                e_mk->unkFlag4 = 2;
             }
         }
         break;
@@ -267,10 +267,10 @@ static s8 e_mk_bo_r04(e_mk_bo_class* i_this) {
     cXyz sp1C;
 
     f32 temp_f31;
-    switch (i_this->field_0x5dc) {
+    switch (i_this->mode) {
     case 0:
         i_this->field_0x998 = 1;
-        i_this->field_0x5dc = 1;
+        i_this->mode = 1;
 
         actor->current.angle.y = a_parent->shape_angle.y + (VREG_S(7) - 0x3000);
         i_this->field_0x5fa = actor->current.angle.y;
@@ -295,9 +295,9 @@ static s8 e_mk_bo_r04(e_mk_bo_class* i_this) {
             temp_f31 = sp1C.abs();
             if (i_this->timers[1] == 0 && temp_f31 < 350.0f + YREG_F(18)) {
                 i_this->field_0x600 = 1;
-                e_mk->field_0x707 = 3;
+                e_mk->unkFlag4 = 3;
             } else if (temp_f31 < 600.0f + YREG_F(17)) {
-                e_mk->field_0x707 = 2;
+                e_mk->unkFlag4 = 2;
             }
         }
         break;
@@ -323,21 +323,21 @@ static void e_mk_bo_hasira(e_mk_bo_class* i_this) {
 
     if (a_parent != NULL) {
         e_mk_class* e_mk = (e_mk_class*)a_parent;
-        if (e_mk->field_0xc30 == 2) {
-            i_this->action = 2;
+        if (e_mk->demoMode == e_mk_class::DEMO_MODE_END) {
+            i_this->action = e_mk_class::ACT_SHOOT;
             i_this->field_0x998 = 1;
             return;
         }
 
         cXyz sp24;
         cXyz sp18;
-        if (e_mk->mHasira != NULL) {
-            daPillar_c* pillar = e_mk->mHasira;
+        if (e_mk->hasira != NULL) {
+            daPillar_c* pillar = e_mk->hasira;
             cXyz spC;
 
-            mDoMtx_stack_c::transS(e_mk->mHasira->current.pos.x, e_mk->mHasira->current.pos.y, e_mk->mHasira->current.pos.z);
+            mDoMtx_stack_c::transS(e_mk->hasira->current.pos.x, e_mk->hasira->current.pos.y, e_mk->hasira->current.pos.z);
             mDoMtx_stack_c::YrotM(pillar->mRotY);
-            mDoMtx_stack_c::XrotM(e_mk->mHasira->shape_angle.x);
+            mDoMtx_stack_c::XrotM(e_mk->hasira->shape_angle.x);
             mDoMtx_stack_c::YrotM(-pillar->mRotY);
             mDoMtx_stack_c::transM(0.0f, 500.0f, 0.0f);
             mDoMtx_multVecZero(mDoMtx_stack_c::get(), &spC);
@@ -356,17 +356,17 @@ static void e_mk_bo_hasira(e_mk_bo_class* i_this) {
 
             if (actor->current.pos.y <= 7.0f + spC.y) {
                 actor->current.pos.y = 7.0f + spC.y;
-                if (i_this->field_0x5dc <= 3) {
+                if (i_this->mode <= 3) {
                     actor->speed.y *= -0.4f;
                 } else {
                     actor->speed.y = 0.0f;
                 }
 
-                if (i_this->field_0x5dc <= 1) {
+                if (i_this->mode <= 1) {
                     i_this->timers[0] = 20;
                 }
 
-                i_this->field_0x5dc++;
+                i_this->mode++;
             }
 
             if (pillar->checkRollAttack()) {
@@ -391,7 +391,7 @@ static void e_mk_bo_demo_ground(e_mk_bo_class* i_this) {
     if (actor->health != 0) {
         actor->health = 0;
         i_this->action = 3;
-        i_this->field_0x5dc = 0;
+        i_this->mode = 0;
         actor->home.pos.y = actor->current.pos.y;
     }
 
@@ -406,12 +406,12 @@ static void e_mk_bo_demo_spin(e_mk_bo_class* i_this) {
     cXyz sp28;
     f32 var_f31 = 0.0f;
 
-    switch (i_this->field_0x5dc) {
+    switch (i_this->mode) {
     case 4:
         break;
     case 0:
         actor->speed.y = 0.0f;
-        i_this->field_0x5dc = 1;
+        i_this->mode = 1;
         actor->home.pos = actor->current.pos;
         i_this->timers[0] = 20;
         actor->speedF = 0.0f;
@@ -443,7 +443,7 @@ static void e_mk_bo_demo_spin(e_mk_bo_class* i_this) {
             actor->current.angle.y = fopAcM_searchPlayerAngleY(actor) + 0x8000;
             i_this->field_0x5ec = 0;
             i_this->timers[0] = 40;
-            i_this->field_0x5dc = 2;
+            i_this->mode = 2;
         }
         break;
     case 2: 
@@ -458,7 +458,7 @@ static void e_mk_bo_demo_spin(e_mk_bo_class* i_this) {
             
             s16 sp8 = (actor->current.angle.y - fopAcM_searchPlayerAngleY(actor));
             if (sp8 <= 0x400 && sp8 > -0x400) {
-                i_this->field_0x5dc = 3;
+                i_this->mode = 3;
             }
 
             cLib_addCalcAngleS2(&actor->shape_angle.z, -0x1200, 2, 0x200);
@@ -475,8 +475,8 @@ static void e_mk_bo_demo_spin(e_mk_bo_class* i_this) {
 
         if (fopAcM_searchPlayerDistanceXZ(actor) < 50.0f) {
             e_mk_class* e_mk = (e_mk_class*)fopAcM_SearchByID(actor->parentActorID);
-            e_mk->mDemoMode++;
-            i_this->field_0x5dc = 4;
+            e_mk->demoSubMode++;
+            i_this->mode = 4;
             i_this->field_0x600 = 1;
         }
         break;
@@ -507,9 +507,9 @@ static void action(e_mk_bo_class* i_this) {
 
     switch (i_this->action) {
     case 0:
-        if (e_mk->field_0xc30 == 1) {
+        if (e_mk->demoMode == e_mk_class::DEMO_MODE_START) {
             var_r28 = e_mk_bo_start(i_this);
-        } else if (e_mk->field_0xc30 == 3 || fopAcM_GetRoomNo(actor) == 4) {
+        } else if (e_mk->demoMode == e_mk_class::DEMO_MODE_R04 || fopAcM_GetRoomNo(actor) == 4) {
             var_r28 = e_mk_bo_r04(i_this);
         } else {
             var_r28 = e_mk_bo_shot(i_this);
@@ -606,8 +606,8 @@ static int daE_MK_BO_Execute(e_mk_bo_class* i_this) {
     i_this->model->setBaseTRMtx(mDoMtx_stack_c::get());
 
     e_mk_class* e_mk = (e_mk_class*)a_parent;
-    if (e_mk->field_0x707 == 6) {
-        e_mk->field_0x707 = 0;
+    if (e_mk->unkFlag4 == 6) {
+        e_mk->unkFlag4 = 0;
         fopAcM_delete(actor);
     }
 
@@ -643,15 +643,15 @@ static int daE_MK_BO_Execute(e_mk_bo_class* i_this) {
         for (int i = 0; i < eff_num; i++) {
             if (i_this->action >= 2) {
                 if (i < 2) {
-                    e_mk->field_0xc18[i] = dComIfGp_particle_set(e_mk->field_0xc18[i], bo_eno_2[i], &actor->current.pos, NULL, NULL);
-                    emt = dComIfGp_particle_getEmitter(e_mk->field_0xc18[i]);
+                    e_mk->boEno1Prtcls[i] = dComIfGp_particle_set(e_mk->boEno1Prtcls[i], bo_eno_2[i], &actor->current.pos, NULL, NULL);
+                    emt = dComIfGp_particle_getEmitter(e_mk->boEno1Prtcls[i]);
                 } else {
                     i_this->field_0x99c[i - 2] = dComIfGp_particle_set(i_this->field_0x99c[i - 2], bo_eno_2[i], &actor->current.pos, NULL, NULL);
                     emt = dComIfGp_particle_getEmitter(i_this->field_0x99c[i - 2]);
                 }
             } else if (i < 2) {
-                e_mk->field_0xc18[i] = dComIfGp_particle_set(e_mk->field_0xc18[i], bo_eno_1[i], &actor->current.pos, NULL, NULL);
-                emt = dComIfGp_particle_getEmitter(e_mk->field_0xc18[i]);
+                e_mk->boEno1Prtcls[i] = dComIfGp_particle_set(e_mk->boEno1Prtcls[i], bo_eno_1[i], &actor->current.pos, NULL, NULL);
+                emt = dComIfGp_particle_getEmitter(e_mk->boEno1Prtcls[i]);
             } else {
                 i_this->field_0x99c[i - 2] = dComIfGp_particle_set(i_this->field_0x99c[i - 2], bo_eno_1[i], &actor->current.pos, NULL, NULL);
                 emt = dComIfGp_particle_getEmitter(i_this->field_0x99c[i - 2]);
