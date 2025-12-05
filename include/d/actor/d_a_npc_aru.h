@@ -131,7 +131,7 @@ public:
     int bullRunning(void*);
     int skipFence(void*);
     int talk(void*);
-    #ifdef DEBUG
+    #if DEBUG
     int test(void*);
     #endif
     daNpc_Aru_c(

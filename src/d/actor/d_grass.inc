@@ -693,7 +693,7 @@ void dGrass_packet_c::draw() {
                     } else {
                         sp38.b = sp38.b * var_f28;
                     }
-#ifdef DEBUG
+#if DEBUG
                 }
 #endif
 

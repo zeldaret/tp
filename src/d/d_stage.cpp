@@ -1071,7 +1071,7 @@ static dStage_objectNameInf l_objectName[] = {
     OBJNAME("d_act30", PROC_DEMO00,            0x1E),
     OBJNAME("d_act31", PROC_DEMO00,            0x1F),
     OBJNAME("TLogo",   PROC_TITLE,             0xFF),
-#ifdef DEBUG
+#if DEBUG
     OBJNAME("unitC00", PROC_Obj_TestCube,      0xFF),
     OBJNAME("unitS00", PROC_Obj_TestCube,      0xFF),
     OBJNAME("unitCy0", PROC_Obj_TestCube,      0xFF),
@@ -1093,7 +1093,7 @@ static dStage_objectNameInf l_objectName[] = {
     OBJNAME("mvbg_a",  PROC_BG_OBJ,            0xFF),
     OBJNAME("burnBox", PROC_Obj_BurnBox,       0xFF),
     OBJNAME("stnMark", PROC_Obj_StoneMark,     0xFF),
-#ifndef DEBUG
+#if !DEBUG
     OBJNAME("Passer",  PROC_NPC_PASSER,        0xFF),
 #endif
     OBJNAME("Passer2", PROC_NPC_PASSER2,       0xFF),
@@ -1398,7 +1398,7 @@ void dStage_stageDt_c::init() {
     mElst = NULL;
     mWorldRollAngleX = 0;
     mWorldRollDirAngleY = 0;
-#ifdef DEBUG
+#if DEBUG
     mPaletteNumInfo = 0;
     mPselectNumInfo = 0;
     mVrboxNumInfo = 0;
@@ -1432,7 +1432,7 @@ void dStage_roomDt_c::init() {
     mDrTg = NULL;
     mDoor = NULL;
     mFloorInfo = NULL;
-#ifdef DEBUG
+#if DEBUG
     field_0x60 = 0;
 #endif
 }

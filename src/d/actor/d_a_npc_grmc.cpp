@@ -320,7 +320,7 @@ int daNpc_grMC_c::Execute() {
 
 int daNpc_grMC_c::Draw() {
     return draw(
-        #ifdef DEBUG
+        #if DEBUG
         chkAction(&daNpc_grMC_c::test),
         #else
         FALSE,
@@ -737,7 +737,7 @@ int daNpc_grMC_c::shop(void* param_1) {
     return 0;
 }
 
-#ifdef DEBUG
+#if DEBUG
 int daNpc_grMC_c::test(void* param_1) {
     int rv = 0;
 

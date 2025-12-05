@@ -1,4 +1,4 @@
-#ifdef DEBUG
+#if DEBUG
 #include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_event_debug.h"

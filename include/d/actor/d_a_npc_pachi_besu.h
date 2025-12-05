@@ -61,7 +61,7 @@ public:
     BOOL setAction(actionFunc);
     BOOL wait(void*);
     BOOL talk(void*);
-    #ifdef DEBUG
+    #if DEBUG
     BOOL test(void*);
     #endif
     BOOL _turn_to_link(s16);

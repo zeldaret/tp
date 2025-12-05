@@ -89,7 +89,7 @@ int daE_PZ_c::draw() {
     }
 
     if (arg0 == 10) {
-#ifdef DEBUG
+#if DEBUG
         if (WREG_S(0) != 0) {
             GXColor color;
             color.r = 0xFF;

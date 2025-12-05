@@ -311,7 +311,7 @@ int daNpc_Raca_c::Draw() {
     }
 
     draw(
-#ifdef DEBUG
+#if DEBUG
         chkAction(mAction),
 #else
         0,

@@ -131,7 +131,7 @@ void __OSThreadInit() {
     thread->mutex = 0;
 
     OSInitThreadQueue(&thread->queueJoin);
-#ifdef DEBUG
+#if DEBUG
     OSInitMutexQueue(&thread->queueMutex);
 #else
     thread->queueMutex.head = thread->queueMutex.tail = 0; // it got inlined? cant reproduce the inline...
@@ -430,7 +430,7 @@ int OSCreateThread(OSThread* thread, void* (*func)(void*), void* param, void* st
     thread->val = (void*)-1;
     thread->mutex = 0;
     OSInitThreadQueue(&thread->queueJoin);
-#ifdef DEBUG
+#if DEBUG
     OSInitMutexQueue(&thread->queueMutex);
 #else
     OSInitThreadQueue((void*)&thread->queueMutex); // why
@@ -492,7 +492,7 @@ void OSExitThread(void* val) {
     __OSUnlockAllMutex(currentThread);
     OSWakeupThread(&currentThread->queueJoin);
     RunQueueHint = 1;
-#ifdef DEBUG
+#if DEBUG
     __OSReschedule();
 #else
     if (RunQueueHint != 0) {

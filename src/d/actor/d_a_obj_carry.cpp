@@ -1286,7 +1286,7 @@ int daObjCarry_c::CreateHeap() {
 int daObjCarry_c::create() {
     preInit();
 
-#ifdef DEBUG
+#if DEBUG
     if (prm_chk_type_lightball() && strcmp(dComIfGp_getStartStageName(), "T_ENE02") == 0) {
         goto next;
     }
@@ -1970,7 +1970,7 @@ int daObjCarry_c::draw() {
 }
 
 void daObjCarry_c::debugDraw() {
-#ifdef DEBUG
+#if DEBUG
     if (KREG_S(8) == 10000 && !mRotAxis.isZero()) {
         cXyz start(current.pos);
         start.y += 35.0f;

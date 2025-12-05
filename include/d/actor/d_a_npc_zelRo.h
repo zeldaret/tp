@@ -115,7 +115,7 @@ public:
     BOOL setAction(actionFunc);
     int wait(void*);
     int talk(void*);
-    #ifdef DEBUG
+    #if DEBUG
     int test(void*);
     #endif
     daNpc_ZelRo_c(

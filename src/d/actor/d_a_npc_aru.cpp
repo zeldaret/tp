@@ -423,7 +423,7 @@ int daNpc_Aru_c::Draw() {
     }
 
     draw(
-#ifdef DEBUG
+#if DEBUG
         chkAction(&daNpc_Aru_c::test),
 #else
         FALSE,
@@ -2018,7 +2018,7 @@ int daNpc_Aru_c::talk(void* param_1) {
     return 0;
 }
 
-#ifdef DEBUG
+#if DEBUG
 int daNpc_Aru_c::test(void* param_1) {
 
 }

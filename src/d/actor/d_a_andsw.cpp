@@ -8,7 +8,7 @@
 #include "d/actor/d_a_andsw.h"
 #include "d/d_procname.h"
 
-#ifdef DEBUG
+#if DEBUG
 daAndsw_HIO_c l_HIO;
 
 daAndsw_HIO_c::daAndsw_HIO_c() {
@@ -42,7 +42,7 @@ int daAndsw_c::create() {
         return cPhs_ERROR_e;
     }
 
-#ifdef DEBUG
+#if DEBUG
     l_HIO.entryHIO("ＳＷ監視");
 #endif
 
@@ -58,7 +58,7 @@ int daAndsw_c::execute() {
         if (mTimer == 0) {
             fopAcM_offSwitch(this,mSwNo);
 
-#ifdef DEBUG
+#if DEBUG
             if (l_HIO.field_0x6 != 0) {
                 OS_REPORT("-- ＳＷ監視状態出力 --\n");
                 OS_REPORT("sw<%d>ＯＦＦしました\n", mSwNo);
@@ -71,7 +71,7 @@ int daAndsw_c::execute() {
             }
         }
     }
-#ifdef DEBUG
+#if DEBUG
     else if (l_HIO.field_0x6 != 0) {
         OS_REPORT("sw2<%d>を待っています\n", mSwNo2);
         l_HIO.field_0x6 = 0;
@@ -82,7 +82,7 @@ int daAndsw_c::execute() {
 }
 
 int daAndsw_c::_delete() {
-#ifdef DEBUG
+#if DEBUG
     l_HIO.removeHIO();
 #endif
     return 1;

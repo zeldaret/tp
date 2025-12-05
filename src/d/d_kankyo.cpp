@@ -1072,7 +1072,7 @@ static void plight_set() {
                 dKy_plight_set(&g_env_light.mLightInfluence[plight_no]);
                 plight_no++;
             } else {
-#ifdef DEBUG
+#if DEBUG
                 // "\nToo many Point Lights set!!!"
                 OSReport_Warning("\nポイントライトマップ配置が多すぎます！！！");
 #endif

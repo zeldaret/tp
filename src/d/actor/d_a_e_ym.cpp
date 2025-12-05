@@ -3355,7 +3355,7 @@ int daE_YM_c::create() {
     field_0x6a3 = (current.angle.x & 0xff00) >> 8;
 
     if (mSwitchBit != 0xFF && dComIfGs_isSwitch(mSwitchBit, fopAcM_GetRoomNo(this))) {
-#ifdef DEBUG
+#if DEBUG
         // E_YM won't reset because it's already been defeated.
         OSReport("E_YM やられ後なので再セットしません\n");
 #endif

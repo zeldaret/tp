@@ -92,7 +92,7 @@ public:
     int tend(void*);
     int talk(void*);
     int shop(void*);
-    #ifdef DEBUG
+    #if DEBUG
     int test(void*);
     #endif
     daNpc_grMC_c(
@@ -118,7 +118,7 @@ public:
     static cutFunc mCutList[1];
 
 private:
-    #ifdef DEBUG
+    #if DEBUG
     /* 0xFCC */ daNpc_grMC_HIO_c* mHIO;
     #endif
     /* 0x0F7C */ u8 field_0xf7c[0xf80 - 0xf7c];

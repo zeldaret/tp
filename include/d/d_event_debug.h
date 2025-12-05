@@ -1,7 +1,7 @@
 #ifndef D_EVENT_D_EVENT_DEBUG_H
 #define D_EVENT_D_EVENT_DEBUG_H
 
-#ifdef DEBUG
+#if DEBUG
 #include "JSystem/JHostIO/JORMContext.h"
 #include "d/d_event.h"
 

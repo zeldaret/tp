@@ -776,7 +776,7 @@ int daNpc_ykM_c::Draw() {
     }
 
     rv = draw(
-        #ifdef DEBUG
+        #if DEBUG
         chkAction(&daNpc_ykM_c::test),
         #else
         FALSE,
@@ -3695,7 +3695,7 @@ BOOL daNpc_ykM_c::talk(void* param_1) {
     return FALSE;
 }
 
-#ifdef DEBUG
+#if DEBUG
 BOOL daNpc_ykM_c::test(void* param_1) {
     int rv = FALSE;
     switch (mMode) {

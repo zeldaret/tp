@@ -239,7 +239,7 @@ int daObjRgate_c::Create() {
                           l_cull_box.max.y, l_cull_box.max.z);
 
     if (dComIfG_Bgsp().Regist(mpBgW, this)) {
-#ifdef DEBUG
+#if DEBUG
         OSReport_Error("キコルの門：ＢＧ登録失敗しました\n");
 #endif
         return 0;
@@ -847,7 +847,7 @@ int daObjRgate_c::Draw() {
 int daObjRgate_c::Delete() {
     if (mpBgW != NULL && mpBgW->ChkUsed()) {
         if (dComIfG_Bgsp().Release(mpBgW)) {
-#ifdef DEBUG
+#if DEBUG
             OSReport("Release Error\n");
 #endif
         }

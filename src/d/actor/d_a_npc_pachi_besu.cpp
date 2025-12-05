@@ -629,7 +629,7 @@ int daNpc_Pachi_Besu_c::Draw() {
     }
 
     return draw(
-#ifdef DEBUG
+#if DEBUG
         chkAction(&daNpc_Pachi_Besu_c::test),
 #else
         FALSE,
@@ -1088,7 +1088,7 @@ BOOL daNpc_Pachi_Besu_c::talk(void* param_1) {
     return FALSE;
 }
 
-#ifdef DEBUG
+#if DEBUG
 BOOL daNpc_Pachi_Besu_c::test(void* param_1) {
     // DEBUG NONMATCHING
 }

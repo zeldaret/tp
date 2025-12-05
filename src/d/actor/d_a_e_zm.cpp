@@ -949,7 +949,7 @@ cPhs__Step daE_ZM_c::create() {
             attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             fopAcM_SetGroup(this, 0);
 
-            #ifdef DEBUG
+            #if DEBUG
             if (NREG_S(0) != 0) {
                 fopAcM_SetMin(this, -20000.0f, -10000.0f, -10000.0f);
                 fopAcM_SetMax(this, 20000.0f, 10000.0f, 10000.0f);

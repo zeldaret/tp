@@ -249,7 +249,7 @@ public:
     BOOL cook(void*);
     BOOL race(void*);
     BOOL talk(void*);
-    #ifdef DEBUG
+    #if DEBUG
     BOOL test(void*);
     #endif
     daNpc_ykM_c(

@@ -27,7 +27,7 @@ int daTag_ShopItem_c::create() {
     if (getGroupID() == 15) {
         mCreateTimer = 150;
 
-#ifdef DEBUG
+#if DEBUG
         // "Event Item\n"
         OSReport("イベントアイテム\n");
 #endif
@@ -37,12 +37,12 @@ int daTag_ShopItem_c::create() {
                 dComIfGs_onSaveSwitch(getSwitchBit2());
                 field_0x572 = true;
                 mCreateTimer = 0;
-#ifdef DEBUG
+#if DEBUG
                 // "Before Talk\n"
                 OSReport("会話前\n");
 #endif
             } else {
-#ifdef DEBUG
+#if DEBUG
                 // "After Talk\n"
                 OSReport("会話後\n");
 #endif
@@ -54,7 +54,7 @@ int daTag_ShopItem_c::create() {
         if (getSwitchBit1() != 0xFF) {
             if (dComIfGs_isSaveSwitch(getSwitchBit1())) {
                 mCreateTimer = 150;
-#ifdef DEBUG
+#if DEBUG
                 // "Already Sold\n"
                 OSReport("もう売れたよ\n");
 #endif
@@ -64,7 +64,7 @@ int daTag_ShopItem_c::create() {
         if (getSwitchBit2() != 0xFF) {
             if (!dComIfGs_isSaveSwitch(getSwitchBit2())) {
                 mCreateTimer = 150;
-#ifdef DEBUG
+#if DEBUG
                 // "Not sold yet\n"
                 OSReport("まだ売れない\n");
 #endif

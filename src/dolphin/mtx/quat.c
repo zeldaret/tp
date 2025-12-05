@@ -305,7 +305,7 @@ void C_QUATLogN(const Quaternion* q, Quaternion* r) {
 
     scale = (q->x * q->x) + (q->y * q->y) + (q->z * q->z);
 
-#ifdef DEBUG
+#if DEBUG
     mag = scale + (q->z * q->z);
     if (mag < 1.0f - 0.00001f || mag > 1.0f + 0.00001f || mag > 1.00001f) {}
 #endif
