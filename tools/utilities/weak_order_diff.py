@@ -35,6 +35,8 @@ def get_symbols(o_path: Path, diff_data: bool):
             # Only diff functions.
             if sym_type != "FUNC":
                 continue
+            if vis == "HIDDEN":
+                continue
 
         symbols.append((sym_type, int(section_index), int(offset, 16), name))
 
