@@ -8270,4 +8270,8 @@ static fopAc_ac_c* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1);
 static void* daAlink_searchBoar(fopAc_ac_c* param_0, void* param_1);
 static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* p_actor, void* param_1);
 
+inline daAlink_c* daAlink_getAlinkActorClass() {
+    return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
+}
+
 #endif /* D_A_D_A_ALINK_H */

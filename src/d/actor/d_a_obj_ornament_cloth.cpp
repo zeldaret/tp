@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_ornament_cloth.h"
+#include "d/actor/d_a_player.h"
 #include "d/d_a_obj.h"
 
 enum J_Necktie_RES_File_ID {
@@ -192,7 +193,7 @@ void daObjOnCloth_c::checkPlayerMove() {
     field_0x650[attr().delayedVibrationFrame - 1] = 0.0f;
 
     if (!(fopAcM_searchPlayerDistanceXZ2(this) > attr().playerReactionDist * attr().playerReactionDist)) {
-        f32 fVar2 = fopAcM_GetSpeedF((fopAc_ac_c*)daPy_getPlayerActorClass());
+        f32 fVar2 = fopAcM_GetSpeedF(daPy_getPlayerActorClass());
         if (fVar2 > attr().playerReactionSpeed) {
             field_0x650[attr().delayedVibrationFrame - 1] = fVar2;
         }

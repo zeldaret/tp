@@ -2009,7 +2009,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_kn"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_knj"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_kolinb"),
-    ActorRel(Equivalent, "d_a_npc_ks"), # weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_npc_ks"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_kyury"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_len"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_lf"),
