@@ -174,7 +174,7 @@ public:
 
 private:
     /* 0x14 */ J3DAnmTransform* mAnm;
-    /* 0x18 */ J3DMtxCalc* mpMtxCalc;
+    /* 0x18 */ J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>* mpMtxCalc;
 };  // Size: 0x1C
 
 STATIC_ASSERT(sizeof(mDoExt_bckAnm) == 0x1C);
