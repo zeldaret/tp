@@ -355,10 +355,8 @@ void JKRHeap::copyMemory(void* dst, void* src, u32 size) {
 }
 
 void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment) {
-#if DEBUG
-    OSReport("Error: Cannot allocate memory %d(0x%x)byte in %d byte alignment from %08x\n", size,
+    OS_REPORT("Error: Cannot allocate memory %d(0x%x)byte in %d byte alignment from %08x\n", size,
              size, alignment, heap);
-#endif
     JUTException::panic(__FILE__, 831, "abort\n");
 }
 

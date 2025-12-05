@@ -626,12 +626,10 @@ int daNpc_ZelRo_c::talk(void* param_1) {
     return 0;
 }
 
-#if DEBUG
 int daNpc_ZelRo_c::test(void* param_1) {
     int rt = 0;
     return rt;
 }
-#endif
 
 static int daNpc_ZelRo_Create(void* a_this) {
     return static_cast<daNpc_ZelRo_c*>(a_this)->create();

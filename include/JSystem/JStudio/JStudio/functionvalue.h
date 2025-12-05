@@ -333,9 +333,10 @@ public:
         }
 
         f32 operator*() {
-#if DEBUG
+            // this guard is required - removing it breaks float regalloc in std::upper_bound
+            #if DEBUG
             JUT_ASSERT(947, pf_!=NULL);
-#endif
+            #endif
             return *pf_;
         }
 

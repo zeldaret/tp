@@ -962,12 +962,7 @@ static void damage_check(b_bh_class* i_this) {
         if (i_this->field_0xa24 != 0) {
             i_this->mCcSph.OffCoSetBit();
 
-            if (fpcM_Search(s_b_sub, i_this)
-#if DEBUG
-                || mDoCPd_c::getTrigA(PAD_3)
-#endif
-               )
-            {
+            if (fpcM_Search(s_b_sub, i_this) || (DEBUG && mDoCPd_c::getTrigA(PAD_3))) {
                 if (i_this->field_0xa25 != 0) {
                     i_this->mAction = ACTION_B_BOMB_EAT;
                     dComIfGs_onOneZoneSwitch(14, -1);

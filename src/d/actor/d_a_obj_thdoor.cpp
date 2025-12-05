@@ -127,10 +127,10 @@ int daObjThDoor_c::create1st() {
             return rv;
         }
 
-        #if DEBUG
         // Telma's door
         OS_REPORT("テルマの家のドア：sw<%d>msg<%d>\n", getSwbit(), getMsg());
 
+        #if DEBUG
         // Telma's door
         l_HIO.entryHIO("テルマの家のドア");
         #endif

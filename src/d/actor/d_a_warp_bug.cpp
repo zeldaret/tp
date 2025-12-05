@@ -56,12 +56,8 @@ int daWarpBug_c::draw() {
 #if DEBUG
     daPy_py_c* player_p = (daPy_py_c*)dComIfGp_getPlayer(0);
     if (!player_p->checkMidnaWarp()) {
-#endif
-
         field_0x57c = 0;
         return 1;
-
-#if DEBUG
     }
 
     cLib_chaseS(&field_0x57c, 255, 25);
@@ -94,9 +90,11 @@ int daWarpBug_c::draw() {
     mpBtk->entry(modelData);
     mDoExt_modelUpdateDL(mpModel);
     dComIfGd_setList();
+#else
+    field_0x57c = 0;
+#endif
 
     return 1;
-#endif
 }
 
 int daWarpBug_c::execute() {

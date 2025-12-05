@@ -2018,11 +2018,8 @@ int daNpc_Aru_c::talk(void* param_1) {
     return 0;
 }
 
-#if DEBUG
 int daNpc_Aru_c::test(void* param_1) {
-
 }
-#endif
 
 static int daNpc_Aru_Create(void* a_this) {
     return static_cast<daNpc_Aru_c*>(a_this)->create();

@@ -641,14 +641,12 @@ void dEvent_manager_c::Sequencer() {
                     break;
                 }
 
-                if (
+                if ((dStage_MapEvent_dt_c_getEventSCutSW(mapdata) != 0
                     #if DEBUG
-                    (dStage_MapEvent_dt_c_getEventSCutSW(mapdata) != 0 || l_HIO.m_enable_skip) &&
-                    #else
-                    dStage_MapEvent_dt_c_getEventSCutSW(mapdata) != 0 &&
+                    || l_HIO.m_enable_skip
                     #endif
-                    !evtControl.chkFlag2(2)
-                ) {
+                    ) &&
+                    !evtControl.chkFlag2(2)) {
                     int scut_type = dStage_MapEvent_dt_c_getEventSCutType(mapdata);
                     if (scut_type == 2) {
                         evtControl.onSkipFade();

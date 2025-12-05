@@ -70,13 +70,14 @@ int daAndsw_c::execute() {
                 OS_REPORT("ＳＷ監視：ＳＷＯＦＦしたので処理終わりますSW<%d>\n", mSwNo);
             }
         }
-    }
+    } else {
 #if DEBUG
-    else if (l_HIO.field_0x6 != 0) {
-        OS_REPORT("sw2<%d>を待っています\n", mSwNo2);
-        l_HIO.field_0x6 = 0;
-    }
+        if (l_HIO.field_0x6 != 0) {
+            OS_REPORT("sw2<%d>を待っています\n", mSwNo2);
+            l_HIO.field_0x6 = 0;
+        }
 #endif
+    }
 
     return 1;
 }

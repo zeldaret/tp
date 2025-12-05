@@ -171,8 +171,7 @@ static daB_GM_HIO_c l_HIO;
 static int daB_GM_Draw(b_gm_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    #if DEBUG
-    # else
+    #if !DEBUG
     g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
     #endif
 

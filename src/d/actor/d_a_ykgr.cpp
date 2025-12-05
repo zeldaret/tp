@@ -250,13 +250,10 @@ inline int daYkgr_c::_draw() {
         set_mtx();
         if  (m_emitter != NULL) {
             m_emitter->setGlobalRTMatrix(field_0x570);
-#if DEBUG
-            if (l_HIO.field_0x4 != 0) {
+            if (DEBUG && l_HIO.field_0x4 != 0) {
                 m_emitter->setGlobalAlpha(l_HIO.field_0x8);
                 YkgrCB.setParam(l_HIO.field_0x10);
-            } else
-#endif
-            {
+            } else {
                 m_emitter->setGlobalAlpha(m_alpha);
             }
         }

@@ -259,9 +259,7 @@ int daObjKGate_c::Create() {
                           l_cull_box.max.y, l_cull_box.max.z);
 
     if (dComIfG_Bgsp().Regist(mpBgW, this)) {
-#if DEBUG
-        OSReport_Error("キコルの門：ＢＧ登録失敗しました\n");
-#endif
+        OS_REPORT_ERROR("キコルの門：ＢＧ登録失敗しました\n");
         return 0;
     }
 
@@ -956,9 +954,7 @@ int daObjKGate_c::Draw() {
 int daObjKGate_c::Delete() {
     if (mpBgW != NULL && mpBgW->ChkUsed()) {
         if (dComIfG_Bgsp().Release(mpBgW)) {
-#if DEBUG
-            OSReport("Release Error\n");
-#endif
+            OS_REPORT("Release Error\n");
         }
     }
 

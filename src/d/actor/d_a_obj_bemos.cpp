@@ -447,8 +447,8 @@ int daObjBm_c::create1st() {
             return phase_state;
         }
 
-#if DEBUG
         OS_REPORT("新ビーモス：0x%x\n", fopAcM_GetParam(this));
+#if DEBUG
         l_HIO.entryHIO("ビーモス");
 #endif
     }

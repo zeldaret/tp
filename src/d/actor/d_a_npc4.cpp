@@ -1905,9 +1905,9 @@ BOOL daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_actor_p) {
             if (dComIfGp_getAttention()->LockonTarget(i) == i_actor_p &&
                 dComIfGp_getAttention()->getActionBtnB() &&
                 (dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_TALK_e
-#if DEBUG
+                #if !PLATFORM_GCN
                 || dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_UNK_4
-#endif
+                #endif
                 ))
             {
                 ret = TRUE;

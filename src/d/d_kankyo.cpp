@@ -517,30 +517,32 @@ void dKy_twi_wolflight_set(int light_id) {
     if (g_kankyoHIO.navy.room_light_type != 0) {
         size = g_kankyoHIO.navy.room_light_type - 1;
     }
-
-    if (!g_kankyoHIO.navy.camera_light_adjust_ON) {
     #endif
 
-    switch (size) {
-    case LIGHT_SIZE_S:
-        kankyo->field_0x0c18[light_id].mPos.y += 1500.0f;
-        break;
-    case LIGHT_SIZE_M:
-        kankyo->field_0x0c18[light_id].mPos.y += 500.0f;
-        break;
-    case LIGHT_SIZE_L:
-        kankyo->field_0x0c18[light_id].mPos.y += 1000.0f;
-        break;
-    case LIGHT_SIZE_LL:
-        kankyo->field_0x0c18[light_id].mPos.y += 1500.0f;
-        break;
-    default:
-        kankyo->field_0x0c18[light_id].mPos.y += 500.0f;
-        break;
-    }
-
     #if DEBUG
-    } else {
+    if (!g_kankyoHIO.navy.camera_light_adjust_ON)
+    #endif
+    {
+        switch (size) {
+        case LIGHT_SIZE_S:
+            kankyo->field_0x0c18[light_id].mPos.y += 1500.0f;
+            break;
+        case LIGHT_SIZE_M:
+            kankyo->field_0x0c18[light_id].mPos.y += 500.0f;
+            break;
+        case LIGHT_SIZE_L:
+            kankyo->field_0x0c18[light_id].mPos.y += 1000.0f;
+            break;
+        case LIGHT_SIZE_LL:
+            kankyo->field_0x0c18[light_id].mPos.y += 1500.0f;
+            break;
+        default:
+            kankyo->field_0x0c18[light_id].mPos.y += 500.0f;
+            break;
+        }
+    }
+    #if DEBUG
+    else {
         kankyo->field_0x0c18[light_id].mPos.y += g_kankyoHIO.navy.camera_light_y_shift;
     }
     #endif
@@ -1072,10 +1074,8 @@ static void plight_set() {
                 dKy_plight_set(&g_env_light.mLightInfluence[plight_no]);
                 plight_no++;
             } else {
-#if DEBUG
                 // "\nToo many Point Lights set!!!"
-                OSReport_Warning("\nポイントライトマップ配置が多すぎます！！！");
-#endif
+                OS_WARNING("\nポイントライトマップ配置が多すぎます！！！");
             }
         }
     }
@@ -1460,10 +1460,7 @@ static void envcolor_init() {
     }
     #endif
 
-    #if DEBUG
-    if (g_env_light.time_change_rate < 1000.0f) 
-    #endif
-    {
+    if (!DEBUG || g_env_light.time_change_rate < 1000.0f) {
         stage_stag_info_class* stageinfo = dComIfGp_getStage()->getStagInfo();
         int stage_time = dStage_stagInfo_GetTimeH(stageinfo);
         if ((s8)stage_time >= 0) {
@@ -1471,14 +1468,11 @@ static void envcolor_init() {
         }
     }
 
-    #if DEBUG
-    if (g_env_light.time_change_rate >= 2000.0f) {
+    if (DEBUG && g_env_light.time_change_rate >= 2000.0f) {
         g_env_light.time_change_rate = 0.03f;
-    } else if (g_env_light.time_change_rate >= 1000.0f) {
+    } else if (DEBUG && g_env_light.time_change_rate >= 1000.0f) {
         g_env_light.time_change_rate = 0.0f;
-    } else
-    #endif
-    {
+    } else {
         g_env_light.time_change_rate = 0.012f;
     }
 

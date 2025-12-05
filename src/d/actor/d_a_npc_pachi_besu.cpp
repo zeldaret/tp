@@ -1088,11 +1088,9 @@ BOOL daNpc_Pachi_Besu_c::talk(void* param_1) {
     return FALSE;
 }
 
-#if DEBUG
 BOOL daNpc_Pachi_Besu_c::test(void* param_1) {
     // DEBUG NONMATCHING
 }
-#endif
 
 BOOL daNpc_Pachi_Besu_c::_turn_to_link(s16 param_1) {
     cXyz pos(*fopAcM_GetPosition_p(daPy_getPlayerActorClass()));

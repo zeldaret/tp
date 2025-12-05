@@ -198,8 +198,8 @@ int daObjMHole_c::create() {
         if (Create() == 0) {
             return cPhs_ERROR_e;
         }
+        OS_REPORT("MHole Param<%x> arc<%s>\n", fopAcM_GetParam(this), l_arcName[mKind]);
 #if DEBUG
-        OSReport("MHole Param<%x> arc<%s>\n", fopAcM_GetParam(this), l_arcName[mKind]);
         l_HIO.entryHIO("マグネホール");
 #endif
     }

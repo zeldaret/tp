@@ -314,7 +314,7 @@ int daNpc_Raca_c::Draw() {
 #if DEBUG
         chkAction(mAction),
 #else
-        0,
+        FALSE,
 #endif
         FALSE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE
     );
