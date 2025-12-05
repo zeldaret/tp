@@ -4422,8 +4422,6 @@ static void cam_3d_morf(dmg_rod_class* i_this, f32 i_scale) {
     cLib_addCalc2(&i_this->play_cam_eye.z, i_this->play_cam_eye_target.z, i_scale, i_this->play_cam_eye_speed.z * i_this->field_0x1410);
 }
 
-// NONMATCHING - JMAFastSqrt needs to not be inlined
-// tricks like FORCE_DONT_INLINE can stop inlining for most of the inlines in this function, but it's unclear how to stop just one inline
 static void play_camera(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
