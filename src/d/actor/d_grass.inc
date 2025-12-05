@@ -556,10 +556,10 @@ void dGrass_packet_c::draw() {
             f32 sp58 = 1.0f - temp_f27;
             temp_f27 += 0.5f * sp58;
 
-            J3DLightInfo& sp40 = sp44->mLights[0].getLightInfo();
-            sp98.r = sp40.mColor.r * temp_f27;
-            sp98.g = sp40.mColor.g * temp_f27;
-            sp98.b = sp40.mColor.b * temp_f27;
+            J3DLightInfo* sp40 = sp44->mLights[0].getLightInfo();
+            sp98.r = sp40->mColor.r * temp_f27;
+            sp98.g = sp40->mColor.g * temp_f27;
+            sp98.b = sp40->mColor.b * temp_f27;
             sp98.a = var_f29;
 
             if (memcmp(dComIfGp_getStartStageName(), "D_MN01", 6) == 0) {
