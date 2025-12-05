@@ -964,7 +964,7 @@ config.libs = [
         [
             Object(MatchingFor(ALL_GCN), "JSystem/JStudio/JStudio/ctb.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "JSystem/JStudio/JStudio/ctb-data.cpp"),
-            Object(Equivalent, "JSystem/JStudio/JStudio/functionvalue.cpp"), # weak func order
+            Object(MatchingFor(ALL_GCN), "JSystem/JStudio/JStudio/functionvalue.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JStudio/JStudio/fvb.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "JSystem/JStudio/JStudio/fvb-data.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "JSystem/JStudio/JStudio/fvb-data-parse.cpp"),
