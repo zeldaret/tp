@@ -6839,7 +6839,18 @@ public:
     BOOL checkCutHeadProc() const { return mProcID == PROC_CUT_HEAD; }
     fopAc_ac_c* getRideActor() { return mRideAcKeep.getActor(); }
 
-    virtual cXyz* getMidnaAtnPos() const { return (cXyz*)&mMidnaAtnPos; }
+    virtual bool checkAcceptDungeonWarpAlink(int) { return checkAcceptWarp(); }
+    virtual daSpinner_c* getSpinnerActor() {
+        daSpinner_c* spinnerActor;
+        if (!checkSpinnerRide()) {
+            spinnerActor = NULL;
+        } else {
+            spinnerActor = (daSpinner_c*)mRideAcKeep.getActor();
+        }
+        return (daSpinner_c*)spinnerActor;
+    }
+    virtual s16 getSumouCounter() const { return mProcVar2.field_0x300c; }
+    virtual s16 checkSumouWithstand() const { return mProcVar3.field_0x300e; }
     virtual void setMidnaMsgNum(fopAc_ac_c* param_0, u16 pMsgNum) {
         mMidnaMsgNum = pMsgNum;
         mMidnaMsg = (daTagMmsg_c*)param_0;
@@ -6847,7 +6858,6 @@ public:
     virtual MtxP getModelMtx() { return mpLinkModel->getBaseTRMtx(); }
     virtual MtxP getInvMtx() { return mInvMtx; }
     virtual cXyz* getShadowTalkAtnPos() { return &field_0x375c; }
-    virtual f32 getGroundY() { return mLinkAcch.GetGroundH(); }
     virtual MtxP getLeftItemMatrix();
     virtual MtxP getRightItemMatrix();
     virtual MtxP getLeftHandMatrix();
@@ -6859,8 +6869,26 @@ public:
         if (mHeldItemModel != NULL && checkBottleItem(mEquipItem)) {
             return mHeldItemModel->getBaseTRMtx();
         }
-
         return NULL;
+    }
+
+    virtual MtxP getHeadMtx() {
+        return mpLinkModel->getAnmMtx(field_0x30b4);
+    }
+    virtual f32 getGroundY() { return mLinkAcch.GetGroundH(); }
+    virtual f32 getBaseAnimeFrameRate() const { return mUnderFrameCtrl[0].getRate(); }
+    virtual fpc_ProcID getAtnActorID() const { return mAtnActorID; }
+    virtual fpc_ProcID getItemID() const { return mItemAcKeep.getID(); }
+    virtual fpc_ProcID getGrabActorID() const {
+        if (mEquipItem == 0x102) {
+            return mItemAcKeep.getID();
+        } else {
+            return mGrabItemAcKeep.getID();
+        }
+    }
+    virtual void setForcePutPos(cXyz const& pPutPos) {
+        mForcePutPos = pPutPos;
+        onEndResetFlg1(ERFLG1_UNK_2000);
     }
     virtual BOOL checkPlayerGuard() const;
     virtual u32 checkPlayerFly() const {
@@ -6929,26 +6957,17 @@ public:
     }
     virtual BOOL checkGrassWhistle() const { return mProcID == PROC_GRASS_WHISTLE_WAIT; }
     virtual BOOL checkBoarRun() const { return mProcID == PROC_BOAR_RUN; }
-    virtual f32 getBaseAnimeFrameRate() const { return mUnderFrameCtrl[0].getRate(); }
+    virtual BOOL checkHorseRideNotReady() const {
+        return checkHorseRide() && mProcID != PROC_HORSE_RIDE && mProcID != PROC_HORSE_GETOFF;
+    }
+    virtual f32 getSearchBallScale() const { return mSearchBallScale; }
+    virtual int checkFastShotTime() { return mFastShotTime; }
     virtual f32 getBaseAnimeFrame() const;
     virtual void setAnimeFrame(f32);
     virtual BOOL checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
-    virtual fpc_ProcID getAtnActorID() const { return mAtnActorID; }
-    virtual fpc_ProcID getItemID() const { return mItemAcKeep.getID(); }
-    virtual fpc_ProcID getGrabActorID() const {
-        if (mEquipItem == 0x102) {
-            return mItemAcKeep.getID();
-        } else {
-            return mGrabItemAcKeep.getID();
-        }
-    }
     virtual BOOL exchangeGrabActor(fopAc_ac_c*);
     virtual BOOL setForceGrab(fopAc_ac_c*, int, int);
-    virtual void setForcePutPos(cXyz const& pPutPos) {
-        mForcePutPos = pPutPos;
-        onEndResetFlg1(ERFLG1_UNK_2000);
-    }
     virtual u32 checkPlayerNoDraw();
     virtual void voiceStart(u32);
     virtual void seStartOnlyReverb(u32);
@@ -6957,10 +6976,6 @@ public:
     virtual void setGrabCollisionOffset(f32, f32, cBgS_PolyInfo*);
     virtual void onFrollCrashFlg(u8, int);
     virtual MtxP getModelJointMtx(u16);
-    virtual MtxP getHeadMtx() {
-        return mpLinkModel->getAnmMtx(field_0x30b4);
-        ;
-    }
     virtual bool setHookshotCarryOffset(fpc_ProcID, cXyz const*);
     virtual BOOL checkCutJumpCancelTurn() const {
         return (mProcID == PROC_CUT_JUMP || mProcID == PROC_CUT_JUMP_LAND) && field_0x3198 != 2;
@@ -6977,9 +6992,6 @@ public:
     virtual bool setThrowDamage(short, f32, f32, int, int, int);
     virtual bool checkSetNpcTks(cXyz*, int, int);
     virtual int setRollJump(f32, f32, short);
-    virtual void playerStartCollisionSE(u32 param_0, u32 param_1) {
-        mZ2Link.startCollisionSE(param_0, param_1);
-    }
     virtual void cancelDungeonWarpReadyNeck() {
         if (mProcID != PROC_DUNGEON_WARP_READY) {
             return;
@@ -7004,21 +7016,7 @@ public:
     virtual u32 checkCanoeRide() const;
     virtual u32 checkBoardRide() const;
     virtual u32 checkSpinnerRide() const;
-    virtual daSpinner_c* getSpinnerActor() {
-        daSpinner_c* spinnerActor;
-        if (!checkSpinnerRide()) {
-            spinnerActor = NULL;
-        } else {
-            spinnerActor = (daSpinner_c*)mRideAcKeep.getActor();
-        }
-        return (daSpinner_c*)spinnerActor;
-    }
-    virtual BOOL checkHorseRideNotReady() const {
-        return checkHorseRide() && mProcID != PROC_HORSE_RIDE && mProcID != PROC_HORSE_GETOFF;
-    }
     virtual bool checkArrowChargeEnd() const;
-    virtual f32 getSearchBallScale() const { return mSearchBallScale; }
-    virtual int checkFastShotTime() { return mFastShotTime; }
     virtual bool checkNoEquipItem() const { return mEquipItem == fpcNm_ITEM_NONE; }
     virtual bool checkKandelaarSwing(int) const;
     virtual s16 getBoardCutTurnOffsetAngleY() const {
@@ -7028,6 +7026,31 @@ public:
         return 0;
     }
     virtual cXyz* getMagneBootsTopVec() { return &mMagneBootsTopVec; }
+    virtual void setCargoCarry(fopAc_ac_c* p_actor) {
+        mSpecialMode = SMODE_CARGO_CARRY;
+        mCargoCarryAcKeep.setData(p_actor);
+    }
+    virtual void setGoronSideMove(fopAc_ac_c* p_actor) {
+        mSpecialMode = SMODE_GORON_THROW;
+        mCargoCarryAcKeep.setData(p_actor);
+    }
+    virtual void setSumouReady(fopAc_ac_c* p_actor) {
+        mSpecialMode = SMODE_SUMO_READY;
+        mCargoCarryAcKeep.setData(p_actor);
+        mDemo.setDemoMode(1);
+    }
+    virtual void setSumouPushBackDirection(short param_0) {
+        if (mProcID != PROC_SUMOU_MOVE) {
+            return;
+        }
+        mProcVar4.field_0x3010 = param_0;
+    }
+    virtual void setSumouLoseHeadUp() {
+        if (mProcID != PROC_SUMOU_WIN_LOSE) {
+            return;
+        }
+        mSpecialMode = SMODE_SUMO_LOSE;
+    }
     virtual cXyz* getKandelaarFlamePos();
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c*);
@@ -7045,6 +7068,24 @@ public:
         }
         mProcVar4.field_0x3010 = angle;
     }
+    virtual void setSumouGraspCancelCount(int param_0) {
+        if (mProcID != PROC_SUMOU_MOVE) {
+            return;
+        }
+        mProcVar2.field_0x300c = param_0;
+    }
+    virtual bool checkItemSwordEquip() const { return mEquipItem == 0x103; }
+    virtual f32 getSinkShapeOffset() const { return mSinkShapeOffset; }
+    virtual BOOL checkSinkDead() const { return field_0x2fbd == 0xFF; }
+    virtual BOOL checkCutJumpMode() const { return mProcID == PROC_CUT_JUMP; }
+    virtual s16 getGiantPuzzleAimAngle() const { return mProcVar2.mPuzzleAimAngle; }
+    virtual u8 getSwordChangeWaitTimer() const { return mSwordChangeWaitTimer; }
+    virtual BOOL checkMetamorphose() const {
+        return mProcID == PROC_METAMORPHOSE && mProcVar1.field_0x300a == 0;
+    }
+    virtual BOOL checkWolfDownAttackPullOut() const { return mProcID == PROC_WOLF_DOWN_AT_LAND; }
+    virtual cXyz* getMidnaAtnPos() const { return (cXyz*)&mMidnaAtnPos; }
+    virtual bool checkCopyRodEquip() const { return mEquipItem == fpcNm_ITEM_COPY_ROD; }
     virtual void setKandelaarMtx(f32 (*)[4], int, int);
     virtual bool getStickAngleFromPlayerShape(short*) const;
     virtual bool checkSpinnerPathMove();
@@ -7059,44 +7100,13 @@ public:
         return mProcID == PROC_CANOE_FISHING_GET && mProcVar3.field_0x300e == 1;
     }
     virtual u8 checkBeeChildDrink() const { return field_0x2fd3; }
+    virtual Z2WolfHowlMgr* getWolfHowlMgrP() { return &mZ2WolfHowlMgr; }
+    virtual BOOL checkWolfHowlSuccessAnime() const {
+        return checkUnderMove0BckNoArcWolf(WANM_HOWL_SUCCESS);
+    }
     virtual void skipPortalObjWarp();
     virtual BOOL checkTreasureRupeeReturn(int) const;
-    virtual void setSumouReady(fopAc_ac_c* p_actor) {
-        mSpecialMode = SMODE_SUMO_READY;
-        mCargoCarryAcKeep.setData(p_actor);
-        mDemo.setDemoMode(1);
-    }
-    virtual bool checkAcceptDungeonWarpAlink(int) { return checkAcceptWarp(); }
-    virtual s16 getSumouCounter() const { return mProcVar2.field_0x300c; }
-    virtual s16 checkSumouWithstand() const { return mProcVar3.field_0x300e; }
     virtual void cancelGoronThrowEvent();
-    virtual void setSumouGraspCancelCount(int param_0) {
-        if (mProcID != PROC_SUMOU_MOVE) {
-            return;
-        }
-        mProcVar2.field_0x300c = param_0;
-    }
-    virtual void setSumouPushBackDirection(short param_0) {
-        if (mProcID != PROC_SUMOU_MOVE) {
-            return;
-        }
-        mProcVar4.field_0x3010 = param_0;
-    }
-    virtual void setSumouLoseHeadUp() {
-        if (mProcID != PROC_SUMOU_WIN_LOSE) {
-            return;
-        }
-        mSpecialMode = SMODE_SUMO_LOSE;
-    }
-    virtual s16 getGiantPuzzleAimAngle() const { return mProcVar2.mPuzzleAimAngle; }
-    virtual void setGoronSideMove(fopAc_ac_c* p_actor) {
-        mSpecialMode = SMODE_GORON_THROW;
-        mCargoCarryAcKeep.setData(p_actor);
-    }
-    virtual void setCargoCarry(fopAc_ac_c* p_actor) {
-        mSpecialMode = SMODE_CARGO_CARRY;
-        mCargoCarryAcKeep.setData(p_actor);
-    }
     virtual cXyz* getHookshotTopPos();
     virtual bool checkHookshotReturnMode() const;
     virtual bool checkHookshotShootReturnMode() const;
@@ -7124,27 +7134,16 @@ public:
     virtual bool checkDragonHangRide() const {
         return mProcID == PROC_BOSS_BODY_HANG && field_0x32cc != 0;
     }
+    virtual void playerStartCollisionSE(u32 param_0, u32 param_1) {
+        mZ2Link.startCollisionSE(param_0, param_1);
+    }
     virtual void changeDragonActor(fopAc_ac_c*);
     virtual u8 getClothesChangeWaitTimer() const { return mClothesChangeWaitTimer; }
     virtual u8 getShieldChangeWaitTimer() const { return mShieldChangeWaitTimer; }
-    virtual u8 getSwordChangeWaitTimer() const { return mSwordChangeWaitTimer; }
-    virtual BOOL checkMetamorphose() const {
-        return mProcID == PROC_METAMORPHOSE && mProcVar1.field_0x300a == 0;
-    }
-    virtual BOOL checkWolfDownAttackPullOut() const { return mProcID == PROC_WOLF_DOWN_AT_LAND; }
     virtual BOOL checkBootsOrArmorHeavy() const;
     virtual fpc_ProcID getBottleOpenAppearItem() const;
-    virtual bool checkItemSwordEquip() const { return mEquipItem == 0x103; }
-    virtual f32 getSinkShapeOffset() const { return mSinkShapeOffset; }
-    virtual BOOL checkSinkDead() const { return field_0x2fbd == 0xFF; }
     virtual BOOL checkHorseStart() { return checkHorseStart(getLastSceneMode(), getStartMode()); }
-    virtual Z2WolfHowlMgr* getWolfHowlMgrP() { return &mZ2WolfHowlMgr; }
-    virtual BOOL checkWolfHowlSuccessAnime() const {
-        return checkUnderMove0BckNoArcWolf(WANM_HOWL_SUCCESS);
-    }
     virtual BOOL checkCopyRodTopUse();
-    virtual bool checkCopyRodEquip() const { return mEquipItem == fpcNm_ITEM_COPY_ROD; }
-    virtual BOOL checkCutJumpMode() const { return mProcID == PROC_CUT_JUMP; }
 
     static BOOL checkDebugMoveInput() {
         if (mDoCPd_c::isConnect(PAD_3)) {
@@ -8270,5 +8269,9 @@ static fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1);
 static fopAc_ac_c* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1);
 static void* daAlink_searchBoar(fopAc_ac_c* param_0, void* param_1);
 static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* p_actor, void* param_1);
+
+inline daAlink_c* daAlink_getAlinkActorClass() {
+    return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
+}
 
 #endif /* D_A_D_A_ALINK_H */

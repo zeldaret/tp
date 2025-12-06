@@ -43,6 +43,35 @@ static daTbox_ModelInfo l_modelInfo[3] = {
 
 static cXyz l_light_offset(0.0f, 35.0f, 0.0f);
 
+class daTbox_HIO_c : public mDoHIO_entry_c {
+public:
+    daTbox_HIO_c();
+    virtual ~daTbox_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ u8 mItemNo;
+    /* 0x05 */ u8 mUseDebugItemNo;
+    /* 0x06 */ u8 mClearSwitch;
+    /* 0x07 */ u8 mDemoType;
+    /* 0x08 */ u8 mDebugLightColorEnabled;
+    /* 0x09 */ u8 mTimerDisplay;
+    /* 0x0A */ u8 mCheckDisplay;
+    /* 0x0B */ u8 mSaveOff;
+    /* 0x0C */ f32 mGravity;
+    /* 0x10 */ cXyz mLightOffset;
+    /* 0x1C */ s16 mLightColorR;
+    /* 0x1E */ s16 mLightColorG;
+    /* 0x20 */ s16 mLightColorB;
+    /* 0x24 */ f32 mLightPower;
+    /* 0x28 */ f32 mFluctuationRate;
+    /* 0x2C */ f32 mEnvColorInfluence;
+    /* 0x30 */ s16 mFluctuationSpeed;
+    /* 0x32 */ u8 mForPlacementCheck;
+};
+
+STATIC_ASSERT(sizeof(daTbox_HIO_c) == 0x34);
+
 daTbox_HIO_c::daTbox_HIO_c() {
     mItemNo = 1;
     mUseDebugItemNo = 0;

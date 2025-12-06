@@ -4430,16 +4430,4 @@ inline void dComIfGd_set3DlineMatDark(mDoExt_3DlineMat_c* param_0) {
     g_dComIfG_gameInfo.drawlist.set3DlineMatDark(param_0);
 }
 
-inline daPy_py_c* daPy_getLinkPlayerActorClass() {
-    return dComIfGp_getLinkPlayer();
-}
-
-inline daPy_py_c* daPy_getPlayerActorClass() {
-    return (daPy_py_c*)dComIfGp_getPlayer(0);
-}
-
-inline daAlink_c* daAlink_getAlinkActorClass() {
-    return (daAlink_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
-}
-
 #endif /* D_COM_D_COM_INF_GAME_H */

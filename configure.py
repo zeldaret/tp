@@ -964,7 +964,7 @@ config.libs = [
         [
             Object(MatchingFor(ALL_GCN), "JSystem/JStudio/JStudio/ctb.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "JSystem/JStudio/JStudio/ctb-data.cpp"),
-            Object(Equivalent, "JSystem/JStudio/JStudio/functionvalue.cpp"), # weak func order
+            Object(MatchingFor(ALL_GCN), "JSystem/JStudio/JStudio/functionvalue.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JStudio/JStudio/fvb.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "JSystem/JStudio/JStudio/fvb-data.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "JSystem/JStudio/JStudio/fvb-data-parse.cpp"),
@@ -1720,7 +1720,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_msg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_push"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_telop"),
-    ActorRel(Equivalent, "d_a_tbox"), # weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tbox"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tbox2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_vrbox"),
     ActorRel(NonMatching, "d_a_vrbox2"),
@@ -2009,7 +2009,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_kn"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_knj"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_kolinb"),
-    ActorRel(Equivalent, "d_a_npc_ks"), # weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_npc_ks"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_kyury"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_len"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_lf"),

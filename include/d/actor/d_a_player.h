@@ -1257,4 +1257,12 @@ public:
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);
 
+inline daPy_py_c* daPy_getPlayerActorClass() {
+    return (daPy_py_c*)dComIfGp_getPlayer(0);
+}
+
+inline daPy_py_c* daPy_getLinkPlayerActorClass() {
+    return dComIfGp_getLinkPlayer();
+}
+
 #endif /* D_A_D_A_PLAYER_H */
