@@ -400,9 +400,20 @@ extern const J2DTevSwapModeInfo j2dDefaultTevSwapMode;
  */
 class J2DTevStage {
 public:
-    J2DTevStage(J2DTevStageInfo const&);
-    J2DTevStage();
-    void setTevStageInfo(J2DTevStageInfo const&);
+    J2DTevStage(J2DTevStageInfo const& param_0) {
+        setTevStageInfo(param_0);
+        setTevSwapModeInfo(j2dDefaultTevSwapMode);
+    }
+    J2DTevStage() {
+        setTevStageInfo(j2dDefaultTevStageInfo);
+        setTevSwapModeInfo(j2dDefaultTevSwapMode);
+    }
+    void setTevStageInfo(J2DTevStageInfo const& info) {
+        setColorABCD(info.mColorA, info.mColorB, info.mColorC, info.mColorD);
+        setTevColorOp(info.mCOp, info.mCBias, info.mCScale, info.mCClamp, info.mCReg);
+        setAlphaABCD(info.mAlphaA, info.mAlphaB, info.mAlphaC, info.mAlphaD);
+        setTevAlphaOp(info.mAOp, info.mABias, info.mAScale, info.mAClamp, info.mAReg);
+    }
 
     void setStageNo(u32 param_0) {
         field_0x0 = (param_0 << 1) + 0xc0;
