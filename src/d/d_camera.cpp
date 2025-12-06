@@ -4223,7 +4223,7 @@ bool dCamera_c::lockonCamera(s32 param_0) {
 
         // this should probably be an ifdef, but we force it to be compiled
         // to make the function large enough to stop doing inlining
-        if (!NDEBUG) {
+        if (!NDEBUG_DEFINED) {
             if (mCamSetup.CheckFlag(0x8000)) {
                 //char name[28];
                 fopAcM_getNameString(mpPlayerActor, NULL);
