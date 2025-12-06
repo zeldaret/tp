@@ -116,8 +116,6 @@ static const J3DTexMtxInfo l_texMtxInfo = {
     },
 };
 
-// NONMATCHING l_alphaCompInfo needs to be placed in .sdata2, but the function breaks if it is declared const
-// Also see J3DAlphaComp::setAlphaCompInfo in J3DMatBlock.h
 static void addWarpMaterial(J3DModelData* i_modelData) {
     static J3DTevStageInfo const l_tevStageInfo = {
         0x05, 0x0F, 0x08, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x01, 0x00,
@@ -125,6 +123,7 @@ static void addWarpMaterial(J3DModelData* i_modelData) {
     };
     static J3DTexCoordInfo l_texCoordInfo = {0x00, 0x00, 0x27};
     static J3DTevOrderInfo l_tevOrderInfo = {0x00, 0x03, 0xFF, 0x00};
+    static J3DAlphaCompInfo const l_alphaCompInfo = {0x04, 0x80, 0x00, 0x03, 0xFF};
 
     ResTIMG* resTimg = (ResTIMG*)dComIfG_getObjectRes("Always", 0x5d);
     JUT_ASSERT(279, resTimg != NULL);
@@ -166,7 +165,6 @@ static void addWarpMaterial(J3DModelData* i_modelData) {
 
         J3DPEBlock* peBlock = material->getPEBlock();
         J3DAlphaComp* alphaComp = peBlock->getAlphaComp();
-        static J3DAlphaCompInfo l_alphaCompInfo = {0x04, 0x80, 0x00, 0x03, 0xFF, 0, 0, 0};
         alphaComp->setAlphaCompInfo(l_alphaCompInfo);
         peBlock->setZCompLoc((u8)0);
     }
