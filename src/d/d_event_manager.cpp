@@ -329,12 +329,11 @@ int dEvent_manager_c::create() {
 }
 
 bool dEvent_manager_c::setObjectArchive(char* arcname) {
-    char* rt = NULL;
+    void* rt = NULL;
 
     if (arcname != NULL) {
-        char* res = (char*)dComIfG_getObjectRes(arcname, DataFileName);
-        rt = res;
-        int base_status = mEventList[BASE_ACTOR].init(res, -1);
+        rt = dComIfG_getObjectRes(arcname, DataFileName);
+        int base_status = mEventList[BASE_ACTOR].init((char*)rt, -1);
 
         #if DEBUG
         if (base_status) {
@@ -1382,7 +1381,8 @@ fopAc_ac_c* dEvent_manager_c::specialCast_Shutter(s16 actorName, BOOL param_1) {
     shutterActor = fopAcM_Search((fopAcIt_JudgeFunc)findShutterCallBack, &prms);
     if (shutterActor != NULL && param_1) {
         cXyz goal(shutterActor->home.pos);
-        s16 angle = prms.actor->home.angle.y + 0x8000;
+        s16 angle = prms.actor->home.angle.y;
+        angle = angle + 0x8000;
 
         goal.x += cM_ssin(angle) * 100;
         goal.z += cM_scos(angle) * 100;
