@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_crvhahen.h"
+#include "d/actor/d_a_player.h"
 
 static const char* l_arcName = "CrvFence";
 

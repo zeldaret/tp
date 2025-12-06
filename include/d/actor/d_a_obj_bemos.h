@@ -7,6 +7,7 @@
 #include "d/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_ext.h"
+#include "JSystem/JParticle/JPAEmitter.h"
 
 /**
  * @ingroup actors-objects
@@ -122,7 +123,7 @@ public:
     void initActionDead();
     void actionDead();
     int Draw();
-#ifdef DEBUG
+#if DEBUG
     /* 0x000000 */ void debugDraw();
 #endif
     int Delete();

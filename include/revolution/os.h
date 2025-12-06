@@ -245,7 +245,7 @@ DECL_WEAK void OSVReport(const char* format, va_list list);
 
 DECL_WEAK void OSSwitchFiberEx(u32, u32, u32, u32, u32, u32);
 
-#ifdef DEBUG
+#if DEBUG
 #define OS_REPORT(...) OSReport(__VA_ARGS__)
 #define OS_WARNING(...) OSReport_Warning(__VA_ARGS__)
 #define OS_REPORT_ERROR(...) OSReport_Error(__VA_ARGS__)
@@ -293,7 +293,7 @@ extern OSTime __OSStartTime;
 extern int __OSInIPL;
 extern BOOL __OSInReboot;
 
-#ifdef DEBUG
+#if DEBUG
 #define ASSERTLINE(line, cond) \
     ((cond) || (OSPanic(__FILE__, line, "Failed assertion " #cond), 0))
 
