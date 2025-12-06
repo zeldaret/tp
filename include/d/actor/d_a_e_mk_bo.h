@@ -12,7 +12,8 @@
  * 
  * @details 
  * 
- */
+*/
+
 class e_mk_bo_class {
 public:
     /* 0x000 */ fopEn_enemy_c enemy;
@@ -21,7 +22,7 @@ public:
     /* 0x5B8 */ Z2SoundObjSimple sound;
     /* 0x5D8 */ s16 counter;
     /* 0x5DA */ s16 action;
-    /* 0x5DC */ s16 field_0x5dc;
+    /* 0x5DC */ s16 mode;
     /* 0x5E0 */ cXyz field_0x5e0;
     /* 0x5EC */ s16 field_0x5ec;
     /* 0x5EE */ s16 field_0x5ee;
