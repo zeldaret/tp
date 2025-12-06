@@ -1205,7 +1205,7 @@ exit:;
 }
 
 static int fioPacketResultWrite(void* buffer, u32 dataSize) {
-    register int nResult = 0;
+    __REGISTER int nResult = 0;
     MCC_CHANNEL nChID;
     u8 nChannelBlocks = 0;
     u32 dataBlockSize;
