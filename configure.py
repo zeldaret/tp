@@ -1511,6 +1511,17 @@ config.libs = [
             Object(NonMatching, "revolution/dvd/dvd_broadway.c", extra_cflags=["-char signed"]),
         ],
     ),
+    RevolutionLib(
+        "nand",
+        [
+            Object(NonMatching, "revolution/nand/nand.c"),
+            Object(NonMatching, "revolution/nand/NANDOpenClose.c"),
+            Object(NonMatching, "revolution/nand/NANDCore.c"),
+            Object(NonMatching, "revolution/nand/NANDCheck.c"),
+            Object(NonMatching, "revolution/nand/NANDLogging.c"),
+            Object(NonMatching, "revolution/nand/NANDErrorMessage.c"),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": MWVersion(config.version),
