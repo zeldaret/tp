@@ -995,9 +995,15 @@ bool dCamera_c::transEvCamera(int param_1) {
             trans->mEye = (*ptr1).mEye;
             trans->mFovy = (*ptr1).mFovy;
             trans->field_0x3c = (*ptr1).mBank;
+#ifdef __MWERKS__
+            if ((*ptr1).mBank != 0.0f) {
+                trans->field_0x68 = true;
+            }
+#else
             if ((float)ptr1->mBank.Val() != 0.0f) {
                 trans->field_0x68 = true;
             }
+#endif
         }
 
         if (!getEvIntData(&slot, "StartSlot")) {
@@ -1011,9 +1017,15 @@ bool dCamera_c::transEvCamera(int param_1) {
             trans->mStartEye = (*ptr2).mEye;
             trans->mStartFovy = (*ptr2).mFovy;
             trans->field_0x1c = (*ptr2).mBank;
+#ifdef __MWERKS__
+            if ((*ptr2).mBank != 0.0f) {
+                trans->field_0x68 = true;
+            }
+#else
             if ((float)ptr2->mBank.Val() != 0.0f) {
                 trans->field_0x68 = true;
             }
+#endif
         }
 
         getEvIntData(&trans->mTransType, "TransType", 0);

@@ -2535,7 +2535,7 @@ int daAlink_c::checkRoofHangMovePos() {
         0x0000,
         -0x8000,
         0x4000,
-        -0xC000,
+        -0x4000,
     };
 
     if (field_0x2f98 >= 4) {

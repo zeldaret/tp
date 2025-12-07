@@ -24,7 +24,7 @@
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
 
-#ifdef DEBUG
+#if DEBUG
 extern "C" int atoi(const char* str);
 extern "C" f32 atof(const char* str);
 #endif
