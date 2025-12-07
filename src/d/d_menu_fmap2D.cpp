@@ -2729,7 +2729,7 @@ void dMenu_Fmap2DTop_c::setAButtonString(u32 param_0, u8 i_alpha) {
 }
 
 void dMenu_Fmap2DTop_c::setCrossLRString(u32 param_0) {
-#if PLATFORM_GCN
+#if PLATFORM_GCN || (VERSION == VERSION_SHIELD)
 #if VERSION == VERSION_GCN_JPN
     static const u64 juji_c[5] = {'juji_c00', 'juji_c01', 'juji_c02', 'juji_c03', 'juji_c04'};
 #else
