@@ -18,6 +18,6 @@ daAndsw2_Create__FP10fopAc_ac_c = .text:0x00000ABC; // type:function size:0x4 sc
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global
 @90578 = .data:0x00000000; // type:object size:0x1C scope:local
-@LOCAL@daAndsw2_c::execute(void)@l_action = .data:0x0000001C; // type:object size:0x18 scope:local
+l_action$localstatic3$execute__10daAndsw2_cFv = .data:0x0000001C; // type:object size:0x18 scope:local
 l_daAndsw2_Method = .data:0x00000034; // type:object size:0x20 scope:global
 g_profile_ANDSW2 = .data:0x00000054; // type:object size:0x30 scope:global

@@ -1,8 +1,8 @@
 _prolog = .text:0x00000000; // type:function size:0x2C scope:global align:4
 _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
-setAction__9daL7ODR_cFM9daL7ODR_cFP10v = .text:0x0000005C; // type:function size:0xA4 scope:global align:4
-setDrAction__9daL7ODR_cFM9daL7ODR_cFP10v = .text:0x00000100; // type:function size:0xA4 scope:global align:4
+setAction__9daL7ODR_cFM9daL7ODR_cFPCvPv_v = .text:0x0000005C; // type:function size:0xA4 scope:global align:4
+setDrAction__9daL7ODR_cFM9daL7ODR_cFPCvPv_v = .text:0x00000100; // type:function size:0xA4 scope:global align:4
 mtx_set__9daL7ODR_cFv = .text:0x000001A4; // type:function size:0x90 scope:global align:4
 draw__9daL7ODR_cFv = .text:0x00000234; // type:function size:0xE4 scope:global align:4
 daL7ODR_Draw__FP9daL7ODR_c = .text:0x00000318; // type:function size:0x4 scope:global align:4

@@ -13,3 +13,4 @@ d/actor/d_a_bg.cpp:
 	.text       start:0x0000005C end:0x00001418
 	.rodata     start:0x00000000 end:0x00000024
 	.data       start:0x00000000 end:0x000001F0
+	.bss        start:0x00000000 end:0x00000020

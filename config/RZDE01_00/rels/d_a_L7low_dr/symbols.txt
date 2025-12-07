@@ -1,7 +1,7 @@
 _prolog = .text:0x00000000; // type:function size:0x2C scope:global
 _epilog = .text:0x0000002C; // type:function size:0x2C scope:global
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global
-fn_5c = .text:0x0000005C; // type:function size:0xA4 scope:global
+setAction__11daL7lowDr_cFM11daL7lowDr_cFPCvPv_v = .text:0x0000005C; // type:function size:0xA4 scope:global
 action__11daL7lowDr_cFv = .text:0x00000100; // type:function size:0xA4 scope:global
 daL7lowDr_Delete__FP11daL7lowDr_c = .text:0x000001A4; // type:function size:0x4 scope:global
 mtx_set__11daL7lowDr_cFv = .text:0x000001A8; // type:function size:0x6C scope:global
