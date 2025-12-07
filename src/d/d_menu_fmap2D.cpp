@@ -2754,7 +2754,7 @@ void dMenu_Fmap2DTop_c::setCrossLRString(u32 param_0) {
 }
 
 void dMenu_Fmap2DTop_c::set3DStickString(u32 param_0) {
-#if PLATFORM_GCN
+#if PLATFORM_GCN || (VERSION == VERSION_SHIELD)
 #if VERSION == VERSION_GCN_JPN
     static const u64 ast_c[5] = {'ast_00', 'ast_01', 'ast_02', 'ast_03', 'ast_04'};
 #else
