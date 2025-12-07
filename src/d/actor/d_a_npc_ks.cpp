@@ -6628,7 +6628,7 @@ static void kantera_sub(npc_ks_class* i_this) {
             fopAcM_cancelCarryNow(a_this);
             cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
             i_this->field_0xc17 = 0;
-            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xE2] & 0xFFFF);
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xE2]);
         } else {
             i_this->field_0xc04.x = -30715.0f + AREG_F(8);
             i_this->field_0xc04.z = -17200.0f + AREG_F(9);
