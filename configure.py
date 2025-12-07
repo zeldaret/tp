@@ -1528,6 +1528,15 @@ config.libs = [
             Object(NonMatching, "revolution/fs/fs.c"),
         ],
     ),
+    RevolutionLib(
+        "ipc",
+        [
+            Object(NonMatching, "revolution/ipc/ipcMain.c"),
+            Object(NonMatching, "revolution/ipc/ipcclt.c"),
+            Object(NonMatching, "revolution/ipc/memory.c"),
+            Object(NonMatching, "revolution/ipc/ipcProfile.c"),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": MWVersion(config.version),

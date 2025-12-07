@@ -1,7 +1,7 @@
 #ifndef _REVOLUTION_OSNET_H_
 #define _REVOLUTION_OSNET_H_
 
-#include <revolution/private/iosresclt.h>
+#include <revolution/ipc.h>
 
 #ifdef __cplusplus
 extern "C" {

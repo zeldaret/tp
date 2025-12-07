@@ -4412,7 +4412,7 @@ revolution/sc/scsystem.c:
 	.rodata     start:0x8065EE18 end:0x8065EE70
 	.data       start:0x8073DB08 end:0x8073DDB0
 	.sdata      start:0x8074C078 end:0x8074C1C0
-	.sbss       start:0x8074D5EC end:0x8074D604
+	.sbss       start:0x8074D5EC end:0x8074D600
 	.bss        start:0x80801DC0 end:0x80809F60
 
 revolution/sc/scapi.c:
@@ -4435,7 +4435,7 @@ revolution/esp/esp.c:
 revolution/ipc/ipcMain.c:
 	.text       start:0x80612240 end:0x806123B0
 	.data       start:0x8073DE10 end:0x8073DE48
-	.sbss       start:0x8074D604 end:0x8074D618
+	.sbss       start:0x8074D600 end:0x8074D618
 
 revolution/ipc/ipcclt.c:
 	.text       start:0x806123B0 end:0x80613CC0

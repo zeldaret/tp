@@ -5,16 +5,20 @@
 #include <revolution/ipc/ipcProfile.h>
 #include <revolution/ipc/memory.h>
 
-extern u32 IPCReadReg(u32);
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 void IPCInit(void);
-IOSError IPCCltInit(void);
-
 void IPCReInit(void);
-IOSError IPCCltReInit(void);
+u32 IPCReadReg(u32 regIdx);
+void IPCWriteReg(u32 regIdx, u32 data);
+void* IPCGetBufferHi(void);
+void* IPCGetBufferLo(void);
+void IPCSetBufferLo(void* newLo);
 
-extern void* IPCGetBufferHi(void);
-extern void* IPCGetBufferLo(void);
-extern void IPCSetBufferLo(void*);
+#ifdef __cplusplus
+}
+#endif
 
 #endif // _REVOLUTION_IPC_H_

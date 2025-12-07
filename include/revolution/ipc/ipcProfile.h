@@ -5,11 +5,11 @@
 extern "C" {
 #endif
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 void IPCiProfInit(void);
-void IPCiProfQueueReq(void*, s32);
-void IPCiProfReply(void*, s32);
+void IPCiProfQueueReq(void* req, s32 handle);
+void IPCiProfReply(void* req, s32 handle);
 void IPCiProfAck(void);
 
 #ifdef __cplusplus

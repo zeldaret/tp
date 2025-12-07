@@ -6,29 +6,29 @@ extern "C" {
 #endif
 
 #include <revolution/types.h>
-#include <private/iosrestypes.h>
-#include <private/iosresclt.h>
+#include <revolution/private/iosrestypes.h>
+#include <revolution/private/iostypes.h>
 
-s32 IOS_Open(const char*, u32);
-s32 IOS_Close(s32);
-s32 IOS_CloseAsync(IOSFd, IOSIpcCb, void*);
+typedef IOSError (*IOSIpcCb)(IOSError, void*);
 
-s32 IOS_Read(IOSFd, void*, u32);
-s32 IOS_ReadAsync(IOSFd, void*, u32, IOSIpcCb, void*);
+IOSError IPCCltInit(void);
+IOSError IPCCltReInit(void);
 
-s32 IOS_Write(IOSFd, void*, u32);
-s32 IOS_WriteAsync(IOSFd, void*, u32, IOSIpcCb, void*);
-
-s32 IOS_Ioctl(IOSFd, s32, void*, u32, void*, u32);
-
-IOSError IOS_Ioctlv(IOSFd, s32, u32, u32, IOSIoVector*);
-IOSError IOS_IoctlvAsync(IOSFd, s32, u32, u32, IOSIoVector*, IOSIpcCb, void*);
-s32 IOS_IoctlvReboot(s32, s32, u32, u32, IOSIoVector*);
-
-s32 IOS_Seek(IOSFd, s32, u32);
-s32 IOS_SeekAsync(IOSFd, s32, u32, IOSIpcCb, void*);
-
-s32 IOS_IoctlAsync(s32, s32, void*, u32, void*, u32, IOSIpcCb, void*);
+IOSError IOS_OpenAsync(const char* pPath, u32 flags, IOSIpcCb cb, void* callback_arg);
+IOSError IOS_Open(const char* path, u32 flags);
+IOSError IOS_CloseAsync(IOSFd fd, IOSIpcCb cb, void* cbArg);
+IOSError IOS_Close(IOSFd fd);
+IOSError IOS_ReadAsync(IOSFd fd, void* buf, u32 len, IOSIpcCb cb, void* cbArg);
+IOSError IOS_Read(IOSFd fd, void* buf, u32 len);
+IOSError IOS_WriteAsync(IOSFd fd, void* buf, u32 len, IOSIpcCb cb, void* cbArg);
+IOSError IOS_Write(IOSFd fd, void* buf, u32 len);
+IOSError IOS_SeekAsync(IOSFd fd, s32 offset, u32 whence, IOSIpcCb cb, void* cbArg);
+IOSError IOS_Seek(IOSFd fd, s32 offset, u32 whence);
+IOSError IOS_IoctlAsync(IOSFd fd, s32 cmd, void* input, u32 inputLen, void* output, u32 outputLen, IOSIpcCb cb, void* cbArg);
+IOSError IOS_Ioctl(IOSFd fd, s32 cmd, void* input, u32 inputLen, void* output, u32 outputLen);
+IOSError IOS_IoctlvAsync(IOSFd fd, s32 cmd, u32 readCount, u32 writeCount, IOSIoVector* vect, IOSIpcCb cb, void* cbArg);
+IOSError IOS_Ioctlv(IOSFd fd, s32 cmd, u32 readCount, u32 writeCount, IOSIoVector* vect);
+IOSError IOS_IoctlvReboot(IOSFd fd, s32 cmd, u32 readCount, u32 writeCount, IOSIoVector* vect);
 
 #ifdef __cplusplus
 }
