@@ -179,7 +179,7 @@ static asm void Config48MB(void) {
 #endif
 
 #ifdef __GEKKO__
-static asm void RealMode(register u32 addr) {
+static asm void RealMode(__REGISTER u32 addr) {
     nofralloc
     clrlwi addr, addr, 2
     mtsrr0 addr

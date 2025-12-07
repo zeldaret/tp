@@ -306,7 +306,7 @@ extern BOOL __OSInReboot;
     
 #define ASSERT(cond) ASSERTLINE(__LINE__, cond)
 
-inline s16 __OSf32tos16(register f32 inF) {
+inline s16 __OSf32tos16(__REGISTER f32 inF) {
 #ifdef __MWERKS__
     register s16 out;
     u32 tmp;
@@ -327,7 +327,7 @@ inline void OSf32tos16(f32* f, s16* out) {
     *out = __OSf32tos16(*f);
 }
 
-inline u8 __OSf32tou8(register f32 inF) {
+inline u8 __OSf32tou8(__REGISTER f32 inF) {
 #ifdef __MWERKS__
     register u8 out;
     u32 tmp;

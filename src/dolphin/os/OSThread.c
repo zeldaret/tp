@@ -208,7 +208,7 @@ static BOOL __OSIsThreadActive(OSThread* thread) {
 }
 
 s32 OSDisableScheduler(void) {
-    register BOOL enabled;
+    __REGISTER BOOL enabled;
     s32 count;
 
     enabled = OSDisableInterrupts();
@@ -219,7 +219,7 @@ s32 OSDisableScheduler(void) {
 }
 
 s32 OSEnableScheduler(void) {
-    register BOOL enabled;
+    __REGISTER BOOL enabled;
     s32 count;
 
     enabled = OSDisableInterrupts();
@@ -839,9 +839,9 @@ s32 OSCheckActiveThreads(void) {
 }
 
 void OSClearStack(u8 val) {
-    register u32 sp;
-    register u32* p;
-    register u32 pattern;
+    __REGISTER u32 sp;
+    __REGISTER u32* p;
+    __REGISTER u32 pattern;
     
     pattern = (val << 24) | (val << 16) | (val << 8) | val;
     sp = OSGetStackPointer();
