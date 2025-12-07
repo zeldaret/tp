@@ -216,8 +216,7 @@ int daNpcBlueNS_c::Execute() {
     return 1;
 }
 
-// NONMATCHING - small regalloc
-int daNpcBlueNS_c::_Execute() {
+void daNpcBlueNS_c::_Execute() {
     setParam();
 
     if (main()) {
