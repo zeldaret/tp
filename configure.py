@@ -1537,6 +1537,13 @@ config.libs = [
             Object(NonMatching, "revolution/ipc/ipcProfile.c"),
         ],
     ),
+    RevolutionLib(
+        "pad",
+        [
+            Object(NonMatching, "revolution/pad/Padclamp.c"),
+            Object(NonMatching, "revolution/pad/Pad.c"),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": MWVersion(config.version),
