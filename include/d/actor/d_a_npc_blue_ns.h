@@ -24,7 +24,7 @@ public:
     int isDelete();
     int Delete();
     int Execute();
-    int _Execute();
+    void _Execute();
     void callEvt_changeYami();
     fpc_ProcID create_Yamijin(int);
     BOOL col_check();
