@@ -2024,7 +2024,7 @@ void dMenu_Fmap2DBack_c::drawDebugStageArea() {
 }
 
 void dMenu_Fmap2DBack_c::drawDebugRegionArea() {
-    if (this->mZoom != getAllMapZoomRate()) {
+    if (mZoom != getAllMapZoomRate()) {
     }
 
     JUtility::TColor colors[7] = {
@@ -2118,7 +2118,6 @@ void dMenu_Fmap2DBack_c::calcDrawPriority() {
 
     if (mRegionCursor != 6) {
         for (int i = 7; i >= 0; i--) {
-            // region = field_0x1230[i];
             if (field_0x1230[i] != 0xff) {
                 if (field_0x1230[i] == 6) {
                     field_0x1230[i] = dVar3;
