@@ -141,7 +141,12 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
     field_0x1210 = 1.0;
     field_0x1214 = 1.0;
     mArrowDrawFlag = true;
+    
+#if DEBUG
+    mAllPathShowFlag = g_fmapHIO.mDisplayAllPaths;
+#else
     mAllPathShowFlag = false;
+#endif
 
     initiate(dComIfGp_getFmapResArchive());
 
@@ -491,6 +496,72 @@ void dMenu_Fmap2DBack_c::setRegionTexData(u8 i_areaType, ResTIMG* i_timg, f32 i_
         if ((!bVar14) && (field_0x1230[i] == 0xff)) {
             field_0x1230[i] = i_areaType;
             bVar14 = true;
+        }
+    }
+}
+
+void dMenu_Fmap2DBack_c::setRegionTexData(u8 i_areaType, f32 i_originX, f32 i_originZ, f32 i_posX,
+                                          f32 i_posZ, f32 i_scale, f32 i_scrollMinX,
+                                          f32 i_scrollMinZ, f32 i_scrollMaxX, f32 i_scrollMaxZ) {
+    if (i_scale == 0.0f) {
+        i_scale = 100.0f;
+    }
+
+    mRegionOriginX[i_areaType] = i_originX;
+    mRegionOriginZ[i_areaType] = i_originZ;
+    mRegionTexData[i_areaType].mScale = i_scale * 100.0f;
+
+    f32 width = mpAreaTex[i_areaType]->getTexture(0)->getTexInfo()->width;
+    f32 height = mpAreaTex[i_areaType]->getTexture(0)->getTexInfo()->height;
+
+    f32 min_x = (mRegionOriginX[i_areaType] + i_posX) -
+                ((width * 0.5f) * mRegionTexData[i_areaType].mScale);
+    f32 min_z = (mRegionOriginZ[i_areaType] + i_posZ) -
+                ((height * 0.5f) * mRegionTexData[i_areaType].mScale);
+    f32 max_x = (mRegionOriginX[i_areaType] + i_posX) +
+                ((width * 0.5f) * mRegionTexData[i_areaType].mScale);
+    f32 max_z = (mRegionOriginZ[i_areaType] + i_posZ) +
+                ((height * 0.5f) * mRegionTexData[i_areaType].mScale);
+
+    mRegionTexData[i_areaType].mMinX = min_x;
+    mRegionTexData[i_areaType].mMinZ = min_z;
+    mRegionTexData[i_areaType].mMaxX = max_x;
+    mRegionTexData[i_areaType].mMaxZ = max_z;
+
+    mRegionScrollMinX[i_areaType] = i_scrollMinX;
+    mRegionScrollMinZ[i_areaType] = i_scrollMinZ;
+    mRegionScrollMaxX[i_areaType] = i_scrollMaxX;
+    mRegionScrollMaxZ[i_areaType] = i_scrollMaxZ;
+
+    bool first = false;
+
+    mTexMinX = 0.0f;
+    mTexMinZ = 0.0f;
+    mTexMaxX = 0.0f;
+    mTexMaxZ = 0.0f;
+
+    for (int i = 0; i < 8; i++) {
+        if (mpAreaTex[i] != NULL) {
+            if (!first) {
+                mTexMinX = mRegionTexData[i].mMinX;
+                mTexMinZ = mRegionTexData[i].mMinZ;
+                mTexMaxX = mRegionTexData[i].mMaxX;
+                mTexMaxZ = mRegionTexData[i].mMaxZ;
+                first = true;
+            } else {
+                if (mTexMinX > mRegionTexData[i].mMinX) {
+                    mTexMinX = mRegionTexData[i].mMinX;
+                }
+                if (mTexMinZ > mRegionTexData[i].mMinZ) {
+                    mTexMinZ = mRegionTexData[i].mMinZ;
+                }
+                if (mTexMaxX < mRegionTexData[i].mMaxX) {
+                    mTexMaxX = mRegionTexData[i].mMaxX;
+                }
+                if (mTexMaxZ < mRegionTexData[i].mMaxZ) {
+                    mTexMaxZ = mRegionTexData[i].mMaxZ;
+                }
+            }
         }
     }
 }
@@ -1968,7 +2039,7 @@ void dMenu_Fmap2DBack_c::drawDebugRegionArea() {
 
     for (int i = 0; i < getMapScissorAreaSizeRealX(); i += g_fmapHIO.mRangeCheckInterval + 1) {
         for (int j = 0; j < getMapScissorAreaSizeRealY(); j += g_fmapHIO.mRangeCheckInterval + 1) {
-            bool u = false;
+            u8 u = 0;
             for (int k = 7; k >= 0; k--) {
                 int region = field_0x1230[k];
                 if (region == 0xff || region == 7) continue;
@@ -2095,8 +2166,13 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
 
     mpTitleScreen = new J2DScreen();
     JUT_ASSERT(3872, mpTitleScreen != NULL);
+#if PLATFORM_GCN
     bool fg = mpTitleScreen->setPriority("zelda_map_screen_title.blo", 0x1020000,
-                               dComIfGp_getFmapResArchive());
+                                         dComIfGp_getFmapResArchive());
+#else
+    bool fg = mpTitleScreen->setPriority("zelda_map_screen_title_revo.blo", 0x1020000,
+                                         dComIfGp_getFmapResArchive());
+#endif
     JUT_ASSERT(3877, fg != false);
 
     dPaneClass_showNullPane(mpTitleScreen);
@@ -2210,13 +2286,21 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
         mpTitleScreen->search(area_name[i])->hide();
 #endif
     }
-
+#if PLATFORM_GCN
     static const u64 sfont_name[7] = {
         'sfont00', 'sfontl0', 'sfontl1', 'sfontl2', 'sfontb0', 'sfontb1', 'sfontb2'
     };
     static const u64 ffont_name[7] = {
         'ffont00', 'ffontl0', 'ffontl1', 'ffontl2', 'ffontb0', 'ffontb3', 'ffontb4'
     };
+#else
+    static const u64 sfont_name[7] = {
+        'sfont00', 'sfontl0', 'sfontl1', 'sfontl2', 'sfontb0', 'sfontb1', 'sfontb2'
+    };
+    static const u64 ffont_name[7] = {
+        'ffont01', 'ffontl3', 'ffontl4', 'ffontl5', 'ffontb3', 'ffontb4', 'ffontb5'
+    };
+#endif
     for (int i = 0; i < 7; i++) {
 #if VERSION == VERSION_GCN_JPN
         static_cast<J2DTextBox*>(mpTitleScreen->search(sfont_name[i]))
@@ -2248,9 +2332,13 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
 #endif
     }
     setZButtonString(0x529, 0xff);
-
+#if PLATFORM_GCN
     static const u64 cont_bt[5] = {'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4', 'cont_bt'};
     static const u64 font_bt[5] = {'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4', 'font_bt5'};
+#else
+    static const u64 cont_bt[5] = {'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4', 'cont_bt8'};
+    static const u64 font_bt[5] = {'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4', 'font_bt5'};
+#endif
     for (int i = 0; i < 5; i++) {
 #if VERSION == VERSION_GCN_JPN
         static_cast<J2DTextBox*>(mpTitleScreen->search(cont_bt[i]))
@@ -2501,9 +2589,14 @@ void dMenu_Fmap2DTop_c::setTitleNameString(u32 param_0) {
         'sfont00', 'sfontl0', 'sfontl1', 'sfontl2', 'sfontb0', 'sfontb1', 'sfontb2'
     };
 #define setTitleNameString_font_name sfont_name
-#else
+#elif PLATFORM_GCN
     static const u64 ffont_name[7] = {
         'ffont00', 'ffontl0', 'ffontl1', 'ffontl2', 'ffontb0', 'ffontb3', 'ffontb4'
+    };
+#define setTitleNameString_font_name ffont_name
+#else
+    static const u64 ffont_name[7] = {
+        'ffont01', 'ffontl3', 'ffontl4', 'ffontl5', 'ffontb3', 'ffontb4', 'ffontb5'
     };
 #define setTitleNameString_font_name ffont_name
 #endif
@@ -2757,6 +2850,7 @@ void dMenu_Fmap2DTop_c::setAlphaAnimeMax(CPaneMgrAlpha* i_pane) {
 }
 
 bool dMenu_Fmap2DTop_c::checkPlayerWarpAccept() {
+#if PLATFORM_GCN
     bool ret;
     if (!checkWarpAcceptCannon()) {
         ret = false;
@@ -2766,6 +2860,15 @@ bool dMenu_Fmap2DTop_c::checkPlayerWarpAccept() {
         ret = daPy_getLinkPlayerActorClass()->checkAcceptDungeonWarpAlink(0);
     }
     return ret;
+#else
+    if (!checkWarpAcceptCannon()) {
+        return false;
+    } else if (!checkWarpAcceptRegion4()) {
+        return false;
+    } else {
+        return daPy_getLinkPlayerActorClass()->checkAcceptDungeonWarpAlink(0);
+    }
+#endif
 }
 
 bool dMenu_Fmap2DTop_c::checkWarpAcceptRegion(int i_region) {

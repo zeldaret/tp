@@ -14,7 +14,9 @@ class dMsgScrnExplain_c;
 class dMenu_Fmap2DBack_c : public dDlst_base_c, public dMenuMapCommon_c {
 public:
     dMenu_Fmap2DBack_c();
+
     void setRegionTexData(u8, ResTIMG*, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+    void setRegionTexData(u8, f32, f32, f32, f32, f32, f32, f32, f32, f32);
     void calcAllMapPos();
     f32 calcAllMapScaleRate();
     void calcAllMapPos2DFirst(f32, f32, f32*, f32*);

@@ -2014,7 +2014,12 @@ BOOL flagFile_c::check_flag(u16 i_flag) {
 #if VERSION > VERSION_GCN_JPN
 const
 #endif
-u16 dSv_event_flag_c::saveBitLabels[822] = {
+#if PLATFORM_SHIELD
+s16
+#else
+u16
+#endif
+dSv_event_flag_c::saveBitLabels[822] = {
     UNUSED, TEST_001, TEST_002, TEST_003, TEST_004, F_0001, F_0002, F_0003, F_0004, F_0005, F_0006, 
     F_0007, F_0008, F_0009, F_0010, F_0011, F_0012, F_0013, F_0014, F_0015, F_0016, F_0017, F_0018, 
     F_0019, F_0020, D_0001, F_0021, F_0022, F_0023, F_0024, F_0025, F_0026, F_0027, F_0028, F_0029, 

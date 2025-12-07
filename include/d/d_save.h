@@ -1027,7 +1027,12 @@ public:
 #if VERSION > VERSION_GCN_JPN
     const
 #endif
-    static u16 saveBitLabels[822];
+#if PLATFORM_SHIELD
+    s16
+#else
+    u16
+#endif
+    static saveBitLabels[822];
 };
 
 class dSv_event_tmp_flag_c {
