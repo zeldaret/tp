@@ -191,7 +191,7 @@ static asm void RealMode(__REGISTER u32 addr) {
 #endif
 
 void __OSInitMemoryProtection(void) {
-#ifndef DEBUG
+#if !DEBUG
     u32 padding[9];
     u32 temp;
 #endif
@@ -213,7 +213,7 @@ void __OSInitMemoryProtection(void) {
     __OSSetInterruptHandler(__OS_INTERRUPT_MEM_ADDRESS, MEMIntrruptHandler);
     OSRegisterResetFunction(&ResetFunctionInfo);
 
-#ifdef DEBUG
+#if DEBUG
     if (OSGetConsoleSimulatedMemSize() < OSGetPhysicalMemSize() && OSGetConsoleSimulatedMemSize() == 0x1800000)
 #else
     temp = OSGetConsoleSimulatedMemSize();  // not sure how else to get the order right on retail

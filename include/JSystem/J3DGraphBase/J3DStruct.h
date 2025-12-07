@@ -31,7 +31,7 @@ public:
     J3DLightObj() { mInfo = j3dDefaultLightInfo; }
     void load(u32) const;
 
-    J3DLightInfo& getLightInfo() { return mInfo; }
+    J3DLightInfo* getLightInfo() { return &mInfo; }
     J3DLightObj& operator=(J3DLightObj const& other) {
         mInfo = other.mInfo;
         return *this;

@@ -32,7 +32,7 @@ extern void __OSInitMemoryProtection(void);
 #define RBUILD_TIME "06:26:41"
 #endif
 
-#ifdef DEBUG
+#if DEBUG
 const char* __OSVersion = "<< Dolphin SDK - OS\tdebug build: "BUILD_DATE" "DBUILD_TIME" (0x2301) >>";
 #else
 const char* __OSVersion = "<< Dolphin SDK - OS\trelease build: "BUILD_DATE" "RBUILD_TIME" (0x2301) >>";

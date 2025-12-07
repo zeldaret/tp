@@ -648,7 +648,7 @@ void __OSRestoreCodeExecOnMEM1(u32 param_0) {
 
 void __OSInitMemoryProtection(void) {
     static BOOL initialized = FALSE;
-#ifndef DEBUG
+#if !DEBUG
     u32 padding[9];
     u32 temp;
 #endif

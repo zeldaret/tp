@@ -512,7 +512,7 @@ bool dCamera_c::fixedFrameEvCamera() {
         fframe_p->field_0x0 = getEvIntData(&fframe_p->mTimer, "Timer", -1);
         getEvStringData(fframe_p->mRelUseMask, "RelUseMask", "oo");
 
-#ifdef DEBUG
+#if DEBUG
         if (strlen(fframe_p->mRelUseMask) != 2) {
             OSReport("camera: event:                   bad length -> xx\n");
             strcpy(fframe_p->mRelUseMask, "xx");
@@ -1892,7 +1892,7 @@ bool dCamera_c::maptoolIdEvCamera() {
 
     if (mEventData.field_0xc != 0xFF) {
         s32 style = mCamTypeData[mEventData.field_0xc].field_0x18[mIsWolf][0];
-#ifdef DEBUG
+#if DEBUG
         if (mCurCamStyleTimer == 0) {
             OSReport("type %d mode %d style %d\n", mEventData.field_0xc, 0, style);
         }
@@ -2541,7 +2541,7 @@ bool dCamera_c::tactEvCamera() {
         }
     }
 
-#ifdef DEBUG
+#if DEBUG
     if (mCamSetup.CheckFlag(0x8000)) {
         dDbVw_Report(20, 250, "        %d", tact_p->field_0x0);
     }
@@ -2647,7 +2647,7 @@ bool dCamera_c::loadEvCamera() {
             dComIfGp_loadCameraPosition(0, &load->field_0x28, &load->field_0x34, &load->field_0x48, &local_b0);
             load->field_0x42 = cSAngle(local_b0);
         } else {
-#ifdef DEBUG
+#if DEBUG
             if (mSavedViewStack[load->mSlot].field_0x1e == 0 || load->mSlot >= 2) {
                 OS_REPORT("camera: event: LOAD: warning!! slot %d not saved\n", load->mSlot);
             }
@@ -3417,7 +3417,7 @@ bool dCamera_c::fixedFramesEvCamera() {
 
         fframes_p->field_0x0 = getEvIntData(&fframes_p->mTimer, "Timer", const_1_val);
         getEvStringData(&fframes_p->mRelUseMask, "RelUseMask", "oo");
-#ifdef DEBUG
+#if DEBUG
         if (strlen(&fframes_p->mRelUseMask) != 2) {
             OSReport("camera: event:                   bad length -> xx\n");
             strcpy(&fframes_p->mRelUseMask, "xx");
@@ -3959,7 +3959,7 @@ bool dCamera_c::bspTransEvCamera() {
             bspTrans->mSplinePath1.Step();
             getEvStringData(use1, "Use1", "ooxxxx");
 
-#ifdef DEBUG
+#if DEBUG
             if (strlen(use1) != 6) {
                 OSReport("camera: event:                   bad length -> xxxxxx\n");
                 strcpy(use1, "xxxxxx");
@@ -3979,7 +3979,7 @@ bool dCamera_c::bspTransEvCamera() {
             bspTrans->mSplinePath2.Step();
             getEvStringData(use2, "Use2", "xxooox");
 
-#ifdef DEBUG
+#if DEBUG
             if (strlen(use2) != 6) {
                 OSReport_Error("camera: event:                   bad length -> xxxxxx\n");
                 strcpy(use2, "xxxxxx");
@@ -3994,7 +3994,7 @@ bool dCamera_c::bspTransEvCamera() {
         if (bspTrans->mRelActor) {
             getEvStringData(&bspTrans->mRelUseMask, "RelUseMask", "oo");
 
-#ifdef DEBUG
+#if DEBUG
             if (strlen(&bspTrans->mRelUseMask) != 2) {
                 OSReport_Error("camera: event:                   bad length -> xx\n");
                 strcpy(&bspTrans->mRelUseMask, "xx");
