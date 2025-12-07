@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 
 #ifdef __cplusplus
 extern "C" {

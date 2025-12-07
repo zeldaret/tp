@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/ax.h>
 
 u16 axDspSlaveLength = (AX_DSP_SLAVE_LENGTH * 2);

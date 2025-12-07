@@ -37,11 +37,15 @@ public:
     u8* getCur() { return field_0x04; }
     u32 readByte() { return *field_0x04++; }
     u32 read16() {
-        return *((u16*)field_0x04)++;
+        u16* value = (u16*)field_0x04;
+        field_0x04 += 2;
+        return *value;
     }
     u32 read24() {
         field_0x04--;
-        return (*((u32*)field_0x04)++) & 0x00ffffff;
+        u32* value = (u32*)field_0x04;
+        field_0x04 += 4;
+        return (*value) & 0x00ffffff;
     }
     u16 getLoopCount() const { 
         if (field_0x08 == 0) {

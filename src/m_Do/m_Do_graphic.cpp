@@ -191,8 +191,10 @@ static void drawHeapMap() {
                 heap = mDoExt_getGameHeap();
                 OSReport_Error("ゲームヒープマップ表示\n");
             } else if (l_heapMapMode == 2) {
+#if PLATFORM_WII || PLATFORM_SHIELD
                 heap = (JKRExpHeap*)DynamicModuleControlBase::getHeap();
                 OSReport_Error("ダイナミックリンクヒープマップ表示\n");
+#endif
             } else if (l_heapMapMode == 4) {
                 heap = mDoExt_getZeldaHeap();
                 OSReport_Error("ゼルダヒープマップ表示\n");
@@ -1166,7 +1168,7 @@ void mDoGph_gInf_c::bloom_c::draw() {
             GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE,
                             GX_TEVPREV);
             GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_OR);
-            GXColorS10 tevColor0 = {-mPoint, -mPoint, -mPoint, 0x40};
+            GXColorS10 tevColor0 = {(s16)-mPoint, (s16)-mPoint, (s16)-mPoint, 0x40};
             GXSetTevColorS10(GX_TEVREG0, tevColor0);
             GXColor tevColor1 = {mBlureRatio, mBlureRatio, mBlureRatio, mBlureRatio};
             GXSetTevColor(GX_TEVREG1, tevColor1);

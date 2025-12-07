@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 
 // prototypes
 DECL_WEAK int Hu_IsStub();

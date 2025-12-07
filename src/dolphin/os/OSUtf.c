@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/os.h>
 
 char* OSUTF8to32(const char* utf8, u32* utf32) {

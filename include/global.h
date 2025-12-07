@@ -113,4 +113,10 @@ static const float INF = 2000000000.0f;
     (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \
     (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0;
 
+#ifdef __MWERKS__
+#define ShiftJIS(character, value) character
+#else
+#define ShiftJIS(character, value) ((u32)value)
+#endif
+
 #endif

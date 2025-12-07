@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 
 #define REG_MAX 5
 #define REG(chan, idx) (__EXIRegs[((chan) * REG_MAX) + (idx)])

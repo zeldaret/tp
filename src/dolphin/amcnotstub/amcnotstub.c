@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 
 // this file is a stub.
 DECL_WEAK int AMC_IsStub(void);

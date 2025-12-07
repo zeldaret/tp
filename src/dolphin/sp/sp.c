@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/sp.h>
 
 void SPInitSoundTable(SPSoundTable* table, u32 aramBase, u32 zeroBase) {

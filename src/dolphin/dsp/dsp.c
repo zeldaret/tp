@@ -1,5 +1,5 @@
 #include <stddef.h>
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/hw_regs.h>
 
 #include "__dsp.h"

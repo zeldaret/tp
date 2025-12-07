@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/os.h>
 #include <dolphin/gx.h>
 #include <dolphin/exi.h>

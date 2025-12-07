@@ -392,12 +392,17 @@ cflags_revolution_base = [
 cflags_revolution_retail = [
     *cflags_revolution_base,
     "-O4,p",
+    "-DNDEBUG=1",
+    "-DNDEBUG_DEFINED=1",
+    "-DDEBUG_DEFINED=0",
 ]
 
 cflags_revolution_debug = [
     *cflags_revolution_base,
     "-opt off",
     "-DDEBUG=1",
+    "-DDEBUG_DEFINED=1",
+    "-DNDEBUG_DEFINED=0",
 ]
 
 # Framework flags

@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/os.h>
 
 #include "__os.h"
