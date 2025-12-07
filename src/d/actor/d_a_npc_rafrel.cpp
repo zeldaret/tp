@@ -137,9 +137,6 @@ const daNpcRafrel_HIOParam daNpcRafrel_Param_c::m = {
 static char* l_myName = "Rafrel";
 
 #if DEBUG
-// Fixes Debug function order
-#pragma nosyminline on
-
 daNpcRafrel_HIO_c::daNpcRafrel_HIO_c() {
     m = daNpcRafrel_Param_c::m;
 }

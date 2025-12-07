@@ -323,8 +323,8 @@ int daNpcTkc_c::Draw() {
 }
 
 int daNpcTkc_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
-    int jntNo = i_joint->getJntNo();
-    u16 jointNo = jointNo;
+    J3DJoint* joint = i_joint;
+    int jntNo = joint->getJntNo();
     if ((jntNo == JNT_ARMR || jntNo == JNT_MOUTH) && (mAnmFlags & ANM_PLAY_BCK)) {
         J3DAnmTransform* anm = mBckAnm.getBckAnm();
         mBckAnm.changeBckOnly(mAnm_p->getAnm());

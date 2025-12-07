@@ -10,7 +10,7 @@
 #include "d/d_meter2_info.h"
 #include "d/d_s_play.h"
 
-#ifdef DEBUG
+#if DEBUG
 class daObjSmgDoor_HIO_c : public mDoHIO_entry_c {
 public:
     daObjSmgDoor_HIO_c();
@@ -133,7 +133,7 @@ int daObjSmgDoor_c::create1st() {
         }
     }
 
-#ifdef DEBUG
+#if DEBUG
     // Present or Past Door
     l_HIO.entryHIO("現在or過去の扉");
 #endif
@@ -162,7 +162,7 @@ int daObjSmgDoor_c::demoProc() {
 
     if (dComIfGp_evmng_getIsAddvance(mStaffId) != 0) {
         switch (demo_action) {
-        case 0:
+        case 0: {
             int* intP = dComIfGp_evmng_getMyIntegerP(mStaffId, "Timer");
             if (intP == NULL) {
                 field_0x5e9 = 1;
@@ -170,6 +170,7 @@ int daObjSmgDoor_c::demoProc() {
                 field_0x5e9 = *intP;
             }
             break;
+        }
         case 1:
             openInit();
             break;
@@ -384,7 +385,7 @@ int daObjSmgDoor_c::Draw() {
     mDoExt_modelUpdateDL(mpModel[1]);
     dComIfGd_setList();
 
-#ifdef DEBUG
+#if DEBUG
     if (l_HIO.field_0x6 != 0) {
         mpBgW->CalcPlane();
     }
@@ -395,7 +396,7 @@ int daObjSmgDoor_c::Draw() {
 
 int daObjSmgDoor_c::Delete() {
     dComIfG_resDelete(&mPhase, l_arcName[mType]);
-#ifdef DEBUG
+#if DEBUG
     l_HIO.removeHIO();
 #endif
     return 1;

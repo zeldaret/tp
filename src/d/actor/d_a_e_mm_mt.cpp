@@ -207,7 +207,7 @@ static void e_mm_mt_carry(e_mm_mt_class* i_this) {
     fopAc_ac_c* player = (fopAc_ac_c*) dComIfGp_getPlayer(0);
 
     switch (i_this->m_mode) {
-        case 0: 
+        case 0: {
             cLib_offBit<u32>(actor->attention_info.flags, fopAc_AttnFlag_CARRY_e);
             i_this->m_mode = 1;
             s16 angle_delta_y1 = 0x4000 + player->shape_angle.y;
@@ -215,11 +215,11 @@ static void e_mm_mt_carry(e_mm_mt_class* i_this) {
             if (angle_delta_y > 0x4000 || angle_delta_y < -0x4000) {
                 i_this->m_carryAngle = -0x8000;
             } else {
-                i_this->m_carryAngle  = 0;
+                i_this->m_carryAngle = 0;
             }
             void(0);
             break;
-        
+        }
         case 1:
             if (!fopAcM_checkCarryNow(actor)) {
              i_this->m_action = 3;

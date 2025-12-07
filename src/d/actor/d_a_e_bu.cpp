@@ -511,6 +511,7 @@ static void e_bu_path_fly(e_bu_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz sp18;
+    dPnt* pnt;
 
     switch (i_this->mode) {
     case 0:
@@ -540,7 +541,7 @@ static void e_bu_path_fly(e_bu_class* i_this) {
     case 2:
         i_this->mode = 3;
         
-        dPnt* pnt = i_this->ppd->m_points;
+        pnt = i_this->ppd->m_points;
         pnt += i_this->now_path_pntNo;
 
         i_this->field_0x690 = TREG_F(7);

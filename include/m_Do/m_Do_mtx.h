@@ -250,7 +250,7 @@ public:
      * @param a The source Vec
      * @param b The output Vec
      */
-    static void multVec(const Vec* a, Vec* b) { MTXMultVec(now, a, b); }
+    static void multVec(const Vec* a, Vec* b) { PSMTXMultVec(now, a, b); }
 
     /**
      * Multiplies a given Vec `a` by the `now` Matrix's "Scale-and-Rotate" component and places the result into Vec `b`
@@ -268,7 +268,7 @@ public:
      * @param count The size of the array
      */
     static void multVecArray(const Vec* src, Vec* dst, u32 count) {
-        MTXMultVecArray(now, src, dst, count);
+        PSMTXMultVecArray(now, src, dst, count);
     }
 
     static void XYZrotS(s16 x, s16 y, s16 z) { mDoMtx_XYZrotS(now, x, y, z); }
@@ -327,7 +327,7 @@ public:
      */
     static void ZrotM(s16 z) { mDoMtx_ZrotM(now, z); }
 
-    static void inverse() { MTXInverse(now, now); }
+    static void inverse() { PSMTXInverse(now, now); }
 
     static void inverseTranspose() { mDoMtx_inverseTranspose(now, now); }
 
@@ -350,7 +350,7 @@ public:
     }
 
     static void identity() {
-        MTXIdentity(now);
+        PSMTXIdentity(now);
     }
 
     static Mtx now;

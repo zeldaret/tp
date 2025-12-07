@@ -1111,7 +1111,6 @@ void daNpcThe_c::setParam() {
     gravity = mpHIO->m.common.gravity;
 }
 
-// NONMATCHING dComIfG_gameInfo issues
 BOOL daNpcThe_c::main() {
     if (!doEvent()) {
         doNormalAction(1);
@@ -1127,8 +1126,12 @@ BOOL daNpcThe_c::main() {
         attention_info.flags = 0;
     }
 
+    // TODO: gameInfo fake match to force reuse of pointer
+    dComIfG_inf_c* gameInfo = &g_dComIfG_gameInfo;
     if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk() && mItemID != -1) {
-        dComIfGp_event_setItemPartnerId(mItemID);
+        // Fakematch, should be:
+        // dComIfGp_event_setItemPartnerId(mItemID);
+        gameInfo->play.getEvent().setPtI_Id(mItemID);
         mItemID = -1;
     }
 
@@ -1139,7 +1142,7 @@ BOOL daNpcThe_c::main() {
             eventInfo.setArchiveName(l_resNames[l_evtGetParamList[mOrderEvtNo]]);
         }
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")) {
-            eventInfo.onCondition(0x20);
+            eventInfo.onCondition(dEvtCnd_CANTALKITEM_e);
         }
         orderEvent(field_0xe1c, l_evtNames[mOrderEvtNo], 0xffff, 0x28, 0xff, 1);
     }

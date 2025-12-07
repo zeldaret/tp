@@ -113,7 +113,7 @@ void daObjTHASHI_c::setBaseMtx() {
         break;
     case 1:
     case 2:
-    case 7:
+    case 7: {
         for (s16 i = 0; i < 10; i++) {
             mDoMtx_stack_c::transS(mCollectiveTrans[i]);
             mDoMtx_stack_c::ZXYrotM(mCollectiveRot[i]);
@@ -132,6 +132,7 @@ void daObjTHASHI_c::setBaseMtx() {
         mDoMtx_stack_c::ZXYrotM(shape_angle);
         mThashi01Model->setBaseTRMtx(mDoMtx_stack_c::get());
         break;
+    }
     case 3:
         for (s16 i = 0; i < 50; i++) {
             mDoMtx_stack_c::transS(mCollectiveTrans[i]);
@@ -151,7 +152,7 @@ void daObjTHASHI_c::setBaseMtx() {
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
         mThashi01Model->setBaseTRMtx(mDoMtx_stack_c::get());
-        break;
+        return;
     }
 }
 

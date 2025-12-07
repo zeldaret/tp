@@ -216,8 +216,7 @@ int daNpcBlueNS_c::Execute() {
     return 1;
 }
 
-// NONMATCHING - small regalloc
-int daNpcBlueNS_c::_Execute() {
+void daNpcBlueNS_c::_Execute() {
     setParam();
 
     if (main()) {
@@ -255,7 +254,10 @@ int daNpcBlueNS_c::_Execute() {
     field_0x9f3 = 0;
 
     for (int i = 0; i < 5; i++) {
-        if ((mAttnChangeTimer == 0 || mAttnIdx != i) && mAttnActorTimer[i] != 0 && cLib_calcTimer<int>(&mAttnActorTimer[i]) == 0) {
+        if (mAttnChangeTimer != 0 && mAttnIdx == i) {
+            continue;
+        }
+        if (mAttnActorTimer[i] != 0 && cLib_calcTimer<int>(&mAttnActorTimer[i]) == 0) {
             mAttnActor[i].remove();
         }
     }

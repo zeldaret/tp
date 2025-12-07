@@ -1009,7 +1009,7 @@ BOOL daNpc_Kn_c::srchPlayerActor() {
         }
     }
 
-    return mActorMngr1.getActorP() != NULL;
+    return NULL != mActorMngr1.getActorP();
 }
 
 cXyz daNpc_Kn_c::getAttnPos(fopAc_ac_c* i_actor) {

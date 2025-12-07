@@ -187,7 +187,7 @@ int daObjSwBallC_c::demoProc() {
     player->onShieldBackBone();
     if (dComIfGp_evmng_getIsAddvance(field_0x578)) {
         switch (uVar1) {
-        case 0:
+        case 0: {
             int* puVar4 = dComIfGp_evmng_getMyIntegerP(field_0x578, "Timer");
             if (puVar4 == NULL) {
                 field_0x580 = 1;
@@ -195,6 +195,7 @@ int daObjSwBallC_c::demoProc() {
                 field_0x580 = *puVar4;
             }
             break;
+        }
         case 1:
             field_0x574->setPlaySpeed(1.0f);
             break;

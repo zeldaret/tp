@@ -38,6 +38,13 @@ public:
 
 class daHoZelda_c;
 class daHorse_hio_c;
+class daHorse_hio_c0;
+
+#if DEBUG
+#define HORSE_HIO_CLASS daHorse_hio_c
+#else
+#define HORSE_HIO_CLASS daHorse_hio_c0
+#endif
 
 /**
  * @ingroup actors-unsorted
@@ -231,11 +238,9 @@ public:
     ~daHorse_c();
     
     u32 getLashDashStart() const { return checkResetStateFlg0(RFLG0_LASH_DASH_START); }
-    
-
-    bool checkNoBombProc() const { return m_procID == PROC_WAIT_e || m_procID == PROC_MOVE_e; }
-    BOOL checkResetStateFlg0(daHorse_RFLG0 flag) const { return m_resetStateFlg0 & flag; }
-    bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) const { return m_endResetStateFlg0 & flag; }
+    BOOL checkNoBombProc() const { return !(m_procID == PROC_WAIT_e || m_procID == PROC_MOVE_e); }
+    u32 checkResetStateFlg0(daHorse_RFLG0 flag) const { return m_resetStateFlg0 & flag; }
+    u32 checkEndResetStateFlg0(daHorse_ERFLG0 flag) const { return m_endResetStateFlg0 & flag; }
     u32 checkStateFlg0(daHorse_FLG0 flag) const { return m_stateFlg0 & flag; }
     f32 getNormalMaxSpeedF() { return m_normalMaxSpeedF; }
     f32 getLashMaxSpeedF() { return m_lashMaxSpeedF; }
@@ -267,21 +272,21 @@ public:
     void setZeldaActor(fopAc_ac_c* i_actor) { m_zeldaActorKeep.setData(i_actor); }
 
     u32 checkTurnStandCamera() const { return checkResetStateFlg0(RFLG0_TURN_STAND_CAMERA); }
-    BOOL checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }
+    u32 checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }
     u32 checkRodeoMode() const { return checkStateFlg0(FLG0_RODEO_MODE); }
-    bool checkCutTurnCancel() const { return checkEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
-    bool checkTurnCancelKeep() const { return checkStateFlg0(FLG0_TURN_CANCEL_KEEP); }
-    BOOL checkRodeoLeft() const { return checkStateFlg0(FLG0_RODEO_LEFT); }
-    BOOL checkHorseCallWait() const { return checkStateFlg0(FLG0_NO_DRAW_WAIT); }
+    u32 checkCutTurnCancel() const { return checkEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
+    u32 checkTurnCancelKeep() const { return checkStateFlg0(FLG0_TURN_CANCEL_KEEP); }
+    u32 checkRodeoLeft() const { return checkStateFlg0(FLG0_RODEO_LEFT); }
+    u32 checkHorseCallWait() const { return checkStateFlg0(FLG0_NO_DRAW_WAIT); }
     BOOL checkTurn() const { return m_procID == PROC_TURN_e && field_0x1720 == 0; }
     BOOL checkStop() const { return m_procID == PROC_STOP_e; }
     BOOL checkJump() const { return m_procID == PROC_JUMP_e; }
-    bool checkWait() const { return m_procID == PROC_WAIT_e; }
-    bool checkLand() const { return m_procID == PROC_LAND_e && field_0x171a == 0; }
-    bool checkGetOff() const { return fabsf(speedF) < 3.0f; }
-    BOOL checkEnemySearch() { return checkResetStateFlg0(RFLG0_ENEMY_SEARCH); }
-    bool checkOriginalDemo() const { return field_0x16b8 == 3; }
-    bool checkHorseDemoMode() { return field_0x16b8 != 0; }
+    BOOL checkWait() const { return m_procID == PROC_WAIT_e; }
+    BOOL checkLand() const { return m_procID == PROC_LAND_e && field_0x171a == 0; }
+    BOOL checkGetOff() const { return fabsf(speedF) < 3.0f; }
+    u32 checkEnemySearch() { return checkResetStateFlg0(RFLG0_ENEMY_SEARCH); }
+    BOOL checkOriginalDemo() const { return field_0x16b8 == 3; }
+    BOOL checkHorseDemoMode() { return field_0x16b8 != 0; }
     s16 checkCowHit() const { return m_cowHit; }
     s16 getCowHitAngle() const { return m_cowHitAngle; }
     u8 getRodeoPointCnt() const { return m_rodeoPointCnt; }
@@ -333,7 +338,7 @@ public:
 
     u32 getShadowID() const { return m_shadowID; }
 
-    bool checkInputOnR() const { return m_padStickValue > 0.05f; }
+    BOOL checkInputOnR() const { return m_padStickValue > 0.05f; }
 
     void onBagMaterial() {
         m_modelData->getMaterialNodePointer(5)->getShape()->show();
@@ -354,7 +359,7 @@ public:
     /* 0x0594 */ mDoExt_AnmRatioPack m_anmRatio[3];
     /* 0x05AC */ mDoExt_MtxCalcOldFrame* m_oldFrame;
     /* 0x05B0 */ daPy_frameCtrl_c m_frameCtrl[3];
-    /* 0x05F8 */ daHorse_hio_c* m_hio;
+    /* 0x05F8 */ HORSE_HIO_CLASS* m_hio;
     /* 0x05FC */ dBgS_AcchCir m_acchcir[3];
     /* 0x06BC */ dBgS_HorseAcch m_acch;
     /* 0x0894 */ dCcD_Stts m_cc_stts;
@@ -566,15 +571,15 @@ class daHorse_hio_c : public JORReflexible {
 public:
     daHorse_hio_c() {
 #if DEBUG
-        mParameters = daHorse_hio_c0::m;
+        m = daHorse_hio_c0::m;
 #endif
     }
 #if DEBUG
     virtual ~daHorse_hio_c() {}
     void genMessage(JORMContext*);
     /* 0x4 */ s8 id;
-    /* 0x8 */ daHorse_hio_c1 mParameters;
 #endif
+    /* 0x8 */ daHorse_hio_c1 m;
 };
 
 #endif /* D_A_HORSE_H */

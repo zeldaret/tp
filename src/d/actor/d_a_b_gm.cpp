@@ -171,8 +171,7 @@ static daB_GM_HIO_c l_HIO;
 static int daB_GM_Draw(b_gm_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    #ifdef DEBUG
-    # else
+    #if !DEBUG
     g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
     #endif
 
@@ -187,7 +186,7 @@ static int daB_GM_Draw(b_gm_class* i_this) {
     }
 
     J3DModel* model = i_this->mpModelMorf->getModel();
-    #ifdef DEBUG
+    #if DEBUG
     g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
     #endif
     g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
@@ -1458,7 +1457,7 @@ static void demo_camera(b_gm_class* i_this) {
             i_this->mDemoModeTimer = 0;
         }
         break;
-    case 42:
+    case 42: {
         if (i_this->mDemoModeTimer == 30) {
             daPy_getPlayerActorClass()->changeDemoMode(daPy_demo_c::DEMO_UNEQUIP_e, 0, 0, 0);
         }
@@ -1479,7 +1478,7 @@ static void demo_camera(b_gm_class* i_this) {
         if (i_this->mDemoModeTimer > 200) {
             cLib_addCalc2(&i_this->field_0x1cec.y, 100.0f, 0.05f, 0.7f);
         }
-        
+
         obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
         if (ystone != NULL) {
             if (i_this->mDemoModeTimer > 200) {
@@ -1500,6 +1499,7 @@ static void demo_camera(b_gm_class* i_this) {
             sp10 = 2;
         }
         break;
+    }
     case 50:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
@@ -1617,7 +1617,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz spD4, spC8;
 
-    #ifdef DEBUG
+    #if DEBUG
     if (mDoCPd_c::getTrigA(2) && i_this->mDemoMode == 0 && !i_this->mIsDisappear) {
         i_this->mAction = 0xB;
         i_this->mMode = 0x14;

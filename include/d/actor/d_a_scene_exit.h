@@ -19,7 +19,7 @@ public:
     inline int create();
 
     u8 getArg1() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
-    u8 getArg0() { return fopAcM_GetParam(this); }
+    u8 getArg0() { return fopAcM_GetParam(this) & 0xFF; }
     u8 getSwNo() { return fopAcM_GetParam(this) >> 0x18; }
     u16 getOffEventBit() { return home.angle.z & 0xFFF; }
     u16 getOnEventBit() { return home.angle.x & 0xFFF; }

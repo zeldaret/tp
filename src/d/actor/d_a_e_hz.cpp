@@ -679,13 +679,13 @@ void daE_HZ_c::initBackWalk() {
 }
 
 void daE_HZ_c::executeAway() {
+    f32 diff;
     switch (mMode) {
     case 0:
         gravity = 0.0f;
         speed.y = 0.0f;
         mSpheres[0].OffTgSetBit();
-        shape_angle.z = 0;
-        shape_angle.x = 0;
+        shape_angle.x = shape_angle.z = 0;
         setBck(0xF, 0, 10.0f, 1.0f);
         field_0x6e4 = 1;
         mMode = 1;
@@ -724,7 +724,7 @@ void daE_HZ_c::executeAway() {
         break;
 
     case 2:
-        f32 diff = (current.pos - field_0x678).absXZ();
+        diff = (current.pos - field_0x678).absXZ();
         cLib_chaseAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &field_0x678),
                          diff < 500.0f ? (s16)0x800 : (s16)0x200);
         cLib_chaseF(&speedF, l_HIO.escape_speed, 1.0f);
@@ -823,6 +823,8 @@ void daE_HZ_c::executeWind() {
     dBgS_LinChk linChk;
     BOOL bVar = false;
     f32 frame = mpMorfSO->getFrame();
+    f32 playerDist;
+    f32 groundCross;
     mpBoomerangActor = daPy_py_c::getThrowBoomerangActor();
 
     switch (mMode) {
@@ -839,7 +841,7 @@ void daE_HZ_c::executeWind() {
         mMode = 1;
         field_0x6e4 = 0;
 
-        f32 playerDist = fopAcM_searchPlayerDistance(this);
+        playerDist = fopAcM_searchPlayerDistance(this);
         if (playerDist >= 1000.0f) {
             playerDist = 1000.0f;
         }
@@ -927,7 +929,7 @@ void daE_HZ_c::executeWind() {
         cLib_chaseF(&field_0x678.x, 0.0f, 20.0f);
         gndChk.SetPos(&position);
 
-        f32 groundCross = dComIfG_Bgsp().GroundCross(&gndChk);
+        groundCross = dComIfG_Bgsp().GroundCross(&gndChk);
         if (frame < 38.0f) {
             if (position.y - groundCross < 500.0f) {
                 position.y = groundCross + 500.0f;

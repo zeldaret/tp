@@ -146,7 +146,7 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
     mProcVar0.field_0x3008 = 0;
     mProcVar4.field_0x3010 = 0;
     mProcVar5.field_0x3012 = 0;
-    mMsgClassID = -1;
+    mMsgClassID = fpcM_ERROR_PROCESS_ID_e;
     mNormalSpeed = 0.0f;
     current.angle.y = shape_angle.y;
     field_0x2f98 = 4;
@@ -168,7 +168,6 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
 }
 
 
-// NONMATCHING - small regalloc
 int daAlink_c::procGrassWhistleWait() {
     if (mProcVar5.field_0x3012 != 0) {
         if (checkEndMessage(field_0x32cc)) {
@@ -189,7 +188,7 @@ int daAlink_c::procGrassWhistleWait() {
         mProcVar0.field_0x3008--;
 
         if (mProcVar0.field_0x3008 == 0) {
-            daHorse_c* horse_p = dComIfGp_getHorseActor();
+            daHorse_c* horse_p = (daHorse_c*)dComIfGp_getHorseActor();
             daNPC_TK_c* tk_p = (daNPC_TK_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchWhistle, NULL);
 
             if (tk_p != NULL) {

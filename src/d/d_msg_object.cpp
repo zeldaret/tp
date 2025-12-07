@@ -1,7 +1,5 @@
 #include "d/dolzel.h" // IWYU pragma: keep
 
-#define DISABLE_MSG_OBJECT_EXTERN
-
 #include "d/d_msg_object.h"
 #include "d/d_msg_class.h"
 #include "d/d_msg_string.h"

@@ -97,7 +97,7 @@ int daScExit_c::demoProc() {
 
     if (dComIfGp_evmng_getIsAddvance(mStaffID)) {
         switch (act_id) {
-        case WAIT_e:
+        case WAIT_e: {
             int* timer_p = dComIfGp_evmng_getMyIntegerP(mStaffID, "Timer");
 
             if (timer_p == NULL) {
@@ -106,6 +106,7 @@ int daScExit_c::demoProc() {
                 mTimer = *timer_p;
             }
             break;
+        }
         case START_e:
             fopAcM_seStart(this, Z2SE_SY_WARP_FADE, 0);
             attention_info.position.y = current.pos.y + 800.0f;

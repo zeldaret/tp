@@ -44,10 +44,10 @@ void daAlink_c::stickArrowIncrement(int param_0) {
         s16 arrow_num = 0;
 
         for (int i = 0; i < 16; i++) {
-            if (mShieldArrowIDs[i] != -1) {
+            if (mShieldArrowIDs[i] != fpcM_ERROR_PROCESS_ID_e) {
                 if (field_0x2f7c[i] == 0 || param_0) {
                     arrow_num++;
-                    mShieldArrowIDs[i] = -1;
+                    mShieldArrowIDs[i] = fpcM_ERROR_PROCESS_ID_e;
                     field_0x2f7c[i] = 0;
                 } else {
                     field_0x2f7c[i]--;
@@ -75,7 +75,7 @@ void daAlink_c::setArrowShieldActor(fopAc_ac_c* i_actor, int param_1) {
 
     int arrow_num = 0;
     for (; arrow_num < 16; arrow_num++) {
-        if (mShieldArrowIDs[arrow_num] == -1) {
+        if (mShieldArrowIDs[arrow_num] == fpcM_ERROR_PROCESS_ID_e) {
             mShieldArrowIDs[arrow_num] = new_arrow_id;
             field_0x2f7c[arrow_num] = 10;
             break;

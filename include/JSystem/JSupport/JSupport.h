@@ -41,6 +41,10 @@ inline u8 JSUHiByte(u16 in) {
     return in >> 8;
 }
 
+inline u16 JSUHiHalf(u32 in) {
+    return (in >> 16);
+}
+
 inline u16 JSULoHalf(u32 param_0) {return param_0; }
 
 #endif

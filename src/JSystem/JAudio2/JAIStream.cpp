@@ -27,7 +27,7 @@ JAIStream::JAIStream(JAIStreamMgr* streamMgr, JAISoundStrategyMgr<JAIStream>* so
     field_0x2c5 = 0;
     field_0x2c6 = 0;
 
-    for (int i = 0; i < CHANNEL_MAX; i++) {
+    for (int i = 0; i < NUM_CHILDREN; i++) {
         children_[i] = NULL;
     }
 }
@@ -157,7 +157,7 @@ void JAIStream::JAIStreamMgr_mixOut_(const JASSoundParams& inParams, JAISoundAct
         }
     }
 
-    for (int i = 0; i < CHANNEL_MAX; i++) {
+    for (int i = 0; i < NUM_CHILDREN; i++) {
         inner_.aramStream_.setPitch(mixParams->mPitch);
         if (children_[i] != NULL) {
             inner_.aramStream_.setChannelVolume(i, children_[i]->mMove.params_.mVolume * mixParams->mVolume);
@@ -186,7 +186,7 @@ void JAIStream::JAIStreamMgr_mixOut_(const JASSoundParams& inParams, JAISoundAct
 void JAIStream::die_JAIStream_() {
     die_JAISound_();
 
-    for (int i = 0; i < CHANNEL_MAX; i++) {
+    for (int i = 0; i < NUM_CHILDREN; i++) {
         if (children_[i] != NULL) {
             delete children_[i];
             children_[i] = NULL;
@@ -231,7 +231,7 @@ void JAIStream::JAIStreamMgr_calc_() {
     }
 
     if (calc_JAISound_()) {
-        for (int i = 0; i < CHANNEL_MAX; i++) {
+        for (int i = 0; i < NUM_CHILDREN; i++) {
             if (children_[i] != NULL) {
                 children_[i]->calc();
             }

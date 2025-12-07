@@ -239,9 +239,7 @@ int daObjRgate_c::Create() {
                           l_cull_box.max.y, l_cull_box.max.z);
 
     if (dComIfG_Bgsp().Regist(mpBgW, this)) {
-#ifdef DEBUG
-        OSReport_Error("キコルの門：ＢＧ登録失敗しました\n");
-#endif
+        OS_REPORT_ERROR("キコルの門：ＢＧ登録失敗しました\n");
         return 0;
     } else {
         for (u16 i = 0; i < mpGateModel->getModelData()->getJointNum(); i++) {
@@ -765,7 +763,7 @@ void daObjRgate_c::demoProc() {
 
     if (dComIfGp_evmng_getIsAddvance(mStaffID)) {
         switch (demo_action) {
-        case DEMO_ACT_WAIT:
+        case DEMO_ACT_WAIT: {
             int* timer_p = dComIfGp_evmng_getMyIntegerP(mStaffID, "Timer");
             if (timer_p == NULL) {
                 mTimer = 1;
@@ -773,6 +771,7 @@ void daObjRgate_c::demoProc() {
                 mTimer = *timer_p;
             }
             break;
+        }
         case DEMO_ACT_OPEN:
             mGateLMove = 1000;
             mGateRMove = -1000;
@@ -846,9 +845,7 @@ int daObjRgate_c::Draw() {
 int daObjRgate_c::Delete() {
     if (mpBgW != NULL && mpBgW->ChkUsed()) {
         if (dComIfG_Bgsp().Release(mpBgW)) {
-#ifdef DEBUG
-            OSReport("Release Error\n");
-#endif
+            OS_REPORT("Release Error\n");
         }
     }
 

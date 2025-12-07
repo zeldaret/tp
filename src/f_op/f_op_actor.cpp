@@ -571,6 +571,7 @@ BOOL fopEn_enemy_c::initBallModel() {
 
     return true;
 }
+
 bool fopEn_enemy_c::checkBallModelDraw() {
     return (mFlags & fopEn_flag_Down) && !(mFlags & (fopEn_flag_WolfDownPullEnd | fopEn_flag_WolfDownPull | fopEn_flag_CutDownHit));
 }

@@ -69,7 +69,7 @@ void daAlink_c::cancelBoomerangLock(fopAc_ac_c* i_actor) {
 }
 
 fopAc_ac_c* daAlink_c::getBoomerangActor() {
-    if (mThrowBoomerangAcKeep.getID() != 0xFFFFFFFF) {
+    if (mThrowBoomerangAcKeep.getID() != fpcM_ERROR_PROCESS_ID_e) {
         return mThrowBoomerangAcKeep.getActor();
     }
 

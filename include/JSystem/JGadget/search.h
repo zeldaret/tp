@@ -111,14 +111,14 @@ inline Iterator findUpperBound_binary_end(Iterator first, Iterator last, const T
 }
 
 template <typename Iterator, typename T, typename Predicate>
-Iterator findUpperBound_binary_current(Iterator first, Iterator last, Iterator current, const T& val, Predicate p) {
+inline Iterator findUpperBound_binary_current(Iterator first, Iterator last, Iterator current, const T& val, Predicate p) {
     return current == last || p(val, *current) ?
         findUpperBound_binary_end(first, current, val, p) :
         findUpperBound_binary_begin(current, last, val, p);
 }
 
 template <typename Iterator, typename T>
-Iterator findUpperBound_binary_current(Iterator first, Iterator last, Iterator current, const T& val) {
+inline Iterator findUpperBound_binary_current(Iterator first, Iterator last, Iterator current, const T& val) {
     return findUpperBound_binary_current(first, last, current, val, std::less<T>());
 }
 

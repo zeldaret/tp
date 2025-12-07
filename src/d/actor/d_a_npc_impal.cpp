@@ -503,7 +503,7 @@ void daNpcImpal_c::setMotionAnm(int i_idx, f32 i_morf) {
     case ANM_10:
     case ANM_11:
         break;
-    // Is this a bug from the original developers?
+    // !@bug Is this a bug from the original developers?
     case ANM_12:
         iVar5 = 1;
     case ANM_2:

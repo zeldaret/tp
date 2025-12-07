@@ -44,9 +44,7 @@ char* J2DResReference::getName(u16 idx) const {
         p_name[0] = 0;
         return p_name;
     } else {
-        s8 first = resRef[0];
-
-        switch (first) {
+        switch (resRef[0]) {
         case 2:
         case 3:
             for (s32 i = 0; i < resRef[1]; i++) {
@@ -54,8 +52,9 @@ char* J2DResReference::getName(u16 idx) const {
             }
             p_name[resRef[1]] = 0;
             break;
-        case 4:
-            s32 pos = resRef[1] + 1;
+        case 4: {
+            s32 tmp = resRef[1];
+            s32 pos = tmp + 1;
             for (; pos >= 2; pos--) {
                 if (resRef[pos] == '\\' || resRef[pos] == '/') {
                     break;
@@ -70,6 +69,7 @@ char* J2DResReference::getName(u16 idx) const {
             p_name[i] = 0;
 
             break;
+        }
         default:
             p_name[0] = 0;
         }

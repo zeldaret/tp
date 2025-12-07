@@ -1174,7 +1174,7 @@ int daAlink_c::checkNextActionHorse() {
     return procHorseWaitInit();
 }
 
-// NONMATCHING - regalloc
+// NONMATCHING - regalloc, equivalent
 BOOL daAlink_c::checkHorseGetOff() {
     return (checkHorseRide() && dComIfGp_getHorseActor() != NULL &&
             dComIfGp_getHorseActor()->checkGetOff()) ||

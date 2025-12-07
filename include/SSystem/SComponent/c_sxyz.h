@@ -11,8 +11,7 @@ class csXyz : public SVec {
 public:
     static const csXyz Zero;
     ~csXyz() {}
-    /* inline   */ csXyz() {}
-    /* inline   */ csXyz(const csXyz& other) : SVec(other){};
+    csXyz() {}
     csXyz(s16, s16, s16);
     csXyz operator+(csXyz&);
     void operator+=(csXyz&);

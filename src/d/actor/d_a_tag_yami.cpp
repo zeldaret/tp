@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_tag_yami.h"
 #include "d/d_com_inf_game.h"
+#include "d/actor/d_a_player.h"
 
 const static dCcD_SrcCyl l_sph_src = {
     {

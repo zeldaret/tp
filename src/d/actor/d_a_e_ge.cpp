@@ -659,6 +659,7 @@ void daE_GE_c::executeBack() {
     cXyz position;
     cXyz position2;
     s16 chaseAngle = 0x0;
+    s16 distAngleS;
 
     switch (mMode) {
     case 0:
@@ -694,7 +695,7 @@ void daE_GE_c::executeBack() {
         position =
             calcCircleFly(&home.pos, &position2, field_0xb8c, field_0xb58, field_0xb8a, 1.0f);
 
-        s16 distAngleS =
+        distAngleS =
             cLib_distanceAngleS(cLib_targetAngleY(&current.pos, &home.pos), shape_angle.y);
         if (position.y > 100.0f || mObjAcch.ChkWallHit() || distAngleS >= 0x5000) {
             field_0xb8c += 0x190;
@@ -993,27 +994,26 @@ void daE_GE_c::executeWind() {
     }
 
     switch (mMode) {
-    case 0:
+    case 0: {
         field_0xb9e = 0;
         cXyz boomerangPos(daPy_py_c::getThrowBoomerangActor()->current.pos);
         field_0xb58 = current.pos.absXZ(boomerangPos);
         field_0xb5c = current.pos.y - boomerangPos.y;
-        speed.y = 0.0f;
-        speedF = 0.0f;
+        speedF = speed.y = 0.0f;
         mMode = 1;
         bckSet(9, 3.0f, 2, 1.0f);
         field_0xb64 = cM_rndFX(50.0f);
         field_0xb60 = cM_rndFX(100.0f);
-
+    }
         /* fallthrough */
 
-    case 1:
+    case 1: {
         if (mpMorfSO->checkFrame(0.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_GE_V_FURA, -1);
         }
 
         cXyz boomerangPos2(daPy_py_c::getThrowBoomerangActor()->current.pos);
-        field_0xb8c += 0x800;
+        field_0xb8c += (s16)0x800;
         current.pos.x = boomerangPos2.x + field_0xb58 * cM_ssin(field_0xb8c);
         current.pos.z = boomerangPos2.z + field_0xb58 * cM_scos(field_0xb8c);
         cLib_chaseF(&field_0xb58, field_0xb60, 2.0f);
@@ -1028,6 +1028,7 @@ void daE_GE_c::executeWind() {
         field_0xb8a = 0x3000;
         shape_angle.y += field_0xb8a;
         break;
+    }
 
     case 2:
         cLib_addCalcAngleS2(&field_0xb8a, 0, 4, 0x180);
@@ -1042,7 +1043,6 @@ void daE_GE_c::executeWind() {
             setActionMode(ACTION_BACK);
             mMode = 10;
         }
-        break;
     }
 }
 

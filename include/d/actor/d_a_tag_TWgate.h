@@ -17,7 +17,7 @@ public:
         /* 0x3 */ TYPE_HYRAL,
     };
 
-    enum EAction {
+    enum Mode_e {
         /* 0x00 */ ACT_WAIT,
         /* 0x01 */ ACT_DEMO_FILONE_1,
         /* 0x02 */ ACT_DEMO_FILONE_2,
@@ -106,7 +106,7 @@ public:
         (this->*(*mAction))();
     }
 
-    void setAction(EAction action) {
+    void setAction(Mode_e action) {
         mActionID = action;
         mAction = ActionTable[mActionID];
         callInit();

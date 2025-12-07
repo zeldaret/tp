@@ -208,7 +208,7 @@ DECL_WEAK void OSReportForceEnableOff(void);
 DECL_WEAK void OSReportForceEnableOn(void);
 DECL_WEAK void OSVReport(const char* format, va_list list);
 
-#ifdef DEBUG
+#if DEBUG
 #define OS_REPORT(...) OSReport(__VA_ARGS__)
 #define OS_WARNING(...) OSReport_Warning(__VA_ARGS__)
 #define OS_REPORT_ERROR(...) OSReport_Error(__VA_ARGS__)
@@ -261,7 +261,7 @@ extern int __OSInIPL;
     #define LINE(l0, l1, l2) (l2)
 #endif
 
-#ifdef DEBUG
+#if DEBUG
 #define ASSERTLINE(line, cond) \
     ((cond) || (OSPanic(__FILE__, line, "Failed assertion " #cond), 0))
 
@@ -288,10 +288,10 @@ extern int __OSInIPL;
     
 #define ASSERT(cond) ASSERTLINE(__LINE__, cond)
 
-inline s16 __OSf32tos16(register f32 inF) {
-    register s16 out;
+inline s16 __OSf32tos16(__REGISTER f32 inF) {
+    __REGISTER s16 out;
     u32 tmp;
-    register u32* tmpPtr = &tmp;
+    __REGISTER u32* tmpPtr = &tmp;
     // clang-format off
 #ifdef __MWERKS__
     asm {
@@ -308,10 +308,10 @@ inline void OSf32tos16(f32* f, s16* out) {
     *out = __OSf32tos16(*f);
 }
 
-inline u8 __OSf32tou8(register f32 inF) {
-    register u8 out;
+inline u8 __OSf32tou8(__REGISTER f32 inF) {
+    __REGISTER u8 out;
     u32 tmp;
-    register u32* tmpPtr = &tmp;
+    __REGISTER u32* tmpPtr = &tmp;
     // clang-format off
 #ifdef __MWERKS__
     asm {

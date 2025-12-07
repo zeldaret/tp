@@ -71,7 +71,7 @@ private:
     /* 0xA30 */ dCcD_Sph mSphere2;
     /* 0xB68 */ dCcD_Sph mAtSph;
     /* 0xCA0 */ dCcU_AtInfo mAtInfo;
-    // Seems that the orig developers didn't size mKeys correctly, as ideally it should be len=8, not len=7:
+    // !@bug Seems that the orig developers didn't size mKeys correctly, as ideally it should be len=8, not len=7:
     /* 0xCC4 */ u32 mKeys[7];
     /* 0xCE0 */ u8 mHIOInit;
     /* 0xCE1 */ u8 field_0xce1[0xCE8 - 0xCE1];

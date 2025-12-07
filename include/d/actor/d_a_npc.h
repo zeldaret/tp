@@ -196,7 +196,7 @@ public:
 
     const int getIdx() { return mIdx; }
 
-    dPath* getPathInfo() { return mPathInfo; }
+    const dPath* getPathInfo() { return mPathInfo; }
 
     void onReverse() {
         mDirection = 1;
@@ -450,11 +450,8 @@ public:
     void calc(BOOL);
 
     void initialize() {
-        //TODO: Separate decl is fakematch, but using 0 directly in the setall call causes
-        //      weird issues in some functions that call this.
-        u8 zero = 0;
         for (int i = 0; i < 2; i++) {
-            mAngle[i].setall(zero);
+            mAngle[i].setall(0);
             mPower[i] = 0.0f;
         }
         mStagger = 0;

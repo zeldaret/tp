@@ -128,7 +128,11 @@ public:
     u8 getMode() const { return mMode; }
 
     void onHindFlag(u16 flag) { mHindFlag |= flag; }
+    #if DEBUG
+    void offHindFlag(u16 flag) { mHindFlag &= (u16)~flag; }
+    #else
     void offHindFlag(u16 flag) { mHindFlag &= ~flag; }
+    #endif
 
     u16 checkHind(u16 flag) { return flag & mHindFlag; }
     u8 checkCompulsory() { return mCompulsory; }

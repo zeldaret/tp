@@ -9,6 +9,7 @@
 #include "JSystem/JAudio2/JASDvdThread.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
+#include "JSystem/JSupport/JSupport.h"
 
 JASTaskThread* JASAramStream::sLoadThread;
 
@@ -271,51 +272,55 @@ bool JASAramStream::load() {
     }
     u32 loop_end_block = (mLoopEnd - 1) / getBlockSamples();
     u32 loop_start_block = mLoopStart / getBlockSamples();
-    u32 block = mBlock;
-    if (block > loop_end_block) {
+    if (mBlock > loop_end_block) {
         return false;
     }
+    u32 offset = mBlock * (sBlockSize * mChannelNum + sizeof(BlockHeader)) + sizeof(Header);
     u32 size = sBlockSize * mChannelNum + sizeof(BlockHeader);
-    u32 offset = block * size + sizeof(Header);
-    u32 size2 = size;
-    if (block == loop_end_block) {
-        size2 = mDvdFileInfo.length - offset;
+    if (mBlock == loop_end_block) {
+        size = mDvdFileInfo.length - offset;
     }
-    if (DVDReadPrio(&mDvdFileInfo, sReadBuffer, size2, offset, 1) < 0) {
+    if (DVDReadPrio(&mDvdFileInfo, sReadBuffer, size, offset, 1) < 0) {
+        JUT_WARN(507, "%s", "DVDReadPrio Failed");
         struct_80451261 = true;
         return false;
     }
     BlockHeader* bhead = (BlockHeader*)sReadBuffer;
+    JUT_ASSERT(512, bhead->tag == 'BLCK');
     if (field_0x114 != 0) {
         return false;
     }
-    u32 uvar2 = field_0x148 + field_0x10c * sBlockSize;
+    u32 sp08 = field_0x148 + field_0x10c * sBlockSize;
     for (int i = 0; i < mChannelNum; i++) {
-        if (!JKRAram::mainRamToAram(sReadBuffer + bhead->field_0x4 * i + sizeof(BlockHeader),
-                                    uvar2 + sBlockSize * field_0x160 * i,
-                                    bhead->field_0x4, EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL)) {
+        (void)i;
+        if (!JKRMainRamToAram(sReadBuffer + bhead->field_0x4 * i + sizeof(BlockHeader),
+                              sp08 + sBlockSize * field_0x160 * i,
+                              bhead->field_0x4, EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL)) {
+            JUT_WARN(522, "%s", "JKRMainRamToAram Failed");
             struct_80451261 = 1;
             return false;
         }
     }
     field_0x10c++;
     if (field_0x10c >= field_0x108) {
-        u32 uvar8 = field_0x108 - 1 + mBlock;
+        u32 r28 = mBlock;
+        r28 += field_0x108 - 1;
         if (mLoop) {
-            while (uvar8 > loop_end_block) {
-                uvar8 -= loop_end_block;
-                uvar8 += loop_start_block;
+            JUT_ASSERT(537, loop_start_block < loop_end_block);
+            while (r28 > loop_end_block) {
+                r28 -= loop_end_block;
+                r28 += loop_start_block;
             }
         }
-        if (uvar8 == loop_end_block || uvar8 + 2 == loop_end_block) {
+        if (r28 == loop_end_block || r28 + 2 == loop_end_block) {
             field_0x108 = field_0x160;
             OSSendMessage(&field_0x020, (OSMessage)5, OS_MESSAGE_BLOCK);
         } else {
             field_0x108 = field_0x160 - 1;
         }
         for (int i = 0; i < mChannelNum; i++) {
-            field_0x130[i] = bhead->field_0x8[i].field_0x0;
-            field_0x13c[i] = bhead->field_0x8[i].field_0x2;
+            field_0x130[i] = (s16)bhead->field_0x8[i].field_0x0;
+            field_0x13c[i] = (s16)bhead->field_0x8[i].field_0x2;
         }
         field_0x10c = 0;
     }
@@ -379,17 +384,16 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
         if (i_dspChannel->field_0x008 == 0) {
             if (i_channel == field_0x0a8) {
                 field_0x12c = 0;
-                u32 uvar8 = i_dspChannel->field_0x074 + i_dspChannel->field_0x064;
-                u32 uvar5 = field_0x0b4;
-                if (uvar8 <= uvar5) {
-                    field_0x0b8 += uvar5 - uvar8;
+                u32 sp28 = i_dspChannel->field_0x074 + i_dspChannel->field_0x064;
+                if (sp28 <= field_0x0b4) {
+                    field_0x0b8 += field_0x0b4 - sp28;
                 } else {
                     if (!field_0x0c0) {
-                        field_0x0b8 += uvar5;
-                        field_0x0b8 += block_samples * mBufCount - uvar8;
+                        field_0x0b8 += field_0x0b4;
+                        field_0x0b8 += block_samples * mBufCount - sp28;
                     } else {
-                        field_0x0b8 += uvar5;
-                        field_0x0b8 += block_samples * mBufCount - uvar8
+                        field_0x0b8 += field_0x0b4;
+                        field_0x0b8 += block_samples * mBufCount - sp28
                                        - i_dspChannel->field_0x110;
                         field_0x0b8 -= mLoopEnd;
                         field_0x0b8 += mLoopStart;
@@ -403,6 +407,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
                     }
                 }
                 if (field_0x0b8 > mLoopEnd) {
+                    JUT_WARN(686, "%s", "mReadSample > mLoopEnd");
                     struct_80451261 = true;
                 }
                 f32 fvar1 = field_0x0c4;
@@ -427,8 +432,8 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
                         field_0x128 = 0;
                         field_0x12c |= 8;
                     }
-                    i_dspChannel->field_0x074 -= block_samples * mBufCount
-                                        - (field_0x0bc * block_samples + mLoopEnd % block_samples);
+                    int sp20 = field_0x0bc * block_samples + mLoopEnd % block_samples;
+                    i_dspChannel->field_0x074 -= block_samples * mBufCount - sp20;
                     field_0x11c = i_dspChannel->field_0x074;
                     field_0x12c |= 1;
                     field_0x0bc += (mLoopEnd - 1) / block_samples - mLoopStart / block_samples + 1;
@@ -438,12 +443,13 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
                 if (uvar4 != 0) {
                     uvar4--;
                 }
-                uvar5 = uvar4 / sBlockSize;
-                getBlockSamples();
-                if (uvar5 != field_0x0b0) {
-                    bool cmp = uvar5 < field_0x0b0;
-                    while (uvar5 != field_0x0b0) {
+                u32 sp18 = uvar4 / sBlockSize;
+                u32 sp14 = (mLoopEnd - 1) / getBlockSamples();
+                if (sp18 != field_0x0b0) {
+                    bool cmp = sp18 < field_0x0b0;
+                    while (sp18 != field_0x0b0) {
                         if (!sLoadThread->sendCmdMsg(loadToAramTask, this)) {
+                            JUT_WARN(741, "sendCmdMsg Failed %d %d (%d %d)", i_dspChannel->field_0x070, i_channel->field_0x104, sp18, field_0x0b0);
                             struct_80451261 = true;
                             break;
                         }
@@ -491,6 +497,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
                 }
                 field_0x0b4 = i_dspChannel->field_0x074 + i_dspChannel->field_0x064;
                 if (field_0x118 >= field_0x160 - 2) {
+                    JUT_WARN_DEVICE(810, 1, "%s", "buffer under error");
                     field_0x0ae |= 4;
                 }
             } else {
@@ -507,14 +514,15 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
                     i_dspChannel->field_0x102 = field_0x128;
                 }
             }
-            int i = 0;
-            for (; i < 6; i++) {
-                if (i_channel == mChannels[i]) {
+            int ch = 0;
+            for (; ch < 6; ch++) {
+                if (i_channel == mChannels[ch]) {
                     break;
                 }
             }
-            i_dspChannel->field_0x104 = field_0x130[i];
-            i_dspChannel->field_0x106 = field_0x13c[i];
+            JUT_ASSERT(834, ch < CHANNEL_MAX);
+            i_dspChannel->field_0x104 = (s16)field_0x130[ch];
+            i_dspChannel->field_0x106 = (s16)field_0x13c[ch];
         }
         break;
     case JASChannel::CB_STOP:
@@ -529,16 +537,16 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
         if (!open_channel) {
             field_0x114 = 1;
             if (!sLoadThread->sendCmdMsg(finishTask, this)) {
+                JUT_WARN(854, "%s", "sendCmdMsg finishTask Failed");
                 struct_80451261 = true;
                 return;
             }
         }
         break;
     }
-    i_channel->mPauseFlag = field_0x0ae != 0;
+    i_channel->setPauseFlag(field_0x0ae != 0);
 }
 
-// NONMATCHING instruction ordering / regalloc
 s32 JASAramStream::channelProc() {
     OSMessage msg;
     while (OSReceiveMessage(&field_0x020, &msg, OS_MESSAGE_NOBLOCK)) {
@@ -562,7 +570,7 @@ s32 JASAramStream::channelProc() {
             channelStart();
             break;
         case 1:
-            channelStop((u32)msg >> 0x10);
+            channelStop(JSUHiHalf((u32)msg));
             break;
         case 2:
             field_0x0ae |= 1;

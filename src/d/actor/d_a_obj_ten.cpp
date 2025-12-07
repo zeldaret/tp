@@ -108,14 +108,14 @@ static int daObjTEN_Delete(daObjTEN_c* i_this) {
 
 void daObjTEN_c::WaitAction() {
     switch (field_0x5e9) {
-    case 0:
+    case 0: {
         speedF = 0.0f;
         J3DAnmTransform* anmTransform = (J3DAnmTransform*)dComIfG_getObjectRes("I_Ten", 7);
-        mMorf->setAnm(anmTransform, 2, 5.0f, 0.0f, 0.0f,
-                                 -1.0f);
+        mMorf->setAnm(anmTransform, 2, 5.0f, 0.0f, 0.0f, -1.0f);
         field_0x5e9++;
         field_0x5ea[0] = cM_rndF(50.0f) + 50.0f;
         break;
+    }
     case 1:
         if (fopAcM_searchPlayerDistance(this) < 1500.0f) {
             field_0x5ea[0]--;

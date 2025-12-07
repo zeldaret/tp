@@ -31,12 +31,12 @@ static int daAlink_bottleModelCallBack(J3DJoint* i_joint, int param_1) {
     return 1;
 }
 
-s32 daAlink_c::getBottleOpenAppearItem() const {
+fpc_ProcID daAlink_c::getBottleOpenAppearItem() const {
     if (mProcID == PROC_BOTTLE_OPEN) {
         return mEquipItem;
     }
 
-    return -1;
+    return fpcM_ERROR_PROCESS_ID_e;
 }
 
 BOOL daAlink_c::checkOilBottleItemNotGet(u16 i_itemNo) {
@@ -735,7 +735,7 @@ int daAlink_c::procBottleGetInit(int param_0) {
     }
 
     dComIfGp_setPlayerStatus1(0, 0x4001000);
-    mMsgClassID = -1;
+    mMsgClassID = fpcM_ERROR_PROCESS_ID_e;
     field_0x3194 = 0;
     field_0x32cc = var_r30 + 0x65;
 

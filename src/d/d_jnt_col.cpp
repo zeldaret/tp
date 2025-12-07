@@ -46,159 +46,160 @@ void dJntCol_c::setNowLine(cM3dGLin* i_line, cXyz const* param_1, csXyz const* p
 
 int dJntCol_c::searchNearPos(cM3dGLin const* param_1, cXyz const* param_2, cXyz* param_3,
                               int param_4) const {
-    const dJntColData_c* pcVar12 = mData;
-    cXyz const* pcVar9 = param_2;
-    cM3dGSph acStack_a0;
-    cM3dGCyl acStack_b8;
-    cM3dGPla acStack_d0;
-    cXyz cStack_f8;
-    cXyz local_104;
-    cXyz cStack_110;
-    cXyz cStack_11c;
-    cXyz local_128;
-    cXyz cStack_134;
-    cM3dGLin acStack_ec;
-    cXyz cStack_140;
-    cXyz cStack_14c;
-    f32 dVar17;
-    f32 dVar18 = FLT_MAX;
-    int bVar5 = FALSE;
-    int rv = -1;
-    dVar17 = -10000000.0f;
-    for (int i = 0; i < field_0x8; i++, pcVar12++) {
-        if ((field_0xc & (1 << i)) == 0 && 
-            (param_4 == 0 || pcVar12->mType == 3))
+    const dJntColData_c* r30 = mData;
+    cM3dGSph sp210;
+    cM3dGCyl sp1F8;
+    cM3dGPla sp1E0;
+    cXyz sp1B8;
+    cXyz sp1AC;
+    cXyz sp1A0;
+    cXyz sp194;
+    cXyz sp188;
+    cXyz sp17C;
+    cM3dGLin sp1C4;
+    cXyz sp170;
+    cXyz sp164;
+    f32 f28;
+    f32 f27;
+    int sp1C;
+    int sp18;
+    int rv;
+    f28 = FLT_MAX;
+    sp18 = FALSE;
+    rv = -1;
+    f27 = -10000000.0f;
+    for (int i = 0; i < field_0x8; i++, r30++) {
+        if ((field_0xc & (1 << i)) == 0 &&
+#if DEBUG
+            r30->mJntNum >= 0 &&
+#endif
+            (param_4 == 0 || r30->mType == 3))
         {
-            MtxP dst = mModel->getAnmMtx(pcVar12->mJntNum);
-            mDoMtx_stack_c::copy(dst);
-            mDoMtx_stack_c::multVec(pcVar12->field_0x8, &local_128);
-            if (pcVar12->field_0x0 == 0) {
-                acStack_a0.Set(local_128, pcVar12->field_0x4);
-                int iVar6 = cM3d_Cross_LinSph_CrossPos(acStack_a0, *param_1, &cStack_110,
-                                                                &cStack_11c);
-                if (iVar6 != 0) {
-                    if (iVar6 == 1) {
-                        cStack_f8 = cStack_110;
+            mDoMtx_stack_c::copy(mModel->getAnmMtx(r30->mJntNum));
+            mDoMtx_stack_c::multVec(r30->field_0x8, &sp188);
+            f32 cross;
+            f32 len;
+            f32 inprod;
+            if (r30->field_0x0 == 0) {
+                sp210.Set(sp188, r30->field_0x4);
+                int sp10 = cM3d_Cross_LinSph_CrossPos(sp210, *param_1, &sp1A0,
+                                                                &sp194);
+                if (sp10 != 0) {
+                    if (sp10 == 1) {
+                        sp1B8 = sp1A0;
+                    } else if (sp1A0.abs2(param_1->GetStart()) < sp194.abs2(param_1->GetStart())) {
+                        sp1B8 = sp1A0;
                     } else {
-                        f32 dVar15 = cStack_11c.abs2(param_1->GetStart());
-                        f32 dVar16 = cStack_110.abs2(param_1->GetStart());
-                        if (dVar16 < dVar15) {
-                            cStack_f8 = cStack_110;
-                        } else {
-                            cStack_f8 = cStack_11c;
-                        }
+                        sp1B8 = sp194;
                     }
                 } else {
-                    local_104 = *param_2 - local_128;
-                    local_104.normalizeZP();
-                    cStack_f8 = local_128 + local_104 * pcVar12->field_0x4;
+                    sp1AC = *param_2 - sp188;
+                    sp1AC.normalizeZP();
+                    sp1B8 = sp188 + sp1AC * r30->field_0x4;
                 }
-            } else if (pcVar12->field_0x0 == 1) {
-                mDoMtx_stack_c::multVec(pcVar12->field_0x8 + 1, &cStack_134);
-                local_104 = cStack_134 - local_128;
-                int bVar13;
-                if (local_104.absXZ() > 0.01f) {
-                    mDoMtx_stack_c::transS(local_128);
-                    mDoMtx_stack_c::XrotM(cM_atan2s(-local_104.absXZ(), local_104.y));
-                    mDoMtx_stack_c::YrotM(cM_atan2s(-local_104.x, local_104.z));
-                    mDoMtx_stack_c::transM(-local_128.x, -local_128.y, -local_128.z);
-                    mDoMtx_stack_c::multVec(&cStack_134, &cStack_11c);
-                    mDoMtx_stack_c::multVec(&param_1->GetStartP(), &cStack_140);
-                    mDoMtx_stack_c::multVec(&param_1->GetEndP(), &cStack_14c);
-                    acStack_ec.SetStartEnd(cStack_140, cStack_14c);
-                    bVar13 = 1;
+            } else if (r30->field_0x0 == 1) {
+                mDoMtx_stack_c::multVec(r30->field_0x8 + 1, &sp17C);
+                sp1AC = sp17C - sp188;
+                if (sp1AC.absXZ() > 0.01f) {
+                    mDoMtx_stack_c::transS(sp188);
+                    mDoMtx_stack_c::XrotM(cM_atan2s(-sp1AC.absXZ(), sp1AC.y));
+                    mDoMtx_stack_c::YrotM(cM_atan2s(-sp1AC.x, sp1AC.z));
+                    mDoMtx_stack_c::transM(-sp188.x, -sp188.y, -sp188.z);
+                    mDoMtx_stack_c::multVec(&sp17C, &sp194);
+                    mDoMtx_stack_c::multVec(&param_1->GetStartP(), &sp170);
+                    mDoMtx_stack_c::multVec(&param_1->GetEndP(), &sp164);
+                    sp1C4.SetStartEnd(sp170, sp164);
+                    sp1C = 1;
                 } else {
-                    cStack_11c = cStack_134;
-                    acStack_ec.SetStartEnd(param_1->GetStart(), param_1->GetEnd());
-                    bVar13 = 0;
+                    sp194 = sp17C;
+                    sp1C4.SetStartEnd(param_1->GetStart(), param_1->GetEnd());
+                    sp1C = 0;
                 }
-                acStack_b8.Set(local_128, pcVar12->field_0x4,
-                              cStack_11c.y - local_128.y);
-                if (cM3d_Cross_CylLin(&acStack_b8, &acStack_ec, &cStack_110, &cStack_11c)) {
-                    if (bVar13) {
+                sp1F8.Set(sp188, r30->field_0x4,
+                              sp194.y - sp188.y);
+                if (cM3d_Cross_CylLin(&sp1F8, &sp1C4, &sp1A0, &sp194)) {
+                    if (sp1C) {
                         mDoMtx_stack_c::inverse();
-                        mDoMtx_stack_c::multVec(&cStack_110, &cStack_f8);
+                        mDoMtx_stack_c::multVec(&sp1A0, &sp1B8);
                     } else {
-                        cStack_f8 = cStack_110;
+                        sp1B8 = sp1A0;
                     }
                 } else {
-                    acStack_ec.SetStartEnd(local_128, cStack_134);
-                    f32 dVar15 = cM3d_lineVsPosSuisenCross(&acStack_ec, param_2,
-                                                                            &cStack_110);
-                    local_104 =  *param_2 - cStack_110;
-                    f32 dVar16 = local_104.abs2();
-                    if (dVar16 < 9.999999747378752e-05f) {
-                        cStack_110 = acStack_ec.GetStart() - acStack_ec.GetEnd();
-                        cStack_11c = param_1->GetStart() - param_1->GetEnd();
-                        f32 inprod = cStack_110.inprod(cStack_11c);
+                    sp1C4.SetStartEnd(sp188, sp17C);
+                    cross = cM3d_lineVsPosSuisenCross(&sp1C4, param_2, &sp1A0);
+                    sp1AC =  *param_2 - sp1A0;
+                    len = sp1AC.abs2();
+                    if (len < 0.0001f) {
+                        sp1A0 = sp1C4.GetStart() - sp1C4.GetEnd();
+                        sp194 = param_1->GetStart() - param_1->GetEnd();
+                        inprod = sp1A0.inprod(sp194);
                         if (inprod > 0.0f) {
-                            cStack_f8 = acStack_ec.GetEnd();
+                            sp1B8 = sp1C4.GetEnd();
                         } else if (inprod < 0.0f) {
-                            cStack_f8 = acStack_ec.GetStart();
-                        } else if (dVar15 < 0.5f) {
-                            cStack_f8 = acStack_ec.GetStart();
+                            sp1B8 = sp1C4.GetStart();
+                        } else if (cross < 0.5f) {
+                            sp1B8 = sp1C4.GetStart();
                         } else {
-                            cStack_f8 = acStack_ec.GetEnd();
+                            sp1B8 = sp1C4.GetEnd();
                         }
                     } else {
-                        if (dVar15 >= 0.0f && dVar15 <= 1.0f) {
-                            cStack_f8 = cStack_110 + (local_104 / JMAFastSqrt(dVar16)) * pcVar12->field_0x4;
+                        if (cross >= 0.0f && cross <= 1.0f) {
+                            sp1B8 = sp1A0 + (sp1AC / JMAFastSqrt(len)) * r30->field_0x4;
                         } else {
-                            cStack_110 = acStack_ec.GetStart() - acStack_ec.GetEnd();
-                            cStack_11c = param_1->GetStart() - param_1->GetEnd();
-                            f32 dVar14 = cStack_110.inprod(cStack_11c);
-                            if (dVar14 > 0.0f) {
-                                cStack_110 = acStack_ec.GetEnd();
+                            sp1A0 = sp1C4.GetStart() - sp1C4.GetEnd();
+                            sp194 = param_1->GetStart() - param_1->GetEnd();
+                            inprod = sp1A0.inprod(sp194);
+                            if (inprod > 0.0f) {
+                                sp1A0 = sp1C4.GetEnd();
                             } else {
-                                if (dVar14 < 0.0f) {
-                                    cStack_110 = acStack_ec.GetStart();
+                                if (inprod < 0.0f) {
+                                    sp1A0 = sp1C4.GetStart();
                                 } else {
-                                    if (dVar15 < 0.5f) {
-                                        cStack_110 = acStack_ec.GetStart();
+                                    if (cross < 0.5f) {
+                                        sp1A0 = sp1C4.GetStart();
                                     } else {
-                                        cStack_110 = acStack_ec.GetEnd();
+                                        sp1A0 = sp1C4.GetEnd();
                                     }
                                 }
                             }
-                            cStack_f8 = cStack_110 + (local_104 / JMAFastSqrt(dVar16)) * pcVar12->field_0x4;
+                            sp1B8 = sp1A0 + (sp1AC / JMAFastSqrt(len)) * r30->field_0x4;
                         }
                     }
-                    
                 }
             } else {
-                mDoMtx_stack_c::multVecSR(pcVar12->field_0x8 + 1, &local_104);
-                acStack_d0.SetupNP0(local_104, local_128);
-                if (cM3d_Cross_LinPla(param_1, &acStack_d0, &cStack_f8, true, true)) {
-                    if (!(local_128.abs(cStack_f8) < pcVar12->field_0x4)) {
-                        local_104 = cStack_f8 - local_128;
-                        local_104.normalizeZP();
-                        cStack_f8 = local_128 + local_104 * pcVar12->field_0x4;
+                mDoMtx_stack_c::multVecSR(r30->field_0x8 + 1, &sp1AC);
+                sp1E0.SetupNP0(sp1AC, sp188);
+                if (cM3d_Cross_LinPla(param_1, &sp1E0, &sp1B8, true, true)) {
+                    if (!(sp188.abs(sp1B8) < r30->field_0x4)) {
+                        sp1AC = sp1B8 - sp188;
+                        sp1AC.normalizeZP();
+                        sp1B8 = sp188 + sp1AC * r30->field_0x4;
                     }
                 } else {
-                    if (acStack_d0.crossInfLin(*param_2, param_1->GetEnd(), cStack_f8)) {
-                        local_104 = cStack_f8 - local_128;
-                        local_104.normalizeZP();
-                        cStack_f8 = local_128 + local_104 * pcVar12->field_0x4;
+                    if (sp1E0.crossInfLin(*param_2, param_1->GetEnd(), sp1B8)) {
+                        sp1AC = sp1B8 - sp188;
+                        sp1AC.normalizeZP();
+                        sp1B8 = sp188 + sp1AC * r30->field_0x4;
                     } else {
-                        f32 pla = cM3d_SignedLenPlaAndPos(&acStack_d0, param_2);
-                        local_104.normalizeZP();
-                        cStack_f8 = *param_2 - local_104 * pla;
+                        len = cM3d_SignedLenPlaAndPos(&sp1E0, param_2);
+                        sp1AC.normalizeZP();
+                        sp1B8 = *param_2 - sp1AC * len;
                     }
                 }
             }
-            f32 cross = cM3d_lineVsPosSuisenCross(param_1, &cStack_f8, &cStack_110);
-            f32 dVar16 = cStack_f8.abs2(cStack_110);
-            if (dVar16 < 9.999999747378752e-05f) {
-                if (!bVar5 || dVar17 < cross) {
-                    dVar17 = cross;
-                    *param_3 = cStack_f8;
+            cross = cM3d_lineVsPosSuisenCross(param_1, &sp1B8, &sp1A0);
+            len = sp1B8.abs2(sp1A0);
+            if (len < 9.999999747378752e-05f) {
+                if (!sp18 || f27 < cross) {
+                    f27 = cross;
+                    *param_3 = sp1B8;
                     rv = i;
-                    bVar5 = TRUE;
+                    sp18 = TRUE;
                 }
             } else {
-                if (!bVar5 && (dVar18 >= dVar16)) {
-                    dVar18 = dVar16;
-                    *param_3 = cStack_f8;
+                if (!sp18 && (f28 >= len)) {
+                    f28 = len;
+                    *param_3 = sp1B8;
                     rv = i;
                 }
             }

@@ -277,9 +277,9 @@ void JUTCacheFont::setBlock() {
             break;
         case 'GLY1':
             memcpy(piVar5, pData, 0x20);
-            JKRAramBlock* iVar1 =
-                JKRMainRamToAram((u8*)pData + 0x20, aramAddress, pData[1] - 0x20,
-                                 EXPAND_SWITCH_UNKNOWN0, 0, NULL, 0xffffffff, NULL);
+            JKRAramBlock* iVar1;
+            iVar1 = JKRMainRamToAram((u8*)pData + 0x20, aramAddress, pData[1] - 0x20,
+                                     EXPAND_SWITCH_UNKNOWN0, 0, NULL, 0xffffffff, NULL);
             if (iVar1 == NULL) {
                 JUTException::panic("JUTCacheFont.cpp", 0x1dd,
                                     "trouble occurred in JKRMainRamToAram.");

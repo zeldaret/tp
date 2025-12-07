@@ -3,6 +3,7 @@
 
 #include "d/d_bg_w_base.h"
 #include "JSystem/JHostIO/JORReflexible.h"
+#include <dolphin/os.h>
 #include "global.h"
 
 class dBgW;
@@ -65,7 +66,7 @@ u8 dKy_pol_sound_get(cBgS_PolyInfo const* param_0);
 
 class dBgS_HIO : public JORReflexible {
 public:
-#ifdef DEBUG
+#if DEBUG
     dBgS_HIO() {
         field_0x6 = 0;
         field_0x8 = 0;
@@ -80,6 +81,11 @@ public:
     virtual void genMessage(JORMContext*);
     virtual ~dBgS_HIO();
 
+    BOOL ChkLineOff();
+    BOOL ChkCheckCounter();
+    BOOL ChkLineTimer();
+    BOOL ChkGroundCheckTimer();
+
     /* 0x04 */ u8 field_0x4[0x6 - 0x4];
     /* 0x06 */ u16 field_0x6;
     /* 0x08 */ u16 field_0x8;
@@ -89,6 +95,12 @@ public:
     /* 0x30 */ int field_0x30;
 #endif
 };
+
+extern int g_line_counter;
+extern OSStopwatch s_line_sw;
+
+extern int g_ground_counter;
+extern OSStopwatch s_ground_sw;
 
 class dBgS : public cBgS {
 public:
@@ -139,12 +151,49 @@ public:
     u32 GetMtrlSndId(const cBgS_PolyInfo& param_0) { return dKy_pol_sound_get(&param_0); }
     void DebugDrawPoly(dBgW_Base *param_1) {}
     fopAc_ac_c* GetActorPointer(cBgS_PolyInfo const& param_0) const { return cBgS::GetActorPointer(param_0); }
-    bool LineCross(cBgS_LinChk* i_linChk) { return ((cBgS*)this)->LineCross(i_linChk); }
-    f32 GroundCross(cBgS_GndChk* i_gndChk) { return (f32)((cBgS*)this)->GroundCross(i_gndChk); }
+    bool LineCross(cBgS_LinChk* i_linChk) {
+        #if DEBUG
+        if (m_hio.ChkLineOff()) {
+            return false;
+        }
+        if (m_hio.ChkCheckCounter()) {
+            g_line_counter++;
+        }
+        if (m_hio.ChkLineTimer()) {
+            OSStartStopwatch(&s_line_sw);
+        }
+        bool rt = cBgS::LineCross(i_linChk);
+        if (m_hio.ChkLineTimer()) {
+            OSStopStopwatch(&s_line_sw);
+            OSDumpStopwatch(&s_line_sw);
+        }
+        return rt;
+        #else
+        return cBgS::LineCross(i_linChk);
+        #endif
+    }
+    f32 GroundCross(cBgS_GndChk* i_gndChk) {
+        #if DEBUG
+        if (m_hio.ChkCheckCounter()) {
+            g_ground_counter++;
+        }
+        if (m_hio.ChkGroundCheckTimer()) {
+            OSStartStopwatch(&s_ground_sw);
+        }
+        f32 rt = cBgS::GroundCross(i_gndChk);
+        if (m_hio.ChkGroundCheckTimer()) {
+            OSStopStopwatch(&s_ground_sw);
+            OSDumpStopwatch(&s_ground_sw);
+        }
+        return rt;
+        #else
+        return cBgS::GroundCross(i_gndChk);
+        #endif
+    }
 
     void ChkDeleteActorRegist(fopAc_ac_c*);
 
-#ifdef DEBUG
+#if DEBUG
     /* 0x1404 */ u8 field_0x1404[0x1408 - 0x1404];
     /* 0x1408 */ dBgS_HIO m_hio;
 #endif

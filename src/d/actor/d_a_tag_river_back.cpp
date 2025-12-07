@@ -104,7 +104,7 @@ int daTagRiverBack_c::demoProc() {
 
     if (dComIfGp_evmng_getIsAddvance(mStaffID)) {
         switch (act_id) {
-        case WAIT_e:
+        case WAIT_e: {
             int* timer_p = dComIfGp_evmng_getMyIntegerP(mStaffID, "Timer");
             if (timer_p == NULL) {
                 mTimer = 1;
@@ -112,6 +112,7 @@ int daTagRiverBack_c::demoProc() {
                 mTimer = *timer_p;
             }
             break;
+        }
         case SCENE_CHG_e:
             mDoAud_seStart(Z2SE_FORCE_BACK, 0, 0, 0);
         }

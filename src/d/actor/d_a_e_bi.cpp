@@ -344,9 +344,10 @@ static void e_bi_ex(e_bi_class* i_this) {
             i_this->field_0x670 = 1;
             i_this->field_0x694 = 160;
             anm_init(i_this, BCK_BI_BOMBPOSE, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
-            f32 fVar1 = cM_rndF(0.2f) + 0.9f;
+            f32 fVar1;
+            fVar1 = cM_rndF(0.2f) + 0.9f;
             i_this->field_0x6a2 = 0;
-            i_this->field_0x6a4 = 3800.0f * fVar1;
+            i_this->field_0x6a4 = (3800.0f + JREG_F(5)) * fVar1;
             i_this->field_0x6a8 = fVar1 * 20.0f;
             a_this->speed.y = 23.0f;
             break;
@@ -358,8 +359,8 @@ static void e_bi_ex(e_bi_class* i_this) {
             }
             // fallthrough
         case 2:
-            cLib_addCalc0(&i_this->field_0x6a8, 1.0f, 1.0f);
-            cLib_addCalcAngleS2(&i_this->field_0x6a4, 0, 1, 200);
+            cLib_addCalc0(&i_this->field_0x6a8, 1.0f, 1.0f + JREG_F(7));
+            cLib_addCalcAngleS2(&i_this->field_0x6a4, 0, 1, 200 + JREG_S(6));
             break;
     }
 
@@ -374,13 +375,13 @@ static void e_bi_ex(e_bi_class* i_this) {
     if (i_this->field_0x694 != 0) {
         i_this->field_0x694--;
         i_this->mSound.startCreatureSoundLevel(Z2SE_OBJ_BOMB_IGNITION, 0, -1);
-        i_this->field_0x696 += 0x1100;
+        i_this->field_0x696 += (s16) 0x1100;
 
         if (i_this->field_0x694 < 45) {
-            i_this->field_0x696 += 0x1100;
+            i_this->field_0x696 += (s16) 0x1100;
 
             if (i_this->field_0x694 < 30) {
-                i_this->field_0x696 += 0x1100;
+                i_this->field_0x696 += (s16) 0x1100;
             }
         }
 

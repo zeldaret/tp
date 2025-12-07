@@ -131,7 +131,6 @@ int daDoor20_c::CreateHeap() {
         field_0x5a0.entry(mModel1->getModelData());
         mModel2->calc();
     } else {
-
         switch (kind) {
         case 0:
         case 3:
@@ -145,11 +144,14 @@ int daDoor20_c::CreateHeap() {
         case 1:
             anm = (J3DAnmTransform*)dComIfG_getObjectRes(getArcName(), "oj_DoorOpC.bck");
             break;
-        case 2:
-            J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getStageRes(getBtk());
+        case 2: 
+            J3DAnmTextureSRTKey* pbtk;
+            pbtk = (J3DAnmTextureSRTKey*)dComIfG_getStageRes(getBtk());
             JUT_ASSERT(421, pbtk != NULL);
             field_0x5c0 = new mDoExt_btkAnm();
-            if (field_0x5c0 == NULL || !field_0x5c0->init(mModel1->getModelData(), pbtk, 1, 0, 1.0f, 0, -1)) {
+            if (field_0x5c0 == NULL ||
+                !field_0x5c0->init(mModel1->getModelData(), pbtk, 1, 0, 1.0f, 0, -1))
+            {
                 return 0;
             }
             anm = (J3DAnmTransform*)dComIfG_getObjectRes(getArcName(), "oj_DoorOpD.bck");
@@ -820,17 +822,18 @@ int daDoor20_c::create() {
 int daDoor20_c::demoProc() {
     field_0x6cc = dComIfGp_evmng_getMyStaffId("SHUTTER_DOOR", 0, 0);
     int demoAction = getDemoAction();
+    J3DAnmTransform* anm;
     if (dComIfGp_evmng_getIsAddvance(field_0x6cc)) {
         switch (demoAction) {
-        case 0:
-            int* pTimer = dComIfGp_evmng_getMyIntegerP(
-                field_0x6cc, "Timer");
+        case 0: {
+            int* pTimer = dComIfGp_evmng_getMyIntegerP(field_0x6cc, "Timer");
             if (pTimer == NULL) {
                 field_0x5dd = 1;
             } else {
                 field_0x5dd = *pTimer;
             }
             break;
+        }
         case 3:
             openInit(0);
             break;
@@ -854,13 +857,14 @@ int daDoor20_c::demoProc() {
                     keyhole->setOpen();
                 }
             }
-            int swBit = door_param2_c::getSwbit(this);
+            int swBit;
+            swBit = door_param2_c::getSwbit(this);
             if (swBit != 0xff &&
                  !dComIfGs_isSwitch(swBit, 0xffffffff) &&
                 (door_param2_c::getFrontOption(this) == 2 || door_param2_c::getBackOption(this) == 2))
             {
                 dComIfGs_onSwitch(swBit, 0xffffffff);
-                dComIfGp_setItemKeyNumCount(0xffffffff);
+                dComIfGp_setItemKeyNumCount(-1);
                 if (field_0x673 == 1) {
                     fopAcM_seStart(this, Z2SE_OBJ_DOOR_LOCK_OPEN, 0);
                 } else {
@@ -885,8 +889,7 @@ int daDoor20_c::demoProc() {
              setAngle();
              break;
         case 13:
-            J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(
-                getAlwaysArcName(), "FDoorB.bck");
+            anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAlwaysArcName(), "FDoorB.bck");
             JUT_ASSERT(1796, anm != NULL);
             if (!field_0x584.init(anm, 1, 0, 1.0f, 0, -1, true) || !field_0x5a0.init(anm,
                                                              1, 0, 1.0f, 0, -1, true))
@@ -897,8 +900,7 @@ int daDoor20_c::demoProc() {
             openInit2();
             break;
         case 12:
-            anm =
-                (J3DAnmTransform*)dComIfG_getObjectRes(getAlwaysArcName(), "FDoorA.bck");
+            anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAlwaysArcName(), "FDoorA.bck");
             JUT_ASSERT(1809, anm != NULL);
             if (!field_0x584.init(anm, 1, 0, 1.0f, 0, -1, true) || !field_0x5a0.init(anm,
                                                              1, 0, 1.0f, 0, -1, true))
@@ -1102,7 +1104,7 @@ int daDoor20_c::demoProc() {
     case 25:
         dComIfGp_evmng_cutEnd(field_0x6cc);
         break;
-    case 26:
+    case 26: {
         int msgNo = door_param2_c::getMsgNo(this);
         if (door_param2_c::isMsgDoor(this) && msgNo != 0xffff) {
             dComIfGp_event_offHindFlag(1);
@@ -1113,6 +1115,7 @@ int daDoor20_c::demoProc() {
             dComIfGp_evmng_cutEnd(field_0x6cc);
         }
         break;
+    }
     case 27:
     case 28:
         if (field_0x5c0->play()) {
@@ -1678,7 +1681,8 @@ void daDoor20_c::makeEventId() {
         }
         break;
     case 4:
-        int j = 0;
+        int j;
+        j = 0;
         for (i = 12; i < 19; i++, j++) {
             field_0x692[i] =
                 dComIfGp_getEventManager().getEventIdx(this, knob_table[j], field_0x6b8[i]);

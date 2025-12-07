@@ -1443,6 +1443,7 @@ void daE_VA_c::executeDemoOp() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz sp2C;
     cXyz sp38;
+    f32 old;
     daPy_py_c* player = daPy_getPlayerActorClass();
 
     calcOpRopePos();
@@ -1664,7 +1665,7 @@ void daE_VA_c::executeDemoOp() {
         }
 
         sp38.set(26.0f, 187.0f, 236.0f);
-        f32 old = field_0x122c.y;
+        old = field_0x122c.y;
 
         if (cLib_chasePosXZ(&field_0x122c, sp38, 4.2f)) {
             field_0x122c.y = old;
@@ -2304,7 +2305,7 @@ void daE_VA_c::executeOpaciFly() {
     case 0:
     case 20:
     case 21:
-    case 22:
+    case 22: {
         attention_info.flags = 0;
 
         if (mMode == 0) {
@@ -2329,8 +2330,9 @@ void daE_VA_c::executeOpaciFly() {
         current.angle.y = temp_r0;
 
         mDemoModeTimer = nREG_S(0) + 15;
+    }
         /* fallthrough */
-    case 1:
+    case 1: {
         if (mDemoModeTimer == 0 && !checkBck(ANM_FLOAT_WAIT_e)) {
             setBck(ANM_FLOAT_WAIT_e, J3DFrameCtrl::EMode_LOOP, nREG_F(19) + 30.0f, 1.0f);
         }
@@ -2359,6 +2361,7 @@ void daE_VA_c::executeOpaciFly() {
             mMode = 2;
         }
         break;
+    }
     case 2:
         mMode = 3;
         mDemoModeTimer = 30;
@@ -3063,7 +3066,7 @@ void daE_VA_c::calcMagicMove() {
         case 0:
             mMagicSphs[i].OffAtSetBit();
             break;
-        case 1:
+        case 1: {
             mMagicSphs[i].OnAtSetBit();
             field_0x1228[i] = 2;
 
@@ -3084,6 +3087,7 @@ void daE_VA_c::calcMagicMove() {
             f32 temp_f31 = std::abs(cM_scos(sp8) * 50.0f);
             mMagicSpeed[i].set(temp_f31 * cM_ssin(spA), cM_ssin(sp8) * 50.0f,
                                temp_f31 * cM_scos(spA));
+        }
             /* fallthrough */
         case 2:
             Z2GetAudioMgr()->seStartLevel(Z2SE_EN_VA_ATK_BALL, &mMagicPos[i], 0, 0, 1.0f, 1.0f,

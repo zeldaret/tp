@@ -502,6 +502,7 @@ void daE_FZ_c::executeAttack() {
 void daE_FZ_c::executeDamage() {
   cXyz pos;
   pos.set(l_HIO.field_0x0c, l_HIO.field_0x0c, l_HIO.field_0x0c);
+  f32 tmp;
 
   switch(mActionPhase) {
   case 0:
@@ -519,7 +520,7 @@ void daE_FZ_c::executeDamage() {
     fopAcM_delete(this);
     break;
   case 1:
-    f32 tmp = l_HIO.field_0x28; 
+    tmp = l_HIO.field_0x28; 
     speedF = tmp;
     field_0x6fc = tmp;
   case 5:
@@ -611,9 +612,7 @@ void daE_FZ_c::executeRollMove() {
     cXyz pos;
 
     s16 roll_angle = static_cast<daB_YO_c*>(mpBlizzetaActor)->getFrizadRollAngle();
-    f32 mode_rarius = static_cast<daB_YO_c*>(mpBlizzetaActor)->getModeRarius();
-
-    mode_rarius = 100.0f + mode_rarius;
+    f32 mode_rarius = 100.0f + static_cast<daB_YO_c*>(mpBlizzetaActor)->getModeRarius();
     if (mode_rarius < 400.0f)
         mode_rarius = 400.0f;
 
@@ -636,9 +635,8 @@ void daE_FZ_c::executeRollMove() {
         pos.z += (f32)(mode_rarius * cM_scos(roll_angle + field_0x715 * 0xccc));
 
         current.pos = pos;
-        u32 frizad_attack = static_cast<daB_YO_c*>(mpBlizzetaActor)->getFrizadAttack();
 
-        if (frizad_attack == 3) {
+        if (static_cast<daB_YO_c*>(mpBlizzetaActor)->getFrizadAttack() == 3) {
             mActionPhase = 2;
             speedF = 60.0f;
             current.angle.y = cLib_targetAngleY(&static_cast<daB_YO_c*>(mpBlizzetaActor)->current.pos,&current.pos);
@@ -655,7 +653,8 @@ void daE_FZ_c::executeRollMove() {
         }
 
         if (mAtSph.ChkAtHit()) {
-            if ((fopAcM_GetName(mAtSph.GetAtHitAc()) == PROC_ALINK) || mAtSph.ChkAtShieldHit()) {
+            fopAc_ac_c* at_hit_actor = mAtSph.GetAtHitAc();
+            if ((fopAcM_GetName(at_hit_actor) == PROC_ALINK) || mAtSph.ChkAtShieldHit()) {
                 setActionMode(ACT_DAMAGE,0);
                 return;
             }

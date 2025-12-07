@@ -53,7 +53,7 @@ daB_BH_HIO_c::daB_BH_HIO_c() {
     down_revive_time = 250;
 }
 
-#ifdef DEBUG
+#if DEBUG
 void daB_BH_HIO_c::genMessage(JORMContext* ctx) {
     ctx->genLabel("  ボスデグババ手", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
     ctx->genSlider("本体サイズ", &model_size, 0.0f, 5.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
@@ -354,6 +354,7 @@ static s8 b_bh_down(b_bh_class* i_this) {
     s8 sp8 = 0;
     cXyz sp20 = i_this->field_0x6b0 - a_this->current.pos;
     sp20.y = 0.0f;
+    f32 temp_f31;
 
     switch (i_this->mMode) {
     case 0:
@@ -371,7 +372,7 @@ static s8 b_bh_down(b_bh_class* i_this) {
             i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_BH_V_ROUT, -1);
         }
 
-        f32 temp_f31 = 100.0f + JREG_F(0);
+        temp_f31 = 100.0f + JREG_F(0);
         sp2C.x = temp_f31 * cM_ssin(i_this->field_0x668 * (TREG_S(0) + 900));
         sp2C.z = temp_f31 * cM_scos(i_this->field_0x668 * (TREG_S(2) + 1000));
 
@@ -661,6 +662,7 @@ static s8 b_bh_b_down(b_bh_class* i_this) {
     s8 var_r27 = 0;
     cXyz spC = i_this->field_0x6b0 - i_this->current.pos;
     spC.y = 0.0f;
+    f32 temp_f31;
 
     switch (i_this->mMode) {
     case 0:
@@ -678,7 +680,7 @@ static s8 b_bh_b_down(b_bh_class* i_this) {
             i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_BH_V_ROUT, -1);
         }
 
-        f32 temp_f31 = 100.0f + JREG_F(0);
+        temp_f31 = 100.0f + JREG_F(0);
         sp18.x = temp_f31 * cM_ssin(i_this->field_0x668 * (TREG_S(0) + 900));
         sp18.z = temp_f31 * cM_scos(i_this->field_0x668 * (TREG_S(2) + 1000));
 
@@ -960,17 +962,12 @@ static void damage_check(b_bh_class* i_this) {
         if (i_this->field_0xa24 != 0) {
             i_this->mCcSph.OffCoSetBit();
 
-            if (fpcM_Search(s_b_sub, i_this)
-#ifdef DEBUG
-                || mDoCPd_c::getTrigA(PAD_3)
-#endif
-               )
-            {
+            if (fpcM_Search(s_b_sub, i_this) || (DEBUG && mDoCPd_c::getTrigA(PAD_3))) {
                 if (i_this->field_0xa25 != 0) {
                     i_this->mAction = ACTION_B_BOMB_EAT;
                     dComIfGs_onOneZoneSwitch(14, -1);
                 } else {
-#ifdef DEBUG
+#if DEBUG
                     if (mDoCPd_c::getTrigA(PAD_3)) {
                         b_bq_class* var_r25 = (b_bq_class*)fopAcM_SearchByID(a_this->parentActorID);
                         var_r25->field_0x6fd = 1;

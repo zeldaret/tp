@@ -616,20 +616,20 @@ static void e_sh_disappear(e_sh_class* i_this) {
 
     int i;
     switch (i_this->field_0x678) {
-    case 0:
+    case 0: {
         anm_init(i_this, 12, 5.0f, 0, 1.0f);
 
         i_this->field_0x678 = 1;
 
         cXyz partScale(l_HIO.mBaseSize, l_HIO.mBaseSize, l_HIO.mBaseSize);
         for (i = 0; i < 2; i++) {
-            dComIfGp_particle_set(dp_name[i], &actor->current.pos,
-                                  &actor->shape_angle, &partScale);
+            dComIfGp_particle_set(dp_name[i], &actor->current.pos, &actor->shape_angle, &partScale);
         }
 
         i_this->mSound.startCreatureSound(Z2SE_EN_SH_DISAPPEAR, 0, -1);
 
         break;
+    }
     case 1:
         if (i_this->mAnm_p->isStop()) {
             i_this->field_0x676 = 0;

@@ -56,7 +56,6 @@ static int daScex_Execute(daScex_c* i_this) {
     return i_this->execute();
 }
 
-// NONMATCHING - regalloc, this matches debug but not retail :/
 int daScex_c::execute() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz spC;

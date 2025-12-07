@@ -1139,6 +1139,7 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
     fopAc_ac_c* a_pill_p = pillar_p;
 
     switch (i_this->mMode) {
+        int _;
         case 0:
             anm_init(i_this, 26, 3.0f, 2, 1.0f);
             i_this->mMode = 1;
