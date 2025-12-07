@@ -2849,14 +2849,14 @@ void dMenu_Fmap2DTop_c::setAlphaAnimeMax(CPaneMgrAlpha* i_pane) {
 }
 
 bool dMenu_Fmap2DTop_c::checkPlayerWarpAccept() {
-#if PLATFORM_GCN
+#if PLATFORM_GCN || PLATFORM_WII
     bool ret;
     if (!checkWarpAcceptCannon()) {
         ret = false;
     } else if (!checkWarpAcceptRegion4()) {
         ret = false;
     } else {
-        ret = daPy_getLinkPlayerActorClass()->checkAcceptDungeonWarpAlink(0);
+        return daPy_getLinkPlayerActorClass()->checkAcceptDungeonWarpAlink(0);
     }
     return ret;
 #else
