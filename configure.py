@@ -1966,7 +1966,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_npc_ash"), # weak func order (sinShort)
     ActorRel(Equivalent, "d_a_npc_ashB"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_bans"),
-    ActorRel(NonMatching, "d_a_npc_blue_ns"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_npc_blue_ns"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_bou"),
     ActorRel(Equivalent, "d_a_npc_bouS"), # weak func order (sinShort)
     ActorRel(Equivalent, "d_a_npc_cdn3"), # weak func order (~csXyz); vtable order
