@@ -1522,6 +1522,12 @@ config.libs = [
             Object(NonMatching, "revolution/nand/NANDErrorMessage.c"),
         ],
     ),
+    RevolutionLib(
+        "fs",
+        [
+            Object(NonMatching, "revolution/fs/fs.c"),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": MWVersion(config.version),

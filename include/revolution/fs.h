@@ -32,7 +32,6 @@ extern "C" {
 
 #define ISFS_INODE_NAMELEN 12
 
-
 typedef s32 ISFSError;
 typedef void (*ISFSCallback) (ISFSError, void *ctxt);
 
@@ -66,44 +65,33 @@ typedef struct {
     u8 path2[64];
 } ISFSPathsArgs;
 
-s32 ISFS_Open(const u8 *, u32);
-s32 ISFS_OpenAsync(const u8 *, u32, ISFSCallback, void *);
-
-s32 ISFS_Read(s32, u8 *, u32);
-s32 ISFS_ReadAsync(IOSFd, u8 *, u32, ISFSCallback, void *);
-s32 ISFS_ShutdownAsync(ISFSCallback, void *);
-s32 ISFS_ReadDir(const u8 *, u8 *, u32 *);
-s32 ISFS_ReadDirAsync(const u8 *, u8 *, u32 *, ISFSCallback, void *);
-s32 ISFS_Write(IOSFd, const u8 *, u32);
-s32 ISFS_WriteAsync(IOSFd, const u8 *, u32, ISFSCallback, void *);
-
-s32 ISFS_CreateFileAsync(const u8 *, u32, u32, u32, u32, ISFSCallback, void *);
-s32 ISFS_CreateFile(const u8 *, u32, u32, u32, u32);
-
-s32 ISFS_Seek(IOSFd, s32, u32);
-s32 ISFS_SeekAsync(IOSFd, s32 , u32, ISFSCallback, void *);
-
-s32 ISFS_Close(IOSFd);
-s32 ISFS_CloseAsync(IOSFd, ISFSCallback, void *);
-
-s32 ISFS_GetUsage(const u8 *, u32 *, u32 *);
-s32 ISFS_GetAttrAsync(const u8 *, IOSUid *, IOSGid *, u32 *, u32 *, u32 *, u32 *, ISFSCallback, void *);
-
-s32 ISFS_CreateDirAsync(const u8 *, u32, u32, u32, u32, ISFSCallback, void *);
-s32 ISFS_CreateDir(const u8 *, u32, u32, u32, u32);
-
-s32 ISFS_RenameAsync(const u8 *, const u8 *, ISFSCallback, void *);
-s32 ISFS_Rename(const u8 *, const u8 *);
-
-s32 ISFS_Delete(const u8 *);
-s32 ISFS_DeleteAsync(const u8 *, ISFSCallback, void *);
-
+ISFSError ISFS_OpenLib(void);
+s32 ISFS_CreateDir(const u8* dname, u32 dirAttr, u32 ownerAcc, u32 groupAcc, u32 othersAcc);
+s32 ISFS_CreateDirAsync(const u8* dname, u32 dirAttr, u32 ownerAcc, u32 groupAcc, u32 othersAcc, ISFSCallback cb, void* fsCtxt);
+s32 ISFS_ReadDir(const u8* dname, u8* nameList, u32* num);
+s32 ISFS_ReadDirAsync(const u8* dname, u8* nameList, u32* num, ISFSCallback cb, void* fsCtxt);
 s32 ISFS_GetAttr(const u8* name, IOSUid* ownerId, IOSGid* groupId, u32* attr, u32* ownerAcc, u32* groupAcc, u32* othersAcc);
-
+s32 ISFS_GetAttrAsync(const u8* name, IOSUid* ownerId, IOSGid* groupId, u32* attr, u32* ownerAcc, u32* groupAcc, u32* othersAcc, ISFSCallback cb, void* fsCtxt);
+s32 ISFS_Delete(const u8* name);
+s32 ISFS_DeleteAsync(const u8* name, ISFSCallback cb, void* fsCtxt);
+s32 ISFS_Rename(const u8* oldName, const u8* newName);
+s32 ISFS_RenameAsync(const u8* oldName, const u8* newName, ISFSCallback cb, void* fsCtxt);
+s32 ISFS_GetUsage(const u8* dname, u32* nblocks, u32* ninodes);
+s32 ISFS_CreateFile(const u8* fname, u32 fileAttr, u32 ownerAcc, u32 groupAcc, u32 othersAcc);
+s32 ISFS_CreateFileAsync(const u8* fname, u32 fileAttr, u32 ownerAcc, u32 groupAcc, u32 othersAcc, ISFSCallback cb, void* fsCtxt);
+IOSFd ISFS_Open(const u8* fname, u32 access);
+IOSFd ISFS_OpenAsync(const u8* fname, u32 access, ISFSCallback cb, void* fsCtxt);
 s32 ISFS_GetFileStats(IOSFd fd, ISFSFileStats* stats);
 s32 ISFS_GetFileStatsAsync(IOSFd fd, ISFSFileStats* stats, ISFSCallback cb, void* fsCtxt);
-
-ISFSError ISFS_OpenLib(void);
+s32 ISFS_Seek(IOSFd fd, s32 offset, u32 whence);
+s32 ISFS_SeekAsync(IOSFd fd, s32 offset, u32 whence, ISFSCallback cb, void* fsCtxt);
+s32 ISFS_Read(s32 fd, u8* pBuffer, u32 bufSize);
+s32 ISFS_ReadAsync(IOSFd fd, u8* buf, u32 size, ISFSCallback cb, void* fsCtxt);
+s32 ISFS_Write(IOSFd fd, const u8* buf, u32 size);
+s32 ISFS_WriteAsync(IOSFd fd, const u8* buf, u32 size, ISFSCallback cb, void* fsCtxt);
+s32 ISFS_Close(IOSFd fd);
+s32 ISFS_CloseAsync(IOSFd fd, ISFSCallback cb, void* fsCtxt);
+s32 ISFS_ShutdownAsync(ISFSCallback cb, void* fsCtxt);
 
 #ifdef __cplusplus
 }
