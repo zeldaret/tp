@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [GZ2E01, GZ2P01, GZ2J01, RZDE01_00, Shield, ShieldD]
+        version: [GZ2E01, GZ2P01, GZ2J01, RZDE01_00, RZDE01_02, Shield, ShieldD]
 
     steps:
     # Checkout the repository
