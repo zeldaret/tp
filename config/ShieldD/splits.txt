@@ -4330,7 +4330,7 @@ revolution/dvd/dvdDeviceError.c:
 	.rodata     start:0x8065EA50 end:0x8065EA70
 	.data       start:0x8073A040 end:0x8073A1D8
 	.sdata      start:0x8074BFE0 end:0x8074BFE8
-	.sbss       start:0x8074D530 end:0x8074D53C
+	.sbss       start:0x8074D530 end:0x8074D538
 	.sdata2     start:0x80752E30 end:0x80752E38
 	.bss        start:0x80801880 end:0x808018A0
 
@@ -4338,7 +4338,7 @@ revolution/dvd/dvd_broadway.c:
 	.text       start:0x80607A70 end:0x80609A20
 	.data       start:0x8073A1D8 end:0x8073B118
 	.sdata      start:0x8074BFE8 end:0x8074BFF8
-	.sbss       start:0x8074D53C end:0x8074D560
+	.sbss       start:0x8074D538 end:0x8074D560
 	.bss        start:0x808018A0 end:0x80801A20
 
 revolution/ai/ai.c:
@@ -4412,7 +4412,7 @@ revolution/sc/scsystem.c:
 	.rodata     start:0x8065EE18 end:0x8065EE70
 	.data       start:0x8073DB08 end:0x8073DDB0
 	.sdata      start:0x8074C078 end:0x8074C1C0
-	.sbss       start:0x8074D5EC end:0x8074D604
+	.sbss       start:0x8074D5EC end:0x8074D600
 	.bss        start:0x80801DC0 end:0x80809F60
 
 revolution/sc/scapi.c:
@@ -4435,7 +4435,7 @@ revolution/esp/esp.c:
 revolution/ipc/ipcMain.c:
 	.text       start:0x80612240 end:0x806123B0
 	.data       start:0x8073DE10 end:0x8073DE48
-	.sbss       start:0x8074D604 end:0x8074D618
+	.sbss       start:0x8074D600 end:0x8074D618
 
 revolution/ipc/ipcclt.c:
 	.text       start:0x806123B0 end:0x80613CC0

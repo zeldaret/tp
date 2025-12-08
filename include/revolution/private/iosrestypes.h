@@ -33,19 +33,19 @@ typedef u32 IOSResourceHandle;
 #define IOS_ERROR_INVALID_SIZE         -23
 
 typedef struct {
-    u8 *path;
+    u8* path;
     u32 flags;
     IOSUid uid; 
     IOSGid gid;
 } IOSResourceOpen;
 
 typedef struct {
-    u8 *outPtr;
+    u8* outPtr;
     u32 outLen;
 } IOSResourceRead;
 
 typedef struct {
-    u8 *inPtr;
+    u8* inPtr;
     u32 inLen;
 } IOSResourceWrite;
 
@@ -56,14 +56,14 @@ typedef struct {
 
 typedef struct {
     u32 cmd;
-    u8 *inPtr;
+    u8* inPtr;
     u32 inLen;
-    u8 *outPtr;
+    u8* outPtr;
     u32 outLen;
 } IOSResourceIoctl;
 
 typedef struct {
-    u8 *base;
+    u8* base;
     u32 length;
 } IOSIoVector;
 
@@ -71,7 +71,7 @@ typedef struct {
     u32 cmd;
     u32 readCount;
     u32 writeCount;
-    IOSIoVector *vector;
+    IOSIoVector* vector;
 } IOSResourceIoctlv;
 
 typedef struct {

@@ -16,7 +16,7 @@ static void DecrementerExceptionCallback(__REGISTER __OSException exception, __R
 static void DecrementerExceptionHandler(__OSException exception, OSContext* context);
 static BOOL OnReset(BOOL final, u32 event);
 
-static OSShutdownFunctionInfo ResetFunctionInfo = {OnReset, 0xFFFFFFFF, NULL, NULL};
+static OSShutdownFunctionInfo ShutdownFunctionInfo = {OnReset, 0xFFFFFFFF, NULL, NULL};
 static OSAlarmQueue AlarmQueue;
 
 #define ASSERTREPORT(line, cond) \
@@ -52,7 +52,7 @@ void __OSInitAlarm(void) {
     if (__OSGetExceptionHandler(8) != DecrementerExceptionHandler) {
         AlarmQueue.head = AlarmQueue.tail = NULL;
         __OSSetExceptionHandler(8, DecrementerExceptionHandler);
-        OSRegisterShutdownFunction(&ResetFunctionInfo);
+        OSRegisterShutdownFunction(&ShutdownFunctionInfo);
     }
 }
 

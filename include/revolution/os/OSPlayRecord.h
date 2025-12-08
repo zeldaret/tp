@@ -3,6 +3,10 @@
 
 #include <revolution/os.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct {
     u32 checkSum;
     u16 titleName[2][21];
@@ -15,5 +19,9 @@ typedef struct {
 
 void __OSStartPlayRecord(void);
 void __OSStopPlayRecord(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // OSPLAYRECORD_H

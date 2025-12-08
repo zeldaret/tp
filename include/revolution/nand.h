@@ -2,6 +2,7 @@
 #define _REVOLUTION_NAND_H_
 
 #include <revolution/types.h>
+#include <revolution/fs.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -122,11 +123,56 @@ typedef struct {
 typedef void (*NANDCallback)(s32, NANDCommandBlock*);
 typedef void (*NANDAsyncCallback)(s32 result, struct NANDCommandBlock* block);
 
+typedef void (*NANDLoggingCallback)(BOOL, s32);
+
+// NAND
+s32 NANDCreate(const char* path, const u8 perm, const u8 attr);
+s32 NANDPrivateCreate(const char* path, u8 perm, u8 attr);
+s32 NANDPrivateCreateAsync(const char *path, u8 perm, u8 attr, NANDCallback cb, NANDCommandBlock* block);
+
+s32 NANDDelete(const char* path);
+s32 NANDPrivateDelete(const char* path);
+s32 NANDPrivateDeleteAsync(const char* path, NANDCallback cb, NANDCommandBlock* block);
+
+s32 NANDRead(NANDFileInfo* info, void* buf, const u32 length);
+s32 NANDReadAsync(NANDFileInfo* info, void* buf, const u32 length,
+                  NANDCallback cb, NANDCommandBlock* block);
+
+s32 NANDWrite(NANDFileInfo* info, const void* buf, const u32 length);
+s32 NANDWriteAsync(NANDFileInfo* info, const void* buf, const u32 length,
+                   NANDCallback cb, NANDCommandBlock* block);
+
+s32 NANDSeek(NANDFileInfo* info, const s32 offset, const s32 whence);
+s32 NANDSeekAsync(NANDFileInfo* info, const s32 offset, const s32 whence,
+                  NANDCallback cb, NANDCommandBlock* block);
+
+s32 NANDPrivateCreateDir(const char* path, u8 perm, u8 attr);
+s32 NANDPrivateCreateDirAsync(const char *path, u8 perm, u8 attr, NANDCallback cb, NANDCommandBlock *block);
+
+s32 NANDMove(const char* path, const char* destDir);
+
+s32 NANDGetLength(NANDFileInfo* info, u32* length);
+s32 NANDGetLengthAsync(NANDFileInfo* info, u32* length, NANDCallback cb,
+                       NANDCommandBlock* block);
+
+s32 NANDGetStatus(const char* path, NANDStatus* stat);
+s32 NANDPrivateGetStatus(const char* path, NANDStatus* stat);
+s32 NANDPrivateGetStatusAsync(const char* path, NANDStatus* stat,
+                              NANDCallback cb, NANDCommandBlock* block);
+
+void NANDSetUserData(NANDCommandBlock* block, void* data);
+void* NANDGetUserData(const NANDCommandBlock* block);
+
+// NANDCore
 s32 NANDInit(void);
+s32 NANDGetHomeDir(char[NAND_MAX_PATH]);
+s32 NANDPrivateGetTypeAsync(const char* path, u8* type, NANDCallback cb, NANDCommandBlock* block);
+void NANDInitBanner(NANDBanner* bnr, u32 const flag, const u16* title, const u16* comment);
 
-s32 NANDCreate(const char*, u8, u8);
-s32 NANDPrivateCreate(const char*, u8, u8);
+// NANDCheck
+s32 NANDCheck(const u32 fsBlock, const u32 inode, u32* answer);
 
+// NANDOpenClose
 s32 NANDOpen(const char*, NANDFileInfo*, u8);
 s32 NANDPrivateOpen(const char*, NANDFileInfo*, u8);
 s32 NANDOpenAsync(const char*, NANDFileInfo*, u8, NANDCallback, NANDCommandBlock*);
@@ -134,31 +180,30 @@ s32 NANDPrivateOpenAsync(const char*, NANDFileInfo*, const u8, NANDCallback, NAN
 
 s32 NANDClose(NANDFileInfo*);
 s32 NANDCloseAsync(NANDFileInfo*, NANDCallback, NANDCommandBlock*);
-s32 NANDRead(NANDFileInfo*, void*, u32);
-s32 NANDReadAsync(NANDFileInfo*, void*, u32, NANDCallback, NANDCommandBlock*);
 
-s32 NANDGetLength(NANDFileInfo*, u32*);
+s32 NANDSimpleSafeOpen(const char* path, NANDFileInfo* info, const u8 accType, void* buf, const u32 length);
+s32 NANDSimpleSafeClose(NANDFileInfo* info);
+s32 NANDPrivateSafeOpenAsync(const char* path, NANDFileInfo* info, const u8 accType, void* buf, const u32 length, NANDCallback cb, NANDCommandBlock* block);
+s32 NANDSafeCloseAsync(NANDFileInfo* info, NANDCallback cb, NANDCommandBlock* block);
 
-s32 NANDDelete(const char*);
+// NANDLogging
+BOOL NANDLoggingAddMessageAsync(NANDLoggingCallback cb, s32 errorCode, const char* fmt, ...);
 
-s32 NANDMove(const char*, const char*);
+// NANDErrorMessage
+BOOL NANDSetAutoErrorMessaging(BOOL show);
+void __NANDPrintErrorMessage(s32 errorCode);
 
-s32 NANDCheck(u32, u32, u32*);
 
-s32 NANDWrite(NANDFileInfo*, const void*, u32);
-s32 NANDWriteAsync(NANDFileInfo*, const void*, u32, NANDCallback, NANDCommandBlock*);
-
-s32 NANDSeekAsync(NANDFileInfo*, s32, s32, NANDCallback, NANDCommandBlock*);
-
-s32 NANDPrivateGetStatus(const char*, NANDStatus*);
-s32 NANDPrivateDelete(const char*);
-s32 NANDPrivateCreate(const char*, u8, u8);
-
-s32 NANDGetHomeDir(char[NAND_MAX_PATH]);
-
-s32 NANDGetStatus(const char*, NANDStatus*);
-
-s32 NANDSecretGetUsage(const char*, u32*, u32*);
+const char* nandGetHomeDir();
+void nandGenerateAbsPath(char* absPath, const char* path);
+BOOL nandIsPrivatePath(const char* path);
+BOOL nandIsInitialized(void);
+s32 nandConvertErrorCode(const ISFSError err);
+void nandGetRelativeName(char* name, const char* path);
+BOOL nandIsUnderPrivatePath(const char* path);
+BOOL nandIsRelativePath(const char* path);
+void nandGetParentDirectory(char* parentDir, const char* absPath);
+BOOL nandIsAbsolutePath(const char* path);
 
 #ifdef __cplusplus
 }
