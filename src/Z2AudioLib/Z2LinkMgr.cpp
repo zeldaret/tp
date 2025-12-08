@@ -317,7 +317,7 @@ JAISoundHandle* Z2CreatureLink::startLinkSoundLevel(JAISoundID soundID, u32 mapi
         case Z2SE_AL_SNOBO_RIDE:
         case Z2SE_AL_SNOBO_BREAK:
                 /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
-            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[266])
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266])
                 && Z2GetSeqMgr()->getSubBgmID() != Z2BGM_SNOW_BOARD) {
                 volume = 0.0f;
                 volumeMoveSteps = 0;

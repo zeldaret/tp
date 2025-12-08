@@ -1708,14 +1708,14 @@ int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     #endif
     
     // If haven't gotten then lantern back from the monkey
-    if (!dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[226])) {
+    if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
         // Store whether or not it's stolen and dropped
-        lantern_dropped = dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[224]);
-        lantern_stolen = dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[225]);
+        lantern_dropped = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[224]);
+        lantern_stolen = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[225]);
 
         // Then turn those events off
-        dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[224]);
-        dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[225]);
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[224]);
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[225]);
 
         // Used to turn events back on later
         lantern_not_recovered = true;
@@ -1765,10 +1765,10 @@ int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     // Now that we've saved, reset events if needed
     if (lantern_not_recovered == true) {
         if (lantern_dropped) {
-            dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[224]);
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[224]);
         }
         if (lantern_stolen) {
-            dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[225]);
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[225]);
         }
     }
 

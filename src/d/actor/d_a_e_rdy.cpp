@@ -4277,7 +4277,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         }
     }
 
-    if (i_this->field_0x5b8 == 12 && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[239] & 0xffff)) {
+    if (i_this->field_0x5b8 == 12 && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[239])) {
         fopAcM_OffStatus(a_this, 0);
         a_this->attention_info.flags = 0;
         return 1;

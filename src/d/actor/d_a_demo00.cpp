@@ -1089,7 +1089,7 @@ inline int daDemo00_c::execute() {
                             break;
                         }
                         case 1:
-                            dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[sp0E]);
+                            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[sp0E]);
                             break;
 
                         case 2: {

@@ -665,10 +665,10 @@ bool daObjKAT_c::CreateChk() {
     }
     if (field_0x808 != 2) {
         if (uVar4) {
-            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_MALE]]) ==
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_MALE]]) ==
                     0 ||
                 dComIfGs_isEventBit(
-                    (u16)dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_FEMALE]]) == 0)
+                    dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_FEMALE]]) == 0)
             {
                 return false;
             }
@@ -681,10 +681,10 @@ bool daObjKAT_c::CreateChk() {
                 }
                 if ((mSex == SEX_MALE &&
                      dComIfGs_isEventBit(
-                         (u16)dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]]) == 0) ||
+                         dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]]) == 0) ||
                     (mSex == SEX_FEMALE &&
                      dComIfGs_isEventBit(
-                         (u16)dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]]) == 0))
+                         dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]]) == 0))
                 {
                     return false;
                 }

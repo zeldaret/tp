@@ -592,7 +592,7 @@ void daObjVolcBom_c::actionWait() {
     if (checkTalkDistance()
            /* dSv_event_flag_c::M_051 - Main Event - Shadow Kargorok (?) (Large) event complete 
                                                      (Horse grass appears in various places) */
-        && dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[84])) {
+        && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[84])) {
         setAction(ACTION_ORDER_EVENT);
         actionOrderEvent();
     }

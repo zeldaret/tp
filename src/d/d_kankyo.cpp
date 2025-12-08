@@ -8669,8 +8669,8 @@ static int dKy_Create(void* i_this) {
 
     #if DEBUG
     if (strcmp(dComIfGp_getStartStageName(), "T_SASA0") == 0) {
-        dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[142]);
-        dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[167]);
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[142]);
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[167]);
     }
     #endif
 

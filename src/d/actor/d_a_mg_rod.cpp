@@ -2570,7 +2570,7 @@ static void lure_catch(dmg_rod_class* i_this) {
     }
 
     if (i_this->play_cam_timer == 40) {
-        if (!dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[467])) {
+        if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[467])) {
             Z2GetAudioMgr()->subBgmStart(Z2BGM_FISHING_GET1);
         } else if (fish_kind == 3) {
             Z2GetAudioMgr()->subBgmStart(Z2BGM_FISHING_GET3);
@@ -2582,7 +2582,7 @@ static void lure_catch(dmg_rod_class* i_this) {
     } else if (i_this->play_cam_timer == 80) {
         u8 sp8 = 1;
         if (i_this->field_0x14c0 != 0) {
-            if (!dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[467])) {
+            if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[467])) {
                 sp8 = 2;
             } else if (fish_kind != 3) {
                 sp8 = 2;
@@ -2609,7 +2609,7 @@ static void lure_catch(dmg_rod_class* i_this) {
                 data_80450C9A = 200;
             }
 
-            dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[467]);
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[467]);
 
             static u16 catch_msgn_20[] = {0x02CE, 0x02D1, 0x02CF, 0x02D0};
             static u16 catch_msgn_21[] = {0x02D2, 0x02D5, 0x02D3, 0x02D4};
@@ -4921,7 +4921,7 @@ static void play_camera(dmg_rod_class* i_this) {
                     i_this->msgflow.init(actor, 0x2C9, 0, NULL);
                     henna->field_0x6ba = 50;
                     henna->field_0x7b8 = 0;
-                } else if (!dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[467])) {
+                } else if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[467])) {
                     if (i_this->field_0x1470 == 0) {
                         sp174.x = -2800.0f;
                         sp174.z = 4608.0f;
@@ -4998,11 +4998,11 @@ static void play_camera(dmg_rod_class* i_this) {
             ) {
                 int sp20 = 0;
                 int sp1C = 1;
-                if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[466])) {
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[466])) {
                     sp20 = 1;
                 }
 
-                if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[469])) {
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[469])) {
                     sp1C = 0;
                 }
 
@@ -5195,7 +5195,7 @@ static void play_camera(dmg_rod_class* i_this) {
                 camera->mCamera.SetTrimSize(0);
                 i_this->play_cam_mode = 0;
                 i_this->field_0x146c = 30;
-                dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[466]);
+                dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[466]);
                 i_this->field_0xf81 = 1;
             }
         }

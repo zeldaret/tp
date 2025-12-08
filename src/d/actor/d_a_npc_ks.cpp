@@ -5818,7 +5818,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
 
     switch (i_this->mMode) {
         case 0:
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x220] & 0xFFFF)) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x220])) {
                 i_this->mMode = 40;
             } else {
                 fpcM_Search(s_fs_sub, i_this);
@@ -7260,7 +7260,7 @@ static BOOL start_check(npc_ks_class* i_this) {
             break;
 
         case 21:
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x20A] & 0xFFFF)) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x20A])) {
                 rv = FALSE;
             } else {
                 i_this->mActionID = 301;
@@ -7268,7 +7268,7 @@ static BOOL start_check(npc_ks_class* i_this) {
             break;
 
         case 22:
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x241] & 0xFFFF)) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x241])) {
                 rv = FALSE;
             } else {
                 i_this->mActionID = 302;

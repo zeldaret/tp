@@ -730,7 +730,7 @@ void daE_HP_c::executeDead() {
         field_0x784 = -1;
 
         if (dComIfGs_getPohSpiritNum() == 20) {
-            dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[0x1c9]);
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x1c9]);
         }
 
         movemode++;

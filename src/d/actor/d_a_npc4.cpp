@@ -1848,11 +1848,11 @@ s16 daNpcF_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1) {
 }
 
 BOOL daNpcF_chkEvtBit(u32 i_no) {
-    return dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[i_no]);
+    return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_no]);
 }
 
 void daNpcF_onEvtBit(u32 i_no) {
-    dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[i_no]);
+    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[i_no]);
 }
 
 BOOL daNpcF_chkTmpBit(u32 i_no) {
