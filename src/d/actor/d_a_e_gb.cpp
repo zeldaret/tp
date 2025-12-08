@@ -396,9 +396,9 @@ static void e_gb_damage(e_gb_class* i_this) {
         case 0:
             i_this->mode = 1;
             if ((s16)(i_this->angleYTarget - actor->current.angle.y) < 0) {
-                actor->current.angle.y += (s16)(KREG_S(6) + 0x2000 /* 45° */);
+                actor->current.angle.y += (s16)(KREG_S(6) + 0x2000);
             } else {
-                actor->current.angle.y -= (s16)(KREG_S(6) + 0x2000 /* 45° */);
+                actor->current.angle.y -= (s16)(KREG_S(6) + 0x2000);
             }
 
             cMtx_YrotS(*calc_mtx, actor->current.angle.y);
@@ -427,8 +427,8 @@ static void e_gb_damage(e_gb_class* i_this) {
     cLib_addCalc2(&actor->current.pos.x, i_this->currentPosTarget.x, 0.1f, actor->speed.x);
     cLib_addCalc2(&actor->current.pos.y, i_this->currentPosTarget.y, 0.1f, actor->speed.y);
     cLib_addCalc2(&actor->current.pos.z, i_this->currentPosTarget.z, 0.1f, actor->speed.z);
-    cLib_addCalcAngleS2(&actor->shape_angle.y, actor->current.angle.y, 2, 0x2000 /* 45° */);
-    cLib_addCalcAngleS2(&actor->shape_angle.x, 0, 4, 0x800 /* 11.25° */);
+    cLib_addCalcAngleS2(&actor->shape_angle.y, actor->current.angle.y, 2, 0x2000);
+    cLib_addCalcAngleS2(&actor->shape_angle.x, 0, 4, 0x800);
 }
 
 static void e_gb_end(e_gb_class* i_this) {
@@ -514,28 +514,28 @@ static void e_gb_start(e_gb_class* i_this) {
             cLib_addCalc2(&actor->current.pos.y, i_this->currentPosTarget.y, 0.1f, NREG_F(3) + 80.0f);
             cLib_addCalc2(&actor->current.pos.z, i_this->currentPosTarget.z, 0.1f, NREG_F(3) + 80.0f);
 
-            cLib_addCalcAngleS2(&actor->current.angle.y, -0x4000 /* -90° */, 16, 0x200 /* ~2.8° */);
-            cLib_addCalcAngleS2(&actor->shape_angle.y, 0x4000 /* 90° */, 16, 0x200 /* ~2.8° */);
-            cLib_addCalcAngleS2(&actor->shape_angle.x, 0x2000 /* 45° */, 16, 0x100 /* ~1.4° */);
+            cLib_addCalcAngleS2(&actor->current.angle.y, -0x4000, 16, 0x200);
+            cLib_addCalcAngleS2(&actor->shape_angle.y, 0x4000, 16, 0x200);
+            cLib_addCalcAngleS2(&actor->shape_angle.x, 0x2000, 16, 0x100);
     }
 }
 
 static void kuki_control1(e_gb_class* i_this) {
     static s16 pow_xa[17] = {
-        0xD000 /* 292.5° */, 0xD800 /* 303.75° */, 0xE000 /* 315° */,
-        0xE800 /* 326.25° */, 0xF000 /* 337.5° */, 0x0000,
-        0x1000 /* 22.5° */, 0x1800 /* 33.75° */, 0x2000 /* 45° */,
-        0x2800 /* 56.25° */, 0x3000 /* 67.5° */, 0x3800 /* 78.75° */,
-        0x3000 /* 67.5° */, 0x2000 /* 45° */, 0x1000 /* 22.5° */,
+        0xD000, 0xD800, 0xE000,
+        0xE800, 0xF000, 0x0000,
+        0x1000, 0x1800, 0x2000,
+        0x2800, 0x3000, 0x3800,
+        0x3000, 0x2000, 0x1000,
         0x0000, 0x0000,
     };
 
     static s16 pow_xa_chance[17] = {
-        0xC800 /* 281.25° */, 0xD000 /* 292.5° */, 0xD800 /* 303.75° */,
-        0xE000 /* 315° */, 0xE800 /* 326.25° */, 0xF000 /* 337.5° */,
-        0xF800 /* 348.75° */, 0x0000,  0x0000,
+        0xC800, 0xD000, 0xD800,
+        0xE000, 0xE800, 0xF000,
+        0xF800, 0x0000,  0x0000,
         0x0000, 0x0000, 0x0000,
-        0x0800 /* 11.25° */, 0x0000, 0x0800 /* 11.25° */,
+        0x0800, 0x0000, 0x0800,
         0x0000, 0x0800,
     };
 
@@ -729,6 +729,7 @@ static void action(e_gb_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz work;
     cXyz new_speed;
+    // FAKEMATCH???
     #if VERSION == VERSION_SHIELD_DEBUG
     work = player->current.pos - actor->current.pos;
     #else
@@ -1527,7 +1528,7 @@ static int daE_GB_Execute(e_gb_class* i_this) {
 
             MtxTrans(i_this->field_0x6e4[i].x, i_this->field_0x6e4[i].y, i_this->field_0x6e4[i].z, 0);
             cMtx_XrotM(*calc_mtx, i_this->field_0x7bc[i].x);
-            cMtx_YrotM(*calc_mtx, i_this->field_0x7bc[i].y + 0x8000 /* 90° */);
+            cMtx_YrotM(*calc_mtx, i_this->field_0x7bc[i].y + 0x8000);
             MtxScale(l_HIO.face_size * i_this->stemModelSize[i], l_HIO.face_size * i_this->stemModelSize[i], l_HIO.face_size + fVar2, 1);
             MtxTrans(0.0f, 0.0f, XREG_F(4), 1);
             i_this->stemModelP[i]->setBaseTRMtx(*calc_mtx);
