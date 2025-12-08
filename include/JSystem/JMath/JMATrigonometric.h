@@ -31,28 +31,28 @@ struct TSinCosTable {
     T sinShort(s16 v) const { return table[(u16)v >> (16U - N)].first; }
     T cosShort(s16 v) const { return table[(u16)v >> (16U - N)].second; }
 
-    inline T sinLap(T v) {
+    inline T sinLap(T v) const {
         if (v < (T)0.0) {
             return -table[(u16)(-(T)(1 << N) * v) & ((1 << N) - 1)].first;
         }
         return table[(u16)((T)(1 << N) * v) & ((1 << N) - 1)].first;
     }
 
-    inline T sinDegree(T degree) {
+    inline T sinDegree(T degree) const {
         if (degree < (T)0.0) {
             return -table[(u16)(-((T)(1 << N) / (T)360.0) * degree) & ((1 << N) - 1)].first;
         } 
         return table[(u16)(((T)(1 << N) / (T)360.0) * degree) & ((1 << N) - 1)].first;
     }
 
-    inline T cosDegree(T degree) {
+    inline T cosDegree(T degree) const {
         if (degree < (T)0.0) {
             degree = -degree;
         } 
         return table[(u16)(((T)(1 << N) / (T)360.0) * degree) & ((1 << N) - 1)].second;
     }
 
-    inline T sinRadian(T radian) {
+    inline T sinRadian(T radian) const {
         if (radian < (T)0.0) {
             return -table[(u16)(-(T)(1 << N) / TAngleConstant_<T>::RADIAN_DEG360() * radian) & ((1 << N) - 1)].first;
         }

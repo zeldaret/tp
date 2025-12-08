@@ -50,11 +50,18 @@ struct JASGenericMemPool {
     void* alloc(u32);
     void free(void*, u32);
 
+    u32 getFreeMemCount() const {
+        return freeMemCount;
+    }
+
+    u32 getTotalMemCount() const {
+        return totalMemCount;
+    }
+
     /* 0x00 */ void* field_0x0;
     /* 0x04 */ u32 freeMemCount;
     /* 0x08 */ u32 totalMemCount;
     /* 0x0C */ u32 usedMemCount;
-
 };
 
 namespace JASThreadingModel {
@@ -87,6 +94,13 @@ namespace JASThreadingModel {
             A0* mMutex;
         };
     };
+
+    template <typename A0>
+    struct SingleThreaded {
+        struct Lock {
+            Lock(const A0& param_0) {}
+        };
+    };
 };  // namespace JASThreadingModel
 
 /**
@@ -96,16 +110,31 @@ namespace JASThreadingModel {
 template <typename T>
 class JASMemPool : public JASGenericMemPool {
 public:
-    void newMemPool(int param_0) { JASGenericMemPool::newMemPool(sizeof(T), param_0); }
+    void newMemPool(int param_0) {
+        typename JASThreadingModel::SingleThreaded<JASMemPool<T> >::Lock lock(*this);
+        JASGenericMemPool::newMemPool(sizeof(T), param_0);
+    }
 
     void* alloc(u32 n) {
         JUT_ASSERT(182, n == sizeof(T));
+        typename JASThreadingModel::SingleThreaded<JASMemPool<T> >::Lock lock(*this);
         return JASGenericMemPool::alloc(n);
     }
 
     void free(void* ptr, u32 n) {
         JUT_ASSERT(187, n == sizeof(T));
+        typename JASThreadingModel::SingleThreaded<JASMemPool<T> >::Lock lock(*this);
         JASGenericMemPool::free(ptr, n);
+    }
+
+    u32 getFreeMemCount() const {
+        typename JASThreadingModel::SingleThreaded<JASMemPool<T> >::Lock lock(*this);
+        return JASGenericMemPool::getFreeMemCount();
+    }
+
+    u32 getTotalMemCount() const {
+        typename JASThreadingModel::SingleThreaded<JASMemPool<T> >::Lock lock(*this);
+        return JASGenericMemPool::getTotalMemCount();
     }
 };
 
@@ -255,25 +284,35 @@ template <typename T>
 class JASPoolAllocObject {
 public:
     static void* operator new(size_t n) {
-        JASMemPool<T>* memPool = getMemPool_();
-        return memPool->alloc(sizeof(T));
+        JASMemPool<T>& memPool_ = getMemPool_();
+        return memPool_.alloc(n);
     }
     static void* operator new(size_t n, void* ptr) {
         return ptr;
     }
     static void operator delete(void* ptr, size_t n) {
-        JASMemPool<T>* memPool_ = getMemPool_();
-        memPool_->free(ptr, sizeof(T));
+        JASMemPool<T>& memPool_ = getMemPool_();
+        memPool_.free(ptr, n);
     }
     static void newMemPool(int param_0) {
-        JASMemPool<T>* memPool_ = getMemPool_();
-        memPool_->newMemPool(param_0);
+        JASMemPool<T>& memPool_ = getMemPool_();
+        memPool_.newMemPool(param_0);
+    }
+    static u32 getFreeMemCount() {
+        JASMemPool<T>& memPool_ = getMemPool_();
+        return memPool_.getFreeMemCount();
+    }
+    static u32 getTotalMemCount() {
+        JASMemPool<T>& memPool_ = getMemPool_();
+        return memPool_.getTotalMemCount();
     }
 
 private:
-    static JASMemPool<T>* getMemPool_() {
+    // Fakematch? Is memPool_ both an in-function static and an out-of-function static?
+    static JASMemPool<T> memPool_;
+    static JASMemPool<T>& getMemPool_() {
         static JASMemPool<T> memPool_;
-        return &memPool_;
+        return memPool_;
     }
 };
 
@@ -308,25 +347,28 @@ template <typename T>
 class JASPoolAllocObject_MultiThreaded {
 public:
     static void* operator new(size_t n) {
-        JASMemPool_MultiThreaded<T>* memPool_ = getMemPool();
-        return memPool_->alloc(sizeof(T));
+        JASMemPool_MultiThreaded<T>& memPool_ = getMemPool();
+        return memPool_.alloc(sizeof(T));
     }
     static void* operator new(size_t n, void* ptr) {
         return ptr;
     }
     static void operator delete(void* ptr, size_t n) {
-        JASMemPool_MultiThreaded<T>* memPool_ = getMemPool();
-        memPool_->free(ptr, sizeof(T));
+        JASMemPool_MultiThreaded<T>& memPool_ = getMemPool();
+        memPool_.free(ptr, sizeof(T));
     }
 
     static void newMemPool(int n) {
-        getMemPool()->newMemPool(n);
+        JASMemPool_MultiThreaded<T>& memPool_ = getMemPool();
+        memPool_.newMemPool(n);
     }
 
 private:
-    static JASMemPool_MultiThreaded<T>* getMemPool() {
+    // Fakematch? Is memPool_ both an in-function static and an out-of-function static?
+    static JASMemPool_MultiThreaded<T> memPool_;
+    static JASMemPool_MultiThreaded<T>& getMemPool() {
         static JASMemPool_MultiThreaded<T> memPool_;
-        return &memPool_;
+        return memPool_;
     }
 };
 

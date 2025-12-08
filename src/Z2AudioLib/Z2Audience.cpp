@@ -500,7 +500,11 @@ Z2Audience::Z2Audience() : JASGlobalInstance<Z2Audience>(true), field_0x4(1.0f),
 }
 
 Z2Audience::~Z2Audience() {
-    // JUT_ASSERT(751, !isActive()); // TODO: need to setup rest of JASMemPool stuff
+    JUT_ASSERT(751, !isActive());
+}
+
+bool Z2Audience::isActive() const {
+    return Z2Audible::getTotalMemCount() != Z2Audible::getFreeMemCount();
 }
 
 void Z2Audience::setAudioCamera(f32 (*param_0)[4], Vec& pos, Vec& param_2, f32 param_3,

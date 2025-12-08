@@ -498,7 +498,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
                 field_0x0b4 = i_dspChannel->field_0x074 + i_dspChannel->field_0x064;
                 if (field_0x118 >= field_0x160 - 2) {
                     JUT_WARN_DEVICE(810, 1, "%s", "buffer under error");
-                    field_0x0ae |= 4;
+                    field_0x0ae |= (u8)4;
                 }
             } else {
                 if (field_0x12c & 1) {
