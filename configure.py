@@ -1544,6 +1544,13 @@ config.libs = [
             Object(NonMatching, "revolution/pad/Pad.c"),
         ],
     ),
+    RevolutionLib(
+        "wpad",
+        [
+            Object(NonMatching, "revolution/wpad/WPAD.c"),
+            Object(NonMatching, "revolution/wpad/WUD.c"),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": MWVersion(config.version),

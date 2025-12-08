@@ -4467,13 +4467,14 @@ revolution/pad/Pad.c:
 	.text       start:0x80616840 end:0x80618AB0
 	.data       start:0x8073DE70 end:0x8073E0B0
 	.sdata      start:0x8074C1F8 end:0x8074C220
-	.sbss       start:0x8074D648 end:0x8074D680
+	.sbss       start:0x8074D648 end:0x8074D678
 	.bss        start:0x8080DBA0 end:0x8080DC20
 
 revolution/wpad/WPAD.c:
 	.text       start:0x80618AB0 end:0x80619BD0
 	.data       start:0x8073E0B0 end:0x8073E1F0
 	.sdata      start:0x8074C220 end:0x8074C228
+	.sbss       start:0x8074D678 end:0x8074D680
 	.sdata2     start:0x80752E78 end:0x80752E80
 	.bss        start:0x8080DC20 end:0x8080DC40
 
