@@ -1727,7 +1727,7 @@ config.libs = [
             ),
         ],
     },
-    Rel("f_pc_profile_lst", [Object(Matching, "f_pc/f_pc_profile_lst.cpp")]),
+    Rel("f_pc_profile_lst", [Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "f_pc/f_pc_profile_lst.cpp")]),
     ActorRel(MatchingFor(ALL_GCN), "d_a_andsw"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_bg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_bg_obj"),

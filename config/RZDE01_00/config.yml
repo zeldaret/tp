@@ -5,7 +5,7 @@ hash: 0f626c1bfbd05979ed78b634cc85248342452fc2
 splits: config/RZDE01_00/splits.txt
 symbols: config/RZDE01_00/symbols.txt
 # map: orig/RZDE01_00/fixed_maps/RframeworkF.map
-mw_comment_version: 14 # GC Linker 2.7
+mw_comment_version: 14 # GC Linker 3.0
 quick_analysis: true # Initial analysis completed
 # detect_objects: true
 
@@ -14,11 +14,11 @@ force_active: [
 ]
 
 modules:
-# - object: files/RELS.arc:rels/mmem/f_pc_profile_lst.rel
-#   hash: 40511841f108b688f4885b19bf8ecf07781aab67
-#   symbols: config/RZDE01_00/rels/f_pc_profile_lst/symbols.txt
-#   splits: config/RZDE01_00/rels/f_pc_profile_lst/splits.txt
-# # map: orig/RZDE01_00/fixed_maps/f_pc_profile_lst.map
+- object: files/RELS.arc:rels/mmem/f_pc_profile_lst.rel
+  hash: 40511841f108b688f4885b19bf8ecf07781aab67
+  symbols: config/RZDE01_00/rels/f_pc_profile_lst/symbols.txt
+  splits: config/RZDE01_00/rels/f_pc_profile_lst/splits.txt
+# map: orig/RZDE01_00/fixed_maps/f_pc_profile_lst.map
 
 - object: files/RELS.arc:rels/mmem/d_a_andsw.rel
   hash: b246618e3c7555c44db4c57fd43d5414b1788aa2
@@ -104,6 +104,12 @@ modules:
   splits: config/RZDE01_00/rels/d_a_kytag17/splits.txt
 # map: orig/RZDE01_00/fixed_maps/d_a_kytag17.map
 
+- object: files/RELS.arc:rels/mmem/d_a_no_chg_room.rel
+  hash: 3bb54240f33b1fc18af93347cd02a6f36c9d3e2f
+  symbols: config/RZDE01_00/rels/d_a_no_chg_room/symbols.txt
+  splits: config/RZDE01_00/rels/d_a_no_chg_room/splits.txt
+  # map: orig/RZDE01_00/fixed_maps/d_a_no_chg_room.map
+
 - object: files/RELS.arc:rels/mmem/d_a_obj_brakeeff.rel
   hash: 474061b0b3dbd9142ef222d97dce14bbbc9a0bb8
   symbols: config/RZDE01_00/rels/d_a_obj_brakeeff/symbols.txt
@@ -158,11 +164,11 @@ modules:
   splits: config/RZDE01_00/rels/d_a_scene_exit/splits.txt
 # map: orig/RZDE01_00/fixed_maps/d_a_scene_exit.map
 
-# - object: files/RELS.arc:rels/mmem/d_a_set_bgobj.rel
-#   hash: 8a1a3de4e9f618018b97081111d21682a060eef2
-#   symbols: config/RZDE01_00/rels/d_a_set_bgobj/symbols.txt
-#   splits: config/RZDE01_00/rels/d_a_set_bgobj/splits.txt
-#   map: orig/RZDE01_00/fixed_maps/d_a_set_bgobj.map
+- object: files/RELS.arc:rels/mmem/d_a_set_bgobj.rel
+  hash: 8a1a3de4e9f618018b97081111d21682a060eef2
+  symbols: config/RZDE01_00/rels/d_a_set_bgobj/symbols.txt
+  splits: config/RZDE01_00/rels/d_a_set_bgobj/splits.txt
+# map: orig/RZDE01_00/fixed_maps/d_a_set_bgobj.map
 
 - object: files/RELS.arc:rels/mmem/d_a_swhit0.rel
   hash: 84851cafe8369066333dadfc6c3e58256915eafd
@@ -908,17 +914,17 @@ modules:
   splits: config/RZDE01_00/rels/d_a_L7op_demo_dr/splits.txt
 # map: orig/RZDE01_00/fixed_maps/d_a_L7op_demo_dr.map
 
-# - object: files/rel/Rfinal/Release/d_a_b_bh.rel
-#   hash: 67c7205a0cbdc2a5f2f637557f3591218ac0292f
-#   symbols: config/RZDE01_00/rels/d_a_b_bh/symbols.txt
-#   splits: config/RZDE01_00/rels/d_a_b_bh/splits.txt
-# # map: orig/RZDE01_00/fixed_maps/d_a_b_bh.map
+- object: files/rel/Rfinal/Release/d_a_b_bh.rel
+  hash: 67c7205a0cbdc2a5f2f637557f3591218ac0292f
+  symbols: config/RZDE01_00/rels/d_a_b_bh/symbols.txt
+  splits: config/RZDE01_00/rels/d_a_b_bh/splits.txt
+# map: orig/RZDE01_00/fixed_maps/d_a_b_bh.map
 
-# - object: files/rel/Rfinal/Release/d_a_b_bq.rel
-#   hash: 0424ac3820dbd317090873d6aa3cb79c94b26439
-#   symbols: config/RZDE01_00/rels/d_a_b_bq/symbols.txt
-#   splits: config/RZDE01_00/rels/d_a_b_bq/splits.txt
-# # map: orig/RZDE01_00/fixed_maps/d_a_b_bq.map
+- object: files/rel/Rfinal/Release/d_a_b_bq.rel
+  hash: 0424ac3820dbd317090873d6aa3cb79c94b26439
+  symbols: config/RZDE01_00/rels/d_a_b_bq/symbols.txt
+  splits: config/RZDE01_00/rels/d_a_b_bq/splits.txt
+# map: orig/RZDE01_00/fixed_maps/d_a_b_bq.map
 
 - object: files/rel/Rfinal/Release/d_a_b_dr.rel
   hash: f7c1d6c8557b6221338b9bcadaecb2b6d4b651b0
@@ -944,11 +950,11 @@ modules:
   splits: config/RZDE01_00/rels/d_a_b_gg/splits.txt
 # map: orig/RZDE01_00/fixed_maps/d_a_b_gg.map
 
-# - object: files/rel/Rfinal/Release/d_a_b_gm.rel
-#   hash: 29d9b931283ea325a04f4daa7a72bd183e02a829
-#   symbols: config/RZDE01_00/rels/d_a_b_gm/symbols.txt
-#   splits: config/RZDE01_00/rels/d_a_b_gm/splits.txt
-# # map: orig/RZDE01_00/fixed_maps/d_a_b_gm.map
+- object: files/rel/Rfinal/Release/d_a_b_gm.rel
+  hash: 29d9b931283ea325a04f4daa7a72bd183e02a829
+  symbols: config/RZDE01_00/rels/d_a_b_gm/symbols.txt
+  splits: config/RZDE01_00/rels/d_a_b_gm/splits.txt
+# map: orig/RZDE01_00/fixed_maps/d_a_b_gm.map
 
 - object: files/rel/Rfinal/Release/d_a_b_gnd.rel
   hash: a991c31e24ad86457e19e4c6a5a708925b204c18
@@ -974,11 +980,11 @@ modules:
   splits: config/RZDE01_00/rels/d_a_b_mgn/splits.txt
 # map: orig/RZDE01_00/fixed_maps/d_a_b_mgn.map
 
-# - object: files/rel/Rfinal/Release/d_a_b_ob.rel
-#   hash: 0f921595d92beaf0f27ea34cda1bdda03403fd4e
-#   symbols: config/RZDE01_00/rels/d_a_b_ob/symbols.txt
-#   splits: config/RZDE01_00/rels/d_a_b_ob/splits.txt
-# # map: orig/RZDE01_00/fixed_maps/d_a_b_ob.map
+- object: files/rel/Rfinal/Release/d_a_b_ob.rel
+  hash: 0f921595d92beaf0f27ea34cda1bdda03403fd4e
+  symbols: config/RZDE01_00/rels/d_a_b_ob/symbols.txt
+  splits: config/RZDE01_00/rels/d_a_b_ob/splits.txt
+# map: orig/RZDE01_00/fixed_maps/d_a_b_ob.map
 
 - object: files/rel/Rfinal/Release/d_a_b_oh.rel
   hash: 11f6d4d2f2a45e8ddd5b04d5417b84071b4d4d04
@@ -1827,11 +1833,11 @@ modules:
   splits: config/RZDE01_00/rels/d_a_npc_bou/splits.txt
 # map: orig/RZDE01_00/fixed_maps/d_a_npc_bou.map
 
-# - object: files/rel/Rfinal/Release/d_a_npc_bouS.rel
-#   hash: f9b9989db309764ba75e1349460304654d5169af
-#   symbols: config/RZDE01_00/rels/d_a_npc_bouS/symbols.txt
-#   splits: config/RZDE01_00/rels/d_a_npc_bouS/splits.txt
-# # map: orig/RZDE01_00/fixed_maps/d_a_npc_bouS.map
+- object: files/rel/Rfinal/Release/d_a_npc_bouS.rel
+  hash: f9b9989db309764ba75e1349460304654d5169af
+  symbols: config/RZDE01_00/rels/d_a_npc_bouS/symbols.txt
+  splits: config/RZDE01_00/rels/d_a_npc_bouS/splits.txt
+# map: orig/RZDE01_00/fixed_maps/d_a_npc_bouS.map
 
 - object: files/rel/Rfinal/Release/d_a_npc_cdn3.rel
   hash: 9b2296b2346783b7cdafe7f9a2e75bdd2bf42c6a
@@ -2361,11 +2367,11 @@ modules:
   splits: config/RZDE01_00/rels/d_a_npc_worm/splits.txt
 # map: orig/RZDE01_00/fixed_maps/d_a_npc_worm.map
 
-# - object: files/rel/Rfinal/Release/d_a_npc_wrestler.rel
-#   hash: 648d16f1f92476839a8488c3399e96c449a87c21
-#   symbols: config/RZDE01_00/rels/d_a_npc_wrestler/symbols.txt
-#   splits: config/RZDE01_00/rels/d_a_npc_wrestler/splits.txt
-# # map: orig/RZDE01_00/fixed_maps/d_a_npc_wrestler.map
+- object: files/rel/Rfinal/Release/d_a_npc_wrestler.rel
+  hash: 648d16f1f92476839a8488c3399e96c449a87c21
+  symbols: config/RZDE01_00/rels/d_a_npc_wrestler/symbols.txt
+  splits: config/RZDE01_00/rels/d_a_npc_wrestler/splits.txt
+# map: orig/RZDE01_00/fixed_maps/d_a_npc_wrestler.map
 
 - object: files/rel/Rfinal/Release/d_a_npc_yamid.rel
   hash: 428cd39a6cd9354f275036f7ef66ea83e86701c2
