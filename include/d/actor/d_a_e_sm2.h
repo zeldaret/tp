@@ -36,7 +36,8 @@ enum daE_SM2_ACTION {
  * 
  * @details 
  * 
- */
+*/
+
 class e_sm2_class {
 public:
     bool checkYellow() { return type == TYPE_YELLOW; }
@@ -63,9 +64,9 @@ public:
     /* 0x68E */ s16 combine_off_timer;
     /* 0x690 */ s16 angle_to_pl;
     /* 0x694 */ f32 dist_to_pl;
-    /* 0x698 */ u8 field_0x698[0x6A4 - 0x698];
-    /* 0x6A4 */ s16 field_0x6a4;
-    /* 0x6A6 */ s16 field_0x6a6;
+    /* 0x698 */ cXyz field_0x698;
+    /* 0x6A4 */ s16 mCurrentAngleYTarget;
+    /* 0x6A6 */ s16 mCurrentAngleYTargetStep;
     /* 0x6A8 */ s8 field_0x6a8;
     /* 0x6A9 */ u8 field_0x6a9;
     /* 0x6AA */ u8 field_0x6aa;
