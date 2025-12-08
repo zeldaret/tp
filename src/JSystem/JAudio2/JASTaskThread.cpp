@@ -81,12 +81,11 @@ int JASTaskThread::sendCmdMsg(JASThreadCallback callback, void* msg) {
     return iVar2;
 }
 
-// NONMATCHING Regalloc
 void* JASTaskThread::run() {
     JASThreadCallStack* callstack;
     OSInitFastCast();
     do {
-        callstack = (JASThreadCallStack*)waitMessageBlock();
+        callstack = static_cast<JASThreadCallStack*>(waitMessageBlock());
         if (field_0x84) {
             OSSleepThread(&threadQueue_);
         }
