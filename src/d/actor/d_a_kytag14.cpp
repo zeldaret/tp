@@ -27,7 +27,7 @@ static int daKytag14_Execute(kytag14_class* i_this) {
     }
 
     if (i_this->mEventID1 != 0xFFFF) {
-        if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[i_this->mEventID1])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_this->mEventID1])) {
             event1_set = true;
         } else {
             event1_set = false;
@@ -35,7 +35,7 @@ static int daKytag14_Execute(kytag14_class* i_this) {
     }
 
     if (i_this->mEventID2 != 0xFFFF) {
-        if (!dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[i_this->mEventID2])) {
+        if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_this->mEventID2])) {
             event2_unset = true;
         } else {
             event2_unset = false;

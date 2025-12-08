@@ -302,7 +302,7 @@ void dMeter2Info_set2DVibrationM();
 void dMeter2Info_offUseButton(int pButton);
 bool dMeter2Info_is2DActiveTouchArea();
 u8 dMeter2Info_getRecieveLetterNum();
-bool dMeter2Info_getPixel(f32 i_posX, f32 i_posY, f32 param_2, f32 param_3, f32 i_sizeX,
+u8 dMeter2Info_getPixel(f32 i_posX, f32 i_posY, f32 param_2, f32 param_3, f32 i_sizeX,
                           f32 i_sizeY, struct ResTIMG const* i_resTimg);
 const char* dMeter2Info_getPlusTextureName();
 const char* dMeter2Info_getNumberTextureName(int i_num);

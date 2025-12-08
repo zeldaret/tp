@@ -34,7 +34,7 @@ public:
     JGeometry::TBox2<f32>* getBounds(J2DPane*);
 
     Vec getGlobalVtx(Mtx* param_0, u8 param_1, bool param_2, s16 param_3) {
-        return getGlobalVtx(getPanePtr(), param_0, param_1, param_2, param_3);
+        return getGlobalVtx(mPane, param_0, param_1, param_2, param_3);
     }
 
     Vec getGlobalVtxCenter(bool param_0, s16 param_1) {
@@ -60,8 +60,8 @@ public:
     f32 getPosX() { return getPanePtr()->getBounds().i.x; }
     f32 getPosY() { return getPanePtr()->getBounds().i.y; }
 
-    f32 getSizeX() { return getPanePtr()->getWidth(); }
-    f32 getSizeY() { return getPanePtr()->getHeight(); }
+    f32 getSizeX() { return mPane->getWidth(); }
+    f32 getSizeY() { return mPane->getHeight(); }
 
     f32 getRotateZ() { return getPanePtr()->getRotateZ(); }
 

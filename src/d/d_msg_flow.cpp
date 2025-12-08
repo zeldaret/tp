@@ -767,7 +767,7 @@ void dMsgFlow_c::dbgPrint() {}
 
 u16 dMsgFlow_c::query001(mesg_flow_node_branch* i_flowNode_p, fopAc_ac_c* i_speaker_p, int param_2) {
     const u16 prm0 = i_flowNode_p->param;
-    u16 ret = dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[prm0]) == false;
+    u16 ret = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[prm0]) == false;
 
     if (param_2 != 0) {
         // "Flag Check"
@@ -1753,11 +1753,11 @@ int dMsgFlow_c::event000(mesg_flow_node_event* i_flowNode_p, fopAc_ac_c* i_speak
     OS_REPORT("flow:%d, prm0:%d, prm1:%d\n", mFlow, prm0, prm1);
 
     if (prm0 != 0) {
-        dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[prm0]);
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[prm0]);
     }
 
     if (prm1 != 0) {
-        dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[prm1]);
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[prm1]);
     }
 
     return 1;
@@ -1772,11 +1772,11 @@ int dMsgFlow_c::event001(mesg_flow_node_event* i_flowNode_p, fopAc_ac_c* i_speak
     OS_REPORT("flow:%d, prm0:%d, prm1:%d\n", mFlow, prm0, prm1);
 
     if (prm0 != 0) {
-        dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[prm0]);
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[prm0]);
     }
 
     if (prm1 != 0) {
-        dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[prm1]);
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[prm1]);
     }
 
     return 1;

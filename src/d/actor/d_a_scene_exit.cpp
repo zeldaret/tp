@@ -22,12 +22,12 @@ int daScex_c::checkWork() {
     }
 
     u16 eventBit = getOffEventBit();
-    if (eventBit != 0x0FFF && dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[eventBit])) {
+    if (eventBit != 0x0FFF && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[eventBit])) {
         return 0;
     }
 
     eventBit = getOnEventBit();
-    if (eventBit != 0x0FFF && !dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[eventBit])) {
+    if (eventBit != 0x0FFF && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[eventBit])) {
         return 0;
     }
 

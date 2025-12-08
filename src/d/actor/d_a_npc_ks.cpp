@@ -5818,7 +5818,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
 
     switch (i_this->mMode) {
         case 0:
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x220] & 0xFFFF)) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x220])) {
                 i_this->mMode = 40;
             } else {
                 fpcM_Search(s_fs_sub, i_this);
@@ -6628,7 +6628,7 @@ static void kantera_sub(npc_ks_class* i_this) {
             fopAcM_cancelCarryNow(a_this);
             cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
             i_this->field_0xc17 = 0;
-            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xE2] & 0xFFFF);
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xE2]);
         } else {
             i_this->field_0xc04.x = -30715.0f + AREG_F(8);
             i_this->field_0xc04.z = -17200.0f + AREG_F(9);
@@ -7260,7 +7260,7 @@ static BOOL start_check(npc_ks_class* i_this) {
             break;
 
         case 21:
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x20A] & 0xFFFF)) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x20A])) {
                 rv = FALSE;
             } else {
                 i_this->mActionID = 301;
@@ -7268,7 +7268,7 @@ static BOOL start_check(npc_ks_class* i_this) {
             break;
 
         case 22:
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x241] & 0xFFFF)) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x241])) {
                 rv = FALSE;
             } else {
                 i_this->mActionID = 302;

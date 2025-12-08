@@ -118,15 +118,10 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
     field_0xfb0 = 0.0;
     field_0xfb4 = 0.0;
     field_0xfb8 = 1.0;
-    mArrowAlpha = 0.0;
-    mArrowPos3DZ = 0.0;
-    mArrowPos3DX = 0.0;
-    field_0x11a8 = 0.0;
-    field_0x11a4 = 0.0;
-    field_0x11b0 = 0.0;
-    field_0x11ac = 0.0;
-    mArrowPos2DY = 0.0;
-    mArrowPos2DX = 0.0;
+    mArrowPos3DX = mArrowPos3DZ = mArrowAlpha = 0.0;
+    field_0x11a4 = field_0x11a8 = 0.0;
+    field_0x11ac = field_0x11b0 = 0.0;
+    mArrowPos2DX = mArrowPos2DY = 0.0;
     mSpotTextureFadeAlpha = 0.0;
     field_0x11dc = 0.0;
     field_0x11e0 = 360.0;
@@ -146,7 +141,12 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
     field_0x1210 = 1.0;
     field_0x1214 = 1.0;
     mArrowDrawFlag = true;
+    
+#if DEBUG
+    mAllPathShowFlag = g_fmapHIO.mDisplayAllPaths;
+#else
     mAllPathShowFlag = false;
+#endif
 
     initiate(dComIfGp_getFmapResArchive());
 
@@ -168,8 +168,8 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
 
     dPaneClass_showNullPane(mpBaseScreen);
 
-    mpBaseAnm = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(
-        JKRGetNameResource("zelda_map_screen_base.btk", dComIfGp_getFmapResArchive())));
+    void* r = JKRGetNameResource("zelda_map_screen_base.btk", dComIfGp_getFmapResArchive());
+    mpBaseAnm = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(r);
     mpBaseAnm->searchUpdateMaterialID(mpBaseScreen);
 
     mAnmFrame = 0.0;
@@ -197,9 +197,9 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
     mpPointScreen = new J2DScreen();
     JUT_ASSERT(293, mpPointScreen != NULL);
 
-    fg = mpPointScreen->setPriority("zelda_field_map_point_cursor.blo", 0x20000,
+    mpPointScreen->setPriority("zelda_field_map_point_cursor.blo", 0x20000,
                                     dComIfGp_getFmapResArchive());
-    JUT_ASSERT(252, fg != false);
+    JUT_ASSERT(297, fg != false);
 
     dPaneClass_showNullPane(mpPointScreen);
 
@@ -425,7 +425,7 @@ void dMenu_Fmap2DBack_c::draw() {
                     mDoGph_gInf_c::getHeightF(), false, false, false);
 }
 
-void dMenu_Fmap2DBack_c::setRegionTexData(u8 i_regionNo, ResTIMG* i_timg, f32 i_originX,
+void dMenu_Fmap2DBack_c::setRegionTexData(u8 i_areaType, ResTIMG* i_timg, f32 i_originX,
                                           f32 i_originZ, f32 i_posX, f32 i_posZ, f32 i_scale,
                                           f32 i_scrollMinX, f32 i_scrollMinZ, f32 i_scrollMaxX,
                                           f32 i_scrollMaxZ) {
@@ -433,34 +433,34 @@ void dMenu_Fmap2DBack_c::setRegionTexData(u8 i_regionNo, ResTIMG* i_timg, f32 i_
         i_scale = 100.0f;
     }
 
-    mpAreaTex[i_regionNo] = new J2DPicture(i_timg);
-    JUT_ASSERT(763, mpAreaTex[i_regionNo] != NULL);
+    mpAreaTex[i_areaType] = new J2DPicture(i_timg);
+    JUT_ASSERT(763, mpAreaTex[i_areaType] != NULL);
 
-    mRegionOriginX[i_regionNo] = i_originX;
-    mRegionOriginZ[i_regionNo] = i_originZ;
-    mRegionTexData[i_regionNo].mScale = i_scale * 100.0f;
+    mRegionOriginX[i_areaType] = i_originX;
+    mRegionOriginZ[i_areaType] = i_originZ;
+    mRegionTexData[i_areaType].mScale = i_scale * 100.0f;
 
     f32 width = i_timg->width;
     f32 height = i_timg->height;
 
-    f32 min_x = (mRegionOriginX[i_regionNo] + i_posX) -
-                ((width * 0.5f) * mRegionTexData[i_regionNo].mScale);
-    f32 min_z = (mRegionOriginZ[i_regionNo] + i_posZ) -
-                ((height * 0.5f) * mRegionTexData[i_regionNo].mScale);
-    f32 max_x = (mRegionOriginX[i_regionNo] + i_posX) +
-                ((width * 0.5f) * mRegionTexData[i_regionNo].mScale);
-    f32 max_z = (mRegionOriginZ[i_regionNo] + i_posZ) +
-                ((height * 0.5f) * mRegionTexData[i_regionNo].mScale);
+    f32 min_x = (mRegionOriginX[i_areaType] + i_posX) -
+                ((width * 0.5f) * mRegionTexData[i_areaType].mScale);
+    f32 min_z = (mRegionOriginZ[i_areaType] + i_posZ) -
+                ((height * 0.5f) * mRegionTexData[i_areaType].mScale);
+    f32 max_x = (mRegionOriginX[i_areaType] + i_posX) +
+                ((width * 0.5f) * mRegionTexData[i_areaType].mScale);
+    f32 max_z = (mRegionOriginZ[i_areaType] + i_posZ) +
+                ((height * 0.5f) * mRegionTexData[i_areaType].mScale);
 
-    mRegionTexData[i_regionNo].mMinX = min_x;
-    mRegionTexData[i_regionNo].mMinZ = min_z;
-    mRegionTexData[i_regionNo].mMaxX = max_x;
-    mRegionTexData[i_regionNo].mMaxZ = max_z;
+    mRegionTexData[i_areaType].mMinX = min_x;
+    mRegionTexData[i_areaType].mMinZ = min_z;
+    mRegionTexData[i_areaType].mMaxX = max_x;
+    mRegionTexData[i_areaType].mMaxZ = max_z;
 
-    mRegionScrollMinX[i_regionNo] = i_scrollMinX;
-    mRegionScrollMinZ[i_regionNo] = i_scrollMinZ;
-    mRegionScrollMaxX[i_regionNo] = i_scrollMaxX;
-    mRegionScrollMaxZ[i_regionNo] = i_scrollMaxZ;
+    mRegionScrollMinX[i_areaType] = i_scrollMinX;
+    mRegionScrollMinZ[i_areaType] = i_scrollMinZ;
+    mRegionScrollMaxX[i_areaType] = i_scrollMaxX;
+    mRegionScrollMaxZ[i_areaType] = i_scrollMaxZ;
 
     bool first = false;
 
@@ -494,8 +494,74 @@ void dMenu_Fmap2DBack_c::setRegionTexData(u8 i_regionNo, ResTIMG* i_timg, f32 i_
             }
         }
         if ((!bVar14) && (field_0x1230[i] == 0xff)) {
-            field_0x1230[i] = i_regionNo;
+            field_0x1230[i] = i_areaType;
             bVar14 = true;
+        }
+    }
+}
+
+void dMenu_Fmap2DBack_c::setRegionTexData(u8 i_areaType, f32 i_originX, f32 i_originZ, f32 i_posX,
+                                          f32 i_posZ, f32 i_scale, f32 i_scrollMinX,
+                                          f32 i_scrollMinZ, f32 i_scrollMaxX, f32 i_scrollMaxZ) {
+    if (i_scale == 0.0f) {
+        i_scale = 100.0f;
+    }
+
+    mRegionOriginX[i_areaType] = i_originX;
+    mRegionOriginZ[i_areaType] = i_originZ;
+    mRegionTexData[i_areaType].mScale = i_scale * 100.0f;
+
+    f32 width = mpAreaTex[i_areaType]->getTexture(0)->getTexInfo()->width;
+    f32 height = mpAreaTex[i_areaType]->getTexture(0)->getTexInfo()->height;
+
+    f32 min_x = (mRegionOriginX[i_areaType] + i_posX) -
+                ((width * 0.5f) * mRegionTexData[i_areaType].mScale);
+    f32 min_z = (mRegionOriginZ[i_areaType] + i_posZ) -
+                ((height * 0.5f) * mRegionTexData[i_areaType].mScale);
+    f32 max_x = (mRegionOriginX[i_areaType] + i_posX) +
+                ((width * 0.5f) * mRegionTexData[i_areaType].mScale);
+    f32 max_z = (mRegionOriginZ[i_areaType] + i_posZ) +
+                ((height * 0.5f) * mRegionTexData[i_areaType].mScale);
+
+    mRegionTexData[i_areaType].mMinX = min_x;
+    mRegionTexData[i_areaType].mMinZ = min_z;
+    mRegionTexData[i_areaType].mMaxX = max_x;
+    mRegionTexData[i_areaType].mMaxZ = max_z;
+
+    mRegionScrollMinX[i_areaType] = i_scrollMinX;
+    mRegionScrollMinZ[i_areaType] = i_scrollMinZ;
+    mRegionScrollMaxX[i_areaType] = i_scrollMaxX;
+    mRegionScrollMaxZ[i_areaType] = i_scrollMaxZ;
+
+    bool first = false;
+
+    mTexMinX = 0.0f;
+    mTexMinZ = 0.0f;
+    mTexMaxX = 0.0f;
+    mTexMaxZ = 0.0f;
+
+    for (int i = 0; i < 8; i++) {
+        if (mpAreaTex[i] != NULL) {
+            if (!first) {
+                mTexMinX = mRegionTexData[i].mMinX;
+                mTexMinZ = mRegionTexData[i].mMinZ;
+                mTexMaxX = mRegionTexData[i].mMaxX;
+                mTexMaxZ = mRegionTexData[i].mMaxZ;
+                first = true;
+            } else {
+                if (mTexMinX > mRegionTexData[i].mMinX) {
+                    mTexMinX = mRegionTexData[i].mMinX;
+                }
+                if (mTexMinZ > mRegionTexData[i].mMinZ) {
+                    mTexMinZ = mRegionTexData[i].mMinZ;
+                }
+                if (mTexMaxX < mRegionTexData[i].mMaxX) {
+                    mTexMaxX = mRegionTexData[i].mMaxX;
+                }
+                if (mTexMaxZ < mRegionTexData[i].mMaxZ) {
+                    mTexMaxZ = mRegionTexData[i].mMaxZ;
+                }
+            }
         }
     }
 }
@@ -533,21 +599,24 @@ void dMenu_Fmap2DBack_c::calcAllMapPos() {
 f32 dMenu_Fmap2DBack_c::calcAllMapScaleRate() {
     f32 width = mTexMaxX - mTexMinX;
     f32 height = mTexMaxZ - mTexMinZ;
-
     f32 size = width;
-    if (width < height) {
+    if (size < height) {
         size = height;
     }
-
-    mAllMapScaleRate = getMapAreaSizeX() / size;
+    f32 v = getMapAreaSizeX();
+    mAllMapScaleRate = v / size;
 
     return mAllMapScaleRate;
 }
 
 void dMenu_Fmap2DBack_c::calcAllMapPos2DFirst(f32 i_texPosX, f32 i_texPosZ, f32* o_posX,
                                               f32* o_posY) {
-    f32 pos_x = (mAllMapScaleRate * (i_texPosX - (mTexMaxX + mTexMinX) * 0.5f));
-    f32 pos_y = (mAllMapScaleRate * (i_texPosZ - (mTexMaxZ + mTexMinZ) * 0.5f));
+    f32 midTexX = (mTexMaxX + mTexMinX) * 0.5f;
+    f32 midTexZ = (mTexMaxZ + mTexMinZ) * 0.5f;
+    f32 relativePosX = i_texPosX - midTexX;
+    f32 relativePosZ = i_texPosZ - midTexZ;
+    f32 pos_x = (mAllMapScaleRate * relativePosX);
+    f32 pos_y = (mAllMapScaleRate * relativePosZ);
 
     *o_posX = pos_x + getMapAreaGlobalCenterPosX();
     *o_posY = pos_y + getMapAreaGlobalCenterPosY();
@@ -566,36 +635,39 @@ void dMenu_Fmap2DBack_c::calcAllMapPos2D(char const* param_0, f32 param_1, f32 p
                     field_0xf2c[mRegionCursor], mZoom);
 }
 
-void dMenu_Fmap2DBack_c::calcAllMapPos2D(f32 param_0, f32 param_1, f32* param_2, f32* param_3,
+void dMenu_Fmap2DBack_c::calcAllMapPos2D(f32 param_0, f32 param_1, f32* outX, f32* outZ,
                                          f32 param_4, f32 param_5, f32 i_zoom) {
-    getMapAreaSizeX();
-    getMapAreaSizeY();
+    f32 unusedX = (mTexMaxX - mTexMinX) / getMapAreaSizeX();
+    f32 unusedY = (mTexMaxZ - mTexMinZ) / getMapAreaSizeY();
+    f32 unusedMax = unusedX;
+    if (unusedX < unusedY) {
+        unusedMax = unusedY;
+    }
+    f32 regionMidX = (mRegionTexData[mRegionCursor].mMinX + mRegionTexData[mRegionCursor].mMaxX) * 0.5f;
+    f32 regionMidY = (mRegionTexData[mRegionCursor].mMinZ + mRegionTexData[mRegionCursor].mMaxZ) * 0.5f;
+    f32 f25 = mRegionMinMapX[mRegionCursor] + param_4 + (mRegionMapSizeX[mRegionCursor] * i_zoom) * 0.5f;
+    f32 f24 = mRegionMinMapY[mRegionCursor] + param_5 + (mRegionMapSizeY[mRegionCursor] * i_zoom) * 0.5f;
 
-    f32 tmp1 = (mRegionTexData[mRegionCursor].mMinX + mRegionTexData[mRegionCursor].mMaxX) * 0.5f;
-    f32 tmp2 = (mRegionTexData[mRegionCursor].mMinZ + mRegionTexData[mRegionCursor].mMaxZ) * 0.5f;
-    f32 tmp3 = mRegionMinMapX[mRegionCursor] + param_4 + (mRegionMapSizeX[mRegionCursor] * i_zoom) * 0.5f;
-    f32 tmp4 = mRegionMinMapY[mRegionCursor] + param_5 + (mRegionMapSizeY[mRegionCursor] * i_zoom) * 0.5f;
-
-    f32 scaleRatio = (getPathScale(i_zoom) / getMapScissorAreaSizeRealY());
-
-    f32 tmp5 = (param_0 - tmp1) / scaleRatio;
-    *param_2 = tmp5 + tmp3;
-    tmp5 = (param_1 - tmp2) / scaleRatio;
-    *param_3 = tmp5 + tmp4;
+    f32 scale = getPathScale(i_zoom) / getMapScissorAreaSizeRealY();
+    f32 offsX = (param_0 - regionMidX) / scale;
+    f32 offsY = (param_1 - regionMidY) / scale;
+    *outX = offsX + f25;
+    *outZ = offsY + f24;
 }
 
-void dMenu_Fmap2DBack_c::calcAllMapPosWorld(f32 param_0, f32 param_1, f32* param_2, f32* param_3) {
-    f32 tmp1 = (mRegionTexData[mRegionCursor].mMinX + mRegionTexData[mRegionCursor].mMaxX) * 0.5f;
-    f32 tmp2 = (mRegionTexData[mRegionCursor].mMinZ + mRegionTexData[mRegionCursor].mMaxZ) * 0.5f;
-    f32 tmp3 = (param_0 - ((mRegionMinMapX[mRegionCursor] + field_0xf0c[mRegionCursor]) +
-                           mRegionMapSizeX[mRegionCursor] * mZoom * 0.5f));
-    f32 tmp4 = (param_1 - ((mRegionMinMapY[mRegionCursor] + field_0xf2c[mRegionCursor]) +
-                           mRegionMapSizeY[mRegionCursor] * mZoom * 0.5f));
-
+void dMenu_Fmap2DBack_c::calcAllMapPosWorld(f32 param_0, f32 param_1, f32* outX, f32* outZ) {
+    f32 midX = (mRegionTexData[mRegionCursor].mMinX + mRegionTexData[mRegionCursor].mMaxX) * 0.5f;
+    f32 midY = (mRegionTexData[mRegionCursor].mMinZ + mRegionTexData[mRegionCursor].mMaxZ) * 0.5f;
+    f32 tmp3 = (mRegionMinMapX[mRegionCursor] + field_0xf0c[mRegionCursor]) +
+               mRegionMapSizeX[mRegionCursor] * mZoom * 0.5f;
+    f32 tmp4 = (mRegionMinMapY[mRegionCursor] + field_0xf2c[mRegionCursor]) +
+               mRegionMapSizeY[mRegionCursor] * mZoom * 0.5f;
+    f32 tmp3_ = param_0 - tmp3;
+    f32 tmp4_ = param_1 - tmp4;
     f32 tmp5 = field_0xf98 / getMapScissorAreaSizeRealY();
 
-    *param_2 = tmp1 + (tmp3 * tmp5);
-    *param_3 = tmp2 + (tmp4 * tmp5);
+    *outX = midX + (tmp3_ * tmp5);
+    *outZ = midY + (tmp4_ * tmp5);
 }
 
 void dMenu_Fmap2DBack_c::setSpotPane(ResTIMG* i_timg) {
@@ -624,27 +696,28 @@ void dMenu_Fmap2DBack_c::zoomMapCalc(f32 i_zoom) {
     if (g_fmapHIO.field_0x308 == false) {
         f32 region_centerX = mRegionMinMapX[mRegionCursor] + (mRegionMapSizeX[mRegionCursor] * 0.5f);
         f32 region_centerY = mRegionMinMapY[mRegionCursor] + (mRegionMapSizeY[mRegionCursor] * 0.5f);
-        field_0xf0c[mRegionCursor] = region_centerX + (i_zoom * (centerX - region_centerX)) -
-                                     (mRegionMapSizeX[mRegionCursor] * mZoom * 0.5f) -
-                                     mRegionMinMapX[mRegionCursor];
-        field_0xf2c[mRegionCursor] = region_centerY + (i_zoom * (centerY - region_centerY)) -
-                                     (mRegionMapSizeY[mRegionCursor] * mZoom * 0.5f) -
-                                     mRegionMinMapY[mRegionCursor];
+        f32 v = region_centerX + (i_zoom * (centerX - region_centerX));
+        f32 v2 = region_centerY + (i_zoom * (centerY - region_centerY));
+        field_0xf0c[mRegionCursor] =
+            v - (mRegionMapSizeX[mRegionCursor] * mZoom * 0.5f) - mRegionMinMapX[mRegionCursor];
+        field_0xf2c[mRegionCursor] =
+            v2 - (mRegionMapSizeY[mRegionCursor] * mZoom * 0.5f) - mRegionMinMapY[mRegionCursor];
     } else {
         f32 dVar12 = (mRegionScrollMapMinX[mRegionCursor] + mRegionScrollMapMaxX[mRegionCursor]) * 0.5f;
         f32 dVar11 = (mRegionScrollMapMinY[mRegionCursor] + mRegionScrollMapMaxY[mRegionCursor]) * 0.5f;
 
-        f32 tmp = (mRegionMinMapY[mRegionCursor] + (mRegionMapSizeY[mRegionCursor] * 0.5f)) - dVar11;
+        f32 tmp3 = (mRegionMinMapX[mRegionCursor] + mRegionMapSizeX[mRegionCursor] * 0.5f) - dVar12;
+        f32 tmp = (mRegionMinMapY[mRegionCursor] + mRegionMapSizeY[mRegionCursor] * 0.5f) - dVar11;
 
         f32 tmp2 = (dVar12 + (i_zoom * (centerX - dVar12)));
-        f32 tmp3 = (((mRegionMinMapX[mRegionCursor] + mRegionMapSizeX[mRegionCursor] * 0.5f) - dVar12));
+        f32 tmp2_ = (dVar11 + (i_zoom * (centerY - dVar11)));
+        
         field_0xf0c[mRegionCursor] =
-            (((tmp2 + (tmp3 * mZoom))) - mRegionMapSizeX[mRegionCursor] * mZoom * 0.5f) -
+            ((tmp2 + (tmp3 * mZoom)) - mRegionMapSizeX[mRegionCursor] * mZoom * 0.5f) -
             mRegionMinMapX[mRegionCursor];
 
         field_0xf2c[mRegionCursor] =
-            (((dVar11 + (i_zoom * (centerY - dVar11))) + tmp * mZoom) -
-             mRegionMapSizeY[mRegionCursor] * mZoom * 0.5f) -
+            ((tmp2_ + tmp * mZoom) - mRegionMapSizeY[mRegionCursor] * mZoom * 0.5f) -
             mRegionMinMapY[mRegionCursor];
     }
 
@@ -718,11 +791,11 @@ void dMenu_Fmap2DBack_c::zoomMapCalc2(f32 param_0) {
         field_0xf2c[mRegionCursor] = (centerY - (mRegionMapSizeY[mRegionCursor] * mZoom * 0.5f)) -
                                     mRegionMinMapY[mRegionCursor];
     } else {
-        f32 tmp1 = (mRegionMinMapY[mRegionCursor] + (mRegionMapSizeY[mRegionCursor] * 0.5f)) -
-                   ((mRegionScrollMapMinY[mRegionCursor] + mRegionScrollMapMaxY[mRegionCursor]) * 0.5f);
+        f32 x = (mRegionScrollMapMinX[mRegionCursor] + mRegionScrollMapMaxX[mRegionCursor]) * 0.5f;
+        f32 y = (mRegionScrollMapMinY[mRegionCursor] + mRegionScrollMapMaxY[mRegionCursor]) * 0.5f;
 
-        f32 tmp2 = ((mRegionMinMapX[mRegionCursor] + mRegionMapSizeX[mRegionCursor] * 0.5f) -
-                    (mRegionScrollMapMinX[mRegionCursor] + mRegionScrollMapMaxX[mRegionCursor]) * 0.5f);
+        f32 tmp2 = (mRegionMinMapX[mRegionCursor] + (mRegionMapSizeX[mRegionCursor] * 0.5f)) - x;
+        f32 tmp1 = (mRegionMinMapY[mRegionCursor] + (mRegionMapSizeY[mRegionCursor] * 0.5f)) - y;
 
         field_0xf0c[mRegionCursor] =
             ((centerX + (tmp2 * mZoom)) - mRegionMapSizeX[mRegionCursor] * mZoom * 0.5f) -
@@ -770,11 +843,15 @@ void dMenu_Fmap2DBack_c::zoomMapCalcHIO() {
                 (centerY - (mRegionMapSizeY[mRegionCursor] * mZoom * 0.5f)) -
                 mRegionMinMapY[mRegionCursor];
         } else {
-            f32 tmp1 = (mRegionMinMapY[mRegionCursor] + (mRegionMapSizeY[mRegionCursor] * 0.5f)) -
-                       ((mRegionScrollMapMinY[mRegionCursor] + mRegionScrollMapMaxY[mRegionCursor]) * 0.5f);
+            f32 x =
+                (mRegionScrollMapMinX[mRegionCursor] + mRegionScrollMapMaxX[mRegionCursor]) * 0.5f;
+            f32 y =
+                (mRegionScrollMapMinY[mRegionCursor] + mRegionScrollMapMaxY[mRegionCursor]) * 0.5f;
 
-            f32 tmp2 = ((mRegionMinMapX[mRegionCursor] + mRegionMapSizeX[mRegionCursor] * 0.5f) -
-                        (mRegionScrollMapMinX[mRegionCursor] + mRegionScrollMapMaxX[mRegionCursor]) * 0.5f);
+            f32 tmp2 =
+                ((mRegionMinMapX[mRegionCursor] + mRegionMapSizeX[mRegionCursor] * 0.5f) - x);
+            f32 tmp1 =
+                ((mRegionMinMapY[mRegionCursor] + mRegionMapSizeY[mRegionCursor] * 0.5f) - y);
 
             field_0xf0c[mRegionCursor] = ((centerX + (tmp2 * mZoom)) -
                                          mRegionMapSizeX[mRegionCursor] * mZoom * 0.5f) -
@@ -800,20 +877,21 @@ void dMenu_Fmap2DBack_c::zoomMapCalcHIO() {
 }
 
 void dMenu_Fmap2DBack_c::scrollCalc(f32 param_0) {
-    f32 tmp1, tmp2;
-    calcAllMapPos2D(mArrowPos3DX + control_xpos, mArrowPos3DZ + control_ypos, &tmp1, &tmp2,
+    f32 sp40, sp3C;
+    calcAllMapPos2D(mArrowPos3DX + control_xpos, mArrowPos3DZ + control_ypos, &sp40, &sp3C,
                     field_0xf4c[mRegionCursor], field_0xf6c[mRegionCursor],
                     getRegionMapZoomRate(mRegionCursor));
 
-    f32 centerX = getMapAreaGlobalCenterPosX();
-    f32 centerY = getMapAreaGlobalCenterPosY();
+    f32 sp38 = getMapAreaGlobalCenterPosX();
+    f32 sp34 = getMapAreaGlobalCenterPosY();
 
-    f32 tmp3, tmp4;
-    calcAllMapPosWorld(tmp1 + (param_0 * (centerX - tmp1)), tmp2 + (param_0 * (centerY - tmp2)),
-                       &tmp3, &tmp4);
+    f32 sp30 = sp40 + (param_0 * (sp38 - sp40));
+    f32 sp2C = sp3C + (param_0 * (sp34 - sp3C));
+    f32 sp28, sp24;
+    calcAllMapPosWorld(sp30, sp2C, &sp28, &sp24);
 
-    mStageTransX = (mArrowPos3DX + control_xpos) - tmp3;
-    mStageTransZ = (mArrowPos3DZ + control_ypos) - tmp4;
+    mStageTransX = (mArrowPos3DX + control_xpos) - sp28;
+    mStageTransZ = (mArrowPos3DZ + control_ypos) - sp24;
 
     field_0x11ac = mStageTransX;
     field_0x11b0 = mStageTransZ;
@@ -835,23 +913,22 @@ void dMenu_Fmap2DBack_c::scrollCalc(f32 param_0) {
         }
 
         calcAllMapPos2D(mArrowPos3DX + control_xpos + local_44,
-                        mArrowPos3DZ + control_ypos + local_48, &tmp1, &tmp2,
+                        mArrowPos3DZ + control_ypos + local_48, &sp40, &sp3C,
                         field_0xf4c[mRegionCursor], field_0xf6c[mRegionCursor],
                         getRegionMapZoomRate(mRegionCursor));
 
-        f32 local_54, local_58;
-        calcAllMapPosWorld(tmp1 + (param_0 * (centerX - tmp1)), tmp2 + (param_0 * (centerY - tmp2)),
-                           &local_54, &local_58);
+        f32 sp14 = sp40 + (param_0 * (sp38 - sp40));
+        f32 sp10 = sp3C + (param_0 * (sp34 - sp3C));
+        f32 spC, sp8;
+        calcAllMapPosWorld(sp14, sp10, &spC, &sp8);
 
-        field_0x11ac = (mArrowPos3DX + control_xpos + local_44) - local_54;
-        field_0x11b0 = (mArrowPos3DZ + control_ypos + local_48) - local_58;
+        field_0x11ac = (mArrowPos3DX + control_xpos + local_44) - spC;
+        field_0x11b0 = (mArrowPos3DZ + control_ypos + local_48) - sp8;
     }
 
     if (param_0 == 0.0f) {
-        field_0xfd4 = 0.0f;
-        field_0xfd0 = 0.0f;
-        field_0xfdc = 0.0f;
-        field_0xfd8 = 0.0f;
+        field_0xfd0 = field_0xfd4 = 0.0f;
+        field_0xfd8 = field_0xfdc = 0.0f;
     } else if (param_0 == 1.0f) {
         field_0xfd0 = mStageTransX;
         field_0xfd4 = mStageTransZ;
@@ -861,9 +938,9 @@ void dMenu_Fmap2DBack_c::scrollCalc(f32 param_0) {
 }
 
 void dMenu_Fmap2DBack_c::mapBlink(s16* param_0) {
-    *param_0 += 1;
+    *param_0 += (s16)1;
     if (*param_0 >= 30) {
-        *param_0 -= 30;
+        *param_0 -= (s16)30;
     }
 }
 
@@ -876,70 +953,73 @@ void dMenu_Fmap2DBack_c::setSpotCursor(u8 param_0) {
 }
 
 void dMenu_Fmap2DBack_c::allmap_move2(STControl* param_0) {
-    f32 tmp1, tmp2;
-    calcAllMapPosWorld(getMapScissorAreaLX(), getMapScissorAreaLY(), &tmp1, &tmp2);
+    f32 sp48, sp44;
+    calcAllMapPosWorld(getMapScissorAreaLX(), getMapScissorAreaLY(), &sp48, &sp44);
 
-    f32 local_50, local_54;
+    f32 sp40, sp3C;
     calcAllMapPosWorld(getMapScissorAreaLX() + getMapScissorAreaSizeRealX(),
-                       getMapScissorAreaLY() + getMapScissorAreaSizeRealY(), &local_50, &local_54);
+                       getMapScissorAreaLY() + getMapScissorAreaSizeRealY(), &sp40, &sp3C);
+    int r26 = 0;
+    if (r26 == 0) {
+        f32 spC = g_fmapHIO.mScrollSpeedSlowBound < g_fmapHIO.mScrollSpeedFastBound ?
+                               g_fmapHIO.mScrollSpeedSlowBound :
+                               g_fmapHIO.mScrollSpeedFastBound;
+        f32 sp8 = g_fmapHIO.mScrollSpeedSlowBound > g_fmapHIO.mScrollSpeedFastBound ?
+                               g_fmapHIO.mScrollSpeedSlowBound :
+                               g_fmapHIO.mScrollSpeedFastBound;
 
-    f32 scrollSpeed1 = g_fmapHIO.mScrollSpeedSlowBound < g_fmapHIO.mScrollSpeedFastBound ?
-                           g_fmapHIO.mScrollSpeedSlowBound :
-                           g_fmapHIO.mScrollSpeedFastBound;
-    f32 scrollSpeed2 = g_fmapHIO.mScrollSpeedSlowBound > g_fmapHIO.mScrollSpeedFastBound ?
-                           g_fmapHIO.mScrollSpeedSlowBound :
-                           g_fmapHIO.mScrollSpeedFastBound;
+        f32 stickValue = param_0->getValueStick();
+        if (stickValue >= spC) {
+            s16 angle = param_0->getAngleStick();
+            f32 local_68 = (mTexMaxX - mTexMinX);
+            f32 zoomRate = local_68 / getAllMapZoomRate();
+            f32 sp24;
+            if (stickValue < sp8) {
+                sp24 =  g_fmapHIO.mScrollSpeedWorldSlow;
+            } else {
+                sp24 = g_fmapHIO.mScrollSpeedWorldFast;
+            }
 
-    f32 stickValue = param_0->getValueStick();
-    if (stickValue >= scrollSpeed1) {
-        s16 angle = param_0->getAngleStick();
-        f32 local_68 = (mTexMaxX - mTexMinX);
-        f32 zoomRate = local_68 / getAllMapZoomRate();
+            f32 speed = (sp24 / 100.0f) * zoomRate;
+            f32 delta_y = speed * cM_ssin(angle);
+            f32 delta_x = speed * cM_scos(angle);
 
-        f32 speed = ((stickValue < scrollSpeed2 ? g_fmapHIO.mScrollSpeedWorldSlow :
-                                                  g_fmapHIO.mScrollSpeedWorldFast) /
-                     100.0f);
-
-        f32 delta_y = (speed * zoomRate) * cM_ssin(angle);
-        f32 delta_x = (speed * zoomRate) * cM_scos(angle);
-
-        control_xpos = control_xpos + delta_y;
-        control_ypos = control_ypos + delta_x;
+            control_xpos = control_xpos + delta_y;
+            control_ypos = control_ypos + delta_x;
+        }
+    }
+    if (mArrowPos3DX + control_xpos < sp48) {
+        control_xpos = sp48 - mArrowPos3DX;
     }
 
-    if (mArrowPos3DX + control_xpos < tmp1) {
-        control_xpos = tmp1 - mArrowPos3DX;
+    if (mArrowPos3DX + control_xpos > sp40) {
+        control_xpos = sp40 - mArrowPos3DX;
     }
 
-    if (mArrowPos3DX + control_xpos > local_50) {
-        control_xpos = local_50 - mArrowPos3DX;
+    if (mArrowPos3DZ + control_ypos < sp44) {
+        control_ypos = sp44 - mArrowPos3DZ;
     }
 
-    if (mArrowPos3DZ + control_ypos < tmp2) {
-        control_ypos = tmp2 - mArrowPos3DZ;
-    }
-
-    if (mArrowPos3DZ + control_ypos > local_54) {
-        control_ypos = local_54 - mArrowPos3DZ;
+    if (mArrowPos3DZ + control_ypos > sp3C) {
+        control_ypos = sp3C - mArrowPos3DZ;
     }
 
     calcRenderingScale();
     calcRenderingPos();
     calcAllMapPos();
 
-    f32 local_7c, local_80;
+    f32 sp14, sp10;
     calcAllMapPos2D((mArrowPos3DX + control_xpos) - mStageTransX,
-                    (mArrowPos3DZ + control_ypos) - mStageTransZ, &local_7c, &local_80);
+                    (mArrowPos3DZ + control_ypos) - mStageTransZ, &sp14, &sp10);
 
     mSelectRegion = 0xff;
     for (int i = 7; i >= 0; i--) {
         int val = field_0x1230[i];
         if (val != 0xff && val != 7) {
-            const ResTIMG* timg = mpAreaTex[val]->getTexture(0)->getTexInfo();
-            bool pixel = dMeter2Info_getPixel(
-                local_7c, local_80, (mRegionMinMapX[val] + field_0xf0c[val] + mTransX),
-                (mRegionMinMapY[val] + field_0xf2c[val] + mTransZ),
-                (mRegionMapSizeX[val] * mZoom), (mRegionMapSizeY[val] * mZoom), timg);
+            u8 pixel = dMeter2Info_getPixel(
+                sp14, sp10, (mRegionMinMapX[val] + field_0xf0c[val] + mTransX),
+                (mRegionMinMapY[val] + field_0xf2c[val] + mTransZ), (mRegionMapSizeX[val] * mZoom),
+                (mRegionMapSizeY[val] * mZoom), mpAreaTex[val]->getTexture(0)->getTexInfo());
             if (pixel) {
                 mSelectRegion = val;
             }
@@ -953,39 +1033,41 @@ void dMenu_Fmap2DBack_c::setIcon2DPos(u8 param_0, f32 param_1, f32 param_2, f32 
                                       bool param_5) {
     f32 local_68, local_6c;
 
-    f32 local_70 = mMapZoomRate;
+    f32 sp30 = mMapZoomRate;
     u8 uVar9 = 1;
     if (param_0 == 17) {
         uVar9 = 2;
 
-        f32 local_74, local_78;
-        calcAllMapPosWorld(getMapScissorAreaCenterPosX(), getMapScissorAreaCenterPosY(), &local_74,
-                           &local_78);
+        f32 dVar11 = 0.0f;
+        f32 dVar10 = 0.0f;
+        f32 sp2C, sp28;
+        calcAllMapPosWorld(getMapScissorAreaCenterPosX(), getMapScissorAreaCenterPosY(), &sp2C,
+                           &sp28);
 
-        f32 local_7c, local_80;
-        calcAllMapPos2D(local_74 + mStageTransX, local_78 + mStageTransZ, &local_7c, &local_80);
+        f32 sp24, sp20;
+        calcAllMapPos2D(sp2C + mStageTransX, sp28 + mStageTransZ, &sp24, &sp20);
 
-        f32 dVar11 = getMapScissorAreaCenterPosX() - local_7c;
-        f32 dVar10 = getMapScissorAreaCenterPosY() - local_80;
+        dVar11 = getMapScissorAreaCenterPosX() - sp24;
+        dVar10 = getMapScissorAreaCenterPosY() - sp20;
 
         if (mRegionCursor + 1 == dComIfGp_getNowLevel()) {
             calcAllMapPos2D(param_1 - mStageTransX, param_2 - mStageTransZ, &local_68, &local_6c);
-            f32 tmp1 = (dVar10 + (mRegionMinMapY[mRegionCursor] + field_0xf2c[mRegionCursor])) +
-                       ((mRegionMapSizeY[mRegionCursor] * mZoom) / 2.0f);
             f32 tmp2 = (dVar11 + (mRegionMinMapX[mRegionCursor] + field_0xf0c[mRegionCursor])) +
                        ((mRegionMapSizeX[mRegionCursor] * mZoom) / 2.0f);
+            f32 tmp1 = (dVar10 + (mRegionMinMapY[mRegionCursor] + field_0xf2c[mRegionCursor])) +
+                       ((mRegionMapSizeY[mRegionCursor] * mZoom) / 2.0f);
 
             field_0x11e8 = local_68 - tmp2;
             field_0x11ec = local_6c - tmp1;
         } else {
-            f32 tmp1 = (dVar11 + (mRegionScrollMapMaxY[dComIfGp_getNowLevel() + 7] +
-                                  mRegionMapSizeY[dComIfGp_getNowLevel() + 7])) +
-                       ((mRegionMinMapY[dComIfGp_getNowLevel() + 7] * mZoom) / 2.0f);
-            f32 tmp2 = (dVar10 + (mRegionMinMapX[dComIfGp_getNowLevel() + 7] +
-                                  field_0xf0c[dComIfGp_getNowLevel() + 7])) +
-                       ((mRegionMapSizeX[dComIfGp_getNowLevel() + 7] * mZoom) / 2.0f);
-            local_68 = tmp1 + (field_0x11e8 * mZoom);
-            local_6c = tmp2 + (field_0x11ec * mZoom);
+            f32 tmp2 = (dVar11 + (mRegionMinMapX[dComIfGp_getNowLevel() - 1] +
+                                  field_0xf0c[dComIfGp_getNowLevel() - 1])) +
+                       ((mRegionMapSizeX[dComIfGp_getNowLevel() - 1] * mZoom) / 2.0f);
+            f32 tmp1 = (dVar10 + (mRegionMinMapY[dComIfGp_getNowLevel() - 1] +
+                                  field_0xf2c[dComIfGp_getNowLevel() - 1])) +
+                       ((mRegionMapSizeY[dComIfGp_getNowLevel() - 1] * mZoom) / 2.0f);
+            local_68 = tmp2 + (field_0x11e8 * mZoom);
+            local_6c = tmp1 + (field_0x11ec * mZoom);
         }
     } else {
         calcAllMapPos2D(param_1 - mStageTransX, param_2 - mStageTransZ, &local_68, &local_6c);
@@ -993,14 +1075,14 @@ void dMenu_Fmap2DBack_c::setIcon2DPos(u8 param_0, f32 param_1, f32 param_2, f32 
 
     if (!param_5) {
         if (param_0 == 1) {
-            local_70 = (mMapZoomRate * 0.5f) + 0.5f;
+            sp30 = (mMapZoomRate * 0.5f) + 0.5f;
             uVar9 = 2;
         }
 
         if (param_4 != 0) {
             uVar9 = 3;
         }
-        setIconInfo(param_0, local_68, local_6c, 1.0f, param_3, local_70, uVar9);
+        setIconInfo(param_0, local_68, local_6c, 1.0f, param_3, sp30, uVar9);
     }
 }
 
@@ -1088,8 +1170,8 @@ f32 dMenu_Fmap2DBack_c::getMapScissorAreaLY() {
 
 f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeX() {
     f32 scale = mpMapArea->getScaleX();
-
-    for (J2DPane* pane = mpMapArea->getPanePtr()->getParentPane(); pane != NULL;
+    J2DPane* pane;
+    for (pane = mpMapArea->getPanePtr()->getParentPane(); pane != NULL;
          pane = pane->getParentPane())
     {
         scale *= pane->getScaleX();
@@ -1099,7 +1181,11 @@ f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeX() {
 }
 
 f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeRealX() {
+#if PLATFORM_GCN
     return getMapScissorAreaSizeX();
+#else
+    return getMapScissorAreaSizeX() * mDoGph_gInf_c::getScale();
+#endif
 }
 
 f32 dMenu_Fmap2DBack_c::getMapScissorAreaCenterPosX() {
@@ -1112,8 +1198,8 @@ f32 dMenu_Fmap2DBack_c::getMapScissorAreaCenterPosY() {
 
 f32 dMenu_Fmap2DBack_c::getMapScissorAreaSizeY() {
     f32 scale = mpMapArea->getScaleY();
-
-    for (J2DPane* pane = mpMapArea->getPanePtr()->getParentPane(); pane != NULL;
+    J2DPane* pane;
+    for (pane = mpMapArea->getPanePtr()->getParentPane(); pane != NULL;
          pane = pane->getParentPane())
     {
         scale *= pane->getScaleY();
@@ -1180,24 +1266,24 @@ f32 dMenu_Fmap2DBack_c::getRegionMapZoomRate(int i_regionNo) {
 
     if (tmp1 < tmp2) {
         field_0x122e = false;
-        tmp2 = tmp1;
+        return tmp1;
     } else {
         field_0x122e = true;
+        return tmp2;
     }
-
-    return tmp2;
 }
 
 f32 dMenu_Fmap2DBack_c::getSpotMapZoomRate() {
+    f32 tmp4;
     f32 tmp1 = mTexMaxX - mTexMinX;
     f32 tmp2 = mTexMaxZ - mTexMinZ;
-
+    
     f32 tmp3 = tmp1;
-    if (tmp1 < tmp2) {
+    if (tmp3 < tmp2) {
         tmp3 = tmp2;
     }
-
-    return tmp3 / g_fmapHIO.mRegionZoomRange;
+    tmp4 = tmp3 / g_fmapHIO.mRegionZoomRange;
+    return tmp4;
 }
 
 void dMenu_Fmap2DBack_c::getStageOriginPath(u8 param_0, f32* param_1, f32* param_2) {
@@ -1214,11 +1300,15 @@ void dMenu_Fmap2DBack_c::calcOffset(u8 i_regionNo, char const* i_stageName,
                                     f32* o_offsetX, f32* o_offsetZ) {
     if (mpStages != NULL) {
         Stage_c::data* data = mpStages->mData;
-        for (int i = 0; i < mStageDataNum; i++) {
-            if (i_regionNo + 1 == data[i].mRegionNo && strcmp(i_stageName, data[i].mName) == 0) {
-                *o_offsetX = mRegionOriginX[i_regionNo] + data[i].mOffsetX;
-                *o_offsetZ = mRegionOriginZ[i_regionNo] + data[i].mOffsetZ;
-                return;
+        for (int j = 0, i = 0; i < mStageDataNum; i++) {
+            if (i_regionNo + 1 == data[i].mRegionNo) {
+                if (strcmp(i_stageName, data[i].mName) == 0) {
+                    *o_offsetX = mRegionOriginX[i_regionNo] + data[i].mOffsetX;
+                    *o_offsetZ = mRegionOriginZ[i_regionNo] + data[i].mOffsetZ;
+                    return;
+                } else {
+                    j++;
+                }
             }
         }
     }
@@ -1229,14 +1319,16 @@ void dMenu_Fmap2DBack_c::calcOffset(u8 i_regionNo, char const* i_stageName,
 
 void dMenu_Fmap2DBack_c::regionTextureDraw() {
     f32 local_84, local_88;
+    f32 dVar14 = 0.0f;
+    f32 dVar13 = 0.0f;
     calcAllMapPosWorld(getMapScissorAreaCenterPosX(), getMapScissorAreaCenterPosY(), &local_84,
                        &local_88);
 
     f32 local_8c, local_90;
     calcAllMapPos2D(local_84 + mStageTransX, local_88 + mStageTransZ, &local_8c, &local_90);
 
-    f32 dVar14 = getMapScissorAreaCenterPosX() - local_8c;
-    f32 dVar13 = getMapScissorAreaCenterPosY() - local_90;
+    dVar14 = getMapScissorAreaCenterPosX() - local_8c;
+    dVar13 = getMapScissorAreaCenterPosY() - local_90;
 
     s32 uVar9 = mRegionCursor;
 
@@ -1272,17 +1364,19 @@ void dMenu_Fmap2DBack_c::regionTextureDraw() {
             mpAreaTex[uVar10]->setAlpha(mAlphaRate * 255.0f * fVar3 * field_0xfa4);
 
             if (uVar10 != uVar9) {
+                bool b = 0;
+                f32 v = mTransX + (dVar14 + (mRegionMinMapX[uVar10] + field_0xf0c[uVar10]));
                 mpAreaTex[uVar10]->draw(
-                    mTransX + (dVar14 + (mRegionMinMapX[uVar10] + field_0xf0c[uVar10])),
-                    mTransZ + (dVar13 + (mRegionMinMapY[uVar10] + field_0xf2c[uVar10])),
-                    mRegionMapSizeX[uVar10] * mZoom, mRegionMapSizeY[uVar10] * mZoom, false,
-                    false, false);
+                    v, mTransZ + (dVar13 + (mRegionMinMapY[uVar10] + field_0xf2c[uVar10])),
+                    mRegionMapSizeX[uVar10] * mZoom, mRegionMapSizeY[uVar10] * mZoom, b, false,
+                    false);
             } else {
+                bool b = 0;
+                f32 v = mTransX + (dVar14 + (mRegionMinMapX[uVar9] + field_0xf0c[uVar9]));
                 mpAreaTex[uVar9]->draw(
-                    mTransX + (dVar14 + (mRegionMinMapX[uVar9] + field_0xf0c[uVar9])),
-                    mTransZ + (dVar13 + (mRegionMinMapY[uVar9] + field_0xf2c[uVar9])),
-                    mRegionMapSizeX[uVar9] * mZoom, mRegionMapSizeY[uVar9] * mZoom, false,
-                    false, false);
+                    v, mTransZ + (dVar13 + (mRegionMinMapY[uVar9] + field_0xf2c[uVar9])),
+                    mRegionMapSizeX[uVar9] * mZoom, mRegionMapSizeY[uVar9] * mZoom, b, false,
+                    false);
             }
         }
     }
@@ -1292,8 +1386,7 @@ void dMenu_Fmap2DBack_c::stageTextureDraw() {
     if (mAllPathShowFlag) {
         mpSpotTexture->setAlpha(mAlphaRate * 255.0f * mSpotTextureFadeAlpha);
     } else {
-        f32 tmp = mAlphaRate * 255.0f * field_0xfa8;
-        mpSpotTexture->setAlpha(mSpotTextureFadeAlpha * tmp);
+        mpSpotTexture->setAlpha(mAlphaRate * 255.0f * field_0xfa8 * mSpotTextureFadeAlpha);
     }
 
     mpSpotTexture->draw(mTransX + getMapScissorAreaLX(), mTransZ + getMapScissorAreaLY(),
@@ -1516,11 +1609,9 @@ void dMenu_Fmap2DBack_c::stageOriginDraw() {
     for (int i = 0; i < mStageDataNum; i++) {
         if (mRegionCursor + 1 == stage_data[i].mRegionNo) {
             f32 center_x, center_y;
-            calcAllMapPos2D(
-                mRegionOriginX[mRegionCursor] + stage_data[i].mOffsetX - mStageTransX,
-                mRegionOriginZ[mRegionCursor] + stage_data[i].mOffsetZ - mStageTransZ,
-                &center_x, &center_y
-            );
+            f32 v1 = mRegionOriginX[mRegionCursor] + stage_data[i].mOffsetX - mStageTransX;
+            f32 v2 = mRegionOriginZ[mRegionCursor] + stage_data[i].mOffsetZ - mStageTransZ;
+            calcAllMapPos2D(v1, v2, &center_x, &center_y);
             J2DFillBox(center_x - 3.0f, center_y - 3.0f, 6.0f, 6.0f,
                        JUtility::TColor(0, 0, 255, 255));
         }
@@ -1640,21 +1731,25 @@ void dMenu_Fmap2DBack_c::calcBlink() {
     f32 tmp_selected_max = g_fmapHIO.mMapBlink[i].mSelectedRegion.mMax / 255.0f;
     f32 tmp_unselected_min = g_fmapHIO.mMapBlink[i].mUnselectedRegion.mMin / 255.0f;
     f32 tmp_unselected_max = g_fmapHIO.mMapBlink[i].mUnselectedRegion.mMax / 255.0f;
+                            
+    f32 sp20 = g_fmapHIO.mMapBlink[i + 1].mSelectedRegion.mMin / 255.0f;
+    f32 sp1C = g_fmapHIO.mMapBlink[i + 1].mSelectedRegion.mMax / 255.0f;
+    f32 sp18 = g_fmapHIO.mMapBlink[i + 1].mUnselectedRegion.mMin / 255.0f;
+    f32 sp14 = g_fmapHIO.mMapBlink[i + 1].mUnselectedRegion.mMax / 255.0f;
 
-    selected_max = tmp_selected_max
-        + t * (g_fmapHIO.mMapBlink[i + 1].mSelectedRegion.mMax / 255.0f - tmp_selected_max);
-    selected_min = tmp_selected_min
-        + t * (g_fmapHIO.mMapBlink[i + 1].mSelectedRegion.mMin / 255.0f - tmp_selected_min);
-    s16 selected_blink_speed = g_fmapHIO.mMapBlink[i].mSelectedRegion.mBlinkSpeed
-                            + t * (g_fmapHIO.mMapBlink[i + 1].mSelectedRegion.mBlinkSpeed
-                                    - g_fmapHIO.mMapBlink[i].mSelectedRegion.mBlinkSpeed);
-    unselected_max = tmp_unselected_max
-        + t * (g_fmapHIO.mMapBlink[i + 1].mUnselectedRegion.mMax / 255.0f - tmp_unselected_max);
-    unselected_min = tmp_unselected_min
-        + t * (g_fmapHIO.mMapBlink[i + 1].mUnselectedRegion.mMin / 255.0f - tmp_unselected_min);
-    s16 unselected_blink_speed = g_fmapHIO.mMapBlink[i].mUnselectedRegion.mBlinkSpeed
-                            + t * (g_fmapHIO.mMapBlink[i + 1].mUnselectedRegion.mBlinkSpeed
-                                    - g_fmapHIO.mMapBlink[i].mUnselectedRegion.mBlinkSpeed);
+    selected_max = tmp_selected_max + t * (sp1C - tmp_selected_max);
+    selected_min = tmp_selected_min + t * (sp20 - tmp_selected_min);
+
+    s16 selected_blink_speed = g_fmapHIO.mMapBlink[i].mSelectedRegion.mBlinkSpeed +
+                               t * (g_fmapHIO.mMapBlink[i + 1].mSelectedRegion.mBlinkSpeed -
+                                    g_fmapHIO.mMapBlink[i].mSelectedRegion.mBlinkSpeed);
+
+    unselected_max = tmp_unselected_max + t * (sp14 - tmp_unselected_max);
+    unselected_min = tmp_unselected_min + t * (sp18 - tmp_unselected_min);
+
+    s16 unselected_blink_speed = g_fmapHIO.mMapBlink[i].mUnselectedRegion.mBlinkSpeed +
+                                 t * (g_fmapHIO.mMapBlink[i + 1].mUnselectedRegion.mBlinkSpeed -
+                                      g_fmapHIO.mMapBlink[i].mUnselectedRegion.mBlinkSpeed);
 
     field_0x1218++;
     if (field_0x1218 >= selected_blink_speed) {
@@ -1693,14 +1788,14 @@ void dMenu_Fmap2DBack_c::calcBackAlpha(bool param_0) {
     if (param_0) {
         if (mBackAlpha != 1.0f) {
             cLib_addCalc2(&mBackAlpha, 1.0f, 0.4f, 0.5f);
-            if (fabsf(mBackAlpha - 1.0f) < 0.1f) {
+            if (std::fabs(mBackAlpha - 1.0f) < 0.1f) {
                 mBackAlpha = 1.0f;
             }
         }
     } else {
         if (mBackAlpha != 0.0f) {
             cLib_addCalc2(&mBackAlpha, 0.0f, 0.4f, 0.5f);
-            if (fabsf(mBackAlpha) < 0.1f) {
+            if (std::fabs(mBackAlpha) < 0.1f) {
                 mBackAlpha = 0.0f;
             }
         }
@@ -1732,27 +1827,35 @@ void dMenu_Fmap2DBack_c::regionMapMove(STControl* i_stick) {
     calcAllMapPosWorld(getMapScissorAreaLX(), getMapScissorAreaLY(), &min_x, &min_y);
     calcAllMapPosWorld(getMapScissorAreaLX() + getMapScissorAreaSizeRealX(),
                        getMapScissorAreaLY() + getMapScissorAreaSizeRealY(), &max_x, &max_y);
-    
-    f32 slow_bound = g_fmapHIO.mScrollSpeedSlowBound < g_fmapHIO.mScrollSpeedFastBound ?
-        g_fmapHIO.mScrollSpeedSlowBound : g_fmapHIO.mScrollSpeedFastBound;
-    f32 fast_bound = g_fmapHIO.mScrollSpeedSlowBound > g_fmapHIO.mScrollSpeedFastBound ?
-        g_fmapHIO.mScrollSpeedSlowBound : g_fmapHIO.mScrollSpeedFastBound;
-    
-    f32 stick_value = i_stick->getValueStick();
-    if (stick_value >= slow_bound) {
-        s16 angle = i_stick->getAngleStick();
-        f32 local_68 = mTexMaxX - mTexMinX;
-        f32 spot_zoom = getSpotMapZoomRate();
-        f32 region_zoom = getRegionMapZoomRate(mRegionCursor);
-        f32 zoom = region_zoom + (mMapZoomRate - 1.0f) * (spot_zoom - region_zoom);
-        f32 local_78 = local_68 / zoom;
-        f32 base_speed = stick_value < fast_bound ?
-            g_fmapHIO.mScrollSpeedRegionSlow : g_fmapHIO.mScrollSpeedRegionFast;
-        f32 speed = base_speed / 100.0f * local_78;
-        f32 speed_y = speed * cM_ssin(angle);
-        f32 speed_x = speed * cM_scos(angle);
-        control_xpos += speed_y;
-        control_ypos += speed_x;
+    int r27 = 0;
+    if (r27 == 0) {
+        f32 slow_bound = g_fmapHIO.mScrollSpeedSlowBound < g_fmapHIO.mScrollSpeedFastBound ?
+                             g_fmapHIO.mScrollSpeedSlowBound :
+                             g_fmapHIO.mScrollSpeedFastBound;
+        f32 fast_bound = g_fmapHIO.mScrollSpeedSlowBound > g_fmapHIO.mScrollSpeedFastBound ?
+                             g_fmapHIO.mScrollSpeedSlowBound :
+                             g_fmapHIO.mScrollSpeedFastBound;
+
+        f32 stick_value = i_stick->getValueStick();
+        if (stick_value >= slow_bound) {
+            s16 angle = i_stick->getAngleStick();
+            f32 local_68 = mTexMaxX - mTexMinX;
+            f32 spot_zoom = getSpotMapZoomRate();
+            f32 region_zoom = getRegionMapZoomRate(mRegionCursor);
+            f32 zoom = region_zoom + (mMapZoomRate - 1.0f) * (spot_zoom - region_zoom);
+            f32 local_78 = local_68 / zoom;
+            f32 base_speed;
+            if (stick_value < fast_bound) {
+                base_speed = g_fmapHIO.mScrollSpeedRegionSlow;
+            } else {
+                base_speed = g_fmapHIO.mScrollSpeedRegionFast;
+            }
+            f32 speed = base_speed / 100.0f * local_78;
+            f32 speed_y = speed * cM_ssin(angle);
+            f32 speed_x = speed * cM_scos(angle);
+            control_xpos += speed_y;
+            control_ypos += speed_x;
+        }
     }
 
     if (mArrowPos3DX + control_xpos < min_x) {
@@ -1778,25 +1881,25 @@ void dMenu_Fmap2DBack_c::regionMapMove(STControl* i_stick) {
     mSelectRegion = 0xff;
     int region = mRegionCursor;
     if (region != 0xff && region != 7) {
-        if (dMeter2Info_getPixel(pos_x, pos_y,
-                                 mRegionMinMapX[region] + field_0xf0c[region] + mTransX,
-                                 mRegionMinMapY[region] + field_0xf2c[region] + mTransZ,
-                                 mRegionMapSizeX[region] * mZoom,
-                                 mRegionMapSizeY[region] * mZoom,
-                                 mpAreaTex[region]->getTexture(0)->getTexInfo())) {
+        u8 pix = dMeter2Info_getPixel(
+            pos_x, pos_y, mRegionMinMapX[region] + field_0xf0c[region] + mTransX,
+            mRegionMinMapY[region] + field_0xf2c[region] + mTransZ, mRegionMapSizeX[region] * mZoom,
+            mRegionMapSizeY[region] * mZoom, mpAreaTex[region]->getTexture(0)->getTexInfo());
+        if (pix) {
             mSelectRegion = region;
         }
     }
 }
 
 void dMenu_Fmap2DBack_c::stageMapMove(STControl* i_stick, u8 param_1, bool param_2) {
-    f32 min_x, min_y, max_x, max_y, center_x, center_y;
-
-    f32 slow_bound = g_fmapHIO.mScrollSpeedSlowBound < g_fmapHIO.mScrollSpeedFastBound ?
-        g_fmapHIO.mScrollSpeedSlowBound : g_fmapHIO.mScrollSpeedFastBound;
-    f32 fast_bound = g_fmapHIO.mScrollSpeedSlowBound > g_fmapHIO.mScrollSpeedFastBound ?
-        g_fmapHIO.mScrollSpeedSlowBound : g_fmapHIO.mScrollSpeedFastBound;
+    (void)param_1;
     
+    f32 slow_bound = g_fmapHIO.mScrollSpeedSlowBound < g_fmapHIO.mScrollSpeedFastBound ?
+    g_fmapHIO.mScrollSpeedSlowBound : g_fmapHIO.mScrollSpeedFastBound;
+    f32 fast_bound = g_fmapHIO.mScrollSpeedSlowBound > g_fmapHIO.mScrollSpeedFastBound ?
+    g_fmapHIO.mScrollSpeedSlowBound : g_fmapHIO.mScrollSpeedFastBound;
+    
+    f32  min_x, min_y, max_x, max_y;
     f32 stick_value = i_stick->getValueStick();
     bool bVar6 = false;
     f32 trans_x = mStageTransX;
@@ -1810,8 +1913,12 @@ void dMenu_Fmap2DBack_c::stageMapMove(STControl* i_stick, u8 param_1, bool param
         f32 region_zoom = getRegionMapZoomRate(mRegionCursor);
         f32 zoom = region_zoom + (mMapZoomRate - 1.0f) * (spot_zoom - region_zoom);
         f32 local_78 = local_68 / zoom;
-        f32 base_speed = stick_value < fast_bound ?
-            g_fmapHIO.mScrollSpeedRegionZoomSlow : g_fmapHIO.mScrollSpeedRegionZoomFast;
+        f32 base_speed;
+        if (stick_value < fast_bound) {
+            base_speed = g_fmapHIO.mScrollSpeedRegionZoomSlow;
+        } else {
+            base_speed = g_fmapHIO.mScrollSpeedRegionZoomFast;
+        }
         f32 speed = base_speed / 100.0f * local_78;
         f32 speed_x = speed * cM_ssin(angle);
         f32 speed_z = speed * cM_scos(angle);
@@ -1820,7 +1927,7 @@ void dMenu_Fmap2DBack_c::stageMapMove(STControl* i_stick, u8 param_1, bool param
     } else if (!param_2) {
         return;
     }
-
+    f32 center_x, center_y;
     calcAllMapPosWorld(getMapAreaGlobalCenterPosX(), getMapAreaGlobalCenterPosY(),
                        &center_x, &center_y);
     calcAllMapPosWorld(getMapScissorAreaLX(), getMapScissorAreaLY(), &min_x, &min_y);
@@ -1864,16 +1971,16 @@ void dMenu_Fmap2DBack_c::stageMapMove(STControl* i_stick, u8 param_1, bool param
 
     field_0x122d = 0;
     if (mStageTransX > -(center_x - min_x)) {
-        field_0x122d |= 1;
+        field_0x122d |= (u8)1;
     }
     if (mStageTransX < -(center_x - max_x)) {
-        field_0x122d |= 4;
+        field_0x122d |= (u8)4;
     }
     if (mStageTransZ > -(center_y - min_y)) {
-        field_0x122d |= 8;
+        field_0x122d |= (u8)8;
     }
     if (mStageTransZ < -(center_y - max_y)) {
-        field_0x122d |= 2;
+        field_0x122d |= (u8)2;
     }
 
     mpMeterHaihai->_execute(0);
@@ -1907,8 +2014,9 @@ void dMenu_Fmap2DBack_c::drawDebugStageArea() {
                                                     j - mDoGph_gInf_c::getHeightF() / 2.0f,
                                                     field_0x1244, &stage_no, NULL);
                 if (stage_no >= 0) {
-                    J2DFillBox(i + mDoGph_gInf_c::getMinXF() - 3.0f, j - 3.0f, 6.0f, 6.0f,
-                               colors[stage_no % 6]);
+                    f32 v = i + mDoGph_gInf_c::getMinXF();
+                    f32 v2 = j;
+                    J2DFillBox(v - 3.0f, v2 - 3.0f, 6.0f, 6.0f, colors[stage_no % 6]);
                 }
             }
         }
@@ -1916,7 +2024,8 @@ void dMenu_Fmap2DBack_c::drawDebugStageArea() {
 }
 
 void dMenu_Fmap2DBack_c::drawDebugRegionArea() {
-    getAllMapZoomRate();
+    if (mZoom != getAllMapZoomRate()) {
+    }
 
     JUtility::TColor colors[7] = {
         JUtility::TColor(255, 255, 0, 50),
@@ -1930,18 +2039,18 @@ void dMenu_Fmap2DBack_c::drawDebugRegionArea() {
 
     for (int i = 0; i < getMapScissorAreaSizeRealX(); i += g_fmapHIO.mRangeCheckInterval + 1) {
         for (int j = 0; j < getMapScissorAreaSizeRealY(); j += g_fmapHIO.mRangeCheckInterval + 1) {
+            u8 u = 0;
             for (int k = 7; k >= 0; k--) {
                 int region = field_0x1230[k];
                 if (region == 0xff || region == 7) continue;
                 f32 pos_x = i + getMapScissorAreaLX();
                 f32 pos_y = j + getMapScissorAreaLY();
-                if (dMeter2Info_getPixel(pos_x, pos_y,
-                                         mRegionMinMapX[region] + field_0xf0c[region] + mTransX,
-                                         mRegionMinMapY[region] + field_0xf2c[region] + mTransZ,
-                                         mRegionMapSizeX[region] * mZoom,
-                                         mRegionMapSizeY[region] * mZoom,
-                                         mpAreaTex[region]->getTexture(0)->getTexInfo()))
-                {
+                u = dMeter2Info_getPixel(
+                    pos_x, pos_y, mRegionMinMapX[region] + field_0xf0c[region] + mTransX,
+                    mRegionMinMapY[region] + field_0xf2c[region] + mTransZ,
+                    mRegionMapSizeX[region] * mZoom, mRegionMapSizeY[region] * mZoom,
+                    mpAreaTex[region]->getTexture(0)->getTexInfo());
+                if (u) {
                     J2DFillBox(pos_x - 3.0f, pos_y - 3.0f, 6.0f, 6.0f, colors[region]);
                     break;
                 }
@@ -1974,9 +2083,9 @@ void dMenu_Fmap2DBack_c::setArrowPos3DOffset(u8 i_regionNo, char const* i_stageN
     
     if (param_4 != 0.0f) {
         calcOffset(i_regionNo, i_stageName, &offset_x, &offset_z);
-        calcAllMapPos2D(i_posX + offset_x - getRegionOriginX(i_regionNo),
-                        i_posZ + offset_z - getRegionOriginZ(i_regionNo),
-                        &pos2d_x, &pos2d_y);
+        f32 v = i_posX + offset_x - getRegionOriginX(i_regionNo);
+        f32 v2 = i_posZ + offset_z - getRegionOriginZ(i_regionNo);
+        calcAllMapPos2D(v, v2, &pos2d_x, &pos2d_y);
         pos2d_y -= param_4;
         calcAllMapPosWorld(pos2d_x, pos2d_y, &i_posX, &i_posZ);
         i_posX += getRegionOriginX(i_regionNo);
@@ -1995,27 +2104,29 @@ void dMenu_Fmap2DBack_c::calcDrawPriority() {
     u8 dVar3 = 6;
 
     for (int i = 7; i >= 0; i--) {
-        region = field_0x1230[i];
         if (field_0x1230[i] != 0xff) {
             if (field_0x1230[i] == mRegionCursor) {
                 field_0x1230[i] = dVar2;
                 break;
+            } else {
+                u8 tmp = field_0x1230[i];
+                field_0x1230[i] = dVar2;
+                dVar2 = tmp;
             }
-            field_0x1230[i] = dVar2;
-            dVar2 = region;
         }
     }
 
     if (mRegionCursor != 6) {
         for (int i = 7; i >= 0; i--) {
-            region = field_0x1230[i];
             if (field_0x1230[i] != 0xff) {
                 if (field_0x1230[i] == 6) {
                     field_0x1230[i] = dVar3;
                     break;
+                } else {
+                    u8 tmp = field_0x1230[i];
+                    field_0x1230[i] = dVar3;
+                    dVar3 = tmp;
                 }
-                field_0x1230[i] = dVar3;
-                dVar3 = region;
             }
         }
     }
@@ -2024,14 +2135,15 @@ void dMenu_Fmap2DBack_c::calcDrawPriority() {
         u8 dVar4 = field_0x1230[0];
         field_0x1230[0] = 7;
         for (int i = 1; i < 8; i++) {
-            region = field_0x1230[i];
             if (field_0x1230[i] != 0xff) {
                 if (field_0x1230[i] == 7) {
                     field_0x1230[i] = dVar4;
                     break;
+                } else {
+                    u8 tmp = field_0x1230[i];
+                    field_0x1230[i] = dVar4;
+                    dVar4 = tmp;
                 }
-                field_0x1230[i] = dVar4;
-                dVar4 = region;
             }
         }
     }
@@ -2052,11 +2164,31 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
     mpScrnExplain = NULL;
 
     mpTitleScreen = new J2DScreen();
-    mpTitleScreen->setPriority("zelda_map_screen_title.blo", 0x1020000,
-                               dComIfGp_getFmapResArchive());
+    JUT_ASSERT(3872, mpTitleScreen != NULL);
+#if PLATFORM_GCN
+    bool fg = mpTitleScreen->setPriority("zelda_map_screen_title.blo", 0x1020000,
+                                         dComIfGp_getFmapResArchive());
+#else
+    bool fg = mpTitleScreen->setPriority("zelda_map_screen_title_revo.blo", 0x1020000,
+                                         dComIfGp_getFmapResArchive());
+#endif
+    JUT_ASSERT(3877, fg != false);
+
     dPaneClass_showNullPane(mpTitleScreen);
     mpTitleRoot = new CPaneMgrAlphaMorf(mpTitleScreen, 'ROOT', 2, NULL);
-
+    JUT_ASSERT(3881, mpTitleRoot != NULL);
+#if PLATFORM_SHIELD
+    for (int i = 0; i < 2; i++) {
+        mpArrowLAlpha[i] = NULL;
+        mpArrowRAlpha[i] = NULL;
+    }
+    mpDpadAlpha = NULL;
+    mpAnalogStickAlpha = NULL;
+    mpAnalogStick = NULL;
+    mpDpad = NULL;
+    mpTitleScreen->search('tri_Null')->hide();
+#endif
+#if PLATFORM_GCN
     mpArrowLAlpha[0] = new CPaneMgrAlpha(mpTitleScreen, 'yaji_04', 0, NULL);
     mpArrowLAlpha[1] = new CPaneMgrAlpha(mpTitleScreen, 'yaji_05', 0, NULL);
     mpArrowRAlpha[0] = new CPaneMgrAlpha(mpTitleScreen, 'yaji_06', 0, NULL);
@@ -2068,13 +2200,34 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
     mpAnalogStickAlpha->setAlphaRate(0.0f);
     mpAnalogStick = new CPaneMgr(mpTitleScreen, 'as_n', 0, NULL);
     mpDpad = new CPaneMgr(mpTitleScreen, 'juji_c_n', 0, NULL);
-
-    mpButtonA = new CPaneMgr(mpTitleScreen, 'abtn_n1', 2, NULL);
-    mpButtonB = new CPaneMgr(mpTitleScreen, 'bbtn_n1', 2, NULL);
-    mpButtonZ = new CPaneMgr(mpTitleScreen, 'zbtn_n1', 2, NULL);
+#endif
+#if PLATFORM_SHIELD
+    mpButtonA = new CPaneMgr(mpTitleScreen, 'abtn_n', 2, NULL);
+    JUT_ASSERT(3935, mpButtonA != NULL);
+    mpButtonB = new CPaneMgr(mpTitleScreen, 'bbtn_n', 2, NULL);
+    JUT_ASSERT(3938, mpButtonB != NULL);
+    mpButtonZ = new CPaneMgr(mpTitleScreen, 'j_scal_n', 2, NULL);
+    JUT_ASSERT(3941, mpButtonZ != NULL);
     mpButtonTextA = new CPaneMgr(mpTitleScreen, 'a_text_n', 2, NULL);
+    JUT_ASSERT(3953, mpButtonTextA != NULL);
     mpButtonTextB = new CPaneMgr(mpTitleScreen, 'b_text_n', 2, NULL);
+    JUT_ASSERT(3956, mpButtonTextB != NULL);
     mpButtonTextZ = new CPaneMgr(mpTitleScreen, 'z_text_n', 2, NULL);
+    JUT_ASSERT(3959, mpButtonTextZ != NULL);
+#else
+    mpButtonA = new CPaneMgr(mpTitleScreen, 'abtn_n1', 2, NULL);
+    JUT_ASSERT(3935, mpButtonA != NULL);
+    mpButtonB = new CPaneMgr(mpTitleScreen, 'bbtn_n1', 2, NULL);
+    JUT_ASSERT(3938, mpButtonB != NULL);
+    mpButtonZ = new CPaneMgr(mpTitleScreen, 'zbtn_n1', 2, NULL);
+    JUT_ASSERT(3941, mpButtonZ != NULL);
+    mpButtonTextA = new CPaneMgr(mpTitleScreen, 'a_text_n', 2, NULL);
+    JUT_ASSERT(3953, mpButtonTextA != NULL);
+    mpButtonTextB = new CPaneMgr(mpTitleScreen, 'b_text_n', 2, NULL);
+    JUT_ASSERT(3956, mpButtonTextB != NULL);
+    mpButtonTextZ = new CPaneMgr(mpTitleScreen, 'z_text_n', 2, NULL);
+    JUT_ASSERT(3959, mpButtonTextZ != NULL);
+#endif
     mpButtonA->setAlphaRate(0.0f);
     mpButtonB->setAlphaRate(0.0f);
     mpButtonZ->setAlphaRate(0.0f);
@@ -2083,12 +2236,16 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
     mpButtonTextZ->setAlphaRate(0.0f);
 
     mpNamePane = new CPaneMgr(mpTitleScreen, 'name_n', 0, NULL);
+    JUT_ASSERT(3970, mpNamePane != NULL);
     mpSubPane = new CPaneMgr(mpTitleScreen, 'sub_n_n', 0, NULL);
+    JUT_ASSERT(3974, mpSubPane != NULL);
+
     if (dMeter2Info_getMapStatus() == 9) {
         mpNamePane->hide();
         mpSubPane->hide();
     }
     mpContPane = new CPaneMgr(mpTitleScreen, 'cont_n', 0, NULL);
+    JUT_ASSERT(3984, mpContPane != NULL);
 
     mTitlePosX = mTitlePosY = 0.0f;
     mTitleScale = 1.0f;
@@ -2102,9 +2259,13 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
     mDoIconScale = 1.0f;
 
     OSInitFastCast();
-
+#if PLATFORM_GCN
     mpAnm = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(
         JKRFileLoader::getGlbResource("zelda_map_screen_title.btk", dComIfGp_getFmapResArchive())));
+#else
+    void* v = JKRGetNameResource("zelda_map_screen_title_revo.btk", dComIfGp_getFmapResArchive());
+    mpAnm = static_cast<J2DAnmTextureSRTKey*>(J2DAnmLoaderDataBase::load(v));
+#endif
     mpAnm->searchUpdateMaterialID(mpTitleScreen);
 
     mAnmFrame = 0.0f;
@@ -2124,13 +2285,21 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
         mpTitleScreen->search(area_name[i])->hide();
 #endif
     }
-
+#if PLATFORM_GCN
     static const u64 sfont_name[7] = {
         'sfont00', 'sfontl0', 'sfontl1', 'sfontl2', 'sfontb0', 'sfontb1', 'sfontb2'
     };
     static const u64 ffont_name[7] = {
         'ffont00', 'ffontl0', 'ffontl1', 'ffontl2', 'ffontb0', 'ffontb3', 'ffontb4'
     };
+#else
+    static const u64 sfont_name[7] = {
+        'sfont00', 'sfontl0', 'sfontl1', 'sfontl2', 'sfontb0', 'sfontb1', 'sfontb2'
+    };
+    static const u64 ffont_name[7] = {
+        'ffont01', 'ffontl3', 'ffontl4', 'ffontl5', 'ffontb3', 'ffontb4', 'ffontb5'
+    };
+#endif
     for (int i = 0; i < 7; i++) {
 #if VERSION == VERSION_GCN_JPN
         static_cast<J2DTextBox*>(mpTitleScreen->search(sfont_name[i]))
@@ -2162,9 +2331,13 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
 #endif
     }
     setZButtonString(0x529, 0xff);
-
+#if PLATFORM_GCN
     static const u64 cont_bt[5] = {'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4', 'cont_bt'};
     static const u64 font_bt[5] = {'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4', 'font_bt5'};
+#else
+    static const u64 cont_bt[5] = {'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4', 'cont_bt8'};
+    static const u64 font_bt[5] = {'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4', 'font_bt5'};
+#endif
     for (int i = 0; i < 5; i++) {
 #if VERSION == VERSION_GCN_JPN
         static_cast<J2DTextBox*>(mpTitleScreen->search(cont_bt[i]))
@@ -2197,6 +2370,7 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
     }
     setAButtonString(0x527, 0xff);
 
+#if PLATFORM_GCN
     static const u64 juji_c[5] = {'juji_c00', 'juji_c01', 'juji_c02', 'juji_c03', 'juji_c04'};
     static const u64 fuji_c[5] = {'fuji_c00', 'fuji_c01', 'fuji_c02', 'fuji_c03', 'fuji_c04'};
     for (int i = 0; i < 5; i++) {
@@ -2230,6 +2404,7 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
 #endif
     }
     set3DStickString(0x524);
+#endif
 
     setHIO(true);
 }
@@ -2239,6 +2414,8 @@ dMenu_Fmap2DTop_c::~dMenu_Fmap2DTop_c() {
     delete mpTitleScreen;
     mpTitleScreen = NULL;
     delete mpTitleRoot;
+    if (mpTitleRoot != NULL) {
+    }
     delete mpButtonA;
     mpButtonA = NULL;
     delete mpButtonB;
@@ -2276,9 +2453,13 @@ dMenu_Fmap2DTop_c::~dMenu_Fmap2DTop_c() {
     for (int i = 0; i < 2; i++) {
         if (mpArrowLAlpha[i] != NULL) {
             delete mpArrowLAlpha[i];
+            if (mpArrowLAlpha[i] != NULL) {
+            }
         }
         if (mpArrowRAlpha[i] != NULL) {
             delete mpArrowRAlpha[i];
+            if (mpArrowRAlpha[i] != NULL) {
+            }
         }
     }
     delete mpAnm;
@@ -2407,19 +2588,28 @@ void dMenu_Fmap2DTop_c::setTitleNameString(u32 param_0) {
         'sfont00', 'sfontl0', 'sfontl1', 'sfontl2', 'sfontb0', 'sfontb1', 'sfontb2'
     };
 #define setTitleNameString_font_name sfont_name
-#else
+#elif PLATFORM_GCN
     static const u64 ffont_name[7] = {
         'ffont00', 'ffontl0', 'ffontl1', 'ffontl2', 'ffontb0', 'ffontb3', 'ffontb4'
+    };
+#define setTitleNameString_font_name ffont_name
+#else
+    static const u64 ffont_name[7] = {
+        'ffont01', 'ffontl3', 'ffontl4', 'ffontl5', 'ffontb3', 'ffontb4', 'ffontb5'
     };
 #define setTitleNameString_font_name ffont_name
 #endif
     for (int i = 0; i < 7; i++) {
         if (param_0 == 0) {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setTitleNameString_font_name[i]));
-            strcpy(text_box->getStringPtr(), "");
+            strcpy(((J2DTextBox*)(mpTitleScreen->search(setTitleNameString_font_name[i])))
+                       ->getStringPtr(),
+                   "");
         } else {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setTitleNameString_font_name[i]));
-            dMeter2Info_getStringKanji(param_0, text_box->getStringPtr(), NULL);
+            dMeter2Info_getStringKanji(
+                param_0,
+                ((J2DTextBox*)(mpTitleScreen->search(setTitleNameString_font_name[i])))
+                    ->getStringPtr(),
+                NULL);
         }
     }
 }
@@ -2434,11 +2624,15 @@ void dMenu_Fmap2DTop_c::setAreaNameString(u32 param_0) {
 #endif
     for (int i = 0; i < 3; i++) {
         if (param_0 == 0) {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setAreaNameString_area_name[i]));
-            strcpy(text_box->getStringPtr(), "");
+            strcpy(((J2DTextBox*)(mpTitleScreen->search(setAreaNameString_area_name[i])))
+                       ->getStringPtr(),
+                   "");
         } else {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setAreaNameString_area_name[i]));
-            dMeter2Info_getStringKanji(param_0, text_box->getStringPtr(), NULL);
+            dMeter2Info_getStringKanji(
+                param_0,
+                ((J2DTextBox*)(mpTitleScreen->search(setAreaNameString_area_name[i])))
+                    ->getStringPtr(),
+                NULL);
         }
     }
 }
@@ -2456,11 +2650,17 @@ void dMenu_Fmap2DTop_c::setZButtonString(u32 param_0, u8 i_alpha) {
     #define setZButtonString_font_zt font_zt
 #endif
     if (param_0 == 0 || !isWarpAccept()) {
+#if PLATFORM_GCN
         mAlphaButtonZ = ALPHA_MID;
+#else
+        mAlphaButtonZ = ALPHA_MIN;
+#endif
     } else {
         for (int i = 0; i < 5; i++) {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setZButtonString_font_zt[i]));
-            dMeter2Info_getStringKanji(param_0, text_box->getStringPtr(), NULL);
+            dMeter2Info_getStringKanji(
+                param_0,
+                ((J2DTextBox*)(mpTitleScreen->search(setZButtonString_font_zt[i])))->getStringPtr(),
+                NULL);
         }
 
         if (i_alpha == ALPHA_DEFAULT) {
@@ -2487,8 +2687,10 @@ void dMenu_Fmap2DTop_c::setBButtonString(u32 param_0, u8 i_alpha) {
         mAlphaButtonB = ALPHA_MIN;
     } else {
         for (int i = 0; i < 5; i++) {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setBButtonString_font_bt[i]));
-            dMeter2Info_getStringKanji(param_0, text_box->getStringPtr(), NULL);
+            dMeter2Info_getStringKanji(
+                param_0,
+                ((J2DTextBox*)(mpTitleScreen->search(setBButtonString_font_bt[i])))->getStringPtr(),
+                NULL);
         }
 
         if (i_alpha == ALPHA_DEFAULT) {
@@ -2511,8 +2713,10 @@ void dMenu_Fmap2DTop_c::setAButtonString(u32 param_0, u8 i_alpha) {
         mAlphaButtonA = ALPHA_MIN;
     } else {
         for (int i = 0; i < 5; i++) {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setAButtonString_font_at[i]));
-            dMeter2Info_getStringKanji(param_0, text_box->getStringPtr(), NULL);
+            dMeter2Info_getStringKanji(
+                param_0,
+                ((J2DTextBox*)(mpTitleScreen->search(setAButtonString_font_at[i])))->getStringPtr(),
+                NULL);
         }
 
         if (i_alpha == ALPHA_DEFAULT) {
@@ -2524,6 +2728,7 @@ void dMenu_Fmap2DTop_c::setAButtonString(u32 param_0, u8 i_alpha) {
 }
 
 void dMenu_Fmap2DTop_c::setCrossLRString(u32 param_0) {
+#if PLATFORM_GCN || (VERSION == VERSION_SHIELD)
 #if VERSION == VERSION_GCN_JPN
     static const u64 juji_c[5] = {'juji_c00', 'juji_c01', 'juji_c02', 'juji_c03', 'juji_c04'};
 #else
@@ -2544,9 +2749,11 @@ void dMenu_Fmap2DTop_c::setCrossLRString(u32 param_0) {
         mpTitleScreen->search('juy_sha0')->show();
         mAlphaDpad = 2;
     }
+#endif
 }
 
 void dMenu_Fmap2DTop_c::set3DStickString(u32 param_0) {
+#if PLATFORM_GCN || (VERSION == VERSION_SHIELD)
 #if VERSION == VERSION_GCN_JPN
     static const u64 ast_c[5] = {'ast_00', 'ast_01', 'ast_02', 'ast_03', 'ast_04'};
 #else
@@ -2567,12 +2774,14 @@ void dMenu_Fmap2DTop_c::set3DStickString(u32 param_0) {
         mpTitleScreen->search('as_sha0')->show();
         mAlphaAnalogStick = 2;
     }
+#endif
 }
 
 void dMenu_Fmap2DTop_c::createExplain(JKRExpHeap* i_heap, STControl* i_stick) {
     if (!mpScrnExplain) {
         JKRHeap* heap = mDoExt_setCurrentHeap(i_heap);
         mpScrnExplain = new dMsgScrnExplain_c(i_stick, 0, false, 1);
+        JUT_ASSERT(4743, mpScrnExplain != NULL);
         mDoExt_setCurrentHeap(heap);
     }
 }
@@ -2640,15 +2849,13 @@ void dMenu_Fmap2DTop_c::setAlphaAnimeMax(CPaneMgrAlpha* i_pane) {
 }
 
 bool dMenu_Fmap2DTop_c::checkPlayerWarpAccept() {
-    bool ret;
-    if (!checkWarpAcceptCannon()) {
-        ret = false;
-    } else if (!checkWarpAcceptRegion4()) {
-        ret = false;
+    if (checkWarpAcceptCannon() == FALSE) {
+        return FALSE;
+    } else if (checkWarpAcceptRegion4() == FALSE) {
+        return FALSE;
     } else {
-        ret = daPy_getLinkPlayerActorClass()->checkAcceptDungeonWarpAlink(0);
+        return daPy_getLinkPlayerActorClass()->checkAcceptDungeonWarpAlink(0);
     }
-    return ret;
 }
 
 bool dMenu_Fmap2DTop_c::checkWarpAcceptRegion(int i_region) {

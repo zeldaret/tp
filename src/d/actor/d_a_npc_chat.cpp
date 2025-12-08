@@ -2383,7 +2383,7 @@ int daNpcChat_c::getObjNum() {
         }
 
         // dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town
-        if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[281]) &&
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[281]) &&
             objNum == OBJ_CELEB_BAG_M) {
             objNum = OBJ_MARO_BAG_M;
         }
@@ -2427,7 +2427,7 @@ int daNpcChat_c::getObjNum() {
         }
 
         // dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town
-        if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[281]) &&
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[281]) &&
             objNum == OBJ_CELEB_BAG_W) {
             objNum = OBJ_MARO_BAG_W;
         }

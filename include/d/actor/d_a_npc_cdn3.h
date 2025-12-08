@@ -223,7 +223,7 @@ public:
                 break;
             }
                 /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
-            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[281]) && uVar3 == 9) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[281]) && uVar3 == 9) {
                 uVar3 = 0xb;
             }
         } else {
@@ -257,7 +257,7 @@ public:
                 break;
             }
                 /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
-            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[281]) && uVar3 == 10) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[281]) && uVar3 == 10) {
                 uVar3 = 12;
             }
         }

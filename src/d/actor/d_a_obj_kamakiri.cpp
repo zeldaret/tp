@@ -734,9 +734,9 @@ u8 daObjKAM_c::CreateChk() {
     if (field_0x9c0 != 2) {
         if (unkInt1 != 0) {
             if (!dComIfGs_isEventBit(
-                    (u16)dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_MALE]]) ||
+                    dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_MALE]]) ||
                 !dComIfGs_isEventBit(
-                    (u16)dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_FEMALE]]))
+                    dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_FEMALE]]))
             {
                 return 0;
             }
@@ -750,10 +750,10 @@ u8 daObjKAM_c::CreateChk() {
 
                 if (mSex == SEX_MALE &&
                         !dComIfGs_isEventBit(
-                            (u16)dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]]) ||
+                            dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]]) ||
                     mSex == SEX_FEMALE &&
                         !dComIfGs_isEventBit(
-                            (u16)dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]]))
+                            dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]]))
                 {
                     return 0;
                 }

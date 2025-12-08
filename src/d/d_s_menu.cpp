@@ -766,7 +766,7 @@ int toGameScene(dScnMenu_c* i_this) {
         /* Main Event - Get shadow crystal (can now transform) */
         dComIfGs_offEventBit(dSv_event_flag_c::M_077);
         /* dSv_event_flag_c::F_0550 - Main Event - Gain ability to use sense */
-        dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[550]);
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[550]);
         /* Secret techniques - Obtained 1 secret techinques - Shield attack */
         dComIfGs_offEventBit(dSv_event_flag_c::F_0338);
         rt = fopScnM_ChangeReq(i_this, PROC_PLAY_SCENE, 0, 5);
@@ -909,7 +909,7 @@ void setEnvData(menu_data_class* i_data) {
 
                 label_no = atoi(string);
                 if (label_no >= 0 && label_no <= 999) {
-                    dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[label_no]);
+                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[label_no]);
                 }
 
                 if (i_data->env_data[i] != '+') {
@@ -944,7 +944,7 @@ void setEnvData(menu_data_class* i_data) {
 
                 label_no = atoi(string);
                 if (label_no >= 0 && label_no <= 999) {
-                    dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[label_no]);
+                    dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[label_no]);
                 }
 
                 if (i_data->env_data[i] != '+') {
@@ -1636,7 +1636,7 @@ int phase_2(dScnMenu_c* i_this) {
     /* Main Event - when OFF, wolf carries sword and shield on back */
     dComIfGs_onEventBit(dSv_event_flag_c::M_068);
     /* dSv_event_flag_c::F_0550 - Main Event - Gain ability to use sense */
-    dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[550]);
+    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[550]);
     return cPhs_COMPLEATE_e;
 }
 

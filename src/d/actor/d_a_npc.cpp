@@ -2897,15 +2897,15 @@ u8 daNpcT_getDistTableIdx(int param_0, int param_1) {
 }
 
 void daNpcT_onEvtBit(u32 i_no) {
-    dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[i_no]);
+    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[i_no]);
 }
 
 void daNpcT_offEvtBit(u32 i_no) {
-    dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[i_no]);
+    dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[i_no]);
 }
 
 BOOL daNpcT_chkEvtBit(u32 i_no) {
-    return dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[i_no]);
+    return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_no]);
 }
 
 void daNpcT_onTmpBit(u32 i_no) {

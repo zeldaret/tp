@@ -1414,7 +1414,7 @@ const char* dMeter2Info_getPlusTextureName() {
     return tex_name;
 }
 
-bool dMeter2Info_getPixel(f32 i_posX, f32 i_posY, f32 param_2, f32 param_3, f32 i_sizeX,
+u8 dMeter2Info_getPixel(f32 i_posX, f32 i_posY, f32 param_2, f32 param_3, f32 i_sizeX,
                           f32 i_sizeY, ResTIMG const* i_resTimg) {
     f32 temp_f31 = i_posX - param_2;
     f32 temp_f30 = i_posY - param_3;
@@ -1442,7 +1442,7 @@ bool dMeter2Info_getPixel(f32 i_posX, f32 i_posY, f32 param_2, f32 param_3, f32 
         return 1;
     }
 
-    return var_r24 & 0x7000;
+    return (var_r24 & 0x7000) != 0;
 }
 
 void dMeter2Info_setCloth(u8 i_clothId, bool i_offItemBit) {

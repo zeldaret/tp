@@ -83,7 +83,7 @@ static int daObj_Ihasi_Execute(obj_ihasi_class* i_this) {
         dComIfG_Bgsp().Release(i_this->mpBgW);
         i_this->mpBgW = NULL;
         /* dSv_event_flag_c::M_050 - Main Event - Eldin Bridge disappears */
-        dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[0x53]);
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x53]);
     }
 
     action(i_this);
@@ -162,7 +162,7 @@ static int daObj_Ihasi_Create(fopAc_ac_c* i_actor) {
         csXyz angle;
 
         /* dSv_event_flag_c::M_050 - Main Event - Eldin Bridge disappears */
-        if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[0x53])) {
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x53])) {
             angle.set(0x0, -0x8000, 0x0);
             pos.set(34750.0f, -300.0f, -44000.0f);
 

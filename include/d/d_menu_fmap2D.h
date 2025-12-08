@@ -14,7 +14,9 @@ class dMsgScrnExplain_c;
 class dMenu_Fmap2DBack_c : public dDlst_base_c, public dMenuMapCommon_c {
 public:
     dMenu_Fmap2DBack_c();
+
     void setRegionTexData(u8, ResTIMG*, f32, f32, f32, f32, f32, f32, f32, f32, f32);
+    void setRegionTexData(u8, f32, f32, f32, f32, f32, f32, f32, f32, f32);
     void calcAllMapPos();
     f32 calcAllMapScaleRate();
     void calcAllMapPos2DFirst(f32, f32, f32*, f32*);
@@ -142,8 +144,8 @@ public:
     u8 getSpotCursor() { return mSpotCursor; }
     u8 getSelectRegion() { return mSelectRegion; }
     bool getAllPathShowFlag() { return mAllPathShowFlag; }
-    f32 getRegionOriginX(u8 i_region) { return mRegionOriginX[i_region]; }
-    f32 getRegionOriginZ(u8 i_region) { return mRegionOriginZ[i_region]; }
+    f32 getRegionOriginX(int i_region) { return mRegionOriginX[i_region]; }
+    f32 getRegionOriginZ(int i_region) { return mRegionOriginZ[i_region]; }
 
     void setArrowAlpha(f32 i_alpha) { mArrowAlpha = i_alpha; }
     void setSpotTextureFadeAlpha(f32 i_alpha) { mSpotTextureFadeAlpha = i_alpha; }
@@ -155,8 +157,8 @@ public:
     void onArrowDrawFlag() { mArrowDrawFlag = true; }
     bool isArrowDrawFlag() { return mArrowDrawFlag; }
     
-    void onShowRegionFlag(int region_bit) { mRegionFlag |= ((1 << region_bit) & 0xFF); }
-    bool isShowRegionFlag(int region_bit) { return mRegionFlag & ((1 << region_bit) & 0xFF); }
+    void onShowRegionFlag(int region_bit) { mRegionFlag |= (u8)(1 << region_bit); }
+    BOOL isShowRegionFlag(int region_bit) { return mRegionFlag & (u8)(1 << region_bit) ? TRUE : FALSE; }
 
     void mapBlink() {}
 
