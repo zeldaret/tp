@@ -40,7 +40,6 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_prepare() {
     }
 }
 
-// NONMATCHING - regalloc
 void JStudio_JStage::TAdaptor_light::adaptor_do_begin() {
     {
         adaptor_object_begin_();
@@ -56,7 +55,8 @@ void JStudio_JStage::TAdaptor_light::adaptor_do_begin() {
         pLightObj->JSGGetPosition(&lightObjTransform.position);
         pLightObj->JSGGetDirection(&lightObjTransform.direction);
         const JStudio::TControl::TTransform_position_direction* finalTransform =
-        pControl->transformOnGet_transform_ifEnabled(lightObjTransform, &aTStack_b8);
+            (const JStudio::TControl::TTransform_position_direction*)
+            pControl->transformOnGet_transform_ifEnabled(lightObjTransform, &aTStack_b8);
         adaptor_setVariableValue_Vec(sauVariableValue_3_POSITION_XYZ, finalTransform->position);
         f32 dirx = finalTransform->direction.x;
         f32 diry = finalTransform->direction.y;

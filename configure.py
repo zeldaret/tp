@@ -988,7 +988,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JStudio/JStudio_JStage/object-ambientlight.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JStudio/JStudio_JStage/object-camera.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JStudio/JStudio_JStage/object-fog.cpp"),
-            Object(NonMatching, "JSystem/JStudio/JStudio_JStage/object-light.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/JStudio/JStudio_JStage/object-light.cpp"),
         ],
     ),
     JSystemLib(
