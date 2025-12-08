@@ -689,7 +689,7 @@ void dKydb_timedisp() {
         }
     }
 
-#if DEBUG
+#if __MWERKS__ || DEBUG
     if (g_presetHIO.field_0x2716 != 0) {
         dDbVw_Report(0x1E, 0x55, "JYOKYO FILE YOMIKOMI SIPPAI!");
     }
