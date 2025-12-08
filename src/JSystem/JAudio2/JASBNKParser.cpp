@@ -305,3 +305,7 @@ JASOscillator::Point const* JASBNKParser::Ver0::getOscTableEndPtr(JASOscillator:
     } while (tmp <= 10);
     return points;
 }
+
+// Fakematch? Why is this here?
+template<>
+JASMemPool_MultiThreaded<JASChannel> JASPoolAllocObject_MultiThreaded<JASChannel>::memPool_;

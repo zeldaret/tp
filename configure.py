@@ -1031,7 +1031,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWSParser.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"), # missing bss var
+            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBNKParser.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWaveArcLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASChannel.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASLfo.cpp"),
@@ -1106,7 +1106,7 @@ config.libs = [
             Object(Equivalent, "Z2AudioLib/Z2SceneMgr.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2FxLineMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SoundInfo.cpp"),
-            Object(Equivalent, "Z2AudioLib/Z2Audience.cpp"), # weak func order
+            Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2Audience.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SoundObject.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SoundObjMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2Creature.cpp"),

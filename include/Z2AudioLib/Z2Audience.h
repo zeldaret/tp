@@ -221,6 +221,8 @@ struct Z2Audience : public JAIAudience, public JASGlobalInstance<Z2Audience> {
     virtual u32 calcPriority(JAIAudible* audible);
     virtual void mixChannelOut(const JASSoundParams& outParams, JAIAudible* audible, int channelNum);
 
+    bool isActive() const;
+
     Z2SpotMic* getLinkMic() { return mLinkMic; }
     JGeometry::TVec3<f32> getAudioCamPos(int camID) {
         return *mAudioCamera[camID].getPos();
