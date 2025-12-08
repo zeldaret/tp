@@ -2849,25 +2849,13 @@ void dMenu_Fmap2DTop_c::setAlphaAnimeMax(CPaneMgrAlpha* i_pane) {
 }
 
 bool dMenu_Fmap2DTop_c::checkPlayerWarpAccept() {
-#if PLATFORM_GCN || PLATFORM_WII
-    bool ret;
-    if (!checkWarpAcceptCannon()) {
-        ret = false;
-    } else if (!checkWarpAcceptRegion4()) {
-        ret = false;
+    if (checkWarpAcceptCannon() == FALSE) {
+        return FALSE;
+    } else if (checkWarpAcceptRegion4() == FALSE) {
+        return FALSE;
     } else {
         return daPy_getLinkPlayerActorClass()->checkAcceptDungeonWarpAlink(0);
     }
-    return ret;
-#else
-    if (!checkWarpAcceptCannon()) {
-        return false;
-    } else if (!checkWarpAcceptRegion4()) {
-        return false;
-    } else {
-        return daPy_getLinkPlayerActorClass()->checkAcceptDungeonWarpAlink(0);
-    }
-#endif
 }
 
 bool dMenu_Fmap2DTop_c::checkWarpAcceptRegion(int i_region) {
