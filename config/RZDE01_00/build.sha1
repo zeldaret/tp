@@ -6,14 +6,18 @@ ede193738f3e07f70293853069cb3aad98d4d21f  build/RZDE01_00/d_a_L7op_demo_dr/d_a_L
 b246618e3c7555c44db4c57fd43d5414b1788aa2  build/RZDE01_00/d_a_andsw/d_a_andsw.rel
 31a83d751cb67bea4f90532e8bdf5df3cfcabb17  build/RZDE01_00/d_a_andsw2/d_a_andsw2.rel
 c6ea2b15e1017035c681d2fd222c720abc0e2fb1  build/RZDE01_00/d_a_arrow/d_a_arrow.rel
+67c7205a0cbdc2a5f2f637557f3591218ac0292f  build/RZDE01_00/d_a_b_bh/d_a_b_bh.rel
+0424ac3820dbd317090873d6aa3cb79c94b26439  build/RZDE01_00/d_a_b_bq/d_a_b_bq.rel
 f7c1d6c8557b6221338b9bcadaecb2b6d4b651b0  build/RZDE01_00/d_a_b_dr/d_a_b_dr.rel
 734b7a80f9935dfad802b15912f6bf21b06af547  build/RZDE01_00/d_a_b_dre/d_a_b_dre.rel
 ff7f53899a0134b572b087eeeeb8bfddab027d20  build/RZDE01_00/d_a_b_ds/d_a_b_ds.rel
 3282f582d760690a61db5cc17b23a0ace2003f6d  build/RZDE01_00/d_a_b_gg/d_a_b_gg.rel
+29d9b931283ea325a04f4daa7a72bd183e02a829  build/RZDE01_00/d_a_b_gm/d_a_b_gm.rel
 a991c31e24ad86457e19e4c6a5a708925b204c18  build/RZDE01_00/d_a_b_gnd/d_a_b_gnd.rel
 39f3f9025f273800729149b6e75def1b12c1e63b  build/RZDE01_00/d_a_b_go/d_a_b_go.rel
 2118b63fed14e4728e854b2bfd1d69b57d0b5e62  build/RZDE01_00/d_a_b_gos/d_a_b_gos.rel
 e551d56558802388dd84904e35e08f7578156d16  build/RZDE01_00/d_a_b_mgn/d_a_b_mgn.rel
+0f921595d92beaf0f27ea34cda1bdda03403fd4e  build/RZDE01_00/d_a_b_ob/d_a_b_ob.rel
 11f6d4d2f2a45e8ddd5b04d5417b84071b4d4d04  build/RZDE01_00/d_a_b_oh/d_a_b_oh.rel
 a2b447a582a0c99274ee8969084d22963de6e825  build/RZDE01_00/d_a_b_oh2/d_a_b_oh2.rel
 3e2e6dfb957ed3eed2f64a42c12450318f59da48  build/RZDE01_00/d_a_b_tn/d_a_b_tn.rel
@@ -186,6 +190,7 @@ f4120733ecec3d296317edd4f0e2ff6ab65f077d  build/RZDE01_00/d_a_midna/d_a_midna.re
 e2959e667249f70d5ce6fbc9102fdc059cae02e9  build/RZDE01_00/d_a_myna/d_a_myna.rel
 768bd0661a976a900be5b41d1f1d94aa237d1328  build/RZDE01_00/d_a_nbomb/d_a_nbomb.rel
 ddff08df5e891a69ef79a70e2dbb429cab617b86  build/RZDE01_00/d_a_ni/d_a_ni.rel
+3bb54240f33b1fc18af93347cd02a6f36c9d3e2f  build/RZDE01_00/d_a_no_chg_room/d_a_no_chg_room.rel
 ca9e44859966db2ca85739b05d171f6b287f9660  build/RZDE01_00/d_a_npc_aru/d_a_npc_aru.rel
 b8368dfb33cdd4ecec563564972c112e83e12364  build/RZDE01_00/d_a_npc_ash/d_a_npc_ash.rel
 32ec0282eb1d3825420b9390b5793a25478a7aff  build/RZDE01_00/d_a_npc_ashB/d_a_npc_ashB.rel
@@ -193,6 +198,7 @@ b8368dfb33cdd4ecec563564972c112e83e12364  build/RZDE01_00/d_a_npc_ash/d_a_npc_as
 ad5bc7e30fff6bae36e40973e4912e2bf046b207  build/RZDE01_00/d_a_npc_besu/d_a_npc_besu.rel
 1f34182affd673d75322b99802469f41818451f1  build/RZDE01_00/d_a_npc_blue_ns/d_a_npc_blue_ns.rel
 0cfb946d2f257e9abb0db5532dce72113a2abafb  build/RZDE01_00/d_a_npc_bou/d_a_npc_bou.rel
+f9b9989db309764ba75e1349460304654d5169af  build/RZDE01_00/d_a_npc_bouS/d_a_npc_bouS.rel
 9b2296b2346783b7cdafe7f9a2e75bdd2bf42c6a  build/RZDE01_00/d_a_npc_cdn3/d_a_npc_cdn3.rel
 72bf2d17349875fe82aff8716447a5c6fc16f85f  build/RZDE01_00/d_a_npc_chat/d_a_npc_chat.rel
 fe046c70ea2cde19f48ff7c252ebafccb4dc7fcd  build/RZDE01_00/d_a_npc_chin/d_a_npc_chin.rel
@@ -290,6 +296,7 @@ c86ad1de5c1b58a780c3a97e5ea476164413510d  build/RZDE01_00/d_a_npc_toby/d_a_npc_t
 2089ac1ff1ffb37472b0ae7d7bf3cf987edd06cb  build/RZDE01_00/d_a_npc_tr/d_a_npc_tr.rel
 452740d04606e7a79bbc2f67b999a0fb1fe47849  build/RZDE01_00/d_a_npc_uri/d_a_npc_uri.rel
 28dfb1cb92538070029379e242d76f3ce7daa226  build/RZDE01_00/d_a_npc_worm/d_a_npc_worm.rel
+648d16f1f92476839a8488c3399e96c449a87c21  build/RZDE01_00/d_a_npc_wrestler/d_a_npc_wrestler.rel
 428cd39a6cd9354f275036f7ef66ea83e86701c2  build/RZDE01_00/d_a_npc_yamid/d_a_npc_yamid.rel
 61d7c715399c2022f9020878b480c6ce321e09d9  build/RZDE01_00/d_a_npc_yamis/d_a_npc_yamis.rel
 236e0d48b66111e8ce975dc1b5acaf186ac6e11d  build/RZDE01_00/d_a_npc_yamit/d_a_npc_yamit.rel
@@ -656,6 +663,7 @@ e148d1fd5978a183c47e10f9cdbbb0d592b2ebf1  build/RZDE01_00/d_a_obj_zra_freeze/d_a
 f27c85653793a24ccdb50d99e25b6e9b632bed77  build/RZDE01_00/d_a_ppolamp/d_a_ppolamp.rel
 8f7a6980a970ee759d0bed34a7b4a303ef809edc  build/RZDE01_00/d_a_scene_exit/d_a_scene_exit.rel
 de26e827f1e51210d38f43b4befc863faaa19d5e  build/RZDE01_00/d_a_scene_exit2/d_a_scene_exit2.rel
+8a1a3de4e9f618018b97081111d21682a060eef2  build/RZDE01_00/d_a_set_bgobj/d_a_set_bgobj.rel
 621e4e41fa08f59267dc67fa3fad36e96e630388  build/RZDE01_00/d_a_shop_item/d_a_shop_item.rel
 6459ee82726a8582ee8615cc27bd3e84c6d3221f  build/RZDE01_00/d_a_skip_2D/d_a_skip_2D.rel
 1c13d18532102cf391923ce22d94cae0c6f48cd4  build/RZDE01_00/d_a_spinner/d_a_spinner.rel
@@ -748,3 +756,4 @@ c0f14410a168f93044656c507f6c4f7f7a242902  build/RZDE01_00/d_a_tbox/d_a_tbox.rel
 f0a4b9c86e03185dbe024944a8d5dc382479902f  build/RZDE01_00/d_a_vrbox2/d_a_vrbox2.rel
 3c4b602ef024a662b11b13ad02d79178f54319a1  build/RZDE01_00/d_a_warp_bug/d_a_warp_bug.rel
 5e46ad812427d181d3b2d323f67d1652a5a08399  build/RZDE01_00/d_a_ykgr/d_a_ykgr.rel
+40511841f108b688f4885b19bf8ecf07781aab67  build/RZDE01_00/f_pc_profile_lst/f_pc_profile_lst.rel
