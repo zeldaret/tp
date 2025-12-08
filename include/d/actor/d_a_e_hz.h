@@ -17,7 +17,8 @@
  *
  * @details Enemy - Tile Worm
  *
- */
+*/
+
 class daE_HZ_c : public fopEn_enemy_c {
 public:
     void setBck(int, u8, f32, f32);
@@ -75,9 +76,9 @@ private:
     /* 0x674 */ daObjCarry_c* mpCarryActor;
     /* 0x678 */ cXyz field_0x678;
     /* 0x684 */ cXyz mSmokeEffectPosition;
-    /* 0x690 */ csXyz field_0x690;
-    /* 0x696 */ csXyz field_0x696;
-    /* 0x69C */ csXyz field_0x69c;
+    /* 0x690 */ csXyz mBackbone1YZRot;
+    /* 0x696 */ csXyz mBackbone2YZRot;
+    /* 0x69C */ csXyz mBackbone3YZRot;
     /* 0x6A4 */ f32 mPlayerDist;
     /* 0x6A8 */ f32 field_0x6a8;
     /* 0x6AC */ f32 mGroundCross;
@@ -102,7 +103,7 @@ private:
     /* 0x6E2 */ s16 mCameraOnTimer;
     /* 0x6E4 */ u8 field_0x6e4;
     /* 0x6E5 */ u8 mSetModelAnmMtx;
-    /* 0x6E6 */ u8 field_0x6E6[0x6E7 - 0x6E6];
+    /* 0x6E6 */ u8 field_0x6E6;
     /* 0x6E7 */ u8 mDisableShadow;  // Shadow is active when this is false
     /* 0x6E8 */ u8 field_0x6e8;
     /* 0x6E9 */ u8 field_0x6e9;
