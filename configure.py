@@ -1028,7 +1028,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSeqCtrl.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSeqParser.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSeqReader.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASAramStream.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASAramStream.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicBank.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASVoiceBank.cpp"),
