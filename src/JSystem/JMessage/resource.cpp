@@ -119,7 +119,11 @@ JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create() {
 
 // NONMATCHING extra null comparison
 void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource* pResource) {
+#if DEBUG
     delete pResource;
+#else
+    operator delete(pResource);
+#endif
 }
 
 JMessage::TResourceContainer::TResourceContainer() : encodingType_(0), pfnParseCharacter_(NULL) {}
