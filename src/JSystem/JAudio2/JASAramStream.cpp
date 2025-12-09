@@ -38,7 +38,6 @@ void JASAramStream::initSystem(u32 i_blockSize, u32 i_channelMax) {
     }
 }
 
-// NONMATCHING missing load
 JASAramStream::JASAramStream() {
     field_0x0a8 = NULL;
     field_0x0ac = false;
@@ -85,7 +84,6 @@ JASAramStream::JASAramStream() {
     }
 }
 
-// NONMATCHING missing load
 void JASAramStream::init(u32 param_0, u32 param_1, StreamCallback i_callback, void* i_callbackData) {
     field_0x148 = param_0;
     field_0x14c = param_1;
@@ -258,7 +256,6 @@ bool JASAramStream::headerLoad(u32 param_0, int param_1) {
 }
 
 
-// NONMATCHING regalloc and one instruction swap
 bool JASAramStream::load() {
     {
         JASCriticalSection cs;
@@ -293,7 +290,9 @@ bool JASAramStream::load() {
     u32 sp08 = field_0x148 + field_0x10c * sBlockSize;
     for (int i = 0; i < mChannelNum; i++) {
         (void)i;
-        if (!JKRMainRamToAram(sReadBuffer + bhead->field_0x4 * i + sizeof(BlockHeader),
+        // Fakematch? It seems the only way to get the bhead->field_0x4 load in the right order is
+        // with a pointer cast on its address in one of the two places it is read, but not both.
+        if (!JKRMainRamToAram(sReadBuffer + *(u32*)&bhead->field_0x4 * i + sizeof(BlockHeader),
                               sp08 + sBlockSize * field_0x160 * i,
                               bhead->field_0x4, EXPAND_SWITCH_UNKNOWN0, 0, NULL, -1, NULL)) {
             JUT_WARN(522, "%s", "JKRMainRamToAram Failed");
@@ -363,7 +362,6 @@ void JASAramStream::channelCallback(u32 i_callbackType, JASChannel* i_channel,
     ((JASAramStream*)i_this)->updateChannel(i_callbackType, i_channel, i_dspChannel);
 }
 
-// NONMATCHING missing extra loads of field_0x0c4
 void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
                                   JASDsp::TChannel* i_dspChannel) {
     u32 block_samples = getBlockSamples();
