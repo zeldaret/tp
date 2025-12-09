@@ -20,7 +20,7 @@ struct data {
         u32* get_signature() const { return (u32*)(get() + 0x0); }
         u32 get_type() const { return *(u32*)(get() + 0x4); }
         u32 get_blockNumber() const { return *(u32*)(get() + 0xC); }
-        u8 get_encoding() const { return *(u8*)(get() + 0x10); }
+        u32 get_encoding() const { return *(u8*)(get() + 0x10); }
     };
 
     // TParse_TBlock handles parsing the generic section header data

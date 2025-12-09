@@ -1089,7 +1089,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/control.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JMessage/data.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/processor.cpp"),
-            Object(NonMatching, "JSystem/JMessage/resource.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/JMessage/resource.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/locale.cpp"),
         ],
     ),
