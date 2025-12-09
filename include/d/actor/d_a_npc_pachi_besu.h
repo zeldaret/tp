@@ -17,6 +17,7 @@ struct daNpc_Pachi_Besu_HIOParam {
 };
 
 class daNpc_Pachi_Besu_HIO_c : public mDoHIO_entry_c {
+public:
     /* 0x8 */ daNpc_Pachi_Besu_HIOParam param;
 };
 
