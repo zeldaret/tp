@@ -80,8 +80,9 @@ void JStudio::TFactory::appendCreateObject(JStudio::TCreateObject* param_0) {
     mList.Push_back(param_0);
 }
 
+
 JStudio::TObject* JStudio::TFactory::create(JStudio::stb::data::TParse_TBlock_object const& param_0) {
-    JGadget::TContainerEnumerator<TCreateObject, -4> aTStack_368(&mList);
+    JGadget::TContainerEnumerator<JGadget::TLinkList<TCreateObject, -4> > aTStack_368(mList);
     while(aTStack_368) {
         TCreateObject& piVar1 = *aTStack_368;
         JStudio::TObject* obj;

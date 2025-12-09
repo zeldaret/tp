@@ -100,10 +100,8 @@ JMessage::TResourceContainer::TCResource::TCResource() {}
 JMessage::TResourceContainer::TCResource::~TCResource() {
     JGADGET_ASSERTWARN(173, empty());
 }
-
-// NONMATCHING - likely due to incorrect enumerator setup compared to debug
 JMessage::TResource* JMessage::TResourceContainer::TCResource::Get_groupID(u16 u16GroupID) {
-    JGadget::TContainerEnumerator<TResource, 0> enumerator(this);
+    JGadget::TContainerEnumerator<TResourceContainer::TCResource> enumerator(*this);
 	while (enumerator) {
 		const TResource* res = &(*enumerator);
 		if (res->getGroupID() == u16GroupID)
@@ -117,9 +115,13 @@ JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create() {
     return new TResource();
 }
 
-// NONMATCHING extra null comparison
 void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource* pResource) {
+    #if DEBUG
     delete pResource;
+    #else
+    // Fake Match - extra null comparison when not doing the conversion
+    delete (void*)pResource;
+    #endif
 }
 
 JMessage::TResourceContainer::TResourceContainer() : encodingType_(0), pfnParseCharacter_(NULL) {}
@@ -141,14 +143,17 @@ void JMessage::TResourceContainer::setEncoding_(u8 e) {
 }
 
 JMessage::TParse::TParse(JMessage::TResourceContainer* pContainer) {
+    u8 sp8[5];
+    JMessage::TResourceContainer* cont;
     JUT_ASSERT(324, pContainer!=NULL);
-    pContainer_ = pContainer;
+    cont = pContainer;
+    pContainer_ = cont;
     pResource_ = NULL;
+    sp8[0] = 0;
 }
 
 JMessage::TParse::~TParse() {}
 
-// NONMATCHING regalloc, missing clrlwi
 bool JMessage::TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 param_2) {
     JUT_ASSERT(343, ppData_inout!=NULL);
     JUT_ASSERT(344, puBlock_out!=NULL);
@@ -172,7 +177,7 @@ bool JMessage::TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_
         return false;
     }
 
-    u8 uEncoding = oHeader.get_encoding();
+    const u8 uEncoding = oHeader.get_encoding();
     if (uEncoding != 0) {
         if (!pContainer_->isEncodingSettable(uEncoding)) {
             JGADGET_WARNMSG(369, "encoding not acceptable");

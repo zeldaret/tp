@@ -243,6 +243,8 @@ struct TLinkList : TNodeLinkList {
         return iterator(TNodeLinkList::Find(Element_toNode(element)));
     }
     void Remove(T* element) { TNodeLinkList::Remove(Element_toNode(element)); }
+
+    typedef T value_type;
 };
 
 template <typename T, int I>
@@ -311,10 +313,10 @@ struct TEnumerator2 {
     Iterator end;
 };
 
-template <typename T, int I>
-struct TContainerEnumerator : public TEnumerator2<typename TLinkList<T, I>::iterator, T> {
-    inline TContainerEnumerator(TLinkList<T, I>* param_0)
-        : TEnumerator2<typename TLinkList<T, I>::iterator, T>(param_0->begin(), param_0->end()) {}
+template <typename T>
+struct TContainerEnumerator : public TEnumerator2<typename T::iterator, typename T::value_type> {
+    inline TContainerEnumerator(T& param_0)
+        : TEnumerator2<typename T::iterator, typename T::value_type>(param_0.begin(), param_0.end()) {}
 };
 
 
