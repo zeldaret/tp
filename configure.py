@@ -1551,6 +1551,12 @@ config.libs = [
             Object(NonMatching, "revolution/wpad/WUD.c"),
         ],
     ),
+    RevolutionLib(
+        "hio2",
+        [
+            Object(NonMatching, "revolution/hio2/hio2.c"),
+        ],
+    ),
     {
         "lib": "Runtime.PPCEABI.H",
         "mw_version": MWVersion(config.version),
