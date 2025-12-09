@@ -517,7 +517,7 @@ bool daPy_py_c::checkBoomerangCharge() {
     return daAlink_getAlinkActorClass()->checkBoomerangChargeEnd();
 }
 
-u8 daPy_py_c::checkBoomerangChargeTime() {
+bool daPy_py_c::checkBoomerangChargeTime() {
     return 0;
 }
 
