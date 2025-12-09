@@ -467,7 +467,7 @@ void dName_c::MojiSelectAnm3() {}
 
 int dName_c::mojiChange(u8 idx) {
     if (mChrInfo[idx].field_0x3 == 0 || mChrInfo[idx].mMojiSet == MOJI_EIGO ||
-        mChrInfo[idx].mCharacter == '　')
+        mChrInfo[idx].mCharacter == SJIS('　', 0x8140U))
     {
         return 0;
     }
@@ -481,20 +481,20 @@ int dName_c::mojiChange(u8 idx) {
     switch (mChrInfo[idx].mColumn) {
     case 0:
     case 10: {
-        if (mChrInfo[idx].mCharacter == 'ウ' || mChrInfo[idx].mCharacter == 'ゥ' ||
-            mChrInfo[idx].mCharacter == 'ヴ')
+        if (mChrInfo[idx].mCharacter == SJIS('ウ', 0x8345U) || mChrInfo[idx].mCharacter == SJIS('ゥ', 0x8344U) ||
+            mChrInfo[idx].mCharacter == SJIS('ヴ', 0x8394U))
         {
             mChrInfo[idx].mCharacter++;
 
-            if (mChrInfo[idx].mCharacter == 'ェ') {
-                mChrInfo[idx].mCharacter = 'ヴ';
+            if (mChrInfo[idx].mCharacter == SJIS('ェ', 0x8346U)) {
+                mChrInfo[idx].mCharacter = SJIS('ヴ', 0x8394U);
             }
 
-            if (mChrInfo[idx].mCharacter == 'ヵ') {
-                mChrInfo[idx].mCharacter = 'ゥ';
+            if (mChrInfo[idx].mCharacter == SJIS('ヵ', 0x8395U)) {
+                mChrInfo[idx].mCharacter = SJIS('ゥ', 0x8344U);
             }
         } else {
-            int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ァ' : 'ぁ';
+            int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('ァ', 0x8340U) : SJIS('ぁ', 0x829fU);
 
             if ((mChrInfo[idx].mCharacter - c) % 2) {
                 --mChrInfo[idx].mCharacter;
@@ -505,7 +505,7 @@ int dName_c::mojiChange(u8 idx) {
         break;
     }
     case 1: {
-        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'カ' : 'か';
+        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('カ', 0x834aU) : SJIS('か', 0x82a9U);
         c = ((mChrInfo[idx].mCharacter - c) % 2);
 
         int c2 = c + 1;
@@ -513,7 +513,7 @@ int dName_c::mojiChange(u8 idx) {
         break;
     }
     case 2: {
-        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'サ' : 'さ';
+        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('サ', 0x8354U) : SJIS('さ', 0x82b3U);
         c = ((mChrInfo[idx].mCharacter - c) % 2);
 
         int c2 = c + 1;
@@ -523,24 +523,24 @@ int dName_c::mojiChange(u8 idx) {
     case 3:
     case 12: {
         if (mChrInfo[idx].mCharacter != (u32)0x815b) {
-            if (mChrInfo[idx].mCharacter <= (mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ヂ' : 'ぢ')) {
-                int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'タ' : 'た';
+            if (mChrInfo[idx].mCharacter <= (mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('ヂ', 0x8361U) : SJIS('ぢ', 0x82c0U))) {
+                int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('タ', 0x835eU) : SJIS('た', 0x82bdU);
                 c = ((mChrInfo[idx].mCharacter - c) % 2);
 
                 int c2 = c + 1;
                 mChrInfo[idx].mCharacter = (mChrInfo[idx].mCharacter - c) + (c2 & 1);
             } else if (mChrInfo[idx].mCharacter <=
-                           (mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ド' : 'ど') &&
+                           (mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('ド', 0x8368U) : SJIS('ど', 0x82c7U)) &&
                        mChrInfo[idx].mCharacter >=
-                           (mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'テ' : 'て'))
+                           (mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('テ', 0x8365U) : SJIS('て', 0x82c4U)))
             {
-                int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'テ' : 'て';
+                int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('テ', 0x8365U) : SJIS('て', 0x82c4U);
                 c = ((mChrInfo[idx].mCharacter - c) % 2);
 
                 int c2 = c + 1;
                 mChrInfo[idx].mCharacter = (mChrInfo[idx].mCharacter - c) + (c2 & 1);
             } else {
-                int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ッ' : 'っ';
+                int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('ッ', 0x8362U) : SJIS('っ', 0x82c1U);
                 int c2 = (mChrInfo[idx].mCharacter - c) % 3;
 
                 int ivar2 = c2 + 1;
@@ -554,7 +554,7 @@ int dName_c::mojiChange(u8 idx) {
         break;
     }
     case 5: {
-        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ハ' : 'は';
+        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('ハ', 0x836eU) : SJIS('は', 0x82cdU);
         int c2 = (mChrInfo[idx].mCharacter - c) % 3;
 
         int ivar2 = c2 + 1;
@@ -567,7 +567,7 @@ int dName_c::mojiChange(u8 idx) {
     }
     case 7:
     case 11: {
-        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? 'ャ' : 'ゃ';
+        int c = mChrInfo[idx].mMojiSet != MOJI_HIRA ? SJIS('ャ', 0x8383U) : SJIS('ゃ', 0x82e1U);
         c = ((mChrInfo[idx].mCharacter - c) % 2);
 
         int c2 = c + 1;

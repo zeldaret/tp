@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/pad.h>
 #include <dolphin/demo.h>
 

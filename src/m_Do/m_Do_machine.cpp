@@ -16,7 +16,9 @@
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
+#ifdef __MWERKS__
 #include "base/PPCArch.h"
+#endif
 #include "m_Do/m_Do_DVDError.h"
 #include "m_Do/m_Do_MemCard.h"
 #include "m_Do/m_Do_Reset.h"

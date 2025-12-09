@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/gx.h>
 #include <dolphin/perf.h>
 #include "fake_tgmath.h"

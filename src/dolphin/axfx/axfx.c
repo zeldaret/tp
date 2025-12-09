@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/ax.h>
 
 static void* __AXFXAllocFunction(u32 bytes) {

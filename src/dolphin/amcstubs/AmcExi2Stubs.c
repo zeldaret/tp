@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/amc/AmcExi2Comm.h>
 
 // prototypes

@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/mix.h>
 
 u16 __MIXVolumeTable[965] = {

@@ -1,5 +1,5 @@
 #include "fake_tgmath.h"
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/pad.h>
 
 static const PADClampRegion ClampRegion = {

@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/seq.h>
 
 static u8 __SEQMidiEventLength[128] = {

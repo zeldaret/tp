@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 
 __declspec(section ".init") void* memcpy(void* dst, const void* src, size_t n) {
     const unsigned char* s;

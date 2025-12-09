@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include <dolphin/os.h>
 
 void OSInitSemaphore(OSSemaphore* sem, s32 count) {

@@ -1,4 +1,4 @@
-#include <dolphin.h>
+#include <dolphin/dolphin.h>
 #include "__ppc_eabi_linker.h"
 
 extern void InitMetroTRK();

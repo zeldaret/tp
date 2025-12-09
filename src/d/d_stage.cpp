@@ -1962,9 +1962,9 @@ static int dStage_roomReadInit(dStage_dt_c* i_stage, void* i_data, int param_2, 
     i_stage->setRoom(p_node);
 
     for (int i = 0; i < p_node->num; i++) {
-        if ((int)rtbl[i] < 0x80000000) {
-            rtbl[i] = (roomRead_data_class*)((int)rtbl[i] + (int)param_3);
-            rtbl[i]->m_rooms = (u8*)((int)rtbl[i]->m_rooms + (int)param_3);
+        if ((intptr_t)rtbl[i] < 0x80000000) {
+            rtbl[i] = (roomRead_data_class*)((intptr_t)rtbl[i] + (intptr_t)param_3);
+            rtbl[i]->m_rooms = (u8*)((intptr_t)rtbl[i]->m_rooms + (intptr_t)param_3);
         }
     }
 
