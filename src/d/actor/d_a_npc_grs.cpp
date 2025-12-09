@@ -265,13 +265,13 @@ int daNpc_grS_c::Delete() {
 }
 
 int daNpc_grS_c::Execute() {
-    execute();
+    return execute();
 }
 
 int daNpc_grS_c::Draw() {
     J3DModelData* modelData = mAnm_p->getModel()->getModelData();
     modelData->getMaterialNodePointer(2)->setMaterialAnm(mpMatAnm);
-    draw(chkAction(&daNpc_grS_c::test),0, mpHIO->m.common.real_shadow_size,NULL,0);
+    return draw(chkAction(&daNpc_grS_c::test),0, mpHIO->m.common.real_shadow_size,NULL,0);
 }
 
 int daNpc_grS_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
@@ -318,7 +318,7 @@ int daNpc_grS_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
 int daNpc_grS_c::createHeapCallBack(fopAc_ac_c* i_this) {
     daNpc_grS_c* grS = (daNpc_grS_c*)i_this;
-    grS->CreateHeap();
+    return grS->CreateHeap();
 }
 
 int daNpc_grS_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {

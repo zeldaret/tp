@@ -234,7 +234,7 @@ void daObjIsuChild_c::create(daObjNagaisu_c* i_parent, dCcD_Stts* i_ccStts) {
     }
 }
 
-int daObjIsuChild_c::execute() {
+void daObjIsuChild_c::execute() {
     if (!mIsDead) {
         if (chkHit()) {
             callEmt();
@@ -249,7 +249,7 @@ int daObjIsuChild_c::execute() {
     }
 }
 
-int daObjIsuChild_c::draw(dMdl_c* i_mdl) {
+void daObjIsuChild_c::draw(dMdl_c* i_mdl) {
     if (!mIsDead) {
         mDoMtx_stack_c::transS(mPos.x, mPos.y, mPos.z);
         mDoMtx_stack_c::YrotM(-0x8000);

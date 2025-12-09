@@ -4902,7 +4902,7 @@ int daB_TN_c::execute() {
 }
 
 static int daB_TN_Execute(daB_TN_c* i_this) {
-    i_this->execute();
+    return i_this->execute();
 }
 
 static int daB_TN_IsDelete(daB_TN_c* i_this) {
@@ -4924,7 +4924,7 @@ int daB_TN_c::_delete() {
 }
 
 static int daB_TN_Delete(daB_TN_c* i_this) {
-    i_this->_delete();
+    return i_this->_delete();
 }
 
 int daB_TN_c::CreateHeap() {
@@ -5024,7 +5024,7 @@ int daB_TN_c::CreateHeap() {
 }
 
 static int useHeapInit(fopAc_ac_c* actor) {
-    ((daB_TN_c*)actor)->CreateHeap();
+    return ((daB_TN_c*)actor)->CreateHeap();
 }
 
 int daB_TN_c::create() {

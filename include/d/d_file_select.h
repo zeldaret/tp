@@ -202,7 +202,7 @@ public:
     u8 getCptoNum(u8);
     void copyToSelBack();
     void copyToSelPaneMove();
-    bool yesnoMenuMoveAnmInitSet(int, int);
+    void yesnoMenuMoveAnmInitSet(int, int);
     bool yesnoMenuMoveAnm();
     bool yesnoSelectMoveAnm();
     void yesnoCursorShow();

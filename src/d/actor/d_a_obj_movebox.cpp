@@ -598,6 +598,8 @@ fopAc_ac_c* daObjMovebox::Act_c::PPCallBack(fopAc_ac_c* i_bgActor, fopAc_ac_c* i
 
         a_this->field_0x8fe = 1;
     }
+
+    return i_bgActor;
 }
 
 int daObjMovebox::Act_c::Create() {

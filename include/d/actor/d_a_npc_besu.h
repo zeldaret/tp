@@ -45,7 +45,7 @@ public:
     void setCollision();
     int drawDbgInfo();
     void drawOtherMdl();
-    int setCupAnm(int, int, f32);
+    bool setCupAnm(int, int, f32);
     bool afterSetMotionAnm(int, int, f32, int);
     daNpcT_faceMotionAnmData_c getFaceMotionAnm(daNpcT_faceMotionAnmData_c);
     void changeAnm(int*, int*);

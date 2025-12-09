@@ -422,7 +422,7 @@ int daNpc_Aru_c::Draw() {
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
-    draw(
+    return draw(
 #if DEBUG
         chkAction(&daNpc_Aru_c::test),
 #else

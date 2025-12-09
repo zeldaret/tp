@@ -439,7 +439,7 @@ int daNpcChin_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
 int daNpcChin_c::createHeapCallBack(fopAc_ac_c* i_this) {
     daNpcChin_c* chin = (daNpcChin_c*)i_this;
-    chin->CreateHeap();
+    return chin->CreateHeap();
 }
 
 int daNpcChin_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {

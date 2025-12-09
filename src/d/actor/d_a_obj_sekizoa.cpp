@@ -309,7 +309,7 @@ int daObj_Sekizoa_c::Draw() {
 }
 
 int daObj_Sekizoa_c::createHeapCallBack(fopAc_ac_c* i_this) {
-    static_cast<daObj_Sekizoa_c*>(i_this)->CreateHeap();
+    return static_cast<daObj_Sekizoa_c*>(i_this)->CreateHeap();
 }
 
 void* daObj_Sekizoa_c::srchSekizoa(void* i_actor, void* i_this) {
