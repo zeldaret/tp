@@ -51,11 +51,11 @@ public:
     void executeRelief();
     void setAngle();
     void pathMoveF();
-    int ctrlMsgAnm();
+    inline int ctrlMsgAnm();
     bool searchNextScheduleTagSub(fopAc_ac_c*);
     bool searchFirstScheduleTagSub(fopAc_ac_c*);
     void checkSchedule();
-    void setSchedule(daTagSchedule_c*);
+    inline void setSchedule(daTagSchedule_c*);
     inline bool isInShop();
     bool isChairStyle();
     bool isNoTurnTalk();
@@ -91,14 +91,14 @@ public:
     int normtalkb(void*);
     int sellme(void*);
     int sing(void*);
-    int create();
-    void create_init();
+    inline int create();
+    inline void create_init();
     inline int createHeap();
-    void setMtx();
-    void lookat();
-    virtual ~daNpcCdn3_c();
-    int execute();
-    void checkTimeSchedule();
+    inline void setMtx();
+    inline void lookat();
+    inline virtual ~daNpcCdn3_c();
+    inline int execute();
+    inline void checkTimeSchedule();
 
     inline int draw();
 
@@ -326,13 +326,14 @@ public:
 
     int orderEvent() {
 #if PLATFORM_SHIELD
-        if (mFlowNodeNum > 0) {
+        if (mFlowNodeNum > 0)
 #else
         if ((!mIsDarkWorld || daPy_py_c::checkNowWolfEyeUp()) &&
             mFlowNodeNum > 0 &&
             ((attention_info.flags & fopAc_AttnFlag_SPEAK_e) ||
-                (attention_info.flags & fopAc_AttnFlag_TALK_e))) {
+                (attention_info.flags & fopAc_AttnFlag_TALK_e)))
 #endif
+        {
             eventInfo.onCondition(dEvtCnd_CANTALK_e);
         }
         return 1;

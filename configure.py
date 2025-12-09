@@ -2021,7 +2021,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_blue_ns"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_bou"),
     ActorRel(Equivalent, "d_a_npc_bouS"), # weak func order (sinShort)
-    ActorRel(Equivalent, "d_a_npc_cdn3"), # weak func order (~csXyz); vtable order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_npc_cdn3"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_chat"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_chin"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_clerka"),
