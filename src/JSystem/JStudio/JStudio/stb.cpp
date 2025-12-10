@@ -67,12 +67,20 @@ void TObject::setFlag_operation(u8 op, int val) {
     }
 }
 
+#if !PLATFORM_SHIELD || DEBUG
 void TObject::reset(const void* arg1) {
     bSequence_ = 0;
     mStatus = STATUS_STILL;
     pSequence_next = arg1;
     u32Wait_ = 0;
 }
+#endif
+
+#if DEBUG
+void TObject::reset() {
+    reset(NULL);
+}
+#endif
 
 bool TObject::forward(u32 arg1) {
     bool temp = false;
