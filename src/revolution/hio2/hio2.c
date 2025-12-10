@@ -235,7 +235,7 @@ BOOL HIO2Read(s32 handle, u32 addr, void* buffer, s32 size) {
 
     ASSERTLINE(564, (addr & 3) == 0);
 
-    rt = EXIReadRam(handle, __HIO2Control[handle]._0x8, ((addr + 0xD10000) << 6) & 0x3FFFFF00, buffer, size, 0);
+    rt = EXIReadRam(handle, __HIO2Control[handle]._0x8, ((addr + 0xD10000) << 6) & 0x3FFFFF00, buffer, size, NULL);
     if (rt == 0) {
         __HIO2LastErrorCode = 8;
     }
@@ -252,7 +252,7 @@ BOOL HIO2Write(s32 handle, u32 addr, void* buffer, s32 size) {
 
     ASSERTLINE(593, (addr & 3) == 0);
 
-    rt = EXIWriteRam(handle, __HIO2Control[handle]._0x8, (((addr + 0xD10000) << 6) & 0x3FFFFF00) | 0x80000000, buffer, size, 0);
+    rt = EXIWriteRam(handle, __HIO2Control[handle]._0x8, (((addr + 0xD10000) << 6) & 0x3FFFFF00) | 0x80000000, buffer, size, NULL);
     if (rt == 0) {
         __HIO2LastErrorCode = 8;
     }
