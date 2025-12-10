@@ -4,7 +4,6 @@ _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 create_init__11daObjFlag_cFv = .text:0x0000005C; // type:function size:0x164 scope:global align:4
 initBaseMtx__11daObjFlag_cFv = .text:0x000001C0; // type:function size:0x94 scope:global align:4
 calcJointAngle__11daObjFlag_cFv = .text:0x00000254; // type:function size:0x290 scope:global align:4
-__as__5csXyzFR11csXyz = .text:0x0000026C; // type:label scope:global align:4
 calcAngleSwingZ__11daObjFlag_cFP11FlagJoint_cf = .text:0x000004E4; // type:function size:0x164 scope:global align:4
 calcAngleSwingX__11daObjFlag_cFP11FlagJoint_cf = .text:0x00000648; // type:function size:0xC0 scope:global align:4
 getSwingY__11daObjFlag_cFf = .text:0x00000708; // type:function size:0x164 scope:global align:4

@@ -38,5 +38,5 @@ lbl_470_data_80 = .data:0x00000080; // type:object size:0xF data:string
 @89120 = .data:0x00000090; // type:object size:0x14 scope:local align:4
 __RTTI__14daObjHBarrel_c = .data:0x000000A4; // type:object size:0x8 scope:global align:4
 lbl_470_data_AC = .data:0x000000AC; // type:object size:0xC data:string
-__RTTI__10fopAc_ac_c = .data:0x000000B8; // type:object size:0x14 scope:global align:4
+lbl_470_data_B8 = .data:0x000000B8; // type:object size:0x13 data:string
 __RTTI__30request_of_phase_process_class = .data:0x000000CC; // type:object size:0x8 scope:global align:4

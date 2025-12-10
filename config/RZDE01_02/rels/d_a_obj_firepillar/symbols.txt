@@ -5,7 +5,6 @@ setBaseMtx__14daObjFPillar_cFv = .text:0x0000005C; // type:function size:0x5C sc
 Create__14daObjFPillar_cFv = .text:0x000000B8; // type:function size:0xC0 scope:global align:4
 create__14daObjFPillar_cFv = .text:0x00000178; // type:function size:0x118 scope:global align:4
 execute__14daObjFPillar_cFv = .text:0x00000290; // type:function size:0x128 scope:global align:4
-__as__3VecFR9Vec = .text:0x000003B8; // type:label scope:global align:4
 actionOffInit__14daObjFPillar_cFv = .text:0x000003B8; // type:function size:0x2C scope:global align:4
 actionOff__14daObjFPillar_cFv = .text:0x000003E4; // type:function size:0xA4 scope:global align:4
 actionOnWaitInit__14daObjFPillar_cFv = .text:0x00000488; // type:function size:0x20 scope:global align:4

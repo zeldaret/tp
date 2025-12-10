@@ -2,7 +2,6 @@ _prolog = .text:0x00000000; // type:function size:0x2C scope:global align:4
 _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 setPntWind__12daObjTrnd2_cFv = .text:0x0000005C; // type:function size:0x7C scope:global align:4
-__as__3VecFR9Vec = .text:0x000000D8; // type:label scope:global align:4
 movePntWind__12daObjTrnd2_cFv = .text:0x000000D8; // type:function size:0x124 scope:global align:4
 setCpsInfo__12daObjTrnd2_cFv = .text:0x000001FC; // type:function size:0x180 scope:global align:4
 Create__12daObjTrnd2_cFv = .text:0x0000037C; // type:function size:0x2EC scope:global align:4

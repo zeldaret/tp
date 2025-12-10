@@ -8,7 +8,6 @@ useHeapInit__FP10fopAc_ac_c = .text:0x00000210; // type:function size:0xA8 scope
 daObj_Rock_Create__FP10fopAc_ac_c = .text:0x000002B8; // type:function size:0x4CC scope:global align:4
 daObj_Rock_Delete__FP14obj_rock_class = .text:0x00000784; // type:function size:0x88 scope:global align:4
 __ct__7rock_ssFv = .text:0x0000080C; // type:function size:0x68 scope:global align:4
-__dt__8dCcD_SphFv = .text:0x00000874; // type:label scope:global align:4
 __dt__7rock_ssFv = .text:0x00000874; // type:function size:0x5C scope:global align:4
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global

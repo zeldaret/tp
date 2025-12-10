@@ -6,7 +6,6 @@ __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:glob
 __ct__16daTimeFire_HIO_cFv = .text:0x000000CC; // type:function size:0x18 scope:global align:4
 setBaseMtx__12daTimeFire_cFv = .text:0x000000E4; // type:function size:0x5C scope:global align:4
 create__12daTimeFire_cFv = .text:0x00000140; // type:function size:0x104 scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x00000244; // type:label scope:global align:4
 lightInit__12daTimeFire_cFv = .text:0x00000244; // type:function size:0x88 scope:global align:4
 Execute__12daTimeFire_cFv = .text:0x000002CC; // type:function size:0x1BC scope:global align:4
 fireCheck__12daTimeFire_cFUc = .text:0x00000488; // type:function size:0x220 scope:global align:4

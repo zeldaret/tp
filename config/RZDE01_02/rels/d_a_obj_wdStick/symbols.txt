@@ -5,7 +5,6 @@ __register_global_object = .text:0x0000005C; // type:function size:0x1C scope:gl
 __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:global align:4
 __ct__15daWdStick_HIO_cFv = .text:0x000000CC; // type:function size:0x30 scope:global align:4
 setBaseMtx__11daWdStick_cFv = .text:0x000000FC; // type:function size:0x7C scope:global align:4
-__as__3VecFR9Vec = .text:0x00000178; // type:label scope:global align:4
 CreateHeap__11daWdStick_cFv = .text:0x00000178; // type:function size:0x68 scope:global align:4
 create__11daWdStick_cFv = .text:0x000001E0; // type:function size:0x214 scope:global align:4
 createHeapCallBack__11daWdStick_cFP10fopAc_ac_c = .text:0x000003F4; // type:function size:0x10 scope:global align:4

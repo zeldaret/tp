@@ -49,7 +49,6 @@ Mthd_Draw__Q212daObjMovebox29@unnamed@d_a_obj_movebox_cpp@FPv = .text:0x00002C3C
 Mthd_IsDelete__Q212daObjMovebox29@unnamed@d_a_obj_movebox_cpp@FPv = .text:0x00002C4C; // type:function size:0x10 scope:global align:4
 __sinit_d_a_obj_movebox_cpp = .text:0x00002C5C; // type:function size:0xB0 scope:global align:4
 __arraydtor$92046 = .text:0x00002D0C; // type:function size:0x1C scope:global align:4
-__dt__11dBgS_WtrChkFv = .text:0x00002D28; // type:label scope:global align:4
 __arraydtor$92049 = .text:0x00002D28; // type:function size:0x1C scope:global align:4
 _ctors = .ctors:0x00000000; // type:label scope:global
 __destroy_global_chain_reference = .dtors:0x00000000; // type:object size:0x4 scope:global align:4

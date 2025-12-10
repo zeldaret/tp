@@ -4,7 +4,6 @@ _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 __register_global_object = .text:0x0000005C; // type:function size:0x1C scope:global align:4
 __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:global align:4
 setBaseMtx__11daObjFuta_cFv = .text:0x000000CC; // type:function size:0xBC scope:global align:4
-__as__3VecFR9Vec = .text:0x0000010C; // type:label scope:global align:4
 Create__11daObjFuta_cFv = .text:0x00000188; // type:function size:0xA8 scope:global align:4
 CreateHeap__11daObjFuta_cFv = .text:0x00000230; // type:function size:0x68 scope:global align:4
 create1st__11daObjFuta_cFv = .text:0x00000298; // type:function size:0x68 scope:global align:4

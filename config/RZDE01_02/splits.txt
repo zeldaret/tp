@@ -10,7 +10,7 @@ Sections:
 	.bss        type:bss align:64
 	.sdata      type:data align:8
 	.sbss       type:bss align:32
-	.sdata2     type:rodata align:8
+	.sdata2     type:rodata align:16
 	.sbss2      type:bss align:32
 
 d/d_home_button.cpp:

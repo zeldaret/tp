@@ -6,7 +6,6 @@ doorCoHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf = .
 doorTgHitCallBack__FP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf = .text:0x0000017C; // type:function size:0xEC scope:global align:4
 init_cyl__9daZdoor_cFv = .text:0x00000268; // type:function size:0xE4 scope:global align:4
 set_cyl__9daZdoor_cFv = .text:0x0000034C; // type:function size:0xF8 scope:global align:4
-__as__3VecFR9Vec = .text:0x00000444; // type:label scope:global align:4
 setBaseMtx__9daZdoor_cFv = .text:0x00000444; // type:function size:0x6C scope:global align:4
 Create__9daZdoor_cFv = .text:0x000004B0; // type:function size:0x74 scope:global align:4
 CreateHeap__9daZdoor_cFv = .text:0x00000524; // type:function size:0x7C scope:global align:4

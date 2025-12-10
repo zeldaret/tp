@@ -3,7 +3,6 @@ _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 setBaseMtx__14daGraveStone_cFv = .text:0x0000005C; // type:function size:0x70 scope:global align:4
 moveCalc__14daGraveStone_cFv = .text:0x000000CC; // type:function size:0x200 scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x000002CC; // type:label scope:global align:4
 setPrtcl__14daGraveStone_cFv = .text:0x000002CC; // type:function size:0x134 scope:global align:4
 setEnvTevColor__14daGraveStone_cFv = .text:0x00000400; // type:function size:0x58 scope:global align:4
 setRoomNo__14daGraveStone_cFv = .text:0x00000458; // type:function size:0x44 scope:global align:4

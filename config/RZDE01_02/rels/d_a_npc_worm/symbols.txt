@@ -3,7 +3,6 @@ _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 nodeCallBack__FP8J3DJointi = .text:0x0000005C; // type:function size:0xBC scope:global align:4
 daNPC_WORM_Draw__FP14npc_worm_class = .text:0x00000118; // type:function size:0xFC scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x00000214; // type:label scope:global align:4
 daNPC_WORM_Execute__FP14npc_worm_class = .text:0x00000214; // type:function size:0xB30 scope:global align:4
 daNPC_WORM_IsDelete__FP14npc_worm_class = .text:0x00000D44; // type:function size:0x8 scope:global align:4
 useHeapInit__FP10fopAc_ac_c = .text:0x00000D4C; // type:function size:0xA8 scope:global align:4

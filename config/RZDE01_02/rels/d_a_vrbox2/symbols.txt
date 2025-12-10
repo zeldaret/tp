@@ -36,5 +36,5 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 lbl_45_data_7 = .data:0x00000007; // type:object size:0x45
 l_daVrbox2_Method = .data:0x0000004C; // type:object size:0x20 scope:global align:4
 g_profile_VRBOX2 = .data:0x0000006C; // type:object size:0x30 scope:global align:4
-__vt__12J3DFrameCtrl = .data:0x0000009C; // type:object size:0x24 scope:global align:4
+lbl_45_data_9C = .data:0x0000009C; // type:object size:0x24
 mangZ$89235 = .bss:0x00000000; // type:object size:0x2 scope:global align:4

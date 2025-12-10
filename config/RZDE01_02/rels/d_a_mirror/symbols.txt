@@ -8,7 +8,6 @@ entryModel__16dMirror_packet_cFP8J3DModel = .text:0x000001F0; // type:function s
 mirrorZdraw__16dMirror_packet_cFPfPfffffff = .text:0x00000220; // type:function size:0x508 scope:global align:4
 modelDraw__16dMirror_packet_cFP8J3DModelPA4_f = .text:0x00000728; // type:function size:0x204 scope:global align:4
 mainDraw__16dMirror_packet_cFv = .text:0x0000092C; // type:function size:0x844 scope:global align:4
-__as__3VecFR9Vec = .text:0x00001170; // type:label scope:global align:4
 draw__16dMirror_packet_cFv = .text:0x00001170; // type:function size:0x9C scope:global align:4
 __ct__10daMirror_cFv = .text:0x0000120C; // type:function size:0x58 scope:global align:4
 setModelMtx__10daMirror_cFv = .text:0x00001264; // type:function size:0x88 scope:global align:4

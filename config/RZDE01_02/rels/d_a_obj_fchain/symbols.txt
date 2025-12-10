@@ -10,7 +10,6 @@ daObjFchain_Delete__FP13daObjFchain_c = .text:0x00000438; // type:function size:
 checkPlayerFoot__13daObjFchain_cFPC4cXyzPC4cXyzP4cXyz = .text:0x00000460; // type:function size:0xC4 scope:global align:4
 setGroundVec__13daObjFchain_cFP4cXyzf = .text:0x00000524; // type:function size:0xB0 scope:global align:4
 execute__13daObjFchain_cFv = .text:0x000005D4; // type:function size:0x6EC scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x00000CC0; // type:label scope:global align:4
 daObjFchain_Execute__FP13daObjFchain_c = .text:0x00000CC0; // type:function size:0x4 scope:global align:4
 draw__19daObjFchain_shape_cFv = .text:0x00000CC4; // type:function size:0x1A4 scope:global align:4
 draw__13daObjFchain_cFv = .text:0x00000E68; // type:function size:0x94 scope:global align:4

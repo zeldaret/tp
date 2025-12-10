@@ -5,7 +5,7 @@ hash: 5a99acb37b98e19682924502ee14a6d03d536c69
 splits: config/RZDE01_02/splits.txt
 symbols: config/RZDE01_02/symbols.txt
 # map: orig/RZDE01_00/fixed_maps/RframeworkF.map
-mw_comment_version: 14 # GC Linker 2.7
+mw_comment_version: 14 # GC Linker 3.0
 quick_analysis: true # Initial analysis completed
 # detect_objects: true
 
@@ -14,10 +14,10 @@ force_active: [
 ]
 
 modules:
-# - object: files/RELS.arc:rels/mmem/f_pc_profile_lst.rel
-#   hash: a7f24646c20b174199613be4780a362c29ffec9a
-#   symbols: config/RZDE01_02/rels/f_pc_profile_lst/symbols.txt
-#   splits: config/RZDE01_02/rels/f_pc_profile_lst/splits.txt
+- object: files/RELS.arc:rels/mmem/f_pc_profile_lst.rel
+  hash: a7f24646c20b174199613be4780a362c29ffec9a
+  symbols: config/RZDE01_02/rels/f_pc_profile_lst/symbols.txt
+  splits: config/RZDE01_02/rels/f_pc_profile_lst/splits.txt
 # map: orig/RZDE01_02/fixed_maps/f_pc_profile_lst.map
 
 - object: files/RELS.arc:rels/mmem/d_a_andsw.rel
@@ -164,10 +164,10 @@ modules:
   splits: config/RZDE01_02/rels/d_a_scene_exit/splits.txt
 # map: orig/RZDE01_02/fixed_maps/d_a_scene_exit.map
 
-#- object: files/RELS.arc:rels/mmem/d_a_set_bgobj.rel
-#  hash: 4f18ec17990860f9dc69ab55aec94a498900e13c
-#  symbols: config/RZDE01_02/rels/d_a_set_bgobj/symbols.txt
-#  splits: config/RZDE01_02/rels/d_a_set_bgobj/splits.txt
+- object: files/RELS.arc:rels/mmem/d_a_set_bgobj.rel
+  hash: 4f18ec17990860f9dc69ab55aec94a498900e13c
+  symbols: config/RZDE01_02/rels/d_a_set_bgobj/symbols.txt
+  splits: config/RZDE01_02/rels/d_a_set_bgobj/splits.txt
 # map: orig/RZDE01_02/fixed_maps/d_a_set_bgobj.map
 
 - object: files/RELS.arc:rels/mmem/d_a_swhit0.rel

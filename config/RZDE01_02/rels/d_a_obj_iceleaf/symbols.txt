@@ -3,7 +3,6 @@ _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 CheckCreateHeap__FP10fopAc_ac_c = .text:0x0000005C; // type:function size:0x4 scope:global align:4
 setBaseMtx__14daObjIceLeaf_cFv = .text:0x00000060; // type:function size:0x230 scope:global align:4
-__as__3VecFR9Vec = .text:0x000000A0; // type:label scope:global align:4
 Create__14daObjIceLeaf_cFv = .text:0x00000290; // type:function size:0x19C scope:global align:4
 setAnmPos__14daObjIceLeaf_cFv = .text:0x0000042C; // type:function size:0xB4 scope:global align:4
 CreateHeap__14daObjIceLeaf_cFv = .text:0x000004E0; // type:function size:0x124 scope:global align:4

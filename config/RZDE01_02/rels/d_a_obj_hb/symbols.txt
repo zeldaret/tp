@@ -3,7 +3,6 @@ _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 daOBJ_HB_Draw__FP12obj_hb_class = .text:0x0000005C; // type:function size:0xCC scope:global align:4
 daOBJ_HB_Execute__FP12obj_hb_class = .text:0x00000128; // type:function size:0x15E4 scope:global align:4
-__as__11actor_placeFR17actor_place = .text:0x0000170C; // type:label scope:global align:4
 daOBJ_HB_IsDelete__FP12obj_hb_class = .text:0x0000170C; // type:function size:0x8 scope:global align:4
 daOBJ_HB_Delete__FP12obj_hb_class = .text:0x00001714; // type:function size:0x5C scope:global align:4
 useHeapInit__FP10fopAc_ac_c = .text:0x00001770; // type:function size:0x68 scope:global align:4

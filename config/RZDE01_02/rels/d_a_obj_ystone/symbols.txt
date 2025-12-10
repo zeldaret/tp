@@ -4,7 +4,6 @@ _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 daObj_Ystone_Draw__FP16obj_ystone_class = .text:0x0000005C; // type:function size:0xE8 scope:global align:4
 setModelBaseMtx__FP16obj_ystone_class = .text:0x00000144; // type:function size:0xC0 scope:global align:4
 daObj_Ystone_Execute__FP16obj_ystone_class = .text:0x00000204; // type:function size:0x4BC scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x000006C0; // type:label scope:global align:4
 daObj_Ystone_IsDelete__FP16obj_ystone_class = .text:0x000006C0; // type:function size:0x8 scope:global align:4
 daObj_Ystone_Delete__FP16obj_ystone_class = .text:0x000006C8; // type:function size:0x3C scope:global align:4
 useHeapInit__FP10fopAc_ac_c = .text:0x00000704; // type:function size:0x260 scope:global align:4

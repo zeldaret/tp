@@ -44,4 +44,4 @@ cc_cyl_src$93728 = .data:0x00000050; // type:object size:0x44 scope:global align
 l_daObj_Tp_Method = .data:0x00000094; // type:object size:0x20 scope:global align:4
 g_profile_OBJ_TP = .data:0x000000B4; // type:object size:0x30 scope:global align:4
 lbl_670_data_E4 = .data:0x000000E4; // type:object size:0x20
-__vt__8cM3dGAab = .data:0x00000104; // type:object size:0x44 scope:global align:4
+lbl_670_data_104 = .data:0x00000104; // type:object size:0x44

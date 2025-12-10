@@ -5,7 +5,6 @@ __register_global_object = .text:0x0000005C; // type:function size:0x1C scope:gl
 __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:global align:4
 __dt__13daObj_Pleaf_cFv = .text:0x000000CC; // type:function size:0xB4 scope:global align:4
 create__13daObj_Pleaf_cFv = .text:0x00000180; // type:function size:0x23C scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x000003BC; // type:label scope:global align:4
 CreateHeap__13daObj_Pleaf_cFv = .text:0x000003BC; // type:function size:0x78 scope:global align:4
 Execute__13daObj_Pleaf_cFv = .text:0x00000434; // type:function size:0xBC scope:global align:4
 Draw__13daObj_Pleaf_cFv = .text:0x000004F0; // type:function size:0xC0 scope:global align:4

@@ -16,7 +16,6 @@ float_damage_check__15daObj_Kanban2_cFv = .text:0x00000B14; // type:function siz
 deletePart__15daObj_Kanban2_cFv = .text:0x00000BE8; // type:function size:0xF8 scope:global align:4
 getWallAngle__15daObj_Kanban2_cFv = .text:0x00000CE0; // type:function size:0x11C scope:global align:4
 setGroundAngle__15daObj_Kanban2_cFv = .text:0x00000DFC; // type:function size:0x178 scope:global align:4
-__as__3VecFR9Vec = .text:0x00000F74; // type:label scope:global align:4
 checkWaterSurface__15daObj_Kanban2_cFv = .text:0x00000F74; // type:function size:0xA8 scope:global align:4
 checkPataGround__15daObj_Kanban2_cFss = .text:0x0000101C; // type:function size:0x12C scope:global align:4
 setCullMtx__15daObj_Kanban2_cFv = .text:0x00001148; // type:function size:0x44 scope:global align:4

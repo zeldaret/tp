@@ -8,7 +8,6 @@ rideCallback__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c = .text:0x000002EC; // type:func
 Create__16daObjYIblltray_cFv = .text:0x000002F8; // type:function size:0x2C8 scope:global align:4
 rideActor__16daObjYIblltray_cFP10fopAc_ac_c = .text:0x000005C0; // type:function size:0x54 scope:global align:4
 sendBall__16daObjYIblltray_cFUi = .text:0x00000614; // type:function size:0x7C scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x00000690; // type:label scope:global align:4
 searchObjYIblltray__FPvPv = .text:0x00000690; // type:function size:0x80 scope:global align:4
 searchNearIronball__FPvPv = .text:0x00000710; // type:function size:0x88 scope:global align:4
 searchNearBackTrayIronball__FPvPv = .text:0x00000798; // type:function size:0x88 scope:global align:4

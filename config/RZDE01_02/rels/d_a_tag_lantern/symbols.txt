@@ -6,7 +6,6 @@ __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:glob
 __dt__15daTag_Lantern_cFv = .text:0x000000CC; // type:function size:0x74 scope:global align:4
 create__15daTag_Lantern_cFv = .text:0x00000140; // type:function size:0x74 scope:global align:4
 Execute__15daTag_Lantern_cFv = .text:0x000001B4; // type:function size:0x178 scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x0000032C; // type:label scope:global align:4
 initialize__15daTag_Lantern_cFv = .text:0x0000032C; // type:function size:0xB0 scope:global align:4
 daTag_Lantern_Create__FPv = .text:0x000003DC; // type:function size:0x4 scope:global align:4
 daTag_Lantern_Delete__FPv = .text:0x000003E0; // type:function size:0x34 scope:global align:4

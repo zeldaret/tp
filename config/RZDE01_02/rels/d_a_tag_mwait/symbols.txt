@@ -6,7 +6,6 @@ daTagMwait_Create__FP10fopAc_ac_c = .text:0x00000220; // type:function size:0x4 
 __dt__12daTagMwait_cFv = .text:0x00000224; // type:function size:0x68 scope:global align:4
 daTagMwait_Delete__FP12daTagMwait_c = .text:0x0000028C; // type:function size:0x28 scope:global align:4
 execute__12daTagMwait_cFv = .text:0x000002B4; // type:function size:0x37C scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x00000630; // type:label scope:global align:4
 daTagMwait_Execute__FP12daTagMwait_c = .text:0x00000630; // type:function size:0x4 scope:global align:4
 daTagMwait_Draw__FP12daTagMwait_c = .text:0x00000634; // type:function size:0x8 scope:global align:4
 _ctors = .ctors:0x00000000; // type:label scope:global

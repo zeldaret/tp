@@ -8,7 +8,6 @@ restart__18daTag_BottleItem_cFv = .text:0x00000158; // type:function size:0x60 s
 initialize__18daTag_BottleItem_cFv = .text:0x000001B8; // type:function size:0x78 scope:global align:4
 setProcess__18daTag_BottleItem_cFM18daTag_BottleItem_cFPCvPvPv_i = .text:0x00000230; // type:function size:0xF4 scope:global align:4
 setAttnPos__18daTag_BottleItem_cFv = .text:0x00000324; // type:function size:0x40 scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x00000364; // type:label scope:global align:4
 chkEvent__18daTag_BottleItem_cFv = .text:0x00000364; // type:function size:0x50 scope:global align:4
 orderEvent__18daTag_BottleItem_cFv = .text:0x000003B4; // type:function size:0x94 scope:global align:4
 makeSoup__18daTag_BottleItem_cFv = .text:0x00000448; // type:function size:0x88 scope:global align:4

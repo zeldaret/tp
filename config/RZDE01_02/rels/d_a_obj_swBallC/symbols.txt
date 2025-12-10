@@ -62,4 +62,4 @@ lbl_641_data_F8 = .data:0x000000F8; // type:object size:0x6 data:string
 @95610 = .data:0x00000134; // type:object size:0x34 scope:local align:4
 l_daObjSwBallC_Method = .data:0x00000168; // type:object size:0x20 scope:global align:4
 g_profile_Obj_SwBallC = .data:0x00000188; // type:object size:0x30 scope:global align:4
-__vt__12J3DFrameCtrl = .data:0x000001B8; // type:object size:0x24 scope:global align:4
+lbl_641_data_1B8 = .data:0x000001B8; // type:object size:0x24

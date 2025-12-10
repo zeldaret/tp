@@ -70,6 +70,5 @@ lbl_277_data_8A64 = .data:0x00008A64; // type:object size:0x10 data:string
 @93126 = .data:0x00008A74; // type:object size:0xC scope:local align:4
 __RTTI__15daMant_packet_c = .data:0x00008A80; // type:object size:0x8 scope:global align:4
 lbl_277_data_8A88 = .data:0x00008A88; // type:object size:0xA data:string
-__RTTI__9J3DPacket = .data:0x00008A94; // type:object size:0x8 scope:global align:4
 lbl_277_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
 mant_cut_type = .bss:0x00000004; // type:object size:0x4 scope:global align:4 data:4byte

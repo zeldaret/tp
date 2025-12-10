@@ -37,5 +37,5 @@ lbl_628_data_6C = .data:0x0000006C; // type:object size:0x10 data:string
 @89144 = .data:0x0000007C; // type:object size:0x14 scope:local align:4
 __RTTI__15daObjSnowSoup_c = .data:0x00000090; // type:object size:0x8 scope:global align:4
 lbl_628_data_98 = .data:0x00000098; // type:object size:0xC data:string
-__RTTI__10fopAc_ac_c = .data:0x000000A4; // type:object size:0x14 scope:global align:4
+lbl_628_data_A4 = .data:0x000000A4; // type:object size:0x13 data:string
 __RTTI__30request_of_phase_process_class = .data:0x000000B8; // type:object size:0x8 scope:global align:4

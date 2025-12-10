@@ -8,7 +8,6 @@ useHeapInit__FP10fopAc_ac_c = .text:0x00000378; // type:function size:0xA8 scope
 daObj_Tatigi_Create__FP10fopAc_ac_c = .text:0x00000420; // type:function size:0x460 scope:global align:4
 daObj_Tatigi_Delete__FP16obj_tatigi_class = .text:0x00000880; // type:function size:0x88 scope:global align:4
 __ct__5tg_ssFv = .text:0x00000908; // type:function size:0x68 scope:global align:4
-__dt__8dCcD_CylFv = .text:0x00000970; // type:label scope:global align:4
 __dt__5tg_ssFv = .text:0x00000970; // type:function size:0x5C scope:global align:4
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global

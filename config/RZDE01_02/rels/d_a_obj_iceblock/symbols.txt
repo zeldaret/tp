@@ -4,7 +4,6 @@ _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 PPCallBack__13daObjIceBlk_cFP10fopAc_ac_cP10fopAc_ac_csQ29dBgW_Base13PushPullLabel = .text:0x0000005C; // type:function size:0xC4 scope:global align:4
 rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c = .text:0x00000120; // type:function size:0x18 scope:global align:4
 initBaseMtx__13daObjIceBlk_cFv = .text:0x00000138; // type:function size:0x58 scope:global align:4
-__as__3VecFR9Vec = .text:0x00000190; // type:label scope:global align:4
 setBaseMtx__13daObjIceBlk_cFv = .text:0x00000190; // type:function size:0x80 scope:global align:4
 getPointNo__13daObjIceBlk_cFv = .text:0x00000210; // type:function size:0x84 scope:global align:4
 loadCurrentPos__13daObjIceBlk_cFv = .text:0x00000294; // type:function size:0x84 scope:global align:4

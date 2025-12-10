@@ -5,7 +5,6 @@ __register_global_object = .text:0x0000005C; // type:function size:0x1C scope:gl
 __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:global align:4
 __ct__18daAmiShutter_HIO_cFv = .text:0x000000CC; // type:function size:0x3C scope:global align:4
 setBaseMtx__14daAmiShutter_cFv = .text:0x00000108; // type:function size:0x7C scope:global align:4
-__as__3VecFR9Vec = .text:0x00000184; // type:label scope:global align:4
 CreateHeap__14daAmiShutter_cFv = .text:0x00000184; // type:function size:0x68 scope:global align:4
 create__14daAmiShutter_cFv = .text:0x000001EC; // type:function size:0x1A0 scope:global align:4
 Execute__14daAmiShutter_cFPPA3_A4_f = .text:0x0000038C; // type:function size:0x74 scope:global align:4

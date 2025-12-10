@@ -7,7 +7,6 @@ daKytag10_Execute__FP13kytag10_class = .text:0x0000019C; // type:function size:0
 daKytag10_IsDelete__FP13kytag10_class = .text:0x00000404; // type:function size:0x8 scope:global align:4
 daKytag10_Delete__FP13kytag10_class = .text:0x0000040C; // type:function size:0xD0 scope:global align:4
 daKytag10_Create__FP10fopAc_ac_c = .text:0x000004DC; // type:function size:0x1C4 scope:global align:4
-setGlobalTranslation__14JPABaseEmitterFfff = .text:0x000006A0; // type:label scope:global align:4
 setGlobalParticleScale__14JPABaseEmitterFRCQ29JGeometry8TVec3<f> = .text:0x000006A0; // type:function size:0x14 scope:global align:4
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global

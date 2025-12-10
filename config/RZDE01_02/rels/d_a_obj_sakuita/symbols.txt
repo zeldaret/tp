@@ -2,7 +2,6 @@ _prolog = .text:0x00000000; // type:function size:0x2C scope:global align:4
 _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 create_init__14daObjSakuita_cFv = .text:0x0000005C; // type:function size:0xDC scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x00000138; // type:label scope:global align:4
 setBaseMtx__14daObjSakuita_cFv = .text:0x00000138; // type:function size:0x7C scope:global align:4
 setPlatePos__14daObjSakuita_cFv = .text:0x000001B4; // type:function size:0x1C8 scope:global align:4
 calcAngle__14daObjSakuita_cFv = .text:0x0000037C; // type:function size:0xB4 scope:global align:4

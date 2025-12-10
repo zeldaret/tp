@@ -4,7 +4,6 @@ _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 bound__FP4cXyzRC13cBgS_PolyInfof = .text:0x0000005C; // type:function size:0xE8 scope:global align:4
 CheckCreateHeap__FP10fopAc_ac_c = .text:0x00000144; // type:function size:0x4 scope:global align:4
 initBaseMtx__12daObjStone_cFv = .text:0x00000148; // type:function size:0x74 scope:global align:4
-__as__10QuaternionFR16Quaternion = .text:0x000001BC; // type:label scope:global align:4
 setBaseMtx__12daObjStone_cFv = .text:0x000001BC; // type:function size:0xB0 scope:global align:4
 Create__12daObjStone_cFv = .text:0x0000026C; // type:function size:0x25C scope:global align:4
 CreateHeap__12daObjStone_cFv = .text:0x000004C8; // type:function size:0x7C scope:global align:4

@@ -23,5 +23,5 @@ lbl_713_data_0 = .data:0x00000000; // type:object size:0x8 data:string
 l_arcName = .data:0x00000008; // type:object size:0x4 scope:global align:4 data:4byte
 l_daTagLv8Gate_Method = .data:0x0000000C; // type:object size:0x20 scope:global align:4
 g_profile_Tag_Lv8Gate = .data:0x0000002C; // type:object size:0x30 scope:global align:4
-__vt__12J3DFrameCtrl = .data:0x0000005C; // type:object size:0x7 scope:global align:4 data:string
+lbl_713_data_5C = .data:0x0000005C; // type:object size:0x7 data:string
 lbl_713_data_63 = .data:0x00000063; // type:object size:0xF data:string
