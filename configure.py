@@ -1022,7 +1022,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASProbe.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASReport.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASCmdStack.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp"),
+            Object(Equivalent, "JSystem/JAudio2/JASTrack.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASTrackPort.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASRegisterParam.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSeqCtrl.cpp"),
