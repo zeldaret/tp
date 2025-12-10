@@ -7,7 +7,6 @@ __dt__14daObj_SMTile_cFv = .text:0x000000CC; // type:function size:0xE4 scope:gl
 create__14daObj_SMTile_cFv = .text:0x000001B0; // type:function size:0x178 scope:global align:4
 CreateHeap__14daObj_SMTile_cFv = .text:0x00000328; // type:function size:0x11C scope:global align:4
 Execute__14daObj_SMTile_cFv = .text:0x00000444; // type:function size:0x360 scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x000007A4; // type:label scope:global align:4
 Draw__14daObj_SMTile_cFv = .text:0x000007A4; // type:function size:0x8C scope:global align:4
 createHeapCallBack__14daObj_SMTile_cFP10fopAc_ac_c = .text:0x00000830; // type:function size:0x4 scope:global align:4
 setDstPos__14daObj_SMTile_cFv = .text:0x00000834; // type:function size:0x1CC scope:global align:4

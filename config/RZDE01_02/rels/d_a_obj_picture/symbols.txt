@@ -14,7 +14,6 @@ setPicModelMtx__14daObjPicture_cFv = .text:0x00000EEC; // type:function size:0x8
 setTmgModelMtx__14daObjPicture_cFv = .text:0x00000F6C; // type:function size:0x88 scope:global align:4
 getLinePosPic__14daObjPicture_cFiP4cXyz = .text:0x00000FF4; // type:function size:0x70 scope:global align:4
 setLinePos__14daObjPicture_cFv = .text:0x00001064; // type:function size:0x18C scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x000011F0; // type:label scope:global align:4
 moveLineFall1__14daObjPicture_cFv = .text:0x000011F0; // type:function size:0x19C scope:global align:4
 moveLineFall2__14daObjPicture_cFv = .text:0x0000138C; // type:function size:0x218 scope:global align:4
 chkHitRope__14daObjPicture_cFv = .text:0x000015A4; // type:function size:0xA8 scope:global align:4

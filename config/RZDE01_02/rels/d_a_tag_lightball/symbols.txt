@@ -3,7 +3,6 @@ _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 setBaseMtx__16daTagLightBall_cFv = .text:0x0000005C; // type:function size:0x5C scope:global align:4
 Create__16daTagLightBall_cFv = .text:0x000000B8; // type:function size:0x138 scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x000001F0; // type:label scope:global align:4
 create__16daTagLightBall_cFv = .text:0x000001F0; // type:function size:0x68 scope:global align:4
 execute__16daTagLightBall_cFv = .text:0x00000258; // type:function size:0x174 scope:global align:4
 _delete__16daTagLightBall_cFv = .text:0x000003CC; // type:function size:0x48 scope:global align:4

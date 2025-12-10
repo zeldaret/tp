@@ -28,4 +28,4 @@ dzbd$91779 = .data:0x00000014; // type:object size:0x8 scope:global align:4
 cc_sph_src$91822 = .data:0x0000001C; // type:object size:0x40 scope:global align:4
 l_daObj_Udoor_Method = .data:0x0000005C; // type:object size:0x20 scope:global align:4
 g_profile_OBJ_UDOOR = .data:0x0000007C; // type:object size:0x30 scope:global align:4
-__vt__8cM3dGAab = .data:0x000000AC; // type:object size:0x40 scope:global align:4
+lbl_673_data_AC = .data:0x000000AC; // type:object size:0x40

@@ -5,7 +5,6 @@ __register_global_object = .text:0x0000005C; // type:function size:0x1C scope:gl
 __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:global align:4
 __ct__17daLv2Candle_HIO_cFv = .text:0x000000CC; // type:function size:0x9C scope:global align:4
 setBaseMtx__13daLv2Candle_cFv = .text:0x00000168; // type:function size:0x7C scope:global align:4
-__as__3VecFR9Vec = .text:0x000001E4; // type:label scope:global align:4
 CreateHeap__13daLv2Candle_cFv = .text:0x000001E4; // type:function size:0x7C scope:global align:4
 create__13daLv2Candle_cFv = .text:0x00000260; // type:function size:0x2A8 scope:global align:4
 isSwitch__13daLv2Candle_cFv = .text:0x00000508; // type:function size:0x4C scope:global align:4

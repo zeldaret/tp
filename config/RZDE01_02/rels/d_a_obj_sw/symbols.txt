@@ -12,7 +12,6 @@ useHeapInit__FP10fopAc_ac_c = .text:0x00001BE4; // type:function size:0x234 scop
 daObj_Sw_Create__FP10fopAc_ac_c = .text:0x00001E18; // type:function size:0x448 scope:global align:4
 __ct__8obj_sc_sFv = .text:0x00002260; // type:function size:0x34 scope:global align:4
 __dt__8obj_sc_sFv = .text:0x00002294; // type:function size:0x5C scope:global align:4
-__dt__16Z2SoundObjSimpleFv = .text:0x000022D4; // type:label scope:global align:4
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global
 ...rodata.0 = .rodata:0x00000000; // type:label scope:local align:4

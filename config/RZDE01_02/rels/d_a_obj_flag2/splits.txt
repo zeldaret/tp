@@ -3,7 +3,7 @@ Sections:
 	.ctors      type:rodata align:4
 	.dtors      type:rodata align:4
 	.rodata     type:rodata align:8
-	.data       type:data align:8
+	.data       type:data align:32
 
 REL/executor.c:
 	.text       start:0x00000000 end:0x0000005C

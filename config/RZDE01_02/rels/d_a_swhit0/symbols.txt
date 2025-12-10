@@ -7,7 +7,6 @@ getType__10daSwhit0_cFv = .text:0x0000008C; // type:function size:0x18 scope:glo
 makeEventId__10daSwhit0_cFv = .text:0x000000A4; // type:function size:0x88 scope:global align:4
 CreateHeap__10daSwhit0_cFv = .text:0x0000012C; // type:function size:0x110 scope:global align:4
 CreateInit__10daSwhit0_cFv = .text:0x0000023C; // type:function size:0x148 scope:global align:4
-__as__3VecFR9Vec = .text:0x00000384; // type:label scope:global align:4
 CheckCreateHeap__FP10fopAc_ac_c = .text:0x00000384; // type:function size:0x4 scope:global align:4
 create__10daSwhit0_cFv = .text:0x00000388; // type:function size:0x1A0 scope:global align:4
 checkHit__10daSwhit0_cFv = .text:0x00000528; // type:function size:0x88 scope:global align:4

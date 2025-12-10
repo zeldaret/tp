@@ -35,7 +35,6 @@ do_a_swim__FP8do_class = .text:0x00003F74; // type:function size:0x21C scope:glo
 do_carry__FP8do_class = .text:0x00004190; // type:function size:0x2C4 scope:global align:4
 do_message__FP8do_class = .text:0x00004454; // type:function size:0xD8 scope:global align:4
 daDo_Execute__FP8do_class = .text:0x0000452C; // type:function size:0x1494 scope:global align:4
-__as__5csXyzFR11csXyz = .text:0x000059C0; // type:label scope:global align:4
 daDo_IsDelete__FP8do_class = .text:0x000059C0; // type:function size:0x8 scope:global align:4
 daDo_Delete__FP8do_class = .text:0x000059C8; // type:function size:0x68 scope:global align:4
 useHeapInit__FP10fopAc_ac_c = .text:0x00005A30; // type:function size:0x2B8 scope:global align:4

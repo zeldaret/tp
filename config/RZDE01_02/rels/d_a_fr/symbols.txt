@@ -6,7 +6,6 @@ __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:glob
 __ct__10daFr_HIO_cFv = .text:0x000000CC; // type:function size:0x60 scope:global align:4
 daFr_Draw__FP8fr_class = .text:0x0000012C; // type:function size:0xC0 scope:global align:4
 s_wd_sub__FPvPv = .text:0x000001EC; // type:function size:0x4C scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x00000238; // type:label scope:global align:4
 way_bg_check__FP8fr_class = .text:0x00000238; // type:function size:0xF0 scope:global align:4
 swim_on__FP8fr_class = .text:0x00000328; // type:function size:0x18C scope:global align:4
 daFr_Execute__FP8fr_class = .text:0x000004B4; // type:function size:0x12FC scope:global align:4

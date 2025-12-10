@@ -6,7 +6,6 @@ daKytag08_Execute__FP13kytag08_class = .text:0x00000064; // type:function size:0
 daKytag08_IsDelete__FP13kytag08_class = .text:0x000005F0; // type:function size:0x8 scope:global align:4
 useHeapInit__FP10fopAc_ac_c = .text:0x000005F8; // type:function size:0x68 scope:global align:4
 daKytag08_Create__FP10fopAc_ac_c = .text:0x00000660; // type:function size:0x208 scope:global align:4
-setGlobalTranslation__14JPABaseEmitterFfff = .text:0x00000868; // type:label scope:global align:4
 setGlobalParticleScale__14JPABaseEmitterFRCQ29JGeometry8TVec3<f> = .text:0x00000868; // type:function size:0x14 scope:global align:4
 daKytag08_Delete__FP13kytag08_class = .text:0x0000087C; // type:function size:0xD0 scope:global align:4
 _ctors = .ctors:0x00000000; // type:label scope:global

@@ -3,7 +3,6 @@ _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 s_BossSearch__FPvPv = .text:0x0000005C; // type:function size:0x4C scope:global align:4
 setBaseMtx__14daObjLv4Wall_cFv = .text:0x000000A8; // type:function size:0x78 scope:global align:4
-__as__3VecFR9Vec = .text:0x000000E8; // type:label scope:global align:4
 Create__14daObjLv4Wall_cFv = .text:0x00000120; // type:function size:0x154 scope:global align:4
 CreateHeap__14daObjLv4Wall_cFv = .text:0x00000274; // type:function size:0x68 scope:global align:4
 create1st__14daObjLv4Wall_cFv = .text:0x000002DC; // type:function size:0x68 scope:global align:4

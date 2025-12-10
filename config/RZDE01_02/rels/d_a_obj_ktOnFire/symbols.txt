@@ -7,7 +7,6 @@ __ct__16daKtOnFire_HIO_cFv = .text:0x000000CC; // type:function size:0x18 scope:
 setBaseMtx__12daKtOnFire_cFv = .text:0x000000E4; // type:function size:0x5C scope:global align:4
 create__12daKtOnFire_cFv = .text:0x00000140; // type:function size:0x1E8 scope:global align:4
 lightInit__12daKtOnFire_cFv = .text:0x00000328; // type:function size:0x88 scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x000003B0; // type:label scope:global align:4
 Execute__12daKtOnFire_cFv = .text:0x000003B0; // type:function size:0x3B0 scope:global align:4
 daKtOnFire_Draw__FP12daKtOnFire_c = .text:0x00000760; // type:function size:0x8 scope:global align:4
 daKtOnFire_Execute__FP12daKtOnFire_c = .text:0x00000768; // type:function size:0x4 scope:global align:4

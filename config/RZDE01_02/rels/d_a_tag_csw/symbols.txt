@@ -19,7 +19,6 @@ daTagCsw_Execute__FP10daTagCsw_c = .text:0x00001428; // type:function size:0x4 s
 daTagCsw_IsDelete__FP10daTagCsw_c = .text:0x0000142C; // type:function size:0x8 scope:global align:4
 daTagCsw_Delete__FP10daTagCsw_c = .text:0x00001434; // type:function size:0x3C scope:global align:4
 daTagCsw_Create__FP10fopAc_ac_c = .text:0x00001470; // type:function size:0x4 scope:global align:4
-__ct__13mDoExt_brkAnmFv = .text:0x00001474; // type:label scope:global align:4
 entry__13mDoExt_brkAnmFP12J3DModelData = .text:0x00001474; // type:function size:0xC scope:global align:4
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global

@@ -20,7 +20,6 @@ __ct__5bug_sFv = .text:0x00002608; // type:function size:0x34 scope:global align
 __dt__13daE_Bug_HIO_cFv = .text:0x0000263C; // type:function size:0x40 scope:global align:4
 __sinit_d_a_e_bug_cpp = .text:0x0000267C; // type:function size:0x64 scope:global align:4
 __dt__5bug_sFv = .text:0x000026E0; // type:function size:0x5C scope:global align:4
-__dt__16Z2SoundObjSimpleFv = .text:0x00002720; // type:label scope:global align:4
 _ctors = .ctors:0x00000000; // type:label scope:global
 __destroy_global_chain_reference = .dtors:0x00000000; // type:object size:0x4 scope:global align:4
 _dtors = .dtors:0x00000000; // type:label scope:global

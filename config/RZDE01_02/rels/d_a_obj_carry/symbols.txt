@@ -13,7 +13,6 @@ s_setB_sub__FPvPv = .text:0x00000418; // type:function size:0x74 scope:global al
 CheckCreateHeap__FP10fopAc_ac_c = .text:0x0000048C; // type:function size:0x4 scope:global align:4
 checkFlag__12daObjCarry_cFUc = .text:0x00000490; // type:function size:0x20 scope:global align:4
 initBaseMtx__12daObjCarry_cFv = .text:0x000004B0; // type:function size:0x64 scope:global align:4
-__as__10QuaternionFR16Quaternion = .text:0x00000514; // type:label scope:global align:4
 setBaseMtx__12daObjCarry_cFv = .text:0x00000514; // type:function size:0x2F0 scope:global align:4
 preInit__12daObjCarry_cFv = .text:0x00000804; // type:function size:0x1C8 scope:global align:4
 checkBreakWolfAttack__12daObjCarry_cFv = .text:0x000009CC; // type:function size:0x54 scope:global align:4

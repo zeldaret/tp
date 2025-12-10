@@ -2,7 +2,6 @@ _prolog = .text:0x00000000; // type:function size:0x2C scope:global align:4
 _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 setBaseMtx__12daObjSword_cFv = .text:0x0000005C; // type:function size:0x6C scope:global align:4
-__as__3VecFR9Vec = .text:0x0000009C; // type:label scope:global align:4
 Create__12daObjSword_cFv = .text:0x000000C8; // type:function size:0x94 scope:global align:4
 create__12daObjSword_cFv = .text:0x0000015C; // type:function size:0x19C scope:global align:4
 actionWait__12daObjSword_cFv = .text:0x000002F8; // type:function size:0x78 scope:global align:4

@@ -6,7 +6,6 @@ __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:glob
 __ct__17daFireWood2_HIO_cFv = .text:0x000000CC; // type:function size:0x30 scope:global align:4
 setBaseMtx__13daFireWood2_cFv = .text:0x000000FC; // type:function size:0x5C scope:global align:4
 create__13daFireWood2_cFv = .text:0x00000158; // type:function size:0x274 scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x000003CC; // type:label scope:global align:4
 lightInit__13daFireWood2_cFv = .text:0x000003CC; // type:function size:0xA0 scope:global align:4
 pointLightProc__13daFireWood2_cFv = .text:0x0000046C; // type:function size:0xCC scope:global align:4
 Execute__13daFireWood2_cFv = .text:0x00000538; // type:function size:0x5A4 scope:global align:4

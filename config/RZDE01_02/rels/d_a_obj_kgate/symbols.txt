@@ -3,7 +3,6 @@ _epilog = .text:0x0000002C; // type:function size:0x2C scope:global align:4
 _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 search_coach__FPvPv = .text:0x0000005C; // type:function size:0x54 scope:global align:4
 initBaseMtx__12daObjKGate_cFv = .text:0x000000B0; // type:function size:0x164 scope:global align:4
-__as__3VecFR9Vec = .text:0x00000214; // type:label scope:global align:4
 setBaseMtx__12daObjKGate_cFv = .text:0x00000214; // type:function size:0x490 scope:global align:4
 Create__12daObjKGate_cFv = .text:0x000006A4; // type:function size:0x1FC scope:global align:4
 CreateHeap__12daObjKGate_cFv = .text:0x000008A0; // type:function size:0x240 scope:global align:4

@@ -16,7 +16,6 @@ daObjL6Bm_create1st__FP11daObjL6Bm_c = .text:0x00000D54; // type:function size:0
 daObjL6Bm_MoveBGDelete__FP11daObjL6Bm_c = .text:0x00000EB4; // type:function size:0x4 scope:global align:4
 daObjL6Bm_MoveBGExecute__FP11daObjL6Bm_c = .text:0x00000EB8; // type:function size:0x4 scope:global align:4
 daObjL6Bm_MoveBGDraw__FP11daObjL6Bm_c = .text:0x00000EBC; // type:function size:0x10 scope:global align:4
-__ct__13mDoExt_btkAnmFv = .text:0x00000ECC; // type:label scope:global align:4
 entry__13mDoExt_btkAnmFP12J3DModelData = .text:0x00000ECC; // type:function size:0xC scope:global align:4
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global

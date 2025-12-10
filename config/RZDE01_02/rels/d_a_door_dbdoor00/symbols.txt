@@ -9,7 +9,6 @@ calcMtx__12daDbDoor00_cFv = .text:0x00000384; // type:function size:0x160 scope:
 CreateInit__12daDbDoor00_cFv = .text:0x000004E4; // type:function size:0xB0 scope:global align:4
 create__12daDbDoor00_cFv = .text:0x00000594; // type:function size:0xB8 scope:global align:4
 demoProc__12daDbDoor00_cFv = .text:0x0000064C; // type:function size:0x398 scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x000009E4; // type:label scope:global align:4
 checkArea__12daDbDoor00_cFv = .text:0x000009E4; // type:function size:0x118 scope:global align:4
 actionWait__12daDbDoor00_cFv = .text:0x00000AFC; // type:function size:0x24 scope:global align:4
 actionLockWait__12daDbDoor00_cFv = .text:0x00000B20; // type:function size:0x48 scope:global align:4

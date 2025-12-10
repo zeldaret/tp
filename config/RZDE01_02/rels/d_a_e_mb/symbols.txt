@@ -6,7 +6,6 @@ __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:glob
 __ct__12daE_MB_HIO_cFv = .text:0x000000CC; // type:function size:0x48 scope:global align:4
 anm_init__FP10e_mb_classifUcf = .text:0x00000114; // type:function size:0xAC scope:global align:4
 daE_MB_Draw__FP10e_mb_class = .text:0x000001C0; // type:function size:0x144 scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x00000304; // type:label scope:global align:4
 daE_MB_Execute__FP10e_mb_class = .text:0x00000304; // type:function size:0x13B4 scope:global align:4
 daE_MB_IsDelete__FP10e_mb_class = .text:0x000016B8; // type:function size:0x8 scope:global align:4
 daE_MB_Delete__FP10e_mb_class = .text:0x000016C0; // type:function size:0x68 scope:global align:4

@@ -4,7 +4,6 @@ _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 create__15daTagKagoFall_cFv = .text:0x0000005C; // type:function size:0x170 scope:global align:4
 execute__15daTagKagoFall_cFv = .text:0x000001CC; // type:function size:0x38 scope:global align:4
 actionWaitRiver__15daTagKagoFall_cFv = .text:0x00000204; // type:function size:0x3CC scope:global align:4
-__as__4cXyzFR10cXyz = .text:0x000005D0; // type:label scope:global align:4
 actionWaitFall__15daTagKagoFall_cFv = .text:0x000005D0; // type:function size:0x45C scope:global align:4
 daTagKagoFall_Execute__FP15daTagKagoFall_c = .text:0x00000A2C; // type:function size:0x4 scope:global align:4
 daTagKagoFall_Delete__FP15daTagKagoFall_c = .text:0x00000A30; // type:function size:0x8 scope:global align:4

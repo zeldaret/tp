@@ -4,7 +4,6 @@ _unresolved = .text:0x00000058; // type:function size:0x4 scope:global align:4
 search_coach__FPvPv = .text:0x0000005C; // type:function size:0x54 scope:global align:4
 nodeCallBack__FP8J3DJointi = .text:0x000000B0; // type:function size:0xF8 scope:global align:4
 initBaseMtx__12daObjRgate_cFv = .text:0x000001A8; // type:function size:0x118 scope:global align:4
-__as__3VecFR9Vec = .text:0x000002C0; // type:label scope:global align:4
 setBaseMtx__12daObjRgate_cFv = .text:0x000002C0; // type:function size:0x474 scope:global align:4
 Create__12daObjRgate_cFv = .text:0x00000734; // type:function size:0x1B8 scope:global align:4
 CreateHeap__12daObjRgate_cFv = .text:0x000008EC; // type:function size:0x1AC scope:global align:4

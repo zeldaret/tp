@@ -22,7 +22,6 @@ daObj_BouMato_Execute__FPv = .text:0x00000EF4; // type:function size:0x4 scope:g
 daObj_BouMato_Draw__FPv = .text:0x00000EF8; // type:function size:0x4 scope:global align:4
 daObj_BouMato_IsDelete__FPv = .text:0x00000EFC; // type:function size:0x8 scope:global align:4
 __sinit_d_a_obj_boumato_cpp = .text:0x00000F04; // type:function size:0x78 scope:global align:4
-__dt__8cM3dGCylFv = .text:0x00000F7C; // type:label scope:global align:4
 __ct__8cM3dGCylFv = .text:0x00000F7C; // type:function size:0x10 scope:global align:4
 __dt__21daObj_BouMato_Param_cFv = .text:0x00000F8C; // type:function size:0x40 scope:global align:4
 __ct__21daObj_BouMato_Param_cFv = .text:0x00000FCC; // type:function size:0x10 scope:global align:4

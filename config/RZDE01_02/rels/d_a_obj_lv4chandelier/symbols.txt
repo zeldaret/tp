@@ -5,7 +5,6 @@ rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c = .text:0x0000005C; // type:func
 create1st__14daObjLv4Chan_cFv = .text:0x00000068; // type:function size:0x154 scope:global align:4
 setMtxChain__14daObjLv4Chan_cFPQ214daObjLv4Chan_c8ChainPosP10dMdl_obj_ci = .text:0x000001BC; // type:function size:0x1C4 scope:global align:4
 setMtx__14daObjLv4Chan_cFv = .text:0x00000380; // type:function size:0x2C8 scope:global align:4
-__as__3VecFR9Vec = .text:0x00000648; // type:label scope:global align:4
 rideActor__14daObjLv4Chan_cFP10fopAc_ac_c = .text:0x00000648; // type:function size:0x324 scope:global align:4
 CreateHeap__14daObjLv4Chan_cFv = .text:0x0000096C; // type:function size:0x1E8 scope:global align:4
 searchSwChain__FPvPv = .text:0x00000B54; // type:function size:0x78 scope:global align:4

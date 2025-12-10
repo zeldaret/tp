@@ -6,7 +6,6 @@ __destroy_global_chain = .text:0x00000078; // type:function size:0x54 scope:glob
 __ct__12daB_OH_HIO_cFv = .text:0x000000CC; // type:function size:0x30 scope:global align:4
 nodeCallBack__FP8J3DJointi = .text:0x000000FC; // type:function size:0x12C scope:global align:4
 daB_OH_Draw__FP10b_oh_class = .text:0x00000228; // type:function size:0xAC scope:global align:4
-__as__5csXyzFR11csXyz = .text:0x000002D4; // type:label scope:global align:4
 daB_OH_Execute__FP10b_oh_class = .text:0x000002D4; // type:function size:0x141C scope:global align:4
 daB_OH_IsDelete__FP10b_oh_class = .text:0x000016F0; // type:function size:0x8 scope:global align:4
 daB_OH_Delete__FP10b_oh_class = .text:0x000016F8; // type:function size:0x54 scope:global align:4
