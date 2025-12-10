@@ -729,6 +729,20 @@ void JASTrack::TList::append(JASTrack* i_track) {
 }
 
 void JASTrack::TList::seqMain() {
+#if DEBUG
+    iterator it, it2;
+    for (it = begin(); it != end(); it = it2) {
+        it2 = it;
+        ++it2;
+        int seqMainRes = it->seqMain();
+        if (seqMainRes < 0) {
+            Remove(&*it);
+            if (it->mFlags.autoDelete) {
+                delete &*it;
+            }
+        }
+    }
+#else
     iterator it;
     for (it = begin(); it != end();) {
         // Fakematch: Debug shows that it2 should be declared outside the loop and then this line
@@ -746,6 +760,7 @@ void JASTrack::TList::seqMain() {
         }
         it = it2;
     }
+#endif
 }
 
 JASTrack::TChannelMgr::TChannelMgr(JASTrack* i_track) : mSoundParams(NULL), mTrack(i_track) {
