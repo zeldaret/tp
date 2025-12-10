@@ -75,6 +75,7 @@ public:
     void setLevObjSE(u32 soundID, Vec* posPtr, s8 reverb);
     void setMultiTriggerSE(u32 soundID, Vec* posPtr, s8 reverb);
     void processSeFramework();
+    void playNaviFlySound(f32, f32);
     bool isLevelSe(JAISoundID soundID);
     bool isSoundCulling(JAISoundID soundID);
     void resetCrowdSize() { mCrowdSize = 0; }

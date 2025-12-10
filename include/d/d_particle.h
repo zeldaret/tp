@@ -17,7 +17,7 @@ class JKRSolidHeap;
 class dKy_tevstr_c;
 class fopAc_ac_c;
 
-class dPa_levelEcallBack : public JPAEmitterCallBack {
+class  dPa_levelEcallBack : public JPAEmitterCallBack {
 public:
     virtual ~dPa_levelEcallBack() { cleanup(); }
     virtual void setup(JPABaseEmitter*, const cXyz*, const csXyz*, s8) = 0;
@@ -41,7 +41,7 @@ public:
 
     virtual ~dPa_simpleEcallBack() {}
     virtual void executeAfter(JPABaseEmitter*);
-    virtual void draw(JPABaseEmitter*);
+    virtual bool draw(JPABaseEmitter*);
 
     void removeEmitter() { mEmitter = NULL; }
     u16 getID() const { return mID; }
@@ -73,16 +73,16 @@ public:
         void setup();
         void cleanup();
         void draw(f32 (*)[4]);
-        model_c() { field_0x0 = NULL; }
+        model_c() { mModelData = NULL; }
 
         void reset() {
-            field_0x0 = NULL;
+            mModelData = NULL;
         }
 
         u8 getRotAxis() { return mRotAxis; }
-        J3DModelData* getModelData() { return field_0x0; }
+        J3DModelData* getModelData() { return mModelData; }
 
-        J3DModelData* field_0x0;
+        J3DModelData* mModelData;
         J3DAnmBase* field_0x4;
         dKy_tevstr_c field_0x8;
         u8 mRotAxis;
@@ -104,7 +104,7 @@ public:
     static model_c* getModel(JPABaseEmitter*);
     static u8 getRotAxis(JPABaseEmitter*);
 
-    virtual void draw(JPABaseEmitter*);
+    virtual bool draw(JPABaseEmitter*);
     virtual void drawAfter(JPABaseEmitter* param_0) { cleanupModel(param_0); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 
@@ -119,6 +119,7 @@ public:
 
     static dPa_modelPcallBack mPcallback;
     static model_c* mModel;
+    static u8 mNum;
 };
 
 class dPa_selectTexEcallBack : public dPa_levelEcallBack {
@@ -126,7 +127,7 @@ public:
     dPa_selectTexEcallBack(u8 param_0) { field_0x4 = param_0; }
 
     virtual ~dPa_selectTexEcallBack() {}
-    virtual void draw(JPABaseEmitter*);
+    virtual bool draw(JPABaseEmitter*);
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
 
     /* 0x4 */ u8 field_0x4;
@@ -138,7 +139,7 @@ public:
 
     virtual ~dPa_followEcallBack() {}
     virtual void execute(JPABaseEmitter*);
-    virtual void draw(JPABaseEmitter*);
+    virtual bool draw(JPABaseEmitter*);
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
     virtual void cleanup() { end(); }
     virtual void end();
@@ -168,7 +169,7 @@ public:
 class dPa_light8EcallBack : public dPa_levelEcallBack {
 public:
     virtual ~dPa_light8EcallBack() {}
-    virtual void draw(JPABaseEmitter*);
+    virtual bool draw(JPABaseEmitter*);
     virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
@@ -176,14 +177,14 @@ public:
 class dPa_gen_b_light8EcallBack : public dPa_levelEcallBack {
 public:
     virtual ~dPa_gen_b_light8EcallBack() {}
-    virtual void draw(JPABaseEmitter*);
+    virtual bool draw(JPABaseEmitter*);
     virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
 class dPa_gen_d_light8EcallBack : public dPa_levelEcallBack {
 public:
-    virtual void draw(JPABaseEmitter*);
+    virtual bool draw(JPABaseEmitter*);
     virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
@@ -232,6 +233,7 @@ public:
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 
     void setRate(f32 rate) { mRate = rate; }
+    void setMaxCnt(int i_maxCnt) { mMaxCnt = i_maxCnt; }
 
 private:
     /* 0x04 */ f32 mRate;
@@ -246,7 +248,7 @@ public:
     dPa_setColorEcallBack(const GXColor& color) { mColor = color; }
 
     virtual ~dPa_setColorEcallBack() {}
-    virtual void draw(JPABaseEmitter*) { GXSetTevColor(GX_TEVREG1, mColor); }
+    virtual bool draw(JPABaseEmitter*) { GXSetTevColor(GX_TEVREG1, mColor); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
 
     /* 0x4 */ GXColor mColor;
@@ -282,11 +284,11 @@ public:
             u32 getId() { return mId; }
             void clearStatus() { mStatus = 0; }
 
-            void onEventMove() { mStatus |= 2; }
-            void offEventMove() { mStatus &= ~2; }
+            void onEventMove() { mStatus |= (u8)2; }
+            void offEventMove() { mStatus &= (u8)~2; }
             bool isEventMove() { return mStatus & 2; }
 
-            void offActive() { mStatus &= ~1; }
+            void offActive() { mStatus &= (u8)~1; }
             bool isActive() { return mStatus & 1; }
             u16 getNameId() { return mNameId; }
             dPa_levelEcallBack* getCallback() { return mCallback; }

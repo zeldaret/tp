@@ -55,12 +55,15 @@ public:
     #if PLATFORM_WII || PLATFORM_SHIELD
     class csr_c {
     public:
-        virtual ~csr_c();
+        virtual ~csr_c() {}
         virtual bool isPointer();
 
         void particleExecute();
 
         static u32 m_blurID;
+        static cXyz m_oldEffPos;
+        static cXyz m_oldOldEffPos;
+        static cXyz m_nowEffPos;
     };
 
     static void entryBaseCsr(csr_c*);
