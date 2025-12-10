@@ -909,12 +909,13 @@ void daNpcCdn3_c::checkSchedule() {
         int schedStartTime = (u16)((rawStartTime / 10) * 60 + (rawStartTime % 10) * 10);
         int currentTime = getTime();
 #if PLATFORM_SHIELD
-        if (field_0xb88->getWeekNum() == getDayOfWeek() && schedStartTime <= currentTime) {
+        if (field_0xb88->getWeekNum() == getDayOfWeek() && schedStartTime <= currentTime)
 #else
         int currentDay = getDayOfWeek();
         int schedDay = field_0xb88->getWeekNum();
-        if (schedDay == currentDay && schedStartTime <= currentTime) {
+        if (schedDay == currentDay && schedStartTime <= currentTime)
 #endif
+        {
             setSchedule(field_0xb88);
             field_0xb88 = NULL;
             setAction(MODE_PATH);
@@ -1454,10 +1455,6 @@ int daNpcCdn3_c::sing(void* param_0) {
     return field_0xaa0 == 0;
 }
 
-static int daNpcCdn3_Create(void* i_this) {
-    return static_cast<daNpcCdn3_c*>(i_this)->create();
-}
-
 int daNpcCdn3_c::create() {
     fopAcM_ct(this, daNpcCdn3_c);
     mIsDarkWorld = dKy_darkworld_check();
@@ -1575,11 +1572,6 @@ void daNpcCdn3_c::lookat() {
     mLookat.action(cStack_80, eyePos, this, afStack_38, NULL != m_targetAct.getActorP());
 }
 
-static int daNpcCdn3_Delete(void* i_this) {
-    static_cast<daNpcCdn3_c*>(i_this)->~daNpcCdn3_c();
-    return 1;
-}
-
 daNpcCdn3_c::~daNpcCdn3_c() {
     removeResrc(m_type, mObjNum);
     if (heap != NULL) {
@@ -1589,10 +1581,6 @@ daNpcCdn3_c::~daNpcCdn3_c() {
 #if DEBUG
     l_Cd2_HIO.removeHIO(this);
 #endif
-}
-
-static int daNpcCdn3_Execute(void* i_this) {
-    return static_cast<daNpcCdn3_c*>(i_this)->execute();
 }
 
 int daNpcCdn3_c::execute() {
@@ -1688,12 +1676,13 @@ void daNpcCdn3_c::checkTimeSchedule() {
             }
         } else if (field_0xb95 != 0 && mTagSched->getStartEnd() != 1) {
 #if PLATFORM_SHIELD
-            if (mTagSched->getWeekNum() == getDayOfWeek() && field_0xb8c <= iVar2) {
+            if (mTagSched->getWeekNum() == getDayOfWeek() && field_0xb8c <= iVar2)
 #else
             int day = getDayOfWeek();
             int weekNum = mTagSched->getWeekNum();
-            if (weekNum == day && field_0xb8c <= iVar2) {
+            if (weekNum == day && field_0xb8c <= iVar2)
 #endif
+            {
                 field_0xb95 = 0;
             }
         }
@@ -1719,6 +1708,19 @@ inline int daNpcCdn3_c::draw() {
     drawShadow(60.0f);
     mLookat.dbView();
     return 1;
+}
+
+static int daNpcCdn3_Create(void* i_this) {
+    return static_cast<daNpcCdn3_c*>(i_this)->create();
+}
+
+static int daNpcCdn3_Delete(void* i_this) {
+    static_cast<daNpcCdn3_c*>(i_this)->~daNpcCdn3_c();
+    return 1;
+}
+
+static int daNpcCdn3_Execute(void* i_this) {
+    return static_cast<daNpcCdn3_c*>(i_this)->execute();
 }
 
 static int daNpcCdn3_Draw(void* i_this) {

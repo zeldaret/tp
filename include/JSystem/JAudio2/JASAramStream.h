@@ -144,8 +144,8 @@ public:
     /* 0x0B8 */ u32 field_0x0b8;
     /* 0x0BC */ int field_0x0bc;
     /* 0x0C0 */ bool field_0x0c0;
-    /* 0x0C4 */ u32 field_0x0c4;
-    /* 0x0C8 */ f32 field_0x0c8;
+    /* 0x0C4 */ volatile u32 field_0x0c4;
+    /* 0x0C8 */ volatile f32 field_0x0c8;
     /* 0x0CC */ DVDFileInfo mDvdFileInfo;
     /* 0x108 */ u32 field_0x108;
     /* 0x10C */ int field_0x10c;

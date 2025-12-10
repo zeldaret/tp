@@ -1028,7 +1028,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSeqCtrl.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSeqParser.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSeqReader.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASAramStream.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASAramStream.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicBank.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASVoiceBank.cpp"),
@@ -1089,7 +1089,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/control.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JMessage/data.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/processor.cpp"),
-            Object(NonMatching, "JSystem/JMessage/resource.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/JMessage/resource.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/locale.cpp"),
         ],
     ),
@@ -2021,7 +2021,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_blue_ns"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_bou"),
     ActorRel(Equivalent, "d_a_npc_bouS"), # weak func order (sinShort)
-    ActorRel(Equivalent, "d_a_npc_cdn3"), # weak func order (~csXyz); vtable order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_npc_cdn3"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_chat"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_chin"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_clerka"),
