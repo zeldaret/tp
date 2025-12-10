@@ -728,11 +728,14 @@ void JASTrack::TList::append(JASTrack* i_track) {
     Push_back(i_track);
 }
 
-// NONMATCHING - missing load instruction (matches debug, equivalent)
 void JASTrack::TList::seqMain() {
-    iterator it, it2;
-    for (it = begin(); it != end(); it = it2) {
-        it2 = it;
+    iterator it;
+    for (it = begin(); it != end();) {
+        // Fakematch: Debug shows that it2 should be declared outside the loop and then this line
+        // should use operator=, but that results in a missing load instruction for retail, so we
+        // use the copy constructor instead of the assignment operator, which fixes it for some
+        // reason. Might be related to the fakematch in the assignment operator?
+        iterator it2 = it;
         ++it2;
         int seqMainRes = it->seqMain();
         if (seqMainRes < 0) {
@@ -741,6 +744,7 @@ void JASTrack::TList::seqMain() {
                 delete &*it;
             }
         }
+        it = it2;
     }
 }
 
