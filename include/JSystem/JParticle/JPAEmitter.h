@@ -77,7 +77,7 @@ public:
     virtual ~JPAEmitterCallBack() = 0;
     virtual void execute(JPABaseEmitter*) {}
     virtual void executeAfter(JPABaseEmitter*) {}
-    virtual bool draw(JPABaseEmitter*) {}
+    virtual void draw(JPABaseEmitter*) {}
     virtual void drawAfter(JPABaseEmitter*) {}
     
     //~JPAEmitterCallBack();

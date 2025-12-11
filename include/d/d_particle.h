@@ -41,7 +41,7 @@ public:
 
     virtual ~dPa_simpleEcallBack() {}
     virtual void executeAfter(JPABaseEmitter*);
-    virtual bool draw(JPABaseEmitter*);
+    virtual void draw(JPABaseEmitter*);
 
     void removeEmitter() { mEmitter = NULL; }
     u16 getID() const { return mID; }
@@ -104,7 +104,7 @@ public:
     static model_c* getModel(JPABaseEmitter*);
     static u8 getRotAxis(JPABaseEmitter*);
 
-    virtual bool draw(JPABaseEmitter*);
+    virtual void draw(JPABaseEmitter*);
     virtual void drawAfter(JPABaseEmitter* param_0) { cleanupModel(param_0); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 
@@ -129,7 +129,7 @@ public:
     dPa_selectTexEcallBack(u8 param_0) { field_0x4 = param_0; }
 
     virtual ~dPa_selectTexEcallBack() {}
-    virtual bool draw(JPABaseEmitter*);
+    virtual void draw(JPABaseEmitter*);
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
 
     /* 0x4 */ u8 field_0x4;
@@ -141,7 +141,7 @@ public:
 
     virtual ~dPa_followEcallBack() {}
     virtual void execute(JPABaseEmitter*);
-    virtual bool draw(JPABaseEmitter*);
+    virtual void draw(JPABaseEmitter*);
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
     virtual void cleanup() { end(); }
     virtual void end();
@@ -171,7 +171,7 @@ public:
 class dPa_light8EcallBack : public dPa_levelEcallBack {
 public:
     virtual ~dPa_light8EcallBack() {}
-    virtual bool draw(JPABaseEmitter*);
+    virtual void draw(JPABaseEmitter*);
     virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
@@ -179,14 +179,14 @@ public:
 class dPa_gen_b_light8EcallBack : public dPa_levelEcallBack {
 public:
     virtual ~dPa_gen_b_light8EcallBack() {}
-    virtual bool draw(JPABaseEmitter*);
+    virtual void draw(JPABaseEmitter*);
     virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
 class dPa_gen_d_light8EcallBack : public dPa_levelEcallBack {
 public:
-    virtual bool draw(JPABaseEmitter*);
+    virtual void draw(JPABaseEmitter*);
     virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
@@ -250,7 +250,7 @@ public:
     dPa_setColorEcallBack(const GXColor& color) { mColor = color; }
 
     virtual ~dPa_setColorEcallBack() {}
-    virtual bool draw(JPABaseEmitter*) { GXSetTevColor(GX_TEVREG1, mColor); }
+    virtual void draw(JPABaseEmitter*) { GXSetTevColor(GX_TEVREG1, mColor); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
 
     /* 0x4 */ GXColor mColor;

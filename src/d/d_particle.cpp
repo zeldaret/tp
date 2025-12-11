@@ -93,11 +93,7 @@ void dPa_followEcallBack::execute(JPABaseEmitter* i_emitter) {
     }
 }
 
-bool dPa_followEcallBack::draw(JPABaseEmitter* i_emitter) {
-    #if DEBUG
-    return i_emitter->getGroupID() == 3;
-    #endif
-}
+void dPa_followEcallBack::draw(JPABaseEmitter* i_emitter) {}
 
 void dPa_followEcallBack::setup(JPABaseEmitter* i_emitter, cXyz const* param_1,
                                 csXyz const* param_2, s8) {
@@ -409,15 +405,15 @@ static void static_gen_d_light8EcallBack(JPABaseEmitter* i_emitter) {
     }
 }
 
-bool dPa_light8EcallBack::draw(JPABaseEmitter* i_emitter) {
+void dPa_light8EcallBack::draw(JPABaseEmitter* i_emitter) {
     static_light8EcallBack(i_emitter);
 }
 
-bool dPa_gen_b_light8EcallBack::draw(JPABaseEmitter* i_emitter) {
+void dPa_gen_b_light8EcallBack::draw(JPABaseEmitter* i_emitter) {
     static_gen_b_light8EcallBack(i_emitter);
 }
 
-bool dPa_gen_d_light8EcallBack::draw(JPABaseEmitter* i_emitter) {
+void dPa_gen_d_light8EcallBack::draw(JPABaseEmitter* i_emitter) {
     static_gen_d_light8EcallBack(i_emitter);
 }
 
@@ -601,7 +597,7 @@ void dPa_modelEcallBack::model_c::draw(f32 (*param_0)[4]) {
     }
 }
 
-bool dPa_modelEcallBack::draw(JPABaseEmitter* i_emitter) {
+void dPa_modelEcallBack::draw(JPABaseEmitter* i_emitter) {
     if (i_emitter->isEnableDeleteEmitter()) {
         i_emitter->quitImmortalEmitter();
         i_emitter->setEmitterCallBackPtr(NULL);
@@ -713,7 +709,7 @@ u8 dPa_modelEcallBack::getRotAxis(JPABaseEmitter* i_emitter) {
     return 0;
 }
 
-bool dPa_selectTexEcallBack::draw(JPABaseEmitter* i_emitter) {
+void dPa_selectTexEcallBack::draw(JPABaseEmitter* i_emitter) {
     i_emitter->loadTexture(field_0x4, GX_TEXMAP0);
 }
 
@@ -752,7 +748,7 @@ void dPa_simpleEcallBack::executeAfter(JPABaseEmitter* i_emitter) {
     i_emitter->stopCreateParticle();
 }
 
-bool dPa_simpleEcallBack::draw(JPABaseEmitter* i_emitter) {
+void dPa_simpleEcallBack::draw(JPABaseEmitter* i_emitter) {
     /* empty function */
 }
 
