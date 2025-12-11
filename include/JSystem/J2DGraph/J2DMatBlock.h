@@ -27,6 +27,13 @@ struct J2DGXColorS10 : public GXColorS10 {
         b = other.b;
         a = other.a;
     }
+    
+    J2DGXColorS10(GXColorS10& other) {
+        r = other.r;
+        g = other.g;
+        b = other.b;
+        a = other.a;
+    }
 #else
     J2DGXColorS10(const J2DGXColorS10& other) {
         r = other.r;
@@ -34,14 +41,14 @@ struct J2DGXColorS10 : public GXColorS10 {
         b = other.b;
         a = other.a;
     }
-#endif
-
+    
     J2DGXColorS10(const GXColorS10& other) {
         r = other.r;
         g = other.g;
         b = other.b;
         a = other.a;
     }
+#endif
     
     J2DGXColorS10& operator=(const GXColorS10& other) {
         r = other.r;
