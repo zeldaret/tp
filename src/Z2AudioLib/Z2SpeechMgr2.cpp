@@ -475,7 +475,7 @@ void Z2SpeechMgr2::setString(const u16* s, s16 textNum, u8 speakerID, u16 mood) 
         mTextNum = textNum;
     }
 
-    #if VERSION == VERSION_SHIELD_DEBUG
+    #if VERSION >= VERSION_WII_USA_R2
     for (int i = 0; i <= mTextNum; i++)
     #else
     for (int i = 0; i < mTextNum; i++)

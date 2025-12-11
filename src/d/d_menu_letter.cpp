@@ -164,7 +164,8 @@ dMenu_Letter_c::~dMenu_Letter_c() {
 void dMenu_Letter_c::_create() {
     mpDrawCursor = new dSelect_cursor_c(2, 1.0f, NULL);
     JUT_ASSERT(231, mpDrawCursor != NULL);
-    #if VERSION == VERSION_SHIELD_DEBUG
+    // shield prod uses same values as GCN?
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     mpDrawCursor->setParam(1.01f, 0.85f, 0.02f, 0.5f, 0.5f);
     #else
     mpDrawCursor->setParam(1.06f, 0.9f, 0.02f, 0.4f, 0.4f);

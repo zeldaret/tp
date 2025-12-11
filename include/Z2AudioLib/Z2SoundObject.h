@@ -7,7 +7,7 @@
 class Z2SoundStarter;
 
 class Z2SoundObjBase : public Z2SoundHandles
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
 , public JSULink<Z2SoundObjBase>
 #endif
 {

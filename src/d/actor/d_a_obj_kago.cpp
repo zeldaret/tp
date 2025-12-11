@@ -472,7 +472,7 @@ int daObj_Kago_c::Execute() {
 
 int daObj_Kago_c::Draw() {
     if(field_0xb9f == 0 && health != 3) {
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
         mObjAcch.DrawWall(dComIfG_Bgsp());
 #endif
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);

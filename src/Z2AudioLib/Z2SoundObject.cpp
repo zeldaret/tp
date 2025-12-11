@@ -14,7 +14,7 @@
 #endif
 
 Z2SoundObjBase::Z2SoundObjBase()
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
 : JSULink<Z2SoundObjBase>(this)
 #endif
 {
@@ -30,7 +30,7 @@ Z2SoundObjBase::~Z2SoundObjBase() {
 }
 
 void Z2SoundObjBase::init(Vec* posPtr, u8 handleNum) {
-    #if VERSION == VERSION_SHIELD_DEBUG
+    #if DEBUG
     Z2GetSoundObjMgr()->getAllList()->append(this);
     #endif
 
@@ -40,7 +40,7 @@ void Z2SoundObjBase::init(Vec* posPtr, u8 handleNum) {
 }
 
 void Z2SoundObjBase::deleteObject() {
-    #if VERSION == VERSION_SHIELD_DEBUG
+    #if DEBUG
     Z2GetSoundObjMgr()->getAllList()->remove(this);
     #endif
 

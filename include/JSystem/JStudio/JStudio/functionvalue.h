@@ -369,10 +369,8 @@ public:
 
 #if DEBUG
         /* 0x00 */ const TFunctionValue_list_parameter* pOwn_;
-        /* 0x04 */ const f32* pf_;
-#else
-        /* 0x00 */ const f32* pf_;
 #endif
+        /* 0x00 */ const f32* pf_;
     };
     typedef f64 (*update_INTERPOLATE)(const TFunctionValue_list_parameter&, f64);
 

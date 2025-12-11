@@ -5678,6 +5678,9 @@ static void play_camera_u(dmg_rod_class* i_this) {
 static int dmg_rod_Execute(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
 
+    //TODO: It seems possible that dComIfGs_getPalLanguage returns a constant value for non-PAL
+    //      versions (causing the first block to be elided), and it's also possible that the value
+    //      being compared against is an enum value with per-version definitions.
     #if VERSION == VERSION_SHIELD_DEBUG
     if (dComIfGs_getPalLanguage() == 1) {
         data_804BBBD4 = 2;
@@ -5686,7 +5689,7 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
     }
     #elif VERSION == VERSION_SHIELD
     data_804BBBD4 = 0;
-    #elif REGION_PAL
+    #elif REGION_PAL || VERSION >= VERSION_WII_USA_R2
     if (dComIfGs_getPalLanguage() == 0) {
         data_804BBBD4 = 2;
     } else {
@@ -6244,7 +6247,7 @@ static int dmg_rod_Create(fopAc_ac_c* i_this) {
     }
     #elif VERSION == VERSION_SHIELD
     data_804BBBD4 = 0;
-    #elif REGION_PAL
+    #elif REGION_PAL || VERSION >= VERSION_WII_USA_R2
     if (dComIfGs_getPalLanguage() == 0) {
         data_804BBBD4 = 2;
     } else {

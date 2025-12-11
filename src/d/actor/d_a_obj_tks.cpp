@@ -789,7 +789,7 @@ void daObjTks_c::setParam() {
     calcSpringF(&field_0xdcc, 0.7f, &field_0xdd0);
     scale.setall(field_0xdcc);
 
-    #if VERSION == VERSION_SHIELD_DEBUG
+    #if DEBUG
     mAcchCir.SetWallR(daObjTks_Param_c::m.common.width);
     mAcchCir.SetWallH(daObjTks_Param_c::m.common.height);
     #endif
@@ -858,7 +858,7 @@ void daObjTks_c::setAttnPos() {
 
     if (!fopAcM_checkCarryNow(this)) {
         mCcCyl.SetC(current.pos);
-        #if VERSION == VERSION_SHIELD_DEBUG
+        #if DEBUG
         mCcCyl.SetH(daObjTks_Param_c::m.common.height);
         mCcCyl.SetR(daObjTks_Param_c::m.common.width);
         #endif

@@ -177,7 +177,7 @@ int daObjWarpOBrg_c::create1st() {
 }
 
 int daObjWarpOBrg_c::Execute(Mtx** param_0) {
-    #if VERSION == VERSION_SHIELD_DEBUG
+    #if DEBUG
     calcMidnaWaitPos();
     #endif
 

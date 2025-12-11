@@ -1006,6 +1006,7 @@ bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* whit
     *white = 0xffffffff;
 
     if (bVar1) {
+        // possible fakematch?
         #if DEBUG || VERSION == VERSION_WII_USA_R0 || VERSION == VERSION_WII_USA_R2
         J2DGXColorS10 tevColor0 = *mMaterial->getTevBlock()->getTevColor(0);
         J2DGXColorS10 tevColor1 = *mMaterial->getTevBlock()->getTevColor(1);
