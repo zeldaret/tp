@@ -70,7 +70,15 @@ void dPa_followEcallBack::execute(JPABaseEmitter* i_emitter) {
     if ((field_0x12 == 0) && ((field_0x10 & 2) == 0)) {
         i_emitter->setGlobalTranslation(field_0x8->x, field_0x8->y, field_0x8->z);
         if (field_0xc != NULL) {
+            // LIKELY FAKEMATCH
+            #if DEBUG
             JGeometry::TVec3<s16> aTStack_24(field_0xc->x, field_0xc->y, field_0xc->z);
+            #else
+            JGeometry::TVec3<s16> aTStack_24;
+            aTStack_24.x = field_0xc->x;
+            aTStack_24.y = field_0xc->y;
+            aTStack_24.z = field_0xc->z;
+            #endif
             i_emitter->setGlobalRotation(aTStack_24);
         }
     }
@@ -130,7 +138,9 @@ dPa_modelPcallBack dPa_modelEcallBack::mPcallback;
 
 dPa_modelEcallBack::model_c* dPa_modelEcallBack::mModel;
 
+#if DEBUG
 u8 dPa_modelEcallBack::mNum;
+#endif
 
 /* 80450E9C 0001+00 data_80450E9C None */
 /* 80450E9D 0001+00 data_80450E9D None */
@@ -217,20 +227,14 @@ static void initiateLighting8(_GXColor& param_0, s16 param_1) {
     color0.g = g = ((param_1 >> 5) & 0x1F) << 1;
     color0.b = b = ((param_1 >> 10) & 0x1F) << 1;
     if (daPy_py_c::checkNowWolfPowerUp()) {
-        // f32 fVar2;
         f32 fVar1 = (g_env_light.bg_amb_col[0].r / 255.0f);
-        // fVar2 = (((s16)r & 0x1F) << 1) + 0x10;
-        color0.r = ((((s16)r & 0x1F) << 1) + 0x10) * (4.0f * (fVar1));
+        color0.r = (r + 0x10) * (4.0f * (fVar1));
 
-        // fVar2 = (g_env_light.bg_amb_col[0].g / 255.0f);
-        // fVar1 = ((((s16)g >> 5) & 0x1F) << 1) + 0x10;
         fVar1 = (g_env_light.bg_amb_col[0].g / 255.0f);
-        color0.g = (((((s16)g >> 5) & 0x1F) << 1) + 0x10) * (4.0f * (fVar1));
+        color0.g = (g + 0x10) * (4.0f * (fVar1));
 
-        // fVar1 = b + 0x10;
-        // fVar2 = (g_env_light.bg_amb_col[0].b / 255.0f);
         fVar1 = (g_env_light.bg_amb_col[0].b / 255.0f);
-        color0.b = (((((s16)g >> 10) & 0x1F) << 1) + 0x10) * (4.0f * (fVar1));
+        color0.b = (b + 0x10) * (4.0f * (fVar1));
     }
 
     if (color0.r == 0x3e) {
@@ -426,8 +430,8 @@ static void dPa_setWindPower(JPABaseParticle* param_0) {
     param_0->getOffsetPosition(&aTStack_24);
     dKyw_get_AllWind_vec((cXyz*)&aTStack_24, &cStack_3c, &local_58);
     cStack_3c.y = 0.65f;
-    JGeometry::TVec3<f32> aTStack_48 = cStack_3c * (9.0f * local_58);
-    JGeometry::setTVec3f(aTStack_48, *(Vec*)&aTStack_48);
+    JGeometry::TVec3<f32> aTStack_48;
+    JGeometry::setTVec3f(cStack_3c * (9.0f * local_58), *(Vec*)&aTStack_48);
     aTStack_24 += aTStack_48;
     param_0->setOffsetPosition(aTStack_24);
 }
@@ -969,10 +973,19 @@ void dPa_control_c::level_c::execute(dPa_control_c::level_c::emitter_c* i_emitte
 }
 
 void dPa_control_c::level_c::execute() {
+    JUT_ASSERT(2134, dComIfG_inf_c::baseCsr_c::getNavi() != NULL);
+    #if DEBUG
+    u32 prtclId = dComIfG_inf_c::baseCsr_c::getNavi()->getParticleId();
+    u32 blurID = mDoGph_gInf_c::csr_c::getBlurID();
+    #endif
     emitter_c* emitter = mEmitter;
     
     for (int i = 0; i < EMITTER_MAX; i++) {
-        if (emitter->getId() != 0) {
+        u32 id = emitter->getId();
+        if (id != 0) {
+            #if DEBUG
+            if (id != prtclId && id != blurID)
+            #endif
             execute(emitter);
         }
         emitter++;
@@ -1017,11 +1030,10 @@ void dPa_control_c::level_c::forceOnEventMove(u32 id) {
 void dPa_control_c::level_c::allForceOnEventMove() {
     emitter_c* emitter = mEmitter;
 
-    for (int i = 0; i < EMITTER_MAX; i++) {
+    for (int i = 0; i < EMITTER_MAX; i++, emitter++) {
         if (emitter->getId() != 0) {
             emitter->onEventMove();
         }
-        emitter++;
     }
 }
 
@@ -1035,8 +1047,9 @@ JPABaseEmitter* dPa_control_c::level_c::getEmitter(u32 id) {
     return emitter->getEmitter();
 }
 
-u32 dPa_control_c::level_c::entry(u16 i_name, JPABaseEmitter* i_emitter,
-                                       dPa_levelEcallBack* i_callback) {
+u32 dPa_control_c::level_c::entry(u16 i_name, JPABaseEmitter* i_emitter, dPa_levelEcallBack* i_callback) {
+    JUT_ASSERT(2261, i_emitter != NULL);
+
     for (int i = 0; i < EMITTER_MAX; i++) {
         if (mEmitter[mFreeNo].getId() == 0) {
             u32 uvar1 = field_0x0 + 1;
@@ -1053,6 +1066,13 @@ u32 dPa_control_c::level_c::entry(u16 i_name, JPABaseEmitter* i_emitter,
 
         mFreeNo = (mFreeNo + 1) % EMITTER_MAX;
     }
+
+    #if DEBUG
+    BOOL isConnect = mDoCPd_c::isConnect(PAD_3);
+    if (isConnect) {
+        JUT_WARN(2284, "%s", "Level Emitter Max Over !!\n");
+    }
+    #endif
 
     i_emitter->becomeInvalidEmitter();
     i_emitter->quitImmortalEmitter();
@@ -1132,8 +1152,9 @@ dPa_particleTracePcallBack_c dPa_control_c::mParticleTracePCB;
 
 dPa_control_c::dPa_control_c() {
     m_resHeap = JKRCreateExpHeap(0x96000, mDoExt_getArchiveHeap(), false);
+    JUT_ASSERT(2426, m_resHeap != NULL);
     mHeap = NULL;
-    m_sceneHeap = NULL;
+    mSceneHeap = NULL;
     field_0x18 = 0xFF;
     mEmitterMng = NULL;
     field_0x19 = 0;
@@ -1149,11 +1170,14 @@ u8 dPa_control_c::getRM_ID(u16 param_0) {
 }
 
 void dPa_control_c::createCommon(void const* param_0) {
+    OS_REPORT("常駐パーティクルリソースサイズ<%d>\n", mHeap->getSize((void*)param_0));
     mHeap = mDoExt_createSolidHeapFromSystem(0, 0);
+    JUT_ASSERT(2518, mHeap != NULL);
     mCommonResMng = new (mHeap, 0) JPAResourceManager(param_0, mHeap);
-    ResTIMG* pRVar3 = mDoGph_gInf_c::getFrameBufferTimg();
-    mCommonResMng->swapTexture(pRVar3, "dummy");
+    JUT_ASSERT(2521, mCommonResMng != NULL);
+    mCommonResMng->swapTexture(mDoGph_gInf_c::getFrameBufferTimg(), "dummy");
     mEmitterMng = new (mHeap, 0) JPAEmitterManager(3000, 250, *(JKRHeap**)this, 0x13, 2);
+    JUT_ASSERT(2531, mEmitterMng != NULL);
     mEmitterMng->entryResourceManager(mCommonResMng, 0);
     JKRHeap* prevHeap = mDoExt_setCurrentHeap(mHeap);
     for (u16 i = 0; i < 5; i++) {
@@ -1167,16 +1191,18 @@ void dPa_control_c::createCommon(void const* param_0) {
     }
     field_0x1a = field_0x19;
     mDoExt_setCurrentHeap(prevHeap);
-    mDoExt_adjustSolidHeap(mHeap);
+    u32 memory = mDoExt_adjustSolidHeap(mHeap);
+    OS_REPORT("-------<Common Particle Memory> %d\n", memory);
 }
 
 void dPa_control_c::createRoomScene() {
-    m_sceneHeap = mDoExt_createSolidHeapFromGame(0, 0);
-    mSceneResMng = new (m_sceneHeap, 0) JPAResourceManager(m_sceneRes, m_sceneHeap);
-    ResTIMG* pRVar3 = mDoGph_gInf_c::getFrameBufferTimg();
-    mSceneResMng->swapTexture(pRVar3, "dummy");
+    mSceneHeap = mDoExt_createSolidHeapFromGame(0, 0);
+    JUT_ASSERT(2573, mSceneHeap != NULL);
+    mSceneResMng = new (mSceneHeap, 0) JPAResourceManager(m_sceneRes, mSceneHeap);
+    JUT_ASSERT(2576, mSceneResMng != NULL);
+    mSceneResMng->swapTexture(mDoGph_gInf_c::getFrameBufferTimg(), "dummy");
     mEmitterMng->entryResourceManager(mSceneResMng, 1);
-    JKRHeap* prevHeap = mDoExt_setCurrentHeap(m_sceneHeap);
+    JKRHeap* prevHeap = mDoExt_setCurrentHeap(mSceneHeap);
     for (u16 i = 0; i < 14; i++) {
         u16 uVar1 = dPa_name::s_o_id[i];
         if (mSceneResMng->checkUserIndexDuplication(uVar1)) {
@@ -1187,7 +1213,8 @@ void dPa_control_c::createRoomScene() {
         }
     }
     mDoExt_setCurrentHeap(prevHeap);
-    mDoExt_adjustSolidHeap(m_sceneHeap);
+    u32 memory = mDoExt_adjustSolidHeap(mSceneHeap);
+    OS_REPORT("-------<Scene Particle Memory> %d\n", memory);
 }
 
 bool dPa_control_c::readScene(u8 param_0, mDoDvdThd_toMainRam_c** param_1) {
@@ -1196,9 +1223,11 @@ bool dPa_control_c::readScene(u8 param_0, mDoDvdThd_toMainRam_c** param_1) {
     }
 
     if (m_sceneRes) {
+        JUT_ASSERT(2641, !(--mSceneCount));
         JKRHeap::free(m_sceneRes, NULL);
         m_sceneRes = NULL;
     }
+    JUT_ASSERT(2647, !mSceneCount++);
     field_0x18 = param_0;
     static char jpcName[32];
     sprintf(jpcName, "/res/Particle/Pscene%03d.jpc", param_0);
@@ -1212,6 +1241,7 @@ void dPa_control_c::createScene(void const* param_0) {
     }
     if (param_0 != NULL) {
         m_sceneRes = (void*)param_0;
+        OS_REPORT("シーン依存パーティクルリソースサイズ<%d>\n", m_resHeap->getSize(m_sceneRes));
     }
     if (m_sceneRes != NULL) {
         createRoomScene();
@@ -1220,16 +1250,17 @@ void dPa_control_c::createScene(void const* param_0) {
 }
 
 bool dPa_control_c::removeRoomScene(bool param_0) {
-    if (m_sceneHeap == NULL) {
+    if (mSceneHeap == NULL) {
         return false;
     }
 
     mEmitterMng->clearResourceManager(true);
-    mDoExt_destroySolidHeap(m_sceneHeap);
-    m_sceneHeap = NULL;
+    mDoExt_destroySolidHeap(mSceneHeap);
+    mSceneHeap = NULL;
     mSceneResMng = NULL;
     field_0x19 = field_0x1a;
     if (param_0) {
+        JUT_ASSERT(2710, !(--mSceneCount));
         JKRHeap::free(m_sceneRes, NULL);
         m_sceneRes = NULL;
         field_0x18 = 0xff;
@@ -1275,6 +1306,11 @@ void dPa_control_c::calcMenu() {
         for (u8 i = 17; i <= 18; i++) {
             mEmitterMng->calc(i);
         }
+
+        #if DEBUG
+        dComIfG_inf_c::baseCsr_c::particleExecute();
+        mDoGph_gInf_c::csr_c::particleExecute();
+        #endif
     }
 }
 
@@ -1294,39 +1330,38 @@ void dPa_control_c::draw(JPADrawInfo* param_0, u8 param_1) {
     }
 }
 
-void dPa_control_c::setHitMark(u16 param_1, fopAc_ac_c* param_2, cXyz const* param_3,
-                               csXyz const* param_4, cXyz const* param_5, u32 param_6) {
-    cXyz cStack_34;
-    csXyz cStack_78;
+void dPa_control_c::setHitMark(u16 param_1, fopAc_ac_c* param_2, cXyz const* param_3, csXyz const* param_4, cXyz const* param_5, u32 param_6) {
     cXyz const* pPos = param_3;
     csXyz const* pAngle = param_4;
+    cXyz cStack_34;
+    csXyz cStack_78;
     if (param_2 != NULL) {
         if (fopAcM_CheckStatus(param_2, 0x40000000)) {
             return;
         }
+
         fopAcM_OnStatus(param_2, 0x40000000);
         if (fopAcM_GetJntCol(param_2) != NULL) {
             dJntCol_c* jntCol = fopAcM_GetJntCol(param_2);
-            if (jntCol->getHitmarkPosAndAngle(pPos, pAngle, &cStack_34, &cStack_78,
-                                              param_1 == 6) >= 0)
-            {
+            if (jntCol->getHitmarkPosAndAngle(pPos, pAngle, &cStack_34, &cStack_78, param_1 == 6) >= 0) {
                 pPos = &cStack_34;
                 pAngle = &cStack_78;
             }
         }
     }
+
     if (param_1 == 3) {
-        dComIfGp_particle_set(0x114, pPos, pAngle, param_5);
-        dComIfGp_particle_set(0x115, pPos, 0, param_5);
-        dComIfGp_particle_set(0x116, pPos, 0, param_5);
+        dComIfGp_particle_set(ID_ZI_J_HITCR_A, pPos, pAngle, param_5);
+        dComIfGp_particle_set(ID_ZI_J_HITCR_B, pPos, 0, param_5);
+        dComIfGp_particle_set(ID_ZI_J_HITCR_C, pPos, 0, param_5);
         if ((param_6 & 2) != 0 && param_2 != NULL && fopAcM_GetGroup(param_2) == 2) {
-            dComIfGp_particle_set(0x2ed, pPos, 0, param_5);
+            dComIfGp_particle_set(ID_ZI_J_HITCR_D, pPos, 0, param_5);
         }
-        dComIfGp_particle_set(0x2ee, pPos, 0, param_5);
+        dComIfGp_particle_set(ID_ZI_J_HITCR_IND, pPos, 0, param_5);
         dKy_SordFlush_set(*pPos, 1);
     } else if (param_1 == 2 || param_1 == 5 || param_1 == 9 || param_1 == 8 || param_1 == 6) {
-        dComIfGp_particle_set(0x117, pPos, pAngle, param_5);
-        dComIfGp_particle_set(0x118, pPos, 0, param_5);
+        dComIfGp_particle_set(ID_ZI_J_HITNG_A, pPos, pAngle, param_5);
+        dComIfGp_particle_set(ID_ZI_J_HITNG_B, pPos, 0, param_5);
         if (param_1 != 9) {
             dKy_SordFlush_set(*pPos, 0);
         }
@@ -1337,19 +1372,21 @@ void dPa_control_c::setHitMark(u16 param_1, fopAc_ac_c* param_2, cXyz const* par
         } else {
             cStack_40.set(0.5f, 0.5f, 0.5f);
         }
-        dComIfGp_particle_set(0x119, pPos, pAngle, &cStack_40);
-        dComIfGp_particle_set(0x11a, pPos, 0, &cStack_40);
-        dComIfGp_particle_set(0x2ef, pPos, 0, &cStack_40);
+
+        dComIfGp_particle_set(ID_ZI_J_HITOK_A, pPos, pAngle, &cStack_40);
+        dComIfGp_particle_set(ID_ZI_J_HITOK_B, pPos, 0, &cStack_40);
+        dComIfGp_particle_set(ID_ZI_J_HITOK_C, pPos, 0, &cStack_40);
         if ((param_6 & 2) != 0 && param_2 != NULL && fopAcM_GetGroup(param_2) == 2) {
-            dComIfGp_particle_set(0x2f0, pPos, 0, &cStack_40);
+            dComIfGp_particle_set(ID_ZI_J_HITOK_D, pPos, 0, &cStack_40);
         }
     } else if (param_1 == 1 || param_1 == 4) {
-        dComIfGp_particle_set(0x119, pPos, pAngle, param_5);
-        dComIfGp_particle_set(0x11a, pPos, 0, param_5);
-        dComIfGp_particle_set(0x2ef, pPos, 0, param_5);
+        dComIfGp_particle_set(ID_ZI_J_HITOK_A, pPos, pAngle, param_5);
+        dComIfGp_particle_set(ID_ZI_J_HITOK_B, pPos, 0, param_5);
+        dComIfGp_particle_set(ID_ZI_J_HITOK_C, pPos, 0, param_5);
         if ((param_6 & 2) != 0 && param_2 != NULL && fopAcM_GetGroup(param_2) == 2) {
-            dComIfGp_particle_set(0x2f0, pPos, 0, param_5);
+            dComIfGp_particle_set(ID_ZI_J_HITOK_D, pPos, 0, param_5);
         }
+
         dKy_SordFlush_set(*pPos, 1);
     }
 }
@@ -1364,13 +1401,12 @@ void dPa_control_c::setWaterRipple(u32* param_0, cBgS_PolyInfo& param_1, cXyz co
     csXyz local_50;
     cM3dGPla acStack_48;
     if (dComIfG_Bgsp().GetTriPla(param_1, &acStack_48)) {
-        f32 uVar5 = acStack_48.mNormal.absXZ();
-        local_50.x = cM_atan2s(uVar5, acStack_48.mNormal.y);
+        local_50.x = cM_atan2s(acStack_48.mNormal.absXZ(), acStack_48.mNormal.y);
         local_50.y = acStack_48.mNormal.atan2sX_Z();
         local_50.z = 0;
     }
 
-    static u16 const particleID[2] = {0x01B3, 0x01B2};
+    static u16 const particleID[2] = {ID_ZI_J_HAMON_IND, ID_ZI_J_HAMON_A};
     for (int i = 0; i < 2; i++, param_0++) {
         *param_0 = dComIfGp_particle_setPolyColor(
             *param_0, particleID[i], param_1, param_2, param_4,
@@ -1727,8 +1763,8 @@ u32 dPa_control_c::setSimpleFoot(u32 param_0, u32* param_1, cBgS_PolyInfo& param
         return 0;
     }
     static u16 effectIDTable[6][2] = {
-        {0xE6, 0xE7}, {0x143, 0x146}, {0x1AF, 0x1B8},
-        {0x881B, 0x881E}, {0x881C, 0x881F}, {0x86AE, 0x86AF},
+        {ID_ZI_J_DASHSMOKE_A, ID_ZI_J_DOWNSMOKE_A}, {ID_ZI_J_DASHKUSA_A, ID_ZI_J_DOWNKUSA_A}, {ID_ZI_J_DASHWTRA_A, ID_ZI_J_DOWNWTRA_A},
+        {dPa_RM(ID_ZI_S_DASHSAND_A), dPa_RM(ID_ZI_S_DOWNSAND_A)}, {dPa_RM(ID_ZI_S_DASHSNOW_A), dPa_RM(ID_ZI_S_DOWNSNOW_A)}, {dPa_RM(ID_ZI_S_DASHSMOKE_INWTR_A), dPa_RM(ID_ZI_S_DOWNSMOKE_INWTR_A)},
     };
     u32 rv = setNormal(param_0, effectIDTable[effType][param_5],
         param_3, param_4, param_6, param_7, local_50, param_8, param_9, &a_Stack_48,
@@ -1794,14 +1830,14 @@ u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz cons
             uVar5 |= (0xff << (i << 3));
         } else {
             static u16 ringID[6][4] = {
-                {0x00E7, 0xFFFF, 0xFFFF, 0xFFFF}, {0x0146, 0xFFFF, 0xFFFF, 0xFFFF},
-                {0x01AF, 0x01B0, 0x01B1, 0xFFFF}, {0x881E, 0xFFFF, 0xFFFF, 0xFFFF},
-                {0x881F, 0x8820, 0xFFFF, 0xFFFF}, {0x86AF, 0xFFFF, 0xFFFF, 0xFFFF},
+                {ID_ZI_J_DOWNSMOKE_A, 0xFFFF, 0xFFFF, 0xFFFF}, {ID_ZI_J_DOWNKUSA_A, 0xFFFF, 0xFFFF, 0xFFFF},
+                {ID_ZI_J_DASHWTRA_A, ID_ZI_J_DASHWTRA_B, ID_ZI_J_DASHWTRA_C, 0xFFFF}, {dPa_RM(ID_ZI_S_DOWNSAND_A), 0xFFFF, 0xFFFF, 0xFFFF},
+                {dPa_RM(ID_ZI_S_DOWNSNOW_A), dPa_RM(ID_ZI_S_DOWNSNOW_B), 0xFFFF, 0xFFFF}, {dPa_RM(ID_ZI_S_DOWNSMOKE_INWTR_A), 0xFFFF, 0xFFFF, 0xFFFF},
             };
             static u16 normalID[6][4] = {
-                {0x00E6, 0xFFFF, 0xFFFF, 0xFFFF}, {0x0143, 0xFFFF, 0xFFFF, 0xFFFF},
-                {0x01B8, 0x01B9, 0x01BA, 0x01BB}, {0x881B, 0xFFFF, 0xFFFF, 0xFFFF},
-                {0x881C, 0x881D, 0xFFFF, 0xFFFF}, {0x86AE, 0xFFFF, 0xFFFF, 0xFFFF},
+                {ID_ZI_J_DASHSMOKE_A, 0xFFFF, 0xFFFF, 0xFFFF}, {ID_ZI_J_DASHKUSA_A, 0xFFFF, 0xFFFF, 0xFFFF},
+                {ID_ZI_J_DOWNWTRA_A, ID_ZI_J_DOWNWTRA_B, ID_ZI_J_DOWNWTRA_C, ID_ZI_J_DOWNWTRA_D}, {dPa_RM(ID_ZI_S_DASHSAND_A), 0xFFFF, 0xFFFF, 0xFFFF},
+                {dPa_RM(ID_ZI_S_DASHSNOW_A), dPa_RM(ID_ZI_S_DASHSNOW_B), 0xFFFF, 0xFFFF}, {dPa_RM(ID_ZI_S_DASHSMOKE_INWTR_A), 0xFFFF, 0xFFFF, 0xFFFF},
             };
             uVar5 |= bVar3 << (i << 3);
             if (bVar3 == 2 && ((param_6 & 0x10000) != 0)) {

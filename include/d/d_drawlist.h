@@ -68,7 +68,7 @@ public:
             field_0x4 = 0;
             field_0x8 = 1.0f;
         }
-        virtual ~anm_c() { remove(); }
+        ~anm_c() { remove(); }
 
         void remove() {
             if (field_0x4 != 0.0f) {
@@ -78,7 +78,7 @@ public:
             field_0x4 = 0.0f;
         }
 
-        int field_0x4;
+        f32 field_0x4;
         f32 field_0x8;
     };
 
@@ -420,8 +420,10 @@ public:
     void setXluListZxlu() { setXluDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
     void setOpaListFilter() { setOpaDrawList(mDrawBuffers[DB_LIST_FILTER]); }
     void setXluListFilter() { setXluDrawList(mDrawBuffers[DB_LIST_FILTER]); }
+    #if DEBUG
     void setOpaListCursor() { setOpaDrawList(mDrawBuffers[DB_LIST_CURSOR]); }
     void setXluListCursor() { setXluDrawList(mDrawBuffers[DB_LIST_CURSOR]); }
+    #endif
     void set3DlineMat(mDoExt_3DlineMat_c *param_1) {
         m3DLineMatSortPacket[param_1->getMaterialID()].setMat(param_1);
     }

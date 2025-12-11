@@ -999,10 +999,12 @@ void Z2SeMgr::processSeFramework() {
     }
 }
 
+#if DEBUG
 void Z2SeMgr::playNaviFlySound(f32 param_1, f32 param_2) {
     dbg_field_0x6c = param_1;
     dbg_field_0x70 = JMAAbs(param_2);
 }
+#endif
 
 bool Z2SeMgr::isLevelSe(JAISoundID soundID) {
     switch (soundID) {

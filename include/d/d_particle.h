@@ -119,7 +119,9 @@ public:
 
     static dPa_modelPcallBack mPcallback;
     static model_c* mModel;
+    #if DEBUG
     static u8 mNum;
+    #endif
 };
 
 class dPa_selectTexEcallBack : public dPa_levelEcallBack {
@@ -284,8 +286,13 @@ public:
             u32 getId() { return mId; }
             void clearStatus() { mStatus = 0; }
 
+            #if DEBUG
             void onEventMove() { mStatus |= (u8)2; }
             void offEventMove() { mStatus &= (u8)~2; }
+            #else
+            void onEventMove() { mStatus |= 2; }
+            void offEventMove() { mStatus &= ~2; }
+            #endif
             bool isEventMove() { return mStatus & 2; }
 
             void offActive() { mStatus &= (u8)~1; }
@@ -404,7 +411,7 @@ public:
     void draw2DmenuBack(JPADrawInfo* i_drawInfo) { draw(i_drawInfo, 18); }
 
     JKRSolidHeap* getHeap() { return mHeap; }
-    JKRSolidHeap* getSceneHeap() { return m_sceneHeap; }
+    JKRSolidHeap* getSceneHeap() { return mSceneHeap; }
     JKRExpHeap* getResHeap() { return m_resHeap; }
 
     void levelAllForceOnEventMove() { field_0x210.allForceOnEventMove(); }
@@ -481,7 +488,7 @@ private:
     /* 0x000 */ JKRSolidHeap* mHeap;
     /* 0x004 */ JPAResourceManager* mCommonResMng;
     /* 0x008 */ JKRExpHeap* m_resHeap;
-    /* 0x00C */ JKRSolidHeap* m_sceneHeap;
+    /* 0x00C */ JKRSolidHeap* mSceneHeap;
     /* 0x010 */ void* m_sceneRes;
     /* 0x014 */ JPAResourceManager* mSceneResMng;
     /* 0x018 */ u8 field_0x18;
@@ -490,6 +497,9 @@ private:
     /* 0x01B */ u8 field_0x1b;
     /* 0x01C */ dPa_simpleEcallBack field_0x1c[25];
     /* 0x210 */ level_c field_0x210;
+    #if DEBUG
+    u8 mSceneCount;
+    #endif
 };
 
 #endif /* D_PARTICLE_D_PARTICLE_H */

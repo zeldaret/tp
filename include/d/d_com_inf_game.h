@@ -839,6 +839,7 @@ public:
     dComIfG_inf_c() { this->ct(); }
     ~dComIfG_inf_c() {}
     void ct();
+    void createBaseCsr();
     dComIfG_play_c& getPlay() { return play; }
 
 #if DEBUG
@@ -867,7 +868,8 @@ public:
         baseCsr_c(u8);
         void draw(f32, f32);
         void create();
-        void particleExecute();
+        static void particleExecute();
+        static navi_c* getNavi() { return m_navi; }
 
         dDlst_blo_c field_0x8;
         u8 field_0x13c;
@@ -906,6 +908,9 @@ public:
     /* 0x1DE0C */ u8 field_0x1de0c;
 
     static __d_timer_info_c dComIfG_mTimerInfo;
+    #if DEBUG
+    static baseCsr_c* m_baseCsr;
+    #endif
 };  // Size: 0x1DE10
 
 STATIC_ASSERT(122384 == sizeof(dComIfG_inf_c));
@@ -4478,9 +4483,11 @@ inline void dComIfGd_set3DlineMatDark(mDoExt_3DlineMat_c* param_0) {
     g_dComIfG_gameInfo.drawlist.set3DlineMatDark(param_0);
 }
 
+#if DEBUG
 inline void dComIfGd_setListCursor() {
     g_dComIfG_gameInfo.drawlist.setOpaListCursor();
     g_dComIfG_gameInfo.drawlist.setXluListCursor();
 }
+#endif
 
 #endif /* D_COM_D_COM_INF_GAME_H */

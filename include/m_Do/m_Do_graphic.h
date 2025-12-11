@@ -58,7 +58,8 @@ public:
         virtual ~csr_c() {}
         virtual bool isPointer();
 
-        void particleExecute();
+        static void particleExecute();
+        static u32 getBlurID() { return m_blurID; }
 
         static u32 m_blurID;
         static cXyz m_oldEffPos;

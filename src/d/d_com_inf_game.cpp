@@ -1134,6 +1134,9 @@ void dComIfG_inf_c::anmCsr_c::draw(f32 param_1, f32 param_2) {
 
 void dComIfG_inf_c::ct() {
     mFadeBrightness = 255;
+    #if DEBUG
+    mIsDebugMode = 0;
+    #endif
     play.ct();
     mWorldDark = 0;
     field_0x1ddfa = -1;
@@ -1145,6 +1148,16 @@ void dComIfG_inf_c::ct() {
     field_0x1de09 = 0xFF;
     field_0x1de0a = 0xFF;
 }
+
+#if DEBUG
+void dComIfG_inf_c::createBaseCsr() {
+    JUT_ASSERT(1622, m_baseCsr == NULL);
+    m_baseCsr = new baseCsr_c(1);
+    JUT_ASSERT(1624, m_baseCsr != NULL);
+    m_baseCsr->create();
+    mDoGph_gInf_c::entryBaseCsr(m_baseCsr);
+}
+#endif
 
 GXColor g_clearColor = {0, 0, 0, 0};
 
@@ -1168,15 +1181,22 @@ int dComIfG_changeOpeningScene(scene_class* i_scene, s16 i_procName) {
 }
 
 BOOL dComIfG_resetToOpening(scene_class* i_scene) {
-    if (mDoRst::isReturnToMenu() || !mDoRst::isReset() ||
-        mDoGph_gInf_c::getFader()->getStatus() == 2)
-    {
+    #if DEBUG
+    if (mDoRst::isShutdown() || mDoRst::isReturnToMenu() || !mDoRst::isReset() || mDoGph_gInf_c::getFader()->getStatus() == 2) {
         return 0;
     }
+    #else
+    if (mDoRst::isReturnToMenu() || !mDoRst::isReset() || mDoGph_gInf_c::getFader()->getStatus() == 2) {
+        return 0;
+    }
+    #endif
 
     dComIfG_changeOpeningScene(i_scene, PROC_OPENING_SCENE);
     mDoAud_bgmStop(30);
     mDoAud_resetProcess();
+    #if DEBUG
+    mDoGph_gInf_c::resetDimming();
+    #endif
     return 1;
 }
 
