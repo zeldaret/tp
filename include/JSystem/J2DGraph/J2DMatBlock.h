@@ -39,6 +39,16 @@ struct J2DGXColorS10 : public GXColorS10 {
         a = other.a;
         return *this;
     }
+
+#if PLATFORM_GCN
+    // maybe fake? but it helps link J2DWindowEx
+    J2DGXColorS10(J2DGXColorS10& other) {
+        r = other.r;
+        g = other.g;
+        b = other.b;
+        a = other.a;
+    }
+#endif
 };
 
 struct J2DTevSwapModeInfo;
