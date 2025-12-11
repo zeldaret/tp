@@ -21,6 +21,10 @@
     JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, TEXT);                    \
     OSPanic(__FILE__, LINE, "Halt");
 
+#define JUT_PANIC_F(LINE, MSG, ...)                                                               \
+    JUTAssertion::showAssert_f(JUTAssertion::getSDevice(), __FILE__, LINE, MSG, __VA_ARGS__);        \
+    OSPanic(__FILE__, LINE, MSG, __VA_ARGS__);
+
 #define JUT_WARN_DEVICE(LINE, DEVICE, ...)                                                                        \
     JUTAssertion::setWarningMessage_f(DEVICE, __FILE__, LINE, __VA_ARGS__);    \
 
@@ -42,8 +46,9 @@
 #define JUT_ASSERT_MSG_F(...) (void)0;
 #define J3D_PANIC(...) (void)0;
 #define JUT_PANIC(...)
-#define JUT_WARN(...)
+#define JUT_PANIC_F(...)
 #define JUT_WARN_DEVICE(...)
+#define JUT_WARN(...)
 #define JUT_LOG(...)
 #define JUT_CONFIRM(...)
 #endif

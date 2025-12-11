@@ -709,7 +709,7 @@ void dSv_player_item_record_c::init() {
 }
 
 void dSv_player_item_record_c::setBombNum(u8 i_bagIdx, u8 i_bombNum) {
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
     if (i_bagIdx == 8) {
         return;
     }
@@ -989,10 +989,10 @@ void dSv_player_config_c::init() {
     mAttentionType = 0;
     mVibration = 1;
 
-#if VERSION == VERSION_GCN_PAL
-    mLanguage = OSGetLanguage();
-#elif VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
     mLanguage = SCGetLanguage();
+#elif REGION_PAL || VERSION >= VERSION_WII_USA_R2
+    mLanguage = OSGetLanguage();
 #else
     mLanguage = 0;
 #endif
@@ -1043,7 +1043,7 @@ u8 dSv_player_config_c::getPalLanguage() const {
     case 4:
         return LANGAUGE_ITALIAN;
     }
-#elif VERSION == VERSION_SHIELD_DEBUG
+#elif VERSION >= VERSION_WII_USA_R0
     switch (SCGetLanguage()) {
     case 1:
         return 0;
@@ -1298,7 +1298,7 @@ BOOL dSv_danBit_c::isItem(int i_no) const {
     return mItem[i_no >> 5] & 1 << (i_no & 0x1F) ? TRUE : FALSE;
 }
 
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
 static void dummyString() {
     DEAD_STRING("i_no < 6");
 }
@@ -1449,7 +1449,7 @@ void dSv_info_c::init() {
     initZone();
     mTmp.init();
 
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
     unk_0x0 = 0;
     unk_0x1 = 0;
 #endif

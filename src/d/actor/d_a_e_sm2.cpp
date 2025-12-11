@@ -812,8 +812,8 @@ static u8 new_col_d[] = {
     TYPE_GREEN,  TYPE_BLUE,   TYPE_PURPLE, TYPE_PURPLE, TYPE_PURPLE, TYPE_PURPLE, TYPE_RARE,
     TYPE_BLUE,   TYPE_RED,    TYPE_PURPLE, TYPE_PURPLE, TYPE_PURPLE, TYPE_PURPLE, TYPE_RARE,
     TYPE_PURPLE, TYPE_PURPLE, TYPE_BLUE,
-    // For some reason, the data differs here between retail and ShieldD?
-    #if VERSION == VERSION_SHIELD_DEBUG
+    // For some reason, the data differs here between GCN and Wii/Shield versions
+    #if VERSION >= VERSION_WII_USA_R0
     TYPE_GREEN,
     #else
     TYPE_PURPLE,

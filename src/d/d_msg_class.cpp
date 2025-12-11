@@ -4997,7 +4997,7 @@ void jmessage_string_tRenderingProcessor::do_widthcenter() {
         scale = 1.0f;
         scale = mDoGph_gInf_c::getScale();
 
-        #if VERSION == VERSION_SHIELD_DEBUG 
+        #if VERSION >= VERSION_WII_USA_R0
         for (; pane != NULL; pane = pane->getParentPane()) {
             if (pane->getUserInfo() == 'n_43') {
                 scale = 1.0f;

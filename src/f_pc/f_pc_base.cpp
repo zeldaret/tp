@@ -13,10 +13,7 @@
 #include "f_pc/f_pc_pause.h"
 #include "f_pc/f_pc_profile.h"
 #include "f_pc/f_pc_debug_sv.h"
-
-#if VERSION == VERSION_SHIELD_DEBUG
 #include "Z2AudioLib/Z2AudioMgr.h"
-#endif
 
 BOOL fpcBs_Is_JustOfType(int i_typeA, int i_typeB) {
     if (i_typeB == i_typeA) {
@@ -94,21 +91,21 @@ int fpcBs_Delete(base_process_class* i_proc) {
             i_proc->type = 0;
             cMl::free(i_proc);
 
-            #if VERSION == VERSION_SHIELD_DEBUG
-            // JSUList<Z2SoundObjBase>* allList = Z2GetAudioMgr()->getAllList();
-            
-            // for (JSUListIterator<Z2SoundObjBase> it(allList->getFirst()); it != allList->getEnd(); it++) {
-            //     static JSULink<Z2SoundObjBase>* DUMMY_FILL_IT = NULL;
-            //     static Z2SoundObjBase* DUMMY_FILL_P = NULL;
-            //     if (it == DUMMY_FILL_IT || it.getObject() == DUMMY_FILL_P) {
-            //         const char* stageName = dStage_getName2(profname, 0);
-            //         if (stageName == NULL) {
-            //             JUT_PANIC_F(341, "Sound Object Not Delete !! <%d>\n", profname);
-            //         } else {
-            //             JUT_PANIC_F(345, "Sound Object Not Delete !! <%s>\n", stageName);
-            //         }
-            //     }
-            // }
+            #if DEBUG
+            JSUList<Z2SoundObjBase>* allList = Z2GetAudioMgr()->getAllList();
+
+            for (JSUListIterator<Z2SoundObjBase> it(allList->getFirst()); it != allList->getEnd(); it++) {
+                static JSULink<Z2SoundObjBase>* DUMMY_FILL_IT = NULL;
+                static Z2SoundObjBase* DUMMY_FILL_P = NULL;
+                if (it == DUMMY_FILL_IT || it.getObject() == DUMMY_FILL_P) {
+                    const char* stageName = dStage_getName2(profname, 0);
+                    if (stageName == NULL) {
+                        JUT_PANIC_F(341, "Sound Object Not Delete !! <%d>\n", profname);
+                    } else {
+                        JUT_PANIC_F(345, "Sound Object Not Delete !! <%s>\n", stageName);
+                    }
+                }
+            }
             #endif
         }
     }

@@ -665,7 +665,7 @@ JKRExpHeap* mDoExt_getZeldaHeap() {
     return zeldaHeap;
 }
 
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
 s32 safeZeldaHeapSize = -1;
 
 s32 mDoExt_getSafeZeldaHeapSize() {

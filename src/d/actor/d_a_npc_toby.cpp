@@ -644,7 +644,7 @@ int daNpc_Toby_c::checkChangeEvt() {
                 break;
             }
 
-#if VERSION == VERSION_SHIELD_DEBUG
+#if VERSION >= VERSION_WII_USA_R0
             if (chkAttnZra() && !dComIfGs_isSaveSwitch(0x51))
 #else
             // 0x31E - F_0798 - Heard about Zora from Fyer

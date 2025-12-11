@@ -112,7 +112,7 @@ public:
     }
 
     static f32 getWidthF() {
-        #if PLATFORM_WII || PLATFORM_SHIELD
+        #if WIDESCREEN_SUPPORT
         return m_widthF;
         #else
         return FB_WIDTH;
@@ -120,7 +120,7 @@ public:
     }
 
     static f32 getHeightF() {
-        #if PLATFORM_WII || PLATFORM_SHIELD
+        #if WIDESCREEN_SUPPORT
         return m_heightF;
         #else
         return FB_HEIGHT;
@@ -131,7 +131,7 @@ public:
     static f32 getHeight() { return FB_HEIGHT; }
 
     static f32 getMinYF() {
-        #if PLATFORM_WII || PLATFORM_SHIELD
+        #if WIDESCREEN_SUPPORT
         return m_minYF;
         #else
         return 0.0f;
@@ -139,7 +139,7 @@ public:
     }
 
     static f32 getMinXF() {
-        #if PLATFORM_WII || PLATFORM_SHIELD
+        #if WIDESCREEN_SUPPORT
         return m_minXF;
         #else
         return 0.0f;
@@ -147,7 +147,7 @@ public:
     }
 
     static f32 getMaxYF() {
-        #if PLATFORM_WII || PLATFORM_SHIELD
+        #if WIDESCREEN_SUPPORT
         return m_maxYF;
         #else
         return FB_HEIGHT;
@@ -155,7 +155,7 @@ public:
     }
 
     static f32 getMaxXF() {
-        #if PLATFORM_WII || PLATFORM_SHIELD
+        #if WIDESCREEN_SUPPORT
         return m_maxXF;
         #else
         return FB_WIDTH;
@@ -233,7 +233,13 @@ public:
         #endif
     }
 
-    static f32 getScale() { return 1.0f; }
+    static f32 getScale() {
+        #if WIDESCREEN_SUPPORT
+        return m_scale;
+        #else
+        return 1.0f;
+        #endif
+    }
 
     #if WIDESCREEN_SUPPORT
     static void setTvSize();

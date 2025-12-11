@@ -120,7 +120,7 @@ int daE_FB_c::JointCallBack(J3DJoint* i_joint, int param_1) {
     return 1;
 }
 
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
 static f32 dummy_117095() {
     // For rodata ordering in the debug version, this must be put here:
     return 100.0f;
@@ -818,7 +818,7 @@ void daE_FB_c::dead_eff_set() {
     }
 }
 
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
 static char* dummy_117771() {
     return "Delete -> E_FB(id=%d)\n";
 }

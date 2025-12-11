@@ -246,7 +246,7 @@ void daNpcPray_c::setParam() {
     attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcPray_Param_c::m.common.talk_distance, daNpcPray_Param_c::m.common.talk_angle);
     attention_info.flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
 
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
     scale.set(daNpcPray_Param_c::m.common.scale, daNpcPray_Param_c::m.common.scale, daNpcPray_Param_c::m.common.scale);
     mAcchCir.SetWallR(daNpcPray_Param_c::m.common.width);
     mAcchCir.SetWallH(daNpcPray_Param_c::m.common.knee_length);
@@ -291,7 +291,7 @@ void daNpcPray_c::setAttnPos() {
     cyl_center.y = current.pos.y;
 
     mCcCyl.SetC(cyl_center);
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
     mCcCyl.SetH(daNpcPray_Param_c::m.common.height);
     mCcCyl.SetR(daNpcPray_Param_c::m.common.width);
 #endif
