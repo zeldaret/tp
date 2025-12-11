@@ -14,7 +14,7 @@
 struct J3DGXColorS10 : public GXColorS10 {
     J3DGXColorS10() {}
     
-#if VERSION_GCN
+#if PLATFORM_GCN
     J3DGXColorS10(J3DGXColorS10 const& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
 #else
     J3DGXColorS10(J3DGXColorS10& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
