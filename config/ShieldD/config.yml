@@ -11,6 +11,12 @@ ldscript_template: config/ShieldD/ldscript.tpl
 
 block_relocations:
 - source: .sdata:0x8073f3f4
+- source: .text:0x8054fd30
+  end: .text:0x8054fdc8
+- source: .text:0x80550294
+  end: .text:0x8055029C
+- source: .text:0x80550314
+  end: .text:0x8055031C
 add_relocations:
 - source: .sdata:0x8073f3f4
   type: abs
