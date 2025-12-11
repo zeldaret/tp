@@ -183,7 +183,7 @@ static BOOL pl_check(daE_SM_c* i_this, f32 param_2) {
     return FALSE;
 }
 
-static BOOL move_check(daE_SM_c* i_this, int* param_2) {
+static void move_check(daE_SM_c* i_this, int* param_2) {
     *param_2 = -1;
     
     if (pl_check(i_this, i_this->field_0x970)) {

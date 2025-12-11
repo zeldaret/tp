@@ -1115,7 +1115,23 @@ int daNpc_Sha_c::talk(void* param_1) {
 }
 
 int daNpc_Sha_c::test(void* param_1) {
-
+    switch(mMode) {
+    case 0:
+    case 1:
+        speedF = 0.0f;
+        speed.setall(0.0f);
+        mMode = 2;
+        // fallthrough
+    case 2:
+        mFaceMotionSeqMngr.setNo(mpHIO->m.common.face_expression, -1.0f, 0, 0);
+        mMotionSeqMngr.setNo(mpHIO->m.common.motion, -1.0f, 0, 0);
+        mJntAnm.lookNone(0);
+        attention_info.flags = 0;
+        break;
+    case 3:
+        break;
+    }
+    return 1;
 }
 
 const u16 daNpc_Sha_c::mEvtBitLabels[6] = {

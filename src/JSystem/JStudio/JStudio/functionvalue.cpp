@@ -654,7 +654,7 @@ f64 TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(
             dVar8 = rThis._44[param_2._10 + 2];
         }
     }
-    functionvalue::interpolateValue_BSpline_uniform(param_2._0 - param_2._8, dVar9, dVar11, dVar10, dVar8);
+    return functionvalue::interpolateValue_BSpline_uniform(param_2._0 - param_2._8, dVar9, dVar11, dVar10, dVar8);
 }
 
 

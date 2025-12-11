@@ -381,7 +381,7 @@ int daObjMarm_c::create1st() {
         &daObjMarm_c::phase_1,
         &daObjMarm_c::phase_2,
     };
-    (this->*l_ct_func[mPhaseIndex])();
+    return (this->*l_ct_func[mPhaseIndex])();
 }
 
 int daObjMarm_c::Execute(Mtx** i_bgMtx) {

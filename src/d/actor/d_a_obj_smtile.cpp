@@ -294,19 +294,19 @@ void daObj_SMTile_c::setMtx() {
 }
 
 static int daObj_SMTile_Create(void* i_this) {
-    static_cast<daObj_SMTile_c*>(i_this)->create();
+    return static_cast<daObj_SMTile_c*>(i_this)->create();
 }
 
 static int daObj_SMTile_Delete(void* i_this) {
-    static_cast<daObj_SMTile_c*>(i_this)->Delete();
+    return static_cast<daObj_SMTile_c*>(i_this)->Delete();
 }
 
 static int daObj_SMTile_Execute(void* i_this) {
-    static_cast<daObj_SMTile_c*>(i_this)->Execute();
+    return static_cast<daObj_SMTile_c*>(i_this)->Execute();
 }
 
 static int daObj_SMTile_Draw(void* i_this) {
-    static_cast<daObj_SMTile_c*>(i_this)->Draw();
+    return static_cast<daObj_SMTile_c*>(i_this)->Draw();
 }
 
 static int daObj_SMTile_IsDelete(void* i_this) {

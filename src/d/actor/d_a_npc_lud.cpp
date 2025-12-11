@@ -879,7 +879,7 @@ bool daNpc_Lud_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int p
     if (mCreating == true) {
         param_2 = 0.0f;
     }
-    setBowlAnm(param_0, param_1, param_2);
+    return setBowlAnm(param_0, param_1, param_2);
 }
 
 int daNpc_Lud_c::selectAction() {

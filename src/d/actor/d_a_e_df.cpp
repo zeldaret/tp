@@ -51,7 +51,7 @@ int daE_DF_c::CreateHeap() {
 
 static int useHeapInit(fopAc_ac_c* i_this) {
     daE_DF_c* actor = static_cast<daE_DF_c*>(i_this);
-    actor->CreateHeap();
+    return actor->CreateHeap();
 }
 
 void daE_DF_c::initCcCylinder() {

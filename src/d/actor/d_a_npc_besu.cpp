@@ -1488,7 +1488,7 @@ void daNpc_Besu_c::drawOtherMdl() {
     }
 }
 
-int daNpc_Besu_c::setCupAnm(int arg0, int i_attr, f32 i_morf) {
+bool daNpc_Besu_c::setCupAnm(int arg0, int i_attr, f32 i_morf) {
     static int cupAnmData[33][2] = {
         {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0},
         {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0},
@@ -1508,12 +1508,12 @@ int daNpc_Besu_c::setCupAnm(int arg0, int i_attr, f32 i_morf) {
         }
     }
 
-    return 1;
+    return true;
 }
 
 bool daNpc_Besu_c::afterSetMotionAnm(int arg0, int arg1, f32 arg2, int param_3) {
     f32 var_f30 = (mCreating == 1) ? 0.0f : arg2;
-    setCupAnm(arg0, arg1, var_f30);
+    return setCupAnm(arg0, arg1, var_f30);
 }
 
 daNpcT_faceMotionAnmData_c daNpc_Besu_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c arg0) {

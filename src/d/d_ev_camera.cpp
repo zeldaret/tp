@@ -921,15 +921,15 @@ bool dCamera_c::fixedPositionEvCamera() {
 }
 
 bool dCamera_c::uniformTransEvCamera() {
-    transEvCamera(1);
+    return transEvCamera(1);
 }
 
 bool dCamera_c::uniformBrakeEvCamera() {
-    transEvCamera(2);
+    return transEvCamera(2);
 }
 
 bool dCamera_c::uniformAcceleEvCamera() {
-    transEvCamera(3);
+    return transEvCamera(3);
 }
 
 namespace {

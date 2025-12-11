@@ -14,8 +14,8 @@ public:
     virtual ~daObjIsuChild_c();
     int createHeap();
     void create(daObjNagaisu_c*, dCcD_Stts*);
-    int execute();
-    int draw(dMdl_c*);
+    void execute();
+    void draw(dMdl_c*);
     void Delete();
     bool chkHit();
     void callEmt();

@@ -435,7 +435,7 @@ s8 dMenu_StageMapCtrl_c::getRestartDrawInfo(f32* i_dispX, f32* i_dispY, s16* i_r
         *i_rotY = rightModeCnvRot(var_r29);
     }
 
-    dMapInfo_c::calcNowStayFloorNo(sp10.y, true);
+    return dMapInfo_c::calcNowStayFloorNo(sp10.y, true);
 }
 
 void dMenu_StageMapCtrl_c::setPlusNowStayFloorNo(s8 param_0, u8 param_1) {

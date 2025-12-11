@@ -239,7 +239,7 @@ int daNpcTkj_c::Draw() {
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
-    draw(FALSE, 0, daNpc_Tkj_Param_c::m.common.real_shadow_size, NULL, 100.0f, FALSE, FALSE, FALSE);
+    return draw(FALSE, 0, daNpc_Tkj_Param_c::m.common.real_shadow_size, NULL, 100.0f, FALSE, FALSE, FALSE);
 }
 
 int daNpcTkj_c::createHeapCallBack(fopAc_ac_c* i_this) {
