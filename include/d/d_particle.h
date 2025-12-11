@@ -1,6 +1,7 @@
 #ifndef D_PARTICLE_D_PARTICLE_H
 #define D_PARTICLE_D_PARTICLE_H
 
+#include "JSystem/JParticle/JPAEmitterManager.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAParticle.h"
@@ -44,7 +45,7 @@ public:
     virtual void draw(JPABaseEmitter*);
 
     void removeEmitter() { mEmitter = NULL; }
-    u16 getID() const { return mID; }
+    u16 getID() { return mID; }
 
     /* 0x04 */ JPABaseEmitter* mEmitter;
     /* 0x08 */ u16 mID;
@@ -54,16 +55,16 @@ public:
     /* 0x10 */ dPa_simpleData_c* mData;
 };  // Size: 0x14
 
-class dPa_windPcallBack : public JPAParticleCallBack {
-public:
-    virtual ~dPa_windPcallBack() {}
-    virtual void execute(JPABaseEmitter*, JPABaseParticle*);
-};
-
 class dPa_modelPcallBack : public JPAParticleCallBack {
 public:
     virtual ~dPa_modelPcallBack() {}
     virtual void draw(JPABaseEmitter*, JPABaseParticle*);
+};
+
+class dPa_windPcallBack : public JPAParticleCallBack {
+public:
+    virtual ~dPa_windPcallBack() {}
+    virtual void execute(JPABaseEmitter*, JPABaseParticle*);
 };
 
 class dPa_modelEcallBack : public dPa_levelEcallBack {
@@ -186,6 +187,7 @@ public:
 
 class dPa_gen_d_light8EcallBack : public dPa_levelEcallBack {
 public:
+    virtual ~dPa_gen_d_light8EcallBack() {}
     virtual void draw(JPABaseEmitter*);
     virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
@@ -432,6 +434,7 @@ public:
     }
 
     static JPAEmitterManager* getEmitterManager() { return mEmitterMng; }
+    static int getEmitterNum() { return mEmitterMng->getEmitterNumber(); };
 
     static dPa_light8PcallBack* getLight8PcallBack() { 
         return &mLight8PcallBack; 

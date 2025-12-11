@@ -38,6 +38,7 @@ public:
         JUT_ASSERT(147, res_mgr_id < ridMax);
         return pResMgrAry[res_mgr_id];
     }
+    int getEmitterNumber() const { return emtrNum - mFreeEmtrList.getNumLinks(); }
 
 public:
     /* 0x00 */ JSUList<JPABaseEmitter>* pEmtrUseList;

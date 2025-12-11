@@ -237,7 +237,13 @@ public:
         #endif
     }
 
-    static f32 getScale() { return 1.0f; }
+    static f32 getScale() { 
+        #if WIDESCREEN_SUPPORT
+        return m_scale;
+        #else
+        return 1.0f;
+        #endif
+    }
 
     #if WIDESCREEN_SUPPORT
     static void setTvSize();
