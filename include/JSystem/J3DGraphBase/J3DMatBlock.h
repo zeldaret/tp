@@ -13,7 +13,13 @@
  */
 struct J3DGXColorS10 : public GXColorS10 {
     J3DGXColorS10() {}
+    
+#if VERSION_GCN
     J3DGXColorS10(J3DGXColorS10 const& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
+#else
+    J3DGXColorS10(J3DGXColorS10& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
+#endif
+
     J3DGXColorS10(GXColorS10 const& color) : GXColorS10(color) {}
     J3DGXColorS10& operator=(const GXColorS10& color) {
         // FAKE match. __memcpy created issues in J3DTevBlockPatched::initialize

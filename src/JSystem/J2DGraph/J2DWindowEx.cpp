@@ -126,57 +126,57 @@ void J2DWindowEx::drawSelf(f32 param_0, f32 param_1, f32 (*param_2)[3][4]) {
     clip(field_0x114);
 }
 
-void J2DWindowEx::draw_private(JGeometry::TBox2<f32> const& r27,
-                               JGeometry::TBox2<f32> const& sp_8) {
-    if (r27.getWidth() >= field_0x140 && r27.getHeight() >= field_0x142) {
+void J2DWindowEx::draw_private(JGeometry::TBox2<f32> const& param_0,
+                               JGeometry::TBox2<f32> const& param_1) {
+    if (param_0.getWidth() >= field_0x140 && param_0.getHeight() >= field_0x142) {
         JUTTexture* textures[4];
-        bool local_d = false;
-        for (int local_34 = 0; local_34 < 4; local_34++) {
-            if (mFrameMaterial[local_34] == NULL) {
+        bool foundNullTexture = false;
+        for (int i = 0; i < 4; i++) {
+            if (mFrameMaterial[i] == NULL) {
                 return;
             }
 
-            if (mFrameMaterial[local_34]->getTevBlock() == NULL) {
+            if (mFrameMaterial[i]->getTevBlock() == NULL) {
                 return;
             }
 
-            textures[local_34] = mFrameMaterial[local_34]->getTevBlock()->getTexture(0);
-            if (textures[local_34] == NULL) {
-                local_d = true;
+            textures[i] = mFrameMaterial[i]->getTevBlock()->getTexture(0);
+            if (textures[i] == NULL) {
+                foundNullTexture = true;
             }
         }
 
-        JGeometry::TBox2<f32> aTStack_38(sp_8);
-        aTStack_38.addPos(r27.i);
+        JGeometry::TBox2<f32> aTStack_38(param_1);
+        aTStack_38.addPos(param_0.i);
         drawContents(aTStack_38);
         GXClearVtxDesc();
         GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
         GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
         GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 
-        if (!local_d) {
-            f32 f29 = r27.i.x;
-            f32 f28 = r27.i.y;
-            f32 f31 = r27.f.x - textures[3]->getWidth();
-            f32 f30 = r27.f.y - textures[3]->getHeight();
-            f32 f27 = f29 + textures[0]->getWidth();
-            f32 f26 = f28 + textures[0]->getHeight();
+        if (!foundNullTexture) {
+            f32 minX = param_0.i.x;
+            f32 minY = param_0.i.y;
+            f32 f31 = param_0.f.x - textures[3]->getWidth();
+            f32 f30 = param_0.f.y - textures[3]->getHeight();
+            f32 maxX0 = minX + textures[0]->getWidth();
+            f32 maxY0 = minY + textures[0]->getHeight();
 
             u16 r29 = (field_0x144 & 0x80 ? (u16)0 : (u16)0x8000);
             u16 r28 = (field_0x144 & 0x40 ? (u16)0 : (u16)0x8000);
-            drawFrameTexture(f29, f28, textures[0]->getWidth(), textures[0]->getHeight(), r29, r28,
+            drawFrameTexture(minX, minY, textures[0]->getWidth(), textures[0]->getHeight(), r29, r28,
                              0x8000 - r29, 0x8000 - r28, mFrameMaterial[0], true);
 
             bool r9 = mFrameMaterial[1] != mFrameMaterial[0];
             r29 = field_0x144 & 0x20 ? (u16)0 : (u16)0x8000;
             r28 = field_0x144 & 0x10 ? (u16)0 : (u16)0x8000;
-            drawFrameTexture(f31, f28, textures[3]->getWidth(), textures[0]->getHeight(), r29, r28,
+            drawFrameTexture(f31, minY, textures[3]->getWidth(), textures[0]->getHeight(), r29, r28,
                              0x8000 - r29, 0x8000 - r28, mFrameMaterial[1], r9);
 
             r29 = field_0x144 & 0x20 ? (u16)0x8000 : (u16)0;
             u16 sp_30 = r29;
             r28 = field_0x144 & 0x10 ? (u16)0 : (u16)0x8000;
-            drawFrameTexture(f27, f28, f31 - f27, textures[0]->getHeight(), r29, r28, sp_30,
+            drawFrameTexture(maxX0, minY, f31 - maxX0, textures[0]->getHeight(), r29, r28, sp_30,
                              r28 ^ 0x8000, mFrameMaterial[1], false);
 
             r9 = mFrameMaterial[3] != mFrameMaterial[1];
@@ -188,25 +188,25 @@ void J2DWindowEx::draw_private(JGeometry::TBox2<f32> const& r27,
             r29 = field_0x144 & 0x2 ? (u16)0x8000 : (u16)0;
             sp_30 = r29;
             r28 = field_0x144 & 0x1 ? (u16)0 : (u16)0x8000;
-            drawFrameTexture(f27, f30, f31 - f27, textures[3]->getHeight(), r29, r28, sp_30,
+            drawFrameTexture(maxX0, f30, f31 - maxX0, textures[3]->getHeight(), r29, r28, sp_30,
                              r28 ^ 0x8000, mFrameMaterial[3], false);
 
             r29 = field_0x144 & 0x2 ? (u16)0 : (u16)0x8000;
             r28 = field_0x144 & 0x1 ? (u16)0x8000 : (u16)0;
             u16 sp_2E = r28;
-            drawFrameTexture(f31, f26, textures[3]->getWidth(), f30 - f26, r29, r28, r29 ^ 0x8000,
+            drawFrameTexture(f31, maxY0, textures[3]->getWidth(), f30 - maxY0, r29, r28, r29 ^ 0x8000,
                              sp_2E, mFrameMaterial[3], false);
 
             r9 = mFrameMaterial[2] != mFrameMaterial[3];
             r29 = field_0x144 & 0x8 ? (u16)0 : (u16)0x8000;
             r28 = field_0x144 & 0x4 ? (u16)0 : (u16)0x8000;
-            drawFrameTexture(f29, f30, textures[0]->getWidth(), textures[3]->getHeight(), r29, r28,
+            drawFrameTexture(minX, f30, textures[0]->getWidth(), textures[3]->getHeight(), r29, r28,
                              0x8000 - r29, 0x8000 - r28, mFrameMaterial[2], r9);
 
             r29 = field_0x144 & 0x8 ? (u16)0 : (u16)0x8000;
             r28 = field_0x144 & 0x4 ? (u16)0x8000 : (u16)0;
             sp_2E = r28;
-            drawFrameTexture(f29, f26, textures[0]->getWidth(), f30 - f26, r29, r28, r29 ^ 0x8000,
+            drawFrameTexture(minX, maxY0, textures[0]->getWidth(), f30 - maxY0, r29, r28, r29 ^ 0x8000,
                              sp_2E, mFrameMaterial[2], false);
         }
 

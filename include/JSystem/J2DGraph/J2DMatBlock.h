@@ -19,19 +19,30 @@ struct ResTLUT;
  */
 struct J2DGXColorS10 : public GXColorS10 {
     J2DGXColorS10() {}
+    
+#if PLATFORM_GCN
+    J2DGXColorS10(J2DGXColorS10& other) {
+        r = other.r;
+        g = other.g;
+        b = other.b;
+        a = other.a;
+    }
+#else
     J2DGXColorS10(const J2DGXColorS10& other) {
         r = other.r;
         g = other.g;
         b = other.b;
         a = other.a;
     }
+#endif
+
     J2DGXColorS10(const GXColorS10& other) {
         r = other.r;
         g = other.g;
         b = other.b;
         a = other.a;
     }
-
+    
     J2DGXColorS10& operator=(const GXColorS10& other) {
         r = other.r;
         g = other.g;
@@ -39,16 +50,6 @@ struct J2DGXColorS10 : public GXColorS10 {
         a = other.a;
         return *this;
     }
-
-#if PLATFORM_GCN
-    // maybe fake? but it helps link J2DWindowEx
-    J2DGXColorS10(J2DGXColorS10& other) {
-        r = other.r;
-        g = other.g;
-        b = other.b;
-        a = other.a;
-    }
-#endif
 };
 
 struct J2DTevSwapModeInfo;
