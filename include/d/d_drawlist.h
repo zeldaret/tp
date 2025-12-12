@@ -420,7 +420,7 @@ public:
     void setXluListZxlu() { setXluDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
     void setOpaListFilter() { setOpaDrawList(mDrawBuffers[DB_LIST_FILTER]); }
     void setXluListFilter() { setXluDrawList(mDrawBuffers[DB_LIST_FILTER]); }
-    #if DEBUG
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     void setOpaListCursor() { setOpaDrawList(mDrawBuffers[DB_LIST_CURSOR]); }
     void setXluListCursor() { setXluDrawList(mDrawBuffers[DB_LIST_CURSOR]); }
     #endif
