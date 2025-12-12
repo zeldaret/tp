@@ -971,7 +971,7 @@ void dPa_control_c::level_c::execute(dPa_control_c::level_c::emitter_c* i_emitte
 
 void dPa_control_c::level_c::execute() {
     JUT_ASSERT(2134, dComIfG_inf_c::baseCsr_c::getNavi() != NULL);
-    #if DEBUG
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     u32 prtclId = dComIfG_inf_c::baseCsr_c::getNavi()->getParticleId();
     u32 blurID = mDoGph_gInf_c::csr_c::getBlurID();
     #endif
@@ -980,7 +980,7 @@ void dPa_control_c::level_c::execute() {
     for (int i = 0; i < EMITTER_MAX; i++) {
         u32 id = emitter->getId();
         if (id != 0) {
-            #if DEBUG
+            #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
             if (id != prtclId && id != blurID)
             #endif
             execute(emitter);
@@ -1308,7 +1308,7 @@ void dPa_control_c::calcMenu() {
             mEmitterMng->calc(i);
         }
 
-        #if DEBUG
+        #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
         dComIfG_inf_c::baseCsr_c::particleExecute();
         mDoGph_gInf_c::csr_c::particleExecute();
         #endif

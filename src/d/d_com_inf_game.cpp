@@ -938,7 +938,7 @@ dTimer_c* dComIfG_play_c::getTimerPtr() {
     return mTimerInfo.mTimerPtr;
 }
 
-#if DEBUG
+#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
 int dComIfG_inf_c::baseCsr_c::navi_c::create() {
     m_heap = mDoExt_createSolidHeapFromGameToCurrent(0, 32);
     JUT_ASSERT(1323, m_heap != NULL);
@@ -1149,7 +1149,7 @@ void dComIfG_inf_c::ct() {
     field_0x1de0a = 0xFF;
 }
 
-#if DEBUG
+#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
 void dComIfG_inf_c::createBaseCsr() {
     JUT_ASSERT(1622, m_baseCsr == NULL);
     m_baseCsr = new baseCsr_c(1);
@@ -1181,7 +1181,7 @@ int dComIfG_changeOpeningScene(scene_class* i_scene, s16 i_procName) {
 }
 
 BOOL dComIfG_resetToOpening(scene_class* i_scene) {
-    #if DEBUG
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     if (mDoRst::isShutdown() || mDoRst::isReturnToMenu() || !mDoRst::isReset() || mDoGph_gInf_c::getFader()->getStatus() == 2) {
         return 0;
     }
@@ -1194,7 +1194,7 @@ BOOL dComIfG_resetToOpening(scene_class* i_scene) {
     dComIfG_changeOpeningScene(i_scene, PROC_OPENING_SCENE);
     mDoAud_bgmStop(30);
     mDoAud_resetProcess();
-    #if DEBUG
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     mDoGph_gInf_c::resetDimming();
     #endif
     return 1;
