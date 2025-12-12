@@ -842,7 +842,7 @@ public:
     void createBaseCsr();
     dComIfG_play_c& getPlay() { return play; }
 
-#if DEBUG
+#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     class baseCsr_c : public mDoGph_gInf_c::csr_c {
     public:
         class navi_c {
@@ -908,7 +908,7 @@ public:
     /* 0x1DE0C */ u8 field_0x1de0c;
 
     static __d_timer_info_c dComIfG_mTimerInfo;
-    #if DEBUG
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     static baseCsr_c* m_baseCsr;
     #endif
 };  // Size: 0x1DE10
@@ -4483,7 +4483,7 @@ inline void dComIfGd_set3DlineMatDark(mDoExt_3DlineMat_c* param_0) {
     g_dComIfG_gameInfo.drawlist.set3DlineMatDark(param_0);
 }
 
-#if DEBUG
+#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
 inline void dComIfGd_setListCursor() {
     g_dComIfG_gameInfo.drawlist.setOpaListCursor();
     g_dComIfG_gameInfo.drawlist.setXluListCursor();
