@@ -28,7 +28,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 }
 
 static int daObjCRVHAHEN_Create(fopAc_ac_c* i_this) {
-    static_cast<daObjCRVHAHEN_c*>(i_this)->create();
+    return static_cast<daObjCRVHAHEN_c*>(i_this)->create();
 }
 
 static int daObjCRVHAHEN_Delete(daObjCRVHAHEN_c* i_this) {
@@ -206,7 +206,7 @@ static int daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* i_this) {
 }
 
 static int daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
-    i_this->Execute();
+    return i_this->Execute();
 }
 
 int daObjCRVHAHEN_c::create() {

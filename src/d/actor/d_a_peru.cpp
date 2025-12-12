@@ -279,7 +279,7 @@ int daPeru_c::Draw() {
         u16 eyeballMat = getEyeballMaterialNo();
         modelData->getMaterialNodePointer(eyeballMat)->setMaterialAnm(matAnm);
     }
-    draw(0, 0, daPeru_Param_c::m.field_0x00[3], NULL, 100.0f, 0, field_0xe80, 0);
+    return draw(0, 0, daPeru_Param_c::m.field_0x00[3], NULL, 100.0f, 0, field_0xe80, 0);
 }
 
 int daPeru_c::createHeapCallBack(fopAc_ac_c* i_this) {

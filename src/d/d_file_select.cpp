@@ -1613,7 +1613,7 @@ void dFile_select_c::copyToSelPaneMove() {
     }
 }
 
-bool dFile_select_c::yesnoMenuMoveAnmInitSet(int param_1, int param_2) {
+void dFile_select_c::yesnoMenuMoveAnmInitSet(int param_1, int param_2) {
     if (!field_0x0108) {
         field_0x0268 = false;
         field_0x0269 = true;

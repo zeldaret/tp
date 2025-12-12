@@ -1115,7 +1115,7 @@ public:
     static engine_fn engine_tbl[];
 
     /* 0x000 */ camera_class* field_0x0;
-#if VERSION == VERSION_SHIELD_DEBUG
+#if DEBUG
     cXyz dbg_field_0x04[16];
     u8 dbg_field_c4[0xDC - 0xC4];
 #endif

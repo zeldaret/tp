@@ -333,7 +333,7 @@ static f32 dummyFloat(int _) {
     switch (_) {
     case 0: return 0.0f;
     case 1: return 65536.0f;
-    case 2: return 0.2f;
+    default: return 0.2f;
     }
 }
 

@@ -20,8 +20,8 @@ public:
     bool Check_RideOn(cXyz);
     void initBaseMtx();
     void setBaseMtx();
-    int create();
-    int CreateHeap();
+    inline int create();
+    inline int CreateHeap();
     int Create();
     int Execute(Mtx**);
     int Draw();
@@ -32,23 +32,21 @@ public:
     /* 0x5A8 */ f32 field_0x5a8;
     /* 0x5AC */ s16 field_0x5ac;
     /* 0x5B0 */ f32 field_0x5b0;
-    /* 0x5AE */ u8 field_0x5b4[0x5c4 - 0x5b4];
+    /* 0x5B4 */ u8 field_0x5b4[0x5bc - 0x5b4];
+    /* 0x5BC */ csXyz field_0x5bc;
+    /* 0x5C2 */ u8 field_0x5c2[0x5c4 - 0x5c2];
     /* 0x5C4 */ u8 field_0x5c4;
     /* 0x5C5 */ u8 field_0x5c5;
     /* 0x5C8 */ cXyz field_0x5c8;
     /* 0x5D8 */ s16 field_0x5d4;
     /* 0x5D8 */ s16 field_0x5d6;
     /* 0x5D8 */ s16 field_0x5d8;
-    /* 0x5DA */ s16 field_0x5da;
-    /* 0x5DC */ s16 field_0x5dc;
-    /* 0x5DE */ s16 field_0x5de;
+    /* 0x5DA */ csXyz field_0x5da;
     /* 0x5E0 */ f32 field_0x5e0;
     /* 0x5E4 */ s16 field_0x5e4;
     /* 0x5E6 */ s16 field_0x5e6;
     /* 0x5E8 */ u8 field_0x5e8;
-    /* 0x5EC */ int field_0x5ec;
-    /* 0x5F0 */ int field_0x5f0;
-    /* 0x5F4 */ int field_0x5f4;
+    /* 0x5EC */ cXyz field_0x5ec;
     /* 0x5EC */ dCcD_Stts mStts;
     /* 0x634 */ J3DModel* mModel;
     /* 0x638 */ request_of_phase_process_class mPhase;
@@ -56,16 +54,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(daObjIce_s_c) == 0x644);
-
-class daOBJ_ICE_S_HIO_c {
-public:
-    daOBJ_ICE_S_HIO_c();
-    virtual ~daOBJ_ICE_S_HIO_c() {}
-
-    /* 0x4 */ s8 field_0x4;
-    /* 0x8 */ f32 field_0x8;
-    /* 0xC */ f32 field_0xc;
-};
-
 
 #endif /* D_A_OBJ_ICE_S_H */

@@ -155,17 +155,12 @@ bool daAlink_c::checkCutTurnInput() const {
     return 0xF800 < abs(field_0x3180);
 }
 
-// Debug version is correct, but breaks other versions due no longer inlining
 int daAlink_c::getCutTurnDirection() const {
-#if VERSION == VERSION_SHIELD_DEBUG
     if (field_0x3180 < 0) {
         return 1;
     } else {
         return 0;
     }
-#else
-    return field_0x3180 < 0;
-#endif
 }
 
 void daAlink_c::resetCombo(int param_0) {

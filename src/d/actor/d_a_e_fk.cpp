@@ -189,7 +189,7 @@ static f32 dummyFloat3(int _) {
     switch (_) {
     case 0:
         return 30.0f;
-    case 1:
+    default:
         return 300.0f;
     }
 }
@@ -266,7 +266,7 @@ static f32 dummyFloat4(int _) {
         return 2000.0f;
     case 1:
         return 1000.0f;
-    case 2:
+    default:
         return -4000.0f;
     }
 }

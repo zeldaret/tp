@@ -144,7 +144,7 @@ BOOL diff_model_c::create(J3DModelData* i_modelData, int roomNo, u8 drawBG) {
                 int result = mDoExt_adjustSolidHeapToSystem(mpHeap);
                 mRoomNo = roomNo;
                 mDrawBG = drawBG;
-                #if VERSION == VERSION_SHIELD_DEBUG
+                #if DEBUG
                 field_0x12 = 0;
                 #endif
                 return 1;
@@ -170,7 +170,7 @@ void diff_model_c::remove(int param_0) {
 
     if (mCreateNum == 0 || param_0 != 0) {
         if (mpHeap != NULL) {
-            #if VERSION == VERSION_SHIELD_DEBUG
+            #if DEBUG
             if (field_0x12 != 0) {
                 JUT_WARN(510, "%s", "Simple Model Denger Remove !!\n");
             }
@@ -196,11 +196,11 @@ void diff_model_c::draw() {
         }
         mDoExt_modelUpdateDL(mpModel);
         dComIfGd_setList();
-        #if VERSION == VERSION_SHIELD_DEBUG
+        #if DEBUG
         field_0x12 = 1;
         #endif
     } else {
-        #if VERSION == VERSION_SHIELD_DEBUG
+        #if DEBUG
         field_0x12 = 0;
         #endif
     }

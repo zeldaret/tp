@@ -757,7 +757,7 @@ bool daNpc_Seira_c::setBottleAnm(int arg0, int arg1, f32 arg2, bool arg3) {
 
 bool daNpc_Seira_c::afterSetMotionAnm(int arg0, int arg1, f32 arg2, int arg3) {
     f32 var_f30 = (mCreating == 1) ? 0.0f : arg2;
-    setBottleAnm(arg0, arg1, var_f30, 1);
+    return setBottleAnm(arg0, arg1, var_f30, 1);
 }
 
 void daNpc_Seira_c::changeAnm(int* arg0, int* arg1) {

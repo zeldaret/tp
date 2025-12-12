@@ -107,7 +107,7 @@ public:
     void setCollision();
     int drawDbgInfo();
     void drawOtherMdl();
-    BOOL setFlagAnm(int, int, f32);
+    bool setFlagAnm(int, int, f32);
     bool afterSetMotionAnm(int, int, f32, int);
     BOOL selectAction();
     BOOL chkAction(actionFunc);

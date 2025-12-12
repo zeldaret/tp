@@ -87,12 +87,12 @@ public:
 private:
     /* 0x000 */ JAISoundHandle mSoundHandle[24];
     /* 0x060 */ JAISoundHandles mSoundHandles;
-    #if VERSION == VERSION_SHIELD_DEBUG
-    /* 0x068 */ JAISoundHandle dbg_field_0x68;
-    /* 0x06C */ f32 dbg_field_0x6c;
-    /* 0x070 */ f32 dbg_field_0x70;
-    /* 0x074 */ f32 dbg_field_0x74;
-    /* 0x078 */ f32 dbg_field_0x78;
+    #if VERSION >= VERSION_WII_USA_R0
+    /* 0x068 */ JAISoundHandle wii_field_0x68;
+    /* 0x06C */ f32 wii_field_0x6c;
+    /* 0x070 */ f32 wii_field_0x70;
+    /* 0x074 */ f32 wii_field_0x74;
+    /* 0x078 */ f32 wii_field_0x78;
     #endif
     /* 0x068 */ Z2MultiSeObj mLevelObjSe[10];
     /* 0x1D0 */ u8 mLevelObjectSeCount;

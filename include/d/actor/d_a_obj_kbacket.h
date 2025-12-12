@@ -96,7 +96,7 @@ public:
 
     virtual ~daObj_KBacket_c();
     int create();
-    int setLaunchParam(float param_0, float param_1, short param_2) {
+    void setLaunchParam(float param_0, float param_1, short param_2) {
         float fVar2;
 
         s16 iVar1 = cM_deg2s(param_1);

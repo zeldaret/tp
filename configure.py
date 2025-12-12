@@ -1022,7 +1022,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASProbe.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASReport.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASCmdStack.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp"),
+            Object(Equivalent, "JSystem/JAudio2/JASTrack.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASTrackPort.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASRegisterParam.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSeqCtrl.cpp"),
@@ -1223,7 +1223,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DWindow.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPicture.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBox.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DWindowEx.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DWindowEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPictureEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBoxEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DAnmLoader.cpp"),

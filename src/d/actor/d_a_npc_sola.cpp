@@ -162,7 +162,7 @@ int daNpc_solA_c::Delete() {
 }
 
 int daNpc_solA_c::Execute() {
-    execute();
+    return execute();
 }
 
 void daNpc_solA_c::Draw() {
@@ -449,7 +449,7 @@ static int daNpc_solA_Delete(void* param_0) {
 }
 
 static int daNpc_solA_Execute(void* param_0) {
-    static_cast<daNpc_solA_c*>(param_0)->Execute();
+    return static_cast<daNpc_solA_c*>(param_0)->Execute();
 }
 
 static void daNpc_solA_Draw(void* param_0) {

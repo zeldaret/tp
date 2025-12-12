@@ -1023,11 +1023,11 @@ u32 daNpc_Kn_c::setParamTeach05() {
 }
 
 u32 daNpc_Kn_c::setParamTeach06() {
-    setParamTeach05();
+    return setParamTeach05();
 }
 
 u32 daNpc_Kn_c::setParamTeach07() {
-    setParamTeach05();
+    return setParamTeach05();
 }
 
 void daNpc_Kn_c::setAfterTalkMotion() {

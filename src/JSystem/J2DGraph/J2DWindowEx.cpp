@@ -38,11 +38,12 @@ J2DWindowEx::J2DWindowEx(J2DPane* param_0, JSURandomInputStream* param_1, u32 pa
     J2DWindowExDef auStack_70;
     param_1->read(&auStack_70, sizeof(J2DWindowExDef));
 
-    JUtility::TColor* colors[4] = {NULL};
-    colors[0] = &field_0x128;
-    colors[1] = &field_0x12C;
-    colors[2] = &field_0x130;
-    colors[3] = &field_0x134;
+    JUtility::TColor* colors[4] = {
+        &field_0x128,
+        &field_0x12C,
+        &field_0x130,
+        &field_0x134
+    };
 
     for (int i = 0; i < 4; i++) {
         field_0x158[i] = auStack_70.field_0x10[i];
@@ -129,169 +130,84 @@ void J2DWindowEx::draw_private(JGeometry::TBox2<f32> const& param_0,
                                JGeometry::TBox2<f32> const& param_1) {
     if (param_0.getWidth() >= field_0x140 && param_0.getHeight() >= field_0x142) {
         JUTTexture* textures[4];
-        bool anyFrameMaterialNull = false;
+        bool foundNullTexture = false;
         for (int i = 0; i < 4; i++) {
             if (mFrameMaterial[i] == NULL) {
                 return;
             }
-            J2DTevBlock* block = mFrameMaterial[i]->getTevBlock();
-            if (block == NULL) {
+
+            if (mFrameMaterial[i]->getTevBlock() == NULL) {
                 return;
             }
 
-            textures[i] = block->getTexture(0);
+            textures[i] = mFrameMaterial[i]->getTevBlock()->getTexture(0);
             if (textures[i] == NULL) {
-                anyFrameMaterialNull = true;
+                foundNullTexture = true;
             }
         }
 
-        JGeometry::TBox2<f32> aTStack_b8(param_1);
-        aTStack_b8.addPos(param_0.i);
-        drawContents(aTStack_b8);
+        JGeometry::TBox2<f32> aTStack_38(param_1);
+        aTStack_38.addPos(param_0.i);
+        drawContents(aTStack_38);
         GXClearVtxDesc();
         GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
         GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
         GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 
-        if (!anyFrameMaterialNull) {
-            f32 dVar16 = param_0.i.x;
-            f32 dVar15 = param_0.i.y;
-            f32 dVar18 = param_0.f.x - textures[3]->getWidth();
-            f32 dVar17 = param_0.f.y - textures[3]->getHeight();
-            f32 dVar14 = dVar16 + textures[0]->getWidth();
-            f32 dVar12 = dVar15 + textures[0]->getHeight();
-            u16 local_c4;
-            if (field_0x144 & 0x80) {
-                local_c4 = 0;
-            } else {
-                local_c4 = 0x8000;
-            }
-            u16 local_c6;
-            if (field_0x144 & 0x40) {
-                local_c6 = 0;
-            } else {
-                local_c6 = 0x8000;
-            }
+        if (!foundNullTexture) {
+            f32 minX = param_0.i.x;
+            f32 minY = param_0.i.y;
+            f32 f31 = param_0.f.x - textures[3]->getWidth();
+            f32 f30 = param_0.f.y - textures[3]->getHeight();
+            f32 maxX0 = minX + textures[0]->getWidth();
+            f32 maxY0 = minY + textures[0]->getHeight();
 
-            drawFrameTexture(dVar16, dVar15, textures[0]->getWidth(), textures[0]->getHeight(),
-                             local_c4, local_c6, 0x8000 - local_c4, 0x8000 - local_c6,
-                             mFrameMaterial[0], true);
+            u16 r29 = (field_0x144 & 0x80 ? (u16)0 : (u16)0x8000);
+            u16 r28 = (field_0x144 & 0x40 ? (u16)0 : (u16)0x8000);
+            drawFrameTexture(minX, minY, textures[0]->getWidth(), textures[0]->getHeight(), r29, r28,
+                             0x8000 - r29, 0x8000 - r28, mFrameMaterial[0], true);
+
             bool r9 = mFrameMaterial[1] != mFrameMaterial[0];
-            u16 local_c8;
-            if (field_0x144 & 0x20) {
-                local_c8 = 0;
-            } else {
-                local_c8 = 0x8000;
-            }
-            u16 local_ca;
-            if (field_0x144 & 0x10) {
-                local_ca = 0;
-            } else {
-                local_ca = 0x8000;
-            }
-            drawFrameTexture(dVar18, dVar15, textures[3]->getWidth(), textures[0]->getHeight(),
-                             local_c8, local_ca, 0x8000 - local_c8, 0x8000 - local_ca,
-                             mFrameMaterial[1], r9);
+            r29 = field_0x144 & 0x20 ? (u16)0 : (u16)0x8000;
+            r28 = field_0x144 & 0x10 ? (u16)0 : (u16)0x8000;
+            drawFrameTexture(f31, minY, textures[3]->getWidth(), textures[0]->getHeight(), r29, r28,
+                             0x8000 - r29, 0x8000 - r28, mFrameMaterial[1], r9);
 
-            u16 local_cc;
-            if (field_0x144 & 0x20) {
-                local_cc = 0x8000;
-            } else {
-                local_cc = 0;
-            }
-
-            u16 local_ce;
-            if (field_0x144 & 0x10) {
-                local_ce = 0;
-            } else {
-                local_ce = 0x8000;
-            }
-            drawFrameTexture(dVar14, dVar15, dVar18 - dVar14, textures[0]->getHeight(), local_cc,
-                             local_ce, local_cc, local_ce ^ 0x8000, mFrameMaterial[1], false);
+            r29 = field_0x144 & 0x20 ? (u16)0x8000 : (u16)0;
+            u16 sp_30 = r29;
+            r28 = field_0x144 & 0x10 ? (u16)0 : (u16)0x8000;
+            drawFrameTexture(maxX0, minY, f31 - maxX0, textures[0]->getHeight(), r29, r28, sp_30,
+                             r28 ^ 0x8000, mFrameMaterial[1], false);
 
             r9 = mFrameMaterial[3] != mFrameMaterial[1];
-            u16 local_d0;
-            if (field_0x144 & 2) {
-                local_d0 = 0;
-            } else {
-                local_d0 = 0x8000;
-            }
-            u16 local_d2;
-            if (field_0x144 & 1) {
-                local_d2 = 0;
-            } else {
-                local_d2 = 0x8000;
-            }
+            r29 = field_0x144 & 0x2 ? (u16)0 : (u16)0x8000;
+            r28 = field_0x144 & 0x1 ? (u16)0 : (u16)0x8000;
+            drawFrameTexture(f31, f30, textures[3]->getWidth(), textures[3]->getHeight(), r29, r28,
+                             0x8000 - r29, 0x8000 - r28, mFrameMaterial[3], r9);
 
-            drawFrameTexture(dVar18, dVar17, textures[3]->getWidth(), textures[3]->getHeight(),
-                             local_d0, local_d2, 0x8000 - local_d0, 0x8000 - local_d2,
-                             mFrameMaterial[3], r9);
+            r29 = field_0x144 & 0x2 ? (u16)0x8000 : (u16)0;
+            sp_30 = r29;
+            r28 = field_0x144 & 0x1 ? (u16)0 : (u16)0x8000;
+            drawFrameTexture(maxX0, f30, f31 - maxX0, textures[3]->getHeight(), r29, r28, sp_30,
+                             r28 ^ 0x8000, mFrameMaterial[3], false);
 
-            u16 local_d4;
-            if (field_0x144 & 2) {
-                local_d4 = 0x8000;
-            } else {
-                local_d4 = 0;
-            }
-
-            u16 local_d6;
-            if (field_0x144 & 1) {
-                local_d6 = 0;
-            } else {
-                local_d6 = 0x8000;
-            }
-            drawFrameTexture(dVar14, dVar17, dVar18 - dVar14, textures[3]->getHeight(), local_d4,
-                             local_d6, local_d4, local_d6 ^ 0x8000, mFrameMaterial[3], false);
-
-            u16 local_d8;
-            if (field_0x144 & 2) {
-                local_d8 = 0;
-            } else {
-                local_d8 = 0x8000;
-            }
-
-            u16 local_da;
-            if (field_0x144 & 1) {
-                local_da = 0x8000;
-            } else {
-                local_da = 0;
-            }
-            drawFrameTexture(dVar18, dVar12, textures[3]->getWidth(), dVar17 - dVar12, local_d8,
-                             local_da, local_d8 ^ 0x8000, local_da, mFrameMaterial[3], false);
+            r29 = field_0x144 & 0x2 ? (u16)0 : (u16)0x8000;
+            r28 = field_0x144 & 0x1 ? (u16)0x8000 : (u16)0;
+            u16 sp_2E = r28;
+            drawFrameTexture(f31, maxY0, textures[3]->getWidth(), f30 - maxY0, r29, r28, r29 ^ 0x8000,
+                             sp_2E, mFrameMaterial[3], false);
 
             r9 = mFrameMaterial[2] != mFrameMaterial[3];
-            u16 local_dc;
-            if (field_0x144 & 8) {
-                local_dc = 0;
-            } else {
-                local_dc = 0x8000;
-            }
+            r29 = field_0x144 & 0x8 ? (u16)0 : (u16)0x8000;
+            r28 = field_0x144 & 0x4 ? (u16)0 : (u16)0x8000;
+            drawFrameTexture(minX, f30, textures[0]->getWidth(), textures[3]->getHeight(), r29, r28,
+                             0x8000 - r29, 0x8000 - r28, mFrameMaterial[2], r9);
 
-            u16 local_de;
-            if (field_0x144 & 4) {
-                local_de = 0;
-            } else {
-                local_de = 0x8000;
-            }
-            drawFrameTexture(dVar16, dVar17, textures[0]->getWidth(), textures[3]->getHeight(),
-                             local_dc, local_de, 0x8000 - local_dc, 0x8000 - local_de,
-                             mFrameMaterial[2], r9);
-
-            u16 local_e0;
-            if (field_0x144 & 8) {
-                local_e0 = 0;
-            } else {
-                local_e0 = 0x8000;
-            }
-
-            u16 local_e2;
-            if (field_0x144 & 4) {
-                local_e2 = 0x8000;
-            } else {
-                local_e2 = 0;
-            }
-            drawFrameTexture(dVar16, dVar12, textures[0]->getWidth(), dVar17 - dVar12, local_e0,
-                             local_e2, local_e0 ^ 0x8000, local_e2, mFrameMaterial[2], false);
+            r29 = field_0x144 & 0x8 ? (u16)0 : (u16)0x8000;
+            r28 = field_0x144 & 0x4 ? (u16)0x8000 : (u16)0;
+            sp_2E = r28;
+            drawFrameTexture(minX, maxY0, textures[0]->getWidth(), f30 - maxY0, r29, r28, r29 ^ 0x8000,
+                             sp_2E, mFrameMaterial[2], false);
         }
 
         GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
@@ -406,9 +322,9 @@ void J2DWindowEx::drawFrameTexture(f32 param_1, f32 param_2, f32 param_3, f32 pa
                 aTStack_84 = JUtility::TColor((u32)uVar11 | 0xffffff00);
             }
         } else if (parentPane != NULL && mIsInfluencedAlpha != 0 && param_10) {
-            s32 matColorAlpha = param_9->getColorBlock()->getMatColor(0)->a;
-            s32 colorAlpha = parentPane->mColorAlpha;
-            GXSetChanMatColor(GX_ALPHA0, JUtility::TColor((matColorAlpha * colorAlpha / 0xff) & 0xff));
+            u8 matColorAlpha = param_9->getColorBlock()->getMatColor(0)->a;
+            matColorAlpha = matColorAlpha * parentPane->mColorAlpha / 0xff;
+            GXSetChanMatColor(GX_ALPHA0, JUtility::TColor(matColorAlpha));
         }
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
@@ -478,18 +394,17 @@ void J2DWindowEx::draw(JGeometry::TBox2<f32> const& param_1, JGeometry::TBox2<f3
 void J2DWindowEx::setTevOrder(bool param_0) {
     u16 local_28[2];
     if (!param_0) {
-        local_28[0] = 4;
-        local_28[1] = 0xffff;
+        local_28[0] = (u16)4;
+        local_28[1] = (u16)0xffff;
     } else {
-        local_28[0] = 0xff;
-        local_28[1] = 0xff04;
+        local_28[0] = (u16)0xff;
+        local_28[1] = (u16)0xff04;
     }
     for (u8 i = 0; i < 2; i++) {
-        s32 uVar1 = local_28[i];
         J2DTevOrderInfo info;
-        info.mTexCoord = uVar1 >> 8;
-        info.mTexMap = uVar1 >> 8;
-        info.mColor = uVar1;
+        info.mTexCoord = local_28[i] >> 8;
+        info.mTexMap = local_28[i] >> 8;
+        info.mColor = local_28[i] & 0xff;
         J2DTevOrder local_30(info);
         for (int j = 0; j < 4; j++) {
             if (mFrameMaterial[j]->getTevBlock()->getMaxStage() > i) {
@@ -502,7 +417,7 @@ void J2DWindowEx::setTevOrder(bool param_0) {
 void J2DWindowEx::setTevStage(bool param_1) {
     for (int i = 0; i < 4; i++) {
         J2DTevStage* pJVar3 = mFrameMaterial[i]->getTevBlock()->getTevStage(0);
-        JUTTexture* this_00 = mFrameMaterial[i]->getTevBlock()->getTexture(0);
+        const JUTTexture* this_00 = mFrameMaterial[i]->getTevBlock()->getTexture(0);
         bool bVar1 = false;
         if (this_00 != NULL && ((s32)this_00->getFormat() == 0 || (s32)this_00->getFormat() == 1) &&
             this_00->getTransparency() == 0)
@@ -512,14 +427,9 @@ void J2DWindowEx::setTevStage(bool param_1) {
         if (!param_1) {
             setStage(pJVar3, bVar1 ? STAGE_ENUM_1 : STAGE_ENUM_0);
         } else {
-            stage_enum sVar5;
-            if (bVar1) {
-                sVar5 = STAGE_ENUM_4;
-            } else {
-                sVar5 = STAGE_ENUM_3;
-            }
-            setStage(pJVar3, sVar5);
-            setStage(mFrameMaterial[i]->getTevBlock()->getTevStage(1), STAGE_ENUM_2);
+            setStage(pJVar3, bVar1 ? STAGE_ENUM_4 : STAGE_ENUM_3);
+            pJVar3 = mFrameMaterial[i]->getTevBlock()->getTevStage(1);
+            setStage(pJVar3, STAGE_ENUM_2);
         }
     }
 }
@@ -583,24 +493,24 @@ void J2DWindowEx::setStage(J2DTevStage* param_0, J2DWindowEx::stage_enum param_1
 }
 
 
-bool J2DWindowEx::setBlack(JUtility::TColor black) {
-    JUtility::TColor dummy,white;
+bool J2DWindowEx::setBlack(JUtility::TColor i_black) {
+    JUtility::TColor black, white;
 
-    if (!getBlackWhite(&dummy, &white)) {
+    if (!getBlackWhite(&black, &white)) {
         return false;
     }
 
-    return setBlackWhite(black, white);
+    return setBlackWhite(i_black, white);
 }
 
-bool J2DWindowEx::setWhite(JUtility::TColor white) {
-    JUtility::TColor black,dummy;
+bool J2DWindowEx::setWhite(JUtility::TColor i_white) {
+    JUtility::TColor black, white;
 
-    if (!getBlackWhite(&black, &dummy)) {
+    if (!getBlackWhite(&black, &white)) {
         return false;
     }
 
-    return setBlackWhite(black, white);
+    return setBlackWhite(black, i_white);
 }
 
 // NONMATCHING - J2DGXColorS10 issue
@@ -645,7 +555,7 @@ bool J2DWindowEx::setBlackWhite(JUtility::TColor black, JUtility::TColor white) 
     return true;
 }
 
-bool J2DWindowEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* param_1) const {
+bool J2DWindowEx::getBlackWhite(JUtility::TColor* o_black, JUtility::TColor* o_white) const {
     if (mFrameMaterial[0] == NULL) {
         return false;
     }
@@ -654,26 +564,16 @@ bool J2DWindowEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* par
         return false;
     }
 
-    bool cVar6 = mFrameMaterial[0]->getTevBlock()->getTevStageNum() != 1;
-    *param_0 = JUtility::TColor(0);
-    *param_1 = JUtility::TColor(0xffffffff);
+    u32 stageNum = mFrameMaterial[0]->getTevBlock()->getTevStageNum();
+    bool cVar6 = stageNum == 1 ? false : true;
+    *o_black = JUtility::TColor(0);
+    *o_white = JUtility::TColor(0xffffffff);
     if (cVar6) {
-        J2DGXColorS10* color0p = mFrameMaterial[0]->getTevBlock()->getTevColor(0);
-        GXColorS10 color0;
-        color0.r = color0p->r;
-        color0.g = color0p->g;
-        color0.b = color0p->b;
-        color0.a = color0p->a;
-        J2DGXColorS10* color1p = mFrameMaterial[0]->getTevBlock()->getTevColor(1);
-        GXColorS10 color1;
-        color1.r = color1p->r;
-        color1.g = color1p->g;
-        color1.b = color1p->b;
-        color1.a = color1p->a;
-        *param_0 = JUtility::TColor((((u8)color0.r) << 0x18) | (((u8)color0.g) << 0x10)
-                                    | (((u8)color0.b) << 0x8) | (((u8)color0.a)));
-        *param_1 = JUtility::TColor((((u8)color1.r) << 0x18) | (((u8)color1.g) << 0x10)
-                                    | (((u8)color1.b) << 0x8) | (((u8)color1.a)));
+        J2DGXColorS10 color0 = *mFrameMaterial[0]->getTevBlock()->getTevColor(0);
+        J2DGXColorS10 color1 = *mFrameMaterial[0]->getTevBlock()->getTevColor(1);
+#define FAST_GX_COLOR_U32(r, g, b, a) (((u8)(r) << 0x18) | ((u8)(g) << 0x10) | ((u8)(b) << 0x8) | ((u8)(a)))
+        *o_black = JUtility::TColor(FAST_GX_COLOR_U32(color0.r, color0.g, color0.b, color0.a));
+        *o_white = JUtility::TColor(FAST_GX_COLOR_U32(color1.r, color1.g, color1.b, color1.a));
     }
     return true;
 }
@@ -683,7 +583,8 @@ bool J2DWindowEx::isSetBlackWhite(JUtility::TColor param_0, JUtility::TColor par
         return true;
     }
     for (int i = 0; i < 4; i++) {
-        if (mFrameMaterial[i]->getTevBlock()->getMaxStage() == 1) {
+        u8 stage = mFrameMaterial[i]->getTevBlock()->getMaxStage();
+        if (stage == 1) {
             return false;
         }
     }
@@ -853,8 +754,8 @@ void J2DWindowEx::setAnimation(J2DAnmVtxColor* param_0) {
             if (field_0x168[i] != 0xffff) {
                 for (u16 j = 0; j < uVar3; j++) {
                     J3DAnmVtxColorIndexData* puVar1 = param_0->getAnmVtxColorIndexData(0, j);
-                    u16* indexPointer = param_0->getVtxColorIndexPointer(0);
-                    u16* indexPointer2 = indexPointer + (uintptr_t)puVar1->mpData;
+                    u16* indexPointer2 =
+                        param_0->getVtxColorIndexPointer(0) + (uintptr_t)puVar1->mpData;
                     for (u16 k = 0; k < puVar1->mNum; k++) {
                         if (indexPointer2[k] == field_0x168[i]) {
                             mAnmVtxColor = param_0;
@@ -884,19 +785,21 @@ const J2DAnmTransform* J2DWindowEx::animationPane(J2DAnmTransform const* param_0
         }
     }
 
-    JUtility::TColor* local_38[4] = {NULL};
-    local_38[0] = &field_0x128;
-    local_38[1] = &field_0x12C;
-    local_38[2] = &field_0x130;
-    local_38[3] = &field_0x134;
+    JUtility::TColor* local_38[4] = {
+        &field_0x128,
+        &field_0x12C,
+        &field_0x130,
+        &field_0x134,
+    };
+
     if (mAnmVtxColor != NULL) {
         u16 uVar3 = mAnmVtxColor->getAnmTableNum(0);
         for (u8 i = 0; i < 4; i++) {
             if ((field_0x17c & (1 << i))) {
                 for (u16 j = 0; j < uVar3; j++) {
                     J3DAnmVtxColorIndexData* puVar1 = mAnmVtxColor->getAnmVtxColorIndexData(0, j);
-                    u16* indexPointer = mAnmVtxColor->getVtxColorIndexPointer(0);
-                    u16* indexPointer2 = indexPointer + (uintptr_t)puVar1->mpData;
+                    u16* indexPointer2 =
+                        mAnmVtxColor->getVtxColorIndexPointer(0) + (uintptr_t)puVar1->mpData;
                     for (u16 k = 0; k < puVar1->mNum; k++) {
                         if (indexPointer2[k] == field_0x168[i]) {
                             mAnmVtxColor->getColor(0, j, local_38[i]);

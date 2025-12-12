@@ -30,12 +30,12 @@ Z2MultiSeObj::Z2MultiSeObj() {
 }
 
 void Z2SeMgr::initSe() {
-    #if VERSION == VERSION_SHIELD_DEBUG
-    dbg_field_0x68.releaseSound();
-    dbg_field_0x6c = 0.5f;
-    dbg_field_0x70 = 0.0f;
-    dbg_field_0x74 = 0.0f;
-    dbg_field_0x78 = 0.0f;
+    #if VERSION >= VERSION_WII_USA_R0
+    wii_field_0x68.releaseSound();
+    wii_field_0x6c = 0.5f;
+    wii_field_0x70 = 0.0f;
+    wii_field_0x74 = 0.0f;
+    wii_field_0x78 = 0.0f;
     #endif
 
     for (u8 i = 0; i < 10; i++) {
