@@ -24,7 +24,7 @@ public:
     int Draw();
     int Delete();
 
-    static void make_prm_burnBox(u32* param_0, u8 param_1) { *param_0 = param_1; }
+    static void make_prm_burnBox(u32* param_0, u8 param_1) { *param_0 = param_1 & 0xff; }
 
     u8 getType() { return fopAcM_GetParamBit(this, 0, 8); }
 

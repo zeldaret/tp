@@ -21,6 +21,9 @@
 namespace daObjMovebox {
     class Hio_c {
     public:
+        void ct();
+        void dt();
+
         class Attr_c {
         public:
             /* 0x00 */ s16 mFirstPushStopTime;
@@ -72,6 +75,15 @@ namespace daObjMovebox {
             /* 0x9D */ u8 field_0x9d;
             /* 0x9E */ u8 field_0x9e;
         };
+
+        typedef struct {
+            u8 _0[0xc];
+            daObjMovebox::Hio_c::Attr_c _0C;
+        } attr_container;
+
+        static u8 M_flag_bgc[8];
+
+        attr_container _00;
     };
 
     class BgcSrc_c {
@@ -125,6 +137,12 @@ namespace daObjMovebox {
         /* 0x178 */ int field_0x178;
         /* 0x17C */ f32 field_0x17c;
         /* 0x180 */ State_e mState;
+#if DEBUG
+        /* 0x184 */ cXyz field_0x184[92];
+        /* 0x184 */ cXyz field_0x5D4[92];
+        /* 0xA24 */ int field_0xA24;
+        /* 0xA28 */ int field_0xA28;
+#endif
     };
 
     class Act_c : public dBgS_MoveBgActor {
@@ -173,9 +191,6 @@ namespace daObjMovebox {
         inline int Mthd_Create();
         inline int Mthd_Delete();
 
-        // some functions need an inlined version of `attr`, find better fix later
-        const daObjMovebox::Hio_c::Attr_c& i_attr() const { return M_attr[mType]; }
-
         int prm_get_swSave() const { return daObj::PrmAbstract(this, PRM_8_e, PRM_8_e); }
         int prmZ_get_swSave2() const { return (u8)(mPrmZ >> 8); }
         int prm_get_dmy() const { return 0; }
@@ -183,7 +198,7 @@ namespace daObjMovebox {
         u8 prm_get_answer() const { return daObj::PrmAbstract(this, PRM_4_e, PRM_1C_e); }
         int prm_get_type() const { return daObj::PrmAbstract(this, PRM_4_e, PRM_18_e); }
 
-        int is_switch1() const { return fopAcM_isSwitch(this, prm_get_swSave1()) != 0; }
+        bool is_switch1() const { return fopAcM_isSwitch(this, prm_get_swSave1()); }
         int is_switch2() const { return fopAcM_isSwitch(this, prmZ_get_swSave2()) != 0; }
 
         void on_switch1() const { fopAcM_onSwitch(this, prm_get_swSave1()); }
@@ -196,6 +211,7 @@ namespace daObjMovebox {
         static const s16 M_dir_base[4];
         static const char* const M_arcname[8];
         static const dCcD_SrcCyl M_cyl_src;
+
         static const daObjMovebox::Hio_c::Attr_c M_attr[8];
 
         /* 0x5A0 */ request_of_phase_process_class mPhase;
@@ -233,6 +249,9 @@ namespace daObjMovebox {
         /* 0x902 */ u8 field_0x902;
         /* 0x904 */ int field_0x904;
         /* 0x908 */ s8 field_0x908;
+#if DEBUG
+        static daObjMovebox::Hio_c M_hio[];
+#endif
     };
 };
 
