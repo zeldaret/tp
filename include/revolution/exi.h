@@ -74,6 +74,8 @@ typedef struct EXIControl {
     } queue[3];
 } EXIControl;
 
+extern const u32 __EXIFreq;
+
 EXICallback EXISetExiCallback(s32 channel, EXICallback callback);
 
 void EXIInit(void);

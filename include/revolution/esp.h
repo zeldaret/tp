@@ -1,5 +1,5 @@
-#ifndef ESP_H
-#define ESP_H
+#ifndef _REVOLUTION_ESP_H_
+#define _REVOLUTION_ESP_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -122,17 +122,17 @@ typedef struct {
 
 s32 ESP_InitLib(void);
 s32 ESP_CloseLib(void);
-s32 ESP_LaunchTitle(u64, ESTicketView*);
-s32 ESP_GetTicketViews(ESTitleId, ESTicketView*, u32*);
-s32 ESP_DiGetTicketView(const void*, ESTicketView*);
-s32 ESP_DiGetTmd(ESTitleMeta*, u32*);
-s32 ESP_GetTmdView(ESTitleId, ESTmdView*, u32*);
-s32 ESP_GetDataDir(ESTitleId, char*);
-s32 ESP_GetTitleId(ESTitleId*);
-s32 ESP_GetConsumption(ESTicketId, ESLpEntry*, u32*);
+s32 ESP_LaunchTitle(u64 titleID, ESTicketView* pTicketView);
+s32 ESP_GetTicketViews(ESTitleId titleId, ESTicketView* ticketViewList, u32* ticketViewCnt);
+s32 ESP_DiGetTicketView(const void* ticket, ESTicketView* ticketView);
+s32 ESP_DiGetTmd(ESTitleMeta* tmd, u32* tmdSize);
+s32 ESP_GetTmdView(ESTitleId titleId, ESTmdView* tmdView, u32* size);
+s32 ESP_GetDataDir(ESTitleId titleId, char* dataDir);
+s32 ESP_GetTitleId(ESTitleId* titleId);
+s32 ESP_GetConsumption(ESTicketId ticketId, ESLpEntry* entries, u32* nEntries);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // ESP_H
+#endif // _REVOLUTION_ESP_H_
