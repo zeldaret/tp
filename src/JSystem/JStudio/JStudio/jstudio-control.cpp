@@ -81,15 +81,24 @@ void JStudio::TFactory::appendCreateObject(JStudio::TCreateObject* param_0) {
 }
 
 
-JStudio::TObject* JStudio::TFactory::create(JStudio::stb::data::TParse_TBlock_object const& param_0) {
+JStudio::TObject* JStudio::TFactory::create(JStudio::stb::data::TParse_TBlock_object const& rParse) {
     JGadget::TContainerEnumerator<JGadget::TLinkList<TCreateObject, -4> > aTStack_368(mList);
     while(aTStack_368) {
         TCreateObject& piVar1 = *aTStack_368;
         JStudio::TObject* obj;
-        if (piVar1.create(&obj, param_0)) {
+        if (piVar1.create(&obj, rParse)) {
             return obj;
         }
     }
+#if DEBUG
+    u32 type = rParse.get_type();
+    char a5c[8];
+    stb::data::toString_block(a5c, type);
+    const char* szID = (const char*)rParse.get_ID();
+    JGADGET_ASSERTWARN(0x108, rParse.get_IDSize()>0);
+    JGADGET_ASSERTWARN(0x109, szID[rParse.get_IDSize()-1]=='\\0');
+    JGADGET_WARNMSG3(0x10c, "ID not found\n demo object : ", szID, "\n  type : ", a5c);
+#endif
     return NULL;
 }
 

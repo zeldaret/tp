@@ -43,7 +43,21 @@ public:
     virtual ~TObject();
 
     void setFlag_operation(u8, int);
+#if PLATFORM_SHIELD && !DEBUG
+    void reset(void const* arg1) {
+        bSequence_ = 0;
+        mStatus = STATUS_STILL;
+        pSequence_next = arg1;
+        u32Wait_ = 0;
+    }
+#else
     void reset(void const*);
+#endif
+#if !DEBUG
+    void reset() { reset(NULL); }
+#else
+    void reset();
+#endif
     bool forward(u32);
     virtual void do_begin();
     virtual void do_end();
