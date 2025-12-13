@@ -1462,6 +1462,27 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "gf",
+        [
+            Object(NonMatching, "revolution/gf/GFGeometry.cpp"),
+            Object(NonMatching, "revolution/gf/GFLight.cpp"),
+            Object(NonMatching, "revolution/gf/GFPixel.cpp"),
+            Object(NonMatching, "revolution/gf/GFTev.cpp"),
+        ],
+    ),
+    RevolutionLib(
+        "aralt",
+        [
+            Object(NonMatching, "revolution/aralt/aralt.c"),
+        ],
+    ),
+    RevolutionLib(
+        "base",
+        [
+            Object(NonMatching, "revolution/base/PPCArch.c"),
+        ],
+    ),
+    RevolutionLib(
         "os",
         [
             Object(MatchingFor("ShieldD"), "revolution/os/OS.c"),
@@ -1501,6 +1522,64 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "exi",
+        [
+            Object(NonMatching, "revolution/exi/EXIBios.c"),
+            Object(NonMatching, "revolution/exi/EXIUart.c"),
+            Object(NonMatching, "revolution/exi/EXICommon.c"),
+        ],
+    ),
+    RevolutionLib(
+        "si",
+        [
+            Object(NonMatching, "revolution/si/SIBios.c"),
+            Object(NonMatching, "revolution/si/SISamplingRate.c"),
+        ],
+    ),
+    RevolutionLib(
+        "vi",
+        [
+            Object(NonMatching, "revolution/vi/vi.c"),
+            Object(NonMatching, "revolution/vi/i2c.c"),
+            Object(NonMatching, "revolution/vi/vi3in1.c"),
+        ],
+    ),
+    RevolutionLib(
+        "mtx",
+        [
+            Object(NonMatching, "revolution/mtx/mtx.c"),
+            Object(NonMatching, "revolution/mtx/mtxvec.c"),
+            Object(NonMatching, "revolution/mtx/mtx44.c"),
+            Object(NonMatching, "revolution/mtx/vec.c"),
+            Object(NonMatching, "revolution/mtx/quat.c"),
+        ],
+    ),
+    RevolutionLib(
+        "gx",
+        [
+            Object(NonMatching, "revolution/gx/GXInit.c", extra_cflags=["-opt nopeephole"]),
+            Object(NonMatching, "revolution/gx/GXFifo.c"),
+            Object(NonMatching, "revolution/gx/GXAttr.c"),
+            Object(NonMatching, "revolution/gx/GXMisc.c"),
+            Object(NonMatching, "revolution/gx/GXGeometry.c"),
+            Object(NonMatching, "revolution/gx/GXFrameBuf.c"),
+            Object(NonMatching, "revolution/gx/GXLight.c", extra_cflags=["-fp_contract off"]),
+            Object(NonMatching, "revolution/gx/GXTexture.c"),
+            Object(NonMatching, "revolution/gx/GXBump.c"),
+            Object(NonMatching, "revolution/gx/GXTev.c"),
+            Object(NonMatching, "revolution/gx/GXPixel.c"),
+            Object(NonMatching, "revolution/gx/GXDraw.c"),
+            Object(NonMatching, "revolution/gx/GXDisplayList.c"),
+            Object(NonMatching, "revolution/gx/GXVert.c"),
+            Object(NonMatching, "revolution/gx/GXTransform.c", extra_cflags=["-fp_contract off"]),
+            Object(NonMatching, "revolution/gx/GXVerify.c"),
+            Object(NonMatching, "revolution/gx/GXVerifXF.c"),
+            Object(NonMatching, "revolution/gx/GXVerifRAS.c"),
+            Object(NonMatching, "revolution/gx/GXSave.c"),
+            Object(NonMatching, "revolution/gx/GXPerf.c"),
+        ],
+    ),
+    RevolutionLib(
         "dvd",
         [
             Object(NonMatching, "revolution/dvd/dvdfs.c", extra_cflags=["-char signed"]),
@@ -1511,6 +1590,26 @@ config.libs = [
             Object(NonMatching, "revolution/dvd/dvdFatal.c", extra_cflags=["-char signed"]),
             Object(NonMatching, "revolution/dvd/dvdDeviceError.c", extra_cflags=["-char signed"]),
             Object(NonMatching, "revolution/dvd/dvd_broadway.c", extra_cflags=["-char signed"]),
+        ],
+    ),
+    RevolutionLib(
+        "ai",
+        [
+            Object(NonMatching, "revolution/ai/ai.c"),
+        ],
+    ),
+    RevolutionLib(
+        "dsp",
+        [
+            Object(NonMatching, "revolution/dsp/dsp.c"),
+            Object(NonMatching, "revolution/dsp/dsp_debug.c"),
+            Object(NonMatching, "revolution/dsp/dsp_task.c"),
+        ],
+    ),
+    RevolutionLib(
+        "hio2",
+        [
+            Object(NonMatching, "revolution/hio2/hio2.c"),
         ],
     ),
     RevolutionLib(
@@ -1525,9 +1624,23 @@ config.libs = [
         ],
     ),
     RevolutionLib(
-        "fs",
+        "sc",
         [
-            Object(NonMatching, "revolution/fs/fs.c"),
+            Object(NonMatching, "revolution/sc/scsystem.c"),
+            Object(NonMatching, "revolution/sc/scapi.c"),
+            Object(NonMatching, "revolution/sc/scapi_prdinfo.c"),
+        ],
+    ),
+    RevolutionLib(
+        "wenc",
+        [
+            Object(NonMatching, "revolution/wenc/wenc.c"),
+        ],
+    ),
+    RevolutionLib(
+        "esp",
+        [
+            Object(NonMatching, "revolution/esp/esp.c"),
         ],
     ),
     RevolutionLib(
@@ -1540,10 +1653,36 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "fs",
+        [
+            Object(NonMatching, "revolution/fs/fs.c"),
+        ],
+    ),
+    RevolutionLib(
         "pad",
         [
             Object(NonMatching, "revolution/pad/Padclamp.c"),
             Object(NonMatching, "revolution/pad/Pad.c"),
+        ],
+    ),
+    RevolutionLib(
+        "wpad",
+        [
+            Object(NonMatching, "revolution/wpad/WPAD.c"),
+            Object(NonMatching, "revolution/wpad/WUD.c"),
+        ],
+    ),
+    RevolutionLib(
+        "euart",
+        [
+            Object(NonMatching, "revolution/euart/euart.c"),
+        ],
+    ),
+    RevolutionLib(
+        "gd",
+        [
+            Object(NonMatching, "revolution/gd/GDBase.c"),
+            Object(NonMatching, "revolution/gd/GDGeometry.c"),
         ],
     ),
     {

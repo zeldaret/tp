@@ -147,8 +147,8 @@ void dHomeButton_c::initCursorPos() {
 
 void dHomeButton_c::calcCursorPos() {
     for (u32 i = 0; i < 4; i++) {
-        WPADDeviceType sp8;
-        WPADResult result = WPADProbe(i, &sp8);
+        u32 sp8;
+        s32 result = WPADProbe(i, &sp8);
 
         if (result == -2 || result == -3 || result == 0) {
             m_controllerData.wiiCon[i].kpad = &mReCPd::m_pad[i].field_0x4[0];

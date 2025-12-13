@@ -338,7 +338,7 @@ static bool data_80450BE8;
 void mDoGph_gInf_c::beginRender() {
     #if PLATFORM_WII || PLATFORM_SHIELD
     VISetTrapFilter(fapGmHIO_getTrapFilter() ? 1 : 0);
-    VISetGamma(fapGmHIO_getGamma());
+    VISetGamma((VIGamma)fapGmHIO_getGamma());
     #endif
 
     if (data_80450BE8) {

@@ -4154,7 +4154,7 @@ revolution/vi/vi3in1.c:
 	.text       start:0x805D28D0 end:0x805D3610
 	.data       start:0x8072CE20 end:0x8072D460
 	.sdata      start:0x8074BE80 end:0x8074BE90
-	.sbss       start:0x8074D3B0 end:0x8074D3CC
+	.sbss       start:0x8074D3B0 end:0x8074D3C8
 	.bss        start:0x807FAAE0 end:0x807FAB00
 
 revolution/mtx/mtx.c:
@@ -4189,14 +4189,14 @@ revolution/gx/GXInit.c:
 	.text       start:0x805D7340 end:0x805D8E80
 	.data       start:0x8072ED20 end:0x8072EFD0
 	.sdata      start:0x8074BEB8 end:0x8074BEC0
-	.sbss       start:0x8074D3CC end:0x8074D3F4
+	.sbss       start:0x8074D3C8 end:0x8074D3F0
 	.sdata2     start:0x80752D00 end:0x80752D28
 	.bss        start:0x807FAB00 end:0x807FB180
 
 revolution/gx/GXFifo.c:
 	.text       start:0x805D8E80 end:0x805DA790
 	.data       start:0x8072EFD0 end:0x8072F4C0
-	.sbss       start:0x8074D3F4 end:0x8074D410
+	.sbss       start:0x8074D3F0 end:0x8074D410
 	.bss        start:0x807FB180 end:0x807FB1C8
 
 revolution/gx/GXAttr.c:
@@ -4404,7 +4404,7 @@ revolution/nand/NANDErrorMessage.c:
 	.text       start:0x8060F6A0 end:0x8060F960
 	.rodata     start:0x8065EC00 end:0x8065EE18
 	.data       start:0x8073BED8 end:0x8073DB08
-	.sbss       start:0x8074D5E0 end:0x8074D5EC
+	.sbss       start:0x8074D5E0 end:0x8074D5E8
 	.sdata2     start:0x80752E38 end:0x80752E68
 
 revolution/sc/scsystem.c:
@@ -4412,7 +4412,7 @@ revolution/sc/scsystem.c:
 	.rodata     start:0x8065EE18 end:0x8065EE70
 	.data       start:0x8073DB08 end:0x8073DDB0
 	.sdata      start:0x8074C078 end:0x8074C1C0
-	.sbss       start:0x8074D5EC end:0x8074D600
+	.sbss       start:0x8074D5E8 end:0x8074D600
 	.bss        start:0x80801DC0 end:0x80809F60
 
 revolution/sc/scapi.c:
@@ -4467,13 +4467,14 @@ revolution/pad/Pad.c:
 	.text       start:0x80616840 end:0x80618AB0
 	.data       start:0x8073DE70 end:0x8073E0B0
 	.sdata      start:0x8074C1F8 end:0x8074C220
-	.sbss       start:0x8074D648 end:0x8074D680
+	.sbss       start:0x8074D648 end:0x8074D678
 	.bss        start:0x8080DBA0 end:0x8080DC20
 
 revolution/wpad/WPAD.c:
 	.text       start:0x80618AB0 end:0x80619BD0
 	.data       start:0x8073E0B0 end:0x8073E1F0
 	.sdata      start:0x8074C220 end:0x8074C228
+	.sbss       start:0x8074D678 end:0x8074D680
 	.sdata2     start:0x80752E78 end:0x80752E80
 	.bss        start:0x8080DC20 end:0x8080DC40
 
