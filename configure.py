@@ -47,13 +47,10 @@ VERSIONS = [
 
 # Versions to disable until properly configured
 DISABLED_VERSIONS = [
-    #4,  # Wii USA Rev 2
     5,  # Wii PAL
-    6,  # Wii JPN
     7,  # Wii KOR
     8,  # Wii USA Kiosk Demo
     9,  # Wii PAL Kiosk Demo
-    #10, # Shield
     11, # Shield Production
 ]
 
@@ -261,7 +258,7 @@ cflags_base = [
 
 if config.version == "ShieldD":
     cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1", "-DWIDESCREEN_SUPPORT=1"])
-elif config.version == "RZDE01_00" or config.version == "RZDE01_02" or config.version == "Shield":
+elif config.version in ["RZDE01_00", "RZDE01_02", "RZDJ01", "Shield"]:
     cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS", "-DWIDESCREEN_SUPPORT=1"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
@@ -416,7 +413,7 @@ cflags_framework = [
 ]
 
 if config.version != "ShieldD":
-    if config.version == "RZDE01_00" or config.version == "RZDE01_02" or config.version == "Shield":
+    if config.version in ["RZDE01_00", "RZDE01_02", "RZDJ01", "Shield"]:
         # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
         cflags_framework.extend(["-inline noauto", "-O4,s", "-sym on"])
     else:
@@ -445,7 +442,7 @@ def MWVersion(cfg_version: str | None) -> str:
             return "GC/2.7"
         case "GZ2J01":
             return "GC/2.7"
-        case "RZDE01_00" | "RZDE01_02":
+        case "RZDE01_00" | "RZDE01_02" | "RZDJ01":
             # NOTE: we use a modified version of GC/3.0a3 to be able to handle multi-char constants.
             # This was probably a change made in some compiler version in the early days of transitioning GC to Wii development,
             # but we don't have that version. GC/3.0a3 appears to have the best overall codegen of any available GC/Wii compiler
@@ -458,7 +455,7 @@ def MWVersion(cfg_version: str | None) -> str:
         case _:
             return "GC/2.7"
 
-if config.version == "RZDE01_00" or config.version == "RZDE01_02":
+if config.version in ["RZDE01_00", "RZDE01_02", "RZDJ01"]:
     config.linker_version = "GC/3.0a5"
 else:
     config.linker_version = MWVersion(config.version)
