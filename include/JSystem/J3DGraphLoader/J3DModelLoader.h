@@ -239,7 +239,7 @@ enum J3DModelLoaderFlagTypes {
     J3DMLF_Material_Color_AmbientOn = 0x80000000
 };
 
-static inline u32 getMdlDataFlag_TevStageNum(u32 flags) { return (flags >> 0x10) & 0x1f; }
+static inline u32 getMdlDataFlag_TevStageNum(u32 flags) { return (flags & 0x001f0000) >> 0x10; }
 static inline u32 getMdlDataFlag_TexGenFlag(u32 flags) { return flags & 0x0c000000; }
 static inline u32 getMdlDataFlag_ColorFlag(u32 flags) { return flags & 0xc0000000; }
 static inline u32 getMdlDataFlag_PEFlag(u32 flags) { return flags & 0x30000000; }

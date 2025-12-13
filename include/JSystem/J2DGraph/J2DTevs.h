@@ -562,7 +562,7 @@ inline u8 J2DCalcTevSwapTable(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
 }
 
 extern const J2DTevSwapModeTableInfo j2dDefaultTevSwapModeTable;
-extern const u8 data_804561AC;
+extern const u8 j2dDefaultTevSwapTableID;
 
 /**
  * @ingroup jsystem-j2d
@@ -571,21 +571,24 @@ extern const u8 data_804561AC;
 
 class J2DTevSwapModeTable {
 public:
-    J2DTevSwapModeTable() { field_0x0 = data_804561AC; }
+    J2DTevSwapModeTable() { mIdx = j2dDefaultTevSwapTableID; }
     J2DTevSwapModeTable(const J2DTevSwapModeTableInfo& info) {
-        field_0x0 = J2DCalcTevSwapTable(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
+        mIdx = J2DCalcTevSwapTable(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
+    }
+    void operator=(const J2DTevSwapModeTable& other) {
+        mIdx = other.mIdx;
     }
 
     void setTevSwapModeTableInfo(const J2DTevSwapModeTableInfo& info) {
-        field_0x0 = J2DCalcTevSwapTable(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
+        mIdx = J2DCalcTevSwapTable(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
     }
-    u8 getR() const { return field_0x0 >> 6 & 3; }
-    u8 getG() const { return field_0x0 >> 4 & 3; }
-    u8 getB() const { return field_0x0 >> 2 & 3; }
-    u8 getA() const { return field_0x0 & 3; }
+    u8 getR() const { return mIdx >> 6 & 3; }
+    u8 getG() const { return mIdx >> 4 & 3; }
+    u8 getB() const { return mIdx >> 2 & 3; }
+    u8 getA() const { return mIdx & 3; }
 
 private:
-    /* 0x0 */ u8 field_0x0;
+    /* 0x0 */ u8 mIdx;
 };
 
 /**
@@ -638,7 +641,7 @@ extern const GXColorS10 j2dDefaultTevColor;
 extern const GXColor j2dDefaultTevKColor;
 extern const J2DTevOrderInfo j2dDefaultTevOrderInfoNull;
 extern const u8 j2dDefaultPEBlockDither;
-extern const u8 data_804561AC;
+extern const u8 j2dDefaultTevSwapTableID;
 extern const u16 j2dDefaultAlphaCmp;
 
 #endif /* J2DTEVS_H */

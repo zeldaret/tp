@@ -259,7 +259,9 @@ extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull;
  * 
  */
 struct J3DTevOrder : public J3DTevOrderInfo {
-    J3DTevOrder() : J3DTevOrderInfo(j3dDefaultTevOrderInfoNull) {}
+    J3DTevOrder() {
+        J3DTevOrderInfo::operator=(j3dDefaultTevOrderInfoNull);
+    }
     J3DTevOrder(const J3DTevOrderInfo& info) : J3DTevOrderInfo(info) {}
     J3DTevOrderInfo& getTevOrderInfo() { return *this; }
 
@@ -268,6 +270,10 @@ struct J3DTevOrder : public J3DTevOrderInfo {
 
 extern u8 j3dTevSwapTableTable[1024];
 extern u8 const j3dDefaultTevSwapTableID;
+
+inline u8 calcTevSwapTableID(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
+    return 0x40 * (u8)param_0 + 0x10 * (u8)param_1 + 4 * (u8)param_2 + param_3;
+}
 
 /**
  * @ingroup jsystem-j3d
@@ -287,10 +293,6 @@ struct J3DTevSwapModeTable {
     J3DTevSwapModeTable& operator=(J3DTevSwapModeTable& other) {
         mIdx = other.mIdx;
         return *this;
-    }
-
-    u8 calcTevSwapTableID(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
-        return 0x40 * param_0 + 0x10 * param_1 + 4 * param_2 + param_3;
     }
 
     u8 getR() const { return *(&j3dTevSwapTableTable[mIdx * 4] + 0); }

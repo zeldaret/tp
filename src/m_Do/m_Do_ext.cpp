@@ -3528,3 +3528,23 @@ OSThread* mDoExt_GetCurrentRunningThread() {
 
     return thread;
 }
+
+// TODO: hack to get these inlines to appear for debug
+static void dummy() {
+    { J3DZMode temp; temp = temp; J3DZMode temp2(temp); }
+    { J3DBlend temp; temp = temp; J3DBlend temp2(temp); }
+    { J3DAlphaComp temp; temp = temp; J3DAlphaComp temp2(temp); }
+    { J3DIndTexCoordScale temp; temp = temp; J3DIndTexCoordScale temp2(temp); }
+    { J3DIndTexMtx temp; temp = temp; J3DIndTexMtx temp2(temp); }
+    { J3DIndTevStage temp; temp = temp; J3DIndTevStage temp2(temp); }
+    { J3DTevStage temp; temp = temp; J3DTevStage temp2(temp); }
+    { J3DTevSwapModeTable temp; temp = temp; J3DTevSwapModeTable temp2(temp); }
+    { J3DTevOrder temp; temp = temp; J3DTevOrder temp2(temp); }
+    { J3DGXColorS10 temp; temp = temp; J3DGXColorS10 temp2(temp); }
+    { J3DTexCoord temp; temp = temp; J3DTexCoord temp2(temp); }
+    { J3DColorChan temp; temp = temp; J3DColorChan temp2(temp); }
+    { J3DGXColor temp; temp = temp; J3DGXColor temp2(temp); }
+    { J3DIndTexOrderInfo temp; temp = temp; J3DIndTexOrderInfo temp2(temp); }
+    { J3DFog temp; temp = temp; J3DFog temp2(temp); }
+    { J3DTexMtx temp; temp = temp; J3DTexMtx temp2(temp); }
+}

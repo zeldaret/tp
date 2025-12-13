@@ -17,14 +17,20 @@ struct J3DGXColorS10 : public GXColorS10 {
 #if PLATFORM_GCN
     J3DGXColorS10(J3DGXColorS10& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
 #else
-    J3DGXColorS10(J3DGXColorS10 const& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
+    J3DGXColorS10(const J3DGXColorS10& other) {
+        GXColorS10 sp08 = other;
+        J3DGXColorS10* r31 = this;
+        __memcpy(r31, &sp08, sizeof(GXColorS10));
+        J3DGXColorS10* r30 = r31;
+    }
 #endif
 
     // TODO: In theory, this copy ctor should be non-const in GCN versions, as seen in TWW maps
-    J3DGXColorS10(GXColorS10 const& color) : GXColorS10(color) {}
+    J3DGXColorS10(const GXColorS10& color) : GXColorS10(color) {}
 
     J3DGXColorS10& operator=(const GXColorS10& color) {
-        // FAKE match. __memcpy created issues in J3DTevBlockPatched::initialize
+        // Fakematch? Instruction order is wrong with __memcpy or GXColorS10::operator=
+        // Might be real as this matches on debug as well.
         ((u32*)this)[0] = ((u32*)&color)[0];
         ((u32*)this)[1] = ((u32*)&color)[1];
         return *this;
@@ -37,9 +43,10 @@ struct J3DGXColorS10 : public GXColorS10 {
  */
 struct J3DGXColor : public GXColor {
     J3DGXColor() {}
+
     // TODO: In theory, these copy ctors should be non-const in GCN versions, as seen in TWW maps
-    J3DGXColor(J3DGXColor const& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
-    J3DGXColor(GXColor const& color) : GXColor(color) {}
+    J3DGXColor(const J3DGXColor& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
+    J3DGXColor(GXColor color) : GXColor(color) {}
     
     // making color a reference breaks J3DColorBlockLightOff::initialize et al
     J3DGXColor& operator=(GXColor color) {
@@ -47,10 +54,7 @@ struct J3DGXColor : public GXColor {
         return *this;
     }
     J3DGXColor& operator=(const J3DGXColor& other) {
-        r = other.r;
-        g = other.g;
-        b = other.b;
-        a = other.a;
+        GXColor::operator=(other);
         return *this;
     }
 };
@@ -71,7 +75,9 @@ struct J3DNBTScale : public J3DNBTScaleInfo {
 
     J3DNBTScale(J3DNBTScaleInfo const& info) {
         mbHasScale = info.mbHasScale;
-        mScale = info.mScale;
+        mScale.x = info.mScale.x;
+        mScale.y = info.mScale.y;
+        mScale.z = info.mScale.z;
     }
 
     Vec* getScale() { return &mScale; }
@@ -139,7 +145,7 @@ struct J3DColorChan {
             info.mDiffuseFn, info.mAttnFn, ambSrc);
     }
     void setColorChanInfo(J3DColorChanInfo const& info) {
-        // Bug: It compares info.mAmbSrc (an 8 bit integer) with 0xFFFF instead of 0xFF.
+        // !@bug: It compares info.mAmbSrc (an 8 bit integer) with 0xFFFF instead of 0xFF.
         // This inline is only called by the default constructor J3DColorChan().
         // The J3DColorChan(const J3DColorChanInfo&) constructor does not call this inline, and instead duplicates the
         // same logic but without the bug.
@@ -164,6 +170,10 @@ struct J3DColorChan {
         u8 AttnArr[] = {2,0,2,1};
 #endif
         return AttnArr[(u32)(mColorChanID & (3 << 9)) >> 9];
+    }
+    J3DColorChan& operator=(const J3DColorChan& other) {
+        mColorChanID = other.mColorChanID;
+        return *this;
     }
 
     void load() const {
@@ -1453,6 +1463,10 @@ struct J3DZMode {
         mZModeID = zModeID;
         return *this;
     }
+    J3DZMode& operator=(const J3DZMode& other) {
+        mZModeID = other.mZModeID;
+        return *this;
+    }
 
     void setZModeInfo(const J3DZModeInfo& info) {
         mZModeID = calcZModeID(info.field_0x0, info.field_0x1, info.field_0x2);
@@ -1487,7 +1501,7 @@ struct J3DZMode {
  */
 struct J3DBlendInfo {
     void operator=(J3DBlendInfo const& other) {
-        *(int*)&mType = *(int*)&other.mType;
+        __memcpy(this, &other, sizeof(J3DBlendInfo));
     }
     /* 0x0 */ u8 mType;
     /* 0x1 */ u8 mSrcFactor;
@@ -1502,8 +1516,12 @@ extern const J3DBlendInfo j3dDefaultBlendInfo;
  *
  */
 struct J3DBlend : public J3DBlendInfo {
-    J3DBlend() : J3DBlendInfo(j3dDefaultBlendInfo) {}
-    J3DBlend(J3DBlendInfo const& info) : J3DBlendInfo(info) {}
+    J3DBlend() {
+        J3DBlendInfo::operator=(j3dDefaultBlendInfo);
+    }
+    J3DBlend(J3DBlendInfo const& info) {
+        J3DBlendInfo::operator=(info);
+    }
 
     void setType(u8 i_type) { mType = i_type; }
     void setSrcFactor(u8 i_factor) { mSrcFactor = i_factor; }
@@ -1630,6 +1648,10 @@ struct J3DIndTexOrderInfo {
     /* 0x1 */ u8 mMap;
     /* 0x2 */ u8 field_0x2;
     /* 0x3 */ u8 field_0x3;
+
+    void operator=(J3DIndTexOrderInfo const& other) {
+        __memcpy(this, &other, sizeof(J3DIndTexOrderInfo));
+    }
 };  // Size: 0x04
 
 extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
@@ -1639,12 +1661,22 @@ extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
  *
  */
 struct J3DIndTexOrder : public J3DIndTexOrderInfo {
-    J3DIndTexOrder() : J3DIndTexOrderInfo(j3dDefaultIndTexOrderNull) {}
+    J3DIndTexOrder() {
+        J3DIndTexOrderInfo::operator=(j3dDefaultIndTexOrderNull);
+    }
     J3DIndTexOrder& operator=(J3DIndTexOrder const& other) {
+#if PLATFORM_GCN
+        // Fakematch? Instruction order is wrong with __memcpy or J3DIndTexCoordScaleInfo::operator=
+        // Could be a an actual version difference between GCN and newer versions of JSystem.
         *(u32*)this = *(u32*)&other;
+#else
+        J3DIndTexOrderInfo::operator=(other);
+#endif
         return *this;
     }
-    J3DIndTexOrder(J3DIndTexOrderInfo const& info) : J3DIndTexOrderInfo(info) {}
+    J3DIndTexOrder(J3DIndTexOrderInfo const& info) {
+        J3DIndTexOrderInfo::operator=(info);
+    }
     u8 getMap() const { return (GXTexMapID)mMap; }
     u8 getCoord() const { return (GXTexCoordID)mCoord; }
 };  // Size: 0x04
@@ -1657,7 +1689,10 @@ extern J3DIndTexMtxInfo const j3dDefaultIndTexMtxInfo;
  */
 struct J3DIndTexMtx : public J3DIndTexMtxInfo {
     J3DIndTexMtx() { *(J3DIndTexMtxInfo*)this = j3dDefaultIndTexMtxInfo; }
-    J3DIndTexMtx(J3DIndTexMtxInfo const& info) { *(J3DIndTexMtxInfo*)this = info; }
+    J3DIndTexMtx(const J3DIndTexMtxInfo& info) { *(J3DIndTexMtxInfo*)this = info; }
+    J3DIndTexMtx(const J3DIndTexMtx& other) {
+        __memcpy(this, &other, sizeof(J3DIndTexMtx));
+    }
     ~J3DIndTexMtx() {}
     void load(u32 param_1) const {
         J3DGDSetIndTexMtx((GXIndTexMtxID)(param_1 + GX_ITM_0), (Mtx3P)field_0x0, field_0x18);
@@ -1673,6 +1708,11 @@ struct J3DIndTexCoordScaleInfo {
     /* 0x1 */ u8 mScaleT;
     /* 0x2 */ u8 field_0x2;
     /* 0x3 */ u8 field_0x3;
+
+    J3DIndTexCoordScaleInfo& operator=(const J3DIndTexCoordScaleInfo& other) {
+        __memcpy(this, &other, sizeof(J3DIndTexCoordScaleInfo));
+        return *this;
+    }
 };  // Size: 0x4
 
 extern const J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo;
@@ -1682,15 +1722,27 @@ extern const J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo;
  *
  */
 struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
-    J3DIndTexCoordScale() : J3DIndTexCoordScaleInfo(j3dDefaultIndTexCoordScaleInfo) {}
-    J3DIndTexCoordScale(J3DIndTexCoordScaleInfo const& info) : J3DIndTexCoordScaleInfo(info) {}
+    J3DIndTexCoordScale() {
+        J3DIndTexCoordScaleInfo::operator=(j3dDefaultIndTexCoordScaleInfo);
+    }
+    J3DIndTexCoordScale(const J3DIndTexCoordScaleInfo& info) {
+        J3DIndTexCoordScaleInfo::operator=(info);
+    }
+    J3DIndTexCoordScale(const J3DIndTexCoordScale& other) {
+        __memcpy(this, &other, sizeof(J3DIndTexCoordScale));
+    }
     ~J3DIndTexCoordScale() {}
     u8 getScaleS() { return mScaleS; }
     u8 getScaleT() { return mScaleT; }
 
     J3DIndTexCoordScale& operator=(const J3DIndTexCoordScale& other) {
-        //__memcpy(this, &other, sizeof(J3DIndTexCoordScaleInfo));
+#if PLATFORM_GCN
+        // Fakematch? Instruction order is wrong with __memcpy or J3DIndTexCoordScaleInfo::operator=
+        // Could be a an actual version difference between GCN and newer versions of JSystem.
         *(u32*)this = *(u32*)&other;
+#else
+        J3DIndTexCoordScaleInfo::operator=(other);
+#endif
         return *this;
     }
 };  // Size: 0x4

@@ -56,7 +56,7 @@ public:
     u32 countStages(int) const;
     J3DMaterial* create(J3DMaterial*, int, u32) const;
     J3DGXColor newMatColor(int, int) const;
-    u8 newColorChanNum(int) const;
+    const u8 newColorChanNum(int) const;
     J3DColorChan newColorChan(int, int) const;
     u32 newTexGenNum(int) const;
     J3DTexCoord newTexCoord(int, int) const;
@@ -66,15 +66,15 @@ public:
     J3DTevOrder newTevOrder(int, int) const;
     J3DGXColorS10 newTevColor(int, int) const;
     J3DGXColor newTevKColor(int, int) const;
-    u8 newTevStageNum(int) const;
+    const u8 newTevStageNum(int) const;
     J3DTevStage newTevStage(int, int) const;
     J3DTevSwapModeTable newTevSwapModeTable(int, int) const;
     J3DFog newFog(int) const;
     J3DAlphaComp newAlphaComp(int) const;
     J3DBlend newBlend(int) const;
-    J3DZMode newZMode(int) const;
-    u8 newZCompLoc(int) const;
-    u8 newDither(int) const;
+    const J3DZMode newZMode(int) const;
+    const u8 newZCompLoc(int) const;
+    const u8 newDither(int) const;
     J3DNBTScale newNBTScale(int) const;
 
     u16 getMaterialID(u16 idx) { return mpMaterialID[idx]; }

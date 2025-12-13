@@ -149,6 +149,6 @@ extern const u8 j2dDefaultPEBlockDither = 0;
 
 extern const J2DColorChanInfo j2dDefaultColorChanInfo = {0, 3, 0, 0};
 
-extern const u8 data_804561AC = 0x1B;
+extern const u8 j2dDefaultTevSwapTableID = 0x1B;
 
 extern const u16 j2dDefaultAlphaCmp = 0x00E7;

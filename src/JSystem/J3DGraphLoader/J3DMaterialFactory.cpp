@@ -61,40 +61,41 @@ u16 J3DMaterialFactory::countUniqueMaterials() {
     s32 id = -1;
     for (u16 i = 0; i < mMaterialNum; i++) {
         if (id < mpMaterialID[i]) {
-            count++;
             id = mpMaterialID[i];
+            count++;
         }
     }
     return count;
 }
 
 u32 J3DMaterialFactory::countTexGens(int i_idx) const {
-    u8 tex_gen_num_index = mpMaterialInitData[mpMaterialID[i_idx]].mTexGenNumIdx;
-    if (tex_gen_num_index != 0xff) {
-        return mpTexGenNum[tex_gen_num_index];
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mTexGenNumIdx != 0xff) {
+        return mpTexGenNum[mtl_init_data->mTexGenNumIdx];
     }
     return 0;
 }
 
 u32 J3DMaterialFactory::countStages(int i_idx) const {
-    J3DMaterialInitData* init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     u32 count1 = 0;
     u32 count2 = 0;
-    u8 tev_stage_num_index = init_data->mTevStageNumIdx;
-    if (tev_stage_num_index != 0xff) {
-        count2 = mpTevStageNum[tev_stage_num_index];
+    if (mtl_init_data->mTevStageNumIdx != 0xff) {
+        count2 = mpTevStageNum[mtl_init_data->mTevStageNumIdx];
     }
     for (int i = 0; i < 8; i++) {
-        if (init_data->mTexNoIdx[i] != 0xffff) {
+        if (mtl_init_data->mTexNoIdx[i] != 0xffff) {
             count1++;
         }
     }
     if (count2 != count1 && count1 != 0) {
+        u32 count3;
         if (count2 > count1) {
-            return count2;
+            count3 = count2;
         } else {
-            return count1;
+            count3 = count1;
         }
+        return count3;
     }
     return count2;
 }
@@ -343,24 +344,31 @@ J3DMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* i_material, i
                                                       u32 i_flags) const {
     if (i_material == NULL) {
         i_material = new J3DLockedMaterial();
+        J3D_ASSERT_ALLOCMEM(629, i_material);
         i_material->mColorBlock = new J3DColorBlockNull();
+        J3D_ASSERT_ALLOCMEM(634, i_material->mColorBlock);
         i_material->mTexGenBlock = new J3DTexGenBlockNull();
+        J3D_ASSERT_ALLOCMEM(636, i_material->mTexGenBlock);
         i_material->mTevBlock = new J3DTevBlockNull();
+        J3D_ASSERT_ALLOCMEM(638, i_material->mTevBlock);
         i_material->mIndBlock = new J3DIndBlockNull();
+        J3D_ASSERT_ALLOCMEM(640, i_material->mIndBlock);
         i_material->mPEBlock = new J3DPEBlockNull();
+        J3D_ASSERT_ALLOCMEM(642, i_material->mPEBlock);
         i_material->mIndex = i_idx;
         i_material->mMaterialMode = mpMaterialMode[i_idx];
     }
 
     i_material->mCurrentMtx = mpCurrentMtxInfo[i_idx];
-    i_material->mColorBlock->setMatColorOffset(mpPatchingInfo[i_idx].mMatColorOffset);
-    i_material->mColorBlock->setColorChanOffset(mpPatchingInfo[i_idx].mColorChanOffset);
-    i_material->mTexGenBlock->setTexMtxOffset(mpPatchingInfo[i_idx].mTexMtxOffset);
-    i_material->mTevBlock->setTexNoOffset(mpPatchingInfo[i_idx].mTexNoOffset);
-    i_material->mTevBlock->setTevRegOffset(mpPatchingInfo[i_idx].mTevRegOffset);
-    i_material->mPEBlock->setFogOffset(mpPatchingInfo[i_idx].mFogOffset);
+    i_material->getColorBlock()->setMatColorOffset(mpPatchingInfo[i_idx].mMatColorOffset);
+    i_material->getColorBlock()->setColorChanOffset(mpPatchingInfo[i_idx].mColorChanOffset);
+    i_material->getTexGenBlock()->setTexMtxOffset(mpPatchingInfo[i_idx].mTexMtxOffset);
+    i_material->getTevBlock()->setTexNoOffset(mpPatchingInfo[i_idx].mTexNoOffset);
+    i_material->getTevBlock()->setTevRegOffset(mpPatchingInfo[i_idx].mTevRegOffset);
+    i_material->getPEBlock()->setFogOffset(mpPatchingInfo[i_idx].mFogOffset);
     if (i_material->mSharedDLObj == NULL) {
         i_material->mSharedDLObj = new J3DDisplayListObj();
+        J3D_ASSERT_ALLOCMEM(673, i_material->mSharedDLObj);
         i_material->mSharedDLObj->setSingleDisplayList((void*)(
             mpDisplayListInit[i_idx].mOffset + (uintptr_t)&mpDisplayListInit[i_idx]),
             mpDisplayListInit[i_idx].field_0x4
@@ -374,13 +382,13 @@ u32 J3DMaterialFactory::calcSize(J3DMaterial* i_material, J3DMaterialFactory::Ma
     u32 size = 0;
     switch (i_type) {
         case MATERIAL_TYPE_NORMAL:
-            size = calcSizeNormalMaterial(i_material, i_idx, i_flags);
+            size += calcSizeNormalMaterial(i_material, i_idx, i_flags);
             break;
         case MATERIAL_TYPE_LOCKED:
-            size = calcSizeLockedMaterial(i_material, i_idx, i_flags);
+            size += calcSizeLockedMaterial(i_material, i_idx, i_flags);
             break;
         case MATERIAL_TYPE_PATCHED:
-            size = calcSizePatchedMaterial(i_material, i_idx, i_flags);
+            size += calcSizePatchedMaterial(i_material, i_idx, i_flags);
             break;
     }
     return size;
@@ -423,15 +431,16 @@ u32 J3DMaterialFactory::calcSizePatchedMaterial(J3DMaterial* i_material, int i_i
                                                 u32 i_flags) const {
     u32 size = 0;
     if (i_material == NULL) {
-        size = sizeof(J3DPatchedMaterial);
+        size += sizeof(J3DPatchedMaterial);
     }
-    u8 ind_flag = (i_flags & 0x3000000) != 0 ? 1 : 0;
+    u8 ind_flag = (i_flags & 0x3000000) != 0 ? (u8)1 : (u8)0;
     size += J3DMaterial::calcSizeColorBlock(0x40000000);
-    size += 0x134;  // TODO what is this
+    size += sizeof(J3DTexGenBlockPatched);
+    size += sizeof(J3DTevBlockPatched);
     size += J3DMaterial::calcSizeIndBlock(ind_flag);
     size += J3DMaterial::calcSizePEBlock(0x10000000, getMaterialMode(i_idx));
     J3DMaterialInitData* init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
-    for (int i = 0; i < 8; i++) {
+    for (u32 i = 0; i < 8; i++) {
         if (init_data->mTexMtxIdx[i] != 0xffff) {
             size += sizeof(J3DTexMtx);
         }
@@ -443,28 +452,31 @@ u32 J3DMaterialFactory::calcSizeLockedMaterial(J3DMaterial* i_material, int i_id
                                                u32 i_flags) const {
     u32 size = 0;
     if (i_material == NULL) {
-        size = sizeof(J3DLockedMaterial) + sizeof(J3DColorBlockNull) + sizeof(J3DTexGenBlockNull)
-            + sizeof(J3DTevBlockNull) + sizeof(J3DIndBlockNull) + sizeof(J3DPEBlockNull);
+        size += sizeof(J3DLockedMaterial);
+        size += sizeof(J3DColorBlockNull);
+        size += sizeof(J3DTexGenBlockNull);
+        size += sizeof(J3DTevBlockNull);
+        size += sizeof(J3DIndBlockNull);
+        size += sizeof(J3DPEBlockNull);
     }
-    return size + sizeof(J3DDisplayListObj);
+    size += sizeof(J3DDisplayListObj);
+    return size;
 }
 
-static GXColor const defaultMatColor = {0xff, 0xff, 0xff, 0xff};
-
 J3DGXColor J3DMaterialFactory::newMatColor(int i_idx, int i_no) const {
-    J3DGXColor dflt = (J3DGXColor)defaultMatColor;
-    u16 mat_color_index = mpMaterialInitData[mpMaterialID[i_idx]].mMatColorIdx[i_no];
-    if (mat_color_index != 0xffff) {
-        return mpMatColor[mat_color_index];
+    J3DGXColor dflt = (GXColor){0xff, 0xff, 0xff, 0xff};
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mMatColorIdx[i_no] != 0xffff) {
+        return mpMatColor[mtl_init_data->mMatColorIdx[i_no]];
     } else {
         return dflt;
     }
 }
 
-u8 J3DMaterialFactory::newColorChanNum(int i_idx) const {
-    u8 color_chan_num_index = mpMaterialInitData[mpMaterialID[i_idx]].mColorChanNumIdx;
-    if (color_chan_num_index != 0xff) {
-        return mpColorChanNum[color_chan_num_index];
+const u8 J3DMaterialFactory::newColorChanNum(int i_idx) const {
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mColorChanNumIdx != 0xff) {
+        return mpColorChanNum[mtl_init_data->mColorChanNumIdx];
     } else {
         return 0;
     }
@@ -480,31 +492,30 @@ J3DColorChan J3DMaterialFactory::newColorChan(int i_idx, int i_no) const {
     }
 }
 
-static GXColor const defaultAmbColor = {0x32, 0x32, 0x32, 0x32};
-
 J3DGXColor J3DMaterialFactory::newAmbColor(int i_idx, int i_no) const {
-    J3DGXColor dflt = (J3DGXColor)defaultAmbColor;
-    u16 amb_color_index = mpMaterialInitData[mpMaterialID[i_idx]].mAmbColorIdx[i_no];
-    if (amb_color_index != 0xffff) {
-        return mpAmbColor[amb_color_index];
+    J3DGXColor dflt = (GXColor){0x32, 0x32, 0x32, 0x32};
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mAmbColorIdx[i_no] != 0xffff) {
+        return mpAmbColor[mtl_init_data->mAmbColorIdx[i_no]];
     } else {
         return dflt;
     }
 }
 
 u32 J3DMaterialFactory::newTexGenNum(int i_idx) const {
-    u8 tex_gen_num_index = mpMaterialInitData[mpMaterialID[i_idx]].mTexGenNumIdx;
-    if (tex_gen_num_index != 0xff) {
-        return mpTexGenNum[tex_gen_num_index];
+    u32 r30 = 0;
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mTexGenNumIdx != 0xff) {
+        return mpTexGenNum[mtl_init_data->mTexGenNumIdx];
     } else {
         return 0;
     }
 }
 
 J3DTexCoord J3DMaterialFactory::newTexCoord(int i_idx, int i_no) const {
-    u16 tex_coord_index = mpMaterialInitData[mpMaterialID[i_idx]].mTexCoordIdx[i_no];
-    if (tex_coord_index != 0xffff) {
-        return J3DTexCoord(mpTexCoordInfo[tex_coord_index]);
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mTexCoordIdx[i_no] != 0xffff) {
+        return J3DTexCoord(mpTexCoordInfo[mtl_init_data->mTexCoordIdx[i_no]]);
     } else {
         return J3DTexCoord();
     }
@@ -520,18 +531,19 @@ J3DTexMtx* J3DMaterialFactory::newTexMtx(int i_idx, int i_no) const {
 }
 
 u8 J3DMaterialFactory::newCullMode(int i_idx) const {
-    u8 cull_mode_index = mpMaterialInitData[mpMaterialID[i_idx]].mCullModeIdx;
-    if (cull_mode_index != 0xff) {
-        return mpCullMode[cull_mode_index];
+    u32 r30 = 0;
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mCullModeIdx != 0xff) {
+        return mpCullMode[mtl_init_data->mCullModeIdx];
     } else {
         return 0xff;
     }
 }
 
 u16 J3DMaterialFactory::newTexNo(int i_idx, int i_no) const {
-    u16 tex_no_index = mpMaterialInitData[mpMaterialID[i_idx]].mTexNoIdx[i_no];
-    if (tex_no_index != 0xffff) {
-        return mpTexNo[tex_no_index];
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mTexNoIdx[i_no] != 0xffff) {
+        return mpTexNo[mtl_init_data->mTexNoIdx[i_no]];
     } else {
         return 0xffff;
     }
@@ -547,7 +559,8 @@ J3DTevOrder J3DMaterialFactory::newTevOrder(int i_idx, int i_no) const {
 }
 
 J3DGXColorS10 J3DMaterialFactory::newTevColor(int i_idx, int i_no) const {
-    J3DGXColorS10 dflt = (GXColorS10){0, 0, 0, 0};
+    GXColorS10 _dflt = {0, 0, 0, 0};
+    J3DGXColorS10 dflt = _dflt;
     J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mTevColorIdx[i_no] != 0xffff) {
         return mpTevColor[mtl_init_data->mTevColorIdx[i_no]];
@@ -556,50 +569,49 @@ J3DGXColorS10 J3DMaterialFactory::newTevColor(int i_idx, int i_no) const {
     }
 }
 
-static GXColor const defaultTevKColor = {0xff, 0xff, 0xff, 0xff};
-
 J3DGXColor J3DMaterialFactory::newTevKColor(int i_idx, int i_no) const {
-    J3DGXColor dflt = (J3DGXColor)defaultTevKColor;
-    u16 tev_kcolor_index = mpMaterialInitData[mpMaterialID[i_idx]].mTevKColorIdx[i_no];
-    if (tev_kcolor_index != 0xffff) {
-        return mpTevKColor[tev_kcolor_index];
+    J3DGXColor dflt = (GXColor){0xff, 0xff, 0xff, 0xff};
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mTevKColorIdx[i_no] != 0xffff) {
+        return mpTevKColor[mtl_init_data->mTevKColorIdx[i_no]];
     } else {
         return dflt;
     }
 }
 
-u8 J3DMaterialFactory::newTevStageNum(int i_idx) const {
-    u8 tev_stage_num_index = mpMaterialInitData[mpMaterialID[i_idx]].mTevStageNumIdx;
-    if (tev_stage_num_index != 0xff) {
-        return mpTevStageNum[tev_stage_num_index];
+const u8 J3DMaterialFactory::newTevStageNum(int i_idx) const {
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mTevStageNumIdx != 0xff) {
+        return mpTevStageNum[mtl_init_data->mTevStageNumIdx];
     } else {
         return 0xff;
     }
 }
 
 J3DTevStage J3DMaterialFactory::newTevStage(int i_idx, int i_no) const {
-    u16 tev_stage_index = mpMaterialInitData[mpMaterialID[i_idx]].mTevStageIdx[i_no];
-    if (tev_stage_index != 0xffff) {
-        return J3DTevStage(mpTevStageInfo[tev_stage_index]);
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mTevStageIdx[i_no] != 0xffff) {
+        return J3DTevStage(mpTevStageInfo[mtl_init_data->mTevStageIdx[i_no]]);
     } else {
         return J3DTevStage();
     }
 }
 
 J3DTevSwapModeTable J3DMaterialFactory::newTevSwapModeTable(int i_idx, int i_no) const {
-    u16 tev_swap_mode_table_index = mpMaterialInitData[mpMaterialID[i_idx]].mTevSwapModeTableIdx[i_no];
-    if (tev_swap_mode_table_index != 0xffff) {
-        return J3DTevSwapModeTable(mpTevSwapModeTableInfo[tev_swap_mode_table_index]);
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mTevSwapModeTableIdx[i_no] != 0xffff) {
+        return J3DTevSwapModeTable(mpTevSwapModeTableInfo[mtl_init_data->mTevSwapModeTableIdx[i_no]]);
     } else {
         return J3DTevSwapModeTable(j3dDefaultTevSwapModeTable);
     }
 }
 
 u8 J3DMaterialFactory::newIndTexStageNum(int i_idx) const {
+    u8 dflt = 0;
     if (mpIndInitData[i_idx].mEnabled == true) {
         return mpIndInitData[i_idx].mIndTexStageNum;
     } else {
-        return 0;
+        return dflt;
     }
 }
 
@@ -641,9 +653,9 @@ J3DIndTexCoordScale J3DMaterialFactory::newIndTexCoordScale(int i_idx, int i_no)
 
 J3DFog J3DMaterialFactory::newFog(int i_idx) const {
     J3DFog fog;
-    u16 fog_index = mpMaterialInitData[mpMaterialID[i_idx]].mFogIdx;
-    if (fog_index != 0xffff) {
-        fog.setFogInfo(mpFogInfo[fog_index]);
+    J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
+    if (mtl_init_data->mFogIdx != 0xffff) {
+        fog.setFogInfo(mpFogInfo[mtl_init_data->mFogIdx]);
     }
     return fog;
 }
@@ -667,6 +679,7 @@ J3DBlend J3DMaterialFactory::newBlend(int i_idx) const {
 }
 
 J3DZMode J3DMaterialFactory::newZMode(int i_idx) const {
+    u32 r29 = 0;
     J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mZModeIdx != 0xff) {
         return J3DZMode(mpZModeInfo[mtl_init_data->mZModeIdx]);
@@ -675,7 +688,7 @@ J3DZMode J3DMaterialFactory::newZMode(int i_idx) const {
     }
 }
 
-u8 J3DMaterialFactory::newZCompLoc(int i_idx) const {
+const u8 J3DMaterialFactory::newZCompLoc(int i_idx) const {
     J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mZCompLocIdx != 0xff){
         return mpZCompLoc[mtl_init_data->mZCompLocIdx];
@@ -684,7 +697,7 @@ u8 J3DMaterialFactory::newZCompLoc(int i_idx) const {
     }
 }
 
-u8 J3DMaterialFactory::newDither(int i_idx) const {
+const u8 J3DMaterialFactory::newDither(int i_idx) const {
     J3DMaterialInitData* mtl_init_data = &mpMaterialInitData[mpMaterialID[i_idx]];
     if (mtl_init_data->mDitherIdx != 0xff){
         return mpDither[mtl_init_data->mDitherIdx];
