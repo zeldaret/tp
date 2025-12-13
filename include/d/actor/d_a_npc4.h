@@ -185,7 +185,6 @@ public:
     };
 
     daNpcF_c() {
-        FORCE_DONT_INLINE;
         initialize();
     }
     BOOL execute();

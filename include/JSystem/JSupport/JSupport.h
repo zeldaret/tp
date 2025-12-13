@@ -23,11 +23,13 @@ T* JSUConvertOffsetToPtr(const void* ptr, uintptr_t offset) {
 */
 template <typename T>
 T* JSUConvertOffsetToPtr(const void* ptr, const void* offset) {
+    T* ret;
     if (offset == NULL) {
-        return NULL;
+        ret = NULL;
     } else {
-        return (T*)((intptr_t)ptr + (intptr_t)offset);
+        ret = (T*)((intptr_t)ptr + (intptr_t)offset);
     }
+    return ret;
 }
 
 inline u8 JSULoNibble(u8 param_0) { return param_0 & 0x0f; }

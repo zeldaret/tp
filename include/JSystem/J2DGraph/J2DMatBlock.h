@@ -20,7 +20,7 @@ struct ResTLUT;
 struct J2DGXColorS10 : public GXColorS10 {
     J2DGXColorS10() {}
     
-#if PLATFORM_GCN
+#if PLATFORM_GCN && __MWERKS__
     J2DGXColorS10(J2DGXColorS10& other) {
         r = other.r;
         g = other.g;
@@ -637,6 +637,11 @@ struct J2DAlphaComp {
         mAlphaCmp = J2DCalcAlphaCmp(info.field_0x0, info.mRef0, info.mRef1);
         mRef0 = info.field_0x1;
         mRef1 = info.field_0x4;
+    }    
+    void operator=(const J2DAlphaComp& other) {
+        mAlphaCmp = other.mAlphaCmp;
+        mRef0 = other.mRef0;
+        mRef1 = other.mRef1;
     }
     u8 getComp0() { return mAlphaCmp >> 5 & 7; }
     u8 getRef0() { return mRef0; }

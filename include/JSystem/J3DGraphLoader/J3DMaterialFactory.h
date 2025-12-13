@@ -113,7 +113,7 @@ public:
     u32 calcSizePatchedMaterial(J3DMaterial*, int, u32) const;
     u32 calcSizeLockedMaterial(J3DMaterial*, int, u32) const;
     J3DGXColor newMatColor(int, int) const;
-    u8 newColorChanNum(int) const;
+    const u8 newColorChanNum(int) const;
     J3DColorChan newColorChan(int, int) const;
     J3DGXColor newAmbColor(int, int) const;
     u32 newTexGenNum(int) const;
@@ -124,7 +124,7 @@ public:
     J3DTevOrder newTevOrder(int, int) const;
     J3DGXColorS10 newTevColor(int, int) const;
     J3DGXColor newTevKColor(int, int) const;
-    u8 newTevStageNum(int) const;
+    const u8 newTevStageNum(int) const;
     J3DTevStage newTevStage(int, int) const;
     J3DTevSwapModeTable newTevSwapModeTable(int, int) const;
     u8 newIndTexStageNum(int) const;
@@ -136,8 +136,8 @@ public:
     J3DAlphaComp newAlphaComp(int) const;
     J3DBlend newBlend(int) const;
     J3DZMode newZMode(int) const;
-    u8 newZCompLoc(int) const;
-    u8 newDither(int) const;
+    const u8 newZCompLoc(int) const;
+    const u8 newDither(int) const;
     J3DNBTScale newNBTScale(int) const;
 
     u16 getMaterialID(int idx) const { return mpMaterialID[idx]; }
