@@ -20,7 +20,7 @@
         OSPanic(__FILE__, line, msg, arg1, arg2)
 #else
 #define VI_ASSERTMSGLINE1(line, cond, msg, arg1) (void)0
-#define VI_ASSERTMSGLINE2(line, cond, msg, arg1) (void)0
+#define VI_ASSERTMSGLINE2(line, cond, msg, arg1, arg2) (void)0
 #endif
 
 // extern
