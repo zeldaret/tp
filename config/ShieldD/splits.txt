@@ -4154,7 +4154,7 @@ revolution/vi/vi3in1.c:
 	.text       start:0x805D28D0 end:0x805D3610
 	.data       start:0x8072CE20 end:0x8072D460
 	.sdata      start:0x8074BE80 end:0x8074BE90
-	.sbss       start:0x8074D3B0 end:0x8074D3CC
+	.sbss       start:0x8074D3B0 end:0x8074D3C8
 	.bss        start:0x807FAAE0 end:0x807FAB00
 
 revolution/mtx/mtx.c:
@@ -4189,14 +4189,14 @@ revolution/gx/GXInit.c:
 	.text       start:0x805D7340 end:0x805D8E80
 	.data       start:0x8072ED20 end:0x8072EFD0
 	.sdata      start:0x8074BEB8 end:0x8074BEC0
-	.sbss       start:0x8074D3CC end:0x8074D3F4
+	.sbss       start:0x8074D3C8 end:0x8074D3F0
 	.sdata2     start:0x80752D00 end:0x80752D28
 	.bss        start:0x807FAB00 end:0x807FB180
 
 revolution/gx/GXFifo.c:
 	.text       start:0x805D8E80 end:0x805DA790
 	.data       start:0x8072EFD0 end:0x8072F4C0
-	.sbss       start:0x8074D3F4 end:0x8074D410
+	.sbss       start:0x8074D3F0 end:0x8074D410
 	.bss        start:0x807FB180 end:0x807FB1C8
 
 revolution/gx/GXAttr.c:

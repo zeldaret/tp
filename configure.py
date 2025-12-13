@@ -1566,6 +1566,7 @@ config.libs = [
             Object(NonMatching, "revolution/gx/GXBump.c"),
             Object(NonMatching, "revolution/gx/GXTev.c"),
             Object(NonMatching, "revolution/gx/GXPixel.c"),
+            Object(NonMatching, "revolution/gx/GXDraw.c"),
             Object(NonMatching, "revolution/gx/GXDisplayList.c"),
             Object(NonMatching, "revolution/gx/GXVert.c"),
             Object(NonMatching, "revolution/gx/GXTransform.c", extra_cflags=["-fp_contract off"]),

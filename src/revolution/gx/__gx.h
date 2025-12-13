@@ -2,33 +2,23 @@
 #define _REVOLUTION_GX_INTERNAL_H_
 
 #include <revolution/gx.h>
+#include <revolution/private/GXRegs.h>
+
 #include "global.h" // IWYU pragma: export
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-// FIFO WRITE
-
-#define GX_WRITE_U8(ub)     \
-    GXWGFifo.u8 = (u8)(ub)
-
-#define GX_WRITE_U16(us)   \
-   GXWGFifo.u16 = (u16)(us)
-
-#define GX_WRITE_U32(ui)   \
-   GXWGFifo.u32 = (u32)(ui)
-
-#define GX_WRITE_F32(f)     \
-   GXWGFifo.f32 = (f32)(f);
-
+#define PHY_ADDR_MASK ~((~0x3FFF) << 16)
+#define GX_PHY_ADDR(a)  ((u32)a & PHY_ADDR_MASK)
 
 // REG VERIF
 
 #if DEBUG
 #define VERIF_XF_REG(addr, value) \
 do { \
-    s32 regAddr = (addr); \
+    s32 regAddr = (addr - 0x1000); \
     if (regAddr >= 0 && regAddr < 0x50) { \
         __gxVerif->xfRegs[regAddr] = (value); \
         __gxVerif->xfRegsDirty[regAddr] = 1; \
@@ -79,14 +69,6 @@ do { \
 #endif
 
 // WRITE REG
-
-#define GX_WRITE_XF_REG(addr, value) \
-do { \
-    GX_WRITE_U8(0x10); \
-    GX_WRITE_U32(0x1000 + (addr)); \
-    GX_WRITE_U32(value); \
-    VERIF_XF_REG(addr, value); \
-} while (0)
 
 #if DEBUG
 #define GX_WRITE_XF_REG_2(addr, value) \
@@ -173,8 +155,7 @@ do { \
 } while (0)
 
 // REG MACROS
-
-#define GET_REG_FIELD(reg, size, shift) ((int)((reg) >> (shift)) & ((1 << (size)) - 1))
+#define GET_REG_FIELD(reg, size, shift) ((((unsigned long)(reg)) & (((1 << (size)) - 1) << (shift))) >> (shift))
 
 // TODO: reconcile reg macro differences
 // this one is needed to match non GX libs
@@ -212,14 +193,14 @@ typedef struct __GXFifoObj {
     void* rdPtr;
     void* wrPtr;
     s32 count;
+    u8 wrap;
     u8 bind_cpu;
     u8 bind_gp;
 } __GXFifoObj;
 
-void __GXSaveCPUFifoAux(__GXFifoObj* realFifo);
 void __GXFifoInit(void);
-void __GXInsaneWatermark(void);
 void __GXCleanGPFifo(void);
+GXBool __GXIsGPFifoReady(void);
 
 /* GXGeometry */
 void __GXSetDirtyState(void);
@@ -250,6 +231,9 @@ typedef struct __GXData_struct {
     u32 indexStride[4];
     u32 ambColor[2];
     u32 matColor[2];
+    u32 chanCtrl[4];
+    u32 texGenCtrl[8];
+    u32 texGenCtrl2[8];
     u32 suTs0[8];
     u32 suTs1[8];
     u32 suScis0;
@@ -311,10 +295,6 @@ typedef struct __GXData_struct {
 } GXData;
 
 extern GXData* const __GXData;
-extern void* __memReg;
-extern void* __peReg;
-extern void* __cpReg;
-extern void* __piReg;
 
 #if DEBUG
 extern GXBool __GXinBegin;
@@ -575,7 +555,7 @@ typedef struct __GXVerifyData {
 } __GXVerifyData;
 
 extern __GXVerifyData* __gxVerif;
-extern char* __gxvWarnings[125];
+extern char* __gxvWarnings[126];
 extern char __gxvDummyStr[256];
 extern GXWarningLevel __gxvWarnLev[];
 

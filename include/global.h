@@ -70,6 +70,13 @@ extern int __rlwimi(int, int, int, int, int);
 extern void __dcbz(void*, int);
 extern void __sync();
 extern int __abs(int);
+#else
+// to stop clangd errors
+#define __cntlzw
+#define __rlwimi
+#define __dcbz
+#define __sync
+#define __abs
 #endif
 
 #ifndef __MWERKS__
