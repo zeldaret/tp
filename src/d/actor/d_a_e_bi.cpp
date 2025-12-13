@@ -872,7 +872,7 @@ static cPhs__Step daE_BI_Create(fopAc_ac_c* actor) {
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->phase, "E_BI");
     if (phase == cPhs_COMPLEATE_e) {
-        OS_REPORT("E_BI PARAM %x\n", fopAcM_GetParam(a_this));
+        OS_REPORT("E_BI PARAM %x\n", fopAcM_GetParam(actor));
 
         i_this->arg0 = fopAcM_GetParam(actor);
         i_this->arg1 = fopAcM_GetParam(actor) >> 8;
