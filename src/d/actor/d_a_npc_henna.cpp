@@ -764,8 +764,13 @@ static void action(npc_henna_class* i_this) {
 
     s16 unkTarget1 = 0;
     s16 unkTarget2 = 0;
+#if VERSION == VERSION_WII_USA_R0
+    s16 unkTarget2Limit = 9000 + BREG_S(0);
+    s16 unkTarget1Limit = 10000 + BREG_S(1);
+#else
     s16 unkTarget2Limit = 9000 + BREG_F(0);
     s16 unkTarget1Limit = 10000 + BREG_F(1);
+#endif
     if (i_this->field_0x70d == 10 || (i_this->field_0x70d == 1 && i_this->field_0x61c < 700.0f)) {
         if (i_this->field_0x70c != 0) {
             mae = sub_actor->eyePos - actor->eyePos;

@@ -1897,9 +1897,11 @@ BOOL daObjCarry_c::checkCulling() {
         is_cull = TRUE;
     }
 
+#if DEBUG
     if (KREG_S(2) == 10000) {
         is_cull = FALSE;
     }
+#endif
 
     return is_cull;
 }

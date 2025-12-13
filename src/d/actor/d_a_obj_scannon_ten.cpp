@@ -157,7 +157,8 @@ void daObjSCannonTen_c::middleExe() {
 }
 
 void daObjSCannonTen_c::exeModeWait() {
-    if (aREG_F(0) == 0.0f && fopAcM_checkHookCarryNow(this) && dComIfGp_checkPlayerStatus1(0, 0x10)) {
+    if (!(DEBUG && aREG_F(0) != 0.0f) && fopAcM_checkHookCarryNow(this) &&
+        dComIfGp_checkPlayerStatus1(0, 0x10)) {
         eventInfo.setArchiveName(l_arcName);
         mEvtIdx = dComIfGp_getEventManager().getEventIdx(this, l_eventName, 0xFF);
 #if DEBUG

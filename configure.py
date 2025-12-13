@@ -99,6 +99,11 @@ parser.add_argument(
     action="store_true",
     help="build with debug info (non-matching)",
 )
+parser.add_argument(
+    "--reghio",
+    action="store_true",
+    help="build with regHIO support",
+)
 if not is_windows():
     parser.add_argument(
         "--wrapper",
@@ -262,6 +267,9 @@ elif config.version in ["RZDE01_00", "RZDE01_02", "RZDJ01", "Shield"]:
     cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS", "-DWIDESCREEN_SUPPORT=1"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
+
+if config.version in ["RZDE01_00", "ShieldD"] or args.debug or args.reghio:
+    cflags_base.extend(["-DENABLE_REGHIO=1"])
 
 USE_REVOLUTION_SDK_VERSIONS = [
     "RZDE01_00", # Wii USA Rev 0

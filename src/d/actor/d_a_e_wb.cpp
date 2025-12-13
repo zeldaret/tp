@@ -1385,7 +1385,7 @@ static void e_wb_b_run2(e_wb_class* i_this) {
 
         for (int i = 0; i < 8; i++) {
             cMtx_YrotS(*calc_mtx, i << 0xd);
-            pos1.z = 3000.0f;
+            pos1.z = 3000.0f + ZREG_F(10);
             MtxPosition(&pos1, &pos2);
             pos2 += player_p->current.pos;
             b_path2[i] = pos2;
@@ -1530,8 +1530,6 @@ static void e_wb_b_run(e_wb_class* i_this) {
         i_this->mActionMode = 0;
     } else {
         s8 is_player_on_fast_horse = false;
-        f32 cavalry_max_speed = l_HIO.leader_cavalry_battle_max_speed;
-
         if (daPy_getPlayerActorClass()->checkHorseRide() &&
             dComIfGp_getHorseActor()->speedF >= 30.0f)
         {
@@ -1639,7 +1637,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
                     }
                 }
 
-                if (fopAcM_searchPlayerDistanceXZ(a_this) < 2000.0f) {
+                if (fopAcM_searchPlayerDistanceXZ(a_this) < 2000.0f + KREG_F(0)) {
                     target_speed *= 1.2f;
 
                     if (a_this->speedF < l_HIO.max_speed) {
@@ -1698,20 +1696,19 @@ static void e_wb_b_run(e_wb_class* i_this) {
         case 10:  // jumping a fence / hit wall
             target_speed = l_HIO.max_speed;
             acceleration = 3.0f;
-            int current_anim = i_this->mAnmID;
 
-            if (current_anim == 0x18) {
+            if (i_this->mAnmID == 0x18) {
                 if (a_this->speed.y < 10.0f) {
                     anm_init(i_this, 0x19, 10.0f, 0, anim_speed_factor);
                 }
-            } else if (current_anim == 0x19) {
-                if (a_this->speed.y < -30.0f || i_this->mAcch.ChkGroundHit()) {
+            } else if (i_this->mAnmID == 0x19) {
+                if (a_this->speed.y < (-30.0f + JREG_F(9)) || i_this->mAcch.ChkGroundHit()) {
                     anm_init(i_this, 0x1a, 2.0f, 0, 1.0f);
                     i_this->mCollisionFlags |= 0xc;
                     i_this->mLandingFlag = 1;
                     i_this->mStatusFlags |= 0x200;
                 }
-            } else if (current_anim == 0x1a) {
+            } else if (i_this->mAnmID == 0x1a) {
                 i_this->mMovementType = 1;
 
                 if (i_this->mpModelMorf->isStop()) {
@@ -1724,8 +1721,9 @@ static void e_wb_b_run(e_wb_class* i_this) {
 
         if (i_this->mActionMode < 10) {
             cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, acceleration);
+            s16 targetAngle = (TREG_S(7) - 4) * (a_this->current.angle.y - initial_facing_angle);
             cLib_addCalcAngleS2(&i_this->mBodyTiltAngle,
-                                -4 * (a_this->current.angle.y - initial_facing_angle), 8, 0x200);
+                                targetAngle, 8, 0x200);
             i_this->mpModelMorf->setPlaySpeed(i_this->mPlaySpeed);
             cLib_addCalc2(&i_this->mPlaySpeed, anim_speed_factor, 1.0f, 0.1f);
 
