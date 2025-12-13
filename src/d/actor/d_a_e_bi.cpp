@@ -843,7 +843,7 @@ static int daE_BI_Delete(e_bi_class* i_this) {
     dComIfG_resDelete(&i_this->phase, "E_BI");
     
     if (i_this->hio_init != 0) {
-        l_initHIO = 1;
+        l_initHIO = 0;
     }
 
     if (actor->heap != NULL) {
