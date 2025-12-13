@@ -16,13 +16,15 @@ struct J3DGXColorS10 : public GXColorS10 {
     
 #if PLATFORM_GCN && __MWERKS__
     J3DGXColorS10(J3DGXColorS10& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
-#else
+#elif DEBUG
     J3DGXColorS10(const J3DGXColorS10& other) {
         GXColorS10 sp08 = other;
         J3DGXColorS10* r31 = this;
         __memcpy(r31, &sp08, sizeof(GXColorS10));
         J3DGXColorS10* r30 = r31;
     }
+#else
+    J3DGXColorS10(const J3DGXColorS10& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
 #endif
 
     J3DGXColorS10(const GXColorS10& color) : GXColorS10(color) {}
@@ -1667,12 +1669,11 @@ struct J3DIndTexOrder : public J3DIndTexOrderInfo {
         J3DIndTexOrderInfo::operator=(j3dDefaultIndTexOrderNull);
     }
     J3DIndTexOrder& operator=(J3DIndTexOrder const& other) {
-#if PLATFORM_GCN
-        // Fakematch? Instruction order is wrong with __memcpy or J3DIndTexCoordScaleInfo::operator=
-        // Could be a an actual version difference between GCN and newer versions of JSystem.
-        *(u32*)this = *(u32*)&other;
-#else
+#if DEBUG
         J3DIndTexOrderInfo::operator=(other);
+#else
+        // Fakematch: Instruction order is wrong with __memcpy or J3DIndTexCoordScaleInfo::operator=
+        *(u32*)this = *(u32*)&other;
 #endif
         return *this;
     }
@@ -1738,12 +1739,11 @@ struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
     u8 getScaleT() { return mScaleT; }
 
     J3DIndTexCoordScale& operator=(const J3DIndTexCoordScale& other) {
-#if PLATFORM_GCN
-        // Fakematch? Instruction order is wrong with __memcpy or J3DIndTexCoordScaleInfo::operator=
-        // Could be a an actual version difference between GCN and newer versions of JSystem.
-        *(u32*)this = *(u32*)&other;
-#else
+#if DEBUG
         J3DIndTexCoordScaleInfo::operator=(other);
+#else
+        // Fakematch: Instruction order is wrong with __memcpy or J3DIndTexCoordScaleInfo::operator=
+        *(u32*)this = *(u32*)&other;
 #endif
         return *this;
     }

@@ -113,12 +113,11 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     void setTexGenMtx(u8 param_1) { mTexGenMtx = param_1; }
     void setTexMtxReg(u16 reg) { mTexMtxReg = reg; }
     J3DTexCoord& operator=(const J3DTexCoord& other) {
-#if PLATFORM_GCN
-        // Fakematch? Instruction order is wrong with __memcpy or J3DTexCoordInfo::operator=
-        // Could be a an actual version difference between GCN and newer versions of JSystem.
-        *(u32*)this = *(u32*)&other;
-#else
+#if DEBUG
         J3DTexCoordInfo::operator=(other);
+#else
+        // Fakematch: Instruction order is wrong with __memcpy or J3DTexCoordInfo::operator=
+        *(u32*)this = *(u32*)&other;
 #endif
         return *this;
     }
