@@ -342,10 +342,10 @@ TObject* TControl::getObject(void const* param_0, u32 param_1) {
 
 void TControl::reset() {
     resetStatus_();
-    mObject_control.reset(NULL);
+    mObject_control.reset();
     JGadget::TContainerEnumerator<JGadget::TLinkList<JStudio::stb::TObject, -12> > aTStack_18(mObjectContainer);
     while (aTStack_18) {
-        (*aTStack_18).reset(NULL);
+        (*aTStack_18).reset();
     }
 }
 
