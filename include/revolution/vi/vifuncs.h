@@ -30,8 +30,10 @@ u32 VIGetScanMode(void);
 u32 VIGetDTVStatus(void);
 
 void VISetTrapFilter(u8);
-void VIEnableDimming(BOOL);
-void VISetGamma(int);
+BOOL VIEnableDimming(BOOL);
+void VISetGamma(VIGamma);
+void VISetRGBModeImm(void);
+BOOL VIEnableDVDStopMotor(BOOL enable);
 
 #ifdef __cplusplus
 }

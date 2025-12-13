@@ -74,6 +74,8 @@ typedef struct EXIControl {
     } queue[3];
 } EXIControl;
 
+extern const u32 __EXIFreq;
+
 EXICallback EXISetExiCallback(s32 channel, EXICallback callback);
 
 void EXIInit(void);
@@ -95,6 +97,12 @@ void EXIProbeReset(void);
 int EXISelectSD(s32 chan, u32 dev, u32 freq);
 s32 EXIGetType(s32 chan, u32 dev, u32* type);
 char* EXIGetTypeString(u32 type);
+
+s32 EXIGetConsoleType(void);
+void EXIWait(void);
+BOOL EXIWriteReg(s32 chan, u32 dev, u32 exiCmd, void* reg, s32 size);
+BOOL EXIReadRam(s32 chan, u32 dev, u32 exiCmd, void* buffer, s32 size, EXICallback callback);
+BOOL EXIWriteRam(s32 chan, u32 dev, u32 exiCmd, void* buffer, s32 size, EXICallback callback);
 
 #ifdef __cplusplus
 }

@@ -77,34 +77,35 @@ typedef enum {
     SC_ITEM_ID_BT_SENSOR_BAR_POSITION,
     SC_ITEM_ID_DVD_CONFIG,
     SC_ITEM_ID_WWW_RESTRICTION,
+    SC_ITEM_ID_MOTION_PLUS_MOVIE,
+    SC_ITEM_ID_TEMPORARY_TITLE_ID,
+
     SC_ITEM_ID_MAX_PLUS1
 } SCItemID;
 
 typedef struct {
-        OSThreadQueue threadQueue;
-        NANDFileInfo nandFileInfo;
-        NANDCommandBlock nandCommandBlock;
+    OSThreadQueue threadQueue;
+    NANDFileInfo nandFileInfo;
+    NANDCommandBlock nandCommandBlock;
 
-        union {
-            u8 nandType;
-            NANDStatus nandStatus;
-        } u;
+    union {
+        u8 nandType;
+        NANDStatus nandStatus;
+    } u;
 
-        u8 nandStep;
-        u8 nandNeedClose;
-        u8 reloadFileCount;
-        SCReloadConfFileCallback reloadCallback;
-        s32 reloadResult;
-        const char* reloadFileName[2];
-        u8* reloadBufp[2];
-        u32 reloadSizeExpected[2];
-        u32 reloadedSize[2];
-        SCFlushCallback flushCallback;
-        u32 flushResult;
-        u32 flushSize;
+    u8 nandStep;
+    u8 nandNeedClose;
+    u8 reloadFileCount;
+    SCReloadConfFileCallback reloadCallback;
+    s32 reloadResult;
+    const char* reloadFileName[2];
+    u8* reloadBufp[2];
+    u32 reloadSizeExpected[2];
+    u32 reloadedSize[2];
+    SCFlushCallback flushCallback;
+    u32 flushResult;
+    u32 flushSize;
 } SCControl;
-
-
 
 #define SC_LANG_JAPANESE 0u
 #define SC_LANG_ENGLISH 1u
@@ -117,25 +118,34 @@ typedef struct {
 #define SC_LANG_TRAD_CHINESE 8u
 #define SC_LANG_KOREAN 9u
 
-void SCInit(void);
-u32 SCCheckStatus(void);
-s32 SCReloadConfFileAsync(u8* bufp, u32 bufSize, SCReloadConfFileCallback);
-BOOL SCFindByteArrayItem(void* data, u32, SCItemID itemID);
-BOOL SCFindIntegerItem(int* data, SCItemID itemID, u8 type);
-BOOL SCFindU8Item(u8* data, SCItemID itemID);
-BOOL SCFindS8Item(s8* data, SCItemID itemID);
-BOOL SCFindU32Item(u32* data, SCItemID itemID);
+// scapi
 u8 SCGetAspectRatio(void);
 s8 SCGetDisplayOffsetH(void);
+u8 SCGetEuRgb60Mode(void);
 BOOL SCGetIdleMode(SCIdleModeInfo* data);
 u8 SCGetLanguage(void);
 u8 SCGetProgressiveMode(void);
 u8 SCGetScreenSaverMode(void);
 u8 SCGetSoundMode(void);
 u32 SCGetCounterBias(void);
-BOOL SCGetProductAreaString(const char*, int);
+
+// scapi_prdinfo
+BOOL SCGetProductAreaString(char* buf, u32 bufSize);
 s8 SCGetProductArea(void);
 s8 SCGetProductGameRegion(void);
+
+// scsystem
+void SCInit(void);
+BOOL SCFindByteArrayItem(void* data, u32 size, SCItemID id);
+BOOL SCReplaceByteArrayItem(const void* data, u32 size, SCItemID id);
+BOOL SCFindIntegerItem(void* data, SCItemID id, SCType type);
+BOOL SCReplaceIntegerItem(const void* data, SCItemID id, SCType type);
+BOOL SCFindU8Item(u8* data, SCItemID id);
+BOOL SCFindS8Item(s8* data, SCItemID id);
+BOOL SCFindU32Item(u32* data, SCItemID id);
+BOOL SCReplaceU8Item(u8 data, SCItemID id);
+u32 SCCheckStatus(void);
+s32 SCReloadConfFileAsync(u8* bufp, u32 bufSize, SCReloadConfFileCallback callback);
 
 #ifdef __cplusplus
 }
