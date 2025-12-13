@@ -14,7 +14,7 @@
 struct J3DGXColorS10 : public GXColorS10 {
     J3DGXColorS10() {}
     
-#if PLATFORM_GCN
+#if PLATFORM_GCN && __MWERKS__
     J3DGXColorS10(J3DGXColorS10& other) { __memcpy(this, &other, sizeof(J3DGXColorS10)); }
 #else
     J3DGXColorS10(const J3DGXColorS10& other) {
@@ -25,7 +25,6 @@ struct J3DGXColorS10 : public GXColorS10 {
     }
 #endif
 
-    // TODO: In theory, this copy ctor should be non-const in GCN versions, as seen in TWW maps
     J3DGXColorS10(const GXColorS10& color) : GXColorS10(color) {}
 
     J3DGXColorS10& operator=(const GXColorS10& color) {
@@ -44,12 +43,15 @@ struct J3DGXColorS10 : public GXColorS10 {
 struct J3DGXColor : public GXColor {
     J3DGXColor() {}
 
-    // TODO: In theory, these copy ctors should be non-const in GCN versions, as seen in TWW maps
+#if PLATFORM_GCN && __MWERKS__
+    J3DGXColor(J3DGXColor& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
+#else
     J3DGXColor(const J3DGXColor& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
-    J3DGXColor(GXColor color) : GXColor(color) {}
-    
-    // making color a reference breaks J3DColorBlockLightOff::initialize et al
-    J3DGXColor& operator=(GXColor color) {
+#endif
+
+    J3DGXColor(const GXColor color) : GXColor(color) {}
+
+    J3DGXColor& operator=(const GXColor color) {
         *(GXColor*)this = color;
         return *this;
     }

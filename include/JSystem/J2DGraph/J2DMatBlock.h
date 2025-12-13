@@ -20,7 +20,7 @@ struct ResTLUT;
 struct J2DGXColorS10 : public GXColorS10 {
     J2DGXColorS10() {}
     
-#if PLATFORM_GCN
+#if PLATFORM_GCN && __MWERKS__
     J2DGXColorS10(J2DGXColorS10& other) {
         r = other.r;
         g = other.g;

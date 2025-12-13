@@ -1069,8 +1069,8 @@ int daArrow_c::draw() {
         return TRUE;
     }
     
-    static const GXColorS10 tmpColor = {0, 0, 0};
-    J3DGXColorS10 color = (tmpColor);
+    static const GXColorS10 tmpColor = {0x00, 0x00, 0x00, 0x00};
+    J3DGXColorS10 color = tmpColor;
 
     daAlink_c* link = daAlink_getAlinkActorClass();
     if (fopAcM_GetParam(this) == 0 && field_0x940 != 0) {
