@@ -2,6 +2,7 @@
 #define D_D_DRAWLIST_H
 
 #include "JSystem/J2DGraph/J2DPicture.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "f_op/f_op_view.h"
 #include "m_Do/m_Do_ext.h"
@@ -33,6 +34,57 @@ public:
     dDlst_base_c() {}
 
     virtual void draw() {}
+};
+
+class dDlst_blo_c : public dDlst_base_c {
+public:
+    virtual void draw();
+    bool create(JKRArchive* param_1, const char* param_2) {
+        return mScreen.setPriority(param_2, 0x20000, param_1) != 0;
+    }
+
+    J2DPane* getPane(u64 i_tag) {
+        return mScreen.search(i_tag);
+    }
+
+    J2DPicture* getPicture(u64 i_tag) {
+        J2DPane* pane = getPane(i_tag);
+        JUT_ASSERT(1553, pane != NULL);
+        if (pane->getTypeID() != 0x12) {
+            return NULL;
+        }
+        return (J2DPicture*)pane;
+    }
+
+    J2DScreen* getScreen() { return &mScreen; }
+
+    void setPos(u64 param_1, f32 param_2, f32 param_3) {
+        
+    }
+
+    class anm_c {
+    public:
+        inline anm_c() {
+            field_0x4 = 0;
+            field_0x8 = 1.0f;
+        }
+        ~anm_c() { remove(); }
+
+        void remove() {
+            if (field_0x4 != 0.0f) {
+
+            }
+
+            field_0x4 = 0.0f;
+        }
+
+        f32 field_0x4;
+        f32 field_0x8;
+    };
+
+    /* 0x004 */ int field_0x4;
+    /* 0x008 */ J2DScreen mScreen;
+    /* 0x120 */ anm_c anm;
 };
 
 class dDlst_snapShot_c : public dDlst_base_c {
@@ -368,6 +420,10 @@ public:
     void setXluListZxlu() { setXluDrawList(mDrawBuffers[DB_LIST_Z_XLU]); }
     void setOpaListFilter() { setOpaDrawList(mDrawBuffers[DB_LIST_FILTER]); }
     void setXluListFilter() { setXluDrawList(mDrawBuffers[DB_LIST_FILTER]); }
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+    void setOpaListCursor() { setOpaDrawList(mDrawBuffers[DB_LIST_CURSOR]); }
+    void setXluListCursor() { setXluDrawList(mDrawBuffers[DB_LIST_CURSOR]); }
+    #endif
     void set3DlineMat(mDoExt_3DlineMat_c *param_1) {
         m3DLineMatSortPacket[param_1->getMaterialID()].setMat(param_1);
     }

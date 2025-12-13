@@ -552,6 +552,10 @@ inline void dMsgObject_setInsectItemNo(u8 i_insectItemNo) {
     dMsgObject_getMsgObjectClass()->setInsectItemNo(i_insectItemNo);
 }
 
+inline bool dMsgObject_isSelectTalkNowCheck() {
+    return dMsgObject_getMsgObjectClass()->getStatus() != 8 || (dMsgObject_getMsgObjectClass()->getStatus() != 9 && dMsgObject_getMsgObjectClass()->getStatus() != 20);
+}
+
 class dMsgObject_HowlHIO_c {
 public:
     dMsgObject_HowlHIO_c();

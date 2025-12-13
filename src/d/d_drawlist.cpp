@@ -13,32 +13,6 @@
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_mtx.h"
 
-class dDlst_blo_c : public dDlst_base_c {
-public:
-    virtual void draw();
-    bool create(JKRArchive* param_1, char* param_2) {
-        return mScreen.setPriority(param_2,0x20000,param_1) != 0;
-    }
-
-    J2DPane* getPane(u64 i_tag) {
-        return mScreen.search(i_tag);
-    }
-
-    J2DPicture* getPicture(u64 i_tag) {
-        J2DPane* pane = getPane(i_tag);
-        JUT_ASSERT(1553, pane != NULL);
-        if (pane->getTypeID() != 0x12) {
-            return NULL;
-        }
-        return (J2DPicture*)pane;
-    }
-
-    /* 0x004 */ int field_0x4;
-    /* 0x008 */ J2DScreen mScreen;
-    /* 0x120 */ f32 field_0x120;
-    /* 0x124 */ f32 field_0x124;
-};
-
 class dDlst_2Dm_c {
 public:
     virtual void draw();
@@ -896,7 +870,7 @@ void dDlst_2D_c::draw() {
 }
 
 void dDlst_blo_c::draw() {
-    mScreen.draw(field_0x120, field_0x124, dComIfGp_getCurrentGrafPort());
+    mScreen.draw(anm.field_0x4, anm.field_0x8, dComIfGp_getCurrentGrafPort());
 }
 
 // stand-in for a function that pulls in a bunch of inline functions but was presumably stripped

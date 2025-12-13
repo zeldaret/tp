@@ -938,8 +938,205 @@ dTimer_c* dComIfG_play_c::getTimerPtr() {
     return mTimerInfo.mTimerPtr;
 }
 
+#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+int dComIfG_inf_c::baseCsr_c::navi_c::create() {
+    m_heap = mDoExt_createSolidHeapFromGameToCurrent(0, 32);
+    JUT_ASSERT(1323, m_heap != NULL);
+
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("NNGC", "nv.bmd");
+
+    JUT_ASSERT(1327, modelData != NULL);
+    
+    m_model = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
+    JUT_ASSERT(1331, m_model != NULL);
+
+    J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes("NNGC", "waitA.bck");
+    JUT_ASSERT(1334, bck != NULL);
+
+    int rt = m_bck.init(bck, 1, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false);
+    JUT_ASSERT(1336, rt);
+
+    J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("NNGC", "nv_color.brk");
+    rt = m_brk.init(modelData, brk, 0, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
+    JUT_ASSERT(1340, rt);
+
+    mDoExt_adjustSolidHeap(m_heap);
+    mDoExt_restoreCurrentHeap();
+
+    return rt;
+}
+
+bool dComIfG_inf_c::baseCsr_c::navi_c::draw(f32 param_1, f32 param_2, u8 param_3) {
+    f32 fVar1 = (param_1 - mDoGph_gInf_c::getMinXF()) / mDoGph_gInf_c::getWidthF();
+    f32 fVar2 = (param_2 - mDoGph_gInf_c::getMinYF()) / mDoGph_gInf_c::getHeightF();
+    f32 fVar3 = fVar1 - field_0x58;
+    f32 fVar4 = fVar2 - field_0x5c;
+    field_0x58 = fVar1;
+    field_0x5c = fVar2;
+    f32 x = param_1 - 304.0f;
+    f32 y = param_2 - 224.0f;
+    cXyz spdc(x, y, 0.0f);
+
+    if (param_3 != 0) {
+        fVar1 = 1.5f;
+    } else {
+        fVar1 = 0.0f;
+    }
+    f32 target = fVar1;
+
+    cLib_chaseF(&field_0x54, target, 0.15f);
+
+    if (field_0x54 == 0.0f) {
+        return true;
+    }
+
+    cLib_addCalcAngleS2(&field_0x4c.y, cLib_targetAngleY(&field_0x40, &spdc), 6, 4000);
+    field_0x40 = spdc;
+    mDoMtx_stack_c::transS(field_0x40);
+    mDoMtx_stack_c::YrotM(field_0x4c.y);
+    mDoMtx_stack_c::scaleM(field_0x54, -field_0x54, field_0x54);
+    m_model->setBaseTRMtx(mDoMtx_stack_c::get());
+    m_bck.play();
+    J3DModelData* modelData = m_model->getModelData();
+    m_bck.entry(modelData);
+    m_brk.entry(modelData);
+    dComIfGd_setListCursor();
+    mDoExt_modelUpdateDL(m_model);
+    dComIfGd_setList();
+
+    if (field_0x58 >= 0.0f && field_0x58 <= 1.0f && fVar2 >= 0.0f && fVar2 <= 1.0f) {
+        f32 sqrt = JMAFastSqrt(SQUARE(fVar3) + SQUARE(fVar4));
+        Z2GetAudioMgr()->playNaviFlySound(field_0x58, cLib_maxLimit(sqrt, 1.0f));
+    }
+
+    mParticleId = dComIfGp_particle_set(mParticleId, ID_ZR_J_2DNV_TAIL_A, &field_0x40, &field_0x4c, NULL);
+    dComIfGp_particle_levelEmitterOnEventMove(mParticleId);
+
+    JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mParticleId);
+    if (emitter != NULL) {
+        fVar1 = field_0x54 * 0.5f;
+        JGeometry::TVec3<f32> scale(fVar1, fVar1, fVar1);
+        emitter->setGlobalScale(scale);
+    }
+
+    return param_3 == 0;
+}
+
+dComIfG_inf_c::baseCsr_c::baseCsr_c(u8 param_1) {
+    field_0x13c = 1;
+    field_0x13d = param_1;
+    field_0x13e = 1;
+    m_blurCB.setOldPosP(&mDoGph_gInf_c::csr_c::m_oldEffPos, &mDoGph_gInf_c::csr_c::m_oldOldEffPos);
+}
+
+void dComIfG_inf_c::baseCsr_c::draw(f32 param_1, f32 param_2) {
+    static cXyz effScale(0.53f, 0.53f, 0.53f);
+    u32 uVar1 = 0;
+    s8 bVar1 = true;
+    s8 bVar2 = true;    
+    s8 bVar3 = true;
+    s8 bVar4 = true;
+    s8 bVar5 = true;
+
+    if (field_0x13e && dComIfGp_event_runCheck()) {
+        bVar5 = false;
+    }
+
+    if (!bVar5 && !dComIfGp_isPauseFlag()) {
+        bVar4 = false;
+    }
+
+    if (!bVar4) {
+        bVar5 = false;
+        if (dMsgObject_getMsgObjectClass() && dMsgObject_isSelectTalkNowCheck()) {
+            bVar5 = true;
+        }
+
+        if (!bVar5) {
+            bVar3 = false;
+        }
+    }
+
+    if (!bVar3 && !dMeter2Info_isShopTalkFlag()) {
+        bVar2 = false;
+    }
+
+    if (!bVar2 && dComIfGp_isHeapLockFlag() != 6) {
+        bVar1 = false;
+    }
+
+    u8 uVar2 = 0;
+    if (bVar1 && field_0x13d) {
+        uVar2 = 1;
+    }
+
+    if (m_navi->draw(param_1, param_2, uVar2) && bVar1 && field_0x13c) {
+        uVar1 = 0xFF;
+    }
+
+    J2DPicture* picture = field_0x8.getPicture(uVar1);
+    JUT_ASSERT(1450, picture != NULL);
+    picture->scale(1.3f, 1.3f);
+    JUtility::TColor color = picture->getWhite();
+    cLib_chaseUC(&color.a, uVar1, 0x20);
+    picture->setWhite(color);
+
+    if (color.a != 0) {
+        picture->translate(param_1, param_2);
+        dComIfGd_set2DXlu(&field_0x8);
+
+        if (color.a == 0xFF) {
+            f32 absVal = mDoGph_gInf_c::csr_c::m_nowEffPos.abs2(mDoGph_gInf_c::csr_c::m_oldEffPos);
+            JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mDoGph_gInf_c::csr_c::m_blurID);
+            if (absVal > 289.0f || (emitter != NULL && absVal > 9.0f)) {
+                mDoGph_gInf_c::csr_c::m_blurID = g_dComIfG_gameInfo.play.getParticle()->set(mDoGph_gInf_c::csr_c::m_blurID, 17, ID_ZR_J_POINTINGCURSOR_TAIL_B,
+                                                                                            &mDoGph_gInf_c::csr_c::m_nowEffPos, NULL, NULL, &effScale, 0xFF, &m_blurCB,
+                                                                                            -1, NULL, NULL, NULL, 1.0f);
+                dComIfGp_particle_levelEmitterOnEventMove(mDoGph_gInf_c::csr_c::m_blurID);
+            }
+
+            m_blurCB.setRate(3.5f);
+            m_blurCB.setMaxCnt(40);
+        }
+    }
+}
+
+void dComIfG_inf_c::baseCsr_c::create() {
+    dRes_info_c* resInfo = dComIfG_getObjectResInfo("NNGC");
+    JUT_ASSERT(1495, resInfo != NULL);
+
+    int rt = field_0x8.create(resInfo->getArchive(), "zelda_pointing_cursor_navi.blo");
+    JUT_ASSERT(1498, rt);
+
+    J2DPicture* picture = field_0x8.getPicture(rt);
+    JUT_ASSERT(1500, picture != NULL);
+    JUtility::TColor color = picture->getWhite();
+    picture->setWhite(color);
+
+    field_0x8.getScreen()->setUserInfo((uintptr_t)m_navi);
+
+    m_navi = new navi_c();
+    JUT_ASSERT(1517, m_navi != NULL);
+    m_navi->create();
+}
+
+void dComIfG_inf_c::baseCsr_c::particleExecute() {
+    if (m_navi != NULL) {
+        dComIfGp_particle_levelExecute(m_navi->getParticleId());
+    }
+}
+
+void dComIfG_inf_c::anmCsr_c::draw(f32 param_1, f32 param_2) {
+    field_0x8.setPos(0x636B, param_1, param_2);
+    dComIfGd_set2DXlu(&field_0x8);
+}
+#endif
+
 void dComIfG_inf_c::ct() {
     mFadeBrightness = 255;
+    #if DEBUG
+    mIsDebugMode = 0;
+    #endif
     play.ct();
     mWorldDark = 0;
     field_0x1ddfa = -1;
@@ -951,6 +1148,16 @@ void dComIfG_inf_c::ct() {
     field_0x1de09 = 0xFF;
     field_0x1de0a = 0xFF;
 }
+
+#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+void dComIfG_inf_c::createBaseCsr() {
+    JUT_ASSERT(1622, m_baseCsr == NULL);
+    m_baseCsr = new baseCsr_c(1);
+    JUT_ASSERT(1624, m_baseCsr != NULL);
+    m_baseCsr->create();
+    mDoGph_gInf_c::entryBaseCsr(m_baseCsr);
+}
+#endif
 
 GXColor g_clearColor = {0, 0, 0, 0};
 
@@ -974,15 +1181,22 @@ int dComIfG_changeOpeningScene(scene_class* i_scene, s16 i_procName) {
 }
 
 BOOL dComIfG_resetToOpening(scene_class* i_scene) {
-    if (mDoRst::isReturnToMenu() || !mDoRst::isReset() ||
-        mDoGph_gInf_c::getFader()->getStatus() == 2)
-    {
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+    if (mDoRst::isShutdown() || mDoRst::isReturnToMenu() || !mDoRst::isReset() || mDoGph_gInf_c::getFader()->getStatus() == 2) {
         return 0;
     }
+    #else
+    if (mDoRst::isReturnToMenu() || !mDoRst::isReset() || mDoGph_gInf_c::getFader()->getStatus() == 2) {
+        return 0;
+    }
+    #endif
 
     dComIfG_changeOpeningScene(i_scene, PROC_OPENING_SCENE);
     mDoAud_bgmStop(30);
     mDoAud_resetProcess();
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+    mDoGph_gInf_c::resetDimming();
+    #endif
     return 1;
 }
 

@@ -14,6 +14,7 @@
 #include "f_op/f_op_actor.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 
 class JKRAramArchive;
 class dSmplMdl_draw_c;
@@ -838,7 +839,56 @@ public:
     dComIfG_inf_c() { this->ct(); }
     ~dComIfG_inf_c() {}
     void ct();
+    void createBaseCsr();
     dComIfG_play_c& getPlay() { return play; }
+
+#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+    class baseCsr_c : public mDoGph_gInf_c::csr_c {
+    public:
+        class navi_c {
+        public:
+            virtual ~navi_c() {}
+            int create();
+            bool draw(f32, f32, u8);
+            u32 getParticleId() { return mParticleId; }
+
+            JKRSolidHeap* m_heap;
+            J3DModel* m_model;
+            mDoExt_bckAnm m_bck;
+            mDoExt_brkAnm m_brk;
+            cXyz field_0x40;
+            csXyz field_0x4c;
+            f32 field_0x54;
+            f32 field_0x58;
+            f32 field_0x5c;
+            u32 mParticleId;
+        };
+
+        virtual ~baseCsr_c() {}
+        baseCsr_c(u8);
+        void draw(f32, f32);
+        void create();
+        static void particleExecute();
+        static navi_c* getNavi() { return m_navi; }
+
+        dDlst_blo_c field_0x8;
+        u8 field_0x13c;
+        u8 field_0x13d;
+        u8 field_0x13e;
+
+        static dPa_hermiteEcallBack_c m_blurCB;
+        static u32 _m_blurID;
+        static navi_c* m_navi;
+    };
+
+    class anmCsr_c : public mDoGph_gInf_c::csr_c {
+    public:
+        virtual ~anmCsr_c() {}
+        void draw(f32, f32);
+
+        dDlst_blo_c field_0x8;
+    };
+#endif
 
     /* 0x00000 */ dSv_info_c info;
     /* 0x00F38 */ dComIfG_play_c play;
@@ -858,6 +908,9 @@ public:
     /* 0x1DE0C */ u8 field_0x1de0c;
 
     static __d_timer_info_c dComIfG_mTimerInfo;
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+    static baseCsr_c* m_baseCsr;
+    #endif
 };  // Size: 0x1DE10
 
 STATIC_ASSERT(122384 == sizeof(dComIfG_inf_c));
@@ -4429,5 +4482,12 @@ inline void dComIfGd_set3DlineMat(mDoExt_3DlineMat_c* param_0) {
 inline void dComIfGd_set3DlineMatDark(mDoExt_3DlineMat_c* param_0) {
     g_dComIfG_gameInfo.drawlist.set3DlineMatDark(param_0);
 }
+
+#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+inline void dComIfGd_setListCursor() {
+    g_dComIfG_gameInfo.drawlist.setOpaListCursor();
+    g_dComIfG_gameInfo.drawlist.setXluListCursor();
+}
+#endif
 
 #endif /* D_COM_D_COM_INF_GAME_H */

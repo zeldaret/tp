@@ -134,6 +134,7 @@ public:
     void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
     void setGlobalTranslation(const JGeometry::TVec3<f32>& trs) { mGlobalTrs.set(trs); }
     void getLocalTranslation(JGeometry::TVec3<f32>& vec) { vec.set(mLocalTrs); }
+    void getLocalTranslation(JGeometry::TVec3<f32>* vec) const { vec->set(mLocalTrs); }
     void setGlobalRotation(const JGeometry::TVec3<s16>& rot) {
         JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); 
     }
@@ -143,6 +144,7 @@ public:
     void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
     u8 getGlobalAlpha() const { return mGlobalPrmClr.a; }
     void getGlobalPrmColor(GXColor& color) { color = mGlobalPrmClr; }
+    void getGlobalPrmColor(_GXColor* color) const { *color = mGlobalPrmClr; }
     void setGlobalPrmColor(u8 r, u8 g, u8 b) { mGlobalPrmClr.r = r; mGlobalPrmClr.g = g; mGlobalPrmClr.b = b; }
     void setGlobalEnvColor(u8 r, u8 g, u8 b) { mGlobalEnvClr.r = r; mGlobalEnvClr.g = g; mGlobalEnvClr.b = b; }
     void setVolumeSize(u16 size) { mVolumeSize = size; }
@@ -173,6 +175,18 @@ public:
         scale.z = 1.0f;
 #else
         scale.set(mGlobalPScl.x, mGlobalPScl.y, 1.0f);
+#endif
+    }
+    void getGlobalParticleScale(JGeometry::TVec3<f32>* scale) const {
+        //TODO: Possible fakematch. Debug and Wii indicate TVec3::set, but using it breaks regalloc
+        //      in dPa_gen_b_light8PcallBack::draw on GCN (where the call to set would normally be
+        //      inlined).
+#if PLATFORM_GCN
+        scale->x = mGlobalPScl.x;
+        scale->y = mGlobalPScl.y;
+        scale->z = 1.0f;
+#else
+        scale->set(mGlobalPScl.x, mGlobalPScl.y, 1.0f);
 #endif
     }
     void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
@@ -208,7 +222,7 @@ public:
     void stopDrawParticle() { setStatus(JPAEmtrStts_StopDraw); }
     void playDrawParticle() { clearStatus(JPAEmtrStts_StopDraw); }
 
-    uintptr_t getUserWork() { return mpUserWork; }
+    uintptr_t getUserWork() const { return mpUserWork; }
     void setUserWork(uintptr_t userWork) { mpUserWork = userWork; }
     u32 getParticleNumber() const {
         return mAlivePtclBase.getNum() + mAlivePtclChld.getNum();
@@ -218,7 +232,7 @@ public:
     }
     void setDrawTimes(u8 drawTimes) { mDrawTimes = drawTimes; }
     void setParticleCallBackPtr(JPAParticleCallBack* cb) { mpPtclCallBack = cb; }
-    JPAParticleCallBack* getParticleCallBackPtr() { return mpPtclCallBack; }
+    JPAParticleCallBack* getParticleCallBackPtr() const { return mpPtclCallBack; }
     JPAEmitterCallBack* getEmitterCallBackPtr() const { return mpEmtrCallBack; }
     u32 getAge() const { return mTick; }
 

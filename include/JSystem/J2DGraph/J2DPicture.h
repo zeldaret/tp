@@ -151,11 +151,11 @@ public:
         return NULL;
     }
     virtual u8 getTextureCount() const { return mTextureNum; }
-    virtual bool setBlack(JUtility::TColor i_black) {
+    /* vt 0x128 */ virtual bool setBlack(JUtility::TColor i_black) {
         mBlack = i_black;
         return true;
     }
-    virtual bool setWhite(JUtility::TColor i_white) {
+    /* vt 0x12C */ virtual bool setWhite(JUtility::TColor i_white) {
         mWhite = i_white;
         return true;
     }

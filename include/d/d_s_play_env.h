@@ -7,6 +7,12 @@ public:
 
     virtual ~dScnPly_env_otherHIO_c() {}
     void genMessage(JORMContext*);
+    void addSetEmitterID(u16 param_0) {
+        #if DEBUG
+        field_0x1c[field_0x4f++] = param_0;
+        field_0x4f %= 20;
+        #endif
+    }
 
     #if DEBUG
     /* 0x04 */ s8 field_0x04;
@@ -21,7 +27,7 @@ public:
     /* 0x16 */ s16 mRailColorG;
     /* 0x18 */ s16 mRailColorB;
     /* 0x1A */ s16 field_0x1a;
-    /* 0x1C */ s16 field_0x1c[20];
+    /* 0x1C */ u16 field_0x1c[20];
     #endif
 
     /* 0x44 */ u8 mAdjustLODBias;

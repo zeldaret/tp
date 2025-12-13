@@ -999,6 +999,12 @@ void Z2SeMgr::processSeFramework() {
     }
 }
 
+#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+void Z2SeMgr::playNaviFlySound(f32 param_1, f32 param_2) {
+    wii_field_0x6c = param_1;
+    wii_field_0x70 = JMAAbs(param_2);
+}
+#endif
 
 bool Z2SeMgr::isLevelSe(JAISoundID soundID) {
     switch (soundID) {

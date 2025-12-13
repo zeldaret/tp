@@ -17,6 +17,12 @@ inline int JMAAbs(int value) {
 #endif
 }
 
+inline f32 JMAAbs(f32 x) {
+#ifdef __MWERKS__
+    return __fabsf(x);
+#endif
+}
+
 inline f32 JMAFastReciprocal(f32 value) {
 #ifdef __MWERKS__
     return __fres(value);

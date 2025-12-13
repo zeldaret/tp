@@ -1,6 +1,7 @@
 #ifndef D_PARTICLE_D_PARTICLE_H
 #define D_PARTICLE_D_PARTICLE_H
 
+#include "JSystem/JParticle/JPAEmitterManager.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAParticle.h"
@@ -17,7 +18,7 @@ class JKRSolidHeap;
 class dKy_tevstr_c;
 class fopAc_ac_c;
 
-class dPa_levelEcallBack : public JPAEmitterCallBack {
+class  dPa_levelEcallBack : public JPAEmitterCallBack {
 public:
     virtual ~dPa_levelEcallBack() { cleanup(); }
     virtual void setup(JPABaseEmitter*, const cXyz*, const csXyz*, s8) = 0;
@@ -44,7 +45,7 @@ public:
     virtual void draw(JPABaseEmitter*);
 
     void removeEmitter() { mEmitter = NULL; }
-    u16 getID() const { return mID; }
+    u16 getID() { return mID; }
 
     /* 0x04 */ JPABaseEmitter* mEmitter;
     /* 0x08 */ u16 mID;
@@ -54,16 +55,16 @@ public:
     /* 0x10 */ dPa_simpleData_c* mData;
 };  // Size: 0x14
 
-class dPa_windPcallBack : public JPAParticleCallBack {
-public:
-    virtual ~dPa_windPcallBack() {}
-    virtual void execute(JPABaseEmitter*, JPABaseParticle*);
-};
-
 class dPa_modelPcallBack : public JPAParticleCallBack {
 public:
     virtual ~dPa_modelPcallBack() {}
     virtual void draw(JPABaseEmitter*, JPABaseParticle*);
+};
+
+class dPa_windPcallBack : public JPAParticleCallBack {
+public:
+    virtual ~dPa_windPcallBack() {}
+    virtual void execute(JPABaseEmitter*, JPABaseParticle*);
 };
 
 class dPa_modelEcallBack : public dPa_levelEcallBack {
@@ -73,16 +74,16 @@ public:
         void setup();
         void cleanup();
         void draw(f32 (*)[4]);
-        model_c() { field_0x0 = NULL; }
+        model_c() { mModelData = NULL; }
 
         void reset() {
-            field_0x0 = NULL;
+            mModelData = NULL;
         }
 
         u8 getRotAxis() { return mRotAxis; }
-        J3DModelData* getModelData() { return field_0x0; }
+        J3DModelData* getModelData() { return mModelData; }
 
-        J3DModelData* field_0x0;
+        J3DModelData* mModelData;
         J3DAnmBase* field_0x4;
         dKy_tevstr_c field_0x8;
         u8 mRotAxis;
@@ -119,6 +120,9 @@ public:
 
     static dPa_modelPcallBack mPcallback;
     static model_c* mModel;
+    #if DEBUG
+    static u8 mNum;
+    #endif
 };
 
 class dPa_selectTexEcallBack : public dPa_levelEcallBack {
@@ -183,6 +187,7 @@ public:
 
 class dPa_gen_d_light8EcallBack : public dPa_levelEcallBack {
 public:
+    virtual ~dPa_gen_d_light8EcallBack() {}
     virtual void draw(JPABaseEmitter*);
     virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
@@ -232,6 +237,7 @@ public:
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 
     void setRate(f32 rate) { mRate = rate; }
+    void setMaxCnt(int i_maxCnt) { mMaxCnt = i_maxCnt; }
 
 private:
     /* 0x04 */ f32 mRate;
@@ -282,11 +288,16 @@ public:
             u32 getId() { return mId; }
             void clearStatus() { mStatus = 0; }
 
+            #if DEBUG
+            void onEventMove() { mStatus |= (u8)2; }
+            void offEventMove() { mStatus &= (u8)~2; }
+            #else
             void onEventMove() { mStatus |= 2; }
             void offEventMove() { mStatus &= ~2; }
+            #endif
             bool isEventMove() { return mStatus & 2; }
 
-            void offActive() { mStatus &= ~1; }
+            void offActive() { mStatus &= (u8)~1; }
             bool isActive() { return mStatus & 1; }
             u16 getNameId() { return mNameId; }
             dPa_levelEcallBack* getCallback() { return mCallback; }
@@ -402,7 +413,7 @@ public:
     void draw2DmenuBack(JPADrawInfo* i_drawInfo) { draw(i_drawInfo, 18); }
 
     JKRSolidHeap* getHeap() { return mHeap; }
-    JKRSolidHeap* getSceneHeap() { return m_sceneHeap; }
+    JKRSolidHeap* getSceneHeap() { return mSceneHeap; }
     JKRExpHeap* getResHeap() { return m_resHeap; }
 
     void levelAllForceOnEventMove() { field_0x210.allForceOnEventMove(); }
@@ -423,6 +434,7 @@ public:
     }
 
     static JPAEmitterManager* getEmitterManager() { return mEmitterMng; }
+    static int getEmitterNum() { return mEmitterMng->getEmitterNumber(); };
 
     static dPa_light8PcallBack* getLight8PcallBack() { 
         return &mLight8PcallBack; 
@@ -479,7 +491,7 @@ private:
     /* 0x000 */ JKRSolidHeap* mHeap;
     /* 0x004 */ JPAResourceManager* mCommonResMng;
     /* 0x008 */ JKRExpHeap* m_resHeap;
-    /* 0x00C */ JKRSolidHeap* m_sceneHeap;
+    /* 0x00C */ JKRSolidHeap* mSceneHeap;
     /* 0x010 */ void* m_sceneRes;
     /* 0x014 */ JPAResourceManager* mSceneResMng;
     /* 0x018 */ u8 field_0x18;
@@ -488,6 +500,9 @@ private:
     /* 0x01B */ u8 field_0x1b;
     /* 0x01C */ dPa_simpleEcallBack field_0x1c[25];
     /* 0x210 */ level_c field_0x210;
+    #if DEBUG
+    u8 mSceneCount;
+    #endif
 };
 
 #endif /* D_PARTICLE_D_PARTICLE_H */
