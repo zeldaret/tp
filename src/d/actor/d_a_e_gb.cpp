@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_gb.h"
-#include "../assets/GZ2E01/res/Object/E_gb.h"
+#include "res/Object/E_gb.h"
 #include "d/d_cc_d.h"
 #include "d/d_camera.h"
 #include "d/d_bomb.h"

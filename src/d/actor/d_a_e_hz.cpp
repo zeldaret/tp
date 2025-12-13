@@ -7,7 +7,7 @@
 
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_e_hz.h"
-#include "../assets/GZ2E01/res/Object/E_hz.h"
+#include "res/Object/E_hz.h"
 #include "d/d_camera.h"
 #include "f_op/f_op_actor_enemy.h"
 #include "d/d_debug_viewer.h"
