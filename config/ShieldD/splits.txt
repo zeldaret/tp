@@ -4404,7 +4404,7 @@ revolution/nand/NANDErrorMessage.c:
 	.text       start:0x8060F6A0 end:0x8060F960
 	.rodata     start:0x8065EC00 end:0x8065EE18
 	.data       start:0x8073BED8 end:0x8073DB08
-	.sbss       start:0x8074D5E0 end:0x8074D5EC
+	.sbss       start:0x8074D5E0 end:0x8074D5E8
 	.sdata2     start:0x80752E38 end:0x80752E68
 
 revolution/sc/scsystem.c:
@@ -4412,7 +4412,7 @@ revolution/sc/scsystem.c:
 	.rodata     start:0x8065EE18 end:0x8065EE70
 	.data       start:0x8073DB08 end:0x8073DDB0
 	.sdata      start:0x8074C078 end:0x8074C1C0
-	.sbss       start:0x8074D5EC end:0x8074D600
+	.sbss       start:0x8074D5E8 end:0x8074D600
 	.bss        start:0x80801DC0 end:0x80809F60
 
 revolution/sc/scapi.c:
