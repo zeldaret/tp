@@ -2380,30 +2380,30 @@ revolution/homebuttonLib/HBMRemoteSpk.cpp:
 	.data       start:0x804264F8 end:0x80426568
 	.sbss       start:0x8053B0A8 end:0x8053B0B0
 
-revolution/db/db_assert.cpp:
+revolution/homebuttonLib/nw4hbm/db/db_assert.cpp:
 	.text       start:0x802BD2B8 end:0x802BD8C8
 	.data       start:0x80426568 end:0x80426618
 	.bss        start:0x804C25D8 end:0x804C2608
 	.sdata      start:0x8053A120 end:0x8053A128
 	.sbss       start:0x8053B0B0 end:0x8053B0C0
 
-revolution/db/db_console.cpp:
+revolution/homebuttonLib/nw4hbm/db/db_console.cpp:
 	.text       start:0x802BD8C8 end:0x802BE1C8
 	.data       start:0x80426618 end:0x80426738
 	.bss        start:0x804C2608 end:0x804C2A20
 	.sdata      start:0x8053A128 end:0x8053A130
 
-revolution/db/db_DbgPrintBase.cpp:
+revolution/homebuttonLib/nw4hbm/db/db_DbgPrintBase.cpp:
 	.text       start:0x802BE1C8 end:0x802BE208
 
-revolution/db/db_directPrint.cpp:
+revolution/homebuttonLib/nw4hbm/db/db_directPrint.cpp:
 	.text       start:0x802BE208 end:0x802BEC18
 	.rodata     start:0x803EF478 end:0x803EF730
 	.data       start:0x80426738 end:0x804267E8
 	.bss        start:0x804C2A20 end:0x804C2A60
 	.sbss       start:0x8053B0C0 end:0x8053B0C8
 
-revolution/db/db_mapFile.cpp:
+revolution/homebuttonLib/nw4hbm/db/db_mapFile.cpp:
 	.text       start:0x802BEC18 end:0x802BF52C
 	.data       start:0x804267E8 end:0x804269F0
 	.bss        start:0x804C2A60 end:0x804C2CA0
@@ -2492,19 +2492,19 @@ revolution/homebuttonLib/nw4hbm/math/math_triangular.cpp:
 	.data       start:0x804289D0 end:0x80429AE8
 	.sdata2     start:0x8053FE10 end:0x8053FE30
 
-revolution/homebuttonLib/sound/snd_SoundArchivePlayer.cpp:
+revolution/homebuttonLib/nw4hbm/snd/snd_SoundArchivePlayer.cpp:
 	.text       start:0x802CDBC4 end:0x802CDC34
 	.data       start:0x80429AE8 end:0x80429B48
 
-revolution/homebuttonLib/sound/snd_SoundHandle.cpp:
+revolution/homebuttonLib/nw4hbm/snd/snd_SoundHandle.cpp:
 	.text       start:0x802CDC34 end:0x802CDC84
 
-revolution/homebuttonLib/sound/snd_SoundPlayer.cpp:
+revolution/homebuttonLib/nw4hbm/snd/snd_SoundPlayer.cpp:
 	.text       start:0x802CDC84 end:0x802CDD74
 	.data       start:0x80429B48 end:0x80429BB8
 	.sdata2     start:0x8053FE30 end:0x8053FE38
 
-revolution/homebuttonLib/sound/snd_SoundStartable.cpp:
+revolution/homebuttonLib/nw4hbm/snd/snd_SoundStartable.cpp:
 	.text       start:0x802CDD74 end:0x802CDDE0
 
 revolution/homebuttonLib/nw4hbm/ut/ut_binaryFileFormat.cpp:
