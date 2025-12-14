@@ -3259,7 +3259,7 @@ static void daMP_MixAudio(s16* destination, s16*, u32 sample) {
 					r_mix = 32767;
 
                 if (JASDriver::getOutputMode() == 0) {
-                    l_mix = r_mix = ((r_mix >> 1) + (l_mix >> 1));
+                    l_mix = r_mix = (s16)((r_mix >> 1) + (l_mix >> 1));
                 }
 
                 dst[0] = l_mix;
