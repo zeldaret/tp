@@ -211,6 +211,7 @@ typedef struct AX_AUX_DATA_DPL2 {
 } AX_AUX_DATA_DPL2;
 
 typedef void (*AXCallback)();
+typedef void AXAuxCallback(void* data, void* context);
 
 #define AX_DSP_SLAVE_LENGTH 0xF80
 #define AX_MAX_VOICES 64
@@ -268,7 +269,7 @@ AXVPB* AXAcquireVoice(u32 priority, void (*callback)(void *), u32 userContext);
 void AXSetVoicePriority(AXVPB* p, u32 priority);
 
 // AXAux
-void AXRegisterAuxACallback(void (*callback)(void*, void*), void* context);
+void AXRegisterAuxACallback(AXAuxCallback* callback, void* context);
 void AXRegisterAuxBCallback(void (*callback)(void*, void*), void* context);
 
 // AXCL

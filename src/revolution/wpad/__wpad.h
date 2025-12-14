@@ -269,41 +269,6 @@ extern "C" {
 
 #define WPAD_RADIO_QUALITY_GOOD  0  // 80+
 #define WPAD_RADIO_QUALITY_BAD   1  // 80-
-
-
-#define WPAD_DEV_CORE             0
-#define WPAD_DEV_FS               1
-#define WPAD_DEV_CLASSIC          2
-#define WPAD_DEV_BALANCE_CHECKER  3
-#define WPAD_DEV_VSM              4
-#define WPAD_DEV_MOTION_PLUS      5
-#define WPAD_DEV_MPLS_PT_FS       6
-#define WPAD_DEV_MPLS_PT_CLASSIC  7
-
-#define WPAD_DEV_TRAIN            16
-#define WPAD_DEV_GUITAR           17
-#define WPAD_DEV_DRUM             18
-#define WPAD_DEV_TAIKO            19
-#define WPAD_DEV_TURNTABLE        20
-
-// seems to be like maybe general purpose non-specific device types
-// maybe this was for testing or something? idk
-#define WPAD_DEV_BULK_1           21
-#define WPAD_DEV_BULK_2           22
-#define WPAD_DEV_BULK_3           23
-#define WPAD_DEV_BULK_4           24
-#define WPAD_DEV_BULK_5           25
-#define WPAD_DEV_BULK_6           26
-#define WPAD_DEV_BULK_7           27
-#define WPAD_DEV_BULK_8           28
-
-#define WPAD_DEV_MPLS_PT_UNKNOWN  250
-#define WPAD_DEV_251              251
-#define WPAD_DEV_252              252  // invalid device mode?
-#define WPAD_DEV_NONE             253  // sort of like WPAD_ENODEV (see __wpadAbortInitExtension in WPADHIDParser.c)
-#define WPAD_DEV_INITIALIZING     255  // see __a1_20_status_report
-
-
 struct WPADCmd {
     /* 0x00 */ u32 reportID;
     /* 0x04 */ u8 dataBuf[RPT_MAX_SIZE];

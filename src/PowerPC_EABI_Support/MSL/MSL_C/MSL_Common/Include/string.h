@@ -2,6 +2,7 @@
 #define _MSL_COMMON_STRING_H
 
 #include "stddef.h"
+#include "ansi_files.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,6 +22,8 @@ char* strcat(char* dst, const char* src);
 char* strncpy(char* dst, const char* src, size_t n);
 char* strcpy(char* dst, const char* src);
 size_t strlen(const char* str);
+
+size_t wcslen(const wchar_t* s);
 
 #ifdef __cplusplus
 };

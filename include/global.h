@@ -45,6 +45,10 @@
 #define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
 
+#ifndef decltype
+#define decltype __decltype__
+#endif
+
 #define JUT_EXPECT(...)
 
 #define _SDA_BASE_(dummy) 0
@@ -86,6 +90,9 @@ void* __memcpy(void*, const void*, int);
 #define FAST_DIV(x, n) (x >> (n / 2))
 
 #define SQUARE(x) ((x) * (x))
+
+#define POINTER_ADD_TYPE(type_, ptr_, offset_) ((type_)((unsigned long)(ptr_) + (unsigned long)(offset_)))
+#define POINTER_ADD(ptr_, offset_) POINTER_ADD_TYPE(__typeof__(ptr_), ptr_, offset_)
 
 // floating-point constants
 #define _HUGE_ENUF 1e+300

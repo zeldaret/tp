@@ -1,7 +1,9 @@
 #ifndef __VA_ARG_H
 #define __VA_ARG_H
 
-#include "dolphin/types.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct __va_list_struct {
     char gpr;
@@ -13,11 +15,7 @@ typedef struct __va_list_struct {
 
 typedef _va_list_struct __va_list[1];
 
-#ifdef __cplusplus
-extern "C" void* __va_arg(_va_list_struct*, int);
-#else
 void* __va_arg(_va_list_struct*, int);
-#endif
 
 #ifndef __MWERKS__
 #define __builtin_va_info(...)
@@ -36,5 +34,13 @@ void* __va_arg(_va_list_struct*, int);
 #define __va_end(list) ((void)0)
 
 #define __va_copy(a, b) (*(a) = *(b))
+
+#if defined(__cplusplus)
+namespace std { extern "C" { using ::va_list; } }
+#endif
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __VA_ARG_H */

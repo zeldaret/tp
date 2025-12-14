@@ -15,6 +15,15 @@ int snprintf(char* s, size_t n, const char* format, ...);
 int vsnprintf(char* s, size_t n, const char* format, va_list arg);
 int vprintf(const char* format, va_list arg);
 
+int vswprintf(wchar_t* s, size_t n, const wchar_t* format, va_list arg);
+
+#if defined(__cplusplus)
+namespace std {
+    extern "C" { using ::vsnprintf; }
+    extern "C" { using ::vswprintf; }
+}
+#endif
+
 #ifdef __cplusplus
 }
 #endif
