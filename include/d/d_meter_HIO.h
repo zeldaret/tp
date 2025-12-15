@@ -602,7 +602,7 @@ public:
     /* 0x000 */  // vtable
     /* 0x004 */ s8 field_0x4;
     #if DEBUG
-    int field_0x8_debug;
+    JORReflexible* field_0x8_debug;
     #endif
     /* 0x008 */ f32 mLifeTopPosX;
     /* 0x00C */ f32 mLifeTopPosY;
@@ -751,7 +751,7 @@ public:
     /* 0x2C4 */ f32 mButtonATextSpacing;
     /* 0x2C8 */ s32 mButtonATextActionID;
     /* 0x2CC */ u32 field_0x2cc;
-    /* 0x2D0 */ bool mButtonATextDebug;
+    /* 0x2D0 */ u8 mButtonATextDebug;
     /* 0x2D4 */ f32 mButtonBFontScale;
     /* 0x2D8 */ f32 mButtonBFontPosX;
     /* 0x2DC */ f32 mButtonBFontPosY;
@@ -838,13 +838,13 @@ public:
     /* 0x420 */ s16 mButtonCrossMoveFrame;
     /* 0x422 */ s16 field_0x422;
     /* 0x424 */ s16 field_0x424;
-    /* 0x426 */ bool mButtonDebug[4];
+    /* 0x426 */ u8 mButtonDebug[4];
     /* 0x42A */ u8 mButtonXYItemDimAlpha;
     /* 0x42B */ u8 mButtonXYBaseDimAlpha;
     /* 0x42C */ u8 field_0x42c;
     /* 0x42D */ u8 mMaxSpurAmount;
-    /* 0x42E */ bool mSpurDebug;
-    /* 0x42F */ bool field_0x42f;
+    /* 0x42E */ u8 mSpurDebug;
+    /* 0x42F */ u8 field_0x42f;
     /* 0x430 */ JUtility::TColor mSpurIconPikariFrontInner;
     /* 0x434 */ JUtility::TColor mSpurIconPikariFrontOuter;
     /* 0x438 */ JUtility::TColor mSpurIconPikariBackInner;
@@ -904,7 +904,7 @@ public:
     /* 0x514 */ f32 mScrollArrowPosY[2];
     /* 0x51C */ f32 mScrollArrowCenterPosX;
     /* 0x520 */ f32 mScrollArrowCenterPosY;
-    /* 0x524 */ bool mScrollArrowDisplayAll;
+    /* 0x524 */ u8 mScrollArrowDisplayAll;
     /* 0x528 */ f32 mWiiLockArrowScaleX;
     /* 0x52C */ f32 mWiiLockArrowScaleY;
     /* 0x530 */ f32 mWiiLockArrowBPKAnimSpeed;
@@ -913,15 +913,15 @@ public:
     /* 0x53C */ f32 mWiiLockArrowPosX[2];
     /* 0x544 */ f32 mWiiLockArrowPosY[2];
     /* 0x54C */ f32 field_0x54c;
-    /* 0x550 */ bool mWiiLockArrowDisplayAll;
+    /* 0x550 */ u8 mWiiLockArrowDisplayAll;
     /* 0x554 */ f32 mFloatingMessagePosX;
     /* 0x558 */ f32 mFloatingMessagePosY;
     /* 0x55C */ u32 mMessageID;
     /* 0x560 */ u32 mFlowID;
     /* 0x564 */ s16 mMessageDuration;
-    /* 0x566 */ bool mMessageDebug;
-    /* 0x567 */ bool mFlowDebug;
-    /* 0x568 */ bool mItemScaleAdjustON;
+    /* 0x566 */ u8 mMessageDebug;
+    /* 0x567 */ u8 mFlowDebug;
+    /* 0x568 */ u8 mItemScaleAdjustON;
     /* 0x569 */ u8 mItemScalePercent;
     /* 0x56C */ f32 mTouchAreaUnselectScale[5];
     /* 0x580 */ f32 mTouchAreaSelectScale[5];
@@ -935,7 +935,7 @@ public:
     /* 0x5F0 */ JUtility::TColor mTouchAreaSelectWhite[3];
     /* 0x5FC */ JUtility::TColor mTouchAreaSelectBlack[3];
     /* 0x608 */ s16 mTouchAreaSelectFrameNum;
-    /* 0x60A */ bool field_0x60a;
+    /* 0x60A */ u8 field_0x60a;
     /* 0x60C */ f32 mLanternIconMeterPosX;
     /* 0x610 */ f32 mLanternIconMeterPosY;
     /* 0x614 */ f32 mLanternIconMeterSize;
@@ -1330,6 +1330,47 @@ public:
 };
 
 STATIC_ASSERT(sizeof(dMeter_cursorHIO_c) == 68);
+
+class dMeter_map_HIO_c : public JORReflexible {
+public:
+    dMeter_map_HIO_c();
+    virtual ~dMeter_map_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    static dMeter_map_HIO_c* mMySelfPointer;
+
+    s8 field_0x4;
+    u8 mDebugMapExpansion;
+    u8 mMapDisplayLocation;
+    s16 mWideBottomLeftX;
+    s16 mWideY;
+    s16 mNormalBottomLeftX;
+    s16 mNormalY;
+    s16 mGcBottomLeftX;
+    s16 mGcY;
+    s16 mHiddenRightX;
+    u8 field_0x16;
+    u8 mSizeTypeChange;
+    s16 field_0x18;
+    s16 mMediumHorizontal;
+    s16 mMediumVertical;
+    s16 mBigHorizontal;
+    s16 mBigVertical;
+    s16 mSmallHorizontal;
+    s16 mSmallVertical;
+    u8 mMapDisplaySize;
+    u8 field_0x27[0x2a- 0x27];
+    s16 field_0x2a;
+    u8 mMapAlphaTest;
+    u8 mAlpha;
+    u8 mTextureResolutionHalved;
+    u8 mForcedMapTopEdgeChange;
+    s16 field_0x30;
+    u8 mMapDisplayProhibited;
+    u8 mMapRenderingProhibited;
+    dMeter_map_HIO_c* mAreaMap;
+};
 
 extern dMeter_menuHIO_c g_menuHIO;
 extern dMeter_drawHIO_c g_drawHIO;

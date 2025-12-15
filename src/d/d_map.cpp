@@ -6,10 +6,127 @@
 #include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_map.h"
+#include "JSystem/JHostIO/JORFile.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
+
+#if DEBUG
+void dMap_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genLabel("エリアマップ パスマップ 調整項目", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("初期化等は 下位フォルダ[パレット]込み です", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("初期化", 0x4000003, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("HOSTIO順テキストファイル書き出し", 0x4000004, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("バイナリ順テキスト書き出し", 0x4000005, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("バイナリファイル書き出し", 0x4000006, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("バイナリファイル読み込み", 0x4000007, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("バイナリダンプ", 0x4000008, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    mList.gen(ctx);
+    ctx->genButton("ID_INFO_ROOM_MAX_TEXEL", 0x4000009, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("ID_INFO_SWITCH", 0x400000A, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+}
+
+dMap_HIO_c::dMap_HIO_c() {
+    mMySelfPointer = this;
+    mList.set(l_list);
+}
+
+void dMpath_HIO_n::hioList_c::set(const list_s& i_list) {
+    list = i_list;
+}
+
+void dMap_HIO_c::listenPropertyEvent(const JORPropertyEvent* evt) {
+    // NONMATCHING
+    JORReflexible::listenPropertyEvent(evt);
+
+    if (dMap_HIO_prm_res_dst_s::m_res != NULL) {
+        JORFile jorFile;
+        switch ((u32)evt->id) {
+            case 0x4000002:
+                if (dMap_c::m_mySelfPointer != NULL) {
+                    f32 packX, packZ;
+                    dMap_c::m_mySelfPointer->getPack(dMap_c::m_mySelfPointer->getStayRoomNo(), &packX, &packZ);
+                    OS_REPORT("mNowCenterRoomNo<%d>packX<%11.3f>packZ<%11.3f>\n", packX, packZ, dMap_c::m_mySelfPointer->getStayRoomNo());
+                }
+                break;
+
+            case 0x4000004:
+                writeHostioTextFile(NULL);
+                break;
+
+            case 0x4000005:
+                writeBinaryTextFile(NULL);
+                break;
+
+            case 0x4000006:
+                writeBinaryFile(NULL);
+                break;
+
+            case 0x4000007: {
+                readBinaryFile(NULL);
+                JORMContext* ctx_p = attachJORMContext(8);
+                ctx_p->startUpdateNode(this);
+                mList.update(ctx_p);
+                ctx_p->endUpdateNode();
+                releaseJORMContext(ctx_p);
+                break;
+            }
+
+            case 0x4000003: {
+                JORMContext* ctx_p = attachJORMContext(8);
+                ctx_p->startUpdateNode(this);
+                mList.update(ctx_p);
+                ctx_p->endUpdateNode();
+                releaseJORMContext(ctx_p);
+                break;
+            }
+
+            case 0x4000008:
+                binaryDump(dMap_HIO_prm_res_dst_s::m_res, 0x1BC);
+                break;
+
+            case 0x4000009:
+                if (dMap_c::m_mySelfPointer != NULL) {
+                    f32 stageTexelMinZ = -3.4028235e38f;
+                    f32 stageTexelMaxZ = -3.4028235e38f;
+                    for (int i = 0; i < 64; i++) {
+                        dStage_FileList2_dt_c* fileList2_p = dStage_roomControl_c::getFileList2(i);
+                        if (fileList2_p != NULL) {
+                            f32 texelMaxZ = dStage_FileList2_dt_GetInnerRmZ(fileList2_p);
+                            f32 frontRmZ = dStage_FileList2_dt_GetFrontRmZ(fileList2_p);
+                            f32 cmPerTexel = dMap_c::m_mySelfPointer->getCmPerTexel();
+                            f32 texelMinZ = (dMap_c::m_mySelfPointer->getCenterZ() - texelMaxZ) / cmPerTexel;
+                            texelMaxZ = dMap_c::m_mySelfPointer->getCmPerTexel();
+                            texelMaxZ = (frontRmZ - dMap_c::m_mySelfPointer->getCenterZ()) / texelMaxZ;
+                            OS_REPORT("<%2d>texelMinZ<%10.3f>texelMaxZ<%10.3f>\n", texelMinZ, texelMaxZ, i);
+
+                            if (texelMinZ > stageTexelMinZ) {
+                                stageTexelMinZ = texelMinZ;
+                            }
+
+                            if (texelMaxZ > stageTexelMaxZ) {
+                                stageTexelMaxZ = texelMaxZ;
+                            }
+                        }
+                    }
+
+                    OS_REPORT("stageTexelMinZ<%10.3f>\n", stageTexelMinZ);
+                }
+        }
+    }
+}
+
+void dMap_HIO_list_c::copySrcToHio() {
+    // NONMATCHING
+    if (dMap_HIO_c::m_res_src_p != NULL) {
+        dMpath_RGBA_c color;
+        for (int i = 0; i < 51; i++) {
+            
+        }
+    }
+}
+#endif
 
 f32 renderingAmap_c::getIconSize(u8 i_icon) const {
     static f32 const l_iconSize[] = {

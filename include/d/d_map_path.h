@@ -2,6 +2,7 @@
 #define D_MAP_D_MAP_PATH_H
 
 #include "d/d_drawlist.h"
+#include "JSystem/JHostIO/JORMContext.h"
 
 class dDrawPath_c : public dDlst_base_c {
 public:
@@ -112,6 +113,7 @@ public:
     virtual const GXColor* getDecoLineColor(int, int);
     virtual s32 getDecorationLineWidth(int);
 
+    f32 getCmPerTexel() const { return mCmPerTexel; }
     bool isDrawAreaCheck(const Vec& param_0) {
         return (param_0.x >= mPosX - field_0x8 * 2.0f &&
                 param_0.x <= mPosX + field_0x8 * 2.0f) &&
@@ -164,5 +166,36 @@ struct dMpath_RGB5A3_palDt_s {
     /* 0x4 */ dMpath_RGB5A3_s field_0x4;
     /* 0x6 */ dMpath_RGB5A3_s field_0x6;
 };
+
+#if DEBUG
+class dMpath_HIO_file_base_c : public JORReflexible {
+public:
+    virtual ~dMpath_HIO_file_base_c() {};
+    BOOL writeHostioTextFile(const char*);
+    BOOL writeBinaryTextFile(const char*);
+    BOOL writeBinaryFile(const char*);
+    void binaryDump(const void*, u32);
+    BOOL readBinaryFile(const char*);
+
+    u8 field_0x4[0x8 - 0x4];
+};
+
+struct dMpath_HIO_n {
+    struct list_s {
+        u8 field_0x0[0x4 - 0x0];
+        int field_0x4;
+    };
+    
+    class hioList_c {
+    public:
+        list_s list;
+
+        virtual ~hioList_c() {}
+        void set(const list_s&);
+        void gen(JORMContext*);
+        void update(JORMContext*);
+    };
+};
+#endif
 
 #endif /* D_MAP_D_MAP_PATH_H */

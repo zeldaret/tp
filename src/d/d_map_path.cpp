@@ -5,6 +5,7 @@
 
 #include "d/dolzel.h" // IWYU pragma: keep
 
+#include "JSystem/JHostIO/JORFile.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_com_inf_game.h"
@@ -30,6 +31,166 @@ void dMpath_n::dTexObjAggregate_c::remove() {
         mp_texObj[i] = NULL;
     }
 }
+
+#if DEBUG
+void dMpath_HIO_n::hioList_c::gen(JORMContext* ctx) {
+    // NONMATCHING
+    for (int i = 0; i < list.field_0x4; i++) {
+
+    }
+}
+
+void dMpath_HIO_n::hioList_c::update(JORMContext* ctx) {
+    // NONMATCHING
+    for (int i = 0; i < list.field_0x4; i++) {
+
+    }
+}
+
+BOOL dMpath_HIO_file_base_c::writeHostioTextFile(const char* param_1) {
+    // NONMATCHING
+    char buffer[4000];
+    JORFile jorFile;
+    BOOL rv = FALSE;
+    // All Files (*.*)
+    const char* extMask = "すべてのファイル(*.*)\0*.*\0";
+    if (param_1 != extMask) {
+        extMask = param_1;
+    }
+
+    if (jorFile.open(6, extMask, NULL, NULL, NULL)) {
+        int bufSize = 0;
+        memset(buffer, 0, sizeof(buffer));
+        int size = sizeof(buffer);
+        bufSize = 4000;
+        JUT_ASSERT(732, size < bufSize);
+        jorFile.writeData(buffer, size);
+        jorFile.close();
+        OS_REPORT("write append success!::%6d\n", size);
+        rv = TRUE;
+    } else {
+        OS_REPORT("write append failure!\n");
+        rv = FALSE;
+    }
+
+    return rv;
+}
+
+BOOL dMpath_HIO_file_base_c::writeBinaryTextFile(const char* param_1) {
+    // NONMATCHING
+    char buffer[10000];
+    JORFile jorFile;
+    BOOL rv = FALSE;
+    // All Files (*.*)
+    const char* extMask = "すべてのファイル(*.*)\0*.*\0";
+    if (param_1 != extMask) {
+        extMask = param_1;
+    }
+
+    if (jorFile.open(6, extMask, NULL, NULL, NULL)) {
+        int bufSize = 0;
+        memset(buffer, 0, sizeof(buffer));
+        int size = sizeof(buffer);
+        bufSize = 10000;
+        JUT_ASSERT(762, size < bufSize);
+        jorFile.writeData(buffer, size);
+        jorFile.close();
+        OS_REPORT("write append success!::%6d\n", size);
+        rv = TRUE;
+    } else {
+        OS_REPORT("write append failure!\n");
+        rv = FALSE;
+    }
+
+    return rv;
+}
+
+BOOL dMpath_HIO_file_base_c::writeBinaryFile(const char* param_1) {
+    // NONMATCHING
+    char buffer[2000];
+    JORFile jorFile;
+    BOOL rv = FALSE;
+    // All Files (*.*)
+    const char* extMask = "すべてのファイル(*.*)\0*.*\0";
+    if (param_1 != extMask) {
+        extMask = param_1;
+    }
+
+    if (jorFile.open(6, extMask, NULL, NULL, NULL)) {
+        int bufSize = 0;
+        memset(buffer, 0, sizeof(buffer));
+        int size = sizeof(buffer);
+        bufSize = 2000;
+        JUT_ASSERT(794, size < bufSize);
+        jorFile.writeData(buffer, size);
+        jorFile.close();
+        OS_REPORT("write append success!::%6d\n", size);
+        rv = TRUE;
+    } else {
+        OS_REPORT("write append failure!\n");
+        rv = FALSE;
+    }
+
+    return rv;
+}
+
+void dMpath_HIO_file_base_c::binaryDump(const void* startAdr, u32 dataSize) {
+    // NONMATCHING
+    int iVar1 = 0;
+    u32* puVar1 = (u32*)startAdr;
+    for (u32 i = 0; i < dataSize; i++, puVar1++) {
+        iVar1 = i * -1;
+        if (iVar1 == 0) {
+            OS_REPORT("%04x : ", i);
+        }
+
+        OS_REPORT("%02x", startAdr);
+
+        if (iVar1 == 3) {
+            OS_REPORT(" - ");
+        } else if (iVar1 == 7) {
+            OS_REPORT("\n");
+        } else {
+            OS_REPORT(" ");
+        }
+    }
+
+    if (iVar1 != 7) {
+        OS_REPORT("\n");
+    }
+
+    OS_REPORT("startAdr<%08x>dataSize<%d><0x%04x>\n", startAdr, dataSize, dataSize);
+}
+
+BOOL dMpath_HIO_file_base_c::readBinaryFile(const char* param_1) {
+    // NONMATCHING
+    char buffer[2000];
+    JORFile jorFile;
+    BOOL rv = FALSE;
+    // All Files (*.*)
+    const char* extMask = "すべてのファイル(*.*)\0*.*\0";
+    if (param_1 != extMask) {
+        extMask = param_1;
+    }
+
+    if (jorFile.open(1, extMask, NULL, NULL, NULL)) {
+        s32 size = jorFile.getFileSize();
+        void* buf = operator new[](size);
+        JUT_ASSERT(855, buf != NULL);
+        jorFile.readData(buf, size);
+        listenPropertyEvent((JORPropertyEvent*)buf);
+        OS_REPORT("write append success!::%6d\n", size);
+        rv = TRUE;
+        operator delete[](buf);
+        jorFile.close();
+    } else {
+        OS_REPORT("write append failure!\n");
+        rv = FALSE;
+    }
+
+    return rv;
+}
+#endif
 
 void dDrawPath_c::rendering(dDrawPath_c::line_class const* p_line) {
     if (isDrawType(p_line->field_0x0)) {

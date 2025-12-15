@@ -2,6 +2,7 @@
 #define D_METER_D_METER_MAP_H
 
 #include "d/d_map_path_dmap.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 
 class J2DPicture;
 class dMap_c;
@@ -57,6 +58,48 @@ private:
     /* 0x2D */ u8 field_0x2d;
     /* 0x2E */ u8 field_0x2e;
     /* 0x30 */ int field_0x30;
+};
+
+class dMeter_map_HIO_c : public JORReflexible {
+public:
+    dMeter_map_HIO_c();
+    virtual ~dMeter_map_HIO_c() {}
+
+    void genMessage(JORMContext*);
+    void update();
+
+    static dMeter_map_HIO_c* mMySelfPointer;
+
+    s8 field_0x4;
+    u8 mDebugMapExpansion;
+    u8 mMapDisplayLocation;
+    s16 mWideBottomLeftX;
+    s16 mWideY;
+    s16 mNormalBottomLeftX;
+    s16 mNormalY;
+    s16 mGcBottomLeftX;
+    s16 mGcY;
+    s16 mHiddenRightX;
+    u8 field_0x16;
+    u8 mSizeTypeChange;
+    s16 field_0x18;
+    s16 mMediumHorizontal;
+    s16 mMediumVertical;
+    s16 mBigHorizontal;
+    s16 mBigVertical;
+    s16 mSmallHorizontal;
+    s16 mSmallVertical;
+    u8 mMapDisplaySize;
+    u8 field_0x27[0x2a- 0x27];
+    s16 field_0x2a;
+    u8 mMapAlphaTest;
+    u8 mAlpha;
+    u8 mTextureResolutionHalved;
+    u8 mForcedMapTopEdgeChange;
+    s16 field_0x30;
+    u8 mMapDisplayProhibited;
+    u8 mMapRenderingProhibited;
+    dMeter_map_HIO_c* mAreaMap;
 };
 
 #endif /* D_METER_D_METER_MAP_H */

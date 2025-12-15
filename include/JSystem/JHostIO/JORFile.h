@@ -77,7 +77,7 @@ public:
     virtual void writeLoop_(const void* pBuffer, s32 size, u32 pos);
     virtual void writeDone_(s32 len);
     virtual void waitMessage_();
-    virtual s32 getFileSize() const;
+    virtual s32 getFileSize() const { return mFileLength; }
 
     /* 0x04 */ u32 mHandle;
     /* 0x08 */ s32 mFileLength;

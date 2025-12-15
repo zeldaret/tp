@@ -2,6 +2,7 @@
 #define D_MAP_D_MAP_H
 
 #include "d/d_map_path_dmap.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 
 struct dMap_prm_res_s {
     /* 0x000 */ dMpath_RGB5A3_palDt_s palette_data[51];
@@ -35,6 +36,10 @@ struct dMap_prm_res_s {
 
 struct dMap_HIO_prm_res_dst_s {
     static dMap_prm_res_s* m_res;
+};
+
+struct dMap_HIO_prm_res_src_s {
+
 };
 
 class renderingAmap_c : public renderingPlusDoorAndCursor_c {
@@ -122,6 +127,10 @@ public:
     u16 getTexSizeY() { return mTexSizeY; }
     f32 getRightEdgePlus() { return mRightEdgePlus; }
     f32 getPackX() { return mPackX; }
+    int getStayRoomNo() const { return mStayRoomNo; }
+    f32 getCenterZ() const { return mCenterZ; }
+
+    static dMap_c* m_mySelfPointer;
 
 private:
     /* 0x40 */ dMap_prm_res_s* m_res_src;
@@ -150,5 +159,36 @@ private:
     /* 0x8F */ u8 field_0x8f;
     /* 0x90 */ u8 field_0x90;
 };  // Size: 0x94
+
+#if DEBUG
+class dMap_HIO_list_c : public dMpath_HIO_n::hioList_c {
+public:
+    virtual void copySrcToHio();
+    virtual void copyHioToDst();
+    virtual void copyBufToHio();
+};
+
+class dMap_HIO_c : public dMpath_HIO_file_base_c {
+public:
+    dMap_HIO_c();
+    void genMessage(JORMContext*);
+    void listenPropertyEvent(const JORPropertyEvent*);
+
+    static dMap_HIO_c* mMySelfPointer;
+    static dMpath_HIO_n::list_s l_list;
+    static dMap_HIO_prm_res_src_s* m_res_src_p;
+
+    dMap_HIO_list_c mList;
+};
+
+class dMpath_RGBA_c {
+public:
+    GXColor getGXColor() { return mColor; }
+
+    GXColor mColor;
+
+    virtual ~dMpath_RGBA_c() {}
+};
+#endif
 
 #endif /* D_MAP_D_MAP_H */
