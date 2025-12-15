@@ -41,6 +41,16 @@ namespace nw4hbm {
 #define NW4R_ASSERT_CHECK_NULL(line, ptr) \
     NW4R_DB_ASSERTMSG(line, (ptr != NULL), "Pointer must not be NULL ("#ptr")")
 
+#define NW4R_ASSERT_MIN(line_, var_, minValue_, maxValue_)                                             \
+    NW4R_DB_ASSERTMSG(line_, (var_) >= (minValue_) && (var_) < (maxValue_),                            \
+                      #var_ " is out of bounds(%d)\n%d <= " #var_ " < %d not satisfied.", (int)(var_), \
+                      (int)(minValue_), (int)(maxValue_))
+
+#define NW4R_ASSERT_MINMAX(line_, var_, minValue_, maxValue_)                                           \
+    NW4R_DB_ASSERTMSG(line_, (var_) >= (minValue_) && (var_) <= (maxValue_),                            \
+                      #var_ " is out of bounds(%d)\n%d <= " #var_ " <= %d not satisfied.", (int)(var_), \
+                      (int)(minValue_), (int)(maxValue_))
+
 // NW4HBM variants
 #define NW4HBM_ASSERT_CHECK_NULL(line, ptr) \
     NW4R_DB_ASSERTMSG(line, (ptr != NULL), "NW4HBM:Pointer must not be NULL ("#ptr")")

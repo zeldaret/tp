@@ -8,6 +8,8 @@
 extern "C" {
 #endif
 
+#define NW4HBM_VERSION(major, minor) ((major & 0xFF) << 8 | minor & 0xFF)
+
 typedef enum HBMSelectBtnNum {
     HBM_SELECT_NULL = -1,
 

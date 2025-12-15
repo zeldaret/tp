@@ -63,7 +63,7 @@ namespace nw4hbm {
 
                 ++mSize;
 
-                return p;
+                return (LinkListImpl::Iterator)p;
             }
 
             LinkListImpl::Iterator LinkListImpl::Erase(LinkListNode* p) {
@@ -77,7 +77,7 @@ namespace nw4hbm {
                 p->mNext = NULL;
                 p->mPrev = NULL;
 
-                return pNext;
+                return (LinkListImpl::Iterator)pNext;
             }
 
         }  // namespace detail

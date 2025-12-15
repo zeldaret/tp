@@ -30,6 +30,11 @@ namespace nw4hbm {
             }
 
             template <typename T>
+            inline T Clamp(T x, T low, T high) {
+                return (x > high) ? high : ((x < low) ? low : x);
+            }
+
+            template <typename T>
             inline T BitExtract(T bits, int pos, int len) {
                 T mask = (1 << len) - 1;
 
@@ -52,6 +57,11 @@ namespace nw4hbm {
             template <typename T>
             inline void* AddOffsetToPtr(void* ptr, T offset) {
                 return reinterpret_cast<void*>(GetIntPtr(ptr) + offset);
+            }
+
+            template <typename T>
+            inline const void* AddOffsetToPtr(const void* base, T offset) {
+                return reinterpret_cast<const void*>(GetIntPtr(base) + offset);
             }
         }  // namespace
     }  // namespace ut
