@@ -11,32 +11,35 @@ namespace nw4hbm {
     namespace db {
         namespace detail {
             struct ConsoleHead {
-                u8* textBuf;                       // at 0x0
-                u16 width;                         // at 0x4
-                u16 height;                        // at 0x6
-                u16 priority;                      // at 0x8
-                u16 attr;                          // at 0xA
-                u16 printTop;                      // at 0xC
-                u16 printXPos;                     // at 0xE
-                u16 ringTop;                       // at 0x10
-                long ringTopLineCnt;               // at 0x14
-                long viewTopLine;                  // at 0x18
-                s16 viewPosX;                      // at 0x1C
-                s16 viewPosY;                      // at 0x1E
-                u16 viewLines;                     // at 0x20
-                bool isVisible;                    // at 0x22
-                u8 padding_[1];                    // at 0x23
-                ut::TextWriterBase<char>* writer;  // at 0x24
-                ConsoleHead* next;                 // at 0x28
+                /* 0x00 */ u8* textBuf;
+                /* 0x04 */ u16 width;
+                /* 0x06 */ u16 height;
+                /* 0x08 */ u16 priority;
+                /* 0x0A */ u16 attr;
+                /* 0x0C */ u16 printTop;
+                /* 0x0E */ u16 printXPos;
+                /* 0x10 */ u16 printTopUsed;
+                /* 0x12 */ u16 ringTop;
+                /* 0x14 */ s32 ringTopLineCnt;
+                /* 0x18 */ s32 viewTopLine;
+                /* 0x1C */ s16 viewPosX;
+                /* 0x1E */ s16 viewPosY;
+                /* 0x20 */ u16 viewLines;
+                /* 0x22 */ bool isVisible;
+                /* 0x23 */ u8 padding_[1];
+                /* 0x24 */ ut::TextWriterBase<char>* writer;
+                /* 0x28 */ ConsoleHead* next;
             };
         }  // namespace detail
 
         enum ConsoleOutputType {
             CONSOLE_OUTPUT_NONE,
-            CONSOLE_OUTPUT_DISPLAY,
             CONSOLE_OUTPUT_TERMINAL,
+            CONSOLE_OUTPUT_DISPLAY,
             CONSOLE_OUTPUT_ALL,
         };
+
+        typedef detail::ConsoleHead* ConsoleHandle;
 
         typedef void (*VisitStringCallback)(detail::ConsoleHead* console, u8* r4, long r5, u32 r6);
 
@@ -76,12 +79,12 @@ namespace nw4hbm {
         }
 
         static u16 Console_GetViewHeight(detail::ConsoleHead* console) {
-            NW4R_DB_ASSERT(434, console, "Pointer must not be NULL (console)");
+            NW4R_ASSERT_CHECK_NULL(434, console);
             return console->viewLines;
         }
 
         static bool Console_SetVisible(detail::ConsoleHead* console, bool isVisible) {
-            NW4R_DB_ASSERT(497, console != NULL, "Pointer must not be NULL (console)");
+            NW4R_ASSERT_CHECK_NULL(497, console);
 
             bool before = console->isVisible;
             console->isVisible = isVisible;
@@ -89,7 +92,7 @@ namespace nw4hbm {
         }
 
         static long Console_SetViewBaseLine(detail::ConsoleHead* console, long line) {
-            NW4R_DB_ASSERT(557, console, "Pointer must not be NULL (console)");
+            NW4R_ASSERT_CHECK_NULL(557, console);
             long before = console->viewTopLine;
             console->viewTopLine = line;
             return before;

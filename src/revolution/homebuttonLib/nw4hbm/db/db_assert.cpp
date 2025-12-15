@@ -6,6 +6,8 @@
 #include "mapFile.h"
 #include "directPrint.h"
 
+#include "global.h"
+
 namespace nw4hbm {
     namespace db {
         using namespace detail;
@@ -13,7 +15,7 @@ namespace nw4hbm {
         static OSAlarm sWarningAlarm;
         static u32 sWarningTime;
         static ConsoleHead* sAssertionConsole;
-        static bool sDispWarningAuto = true;
+        static bool sDispWarningAuto;
 
         static void Assertion_Printf_(const char* fmt, ...) {
             va_list vlist;
@@ -24,6 +26,8 @@ namespace nw4hbm {
             } else {
                 OSVReport(fmt, vlist);
             }
+
+            va_end(vlist);
         }
 
         static bool ShowMapInfoSubroutine_(u32 address, u8 preCRFlag) {
@@ -45,7 +49,7 @@ namespace nw4hbm {
             }
         }
 
-        static void ShowStack_(u32 sp) __attribute__((never_inline)) {
+        static void ShowStack_(u32 sp) NO_INLINE {
             Assertion_Printf_("-------------------------------- TRACE\n");
             Assertion_Printf_("Address:   BackChain   LR save\n");
 
@@ -66,8 +70,6 @@ namespace nw4hbm {
         DECL_WEAK void VPanic(const char* file, int line, const char* fmt, std::va_list vlist) {
             register u32 stackPointer;
 
-            // Get the stack pointer
-            // This feels fake but I can't think of how else it would've been done
             asm {
                 lwz stackPointer, 0(r1)
             }
@@ -120,11 +122,6 @@ namespace nw4hbm {
                 OSVReport(fmt, vlist);
                 OSReport("\n");
             }
-
-            if (sWarningTime > 0) {
-                OSCancelAlarm(&sWarningAlarm);
-                OSSetAlarm(&sWarningAlarm, sWarningTime, WarningAlarmFunc_);
-            }
         }
 
         DECL_WEAK void detail::Warning(const char* file, int line, const char* fmt, ...) {
@@ -134,6 +131,13 @@ namespace nw4hbm {
             va_start(vlist, fmt);
 
             VWarning(file, line, fmt, vlist);
+
+            va_end(vlist);
+
+            if (sWarningTime > 0) {
+                OSCancelAlarm(&sWarningAlarm);
+                OSSetAlarm(&sWarningAlarm, sWarningTime, WarningAlarmFunc_);
+            }
         }
 
         namespace detail {
@@ -169,15 +173,6 @@ namespace nw4hbm {
 
         void Assertion_SetWarningTime(u32 time) {}
 
-        bool Assertion_SetAutoWarning(bool enable) {
-            // OSAlarm& alarm;
-            BOOL enabledIntr;
-            bool before = sDispWarningAuto;
-
-            sDispWarningAuto = enable;
-            return before;
-        }
-
         static OSAlarm& GetWarningAlarm_() {
             static bool sInitializedAlarm;
 
@@ -190,9 +185,7 @@ namespace nw4hbm {
         }
 
         static void WarningAlarmFunc_(OSAlarm* alarm, OSContext* context) {
-            if (sAssertionConsole) {
-                (void)Console_SetVisible(sAssertionConsole, false);
-            }
+            Console_SetVisible(sAssertionConsole, false);
         }
     }  // namespace db
 }  // namespace nw4r

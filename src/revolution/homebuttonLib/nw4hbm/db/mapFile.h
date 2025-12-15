@@ -5,17 +5,15 @@
 
 namespace nw4hbm {
     namespace db {
-        struct MapFile {};
+        struct MapFile {
+            /* 0x00 */ u8* mapBuf;
+            /* 0x04 */ OSModuleInfo* moduleInfo;
+            /* 0x08 */ s32 fileEntry;
+            /* 0x0C */ MapFile* next;
+        }; // size = 0x10
 
-        BOOL MapFile_Exists();
-        void GetCharOnMem_(const u8*);
-        void GetCharOnDvd_(const u8*);
-        void SearchParam_(u8*, u32, u8);
-        void XStrToU32_(const u8*);
-        void CopySymbol_(const u8*, u8*, u32, u8);
-        void QuerySymbolToMapFile_(u8*, const OSModuleInfo*, u32, u8*, u32);
-        void QuerySymbolToSingleMapFile_(MapFile*, u32, u8*, u32);
-        BOOL MapFile_QuerySymbol(u32, u8*, u32);
+        bool MapFile_Exists();
+        bool MapFile_QuerySymbol(u32 address, u8* strBuf, u32 strBufSize);
     }  // namespace db
 }  // namespace nw4r
 

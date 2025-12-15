@@ -32,7 +32,20 @@ namespace nw4hbm {
 
 #define NW4R_WARNING(...) nw4hbm::db::Warning(__FILE__, __LINE__, __VA_ARGS__)
 #define NW4R_PANIC(...) nw4hbm::db::Panic(__FILE__, __LINE__, __VA_ARGS__)
-#define NW4R_DB_ASSERT(line, exp, ...)                                                             \
+#define NW4R_DB_ASSERTMSG(line, exp, ...)                                                             \
     (void)((exp) || (nw4hbm::db::detail::Panic(__FILE__, line, __VA_ARGS__), 0))
+
+#define NW4R_ASSERT(line, exp) \
+    NW4R_DB_ASSERTMSG(line, (exp), "Failed assertion " #exp)
+
+#define NW4R_ASSERT_CHECK_NULL(line, ptr) \
+    NW4R_DB_ASSERTMSG(line, (ptr != NULL), "Pointer must not be NULL ("#ptr")")
+
+// NW4HBM variants
+#define NW4HBM_ASSERT_CHECK_NULL(line, ptr) \
+    NW4R_DB_ASSERTMSG(line, (ptr != NULL), "NW4HBM:Pointer must not be NULL ("#ptr")")
+
+#define NW4HBM_ASSERT(line, exp) \
+    NW4R_DB_ASSERTMSG(line, (exp), "NW4HBM:Failed assertion " #exp)
 
 #endif
