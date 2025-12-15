@@ -7,7 +7,7 @@
 
 #include "SSystem/SComponent/c_lib.h"
 #include "d/actor/d_a_obj_bemos.h"
-#include "../assets/GZ2E01/res/Object/Obj_bm.h"
+#include "res/Object/Obj_bm.h"
 #include "d/d_camera.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
@@ -16,6 +16,21 @@
 #endif
 #include "d/d_s_play.h"
 #include "Z2AudioLib/Z2Instances.h"
+
+enum Action_e {
+    /* 0x0 */ ACTION_SW_WAIT_e,
+    /* 0x1 */ ACTION_WARNING_e,
+    /* 0x2 */ ACTION_FIND_PLAYER_e,
+    /* 0x3 */ ACTION_ATTACK_e,
+    /* 0x4 */ ACTION_DEAD_e,
+};
+
+enum Mode_e {
+    /* 0x0 */ MODE_WAIT_e,
+    /* 0x1 */ MODE_WALK_e,
+    /* 0x2 */ MODE_AFL_e,
+    /* 0x3 */ MODE_DEAD_e,
+};
 
 #if DEBUG
 #pragma nosyminline on
@@ -103,6 +118,7 @@ static dCcD_SrcCyl l_cyl_src = {
         60.0f                // mHeight
     }  // mCyl
 };
+
 
 #if DEBUG
 class daObjBm_HIO_c : public mDoHIO_entry_c {
@@ -219,8 +235,7 @@ fopAc_ac_c* daObjBm_c::PPCallBack(fopAc_ac_c* i_bgActor, fopAc_ac_c* i_actorP, s
 
     if (pp_label != dBgW::PPLABEL_NONE && !fopAcM_isSwitch(actor_p, l_swNo3)) {
         s16 spE = cLib_checkBit<dBgW::PushPullLabel>(pp_label, dBgW::PPLABEL_PULL) ?
-                      (s16)param_2 - 0x8000 :
-                      (s16)param_2;
+                      (s16)param_2 - 0x8000 : (s16)param_2;
         s16 angle = spE - actor_p->home.angle.y;
 
         JUT_ASSERT(513, pp_label != pp_field);
@@ -260,7 +275,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
         daObjBm_c* i_this = (daObjBm_c*)model->getUserArea();
 
         cMtx_copy(model->getAnmMtx(jnt_no), mDoMtx_stack_c::get());
-        s16 sVar1 = i_this->field_0x1000 * cM_scos(i_this->field_0xff0 * 0x2cec + KREG_S(6));
+        s16 sVar1 = i_this->field_0x1000 * cM_scos(i_this->field_0xff0 * 0x2CEC + KREG_S(6));
 
         if (jnt_no == i_this->getHeadJoint()) {
             mDoMtx_stack_c::XrotM(i_this->field_0xf96 + sVar1);
@@ -311,7 +326,7 @@ void daObjBm_c::setBaseMtx() {
 
 int daObjBm_c::Create() {
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
-    mStts.Init(0xff, 0xff, this);
+    mStts.Init(0xFF, 0xFF, this);
     mSph.Set(l_sph_src);
     mSph.SetStts(&mStts);
     mCps.Set(l_cps_src);
@@ -336,7 +351,6 @@ int daObjBm_c::Create() {
 
     mpModel->setUserArea((uintptr_t)this);
     JUTNameTab* material_name = mpModel->getModelData()->getMaterialTable().getMaterialName();
-
     for (u16 i = 0; i < mpModel->getModelData()->getMaterialNum(); i++) {
         if (strcmp(material_name->getName(i), l_eye_matName) == 0) {
             mpMaterial = mpModel->getModelData()->getMaterialNodePointer(i);
@@ -371,9 +385,9 @@ int daObjBm_c::Create() {
             initActionSwWait();
         } else {
             mShowFlag = 1;
-            J3DAnmTevRegKey* model_data = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BRK_TURN_e);
-            mSerchBrk->init(mpModel->getModelData(), model_data, 1, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
-            mUpBck->setFrame(mUpBck->getEndFrame());
+            mSerchBrk->init(mpModel->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BRK_TURN_e),
+                            1, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
+            mBeamosBck->setFrame(mBeamosBck->getEndFrame());
             initActionWarning();
         }
     }
@@ -396,7 +410,7 @@ int daObjBm_c::CreateHeap() {
     J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BRK_SERCH_e);
     JUT_ASSERT(780, pbrk != NULL);
     mSerchBrk = new mDoExt_brkAnm();
-    if (mSerchBrk == NULL || mSerchBrk->init(modelData, pbrk, 1, 0, 1.0f, 0, -1) == 0) {
+    if (mSerchBrk == NULL || mSerchBrk->init(modelData, pbrk, 1, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1) == 0) {
         return 0;
     }
 
@@ -407,8 +421,8 @@ int daObjBm_c::CreateHeap() {
 
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BCK_BM_UP_e);
     JUT_ASSERT(798, pbck != NULL);
-    mUpBck = new mDoExt_bckAnm();
-    if (mUpBck == NULL || mUpBck->init(pbck, 1, 0, 1.0f, 0, -1, false) == 0) {
+    mBeamosBck = new mDoExt_bckAnm();
+    if (mBeamosBck == NULL || mBeamosBck->init(pbck, 1, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false) == 0) {
         return 0;
     }
 
@@ -421,11 +435,11 @@ int daObjBm_c::CreateHeap() {
 
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BTK_EF_BIMOBEAMB_OFF_e);
     JUT_ASSERT(827, pbtk != NULL);
-    mBeamOffBtk = new mDoExt_btkAnm();
-    if (mBeamOffBtk == NULL || mBeamOffBtk->init(modelData, pbtk, 1, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1) == 0) {
+    mBeamBtk = new mDoExt_btkAnm();
+    if (mBeamBtk == NULL || mBeamBtk->init(modelData, pbtk, 1, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1) == 0) {
         return 0;
     }
-    mBeamOffBtk->setFrame(mBeamOffBtk->getEndFrame());
+    mBeamBtk->setFrame(mBeamBtk->getEndFrame());
 
 #if DEBUG
     J3DAnmTextureSRTKey* pbtk2 = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BTK_EF_BIMOBEAM_ON_e);
@@ -456,7 +470,7 @@ int daObjBm_c::CreateHeap() {
     J3DAnmTransform* pbck3 = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BCK_BMF_OFF_e);
     JUT_ASSERT(885, pbck != NULL);
     mBmfOffBck = new mDoExt_bckAnm();
-    if (mBmfOffBck == NULL || mBmfOffBck->init(pbck3, 1, 0, 1.0f, 0, -1, false) == 0) {
+    if (mBmfOffBck == NULL || mBmfOffBck->init(pbck3, 1, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false) == 0) {
         return 0;
     }
     mBmfOffBck->setPlaySpeed(0.0f);
@@ -478,7 +492,7 @@ int daObjBm_c::create1st() {
 
     if (phase_state == cPhs_COMPLEATE_e) {
         phase_state =
-            (cPhs__Step)MoveBGCreate(l_arcName, 0x1e, dBgS_MoveBGProc_TypicalRotY, 0x5500, NULL);
+            (cPhs__Step)MoveBGCreate(l_arcName, 0x1E, dBgS_MoveBGProc_TypicalRotY, 0x5500, NULL);
         if (phase_state == cPhs_ERROR_e) {
             return phase_state;
         }
@@ -492,7 +506,7 @@ int daObjBm_c::create1st() {
     return phase_state;
 }
 
-int daObjBm_c::Execute(Mtx** param_0) {
+int daObjBm_c::Execute(Mtx** i_mtx) {
 #if DEBUG
     scale.setall(BODY_SCALE);
     mpModel->setBaseScale(scale);
@@ -520,11 +534,11 @@ int daObjBm_c::Execute(Mtx** param_0) {
     mDoMtx_stack_c::multVec(&eyePos, &eyePos);
     attention_info.position = eyePos;
 
-    *param_0 = &mBgMtx;
+    *i_mtx = &mBgMtx;
     setBaseMtx();
 
-    cLib_addCalcAngleS(&field_0xfaa, field_0xfac, 0x1e, 0x14, 10);
-    cLib_addCalcAngleS(&mGearRotationSpd, mGearRotSpdTarget, 0x1e, 0x14, 10);
+    cLib_addCalcAngleS(&field_0xfaa, field_0xfac, 0x1E, 0x14, 10);
+    cLib_addCalcAngleS(&mGearRotationSpd, mGearRotSpdTarget, 0x1E, 0x14, 10);
     cLib_addCalc(&field_0x1000, 0.0f, 0.2f, KREG_F(2) + 50.0f, KREG_F(3) + 10.0f);
     field_0xfb2 = field_0xf96;
 
@@ -592,9 +606,7 @@ void daObjBm_c::actionEnBemos() {
         cCcD_Obj* hitobj = mSph.GetTgHitObj();
 
         if (hitobj) {
-            if (hitobj->ChkAtType(AT_TYPE_ARROW) || hitobj->ChkAtType(AT_TYPE_BOMB) ||
-                hitobj->ChkAtType(AT_TYPE_IRON_BALL))
-            {
+            if (hitobj->ChkAtType(AT_TYPE_ARROW) || hitobj->ChkAtType(AT_TYPE_BOMB) || hitobj->ChkAtType(AT_TYPE_IRON_BALL)) {
                 mDoAud_seStart(Z2SE_EN_BM_EYE_BREAK, &eyePos, 0,
                                dComIfGp_getReverb((int)fopAcM_GetRoomNo(this)));
                 initEffectSet0();
@@ -611,22 +623,22 @@ void daObjBm_c::actionEnBemos() {
     (this->*l_func[mActionIdx])();
     calcBeamLenAndAt();
     mBeamEffBck->play();
-    mBeamOffBtk->play();
+    mBeamBtk->play();
     mBeamEffBtk->play();
     mSerchBrk->play();
-    mUpBck->play();
+    mBeamosBck->play();
     mBmfOffBck->play();
 
     if (field_0xfaa != 0) {
         fopAcM_seStartLevel(this, Z2SE_EN_BM_TURN, 0);
     }
 
-    if (mActionIdx != 4 && mActionIdx != 0) {
+    if (mActionIdx != ACTION_DEAD_e && mActionIdx != ACTION_SW_WAIT_e) {
         mSph.SetC(eyePos);
         dComIfG_Ccsp()->Set(&mSph);
     }
 
-    if (mActionIdx == 3) {
+    if (mActionIdx == ACTION_ATTACK_e) {
         dComIfG_Ccsp()->Set(&mCps);
         mBeamSound.startLevelSound(Z2SE_EN_BM_BEAM, 0, -1);
     }
@@ -676,8 +688,8 @@ void daObjBm_c::calcBeamPos() {
     if (dist < 300.0f)
         dist = 300.0f;
 
-    cXyz cStack_3c(0.0f, 0.0f, dist);
-    mDoMtx_stack_c::multVec(&cStack_3c, &field_0xfcc);
+    cXyz work(0.0f, 0.0f, dist);
+    mDoMtx_stack_c::multVec(&work, &field_0xfcc);
     field_0xfcc = player->current.pos;
     cXyz cStack_48 = field_0xfb8 - field_0xfcc;
     field_0xfc4.x = cM_atan2s(cStack_48.y, field_0xfcc.absXZ(field_0xfb8));
@@ -690,7 +702,7 @@ void daObjBm_c::calcBeamPos() {
 
     mDoMtx_stack_c::transS(field_0xfb8);
     mDoMtx_stack_c::ZXYrotM(field_0xfc4.x, sVar2 + current.angle.y, 0);
-    mDoMtx_stack_c::multVec(&cStack_3c, &field_0xfcc);
+    mDoMtx_stack_c::multVec(&work, &field_0xfcc);
 }
 
 void daObjBm_c::calcBeamLenAndAt() {
@@ -698,7 +710,7 @@ void daObjBm_c::calcBeamLenAndAt() {
     cXyz end(field_0xfb8);
     work.normalizeZP();
     end += work * 1200.0f;
-    int frame = mBeamOffBtk->getFrame() + 0.5f;
+    int frame = mBeamBtk->getFrame() + 0.5f;
     f32 fVar1 = 360.0f;
 
     if (fopAcM_lc_c::lineCheck(&field_0xfb8, &end, this) && fopAcM_lc_c::checkGroundHit()) {
@@ -755,9 +767,9 @@ s8 daObjBm_c::checkFindPlayer() {
 
     if (ret == 0) {
         cXyz eye(eyePos);
-        cXyz eye2(player->eyePos);
+        cXyz playerEye(player->eyePos);
 
-        if (fopAcM_lc_c::lineCheck(&eye, &eye2, this)) {
+        if (fopAcM_lc_c::lineCheck(&eye, &playerEye, this)) {
             field_0xfe8 = 1;
         }
     }
@@ -775,13 +787,13 @@ s8 daObjBm_c::checkSearchPlayer() {
     field_0xfe8 = 0;
 
     f32 playerDistanceXZ = fopAcM_searchPlayerDistanceXZ(this);
-    f32 fVar1 = current.pos.y - player->current.pos.y;
+    f32 playerDistanceY = current.pos.y - player->current.pos.y;
     if (playerDistanceXZ > searchDistance) {
         return ret;
     }
 
-    if (fVar1 < 0.0f) {
-        if (std::fabs(fVar1) > (1.0f - (playerDistanceXZ / searchDistance)) * l_eye_offset.y) {
+    if (playerDistanceY < 0.0f) {
+        if (std::fabs(playerDistanceY) > (1.0f - (playerDistanceXZ / searchDistance)) * l_eye_offset.y) {
             return ret;
         }
     }
@@ -794,9 +806,9 @@ s8 daObjBm_c::checkSearchPlayer() {
 
     if (ret == 0) {
         cXyz eye(eyePos);
-        cXyz eye2(player->eyePos);
+        cXyz playerEye(player->eyePos);
 
-        if (fopAcM_lc_c::lineCheck(&eye, &eye2, this)) {
+        if (fopAcM_lc_c::lineCheck(&eye, &playerEye, this)) {
             field_0xfe8 = 1;
         }
     }
@@ -846,14 +858,14 @@ void daObjBm_c::effect_proc() {
         }
     }
 
-    if (field_0x1034 != NULL) {
+    if (mNessenHeatPrtclEmitter != NULL) {
         J3DJoint* joint = mpModel->getModelData()->getJointNodePointer(getHeadJoint());
         J3DTransformInfo* info = &joint->getTransformInfo();
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::YrotM(home.angle.y);
         mDoMtx_stack_c::transM(info->mTranslate.y, info->mTranslate.x, info->mTranslate.z);
         mDoMtx_stack_c::YrotM(field_0xf96);
-        field_0x1034->setGlobalRTMatrix(mDoMtx_stack_c::get());
+        mNessenHeatPrtclEmitter->setGlobalRTMatrix(mDoMtx_stack_c::get());
     }
 
     if (mGearSparkEmitter != NULL) {
@@ -909,7 +921,7 @@ void daObjBm_c::effectEnd() {}
 
 int daObjBm_c::check_to_walk() {
     int ret = -1;
-    bool bVar1 = true;
+    bool flag = true;
 
     if (field_0x10d2) {
         dBgW::PushPullLabel iVar2 = cLib_checkBit<dBgW::PushPullLabel>(mPPLabel, dBgW::PPLABEL_PULL);
@@ -935,12 +947,12 @@ int daObjBm_c::check_to_walk() {
                     ret = i;
                 }
             } else {
-                bVar1 = false;
+                flag = false;
             }
         }
     }
 
-    if (bVar1) {
+    if (flag) {
         clr_moment_cnt();
     }
 
@@ -954,7 +966,7 @@ void daObjBm_c::mode_wait_init() {
     mpBgW->SetCrrFunc(dBgS_MoveBGProc_Trans);
     clr_moment_cnt();
     field_0x10bc = -1;
-    mModeProcIdx = 0;
+    mModeProcIdx = MODE_WAIT_e;
 }
 
 void daObjBm_c::mode_wait() {
@@ -1005,7 +1017,7 @@ const daObjBm_c::BgcSrc_c daObjBm_c::Bgc_c::M_lin20[] = {
 
 void daObjBm_c::mode_walk_init() {
     fopAcM_SetSpeedF(this, 0.0f);
-    mModeProcIdx = 1;
+    mModeProcIdx = MODE_WALK_e;
 }
 
 void daObjBm_c::mode_walk() {
@@ -1016,7 +1028,7 @@ void daObjBm_c::mode_walk() {
         cXyz(-1.0f, 0.0f, 0.0f),
     };
 
-    bool uVar5 = --field_0x10cc <= 0;
+    bool flag = --field_0x10cc <= 0;
     f32 fVar6 = (cM_scos(field_0x10cc * field_0x10b8) + 1.0f) * 0.5f;
 
     cXyz local_58;
@@ -1030,7 +1042,7 @@ void daObjBm_c::mode_walk() {
     current.pos.z = local_58.z;
     eyePos = current.pos;
 
-    if (uVar5 != 0) {
+    if (flag) {
         const daObjBm_c::BgcSrc_c* bgcSrc = mBgc.M_lin5;
         mBgc.chk_wall_pre(this, bgcSrc, 5, M_dir_base[field_0x10bc]);
     }
@@ -1039,7 +1051,7 @@ void daObjBm_c::mode_walk() {
     current.pos.z = local_58.z;
     fopAcM_seStartLevel(this, Z2SE_EN_BM_SLIDE, 0);
 
-    if (uVar5 != 0) {
+    if (flag) {
         if (field_0x10bc == 0) {
             field_0x10b4++;
         } else if (field_0x10bc == 1) {
@@ -1063,13 +1075,13 @@ void daObjBm_c::mode_walk() {
 
 void daObjBm_c::mode_afl() {
     fopAcM_SetSpeedF(this, 0.0f);
-    mModeProcIdx = 2;
+    mModeProcIdx = MODE_AFL_e;
 }
 
 void daObjBm_c::mode_dead_init() {
     mpBgW->OffPushPullOk();
     fopAcM_SetSpeedF(this, 0.0f);
-    mModeProcIdx = 3;
+    mModeProcIdx = MODE_DEAD_e;
 }
 
 void daObjBm_c::mode_dead() {}
@@ -1112,36 +1124,36 @@ static f32 dummy_rodata_5158() {
     return 200.0f;
 }
 
-void daObjBm_c::Bgc_c::wall_pos(fopAc_ac_c const* i_actor, daObjBm_c::BgcSrc_c const* i_bgcSrc, int i_num, s16 param_3, f32 param_4) {
-    const s16 sp8C = i_actor->home.angle.y + param_3;
+void daObjBm_c::Bgc_c::wall_pos(fopAc_ac_c const* i_actor, daObjBm_c::BgcSrc_c const* i_bgcSrc, int i_num, s16 i_dir, f32 param_4) {
+    const s16 angle = i_actor->home.angle.y + i_dir;
 
     cXyz sp48;
     cXyz sp54;
     cXyz sp60;
     cXyz sp6C;
-    cXyz sp78;
+    cXyz work;
 
     field_0x178 = -1;
     field_0x17c = FLT_MAX;
 
-    mDoMtx_stack_c::YrotS(sp8C);
+    mDoMtx_stack_c::YrotS(angle);
     mDoMtx_stack_c::XrotM(0x4000);
     mDoMtx_stack_c::multVec(&cXyz::BaseY, &sp6C);
     sp6C *= param_4 + 100.0f;
 
     for (int i = 0; i < i_num; i++, i_bgcSrc++) {
         mDoMtx_stack_c::XrotS(0x4000);
-        sp78.set(i_bgcSrc->field_0xc, 0.0f, i_bgcSrc->field_0x8);
-        mDoMtx_stack_c::multVec(&sp78, &sp60);
+        work.set(i_bgcSrc->field_0xc, 0.0f, i_bgcSrc->field_0x8);
+        mDoMtx_stack_c::multVec(&work, &sp60);
 
-        mDoMtx_stack_c::YrotS(sp8C);
+        mDoMtx_stack_c::YrotS(angle);
         mDoMtx_stack_c::transM(sp60);
         mDoMtx_stack_c::scaleM(200.0f, 400.0f, 200.0f);
         mDoMtx_stack_c::transM(0.0f, 0.5f, 0.0f);
         mDoMtx_stack_c::XrotM(0x4000);
 
-        sp78.set(i_bgcSrc->field_0x4, 0.0f, i_bgcSrc->field_0x0);
-        mDoMtx_stack_c::multVec(&sp78, &sp48);
+        work.set(i_bgcSrc->field_0x4, 0.0f, i_bgcSrc->field_0x0);
+        mDoMtx_stack_c::multVec(&work, &sp48);
         sp48 += i_actor->current.pos;
         sp54 = sp48 + sp6C;
 
@@ -1151,9 +1163,9 @@ void daObjBm_c::Bgc_c::wall_pos(fopAc_ac_c const* i_actor, daObjBm_c::BgcSrc_c c
         if (dComIfG_Bgsp().LineCross(&M_wall_work[i])) {
             field_0x64[i] = M_wall_work[i].GetCross();
 
-            f32 var_f31 = sp48.abs2(field_0x64[i]);
-            if (var_f31 < field_0x17c) {
-                field_0x17c = var_f31;
+            f32 absVal = sp48.abs2(field_0x64[i]);
+            if (absVal < field_0x17c) {
+                field_0x17c = absVal;
                 field_0x178 = i;
             }
         } else {
@@ -1162,8 +1174,8 @@ void daObjBm_c::Bgc_c::wall_pos(fopAc_ac_c const* i_actor, daObjBm_c::BgcSrc_c c
     }
 }
 
-bool daObjBm_c::Bgc_c::chk_wall_pre(fopAc_ac_c const* i_actor, daObjBm_c::BgcSrc_c const* i_bgcSrc, int i_num, s16 param_3) {
-    wall_pos(i_actor, i_bgcSrc, i_num, param_3, 76.0f);
+bool daObjBm_c::Bgc_c::chk_wall_pre(fopAc_ac_c const* i_actor, daObjBm_c::BgcSrc_c const* i_bgcSrc, int i_num, s16 i_dir) {
+    wall_pos(i_actor, i_bgcSrc, i_num, i_dir, 76.0f);
     return field_0x178 >= 0;
 }
 
@@ -1173,9 +1185,9 @@ void daObjBm_c::initActionSwWait() {
     mGearRotationSpd = field_0xfaa;
     mGearRotationSpd = field_0xfac;
     mSerchBrk->setPlaySpeed(0.0f);
-    mUpBck->setPlaySpeed(0.0f);
+    mBeamosBck->setPlaySpeed(0.0f);
     mActionMode = 0;
-    mActionIdx = 0;
+    mActionIdx = ACTION_SW_WAIT_e;
 }
 
 void daObjBm_c::actionSwWait() {
@@ -1203,15 +1215,15 @@ void daObjBm_c::actionSwWait() {
 
     case 2:
         if (cLib_calcTimer(&field_0xfe5) == 0) {
-            mBeamOffBtk->init(mBeamModel->getModelData(),
-                           (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x19), 1, 0, 0.0f,
-                           0, -1);
+            mBeamBtk->init(mBeamModel->getModelData(),
+                           (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, dRes_ID_OBJ_BM_BTK_EF_BIMOBEAM_ON_e), 1,
+                           J3DFrameCtrl::EMode_NONE, 0.0f, 0, -1);
             mBeamEffBtk->setPlaySpeed(0.0f);
             mSerchBrk->init(mpModel->getModelData(),
-                           (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 0x14), 1, 2, 1.0f, 0,
-                           -1);
-            mUpBck->init((J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 7), 1, 0, 1.0f, 0, -1,
-                           true);
+                           (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, dRes_ID_OBJ_BM_BRK_TURN_e), 1,
+                           J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
+            mBeamosBck->init((J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, dRes_ID_OBJ_BM_BCK_BM_UP_e), 1,
+                         J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, true);
             fopAcM_seStart(this, Z2SE_EN_BM_UP, 0);
             mAfterSwitchActivateNoSearchTimer = AFTER_SWITCH_ACTIVATE_NO_SEARCH_TIME;
             initActionWarning();
@@ -1234,7 +1246,7 @@ void daObjBm_c::initActionWarning() {
     }
 
     mActionMode = 0;
-    mActionIdx = 1;
+    mActionIdx = ACTION_WARNING_e;
 }
 
 void daObjBm_c::actionWarning() {
@@ -1270,9 +1282,9 @@ void daObjBm_c::actionWarning() {
 }
 
 void daObjBm_c::initActionFindPlayer() {
-    mSerchBrk->init(mpModel->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 0x13),
-                   1, 0, 1.0f, 0, -1);
-    field_0x1034 = dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_NESSENHEAT), &current.pos, 0, 0, 0xff, 0,
+    mSerchBrk->init(mpModel->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, dRes_ID_OBJ_BM_BRK_SERCH_e),
+                   1, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
+    mNessenHeatPrtclEmitter = dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_NESSENHEAT), &current.pos, 0, 0, 0xFF, 0,
                                          -1, 0, 0, 0);
     field_0x1038 = -1;
     fopAcM_seStart(this, Z2SE_EN_BM_FIND, 0);
@@ -1282,7 +1294,7 @@ void daObjBm_c::initActionFindPlayer() {
     field_0xfac = SEARCH_SPD_ON_DETECT;
     field_0xfaa = field_0xfac;
     mGearRotSpdTarget = field_0xfac;
-    mActionIdx = 2;
+    mActionIdx = ACTION_FIND_PLAYER_e;
 }
 
 void daObjBm_c::actionFindPlayer() {
@@ -1338,7 +1350,7 @@ void daObjBm_c::initActionAttack() {
     #endif
     daPy_py_c* player = daPy_getPlayerActorClass();
 
-    mBeamOffBtk->init(mBeamModel->getModelData(),
+    mBeamBtk->init(mBeamModel->getModelData(),
                    (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BTK_EF_BIMOBEAM_ON_e),
                    1, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
     mBeamEffBtk->setPlaySpeed(1.0f);
@@ -1348,11 +1360,11 @@ void daObjBm_c::initActionAttack() {
 
     if (mGearSparkEmitter == NULL)
         mGearSparkEmitter = dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_GEARSPARK), &current.pos, NULL, NULL,
-                                             0xff, NULL, -1, NULL, NULL, NULL);
+                                             0xFF, NULL, -1, NULL, NULL, NULL);
 
     if (mGearRockEmitter == NULL)
         mGearRockEmitter = dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_GEARROCK), &current.pos, NULL, NULL,
-                                             0xff, NULL, -1, NULL, NULL, NULL);
+                                             0xFF, NULL, -1, NULL, NULL, NULL);
 
     if (mGearSparkEmitter != NULL) {
         mGearSparkEmitter->setRateStep(9);
@@ -1366,15 +1378,15 @@ void daObjBm_c::initActionAttack() {
     }
 
     for (int i = 0; i < 2; i++) {
-        csXyz cStack_20(0, 0, 0);
-        cStack_20.y = home.angle.y + field_0xf96;
-        field_0x1018[i] = dComIfGp_particle_set(l_eff_id[i], &field_0xfb8, &cStack_20, NULL, 0xff,
+        csXyz rotation(0, 0, 0);
+        rotation.y = home.angle.y + field_0xf96;
+        mNessenSrcPrtclEmitter[i] = dComIfGp_particle_set(l_eff_id[i], &field_0xfb8, &rotation, NULL, 0xFF,
                                                 NULL, -1, NULL, NULL, NULL);
     }
 
     field_0xfed = 0;
     mActionMode = 0;
-    mActionIdx = 3;
+    mActionIdx = ACTION_ATTACK_e;
 }
 
 void daObjBm_c::actionAttack() {
@@ -1390,16 +1402,16 @@ void daObjBm_c::actionAttack() {
     };
 
     s8 sVar3 = 0;
-    f32 dVar17 = fopAcM_searchPlayerDistanceXZ(this);
-    if (dVar17 > getBeamSearchDistance()) {
-        dVar17 = getBeamSearchDistance();
+    f32 playerDistanceXZ = fopAcM_searchPlayerDistanceXZ(this);
+    if (playerDistanceXZ > getBeamSearchDistance()) {
+        playerDistanceXZ = getBeamSearchDistance();
     }
     s16 sVar1 = 0x7530;
     s16 sVar2 = 0x1C2;
-    bool bVar4 = true;
+    bool flag = true;
     s8 searchPlayer = checkSearchPlayer();
     if (searchPlayer == -1 && cLib_calcTimer(&field_0xfe5) == 0 || field_0xfe8 != 0) {
-        bVar4 = false;
+        flag = false;
     }
 
     switch (mActionMode) {
@@ -1412,9 +1424,9 @@ void daObjBm_c::actionAttack() {
     case 1:
         field_0xfac = (ATTACK_ROT_SPD - 250) - KREG_S(0);
         field_0xf98 = fopAcM_searchPlayerAngleY(this) - home.angle.y;
-        cLib_chaseF(&mPlayerDist, dVar17, KREG_F(16) + 5.0f);
+        cLib_chaseF(&mPlayerDist, playerDistanceXZ, KREG_F(16) + 5.0f);
 
-        if (!bVar4) {
+        if (!flag) {
             mActionMode = 3;
         }
 
@@ -1426,15 +1438,15 @@ void daObjBm_c::actionAttack() {
     case 2:
         field_0xfac = ATTACK_ROT_SPD;
         field_0xf98 = fopAcM_searchPlayerAngleY(this) - home.angle.y;
-        cLib_chaseF(&mPlayerDist, dVar17, KREG_F(16) + 15.0f);
+        cLib_chaseF(&mPlayerDist, playerDistanceXZ, KREG_F(16) + 15.0f);
 
-        if (!bVar4) {
+        if (!flag) {
             mActionMode = 3;
         }
         break;
 
     case 3:
-        mBeamOffBtk->init(mBeamModel->getModelData(),
+        mBeamBtk->init(mBeamModel->getModelData(),
                        (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BTK_EF_BIMOBEAMB_OFF_e),
                        1, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
         mSerchBrk->init(mpModel->getModelData(),
@@ -1442,17 +1454,17 @@ void daObjBm_c::actionAttack() {
                        1, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
         field_0x1038 = 20;
 
-        if (field_0x1034 != NULL) {
-            field_0x1034->becomeInvalidEmitter();
-            field_0x1034->quitImmortalEmitter();
-            field_0x1034 = NULL;
+        if (mNessenHeatPrtclEmitter != NULL) {
+            mNessenHeatPrtclEmitter->becomeInvalidEmitter();
+            mNessenHeatPrtclEmitter->quitImmortalEmitter();
+            mNessenHeatPrtclEmitter = NULL;
         }
 
         for (int i = 0; i < 2; i++) {
-            if (field_0x1018[i] != NULL) {
-                field_0x1018[i]->becomeInvalidEmitter();
-                field_0x1018[i]->quitImmortalEmitter();
-                field_0x1018[i] = NULL;
+            if (mNessenSrcPrtclEmitter[i] != NULL) {
+                mNessenSrcPrtclEmitter[i]->becomeInvalidEmitter();
+                mNessenSrcPrtclEmitter[i]->quitImmortalEmitter();
+                mNessenSrcPrtclEmitter[i] = NULL;
             }
         }
 
@@ -1460,20 +1472,20 @@ void daObjBm_c::actionAttack() {
         break;
 
     case 4:
-        if (mBeamOffBtk->isStop()) {
+        if (mBeamBtk->isStop()) {
             for (int i = 0; i < 2; i++) {
-                if (field_0x1010[i] != NULL) {
-                    field_0x1010[i]->becomeInvalidEmitter();
-                    field_0x1010[i]->quitImmortalEmitter();
-                    field_0x1010[i] = NULL;
+                if (mNessenBurnPrtclEmitter[i] != NULL) {
+                    mNessenBurnPrtclEmitter[i]->becomeInvalidEmitter();
+                    mNessenBurnPrtclEmitter[i]->quitImmortalEmitter();
+                    mNessenBurnPrtclEmitter[i] = NULL;
                 }
             }
 
             for (int i = 0; i < 3; i++) {
-                if (field_0x1020[i] != NULL) {
-                    field_0x1020[i]->becomeInvalidEmitter();
-                    field_0x1020[i]->quitImmortalEmitter();
-                    field_0x1020[i] = NULL;
+                if (mNessenSplashPrtclEmitter[i] != NULL) {
+                    mNessenSplashPrtclEmitter[i]->becomeInvalidEmitter();
+                    mNessenSplashPrtclEmitter[i]->quitImmortalEmitter();
+                    mNessenSplashPrtclEmitter[i] = NULL;
                 }
             }
 
@@ -1482,37 +1494,37 @@ void daObjBm_c::actionAttack() {
     }
 
     for (int i = 0; i < 2; i++) {
-        csXyz cStack_8c(0, 0, 0);
-        cStack_8c.y = home.angle.y + field_0xf96;
+        csXyz rotation(0, 0, 0);
+        rotation.y = home.angle.y + field_0xf96;
         mDoMtx_stack_c::transS(field_0xfb8);
-        mDoMtx_stack_c::YrotM(cStack_8c.y);
+        mDoMtx_stack_c::YrotM(rotation.y);
 
-        if (field_0x1018[i] != 0) {
-            field_0x1018[i]->setGlobalRTMatrix(mDoMtx_stack_c::get());
+        if (mNessenSrcPrtclEmitter[i] != 0) {
+            mNessenSrcPrtclEmitter[i]->setGlobalRTMatrix(mDoMtx_stack_c::get());
         }
     }
 
     mBurnSoundPos = home.pos;
     cXyz cStack60 = field_0xfcc - field_0xfb8;
-    cXyz cStack_6c(field_0xfb8);
+    cXyz end(field_0xfb8);
     cStack60.normalizeZP();
-    cStack_6c += cStack60 * 1200.0f;
+    end += cStack60 * 1200.0f;
 
-    if (fopAcM_lc_c::lineCheck(&field_0xfb8, &cStack_6c, this) && fopAcM_lc_c::checkGroundHit()) {
+    if (fopAcM_lc_c::lineCheck(&field_0xfb8, &end, this) && fopAcM_lc_c::checkGroundHit()) {
         if (field_0xfed == 0) {
             for (int i = 0; i < 2; i++) {
-                if (field_0x1010[i] == NULL) {
-                    field_0x1010[i] =
+                if (mNessenBurnPrtclEmitter[i] == NULL) {
+                    mNessenBurnPrtclEmitter[i] =
                         dComIfGp_particle_set(l_eff_id[i], fopAcM_lc_c::getCrossP(), NULL, NULL,
-                                              0xff, NULL, -1, NULL, NULL, NULL);
+                                              0xFF, NULL, -1, NULL, NULL, NULL);
                 }
             }
 
             for (int i = 0; i < 3; i++) {
-                if (field_0x1020[i] == NULL) {
-                    field_0x1020[i] =
+                if (mNessenSplashPrtclEmitter[i] == NULL) {
+                    mNessenSplashPrtclEmitter[i] =
                         dComIfGp_particle_set(l_eff_id2[i], fopAcM_lc_c::getCrossP(), NULL, NULL,
-                                              0xff, NULL, -1, NULL, NULL, NULL);
+                                              0xFF, NULL, -1, NULL, NULL, NULL);
                 }
             }
 
@@ -1522,23 +1534,23 @@ void daObjBm_c::actionAttack() {
             z = fopAcM_lc_c::getCrossP()->z;
             y = fopAcM_lc_c::getCrossP()->y + 2.0f;
             mDoMtx_stack_c::transS(fopAcM_lc_c::getCrossP()->x, y, z);
-            cM3dGPla cStack_54;
-            csXyz local_94;
+            cM3dGPla plane;
+            csXyz angle;
 
-            if (fopAcM_lc_c::checkGroundHit() && fopAcM_lc_c::getTriPla(&cStack_54)) {
-                cM3d_CalcVecAngle(cStack_54.mNormal, &local_94.x, &local_94.z);
-                mDoMtx_stack_c::XYZrotM(local_94.x, 0, local_94.z);
+            if (fopAcM_lc_c::checkGroundHit() && fopAcM_lc_c::getTriPla(&plane)) {
+                cM3d_CalcVecAngle(plane.mNormal, &angle.x, &angle.z);
+                mDoMtx_stack_c::XYZrotM(angle.x, 0, angle.z);
             }
 
             for (int i = 0; i < 2; i++) {
-                if (field_0x1010[i] != NULL) {
-                    field_0x1010[i]->setGlobalRTMatrix(mDoMtx_stack_c::get());
+                if (mNessenBurnPrtclEmitter[i] != NULL) {
+                    mNessenBurnPrtclEmitter[i]->setGlobalRTMatrix(mDoMtx_stack_c::get());
                 }
             }
 
             for (int i = 0; i < 3; i++) {
-                if (field_0x1020[i] != NULL) {
-                    field_0x1020[i]->setGlobalRTMatrix(mDoMtx_stack_c::get());
+                if (mNessenSplashPrtclEmitter[i] != NULL) {
+                    mNessenSplashPrtclEmitter[i]->setGlobalRTMatrix(mDoMtx_stack_c::get());
                 }
             }
 
@@ -1553,7 +1565,8 @@ void daObjBm_c::actionAttack() {
 
     if (mSerchBrk->isStop()) {
         mSerchBrk->init(mpModel->getModelData(),
-                       (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 0x12), 1, 2, 1.0f, 0, -1);
+                       (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, dRes_ID_OBJ_BM_BRK_LOOK_e), 1,
+                       J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
     }
 
     mGearRotSpdTarget = field_0xfac * 3;
@@ -1576,40 +1589,42 @@ void daObjBm_c::initActionDead() {
 
     field_0xfac = field_0xfaa = 0;
 
-    mUpBck->init((J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 10), 1, 0, 0.0f, 0, -1, true);
-    if (mBeamOffBtk->getBtkAnm() == (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x19)) {
-        mBeamOffBtk->init(mBeamModel->getModelData(),
-                       (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BTK_EF_BIMOBEAMB_OFF_e), 1, 0, 1.0f, 0, -1);
+    mBeamosBck->init((J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, dRes_ID_OBJ_BM_BCK_OC_DOWN_e), 1,
+                 J3DFrameCtrl::EMode_NONE, 0.0f, 0, -1, true);
+    if (mBeamBtk->getBtkAnm() == (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, dRes_ID_OBJ_BM_BTK_EF_BIMOBEAM_ON_e)) {
+        mBeamBtk->init(mBeamModel->getModelData(),
+                       (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, dRes_INDEX_OBJ_BM_BTK_EF_BIMOBEAMB_OFF_e),
+                       1, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
     }
 
     field_0x1038 = 0x14;
 
     for (int i = 0; i < 2; i++) {
-        if (field_0x1018[i] != NULL) {
-            field_0x1018[i]->becomeInvalidEmitter();
-            field_0x1018[i]->quitImmortalEmitter();
-            field_0x1018[i] = NULL;
+        if (mNessenSrcPrtclEmitter[i] != NULL) {
+            mNessenSrcPrtclEmitter[i]->becomeInvalidEmitter();
+            mNessenSrcPrtclEmitter[i]->quitImmortalEmitter();
+            mNessenSrcPrtclEmitter[i] = NULL;
         }
 
-        if (field_0x1010[i] != NULL) {
-            field_0x1010[i]->becomeInvalidEmitter();
-            field_0x1010[i]->quitImmortalEmitter();
-            field_0x1010[i] = NULL;
+        if (mNessenBurnPrtclEmitter[i] != NULL) {
+            mNessenBurnPrtclEmitter[i]->becomeInvalidEmitter();
+            mNessenBurnPrtclEmitter[i]->quitImmortalEmitter();
+            mNessenBurnPrtclEmitter[i] = NULL;
         }
     }
 
     for (int i = 0; i < 3; i++) {
-        if (field_0x1020[i] != NULL) {
-            field_0x1020[i]->becomeInvalidEmitter();
-            field_0x1020[i]->quitImmortalEmitter();
-            field_0x1020[i] = NULL;
+        if (mNessenSplashPrtclEmitter[i] != NULL) {
+            mNessenSplashPrtclEmitter[i]->becomeInvalidEmitter();
+            mNessenSplashPrtclEmitter[i]->quitImmortalEmitter();
+            mNessenSplashPrtclEmitter[i] = NULL;
         }
     }
 
-    if (field_0x1034 != NULL) {
-        field_0x1034->becomeInvalidEmitter();
-        field_0x1034->quitImmortalEmitter();
-        field_0x1034 = NULL;
+    if (mNessenHeatPrtclEmitter != NULL) {
+        mNessenHeatPrtclEmitter->becomeInvalidEmitter();
+        mNessenHeatPrtclEmitter->quitImmortalEmitter();
+        mNessenHeatPrtclEmitter = NULL;
     }
 
     field_0xfe5 = 20;
@@ -1617,7 +1632,7 @@ void daObjBm_c::initActionDead() {
     mShowFlag = 0;
     fopAcM_OffStatus(this, 0);
     mActionMode = 0;
-    mActionIdx = 4;
+    mActionIdx = ACTION_DEAD_e;
 }
 
 void daObjBm_c::actionDead() {
@@ -1662,15 +1677,15 @@ void daObjBm_c::actionDead() {
 
     case 4:
         if (!cLib_calcTimer(&field_0xfe5)) {
-            mUpBck->setPlaySpeed(1.0f);
-            dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_SMOKE), &current.pos, NULL, NULL, 0xff, NULL,
+            mBeamosBck->setPlaySpeed(1.0f);
+            dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_SMOKE), &current.pos, NULL, NULL, 0xFF, NULL,
                                   -1, NULL, NULL, NULL);
             mActionMode = 5;
         }
         break;
 
     case 5:
-        if (mUpBck->isStop()) {
+        if (mBeamosBck->isStop()) {
             field_0xfe5 = 10;
             fopAcM_seStart(this, Z2SE_EN_BM_DOWN, 0);
             mActionMode = 6;
@@ -1712,7 +1727,7 @@ int daObjBm_c::Draw() {
     }
 
     mSerchBrk->entry(mpModel->getModelData());
-    mUpBck->entry(mpModel->getModelData());
+    mBeamosBck->entry(mpModel->getModelData());
     mDoExt_modelUpdateDL(mpModel);
     mDoExt_brkAnmRemove(mpModel->getModelData());
     mDoExt_bckAnmRemove(mpModel->getModelData());
@@ -1721,7 +1736,7 @@ int daObjBm_c::Draw() {
     g_env_light.setLightTevColorType_MAJI(mBeamModel, &tevStr);
 
     mBeamEffBtk->entry(mBeamModel->getModelData());
-    mBeamOffBtk->entry(mBeamModel->getModelData());
+    mBeamBtk->entry(mBeamModel->getModelData());
     mBeamEffBck->entry(mBeamModel->getModelData());
     mDoExt_modelUpdateDL(mBeamModel);
     mDoExt_btkAnmRemove(mBeamModel->getModelData());
@@ -1831,31 +1846,31 @@ int daObjBm_c::Delete() {
         mGearRockEmitter = NULL;
     }
 
-    if (field_0x1034) {
-        field_0x1034->becomeInvalidEmitter();
-        field_0x1034->quitImmortalEmitter();
-        field_0x1034 = NULL;
+    if (mNessenHeatPrtclEmitter) {
+        mNessenHeatPrtclEmitter->becomeInvalidEmitter();
+        mNessenHeatPrtclEmitter->quitImmortalEmitter();
+        mNessenHeatPrtclEmitter = NULL;
     }
 
     for (int i = 0; i < 2; i++) {
-        if (field_0x1010[i]) {
-            field_0x1010[i]->becomeInvalidEmitter();
-            field_0x1010[i]->quitImmortalEmitter();
-            field_0x1010[i] = NULL;
+        if (mNessenBurnPrtclEmitter[i]) {
+            mNessenBurnPrtclEmitter[i]->becomeInvalidEmitter();
+            mNessenBurnPrtclEmitter[i]->quitImmortalEmitter();
+            mNessenBurnPrtclEmitter[i] = NULL;
         }
 
-        if (field_0x1018[i]) {
-            field_0x1018[i]->becomeInvalidEmitter();
-            field_0x1018[i]->quitImmortalEmitter();
-            field_0x1018[i] = NULL;
+        if (mNessenSrcPrtclEmitter[i]) {
+            mNessenSrcPrtclEmitter[i]->becomeInvalidEmitter();
+            mNessenSrcPrtclEmitter[i]->quitImmortalEmitter();
+            mNessenSrcPrtclEmitter[i] = NULL;
         }
     }
 
     for (int i = 0; i < 3; i++) {
-        if (field_0x1020[i]) {
-            field_0x1020[i]->becomeInvalidEmitter();
-            field_0x1020[i]->quitImmortalEmitter();
-            field_0x1020[i] = NULL;
+        if (mNessenSplashPrtclEmitter[i]) {
+            mNessenSplashPrtclEmitter[i]->becomeInvalidEmitter();
+            mNessenSplashPrtclEmitter[i]->quitImmortalEmitter();
+            mNessenSplashPrtclEmitter[i] = NULL;
         }
     }
 

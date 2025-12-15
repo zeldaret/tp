@@ -134,9 +134,9 @@ public:
     /* 0x05A0 */ request_of_phase_process_class mPhase;
     /* 0x05A8 */ J3DModel* mpModel;
     /* 0x05AC */ mDoExt_brkAnm* mSerchBrk;
-    /* 0x05B0 */ mDoExt_bckAnm* mUpBck;
+    /* 0x05B0 */ mDoExt_bckAnm* mBeamosBck;
     /* 0x05B4 */ J3DModel* mBeamModel;
-    /* 0x05B8 */ mDoExt_btkAnm* mBeamOffBtk;
+    /* 0x05B8 */ mDoExt_btkAnm* mBeamBtk;
     /* 0x05BC */ mDoExt_btkAnm* mBeamEffBtk;
     /* 0x05C0 */ mDoExt_bckAnm* mBeamEffBck;
     /* 0x05C4 */ J3DModel* mBmfModel;
@@ -190,12 +190,12 @@ public:
     /* 0x100A */ u16 field_0x100a;
     /* 0x100C */ u16 field_0x100c;
     /* 0x100E */ u8 mCreateFirstFlag;
-    /* 0x1010 */ JPABaseEmitter* field_0x1010[2];
-    /* 0x1018 */ JPABaseEmitter* field_0x1018[2];
-    /* 0x1010 */ JPABaseEmitter* field_0x1020[3];
+    /* 0x1010 */ JPABaseEmitter* mNessenBurnPrtclEmitter[2];
+    /* 0x1018 */ JPABaseEmitter* mNessenSrcPrtclEmitter[2];
+    /* 0x1010 */ JPABaseEmitter* mNessenSplashPrtclEmitter[3];
     /* 0x102C */ JPABaseEmitter* mGearSparkEmitter;
     /* 0x1030 */ JPABaseEmitter* mGearRockEmitter;
-    /* 0x1034 */ JPABaseEmitter* field_0x1034;
+    /* 0x1034 */ JPABaseEmitter* mNessenHeatPrtclEmitter;
     /* 0x1038 */ s8 field_0x1038;
     /* 0x1039 */ s8 field_0x1039;
     /* 0x103C */ cXyz mSparkSePos;
