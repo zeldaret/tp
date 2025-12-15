@@ -82,7 +82,7 @@ public:
     MtxP getRideMtx() { return mpModelMorf->getModel()->getAnmMtx(15); }
     f32 nowAnimeFrame() const { return mpModelMorf->getFrame(); }
     s16 getWaitRollAngle() const { return mWaitRollAngle; }
-    bool checkGetOff() const { return mEnemy.speedF < 3.0f; }
+    BOOL checkGetOff() const { return mEnemy.speedF < 3.0f; }
     f32 rideSpeedRate() const { return mEnemy.speedF / mSpeedRate; }
     f32 getAnimeFrameRate() { return mpModelMorf->getFrame() / mpModelMorf->getEndFrame(); }
     BOOL checkAnmLoopFrame() { return mpModelMorf->checkFrame(0.0f); }
