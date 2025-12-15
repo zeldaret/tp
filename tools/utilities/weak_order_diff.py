@@ -35,10 +35,10 @@ def get_symbols(o_path: Path, diff_data: bool):
             if vis == "HIDDEN":
                 continue
             if re.search(r"^@\d+$", name):
-                continue
+                name = "@"
             if re.search(r"^lbl_[0-9a-f]+_(?:data|bss)_[0-9a-f]+$", name):
                 continue
-            match = re.search(r"^(\S+)\$\d+$", name)
+            match = re.search(r"^(\S+\$)\d+$", name)
             if match:
                 name = match.group(1)
         else:
@@ -82,6 +82,8 @@ def print_symbols_with_unmatched_order_for_object(
         if target_sym == base_sym:
             base_idx += 1
             matched_count += 1
+        elif target_sym not in base_symbols:
+            print("MISSING SYMBOL:", target_sym)
         else:
             base_idx = base_symbols.index(target_sym)
             base_idx += 1
