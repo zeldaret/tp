@@ -63,23 +63,13 @@
 #define STATIC_ASSERT(...)
 #endif
 
-#ifdef __MWERKS__
-// Intrinsics
+#ifndef __MWERKS__
+// Silence clangd errors about MWCC PPC intrinsics by declaring them here.
 extern int __cntlzw(unsigned int);
 extern int __rlwimi(int, int, int, int, int);
 extern void __dcbz(void*, int);
 extern void __sync();
 extern int __abs(int);
-#else
-// to stop clangd errors
-#define __cntlzw
-#define __rlwimi
-#define __dcbz
-#define __sync
-#define __abs
-#endif
-
-#ifndef __MWERKS__
 void* __memcpy(void*, const void*, int);
 #endif
 
