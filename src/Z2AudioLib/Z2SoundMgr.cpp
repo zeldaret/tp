@@ -5,11 +5,14 @@
 #include "Z2AudioLib/Z2SeqMgr.h"
 #include "Z2AudioLib/Z2SeMgr.h"
 #include "Z2AudioLib/Z2SoundInfo.h"
-#include "Z2AudioLib/Z2AudioCS.h"
 #include "JSystem/JAudio2/JASCalc.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
 #include "JSystem/JAudio2/JAUSectionHeap.h"
 #include "d/d_com_inf_game.h"
+
+#if PLATFORM_WII || PLATFORM_SHIELD
+#include "Z2AudioLib/Z2AudioCS.h"
+#endif
 
 u16 seqCallback(JASTrack* track, u16 command) {
     switch (command) {

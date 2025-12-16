@@ -45,6 +45,10 @@
 #define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
 
+#ifndef decltype
+#define decltype __decltype__
+#endif
+
 #define JUT_EXPECT(...)
 
 #define _SDA_BASE_(dummy) 0
@@ -77,6 +81,9 @@ void* __memcpy(void*, const void*, int);
 
 #define SQUARE(x) ((x) * (x))
 
+#define POINTER_ADD_TYPE(type_, ptr_, offset_) ((type_)((unsigned long)(ptr_) + (unsigned long)(offset_)))
+#define POINTER_ADD(ptr_, offset_) POINTER_ADD_TYPE(__typeof__(ptr_), ptr_, offset_)
+
 // floating-point constants
 #define _HUGE_ENUF 1e+300
 #define INFINITY ((float)(_HUGE_ENUF * _HUGE_ENUF))
@@ -91,6 +98,14 @@ static const float INF = 2000000000.0f;
 #define READU32_BE(ptr, offset) \
     (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
 
+#ifndef NO_INLINE
+#ifdef __MWERKS__
+#define NO_INLINE __attribute__((never_inline))
+#else
+#define NO_INLINE
+#endif
+#endif
+    
 // Hack to trick the compiler into not inlining functions that use this macro.
 #define FORCE_DONT_INLINE \
     (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \

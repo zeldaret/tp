@@ -2,6 +2,7 @@
 #define _REVOLUTION_AXFX_H_
 
 #include <revolution/types.h>
+#include <revolution/ax.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -158,6 +159,9 @@ typedef struct AXFX_CHORUS {
     /* 0x98 */ u32 period;
 } AXFX_CHORUS;
 
+typedef void* (*AXFXAllocFunc)(u32);
+typedef void (*AXFXFreeFunc)(void*);
+
 // chorus
 int AXFXChorusInit(AXFX_CHORUS* c);
 int AXFXChorusShutdown(AXFX_CHORUS* c);
@@ -168,14 +172,13 @@ void AXFXChorusCallback(AXFX_BUFFERUPDATE* bufferUpdate, AXFX_CHORUS* chorus);
 void AXFXDelayCallback(AXFX_BUFFERUPDATE* bufferUpdate, AXFX_DELAY* delay);
 int AXFXDelaySettings(AXFX_DELAY* delay);
 int AXFXDelayInit(AXFX_DELAY* delay);
-int AXFXDelayShutdown(AXFX_DELAY* delay); 
+int AXFXDelayShutdown(AXFX_DELAY* delay);
 
 // reverb_hi
 void DoCrossTalk(s32* l, s32* r, f32 cross, f32 invcross);
 int AXFXReverbHiInit(AXFX_REVERBHI* rev);
 int AXFXReverbHiShutdown(AXFX_REVERBHI* rev);
 int AXFXReverbHiSettings(AXFX_REVERBHI* rev);
-void AXFXReverbHiCallback(AXFX_BUFFERUPDATE* bufferUpdate, AXFX_REVERBHI* reverb);
 
 // reverb_hi_4ch
 int AXFXReverbHiInitDpl2(AXFX_REVERBHI_DPL2* reverb);
@@ -189,8 +192,23 @@ int AXFXReverbStdShutdown(AXFX_REVERBSTD* rev);
 int AXFXReverbStdSettings(AXFX_REVERBSTD* rev);
 void AXFXReverbStdCallback(AXFX_BUFFERUPDATE* bufferUpdate, AXFX_REVERBSTD* reverb);
 
+void AXFXReverbHiCallback(void *data, void *context);
+void AXGetAuxACallback(AXAuxCallback* cbOut, void** contextOut);
+void AXFXSetHooks(AXFXAllocFunc alloc, AXFXFreeFunc free);
+void AXFXGetHooks(AXFXAllocFunc* allocOut, AXFXFreeFunc* freeOut);
+BOOL AXFXReverbHiInit(AXFX_REVERBHI* reverbHi);
+BOOL AXFXReverbHiShutdown(AXFX_REVERBHI* reverbHi);
+u16 AXGetAuxAReturnVolume(void);
+u16 AXGetAuxBReturnVolume(void);
+u16 AXGetAuxCReturnVolume(void);
+void AXSetAuxAReturnVolume(u16 volume);
+void AXSetAuxBReturnVolume(u16 volume);
+void AXSetAuxCReturnVolume(u16 volume);
+void AXSetMasterVolume(u16 volume);
+u16 AXGetMasterVolume(void);
+
 #ifdef __cplusplus
 }
 #endif
 
-#endif // _REVOLUTION_AXFX_H_
+#endif  // _REVOLUTION_AXFX_H_

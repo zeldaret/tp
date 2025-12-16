@@ -7,6 +7,16 @@
 extern "C" {
 #endif
 
+#define AX_SAMPLE_RATE 32000
+#define AX_SAMPLES_PER_FRAME 96
+#define AX_SAMPLE_DEPTH_BYTES sizeof(u32)
+#define AX_SAMPLES_PER_FRAME_RMT 18
+#define AX_FRAME_SIZE (AX_SAMPLES_PER_FRAME * AX_SAMPLE_DEPTH_BYTES)
+#define AX_MAX_VOLUME 32768
+
+#define AX_VOICE_STOP 0
+#define AX_VOICE_RUN  1
+
 typedef struct _AXPBMIX {
     /* 0x00 */ u16 vL;
     /* 0x02 */ u16 vDeltaL;
@@ -210,7 +220,45 @@ typedef struct AX_AUX_DATA_DPL2 {
     /* 0x00 */ s32* rs;
 } AX_AUX_DATA_DPL2;
 
+typedef struct _AXPBRMTMIX {
+    /* 0x0 */ u16 vMain0;
+    /* 0x2 */ u16 vDeltaMain0;
+    /* 0x4 */ u16 vAux0;
+    /* 0x6 */ u16 vDeltaAux0;
+    /* 0x8 */ u16 vMain1;
+    /* 0xA */ u16 vDeltaMain1;
+    /* 0xC */ u16 vAux1;
+    /* 0xE */ u16 vDeltaAux1;
+    /* 0x10 */ u16 vMain2;
+    /* 0x12 */ u16 vDeltaMain2;
+    /* 0x14 */ u16 vAux2;
+    /* 0x16 */ u16 vDeltaAux2;
+    /* 0x18 */ u16 vMain3;
+    /* 0x1A */ u16 vDeltaMain3;
+    /* 0x1C */ u16 vAux3;
+    /* 0x1E */ u16 vDeltaAux3;
+} AXPBRMTMIX;
+
+typedef struct _AXPBBIQUAD {
+    /* 0x0 */ u16 on;
+    /* 0x2 */ u16 xn1;
+    /* 0x4 */ u16 xn2;
+    /* 0x6 */ u16 yn1;
+    /* 0x8 */ u16 yn2;
+    /* 0xA */ u16 b0;
+    /* 0xC */ u16 b1;
+    /* 0xE */ u16 b2;
+    /* 0x10 */ u16 a1;
+    /* 0x12 */ u16 a2;
+} AXPBBIQUAD;
+
+typedef union __AXPBRMTIIR {
+    AXPBLPF lpf;
+    AXPBBIQUAD biquad;
+} AXPBRMTIIR;
+
 typedef void (*AXCallback)();
+typedef void (*AXAuxCallback)(void* chans, void* context);
 
 #define AX_DSP_SLAVE_LENGTH 0xF80
 #define AX_MAX_VOICES 64
@@ -268,7 +316,7 @@ AXVPB* AXAcquireVoice(u32 priority, void (*callback)(void *), u32 userContext);
 void AXSetVoicePriority(AXVPB* p, u32 priority);
 
 // AXAux
-void AXRegisterAuxACallback(void (*callback)(void*, void*), void* context);
+void AXRegisterAuxACallback(AXAuxCallback callback, void* context);
 void AXRegisterAuxBCallback(void (*callback)(void*, void*), void* context);
 
 // AXCL

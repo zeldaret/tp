@@ -269,41 +269,6 @@ extern "C" {
 
 #define WPAD_RADIO_QUALITY_GOOD  0  // 80+
 #define WPAD_RADIO_QUALITY_BAD   1  // 80-
-
-
-#define WPAD_DEV_CORE             0
-#define WPAD_DEV_FS               1
-#define WPAD_DEV_CLASSIC          2
-#define WPAD_DEV_BALANCE_CHECKER  3
-#define WPAD_DEV_VSM              4
-#define WPAD_DEV_MOTION_PLUS      5
-#define WPAD_DEV_MPLS_PT_FS       6
-#define WPAD_DEV_MPLS_PT_CLASSIC  7
-
-#define WPAD_DEV_TRAIN            16
-#define WPAD_DEV_GUITAR           17
-#define WPAD_DEV_DRUM             18
-#define WPAD_DEV_TAIKO            19
-#define WPAD_DEV_TURNTABLE        20
-
-// seems to be like maybe general purpose non-specific device types
-// maybe this was for testing or something? idk
-#define WPAD_DEV_BULK_1           21
-#define WPAD_DEV_BULK_2           22
-#define WPAD_DEV_BULK_3           23
-#define WPAD_DEV_BULK_4           24
-#define WPAD_DEV_BULK_5           25
-#define WPAD_DEV_BULK_6           26
-#define WPAD_DEV_BULK_7           27
-#define WPAD_DEV_BULK_8           28
-
-#define WPAD_DEV_MPLS_PT_UNKNOWN  250
-#define WPAD_DEV_251              251
-#define WPAD_DEV_252              252  // invalid device mode?
-#define WPAD_DEV_NONE             253  // sort of like WPAD_ENODEV (see __wpadAbortInitExtension in WPADHIDParser.c)
-#define WPAD_DEV_INITIALIZING     255  // see __a1_20_status_report
-
-
 struct WPADCmd {
     /* 0x00 */ u32 reportID;
     /* 0x04 */ u8 dataBuf[RPT_MAX_SIZE];
@@ -312,7 +277,7 @@ struct WPADCmd {
     /* 0x20 */ u16 readLength;
     /* 0x24 */ u32 readAddress;
     /* 0x28 */ WPADInfo* statusReportOut;
-    /* 0x2c */ WPADCallback* cmdCB;
+    /* 0x2c */ WPADCallback cmdCB;
 };  // size 0x30
 
 struct WPADCmdQueue {
@@ -420,10 +385,10 @@ typedef struct /* possibly untagged, like kpad */ {
     /* 0x850 */ WPADInfo* infoOut;
     /* 0x854 */ struct WPADDevConfig devConfig;
     /* 0x884 */ struct WPADExtConfig extConfig;
-    /* 0x8e0 */ WPADCallback* cmdBlkCB;
-    /* 0x8e4 */ WPADExtensionCallback* extensionCB;
-    /* 0x8e8 */ WPADConnectCallback* connectCB;
-    /* 0x8ec */ WPADSamplingCallback* samplingCB;
+    /* 0x8e0 */ WPADCallback cmdBlkCB;
+    /* 0x8e4 */ WPADExtensionCallback extensionCB;
+    /* 0x8e8 */ WPADConnectCallback connectCB;
+    /* 0x8ec */ WPADSamplingCallback samplingCB;
     /* 0x8f0 */ void* samplingBuf;
     /* 0x8f4 */ u32 samplingBufIndex;
     /* 0x8f8 */ u32 samplingBufSize;
@@ -448,7 +413,7 @@ typedef struct /* possibly untagged, like kpad */ {
     /* 0x920 */ BOOL handshakeFinished;
     /* 0x924 */ int configIndex;
     /* 0x928 */ OSThreadQueue threadQueue; /* purpose unknown */
-    /* 0x930 */ WPADCallback* vsmCallback;
+    /* 0x930 */ WPADCallback vsmCallback;
     /* 0x934 */ u8 controlMplsBusy;
     /* 0x935 */ u8 mplsCBReadBuf[2];
     /* 0x937 */ u8 mplsCBCounter; // idk???
@@ -491,7 +456,7 @@ typedef struct /* possibly untagged, like kpad */ {
     /* 0xb7c */ u16 copyOutCount;
     /* 0xb7e */ u8 sleeping;
     /* 0xb7f */ u8 lastReportID;
-    /* 0xb80 */ WPADCallback* getInfoCB;
+    /* 0xb80 */ WPADCallback getInfoCB;
     /* 0xb84 */ u8 getInfoBusy;
     /* 0xb85 */ u8 extState;
     /* 0xb86 */ u8 savePower;
@@ -500,7 +465,7 @@ typedef struct /* possibly untagged, like kpad */ {
     /* 0xb89 */ u8 extWasDisconnected;
     /* 0xb8a */ s16 reconnectExtMs;
     /* 0xb8c */ struct WPADMemBlock memBlock;
-    /* 0xba0 */ WPADCallback* controlMplsCB;
+    /* 0xba0 */ WPADCallback controlMplsCB;
     /* 0xba4 */ u8 parseMPBuf;
     /* 0xba5 */ u8 certProbeByte;
     /* 0xba6 */ u8 dpdBusy;
@@ -524,12 +489,12 @@ typedef struct /* possibly untagged, like kpad */ {
 } ATTRIBUTE_ALIGN(32) wpad_cb_st; // size 0xbe0
 
 BOOL WPADiIsAvailableCmdQueue(struct WPADCmdQueue* cmdQueue, s8 num);
-BOOL WPADiSendWriteDataCmd(struct WPADCmdQueue* cmdQueue, u8 cmd, u32 address, WPADCallback* cb);
-BOOL WPADiSendWriteData(struct WPADCmdQueue* cmdQueue, void const* p_buf, u16 len, u32 address, WPADCallback* cb);
+BOOL WPADiSendWriteDataCmd(struct WPADCmdQueue* cmdQueue, u8 cmd, u32 address, WPADCallback cb);
+BOOL WPADiSendWriteData(struct WPADCmdQueue* cmdQueue, void const* p_buf, u16 len, u32 address, WPADCallback cb);
 BOOL WPADiSendStreamData(struct WPADCmdQueue* cmdQueue, void const* p_buf, u16 len);
-BOOL WPADiSendMuteSpeaker(struct WPADCmdQueue* cmdQueue, BOOL muted, WPADCallback* cb);
-BOOL WPADiSendEnableSpeaker(struct WPADCmdQueue* cmdQueue, BOOL enabled, WPADCallback* cb);
-BOOL WPADiSendGetContStat(struct WPADCmdQueue* cmdQueue, WPADInfo* infoOut, WPADCallback* cb);
+BOOL WPADiSendMuteSpeaker(struct WPADCmdQueue* cmdQueue, BOOL muted, WPADCallback cb);
+BOOL WPADiSendEnableSpeaker(struct WPADCmdQueue* cmdQueue, BOOL enabled, WPADCallback cb);
+BOOL WPADiSendGetContStat(struct WPADCmdQueue* cmdQueue, WPADInfo* infoOut, WPADCallback cb);
 
 #ifdef __cplusplus
 }

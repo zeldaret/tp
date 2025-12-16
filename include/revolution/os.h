@@ -320,46 +320,98 @@ extern BOOL __OSInReboot;
     
 #define ASSERT(cond) ASSERTLINE(__LINE__, cond)
 
-inline s16 __OSf32tos16(__REGISTER f32 inF) {
-#ifdef __MWERKS__
-    register s16 out;
-    u32 tmp;
-    register u32* tmpPtr = &tmp;
-    // clang-format off
+static inline u8 __OSf32tou8(register f32 in) {
+	f32 a;
+	register f32* ptr = &a;
+	u8 r;
 
-    asm {
-        psq_st inF, 0(tmpPtr), 0x1, 5
-        lha out, 0(tmpPtr)
-    }
-
-    // clang-format on
-    return out;
+#if defined(__MWERKS__)
+	asm { psq_st in, 0(ptr), 1, 2 };
+#else
+# pragma unused(in)
 #endif
+
+	r = *(u8 *)ptr;
+
+	return r;
 }
 
-inline void OSf32tos16(f32* f, s16* out) {
-    *out = __OSf32tos16(*f);
-}
+static inline u16 __OSf32tou16(register f32 in) {
+	f32 a;
+	register f32* ptr = &a;
+	u16 r;
 
-inline u8 __OSf32tou8(__REGISTER f32 inF) {
-#ifdef __MWERKS__
-    register u8 out;
-    u32 tmp;
-    register u32* tmpPtr = &tmp;
-    // clang-format off
-
-    asm {
-        psq_st inF, 0(tmpPtr), 0x1, 2
-        lbz out, 0(tmpPtr)
-    }
-
-    // clang-format on
-    return out;
+#if defined(__MWERKS__)
+	asm { psq_st in, 0(ptr), 1, 3 };
+#else
+# pragma unused(in)
 #endif
+
+	r = *(u16 *)ptr;
+
+	return r;
 }
 
-inline void OSf32tou8(f32* f, u8* out) {
-    *out = __OSf32tou8(*f);
+static inline s16 __OSf32tos16(register f32 in) {
+	f32 a;
+	register f32* ptr = &a;
+	s16 r;
+
+#if defined(__MWERKS__)
+	asm { psq_st in, 0(ptr), 1, 5 };
+#else
+# pragma unused(in)
+#endif
+
+	r = *(s16*)ptr;
+
+	return r;
+}
+
+static inline f32 __OSu16tof32(register u16 const* arg) {
+	register f32 ret;
+
+#if defined(__MWERKS__)
+	asm { psq_l ret, 0(arg), 1, 3 };
+#else
+# pragma unused(arg)
+	ret = 0;
+#endif
+
+	return ret;
+}
+
+static inline f32 __OSs16tof32(register s16 const* arg) {
+	register f32 ret;
+
+#if defined(__MWERKS__)
+	asm { psq_l ret, 0(arg), 1, 5 };
+#else
+# pragma unused(arg)
+	ret = 0;
+#endif
+
+	return ret;
+}
+
+static inline void OSf32tou8(f32 const* in, u8* out) {
+	*out = __OSf32tou8(*in);
+}
+
+static inline void OSf32tou16(f32 const* in, u16* out) {
+	*out = __OSf32tou16(*in);
+}
+
+static inline void OSf32tos16(f32 const* in, s16* out) {
+	*out = __OSf32tos16(*in);
+}
+
+static inline void OSs16tof32(s16 const* in, f32* out) {
+	*out = __OSs16tof32(in);
+}
+
+static inline void OSu16tof32(u16 const* in, f32* out) {
+	*out = __OSu16tof32(in);
 }
 
 static inline void OSInitFastCast(void) {
