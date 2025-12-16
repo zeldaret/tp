@@ -488,6 +488,14 @@ def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
             "progress_category": "sdk",
             "objects": objects,
         }
+    elif config.version == "RZDE01_00":
+        return {
+            "lib": lib_name,
+            "mw_version": "GC/3.0a3",
+            "cflags": [*cflags_revolution_retail, "-DSDK_SEP2006", "-DNW4HBM_DEBUG"],
+            "progress_category": "sdk",
+            "objects": objects,
+        }
     else:
         return {
             "lib": lib_name,

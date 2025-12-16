@@ -30,12 +30,15 @@ namespace nw4hbm {
     }  // namespace db
 }  // namespace nw4r
 
+#if NW4HBM_DEBUG
 #define NW4R_DB_WARNING(line, exp, ...) \
     (void)((exp) || (nw4hbm::db::detail::Warning(__FILE__, line, __VA_ARGS__), 0))
-
 #define NW4R_DB_ASSERTMSG(line, exp, ...) \
     (void)((exp) || (nw4hbm::db::detail::Panic(__FILE__, line, __VA_ARGS__), 0))
-
+#else
+#define NW4R_DB_WARNING(line, exp, ...) (void)0
+#define NW4R_DB_ASSERTMSG(line, exp, ...) (void)0
+#endif
 
 #define NW4R_ASSERT(line, exp) \
     NW4R_DB_ASSERTMSG(line, (exp), "Failed assertion " #exp)
