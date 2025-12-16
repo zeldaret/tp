@@ -2155,7 +2155,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_mant"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_mg_fshop"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_mirror"),
-    ActorRel(NonMatching, "d_a_movie_player"),
+    ActorRel(Equivalent, "d_a_movie_player"), # weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_myna"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_ni"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_aru"),

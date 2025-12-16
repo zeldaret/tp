@@ -3197,7 +3197,6 @@ static u16 daMP_VolumeTable[] = {
     0x7247, 0x7430, 0x761E, 0x7810, 0x7A06, 0x7C00, 0x7DFE, 0x8000,
 };
 
-// NONMATCHING - missing extsh
 #pragma push
 #pragma optimization_level 3
 static void daMP_MixAudio(s16* destination, s16*, u32 sample) {
@@ -3213,6 +3212,7 @@ static void daMP_MixAudio(s16* destination, s16*, u32 sample) {
 		requestSample = sample;
 		dst = destination;
 
+        BOOL loop = TRUE;
 		do {
 			do {
 				if (daMP_ActivePlayer.playAudioBuffer == (THPAudioBuffer*)NULL) {
@@ -3255,6 +3255,8 @@ static void daMP_MixAudio(s16* destination, s16*, u32 sample) {
 
                 if (JASDriver::getOutputMode() == 0) {
                     l_mix = r_mix = ((r_mix >> 1) + (l_mix >> 1));
+                    r_mix = (s16)r_mix;
+                    l_mix = (s16)l_mix;
                 }
 
                 dst[0] = l_mix;
@@ -3277,7 +3279,7 @@ static void daMP_MixAudio(s16* destination, s16*, u32 sample) {
 				break;
 			}
 
-		} while (TRUE);
+		} while (loop);
 	} else {
 		memset(destination, 0, sample * 4);
 	}
