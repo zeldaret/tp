@@ -3214,11 +3214,15 @@ void daKago_c::moveDemoFly() {
                 field_0x6c4 = 8000.0f;
                 field_0x710 = field_0x712 = 0;
 
+#if VERSION == VERSION_WII_USA_R0
+                field_0x72c = 30;
+#else
                 if (dComIfGp_getStartStagePoint() == 0) {
                     field_0x72c = 30;
                 } else {
                     field_0x72c = 60 + nREG_S(1);
                 }
+#endif
 
                 shape_angle.y = current.angle.y;
 

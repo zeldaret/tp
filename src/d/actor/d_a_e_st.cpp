@@ -2687,7 +2687,11 @@ static int daE_ST_Execute(e_st_class* i_this) {
             cMtx_YrotS(*calc_mtx, i_this->field_0x7f2);
             pos.x = 0.0f;
             pos.y = 0.0f;
+#if VERSION == VERSION_WII_USA_R0
+            pos.z = i_this->field_0x7ec * -cM_ssin(i_this->field_0x7f0 * (TREG_S(4) + 900));
+#else
             pos.z = i_this->field_0x7ec * -cM_ssin(i_this->field_0x7f0 * (TREG_F(4) + 900));
+#endif
             MtxPosition(&pos, &offset);
             i_this->field_0x7f0++;
             cLib_addCalc0(&i_this->field_0x7ec, 1.0f, 0.1f);
