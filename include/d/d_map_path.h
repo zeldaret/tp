@@ -3,6 +3,46 @@
 
 #include "d/d_drawlist.h"
 
+namespace dMpath_HIO_n {
+    struct list_s {
+        /* 0x00 */ void* field_0x0;
+        /* 0x04 */ u32 field_0x4;
+    };
+
+    class hioList_c {
+    public:
+        /* 0x00 */ list_s field_0x0;
+
+        virtual ~hioList_c() {}
+        virtual void copySrcToHio() = 0;
+        virtual void copyHioToDst() = 0;
+        virtual void copyBufToHio(const char*) = 0;
+
+        void set(const list_s& param_1) { field_0x0 = param_1; }
+        void gen(JORMContext*);
+        void update(JORMContext*);
+        u32 addString(char*, u32, u32) const;
+        u32 addStringBinary(char*, u32, u32) const;
+    };
+}
+
+class dMpath_HIO_file_base_c : public JORReflexible {
+public:
+    virtual ~dMpath_HIO_file_base_c() {}
+    virtual u32 addString(char*, u32, u32) = 0;
+    virtual u32 addData(char*, u32, u32) = 0;
+    virtual void copyReadBufToData(const char*, s32) = 0;
+    virtual u32 addStringBinary(char* param_1, u32 param_2, u32 param_3) {
+        return addString(param_1, param_2, param_3);
+    }
+
+    BOOL writeHostioTextFile(const char*);
+    BOOL writeBinaryTextFile(const char*);
+    BOOL writeBinaryFile(const char*);
+    void binaryDump(const void*, u32);
+    bool readBinaryFile(const char*);
+};
+
 class dDrawPath_c : public dDlst_base_c {
 public:
     struct line_class {

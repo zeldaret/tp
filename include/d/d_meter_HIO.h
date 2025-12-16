@@ -11,7 +11,7 @@
 struct subJOREventCallbackListNode : public JOREventCallbackListNode {
     subJOREventCallbackListNode() : JOREventCallbackListNode(0x81000000, 0x81000000, true) {}
 
-    virtual int JORAct(u32, const char*);
+    virtual BOOL JORAct(u32, const char*);
     virtual ~subJOREventCallbackListNode() {}
 };
 
@@ -578,12 +578,14 @@ public:
     /* 0xA8 */ u8 mAnimDebug;
 };  // Size: 0xAC
 
+class dMeter_map_HIO_c;
+
 class dMeter_drawHIO_c : public JORReflexible {
 public:
     dMeter_drawHIO_c();
     virtual ~dMeter_drawHIO_c() {
         #if DEBUG
-        field_0x8_debug = 0;
+        field_0x8_debug = NULL;
         #endif
     }
 
@@ -602,7 +604,7 @@ public:
     /* 0x000 */  // vtable
     /* 0x004 */ s8 field_0x4;
     #if DEBUG
-    int field_0x8_debug;
+    dMeter_map_HIO_c* field_0x8_debug;
     #endif
     /* 0x008 */ f32 mLifeTopPosX;
     /* 0x00C */ f32 mLifeTopPosY;
@@ -1140,6 +1142,10 @@ public:
     /* 0x179 */ bool mIconDisplay[22];
 };  // Size: 0x190
 
+class dMf_HIO_c;
+class dMdm_HIO_c;
+class dMfm_HIO_c;
+
 class dMeter_fmapHIO_c : public JORReflexible {
 public:
     enum {
@@ -1199,13 +1205,13 @@ public:
     #if DEBUG
     /* 0x008 */ subJOREventCallbackListNode* mpEvtCallBack;
     #endif
-    /* 0x008 */ JKRAramArchive* mpArcData;
+    /* 0x008 */ JKRArchive* mpArcData;
     /* 0x00C */ void* mpArcFile;
     /* 0x010 */ void* mpDecompBuf;
-    /* 0x014 */ void* field_0x14;
-    /* 0x018 */ void* field_0x18;
+    /* 0x014 */ dMfm_HIO_c* field_0x14;
+    /* 0x018 */ dMdm_HIO_c* field_0x18;
     #if DEBUG
-    /* 0x020 */ u8 unk_0x20[4];
+    /* 0x020 */ dMf_HIO_c* field_0x20;
     #endif
     /* 0x01C */ MapBlinkAnime mMapBlink[3];
     /* 0x094 */ s16 mDisplayFrameNum;

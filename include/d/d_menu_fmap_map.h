@@ -30,6 +30,10 @@ struct dMfm_HIO_prm_res_src_s {
     static const dMfm_HIO_prm_res_src_s m_other;
 };
 
+struct dMfm_HIO_prm_res_dst_s {
+    static const void* m_res;
+};
+
 class renderingFmap_c : public dRenderingFDAmap_c {
 public:
     enum palette_e {
@@ -97,9 +101,9 @@ public:
     bool isDrawEnable() { return mDrawEnable; }
 
     /* 0x24 */ Mtx mViewMtx;
-    /* 0x54 */ cXyz mEye;
-    /* 0x60 */ cXyz mCenter;
-    /* 0x6C */ cXyz mUp;
+    /* 0x54 */ Vec mEye;
+    /* 0x60 */ Vec mCenter;
+    /* 0x6C */ Vec mUp;
     /* 0x78 */ dMenu_Fmap_world_data_c* mpWorldData;
     /* 0x7C */ dMenu_Fmap_region_data_c* mpRegionData;
     /* 0x80 */ dMenu_Fmap_stage_data_c* mpStageData;
@@ -120,7 +124,42 @@ public:
     /* 0xB9 */ u8 mSaveTableNo;
     /* 0xBA */ u8 mVisitedRoomSaveTableNo;
     /* 0xBB */ bool mDrawEnable;
- };
+};
+
+class dMfm_HIO_list_c : public dMpath_HIO_n::hioList_c {
+public:
+    virtual void copySrcToHio();
+    virtual void copyHioToDst();
+    virtual void copyBufToHio(const char*);
+};
+
+class dMfm_HIO_c : public dMpath_HIO_file_base_c {
+public:
+    dMfm_HIO_c();
+    virtual ~dMfm_HIO_c() { mMySelfPointer = NULL; }
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+    virtual u32 addString(char* param_1, u32 param_2, u32 param_3) { return field_0xc.addString(param_1, param_2, param_3); }
+    virtual u32 addData(char* param_1, u32 param_2, u32 param_3) {
+        (void)param_2;
+        (void)param_3;
+        memcpy(param_1, dMfm_HIO_prm_res_dst_s::m_res, 366);
+        return 366;
+    }
+    virtual void copyReadBufToData(const char* param_1, s32 param_2) {
+        (void)param_2;
+        field_0xc.copyBufToHio(param_1);
+    }
+    virtual u32 addStringBinary(char* param_1, u32 param_2, u32 param_3) { return field_0xc.addStringBinary(param_1, param_2, param_3); }
+
+    /* 0x04 */ u8 field_0x4[0x8 - 0x4];
+    /* 0x08 */ dMenu_FmapMap_c* field_0x8;
+    /* 0x0C */ dMfm_HIO_list_c field_0xc;
+    /* 0x18 */ u8 field_0x18;
+
+    static dMfm_HIO_c* mMySelfPointer;
+    static dMpath_HIO_n::list_s l_list;
+};
 
 class dMenu_FmapMap_c : public renderingFmap_c {
 public:
@@ -166,12 +205,17 @@ public:
     }
 
     ResTIMG* getResTIMGPointer() { return mResTIMG; }
-
+#if DEBUG
+    dMenu_Fmap_world_data_c* getWorldData() { return mpWorldData; }
+#endif
     /* 0xBC */ ResTIMG* mResTIMG;
     /* 0xC0 */ u8* mMapImage_p;
     /* 0xC4 */ dMfm_prm_res_s* m_res;
     /* 0xC8 */ dMpath_RGB5A3_palDt_s* m_palette;
     /* 0xCC */ int field_0xcc;
+#if DEBUG
+    /* 0xD0 */ dMenu_Fmap_world_data_c* mpWorldData;
+#endif
     /* 0xD0 */ f32 mZoomRate;
     /* 0xD4 */ int mLineNo;
     /* 0xD8 */ bool mFlash;
@@ -180,8 +224,10 @@ public:
     /* 0xE0 */ int mLastStageCursor;
     /* 0xE4 */ u8 mRegionCursor;
     /* 0xE5 */ u8 mFlashTimer;
-    /* 0xE8 */ u8* mFlashRooms;
-    /* 0xEC */ int mFlashRoomCount;
+    /* 0xE8 */ u8* mp_roomList;
+    /* 0xEC */ int m_roomListNumber;
+
+    static dMenu_FmapMap_c* mMySelfPointer;
 };
 
 
