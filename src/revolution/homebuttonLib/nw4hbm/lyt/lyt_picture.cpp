@@ -1,91 +1,35 @@
 #include "picture.h"
 
-#include <new.h>
-
-#include "../macros.h"
-
-#include <revolution/types.h>
-
-#include "common.h"
 #include "layout.h"
-#include "material.h"
-#include "types.h"
 
-#include "../math/types.h"
-#include "../ut/Color.h"
-#include "../ut/RuntimeTypeInfo.h"
-#include "../ut/inlines.h"
-
-
-#include <revolution/gx/GXStruct.h>
-#include <revolution/tpl.h>
-
-namespace nw4hbm {
-    namespace lyt {
-        // .bss
-        ut::detail::RuntimeTypeInfo const Picture::typeInfo(&Pane::typeInfo);
-    }  // namespace lyt
-}  // namespace nw4hbm
+#include "new.h"
 
 namespace nw4hbm {
     namespace lyt {
 
-        Picture::Picture(u8 texNum) {
-            Init(texNum);
+        NW4HBM_UT_GET_DERIVED_RUNTIME_TYPEINFO(Picture, Pane);
 
-            if (void* pMemMaterial = Layout::AllocMemory(sizeof *mpMaterial)) {
-                mpMaterial = new (pMemMaterial) Material;
-                mpMaterial->ReserveGXMem(texNum, texNum, texNum, 0, FALSE, 0, 0, FALSE, FALSE,
-                                         FALSE, FALSE);
-            }
-        }
-
-        Picture::Picture(TPLPalette* pTplRes) {
-            int const texNum = 1;
-
-            Init(texNum);
-
-            if (void* pMemMaterial = Layout::AllocMemory(sizeof *mpMaterial)) {
-                mpMaterial = new (pMemMaterial) Material;
-                mpMaterial->ReserveGXMem(texNum, texNum, texNum, 0, FALSE, 0, 0, FALSE, FALSE,
-                                         FALSE, FALSE);
-
-                Append(pTplRes);
-            }
-        }
-
-        Picture::Picture(GXTexObj const& texObj) {
-            int const texNum = 1;
-
-            Init(texNum);
-
-            if (void* pMemMaterial = Layout::AllocMemory(sizeof *mpMaterial)) {
-                mpMaterial = new (pMemMaterial) Material;
-                mpMaterial->ReserveGXMem(texNum, texNum, texNum, 0, FALSE, 0, 0, FALSE, FALSE,
-                                         FALSE, FALSE);
-
-                Append(texObj);
-            }
-        }
-
-        Picture::Picture(res::Picture const* pResPic, ResBlockSet const& resBlockSet)
+        Picture::Picture(const res::Picture* pResPic, const ResBlockSet& resBlockSet)
             : Pane(pResPic) {
             u8 texCoordNum = ut::Min<u8>(pResPic->texCoordNum, 8);
 
             Init(texCoordNum);
 
-            for (int i = 0; i < (int)ARRAY_SIZE(mVtxColors); ++i)
+            for (int i = 0; i < (int)ARRAY_SIZE(mVtxColors); i++) {
                 mVtxColors[i] = pResPic->vtxCols[i];
+            }
 
-            if (texCoordNum != 0 && !mTexCoordAry.IsEmpty())
-                mTexCoordAry.Copy(pResPic + 1, texCoordNum);
+            if (texCoordNum && !mTexCoordAry.IsEmpty()) {
+                mTexCoordAry.Copy(&pResPic[1], texCoordNum);
+            }
 
             if (Material* pMemMaterial =
-                    static_cast<Material*>(Layout::AllocMemory(sizeof *pMemMaterial)))
+                    static_cast<Material*>(Layout::AllocMemory(sizeof(*pMemMaterial))))
             {
-                u32 const* matOffsTbl = detail::ConvertOffsToPtr<u32>(
-                    resBlockSet.pMaterialList, sizeof *resBlockSet.pMaterialList);
-                res::Material const* pResMaterial = detail::ConvertOffsToPtr<res::Material>(
+                NW4HBM_ASSERT_CHECK_NULL(149, resBlockSet.pMaterialList);
+                const u32* matOffsTbl =
+                    detail::ConvertOffsToPtr<u32>(resBlockSet.pMaterialList, 0xc);
+                const res::Material* pResMaterial = detail::ConvertOffsToPtr<res::Material>(
                     resBlockSet.pMaterialList, matOffsTbl[pResPic->materialIdx]);
 
                 mpMaterial = new (pMemMaterial) Material(pResMaterial, resBlockSet);
@@ -93,8 +37,9 @@ namespace nw4hbm {
         }
 
         void Picture::Init(u8 texNum) {
-            if (texNum != 0)
+            if (texNum) {
                 ReserveTexCoord(texNum);
+            }
         }
 
         Picture::~Picture() {
@@ -114,15 +59,20 @@ namespace nw4hbm {
             Append(texObj);
         }
 
-        void Picture::Append(GXTexObj const& texObj) {
+        void Picture::Append(const GXTexObj& texObj) {
             if (mpMaterial->GetTextureNum() >= mpMaterial->GetTextureCap() ||
                 mpMaterial->GetTextureNum() >= mpMaterial->GetTexCoordGenCap())
             {
+                NW4R_DB_WARNING(
+                    192, false,
+                    "mpMaterial->GetTextureNum(%d) is large. mpMaterial->GetTextureCap(%d), "
+                    "mpMaterial->GetTexCoordGenCap(%d)\n",
+                    mpMaterial->GetTextureNum(), mpMaterial->GetTextureCap(),
+                    mpMaterial->GetTexCoordGenCap());
                 return;
             }
 
             u8 texIdx = mpMaterial->GetTextureNum();
-
             mpMaterial->SetTextureNum(texIdx + 1);
             mpMaterial->SetTexture(texIdx, texObj);
             mpMaterial->SetTexCoordGenNum(mpMaterial->GetTextureNum());
@@ -130,35 +80,26 @@ namespace nw4hbm {
 
             SetTexCoordNum(mpMaterial->GetTextureNum());
 
-            if (mSize == Size(0.0f, 0.0f) && mpMaterial->GetTextureNum() == 1)
+            if (mSize == Size(0.0f, 0.0f) && mpMaterial->GetTextureNum() == 1) {
                 mSize = detail::GetTextureSize(mpMaterial, 0);
+            }
         }
 
         void Picture::ReserveTexCoord(u8 num) {
             mTexCoordAry.Reserve(num);
         }
 
-        u8 Picture::GetTexCoordNum() const {
-            return mTexCoordAry.GetSize();
-        }
-
         void Picture::SetTexCoordNum(u8 num) {
             mTexCoordAry.SetSize(num);
         }
 
-        void Picture::GetTexCoord(u32 idx, math::VEC2* coords) const {
-            mTexCoordAry.GetCoord(idx, coords);
-        }
-
-        void Picture::SetTexCoord(u32 idx, math::VEC2 const* coords) {
-            mTexCoordAry.SetCoord(idx, coords);
-        }
-
         ut::Color Picture::GetVtxColor(u32 idx) const {
+            NW4HBM_ASSERT(251, idx < VERTEXCOLOR_MAX);
             return mVtxColors[idx];
         }
 
         void Picture::SetVtxColor(u32 idx, ut::Color value) {
+            NW4HBM_ASSERT(262, idx < VERTEXCOLOR_MAX);
             mVtxColors[idx] = value;
         }
 
@@ -170,16 +111,16 @@ namespace nw4hbm {
             detail::SetVtxColorElement(mVtxColors, idx, value);
         }
 
-        void Picture::DrawSelf(DrawInfo const& drawInfo) {
-            if (!mpMaterial)
+        void Picture::DrawSelf(const DrawInfo& drawInfo) {
+            if (!mpMaterial) {
                 return;
+            }
 
             LoadMtx(drawInfo);
 
             bool bUseVtxCol = mpMaterial->SetupGX(
                 detail::IsModulateVertexColor(mVtxColors, mGlbAlpha), mGlbAlpha);
-
-            detail::SetVertexFormat(bUseVtxCol, mTexCoordAry.GetSize());
+            nw4hbm::lyt::detail::SetVertexFormat(bUseVtxCol, mTexCoordAry.GetSize());
 
             detail::DrawQuad(GetVtxPos(), mSize, mTexCoordAry.GetSize(), mTexCoordAry.GetArray(),
                              bUseVtxCol ? mVtxColors : NULL, mGlbAlpha);

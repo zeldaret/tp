@@ -1,114 +1,72 @@
+#include "common.h"
+#include "layout.h"
 #include "material.h"
 
-/* TODO: Many loose constants and odd expressions. Clean them up and make more
- * sense out of them. ogws uses a lot of GX constants here; it may be helpful
- * to wait until after that library interface is done to clean this file up.
- */
+#include "../math/triangular.h"
+
+#include <revolution/tpl.h>
 
 #include <cstring.h>
 
-#include "../macros.h"
+static const GXColorS10 DefaultBlackColor = {0, 0, 0, 0};
 
-#include <revolution/types.h>
+static inline void SetDefaultWhiteColor(GXColorS10* p) {
+    p->r = 255;
+    p->g = 255;
+    p->b = 255;
+    p->a = 255;
+}
 
-#include "animation.h"
-#include "common.h"
-#include "layout.h"
-#include "resourceAccessor.h"
-#include "types.h"
-
-#include "../math/arithmetic.h"
-#include "../math/triangular.h"
-#include "../math/types.h"
-#include "../ut/Color.h"
-#include "../ut/LinkList.h"
-#include "../ut/inlines.h"
-
-
-#include <revolution/gx.h>
-#include <revolution/tpl.h>
+static inline bool IsDefaultWhiteColor(GXColorS10* p) {
+    return p->r == 255 && p->g == 255 && p->b == 255 && p->a == 255;
+}
 
 namespace {
     using namespace nw4hbm;
     using namespace nw4hbm::lyt;
 
-    bool operator==(GXColorS10 const& a, GXColorS10 const& b);
-    bool operator!=(GXColorS10 const& a, GXColorS10 const& b);
-
-    void CalcTextureMtx(math::MTX34* pMtx, TexSRT const& texSRT);
-    void CalcIndTexMtx(f32 mtx[2][3], TexSRT const& texSRT);
-    void CalcTexRatio(u8* dstTexRatios, float const* srcTexRatios, int texNum);
-
-    u8 GetColorComponentValue(ut::Color const col, u32 compIdx);
-
-    void SetColorComponentValue(ut::Color* pCol, u32 compIdx, s16 value);
-    void SetIndTexMtx(GXIndTexMtxID id, const f32 mtx[2][3]);
-
-    void InitTexSRT(TexSRT* texSRTs, u32 num);
-
-    u32 CalcOffsetTexSRTAry(detail::BitGXNums const& bitGXNums);
-    u32 CalcOffsetTexCoordGenAry(detail::BitGXNums const& bitGXNums);
-    u32 CalcOffsetChanCtrlAry(detail::BitGXNums const& bitGXNums);
-    u32 CalcOffsetMatColAry(detail::BitGXNums const& bitGXNums);
-    u32 CalcOffsetTevSwapAry(detail::BitGXNums const& bitGXNums);
-    u32 CalcOffsetGetAlphaCompare(detail::BitGXNums const& bitGXNums);
-    u32 CalcOffsetBlendMode(detail::BitGXNums const& bitGXNums);
-    u32 CalcOffsetIndirectStageAry(detail::BitGXNums const& bitGXNums);
-    u32 CalcOffsetIndTexSRTAry(detail::BitGXNums const& bitGXNums);
-    u32 CalcOffsetTevStageAry(detail::BitGXNums const& bitGXNums);
-
-    void CopyGXTexObj(GXTexObj* pDst, GXTexObj const* pSrc);
-
-    // ?
-    inline u32 GetTexMtx(u32 texMtxIdx) {
-        return texMtxIdx * 3 + 30;
-    }
-
-    inline u32 GetTexMtxIdx(u32 texMtx) {
-        return (texMtx - 30) / 3;
-    }
-}  // unnamed namespace
-
-// .rodata
-static GXColorS10 const DefaultBlackColor = {0x0000, 0x0000, 0x0000, 0x0000};
-static GXColorS10 const DefaultWhiteColor = {0x00ff, 0x00ff, 0x00ff, 0x00ff};
-
-namespace {
-
-    bool operator==(GXColorS10 const& a, GXColorS10 const& b) {
+    bool operator==(const GXColorS10& a, const GXColorS10& b) {
         return a.r == b.r && a.g == b.g && a.b == b.b && a.a == b.a;
     }
 
-    bool operator!=(GXColorS10 const& a, GXColorS10 const& b) {
-        return !operator==(a, b);
+    bool operator!=(const GXColorS10& a, const GXColorS10& b) {
+        return !(a == b);
     }
 
-    void CalcTextureMtx(math::MTX34* pMtx, TexSRT const& texSRT) {
+    inline u32 GetTexMtx(u32 texMtxIdx) {
+        return texMtxIdx * 3 + GX_TEXMTX0;
+    }
+
+    inline u32 GetTexMtxIdx(u32 texMtx) {
+        return (texMtx - GX_TEXMTX0) / 3;
+    }
+
+    void CalcTextureMtx(math::MTX34* pMtx, const TexSRT& texSRT) {
         math::VEC2 center(0.5f, 0.5f);
 
         f32 cosR = math::CosDeg(texSRT.rotate);
         f32 sinR = math::SinDeg(texSRT.rotate);
 
         f32 a0 = cosR * texSRT.scale.x, a1 = -sinR * texSRT.scale.y;
-        pMtx->_00 = a0;
-        pMtx->_01 = a1;
-        pMtx->_02 = 0.0f;
-        pMtx->_03 = texSRT.translate.x + center.x + a0 * -center.x + a1 * -center.y;
+        pMtx->mtx[0][0] = a0;
+        pMtx->mtx[0][1] = a1;
+        pMtx->mtx[0][2] = 0.0f;
+        pMtx->mtx[0][3] = texSRT.translate.x + center.x + a0 * -center.x + a1 * -center.y;
 
         a0 = sinR * texSRT.scale.x;
         a1 = cosR * texSRT.scale.y;
-        pMtx->_10 = a0;
-        pMtx->_11 = a1;
-        pMtx->_12 = 0.0f;
-        pMtx->_13 = texSRT.translate.y + center.y + a0 * -center.x + a1 * -center.y;
+        pMtx->mtx[1][0] = a0;
+        pMtx->mtx[1][1] = a1;
+        pMtx->mtx[1][2] = 0.0f;
+        pMtx->mtx[1][3] = texSRT.translate.y + center.y + a0 * -center.x + a1 * -center.y;
 
-        pMtx->_20 = 0.0f;
-        pMtx->_21 = 0.0f;
-        pMtx->_22 = 1.0f;
-        pMtx->_23 = 0.0f;
+        pMtx->mtx[2][0] = 0.0f;
+        pMtx->mtx[2][1] = 0.0f;
+        pMtx->mtx[2][2] = 1.0f;
+        pMtx->mtx[2][3] = 0.0f;
     }
 
-    void CalcIndTexMtx(f32 mtx[2][3], TexSRT const& texSRT) {
+    void CalcIndTexMtx(Mtx23 mtx, const TexSRT& texSRT) {
         f32 cosR = math::CosDeg(texSRT.rotate);
         f32 sinR = math::SinDeg(texSRT.rotate);
 
@@ -121,61 +79,30 @@ namespace {
         mtx[1][2] = texSRT.translate.y;
     }
 
-    void CalcTexRatio(u8* dstTexRatios, float const* srcTexRatios, int texNum) {
-        float ratioTotal = 0.0f;
-
-        for (int i = 0; i < texNum; ++i)
-            ratioTotal += srcTexRatios[i];
-
-        for (int i = 0; i < texNum; ++i)
-            dstTexRatios[i] = srcTexRatios[i] * 255.0f / ratioTotal;
-    }
-
-    u8 GetColorComponentValue(ut::Color const col, u32 compIdx) {
-        switch (compIdx) {
-        case 0:
-            return col.r;
-
-        case 1:
-            return col.g;
-
-        case 2:
-            return col.b;
-
-        case 3:
-            return col.a;
-        }
-
-        return 0xff;
-    }
-
     void SetColorComponentValue(ut::Color* pCol, u32 compIdx, s16 value) {
-        u8 const u8Val = ut::Min<s16>(ut::Max<s16>(value, 0), 0xff);
+        const u8 u8Val = ut::Min<s16>(ut::Max<s16>(value, 0), 0xFF);
 
         switch (compIdx) {
-        case 0:
+        case 0: {
             pCol->r = u8Val;
             break;
-
-        case 1:
+        }
+        case 1: {
             pCol->g = u8Val;
             break;
-
-        case 2:
+        }
+        case 2: {
             pCol->b = u8Val;
             break;
-
-        case 3:
+        }
+        case 3: {
             pCol->a = u8Val;
             break;
         }
+        }
     }
 
-    void SetIndTexMtx(GXIndTexMtxID id, const f32 mtx[2][3]) {
-        /* NOTE: we know the declarations are stacked like this due to
-         * [SC5PGN]/build/libs/Debug/slamWiiD.a:lyt_material.o(1)::.debug_info::0x4031 [original
-         * object] so I just kept the theme going
-         */
+    void SetIndTexMtx(GXIndTexMtxID id, const Mtx23 mtx) {
         f32 m00, m01, m02;
         f32 m10, m11, m12;
 
@@ -184,7 +111,6 @@ namespace {
 
         s8 scaleExp = 0;
 
-        // tripled expressions
         m00 = mtx[0][0];
         m01 = mtx[0][1];
         m02 = mtx[0][2];
@@ -202,13 +128,12 @@ namespace {
         if (a00 >= 1.0f || a01 >= 1.0f || a02 >= 1.0f || a10 >= 1.0f || a11 >= 1.0f || a12 >= 1.0f)
         {
             do {
-                // Why is this different?
-                if (scaleExp >= 46)
+                if (scaleExp >= 46) {
                     break;
+                }
 
-                ++scaleExp;
+                scaleExp++;
 
-                // tripled expressions
                 m00 /= 2.0f;
                 m01 /= 2.0f;
                 m02 /= 2.0f;
@@ -222,14 +147,14 @@ namespace {
                 a10 /= 2.0f;
                 a11 /= 2.0f;
                 a12 /= 2.0f;
+
             } while (a00 >= 1.0f || a01 >= 1.0f || a02 >= 1.0f || a10 >= 1.0f || a11 >= 1.0f ||
                      a12 >= 1.0f);
         } else if (a00 < 0.5f && a01 < 0.5f && a02 < 0.5f && a10 < 0.5f && a11 < 0.5f && a12 < 0.5f)
         {
             do {
-                --scaleExp;
+                scaleExp--;
 
-                // tripled expressions
                 m00 *= 2.0f;
                 m01 *= 2.0f;
                 m02 *= 2.0f;
@@ -253,134 +178,131 @@ namespace {
     }
 
     void InitTexSRT(TexSRT* texSRTs, u32 num) {
-        for (u32 i = 0; i < num; ++i) {
+        for (u32 i = 0; i < num; i++) {
             texSRTs[i].translate = math::VEC2(0.0f, 0.0f);
             texSRTs[i].rotate = 0.0f;
             texSRTs[i].scale = math::VEC2(1.0f, 1.0f);
         }
     }
 
-/* extracting the previous bitfield to get the entity count then multiplying by
- * sizeof(thing) to get total size and therefore offset to start of next entity
- * group
- */
-
-// First in the set
-#define CalcOffsetTexMapAry(bitGXNums) 0ul
-
-    // also is Ary supposed to be Array? if so thats a shit abbreviation just use Array
-    u32 CalcOffsetTexSRTAry(detail::BitGXNums const& bitGXNums) {
-        return CalcOffsetTexMapAry(bitGXNums) + sizeof(GXTexObj) * bitGXNums.texMap;
+    u32 CalcOffsetTexSRTAry(const detail::BitGXNums& bitGXNums) {
+        return (sizeof(res::TexMap) * 8) * bitGXNums.texMap;
     }
 
-    u32 CalcOffsetTexCoordGenAry(detail::BitGXNums const& bitGXNums) {
+    u32 CalcOffsetTexCoordGenAry(const detail::BitGXNums& bitGXNums) {
         return CalcOffsetTexSRTAry(bitGXNums) + sizeof(TexSRT) * bitGXNums.texSRT;
     }
 
-    u32 CalcOffsetChanCtrlAry(detail::BitGXNums const& bitGXNums) {
+    u32 CalcOffsetChanCtrlAry(const detail::BitGXNums& bitGXNums) {
         return CalcOffsetTexCoordGenAry(bitGXNums) + sizeof(TexCoordGen) * bitGXNums.texCoordGen;
     }
 
-    u32 CalcOffsetMatColAry(detail::BitGXNums const& bitGXNums) {
+    u32 CalcOffsetMatColAry(const detail::BitGXNums& bitGXNums) {
         return CalcOffsetChanCtrlAry(bitGXNums) + sizeof(ChanCtrl) * bitGXNums.chanCtrl;
     }
 
-    u32 CalcOffsetTevSwapAry(detail::BitGXNums const& bitGXNums) {
+    u32 CalcOffsetTevSwapAry(const detail::BitGXNums& bitGXNums) {
         return CalcOffsetMatColAry(bitGXNums) + sizeof(ut::Color) * bitGXNums.matCol;
     }
 
-    u32 CalcOffsetGetAlphaCompare(detail::BitGXNums const& bitGXNums) {
-        return CalcOffsetTevSwapAry(bitGXNums) +
-               (sizeof(TevSwapMode) + 3) * bitGXNums.tevSwap;  // padding, i think
+    u32 CalcOffsetGetAlphaCompare(const detail::BitGXNums& bitGXNums) {
+        return CalcOffsetTevSwapAry(bitGXNums) + (sizeof(TevSwapMode) + 3) * bitGXNums.tevSwap;
     }
 
-    u32 CalcOffsetBlendMode(detail::BitGXNums const& bitGXNums) {
+    u32 CalcOffsetBlendMode(const detail::BitGXNums& bitGXNums) {
         return CalcOffsetGetAlphaCompare(bitGXNums) + sizeof(AlphaCompare) * bitGXNums.alpComp;
     }
 
-    u32 CalcOffsetIndirectStageAry(detail::BitGXNums const& bitGXNums) {
+    u32 CalcOffsetIndirectStageAry(const detail::BitGXNums& bitGXNums) {
         return CalcOffsetBlendMode(bitGXNums) + sizeof(BlendMode) * bitGXNums.blendMode;
     }
 
-    u32 CalcOffsetIndTexSRTAry(detail::BitGXNums const& bitGXNums) {
+    u32 CalcOffsetIndTexSRTAry(const detail::BitGXNums& bitGXNums) {
         return CalcOffsetIndirectStageAry(bitGXNums) + sizeof(IndirectStage) * bitGXNums.indStage;
     }
 
-    u32 CalcOffsetTevStageAry(detail::BitGXNums const& bitGXNums) {
-        return CalcOffsetIndTexSRTAry(bitGXNums) + sizeof(TexSRT) * bitGXNums.indSRT;
+    u32 CalcOffsetTevStageAry(const detail::BitGXNums& bitGXNums) {
+        return CalcOffsetIndTexSRTAry(bitGXNums) + (sizeof(TevStage) + 4) * bitGXNums.indSRT;
     }
 
-    void CopyGXTexObj(GXTexObj* pDst, GXTexObj const* pSrc) {
+    void CopyGXTexObj(GXTexObj* pDst, const GXTexObj* pSrc) {
         *pDst = *pSrc;
         GXInitTexObjUserData(pDst, NULL);
     }
-
-}  // unnamed namespace
+}  // namespace
 
 namespace nw4hbm {
     namespace lyt {
 
         Material::Material() {
             Init();
-            std::memset(mName, 0, sizeof mName);
+            memset(mName, 0, sizeof(mName));
         }
 
-        Material::Material(res::Material const* pRes, ResBlockSet const& resBlockSet) {
+        Material::Material(const res::Material* pRes, const ResBlockSet& resBlockSet)
+            : mAnimList() {
             Init();
             SetName(pRes->name);
 
-            for (int i = 0; i < (int)ARRAY_SIZE(mTevCols); ++i)
+            for (int i = 0; i < (int)ARRAY_SIZE(mTevCols); i++) {
                 mTevCols[i] = pRes->tevCols[i];
+            }
 
-            for (int i = 0; i < (int)ARRAY_SIZE(mTevKCols); ++i)
+            for (int i = 0; i < (int)ARRAY_SIZE(mTevKCols); i++) {
                 mTevKCols[i] = pRes->tevKCols[i];
+            }
 
-            u32 resOffs = sizeof *pRes;
+            u32 resOffs = sizeof(res::Material);
 
-            res::TexMap const* pResTexMap = detail::ConvertOffsToPtr<res::TexMap>(pRes, resOffs);
-            resOffs += sizeof *pResTexMap * pRes->resNum.GetTexMapNum();
+            const res::TexMap* const pResTexMap =
+                detail::ConvertOffsToPtr<res::TexMap>(pRes, resOffs);
+            resOffs += pRes->resNum.GetTexMapNum() * sizeof(res::TexMap);
 
-            TexSRT const* resTexSRTs = detail::ConvertOffsToPtr<TexSRT>(pRes, resOffs);
-            resOffs += sizeof *resTexSRTs * pRes->resNum.GetTexSRTNum();
+            const TexSRT* const resTexSRTs = detail::ConvertOffsToPtr<TexSRT>(pRes, resOffs);
+            resOffs += pRes->resNum.GetTexSRTNum() * sizeof(TexSRT);
 
-            TexCoordGen const* resTexCoordGens =
+            const TexCoordGen* const resTexCoordGens =
                 detail::ConvertOffsToPtr<TexCoordGen>(pRes, resOffs);
-            resOffs += sizeof *resTexCoordGens * pRes->resNum.GetTexCoordGenNum();
+            resOffs += pRes->resNum.GetTexCoordGenNum() * sizeof(TexCoordGen);
 
-            u8 texMapNum = ut::Min<u8>(pRes->resNum.GetTexMapNum(), 8);
-            u8 texSRTNum = ut::Min<u8>(pRes->resNum.GetTexSRTNum(), 10);
-            u8 texCoordGenNum = ut::Min<u8>(pRes->resNum.GetTexCoordGenNum(), 8);
+            u8 texMapNum = ut::Min<u8>(pRes->resNum.GetTexMapNum(), GX_MAX_TEXMAP);
+            u8 texSRTNum = ut::Min<u8>(pRes->resNum.GetTexSRTNum(), MAX_TEX_SRT);
+            u8 texCoordGenNum = ut::Min<u8>(pRes->resNum.GetTexCoordGenNum(), GX_MAX_TEXCOORD);
+
             bool allocChanCtrl = pRes->resNum.GetChanCtrlNum() != 0;
             bool allocMatCol = pRes->resNum.GetMatColNum() != 0;
             bool allocTevSwap = pRes->resNum.HasTevSwapTable();
             bool allocAlpComp = pRes->resNum.HasAlphaCompare();
             bool allocBlendMode = pRes->resNum.HasBlendMode();
-            u8 indTexSRTNum = ut::Min<u8>(pRes->resNum.GetIndTexSRTNum(), 3);
-            u8 indStageNum = ut::Min<u8>(pRes->resNum.GetIndTexStageNum(), 4);
-            u8 tevStageNum = ut::Min<u8>(pRes->resNum.GetTevStageNum(), 16);
+
+            u8 indTexSRTNum = ut::Min<u8>(pRes->resNum.GetIndTexSRTNum(), MAX_IND_SRT);
+            u8 indStageNum = ut::Min<u8>(pRes->resNum.GetIndTexStageNum(), GX_MAX_INDTEXSTAGE);
+            u8 tevStageNum = ut::Min<u8>(pRes->resNum.GetTevStageNum(), GX_MAX_TEVSTAGE);
 
             ReserveGXMem(texMapNum, texSRTNum, texCoordGenNum, tevStageNum, allocTevSwap,
                          indStageNum, indTexSRTNum, allocChanCtrl, allocMatCol, allocAlpComp,
                          allocBlendMode);
 
-            if (mpGXMem) {
+            if (mpGXMem != NULL) {
                 SetTextureNum(texMapNum);
+                if (texMapNum) {
+                    NW4HBM_ASSERT_CHECK_NULL(469, resBlockSet.pTextureList);
 
-                if (texMapNum != 0) {
-                    res::Texture const* textures = detail::ConvertOffsToPtr<res::Texture>(
-                        resBlockSet.pTextureList, sizeof *resBlockSet.pTextureList);
+                    const res::Texture* const textures = detail::ConvertOffsToPtr<res::Texture>(
+                        resBlockSet.pTextureList, sizeof(*resBlockSet.pTextureList));
 
-                    GXTexObj* texMaps = GetTexMapAry();
+                    GXTexObj* const texMaps = GetTexMapAry();
 
-                    for (u8 i = 0; i < mGXMemNum.texMap; ++i) {
-                        char const* fileName = detail::ConvertOffsToPtr<char>(
+                    for (u8 i = 0; i < mGXMemNum.texMap; i++) {
+                        NW4HBM_ASSERT(475, pResTexMap[i].texIdx < resBlockSet.pTextureList->texNum);
+
+                        const char* fileName = detail::ConvertOffsToPtr<char>(
                             textures, textures[pResTexMap[i].texIdx].nameStrOffset);
 
-                        void* pTplRes = resBlockSet.pResAccessor->GetResource(
-                            ResourceAccessor::SIGNATURE_TEXTURE_IMAGE, fileName, NULL);
+                        void* pTplRes = resBlockSet.pResAccessor->GetResource(RESOURCE_TYPE_TEXTURE,
+                                                                              fileName, NULL);
 
                         SetTexture(i, static_cast<TPLPalette*>(pTplRes));
-
                         GXInitTexObjWrapMode(&texMaps[i],
                                              static_cast<GXTexWrapMode>(pResTexMap[i].wrapS),
                                              static_cast<GXTexWrapMode>(pResTexMap[i].wrapT));
@@ -388,7 +310,9 @@ namespace nw4hbm {
                 }
 
                 TexSRT* texSRTs = GetTexSRTAry();
-                for (int i = 0; i < texSRTNum; ++i) {
+                NW4HBM_ASSERT(486, texSRTNum <= mGXMemNum.texSRT);
+
+                for (int i = 0; i < texSRTNum; i++) {
                     texSRTs[i].translate = resTexSRTs[i].translate;
                     texSRTs[i].rotate = resTexSRTs[i].rotate;
                     texSRTs[i].scale = resTexSRTs[i].scale;
@@ -396,110 +320,104 @@ namespace nw4hbm {
 
                 TexCoordGen* texCoordGens = GetTexCoordGenAry();
                 SetTexCoordGenNum(texCoordGenNum);
-                for (int i = 0; i < mGXMemNum.texCoordGen; ++i)
+                for (int i = 0; i < mGXMemNum.texCoordGen; i++) {
                     texCoordGens[i] = resTexCoordGens[i];
+                }
 
                 if (allocChanCtrl) {
-                    ChanCtrl const* pResChanCtrl =
+                    NW4HBM_ASSERT(504, IsChanCtrlCap());
+                    const ChanCtrl* pResChanCtrl =
                         detail::ConvertOffsToPtr<ChanCtrl>(pRes, resOffs);
-
                     *GetChanCtrlAry() = *pResChanCtrl;
-                    resOffs += sizeof *pResChanCtrl;
+                    resOffs += sizeof(ChanCtrl);
                 }
 
                 if (allocMatCol) {
-                    ut::Color const* pResMatCol =
+                    NW4HBM_ASSERT(512, IsMatColorCap());
+                    const ut::Color* pResMatCol =
                         detail::ConvertOffsToPtr<ut::Color>(pRes, resOffs);
-
                     *GetMatColAry() = *pResMatCol;
-                    resOffs += sizeof *pResMatCol;
+                    resOffs += sizeof(ut::Color);
                 }
 
                 if (allocTevSwap) {
-                    TevSwapMode const* pResTevSwap =
+                    NW4HBM_ASSERT(520, IsTevSwapCap());
+                    const TevSwapMode* pResTevSwap =
                         detail::ConvertOffsToPtr<TevSwapMode>(pRes, resOffs);
-
                     TevSwapMode* tevSwaps = GetTevSwapAry();
-
-                    for (int i = 0; i < GX_MAX_TEVSWAP; ++i)
+                    for (int i = 0; i < GX_MAX_TEVSWAP; i++) {
                         tevSwaps[i] = pResTevSwap[i];
-
-                    // probably that padding from before
-                    resOffs += sizeof *pResTevSwap + 3;
+                    }
+                    resOffs += GX_MAX_TEVSWAP * sizeof(TevSwapMode);
                 }
 
                 if (indTexSRTNum) {
+                    NW4HBM_ASSERT(532, indTexSRTNum <= mGXMemNum.indSRT);
                     TexSRT* indTexSRTs = GetIndTexSRTAry();
-                    TexSRT const* pResIndMtx = detail::ConvertOffsToPtr<TexSRT>(pRes, resOffs);
-
-                    for (int i = 0; i < indTexSRTNum; ++i)
+                    const TexSRT* pResIndMtx = detail::ConvertOffsToPtr<TexSRT>(pRes, resOffs);
+                    for (int i = 0; i < indTexSRTNum; i++) {
                         indTexSRTs[i] = pResIndMtx[i];
+                    }
                 }
-
-                // skip unconditionally; pResIndMtx has gone out of scope
                 resOffs += sizeof(TexSRT) * pRes->resNum.GetIndTexSRTNum();
 
                 if (indStageNum) {
                     SetIndStageNum(indStageNum);
 
                     IndirectStage* indirectStages = GetIndirectStageAry();
-                    IndirectStage const* pResIndStg =
+                    const IndirectStage* pResIndStg =
                         detail::ConvertOffsToPtr<IndirectStage>(pRes, resOffs);
-
-                    for (int i = 0; i < indStageNum; ++i)
+                    for (int i = 0; i < indStageNum; i++) {
                         indirectStages[i] = pResIndStg[i];
+                    }
                 }
-
-                // skip unconditionally; pResIndStg has gone out of scope
                 resOffs += sizeof(IndirectStage) * pRes->resNum.GetIndTexStageNum();
 
                 if (tevStageNum) {
                     SetTevStageNum(tevStageNum);
 
                     TevStage* tevStages = GetTevStageAry();
-                    TevStage const* pResTevStg = detail::ConvertOffsToPtr<TevStage>(pRes, resOffs);
-
-                    for (int i = 0; i < tevStageNum; ++i)
+                    const TevStage* pResTevStg = detail::ConvertOffsToPtr<TevStage>(pRes, resOffs);
+                    for (int i = 0; i < tevStageNum; i++) {
                         tevStages[i] = pResTevStg[i];
+                    }
                 }
-
-                // skip unconditionally; pResTevStg has gone out of scope
                 resOffs += sizeof(TevStage) * pRes->resNum.GetTevStageNum();
 
                 if (allocAlpComp) {
-                    AlphaCompare const* pResAlphaCompare =
+                    NW4HBM_ASSERT(568, IsAlphaCompareCap());
+                    const AlphaCompare* pResAlphaCompare =
                         detail::ConvertOffsToPtr<AlphaCompare>(pRes, resOffs);
-
                     *GetAlphaComparePtr() = *pResAlphaCompare;
-                    resOffs += sizeof *pResAlphaCompare;
+                    resOffs += sizeof(AlphaCompare);
                 }
 
                 if (allocBlendMode) {
-                    BlendMode const* pResBlendMode =
+                    NW4HBM_ASSERT(576, IsBlendModeCap());
+                    const BlendMode* pResBlendMode =
                         detail::ConvertOffsToPtr<BlendMode>(pRes, resOffs);
-
                     *GetBlendModePtr() = *pResBlendMode;
-                    resOffs += sizeof *pResBlendMode;
+                    resOffs += sizeof(BlendMode);
                 }
             }
         }
 
         void Material::Init() {
-            mTevCols[0] = DefaultBlackColor;
-            mTevCols[1] = DefaultWhiteColor;
-            mTevCols[2] = DefaultWhiteColor;
+            mTevCols[TEVCOLOR_REG0] = DefaultBlackColor;
+            SetDefaultWhiteColor(&mTevCols[TEVCOLOR_REG1]);
+            SetDefaultWhiteColor(&mTevCols[TEVCOLOR_REG2]);
 
             InitBitGXNums(&mGXMemCap);
             InitBitGXNums(&mGXMemNum);
 
-            mbUserAllocated = FALSE;
+            mbUserAllocated = false;
             mpGXMem = NULL;
         }
 
         Material::~Material() {
             UnbindAllAnimation();
 
-            if (mpGXMem) {
+            if (mpGXMem != NULL) {
                 Layout::FreeMemory(mpGXMem);
                 mpGXMem = NULL;
             }
@@ -511,11 +429,11 @@ namespace nw4hbm {
             ptr->texCoordGen = 0;
             ptr->indSRT = 0;
             ptr->indStage = 0;
-            ptr->tevSwap = FALSE;
+            ptr->tevSwap = false;
             ptr->tevStage = 0;
-            ptr->chanCtrl = FALSE;
-            ptr->matCol = FALSE;
-            ptr->alpComp = FALSE;
+            ptr->chanCtrl = false;
+            ptr->matCol = false;
+            ptr->alpComp = false;
             ptr->blendMode = 0;
         }
 
@@ -523,7 +441,13 @@ namespace nw4hbm {
                                     bool allocTevSwap, u8 indStageNum, u8 indSRTNum,
                                     bool allocChanCtrl, bool allocMatCol, bool allocAlpComp,
                                     bool allocBlendMode) {
-            // result is a count of items, not a boolean value
+            NW4HBM_ASSERT(661, texMapNum <= GX_MAX_TEXMAP);
+            NW4HBM_ASSERT(662, texSRTNum <= TexMtxMax);
+            NW4HBM_ASSERT(663, texCoordGenNum <= GX_MAX_TEXCOORD);
+            NW4HBM_ASSERT(664, tevStageNum <= GX_MAX_TEVSTAGE);
+            NW4HBM_ASSERT(665, indStageNum <= GX_MAX_INDTEXSTAGE);
+            NW4HBM_ASSERT(666, indSRTNum <= IndTexMtxMax);
+
             int tevSwapNum = allocTevSwap ? 1 : 0;
             int chanCtrlNum = allocChanCtrl ? 1 : 0;
             int matColNum = allocMatCol ? 1 : 0;
@@ -540,30 +464,22 @@ namespace nw4hbm {
                 return;
             }
 
-            if (mpGXMem) {
+            if (mpGXMem != NULL) {
                 Layout::FreeMemory(mpGXMem);
                 mpGXMem = NULL;
-
                 InitBitGXNums(&mGXMemCap);
                 InitBitGXNums(&mGXMemNum);
             }
 
-            /* NOTE: The first 7 numbers are actually all added together before being
-             * multiplied by 4, because they are all the same size (well, except for
-             * TevSwapMode, but you know)
-             */
             mpGXMem = Layout::AllocMemory(
-                sizeof(ut::Color) * (matColNum + /*  sizeof(ChanCtrl)         * */ chanCtrlNum +
-                                     /*  sizeof(TexCoordGen)      * */ texCoordGenNum +
-                                     /* (sizeof(TevSwapMode) + 3) * */ tevSwapNum +
-                                     /*  sizeof(AlphaCompare)     * */ alpCompNum +
-                                     /*  sizeof(BlendMode)        * */ blendModeNum +
-                                     /*  sizeof(IndirectStage)    * */ indStageNum) +
-                sizeof(TexSRT) * texSRTNum + sizeof(GXTexObj) * texMapNum +
-                sizeof(TexSRT) * indSRTNum + sizeof(TevStage) * tevStageNum);
+                4 * (matColNum + chanCtrlNum + texCoordGenNum + tevSwapNum + alpCompNum +
+                     blendModeNum + indStageNum) +
+                ((int)sizeof(TexSRT) * texSRTNum) + ((int)sizeof(GXTexObj) * texMapNum) +
+                ((int)sizeof(TexSRT) * indSRTNum) + ((int)sizeof(TevStage) * tevStageNum));
 
-            if (!mpGXMem)
+            if (mpGXMem == NULL) {
                 return;
+            }
 
             mGXMemCap.texMap = texMapNum;
             mGXMemCap.texSRT = texSRTNum;
@@ -584,41 +500,44 @@ namespace nw4hbm {
             InitTexSRT(GetIndTexSRTAry(), mGXMemNum.indSRT);
 
             mGXMemNum.chanCtrl = mGXMemCap.chanCtrl;
-            if (mGXMemNum.chanCtrl)
+            if (mGXMemNum.chanCtrl) {
                 *GetChanCtrlAry() = ChanCtrl();
+            }
 
             mGXMemNum.matCol = mGXMemCap.matCol;
-            if (mGXMemNum.matCol)
-                *GetMatColAry() = 0xffffffff;
+            if (mGXMemNum.matCol) {
+                *GetMatColAry() = ut::Color::WHITE;
+            }
 
             mGXMemNum.tevSwap = mGXMemCap.tevSwap;
             if (mGXMemNum.tevSwap) {
                 TevSwapMode* tevSwaps = GetTevSwapAry();
-
-                tevSwaps[0].Set(GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
-                tevSwaps[1].Set(GX_CH_RED, GX_CH_RED, GX_CH_RED, GX_CH_ALPHA);
-                tevSwaps[2].Set(GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
-                tevSwaps[3].Set(GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
+                tevSwaps[GX_TEV_SWAP0].Set(GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+                tevSwaps[GX_TEV_SWAP1].Set(GX_CH_RED, GX_CH_RED, GX_CH_RED, GX_CH_ALPHA);
+                tevSwaps[GX_TEV_SWAP2].Set(GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
+                tevSwaps[GX_TEV_SWAP3].Set(GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
             }
 
             mGXMemNum.alpComp = mGXMemCap.alpComp;
-            if (mGXMemNum.alpComp)
+            if (mGXMemNum.alpComp) {
                 *GetAlphaComparePtr() = AlphaCompare();
+            }
 
             mGXMemNum.blendMode = mGXMemCap.blendMode;
-            if (mGXMemNum.blendMode)
+            if (mGXMemNum.blendMode) {
                 *GetBlendModePtr() = BlendMode();
+            }
         }
 
-        GXTexObj const* Material::GetTexMapAry() const {
-            return detail::ConvertOffsToPtr<GXTexObj>(mpGXMem, CalcOffsetTexMapAry(mGXMemCap));
+        const GXTexObj* Material::GetTexMapAry() const {
+            return detail::ConvertOffsToPtr<GXTexObj>(mpGXMem, 0);
         }
 
         GXTexObj* Material::GetTexMapAry() {
-            return detail::ConvertOffsToPtr<GXTexObj>(mpGXMem, CalcOffsetTexMapAry(mGXMemCap));
+            return detail::ConvertOffsToPtr<GXTexObj>(mpGXMem, 0);
         }
 
-        TexSRT const* Material::GetTexSRTAry() const {
+        const TexSRT* Material::GetTexSRTAry() const {
             return detail::ConvertOffsToPtr<TexSRT>(mpGXMem, CalcOffsetTexSRTAry(mGXMemCap));
         }
 
@@ -626,7 +545,7 @@ namespace nw4hbm {
             return detail::ConvertOffsToPtr<TexSRT>(mpGXMem, CalcOffsetTexSRTAry(mGXMemCap));
         }
 
-        TexCoordGen const* Material::GetTexCoordGenAry() const {
+        const TexCoordGen* Material::GetTexCoordGenAry() const {
             return detail::ConvertOffsToPtr<TexCoordGen>(mpGXMem,
                                                          CalcOffsetTexCoordGenAry(mGXMemCap));
         }
@@ -636,7 +555,7 @@ namespace nw4hbm {
                                                          CalcOffsetTexCoordGenAry(mGXMemCap));
         }
 
-        ChanCtrl const* Material::GetChanCtrlAry() const {
+        const ChanCtrl* Material::GetChanCtrlAry() const {
             return detail::ConvertOffsToPtr<ChanCtrl>(mpGXMem, CalcOffsetChanCtrlAry(mGXMemCap));
         }
 
@@ -644,7 +563,7 @@ namespace nw4hbm {
             return detail::ConvertOffsToPtr<ChanCtrl>(mpGXMem, CalcOffsetChanCtrlAry(mGXMemCap));
         }
 
-        ut::Color const* Material::GetMatColAry() const {
+        const ut::Color* Material::GetMatColAry() const {
             return detail::ConvertOffsToPtr<ut::Color>(mpGXMem, CalcOffsetMatColAry(mGXMemCap));
         }
 
@@ -652,7 +571,7 @@ namespace nw4hbm {
             return detail::ConvertOffsToPtr<ut::Color>(mpGXMem, CalcOffsetMatColAry(mGXMemCap));
         }
 
-        TevSwapMode const* Material::GetTevSwapAry() const {
+        const TevSwapMode* Material::GetTevSwapAry() const {
             return detail::ConvertOffsToPtr<TevSwapMode>(mpGXMem, CalcOffsetTevSwapAry(mGXMemCap));
         }
 
@@ -660,7 +579,7 @@ namespace nw4hbm {
             return detail::ConvertOffsToPtr<TevSwapMode>(mpGXMem, CalcOffsetTevSwapAry(mGXMemCap));
         }
 
-        AlphaCompare const* Material::GetAlphaComparePtr() const {
+        const AlphaCompare* Material::GetAlphaComparePtr() const {
             return detail::ConvertOffsToPtr<AlphaCompare>(mpGXMem,
                                                           CalcOffsetGetAlphaCompare(mGXMemCap));
         }
@@ -670,7 +589,7 @@ namespace nw4hbm {
                                                           CalcOffsetGetAlphaCompare(mGXMemCap));
         }
 
-        BlendMode const* Material::GetBlendModePtr() const {
+        const BlendMode* Material::GetBlendModePtr() const {
             return detail::ConvertOffsToPtr<BlendMode>(mpGXMem, CalcOffsetBlendMode(mGXMemCap));
         }
 
@@ -678,7 +597,7 @@ namespace nw4hbm {
             return detail::ConvertOffsToPtr<BlendMode>(mpGXMem, CalcOffsetBlendMode(mGXMemCap));
         }
 
-        IndirectStage const* Material::GetIndirectStageAry() const {
+        const IndirectStage* Material::GetIndirectStageAry() const {
             return detail::ConvertOffsToPtr<IndirectStage>(mpGXMem,
                                                            CalcOffsetIndirectStageAry(mGXMemCap));
         }
@@ -688,7 +607,7 @@ namespace nw4hbm {
                                                            CalcOffsetIndirectStageAry(mGXMemCap));
         }
 
-        TexSRT const* Material::GetIndTexSRTAry() const {
+        const TexSRT* Material::GetIndTexSRTAry() const {
             return detail::ConvertOffsToPtr<TexSRT>(mpGXMem, CalcOffsetIndTexSRTAry(mGXMemCap));
         }
 
@@ -696,7 +615,7 @@ namespace nw4hbm {
             return detail::ConvertOffsToPtr<TexSRT>(mpGXMem, CalcOffsetIndTexSRTAry(mGXMemCap));
         }
 
-        TevStage const* Material::GetTevStageAry() const {
+        const TevStage* Material::GetTevStageAry() const {
             return detail::ConvertOffsToPtr<TevStage>(mpGXMem, CalcOffsetTevStageAry(mGXMemCap));
         }
 
@@ -704,189 +623,188 @@ namespace nw4hbm {
             return detail::ConvertOffsToPtr<TevStage>(mpGXMem, CalcOffsetTevStageAry(mGXMemCap));
         }
 
-        void Material::SetName(char const* name) {
-            std::strncpy(mName, name, sizeof mName);
+        void Material::SetName(const char* name) {
+            std::strncpy(mName, name, ARRAY_SIZE(mName));
         }
 
         void Material::SetTextureNum(u8 num) {
-            if (num != 0) {
+            NW4HBM_ASSERT(907, num <= mGXMemCap.texMap);
+
+            if (num) {
+                NW4HBM_ASSERT_CHECK_NULL(910, mpGXMem);
                 GXTexObj* texMaps = GetTexMapAry();
 
-                for (u32 i = mGXMemNum.texMap; i < num; ++i)
-                    std::memset(&texMaps[i], 0, sizeof *texMaps);
+                for (u32 i = mGXMemNum.texMap; i < num; i++) {
+                    memset(&texMaps[i], 0, sizeof(*texMaps));
+                }
 
                 mGXMemNum.texMap = num;
             }
         }
 
         void Material::SetTexCoordGenNum(u8 num) {
-            if (num != 0) {
-                TexCoordGen* texCoordGens = GetTexCoordGenAry();
+            NW4HBM_ASSERT(924, num <= mGXMemCap.texCoordGen);
 
-                for (u32 i = mGXMemNum.texCoordGen; i < num; ++i)
+            if (num) {
+                NW4HBM_ASSERT_CHECK_NULL(927, mpGXMem);
+                TexCoordGen* const texCoordGens = GetTexCoordGenAry();
+
+                for (u32 i = mGXMemNum.texCoordGen; i < num; i++) {
                     texCoordGens[i] = TexCoordGen();
+                }
 
                 mGXMemNum.texCoordGen = num;
             }
         }
 
         void Material::SetTevStageNum(u8 num) {
-            if (num != 0) {
+            NW4HBM_ASSERT(941, num <= mGXMemCap.tevStage);
+
+            if (num) {
+                NW4HBM_ASSERT_CHECK_NULL(944, mpGXMem);
                 TevStage* tevStages = GetTevStageAry();
 
-                for (u32 i = mGXMemNum.tevStage; i < num; ++i)
+                for (u32 i = mGXMemNum.tevStage; i < num; i++) {
                     tevStages[i] = TevStage();
+                }
 
                 mGXMemNum.tevStage = num;
             }
         }
 
         void Material::SetIndStageNum(u8 num) {
-            if (num != 0) {
-                IndirectStage* indStages = GetIndirectStageAry();
+            NW4HBM_ASSERT(958, num <= mGXMemCap.indStage);
 
-                for (u32 i = mGXMemNum.indStage; i < num; ++i)
+            if (num) {
+                NW4HBM_ASSERT_CHECK_NULL(961, mpGXMem);
+                IndirectStage* const indStages = GetIndirectStageAry();
+
+                for (u32 i = mGXMemNum.indStage; i < num; i++) {
                     indStages[i] = IndirectStage();
+                }
 
                 mGXMemNum.indStage = num;
             }
         }
 
         void Material::GetTexture(GXTexObj* pTexObj, u8 texMapIdx) const {
+            NW4HBM_ASSERT_CHECK_NULL(988, pTexObj);
+            NW4HBM_ASSERT(989, texMapIdx < mGXMemNum.texMap);
             CopyGXTexObj(pTexObj, &GetTexMapAry()[texMapIdx]);
         }
 
         void Material::SetTexture(u8 texMapIdx, TPLPalette* pTplRes) {
+            NW4HBM_ASSERT(1010, texMapIdx < mGXMemNum.texMap);
             GXTexObj* pDstTexObj = &GetTexMapAry()[texMapIdx];
-
             detail::InitGXTexObjFromTPL(pDstTexObj, pTplRes, 0);
         }
 
         void Material::SetTextureNoWrap(u8 texMapIdx, TPLPalette* pTplRes) {
+            NW4HBM_ASSERT(1033, texMapIdx < mGXMemNum.texMap);
             GXTexObj* pDstTexObj = &GetTexMapAry()[texMapIdx];
             GXTexWrapMode wrapS = GXGetTexObjWrapS(pDstTexObj);
             GXTexWrapMode wrapT = GXGetTexObjWrapT(pDstTexObj);
-
             detail::InitGXTexObjFromTPL(pDstTexObj, pTplRes, 0);
             GXInitTexObjWrapMode(pDstTexObj, wrapS, wrapT);
         }
 
-        void Material::SetTexture(u8 texMapIdx, GXTexObj const& texObj) {
+        void Material::SetTexture(u8 texMapIdx, const GXTexObj& texObj) {
+            NW4HBM_ASSERT(1061, texMapIdx < mGXMemNum.texMap);
             GXTexObj* pDstTexObj = &GetTexMapAry()[texMapIdx];
-
             CopyGXTexObj(pDstTexObj, &texObj);
-        }
-
-        void Material::SetTextureNoWrap(u8 texMapIdx, GXTexObj const& texObj) {
-            GXTexObj* pDstTexObj = &GetTexMapAry()[texMapIdx];
-            GXTexWrapMode wrapS = GXGetTexObjWrapS(pDstTexObj);
-            GXTexWrapMode wrapT = GXGetTexObjWrapT(pDstTexObj);
-
-            CopyGXTexObj(pDstTexObj, &texObj);
-            GXInitTexObjWrapMode(pDstTexObj, wrapS, wrapT);
-        }
-
-        s16 Material::GetColorElement(u32 colorType) const {
-            switch (colorType) {
-            case 0 ... 3:
-                if (mGXMemNum.matCol >= 1) {
-                    ut::Color const* matCols = GetMatColAry();
-
-                    return GetColorComponentValue(*matCols, colorType & 3);
-                }
-
-                break;
-
-            case 4 ... 15: {
-                u32 regIdx = (colorType - 4) >> 2;
-
-                switch ((colorType - 4) & 3) {
-                case 0:
-                    return mTevCols[regIdx].r;
-
-                case 1:
-                    return mTevCols[regIdx].g;
-
-                case 2:
-                    return mTevCols[regIdx].b;
-
-                case 3:
-                    return mTevCols[regIdx].a;
-                }
-            } break;
-
-            case 16 ... 31: {
-                u32 regIdx = (colorType - 16) >> 2;
-
-                return GetColorComponentValue(mTevKCols[regIdx], (colorType - 16) & 3);
-            }
-                /* break; */
-            }
-
-            return 0xff;
         }
 
         void Material::SetColorElement(u32 colorType, s16 value) {
             switch (colorType) {
-            case 0 ... 3:
+            case ANIMTARGET_MATCOLOR_MATR:
+            case ANIMTARGET_MATCOLOR_MATG:
+            case ANIMTARGET_MATCOLOR_MATB:
+            case ANIMTARGET_MATCOLOR_MATA: {
                 if (mGXMemNum.matCol >= 1) {
                     ut::Color* matCols = GetMatColAry();
-
                     SetColorComponentValue(matCols, colorType & 3, value);
                 }
 
                 break;
-
-            case 4 ... 15: {
-                u32 regIdx = (colorType - 4) >> 2;
-
-                switch ((colorType - 4) & 3) {
-                case 0:
+            }
+            case ANIMTARGET_MATCOLOR_TEV0R:
+            case ANIMTARGET_MATCOLOR_TEV0G:
+            case ANIMTARGET_MATCOLOR_TEV0B:
+            case ANIMTARGET_MATCOLOR_TEV0A:
+            case ANIMTARGET_MATCOLOR_TEV1R:
+            case ANIMTARGET_MATCOLOR_TEV1G:
+            case ANIMTARGET_MATCOLOR_TEV1B:
+            case ANIMTARGET_MATCOLOR_TEV1A:
+            case ANIMTARGET_MATCOLOR_TEV2R:
+            case ANIMTARGET_MATCOLOR_TEV2G:
+            case ANIMTARGET_MATCOLOR_TEV2B:
+            case ANIMTARGET_MATCOLOR_TEV2A: {
+                u32 regIdx = (colorType - 4) / 4;
+                switch ((colorType - 4) % 4) {
+                case 0: {
                     mTevCols[regIdx].r = value;
                     break;
-
-                case 1:
+                }
+                case 1: {
                     mTevCols[regIdx].g = value;
                     break;
-
-                case 2:
+                }
+                case 2: {
                     mTevCols[regIdx].b = value;
                     break;
-
-                case 3:
+                }
+                case 3: {
                     mTevCols[regIdx].a = value;
                     break;
                 }
-            } break;
-
-            case 16 ... 31: {
-                u32 regIdx = (colorType - 16) >> 2;
-
+                }
+                break;
+            }
+            case ANIMTARGET_MATCOLOR_TEVK0R:
+            case ANIMTARGET_MATCOLOR_TEVK0G:
+            case ANIMTARGET_MATCOLOR_TEVK0B:
+            case ANIMTARGET_MATCOLOR_TEVK0A:
+            case ANIMTARGET_MATCOLOR_TEVK1R:
+            case ANIMTARGET_MATCOLOR_TEVK1G:
+            case ANIMTARGET_MATCOLOR_TEVK1B:
+            case ANIMTARGET_MATCOLOR_TEVK1A:
+            case ANIMTARGET_MATCOLOR_TEVK2R:
+            case ANIMTARGET_MATCOLOR_TEVK2G:
+            case ANIMTARGET_MATCOLOR_TEVK2B:
+            case ANIMTARGET_MATCOLOR_TEVK2A:
+            case ANIMTARGET_MATCOLOR_TEVK3R:
+            case ANIMTARGET_MATCOLOR_TEVK3G:
+            case ANIMTARGET_MATCOLOR_TEVK3B:
+            case ANIMTARGET_MATCOLOR_TEVK3A: {
+                u32 regIdx = (colorType - 16) / 4;
                 SetColorComponentValue(&mTevKCols[regIdx], (colorType - 16) & 3, value);
-            } break;
+                break;
+            }
             }
         }
 
         bool Material::SetupGX(bool bModVtxCol, u8 alpha) {
-            static GXTevKColorSel kColSels[8] = {
+            static GXTevKColorSel kColSels[GX_MAX_TEXMAP] = {
                 GX_TEV_KCSEL_K3_A, GX_TEV_KCSEL_K3_B, GX_TEV_KCSEL_K3_G, GX_TEV_KCSEL_K3_R,
-                GX_TEV_KCSEL_K2_A, GX_TEV_KCSEL_K2_B, GX_TEV_KCSEL_K2_G, GX_TEV_KCSEL_K2_R};
+                GX_TEV_KCSEL_K2_A, GX_TEV_KCSEL_K2_B, GX_TEV_KCSEL_K2_G, GX_TEV_KCSEL_K2_R,
+            };
 
-            static GXTevKAlphaSel kAlpSels[8] = {
+            static GXTevKAlphaSel kAlpSels[GX_MAX_TEXMAP] = {
                 GX_TEV_KASEL_K3_A, GX_TEV_KASEL_K3_B, GX_TEV_KASEL_K3_G, GX_TEV_KASEL_K3_R,
-                GX_TEV_KASEL_K2_A, GX_TEV_KASEL_K2_B, GX_TEV_KASEL_K2_G, GX_TEV_KASEL_K2_R};
+                GX_TEV_KASEL_K2_A, GX_TEV_KASEL_K2_B, GX_TEV_KASEL_K2_G, GX_TEV_KASEL_K2_R,
+            };
 
-            bool bUseVtxCol = TRUE;
-            bool bUseMatCol = FALSE;
+            bool bUseVtxCol = true;
+            bool bUseMatCol = false;
 
             GXSetNumChans(1);
 
             if (IsChanCtrlCap()) {
-                ChanCtrl* chanCtrls = GetChanCtrlAry();
+                ChanCtrl* const chanCtrls = GetChanCtrlAry();
 
-                GXSetChanCtrl(GX_COLOR0, FALSE, GX_SRC_REG, chanCtrls->GetColorSrc(), GX_LIGHT_NULL,
+                GXSetChanCtrl(GX_COLOR0, false, GX_SRC_REG, chanCtrls->GetColorSrc(), GX_LIGHT_NULL,
                               GX_DF_NONE, GX_AF_NONE);
-                GXSetChanCtrl(GX_ALPHA0, FALSE, GX_SRC_REG, chanCtrls->GetAlphaSrc(), GX_LIGHT_NULL,
+                GXSetChanCtrl(GX_ALPHA0, false, GX_SRC_REG, chanCtrls->GetAlphaSrc(), GX_LIGHT_NULL,
                               GX_DF_NONE, GX_AF_NONE);
 
                 bUseVtxCol = chanCtrls->GetColorSrc() == GX_SRC_VTX ||
@@ -894,44 +812,53 @@ namespace nw4hbm {
                 bUseMatCol = chanCtrls->GetColorSrc() == GX_SRC_REG ||
                              chanCtrls->GetAlphaSrc() == GX_SRC_REG;
             } else {
-                GXSetChanCtrl(GX_COLOR0A0, FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+                GXSetChanCtrl(GX_COLOR0A0, false, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
                               GX_AF_NONE);
             }
 
-            bool bUseRasStage = FALSE;
+            bool bUseRasStage = false;
 
-            if (bUseVtxCol)
+            if (bUseVtxCol) {
                 bUseRasStage = bUseRasStage || bModVtxCol;
+            }
 
             if (bUseMatCol) {
-                ut::Color matCol(0xffffffff);
+                ut::Color matCol(ut::Color::WHITE);
 
-                if (IsMatColorCap())
+                if (IsMatColorCap()) {
                     matCol = *GetMatColAry();
+                }
 
                 matCol = detail::MultipleAlpha(matCol, alpha);
                 GXSetChanMatColor(GX_COLOR0A0, matCol);
 
-                bUseRasStage = bUseRasStage || matCol != 0xffffffff;
+                bUseRasStage = bUseRasStage || matCol != ut::Color::WHITE;
             }
 
-            bool bSetTexMtx = FALSE;
-            bool bUseTexMtx[10];
+            bool bSetTexMtx = false;
+            bool bUseTexMtx[MAX_TEX_SRT];
 
-            for (int i = 0; i < (int)ARRAY_SIZE(bUseTexMtx); ++i)
-                bUseTexMtx[i] = FALSE;
+            for (int i = 0; i < (int)ARRAY_SIZE(bUseTexMtx); i++) {
+                bUseTexMtx[i] = false;
+            }
 
             GXSetNumTexGens(mGXMemNum.texCoordGen);
 
             if (mGXMemNum.texCoordGen) {
                 TexCoordGen* texCoordGens = GetTexCoordGenAry();
 
-                for (int i = 0; i < mGXMemNum.texCoordGen; ++i) {
+                for (int i = 0; i < mGXMemNum.texCoordGen; i++) {
+                    NW4HBM_ASSERT(1288, texCoordGens[i].GetTexGenType() != GX_TG_MTX3x4);
                     u32 texMtx = texCoordGens[i].GetTexMtx();
 
-                    if (texCoordGens[i].GetTexGenType() == 1 && texMtx != 60) {
-                        bUseTexMtx[GetTexMtxIdx(texMtx)] = TRUE;
-                        bSetTexMtx = TRUE;
+                    if (texCoordGens[i].GetTexGenType() == GX_TG_MTX2x4) {
+                        NW4HBM_ASSERT(1294, texMtx == GX_IDENTITY ||
+                                                GetTexMtxIdx(texMtx) < mGXMemNum.texSRT);
+
+                        if (texMtx != GX_IDENTITY) {
+                            bUseTexMtx[GetTexMtxIdx(texMtx)] = true;
+                            bSetTexMtx = true;
+                        }
                     }
 
                     GXSetTexCoordGen(static_cast<GXTexCoordID>(i), texCoordGens[i].GetTexGenType(),
@@ -940,27 +867,25 @@ namespace nw4hbm {
             }
 
             if (bSetTexMtx) {
-                TexSRT* texSRTs = GetTexSRTAry();
-                for (u8 i = 0; i < mGXMemNum.texSRT; ++i) {
+                TexSRT* const texSRTs = GetTexSRTAry();
+                for (u8 i = 0; i < mGXMemNum.texSRT; i++) {
                     if (bUseTexMtx[i]) {
                         math::MTX34 texMtx;
                         CalcTextureMtx(&texMtx, texSRTs[i]);
-
                         GXLoadTexMtxImm(texMtx, GetTexMtx(i), GX_MTX2x4);
                     }
                 }
             }
 
             if (mGXMemNum.texMap) {
-                u32 tlutName = 0;
+                u32 tlutName = GX_TLUT0;
                 GXTexObj* texMaps = GetTexMapAry();
 
-                for (int i = 0; i < mGXMemNum.texMap; ++i) {
+                for (int i = 0; i < mGXMemNum.texMap; i++) {
                     GXTexObj texMap = texMaps[i];
                     int texFmt = GXGetTexObjFmt(&texMap);
 
-                    // TODO: What are 8 and 9?
-                    if (texFmt == 8 || texFmt == 9) {
+                    if (texFmt == GX_TF_C4 || texFmt == GX_TF_C8) {
                         TPLClutHeader* pClutHeader =
                             static_cast<TPLClutHeader*>(GXGetTexObjUserData(&texMap));
 
@@ -972,7 +897,7 @@ namespace nw4hbm {
                             GXLoadTlut(&tlutObj, tlutName);
                             GXInitTexObjTlut(&texMap, tlutName);
 
-                            ++tlutName;
+                            tlutName++;
                         }
                     }
 
@@ -980,19 +905,18 @@ namespace nw4hbm {
                 }
             }
 
-            GXSetTevColorS10(GX_TEVREG0, mTevCols[0]);
-            GXSetTevColorS10(GX_TEVREG1, mTevCols[1]);
-            GXSetTevColorS10(GX_TEVREG2, mTevCols[2]);
+            GXSetTevColorS10(GX_TEVREG0, mTevCols[TEVCOLOR_REG0]);
+            GXSetTevColorS10(GX_TEVREG1, mTevCols[TEVCOLOR_REG1]);
+            GXSetTevColorS10(GX_TEVREG2, mTevCols[TEVCOLOR_REG2]);
 
-            GXSetTevKColor(GX_KCOLOR0, mTevKCols[0]);
-            GXSetTevKColor(GX_KCOLOR1, mTevKCols[1]);
-            GXSetTevKColor(GX_KCOLOR2, mTevKCols[2]);
-            GXSetTevKColor(GX_KCOLOR3, mTevKCols[3]);
+            GXSetTevKColor(GX_KCOLOR0, mTevKCols[GX_KCOLOR0]);
+            GXSetTevKColor(GX_KCOLOR1, mTevKCols[GX_KCOLOR1]);
+            GXSetTevKColor(GX_KCOLOR2, mTevKCols[GX_KCOLOR2]);
+            GXSetTevKColor(GX_KCOLOR3, mTevKCols[GX_KCOLOR3]);
 
             if (IsTevSwapCap()) {
                 TevSwapMode* tevSwaps = GetTevSwapAry();
-
-                for (int i = 0; i < 4; ++i) {
+                for (int i = 0; i < GX_MAX_TEVSWAP; i++) {
                     GXSetTevSwapModeTable(static_cast<GXTevSwapSel>(i), tevSwaps[i].GetR(),
                                           tevSwaps[i].GetG(), tevSwaps[i].GetB(),
                                           tevSwaps[i].GetA());
@@ -1007,17 +931,18 @@ namespace nw4hbm {
                                       GX_CH_ALPHA);
             }
 
-            bool bSetIndTexMtx = FALSE;
-            bool bUseIndTexMtx[3];
+            bool bSetIndTexMtx = false;
+            bool bUseIndTexMtx[MAX_IND_SRT];
 
-            for (int i = 0; i < (int)ARRAY_SIZE(bUseIndTexMtx); ++i)
-                bUseIndTexMtx[i] = FALSE;
+            for (int i = 0; i < (int)ARRAY_SIZE(bUseIndTexMtx); i++) {
+                bUseIndTexMtx[i] = false;
+            }
 
             if (mGXMemNum.tevStage) {
                 GXSetNumTevStages(mGXMemNum.tevStage);
 
                 TevStage* tevStages = GetTevStageAry();
-                for (int i = 0; i < mGXMemNum.tevStage; ++i) {
+                for (int i = 0; i < mGXMemNum.tevStage; i++) {
                     GXTevStageID tevStage = static_cast<GXTevStageID>(i);
 
                     GXSetTevOrder(tevStage, tevStages[i].GetTexCoordGen(), tevStages[i].GetTexMap(),
@@ -1054,35 +979,35 @@ namespace nw4hbm {
                                      tevStages[i].IsIndUtcLod(), tevStages[i].GetIndAlphaSel());
 
                     if (GX_ITM_0 <= indMtxSel && indMtxSel <= GX_ITM_2) {
-                        bUseIndTexMtx[indMtxSel - 1] = TRUE;
-                        bSetIndTexMtx = TRUE;
+                        bUseIndTexMtx[indMtxSel - 1] = true;
+                        bSetIndTexMtx = true;
                     }
                 }
 
-                bUseRasStage = TRUE;
+                bUseRasStage = true;
             } else {
-                u8 tevStageID = 0;
+                u8 tevStageID = GX_TEVSTAGE0;
 
-                if (mGXMemNum.texMap == 0) {
+                if (mGXMemNum.texMap == GX_TEXMAP0) {
                     GXTevStageID tevStage = static_cast<GXTevStageID>(tevStageID);
 
                     GXSetTevOrder(tevStage, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
                     GXSetTevColorIn(tevStage, GX_CC_ZERO, GX_CC_C1, GX_CC_RASC, GX_CC_ZERO);
                     GXSetTevAlphaIn(tevStage, GX_CA_ZERO, GX_CA_A1, GX_CA_RASA, GX_CA_ZERO);
 
-                    ++tevStageID;
-                    bUseRasStage = TRUE;
+                    tevStageID++;
+                    bUseRasStage = true;
                 } else {
-                    if (mGXMemNum.texMap == 1) {
+                    if (mGXMemNum.texMap == GX_TEXMAP1) {
                         GXTevStageID tevStage = static_cast<GXTevStageID>(tevStageID);
 
                         GXSetTevOrder(tevStage, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
                         GXSetTevColorIn(tevStage, GX_CC_C0, GX_CC_C1, GX_CC_TEXC, GX_CC_ZERO);
                         GXSetTevAlphaIn(tevStage, GX_CA_A0, GX_CA_A1, GX_CA_TEXA, GX_CA_ZERO);
 
-                        ++tevStageID;
+                        tevStageID++;
                     } else {
-                        if (mGXMemNum.texMap == 2) {
+                        if (mGXMemNum.texMap == GX_TEXMAP2) {
                             GXTevStageID tevStage;
 
                             tevStage = static_cast<GXTevStageID>(tevStageID);
@@ -1092,7 +1017,7 @@ namespace nw4hbm {
                             GXSetTevAlphaIn(tevStage, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO,
                                             GX_CA_TEXA);
 
-                            ++tevStageID;
+                            tevStageID++;
 
                             tevStage = static_cast<GXTevStageID>(tevStageID);
                             GXSetTevOrder(tevStage, GX_TEXCOORD1, GX_TEXMAP1, GX_COLOR_NULL);
@@ -1101,19 +1026,19 @@ namespace nw4hbm {
                             GXSetTevAlphaIn(tevStage, GX_CA_TEXA, GX_CA_APREV, GX_CA_KONST,
                                             GX_CA_ZERO);
 
-                            GXSetTevKColorSel(tevStage, kColSels[0]);
-                            GXSetTevKAlphaSel(tevStage, kAlpSels[0]);
+                            GXSetTevKColorSel(tevStage, kColSels[GX_TEXMAP0]);
+                            GXSetTevKAlphaSel(tevStage, kAlpSels[GX_TEXMAP0]);
 
-                            ++tevStageID;
+                            tevStageID++;
                         } else {
-                            for (int i = 0; i < mGXMemNum.texMap; ++i) {
+                            for (int i = 0; i < mGXMemNum.texMap; i++) {
                                 GXTevStageID tevStage = static_cast<GXTevStageID>(tevStageID);
 
                                 GXSetTevOrder(tevStage, static_cast<GXTexCoordID>(i),
                                               static_cast<GXTexMapID>(i), GX_COLOR_NULL);
 
-                                GXTevColorArg colDIn = i == 0 ? GX_CC_ZERO : GX_CC_CPREV;
-                                GXTevAlphaArg alpDIn = i == 0 ? GX_CA_ZERO : GX_CA_APREV;
+                                GXTevColorArg colDIn = i == GX_TEXMAP0 ? GX_CC_ZERO : GX_CC_CPREV;
+                                GXTevAlphaArg alpDIn = i == GX_TEXMAP0 ? GX_CA_ZERO : GX_CA_APREV;
 
                                 GXSetTevColorIn(tevStage, GX_CC_ZERO, GX_CC_TEXC, GX_CC_KONST,
                                                 colDIn);
@@ -1123,11 +1048,13 @@ namespace nw4hbm {
                                 GXSetTevKColorSel(tevStage, kColSels[i]);
                                 GXSetTevKAlphaSel(tevStage, kAlpSels[i]);
 
-                                ++tevStageID;
+                                tevStageID++;
                             }
                         }
 
-                        if (mTevCols[0] != DefaultBlackColor || mTevCols[1] != DefaultWhiteColor) {
+                        if (mTevCols[TEVCOLOR_REG0] != DefaultBlackColor ||
+                            !IsDefaultWhiteColor(&mTevCols[TEVCOLOR_REG1]))
+                        {
                             GXTevStageID tevStage = static_cast<GXTevStageID>(tevStageID);
 
                             GXSetTevOrder(tevStage, GX_TEXCOORD_NULL, GX_TEXMAP_NULL,
@@ -1135,7 +1062,7 @@ namespace nw4hbm {
                             GXSetTevColorIn(tevStage, GX_CC_C0, GX_CC_C1, GX_CC_CPREV, GX_CC_ZERO);
                             GXSetTevAlphaIn(tevStage, GX_CA_A0, GX_CA_A1, GX_CA_APREV, GX_CA_ZERO);
 
-                            ++tevStageID;
+                            tevStageID++;
                         }
                     }
 
@@ -1146,12 +1073,12 @@ namespace nw4hbm {
                         GXSetTevColorIn(tevStage, GX_CC_ZERO, GX_CC_CPREV, GX_CC_RASC, GX_CC_ZERO);
                         GXSetTevAlphaIn(tevStage, GX_CA_ZERO, GX_CA_APREV, GX_CA_RASA, GX_CA_ZERO);
 
-                        ++tevStageID;
+                        tevStageID++;
                     }
                 }
 
-                u8 const tevStageNum = tevStageID;
-                for (u8 id = 0; id < tevStageNum; ++id) {
+                const u8 tevStageNum = tevStageID;
+                for (u8 id = 0; id < tevStageNum; id++) {
                     GXTevStageID tevStage = static_cast<GXTevStageID>(id);
 
                     GXSetTevColorOp(tevStage, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
@@ -1167,10 +1094,9 @@ namespace nw4hbm {
             if (bSetIndTexMtx) {
                 TexSRT* indTexSRTs = GetIndTexSRTAry();
 
-                for (int i = 0; i < mGXMemNum.indSRT; ++i) {
+                for (int i = 0; i < mGXMemNum.indSRT; i++) {
                     if (bUseIndTexMtx[i]) {
                         Mtx23 mtx;
-
                         CalcIndTexMtx(mtx, indTexSRTs[i]);
                         SetIndTexMtx(static_cast<GXIndTexMtxID>(i + 1), mtx);
                     }
@@ -1182,12 +1108,11 @@ namespace nw4hbm {
             if (mGXMemNum.indStage) {
                 IndirectStage* indirectStages = GetIndirectStageAry();
 
-                for (int i = 0; i < mGXMemNum.indStage; ++i) {
+                for (int i = 0; i < mGXMemNum.indStage; i++) {
                     GXIndTexStageID indStage = static_cast<GXIndTexStageID>(i);
 
                     GXSetIndTexOrder(indStage, indirectStages[i].GetTexCoordGen(),
                                      indirectStages[i].GetTexMap());
-
                     GXSetIndTexCoordScale(indStage, indirectStages[i].GetScaleS(),
                                           indirectStages[i].GetScaleT());
                 }
@@ -1204,7 +1129,6 @@ namespace nw4hbm {
 
             if (IsBlendModeCap()) {
                 BlendMode* pBlendMode = GetBlendModePtr();
-
                 GXSetBlendMode(pBlendMode->GetType(), pBlendMode->GetSrcFactor(),
                                pBlendMode->GetDstFactor(), pBlendMode->GetOp());
             } else {
@@ -1214,16 +1138,17 @@ namespace nw4hbm {
             return bUseRasStage && bUseVtxCol;
         }
 
-        void Material::BindAnimation(AnimTransform* pAnimTrans) {
-            pAnimTrans->Bind(this);
+        void Material::BindAnimation(AnimTransform* animTrans) {
+            animTrans->Bind(this);
         }
 
-        void Material::UnbindAnimation(AnimTransform* pAnimTrans) {
-            NW4HBM_RANGE_FOR_NO_AUTO_INC(it, mAnimList) {
-                decltype(it) currIt = it++;
+        void Material::UnbindAnimation(AnimTransform* animTrans) {
+            for (AnimationLinkList::Iterator it = mAnimList.GetBeginIter();
+                 it != mAnimList.GetEndIter();)
+            {
+                AnimationLinkList::Iterator currIt = it++;
 
-                // NULL is for Layout::UnbindAllAnimation
-                if (pAnimTrans == NULL || currIt->GetAnimTransform() == pAnimTrans) {
+                if (animTrans == NULL || currIt->GetAnimTransform() == animTrans) {
                     mAnimList.Erase(currIt);
                     currIt->Reset();
                 }
@@ -1235,37 +1160,39 @@ namespace nw4hbm {
         }
 
         void Material::Animate() {
-            NW4HBM_RANGE_FOR(it, mAnimList) {
+            for (AnimationLinkList::Iterator it = mAnimList.GetBeginIter();
+                 it != mAnimList.GetEndIter(); it++)
+            {
                 if (it->IsEnable()) {
                     AnimTransform* animTrans = it->GetAnimTransform();
-
                     animTrans->Animate(it->GetIndex(), this);
                 }
             }
         }
 
-        void Material::AddAnimationLink(AnimationLink* pAnimationLink) {
-            mAnimList.PushBack(pAnimationLink);
+        void Material::AddAnimationLink(AnimationLink* animationLink) {
+            mAnimList.PushBack(animationLink);
         }
 
-        AnimationLink* Material::FindAnimationLink(AnimTransform* pAnimTrans) {
-            return detail::FindAnimationLink(&mAnimList, pAnimTrans);
+        AnimationLink* Material::FindAnimationLink(AnimTransform* animTrans) {
+            return detail::FindAnimationLink(&mAnimList, animTrans);
         }
 
-        void Material::SetAnimationEnable(AnimTransform* pAnimTrans, bool bEnable) {
-            if (AnimationLink* pAnimLink = FindAnimationLink(pAnimTrans))
-                pAnimLink->SetEnable(bEnable);
+        void Material::SetAnimationEnable(AnimTransform* animTrans, bool bEnable) {
+            if (AnimationLink* animLink = FindAnimationLink(animTrans)) {
+                animLink->SetEnable(bEnable);
+            }
         }
 
         Size detail::GetTextureSize(Material* pMaterial, u8 texMapIdx) {
-            if (texMapIdx >= pMaterial->GetTextureNum())
+            if (texMapIdx >= pMaterial->GetTextureNum()) {
                 return Size(0.0f, 0.0f);
+            }
 
             GXTexObj texObj;
             pMaterial->GetTexture(&texObj, texMapIdx);
 
             return Size(GXGetTexObjWidth(&texObj), GXGetTexObjHeight(&texObj));
         }
-
     }  // namespace lyt
 }  // namespace nw4hbm

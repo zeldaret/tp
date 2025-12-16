@@ -1,42 +1,32 @@
 #include "arcResourceAccessor.h"
 
-#include <cstring.h>
-#include <extras.h>
-
-#include "../macros.h"
-
-#include <revolution/types.h>
-
-#include "../ut/LinkList.h"
-
 #include <revolution/arc.h>
 
-namespace {
-    using namespace nw4hbm;
-    using namespace nw4hbm::lyt;
-
-    s32 FindNameResource(ARCHandle* pArcHandle, char const* resName);
-    void* GetResourceSub(ARCHandle* pArcHandle, char const* resRootDir, u32 resType,
-                         char const* name, u32* pSize);
-}  // unnamed namespace
+#include "string.h"
 
 namespace {
 
-    s32 FindNameResource(ARCHandle* pArcHandle, char const* resName) {
-        s32 entryNum = ARC_ENTRY_NUM_INVALID;
+    s32 FindNameResource(ARCHandle* pArcHandle, const char* resName) NO_INLINE {
+        s32 entryNum = -1;
 
         ARCDir dir;
         BOOL bSuccess = ARCOpenDir(pArcHandle, ".", &dir);
+        NW4HBM_ASSERT(48, bSuccess);
 
         ARCDirEntry dirEntry;
+
         while (ARCReadDir(&dir, &dirEntry)) {
-            if (dirEntry.isDir) {
+            if (dirEntry.isDir != 0) {
                 bSuccess = ARCChangeDir(pArcHandle, dirEntry.name);
+                NW4HBM_ASSERT(57, bSuccess);
+
                 entryNum = FindNameResource(pArcHandle, resName);
                 bSuccess = ARCChangeDir(pArcHandle, "..");
+                NW4HBM_ASSERT(60, bSuccess);
 
-                if (entryNum != ARC_ENTRY_NUM_INVALID)
+                if (entryNum != -1) {
                     break;
+                }
             } else if (stricmp(resName, dirEntry.name) == 0) {
                 entryNum = dirEntry.entryNum;
                 break;
@@ -44,49 +34,50 @@ namespace {
         }
 
         bSuccess = ARCCloseDir(&dir);
-
-        // stripped assert? maybe on bSuccess?
-        (void)0;
-
+        NW4HBM_ASSERT(77, bSuccess);
         return entryNum;
     }
 
-    void* GetResourceSub(ARCHandle* pArcHandle, char const* resRootDir, u32 resType,
-                         char const* name, u32* pSize) {
-        s32 entryNum = ARC_ENTRY_NUM_INVALID;
+    void* GetResourceSub(ARCHandle* pArcHandle, const char* resRootDir, u32 resType,
+                         const char* name, u32* pSize) {
+        s32 entryNum = -1;
 
-        if (ARCConvertPathToEntrynum(pArcHandle, resRootDir) != ARC_ENTRY_NUM_INVALID &&
+        if (ARCConvertPathToEntrynum(pArcHandle, resRootDir) != -1 &&
             ARCChangeDir(pArcHandle, resRootDir))
         {
             if (!resType) {
                 entryNum = FindNameResource(pArcHandle, name);
             } else {
-                char resTypeStr[sizeof(u32) + 1];
+                char resTypeStr[5];
                 resTypeStr[0] = resType >> 24;
                 resTypeStr[1] = resType >> 16;
                 resTypeStr[2] = resType >> 8;
                 resTypeStr[3] = resType;
                 resTypeStr[4] = '\0';
 
-                if (ARCConvertPathToEntrynum(pArcHandle, resTypeStr) != ARC_ENTRY_NUM_INVALID &&
+                if (ARCConvertPathToEntrynum(pArcHandle, resTypeStr) != -1 &&
                     ARCChangeDir(pArcHandle, resTypeStr))
                 {
                     entryNum = ARCConvertPathToEntrynum(pArcHandle, name);
                     BOOL bSuccess = ARCChangeDir(pArcHandle, "..");
+                    NW4HBM_ASSERT(117, bSuccess);
                 }
             }
 
             BOOL bSuccess = ARCChangeDir(pArcHandle, "..");
+            NW4HBM_ASSERT(123, bSuccess);
         }
 
-        if (entryNum != ARC_ENTRY_NUM_INVALID) {
+        if (entryNum != -1) {
             ARCFileInfo arcFileInfo;
             BOOL bSuccess = ARCFastOpen(pArcHandle, entryNum, &arcFileInfo);
+            NW4HBM_ASSERT(131, bSuccess);
 
             void* resPtr = ARCGetStartAddrInMem(&arcFileInfo);
 
-            if (pSize)
+            if (pSize) {
                 *pSize = ARCGetLength(&arcFileInfo);
+            }
 
             ARCClose(&arcFileInfo);
 
@@ -95,86 +86,78 @@ namespace {
 
         return NULL;
     }
-
-}  // unnamed namespace
+}  // namespace
 
 namespace nw4hbm {
     namespace lyt {
+        ut::Font* detail::FindFont(FontRefLinkList* pFontRefList, const char* name) {
+            for (FontRefLinkList::Iterator it = pFontRefList->GetBeginIter();
+                 it != pFontRefList->GetEndIter(); it++)
+            {
+                if (strcmp(name, it->GetFontName()) == 0) {
+                    return it->GetFont();
+                }
+            }
+            return NULL;
+        }
 
         FontRefLink::FontRefLink() : mpFont(NULL) {}
 
-        void FontRefLink::Set(char const* name, ut::Font* pFont) {
-            std::strcpy(mFontName, name);
-
+        void FontRefLink::Set(const char* name, ut::Font* pFont) {
+            strcpy(mFontName, name);
             mpFont = pFont;
         }
 
-        namespace detail {
-
-            ut::Font* FindFont(FontRefLink::LinkList* pFontRefList, char const* name) {
-                NW4HBM_RANGE_FOR(it, *pFontRefList) {
-                    if (std::strcmp(name, it->GetFontName()) == 0)
-                        return it->GetFont();
-                }
-
-                return NULL;
-            }
-
-        }  // namespace detail
-
         ArcResourceAccessor::ArcResourceAccessor() : mArcBuf(NULL) {}
 
-        bool ArcResourceAccessor::Attach(void* archiveStart, char const* resourceRootDirectory) {
+        void dummyString() {
+            OSReport("NW4HBM:Failed assertion std::strlen(name) < FONTNAMEBUF_MAX");
+        }
+
+        bool ArcResourceAccessor::Attach(void* archiveStart, const char* resourceRootDirectory) {
+            // clang-format off
+    NW4HBM_ASSERT(220, ! IsAttached());
+    NW4HBM_ASSERT_CHECK_NULL(221, archiveStart);
+    NW4HBM_ASSERT_CHECK_NULL(222, resourceRootDirectory);
+            // clang-format on
+
             BOOL bSuccess = ARCInitHandle(archiveStart, &mArcHandle);
 
-            if (!bSuccess)
-                return FALSE;
+            if (!bSuccess) {
+                return false;
+            }
 
             mArcBuf = archiveStart;
 
-            std::strncpy(mResRootDir, resourceRootDirectory, RES_ROOT_DIR_SIZE - 1);
-            mResRootDir[RES_ROOT_DIR_SIZE - 1] = '\0';
+            strncpy(mResRootDir, resourceRootDirectory, ARRAY_SIZE(mResRootDir) - 1);
+            mResRootDir[ARRAY_SIZE(mResRootDir) - 1] = '\0';
 
-            return TRUE;
+            return true;
         }
 
-        void* ArcResourceAccessor::Detach() {
-            void* ret = mArcBuf;
-
-            mArcBuf = NULL;
-
-            return ret;
+        void dummyString2() {
+            OSReport("NW4HBM:Failed assertion IsAttached()");
+            OSReport("NW4HBM:Pointer must not be NULL (pLink)");
         }
 
-        void* ArcResourceAccessor::GetResource(u32 resType, char const* name, u32* pSize) {
+        void* ArcResourceAccessor::GetResource(u32 resType, const char* name, u32* pSize) {
             return GetResourceSub(&mArcHandle, mResRootDir, resType, name, pSize);
         }
 
-        bool ArcResourceLink::Set(void* archiveStart, char const* resourceRootDirectory) {
+        bool ArcResourceLink::Set(void* archiveStart, const char* resRootDirectory) {
             BOOL bSuccess = ARCInitHandle(archiveStart, &mArcHandle);
 
-            if (!bSuccess)
-                return FALSE;
+            if (!bSuccess) {
+                return false;
+            }
 
-            std::strncpy(mResRootDir, resourceRootDirectory, RES_ROOT_DIR_SIZE - 1);
-            mResRootDir[RES_ROOT_DIR_SIZE - 1] = '\0';
+            strncpy(mResRootDir, resRootDirectory, ARRAY_SIZE(mResRootDir) - 1);
+            mResRootDir[ARRAY_SIZE(mResRootDir) - 1] = '\0';
 
-            return TRUE;
+            return true;
         }
 
-        void* ArcResourceLink::GetArchiveDataStart() const {
-            return mArcHandle.archiveStartAddr;
-        }
-
-        void ArcResourceAccessor::RegistFont(FontRefLink* pLink) {
-            mFontList.PushBack(pLink);
-        }
-
-        void ArcResourceAccessor::UnregistFont(FontRefLink* pLink) {
-            mFontList.Erase(pLink);
-        }
-
-        ut::Font* ArcResourceAccessor::GetFont(char const* name) {
+        ut::Font* ArcResourceAccessor::GetFont(const char* name) {
             return detail::FindFont(&mFontList, name);
         }
 
@@ -188,43 +171,17 @@ namespace nw4hbm {
             mArcList.PushBack(pLink);
         }
 
-        ArcResourceLink* MultiArcResourceAccessor::Detach(void const* archiveStart) {
-            NW4HBM_RANGE_FOR(it, mArcList) {
-                if (archiveStart == it->GetArchiveDataStart()) {
-                    ArcResourceLink* ret = &(*it);
-
-                    mArcList.Erase(it);
-
-                    return ret;
-                }
-            }
-
-            return NULL;
-        }
-
-        void MultiArcResourceAccessor::Detach(ArcResourceLink* pLink) {
-            mArcList.Erase(pLink);
-        }
-
-        void MultiArcResourceAccessor::DetachAll() {
-            // Who is doing this
-
-            // TODO(FAKE): What
-            // NOTE: C-style cast is for static_cast with extensions to private bases
-            ((ut::detail::LinkListImpl*)&mArcList)->Clear();
-        }
-
-        void* MultiArcResourceAccessor::GetResource(u32 resType, char const* name, u32* pSize) {
-            NW4HBM_RANGE_FOR(it, mArcList) {
+        void* MultiArcResourceAccessor::GetResource(u32 resType, const char* name, u32* pSize) {
+            for (ArcResourceLinkList::Iterator it = mArcList.GetBeginIter();
+                 it != mArcList.GetEndIter(); it++)
+            {
                 ARCHandle* pArcHandle = it->GetArcHandle();
-
                 if (void* resPtr =
                         GetResourceSub(pArcHandle, it->GetResRootDir(), resType, name, pSize))
                 {
                     return resPtr;
                 }
             }
-
             return NULL;
         }
 
@@ -232,11 +189,7 @@ namespace nw4hbm {
             mFontList.PushBack(pLink);
         }
 
-        void MultiArcResourceAccessor::UnregistFont(FontRefLink* pLink) {
-            mFontList.Erase(pLink);
-        }
-
-        ut::Font* MultiArcResourceAccessor::GetFont(char const* name) {
+        ut::Font* MultiArcResourceAccessor::GetFont(const char* name) {
             return detail::FindFont(&mFontList, name);
         }
 

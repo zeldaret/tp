@@ -3,86 +3,63 @@
 
 #include <revolution/types.h>
 
-#include "../macros.h"
-
-#include "common.h"
 #include "pane.h"
 
 #include "../ut/LinkList.h"
 
 namespace nw4hbm {
     namespace lyt {
-        namespace res {
-            static u32 const SIGNATURE_GROUP_BLOCK = NW4HBM_FOUR_CHAR('g', 'r', 'p', '1');
 
-            static u32 const SIGNATURE_GROUP_BLOCK_START = NW4HBM_FOUR_CHAR('g', 'r', 's', '1');
-            static u32 const SIGNATURE_GROUP_BLOCK_END = NW4HBM_FOUR_CHAR('g', 'r', 'e', '1');
+        namespace detail {
+            typedef struct PaneLink {
+                ut::LinkListNode mLink;
 
-            struct Group {
-                // static members
-            public:
-                static u32 const NAME_LENGTH = 16;
-
-                // members
-            public:
-                DataBlockHeader blockHeader;  // size 0x08, offset 0x00
-                char name[NAME_LENGTH];       // size 0x10, offset 0x08
-                u16 paneNum;                  // size 0x02, offset 0x18
-                u8 padding[2];
-            };  // size 0x1c
-        }  // namespace res
+                /* 0x08 */ Pane* mTarget;
+            } PaneLink;
+        }  // namespace detail
+        typedef ut::LinkList<detail::PaneLink, offsetof(detail::PaneLink, mLink)> PaneLinkList;
 
         class Group {
-            // typedefs
         public:
-            /* offsetof(Group, mLink) */
-            typedef ut::LinkList<Group, 4> LinkList;
-
-            // methods
-        public:
-            // cdtors
             Group();
-            Group(res::Group const* pResGroup, Pane* pRootPane);
-            virtual ~Group();
+            Group(const res::Group* pResGroup, Pane* pRootPane);
 
-            // methods
-            detail::PaneLink::LinkList& GetPaneList() { return mPaneLinkList; }
-            char const* GetName() const { return mName; }
+            /* 0x08 */ virtual ~Group();
+
+            const char* GetName() const { return mName; }
             bool IsUserAllocated() const { return mbUserAllocated; }
 
+            PaneLinkList& GetPaneList() { return mPaneLinkList; };
+
             void Init();
-            void AppendPane(Pane* pPane);
+            void AppendPane(Pane* pane);
 
-            // static members
-        public:
-            static u32 const NAME_LENGTH = res::Group::NAME_LENGTH;
+            /* 0x00 (vtable) */
+            /* 0x04 */ ut::LinkListNode mLink;
 
-            // members
-        private:
-            /* vtable */                               // size 0x04, offset 0x00
-            ut::LinkListNode mLink;                    // size 0x08, offset 0x04
-            detail::PaneLink::LinkList mPaneLinkList;  // size 0x0c, offset 0x0c
-            char mName[NAME_LENGTH];                   // size 0x10, offset 0x18
-            bool mbUserAllocated;                      // size 0x01, offset 0x28
-                                                       /* 3 bytes padding */
-        };  // size 0x2c
+        protected:
+            /* 0x0C */ PaneLinkList mPaneLinkList;
+            /* 0x18 */ char mName[16];
+            /* 0x29 */ bool mbUserAllocated;
+            /* 0x2A */ u8 mPadding[2];
+        };
+        typedef ut::LinkList<Group, offsetof(Group, mLink)> GroupList;
 
         class GroupContainer {
-            // methods
         public:
-            // cdtors
             GroupContainer() {}
             ~GroupContainer();
 
-            // methods
-            void AppendGroup(Group* pGroup);
-            Group* FindGroupByName(char const* findName);
+            GroupList& GetGroupList() { return mGroupList; }
 
-            // members
-        private:
-            Group::LinkList mGroupList;  // size 0x0c, offset 0x00
-        };  // size 0x0c
+            void AppendGroup(Group* pGroup);
+            Group* FindGroupByName(const char* findName);
+
+        protected:
+            /* 0x00 */ GroupList mGroupList;
+        };
+
     }  // namespace lyt
 }  // namespace nw4hbm
 
-#endif  // NW4HBM_LYT_GROUP_H
+#endif

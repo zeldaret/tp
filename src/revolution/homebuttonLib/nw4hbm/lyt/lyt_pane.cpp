@@ -1,29 +1,12 @@
 #include "pane.h"
 
+#include "common.h"
+#include "layout.h"
+
 #include <cstring.h>
 
-#include "../macros.h"
-
-#include <revolution/types.h>
-
-#include "animation.h"
-#include "common.h"
-#include "drawInfo.h"
-#include "layout.h"
-#include "material.h"
-#include "types.h"
-
-#include "../math/constants.h"
-#include "../math/types.h"
-#include "../ut/Color.h"
-#include "../ut/LinkList.h"
-#include "../ut/Rect.h"
-#include "../ut/RuntimeTypeInfo.h"
-
-#include <revolution/gx/GXTransform.h>
-#include <revolution/mtx.h>
-
 namespace {
+    // pretend this is nw4hbm::lyt
     using namespace nw4hbm;
     using namespace nw4hbm::lyt;
 
@@ -32,17 +15,16 @@ namespace {
 
 namespace nw4hbm {
     namespace lyt {
-        // .bss
-        ut::detail::RuntimeTypeInfo const Pane::typeInfo(NULL);
-    }  // namespace lyt
+        NW4HBM_UT_GET_RUNTIME_TYPEINFO(Pane);
+    }
 }  // namespace nw4hbm
 
 namespace {
 
     void ReverseYAxis(math::MTX34* pMtx) {
-        pMtx->_01 = -pMtx->_01;
-        pMtx->_11 = -pMtx->_11;
-        pMtx->_21 = -pMtx->_21;
+        pMtx->m[0][1] = -pMtx->m[0][1];
+        pMtx->m[1][1] = -pMtx->m[1][1];
+        pMtx->m[2][1] = -pMtx->m[2][1];
     }
 
 }  // unnamed namespace
@@ -50,35 +32,31 @@ namespace {
 namespace nw4hbm {
     namespace lyt {
 
-        namespace detail {
-
-            PaneBase::PaneBase() {}
-
-            PaneBase::~PaneBase() {}
-
-        }  // namespace detail
-
         Pane::Pane() {
             Init();
 
             mBasePosition = 4;
-            std::memset(mName, 0, sizeof mName);
-            std::memset(mUserData, 0, sizeof mUserData);
+            memset(mName, 0, sizeof(mName));
+            memset(mUserData, 0, sizeof(mUserData));
+
             mTranslate = math::VEC3(0.0f, 0.0f, 0.0f);
             mRotate = math::VEC3(0.0f, 0.0f, 0.0f);
             mScale = math::VEC2(1.0f, 1.0f);
             mSize = Size(0.0f, 0.0f);
-            mAlpha = 0xff;
+            mAlpha = ut::Color(255);
             mGlbAlpha = mAlpha;
-            detail::SetBit(&mFlag, 0, TRUE);
+            mFlag = 0;
+
+            SetVisible(true);
         }
 
-        Pane::Pane(res::Pane const* pBlock) {
+        Pane::Pane(const res::Pane* pBlock) {
             Init();
 
             mBasePosition = pBlock->basePosition;
             SetName(pBlock->name);
             SetUserData(pBlock->userData);
+
             mTranslate = pBlock->translate;
             mRotate = pBlock->rotate;
             mScale = pBlock->scale;
@@ -91,18 +69,18 @@ namespace nw4hbm {
         void Pane::Init() {
             mpParent = NULL;
             mpMaterial = NULL;
-            mbUserAllocated = FALSE;
+            mbUserAllocated = false;
         }
 
         Pane::~Pane() {
-            NW4HBM_RANGE_FOR_NO_AUTO_INC(it, mChildList) {
-                decltype(it) currIt = it++;
-
+            for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter();)
+            {
+                PaneList::Iterator currIt = it++;
                 mChildList.Erase(currIt);
 
                 if (!currIt->IsUserAllocated()) {
                     currIt->~Pane();
-                    Layout::FreeMemory(&(*currIt));
+                    Layout::FreeMemory(&*currIt);
                 }
             }
 
@@ -114,37 +92,41 @@ namespace nw4hbm {
             }
         }
 
-        void Pane::SetName(char const* name) {
-            std::strncpy(mName, name, sizeof mName);
+        void Pane::SetName(const char* name) {
+            std::strncpy(mName, name, sizeof(mName));
         }
 
-        void Pane::SetUserData(char const* userData) {
-            std::strncpy(mUserData, userData, sizeof mUserData);
+        void Pane::SetUserData(const char* userData) {
+            std::strncpy(mUserData, userData, sizeof(mUserData));
         }
 
         void Pane::AppendChild(Pane* pChild) {
             InsertChild(mChildList.GetEndIter(), pChild);
         }
 
-        void Pane::PrependChild(Pane* pChild) {
-            InsertChild(mChildList.GetBeginIter(), pChild);
-        }
+        // it requires a type that wasn't used before to generate the string and avoid having it
+        // stripped
+        /* typedef nw4hbm::ut::LinkList<void**, 0> DummyLinkList;
+        DECOMP_FORCE_CLASS_METHOD(DummyLinkList, GetNodeFromPointer(NULL));
+        typedef nw4hbm::ut::LinkList<void***, 0> DummyLinkList2;
+        DECOMP_FORCE_CLASS_METHOD(DummyLinkList2, GetNodeFromPointer(NULL)); */
 
-        void Pane::InsertChild(Pane* pNext, Pane* pChild) {
-            InsertChild(LinkList::GetIteratorFromPointer(pNext), pChild);
-        }
-
-        void Pane::InsertChild(LinkList::Iterator next, Pane* pChild) {
+        void Pane::InsertChild(PaneList::Iterator next, Pane* pChild) {
+            NW4HBM_ASSERT_CHECK_NULL(253, pChild);
+            NW4HBM_ASSERT(254, pChild->mpParent == 0);
             mChildList.Insert(next, pChild);
             pChild->mpParent = this;
         }
 
-        void Pane::RemoveChild(Pane* pChild) {
-            mChildList.Erase(pChild);
-            pChild->mpParent = NULL;
+        void dummyString() {
+            OSReport("NW4HBM:Pointer must not be NULL (pNext)");
+            OSReport("NW4HBM:Failed assertion pNext->mpParent == this");
+            OSReport("NW4HBM:Failed assertion pChild->mpParent == this");
         }
 
-        ut::Rect Pane::GetPaneRect(DrawInfo const& drawInfo) const {
+#pragma ppc_iro_level 0
+
+        const ut::Rect Pane::GetPaneRect(const DrawInfo& drawInfo) const {
             ut::Rect ret;
             math::VEC2 basePt = GetVtxPos();
 
@@ -161,15 +143,16 @@ namespace nw4hbm {
             return ret;
         }
 
+#pragma ppc_iro_level reset
+
         ut::Color Pane::GetVtxColor(u32) const {
-            return 0xffffffff;
+            return ut::Color(0xFFFFFFFF);
         }
 
-        void Pane::SetVtxColor(u32, ut::Color) {
-            /* ... */
-        }
+        void Pane::SetVtxColor(u32, ut::Color) { /* ... */ }
 
         u8 Pane::GetColorElement(u32 idx) const {
+            NW4HBM_ASSERT(319, idx < ANIMTARGET_PANE_COLOR_MAX);
             switch (idx) {
             case 16:
                 return mAlpha;
@@ -179,7 +162,13 @@ namespace nw4hbm {
             }
         }
 
+        // it requires a type that wasn't used before to generate the string and avoid having it
+        // stripped
+        /* typedef nw4hbm::ut::LinkList<void****, 0> DummyLinkList3;
+        DECOMP_FORCE_CLASS_METHOD(DummyLinkList3, GetNodeFromPointer(NULL)); */
+
         void Pane::SetColorElement(u32 idx, u8 value) {
+            NW4HBM_ASSERT(334, idx < ANIMTARGET_PANE_COLOR_MAX);
             switch (idx) {
             case 16:
                 mAlpha = value;
@@ -195,51 +184,58 @@ namespace nw4hbm {
             return 0xff;
         }
 
-        void Pane::SetVtxColorElement(u32, u8) {
-            /* ... */
-        }
+        void Pane::SetVtxColorElement(u32, u8) { /* ... */ }
 
-        Pane* Pane::FindPaneByName(char const* findName, bool bRecursive) {
-            if (detail::EqualsPaneName(mName, findName))
+        Pane* Pane::FindPaneByName(const char* findName, bool bRecursive) {
+            if (detail::EqualsPaneName(mName, findName)) {
                 return this;
+            }
 
             if (bRecursive) {
-                NW4HBM_RANGE_FOR(it, mChildList) {
-                    if (Pane* pPane = it->FindPaneByName(findName, TRUE))
-                        return pPane;
+                for (PaneList::Iterator it = mChildList.GetBeginIter();
+                     it != mChildList.GetEndIter(); it++)
+                {
+                    if (Pane* pane = it->FindPaneByName(findName, true)) {
+                        return pane;
+                    }
                 }
             }
 
             return NULL;
         }
 
-        Material* Pane::FindMaterialByName(char const* findName, bool bRecursive) {
+        Material* Pane::FindMaterialByName(const char* findName, bool bRecursive) {
             if (mpMaterial && detail::EqualsMaterialName(mpMaterial->GetName(), findName)) {
                 return mpMaterial;
             }
 
             if (bRecursive) {
-                NW4HBM_RANGE_FOR(it, mChildList) {
-                    if (Material* pMat = it->FindMaterialByName(findName, TRUE))
-                        return pMat;
+                for (PaneList::Iterator it = mChildList.GetBeginIter();
+                     it != mChildList.GetEndIter(); it++)
+                {
+                    if (Material* pMaterial = it->FindMaterialByName(findName, true)) {
+                        return pMaterial;
+                    }
                 }
             }
 
             return NULL;
         }
 
-        void Pane::CalculateMtx(DrawInfo const& drawInfo) {
-            f32 const invAlpha = 1.0f / 255.0f;
+        void Pane::CalculateMtx(const DrawInfo& drawInfo) {
+            // this doesnt even get referenced, an entirely new constant is generated lol
+            const f32 invAlpha = 1.0f / 255.0f;
 
-            if (!detail::TestBit(mFlag, 0) && !drawInfo.IsInvisiblePaneCalculateMtx())
+            if (!detail::TestBit(mFlag, 0) && !drawInfo.IsInvisiblePaneCalculateMtx()) {
                 return;
+            }
 
-            {  // 0x3921 wants lexical_block
+            {
                 math::MTX34 mtx1;
                 math::MTX34 mtx2;
                 math::MTX34 rotateMtx;
 
-                {  // 0x3970 wants lexical_block
+                {
                     math::VEC2 scale(mScale);
 
                     if (drawInfo.IsLocationAdjust() && detail::TestBit(mFlag, 2)) {
@@ -247,34 +243,36 @@ namespace nw4hbm {
                         scale.y *= drawInfo.GetLocationAdjustScale().y;
                     }
 
-                    MTXScale(mtx2, scale.x, scale.y, 1.0f);
+                    PSMTXScale(mtx2, scale.x, scale.y, 1.0f);
                 }
 
-                MTXRotRad(rotateMtx, 'x', mRotate.x * math::convert::Deg2Rad);
-                MTXConcat(rotateMtx, mtx2, mtx1);
+                PSMTXRotRad(rotateMtx, 'x', DEG_TO_RAD(mRotate.x));
+                PSMTXConcat(rotateMtx, mtx2, mtx1);
 
-                MTXRotRad(rotateMtx, 'y', mRotate.y * math::convert::Deg2Rad);
-                MTXConcat(rotateMtx, mtx1, mtx2);
+                PSMTXRotRad(rotateMtx, 'y', DEG_TO_RAD(mRotate.y));
+                PSMTXConcat(rotateMtx, mtx1, mtx2);
 
-                MTXRotRad(rotateMtx, 'z', mRotate.z * math::convert::Deg2Rad);
-                MTXConcat(rotateMtx, mtx2, mtx1);
+                PSMTXRotRad(rotateMtx, 'z', DEG_TO_RAD(mRotate.z));
+                PSMTXConcat(rotateMtx, mtx2, mtx1);
 
-                MTXTransApply(mtx1, mMtx, mTranslate.x, mTranslate.y, mTranslate.z);
+                PSMTXTransApply(mtx1, mMtx, mTranslate.x, mTranslate.y, mTranslate.z);
             }
 
-            if (mpParent)
+            if (mpParent) {
                 math::MTX34Mult(&mGlbMtx, &mpParent->mGlbMtx, &mMtx);
-            else if (drawInfo.IsMultipleViewMtxOnDraw())
+            } else if (drawInfo.IsMultipleViewMtxOnDraw()) {
                 mGlbMtx = mMtx;
-            else
+            } else {
                 math::MTX34Mult(&mGlbMtx, &drawInfo.GetViewMtx(), &mMtx);
+            }
 
-            if (drawInfo.IsInfluencedAlpha() && mpParent)
+            if (drawInfo.IsInfluencedAlpha() && mpParent) {
                 mGlbAlpha = mAlpha * drawInfo.GetGlobalAlpha();
-            else
+            } else {
                 mGlbAlpha = mAlpha;
+            }
 
-            // cr = const ref? const retainer?
+            // cr = const ref?
             f32 crGlobalAlpha = drawInfo.GetGlobalAlpha();
             bool bCrInfluenced = drawInfo.IsInfluencedAlpha();
 
@@ -285,7 +283,7 @@ namespace nw4hbm {
                 DrawInfo& mtDrawInfo = const_cast<DrawInfo&>(drawInfo);
 
                 mtDrawInfo.SetGlobalAlpha(crGlobalAlpha * mAlpha * invAlpha);
-                mtDrawInfo.SetInfluencedAlpha(TRUE);
+                mtDrawInfo.SetInfluencedAlpha(true);
             }
 
             CalculateMtxChild(drawInfo);
@@ -299,21 +297,27 @@ namespace nw4hbm {
             }
         }
 
-        void Pane::CalculateMtxChild(DrawInfo const& drawInfo) {
-            NW4HBM_RANGE_FOR(it, mChildList)
-            it->CalculateMtx(drawInfo);
-        }
-
-        void Pane::Draw(DrawInfo const& drawInfo) {
-            if (detail::TestBit(mFlag, 0)) {
-                DrawSelf(drawInfo);
-
-                NW4HBM_RANGE_FOR(it, mChildList)
-                it->Draw(drawInfo);
+        void Pane::CalculateMtxChild(const DrawInfo& drawInfo) {
+            for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter();
+                 it++)
+            {
+                it->CalculateMtx(drawInfo);
             }
         }
 
-        void Pane::DrawSelf(DrawInfo const& drawInfo) {
+        void Pane::Draw(const DrawInfo& drawInfo) {
+            if (detail::TestBit(mFlag, 0)) {
+                DrawSelf(drawInfo);
+
+                for (PaneList::Iterator it = mChildList.GetBeginIter();
+                     it != mChildList.GetEndIter(); it++)
+                {
+                    it->Draw(drawInfo);
+                }
+            }
+        }
+
+        void Pane::DrawSelf(const DrawInfo& drawInfo) {
             if (mpParent && drawInfo.IsDebugDrawMode()) {
                 LoadMtx(drawInfo);
                 detail::DrawLine(GetVtxPos(), mSize, 0x00ff00ff);  // green
@@ -324,13 +328,18 @@ namespace nw4hbm {
             AnimateSelf(option);
 
             if (detail::TestBit(mFlag, 0) || !(option & 1)) {
-                NW4HBM_RANGE_FOR(it, mChildList)
-                it->Animate(option);
+                for (PaneList::Iterator it = mChildList.GetBeginIter();
+                     it != mChildList.GetEndIter(); it++)
+                {
+                    it->Animate(option);
+                }
             }
         }
 
         void Pane::AnimateSelf(u32 option) {
-            NW4HBM_RANGE_FOR(it, mAnimList) {
+            for (AnimationLinkList::Iterator it = mAnimList.GetBeginIter();
+                 it != mAnimList.GetEndIter(); it++)
+            {
                 if (it->IsEnable()) {
                     AnimTransform* animTrans = it->GetAnimTransform();
 
@@ -338,11 +347,13 @@ namespace nw4hbm {
                 }
             }
 
-            if ((detail::TestBit(mFlag, 0) || !(option & 1)) && mpMaterial)
+            if ((detail::TestBit(mFlag, 0) || !(option & 1)) && mpMaterial) {
                 mpMaterial->Animate();
+            }
         }
 
         void Pane::BindAnimation(AnimTransform* pAnimTrans, bool bRecursive) {
+            NW4HBM_ASSERT_CHECK_NULL(596, pAnimTrans);
             pAnimTrans->Bind(this, bRecursive);
         }
 
@@ -350,8 +361,11 @@ namespace nw4hbm {
             UnbindAnimationSelf(pAnimTrans);
 
             if (bRecursive) {
-                NW4HBM_RANGE_FOR(it, mChildList)
-                it->UnbindAnimation(pAnimTrans, bRecursive);
+                for (PaneList::Iterator it = mChildList.GetBeginIter();
+                     it != mChildList.GetEndIter(); it++)
+                {
+                    it->UnbindAnimation(pAnimTrans, bRecursive);
+                }
             }
         }
 
@@ -360,13 +374,15 @@ namespace nw4hbm {
         }
 
         void Pane::UnbindAnimationSelf(AnimTransform* pAnimTrans) {
-            if (mpMaterial)
+            if (mpMaterial) {
                 mpMaterial->UnbindAnimation(pAnimTrans);
+            }
 
-            NW4HBM_RANGE_FOR_NO_AUTO_INC(it, mAnimList) {
-                decltype(it) currIt = it++;
+            for (AnimationLinkList::Iterator it = mAnimList.GetBeginIter();
+                 it != mAnimList.GetEndIter();)
+            {
+                AnimationLinkList::Iterator currIt = it++;
 
-                // NULL is for UnbindAllAnimation
                 if (pAnimTrans == NULL || currIt->GetAnimTransform() == pAnimTrans) {
                     mAnimList.Erase(currIt);
                     currIt->Reset();
@@ -375,16 +391,19 @@ namespace nw4hbm {
         }
 
         void Pane::AddAnimationLink(AnimationLink* pAnimationLink) {
+            NW4HBM_ASSERT_CHECK_NULL(649, pAnimationLink);
             mAnimList.PushBack(pAnimationLink);
         }
 
         AnimationLink* Pane::FindAnimationLink(AnimTransform* pAnimTrans) {
-            if (AnimationLink* ret = detail::FindAnimationLink(&mAnimList, pAnimTrans))
+            if (AnimationLink* ret = detail::FindAnimationLink(&mAnimList, pAnimTrans)) {
                 return ret;
+            }
 
             if (mpMaterial) {
-                if (AnimationLink* ret = mpMaterial->FindAnimationLink(pAnimTrans))
+                if (AnimationLink* ret = mpMaterial->FindAnimationLink(pAnimTrans)) {
                     return ret;
+                }
             }
 
             return NULL;
@@ -395,24 +414,29 @@ namespace nw4hbm {
                 pAnimLink->SetEnable(bEnable);
             }
 
-            if (mpMaterial)
+            if (mpMaterial) {
                 mpMaterial->SetAnimationEnable(pAnimTrans, bEnable);
+            }
 
             if (bRecursive) {
-                NW4HBM_RANGE_FOR(it, mChildList)
-                it->SetAnimationEnable(pAnimTrans, bEnable, bRecursive);
+                for (PaneList::Iterator it = mChildList.GetBeginIter();
+                     it != mChildList.GetEndIter(); it++)
+                {
+                    it->SetAnimationEnable(pAnimTrans, bEnable, bRecursive);
+                }
             }
         }
 
-        void Pane::LoadMtx(DrawInfo const& drawInfo) {
+        void Pane::LoadMtx(const DrawInfo& drawInfo) {
             math::MTX34 mtx;
             MtxPtr mtxPtr = NULL;
 
             if (drawInfo.IsMultipleViewMtxOnDraw()) {
                 math::MTX34Mult(&mtx, &drawInfo.GetViewMtx(), &mGlbMtx);
 
-                if (drawInfo.IsYAxisUp())
+                if (drawInfo.IsYAxisUp()) {
                     ReverseYAxis(&mtx);
+                }
 
                 mtxPtr = mtx;
             } else if (drawInfo.IsYAxisUp()) {
@@ -423,9 +447,6 @@ namespace nw4hbm {
                 mtxPtr = mGlbMtx;
             }
 
-            /* TODO? I don't really know GX that much, I haven't played around with it
-             * a lot
-             */
             GXLoadPosMtxImm(mtxPtr, 0);
             GXSetCurrentMtx(0);
         }
@@ -433,7 +454,6 @@ namespace nw4hbm {
         math::VEC2 Pane::GetVtxPos() const {
             math::VEC2 basePt(0.0f, 0.0f);
 
-            // TODO: name switch cases?
             switch (mBasePosition % 3) {
             default:
             case 0:

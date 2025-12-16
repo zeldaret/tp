@@ -1,38 +1,27 @@
 #ifndef NW4HBM_LYT_RESOURCE_ACCESSOR_H
 #define NW4HBM_LYT_RESOURCE_ACCESSOR_H
 
-#include <revolution/types.h>
-
-#include "../macros.h"
-
-// context declarations
-namespace nw4hbm { namespace ut { class Font; }}
+#include "revolution/types.h"
 
 namespace nw4hbm {
+
+    namespace ut {
+        class Font;
+    }
+
     namespace lyt {
         class ResourceAccessor {
-            // methods
         public:
-            // cdtors
             ResourceAccessor();
-            virtual ~ResourceAccessor();
 
-            // virtual function ordering
-            // vtable ResourceAccessor
-            virtual void* GetResource(u32 resType, char const* name, u32* pSize) = 0;
-            virtual ut::Font* GetFont(char const* name);
+            /* 0x08 */ virtual ~ResourceAccessor();
+            /* 0x0C */ virtual void* GetResource(u32 resType, const char* name, u32* pSize) = 0;
+            /* 0x10 */ virtual ut::Font* GetFont(const char* name);
 
-            // static members
-        public:
-            static u32 const SIGNATURE_FONT = NW4HBM_FOUR_CHAR('f', 'o', 'n', 't');
+            /* 0x00 (vtable) */
+        };  // size = 0x04
 
-            static u32 const SIGNATURE_TEXTURE_IMAGE = NW4HBM_FOUR_CHAR('t', 'i', 'm', 'g');
-
-            // members
-        private:
-            /* vtable */  // size 0x04, offset 0x00
-        };  // size 0x04
     }  // namespace lyt
 }  // namespace nw4hbm
 
-#endif  // NW4HBM_LYT_RESOURCE_ACCESSOR_H
+#endif

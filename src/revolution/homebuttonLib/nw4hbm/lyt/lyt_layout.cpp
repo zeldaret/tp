@@ -1,99 +1,86 @@
 #include "layout.h"
 
-#include <new.h>
-
-#include "../macros.h"
-
-#include <revolution/types.h>
-
-#include "animation.h"
 #include "bounding.h"
-#include "common.h"
-#include "group.h"
-#include "pane.h"
 #include "picture.h"
 #include "textBox.h"
-#include "types.h"
 #include "window.h"
 
-#include "../ut/LinkList.h"
-#include "../ut/Rect.h"
-#include "../ut/RuntimeTypeInfo.h"
+#include <new.h>
 
-#include <revolution/mem/allocator.h>
+#define CONVERT_OFFSET_TO_PTR(type_, ptr_, offset_)                                                \
+    reinterpret_cast<type_*>(reinterpret_cast<u32>(ptr_) + offset_)
 
 namespace {
+    // pretend this is nw4hbm::lyt
     using namespace nw4hbm;
     using namespace nw4hbm::lyt;
 
+    void SetTagProcessorImpl(Pane* pPane, ut::TagProcessorBase<wchar_t>* pTagProcesssor);
+
+    // wait until these guys hear about c++11
     template <class T>
-    T* CreateObject();
+    T* CreateObject() {
+        void* pMem = Layout::AllocMemory(sizeof(T));
 
-    template <class T, typename P1>
-    T* CreateObject(P1 p1);
+        if (pMem) {
+            return new (pMem) T();
+        } else {
+            NW4R_DB_WARNING(47, false, "can't alloc memory.");
+            return NULL;
+        }
+    }
 
-    template <class T, typename P1, typename P2>
-    T* CreateObject(P1 p1, P2 p2);
+    template <class T, typename Param1>
+    T* CreateObject(Param1 p1) {
+        void* pMem = Layout::AllocMemory(sizeof(T));
 
-    void SetTagProcessorImpl(Pane* pPane, ut::TagProcessorBase<wchar_t>* pTagProcessor);
+        if (pMem) {
+            return new (pMem) T(p1);
+        } else {
+            return NULL;
+        }
+    }
+
+    template <class T, typename Param1, typename Param2>
+    T* CreateObject(Param1 p1, Param2 p2) {
+        void* pMem = Layout::AllocMemory(sizeof(T));
+
+        if (pMem) {
+            return new (pMem) T(p1, p2);
+        } else {
+            return NULL;
+        }
+    }
 }  // unnamed namespace
 
 namespace nw4hbm {
     namespace lyt {
-        // .bss
+
         MEMAllocator* Layout::mspAllocator;
     }  // namespace lyt
 }  // namespace nw4hbm
 
 namespace {
 
-    // Wait until these guys hear about C++11
-    template <class T>
-    T* CreateObject() {
-        void* pMem = Layout::AllocMemory(sizeof(T));
-
-        if (pMem)
-            return new (pMem) T;
-        else
-            return NULL;
-    }
-
-    template <class T, typename P1>
-    T* CreateObject(P1 p1) {
-        void* pMem = Layout::AllocMemory(sizeof(T));
-
-        if (pMem)
-            return new (pMem) T(p1);
-        else
-            return NULL;
-    }
-
-    template <class T, typename P1, typename P2>
-    T* CreateObject(P1 p1, P2 p2) {
-        void* pMem = Layout::AllocMemory(sizeof(T));
-
-        if (pMem)
-            return new (pMem) T(p1, p2);
-        else
-            return NULL;
-    }
-
     void SetTagProcessorImpl(Pane* pPane, ut::TagProcessorBase<wchar_t>* pTagProcessor) {
-        if (TextBox* pTextBox = ut::DynamicCast<TextBox*>(pPane))
+        if (TextBox* pTextBox = ut::DynamicCast<TextBox*>(pPane)) {
             pTextBox->SetTagProcessor(pTagProcessor);
+        }
 
-        NW4HBM_RANGE_FOR(it, pPane->GetChildList())
-        SetTagProcessorImpl(&(*it), pTagProcessor);
+        for (PaneList::Iterator it = pPane->GetChildList().GetBeginIter();
+             it != pPane->GetChildList().GetEndIter(); ++it)
+        {
+            SetTagProcessorImpl(&(*it), pTagProcessor);
+        }
     }
 
-}  // unnamed namespace
+}  // anonymous namespace
 
 namespace nw4hbm {
     namespace lyt {
 
         Layout::Layout()
-            : mpRootPane(NULL), mpGroupContainer(NULL), mLayoutSize(0.0f, 0.0f),
-              mOriginType(OriginType_TopLeft) {}
+            : mpRootPane(NULL), mpGroupContainer(NULL), mLayoutSize(0.0f, 0.0f), mOriginType(0) {}
 
         Layout::~Layout() {
             if (mpGroupContainer) {
@@ -106,153 +93,175 @@ namespace nw4hbm {
                 FreeMemory(mpRootPane);
             }
 
-            NW4HBM_RANGE_FOR_NO_AUTO_INC(it, mAnimTransList) {
-                decltype(it) currIt = it++;
+            for (AnimTransformList::Iterator it = mAnimTransList.GetBeginIter();
+                 it != mAnimTransList.GetEndIter();)
+            {
+                AnimTransformList::Iterator currIt = it++;
 
                 mAnimTransList.Erase(currIt);
                 currIt->~AnimTransform();
-                FreeMemory(&(*currIt));
+                FreeMemory(&*currIt);
             }
         }
 
-        bool Layout::Build(void const* lytResBuf, ResourceAccessor* pResAcsr) {
-            res::BinaryFileHeader const* fileHead =
-                static_cast<res::BinaryFileHeader const*>(lytResBuf);
+        bool Layout::Build(const void* lytResBuf, ResourceAccessor* pResAcsr) {
+            NW4HBM_ASSERT_CHECK_NULL(171, mspAllocator);
+            NW4HBM_ASSERT_CHECK_NULL(172, lytResBuf);
 
-            if (!detail::TestFileHeader(*fileHead, res::SIGNATURE_LAYOUT))
-                return FALSE;
+            const res::BinaryFileHeader* fileHead =
+                static_cast<const res::BinaryFileHeader*>(lytResBuf);
+
+            if (!detail::TestFileHeader(*fileHead, res::FILE_HEADER_SIGNATURE_LAYOUT)) {
+                return false;
+            }
+
+            if (fileHead->version != 8) {
+                NW4R_DB_ASSERTMSG(187, false, "Version check faild ('%d.%d' must be '%d.%d').",
+                                  (fileHead->version >> 8) & 0xFF, fileHead->version & 0xFF, 0, 8);
+            }
 
             ResBlockSet resBlockSet = {};
             resBlockSet.pResAccessor = pResAcsr;
 
             Pane* pParentPane = NULL;
             Pane* pLastPane = NULL;
-            bool bReadRootGroup = FALSE;
+            bool bReadRootGroup = false;
             int groupNestLevel = 0;
-            void const* dataPtr = POINTER_ADD(lytResBuf, fileHead->headerSize);
+            void* dataPtr = CONVERT_OFFSET_TO_PTR(void, lytResBuf, fileHead->headerSize);
 
-            for (int i = 0; i < fileHead->dataBlocks; ++i) {
-                res::DataBlockHeader const* pDataBlockHead =
-                    static_cast<res::DataBlockHeader const*>(dataPtr);
+            for (int i = 0; i < fileHead->dataBlocks; i++) {
+                res::DataBlockHeader* pDataBlockHead = static_cast<res::DataBlockHeader*>(dataPtr);
 
                 switch (detail::GetSignatureInt(pDataBlockHead->kind)) {
-                case res::SIGNATURE_LAYOUT_BLOCK: {
-                    res::Layout const* pResLyt = static_cast<res::Layout const*>(dataPtr);
+                case 'lyt1': {
+                    res::Layout* pResLyt = static_cast<res::Layout*>(dataPtr);
 
-                    mOriginType = static_cast<OriginType>(pResLyt->originType != 0);
+                    mOriginType = pResLyt->originType != 0;  // ?
                     mLayoutSize = pResLyt->layoutSize;
-                } break;
+                }
 
-                case res::SIGNATURE_TEXTURE_LIST_BLOCK:
-                    resBlockSet.pTextureList = static_cast<res::TextureList const*>(dataPtr);
+                break;
+
+                case 'txl1':
+                    resBlockSet.pTextureList = static_cast<res::TextureList*>(dataPtr);
                     break;
 
-                case res::SIGNATURE_FONT_LIST_BLOCK:
-                    resBlockSet.pFontList = static_cast<res::FontList const*>(dataPtr);
+                case 'fnl1':
+                    resBlockSet.pFontList = static_cast<res::FontList*>(dataPtr);
                     break;
 
-                case res::SIGNATURE_MATERIAL_LIST_BLOCK:
-                    resBlockSet.pMaterialList = static_cast<res::MaterialList const*>(dataPtr);
+                case 'mat1':
+                    resBlockSet.pMaterialList = static_cast<res::MaterialList*>(dataPtr);
                     break;
 
-                case res::SIGNATURE_PANE_BLOCK:
-                case res::SIGNATURE_BOUNDING_BLOCK:
-                case res::SIGNATURE_PICTURE_BLOCK:
-                case res::SIGNATURE_TEXT_BOX_BLOCK:
-                case res::SIGNATURE_WINDOW_BLOCK:
+                case 'pan1':
+                case 'bnd1':
+                case 'pic1':
+                case 'txt1':
+                case 'wnd1':
                     if (Pane* pPane = BuildPaneObj(detail::GetSignatureInt(pDataBlockHead->kind),
                                                    dataPtr, resBlockSet))
                     {
-                        if (!mpRootPane)
+                        if (!mpRootPane) {
                             mpRootPane = pPane;
+                        }
 
-                        if (pParentPane)
+                        if (pParentPane) {
                             pParentPane->AppendChild(pPane);
+                        }
 
                         pLastPane = pPane;
                     }
 
                     break;
 
-                case res::SIGNATURE_PANE_START_BLOCK:
+                case 'pas1':  // pane start?
+                    NW4HBM_ASSERT_CHECK_NULL(249, pLastPane);
                     pParentPane = pLastPane;
                     break;
 
-                case res::SIGNATURE_PANE_END_BLOCK:
+                case 'pae1':  // pane end?
                     pLastPane = pParentPane;
                     pParentPane = pLastPane->GetParent();
                     break;
 
-                case res::SIGNATURE_GROUP_BLOCK:
+                case 'grp1':
                     if (!bReadRootGroup) {
-                        bReadRootGroup = TRUE;
+                        bReadRootGroup = true;
                         mpGroupContainer = CreateObject<GroupContainer>();
                     } else if (mpGroupContainer && groupNestLevel == 1) {
                         if (Group* pGroup = CreateObject<Group>(
-                                reinterpret_cast<res::Group const*>(pDataBlockHead), mpRootPane))
+                                reinterpret_cast<const res::Group*>(pDataBlockHead), mpRootPane))
                         {
                             mpGroupContainer->AppendGroup(pGroup);
                         }
                     }
-
                     break;
 
-                case res::SIGNATURE_GROUP_BLOCK_START:
-                    ++groupNestLevel;
+                case 'grs1':  // group start?
+                    groupNestLevel++;
                     break;
 
-                case res::SIGNATURE_GROUP_BLOCK_END:
-                    --groupNestLevel;
+                case 'gre1':  // group end?
+                    groupNestLevel--;
                     break;
                 }
 
-                dataPtr = POINTER_ADD(dataPtr, pDataBlockHead->size);
+                dataPtr = CONVERT_OFFSET_TO_PTR(void, dataPtr, pDataBlockHead->size);
             }
 
-            return TRUE;
+            return true;
         }
 
-        AnimTransform* Layout::CreateAnimTransform(void const* anmResBuf,
+        AnimTransform* Layout::CreateAnimTransform(const void* anmResBuf,
                                                    ResourceAccessor* pResAcsr) {
-            res::BinaryFileHeader const* pFileHead =
-                static_cast<res::BinaryFileHeader const*>(anmResBuf);
+            NW4HBM_ASSERT_CHECK_NULL(295, mspAllocator);
+            NW4HBM_ASSERT_CHECK_NULL(296, anmResBuf);
 
-            if (!detail::TestFileHeader(*pFileHead))
+            const res::BinaryFileHeader* pFileHead =
+                static_cast<const res::BinaryFileHeader*>(anmResBuf);
+
+            if (!detail::TestFileHeader(*pFileHead)) {
                 return NULL;
+            }
 
-            res::AnimationBlock const* pInfoBlock = NULL;
-            res::DataBlockHeader const* pDataBlockHead =
+            if (pFileHead->version != 8) {
+                NW4R_DB_ASSERTMSG(311, false, "Version check faild ('%d.%d' must be '%d.%d').",
+                                  (pFileHead->version >> 8) & 0xFF, pFileHead->version & 0xFF, 0,
+                                  8);
+            }
+
+            const res::AnimationBlock* pInfoBlock = NULL;
+            const res::DataBlockHeader* pDataBlockHead =
                 detail::ConvertOffsToPtr<res::DataBlockHeader>(pFileHead, pFileHead->headerSize);
 
             AnimTransform* ret = NULL;
 
-            for (int i = 0; i < pFileHead->dataBlocks; ++i) {
-                // NOTE: Not an if statement (debug)
+            for (int i = 0; i < pFileHead->dataBlocks; i++) {
                 switch (detail::GetSignatureInt(pDataBlockHead->kind)) {
-                case res::SIGNATURE_ANIM_INFO_BLOCK:
+                case 'pai1':  // painting? idk
+                    NW4HBM_ASSERT(321, ret == 0);
+
                     switch (detail::GetSignatureInt(pFileHead->signature)) {
-                    case res::SIGNATURE_ANIMATION:
-                    case res::AnimationInfo::SIGNATURE_PANE_PAIN_SRT_INFO:
-                    case res::AnimationInfo::SIGNATURE_PANE_VISIBILITY_INFO:
-                    case res::AnimationInfo::SIGNATURE_PANE_VERTEX_COLOR_INFO:
-                    case res::AnimationInfo::SIGNATURE_MATERIAL_COLOR_INFO:
-                    case res::AnimationInfo::SIGNATURE_MATERIAL_TEXTURE_SRT_INFO:
-                    case res::AnimationInfo::SIGNATURE_MATERIAL_TEXTURE_PATTERN_INFO:
+                    case 'RLAN':
+                    case res::AnimationInfo::ANIM_INFO_PANE_PAIN_SRT:
+                    case res::AnimationInfo::ANIM_INFO_PANE_VISIBILITY:
+                    case res::AnimationInfo::ANIM_INFO_PANE_VERTEX_COLOR:
+                    case res::AnimationInfo::ANIM_INFO_MATERIAL_COLOR:
+                    case res::AnimationInfo::ANIM_INFO_MATERIAL_TEXTURE_SRT:
+                    case res::AnimationInfo::ANIM_INFO_MATERIAL_TEXTURE_PATTERN:
                         if (AnimTransformBasic* pAnimTrans = CreateObject<AnimTransformBasic>()) {
                             pInfoBlock =
-                                reinterpret_cast<res::AnimationBlock const*>(pDataBlockHead);
+                                reinterpret_cast<const res::AnimationBlock*>(pDataBlockHead);
 
                             pAnimTrans->SetResource(pInfoBlock, pResAcsr);
                             ret = pAnimTrans;
                         }
-
-                        break;
                     }
 
-                    if (ret)
+                    if (ret) {
                         mAnimTransList.PushBack(ret);
-
-                    break;
+                    }
                 }
 
                 pDataBlockHead = detail::ConvertOffsToPtr<res::DataBlockHeader>(
@@ -263,13 +272,15 @@ namespace nw4hbm {
         }
 
         void Layout::BindAnimation(AnimTransform* pAnimTrans) {
-            if (mpRootPane)
-                mpRootPane->BindAnimation(pAnimTrans, TRUE);
+            if (mpRootPane) {
+                mpRootPane->BindAnimation(pAnimTrans, true);
+            }
         }
 
         void Layout::UnbindAnimation(AnimTransform* pAnimTrans) {
-            if (mpRootPane)
-                mpRootPane->UnbindAnimation(pAnimTrans, TRUE);
+            if (mpRootPane) {
+                mpRootPane->UnbindAnimation(pAnimTrans, true);
+            }
         }
 
         void Layout::UnbindAllAnimation() {
@@ -277,31 +288,34 @@ namespace nw4hbm {
         }
 
         void Layout::SetAnimationEnable(AnimTransform* pAnimTrans, bool bEnable) {
-            if (mpRootPane)
-                mpRootPane->SetAnimationEnable(pAnimTrans, bEnable, TRUE);
+            if (mpRootPane) {
+                mpRootPane->SetAnimationEnable(pAnimTrans, bEnable, true);
+            }
         }
 
-        void Layout::CalculateMtx(DrawInfo const& drawInfo) {
-            if (mpRootPane)
+        void Layout::CalculateMtx(const DrawInfo& drawInfo) {
+            if (mpRootPane) {
                 mpRootPane->CalculateMtx(drawInfo);
+            }
         }
 
-        void Layout::Draw(DrawInfo const& drawInfo) {
-            if (mpRootPane)
+        void Layout::Draw(const DrawInfo& drawInfo) {
+            if (mpRootPane) {
                 mpRootPane->Draw(drawInfo);
+            }
         }
 
         void Layout::Animate(u32 option) {
-            if (mpRootPane)
+            if (mpRootPane) {
                 mpRootPane->Animate(option);
+            }
         }
 
-        ut::Rect Layout::GetLayoutRect() const {
-            if (mOriginType == OriginType_Center) {
+        const ut::Rect Layout::GetLayoutRect() const {
+            if (mOriginType == 1) {
                 return ut::Rect(-mLayoutSize.width / 2.0f, mLayoutSize.height / 2.0f,
                                 mLayoutSize.width / 2.0f, -mLayoutSize.height / 2.0f);
-            } else /* if (mOriginType == OriginType_TopLeft) */
-            {
+            } else {
                 return ut::Rect(0.0f, 0.0f, mLayoutSize.width, mLayoutSize.height);
             }
         }
@@ -310,53 +324,42 @@ namespace nw4hbm {
             SetTagProcessorImpl(mpRootPane, pTagProcessor);
         }
 
-        Pane* Layout::BuildPaneObj(s32 kind, void const* dataPtr, ResBlockSet const& resBlockSet) {
-            /* Current theory: The pointers with unique names are checked in a stripped
-             * assertion, the pointers with a generic name pBlock are not (hence why
-             * they have a generic name), and the default case contains a stripped
-             * assert(FALSE) abort. This brings the (void)0 count up to four, which is
-             * the minimum number of empty instructions required to be able to remove
-             * the ATTR_NOINLINE attribute from the declaration and still have it not
-             * inline without any extra help.
-             */
-
+        Pane* Layout::BuildPaneObj(s32 kind, const void* dataPtr, const ResBlockSet& resBlockSet) {
             switch (kind) {
-            case res::SIGNATURE_PANE_BLOCK: {
-                res::Pane const* pResPane = static_cast<res::Pane const*>(dataPtr);
-                (void)0;
+            case res::OBJECT_SIGNATURE_PANE: {
+                const res::Pane* pResPane = static_cast<const res::Pane*>(dataPtr);
 
                 return CreateObject<Pane>(pResPane);
             }
 
-            case res::SIGNATURE_PICTURE_BLOCK: {
-                res::Picture const* pResPic = static_cast<res::Picture const*>(dataPtr);
-                (void)0;
+            case res::OBJECT_SIGNATURE_PICTURE: {
+                const res::Picture* pResPic = static_cast<const res::Picture*>(dataPtr);
 
                 return CreateObject<Picture>(pResPic, resBlockSet);
             }
 
-            case res::SIGNATURE_TEXT_BOX_BLOCK: {
-                res::TextBox const* pBlock = static_cast<res::TextBox const*>(dataPtr);
+            case res::OBJECT_SIGNATURE_TEXT_BOX: {
+                // block?
+                const res::TextBox* pBlock = static_cast<const res::TextBox*>(dataPtr);
 
                 return CreateObject<TextBox>(pBlock, resBlockSet);
             }
 
-            case res::SIGNATURE_WINDOW_BLOCK: {
-                res::Window const* pBlock = static_cast<res::Window const*>(dataPtr);
+            case res::OBJECT_SIGNATURE_WINDOW: {
+                // block?
+                const res::Window* pBlock = static_cast<const res::Window*>(dataPtr);
 
                 return CreateObject<Window>(pBlock, resBlockSet);
             }
 
-            case res::SIGNATURE_BOUNDING_BLOCK: {
-                res::Bounding const* pResBounding = static_cast<res::Bounding const*>(dataPtr);
-                (void)0;
+            case res::OBJECT_SIGNATURE_BOUNDING: {
+                const res::Bounding* pResBounding = static_cast<const res::Bounding*>(dataPtr);
 
                 return CreateObject<Bounding>(pResBounding, resBlockSet);
             }
 
             default:
-                (void)0;
-
+                NW4R_DB_ASSERTMSG(503, false, "unknown data type");
                 return NULL;
             }
         }

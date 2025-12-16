@@ -1,210 +1,209 @@
 #ifndef NW4HBM_LYT_ANIMATION_H
 #define NW4HBM_LYT_ANIMATION_H
 
-#include <revolution/types.h>
+#include "lyt_types.h"
+#include "resourceAccessor.h"
+#include "resources.h"
 
-#include "../macros.h"
 
-#include "common.h"
-
-#include "../ut/LinkList.h"
-
-// context declarations
-namespace nw4hbm { namespace lyt { class Material; }}
-namespace nw4hbm { namespace lyt { class Pane; }}
-namespace nw4hbm { namespace lyt { class ResourceAccessor; }}
+#define TexMtxMax 10
+#define IndTexMtxMax 3
 
 namespace nw4hbm {
     namespace lyt {
-        // forward declarations
-        class AnimTransform;
 
-        namespace res {
-            struct AnimationBlock {
-                DataBlockHeader blockHeader;  // size 0x08, offset 0x00
-                u16 frameSize;                // size 0x02, offset 0x08
-                u8 loop;                      // size 0x01, offset 0x0a
-                u8 padding1;
-                u16 fileNum;                // size 0x02, offset 0x0c
-                u16 animContNum;            // size 0x02, offset 0x0e
-                u32 animContOffsetsOffset;  // size 0x04, offset 0x10
-            };  // size 0x14
+        class Pane;
+        class Material;
 
-            struct AnimationContent {
-                // enums
-            public:
-                typedef u8 ACType;
-                enum ACType_et { ACType_Pane, ACType_Material };
+        enum {
+            /* 0 */ ANIMTARGET_PANE_TRANSX = 0,
+            /* 1 */ ANIMTARGET_PANE_TRANSY,
+            /* 2 */ ANIMTARGET_PANE_TRANSZ,
 
-                // static members
-            public:
-                static u32 const NAME_LENGTH = 20;
+            /* 3 */ ANIMTARGET_PANE_ROTX,
+            /* 4 */ ANIMTARGET_PANE_ROTY,
+            /* 5 */ ANIMTARGET_PANE_ROTZ,
 
-                // members
-            public:
-                char name[NAME_LENGTH];  // size 0x14, offset 0x00
-                u8 num;                  // size 0x01, offset 0x14
-                ACType type;             // size 0x01, offset 0x15
-                u8 padding[2];
-            };  // size 0x18
+            /* 6 */ ANIMTARGET_PANE_SCALEX,
+            /* 7 */ ANIMTARGET_PANE_SCALEY,
 
-            // presumably PaneAnimInfo1. It fits, at least...
-            static u32 const SIGNATURE_ANIM_INFO_BLOCK = NW4HBM_FOUR_CHAR('p', 'a', 'i', '1');
+            /* 8 */ ANIMTARGET_PANE_SIZEX,
+            /* 9 */ ANIMTARGET_PANE_SIZEY,
 
-            struct AnimationInfo {
-                // static members
-            public:
-                static u32 const SIGNATURE_PANE_PAIN_SRT_INFO =
-                    NW4HBM_FOUR_CHAR('R', 'L', 'P', 'A');
-                static u32 const SIGNATURE_PANE_VERTEX_COLOR_INFO =
-                    NW4HBM_FOUR_CHAR('R', 'L', 'V', 'C');
-                static u32 const SIGNATURE_PANE_VISIBILITY_INFO =
-                    NW4HBM_FOUR_CHAR('R', 'L', 'V', 'I');
+            /* 10 */ ANIMTARGET_PANE_MAX,
+            /* 16 */ ANIMTARGET_PANE_COLOR_ALPHA = 16,
+            /* 17 */ ANIMTARGET_PANE_COLOR_MAX,
+        };
 
-                static u32 const SIGNATURE_MATERIAL_IND_TEX_SRT_INFO =
-                    NW4HBM_FOUR_CHAR('R', 'L', 'I', 'M');
-                static u32 const SIGNATURE_MATERIAL_COLOR_INFO =
-                    NW4HBM_FOUR_CHAR('R', 'L', 'M', 'C');
-                static u32 const SIGNATURE_MATERIAL_TEXTURE_PATTERN_INFO =
-                    NW4HBM_FOUR_CHAR('R', 'L', 'T', 'P');
-                static u32 const SIGNATURE_MATERIAL_TEXTURE_SRT_INFO =
-                    NW4HBM_FOUR_CHAR('R', 'L', 'T', 'S');
+        enum {
+            /* 0 */ ANIMTARGET_VERTEXCOLOR_LT_RED = 0,
+            /* 1 */ ANIMTARGET_VERTEXCOLOR_LT_GREEN,
+            /* 2 */ ANIMTARGET_VERTEXCOLOR_LT_BLUE,
+            /* 3 */ ANIMTARGET_VERTEXCOLOR_LT_ALPHA,
 
-                // members
-            public:
-                u32 kind;  // size 0x04, offset 0x00
-                u8 num;    // size 0x01, offset 0x04
-                u8 padding[3];
-            };  // size 0x08
+            /* 4 */ ANIMTARGET_VERTEXCOLOR_RT_RED,
+            /* 5 */ ANIMTARGET_VERTEXCOLOR_RT_GREEN,
+            /* 6 */ ANIMTARGET_VERTEXCOLOR_RT_BLUE,
+            /* 7 */ ANIMTARGET_VERTEXCOLOR_RT_ALPHA,
 
-            struct AnimationTarget {
-                u8 id;         // size 0x01, offset 0x00
-                u8 target;     // size 0x01, offset 0x01
-                u8 curveType;  // size 0x01, offset 0x02
-                u8 padding1;
-                u16 keyNum;  // size 0x02, offset 0x04
-                u8 padding2[2];
-                u32 keysOffset;  // size 0x04, offset 0x08
-            };  // size 0x0c
+            /* 8 */ ANIMTARGET_VERTEXCOLOR_LB_RED,
+            /* 9 */ ANIMTARGET_VERTEXCOLOR_LB_GREEN,
+            /* 10 */ ANIMTARGET_VERTEXCOLOR_LB_BLUE,
+            /* 11 */ ANIMTARGET_VERTEXCOLOR_LB_ALPHA,
 
-            struct HermiteKey {
-                f32 frame;  // size 0x04, offset 0x00
-                f32 value;  // size 0x04, offset 0x04
-                f32 slope;  // size 0x04, offset 0x08
-            };  // size 0x0c
+            /* 12 */ ANIMTARGET_VERTEXCOLOR_RB_RED,
+            /* 13 */ ANIMTARGET_VERTEXCOLOR_RB_GREEN,
+            /* 14 */ ANIMTARGET_VERTEXCOLOR_RB_BLUE,
+            /* 15 */ ANIMTARGET_VERTEXCOLOR_RB_ALPHA,
 
-            struct StepKey {
-                f32 frame;  // size 0x04, offset 0x00
-                u16 value;  // size 0x02, offset 0x04
-                u16 padding;
-            };  // size 0x08
+            /* 16 */ ANIMTARGET_VERTEXCOLOR_MAX
+        };
 
-            static u32 const SIGNATURE_ANIMATION = NW4HBM_FOUR_CHAR('R', 'L', 'A', 'N');
-        }  // namespace res
+        enum {
+            /* 0 */ ANIMTARGET_MATCOLOR_MATR = 0,
+            /* 1 */ ANIMTARGET_MATCOLOR_MATG,
+            /* 2 */ ANIMTARGET_MATCOLOR_MATB,
+            /* 3 */ ANIMTARGET_MATCOLOR_MATA,
 
-        class AnimationLink {
-            // typedefs
-        public:
-            /* offsetof(AnimationLink, mLink) */
-            typedef ut::LinkList<AnimationLink, 0> LinkList;
+            /* 4 */ ANIMTARGET_MATCOLOR_TEV0R,
+            /* 5 */ ANIMTARGET_MATCOLOR_TEV0G,
+            /* 6 */ ANIMTARGET_MATCOLOR_TEV0B,
+            /* 7 */ ANIMTARGET_MATCOLOR_TEV0A,
 
-            // methods
-        public:
-            // cdtors
-            AnimationLink() : mbDisable(FALSE) { Reset(); }
+            /* 8 */ ANIMTARGET_MATCOLOR_TEV1R,
+            /* 9 */ ANIMTARGET_MATCOLOR_TEV1G,
+            /* 10 */ ANIMTARGET_MATCOLOR_TEV1B,
+            /* 11 */ ANIMTARGET_MATCOLOR_TEV1A,
 
-            /* ~AnimationLink() = default; */
+            /* 12 */ ANIMTARGET_MATCOLOR_TEV2R,
+            /* 13 */ ANIMTARGET_MATCOLOR_TEV2G,
+            /* 14 */ ANIMTARGET_MATCOLOR_TEV2B,
+            /* 15 */ ANIMTARGET_MATCOLOR_TEV2A,
 
-            // methods
-            AnimTransform* GetAnimTransform() const { return mAnimTrans; }
-            u16 GetIndex() const { return mIdx; }
-            bool IsEnable() const { return !mbDisable; }
+            /* 16 */ ANIMTARGET_MATCOLOR_TEVK0R,
+            /* 17 */ ANIMTARGET_MATCOLOR_TEVK0G,
+            /* 18 */ ANIMTARGET_MATCOLOR_TEVK0B,
+            /* 19 */ ANIMTARGET_MATCOLOR_TEVK0A,
 
-            void SetAnimTransform(AnimTransform* animTrans, u16 idx) {
-                mAnimTrans = animTrans;
-                mIdx = idx;
-            }
+            /* 20 */ ANIMTARGET_MATCOLOR_TEVK1R,
+            /* 21 */ ANIMTARGET_MATCOLOR_TEVK1G,
+            /* 22 */ ANIMTARGET_MATCOLOR_TEVK1B,
+            /* 23 */ ANIMTARGET_MATCOLOR_TEVK1A,
 
-            void SetEnable(bool bEnable) { mbDisable = !bEnable; }
+            /* 24 */ ANIMTARGET_MATCOLOR_TEVK2R,
+            /* 25 */ ANIMTARGET_MATCOLOR_TEVK2G,
+            /* 26 */ ANIMTARGET_MATCOLOR_TEVK2B,
+            /* 27 */ ANIMTARGET_MATCOLOR_TEVK2A,
 
-            void Reset() { SetAnimTransform(NULL, 0); }
+            /* 28 */ ANIMTARGET_MATCOLOR_TEVK3R,
+            /* 29 */ ANIMTARGET_MATCOLOR_TEVK3G,
+            /* 30 */ ANIMTARGET_MATCOLOR_TEVK3B,
+            /* 31 */ ANIMTARGET_MATCOLOR_TEVK3A,
 
-            // members
-        private:
-            ut::LinkListNode mLink;     // size 0x08, offset 0x00
-            AnimTransform* mAnimTrans;  // size 0x04, offset 0x08
-            u16 mIdx;                   // size 0x02, offset 0x0c
-            bool mbDisable;             // size 0x01, offset 0x0e
-                                        /* 1 byte padding */
-        };  // size 0x10
+            /* 32 */ ANIMTARGET_MATCOLOR_MAX
+        };
+
+        enum {
+            /* 0 */ ANIMTARGET_TEXSRT_TRANSX = 0,
+            /* 1 */ ANIMTARGET_TEXSRT_TRANSY,
+            /* 2 */ ANIMTARGET_TEXSRT_ROT,
+            /* 3 */ ANIMTARGET_TEXSRT_SCALEX,
+            /* 4 */ ANIMTARGET_TEXSRT_SCALEY,
+            /* 5 */ ANIMTARGET_TEXSRT_MAX
+        };
+
+        enum {
+            /* 0 */ ANIMTARGET_TEXPATTURN_IMAGE = 0,
+            /* 1 */ ANIMTARGET_TEXPATTURN_MAX
+        };
+
+        enum {
+            /* 0 */ ANIMCURVE_NONE = 0,
+            /* 1 */ ANIMCURVE_STEP,
+            /* 2 */ ANIMCURVE_HERMITE,
+            /* 3 */ ANIMCURVE_MAX
+        };
 
         class AnimTransform {
-            // typedefs
         public:
-            /* offsetof(AnimTransform, mLink) */
-            typedef ut::LinkList<AnimTransform, 4> LinkList;
-
-            // methods
-        public:
-            // cdtors
             AnimTransform();
-            virtual ~AnimTransform();
 
-            // virtual function ordering
-            // vtable AnimTransform
-            virtual void SetResource(res::AnimationBlock const* pRes,
-                                     ResourceAccessor* pResAccessor) = 0;
-            virtual void Bind(Pane* pPane, bool bRecursive) = 0;
-            virtual void Bind(Material* pMaterial) = 0;
-            virtual void Animate(u32 idx, Pane* pPane) = 0;
-            virtual void Animate(u32 idx, Material* pMaterial) = 0;
+            /* 0x08 */ virtual ~AnimTransform();
+            /* 0x0C */ virtual void SetResource(const res::AnimationBlock* pRes,
+                                                ResourceAccessor* pResAccessor) = 0;
+            /* 0x10 */ virtual void Bind(Pane* pane, bool bRecursive) = 0;
+            /* 0x14 */ virtual void Bind(Material* pMaterial) = 0;
+            /* 0x18 */ virtual void Animate(u32 idx, Pane* pane) = 0;
+            /* 0x1C */ virtual void Animate(u32 idx, Material* pMaterial) = 0;
 
-            // methods
-            f32 GetFrameMax() const { return static_cast<f32>(GetFrameSize()); }
+            f32 GetFrameMax() const { return GetFrameSize(); }
             u16 GetFrameSize() const;
 
             void SetFrame(f32 frame) { mFrame = frame; }
 
             bool IsLoopData() const;
 
-            // members
-        protected:                             // AnimTransformBasic::SetResource
-            /* vtable */                       // size 0x04, offset 0x00
-            ut::LinkListNode mLink;            // size 0x08, offset 0x04
-            res::AnimationBlock const* mpRes;  // size 0x04, offset 0x0c
-            f32 mFrame;                        // size 0x04, offset 0x10
-        };  // size 0x14
+            /* 0x00 (vtable) */
+            /* 0x04 */ ut::LinkListNode mLink;
+
+        protected:
+            /* 0x0C */ const res::AnimationBlock* mpRes;
+            /* 0x10 */ f32 mFrame;
+        };  // size = 0x14
+        typedef ut::LinkList<AnimTransform, offsetof(AnimTransform, mLink)> AnimTransformList;
+
+        class AnimationLink {
+        public:
+            AnimationLink() : mLink(), mbDisable(false) { Reset(); }
+            ~AnimationLink() {}
+
+            AnimTransform* GetAnimTransform() const { return mAnimTrans; }
+
+            u16 GetIndex() const { return mIdx; }
+            bool IsEnable() const { return !mbDisable; }
+
+            void SetEnable(bool bEnable) { mbDisable = !bEnable; }
+
+            void Reset() { SetAnimTransform(NULL, 0); }
+
+            void SetAnimTransform(AnimTransform* animTrans, u16 idx) {
+                mAnimTrans = animTrans;
+                mIdx = idx;
+            }
+
+            /* 0x00 */ ut::LinkListNode mLink;
+
+        private:
+            /* 0x08 */ AnimTransform* mAnimTrans;
+            /* 0x0C */ u16 mIdx;
+            /* 0x0E */ bool mbDisable;
+        };  // size = 0x10
+        typedef ut::LinkList<AnimationLink, offsetof(AnimationLink, mLink)> AnimationLinkList;
 
         class AnimTransformBasic : public AnimTransform {
-            // methods
         public:
-            // cdtors
             AnimTransformBasic();
-            virtual ~AnimTransformBasic();
 
-            // virtual function ordering
-            // vtable AnimTransform
-            virtual void SetResource(res::AnimationBlock const* pRes,
-                                     ResourceAccessor* pResAccessor);
-            virtual void Bind(Pane* pPane, bool bRecursive);
-            virtual void Bind(Material* pMaterial);
-            virtual void Animate(u32 idx, Pane* pPane);
-            virtual void Animate(u32 idx, Material* pMaterial);
+            /* 0x08 */ virtual ~AnimTransformBasic();
+            /* 0x0C */ virtual void SetResource(const res::AnimationBlock* pRes,
+                                                ResourceAccessor* pResAccessor);
+            /* 0x10 */ virtual void Bind(Pane* pane, bool bRecursive);
+            /* 0x14 */ virtual void Bind(Material* pMaterial);
+            /* 0x18 */ virtual void Animate(u32 idx, Pane* pane);
+            /* 0x1C */ virtual void Animate(u32 idx, Material* pMaterial);
 
-            // members
         private:
-            /* base AnimTransform */      // size 0x14, offset 0x00
-            void** mpFileResAry;          // size 0x04, offset 0x14
-            AnimationLink* mAnimLinkAry;  // size 0x04, offset 0x18
-            u16 mAnimLinkNum;             // size 0x02, offset 0x1c
-                                          /* 2 bytes padding */
-        };  // size 0x20
+            /* 0x00 (base) */
+            /* 0x14 */ void** mpFileResAry;
+            /* 0x18 */ AnimationLink* mAnimLinkAry;
+            /* 0x1C */ u16 mAnimLinkNum;
+        };  // size = 0x20
 
         namespace detail {
-            AnimationLink* FindAnimationLink(AnimationLink::LinkList* pAnimList,
-                                             AnimTransform* pAnimTrans);
-        }  // namespace detail
+            AnimationLink* FindAnimationLink(AnimationLinkList* animList, AnimTransform* animTrans);
+        }
+
     }  // namespace lyt
 }  // namespace nw4hbm
 
-#endif  // NW4HBM_LYT_ANIMATION_H
+#endif
