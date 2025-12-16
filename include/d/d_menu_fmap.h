@@ -273,7 +273,7 @@ private:
     /* 0x020 */ dMenu_Fmap_world_data_c* mpWorldData;
     /* 0x024 */ dMenu_Fmap_region_data_c* mpRegionData[8];
     /* 0x044 */ dMenu_Fmap_stage_data_c* mpStageData[8];
-    /* 0x064 */ JKRAramArchive* mpMapArchive;
+    /* 0x064 */ JKRArchive* mpMapArchive;
     /* 0x068 */ JKRArchive* mpResArchive;
     /* 0x06C */ dMenuMapCommon_c::RoomData_c* mpRoomData[8];
     /* 0x08C */ dMenu_Fmap_field_data_c* mpFieldDat;
@@ -334,10 +334,13 @@ private:
     /* 0x313 */ bool mAreaNameSet;
 };
 
-class dMf_HIO_c {
+class dMf_HIO_c : public JORReflexible {
 public:
     dMf_HIO_c();
     virtual ~dMf_HIO_c() {}
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     /* 0x04 */ u8 field_0x4[4];
     /* 0x08 */ f32 mBackAnimeStep;

@@ -15,6 +15,58 @@
 #include "f_op/f_op_overlap_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 
+#if DEBUG
+dMeter_map_HIO_c g_meter_map;
+
+dMeter_map_HIO_c::dMeter_map_HIO_c() {
+    dMeter_map_HIO_c::mMySelfPointer = this;
+    field_0x34 = dMap_HIO_c::mMySelfPointer;
+    field_0x5 = 0;
+    field_0x6 = 0;
+    field_0x8 = -38;
+    field_0xa = 380;
+    field_0xc = 35;
+    field_0xe = 380;
+    field_0x10 = 35;
+    field_0x12 = 421;
+    field_0x14 = -36;
+    field_0x16 = 0;
+    field_0x17 = 0;
+    field_0x18 = 1;
+    field_0x1a = 144;
+    field_0x1c = 144;
+    field_0x1e = 216;
+    field_0x20 = 216;
+    field_0x22 = 96;
+    field_0x24 = 96;
+    field_0x26 = 0;
+    field_0x2a = 144;
+    field_0x2c = 0;
+    field_0x2d = 180;
+    field_0x2e = 0;
+    field_0x2f = 0;
+    field_0x30 = 144;
+    field_0x32 = 0;
+    field_0x33 = 0;
+}
+
+void dMeter_map_HIO_c::genMessage(JORMContext* mctx) {
+    // DEBUG NONMATCHING
+}
+
+void dMeter_map_HIO_c::listenPropertyEvent(const JORPropertyEvent*) {
+    // DEBUG NONMATCHING
+}
+
+void dMeter_map_HIO_c::update() {
+    JORMContext* mctx = attachJORMContext(8);
+    mctx->startUpdateNode(this);
+    mctx->updateRadioButton(2, &field_0x18, 1);
+    mctx->endUpdateNode();
+    releaseJORMContext(mctx);
+}
+#endif
+
 bool dMeterMap_c::isEnableDispMap() {
     bool minimapEnable = false;
     stage_stag_info_class* pstag = dComIfGp_getStage()->getStagInfo();
@@ -150,6 +202,11 @@ bool dMeterMap_c::isMapOpenCheck() {
 }
 
 dMeterMap_c::dMeterMap_c(J2DScreen* i_scrn) {
+#if DEBUG
+    field_0x4_debug = 0;
+    field_0x8_debug = 0;
+    dMeterMap_c::mMySelfPointer = this;
+#endif
     _create(i_scrn);
 }
 

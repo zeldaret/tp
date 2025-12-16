@@ -22,6 +22,16 @@ class dMenu_ItemExplain_c;
 class J2DPictureEx;
 struct dMenu_DmapMapCtrl_c;
 
+class dMdm_HIO_c : public JORReflexible {
+public:
+    virtual ~dMdm_HIO_c() {}
+    virtual void genMessage(JORMContext*);
+
+    /* 0x04 */ u8 field_0x4[0xb8 - 0x4];
+
+    static dMdm_HIO_c* mMySelfPointer;
+};
+
 class renderingDmap_c : public renderingPlusDoor_c {
 public:
     virtual ~renderingDmap_c() {}

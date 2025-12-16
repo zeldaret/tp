@@ -3,6 +3,30 @@
 
 #include "d/d_map_path_dmap.h"
 
+class dMap_HIO_list_c : public dMpath_HIO_n::hioList_c {
+public:
+    virtual void copySrcToHio();
+    virtual void copyHioToDst();
+    virtual void copyBufToHio(const char*);
+};
+
+class dMap_HIO_c : public dMpath_HIO_file_base_c  {
+public:
+    dMap_HIO_c();
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+    virtual u32 addString(char*, u32, u32);
+    virtual u32 addData(char*, u32, u32);
+    virtual void copyReadBufToData(const char*, s32);
+    virtual u32 addStringBinary(char*, u32, u32);
+
+    /* 0x04 */ u8 field_0x4[0x08 - 0x04];
+    /* 0x08 */ dMap_HIO_list_c field_0x8;
+
+    static dMap_HIO_c* mMySelfPointer;
+    static dMpath_HIO_n::list_s l_list;
+};
+
 struct dMap_prm_res_s {
     /* 0x000 */ dMpath_RGB5A3_palDt_s palette_data[51];
     /* 0x198 */ u8 field_0x198;

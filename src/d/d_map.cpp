@@ -11,6 +11,33 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
 
+#if DEBUG
+dMap_HIO_c g_dMap_HIO;
+
+void dMap_HIO_c::genMessage(JORMContext* mctx) {
+    mctx->genLabel("エリアマップ パスマップ 調整項目", 0, 0, NULL, -1, -1, 512, 24);
+    mctx->genLabel("初期化等は 下位フォルダ[パレット]込み です", 0, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("初期化", 0x4000003, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("HOSTIO順テキストファイル書き出し", 0x4000004, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("バイナリ順テキスト書き出し", 0x4000005, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("バイナリファイル書き出し", 0x4000006, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("バイナリファイル読み込み", 0x4000007, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("バイナリダンプ", 0x4000008, 0, NULL, -1, -1, 512, 24);
+    field_0x8.gen(mctx);
+    mctx->genButton("ID_INFO_ROOM_MAX_TEXEL", 0x4000009, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("ID_INFO_SWITCH", 0x400000a, 0, NULL, -1, -1, 512, 24);
+}
+
+dMap_HIO_c::dMap_HIO_c() {
+    mMySelfPointer = this;
+    field_0x8.set(l_list);
+}
+
+void dMap_HIO_c::listenPropertyEvent(const JORPropertyEvent*) {
+    // DEBUG NONMATCHING
+}
+#endif
+
 f32 renderingAmap_c::getIconSize(u8 i_icon) const {
     static f32 const l_iconSize[] = {
         0.12f, 0.12f, 0.08f, 0.12f, 0.08f, 0.16f, 0.12f, 0.0f,  0.12f,

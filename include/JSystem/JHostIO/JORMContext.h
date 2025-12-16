@@ -293,6 +293,10 @@ public:
         updateCheckBoxSub(mode, id, value, mask, param_4);
     }
 
+    void updateRadioButton(u32 mode, s16* pSrc, u32 param_3) {
+        updateSelectorSub(mode, (uintptr_t)pSrc, *pSrc, param_3);
+    }
+
     void editComboBoxItem(u32 param_0, u32 param_1, const char* param_2, s32 param_3, u32 param_4);
 
     void openMessageBox(void* param_0, u32 style, const char* message, const char* title);

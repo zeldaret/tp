@@ -100,6 +100,19 @@ dMf_HIO_c::dMf_HIO_c() {
     mMoyaAlpha = 95;
 }
 
+#if DEBUG
+void dMf_HIO_c::genMessage(JORMContext* mctx) {
+    mctx->genLabel("\n■枠BTKアニメフレーム", 0, 0, NULL, -1, -1, 512, 24);
+    mctx->genSlider("フレーム数", &mBackAnimeStep, 0.0, 10.0, 0, NULL, -1, -1, 512, 24);
+    mctx->genLabel("\n■枠の明度", 0, 0, NULL, -1, -1, 512, 24);
+    mctx->genSlider("アルファ", &mBaseBackAlpha, 0, 255, 0, NULL, -1, -1, 512, 24);
+    mctx->genLabel("\n■もやもやBTKアニメフレーム", 0, 0, NULL, -1, -1, 512, 24);
+    mctx->genSlider("フレーム数", &mTopAnimeStep, 0.0, 10.0, 0, NULL, -1, -1, 512, 24);
+    mctx->genLabel("\n■もやもやの明度", 0, 0, NULL, -1, -1, 512, 24);
+    mctx->genSlider("アルファ", &mMoyaAlpha, 0, 255, 0, NULL, -1, -1, 512, 24);
+}
+#endif
+
 const char* dMenuFmap_getStartStageName(void* i_fieldData) {
     static char virtual_stage[8];
     stage_stag_info_class* stag_info = dComIfGp_getStage()->getStagInfo();
@@ -115,6 +128,7 @@ const char* dMenuFmap_getStartStageName(void* i_fieldData) {
                 return virtual_stage;
             }
         }
+        JUT_ASSERT(203, 0);
     }
     return dComIfGp_getStartStageName();
 }
@@ -175,6 +189,7 @@ dMenu_Fmap_c::dMenu_Fmap_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
     }
 
     mpTalkHeap = JKRCreateExpHeap(0x32000, mpHeap, false);
+    JUT_ASSERT(359, mpTalkHeap != 0);
     field_0x200 = 0;
     mIsWarpMap = false;
 
@@ -323,9 +338,12 @@ dMenu_Fmap_c::~dMenu_Fmap_c() {
 void dMenu_Fmap_c::_create() {
     mpHeap->getTotalFreeSize();
     mpDraw2DBack = new dMenu_Fmap2DBack_c();
+    JUT_ASSERT(594, mpDraw2DBack != NULL);
     mpDraw2DBack->setRegionCursor(dComIfGp_getNowLevel() - 1);
     mpDraw2DTop = new dMenu_Fmap2DTop_c(mpHeap, mpStick);
+    JUT_ASSERT(599, mpDraw2DTop != NULL);
     mpMenuFmapMap = new dMenu_FmapMap_c();
+    JUT_ASSERT(603, mpMenuFmapMap != NULL);
     mpMenuFmapMap->_create(dMeter2Info_get2DWidth(), dMeter2Info_get2DHeight(),
                            dMeter2Info_get2DWidth(), dMeter2Info_get2DHeight(), mpFmapMapRes);
     
@@ -2225,7 +2243,7 @@ bool dMenu_Fmap_c::readFieldMapData(void** o_data, char const* i_path, bool para
             *o_data = res;
             return true;
         } else {
-            size = dLib_getExpandSizeFromAramArchive(mpMapArchive, i_path);
+            size = dLib_getExpandSizeFromAramArchive((JKRAramArchive*)mpMapArchive, i_path);
         }
     }
 
@@ -2326,7 +2344,7 @@ bool dMenu_Fmap_c::readRoomDzsData(void** i_data, u32 param_1, char const* i_pat
         size = mpMapArchive->getExpandedResSize(res);
         mpMapArchive->removeResource(res);
     } else {
-        size = dLib_getExpandSizeFromAramArchive(mpMapArchive, path);
+        size = dLib_getExpandSizeFromAramArchive((JKRAramArchive*)mpMapArchive, path);
     }
 
     *i_data = mpHeap->alloc(size, 0x20);
