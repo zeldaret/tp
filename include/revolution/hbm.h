@@ -73,7 +73,6 @@ typedef struct HBMDataInfo {
     /* 0x18 */ int backFlag;
     /* 0x1C */ int region;
     /* 0x20 */ int cursor;
-    /* 0x24 */ int messageFlag;
     /* 0x28 */ u32 memSize;
     /* 0x2C */ f32 frameDelta;
     /* 0x30 */ Vec2 adjust;

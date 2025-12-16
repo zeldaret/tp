@@ -2257,40 +2257,7 @@ namespace homebutton {
                         nw4hbm::ut::DynamicCast<nw4hbm::lyt::TextBox*>(p_pane);
 
                     u16 len;
-                    if (mpHBInfo->messageFlag & (btn_no + 1)) {
-#if HBM_REVISION == 1
-                        for (len = 0; true; len++) {
-                            if (mpText[mpHBInfo->region][btn_no + 2][len] != 0x0D) {
-                                continue;
-                            }
-
-                            if (mpText[mpHBInfo->region][btn_no + 2][len + 1] != 0x0A) {
-                                continue;
-                            }
-
-                            break;
-                        }
-
-                        p_text->SetString(mpText[mpHBInfo->region][btn_no + 2], 0, len);
-#else
-                        for (len = 0; true; len++) {
-                            // U+FF1F FULLWIDTH QUESTION MARK
-                            if (mpText[mpHBInfo->region][btn_no + 2][len] == L'？') {
-                                break;
-                            }
-
-                            // U+003F QUESTION MARK
-                            if (mpText[mpHBInfo->region][btn_no + 2][len] == L'\?') {
-                                break;
-                            }
-                        }
-
-                        p_text->SetString(mpText[mpHBInfo->region][btn_no + 2], 0, ++len);
-#endif
-
-                    } else {
-                        p_text->SetString(mpText[mpHBInfo->region][btn_no + 2], 0);
-                    }
+                    p_text->SetString(mpText[mpHBInfo->region][btn_no + 2], 0);
 
                     mpLayout->GetRootPane()
                         ->FindPaneByName(scFuncTextPaneName[2], true)
