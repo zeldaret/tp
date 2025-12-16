@@ -1615,6 +1615,25 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "card",
+        [
+            Object(NonMatching, "revolution/card/CARDBios.c"),
+            Object(NonMatching, "revolution/card/CARDUnlock.c"),
+            Object(NonMatching, "revolution/card/CARDRdwr.c"),
+            Object(NonMatching, "revolution/card/CARDBlock.c"),
+            Object(NonMatching, "revolution/card/CARDDir.c"),
+            Object(NonMatching, "revolution/card/CARDCheck.c"),
+            Object(NonMatching, "revolution/card/CARDMount.c"),
+            Object(NonMatching, "revolution/card/CARDFormat.c"),
+            Object(NonMatching, "revolution/card/CARDOpen.c", extra_cflags=["-char signed"]),
+            Object(NonMatching, "revolution/card/CARDCreate.c"),
+            Object(NonMatching, "revolution/card/CARDRead.c"),
+            Object(NonMatching, "revolution/card/CARDWrite.c"),
+            Object(NonMatching, "revolution/card/CARDStat.c"),
+            Object(NonMatching, "revolution/card/CARDNet.c"),
+        ],
+    ),
+    RevolutionLib(
         "hio2",
         [
             Object(NonMatching, "revolution/hio2/hio2.c"),
