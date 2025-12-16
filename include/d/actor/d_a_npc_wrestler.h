@@ -234,8 +234,8 @@ public:
 
 private:
     /* 0xB48 */ Z2Creature mSound;
-    /* 0xBD8 */ const daNpcWrestler_HIOParam* field_0xbd8;
-    /* 0xBDC */ const daNpcWrestler_HIOParamSub* field_0xbdc;
+    /* 0xBD8 */ daNpcWrestler_HIOParam* field_0xbd8;
+    /* 0xBDC */ daNpcWrestler_HIOParamSub* field_0xbdc;
     /* 0xBE0 */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0xBE4 */ daNpcF_Lookat_c mLookAt;
     /* 0xC80 */ daNpcF_ActorMngr_c mActorMngr[2];
