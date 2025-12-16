@@ -104,7 +104,19 @@ class numeric_limits<float> {
 public:
 	inline static float min();
 	inline static float max() { return FLT_MAX; }
+	inline static float signaling_NaN() { return *(float*)__float_nan; }
 };
+
+#if __REVOLUTION_SDK__
+template <>
+class numeric_limits<double> {
+public:
+	static const unsigned long long x = 0x7ff0000000000001ULL;
+	inline static double min();
+	inline static double max();
+	inline static double signaling_NaN() { return *reinterpret_cast<const double*>(&x); }
+};
+#endif
 
 } // namespace std
 #endif

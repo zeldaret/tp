@@ -7,6 +7,7 @@
 #include "JSystem/JGadget/linklist.h"
 #include "math.h"
 #include "stdlib.h"
+#include "limits.h"
 
 namespace JStudio {
 
@@ -261,13 +262,13 @@ f64 TFunctionValue_composite::getValue(f64 arg1) {
 f64 TFunctionValue_composite::composite_raw(TVector_pointer<TFunctionValue*> const& param_1,
                                                  TData const& param_2, f64 param_3) {
     u32 index = param_2.get_unsignedInteger();
-    u32 size = param_1.size();
-    if (index >= size) {
+    if (index >= param_1.size()) {
         return 0.0;
     }
-    TFunctionValue** local_18 = (TFunctionValue**)param_1.begin();
-    std::advance_pointer(local_18, index);
-    TFunctionValue* piVar4 = *local_18;
+    TFunctionValue** p = (TFunctionValue**)param_1.begin();
+    std::advance(p, index);
+    JUT_ASSERT(0x247, p!=0);
+    TFunctionValue* piVar4 = *p;
     return piVar4->getValue(param_3);
 }
 
@@ -284,9 +285,9 @@ f64 TFunctionValue_composite::composite_index(TVector_pointer<TFunctionValue*> c
     TFunctionValue** local_148 = (TFunctionValue**)param_1.begin();
     TFunctionValue* pFront = *local_148;
     JUT_ASSERT(599, pFront!=NULL);
-    f64 dVar4 = pFront->getValue(param_3);
-    s32 index = floor(dVar4);
-    u32 uVar2 = param_2.get_unsignedInteger();
+    TValue fData = pFront->getValue(param_3);
+    s32 index = floor(fData);
+    u32 uVar2 = param_2.get_outside();
     switch (uVar2) {
     case 0:
     case 3:
@@ -360,8 +361,9 @@ f64 TFunctionValue_composite::composite_add(TVector_pointer<TFunctionValue*> con
     f64 dVar4 = param_2.get_value();
     TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
     while (aTStack_18) {
-        TFunctionValue* const* ppiVar3 = *aTStack_18;
-        TFunctionValue* piVar3 = *ppiVar3;
+        TFunctionValue* const* p = *aTStack_18;
+        JUT_ASSERT(0x2a1, p!=0);
+        TFunctionValue* piVar3 = *p;
         dVar4 += piVar3->getValue(param_3);
     }
     return dVar4;
@@ -382,8 +384,9 @@ f64 TFunctionValue_composite::composite_subtract(TVector_pointer<TFunctionValue*
     JUT_ASSERT(688, pFront!=NULL);
     f64 dVar4 = pFront->getValue(param_3);
     while (aTStack_18) {
-        TFunctionValue* const* ppiVar3 = *aTStack_18;
-        TFunctionValue* piVar3 = *ppiVar3;
+        TFunctionValue* const* p = *aTStack_18;
+        JUT_ASSERT(0x2b5, p!=0);
+        TFunctionValue* piVar3 = *p;
         dVar4 -= piVar3->getValue(param_3);
     }
     dVar4 -= param_2.f32data;
@@ -399,8 +402,9 @@ f64 TFunctionValue_composite::composite_multiply(TVector_pointer<TFunctionValue*
     f64 dVar4 = param_2.get_value();
     TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
     while (aTStack_18) {
-        TFunctionValue* const* ppiVar3 = *aTStack_18;
-        TFunctionValue* piVar3 = *ppiVar3;
+        TFunctionValue* const* p = *aTStack_18;
+        JUT_ASSERT(0x2c5, p!=0);
+        TFunctionValue* piVar3 = *p;
         dVar4 *= piVar3->getValue(param_3);
     }
     return dVar4;
@@ -419,18 +423,29 @@ f64 TFunctionValue_composite::composite_divide(TVector_pointer<TFunctionValue*> 
     TFunctionValue* const* local_148 = *aTStack_18;
     TFunctionValue* pFront = *local_148;
     JUT_ASSERT(724, pFront!=NULL);
-    f64 dVar4 = pFront->getValue(param_3);
+    TValue fData = pFront->getValue(param_3);
     while (aTStack_18) {
-        TFunctionValue* const* ppiVar3 = *aTStack_18;
-        TFunctionValue* piVar3 = *ppiVar3;
-        dVar4 /= piVar3->getValue(param_3);
+        TFunctionValue* const* p = *aTStack_18;
+        JUT_ASSERT(0x2d9, p!=0);
+        TFunctionValue* piVar3 = *p;
+        fData /= piVar3->getValue(param_3);
+        JGADGET_ASSERTWARN(0x2db, fData!=TValue(0));
     }
-    dVar4 /= param_2.f32data;
-    return dVar4;
+#if DEBUG
+    TValue v = param_2.get_value();
+    JGADGET_ASSERTWARN(0x2df, fData!=TValue(0));
+#endif
+    fData /= param_2.f32data;
+    return fData;
 }
 
+#if PLATFORM_WII || PLATFORM_SHIELD
+#define NUMERIC_LIMIT double
+#else
+#define NUMERIC_LIMIT float
+#endif
 
-TFunctionValue_constant::TFunctionValue_constant() : fValue_(NAN) {}
+TFunctionValue_constant::TFunctionValue_constant() : fValue_(std::numeric_limits<NUMERIC_LIMIT>::signaling_NaN()) {}
 
 u32 TFunctionValue_constant::getType() const {
     return 2;
