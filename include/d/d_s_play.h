@@ -83,7 +83,7 @@ public:
 extern dScnPly_env_HIO_c g_envHIO;
 extern dScnPly_reg_HIO_c g_regHIO;
 
-#if ENABLE_REGHIO
+#if DEBUG
 extern dScnPly_preset_HIO_c g_presetHIO;
 #endif
 
