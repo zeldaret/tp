@@ -678,12 +678,11 @@ int daAlink_c::procCanoeWait() {
     return 1;
 }
 
-// NONMATCHING - regalloc, equivalent
 int daAlink_c::procCanoeRowInit(int param_0) {
-    fopAc_ac_c* temp_r26 = mRideAcKeep.getActor();
+    int var_r29;
+    fopAc_ac_c* temp_r26 = (fopAc_ac_c*)mRideAcKeep.getActor();
     field_0x3198 = -2;
 
-    int var_r29;
     if (param_0 < 0) {
         if (checkInputOnR()) {
             s16 sp8 = (s16)(field_0x2fe2 - shape_angle.y);
