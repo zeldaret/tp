@@ -32,7 +32,7 @@ namespace nw4hbm {
                 }
 
                 T* Alloc(int priority) {
-                    NW4R_ASSERT_MINMAX(92, priority, 0, 127);
+                    NW4R_ASSERT_MINMAXLT(92, priority, 0, 127);
                     ut::AutoInterruptLock lock;
                     T* sound;
 

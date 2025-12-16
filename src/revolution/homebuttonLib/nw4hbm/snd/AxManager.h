@@ -59,7 +59,7 @@ namespace nw4hbm {
                 void ShutdownEffect(AuxBus bus);
 
                 FxList& GetEffectList(AuxBus bus) {
-                    NW4R_ASSERT_MIN(189, bus, AUX_A, AUX_BUS_NUM);
+                    NW4R_ASSERT_MINMAX(189, bus, AUX_A, AUX_BUS_NUM);
                     return mFxList[bus];
                 }
 

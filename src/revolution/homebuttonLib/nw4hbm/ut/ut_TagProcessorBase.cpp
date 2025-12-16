@@ -1,28 +1,28 @@
 #include "TagProcessorBase.h"
 
-#include <revolution/types.h>
-
-#include "Font.h"  // IWYU pragma: keep (text)
-#include "Rect.h"
-#include "TextWriterBase.h"
+#include "../db/assert.h"
+#include "TextWriter.h"
 
 namespace nw4hbm {
     namespace ut {
 
-        template <typename CharT>
-        TagProcessorBase<CharT>::TagProcessorBase() {}
+        template <typename T>
+        TagProcessorBase<T>::TagProcessorBase() {}
 
-        template <typename CharT>
-        TagProcessorBase<CharT>::~TagProcessorBase() {}
+        template <typename T>
+        TagProcessorBase<T>::~TagProcessorBase() {}
 
-        template <typename CharT>
-        Operation TagProcessorBase<CharT>::Process(u16 code, PrintContext<CharT>* context) {
+        template <typename T>
+        Operation TagProcessorBase<T>::Process(u16 code, PrintContext<T>* context) {
+            NW4HBM_ASSERT(85, code < ' ');
+            NW4HBM_ASSERT_VALID_PTR(86, context);
+
             switch (code) {
-            case L'\n':
+            case '\n':
                 ProcessLinefeed(context);
                 return OPERATION_NEXT_LINE;
 
-            case L'\t':
+            case '\t':
                 ProcessTab(context);
                 return OPERATION_NO_CHAR_SPACE;
 
@@ -31,12 +31,15 @@ namespace nw4hbm {
             }
         }
 
-        template <typename CharT>
-        Operation TagProcessorBase<CharT>::CalcRect(Rect* pRect, u16 code,
-                                                    PrintContext<CharT>* context) {
+        template <typename T>
+        Operation TagProcessorBase<T>::CalcRect(Rect* pRect, u16 code, PrintContext<T>* context) {
+            NW4HBM_ASSERT_VALID_PTR(132, pRect);
+            NW4HBM_ASSERT(133, code < ' ');
+            NW4HBM_ASSERT_VALID_PTR(134, context);
+
             switch (code) {
-            case L'\n': {
-                TextWriterBase<CharT>& writer = *context->writer;
+            case '\n': {
+                TextWriterBase<T>& writer = *context->writer;
 
                 pRect->right = writer.GetCursorX();
                 pRect->top = writer.GetCursorY();
@@ -50,8 +53,8 @@ namespace nw4hbm {
             }
                 return OPERATION_NEXT_LINE;
 
-            case L'\t': {
-                TextWriterBase<CharT>& writer = *context->writer;
+            case '\t': {
+                TextWriterBase<T>& writer = *context->writer;
 
                 pRect->left = writer.GetCursorX();
 
@@ -70,9 +73,10 @@ namespace nw4hbm {
             }
         }
 
-        template <typename CharT>
-        void TagProcessorBase<CharT>::ProcessLinefeed(PrintContext<CharT>* context) {
-            TextWriterBase<CharT>& writer = *context->writer;
+        template <typename T>
+        void TagProcessorBase<T>::ProcessLinefeed(PrintContext<T>* context) {
+            NW4HBM_ASSERT_VALID_PTR(195, context);
+            TextWriterBase<T>& writer = *context->writer;
 
             f32 x = context->xOrigin;
             f32 y = writer.GetCursorY() + writer.GetLineHeight();
@@ -80,29 +84,26 @@ namespace nw4hbm {
             writer.SetCursor(x, y);
         }
 
-        template <typename CharT>
-        void TagProcessorBase<CharT>::ProcessTab(PrintContext<CharT>* context) {
-            TextWriterBase<CharT>& writer = *context->writer;
+        template <typename T>
+        void TagProcessorBase<T>::ProcessTab(PrintContext<T>* context) {
+            NW4HBM_ASSERT_VALID_PTR(211, context);
+            TextWriterBase<T>& writer = *context->writer;
             int tabWidth = writer.GetTabWidth();
 
             if (tabWidth > 0) {
                 f32 aCharWidth =
                     writer.IsWidthFixed() ? writer.GetFixedWidth() : writer.GetFontWidth();
                 f32 dx = writer.GetCursorX() - context->xOrigin;
-                f32 tabPixel = tabWidth * aCharWidth;
+                f32 tabPixel = static_cast<f32>(tabWidth) * aCharWidth;
                 int numTab = static_cast<int>(dx / tabPixel) + 1;
-                f32 x = tabPixel * numTab + context->xOrigin;
+                f32 x = tabPixel * static_cast<f32>(numTab) + context->xOrigin;
 
                 writer.SetCursorX(x);
             }
         }
 
-    }  // namespace ut
-}  // namespace nw4hbm
-
-namespace nw4hbm {
-    namespace ut {
         template class TagProcessorBase<char>;
         template class TagProcessorBase<wchar_t>;
+
     }  // namespace ut
 }  // namespace nw4hbm

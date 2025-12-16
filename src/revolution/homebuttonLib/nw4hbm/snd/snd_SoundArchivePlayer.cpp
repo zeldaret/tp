@@ -7,7 +7,7 @@
 namespace nw4hbm {
     namespace snd {
         SoundPlayer& SoundArchivePlayer::GetSoundPlayer(u32 playerId) {
-            NW4R_ASSERT_MIN(690, playerId, 0, mSoundPlayerCount);
+            NW4R_ASSERT_MINMAX(690, playerId, 0, mSoundPlayerCount);
             return mSoundPlayers[playerId];
         }
     }

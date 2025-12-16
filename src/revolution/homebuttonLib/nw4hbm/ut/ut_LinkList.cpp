@@ -1,6 +1,6 @@
 #include "LinkList.h"
 
-#include <revolution/types.h>
+#include "../db/assert.h"
 
 namespace nw4hbm {
     namespace ut {
@@ -11,20 +11,24 @@ namespace nw4hbm {
             }
 
             LinkListImpl::Iterator LinkListImpl::Erase(Iterator it) {
-                Iterator itNext(it);
+                // clang-format off
+                NW4HBM_ASSERT(31, it.mPointer!=&mNode);
+                // clang-format on
 
-                itNext.operator++();
+                Iterator itNext(it);
+                ++itNext;
 
                 return Erase(it, itNext);
             }
 
-            LinkListImpl::Iterator LinkListImpl::Erase(Iterator itFirst, Iterator itLast) {
-                LinkListNode *pIt = itFirst.mPointer, *pItLast = itLast.mPointer, *pNext;
+            LinkListImpl::Iterator LinkListImpl::Erase(LinkListImpl::Iterator itFirst,
+                                                       LinkListImpl::Iterator itLast) {
+                LinkListNode *p = itFirst.mPointer, *pItLast = itLast.mPointer, *pNext;
 
-                while (pIt != pItLast) {
-                    pNext = pIt->mNext;
-                    Erase(pIt);
-                    pIt = pNext;
+                while (p != pItLast) {
+                    pNext = p->mNext;
+                    Erase(p);
+                    p = pNext;
                 }
 
                 return itLast;
@@ -34,50 +38,57 @@ namespace nw4hbm {
                 Erase(GetBeginIter(), GetEndIter());
             }
 
-            void LinkListImpl::Reverse() {
-                if (IsEmpty())
-                    return;
-
-                LinkListNode *p = mNode.mNext, *pNext;
-
-                for (Initialize_(); p != &mNode; p = pNext) {
-                    pNext = p->mNext;
-
-                    p->mNext = NULL;
-                    p->mPrev = NULL;
-
-                    PushFront(p);
-                }
-            }
-
             LinkListImpl::Iterator LinkListImpl::Insert(Iterator it, LinkListNode* p) {
+                NW4HBM_ASSERT_CHECK_NULL(74, p);
+
                 LinkListNode* pIt = it.mPointer;
+                NW4HBM_ASSERT_CHECK_NULL(76, pIt);
 
                 LinkListNode* pItPrev = pIt->mPrev;
+                NW4HBM_ASSERT_CHECK_NULL(79, pItPrev);
 
+                NW4HBM_ASSERT(81, p->mNext == NULL);
+                NW4HBM_ASSERT(82, p->mPrev == NULL);
                 p->mNext = pIt;
                 p->mPrev = pItPrev;
 
                 pIt->mPrev = p;
                 pItPrev->mNext = p;
 
-                ++mSize;
+                mSize++;
 
-                return (LinkListImpl::Iterator)p;
+                return (Iterator)p;
             }
 
             LinkListImpl::Iterator LinkListImpl::Erase(LinkListNode* p) {
-                LinkListNode *pNext = p->mNext, *pPrev = p->mPrev;
+                // clang-format off
+                NW4HBM_ASSERT(96, !IsEmpty());
+                NW4HBM_ASSERT_CHECK_NULL(97, p);
+                NW4HBM_ASSERT(98, p!=&mNode);
+                // clang-format on
 
-                pNext->mPrev = pPrev;
-                pPrev->mNext = pNext;
+                LinkListNode* pNext = p->mNext;
+                LinkListNode* pPrev = p->mPrev;
 
-                --mSize;
+                SetPrev(pPrev, pNext);
+                SetNext(pPrev, pNext);
+
+                mSize--;
 
                 p->mNext = NULL;
                 p->mPrev = NULL;
 
-                return (LinkListImpl::Iterator)pNext;
+                return (Iterator)pNext;
+            }
+
+            void LinkListImpl::SetPrev(LinkListNode* pPrev, LinkListNode* pNext) {
+                NW4HBM_ASSERT_CHECK_NULL(101, pNext);
+                pNext->mPrev = pPrev;
+            }
+
+            void LinkListImpl::SetNext(LinkListNode* pPrev, LinkListNode* pNext) {
+                NW4HBM_ASSERT_CHECK_NULL(103, pPrev);
+                pPrev->mNext = pNext;
             }
 
         }  // namespace detail

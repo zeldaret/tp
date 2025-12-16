@@ -1,5 +1,5 @@
-#ifndef NW4HBM_UT_RECT_H
-#define NW4HBM_UT_RECT_H
+#ifndef NW4HBM_RECT_H
+#define NW4HBM_RECT_H
 
 #include <revolution/types.h>
 
@@ -7,17 +7,17 @@
 
 namespace nw4hbm {
     namespace ut {
-        struct Rect {
-            // methods
-        public:
-            // cdtors
-            Rect() : left(), top(), right(), bottom() {}
 
+        class Rect {
+        public:
+            Rect() : left(), top(), right(), bottom() {}
             Rect(f32 l, f32 t, f32 r, f32 b) : left(l), top(t), right(r), bottom(b) {}
 
             ~Rect() {}
 
-            // methods
+            void SetWidth(f32 width) { right = left + width; }
+            void SetHeight(f32 height) { bottom = top + height; }
+
             f32 GetWidth() const { return right - left; }
             f32 GetHeight() const { return bottom - top; }
 
@@ -41,14 +41,13 @@ namespace nw4hbm {
                 bottom = math::FSelect(b - t, b, t);
             }
 
-            // members
-        public:
-            f32 left;    // size 0x04, offset 0x00
-            f32 top;     // size 0x04, offset 0x04
-            f32 right;   // size 0x04, offset 0x08
-            f32 bottom;  // size 0x04, offset 0x0c
-        };  // size 0x10
-    }  // namespace ut
-}  // namespace nw4hbm
+            /* 0x00 */ f32 left;
+            /* 0x04 */ f32 top;
+            /* 0x08 */ f32 right;
+            /* 0x0C */ f32 bottom;
+        };  // size = 0x10
 
-#endif  // NW4HBM_UT_RECT_H
+    };  // namespace ut
+};  // namespace nw4hbm
+
+#endif

@@ -3,52 +3,47 @@
 
 #include <revolution/types.h>
 
-// context declarations
-namespace nw4hbm { namespace ut { struct Rect; }}
-namespace nw4hbm { namespace ut { template <typename> class TextWriterBase; }}
+#include "Rect.h"
 
 namespace nw4hbm {
     namespace ut {
-        enum Operation {
-            OPERATION_DEFAULT,
-            OPERATION_NO_CHAR_SPACE,
-            OPERATION_CHAR_SPACE,
-            OPERATION_NEXT_LINE,
-            OPERATION_END_DRAW,
+        typedef enum Operation {
+            /* 0 */ OPERATION_DEFAULT = 0,
+            /* 1 */ OPERATION_NO_CHAR_SPACE,
+            /* 2 */ OPERATION_CHAR_SPACE,
+            /* 3 */ OPERATION_NEXT_LINE,
+            /* 4 */ OPERATION_END_DRAW,
+            /* 5 */ NUM_OF_OPERATION
+        } Operation;
 
-            NUM_OF_OPERATION
+        template <typename>
+        class TextWriterBase;
+
+        template <typename T>
+        struct PrintContext {
+            /* 0x00 */ TextWriterBase<T>* writer;
+            /* 0x04 */ const T* str;
+            /* 0x08 */ f32 xOrigin;
+            /* 0x0C */ f32 yOrigin;
+            /* 0x10 */ u32 flags;
         };
 
-        template <typename CharT>
-        struct PrintContext {
-            TextWriterBase<CharT>* writer;  // size 0x04, offset 0x00
-            CharT const* str;               // size 0x04, offset 0x04
-            f32 xOrigin;                    // size 0x04, offset 0x08
-            f32 yOrigin;                    // size 0x04, offset 0x0c
-            u32 flags;                      // size 0x04, offset 0x10
-        };  // size 0x14
-
-        template <typename CharT>
+        template <typename T>
         class TagProcessorBase {
-            // methods
         public:
-            // explicit instantiation function ordering
-            // Do not reorder anything
             TagProcessorBase();
-            virtual ~TagProcessorBase();
-            virtual Operation Process(u16 code, PrintContext<CharT>* context);
-            virtual Operation CalcRect(Rect* pRect, u16 code, PrintContext<CharT>* context);
-            void ProcessLinefeed(PrintContext<CharT>* context);
-            void ProcessTab(PrintContext<CharT>* context);
 
-            // members
-        private:
-            /* vtable */  // size 0x04, offset 0x00
-        };  // size 0x04
+            /* 0x08 */ virtual ~TagProcessorBase();
+            /* 0x0C */ virtual Operation Process(u16 code, PrintContext<T>* context);
+            /* 0x10 */ virtual Operation CalcRect(Rect* pRect, u16 code, PrintContext<T>* context);
 
-        // extern template class TagProcessorBase<char>;
-        // extern template class TagProcessorBase<wchar_t>;
+            void ProcessLinefeed(PrintContext<T>* context);
+            void ProcessTab(PrintContext<T>* context);
+
+            /* 0x00 (vtable) */
+        };  // size = 0x04
+
     }  // namespace ut
 }  // namespace nw4hbm
 
-#endif  // NW4HBM_UT_TAG_PROCESSOR_BASE_H
+#endif

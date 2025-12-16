@@ -3,60 +3,54 @@
 
 #include <revolution/types.h>
 
-#define NW4HBM_UT_RUNTIME_TYPEINFO                                                                      \
-    virtual const nw4hbm::ut::detail::RuntimeTypeInfo* GetRuntimeTypeInfo() const { return &typeInfo; } \
-    static const nw4hbm::ut::detail::RuntimeTypeInfo typeInfo
-
-#define NW4HBM_UT_GET_RUNTIME_TYPEINFO(T) const nw4hbm::ut::detail::RuntimeTypeInfo T::typeInfo(nullptr);
-
-#define NW4HBM_UT_GET_DERIVED_RUNTIME_TYPEINFO(T, D) \
-    const nw4hbm::ut::detail::RuntimeTypeInfo T::typeInfo(&D::typeInfo);
-
 namespace nw4hbm {
     namespace ut {
+
+#define NW4HBM_UT_RUNTIME_TYPEINFO                                                                 \
+    virtual const nw4hbm::ut::detail::RuntimeTypeInfo* GetRuntimeTypeInfo() const {                \
+        return &typeInfo;                                                                          \
+    }                                                                                              \
+    static const nw4hbm::ut::detail::RuntimeTypeInfo typeInfo
+
+#define NW4HBM_UT_GET_RUNTIME_TYPEINFO(T)                                                          \
+    const nw4hbm::ut::detail::RuntimeTypeInfo T::typeInfo(NULL);
+
+#define NW4HBM_UT_GET_DERIVED_RUNTIME_TYPEINFO(T, D)                                               \
+    const nw4hbm::ut::detail::RuntimeTypeInfo T::typeInfo(&D::typeInfo);
+
         namespace detail {
-            class RuntimeTypeInfo {
-                // methods
-            public:
-                // cdtors
-                RuntimeTypeInfo(RuntimeTypeInfo const* parent) : mParentTypeInfo(parent) {}
+            struct RuntimeTypeInfo {
+                explicit RuntimeTypeInfo(const RuntimeTypeInfo* base) : mParentTypeInfo(base) {}
 
-                /* ~RuntimeTypeInfo() = default; */
-
-                // methods
-                bool IsDerivedFrom(RuntimeTypeInfo const* typeInfo) const {
-                    RuntimeTypeInfo const* self;
-
-                    for (self = this; self; self = self->mParentTypeInfo) {
-                        if (self == typeInfo)
-                            return TRUE;
+                bool IsDerivedFrom(const RuntimeTypeInfo* base) const {
+                    for (const RuntimeTypeInfo* it = this; it != NULL; it = it->mParentTypeInfo) {
+                        if (it == base) {
+                            return true;
+                        }
                     }
-
-                    return FALSE;
+                    return false;
                 }
 
-                // members
-            private:
-                RuntimeTypeInfo const* mParentTypeInfo;  // size 0x04, offset 0x00
-            };  // size 0x04
+                /* 0x00 */ const RuntimeTypeInfo* mParentTypeInfo;
+            };  // size = 0x04
 
-            template <class T>
-            inline RuntimeTypeInfo const* GetTypeInfoFromPtr_(T*) {
-                return &T::typeInfo;
+            template <typename T>
+            inline const RuntimeTypeInfo* GetTypeInfoFromPtr_(T* pPtr) {
+                return &pPtr->typeInfo;
             }
         }  // namespace detail
 
-        template <typename U, class T>
-        inline U DynamicCast(T* obj) {
-            detail::RuntimeTypeInfo const* typeInfoU =
-                detail::GetTypeInfoFromPtr_(static_cast<U>(NULL));
-
-            if (obj->GetRuntimeTypeInfo()->IsDerivedFrom(typeInfoU))
-                return reinterpret_cast<U>(obj);
-
+        template <typename TDerived, typename TBase>
+        inline TDerived DynamicCast(TBase* pPtr) {
+            const detail::RuntimeTypeInfo* pDerivedTypeInfo =
+                detail::GetTypeInfoFromPtr_(static_cast<TDerived>(NULL));
+            if (pPtr->GetRuntimeTypeInfo()->IsDerivedFrom(pDerivedTypeInfo)) {
+                return static_cast<TDerived>(pPtr);
+            }
             return NULL;
         }
+
     }  // namespace ut
 }  // namespace nw4hbm
 
-#endif  // NW4HBM_UT_RUNTIME_TYPE_INFO_H
+#endif

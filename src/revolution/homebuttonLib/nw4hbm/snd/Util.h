@@ -42,7 +42,7 @@ namespace nw4hbm {
                 template <typename T0, typename T1, typename T2, typename T3>
                 static inline const T0* GetDataRefAddress0(const DataRef<T0, T1, T2, T3>& ref,
                                                            const void* base) {
-                    NW4HBMAssert_Line(ref.dataType == 0, 111);
+                    NW4HBM_ASSERT(111, ref.dataType == 0);
                     return static_cast<const T0*>(
                         GetDataRefAddressImpl(static_cast<RefType>(ref.refType), ref.value, base));
                 }
@@ -50,7 +50,7 @@ namespace nw4hbm {
                 template <typename T0, typename T1, typename T2, typename T3>
                 static inline const T1* GetDataRefAddress1(const DataRef<T0, T1, T2, T3>& ref,
                                                            const void* base) {
-                    NW4HBMAssert_Line(ref.dataType == 1, 112);
+                    NW4HBM_ASSERT(112, ref.dataType == 1);
                     return static_cast<const T1*>(
                         GetDataRefAddressImpl(static_cast<RefType>(ref.refType), ref.value, base));
                 }
@@ -58,7 +58,7 @@ namespace nw4hbm {
                 template <typename T0, typename T1, typename T2, typename T3>
                 static inline const T2* GetDataRefAddress2(const DataRef<T0, T1, T2, T3>& ref,
                                                            const void* base) {
-                    NW4HBMAssert_Line(ref.dataType == 2, 113);
+                    NW4HBM_ASSERT(113, ref.dataType == 2);
                     return static_cast<const T2*>(
                         GetDataRefAddressImpl(static_cast<RefType>(ref.refType), ref.value, base));
                 }
@@ -66,7 +66,7 @@ namespace nw4hbm {
                 template <typename T0, typename T1, typename T2, typename T3>
                 static inline const T3* GetDataRefAddress3(const DataRef<T0, T1, T2, T3>& ref,
                                                            const void* base) {
-                    NW4HBMAssert_Line(ref.dataType == 3, 114);
+                    NW4HBM_ASSERT(114, ref.dataType == 3);
                     return static_cast<const T3*>(
                         GetDataRefAddressImpl(static_cast<RefType>(ref.refType), ref.value, base));
                 }

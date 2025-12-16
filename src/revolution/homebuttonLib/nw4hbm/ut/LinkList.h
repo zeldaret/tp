@@ -1,24 +1,12 @@
 #ifndef NW4HBM_UT_LINK_LIST_H
 #define NW4HBM_UT_LINK_LIST_H
 
-#include "global.h"
-
 #include <revolution/types.h>
 
 #include "inlines.h"
 
 #include "../db/assert.h"
-
-// Sort of like C++11's range for, except now it's a macro for nw4r iterators.
-#define NW4HBM_RANGE_FOR(it_, list_)	\
-	for (decltype((list_).GetBeginIter()) (it_) = (list_).GetBeginIter(); (it_) != (list_).GetEndIter(); ++(it_))
-
-/* This macro specifically is for the for loops which declare an
- * Iterator currIt = it++; in the body, so that it does not get incremented
- * twice.
- */
-#define NW4HBM_RANGE_FOR_NO_AUTO_INC(it_, list_)	\
-	for (decltype((list_).GetBeginIter()) (it_) = (list_).GetBeginIter(); (it_) != (list_).GetEndIter();)
+#include "stddef.h"
 
 namespace nw4hbm {
     namespace ut {
@@ -130,7 +118,6 @@ namespace nw4hbm {
                 Iterator GetEndIter() { return Iterator(&mNode); }
 
                 Iterator Insert(Iterator it, LinkListNode* pNode);
-                void PushFront(LinkListNode *p) { Insert(GetBeginIter(), p); }
 
                 Iterator Erase(Iterator it);
                 Iterator Erase(LinkListNode* pNode);
@@ -144,7 +131,6 @@ namespace nw4hbm {
                 void PopBack() { Erase(--GetEndIter()); }
 
                 void Clear();
-                void Reverse();
                 void SetPrev(LinkListNode* p, LinkListNode* pPrev);
                 void SetNext(LinkListNode* p, LinkListNode* pNext);
 
@@ -291,7 +277,7 @@ namespace nw4hbm {
 
                 const T& operator*() const {
                     const T* p = this->operator->();
-                    NW4HBM_ASSERT_CHECK_NULL(p, 447);
+                    NW4HBM_ASSERT_CHECK_NULL(447, p);
                     return *p;
                 }
 
@@ -389,4 +375,4 @@ namespace nw4hbm {
     }  // namespace ut
 }  // namespace nw4hbm
 
-#endif  // NW4HBM_UT_LINK_LIST_H
+#endif

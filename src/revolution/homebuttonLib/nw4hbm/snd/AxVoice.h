@@ -10,6 +10,7 @@
 
 #include "../ut/LinkList.h"
 
+#include "global.h"
 
 namespace nw4hbm {
     namespace snd {

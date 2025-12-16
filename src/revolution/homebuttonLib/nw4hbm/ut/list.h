@@ -2,44 +2,47 @@
 #define NW4HBM_UT_LIST_H
 
 #include <revolution/types.h>
+#include "../db/assert.h"
+
 
 namespace nw4hbm {
     namespace ut {
-        struct List {
-            void* headObject;  // size 0x04, offset 0x00
-            void* tailObject;  // size 0x04, offset 0x04
-            u16 numObjects;    // size 0x02, offset 0x08
-            u16 offset;        // size 0x02, offset 0x0a
-        };  // size 0x0c
 
-        struct Link {
-            void* prevObject;  // size 0x04, offset 0x00
-            void* nextObject;  // size 0x04, offset 0x04
-        };  // size 0x08
+        typedef struct Link {
+            /* 0x00 */ void* prevObject;
+            /* 0x04 */ void* nextObject;
+        } Link;  // size = 0x08
+
+        typedef struct List {
+            /* 0x00 */ void* headObject;
+            /* 0x04 */ void* tailObject;
+            /* 0x08 */ u16 numObjects;
+            /* 0x0A */ u16 offset;
+        } List;  // size = 0x0C
 
         void List_Init(List* list, u16 offset);
-
         void List_Append(List* list, void* object);
         void List_Prepend(List* list, void* object);
         void List_Insert(List* list, void* target, void* object);
         void List_Remove(List* list, void* object);
 
-        void* List_GetNext(List const* list, void const* object);
-        void* List_GetPrev(List const* list, void const* object);
-        void* List_GetNth(List const* list, u16 index);
+        void* List_GetNext(const List* list, const void* object);
+        void* List_GetPrev(const List* list, const void* object);
+        void* List_GetNth(const List* list, u16 index);
 
-        inline void* List_GetFirst(List const* list) {
+        static void* List_GetFirst(const List* list) {
             return List_GetNext(list, NULL);
         }
+        static void* List_GetLast(const List* list) {
+            return List_GetPrev(list, NULL);
+        }
 
-        inline u16 List_GetSize(List const* list) {
+        inline u16 List_GetSize(const List* list) {
+            NW4R_ASSERT_CHECK_NULL(207, list);
             return list->numObjects;
         }
 
-        inline void const* List_GetNthConst(List const* list, u16 const index) {
-            return List_GetNth(list, index);
-        }
     }  // namespace ut
 }  // namespace nw4hbm
 
-#endif  // NW4HBM_UT_LIST_H
+#endif

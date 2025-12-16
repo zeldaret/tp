@@ -1,160 +1,152 @@
 #include "TextWriterBase.h"
 
-#include "../macros.h"
-
-#include <revolution/types.h>
-
-#include "CharStrmReader.h"
 #include "CharWriter.h"
-#include "Font.h"
-#include "Rect.h"
-#include "TagProcessorBase.h"
 #include "inlines.h"
 
-namespace nw4hbm {
-    namespace ut {
-        // .data
-        template <typename CharT>
-        u32 TextWriterBase<CharT>::mFormatBufferSize = 0x100;
+//! TODO: remove this
+#define NO_THIS_ASSERT
+#include "Font.h"
 
-        // .bss
-        template <typename CharT>
-        CharT* TextWriterBase<CharT>::mFormatBuffer;
-
-        template <typename CharT>
-        TagProcessorBase<CharT> TextWriterBase<CharT>::mDefaultTagProcessor;
-    }  // namespace ut
-}  // namespace nw4hbm
+#include "../db/assert.h"
 
 namespace nw4hbm {
     namespace ut {
 
-        template <typename CharT>
-        TextWriterBase<CharT>::TextWriterBase()
+        template <typename charT>
+        u32 TextWriterBase<charT>::mFormatBufferSize = 0x100;
+        template <typename charT>
+        charT* TextWriterBase<charT>::mFormatBuffer;
+        template <typename charT>
+        TagProcessorBase<charT> TextWriterBase<charT>::mDefaultTagProcessor;
+
+        template <typename charT>
+        TextWriterBase<charT>::TextWriterBase()
             : mCharSpace(0.0f), mLineSpace(0.0f), mTabWidth(4), mDrawFlag(0),
               mTagProcessor(&mDefaultTagProcessor) {}
 
-        template <typename CharT>
-        TextWriterBase<CharT>::~TextWriterBase() {}
+        template <typename charT>
+        TextWriterBase<charT>::~TextWriterBase() {}
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::SetLineHeight(f32 lineHeight) {
-            Font const* font = GetFont();
+        template <typename charT>
+        void TextWriterBase<charT>::SetLineHeight(f32 lineHeight) {
+            const Font* font = GetFont();
             int linefeed = font ? font->GetLineFeed() : 0;
 
             mLineSpace = lineHeight - linefeed * GetScaleV();
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::GetLineHeight() const {
-            Font const* font = GetFont();
+        template <typename charT>
+        f32 TextWriterBase<charT>::GetLineHeight() const {
+            NW4HBM_ASSERT_VALID_PTR(241, this);
+            const Font* font = GetFont();
             int linefeed = font ? font->GetLineFeed() : 0;
 
             return mLineSpace + linefeed * GetScaleV();
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::SetLineSpace(f32 lineSpace) {
+        template <typename charT>
+        void TextWriterBase<charT>::SetLineSpace(f32 lineSpace) {
+            NW4HBM_ASSERT_VALID_PTR(261, this);
             mLineSpace = lineSpace;
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::SetCharSpace(f32 charSpace) {
+        template <typename charT>
+        void TextWriterBase<charT>::SetCharSpace(f32 charSpace) {
+            NW4HBM_ASSERT_VALID_PTR(278, this);
             mCharSpace = charSpace;
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::GetLineSpace() const {
+        template <typename charT>
+        f32 TextWriterBase<charT>::GetLineSpace() const {
             return mLineSpace;
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::GetCharSpace() const {
+        template <typename charT>
+        f32 TextWriterBase<charT>::GetCharSpace() const {
+            NW4HBM_ASSERT_VALID_PTR(312, this);
             return mCharSpace;
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::SetTabWidth(int tabWidth) {
+        template <typename charT>
+        void TextWriterBase<charT>::SetTabWidth(int tabWidth) {
             mTabWidth = tabWidth;
         }
 
-        template <typename CharT>
-        int TextWriterBase<CharT>::GetTabWidth() const {
+        template <typename charT>
+        int TextWriterBase<charT>::GetTabWidth() const {
+            NW4HBM_ASSERT_VALID_PTR(346, this);
             return mTabWidth;
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::SetDrawFlag(u32 flags) {
+        template <typename charT>
+        void TextWriterBase<charT>::SetDrawFlag(u32 flags) {
             mDrawFlag = flags;
         }
 
-        template <typename CharT>
-        u32 TextWriterBase<CharT>::GetDrawFlag() const {
+        template <typename charT>
+        u32 TextWriterBase<charT>::GetDrawFlag() const {
             return mDrawFlag;
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::SetTagProcessor(TagProcessorBase<CharT>* tagProcessor) {
+        template <typename charT>
+        void TextWriterBase<charT>::SetTagProcessor(TagProcessorBase<charT>* tagProcessor) {
+            NW4HBM_ASSERT_VALID_PTR(114, this);
+            NW4HBM_ASSERT_VALID_PTR(115, tagProcessor);
             mTagProcessor = tagProcessor;
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::ResetTagProcessor() {
+        template <typename charT>
+        void TextWriterBase<charT>::ResetTagProcessor() {
             mTagProcessor = &mDefaultTagProcessor;
         }
 
-        template <typename CharT>
-        TagProcessorBase<CharT>& TextWriterBase<CharT>::GetTagProcessor() const {
+        template <typename charT>
+        TagProcessorBase<charT>& TextWriterBase<charT>::GetTagProcessor() const {
+            NW4HBM_ASSERT_VALID_PTR(151, this);
             return *mTagProcessor;
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::CalcFormatStringWidth(CharT const* format, ...) const {
+        template <typename charT>
+        f32 TextWriterBase<charT>::CalcFormatStringWidth(const charT* format, ...) const {
             Rect rect;
             std::va_list vargs;
 
             va_start(vargs, format);
-
             CalcVStringRect(&rect, format, vargs);
-
             va_end(vargs);
 
             return rect.GetWidth();
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::CalcFormatStringHeight(CharT const* format, ...) const {
+        template <typename charT>
+        f32 TextWriterBase<charT>::CalcFormatStringHeight(const charT* format, ...) const {
             Rect rect;
             std::va_list vargs;
 
             va_start(vargs, format);
-
             CalcVStringRect(&rect, format, vargs);
-
             va_end(vargs);
 
             return rect.GetHeight();
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::CalcFormatStringRect(Rect* pRect, CharT const* format,
+        template <typename charT>
+        void TextWriterBase<charT>::CalcFormatStringRect(Rect* pRect, const charT* format,
                                                          ...) const {
             std::va_list vargs;
 
             va_start(vargs, format);
-
             CalcVStringRect(pRect, format, vargs);
-
             va_end(vargs);
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::AdjustCursor(float* xOrigin, float* yOrigin, CharT const* str,
+        template <typename charT>
+        f32 TextWriterBase<charT>::AdjustCursor(float* xOrigin, float* yOrigin, const charT* str,
                                                 int length) {
             f32 textWidth = 0.0f;
             f32 textHeight = 0.0f;
 
-            if (!IsDrawFlagSet(0x333, 0x300) && !IsDrawFlagSet(0x333, 0x000)) {
+            if (!IsDrawFlagSet(0x333, 0x300) && !IsDrawFlagSet(0x333, 0x0)) {
                 Rect textRect;
 
                 CalcStringRect(&textRect, str, length);
@@ -162,40 +154,45 @@ namespace nw4hbm {
                 textHeight = textRect.top + textRect.bottom;
             }
 
-            if (IsDrawFlagSet(0x030, 0x010))
+            if (IsDrawFlagSet(0x30, 0x10)) {
                 *xOrigin -= textWidth / 2.0f;
-            else if (IsDrawFlagSet(0x030, 0x020))
+            } else if (IsDrawFlagSet(0x30, 0x20)) {
                 *xOrigin -= textWidth;
+            }
 
-            if (IsDrawFlagSet(0x300, 0x100))
+            if (IsDrawFlagSet(0x300, 0x100)) {
                 *yOrigin -= textHeight / 2.0f;
-            else if (IsDrawFlagSet(0x300, 0x200))
+            } else if (IsDrawFlagSet(0x300, 0x200)) {
                 *yOrigin -= textHeight;
+            }
 
-            if (IsDrawFlagSet(0x003, 0x001)) {
+            if (IsDrawFlagSet(0x3, 0x1)) {
                 f32 width = CalcLineWidth(str, length);
                 f32 offset = (textWidth - width) / 2.0f;
-
                 SetCursorX(*xOrigin + offset);
-            } else if (IsDrawFlagSet(0x003, 0x002)) {
+            } else if (IsDrawFlagSet(0x3, 0x2)) {
                 f32 width = CalcLineWidth(str, length);
                 f32 offset = textWidth - width;
-
                 SetCursorX(*xOrigin + offset);
             } else {
                 SetCursorX(*xOrigin);
             }
 
-            if (IsDrawFlagSet(0x300, 0x300))
+            if (IsDrawFlagSet(0x300, 0x300)) {
                 SetCursorY(*yOrigin);
-            else
+            } else {
                 SetCursorY(*yOrigin + GetFontAscent());
+            }
 
             return textWidth;
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::PrintImpl(CharT const* str, int length) {
+        template <typename charT>
+        f32 TextWriterBase<charT>::PrintImpl(const charT* str, int length) {
+            NW4HBM_ASSERT_VALID_PTR(1055, this);
+            NW4HBM_ASSERT_VALID_PTR(1056, str);
+            NW4HBM_ASSERT_VALID_PTR(1057, GetFont());
+            NW4R_ASSERT_MIN(1058, length, 0);
             f32 xOrigin = GetCursorX();
             f32 yOrigin = GetCursorY();
             f32 orgCursorX = xOrigin;
@@ -203,36 +200,36 @@ namespace nw4hbm {
             f32 xCursorAdj = 0.0f;
             f32 yCursorAdj = 0.0f;
             f32 textWidth = 0.0f;
-            bool bCharSpace = FALSE;
+            bool bCharSpace = false;
 
             textWidth = AdjustCursor(&xOrigin, &yOrigin, str, length);
             xCursorAdj = orgCursorX - GetCursorX();
             yCursorAdj = orgCursorY - GetCursorY();
 
-            PrintContext<CharT> context = {this, str, xOrigin, yOrigin, 0};
+            PrintContext<charT> context = {this, str, xOrigin, yOrigin, 0};
             CharStrmReader reader = GetFont()->GetCharStrmReader();
             reader.Set(str);
 
-            for (u16 code = reader.Next();
-                 static_cast<CharT const*>(reader.GetCurrentPos()) - str <= length;
-                 code = reader.Next())
-            {
-                if (code < (char)L' ')  // C0 control characters under space
-                {
-                    context.str = static_cast<CharT const*>(reader.GetCurrentPos());
+            u16 code = reader.Next();
+
+            while (static_cast<const charT*>(reader.GetCurrentPos()) - str <= length) {
+                if (code < ' ') {  // C0 control characters under space
+                    context.str = static_cast<const charT*>(reader.GetCurrentPos());
                     context.flags = 0;
-                    context.flags |= bCharSpace ? 0 : 1 << 0;
+                    context.flags |= bCharSpace ? FALSE : TRUE;
 
                     Operation operation = mTagProcessor->Process(code, &context);
 
                     if (operation == OPERATION_NEXT_LINE) {
-                        if (IsDrawFlagSet(0x003, 0x001)) {
+                        NW4HBM_ASSERT_VALID_PTR(1097, context.str);
+
+                        if (IsDrawFlagSet(0x3, 0x1)) {
                             int remain = length - (context.str - str);
                             f32 width = CalcLineWidth(context.str, remain);
                             f32 offset = (textWidth - width) / 2.0f;
 
                             SetCursorX(context.xOrigin + offset);
-                        } else if (IsDrawFlagSet(0x003, 0x002)) {
+                        } else if (IsDrawFlagSet(0x3, 0x2)) {
                             int remain = length - (context.str - str);
                             f32 width = CalcLineWidth(context.str, remain);
                             f32 offset = textWidth - width;
@@ -244,27 +241,28 @@ namespace nw4hbm {
                             textWidth = Max(textWidth, width);
                             SetCursorX(context.xOrigin);
                         }
-
-                        bCharSpace = FALSE;
+                        bCharSpace = false;
                     } else if (operation == OPERATION_NO_CHAR_SPACE) {
-                        bCharSpace = FALSE;
+                        bCharSpace = false;
                     } else if (operation == OPERATION_CHAR_SPACE) {
-                        bCharSpace = TRUE;
+                        bCharSpace = true;
                     } else if (operation == OPERATION_END_DRAW) {
                         break;
                     }
 
+                    NW4HBM_ASSERT_VALID_PTR(1137, context.str);
                     reader.Set(context.str);
                 } else {
                     f32 baseY = GetCursorY();
 
-                    if (bCharSpace)
+                    if (bCharSpace) {
                         MoveCursorX(GetCharSpace());
+                    }
 
-                    bCharSpace = TRUE;
+                    bCharSpace = true;
 
-                    {  // 0x1e3e wants lexical_block
-                        Font const* pFont = GetFont();
+                    {
+                        const Font* pFont = GetFont();
                         f32 adj = -pFont->GetBaselinePos() * GetScaleV();
 
                         MoveCursorY(adj);
@@ -273,25 +271,37 @@ namespace nw4hbm {
                     CharWriter::Print(code);
                     SetCursorY(baseY);
                 }
+
+                code = reader.Next();
             }
 
-            if (IsDrawFlagSet(0x300, 0x100) || IsDrawFlagSet(0x300, 0x200))
+            if (IsDrawFlagSet(0x300, 0x100) || IsDrawFlagSet(0x300, 0x200)) {
                 SetCursorY(orgCursorY);
-            else
+            } else {
                 MoveCursorY(yCursorAdj);
+            }
 
             return textWidth;
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::CalcStringRectImpl(Rect* pRect, CharT const* str, int length) {
-            int remain = length;
-            CharT const* pos = str;
+        static void ut_TextWriterBase_dummy(void* buffer, int size) {
+            NW4HBM_ASSERT_VALID_PTR(0, buffer);
+            NW4R_ASSERT_MIN(0, size, 0);
+        }
 
-            pRect->left = 0.0f;
-            pRect->right = 0.0f;
-            pRect->top = 0.0f;
-            pRect->bottom = 0.0f;
+        template <typename charT>
+        void TextWriterBase<charT>::CalcStringRectImpl(Rect* pRect, const charT* str, int length) {
+            NW4HBM_ASSERT_VALID_PTR(1010, this);
+            NW4HBM_ASSERT_VALID_PTR(1011, pRect);
+            NW4HBM_ASSERT_VALID_PTR(1012, str);
+            NW4R_ASSERT_MIN(1013, length, 0);
+            int remain = length;
+            const charT* pos = str;
+
+            pRect->left = 0.0;
+            pRect->right = 0.0;
+            pRect->top = 0.0;
+            pRect->bottom = 0.0;
 
             SetCursor(0.0f, 0.0f);
 
@@ -309,12 +319,33 @@ namespace nw4hbm {
             } while (remain > 0);
         }
 
-        template <typename CharT>
-        int TextWriterBase<CharT>::CalcLineRectImpl(Rect* pRect, CharT const* str, int length) {
-            PrintContext<CharT> context = {this, str, 0.0f, 0.0f, 0};
-            Font const* font = GetFont();
+        template <typename charT>
+        void TextWriterBase<charT>::ut_TextWriterBase_unused1(Rect* pRect, const charT* str,
+                                                              int length) {
+            void* buffer = 0;
+            int size = 0;
+
+            NW4HBM_ASSERT_VALID_PTR(0, this);
+            NW4HBM_ASSERT_VALID_PTR(0, pRect);
+            NW4HBM_ASSERT_VALID_PTR(0, str);
+            NW4R_ASSERT_MIN(0, length, 0);
+            NW4HBM_ASSERT_VALID_PTR(0, buffer);
+            NW4R_ASSERT_MIN(0, size, 1);
+        }
+
+        template <typename charT>
+        int TextWriterBase<charT>::CalcLineRectImpl(Rect* pRect, const charT* str, int length) {
+            NW4HBM_ASSERT_VALID_PTR(893, this);
+            NW4HBM_ASSERT_VALID_PTR(894, pRect);
+            NW4HBM_ASSERT_VALID_PTR(895, str);
+            NW4R_ASSERT_MIN(896, length, 0);
+            PrintContext<charT> context = {this, str, 0.0f, 0.0f, 0};
+
+            const Font* font = GetFont();
             f32 x = 0.0f;
-            bool bCharSpace = FALSE;
+            bool bCharSpace = false;
+
+            NW4HBM_ASSERT_VALID_PTR(902, font);
             CharStrmReader reader = font->GetCharStrmReader();
 
             pRect->left = 0.0f;
@@ -325,20 +356,22 @@ namespace nw4hbm {
             reader.Set(str);
 
             for (u16 code = reader.Next();
-                 static_cast<CharT const*>(reader.GetCurrentPos()) - str <= length;
+                 static_cast<const charT*>(reader.GetCurrentPos()) - str <= length;
                  code = reader.Next())
             {
                 if (code < ' ') {
                     Operation operation;
                     Rect rect(x, 0.0f, 0.0f, 0.0f);
 
-                    context.str = static_cast<CharT const*>(reader.GetCurrentPos());
+                    context.str = static_cast<const charT*>(reader.GetCurrentPos());
                     context.flags = 0;
-                    context.flags |= bCharSpace ? 0 : 1 << 0;
+                    context.flags |= bCharSpace ? FALSE : TRUE;
 
                     SetCursorX(x);
 
                     operation = mTagProcessor->CalcRect(&rect, code, &context);
+
+                    NW4HBM_ASSERT_VALID_PTR(936, context.str);
                     reader.Set(context.str);
 
                     pRect->left = Min(pRect->left, rect.left);
@@ -348,57 +381,62 @@ namespace nw4hbm {
 
                     x = GetCursorX();
 
-                    if (operation == OPERATION_END_DRAW)
+                    if (operation == OPERATION_END_DRAW) {
                         return length;
-                    else if (operation == OPERATION_NO_CHAR_SPACE)
-                        bCharSpace = FALSE;
-                    else if (operation == OPERATION_CHAR_SPACE)
-                        bCharSpace = TRUE;
-                    else if (operation == OPERATION_NEXT_LINE)
+                    } else if (operation == OPERATION_NO_CHAR_SPACE) {
+                        bCharSpace = false;
+                    } else if (operation == OPERATION_CHAR_SPACE) {
+                        bCharSpace = true;
+                    } else if (operation == OPERATION_NEXT_LINE) {
                         break;
+                    }
                 } else {
-                    if (bCharSpace)
+                    if (bCharSpace) {
                         x += GetCharSpace();
+                    }
 
-                    bCharSpace = TRUE;
+                    bCharSpace = true;
 
-                    if (IsWidthFixed())
+                    if (IsWidthFixed()) {
                         x += GetFixedWidth();
-                    else
+                    } else {
                         x += GetFont()->GetCharWidth(code) * GetScaleH();
+                    }
 
                     pRect->left = Min(pRect->left, x);
                     pRect->right = Max(pRect->right, x);
                 }
             }
 
-            return static_cast<CharT const*>(reader.GetCurrentPos()) - str;
+            return static_cast<const charT*>(reader.GetCurrentPos()) - str;
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::CalcLineWidth(CharT const* str, int length) {
+        template <typename charT>
+        f32 TextWriterBase<charT>::CalcLineWidth(const charT* str, int length) {
+            NW4HBM_ASSERT_VALID_PTR(861, this);
+            NW4HBM_ASSERT_VALID_PTR(862, str);
+            NW4R_ASSERT_MIN(863, length, 0);
             Rect rect;
-            TextWriterBase<CharT> myCopy = *this;
+            TextWriterBase<charT> myCopy(*this);
 
             myCopy.SetCursor(0.0f, 0.0f);
             myCopy.CalcLineRectImpl(&rect, str, length);
-
             return rect.GetWidth();
         }
 
-        template <typename CharT>
-        CharT* TextWriterBase<CharT>::GetBuffer() {
+        template <typename charT>
+        charT* TextWriterBase<charT>::GetBuffer() {
             return mFormatBuffer;
         }
 
-        template <typename CharT>
-        u32 TextWriterBase<CharT>::GetBufferSize() {
+        template <typename charT>
+        u32 TextWriterBase<charT>::GetBufferSize() {
             return mFormatBufferSize;
         }
 
-        template <typename CharT>
-        CharT* TextWriterBase<CharT>::SetBuffer(u32 size) {
-            CharT* oldBuffer = mFormatBuffer;
+        template <typename charT>
+        charT* TextWriterBase<charT>::SetBuffer(u32 size) {
+            charT* oldBuffer = mFormatBuffer;
 
             mFormatBuffer = NULL;
             mFormatBufferSize = size;
@@ -406,9 +444,9 @@ namespace nw4hbm {
             return oldBuffer;
         }
 
-        template <typename CharT>
-        CharT* TextWriterBase<CharT>::SetBuffer(CharT* buffer, u32 size) {
-            CharT* oldBuffer = mFormatBuffer;
+        template <typename charT>
+        charT* TextWriterBase<charT>::SetBuffer(charT* buffer, u32 size) {
+            charT* oldBuffer = mFormatBuffer;
 
             mFormatBuffer = buffer;
             mFormatBufferSize = size;
@@ -416,14 +454,19 @@ namespace nw4hbm {
             return oldBuffer;
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::Print(CharT const* str) {
+        template <typename charT>
+        f32 TextWriterBase<charT>::Print(const charT* str) {
+            NW4HBM_ASSERT_VALID_PTR(733, this);
+            NW4HBM_ASSERT_VALID_PTR(734, str);
             return Print(str, StrLen(str));
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::Print(CharT const* str, int length) {
-            TextWriterBase<CharT> myCopy = *this;
+        template <typename charT>
+        f32 TextWriterBase<charT>::Print(const charT* str, int length) {
+            NW4HBM_ASSERT_VALID_PTR(705, this);
+            NW4HBM_ASSERT_VALID_PTR(706, str);
+            NW4R_ASSERT_MIN(707, length, 0);
+            TextWriterBase<charT> myCopy(*this);
 
             f32 width = myCopy.PrintImpl(str, length);
             SetCursor(myCopy.GetCursorX(), myCopy.GetCursorY());
@@ -431,84 +474,91 @@ namespace nw4hbm {
             return width;
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::VPrintf(CharT const* format, std::va_list args) {
-            CharT* buffer =
-                mFormatBuffer ? mFormatBuffer : static_cast<CharT*>(__alloca(mFormatBufferSize));
+        template <typename charT>
+        f32 TextWriterBase<charT>::VPrintf(const charT* format, std::va_list args) {
+            NW4HBM_ASSERT_VALID_PTR(678, this);
+            NW4HBM_ASSERT_VALID_PTR(679, format);
+
+            // i did not know about alloca before this TU so thank you kiwi
+            charT* buffer =
+                mFormatBuffer ? mFormatBuffer : static_cast<charT*>(__alloca(mFormatBufferSize));
 
             int length = VSNPrintf(buffer, mFormatBufferSize, format, args);
             f32 width = Print(buffer, length);
             return width;
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::Printf(CharT const* format, ...) {
+        template <typename charT>
+        f32 TextWriterBase<charT>::Printf(const charT* format, ...) {
+            NW4HBM_ASSERT_VALID_PTR(650, this);
+            NW4HBM_ASSERT_VALID_PTR(651, format);
             std::va_list vargs;
 
             va_start(vargs, format);
-
             f32 width = VPrintf(format, vargs);
-
             va_end(vlist);
 
             return width;
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::CalcStringRect(Rect* pRect, CharT const* str) const {
+        template <typename charT>
+        void TextWriterBase<charT>::CalcStringRect(Rect* pRect, const charT* str) const {
             CalcStringRect(pRect, str, StrLen(str));
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::CalcStringRect(Rect* pRect, CharT const* str,
+        template <typename charT>
+        void TextWriterBase<charT>::CalcStringRect(Rect* pRect, const charT* str,
                                                    int length) const {
-            TextWriterBase<CharT> myCopy = *this;
+            NW4HBM_ASSERT_VALID_PTR(548, this);
+            NW4HBM_ASSERT_VALID_PTR(549, pRect);
+            NW4HBM_ASSERT_VALID_PTR(550, str);
+            NW4R_ASSERT_MIN(551, length, 0);
+            TextWriterBase<charT> myCopy(*this);
 
             myCopy.CalcStringRectImpl(pRect, str, length);
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::CalcStringHeight(CharT const* str) const {
+        template <typename charT>
+        f32 TextWriterBase<charT>::CalcStringHeight(const charT* str) const {
             return CalcStringHeight(str, StrLen(str));
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::CalcStringHeight(CharT const* str, int length) const {
+        template <typename charT>
+        f32 TextWriterBase<charT>::CalcStringHeight(const charT* str, int length) const {
             Rect rect;
-            CalcStringRect(&rect, str, length);
 
+            CalcStringRect(&rect, str, length);
             return rect.GetHeight();
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::CalcStringWidth(CharT const* str) const {
+        template <typename charT>
+        f32 TextWriterBase<charT>::CalcStringWidth(const charT* str) const {
             return CalcStringWidth(str, StrLen(str));
         }
 
-        template <typename CharT>
-        f32 TextWriterBase<CharT>::CalcStringWidth(CharT const* str, int length) const {
+        template <typename charT>
+        f32 TextWriterBase<charT>::CalcStringWidth(const charT* str, int length) const {
             Rect rect;
-            CalcStringRect(&rect, str, length);
 
+            CalcStringRect(&rect, str, length);
             return rect.GetWidth();
         }
 
-        template <typename CharT>
-        void TextWriterBase<CharT>::CalcVStringRect(Rect* pRect, CharT const* format,
+        template <typename charT>
+        void TextWriterBase<charT>::CalcVStringRect(Rect* pRect, const charT* format,
                                                     std::va_list args) const {
-            CharT* buffer =
-                mFormatBuffer ? mFormatBuffer : static_cast<CharT*>(__alloca(mFormatBufferSize));
+            NW4HBM_ASSERT_VALID_PTR(0, this);
+            NW4HBM_ASSERT_VALID_PTR(0, format);
+            NW4HBM_ASSERT_VALID_PTR(0, pRect);
+            charT* buffer =
+                mFormatBuffer ? mFormatBuffer : static_cast<charT*>(__alloca(mFormatBufferSize));
 
             int length = VSNPrintf(buffer, mFormatBufferSize, format, args);
             CalcStringRect(pRect, buffer, length);
         }
 
-    }  // namespace ut
-}  // namespace nw4hbm
-
-namespace nw4hbm {
-    namespace ut {
         template class TextWriterBase<char>;
         template class TextWriterBase<wchar_t>;
+
     }  // namespace ut
 }  // namespace nw4hbm

@@ -1,137 +1,98 @@
 #include "list.h"
 
-#include "../macros.h"
-#include "global.h"
+#include "../db/assert.h"
 
-#include <revolution/types.h>
-
-#define ObjectToLink_(list_, object_) POINTER_ADD_TYPE(Link*, object_, (list_)->offset)
-
-namespace nw4hbm {
-    namespace ut {
-        static void SetFirstObject(List* list, void* object);
-    }
-}  // namespace nw4hbm
+#define OBJ_TO_NODE(list_, object_)                                                                \
+    reinterpret_cast<Link*>(reinterpret_cast<u32>(object_) + (list_)->offset)
 
 namespace nw4hbm {
     namespace ut {
 
         void List_Init(List* list, u16 offset) {
+            NW4HBM_ASSERT_CHECK_NULL(41, list);
             list->headObject = NULL;
             list->tailObject = NULL;
-
             list->numObjects = 0;
-
             list->offset = offset;
         }
 
         static void SetFirstObject(List* list, void* object) {
-            Link* link = ObjectToLink_(list, object);
+            NW4HBM_ASSERT_CHECK_NULL(64, list);
+            NW4HBM_ASSERT_CHECK_NULL(65, object);
+
+            Link* link = OBJ_TO_NODE(list, object);
 
             link->nextObject = NULL;
             link->prevObject = NULL;
-
             list->headObject = object;
             list->tailObject = object;
-
-            ++list->numObjects;
+            list->numObjects++;
         }
 
         void List_Append(List* list, void* object) {
-            if (!list->headObject) {
+            NW4HBM_ASSERT_CHECK_NULL(89, list);
+            NW4HBM_ASSERT_CHECK_NULL(90, object);
+
+            if (list->headObject == NULL) {
                 SetFirstObject(list, object);
-            } else {
-                Link* link = ObjectToLink_(list, object);
-
-                link->prevObject = list->tailObject;
-                link->nextObject = NULL;
-
-                ObjectToLink_(list, list->tailObject)->nextObject = object;
-
-                list->tailObject = object;
-
-                ++list->numObjects;
+                return;
             }
-        }
 
-        void List_Prepend(List* list, void* object) {
-            if (!list->headObject) {
-                SetFirstObject(list, object);
-            } else {
-                Link* link = ObjectToLink_(list, object);
+            Link* link = OBJ_TO_NODE(list, object);
 
-                link->prevObject = NULL;
-                link->nextObject = list->headObject;
+            link->prevObject = list->tailObject;
+            link->nextObject = NULL;
 
-                ObjectToLink_(list, list->headObject)->prevObject = object;
+            OBJ_TO_NODE(list, list->tailObject)->nextObject = object;
 
-                list->headObject = object;
-
-                ++list->numObjects;
-            }
-        }
-
-        void List_Insert(List* list, void* target, void* object) {
-            if (!target) {
-                List_Append(list, object);
-            } else if (target == list->headObject) {
-                List_Prepend(list, object);
-            } else {
-                Link* link = ObjectToLink_(list, object);
-                void* prevObj = ObjectToLink_(list, target)->prevObject;
-                Link* prevLnk = ObjectToLink_(list, prevObj);
-
-                link->prevObject = prevObj;
-                link->nextObject = target;
-
-                prevLnk->nextObject = object;
-
-                ObjectToLink_(list, target)->prevObject = object;
-
-                ++list->numObjects;
-            }
+            list->tailObject = object;
+            list->numObjects++;
         }
 
         void List_Remove(List* list, void* object) {
-            Link* link = ObjectToLink_(list, object);
+            NW4HBM_ASSERT_CHECK_NULL(203, list);
+            NW4HBM_ASSERT_CHECK_NULL(204, object);
 
-            if (!link->prevObject)
+            Link* link = OBJ_TO_NODE(list, object);
+
+            if (!link->prevObject) {
                 list->headObject = link->nextObject;
-            else
-                ObjectToLink_(list, link->prevObject)->nextObject = link->nextObject;
+            } else {
+                OBJ_TO_NODE(list, link->prevObject)->nextObject = link->nextObject;
+            }
 
-            if (!link->nextObject)
+            if (!link->nextObject) {
                 list->tailObject = link->prevObject;
-            else
-                ObjectToLink_(list, link->nextObject)->prevObject = link->prevObject;
+            } else {
+                OBJ_TO_NODE(list, link->nextObject)->prevObject = link->prevObject;
+            }
 
             link->prevObject = NULL;
             link->nextObject = NULL;
 
-            --list->numObjects;
+            list->numObjects--;
         }
 
-        void* List_GetNext(List const* list, void const* object) {
-            if (object == NULL)  // NOTE: ELOGNOT
+        void* List_GetNext(const List* list, const void* object) {
+            NW4HBM_ASSERT_CHECK_NULL(245, list);
+
+            if (object == NULL) {
                 return list->headObject;
-            else
-                return ObjectToLink_(list, object)->nextObject;
+            }
+
+            return OBJ_TO_NODE(list, object)->nextObject;
         }
 
-        void* List_GetPrev(List const* list, void const* object) {
-            if (object == NULL)  // NOTE: ELOGNOT
-                return list->tailObject;
-            else
-                return ObjectToLink_(list, object)->prevObject;
-        }
-
-        void* List_GetNth(List const* list, u16 index) {
+        void* List_GetNth(const List* list, u16 index) {
             int count = 0;
             Link* object = NULL;
 
-            for (; (object = static_cast<Link*>(List_GetNext(list, object))); ++count) {
-                if (index == count)
+            NW4HBM_ASSERT_CHECK_NULL(297, list);
+
+            for (; (object = static_cast<Link*>(List_GetNext(list, object))); count++) {
+                if (index == count) {
                     return object;
+                }
             }
 
             return NULL;

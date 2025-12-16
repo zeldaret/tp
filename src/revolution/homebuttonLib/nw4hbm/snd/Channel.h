@@ -85,22 +85,22 @@ namespace nw4hbm {
                 void SetFxSend(AuxBus bus, f32 send) { mFxSend[bus] = send; }
 
                 void SetSilence(bool silence, int fadeTimes) {
-                    NW4R_ASSERT_MINMAX(124, fadeTimes, 0, 0xFFFF);
+                    NW4R_ASSERT_MINMAXLT(124, fadeTimes, 0, 0xFFFF);
                     mSilenceVolume.SetTarget(silence ? 0 : SILENCE_VOLUME_MAX, fadeTimes);
                 }
 
                 void SetRemoteOutVolume(int remoteIndex, f32 volume) {
-                    NW4R_ASSERT_MIN(165, remoteIndex, 0, 4);
+                    NW4R_ASSERT_MINMAX(165, remoteIndex, 0, 4);
                     mRemoteOutVolume[remoteIndex] = volume;
                 }
 
                 void SetRemoteSend(int remoteIndex, f32 send) {
-                    NW4R_ASSERT_MIN(170, remoteIndex, 0, 4);
+                    NW4R_ASSERT_MINMAX(170, remoteIndex, 0, 4);
                     mRemoteSend[remoteIndex] = send;
                 }
 
                 void SetRemoteFxSend(int remoteIndex, f32 send) {
-                    NW4R_ASSERT_MIN(175, remoteIndex, 0, 4);
+                    NW4R_ASSERT_MINMAX(175, remoteIndex, 0, 4);
                     mRemoteFxSend[remoteIndex] = send;
                 }
 

@@ -1,39 +1,25 @@
 #include "CharWriter.h"
 
-#include <revolution/types.h>
-
+#include "../db/assert.h"
 #include "Color.h"
 #include "Font.h"
-
-#include "../math/types.h"
 
 #include <revolution/gx.h>
 
 namespace nw4hbm {
+
     static void SetupGXCommon();
-}  // namespace nw4hbm
 
-namespace nw4hbm {
-    namespace ut {
-// .bss
-#if 0 /* data ordering */
-	CharWriter::LoadingTexture CharWriter::mLoadingTexture;
-#endif
-    }  // namespace ut
-}  // namespace nw4hbm
-
-namespace nw4hbm {
-
-    static void SetupGXCommon() {
+    void SetupGXCommon() {
         static ut::Color fog(0x00000000);
 
         GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, fog);
         GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
         GXSetZTexture(GX_ZT_DISABLE, GX_TF_Z8, 0);
         GXSetNumChans(1);
-        GXSetChanCtrl(GX_COLOR0A0, FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
+        GXSetChanCtrl(GX_COLOR0A0, false, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE,
                       GX_AF_NONE);
-        GXSetChanCtrl(GX_COLOR1A1, FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE,
+        GXSetChanCtrl(GX_COLOR1A1, false, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE,
                       GX_AF_NONE);
         GXSetNumTexGens(1);
         GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60);
@@ -46,36 +32,39 @@ namespace nw4hbm {
         CharWriter::LoadingTexture CharWriter::mLoadingTexture;
 
         CharWriter::CharWriter()
-            : mAlpha(0xff), mIsWidthFixed(FALSE), mFixedWidth(0.0f), mFont(NULL) {
+            : mAlpha(0xff), mIsWidthFixed(false), mFixedWidth(0.0f), mFont(NULL) {
             mLoadingTexture.Reset();
             ResetColorMapping();
-
             SetGradationMode(GRADMODE_NONE);
             SetTextColor(0xffffffff);
             SetScale(1.0f, 1.0f);
             SetCursor(0.0f, 0.0f, 0.0f);
-
-            EnableLinearFilter(TRUE, TRUE);
+            EnableLinearFilter(true, true);
         }
 
         CharWriter::~CharWriter() {}
 
-        void CharWriter::SetFont(Font const& font) {
+        void CharWriter::SetFont(const Font& font) {
+            // clang-format off
+            NW4HBM_ASSERT_VALID_PTR(133, this);
+            NW4HBM_ASSERT_VALID_PTR(134, & font);
             mFont = &font;
+            // clang-format on
         }
 
-        Font const* CharWriter::GetFont() const {
+        const Font* CharWriter::GetFont() const {
+            NW4HBM_ASSERT_VALID_PTR(151, this);
             return mFont;
         }
 
         void CharWriter::SetupGX() {
+            NW4HBM_ASSERT_VALID_PTR(173, this);
             ResetTextureCache();
 
             if (mColorMapping.min != 0x00000000 || mColorMapping.max != 0xffffffff) {
                 SetupGXWithColorMapping(mColorMapping.min, mColorMapping.max);
             } else if (mFont) {
                 GXTexFmt format = mFont->GetTextureFormat();
-
                 switch (format) {
                 case GX_TF_I4:
                 case GX_TF_I8:
@@ -94,6 +83,8 @@ namespace nw4hbm {
                     break;
 
                 default:
+                    NW4R_DB_WARNING(207, false,
+                                    "CharWriter::SetupGX: Unknown font sheet format(=%d)", format);
                     SetupGXDefault();
                     break;
                 }
@@ -103,145 +94,103 @@ namespace nw4hbm {
         }
 
         void CharWriter::SetColorMapping(Color min, Color max) {
+            NW4HBM_ASSERT_VALID_PTR(235, this);
             mColorMapping.min = min;
             mColorMapping.max = max;
         }
 
-        Color CharWriter::GetColorMappingMin() const {
-            return mColorMapping.min;
-        }
-
-        Color CharWriter::GetColorMappingMax() const {
-            return mColorMapping.max;
-        }
-
         void CharWriter::ResetColorMapping() {
+            NW4HBM_ASSERT_VALID_PTR(284, this);
             SetColorMapping(0x00000000, 0xffffffff);
         }
 
         void CharWriter::ResetTextureCache() {
+            NW4HBM_ASSERT_VALID_PTR(300, this);
             mLoadingTexture.Reset();
         }
 
-        void CharWriter::SetAlpha(u8 alpha) {
-            mAlpha = alpha;
-
-            UpdateVertexColor();
-        }
-
-        u8 CharWriter::GetAlpha() const {
-            return mAlpha;
-        }
-
         void CharWriter::SetGradationMode(GradationMode mode) {
+            NW4HBM_ASSERT_VALID_PTR(355, this);
+            NW4R_ASSERT_MINMAXLT(356, mode, 0, 2);
             mTextColor.gradationMode = mode;
-
             UpdateVertexColor();
-        }
-
-        CharWriter::GradationMode CharWriter::GetGradationMode() const {
-            return mTextColor.gradationMode;
         }
 
         void CharWriter::SetTextColor(Color color) {
+            NW4HBM_ASSERT_VALID_PTR(389, this);
             mTextColor.start = color;
-
             UpdateVertexColor();
         }
 
         void CharWriter::SetTextColor(Color start, Color end) {
+            NW4HBM_ASSERT_VALID_PTR(410, this);
             mTextColor.start = start;
             mTextColor.end = end;
-
             UpdateVertexColor();
         }
 
-        Color CharWriter::GetTextColor() const {
-            return mTextColor.start;
-        }
-
-        Color CharWriter::GetGradationStartColor() const {
-            return mTextColor.start;
-        }
-
-        Color CharWriter::GetGradationEndColor() const {
-            return mTextColor.end;
-        }
-
         void CharWriter::SetScale(f32 hScale, f32 vScale) {
+            NW4HBM_ASSERT_VALID_PTR(487, this);
             mScale.x = hScale;
             mScale.y = vScale;
         }
 
-        void CharWriter::SetScale(f32 scale) {
-            mScale.x = scale;
-            mScale.y = scale;
-        }
-
         f32 CharWriter::GetScaleH() const {
+            NW4HBM_ASSERT_VALID_PTR(522, this);
             return mScale.x;
         }
 
         f32 CharWriter::GetScaleV() const {
+            NW4HBM_ASSERT_VALID_PTR(538, this);
             return mScale.y;
         }
 
         void CharWriter::SetFontSize(f32 width, f32 height) {
+            NW4HBM_ASSERT_VALID_PTR(559, this);
+            NW4HBM_ASSERT_VALID_PTR(560, mFont);
+            NW4R_ASSERT_MIN(561, mFont->GetWidth(), 1);
+            NW4R_ASSERT_MIN(562, mFont->GetHeight(), 1);
             SetScale(width / mFont->GetWidth(), height / mFont->GetHeight());
         }
 
-        void CharWriter::SetFontSize(f32 height) {
-            f32 scale = height / mFont->GetHeight();
-
-            SetScale(scale);
-        }
-
         f32 CharWriter::GetFontWidth() const {
+            NW4HBM_ASSERT_VALID_PTR(601, this);
+            NW4HBM_ASSERT_VALID_PTR(602, mFont);
             return mFont->GetWidth() * mScale.x;
         }
 
         f32 CharWriter::GetFontHeight() const {
+            NW4HBM_ASSERT_VALID_PTR(618, this);
+            NW4HBM_ASSERT_VALID_PTR(619, mFont);
             return mFont->GetHeight() * mScale.y;
         }
 
         f32 CharWriter::GetFontAscent() const {
+            NW4HBM_ASSERT_VALID_PTR(635, this);
+            NW4HBM_ASSERT_VALID_PTR(636, mFont);
             return mFont->GetAscent() * mScale.y;
         }
 
-        f32 CharWriter::GetFontDescent() const {
-            return mFont->GetDescent() * mScale.y;
-        }
-
         void CharWriter::EnableLinearFilter(bool atSmall, bool atLarge) {
+            NW4HBM_ASSERT_VALID_PTR(681, this);
             mFilter.atSmall = atSmall ? GX_LINEAR : GX_NEAR;
             mFilter.atLarge = atLarge ? GX_LINEAR : GX_NEAR;
         }
 
-        bool CharWriter::IsLinearFilterEnableAtSmall() const {
-            return mFilter.atSmall == GX_LINEAR;
-        }
-
-        bool CharWriter::IsLinearFilterEnableAtLarge() const {
-            return mFilter.atLarge == GX_LINEAR;
-        }
-
         bool CharWriter::IsWidthFixed() const {
+            NW4HBM_ASSERT_VALID_PTR(738, this);
             return mIsWidthFixed;
         }
 
-        void CharWriter::EnableFixedWidth(bool isFixed) {
-            mIsWidthFixed = isFixed;
-        }
-
         f32 CharWriter::GetFixedWidth() const {
+            NW4HBM_ASSERT_VALID_PTR(769, this);
             return mFixedWidth;
         }
 
-        void CharWriter::SetFixedWidth(f32 width) {
-            mFixedWidth = width;
-        }
-
         f32 CharWriter::Print(u16 code) {
+            NW4HBM_ASSERT_VALID_PTR(808, this);
+            NW4HBM_ASSERT_VALID_PTR(809, mFont);
+            NW4HBM_ASSERT(810, code != Font::INVALID_CHARACTER_CODE);
             Glyph glyph;
             f32 width;
             f32 left;
@@ -266,71 +215,57 @@ namespace nw4hbm {
             return width;
         }
 
-        void CharWriter::DrawGlyph(Glyph const& glyph) {
-            PrintGlyph(mCursorPos.x, mCursorPos.y, mCursorPos.z, glyph);
-
-            mCursorPos.x += glyph.widths.glyphWidth * mScale.x;
-        }
-
         void CharWriter::SetCursor(f32 x, f32 y) {
+            NW4HBM_ASSERT_VALID_PTR(879, this);
             mCursorPos.x = x;
             mCursorPos.y = y;
         }
 
         void CharWriter::SetCursor(f32 x, f32 y, f32 z) {
+            NW4HBM_ASSERT_VALID_PTR(902, this);
             mCursorPos.x = x;
             mCursorPos.y = y;
             mCursorPos.z = z;
         }
 
-        void CharWriter::MoveCursor(f32 dx, f32 dy) {
-            mCursorPos.x += dx;
-            mCursorPos.y += dy;
-        }
-
-        void CharWriter::MoveCursor(f32 dx, f32 dy, f32 dz) {
-            mCursorPos.x += dx;
-            mCursorPos.y += dy;
-            mCursorPos.z += dz;
-        }
-
         void CharWriter::SetCursorX(f32 x) {
+            NW4HBM_ASSERT_VALID_PTR(965, this);
             mCursorPos.x = x;
         }
 
         void CharWriter::SetCursorY(f32 y) {
+            NW4HBM_ASSERT_VALID_PTR(981, this);
             mCursorPos.y = y;
         }
 
-        void CharWriter::SetCursorZ(f32 z) {
-            mCursorPos.z = z;
-        }
-
         void CharWriter::MoveCursorX(f32 dx) {
+            NW4HBM_ASSERT_VALID_PTR(1013, this);
             mCursorPos.x += dx;
         }
 
         void CharWriter::MoveCursorY(f32 dy) {
+            NW4HBM_ASSERT_VALID_PTR(1029, this);
             mCursorPos.y += dy;
         }
 
-        void CharWriter::MoveCursorZ(f32 dz) {
-            mCursorPos.z += dz;
-        }
-
         f32 CharWriter::GetCursorX() const {
+            NW4HBM_ASSERT_VALID_PTR(1061, this);
             return mCursorPos.x;
         }
 
         f32 CharWriter::GetCursorY() const {
+            NW4HBM_ASSERT_VALID_PTR(1077, this);
             return mCursorPos.y;
         }
 
-        f32 CharWriter::GetCursorZ() const {
-            return mCursorPos.z;
-        }
+        void CharWriter::PrintGlyph(f32 x, f32 y, f32 z, const Glyph& glyph) {
+            // clang-format off
+    NW4HBM_ASSERT_VALID_PTR(1127, this);
+    NW4HBM_ASSERT_VALID_PTR(1128, & glyph);
+    NW4R_ASSERT_MIN(1129, glyph.texWidth, 1);
+    NW4R_ASSERT_MIN(1130, glyph.texHeight, 1);
+            // clang-format on
 
-        void CharWriter::PrintGlyph(f32 x, f32 y, f32 z, Glyph const& glyph) {
             f32 posLeft = x;
             f32 posTop = y;
             f32 posRight = posLeft + glyph.widths.glyphWidth * mScale.x;
@@ -363,7 +298,12 @@ namespace nw4hbm {
             GXEnd();
         }
 
-        void CharWriter::LoadTexture(Glyph const& glyph, GXTexMapID slot) {
+        void CharWriter::LoadTexture(const Glyph& glyph, GXTexMapID slot) {
+            // clang-format off
+    NW4HBM_ASSERT_VALID_PTR(1192, this);
+    NW4HBM_ASSERT_VALID_PTR(1193, & glyph);
+            // clang-format on
+
             LoadingTexture loadInfo;
             loadInfo.slot = slot;
             loadInfo.texture = glyph.pTexture;
@@ -374,8 +314,8 @@ namespace nw4hbm {
 
                 GXInitTexObj(&tobj, glyph.pTexture, glyph.texWidth, glyph.texHeight,
                              glyph.texFormat, GX_CLAMP, GX_CLAMP, 0);
-                GXInitTexObjLOD(&tobj, mFilter.atSmall, mFilter.atLarge, 0.0f, 0.0f, 0.0f, FALSE,
-                                FALSE, GX_ANISO_1);
+                GXInitTexObjLOD(&tobj, mFilter.atSmall, mFilter.atLarge, 0.0f, 0.0f, 0.0f, false,
+                                false, GX_ANISO_1);
                 GXLoadTexObj(&tobj, slot);
 
                 mLoadingTexture = loadInfo;
@@ -383,6 +323,8 @@ namespace nw4hbm {
         }
 
         void CharWriter::UpdateVertexColor() {
+            NW4HBM_ASSERT_VALID_PTR(1242, this);
+
             mVertexColor.lu = mTextColor.start;
             mVertexColor.ru =
                 mTextColor.gradationMode != GRADMODE_H ? mTextColor.start : mTextColor.end;
@@ -429,13 +371,16 @@ namespace nw4hbm {
             GXSetTevDirect(GX_TEVSTAGE1);
             GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
             GXSetTevSwapMode(GX_TEVSTAGE1, GX_TEV_SWAP0, GX_TEV_SWAP0);
+
             GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
             GXSetTevColor(GX_TEVREG0, min);
             GXSetTevColor(GX_TEVREG1, max);
+
             GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C1, GX_CC_TEXC, GX_CC_ZERO);
             GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A0, GX_CA_A1, GX_CA_TEXA, GX_CA_ZERO);
             GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
             GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+
             GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
             GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_CPREV, GX_CC_RASC, GX_CC_ZERO);
             GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_APREV, GX_CA_RASA, GX_CA_ZERO);

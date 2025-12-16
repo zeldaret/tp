@@ -1,11 +1,14 @@
 #include "Font.h"
 
+#include "../db/assert.h"
 #include "CharStrmReader.h"
 
 namespace nw4hbm {
     namespace ut {
 
         void Font::InitReaderFunc(FontEncoding encoding) {
+            NW4HBM_ASSERT_VALID_PTR(43, this);
+
             switch (encoding) {
             case FONT_ENCODING_UTF8:
                 mReaderFunc = &CharStrmReader::ReadNextCharUTF8;
