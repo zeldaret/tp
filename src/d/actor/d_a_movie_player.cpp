@@ -21,6 +21,10 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_overlap_mng.h"
 
+inline s32 daMP_NEXT_READ_SIZE(daMP_THPReadBuffer* readBuf) {
+    return *(s32*)readBuf->ptr;
+}
+
 #ifdef __cplusplus
 extern "C" {
 #endif

@@ -69,7 +69,6 @@ public:
     int daMP_c_Finish();
     int daMP_c_Main();
     int daMP_c_Draw();
-    daMP_c() {}
 
     static int daMP_c_Callback_Init(fopAc_ac_c*);
     static int daMP_c_Callback_Finish(daMP_c*);
@@ -95,10 +94,6 @@ public:
 
     virtual void draw();
 };
-
-inline s32 daMP_NEXT_READ_SIZE(daMP_THPReadBuffer* readBuf) {
-    return *(s32*)readBuf->ptr;
-}
 
 void daMP_PrepareReady(int);
 
