@@ -3113,7 +3113,7 @@ void daNpcWrestler_c::setStepAngle() {
         }
 
         s16 tgt_ang = cLib_targetAngleY(player->getViewerCurrentPosP(), &current.pos);
-        tgt_ang += mStepAngle * field_0xbdc->lateral_movement_time;
+        tgt_ang = tgt_ang + mStepAngle * field_0xbdc->lateral_movement_time;
         cXyz sp30(0.0f, 0.0f, field_0xbdc->grapple_distance);
         mDoMtx_stack_c::push();
         mDoMtx_stack_c::YrotM(tgt_ang);
@@ -3134,7 +3134,6 @@ void daNpcWrestler_c::setStepAngle() {
 }
 
 bool daNpcWrestler_c::sumouSideStep(void* param_1) {
-    // NONMATCHING - single regswap on g_dComIfG_gameInfo
     switch (field_0xe96) {
         case 0:
             field_0xe80 = field_0xbdc->lateral_movement_time;
@@ -3284,7 +3283,6 @@ bool daNpcWrestler_c::sumouPunchShock(void* param_1) {
 }
 
 bool daNpcWrestler_c::sumouPunchChaseShock(void* param_1) {
-    // NONMATCHING - single regswap on g_dComIfG_gameInfo
     daPy_py_c* player = daPy_getPlayerActorClass();
 
     switch (field_0xe96) {

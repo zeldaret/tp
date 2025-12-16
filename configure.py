@@ -2325,7 +2325,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_tr"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_uri"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_worm"),
-    ActorRel(NonMatching, "d_a_npc_wrestler"), # regalloc; weak func order (sinShort)
+    ActorRel(Equivalent, "d_a_npc_wrestler"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_yamid"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_yamis"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_yamit"),
