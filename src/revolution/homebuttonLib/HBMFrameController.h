@@ -1,64 +1,76 @@
-#ifndef RVL_SDK_HBM_FRAME_CONTROLLER_H
-#define RVL_SDK_HBM_FRAME_CONTROLLER_H
+#ifndef HOMEBUTTON_FRAME_CONTROLLER_H
+#define HOMEBUTTON_FRAME_CONTROLLER_H
 
 #include <revolution/types.h>
 
 namespace homebutton {
+
+    enum {
+        /* 0 */ ANIM_TYPE_FORWARD = 0,
+        /* 1 */ ANIM_TYPE_BACKWARD,
+        /* 2 */ ANIM_TYPE_LOOP,
+        /* 3 */ ANIM_TYPE_ALTERNATE
+    };
+
+    enum {
+        /* 0 */ ANIM_STATE_STOP = 0,
+        /* 1 */ ANIM_STATE_PLAY,
+        /* 2 */ ANIM_STATE_STOP_REQ,
+    };
+
     class FrameController {
-        // enums
     public:
-        enum eState { eState_Stopped, eState_Playing };
+        FrameController() {}
 
-        enum eAnmType {
-            eAnmType_Forward,  // name known from asserts
-            eAnmType_Backward,
-            eAnmType_Wrap,
-            eAnmType_Alternate,
+        /* 0x08 */ virtual ~FrameController() {}
+        /* 0x0C */ virtual void calc();
 
-            eAnmType_Max  // name known from asserts
-        };
-
-        // methods
-    public:
-        // cdtors
-        /* FrameController() = default; */
-        virtual ~FrameController() {}
-
-        // virtual function ordering
-        // vtable FrameController
-        virtual void calc();
-
-        // methods
-        f32 getMaxFrame() const { return mMaxFrame; }
-        f32 getCurrentFrame() const { return mCurFrame; }
-        f32 getLastFrame() const { return mMaxFrame - 1.0f; }
-        bool isPlaying() const { return mState == eState_Playing; }
-
-        void setAnmType(int anm_type) { mAnmType = anm_type; }
-
-        void init(int anm_type, f32 max_frame, f32 min_frame, f32 delta);
+        void init(int type, f32 maxFrame, f32 minFrame, f32 delta);
         void initFrame();
+
+        void setMaxFrame(f32 value) { mMaxFrame = value; }
+        f32 getMaxFrame() const { return mMaxFrame; }
+
+        f32 getLastFrame() const { return mMaxFrame - 1.0f; }
+
+        void setMinFrame(f32 value) { mMinFrame = value; }
+        f32 getMinFrame() const { return mMinFrame; }
+
+        void setCurrentFrame(f32 value) { mFrame = value; }
+        f32 getCurrentFrame() const { return mFrame; }
+
+        void setDelta(f32 value) { mDelta = value; }
+        f32 getDelta() const { return mDelta; }
+
+        void setState(int value) { mState = value; }
+        int getState() const { return mState; }
+
+        void setAnimType(int value) { mAnmType = value; }
+        int getAnimType() const { return mAnmType; }
+
+        bool isPlaying() const { return mState == ANIM_STATE_PLAY; }
 
         void start() {
             initFrame();
             restart();
         }
 
-        void stop() { mState = eState_Stopped; }
-        void restart() { mState = eState_Playing; }
+        void restart() { mState = ANIM_STATE_PLAY; }
+        void stop() { mState = ANIM_STATE_STOP; }
 
-        // members
-    protected:            // GroupAnmController::doCalc
-        /* vtable */      // size 0x04, offset 0x00
-        f32 mMaxFrame;    // size 0x04, offset 0x04
-        f32 mMinFrame;    // size 0x04, offset 0x08
-        f32 mCurFrame;    // size 0x04, offset 0x0c
-        f32 mFrameDelta;  // size 0x04, offset 0x10
-        int mState;       // size 0x04, offset 0x14
-        int mAnmType;     // size 0x04, offset 0x18
-        bool mAltFlag;    // size 0x01, offset 0x1c
-                          /* 3 bytes padding */
-    };  // size 0x20
+    protected:
+        /* 0x00 (vtable) */
+        /* 0x04 */ f32 mMaxFrame;
+        /* 0x08 */ f32 mMinFrame;
+        /* 0x0C */ f32 mFrame;
+        /* 0x10 */ f32 mDelta;
+        /* 0x14 */ int mState;
+        /* 0x18 */ int mAnmType;
+
+    private:
+        /* 0x1C */ bool mbAlternateBack;
+    };
+
 }  // namespace homebutton
 
-#endif  // RVL_SDK_HBM_FRAME_CONTROLLER_H
+#endif

@@ -1,37 +1,33 @@
 #include "HBMAnmController.h"
 
-#include <revolution/types.h>
-
-#include "HBMFrameController.h"
-
 #include "nw4hbm/lyt/animation.h"
 #include "nw4hbm/lyt/group.h"
-#include "nw4hbm/lyt/pane.h"
-#include "nw4hbm/ut/LinkList.h"
 
 namespace homebutton {
 
-    GroupAnmController::GroupAnmController() : mpGroup(NULL), mpAnimGroup(NULL) {}
+    GroupAnmController::GroupAnmController() : mpGroup(), mpAnimGroup() {}
 
     GroupAnmController::~GroupAnmController() {}
 
     void GroupAnmController::do_calc() {
         bool flag;
 
-        if (mState == eState_Playing) {
+        if (mState == ANIM_STATE_PLAY) {
             calc();
+            flag = true;
 
-            flag = TRUE;
-
-            mpAnimGroup->SetFrame(mCurFrame);
+            mpAnimGroup->SetFrame(mFrame);
         } else {
-            flag = FALSE;
+            flag = false;
         }
 
-        nw4hbm::lyt::detail::PaneLink::LinkList& list = mpGroup->GetPaneList();
+        nw4hbm::lyt::PaneLinkList& list = mpGroup->GetPaneList();
 
-        NW4HBM_RANGE_FOR(it, list)
-        it->mTarget->SetAnimationEnable(mpAnimGroup, flag, FALSE);
+        for (nw4hbm::lyt::PaneLinkList::Iterator it = list.GetBeginIter(); it != list.GetEndIter();
+             it++)
+        {
+            it->mTarget->SetAnimationEnable(mpAnimGroup, flag, false);
+        }
     }
 
 }  // namespace homebutton

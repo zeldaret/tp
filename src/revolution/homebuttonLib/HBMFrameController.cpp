@@ -1,69 +1,63 @@
+
 #include "HBMFrameController.h"
 
-#include <revolution/os.h>
-#include <revolution/types.h>
-
 namespace homebutton {
+
     void FrameController::init(int anm_type, f32 max_frame, f32 min_frame, f32 delta) {
-        ASSERTLINE(21, eAnmType_Forward <= anm_type && anm_type < eAnmType_Max);
-        ASSERTLINE(22, max_frame > min_frame && min_frame >= 0.0f);
-        ASSERTLINE(23, delta > 0.0f);
-
         mAnmType = anm_type;
-
         mMaxFrame = max_frame;
         mMinFrame = min_frame;
 
-        mFrameDelta = delta;
-        mState = eState_Stopped;
-        mAltFlag = FALSE;
+        mDelta = delta;
+        mState = ANIM_STATE_STOP;
+        mbAlternateBack = false;
 
         initFrame();
     }
 
     void FrameController::initFrame() {
-        ASSERTLINE(40, mMinFrame <= mMaxFrame);
-
-        mCurFrame = mAnmType == eAnmType_Backward ? mMaxFrame : mMinFrame;
+        mFrame = mAnmType == ANIM_TYPE_BACKWARD ? mMaxFrame : mMinFrame;
     }
 
     void FrameController::calc() {
-        if (mState != eState_Playing)
+        if (mState != ANIM_STATE_PLAY) {
             return;
+        }
 
         switch (mAnmType) {
-        case eAnmType_Forward:
-            if ((mCurFrame += mFrameDelta) >= getLastFrame()) {
-                mCurFrame = getLastFrame();
+        case ANIM_TYPE_FORWARD:
+            if ((mFrame += mDelta) >= getLastFrame()) {
+                mFrame = getLastFrame();
                 stop();
             }
 
             break;
 
-        case eAnmType_Backward:
-            if ((mCurFrame -= mFrameDelta) <= mMinFrame) {
-                mCurFrame = mMinFrame;
+        case ANIM_TYPE_BACKWARD:
+            if ((mFrame -= mDelta) <= mMinFrame) {
+                mFrame = mMinFrame;
                 stop();
             }
 
             break;
 
-        case eAnmType_Wrap:
-            if ((mCurFrame += mFrameDelta) >= mMaxFrame)
-                mCurFrame -= mMaxFrame - mMinFrame;
+        case ANIM_TYPE_LOOP:
+            if ((mFrame += mDelta) >= mMaxFrame) {
+                mFrame -= mMaxFrame - mMinFrame;
+            }
 
             break;
 
-        case eAnmType_Alternate:
-            if (!mAltFlag) {
-                if ((mCurFrame += mFrameDelta) >= getLastFrame()) {
-                    mCurFrame = getLastFrame();
-                    mAltFlag = TRUE;
+        case ANIM_TYPE_ALTERNATE:
+            if (!mbAlternateBack) {
+                if ((mFrame += mDelta) >= getLastFrame()) {
+                    mFrame = getLastFrame();
+                    mbAlternateBack = true;
                 }
             } else {
-                if ((mCurFrame -= mFrameDelta) <= mMinFrame) {
-                    mCurFrame = mMinFrame;
-                    mAltFlag = FALSE;
+                if ((mFrame -= mDelta) <= mMinFrame) {
+                    mFrame = mMinFrame;
+                    mbAlternateBack = false;
                 }
             }
 

@@ -159,8 +159,8 @@ typedef struct AXFX_CHORUS {
     /* 0x98 */ u32 period;
 } AXFX_CHORUS;
 
-typedef void* AXFXAllocFunc(u32);
-typedef void AXFXFreeFunc(void*);
+typedef void* (*AXFXAllocFunc)(u32);
+typedef void (*AXFXFreeFunc)(void*);
 
 // chorus
 int AXFXChorusInit(AXFX_CHORUS* c);
@@ -193,9 +193,9 @@ int AXFXReverbStdSettings(AXFX_REVERBSTD* rev);
 void AXFXReverbStdCallback(AXFX_BUFFERUPDATE* bufferUpdate, AXFX_REVERBSTD* reverb);
 
 void AXFXReverbHiCallback(void *data, void *context);
-void AXGetAuxACallback(AXAuxCallback** cbOut, void** contextOut);
-void AXFXSetHooks(AXFXAllocFunc* alloc, AXFXFreeFunc* free);
-void AXFXGetHooks(AXFXAllocFunc** allocOut, AXFXFreeFunc** freeOut);
+void AXGetAuxACallback(AXAuxCallback* cbOut, void** contextOut);
+void AXFXSetHooks(AXFXAllocFunc alloc, AXFXFreeFunc free);
+void AXFXGetHooks(AXFXAllocFunc* allocOut, AXFXFreeFunc* freeOut);
 BOOL AXFXReverbHiInit(AXFX_REVERBHI* reverbHi);
 BOOL AXFXReverbHiShutdown(AXFX_REVERBHI* reverbHi);
 u16 AXGetAuxAReturnVolume(void);
@@ -204,6 +204,8 @@ u16 AXGetAuxCReturnVolume(void);
 void AXSetAuxAReturnVolume(u16 volume);
 void AXSetAuxBReturnVolume(u16 volume);
 void AXSetAuxCReturnVolume(u16 volume);
+void AXSetMasterVolume(u16 volume);
+u16 AXGetMasterVolume(void);
 
 #ifdef __cplusplus
 }

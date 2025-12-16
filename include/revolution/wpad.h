@@ -111,12 +111,12 @@ enum WPADResult_et {
 #define WPAD_DEV_NONE             253  // sort of like WPAD_ENODEV (see __wpadAbortInitExtension in WPADHIDParser.c)
 #define WPAD_DEV_INITIALIZING     255  // see __a1_20_status_report
 
-typedef void WPADInitFunc(void);
-typedef void WPADCallback(s32 chan, s32 result);
-typedef void WPADExtensionCallback(s32 chan, s32 devType);
-typedef void WPADSamplingCallback(s32 chan);
-typedef void WPADConnectCallback(s32 chan, s32 result);
-typedef void WPADSimpleSyncCallback(s32 result, s32 num);
+typedef void (*WPADInitFunc)(void);
+typedef void (*WPADCallback)(s32 chan, s32 result);
+typedef void (*WPADExtensionCallback)(s32 chan, s32 devType);
+typedef void (*WPADSamplingCallback)(s32 chan);
+typedef void (*WPADConnectCallback)(s32 chan, s32 result);
+typedef void (*WPADSimpleSyncCallback)(s32 result, s32 num);
 
 typedef struct DPDObject {
     /* 0x00 */ s16 x;
@@ -321,16 +321,16 @@ s32 WPADProbe(s32 chan, u32* devType);
 u8 WPADGetRadioSensitivity(s32 chan);
 void WPADRead(s32 chan, WPADStatus* status);
 BOOL WPADIsSpeakerEnabled(s32 chan);
-s32 WPADControlSpeaker(s32 chan, u32 command, WPADCallback* cb);
+s32 WPADControlSpeaker(s32 chan, u32 command, WPADCallback cb);
 s32 WPADSendStreamData(s32 chan, void* p_buf, u16 len);
 
-WPADConnectCallback* WPADSetConnectCallback(s32 chan, WPADConnectCallback* cb);
-WPADExtensionCallback* WPADSetExtensionCallback(s32 chan, WPADExtensionCallback* cb);
-WPADSimpleSyncCallback* WPADSetSimpleSyncCallback(WPADSimpleSyncCallback* cb);
+WPADConnectCallback WPADSetConnectCallback(s32 chan, WPADConnectCallback cb);
+WPADExtensionCallback WPADSetExtensionCallback(s32 chan, WPADExtensionCallback cb);
+WPADSimpleSyncCallback WPADSetSimpleSyncCallback(WPADSimpleSyncCallback cb);
 
 BOOL WPADIsUsedCallbackByKPAD(void);
 void WPADSetCallbackByKPAD(BOOL isKPAD);
-s32 WPADGetInfoAsync(s32 chan, WPADInfo* info, WPADCallback* cb);
+s32 WPADGetInfoAsync(s32 chan, WPADInfo* info, WPADCallback cb);
 void WPADControlMotor(s32 chan, u32 command);
 BOOL WPADCanSendStreamData(s32 chan);
 BOOL WPADStopSimpleSync(void);

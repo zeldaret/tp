@@ -110,7 +110,7 @@ BOOL WPADIsSpeakerEnabled(s32 chan) {
     return enabled;
 }
 
-s32 WPADControlSpeaker(s32 chan, u32 command, WPADCallback* cb) {
+s32 WPADControlSpeaker(s32 chan, u32 command, WPADCallback cb) {
     u8 data[7] = {0x00, 0x00, 0xd0, 0x07, 0x40, 0x0c, 0x0e};
     wpad_cb_st* p_wpd = __rvl_p_wpadcb[chan];
     BOOL intrStatus = OSDisableInterrupts();
@@ -287,7 +287,7 @@ s32 WPADSendStreamData(s32 chan, void* p_buf, u16 len) {
     return WPAD_ESUCCESS;
 }
 
-BOOL WPADiSendEnableSpeaker(struct WPADCmdQueue* cmdQueue, BOOL enabled, WPADCallback* cb) {
+BOOL WPADiSendEnableSpeaker(struct WPADCmdQueue* cmdQueue, BOOL enabled, WPADCallback cb) {
     BOOL success;
     struct WPADCmd cmdBlk;
     cmdBlk.reportID = RPTID_ENABLE_SPEAKER;
@@ -299,7 +299,7 @@ BOOL WPADiSendEnableSpeaker(struct WPADCmdQueue* cmdQueue, BOOL enabled, WPADCal
     return success;
 }
 
-BOOL WPADiSendGetContStat(struct WPADCmdQueue* cmdQueue, WPADInfo* infoOut, WPADCallback* cb) {
+BOOL WPADiSendGetContStat(struct WPADCmdQueue* cmdQueue, WPADInfo* infoOut, WPADCallback cb) {
     BOOL success;
     struct WPADCmd cmdBlk;
     cmdBlk.reportID = RPTID_REQUEST_STATUS;
@@ -312,12 +312,12 @@ BOOL WPADiSendGetContStat(struct WPADCmdQueue* cmdQueue, WPADInfo* infoOut, WPAD
     return success;
 }
 
-BOOL WPADiSendWriteDataCmd(struct WPADCmdQueue* cmdQueue, u8 cmd, u32 address, WPADCallback* cb) {
+BOOL WPADiSendWriteDataCmd(struct WPADCmdQueue* cmdQueue, u8 cmd, u32 address, WPADCallback cb) {
     return WPADiSendWriteData(cmdQueue, &cmd, sizeof(cmd), address, cb);
 }
 
 BOOL WPADiSendWriteData(struct WPADCmdQueue* cmdQueue, void const* p_buf, u16 len, u32 address,
-                        WPADCallback* cb) {
+                        WPADCallback cb) {
     BOOL success;
     u8 packedLen = len & 0x1f;
     struct WPADCmd cmdBlk;
@@ -353,7 +353,7 @@ BOOL WPADiSendStreamData(struct WPADCmdQueue* cmdQueue, void const* p_buf, u16 l
     return success;
 }
 
-BOOL WPADiSendMuteSpeaker(struct WPADCmdQueue* cmdQueue, BOOL muted, WPADCallback* cb) {
+BOOL WPADiSendMuteSpeaker(struct WPADCmdQueue* cmdQueue, BOOL muted, WPADCallback cb) {
     BOOL success;
     struct WPADCmd cmdBlk;
 

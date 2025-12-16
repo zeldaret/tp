@@ -1,39 +1,31 @@
-#ifndef RVL_SDK_HBM_REMOTE_SPK_H
-#define RVL_SDK_HBM_REMOTE_SPK_H
-
-#include <revolution/types.h>
+#ifndef HOMEBUTTON_REMOTE_SPK_H
+#define HOMEBUTTON_REMOTE_SPK_H
 
 #include <revolution/arc.h>
-#include <revolution/os/OSAlarm.h>
+#include <revolution/os.h>
 #include <revolution/wenc.h>
 #include <revolution/wpad.h>
 
 namespace homebutton {
+
     class RemoteSpk {
-        // nested types
     private:
         struct ChanInfo {
-            OSAlarm alarm;                // size 0x30, offset 0x00
-            WENCInfo wencinfo;            // size 0x20, offset 0x30
-            s16 const* in_pcm;  // size 0x04, offset 0x50
-            int length;                   // size 0x04, offset 0x54
-            int seId;                     // size 0x04, offset 0x58
-            bool first;                   // size 0x01, offset 0x5c
-            s8 vol;                       // size 0x01, offset 0x5d
-            s8 cannotSendCnt;             // size 0x01, offset 0x5e
-            /* 1 byte padding */
-            u16 pad;         // lol pretty sure this wastes 8 bytes of space
-            bool playReady;  // size 0x01, offset 0x62
-                             /* 5 bytes padding */
-        };  // size 0x68
+            /* 0x00 */ OSAlarm alarm;
+            /* 0x30 */ WENCInfo wencinfo;
+            /* 0x50 */ const s16* in_pcm;
+            /* 0x54 */ int length;
+            /* 0x58 */ int seId;
+            /* 0x5C */ bool first;
+            /* 0x5D */ s8 vol;
+            /* 0x5E */ s8 cannotSendCnt;
+            /* 0x60 */ u16 pad_60;
+            /* 0x62 */ bool playReady;
+        };  // size = 0x68
 
-        // methods
     public:
-        // cdtors
         RemoteSpk(void* spkSeBuf);
-        /* virtual ~RemoteSpk(); */  // virtual function ordering
 
-        // methods
         bool isPlayReady(s32 chan) const;
         bool isPlaying(s32 chan) const;
         bool isPlayingId(s32 chan, int seId) const;
@@ -43,10 +35,8 @@ namespace homebutton {
         void Start();
         void Stop();
         void Connect(s32 chan);
-        void Disconnect(s32 chan);
         void Play(s32 chan, int seID, s8 vol);
 
-        // static methods
         static void SetInstance(RemoteSpk* pThis);
         static RemoteSpk* GetInstance();
 
@@ -56,30 +46,20 @@ namespace homebutton {
         static void SpeakerOnCallback(s32 chan, s32 result);
         static void DelaySpeakerOnCallback(OSAlarm* alarm, OSContext* context);
 
-        static void SpeakerOffCallback(s32 chan, s32 result);
-        static void DelaySpeakerOffCallback(OSAlarm* alarm, OSContext* context);
-
         static void SpeakerPlayCallback(s32 chan, s32 result);
         static void DelaySpeakerPlayCallback(OSAlarm* alarm, OSContext* context);
 
-        // static members
     private:
-        static RemoteSpk* spInstance;
+        /* 0x000 */ ChanInfo info[WPAD_MAX_CONTROLLERS];
+        /* 0x1A0 */ OSAlarm speakerAlarm;
+        /* 0x1D0 */ ARCHandle handle;
+        /* 0x1EC */ bool available;
+        /* 0x1F0 (vtable) */
 
-        // members
-    private:
-        ChanInfo info[WPAD_MAX_CONTROLLERS];  // size 0x1a0, offset 0x000
-        OSAlarm speakerAlarm;                 // size 0x030, offset 0x1a0
-        ARCHandle handle;                     // size 0x01c, offset 0x1d0
-        bool available;                       // size 0x001, offset 0x1ec
-                                              /* 3 bytes padding */
-        /* vtable */                          // size 0x004, offset 0x1f0
-                                              /* 4 bytes padding */
-
-        // late declarations
     public:
-        virtual ~RemoteSpk();
-    };  // size 0x1f8
+        /* 0x08 */ virtual ~RemoteSpk();
+    };  // size = 0x1F8
+
 }  // namespace homebutton
 
-#endif  // RVL_SDK_HBM_REMOTE_SPK_H
+#endif

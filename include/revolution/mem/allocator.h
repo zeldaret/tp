@@ -28,6 +28,7 @@ struct MEMAllocator {
 void* MEMAllocFromAllocator(MEMAllocator*, u32);
 void MEMFreeToAllocator(MEMAllocator*, void*);
 void MEMInitAllocatorForExpHeap(MEMAllocator*, MEMHeapHandle, int);
+void MEMInitAllocatorForFrmHeap(MEMAllocator* allocator, struct MEMiHeapHead* heap, s32 align);
 
 #ifdef __cplusplus
 }

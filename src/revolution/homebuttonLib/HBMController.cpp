@@ -1,32 +1,22 @@
 #include "HBMController.h"
 
-#include <revolution/types.h>
-
-#include "HBMRemoteSpk.h"
-
-#include <revolution/hbm.h>
-#include <revolution/os/OSTime.h>
-#include <revolution/wpad.h>
-
 namespace homebutton {
-    // .bss
+
     bool Controller::sBatteryFlag[WPAD_MAX_CONTROLLERS];
     OSAlarm Controller::sAlarm[WPAD_MAX_CONTROLLERS];
     OSAlarm Controller::sAlarmSoundOff[WPAD_MAX_CONTROLLERS];
     Controller* Controller::sThis[WPAD_MAX_CONTROLLERS];
     bool Controller::sSetInfoAsync[WPAD_MAX_CONTROLLERS];
-}  // namespace homebutton
+    RemoteSpk* Controller::sPInstance;
+    s32 Controller::lbl_8025DBBC;
 
-namespace homebutton {
     void Controller::wpadConnectCallback(s32 chan, s32 result) {
-        if (!sThis[chan])
-            return;
-
         switch (result) {
         case WPAD_ESUCCESS:
             if (!sThis[chan]->mCallbackFlag) {
-                WPADSetExtensionCallback(chan, &wpadExtensionCallback);
-                sThis[chan]->mCallbackFlag = TRUE;
+                sThis[chan]->mOldExtensionCallback =
+                    WPADSetExtensionCallback(chan, wpadExtensionCallback);
+                sThis[chan]->mCallbackFlag = true;
             }
 
             WPADControlSpeaker(chan, WPAD_SPEAKER_DISABLE, NULL);
@@ -34,116 +24,91 @@ namespace homebutton {
 
         case WPAD_ENODEV:
             WPADSetExtensionCallback(chan, sThis[chan]->mOldExtensionCallback);
-            sThis[chan]->mCallbackFlag = FALSE;
-            sThis[chan]->mCheckSoundTimeFlag = FALSE;
-            sThis[chan]->mCheckSoundIntervalFlag = FALSE;
+            sThis[chan]->mOldExtensionCallback = NULL;
+            sThis[chan]->mCallbackFlag = false;
+            sThis[chan]->mCheckSoundTimeFlag = false;
+            sThis[chan]->mCheckSoundIntervalFlag = false;
             break;
         }
 
-        if (sThis[chan]->mOldConnectCallback &&
-            sThis[chan]->mOldConnectCallback != &wpadConnectCallback)
-        {
+        if (sThis[chan]->mOldConnectCallback) {
             (*sThis[chan]->mOldConnectCallback)(chan, result);
         }
     }
 
-    // u32 result;
     void Controller::wpadExtensionCallback(s32 chan, s32 result) {
-        if (!sThis[chan])
-            return;
-
         switch (result) {
         case WPAD_DEV_INITIALIZING:
             sThis[chan]->soundOff(1000);
             break;
         }
 
-        if (sThis[chan]->mOldExtensionCallback)
+        if (sThis[chan]->mOldExtensionCallback) {
             (*sThis[chan]->mOldExtensionCallback)(chan, result);
+        }
     }
 
     void Controller::soundOnCallback(OSAlarm* alm, OSContext*) {
         int chan = (int)OSGetAlarmUserData(alm);
-
         sThis[chan]->soundOn();
     }
 
     Controller::Controller(int chan, RemoteSpk* spk) {
         mHBController.chan = chan;
-        mHBController.rumble = FALSE;
+        mHBController.rumble = false;
         mHBController.spVol = 1.0f;
 
         remotespk = spk;
         mOldConnectCallback = NULL;
         mOldExtensionCallback = NULL;
-        mCallbackFlag = FALSE;
-        mSoundOffFlag = FALSE;
-        mRumbleFlag = TRUE;
+        mCallbackFlag = false;
+        mSoundOffFlag = false;
 
         if (chan < WPAD_MAX_CONTROLLERS) {
-            sBatteryFlag[chan] = FALSE;
+            sBatteryFlag[chan] = false;
             OSCreateAlarm(&sAlarm[chan]);
             OSCreateAlarm(&sAlarmSoundOff[chan]);
             sThis[chan] = this;
-            sSetInfoAsync[chan] = FALSE;
         }
     }
 
     Controller::~Controller() {
         OSCancelAlarm(&sAlarm[mHBController.chan]);
         OSCancelAlarm(&sAlarmSoundOff[mHBController.chan]);
-
-        sThis[mHBController.chan] = NULL;
     }
 
     void Controller::initCallback() {
-        BOOL flag = WPADIsUsedCallbackByKPAD();
         u32 type;
 
-        WPADSetCallbackByKPAD(FALSE);
         mOldConnectCallback = WPADSetConnectCallback(mHBController.chan, &wpadConnectCallback);
-        WPADSetCallbackByKPAD(flag);
-
-        mOldExtensionCallback =
-            WPADSetExtensionCallback(mHBController.chan, &wpadExtensionCallback);
-
-        mRumbleFlag = TRUE;
 
         switch (WPADProbe(mHBController.chan, &type)) {
         case WPAD_ESUCCESS:
-            mCallbackFlag = TRUE;
+            mOldExtensionCallback =
+                WPADSetExtensionCallback(mHBController.chan, &wpadExtensionCallback);
+            mCallbackFlag = true;
             break;
-
         case WPAD_ENODEV:
-            mCallbackFlag = FALSE;
+            mCallbackFlag = false;
             break;
         }
     }
 
     void Controller::clearCallback() {
-        WPADControlSpeaker(mHBController.chan, WPAD_SPEAKER_ENABLE, NULL);
-
-        WPADSetCallbackByKPAD(FALSE);
         WPADSetConnectCallback(mHBController.chan, mOldConnectCallback);
-        WPADSetCallbackByKPAD(TRUE);
+        mOldConnectCallback = NULL;
 
         WPADSetExtensionCallback(mHBController.chan, mOldExtensionCallback);
+        mOldExtensionCallback = NULL;
     }
 
-    void Controller::setKpad(HBMKPadData const* con, bool updatePos) {
-/* NOTE: This is not the same as the one in HomeButton::update; the variables
- * are checked in the opposite order
- */
-#define IsValidDevType_(x)                                                                         \
-    (((x)->kpad->dev_type == WPAD_DEV_CLASSIC && (x)->use_devtype == WPAD_DEV_CLASSIC) ||          \
-     ((x)->kpad->dev_type == WPAD_DEV_MPLS_PT_CLASSIC &&                                           \
-      (x)->use_devtype == WPAD_DEV_MPLS_PT_CLASSIC))
-
-        if (!con->kpad)
+    void Controller::setKpad(const HBMKPadData* con, bool updatePos) {
+        if (!con->kpad) {
             return;
+        }
 
         if (updatePos) {
-            if (IsValidDevType_(con)) {
+            if (con->kpad->dev_type == WPAD_DEV_CLASSIC && con->use_devtype == WPAD_DEV_CLASSIC) {
                 mHBController.x = con->pos.x;
                 mHBController.y = con->pos.y;
             } else {
@@ -156,31 +121,51 @@ namespace homebutton {
         mHBController.hold = con->kpad->hold;
         mHBController.release = con->kpad->release;
 
-        if (IsValidDevType_(con)) {
+        if (con->kpad->dev_type == WPAD_DEV_CLASSIC) {
             u32 h = con->kpad->ex_status.cl.hold;
             u32 t = con->kpad->ex_status.cl.trig;
             u32 r = con->kpad->ex_status.cl.release;
 
-#define PropagateButtonPress_(button_)                                                             \
-    do {                                                                                           \
-        if (h & WPAD_BUTTON_CL_##button_)                                                          \
-            mHBController.hold |= WPAD_BUTTON_##button_;                                           \
-                                                                                                   \
-        if (t & WPAD_BUTTON_CL_##button_)                                                          \
-            mHBController.trig |= WPAD_BUTTON_##button_;                                           \
-                                                                                                   \
-        if (r & WPAD_BUTTON_CL_##button_)                                                          \
-            mHBController.release |= WPAD_BUTTON_##button_;                                        \
-    } while (FALSE)
+            if (h & WPAD_BUTTON_CL_A) {
+                mHBController.hold |= WPAD_BUTTON_A;
+            }
+            if (t & WPAD_BUTTON_CL_A) {
+                mHBController.trig |= WPAD_BUTTON_A;
+            }
+            if (r & WPAD_BUTTON_CL_A) {
+                mHBController.release |= WPAD_BUTTON_A;
+            }
 
-            PropagateButtonPress_(A);
-            PropagateButtonPress_(PLUS);
-            PropagateButtonPress_(MINUS);
-            PropagateButtonPress_(HOME);
+            if (h & WPAD_BUTTON_CL_PLUS) {
+                mHBController.hold |= WPAD_BUTTON_PLUS;
+            }
+            if (t & WPAD_BUTTON_CL_PLUS) {
+                mHBController.trig |= WPAD_BUTTON_PLUS;
+            }
+            if (r & WPAD_BUTTON_CL_PLUS) {
+                mHBController.release |= WPAD_BUTTON_PLUS;
+            }
 
-#undef PropagateButtonPress_
+            if (h & WPAD_BUTTON_CL_MINUS) {
+                mHBController.hold |= WPAD_BUTTON_MINUS;
+            }
+            if (t & WPAD_BUTTON_CL_MINUS) {
+                mHBController.trig |= WPAD_BUTTON_MINUS;
+            }
+            if (r & WPAD_BUTTON_CL_MINUS) {
+                mHBController.release |= WPAD_BUTTON_MINUS;
+            }
+
+            if (h & WPAD_BUTTON_CL_HOME) {
+                mHBController.hold |= WPAD_BUTTON_HOME;
+            }
+            if (t & WPAD_BUTTON_CL_HOME) {
+                mHBController.trig |= WPAD_BUTTON_HOME;
+            }
+            if (r & WPAD_BUTTON_CL_HOME) {
+                mHBController.release |= WPAD_BUTTON_HOME;
+            }
         }
-#undef IsValidDevType_
     }
 
     void Controller::clrKpadButton() {
@@ -190,11 +175,8 @@ namespace homebutton {
     }
 
     void Controller::setInValidPos() {
-        static f32 const invalidPosX = -1e4f;
-        static f32 const invalidPosY = -1.5e4f;
-
-        mHBController.x = invalidPosX;
-        mHBController.y = invalidPosY;
+        mHBController.x = -10000.0f;
+        mHBController.y = -10000.0f;
     }
 
     int Controller::getChan() const {
@@ -205,9 +187,7 @@ namespace homebutton {
         getRemoteSpk()->Connect(getChan());
     }
 
-    void Controller::disconnect() {
-        /* ... */
-    }
+    void Controller::disconnect() { /* ... */ }
 
     void Controller::setSpeakerVol(f32 vol) {
         mHBController.spVol = vol;
@@ -217,16 +197,17 @@ namespace homebutton {
         return mHBController.spVol;
     }
 
-    void Controller::playSound(int id) {
+    void Controller::playSound(nw4hbm::snd::SoundArchivePlayer* pSoundArchivePlayer, int id) {
         if (!mSoundOffFlag) {
             getRemoteSpk()->Play(getChan(), id, getSpeakerVol() * 10.0f);
 
             if (WPADIsSpeakerEnabled(getChan())) {
-                if (!mCheckSoundTimeFlag)
+                if (!mCheckSoundTimeFlag) {
                     mPlaySoundTime = OSGetTime();
+                }
 
-                mCheckSoundTimeFlag = TRUE;
-                mCheckSoundIntervalFlag = FALSE;
+                mCheckSoundTimeFlag = true;
+                mCheckSoundIntervalFlag = false;
             }
         }
     }
@@ -236,18 +217,20 @@ namespace homebutton {
     }
 
     bool Controller::isPlayingSoundId(int id) const {
-        if (!isPlayingSound())
-            return FALSE;
+        if (!isPlayingSound()) {
+            return false;
+        }
 
-        if (!getRemoteSpk()->isPlayingId(getChan(), id))
-            return FALSE;
+        if (!getRemoteSpk()->isPlayingId(getChan(), id)) {
+            return false;
+        }
 
-        return TRUE;
+        return true;
     }
 
     void Controller::initSound() {
-        mCheckSoundTimeFlag = FALSE;
-        mCheckSoundIntervalFlag = FALSE;
+        mCheckSoundTimeFlag = false;
+        mCheckSoundIntervalFlag = false;
     }
 
     void Controller::updateSound() {
@@ -257,41 +240,43 @@ namespace homebutton {
             if (mCheckSoundTimeFlag) {
                 if (!mCheckSoundIntervalFlag) {
                     mStopSoundTime = OSGetTime();
-                    mCheckSoundIntervalFlag = TRUE;
+                    mCheckSoundIntervalFlag = true;
                 } else {
                     OSTime time = OSGetTime();
                     if (OSTicksToMilliseconds(time - mStopSoundTime) >= 1000) {
-                        mCheckSoundTimeFlag = FALSE;
-                        mCheckSoundIntervalFlag = FALSE;
+                        mCheckSoundTimeFlag = false;
+                        mCheckSoundIntervalFlag = false;
                     }
                 }
             }
 
             return;
-        }
+        } else {
+            if (mCheckSoundTimeFlag) {
+                mCheckSoundIntervalFlag = false;
 
-        if (mCheckSoundTimeFlag) {
-            mCheckSoundIntervalFlag = FALSE;
+                OSTime time = OSGetTime();
+                if (OSTicksToMilliseconds(time - mPlaySoundTime) >= 480000) {
+                    mCheckSoundTimeFlag = false;
+                    mCheckSoundIntervalFlag = false;
+                    soundOff(1000);
+                    return;
+                }
+            }
 
-            OSTime time = OSGetTime();
-            if (OSTicksToMilliseconds(time - mPlaySoundTime) >= 480000) {
-                mCheckSoundTimeFlag = FALSE;
-                mCheckSoundIntervalFlag = FALSE;
+            // Average radio sensitivity is 80 (see __wpadCalcRadioQuality)
+            if (!mSoundOffFlag && WPADGetRadioSensitivity(chan) <= 85) {
                 soundOff(1000);
-                return;
             }
         }
-
-        // Average radio sensitivity is 80 (see __wpadCalcRadioQuality)
-        if (!mSoundOffFlag && WPADGetRadioSensitivity(chan) <= 85)
-            soundOff(1000);
     }
 
     void Controller::soundOff(int msec) {
         int chan = getChan();
 
-        if (!WPADIsSpeakerEnabled(chan))
+        if (!WPADIsSpeakerEnabled(chan)) {
             return;
+        }
 
         WPADControlSpeaker(chan, WPAD_SPEAKER_MUTE, NULL);
 
@@ -299,28 +284,29 @@ namespace homebutton {
         OSCancelAlarm(&sAlarmSoundOff[chan]);
         OSSetAlarm(&sAlarmSoundOff[chan], OSMillisecondsToTicks(msec), &soundOnCallback);
 
-        mSoundOffFlag = TRUE;
+        mSoundOffFlag = true;
     }
 
     void Controller::soundOn() {
         int chan = getChan();
 
-        if (WPADIsSpeakerEnabled(chan))
+        if (WPADIsSpeakerEnabled(chan)) {
             WPADControlSpeaker(chan, WPAD_SPEAKER_UNMUTE, NULL);
+        }
 
-        mSoundOffFlag = FALSE;
+        mSoundOffFlag = false;
     }
 
     bool Controller::isPlayReady() const {
         return getRemoteSpk()->isPlayReady(getChan());
     }
 
-    Controller::HBController* Controller::getController() {
+    HBController* Controller::getController() {
         return &mHBController;
     }
 
     void Controller::startMotor() {
-        if (getChan() < WPAD_MAX_CONTROLLERS && mRumbleFlag && !isPlayingSound()) {
+        if (getChan() < WPAD_MAX_CONTROLLERS && !isPlayingSound()) {
             setRumble();
             WPADControlMotor(getChan(), WPAD_MOTOR_RUMBLE);
         }
@@ -334,38 +320,37 @@ namespace homebutton {
     }
 
     s32 Controller::getInfoAsync(WPADInfo* info) {
-        if (getChan() >= WPAD_MAX_CONTROLLERS)
-            return WPAD_EBUSY;
+        if (getChan() >= WPAD_MAX_CONTROLLERS) {
+            return -2;
+        }
 
-        if (isPlayingSound() || isRumbling())
-            return WPAD_EBUSY;
-
-        if (getChan() < WPAD_MAX_CONTROLLERS)  // it already is?
-            sSetInfoAsync[getChan()] = TRUE;
+        if (isPlayingSound() || isRumbling()) {
+            return -2;
+        }
 
         return WPADGetInfoAsync(getChan(), info, &ControllerCallback);
     }
 
     void Controller::ControllerCallback(s32 chan, s32 result) {
-        if (result == WPAD_ESUCCESS && chan < WPAD_MAX_CONTROLLERS)
-            sBatteryFlag[chan] = TRUE;
-
-        if (chan < WPAD_MAX_CONTROLLERS)
-            sSetInfoAsync[chan] = FALSE;
+        if (result == WPAD_ESUCCESS && chan < WPAD_MAX_CONTROLLERS) {
+            sBatteryFlag[chan] = true;
+        }
     }
 
     bool Controller::getBatteryFlag() const {
-        if (getChan() >= WPAD_MAX_CONTROLLERS)
-            return FALSE;
+        if (getChan() >= WPAD_MAX_CONTROLLERS) {
+            return false;
+        }
 
         return sBatteryFlag[getChan()];
     }
 
     void Controller::clrBatteryFlag() {
-        if (getChan() >= WPAD_MAX_CONTROLLERS)
+        if (getChan() >= WPAD_MAX_CONTROLLERS) {
             return;
+        }
 
-        sBatteryFlag[getChan()] = FALSE;
+        sBatteryFlag[getChan()] = false;
     }
 
 }  // namespace homebutton

@@ -32,6 +32,16 @@ void* MEMDestroyExpHeap(MEMHeapHandle);
 void* MEMAllocFromExpHeapEx(MEMHeapHandle, u32, int);
 void MEMFreeToExpHeap(MEMHeapHandle, void*);
 u32 MEMGetAllocatableSizeForExpHeapEx(MEMHeapHandle, int);
+MEMHeapHandle MEMCreateFrmHeapEx(void* start, u32 size, u16 opt);
+MEMHeapHandle MEMDestroyFrmHeap(MEMHeapHandle heap);
+
+static inline MEMHeapHandle MEMCreateExpHeap(void* start, u32 size) {
+    return MEMCreateExpHeapEx(start, size, 0);
+}
+
+static inline void* MEMAllocFromExpHeap(MEMHeapHandle heap, u32 size) {
+    return MEMAllocFromExpHeapEx(heap, size, 4);
+}
 
 #ifdef __cplusplus
 }

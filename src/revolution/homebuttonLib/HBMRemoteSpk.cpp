@@ -1,35 +1,19 @@
 #include "HBMRemoteSpk.h"
 
-#include "global.h"
+#include "HBMController.h"
 
-#include <revolution/types.h>
-
-#include "nw4hbm/ut/Font.h"  // IWYU pragma: keep (text)
-
-#include <revolution/arc.h>
-#include <revolution/os/OSAlarm.h>
-#include <revolution/os/OSInterrupt.h>
-#include <revolution/os/OSTime.h>
-#include <revolution/wenc.h>
-#include <revolution/wpad.h>
+#include "string.h"
 
 namespace homebutton {
-    static bool MakeVolumeData(s16 const* src, s16* dst, int vol, u32 size);
-}  // namespace homebutton
 
-namespace homebutton {
-    // .bss
-    RemoteSpk* RemoteSpk::spInstance;
-}  // namespace homebutton
-
-namespace homebutton {
+    static bool MakeVolumeData(const s16* src, s16* dst, int vol, u32 size);
 
     void RemoteSpk::SetInstance(RemoteSpk* pThis) {
-        spInstance = pThis;
+        Controller::SetInstance(pThis);
     }
 
-    RemoteSpk* RemoteSpk::GetInstance() {
-        return spInstance;
+    RemoteSpk* RemoteSpk::GetInstance(void) {
+        return Controller::GetInstance();
     }
 
     void RemoteSpk::GetPCMFromSeID(int in_ID, s16*& out_wave, int& out_length) {
@@ -37,61 +21,70 @@ namespace homebutton {
         ARCFastOpen(&handle, in_ID, &af);
 
         out_wave = static_cast<s16*>(ARCGetStartAddrInMem(&af));
-        out_length = static_cast<int>(ARCGetLength(&af));
+        out_length = ARCGetLength(&af);
 
         ARCClose(&af);
     }
 
-    static bool MakeVolumeData(s16 const* src, s16* dst, int vol, u32 size) {
+    static bool MakeVolumeData(const s16* src, s16* dst, int vol, u32 size) {
         u32 enc_size = size <= 40 ? size : 40;
-        for (int i = 0; i < enc_size; ++i)
+        for (int i = 0; (u32)i < enc_size; i++) {
             *dst++ = static_cast<s16>(*src++ * vol / 10);
+        }
 
-        if (size > 40)
-            return FALSE;
+        if (size > 40) {
+            return false;
+        }
 
         u32 zero_size = 40 - size;
-        for (int i = 0; i < zero_size; ++i)
+        for (int i = 0; (u32)i < zero_size; i++) {
             *dst++ = 0;
+        }
 
-        return TRUE;
+        return true;
     }
 
     void RemoteSpk::UpdateSpeaker(OSAlarm*, OSContext*) {
         s16 pcmBuffer[40];
         u8 adpcmBuffer[20];
 
-        if (!GetInstance())
+        if (!GetInstance()) {
             return;
+        }
 
         ChanInfo* pinfo = GetInstance()->info;
-
-        /* explicitly post-increment */
         for (int i = 0; i < WPAD_MAX_CONTROLLERS; i++, pinfo++) {
             if (pinfo->in_pcm && WPADIsSpeakerEnabled(i)) {
-                BOOL intrStatus = OSDisableInterrupts(); /* int intr; */
+                int intrStatus = OSDisableInterrupts(); /* int intr */
 
                 if (WPADCanSendStreamData(i)) {
                     MakeVolumeData(pinfo->in_pcm, pcmBuffer, pinfo->vol,
-                                   pinfo->length / sizeof(s16));
-                    WENCGetEncodeData(&pinfo->wencinfo, pinfo->first ? 0 : 1, pcmBuffer,
-                                      ARRAY_SIZE(pcmBuffer), adpcmBuffer);
-                    WPADSendStreamData(i, adpcmBuffer, ARRAY_SIZE(adpcmBuffer));
+                                   static_cast<u32>(pinfo->length) / sizeof(s16));
+                    WENCGetEncodeData(&pinfo->wencinfo, pinfo->first ? 0 : 1, pcmBuffer, 40,
+                                      adpcmBuffer);
+                    WPADSendStreamData(i, adpcmBuffer, 20);
 
-                    pinfo->first = FALSE;
+                    pinfo->first = false;
                     pinfo->cannotSendCnt = 0;
-                    pinfo->in_pcm += ARRAY_SIZE(pcmBuffer);
-                    pinfo->length -= sizeof pcmBuffer;
+                    pinfo->in_pcm += 40;
+                    pinfo->length -= 40 * sizeof(s16);
 
                     if (pinfo->length <= 0) {
                         pinfo->seId = -1;
                         pinfo->in_pcm = NULL;
                     }
                 } else {
-                    ++pinfo->cannotSendCnt;
+                    pinfo->cannotSendCnt++;
 
-                    if (pinfo->cannotSendCnt > 60)
+#if HBM_REVISION == 1
+                    if (pinfo->cannotSendCnt > 300) {
                         pinfo->in_pcm = NULL;
+                    }
+#else
+                    if (pinfo->cannotSendCnt > 60) {
+                        pinfo->in_pcm = NULL;
+                    }
+#endif
                 }
 
                 OSRestoreInterrupts(intrStatus);
@@ -99,88 +92,83 @@ namespace homebutton {
         }
     }
 
-    void RemoteSpk::ClearPcm() {
-        for (int i = 0; i < WPAD_MAX_CONTROLLERS; ++i) {
-            info[i].in_pcm = NULL;
-            info[i].seId = -1;
-        }
+    void RemoteSpk::ClearPcm(void) {
+        ChanInfo* info = GetInstance()->info;
+
+        info->seId = -1;
+        info->in_pcm = NULL;
     }
 
     RemoteSpk::RemoteSpk(void* spkSeBuf) {
         SetInstance(this);
 
-        if (spkSeBuf)
-            available = ARCInitHandle(spkSeBuf, &handle);
-        else
-            available = FALSE;
+        if (spkSeBuf) {
+            available = ARCInitHandle(spkSeBuf, &handle) ? TRUE : FALSE;
+        } else {
+            available = false;
+        }
 
         OSCreateAlarm(&speakerAlarm);
-
-        for (int i = 0; i < WPAD_MAX_CONTROLLERS; ++i) {
+        for (int i = 0; i < WPAD_MAX_CONTROLLERS; i++) {
             OSCreateAlarm(&info[i].alarm);
             info[i].in_pcm = NULL;
             info[i].seId = -1;
-            info[i].first = TRUE;
-            info[i].playReady = TRUE;
+            info[i].first = true;
+            info[i].playReady = true;
         }
     }
 
-    RemoteSpk::~RemoteSpk() {
+    RemoteSpk::~RemoteSpk(void) {
+#if HBM_REVISION > 1
         SetInstance(NULL);
-        available = FALSE;
+#endif
 
-        // manual inline of Stop
+        available = false;
 
         OSCancelAlarm(&speakerAlarm);
 
-        for (int i = 0; i < WPAD_MAX_CONTROLLERS; ++i)
+        for (int i = 0; i < WPAD_MAX_CONTROLLERS; i++) {
+#if HBM_REVISION == 1
+            WPADControlSpeaker(i, WPAD_SPEAKER_OFF, NULL);
+#endif
+
             OSCancelAlarm(&info[i].alarm);
+        }
+
+#if HBM_REVISION == 1
+        SetInstance(NULL);
+#endif
     }
 
-    void RemoteSpk::Start() {
-        if (!available)
+    void RemoteSpk::Start(void) {
+        if (!available) {
             return;
+        }
 
         OSCreateAlarm(&speakerAlarm);
         OSSetPeriodicAlarm(&speakerAlarm, OSGetTime(), OSNanosecondsToTicks(6666667),
                            &UpdateSpeaker);
-
-        for (int i = 0; i < WPAD_MAX_CONTROLLERS; ++i) {
-            OSCreateAlarm(&info[i].alarm);
-
-            info[i].in_pcm = NULL;
-            info[i].seId = -1;
-            info[i].first = TRUE;
-            info[i].playReady = TRUE;
-        }
     }
 
-    void RemoteSpk::Stop() {
+    void RemoteSpk::Stop(void) {
         OSCancelAlarm(&speakerAlarm);
-
-        for (int i = 0; i < WPAD_MAX_CONTROLLERS; ++i)
-            OSCancelAlarm(&info[i].alarm);
     }
 
     void RemoteSpk::DelaySpeakerOnCallback(OSAlarm* alarm, OSContext*) {
         s32 chan = (s32)OSGetAlarmUserData(alarm);
-        s32 result =
-            WPADControlSpeaker(chan, WPAD_SPEAKER_ENABLE, &SpeakerOnCallback);
+        s32 result = WPADControlSpeaker(chan, WPAD_SPEAKER_ENABLE, SpeakerOnCallback);
     }
 
     void RemoteSpk::SpeakerOnCallback(s32 chan, s32 result) {
         RemoteSpk* pRmtSpk = GetInstance();
-        if (!pRmtSpk)
+        if (!pRmtSpk) {
             return;
+        }
 
         switch (result) {
         case WPAD_ESUCCESS:
-            pRmtSpk->info[chan].first = TRUE;
+            pRmtSpk->info[chan].first = true;
             result = WPADControlSpeaker(chan, WPAD_SPEAKER_PLAY, &SpeakerPlayCallback);
-            break;
-
-        case WPAD_ETRANSFER:
-            pRmtSpk->info[chan].playReady = FALSE;
             break;
 
         case WPAD_EBUSY:
@@ -192,57 +180,24 @@ namespace homebutton {
         }
     }
 
-    /* New! */
-    void RemoteSpk::DelaySpeakerOffCallback(OSAlarm* alarm, OSContext*) {
-        s32 chan = (s32)OSGetAlarmUserData(alarm);
-        s32 result =
-            WPADControlSpeaker(chan, WPAD_SPEAKER_DISABLE, &SpeakerOffCallback);
-    }
-
-    /* New! */
-    void RemoteSpk::SpeakerOffCallback(s32 chan, s32 result) {
-        RemoteSpk* pRmtSpk = GetInstance();
-        if (!pRmtSpk)
-            return;
-
-        switch (result) {
-        case WPAD_ESUCCESS:
-        case WPAD_ETRANSFER:
-            pRmtSpk->info[chan].playReady = FALSE;
-            break;
-
-        case WPAD_EBUSY:
-            OSSetAlarmUserData(&pRmtSpk->info[chan].alarm, (void*)chan);
-            OSCancelAlarm(&pRmtSpk->info[chan].alarm);
-            OSSetAlarm(&pRmtSpk->info[chan].alarm, OSMillisecondsToTicks(50),
-                       &DelaySpeakerOffCallback);
-            break;
-        }
-    }
-
     void RemoteSpk::DelaySpeakerPlayCallback(OSAlarm* alarm, OSContext*) {
         s32 chan = (s32)OSGetAlarmUserData(alarm);
-
-        s32 result =
-            WPADControlSpeaker(chan, WPAD_SPEAKER_PLAY, &SpeakerPlayCallback);
+        s32 result = WPADControlSpeaker(chan, WPAD_SPEAKER_PLAY, &SpeakerPlayCallback);
     }
 
     void RemoteSpk::SpeakerPlayCallback(s32 chan, s32 result) {
         RemoteSpk* pRmtSpk = GetInstance();
-        if (!pRmtSpk)
+        if (!pRmtSpk) {
             return;
+        }
 
         switch (result) {
         case WPAD_ESUCCESS:
-            pRmtSpk->info[chan].playReady = TRUE;
-            break;
-
-        case WPAD_ETRANSFER:
-            pRmtSpk->info[chan].playReady = FALSE;
+            pRmtSpk->info[chan].playReady = true;
             break;
 
         case WPAD_ENODEV:
-            pRmtSpk->info[chan].playReady = FALSE;
+            pRmtSpk->info[chan].playReady = false;
             break;
 
         case WPAD_EBUSY:
@@ -255,38 +210,24 @@ namespace homebutton {
     }
 
     void RemoteSpk::Connect(s32 chan) {
-        if (!available)
+        if (!available) {
             return;
-
-        // NOTE: DWARF says this is an int and not a s32, which is a long
-        int result = WPADControlSpeaker(chan, WPAD_SPEAKER_ENABLE, &SpeakerOnCallback);
-
-        u32* p = reinterpret_cast<u32*>(info[chan].wencinfo.data);
-
-        /* explicitly post-increment */
-        for (int i = sizeof info[chan].wencinfo.data / sizeof(u32); i > 0; i--, p++) {
-            *p = 0;
         }
 
-        info[chan].first = TRUE;
-        info[chan].playReady = FALSE;
-    }
+        // int?
+        int result = WPADControlSpeaker(chan, WPAD_SPEAKER_ENABLE, &SpeakerOnCallback);
 
-    /* New! */
-    void RemoteSpk::Disconnect(s32 chan) {
-        if (!available)
-            return;
+        u32* p = reinterpret_cast<u32*>(&info[chan].wencinfo);
+        memset(p, 0, sizeof(WENCInfo));
 
-        // NOTE: DWARF says this is an int and not a s32, which is a long
-        int result =
-            WPADControlSpeaker(chan, WPAD_SPEAKER_DISABLE, &SpeakerOffCallback);
-
-        info[chan].playReady = FALSE;
+        info[chan].first = true;
+        info[chan].playReady = false;
     }
 
     void RemoteSpk::Play(s32 chan, int seID, s8 vol) {
-        if (!available)
+        if (!available) {
             return;
+        }
 
         s16* pcm;
         int length;
@@ -304,14 +245,15 @@ namespace homebutton {
     }
 
     bool RemoteSpk::isPlayingId(s32 chan, int seId) const {
-        if (isPlaying(chan) && info[chan].seId == seId)
-            return TRUE;
-        else
-            return FALSE;
+        if (isPlaying(chan) && info[chan].seId == seId) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     bool RemoteSpk::isPlayReady(s32 chan) const {
-        return info[chan].playReady != FALSE;
+        return info[chan].playReady != false;
     }
 
 }  // namespace homebutton
