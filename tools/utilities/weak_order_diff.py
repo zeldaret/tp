@@ -1,12 +1,22 @@
 #!/usr/bin/env python3
 
-from pathlib import Path
+import os
 import re
+from pathlib import Path
 import subprocess
 from argparse import ArgumentParser
 
+
+def is_windows() -> bool:
+    return os.name == "nt"
+
+
+EXE = ".exe" if is_windows() else ""
+
+
 def get_symbols(o_path: Path, diff_data: bool):
-    output = subprocess.check_output(["readelf", "-Ws", o_path]).decode("ascii")
+    readelf_path = f"build/binutils/powerpc-eabi-readelf{EXE}"
+    output = subprocess.check_output([readelf_path, "-Ws", o_path]).decode("ascii")
     symbols = []
     for line in output.split("\n")[3:]:
         if line == "":
@@ -25,10 +35,10 @@ def get_symbols(o_path: Path, diff_data: bool):
             if vis == "HIDDEN":
                 continue
             if re.search(r"^@\d+$", name):
-                continue
+                name = "@"
             if re.search(r"^lbl_[0-9a-f]+_(?:data|bss)_[0-9a-f]+$", name):
                 continue
-            match = re.search(r"^(\S+)\$\d+$", name)
+            match = re.search(r"^(\S+\$)\d+$", name)
             if match:
                 name = match.group(1)
         else:
@@ -45,7 +55,9 @@ def get_symbols(o_path: Path, diff_data: bool):
     return symbol_names
 
 
-def print_symbols_with_unmatched_order_for_object(relative_o_path: str, version: str, diff_data: bool):
+def print_symbols_with_unmatched_order_for_object(
+    relative_o_path: str, version: str, diff_data: bool
+):
     target_o = Path("build") / version / "obj" / relative_o_path
     base_o = Path("build") / version / "src" / relative_o_path
     if not target_o.exists():
@@ -70,6 +82,8 @@ def print_symbols_with_unmatched_order_for_object(relative_o_path: str, version:
         if target_sym == base_sym:
             base_idx += 1
             matched_count += 1
+        elif target_sym not in base_symbols:
+            print("MISSING SYMBOL:", target_sym)
         else:
             base_idx = base_symbols.index(target_sym)
             base_idx += 1
@@ -81,12 +95,14 @@ def print_symbols_with_unmatched_order_for_object(relative_o_path: str, version:
 
 
 def main():
-    parser = ArgumentParser(description="Print differences in weak function order for an object.")
+    parser = ArgumentParser(
+        description="Print differences in weak function order for an object."
+    )
     parser.add_argument(
         "o_path",
         type=str,
         default="d/actor/d_a_alink.o",
-        nargs='?',
+        nargs="?",
         help="""relative path to the object file to diff (e.g. d/actor/d_a_alink.o).""",
     )
     parser.add_argument(
@@ -104,6 +120,7 @@ def main():
     args = parser.parse_args()
 
     print_symbols_with_unmatched_order_for_object(args.o_path, args.version, args.data)
+
 
 if __name__ == "__main__":
     main()
