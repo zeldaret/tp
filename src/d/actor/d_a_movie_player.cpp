@@ -25,7 +25,6 @@
 extern "C" {
 #endif
 
-// NONMATCHING
 static u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag) {
     THPAudioRecordHeader* header;
     THPAudioDecodeInfo decInfo;
@@ -68,12 +67,12 @@ static u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag) {
             yn += (sample << decInfo.scale) << 11;
             yn <<= 5;
 
-            if ((u16)(yn & 0xffff) > 0x8000) {
-				yn += 0x10000;
-			} else if ((u16)(yn & 0xffff) == 0x8000) {
-				if ((yn & 0x10000))
-					yn += 0x10000;
-			}
+            u16 temp = yn & 0xffff;
+            if (temp > 0x8000) {
+                yn += 0x10000;
+            } else if (temp == 0x8000 && (yn & 0x10000)) {
+                yn += 0x10000;
+            }
 
             if (yn > 2147483647LL) {
                 yn = 2147483647LL;
@@ -103,14 +102,12 @@ static u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag) {
             yn += (sample << decInfo.scale) << 11;
             yn <<= 5;
             
-            if ((u16)(yn & 0xffff) > 0x8000) {
-				yn += 0x10000;
-			} else {
-				if ((u16)(yn & 0xffff) == 0x8000) {
-					if ((yn & 0x10000))
-						yn += 0x10000;
-				}
-			}
+            u16 temp = yn & 0xffff;
+            if (temp > 0x8000) {
+                yn += 0x10000;
+            } else if (temp == 0x8000 && (yn & 0x10000)) {
+                yn += 0x10000;
+            }
 
             if (yn > 2147483647LL) {
                 yn = 2147483647LL;
@@ -138,14 +135,12 @@ static u32 THPAudioDecode(s16* audioBuffer, u8* audioFrame, s32 flag) {
             yn += (sample << decInfo.scale) << 11;
             yn <<= 5;
 
-            if ((u16)(yn & 0xffff) > 0x8000) {
-				yn += 0x10000;
-			} else {
-				if ((u16)(yn & 0xffff) == 0x8000) {
-					if ((yn & 0x10000))
-						yn += 0x10000;
-				}
-			}
+            u16 temp = yn & 0xffff;
+            if (temp > 0x8000) {
+                yn += 0x10000;
+            } else if (temp == 0x8000 && (yn & 0x10000)) {
+                yn += 0x10000;
+            }
 
             if (yn > 2147483647LL) {
                 yn = 2147483647LL;
