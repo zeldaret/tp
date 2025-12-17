@@ -39,6 +39,14 @@ inline float tan(float num) {
     return ::i_tanf(num);
 }
 
+inline float tanf(float num) {
+    return ::i_tanf(num);
+}
+
+inline float acos(float num) {
+    return ::acosf(num);
+}
+
 inline float pow(float x, float y) {
     return ::pow(x, y);
 }

@@ -43,6 +43,7 @@ public:
     enum EFlags {
         EFlags_READ        = (1 << 0),
         EFlags_WRITE       = (1 << 1),
+        EFlags_UNK_0x4     = (1 << 2),
         EFlags_DEFAULT_EXT = (1 << 4),
         EFlags_UNK_0x20    = (1 << 5),
         EFlags_HAS_SUFFIX  = (1 << 6),

@@ -690,7 +690,7 @@ cPhs__Step daNpcWrestler_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        field_0xbd8 = &l_HIO.m;
+        field_0xbd8 = const_cast<daNpcWrestler_HIOParam*>(&l_HIO.m);
         field_0xbdc = &field_0xbd8->mTypeParams[mType];
 #if DEBUG
         // Sumo wrestler:
@@ -2668,7 +2668,6 @@ bool daNpcWrestler_c::checkOutOfArenaW() {
 }
 
 bool daNpcWrestler_c::sumouPunchMiss(void* param_1) {
-    // NONMATCHING - regalloc
     daPy_py_c* player = daPy_getPlayerActorClass();
     int jointNo = mType == 0 ? 0x12 : 0x11;
     cXyz sp2c;
@@ -3114,7 +3113,7 @@ void daNpcWrestler_c::setStepAngle() {
         }
 
         s16 tgt_ang = cLib_targetAngleY(player->getViewerCurrentPosP(), &current.pos);
-        tgt_ang += mStepAngle * field_0xbdc->lateral_movement_time;
+        tgt_ang = tgt_ang + mStepAngle * field_0xbdc->lateral_movement_time;
         cXyz sp30(0.0f, 0.0f, field_0xbdc->grapple_distance);
         mDoMtx_stack_c::push();
         mDoMtx_stack_c::YrotM(tgt_ang);
@@ -3135,7 +3134,6 @@ void daNpcWrestler_c::setStepAngle() {
 }
 
 bool daNpcWrestler_c::sumouSideStep(void* param_1) {
-    // NONMATCHING - g_dComIfG_gameInfo weirdness
     switch (field_0xe96) {
         case 0:
             field_0xe80 = field_0xbdc->lateral_movement_time;
@@ -3285,7 +3283,6 @@ bool daNpcWrestler_c::sumouPunchShock(void* param_1) {
 }
 
 bool daNpcWrestler_c::sumouPunchChaseShock(void* param_1) {
-    // NONMATCHING - regalloc
     daPy_py_c* player = daPy_getPlayerActorClass();
 
     switch (field_0xe96) {

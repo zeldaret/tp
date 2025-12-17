@@ -1,8 +1,11 @@
 #include "d/dolzel.h" // IWYU pragma: keep
 
+#include "JSystem/JHostIO/JORFile.h"
+#include "JSystem/JHostIO/JORServer.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_debug_viewer.h"
 #include "d/d_menu_fmap_map.h"
 #include "m_Do/m_Do_graphic.h"
 
@@ -82,9 +85,19 @@ bool renderingFmap_c::isSwitch(dDrawPath_c::group_class const* i_group) {
 int renderingFmap_c::getPointStagePathInnerNo(dMenu_Fmap_region_data_c* i_regionData,
                                                f32 i_offsetX, f32 i_offsetY, int i_stageNo,
                                                int* o_stageNo, int* o_roomNo) {
-    return i_regionData->getPointStagePathInnerNo(mPosX + i_offsetX * mCmPerTexel,
-                                                  mPosZ + i_offsetY * mCmPerTexel,
-                                                  i_stageNo, o_stageNo, o_roomNo);
+    f32 f31 = mPosX + i_offsetX * mCmPerTexel;
+    f32 f30 = mPosZ + i_offsetY * mCmPerTexel;
+    int result = i_regionData->getPointStagePathInnerNo(f31, f30, i_stageNo, o_stageNo, o_roomNo);
+#if DEBUG
+    if (o_stageNo) {
+        dDbVw_Report(48, 72, "stNo%d", *o_stageNo);
+    }
+    if (o_roomNo) {
+        dDbVw_Report(48, 84, "rmNo%d", *o_roomNo);
+    }
+#endif
+    return result;
+
 }
 
 void renderingFmap_c::preDrawPath() {
@@ -263,9 +276,118 @@ dDrawPath_c::room_class* renderingFmap_c::getNextRoomPointer() {
     return room;
 }
 
+#if DEBUG
+dMfm_HIO_c g_mfmHIO;
+
+dMfm_HIO_c::dMfm_HIO_c() {
+    mMySelfPointer = this;
+    field_0xc.set(l_list);
+    field_0x18 = 0;
+}
+
+void dMfm_HIO_c::genMessage(JORMContext* mctx) {
+    // DEBUG NONMATCHING
+    mctx->genLabel("フィールドマップ パスマップ 調整項目", 0, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("初期化", 0x4000005, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("HOSTIO順テキストファイル書き出し", 0x4000006, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("バイナリ順テキスト書き出し", 0x4000007, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("バイナリファイル書き出し", 0x4000008, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("バイナリファイル読み込み", 0x4000009, 0, NULL, -1, -1, 512, 24);
+    mctx->genButton("バイナリダンプ", 0x400000a, 0, NULL, -1, -1, 512, 24);
+    mctx->genLabel("■■リソースに入らない調整項目■■", 0, 0, NULL, -1, -1, 512, 24);
+    field_0xc.gen(mctx);
+}
+
+void dMfm_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
+    // DEBUG NONMATCHING
+    JORReflexible::listenPropertyEvent(property);
+    if (field_0x18) {
+        return;
+    }
+    if (!dMfm_HIO_prm_res_dst_s::m_res) {
+        field_0x18 = 1;
+        JORMessageBox("フィールドマップを開けた状態で操作して下さい","注意！",0x10);
+        field_0x18 = 0;
+        return;
+    }
+    JORFile file;
+    JORMContext* mctx;
+    switch (reinterpret_cast<u32>(property->id)) {
+    case 0x4000002: {
+        int i = 0;
+        if (!field_0x8) {
+            return;
+        }
+        dMenu_Fmap_world_data_c* worldData = field_0x8->getWorldData();
+        if (!worldData) {
+            return;
+        }
+        for (dMenu_Fmap_region_data_c* regionData = worldData->getMenuFmapRegionTop(); regionData; regionData = regionData->getNextData()) {
+            int j = 0;
+            for (dMenu_Fmap_stage_data_c* stageData = regionData->getMenuFmapStageDataTop(); stageData; stageData = stageData->getNextData()) {
+                dMenu_Fmap_stage_arc_data_c* stageArc = stageData->getStageArc();
+                if (stageArc) {
+                    OSReport("R<%2d>S<%2d> SaveTable<%2d>ArriveSaveTable<%2d>\n", i, j, stageArc->getSaveTableNo(), stageArc->getVisitedRoomSaveTableNo());
+                }
+                dMenu_Fmap_room_data_c* roomData = stageData->getFmapRoomDataTop();
+                for (int k = 0; roomData; k++) {
+                    roomData = roomData->getNextData();
+                }
+                j++;
+            }
+            i++;
+        }
+        break;
+    }
+    case 0x4000006:
+        writeHostioTextFile(NULL);
+        break;
+    case 0x4000007:
+        writeBinaryTextFile(NULL);
+        break;
+    case 0x4000008:
+        writeBinaryFile(NULL);
+        break;
+    case 0x4000009:
+        readBinaryFile(NULL);
+        mctx = attachJORMContext(8);
+        mctx->startUpdateNode(this);
+        field_0xc.update(mctx);
+        mctx->endUpdateNode();
+        releaseJORMContext(mctx);
+        break;
+    case 0x4000005:
+        field_0xc.copySrcToHio();
+        mctx = attachJORMContext(8);
+        mctx->startUpdateNode(this);
+        field_0xc.update(mctx);
+        mctx->endUpdateNode();
+        releaseJORMContext(mctx);
+        break;
+    case 0x400000a:
+        binaryDump(dMfm_HIO_prm_res_dst_s::m_res, 366);
+        break;
+    }
+    field_0xc.copyHioToDst();
+}
+
+void dMfm_HIO_list_c::copySrcToHio() {
+    // DEBUG NONMATCHING
+}
+
+void dMfm_HIO_list_c::copyHioToDst() {
+    // DEBUG NONMATCHING
+}
+
+void dMfm_HIO_list_c::copyBufToHio(const char*) {
+    // DEBUG NONMATCHING
+}
+#endif
+
 void dMenu_FmapMap_c::setFmapPaletteColor(renderingFmap_c::palette_e i_palette, u8 i_r,
                                           u8 i_g, u8 i_b, u8 i_a) {
     int color;
+    JUT_ASSERT(1835, m_palette != NULL);
     if (i_a >= 0xe0) {
         color = ((i_r & 0xf8) << 7) | ((i_g & 0xf8) << 2) | (i_b >> 3) | (1 << 15);
     } else {
@@ -286,13 +408,16 @@ void dMenu_FmapMap_c::setFmapPaletteColor(renderingFmap_c::palette_e i_palette,
 }
 
 bool dMenu_FmapMap_c::isFlashRoomNoCheck(int i_roomNo) const {
+    JUT_ASSERT(1874, mp_roomList != NULL);
+    JUT_ASSERT(1875, m_roomListNumber != NULL);
     bool ret = false;
-    u8* ptr = mFlashRooms;
-    for (int i = 0; i < mFlashRoomCount; ptr++, i++) {
+    u8* ptr = mp_roomList;
+    for (int i = 0; i < m_roomListNumber; i++) {
         if (*ptr == i_roomNo) {
             ret = true;
             break;
         }
+        ptr++;
     }
     return ret;
 }
@@ -337,8 +462,12 @@ dMenu_FmapMap_c::dMenu_FmapMap_c() {
     mLastStageCursor = 0;
     mRegionCursor = 0;
     mFlashTimer = 0;
-    mFlashRooms = NULL;
-    mFlashRoomCount = 0;
+    mp_roomList = NULL;
+    m_roomListNumber = 0;
+#if DEBUG
+    dMfm_HIO_prm_res_dst_s::m_res = NULL;
+    mMySelfPointer = this;
+#endif
 }
 
 
@@ -444,8 +573,8 @@ void dMenu_FmapMap_c::setFlashOn(int i_regionNo, int i_stageNo, u8* i_rooms, int
     mFlash = true;
     mRegionCursor = i_regionNo;
     mStageCursor = (u8)i_stageNo;
-    mFlashRooms = i_rooms;
-    mFlashRoomCount = i_roomCount;
+    mp_roomList = i_rooms;
+    m_roomListNumber = i_roomCount;
 }
 
 const GXColor* dMenu_FmapMap_c::getLineColor(int param_0, int param_1) {
@@ -510,7 +639,7 @@ const GXColor* dMenu_FmapMap_c::getColor(int param_0) {
 
     const GXColor* list = l_dungeon_onColor;
     if (mFlash && mRegionCursor == getNowDrawRegionNo() && mStageNo == mStageCursor) {
-        if (mFlashRooms == NULL) {
+        if (mp_roomList == NULL) {
             list = l_dungeon_pointColor;
         } else if (isFlashRoomNoCheck(mRoomNo)) {
             list = l_dungeon_pointColor;

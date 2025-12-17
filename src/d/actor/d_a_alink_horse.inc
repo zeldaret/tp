@@ -1174,10 +1174,9 @@ int daAlink_c::checkNextActionHorse() {
     return procHorseWaitInit();
 }
 
-// NONMATCHING - regalloc, equivalent
 BOOL daAlink_c::checkHorseGetOff() {
     return (checkHorseRide() && dComIfGp_getHorseActor() != NULL &&
-            dComIfGp_getHorseActor()->checkGetOff()) ||
+            ((daHorse_c*)dComIfGp_getHorseActor())->checkGetOff()) ||
            (checkBoarRide() && ((e_wb_class*)mRideAcKeep.getActor()) != NULL &&
             ((e_wb_class*)mRideAcKeep.getActor())->checkGetOff());
 }

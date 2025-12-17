@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_CARD_H_
 #define _DOLPHIN_CARD_H_
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution/card.h>
+#else
 #include <dolphin/os.h>
 #include <dolphin/dsp.h>
 #include <dolphin/dvd.h>
@@ -319,4 +322,5 @@ s32 CARDWrite(CARDFileInfo* fileInfo, void* buf, s32 length, s32 offset);
 }
 #endif
 
+#endif
 #endif

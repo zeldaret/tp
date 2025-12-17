@@ -11,6 +11,8 @@ typedef struct Vec {
 	f32 x, y, z;
 } Vec, *VecPtr, Point3d, *Point3dPtr;
 
+typedef const VecPtr CVecPtr;
+
 typedef struct {
     s16 x, y, z;
 } S16Vec, *S16VecPtr;

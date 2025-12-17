@@ -99,6 +99,11 @@ parser.add_argument(
     action="store_true",
     help="build with debug info (non-matching)",
 )
+parser.add_argument(
+    "--reghio",
+    action="store_true",
+    help="build with regHIO support",
+)
 if not is_windows():
     parser.add_argument(
         "--wrapper",
@@ -262,6 +267,9 @@ elif config.version in ["RZDE01_00", "RZDE01_02", "RZDJ01", "Shield"]:
     cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS", "-DWIDESCREEN_SUPPORT=1"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
+
+if config.version in ["RZDE01_00", "ShieldD"] or args.debug or args.reghio:
+    cflags_base.extend(["-DENABLE_REGHIO=1"])
 
 USE_REVOLUTION_SDK_VERSIONS = [
     "RZDE01_00", # Wii USA Rev 0
@@ -485,6 +493,14 @@ def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
             "lib": lib_name,
             "mw_version": "Wii/1.0",
             "cflags": [*cflags_revolution_retail, "-DSDK_AUG2010"],
+            "progress_category": "sdk",
+            "objects": objects,
+        }
+    elif config.version == "RZDE01_00":
+        return {
+            "lib": lib_name,
+            "mw_version": "GC/3.0a3",
+            "cflags": [*cflags_revolution_retail, "-DSDK_SEP2006", "-DNW4HBM_DEBUG"],
             "progress_category": "sdk",
             "objects": objects,
         }
@@ -751,7 +767,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_error_msg.cpp"),
             Object(Equivalent, "d/d_debug_viewer.cpp"), # debug weak func order
             Object(NonMatching, "d/d_debug_camera.cpp"),
-            Object(NonMatching, "d/actor/d_a_alink.cpp"),
+            Object(Equivalent, "d/actor/d_a_alink.cpp"), # weak func order, vtable order
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_itembase.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_no_chg_room.cpp"),
             Object(NonMatching, "d/actor/d_a_npc.cpp"),
@@ -1607,6 +1623,25 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "card",
+        [
+            Object(NonMatching, "revolution/card/CARDBios.c"),
+            Object(NonMatching, "revolution/card/CARDUnlock.c"),
+            Object(NonMatching, "revolution/card/CARDRdwr.c"),
+            Object(NonMatching, "revolution/card/CARDBlock.c"),
+            Object(NonMatching, "revolution/card/CARDDir.c"),
+            Object(NonMatching, "revolution/card/CARDCheck.c"),
+            Object(NonMatching, "revolution/card/CARDMount.c"),
+            Object(NonMatching, "revolution/card/CARDFormat.c"),
+            Object(NonMatching, "revolution/card/CARDOpen.c", extra_cflags=["-char signed"]),
+            Object(NonMatching, "revolution/card/CARDCreate.c"),
+            Object(NonMatching, "revolution/card/CARDRead.c"),
+            Object(NonMatching, "revolution/card/CARDWrite.c"),
+            Object(NonMatching, "revolution/card/CARDStat.c"),
+            Object(NonMatching, "revolution/card/CARDNet.c"),
+        ],
+    ),
+    RevolutionLib(
         "hio2",
         [
             Object(NonMatching, "revolution/hio2/hio2.c"),
@@ -1683,6 +1718,51 @@ config.libs = [
         [
             Object(NonMatching, "revolution/gd/GDBase.c"),
             Object(NonMatching, "revolution/gd/GDGeometry.c"),
+        ],
+    ),
+    RevolutionLib(
+        "homebuttonLib",
+        [
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/db/db_assert.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/db/db_console.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/db/db_DbgPrintBase.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/db/db_directPrint.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/db/db_mapFile.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_animation.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_arcResourceAccessor.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_bounding.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_common.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_drawInfo.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_group.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_layout.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_material.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_pane.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_picture.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_resourceAccessor.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_textBox.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/lyt/lyt_window.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/math/math_triangular.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/snd/snd_SoundArchivePlayer.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/snd/snd_SoundHandle.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/snd/snd_SoundPlayer.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/snd/snd_SoundStartable.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_binaryFileFormat.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_CharStrmReader.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_CharWriter.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_Font.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_LinkList.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_list.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_ResFont.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_ResFontBase.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_TagProcessorBase.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_TextWriterBase.cpp"),
+
+            Object(NonMatching, "revolution/homebuttonLib/HBMBase.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/HBMAnmController.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/HBMFrameController.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/HBMGUIManager.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/HBMController.cpp"),
+            Object(NonMatching, "revolution/homebuttonLib/HBMRemoteSpk.cpp"),
         ],
     ),
     {
@@ -2147,7 +2227,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_mant"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_mg_fshop"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_mirror"),
-    ActorRel(NonMatching, "d_a_movie_player"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_movie_player"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_myna"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_ni"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_aru"),
@@ -2245,7 +2325,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_tr"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_uri"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_worm"),
-    ActorRel(NonMatching, "d_a_npc_wrestler"), # regalloc; weak func order (sinShort)
+    ActorRel(Equivalent, "d_a_npc_wrestler"), # weak func order (sinShort)
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_yamid"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_yamis"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_yamit"),

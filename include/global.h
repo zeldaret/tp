@@ -45,6 +45,10 @@
 #define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
 
+#ifndef decltype
+#define decltype __decltype__
+#endif
+
 #define JUT_EXPECT(...)
 
 #define _SDA_BASE_(dummy) 0
@@ -63,29 +67,22 @@
 #define STATIC_ASSERT(...)
 #endif
 
-#ifdef __MWERKS__
-// Intrinsics
+#ifndef __MWERKS__
+// Silence clangd errors about MWCC PPC intrinsics by declaring them here.
 extern int __cntlzw(unsigned int);
 extern int __rlwimi(int, int, int, int, int);
 extern void __dcbz(void*, int);
 extern void __sync();
 extern int __abs(int);
-#else
-// to stop clangd errors
-#define __cntlzw
-#define __rlwimi
-#define __dcbz
-#define __sync
-#define __abs
-#endif
-
-#ifndef __MWERKS__
 void* __memcpy(void*, const void*, int);
 #endif
 
 #define FAST_DIV(x, n) (x >> (n / 2))
 
 #define SQUARE(x) ((x) * (x))
+
+#define POINTER_ADD_TYPE(type_, ptr_, offset_) ((type_)((unsigned long)(ptr_) + (unsigned long)(offset_)))
+#define POINTER_ADD(ptr_, offset_) POINTER_ADD_TYPE(__typeof__(ptr_), ptr_, offset_)
 
 // floating-point constants
 #define _HUGE_ENUF 1e+300
@@ -101,6 +98,14 @@ static const float INF = 2000000000.0f;
 #define READU32_BE(ptr, offset) \
     (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
 
+#ifndef NO_INLINE
+#ifdef __MWERKS__
+#define NO_INLINE __attribute__((never_inline))
+#else
+#define NO_INLINE
+#endif
+#endif
+    
 // Hack to trick the compiler into not inlining functions that use this macro.
 #define FORCE_DONT_INLINE \
     (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; (void*)0; \

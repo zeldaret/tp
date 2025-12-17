@@ -8,8 +8,9 @@
 #include "d/actor/d_a_obj_vground.h"
 #include "d/d_procname.h"
 
-static int CheckCreateHeap(fopAc_ac_c* i_this) {
-    return static_cast<daObjVGnd_c*>(i_this)->CreateHeap();
+static int CheckCreateHeap(fopAc_ac_c* a_this) {
+    daObjVGnd_c* i_this = static_cast<daObjVGnd_c*>(a_this);
+    return i_this->CreateHeap();
 }
 
 void daObjVGnd_c::initBaseMtx() {
@@ -21,7 +22,7 @@ void daObjVGnd_c::initBaseMtx() {
 void daObjVGnd_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    MTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 int daObjVGnd_c::Create() {
@@ -35,23 +36,29 @@ int daObjVGnd_c::Create() {
 static char* l_arcName = "M_VolcGnd";
 
 int daObjVGnd_c::CreateHeap() {
-    J3DModelData* mpObjectRes = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
-    mpModel = mDoExt_J3DModel__create(mpObjectRes, 0x80000, 0x11000284);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0x5);
+    JUT_ASSERT(183, modelData != NULL);
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (!mpModel) {
         return 0;
     }
 
-    J3DAnmTextureSRTKey* mpTextureSRTKey =
-        (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0xb);
-    mpBtk = new mDoExt_btkAnm();
-    if ((!mpBtk) || (!mpBtk->init(mpObjectRes, mpTextureSRTKey, 1, NULL, 1.0f, NULL, -1))) {
-        return 0;
+    {
+        J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0xb);
+        JUT_ASSERT(198, pbtk != NULL);
+        mpBtk = new mDoExt_btkAnm();
+        if ((!mpBtk) || (!mpBtk->init(modelData, pbtk, 1, NULL, 1.0f, NULL, -1))) {
+            return 0;
+        }
     }
 
-    J3DAnmTevRegKey* mpTevReqKey = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 8);
-    mpBrk = new mDoExt_brkAnm();
-    if ((!mpBrk) || (!mpBrk->init(mpObjectRes, mpTevReqKey, 1, NULL, 1.0f, NULL, -1))) {
-        return 0;
+    {
+        J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 0x8);
+        JUT_ASSERT(212, pbrk != NULL);
+        mpBrk = new mDoExt_brkAnm();
+        if ((!mpBrk) || (!mpBrk->init(modelData, pbrk, 1, NULL, 1.0f, NULL, -1))) {
+            return 0;
+        }
     }
 
     return 1;
@@ -76,7 +83,7 @@ int daObjVGnd_c::execute() {
         mpBrk->setFrame(2.0f);
         mpBtk->setFrame(2.0f);
     } else {
-        if (fopAcM_isSwitch(this, getSwbit())) {
+        if (fopAcM_isSwitch(this, (u8) getSwbit())) {
             mpBrk->setFrame(1.0f);
             mpBtk->setFrame(1.0f);
         } else {
@@ -113,11 +120,13 @@ static int daObjVGnd_Execute(daObjVGnd_c* i_this) {
 }
 
 static int daObjVGnd_Delete(daObjVGnd_c* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "Sample");
     return i_this->_delete();
 }
 
 static int daObjVGnd_Create(fopAc_ac_c* i_this) {
-    return static_cast<daObjVGnd_c*>(i_this)->create();
+    fopAcM_RegisterCreateID(daObjVGnd_c, i_this, "Sample");
+    return a_this->create();
 }
 
 static actor_method_class l_daObjVGnd_Method = {

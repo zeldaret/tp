@@ -2,6 +2,7 @@
 #define _REVOLUTION_WPAD_H_
 
 #include <revolution/types.h>
+#include <revolution/sc.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,6 +21,22 @@ extern "C" {
 #define WPAD_BUTTON_Z      0x2000
 #define WPAD_BUTTON_C      0x4000
 #define WPAD_BUTTON_HOME   0x8000
+
+#define WPAD_BUTTON_CL_UP        (1 <<  0)
+#define WPAD_BUTTON_CL_LEFT      (1 <<  1)
+#define WPAD_BUTTON_CL_ZR        (1 <<  2)
+#define WPAD_BUTTON_CL_X         (1 <<  3)
+#define WPAD_BUTTON_CL_A         (1 <<  4)
+#define WPAD_BUTTON_CL_Y         (1 <<  5)
+#define WPAD_BUTTON_CL_B         (1 <<  6)
+#define WPAD_BUTTON_CL_ZL        (1 <<  7)
+#define WPAD_BUTTON_CL_FULL_R    (1 <<  9)
+#define WPAD_BUTTON_CL_PLUS      (1 << 10)
+#define WPAD_BUTTON_CL_HOME      (1 << 11)
+#define WPAD_BUTTON_CL_MINUS     (1 << 12)
+#define WPAD_BUTTON_CL_FULL_L    (1 << 13)
+#define WPAD_BUTTON_CL_DOWN      (1 << 14)
+#define WPAD_BUTTON_CL_RIGHT     (1 << 15)
 
 #define WPAD_MAX_DPD_OBJECTS 4
 
@@ -62,11 +79,44 @@ enum WPADResult_et {
 #define WPAD_CE6 (WPAD_E6 + 0)
 #define WPAD_CEBADE (WPAD_EBADE + 0)
 
-typedef void WPADInitFunc(void);
-typedef void WPADCallback(s32 chan, s32 result);
-typedef void WPADExtensionCallback(s32 chan, s32 devType);
-typedef void WPADSamplingCallback(s32 chan);
-typedef void WPADConnectCallback(s32 chan, s32 result);
+#define WPAD_DEV_CORE             0
+#define WPAD_DEV_FS               1
+#define WPAD_DEV_CLASSIC          2
+#define WPAD_DEV_BALANCE_CHECKER  3
+#define WPAD_DEV_VSM              4
+#define WPAD_DEV_MOTION_PLUS      5
+#define WPAD_DEV_MPLS_PT_FS       6
+#define WPAD_DEV_MPLS_PT_CLASSIC  7
+
+#define WPAD_DEV_TRAIN            16
+#define WPAD_DEV_GUITAR           17
+#define WPAD_DEV_DRUM             18
+#define WPAD_DEV_TAIKO            19
+#define WPAD_DEV_TURNTABLE        20
+
+// seems to be like maybe general purpose non-specific device types
+// maybe this was for testing or something? idk
+#define WPAD_DEV_BULK_1           21
+#define WPAD_DEV_BULK_2           22
+#define WPAD_DEV_BULK_3           23
+#define WPAD_DEV_BULK_4           24
+#define WPAD_DEV_BULK_5           25
+#define WPAD_DEV_BULK_6           26
+#define WPAD_DEV_BULK_7           27
+#define WPAD_DEV_BULK_8           28
+
+#define WPAD_DEV_MPLS_PT_UNKNOWN  250
+#define WPAD_DEV_251              251
+#define WPAD_DEV_252              252  // invalid device mode?
+#define WPAD_DEV_NONE             253  // sort of like WPAD_ENODEV (see __wpadAbortInitExtension in WPADHIDParser.c)
+#define WPAD_DEV_INITIALIZING     255  // see __a1_20_status_report
+
+typedef void (*WPADInitFunc)(void);
+typedef void (*WPADCallback)(s32 chan, s32 result);
+typedef void (*WPADExtensionCallback)(s32 chan, s32 devType);
+typedef void (*WPADSamplingCallback)(s32 chan);
+typedef void (*WPADConnectCallback)(s32 chan, s32 result);
+typedef void (*WPADSimpleSyncCallback)(s32 result, s32 num);
 
 typedef struct DPDObject {
     /* 0x00 */ s16 x;
@@ -264,14 +314,33 @@ typedef struct WPADInfo {
 #define WPAD_SPEAKER_PLAY     4
 #define WPAD_SPEAKER_CMD_05   5  // does the same thing as ENABLE? unless i'm missing something. not used so i don't know the context
 
+#define WPAD_MOTOR_STOP    0
+#define WPAD_MOTOR_RUMBLE  1
+
 s32 WPADProbe(s32 chan, u32* devType);
 u8 WPADGetRadioSensitivity(s32 chan);
 void WPADRead(s32 chan, WPADStatus* status);
 BOOL WPADIsSpeakerEnabled(s32 chan);
-s32 WPADControlSpeaker(s32 chan, u32 command, WPADCallback* cb);
+s32 WPADControlSpeaker(s32 chan, u32 command, WPADCallback cb);
 s32 WPADSendStreamData(s32 chan, void* p_buf, u16 len);
 
-WPADExtensionCallback* WPADSetExtensionCallback(s32 chan, WPADExtensionCallback* cb);
+WPADConnectCallback WPADSetConnectCallback(s32 chan, WPADConnectCallback cb);
+WPADExtensionCallback WPADSetExtensionCallback(s32 chan, WPADExtensionCallback cb);
+WPADSimpleSyncCallback WPADSetSimpleSyncCallback(WPADSimpleSyncCallback cb);
+
+BOOL WPADIsUsedCallbackByKPAD(void);
+void WPADSetCallbackByKPAD(BOOL isKPAD);
+s32 WPADGetInfoAsync(s32 chan, WPADInfo* info, WPADCallback cb);
+void WPADControlMotor(s32 chan, u32 command);
+BOOL WPADCanSendStreamData(s32 chan);
+BOOL WPADStopSimpleSync(void);
+void WPADDisconnect(s32 chan);
+BOOL WPADStartFastSimpleSync(void);
+BOOL WPADSaveConfig(SCFlushCallback* cb);
+void WPADSetSpeakerVolume(u8 volume);
+u8 WPADGetSpeakerVolume(void);
+void WPADEnableMotor(BOOL enabled);
+BOOL WPADIsMotorEnabled(void);
 
 #ifdef __cplusplus
 }

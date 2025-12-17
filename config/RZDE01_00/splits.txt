@@ -2345,7 +2345,7 @@ revolution/gf/GFPixel.cpp:
 revolution/gf/GFTev.cpp:
 	.text       start:0x802B20AC end:0x802B210C
 
-revolution/hbm/HBMBase.cpp:
+revolution/homebuttonLib/HBMBase.cpp:
 	.text       start:0x802B210C end:0x802BA91C
 	.rodata     start:0x803EF1C8 end:0x803EF478
 	.data       start:0x804253D8 end:0x80426308
@@ -2354,125 +2354,125 @@ revolution/hbm/HBMBase.cpp:
 	.sbss       start:0x8053B090 end:0x8053B098
 	.sdata2     start:0x8053FCD0 end:0x8053FD30
 
-revolution/hbm/HBMAnmController.cpp:
+revolution/homebuttonLib/HBMAnmController.cpp:
 	.text       start:0x802BA91C end:0x802BAA3C
 	.data       start:0x80426308 end:0x80426318
 
-revolution/hbm/HBMFrameController.cpp:
+revolution/homebuttonLib/HBMFrameController.cpp:
 	.text       start:0x802BAA3C end:0x802BABDC
 	.sdata2     start:0x8053FD30 end:0x8053FD38
 
-revolution/hbm/HBMGUIManager.cpp:
+revolution/homebuttonLib/HBMGUIManager.cpp:
 	.text       start:0x802BABDC end:0x802BC260
 	.data       start:0x80426318 end:0x804264F8
 	.sdata      start:0x8053A118 end:0x8053A120
 	.sbss       start:0x8053B098 end:0x8053B0A0
 	.sdata2     start:0x8053FD38 end:0x8053FD48
 
-revolution/hbm/HBMController.cpp:
+revolution/homebuttonLib/HBMController.cpp:
 	.text       start:0x802BC260 end:0x802BCAB8
 	.bss        start:0x804C2448 end:0x804C25D8
 	.sbss       start:0x8053B0A0 end:0x8053B0A8
 	.sdata2     start:0x8053FD48 end:0x8053FD58
 
-revolution/hbm/HBMRemoteSpk.cpp:
+revolution/homebuttonLib/HBMRemoteSpk.cpp:
 	.text       start:0x802BCAB8 end:0x802BD2B8
 	.data       start:0x804264F8 end:0x80426568
 	.sbss       start:0x8053B0A8 end:0x8053B0B0
 
-revolution/db/db_assert.cpp:
+revolution/homebuttonLib/nw4hbm/db/db_assert.cpp:
 	.text       start:0x802BD2B8 end:0x802BD8C8
 	.data       start:0x80426568 end:0x80426618
 	.bss        start:0x804C25D8 end:0x804C2608
 	.sdata      start:0x8053A120 end:0x8053A128
 	.sbss       start:0x8053B0B0 end:0x8053B0C0
 
-revolution/db/db_console.cpp:
+revolution/homebuttonLib/nw4hbm/db/db_console.cpp:
 	.text       start:0x802BD8C8 end:0x802BE1C8
 	.data       start:0x80426618 end:0x80426738
 	.bss        start:0x804C2608 end:0x804C2A20
 	.sdata      start:0x8053A128 end:0x8053A130
 
-revolution/db/db_DbgPrintBase.cpp:
+revolution/homebuttonLib/nw4hbm/db/db_DbgPrintBase.cpp:
 	.text       start:0x802BE1C8 end:0x802BE208
 
-revolution/db/db_directPrint.cpp:
+revolution/homebuttonLib/nw4hbm/db/db_directPrint.cpp:
 	.text       start:0x802BE208 end:0x802BEC18
 	.rodata     start:0x803EF478 end:0x803EF730
 	.data       start:0x80426738 end:0x804267E8
 	.bss        start:0x804C2A20 end:0x804C2A60
 	.sbss       start:0x8053B0C0 end:0x8053B0C8
 
-revolution/db/db_mapFile.cpp:
+revolution/homebuttonLib/nw4hbm/db/db_mapFile.cpp:
 	.text       start:0x802BEC18 end:0x802BF52C
 	.data       start:0x804267E8 end:0x804269F0
 	.bss        start:0x804C2A60 end:0x804C2CA0
 	.sdata      start:0x8053A130 end:0x8053A138
 	.sbss       start:0x8053B0C8 end:0x8053B0D8
 
-revolution/homebuttonLib/lyt_animation.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_animation.cpp:
 	.text       start:0x802BF52C end:0x802C049C
 	.data       start:0x804269F0 end:0x80426E60
 	.sdata      start:0x8053A138 end:0x8053A140
 	.sdata2     start:0x8053FD58 end:0x8053FD78
 
-revolution/homebuttonLib/lyt_arcResourceAccessor.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_arcResourceAccessor.cpp:
 	.text       start:0x802C049C end:0x802C0BA0
 	.data       start:0x80426E60 end:0x804270D8
 	.sdata      start:0x8053A140 end:0x8053A148
 
-revolution/homebuttonLib/lyt_bounding.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_bounding.cpp:
 	.text       start:0x802C0BA0 end:0x802C0CB8
 	.ctors      start:0x803CE384 end:0x803CE388
 	.data       start:0x804270D8 end:0x80427140
 	.sbss       start:0x8053B0D8 end:0x8053B0E8
 
-revolution/homebuttonLib/lyt_common.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_common.cpp:
 	.text       start:0x802C0CB8 end:0x802C1B38
 	.data       start:0x80427140 end:0x804271B0
 	.bss        start:0x804C2CA0 end:0x804C2CC0
 	.sdata2     start:0x8053FD78 end:0x8053FD88
 
-revolution/homebuttonLib/lyt_drawInfo.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_drawInfo.cpp:
 	.text       start:0x802C1B38 end:0x802C1BEC
 	.data       start:0x804271B0 end:0x804271C0
 	.sdata2     start:0x8053FD88 end:0x8053FD90
 
-revolution/homebuttonLib/lyt_group.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_group.cpp:
 	.text       start:0x802C1BEC end:0x802C2094
 	.data       start:0x804271C0 end:0x804272C0
 
-revolution/homebuttonLib/lyt_layout.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_layout.cpp:
 	.text       start:0x802C2094 end:0x802C3048
 	.data       start:0x804272C0 end:0x80427528
 	.sbss       start:0x8053B0E8 end:0x8053B0F0
 	.sdata2     start:0x8053FD90 end:0x8053FD98
 
-revolution/homebuttonLib/lyt_material.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_material.cpp:
 	.text       start:0x802C3048 end:0x802C6768
 	.data       start:0x80427528 end:0x80427B28
 	.sdata2     start:0x8053FD98 end:0x8053FDB8
 	.sbss2      start:0x80540BD0 end:0x80540BE8
 
-revolution/homebuttonLib/lyt_pane.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_pane.cpp:
 	.text       start:0x802C6768 end:0x802C7AC0
 	.ctors      start:0x803CE388 end:0x803CE38C
 	.data       start:0x80427B28 end:0x80427EB8
 	.sbss       start:0x8053B0F0 end:0x8053B0F8
 	.sdata2     start:0x8053FDB8 end:0x8053FDD8
 
-revolution/homebuttonLib/lyt_picture.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_picture.cpp:
 	.text       start:0x802C7AC0 end:0x802C81E0
 	.ctors      start:0x803CE38C end:0x803CE390
 	.data       start:0x80427EB8 end:0x804280E0
 	.sbss       start:0x8053B0F8 end:0x8053B100
 	.sdata2     start:0x8053FDD8 end:0x8053FDE0
 
-revolution/homebuttonLib/lyt_resourceAccessor.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_resourceAccessor.cpp:
 	.text       start:0x802C81E0 end:0x802C8238
 	.data       start:0x804280E0 end:0x804280F8
 
-revolution/homebuttonLib/lyt_textBox.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_textBox.cpp:
 	.text       start:0x802C8238 end:0x802CB080
 	.ctors      start:0x803CE390 end:0x803CE394
 	.data       start:0x804280F8 end:0x80428770
@@ -2480,74 +2480,74 @@ revolution/homebuttonLib/lyt_textBox.cpp:
 	.sbss       start:0x8053B100 end:0x8053B108
 	.sdata2     start:0x8053FDE0 end:0x8053FDF8
 
-revolution/homebuttonLib/lyt_window.cpp:
+revolution/homebuttonLib/nw4hbm/lyt/lyt_window.cpp:
 	.text       start:0x802CB080 end:0x802CD954
 	.ctors      start:0x803CE394 end:0x803CE398
 	.data       start:0x80428770 end:0x804289D0
 	.sbss       start:0x8053B108 end:0x8053B114
 	.sdata2     start:0x8053FDF8 end:0x8053FE10
 
-revolution/homebuttonLib/math_triangular.cpp:
+revolution/homebuttonLib/nw4hbm/math/math_triangular.cpp:
 	.text       start:0x802CD954 end:0x802CDBC4
 	.data       start:0x804289D0 end:0x80429AE8
 	.sdata2     start:0x8053FE10 end:0x8053FE30
 
-revolution/homebuttonLib/snd_SoundArchivePlayer.cpp:
+revolution/homebuttonLib/nw4hbm/snd/snd_SoundArchivePlayer.cpp:
 	.text       start:0x802CDBC4 end:0x802CDC34
 	.data       start:0x80429AE8 end:0x80429B48
 
-revolution/homebuttonLib/snd_SoundHandle.cpp:
+revolution/homebuttonLib/nw4hbm/snd/snd_SoundHandle.cpp:
 	.text       start:0x802CDC34 end:0x802CDC84
 
-revolution/homebuttonLib/snd_SoundPlayer.cpp:
+revolution/homebuttonLib/nw4hbm/snd/snd_SoundPlayer.cpp:
 	.text       start:0x802CDC84 end:0x802CDD74
 	.data       start:0x80429B48 end:0x80429BB8
 	.sdata2     start:0x8053FE30 end:0x8053FE38
 
-revolution/homebuttonLib/snd_SoundStartable.cpp:
+revolution/homebuttonLib/nw4hbm/snd/snd_SoundStartable.cpp:
 	.text       start:0x802CDD74 end:0x802CDDE0
 
-revolution/homebuttonLib/ut_binaryFileFormat.cpp:
+revolution/homebuttonLib/nw4hbm/ut/ut_binaryFileFormat.cpp:
 	.text       start:0x802CDDE0 end:0x802CE038
 	.data       start:0x80429BB8 end:0x80429D08
 
-revolution/homebuttonLib/ut_CharStrmReader.cpp:
+revolution/homebuttonLib/nw4hbm/ut/ut_CharStrmReader.cpp:
 	.text       start:0x802CE038 end:0x802CE998
 	.data       start:0x80429D08 end:0x80429E50
 
-revolution/homebuttonLib/ut_CharWriter.cpp:
+revolution/homebuttonLib/nw4hbm/ut/ut_CharWriter.cpp:
 	.text       start:0x802CE998 end:0x802D2EF4
 	.data       start:0x80429E50 end:0x8042A130
 	.bss        start:0x804C2CC0 end:0x804C2CE0
 	.sbss       start:0x8053B114 end:0x8053B118
 	.sdata2     start:0x8053FE38 end:0x8053FE58
 
-revolution/homebuttonLib/ut_Font.cpp:
+revolution/homebuttonLib/nw4hbm/ut/ut_Font.cpp:
 	.text       start:0x802D2EF4 end:0x802D30B8
 	.data       start:0x8042A130 end:0x8042A1A8
 
-revolution/homebuttonLib/ut_LinkList.cpp:
+revolution/homebuttonLib/nw4hbm/ut/ut_LinkList.cpp:
 	.text       start:0x802D30B8 end:0x802D3528
 	.data       start:0x8042A1A8 end:0x8042A350
 
-revolution/homebuttonLib/ut_list.cpp:
+revolution/homebuttonLib/nw4hbm/ut/ut_list.cpp:
 	.text       start:0x802D3528 end:0x802D38D0
 	.data       start:0x8042A350 end:0x8042A3B0
 
-revolution/homebuttonLib/ut_ResFont.cpp:
+revolution/homebuttonLib/nw4hbm/ut/ut_ResFont.cpp:
 	.text       start:0x802D38D0 end:0x802D48E8
 	.data       start:0x8042A3B0 end:0x8042AC68
 
-revolution/homebuttonLib/ut_ResFontBase.cpp:
+revolution/homebuttonLib/nw4hbm/ut/ut_ResFontBase.cpp:
 	.text       start:0x802D48E8 end:0x802D80C8
 	.data       start:0x8042AC68 end:0x8042AF80
 
-revolution/homebuttonLib/ut_TagProcessorBase.cpp:
+revolution/homebuttonLib/nw4hbm/ut/ut_TagProcessorBase.cpp:
 	.text       start:0x802D80C8 end:0x802D92D0
 	.data       start:0x8042AF80 end:0x8042B058
 	.sdata2     start:0x8053FE58 end:0x8053FE60
 
-revolution/homebuttonLib/ut_TextWriterBase.cpp:
+revolution/homebuttonLib/nw4hbm/ut/ut_TextWriterBase.cpp:
 	.text       start:0x802D92D0 end:0x802E1FB4
 	.ctors      start:0x803CE398 end:0x803CE39C
 	.data       start:0x8042B058 end:0x8042B680

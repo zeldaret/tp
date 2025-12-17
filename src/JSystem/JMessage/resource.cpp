@@ -116,12 +116,11 @@ JMessage::TResource* JMessage::TResourceContainer::TCResource::Do_create() {
 }
 
 void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource* pResource) {
-    #if DEBUG
+#if DEBUG
     delete pResource;
-    #else
-    // Fake Match - extra null comparison when not doing the conversion
-    delete (void*)pResource;
-    #endif
+#else
+    operator delete(pResource);
+#endif
 }
 
 JMessage::TResourceContainer::TResourceContainer() : encodingType_(0), pfnParseCharacter_(NULL) {}
