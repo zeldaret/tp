@@ -3,7 +3,7 @@
 
 #include "dolphin/types.h"
 
-typedef long JASCallback(void*);
+typedef s32 JASCallback(void*);
 
 /**
  * @ingroup jsystem-jaudio

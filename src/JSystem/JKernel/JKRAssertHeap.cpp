@@ -2,7 +2,7 @@
 
 #include "JSystem/JKernel/JKRAssertHeap.h"
 
-JKRAssertHeap::JKRAssertHeap(void* data, unsigned long size, JKRHeap* parent, bool errorFlag)
+JKRAssertHeap::JKRAssertHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag)
     : JKRHeap(data, size, parent, errorFlag) {}
 
 JKRAssertHeap::~JKRAssertHeap() {

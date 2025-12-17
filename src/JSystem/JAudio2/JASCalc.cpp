@@ -264,11 +264,11 @@ s16 const JASCalc::CUTOFF_TO_IIR_TABLE[128][4] = {
 };
 
 // currently required because of missing functions
-// JASCalc::hannWindow(short *, unsigned long)
-// JASCalc::hammWindow(short *, unsigned long)
-// JASCalc::fft(float *, float *, unsigned long, long)
+// JASCalc::hannWindow(short *, u32)
+// JASCalc::hammWindow(short *, u32)
+// JASCalc::fft(float *, float *, u32, s32)
 f32 JASCalc::fake1() { return 0.5f; }
-f32 JASCalc::fake2(long x) { return JASCalc::clamp<s16, long>(x); }
+f32 JASCalc::fake2(s32 x) { return JASCalc::clamp<s16, s32>(x); }
 f32 JASCalc::fake3() { return 0.0f; }
 
 f32 JASCalc::pow2(f32 x) {

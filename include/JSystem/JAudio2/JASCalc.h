@@ -36,7 +36,7 @@ struct JASCalc {
     }
 
     f32 fake1();
-    f32 fake2(long x);
+    f32 fake2(s32 x);
     f32 fake3();
 
     static const s16 CUTOFF_TO_IIR_TABLE[128][4];

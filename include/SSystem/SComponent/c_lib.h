@@ -9,8 +9,8 @@ inline bool cLib_IsZero(f32 value) {
     return fabsf(value) < 8e-11f;
 }
 
-void cLib_memCpy(void* dst, const void* src, unsigned long size);
-void cLib_memSet(void* ptr, int value, unsigned long size);
+void cLib_memCpy(void* dst, const void* src, u32 size);
+void cLib_memSet(void* ptr, int value, u32 size);
 
 f32 cLib_addCalc(f32* o_value, f32 target, f32 scale, f32 maxStep, f32 minStep);
 void cLib_addCalc2(f32* o_value, f32 target, f32 scale, f32 maxStep);
