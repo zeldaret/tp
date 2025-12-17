@@ -18,9 +18,9 @@ public:
     JGadget_outMessage& operator<<(int param_1) { return *this << (s32)param_1; }
     JGadget_outMessage& operator<<(u16);
     JGadget_outMessage& operator<<(uint);
-    JGadget_outMessage& operator<<(u8 param_1) { return *this << (s8)param_1; }
+    JGadget_outMessage& operator<<(u8 param_1) { return *this << (char)param_1; }
     JGadget_outMessage& operator<<(const char* str);
-    JGadget_outMessage& operator<<(s8);
+    JGadget_outMessage& operator<<(char);
     JGadget_outMessage& operator<<(s32);
     JGadget_outMessage& operator<<(u32);
     JGadget_outMessage& operator<<(const void*);
