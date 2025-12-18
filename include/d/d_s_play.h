@@ -68,7 +68,11 @@ public:
     bool resetGame();
     void offReset();
 
+    #if VERSION == VERSION_SHIELD_DEBUG
     static s8 isPause() { return pauseTimer | nextPauseTimer; }
+    #else
+    static s8 isPause() { return pauseTimer; }
+    #endif
     static void setPauseTimer(s8 time) { nextPauseTimer = time; }
 
     static s8 pauseTimer;

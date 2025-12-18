@@ -72,8 +72,8 @@ u8 fopMsg::MemCheck;
 static int fopMsg_MSG_TYPE;
 
 int fopMsg_Create(void* i_this) {
-    int ret;
     msg_class* a_this = (msg_class*)i_this;
+    int ret;
 
     if (fpcM_IsFirstCreating(i_this)) {
         msg_process_profile_definition* profile =

@@ -637,7 +637,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "f_op/f_op_camera_mng.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_overlap.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_overlap_mng.cpp"),
-            Object(MatchingFor(ALL_GCN), "f_op/f_op_overlap_req.cpp"),
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_overlap_req.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_scene.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_scene_iter.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_scene_mng.cpp"),

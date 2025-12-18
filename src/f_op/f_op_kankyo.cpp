@@ -24,7 +24,7 @@ static int fopKy_Execute(void* i_this) {
     int ret;
     kankyo_class* a_this = (kankyo_class*)i_this;
 
-    if (dScnPly_c::isPause() && (!dComIfGp_isPauseFlag() || fpcM_GetName(i_this) == PROC_ENVSE)) {
+    if (!dScnPly_c::isPause() && (!dComIfGp_isPauseFlag() || fpcM_GetName(i_this) == PROC_ENVSE)) {
         ret = fpcMtd_Execute(&a_this->sub_method->base, i_this);
     }
 

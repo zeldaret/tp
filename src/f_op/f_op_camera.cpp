@@ -64,8 +64,8 @@ int fopCam_Delete(camera_class* i_this) {
 }
 
 static int fopCam_Create(void* i_this) {
-    int ret;
     camera_class* a_this = (camera_class*)i_this;
+    int ret;
 
     if (fpcM_IsFirstCreating(i_this)) {
         camera_process_profile_definition* profile = (camera_process_profile_definition*)fpcM_GetProfile(i_this);
