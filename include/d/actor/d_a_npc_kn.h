@@ -416,7 +416,7 @@ public:
     static dCcD_SrcSph mCcDSph;
     static s16 mSrchName;
     static fopAc_ac_c* mFindActorPtrs[50];
-    static u8 mFindCount[4];
+    static int mFindCount;
 
 private:
     /* 0x0E44 */ J3DModel* mpPodModel;
