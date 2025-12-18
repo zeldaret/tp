@@ -4,8 +4,6 @@
  */
 
 #include "f_op/f_op_camera_mng.h"
-#include "f_pc/f_pc_layer.h"
-#include "f_pc/f_pc_stdcreate_req.h"
 
 static fpc_ProcID l_fopCamM_id[4];
 

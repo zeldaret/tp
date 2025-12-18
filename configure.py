@@ -631,11 +631,11 @@ config.libs = [
             # f_op
             Object(MatchingFor(ALL_GCN), "f_op/f_op_actor.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "f_op/f_op_actor_iter.cpp"),
-            Object(MatchingFor(ALL_GCN), "f_op/f_op_actor_tag.cpp"),
-            Object(MatchingFor(ALL_GCN), "f_op/f_op_camera.cpp"),
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_actor_tag.cpp"),
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_camera.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_actor_mng.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_camera_mng.cpp"),
-            Object(MatchingFor(ALL_GCN), "f_op/f_op_overlap.cpp"),
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_overlap.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_overlap_mng.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_overlap_req.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_scene.cpp"),
@@ -645,12 +645,12 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_scene_tag.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_view.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_kankyo.cpp"),
-            Object(MatchingFor(ALL_GCN), "f_op/f_op_msg.cpp"),
+            Object(MatchingFor(ALL_GCN), "f_op/f_op_msg.cpp"), # ShieldD fopMsg::MemCheck
             Object(MatchingFor(ALL_GCN), "f_op/f_op_kankyo_mng.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_msg_mng.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_draw_iter.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "f_op/f_op_draw_tag.cpp"),
-            Object(MatchingFor(ALL_GCN, "Shield"), "f_op/f_op_scene_pause.cpp"),
+            Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "f_op/f_op_scene_pause.cpp"),
 
             # f_pc
             Object(MatchingFor(ALL_GCN), "f_pc/f_pc_base.cpp"),
