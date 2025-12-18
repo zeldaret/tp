@@ -5042,7 +5042,6 @@ void daNpc_Kn_c::calcMagicBallPos() {
     }
 }
 
-// NONMATCHING - reg alloc
 void daNpc_Kn_c::setSwordChargePtcl() {
     JPABaseEmitter* emitter;
 
