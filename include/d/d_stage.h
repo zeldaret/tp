@@ -80,6 +80,13 @@ struct stage_stag_info_class {
     /* 0x2C */ u8 mParticleNo[16];
 };  // Size: 0x3C
 
+class dStage_stagInfo_c {
+public:
+    enum {
+        /* 0x1 */ UB_D_MAP = 1,
+    };
+};
+
 // SCLS
 struct stage_scls_info_class {
     /* 0x0 */ char mStage[8];

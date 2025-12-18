@@ -725,8 +725,8 @@ dMap_c::dMap_c(int param_0, int param_1, int param_2, int param_3) {
     mTopEdgePlus = 0.0f;
 
     field_0x74 = 0;
-    mTexSizeX = 0;
-    mTexSizeY = 0;
+    mTexSizeW = 0;
+    mTexSizeH = 0;
     mStayRoomNo = -1;
     field_0x80 = -1;
     field_0x84 = -1;
@@ -746,8 +746,8 @@ dMap_c::dMap_c(int param_0, int param_1, int param_2, int param_3) {
     m_res_src = (dMap_prm_res_s*)dComIfG_getObjectRes("Always", 0x45);
     resCopy();
 
-    mTexSizeX = param_0;
-    mTexSizeY = param_1;
+    mTexSizeW = param_0;
+    mTexSizeH = param_1;
 
     if (dMap_HIO_prm_res_dst_s::m_res->field_0x1ae > 0) {
         field_0x74 = dMap_HIO_prm_res_dst_s::m_res->field_0x1b0 / 6;
@@ -757,13 +757,31 @@ dMap_c::dMap_c(int param_0, int param_1, int param_2, int param_3) {
     mImage_p = new (0x20) u8[buffer_size];
     JUT_ASSERT(0, mImage_p != NULL);
 
-    renderingDAmap_c::init(mImage_p, mTexSizeX, mTexSizeY, mTexSizeX, mTexSizeY);
+    renderingDAmap_c::init(mImage_p, mTexSizeW, mTexSizeH, mTexSizeW, mTexSizeH);
 
     mResTIMG = new (0x20) ResTIMG;
     JUT_ASSERT(0, mResTIMG != NULL);
 
-    makeResTIMG(mResTIMG, mTexSizeX, mTexSizeY, mImage_p, (u8*)m_res, 0x33);
+    makeResTIMG(mResTIMG, mTexSizeW, mTexSizeH, mImage_p, (u8*)m_res, 0x33);
 }
+
+#if DEBUG
+void dMap_c::changeTextureSize(int param_1, int param_2, int param_3) {
+    JUT_ASSERT(2672, mImage_p != NULL);
+    JUT_ASSERT(2673, mResTIMG != NULL);
+
+    mTexSizeW = param_1 >> param_3;
+    mTexSizeH = param_2 >> param_3;
+
+    u32 imageSize = GXGetTexBufferSize(mTexSizeW, mTexSizeH, 9, 0, 0);
+    OS_REPORT("imageSize<%d> <%d kbyte>mTexSizeW<%d>mTexSizeH<%d>\n", imageSize, imageSize * 0.0009765625f, mTexSizeW, mTexSizeH);
+
+    JUT_ASSERT(2682, mImage_p != NULL);
+    
+    init(mImage_p, mTexSizeW, mTexSizeH, param_1, param_2);
+    makeResTIMG(mResTIMG, mTexSizeW, mTexSizeH, mImage_p, (u8*)m_res, 0x33);
+}
+#endif
 
 void dMap_c::_remove() {
     if (mImage_p != NULL) {
@@ -922,7 +940,7 @@ void dMap_c::calcMapCmPerTexel(int i_roomNo, f32* ip_cmPerTexel) {
     JUT_ASSERT(0, ip_cmPerTexel != NULL);
 
     f32 cmPerTexel = 0.0f;
-    JUT_ASSERT(0, mTexSizeY != 0);
+    JUT_ASSERT(0, mTexSizeH != 0);
 
     if (i_roomNo >= 0) {
         if (getStayType() == 0) {
@@ -941,7 +959,7 @@ void dMap_c::calcMapCmPerTexel(int i_roomNo, f32* ip_cmPerTexel) {
                 var_f3 = temp_f0;
             }
 
-            cmPerTexel = var_f3 / ((f32)mTexSizeY - (f32)(field_0x74 + 4));
+            cmPerTexel = var_f3 / ((f32)mTexSizeH - (f32)(field_0x74 + 4));
         } else {
             f32 var_f31 = 0.0f;
 
@@ -956,7 +974,7 @@ void dMap_c::calcMapCmPerTexel(int i_roomNo, f32* ip_cmPerTexel) {
                 var_f31 = 10800.0f;
             }
 
-            cmPerTexel = var_f31 / (f32)mTexSizeY;
+            cmPerTexel = var_f31 / (f32)mTexSizeH;
         }
     }
 

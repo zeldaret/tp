@@ -906,7 +906,7 @@ public:
     /* 0x514 */ f32 mScrollArrowPosY[2];
     /* 0x51C */ f32 mScrollArrowCenterPosX;
     /* 0x520 */ f32 mScrollArrowCenterPosY;
-    /* 0x524 */ u8 mScrollArrowDisplayAll;
+    /* 0x524 */ bool mScrollArrowDisplayAll;
     /* 0x528 */ f32 mWiiLockArrowScaleX;
     /* 0x52C */ f32 mWiiLockArrowScaleY;
     /* 0x530 */ f32 mWiiLockArrowBPKAnimSpeed;
@@ -915,7 +915,7 @@ public:
     /* 0x53C */ f32 mWiiLockArrowPosX[2];
     /* 0x544 */ f32 mWiiLockArrowPosY[2];
     /* 0x54C */ f32 field_0x54c;
-    /* 0x550 */ u8 mWiiLockArrowDisplayAll;
+    /* 0x550 */ bool mWiiLockArrowDisplayAll;
     /* 0x554 */ f32 mFloatingMessagePosX;
     /* 0x558 */ f32 mFloatingMessagePosY;
     /* 0x55C */ u32 mMessageID;
@@ -1336,47 +1336,6 @@ public:
 };
 
 STATIC_ASSERT(sizeof(dMeter_cursorHIO_c) == 68);
-
-class dMeter_map_HIO_c : public JORReflexible {
-public:
-    dMeter_map_HIO_c();
-    virtual ~dMeter_map_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    static dMeter_map_HIO_c* mMySelfPointer;
-
-    s8 field_0x4;
-    u8 mDebugMapExpansion;
-    u8 mMapDisplayLocation;
-    s16 mWideBottomLeftX;
-    s16 mWideY;
-    s16 mNormalBottomLeftX;
-    s16 mNormalY;
-    s16 mGcBottomLeftX;
-    s16 mGcY;
-    s16 mHiddenRightX;
-    u8 field_0x16;
-    u8 mSizeTypeChange;
-    s16 field_0x18;
-    s16 mMediumHorizontal;
-    s16 mMediumVertical;
-    s16 mBigHorizontal;
-    s16 mBigVertical;
-    s16 mSmallHorizontal;
-    s16 mSmallVertical;
-    u8 mMapDisplaySize;
-    u8 field_0x27[0x2a- 0x27];
-    s16 field_0x2a;
-    u8 mMapAlphaTest;
-    u8 mAlpha;
-    u8 mTextureResolutionHalved;
-    u8 mForcedMapTopEdgeChange;
-    s16 field_0x30;
-    u8 mMapDisplayProhibited;
-    u8 mMapRenderingProhibited;
-    dMeter_map_HIO_c* mAreaMap;
-};
 
 extern dMeter_menuHIO_c g_menuHIO;
 extern dMeter_drawHIO_c g_drawHIO;
