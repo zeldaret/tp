@@ -566,7 +566,7 @@ dScnPly_reg_HIO_c g_regHIO;
 
 dScnPly_env_HIO_c g_envHIO;
 
-#if ENABLE_REGHIO
+#if DEBUG
 dScnPly_preset_HIO_c g_presetHIO;
 #endif
 
