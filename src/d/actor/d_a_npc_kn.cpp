@@ -16,6 +16,46 @@
 #include "d/d_debug_viewer.h"
 #endif
 
+dCcD_SrcCyl daNpc_Kn_c::mCcDCyl = {
+    mCcDObjData,
+    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f},
+};
+
+dCcD_SrcSph daNpc_Kn_c::mCcDSph = {
+    mCcDObjData,
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f}  // mSphCc
+    },
+};
+
+s16 daNpc_Kn_c::mSrchName;
+
+fopAc_ac_c* daNpc_Kn_c::mFindActorPtrs[50];
+
+int daNpc_Kn_c::mFindCount;
+
+void* dummy_srchActor(void* i_actor1, void* i_actor2) {
+    // Fake function (though a similar one likely existed and got stripped out).
+    // daNpc_Kn_c::setSwordChargePtcl has issues where the ...rodata and ...bss pools are loaded in
+    // reverse order, which in turn also causes regalloc in that function.
+    // Fixing this requires a function early on in this TU to also use ...bss pooling, which for
+    // some reason fixes later pool loads.
+    // The unused member bss variables mSrchName/mFindActorPtrs/mFindCount existing in the maps
+    // indicates that a function using them originally existed, but was stripped out.
+    // Additionally, the bss members must be defined above this function for bss pooling to be used.
+    fopAc_ac_c* actor2 = (fopAc_ac_c*)i_actor2;
+    void* foundActor = NULL;
+    if (daNpc_Kn_c::mFindCount < 50 && fopAcM_IsActor(i_actor1) && i_actor1 != i_actor2) {
+        if (daNpc_Kn_c::mSrchName == fopAcM_GetName((fopAc_ac_c*)i_actor1)) {
+            foundActor = (fopAc_ac_c*)i_actor1;
+            daNpc_Kn_c::mFindActorPtrs[daNpc_Kn_c::mFindCount] = (fopAc_ac_c*)foundActor;
+            daNpc_Kn_c::mFindCount++;
+        }
+    }
+
+    return NULL;
+}
+
 const dCcD_SrcGObjInf daNpc_Kn_c::mCcDObjData = {
     {0, {{0, 0, 0}, {0, 0}, {0x79}}},
     {dCcD_SE_NONE, 0, 0, 0, 0},
@@ -156,18 +196,6 @@ void daNpc_Kn_HIO_c::genMessage(JORMContext* ctext) {
     ctext->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
 }
 #endif
-
-dCcD_SrcCyl daNpc_Kn_c::mCcDCyl = {
-    mCcDObjData,
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f},
-};
-
-dCcD_SrcSph daNpc_Kn_c::mCcDSph = {
-    mCcDObjData,
-    {
-        {{0.0f, 0.0f, 0.0f}, 0.0f}  // mSphCc
-    },
-};
 
 static int l_bmdData[3][2] = {
     {47, 1},
@@ -484,12 +512,6 @@ daNpc_Kn_c::cutFunc daNpc_Kn_c::mCutList[21] = {
     &daNpc_Kn_c::ECut_seventhSkillExplain,
     &daNpc_Kn_c::ECut_seventhSkillGet,
 };
-
-s16 daNpc_Kn_c::mSrchName;
-
-fopAc_ac_c* daNpc_Kn_c::mFindActorPtrs[50];
-
-u8 daNpc_Kn_c::mFindCount[4];
 
 static NPC_KN_HIO_CLASS l_HIO;
 
