@@ -46,7 +46,7 @@ public:
     static void dump(void);
 
     static JKRAram* getManager() { return sAramObject; }
-    static JKRAramHeap* getAramHeap() { return getManager()->mAramHeap; }
+    static JKRAramHeap* getAramHeap() { return sAramObject->mAramHeap; }
     static JSUList<JKRAMCommand>& getCommandList() { return sAramCommandList; }
 
     static u8 decideAramGroupId(int groupId) {
