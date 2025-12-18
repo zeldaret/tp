@@ -46,11 +46,10 @@ f32 JASDriver::sDacRate = 32028.5f;
 
 u32 JASDriver::sSubFrames = 0x00000007;
 
-// NONMATCHING missing instructions
 void JASDriver::initAI(void (*param_0)(void)) {
     setOutputRate(OUTPUT_RATE_0);
     u32 dacSize = getDacSize();
-    u32 size = dacSize * 2;
+    const u32 size = dacSize * 2;
     for (int i = 0; i < 3; i++) {
         sDmaDacBuffer[i] = new(JASDram, 0x20) s16[dacSize];
         JUT_ASSERT(102, sDmaDacBuffer[i])
