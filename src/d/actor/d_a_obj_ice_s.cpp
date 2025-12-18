@@ -124,7 +124,7 @@ static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3
     (void)param_1;
     daObjIce_s_c* ice = (daObjIce_s_c*)param_2;
     daPy_py_c* player = daPy_getPlayerActorClass();
-    cXyz* playerPos = &fopAcM_GetPosition(player);
+    cXyz* playerPos = (cXyz*)&fopAcM_GetPosition(player);
     cXyz* pBallCenter = player->getIronBallCenterPos();
 
     // !@bug misplaced ! operator. This condition is probably always false
@@ -138,7 +138,9 @@ static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3
     }
 
     cXyz* icePos = (cXyz*)&fopAcM_GetPosition(param_2);
-    if (pBallCenter != NULL && icePos != NULL && icePos->absXZ(*pBallCenter) < ice->field_0x5c8.x * 600.0f) {
+    if (pBallCenter != NULL && icePos != NULL &&
+        icePos->absXZ(*pBallCenter) < ice->field_0x5c8.x * 600.0f)
+    {
         ice->field_0x5d8 = 0x300;
         ice->field_0x5a4 = -11.0f;
         ice->field_0x5ac = 0x1000;
@@ -150,9 +152,7 @@ static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3
         ice->field_0x5ac = 0x1000;
         ice->Check_RideOn(*playerPos);
     }
-    if (ice->field_0x5c5 == 0xff &&
-        fopAcM_GetName(param_3) == PROC_ALINK)
-    {
+    if (ice->field_0x5c5 == 0xff && fopAcM_GetName(param_3) == PROC_ALINK) {
         ice->field_0x5d8 = 0x300;
         ice->field_0x5a4 = -11.0f;
         ice->field_0x5ac = 0x1000;

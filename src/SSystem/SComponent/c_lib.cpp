@@ -13,7 +13,7 @@
  * @param src Pointer to source data to be copied
  * @param num Number of bytes to copy
  */
-void cLib_memCpy(void* dst, const void* src, unsigned long num) {
+void cLib_memCpy(void* dst, const void* src, u32 num) {
     memcpy(dst, src, num);
 }
 
@@ -23,7 +23,7 @@ void cLib_memCpy(void* dst, const void* src, unsigned long num) {
  * @param value Value to be set
  * @param num Number of bytes to set
  */
-void cLib_memSet(void* ptr, int value, unsigned long num) {
+void cLib_memSet(void* ptr, int value, u32 num) {
     memset(ptr, value, num);
 }
 

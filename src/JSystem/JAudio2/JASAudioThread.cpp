@@ -19,7 +19,7 @@ JASAudioThread::JASAudioThread(int stackSize, int msgCount, u32 threadPriority)
     OSInitThreadQueue(&sThreadQueue);
 }
 
-void JASAudioThread::create(long threadPriority) {
+void JASAudioThread::create(s32 threadPriority) {
 	JASAudioThread* sAudioThread = new (JASDram, 0) JASAudioThread(threadPriority, 0x10, 0x1400);
     sAudioThread->setCurrentHeap(JKRGetSystemHeap());
 	sAudioThread->resume();

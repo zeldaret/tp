@@ -404,7 +404,7 @@ bool TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_out, u32 f
     u16 version = header.get_version();
     if (version < 2) {
         JUTWarn w;
-        w << "obselete version : " << (long)0;
+        w << "obselete version : " << (s32)0;
         return false;
     } else if (version > 0x100) {
         JUTWarn w;

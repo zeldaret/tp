@@ -411,7 +411,7 @@ inline void dMsgObject_setShopWaitTimer(u8 timer) {
     dMsgObject_c::setShopWaitTimer(timer);
 }
 
-inline void dMsgObject_changeFlowGroup(long flow) {
+inline void dMsgObject_changeFlowGroup(s32 flow) {
     dMsgObject_getMsgObjectClass()->changeFlowGroup(flow);
 }
 

@@ -16,7 +16,7 @@ struct JASProbe {
     static JASProbe* sProbeTable[16];
 
     /* 0x000 */ char const* mName;
-	/* 0x004 */ long mStartTime;
+	/* 0x004 */ s32 mStartTime;
 	/* 0x008 */ f32 _08;
 	/* 0x00C */ f32 _0C;
 	/* 0x010 */ f32 _10;
