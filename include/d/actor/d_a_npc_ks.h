@@ -104,7 +104,7 @@ public:
     /* 0x5E6 */ s16 count;
     /* 0x5E8 */ s16 action;
     /* 0x5EA */ s16 mode;
-    /* 0x5EC */ u32 mShadowKey;
+    /* 0x5EC */ u32 shadow_key;
     /* 0x5F0 */ s16 timer[4];
     /* 0x5F8 */ s16 field_0x5f8;
     /* 0x5FA */ s16 field_0x5fa;

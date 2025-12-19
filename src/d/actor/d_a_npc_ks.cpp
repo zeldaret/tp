@@ -274,13 +274,13 @@ static int daNpc_Ks_Draw(npc_ks_class* i_this) {
         mDoExt_modelUpdateDL(i_this->bara_model);
     }
 
-    cXyz sp28;
-    sp28.set(actor->current.pos.x, actor->current.pos.y + 100.0f, actor->current.pos.z);
-    i_this->mShadowKey = dComIfGd_setShadow(i_this->mShadowKey, 1, model, &sp28, 1000.0f, 0.0f, actor->current.pos.y, 
+    cXyz pos;
+    pos.set(actor->current.pos.x, actor->current.pos.y + 100.0f, actor->current.pos.z);
+    i_this->shadow_key = dComIfGd_setShadow(i_this->shadow_key, 1, model, &pos, 1000.0f, 0.0f, actor->current.pos.y, 
                                             i_this->ObjAcch.GetGroundH(), i_this->ObjAcch.m_gnd, &i_this->actor.tevStr,
                                             0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
     if (i_this->field_0xc17 != 0) {
-        dComIfGd_addRealShadow(i_this->mShadowKey, i_this->stick_model);
+        dComIfGd_addRealShadow(i_this->shadow_key, i_this->stick_model);
     }
 
     return 1;
