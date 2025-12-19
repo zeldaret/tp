@@ -6879,7 +6879,7 @@ static int daNpc_Ks_Delete(npc_ks_class* i_this) {
 
     if (i_this->hio_init != 0) {
         l_HIOInit = 0;
-        mDoHIO_DELETE_CHILD(l_HIO.field_0x4);
+        mDoHIO_DELETE_CHILD(l_HIO.no);
     }
 
     if (actor->heap != NULL) {
