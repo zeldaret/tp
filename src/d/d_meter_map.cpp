@@ -16,10 +16,13 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "d/d_camera.h"
 
+#if (PLATFORM_WII || PLATFORM_SHIELD)
+dMeter_map_HIO_c g_meter_mapHIO;
+#endif
+
 #if DEBUG
 dMeter_map_HIO_c* dMeter_map_HIO_c::mMySelfPointer = NULL;
 dMeterMap_c* dMeterMap_c::mMySelfPointer = NULL;
-dMeter_map_HIO_c g_meter_mapHIO;
 
 dMeter_map_HIO_c::dMeter_map_HIO_c() {
     dMeter_map_HIO_c::mMySelfPointer = this;
