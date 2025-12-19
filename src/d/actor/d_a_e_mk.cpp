@@ -1944,7 +1944,7 @@ static void demo_camera_end(e_mk_class* i_this) {
 static void* s_ks_sub(void* i_actor, void* i_data) {
     i_data;
 
-    if ((fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_KS) && static_cast<npc_ks_class*>(i_actor)->field_0x5b6 == 0) {
+    if ((fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_KS) && static_cast<npc_ks_class*>(i_actor)->set_id == 0) {
         return i_actor;
     }
 
@@ -2026,7 +2026,7 @@ static void demo_camera_r04(e_mk_class* i_this) {
                 cLib_addCalc2(&i_this->camStepScale1, 1.0f, 1.0f, NREG_F(4) + 0.01f);
 
                 if (i_this->demoCamCounter == ZREG_S(1) + 258) {
-                    monkey_p->mMode = 2;
+                    monkey_p->mode = 2;
                     pos.set(110.0f, 3300.0f, 4326.0f);
                     player->setPlayerPosAndAngle(&pos, (s16)0xFFFF8000, 0);
                     player->changeDemoMode(1, 1, 0, 0);
@@ -2070,7 +2070,7 @@ static void demo_camera_r04(e_mk_class* i_this) {
             i_this->demoSubMode = 4;
             i_this->demoCamCounter = 0;
             i_this->mode = 2;
-            monkey_p->mMode = 20;
+            monkey_p->mode = 20;
             return;
         
         case 4:
@@ -2149,7 +2149,7 @@ static void demo_camera_r04(e_mk_class* i_this) {
 
         case 6:
             if (i_this->demoCamCounter == ZREG_S(6) + 3) {
-                monkey_p->mMode = 4;
+                monkey_p->mode = 4;
             }
 
             if (i_this->demoCamCounter != ZREG_S(5) + 25) {
@@ -2178,7 +2178,7 @@ static void demo_camera_r04(e_mk_class* i_this) {
 
             i_this->demoSubMode = 8;
             i_this->demoCamCounter = 0;
-            monkey_p->mMode++;
+            monkey_p->mode++;
             i_this->camEye.set(-282.0f, 2534.0f, 3147.0f);
             i_this->camCenter = monkey_p->actor.current.pos;
             i_this->camCenter.y += ZREG_F(19);
@@ -2189,7 +2189,7 @@ static void demo_camera_r04(e_mk_class* i_this) {
 
             if (i_this->demoCamCounter == (s16)(XREG_S(0) + 65)) {
                 monkey_p->actor.current.pos.set(0.0f, 3310.0f, 3427.0f);
-                monkey_p->mMode++;
+                monkey_p->mode++;
                 i_this->demoSubMode = 9;
                 i_this->demoCamCounter = 0;
                 fpcM_Search(s_brg_sub2, i_this);
@@ -2212,7 +2212,7 @@ static void demo_camera_r04(e_mk_class* i_this) {
             return;
 
         case 10:
-            cLib_addCalcAngleS2(&i_this->prevPlShapeAngle, monkey_p->field_0x5c8 + (u16)-0x8000, 4, 0x800);
+            cLib_addCalcAngleS2(&i_this->prevPlShapeAngle, monkey_p->target_angle + (u16)-0x8000, 4, 0x800);
             player->setPlayerPosAndAngle(&player->current.pos, i_this->prevPlShapeAngle, 0);
 
             if (i_this->demoCamCounter != 60) {
