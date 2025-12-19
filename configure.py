@@ -634,7 +634,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_actor_tag.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_camera.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_actor_mng.cpp"),
-            Object(MatchingFor(ALL_GCN), "f_op/f_op_camera_mng.cpp"),
+            Object(MatchingFor(ALL_GCN), "f_op/f_op_camera_mng.cpp"), # ShieldD inlines
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_overlap.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_overlap_mng.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_overlap_req.cpp"),
@@ -643,8 +643,8 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "f_op/f_op_scene_mng.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_scene_req.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_scene_tag.cpp"),
-            Object(MatchingFor(ALL_GCN), "f_op/f_op_view.cpp"),
-            Object(MatchingFor(ALL_GCN), "f_op/f_op_kankyo.cpp"),
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_view.cpp"),
+            Object(MatchingFor(ALL_GCN), "f_op/f_op_kankyo.cpp"), # ShieldD lbl_8074C510 undefined
             Object(MatchingFor(ALL_GCN), "f_op/f_op_msg.cpp"), # ShieldD fopMsg::MemCheck
             Object(MatchingFor(ALL_GCN), "f_op/f_op_kankyo_mng.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_msg_mng.cpp"),

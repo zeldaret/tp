@@ -7,15 +7,18 @@
 #include "f_pc/f_pc_manager.h"
 
 static int fopScn_Draw(scene_class* i_this) {
-    return fpcNd_DrawMethod((nodedraw_method_class*)i_this->submethod, i_this);
+    int ret = fpcNd_DrawMethod((nodedraw_method_class*)i_this->submethod, i_this);
+    return ret;
 }
 
 static int fopScn_Execute(scene_class* i_this) {
-    return fpcMtd_Execute(i_this->submethod, i_this);
+    int ret = fpcMtd_Execute(i_this->submethod, i_this);
+    return ret;
 }
 
 static int fopScn_IsDelete(void* i_this) {
-    return fpcMtd_IsDelete(static_cast<scene_class*>(i_this)->submethod, i_this);
+    int ret = fpcMtd_IsDelete(static_cast<scene_class*>(i_this)->submethod, i_this);
+    return ret;
 }
 
 static int fopScn_Delete(void* i_this) {
