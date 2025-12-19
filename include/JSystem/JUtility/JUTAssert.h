@@ -62,11 +62,14 @@ namespace JUTAssertion {
     void setMessageCount(int);
 
     u32 getSDevice();
-    void showAssert(u32 device, const char * file, int line, const char * assertion);
     void showAssert_f(u32 device, const char* file, int line, const char* msg, ...);
     void setWarningMessage_f(u32 device, char * file, int line, const char * fmt, ...);
     void setLogMessage_f(u32 device, char* file, int line, const char* fmt, ...);
     void setConfirmMessage(u32 param_1, char* file, int line, bool param_4, const char* msg);
+
+    inline void showAssert(u32 device, const char* file, int line, const char* msg) {
+        showAssert_f(device, file, line, "%s", msg);
+    }
 };
 
 extern bool sAssertVisible;

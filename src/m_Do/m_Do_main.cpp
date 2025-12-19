@@ -89,10 +89,6 @@ static HeapCheck* HeapCheckTable[8] = {
     &ArchiveHeapCheck, &J2dHeapCheck,    &HostioHeapCheck, &CommandHeapCheck,
 };
 
-#if DEBUG
-mDoMain_HIO_c mDoMain_HIO;
-#endif
-
 void printFrameLine() {
     OSCalendarTime calendar;
     OSTime time = OSGetTime();
@@ -216,6 +212,10 @@ static u8 mPrintFrameLine;
 
 /* 80450B1A 0002+00 data_80450B1A None */
 static u8 mCheckHeap;
+
+#if DEBUG
+mDoMain_HIO_c mDoMain_HIO;
+#endif
 
 void debugDisplay() {
     static const char* desc1[5] = {
@@ -726,7 +726,7 @@ void main01(void) {
     #else
     const int audioHeapSize = 0x14D800;
     #endif
-    g_mDoAud_audioHeap = JKRCreateSolidHeap(audioHeapSize, JKRHeap::getCurrentHeap(), false);
+    g_mDoAud_audioHeap = JKRCreateSolidHeap(audioHeapSize, JKRGetCurrentHeap(), false);
 
     do {
         static u32 frame;
@@ -779,6 +779,8 @@ void main01(void) {
 }
 
 #if DEBUG
+JHIComPortManager<JHICmnMem>* JHIComPortManager<JHICmnMem>:: instance;
+
 // DEBUG NONMATCHING
 void parse_args(int argc, const char* argv[]) {
     int i;
@@ -885,7 +887,7 @@ void main(int argc, const char* argv[]) {
         } while (true);
     }
 
-    if (!(OSGetResetCode() >> 0x1F)) {
+    if (!((OSGetResetCode() & 0x80000000) ? 1 : 0)) {
         mDoRst::offReset();
         mDoRst::offResetPrepare();
         mDoRst::off3ButtonReset();
@@ -922,16 +924,14 @@ void main(int argc, const char* argv[]) {
         if (disk_id->gameVersion > 0x90) {
             mDoMain::developmentMode = 1;
         } else if (disk_id->gameVersion > 0x80) {
-            u32 consoleType = OSGetConsoleType();
-            mDoMain::developmentMode = (consoleType >> 0x1C) & 1;
+            mDoMain::developmentMode = (OSGetConsoleType() & OS_CONSOLE_DEVELOPMENT) != 0;
         } else {
             mDoMain::developmentMode = 0;
         }
     }
 
     OS_REPORT("メインスレッドを作成します\n");
-    s32 priority = OSGetThreadPriority(current_thread);
-    OSCreateThread(&mainThread, (void*(*)(void*))main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack), priority, 0);
+    OSCreateThread(&mainThread, (void*(*)(void*))main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack), OSGetThreadPriority(current_thread), 0);
     OSResumeThread(&mainThread);
     OS_REPORT("メインスレッドを起動しました <%x>\n", &mainThread);
     OSSetThreadPriority(current_thread, 0x1F);

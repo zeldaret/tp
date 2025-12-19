@@ -10,6 +10,7 @@
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
+#include "JSystem/JHostIO/JORServer.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_item.h"

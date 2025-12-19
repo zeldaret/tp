@@ -182,7 +182,9 @@ public:
     void startUpdateNode(JORReflexible* obj) { putNode(obj); }
 
     void genNodeSub(const char* label, JORReflexible* i_node, u32, u32);
-    void putNode(JORReflexible* obj);
+    void putNode(JORReflexible* obj) {
+        mOutputStream << (uintptr_t)obj;
+    }
     void invalidNode(JORReflexible* i_node, u32);
 
     void genControl(u32 type, u32 kind, const char* label, u32 style, u32 id,
@@ -304,8 +306,5 @@ public:
     /* 0x00000 */ u8 mBuffer[0x10000];
     /* 0x10000 */ JSUMemoryOutputStream mOutputStream;
 };
-
-JORMContext* attachJORMContext(u32);
-void releaseJORMContext(JORMContext*);
 
 #endif /* JORMCONTEXT_H */

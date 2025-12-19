@@ -6,6 +6,7 @@
 #include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/JHostIO/JORServer.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "SSystem/SComponent/c_malloc.h"

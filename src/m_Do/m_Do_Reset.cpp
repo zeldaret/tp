@@ -16,7 +16,7 @@
 static void my_OSCancelAlarmAll() {}
 
 static void destroyVideo() {
-    JUTVideo::destroyManager();
+    JUTDestroyVideoManager();
     GXSetDrawDoneCallback(NULL);
     VISetBlack(1);
     VIFlush();

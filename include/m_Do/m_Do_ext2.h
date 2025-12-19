@@ -12,7 +12,7 @@ public:
     void check();
     void diff();
 
-    static FixedMemoryCheck* easyCreate(void*, s32);
+    static FixedMemoryCheck* easyCreate(void* param_1, s32 param_2) { return easyCreate(param_1, u32(param_2)); }
     static FixedMemoryCheck* easyCreate(void*, u32);
     static void checkAll();
     static void diffAll();

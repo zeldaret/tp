@@ -8,13 +8,13 @@ class dDebugPad_c {
 public:
     dDebugPad_c();
 
-    bool Active();
+    bool Active() { return mIsActive; }
     bool Update();
     bool Report(int, int, JUtility::TColor, const char*, ...);
     bool Enable(s32);
     bool Trigger();
 
-    /* 0x0 */ u8 mIsActive;
+    /* 0x0 */ bool mIsActive;
     /* 0x1 */ u8 mTrigger;
     /* 0x4 */ s32 mMode;
 };
