@@ -54,7 +54,7 @@ public:
     void changeGroupLocal(s16);
     bool getStringLocal(u32, J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, char*,
                                        char*, char*, s16*);
-    u8 isGetItemMessage();
+    bool isGetItemMessage();
     bool isKanbanMessage();
     bool isHowlMessage();
     bool isMidonaMessage();
@@ -424,7 +424,7 @@ inline void dMsgObject_setTalkActor(fopAc_ac_c* actor) {
 inline bool dMsgObject_getString(u32 param_0, J2DTextBox* param_1, J2DTextBox* param_2,
                                  JUTFont* param_3, COutFont_c* param_4, char* param_5,
                                  char* param_6, char* param_7, s16* param_8) {
-    return dMsgObject_c::getString(param_0, param_1, param_2, param_3, param_4, param_5, param_6,
+    return dMsgObject_getMsgObjectClass()->getString(param_0, param_1, param_2, param_3, param_4, param_5, param_6,
                                    param_7, param_8);
 }
 
@@ -493,7 +493,7 @@ inline void dMsgObject_onMsgSend() {
 }
 
 inline bool dMsgObject_isFukidashiCheck() {
-    return dMsgObject_getMsgObjectClass()->getScrnDrawPtr() != NULL ? true : false;
+    return dMsgObject_getMsgObjectClass()->getScrnDrawPtr() == NULL ? false : true;
 }
 
 inline void* dMsgObject_getTalkHeap() {
