@@ -13,6 +13,10 @@
 static int fopKy_KANKYO_TYPE;
 // static int lbl_8074C510;
 
+void fopKy_IsKankyo(void* i_this) {
+    fpcM_IsJustType(fopKy_KANKYO_TYPE, ((kankyo_class*)i_this)->type);
+}
+
 static int fopKy_Draw(void* i_this) {
     int ret;
 

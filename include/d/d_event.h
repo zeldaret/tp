@@ -150,7 +150,22 @@ public:
 #endif
     }
 
-    BOOL isOrderOK() { return mEventStatus == 0 || mEventStatus == 2; }
+    BOOL isOrderOK() {
+        #if VERSION == VERSION_SHIELD_DEBUG
+        BOOL ret = FALSE;
+        BOOL order_ok = TRUE;
+
+        if (mEventStatus != 0 && mEventStatus != 2) {
+            order_ok = FALSE;
+        }
+        if (order_ok && mDebugStb == 0) {
+            ret = TRUE;
+        }
+        return ret;
+        #else
+        return mEventStatus == 0 || mEventStatus == 2;
+        #endif
+    }
 
     fopAc_ac_c* getPt1() { return convPId(mPt1); }
     fopAc_ac_c* getPt2() { return convPId(mPt2); }

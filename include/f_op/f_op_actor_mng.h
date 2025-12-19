@@ -478,15 +478,14 @@ inline f32 fopAcM_searchActorDistanceY(const fopAc_ac_c* actorA, const fopAc_ac_
     return actorB->current.pos.y - actorA->current.pos.y;
 }
 
-inline u16 fopAcM_GetSetId(const fopAc_ac_c* i_actor) {
+inline int fopAcM_GetSetId(const fopAc_ac_c* i_actor) {
     return i_actor->setID;
 }
 
 inline void dComIfGs_onActor(int bitNo, int roomNo);
 
 inline void fopAcM_onActor(const fopAc_ac_c* i_actor) {
-    int setId = fopAcM_GetSetId(i_actor);
-    dComIfGs_onActor(setId, fopAcM_GetHomeRoomNo(i_actor));
+    dComIfGs_onActor(fopAcM_GetSetId(i_actor), fopAcM_GetHomeRoomNo(i_actor));
 }
 
 inline void fopAcM_onDraw(fopAc_ac_c* i_actor) {
@@ -781,7 +780,7 @@ inline void fopAcM_seStartCurrentLevel(const fopAc_ac_c* actor, u32 sfxID, u32 p
                         dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
 }
 
-inline void fopAcM_offActor(fopAc_ac_c* i_actor, u32 flag) {
+inline void fopAcM_offActor(const fopAc_ac_c* i_actor, int flag) {
     dComIfGs_offActor(flag, fopAcM_GetHomeRoomNo(i_actor));
 }
 

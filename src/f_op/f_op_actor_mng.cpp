@@ -16,6 +16,7 @@
 #include "d/actor/d_a_tag_stream.h"
 #include "d/d_item.h"
 #include "d/d_path.h"
+#include "d/d_s_play.h"
 #include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_scene_mng.h"
@@ -107,7 +108,7 @@ fopAc_ac_c* fopAcM_FastCreate(s16 i_procName, FastCreateReqFunc i_createFunc, vo
 
 void fopAcM_setStageLayer(void* i_proc) {
     scene_class* stageProc = fopScnM_SearchByID(dStage_roomControl_c::getProcID());
-    JUT_ASSERT(0, stageProc != NULL);
+    JUT_ASSERT(367, stageProc != NULL);
 
     fpcM_ChangeLayerID(i_proc, fopScnM_LayerID(stageProc));
 }
@@ -115,7 +116,7 @@ void fopAcM_setStageLayer(void* i_proc) {
 void fopAcM_setRoomLayer(void* i_proc, int i_roomNo) {
     if (i_roomNo >= 0) {
         scene_class* roomProc = fopScnM_SearchByID(dStage_roomControl_c::getStatusProcID(i_roomNo));
-        JUT_ASSERT(0, roomProc != NULL);
+        JUT_ASSERT(390, roomProc != NULL);
 
         fpcM_ChangeLayerID(i_proc, fopScnM_LayerID(roomProc));
     }
@@ -283,13 +284,13 @@ fpc_ProcID fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentID, u
     s16 parent_angleY = parent_actor->current.angle.y;
 
     cXyz offset_pos;
+    csXyz offset_angle;
     if (i_pos == NULL) {
         offset_pos = cXyz::Zero;
     } else {
         offset_pos = *i_pos;
     }
 
-    csXyz offset_angle;
     if (i_angle == NULL) {
         offset_angle = csXyz::Zero;
     } else {
@@ -521,29 +522,32 @@ void fopAcM_setCullSizeSphere(fopAc_ac_c* i_actor, f32 i_minX, f32 i_minY, f32 i
 
 void fopAcM_setCullSizeBox2(fopAc_ac_c* i_actor, J3DModelData* i_modelData) {
     J3DJoint* jointNode = i_modelData->getJointNodePointer(0);
+    f32 minY, minZ, maxX, maxY, maxZ;
 
-    f32 minX = i_actor->scale.x * jointNode->getMin()->x;
-    f32 minY = i_actor->scale.y * jointNode->getMin()->y;
-    f32 minZ = i_actor->scale.z * jointNode->getMin()->z;
-    f32 maxX = i_actor->scale.x * jointNode->getMax()->x;
-    f32 maxY = i_actor->scale.y * jointNode->getMax()->y;
-    f32 maxZ = i_actor->scale.z * jointNode->getMax()->z;
+    maxZ = i_actor->scale.z * jointNode->getMax()->z;
+    maxY = i_actor->scale.y * jointNode->getMax()->y;
+    maxX = i_actor->scale.x * jointNode->getMax()->x;
+    minZ = i_actor->scale.z * jointNode->getMin()->z;
+    minY = i_actor->scale.y * jointNode->getMin()->y;
 
-    fopAcM_setCullSizeBox(i_actor, minX, minY, minZ, maxX, maxY, maxZ);
+    fopAcM_setCullSizeBox(i_actor, i_actor->scale.x * jointNode->getMin()->x, minY, minZ, maxX,
+                          maxY, maxZ);
 }
 
 bool fopAcM_addAngleY(fopAc_ac_c* i_actor, s16 i_target, s16 i_step) {
-    return cLib_chaseAngleS(&fopAcM_GetAngle_p(i_actor)->y, i_target, i_step);
+    csXyz* angle = fopAcM_GetAngle_p(i_actor);
+    return cLib_chaseAngleS(&angle->y, i_target, i_step);
 }
 
 void fopAcM_calcSpeed(fopAc_ac_c* i_actor) {
+    f32 xSpeed, ySpeed, zSpeed;
     f32 speedF = fopAcM_GetSpeedF(i_actor);
     f32 gravity = fopAcM_GetGravity(i_actor);
     cXyz* speed = fopAcM_GetSpeed_p(i_actor);
 
-    f32 xSpeed = speedF * cM_ssin(i_actor->current.angle.y);
-    f32 ySpeed = speed->y + gravity;
-    f32 zSpeed = speedF * cM_scos(i_actor->current.angle.y);
+    xSpeed = speedF * cM_ssin(i_actor->current.angle.y);
+    ySpeed = speed->y + gravity;
+    zSpeed = speedF * cM_scos(i_actor->current.angle.y);
 
     if (ySpeed < fopAcM_GetMaxFallSpeed(i_actor)) {
         ySpeed = fopAcM_GetMaxFallSpeed(i_actor);
@@ -580,7 +584,8 @@ s16 fopAcM_searchActorAngleX(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_act
 
     f32 x_dist = posB->x - posA->x;
     f32 z_dist = posB->z - posA->z;
-    return cM_atan2s(posB->y - posA->y, JMAFastSqrt(x_dist * x_dist + z_dist * z_dist));
+    f32 dist = JMAFastSqrt(x_dist * x_dist + z_dist * z_dist);
+    return cM_atan2s(posB->y - posA->y, dist);
 }
 
 s32 fopAcM_seenActorAngleY(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
@@ -814,13 +819,14 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
-                return mDoLib_clipper::clip(mtx_p, sphere->center, sphere->radius);
+                mDoLib_clipper::clip(mtx_p, sphere->center, sphere->radius); // !@bug return value unused
             }
         }
     }
 }
 
-void* event_second_actor(u16) {
+void* event_second_actor(u16 i_flag) {
+    (void)i_flag;
     return dComIfGp_getPlayer(0);
 }
 
@@ -880,15 +886,19 @@ s32 fopAcM_orderDoorEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_prio
         i_priority = 0xFF;
     }
 
-    s16 eventID = i_actorB->eventInfo.getEventId();
-    u8 toolID = i_actorB->eventInfo.getMapToolId();
+    s16 evid = i_actorB->eventInfo.getEventId();
+    u8 toolid = i_actorB->eventInfo.getMapToolId();
 
-    if (fopAcM_GetProfName(i_actorB) == 0x55 && toolID != 0xFF) {
-        eventID = dComIfGp_getEventManager().getEventIdx(i_actorA, NULL, toolID);
+    if (fopAcM_GetProfName(i_actorB) == 0x55) {
+        if (toolid != 0xFF) {
+            evid = dComIfGp_getEventManager().getEventIdx(i_actorA, NULL, toolid);
+        }
+    } else if (fopAcM_GetProfName(i_actorB) == 0xAB) {
     }
+    OS_REPORT("toolid<%d>evid<%d>\n", toolid, evid);
 
-    return dComIfGp_event_order(dEvt_type_DOOR_e, i_priority, i_flag, -1, i_actorA, i_actorB, eventID,
-                                toolID);
+    return dComIfGp_event_order(dEvt_type_DOOR_e, i_priority, i_flag, -1, i_actorA, i_actorB, evid,
+                                toolid);
 }
 
 s32 fopAcM_orderCatchEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_priority, u16 i_flag) {
@@ -976,6 +986,7 @@ s32 fopAcM_orderOtherEventId(fopAc_ac_c* i_actor, s16 i_eventID, u8 i_mapToolID,
     }
 
     u16 newPriority = 50;
+    u16 eventPrio;
     s32 roomNo = dComIfGp_roomControl_getStayNo();
     if (i_actor != NULL) {
         roomNo = fopAcM_GetRoomNo(i_actor);
@@ -984,7 +995,7 @@ s32 fopAcM_orderOtherEventId(fopAc_ac_c* i_actor, s16 i_eventID, u8 i_mapToolID,
     if (i_priority != 0) {
         newPriority = i_priority;
     } else if (i_actor != NULL) {
-        u16 eventPrio = dComIfGp_getEventManager().getEventPrio(i_actor, i_eventID);
+        eventPrio = dComIfGp_getEventManager().getEventPrio(i_actor, i_eventID);
 
         if (eventPrio != 0) {
             newPriority = eventPrio;
@@ -1018,10 +1029,12 @@ s32 fopAcM_orderMapToolEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_eventID, u16
     dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(param_1, roomNo);
     if (dt != NULL) {
         newPriority = dt->priority;
-
+        
         if (i_eventID == 0xFF) {
             i_eventID = dComIfGp_getEventManager().getEventIdx(i_actor, param_1);
         }
+    } else {
+        OS_REPORT("\x1b[31m%s: %d: fopAcM_orderMapToolEvent() マップデータがみつかりません\n\x1b[m", __FILE__, 2984); // "Map data could not be found."
     }
 
     if (i_flag & 0x100) {
@@ -1038,7 +1051,9 @@ s32 fopAcM_orderMapToolEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_eventID, u16
 
 s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_eventID, u16 param_3,
                                      u16 i_flag, u16 param_5) {
-    return fopAcM_orderMapToolEvent(i_actor, param_1, i_eventID, param_3, i_flag | 0x100, param_5);
+    u16 flag = i_flag;
+    flag = flag | 0x100;
+    return fopAcM_orderMapToolEvent(i_actor, param_1, i_eventID, param_3, flag, param_5);
 }
 
 s32 fopAcM_orderPotentialEvent(fopAc_ac_c* i_actor, u16 i_flag, u16 param_2, u16 i_priority) {
@@ -1087,11 +1102,13 @@ s32 fopAcM_orderTreasureEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_
                                 -1);
 }
 
-fopAc_ac_c* fopAcM_getTalkEventPartner(fopAc_ac_c const*) {
+fopAc_ac_c* fopAcM_getTalkEventPartner(fopAc_ac_c const* i_this) {
+    (void)i_this;
     return (fopAc_ac_c*)dComIfGp_event_getTalkPartner();
 }
 
-fopAc_ac_c* fopAcM_getItemEventPartner(fopAc_ac_c const*) {
+fopAc_ac_c* fopAcM_getItemEventPartner(fopAc_ac_c const* i_this) {
+    (void)i_this;
     return (fopAc_ac_c*)dComIfGp_event_getItemPartner();
 }
 
@@ -1106,9 +1123,11 @@ fopAc_ac_c* fopAcM_getEventPartner(fopAc_ac_c const* i_actor) {
 fpc_ProcID fopAcM_createItemForPresentDemo(cXyz const* i_pos, int i_itemNo, u8 param_2,
                                            int i_itemBitNo, int i_roomNo, csXyz const* i_angle,
                                            cXyz const* i_scale) {
+    JUT_ASSERT(3214, 0 <= i_itemNo && i_itemNo < 256);
     dComIfGp_event_setGtItm(i_itemNo);
 
     if (i_itemNo == fpcNm_ITEM_NONE) {
+        OS_REPORT("プレゼントデモ用なのに「ハズレ」です！[%d]\n", i_itemNo); // Even though it is for a Present Demo, it is a 'Miss'!
         return fpcM_ERROR_PROCESS_ID_e;
     }
 
@@ -1117,13 +1136,17 @@ fpc_ProcID fopAcM_createItemForPresentDemo(cXyz const* i_pos, int i_itemNo, u8 p
 
 fpc_ProcID fopAcM_createItemForTrBoxDemo(cXyz const* i_pos, int i_itemNo, int i_itemBitNo,
                                          int i_roomNo, csXyz const* i_angle, cXyz const* i_scale) {
-    dComIfGp_event_setGtItm(i_itemNo);
+   
+   JUT_ASSERT(3259, 0 <= i_itemNo && i_itemNo < 256);
+   dComIfGp_event_setGtItm(i_itemNo);
 
     if (i_itemNo == fpcNm_ITEM_NONE) {
+        OS_REPORT("ゲットデモ用なのに「ハズレ」です！[%d]\n", i_itemNo); // Even though it is for a Get Demo, it is a 'Miss'!
         return fpcM_ERROR_PROCESS_ID_e;
     }
 
-    return fopAcM_createDemoItem(i_pos, i_itemNo, i_itemBitNo, i_angle, i_roomNo, i_scale, 0);
+    u8 param_7 = 0;
+    return fopAcM_createDemoItem(i_pos, i_itemNo, i_itemBitNo, i_angle, i_roomNo, i_scale, param_7);
 }
 
 struct ItemTableList {
@@ -1369,7 +1392,7 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
 fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
                                    int param_5, const csXyz* i_angle, const cXyz* i_scale) {
     // clang-format off
-    JUT_ASSERT(0, 0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
+    JUT_ASSERT(4202, 0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
 
     csXyz item_angle(csXyz::Zero);
@@ -1387,49 +1410,53 @@ fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBi
 
     u8 item_no = check_itemno(i_itemNo);
     u32 params = MAKE_ITEM_PARAMS(item_no, i_itemBitNo, 0xFF, param_5);
+    fopAc_ac_c* ret;
 
     switch (i_itemNo) {
     case fpcNm_ITEM_RECOVERY_FAILY:
-        return fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
+        ret = fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
                                  NULL, NULL);
+        break;
 #if DEBUG
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0, FALSE);
+        JUT_ASSERT(4268, FALSE);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0, FALSE);
+        JUT_ASSERT(4272, FALSE);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0, FALSE);
+        JUT_ASSERT(4276, FALSE);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
     case fpcNm_ITEM_UTAWA_HEART:
-        return fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale,
+        ret = fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale,
                                  -1, NULL, NULL);
+        break;
     case fpcNm_ITEM_TRIPLE_HEART:
         for (int i = 0; i < 2; i++) {
-            fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1, NULL,
+            ret = fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1, NULL,
                               NULL);
             item_angle.y = cM_rndFX(0x7FFF);
         }
     default:
-        return fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1, NULL,
+        ret = fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1, NULL,
                                  NULL);
     }
+    return ret;
 }
 
 fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
                                   const csXyz* i_angle, const cXyz* i_scale, f32* i_speedF,
                                   f32* i_speedY, int i_itemBitNo, int param_9,
                                   createFunc i_createFunc) {
-    JUT_ASSERT(0, 0 <= i_itemNo && i_itemNo < 256);
+    JUT_ASSERT(4324, 0 <= i_itemNo && i_itemNo < 256);
 
     csXyz angle;
     if (i_itemNo == fpcNm_ITEM_NONE) {
@@ -1446,31 +1473,35 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
         *i_speedF = 2.0f * *i_speedF;
     }
 
+    fopAc_ac_c* ret;
+
     switch (i_itemNo) {
     case fpcNm_ITEM_RECOVERY_FAILY:
-        return fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
+        ret = fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
                                  NULL, NULL);
+        break;
 #if DEBUG
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0, FALSE);
+        JUT_ASSERT(4383, FALSE);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0, FALSE);
+        JUT_ASSERT(4387, FALSE);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0, FALSE);
+        JUT_ASSERT(4391, FALSE);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
     case fpcNm_ITEM_UTAWA_HEART:
-        return fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale,
+        ret = fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale,
                                  -1, NULL, NULL);
+        break;
     case fpcNm_ITEM_TRIPLE_HEART:
         for (i = 0; i < 2; i++) {
             if (i_angle != NULL) {
@@ -1502,25 +1533,26 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
         }
         angle.z = 0xFF;
 
-        fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo,
+        ret = fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo,
                                                            &angle, i_scale, -1, i_createFunc, NULL);
 
-        if (actor != NULL) {
+        if (ret != NULL) {
             if (i_speedF != NULL) {
-                actor->speedF = *i_speedF;
+                ret->speedF = *i_speedF;
             }
 
             if (i_speedY != NULL) {
-                actor->speed.y = *i_speedY;
+                ret->speed.y = *i_speedY;
             }
         }
-
-        return actor;
     }
+
+    return ret;
 }
 
 fpc_ProcID fopAcM_createBokkuri(u16 i_setId, const cXyz* i_pos, int i_itemNo, int i_itemBit,
                                 int i_roomNo, const cXyz* param_6, int i_itemType, int param_8) {
+    u32 params = 0;
     csXyz params_ex(0, 0, 0);
     if (param_6 != NULL) {
         params_ex.y = param_6->atan2sX_Z();
@@ -1528,7 +1560,6 @@ fpc_ProcID fopAcM_createBokkuri(u16 i_setId, const cXyz* i_pos, int i_itemNo, in
         param_8 = 1;
     }
 
-    u32 params = 0;
     daObjCarry_c::make_prm_bokkuri(&params, &params_ex, i_itemNo, i_itemBit, i_itemType, param_8);
     return fopAcM_create(PROC_Obj_Carry, i_setId, params, i_pos, i_roomNo, &params_ex, NULL, -1, NULL);
 }
@@ -1538,13 +1569,13 @@ fpc_ProcID fopAcM_createWarpHole(const cXyz* i_pos, const csXyz* i_angle, int i_
     if (param_6 == 0xFF) {
         param_6 = param_4;
     }
-    u32 actorParams;
-    make_prm_warp_hole(&actorParams, param_5, param_6, param_4);
-    return fopAcM_create(PROC_Obj_BossWarp, actorParams, i_pos, i_roomNo, i_angle, NULL, -1);
+    u32 actorParams = 0x17000000 + 0xFF;
+    u32 actorParamsOut =  actorParams | (param_5 << 0x1B) | (param_6 << 0x10) | (param_4 << 0x8);
+    return fopAcM_create(PROC_Obj_BossWarp, actorParamsOut, i_pos, i_roomNo, i_angle, NULL, -1);
 }
 
 void* enemySearchJugge(void* i_actor, void* i_data) {
-    if (i_actor != NULL && fopAc_IsActor(i_actor) && ((fopAc_ac_c*)i_actor)->group == fopAc_ENEMY_e)
+    if (i_actor != NULL && fopAcM_IsActor(i_actor) && fopAcM_GetGroup((fopAc_ac_c*)i_actor) == fopAc_ENEMY_e)
     {
         return i_actor;
     } else {
@@ -1553,14 +1584,13 @@ void* enemySearchJugge(void* i_actor, void* i_data) {
 }
 
 fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo) {
-    JUT_ASSERT(0, roomNo >= 0);
+    JUT_ASSERT(4659, roomNo >= 0);
 
-    int procID = dStage_roomControl_c::getStatusProcID(roomNo);
-    scene_class* roomProc = fopScnM_SearchByID(procID);
-    JUT_ASSERT(0, roomProc != NULL);
+    scene_class* roomProc = fopScnM_SearchByID(dStage_roomControl_c::getStatusProcID(roomNo));
+    JUT_ASSERT(4662, roomProc != NULL);
 
-    u32 actorID = ((daPy_py_c*)dComIfGp_getPlayer(0))->getGrabActorID();
-    fopAc_ac_c* actor = fopAcM_SearchByID(actorID);
+    daPy_py_c* player = (daPy_py_c*) dComIfGp_getPlayer(0);
+    fopAc_ac_c* actor = fopAcM_SearchByID(player->getGrabActorID());
 
     if (actor != NULL && fopAcM_GetGroup(actor) == 2) {
         return actor;
@@ -1571,9 +1601,11 @@ fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo) {
 
 fpc_ProcID fopAcM_createDisappear(const fopAc_ac_c* i_actor, const cXyz* i_pos, u8 i_size,
                                   u8 i_type, u8 i_enemyID) {
-    return fopAcM_GetID(fopAcM_fastCreate(
-        PROC_DISAPPEAR, (i_enemyID << 0x10) | (i_size << 0x8) | i_type, i_pos,
-        fopAcM_GetRoomNo(i_actor), &i_actor->current.angle, NULL, 0xFF, NULL, NULL));
+    u32 param = (i_enemyID << 0x10) | (i_size << 0x8) | i_type;
+    fopAc_ac_c* actor = fopAcM_fastCreate(
+        PROC_DISAPPEAR, param, i_pos, fopAcM_GetRoomNo(i_actor), &i_actor->current.angle, NULL, 0xFF,
+        NULL, NULL);
+    return fopAcM_GetID(actor);
 }
 
 void fopAcM_setCarryNow(fopAc_ac_c* i_actor, int param_1) {
@@ -1589,14 +1621,11 @@ void fopAcM_cancelCarryNow(fopAc_ac_c* i_actor) {
     if (fopAcM_checkCarryNow(i_actor)) {
         i_actor->actor_status &= ~0x2000;
 
-        s8 roomNo = fopAcM_GetHomeRoomNo(i_actor);
-        if (roomNo != -1) {
-            int procID = dStage_roomControl_c::getStatusProcID(fopAcM_GetRoomNo(i_actor));
-            scene_class* roomProc = fopScnM_SearchByID(procID);
-
-            if (roomProc != NULL) {
-                fopAcM_setRoomLayer(i_actor, fopAcM_GetRoomNo(i_actor));
-            }
+        if (fopAcM_GetHomeRoomNo(i_actor) != -1 &&
+            fopScnM_SearchByID(dStage_roomControl_c::getStatusProcID(fopAcM_GetRoomNo(i_actor))) !=
+                NULL)
+        {
+            fopAcM_setRoomLayer(i_actor, fopAcM_GetRoomNo(i_actor));
         }
 
         i_actor->shape_angle.z = 0;
@@ -1624,6 +1653,7 @@ BOOL fopAcM_otoCheck(fopAc_ac_c const* i_actor, f32 param_1) {
 
 BOOL fopAcM_otherBgCheck(fopAc_ac_c const* param_0, fopAc_ac_c const* param_1) {
     dBgS_LinChk linChk;
+    cXyz _;
     cXyz start;
     cXyz end;
 
@@ -1650,14 +1680,14 @@ BOOL fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
 
     start = param_0->current.pos;
     start.y += param_2;
-    mDoMtx_YrotS((MtxP)calc_mtx, param_0->shape_angle.y);
+    cMtx_YrotS((MtxP)calc_mtx, param_0->shape_angle.y);
 
     offset.x = 0.0f;
     offset.y = 50.0f;
     offset.z = param_1;
 
     MtxPosition(&offset, &end);
-    VECAdd(&end, &param_0->current.pos, &end);
+    end += param_0->current.pos;
 
     linChk.Set(&start, &end, param_0);
 
@@ -1669,7 +1699,8 @@ BOOL fopAcM_wayBgCheck(fopAc_ac_c const* param_0, f32 param_1, f32 param_2) {
 }
 
 BOOL fopAcM_plAngleCheck(fopAc_ac_c const* i_actor, s16 i_angle) {
-    s16 angle = i_actor->shape_angle.y - dComIfGp_getPlayer(0)->shape_angle.y;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    s16 angle = i_actor->shape_angle.y - player->shape_angle.y;
     if (angle <= i_angle && angle >= (s16)-i_angle) {
         return FALSE;
     }
@@ -1701,7 +1732,7 @@ void fopAcM_effSmokeSet1(u32* param_0, u32* param_1, cXyz const* param_2, csXyz 
                          f32 param_4, dKy_tevstr_c const* param_5, int param_6) {
     cXyz p2(param_2->x, param_2->y + 100.0f, param_2->z);
     if (fopAcM_gc_c::gndCheck(&p2)) {
-        p2.y = fopAcM_gc_c::getGroundY();
+        p2.y = fopAcM_gc_c::getGroundY() + TREG_F(7);
         cXyz stack_18(param_4, param_4, param_4);
         *param_0 =
             dComIfGp_particle_setSimpleFoot(*param_0, param_1, *fopAcM_gc_c::getGroundCheck(), &p2,
@@ -1725,7 +1756,8 @@ void fopAcM_effHamonSet(u32* param_0, cXyz const* param_1, f32 param_2, f32 emit
 }
 
 s32 fopAcM_riverStream(cXyz* param_0, s16* param_1, f32* param_2, f32 param_3) {
-    return 0;
+    int ret = 0;
+    return ret;
 }
 
 s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
@@ -1737,14 +1769,14 @@ s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
 
     start = player->current.pos;
     start.y = param_0->current.pos.y;
-    mDoMtx_YrotS((MtxP)calc_mtx, player->shape_angle.y);
+    cMtx_YrotS((MtxP)calc_mtx, player->shape_angle.y);
 
     offset.x = 0.0f;
     offset.y = param_0->current.pos.y - player->current.pos.y;
-    offset.z = 150.0f;
+    offset.z = 150.0f + AREG_F(17);
 
     MtxPosition(&offset, &end);
-    VECAdd(&end, &player->current.pos, &end);
+    end += player->current.pos;
 
     linChk.Set(&start, &end, param_0);
 
@@ -1786,11 +1818,12 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
     cXyz v1 = *pEyePos - camera->lookat.eye;
     cXyz v2;
     get_vectle_calc(&i_actor->tevStr.field_0x32c, pEyePos, &v2);
-    Vec half;
+    cXyz half;
     C_VECHalfAngle(&v1, &v2, &half);
     Mtx mtx;
     C_MTXLookAt(mtx, &cXyz::Zero, &cXyz::BaseY, &half);
-    mDoMtx_stack_c::scaleS(1.0, 1.0, 1.0);
+    f32 scale = 1.0f + IREG_F(0);
+    mDoMtx_stack_c::scaleS(scale, scale, 1.0); //
     static Mtx const mtx_adj = {
         {0.5f, 0.0f, 0.0f, 0.5f},
         {0.0f, -0.5f, 0.0f, 0.5f},
@@ -1798,19 +1831,19 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
     };
     mDoMtx_stack_c::concat(mtx_adj);
     mDoMtx_stack_c::concat(mtx);
-    MtxP currentMtx = mDoMtx_stack_c::get();
-    currentMtx[0][3] = 0.0;
-    currentMtx[1][3] = 0.0;
-    currentMtx[2][3] = 0.0;
+    mDoMtx_stack_c::get()[0][3] = 0.0;
+    mDoMtx_stack_c::get()[1][3] = 0.0;
+    mDoMtx_stack_c::get()[2][3] = 0.0;
 
     Mtx mtx2;
-    mDoMtx_copy(currentMtx, mtx2);
+    cMtx_copy(mDoMtx_stack_c::get(), mtx2);
     for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
         J3DMaterial* material = modelData->getMaterialNodePointer(i);
         for (u32 j = 0; j < 8; j++) {
             J3DTexMtx* texMtx = material->getTexMtx(j);
             if (texMtx != NULL) {
-                switch (texMtx->getTexMtxInfo().mInfo) {
+                J3DTexMtxInfo* info = &texMtx->getTexMtxInfo();
+                switch (info->mInfo) {
                 case 6:
                     texMtx->setEffectMtx(mtx2);
                     break;
@@ -1827,11 +1860,11 @@ const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
 }
 
 static const fopAc_ac_c* fopAcM_findObjectCB(fopAc_ac_c const* i_actor, void* i_data) {
-    fopAcM_search_prm* prm = (fopAcM_search_prm*)i_data;
-
     if (!fopAcM_IsExecuting(fopAcM_GetID(i_actor))) {
         return NULL;
     }
+
+    fopAcM_search_prm* prm = (fopAcM_search_prm*)i_data;
 
     if (prm->procname == fopAcM_GetProfName(i_actor) && prm->argument == i_actor->argument) {
         if (prm->prm0 == 0 || prm->prm1 == (prm->prm0 & fopAcM_GetParam(i_actor))) {
@@ -1881,9 +1914,9 @@ fopAc_ac_c* fopAcM_searchFromName4Event(char const* i_name, s16 i_eventID) {
     char* chr = strchr(prm.name, ':');
     if (chr != NULL) {
         chr[0] = 0;
+        chr++;
         prm.event_id = 0;
 
-        chr++;
         for (; *chr != 0; chr++) {
             if (*chr < '0' || *chr > '9') {
                 prm.event_id = 0xFFFF;
@@ -1932,8 +1965,8 @@ void fpoAcM_relativePos(fopAc_ac_c const* i_actor, cXyz const* i_pos, cXyz* o_po
 
 s32 fopAcM_getWaterStream(cXyz const* pos, cBgS_PolyInfo const& polyinfo, cXyz* speed,
                           int* power, BOOL param_4) {
-    daTagStream_c* stream = daTagStream_c::getTop();
-    if (stream != NULL) {
+    daTagStream_c* stream;
+    if (daTagStream_c::getTop() != NULL) {
         for (stream = daTagStream_c::getTop(); stream != NULL; stream = stream->getNext()) {
             if (stream->checkStreamOn() && (!param_4 || stream->checkCanoeOn()) &&
                 stream->checkArea(pos))
@@ -1977,6 +2010,7 @@ s16 fopAcM_getPolygonAngle(cBgS_PolyInfo const& poly, s16 param_1) {
 
 s16 fopAcM_getPolygonAngle(cM3dGPla const* p_plane, s16 param_1) {
     if (p_plane == NULL) {
+        JUT_ASSERT(5810, FALSE);
         return 0;
     }
 

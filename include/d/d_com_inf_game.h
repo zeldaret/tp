@@ -3624,7 +3624,7 @@ inline int dComIfGp_event_order(u16 i_type, u16 i_prio, u16 i_flags, u16 i_hindF
                                                     i_targetActor, i_eventID, i_mapToolId);
 }
 
-inline void dComIfGp_event_setGtItm(int i_itemNo) {
+inline void dComIfGp_event_setGtItm(u8 i_itemNo) {
     g_dComIfG_gameInfo.play.getEvent().setGtItm(i_itemNo);
 }
 
