@@ -9,6 +9,7 @@
 #include "JSystem/JAudio2/JASProbe.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dolphin/dsp.h"
+#include "stdint.h"
 
 JASAudioThread::JASAudioThread(int stackSize, int msgCount, u32 threadPriority)
     : 
@@ -60,7 +61,7 @@ void* JASAudioThread::run() {
 
     while (true) {
         OSMessage msg = waitMessageBlock();
-        switch ((int)msg) {
+        switch ((intptr_t)msg) {
         case AUDIOMSG_DMA:
             if (sbPauseFlag) {
                 JASDriver::stopDMA();

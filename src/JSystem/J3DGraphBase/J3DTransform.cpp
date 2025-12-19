@@ -101,7 +101,7 @@ void J3DCalcYBBoardMtx(Mtx mtx) {
 	mtx[2][2] = vec.z * z;
 }
 
-asm void J3DPSCalcInverseTranspose(__REGISTER Mtx src, __REGISTER Mtx33 dst) {
+ASM void J3DPSCalcInverseTranspose(__REGISTER Mtx src, __REGISTER Mtx33 dst) {
 #ifdef __MWERKS__ // clang-format off
 	psq_l    f0, 0(src), 1, 0
 	psq_l    f1, 4(src), 0, 0
@@ -290,7 +290,7 @@ void J3DGetTextureMtxMayaOld(const J3DTextureSRTInfo& srt, Mtx dst) {
 	dst[2][2] = 1.0f;
 }
 
-asm void J3DScaleNrmMtx(__REGISTER Mtx mtx, const __REGISTER Vec& scl) {
+ASM void J3DScaleNrmMtx(__REGISTER Mtx mtx, const __REGISTER Vec& scl) {
 #ifdef __MWERKS__ // clang-format off
 	nofralloc;
 
@@ -326,7 +326,7 @@ asm void J3DScaleNrmMtx(__REGISTER Mtx mtx, const __REGISTER Vec& scl) {
 #endif // clang-format on
 }
 
-asm void J3DScaleNrmMtx33(__REGISTER Mtx33 mtx, const __REGISTER Vec& scale) {
+ASM void J3DScaleNrmMtx33(__REGISTER Mtx33 mtx, const __REGISTER Vec& scale) {
 #ifdef __MWERKS__ // clang-format off
 	psq_l    f0, 0(mtx), 0, 0
 	psq_l    f6, 0(scale), 0, 0
@@ -352,7 +352,7 @@ asm void J3DScaleNrmMtx33(__REGISTER Mtx33 mtx, const __REGISTER Vec& scale) {
 #endif // clang-format on
 }
 
-asm void J3DMtxProjConcat(__REGISTER Mtx mtx1, __REGISTER Mtx mtx2, __REGISTER Mtx dst) {
+ASM void J3DMtxProjConcat(__REGISTER Mtx mtx1, __REGISTER Mtx mtx2, __REGISTER Mtx dst) {
 #ifdef __MWERKS__ // clang-format off
 	psq_l    f2, 0(mtx1), 0, 0
 	psq_l    f3, 8(mtx1), 0, 0

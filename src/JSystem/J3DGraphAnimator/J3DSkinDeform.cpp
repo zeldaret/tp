@@ -274,7 +274,7 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* pModelData) {
             u8* pDListPos = pDList;
             int uVar13;
             for (;
-                (int)pDListPos - (int)pDList < pModelData->getShapeNodePointer(i)->getShapeDraw(j)->getDisplayListSize();
+                (intptr_t)pDListPos - (intptr_t)pDList < pModelData->getShapeNodePointer(i)->getShapeDraw(j)->getDisplayListSize();
                 pDListPos += r23 * uVar13
                 //TODO: This loop's logic has drastically different codegen between GCN and Shield
                 //      in a way that so far can't be pinned down as just compiler differences. This
@@ -388,8 +388,8 @@ void J3DSkinDeform::changeFastSkinDL(J3DModelData* pModelData) {
                     dl = (u8*)dl + vtxSize * vtxCount;
                 }
 
-                int dlistSize = ((int)dst - (int)displayListStart + 0x1f) & ~0x1f;
-                while ((int)dst - (int)displayListStart < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
+                int dlistSize = ((intptr_t)dst - (intptr_t)displayListStart + 0x1f) & ~0x1f;
+                while ((intptr_t)dst - (intptr_t)displayListStart < pShapeNode->getShapeDraw(j)->getDisplayListSize()) {
                     *dst++ = 0;
                 }
 

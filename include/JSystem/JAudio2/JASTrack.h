@@ -181,7 +181,7 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     /* 0x000 */ JASSeqCtrl mSeqCtrl;
     /* 0x05C */ JASTrackPort mTrackPort;
     /* 0x080 */ JASRegisterParam mRegisterParam;
-    /* 0x09C */ union {
+    /* 0x09C */ union MoveParam_u {
         struct {
             MoveParam_ volume;
             MoveParam_ pitch;
@@ -191,6 +191,7 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
             MoveParam_ distFilter;
         } params;
         MoveParam_ array[6];
+        MoveParam_u() {}
     } mMoveParam;
     /* 0x0e4 */ JASOscillator::Data mOscParam[2];
     /* 0x114 */ JASOscillator::Point mOscPoint[4];

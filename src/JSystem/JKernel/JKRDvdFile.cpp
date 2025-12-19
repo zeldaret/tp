@@ -3,6 +3,7 @@
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
+#include "stdint.h"
 
 JSUList<JKRDvdFile> JKRDvdFile::sDvdList;
 
@@ -123,7 +124,7 @@ s32 JKRDvdFile::sync(void) {
     OSReceiveMessage(&mMessageQueue2, &message, 1);
     mOSThread = NULL;
     OSUnlockMutex(&mMutex1);
-    return (int)message;
+    return (intptr_t)message;
 }
 
 void JKRDvdFile::doneProcess(s32 id, DVDFileInfo* fileInfo) {

@@ -6,6 +6,7 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "dolphin/gx.h"
+#include "stdint.h"
 
 JUTCacheFont::JUTCacheFont(ResFONT const* p_fontRes, u32 cacheSize, JKRHeap* p_heap) {
     initialize_state();
@@ -424,18 +425,18 @@ void JUTCacheFont::invalidiateAllCache() {
         if (uVar2 == 0) {
             iVar1 = 0;
         } else {
-            iVar1 = (int)piVar3 - field_0x94;
+            iVar1 = (intptr_t)piVar3 - field_0x94;
         }
         *piVar3 = iVar1;
         if (uVar2 == mCachePage - 1) {
             iVar1 = 0;
         } else {
-            iVar1 = (int)piVar3 + field_0x94;
+            iVar1 = (intptr_t)piVar3 + field_0x94;
         }
         piVar3[1] = iVar1;
-        piVar3 = (int*)((int)piVar3 + field_0x94);
+        piVar3 = (int*)((intptr_t)piVar3 + field_0x94);
     }
-    field_0xa8 = (int)piVar3 - field_0x94;
+    field_0xa8 = (intptr_t)piVar3 - field_0x94;
     field_0xa4 = (TGlyphCacheInfo*)mCacheBuffer;
     field_0x9c = NULL;
     field_0xa0 = NULL;

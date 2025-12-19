@@ -92,7 +92,7 @@ struct TParseValue : public Parser {
     }
 
     static const void* advance(const void* data, s32 advanceNum) {
-        return (char*)data + (advanceNum * sizeof(Parser::ParseType));
+        return (char*)data + (advanceNum * sizeof(typename Parser::ParseType));
     }
 };
 

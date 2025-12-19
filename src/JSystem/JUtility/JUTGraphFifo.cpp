@@ -2,6 +2,7 @@
 
 #include "JSystem/JUtility/JUTGraphFifo.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "stdint.h"
 
 static bool data_804514B8;
 
@@ -16,7 +17,7 @@ JUTGraphFifo::JUTGraphFifo(u32 size) {
         GXInitFifoPtrs(mFifo, mBase, mBase);
     } else {
         mBase = JKRAllocFromSysHeap(mSize + 0xA0, 32);
-        mBase = (void*)((int)mBase + 0x1F & ~0x1F);
+        mBase = (void*)((intptr_t)mBase + 0x1F & ~0x1F);
         mFifo = GXInit(mBase, mSize);
         data_804514B8 = true;
         sCurrentFifo = this;

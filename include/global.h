@@ -131,4 +131,10 @@ static const float INF = 2000000000.0f;
 #define SJIS(character, value) ((u32)value)
 #endif
 
+#ifdef __MWERKS__
+#define ASM asm
+#else
+#define ASM
+#endif
+
 #endif

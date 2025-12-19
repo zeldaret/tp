@@ -18,10 +18,10 @@ void JUTTexture::storeTIMG(ResTIMG const* param_0, u8 param_1) {
 
     if (param_0 && param_1 < 0x10) {
         mTexInfo = param_0;
-        mTexData = (void*)((int)mTexInfo + mTexInfo->imageOffset);
+        mTexData = (void*)((intptr_t)mTexInfo + mTexInfo->imageOffset);
 
         if (mTexInfo->imageOffset == 0) {
-            mTexData = (void*)((int)mTexInfo + 0x20);
+            mTexData = (void*)((intptr_t)mTexInfo + 0x20);
         }
 
         field_0x2c = NULL;
