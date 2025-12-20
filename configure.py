@@ -935,7 +935,7 @@ config.libs = [
     JSystemLib(
         "JFramework",
         [
-            Object(MatchingFor("ShieldD"), "JSystem/JFramework/JFWSystem.cpp"), # retail-only regalloc
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JFramework/JFWSystem.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JFramework/JFWDisplay.cpp"),
         ],
     ),

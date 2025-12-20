@@ -60,7 +60,6 @@ JUTConsole* JFWSystem::systemConsole;
 
 bool JFWSystem::sInitCalled = false;
 
-// NONMATCHING - regalloc, equivalent
 void JFWSystem::init() {
     JUT_ASSERT(101, sInitCalled == false);
 
