@@ -298,7 +298,9 @@ static int specialType[42];
 
 static int Stage;
 
+#if WIDESCREEN_SUPPORT
 static f32 WideTurnSaving = 0.86f + OREG_F(1);
+#endif
 
 inline static u32 check_owner_action(u32 param_0, u32 param_1) {
     return dComIfGp_checkPlayerStatus0(param_0, param_1);
@@ -9425,7 +9427,6 @@ int dCamera_c::Reset() {
     return 1;
 }
 
-// NONMATCHING - minor regalloc
 f32 dCamera_c::shakeCamera() {
     static f32 const wave[] = {0.4f, 0.9f, 2.1f, 3.2f};
 
