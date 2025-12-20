@@ -460,7 +460,7 @@ void myExceptionCallback(u16, OSContext*, u32, u32) {
         }
     }
     DVDChangeDir("/map/Final/Release");
-    JUTVideo::destroyManager();
+    JUTDestroyVideoManager();
     GXSetDrawDoneCallback(NULL);
     VISetBlack(0);
     VIFlush();

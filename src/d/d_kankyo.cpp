@@ -5,6 +5,7 @@
 #include <dolphin/gf/GFPixel.h>
 
 #include "JSystem/JHostIO/JORFile.h"
+#include "JSystem/JHostIO/JORServer.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"

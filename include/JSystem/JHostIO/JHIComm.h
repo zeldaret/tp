@@ -9,7 +9,7 @@ public:
     void init(JHICommonMem*, u32, u32, u32);
     int load();
 
-    u32 getMsgBufSize();
+    u32 getMsgBufSize() { return m_msgBufSize; }
 
     /* 0x00 */ JHICommonMem* mp_memBuffer;
     /* 0x04 */ u32 field_0x4;
@@ -47,7 +47,9 @@ public:
     int writeBegin();
     void writeEnd();
     int write(void*, int);
-    
+
+    void init() { m_header.init(); }
+
     /* 0x00 */ Header m_header;
     /* 0x38 */ JHIMemBuf* mp_memBuffer;
 };
@@ -55,13 +57,20 @@ public:
 class JHICommBufReader {
 public:
     struct Header : public JHICommBufHeader {
-        int load();
         void updateGetAdrs();
         u32 getReadableSize() const;
         void addGetAdrs(int);
         u32 getGetAdrs() const;
         void alignGetAdrs();
         int getContSize();
+
+        int load() {
+            int result = JHICommBufHeader::load();
+            if (!result) {
+                field_0x30 = field_0xc;
+            }
+            return result;
+        }
 
         /* 0x30 */ u32 field_0x30;
     };
@@ -71,8 +80,17 @@ public:
     void readEnd();
     int read(void*, int);
 
-    u32 available() { return m_header.load() ? 0xFFFFFFFF : m_header.getReadableSize(); }
-    
+    u32 getMsgBufSize() { return m_header.getMsgBufSize(); }
+    void init() { m_header.init(); }
+
+    u32 available() {
+        if (m_header.load()) {
+            return 0xFFFFFFFF;
+        } else {
+            return m_header.getReadableSize();
+        }
+    }
+
     /* 0x00 */ Header m_header;
     /* 0x34 */ JHIMemBuf* mp_memBuffer;
 };
@@ -81,10 +99,24 @@ struct JHICmnMem {
     u32 sendBegin() { return mp_writeBuf->writeBegin(); }
     int sendCont(const void* param_0, int param_1) { return mp_writeBuf->write((void*)param_0, param_1); }
     void sendEnd() { mp_writeBuf->writeEnd(); }
+    u32 available() { return mp_readBuf->available(); }
+    u32 getMaxReaderableSize() { return mp_readBuf->getMsgBufSize(); }
 
     void setBuf(JHICommBufReader* pReader, JHICommBufWriter* pWriter) {
         mp_readBuf = pReader;
         mp_writeBuf = pWriter;
+    }
+
+    void initBuffers() {
+        mp_readBuf->init();
+        mp_writeBuf->init();
+    }
+
+    int receive(void* param_1, int param_2) {
+        int result = 0;
+        result = mp_readBuf->read(param_1, param_2);
+        mp_readBuf->readEnd();
+        return result;
     }
 
     /* 0x0 */ JHICommBufReader* mp_readBuf;

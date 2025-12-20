@@ -7,6 +7,7 @@
 
 #include "d/d_meter_map.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "JSystem/JHostIO/JORServer.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_map.h"
 #include "d/d_menu_window.h"

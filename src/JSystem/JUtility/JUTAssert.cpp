@@ -130,10 +130,6 @@ void showAssert_f(u32 device, const char* file, int line, const char* msg, ...) 
     va_end(args);
 }
 
-void showAssert(u32 device, const char* file, int line, const char* msg) {
-    showAssert_f(device, file, line, "%s", msg);
-}
-
 void setWarningMessage_f_va(u32 device, const char* file, int line, const char* msg, va_list args) {
     u32 messageLife = sMessageLife;
     bool r26 = false;
