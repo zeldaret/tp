@@ -33,7 +33,7 @@ typedef struct dMsgUnit_inf1_section_t {
     /* 0x08 */ u16 entryCount;
     /* 0x0A */ u16 entryLength;
     /* 0x0C */ u16 msgArchiveId;
-    /* 0x0E */ dMsgUnit_inf1_entry entries[0];
+    /* 0x10 */ dMsgUnit_inf1_entry entries[0];
 } dMsgUnit_inf1_section_t;
 
 dMsgUnit_c::dMsgUnit_c() {}
@@ -244,7 +244,6 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
     }
 
     if (i_type == 3 && param_4 == true) {
-        (void)seconds; // dummy use to force into register instead of stack
         f32 iVar8b;
         f32 dayTime = g_env_light.getDaytime();
         f32 hour = dayTime / 15.0f;
@@ -269,7 +268,7 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
             str1_section_t* pStrAttributeBlock = NULL;
             int filepos = sizeof(bmg_header_t);
             u32 filesize = pHeader->size;
-            u8* pSection = (((u8*)pHeader) + filepos);
+            u8* pSection = ((u8*)pHeader) + filepos;
 
             for (; filepos < filesize; filepos += ((bmg_section_t*)pSection)->size) {
                 switch (((bmg_section_t*)pSection)->magic) {
@@ -300,7 +299,6 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
             u16 vals[14];
             vals[0] = entriesInf->startFrame;
             vals[1] = entriesInf->endFrame;
-            (void)entriesInf;  // dummy use to force into register instead of stack
             str1_entry_t* entriesStr = pStrAttributeBlock->entries;
 #else
             u32 dat1EntryOffset = ((dMsgUnit_inf1_section_t*)pInfoBlock)->entries[i_type].dat1EntryOffset;
