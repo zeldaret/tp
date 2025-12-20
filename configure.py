@@ -777,7 +777,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_insect.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_obj_ss_base.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_player.cpp"),
-            Object(NonMatching, "d/d_camera.cpp"),
+            Object(Equivalent, "d/d_camera.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN), "d/d_envse.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_file_select.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_file_sel_warning.cpp"),
