@@ -825,7 +825,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_msg_out_font.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_class.cpp"),
             Object(Equivalent, "d/d_msg_object.cpp"), # weak func order
-            Object(MatchingFor("GZ2P01", "GZ2J01"), "d/d_msg_unit.cpp"),
+            Object(MatchingFor(ALL_GCN), "d/d_msg_unit.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_scrn_3select.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_scrn_arrow.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_scrn_base.cpp"),
