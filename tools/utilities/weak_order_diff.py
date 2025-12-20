@@ -56,8 +56,11 @@ def get_symbols(o_path: Path, diff_data: bool):
 
 
 def print_symbols_with_unmatched_order_for_object(
-    relative_o_path: str, version: str, diff_data: bool
+    src_path: str, version: str, diff_data: bool
 ):
+    assert src_path.startswith("src/")
+    relative_o_path = src_path[len("src/"):]
+    relative_o_path = relative_o_path.rsplit(".")[0] + ".o"
     target_o = Path("build") / version / "obj" / relative_o_path
     base_o = Path("build") / version / "src" / relative_o_path
     if not target_o.exists():
@@ -99,11 +102,11 @@ def main():
         description="Print differences in weak function order for an object."
     )
     parser.add_argument(
-        "o_path",
+        "src_path",
         type=str,
-        default="d/actor/d_a_alink.o",
+        default="src/d/actor/d_a_alink.cpp",
         nargs="?",
-        help="""relative path to the object file to diff (e.g. d/actor/d_a_alink.o).""",
+        help="""relative path to the source file to diff (e.g. src/d/actor/d_a_alink.cpp).""",
     )
     parser.add_argument(
         "-v",
@@ -119,7 +122,7 @@ def main():
     )
     args = parser.parse_args()
 
-    print_symbols_with_unmatched_order_for_object(args.o_path, args.version, args.data)
+    print_symbols_with_unmatched_order_for_object(args.src_path, args.version, args.data)
 
 
 if __name__ == "__main__":
