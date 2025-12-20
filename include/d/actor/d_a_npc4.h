@@ -409,7 +409,6 @@ public:
 class daNpcF_MoveBgActor_c : public daNpcF_c {
 private:
 public:
-    ~daNpcF_MoveBgActor_c() {}
     virtual bool CreateHeap() { return true; }
     virtual bool Create() { return true; }
     virtual bool Execute(Mtx**) { return true; }

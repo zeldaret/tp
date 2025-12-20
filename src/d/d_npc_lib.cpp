@@ -29,7 +29,6 @@ void dNpcLib_lookat_c::init(J3DModel* i_mdl_p, int* param_1, csXyz* param_2, csX
     }
 }
 
-// NONMATCHING - regswap, equivalent
 void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, Mtx param_3, int param_4) {
     cXyz sp90;
 
@@ -63,6 +62,7 @@ void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, M
 
     cXyz sp84;
     cXyz sp78;
+    s16 sp1A, sp18, sp16, sp14;
 
     f32 var_f30 = 0.0f;
     f32 var_f31 = 1.0f;
@@ -76,11 +76,11 @@ void dNpcLib_lookat_c::action(cXyz param_0, cXyz param_1, fopAc_ac_c* param_2, M
             if (!sp78.isZero()) {
                 sp78.normalize();
 
-                s16 sp1A = -cM_atan2s(sp84.y, sp84.absXZ());
-                s16 sp18 = cM_atan2s(sp84.x, sp84.z);
+                sp1A = -cM_atan2s(sp84.y, sp84.absXZ());
+                sp18 = cM_atan2s(sp84.x, sp84.z);
 
-                s16 sp16 = -cM_atan2s(sp78.y, sp78.absXZ());
-                s16 sp14 = cM_atan2s(sp78.x, sp78.z);
+                sp16 = -cM_atan2s(sp78.y, sp78.absXZ());
+                sp14 = cM_atan2s(sp78.x, sp78.z);
 
                 field_0x4c[i].x += (s16)(var_f31 * (f32)(sp1A - sp16));
                 field_0x4c[i].y += (s16)(var_f31 * (f32)(sp18 - sp14));

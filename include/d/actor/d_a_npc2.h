@@ -165,7 +165,6 @@ public:
         return ret;
     }
 
-    virtual ~daBaseNpc_moveBgActor_c() {}
     virtual int CreateHeap() { return 1; }
     virtual int Create() { return 1; }
     virtual int Execute(Mtx**) { return 1; }

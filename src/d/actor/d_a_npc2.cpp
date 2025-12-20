@@ -275,7 +275,6 @@ void daBaseNpc_lookat_c::limitter(s16 i_value, s16* o_value_p, s16 i_max, s16 i_
     *o_value_p = 0;
 }
 
-// NONMATCHING - regalloc, equivalent ? (matches debug)
 void daBaseNpc_lookat_c::calc(fopAc_ac_c* param_0, Mtx param_1, s16 param_2) {
     if (mpAttnPos == NULL) {
         for (int i = 0; i < 4; i++) {
@@ -335,6 +334,7 @@ void daBaseNpc_lookat_c::calc(fopAc_ac_c* param_0, Mtx param_1, s16 param_2) {
     csXyz sp2C;
     cXyz sp94;
     cXyz sp88;
+    s16 sp16, sp14, sp12, sp10;
 
     for (int i = 2; i >= -1; i--) {
         sp2C = csXyz::Zero;
@@ -368,7 +368,6 @@ void daBaseNpc_lookat_c::calc(fopAc_ac_c* param_0, Mtx param_1, s16 param_2) {
 
                 if (!sp88.isZero()) {
                     sp88.normalize();
-                    s16 sp16, sp14, sp12, sp10;
                     sp16 = -cM_atan2s(sp94.y, sp94.absXZ());
                     sp12 = cM_atan2s(sp94.x, sp94.z);
                     sp14 = -cM_atan2s(sp88.y, sp88.absXZ());

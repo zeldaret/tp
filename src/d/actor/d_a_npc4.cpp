@@ -2131,16 +2131,8 @@ void daNpcF_clearMessageTmpBit() {
 }
 
 // TODO: dummy to generate weak functions, proper fix later
-static void dummyVirtual(daNpcF_MoveBgActor_c* dummy) {
-    dummy->~daNpcF_MoveBgActor_c();
-    dummy->CreateHeap();
-    dummy->Create();
-    dummy->Execute(NULL);
-    dummy->Draw();
-    dummy->Delete();
-    dummy->IsDelete();
-    dummy->ToFore();
-    dummy->ToBack();
+static void dummyVirtual() {
+    daNpcF_MoveBgActor_c dummy;
 }
 
 dCcD_SrcGObjInf const daBaseNpc_c::mCcDObj = {
