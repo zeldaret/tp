@@ -40,7 +40,6 @@ dMsgUnit_c::dMsgUnit_c() {}
 
 dMsgUnit_c::~dMsgUnit_c() {}
 
-// NONMATCHING - regalloc
 #if REGION_JPN
 void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
     *o_buffer = 0;
@@ -265,7 +264,7 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
 
         if (!stack9) {
             bmg_header_t* pHeader = (bmg_header_t*)dMeter2Info_getMsgUnitResource();
-            dMsgUnit_inf1_section_t* pInfoBlock = NULL;
+            bmg_section_t* pInfoBlock = NULL;
             const void* pMsgDataBlock = NULL;
             str1_section_t* pStrAttributeBlock = NULL;
             int filepos = sizeof(bmg_header_t);
@@ -279,7 +278,7 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
                 case 'FLI1':
                     break;
                 case 'INF1':
-                    pInfoBlock = (dMsgUnit_inf1_section_t*)pSection;
+                    pInfoBlock = pSection;
                     break;
                 case 'DAT1':
                     pMsgDataBlock = pSection;
@@ -295,7 +294,7 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
             // but the normal build doesn't really work with that. Same for pInfoBlock->entries.
 
 #if DEBUG
-            dMsgUnit_inf1_entry* entriesInf = &pInfoBlock->entries[i_type];
+            dMsgUnit_inf1_entry* entriesInf = &((dMsgUnit_inf1_section_t*)pInfoBlock)->entries[i_type];
             u32 dat1EntryOffset = entriesInf->dat1EntryOffset;
             const char* uVar5;
             u16 vals[14];
@@ -304,11 +303,11 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
             (void)entriesInf;  // dummy use to force into register instead of stack
             str1_entry_t* entriesStr = pStrAttributeBlock->entries;
 #else
-            u32 dat1EntryOffset = pInfoBlock->entries[i_type].dat1EntryOffset;
+            u32 dat1EntryOffset = ((dMsgUnit_inf1_section_t*)pInfoBlock)->entries[i_type].dat1EntryOffset;
             const char* uVar5;
             u16 vals[14];
-            vals[0] = pInfoBlock->entries[i_type].startFrame;
-            vals[1] = pInfoBlock->entries[i_type].endFrame;
+            vals[0] = ((dMsgUnit_inf1_section_t*)pInfoBlock)->entries[i_type].startFrame;
+            vals[1] = ((dMsgUnit_inf1_section_t*)pInfoBlock)->entries[i_type].endFrame;
 #endif
 
 #if REGION_PAL
