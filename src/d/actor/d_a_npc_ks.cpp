@@ -451,14 +451,14 @@ static fopAc_ac_c* search_enemy(npc_ks_class* i_this, int param_2, f32 param_3) 
     }
 
     if (target_info_count != 0) {
-        cXyz sp68, unused_cxyz;
+        cXyz mae, unused_cxyz;
         int i = 0;
         while (i < target_info_count) {
             enemy_p = (fopAc_ac_c*)target_info[i];
-            sp68.x = enemy_p->current.pos.x - actor->eyePos.x;
-            sp68.y = (enemy_p->current.pos.y + 50.0f) - actor->eyePos.y;
-            sp68.z = enemy_p->current.pos.z - actor->eyePos.z;
-            f32 square_root = JMAFastSqrt(sp68.x * sp68.x + sp68.z * sp68.z);
+            mae.x = enemy_p->current.pos.x - actor->eyePos.x;
+            mae.y = (enemy_p->current.pos.y + 50.0f) - actor->eyePos.y;
+            mae.z = enemy_p->current.pos.z - actor->eyePos.z;
+            f32 square_root = JMAFastSqrt(mae.x * mae.x + mae.z * mae.z);
             if (square_root < fVar1) {
                 if (param_2 == 0) {
                     return enemy_p;
@@ -466,8 +466,8 @@ static fopAc_ac_c* search_enemy(npc_ks_class* i_this, int param_2, f32 param_3) 
 
                 if (target_bgc[i] != 0 || fopAcM_otherBgCheck(actor, enemy_p)) {
                     target_bgc[i] = 1;
-                } else if (NPC_KS_FABSF(sp68.y) <= fVar2) {
-                    s16 sVar1 = actor->shape_angle.y - cM_atan2s(sp68.x, sp68.z);
+                } else if (NPC_KS_FABSF(mae.y) <= fVar2) {
+                    s16 sVar1 = actor->shape_angle.y - cM_atan2s(mae.x, mae.z);
                     if (sVar1 < 0) {
                         sVar1 = -1 * sVar1;
                     }
@@ -1817,7 +1817,7 @@ static void all_carry_finish(int param_1) {
 static void hang_end_check(npc_ks_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    cXyz sp30, sp3c;
+    cXyz mae, ato;
     if (i_this->monkey_room_no > 3 || !dComIfGs_isStageMiddleBoss()) {
         if ((fopAcM_GetRoomNo(actor) != 4 || !(player->current.pos.z < 2500.0f)) && checkDoorDemo()) {
             i_this->action = 100;
@@ -1830,20 +1830,20 @@ static void hang_end_check(npc_ks_class* i_this) {
                 if (checkDoorDemo()) {
                     cMtx_YrotS(*calc_mtx, player->shape_angle.y + 0x8000);
                 } else {
-                    sp30.x = camera->lookat.eye.x - camera->lookat.center.x;
-                    sp30.z = camera->lookat.eye.z - camera->lookat.center.z;
-                    cMtx_YrotS(*calc_mtx, cM_atan2s(sp30.x, sp30.z));
+                    mae.x = camera->lookat.eye.x - camera->lookat.center.x;
+                    mae.z = camera->lookat.eye.z - camera->lookat.center.z;
+                    cMtx_YrotS(*calc_mtx, cM_atan2s(mae.x, mae.z));
                 }
 
                 if ((i_this->set_id & 1) != 0) {
-                    sp30.x = 100.0f;
+                    mae.x = 100.0f;
                 } else {
-                    sp30.x = -100.0f;
+                    mae.x = -100.0f;
                 }
-                sp30.y = -50.0f;
-                sp30.z = 100.0f;
-                MtxPosition(&sp30, &sp3c);
-                actor->current.pos = camera->lookat.eye + sp3c;
+                mae.y = -50.0f;
+                mae.z = 100.0f;
+                MtxPosition(&mae, &ato);
+                actor->current.pos = camera->lookat.eye + ato;
                 actor->old = actor->current;
             }
         }
@@ -2081,7 +2081,7 @@ static void npc_ks_hang_s(npc_ks_class* i_this) {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     obj_sw_class* sw_p = (obj_sw_class*) base_sw_p;
     sw_p->field_0x900 += 5.0f;
-    cXyz sp34, sp40;
+    cXyz mae, ato;
     cLib_addCalcAngleS2(&actor->current.angle.y, actor->home.angle.y + 0x4000, 2, 0x800);
 
     s16 sVar1;
@@ -2117,10 +2117,10 @@ static void npc_ks_hang_s(npc_ks_class* i_this) {
                 i_this->field_0x620 = 1;
                 i_this->field_0x610 = 0;
                 cMtx_YrotS(*calc_mtx, actor->home.angle.y);
-                sp34.x = 0.0f;
-                sp34.y = -150.0f + WREG_F(0);
-                sp34.z = -400.0f + WREG_F(1);
-                MtxPosition(&sp34, &obj_pos);
+                mae.x = 0.0f;
+                mae.y = -150.0f + WREG_F(0);
+                mae.z = -400.0f + WREG_F(1);
+                MtxPosition(&mae, &obj_pos);
                 obj_pos += actor->current.pos;
                 i_this->field_0x624 = obj_pos - i_this->field_0x614;
                 i_this->field_0x624 *= (0.075f + WREG_F(2));
@@ -4112,8 +4112,8 @@ static int npc_ks_option(npc_ks_class* i_this) {
             i_this->mode = 7;
             actor->speedF = 0.0f;
             i_this->field_0x5d4 = 0.0f;
-            cXyz sp158 = actor->current.pos;
-            sp158.y = i_this->waterY;
+            cXyz water_pos = actor->current.pos;
+            water_pos.y = i_this->waterY;
 
             f32 sc_load_val = 1.0f;
             static cXyz sc(sc_load_val, sc_load_val, sc_load_val);
@@ -4122,7 +4122,7 @@ static int npc_ks_option(npc_ks_class* i_this) {
             };
 
             for (int i = 0; i < 4; i++) {
-                i_this->w_eff[i] = dComIfGp_particle_set(i_this->w_eff[i], w_eff_id[i], &sp158, &actor->tevStr, NULL,
+                i_this->w_eff[i] = dComIfGp_particle_set(i_this->w_eff[i], w_eff_id[i], &water_pos, &actor->tevStr, NULL,
                                                                 &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
             }
 
@@ -4390,7 +4390,7 @@ static int npc_ks_guide_00(npc_ks_class* i_this) {
 
 static int npc_ks_guide_00_2(npc_ks_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
-    cXyz sp34, sp40;
+    cXyz mae, ato;
     int rv = 1;
     int frame = i_this->model->getFrame();
 
@@ -4424,10 +4424,10 @@ static int npc_ks_guide_00_2(npc_ks_class* i_this) {
             break;
 
         case 5:
-            sp34.x = i_this->guide_path.x - actor->current.pos.x;
-            sp34.z = i_this->guide_path.z - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp34.x, sp34.z);
-            if (JMAFastSqrt(sp34.x * sp34.x + sp34.z * sp34.z) < actor->speedF * 1.2f) {
+            mae.x = i_this->guide_path.x - actor->current.pos.x;
+            mae.z = i_this->guide_path.z - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z);
+            if (JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) < actor->speedF * 1.2f) {
                 if (i_this->set_id == 0 || i_this->set_id == 1) {
                     i_this->path_no++;
                 }
@@ -4938,7 +4938,7 @@ static path guide_path_22[6] = {
 static int npc_ks_guide_22(npc_ks_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     i_this->dis = fopAcM_searchPlayerDistance(actor);
-    cXyz sp28, sp34;
+    cXyz mae, ato;
     int rv = 1;
     int frame = i_this->model->getFrame();
 
@@ -4982,9 +4982,9 @@ static int npc_ks_guide_22(npc_ks_class* i_this) {
         case 2:
             rv = 0;
             
-            sp28.x = i_this->guide_path.x - actor->current.pos.x;
-            sp28.z = i_this->guide_path.z - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp28.x, sp28.z);
+            mae.x = i_this->guide_path.x - actor->current.pos.x;
+            mae.z = i_this->guide_path.z - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z);
             cLib_addCalc2(&actor->current.pos.y, i_this->guide_path.y, 1.0f, 15.0f);
 
             if (actor->current.pos.y >= (i_this->guide_path.y - 110.0f) && i_this->res_id != 26) {
@@ -5004,11 +5004,11 @@ static int npc_ks_guide_22(npc_ks_class* i_this) {
             break;
 
         case 5:
-            sp28.x = i_this->guide_path.x - actor->current.pos.x;
-            sp28.z = i_this->guide_path.z - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp28.x, sp28.z);
+            mae.x = i_this->guide_path.x - actor->current.pos.x;
+            mae.z = i_this->guide_path.z - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z);
 
-            if (JMAFastSqrt(sp28.x * sp28.x + sp28.z * sp28.z) < actor->speedF * 1.2f) {
+            if (JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) < actor->speedF * 1.2f) {
                 i_this->path_no++;
                 i_this->mode = 1;
             }
@@ -5089,9 +5089,9 @@ static int npc_ks_guide_22(npc_ks_class* i_this) {
             i_this->mode = 42;
             i_this->timer[0] = 30;
         } else {
-            sp28.x = enemy_p->current.pos.x - actor->current.pos.x;
-            sp28.z = enemy_p->current.pos.z - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp28.x, sp28.z) + 0x8000;
+            mae.x = enemy_p->current.pos.x - actor->current.pos.x;
+            mae.z = enemy_p->current.pos.z - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z) + 0x8000;
         }
     } else if (enemy_view_check(i_this, 600.0f) != NULL) {
         i_this->mode = 40;
@@ -5118,7 +5118,7 @@ static path guide_path_09[9] = {
 static int npc_ks_guide_09(npc_ks_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    cXyz sp40, sp4c;
+    cXyz mae, ato;
     int rv = 1;
     int frame = i_this->model->getFrame();
     f32 fVar1 = 0.0f;
@@ -5172,11 +5172,11 @@ static int npc_ks_guide_09(npc_ks_class* i_this) {
                 i_this->sound.startCreatureSound(Z2SE_KOSARU_JUMP_WIND, 0, -1);
             }
 
-            sp40 = i_this->guide_path - actor->current.pos;
-            i_this->current_angle.y = cM_atan2s(sp40.x, sp40.z);
-            i_this->current_angle.x = -cM_atan2s(sp40.y, JMAFastSqrt(sp40.x * sp40.x + sp40.z * sp40.z));
+            mae = i_this->guide_path - actor->current.pos;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z);
+            i_this->current_angle.x = -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z));
 
-            if (sp40.abs() < actor->speedF * 1.2f) {
+            if (mae.abs() < actor->speedF * 1.2f) {
                 actor->current.pos = i_this->guide_path;
                 i_this->mode = 1;
                 i_this->path_no++;
@@ -5184,11 +5184,11 @@ static int npc_ks_guide_09(npc_ks_class* i_this) {
             break;
 
         case 5:
-            sp40.x = i_this->guide_path.x - actor->current.pos.x;
-            sp40.z = i_this->guide_path.z - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp40.x, sp40.z);
+            mae.x = i_this->guide_path.x - actor->current.pos.x;
+            mae.z = i_this->guide_path.z - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z);
 
-            if (JMAFastSqrt(sp40.x * sp40.x + sp40.z * sp40.z) < actor->speedF * 1.2f) {
+            if (JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) < actor->speedF * 1.2f) {
                 i_this->path_no++;
                 i_this->mode = 1;
             }
@@ -5271,9 +5271,9 @@ static int npc_ks_guide_09(npc_ks_class* i_this) {
             i_this->mode = 42;
             i_this->timer[0] = 30;
         } else {
-            sp40.x = enemy_p->current.pos.x - actor->current.pos.x;
-            sp40.z = enemy_p->current.pos.z - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp40.x, sp40.z) + 0x8000;
+            mae.x = enemy_p->current.pos.x - actor->current.pos.x;
+            mae.z = enemy_p->current.pos.z - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z) + 0x8000;
         }
     } else if (enemy_view_check(i_this, 600.0f) != NULL) {
         i_this->mode = 40;
@@ -5296,7 +5296,7 @@ static path guide_path_12[5] = {
 static int npc_ks_demo_12(npc_ks_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    cXyz sp48, sp54;
+    cXyz mae, ato;
     int rv = 1;
     int frame = i_this->model->getFrame();
 
@@ -5344,11 +5344,11 @@ static int npc_ks_demo_12(npc_ks_class* i_this) {
                 i_this->field_0xbe0 = 1;
             }
 
-            sp48 = i_this->guide_path - actor->current.pos;
-            i_this->current_angle.y = cM_atan2s(sp48.x, sp48.z);
-            i_this->current_angle.x = -cM_atan2s(sp48.y, JMAFastSqrt(sp48.x * sp48.x + sp48.z * sp48.z));
+            mae = i_this->guide_path - actor->current.pos;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z);
+            i_this->current_angle.x = -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z));
 
-            if (sp48.abs() < actor->speedF * 1.2f) {
+            if (mae.abs() < actor->speedF * 1.2f) {
                 actor->current.pos = i_this->guide_path;
                 i_this->mode = 1;
                 i_this->field_0xbe0 = 1;
@@ -5357,11 +5357,11 @@ static int npc_ks_demo_12(npc_ks_class* i_this) {
             break;
 
         case 5:
-            sp48.x = i_this->guide_path.x - actor->current.pos.x;
-            sp48.z = i_this->guide_path.z - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp48.x, sp48.z);
+            mae.x = i_this->guide_path.x - actor->current.pos.x;
+            mae.z = i_this->guide_path.z - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z);
 
-            if (JMAFastSqrt(sp48.x * sp48.x + sp48.z * sp48.z) < actor->speedF * 1.2f) {
+            if (JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) < actor->speedF * 1.2f) {
                 i_this->path_no++;
                 i_this->mode = 1;
             }
@@ -5399,7 +5399,7 @@ static path guide_path_0409[5] = {
 static int npc_ks_guide_0409(npc_ks_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    cXyz sp50;
+    cXyz mae;
     int rv = 1;
     int frame = i_this->model->getFrame();
 
@@ -5434,11 +5434,11 @@ static int npc_ks_guide_0409(npc_ks_class* i_this) {
             break;
 
         case 5:
-            sp50.x = i_this->guide_path.x - actor->current.pos.x;
-            sp50.z = i_this->guide_path.z - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp50.x, sp50.z);
+            mae.x = i_this->guide_path.x - actor->current.pos.x;
+            mae.z = i_this->guide_path.z - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z);
 
-            if (JMAFastSqrt(sp50.x * sp50.x + sp50.z * sp50.z) < actor->speedF * 1.2f) {
+            if (JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) < actor->speedF * 1.2f) {
                 i_this->path_no++;
                 i_this->mode = 1;
             }
@@ -5510,7 +5510,7 @@ static int path_search(npc_ks_class* i_this) {
 static int npc_ks_mori(npc_ks_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    cXyz sp44, sp50;
+    cXyz mae, ato;
     int rv = 1;
     int frame = i_this->model->getFrame();
     f32 fVar2 = 1.25f + TREG_F(17);
@@ -5544,9 +5544,9 @@ static int npc_ks_mori(npc_ks_class* i_this) {
                         if (!daPy_getPlayerActorClass()->checkUseKandelaar(0)) break;
                     }
 
-                    sp44.set(-27426.0f, player->current.pos.y, -20000.0f);
-                    sp44 -= player->current.pos;
-                    if (sp44.abs() < 7500.0f) {
+                    mae.set(-27426.0f, player->current.pos.y, -20000.0f);
+                    mae -= player->current.pos;
+                    if (mae.abs() < 7500.0f) {
                         i_this->mode = 1;
                         i_this->timer[0] = 10;
                     }
@@ -5570,11 +5570,11 @@ static int npc_ks_mori(npc_ks_class* i_this) {
 
         case 2:
             cMtx_YrotS(*calc_mtx, player->shape_angle.y);
-            sp44.x = i_this->field_0xbb4;
-            sp44.y = 0.0f;
-            sp44.z = 100.0f;
-            MtxPosition(&sp44, &sp50);
-            actor->current.pos = player->current.pos + sp50;
+            mae.x = i_this->field_0xbb4;
+            mae.y = 0.0f;
+            mae.z = 100.0f;
+            MtxPosition(&mae, &ato);
+            actor->current.pos = player->current.pos + ato;
             actor->current.angle.y = player->shape_angle.y - 0x4000;
             i_this->current_angle.y = actor->current.angle.y;
             cLib_addCalc2(&i_this->field_0xbb4, -500.0f, 1.0f, 20.0f);
@@ -5652,11 +5652,11 @@ static int npc_ks_mori(npc_ks_class* i_this) {
             break;
 
         case 5:
-            sp44.x = i_this->guide_path.x - actor->current.pos.x;
-            sp44.z = i_this->guide_path.z - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp44.x, sp44.z);
+            mae.x = i_this->guide_path.x - actor->current.pos.x;
+            mae.z = i_this->guide_path.z - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z);
             
-            if (JMAFastSqrt(sp44.x * sp44.x + sp44.z * sp44.z) < 100.0f) {
+            if (JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) < 100.0f) {
                 i_this->path_no++;
                 i_this->mode = 4;
             }
@@ -5679,9 +5679,9 @@ static int npc_ks_mori(npc_ks_class* i_this) {
                 i_this->current_angle.y = i_this->target_angle;
             }
 
-            sp44.x = -30900.0f - player->current.pos.x;
-            sp44.z = -15756.0f - player->current.pos.z;
-            if (JMAFastSqrt(sp44.x * sp44.x + sp44.z * sp44.z) < 1300.0f || i_this->dis < fVar1) {
+            mae.x = -30900.0f - player->current.pos.x;
+            mae.z = -15756.0f - player->current.pos.z;
+            if (JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) < 1300.0f || i_this->dis < fVar1) {
                 i_this->demo_mode = 300;
                 i_this->mode = 300;
             }
@@ -5692,9 +5692,9 @@ static int npc_ks_mori(npc_ks_class* i_this) {
             break;
 
         case 301:
-            sp44.x = -31872.0f - actor->current.pos.x;
-            sp44.z = -15490.0f - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp44.x, sp44.z);
+            mae.x = -31872.0f - actor->current.pos.x;
+            mae.z = -15490.0f - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z);
             break;
 
         case 302:
@@ -5777,9 +5777,9 @@ static int npc_ks_mori(npc_ks_class* i_this) {
         if (enemy_p != NULL) {
             i_this->mode = 50;
             actor->speedF = 0.0f;
-            sp44.x = enemy_p->current.pos.x - actor->current.pos.x;
-            sp44.z = enemy_p->current.pos.z - actor->current.pos.z;
-            i_this->current_angle.y = cM_atan2s(sp44.x, sp44.z) + 0x8000;
+            mae.x = enemy_p->current.pos.x - actor->current.pos.x;
+            mae.z = enemy_p->current.pos.z - actor->current.pos.z;
+            i_this->current_angle.y = cM_atan2s(mae.x, mae.z) + 0x8000;
         }
     }
 
@@ -6818,11 +6818,11 @@ static int daNpc_Ks_Execute(npc_ks_class* i_this) {
         }
 
         daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-        cXyz sp78;
-        sp78.x = obj_pos.x;
-        sp78.z = obj_pos.z;
-        sp78.y = obj_pos.y + i_this->field_0x638;
-        setPlayerPosAndAngle(&sp78, actor->home.angle.y);
+        cXyz ato;
+        ato.x = obj_pos.x;
+        ato.z = obj_pos.z;
+        ato.y = obj_pos.y + i_this->field_0x638;
+        setPlayerPosAndAngle(&ato, actor->home.angle.y);
 
         if (i_this->field_0x620 == 2) {
             if (i_this->field_0x604 < 0 && i_this->field_0x602 < 0) {
