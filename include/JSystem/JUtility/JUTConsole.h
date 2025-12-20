@@ -58,7 +58,8 @@ public:
     }
 
     void setFont(JUTFont* p_font) {
-        mFont = p_font;
+        // Fakematch...? Fixes GCN but breaks Wii. TODO: Test after Wii flags are fixed.
+        p_font = mFont = p_font;
         setFontSize(p_font->getWidth(), p_font->getHeight());
     }
 
