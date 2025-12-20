@@ -770,7 +770,7 @@ config.libs = [
             Object(Equivalent, "d/actor/d_a_alink.cpp"), # weak func order, vtable order
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_itembase.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_no_chg_room.cpp"),
-            Object(NonMatching, "d/actor/d_a_npc.cpp"),
+            Object(Equivalent, "d/actor/d_a_npc.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_npc_cd.cpp"),
             Object(NonMatching, "d/actor/d_a_npc_cd2.cpp"), # stripped vtable order
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_obj_item.cpp"),
@@ -844,7 +844,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_msg_string.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_flow.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_name.cpp"),
-            Object(NonMatching, "d/d_npc_lib.cpp"),
+            Object(MatchingFor(ALL_GCN), "d/d_npc_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ovlp_fade.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ovlp_fade2.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ovlp_fade3.cpp"),
