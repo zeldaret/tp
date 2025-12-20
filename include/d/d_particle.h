@@ -499,6 +499,9 @@ private:
     /* 0x01A */ u8 field_0x1a;
     /* 0x01B */ u8 field_0x1b;
     /* 0x01C */ dPa_simpleEcallBack field_0x1c[25];
+    #if DEBUG
+    u8 unk_0x210[0x1CC];
+    #endif
     /* 0x210 */ level_c field_0x210;
     #if DEBUG
     u8 mSceneCount;

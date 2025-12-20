@@ -74,6 +74,8 @@ struct fopAcM_search4ev_prm {
 };
 
 struct fopAcM_search_prm {
+    fopAcM_search_prm() {};
+
     /* 0x00 */ u32 prm0;
     /* 0x04 */ u32 prm1;
     /* 0x08 */ s16 procname;
@@ -410,7 +412,7 @@ inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
            i_culltype == fopAc_CULLBOX_CUSTOM_e;
 }
 
-inline const cXyz& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
+inline const cXyz& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) { // This should be Vec& but GCN inlines break
     return i_actor->cull.sphere.center;
 }
 
@@ -841,7 +843,7 @@ void fopAcM_showAssert_f(const fopAc_ac_c*, const char*, int, const char*, ...);
 #define fopAcM_setWarningMessage(...)
 #endif
 
-void fopAcM_getNameString(const fopAc_ac_c*, char*);
+int fopAcM_getNameString(const fopAc_ac_c*, char*);
 
 class fopAcM_lc_c {
 public:
@@ -852,7 +854,7 @@ public:
     static cXyz* getCrossP() { return mLineCheck.GetCrossP(); }
     static cXyz& getCross() { return mLineCheck.GetCross(); }
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
-    static bool getTriPla(cM3dGPla* o_tri) { return dComIfG_Bgsp().GetTriPla(mLineCheck, o_tri); }
+    static bool getTriPla(cM3dGPla* o_tri);
     static s32 getWallCode() { return dComIfG_Bgsp().GetWallCode(mLineCheck); }
     static bool checkWallHit() {
         cM3dGPla poly;

@@ -198,7 +198,7 @@ int daObj_Mie_c::Execute() {
                 } else {
                     cXyz local_98;
                     int local_ac;
-                    if (dPath_GetPolyRoomPathVec(mGndChk, &local_98, &local_ac) != 0) {
+                    if ((u8) dPath_GetPolyRoomPathVec(mGndChk, &local_98, &local_ac) != 0) {
                         local_98.normalizeZP();
                         cLib_addCalcAngleS2(&current.angle.y, cM_atan2s(local_98.x, local_98.z), 8, 0x400);
                         s16 local_b0 = field_0x9ec.y < 0 ? -0x80 : 0x80;

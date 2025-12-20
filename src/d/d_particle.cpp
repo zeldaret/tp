@@ -1221,7 +1221,7 @@ bool dPa_control_c::readScene(u8 param_0, mDoDvdThd_toMainRam_c** param_1) {
 
     if (m_sceneRes) {
         JUT_ASSERT(2641, !(--mSceneCount));
-        JKRHeap::free(m_sceneRes, NULL);
+        JKRFree(m_sceneRes);
         m_sceneRes = NULL;
     }
     JUT_ASSERT(2647, !mSceneCount++);

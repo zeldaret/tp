@@ -21,6 +21,7 @@
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_lib.h"
+#include <cstring.h>
 
 #define MAKE_ITEM_PARAMS(itemNo, itemBitNo, param_2, param_3)                                      \
     ((itemNo & 0xFF) << 0 | (itemBitNo & 0xFF) << 0x8 | param_2 << 0x10 | (param_3 & 0xF) << 0x18)
@@ -355,9 +356,33 @@ u8 fopAcM::HeapAdjustVerbose;
 u8 fopAcM::HeapAdjustQuiet;
 u8 fopAcM::HeapDummyCreate;
 
+static bool lbl_8074C4DC;
+static bool lbl_8074C4DD;
+
+struct DummyCheckHeap {
+    static JKRHeap* getHeap();
+
+    /* 0x0 */ JKRHeap* dummyHeap;
+};
+
+static DummyCheckHeap* dch;
+
 bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback, u32 i_size) {
-    const char* procNameString = fopAcM_getProcNameString(i_actor);
+    s16 profName = fopAcM_GetProfName(i_actor);
+    char* procNameString;
+    fopAcM_getNameString(i_actor, procNameString);
     JKRSolidHeap* heap00 = NULL;
+
+#if DEBUG
+    if (lbl_8074C4DC != 0 && lbl_8074C4DD != 0 && dch != NULL) {
+        JKRHeap* dummy_heap = dch->getHeap();
+        if (dummy_heap != NULL) {
+            JKRSolidHeap* heap = mDoExt_createSolidHeap(-1, dummy_heap, 0x20);
+            JUT_ASSERT(1211, heap);
+        }
+    }
+
+#endif
 
     if (fopAcM::HeapAdjustVerbose) {
         OS_REPORT("\x1b[36mfopAcM_entrySolidHeap 開始 [%s] 見積もりサイズ=%08x\n\x1b[m",
@@ -539,6 +564,10 @@ bool fopAcM_addAngleY(fopAc_ac_c* i_actor, s16 i_target, s16 i_step) {
     return cLib_chaseAngleS(&angle->y, i_target, i_step);
 }
 
+void dummy(fopAc_ac_c* i_actor) {
+    fopAcM_SetSpeedF(i_actor, 10.0f);
+}
+
 void fopAcM_calcSpeed(fopAc_ac_c* i_actor) {
     f32 xSpeed, ySpeed, zSpeed;
     f32 speedF = fopAcM_GetSpeedF(i_actor);
@@ -589,9 +618,9 @@ s16 fopAcM_searchActorAngleX(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_act
 }
 
 s32 fopAcM_seenActorAngleY(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
-    s16 target_angle =
-        cLib_targetAngleY(fopAcM_GetPosition_p(i_actorA), fopAcM_GetPosition_p(i_actorB));
-    return abs((s16)(target_angle - i_actorA->shape_angle.y));
+    s16 target_angle = cLib_targetAngleY(fopAcM_GetPosition_p(i_actorA), fopAcM_GetPosition_p(i_actorB));
+    target_angle -= i_actorA->shape_angle.y;
+    return abs(target_angle);
 }
 
 f32 fopAcM_searchActorDistance(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
@@ -1157,23 +1186,26 @@ struct ItemTableList {
 };
 
 u8 fopAcM_getItemNoFromTableNo(u8 i_tableNo) {
-    u8 tableNo = i_tableNo;
+    u8 hp_max;
+    u8 hp_percent;
     ItemTableList* tableList = (ItemTableList*)dComIfGp_getItemTable();
-
+    
     if (i_tableNo == 255) {
         return i_tableNo;
     }
-
+    
 #if DEBUG
-    if (tableList->mTableNum - 1 < i_tableNo) {
+    u8 tableNum = tableList->mTableNum;
+    if (tableNum - 1 < i_tableNo) {
         // "Table Num<%d>, Specified Table<%d>, over table num!\n"
         OSReport_Error("テーブル数<%d>、指定テーブル番号<%d>で、テーブル数オーバーしています！\n",
-                       tableList->mTableNum, i_tableNo);
+                       tableNum, i_tableNo);
         i_tableNo = 0;
     }
 #endif
 
-    u8 hp_percent = (dComIfGs_getLife() * 100) / (((dComIfGs_getMaxLife() / 5) * 4) & 0xFC);
+    hp_max = dComIfGs_getMaxLife() / 5 * 4;
+    hp_percent = (dComIfGs_getLife() * 100) / hp_max;
 
     switch (i_tableNo) {
     case 150:
@@ -1183,19 +1215,20 @@ u8 fopAcM_getItemNoFromTableNo(u8 i_tableNo) {
     case 190:
         if (hp_percent < 80) {
             if (hp_percent >= 60) {
-                tableNo = i_tableNo + 1;
+                i_tableNo = i_tableNo + 1;
             } else if (hp_percent >= 40) {
-                tableNo = i_tableNo + 2;
+                i_tableNo = i_tableNo + 2;
             } else if (hp_percent >= 20) {
-                tableNo = i_tableNo + 3;
+                i_tableNo = i_tableNo + 3;
             } else {
-                tableNo = i_tableNo + 4;
+                i_tableNo = i_tableNo + 4;
             }
         }
         break;
     }
 
-    return tableList->mTables[tableNo][(int)cM_rndF(15.9999f)];
+    i_tableNo = tableList->mTables[i_tableNo][(int)cM_rndF(15.9999f)];
+    return i_tableNo;
 }
 
 struct EnemyTableList {
@@ -1213,11 +1246,14 @@ struct EnemyTable {
 fpc_ProcID fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* i_pos, int i_itemBitNo,
                                         int i_roomNo, csXyz const* i_angle, cXyz const* i_scale,
                                         f32* i_speedF, f32* i_speedY) {
+                                            int itemNo;
     int tableNo = 0xFF;
-    EnemyTableList* tblList = (EnemyTableList*)dEnemyItem_c::mData;
-    int tableNum = tblList->field_0x4;
-    EnemyTable* table = (EnemyTable*)&tblList->mData;
-
+    u32* data = (u32*)dEnemyItem_c::getItemData();
+    data++;
+    int tableNum = (int) *data;
+    data++;
+    EnemyTable* table = (EnemyTable*)data;
+    
     for (u32 i = 0; i < tableNum; i++) {
         if (i_enemyID == table->mEnemyID) {
             if (table->mStage[0] == '#') {
@@ -1229,11 +1265,11 @@ fpc_ProcID fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* i_pos, int i_i
         }
         table++;
     }
-
+    
     if (daPy_getPlayerActorClass()->checkHorseRide()) {
-        int itemNo = fopAcM_getItemNoFromTableNo(tableNo);
+        tableNo = fopAcM_getItemNoFromTableNo(tableNo);
         void* actor =
-            fopAcM_createItemForDirectGet(i_pos, itemNo, i_roomNo, NULL, NULL, 0.0f, 0.0f);
+            fopAcM_createItemForDirectGet(i_pos, tableNo, i_roomNo, NULL, NULL, 0.0f, 0.0f);
         return fopAcM_GetID(actor);
     }
 
@@ -1589,11 +1625,13 @@ fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo) {
     scene_class* roomProc = fopScnM_SearchByID(dStage_roomControl_c::getStatusProcID(roomNo));
     JUT_ASSERT(4662, roomProc != NULL);
 
-    daPy_py_c* player = (daPy_py_c*) dComIfGp_getPlayer(0);
-    fopAc_ac_c* actor = fopAcM_SearchByID(player->getGrabActorID());
+    {
+        daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+        fopAc_ac_c* actor = fopAcM_SearchByID(player->getGrabActorID());
 
-    if (actor != NULL && fopAcM_GetGroup(actor) == 2) {
-        return actor;
+        if (actor != NULL && fopAcM_GetGroup(actor) == 2) {
+            return actor;
+        }
     }
 
     return (fopAc_ac_c*)fpcM_JudgeInLayer(fpcM_LayerID(roomProc), enemySearchJugge, NULL);
@@ -1756,8 +1794,12 @@ void fopAcM_effHamonSet(u32* param_0, cXyz const* param_1, f32 param_2, f32 emit
 }
 
 s32 fopAcM_riverStream(cXyz* param_0, s16* param_1, f32* param_2, f32 param_3) {
-    int ret = 0;
-    return ret;
+    (void)&param_0;
+    (void)&param_1;
+    (void)&param_2;
+    (void)&param_3;
+
+    return 0;
 }
 
 s32 fopAcM_carryOffRevise(fopAc_ac_c* param_0) {
@@ -1859,6 +1901,11 @@ const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
     return name != NULL ? name : "UNKOWN";
 }
 
+int fopAcM_getNameString(const fopAc_ac_c* i_actor, char* i_name) {
+    strcpy(i_name, dStage_getName(fopAcM_GetProfName(i_actor), i_actor->argument));
+    return 1;
+};
+
 static const fopAc_ac_c* fopAcM_findObjectCB(fopAc_ac_c const* i_actor, void* i_data) {
     if (!fopAcM_IsExecuting(fopAcM_GetID(i_actor))) {
         return NULL;
@@ -1911,7 +1958,7 @@ fopAc_ac_c* fopAcM_searchFromName4Event(char const* i_name, s16 i_eventID) {
     prm.event_id = i_eventID;
     strcpy(prm.name, i_name);
 
-    char* chr = strchr(prm.name, ':');
+    char* chr = std::strchr(prm.name, ':');
     if (chr != NULL) {
         chr[0] = 0;
         chr++;
@@ -1956,7 +2003,8 @@ s32 fopAcM_getWaterY(cXyz const* param_0, f32* o_waterY) {
 
 void fpoAcM_relativePos(fopAc_ac_c const* i_actor, cXyz const* i_pos, cXyz* o_pos) {
     s16 angle = -i_actor->shape_angle.y;
-    cXyz pos = *i_pos - i_actor->current.pos;
+    cXyz pos;
+    pos = *i_pos - i_actor->current.pos;
 
     o_pos->x = (pos.z * cM_ssin(angle)) + (pos.x * cM_scos(angle));
     o_pos->y = pos.y;
@@ -1965,14 +2013,13 @@ void fpoAcM_relativePos(fopAc_ac_c const* i_actor, cXyz const* i_pos, cXyz* o_po
 
 s32 fopAcM_getWaterStream(cXyz const* pos, cBgS_PolyInfo const& polyinfo, cXyz* speed,
                           int* power, BOOL param_4) {
-    daTagStream_c* stream;
     if (daTagStream_c::getTop() != NULL) {
-        for (stream = daTagStream_c::getTop(); stream != NULL; stream = stream->getNext()) {
+        for (daTagStream_c* stream = daTagStream_c::getTop(); stream != NULL; stream = stream->getNext()) {
             if (stream->checkStreamOn() && (!param_4 || stream->checkCanoeOn()) &&
                 stream->checkArea(pos))
             {
                 *speed = stream->speed;
-                *power = stream->getPower() & 0xff;
+                *power = stream->getPower();
                 return 1;
             }
         }
@@ -1983,7 +2030,7 @@ s32 fopAcM_getWaterStream(cXyz const* pos, cBgS_PolyInfo const& polyinfo, cXyz* 
     }
 
     if (dComIfG_Bgsp().ChkPolySafe(polyinfo)) {
-        if (dPath_GetPolyRoomPathVec(polyinfo, speed, power)) {
+        if ((u8) dPath_GetPolyRoomPathVec(polyinfo, speed, power)) {
             speed->normalizeZP();
             return 1;
         }
@@ -2010,8 +2057,11 @@ s16 fopAcM_getPolygonAngle(cBgS_PolyInfo const& poly, s16 param_1) {
 
 s16 fopAcM_getPolygonAngle(cM3dGPla const* p_plane, s16 param_1) {
     if (p_plane == NULL) {
+#if DEBUG
         JUT_ASSERT(5810, FALSE);
+#else
         return 0;
+#endif
     }
 
     f32 cos = cM_scos(p_plane->mNormal.atan2sX_Z() - param_1);
@@ -2024,6 +2074,10 @@ s16 fopAcM_getPolygonAngle(cM3dGPla const* p_plane, s16 param_1) {
 bool fopAcM_lc_c::lineCheck(cXyz const* i_start, cXyz const* i_end, fopAc_ac_c const* i_actor) {
     mLineCheck.Set(i_start, i_end, i_actor);
     return dComIfG_Bgsp().LineCross(&mLineCheck);
+}
+
+bool fopAcM_lc_c::getTriPla(cM3dGPla* i_plane) {
+    return dComIfG_Bgsp().GetTriPla(mLineCheck, i_plane);
 }
 
 bool fopAcM_gc_c::gndCheck(cXyz const* i_pos) {
@@ -2050,4 +2104,12 @@ bool fopAcM_wt_c::waterCheck(cXyz const* i_pos) {
     return false;
 }
 
-void fopAcM_initManager() {}
+void fopAcM_initManager() {
+#if DEBUG
+    DummyCheckHeap_init();
+    if (lbl_8074C4DC != 0) {
+        DummyCheckHeap_create();
+    }
+    l_hio.entry();
+#endif
+}

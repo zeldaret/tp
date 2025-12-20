@@ -293,7 +293,7 @@ int daObj_Gadget_c::Execute() {
                 } else {
                     cXyz pathVec;
                     int pathNum;
-                    if (dPath_GetPolyRoomPathVec(mGndChk, &pathVec, &pathNum)) {
+                    if ((u8) dPath_GetPolyRoomPathVec(mGndChk, &pathVec, &pathNum)) {
                         pathVec.normalizeZP();
                         s16 targetAngle = cM_atan2s(pathVec.x, pathVec.z);
                         cLib_addCalcAngleS2(&current.angle.y, targetAngle, 8, 0x400);

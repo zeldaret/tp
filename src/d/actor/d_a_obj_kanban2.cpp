@@ -1415,7 +1415,7 @@ void daObj_Kanban2_c::executeFloat() {
         int sp10 = 0;
         f32 var_f31 = 0.0f;
 
-        if (dComIfG_Bgsp().ChkPolySafe(mAcch.m_gnd) && dPath_GetPolyRoomPathVec(mAcch.m_gnd, &sp2C, &sp10)) {
+        if (dComIfG_Bgsp().ChkPolySafe(mAcch.m_gnd) && (u8) dPath_GetPolyRoomPathVec(mAcch.m_gnd, &sp2C, &sp10)) {
             u32 var_r27 = var_r28;
             if (var_r27 > 3) {
                 var_r27 = 3;

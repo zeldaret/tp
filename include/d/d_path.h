@@ -30,6 +30,6 @@ inline BOOL dPath_ChkClose(const dPath* i_path) { return i_path->m_closed & 1; }
 dPath* dPath_GetRoomPath(int path_index, int room_no);
 dPath* dPath_GetNextRoomPath(dPath const* i_path, int room_no);
 dPnt* dPath_GetPnt(dPath const* i_path, int pnt_index);
-u8 dPath_GetPolyRoomPathVec(cBgS_PolyInfo const& poly, cXyz* p_pathVec, int* param_2);
+int dPath_GetPolyRoomPathVec(cBgS_PolyInfo const& poly, cXyz* p_pathVec, int* param_2);
 
 #endif /* D_D_PATH_H */

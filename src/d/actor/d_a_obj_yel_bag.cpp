@@ -193,7 +193,7 @@ int daObj_YBag_c::Execute() {
                 } else {
                     cXyz local_7c;
                     int local_90;
-                    if (dPath_GetPolyRoomPathVec(mGndChk, &local_7c, &local_90) != 0) {
+                    if ((u8) dPath_GetPolyRoomPathVec(mGndChk, &local_7c, &local_90) != 0) {
                         local_7c.normalizeZP();
                         cLib_addCalcAngleS2(&current.angle.y, cM_atan2s(local_7c.x, local_7c.z), 8, 0x400);
                         cLib_chaseAngleS(&field_0x9dc.y, (field_0x9dc.y < 0) ? -0x80 : 0x80, 0x10);
