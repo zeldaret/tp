@@ -269,16 +269,16 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
             str1_section_t* pStrAttributeBlock = NULL;
             int filepos = sizeof(bmg_header_t);
             u32 filesize = pHeader->size;
-            bmg_section_t* pSection = (bmg_section_t*)(((u8*)pHeader) + filepos);
+            u8* pSection = (((u8*)pHeader) + filepos);
 
-            for (; filepos < filesize; filepos += pSection->size) {
-                switch (pSection->magic) {
+            for (; filepos < filesize; filepos += ((bmg_section_t*)pSection)->size) {
+                switch (((bmg_section_t*)pSection)->magic) {
                 case 'FLW1':
                     break;
                 case 'FLI1':
                     break;
                 case 'INF1':
-                    pInfoBlock = pSection;
+                    pInfoBlock = (bmg_section_t*)pSection;
                     break;
                 case 'DAT1':
                     pMsgDataBlock = pSection;
@@ -287,7 +287,7 @@ void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
                     pStrAttributeBlock = (str1_section_t*)pSection;
                     break;
                 }
-                pSection = (bmg_section_t*)((u8*)pSection + pSection->size);
+                pSection += ((bmg_section_t*)pSection)->size;
             }
 
             // This section is weird. The debug seems like entriesStr is outside the condition
