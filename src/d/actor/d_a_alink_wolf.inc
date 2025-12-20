@@ -6979,11 +6979,6 @@ BOOL daAlink_c::setWolfEnemyHangBitePos(fopEn_enemy_c* i_enemy) {
     return 0;
 }
 
-/* #pragma push
-#pragma force_active on
-static u8 lit_50952[12];
-#pragma pop */
-
 static cXyz l_wolfBiteHitMarkScale(0.5f, 0.5f, 0.5f);
 
 void daAlink_c::setWolfBiteDamage(fopEn_enemy_c* i_enemy) {

@@ -68,7 +68,7 @@ s16 daAlink_c::checkBodyAngleX(s16 param_0) {
         return param_0;
     }
 
-    Vec sp2C = lit_5908;
+    Vec sp2C = { 0.0f, 0.0f, 0.0f };
     sp2C.y = 0.5f * field_0x598;
 
     cXyz sp20;

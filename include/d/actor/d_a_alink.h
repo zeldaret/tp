@@ -213,7 +213,7 @@ class daAlinkHIO_data_c : public JORReflexible {
 public:
 #if DEBUG
     daAlinkHIO_data_c();
-    ~daAlinkHIO_data_c();
+    virtual ~daAlinkHIO_data_c();
 
     void setStructData(char*);
     void checkDataSize();
