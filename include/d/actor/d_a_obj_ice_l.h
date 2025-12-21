@@ -19,13 +19,13 @@ public:
     int Check_RideOn(cXyz);
     void initBaseMtx();
     void setBaseMtx();
-    int create();
+    inline int create();
     
-    virtual int CreateHeap();
-    virtual int Create();
-    virtual int Execute(Mtx**);
-    virtual int Draw();
-    virtual int Delete();
+    virtual inline int CreateHeap();
+    virtual inline int Create();
+    virtual inline int Execute(Mtx**);
+    virtual inline int Draw();
+    virtual inline int Delete();
 
     /* 0x5A0 */ f32 field_0x5a0;
     /* 0x5A4 */ f32 field_0x5a4;
