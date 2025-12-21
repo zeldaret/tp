@@ -21,7 +21,7 @@ public:
     void initBaseMtx();
     void setBaseMtx();
     inline int create();
-    inline int CreateHeap();
+    int CreateHeap();
     int Create();
     int Execute(Mtx**);
     int Draw();

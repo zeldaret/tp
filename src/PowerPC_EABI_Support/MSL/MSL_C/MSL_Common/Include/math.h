@@ -98,11 +98,12 @@ inline float sqrtf(float mag) {
     static const double _three = 3.0;
 #endif
     if (mag > 0.0f) {
-        double tmpd = __frsqrte(mag);
-        tmpd = tmpd * _half * (_three - mag * (tmpd * tmpd));
-        tmpd = tmpd * _half * (_three - mag * (tmpd * tmpd));
-        tmpd = tmpd * _half * (_three - mag * (tmpd * tmpd));
-        return mag * tmpd;
+        double dmag = (double)mag;
+        double tmpd = __frsqrte(dmag);
+        tmpd = _half * tmpd * (_three - tmpd * tmpd * dmag);
+        tmpd = _half * tmpd * (_three - tmpd * tmpd * dmag);
+        tmpd = _half * tmpd * (_three - tmpd * tmpd * dmag);
+        return (float)(dmag * tmpd);
     } else if (mag < 0.0) {
         return NAN;
     } else if (isnan(mag)) {

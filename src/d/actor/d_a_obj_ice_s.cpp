@@ -17,7 +17,7 @@
 class daOBJ_ICE_S_HIO_c : public JORReflexible {
 public:
     daOBJ_ICE_S_HIO_c();
-    virtual ~daOBJ_ICE_S_HIO_c();
+    virtual ~daOBJ_ICE_S_HIO_c() {}
 
     void genMessage(JORMContext*);
 
@@ -27,8 +27,6 @@ public:
 };
 
 static char* l_arcName = "V_Ice_s";
-
-daOBJ_ICE_S_HIO_c::~daOBJ_ICE_S_HIO_c() {}
 
 daOBJ_ICE_S_HIO_c::daOBJ_ICE_S_HIO_c() {
     mId = -1;
@@ -119,12 +117,11 @@ void daObjIce_s_c::setBaseMtx() {
     cMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
-// NONMATCHING - regalloc, equivalent
 static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
     (void)param_1;
     daObjIce_s_c* ice = (daObjIce_s_c*)param_2;
     daPy_py_c* player = daPy_getPlayerActorClass();
-    cXyz* playerPos = (cXyz*)&fopAcM_GetPosition(player);
+    cXyz* playerPos = &fopAcM_GetPosition(player);
     cXyz* pBallCenter = player->getIronBallCenterPos();
 
     // !@bug misplaced ! operator. This condition is probably always false
@@ -137,7 +134,7 @@ static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3
         ice->Check_LinkRideOn(*playerPos);
     }
 
-    cXyz* icePos = (cXyz*)&fopAcM_GetPosition(param_2);
+    cXyz* icePos = &fopAcM_GetPosition(param_2);
     if (pBallCenter != NULL && icePos != NULL &&
         icePos->absXZ(*pBallCenter) < ice->field_0x5c8.x * 600.0f)
     {
@@ -230,7 +227,7 @@ inline int daObjIce_s_c::create() {
     return rv;
 }
 
-inline int daObjIce_s_c::CreateHeap() {
+int daObjIce_s_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "Ice_s.bmd");
     JUT_ASSERT(157, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

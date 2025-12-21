@@ -67,10 +67,11 @@ void daObjIce_l_c::setBaseMtx() {
 }
 
 static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
+    (void)param_0;
+    daObjIce_l_c* ice_p = (daObjIce_l_c*)param_1;
     daPy_py_c* player_p = daPy_getPlayerActorClass();
     cXyz* ball_pos = player_p->getIronBallCenterPos();
     cXyz& player_pos = fopAcM_GetPosition(player_p);
-    daObjIce_l_c* ice_p = static_cast<daObjIce_l_c*>(param_1);
 
     //!@bug Missing parentheses causes this comparison to always evaluate to false
     if (!fopAcM_GetName(param_2) == PROC_ALINK) {
@@ -81,7 +82,7 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
         ice_p->Check_RideOn(player_pos);
     }
 
-    cXyz* ice_pos = &fopAcM_GetPosition(ice_p);
+    cXyz* ice_pos = &fopAcM_GetPosition(param_1);
     if (ball_pos != NULL && ice_pos != NULL &&
         ice_pos->absXZ(*ball_pos) < ice_p->field_0x5b4.x * 600.0f)
     {

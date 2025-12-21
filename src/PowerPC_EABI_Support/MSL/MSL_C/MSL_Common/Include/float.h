@@ -12,10 +12,16 @@
 
 #define FP_NAN FP_QNAN
 
+#if __REVOLUTION_SDK__
 #define fpclassify(x) \
 	((sizeof(x) == sizeof(float)) ? __fpclassifyf((float)(x)) : \
 	(sizeof(x) == sizeof(double)) ? __fpclassifyd((double)(x)) : \
 	__fpclassifyl((long double)(x)) )
+#else
+#define fpclassify(x) \
+	((sizeof(x) == sizeof(float)) ? __fpclassifyf((float)(x)) : \
+	__fpclassifyd((double)(x)) )
+#endif
 #define signbit(x) ((sizeof(x) == sizeof(float)) ? __signbitf(x) : __signbitd(x))
 #define isfinite(x) ((fpclassify(x) > FP_INFINITE))
 #define isnan(x) (fpclassify(x) == FP_NAN)
@@ -26,27 +32,25 @@
 // TODO: OK?
 #define __signbitd(x) ((int)(__HI(x) & 0x80000000))
 
-extern unsigned long __float_nan[];
-extern unsigned long __float_huge[];
-extern unsigned long __float_max[];
-extern unsigned long __float_epsilon[];
+extern int __float_nan[];
+extern int __float_huge[];
+extern int __float_max[];
+extern int __float_epsilon[];
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 inline int __fpclassifyf(float __value) {
-    unsigned long integer = *(unsigned long*)&__value;
-
-    switch (integer & 0x7f800000) {
+    switch (*(int*)&__value & 0x7f800000) {
     case 0x7f800000:
-        if ((integer & 0x7fffff) != 0) {
+        if ((*(int*)&__value & 0x7fffff) != 0) {
             return FP_QNAN;
         }
         return FP_INFINITE;
 
     case 0:
-        if ((integer & 0x7fffff) != 0) {
+        if ((*(int*)&__value & 0x7fffff) != 0) {
             return FP_SUBNORMAL;
         }
         return FP_ZERO;

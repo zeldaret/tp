@@ -2429,7 +2429,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_hfuta"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_hsTarget"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ice_l"),
-    ActorRel(NonMatching, "d_a_obj_ice_s"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ice_s"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_iceblock"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_iceleaf"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_ihasi"),
