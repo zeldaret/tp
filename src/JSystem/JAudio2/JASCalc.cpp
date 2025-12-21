@@ -263,6 +263,17 @@ s16 const JASCalc::CUTOFF_TO_IIR_TABLE[128][4] = {
     0x7FFF, 0x0000, 0x0000, 0x0000,
 };
 
+template <>
+s16 JASCalc::clamp(s32);
+
+// currently required because of missing functions
+// JASCalc::hannWindow(short *, u32)
+// JASCalc::hammWindow(short *, u32)
+// JASCalc::fft(float *, float *, u32, s32)
+f32 JASCalc::fake1() { return 0.5f; }
+f32 JASCalc::fake2(s32 x) { return JASCalc::clamp<s16, s32>(x); }
+f32 JASCalc::fake3() { return 0.0f; }
+
 f32 JASCalc::pow2(f32 x) {
     s32 frac_index = 0;
     union {
@@ -317,11 +328,3 @@ s16 JASCalc::clamp(s32 x) {
         return std::numeric_limits<s16>::max();
     return x;
 }
-
-// currently required because of missing functions
-// JASCalc::hannWindow(short *, u32)
-// JASCalc::hammWindow(short *, u32)
-// JASCalc::fft(float *, float *, u32, s32)
-f32 JASCalc::fake1() { return 0.5f; }
-f32 JASCalc::fake2(s32 x) { return JASCalc::clamp<s16, s32>(x); }
-f32 JASCalc::fake3() { return 0.0f; }
