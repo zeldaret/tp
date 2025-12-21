@@ -753,7 +753,7 @@ public:
     /* 0x2C4 */ f32 mButtonATextSpacing;
     /* 0x2C8 */ s32 mButtonATextActionID;
     /* 0x2CC */ u32 field_0x2cc;
-    /* 0x2D0 */ bool mButtonATextDebug;
+    /* 0x2D0 */ u8 mButtonATextDebug;
     /* 0x2D4 */ f32 mButtonBFontScale;
     /* 0x2D8 */ f32 mButtonBFontPosX;
     /* 0x2DC */ f32 mButtonBFontPosY;
@@ -840,13 +840,13 @@ public:
     /* 0x420 */ s16 mButtonCrossMoveFrame;
     /* 0x422 */ s16 field_0x422;
     /* 0x424 */ s16 field_0x424;
-    /* 0x426 */ bool mButtonDebug[4];
+    /* 0x426 */ u8 mButtonDebug[4];
     /* 0x42A */ u8 mButtonXYItemDimAlpha;
     /* 0x42B */ u8 mButtonXYBaseDimAlpha;
     /* 0x42C */ u8 field_0x42c;
     /* 0x42D */ u8 mMaxSpurAmount;
-    /* 0x42E */ bool mSpurDebug;
-    /* 0x42F */ bool field_0x42f;
+    /* 0x42E */ u8 mSpurDebug;
+    /* 0x42F */ u8 field_0x42f;
     /* 0x430 */ JUtility::TColor mSpurIconPikariFrontInner;
     /* 0x434 */ JUtility::TColor mSpurIconPikariFrontOuter;
     /* 0x438 */ JUtility::TColor mSpurIconPikariBackInner;
@@ -921,9 +921,9 @@ public:
     /* 0x55C */ u32 mMessageID;
     /* 0x560 */ u32 mFlowID;
     /* 0x564 */ s16 mMessageDuration;
-    /* 0x566 */ bool mMessageDebug;
-    /* 0x567 */ bool mFlowDebug;
-    /* 0x568 */ bool mItemScaleAdjustON;
+    /* 0x566 */ u8 mMessageDebug;
+    /* 0x567 */ u8 mFlowDebug;
+    /* 0x568 */ u8 mItemScaleAdjustON;
     /* 0x569 */ u8 mItemScalePercent;
     /* 0x56C */ f32 mTouchAreaUnselectScale[5];
     /* 0x580 */ f32 mTouchAreaSelectScale[5];
@@ -937,7 +937,7 @@ public:
     /* 0x5F0 */ JUtility::TColor mTouchAreaSelectWhite[3];
     /* 0x5FC */ JUtility::TColor mTouchAreaSelectBlack[3];
     /* 0x608 */ s16 mTouchAreaSelectFrameNum;
-    /* 0x60A */ bool field_0x60a;
+    /* 0x60A */ u8 field_0x60a;
     /* 0x60C */ f32 mLanternIconMeterPosX;
     /* 0x610 */ f32 mLanternIconMeterPosY;
     /* 0x614 */ f32 mLanternIconMeterSize;

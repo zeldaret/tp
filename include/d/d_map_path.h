@@ -2,6 +2,7 @@
 #define D_MAP_D_MAP_PATH_H
 
 #include "d/d_drawlist.h"
+#include "JSystem/JHostIO/JORMContext.h"
 
 namespace dMpath_HIO_n {
     struct list_s {
@@ -11,14 +12,14 @@ namespace dMpath_HIO_n {
 
     class hioList_c {
     public:
-        /* 0x00 */ list_s field_0x0;
+        /* 0x00 */ list_s mList;
 
         virtual ~hioList_c() {}
         virtual void copySrcToHio() = 0;
         virtual void copyHioToDst() = 0;
         virtual void copyBufToHio(const char*) = 0;
 
-        void set(const list_s& param_1) { field_0x0 = param_1; }
+        void set(const list_s& param_1) { mList = param_1; }
         void gen(JORMContext*);
         void update(JORMContext*);
         u32 addString(char*, u32, u32) const;
@@ -152,6 +153,7 @@ public:
     virtual const GXColor* getDecoLineColor(int, int);
     virtual s32 getDecorationLineWidth(int);
 
+    f32 getCmPerTexel() const { return mCmPerTexel; }
     bool isDrawAreaCheck(const Vec& param_0) {
         return (param_0.x >= mPosX - field_0x8 * 2.0f &&
                 param_0.x <= mPosX + field_0x8 * 2.0f) &&

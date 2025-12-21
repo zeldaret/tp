@@ -103,10 +103,19 @@ void dMenu_Option_c::_create() {
 
     mpFont = mDoExt_getMesgFont();
     mpString = new dMsgString_c();
+    JUT_ASSERT(197, mpString != NULL);
+
+
     mpMeterHaihai = new dMeterHaihai_c(3);
+    JUT_ASSERT(201, mpMeterHaihai);
+
     field_0x3f6 = 0;
     mpScreen = new J2DScreen();
-    mpScreen->setPriority("zelda_option_select_menu.blo", 0x20000, mpArchive);
+    JUT_ASSERT(205, mpScreen != NULL);
+
+    bool fg = mpScreen->setPriority("zelda_option_select_menu.blo", 0x20000, mpArchive);
+    JUT_ASSERT(210, fg != false);
+
     mpScreen->search('base_a_n')->hide();
     mpScreen->search('y_set_p4')->hide();
     mpScreen->search('y_set_p3')->hide();
@@ -120,24 +129,41 @@ void dMenu_Option_c::_create() {
         field_0x254[i]->setString(0x20, "");
     }
     mpBackScreen = new J2DScreen();
-    mpBackScreen->setPriority("zelda_option_base.blo", 0x20000, mpArchive);
+    JUT_ASSERT(246, mpBackScreen != NULL);
+    fg = mpBackScreen->setPriority("zelda_option_base.blo", 0x20000, mpArchive);
+    JUT_ASSERT(251, fg != false);
     mpBackScreen->search('wi_btn_n')->hide();
     field_0x27c = mpBackScreen->search('let_area');
+
     mpClipScreen = new J2DScreen();
-    mpClipScreen->setPriority("zelda_option_menu_text.blo", 0x20000, mpArchive);
+    JUT_ASSERT(265, mpClipScreen != NULL);
+    fg = mpClipScreen->setPriority("zelda_option_menu_text.blo", 0x20000, mpArchive);
+    JUT_ASSERT(269, fg != false);
     dPaneClass_showNullPane(mpClipScreen);
+
     mpClipScreen->setScissor(true);
     mpShadowScreen = new J2DScreen();
-    mpShadowScreen->setPriority("zelda_option_menu_shadow.blo", 0x20000, mpArchive);
+    JUT_ASSERT(274, mpShadowScreen != NULL);
+    fg = mpShadowScreen->setPriority("zelda_option_menu_shadow.blo", 0x20000, mpArchive);
+    JUT_ASSERT(278, fg != false);
     dPaneClass_showNullPane(mpShadowScreen);
     mpShadowScreen->search('mw_n_5')->hide();
+
     mpTVScreen = new J2DScreen();
-    mpTVScreen->setPriority("zelda_option_check.blo", 0x20000, mpArchive);
+    JUT_ASSERT(287, mpTVScreen != NULL);
+    fg = mpTVScreen->setPriority("zelda_option_check.blo", 0x20000, mpArchive);
+    JUT_ASSERT(291, fg != false);
     dPaneClass_showNullPane(mpTVScreen);
+
     mpTVButtonAB = new CPaneMgr(mpTVScreen, 'g_abtn_n', 0, NULL);
+    JUT_ASSERT(295, mpTVButtonAB != NULL);
+    
     mpTVButtonText = new CPaneMgr(mpTVScreen, 'a_text_n', 0, NULL);
+    JUT_ASSERT(298, mpTVButtonText != NULL);
     mpTVScreen->search('g_abtn_n')->hide();
+
     mpScreenIcon = new J2DScreen();
+    JUT_ASSERT(325, mpScreenIcon != NULL);
     mpScreenIcon->setPriority("zelda_collect_soubi_do_icon_parts.blo", 0x20000, mpArchive);
     for (int i = 0; i < 2; i++) {
         mpButtonAB[i] = NULL;
@@ -157,24 +183,31 @@ void dMenu_Option_c::_create() {
     setBButtonString(0x3F9);
     ResTIMG* timg = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
     mpBlackTex = new J2DPicture(timg);
+    JUT_ASSERT(402, mpBlackTex != NULL);
     mpBlackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 0xff));
     mpBlackTex->setAlpha(0);
     field_0x374 = 0.0f;
     mpWarning = new dFile_warning_c(mpArchive, 1);
+    JUT_ASSERT(408, mpWarning != NULL);
     mpWarning->setFontColor(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0xc8, 0xc8, 0xc8, 0xff));
     mpSelectScreen = new J2DScreen();
-    mpSelectScreen->setPriority("zelda_file_select_yes_no_window.blo", 0x1100000, mpArchive);
+    JUT_ASSERT(412, mpSelectScreen != NULL);
+    fg = mpSelectScreen->setPriority("zelda_file_select_yes_no_window.blo", 0x1100000, mpArchive);
+    JUT_ASSERT(416, fg != false);
     dPaneClass_showNullPane(mpSelectScreen);
-    void* resource = JKRGetNameResource("zelda_file_select_yes_no_window.bck", mpArchive);
-    field_0x24 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resource);
-    field_0x28 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resource);
-    field_0x20 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resource);
+
+    void* bck = JKRGetNameResource("zelda_file_select_yes_no_window.bck", mpArchive);
+    field_0x24 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(bck);
+    field_0x28 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(bck);
+    field_0x20 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(bck);
     field_0x24->searchUpdateMaterialID(mpSelectScreen);
     field_0x28->searchUpdateMaterialID(mpSelectScreen);
     field_0x20->searchUpdateMaterialID(mpSelectScreen);
     for (int i = 0; i < 2; i++) {
         mpYesNoSelBase_c[i] = new CPaneMgr(mpSelectScreen, l_tagName012[i], 0, NULL);
+        JUT_ASSERT(439, mpYesNoSelBase_c[i] != NULL);
         mpYesNoTxt_c[i] = new CPaneMgr(mpSelectScreen, l_tagName013[i], 0, NULL);
+        JUT_ASSERT(441, mpYesNoTxt_c[i] != NULL);
         J2DTextBox* yesNoTxt = (J2DTextBox*)mpYesNoTxt_c[i]->getPanePtr();
         yesNoTxt->setFont(mDoExt_getMesgFont());
         char message[24];
@@ -182,24 +215,33 @@ void dMenu_Option_c::_create() {
         J2DTextBox* yesNoTxt2 = (J2DTextBox*)mpYesNoTxt_c[i]->getPanePtr();
         yesNoTxt2->setString(0x20, message);
     }
-    resource = JKRGetNameResource("zelda_file_select_yes_no_window.bpk", mpArchive);
-    field_0x2c = (J2DAnmColor*)J2DAnmLoaderDataBase::load(resource);
+    
+    void* bpk = JKRGetNameResource("zelda_file_select_yes_no_window.bpk", mpArchive);
+    JUT_ASSERT(449, bpk != NULL);
+    field_0x2c = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
     field_0x2c->searchUpdateMaterialID(mpSelectScreen);
     field_0x3c0 = 0;
-    resource = JKRGetNameResource("zelda_file_select_yes_no_window.btk", mpArchive);
-    field_0x30 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(resource);
+
+    void* btk = JKRGetNameResource("zelda_file_select_yes_no_window.btk", mpArchive);
+    JUT_ASSERT(459, btk != NULL);
+    field_0x30 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
     field_0x30->searchUpdateMaterialID(mpSelectScreen);
     field_0x3c4 = 0;
+
     for (int i = 0; i < 2; i++) {
         mpYesNoCurWaku_c[i] = new CPaneMgr(mpSelectScreen, l_tagName9[i], 0, NULL);
+        JUT_ASSERT(482, mpYesNoCurWaku_c[i] != NULL);
         mpYesNoCurWakuG0_c[i] = new CPaneMgr(mpSelectScreen, l_tagName10[i], 0, NULL);
+        JUT_ASSERT(484, mpYesNoCurWakuG0_c[i] != NULL);
         mpYesNoCurWakuG1_c[i] = new CPaneMgr(mpSelectScreen, l_tagName11[i], 0, NULL);
+        JUT_ASSERT(486, mpYesNoCurWakuG1_c[i] != NULL);
         mpYesNoCurWaku_c[i]->getPanePtr()->setAnimation(field_0x2c);
         mpYesNoCurWakuG0_c[i]->getPanePtr()->setAnimation(field_0x2c);
         mpYesNoCurWakuG1_c[i]->getPanePtr()->setAnimation(field_0x2c);
         mpYesNoCurWakuG0_c[i]->getPanePtr()->setAnimation(field_0x30);
         mpYesNoCurWakuG1_c[i]->getPanePtr()->setAnimation(field_0x30);
     }
+
     field_0x3f9 = 0;
     field_0x3fa = 0;
     field_0x401 = 0xff;
@@ -209,6 +251,7 @@ void dMenu_Option_c::_create() {
         field_0x3fd[i] = 0;
         field_0x3ff[i] = 0;
     }
+
     field_0x403 = 0;
     screenSet();
     field_0x3e0 = 0;
@@ -234,6 +277,7 @@ void dMenu_Option_c::_create() {
         field_0x384[i] = 0.0f;
         field_0x39c[i] = 0.0f;
     }
+
     field_0x3b8.r = 0xff;
     field_0x3b8.g = 0xff;
     field_0x3b8.b = 0xff;
@@ -334,7 +378,15 @@ void dMenu_Option_c::_delete() {
     delete field_0x30;
     field_0x30 = NULL;
 
-    if (isUseFlag(1)) {
+    if (
+        isUseFlag(
+            #if DEBUG
+            0
+            #else
+            1
+            #endif
+        )
+    ) {
         delete mpStick;
         mpStick = NULL;
     }
@@ -410,13 +462,13 @@ void dMenu_Option_c::_delete() {
     }
 
     if (mpMount != NULL) {
-        mpMount->getArchive()->unmount();
-        delete mpMount;
+        JKRUnmountArchive(mpMount->getArchive());
+        mpMount->destroy();
         mpMount = NULL;
     }
 
     if (mpArchive != NULL) {
-        mpArchive->unmount();
+        JKRUnmountArchive(mpArchive);
         mpArchive = NULL;
     }
 
@@ -428,6 +480,7 @@ void dMenu_Option_c::_move() {
     if (field_0x3ea != 0 && !isRumbleSupported()) {
         field_0x3ea = 0;
     }
+
     if (mDoGph_gInf_c::getFader()->getStatus() == 1) {
         if (mDoCPd_c::getTrigA(PAD_1) != 0 && field_0x3ef != SelectType3 && field_0x3f3 == 5) {
             if (field_0x3f4 == 5 && field_0x3ef != SelectType4 && field_0x3ef != SelectType5 && field_0x3ef != SelectType6 &&
@@ -447,6 +500,7 @@ void dMenu_Option_c::_move() {
                 }
             }
         }
+
         if (mDoCPd_c::getTrigB(PAD_1) != 0 && field_0x3ef != SelectType3 && field_0x3f3 == 5 &&
             field_0x3ef != SelectType4 && field_0x3ef != SelectType5 && field_0x3ef != SelectType6 && field_0x3ef != SelectType7)
         {
@@ -468,6 +522,7 @@ skip:
     if (field_0x3f3 == 5 && oldValue != SelectType4 && oldValue != SelectType5 && oldValue != SelectType6 && oldValue != SelectType7) {
         dpdMenuMove();
     }
+
     field_0x3f2 = 0;
     if (field_0x3f1 != 0xff) {
         if (field_0x3f0 != field_0x3f1 && field_0x3ef != field_0x3f1) {
@@ -477,17 +532,26 @@ skip:
     } else {
         field_0x3f0 = 0xff;
     }
+
     (this->*process[field_0x3ef])();
     mpSelectScreen->animation();
     if (oldValue != field_0x3ef) {
         (this->*init[field_0x3ef])();
     }
+    
     setHIO(false);
 }
 
 void dMenu_Option_c::_draw() {
     if (mpArchive != NULL) {
         J2DGrafContext* ctx = dComIfGp_getCurrentGrafPort();
+        #if (PLATFORM_WII || PLATFORM_SHIELD)
+        if (mpCalibration != NULL && field_0x3f4 != 5 && field_0x3f4 != 0 && field_0x3f4 != 4) {
+            mpCalibration->draw();
+            return;
+        }
+        #endif
+
         mpBlackTex->setAlpha(0xff);
         mpBlackTex->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0, 0, 0);
         mpBackScreen->draw(0.0f, 0.0f, ctx);

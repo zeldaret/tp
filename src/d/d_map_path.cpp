@@ -5,6 +5,7 @@
 
 #include "d/dolzel.h" // IWYU pragma: keep
 
+#include "JSystem/JHostIO/JORFile.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/JHostIO/JORFile.h"
 #include "JSystem/JUtility/JUTTexture.h"

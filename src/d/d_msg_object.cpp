@@ -1323,7 +1323,7 @@ void dMsgObject_c::talkStartInit() {
          (((dComIfGp_isHeapLockFlag() == 2 ||
             (dComIfGp_isHeapLockFlag() == 3 || dComIfGp_isHeapLockFlag() == 1)) &&
            field_0x4cd == 0 && mpTalkHeap != NULL))) &&
-        (mpScrnDraw == NULL && dMeter2Info_getFloatingMessageID() != 0x13eb))
+        (mpScrnDraw == NULL && (u32)dMeter2Info_getFloatingMessageID() != 0x13eb))
     {
         if (!bVar1 && ((dComIfGp_isHeapLockFlag() == 0 || dComIfGp_isHeapLockFlag() == 5))) {
             dComIfGp_setHeapLockFlag(7);
@@ -1743,8 +1743,8 @@ bool dMsgObject_c::getStringLocal(u32 param_1, J2DTextBox* param_2, J2DTextBox* 
     return false;
 }
 
-u8 dMsgObject_c::isGetItemMessage() {
-    return mFukiKind == 9;
+bool dMsgObject_c::isGetItemMessage() {
+    return (u8)(mFukiKind == 9);
 }
 
 bool dMsgObject_c::isKanbanMessage() {

@@ -1112,6 +1112,8 @@ public:
 
     void CorrectCenter() { setFlag(0x40000000); }
 
+    int Gear() { return mGear; }
+
     static engine_fn engine_tbl[];
 
     /* 0x000 */ camera_class* field_0x0;

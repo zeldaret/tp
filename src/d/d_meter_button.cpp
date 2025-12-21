@@ -32,6 +32,7 @@ dMeterButton_c::~dMeterButton_c() {
 }
 
 int dMeterButton_c::_create() {
+    OS_REPORT("dMeterButton_c::_create\n");
     screenInitButton();
     screenInitText();
     return cPhs_COMPLEATE_e;
@@ -47,7 +48,7 @@ int dMeterButton_c::_execute(u32 i_flags, bool i_drawA, bool i_drawB, bool i_dra
     updateText(i_flags);
     field_0x4b0 = 0;
 
-    if (dComIfGs_isTmpBit(dSv_event_tmp_flag_c::tempBitLabels[49]) && !dMsgObject_isTalkNowCheck())
+    if (dComIfGs_isTmpBit((u16)dSv_event_tmp_flag_c::tempBitLabels[49]) && !dMsgObject_isTalkNowCheck())
     {
         i_flags &= ~0x4000;
     }
@@ -207,20 +208,16 @@ int dMeterButton_c::_execute(u32 i_flags, bool i_drawA, bool i_drawB, bool i_dra
             if (!mpButtonScreen->search('yaji_dn')->isVisible()) {
                 mpButtonScreen->search('yaji_dn')->show();
             }
-        } else {
-            if (mpButtonScreen->search('yaji_dn')->isVisible() == true) {
-                mpButtonScreen->search('yaji_dn')->hide();
-            }
+        } else if (mpButtonScreen->search('yaji_dn')->isVisible() == true) {
+            mpButtonScreen->search('yaji_dn')->hide();
         }
 
         if (dir_c & DIR_RIGHT_e) {
             if (!mpButtonScreen->search('yaji_rn')->isVisible()) {
                 mpButtonScreen->search('yaji_rn')->show();
             }
-        } else {
-            if (mpButtonScreen->search('yaji_rn')->isVisible() == true) {
-                mpButtonScreen->search('yaji_rn')->hide();
-            }
+        } else if (mpButtonScreen->search('yaji_rn')->isVisible() == true) {
+            mpButtonScreen->search('yaji_rn')->hide();
         }
     }
 
@@ -230,7 +227,7 @@ int dMeterButton_c::_execute(u32 i_flags, bool i_drawA, bool i_drawB, bool i_dra
         } else {
             cLib_addCalc2(&field_0x2fc[i], field_0x2f4[i], 1.0f, 10.0f);
 
-            if (fabsf(field_0x2fc[i] - field_0x2f4[i]) < 0.1f) {
+            if (std::fabs(field_0x2fc[i] - field_0x2f4[i]) < 0.1f) {
                 field_0x2fc[i] = field_0x2f4[i];
             }
         }
@@ -647,7 +644,11 @@ bool dMeterButton_c::alphaAnimeButtonB(u32 i_flags, bool i_drawButton) {
 
 bool dMeterButton_c::alphaAnimeButtonR(u32 i_flags, bool i_drawButton) {
     if ((i_flags & 0x4000) || dMsgObject_isTalkNowCheck() || !i_drawButton ||
-        mButtonTimers[BUTTON_R_e] > 0 || (i_flags & 0x40000000) ||
+        mButtonTimers[BUTTON_R_e] > 0 ||
+        #if DEBUG
+        (i_flags & 0x80) ||
+        #endif
+        (i_flags & 0x40000000) ||
         ((i_flags & 0x40) && dComIfGp_event_checkHind(8)) || (i_flags & 0x100) || (i_flags & 8) ||
         (i_flags & 0x10) || (i_flags & 0x20))
     {
@@ -997,24 +998,24 @@ void dMeterButton_c::screenInitButton() {
     OS_REPORT("enter dMeterButton_c::screenInitButton\n");
 
     mpButtonScreen = new J2DScreen();
-    JUT_ASSERT(0, mpButtonScreen != NULL);
+    JUT_ASSERT(1830, mpButtonScreen != NULL);
 
     OS_REPORT("load zelda_game_image_button_info.blo");
 
     bool fg = mpButtonScreen->setPriority("zelda_game_image_button_info.blo", 0x20000,
                                           dComIfGp_getMeterButtonArchive());
-    JUT_ASSERT(0, fg != false);
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+    JUT_ASSERT(1857, fg != false);
+    if (!fg) {
+        OS_REPORT("[%s] %d\n", __FILE__, 1859);
+    }
 
     dPaneClass_showNullPane(mpButtonScreen);
     field_0x00c = NULL;
 
     mpParent = new CPaneMgr(mpButtonScreen, 'info_n', 0, NULL);
-    if (mpParent == NULL) {
-        OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
-    }
-
-    JUT_ASSERT(0, mpParent != NULL);
+    if (mpParent == NULL)
+        OS_REPORT("[%s] %d\n", __FILE__, 1867);
+    JUT_ASSERT(1868, mpParent != NULL);
 
     for (int i = 0; i < BUTTON_NUM; i++) {
         field_0x18c[i] = 0.0f;
@@ -1038,51 +1039,55 @@ void dMeterButton_c::screenInitButton() {
 
     mpButtonA = new CPaneMgr(mpButtonScreen, 'abtn_n', 2, NULL);
     if (mpButtonA == NULL) {
-        OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+        OS_REPORT("[%s] %d\n", __FILE__, 1902);
     }
-    JUT_ASSERT(0, mpButtonA != NULL);
+    JUT_ASSERT(1903, mpButtonA != NULL);
     mpButtonA->setAlphaRate(0.0f);
     mpButtonA->show();
 
     mpButtonB = new CPaneMgr(mpButtonScreen, 'bbtn_n', 2, NULL);
     if (mpButtonB == NULL) {
-        OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+        OS_REPORT("[%s] %d\n", __FILE__, 1914);
     }
-    JUT_ASSERT(0, mpButtonB != NULL);
+    JUT_ASSERT(1916, mpButtonB != NULL);
     mpButtonB->setAlphaRate(0.0f);
     mpButtonB->show();
 
     mpButtonR = new CPaneMgr(mpButtonScreen, 'rbtn_n', 2, NULL);
     if (mpButtonR == NULL) {
-        OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+        OS_REPORT("[%s] %d\n", __FILE__, 1932);
     }
-    JUT_ASSERT(0, mpButtonR != NULL);
+    JUT_ASSERT(1934, mpButtonR != NULL);
     mpButtonR->setAlphaRate(0.0f);
     mpButtonR->show();
 
     mpMidona = new CPaneMgr(mpButtonScreen, 'midona', 0, NULL);
-    JUT_ASSERT(0, mpMidona != NULL);
+    JUT_ASSERT(1939, mpMidona != NULL);
     if (mpMidona == NULL) {
-        OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+        OS_REPORT("[%s] %d\n", __FILE__, 1941);
     }
 
     for (int i = 0; i < 4; i++) {
         field_0x0fc[i] = NULL;
     }
 
+    #if DEBUG
+    if (mpButtonScreen->search('zbtn') == 0) OS_REPORT("[%s] %d\n", __FILE__, 1947);
+    if (mpButtonScreen->search('z_btnl') == 0) OS_REPORT("[%s] %d\n", __FILE__, 1948);
+    #endif
     mpButtonScreen->search('zbtn')->show();
     mpButtonScreen->search('z_btnl')->show();
 
     mpButtonZ = new CPaneMgr(mpButtonScreen, 'zbtn_n', 2, NULL);
     if (mpButtonZ == NULL) {
-        OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+        OS_REPORT("[%s] %d\n", __FILE__, 1954);
     }
-    JUT_ASSERT(0, mpButtonZ != NULL);
+    JUT_ASSERT(1956, mpButtonZ != NULL);
     mpButtonZ->setAlphaRate(0.0f);
     mpButtonZ->show();
 
     mpButton3D = new CPaneMgr(mpButtonScreen, 'asbtn_n', 2, NULL);
-    JUT_ASSERT(0, mpButton3D != NULL);
+    JUT_ASSERT(1964, mpButton3D != NULL);
     mpButton3D->setAlphaRate(0.0f);
     mpButton3D->show();
 
@@ -1092,7 +1097,7 @@ void dMeterButton_c::screenInitButton() {
     mpButtonScreen->search('yaji_r_n')->hide();
 
     mpButtonC = new CPaneMgr(mpButtonScreen, 'cbtn_n', 2, NULL);
-    JUT_ASSERT(0, mpButtonC != NULL);
+    JUT_ASSERT(1992, mpButtonC != NULL);
     mpButtonC->setAlphaRate(0.0f);
     mpButtonC->show();
 
@@ -1102,15 +1107,15 @@ void dMeterButton_c::screenInitButton() {
     mpButtonScreen->search('yaji_rn')->hide();
 
     mpButtonS = new CPaneMgr(mpButtonScreen, 'sbtn_n', 2, NULL);
-    JUT_ASSERT(0, mpButtonS != NULL);
+    JUT_ASSERT(2002, mpButtonS != NULL);
     mpButtonS->setAlphaRate(0.0f);
 
     mpButtonX = new CPaneMgr(mpButtonScreen, 'xbtn_n', 2, NULL);
-    JUT_ASSERT(0, mpButtonX != NULL);
+    JUT_ASSERT(2048, mpButtonX != NULL);
     mpButtonX->setAlphaRate(0.0f);
 
     mpButtonY = new CPaneMgr(mpButtonScreen, 'ybtn_n', 2, NULL);
-    JUT_ASSERT(0, mpButtonY != NULL);
+    JUT_ASSERT(2052, mpButtonY != NULL);
     mpButtonY->setAlphaRate(0.0f);
 
     mpButtonNun = NULL;
@@ -1119,7 +1124,7 @@ void dMeterButton_c::screenInitButton() {
     mpButtonAR = NULL;
 
     mpButton3DB = new CPaneMgr(mpButtonScreen, 'as_b_n', 2, NULL);
-    JUT_ASSERT(0, mpButton3DB != NULL);
+    JUT_ASSERT(2060, mpButton3DB != NULL);
     mpButton3DB->setAlphaRate(0.0f);
 
     mpButtonNURE = NULL;
@@ -1131,24 +1136,24 @@ void dMeterButton_c::screenInitButton() {
     mpButtonNunC = NULL;
 
     mpButtonBin = new CPaneMgr(mpButtonScreen, 'bottl_n', 2, NULL);
-    JUT_ASSERT(0, mpButtonBin != NULL);
+    JUT_ASSERT(2071, mpButtonBin != NULL);
     mpButtonBin->setAlphaRate(0.0f);
 
     mpText[0] = new CPaneMgr(mpButtonScreen, 'text_n', 2, NULL);
-    JUT_ASSERT(0, mpText[0] != NULL);
+    JUT_ASSERT(2075, mpText[0] != NULL);
     mpText[0]->setAlphaRate(0.0f);
 
     mpText[1] = new CPaneMgr(mpButtonScreen, 'text2_n', 2, NULL);
-    JUT_ASSERT(0, mpText[1] != NULL);
+    JUT_ASSERT(2079, mpText[1] != NULL);
     mpText[1]->setAlphaRate(0.0f);
 
     mpItem_c = new CPaneMgr(mpButtonScreen, 'fishing', 0, NULL);
-    JUT_ASSERT(0, mpItem_c != NULL);
+    JUT_ASSERT(2083, mpItem_c != NULL);
     mpItem_c->setAlphaRate(0.0f);
 
     mpHeap = mDoExt_getCurrentHeap();
     mpFishingTex = mpHeap->alloc(0xC00, 0x20);
-    JUT_ASSERT(0, mpFishingTex != NULL);
+    JUT_ASSERT(2088, mpFishingTex != NULL);
 
     u8 fishing_item = dComIfGs_getItem(SLOT_20, false);
     if (dMeter2Info_getMeterClass()->getMeterDrawPtr()->getCanoeFishing()) {
@@ -1341,12 +1346,9 @@ void dMeterButton_c::screenInitButton() {
     field_0x5f4 = 0.0f;
     field_0x5f8 = 0.0f;
     field_0x5fc = 1.0f;
-    mTextPosX[1] = 0.0f;
-    mTextPosX[0] = 0.0f;
-    mTextPosY[1] = 0.0f;
-    mTextPosY[0] = 0.0f;
-    mTextScale[1] = 1.0f;
-    mTextScale[0] = 1.0f;
+    mTextPosX[0] = mTextPosX[1] = 0.0f;
+    mTextPosY[0] = mTextPosY[1] = 0.0f;
+    mTextScale[0] = mTextScale[1] = 1.0f;
     mItemPosX = 0.0f;
     mItemPosY = 0.0f;
     mItemScale = 1.0f;
@@ -1393,44 +1395,53 @@ void dMeterButton_c::screenInitButton() {
 
 void dMeterButton_c::screenInitText() {
     mpScreen = new J2DScreen();
-    JUT_ASSERT(0, mpScreen != NULL);
+    JUT_ASSERT(2442, mpScreen != NULL);
 
     OS_REPORT("enter dMeterButton_c::screenInitText(void)\n");
 
     bool fg =
-        mpScreen->setPriority("zelda_message_window_new.blo", 0x20000, dComIfGp_getMsgArchive(1));
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
-    JUT_ASSERT(0, fg != false);
+        mpScreen->setPriority(
+            #if DEBUG
+            "zelda_message_window_new_revo.blo",
+            #else
+            "zelda_message_window_new.blo",
+            #endif
+            0x20000, dComIfGp_getMsgArchive(1));
+    OS_REPORT("[%s] %d\n", __FILE__, 2450);
+    JUT_ASSERT(2457, fg != false);
     dPaneClass_showNullPane(mpScreen);
 
     mpFkAll_c = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
-    JUT_ASSERT(0, mpFkAll_c != NULL);
+    OS_REPORT("[%s] %d\n", __FILE__, 2461);
+    JUT_ASSERT(2462, mpFkAll_c != NULL);
     mpFkAll_c->setAlphaRate(0.0f);
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+    OS_REPORT("[%s] %d\n", __FILE__, 2465);
 
     mpScreen->search('mg_null')->move(
         g_MsgObject_HIO_c.mTextPosX + mpScreen->search('mg_null')->getBounds().i.x,
         g_MsgObject_HIO_c.mTextPosY + mpScreen->search('mg_null')->getBounds().i.y);
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+    OS_REPORT("[%s] %d\n", __FILE__, 2469);
 
     mpFkRoot_c = new CPaneMgr(mpScreen, 'mg_null', 0, NULL);
-    JUT_ASSERT(0, mpFkRoot_c != NULL);
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+    JUT_ASSERT(2472, mpFkRoot_c != NULL);
+    OS_REPORT("[%s] %d\n", __FILE__, 2474);
 
     mpTextScreen = new J2DScreen();
-    JUT_ASSERT(0, mpTextScreen != NULL);
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+    JUT_ASSERT(2478, mpTextScreen != NULL);
+
+    OS_REPORT("[%s] %d\n", __FILE__, 2480);
 
     fg = mpTextScreen->setPriority("zelda_message_window_text.blo", 0x20000,
                                    dComIfGp_getMsgCommonArchive());
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
-    JUT_ASSERT(0, fg != false);
+    OS_REPORT("[%s] %d\n", __FILE__, 2491);
+
+    JUT_ASSERT(2493, fg != false);
+
     dPaneClass_showNullPane(mpTextScreen);
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+    OS_REPORT("[%s] %d\n", __FILE__, 2496);
 
     mpTmRoot_c = new CPaneMgr(mpTextScreen, 'mg_null', 0, NULL);
-    JUT_ASSERT(0, mpTmRoot_c != NULL);
+    JUT_ASSERT(2499, mpTmRoot_c != NULL);
 
 #if VERSION == VERSION_GCN_JPN
     if (dComIfGs_getOptUnk0() == 0) {
@@ -1460,21 +1471,22 @@ void dMeterButton_c::screenInitText() {
     }
 #else
     mpTm_c[0] = new CPaneMgr(mpTextScreen, 'mg_e4lin', 0, NULL);
-    JUT_ASSERT(0, mpTm_c[0] != NULL);
+    JUT_ASSERT(2504, mpTm_c[0] != NULL);
 
     mpTm_c[1] = new CPaneMgr(mpTextScreen, 't4_s', 0, NULL);
-    JUT_ASSERT(0, mpTm_c[1] != NULL);
+    JUT_ASSERT(2507, mpTm_c[1] != NULL);
 
     field_0x0ec[0] = NULL;
     field_0x0ec[1] = NULL;
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+
+    OS_REPORT("[%s] %d\n", __FILE__, 2512);
 
     mpTextScreen->search('n_3line')->hide();
     mpTextScreen->search('n_3fline')->hide();
     mpTextScreen->search('n_e4line')->show();
 #endif
 
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+    OS_REPORT("[%s] %d\n", __FILE__, 2554);
 
     f32 line_space = static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr())->getLineSpace();
     for (int i = 0; i < 2; i++) {
@@ -1501,10 +1513,12 @@ void dMeterButton_c::screenInitText() {
     field_0x4b4 = 0;
 
     mpString_c = new dMsgString_c();
-    OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+    JUT_ASSERT(2572, mpString_c != NULL);
+
+    OS_REPORT("[%s] %d\n", __FILE__, 2574);
 
     mpOutFont = new COutFont_c(0);
-    JUT_ASSERT(0, mpOutFont != NULL);
+    JUT_ASSERT(2577, mpOutFont != NULL);
     mpOutFont->createPane();
 
     OS_REPORT("exit dMeterButton_c::screenInitText(void)\n");
@@ -1542,12 +1556,15 @@ void dMeterButton_c::updateButton() {
     {
         parent_y_offset = -25.0f;
         set_parent_offset = true;
-    } else if (strcmp(dComIfGp_getStartStageName(), "R_SP161") == 0 &&
+    }
+    #if !DEBUG
+    else if (strcmp(dComIfGp_getStartStageName(), "R_SP161") == 0 &&
                dComIfGs_isOneZoneSwitch(14, -1))
     {
         parent_y_offset = -25.0f;
         set_parent_offset = true;
     }
+    #endif
 
     if (dMeter2Info_getMeterClass()->getSubContents() == 4) {
         parent_scale_factor = 0.8f;
@@ -1762,12 +1779,11 @@ void dMeterButton_c::updateButton() {
         f32 x_offset = 0.0f;
         f32 y_offset = 0.0f;
 
-        u8 temp_r4 = field_0x4be[0];
-        if (temp_r4 != BUTTON_NONE_e) {
-            x_offset = field_0x18c[temp_r4];
+        if (field_0x4be[0] != BUTTON_NONE_e) {
+            x_offset = field_0x18c[field_0x4be[0]];
         }
 
-        if (temp_r4 == BUTTON_S_e) {
+        if (field_0x4be[0] == BUTTON_S_e) {
             y_offset = mButtonSPosY;
         }
 
@@ -1789,12 +1805,11 @@ void dMeterButton_c::updateButton() {
         f32 x_offset = 0.0f;
         f32 y_offset = 0.0f;
 
-        u8 temp_r4 = field_0x4be[1];
-        if (temp_r4 != BUTTON_NONE_e) {
-            x_offset = field_0x18c[temp_r4];
+        if (field_0x4be[1] != BUTTON_NONE_e) {
+            x_offset = field_0x18c[field_0x4be[1]];
         }
 
-        if (temp_r4 == BUTTON_S_e) {
+        if (field_0x4be[1] == BUTTON_S_e) {
             y_offset = mButtonSPosY;
         }
 
@@ -1861,9 +1876,10 @@ void dMeterButton_c::updateText(u32 i_flags) {
             char buf2[STR_BUF_LEN];
             char buf3[STR_BUF_LEN];
 
-            if (dMsgObject_getString(dMeter2Info_getFloatingMessageID(),
+            bool getString = dMsgObject_getString(dMeter2Info_getFloatingMessageID(),
                                      static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr()), tbox,
-                                     mDoExt_getMesgFont(), mpOutFont, buf1, buf2, buf3, NULL))
+                                     mDoExt_getMesgFont(), mpOutFont, buf1, buf2, buf3, NULL);
+            if (getString)
             {
                 mMsgID = dMeter2Info_getFloatingMessageID();
                 strcpy(static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr())->getStringPtr(), buf1);
@@ -1929,6 +1945,9 @@ void dMeterButton_c::setAlphaButtonAAnimeMin() {
             mButtonTimers[BUTTON_A_e] = 30;
         }
 
+        #if DEBUG
+        dComIfGp_isDoSetFlag(1);
+        #endif
         mpButtonA->setAlphaRate(0.0f);
         mpButtonA->alphaAnimeStart(0);
 
@@ -1997,6 +2016,9 @@ void dMeterButton_c::setAlphaButtonBAnimeMin() {
             mButtonTimers[BUTTON_B_e] = 30;
         }
 
+        #if DEBUG
+        dComIfGp_isDoSetFlag(1);
+        #endif
         mpButtonB->setAlphaRate(0.0f);
         mpButtonB->alphaAnimeStart(0);
 
@@ -2030,6 +2052,9 @@ void dMeterButton_c::setAlphaButtonRAnimeMin() {
             mButtonTimers[BUTTON_R_e] = 30;
         }
 
+        #if DEBUG
+        dComIfGp_isDoSetFlag(1);
+        #endif
         mpButtonR->setAlphaRate(0.0f);
         mpButtonR->alphaAnimeStart(0);
 
@@ -2063,6 +2088,9 @@ void dMeterButton_c::setAlphaButtonZAnimeMin() {
             mButtonTimers[BUTTON_Z_e] = 30;
         }
 
+        #if DEBUG
+        dComIfGp_isDoSetFlag(1);
+        #endif
         mpButtonZ->setAlphaRate(0.0f);
         mpButtonZ->alphaAnimeStart(0);
 
@@ -2096,6 +2124,9 @@ void dMeterButton_c::setAlphaButton3DAnimeMin() {
             mButtonTimers[BUTTON_3D_e] = 30;
         }
 
+        #if DEBUG
+        dComIfGp_isDoSetFlag(1);
+        #endif
         mpButton3D->setAlphaRate(0.0f);
         mpButton3D->alphaAnimeStart(0);
         mButtonTimers[BUTTON_3D_e] = 0;
@@ -2134,6 +2165,9 @@ void dMeterButton_c::setAlphaButtonCAnimeMin() {
             mButtonTimers[BUTTON_C_e] = 30;
         }
 
+        #if DEBUG
+        dComIfGp_isDoSetFlag(1);
+        #endif
         mpButtonC->setAlphaRate(0.0f);
         mpButtonC->alphaAnimeStart(0);
 
@@ -2200,6 +2234,9 @@ void dMeterButton_c::setAlphaButtonSAnimeMin() {
             mButtonTimers[BUTTON_S_e] = 30;
         }
 
+        #if DEBUG
+        dComIfGp_isDoSetFlag(1);
+        #endif
         mpButtonS->setAlphaRate(0.0f);
         mpButtonS->alphaAnimeStart(0);
 
@@ -2233,6 +2270,9 @@ void dMeterButton_c::setAlphaButtonXAnimeMin() {
             mButtonTimers[BUTTON_X_e] = 30;
         }
 
+        #if DEBUG
+        dComIfGp_isDoSetFlag(1);
+        #endif
         mpButtonX->setAlphaRate(0.0f);
         mpButtonX->alphaAnimeStart(0);
 
@@ -2266,6 +2306,9 @@ void dMeterButton_c::setAlphaButtonYAnimeMin() {
             mButtonTimers[BUTTON_Y_e] = 30;
         }
 
+        #if DEBUG
+        dComIfGp_isDoSetFlag(1);
+        #endif
         mpButtonY->setAlphaRate(0.0f);
         mpButtonY->alphaAnimeStart(0);
 
@@ -2300,6 +2343,9 @@ void dMeterButton_c::setAlphaButtonNunAnimeMin() {
                 mButtonTimers[BUTTON_NUN_e] = 30;
             }
 
+            #if DEBUG
+            dComIfGp_isDoSetFlag(1);
+            #endif
             mpButtonNun->setAlphaRate(0.0f);
             mpButtonNun->alphaAnimeStart(0);
 
@@ -2337,6 +2383,9 @@ void dMeterButton_c::setAlphaButtonRemoAnimeMin() {
                 mButtonTimers[BUTTON_REMO_e] = 30;
             }
 
+            #if DEBUG
+            dComIfGp_isDoSetFlag(1);
+            #endif
             mpButtonRemo->setAlphaRate(0.0f);
             mpButtonRemo->alphaAnimeStart(0);
 
@@ -2374,6 +2423,9 @@ void dMeterButton_c::setAlphaButtonRemo2AnimeMin() {
                 mButtonTimers[BUTTON_REMO2_e] = 30;
             }
 
+            #if DEBUG
+            dComIfGp_isDoSetFlag(1);
+            #endif
             mpButtonRemo2->setAlphaRate(0.0f);
             mpButtonRemo2->alphaAnimeStart(0);
 
@@ -2411,6 +2463,11 @@ void dMeterButton_c::setAlphaButtonARAnimeMin() {
                 mButtonTimers[BUTTON_AR_e] = 30;
             }
 
+            #if DEBUG
+            if (!dComIfGp_isDoSetFlag(1)) {
+                dComIfGp_isRemoConSetFlag(1);
+            }
+            #endif
             mpButtonAR->setAlphaRate(0.0f);
             mpButtonAR->alphaAnimeStart(0);
 
@@ -2448,6 +2505,11 @@ void dMeterButton_c::setAlphaButton3DBAnimeMin() {
                 mButtonTimers[BUTTON_3DB_e] = 30;
             }
 
+            #if DEBUG
+            if (!dComIfGp_isDoSetFlag(1)) {
+                dComIfGp_is3DSetFlag(1);
+            }
+            #endif
             mpButton3DB->setAlphaRate(0.0f);
             mpButton3DB->alphaAnimeStart(0);
 
@@ -2485,6 +2547,11 @@ void dMeterButton_c::setAlphaButtonNUREAnimeMin() {
                 mButtonTimers[BUTTON_NURE_e] = 30;
             }
 
+            #if DEBUG
+            if (!dComIfGp_isDoSetFlag(1)) {
+                dComIfGp_is3DSetFlag(1);
+            }
+            #endif
             mpButtonNURE->setAlphaRate(0.0f);
             mpButtonNURE->alphaAnimeStart(0);
 
@@ -2522,6 +2589,11 @@ void dMeterButton_c::setAlphaButtonReelAnimeMin() {
                 mButtonTimers[BUTTON_REEL_e] = 30;
             }
 
+            #if DEBUG
+            if (!dComIfGp_isDoSetFlag(1)) {
+                dComIfGp_is3DSetFlag(1);
+            }
+            #endif
             mpButtonReel->setAlphaRate(0.0f);
             mpButtonReel->alphaAnimeStart(0);
 
@@ -2655,6 +2727,11 @@ void dMeterButton_c::setAlphaButtonNunZAnimeMin() {
                 mButtonTimers[BUTTON_NUNZ_e] = 30;
             }
 
+            #if DEBUG
+            if (!dComIfGp_isDoSetFlag(1)) {
+                dComIfGp_is3DSetFlag(1);
+            }
+            #endif
             mpButtonNunZ->setAlphaRate(0.0f);
             mpButtonNunZ->alphaAnimeStart(0);
 
@@ -2692,6 +2769,11 @@ void dMeterButton_c::setAlphaButtonNunCAnimeMin() {
                 mButtonTimers[BUTTON_NUNC_e] = 30;
             }
 
+            #if DEBUG
+            if (!dComIfGp_isDoSetFlag(1)) {
+                dComIfGp_is3DSetFlag(1);
+            }
+            #endif
             mpButtonNunC->setAlphaRate(0.0f);
             mpButtonNunC->alphaAnimeStart(0);
 
@@ -2729,6 +2811,11 @@ void dMeterButton_c::setAlphaButtonBinAnimeMin() {
                 mButtonTimers[BUTTON_BIN_e] = 30;
             }
 
+            #if DEBUG
+            if (!dComIfGp_isDoSetFlag(1)) {
+                dComIfGp_is3DSetFlag(1);
+            }
+            #endif
             mpButtonBin->setAlphaRate(0.0f);
             mpButtonBin->alphaAnimeStart(0);
 
@@ -2896,15 +2983,16 @@ void dMeterButton_c::setString(char* i_string, u8 i_button, u8 param_2, u8 param
             }
         }
 
-        getCenterPosCalc(i_button, i_string, param_2);
-
+        f32 centerPosCalc = getCenterPosCalc(i_button, i_string, param_2);
+        f32 temp_f2_2;
+        
         if (param_2 == 0 && field_0x4be[1] == BUTTON_NONE_e) {
             field_0x2f4[param_2] = 0.0f;
         } else if (dComIfGp_is3DSetFlag(8)) {
-            field_0x2f4[1] = 0.0f;
-            field_0x2f4[0] = 0.0f;
+            temp_f2_2 = 0.0f;
+            field_0x2f4[0] = field_0x2f4[1] = 0.0f;
         } else {
-            f32 temp_f2_2 = g_drawHIO.mEmpButton.mDisplaySpace + (field_0x1e4[0] + field_0x1e4[1]);
+            temp_f2_2 = g_drawHIO.mEmpButton.mDisplaySpace + (field_0x1e4[0] + field_0x1e4[1]);
 
             field_0x2f4[0] = (field_0x1e4[0] * 0.5f) - (temp_f2_2 * 0.5f);
             field_0x2f4[1] = (temp_f2_2 * 0.5f) - (field_0x1e4[1] * 0.5f);
@@ -2949,6 +3037,9 @@ void dMeterButton_c::hideAll() {
 }
 
 f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
+    f32 var_f0;
+    f32 var_f3;
+    f32 rv;
     f32 temp_f0 = 1.0f;
     field_0x1e4[param_2] =
         (mTextScale[param_2] * dMeter2Info_getStringLength(mpTextBox[0], i_string)) * temp_f0;
@@ -2958,11 +3049,12 @@ f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
     }
 
     field_0x29c[param_2] = field_0x1e4[param_2];
-    f32 temp_f31 = field_0x2e0[param_2] - ((mTextScale[param_2] * mpTextBox[0]->getWidth()) * 0.5f);
+    f32 fVar1 = (mTextScale[param_2] * mpTextBox[0]->getWidth());
+    f32 temp_f31 = field_0x2e0[param_2] - (fVar1 * 0.5f);
     f32 temp_f30 = temp_f31 + field_0x1e4[param_2];
 
-    f32* temp_r30 = mButtonWidth;
-    temp_r30[i_button] = 0.0f;
+    // f32* temp_r30 = mButtonWidth;
+    mButtonWidth[i_button] = 0.0f;
 
     switch (i_button) {
     case BUTTON_A_e:
@@ -3054,8 +3146,8 @@ f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
 
     field_0x1e4[param_2] += mButtonWidth[i_button];
 
-    f32 var_f0 = (field_0x244[i_button] + field_0x304[i_button]) - (mButtonWidth[i_button] * 0.5f);
-    f32 var_f3 = (field_0x244[i_button] + field_0x304[i_button]) + (mButtonWidth[i_button] * 0.5f);
+    var_f0 = (field_0x244[i_button] + field_0x304[i_button]) - (mButtonWidth[i_button] * 0.5f);
+    var_f3 = (field_0x244[i_button] + field_0x304[i_button]) + (mButtonWidth[i_button] * 0.5f);
     f32 var_f29;
     f32 var_f28;
 
@@ -3076,73 +3168,76 @@ f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
         }
     }
 
-    return (var_f29 + var_f28) * 0.5f;
+    rv = (var_f29 + var_f28) * 0.5f;
+    return rv;
 }
 
-void dMeterButton_c::trans_button(int param_0, f32 param_1) {
-    u8 button = field_0x4be[param_0];
+void dMeterButton_c::trans_button(int i_idx, f32 param_1) {
+    u8 button = field_0x4be[i_idx];
 
     if (button != BUTTON_NONE_e) {
-        f32 var_f31 = 0.0f;
+        f32 buttonPosOffsetX = 0.0f;
+        f32 offsetY = 0.0f;
+        f32 screenCenter = (mDoGph_gInf_c::getMinXF() + mDoGph_gInf_c::getMaxX()) * 0.5f;
+        f32 fVar4 = 20.0f;
         u8 var_r26 = 1;
-
-        field_0x18c[button] = (608.0f / 2) - field_0x244[button];
-        f32 temp_f0 = field_0x18c[button];
-        field_0x304[button] = ((mButtonWidth[button] + field_0x29c[param_0] + 20.0f) * 0.5f) -
-                              (mButtonWidth[button] * 0.5f);
+        field_0x18c[button] = screenCenter - field_0x244[button];
+        buttonPosOffsetX = field_0x18c[button];
+        field_0x304[button] = ((mButtonWidth[button] + field_0x29c[i_idx] + fVar4) * 0.5f) - (mButtonWidth[button] * 0.5f);
 
         switch (button) {
         case BUTTON_A_e:
-            paneTrans(mpButtonA, field_0x304[BUTTON_A_e] + (param_1 + (mButtonAPosX + temp_f0)),
+            paneTrans(mpButtonA, field_0x304[BUTTON_A_e] + (param_1 + (mButtonAPosX + buttonPosOffsetX)),
                       mButtonAPosY, 0xFF);
             break;
         case BUTTON_B_e:
-            paneTrans(mpButtonB, field_0x304[BUTTON_B_e] + (param_1 + (mButtonBPosX + temp_f0)),
+            paneTrans(mpButtonB, field_0x304[BUTTON_B_e] + (param_1 + (mButtonBPosX + buttonPosOffsetX)),
                       mButtonBPosY, 0xFF);
             break;
         case BUTTON_R_e:
-            paneTrans(mpButtonR, field_0x304[BUTTON_R_e] + (param_1 + (mButtonRPosX + temp_f0)),
+            paneTrans(mpButtonR, field_0x304[BUTTON_R_e] + (param_1 + (mButtonRPosX + buttonPosOffsetX)),
                       mButtonRPosY, 0xFF);
             break;
         case BUTTON_Z_e:
-            paneTrans(mpButtonZ, field_0x304[BUTTON_Z_e] + (param_1 + (mButtonZPosX + temp_f0)),
+            paneTrans(mpButtonZ, field_0x304[BUTTON_Z_e] + (param_1 + (mButtonZPosX + buttonPosOffsetX)),
                       mButtonZPosY, 0xFF);
             break;
         case BUTTON_3D_e:
             var_r26 = 0;
             field_0x304[button] = -field_0x304[button];
-            paneTrans(mpButton3D, field_0x304[BUTTON_3D_e] + (param_1 + (mButton3DPosX + temp_f0)),
+            paneTrans(mpButton3D, field_0x304[BUTTON_3D_e] + (param_1 + (mButton3DPosX + buttonPosOffsetX)),
                       mButton3DPosY, 0xFF);
             break;
         case BUTTON_C_e:
-            paneTrans(mpButtonC, field_0x304[BUTTON_C_e] + (param_1 + (mButtonCPosX + temp_f0)),
+            paneTrans(mpButtonC, field_0x304[BUTTON_C_e] + (param_1 + (mButtonCPosX + buttonPosOffsetX)),
                       mButtonCPosY, 0xFF);
             break;
         case BUTTON_S_e:
-            paneTrans(mpButtonS, field_0x304[BUTTON_S_e] + (param_1 + (mButtonSPosX + temp_f0)),
+            paneTrans(mpButtonS, field_0x304[BUTTON_S_e] + (param_1 + (mButtonSPosX + buttonPosOffsetX)),
                       mButtonSPosY, 0xFF);
-            var_f31 = mButtonSPosY;
+            offsetY = mButtonSPosY;
             break;
         case BUTTON_X_e:
-            paneTrans(mpButtonX, field_0x304[BUTTON_X_e] + (param_1 + (mButtonXPosX + temp_f0)),
+            paneTrans(mpButtonX, field_0x304[BUTTON_X_e] + (param_1 + (mButtonXPosX + buttonPosOffsetX)),
                       mButtonXPosY, 0xFF);
             break;
         case BUTTON_Y_e:
-            paneTrans(mpButtonY, field_0x304[BUTTON_Y_e] + (param_1 + (mButtonYPosX + temp_f0)),
+            paneTrans(mpButtonY, field_0x304[BUTTON_Y_e] + (param_1 + (mButtonYPosX + buttonPosOffsetX)),
                       mButtonYPosY, 0xFF);
             break;
         case BUTTON_3DB_e:
             if (mpButton3DB != NULL) {
                 paneTrans(mpButton3DB,
-                          field_0x304[BUTTON_3DB_e] + (param_1 + (mButton3DBPosX + temp_f0)),
+                          field_0x304[BUTTON_3DB_e] + (param_1 + (mButton3DBPosX + buttonPosOffsetX)),
                           mButton3DBPosY, 0xFF);
             }
             break;
         case BUTTON_BIN_e:
             if (mpButtonBin != NULL) {
                 paneTrans(mpButtonBin,
-                          field_0x304[BUTTON_BIN_e] + (param_1 + (mButtonBinPosX + temp_f0)),
+                          field_0x304[BUTTON_BIN_e] + (param_1 + (mButtonBinPosX + buttonPosOffsetX)),
                           mButtonBinPosY, 0xFF);
+                buttonPosOffsetX -= 10.0f;
             }
             break;
         }
@@ -3150,24 +3245,21 @@ void dMeterButton_c::trans_button(int param_0, f32 param_1) {
         f32 var_f30;
         switch (var_r26) {
         case 1:
-            var_f30 = ((field_0x35c * 0.5f) + (field_0x360 + (304.0f - field_0x2e0[param_0]))) -
-                      ((mButtonWidth[button] + field_0x29c[param_0] + 20.0f) * 0.5f);
+            var_f30 = ((field_0x35c * 0.5f) + (field_0x360 + (screenCenter - field_0x2e0[i_idx]))) - ((mButtonWidth[button] + field_0x29c[i_idx] + fVar4) * 0.5f);
             break;
         case 0:
             var_f30 = mButtonWidth[button] +
-                      (((field_0x35c * 0.5f) + (field_0x360 + (304.0f - field_0x2e0[param_0]))) -
-                       ((mButtonWidth[button] + field_0x29c[param_0] + 20.0f) * 0.5f));
+                      (((field_0x35c * 0.5f) + (field_0x360 + (screenCenter - field_0x2e0[i_idx]))) - ((mButtonWidth[button] + field_0x29c[i_idx] + fVar4) * 0.5f));
             break;
         case 2:
-            var_f30 = ((field_0x35c * 0.5f) + (field_0x360 + (304.0f - field_0x2e0[param_0]))) -
-                      (field_0x29c[param_0] * 0.5f);
+            var_f30 = ((field_0x35c * 0.5f) + (field_0x360 + (screenCenter - field_0x2e0[i_idx]))) - (field_0x29c[i_idx] * 0.5f);
             break;
         }
 
-        paneTrans(mpText[param_0], param_1 + (mTextPosX[param_0] + var_f30),
-                  (mTextPosY[param_0] + var_f31) - 2.0f, param_0);
+        paneTrans(mpText[i_idx], param_1 + (mTextPosX[i_idx] + var_f30),
+                  (mTextPosY[i_idx] + offsetY) - 2.0f, i_idx);
 
-        if (field_0x4d9 == param_0) {
+        if (field_0x4d9 == i_idx) {
             paneTrans(mpItem_c, mItemPosX + param_1, mItemPosY, 0xFF);
         }
     }

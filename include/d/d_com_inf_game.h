@@ -351,7 +351,7 @@ public:
     u8 getYSetFlagForce() { return mItemInfo.mYSetFlagForce; }
     u8 getFaceAnimeID() { return mItemInfo.mFaceAnimeID; }
     u8 getBaseAnimeID() { return mItemInfo.mBaseAnimeID; }
-    bool isCStickSetFlag(u8 flag) { return mItemInfo.mCStickSetFlag & flag; }
+    bool isCStickSetFlag(u8 flag) { return (mItemInfo.mCStickSetFlag & flag) ? true : false; }
     bool isDoSetFlag(u8 flag) { return (mItemInfo.mDoSetFlag & flag) ? true : false; }
     bool isASetFlag(u8 flag) { return (mItemInfo.mASetFlag & flag) ? true : false; }
     bool isRSetFlag(u8 flag) { return (mItemInfo.mRSetFlag & flag) ? true : false; }
