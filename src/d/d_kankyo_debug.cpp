@@ -650,7 +650,7 @@ void dKydb_timedisp() {
         dDbVw_Report(0x1E, 0x54, "S_TM %02d:%02d:%02d", (int)hour, (int)min, (int)sec);
     }
 
-    static const char* weekString[] = {
+    static const char* const weekString[] = {
         "Sun",
         "Mon",
         "Tue",

@@ -101,7 +101,7 @@ int daObjSword_c::actionGetDemo() {
 }
 
 int daObjSword_c::execute() {
-    static int (daObjSword_c::* l_demoFunc[])() = {
+    static const actionFunc l_demoFunc[] = {
         &daObjSword_c::actionWait, &daObjSword_c::actionOrderGetDemo, &daObjSword_c::actionGetDemo};
     field_0x92c++;
     (this->*l_demoFunc[mStatus])();

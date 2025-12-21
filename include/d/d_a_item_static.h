@@ -115,7 +115,7 @@ public:
     bool checkBoomWindTgTimer() { return mBoomWindTgTimer == 0; }
 
     static procFunc mFuncPtr[];
-    static dCcD_SrcCyl m_cyl_src;
+    static const dCcD_SrcCyl m_cyl_src;
     static s32 m_timer_max;
 
     /* 0x92C */ s16 field_0x92c;

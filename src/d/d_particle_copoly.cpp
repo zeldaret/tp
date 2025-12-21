@@ -217,24 +217,24 @@ void dPaPoF_c::clearFourAllID() {
     clearTwoAllID();
 }
 
-dPaPoT_c::effTypeFunc dPaPoT_c::m_typeTwoData[] = {
+const dPaPoT_c::effTypeFunc dPaPoT_c::m_typeTwoData[] = {
     &dPaPoT_c::getCenterEffType,
     &dPaPoT_c::getLeftEffType,
     &dPaPoT_c::getRightEffType,
 };
 
-dPaPoT_c::emitterFunc dPaPoT_c::m_emitterTwoData[] = {
+const dPaPoT_c::emitterFunc dPaPoT_c::m_emitterTwoData[] = {
     &dPaPoT_c::getCenterEmitter,
     &dPaPoT_c::getLeftEmitter,
     &dPaPoT_c::getRightEmitter,
 };
 
-dPaPoF_c::effTypeFunc dPaPoF_c::m_typeFourData[] = {
+const dPaPoF_c::effTypeFunc dPaPoF_c::m_typeFourData[] = {
     &dPaPoF_c::getCenterEffType,   &dPaPoF_c::getLeftEffType,      &dPaPoF_c::getRightEffType,
     &dPaPoF_c::getBackLeftEffType, &dPaPoF_c::getBackRightEffType,
 };
 
-dPaPoF_c::emitterFunc dPaPoF_c::m_emitterFourData[] = {
+const  dPaPoF_c::emitterFunc dPaPoF_c::m_emitterFourData[] = {
     &dPaPoF_c::getCenterEmitter,   &dPaPoF_c::getLeftEmitter,      &dPaPoF_c::getRightEmitter,
     &dPaPoF_c::getBackLeftEmitter, &dPaPoF_c::getBackRightEmitter,
 };

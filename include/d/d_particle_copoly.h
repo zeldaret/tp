@@ -78,8 +78,8 @@ public:
         return (this->*m_emitterTwoData[param_0])(param_1, param_2);
     }
 
-    static effTypeFunc m_typeTwoData[];
-    static emitterFunc m_emitterTwoData[];
+    static const effTypeFunc m_typeTwoData[];
+    static const emitterFunc m_emitterTwoData[];
 
     /* 0x38 */ u32 mLeftEmitter[2][4];
     /* 0x58 */ u32 mRightEmitter[2][4];
@@ -117,8 +117,8 @@ public:
         return (this->*m_emitterFourData[param_0])(param_1, param_2);
     }
 
-    static effTypeFunc m_typeFourData[];
-    static emitterFunc m_emitterFourData[];
+    static const effTypeFunc m_typeFourData[];
+    static const emitterFunc m_emitterFourData[];
 
     /* 0x80 */ u32 mBackLeftEmitter[2][4];
     /* 0xA0 */ u32 mBackRightEmitter[2][4];

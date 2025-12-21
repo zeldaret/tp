@@ -13,6 +13,8 @@
  */
 class daObjSword_c : public daItemBase_c {
 public:
+    typedef int (daObjSword_c::*actionFunc)();
+
     void initBaseMtx();
     void setBaseMtx();
     int Create();

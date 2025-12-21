@@ -541,7 +541,7 @@ loop:
 }
 #endif // clang-format on
 
-extern f32 PSMulUnit01[] = {
+extern f32 const PSMulUnit01[] = {
     0.0f,
     -1.0f,
 };

@@ -170,7 +170,7 @@ void daObjCdoor_c::execCdoor() {
 
 void daObjCdoor_c::execWgate() {
     typedef void (daObjCdoor_c::*daObjCdoor_modeFunc)();
-    static daObjCdoor_modeFunc mode_proc[3] = {
+    static const daObjCdoor_modeFunc mode_proc[3] = {
         &daObjCdoor_c::modeWait,
         &daObjCdoor_c::modeOpen,
         &daObjCdoor_c::modeClose,

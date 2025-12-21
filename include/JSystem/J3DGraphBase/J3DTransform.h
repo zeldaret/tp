@@ -47,7 +47,7 @@ struct J3DTransformInfo {
 extern J3DTransformInfo const j3dDefaultTransformInfo;
 extern Vec const j3dDefaultScale;
 extern Mtx const j3dDefaultMtx;
-extern f32 PSMulUnit01[];
+extern f32 const PSMulUnit01[];
 
 void J3DGQRSetup7(u32 param_0, u32 param_1, u32 param_2, u32 param_3);
 void J3DCalcBBoardMtx(f32 (*)[4]);
