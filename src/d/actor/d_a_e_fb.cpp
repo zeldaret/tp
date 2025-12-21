@@ -379,7 +379,6 @@ void daE_FB_c::executeWait() {
 static int mFireTimer;
 
 void daE_FB_c::executeAttack() {
-    // NONMATCHING - regalloc purgatory
     static u16 a_eff_id[3] = {
         dPa_RM(ID_ZI_S_FL_BREATH_A),
         dPa_RM(ID_ZI_S_FL_BREATH_B),
@@ -425,8 +424,8 @@ void daE_FB_c::executeAttack() {
         }
         /* fallthrough */
     case 2:
-        if (mMoveMode != 3) {
-            search_check();
+        if (mMoveMode != 3 && search_check()) {
+            // empty
         }
 
         if (mType == 0 && mBgLineCheck()) {
@@ -451,9 +450,9 @@ void daE_FB_c::executeAttack() {
             field_0x68f &= (u8) 1;
             if (field_0x68f == 0) {
                 csXyz sp_0x28;
-                int child_type = 10;
+                u32 child_type = 10;
                 sp_0x28 = shape_angle;
-                sp_0x28.x = mHeadAngle + 0x2BC + JREG_S(1);
+                sp_0x28.x = mHeadAngle + 700 + JREG_S(1);
                 if (mType == 1) {
                     if (current.pos.y <= 300.0f) {
                         sp_0x28.x = mHeadAngle + 2000 + BREG_S(2);
@@ -481,10 +480,10 @@ void daE_FB_c::executeAttack() {
         }
 
         if (mMoveMode == 3) {
-            fopAc_ac_c* player = dComIfGp_getPlayer(0);
+            fopAc_ac_c* player = (fopAc_ac_c*) dComIfGp_getPlayer(0);
             cLib_addCalcAngleS2(&shape_angle.y, mRotation, 1, l_HIO.rotation_width_stairs);
             if (current.pos.y <= 300.0f) {
-                mHeadAngle = f32(NREG_S(1) + 14000 - abs(shape_angle.y)) / (6.0f + NREG_F(1));
+                mHeadAngle = f32(NREG_S(1) + 14000 - abs(s16(shape_angle.y))) / (6.0f + NREG_F(1));
                 if (player->current.pos.x > -2800.0f) {
                     field_0x69c = 0;
                     current.angle.y = shape_angle.y;
@@ -493,7 +492,7 @@ void daE_FB_c::executeAttack() {
                 }
             } else {
                 mHeadAngle = NREG_S(2) - 2500;
-                mHeadAngle = mHeadAngle - abs(shape_angle.y) * (-0.2f + NREG_F(2));
+                mHeadAngle -= abs(s16(shape_angle.y)) * (-0.2f + NREG_F(2));
                 if (player->current.pos.x < -3600.0f) {
                     field_0x69c = 0;
                     current.angle.y = shape_angle.y;

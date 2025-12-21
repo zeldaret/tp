@@ -367,14 +367,19 @@ cPhs__Step daNpcShad_c::Create() {
                 if (!daNpcF_chkEvtBit(0x312)) {
                     if (getPathPoint(getPathID(), 1, &home.pos)) {
                         current.pos = home.pos;
+#if VERSION != VERSION_WII_USA_R0
                         old.pos = current.pos;
+#endif
                     }
-                } else {
+                }
+#if VERSION != VERSION_WII_USA_R0
+                else {
                     home.pos.set(4342.7183f, -1518.5f, -3942.3232f);
                     current.pos = home.pos;
                     old.pos = current.pos;
                     setAngle(-0x2581);
                 }
+#endif
             }
 
             mMode = 1;
