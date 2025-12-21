@@ -507,7 +507,7 @@ void daE_YMB_c::setCameraSwitch() {
     }
 }
 
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_YMB_HIO_c l_HIO;
 
@@ -3098,7 +3098,7 @@ int daE_YMB_c::_delete() {
     dComIfG_resDelete(&mPhase, "E_YB");
 
     if (field_0x1520 != 0) {
-        l_initHIO = 0;
+        hio_set = 0;
     }
 
     if (heap != NULL) {
@@ -3190,8 +3190,8 @@ cPhs__Step daE_YMB_c::create() {
 
         mpBgW->SetRideCallback(rideCallBack);
 
-        if (l_initHIO == 0) {
-            l_initHIO = 1;
+        if (hio_set == 0) {
+            hio_set = 1;
             field_0x1520 = 1;
             l_HIO.field_0x4 = -1;
         }

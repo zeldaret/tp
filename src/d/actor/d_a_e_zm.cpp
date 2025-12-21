@@ -65,7 +65,7 @@ public:
     /* 0x1A */ s16 stun_time;                           // 麻痺時間 - Stun Time
 };
 
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_ZM_HIO_c l_HIO;
 
@@ -872,7 +872,7 @@ int daE_ZM_c::_delete() {
     }
 
     if (field_0xc28) {
-        l_initHIO = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -959,8 +959,8 @@ cPhs__Step daE_ZM_c::create() {
         } else if (arg0 != 20 && !fopAcM_entrySolidHeap(this, useHeapInit, 0xA90)) {
             return cPhs_ERROR_e;
         } else {
-            if (arg0 != 20 && l_initHIO == 0) {
-                l_initHIO = 1;
+            if (arg0 != 20 && hio_set == 0) {
+                hio_set = 1;
                 field_0xc28 = true;
                 l_HIO.id = -1;
             }

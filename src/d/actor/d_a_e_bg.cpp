@@ -239,7 +239,7 @@ fopAc_ac_c* daE_BG_c::search_esa() {
     }
 }
 
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_BG_HIO_c l_HIO;
 
@@ -1271,7 +1271,7 @@ int daE_BG_c::_delete() {
     dComIfG_resDelete(&mPhaseReq, "E_BG");
 
     if (mHIOInit) {
-        l_initHIO = FALSE;
+        hio_set = FALSE;
         mDoHIO_DELETE_CHILD(l_HIO.field_0x4);
     }
 
@@ -1349,8 +1349,8 @@ int daE_BG_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (l_initHIO == FALSE) {
-            l_initHIO = 1;
+        if (hio_set == FALSE) {
+            hio_set = 1;
             mHIOInit = 1;
             l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("爆弾魚", &l_HIO);
         }

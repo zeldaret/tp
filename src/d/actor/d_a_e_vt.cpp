@@ -207,7 +207,7 @@ daE_VA_HIO_c::daE_VA_HIO_c() {
 /* 807CF4B5 0003+00 data_807CF4B5 None */
 #pragma push
 #pragma force_active on
-static u8 init_hio;
+static u8 hio_set;
 #pragma pop
 
 static daE_VA_HIO_c l_HIO;
@@ -3625,7 +3625,7 @@ int daE_VA_c::_delete() {
     dComIfG_resDelete(&mPhase, "E_VA");
 
     if (mInitHIO) {
-        init_hio = false;
+        hio_set = false;
     }
 
     for (int i = 0; i < 2; i++) {
@@ -3780,8 +3780,8 @@ int daE_VA_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (!init_hio) {
-            init_hio = true;
+        if (!hio_set) {
+            hio_set = true;
             mInitHIO = true;
             l_HIO.field_0x04 = -1;
         }

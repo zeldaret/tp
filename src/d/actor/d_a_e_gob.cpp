@@ -277,7 +277,7 @@ static void damage_check(e_gob_class* i_this) {
 }
 
 /* 806DF2C5 0003+00 data_806DF2C5 None */
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_GOB_HIO_c l_HIO;
 
@@ -2231,7 +2231,7 @@ static int daE_GOB_Delete(e_gob_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_gob");
 
     if (i_this->mInitHIO) {
-        l_initHIO = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -2291,9 +2291,9 @@ static int daE_GOB_Create(fopAc_ac_c* i_this) {
 
         OS_REPORT("//////////////E_GOB SET 2 !!\n");
 
-        if (l_initHIO == 0) {
+        if (hio_set == 0) {
             a_this->mInitHIO = 1;
-            l_initHIO = 1;
+            hio_set = 1;
             l_HIO.id = mDoHIO_CREATE_CHILD("マグネゴロン", &l_HIO);
         }
     

@@ -327,7 +327,7 @@ static int pl_check(e_sf_class* i_this, f32 i_distance, s16 param_3) {
     return 0;
 }
 
-static bool l_initHIO;
+static bool hio_set;
 
 static daE_SF_HIO_c l_HIO;
 
@@ -1684,7 +1684,7 @@ static int daE_SF_Delete(e_sf_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_sf");
 
     if (i_this->mIsFirstSpawn) {
-        l_initHIO = false;
+        hio_set = false;
     }
 
     if (a_this->heap != NULL) {
@@ -1786,9 +1786,9 @@ static cPhs__Step daE_SF_Create(fopAc_ac_c* a_this) {
             return cPhs_ERROR_e;
         }
 
-        if (!l_initHIO) {
+        if (!hio_set) {
             i_this->mIsFirstSpawn = true;
-            l_initHIO = 1;
+            hio_set = 1;
             l_HIO.id = -1;
         }
 

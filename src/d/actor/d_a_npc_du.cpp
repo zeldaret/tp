@@ -502,7 +502,7 @@ static BOOL message(npc_du_class* i_this) {
     return FALSE;
 }
 
-static bool l_initHIO;
+static bool hio_set;
 
 static u8 lit_3757[12];
 
@@ -591,7 +591,7 @@ static int daNpc_Du_Delete(npc_du_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "Npc_Du");
 
     if (i_this->mIsFirstSpawn) {
-        l_initHIO = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -660,9 +660,9 @@ static cPhs__Step daNpc_Du_Create(fopAc_ac_c* a_this) {
         }
 
         OS_REPORT("//////////////NPC_DU SET 2 !!\n");
-        if (!l_initHIO) {
+        if (!hio_set) {
             i_this->mIsFirstSpawn = 1;
-            l_initHIO = true;
+            hio_set = true;
             l_HIO.id = mDoHIO_CREATE_CHILD("アヒル", &l_HIO);
         }
 

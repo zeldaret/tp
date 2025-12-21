@@ -1034,7 +1034,7 @@ static void anm_se_set(e_th_class* i_this) {
     }
 }
 
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_TH_HIO_c l_HIO;
 
@@ -1161,7 +1161,7 @@ static int daE_TH_Delete(e_th_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_th");
 
     if (i_this->mInitHIO) {
-        l_initHIO = FALSE;
+        hio_set = FALSE;
         mDoHIO_DELETE_CHILD(l_HIO.no);
     }
 
@@ -1228,9 +1228,9 @@ static int daE_TH_Create(fopAc_ac_c* a_this) {
             return cPhs_ERROR_e;
         }
 
-        if (!l_initHIO) {
+        if (!hio_set) {
             i_this->mInitHIO = TRUE;
-            l_initHIO = TRUE;
+            hio_set = TRUE;
             l_HIO.no = mDoHIO_CREATE_CHILD("鉄球兵", &l_HIO);
         }
 

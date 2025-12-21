@@ -337,7 +337,7 @@ void daB_ZANTZ_c::cc_set() {
     }
 }
 
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daB_ZANTZ_HIO_c l_HIO;
 
@@ -380,7 +380,7 @@ static int daB_ZANTZ_IsDelete(daB_ZANTZ_c* i_this) {
 
 int daB_ZANTZ_c::_delete() {
     if (mInitHIO) {
-        l_initHIO = false;
+        hio_set = false;
     }
 
     dComIfG_resDelete(&mPhase, "B_oh");
@@ -441,8 +441,8 @@ int daB_ZANTZ_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (!l_initHIO) {
-            l_initHIO = true;
+        if (!hio_set) {
+            hio_set = true;
             mInitHIO = true;
             l_HIO.field_0x4 = -1;
         }

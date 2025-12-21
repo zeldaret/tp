@@ -293,7 +293,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
 
 static BOOL small;
 
-static bool l_initHIO;
+static bool hio_set;
 
 static daE_ST_HIO_c l_HIO;
 
@@ -2851,7 +2851,7 @@ static int daE_ST_Delete(e_st_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_st");
     
     if (i_this->mIsFirstSpawn) {
-        l_initHIO = false;
+        hio_set = false;
     }
 
     if (a_this->heap != NULL) {
@@ -3046,9 +3046,9 @@ static cPhs__Step daE_ST_Create(fopAc_ac_c* a_this) {
 
         OS_REPORT("//////////////E_ST SET 2 !!\n");
 
-        if (!l_initHIO) {
+        if (!hio_set) {
             i_this->mIsFirstSpawn = true;
-            l_initHIO = true;
+            hio_set = true;
             l_HIO.id = -1;
         }
         

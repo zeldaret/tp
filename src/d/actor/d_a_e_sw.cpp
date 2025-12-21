@@ -201,7 +201,7 @@ static u8 data_807B0201;
 static u8 data_807B0202;
 
 /* 807B0203 0001+00 data_807B0203 None */
-static u8 l_initHIO;
+static u8 hio_set;
 
 void daE_SW_c::setActionMode(s16 i_actionMode, s16 i_moveMode) {
     if (field_0x6e6 != 0) {
@@ -1615,7 +1615,7 @@ int daE_SW_c::_delete() {
     dComIfG_resDelete(&mPhase, "E_SW");
 
     if (field_0xaf9 != 0) {
-        l_initHIO = 0;
+        hio_set = 0;
     }
 
     if (field_0xaf8 != 0) {
@@ -1700,9 +1700,9 @@ cPhs__Step daE_SW_c::create() {
             }
         }
 
-        if (l_initHIO == 0) {
+        if (hio_set == 0) {
             field_0xaf9 = 1;
-            l_initHIO = 1;
+            hio_set = 1;
             l_HIO.field_0x4 = -1;
         }
 

@@ -213,7 +213,7 @@ void daE_KK_c::setActionMode(int i_action, int i_mode) {
     mMoveMode = i_mode;
 }
 
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_KK_HIO_c l_HIO;
 
@@ -1307,7 +1307,7 @@ int daE_KK_c::_delete() {
     dComIfG_resDelete(&mPhaseReq, "E_KK");
 
     if (mHIOInit != 0) {
-        l_initHIO = false;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.field_0x4);
     }
 
@@ -1380,8 +1380,8 @@ int daE_KK_c::create() {
         if (field_0x679 != 1 && field_0x67b != 0xFF && fopAcM_isSwitch(this, field_0x67b)) {
             return cPhs_ERROR_e;
         }
-        if (!l_initHIO) {
-            l_initHIO = 1;
+        if (!hio_set) {
+            hio_set = 1;
             mHIOInit = 1;
             l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("氷の剣士", &l_HIO);
         }

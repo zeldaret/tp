@@ -141,7 +141,7 @@ static cXyz STAGE_CENTER_POS;
 static s16 STAGE_ANGLE_Y;
 
 /* 8071CB0A 0001+00 .bss */
-u8 l_initHIO;
+u8 hio_set;
 
 static daE_MK_HIO_c l_HIO;
 
@@ -2783,7 +2783,7 @@ static int daE_MK_Delete(e_mk_class* i_this) {
 
     dComIfG_resDelete(&i_this->phase, "E_mk");
     if (i_this->hioInit != 0) {
-        l_initHIO = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.no);
     }
 
@@ -2871,9 +2871,9 @@ static int daE_MK_Create(fopAc_ac_c* i_actor) {
         }
 
         lbl_210_bss_130 = 0;
-        if (l_initHIO == 0) {
+        if (hio_set == 0) {
             mk->hioInit = 1;
-            l_initHIO = 1;
+            hio_set = 1;
             l_HIO.no = mDoHIO_CREATE_CHILD("ブーメラン猿", &l_HIO);
         }
 

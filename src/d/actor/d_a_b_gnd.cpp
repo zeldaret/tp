@@ -193,7 +193,7 @@ enum daB_GND_ACTION {
     ACTION_END = 22,
 };
 
-static u8 l_initHIO;
+static u8 hio_set;
 
 daB_GND_HIO_c::daB_GND_HIO_c() {
     no = -1;
@@ -4572,7 +4572,7 @@ static int daB_GND_Delete(b_gnd_class* i_this) {
     dComIfG_resDelete(&i_this->mHorsePhaseReq, "B_hg");
 
     if (i_this->mInitHIO) {
-        l_initHIO = false;
+        hio_set = false;
     }
 
     if (a_this->heap != NULL) {
@@ -4783,9 +4783,9 @@ static int daB_GND_Create(fopAc_ac_c* a_this) {
             return cPhs_ERROR_e;
         }
         
-        if (!l_initHIO) {
+        if (!hio_set) {
             i_this->mInitHIO = true;
-            l_initHIO = true;
+            hio_set = true;
             l_HIO.no = mDoHIO_CREATE_CHILD("ガノンドロフ", &l_HIO);
         }
 

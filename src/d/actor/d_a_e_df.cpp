@@ -166,7 +166,7 @@ int daE_DF_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     return 1;
 }
 
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_DF_HIO_c l_HIO;
 
@@ -609,7 +609,7 @@ int daE_DF_c::Draw() {
 int daE_DF_c::Delete() {
     dComIfG_resDelete(&mPhaseReq, "E_DF");
     if (mHIOInit) {
-        l_initHIO = FALSE;
+        hio_set = FALSE;
         mDoHIO_DELETE_CHILD(l_HIO.mNo);
     }
     if (heap != NULL) {
@@ -661,8 +661,8 @@ int daE_DF_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        if (!l_initHIO) {
-            l_initHIO = TRUE;
+        if (!hio_set) {
+            hio_set = TRUE;
             mHIOInit = TRUE;
             l_HIO.mNo = mDoHIO_CREATE_CHILD("デクレシア", &l_HIO);
         }
