@@ -180,7 +180,7 @@ static int daObjIce_s_Create(fopAc_ac_c* i_this) {
     return a_this->create();
 }
 
-inline int daObjIce_s_c::create() {
+int daObjIce_s_c::create() {
     fopAcM_ct(this, daObjIce_s_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {

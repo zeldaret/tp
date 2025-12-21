@@ -21,11 +21,11 @@ public:
     void initBaseMtx();
     void setBaseMtx();
     inline int create();
-    int CreateHeap();
-    int Create();
-    int Execute(Mtx**);
-    int Draw();
-    int Delete();
+    inline int CreateHeap();
+    inline int Create();
+    inline int Execute(Mtx**);
+    inline int Draw();
+    inline int Delete();
 
     /* 0x5A0 */ f32 field_0x5a0;
     /* 0x5A4 */ f32 field_0x5a4;
