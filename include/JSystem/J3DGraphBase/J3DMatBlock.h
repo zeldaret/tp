@@ -63,53 +63,6 @@ struct J3DGXColor : public GXColor {
     }
 };
 
-extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
-
-/**
- * @ingroup jsystem-j3d
- *
- */
-struct J3DNBTScale : public J3DNBTScaleInfo {
-    J3DNBTScale() {
-        mbHasScale = j3dDefaultNBTScaleInfo.mbHasScale;
-        mScale.x = j3dDefaultNBTScaleInfo.mScale.x;
-        mScale.y = j3dDefaultNBTScaleInfo.mScale.y;
-        mScale.z = j3dDefaultNBTScaleInfo.mScale.z;
-    }
-
-    J3DNBTScale(J3DNBTScaleInfo const& info) {
-        mbHasScale = info.mbHasScale;
-        mScale.x = info.mScale.x;
-        mScale.y = info.mScale.y;
-        mScale.z = info.mScale.z;
-    }
-
-    Vec* getScale() { return &mScale; }
-};
-
-/**
- * @ingroup jsystem-j3d
- *
- */
-struct J3DColorChanInfo {
-    /* 0x0 */ u8 mEnable;
-    /* 0x1 */ u8 mMatSrc;
-    /* 0x2 */ u8 mLightMask;
-    /* 0x3 */ u8 mDiffuseFn;
-    /* 0x4 */ u8 mAttnFn;
-    /* 0x5 */ u8 mAmbSrc;
-    /* 0x6 */ u8 pad[2];
-};
-
-extern const J3DColorChanInfo j3dDefaultColorChanInfo;
-
-static inline u32 setChanCtrlMacro(u8 enable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 lightMask,
-                                   GXDiffuseFn diffuseFn, GXAttnFn attnFn) {
-    return matSrc << 0 | enable << 1 | (lightMask & 0x0F) << 2 | ambSrc << 6 |
-           ((attnFn == GX_AF_SPEC) ? GX_DF_NONE : diffuseFn) << 7 | (attnFn != GX_AF_NONE) << 9 |
-           (attnFn != GX_AF_SPEC) << 10 | (lightMask >> 4 & 0x0F) << 11;
-}
-
 inline u16 calcColorChanID(u16 enable, u8 matSrc, u8 lightMask, u8 diffuseFn, u8 attnFn, u8 ambSrc) {
     u32 reg = 0;
     reg = (reg & ~0x0002) | enable << 1;
@@ -129,6 +82,13 @@ inline u16 calcColorChanID(u16 enable, u8 matSrc, u8 lightMask, u8 diffuseFn, u8
     return reg;
 }
 
+static inline u32 setChanCtrlMacro(u8 enable, GXColorSrc ambSrc, GXColorSrc matSrc, u32 lightMask,
+                                   GXDiffuseFn diffuseFn, GXAttnFn attnFn) {
+    return matSrc << 0 | enable << 1 | (lightMask & 0x0F) << 2 | ambSrc << 6 |
+           ((attnFn == GX_AF_SPEC) ? GX_DF_NONE : diffuseFn) << 7 | (attnFn != GX_AF_NONE) << 9 |
+           (attnFn != GX_AF_SPEC) << 10 | (lightMask >> 4 & 0x0F) << 11;
+}
+
 #ifdef DECOMPCTX
 // Hack to mitigate fake mismatches when building from decompctx output -
 // see comment in sqrtf in math.h
@@ -139,7 +99,8 @@ static u8 AttnArr[] = {2, 0, 2, 1};
  * @ingroup jsystem-j3d
  *
  */
-struct J3DColorChan {
+class J3DColorChan {
+public:
     J3DColorChan() {
         setColorChanInfo(j3dDefaultColorChanInfo);
     }
@@ -442,6 +403,16 @@ public:
  * @ingroup jsystem-j3d
  *
  */
+class J3DColorBlockNull : public J3DColorBlock {
+public:
+    virtual u32 getType() { return 'CLNL'; }
+    virtual ~J3DColorBlockNull() {}
+};
+
+/**
+ * @ingroup jsystem-j3d
+ *
+ */
 class J3DTexGenBlock {
 public:
     virtual void reset(J3DTexGenBlock*) {}
@@ -469,20 +440,6 @@ public:
     virtual u32 getTexMtxOffset() const { return 0; }
     virtual void setTexMtxOffset(u32) {}
     virtual ~J3DTexGenBlock() {}
-};
-
-struct J3DTexGenBlockNull : public J3DTexGenBlock {
-    virtual void calc(f32 const (*)[4]) {}
-    virtual void calcWithoutViewMtx(f32 const (*)[4]) {}
-    virtual void calcPostTexMtx(f32 const (*)[4]) {}
-    virtual void calcPostTexMtxWithoutViewMtx(f32 const (*)[4]) {}
-    virtual void load() {}
-    virtual void patch() {}
-    virtual void diff(u32) {}
-    virtual void diffTexMtx() {}
-    virtual void diffTexGen() {}
-    virtual u32 getType() { return 'TGNL'; }
-    virtual ~J3DTexGenBlockNull() {}
 };
 
 /**
@@ -595,6 +552,21 @@ public:
     /* 0x5C */ J3DNBTScale mNBTScale;
 };  // Size: 0x6C
 
+class J3DTexGenBlockNull : public J3DTexGenBlock {
+public:
+    virtual void calc(f32 const (*)[4]) {}
+    virtual void calcWithoutViewMtx(f32 const (*)[4]) {}
+    virtual void calcPostTexMtx(f32 const (*)[4]) {}
+    virtual void calcPostTexMtxWithoutViewMtx(f32 const (*)[4]) {}
+    virtual void load() {}
+    virtual void patch() {}
+    virtual void diff(u32) {}
+    virtual void diffTexMtx() {}
+    virtual void diffTexGen() {}
+    virtual u32 getType() { return 'TGNL'; }
+    virtual ~J3DTexGenBlockNull() {}
+};
+
 /**
  * @ingroup jsystem-j3d
  *
@@ -604,11 +576,11 @@ public:
     virtual void reset(J3DTevBlock*) {}
     virtual void load() {}
     virtual void diff(u32);
-    virtual void diffTexNo();
-    virtual void diffTevReg();
-    virtual void diffTexCoordScale();
-    virtual void diffTevStage();
-    virtual void diffTevStageIndirect();
+    virtual void diffTexNo() {}
+    virtual void diffTevReg() {}
+    virtual void diffTexCoordScale() {}
+    virtual void diffTevStage() {}
+    virtual void diffTevStageIndirect() {}
     virtual void patch() {}
     virtual void patchTexNo() {}
     virtual void patchTevReg() {}
@@ -1436,22 +1408,9 @@ public:
     /* 0x170 */ u32 mTevRegOffset;
 };  // Size: 0x174
 
-extern const u16 j3dDefaultZModeID;
-
 inline u16 calcZModeID(u8 param_0, u8 param_1, u8 param_2) {
     return param_1 * 2 + param_0 * 0x10 + param_2;
 }
-
-/**
- * @ingroup jsystem-j3d
- *
- */
-struct J3DZModeInfo {
-    /* 0x0 */ u8 field_0x0;
-    /* 0x1 */ u8 field_0x1;
-    /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 pad;
-};
 
 extern u8 j3dZModeTable[96];
 
@@ -1503,22 +1462,6 @@ struct J3DZMode {
  * @ingroup jsystem-j3d
  *
  */
-struct J3DBlendInfo {
-    void operator=(J3DBlendInfo const& other) {
-        __memcpy(this, &other, sizeof(J3DBlendInfo));
-    }
-    /* 0x0 */ u8 mType;
-    /* 0x1 */ u8 mSrcFactor;
-    /* 0x2 */ u8 mDstFactor;
-    /* 0x3 */ u8 mOp;
-};
-
-extern const J3DBlendInfo j3dDefaultBlendInfo;
-
-/**
- * @ingroup jsystem-j3d
- *
- */
 struct J3DBlend : public J3DBlendInfo {
     J3DBlend() {
         J3DBlendInfo::operator=(j3dDefaultBlendInfo);
@@ -1543,8 +1486,6 @@ struct J3DBlend : public J3DBlendInfo {
     void setBlendInfo(const J3DBlendInfo& i_blendInfo) { *static_cast<J3DBlendInfo*>(this) = i_blendInfo; }
 };
 
-extern const J3DFogInfo j3dDefaultFogInfo;
-
 /**
  * @ingroup jsystem-j3d
  *
@@ -1561,32 +1502,6 @@ struct J3DFog : public J3DFogInfo {
         J3DGDSetFogRangeAdj(mAdjEnable, mCenter, (GXFogAdjTable*)&mFogAdjTable);
     }
 };
-
-/**
- * @ingroup jsystem-j3d
- *
- */
-struct J3DAlphaCompInfo {
-    /* 0x0 */ u8 mComp0;
-    /* 0x1 */ u8 mRef0;
-    /* 0x2 */ u8 mOp;
-    /* 0x3 */ u8 mComp1;
-    /* 0x4 */ u8 mRef1;
-    /* 0x5 */ u8 field_0x5;
-    /* 0x6 */ u8 field_0x6;
-    /* 0x7 */ u8 field_0x7;
-
-    J3DAlphaCompInfo& operator=(const J3DAlphaCompInfo& other) {
-        mComp0 = other.mComp0;
-        mRef0 = other.mRef0;
-        mOp = other.mOp;
-        mComp1 = other.mComp1;
-        mRef1 = other.mRef1;
-        return *this;
-    }
-};
-
-extern const u16 j3dDefaultAlphaCmpID;
 
 inline u16 calcAlphaCmpID(u8 comp0, u8 op, u8 comp1) {
     return (comp0 << 5) + (op << 3) + (comp1);
@@ -1647,23 +1562,6 @@ struct J3DAlphaComp {
  * @ingroup jsystem-j3d
  *
  */
-struct J3DIndTexOrderInfo {
-    /* 0x0 */ u8 mCoord;
-    /* 0x1 */ u8 mMap;
-    /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 field_0x3;
-
-    void operator=(J3DIndTexOrderInfo const& other) {
-        __memcpy(this, &other, sizeof(J3DIndTexOrderInfo));
-    }
-};  // Size: 0x04
-
-extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
-
-/**
- * @ingroup jsystem-j3d
- *
- */
 struct J3DIndTexOrder : public J3DIndTexOrderInfo {
     J3DIndTexOrder() {
         J3DIndTexOrderInfo::operator=(j3dDefaultIndTexOrderNull);
@@ -1684,8 +1582,6 @@ struct J3DIndTexOrder : public J3DIndTexOrderInfo {
     u8 getCoord() const { return (GXTexCoordID)mCoord; }
 };  // Size: 0x04
 
-extern J3DIndTexMtxInfo const j3dDefaultIndTexMtxInfo;
-
 /**
  * @ingroup jsystem-j3d
  *
@@ -1701,24 +1597,6 @@ struct J3DIndTexMtx : public J3DIndTexMtxInfo {
         J3DGDSetIndTexMtx((GXIndTexMtxID)(param_1 + GX_ITM_0), (Mtx3P)field_0x0, field_0x18);
     }
 };  // Size: 0x1C
-
-/**
- * @ingroup jsystem-j3d
- *
- */
-struct J3DIndTexCoordScaleInfo {
-    /* 0x0 */ u8 mScaleS;
-    /* 0x1 */ u8 mScaleT;
-    /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 field_0x3;
-
-    J3DIndTexCoordScaleInfo& operator=(const J3DIndTexCoordScaleInfo& other) {
-        __memcpy(this, &other, sizeof(J3DIndTexCoordScaleInfo));
-        return *this;
-    }
-};  // Size: 0x4
-
-extern const J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo;
 
 /**
  * @ingroup jsystem-j3d
@@ -1772,19 +1650,6 @@ public:
     virtual void setIndTexCoordScale(u32, J3DIndTexCoordScale) {}
     virtual J3DIndTexCoordScale* getIndTexCoordScale(u32) { return NULL; }
     virtual ~J3DIndBlock() {}
-};
-
-/**
- * @ingroup jsystem-j3d
- *
- */
-class J3DIndBlockNull : public J3DIndBlock {
-public:
-    virtual void diff(u32) {}
-    virtual void load() {}
-    virtual void reset(J3DIndBlock*) {}
-    virtual u32 getType() { return 'IBLN'; }
-    virtual ~J3DIndBlockNull() {}
 };
 
 /**
@@ -1851,6 +1716,19 @@ public:
     /* 0x18 */ J3DIndTexMtx mIndTexMtx[3];
     /* 0x6C */ J3DIndTexCoordScale mIndTexCoordScale[4];
 };  // Size: 0x7C
+
+/**
+ * @ingroup jsystem-j3d
+ *
+ */
+class J3DIndBlockNull : public J3DIndBlock {
+public:
+    virtual void diff(u32) {}
+    virtual void load() {}
+    virtual void reset(J3DIndBlock*) {}
+    virtual u32 getType() { return 'IBLN'; }
+    virtual ~J3DIndBlockNull() {}
+};
 
 /**
  * @ingroup jsystem-j3d
@@ -2055,14 +1933,5 @@ public:
     /* 0x3B */ u8 mDither;
     /* 0x3C */ u32 mFogOffset;
 };  // Size: 0x40
-
-/**
- * @ingroup jsystem-j3d
- *
- */
-struct J3DColorBlockNull : public J3DColorBlock {
-    virtual u32 getType() { return 'CLNL'; }
-    virtual ~J3DColorBlockNull() {}
-};
 
 #endif /* J3DMATBLOCK_H */
