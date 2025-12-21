@@ -2,6 +2,11 @@
 #define D_MAP_D_MAP_H
 
 #include "d/d_map_path_dmap.h"
+#include "JSystem/JHostIO/JORReflexible.h"
+
+struct dMap_HIO_prm_res_src_s {
+
+};
 
 class dMap_HIO_list_c : public dMpath_HIO_n::hioList_c {
 public:
@@ -21,10 +26,11 @@ public:
     virtual u32 addStringBinary(char*, u32, u32);
 
     /* 0x04 */ u8 field_0x4[0x08 - 0x04];
-    /* 0x08 */ dMap_HIO_list_c field_0x8;
+    /* 0x08 */ dMap_HIO_list_c mList;
 
     static dMap_HIO_c* mMySelfPointer;
     static dMpath_HIO_n::list_s l_list;
+    static dMap_HIO_prm_res_src_s* m_res_src_p;
 };
 
 struct dMap_prm_res_s {
@@ -114,6 +120,7 @@ public:
     void setMapPaletteColorAlphaPer(int, int, f32);
     void resCopy();
     dMap_c(int, int, int, int);
+    void changeTextureSize(int, int, int);
     void _remove();
     void getMapMinMaxXZ(int, f32*, f32*, f32*, f32*);
     void getPack(int, f32*, f32*);
@@ -141,11 +148,15 @@ public:
     ResTIMG* getResTIMGPointer() { return mResTIMG; }
     f32 getTopEdgePlus() { return mTopEdgePlus; }
     f32 getPackPlusZ() { return mPackPlusZ; }
-    f32 getPackZ() { return mPackZ; }
-    f32 getTexelPerCm() { return 1.0f / field_0x58; }
-    u16 getTexSizeY() { return mTexSizeY; }
+    f32 getPackZ() const { return mPackZ; }
+    f32 getTexelPerCm() const { return 1.0f / field_0x58; }
+    u16 getTexSizeY() const { return mTexSizeH; }
     f32 getRightEdgePlus() { return mRightEdgePlus; }
-    f32 getPackX() { return mPackX; }
+    f32 getPackX() const { return mPackX; }
+    int getStayRoomNo() const { return mStayRoomNo; }
+    f32 getCenterZ() const { return mCenterZ; }
+
+    static dMap_c* m_mySelfPointer;
 
 private:
     /* 0x40 */ dMap_prm_res_s* m_res_src;
@@ -162,8 +173,8 @@ private:
     /* 0x6C */ f32 mRightEdgePlus;
     /* 0x70 */ f32 mTopEdgePlus;
     /* 0x74 */ int field_0x74;
-    /* 0x78 */ u16 mTexSizeX;
-    /* 0x7A */ u16 mTexSizeY;
+    /* 0x78 */ u16 mTexSizeW;
+    /* 0x7A */ u16 mTexSizeH;
     /* 0x7C */ int mStayRoomNo;
     /* 0x80 */ int field_0x80;
     /* 0x84 */ int field_0x84;
@@ -174,5 +185,16 @@ private:
     /* 0x8F */ u8 field_0x8f;
     /* 0x90 */ u8 field_0x90;
 };  // Size: 0x94
+
+#if DEBUG
+class dMpath_RGBA_c {
+public:
+    GXColor getGXColor() { return mColor; }
+
+    GXColor mColor;
+
+    virtual ~dMpath_RGBA_c() {}
+};
+#endif
 
 #endif /* D_MAP_D_MAP_H */

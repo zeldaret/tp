@@ -3886,7 +3886,7 @@ bool dMeter2Draw_c::getFishingType() {
 static const char* tex_name[] = {"tt_heart_00.bti", "tt_heart_01.bti", "tt_heart_02.bti",
                                  "tt_heart_03.bti"};
 
-bool dMeter2Draw_c::getCanoeFishing() {
+u8 dMeter2Draw_c::getCanoeFishing() {
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP127") &&
         ((daPy_py_c*)dComIfGp_getPlayer(0))->checkCanoeRide())
     {

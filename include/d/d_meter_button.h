@@ -141,8 +141,12 @@ public:
 
     bool isSetButton(u8 i_no) { return mButtonTimers[i_no] <= 0; }
     void onButtonShowBit(int i_bit) { field_0x4b0 |= (u16)(1 << i_bit); }
+    #if DEBUG
+    void offButtonShowBit(int i_bit) { field_0x4b0 &= (u16)~(u16)(1 << i_bit); }
+    #else
     void offButtonShowBit(int i_bit) { field_0x4b0 &= ~(u16)(1 << i_bit); }
-    bool isButtonShowBit(int i_bit) { return field_0x4b0 & (u16)(1 << i_bit); }
+    #endif
+    bool isButtonShowBit(int i_bit) { return field_0x4b0 & (u16)(1 << i_bit) ? true : false; }
 
     static const int BUTTON_NUM = 22;
 

@@ -96,7 +96,9 @@ public:
     virtual ~dMenu_Option_c();
 
     u8 getQuitStatus() { return mQuitStatus; }
-    u8 isUseFlag(u8 i_flag) { return (mUseFlag & i_flag) != 0; }
+    bool isUseFlag(u8 i_flag) {
+        return ((u8)mUseFlag & (u8)i_flag) != 0 ? true : false;
+    }
 
 private:
     /* 0x004 */ J2DScreen* mpBackScreen;

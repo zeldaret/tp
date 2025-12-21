@@ -80,6 +80,13 @@ struct stage_stag_info_class {
     /* 0x2C */ u8 mParticleNo[16];
 };  // Size: 0x3C
 
+class dStage_stagInfo_c {
+public:
+    enum {
+        /* 0x1 */ UB_D_MAP = 1,
+    };
+};
+
 // SCLS
 struct stage_scls_info_class {
     /* 0x0 */ char mStage[8];
@@ -1358,7 +1365,7 @@ inline u32 dStage_stagInfo_GetParticleNo(stage_stag_info_class* p_info) {
     return (p_info->field_0x0a >> 0x3) & 0xFF;
 }
 
-inline s16 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
+inline s32 dStage_stagInfo_GetUpButton(stage_stag_info_class* p_info) {
     return p_info->field_0x0a & 7;
 }
 
@@ -1475,11 +1482,11 @@ inline f32 dStage_FileList2_dt_GetRightRmX(dStage_FileList2_dt_c* p_fList2) {
     return p_fList2->mRightRmX;
 }
 
-inline f32 dStage_FileList2_dt_GetInnerRmZ(dStage_FileList2_dt_c* p_fList2) {
+inline f32 dStage_FileList2_dt_GetInnerRmZ(const dStage_FileList2_dt_c* p_fList2) {
     return p_fList2->mInnerRmZ;
 }
 
-inline f32 dStage_FileList2_dt_GetFrontRmZ(dStage_FileList2_dt_c* p_fList2) {
+inline f32 dStage_FileList2_dt_GetFrontRmZ(const dStage_FileList2_dt_c* p_fList2) {
     return p_fList2->mFrontRmZ;
 }
 
