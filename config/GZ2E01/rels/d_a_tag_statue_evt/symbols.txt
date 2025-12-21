@@ -63,4 +63,4 @@ l_statue_ang$3944 = .data:0x00000128; // type:object size:0xC scope:local
 l_daTagStatue_Method = .data:0x00000134; // type:object size:0x20 scope:global
 g_profile_Tag_Statue = .data:0x00000154; // type:object size:0x30 scope:global
 __vt__12J3DFrameCtrl = .data:0x00000184; // type:object size:0xC scope:global
-lbl_133_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

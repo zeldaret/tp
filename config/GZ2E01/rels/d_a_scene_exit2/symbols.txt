@@ -43,4 +43,4 @@ l_func$3698 = .data:0x00000058; // type:object size:0x30 scope:local
 action_table$3745 = .data:0x00000088; // type:object size:0xC scope:local
 l_daScExit_Method = .data:0x00000094; // type:object size:0x20 scope:global
 g_profile_SCENE_EXIT2 = .data:0x000000B4; // type:object size:0x30 scope:global
-lbl_117_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

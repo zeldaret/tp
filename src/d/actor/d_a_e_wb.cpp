@@ -175,19 +175,10 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     return 1;
 }
 
-/* 807E35B4 0001+00 data_807E35B4 @1009 */
-/* 807E35B5 0001+00 data_807E35B5 None */
-/* 807E35B6 0001+00 data_807E35B6 None */
-/* 807E35B7 0001+00 data_807E35B7 None */
 static s8 lbl_244_bss_45;
 static s8 lbl_244_bss_46;
 static s8 lbl_244_bss_47;
 static bool l_HIOInit;
-
-// static u8 lbl_244_bss_48;
-// static u8 lbl_244_bss_49;
-// static u8 lbl_244_bss_4a;
-// static u8 lbl_244_bss_4b;
 
 static daE_WB_HIO_c l_HIO;
 

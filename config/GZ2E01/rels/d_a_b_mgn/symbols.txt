@@ -255,6 +255,6 @@ __vt__12J3DFrameCtrl = .data:0x00000380; // type:object size:0xC scope:global
 __vt__8cM3dGPla = .data:0x0000038C; // type:object size:0xC scope:global
 __vt__13daB_MGN_HIO_c = .data:0x00000398; // type:object size:0xC scope:global
 __global_destructor_chain = .bss:0x00000000; // type:object size:0x4 scope:global
-lbl_148_bss_8 = .bss:0x00000008; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000008; // type:object size:0x1 scope:local align:1 data:byte
 @3944 = .bss:0x0000000C; // type:object size:0xC scope:local
 l_HIO = .bss:0x00000018; // type:object size:0x24 scope:global data:byte

@@ -98,4 +98,4 @@ __vt__8cM3dGSph = .data:0x00000240; // type:object size:0xC scope:global
 __vt__8cM3dGAab = .data:0x0000024C; // type:object size:0xC scope:global
 __vt__18mDoExt_3DlineMat_c = .data:0x00000258; // type:object size:0x14 scope:global
 __vt__14daObjRBridge_c = .data:0x0000026C; // type:object size:0x28 scope:global
-lbl_110_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

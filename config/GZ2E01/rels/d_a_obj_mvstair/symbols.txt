@@ -78,5 +78,5 @@ daObjStair_METHODS = .data:0x000000E8; // type:object size:0x20 scope:global
 g_profile_Obj_MvStair = .data:0x00000108; // type:object size:0x30 scope:global
 __vt__18dPa_levelEcallBack = .data:0x00000138; // type:object size:0x24 scope:global
 __vt__12daObjStair_c = .data:0x0000015C; // type:object size:0x28 scope:global
-lbl_578_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
-lbl_578_bss_1 = .bss:0x00000001; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1
+init$0000 = .bss:0x00000001; // type:object size:0x1 scope:local align:1 data:byte

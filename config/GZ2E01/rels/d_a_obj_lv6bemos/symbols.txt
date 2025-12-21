@@ -71,4 +71,4 @@ __vt__8cM3dGAab = .data:0x00000174; // type:object size:0xC scope:global
 __vt__8cM3dGPla = .data:0x00000180; // type:object size:0xC scope:global
 __vt__12J3DFrameCtrl = .data:0x0000018C; // type:object size:0xC scope:global
 __vt__11daObjL6Bm_c = .data:0x00000198; // type:object size:0x28 scope:global
-lbl_552_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

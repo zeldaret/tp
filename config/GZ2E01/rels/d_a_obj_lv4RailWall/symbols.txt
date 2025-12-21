@@ -72,4 +72,4 @@ __vt__8cM3dGAab = .data:0x000000EC; // type:object size:0xC scope:global
 __vt__12dBgS_ObjAcch = .data:0x000000F8; // type:object size:0x24 scope:global
 __vt__17dEvLib_callback_c = .data:0x0000011C; // type:object size:0x18 scope:global
 __vt__14daObjLv4Wall_c = .data:0x00000134; // type:object size:0x48 scope:global
-lbl_529_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

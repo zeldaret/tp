@@ -81,5 +81,5 @@ __vt__8cM3dGAab = .data:0x000001B0; // type:object size:0xC scope:global
 __vt__12daTboxBase_c = .data:0x000001BC; // type:object size:0x2C scope:global
 __vt__12J3DFrameCtrl = .data:0x000001E8; // type:object size:0xC scope:global
 __vt__9daTbox2_c = .data:0x000001F4; // type:object size:0x2C scope:global
-lbl_42_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
-lbl_42_bss_1 = .bss:0x00000001; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1
+init$0000 = .bss:0x00000001; // type:object size:0x1 scope:local align:1 data:byte

@@ -123,4 +123,4 @@ l_bmdName$3644 = .bss:0x00000000; // type:object size:0x10 scope:local
 l_btkName$3652 = .bss:0x00000010; // type:object size:0x10 scope:local
 l_brkName$3660 = .bss:0x00000020; // type:object size:0x10 scope:local
 l_dzbName$3668 = .bss:0x00000030; // type:object size:0x10 scope:local
-lbl_4_bss_40 = .bss:0x00000040; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000040; // type:object size:0x1 scope:local align:1 data:byte

@@ -51,4 +51,4 @@ l_func$3768 = .data:0x00000068; // type:object size:0x30 scope:local
 action_table$3859 = .data:0x00000098; // type:object size:0xC scope:local
 l_daObjStopper2_Method = .data:0x000000A4; // type:object size:0x20 scope:global
 g_profile_Obj_Stopper2 = .data:0x000000C4; // type:object size:0x30 scope:global
-lbl_635_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

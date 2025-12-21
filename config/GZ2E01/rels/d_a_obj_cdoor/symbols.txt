@@ -56,5 +56,5 @@ l_daObjCdoor_Method = .data:0x000000D8; // type:object size:0x20 scope:global
 g_profile_Obj_Cdoor = .data:0x000000F8; // type:object size:0x30 scope:global
 __vt__12daObjCdoor_c = .data:0x00000128; // type:object size:0x2C scope:global
 __vt__12J3DFrameCtrl = .data:0x00000154; // type:object size:0xC scope:global
-lbl_420_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
-lbl_420_bss_1 = .bss:0x00000001; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1
+init$0000 = .bss:0x00000001; // type:object size:0x1 scope:local align:1 data:byte

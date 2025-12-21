@@ -64,4 +64,4 @@ action_table$3966 = .data:0x0000008C; // type:object size:0x34 scope:local
 l_daObjSwBallC_Method = .data:0x00000128; // type:object size:0x20 scope:global
 g_profile_Obj_SwBallC = .data:0x00000148; // type:object size:0x30 scope:global
 __vt__12J3DFrameCtrl = .data:0x00000178; // type:object size:0xC scope:global
-lbl_640_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

@@ -111,4 +111,4 @@ g_profile_L1BOSS_DOOR = .data:0x00000240; // type:object size:0x30 scope:global
 __vt__12dBgS_AcchCir = .data:0x00000270; // type:object size:0xC scope:global
 __vt__12dBgS_ObjAcch = .data:0x0000027C; // type:object size:0x24 scope:global
 __vt__12J3DFrameCtrl = .data:0x000002A0; // type:object size:0xC scope:global
-lbl_64_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1
