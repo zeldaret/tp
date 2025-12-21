@@ -1993,7 +1993,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tbox"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tbox2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_vrbox"),
-    ActorRel(NonMatching, "d_a_vrbox2"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_vrbox2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_arrow"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_boomerang"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_crod"),
