@@ -2137,7 +2137,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_df"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_dk"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_dt"),
-    ActorRel(NonMatching, "d_a_e_fb"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_e_fb"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_fk"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_fs"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_fz"),
