@@ -1107,7 +1107,7 @@ public:
     }
     static BOOL GetTimePass() { return m_time_pass; }
 
-    static s8 getStayNo() { return mStayNo; }
+    static int getStayNo() { return mStayNo; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
     static s8 getMemoryBlockID(int i_roomNo) { return mStatus[i_roomNo].mMemBlockID; }
     dKy_tevstr_c* getTevStr(int i_roomNo) {

@@ -1493,7 +1493,7 @@ struct J3DBlend : public J3DBlendInfo {
 struct J3DFog : public J3DFogInfo {
     J3DFog() { *(J3DFogInfo*)this = j3dDefaultFogInfo; }
     ~J3DFog() {}
-    J3DFogInfo* getFogInfo() { return this; }
+    J3DFog* getFogInfo() { return this; }
     void setFogInfo(J3DFogInfo info) { *(J3DFogInfo*)this = info; }
     void setFogInfo(const J3DFogInfo* info) { *(J3DFogInfo*)this = *info; }
 

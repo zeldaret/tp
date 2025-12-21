@@ -39,7 +39,7 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
     s16 temp_r19;
     s16 temp_r18;
 
-    camera_p = dComIfGp_getCamera(0);
+    camera_p = (camera_class*)dComIfGp_getCamera(0);
     lenz_p = g_env_light.mpSunLenzPacket;
     kumo_model_p = i_this->mpKumoModel;
     sun_model_p = i_this->model2;
