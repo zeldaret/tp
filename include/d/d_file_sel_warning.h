@@ -38,7 +38,7 @@ public:
 
     virtual ~dFile_warning_c();
 
-    u8 getStatus() { return mStatus; }
+    BOOL getStatus() { return mStatus != 0; }
     void draw() { _draw(); }
 
     /* 0x04 */ JKRArchive* mpArchive;

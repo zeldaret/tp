@@ -1296,7 +1296,7 @@ void dMenu_save_c::memCardCommandEnd2() {
     bool headerTxtChanged = headerTxtChangeAnm();
     bool ketteiDispAnm = ketteiTxtDispAnm();
     bool modoruDispAnm = modoruTxtDispAnm();
-    u32 check = mWarning->getStatus() != 0;
+    u32 check = mWarning->getStatus();
 
     if (headerTxtChanged == true && ketteiDispAnm == true && modoruDispAnm == true && check == 1) {
         mpErrFunc = NULL;
@@ -1388,7 +1388,7 @@ void dMenu_save_c::gameContinueDisp() {
     bool headerTxtChanged = headerTxtChangeAnm();
     bool moveAnm = yesnoMenuMoveAnm();
     bool ketteiDispAnm = ketteiTxtDispAnm();
-    u32 check = mWarning->getStatus() != 0;
+    u32 check = mWarning->getStatus();
 
     if (headerTxtChanged == true && moveAnm == true && ketteiDispAnm == true && check == 1) {
         yesnoCursorShow();
@@ -1466,7 +1466,7 @@ void dMenu_save_c::gameContinue3() {
 void dMenu_save_c::saveEnd() {
     bool headerTxtChanged = headerTxtChangeAnm();
     bool ketteiDispAnm = ketteiTxtDispAnm();
-    u32 check = mWarning->getStatus() != 0;
+    u32 check = mWarning->getStatus();
 
     if (headerTxtChanged == true && ketteiDispAnm == true && check == 1) {
         if (mUseType == TYPE_BLACK_EVENT) {
@@ -1938,7 +1938,7 @@ void dMenu_save_c::saveMoveDisp() {
     bool yesnoAnmComplete = yesnoMenuMoveAnm();
     bool ketteiAnmComplete = ketteiTxtDispAnm();
     bool modoruAnmComplete = modoruTxtDispAnm();
-    u32 check = mWarning->getStatus() != 0;
+    u32 check = mWarning->getStatus();
 
     if (headerTxtChanged == true && yesnoAnmComplete == true && ketteiAnmComplete == true &&
         modoruAnmComplete == 1 && check == 1) {
@@ -1956,7 +1956,7 @@ void dMenu_save_c::saveMoveDisp2() {
     bool wakuAnmComplete = selectWakuAlpahAnm(mSelectedFile);
     bool ketteiAnmComplete = ketteiTxtDispAnm();
     bool modoruAnmComplete = modoruTxtDispAnm();
-    u32 check = mWarning->getStatus() != 0;
+    u32 check = mWarning->getStatus();
 
     if (headerTxtChanged == true && dataMoveAnm == true && wakuAnmComplete == true &&
         ketteiAnmComplete == true && modoruAnmComplete == 1 && check == 1) {

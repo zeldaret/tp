@@ -1,7 +1,12 @@
 #ifndef M_DO_M_DO_MEMCARDRWMNG_H
 #define M_DO_M_DO_MEMCARDRWMNG_H
 
+#include "global.h"
 #include <dolphin/card.h>
+
+#if PLATFORM_WII || PLATFORM_SHIELD
+#include <revolution/nand.h>
+#endif
 
 struct mDoMemCdRWm_HeaderData {
     /* 0x0000 */ u8 mBannerTexData[0xC00];
@@ -25,5 +30,11 @@ static u32 mDoMemCdRWm_CalcCheckSum(void* data, u32 size);
 static u64 mDoMemCdRWm_CalcCheckSumGameData(void* data, u32 size);
 BOOL mDoMemCdRWm_TestCheckSumGameData(void* data);
 void mDoMemCdRWm_SetCheckSumGameData(u8* data, u8 dataNum);
+
+#if PLATFORM_WII || PLATFORM_SHIELD
+s32 mDoMemCdRWm_RestoreNAND(NANDFileInfo* param_0, void* param_1, u32 param_2);
+s32 mDoMemCdRWm_StoreNAND(NANDFileInfo* param_0, void* param_1, u32 param_2);
+s32 mDoMemCdRWm_StoreBannerNAND(NANDFileInfo*);
+#endif
 
 #endif /* M_DO_M_DO_MEMCARDRWMNG_H */
