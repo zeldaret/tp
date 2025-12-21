@@ -40,7 +40,7 @@ enum Mode {  // Not sure if these are correct...
     /* 0xC */ MODE_TK_WAIT01,
 };
 
-static bool hioInit;
+static bool hio_set;
 
 static daE_TK_HIO_c l_HIO;
 
@@ -650,7 +650,7 @@ static int daE_TK_IsDelete(e_tk_class* i_this) {
 static int daE_TK_Delete(e_tk_class* i_this) {
     dComIfG_resDelete(&i_this->mPhaseReq, "E_tk");
     if (i_this->mInitHIO) {
-        hioInit = false;
+        hio_set = false;
     }
     if (i_this->heap != NULL) {
         i_this->mpMorf->stopZelAnime();
@@ -709,9 +709,9 @@ static int daE_TK_Create(fopAc_ac_c* i_this) {
             a_this->mPathDirection = 0x1;
             a_this->mAction = ACT_TK_PATHSWIM;
         }
-        if (hioInit == false) {
+        if (hio_set == false) {
             a_this->mInitHIO = true;
-            hioInit = true;
+            hio_set = true;
             l_HIO.field_0x04 = -1;
         }
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;

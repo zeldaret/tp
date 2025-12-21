@@ -109,7 +109,7 @@ static void ms_disappear(e_ms_class* i_this) {
 }
 
 /* 807297FD 0003+00 data_807297FD None */
-static u8 hioInit;
+static u8 hio_set;
 
 static daE_MS_HIO_c l_HIO;
 
@@ -949,7 +949,7 @@ static int daE_MS_IsDelete(e_ms_class* i_this) {
 static int daE_MS_Delete(e_ms_class* i_this) {
     dComIfG_resDelete(&i_this->mPhaseReq, "E_MS");
     if (i_this->mHIOInit) {
-        hioInit = 0;
+        hio_set = 0;
     }
 
     if (i_this->heap) {
@@ -1017,9 +1017,9 @@ static int daE_MS_Create(fopAc_ac_c* actor) {
             return cPhs_ERROR_e;
         }
 
-        if (!hioInit) {
+        if (!hio_set) {
             i_this->mHIOInit = 1;
-            hioInit = 1;
+            hio_set = 1;
             l_HIO.field_0x4 = -1;
         }
 

@@ -157,7 +157,7 @@ dCcD_SrcSph E_DT_n::cc_dt_tongue_src = {
 };
 
 /* 806B629D 0003+00 data_806B629D None */
-static bool hioInit;
+static bool hio_set;
 
 static daE_DT_HIO_c l_HIO;
 
@@ -2401,7 +2401,7 @@ int daE_DT_c::_delete() {
     dComIfG_resDelete(&mPhase[1], "Dalways");
     dComIfG_resDelete(&mPhase[2], "E_OT");
     if (mHIOInit) {
-        hioInit = false;
+        hio_set = false;
     }
     if (heap != NULL) {
         mSound.deleteObject();
@@ -2485,8 +2485,8 @@ cPhs__Step daE_DT_c::create() {
         return cPhs_ERROR_e;
     }
 
-    if (!hioInit) {
-        hioInit = true;
+    if (!hio_set) {
+        hio_set = true;
         mHIOInit = true;
         l_HIO.field_0x4 = -1;
     }

@@ -14,7 +14,7 @@
 #include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_lib.h"
 
-static u8 hioInit;
+static u8 hio_set;
 
 static daObj_KatHIO_c l_HIO;
 
@@ -626,7 +626,7 @@ void daObjKAT_c::Z_BufferChk() {
 int daObjKAT_c::Delete() {
     dComIfG_resDelete(&mPhase, "Kat");
     if (field_0xa70 != 0) {
-        hioInit = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.field_0x4);
     }
     if (heap != NULL) {
@@ -728,8 +728,8 @@ int daObjKAT_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (hioInit == 0) {
-            hioInit = 1;
+        if (hio_set == 0) {
+            hio_set = 1;
             field_0xa70 = 1;
             // Golden Snail
             l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("黄金蟲(カタツムリ)", &l_HIO);

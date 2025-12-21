@@ -199,7 +199,7 @@ daB_DS_HIO_c::daB_DS_HIO_c() {
     mP2HealthDebugOn = false;
 }
 
-static bool hioInit;
+static bool hio_set;
 
 static daB_DS_HIO_c l_HIO;
 
@@ -5261,7 +5261,7 @@ int daB_DS_c::_delete() {
     }
 
     if (mHIOInit) {
-        hioInit = false;
+        hio_set = false;
     }
 
     if (heap != NULL) {
@@ -5507,8 +5507,8 @@ cPhs__Step daB_DS_c::create() {
 
             field_0x560 = health = l_HIO.mP2Health;
 
-            if (!hioInit) {
-                hioInit = 1;
+            if (!hio_set) {
+                hio_set = 1;
                 mHIOInit = true;
                 l_HIO.field_0x04 = -1;
             }

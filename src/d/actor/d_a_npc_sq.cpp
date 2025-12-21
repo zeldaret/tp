@@ -14,7 +14,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_procname.h"
 
-static bool hioInit;
+static bool hio_set;
 
 static daNpc_Sq_HIO_c l_HIO;
 
@@ -291,7 +291,7 @@ static int daNpc_Sq_IsDelete(npc_sq_class* i_this) {
 static int daNpc_Sq_Delete(npc_sq_class* i_this) {
     dComIfG_resDelete(&i_this->mPhaseReq, "Sq");
     if (i_this->mHIOInit) {
-        hioInit = false;
+        hio_set = false;
     }
     return 1;
 }
@@ -337,9 +337,9 @@ static cPhs__Step daNpc_Sq_Create(fopAc_ac_c* i_this) {
             return cPhs_ERROR_e;
         }
 
-        if (!hioInit) {
+        if (!hio_set) {
             _this->mHIOInit = true;
-            hioInit = true;
+            hio_set = true;
             l_HIO.field_0x4 = -1;
         }
 

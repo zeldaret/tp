@@ -193,7 +193,7 @@ enum Joint {
 
 static e_rdy_class* boss;
 
-static bool hioInit;
+static bool hio_set;
 
 static daE_RDY_HIO_c l_HIO;
 
@@ -4695,7 +4695,7 @@ static int daE_RDY_Delete(e_rdy_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, i_this->mpArcName);
 
     if (i_this->mHIOInit) {
-        hioInit = false;
+        hio_set = false;
     }
 
     if (a_this->heap != NULL) {
@@ -4909,9 +4909,9 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
             return cPhs_ERROR_e;
         }
 
-        if (!hioInit) {
+        if (!hio_set) {
             _this->mHIOInit = true;
-            hioInit = true;
+            hio_set = true;
             l_HIO.field_0x4 = -1;
         }
 

@@ -123,7 +123,7 @@ enum L5_R50_RES_FIL_ID {
 };
 
 /* 80639F74 0001+00 data_80639F74 @1009 */
-static bool hioInit;
+static bool hio_set;
 
 static daB_YO_HIO_c l_HIO;
 
@@ -3074,7 +3074,7 @@ int daB_YO_c::_delete() {
     dComIfG_resDelete(&mPhase5, "E_FZ");
 
     if (mHIOInit) {
-        hioInit = false;
+        hio_set = false;
     }
 
     if (mpRoomArenaBgW != NULL) {
@@ -3305,8 +3305,8 @@ cPhs__Step daB_YO_c::create() {
                 return cPhs_ERROR_e;
             }
 
-            if (!hioInit) {
-                hioInit = true;
+            if (!hio_set) {
+                hio_set = true;
                 mHIOInit = true;
                 l_HIO.field_0x4 = -1;
             }

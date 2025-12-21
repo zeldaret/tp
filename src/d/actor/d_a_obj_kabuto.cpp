@@ -13,7 +13,7 @@
 #include "d/d_procname.h"
 #include "f_op/f_op_camera_mng.h"
 
-static bool hioInit;
+static bool hio_set;
 
 static daObj_KabHIO_c l_HIO;
 
@@ -642,7 +642,7 @@ void daObjKABUTO_c::ObjHit() {
 int daObjKABUTO_c::Delete() {
     dComIfG_resDelete(&mPhaseReq, "Kab_m");
     if (mHIOInit) {
-        hioInit = false;
+        hio_set = false;
     }
     if (heap != NULL) {
         mpMorf->stopZelAnime();
@@ -750,8 +750,8 @@ cPhs__Step daObjKABUTO_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (!hioInit) {
-            hioInit = true;
+        if (!hio_set) {
+            hio_set = true;
             mHIOInit = true;
             l_HIO.field_0x4 = -1;
         }
