@@ -190,7 +190,7 @@ if not config.non_matching:
 config.binutils_tag = "2.42-1"
 config.compilers_tag = "20251118"
 config.dtk_tag = "v1.7.1"
-config.objdiff_tag = "v3.4.4"
+config.objdiff_tag = "v3.5.0"
 config.sjiswrap_tag = "v1.2.2"
 config.wibo_tag = "1.0.0-beta.5"
 
