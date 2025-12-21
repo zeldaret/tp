@@ -397,7 +397,7 @@ int daCstatue_c::create() {
     return result;
 }
 
-static int daCstatue_Create(void* actor) {
+static int daCstatue_Create(fopAc_ac_c* actor) {
     return static_cast<daCstatue_c*>(actor)->create();
 }
 
@@ -413,7 +413,7 @@ daCstatue_c::~daCstatue_c() {
     dComIfG_resDelete(&mPhaseReq, mResName);
 }
 
-static int daCstatue_Delete(void* actor) {
+static int daCstatue_Delete(daCstatue_c* actor) {
     static_cast<daCstatue_c*>(actor)->~daCstatue_c();
     return cPhs_LOADING_e;
 }
@@ -1166,7 +1166,7 @@ int daCstatue_c::execute() {
     return 1;
 }
 
-static int daCstatue_Execute(void* actor) {
+static int daCstatue_Execute(daCstatue_c* actor) {
     return static_cast<daCstatue_c*>(actor)->execute();
 }
 
@@ -1200,12 +1200,16 @@ int daCstatue_c::draw() {
     return 1;
 }
 
-static int daCstatue_Draw(void* actor) {
+static int daCstatue_Draw(daCstatue_c* actor) {
     return static_cast<daCstatue_c*>(actor)->draw();
 }
 
 static actor_method_class l_daCstatue_Method = {
-    daCstatue_Create, daCstatue_Delete, daCstatue_Execute, NULL, daCstatue_Draw,
+    (process_method_func)daCstatue_Create,
+    (process_method_func)daCstatue_Delete,
+    (process_method_func)daCstatue_Execute,
+    (process_method_func)NULL,
+    (process_method_func)daCstatue_Draw,
 };
 
 extern actor_process_profile_definition g_profile_CSTATUE = {

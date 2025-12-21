@@ -343,7 +343,7 @@ void daB_TN_c::calcWaistAngle() {
 }
 
 /* 8062F01D 0003+00 data_8062F01D None */
-static u8 s_hioinit;
+static u8 hio_set;
 
 static daB_TN_HIO_c l_HIO;
 
@@ -4913,7 +4913,7 @@ int daB_TN_c::_delete() {
     dComIfG_resDelete(&mPhaseReq1, "B_tn");
     dComIfG_resDelete(&mPhaseReq2, mArcName);
     if (mHioInit) {
-        s_hioinit = 0;
+        hio_set = 0;
     }
 
     if (heap != NULL) {
@@ -5073,8 +5073,8 @@ int daB_TN_c::create() {
                 return cPhs_ERROR_e;
             }
 
-            if (s_hioinit == 0) {
-                s_hioinit = 1;
+            if (hio_set == 0) {
+                hio_set = 1;
                 mHioInit = 1;
                 l_HIO.mUnk1 = -1;
             }
