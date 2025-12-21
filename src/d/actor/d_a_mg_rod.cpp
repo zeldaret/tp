@@ -521,7 +521,7 @@ static npc_henna_class* henna;
 
 /* 804BBBD4 0001+00 data_804BBBD4 None */
 static u8 data_804BBBD4;
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static dmg_rod_HIO_c l_HIO;
 
@@ -6011,7 +6011,7 @@ static int dmg_rod_Delete(dmg_rod_class* i_this) {
     dComIfG_resDelete(&i_this->phase, i_this->arcname);
 
     if (i_this->HIOInit) {
-        l_HIOInit = FALSE;
+        hio_set = FALSE;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -6270,9 +6270,9 @@ static int dmg_rod_Create(fopAc_ac_c* i_this) {
         }
 
         OS_REPORT("//////////////MG_ROD SET 2 !!\n");
-        if (!l_HIOInit) {
+        if (!hio_set) {
             a_this->HIOInit = TRUE;
-            l_HIOInit = TRUE;
+            hio_set = TRUE;
             l_HIO.id = mDoHIO_CREATE_CHILD("釣りシステム", &l_HIO);
         }
 

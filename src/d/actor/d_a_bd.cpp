@@ -45,7 +45,7 @@ static land_pos land_pos127[20] = {
 
 static int wait_bck[3] = {ANM_PITA_LEFTUP, ANM_PITA_RIGHT, ANM_PITA_DOWN};
 
-static u8 l_HIOInit;
+static u8 hio_set;
 static daBd_HIO_c l_HIO;
 
 static cXyz land_sp_pos[4] = {
@@ -933,7 +933,7 @@ static int daBd_Delete(bd_class* i_this) {
     fopAcM_RegisterDeleteID(i_this, "Bd");
     dComIfG_resDelete(&i_this->mPhase, "Bd");
     if (i_this->field_0x9E8 != 0) {
-        l_HIOInit = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
     if (a_this->heap != 0) {
@@ -989,9 +989,9 @@ static int daBd_Create(fopAc_ac_c* i_act_this) {
             return cPhs_ERROR_e;
         }
         OS_REPORT("//////////////BD SET 2 !!\n");
-        if (l_HIOInit == 0) {
+        if (hio_set == 0) {
             i_this->field_0x9E8 = 1;
-            l_HIOInit = 1;
+            hio_set = 1;
             l_HIO.id = mDoHIO_CREATE_CHILD("小鳥", (JORReflexible*)&l_HIO);
         }
         fopAcM_SetMtx(i_act_this, i_this->mpMorf->getModel()->getBaseTRMtx());

@@ -15,7 +15,7 @@
 #include "d/d_procname.h"
 #include "f_op/f_op_camera_mng.h"
 
-static bool l_hioInit;
+static bool hio_set;
 
 static daE_Nest_HIO_c l_HIO;
 
@@ -924,7 +924,7 @@ static int daE_Nest_Delete(e_nest_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_nest");
     
     if (i_this->mHIOInit) {
-        l_hioInit = false;
+        hio_set = false;
     }
 
     if (i_this->heap != NULL) {
@@ -980,9 +980,9 @@ static cPhs__Step daE_Nest_Create(fopAc_ac_c* i_this) {
             return cPhs_ERROR_e;
         }
 
-        if (!l_hioInit) {
+        if (!hio_set) {
             _this->mHIOInit = true;
-            l_hioInit = true;
+            hio_set = true;
             l_HIO.field_0x4 = -1;
         }
 

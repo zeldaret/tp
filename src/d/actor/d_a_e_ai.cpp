@@ -338,7 +338,7 @@ void e_ai_class::damage_check() {
     }
 }
 
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daE_AI_HIO_c l_HIO;
 
@@ -828,7 +828,7 @@ int e_ai_class::Delete() {
     dComIfG_resDelete(&m_phase, "E_AI");
 
     if (m_HIOInit) {
-        l_HIOInit = FALSE;
+        hio_set = FALSE;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -902,8 +902,8 @@ int e_ai_class::Create() {
         }
 
         OS_REPORT("//////////////E_AI SET 2 !!\n");
-        if (!l_HIOInit) {
-            l_HIOInit = TRUE;
+        if (!hio_set) {
+            hio_set = TRUE;
             m_HIOInit = TRUE;
             l_HIO.id = mDoHIO_CREATE_CHILD("アモス", &l_HIO);
         }

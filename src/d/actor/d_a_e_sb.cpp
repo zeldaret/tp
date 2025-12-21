@@ -252,7 +252,7 @@ static void* s_bomb_sub(void* arg0, void* arg1) {
     return NULL;
 }
 
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daE_SB_HIO_c l_HIO;
 
@@ -1059,7 +1059,7 @@ int daE_SB_c::Draw() {
 int daE_SB_c::Delete() {
     dComIfG_resDelete(&mPhaseReq, "E_SB");
     if (field_0xbbc) {
-        l_HIOInit = 0;
+        hio_set = 0;
     }
 
     if (heap != NULL) {
@@ -1109,8 +1109,8 @@ cPhs__Step daE_SB_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        if (l_HIOInit == 0) {
-            l_HIOInit = 1;
+        if (hio_set == 0) {
+            hio_set = 1;
             field_0xbbc = 1;
             l_HIO.field_0x04 = -1;
         }

@@ -270,7 +270,7 @@ int daKago_c::executeBalloonMenu() {
     return 1;
 }
 
-static u8 l_HIOInit;
+static u8 hio_set;
 static daKago_HIO_c l_HIO;
 
 f32 daKago_c::checkGroundHeight(cXyz i_pos, f32* o_step) {
@@ -3696,7 +3696,7 @@ int daKago_c::_delete() {
     dComIfG_resDelete(&mPhase, field_0x75c);
 
     if (field_0xb54 != 0) {
-        l_HIOInit = false;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.mChild);
     }
 
@@ -3805,9 +3805,9 @@ int daKago_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (l_HIOInit == 0) {
+        if (hio_set == 0) {
             field_0xb54 = 1;
-            l_HIOInit = 1;
+            hio_set = 1;
             l_HIO.mChild = mDoHIO_CREATE_CHILD("", &l_HIO);
         }
 

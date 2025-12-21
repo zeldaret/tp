@@ -269,8 +269,7 @@ void daB_GG_c::initCc() {
     }
 }
 
-/* 805ED6FD 0003+00 l_HIOInit None */
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daB_GG_HIO_c l_HIO;
 
@@ -4194,7 +4193,7 @@ int daB_GG_c::Delete() {
     dComIfG_resDelete(&mPhase, "B_gg");
 
     if (mHIOInit) {
-        l_HIOInit = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -4288,8 +4287,8 @@ int daB_GG_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        if (!l_HIOInit) {
-            l_HIOInit = TRUE;
+        if (!hio_set) {
+            hio_set = TRUE;
             mHIOInit = TRUE;
             l_HIO.id = mDoHIO_CREATE_CHILD("ガーゴイル", &l_HIO);
         }

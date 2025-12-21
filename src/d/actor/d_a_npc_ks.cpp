@@ -300,7 +300,7 @@ static npc_ks_class* leader;
 
 static u32 call_pt;
 
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daNpc_Ks_HIO_c l_HIO;
 
@@ -6878,7 +6878,7 @@ static int daNpc_Ks_Delete(npc_ks_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, i_this->res_name);
 
     if (i_this->hio_init != 0) {
-        l_HIOInit = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.no);
     }
 
@@ -7402,9 +7402,9 @@ static int daNpc_Ks_Create(fopAc_ac_c* actor) {
         }
 
         OS_REPORT("//////////////NPC_KS SET 2 !!\n");
-        if (l_HIOInit == 0) {
+        if (hio_set == 0) {
             i_this->hio_init = 1;
-            l_HIOInit = 1;
+            hio_set = 1;
             l_HIO.no = mDoHIO_CREATE_CHILD("コザル", &l_HIO); // Kozaru
         }
 

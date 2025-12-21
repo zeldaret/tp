@@ -150,7 +150,7 @@ void daE_TT_c::calcHitGroundSpeed() {
     }
 }
 
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daE_TT_HIO_c l_HIO;
 
@@ -1180,7 +1180,7 @@ int daE_TT_c::_delete() {
     dComIfG_resDelete(&mPhaseReq2, "E_TT");
 
     if (mHIOInit) {
-        l_HIOInit = false;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -1272,8 +1272,8 @@ int daE_TT_c::create() {
                 return cPhs_ERROR_e;
             }
 
-            if (!l_HIOInit) {
-                l_HIOInit = true;
+            if (!hio_set) {
+                hio_set = true;
                 mHIOInit = true;
                 l_HIO.id = mDoHIO_CREATE_CHILD("テクタイト", &l_HIO);  // Tektite
             }

@@ -197,7 +197,7 @@ static void e_is_wait(e_is_class* a_this) {
     }
 }
 
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daE_IS_HIO_c l_HIO;
 
@@ -605,7 +605,7 @@ static int daE_IS_Delete(e_is_class* a_this) {
     dComIfG_resDelete(&a_this->phase, "E_IS");
 
     if (a_this->hioInit) {
-        l_HIOInit = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -654,9 +654,9 @@ static int daE_IS_Create(fopAc_ac_c* i_this) {
         }
 
         OS_REPORT("//////////////E_IS SET 2 !!\n");
-        if (l_HIOInit == 0) {
+        if (hio_set == 0) {
             a_this->hioInit = 1;
-            l_HIOInit = 1;
+            hio_set = 1;
             l_HIO.id = mDoHIO_CREATE_CHILD("動くイデリア石像", &l_HIO);
         }
 

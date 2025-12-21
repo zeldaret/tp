@@ -178,7 +178,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
 static s8 lbl_244_bss_45;
 static s8 lbl_244_bss_46;
 static s8 lbl_244_bss_47;
-static bool l_HIOInit;
+static bool hio_set;
 
 static daE_WB_HIO_c l_HIO;
 
@@ -5464,7 +5464,7 @@ static int daE_WB_Delete(e_wb_class* i_this) {
     fopAcM_GetID(i_this);
     dComIfG_resDelete(&i_this->mPhase, i_this->mResName);
     if (i_this->field_0x17e0 != 0) {
-        l_HIOInit = false;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.mId);
     }
 
@@ -5683,9 +5683,9 @@ static int daE_WB_Create(fopAc_ac_c* a_this) {
             OS_REPORT("//////////////E_WB SET NON !!\n");
             return cPhs_ERROR_e;
         } else {
-            if (!l_HIOInit) {
+            if (!hio_set) {
                 i_this->field_0x17e0 = 1;
-                l_HIOInit = true;
+                hio_set = true;
                 l_HIO.mId = mDoHIO_CREATE_CHILD("イノシシ", &l_HIO);
             }
 
