@@ -13,6 +13,9 @@
 #if VERSION == VERSION_GCN_JPN
 #define HEADER_TITLE   "ゼルダの伝説 ﾄﾜｲﾗｲﾄﾌﾟﾘﾝｾｽ"
 #define HEADER_COMMENT "%d月%d日のセーブデータです"
+#elif PLATFORM_WII
+#define HEADER_TITLE   "The Legend of Zelda: TP"
+#define HEADER_COMMENT "%d/%d Save Data"
 #else
 #define HEADER_TITLE   "Zelda: Twilight Princess"
 #define HEADER_COMMENT "%d/%d Save Data"
@@ -21,12 +24,13 @@
 struct data_s {
     int unk_0x0;
     int data_version;
-    u8 data[(SAVEDATA_SIZE * 3) + 0x38];  // unsure what the extra 0x38 is
+    u8 data[(SAVEFILE_SIZE) + 0x38];  // unsure what the extra 0x38 is
     u32 checksum;
 };
 
 static u8 sTmpBuf[SECTOR_SIZE * 2];
 
+#if !PLATFORM_SHIELD
 s32 mDoMemCdRWm_Store(CARDFileInfo* file, void* data, u32 length) {
     mDoMemCdRWm_BuildHeader((mDoMemCdRWm_HeaderData*)sTmpBuf);
 
@@ -152,6 +156,160 @@ s32 mDoMemCdRWm_Restore(CARDFileInfo* file, void* data, u32 length) {
 
     return CARD_RESULT_READY;
 }
+#endif
+
+#if PLATFORM_WII || PLATFORM_SHIELD
+s32 mDoMemCdRWm_StoreNAND(NANDFileInfo* file, void* data, u32 length) {
+    s32 ret;
+
+    memset(sTmpBuf, 0, sizeof(sTmpBuf));
+
+    data_s* tmp_data = (data_s*)sTmpBuf;
+    tmp_data->unk_0x0 = 0;
+    tmp_data->data_version = SAVEDATA_VERSION;
+    memcpy(tmp_data->data, data, length);  
+
+    u32 checksum = tmp_data->checksum = mDoMemCdRWm_CalcCheckSum(tmp_data, sizeof(data_s) - 4);
+
+    ret = NANDWrite(file, sTmpBuf, 0x2000);
+    if (ret != 0x2000) {
+        return ret;
+    }
+
+    NANDSeek(file, 0, 0);
+
+    ret = NANDRead(file, sTmpBuf, 0x2000);
+    if (ret != 0x2000) {
+        return ret;
+    }
+
+    if (checksum != mDoMemCdRWm_CalcCheckSum(sTmpBuf, sizeof(data_s) - 4)) {
+        return ret;
+    }
+
+    NANDSeek(file, 0x2000, 0);
+
+    ret = NANDWrite(file, sTmpBuf, 0x2000);
+    if (ret != 0x2000) {
+        return ret;
+    }
+
+    NANDSeek(file, 0x2000, 0);
+
+    ret = NANDRead(file, sTmpBuf, 0x2000);
+    if (ret != 0x2000) {
+        return ret;
+    }
+
+    if (checksum != mDoMemCdRWm_CalcCheckSum(sTmpBuf, sizeof(data_s) - 4)) {
+        return ret;
+    }
+
+    return NAND_RESULT_OK;
+}
+
+s32 mDoMemCdRWm_RestoreNAND(NANDFileInfo* file, void* data, u32 length) {
+    BOOL rewrite = FALSE;
+
+    data_s* saves = (data_s*)sTmpBuf;
+    data_s* backup_saves = (data_s*)(sTmpBuf + SECTOR_SIZE);
+
+    NANDSeek(file, 0, 0);
+    s32 ret = NANDRead(file, saves, 0x2000);
+    if (ret != 0x2000) {
+        return ret;
+    }
+
+    BOOL save1_valid = mDoMemCdRWm_TestCheckSumGameData(&saves->data[SAVEDATA_SIZE * 0]);
+    BOOL save2_valid = mDoMemCdRWm_TestCheckSumGameData(&saves->data[SAVEDATA_SIZE * 1]);
+    BOOL save3_valid = mDoMemCdRWm_TestCheckSumGameData(&saves->data[SAVEDATA_SIZE * 2]);
+
+    NANDSeek(file, 0x2000, 0);
+    ret = NANDRead(file, backup_saves, 0x2000);
+    if (ret != 0x2000) {
+        return ret;
+    }
+
+    BOOL backup1_valid = mDoMemCdRWm_TestCheckSumGameData(&backup_saves->data[SAVEDATA_SIZE * 0]);
+    BOOL backup2_valid = mDoMemCdRWm_TestCheckSumGameData(&backup_saves->data[SAVEDATA_SIZE * 1]);
+    BOOL backup3_valid = mDoMemCdRWm_TestCheckSumGameData(&backup_saves->data[SAVEDATA_SIZE * 2]);
+
+    if (!save1_valid && backup1_valid) {
+        memcpy(&saves->data[SAVEDATA_SIZE * 0], &backup_saves->data[SAVEDATA_SIZE * 0], SAVEDATA_SIZE);
+        rewrite = TRUE;
+    }
+
+    if (!save2_valid && backup2_valid) {
+        memcpy(&saves->data[SAVEDATA_SIZE * 1], &backup_saves->data[SAVEDATA_SIZE * 1], SAVEDATA_SIZE);
+        rewrite = TRUE;
+    }
+
+    if (!save3_valid && backup3_valid) {
+        memcpy(&saves->data[SAVEDATA_SIZE * 2], &backup_saves->data[SAVEDATA_SIZE * 2], SAVEDATA_SIZE);
+        rewrite = TRUE;
+    }
+
+    BOOL sp10 = FALSE;
+    if (!save1_valid && !backup1_valid &&
+        !save2_valid && !backup2_valid &&
+        !save3_valid && !backup3_valid)
+    {
+        sp10 = TRUE;
+    }
+
+    if (rewrite) {
+        NANDSeek(file, 0, 0);
+        ret = NANDWrite(file, saves, 0x2000);
+        if (ret != 0x2000) {
+            return ret;
+        }
+
+        NANDSeek(file, 0x2000, 0);
+        ret = NANDWrite(file, saves, 0x2000);
+        if (ret != 0x2000) {
+            return ret;
+        }
+    }
+
+    memcpy(data, saves->data, length);
+    mDoMemCd_setDataVersion(saves->data_version);
+
+    return NAND_RESULT_OK;
+}
+#endif
+
+#if PLATFORM_WII || PLATFORM_SHIELD
+s32 mDoMemCdRWm_StoreBannerNAND(NANDFileInfo* file) {
+    static NANDBanner info;
+    static wchar_t titleTxt[] = L"The Legend of Zelda:";
+    static wchar_t commentTxt[] = L"Twilight Princess";
+    u32 size;
+    s32 ret;
+
+    NANDInitBanner(&info, 0, (u16*)titleTxt, (u16*)commentTxt);
+
+    ResTIMG* banner_data = (ResTIMG*)dComIfGp_getCardIconResArchive()->getResource("zelda2_wii_banner.bti");
+    ResTIMG* icon_data = (ResTIMG*)dComIfGp_getCardIconResArchive()->getResource("zelda2_wii_icon.bti");
+
+    u8* banner_base_ptr = (u8*)banner_data;
+    u8* icon_base_ptr = (u8*)icon_data;
+
+    memcpy(info.bannerTexture, banner_base_ptr + banner_data->imageOffset, sizeof(info.bannerTexture));
+    memcpy(info.iconTexture, icon_base_ptr + icon_data->imageOffset, 0x1200);
+    dComIfGp_getCardIconResArchive()->removeResourceAll();
+
+    NANDSetIconSpeed(info, 0, NAND_STAT_SPEED_MIDDLE);
+    NANDSetIconSpeed(info, 1, NAND_STAT_SPEED_END);
+
+    size = 0x72A0;
+    ret = NANDWrite(file, &info, size);
+    if (ret != size) {
+        return ret;
+    }
+
+    return NAND_RESULT_OK;
+}
+#endif
 
 static void mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData* header) {
     snprintf(header->mTitle, sizeof(header->mTitle), HEADER_TITLE);

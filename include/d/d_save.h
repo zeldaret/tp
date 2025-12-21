@@ -469,6 +469,7 @@ class dSv_player_info_c {
 public:
     void init();
     char* getLinkName() { return mPlayerName; }
+    const char* getPlayerName() const { return mPlayerName; }
     char* getHorseName() { return mHorseName; }
     void setPlayerName(const char* i_name) { strcpy((char*)mPlayerName, i_name); }
     void setHorseName(const char* i_name) { strcpy((char*)mHorseName, i_name); }

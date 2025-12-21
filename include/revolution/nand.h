@@ -120,6 +120,16 @@ typedef struct {
     u8 iconTexture[8][48 * 48 * 2];
 } NANDBanner;
 
+#define NAND_STAT_SPEED_END 0
+#define NAND_STAT_SPEED_FAST 1
+#define NAND_STAT_SPEED_MIDDLE 2
+#define NAND_STAT_SPEED_SLOW 3
+#define NAND_STAT_SPEED_MASK 3
+
+#define NANDSetIconSpeed(stat, n, f)                                                               \
+    ((stat).iconSpeed =                                                                            \
+        (u16)(((stat).iconSpeed & ~(NAND_STAT_SPEED_MASK << (2 * (n)))) | ((f) << (2 * (n)))))
+
 typedef void (*NANDCallback)(s32, NANDCommandBlock*);
 typedef void (*NANDAsyncCallback)(s32 result, struct NANDCommandBlock* block);
 
@@ -181,8 +191,14 @@ s32 NANDPrivateOpenAsync(const char*, NANDFileInfo*, const u8, NANDCallback, NAN
 s32 NANDClose(NANDFileInfo*);
 s32 NANDCloseAsync(NANDFileInfo*, NANDCallback, NANDCommandBlock*);
 
+#ifdef SDK_SEP2006
+s32 NANDSafeOpen(const char* path, NANDFileInfo* info, const u8 accType, void* buf, const u32 length);
+s32 NANDSafeClose(NANDFileInfo* info);
+#else
 s32 NANDSimpleSafeOpen(const char* path, NANDFileInfo* info, const u8 accType, void* buf, const u32 length);
 s32 NANDSimpleSafeClose(NANDFileInfo* info);
+#endif
+
 s32 NANDPrivateSafeOpenAsync(const char* path, NANDFileInfo* info, const u8 accType, void* buf, const u32 length, NANDCallback cb, NANDCommandBlock* block);
 s32 NANDSafeCloseAsync(NANDFileInfo* info, NANDCallback cb, NANDCommandBlock* block);
 

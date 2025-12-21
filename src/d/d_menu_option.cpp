@@ -1030,7 +1030,7 @@ void dMenu_Option_c::confirm_open_init() {
 }
 
 void dMenu_Option_c::confirm_open_move() {
-    bool status = mpWarning->getStatus();
+    u32 status = mpWarning->getStatus();
     bool yesNoMenuMove = yesnoMenuMoveAnm();
 
     if (field_0x374 != 1.0f) {
@@ -1113,7 +1113,7 @@ void dMenu_Option_c::confirm_close_init() {
 }
 
 void dMenu_Option_c::confirm_close_move() {
-    bool status = mpWarning->getStatus();
+    u32 status = mpWarning->getStatus();
     yesnoMenuMoveAnm();
     if (field_0x374 != 0.0f) {
         cLib_addCalc2(&field_0x374, 0.0f, 0.4f, 0.5);

@@ -109,7 +109,7 @@ m_Do/m_Do_dvd_thread.cpp:
 	.ctors      start:0x803CE254 end:0x803CE258
 	.data       start:0x803F6A80 end:0x803F6DC8
 	.bss        start:0x804539E0 end:0x80455D60
-	.sdata      start:0x80537770 end:0x805377B8
+	.sdata      start:0x80537770 end:0x805377B0
 
 m_Do/m_Do_DVDError.cpp:
 	.text       start:0x8001B8E8 end:0x8001BA54
@@ -120,6 +120,7 @@ m_Do/m_Do_MemCard.cpp:
 	.ctors      start:0x803CE258 end:0x803CE25C
 	.data       start:0x803F6DC8 end:0x803F6FB8
 	.bss        start:0x804580C0 end:0x8046A3E0
+	.sdata      start:0x805377B0 end:0x805377B8
 
 m_Do/m_Do_MemCardRWmng.cpp:
 	.text       start:0x8001CDAC end:0x8001D9F8

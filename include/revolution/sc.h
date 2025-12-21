@@ -147,6 +147,8 @@ BOOL SCReplaceU8Item(u8 data, SCItemID id);
 u32 SCCheckStatus(void);
 s32 SCReloadConfFileAsync(u8* bufp, u32 bufSize, SCReloadConfFileCallback callback);
 
+BOOL SCFlush(void);
+
 #ifdef __cplusplus
 }
 #endif
