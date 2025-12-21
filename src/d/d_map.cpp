@@ -7,6 +7,7 @@
 
 #include "d/d_map.h"
 #include "JSystem/JHostIO/JORFile.h"
+#include "JSystem/JHostIO/JORServer.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"

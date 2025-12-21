@@ -426,7 +426,7 @@ if config.version != "ShieldD":
     else:
         cflags_framework.extend(["-inline noauto", "-O3,s", "-sym on", "-str reuse,pool,readonly"])
 
-if config.version in ["RZDE01_00", "RZDE01_02", "RZDJ01"]:
+if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
     cflags_framework.extend(["-DSDK_SEP2006"])
 
 # REL flags
