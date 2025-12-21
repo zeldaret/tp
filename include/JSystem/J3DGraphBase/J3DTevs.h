@@ -4,61 +4,34 @@
 #include "dolphin/types.h"
 #include <dolphin/gx.h>
 #include "JSystem/J3DGraphBase/J3DGD.h"
+#include "JSystem/J3DGraphBase/J3DStruct.h"
 
-/**
- * @ingroup jsystem-j3d
- * 
- */
-struct J3DTevStageInfo {
-    /* 0x0 */ u8 field_0x0;
-    /* 0x1 */ u8 mTevColorOp;
-    /* 0x2 */ u8 mTevColorAB;
-    /* 0x3 */ u8 mTevColorCD;
-    /* 0x4 */ u8 field_0x4;
-    /* 0x5 */ u8 mTevAlphaOp;
-    /* 0x6 */ u8 mTevAlphaAB;
-    /* 0x7 */ u8 mTevSwapModeInfo;
-    /* 0x8 */ u8 field_0x8;
-    /* 0x8 */ u8 field_0x9;
-    /* 0x8 */ u8 field_0xa;
-    /* 0x8 */ u8 field_0xb;
-    /* 0x8 */ u8 field_0xc;
-    /* 0x8 */ u8 field_0xd;
-    /* 0x8 */ u8 field_0xe;
-    /* 0x8 */ u8 field_0xf;
-    /* 0x8 */ u8 field_0x10;
-    /* 0x8 */ u8 field_0x11;
-    /* 0x8 */ u8 field_0x12;
-    /* 0x8 */ u8 field_0x13;
-};
+extern u8 j3dTevSwapTableTable[1024];
 
-extern J3DTevStageInfo const j3dDefaultTevStageInfo;
+extern const J3DLightInfo j3dDefaultLightInfo;
+extern const J3DTexCoordInfo j3dDefaultTexCoordInfo[8];
+extern const J3DTexMtxInfo j3dDefaultTexMtxInfo;
+extern const J3DIndTexMtxInfo j3dDefaultIndTexMtxInfo;
+extern const J3DTevStageInfo j3dDefaultTevStageInfo;
+extern const J3DIndTevStageInfo j3dDefaultIndTevStageInfo;
+extern const J3DFogInfo j3dDefaultFogInfo;
+extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
 
-/**
- * @ingroup jsystem-j3d
- * 
- */
-struct J3DTevSwapModeTableInfo {
-    /* 0x0 */ u8 field_0x0;
-    /* 0x1 */ u8 field_0x1;
-    /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 field_0x3;
-}; // Size: 0x4
-
+extern const GXColor j3dDefaultColInfo;
+extern const GXColor j3dDefaultAmbInfo;
+extern const u8 j3dDefaultColorChanNum;
+extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull;
+extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
+extern const GXColorS10 j3dDefaultTevColor;
+extern const J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo;
+extern const GXColor j3dDefaultTevKColor;
+extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;
 extern const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable;
-
-/**
- * @ingroup jsystem-j3d
- * 
- */
-struct J3DTevSwapModeInfo {
-    /* 0x0 */ u8 mRasSel;
-    /* 0x1 */ u8 mTexSel;
-    /* 0x2 */ u8 field_0x2;
-    /* 0x3 */ u8 field_0x3;
-}; // Size: 0x4
-
-extern J3DTevSwapModeInfo const j3dDefaultTevSwapMode;
+extern const J3DBlendInfo j3dDefaultBlendInfo;
+extern const J3DColorChanInfo j3dDefaultColorChanInfo;
+extern const u8 j3dDefaultTevSwapTableID;
+extern const u16 j3dDefaultAlphaCmpID;
+extern const u16 j3dDefaultZModeID;
 
 /**
  * @ingroup jsystem-j3d
@@ -177,25 +150,6 @@ struct J3DTevStage {
  * @ingroup jsystem-j3d
  * 
  */
-struct J3DIndTevStageInfo {
-    /* 0x0 */ u8 mIndStage;
-    /* 0x1 */ u8 mIndFormat;
-    /* 0x2 */ u8 mBiasSel;
-    /* 0x3 */ u8 mMtxSel;
-    /* 0x4 */ u8 mWrapS;
-    /* 0x5 */ u8 mWrapT;
-    /* 0x6 */ u8 mPrev;
-    /* 0x7 */ u8 mLod;
-    /* 0x8 */ u8 mAlphaSel;
-    /* 0x9 */ u8 pad[3];
-};
-
-extern J3DIndTevStageInfo const j3dDefaultIndTevStageInfo;
-
-/**
- * @ingroup jsystem-j3d
- * 
- */
 struct J3DIndTevStage {
     J3DIndTevStage() : mInfo(0) { setIndTevStageInfo(j3dDefaultIndTevStageInfo); }
     J3DIndTevStage(J3DIndTevStageInfo const& info) : mInfo(0) { setIndTevStageInfo(info); }
@@ -235,21 +189,6 @@ struct J3DIndTevStage {
     }
 
     /* 0x0 */ u32 mInfo;
-};
-
-/**
- * @ingroup jsystem-j3d
- * 
- */
-struct J3DTevOrderInfo {
-    void operator=(const J3DTevOrderInfo& other) {
-        *(u32*) this = *(u32*)&other;
-    }
-
-    /* 0x0 */ u8 mTexCoord;
-    /* 0x1 */ u8 mTexMap;
-    /* 0x2 */ u8 mColorChan;
-    /* 0x3 */ u8 field_0x3; // Maybe padding
 };
 
 extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull;
@@ -302,6 +241,49 @@ struct J3DTevSwapModeTable {
 
     /* 0x0 */ u8 mIdx;
 };  // Size: 0x1
+
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
+class J3DLightObj {
+public:
+    J3DLightObj() { mInfo = j3dDefaultLightInfo; }
+    void load(u32) const;
+
+    J3DLightInfo* getLightInfo() { return &mInfo; }
+    J3DLightObj& operator=(J3DLightObj const& other) {
+        mInfo = other.mInfo;
+        return *this;
+    }
+
+    /* 0x00 */ J3DLightInfo mInfo;
+    /* 0x34 */ GXLightObj mLightObj;
+};  // Size = 0x74
+
+extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
+
+/**
+ * @ingroup jsystem-j3d
+ *
+ */
+struct J3DNBTScale : public J3DNBTScaleInfo {
+    J3DNBTScale() {
+        mbHasScale = j3dDefaultNBTScaleInfo.mbHasScale;
+        mScale.x = j3dDefaultNBTScaleInfo.mScale.x;
+        mScale.y = j3dDefaultNBTScaleInfo.mScale.y;
+        mScale.z = j3dDefaultNBTScaleInfo.mScale.z;
+    }
+
+    J3DNBTScale(J3DNBTScaleInfo const& info) {
+        mbHasScale = info.mbHasScale;
+        mScale.x = info.mScale.x;
+        mScale.y = info.mScale.y;
+        mScale.z = info.mScale.z;
+    }
+
+    Vec* getScale() { return &mScale; }
+};
 
 extern const GXColor j3dDefaultColInfo;
 extern const GXColor j3dDefaultAmbInfo;

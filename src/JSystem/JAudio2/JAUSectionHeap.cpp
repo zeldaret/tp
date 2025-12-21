@@ -53,7 +53,6 @@ namespace {
             }
             return field_0x8[short_id];
         }
-        virtual ~TStreamDataMgr() {}
 
         bool isValid() { return field_0x4; }
 

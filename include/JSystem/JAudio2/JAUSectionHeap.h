@@ -61,7 +61,6 @@ public:
     JASVoiceBank* newVoiceBank(u32, u32);
     bool beginNewBankTable(u32, u32);
     JAUBankTable* endNewBankTable();
-    virtual ~JAUSection() {}
 
     bool isBuilding() const { return field_0x2c; }
     bool isOpen() const;

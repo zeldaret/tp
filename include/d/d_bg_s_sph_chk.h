@@ -23,7 +23,6 @@ public:
 class dBgS_CamSphChk : public dBgS_SphChk {
 public:
     dBgS_CamSphChk() { SetCam(); }
-    virtual ~dBgS_CamSphChk() {}
 };
 
 #endif /* D_BG_D_BG_S_SPH_CHK_H */

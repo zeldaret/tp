@@ -71,22 +71,6 @@ private:
     /* 0x64 */ Mtx mMtx;
 };  // Size: 0x94
 
-/**
- * @ingroup jsystem-j3d
- * 
- */
-struct J3DTexCoordInfo {
-    /* 0x0 */ u8 mTexGenType;
-    /* 0x1 */ u8 mTexGenSrc;
-    /* 0x2 */ u8 mTexGenMtx;
-    /* 0x3 */ u8 pad;
-
-    J3DTexCoordInfo& operator=(const J3DTexCoordInfo& other) {
-        __memcpy(this, &other, sizeof(J3DTexCoordInfo));
-        return *this;
-    }
-};
-
 extern J3DTexCoordInfo const j3dDefaultTexCoordInfo[8];
 
 /**

@@ -16,10 +16,10 @@ template<size_t N> class __bitset_base {
 public:
     __bitset_base();
 
-    bool test(size_t pos) const;
-    bool any() const;
     void set(size_t pos, bool val);
     void reset(size_t pos);
+    bool test(size_t pos) const;
+    bool any() const;
 private:
     size_t data[N];
 };

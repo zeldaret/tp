@@ -115,9 +115,9 @@ static cXyz l_wolfBaseAnime(1.0f, 88.63934f, -28.497932f);
 
 static cXyz l_wolfRopeBaseAnime(0.115164f, 68.336296f, -7.667817f);
 
-static u8 const lit_3757[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+static void dummy_lit_3757() {
+    Vec temp = { 0.0f, 0.0f, 0.0f };
+}
 
 #include "d/actor/d_a_alink_HIO_data.inc"
 
@@ -1191,8 +1191,6 @@ daAlink_FaceTexData const daAlink_c::m_faceTexDataTable[] = {
     0x040D, 0x03A7,
 };
 
-static const Vec lit_5908 = { 0.0f, 0.0f, 0.0f };
-
 #include "d/actor/d_a_alink_link.inc"
 
 #include "d/actor/d_a_alink_cut.inc"
@@ -1685,9 +1683,11 @@ static dJntColData_c l_wolfJntColData[] = {
 
 #include "d/actor/d_a_alink_swindow.inc"
 
-daAlinkHIO_c::daAlinkHIO_c() {}
+// TODO: These ctors and dtors below might need to go in a new .inc file that gets included right
+// after d_a_alink_swindow.inc to slightly improve function order?
+// Making them weak functions in a header doesn't seem to work at least.
 
-// TODO: these dtors are probably supposed to be weak functions from the header
+daAlinkHIO_c::daAlinkHIO_c() {}
 
 daAlinkHIO_wolf_c::~daAlinkHIO_wolf_c() {}
 
