@@ -62,7 +62,7 @@ int dalv4CandleDemoTag_c::Execute() {
 static dalv4CandleDemoTag_HIO_c l_HIO;
 
 void dalv4CandleDemoTag_c::procMain() {
-    static dalv4CandleDemoTag_c::procFunc mode_proc[4] = {
+    static const dalv4CandleDemoTag_c::procFunc mode_proc[4] = {
         &dalv4CandleDemoTag_c::modeWatch,
         &dalv4CandleDemoTag_c::modeEnemyCreate,
         &dalv4CandleDemoTag_c::modeNG,

@@ -49,7 +49,7 @@ int dalv4CandleTag_c::Execute() {
 static dalv4CandleTag_HIO_c l_HIO;
 
 void dalv4CandleTag_c::procMain() {
-    static void (dalv4CandleTag_c::*mode_proc[])() = {
+    static const modeFunc mode_proc[] = {
         &dalv4CandleTag_c::modeWatch,
         &dalv4CandleTag_c::modeNG,
         &dalv4CandleTag_c::modeNGWait,

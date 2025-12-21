@@ -15,6 +15,8 @@
  */
 class dalv4CandleTag_c : public fopAc_ac_c, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
+    typedef void (dalv4CandleTag_c::*modeFunc)();
+
     enum Mode {
         MODE_WATCH,
         MODE_NG,

@@ -76,7 +76,7 @@ int daBarDesk_c::Execute(Mtx** i_mtxP) {
 
 void daBarDesk_c::windowProc() {
     typedef void (daBarDesk_c::*daBarDesk_modeFunc)();
-    static daBarDesk_modeFunc mode_proc[2] = {
+    static const daBarDesk_modeFunc mode_proc[2] = {
         &daBarDesk_c::modeWait,
         &daBarDesk_c::modeBreak,
     };
