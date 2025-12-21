@@ -1382,8 +1382,7 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
             }
             break;
 
-        case 20: {
-            int _;
+        case 20:
             cLib_addCalcAngleS2(&actor->current.angle.x, 0, 1, 0x800);
             if (i_this->model->isStop()) {
                 i_this->mode = 16;
@@ -1394,7 +1393,6 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
                 i_this->timer[2] = 30;
             }
             break;
-        }
     }
 
     cLib_addCalc2(&actor->speedF, speed, 1.0f, 4.0f);
@@ -2088,7 +2086,7 @@ static void npc_ks_hang_s(npc_ks_class* i_this) {
 
     s16 sVar1;
     switch (i_this->mode) {
-        case 0: {
+        case 0:
             int asdf;
             i_this->mode++;
             i_this->sound.startCreatureSound(Z2SE_FN_ROPE_CREAK, 0, -1);
@@ -2096,10 +2094,8 @@ static void npc_ks_hang_s(npc_ks_class* i_this) {
             sw_p->field_0xd10[i_this->field_0x630] = 10;
             i_this->field_0x92c = 0;
             break;
-        }
 
-        case 1: {
-            int _;
+        case 1:
             if (i_this->res_id != 16 && i_this->dis < 550.0f + YREG_F(9)) {
                 anm_init(i_this, 16, 5.0f, 2, 1.0f);
                 i_this->timer[0] = cM_rndF(50.0f) + 200.0f;
@@ -2144,7 +2140,6 @@ static void npc_ks_hang_s(npc_ks_class* i_this) {
                 actor->home.angle.y = sw_p->actor.current.angle.y;
             }
             break;
-        }
 
         case 2:
             if (i_this->timer[0] > s16(8 + BREG_S(5))) {
