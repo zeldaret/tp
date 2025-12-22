@@ -4792,7 +4792,7 @@ TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/cc_gdev.c:
 TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c:
 	.text       start:0x80629E8C end:0x80629EC8
 
-TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/common/custconn/CircleBuffer.c:
+TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/common/CircleBuffer.c:
 	.text       start:0x80629EC8 end:0x8062A104
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c:
