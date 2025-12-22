@@ -9037,7 +9037,7 @@ bool dCamera_c::eventCamera(s32 param_0) {
              mEventData.field_0xc == specialType[20] || mEventData.field_0xc == specialType[21] ||
              mEventData.field_0xc == specialType[22] || mEventData.field_0xc == specialType[23] ||
              mEventData.field_0xc == specialType[24] || mEventData.field_0xc == specialType[18]) &&
-             *(int*)((int)&mEventData + 0xc) != -1) // fakematch to force additional load
+             *(int*)((intptr_t)&mEventData + 0xc) != -1) // fakematch to force additional load
         {
             var_r29 = 28;
         } else if (mEventData.field_0xc == specialType[14] && var_r29 != 2) {

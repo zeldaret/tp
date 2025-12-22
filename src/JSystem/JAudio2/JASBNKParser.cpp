@@ -40,13 +40,13 @@ JASBasicBank* JASBNKParser::createBasicBank(void const* stream, JKRHeap* heap) {
 
 JASBNKParser::Ver1::TChunk* JASBNKParser::Ver1::findChunk(void const* stream, u32 id) {
     TFileHeader* header = (TFileHeader*)stream;
-    void* end = (void*)((int)stream + header->mSize);
-    TChunk* chunk = (TChunk*)((int)stream + 0x20);
+    void* end = (void*)((intptr_t)stream + header->mSize);
+    TChunk* chunk = (TChunk*)((intptr_t)stream + 0x20);
     while (chunk < end) {
         if (chunk->mID == id) {
             return chunk;
         }
-        chunk = (TChunk*)(((int)chunk + 0xb + chunk->mSize) & ~3);
+        chunk = (TChunk*)(((intptr_t)chunk + 0xb + chunk->mSize) & ~3);
     }
     return NULL;
 }
@@ -85,7 +85,7 @@ JASBasicBank* JASBNKParser::Ver1::createBasicBank(void const* stream, JKRHeap* h
     bank->newInstTable(list_chunk->mCount, heap);
     for (int i = 0; i < list_chunk->mCount; i++) {
         if (list_chunk->mOffsets[i] != 0) {
-            u32* data = (u32*)((int)stream + list_chunk->mOffsets[i]);
+            u32* data = (u32*)((intptr_t)stream + list_chunk->mOffsets[i]);
             switch (*data++) {
             case 'Inst': {
                 JASBasicInst* inst = new (heap, 0) JASBasicInst();
@@ -126,7 +126,7 @@ JASBasicBank* JASBNKParser::Ver1::createBasicBank(void const* stream, JKRHeap* h
                     u32 offset = *data++;
                     if (offset != 0) {
                         JASDrumSet::TPerc* perc = new (heap, 0) JASDrumSet::TPerc();
-                        u32* ptr = (u32*)((int)stream + offset);
+                        u32* ptr = (u32*)((intptr_t)stream + offset);
                         TPercData* perc_data = (TPercData*)(ptr + 1);
                         perc->setVolume(perc_data->mVolume);
                         perc->setPitch(perc_data->mPitch);

@@ -331,9 +331,9 @@ const char* JMessage::TSequenceProcessor::process(char const* pszText) {
             u32 queryResult = on_branch_queryResult();
             if (queryResult > 0x7FFFFFFF) {
                 switch (queryResult) {
-                case -1:
+                case 0xFFFFFFFF:
                     return pszCurrent_;
-                case -2:
+                case 0xFFFFFFFE:
                     eStatus_ = STATUS_NORMAL;
                     break;
                 default:
