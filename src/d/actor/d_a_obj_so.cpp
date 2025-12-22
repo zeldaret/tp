@@ -877,7 +877,7 @@ static void demo_camera(obj_so_class* i_this) {
     }
 }
 
-static u8 data_80CE3C90;
+static u8 hio_set;
 
 static daObj_So_HIO_c l_HIO;
 
@@ -909,8 +909,8 @@ static int daObj_So_Delete(obj_so_class* i_this) {
 
     dComIfG_resDelete(&i_this->mPhase, "Obj_so");
     if (i_this->field_0x1bcc != 0) {
-        data_80CE3C90 = 0;
-        mDoHIO_DELETE_CHILD(data_80CE3C90);
+        hio_set = 0;
+        mDoHIO_DELETE_CHILD(hio_set);
     }
 
     for (int i = 0; i < 2; i++) {
@@ -1027,9 +1027,9 @@ static int daObj_So_Create(fopAc_ac_c* a_this) {
             }
         }
 
-        if (data_80CE3C90 == 0) {
+        if (hio_set == 0) {
             i_this->field_0x1bcc = 1;
-            data_80CE3C90 = 1;
+            hio_set = 1;
             mDoHIO_CREATE_CHILD("猿オリＯＢＪ", &l_HIO); // Monkey jail OBJ
             l_HIO.field_0x4 = -1;
         }

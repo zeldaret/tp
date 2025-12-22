@@ -1553,7 +1553,7 @@ bool daB_TN_c::checkMoveAngle() {
 }
 
 void daB_TN_c::setAttackBlurEffect(int i_data) {
-    static u16 blur_effect_id_5997[4] = {
+    static u16 blur_effect_id[4] = {
         0x87DA,
         0x87DB,
         0x87DC,
@@ -1562,7 +1562,7 @@ void daB_TN_c::setAttackBlurEffect(int i_data) {
 
     if (i_data != 0) {
         for (int i = 0; i < 4; i++) {
-            mParticleKeys[i] = dComIfGp_particle_set(mParticleKeys[i], blur_effect_id_5997[i],
+            mParticleKeys[i] = dComIfGp_particle_set(mParticleKeys[i], blur_effect_id[i],
                                                      &current.pos, &tevStr);
 
             JPABaseEmitter* mBaseEmitter = dComIfGp_particle_getEmitter(mParticleKeys[i]);
@@ -1574,7 +1574,7 @@ void daB_TN_c::setAttackBlurEffect(int i_data) {
 }
 
 void daB_TN_c::setArmorBreakEffect(int i_idx) {
-    static u16 blur_effect_id_6035[3] = {0x87DE, 0x87DF, 0x87E0};
+    static u16 blur_effect_id[3] = {0x87DE, 0x87DF, 0x87E0};
 
     cXyz sp24(l_HIO.mScale, l_HIO.mScale, l_HIO.mScale);
     cXyz sp30;
@@ -1582,7 +1582,7 @@ void daB_TN_c::setArmorBreakEffect(int i_idx) {
     mDoMtx_stack_c::multVecZero(&sp30);
 
     for (int i = 0; i < 3; i++) {
-        dComIfGp_particle_set(blur_effect_id_6035[i], &sp30, &tevStr, &shape_angle, &sp24);
+        dComIfGp_particle_set(blur_effect_id[i], &sp30, &tevStr, &shape_angle, &sp24);
     }
 }
 

@@ -157,13 +157,13 @@ static int daObj_Web0_IsDelete(obj_web0_class* i_this) {
     return 1;
 }
 
-static u8 data_80D35290;
+static u8 hio_set;
 
 static int daObj_Web0_Delete(obj_web0_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "Obj_web0");
 
     if (i_this->field_0x739) {
-        data_80D35290 = 0;
+        hio_set = 0;
     }
 
     dComIfG_Bgsp().Release(i_this->mpBgW);
@@ -251,9 +251,9 @@ static int daObj_Web0_Create(fopAc_ac_c* i_this) {
             return cPhs_ERROR_e;
         }
 
-        if (!data_80D35290) {
+        if (!hio_set) {
             _this->field_0x739 = 1;
-            data_80D35290 = true;
+            hio_set = true;
             l_HIO.field_0x4 = -1;
         }
 

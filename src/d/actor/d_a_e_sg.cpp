@@ -104,7 +104,7 @@ static int daE_SG_Draw(e_sg_class* i_this) {
     return 1;
 }
 
-static bool hio_init;
+static bool hio_set;
 
 static daE_SG_HIO_c l_HIO;
 
@@ -1105,7 +1105,7 @@ static int daE_SG_Delete(e_sg_class* i_this) {
     dComIfG_resDelete(&i_this->mPhaseReq, "E_sg");
 
     if (i_this->mHioInit) {
-        hio_init = false;
+        hio_set = false;
     }
 
     if (i_this->heap != NULL) {
@@ -1170,9 +1170,9 @@ static int daE_SG_Create(fopAc_ac_c* i_this) {
             return cPhs_ERROR_e;
         }
 
-        if (hio_init == false) {
+        if (hio_set == false) {
             a_this->mHioInit = true;
-            hio_init = true;
+            hio_set = true;
             l_HIO.mUnk0 = -1;
         }
 

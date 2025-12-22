@@ -228,9 +228,9 @@ void daDoorPush_c::actionEvent() {
     demoProc();
 }
 
-static char* action_table[3] = {"WAIT", "OPEN", "SCENE_CHG"};
-
 int daDoorPush_c::demoProc() {
+    static char* action_table[3] = {"WAIT", "OPEN", "SCENE_CHG"};
+
     daPy_py_c* player = daPy_getPlayerActorClass();
 
     field_0x644 = dComIfGp_evmng_getMyStaffId("pdoor", NULL, 0);

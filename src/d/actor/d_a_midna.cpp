@@ -125,10 +125,8 @@ daMidna_hio_c1 const daMidna_hio_c0::m = {
     25.0f,
 };
 
-#if VERSION != VERSION_GCN_PAL
 bool daMidna_matAnm_c::sEyeMoveFlg;
 u8 daMidna_matAnm_c::sMorfFrame;
-#endif
 
 void daMidna_matAnm_c::init() {
     mOldTransX = 0.0f;

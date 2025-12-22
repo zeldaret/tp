@@ -37,16 +37,6 @@ static dCcD_SrcCyl l_ccDCyl = {
 
 static char* l_resName = "H_BouMato";
 
-static Vec jntCoOffset[2] = {
-    {0.0f, 0.0f, 0.0f},
-    {0.0f, 300.0f, 0.0f},
-};
-
-// /* 80BBC58C-80BBC598 -00001 000C+00 1/1 0/0 0/0 .data            jntCoData$4045 */
-static dJntColData_c jntCoData = {
-    1, 1, 0, 4.0f, jntCoOffset,
-};
-
 daObj_BouMato_c::~daObj_BouMato_c() {
     OS_REPORT("|%06d:%x|daObj_BouMato_c -> デストラクト\n", g_Counter.mCounter0, this);
     dComIfG_resDelete(&mPhase, getResName());
@@ -89,6 +79,16 @@ int daObj_BouMato_c::create() {
 }
 
 int daObj_BouMato_c::CreateHeap() {
+    static Vec jntCoOffset[2] = {
+        {0.0f, 0.0f, 0.0f},
+        {0.0f, 300.0f, 0.0f},
+    };
+
+    // /* 80BBC58C-80BBC598 -00001 000C+00 1/1 0/0 0/0 .data            jntCoData$4045 */
+    static dJntColData_c jntCoData = {
+        1, 1, 0, 4.0f, jntCoOffset,
+    };
+
     J3DModelData*  mdlData_p = (J3DModelData*)dComIfG_getObjectRes(getResName(), 4);
     JUT_ASSERT(374, NULL != mdlData_p);
     mModel = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);

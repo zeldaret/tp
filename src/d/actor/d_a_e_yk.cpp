@@ -53,7 +53,7 @@ daE_YK_HIO_c::daE_YK_HIO_c() {
     mChargeSpeed = 40.0f;   
 }
 
-static u8 data_80807EF8;
+static u8 hio_set;
 
 static daE_YK_HIO_c l_HIO;
 
@@ -327,8 +327,6 @@ static void damage_check(e_yk_class* i_this) {
     }
 }
 
-static u8 check_index[255];
-
 /**
  * @brief Checks visibility and accessibility of path points for Shadow Keese navigation
  * 
@@ -349,6 +347,8 @@ static u8 check_index[255];
  * and maintain valid flight paths.
  */
 static int path_check(e_yk_class* i_this) {
+    static u8 check_index[255];
+
     if (i_this->mpPath) {
         dBgS_LinChk lin_chk;
 
@@ -1388,7 +1388,7 @@ static int daE_YK_Delete(e_yk_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase,"E_YK");
 
     if (i_this->mIsFirstSpawn != 0) {
-        data_80807EF8 = 0;
+        hio_set = 0;
     }
 
     if (i_this->heap) {
@@ -1499,9 +1499,9 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
                 }
             }
 
-            if (data_80807EF8 == 0) {
+            if (hio_set == 0) {
                 yk->mIsFirstSpawn = 1;
-                data_80807EF8 = 1;
+                hio_set = 1;
                 l_HIO.field_0x04 = -1;
             }
 

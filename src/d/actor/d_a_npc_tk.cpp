@@ -247,7 +247,7 @@ static s16 m_near_angle;
 
 static fopAc_ac_c* m_near_actor;
 
-static u8 g_isHioChildInitted;
+static u8 hio_set;
 
 static daNPC_TK_HIO_c l_HIO;
 
@@ -3089,7 +3089,7 @@ static int daNPC_TK_IsDelete(daNPC_TK_c* i_this) {
 int daNPC_TK_c::_delete() {
     dComIfG_resDelete(&mPhase, "Npc_tk");
     if (field_0xb40) {
-        g_isHioChildInitted = 0;
+        hio_set = 0;
     }
 
     if (heap != NULL) {
@@ -3218,9 +3218,9 @@ int daNPC_TK_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (g_isHioChildInitted == 0) {
+        if (hio_set == 0) {
             field_0xb40 = 1;
-            g_isHioChildInitted = 1;
+            hio_set = 1;
             l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("鷹", &l_HIO);  // hawk
         }
 

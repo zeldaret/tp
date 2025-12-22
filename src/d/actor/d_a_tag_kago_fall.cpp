@@ -56,7 +56,7 @@ int daTagKagoFall_c::execute() {
     return TRUE;
 }
 
-void daTagKagoFall_c::setActionMode(ActionMode mode, u8 state) {
+void daTagKagoFall_c::setActionMode(u8 mode, u8 state) {
     mActionMode = mode;
     mActionState = state;
 }

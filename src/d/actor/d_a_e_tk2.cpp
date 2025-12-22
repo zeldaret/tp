@@ -486,19 +486,19 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     return 1;
 }
 
-static dCcD_SrcSph cc_sph_src = {
-    {
-        {0x0, {{0x0, 0x0, 0xd}, {0xd8fbfdff, 0x3}, 0x75}},  // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                 // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2},                 // mGObjTg
-        {0x0},                                              // mGObjCo
-    },                                                      // mObjInf
-    {
-        {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
-    }  // mSphAttr
-};
-
 static int daE_TK2_Create(fopAc_ac_c* i_this) {
+    static dCcD_SrcSph cc_sph_src = {
+        {
+            {0x0, {{0x0, 0x0, 0xd}, {0xd8fbfdff, 0x3}, 0x75}},  // mObj
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                 // mGObjAt
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2},                 // mGObjTg
+            {0x0},                                              // mGObjCo
+        },                                                      // mObjInf
+        {
+            {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
+        }  // mSphAttr
+    };
+
     fopAcM_ct(i_this, e_tk2_class);
     e_tk2_class* a_this = static_cast<e_tk2_class*>(i_this);
 

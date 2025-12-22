@@ -295,8 +295,6 @@ static u32 SizeOfLoadAmbColors = 13;
 
 static u32 SizeOfLoadColorChans = 21;
 
-static u8 sdata_padding[4] = {};
-
 static u32 SizeOfJ3DColorBlockLightOffLoad = SizeOfLoadMatColors + SizeOfLoadColorChans;
 
 void J3DColorBlockLightOff::load() {

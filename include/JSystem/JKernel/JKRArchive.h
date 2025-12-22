@@ -131,7 +131,6 @@ protected:
     JKRArchive(s32, EMountMode);
 
 public:
-    virtual ~JKRArchive();
     bool getDirEntry(SDirEntry*, u32) const;
     void* getIdxResource(u32);
     void* getResource(u16);
@@ -167,6 +166,7 @@ public:
     /* vt[17] */ virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;
     /* vt[18] */ virtual void setExpandSize(SDIFileEntry*, u32);
     /* vt[19] */ virtual u32 getExpandSize(SDIFileEntry*) const;
+    virtual ~JKRArchive();
 
     u32 countFile() const { return mArcInfoBlock->num_file_entries; }
     s32 countDirectory() const { return mArcInfoBlock->num_nodes; }

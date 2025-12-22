@@ -837,7 +837,7 @@ d/actor/d_a_obj_item.cpp:
 	.text       start:0x8015DFD8 end:0x8015E010
 	.ctors      start:0x80373828 end:0x8037382C
 	.rodata     start:0x80393D88 end:0x80393D98
-	.data       start:0x803B9DA0 end:0x803BA058
+	.data       start:0x803B9DA0 end:0x803BA078
 	.sdata      start:0x804506A8 end:0x804506B0
 	.sbss       start:0x80451010 end:0x80451018
 	.sdata2     start:0x80453550 end:0x804535E0
@@ -845,7 +845,7 @@ d/actor/d_a_obj_item.cpp:
 d/d_insect.cpp:
 	.text       start:0x8015E010 end:0x8015E3F8
 	.rodata     start:0x80393D98 end:0x80393DA8
-	.data       start:0x803BA058 end:0x803BA088
+	.data       start:0x803BA078 end:0x803BA088
 	.sdata2     start:0x804535E0 end:0x80453600
 
 d/actor/d_a_obj_ss_base.cpp:
@@ -1895,6 +1895,7 @@ JSystem/JAudio2/JASTrack.cpp:
 	.rodata     start:0x8039AFD0 end:0x8039B018
 	.data       start:0x803C5B68 end:0x803C5B90
 	.bss        start:0x804316A8 end:0x80431B18
+	.sbss       start:0x80451230 end:0x80451238
 	.sdata2     start:0x804555A0 end:0x804555D8
 
 JSystem/JAudio2/JASTrackPort.cpp:
@@ -2445,10 +2446,10 @@ JSystem/JKernel/JKRFileCache.cpp:
 
 JSystem/JKernel/JKRArchivePub.cpp:
 	.text       start:0x802D5778 end:0x802D6294
+	.data       start:0x803CC288 end:0x803CC2D8
 
 JSystem/JKernel/JKRArchivePri.cpp:
 	.text       start:0x802D6294 end:0x802D69B8
-	.data       start:0x803CC288 end:0x803CC2D8
 	.sbss       start:0x80451420 end:0x80451428
 
 JSystem/JKernel/JKRMemArchive.cpp:
