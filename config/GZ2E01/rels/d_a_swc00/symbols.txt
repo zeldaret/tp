@@ -35,4 +35,4 @@ l_func$3819 = .data:0x00000090; // type:object size:0x30 scope:local
 @3996 = .data:0x000000C0; // type:object size:0x40 scope:local
 l_daSwc00_Method = .data:0x00000100; // type:object size:0x20 scope:global
 g_profile_SWC00 = .data:0x00000120; // type:object size:0x30 scope:global
-lbl_120_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

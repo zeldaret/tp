@@ -127,7 +127,7 @@ static f32 dummy_117095() {
 }
 #endif
 
-bool l_HIOInit;
+bool hio_set;
 
 static daE_FB_HIO_c l_HIO;
 
@@ -857,7 +857,7 @@ int daE_FB_c::_delete() {
     }
 
     if (mHIOInit) {
-        l_HIOInit = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.mId);
     }
 
@@ -942,8 +942,8 @@ cPhs__Step daE_FB_c::create() {
                 return cPhs_ERROR_e;
             }
 
-            if (l_HIOInit == false) {
-                l_HIOInit = true;
+            if (hio_set == false) {
+                hio_set = true;
                 mHIOInit = 1;
                 l_HIO.mId = mDoHIO_CREATE_CHILD("フリザド（大）", &l_HIO);
             }

@@ -52,7 +52,7 @@ void daObjIce_s_c::RideOn_Angle(s16& param_1, f32 param_2, s16 param_3, f32 para
     cLib_addCalcAngleS(&param_1, param_3 * (param_2 / param_4), 5, 0x100, 1);
 }
 
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daOBJ_ICE_S_HIO_c l_HIO;
 
@@ -192,8 +192,8 @@ int daObjIce_s_c::create() {
             return rv;
         }
     }
-    if (!l_HIOInit) {
-        l_HIOInit = TRUE;
+    if (!hio_set) {
+        hio_set = TRUE;
         field_0x640 = 1;
         l_HIO.mId = mDoHIO_CREATE_CHILD("氷の足場小", &l_HIO);
     }
@@ -286,7 +286,7 @@ int daObjIce_s_c::Draw() {
 int daObjIce_s_c::Delete() {
     dComIfG_resDelete(&mPhase, l_arcName);
     if (field_0x640 != 0) {
-        l_HIOInit = FALSE;
+        hio_set = FALSE;
         mDoHIO_DELETE_CHILD(l_HIO.mId);
     }
     return 1;

@@ -281,8 +281,8 @@ daB_DR_HIO_c::daB_DR_HIO_c() {
     breath_feint2_OFF = true;
 }
 
-/* 805C78FD 0003+00 l_initHIO None */
-static u8 l_initHIO;
+/* 805C78FD 0003+00 hio_set None */
+static u8 hio_set;
 
 static daB_DR_HIO_c l_HIO;
 
@@ -3962,7 +3962,7 @@ int daB_DR_c::_delete() {
     }
 
     if (mInitHIO) {
-        l_initHIO = 0;
+        hio_set = 0;
     }
 
     if (heap != NULL) {
@@ -4137,8 +4137,8 @@ int daB_DR_c::create() {
             health = 24;
             field_0x560 = 24;
 
-            if (!l_initHIO) {
-                l_initHIO = true;
+            if (!hio_set) {
+                hio_set = true;
                 mInitHIO = true;
                 l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("翼竜", &l_HIO);
             }

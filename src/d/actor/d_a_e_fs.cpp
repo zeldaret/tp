@@ -72,7 +72,7 @@ static s16 s_AtCount;
 
 }  // namespace
 
-static bool hioInit;
+static bool hio_set;
 
 static daE_Fs_HIO_c l_HIO;
 
@@ -696,7 +696,7 @@ static int daE_Fs_Delete(e_fs_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_FS");
 
     if (i_this->mHIOInit) {
-        hioInit = false;
+        hio_set = false;
     }
 
     if (a_this->heap != NULL) {
@@ -771,9 +771,9 @@ static cPhs__Step daE_Fs_Create(fopAc_ac_c* i_this) {
             return cPhs_ERROR_e;
         }
 
-        if (!hioInit) {
+        if (!hio_set) {
             _this->mHIOInit = true;
-            hioInit = true;
+            hio_set = true;
             l_HIO.field_0x4 = -1;
         }
 

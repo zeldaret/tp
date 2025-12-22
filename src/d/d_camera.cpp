@@ -7450,8 +7450,8 @@ bool dCamera_c::railCamera(s32 param_0) {
     cSGlobe eyeFromCenter = bestEyePos - mViewCache.mCenter;
     cSAngle unkAngle1 = eyeFromCenter.U() - mViewCache.mDirection.U();
 
-    static cSAngle yawSnapThreshold = 120.0f;
-    if (unkAngle1.Abs() > yawSnapThreshold) {
+    static cSAngle _120 = 120.0f;
+    if (unkAngle1.Abs() > _120) {
         setUSOAngle();
     }
 
@@ -7681,8 +7681,8 @@ bool dCamera_c::paraRailCamera(s32 param_0) {
     cSGlobe cStack_260 = paraRail->field_0x10 - mViewCache.mCenter;
     cSAngle acStack_2cc = cStack_260.U() - mViewCache.mDirection.U();
 
-    static cSAngle paraRailCamera = 120.0f;
-    if (acStack_2cc.Abs() > paraRailCamera) {
+    static cSAngle _120 = 120.0f;
+    if (acStack_2cc.Abs() > _120) {
         setUSOAngle();
     }
 

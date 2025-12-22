@@ -129,7 +129,7 @@ enum Mode {
 };
 
 /* 8074C385 0003+00 data_8074C385 None */
-static bool hioInit;
+static bool hio_set;
 
 static daE_PM_HIO_c l_HIO;
 
@@ -2623,7 +2623,7 @@ int daE_PM_c::Delete() {
     dComIfG_resDelete(&mPhase, "E_PM");
     
     if (mHIOInit) {
-        hioInit = false;
+        hio_set = false;
     }
 
     if (heap != NULL) {
@@ -2800,8 +2800,8 @@ cPhs__Step daE_PM_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        if (!hioInit) {
-            hioInit = true;
+        if (!hio_set) {
+            hio_set = true;
             mHIOInit = true;
             l_HIO.field_0x4 = -1;
         }

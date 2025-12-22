@@ -87,5 +87,5 @@ mode_proc$4343 = .data:0x000000C8; // type:object size:0x30 scope:local
 Mthd_Table__Q212daObjSwpush229@unnamed@d_a_obj_swpush2_cpp@ = .data:0x000000F8; // type:object size:0x20 scope:global
 g_profile_Obj_Swpush2 = .data:0x00000118; // type:object size:0x30 scope:global
 __vt__12J3DFrameCtrl = .data:0x00000148; // type:object size:0xC scope:global
-lbl_645_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
-lbl_645_bss_1 = .bss:0x00000001; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1
+init$0000 = .bss:0x00000001; // type:object size:0x1 scope:local align:1 data:byte

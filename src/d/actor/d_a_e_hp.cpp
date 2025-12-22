@@ -164,7 +164,7 @@ int daE_HP_c::LampJointCallBack(J3DJoint* i_joint, int param_1) {
     return 1;
 }
 
-static bool l_HIOInit;
+static bool hio_set;
 
 static daE_HP_HIO_c l_HIO;
 
@@ -1128,7 +1128,7 @@ int daE_HP_c::_delete() {
     dComIfG_resDelete(&mPhaseReq, "E_HP");
 
     if (field_0xdf9 != 0) {
-        l_HIOInit = false;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.mChild);
     }
 
@@ -1236,8 +1236,8 @@ int daE_HP_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (!l_HIOInit) {
-            l_HIOInit = true;
+        if (!hio_set) {
+            hio_set = true;
             field_0xdf9 = 1;
             // "General-purpose Poe"
             l_HIO.mChild = mDoHIO_CREATE_CHILD("汎用ポゥ", &l_HIO);

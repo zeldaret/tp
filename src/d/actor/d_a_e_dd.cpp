@@ -336,7 +336,7 @@ static BOOL way_bg_check(e_dd_class* i_this, f32 param_2) {
     return FALSE;
 }
 
-u8 l_initHIO;
+u8 hio_set;
 
 static daE_DD_HIO_c l_HIO;
 
@@ -1560,7 +1560,7 @@ static int daE_DD_Delete(e_dd_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_dd");
 
     if (i_this->field_0xe90 != 0) {
-        l_initHIO = 0;
+        hio_set = 0;
     }
 
     if (a_this->heap != NULL) {
@@ -1700,9 +1700,9 @@ static cPhs__Step daE_DD_Create(fopAc_ac_c* a_this) {
             }
         }
 
-        if (l_initHIO == 0) {
+        if (hio_set == 0) {
             i_this->field_0xe90 = 1;
-            l_initHIO = 1;
+            hio_set = 1;
             l_HIO.field_0x4 = -1;
         }
 

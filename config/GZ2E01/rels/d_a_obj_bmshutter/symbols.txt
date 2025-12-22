@@ -58,5 +58,5 @@ l_func$3894 = .data:0x000000A8; // type:object size:0x24 scope:local
 l_daObjBmSh_Method = .data:0x000000CC; // type:object size:0x20 scope:global
 g_profile_Obj_BoomShutter = .data:0x000000EC; // type:object size:0x30 scope:global
 __vt__11daObjBmSh_c = .data:0x0000011C; // type:object size:0x28 scope:global
-lbl_411_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
-lbl_411_bss_1 = .bss:0x00000001; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1
+init$0000 = .bss:0x00000001; // type:object size:0x1 scope:local align:1 data:byte

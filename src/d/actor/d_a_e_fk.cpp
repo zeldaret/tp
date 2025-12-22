@@ -106,7 +106,7 @@ void daE_FK_c::initSwordSph() {
     OnAt();
 }
 
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daE_FK_HIO_c l_HIO;
 
@@ -671,7 +671,7 @@ int daE_FK_c::Delete() {
     dComIfG_resDelete(&mPhase, "E_fk");
 
     if (mHIOInit) {
-        l_HIOInit = FALSE;
+        hio_set = FALSE;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -743,8 +743,8 @@ int daE_FK_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        if (!l_HIOInit) {
-            l_HIOInit = TRUE;
+        if (!hio_set) {
+            hio_set = TRUE;
             mHIOInit = TRUE;
             l_HIO.id = mDoHIO_CREATE_CHILD("ファントム騎馬兵", &l_HIO);
         }

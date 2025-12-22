@@ -25,4 +25,4 @@ lbl_128_data_10 = .data:0x00000010; // type:object size:0x10
 l_func$3666 = .data:0x00000038; // type:object size:0x18 scope:local
 l_daTagLv2PrChk_Method = .data:0x00000050; // type:object size:0x20 scope:global
 g_profile_Tag_Lv2PrChk = .data:0x00000070; // type:object size:0x30 scope:global
-lbl_128_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

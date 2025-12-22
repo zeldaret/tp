@@ -65,5 +65,5 @@ action_table$3910 = .data:0x0000009C; // type:object size:0xC scope:local
 daDoorPush_METHODS = .data:0x000000A8; // type:object size:0x20 scope:global
 g_profile_PushDoor = .data:0x000000C8; // type:object size:0x30 scope:global
 __vt__12daDoorPush_c = .data:0x000000F8; // type:object size:0x28 scope:global
-lbl_169_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
-lbl_169_bss_1 = .bss:0x00000001; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1
+init$0000 = .bss:0x00000001; // type:object size:0x1 scope:local align:1 data:byte

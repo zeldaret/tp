@@ -71,7 +71,7 @@ daE_PO_HIO_c::daE_PO_HIO_c() {
     mModelSize = 1.0f;
 }
 
-static u8 l_HIOInit;
+static u8 hio_set;
 static daE_PO_HIO_c l_HIO;
 
 static s16 mRollCount;
@@ -2839,7 +2839,7 @@ static int daE_PO_Delete(e_po_class* i_this) {
 
     dComIfG_resDelete(&i_this->mPhase, "E_PO");
     if (i_this->field_0xECC != 0) {
-        l_HIOInit = FALSE;
+        hio_set = FALSE;
     }
     if (a_this->heap != NULL) {
         i_this->mSound1.deleteObject();
@@ -2946,9 +2946,9 @@ static int daE_PO_Create(fopAc_ac_c* i_act_this) {
             return cPhs_ERROR_e;
         }
 
-        if (l_HIOInit == FALSE) {
+        if (hio_set == FALSE) {
             i_this->field_0xECC = 1;
-            l_HIOInit = TRUE;
+            hio_set = TRUE;
             l_HIO.field_0x04[0] = mDoHIO_CREATE_CHILD("ポウ", (JORReflexible*)&l_HIO);
         }
 

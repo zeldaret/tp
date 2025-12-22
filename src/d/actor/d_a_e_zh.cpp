@@ -122,7 +122,7 @@ daE_ZH_HIO_c::daE_ZH_HIO_c() {
 }
 
 /* 8082F725 0003+00 data_8082F725 None */
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_ZH_HIO_c l_HIO;
 
@@ -2111,7 +2111,7 @@ int daE_ZH_c::_delete() {
     }
 
     if (field_0xe04 != 0) {
-        l_initHIO = 0;
+        hio_set = 0;
     }
 
     if (heap != NULL) {
@@ -2217,8 +2217,8 @@ cPhs__Step daE_ZH_c::create() {
                 return cPhs_ERROR_e;
             }
 
-            if (l_initHIO == 0) {
-                l_initHIO = 1;
+            if (hio_set == 0) {
+                hio_set = 1;
                 field_0xe04 = 1;
                 l_HIO.field_0x4 = -1;
             }

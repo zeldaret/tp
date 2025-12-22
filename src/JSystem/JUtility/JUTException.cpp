@@ -154,8 +154,6 @@ void JUTException::errorHandler(OSError error, OSContext* context, u32 param_3, 
 
 JSUList<JUTException::JUTExMapFile> JUTException::sMapFileList(false);
 
-static OSContext context;
-
 void JUTException::panic_f_va(char const* file, int line, char const* format, va_list args) {
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer) - 1, format, args);
@@ -164,6 +162,7 @@ void JUTException::panic_f_va(char const* file, int line, char const* format, va
     }
 
     OSContext* current_context = OSGetCurrentContext();
+    static OSContext context;
     memcpy(&context, current_context, sizeof(OSContext));
     sErrorManager->mStackPointer = (uintptr_t)OSGetStackPointer();
 

@@ -876,7 +876,7 @@ static void* shot_s_sub(void* i_actor, void* i_data) {
     return NULL;
 }
 
-static u8 s_HIOinit;
+static u8 hio_set;
 
 static daE_RDB_HIO_c l_HIO;
 
@@ -1738,7 +1738,7 @@ static int daE_RDB_Delete(e_rdb_class* i_this) {
     fopAcM_GetID(i_this);
     dComIfG_resDelete(&i_this->mPhase, "E_rdb");
     if (i_this->field_0xfce != 0) {
-        s_HIOinit = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.mID);
     }
 
@@ -1840,9 +1840,9 @@ static int daE_RDB_Create(fopAc_ac_c* actor) {
         i_this->mAction = ACTION_WAIT;
         i_this->mMode = 0;
 
-        if (s_HIOinit == 0) {
+        if (hio_set == 0) {
             i_this->field_0xfce = 1;
-            s_HIOinit = 1;
+            hio_set = 1;
             l_HIO.mID = -1;
         }
 

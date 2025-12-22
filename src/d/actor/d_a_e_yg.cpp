@@ -184,7 +184,7 @@ static void sibuki_set(e_yg_class* i_this) {
     }
 }
 
-static bool l_initHIO;
+static bool hio_set;
 
 static daE_YG_HIO_c l_HIO;
 
@@ -1304,7 +1304,7 @@ static int daE_YG_Delete(e_yg_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_YG");
 
     if (i_this->mIsFirstSpawn) {
-        l_initHIO = false;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -1359,9 +1359,9 @@ static cPhs__Step daE_YG_Create(fopAc_ac_c* actor) {
             return cPhs_ERROR_e;
         }
 
-        if (!l_initHIO) {
+        if (!hio_set) {
             i_this->mIsFirstSpawn = 1;
-            l_initHIO = true;
+            hio_set = true;
             l_HIO.id = mDoHIO_CREATE_CHILD("グース", &l_HIO);
         }
 

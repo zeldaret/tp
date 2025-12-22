@@ -27,7 +27,7 @@ public:
 
 STATIC_ASSERT(sizeof(daB_YOI_HIO_c) == 0x10);
 
-static bool hioInit;
+static bool hio_set;
 
 static daB_YOI_HIO_c l_HIO;
 
@@ -968,7 +968,7 @@ int daB_YOI_c::_delete() {
     dComIfG_resDelete(&mPhase, "B_YO");
     
     if (mHIOInit) {
-        hioInit = false;
+        hio_set = false;
     }
 
     if (heap != NULL) {
@@ -1013,8 +1013,8 @@ cPhs__Step daB_YOI_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (!hioInit) {
-            hioInit = true;
+        if (!hio_set) {
+            hio_set = true;
             mHIOInit = true;
             l_HIO.field_0x4 = -1;
         }

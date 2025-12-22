@@ -41,4 +41,4 @@ l_func$3776 = .data:0x0000003C; // type:object size:0x18 scope:local
 daObjLv6SwTurn_METHODS = .data:0x00000054; // type:object size:0x20 scope:global
 g_profile_Obj_Lv6SwTurn = .data:0x00000074; // type:object size:0x30 scope:global
 __vt__16daObjLv6SwTurn_c = .data:0x000000A4; // type:object size:0x28 scope:global
-lbl_556_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

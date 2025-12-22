@@ -691,8 +691,8 @@ void daObj_Kanban2_c::setSmokeEffect(cXyz i_pos) {
     fopAcM_effSmokeSet1(&field_0x9e0, &field_0x9e4, &i_pos, NULL, 0.02 * field_0x600, &tevStr, 1);
 }
 
-/* 80585CB5 0003+00 l_initHIO None */
-static u8 l_initHIO;
+/* 80585CB5 0003+00 hio_set None */
+static u8 hio_set;
 
 static daObj_Kanban2_HIO_c l_HIO;
 
@@ -1660,7 +1660,7 @@ int daObj_Kanban2_c::_delete() {
     dComIfG_resDelete(&mPhase, "Obj_kn2");
 
     if (mInitHIO) {
-        l_initHIO = false;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -1721,8 +1721,8 @@ int daObj_Kanban2_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (!l_initHIO) {
-            l_initHIO = true;
+        if (!hio_set) {
+            hio_set = true;
             mInitHIO = true;
             l_HIO.id = mDoHIO_CREATE_CHILD("細切れ看板", &l_HIO);
         }

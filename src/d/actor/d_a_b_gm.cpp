@@ -164,7 +164,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     return 1;
 }
 
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daB_GM_HIO_c l_HIO;
 
@@ -1999,7 +1999,7 @@ static int daB_GM_Delete(b_gm_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "B_gm");
 
     if (i_this->mInitHIO) {
-        l_initHIO = false;
+        hio_set = false;
     }
 
     if (a_this->heap != NULL) {
@@ -2088,9 +2088,9 @@ static int daB_GM_Create(fopAc_ac_c* i_this) {
         }
 
         OS_REPORT("//////////////B_GM SET 2 !!\n");
-        if (!l_initHIO) {
+        if (!hio_set) {
             a_this->mInitHIO = true;
-            l_initHIO = true;
+            hio_set = true;
             l_HIO.field_0x4 = -1;
         }
 

@@ -57,4 +57,4 @@ __vt__17dEvLib_callback_c = .data:0x000000C8; // type:object size:0x18 scope:glo
 __vt__12J3DFrameCtrl = .data:0x000000E0; // type:object size:0xC scope:global
 l_target_info = .bss:0x00000000; // type:object size:0x8 scope:global
 l_target_info_count = .bss:0x00000008; // type:object size:0x4 scope:global data:4byte
-lbl_639_bss_C = .bss:0x0000000C; // type:object size:0x1 data:byte
+init$0000 = .bss:0x0000000C; // type:object size:0x1 scope:local align:1 data:byte

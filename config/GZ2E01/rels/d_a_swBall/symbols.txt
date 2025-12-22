@@ -35,4 +35,4 @@ l_daSwBall_Method = .data:0x00000050; // type:object size:0x20 scope:global
 g_profile_SwBall = .data:0x00000070; // type:object size:0x30 scope:global
 l_target_info = .bss:0x00000000; // type:object size:0x20 scope:global
 l_target_info_count = .bss:0x00000020; // type:object size:0x4 scope:global data:4byte
-lbl_707_bss_24 = .bss:0x00000024; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000024; // type:object size:0x1 scope:local align:1 data:byte

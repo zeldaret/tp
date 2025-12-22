@@ -53,4 +53,4 @@ daObjLv4Brg_METHODS = .data:0x0000006C; // type:object size:0x20 scope:global
 g_profile_Obj_Lv4Bridge = .data:0x0000008C; // type:object size:0x30 scope:global
 __vt__17dEvLib_callback_c = .data:0x000000BC; // type:object size:0x18 scope:global
 __vt__13daObjLv4Brg_c = .data:0x000000D4; // type:object size:0x48 scope:global
-lbl_531_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

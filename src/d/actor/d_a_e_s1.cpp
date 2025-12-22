@@ -157,7 +157,7 @@ static BOOL pl_at_check(e_s1_class* i_this, f32 i_check_range) {
 }
 
 static u8 l_no_fail;  // when enabled, enemy will never revive after defeated
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_S1_HIO_c l_HIO;
 
@@ -2034,7 +2034,7 @@ static int daE_S1_Delete(e_s1_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_S2");
 
     if (i_this->mInitHIO) {
-        l_initHIO = false;
+        hio_set = false;
     }
 
     if (a_this->heap != NULL) {
@@ -2158,9 +2158,9 @@ static int daE_S1_Create(fopAc_ac_c* i_this) {
             }
         }
 
-        if (!l_initHIO) {
+        if (!hio_set) {
             a_this->mInitHIO = true;
-            l_initHIO = true;
+            hio_set = true;
             l_HIO.field_0x4 = -1;
         }
 

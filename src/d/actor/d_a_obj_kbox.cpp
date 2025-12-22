@@ -24,7 +24,7 @@ void daObj_Kbox_HIO_c::genMessage(JORMContext* ctx) {
 }
 #endif
 
-static bool l_HIOInit;
+static bool hio_set;
 
 static daObj_Kbox_HIO_c l_HIO;
 
@@ -431,7 +431,7 @@ static int daObj_Kbox_Delete(obj_kbox_class* i_this) {
     fopAcM_GetID(a_this);
     dComIfG_resDelete(&i_this->mPhase, "Obj_kbox");
     if (i_this->mIsHIOOwner) {
-        l_HIOInit = false;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.mId);
     }
     dComIfG_Bgsp().Release(i_this->mBgw);
@@ -486,9 +486,9 @@ static int daObj_Kbox_Create(fopAc_ac_c* a_this) {
             return cPhs_ERROR_e;
         }
 
-        if (!l_HIOInit) {
+        if (!hio_set) {
             i_this->mIsHIOOwner = true;
-            l_HIOInit = true;
+            hio_set = true;
             l_HIO.mId = mDoHIO_CREATE_CHILD("スカル魚専用木箱", &l_HIO);
         }
         fopAcM_SetMtx(a_this, i_this->mModel->getBaseTRMtx());

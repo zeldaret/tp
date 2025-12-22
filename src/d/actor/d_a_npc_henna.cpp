@@ -423,7 +423,7 @@ static void* s_fish_sub(void* param_0, void* param_1) {
     return 0;
 }
 
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daNpc_Henna_HIO_c l_HIO;
 
@@ -2592,7 +2592,7 @@ static bool daNpc_Henna_IsDelete(npc_henna_class* param_0) {
 static int daNpc_Henna_Delete(npc_henna_class* i_this) {
     dComIfG_resDelete(&i_this->phase, "Henna");
     if (i_this->hio_init != 0) {
-        l_HIOInit = 0;
+        hio_set = 0;
     }
     return 1;
 }
@@ -2694,9 +2694,9 @@ static int daNpc_Henna_Create(fopAc_ac_c* i_this) {
         }
         OS_REPORT("//////////////NPC_HENNA SET 2 !!\n");
 
-        if (!l_HIOInit ) {
+        if (!hio_set ) {
             a_this->hio_init = TRUE;
-            l_HIOInit = TRUE;
+            hio_set = TRUE;
             // "Henna"
             l_HIO.id = mDoHIO_CREATE_CHILD("ヘナさま", &l_HIO);
         }

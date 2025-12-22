@@ -145,7 +145,7 @@ namespace {
     };
 } // namespace
 
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daE_WW_HIO_c l_HIO;
 
@@ -2132,7 +2132,7 @@ static int daE_WW_IsDelete(daE_WW_c* i_this) {
 int daE_WW_c::_delete() {
     dComIfG_resDelete(&mPhase, "E_WW");
     if (field_0xec4 != 0) {
-        l_HIOInit = false;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.field_0x04);
     }
 
@@ -2233,8 +2233,8 @@ int daE_WW_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (l_HIOInit == false) {
-            l_HIOInit = true;
+        if (hio_set == false) {
+            hio_set = true;
             field_0xec4 = 1;
             l_HIO.field_0x04 = mDoHIO_CREATE_CHILD("ホワイトウルフォス", (JORReflexible*)&l_HIO);
         }

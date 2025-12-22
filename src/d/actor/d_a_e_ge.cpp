@@ -46,7 +46,7 @@ enum daE_GE_Action {
     /* 9 */ ACTION_MAX
 };
 
-static u8 l_HIOInit;
+static u8 hio_set;
 
 static daE_GE_HIO_c l_HIO;
 
@@ -1241,7 +1241,7 @@ int daE_GE_c::_delete() {
     dComIfG_resDelete(&mPhaseReq, "E_GE");
 
     if (mHIOInit) {
-        l_HIOInit = FALSE;
+        hio_set = FALSE;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -1309,9 +1309,9 @@ int daE_GE_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (!l_HIOInit) {
+        if (!hio_set) {
             mHIOInit = true;
-            l_HIOInit = TRUE;
+            hio_set = TRUE;
             l_HIO.id = mDoHIO_CREATE_CHILD("グェー", &l_HIO);
         }
 

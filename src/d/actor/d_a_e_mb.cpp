@@ -90,7 +90,7 @@ static int daE_MB_Draw(e_mb_class* i_this) {
 }
 
 /* 80708C2D 0003+00 data_80708C2D None */
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_MB_HIO_c l_HIO;
 
@@ -625,7 +625,7 @@ static int daE_MB_Delete(e_mb_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_mb");
     
     if (i_this->mInitHIO) {
-        l_initHIO = false;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.no);
     }
 
@@ -700,9 +700,9 @@ static int daE_MB_Create(fopAc_ac_c* i_this) {
             return cPhs_ERROR_e;
         }
 
-        if (!l_initHIO) {
+        if (!hio_set) {
             a_this->mInitHIO = TRUE;
-            l_initHIO = TRUE;
+            hio_set = TRUE;
             l_HIO.no = mDoHIO_CREATE_CHILD("ボス戦ブーメラン猿", &l_HIO);
         }
 

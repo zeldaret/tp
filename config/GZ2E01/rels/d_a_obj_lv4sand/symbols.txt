@@ -54,4 +54,4 @@ g_profile_Obj_Lv4Sand = .data:0x0000008C; // type:object size:0x30 scope:global
 __vt__17dEvLib_callback_c = .data:0x000000BC; // type:object size:0x18 scope:global
 __vt__12J3DFrameCtrl = .data:0x000000D4; // type:object size:0xC scope:global
 __vt__14daObjLv4Sand_c = .data:0x000000E0; // type:object size:0x48 scope:global
-lbl_538_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1

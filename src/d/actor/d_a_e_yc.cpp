@@ -17,7 +17,7 @@
 
 static f32 S_area_dis;
 
-static bool hioInit;
+static bool hio_set;
 
 static daE_YC_HIO_c l_HIO;
 
@@ -728,7 +728,7 @@ static int daE_YC_Delete(e_yc_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_yc");
 
     if (i_this->mHIOInit) {
-        hioInit = false;
+        hio_set = false;
     }
 
     if (i_this->heap != NULL) {
@@ -764,9 +764,9 @@ static cPhs__Step daE_YC_Create(fopAc_ac_c* i_this) {
             return cPhs_ERROR_e;
         }
 
-        if (!hioInit) {
+        if (!hio_set) {
             _this->mHIOInit = true;
-            hioInit = true;
+            hio_set = true;
             l_HIO.field_0x4 = -1;
         }
 

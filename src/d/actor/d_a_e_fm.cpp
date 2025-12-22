@@ -235,7 +235,7 @@ static void* s_fmobj_del(void* i_actor, void* i_data) {
 }
 
 /* 804FAE95 0003+00 data_804FAE95 None */
-static u8 l_initHIO;
+static u8 hio_set;
 
 static daE_FM_HIO_c l_HIO;
 
@@ -3458,7 +3458,7 @@ static int daE_FM_Delete(e_fm_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_fm");
 
     if (i_this->mInitHIO != 0) {
-        l_initHIO = 0;
+        hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.no);
     }
 
@@ -3773,9 +3773,9 @@ static int daE_FM_Create(fopAc_ac_c* i_this) {
 
         OS_REPORT("//////////////E_FM SET 2 !!\n");
 
-        if (!l_initHIO) {
+        if (!hio_set) {
             a_this->mInitHIO = TRUE;
-            l_initHIO = TRUE;
+            hio_set = TRUE;
             l_HIO.no = mDoHIO_CREATE_CHILD("火魔人", &l_HIO);
         }
 

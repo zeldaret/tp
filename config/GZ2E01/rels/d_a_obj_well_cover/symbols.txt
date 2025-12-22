@@ -41,4 +41,4 @@ l_func$3730 = .data:0x0000003C; // type:object size:0x18 scope:local
 l_daObjWCover_Method = .data:0x00000054; // type:object size:0x20 scope:global
 g_profile_Obj_WellCover = .data:0x00000074; // type:object size:0x30 scope:global
 __vt__13daObjWCover_c = .data:0x000000A4; // type:object size:0x28 scope:global
-lbl_686_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$0000 = .bss:0x00000000; // type:object size:0x1 scope:local align:1
