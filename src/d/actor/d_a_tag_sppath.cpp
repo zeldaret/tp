@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_tag_sppath.h"
 #include "d/actor/d_a_player.h"
-#include "math.h"
+#include <math.h>
 
 static dCcD_SrcCyl l_cylSrc = {
     {

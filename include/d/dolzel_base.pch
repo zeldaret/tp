@@ -5,13 +5,13 @@
 #include "weak_bss_1109_to_1009.h" // IWYU pragma: export
 
 // Fixes weak .data
-#include "math.h" // IWYU pragma: export
+#include "cmath.h" // IWYU pragma: export
 #include "JSystem/J3DGraphBase/J3DMatBlock.h" // IWYU pragma: export
 #include "Z2AudioLib/Z2Calc.h" // IWYU pragma: export
 
 // Fixes weak function ordering
-#include "cmath.h" // IWYU pragma: export
-#include "string.h" // IWYU pragma: export
+#include "math.h" // IWYU pragma: export
+#include "cstring.h" // IWYU pragma: export
 #include "JSystem/JUtility/JUTGamePad.h" // IWYU pragma: export
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" // IWYU pragma: export
 #include "JSystem/JHostIO/JORReflexible.h" // IWYU pragma: export

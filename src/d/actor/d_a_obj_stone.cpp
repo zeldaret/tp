@@ -14,7 +14,7 @@
 #include "f_op/f_op_kankyo_mng.h"
 #include "global.h"
 #include "SSystem/SComponent/c_math.h"
-#include "cmath.h"
+#include <math.h>
 
 const static int l_bmdIdx[2] = {3, 3};
 

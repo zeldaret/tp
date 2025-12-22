@@ -249,7 +249,7 @@ void TObject_transition::prepare_data_(const data::TParse_TParagraph::TData& rDa
     ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
 
     u32 u32Size = rData.u32Size;
-    JUT_EXPECT(u32size == 8);
+    JGADGET_ASSERTWARN(0, u32Size == 8);
 
     const f32* pContent = static_cast<const f32*>(rData.pContent);
     ASSERT(pContent != NULL);
@@ -263,7 +263,7 @@ void TObject_list::prepare_data_(const data::TParse_TParagraph::TData& rData, TC
     ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
 
     u32 u32Size = rData.u32Size;
-    JUT_EXPECT(u32size >= 8);
+    JGADGET_ASSERTWARN(0, u32Size >= 8);
 
     const ListData* pContent = static_cast<const ListData*>(rData.pContent);
     ASSERT(pContent != NULL);
@@ -280,7 +280,7 @@ void TObject_list_parameter::prepare_data_(const data::TParse_TParagraph::TData&
     ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
 
     u32 u32Size = rData.u32Size;
-    JUT_EXPECT(u32size >= 8);
+    JGADGET_ASSERTWARN(0, u32Size >= 8);
 
     const ListData* pContent = static_cast<const ListData*>(rData.pContent);
     ASSERT(pContent != NULL);
@@ -295,7 +295,7 @@ void TObject_hermite::prepare_data_(const data::TParse_TParagraph::TData& rData,
     ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
 
     u32 u32Size = rData.u32Size;
-    JUT_EXPECT(u32size >= 8);
+    JGADGET_ASSERTWARN(0, u32Size >= 8);
 
     const ListData* pContent = static_cast<const ListData*>(rData.pContent);
     ASSERT(pContent != NULL);
@@ -306,7 +306,7 @@ void TObject_hermite::prepare_data_(const data::TParse_TParagraph::TData& rData,
 TControl::TControl() : pFactory(NULL) {}
 
 TControl::~TControl() {
-    JUT_EXPECT(ocObject_.empty());
+    JGADGET_ASSERTWARN(0, ocObject_.empty());
 }
 
 void TControl::appendObject(TObject* object) {

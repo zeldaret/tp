@@ -1,7 +1,7 @@
 #ifndef _MSL_COMMON_MBSTRING_H
 #define _MSL_COMMON_MBSTRING_H
 
-#include "wchar_io.h"
+#include <wchar_io.h>
 
 #ifdef __cplusplus
 extern "C" {

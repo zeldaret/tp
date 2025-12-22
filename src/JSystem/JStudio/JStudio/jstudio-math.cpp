@@ -3,7 +3,7 @@
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/TPosition3.h"
-#include "math.h"
+#include <math.h>
 
 void JStudio::math::getRotation_xyz(MtxP param_1, f32 x, f32 y, f32 z) {
     f32 cosx = i_cosf(DEG_TO_RAD(x));

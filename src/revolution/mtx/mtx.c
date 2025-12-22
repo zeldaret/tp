@@ -1,6 +1,6 @@
 #include <revolution.h>
 #include <revolution/mtx.h>
-#include <math.h>
+#include <cmath.h>
 
 static f32 Unit01[2] = {
     0.0f,

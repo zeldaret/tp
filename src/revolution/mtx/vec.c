@@ -1,6 +1,6 @@
 #include <revolution.h>
 #include <revolution/mtx.h>
-#include <math.h>
+#include <cmath.h>
 
 void C_VECAdd(const Vec* a, const Vec* b, Vec* ab) {
     ASSERTMSGLINE(114, a, "VECAdd():  NULL VecPtr 'a' ");

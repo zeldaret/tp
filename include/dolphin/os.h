@@ -1,7 +1,7 @@
 #ifndef _DOLPHIN_OS_H_
 #define _DOLPHIN_OS_H_
 
-#include <stdio.h>
+#include <cstdio.h>
 
 #ifdef __REVOLUTION_SDK__
 #include <revolution/os.h>

@@ -1,4 +1,4 @@
-#include "string.h"
+#include "cstring.h"
 
 #define K1 0x80808080
 #define K2 0xFEFEFEFF

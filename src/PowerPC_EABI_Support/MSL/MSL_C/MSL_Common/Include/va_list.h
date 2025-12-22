@@ -1,5 +1,5 @@
-#ifndef __VA_ARG_H
-#define __VA_ARG_H
+#ifndef MSL_VA_LIST_H
+#define MSL_VA_LIST_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,10 +34,6 @@ void* __va_arg(_va_list_struct*, int);
 #define __va_end(list) ((void)0)
 
 #define __va_copy(a, b) (*(a) = *(b))
-
-#if defined(__cplusplus)
-namespace std { extern "C" { using ::va_list; } }
-#endif
 
 #ifdef __cplusplus
 }

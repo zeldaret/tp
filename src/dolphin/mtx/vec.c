@@ -1,6 +1,6 @@
 #include <dolphin/dolphin.h>
 #include <dolphin/mtx.h>
-#include <math.h>
+#include <cmath.h>
 
 void C_VECAdd(const Vec* a, const Vec* b, Vec* ab) {
     ASSERTMSGLINE(108, a, "VECAdd():  NULL VecPtr 'a' ");

@@ -2,7 +2,7 @@
 #include <revolution/aralt.h>
 #include "fake_tgmath.h"
 
-#include <string.h>
+#include <cstring.h>
 
 #include "__ar.h"
 

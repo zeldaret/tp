@@ -1,6 +1,6 @@
 #include <revolution.h>
 #include <revolution/mtx.h>
-#include <math.h>
+#include <cmath.h>
 
 f32 mtxUnit[] = {0.0f, 1.0f, 0.5f, 3.0f};
 

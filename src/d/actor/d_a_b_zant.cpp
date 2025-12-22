@@ -17,7 +17,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "JSystem/JAudio2/JAUSectionHeap.h"
-#include <cmath.h>
+#include <math.h>
 
 enum Joint {
     /* 0x00 */ JNT_CENTER,

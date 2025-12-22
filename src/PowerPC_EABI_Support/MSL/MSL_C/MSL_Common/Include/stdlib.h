@@ -1,8 +1,24 @@
-#ifndef MSL_STDLIB_H_
-#define MSL_STDLIB_H_
+#ifndef _MSL_STDLIB_H_
+#define _MSL_STDLIB_H_
 
-#include "abort_exit.h"
-#include "arith.h"
-#include "strtoul.h"
+#include <cstdlib.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+namespace std {
+    using ::strtol;
+    using ::strtoul;
+    using ::div;
+    using ::exit;
+    using ::abort;
+    using ::atoi;
+    using ::atof;
+}
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif

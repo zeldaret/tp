@@ -34,7 +34,7 @@
  * Function needed: sqrt
  */
 
-#include "math.h"
+#include "cmath.h"
 
 #ifdef __STDC__
 static const double 

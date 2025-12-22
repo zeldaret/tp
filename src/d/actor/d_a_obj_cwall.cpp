@@ -12,7 +12,7 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
-#include "cmath.h"
+#include <math.h>
 
 void daObjCwall_c::initBaseMtx() {
     mWallModel->setBaseScale(scale);

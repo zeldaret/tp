@@ -1,7 +1,7 @@
 #include "strtoul.h"
 #include "ctype.h"
 #include "errno.h"
-#include "limits.h"
+#include "climits.h"
 #include "scanf.h"
 
 enum scan_states {
