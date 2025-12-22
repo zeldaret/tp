@@ -142,19 +142,18 @@ static dCcD_SrcCyl l_cc_cyl_src = {
     } // mCyl
 };
 
-static u16 l_offsetAngle[4] = {
-    0x0, 0xC000, 0x8000, 0x4000,
-};
-
 void daObjYtaihou_c::setNextAngle() {
+    static u16 l_offsetAngle[4] = {
+        0x0, 0xC000, 0x8000, 0x4000,
+    };
+
     current.angle.z = home.angle.y + l_offsetAngle[field_0x775];
 }
 
-static f32 l_wheelMinR;
-
-static u8 lbl_396_bss_4C;
-
 void daObjYtaihou_c::setMtx() {
+    static f32 l_wheelMinR;
+    static u8 lbl_396_bss_4C;
+
     home.angle.z += (s16) ((s16)(shape_angle.y - old.angle.y) * 0.8f);
     if ((s8)lbl_396_bss_4C == 0) {
         l_wheelMinR = cM_scos(0xccc) * 60.0f;

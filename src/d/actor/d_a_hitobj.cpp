@@ -33,22 +33,22 @@ static int daHitobj_Delete(hitobj_class* i_this) {
     return 1;
 }
 
-static dCcD_SrcSph cc_sph_src = {
-    {
-        {0, {{0, 0, 0x13}, {0, 3}, 0}},
-        {dCcD_SE_NONE, 0, 0, 0, {0}},
-        {dCcD_SE_NONE, 0, 0, 0, {0}},
-        {0},
-    },
-    {
-        {
-            {0.0f, 0.0f, 0.0f},
-            100.0f,
-        },
-    }
-};
-
 static int daHitobj_Create(fopAc_ac_c* i_this) {
+    static dCcD_SrcSph cc_sph_src = {
+        {
+            {0, {{0, 0, 0x13}, {0, 3}, 0}},
+            {dCcD_SE_NONE, 0, 0, 0, {0}},
+            {dCcD_SE_NONE, 0, 0, 0, {0}},
+            {0},
+        },
+        {
+            {
+                {0.0f, 0.0f, 0.0f},
+                100.0f,
+            },
+        }
+    };
+
     hitobj_class* hitobj = (hitobj_class*)i_this;
     fopAcM_ct(i_this, hitobj_class);
 

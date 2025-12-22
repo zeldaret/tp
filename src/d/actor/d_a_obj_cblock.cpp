@@ -44,10 +44,6 @@ static cXyz l_chainOffset(0.0f, 105.0f, 30.0f);
 
 static cXyz l_smokeSetOffset(0.0f, 0.0f, -200.0f);
 
-#if !DEBUG
-static s32 unused_bss_70 = 0;
-#endif
-
 static cull_box const l_cull_box = {
     {-250.0f, 0.0f, -450.0f},
     {250.0f, 250.0f, 400.0f},

@@ -22,7 +22,7 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
 
     daPy_py_c* pdVar1 = daPy_getPlayerActorClass();
     if (fopAcM_CheckStatus(param_2, 0x400) != 0 && fopAcM_GetName(param_2) == 0xfd) {
-        static cXyz l_push_check_pos0[4] = {
+        static cXyz l_push_check_pos[4] = {
             cXyz(-50.0f, 0.0f, -50.0f),
             cXyz(50.0f, 0.0f, -50.0f),
             cXyz(50.0f, 0.0f, 50.0f),
@@ -33,10 +33,10 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
         mDoMtx_stack_c::YrotS(-param_1->current.angle.y);
         mDoMtx_stack_c::multVec(&local_2c, &local_2c);
 
-        if (l_push_check_pos0[0].x <= local_2c.x) {
-            if (l_push_check_pos0[2].x >= local_2c.x) {
-                if (l_push_check_pos0[0].z <= local_2c.z) {
-                    if (l_push_check_pos0[2].z >= local_2c.z) {
+        if (l_push_check_pos[0].x <= local_2c.x) {
+            if (l_push_check_pos[2].x >= local_2c.x) {
+                if (l_push_check_pos[0].z <= local_2c.z) {
+                    if (l_push_check_pos[2].z >= local_2c.z) {
                         if ((pdVar1->checkEquipHeavyBoots())) {
                             pthis->field_0x632 = 1;
                             pthis->field_0x634 = 1;

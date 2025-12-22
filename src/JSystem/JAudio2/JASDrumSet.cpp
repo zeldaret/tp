@@ -21,13 +21,11 @@ void JASDrumSet::newPercArray(u8 param_0, JKRHeap* param_1) {
     }
 }
 
-static JASOscillator::Data osc;
-
-static JASOscillator::Data* oscp;
-
-static s8 data_80451274[4];
-
 bool JASDrumSet::getParam(int param_0, int param_1, JASInstParam* param_2) const {
+    static JASOscillator::Data osc;
+    static JASOscillator::Data* oscp;
+    static s8 data_80451274;
+
     if (field_0x4 == NULL) {
         return false;
     }
@@ -54,9 +52,9 @@ bool JASDrumSet::getParam(int param_0, int param_1, JASInstParam* param_2) const
     osc.mScale = 1.0f;
     osc._14 = 0.0f;
 
-    if (data_80451274[0] == 0) {
+    if (data_80451274 == 0) {
         oscp = &osc;
-        data_80451274[0] = 1;
+        data_80451274 = 1;
     }
 
     param_2->field_0x14 = &oscp;

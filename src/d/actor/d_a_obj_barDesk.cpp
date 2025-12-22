@@ -12,8 +12,6 @@
 
 static daBarDesk_HIO_c l_HIO;
 
-static u8 data_80BA9D2C[4];
-
 dCcD_SrcGObjInf const daBarDesk_c::mCcDObjInfo = {
     {0, {{0, 0, 0}, {0xD8FAFDBF, 0x11}, {0}}},
     {1, 0, 0, 0, 0},

@@ -103,7 +103,7 @@ void daObjRIVERROCK_c::CheckBG() {
     field_0x5d0 = particlePos;
 }
 
-static bool mHIOInitialized;
+static bool hio_set;
 
 static daObjRIVERROCK_HIO_c l_HIO;
 
@@ -244,8 +244,8 @@ int daObjRIVERROCK_c::create() {
         } else {
             field_0x5c4.set(1.0f, 1.0f, 1.0f);
         }
-        if (!mHIOInitialized) {
-            mHIOInitialized = true;
+        if (!hio_set) {
+            hio_set = true;
             mHIONeedDelete = true;
             l_HIO.field_0x4 = -1;
         }
@@ -304,7 +304,7 @@ int daObjRIVERROCK_c::Draw() {
 int daObjRIVERROCK_c::Delete() {
     dComIfG_resDelete(&mPhase, l_arcName);
     if (mHIONeedDelete) {
-        mHIOInitialized = false;
+        hio_set = false;
     }
     mSoundObj.deleteObject();
     return 1;

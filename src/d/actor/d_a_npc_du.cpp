@@ -504,8 +504,6 @@ static BOOL message(npc_du_class* i_this) {
 
 static bool hio_set;
 
-static u8 lit_3757[12];
-
 static daNpc_Du_HIO_c l_HIO;
 
 static int daNpc_Du_Execute(npc_du_class* i_this) {

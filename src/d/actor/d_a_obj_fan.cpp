@@ -255,21 +255,21 @@ void daObjFan_c::action() {
     }
 }
 
-static Vec l_offset_posM[4] = {
-    {-150.0f, 150.0f, 0.0f},
-    {-150.0f, -150.0f, 0.0f},
-    {150.0f, 150.0f, 0.0f},
-    {150.0f, -150.0f, 0.0f},
-};
-
-static Vec l_offset_posL[4] = {
-    {-300.0f, 300.0f, 0.0f},
-    {-300.0f, -300.0f, 0.0f},
-    {300.0f, 300.0f, 0.0f},
-    {300.0f, -300.0f, 0.0f},
-};
-
 void daObjFan_c::setCollision() {
+    static Vec l_offset_posM[4] = {
+        {-150.0f, 150.0f, 0.0f},
+        {-150.0f, -150.0f, 0.0f},
+        {150.0f, 150.0f, 0.0f},
+        {150.0f, -150.0f, 0.0f},
+    };
+
+    static Vec l_offset_posL[4] = {
+        {-300.0f, 300.0f, 0.0f},
+        {-300.0f, -300.0f, 0.0f},
+        {300.0f, 300.0f, 0.0f},
+        {300.0f, -300.0f, 0.0f},
+    };
+
     if (field_0xad4 == 0) {
         return;
     }

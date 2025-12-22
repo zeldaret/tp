@@ -227,7 +227,7 @@ static void e_tk_ball_drop(e_tk_ball_class* i_this) {
 static void action(e_tk_ball_class* i_this) {
     fopAc_ac_c* actor = i_this;
 
-    static u16 e_id[4] = {0x819D, 0x819E, 0x819A, 0x0000};
+    static u16 e_id[3] = {0x819D, 0x819E, 0x819A};
 
     s8 is_moving = true;
     switch (i_this->mAction) {

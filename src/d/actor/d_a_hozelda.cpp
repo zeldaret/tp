@@ -40,10 +40,8 @@ const daHoZelda_hio_c1 daHoZelda_hio_c0::m = {
     4000.0f,
 };
 
-#if VERSION != VERSION_GCN_PAL
 u8 daHoZelda_matAnm_c::mEyeMoveFlg;
 u8 daHoZelda_matAnm_c::mMorfFrame;
-#endif
 
 void daHoZelda_matAnm_c::init() {
     field_0xf4 = 0.0f;
