@@ -59,7 +59,7 @@ static f32 l_CowRoomPosX[20] = {-10600.0f, -10600.0f, -10800.0f, -10800.0f, -110
 static f32 l_CowRoomPosZ[2] = {-19646.0f, -20926.0f};
 
 #define N_WOLF_BUSTERS 3
-extern fpc_ProcID gWolfBustersID[N_WOLF_BUSTERS] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
+extern fpc_ProcID gWolfBustersID[N_WOLF_BUSTERS] = {fpcM_ERROR_PROCESS_ID_e, fpcM_ERROR_PROCESS_ID_e, fpcM_ERROR_PROCESS_ID_e};
 
 }  // namespace
 
