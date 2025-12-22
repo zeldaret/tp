@@ -7,6 +7,13 @@
 class JSURandomInputStream;
 class JUTTexture;
 
+enum J2DTextureBase {
+    TEXTUREBASE_0 = 0,
+};
+
+enum J2DWindowMirror {
+};
+
 /**
  * @ingroup jsystem-j2d
  * 
@@ -32,8 +39,12 @@ public:
     J2DWindow(J2DPane*, JSURandomInputStream*, J2DMaterial*);
     J2DWindow(J2DPane*, JSURandomInputStream*, JKRArchive*);
     J2DWindow();
+    J2DWindow(u64, const JGeometry::TBox2<f32>&, const char*, J2DTextureBase, const ResTLUT*);
+    void initiate(const ResTIMG*, const ResTIMG*, const ResTIMG*, const ResTIMG*, const ResTLUT*, J2DWindowMirror, const JGeometry::TBox2<f32>&);
     void private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*);
+    void initinfo();
     void initinfo2();
+    static J2DWindowMirror convertMirror(J2DTextureBase);
     void draw_private(JGeometry::TBox2<f32> const&, JGeometry::TBox2<f32> const&);
     void setContentsColor(JUtility::TColor, JUtility::TColor, JUtility::TColor,
                                          JUtility::TColor);

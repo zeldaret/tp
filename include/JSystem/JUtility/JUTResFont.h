@@ -80,5 +80,6 @@ public:
 };
 
 extern u8 const JUTResFONT_Ascfont_fix12[16736];
+extern u8 const JUTResFONT_Ascfont_fix16[16736];
 
 #endif /* JUTRESFONT_H */

@@ -42,6 +42,37 @@ template<
     typedef Category iterator_category;
 };
 
+template <class Iterator>
+struct reverse_iterator : public iterator<typename iterator_traits<Iterator>::iterator_category,
+                                          typename iterator_traits<Iterator>::value_type,
+                                          typename iterator_traits<Iterator>::difference_type,
+                                          typename iterator_traits<Iterator>::pointer,
+                                          typename iterator_traits<Iterator>::reference> {
+    typedef typename iterator_traits<Iterator>::difference_type difference_type;
+    typedef typename iterator_traits<Iterator>::value_type value_type;
+    typedef typename iterator_traits<Iterator>::pointer pointer;
+    typedef typename iterator_traits<Iterator>::reference reference;
+    typedef typename iterator_traits<Iterator>::iterator_category iterator_category;
+
+    reverse_iterator() {}
+    reverse_iterator(Iterator it) : current(it) {}
+    reverse_iterator operator++(int) { const reverse_iterator old(*this); --current; return old; }
+    reference operator*() {
+        tmp = current;
+        return *--tmp;
+    }
+
+    Iterator base() const { return current; }
+
+    Iterator tmp;
+    Iterator current;
+};
+
+template <class Iterator1, class Iterator2>
+bool operator!= (const reverse_iterator<Iterator1>& lhs, const reverse_iterator<Iterator2>& rhs) {
+    return (lhs.base() != rhs.base()) != false;
+}
+
 template <class InputIterator, class Distance>
 inline void __advance(InputIterator& i, Distance n, input_iterator_tag) {
     for (; n > 0; --n)

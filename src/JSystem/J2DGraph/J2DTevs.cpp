@@ -10,13 +10,14 @@
 #include "dolphin/gx.h"
 
 void J2DTexMtx::load(u32 mtxIdx) {
-    GXLoadTexMtxImm(mTexMtx, mtxIdx * 3 + GX_TEXMTX0, mInfo.getTexMtxType());
+    GXLoadTexMtxImm(mTexMtx, mtxIdx * 3 + GX_TEXMTX0, (GXTexMtxType)mInfo.mTexMtxType);
 }
 
 void J2DTexMtx::calc() {
-    if (mInfo.mTexMtxDCC == J2DTexMtxInfo::DCC_NONE) {
+    u32 dcc = mInfo.mTexMtxDCC;
+    if (dcc == J2DTexMtxInfo::DCC_NONE) {
         getTextureMtx(mInfo.mTexSRTInfo, mInfo.mCenter, mTexMtx);
-    } else if (mInfo.mTexMtxDCC == J2DTexMtxInfo::DCC_MAYA) {
+    } else if (dcc == J2DTexMtxInfo::DCC_MAYA) {
         getTextureMtxMaya(mInfo.mTexSRTInfo, mTexMtx);
     }
 }
@@ -58,8 +59,8 @@ void J2DTexMtx::getTextureMtxMaya(J2DTextureSRTInfo const& param_0, Mtx param_1)
 }
 
 void J2DIndTevStage::load(u8 tevStage) {
-    GXSetTevIndirect((GXTevStageID)tevStage, getIndStage(), getIndFormat(), getBiasSel(),
-                     getMtxSel(), getWrapS(), getWrapT(), getPrev(), getLod(), getAlphaSel());
+    GXSetTevIndirect((GXTevStageID)tevStage, (GXIndTexStageID)getIndStage(), (GXIndTexFormat)getIndFormat(), (GXIndTexBiasSel)getBiasSel(),
+                     (GXIndTexMtxID)getMtxSel(), (GXIndTexWrap)getWrapS(), (GXIndTexWrap)getWrapT(), (GXBool)getPrev(), (GXBool)getLod(), (GXIndTexAlphaSel)getAlphaSel());
 }
 
 void J2DIndTexMtx::load(u8 indTexMtx) {
@@ -68,11 +69,11 @@ void J2DIndTexMtx::load(u8 indTexMtx) {
 }
 
 void J2DIndTexCoordScale::load(u8 indTexStage) {
-    GXSetIndTexCoordScale((GXIndTexStageID)indTexStage, mInfo.getScaleS(), mInfo.getScaleT());
+    GXSetIndTexCoordScale((GXIndTexStageID)indTexStage, (GXIndTexScale)mInfo.mScaleS, (GXIndTexScale)mInfo.mScaleT);
 }
 
 void J2DIndTexOrder::load(u8 indTexStage) {
-    GXSetIndTexOrder((GXIndTexStageID)indTexStage, mInfo.getTexCoordID(), mInfo.getTexMapID());
+    GXSetIndTexOrder((GXIndTexStageID)indTexStage, (GXTexCoordID)mInfo.mTexCoordID, (GXTexMapID)mInfo.mTexMapID);
 }
 
 static void dummyVirtual(J2DTevBlock* block, J2DIndBlock* indBlock) {

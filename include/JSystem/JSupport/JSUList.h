@@ -190,6 +190,8 @@ public:
 
     bool appendChild(JSUTree<T>* child) { return this->append(child); }
 
+    bool prependChild(JSUTree<T>* child) { return this->prepend(child); }
+
     bool removeChild(JSUTree<T>* child) { return this->remove(child); }
 
     bool insertChild(JSUTree<T>* before, JSUTree<T>* child) { return this->insert(before, child); }
@@ -226,11 +228,11 @@ public:
         return *this;
     }
 
-    T* getObject() { return this->mTree->getObject(); }
+    T* getObject() const { return this->mTree->getObject(); }
 
     bool operator==(JSUTree<T>* other) { return this->mTree == other; }
 
-    bool operator!=(JSUTree<T>* other) { return this->mTree != other; }
+    bool operator!=(const JSUTree<T>* other) const { return this->mTree != other; }
 
     JSUTreeIterator<T> operator++(int) {
         JSUTreeIterator<T> prev = *this;
@@ -245,7 +247,7 @@ public:
 
     T* operator*() { return this->getObject(); }
 
-    T* operator->() { return this->getObject(); }
+    T* operator->() const { return this->getObject(); }
 
 private:
     JSUTree<T>* mTree;

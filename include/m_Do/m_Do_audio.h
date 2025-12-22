@@ -8,8 +8,19 @@
 class mDoAud_zelAudio_c : public Z2AudioMgr {
 public:
     void reset();
-    mDoAud_zelAudio_c() {}
+    mDoAud_zelAudio_c() {
+#if DEBUG
+        setMode(2);
+#endif
+    }
     ~mDoAud_zelAudio_c() {}
+
+#if DEBUG
+    u8 getMode() { return field_0x13bd; }
+    void setMode(u8 mode) { field_0x13bd = mode; }
+
+    /* 0x13BD */ u8 field_0x13bd;
+#endif
 
     static void onInitFlag() { mInitFlag = true; }
     static bool isInitFlag() { return mInitFlag; }
@@ -291,6 +302,14 @@ inline void mDoAud_talkOut() {
 
 inline void mDoAud_talkIn() {
     Z2AudioMgr::getInterface()->talkIn();
+}
+
+inline void mDoAud_setOutputMode(u32 mode) {
+    Z2AudioMgr::getInterface()->setOutputMode(mode);
+}
+
+inline void mDoAud_loadStaticWaves() {
+    Z2AudioMgr::getInterface()->loadStaticWaves();
 }
 
 inline int mDoAud_monsSeStart(u32 i_soundId, const Vec* i_pos, u32 i_actorId, u32 param_3,

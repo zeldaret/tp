@@ -28,7 +28,10 @@ struct JORPropertyEvent : JOREvent {
 };
 
 struct JORGenEvent : JOREvent {};
-struct JORNodeEvent : JOREvent {};
+
+struct JORNodeEvent : JOREvent {
+    /* 0x00 */ u32 field_0x0;
+};
 
 struct JORMContext;
 struct JORServer;
