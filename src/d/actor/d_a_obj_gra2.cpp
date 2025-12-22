@@ -203,7 +203,7 @@ static char* l_evtNameList[2] = {
 };
 
 static u16 l_entryJntNoList[4] = {
-    5, 6, 7, -1,
+    5, 6, 7, 0xFFFF,
 };
 
 static int jointCtrlCallBack(J3DJoint* i_joint, int param_2) {
@@ -368,7 +368,7 @@ static const f32 l_bgcParam[20] = {
     -0.5f, 1.0f, 0.5f, -1.0f,
 };
 
-const s16 l_dirToAngleTBL[4] = {0, 0x4000, 0x8000, 0xC000};
+const s16 l_dirToAngleTBL[4] = {0, 0x4000, -0x8000, -0x4000};
 
 int daObj_GrA_c::CreateHeap() {
     J3DModelData* aMdlData_p = NULL;

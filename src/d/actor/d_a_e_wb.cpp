@@ -1991,7 +1991,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
             csXyz cStack_a8;
             for (int i = 0; i < 2; i++) {
                 static s16 f_ya[2] = {
-                    0x8000,
+                    -0x8000,
                     0x0000,
                 };
 

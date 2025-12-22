@@ -54,8 +54,8 @@ static Vec const l_craw_offset[4] = {
 s16 const daObjBm_c::M_dir_base[4] = {
     0x0000,
     0x4000,
-    0x8000,
-    0xC000,
+    -0x8000,
+    -0x4000,
 };
 
 static const char* l_arcName = "Obj_bm";

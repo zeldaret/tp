@@ -17,7 +17,7 @@ static daNpcT_evtData_c l_evtList[3] = {
 
 static char* l_resNameList[2] = {"", "seiB"};
 
-static s8 l_loadResPtrn0[2] = {1, 0xFF};
+static s8 l_loadResPtrn0[2] = {1, -1};
 
 static s8* l_loadResPtrnList[2] = {
     l_loadResPtrn0,

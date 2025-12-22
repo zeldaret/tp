@@ -852,7 +852,7 @@ BOOL daNpc_GWolf_c::isDelete() {
         0x0153, 0x01EC, 0x01ED, 0x01EE, 0x01EF, 0x01F0, 0x01F1,
     };
     static s16 l_playerNoList[7] = {
-        0xFFFF, 2, 3, 4, 5, 6, 7,
+        -1, 2, 3, 4, 5, 6, 7,
     };
 
     if (mType == 3 || mType == 2) {

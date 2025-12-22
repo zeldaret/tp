@@ -898,8 +898,8 @@ static void damage_check(e_sm2_class* i_this) {
                         for (int j = 0; j < bun_d[i_this->sizetype]; j++) {
                             static int j_d[] = {0, 6, 1, 5, 2, 4, 0, 6, 1, 5, 2, 4};
                             static s16 ya_d[] = {
-                                0x0000, 0x8000, 0x0000, 0x8000, 0x0000, 0x8000,
-                                0x0000, 0x8000, 0x0000, 0x8000, 0x0000, 0x8000,
+                                0x0000, -0x8000, 0x0000, -0x8000, 0x0000, -0x8000,
+                                0x0000, -0x8000, 0x0000, -0x8000, 0x0000, -0x8000,
                             };
                             static f32 y_ad[] = {20.0f, 30.0f, 40.0f, 50.0f, 60.0f,};
 

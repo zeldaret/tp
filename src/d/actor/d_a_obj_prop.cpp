@@ -60,7 +60,7 @@ int daObjProp_c::draw() {
     return 1;
 }
 
-static const s16 ADD_ANGLE[] = {0x1800, 0xE800};
+static const s16 ADD_ANGLE[] = {0x1800, -0x1800};
 
 int daObjProp_c::execute() {
     shape_angle.y += ADD_ANGLE[mArg];

@@ -159,7 +159,7 @@ static actor_method_class daTag_Push_MethodTable = {
 extern actor_process_profile_definition g_profile_TAG_PUSH = {
     fpcLy_CURRENT_e,
     8,
-    fpcLy_CURRENT_e,
+    fpcPi_CURRENT_e,
     PROC_TAG_PUSH,
     &g_fpcLf_Method.base,
     sizeof(daTag_Push_c),

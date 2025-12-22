@@ -267,7 +267,7 @@ static actor_method_class daTag_SSDrink_MethodTable = {
 extern actor_process_profile_definition g_profile_TAG_SSDRINK = {
     fpcLy_CURRENT_e,
     7,
-    fpcLy_CURRENT_e,
+    fpcPi_CURRENT_e,
     PROC_TAG_SSDRINK,
     &g_fpcLf_Method.base,
     sizeof(daTag_SSDrink_c),

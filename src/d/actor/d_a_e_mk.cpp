@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_mk.h"
-#include "..\assets\GZ2E01\res\Object\E_mk.h"
+#include "res/Object/E_mk.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_obj_pillar.h"

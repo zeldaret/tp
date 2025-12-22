@@ -325,8 +325,8 @@ daNpcBouS_HIOParam const daNpcBouS_Param_c::m = {
     100.0f,
     80.0f,
     654.78497f,
-    0xEB51,
-    0xA3C6,
+    -0x14AF,
+    -0x5C3A,
     0,
 };
 

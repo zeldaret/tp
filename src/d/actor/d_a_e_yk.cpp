@@ -1356,7 +1356,8 @@ static int daE_YK_Execute(e_yk_class* i_this) {
         i_this->mCollisionSphere.SetR(30.0f * l_HIO.mModelScale);
 
         dComIfG_Ccsp()->Set(&i_this->mCollisionSphere);
-        setMidnaBindEffect(_this,&i_this->mCreature,&_this->eyePos,&cXyz(0.5f,0.5f,0.5f));
+        cXyz i_effSize(0.5f,0.5f,0.5f);
+        setMidnaBindEffect(_this,&i_this->mCreature,&_this->eyePos,&i_effSize);
     }
 
     return 1;

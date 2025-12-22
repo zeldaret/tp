@@ -569,7 +569,7 @@ void daB_YO_c::setIcicleSubNumber() {
 }
 
 void daB_YO_c::setWindowBreakEffect(int param_0) {
-    static s16 yo_window_angle[6] = {0xC000, 0xE000, 0x6000, 0x2000, 0x4000, 0x0000};
+    static s16 yo_window_angle[6] = {-0x4000, -0x2000, 0x6000, 0x2000, 0x4000, 0x0000};
     static u16 madoware_effect_id[4] = {0x87C1, 0x87C2, 0x87C3, 0x87C4};
     csXyz angle(0, yo_window_angle[param_0], 0);
     cXyz pos(0.0f, 0.0f, 0.0f);

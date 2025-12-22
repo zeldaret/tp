@@ -114,7 +114,7 @@ static const Vec l_dir_vec[4] = {
     {-1.0f, 0.0f, 0.0f},
 };
 
-static const s16 l_dir_angle[4] = {0x0000, 0x4000, 0x8000, 0xC000};
+static const s16 l_dir_angle[4] = {0x0000, 0x4000, -0x8000, -0x4000};
 
 const static dCcD_SrcCyl l_cyl_src = {
     {
@@ -424,7 +424,7 @@ void daObjIceBlk_c::clrCounter() {
 
 void daObjIceBlk_c::mode_proc_call() {
     typedef void (daObjIceBlk_c::*modeProc)(void);
-    static modeProc l_func[] = {&mode_proc_wait, &mode_proc_walk};
+    static modeProc l_func[] = {&daObjIceBlk_c::mode_proc_wait, &daObjIceBlk_c::mode_proc_walk};
 
     if (getSwbit2() != 0xFF && !fopAcM_isSwitch(this, getSwbit2())) {
         mCcCyl.OnAtSPrmBit(1);
@@ -730,7 +730,7 @@ BOOL daObjIceBlk_c::checkFall() {
 
 void daObjIceBlk_c::event_proc_call() {
     typedef void (daObjIceBlk_c::*actionFunc)(void);
-    static actionFunc l_func[] = {&actionWait, &actionOrderEvent, &actionEvent, &actionDead};
+    static actionFunc l_func[] = {&daObjIceBlk_c::actionWait, &daObjIceBlk_c::actionOrderEvent, &daObjIceBlk_c::actionEvent, &daObjIceBlk_c::actionDead};
 
     (this->*l_func[mAction])();
 }

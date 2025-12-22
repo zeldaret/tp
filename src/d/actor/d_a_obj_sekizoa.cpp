@@ -27,14 +27,14 @@ static char* l_resNameList[3] = {
 };
 
 static s8 l_loadResPtrn0[2] = {
-    0x01,
-    0xFF,
+    1,
+    -1,
 };
 
 static s8 l_loadResPtrn1[3] = {
-    0x01,
-    0x02,
-    0xFF,
+    1,
+    2,
+    -1,
 };
 
 static s8* l_loadResPtrnList[8] = {
@@ -836,7 +836,7 @@ int daObj_Sekizoa_c::setYariAnm(int i_frame, int i_mode, f32 i_morf) {
         u32 param_0;
         u32 param_1;
     } yariAnmData[24] = {
-        {-1, 0},
+        {0xFFFFFFFF, 0},
         {ANM_YARIA_STILL_L, 1},
         {ANM_YARIA_STILL_L, 1},
         {ANM_YARIA_STILL_L, 1},

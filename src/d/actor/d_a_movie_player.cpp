@@ -3710,7 +3710,7 @@ BOOL daMP_WaitUntilPrepare() {
     OSMessage msg;
     OSReceiveMessage(&daMP_PrepareReadyQueue, &msg, 1);
     
-    if ((BOOL)msg) {
+    if ((intptr_t)msg) {
 		return TRUE;
 	} else {
 		return FALSE;

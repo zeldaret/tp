@@ -726,6 +726,7 @@ BOOL daNpcKasiKyu_c::chkFindPlayer() {
 }
 
 int daNpcKasiKyu_c::wait(int param_1) {
+    dComIfG_play_c* play;
     switch (mMode) {
         case -1:
             break;
@@ -774,7 +775,7 @@ int daNpcKasiKyu_c::wait(int param_1) {
 
 #if VERSION != VERSION_SHIELD_DEBUG
             // TODO: gameInfo fake match to force reuse of pointer
-            dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+            play = &g_dComIfG_gameInfo.play;
             if (play->getEvent().runCheck())
 #else
             if (dComIfGp_event_runCheck())

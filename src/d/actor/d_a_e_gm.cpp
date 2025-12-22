@@ -332,11 +332,11 @@ void daE_GM_c::appear() {
 }
 
 static s16 const l_rand[4] = {
-    0xF800, 0x0400, 0xFC00, 0x0800,
+    -0x0800, 0x0400, -0x0400, 0x0800,
 };
 
 static s16 const l_rand2[4] = {
-    0xD000, 0x3800, 0xB800, 0x5000,
+    -0x3000, 0x3800, -0x4800, 0x5000,
 };
 
 static f32 const l_rand_base_spd[4] = {

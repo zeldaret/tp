@@ -790,8 +790,8 @@ void daB_DS_c::mCreateTrap(bool param_0) {
     angle.x = 0;
     pos.y = 1708.0f;
 
-    static s16 mBirthAngle01_dt[4] = {0x0000, 0x4000, 0x8000, 0xc000};
-    static s16 mBirthAngle02_dt[3] = {0x0000, 0x5555, 0xaaaa};
+    static s16 mBirthAngle01_dt[4] = {0x0000, 0x4000, -0x8000, -0x4000};
+    static s16 mBirthAngle02_dt[3] = {0x0000, 0x5555, -0x5556};
     static f32 mBirthYpos02_dt[3] = {1150.0f, 350.0f, -450.0f};
 
     if (mBossPhase == 0) {

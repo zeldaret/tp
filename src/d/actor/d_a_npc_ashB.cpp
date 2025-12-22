@@ -929,6 +929,7 @@ bool daNpcAshB_c::talk(void* param_0) {
 bool daNpcAshB_c::demo(void* param_0) {
     dEvent_manager_c& evtmgr = dComIfGp_getEventManager();
     BOOL r26 = FALSE;
+    dComIfG_play_c* play;
 
     switch (mMode) {
     case 0:
@@ -940,7 +941,7 @@ bool daNpcAshB_c::demo(void* param_0) {
     case 2:
 #if VERSION != VERSION_SHIELD_DEBUG
         // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+        play = &g_dComIfG_gameInfo.play;
         if (play->getEvent().runCheck() && !eventInfo.checkCommandTalk())
 #else
         if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk())

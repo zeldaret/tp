@@ -797,7 +797,7 @@ void daNpc_Kn_c::evtChange() {
 void daNpc_Kn_c::clrParam() {
     field_0xDB2 = mCurAngle;
     mCutType = 0;
-    memset((void*)&mEvtNo, 0, (int)(void*)&field_0xe3c - (int)(void*)&mEvtNo);  // fake match?
+    memset((void*)&mEvtNo, 0, (intptr_t)(void*)&field_0xe3c - (intptr_t)(void*)&mEvtNo);  // fake match?
     mJntAnm.clrDirectFlag();
 }
 

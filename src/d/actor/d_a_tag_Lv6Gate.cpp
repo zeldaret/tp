@@ -288,8 +288,10 @@ void daTagLv6Gate_c::create_init() {
     initBaseMtx();
 
     if (!fopAcM_isSwitch(this, getSwitchNo1())) {
-        parentActorID = fopAcM_create(PROC_NPC_TKS, 2, &cXyz(-13.272481f, 2887.0f, -10373.718f),
-                                      fopAcM_GetRoomNo(this), &csXyz(0, 0x7FFF, 0), NULL, -1);
+        cXyz i_pos(-13.272481f, 2887.0f, -10373.718f);
+        csXyz i_angle(0, 0x7FFF, 0);
+        parentActorID = fopAcM_create(PROC_NPC_TKS, 2, &i_pos,
+                                      fopAcM_GetRoomNo(this), &i_angle, NULL, -1);
     }
 }
 
