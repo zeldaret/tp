@@ -40,6 +40,11 @@ public:
 
     virtual ~J2DPrint();
 
+    JUTFont* getFont() const { return mFont; }
+    f32 getCursorV() const { return mCursorV; }
+    void setCharColor(JUtility::TColor color) { mCharColor = color; }
+    void setGradColor(JUtility::TColor color) { mGradColor = color; }
+
     f32 print_va(u8 alpha, const char* fmt, va_list args) {
         return J2DPrint_print_alpha_va(this, alpha, fmt, args);
     }

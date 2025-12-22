@@ -81,6 +81,8 @@ public:
 
     u32 getButton() const { return mButton.mButton; }
     u32 getTrigger() const { return mButton.mTrigger; }
+    u32 getRelease() const { return mButton.mRelease; }
+    u32 getRepeat() const { return mButton.mRepeat; }
     f32 getMainStickX() const { return mMainStick.mPosX; }
     f32 getMainStickY() const { return mMainStick.mPosY; }
     f32 getMainStickValue() const { return mMainStick.mValue; }
@@ -100,6 +102,7 @@ public:
     JUTGamePadRecordBase* getPadReplay() const { return mPadReplay; }
     JUTGamePadRecordBase* getPadRecord() const { return mPadRecord; }
 
+    bool testButton(u32 button) const { return mButton.mButton & button; }
     bool testTrigger(u32 button) const { return mButton.mTrigger & button; }
 
     bool isPushing3ButtonReset() const {

@@ -50,6 +50,7 @@ public:
     ~JAUSeqDataMgr_SeqCollection();
 
     const void* getResource() const { return field_0x4; }
+    void init(const void* param_1) { JAUSeqCollection::init(param_1); }
 
     /* 0x14 */ JAISeqDataUser* user_;
 };

@@ -1099,6 +1099,25 @@ config.libs = [
         ],
     ),
     JSystemLib(
+        "JAWExtSystem",
+        [
+            Object(Matching, "JSystem/JAWExtSystem/JAWSystem.cpp"),
+            Object(NonMatching, "JSystem/JAWExtSystem/JAWWindow.cpp"),
+            Object(Matching, "JSystem/JAWExtSystem/JAWWindow3D.cpp"),
+            Object(NonMatching, "JSystem/JAWExtSystem/JAWGraphContext.cpp"),
+            Object(NonMatching, "JSystem/JAWExtSystem/JAWExtSystem.cpp"),
+        ],
+    ),
+    JSystemLib(
+        "JAHostIO",
+        [
+            Object(Matching, "JSystem/JAHostIO/JAHioMessage.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHioMgr.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHioNode.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHioUtil.cpp"),
+        ]
+    ),
+    JSystemLib(
         "JMessage",
         [
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/control.cpp"),
@@ -1136,6 +1155,8 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2WolfHowlMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SpeechMgr2.cpp"),
             Object(Equivalent, "Z2AudioLib/Z2AudioMgr.cpp"), # weak func order
+            Object(NonMatching, "Z2AudioLib/Z2DebugSys.cpp"),
+            Object(NonMatching, "Z2AudioLib/Z2SoundPlayer.cpp"),
         ],
     },
     {

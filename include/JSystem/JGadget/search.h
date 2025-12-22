@@ -38,6 +38,12 @@ template <typename Category, typename T, typename Distance, typename Pointer, ty
 struct TIterator : public std::iterator<Category, T, Distance, Pointer, Reference> {
 };
 
+template <typename Iterator>
+struct TIterator_reverse : public std::reverse_iterator<Iterator> {
+    TIterator_reverse() {}
+    TIterator_reverse(Iterator it) : std::reverse_iterator<Iterator>(it) {}
+};
+
 template <typename Iterator, typename T, typename Predicate>
 inline Iterator findUpperBound_binary_all(Iterator first, Iterator last, const T& val, Predicate p) {
     return std::upper_bound(first, last, val, p);
