@@ -322,7 +322,7 @@ void dMirror_packet_c::mainDraw() {
         }
 
         f32 aspect = view->aspect;
-        f32 temp_f0_2 = i_tanf(MTXDegToRad(view->fovy * 0.5f));
+        f32 temp_f0_2 = tanf(MTXDegToRad(view->fovy * 0.5f));
         view_port_class* view_port = dComIfGd_getViewport();
 
         f32 var_f3;

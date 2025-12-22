@@ -38,11 +38,11 @@ inline float floor(float num) {
 }
 
 inline float tan(float num) {
-    return ::i_tanf(num);
+    return ::tanf(num);
 }
 
 inline float tanf(float num) {
-    return ::i_tanf(num);
+    return ::tanf(num);
 }
 
 inline float acos(float num) {

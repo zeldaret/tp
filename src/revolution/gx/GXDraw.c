@@ -1,4 +1,4 @@
-#include <cmath.h>
+#include <sdk_math.h>
 
 #include <revolution/gx.h>
 #include <revolution/os.h>

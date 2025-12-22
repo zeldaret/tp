@@ -8,7 +8,7 @@ extern "C" {
 #define offsetof(type, member)	((size_t)&(((type*)0)->member))
 
 #ifndef NULL
-#define NULL (0)
+#define NULL 0
 #endif
 
 typedef unsigned long size_t;

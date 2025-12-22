@@ -24,15 +24,15 @@ void J2DTexMtx::calc() {
 
 void J2DTexMtx::getTextureMtx(J2DTextureSRTInfo const& param_0, Vec param_1, Mtx param_2) {
     float f31 = (param_0.mRotationDeg * M_PI) / 180.0f;
-    param_2[0][0] = param_0.mScaleX * i_cosf(f31);
-    param_2[0][1] = -param_0.mScaleX * i_sinf(f31);
+    param_2[0][0] = param_0.mScaleX * cosf(f31);
+    param_2[0][1] = -param_0.mScaleX * sinf(f31);
     param_2[0][2] = 0.0f;
-    param_2[0][3] = -param_0.mScaleX * i_cosf(f31) * param_1.x + param_1.y * (param_0.mScaleX * i_sinf(f31)) +
+    param_2[0][3] = -param_0.mScaleX * cosf(f31) * param_1.x + param_1.y * (param_0.mScaleX * sinf(f31)) +
                     param_1.x + param_0.mTranslationX;
-    param_2[1][0] = param_0.mScaleY * i_sinf(f31);
-    param_2[1][1] = param_0.mScaleY * i_cosf(f31);
+    param_2[1][0] = param_0.mScaleY * sinf(f31);
+    param_2[1][1] = param_0.mScaleY * cosf(f31);
     param_2[1][2] = 0.0f;
-    param_2[1][3] = -param_0.mScaleY * i_sinf(f31) * param_1.x - param_1.y * (param_0.mScaleY * i_cosf(f31)) +
+    param_2[1][3] = -param_0.mScaleY * sinf(f31) * param_1.x - param_1.y * (param_0.mScaleY * cosf(f31)) +
                     param_1.y + param_0.mTranslationY;
     param_2[2][0] = 0.0f;
     param_2[2][1] = 0.0f;
@@ -42,16 +42,16 @@ void J2DTexMtx::getTextureMtx(J2DTextureSRTInfo const& param_0, Vec param_1, Mtx
 
 void J2DTexMtx::getTextureMtxMaya(J2DTextureSRTInfo const& param_0, Mtx param_1) {
     float f31 = (param_0.mRotationDeg * M_PI) / 180.0f;
-    param_1[0][0] = param_0.mScaleX * i_cosf(f31);
-    param_1[0][1] = param_0.mScaleY * i_sinf(f31);
+    param_1[0][0] = param_0.mScaleX * cosf(f31);
+    param_1[0][1] = param_0.mScaleY * sinf(f31);
     param_1[0][2] = 0.0f;
-    param_1[0][3] = (param_0.mTranslationX - 0.5f) * i_cosf(f31) -
-                    (param_0.mTranslationY - 0.5f + param_0.mScaleY) * i_sinf(f31) + 0.5f;
-    param_1[1][0] = -param_0.mScaleX * i_sinf(f31);
-    param_1[1][1] = param_0.mScaleY * i_cosf(f31);
+    param_1[0][3] = (param_0.mTranslationX - 0.5f) * cosf(f31) -
+                    (param_0.mTranslationY - 0.5f + param_0.mScaleY) * sinf(f31) + 0.5f;
+    param_1[1][0] = -param_0.mScaleX * sinf(f31);
+    param_1[1][1] = param_0.mScaleY * cosf(f31);
     param_1[1][2] = 0.0f;
-    param_1[1][3] = -(param_0.mTranslationX - 0.5f) * i_sinf(f31) -
-                    (param_0.mTranslationY - 0.5f + param_0.mScaleY) * i_cosf(f31) + 0.5f;
+    param_1[1][3] = -(param_0.mTranslationX - 0.5f) * sinf(f31) -
+                    (param_0.mTranslationY - 0.5f + param_0.mScaleY) * cosf(f31) + 0.5f;
     param_1[2][0] = 0.0f;
     param_1[2][1] = 0.0f;
     param_1[2][2] = 1.0f;

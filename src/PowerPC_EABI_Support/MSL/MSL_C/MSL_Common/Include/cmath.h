@@ -114,10 +114,10 @@ inline float atan2f(float y, float x) {
     return (float)atan2(y, x);
 }
 
-inline float i_sinf(float x) { return sin(x); }
-inline float i_cosf(float x) { return cos(x); }
-inline float i_tanf(float x) { return tan(x); }
-inline float i_acosf(float x) { return acos(x); }
+inline float sinf(float x) { return sin(x); }
+inline float cosf(float x) { return cos(x); }
+inline float tanf(float x) { return tan(x); }
+inline float acosf(float x) { return acos(x); }
 
 #ifdef __cplusplus
 };

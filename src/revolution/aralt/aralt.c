@@ -1,6 +1,6 @@
 #include <revolution.h>
 #include <revolution/aralt.h>
-#include "fake_tgmath.h"
+#include "sdk_math.h"
 
 #include <cstring.h>
 

@@ -30,16 +30,6 @@ static void GxXFog_set();
 
 struct sub_kankyo__class : public kankyo_class {};
 
-// setSunpos calls these functions as inlines somehow
-// these need to be moved to MSL_C once an appropriate solution is found
-inline float sinf(float x) {
-    return sin(x);
-}
-
-inline float cosf(float x) {
-    return cos(x);
-}
-
 static LightStatus lightStatusBase = {
     {-36384.5f, 29096.699f, 17422.199f},
     {377.0f, 5207.3999f, 1220.4f},
