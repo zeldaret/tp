@@ -69,7 +69,7 @@ static actor_method_class l_daTagPati_Method = {
 extern actor_process_profile_definition g_profile_TAG_PATI = {
     fpcLy_CURRENT_e,
     7,
-    fpcLy_CURRENT_e,
+    fpcPi_CURRENT_e,
     PROC_TAG_PATI,
     &g_fpcLf_Method.base,
     sizeof(daTagPati_c),

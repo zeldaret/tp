@@ -1622,11 +1622,11 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 static int kabe_initial_pos_set(e_dd_class* i_this) {
     static s16 ya[5] = {
-        -0x4000, 0x4000, 0x0000, 0x8000, 0x0000,
+        -0x4000, 0x4000, 0x0000, -0x8000, 0x0000,
     };
 
     static s16 xa[5] = {
-        0xC000, 0xC000, 0xC000, 0xC000, 0x8000,
+        -0x4000, -0x4000, -0x4000, -0x4000, -0x8000,
     };
 
     fopAc_ac_c* a_this = &i_this->actor;

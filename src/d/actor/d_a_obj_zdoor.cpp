@@ -64,8 +64,8 @@ static const s16 l_open_limit_max[3] = {
 
 static const s16 l_open_limit_min[3] = {
     0x1388,
-    0xAAAB,
-    0xAE39,
+    -0x5555,
+    -0x51C7,
 };
 
 static const s16 l_open_speed[3] = {

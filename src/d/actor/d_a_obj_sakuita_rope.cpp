@@ -65,7 +65,7 @@ int Sakuita_c::setModelData(J3DModelData* i_modelData) {
 }
 
 daObjItaRope_Attr_c const daObjItaRope_c::M_attr = {
-    -5.0f, 0.2f, 0.5f, 0.8f, 0.0f,
+    -5.0f, 0.2f, 0.5f, 0.8f, 0,
 };
 
 void Sakuita_c::create(cXyz* param_1, s16 param_2, s8 param_3) {

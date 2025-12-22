@@ -235,7 +235,7 @@ static actor_method_class daTag_Evt_MethodTable = {
 extern actor_process_profile_definition g_profile_TAG_EVT = {
     fpcLy_CURRENT_e,
     7,
-    fpcLy_CURRENT_e,
+    fpcPi_CURRENT_e,
     PROC_TAG_EVT,
     &g_fpcLf_Method.base,
     sizeof(daTag_Evt_c),

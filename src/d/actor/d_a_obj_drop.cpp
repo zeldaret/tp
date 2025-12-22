@@ -327,7 +327,7 @@ int daObjDrop_c::modeWait() {
     case 3:
         removeBodyEffect();
 
-        static const s16 target_rel_angle[] = {0xC000, 0x0000, 0x4000};
+        static const s16 target_rel_angle[] = {-0x4000, 0x0000, 0x4000};
         static const s16 target_angle_x[] = {0x0000, 0x2000, 0x0000};
 
         for (int i = 0; i < 3; i++) {

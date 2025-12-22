@@ -241,7 +241,7 @@ daNpcCoach_Attr_c const daNpcCoach_c::M_attr = {
     0,
     0,
     1000.0f,
-    0xE000,
+    -0x2000,
     0x4000,
     0,
     0xFF,

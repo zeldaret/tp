@@ -281,7 +281,7 @@ static void drop_check(bd_class* i_this) {
 
 
 static void turn_set(bd_class* i_this) {
-    s16 angle_table[3] = {0x8000, 0x4000, -0x4000};
+    s16 angle_table[3] = {-0x8000, 0x4000, -0x4000};
     s16 angle = angle_table[(int)cM_rndF(2.99f)];
     i_this->mTargetAngleY = i_this->enemy.current.angle.y + angle;
 }

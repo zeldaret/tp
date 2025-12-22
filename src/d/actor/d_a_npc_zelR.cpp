@@ -27,7 +27,7 @@ static char* l_resNameList[2] = {
 };
 
 static s8 l_loadResPtrn0[2] = {
-    1, 0xFF
+    1, -1
 };
 
 static s8* l_loadResPtrnList[2] = {

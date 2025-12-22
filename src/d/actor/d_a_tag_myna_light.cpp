@@ -162,7 +162,7 @@ static actor_method_class daTag_MynaLight_MethodTable = {
 extern actor_process_profile_definition g_profile_TAG_MNLIGHT = {
     fpcLy_CURRENT_e,
     7,
-    fpcLy_CURRENT_e,
+    fpcPi_CURRENT_e,
     PROC_TAG_MNLIGHT,
     &g_fpcLf_Method.base,
     sizeof(daTag_MynaLight_c),

@@ -439,7 +439,7 @@ const daNpcWrestler_HIOParam daNpcWrestler_Param_c::m = {
     10.0f,
     400,
     400,
-    0xFF00,
+    -0x0100,
     400.0f,
     14,
     11,

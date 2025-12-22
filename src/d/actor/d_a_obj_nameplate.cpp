@@ -10,7 +10,7 @@
 #include "d/d_a_obj.h"
 #include "dolphin/mtx.h"
 #include "f_op/f_op_actor.h"
-#include "include/SSystem/SComponent/c_math.h"
+#include "SSystem/SComponent/c_math.h"
 
 // clang-format off
 daObjNameplate_c::M_attrs const daObjNameplate_c::M_attr = {

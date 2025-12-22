@@ -1,5 +1,5 @@
 /**
-* @file d_a_e_po.cpp
+ * @file d_a_e_po.cpp
  *
  */
 
@@ -1706,8 +1706,8 @@ static void e_po_holl_demo(e_po_class* i_this) {
     };
     static s16 mKAngInit_dt[4] = {
         0x0000,
-        0x8000,
-        0x8000,
+        -0x8000,
+        -0x8000,
         0x0000,
     };
 

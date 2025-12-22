@@ -112,14 +112,14 @@ static char* l_kn2_bmdidx[] = {
 };
 
 static s16 dKn2_CarryOffset[] = {
-    0xD07D,
-    0xBA21,
-    0xBA21,
-    0xE37E,
+    -0x2f83,
+    -0x45df,
+    -0x45df,
+    -0x1c82,
     0x1D9F,
-    0xB36C,
-    0xC9C8,
-    0xC66D,
+    -0x4c94,
+    -0x3638,
+    -0x3993,
 };
 
 static struct {

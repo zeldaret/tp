@@ -2056,7 +2056,8 @@ void daE_PM_c::BossAction() {
 }
 
 int daE_PM_c::Execute() {
-    s_LinkPos = &fopAcM_GetPosition(daPy_getPlayerActorClass());
+    daPy_py_c* actor = daPy_getPlayerActorClass();
+    s_LinkPos = &fopAcM_GetPosition(actor);
     s_TargetAngle = cLib_targetAngleY(&current.pos, s_LinkPos);
     s_dis = current.pos.abs(*s_LinkPos);
 
@@ -2078,7 +2079,8 @@ int daE_PM_c::Execute() {
     }
 
     LampAction();
-    setMidnaBindEffect(this, &mCreatureSound, &current.pos, &cXyz(1.5f, 1.5f, 1.5f));
+    cXyz i_effSize(1.5f, 1.5f, 1.5f);
+    setMidnaBindEffect(this, &mCreatureSound, &current.pos, &i_effSize);
     EyeMove();
     mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     setCcCylinder();
