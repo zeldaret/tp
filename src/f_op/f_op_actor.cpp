@@ -513,7 +513,6 @@ static int fopAc_Create(void* i_this) {
                     OS_WARNING("f_op_actor.cpp マップツール設定により敵グループは削除されました！\n");
                     return cPhs_ERROR_e;
                 }
-                goto end_check; // Need immediate jump
             } else {
                 sw = dStage_FileList_dt_GetBitSw(filelist);
                 if (sw != 0xFF && !dComIfGs_isSwitch(sw, actor->home.roomNo) &&
@@ -526,7 +525,6 @@ static int fopAc_Create(void* i_this) {
         }
     }
 
-end_check:
     #if DEBUG
     {
     print_error_check_c error_check(actor, print_error_check_c::sCREATE);
