@@ -239,16 +239,19 @@ cflags_base = [
     "-fp hardware",
     "-Cpp_exceptions off",
     # "-W all",
+    "-O4,p",
+    "-inline auto",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
     "-maxerrors 1",
     "-nosyspath",
+    "-RTTI off",
     "-fp_contract on",
+    "-str reuse",
     "-i include",
     f"-i build/{config.version}/include",
     f"-i assets/{config.version}",
     "-i src",
-    "-ir src/dolphin",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
@@ -260,15 +263,10 @@ cflags_base = [
     "-D__GEKKO__",
 ]
 
-if config.version == "ShieldD":
-    cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1", "-DWIDESCREEN_SUPPORT=1"])
-elif config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield"]:
-    cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS", "-DWIDESCREEN_SUPPORT=1"])
+if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield", "ShieldD"]:
+    cflags_base.extend(["-enc SJIS"])
 else:
-    cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
-
-if config.version in ["RZDE01_00", "ShieldD"] or args.debug or args.reghio:
-    cflags_base.extend(["-DENABLE_REGHIO=1"])
+    cflags_base.extend(["-multibyte"])
 
 USE_REVOLUTION_SDK_VERSIONS = [
     "RZDE01_00", # Wii USA Rev 0
@@ -290,6 +288,8 @@ if config.version in USE_REVOLUTION_SDK_VERSIONS:
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
     cflags_base.extend(["-sym on", "-DDEBUG=1", "-DDEBUG_DEFINED=1", "-DNDEBUG_DEFINED=0"])
+elif config.version == "ShieldD":
+    cflags_base.extend(["-DDEBUG=1", "-DDEBUG_DEFINED=1", "-DNDEBUG_DEFINED=0"])
 else:
     cflags_base.extend(["-DNDEBUG=1", "-DNDEBUG_DEFINED=1", "-DDEBUG_DEFINED=0"])
 
@@ -301,11 +301,6 @@ elif args.warn == "off":
 elif args.warn == "error":
     cflags_base.append("-W error")
 
-cflags_noopt = cflags_base[:]
-
-if config.version != "ShieldD":
-    cflags_noopt.remove("-O4,p")
-
 # Metrowerks library flags
 cflags_runtime = [
     *cflags_base,
@@ -313,10 +308,11 @@ cflags_runtime = [
     "-str reuse,pool,readonly",
     "-common off",
     "-char signed",
+    "-inline deferred,auto"
 ]
 
-if config.version != "ShieldD":
-    cflags_runtime.extend(["-inline deferred,auto"])
+if config.version == "ShieldD":
+    cflags_runtime.extend(["-O0", "-inline off"])
 
 cflags_trk = [
     *cflags_base,
@@ -333,81 +329,35 @@ cflags_trk = [
 
 # Dolphin library flags
 cflags_dolphin = [
-    "-nodefaults",
-    "-proc gekko",
-    "-align powerpc",
-    "-enum int",
-    "-fp hardware",
-    "-Cpp_exceptions off",
-    '-pragma "cats off"',
-    '-pragma "warn_notinlined off"',
-    "-maxerrors 1",
-    "-nosyspath",
-    "-char unsigned",
-    "-O4,p",
-    "-sym on",
-    "-inline auto",
-    "-i include",
-    f"-i build/{config.version}/include",
+    *cflags_base,
     "-ir src/dolphin",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include",
-    "-i src/PowerPC_EABI_Support/Runtime/Inc",
-    "-i src/PowerPC_EABI_Support/MetroTRK",
-    "-i include/dolphin",
-    f"-DVERSION={version_num}",
-    "-D__GEKKO__",
+    "-fp_contract off",
+    "-char unsigned",
+    "-sym on",
     "-DSDK_REVISION=2",
 ]
 
 # Revolution library flags
 cflags_revolution_base = [
-    "-nodefaults",
-    "-proc gekko",
-    "-align powerpc",
-    "-enum int",
-    "-fp hardware",
-    "-Cpp_exceptions off",
-    '-pragma "cats off"',
-    '-pragma "warn_notinlined off"',
-    "-maxerrors 1",
-    "-nosyspath",
-    #"-char unsigned",
+    *cflags_base,
+    "-ir src/revolution",
+    "-fp_contract off",
     "-sym on",
     "-inline auto",
     "-ipa file",
-    "-i include",
-    f"-i build/{config.version}/include",
-    "-ir src/revolution",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include",
-    "-i src/PowerPC_EABI_Support/Runtime/Inc",
-    "-i src/PowerPC_EABI_Support/MetroTRK",
     "-i include/revolution",
-    f"-DVERSION={version_num}",
-    "-D__GEKKO__",
     "-D__REVOLUTION_SDK__",
 ]
 
 cflags_revolution_retail = [
     *cflags_revolution_base,
     "-O4,p",
-    "-DNDEBUG=1",
-    "-DNDEBUG_DEFINED=1",
-    "-DDEBUG_DEFINED=0",
 ]
 
 cflags_revolution_debug = [
     *cflags_revolution_base,
     "-opt off",
     "-inline off",
-    "-DDEBUG=1",
-    "-DDEBUG_DEFINED=1",
-    "-DNDEBUG_DEFINED=0",
 ]
 
 # Framework flags
@@ -419,6 +369,20 @@ cflags_framework = [
     "-fp_contract off",
 ]
 
+# for specific sdk libs
+cflags_noopt = cflags_base[:]
+if config.version != "ShieldD":
+    cflags_noopt.remove("-O4,p")
+
+
+if config.version == "ShieldD":
+    cflags_framework.extend(["-O0", "-inline off", "-RTTI on", "-DDEBUG=1", "-DWIDESCREEN_SUPPORT=1"])
+elif config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield"]:
+    cflags_framework.extend(["-ipa file", "-RTTI on", "-DWIDESCREEN_SUPPORT=1"])
+
+if config.version in ["RZDE01_00", "ShieldD"] or args.debug or args.reghio:
+    cflags_framework.extend(["-DENABLE_REGHIO=1"])
+
 if config.version != "ShieldD":
     if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield"]:
         # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
@@ -428,6 +392,7 @@ if config.version != "ShieldD":
 
 if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
     cflags_framework.extend(["-DSDK_SEP2006"])
+
 
 # REL flags
 cflags_rel = [
@@ -465,6 +430,7 @@ def MWVersion(cfg_version: str | None) -> str:
         case _:
             return "GC/2.7"
 
+# Wii versions specifically need linker GC/3.0a5
 if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
     config.linker_version = "GC/3.0a5"
 else:
@@ -1277,13 +1243,13 @@ config.libs = [
     {
         "lib": "gf",
         "mw_version": MWVersion(config.version),
-        "cflags": cflags_noopt,
+        "cflags": [*cflags_noopt, "-O3"],
         "progress_category": "sdk",
         "objects": [
-            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFGeometry.cpp", extra_cflags=["-O3"]),
-            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFLight.cpp", extra_cflags=["-O3"]),
-            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFPixel.cpp", extra_cflags=["-O3"]),
-            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFTev.cpp", extra_cflags=["-O3"]),
+            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFGeometry.cpp"),
+            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFLight.cpp"),
+            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFPixel.cpp"),
+            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFTev.cpp"),
         ],
     },
     JSystemLib(
@@ -1509,7 +1475,7 @@ config.libs = [
     {
         "lib": "exi",
         "mw_version": "GC/1.2.5n",
-        "cflags": cflags_noopt,
+        "cflags": [*cflags_noopt, "-ir src/dolphin"],
         "progress_category": "sdk",
         "objects": [
             Object(MatchingFor(ALL_GCN), "dolphin/exi/EXIBios.c", extra_cflags=["-O3,p"]),
