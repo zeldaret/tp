@@ -266,10 +266,6 @@ GXColor mDoGph_gInf_c::mBackColor = {0, 0, 0, 0};
 
 GXColor mDoGph_gInf_c::mFadeColor = {0, 0, 0, 0};
 
-/* 80450BE4 0001+00 data_80450BE4 None */
-/* 80450BE5 0001+00 data_80450BE5 None */
-/* 80450BE6 0001+00 mFade__13mDoGph_gInf_c None */
-/* 80450BE7 0001+00 data_80450BE7 None */
 u8 mDoGph_gInf_c::mBlureFlag;
 
 u8 mDoGph_gInf_c::mBlureRate;

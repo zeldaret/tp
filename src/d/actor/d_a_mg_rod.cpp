@@ -519,7 +519,6 @@ static void rod_main(dmg_rod_class* i_this) {
 
 static npc_henna_class* henna;
 
-/* 804BBBD4 0001+00 data_804BBBD4 None */
 static u8 data_804BBBD4;
 static u8 hio_set;
 

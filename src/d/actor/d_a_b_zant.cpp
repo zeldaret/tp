@@ -399,7 +399,6 @@ void daB_ZANT_c::setDamageSe(dCcD_Sph* i_hitSph, int i_dmgAmount) {
     }
 }
 
-/* 8064F5F5 0003+00 hio_set None */
 static u8 hio_set;
 
 static daB_ZANT_HIO_c l_HIO;

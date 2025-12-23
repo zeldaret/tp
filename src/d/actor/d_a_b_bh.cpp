@@ -94,7 +94,6 @@ static int daB_BH_Draw(b_bh_class* i_this) {
     return 1;
 }
 
-/* 805B33ED 0003+00 data_805B33ED None */
 static u8 hio_set;
 
 static daB_BH_HIO_c l_HIO;

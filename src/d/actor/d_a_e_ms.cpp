@@ -108,7 +108,6 @@ static void ms_disappear(e_ms_class* i_this) {
     }
 }
 
-/* 807297FD 0003+00 data_807297FD None */
 static u8 hio_set;
 
 static daE_MS_HIO_c l_HIO;

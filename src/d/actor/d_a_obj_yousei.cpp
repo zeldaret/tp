@@ -187,10 +187,8 @@ void daObjYOUSEI_c::BinAction() {
     field_0x608 = dComIfGp_particle_set(field_0x608, 0x731, &current.pos, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
 }
 
-/* 804D1830 0001+00 data_804D1830 None */
 static u8 data_804D1830;
 
-/* 804D1831 0003+00 data_804D1831 None */
 static u8 data_804D1831;
 
 void daObjYOUSEI_c::LinkChk() {

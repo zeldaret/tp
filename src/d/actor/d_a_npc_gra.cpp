@@ -94,10 +94,6 @@ static int l_bckGetParamList[][2] = {
     0x07, 0x0F,
 };
 
-/* 809CA7F4 809CA874   0080
-00
-/1   0/0
-.data            l_btpGetParamList */
 static int l_btpGetParamList[][2] = {
     0x1C, 0x00,
     0x1F, 0x00,

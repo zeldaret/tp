@@ -13,7 +13,6 @@
 #include "d/actor/d_a_alink.h"
 
 namespace {
-    /* 800889F8-80088A7C 083338 0084+00 1/1 0/0 0/0 .text isStageEvent__25@unnamed@d_ev_camera_cpp@Fi */
     static bool isStageEvent(int param_0) {
         dStage_MapEventInfo_c* info = dComIfGp_getStage()->getMapEventInfo();
         if (info != NULL) {
@@ -496,7 +495,6 @@ bool dCamera_c::pauseEvCamera() {
 }
 
 namespace {
-    /* 804253B4-804253C0 0520D4 000C+00 2/3 0/0 0/0 .bss WolfAdditionVec__25@unnamed@d_ev_camera_cpp@*/
     static cXyz WolfAdditionVec(0.0f, -70.0f, 70.0f);
 }
 
@@ -840,10 +838,8 @@ bool dCamera_c::rollingEvCamera() {
 }
 
 namespace {
-    /* 804253CC-804253D8 0520EC 000C+00 1/2 0/0 0/0 .bss MidnaAdditionVec__25@unnamed@d_ev_camera_cpp@ */
     static cXyz MidnaAdditionVec(0.0f, 0.0f, 70.0f);
 
-    /* 8008E750-8008E774 089090 0024+00 1/1 0/0 0/0 .text isRelChar__25@unnamed@d_ev_camera_cpp@Fc */
     static inline bool isRelChar(char param_1) {
         return param_1 != '-' && param_1 != 'x';
     }

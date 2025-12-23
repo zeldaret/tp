@@ -118,7 +118,6 @@ public:
 };
 
 namespace {
-    /* 807EF904-807EF944 000038 0040+00 1/1 0/0 0/0 .data            cc_ww_src__22@unnamed@d_a_e_ww_cpp@ */
     dCcD_SrcSph cc_ww_src = {
         {
             {0x0, {{0x400, 0x1, 0xC}, {0x0, 0x0}, 0x75}}, // mObj
@@ -131,7 +130,6 @@ namespace {
         } // mSphAttr
     };
     
-    /* 807EF944-807EF984 000078 0040+00 1/1 0/0 0/0 .data cc_ww_tg_src__22@unnamed@d_a_e_ww_cpp@ */
     dCcD_SrcSph cc_ww_tg_src = {
         {
             {0x0, {{0x0, 0x1, 0x0}, {0xD8FBFDFF, 0x43}, 0x0}}, // mObj

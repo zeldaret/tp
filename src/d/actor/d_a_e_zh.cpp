@@ -84,7 +84,6 @@ namespace {
         }
     };
 
-    /* 8082F480-8082F4C4 000060 0044+00 0/1 0/0 0/0 .data cc_zhCyl_src__22@unnamed@d_a_e_zh_cpp@ */
     static dCcD_SrcCyl cc_zhCyl_src = {
         {
             {0, {{AT_TYPE_0, 0, 0}, {0xD84860BA, 3}, 0x15}},
@@ -97,7 +96,6 @@ namespace {
         }
     };
 
-    /* 8082F4C4-8082F508 0000A4 0044+00 0/1 0/0 0/0 .data cc_zhCyl_at_src__22@unnamed@d_a_e_zh_cpp@ */
     static dCcD_SrcCyl cc_zhCyl_at_src = {
         {
             {0, {{AT_TYPE_CSTATUE_SWING, 4, 0xD}, {0, 0}, 0}},
@@ -121,7 +119,6 @@ daE_ZH_HIO_c::daE_ZH_HIO_c() {
     dungeon_bit_check = 0;
 }
 
-/* 8082F725 0003+00 data_8082F725 None */
 static u8 hio_set;
 
 static daE_ZH_HIO_c l_HIO;

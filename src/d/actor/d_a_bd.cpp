@@ -1003,7 +1003,6 @@ static int daBd_Create(fopAc_ac_c* i_act_this) {
         i_act_this->field_0x560 = 1;
         i_this->mStts.Init(100, 0, i_act_this);
 
-        /* 804DA234-804DA274 0002AC 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4956 */
         static dCcD_SrcSph cc_sph_src = {
             {
                 {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x75}},  // mObj

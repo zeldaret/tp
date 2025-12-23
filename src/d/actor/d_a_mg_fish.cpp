@@ -3760,7 +3760,6 @@ static int useHeapImg_fisht(fopAc_ac_c* i_actor) {
 }
 
 static int daMg_Fish_Create(fopAc_ac_c* i_this) {
-    /* 805369FC-80536A40 000558 0044+00 0/1 0/0 0/0 .data            cc_cyl_src$8395 */
     static dCcD_SrcCyl cc_cyl_src = {
         {
             { 0x0, { { 0x0, 0x0, 0x0 }, { 0x0, 0x0 }, 0x75 } }, // mObj

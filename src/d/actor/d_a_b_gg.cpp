@@ -543,10 +543,8 @@ static s16 s_TargetAngle;
 
 static cXyz s_centerpos(217.0f, 1275.0f, -57.0f);
 
-/* 805ED74C 0002+00 data_805ED74C s_M_Action__22@unnamed@d_a_b_gg_cpp@ */
 static s16 s_M_Action;
 
-/* 805ED74E 0002+00 data_805ED74E s_W_Action__22@unnamed@d_a_b_gg_cpp@ */
 static s16 s_W_Action;
 }
 

@@ -234,7 +234,6 @@ static void* s_fmobj_del(void* i_actor, void* i_data) {
     return NULL;
 }
 
-/* 804FAE95 0003+00 data_804FAE95 None */
 static u8 hio_set;
 
 static daE_FM_HIO_c l_HIO;

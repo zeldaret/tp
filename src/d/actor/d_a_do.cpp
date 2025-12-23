@@ -16,7 +16,6 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "Z2AudioLib/Z2Instances.h"
 
-/* 8066F2B6 0002+00 data_8066F2B6 None */
 static bool noFallCheck;
 static bool hio_set;
 

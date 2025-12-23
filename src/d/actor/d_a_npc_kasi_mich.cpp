@@ -349,8 +349,6 @@ daTagEscape_c* daNpcKasiMich_c::mTargetTag;
 
 f32 daNpcKasiMich_c::mTargetTagDist;
 
-/* 80A2A7F8 0002+00 data_80A2A7F8 mWolfAngle__15daNpcKasiMich_c */
-/* 80A2A7FA 0002+00 data_80A2A7FA None */
 s16 daNpcKasiMich_c::mWolfAngle;
 
 BOOL daNpcKasiMich_c::main() {

@@ -12,8 +12,8 @@
 #if DEBUG
 class daObjSwLight_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 811CF8C0 */ daObjSwLight_HIO_c();
-    /* 811CF920 */ void genMessage(JORMContext*);
+    daObjSwLight_HIO_c();
+    void genMessage(JORMContext*);
 
     /* 0x06 */ u8 field_0x06;
     /* 0x08 */ f32 mLightMaxRadius;

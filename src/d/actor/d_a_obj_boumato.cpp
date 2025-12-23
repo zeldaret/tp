@@ -84,7 +84,6 @@ int daObj_BouMato_c::CreateHeap() {
         {0.0f, 300.0f, 0.0f},
     };
 
-    // /* 80BBC58C-80BBC598 -00001 000C+00 1/1 0/0 0/0 .data            jntCoData$4045 */
     static dJntColData_c jntCoData = {
         1, 1, 0, 4.0f, jntCoOffset,
     };

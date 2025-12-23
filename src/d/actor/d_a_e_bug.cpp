@@ -23,16 +23,12 @@ daE_Bug_HIO_c::daE_Bug_HIO_c() {
     field_0xc = 1.0f;
 }
 
-/* 80697E6C 0001+00 data_80697E6C @1009 */
-/* 80697E6D 0003+00 data_80697E6D None */
 static u8 hio_set;
 
 static daE_Bug_HIO_c l_HIO;
 
-/* 80697E8C 0001+00 data_80697E8C None */
 static s8 l_roomNo;
 
-/* 80697E8D 0003+00 data_80697E8D None */
 static s8 data_80697E8D;
 
 static int daE_Bug_Draw(e_bug_class* i_this) {

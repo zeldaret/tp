@@ -170,7 +170,6 @@ enum Particle {
 };
 
 namespace {
-    /* 80821B30-80821B70 000020 0040+00 0/1 0/0 0/0 .data cc_ymb_src__23@unnamed@d_a_e_ymb_cpp@ */
     static dCcD_SrcSph cc_ymb_src = {
         {{0x0, {{AT_TYPE_CSTATUE_SWING, 0x2, 0xD}, {0xD8FBFDFF, 0x3}, 0x75}}, // mObj
         {dCcD_SE_METAL, 0x0, 0x1, 0x7, 0x0}, // mGObjAt
@@ -182,7 +181,6 @@ namespace {
         } // mSphAttr
     };
 
-    /* 80821B70-80821BB0 000060 0040+00 0/1 0/0 0/0 .data cc_ymb_at_src__23@unnamed@d_a_e_ymb_cpp@ */
     static dCcD_SrcSph cc_ymb_at_src = {
         {{0x0, {{AT_TYPE_CSTATUE_SWING, 0x2, 0xD}, {0xD8FBFDFF, 0x0}, 0x0}}, // mObj
         {dCcD_SE_METAL, 0x0, 0x1, 0x7, 0x0}, // mGObjAt
@@ -194,7 +192,6 @@ namespace {
         } // mSphAttr
     };
 
-    /* 80821BB0-80821BF0 0000A0 0040+00 0/1 0/0 0/0 .data cc_ymb_eye_src__23@unnamed@d_a_e_ymb_cpp@ */
     static dCcD_SrcSph cc_ymb_eye_src = {
         {{0x0, {{AT_TYPE_0, 0x0, 0x0}, {0x80000000, 0x3}, 0x0}}, // mObj
         {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
@@ -206,7 +203,6 @@ namespace {
         } // mSphAttr
     };
 
-    /* 80821BF0-80821C30 0000E0 0040+00 0/1 0/0 0/0 .data cc_ymb_tube_src__23@unnamed@d_a_e_ymb_cpp@ */
     static dCcD_SrcSph cc_ymb_tube_src = {
         {{0x0, {{AT_TYPE_0, 0x0, 0x0}, {0xD8FBFDFF, 0x2}, 0x75}}, // mObj
         {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
@@ -217,12 +213,10 @@ namespace {
         } // mSphAttr
     };
 
-    /* 80821C30-80821C48 000120 0018+00 3/4 0/0 0/0 .data YMB_DOWN_ATT_JNT__23@unnamed@d_a_e_ymb_cpp@ */
     static int YMB_DOWN_ATT_JNT[6] = {
         JNT_TUBE_LC2, JNT_TUBE_RA2, JNT_TUBE_LB2, JNT_TUBE_RC2, JNT_TUBE_LA2, JNT_TUBE_RB2,
     };
 
-    /* 80821C48-80821C54 000138 000C+00 0/0 0/0 0/0 .data YMB_DROP_JNT__23@unnamed@d_a_e_ymb_cpp@ */
     static int YMB_DROP_JNT[3] = {
         JNT_TUBE_LC2, JNT_TUBE_RA2, JNT_BODY1,
     };
@@ -625,7 +619,6 @@ void daE_YMB_c::setElecEffect2() {
 }
 
 namespace {
-    /* 80821F38-80821FEC 000128 00B4+00 4/5 0/0 0/0 .bss YMB_DOWN_POS__23@unnamed@d_a_e_ymb_cpp@ */
     static cXyz YMB_DOWN_POS[15] = {
         cXyz(-88457.0f, -18786.0f, 42166.0f),
         cXyz(-89307.0f, -18786.0f, 41366.0f),

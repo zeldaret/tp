@@ -169,7 +169,6 @@ static bool hio_set;
 static daE_HP_HIO_c l_HIO;
 
 int daE_HP_c::draw() {
-    /* 806EA3E8-806EA3EC 000100 0004+00 1/1 0/0 0/0 .data            particleNmaeDt$4030 */
     static u16 particleNmaeDt[2] = {
         0x8789,
         0x878A,

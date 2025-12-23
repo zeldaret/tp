@@ -253,7 +253,6 @@ static void chain_control3(obj_keyhole_class* i_this, kh_chain_s* i_chain_s, int
     }
 }
 
-/* 80C43CE5 0003+00 data_80C43CE5 None */
 static u8 hio_set;
 
 static daObj_Keyhole_HIO_c l_HIO;

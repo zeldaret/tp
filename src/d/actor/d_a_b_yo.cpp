@@ -122,7 +122,6 @@ enum L5_R50_RES_FIL_ID {
     /* 0x0A */ DZB_R50_P2,
 };
 
-/* 80639F74 0001+00 data_80639F74 @1009 */
 static bool hio_set;
 
 static daB_YO_HIO_c l_HIO;

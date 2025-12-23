@@ -852,7 +852,6 @@ namespace {
         return 1;
     }
     
-    /* 80484F88-80484FA8 -00001 0020+00 1/0 0/0 0/0 .data            Mthd_Table__Q211daObjSwpush28@unnamed@d_a_obj_swpush_cpp@ */
     static actor_method_class Mthd_Table = {
         (process_method_func)Mthd_Create, 
         (process_method_func)Mthd_Delete, 

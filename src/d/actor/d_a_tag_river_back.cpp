@@ -51,7 +51,6 @@ static char* l_staffName = "rvback";
 
 void daTagRiverBack_c::event_proc_call() {
     typedef void (daTagRiverBack_c::*actionFunc)();
-    /* 80D5F9DC-80D5FA0C 00005C 0030+00 0/1 0/0 0/0 .data            l_func$3711 */
     static actionFunc l_func[] = {&daTagRiverBack_c::actionWait,
                                   &daTagRiverBack_c::actionOrderEvent,
                                   &daTagRiverBack_c::actionEvent, &daTagRiverBack_c::actionDead};

@@ -15,7 +15,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Instances.h"
 
-/* 80685675 0003+00 data_80685675 None */
 static bool hio_set;
 
 static daE_Bee_HIO_c l_HIO;

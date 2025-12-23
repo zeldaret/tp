@@ -349,8 +349,6 @@ daTagEscape_c* daNpcKasiKyu_c::mTargetTag;
 
 f32 daNpcKasiKyu_c::mTargetTagDist;
 
-/* 80A26068 0002+00 data_80A26068 mWolfAngle__14daNpcKasiKyu_c */
-/* 80A2606A 0002+00 data_80A2606A None */
 s16 daNpcKasiKyu_c::mWolfAngle;
 
 BOOL daNpcKasiKyu_c::main() {

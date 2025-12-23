@@ -281,7 +281,6 @@ daB_DR_HIO_c::daB_DR_HIO_c() {
     breath_feint2_OFF = true;
 }
 
-/* 805C78FD 0003+00 hio_set None */
 static u8 hio_set;
 
 static daB_DR_HIO_c l_HIO;

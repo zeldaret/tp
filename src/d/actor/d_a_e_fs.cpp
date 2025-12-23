@@ -67,7 +67,6 @@ enum Joint {
 
 namespace {
 
-/* 806BE79E 0002+00 data_806BE79E s_AtCount__22@unnamed@d_a_e_fs_cpp@ */
 static s16 s_AtCount;
 
 }  // namespace

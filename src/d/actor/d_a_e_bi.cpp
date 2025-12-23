@@ -181,8 +181,6 @@ static void damage_check(e_bi_class* i_this) {
     }
 }
 
-/* 8068DB1C 0001+00 data_8068DB1C @1009 */
-/* 8068DB1D 0003+00 data_8068DB1D None */
 static u8 hio_set;
 
 static daE_BI_HIO_c l_HIO;

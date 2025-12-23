@@ -354,7 +354,6 @@ static BOOL other_bg_check2(e_dn_class* i_this, cXyz* i_pos) {
     return FALSE;
 }
 
-/* 804EEF2D 0003+00 data_804EEF2D None */
 u8 hio_set;
 
 daE_DN_HIO_c l_HIO;

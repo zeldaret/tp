@@ -431,10 +431,8 @@ void daCow_c::setGroundAngle() {
 
 static f32 m_near_dist;
 
-/* 806634F8 0002+00 data_806634F8 m_view_angle_wide */
 static s16 m_view_angle_wide;
 
-/* 806634FA 0002+00 data_806634FA m_view_angle */
 static s16 m_view_angle;
 
 #define IS_COW(actor) (fopAcM_GetName((actor)) == PROC_COW)

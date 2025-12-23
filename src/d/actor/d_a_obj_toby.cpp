@@ -138,8 +138,6 @@ static void* shot_b_sub(void* param_1, void* param_2) {
     return NULL;
 }
 
-/* 80D158F4 0001+00 data_80D158F4 @1009 */
-/* 80D158F5 0003+00 data_80D158F5 None */
 static u8 hio_set;
 
 static daObj_Toby_HIO_c l_HIO;

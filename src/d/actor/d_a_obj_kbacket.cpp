@@ -635,7 +635,6 @@ void daObj_KBacket_c::setSmokePrtcl() {
 }
 
 void daObj_KBacket_c::setWaterPrtcl() {
-    /* 80587EF0-80587EF8 000078 0008+00 1/1 0/0 0/0 .data            emttrId$4670 */
     static u16 emttrId[4] = {
         0x01B8,
         0x01B9,

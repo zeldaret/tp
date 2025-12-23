@@ -276,7 +276,6 @@ static void damage_check(e_gob_class* i_this) {
     }
 }
 
-/* 806DF2C5 0003+00 data_806DF2C5 None */
 static u8 hio_set;
 
 static daE_GOB_HIO_c l_HIO;

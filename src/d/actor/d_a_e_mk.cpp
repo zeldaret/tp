@@ -137,10 +137,8 @@ static cXyz demo_jump_pos_3(2400.0f, 1115.0f, -1850.0f);
 
 static cXyz STAGE_CENTER_POS;
 
-/* 8071CB08 0002+00 data_8071CB08 STAGE_ANGLE_Y */
 static s16 STAGE_ANGLE_Y;
 
-/* 8071CB0A 0001+00 .bss */
 u8 hio_set;
 
 static daE_MK_HIO_c l_HIO;

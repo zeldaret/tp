@@ -4357,9 +4357,6 @@ void jmessage_string_tMeasureProcessor::do_rubyset(void const* i_data, u32 i_siz
     }
 }
 
-/* 80230A08-80230A5C 22B348 0054+00 0/0 1/1 0/0 .text
- * __ct__34jmessage_string_tSequenceProcessorFPC26jmessage_string_tReferenceP24jmessage_string_tControl
- */
 jmessage_string_tSequenceProcessor::jmessage_string_tSequenceProcessor(
     jmessage_string_tReference const* pReference, jmessage_string_tControl* pControl) :
     JMessage::TSequenceProcessor(pReference, pControl),

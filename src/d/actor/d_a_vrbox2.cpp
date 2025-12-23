@@ -180,7 +180,6 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
 
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
-            /* 80499B78-80499B7C 000000 0002+02 1/1 0/0 0/0 .bss             mangZ$3688 */
             static s16 mangZ;
 
             sp14 = sun_p->mPos[0];

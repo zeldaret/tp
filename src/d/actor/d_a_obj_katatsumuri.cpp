@@ -30,7 +30,6 @@ static u8 const l_kat_itemno[2] = {
 };
 
 void daObjKAT_c::InitCcSph() {
-    /* 80C3C67C-80C3C6BC 000008 0040+00 1/1 0/0 0/0 .rodata          ccSphSrc$3779 */
     const static dCcD_SrcSph ccSphSrc = {
         {
             {0x0, {{0x0, 0x0, 0x0}, {0x14002, 0x11}, 0x0}}, // mObj

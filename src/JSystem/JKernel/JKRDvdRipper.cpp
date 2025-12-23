@@ -18,9 +18,6 @@ static int decompSZS_subroutine(u8*, u8*);
 static u8* firstSrcData();
 static u8* nextSrcData(u8*);
 
-/* 802D9B98-802D9C54 2D44D8 00BC+00 0/0 1/1 0/0 .text
- * loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
- */
 void* JKRDvdRipper::loadToMainRAM(char const* name, u8* dst, JKRExpandSwitch expandSwitch,
                                   u32 dstLength, JKRHeap* heap,
                                   JKRDvdRipper::EAllocDirection allocDirection, u32 offset,
@@ -33,9 +30,6 @@ void* JKRDvdRipper::loadToMainRAM(char const* name, u8* dst, JKRExpandSwitch exp
                          pCompression, param_8);
 }
 
-/* 802D9C54-802D9D10 2D4594 00BC+00 0/0 9/9 0/0 .text
- * loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
- */
 void* JKRDvdRipper::loadToMainRAM(s32 entryNumber, u8* dst, JKRExpandSwitch expandSwitch,
                                   u32 dstLength, JKRHeap* heap,
                                   JKRDvdRipper::EAllocDirection allocDirection, u32 offset,
@@ -50,9 +44,6 @@ void* JKRDvdRipper::loadToMainRAM(s32 entryNumber, u8* dst, JKRExpandSwitch expa
 
 static u8 errorRetry = 0x01;
 
-/* 802D9D10-802DA1E4 2D4650 04D4+00 2/2 0/0 0/0 .text
- * loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
- */
 void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch expandSwitch,
                                   u32 dstLength, JKRHeap* heap,
                                   JKRDvdRipper::EAllocDirection allocDirection, u32 offset,

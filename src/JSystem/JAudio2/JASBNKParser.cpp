@@ -270,9 +270,6 @@ JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* h
     return bank;
 }
 
-/* 80299E68-80299F8C 2947A8 0124+00 1/1 0/0 0/0 .text
- * findOscPtr__Q212JASBNKParser4Ver0FP12JASBasicBankPCQ312JASBNKParser4Ver07THeaderPCQ312JASBNKParser4Ver04TOsc
- */
 JASOscillator::Data* JASBNKParser::Ver0::findOscPtr(JASBasicBank* bank, THeader const* header,
                                                     TOsc const* osc) {
     TOffsetData const* data = &header->mOffsets;

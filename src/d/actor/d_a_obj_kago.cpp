@@ -28,7 +28,6 @@ daObj_Kago_Param_c::Data const daObj_Kago_Param_c::m = {
     10.0f,
 };
 
-// /* 80C33CAC-80C33CDC 00002C 0030+00 0/0 0/0 0/0 .rodata          l_ccDObjData */
 const dCcD_SrcGObjInf l_ccDObjData = {
     {0, // mFlags
         {

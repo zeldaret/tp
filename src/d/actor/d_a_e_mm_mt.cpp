@@ -261,8 +261,6 @@ static void e_mm_mt_carry(e_mm_mt_class* i_this) {
     cLib_addCalcAngleS2(&i_this->m_carryAngleSpeed, 0x2000, 1, 0x100);
 }
 
-// /* 807239CC-80723B70 000ACC 01A4+00 1/1 0/0 0/0 .text            wall_angle_get__FP13e_mm_mt_class
-//  */
 static s16 wall_angle_get(e_mm_mt_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     cXyz vec1, vec2, vec3[2];

@@ -118,7 +118,6 @@ static int daB_OH_Draw(b_oh_class* i_this) {
     return 1;
 }
 
-/* 8061DBB5 0003+00 data_8061DBB5 None */
 static u8 data_8061DBB5;
 
 static daB_OH_HIO_c l_HIO;

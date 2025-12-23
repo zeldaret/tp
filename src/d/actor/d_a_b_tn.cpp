@@ -342,7 +342,6 @@ void daB_TN_c::calcWaistAngle() {
     cLib_addCalcAngleS2(&mWaistAngle, sVar1, 4, 0x1000);
 }
 
-/* 8062F01D 0003+00 data_8062F01D None */
 static u8 hio_set;
 
 static daB_TN_HIO_c l_HIO;

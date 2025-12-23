@@ -1060,9 +1060,6 @@ void mDoExt_morf_c::frameUpdate() {
     mFrameCtrl.update();
 }
 
-/* 8000FC4C-8000FD10 00A58C 00C4+00 0/0 0/0 34/34 .text
- * __ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
- */
 mDoExt_McaMorf::mDoExt_McaMorf(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* callback1,
                                    mDoExt_McaMorfCallBack2_c* callback2, J3DAnmTransform* anmTransform,
                                    int param_4, f32 param_5, int param_6, int param_7, int param_8,
@@ -1079,9 +1076,6 @@ mDoExt_McaMorf::~mDoExt_McaMorf() {
     }
 }
 
-/* 8000FD94-80010074 00A6D4 02E0+00 1/1 0/0 0/0 .text
- * create__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl
- */
 int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* callback1,
                            mDoExt_McaMorfCallBack2_c* callback2, J3DAnmTransform* anmTransform,
                            int param_4, f32 param_5, int param_6, int param_7, int param_8,
@@ -1320,9 +1314,6 @@ void mDoExt_McaMorf::getTransform(u16 param_0, J3DTransformInfo* param_1) {
     }
 }
 
-/* 800107D0-80010888 00B110 00B8+00 0/0 2/2 222/222 .text
- * __ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
- */
 mDoExt_McaMorfSO::mDoExt_McaMorfSO(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
                                    mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
                                    int param_4, f32 param_5, int param_6, int param_7,
@@ -1337,9 +1328,6 @@ mDoExt_McaMorfSO::~mDoExt_McaMorfSO() {
     stopZelAnime();
 }
 
-/* 800108F0-80010B68 00B230 0278+00 1/1 0/0 0/0 .text
- * create__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl
- */
 int mDoExt_McaMorfSO::create(J3DModelData* i_modelData, mDoExt_McaMorfCallBack1_c* param_1,
                              mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
                              int param_4, f32 param_5, int param_6, int param_7,
@@ -1618,9 +1606,6 @@ void mDoExt_McaMorfSO::stopZelAnime() {
     }
 }
 
-/* 80011348-800113FC 00BC88 00B4+00 0/0 0/0 1/1 .text
- * __ct__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl
- */
 mDoExt_McaMorf2::mDoExt_McaMorf2(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
                                  mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
                                  J3DAnmTransform* param_4, int param_5, f32 param_6, int param_7,
@@ -1633,9 +1618,6 @@ mDoExt_McaMorf2::~mDoExt_McaMorf2() {
     stopZelAnime();
 }
 
-/* 80011464-800116B4 00BDA4 0250+00 1/1 0/0 0/0 .text
- * create__15mDoExt_McaMorf2FP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformP15J3DAnmTransformifiiP10Z2CreatureUlUl
- */
  int mDoExt_McaMorf2::create(J3DModelData* param_0, mDoExt_McaMorfCallBack1_c* param_1,
                                  mDoExt_McaMorfCallBack2_c* param_2, J3DAnmTransform* param_3,
                                  J3DAnmTransform* param_4, int param_5, f32 param_6, int param_7,

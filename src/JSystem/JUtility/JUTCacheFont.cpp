@@ -339,9 +339,6 @@ JUTCacheFont::TGlyphCacheInfo* JUTCacheFont::determineBlankPage() {
     return NULL;
 }
 
-/* 802DDBBC-802DDCE4 2D84FC 0128+00 1/1 0/0 0/0 .text
- * getGlyphFromAram__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfoPQ212JUTCacheFont10TCachePagePiPi
- */
 void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo* param_0,
                                     JUTCacheFont::TCachePage* pCachePage, int* param_2, int* param_3) {
     TGlyphCacheInfo* pGylphCacheInfo = pCachePage;

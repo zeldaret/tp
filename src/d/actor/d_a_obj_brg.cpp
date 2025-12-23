@@ -353,7 +353,6 @@ static int daObj_Brg_Draw(obj_brg_class* i_this) {
     return 1;
 }
 
-/* 80BC2526 0002+00 data_80BC2526 wy */
 static s16 wy;
 
 static void control1(obj_brg_class* i_this, br_s* i_part) {

@@ -434,10 +434,8 @@ bool daE_FK_c::checkViewArea() {
 }
 
 namespace {
-/* 806BB974 0002+00 data_806BB974 s_HorseAngle__22@unnamed@d_a_e_fk_cpp@ */
 static s16 s_HorseAngle;
 
-/* 806BB976 0002+00 data_806BB976 s_AttackChk__22@unnamed@d_a_e_fk_cpp@ */
 static s16 s_AttackChk;
 }
 

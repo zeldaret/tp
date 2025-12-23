@@ -204,7 +204,6 @@ daE_VA_HIO_c::daE_VA_HIO_c() {
     mKRegLightA = 210.0f;
 }
 
-/* 807CF4B5 0003+00 data_807CF4B5 None */
 #pragma push
 #pragma force_active on
 static u8 hio_set;

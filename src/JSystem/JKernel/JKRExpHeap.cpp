@@ -564,9 +564,6 @@ void JKRExpHeap::appendUsedList(JKRExpHeap::CMemBlock* newblock) {
     newblock->mNext = NULL;
 }
 
-/* 802CFE68-802CFEB4 2CA7A8 004C+00 5/5 0/0 0/0 .text
- * setFreeBlock__10JKRExpHeapFPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlockPQ210JKRExpHeap9CMemBlock
- */
 void JKRExpHeap::setFreeBlock(CMemBlock* block, CMemBlock* prev, CMemBlock* next) {
     if (prev == NULL) {
         mHeadFreeList = block;

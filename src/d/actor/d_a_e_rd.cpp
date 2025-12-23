@@ -585,7 +585,6 @@ static u8 hio_set;
 
 static daE_RD_HIO_c l_HIO;
 
-/* 805191E4 0002+00 data_805191E4 S_find */
 static s16 S_find;
 
 static s8 lbl_70_bss_AE;

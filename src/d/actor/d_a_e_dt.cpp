@@ -156,7 +156,6 @@ dCcD_SrcSph E_DT_n::cc_dt_tongue_src = {
     } // mSphAttr
 };
 
-/* 806B629D 0003+00 data_806B629D None */
 static bool hio_set;
 
 static daE_DT_HIO_c l_HIO;

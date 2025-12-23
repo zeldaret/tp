@@ -172,10 +172,8 @@ void* JUTGamePad::C3ButtonReset::sCallbackArg;
 
 OSTime JUTGamePad::C3ButtonReset::sThreshold = (OSTime)(OS_TIMER_CLOCK / 60) * 30;
 
-/* 80451500 0001+00 data_80451500 None */
 bool JUTGamePad::C3ButtonReset::sResetSwitchPushing;
 
-/* 80451501 0003+00 data_80451501 None */
 bool JUTGamePad::C3ButtonReset::sResetOccurred;
 
 s32 JUTGamePad::C3ButtonReset::sResetOccurredPort;

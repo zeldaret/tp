@@ -128,7 +128,6 @@ enum Mode {
     /* 0x07 */ Mode7,
 };
 
-/* 8074C385 0003+00 data_8074C385 None */
 static bool hio_set;
 
 static daE_PM_HIO_c l_HIO;

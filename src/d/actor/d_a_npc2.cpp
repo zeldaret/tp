@@ -734,9 +734,6 @@ int daBaseNpc_moveBgActor_c::MoveBGCreateHeap() {
     return 1;
 }
 
-/* 8014F60C-8014F6FC 149F4C 00F0+00 0/0 0/0 1/1 .text
- * MoveBGCreate__23daBaseNpc_moveBgActor_cFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUl
- */
 int daBaseNpc_moveBgActor_c::MoveBGCreate(char const* i_arcName, int i_dzbId, MoveBGActor_SetFunc i_setFunc,
                                           u32 i_heapSize) {
     int unusedInt1 = 1;

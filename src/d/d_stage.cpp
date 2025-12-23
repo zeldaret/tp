@@ -1501,16 +1501,12 @@ const char* dStage_getName2(s16 procName, s8 argument) {
 
 u32 dStage_roomControl_c::mProcID;
 
-/* 80450D64 0001+00 data_80450D64 None */
 s8 dStage_roomControl_c::mStayNo;
 
-/* 80450D65 0001+00 data_80450D65 None */
 s8 dStage_roomControl_c::mOldStayNo;
 
-/* 80450D66 0001+00 data_80450D66 None */
 s8 dStage_roomControl_c::mNextStayNo;
 
-/* 80450D67 0001+00 data_80450D67 None */
 u8 dStage_roomControl_c::m_time_pass;
 
 u8 dStage_roomControl_c::mNoChangeRoom;

@@ -3194,7 +3194,6 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 }
 
 int daNPC_TK_c::create() {
-    /* 80B0C4D4-80B0C514 0000E0 0040+00 1/1 0/0 0/0 .data            cc_sph_src$8096 */
     static dCcD_SrcSph cc_sph_src = {
         {
             {0x0, {{AT_TYPE_THROW_OBJ, 0x1, 0x1f}, {0x0, 0x0}, 0x69}},  // mObj

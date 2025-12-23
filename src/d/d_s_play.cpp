@@ -61,10 +61,8 @@ static OSTime resPreLoadTime1;
 
 static dScnPly_preLoad_HIO_c g_preLoadHIO;
 
-/* 80451124 0001+00 data_80451124 None */
 s8 dScnPly_c::pauseTimer;
 
-/* 80451125 0003+00 nextPauseTimer__9dScnPly_c None */
 s8 dScnPly_c::nextPauseTimer;
 
 s8 dScnPly_c::calcPauseTimer() {

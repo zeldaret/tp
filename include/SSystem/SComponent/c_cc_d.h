@@ -403,24 +403,24 @@ public:
     virtual bool CrossAtTg(cCcD_ShapeAttr const&, cXyz*) const {
         return false;
     }
-    /*          vt[4] */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const = 0;
-    /*          vt[5] */ virtual bool CrossAtTg(cCcD_CpsAttr const&, cXyz*) const = 0;
-    /*          vt[6] */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const = 0;
-    /*          vt[7] */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const = 0;
-    /*          vt[8] */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const = 0;
-    /*          vt[9] */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const = 0;
-    /* 802649E0 vt[10]*/ virtual bool CrossCo(cCcD_ShapeAttr const&, f32*) const { return false; }
-    /*          vt[11]*/ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const = 0;
-    /*          vt[12]*/ virtual bool CrossCo(cCcD_CpsAttr const&, f32*) const = 0;
-    /*          vt[13]*/ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const = 0;
-    /*          vt[14]*/ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const = 0;
-    /*          vt[15]*/ virtual bool CrossCo(cCcD_CylAttr const&, f32*) const = 0;
-    /*          vt[16]*/ virtual bool CrossCo(cCcD_SphAttr const&, f32*) const = 0;
-    /* 80084E38 vt[17]*/ virtual const cXyz& GetCoCP() const { return m_virtual_center; }
-    /* 80084E2C vt[18]*/ virtual cXyz& GetCoCP() { return m_virtual_center; }
-    /*          vt[19]*/ virtual void CalcAabBox() = 0;
-    /*          vt[20]*/ virtual bool GetNVec(cXyz const&, cXyz*) const = 0;
-    /* 80263A64 vt[21]*/ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
+    /* vt[4] */ virtual bool CrossAtTg(cCcD_PntAttr const&, cXyz*) const = 0;
+    /* vt[5] */ virtual bool CrossAtTg(cCcD_CpsAttr const&, cXyz*) const = 0;
+    /* vt[6] */ virtual bool CrossAtTg(cCcD_TriAttr const&, cXyz*) const = 0;
+    /* vt[7] */ virtual bool CrossAtTg(cCcD_AabAttr const&, cXyz*) const = 0;
+    /* vt[8] */ virtual bool CrossAtTg(cCcD_CylAttr const&, cXyz*) const = 0;
+    /* vt[9] */ virtual bool CrossAtTg(cCcD_SphAttr const&, cXyz*) const = 0;
+    /* vt[10]*/ virtual bool CrossCo(cCcD_ShapeAttr const&, f32*) const { return false; }
+    /* vt[11]*/ virtual bool CrossCo(cCcD_PntAttr const&, f32*) const = 0;
+    /* vt[12]*/ virtual bool CrossCo(cCcD_CpsAttr const&, f32*) const = 0;
+    /* vt[13]*/ virtual bool CrossCo(cCcD_TriAttr const&, f32*) const = 0;
+    /* vt[14]*/ virtual bool CrossCo(cCcD_AabAttr const&, f32*) const = 0;
+    /* vt[15]*/ virtual bool CrossCo(cCcD_CylAttr const&, f32*) const = 0;
+    /* vt[16]*/ virtual bool CrossCo(cCcD_SphAttr const&, f32*) const = 0;
+    /* vt[17]*/ virtual const cXyz& GetCoCP() const { return m_virtual_center; }
+    /* vt[18]*/ virtual cXyz& GetCoCP() { return m_virtual_center; }
+    /* vt[19]*/ virtual void CalcAabBox() = 0;
+    /* vt[20]*/ virtual bool GetNVec(cXyz const&, cXyz*) const = 0;
+    /* vt[21]*/ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
 
     cM3dGAab& GetWorkAab() { return mAab; }
     cM3dGAab const& GetWorkAab() const { return mAab; }
