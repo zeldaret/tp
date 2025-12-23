@@ -544,16 +544,13 @@ void fopAcM_setCullSizeSphere(fopAc_ac_c* i_actor, f32 i_minX, f32 i_minY, f32 i
 
 void fopAcM_setCullSizeBox2(fopAc_ac_c* i_actor, J3DModelData* i_modelData) {
     J3DJoint* jointNode = i_modelData->getJointNodePointer(0);
-    f32 minY, minZ, maxX, maxY, maxZ;
-
-    maxZ = i_actor->scale.z * jointNode->getMax()->z;
-    maxY = i_actor->scale.y * jointNode->getMax()->y;
-    maxX = i_actor->scale.x * jointNode->getMax()->x;
-    minZ = i_actor->scale.z * jointNode->getMin()->z;
-    minY = i_actor->scale.y * jointNode->getMin()->y;
-
-    fopAcM_setCullSizeBox(i_actor, i_actor->scale.x * jointNode->getMin()->x, minY, minZ, maxX,
-                          maxY, maxZ);
+    fopAcM_setCullSizeBox(i_actor, 
+                          i_actor->scale.x * jointNode->getMin()->x,
+                          i_actor->scale.y * jointNode->getMin()->y,
+                          i_actor->scale.z * jointNode->getMin()->z,
+                          i_actor->scale.x * jointNode->getMax()->x,
+                          i_actor->scale.y * jointNode->getMax()->y,
+                          i_actor->scale.z * jointNode->getMax()->z);
 }
 
 bool fopAcM_addAngleY(fopAc_ac_c* i_actor, s16 i_target, s16 i_step) {
