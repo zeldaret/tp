@@ -231,8 +231,8 @@ void daE_BG_c::setSparkEffect() {
 
 fopAc_ac_c* daE_BG_c::search_esa() {
     dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD);
-    if (rod != NULL && rod->kind == 1 && rod->action != 5 && rod->field_0x100d != 0 &&
-        rod->actor.current.pos.y < rod->field_0x590 - 20.0f) {
+    if (rod != NULL && rod->kind == 1 && rod->action != 5 && rod->is_hook_in_water != 0 &&
+        rod->actor.current.pos.y < rod->water_surface_y - 20.0f) {
         return &rod->actor;
     } else {
         return NULL;

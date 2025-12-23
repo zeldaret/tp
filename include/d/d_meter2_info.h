@@ -117,7 +117,7 @@ public:
     bool isUseButton(int i_buttonBit) { return i_buttonBit & mUseButton; }
     void setMeterMapClass(dMeterMap_c* i_map) { mMeterMap = i_map; }
     void resetGameStatus() { mGameStatus = 0; }
-    void onGameStatus(int i_status) { mGameStatus |= i_status; }
+    void onGameStatus(int i_status) { mGameStatus |= (u16)i_status; }
     void setMapStatus(u8 i_status) { mMapStatus = i_status; }
     u8 getMapStatus() { return mMapStatus; }
     void setPauseStatus(u8 i_status) { mPauseStatus = i_status; }

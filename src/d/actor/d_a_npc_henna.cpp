@@ -601,7 +601,7 @@ static void henna_ride(npc_henna_class* i_this) {
                     lookat_pos.y = 0.0f;
                     lookat_pos.z = -100.0f + VREG_F(8);
                     MtxPosition(&lookat_pos, &pos);
-                    pos.y = lrl->field_0x590;
+                    pos.y = lrl->water_surface_y;
                     f32 unkFloat1;
                     if (i_this->mAnmResIndex == 7) {
                         unkFloat1 = 22.0f;
@@ -630,7 +630,7 @@ static void henna_ride(npc_henna_class* i_this) {
         i_this->field_0x70d = 10;
     }
 
-    if ((lrl != NULL && lrl->field_0x146d != 0) || i_this->field_0x7b8 != 0 ||
+    if ((lrl != NULL && lrl->msg_flow_state != 0) || i_this->field_0x7b8 != 0 ||
         dComIfGp_checkPlayerStatus0(0, 0x2000) != 0)
     {
         i_this->field_0x70d = 2;
