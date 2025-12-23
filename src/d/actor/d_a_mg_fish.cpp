@@ -1039,7 +1039,7 @@ static void mf_away(mg_fish_class* i_this) {
         break;
     case 5:
         if (i_this->mGedouKind < GEDOU_KIND_BG) {
-            if ((i_this->mAcch.m_flags & (1 << 4)) != 0) {
+            if (i_this->mAcch.ChkWallHit()) {
                 if (i_this->field_0x624[1] == 0) {
                     i_this->mActionPhase = 0;
                     i_this->field_0x624[1] = 40;
@@ -1982,7 +1982,7 @@ static void mf_jump(mg_fish_class* i_this) {
         i_this->mMaxStep = 0x600;
         i_this->actor.current.pos += i_this->field_0x5e0;
         i_this->field_0x5e0.y = i_this->field_0x5e0.y - 2.0f;
-        if ((i_this->mAcch.m_flags & 0x20) != 0) {
+        if (i_this->mAcch.ChkGroundHit()) {
             i_this->actor.current.pos.x = i_this->actor.old.pos.x;
             i_this->actor.current.pos.y = i_this->actor.old.pos.y;
             i_this->actor.current.pos.z = i_this->actor.old.pos.z;

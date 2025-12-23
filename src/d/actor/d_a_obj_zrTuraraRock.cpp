@@ -125,8 +125,8 @@ void daZrTuraRc_c::modeDrop() {
 }
 
 void daZrTuraRc_c::bgCheck() {
-    // this should be ChkGroundHit but that doesn't match
-    if (mAcch.m_flags >> 5 & 1) {
+    bool r31 = mAcch.ChkGroundHit();
+    if (r31) {
         init_modeDropEnd();
     }
 }
