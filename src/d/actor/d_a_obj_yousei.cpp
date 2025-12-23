@@ -861,7 +861,7 @@ static actor_method_class l_daObjYOUSEI_Method = {
     (process_method_func)daObjYOUSEI_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Yousei = {
+actor_process_profile_definition g_profile_Obj_Yousei = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

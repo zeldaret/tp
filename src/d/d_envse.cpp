@@ -236,7 +236,7 @@ static leafdraw_method_class l_dEnvSe_Method = {
     (process_method_func)dEnvSe_Draw,
 };
 
-extern kankyo_process_profile_definition g_profile_ENVSE = {
+kankyo_process_profile_definition g_profile_ENVSE = {
     fpcLy_CURRENT_e,
     2,
     fpcPi_CURRENT_e,

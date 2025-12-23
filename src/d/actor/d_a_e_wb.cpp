@@ -5819,7 +5819,7 @@ static actor_method_class l_daE_WB_Method = {
     (process_method_func)daE_WB_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_WB = {
+actor_process_profile_definition g_profile_E_WB = {
     fpcLy_CURRENT_e,         // mLayerID
     4,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

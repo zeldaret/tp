@@ -1769,7 +1769,7 @@ static actor_method_class daNpc_zrC_MethodTable = {
     (process_method_func)daNpc_zrC_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_ZRC = {
+actor_process_profile_definition g_profile_NPC_ZRC = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

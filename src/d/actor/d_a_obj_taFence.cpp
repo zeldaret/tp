@@ -413,7 +413,7 @@ static actor_method_class l_daTaFence_Method = {
     (process_method_func)daTaFence_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_TaFence = {
+actor_process_profile_definition g_profile_Obj_TaFence = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

@@ -2231,7 +2231,7 @@ static actor_method_class l_daB_GM_Method = {
     (process_method_func)daB_GM_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_GM = {
+actor_process_profile_definition g_profile_B_GM = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

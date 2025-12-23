@@ -686,7 +686,7 @@ static actor_method_class daObj_KBacket_MethodTable = {
     (process_method_func)daObj_KBacket_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_KBACKET = {
+actor_process_profile_definition g_profile_OBJ_KBACKET = {
     fpcLy_CURRENT_e,            // mLayerID
     8,                          // mListID
     fpcPi_CURRENT_e,            // mListPrio

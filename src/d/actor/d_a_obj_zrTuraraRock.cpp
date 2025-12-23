@@ -177,7 +177,7 @@ static actor_method_class l_daZrTuraRc_Method = {
     (process_method_func)daZrTuraRc_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_zrTuraraRc = {
+actor_process_profile_definition g_profile_Obj_zrTuraraRc = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

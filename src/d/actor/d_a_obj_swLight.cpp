@@ -474,7 +474,7 @@ static actor_method_class daObjSwLight_METHODS = {
     (process_method_func)daObjSwLight_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_SwLight = {
+actor_process_profile_definition g_profile_Obj_SwLight = {
     fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

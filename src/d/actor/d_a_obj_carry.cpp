@@ -4299,7 +4299,7 @@ static actor_method_class l_daObjCarry_Method = {
     (process_method_func)daObjCarry_Execute, (process_method_func)NULL,
     (process_method_func)daObjCarry_Draw};
 
-extern actor_process_profile_definition g_profile_Obj_Carry = {
+actor_process_profile_definition g_profile_Obj_Carry = {
     fpcLy_CURRENT_e,         // mLayerID
     8,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

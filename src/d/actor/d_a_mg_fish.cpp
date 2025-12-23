@@ -4059,7 +4059,7 @@ static actor_method_class l_daMg_Fish_Method = {
     (process_method_func)daMg_Fish_Draw,
 };
 
-extern actor_process_profile_definition g_profile_MG_FISH = {
+actor_process_profile_definition g_profile_MG_FISH = {
     (uint)fpcLy_CURRENT_e,  // mLayerID
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio

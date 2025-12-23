@@ -8670,7 +8670,7 @@ static leafdraw_method_class l_dKy_Method = {
     (process_method_func)dKy_Draw,
 };
 
-extern kankyo_process_profile_definition g_profile_KANKYO = {
+kankyo_process_profile_definition g_profile_KANKYO = {
     fpcLy_CURRENT_e,
     1,
     fpcPi_CURRENT_e,

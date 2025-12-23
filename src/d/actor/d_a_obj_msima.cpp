@@ -514,7 +514,7 @@ static actor_method_class l_daObj_Msima_Method = {
     (process_method_func)daObj_Msima_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_MSIMA = {
+actor_process_profile_definition g_profile_OBJ_MSIMA = {
   fpcLy_CURRENT_e,         // mLayerID
   3,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

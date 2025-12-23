@@ -2500,7 +2500,7 @@ static actor_method_class l_daDo_Method = {
     (process_method_func)daDo_Draw,
 };
 
-extern actor_process_profile_definition g_profile_DO = {
+actor_process_profile_definition g_profile_DO = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

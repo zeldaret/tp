@@ -1892,7 +1892,7 @@ static actor_method_class l_daDemo00_Method = {
     (process_method_func)daDemo00_Draw,
 };
 
-extern actor_process_profile_definition g_profile_DEMO00 = {
+actor_process_profile_definition g_profile_DEMO00 = {
   fpcLy_CURRENT_e,       // mLayerID
   7,                     // mListID
   fpcPi_CURRENT_e,       // mListPrio

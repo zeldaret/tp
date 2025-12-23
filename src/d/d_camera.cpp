@@ -10070,7 +10070,7 @@ static leafdraw_method_class method = {
     (process_method_func)camera_draw,
 };
 
-extern camera_process_profile_definition g_profile_CAMERA = {
+camera_process_profile_definition g_profile_CAMERA = {
     fpcLy_CURRENT_e,
     11,
     fpcPi_CURRENT_e,
@@ -10091,7 +10091,7 @@ extern camera_process_profile_definition g_profile_CAMERA = {
     0,
 };
 
-extern camera_process_profile_definition g_profile_CAMERA2 = {
+camera_process_profile_definition g_profile_CAMERA2 = {
     fpcLy_CURRENT_e,
     11,
     fpcPi_CURRENT_e,

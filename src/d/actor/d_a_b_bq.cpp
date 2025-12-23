@@ -2672,7 +2672,7 @@ static actor_method_class l_daB_BQ_Method = {
     (process_method_func)daB_BQ_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_BQ = {
+actor_process_profile_definition g_profile_B_BQ = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

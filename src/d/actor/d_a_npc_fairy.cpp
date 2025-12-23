@@ -3063,7 +3063,7 @@ static actor_method_class daNpc_Fairy_MethodTable = {
     (process_method_func)daNpc_Fairy_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_FAIRY = {
+actor_process_profile_definition g_profile_NPC_FAIRY = {
   fpcLy_CURRENT_e,          // mLayerID
   7,                        // mListID
   fpcPi_CURRENT_e,          // mListPrio

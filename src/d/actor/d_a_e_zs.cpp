@@ -567,7 +567,7 @@ static actor_method_class l_daE_ZS_Method = {
     (process_method_func)daE_ZS_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_ZS = {
+actor_process_profile_definition g_profile_E_ZS = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

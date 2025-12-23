@@ -133,7 +133,7 @@ static actor_method_class daObjBBox_METHODS = {
     (process_method_func)daObjBBox_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_BBox = {
+actor_process_profile_definition g_profile_Obj_BBox = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

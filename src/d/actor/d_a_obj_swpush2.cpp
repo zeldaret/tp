@@ -714,7 +714,7 @@ actor_method_class Mthd_Table = {
 }
 }
 
-extern actor_process_profile_definition g_profile_Obj_Swpush2 = {
+actor_process_profile_definition g_profile_Obj_Swpush2 = {
   fpcLy_CURRENT_e,        // mLayerID
   2,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

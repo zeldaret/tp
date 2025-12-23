@@ -3264,7 +3264,7 @@ static actor_method_class l_daNPC_TK_Method = {
     (process_method_func)daNPC_TK_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_TK = {
+actor_process_profile_definition g_profile_NPC_TK = {
     fpcLy_CURRENT_e,         // mLayerID
     6,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

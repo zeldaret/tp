@@ -374,7 +374,7 @@ static actor_method_class l_daTagLv7Gate_Method = {
     (process_method_func)daTagLv7Gate_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Tag_Lv7Gate = {
+actor_process_profile_definition g_profile_Tag_Lv7Gate = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

@@ -4115,7 +4115,7 @@ static actor_method_class daNpc_grA_MethodTable = {
     (process_method_func)daNpc_grA_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_GRA = {
+actor_process_profile_definition g_profile_NPC_GRA = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

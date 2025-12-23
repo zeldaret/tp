@@ -335,7 +335,7 @@ static actor_method_class daObjKWheel01_METHODS = {
     (process_method_func)daObjKWheel01_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_KWheel01 = {
+actor_process_profile_definition g_profile_Obj_KWheel01 = {
   fpcLy_CURRENT_e,         // mLayerID
   3,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

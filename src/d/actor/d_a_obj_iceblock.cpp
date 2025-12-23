@@ -833,7 +833,7 @@ static actor_method_class daObjIceBlk_METHODS = {
     (process_method_func)daObjIceBlk_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_IceBlock = {
+actor_process_profile_definition g_profile_Obj_IceBlock = {
     fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

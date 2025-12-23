@@ -193,7 +193,7 @@ static actor_method_class l_daObjTable_Method = {
     (process_method_func)daObjTable_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Table = {
+actor_process_profile_definition g_profile_Obj_Table = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

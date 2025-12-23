@@ -811,7 +811,7 @@ static actor_method_class l_daMant_Method = {
     (process_method_func)daMant_Draw,
 };
 
-extern actor_process_profile_definition g_profile_MANT = {
+actor_process_profile_definition g_profile_MANT = {
   fpcLy_CURRENT_e,         // mLayerID
   8,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

@@ -454,7 +454,7 @@ static actor_method_class l_daVrbox2_Method = {
     (process_method_func)daVrbox2_Draw,
 };
 
-extern actor_process_profile_definition g_profile_VRBOX2 = {
+actor_process_profile_definition g_profile_VRBOX2 = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

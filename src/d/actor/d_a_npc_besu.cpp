@@ -3006,7 +3006,7 @@ static actor_method_class daNpc_Besu_MethodTable = {
     (process_method_func)daNpc_Besu_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_BESU = {
+actor_process_profile_definition g_profile_NPC_BESU = {
   fpcLy_CURRENT_e,         // mLayerID
   7,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

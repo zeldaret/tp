@@ -1559,7 +1559,7 @@ static actor_method_class daNpc_Yelia_MethodTable = {
     (process_method_func)daNpc_Yelia_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_YELIA = {
+actor_process_profile_definition g_profile_NPC_YELIA = {
   fpcLy_CURRENT_e,          // mLayerID
   7,                        // mListID
   fpcPi_CURRENT_e,          // mListPrio

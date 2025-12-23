@@ -1045,7 +1045,7 @@ static actor_method_class l_daTagTWGate_Method = {
     (process_method_func)daTagTWGate_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Tag_TWGate = {
+actor_process_profile_definition g_profile_Tag_TWGate = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

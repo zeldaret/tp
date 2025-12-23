@@ -502,7 +502,7 @@ static actor_method_class l_daObj_Food_Method = {
     (process_method_func)daObj_Food_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_FOOD = {
+actor_process_profile_definition g_profile_OBJ_FOOD = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

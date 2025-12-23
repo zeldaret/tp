@@ -328,7 +328,7 @@ static leafdraw_method_class l_dScnName_Method = {
     (process_method_func)dScnName_Draw,
 };
 
-extern scene_process_profile_definition g_profile_NAME_SCENE = {
+scene_process_profile_definition g_profile_NAME_SCENE = {
     fpcLy_ROOT_e,
     1,
     fpcPi_CURRENT_e,
@@ -342,7 +342,7 @@ extern scene_process_profile_definition g_profile_NAME_SCENE = {
     NULL,
 };
 
-extern scene_process_profile_definition g_profile_NAMEEX_SCENE = {
+scene_process_profile_definition g_profile_NAMEEX_SCENE = {
     fpcLy_ROOT_e,
     1,
     fpcPi_CURRENT_e,

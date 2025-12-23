@@ -1728,7 +1728,7 @@ static leafdraw_method_class l_dMw_Method = {
     (process_method_func)dMw_Draw,
 };
 
-extern msg_process_profile_definition g_profile_MENUWINDOW = {
+msg_process_profile_definition g_profile_MENUWINDOW = {
     fpcLy_CURRENT_e,
     12,
     fpcPi_CURRENT_e,

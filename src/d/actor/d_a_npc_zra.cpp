@@ -2319,7 +2319,7 @@ static actor_method_class daNpc_zrA_MethodTable = {
     (process_method_func)daNpc_zrA_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_ZRA = {
+actor_process_profile_definition g_profile_NPC_ZRA = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

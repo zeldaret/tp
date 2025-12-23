@@ -309,7 +309,7 @@ static actor_method_class daObj_AutoMata_MethodTable = {
     (process_method_func)daObj_AutoMata_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_AUTOMATA = {
+actor_process_profile_definition g_profile_OBJ_AUTOMATA = {
   fpcLy_CURRENT_e,             // mLayerID
   8,                           // mListID
   fpcPi_CURRENT_e,             // mListPrio

@@ -629,7 +629,7 @@ void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* i_tevstr) {
     }
 }
 
-extern actor_method_class g_fopAc_Method = {
+actor_method_class g_fopAc_Method = {
     (process_method_func)fopAc_Create,  (process_method_func)fopAc_Delete,
     (process_method_func)fopAc_Execute, (process_method_func)fopAc_IsDelete,
     (process_method_func)fopAc_Draw,

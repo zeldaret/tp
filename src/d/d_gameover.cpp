@@ -497,7 +497,7 @@ static void* l_dGameover_Method[5] = {
     (void*)dGameover_Draw,
 };
 
-extern void* g_profile_GAMEOVER[10] = {
+void* g_profile_GAMEOVER[10] = {
     (void*)0xFFFFFFFD, (void*)0x000CFFFD,
     (void*)0x03170000, (void*)&g_fpcLf_Method,
     (void*)0x0000011C, (void*)NULL,

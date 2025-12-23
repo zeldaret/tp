@@ -656,7 +656,7 @@ static actor_method_class daObj_Kago_MethodTable = {
     (process_method_func)daObj_Kago_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_KAGO = {
+actor_process_profile_definition g_profile_OBJ_KAGO = {
   fpcLy_CURRENT_e,         // mLayerID
   8,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

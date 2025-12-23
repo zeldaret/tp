@@ -601,7 +601,7 @@ static actor_method_class l_daObjDAN_Method = {
     (process_method_func)daObjDAN_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Dan = {
+actor_process_profile_definition g_profile_Obj_Dan = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

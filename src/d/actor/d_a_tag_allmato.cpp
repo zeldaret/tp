@@ -584,7 +584,7 @@ static actor_method_class daTag_AllMato_MethodTable = {
     (process_method_func)daTag_AllMato_Draw
 };
 
-extern actor_process_profile_definition g_profile_TAG_ALLMATO = {
+actor_process_profile_definition g_profile_TAG_ALLMATO = {
     fpcLy_CURRENT_e,                // mLayerID
     10,                              // mListID
     fpcPi_CURRENT_e,                // mListPri

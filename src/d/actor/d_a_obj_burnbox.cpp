@@ -190,7 +190,7 @@ actor_method_class daObjBurnBox_METHODS = {
     (process_method_func) daObjBurnBox_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_BurnBox = {
+actor_process_profile_definition g_profile_Obj_BurnBox = {
     fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

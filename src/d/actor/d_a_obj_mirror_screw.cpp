@@ -260,7 +260,7 @@ static actor_method_class l_daObjMirrorScrew_Method = {
     (process_method_func)daObjMirrorScrew_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_MirrorScrew = {
+actor_process_profile_definition g_profile_Obj_MirrorScrew = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

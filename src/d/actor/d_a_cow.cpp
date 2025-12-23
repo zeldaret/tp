@@ -59,7 +59,7 @@ static f32 l_CowRoomPosX[20] = {-10600.0f, -10600.0f, -10800.0f, -10800.0f, -110
 static f32 l_CowRoomPosZ[2] = {-19646.0f, -20926.0f};
 
 #define N_WOLF_BUSTERS 3
-extern fpc_ProcID gWolfBustersID[N_WOLF_BUSTERS] = {fpcM_ERROR_PROCESS_ID_e, fpcM_ERROR_PROCESS_ID_e, fpcM_ERROR_PROCESS_ID_e};
+fpc_ProcID gWolfBustersID[N_WOLF_BUSTERS] = {fpcM_ERROR_PROCESS_ID_e, fpcM_ERROR_PROCESS_ID_e, fpcM_ERROR_PROCESS_ID_e};
 
 }  // namespace
 
@@ -3280,7 +3280,7 @@ static actor_method_class daCow_MethodTable = {
     daCow_Create, daCow_Delete, daCow_Execute, daCow_IsDelete, daCow_Draw,
 };
 
-extern actor_process_profile_definition g_profile_COW = {
+actor_process_profile_definition g_profile_COW = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

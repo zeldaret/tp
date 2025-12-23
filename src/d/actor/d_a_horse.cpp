@@ -4546,7 +4546,7 @@ static actor_method_class l_daHorse_Method = {
     (process_method_func)daHorse_Draw,
 };
 
-extern actor_process_profile_definition g_profile_HORSE = {
+actor_process_profile_definition g_profile_HORSE = {
   fpcLy_CURRENT_e,        // mLayerID
   4,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

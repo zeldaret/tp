@@ -943,7 +943,7 @@ static dScnLogo_Method l_dScnLogo_Method[5] = {
     dScnLogo_Draw,
 };
 
-extern scene_process_profile_definition g_profile_LOGO_SCENE = {
+scene_process_profile_definition g_profile_LOGO_SCENE = {
     fpcLy_ROOT_e,
     1,
     fpcPi_CURRENT_e,

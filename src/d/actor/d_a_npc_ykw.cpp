@@ -3042,7 +3042,7 @@ static actor_method_class daNpc_ykW_MethodTable = {
     (process_method_func)daNpc_ykW_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_YKW = {
+actor_process_profile_definition g_profile_NPC_YKW = {
     fpcLy_CURRENT_e,          // mLayerID
     7,                        // mListID
     fpcPi_CURRENT_e,          // mListPrio

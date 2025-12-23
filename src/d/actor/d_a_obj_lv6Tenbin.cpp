@@ -355,7 +355,7 @@ static actor_method_class l_daTenbin_Method = {
     (process_method_func)daTenbin_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Lv6Tenbin = {
+actor_process_profile_definition g_profile_Obj_Lv6Tenbin = {
     fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

@@ -493,7 +493,7 @@ static actor_method_class daObj_SSDrink_MethodTable = {
     (process_method_func)daObj_SSDrink_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_SSDRINK = {
+actor_process_profile_definition g_profile_OBJ_SSDRINK = {
     fpcLy_CURRENT_e,             // mLayerID
     7,                           // mListID
     fpcPi_CURRENT_e,             // mListPrio

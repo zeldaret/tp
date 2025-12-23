@@ -137,7 +137,7 @@ namespace {
 
 };  // namespace daObjTimer
 
-extern actor_process_profile_definition g_profile_Obj_Timer = {
+actor_process_profile_definition g_profile_Obj_Timer = {
   fpcLy_CURRENT_e,          // mLayerID
   10,                       // mListID
   fpcPi_CURRENT_e,          // mListPrio

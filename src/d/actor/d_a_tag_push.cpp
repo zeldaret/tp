@@ -156,7 +156,7 @@ static actor_method_class daTag_Push_MethodTable = {
     (process_method_func)daTag_Push_Draw,
 };
 
-extern actor_process_profile_definition g_profile_TAG_PUSH = {
+actor_process_profile_definition g_profile_TAG_PUSH = {
     fpcLy_CURRENT_e,
     8,
     fpcPi_CURRENT_e,

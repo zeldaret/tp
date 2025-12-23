@@ -195,7 +195,7 @@ static actor_method_class l_daObj_Lbox_Method = {
     (process_method_func)daObj_Lbox_Execute, (process_method_func)daObj_Lbox_IsDelete,
     (process_method_func)daObj_Lbox_Draw};
 
-extern actor_process_profile_definition g_profile_OBJ_LBOX = {
+actor_process_profile_definition g_profile_OBJ_LBOX = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

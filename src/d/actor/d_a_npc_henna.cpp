@@ -2833,7 +2833,7 @@ static actor_method_class l_daNpc_Henna_Method = {
     (process_method_func)daNpc_Henna_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_HENNA = {
+actor_process_profile_definition g_profile_NPC_HENNA = {
     fpcLy_CURRENT_e,          // mLayerID
     7,                        // mListID
     fpcPi_CURRENT_e,          // mListPrio

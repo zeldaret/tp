@@ -5598,7 +5598,7 @@ static actor_method_class l_daB_ZANT_Method = {
     (process_method_func)daB_ZANT_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_ZANT = {
+actor_process_profile_definition g_profile_B_ZANT = {
   fpcLy_CURRENT_e,              // mLayerID
   4,                            // mListID
   fpcPi_CURRENT_e,              // mListPrio

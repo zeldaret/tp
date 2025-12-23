@@ -5174,7 +5174,7 @@ static actor_method_class l_daB_TN_Method = {
     (process_method_func)daB_TN_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_TN = {
+actor_process_profile_definition g_profile_B_TN = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

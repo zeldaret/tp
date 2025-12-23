@@ -739,7 +739,7 @@ static actor_method_class l_daFr_Method = {
     (process_method_func)daFr_Draw,
 };
 
-extern actor_process_profile_definition g_profile_FR = {
+actor_process_profile_definition g_profile_FR = {
   fpcLy_CURRENT_e,       // mLayerID
   8,                     // mListID
   fpcPi_CURRENT_e,       // mListPrio

@@ -79,7 +79,7 @@ static actor_method_class l_daEcont_Method = {
     (process_method_func)daEcont_Draw
 };
 
-extern actor_process_profile_definition g_profile_ECONT = {
+actor_process_profile_definition g_profile_ECONT = {
     fpcLy_CURRENT_e,        // mLayerID   
     8,                      // mListID 
     fpcPi_CURRENT_e,        // mListPrio  

@@ -378,7 +378,7 @@ static actor_method_class l_daObjCrope_Method = {
     (process_method_func)daObjCrope_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Crope = {
+actor_process_profile_definition g_profile_Obj_Crope = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

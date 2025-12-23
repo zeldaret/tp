@@ -514,7 +514,7 @@ static actor_method_class l_daObjStopper_Method = {
     (process_method_func)daObjStopper_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Stopper = {
+actor_process_profile_definition g_profile_Obj_Stopper = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

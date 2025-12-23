@@ -3257,7 +3257,7 @@ static actor_method_class l_daNpc_Ne_Method = {
     (process_method_func)daNpc_Ne_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_NE = {
+actor_process_profile_definition g_profile_NPC_NE = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

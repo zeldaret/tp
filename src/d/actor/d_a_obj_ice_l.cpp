@@ -255,7 +255,7 @@ static actor_method_class l_daObjIce_l_Method = {
     (process_method_func)daObjIce_l_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Ice_l = {
+actor_process_profile_definition g_profile_Obj_Ice_l = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

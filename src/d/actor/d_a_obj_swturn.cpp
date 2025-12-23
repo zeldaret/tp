@@ -436,7 +436,7 @@ static actor_method_class daObjSwTurn_METHODS = {
     (process_method_func)daObjSwTurn_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_SwTurn = {
+actor_process_profile_definition g_profile_Obj_SwTurn = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

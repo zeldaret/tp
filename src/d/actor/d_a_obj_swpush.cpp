@@ -865,7 +865,7 @@ namespace {
 
 AUDIO_INSTANCES;
 
-extern actor_process_profile_definition g_profile_Obj_Swpush = {
+actor_process_profile_definition g_profile_Obj_Swpush = {
   fpcLy_CURRENT_e,        // mLayerID
   2,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

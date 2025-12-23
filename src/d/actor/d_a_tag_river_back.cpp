@@ -155,7 +155,7 @@ static actor_method_class l_daTagRiverBack_Method = {(process_method_func)daTagR
                                                      (process_method_func)daTagRiverBack_Delete,
                                                      (process_method_func)daTagRiverBack_Execute};
 
-extern actor_process_profile_definition g_profile_Tag_RiverBack = {
+actor_process_profile_definition g_profile_Tag_RiverBack = {
     fpcLy_CURRENT_e,           // mLayerID
     7,                         // mListID
     fpcPi_CURRENT_e,           // mListPrio

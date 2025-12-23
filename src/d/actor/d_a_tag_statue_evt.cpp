@@ -466,7 +466,7 @@ NULL,
 reinterpret_cast<process_method_func>(daTagStatue_Draw),
 };
 
-extern actor_process_profile_definition g_profile_Tag_Statue = {
+actor_process_profile_definition g_profile_Tag_Statue = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

@@ -864,7 +864,7 @@ static actor_method_class daNpcDoorBoy_MethodTable = {
     (process_method_func)daNpcDoorBoy_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_DOORBOY = {
+actor_process_profile_definition g_profile_NPC_DOORBOY = {
   fpcLy_CURRENT_e,           // mLayerID
   7,                         // mListID
   fpcPi_CURRENT_e,           // mListPrio

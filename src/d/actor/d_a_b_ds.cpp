@@ -5686,7 +5686,7 @@ static actor_method_class l_daB_DS_Method = {
     (process_method_func)daB_DS_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_DS = {
+actor_process_profile_definition g_profile_B_DS = {
     fpcLy_CURRENT_e,
     4,
     fpcPi_CURRENT_e,

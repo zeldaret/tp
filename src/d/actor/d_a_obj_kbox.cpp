@@ -528,7 +528,7 @@ static actor_method_class l_daObj_Kbox_Method = {
     (process_method_func)daObj_Kbox_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_KBOX = {
+actor_process_profile_definition g_profile_OBJ_KBOX = {
   fpcLy_CURRENT_e,        // mLayerID
   8,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

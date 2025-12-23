@@ -340,7 +340,7 @@ static actor_method_class daObj_BouMato_MethodTable = {
     (process_method_func)daObj_BouMato_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_BOUMATO = {
+actor_process_profile_definition g_profile_OBJ_BOUMATO = {
   fpcLy_CURRENT_e,            // mLayerID
   7,                          // mListID
   fpcPi_CURRENT_e,            // mListPrio

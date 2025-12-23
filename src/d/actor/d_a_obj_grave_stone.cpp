@@ -221,7 +221,7 @@ static actor_method_class l_daGraveStone_Method = {
     (process_method_func)daGraveStone_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_GraveStone = {
+actor_process_profile_definition g_profile_Obj_GraveStone = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

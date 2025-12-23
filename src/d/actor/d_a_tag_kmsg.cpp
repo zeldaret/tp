@@ -271,7 +271,7 @@ static void* daTag_KMsg_MethodTable[8] = {
     (void*)daTag_KMsg_Draw,
 };
 
-extern void* g_profile_TAG_KMSG[12] = {
+void* g_profile_TAG_KMSG[12] = {
     (void*)0xFFFFFFFD, (void*)0x0008FFFD,
     (void*)0x02EB0000, (void*)&g_fpcLf_Method,
     (void*)0x000005CC, (void*)NULL,

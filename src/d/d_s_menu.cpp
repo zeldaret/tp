@@ -2003,7 +2003,7 @@ static leafdraw_method_class l_dScnMenu_Method = {
     (process_method_func)dScnMenu_Draw,
 };
 
-extern scene_process_profile_definition g_profile_MENU_SCENE = {
+scene_process_profile_definition g_profile_MENU_SCENE = {
     fpcLy_ROOT_e,                               // mLayerID
     1,                                          // mListID
     fpcPi_CURRENT_e,                            // mListPrio
@@ -2016,7 +2016,7 @@ extern scene_process_profile_definition g_profile_MENU_SCENE = {
     (process_method_class*)&l_dScnMenu_Method,  // mpMtd
 };
 #else
-extern scene_process_profile_definition g_profile_MENU_SCENE = {
+scene_process_profile_definition g_profile_MENU_SCENE = {
     fpcLy_ROOT_e,           // mLayerID
     1,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio

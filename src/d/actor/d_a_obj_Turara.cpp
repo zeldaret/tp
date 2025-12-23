@@ -416,7 +416,7 @@ static actor_method_class l_daTurara_Method = {
     (process_method_func)daTurara_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Turara = {
+actor_process_profile_definition g_profile_Obj_Turara = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio
