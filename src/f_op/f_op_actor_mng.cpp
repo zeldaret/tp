@@ -368,9 +368,7 @@ struct DummyCheckHeap {
 static DummyCheckHeap* dch;
 
 bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback, u32 i_size) {
-    s16 profName = fopAcM_GetProfName(i_actor);
-    char* procNameString;
-    fopAcM_getNameString(i_actor, procNameString);
+    const char* procNameString = fopAcM_getProcNameString(i_actor);
     JKRSolidHeap* heap00 = NULL;
 
 #if DEBUG
@@ -381,7 +379,6 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback
             JUT_ASSERT(1211, heap);
         }
     }
-
 #endif
 
     if (fopAcM::HeapAdjustVerbose) {
@@ -2076,8 +2073,8 @@ bool fopAcM_lc_c::lineCheck(cXyz const* i_start, cXyz const* i_end, fopAc_ac_c c
     return dComIfG_Bgsp().LineCross(&mLineCheck);
 }
 
-bool fopAcM_lc_c::getTriPla(cM3dGPla* i_plane) {
-    return dComIfG_Bgsp().GetTriPla(mLineCheck, i_plane);
+bool fopAcM_lc_c::dummyCheck(cM3dGPla* i_plane) {
+    return getTriPla(i_plane);
 }
 
 bool fopAcM_gc_c::gndCheck(cXyz const* i_pos) {

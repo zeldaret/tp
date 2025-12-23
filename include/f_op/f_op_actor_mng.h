@@ -854,7 +854,10 @@ public:
     static cXyz* getCrossP() { return mLineCheck.GetCrossP(); }
     static cXyz& getCross() { return mLineCheck.GetCross(); }
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
-    static bool getTriPla(cM3dGPla* o_tri);
+    static bool dummyCheck(cM3dGPla* i_plane);
+    static bool getTriPla(cM3dGPla* i_plane) {
+        return dComIfG_Bgsp().GetTriPla(mLineCheck, i_plane);
+    };
     static s32 getWallCode() { return dComIfG_Bgsp().GetWallCode(mLineCheck); }
     static bool checkWallHit() {
         cM3dGPla poly;
