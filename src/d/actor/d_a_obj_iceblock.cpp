@@ -739,7 +739,7 @@ void daObjIceBlk_c::actionWait() {
     if (mMode == MODE_PROC_WALK_e && mWalkType == WALK_PUSH) {
         setAction(ACTION_ORDER_EVENT_e);
         fopAcM_orderPotentialEvent(this, 2, 0, 0);
-        eventInfo.onCondition(fopAcCnd_NOEXEC_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 
@@ -752,7 +752,7 @@ void daObjIceBlk_c::actionOrderEvent() {
         camera->mCamera.SetTrimSize(1);
     } else if (mMode == MODE_PROC_WALK_e) {
         fopAcM_orderPotentialEvent(this, 2, 0, 0);
-        eventInfo.onCondition(fopAcCnd_NOEXEC_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     } else {
         setAction(ACTION_WAIT_e);
     }

@@ -1035,7 +1035,7 @@ void daNpcTks_c::waitNude() {
 
             if (fVar1 > -200.0f && fVar1 < 150.0f && fopAcM_searchPlayerDistanceXZ(this) <= 300.0f) {
                 if (!fopAcM_otherBgCheck(this, daPy_getPlayerActorClass())) {
-                    eventInfo.onCondition(dEvtCmd_INTALK_e);
+                    eventInfo.onCondition(dEvtCnd_CANTALK_e);
                     fopAcM_orderSpeakEvent(this, 0, 0);
                 }
             }
@@ -1089,7 +1089,7 @@ void daNpcTks_c::waitLv6() {
 
             if (current.pos.y - fopAcM_GetPosition_p(daPy_getPlayerActorClass())->y < 100.0f && fopAcM_searchPlayerDistanceXZ(this) <= 400.0f) {
                 attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
-                eventInfo.onCondition(dEvtCmd_INTALK_e);
+                eventInfo.onCondition(dEvtCnd_CANTALK_e);
                 fopAcM_orderSpeakEvent(this, 0, 0);
             }
 

@@ -675,7 +675,7 @@ void daObjSwpush::Act_c::demo_reqPause_init() {
     if (mDemoMode == DEMO_MODE_NON) {
         mDemoMode = DEMO_MODE_REQ_PAUSE;
         fopAcM_orderPotentialEvent(this, 2, 0, 0);
-        eventInfo.onCondition(fopAcCnd_NOEXEC_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 
@@ -718,7 +718,7 @@ void daObjSwpush::Act_c::demo_reqSw_init() {
         demo_stop_puase();
         mDemoMode = DEMO_MODE_REQ_SW;
         fopAcM_orderOtherEventId(this, mEventID, prm_get_evId(), 0xFFFF, 0, 1);
-        eventInfo.onCondition(fopAcCnd_NOEXEC_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 
@@ -727,7 +727,7 @@ void daObjSwpush::Act_c::demo_reqSw() {
         demo_runSw_init();
     } else {
         fopAcM_orderOtherEventId(this, mEventID, prm_get_evId(), 0xFFFF, 0, 1);
-        eventInfo.onCondition(fopAcCnd_NOEXEC_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 
