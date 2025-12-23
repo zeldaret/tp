@@ -1637,7 +1637,7 @@ msg_process_profile_definition g_profile_TIMER = {
     12,
     fpcPi_CURRENT_e,
     PROC_TIMER,
-    (process_method_class*)&g_fpcLf_Method,
+    &g_fpcLf_Method.base,
     sizeof(dTimer_c),
     0,
     0,

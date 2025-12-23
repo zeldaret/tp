@@ -3092,7 +3092,7 @@ msg_process_profile_definition g_profile_METER2 = {
     12,
     fpcPi_CURRENT_e,
     PROC_METER2,
-    (process_method_class*)&g_fpcLf_Method,
+    &g_fpcLf_Method.base,
     sizeof(dMeter2_c),
     0,
     0,

@@ -1997,7 +1997,7 @@ f32 myFontClass::drawChar_scale(f32 param_0, f32 param_1, f32 param_2, f32 param
     }
 }
 
-static leafdraw_method_class l_dScnMenu_Method = {
+static scene_method_class l_dScnMenu_Method = {
     (process_method_func)dScnMenu_Create,  (process_method_func)dScnMenu_Delete,
     (process_method_func)dScnMenu_Execute, (process_method_func)dScnMenu_IsDelete,
     (process_method_func)dScnMenu_Draw,
@@ -2013,7 +2013,7 @@ scene_process_profile_definition g_profile_MENU_SCENE = {
     0,                                          // mSizeOther
     0,                                          // mParameters
     &g_fopScn_Method.base,                     // sub_method
-    (process_method_class*)&l_dScnMenu_Method,  // mpMtd
+    &l_dScnMenu_Method,  // mpMtd
 };
 #else
 scene_process_profile_definition g_profile_MENU_SCENE = {
