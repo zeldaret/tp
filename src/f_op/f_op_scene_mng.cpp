@@ -41,8 +41,14 @@ u32 fopScnM_ReRequest(s16 i_procName, u32 i_data) {
 }
 
 void fopScnM_Management() {
-    fopScnRq_Handler();
+#if DEBUG
+    if (fopScnRq_Handler()) {
+        return;
+    };
     JUT_ASSERT(326, 0);
+#else
+    fopScnRq_Handler();
+#endif
 }
 
 void fopScnM_Init() {}

@@ -239,12 +239,12 @@ f_op/f_op_view.cpp:
 f_op/f_op_kankyo.cpp:
 	.text       start:0x800414A0 end:0x800417A0
 	.data       start:0x8066AB58 end:0x8066ABA0
-	.sbss       start:0x8074C508 end:0x8074C514
+	.sbss       start:0x8074C508 end:0x8074C510
 
 f_op/f_op_msg.cpp:
 	.text       start:0x800417A0 end:0x80041A50
 	.data       start:0x8066ABA0 end:0x8066ABE8
-	.sbss       start:0x8074C514 end:0x8074C518
+	.sbss       start:0x8074C510 end:0x8074C518
 
 f_op/f_op_kankyo_mng.cpp:
 	.text       start:0x80041A50 end:0x80041FD0

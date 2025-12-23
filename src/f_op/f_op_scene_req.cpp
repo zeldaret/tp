@@ -157,6 +157,6 @@ s32 fopScnRq_ReRequest(fpc_ProcID i_requestId, s16 i_procName, void* i_data) {
     return fpcNdRq_ReRequest(i_requestId, i_procName, i_data);
 }
 
-void fopScnRq_Handler() {
+int fopScnRq_Handler() {
     fpcNdRq_Handler();
 }
