@@ -183,11 +183,11 @@ int daObjKWheel01_c::Create() {
 }
 
 static void* searchKWheel00(void* param_0, void* i_this) {
-    i_this; // Needed to bring closer to matching debug REL
+    UNUSED(i_this);
     if(param_0 && fopAcM_IsActor(param_0) && fopAcM_GetProfName(param_0) == PROC_Obj_KWheel00) {
         daObjKWheel00_c* const kWheel00 = static_cast<daObjKWheel00_c*>(param_0);
         if(kWheel00->getType() == daObjKWheel00_c::TYPE_LARGE_GOLD) {
-            return kWheel00;
+            return param_0;
         }
     }
 

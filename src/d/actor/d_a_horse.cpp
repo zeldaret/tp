@@ -351,21 +351,21 @@ void daHorse_c::coHitCallbackCowHit(fopAc_ac_c* i_hitActor) {
 
 static void daHorse_coHitCallbackBoarJump(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
                                           fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {
-    (void)i_coObjInfA;
-    (void)i_coObjInfB;
+    UNUSED(i_coObjInfA);
+    UNUSED(i_coObjInfB);
     ((daHorse_c*)i_coActorA)->coHitCallbackBoarJump(i_coActorB);
 }
 
 static void daHorse_coHitCallbackCowHit(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
                                         fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {
-    (void)i_coObjInfA;
-    (void)i_coObjInfB;
+    UNUSED(i_coObjInfA);
+    UNUSED(i_coObjInfB);
     ((daHorse_c*)i_coActorA)->coHitCallbackCowHit(i_coActorB);
 }
 
 static void daHorse_coHitCallbackAll(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
                                      fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {
-    (void)i_coObjInfA;
+    UNUSED(i_coObjInfA);
     daHorse_c* a_this = (daHorse_c*)i_coActorA;
 
     a_this->coHitCallbackBoarJump(i_coActorB);
@@ -4218,7 +4218,7 @@ void daHorse_c::searchSceneChangeArea(fopAc_ac_c* i_scnChg) {
 }
 
 static void* daHorse_searchSceneChangeArea(fopAc_ac_c* i_actor, void* i_data) {
-    (void)i_data;
+    UNUSED(i_data);
     dComIfGp_getHorseActor()->searchSceneChangeArea(i_actor);
     return NULL;
 }

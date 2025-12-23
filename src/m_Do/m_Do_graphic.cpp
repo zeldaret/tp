@@ -1006,7 +1006,7 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
 }
 
 static void trimming(view_class* param_0, view_port_class* param_1) {
-    (void)param_0;
+    UNUSED(param_0);
 
     s16 y_orig = (int)param_1->y_orig & ~7;
     s16 y_orig_pos = y_orig < 0 ? 0 : y_orig;
@@ -1275,8 +1275,8 @@ void mDoGph_gInf_c::bloom_c::draw() {
 }
 
 static void retry_captue_frame(view_class* param_0, view_port_class* param_1, int param_2) {
-    (void)param_0;
-    (void)param_2;
+    UNUSED(param_0);
+    UNUSED(param_2);
 
     s16 x_orig = (int)param_1->x_orig & 0xFFFFFFF8;
     s16 y_orig = (int)param_1->y_orig & 0xFFFFFFF8;

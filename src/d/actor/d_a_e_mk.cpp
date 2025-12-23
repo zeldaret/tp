@@ -115,7 +115,7 @@ static int daE_MK_Draw(e_mk_class* i_this) {
 }
 
 static void* s_obj_delete(void* i_actor, void* i_data) {
-    i_data;
+    UNUSED(i_data);
     
     if (fopAcM_IsActor(i_actor)) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
@@ -150,7 +150,7 @@ static void* target_info[20];
 static int target_info_count;
 
 static void* s_h_sub(void* i_actor, void* i_data) {
-    i_data;
+    UNUSED(i_data);
 
     if ((fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_Pillar) && target_info_count < 20) {
         target_info[target_info_count] = (daPillar_c*)i_actor;
@@ -219,7 +219,7 @@ static daPillar_c* search_hasira(e_mk_class* i_this) {
 }
 
 static void* s_d_sub(void* i_actor, void* i_data) {
-    i_data;
+    UNUSED(i_data);
     
     if ((fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_DB)) {
         e_db_class* actor = (e_db_class*)i_actor;
@@ -1942,7 +1942,7 @@ static void demo_camera_end(e_mk_class* i_this) {
 }
 
 static void* s_ks_sub(void* i_actor, void* i_data) {
-    i_data;
+    UNUSED(i_data);
 
     if ((fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_KS) && static_cast<npc_ks_class*>(i_actor)->set_id == 0) {
         return i_actor;
@@ -1952,7 +1952,7 @@ static void* s_ks_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_brg_sub(void* i_actor, void* i_data) {
-    i_data;
+    UNUSED(i_data);
 
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_OBJ_BRG) {
         static_cast<obj_brg_class*>(i_actor)->field_0xaef4 = VREG_F(11) + 500.0f;
@@ -1963,7 +1963,7 @@ static void* s_brg_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_brg_sub2(void* i_actor, void* i_data) {
-    i_data;
+    UNUSED(i_data);
 
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_OBJ_BRG) {
         static_cast<obj_brg_class*>(i_actor)->mType &= ~0x4 & 0xFFFFFFFB;

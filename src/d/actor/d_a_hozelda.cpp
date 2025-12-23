@@ -23,7 +23,7 @@ void daHoZelda_hio_c::genMessage(JORMContext* context) {
 #endif
 
 static void* daHoZelda_searchGanon(fopAc_ac_c* i_actor, void* i_data) {
-    (void)i_data;
+    UNUSED(i_data);
     if (fopAcM_GetName(i_actor) == PROC_B_GND) {
         return i_actor;
     }

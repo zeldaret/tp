@@ -351,7 +351,7 @@ void daObjSwpush2::Act_c::init_mtx() {
 }
 
 void daObjSwpush2::Act_c::rideCB(dBgW* i_bgw, fopAc_ac_c* i_this, fopAc_ac_c* i_rideActor) {
-    (void)i_bgw;
+    UNUSED(i_bgw);
     daObjSwpush2::Act_c* a_this = (daObjSwpush2::Act_c*)i_this;
 
     if (fopAcM_CheckStatus(i_rideActor, 0x400)) {

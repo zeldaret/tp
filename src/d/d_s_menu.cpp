@@ -1988,7 +1988,7 @@ bool dScnMenu_setPlayerDebugModeDungeon() {
 myFontClass::~myFontClass() {}
 
 f32 myFontClass::drawChar_scale(f32 param_0, f32 param_1, f32 param_2, f32 param_3, int param_4, bool param_5) {
-    param_2;
+    UNUSED(param_2);
 
     if (param_4 < 0xFF) {
         return field_0x70.drawChar_scale(param_0, param_1, 8.75f, param_3, param_4, param_5);

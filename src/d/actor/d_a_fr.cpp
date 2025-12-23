@@ -83,7 +83,7 @@ static void sibuki_set(fr_class* i_this) {
 }
 
 static void* s_wd_sub(void* param_1, void* param_2) {
-    (void)param_2;
+    UNUSED(param_2);
     if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_OBJ_LP) {
         return param_1;
     }

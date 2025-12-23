@@ -865,7 +865,7 @@ jmessage_tMeasureProcessor::jmessage_tMeasureProcessor(jmessage_tReference const
 }
 
 void jmessage_tMeasureProcessor::do_begin(void const* pEntry, char const* pszText) {
-    (void)pszText;
+    UNUSED(pszText);
     jmessage_tReference* pReference = (jmessage_tReference*)getReference();
 
     pReference->resetCharactor();
@@ -3928,8 +3928,8 @@ jmessage_string_tMeasureProcessor::jmessage_string_tMeasureProcessor(jmessage_st
 }
 
 void jmessage_string_tMeasureProcessor::do_begin(void const* pEntry, char const* pszText) {
-    (void)pEntry;
-    (void)pszText;
+    UNUSED(pEntry);
+    UNUSED(pszText);
     mpReference->setLineCount(0);
     mpReference->resetCharactor();
 }

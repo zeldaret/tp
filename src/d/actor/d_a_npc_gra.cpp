@@ -642,7 +642,7 @@ bool daNpc_grA_c::checkTagGraSub2(fopAc_ac_c* i_this) {
 }
 
 static void* s_subShop(void* i_actor, void* i_this) {
-    (void)i_this;
+    UNUSED(i_this);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_GRM) {
         return i_actor;
     }
@@ -650,7 +650,7 @@ static void* s_subShop(void* i_actor, void* i_this) {
 }
 
 static void* s_subGRD(void* i_actor, void* i_this) {
-    (void)i_this;
+    UNUSED(i_this);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_WRESTLER) {
         return i_actor;
     }
@@ -658,7 +658,7 @@ static void* s_subGRD(void* i_actor, void* i_this) {
 }
 
 static void *s_subOnsenTaru(void* i_actor, void* i_this) {
-    (void)i_this;
+    UNUSED(i_this);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_OnsenTaru &&
         !fpcM_IsCreating(fopAcM_GetID((i_actor))))
     {

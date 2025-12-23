@@ -155,7 +155,7 @@ int daTenbin_c::create() {
 }
 
 void daTenbin_c::rideCallBackRight(dBgW* i_dBgW, fopAc_ac_c* i_act1, fopAc_ac_c* i_act2) {
-    (void)i_dBgW;
+    UNUSED(i_dBgW);
     daTenbin_c* i_tenbin = (daTenbin_c*)i_act1;
     daPy_py_c* player = dComIfGp_getLinkPlayer();
     if (fopAcM_GetName(i_act2) == PROC_SPINNER) {
@@ -187,7 +187,7 @@ void daTenbin_c::rideCallBackRight(dBgW* i_dBgW, fopAc_ac_c* i_act1, fopAc_ac_c*
 }
 
 void daTenbin_c::rideCallBackLeft(dBgW* i_dBgW, fopAc_ac_c* i_act1, fopAc_ac_c* i_act2) {
-    (void)i_dBgW;
+    UNUSED(i_dBgW);
     daTenbin_c* i_tenbin = (daTenbin_c*)i_act1;
     daPy_py_c* player = dComIfGp_getLinkPlayer();
     if (fopAcM_GetName(i_act2) == PROC_SPINNER) {

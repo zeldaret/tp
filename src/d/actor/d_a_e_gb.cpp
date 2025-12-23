@@ -670,7 +670,7 @@ static void kuki_control3(e_gb_class* i_this) {
 }
 
 static void* s_b_sub(void* i_actor, void* i_data) {
-    i_data;
+    UNUSED(i_data);
 
     if (fopAcM_IsActor(i_actor) && dBomb_c::checkBombActor((fopAc_ac_c*)i_actor) && !((dBomb_c*)i_actor)->checkStateExplode()) {
         cXyz sp28 = ((fopAc_ac_c*)i_actor)->current.pos - ((fopAc_ac_c*)i_data)->home.pos;

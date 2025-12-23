@@ -221,7 +221,7 @@ static void* s_npc_sub(void* param_0, void* param_1) {
 }
 
 static void* s_piro_sub(void* param_0, void* param_1) {
-    (void)param_1;  // debug match
+    UNUSED(param_1);
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_NPC_INKO) {
         return param_0;
     }
@@ -239,7 +239,7 @@ static void* s_du_sub(void* param_0, void* param_1) {
 }
 
 static void* s_shop_sub(void* param_0, void* param_1) {
-    (void)param_1;  // debug match
+    UNUSED(param_1);
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_FSHOP &&
         (s32)(fopAcM_GetParam(param_0) & 0xff) < 35)
     {
@@ -249,7 +249,7 @@ static void* s_shop_sub(void* param_0, void* param_1) {
 }
 
 static void* s_koro2ball_sub(void* param_0, void* param_1) {
-    (void)param_1;  // debug match
+    UNUSED(param_1);
     if (fopAcM_IsActor(param_0)) {
         if (fopAcM_GetName(param_0) == PROC_FSHOP && (fopAcM_GetParam(param_0) & 0xff) == 35) {
             return param_0;
@@ -402,7 +402,7 @@ static void henna_shop(npc_henna_class* i_this) {
 }
 
 static void* s_rod_sub(void* param_0, void* param_1) {
-    (void)param_1;  // debug match
+    UNUSED(param_1);
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_MG_ROD) {
         return param_0;
     }

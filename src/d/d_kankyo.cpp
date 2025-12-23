@@ -3182,7 +3182,7 @@ static void cLib_addCalcU8(u8* i_value, u8 i_target, s16 i_scale, s16 i_maxStep)
 void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr_c* tevstr_p,
                                                          GXColorS10 param_2, GXColorS10 param_3,
                                                          u8 init_timer) {
-    (void)param_3;
+    UNUSED(param_3);
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     cXyz light_pos;
     Vec spDC;
@@ -8511,7 +8511,7 @@ void dKy_undwater_filter_draw() {
 }
 
 static int dKy_Draw(sub_kankyo__class* i_this) {
-    (void)i_this;
+    UNUSED(i_this);
     g_env_light.drawKankyo();
 
     #if DEBUG
@@ -8531,7 +8531,7 @@ static int dKy_Draw(sub_kankyo__class* i_this) {
 }
 
 static int dKy_Execute(sub_kankyo__class* i_this) {
-    (void)i_this;
+    UNUSED(i_this);
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     g_env_light.exeKankyo();
     dKyw_wind_set();
@@ -8570,7 +8570,7 @@ static int dKy_IsDelete(sub_kankyo__class* i_this) {
 }
 
 static int dKy_Delete(sub_kankyo__class* i_this) {
-    (void)i_this;
+    UNUSED(i_this);
     plight_init();
     mDoAud_mEnvse_resetScene();
 

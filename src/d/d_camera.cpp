@@ -8922,7 +8922,7 @@ bool dCamera_c::oneSideCamera(s32 param_1) {
 bool dCamera_c::eventCamera(s32 param_0) {
     char sp90[12];
 
-    (void)param_0;
+    UNUSED(param_0);
     int var_r29 = -1;
 
     typedef bool (dCamera_c::*func)();

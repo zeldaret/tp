@@ -44,6 +44,10 @@
 #define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
 
+// Silence unused parameter warnings.
+// Necessary for debug matches.
+#define UNUSED(x) ((void)(x))
+
 #ifndef decltype
 #define decltype __decltype__
 #endif
