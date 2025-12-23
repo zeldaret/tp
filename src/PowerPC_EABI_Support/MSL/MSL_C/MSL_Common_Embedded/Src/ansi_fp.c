@@ -1,6 +1,6 @@
 #include "ansi_fp.h"
 #include "ansi_fp.h"
-#include "limits.h"
+#include "climits.h"
 #include "float.h"
 
 static int __count_trailing_zerol(unsigned long x) {

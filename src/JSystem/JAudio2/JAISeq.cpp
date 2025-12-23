@@ -10,7 +10,7 @@ namespace {
 
 static bool JASTrack_isFreeOrStopped(JASTrack* track) {
     u32 status = track->getStatus();
-    return status == JASTrack::STATUS_FREE || status == JASTrack::STATUS_STOP;
+    return status == JASTrack::STATUS_FREE || status == JASTrack::STATUS_STOPPED;
 }
 
 }  // namespace
@@ -151,7 +151,7 @@ bool JAISeq::prepare_(const JASSoundParams& params, JAISoundActivity activity) {
 }
 
 void JAISeq::JAISeqMgr_calc_() {
-    if (inner_.outputTrack.getStatus() == JASTrack::STATUS_STOP || (inner_.outputTrack.getStatus() == JASTrack::STATUS_FREE && status_.state.unk == 2)) {
+    if (inner_.outputTrack.getStatus() == JASTrack::STATUS_STOPPED || (inner_.outputTrack.getStatus() == JASTrack::STATUS_FREE && status_.state.unk == 2)) {
         die_();
         return;
     }

@@ -4528,16 +4528,6 @@ void drawCloudShadow(Mtx drawMtx, u8** tex) {
     }
 }
 
-// drawVrkumo calls these functions as inlines somehow
-// these need to be moved to MSL_C once an appropriate solution is found
-inline float sinf(float x) {
-    return sin(x);
-}
-
-inline float cosf(float x) {
-    return cos(x);
-}
-
 void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
     dKankyo_sun_Packet* sun_packet = g_env_light.mpSunPacket;
     dScnKy_env_light_c* envlight = dKy_getEnvlight();

@@ -9,6 +9,8 @@ long strtol(const char* str, char** end, int base);
 unsigned long strtoul(const char* str, char** end, int base);
 unsigned long __strtoul(int base, int max_width, int (*ReadProc)(void*, int, int), void* ReadProcArg, int* chars_scanned, int* negative,
               int* overflow);
+int atoi(const char* str);
+float atof(const char* str);
 
 #ifdef __cplusplus
 }

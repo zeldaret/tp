@@ -11,7 +11,7 @@
  * ====================================================
  */
 
-#include "math.h" /* for isfinite macro */
+#include "cmath.h" /* for isfinite macro */
 static const double
 
     two54

@@ -1,6 +1,6 @@
 #if DEBUG
 
-#include <stdio.h>
+#include <cstdio.h>
 
 #include <revolution/gx.h>
 

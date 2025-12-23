@@ -6,7 +6,7 @@
 #include "inlines.h"
 
 #include "../db/assert.h"
-#include "stddef.h"
+#include <stddef.h>
 
 namespace nw4hbm {
     namespace ut {

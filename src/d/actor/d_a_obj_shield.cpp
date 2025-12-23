@@ -11,7 +11,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_cc_d.h"
 #include "d/d_item_data.h"
-#include "cmath.h"
+#include <math.h>
 
 const static dCcD_SrcCyl l_cyl_src = {
     {

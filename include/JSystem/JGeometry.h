@@ -2,7 +2,7 @@
 #define JGEOMETRY_H
 
 #include "dolphin/mtx.h"
-#include "math.h"
+#include <math.h>
 #include "JSystem/JMath/JMath.h"
 
 namespace JGeometry {

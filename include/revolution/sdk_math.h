@@ -1,4 +1,4 @@
-#pragma cplusplus on
+// fake MSL_C math for sdk specifically since it differs from game MSL_C math
 
 extern inline float sqrtf(float x) {
     static const double _half=.5;
@@ -46,6 +46,10 @@ extern inline float fabsf(float x) {
 }
 
 extern float cosf(float);
+extern float sinf(float);
+extern float tanf(float);
+extern float acosf(float);
+
 extern inline float cos(float x) {
     return cosf(x);
 }
@@ -62,5 +66,3 @@ inline float floor(float x) {
         // x < 0 -> int conversion of x above rounded toward zero(so decrement)                
     return (float)i;
 }
-
-#pragma cplusplus reset

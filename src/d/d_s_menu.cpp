@@ -19,11 +19,9 @@
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTReport.h"
 
-#include <strtoul.h>
+#include <stdlib.h>
  
 #if DEBUG
-extern "C" int atoi(const char* str);
-
 void dScnMenu_setItem(int i_slotNo, u8 i_itemNo);
 void dScnMenu_setPlayerDebugMode();
 void dScnMenu_setPlayerItemReset();

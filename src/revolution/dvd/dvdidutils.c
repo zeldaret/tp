@@ -1,6 +1,6 @@
 #include <revolution.h>
 #include <revolution/dvd.h>
-#include <string.h>
+#include <cstring.h>
 
 #include "__dvd.h"
 

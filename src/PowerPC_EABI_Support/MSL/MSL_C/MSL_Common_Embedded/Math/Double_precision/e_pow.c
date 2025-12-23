@@ -112,7 +112,7 @@
 
 #include "types.h"
 #include "errno.h"
-#include "math.h"
+#include "cmath.h"
 
 #ifndef _DOUBLE_IS_32BITS
 

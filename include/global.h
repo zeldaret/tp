@@ -1,8 +1,7 @@
 #ifndef _global_h_
 #define _global_h_
 
-#include "dolphin/types.h"
-
+// Version ordering defined in configure.py
 #define VERSION_GCN_USA          0
 #define VERSION_GCN_PAL          1
 #define VERSION_GCN_JPN          2
@@ -48,8 +47,6 @@
 #ifndef decltype
 #define decltype __decltype__
 #endif
-
-#define JUT_EXPECT(...)
 
 #define _SDA_BASE_(dummy) 0
 #define _SDA2_BASE_(dummy) 0

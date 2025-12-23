@@ -6,6 +6,7 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
+#include "dolphin/ar.h"
 
 JASHeap::JASHeap(JASDisposer* disposer) : mTree(this) {
     mDisposer = disposer;
@@ -45,7 +46,8 @@ bool JASHeap::alloc(JASHeap* mother, u32 param_1) {
     bool local_43 = false;
     JASHeap* local_30 = NULL;
     void* local_34;
-    for (JSUTreeIterator<JASHeap> it = mother->mTree.getFirstChild(); it != mother->mTree.getEndChild(); it++) {
+    JSUTreeIterator<JASHeap> it;
+    for (it = mother->mTree.getFirstChild(); it != mother->mTree.getEndChild(); it++) {
         if (r29 >= mother->mBase + local_2c) {
             break;
         }
@@ -77,8 +79,10 @@ bool JASHeap::alloc(JASHeap* mother, u32 param_1) {
 }
 
 bool JASHeap::allocTail(JASHeap* mother, u32 size) {
+    JUT_ASSERT(208, mother != NULL);
     JASMutexLock lock(&mMutex);
     if (isAllocated()) {
+        OS_REPORT("[JASHeap::alloc] すでにヒープは確保されています。初期化してからにしてください。\n");
         return false;
     }
     if (!mother->isAllocated()) {
@@ -126,6 +130,39 @@ bool JASHeap::free() {
         mDisposer->onDispose();
     }
     return true;
+}
+
+u32 JASHeap::getTotalFreeSize() {
+    JASMutexLock lock(&mMutex);
+    u8* r28 = mBase;
+    u32 r29 = 0;
+    for (JSUTreeIterator<JASHeap> it = mTree.getFirstChild(); it != mTree.getEndChild(); it++) {
+        r29 += it->mBase - r28;
+        u32 r26 = it->mSize;
+        r28 = it->mBase + r26;
+    }
+    r29 += mBase + mSize - r28;
+    return r29;
+}
+
+u32 JASHeap::getFreeSize() {
+    JASMutexLock lock(&mMutex);
+    u8* r27 = mBase;
+    u32 r29 = 0;
+    u32 r28;
+    for (JSUTreeIterator<JASHeap> it = mTree.getFirstChild(); it != mTree.getEndChild(); it++) {
+        r28 = it->mBase - r27;
+        if (r28 > r29) {
+            r29 = r28;
+        }
+        u32 r25 = it->mSize;
+        r27 = it->mBase + r25;
+    }
+    r28 = mBase + mSize - r27;
+    if (r28 > r29) {
+        r29 = r28;
+    }
+    return r29;
 }
 
 void JASHeap::insertChild(JASHeap* heap, JASHeap* next, void* param_2, u32 param_3, bool param_4) {
@@ -260,10 +297,22 @@ JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* JASKernel::getCom
 JASHeap JASKernel::audioAramHeap;
 
 void JASKernel::setupAramHeap(u32 param_0, u32 param_1) {
+#if !PLATFORM_GCN
+    OSReport("setupAramHeap %x, %x, %x\n", param_0, ARGetBaseAddress(), param_1);
+    param_0 = ARGetBaseAddress();
+#endif
     sAramBase = param_0;
     audioAramHeap.initRootHeap((void*)sAramBase, param_1);
 }
 
 JASHeap* JASKernel::getAramHeap() {
     return &audioAramHeap;
+}
+
+u32 JASKernel::getAramFreeSize() {
+    audioAramHeap.getFreeSize();
+}
+
+u32 JASKernel::getAramSize() {
+    audioAramHeap.getSize();
 }

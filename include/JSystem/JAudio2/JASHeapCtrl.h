@@ -22,13 +22,15 @@ public:
     bool alloc(JASHeap*, u32);
     bool allocTail(JASHeap*, u32);
     bool free();
+    u32 getTotalFreeSize();
+    u32 getFreeSize();
     void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
     JASHeap* getTailHeap();
     u32 getTailOffset();
     u32 getCurOffset();
 
     void* getBase() { return mBase; }
-    bool isAllocated() { return mBase; }
+    bool isAllocated() const { return mBase; }
     u32 getSize() const { return mSize; }
 
     /* 0x00 */ JSUTree<JASHeap> mTree;
@@ -180,7 +182,7 @@ class JASMemChunkPool : public T<JASMemChunkPool<ChunkSize, T> >::ObjectLevelLoc
             mNextChunk = chunk;
         }
 
-        u32 getFreeSize() {
+        u32 getFreeSize() const {
             return ChunkSize - mUsedSize;
         }
 
@@ -201,27 +203,22 @@ public:
     }
 
     bool createNewChunk() {
-        bool uVar2;
         if (field_0x18 != NULL && field_0x18->isEmpty()) {
             field_0x18->revive();
-            uVar2 = 1;
-        } else {
-            MemoryChunk* pMVar4 = field_0x18;
-            field_0x18 = new (JASKernel::getSystemHeap(), 0) MemoryChunk(pMVar4);
-            if (field_0x18 != NULL) {
-                uVar2 = 1;
-            } else {
-                JUT_WARN(428, "%s", "Not enough JASSystemHeap");
-                field_0x18 = new (JKRHeap::getSystemHeap(), 0) MemoryChunk(pMVar4);
-                if (field_0x18 != NULL) {
-                    uVar2 = 1;
-                } else {
-                    field_0x18 = pMVar4;
-                    uVar2 = 0;
-                }
-            }
+            return true;
         }
-        return uVar2;
+        MemoryChunk* pMVar4 = field_0x18;
+        field_0x18 = new (JASKernel::getSystemHeap(), 0) MemoryChunk(pMVar4);
+        if (field_0x18 != NULL) {
+            return true;
+        }
+        JUT_WARN(428, "%s", "Not enough JASSystemHeap");
+        field_0x18 = new (JKRHeap::getSystemHeap(), 0) MemoryChunk(pMVar4);
+        if (field_0x18 != NULL) {
+            return true;
+        }
+        field_0x18 = pMVar4;
+        return false;
     }
 
     void* alloc(u32 size) {
@@ -269,6 +266,8 @@ namespace JASKernel {
     JASMemChunkPool<1024, JASThreadingModel::ObjectLevelLockable>* getCommandHeap();
     void setupAramHeap(u32, u32);
     JASHeap* getAramHeap();
+    u32 getAramFreeSize();
+    u32 getAramSize();
 
     extern JASHeap audioAramHeap;
     extern u32 sAramBase;
@@ -348,14 +347,14 @@ class JASPoolAllocObject_MultiThreaded {
 public:
     static void* operator new(size_t n) {
         JASMemPool_MultiThreaded<T>& memPool_ = getMemPool();
-        return memPool_.alloc(sizeof(T));
+        return memPool_.alloc(n);
     }
     static void* operator new(size_t n, void* ptr) {
         return ptr;
     }
     static void operator delete(void* ptr, size_t n) {
         JASMemPool_MultiThreaded<T>& memPool_ = getMemPool();
-        memPool_.free(ptr, sizeof(T));
+        memPool_.free(ptr, n);
     }
 
     static void newMemPool(int n) {

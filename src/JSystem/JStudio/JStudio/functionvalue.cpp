@@ -5,9 +5,9 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JGadget/linklist.h"
-#include "math.h"
-#include "stdlib.h"
-#include "limits.h"
+#include <math.h>
+#include <stdlib.h>
+#include <limits.h>
 
 namespace JStudio {
 
