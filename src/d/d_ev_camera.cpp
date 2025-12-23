@@ -991,7 +991,7 @@ bool dCamera_c::transEvCamera(int param_1) {
             trans->mEye = (*ptr1).mEye;
             trans->mFovy = (*ptr1).mFovy;
             trans->field_0x3c = (*ptr1).mBank;
-            if (float(s16(ptr1->mBank)) != 0.0f) {
+            if (s16(ptr1->mBank) != 0.0f) {
                 trans->field_0x68 = true;
             }
         }
@@ -1007,7 +1007,7 @@ bool dCamera_c::transEvCamera(int param_1) {
             trans->mStartEye = (*ptr2).mEye;
             trans->mStartFovy = (*ptr2).mFovy;
             trans->field_0x1c = (*ptr2).mBank;
-            if (float(s16(ptr2->mBank)) != 0.0f) {
+            if (s16(ptr2->mBank) != 0.0f) {
                 trans->field_0x68 = true;
             }
         }

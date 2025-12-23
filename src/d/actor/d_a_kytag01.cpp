@@ -81,7 +81,7 @@ static void mist_tag_move(kytag01_class* i_this) {
     s16 var_r29_2 = cM_atan2s(sp98.x, sp98.z);
     s16 var_r26 = cM_atan2s(spA4.x, spA4.z);
 
-    f32 temp_f2_2 = 1.0f - ((f32)(s16)abs((s16)(var_r29_2 - var_r26)) / 32768.0f);
+    f32 temp_f2_2 = 1.0f - ((s16)abs((s16)(var_r29_2 - var_r26)) / 32768.0f);
     temp_f2_2 *= temp_f2_2 * temp_f2_2 * temp_f2_2;
 
     f32 var_f3 = 1.0f - temp_f2_2;

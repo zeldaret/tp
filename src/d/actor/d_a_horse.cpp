@@ -2159,7 +2159,7 @@ void daHorse_c::setMatrix() {
             var_f30 = 0.5f + ((0.5f * speedF) / m_lashMaxSpeedF);
         }
         
-        var_r29 = 4.0f * var_f30 * ((500.0f / (f32)field_0x16c2) * (f32)(s16)(field_0x16e8 - shape_angle.y));
+        var_r29 = 4.0f * var_f30 * ((500.0f / (f32)field_0x16c2) * (s16)(field_0x16e8 - shape_angle.y));
         var_r27 = -var_r29;
     }
 

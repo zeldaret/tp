@@ -601,7 +601,7 @@ static void action(e_mm_mt_class* i_this) {
                         daPy_getPlayerActorClass()->getCutType() == 24) {
                         actor->speedF = cM_rndF(10.0f) + 40.0f +  TREG_F(16);
                         i_this->m_spin = (s16)(cM_rndF(2000.0f) + 5500.0f);
-                        i_this->field_0x69C = (f32)(s16)(cM_rndF(1000.0f) + 5000.0f);
+                        i_this->field_0x69C = (s16)(cM_rndF(1000.0f) + 5000.0f);
                     } else {
                         actor->speedF = TREG_F(17) + 30.0f;
                         i_this->m_spin = (s16)cM_rndFX(3000.0f);

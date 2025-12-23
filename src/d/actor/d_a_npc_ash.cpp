@@ -107,7 +107,7 @@ BOOL daNpcAsh_c::chkFindPlayer() {
 bool daNpcAsh_c::step(s16 i_angY, bool i_animate) {
     if (mTurnMode == 0) {
         if (i_animate) {
-            if ((s32)fabsf(cM_sht2d((f32)(s16)(i_angY - mCurAngle.y))) > 40) {
+            if ((s32)fabsf(cM_sht2d((s16)(i_angY - mCurAngle.y))) > 40) {
                 setExpression(EXPR_NONE, -1.0f);
                 setMotion(MOT_STEP, -1.0f, false);
             }

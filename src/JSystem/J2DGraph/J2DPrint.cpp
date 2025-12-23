@@ -311,7 +311,7 @@ f32 J2DPrint::parse(const u8* pString, int length, int param_2, u16* param_3,
                 } else {
                     if (param_6) {
                         if (param_3 != NULL) {
-                            mFont->drawChar_scale(mCursorH + (f32)(s16)param_3[someIndex], mCursorV, (s32)mScaleX, (s32)mScaleY, iCharacter, true);
+                            mFont->drawChar_scale(mCursorH + (s16)param_3[someIndex], mCursorV, (s32)mScaleX, (s32)mScaleY, iCharacter, true);
                         } else {
                             mFont->drawChar_scale(mCursorH, mCursorV, (s32)mScaleX, (s32)mScaleY, iCharacter, true);
                         }
