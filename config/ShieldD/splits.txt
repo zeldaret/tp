@@ -4071,8 +4071,12 @@ revolution/os/OSIpc.c:
 revolution/os/OSStateTM.c:
 	.text       start:0x805C6CD0 end:0x805C7490
 	.data       start:0x8072B550 end:0x8072B6F8
-	.sbss       start:0x8074D258 end:0x8074D280
+	.sbss       start:0x8074D258 end:0x8074D278
 	.bss        start:0x807FA2C0 end:0x807FA380
+
+revolution/os/__start.c:
+	.init       start:0x80004000 end:0x80004400
+	.sbss       start:0x8074D278 end:0x8074D280
 
 revolution/os/OSPlayRecord.c:
 	.text       start:0x805C7490 end:0x805C7C40
@@ -4109,6 +4113,7 @@ revolution/os/OSLaunch.c:
 	.text       start:0x805C95C0 end:0x805C9810
 
 revolution/os/__ppc_eabi_init.cpp:
+	.init       start:0x80004400 end:0x80004464
 	.text       start:0x805C9810 end:0x805C9920
 
 revolution/exi/EXIBios.c:
@@ -4496,6 +4501,7 @@ revolution/gd/GDGeometry.c:
 	.data       start:0x8073E268 end:0x8073E500
 
 PowerPC_EABI_Support/Runtime/Src/__mem.c:
+	.init       start:0x80004464 end:0x800047E4
 	.text       start:0x8061B4D8 end:0x8061B4F4
 
 PowerPC_EABI_Support/Runtime/Src/__va_arg.c:
@@ -4888,3 +4894,6 @@ NdevExi2AD/DebuggerDriver.c:
 
 NdevExi2AD/exi2.c:
 	.text       start:0x8062F1EC end:0x8062F7C0
+
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s:
+	.init       start:0x800047E4 end:0x80006718

@@ -1558,7 +1558,7 @@ config.libs = [
             Object(MatchingFor("ShieldD"), "revolution/os/OSNandbootInfo.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSPlayTime.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSLaunch.c"),
-            Object(MatchingFor("ShieldD"), "revolution/os/__ppc_eabi_init.cpp"),
+            Object(NonMatching, "revolution/os/__ppc_eabi_init.cpp"),
         ],
     ),
     RevolutionLib(
