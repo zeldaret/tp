@@ -4,7 +4,15 @@ CompileFlags:
     "-Wno-multichar",
     "-fdeclspec",
     "-Wno-c++11-extensions",
+    "-Wuninitialized",
+    "-Wsometimes-uninitialized",
+    "-Wlogical-op-parentheses",
+    "-Wbitwise-op-parentheses",
+    # "-Wunused-variable",
+    # "-Wunused-but-set-variable",
     "-Wunused-parameter",
+    "-Wunused-but-set-parameter",
+    "-Wself-assign",
   ]
 Diagnostics:
   Suppress:
