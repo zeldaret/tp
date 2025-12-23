@@ -110,7 +110,7 @@ void print_error_check_c::check() {
     }
 
     if (mPrintErrors != print_errors) {
-        static char l_name[8];
+        static char l_name[dStage_NAME_LENGTH];
         fopAcM_getNameString(mpActor, l_name);
         OS_REPORT("\x1b[36m↑%s_SUBMETHOD %08x %08x %s %s\n\x1b[m",
             mName, mpActor, mpActor->base.base.name, fpcDbSv_getNameString(mpActor->base.base.name), l_name);
@@ -119,7 +119,7 @@ void print_error_check_c::check() {
     if (mThresholdEnable) {
         OSTick tick_diff = tick - mTick;
         if (mTimeMs != 0 && tick_diff > OSMicrosecondsToTicks(mTimeMs)) {
-            static char l_name[8];
+            static char l_name[dStage_NAME_LENGTH];
             fopAcM_getNameString(mpActor, l_name);
             OSReport_Warning("%s_SUBMETHOD 処理時間ながすぎ %4d us [%s] %s\n",
                 mName, OSTicksToMicroseconds(tick_diff), fpcDbSv_getNameString(mpActor->base.base.name), l_name);
@@ -219,7 +219,7 @@ static int fopAc_Draw(void* i_this) {
     fapGm_HIO_c::startCpuTimer();
 
     if (mDoCPd_c::getTrigB(PAD_1) && l_HIO.mBBtnInfoDisp) {
-        static char l_name[8];
+        static char l_name[dStage_NAME_LENGTH];
         fopAcM_getNameString(actor, l_name);
 
         OSReport("%7s %3d %5d x %10.2f y %10.2f z %10.2f\n",
@@ -228,7 +228,7 @@ static int fopAc_Draw(void* i_this) {
 
     if (l_HIO.mActorNum == fopAcM_GetName(actor) && l_HIO.mStopDraw) {
         if (l_HIO.field_0x8 != l_HIO.mStopDraw) {
-            static char l_name[8];
+            static char l_name[dStage_NAME_LENGTH];
             fopAcM_getNameString(actor, l_name);
             OSReport("<%s> の描画を停止します\n", l_name);
         }
@@ -271,11 +271,11 @@ static int fopAc_Draw(void* i_this) {
     }
 
     #if DEBUG
-    char sp38[40];
-    char sp10[8];
-    fopAcM_getNameString(actor, sp10);
-    sprintf(sp38, "%s（描画処理）", sp10);
-    fapGm_HIO_c::stopCpuTimer(sp38);
+    char message[40];
+    char name[dStage_NAME_LENGTH];
+    fopAcM_getNameString(actor, name);
+    sprintf(message, "%s（描画処理）", name);
+    fapGm_HIO_c::stopCpuTimer(message);
     #endif
 
     return ret;
@@ -290,7 +290,7 @@ static int fopAc_Execute(void* i_this) {
 
     if (l_HIO.mActorNum == fopAcM_GetName(actor) && l_HIO.mStopExecute) {
         if (l_HIO.field_0x7 != l_HIO.mStopExecute) {
-            static char l_name[8];
+            static char l_name[dStage_NAME_LENGTH];
             fopAcM_getNameString(actor, l_name);
             OSReport("<%s> の処理を停止します\n", l_name);
         }
@@ -307,7 +307,7 @@ static int fopAc_Execute(void* i_this) {
 
     if (!(-1.0e32f < actor->current.pos.x && actor->current.pos.x < 1.0e32f && -1.0e32f < actor->current.pos.y && actor->current.pos.y < 1.0e32f && -1.0e32f < actor->current.pos.z && actor->current.pos.z < 1.0e32f))
     {
-        static char l_name[8];
+        static char l_name[dStage_NAME_LENGTH];
         fopAcM_getNameString(actor, l_name);
         OSReport("！！！<%s> が範囲外にいます！！！\n", l_name);
     }
@@ -366,11 +366,11 @@ static int fopAc_Execute(void* i_this) {
     }
 
     #if DEBUG
-    char sp38[40];
-    char sp10[8];
-    fopAcM_getNameString(actor, sp10);
-    sprintf(sp38, "%s（計算処理）", sp10);
-    fapGm_HIO_c::stopCpuTimer(sp38);
+    char message[40];
+    char name[dStage_NAME_LENGTH];
+    fopAcM_getNameString(actor, name);
+    sprintf(message, "%s（計算処理）", name);
+    fapGm_HIO_c::stopCpuTimer(message);
     #endif
 
     return ret;

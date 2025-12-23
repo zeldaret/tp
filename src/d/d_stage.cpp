@@ -1471,7 +1471,7 @@ dStage_objectNameInf* dStage_searchName(char const* objName) {
 }
 
 const char* dStage_getName(s16 procName, s8 argument) {
-    static char tmp_name[8];
+    static char tmp_name[dStage_NAME_LENGTH];
 
     dStage_objectNameInf* obj = l_objectName;
     char* tmp = NULL;
@@ -1489,7 +1489,7 @@ const char* dStage_getName(s16 procName, s8 argument) {
     }
 
     if (tmp == NULL) {
-        snprintf(tmp_name, 8, "%d%+0d", procName, argument);
+        snprintf(tmp_name, dStage_NAME_LENGTH, "%d%+0d", procName, argument);
         tmp = tmp_name;
     }
     return tmp;
