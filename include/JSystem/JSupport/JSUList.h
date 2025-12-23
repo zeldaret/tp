@@ -230,7 +230,7 @@ public:
 
     T* getObject() const { return this->mTree->getObject(); }
 
-    bool operator==(JSUTree<T>* other) { return this->mTree == other; }
+    bool operator==(const JSUTree<T>* other) const { return this->mTree == other; }
 
     bool operator!=(const JSUTree<T>* other) const { return this->mTree != other; }
 
@@ -245,7 +245,7 @@ public:
         return *this;
     }
 
-    T* operator*() { return this->getObject(); }
+    T* operator*() const { return this->getObject(); }
 
     T* operator->() const { return this->getObject(); }
 

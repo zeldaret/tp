@@ -38,7 +38,7 @@ struct JASOscillator {
 		/* 0x00 */ u32 mTarget;
 		/* 0x04 */ f32 _04;
 		/* 0x08 */ const Point* mTable;
-		/* 0x0C */ const Point* _0C;
+		/* 0x0C */ const Point* rel_table;
 		/* 0x10 */ f32 mScale;
 		/* 0x14 */ f32 _14;
 	};
