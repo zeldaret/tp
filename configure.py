@@ -1524,6 +1524,7 @@ config.libs = [
     RevolutionLib(
         "os",
         [
+            Object(NonMatching, "revolution/os/__start.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OS.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSAddress.c"),
             Object(MatchingFor("ShieldD"), "revolution/os/OSAlarm.c"),
