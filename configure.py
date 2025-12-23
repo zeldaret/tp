@@ -308,11 +308,11 @@ cflags_runtime = [
     "-str reuse,pool,readonly",
     "-common off",
     "-char signed",
-    "-inline deferred,auto"
+    # "-inline deferred,auto"
 ]
 
-if config.version == "ShieldD":
-    cflags_runtime.extend(["-O0", "-inline off"])
+if config.version not in ["ShieldD", "Shield"]:
+    cflags_runtime.extend(["-inline deferred,auto"])
 
 cflags_trk = [
     *cflags_base,
