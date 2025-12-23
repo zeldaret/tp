@@ -1,5 +1,5 @@
 #include "mbstring.h"
-#include "string.h"
+#include "cstring.h"
 
 inline static int unicode_to_UTF8(char* s, wchar_t wchar) {
 	int number_of_bytes;

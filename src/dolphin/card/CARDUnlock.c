@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <cstdlib.h>
 #include <dolphin/dolphin.h>
 #include <dolphin/card.h>
 

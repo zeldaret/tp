@@ -13,7 +13,11 @@
 #include "d/d_save.h"
 #include "d/d_save_init.h"
 #include "f_op/f_op_scene_mng.h"
-#include "stdio.h"
+#include <stdio.h>
+
+#if PLATFORM_WII || PLATFORM_SHIELD
+#include <revolution/sc.h>
+#endif
 
 #if VERSION == VERSION_SHIELD
 #include "lingcod/lingcod.h"
@@ -966,8 +970,6 @@ void dSv_player_info_c::init() {
         unk55[i] = 0;
     }
 }
-
-extern "C" u8 SCGetLanguage();
 
 void dSv_player_config_c::init() {
 #if VERSION == VERSION_GCN_JPN

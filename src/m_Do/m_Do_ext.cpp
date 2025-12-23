@@ -21,7 +21,7 @@
 #include "global.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_mtx.h"
-#include "stdio.h"
+#include <stdio.h>
 
 static void mDoExt_setJ3DData(Mtx mtx, const J3DTransformInfo* transformInfo, u16 param_2) {
     bool local_28;

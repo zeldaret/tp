@@ -1,4 +1,4 @@
-#include <stddef.h>
+#include <cstddef.h>
 #include <revolution/base/PPCArch.h>
 #include <revolution/gx.h>
 #include <revolution/os.h>

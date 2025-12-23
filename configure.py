@@ -239,16 +239,19 @@ cflags_base = [
     "-fp hardware",
     "-Cpp_exceptions off",
     # "-W all",
+    "-O4,p",
+    "-inline auto",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
     "-maxerrors 1",
     "-nosyspath",
+    "-RTTI off",
     "-fp_contract on",
+    "-str reuse",
     "-i include",
     f"-i build/{config.version}/include",
     f"-i assets/{config.version}",
     "-i src",
-    "-ir src/dolphin",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include",
     "-i src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
@@ -260,15 +263,10 @@ cflags_base = [
     "-D__GEKKO__",
 ]
 
-if config.version == "ShieldD":
-    cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1", "-DWIDESCREEN_SUPPORT=1"])
-elif config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield"]:
-    cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS", "-DWIDESCREEN_SUPPORT=1"])
+if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield", "ShieldD"]:
+    cflags_base.extend(["-enc SJIS"])
 else:
-    cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
-
-if config.version in ["RZDE01_00", "ShieldD"] or args.debug or args.reghio:
-    cflags_base.extend(["-DENABLE_REGHIO=1"])
+    cflags_base.extend(["-multibyte"])
 
 USE_REVOLUTION_SDK_VERSIONS = [
     "RZDE01_00", # Wii USA Rev 0
@@ -290,6 +288,8 @@ if config.version in USE_REVOLUTION_SDK_VERSIONS:
 if args.debug:
     # Or -sym dwarf-2 for Wii compilers
     cflags_base.extend(["-sym on", "-DDEBUG=1", "-DDEBUG_DEFINED=1", "-DNDEBUG_DEFINED=0"])
+elif config.version == "ShieldD":
+    cflags_base.extend(["-DDEBUG=1", "-DDEBUG_DEFINED=1", "-DNDEBUG_DEFINED=0"])
 else:
     cflags_base.extend(["-DNDEBUG=1", "-DNDEBUG_DEFINED=1", "-DDEBUG_DEFINED=0"])
 
@@ -301,11 +301,6 @@ elif args.warn == "off":
 elif args.warn == "error":
     cflags_base.append("-W error")
 
-cflags_noopt = cflags_base[:]
-
-if config.version != "ShieldD":
-    cflags_noopt.remove("-O4,p")
-
 # Metrowerks library flags
 cflags_runtime = [
     *cflags_base,
@@ -313,9 +308,10 @@ cflags_runtime = [
     "-str reuse,pool,readonly",
     "-common off",
     "-char signed",
+    # "-inline deferred,auto"
 ]
 
-if config.version != "ShieldD":
+if config.version not in ["ShieldD", "Shield"]:
     cflags_runtime.extend(["-inline deferred,auto"])
 
 cflags_trk = [
@@ -333,81 +329,35 @@ cflags_trk = [
 
 # Dolphin library flags
 cflags_dolphin = [
-    "-nodefaults",
-    "-proc gekko",
-    "-align powerpc",
-    "-enum int",
-    "-fp hardware",
-    "-Cpp_exceptions off",
-    '-pragma "cats off"',
-    '-pragma "warn_notinlined off"',
-    "-maxerrors 1",
-    "-nosyspath",
-    "-char unsigned",
-    "-O4,p",
-    "-sym on",
-    "-inline auto",
-    "-i include",
-    f"-i build/{config.version}/include",
+    *cflags_base,
     "-ir src/dolphin",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include",
-    "-i src/PowerPC_EABI_Support/Runtime/Inc",
-    "-i src/PowerPC_EABI_Support/MetroTRK",
-    "-i include/dolphin",
-    f"-DVERSION={version_num}",
-    "-D__GEKKO__",
+    "-fp_contract off",
+    "-char unsigned",
+    "-sym on",
     "-DSDK_REVISION=2",
 ]
 
 # Revolution library flags
 cflags_revolution_base = [
-    "-nodefaults",
-    "-proc gekko",
-    "-align powerpc",
-    "-enum int",
-    "-fp hardware",
-    "-Cpp_exceptions off",
-    '-pragma "cats off"',
-    '-pragma "warn_notinlined off"',
-    "-maxerrors 1",
-    "-nosyspath",
-    #"-char unsigned",
+    *cflags_base,
+    "-ir src/revolution",
+    "-fp_contract off",
     "-sym on",
     "-inline auto",
     "-ipa file",
-    "-i include",
-    f"-i build/{config.version}/include",
-    "-ir src/revolution",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Include",
-    "-i src/PowerPC_EABI_Support/MSL/MSL_C++/MSL_Common/Include",
-    "-i src/PowerPC_EABI_Support/Runtime/Inc",
-    "-i src/PowerPC_EABI_Support/MetroTRK",
     "-i include/revolution",
-    f"-DVERSION={version_num}",
-    "-D__GEKKO__",
     "-D__REVOLUTION_SDK__",
 ]
 
 cflags_revolution_retail = [
     *cflags_revolution_base,
     "-O4,p",
-    "-DNDEBUG=1",
-    "-DNDEBUG_DEFINED=1",
-    "-DDEBUG_DEFINED=0",
 ]
 
 cflags_revolution_debug = [
     *cflags_revolution_base,
     "-opt off",
     "-inline off",
-    "-DDEBUG=1",
-    "-DDEBUG_DEFINED=1",
-    "-DNDEBUG_DEFINED=0",
 ]
 
 # Framework flags
@@ -419,6 +369,20 @@ cflags_framework = [
     "-fp_contract off",
 ]
 
+# for specific sdk libs
+cflags_noopt = cflags_base[:]
+if config.version != "ShieldD":
+    cflags_noopt.remove("-O4,p")
+
+
+if config.version == "ShieldD":
+    cflags_framework.extend(["-O0", "-inline off", "-RTTI on", "-DDEBUG=1", "-DWIDESCREEN_SUPPORT=1"])
+elif config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield"]:
+    cflags_framework.extend(["-ipa file", "-RTTI on", "-DWIDESCREEN_SUPPORT=1"])
+
+if config.version in ["RZDE01_00", "ShieldD"] or args.debug or args.reghio:
+    cflags_framework.extend(["-DENABLE_REGHIO=1"])
+
 if config.version != "ShieldD":
     if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield"]:
         # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
@@ -428,6 +392,7 @@ if config.version != "ShieldD":
 
 if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
     cflags_framework.extend(["-DSDK_SEP2006"])
+
 
 # REL flags
 cflags_rel = [
@@ -465,6 +430,7 @@ def MWVersion(cfg_version: str | None) -> str:
         case _:
             return "GC/2.7"
 
+# Wii versions specifically need linker GC/3.0a5
 if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
     config.linker_version = "GC/3.0a5"
 else:
@@ -597,6 +563,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_machine.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_mtx.cpp"),
             Object(Equivalent, "m_Do/m_Do_ext.cpp"), # weak func order
+            Object(NonMatching, "m_Do/m_Do_ext2.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_Reset.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_dvd_thread.cpp"),
@@ -633,6 +600,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "f_op/f_op_actor_iter.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_actor_tag.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_camera.cpp"),
+            Object(NonMatching, "f_op/f_op_actor_map.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_actor_mng.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_camera_mng.cpp"),
             Object(MatchingFor(ALL_GCN), "f_op/f_op_overlap.cpp"),
@@ -740,7 +708,9 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bg_plc.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_s.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_acch.cpp"),
+            Object(NonMatching, "d/d_bg_s_capt_poly.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bg_s_chk.cpp"),
+            Object(NonMatching, "d/d_bg_s_func.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_gnd_chk.cpp"), # debug weak func order
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_grp_pass_chk.cpp"), # debug weak func order
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_lin_chk.cpp"),
@@ -752,6 +722,8 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "d/d_bg_s_wtr_chk.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_base.cpp"),
+            Object(NonMatching, "d/d_bg_w_deform.cpp"),
+            Object(NonMatching, "d/d_bg_w_hf.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_kcol.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_sv.cpp"),
             Object(Equivalent, "d/d_cc_d.cpp"), # weak func order (cCcD_ShapeAttr::GetCoCP)
@@ -760,6 +732,8 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_cc_uty.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_cam_param.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ev_camera.cpp"),
+            Object(NonMatching, "d/d_jcam_editor.cpp"),
+            Object(NonMatching, "d/d_jpreviewer.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_spline_path.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_item_data.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_item.cpp"),
@@ -768,6 +742,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_eye_hl.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_error_msg.cpp"),
             Object(Equivalent, "d/d_debug_viewer.cpp"), # debug weak func order
+            Object(NonMatching, "d/d_debug_pad.cpp"),
             Object(NonMatching, "d/d_debug_camera.cpp"),
             Object(Equivalent, "d/actor/d_a_alink.cpp"), # weak func order, vtable order
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_itembase.cpp"),
@@ -810,6 +785,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_menu_item_explain.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_letter.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_option.cpp"),
+            Object(NonMatching, "d/d_menu_quit.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_ring.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_save.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_menu_skill.cpp"),
@@ -846,6 +822,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_msg_string.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_msg_flow.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_name.cpp"),
+            Object(NonMatching, "d/d_npc.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_npc_lib.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ovlp_fade.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_ovlp_fade2.cpp"),
@@ -944,8 +921,13 @@ config.libs = [
     JSystemLib(
         "J3DU",
         [
+            Object(NonMatching, "JSystem/J3DU/J3DUPerf.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DU/J3DUClipper.cpp"),
+            Object(NonMatching, "JSystem/J3DU/J3DUMotion.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "JSystem/J3DU/J3DUDL.cpp"),
+            Object(NonMatching, "JSystem/J3DU/J3DUFur.cpp"),
+            Object(NonMatching, "JSystem/J3DU/J3DUShadow.cpp"),
+            Object(NonMatching, "JSystem/J3DU/J3DUMtxCache.cpp"),
         ],
     ),
     JSystemLib(
@@ -1026,6 +1008,37 @@ config.libs = [
         ],
     ),
     JSystemLib(
+        "JStudioCameraEditor",
+        [
+            Object(NonMatching, "JSystem/JStudio/JStudioCameraEditor/control.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioCameraEditor/controlset-csb-valueset.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioCameraEditor/csb.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioCameraEditor/csb-data.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioCameraEditor/sequence.cpp"),
+        ],
+    ),
+    JSystemLib(
+        "JStudioPreviewer",
+        [
+            Object(NonMatching, "JSystem/JStudio/JStudioPreviewer/control.cpp"),
+        ],
+    ),
+    JSystemLib(
+        "JStudioToolLibrary",
+        [
+            Object(NonMatching, "JSystem/JStudio/JStudioToolLibrary/anchor.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioToolLibrary/console.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioToolLibrary/controlset.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioToolLibrary/controlset-anchor.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioToolLibrary/controlset-preview.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioToolLibrary/interface.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioToolLibrary/scroll.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioToolLibrary/visual.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioToolLibrary/xml.cpp"),
+            Object(NonMatching, "JSystem/JStudio/JStudioToolLibrary/jstudio-controlset-transform.cpp"),
+        ],
+    ),
+    JSystemLib(
         "JAudio2",
         [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASCalc.cpp"),
@@ -1036,6 +1049,8 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASResArcLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASProbe.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASReport.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASWaveFile.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASWaveFileWav.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASCmdStack.cpp"),
             Object(Equivalent, "JSystem/JAudio2/JASTrack.cpp"), # weak func order
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASTrackPort.cpp"),
@@ -1044,6 +1059,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSeqParser.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSeqReader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASAramStream.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASMidi.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicBank.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASVoiceBank.cpp"),
@@ -1051,6 +1067,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDrumSet.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBasicWaveBank.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASSimpleWaveBank.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASInstRand.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWSParser.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASBNKParser.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASWaveArcLoader.cpp"),
@@ -1084,6 +1101,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAIStream.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAIStreamDataMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAIStreamMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUAudience.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUAudioArcInterpreter.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUAudioArcLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUAudioMgr.cpp"),
@@ -1094,8 +1112,12 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSeqCollection.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSoundAnimator.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundMgr.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUSoundObject.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUSoundTable.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUStdSoundInfo.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JAUStreamFileTable.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JAUWaveFilePlayer.cpp"),
         ],
     ),
     JSystemLib(
@@ -1109,22 +1131,60 @@ config.libs = [
         ],
     ),
     JSystemLib(
-        "JAHostIO",
+        "JAWWinLib",
         [
-            Object(Matching, "JSystem/JAHostIO/JAHioMessage.cpp"),
-            Object(NonMatching, "JSystem/JAHostIO/JAHioMgr.cpp"),
-            Object(NonMatching, "JSystem/JAHostIO/JAHioNode.cpp"),
-            Object(NonMatching, "JSystem/JAHostIO/JAHioUtil.cpp"),
-        ]
+            Object(NonMatching, "JSystem/JAWWinLib/JAWSeqEdit.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWSoundTable.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWBankView.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWHioBankEdit.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWHioReceiver.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWMidiTerm.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWSysMemView.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWChView.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWVolume.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWReportView.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWPlayerChView.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWPlaySeView.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWEntrySeView.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWTrackView.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWSpeAna.cpp"),
+            Object(NonMatching, "JSystem/JAWWinLib/JAWSectionHeapView.cpp"),
+        ],
     ),
     JSystemLib(
         "JMessage",
         [
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/control.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JMessage/data.cpp"),
+            Object(NonMatching, "JSystem/JMessage/data-parse.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/processor.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/resource.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JMessage/locale.cpp"),
+        ],
+    ),
+    JSystemLib(
+        "JAHostIO",
+        [
+            Object(Matching, "JSystem/JAHostIO/JAHioMessage.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHioMgr.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHioNode.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHioUtil.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHFrameNode.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHVirtualNode.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHUAsnData.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHUTableEdit.cpp"),
+            Object(NonMatching, "JSystem/JAHostIO/JAHUFx.cpp"),
+        ],
+    ),
+    JSystemLib(
+        "JAHNodeLib",
+        [
+            Object(NonMatching, "JSystem/JAHNodeLib/JAHAudienceSettingNode.cpp"),
+            Object(NonMatching, "JSystem/JAHNodeLib/JAHConductNode.cpp"),
+            Object(NonMatching, "JSystem/JAHNodeLib/JAHIDSwapNode.cpp"),
+            Object(NonMatching, "JSystem/JAHNodeLib/JAHSoundPlayerNode.cpp"),
+            Object(NonMatching, "JSystem/JAHNodeLib/JAHViewerSys.cpp"),
+            Object(NonMatching, "JSystem/JAHNodeLib/JAHViewerApp.cpp"),
         ],
     ),
     {
@@ -1156,25 +1216,47 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SpeechMgr2.cpp"),
             Object(Equivalent, "Z2AudioLib/Z2AudioMgr.cpp"), # weak func order
             Object(NonMatching, "Z2AudioLib/Z2DebugSys.cpp"),
+            Object(NonMatching, "Z2AudioLib/Z2F1TestWindow.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2SoundPlayer.cpp"),
+            Object(NonMatching, "Z2AudioLib/Z2WaveArcLoader.cpp"),
+            Object(NonMatching, "Z2AudioLib/Z2SeView.cpp"),
+            Object(NonMatching, "Z2AudioLib/Z2TrackView.cpp"),
+        ],
+    },
+    {
+        "lib": "Z2AudioCSD",
+        "mw_version": MWVersion(config.version),
+        "cflags": cflags_framework,
+        "progress_category": "core",
+        "host": True,
+        "objects": [
+            Object(NonMatching, "Z2AudioCSD/SpkSpeakerCtrl.cpp"),
+            Object(NonMatching, "Z2AudioCSD/SpkSystem.cpp"),
+            Object(NonMatching, "Z2AudioCSD/SpkMixingBuffer.cpp"),
+            Object(NonMatching, "Z2AudioCSD/SpkWave.cpp"),
+            Object(NonMatching, "Z2AudioCSD/SpkTable.cpp"),
+            Object(NonMatching, "Z2AudioCSD/SpkData.cpp"),
+            Object(NonMatching, "Z2AudioCSD/SpkSound.cpp"),
+            Object(NonMatching, "Z2AudioCSD/Z2AudioCS.cpp"),
         ],
     },
     {
         "lib": "gf",
         "mw_version": MWVersion(config.version),
-        "cflags": cflags_noopt,
+        "cflags": [*cflags_noopt, "-O3"],
         "progress_category": "sdk",
         "objects": [
-            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFGeometry.cpp", extra_cflags=["-O3"]),
-            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFLight.cpp", extra_cflags=["-O3"]),
-            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFPixel.cpp", extra_cflags=["-O3"]),
-            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFTev.cpp", extra_cflags=["-O3"]),
+            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFGeometry.cpp"),
+            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFLight.cpp"),
+            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFPixel.cpp"),
+            Object(MatchingFor(ALL_GCN), "dolphin/gf/GFTev.cpp"),
         ],
     },
     JSystemLib(
         "JKernel",
         [
             Object(MatchingFor(ALL_GCN), "JSystem/JKernel/JKRHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRStdHeap.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JKernel/JKRExpHeap.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JKernel/JKRSolidHeap.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JKernel/JKRAssertHeap.cpp"),
@@ -1196,6 +1278,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JKernel/JKRCompArchive.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JKernel/JKRFile.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JKernel/JKRDvdFile.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRRelocation.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JKernel/JKRDvdRipper.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JKernel/JKRDvdAramRipper.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JKernel/JKRDecomp.cpp"),
@@ -1214,9 +1297,18 @@ config.libs = [
     JSystemLib(
         "JGadget",
         [
+            Object(NonMatching, "JSystem/JGadget/define.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JGadget/binary.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JGadget/linklist.cpp"),
+            Object(NonMatching, "JSystem/JGadget/search.cpp"),
+            Object(NonMatching, "JSystem/JGadget/textreader.cpp"),
+            Object(NonMatching, "JSystem/JGadget/xml-scanner.cpp"),
+            Object(NonMatching, "JSystem/JGadget/std-list.cpp"),
+            Object(NonMatching, "JSystem/JGadget/std-stream.cpp"),
+            Object(NonMatching, "JSystem/JGadget/std-streambuf.cpp"),
+            Object(NonMatching, "JSystem/JGadget/std-string.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JGadget/std-vector.cpp"),
+            Object(NonMatching, "JSystem/JGadget/dolphin-stream-JORFile.cpp"),
         ],
     ),
     JSystemLib(
@@ -1242,6 +1334,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JUtility/JUTConsole.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JUtility/JUTDirectFile.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield", "ShieldD"), "JSystem/JUtility/JUTFontData_Ascfont_fix12.cpp"),
+            Object(NonMatching, "JSystem/JUtility/JUTFontData_Ascfont_fix16.cpp"),
         ],
     ),
     JSystemLib(
@@ -1263,6 +1356,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPictureEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBoxEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DAnmLoader.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DAnmSaver.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DAnimation.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DManage.cpp"),
         ],
@@ -1308,11 +1402,14 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphLoader/J3DMaterialFactory.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphLoader/J3DMaterialFactory_v21.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphLoader/J3DClusterLoader.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DBinaryFormat.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DSaverUtility.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphLoader/J3DModelLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphLoader/J3DJointFactory.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphLoader/J3DShapeFactory.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J3DGraphLoader/J3DAnmLoader.cpp"),
+            Object(NonMatching, "JSystem/J3DGraphLoader/J3DModelSaver.cpp"),
         ],
     ),
     JSystemLib(
@@ -1378,7 +1475,7 @@ config.libs = [
     {
         "lib": "exi",
         "mw_version": "GC/1.2.5n",
-        "cflags": cflags_noopt,
+        "cflags": [*cflags_noopt, "-ir src/dolphin"],
         "progress_category": "sdk",
         "objects": [
             Object(MatchingFor(ALL_GCN), "dolphin/exi/EXIBios.c", extra_cflags=["-O3,p"]),
@@ -1796,6 +1893,7 @@ config.libs = [
         "progress_category": "sdk",
         "host": False,
         "objects": [
+            Object(NonMatching, "PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/__mem.c"),
             Object(MatchingFor(ALL_GCN, "Shield"), "PowerPC_EABI_Support/Runtime/Src/__va_arg.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c"),
@@ -1820,31 +1918,41 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/errno.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_files.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src/ansi_fp.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src/math_sun.c"),
             Object(MatchingFor(ALL_GCN, "Shield"), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/arith.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/buffer_io.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/char_io.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/critical_regions.gamecube.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ctype.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/locale.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/direct_io.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/file_io.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/FILE_POS.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mbstring.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mem.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mem_funcs.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/math_api.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/misc_io.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/printf.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/scanf.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/signal.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/string.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtold.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wctype.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wstring.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wchar_io.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/secure_error.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/math_double.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/uart_console_io_gcn.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_asin.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_atan2.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_exp.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/k_cos.c"),
@@ -1866,8 +1974,10 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_atan2.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_exp.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_fmod.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_log10.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_pow.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_sqrt.c"),
+            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/abort_exit_ppc_eabi.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/math_ppc.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/extras.c"),
@@ -1887,6 +1997,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/msg.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/msgbuf.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/serpoll.c", extra_cflags=["-sdata 8"]),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/string_TRK.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/dispatch.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/msghndlr.c"),
@@ -1912,6 +2023,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/common/CircleBuffer.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c", extra_cflags=["-sdata 8"]),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/common/MWTrace.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/cc_gdev.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c"),
         ],
     },
@@ -1943,6 +2055,17 @@ config.libs = [
         "host": False,
         "objects": [
             Object(MatchingFor(ALL_GCN), "odenotstub/odenotstub.c"),
+        ],
+    },
+    {
+        "lib": "NdevExi2AD",
+        "mw_version": MWVersion(config.version),
+        "cflags": cflags_dolphin,
+        "progress_category": "sdk",
+        "host": False,
+        "objects": [
+            Object(NonMatching, "NdevExi2AD/DebuggerDriver.c"),
+            Object(NonMatching, "NdevExi2AD/exi2.c"),
         ],
     },
     {

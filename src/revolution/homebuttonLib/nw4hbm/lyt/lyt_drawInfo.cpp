@@ -1,6 +1,6 @@
 #include "drawInfo.h"
 
-#include <cstring.h>
+#include <string.h>
 
 namespace nw4hbm {
     namespace lyt {

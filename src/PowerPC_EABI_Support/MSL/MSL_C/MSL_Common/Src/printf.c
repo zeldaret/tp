@@ -3,8 +3,8 @@
 #include "critical_regions.h"
 #include "ctype.h"
 #include "scanf.h"
-#include "stdio.h"
-#include "string.h"
+#include "cstdio.h"
+#include "cstring.h"
 #include "wchar_io.h"
 
 #define TARGET_FLOAT_BITS 64

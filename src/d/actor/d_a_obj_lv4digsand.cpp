@@ -9,7 +9,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_item.h"
-#include <cmath.h>
+#include <math.h>
 
 void daObjL4DigSand_c::initBaseMtx() {
     mpModel->setBaseScale(scale);
