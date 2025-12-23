@@ -148,7 +148,7 @@ int daNpc_ZelR_c::create() {
         mAcch.Set(&current.pos, &old.pos, this, 1, &mAcchCir, &speed, &current.angle, &shape_angle);
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
-        mGroundH = mAcch.m_ground_h;
+        mGroundH = mAcch.GetGroundH();
 
         setEnvTevColor();
         setRoomNo();

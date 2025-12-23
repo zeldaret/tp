@@ -67,7 +67,7 @@ static int daE_MS_Draw(e_ms_class* i_this) {
     cXyz shadow_pos(i_this->current.pos.x, i_this->current.pos.y + 100.0f, i_this->current.pos.z);
     i_this->mShadowKey =
         dComIfGd_setShadow(i_this->mShadowKey, 1, model, &shadow_pos, 400.0f, 40.0f,
-                           i_this->current.pos.y, i_this->mAcch.m_ground_h, i_this->mAcch.m_gnd,
+                           i_this->current.pos.y, i_this->mAcch.GetGroundH(), i_this->mAcch.m_gnd,
                            &i_this->tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
 
     return 1;
@@ -79,7 +79,7 @@ static void sibuki_set(e_ms_class* i_this) {
         cXyz pos(i_this->current.pos);
         pos.y = i_this->field_0x690;
         fopKyM_createWpillar(&pos, 1.0f, 0);
-        if (i_this->field_0x690 - i_this->mAcch.m_ground_h > 50.0f) {
+        if (i_this->field_0x690 - i_this->mAcch.GetGroundH() > 50.0f) {
             i_this->mSound.startCreatureSound(Z2SE_CM_BODYFALL_ASASE_S, 0, -1);
         } else {
             i_this->mSound.startCreatureSound(Z2SE_EN_MS_FALLWATER, 0, -1);

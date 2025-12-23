@@ -673,7 +673,7 @@ s32 daMg_Fish_Draw(mg_fish_class* i_this) {
                 i_this->actor.current.pos.z);
             i_this->mShadowId = dComIfGd_setShadow(i_this->mShadowId, 1, i_model, &pos,
                 600.0f * i_this->mJointScale, 0.0f,
-                i_this->actor.current.pos.y, i_this->mAcch.m_ground_h, i_this->mAcch.m_gnd,
+                i_this->actor.current.pos.y, i_this->mAcch.GetGroundH(), i_this->mAcch.m_gnd,
                 &i_this->actor.tevStr, 0, 1.0f, &dDlst_shadowControl_c::mSimpleTexObj);
         }
         if (i_this->mKind2 == 3) {

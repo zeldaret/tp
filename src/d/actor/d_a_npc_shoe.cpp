@@ -158,7 +158,7 @@ cPhs__Step daNpcShoe_c::Create() {
         mCcCyl.SetTgSPrm(0);
 
         mGndChk = mAcch.m_gnd;
-        mGroundH = mAcch.m_ground_h;
+        mGroundH = mAcch.GetGroundH();
         gravity = mpHIO->m.common.gravity;
 
         setEnvTevColor();

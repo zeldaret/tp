@@ -60,7 +60,7 @@ int daObj_Stick_c::create() {
         mSph.SetStts(&mStts);
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
-        mGroundHeight = mAcch.m_ground_h;
+        mGroundHeight = mAcch.GetGroundH();
 
         if(mGroundHeight != -G_CM3D_F_INF) {
             setEnvTevColor();
@@ -96,7 +96,7 @@ int daObj_Stick_c::Execute() {
     mAcch.CrrPos(dComIfG_Bgsp());
     mGndChk = mAcch.m_gnd;
     
-    mGroundHeight = mAcch.m_ground_h;
+    mGroundHeight = mAcch.GetGroundH();
     if (mGroundHeight != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
