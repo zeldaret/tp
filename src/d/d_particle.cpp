@@ -139,9 +139,6 @@ dPa_modelEcallBack::model_c* dPa_modelEcallBack::mModel;
 u8 dPa_modelEcallBack::mNum;
 #endif
 
-/* 80450E9C 0001+00 data_80450E9C None */
-/* 80450E9D 0001+00 data_80450E9D None */
-/* 80450E9E 0002+00 data_80450E9E None */
 static u8 struct_80450E9C;
 static u8 struct_80450E9D;
 
@@ -1419,9 +1416,6 @@ void dPa_control_c::setWaterRipple(u32* param_0, cBgS_PolyInfo& param_1, cXyz co
     }
 }
 
-/* 8004CA90-8004CF90 0473D0 0500+00 3/3 20/20 418/418 .text
- * set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
- */
 JPABaseEmitter* dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* i_pos,
                                    dKy_tevstr_c const* param_3, csXyz const* i_rotation,
                                    cXyz const* i_scale, u8 i_alpha, dPa_levelEcallBack* param_7,
@@ -1606,9 +1600,6 @@ s32 dPa_control_c::getPolyColor(cBgS_PolyInfo& param_0, int param_1, _GXColor* p
     return 1;
 }
 
-/* 8004D068-8004D128 0479A8 00C0+00 0/0 1/1 17/17 .text
- * setPoly__13dPa_control_cFUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz
- */
 JPABaseEmitter* dPa_control_c::setPoly(u16 param_0, cBgS_PolyInfo& param_1, cXyz const* param_2,
                                 dKy_tevstr_c const* param_3, csXyz const* param_4,
                                 cXyz const* param_5, int param_6, dPa_levelEcallBack* param_7,
@@ -1716,9 +1707,6 @@ static void dPa_kankyocolor_set(f32 param_0, JPABaseEmitter* param_1,
     }
 }
 
-/* 8004D4CC-8004D6A4 047E0C 01D8+00 3/3 11/11 364/364 .text
- * set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
- */
 u32 dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* pos,
                        dKy_tevstr_c const* param_4, csXyz const* i_rotation, cXyz const* i_scale,
                        u8 alpha, dPa_levelEcallBack* param_8, s8 param_9, _GXColor const* param_10,
@@ -1762,9 +1750,6 @@ u32 dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* pos,
     return field_0x210.entry(param_2, pJVar5, param_8);
 }
 
-/* 8004D6A4-8004D770 047FE4 00CC+00 1/1 3/3 10/10 .text
- * setPoly__13dPa_control_cFUlUsR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyziP18dPa_levelEcallBackScPC4cXyz
- */
 u32 dPa_control_c::setPoly(u32 param_0, u16 param_1, cBgS_PolyInfo& param_2,
                                cXyz const* param_3, dKy_tevstr_c const* param_4,
                                csXyz const* param_5, cXyz const* param_6, int param_7,
@@ -1792,9 +1777,6 @@ u32 dPa_control_c::setStopContinue(u32 param_0) {
     return 0;
 }
 
-/* 8004D7C4-8004D988 048104 01C4+00 0/0 1/1 0/0 .text
- * setSimpleFoot__13dPa_control_cFUlPUlR13cBgS_PolyInfoPC4cXyzPC12dKy_tevstr_ciPC5csXyzPC4cXyzP18dPa_levelEcallBackScPC4cXyz
- */
 u32 dPa_control_c::setSimpleFoot(u32 param_0, u32* param_1, cBgS_PolyInfo& param_2,
                                       cXyz const* param_3, dKy_tevstr_c const* param_4, int param_5,
                                       csXyz const* param_6, cXyz const* param_7,
@@ -1833,9 +1815,6 @@ u32 dPa_control_c::setSimpleFoot(u32 param_0, u32* param_1, cBgS_PolyInfo& param
     return rv;
 }
 
-/* 8004D988-8004DC28 0482C8 02A0+00 0/0 1/1 0/0 .text
- * setCommonPoly__13dPa_control_cFPUlP13cBgS_PolyInfoPC4cXyzPC4cXyzPC12dKy_tevstr_cUlUlPC5csXyzPC4cXyzSc
- */
 u16 dPa_control_c::setCommonPoly(u32* param_0, cBgS_PolyInfo* param_1, cXyz const* param_2,
                                       cXyz const* param_3, dKy_tevstr_c const* param_4, u32 param_5,
                                       u32 param_6, csXyz const* param_7, cXyz const* param_8,

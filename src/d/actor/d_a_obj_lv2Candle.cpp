@@ -392,7 +392,7 @@ static actor_method_class l_daLv2Candle_Method = {
     (process_method_func)daLv2Candle_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Lv2Candle = {
+actor_process_profile_definition g_profile_Obj_Lv2Candle = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

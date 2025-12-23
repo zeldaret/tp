@@ -192,7 +192,7 @@ static actor_method_class daTag_BottleItem_MethodTable = {
     (process_method_func)daTag_BottleItem_Draw
 };
 
-extern actor_process_profile_definition g_profile_TAG_BTLITM = {
+actor_process_profile_definition g_profile_TAG_BTLITM = {
     fpcLy_CURRENT_e,                // mLayerID
     7,                              // mListID
     fpcPi_CURRENT_e,                // mListPri

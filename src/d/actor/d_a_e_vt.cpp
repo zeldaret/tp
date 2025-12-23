@@ -204,7 +204,6 @@ daE_VA_HIO_c::daE_VA_HIO_c() {
     mKRegLightA = 210.0f;
 }
 
-/* 807CF4B5 0003+00 data_807CF4B5 None */
 #pragma push
 #pragma force_active on
 static u8 hio_set;
@@ -3901,7 +3900,7 @@ static actor_method_class l_daE_VA_Method = {
     (process_method_func)daE_VA_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_VT = {
+actor_process_profile_definition g_profile_E_VT = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

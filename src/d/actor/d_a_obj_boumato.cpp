@@ -84,7 +84,6 @@ int daObj_BouMato_c::CreateHeap() {
         {0.0f, 300.0f, 0.0f},
     };
 
-    // /* 80BBC58C-80BBC598 -00001 000C+00 1/1 0/0 0/0 .data            jntCoData$4045 */
     static dJntColData_c jntCoData = {
         1, 1, 0, 4.0f, jntCoOffset,
     };
@@ -340,7 +339,7 @@ static actor_method_class daObj_BouMato_MethodTable = {
     (process_method_func)daObj_BouMato_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_BOUMATO = {
+actor_process_profile_definition g_profile_OBJ_BOUMATO = {
   fpcLy_CURRENT_e,            // mLayerID
   7,                          // mListID
   fpcPi_CURRENT_e,            // mListPrio

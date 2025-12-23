@@ -1790,7 +1790,7 @@ static actor_method_class daNpc_Jagar_MethodTable = {
     (process_method_func)daNpc_Jagar_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_JAGAR = {
+actor_process_profile_definition g_profile_NPC_JAGAR = {
   fpcLy_CURRENT_e,          // mLayerID
   7,                        // mListID
   fpcPi_CURRENT_e,          // mListPrio

@@ -347,7 +347,7 @@ static actor_method_class daNpc_Shop0_MethodTable = {
     daNpc_Shop0_Create, daNpc_Shop0_Delete, daNpc_Shop0_Execute, daNpc_Shop0_IsDelete, daNpc_Shop0_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_SHOP0 = {
+actor_process_profile_definition g_profile_NPC_SHOP0 = {
   fpcLy_CURRENT_e,          // mLayerID
   7,                        // mListID
   fpcPi_CURRENT_e,          // mListPrio

@@ -7,7 +7,7 @@
 #include "d/actor/d_a_door_spiral.h"
 #include "f_op/f_op_actor.h"
 
-extern actor_process_profile_definition g_profile_SPIRAL_DOOR = {
+actor_process_profile_definition g_profile_SPIRAL_DOOR = {
     fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio

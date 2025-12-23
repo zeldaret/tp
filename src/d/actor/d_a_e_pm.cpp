@@ -128,7 +128,6 @@ enum Mode {
     /* 0x07 */ Mode7,
 };
 
-/* 8074C385 0003+00 data_8074C385 None */
 static bool hio_set;
 
 static daE_PM_HIO_c l_HIO;
@@ -2868,7 +2867,7 @@ static actor_method_class l_daE_PM_Method = {
     (process_method_func)daE_PM_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_PM = {
+actor_process_profile_definition g_profile_E_PM = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

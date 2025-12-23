@@ -1093,7 +1093,7 @@ static actor_method_class l_daB_YOI_Method = {
     (process_method_func)daB_YOI_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_YOI = {
+actor_process_profile_definition g_profile_B_YOI = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

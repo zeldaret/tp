@@ -1683,7 +1683,7 @@ static actor_method_class l_daNbombMethod = {
     (process_method_func)daNbomb_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NBOMB = {
+actor_process_profile_definition g_profile_NBOMB = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

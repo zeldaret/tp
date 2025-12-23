@@ -158,7 +158,7 @@ cPhs__Step daNpcShoe_c::Create() {
         mCcCyl.SetTgSPrm(0);
 
         mGndChk = mAcch.m_gnd;
-        mGroundH = mAcch.m_ground_h;
+        mGroundH = mAcch.GetGroundH();
         gravity = mpHIO->m.common.gravity;
 
         setEnvTevColor();
@@ -742,7 +742,7 @@ static actor_method_class daNpcShoe_MethodTable = {
     (process_method_func)daNpcShoe_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_SHOE = {
+actor_process_profile_definition g_profile_NPC_SHOE = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

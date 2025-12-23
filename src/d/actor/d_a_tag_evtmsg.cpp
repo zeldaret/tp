@@ -234,7 +234,7 @@ static actor_method_class daTag_EvtMsg_MethodTable = {
     (process_method_func)daTag_EvtMsg_Draw,
 };
 
-extern actor_process_profile_definition g_profile_TAG_EVTMSG = {
+actor_process_profile_definition g_profile_TAG_EVTMSG = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

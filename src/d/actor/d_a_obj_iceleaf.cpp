@@ -409,7 +409,7 @@ static actor_method_class l_daObjIceLeaf_Method = {
     (process_method_func)daObjIceLeaf_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_IceLeaf = {
+actor_process_profile_definition g_profile_Obj_IceLeaf = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

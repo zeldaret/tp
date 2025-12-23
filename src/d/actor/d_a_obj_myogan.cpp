@@ -167,7 +167,7 @@ static actor_method_class l_daObj_Myogan_Method = {
     (process_method_func)daObj_Myogan_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_MYOGAN = {
+actor_process_profile_definition g_profile_OBJ_MYOGAN = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

@@ -670,7 +670,7 @@ static void kuki_control3(e_gb_class* i_this) {
 }
 
 static void* s_b_sub(void* i_actor, void* i_data) {
-    i_data;
+    UNUSED(i_data);
 
     if (fopAcM_IsActor(i_actor) && dBomb_c::checkBombActor((fopAc_ac_c*)i_actor) && !((dBomb_c*)i_actor)->checkStateExplode()) {
         cXyz sp28 = ((fopAc_ac_c*)i_actor)->current.pos - ((fopAc_ac_c*)i_data)->home.pos;
@@ -1724,7 +1724,7 @@ static actor_method_class l_daE_GB_Method = {
     (process_method_func)daE_GB_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_GB = {
+actor_process_profile_definition g_profile_E_GB = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

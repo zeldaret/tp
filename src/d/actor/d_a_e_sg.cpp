@@ -1252,7 +1252,7 @@ static actor_method_class l_daE_SG_Method = {
     (process_method_func)daE_SG_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_SG = {
+actor_process_profile_definition g_profile_E_SG = {
     fpcLy_CURRENT_e,       // mLayerID
     7,                     // mListID
     fpcPi_CURRENT_e,       // mListPrio

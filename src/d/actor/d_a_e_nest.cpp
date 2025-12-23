@@ -1071,7 +1071,7 @@ static actor_method_class l_daE_Nest_Method = {
     (process_method_func)daE_Nest_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_NEST = {
+actor_process_profile_definition g_profile_E_NEST = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

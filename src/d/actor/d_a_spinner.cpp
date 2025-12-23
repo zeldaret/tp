@@ -934,7 +934,7 @@ static actor_method_class l_daSpinner_Method = {
     (process_method_func)daSpinner_Draw,
 };
 
-extern actor_process_profile_definition g_profile_SPINNER = {
+actor_process_profile_definition g_profile_SPINNER = {
   fpcLy_CURRENT_e,       // mLayerID
   4,                     // mListID
   fpcPi_CURRENT_e,       // mListPrio

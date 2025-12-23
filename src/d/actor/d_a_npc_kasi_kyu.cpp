@@ -349,8 +349,6 @@ daTagEscape_c* daNpcKasiKyu_c::mTargetTag;
 
 f32 daNpcKasiKyu_c::mTargetTagDist;
 
-/* 80A26068 0002+00 data_80A26068 mWolfAngle__14daNpcKasiKyu_c */
-/* 80A2606A 0002+00 data_80A2606A None */
 s16 daNpcKasiKyu_c::mWolfAngle;
 
 BOOL daNpcKasiKyu_c::main() {
@@ -1427,7 +1425,7 @@ static actor_method_class daNpcKasiKyu_MethodTable = {
     (process_method_func)daNpcKasiKyu_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_KASIKYU = {
+actor_process_profile_definition g_profile_NPC_KASIKYU = {
   fpcLy_CURRENT_e,           // mLayerID
   7,                         // mListID
   fpcPi_CURRENT_e,           // mListPrio

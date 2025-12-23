@@ -273,7 +273,7 @@ static actor_method_class l_daLv1Cdl00_Method = {
     (process_method_func)daLv1Cdl00_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Lv1Cdl00 = {
+actor_process_profile_definition g_profile_Obj_Lv1Cdl00 = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

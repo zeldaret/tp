@@ -55,7 +55,7 @@ static actor_method_class l_daSetBgObj_Method = {
     (process_method_func)daSetBgObj_Delete,
 };
 
-extern actor_process_profile_definition g_profile_SET_BG_OBJ = {
+actor_process_profile_definition g_profile_SET_BG_OBJ = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

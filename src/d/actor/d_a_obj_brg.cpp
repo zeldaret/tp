@@ -353,7 +353,6 @@ static int daObj_Brg_Draw(obj_brg_class* i_this) {
     return 1;
 }
 
-/* 80BC2526 0002+00 data_80BC2526 wy */
 static s16 wy;
 
 static void control1(obj_brg_class* i_this, br_s* i_part) {
@@ -1825,7 +1824,7 @@ static actor_method_class l_daObj_Brg_Method = {
     (process_method_func)daObj_Brg_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_BRG = {
+actor_process_profile_definition g_profile_OBJ_BRG = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

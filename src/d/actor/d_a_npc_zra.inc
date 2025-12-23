@@ -1,4 +1,3 @@
-/* 80B7F8C4-80B7FD10 0074A4 044C+00 3/0 0/0 0/0 .text            wait__11daNpc_zrA_cFPv */
 BOOL daNpc_zrA_c::wait(void* param_0) {
     switch (mMode) {
     case 0:

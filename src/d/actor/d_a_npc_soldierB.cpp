@@ -977,7 +977,7 @@ static actor_method_class daNpc_SoldierB_MethodTable = {
     (process_method_func)daNpc_SoldierB_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_SOLDIERb = {
+actor_process_profile_definition g_profile_NPC_SOLDIERb = {
     fpcLy_CURRENT_e,              // mLayerID
     7,                            // mListID
     fpcPi_CURRENT_e,              // mListPrio

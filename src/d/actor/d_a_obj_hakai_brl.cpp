@@ -195,7 +195,7 @@ static actor_method_class daObjHBarrel_METHODS = {
     (process_method_func)daObjHBarrel_draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_HBarrel = {
+actor_process_profile_definition g_profile_Obj_HBarrel = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

@@ -617,7 +617,7 @@ static actor_method_class daMirror_METHODS = {
     (process_method_func)daMirror_draw,
 };
 
-extern actor_process_profile_definition g_profile_MIRROR = {
+actor_process_profile_definition g_profile_MIRROR = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

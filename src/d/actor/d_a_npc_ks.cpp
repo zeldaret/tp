@@ -7465,7 +7465,7 @@ static actor_method_class l_daNpc_Ks_Method = {
     (process_method_func)daNpc_Ks_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_KS = {
+actor_process_profile_definition g_profile_NPC_KS = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

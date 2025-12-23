@@ -107,7 +107,7 @@ static actor_method_class l_daTalk_Method = {
     (process_method_func)daTalk_Draw,
 };
 
-extern actor_process_profile_definition g_profile_TALK = {
+actor_process_profile_definition g_profile_TALK = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

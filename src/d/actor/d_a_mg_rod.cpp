@@ -519,7 +519,6 @@ static void rod_main(dmg_rod_class* i_this) {
 
 static npc_henna_class* henna;
 
-/* 804BBBD4 0001+00 data_804BBBD4 None */
 static u8 data_804BBBD4;
 static u8 hio_set;
 
@@ -6353,7 +6352,7 @@ static actor_method_class l_dmg_rod_Method = {
     (process_method_func)dmg_rod_Draw,
 };
 
-extern actor_process_profile_definition g_profile_MG_ROD = {
+actor_process_profile_definition g_profile_MG_ROD = {
   fpcLy_CURRENT_e,            // mLayerID
   8,                          // mListID
   fpcPi_CURRENT_e,            // mListPrio

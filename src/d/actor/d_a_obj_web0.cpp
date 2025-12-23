@@ -286,7 +286,7 @@ static actor_method_class l_daObj_Web0_Method = {
     (process_method_func)daObj_Web0_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_WEB0 = {
+actor_process_profile_definition g_profile_OBJ_WEB0 = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

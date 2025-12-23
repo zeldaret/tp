@@ -67,7 +67,7 @@ void daObjIce_l_c::setBaseMtx() {
 }
 
 static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
-    (void)param_0;
+    UNUSED(param_0);
     daObjIce_l_c* ice_p = (daObjIce_l_c*)param_1;
     daPy_py_c* player_p = daPy_getPlayerActorClass();
     cXyz* ball_pos = player_p->getIronBallCenterPos();
@@ -255,7 +255,7 @@ static actor_method_class l_daObjIce_l_Method = {
     (process_method_func)daObjIce_l_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Ice_l = {
+actor_process_profile_definition g_profile_Obj_Ice_l = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

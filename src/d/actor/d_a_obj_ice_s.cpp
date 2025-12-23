@@ -118,7 +118,7 @@ void daObjIce_s_c::setBaseMtx() {
 }
 
 static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
-    (void)param_1;
+    UNUSED(param_1);
     daObjIce_s_c* ice = (daObjIce_s_c*)param_2;
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz* playerPos = &fopAcM_GetPosition(player);
@@ -301,7 +301,7 @@ static actor_method_class l_daObjIce_s_Method = {
     (process_method_func)daObjIce_s_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Ice_s = {
+actor_process_profile_definition g_profile_Obj_Ice_s = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

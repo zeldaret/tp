@@ -234,7 +234,6 @@ static void* s_fmobj_del(void* i_actor, void* i_data) {
     return NULL;
 }
 
-/* 804FAE95 0003+00 data_804FAE95 None */
 static u8 hio_set;
 
 static daE_FM_HIO_c l_HIO;
@@ -3880,7 +3879,7 @@ static actor_method_class l_daE_FM_Method = {
     (process_method_func)daE_FM_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_FM = {
+actor_process_profile_definition g_profile_E_FM = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

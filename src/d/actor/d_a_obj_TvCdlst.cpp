@@ -220,7 +220,7 @@ static actor_method_class l_daTvCdlst_Method = {
     (process_method_func)daTvCdlst_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_TvCdlst = {
+actor_process_profile_definition g_profile_Obj_TvCdlst = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

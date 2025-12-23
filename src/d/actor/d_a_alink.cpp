@@ -18882,7 +18882,7 @@ static actor_method_class l_daAlink_Method = {
     (process_method_func)daAlink_Draw,
 };
 
-extern actor_process_profile_definition g_profile_ALINK = {
+actor_process_profile_definition g_profile_ALINK = {
     fpcLy_CURRENT_e,
     5,
     fpcPi_CURRENT_e,

@@ -506,7 +506,7 @@ static actor_method_class l_daB_ZANTZ_Method = {
     (process_method_func)daB_ZANTZ_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_ZANTZ = {
+actor_process_profile_definition g_profile_B_ZANTZ = {
   fpcLy_CURRENT_e,        // mLayerID
   4,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

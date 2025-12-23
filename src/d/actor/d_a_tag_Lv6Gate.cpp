@@ -116,8 +116,8 @@ inline bool daTagLv6Gate_c::checkOpenArea() {
 }
 
 inline int daTagLv6Gate_c::execute() {
-    dComIfG_inf_c& game_info = g_dComIfG_gameInfo;  // Fake match?
-
+    // TODO: gameInfo fake match to force reuse of pointer
+    dComIfG_inf_c& game_info = g_dComIfG_gameInfo;
     if (game_info.getPlay().getEvent().runCheck() && !eventInfo.checkCommandTalk()) {
         dEvent_manager_c& eventManager = dComIfGp_getEventManager();
         s32 cut_index = eventManager.getMyStaffId(l_arcName, NULL, 0);
@@ -372,7 +372,7 @@ static actor_method_class l_daTagLv6Gate_Method = {
     (process_method_func)daTagLv6Gate_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Tag_Lv6Gate = {
+actor_process_profile_definition g_profile_Tag_Lv6Gate = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

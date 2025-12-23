@@ -144,7 +144,7 @@ int daObjTable_c::Execute(Mtx** i_mtx) {
     if (dComIfGp_event_runCheck()) {
         if (eventInfo.checkCommandTalk()) {
             if (mMsgFlow.doFlow(this, NULL, 0) != 0) {
-                gameInfo.getPlay().getEvent().reset(this);  // Fake match?
+                gameInfo.play.getEvent().reset(this);  // Fake match?
                 eventInfo.setArchiveName("Table");
                 dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
                 mEventID = dComIfGp_getEventManager().getEventIdx(this, "TABLE_MAP", -1);
@@ -193,7 +193,7 @@ static actor_method_class l_daObjTable_Method = {
     (process_method_func)daObjTable_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Table = {
+actor_process_profile_definition g_profile_Obj_Table = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

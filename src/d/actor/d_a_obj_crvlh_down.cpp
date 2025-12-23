@@ -237,7 +237,7 @@ static actor_method_class l_daObjCRVLH_DW_Method = {
     (process_method_func)daObjCRVLH_DW_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_CRVLH_DW = {
+actor_process_profile_definition g_profile_Obj_CRVLH_DW = {
     fpcLy_CURRENT_e,          // mLayerID
     3,                        // mListID
     fpcPi_CURRENT_e,          // mListPrio

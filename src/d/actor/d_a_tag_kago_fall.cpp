@@ -278,7 +278,7 @@ static actor_method_class l_daTagKagoFall_Method = {
     (process_method_func)daTagKagoFall_Execute,
 };
 
-extern actor_process_profile_definition g_profile_Tag_KagoFall = {
+actor_process_profile_definition g_profile_Tag_KagoFall = {
     fpcLy_CURRENT_e,          // mLayerID
     7,                        // mListID
     fpcPi_CURRENT_e,          // mListPrio

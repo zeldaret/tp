@@ -600,7 +600,7 @@ static actor_method_class daObjWarpOBrg_METHODS = {
     (process_method_func)daObjWarpOBrg_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_OrdinBrg = {
+actor_process_profile_definition g_profile_Obj_OrdinBrg = {
     fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

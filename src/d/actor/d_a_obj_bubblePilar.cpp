@@ -224,7 +224,7 @@ static actor_method_class l_daBubbPilar_Method = {
     (process_method_func)daBubbPilar_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_awaPlar = {
+actor_process_profile_definition g_profile_Obj_awaPlar = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

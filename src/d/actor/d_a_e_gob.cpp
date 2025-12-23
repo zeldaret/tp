@@ -276,7 +276,6 @@ static void damage_check(e_gob_class* i_this) {
     }
 }
 
-/* 806DF2C5 0003+00 data_806DF2C5 None */
 static u8 hio_set;
 
 static daE_GOB_HIO_c l_HIO;
@@ -2403,7 +2402,7 @@ static actor_method_class l_daE_GOB_Method = {
     (process_method_func)daE_GOB_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_GOB = {
+actor_process_profile_definition g_profile_E_GOB = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

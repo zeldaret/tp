@@ -138,8 +138,6 @@ static void* shot_b_sub(void* param_1, void* param_2) {
     return NULL;
 }
 
-/* 80D158F4 0001+00 data_80D158F4 @1009 */
-/* 80D158F5 0003+00 data_80D158F5 None */
 static u8 hio_set;
 
 static daObj_Toby_HIO_c l_HIO;
@@ -705,7 +703,7 @@ static actor_method_class l_daObj_Toby_Method = {
     (process_method_func)daObj_Toby_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_TOBY = {
+actor_process_profile_definition g_profile_OBJ_TOBY = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

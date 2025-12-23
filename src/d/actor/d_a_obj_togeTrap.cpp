@@ -299,7 +299,7 @@ static actor_method_class l_daTogeTrap_Method = {
     (process_method_func)daTogeTrap_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_TogeTrap = {
+actor_process_profile_definition g_profile_Obj_TogeTrap = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

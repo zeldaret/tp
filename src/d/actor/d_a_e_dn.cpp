@@ -354,7 +354,6 @@ static BOOL other_bg_check2(e_dn_class* i_this, cXyz* i_pos) {
     return FALSE;
 }
 
-/* 804EEF2D 0003+00 data_804EEF2D None */
 u8 hio_set;
 
 daE_DN_HIO_c l_HIO;
@@ -3500,7 +3499,7 @@ static actor_method_class l_daE_DN_Method = {
     (process_method_func)daE_DN_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_DN = {
+actor_process_profile_definition g_profile_E_DN = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

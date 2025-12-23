@@ -1387,7 +1387,7 @@ static actor_method_class daNpcTkc_MethodTable = {
     (process_method_func)daNpcTkc_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_TKC = {
+actor_process_profile_definition g_profile_NPC_TKC = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

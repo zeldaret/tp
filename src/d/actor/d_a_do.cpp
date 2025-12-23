@@ -16,7 +16,6 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "Z2AudioLib/Z2Instances.h"
 
-/* 8066F2B6 0002+00 data_8066F2B6 None */
 static bool noFallCheck;
 static bool hio_set;
 
@@ -2500,7 +2499,7 @@ static actor_method_class l_daDo_Method = {
     (process_method_func)daDo_Draw,
 };
 
-extern actor_process_profile_definition g_profile_DO = {
+actor_process_profile_definition g_profile_DO = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

@@ -187,7 +187,7 @@ static actor_method_class l_daAlldie_Method = {
     (process_method_func)daAlldie_Draw,
 };
 
-extern actor_process_profile_definition g_profile_ALLDIE = {
+actor_process_profile_definition g_profile_ALLDIE = {
     fpcLy_CURRENT_e,
     2,
     fpcPi_CURRENT_e,

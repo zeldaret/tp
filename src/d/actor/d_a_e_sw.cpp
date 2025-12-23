@@ -184,23 +184,17 @@ void daE_SW_c::setHideEffect() {
 }
 
 namespace {
-    /* 807B01F8-807B01FC 000048 0004+00 1/2 0/0 0/0 .bss target_info__22@unnamed@d_a_e_sw_cpp@ */
     static fopAc_ac_c* target_info;
 
-    /* 807B01FC-807B0200 00004C 0004+00 1/2 0/0 0/0 .bss target_dist__22@unnamed@d_a_e_sw_cpp@ */
     static f32 target_dist;
 };
 
-/* 807B0200 */
 static u8 data_807B0200;
 
-/* 807B0201 */
 static u8 data_807B0201;
 
-/* 807B0202 */
 static u8 data_807B0202;
 
-/* 807B0203 0001+00 data_807B0203 None */
 static u8 hio_set;
 
 void daE_SW_c::setActionMode(s16 i_actionMode, s16 i_moveMode) {
@@ -1808,7 +1802,7 @@ static actor_method_class l_daE_SW_Method = {
     (process_method_func)daE_SW_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_SW = {
+actor_process_profile_definition g_profile_E_SW = {
     fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio

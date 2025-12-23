@@ -2016,4 +2016,9 @@ bool fopAcM_wt_c::waterCheck(cXyz const* i_pos) {
     return false;
 }
 
+BOOL fopAcM_getNameString(const fopAc_ac_c* i_actor, char* o_name) {
+    strcpy(o_name, dStage_getName(fopAcM_GetProfName(i_actor), i_actor->argument));
+    return TRUE;
+}
+
 void fopAcM_initManager() {}

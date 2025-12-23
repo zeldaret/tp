@@ -366,7 +366,7 @@ static actor_method_class daDoorPush_METHODS = {
     (process_method_func)daDoorPush_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_PushDoor = {
+actor_process_profile_definition g_profile_PushDoor = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

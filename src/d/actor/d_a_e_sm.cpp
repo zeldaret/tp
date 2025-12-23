@@ -461,10 +461,8 @@ static u8 hio_set;
 static daE_Sm_HIO_c l_HIO;
 
 namespace {
-    /* 807989E0-807989E4 000068 0004+00 3/4 0/0 0/0 .bss             s_Dis__22@unnamed@d_a_e_sm_cpp@ */
     static f32 s_Dis;
 
-    /* 807989E4-807989E8 00006C 0002+02 9/10 0/0 0/0 .bss s_TargetAngle__22@unnamed@d_a_e_sm_cpp@ */
     static s16 s_TargetAngle;
 };
 
@@ -2018,7 +2016,7 @@ static actor_method_class l_daE_SM_Method = {
     (process_method_func)daE_SM_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_SM = {
+actor_process_profile_definition g_profile_E_SM = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

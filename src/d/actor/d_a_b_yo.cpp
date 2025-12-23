@@ -122,7 +122,6 @@ enum L5_R50_RES_FIL_ID {
     /* 0x0A */ DZB_R50_P2,
 };
 
-/* 80639F74 0001+00 data_80639F74 @1009 */
 static bool hio_set;
 
 static daB_YO_HIO_c l_HIO;
@@ -3432,7 +3431,7 @@ static actor_method_class l_daB_YO_Method = {
     (process_method_func)daB_YO_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_YO = {
+actor_process_profile_definition g_profile_B_YO = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

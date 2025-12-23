@@ -86,13 +86,10 @@ static dCcD_SrcSph cc_ot_at_src = {
 
 }  // namespace
 
-/* 8073D2AD 0003+00 data_8073D2AD None */
 static bool hio_set;
 
 static daE_OT_HIO_c l_HIO;
 
-/* 8073D2DC 0001+00 data_8073D2DC None */
-/* 8073D2DD 0003+00 data_8073D2DD None */
 static u8 data_8073D2DC;
 static u8 data_8073D2DD;
 
@@ -840,7 +837,7 @@ static actor_method_class l_daE_OT_Method = {
     (process_method_func)daE_OT_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_OT = {
+actor_process_profile_definition g_profile_E_OT = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

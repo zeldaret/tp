@@ -1237,7 +1237,7 @@ static actor_method_class l_daItem_Method = {
     (process_method_func)daItem_Draw,
 };
 
-extern actor_process_profile_definition g_profile_ITEM = {
+actor_process_profile_definition g_profile_ITEM = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

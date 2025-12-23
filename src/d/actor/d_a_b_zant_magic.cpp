@@ -276,7 +276,7 @@ static actor_method_class l_daB_ZANTM_Method = {
     (process_method_func)daB_ZANTM_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_ZANTM = {
+actor_process_profile_definition g_profile_B_ZANTM = {
   fpcLy_CURRENT_e,        // mLayerID
   4,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

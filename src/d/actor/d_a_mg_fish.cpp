@@ -673,7 +673,7 @@ s32 daMg_Fish_Draw(mg_fish_class* i_this) {
                 i_this->actor.current.pos.z);
             i_this->mShadowId = dComIfGd_setShadow(i_this->mShadowId, 1, i_model, &pos,
                 600.0f * i_this->mJointScale, 0.0f,
-                i_this->actor.current.pos.y, i_this->mAcch.m_ground_h, i_this->mAcch.m_gnd,
+                i_this->actor.current.pos.y, i_this->mAcch.GetGroundH(), i_this->mAcch.m_gnd,
                 &i_this->actor.tevStr, 0, 1.0f, &dDlst_shadowControl_c::mSimpleTexObj);
         }
         if (i_this->mKind2 == 3) {
@@ -1039,7 +1039,7 @@ static void mf_away(mg_fish_class* i_this) {
         break;
     case 5:
         if (i_this->mGedouKind < GEDOU_KIND_BG) {
-            if ((i_this->mAcch.m_flags & (1 << 4)) != 0) {
+            if (i_this->mAcch.ChkWallHit()) {
                 if (i_this->field_0x624[1] == 0) {
                     i_this->mActionPhase = 0;
                     i_this->field_0x624[1] = 40;
@@ -1982,7 +1982,7 @@ static void mf_jump(mg_fish_class* i_this) {
         i_this->mMaxStep = 0x600;
         i_this->actor.current.pos += i_this->field_0x5e0;
         i_this->field_0x5e0.y = i_this->field_0x5e0.y - 2.0f;
-        if ((i_this->mAcch.m_flags & 0x20) != 0) {
+        if (i_this->mAcch.ChkGroundHit()) {
             i_this->actor.current.pos.x = i_this->actor.old.pos.x;
             i_this->actor.current.pos.y = i_this->actor.old.pos.y;
             i_this->actor.current.pos.z = i_this->actor.old.pos.z;
@@ -3760,7 +3760,6 @@ static int useHeapImg_fisht(fopAc_ac_c* i_actor) {
 }
 
 static int daMg_Fish_Create(fopAc_ac_c* i_this) {
-    /* 805369FC-80536A40 000558 0044+00 0/1 0/0 0/0 .data            cc_cyl_src$8395 */
     static dCcD_SrcCyl cc_cyl_src = {
         {
             { 0x0, { { 0x0, 0x0, 0x0 }, { 0x0, 0x0 }, 0x75 } }, // mObj
@@ -4059,7 +4058,7 @@ static actor_method_class l_daMg_Fish_Method = {
     (process_method_func)daMg_Fish_Draw,
 };
 
-extern actor_process_profile_definition g_profile_MG_FISH = {
+actor_process_profile_definition g_profile_MG_FISH = {
     (uint)fpcLy_CURRENT_e,  // mLayerID
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio

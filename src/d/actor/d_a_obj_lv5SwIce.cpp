@@ -197,7 +197,7 @@ static actor_method_class l_daLv5SwIce_Method = {
     (process_method_func)daLv5SwIce_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Lv5SwIce = {
+actor_process_profile_definition g_profile_Obj_Lv5SwIce = {
     fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

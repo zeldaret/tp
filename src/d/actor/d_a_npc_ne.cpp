@@ -300,7 +300,6 @@ static s16 climb_angle_get(npc_ne_class* i_this) {
     return 0;
 }
 
-/* 80A92AC5 0003+00 data_80A92AC5 None */
 static bool hio_set;
 
 static daNpc_Ne_HIO_c l_HIO;
@@ -3177,7 +3176,6 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
         i_this->health = 1;
         _this->field_0x560 = 1;
 
-        /* 80A92950-80A92990 000360 0040+00 1/1 0/0 0/0 .data            cc_sph_src$7518 */
         static dCcD_SrcSph cc_sph_src = {
             {
                 {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x75}}, // mObj
@@ -3190,7 +3188,6 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
             } // mSphAttr
         };
 
-        /* 80A92990-80A929D0 0003A0 0040+00 1/1 0/0 0/0 .data            at_sph_src$7519 */
         static dCcD_SrcSph at_sph_src = {
             {
                 {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0x1f}, {0x0, 0x0}, 0x0}}, // mObj
@@ -3257,7 +3254,7 @@ static actor_method_class l_daNpc_Ne_Method = {
     (process_method_func)daNpc_Ne_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_NE = {
+actor_process_profile_definition g_profile_NPC_NE = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

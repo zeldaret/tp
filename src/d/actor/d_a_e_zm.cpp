@@ -70,7 +70,6 @@ static u8 hio_set;
 static daE_ZM_HIO_c l_HIO;
 
 namespace {
-    /* 80832DFC-80832E40 000038 0044+00 1/1 0/0 0/0 .data            cc_zm_src__22@unnamed@d_a_e_zm_cpp@ */
     static dCcD_SrcCyl cc_zm_src = {
         {
             {0, {{AT_TYPE_0, 0, 0}, {0xD8FBFDFF, 0x43}, 0x45}},
@@ -83,7 +82,6 @@ namespace {
         },
     };
 
-    /* 80832E40-80832E80 00007C 0040+00 1/1 0/0 0/0 .data            cc_zm_at_src__22@unnamed@d_a_e_zm_cpp@ */
     static dCcD_SrcSph cc_zm_at_src = {
         {
             {0, {{AT_TYPE_CSTATUE_SWING, 2, 0xD}, {0xD8FBFDFF, 0x43}, 0}},
@@ -1032,7 +1030,7 @@ static actor_method_class l_daE_ZM_Method = {
     (process_method_func)daE_ZM_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_ZM = {
+actor_process_profile_definition g_profile_E_ZM = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

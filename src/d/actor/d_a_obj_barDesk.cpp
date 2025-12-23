@@ -158,7 +158,7 @@ static actor_method_class l_daBarDesk_Method = {
     (process_method_func)daBarDesk_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_BarDesk = {
+actor_process_profile_definition g_profile_Obj_BarDesk = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

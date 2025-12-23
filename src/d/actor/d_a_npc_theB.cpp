@@ -1575,7 +1575,7 @@ static actor_method_class daNpcTheB_MethodTable = {
     (process_method_func)daNpcTheB_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_THEB = {
+actor_process_profile_definition g_profile_NPC_THEB = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

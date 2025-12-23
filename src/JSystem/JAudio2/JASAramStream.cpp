@@ -19,9 +19,6 @@ u32 JASAramStream::sBlockSize;
 
 u32 JASAramStream::sChannelMax;
 
-/* 80451260 0001+00 data_80451260 None */
-/* 80451261 0001+00 data_80451261 None */
-/* 80451262 0006+00 data_80451262 None */
 bool struct_80451260;
 bool struct_80451261;
 

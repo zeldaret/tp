@@ -285,8 +285,8 @@ void dSv_player_last_mark_info_c::setWarpItemData(const char* i_name, const cXyz
     mAngleY = i_angle;
     mRoomNo = i_roomNo;
 
-    (void)unk_4;
-    (void)unk_5;
+    UNUSED(unk_4);
+    UNUSED(unk_5);
 }
 
 void dSv_player_item_c::init() {

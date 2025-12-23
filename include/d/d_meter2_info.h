@@ -124,10 +124,7 @@ public:
     void resetPauseStatus() { mPauseStatus = 0; }
     u8 getPauseStatus() { return mPauseStatus; }
     bool isGameStatus(int i_status) { return (mGameStatus & (u16)i_status) != 0 ? true : false; }
-    bool isTouchKeyCheck(int i_status) { return mTouchKeyCheck & (1 << i_status); }
-
-    // fake function, should be isTouchKeyCheck
-    bool isTouchKeyCheck_alt(int i_status) { return (mTouchKeyCheck >> i_status) & 1; }
+    bool isTouchKeyCheck(int i_status) { return mTouchKeyCheck & (u16)(1 << i_status) ? true : false; }
 
     void setMapKeyDirection(u16 i_direction) { mMapKeyDirection = i_direction; }
     bool isSub2DStatus(int i_flag) { return (mSub2DStatus & (u16)(1 << i_flag)) != 0 ? true : false; }
@@ -484,11 +481,6 @@ inline bool dMeter2Info_isGameStatus(int i_status) {
 
 inline bool dMeter2Info_isTouchKeyCheck(int i_status) {
     return g_meter2_info.isTouchKeyCheck(i_status);
-}
-
-// fake function, should be dMeter2Info_isTouchKeyCheck
-inline bool dMeter2Info_isTouchKeyCheck_alt(int i_status) {
-    return g_meter2_info.isTouchKeyCheck_alt(i_status);
 }
 
 inline void dMeter2Info_setMapKeyDirection(u16 i_direction) {

@@ -177,7 +177,7 @@ static actor_method_class l_daTagHstop_Method = {
     (process_method_func)daTagHstop_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Tag_Hstop = {
+actor_process_profile_definition g_profile_Tag_Hstop = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

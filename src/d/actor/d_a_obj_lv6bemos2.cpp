@@ -1172,7 +1172,7 @@ static actor_method_class daObjLv6Bm_METHODS = {
     (process_method_func)daObjLv6Bm_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Lv6bemos2 = {
+actor_process_profile_definition g_profile_Obj_Lv6bemos2 = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

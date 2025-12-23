@@ -576,7 +576,7 @@ static actor_method_class l_daCstaF_Method = {
     (process_method_func)daCstaF_Draw,
 };
 
-extern actor_process_profile_definition g_profile_CSTAF = {
+actor_process_profile_definition g_profile_CSTAF = {
     fpcLy_CURRENT_e,        // mLayerID
     3,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio

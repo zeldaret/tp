@@ -67,7 +67,6 @@ enum Joint {
 
 namespace {
 
-/* 806BE79E 0002+00 data_806BE79E s_AtCount__22@unnamed@d_a_e_fs_cpp@ */
 static s16 s_AtCount;
 
 }  // namespace
@@ -850,7 +849,7 @@ static actor_method_class l_daE_Fs_Method = {
     (process_method_func)daE_Fs_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_FS = {
+actor_process_profile_definition g_profile_E_FS = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

@@ -318,7 +318,7 @@ static actor_method_class l_daObjRIVERROCK_Method = {
     (process_method_func)daObjRIVERROCK_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_RIVERROCK = {
+actor_process_profile_definition g_profile_Obj_RIVERROCK = {
   fpcLy_CURRENT_e,          // mLayerID
   3,                        // mListID
   fpcPi_CURRENT_e,          // mListPrio

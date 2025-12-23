@@ -3194,7 +3194,6 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 }
 
 int daNPC_TK_c::create() {
-    /* 80B0C4D4-80B0C514 0000E0 0040+00 1/1 0/0 0/0 .data            cc_sph_src$8096 */
     static dCcD_SrcSph cc_sph_src = {
         {
             {0x0, {{AT_TYPE_THROW_OBJ, 0x1, 0x1f}, {0x0, 0x0}, 0x69}},  // mObj
@@ -3264,7 +3263,7 @@ static actor_method_class l_daNPC_TK_Method = {
     (process_method_func)daNPC_TK_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_TK = {
+actor_process_profile_definition g_profile_NPC_TK = {
     fpcLy_CURRENT_e,         // mLayerID
     6,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

@@ -187,7 +187,7 @@ static actor_method_class l_daFlorBoad_Method = {
     (process_method_func)daFlorBoad_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Lv5FBoard = {
+actor_process_profile_definition g_profile_Obj_Lv5FBoard = {
     fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

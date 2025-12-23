@@ -154,7 +154,6 @@ void daE_OctBg_c::action() {
     }
 }
 
-/* 8073A13D 0003+00 data_8073A13D None */
 static u8 struct_8073A13D;
 
 int daE_OctBg_c::_delete() {
@@ -172,9 +171,6 @@ static int daE_OctBg_Delete(daE_OctBg_c* i_this) {
     return i_this->_delete();
 }
 
-/* 8073A14C 0024+01 data_8073A14C l_HIO */
-/* 8073A171 0001+00 data_8073A171 None */
-/* 8073A172 0002+00 data_8073A172 None */
 static daE_OctBg_HIO_c l_HIO;
 
 u8 unk_bss_78;
@@ -890,7 +886,7 @@ static actor_method_class l_daE_OctBg_Method = {
     (process_method_func)daE_OctBg_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_OctBg = {
+actor_process_profile_definition g_profile_E_OctBg = {
     fpcLy_CURRENT_e,          // mLayerID
     7,                        // mListID
     fpcPi_CURRENT_e,          // mListPrio

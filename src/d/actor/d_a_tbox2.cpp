@@ -452,7 +452,7 @@ static actor_method_class daTbox2_METHODS = {
     (process_method_func)daTbox2_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_TBOX2 = {
+actor_process_profile_definition g_profile_TBOX2 = {
     fpcLy_CURRENT_e,
     4,
     fpcPi_CURRENT_e,

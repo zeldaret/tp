@@ -3648,7 +3648,7 @@ static actor_method_class l_daB_OB_Method = {
     (process_method_func)daB_OB_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_OB = {
+actor_process_profile_definition g_profile_B_OB = {
     fpcLy_CURRENT_e,
     4,
     fpcPi_CURRENT_e,

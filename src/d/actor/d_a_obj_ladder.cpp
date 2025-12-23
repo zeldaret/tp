@@ -294,7 +294,7 @@ static actor_method_class Mthd_Table = {
 }
 }
 
-extern actor_process_profile_definition g_profile_Obj_Ladder = {
+actor_process_profile_definition g_profile_Obj_Ladder = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

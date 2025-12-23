@@ -842,7 +842,7 @@ void fopAcM_showAssert_f(const fopAc_ac_c*, const char*, int, const char*, ...);
 #define fopAcM_setWarningMessage(...)
 #endif
 
-void fopAcM_getNameString(const fopAc_ac_c*, char*);
+BOOL fopAcM_getNameString(const fopAc_ac_c*, char*);
 
 class fopAcM_lc_c {
 public:

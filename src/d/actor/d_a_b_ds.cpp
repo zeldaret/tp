@@ -203,13 +203,9 @@ static bool hio_set;
 
 static daB_DS_HIO_c l_HIO;
 
-/* 805DDB0C 0002+00 data_805DDB0C handL_ang */
-/* 805DDB0E 0002+00 data_805DDB0E handR_ang */
 static s16 handL_ang;
 static s16 handR_ang;
 
-/* 805DDB10 0002+00 data_805DDB10 handX_ang */
-/* 805DDB12 0002+00 breathTimerBase None */
 static s16 handX_ang;
 static u8 breathTimerBase;
 
@@ -5686,7 +5682,7 @@ static actor_method_class l_daB_DS_Method = {
     (process_method_func)daB_DS_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_DS = {
+actor_process_profile_definition g_profile_B_DS = {
     fpcLy_CURRENT_e,
     4,
     fpcPi_CURRENT_e,

@@ -2145,7 +2145,7 @@ static actor_method_class l_daDoor20_Method = {
     (process_method_func)daDoor20_Draw,
 };
 
-extern actor_process_profile_definition g_profile_DOOR20 = {
+actor_process_profile_definition g_profile_DOOR20 = {
     fpcLy_CURRENT_e,        // mLayerID
     3,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio
