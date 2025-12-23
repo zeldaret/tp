@@ -144,7 +144,7 @@ int daObjTable_c::Execute(Mtx** i_mtx) {
     if (dComIfGp_event_runCheck()) {
         if (eventInfo.checkCommandTalk()) {
             if (mMsgFlow.doFlow(this, NULL, 0) != 0) {
-                gameInfo.getPlay().getEvent().reset(this);  // Fake match?
+                gameInfo.play.getEvent().reset(this);  // Fake match?
                 eventInfo.setArchiveName("Table");
                 dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
                 mEventID = dComIfGp_getEventManager().getEventIdx(this, "TABLE_MAP", -1);

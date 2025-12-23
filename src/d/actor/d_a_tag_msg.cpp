@@ -66,7 +66,8 @@ int daTag_Msg_c::execute() {
     eyePos.set(current.pos.x, current.pos.y + 150.0f, current.pos.z);
     attention_info.position = eyePos;
 
-    dComIfG_play_c& play = g_dComIfG_gameInfo.play;  // FAKE, event inlines need to be fixed
+    // TODO: gameInfo fake match to force reuse of pointer
+    dComIfG_play_c& play = g_dComIfG_gameInfo.play;
     if (play.getEvent().runCheck()) {
         set_event = false;
 

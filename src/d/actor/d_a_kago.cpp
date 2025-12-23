@@ -1740,8 +1740,12 @@ void daKago_c::initPerchDemo() {
         }
 
         cXyz cStack_54 = dPath_GetPnt(mpPath2, local_80)->m_position;
-        s16 temp = (s16)sVar5 - cLib_targetAngleY(&current.pos, &cStack_48);
-        sVar5 = temp < 0 ? (s16)((s16)sVar5 - 0x1000) : (s16)((s16)sVar5 + 0x1000); // fakematch
+        s16 sp08 = cLib_targetAngleY(&current.pos, &cStack_48);
+        if ((s16)(sVar5 - sp08) < 0) {
+            sVar5 = sVar5 - 0x1000;
+        } else {
+            sVar5 = sVar5 + 0x1000;
+        }
         shape_angle.y = current.angle.y = sVar5;
         shape_angle.x = shape_angle.z = 0;
 

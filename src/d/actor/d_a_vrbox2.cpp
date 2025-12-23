@@ -386,7 +386,7 @@ static int daVrbox2_color_set(vrbox2_class* i_this) {
 }
 
 static int daVrbox2_Execute(vrbox2_class* i_this) {
-    i_this = i_this; // ?? fakematch? only needed for debug
+    UNUSED(i_this);
 
     if (g_env_light.daytime > 255.0f) {
         i_this->mSunBtk.play();

@@ -263,12 +263,7 @@ void daBaseNpc_lookat_c::limitter(s16 i_value, s16* o_value_p, s16 i_max, s16 i_
     }
 
     if (i_min < i_value) {
-        //TODO: fakematch
-#if VERSION == VERSION_SHIELD_DEBUG
-        *o_value_p -= tmp - i_min;
-#else
-        *o_value_p -= tmp - (s16)i_min;
-#endif
+        *o_value_p = *o_value_p - (tmp - i_min);
         return;
     }
 

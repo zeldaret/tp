@@ -22,7 +22,8 @@ int daTag_Lantern_c::Delete() {
 }
 
 int daTag_Lantern_c::Execute() {
-    dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();  // fake match
+    // TODO: gameInfo fake match to force reuse of pointer
+    dComIfG_play_c& play = g_dComIfG_gameInfo.play;
 
     if (dComIfGp_event_runCheck()) {
         if (eventInfo.checkCommandTalk()) {

@@ -720,8 +720,7 @@ void dCamera_c::initPad() {
     mHoldY = mDoCPd_c::getHoldY(mPadID) ? true : false;
     mTrigY = mDoCPd_c::getTrigY(mPadID) ? true : false;
 
-    // fakematch (doesn't match in debug)
-    mHoldZ = (u8)mDoCPd_c::getHoldZ(mPadID) ? true : false;
+    mHoldZ = mDoCPd_c::getHoldZ(mPadID) ? true : false;
     mTrigZ = mDoCPd_c::getTrigZ(mPadID) ? true : false;
     field_0x21f = 0;
 
