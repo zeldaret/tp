@@ -5,6 +5,7 @@ CompileFlags:
     "-Wno-multichar",
     "-fdeclspec",
     "-Wno-c++11-extensions",
+    "-Wunused-parameter",
   ]
 Diagnostics:
   Suppress:
