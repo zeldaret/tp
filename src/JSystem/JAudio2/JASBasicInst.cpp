@@ -49,19 +49,32 @@ bool JASBasicInst::getParam(int param_0, int param_1, JASInstParam* param_2) con
 void JASBasicInst::setKeyRegionCount(u32 count, JKRHeap* param_1) {
     delete [] mKeymap;
     mKeymap      = new (param_1, 0) TKeymap[count];
+    JUT_ASSERT(114, mKeymap != 0);
 	mKeymapCount = count;
 }
 
-void JASBasicInst::setOsc(int param_0, JASOscillator::Data const* param_1) {
-    field_0xc[param_0] = param_1;
+void JASBasicInst::setOsc(int index, JASOscillator::Data const* param_1) {
+    JUT_ASSERT(128, index < OSC_MAX);
+    JUT_ASSERT(129, index >= 0);
+    field_0xc[index] = param_1;
 }
 
-JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int param_0) {
-    if (param_0 >= mKeymapCount) {
+JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) {
+    JUT_ASSERT(146, index >= 0);
+    if (index >= mKeymapCount) {
         return NULL;
     }
 
-    return mKeymap + param_0;
+    return mKeymap + index;
+}
+
+JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) const {
+    JUT_ASSERT(155, index >= 0);
+    if (index >= mKeymapCount) {
+        return NULL;
+    }
+
+    return mKeymap + index;
 }
 
 JASBasicInst::TKeymap::~TKeymap() {

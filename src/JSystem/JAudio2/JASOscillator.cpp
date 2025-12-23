@@ -56,7 +56,7 @@ f32 JASOscillator::getValue() const {
 }
 
 void JASOscillator::release() {
-	if (mData->_0C == NULL && mDirectRelease == 0) {
+	if (mData->rel_table == NULL && mDirectRelease == 0) {
         stop();
         return;
 	}
@@ -72,12 +72,12 @@ void JASOscillator::release() {
         return;
 	}
 	
-    if (mData->mTable != mData->_0C) {
+    if (mData->mTable != mData->rel_table) {
         _04 = 0.0f;
         _0C = _08;
-        _10 = mData->_0C[0]._4 / 32768.0f;
+        _10 = mData->rel_table[0]._4 / 32768.0f;
         _14 = 0;
-        _18 = mData->_0C[0]._0;
+        _18 = mData->rel_table[0]._0;
     }
 
     _1C = 3;
@@ -102,7 +102,7 @@ void JASOscillator::update() {
     if (_1C == 1) {
         psVar1 = mData->mTable;
     } else {
-        psVar1 = mData->_0C;
+        psVar1 = mData->rel_table;
     }
 
     if (psVar1 == NULL) {

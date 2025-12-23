@@ -79,7 +79,7 @@ JASBasicBank* JASBNKParser::Ver1::createBasicBank(void const* stream, JKRHeap* h
         data->mScale = osc->mScale;
         data->_14 = osc->_18;
         data->mTable = (JASOscillator::Point*)(envt + osc->mTableOffset);
-        data->_0C = (JASOscillator::Point*)(envt + osc->_10);
+        data->rel_table = (JASOscillator::Point*)(envt + osc->_10);
     }
 
     bank->newInstTable(list_chunk->mCount, heap);
@@ -208,9 +208,9 @@ JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* h
                             JASOscillator::Point* table = new (heap, 0) JASOscillator::Point[size];
                             JUT_ASSERT(409, table != NULL);
                             JASCalc::bcopy(points, table, size * sizeof(JASOscillator::Point));
-                            osc->_0C = table;
+                            osc->rel_table = table;
                         } else {
-                            osc->_0C = NULL;
+                            osc->rel_table = NULL;
                         }
 
                         osc->mScale = tosc->mScale;

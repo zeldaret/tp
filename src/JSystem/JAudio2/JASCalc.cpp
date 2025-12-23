@@ -322,7 +322,7 @@ f32 JASCalc::pow2(f32 x) {
 
 template <>
 s16 JASCalc::clamp(s32 x) {
-    if (std::numeric_limits<s16>::min() >= x)
+    if (x <= std::numeric_limits<s16>::min())
         return std::numeric_limits<s16>::min();
     if (x >= std::numeric_limits<s16>::max())
         return std::numeric_limits<s16>::max();
