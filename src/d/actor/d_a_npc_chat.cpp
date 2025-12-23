@@ -2660,10 +2660,7 @@ inline f32 CylH(int type) {
 }
 
 cPhs__Step daNpcChat_c::Create() {
-    if (!fopAcM_CheckCondition(this, fopAcCnd_INIT_e)) {
-        new (this) daNpcChat_c();
-        fopAcM_OnCondition(this, fopAcCnd_INIT_e);
-    }
+    fopAcM_ct(this, daNpcChat_c);
 
     mTwilight = dKy_darkworld_check();
     mType = getType();

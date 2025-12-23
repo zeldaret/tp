@@ -3114,10 +3114,7 @@ u8 daCow_c::initialize() {
 }
 
 int daCow_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daCow_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_ct(this, daCow_c);
 
     mPrm0 = fopAcM_GetParam(this);
     if (mPrm0 == (u8)-1 || mPrm0 >= 5) {

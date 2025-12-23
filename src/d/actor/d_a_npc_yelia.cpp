@@ -348,11 +348,8 @@ daNpc_Yelia_c::~daNpc_Yelia_c() {
 }
 
 cPhs__Step daNpc_Yelia_c::create() {
-    if (!fopAcM_CheckCondition(this, fopAcCnd_INIT_e)) {
-        new (this) daNpc_Yelia_c(l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4,
-                                 l_motionSequenceData, 4, l_evtList, l_resNameList);
-        fopAcM_OnCondition(this, fopAcCnd_INIT_e);
-    }
+    daNpcT_ct(this, daNpc_Yelia_c, l_faceMotionAnmData, l_motionAnmData, l_faceMotionSequenceData, 4,
+                                   l_motionSequenceData, 4, l_evtList, l_resNameList);
 
     mType = getType();
     mFlowNodeNo = getFlowNodeNo();
