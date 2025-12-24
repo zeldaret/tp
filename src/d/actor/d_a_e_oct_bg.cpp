@@ -220,7 +220,7 @@ void daE_OctBg_c::mtx_set() {
 
 bool daE_OctBg_c::checkNormalAttack() {
     daPy_py_c* player = daPy_getPlayerActorClass();
-    if (dComIfGp_event_runCheck() != 0) {
+    if (dComIfGp_event_runCheck()) {
         return false;
     }
     if (unk_bss_7A < l_HIO.field_0x20 &&

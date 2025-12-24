@@ -780,7 +780,7 @@ void daE_YM_c::executeEscape() {
             field_0x6dc = 0.0f;
         }
     }
-    if (dComIfGp_event_runCheck() == 0) {
+    if (!dComIfGp_event_runCheck()) {
         fopAcM_OffStatus(this, 0x4000);
     }
     switch (mMode) {
@@ -2517,7 +2517,7 @@ void daE_YM_c::executeFire() {
             shape_angle.y = current.angle.y;
             break;
         case 3:
-            if (dComIfGp_event_runCheck() == 0) {
+            if (!dComIfGp_event_runCheck()) {
                 mSphCc.OnCoSetBit();
             } else {
                 mSphCc.OffCoSetBit();

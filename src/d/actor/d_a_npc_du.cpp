@@ -347,7 +347,7 @@ static void npc_du_message(npc_du_class* i_this) {
 
     cLib_addCalcAngleS2(&actor->current.angle.y, i_this->mPlayerAngleY, 2, maxStep);
 
-    if (dComIfGp_event_runCheck() == FALSE && i_this->mPlayerDist > 220.0f) {
+    if (!dComIfGp_event_runCheck() && i_this->mPlayerDist > 220.0f) {
         if (i_this->mSwimFlag == 0) {
             i_this->mAction = ACTION_NORMAL;
         } else {

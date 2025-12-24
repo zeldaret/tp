@@ -172,7 +172,7 @@ void daWindStone_c::exeModeHowl() {
 }
 
 void daWindStone_c::exeModeMapDisp() {
-    if (dComIfGp_getEvent().isOrderOK() || !dComIfGp_event_runCheck()) {
+    if (dComIfGp_getEvent()->isOrderOK() || !dComIfGp_event_runCheck()) {
         dMeter2Info_setGoldWolfMapType(getGoldWolfIdx());
         dMeter2Info_setPauseStatus(5);
         fopAcM_onSwitch(this, getSwBit2());

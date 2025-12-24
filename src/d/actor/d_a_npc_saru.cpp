@@ -935,8 +935,8 @@ int daNpc_Saru_c::cutYmLook(int param_1) {
             case 0:
                 strcpy(acStack_88, l_evtList[2].eventName);
                 strcat(acStack_88, "@");
-                dComIfGp_getEvent().setSkipZev(this, acStack_88);
-                dComIfGp_getEvent().onSkipFade();
+                dComIfGp_getEvent()->setSkipZev(this, acStack_88);
+                dComIfGp_getEvent()->onSkipFade();
                 field_0xfd9 = 1;
 
             case 1:

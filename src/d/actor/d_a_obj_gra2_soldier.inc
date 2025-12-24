@@ -1289,7 +1289,7 @@ int daObj_GrA_c::rollEscape(void* param_1) {
             }
 
             rollLanding();
-            if (!dComIfGp_event_runCheck() || dComIfGp_getEvent().isOrderOK()) {
+            if (!dComIfGp_event_runCheck() || dComIfGp_getEvent()->isOrderOK()) {
                 if (dComIfGoat_GetThrow() == this) {
                     dComIfGoat_SetThrow(0);
                     if (isFirstGra()) {

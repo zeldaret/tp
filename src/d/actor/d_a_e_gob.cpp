@@ -1670,7 +1670,7 @@ static void demo_camera(e_gob_class* i_this) {
 
         player->changeOriginalDemo();
         Z2GetAudioMgr()->subBgmStart(Z2BGM_MAGNE_GORON_D01);
-        dComIfGp_getEvent().startCheckSkipEdge(i_this);
+        dComIfGp_getEvent()->startCheckSkipEdge(i_this);
         // fallthrough
     case 2:
         if (i_this->mDemoCamTimer < 20) {
@@ -1993,7 +1993,7 @@ static void demo_camera(e_gob_class* i_this) {
             i_this->mDemoCamTimer = 10000;
         }
 
-        if (i_this->mDemoCamMode >= 2 && i_this->mDemoCamMode < 10 && dComIfGp_getEvent().checkSkipEdge()) {
+        if (i_this->mDemoCamMode >= 2 && i_this->mDemoCamMode < 10 && dComIfGp_getEvent()->checkSkipEdge()) {
             cDmr_SkipInfo = 20;
             i_this->mDemoCamMode = 1000;
             dStage_changeScene(2, 0.0f, 0, fopAcM_GetRoomNo(actor), 0, -1);

@@ -370,7 +370,7 @@ int daObj_SSDrink_c::chkEvent() {
         return 1;
     }
 
-    if (dComIfGp_getEvent().isOrderOK() == 0) {
+    if (dComIfGp_getEvent()->isOrderOK() == 0) {
         if (getParentPtr() != NULL) {
             fopAc_ac_c* parent = (fopAc_ac_c*)getParentPtr();
             attention_info.position.set(parent->attention_info.position);

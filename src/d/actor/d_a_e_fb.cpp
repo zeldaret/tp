@@ -461,7 +461,7 @@ void daE_FB_c::executeAttack() {
                     }
                 }
 
-                if (dComIfGp_event_runCheck() == FALSE) {
+                if (!dComIfGp_event_runCheck()) {
                     cMtx_YrotS(*calc_mtx, current.angle.y);
                     cMtx_XrotM(*calc_mtx, sp_0x28.x);
                     sp_0x48.x = 0.0f;

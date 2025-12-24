@@ -5999,9 +5999,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
         fopAcM_OnStatus(actor, 0);
         cLib_onBit<u32>(actor->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         actor->eventInfo.onCondition(dEvtCnd_CANTALK_e);
-        // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck()) {
+        if (dComIfGp_event_runCheck()) {
             if (actor->eventInfo.checkCommandTalk()) {
                 if (i_this->field_0xaee == 0) {
                     i_this->msg_flow.init(actor, 0x74, 0, NULL);
@@ -6009,7 +6007,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
                 }
 
                 if (i_this->msg_flow.doFlow(actor, NULL, 0)) {
-                    play->getEvent().reset();
+                    dComIfGp_event_reset();
                     i_this->field_0xaee = 0;
                 }
             }

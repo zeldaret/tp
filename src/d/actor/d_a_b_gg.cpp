@@ -935,8 +935,8 @@ void daB_GG_c::St_CamAction() {
     }
 
     if (mCamMode != 0) {
-        dComIfGp_getEvent().onSkipFade();
-        dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+        dComIfGp_getEvent()->onSkipFade();
+        dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
     }
 }
 
@@ -1373,8 +1373,8 @@ void daB_GG_c::Gn_CamAction() {
     }
 
     if (mCamMode > 1) {
-        dComIfGp_getEvent().onSkipFade();
-        dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+        dComIfGp_getEvent()->onSkipFade();
+        dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
     }
 }
 

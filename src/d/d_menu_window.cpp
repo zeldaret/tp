@@ -1417,7 +1417,7 @@ BOOL dMw_c::dMw_isPush_S_Button() {
 }
 
 bool dMw_c::isPauseReady() {
-    if (dComIfGp_getEvent().checkCompulsory() || dComIfGs_getLife() == 0) {
+    if (dComIfGp_getEvent()->checkCompulsory() || dComIfGs_getLife() == 0) {
         return false;
     }
 

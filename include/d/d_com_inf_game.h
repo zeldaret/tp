@@ -285,7 +285,7 @@ public:
     dMsgObject_c* getMsgObjectClass() { return mItemInfo.mMsgObjectClass; }
     dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
     dStage_dt_c& getStage() { return mStageData; }
-    dEvt_control_c& getEvent() { return mEvent; }
+    dEvt_control_c* getEvent() { return &mEvent; }
     daHorse_c* getHorseActor() { return (daHorse_c*)mPlayerPtr[1]; }
     J2DGrafContext* getCurrentGrafPort() { return (J2DGrafContext*)mCurrentGrafPort; }
     dVibration_c& getVibration() { return mVibration; }
@@ -840,7 +840,6 @@ public:
     ~dComIfG_inf_c() {}
     void ct();
     void createBaseCsr();
-    dComIfG_play_c& getPlay() { return play; } // fake inline
 
 #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     class baseCsr_c : public mDoGph_gInf_c::csr_c {
@@ -3581,7 +3580,7 @@ inline u8 dComIfGp_getAdvanceDirection() {
     return g_dComIfG_gameInfo.play.getDirection();
 }
 
-inline dEvt_control_c& dComIfGp_getEvent() {
+inline dEvt_control_c* dComIfGp_getEvent() {
     return g_dComIfG_gameInfo.play.getEvent();
 }
 
@@ -3610,41 +3609,41 @@ inline s16 dComIfGp_getItemMaxBombNumCount() {
 }
 
 inline BOOL dComIfGp_event_compulsory(void* i_actor, const char* i_eventname, u16 i_hindFlag) {
-    return g_dComIfG_gameInfo.play.getEvent().compulsory(i_actor, i_eventname, i_hindFlag);
+    return g_dComIfG_gameInfo.play.getEvent()->compulsory(i_actor, i_eventname, i_hindFlag);
 }
 
 inline int dComIfGp_event_moveApproval(void* i_actor) {
-    return g_dComIfG_gameInfo.play.getEvent().moveApproval(i_actor);
+    return g_dComIfG_gameInfo.play.getEvent()->moveApproval(i_actor);
 }
 
 inline int dComIfGp_event_order(u16 i_type, u16 i_prio, u16 i_flags, u16 i_hindFlags, void* i_requestActor,
                                 void* i_targetActor, s16 i_eventID, u8 i_mapToolId) {
-    return g_dComIfG_gameInfo.play.getEvent().order(i_type, i_prio, i_flags, i_hindFlags, i_requestActor,
+    return g_dComIfG_gameInfo.play.getEvent()->order(i_type, i_prio, i_flags, i_hindFlags, i_requestActor,
                                                     i_targetActor, i_eventID, i_mapToolId);
 }
 
 inline void dComIfGp_event_setGtItm(int i_itemNo) {
-    g_dComIfG_gameInfo.play.getEvent().setGtItm(i_itemNo);
+    g_dComIfG_gameInfo.play.getEvent()->setGtItm(i_itemNo);
 }
 
 inline void dComIfGp_event_reset() {
-    g_dComIfG_gameInfo.play.getEvent().reset();
+    g_dComIfG_gameInfo.play.getEvent()->reset();
 }
 
 inline void dComIfGp_event_remove() {
-    g_dComIfG_gameInfo.play.getEvent().remove();
+    g_dComIfG_gameInfo.play.getEvent()->remove();
 }
 
 inline void dComIfGp_event_onEventFlag(u16 i_flag) {
-    g_dComIfG_gameInfo.play.getEvent().onEventFlag(i_flag);
+    g_dComIfG_gameInfo.play.getEvent()->onEventFlag(i_flag);
 }
 
 inline void dComIfGp_event_onHindFlag(u16 i_flag) {
-    g_dComIfG_gameInfo.play.getEvent().onHindFlag(i_flag);
+    g_dComIfG_gameInfo.play.getEvent()->onHindFlag(i_flag);
 }
 
 inline void dComIfGp_event_offHindFlag(u16 i_flag) {
-    g_dComIfG_gameInfo.play.getEvent().offHindFlag(i_flag);
+    g_dComIfG_gameInfo.play.getEvent()->offHindFlag(i_flag);
 }
 
 inline void dComIfGp_evmng_cutEnd(int i_staffId) {
@@ -3676,19 +3675,19 @@ inline int dComIfGp_evmng_cameraPlay() {
 }
 
 inline u8 dComIfGp_event_getPreItemNo() {
-    return g_dComIfG_gameInfo.play.getEvent().getPreItemNo();
+    return g_dComIfG_gameInfo.play.getEvent()->getPreItemNo();
 }
 
 inline void dComIfGp_event_setItemPartner(void* i_actor) {
-    g_dComIfG_gameInfo.play.getEvent().setPtI(i_actor);
+    g_dComIfG_gameInfo.play.getEvent()->setPtI(i_actor);
 }
 
 inline void dComIfGp_event_setItemPartnerId(fpc_ProcID i_id) {
-    g_dComIfG_gameInfo.play.getEvent().setPtI_Id(i_id);
+    g_dComIfG_gameInfo.play.getEvent()->setPtI_Id(i_id);
 }
 
 inline u8 dComIfGp_event_getGtItm() {
-    return g_dComIfG_gameInfo.play.getEvent().getGtItm();
+    return g_dComIfG_gameInfo.play.getEvent()->getGtItm();
 }
 
 inline int dComIfGp_evmng_startDemo(int i_mapToolId) {
@@ -3696,58 +3695,58 @@ inline int dComIfGp_evmng_startDemo(int i_mapToolId) {
 }
 
 inline void dComIfGp_event_setTalkPartner(void* i_actor) {
-    g_dComIfG_gameInfo.play.getEvent().setPtT(i_actor);
+    g_dComIfG_gameInfo.play.getEvent()->setPtT(i_actor);
 }
 
 inline fopAc_ac_c* dComIfGp_event_getTalkPartner() {
-    return g_dComIfG_gameInfo.play.getEvent().getPtT();
+    return g_dComIfG_gameInfo.play.getEvent()->getPtT();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getItemPartner() {
-    return g_dComIfG_gameInfo.play.getEvent().getPtI();
+    return g_dComIfG_gameInfo.play.getEvent()->getPtI();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getPt1() {
-    return g_dComIfG_gameInfo.play.getEvent().getPt1();
+    return g_dComIfG_gameInfo.play.getEvent()->getPt1();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getPt2() {
-    return g_dComIfG_gameInfo.play.getEvent().getPt2();
+    return g_dComIfG_gameInfo.play.getEvent()->getPt2();
 }
 
 inline BOOL dComIfGp_event_runCheck() {
-    return g_dComIfG_gameInfo.play.getEvent().runCheck();
+    return g_dComIfG_gameInfo.play.getEvent()->runCheck();
 }
 
 inline f32 dComIfGp_event_getCullRate() {
-    return g_dComIfG_gameInfo.play.getEvent().getCullRate();
+    return g_dComIfG_gameInfo.play.getEvent()->getCullRate();
 }
 
 inline u16 dComIfGp_event_checkHind(u16 i_hindFlag) {
     if (!dComIfGp_event_runCheck()) {
         return false;
     }
-    return g_dComIfG_gameInfo.play.getEvent().checkHind(i_hindFlag);
+    return g_dComIfG_gameInfo.play.getEvent()->checkHind(i_hindFlag);
 }
 
 inline u16 dComIfGp_event_chkEventFlag(u16 i_flag) {
-    return g_dComIfG_gameInfo.play.getEvent().chkEventFlag(i_flag);
+    return g_dComIfG_gameInfo.play.getEvent()->chkEventFlag(i_flag);
 }
 
 inline BOOL dComIfGp_event_chkTalkXY() {
-    return g_dComIfG_gameInfo.play.getEvent().chkTalkXY();
+    return g_dComIfG_gameInfo.play.getEvent()->chkTalkXY();
 }
 
 inline void dComIfGp_event_setCullRate(f32 i_rate) {
-    g_dComIfG_gameInfo.play.getEvent().setCullRate(i_rate);
+    g_dComIfG_gameInfo.play.getEvent()->setCullRate(i_rate);
 }
 
 inline u8 dComIfGp_event_getMode() {
-    return g_dComIfG_gameInfo.play.getEvent().getMode();
+    return g_dComIfG_gameInfo.play.getEvent()->getMode();
 }
 
 inline fopAc_ac_c* dComIfGp_event_getDoorPartner() {
-    return g_dComIfG_gameInfo.play.getEvent().getPtD();
+    return g_dComIfG_gameInfo.play.getEvent()->getPtD();
 }
 
 inline int dComIfGp_evmng_getMyStaffId(const char* i_staffname, fopAc_ac_c* i_actor, int i_tagId) {

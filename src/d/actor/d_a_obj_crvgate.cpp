@@ -352,7 +352,7 @@ void daObjCRVGATE_c::CloseAction() {
                 daPy_py_c* player = daPy_getPlayerActorClass();
                 cXyz* player_pos = &fopAcM_GetPosition(player);
 
-                if (dComIfGp_event_runCheck() != 0) {
+                if (dComIfGp_event_runCheck()) {
                     cXyz* boar_speed = &fopAcM_GetSpeed(boar_ac);
                     daPy_py_c* player = daPy_getPlayerActorClass();
                     cXyz* player_pos = &fopAcM_GetPosition(player);

@@ -1728,8 +1728,8 @@ void daE_VA_c::executeDemoOp() {
 
     calcTagAngle();
     camera->mCamera.Set(mDemoCamCenter, mDemoCamEye, mDemoCamBank, 0);
-    dComIfGp_getEvent().onSkipFade();
-    dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+    dComIfGp_getEvent()->onSkipFade();
+    dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
 }
 
 void daE_VA_c::executeClearWait() {

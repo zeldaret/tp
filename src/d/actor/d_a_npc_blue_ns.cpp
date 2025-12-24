@@ -842,7 +842,7 @@ int daNpcBlueNS_c::wait(int param_0) {
         break;
     case 2:
         chkFindPlayer();
-        if (dComIfGp_event_runCheck() != 0) {
+        if (dComIfGp_event_runCheck()) {
             if (eventInfo.checkCommandTalk()) {
                 if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd() != 0) {
                     setAction(&daNpcBlueNS_c::talk);
@@ -939,7 +939,7 @@ int daNpcBlueNS_c::demo(int param_0) {
         field_0xdc0 = 2;
         break;
     case 2:
-        if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk()) {
+        if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
             evtmgr = &dComIfGp_getEventManager();
             
             int staffId = evtmgr->getMyStaffId(l_myName, this, 0);

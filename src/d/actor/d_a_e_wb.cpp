@@ -3739,7 +3739,7 @@ static void demo_camera(e_wb_class* i_this) {
         daPy_getPlayerActorClass()->changeOriginalDemo();
         horse->changeOriginalDemo();
         fpcM_Search(s_wbdel_sub, a_this);
-        dComIfGp_getEvent().startCheckSkipEdge(a_this);
+        dComIfGp_getEvent()->startCheckSkipEdge(a_this);
         // fallthrough
     case 2:
         if (i_this->field_0x16a0 == 0xa0) {
@@ -4084,7 +4084,7 @@ static void demo_camera(e_wb_class* i_this) {
         }
         if (i_this->field_0x16a0 == 40) {
             horse->changeDemoMode(8, 0);
-            dComIfGp_getEvent().startCheckSkipEdge(a_this);
+            dComIfGp_getEvent()->startCheckSkipEdge(a_this);
         }
         if (i_this->field_0x16a0 == 80) {
             horse->changeDemoMode(9, 0);
@@ -4304,7 +4304,7 @@ static void demo_camera(e_wb_class* i_this) {
         horse->changeDemoPos0(&cStack_48);
         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[87]);
         Z2GetAudioMgr()->bgmStart(Z2BGM_HORSE_BATTLE_D02, 0, 0);
-        dComIfGp_getEvent().startCheckSkipEdge(i_this);
+        dComIfGp_getEvent()->startCheckSkipEdge(i_this);
         // fallthrough
     case 0x29:
         if (i_this->field_0x16a0 == 30) {
@@ -4427,7 +4427,7 @@ static void demo_camera(e_wb_class* i_this) {
         i_this->field_0x16bc.set(1679.0, 100.0, 852.0);
         i_this->field_0x16a4.set(1873.0, 64.0, 527.0);
         daPy_getPlayerActorClass()->changeOriginalDemo();
-        dComIfGp_getEvent().startCheckSkipEdge(i_this);
+        dComIfGp_getEvent()->startCheckSkipEdge(i_this);
         dComIfGs_onOneZoneSwitch(4, -1);
     case 0x33:
         if (i_this->field_0x16a0 < 30) {
@@ -4955,7 +4955,7 @@ static void demo_camera(e_wb_class* i_this) {
         }
 
         if (i_this->field_0x169e < 10 || (i_this->field_0x169e >= 30 && i_this->field_0x169e < 60)) {
-            if (dComIfGp_getEvent().checkSkipEdge()) {
+            if (dComIfGp_getEvent()->checkSkipEdge()) {
                 cDmr_SkipInfo = 0x28;
                 Z2GetAudioMgr()->bgmStop(0, 0);
                 if (i_this->field_0x169e < 10 || dComIfG_play_c::getLayerNo(0) == 4) {

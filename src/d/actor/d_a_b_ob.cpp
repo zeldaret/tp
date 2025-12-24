@@ -2369,7 +2369,7 @@ static void demo_camera(b_ob_class* i_this) {
         }
 
         if (i_this->mDemoActionTimer == 30) {
-            dComIfGp_getEvent().startCheckSkipEdge(a_this);
+            dComIfGp_getEvent()->startCheckSkipEdge(a_this);
         }
 
         sp88 = a_this->current.pos;
@@ -2975,7 +2975,7 @@ static void demo_camera(b_ob_class* i_this) {
         cLib_addCalcAngleS2(&i_this->mBlureRate, i_this->mBlureRateTarget, 1, 8);
 
         if (i_this->mDemoAction >= 31 && i_this->mDemoAction < 40) {
-            if (dComIfGp_getEvent().checkSkipEdge()) {
+            if (dComIfGp_getEvent()->checkSkipEdge()) {
                 cDmr_SkipInfo = JREG_S(8) + 30;
                 dStage_changeScene(1, 0.0f, 0, fopAcM_GetRoomNo(a_this), 0, -1);
             }

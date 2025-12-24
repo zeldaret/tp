@@ -2814,8 +2814,8 @@ void daB_MGN_c::executeOpening() {
     }
 
     camera->mCamera.Set(mDemoCamCenter, mDemoCamEye, mDemoCamFovy, 0);
-    dComIfGp_getEvent().onSkipFade();
-    dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+    dComIfGp_getEvent()->onSkipFade();
+    dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
     mSound.startCreatureVoiceLevel(Z2SE_EN_MGN_DEMO_OP, -1);
 }
 

@@ -386,7 +386,7 @@ BOOL daNpc_SoldierB_c::main() {
     }
 
     if (!mHIO->m.common.debug_mode_ON) {
-        if (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent().isOrderOK())) {
+        if (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent()->isOrderOK())) {
             if (mOrderEvtNo != EVT_NONE) {
                 eventInfo.setArchiveName(l_resNames[l_evtGetParamList[mOrderEvtNo].arcIdx]);
             }
@@ -661,7 +661,7 @@ void daNpc_SoldierB_c::doNormalAction(int param_1) {
 BOOL daNpc_SoldierB_c::doEvent() {
     BOOL rv = FALSE;
 
-    if (dComIfGp_event_runCheck() != FALSE) {
+    if (dComIfGp_event_runCheck()) {
         dEvent_manager_c& event_manager = dComIfGp_getEventManager();
 
         if (eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) {

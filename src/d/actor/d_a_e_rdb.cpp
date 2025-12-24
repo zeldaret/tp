@@ -1105,7 +1105,7 @@ static void demo_camera(e_rdb_class* i_this) {
         i_this->mDemoCamFovy = 55.0f;
         camera->mCamera.SetTrimSize(3);
         player->changeOriginalDemo();
-        dComIfGp_getEvent().startCheckSkipEdge(i_this);
+        dComIfGp_getEvent()->startCheckSkipEdge(i_this);
         Z2GetAudioMgr()->setDemoName("force_start");
         // [[fallthrough]]
     case 2:
@@ -1352,7 +1352,7 @@ static void demo_camera(e_rdb_class* i_this) {
     }
 
     if (i_this->mDemoMode > 0 && i_this->mDemoMode < 10) {
-        if (dComIfGp_getEvent().checkSkipEdge()) {
+        if (dComIfGp_getEvent()->checkSkipEdge()) {
             sVar1 = 1;
             i_this->mAction = ACTION_WAIT;
             i_this->mMode = 10;

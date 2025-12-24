@@ -360,7 +360,7 @@ void daObjDmElevator_c::actionSwPause() {
     daPy_getPlayerActorClass()->mEndResetFlg1 = daPy_getPlayerActorClass()->mEndResetFlg1 | 0x200;
     field_0x62a += -1;
     if (field_0x62a == 0) {
-        g_dComIfG_gameInfo.play.mEvent.reset();
+        dComIfGp_event_reset();
         actionSwPauseNoneInit();
     }
 }

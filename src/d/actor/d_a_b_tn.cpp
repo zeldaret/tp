@@ -1817,8 +1817,8 @@ void daB_TN_c::executeRoomDemo() {
     }
 
     camera->mCamera.Set(mCamCenter, mCamEye, mCamFovY, 0);
-    dComIfGp_getEvent().onSkipFade();
-    dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+    dComIfGp_getEvent()->onSkipFade();
+    dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
 }
 
 void daB_TN_c::executeOpening() {
@@ -2014,8 +2014,8 @@ void daB_TN_c::executeOpening() {
     }
 
     camera->mCamera.Set(mCamCenter, mCamEye, mCamFovY, 0);
-    dComIfGp_getEvent().onSkipFade();
-    dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+    dComIfGp_getEvent()->onSkipFade();
+    dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
 }
 
 void daB_TN_c::executeWaitH() {

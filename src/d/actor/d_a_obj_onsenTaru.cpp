@@ -206,7 +206,7 @@ int daOnsTaru_c::Execute() {
 
     if (mStartTimer) {
         if (mTimer < (s16)(l_HIO.mCoolTime * 30)) {
-            if (!g_dComIfG_gameInfo.play.mEvent.runCheck()) {
+            if (dComIfGp_event_runCheck() == FALSE) {
                 mTimer++;
             }
 

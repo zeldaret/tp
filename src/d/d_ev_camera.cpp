@@ -64,7 +64,7 @@ int dCamera_c::EndEventCamera(int param_1) {
         clrFlag(0x20000000);
         mEventData.field_0x0 = 1;
 
-        if (dComIfGp_getEvent().runCheck()) {
+        if (dComIfGp_getEvent()->runCheck()) {
             dComIfGp_getEventManager().setCameraPlay(2);
         }
 
@@ -1845,7 +1845,7 @@ bool dCamera_c::talktoEvCamera() {
 bool dCamera_c::maptoolIdEvCamera() {
     if (mCurCamStyleTimer == 0) {
         int id;
-        getEvIntData(&id, "ID", g_dComIfG_gameInfo.play.getEvent().getMapToolId());
+        getEvIntData(&id, "ID", g_dComIfG_gameInfo.play.getEvent()->getMapToolId());
 
         mEventData.field_0x8 = 0;
         field_0x160 = 0;

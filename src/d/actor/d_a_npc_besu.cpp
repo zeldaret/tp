@@ -1419,8 +1419,7 @@ void daNpc_Besu_c::setCollision() {
         mCyl1.SetR(wallR);
         mCyl1.SetC(cStack_48);
         dComIfG_Ccsp()->Set(&mCyl1);
-        if ((mType == 11 && !dComIfGp_event_runCheck()) || mType == 3)
-        {
+        if ((mType == 11 && !dComIfGp_event_runCheck()) || mType == 3) {
             switch (mType) {
                 case 3:
                     wallR = 100.0f;
@@ -2623,7 +2622,7 @@ int daNpc_Besu_c::wait(void* param_0) {
                     }
 
                                         /* dSv_event_flag_c::M_027 - Cutscene - [cutscene: 13] kids in the church (beast eyes) */
-                    if (field_0x112f && daNpcT_chkEvtBit(0x3C) && dComIfGp_event_runCheck() == 0) {
+                    if (field_0x112f && daNpcT_chkEvtBit(0x3C) && !dComIfGp_event_runCheck()) {
                         field_0x112f = 0;
                     }
 

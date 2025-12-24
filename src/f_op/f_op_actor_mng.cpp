@@ -825,8 +825,8 @@ void* event_second_actor(u16) {
 }
 
 s32 fopAcM_orderTalkEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_priority, u16 i_flag) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actorA)))
     {
         return 0;
     }
@@ -841,8 +841,8 @@ s32 fopAcM_orderTalkEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_prio
 
 s32 fopAcM_orderTalkItemBtnEvent(u16 i_eventType, fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB,
                                  u16 i_priority, u16 i_flag) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actorA)))
     {
         return 0;
     }
@@ -855,8 +855,8 @@ s32 fopAcM_orderTalkItemBtnEvent(u16 i_eventType, fopAc_ac_c* i_actorA, fopAc_ac
 }
 
 s32 fopAcM_orderSpeakEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actor)))
     {
         return 0;
     }
@@ -870,8 +870,8 @@ s32 fopAcM_orderSpeakEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag) {
 }
 
 s32 fopAcM_orderDoorEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_priority, u16 i_flag) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actorA)))
     {
         return 0;
     }
@@ -892,8 +892,8 @@ s32 fopAcM_orderDoorEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_prio
 }
 
 s32 fopAcM_orderCatchEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_priority, u16 i_flag) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actorA)))
     {
         return 0;
     }
@@ -907,8 +907,8 @@ s32 fopAcM_orderCatchEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_pri
 
 s32 fopAcM_orderOtherEvent(fopAc_ac_c* i_actor, char const* i_eventName, u16 param_2, u16 i_flag,
                            u16 i_priority) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actor)))
     {
         return 0;
     }
@@ -933,8 +933,8 @@ s32 fopAcM_orderOtherEvent(fopAc_ac_c* i_actor, char const* i_eventName, u16 par
 
 s32 fopAcM_orderOtherEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, char const* i_eventName,
                            u16 param_3, u16 i_flag, u16 i_priority) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actorA)))
     {
         return 0;
     }
@@ -969,8 +969,8 @@ s32 fopAcM_orderChangeEventId(fopAc_ac_c* i_actor, s16 i_eventID, u16 i_flag, u1
 
 s32 fopAcM_orderOtherEventId(fopAc_ac_c* i_actor, s16 i_eventID, u8 i_mapToolID, u16 param_3,
                              u16 i_priority, u16 i_flag) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actor)))
     {
         return 0;
     }
@@ -1003,8 +1003,8 @@ s32 fopAcM_orderOtherEventId(fopAc_ac_c* i_actor, s16 i_eventID, u8 i_mapToolID,
 
 s32 fopAcM_orderMapToolEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_eventID, u16 param_3,
                              u16 i_flag, u16 param_5) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actor)))
     {
         return 0;
     }
@@ -1042,8 +1042,8 @@ s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_even
 }
 
 s32 fopAcM_orderPotentialEvent(fopAc_ac_c* i_actor, u16 i_flag, u16 param_2, u16 i_priority) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actor)))
     {
         return 0;
     }
@@ -1057,8 +1057,8 @@ s32 fopAcM_orderPotentialEvent(fopAc_ac_c* i_actor, u16 i_flag, u16 param_2, u16
 }
 
 s32 fopAcM_orderItemEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actor)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actor)))
     {
         return 0;
     }
@@ -1073,8 +1073,8 @@ s32 fopAcM_orderItemEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag) {
 
 s32 fopAcM_orderTreasureEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_priority,
                               u16 i_flag) {
-    if (!dComIfGp_getEvent().isOrderOK() &&
-        (!(i_flag & 0x400) || !dComIfGp_getEvent().isChangeOK(i_actorA)))
+    if (!dComIfGp_getEvent()->isOrderOK() &&
+        (!(i_flag & 0x400) || !dComIfGp_getEvent()->isChangeOK(i_actorA)))
     {
         return 0;
     }

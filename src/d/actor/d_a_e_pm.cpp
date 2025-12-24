@@ -788,8 +788,8 @@ void daE_PM_c::AppearAction() {
     cLib_addCalcAngleS2(&current.angle.y, mTargetAngleY, 5, 0x1000);
     cLib_addCalcAngleS2(&mHeadAngleX, mTargetHeadAngleX, 4, 0x1000);
     if (mAction != ACT_START || mMode != 0) {
-        dComIfGp_getEvent().onSkipFade();
-        dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+        dComIfGp_getEvent()->onSkipFade();
+        dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
     }
 }
 
@@ -2039,8 +2039,8 @@ void daE_PM_c::BossAction() {
         } else {
             DemoBossStart();
         }
-        dComIfGp_getEvent().onSkipFade();
-        dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+        dComIfGp_getEvent()->onSkipFade();
+        dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
     }
 
     if (mSecondEncounter && daPy_getPlayerActorClass()->checkWolfLock(this)) {

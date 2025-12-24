@@ -1426,7 +1426,7 @@ int daNpcT_c::execute() {
     setCollision();
 
     if (!field_0xe2c) {
-        if ((field_0xe33 && dComIfGp_getEvent().isOrderOK()) || dComIfGp_event_runCheck() == FALSE) {
+        if ((field_0xe33 && dComIfGp_getEvent()->isOrderOK()) || dComIfGp_event_runCheck() == FALSE) {
             evtOrder();
         }
     }
@@ -1899,15 +1899,7 @@ int daNpcT_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
 BOOL daNpcT_c::evtProc() {
     BOOL ret = FALSE;
-
-#if VERSION != VERSION_SHIELD_DEBUG
-        // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck())
-#else
-        if (dComIfGp_event_runCheck())
-#endif
-        {
+    if (dComIfGp_event_runCheck()) {
         if (eventInfo.checkCommandTalk()) {
             if (!checkChangeEvt()) {
                 evtTalk();
@@ -1916,11 +1908,7 @@ BOOL daNpcT_c::evtProc() {
         } else if (eventInfo.checkCommandDemoAccrpt()
                         && dComIfGp_getEventManager().endCheck(mEvtId)) {
             if (evtEndProc()) {
-#if VERSION != VERSION_SHIELD_DEBUG
-                play->getEvent().reset();
-#else
                 dComIfGp_event_reset();
-#endif
                 mEvtId = -1;
             }
         } else {
@@ -2088,7 +2076,7 @@ void daNpcT_c::evtChange() {
         }
 
         mEvtId = dComIfGp_getEventManager().getEventIdx(this, mpEvtData[mEvtNo].eventName, 0xFF);
-        dComIfGp_getEvent().reset(this);
+        dComIfGp_getEvent()->reset(this);
         fopAcM_orderChangeEventId(this, mEvtId, 1, 0xFFFF);
     }
 }
