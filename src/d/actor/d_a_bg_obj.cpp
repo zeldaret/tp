@@ -1359,7 +1359,7 @@ static actor_method_class daBgObj_METHODS = {
     (process_method_func)daBgObj_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_BG_OBJ = {
+actor_process_profile_definition g_profile_BG_OBJ = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

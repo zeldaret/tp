@@ -720,8 +720,7 @@ void dCamera_c::initPad() {
     mHoldY = mDoCPd_c::getHoldY(mPadID) ? true : false;
     mTrigY = mDoCPd_c::getTrigY(mPadID) ? true : false;
 
-    // fakematch (doesn't match in debug)
-    mHoldZ = (u8)mDoCPd_c::getHoldZ(mPadID) ? true : false;
+    mHoldZ = mDoCPd_c::getHoldZ(mPadID) ? true : false;
     mTrigZ = mDoCPd_c::getTrigZ(mPadID) ? true : false;
     field_0x21f = 0;
 
@@ -4223,15 +4222,13 @@ bool dCamera_c::lockonCamera(s32 param_0) {
             target_attention_pos.z = positionOf(mpLockonTarget).z;
         }
 
-        // this should probably be an ifdef, but we force it to be compiled
-        // to make the function large enough to stop doing inlining
-        if (!NDEBUG_DEFINED) {
-            if (mCamSetup.CheckFlag(0x8000)) {
-                //char name[28];
-                fopAcM_getNameString(mpPlayerActor, NULL);
-                dDbVw_Report(0x1e0, 0x109, "%s", NULL);
-            }
+#if DEBUG
+        if (mCamSetup.CheckFlag(0x8000)) {
+            char name[dStage_NAME_LENGTH];
+            fopAcM_getNameString(mpPlayerActor, name);
+            dDbVw_Report(0x1e0, 0x109, "%s", name);
         }
+#endif
 
         if (check_owner_action(mPadID, 0x2000008)) {
             cXyz vec(0.0f, 0.0f, -90.0f);
@@ -8925,7 +8922,7 @@ bool dCamera_c::oneSideCamera(s32 param_1) {
 bool dCamera_c::eventCamera(s32 param_0) {
     char sp90[12];
 
-    (void)param_0;
+    UNUSED(param_0);
     int var_r29 = -1;
 
     typedef bool (dCamera_c::*func)();
@@ -10073,7 +10070,7 @@ static leafdraw_method_class method = {
     (process_method_func)camera_draw,
 };
 
-extern camera_process_profile_definition g_profile_CAMERA = {
+camera_process_profile_definition g_profile_CAMERA = {
     fpcLy_CURRENT_e,
     11,
     fpcPi_CURRENT_e,
@@ -10094,7 +10091,7 @@ extern camera_process_profile_definition g_profile_CAMERA = {
     0,
 };
 
-extern camera_process_profile_definition g_profile_CAMERA2 = {
+camera_process_profile_definition g_profile_CAMERA2 = {
     fpcLy_CURRENT_e,
     11,
     fpcPi_CURRENT_e,

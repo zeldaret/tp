@@ -234,7 +234,7 @@ static actor_method_class l_daTagQs_Method = {
     (process_method_func)daTagQs_Draw,
 };
 
-extern actor_process_profile_definition g_profile_TAG_QS = {
+actor_process_profile_definition g_profile_TAG_QS = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

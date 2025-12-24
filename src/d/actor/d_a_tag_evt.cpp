@@ -232,7 +232,7 @@ static actor_method_class daTag_Evt_MethodTable = {
     (process_method_func)daTag_Evt_Draw,
 };
 
-extern actor_process_profile_definition g_profile_TAG_EVT = {
+actor_process_profile_definition g_profile_TAG_EVT = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

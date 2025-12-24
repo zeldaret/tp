@@ -94,10 +94,6 @@ static int l_bckGetParamList[][2] = {
     0x07, 0x0F,
 };
 
-/* 809CA7F4 809CA874   0080
-00
-/1   0/0
-.data            l_btpGetParamList */
 static int l_btpGetParamList[][2] = {
     0x1C, 0x00,
     0x1F, 0x00,
@@ -642,7 +638,7 @@ bool daNpc_grA_c::checkTagGraSub2(fopAc_ac_c* i_this) {
 }
 
 static void* s_subShop(void* i_actor, void* i_this) {
-    (void)i_this;
+    UNUSED(i_this);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_GRM) {
         return i_actor;
     }
@@ -650,7 +646,7 @@ static void* s_subShop(void* i_actor, void* i_this) {
 }
 
 static void* s_subGRD(void* i_actor, void* i_this) {
-    (void)i_this;
+    UNUSED(i_this);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_WRESTLER) {
         return i_actor;
     }
@@ -658,7 +654,7 @@ static void* s_subGRD(void* i_actor, void* i_this) {
 }
 
 static void *s_subOnsenTaru(void* i_actor, void* i_this) {
-    (void)i_this;
+    UNUSED(i_this);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_OnsenTaru &&
         !fpcM_IsCreating(fopAcM_GetID((i_actor))))
     {
@@ -4115,7 +4111,7 @@ static actor_method_class daNpc_grA_MethodTable = {
     (process_method_func)daNpc_grA_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_GRA = {
+actor_process_profile_definition g_profile_NPC_GRA = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

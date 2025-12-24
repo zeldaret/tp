@@ -3271,7 +3271,7 @@ actor_method_class l_daE_MF_Method = {
     (process_method_func)daE_MF_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_MF = {
+actor_process_profile_definition g_profile_E_MF = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

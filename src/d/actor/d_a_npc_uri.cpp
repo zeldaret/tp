@@ -1905,7 +1905,7 @@ static actor_method_class daNpc_Uri_MethodTable = {
     (process_method_func)daNpc_Uri_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_URI = {
+actor_process_profile_definition g_profile_NPC_URI = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

@@ -22,7 +22,8 @@ int daTag_Lantern_c::Delete() {
 }
 
 int daTag_Lantern_c::Execute() {
-    dComIfG_play_c& play = g_dComIfG_gameInfo.getPlay();  // fake match
+    // TODO: gameInfo fake match to force reuse of pointer
+    dComIfG_play_c& play = g_dComIfG_gameInfo.play;
 
     if (dComIfGp_event_runCheck()) {
         if (eventInfo.checkCommandTalk()) {
@@ -110,7 +111,7 @@ static actor_method_class daTag_Lantern_MethodTable = {
     (process_method_func)daTag_Lantern_Draw,
 };
 
-extern actor_process_profile_definition g_profile_TAG_LANTERN = {
+actor_process_profile_definition g_profile_TAG_LANTERN = {
     fpcLy_CURRENT_e,             // mLayerID
     7,                           // mListID
     fpcPi_CURRENT_e,             // mListPrio

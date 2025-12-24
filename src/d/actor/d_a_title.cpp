@@ -371,7 +371,7 @@ static actor_method_class l_daTitle_Method = {
     (process_method_func)daTitle_Draw,
 };
 
-extern actor_process_profile_definition g_profile_TITLE = {
+actor_process_profile_definition g_profile_TITLE = {
   fpcLy_CURRENT_e,         // mLayerID
   7,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

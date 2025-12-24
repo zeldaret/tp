@@ -1219,7 +1219,7 @@ static actor_method_class daNpc_Kkri_MethodTable = {
     (process_method_func)daNpc_Kkri_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_KKRI = {
+actor_process_profile_definition g_profile_NPC_KKRI = {
   fpcLy_CURRENT_e,         // mLayerID
   7,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

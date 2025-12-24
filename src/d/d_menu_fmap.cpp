@@ -1383,12 +1383,9 @@ void dMenu_Fmap_c::portal_demo5_init() {
 void dMenu_Fmap_c::portal_demo5_move() {
     mpStick->checkTrigger();
 
-    // fakematch: the call to the fake inline function dMeter2Info_isTouchKeyCheck_alt
-    // should actually call dMeter2Info_isTouchKeyCheck, but for some reason the generated asm
-    // is different from every other call to dMeter2Info_isTouchKeyCheck
     if (dMw_B_TRIGGER() || dMw_Z_TRIGGER() || dMw_START_TRIGGER() || dMw_UP_TRIGGER()
         || dMw_DOWN_TRIGGER() || dMw_LEFT_TRIGGER() || dMw_RIGHT_TRIGGER()
-        || dMeter2Info_isTouchKeyCheck_alt(0xc))
+        || dMeter2Info_isTouchKeyCheck(0xc))
     {
         dMsgObject_setTalkHeap(mpTalkHeap);
         fopMsgM_messageSet(2015, 1000);

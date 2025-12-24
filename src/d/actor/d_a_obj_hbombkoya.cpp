@@ -270,7 +270,7 @@ static actor_method_class daObjHBombkoya_METHODS = {
     (process_method_func)daObjHBombkoya_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_HBombkoya = {
+actor_process_profile_definition g_profile_Obj_HBombkoya = {
   fpcLy_CURRENT_e,         // mLayerID
   3,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

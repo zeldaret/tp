@@ -93,9 +93,6 @@ void J2DGrafContext::place(JGeometry::TBox2<f32> const& bounds) {
     mScissorBounds = bounds;
 }
 
-/* 802E9118-802E9234 2E3A58 011C+00 1/1 4/4 0/0 .text
- * setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
- */
 void J2DGrafContext::setColor(JUtility::TColor colorTL, JUtility::TColor colorTR,
                               JUtility::TColor colorBR, JUtility::TColor colorBL) {
     mColorTL = colorTL;

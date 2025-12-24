@@ -243,7 +243,7 @@ static actor_method_class l_daObjCRVHAHEN_Method = {
     (process_method_func)daObjCRVHAHEN_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_CRVHAHEN = {
+actor_process_profile_definition g_profile_Obj_CRVHAHEN = {
     fpcLy_CURRENT_e,          // mLayerID
     3,                        // mListID
     fpcPi_CURRENT_e,          // mListPrio

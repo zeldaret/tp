@@ -1813,7 +1813,7 @@ static actor_method_class daMyna_MethodTable = {
     (process_method_func)daMyna_Draw,
 };
 
-extern actor_process_profile_definition g_profile_MYNA = {
+actor_process_profile_definition g_profile_MYNA = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

@@ -4956,7 +4956,7 @@ static actor_method_class l_daB_GND_Method = {
     (process_method_func)daB_GND_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_GND = {
+actor_process_profile_definition g_profile_B_GND = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

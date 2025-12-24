@@ -415,7 +415,7 @@ static actor_method_class l_daB_GOS_Method = {
     (process_method_func)daB_GOS_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_GOS = {
+actor_process_profile_definition g_profile_B_GOS = {
     fpcLy_CURRENT_e,
     8,
     fpcPi_CURRENT_e,

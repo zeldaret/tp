@@ -585,7 +585,6 @@ static u8 hio_set;
 
 static daE_RD_HIO_c l_HIO;
 
-/* 805191E4 0002+00 data_805191E4 S_find */
 static s16 S_find;
 
 static s8 lbl_70_bss_AE;
@@ -7372,7 +7371,7 @@ static actor_method_class l_daE_RD_Method = {
     (process_method_func)daE_RD_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_RD = {
+actor_process_profile_definition g_profile_E_RD = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

@@ -52,7 +52,7 @@ static void action(obj_lbox_class* i_this) {
             i_this->speed.y -= 0.1f;
         }
         i_this->current.pos.y += i_this->speed.y;
-        if (i_this->mObjAcch.m_flags & 0x20) {
+        if (i_this->mObjAcch.ChkGroundHit()) {
             dComIfGp_getVibration().StartShock(5, 15, cXyz(0.0f, 1.0f, 0.0f));
             fopAcM_seStart(i_this, Z2SE_EN_FM_FOOTNOTE, 0);
             i_this->field_0x57a = 2;
@@ -195,7 +195,7 @@ static actor_method_class l_daObj_Lbox_Method = {
     (process_method_func)daObj_Lbox_Execute, (process_method_func)daObj_Lbox_IsDelete,
     (process_method_func)daObj_Lbox_Draw};
 
-extern actor_process_profile_definition g_profile_OBJ_LBOX = {
+actor_process_profile_definition g_profile_OBJ_LBOX = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

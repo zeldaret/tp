@@ -1907,7 +1907,7 @@ static actor_method_class daObjBm_METHODS = {
     (process_method_func)daObjBm_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Bemos = {
+actor_process_profile_definition g_profile_Obj_Bemos = {
     fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

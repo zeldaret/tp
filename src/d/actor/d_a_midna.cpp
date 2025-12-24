@@ -3597,7 +3597,7 @@ static actor_method_class l_daMidna_Method = {
     (process_method_func)daMidna_Draw,
 };
 
-extern actor_process_profile_definition g_profile_MIDNA = {
+actor_process_profile_definition g_profile_MIDNA = {
     fpcLy_CURRENT_e,
     6,
     fpcPi_CURRENT_e,

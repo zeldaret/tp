@@ -583,7 +583,7 @@ static actor_method_class l_daObjDrop_Method = {
     (process_method_func)NULL,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Drop = {
+actor_process_profile_definition g_profile_Obj_Drop = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

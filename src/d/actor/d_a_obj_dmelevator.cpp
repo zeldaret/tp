@@ -683,7 +683,7 @@ static actor_method_class daObjDmElevator_METHODS = {
     (process_method_func)daObjDmElevator_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Elevator = {
+actor_process_profile_definition g_profile_Obj_Elevator = {
     fpcLy_CURRENT_e,            // mLayerID
     3,                          // mListID
     fpcPi_CURRENT_e,            // mListPrio

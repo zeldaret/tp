@@ -643,7 +643,7 @@ int daObjMovebox::Act_c::CreateHeap() {
 }
 
 void daObjMovebox::Act_c::RideCallBack(dBgW* i_bgw, fopAc_ac_c* i_actor, fopAc_ac_c* i_rideActor) {
-    (void)i_bgw;
+    UNUSED(i_bgw);
     Act_c* a_this = (Act_c*)i_actor;
 
     if (a_this->field_0x5ac == 2) {
@@ -697,7 +697,7 @@ enum MOVE_DIR {
 
 fopAc_ac_c* daObjMovebox::Act_c::PPCallBack(fopAc_ac_c* i_bgActor, fopAc_ac_c* i_pushActor,
                                             s16 i_angle, dBgW_Base::PushPullLabel pp_label) {
-    (void)i_pushActor;
+    UNUSED(i_pushActor);
 
     dBgW::PushPullLabel var_r26 = cLib_checkBit<dBgW::PushPullLabel>(
         pp_label, (dBgW::PushPullLabel)(dBgW::PPLABEL_PUSH | dBgW::PPLABEL_PULL));
@@ -1410,7 +1410,7 @@ static actor_method_class Mthd_Table = {
 };  // namespace
 };  // namespace daObjMovebox
 
-extern actor_process_profile_definition g_profile_Obj_Movebox = {
+actor_process_profile_definition g_profile_Obj_Movebox = {
     fpcLy_CURRENT_e,              // mLayerID
     3,                            // mListID
     fpcPi_CURRENT_e,              // mListPrio

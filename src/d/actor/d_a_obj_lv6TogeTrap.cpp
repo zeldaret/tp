@@ -770,7 +770,7 @@ static actor_method_class l_daLv6TogeTrap_Method = {
     (process_method_func)daLv6TogeTrap_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Lv6TogeTrap = {
+actor_process_profile_definition g_profile_Obj_Lv6TogeTrap = {
   fpcLy_CURRENT_e,         // mLayerID
   3,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

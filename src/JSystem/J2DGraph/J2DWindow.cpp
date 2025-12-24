@@ -423,9 +423,6 @@ void J2DWindow::resize(f32 param_0, f32 param_1) {
     }
 }
 
-/* 802FB12C-802FB1D8 2F5A6C 00AC+00 1/1 0/0 0/0 .text
- * setContentsColor__9J2DWindowFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
- */
 void J2DWindow::setContentsColor(JUtility::TColor param_0, JUtility::TColor param_1,
                                  JUtility::TColor param_2, JUtility::TColor param_3) {
     field_0x128.set(param_0);

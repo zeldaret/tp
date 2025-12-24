@@ -4195,7 +4195,7 @@ static actor_method_class daMP_METHODS = {
     (process_method_func)daMP_c::daMP_c_Callback_Draw,
 };
 
-extern actor_process_profile_definition g_profile_MOVIE_PLAYER = {
+actor_process_profile_definition g_profile_MOVIE_PLAYER = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

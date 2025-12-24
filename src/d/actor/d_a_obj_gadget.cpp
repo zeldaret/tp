@@ -615,7 +615,7 @@ static actor_method_class daObj_Gadget_MethodTable = {
     (process_method_func)daObj_Gadget_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_GADGET = {
+actor_process_profile_definition g_profile_OBJ_GADGET = {
   fpcLy_CURRENT_e,           // mLayerID
   8,                         // mListID
   fpcPi_CURRENT_e,           // mListPrio

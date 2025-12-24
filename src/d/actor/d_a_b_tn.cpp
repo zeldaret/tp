@@ -342,7 +342,6 @@ void daB_TN_c::calcWaistAngle() {
     cLib_addCalcAngleS2(&mWaistAngle, sVar1, 4, 0x1000);
 }
 
-/* 8062F01D 0003+00 data_8062F01D None */
 static u8 hio_set;
 
 static daB_TN_HIO_c l_HIO;
@@ -5174,7 +5173,7 @@ static actor_method_class l_daB_TN_Method = {
     (process_method_func)daB_TN_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_TN = {
+actor_process_profile_definition g_profile_B_TN = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

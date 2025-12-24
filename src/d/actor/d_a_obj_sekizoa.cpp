@@ -2418,7 +2418,7 @@ static actor_method_class daObj_Sekizoa_MethodTable = {
     daObj_Sekizoa_IsDelete, daObj_Sekizoa_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_SEKIZOA = {
+actor_process_profile_definition g_profile_OBJ_SEKIZOA = {
     fpcLy_CURRENT_e,             // mLayerID
     3,                           // mListID
     fpcPi_CURRENT_e,             // mListPrio

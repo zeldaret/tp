@@ -2136,7 +2136,7 @@ static actor_method_class daObj_GrA_MethodTable = {
     (process_method_func)daObj_GrA_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_GRA = {
+actor_process_profile_definition g_profile_OBJ_GRA = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

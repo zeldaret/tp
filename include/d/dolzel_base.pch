@@ -15,6 +15,8 @@
 #include "JSystem/JUtility/JUTGamePad.h" // IWYU pragma: export
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" // IWYU pragma: export
 #include "JSystem/JHostIO/JORReflexible.h" // IWYU pragma: export
+#include "SSystem/SComponent/c_m3d_g_sph.h" // IWYU pragma: export
+#include "SSystem/SComponent/c_m3d_g_aab.h" // IWYU pragma: export
 #include "SSystem/SComponent/c_m3d_g_pla.h" // IWYU pragma: export
 #include "SSystem/SComponent/c_bg_s_chk.h" // IWYU pragma: export
 #include "f_op/f_op_actor.h" // IWYU pragma: export

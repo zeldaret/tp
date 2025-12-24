@@ -90,7 +90,7 @@ static actor_method_class l_daTagWatchGe_Method = {
     (process_method_func)daTagWatchGe_Draw
 };
 
-extern actor_process_profile_definition g_profile_Tag_WatchGe = {
+actor_process_profile_definition g_profile_Tag_WatchGe = {
     fpcLy_CURRENT_e,         // mLayerID  
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio 

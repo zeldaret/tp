@@ -535,7 +535,7 @@ static actor_method_class l_daObjZraMark_Method = {
     (process_method_func)daObjZraMark_Draw,
 };
 
-extern actor_process_profile_definition g_profile_ZRA_MARK = {
+actor_process_profile_definition g_profile_ZRA_MARK = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

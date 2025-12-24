@@ -914,7 +914,7 @@ static actor_method_class l_daCanoe_Method = {
     (process_method_func)daCanoe_Draw,
 };
 
-extern actor_process_profile_definition g_profile_CANOE = {
+actor_process_profile_definition g_profile_CANOE = {
   fpcLy_CURRENT_e,         // mLayerID
   4,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

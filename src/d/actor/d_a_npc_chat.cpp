@@ -2660,10 +2660,7 @@ inline f32 CylH(int type) {
 }
 
 cPhs__Step daNpcChat_c::Create() {
-    if (!fopAcM_CheckCondition(this, fopAcCnd_INIT_e)) {
-        new (this) daNpcChat_c();
-        fopAcM_OnCondition(this, fopAcCnd_INIT_e);
-    }
+    fopAcM_ct(this, daNpcChat_c);
 
     mTwilight = dKy_darkworld_check();
     mType = getType();
@@ -4128,7 +4125,7 @@ static actor_method_class daNpcChat_MethodTable = {
     (process_method_func)daNpcChat_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_CHAT = {
+actor_process_profile_definition g_profile_NPC_CHAT = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

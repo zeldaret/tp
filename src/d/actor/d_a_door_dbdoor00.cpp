@@ -414,7 +414,7 @@ static actor_method_class l_daDbdoor00_Method = {
     (process_method_func)daDbdoor00_Draw,
 };
 
-extern actor_process_profile_definition g_profile_DBDOOR = {
+actor_process_profile_definition g_profile_DBDOOR = {
     fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio

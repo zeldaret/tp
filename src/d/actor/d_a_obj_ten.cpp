@@ -808,7 +808,7 @@ static actor_method_class l_daObjTEN_Method = {
     (process_method_func)daObjTEN_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Ten = {
+actor_process_profile_definition g_profile_Obj_Ten = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

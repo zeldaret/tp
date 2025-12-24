@@ -89,7 +89,6 @@ static int daE_MB_Draw(e_mb_class* i_this) {
     return 1;
 }
 
-/* 80708C2D 0003+00 data_80708C2D None */
 static u8 hio_set;
 
 static daE_MB_HIO_c l_HIO;
@@ -743,7 +742,7 @@ static actor_method_class l_daE_MB_Method = {
     (process_method_func)daE_MB_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_MB = {
+actor_process_profile_definition g_profile_E_MB = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

@@ -159,7 +159,7 @@ static actor_method_class daTag_MynaLight_MethodTable = {
     (process_method_func)daTag_MynaLight_Draw,
 };
 
-extern actor_process_profile_definition g_profile_TAG_MNLIGHT = {
+actor_process_profile_definition g_profile_TAG_MNLIGHT = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

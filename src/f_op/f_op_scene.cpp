@@ -14,19 +14,18 @@ static int fopScn_Draw(scene_class* i_this) {
 }
 
 static int fopScn_Execute(scene_class* i_this) {
-    int ret = fpcMtd_Execute(i_this->submethod, i_this);
+    int ret = fpcMtd_Execute((process_method_class*)i_this->submethod, i_this);
     return ret;
 }
 
 static int fopScn_IsDelete(void* i_this) {
-    int ret = fpcMtd_IsDelete(static_cast<scene_class*>(i_this)->submethod, i_this);
-    return ret;
+    return fpcMtd_IsDelete((process_method_class*)static_cast<scene_class*>(i_this)->submethod, i_this);
 }
 
 static int fopScn_Delete(void* i_this) {
     scene_class* scene = (scene_class*)i_this;
     int ret = 0;
-    ret = fpcMtd_Delete(scene->submethod, scene);
+    ret = fpcMtd_Delete((process_method_class*)scene->submethod, scene);
     if (ret == 1) {
         fopScnTg_QueueTo(&scene->scene_tag);
     }
@@ -53,7 +52,8 @@ static int fopScn_Create(void* i_this) {
         }
     }
 
-    ret = fpcMtd_Create(scene->submethod, scene);
+
+    ret = fpcMtd_Create((process_method_class*)scene->submethod, i_this);
     return ret;
 }
 

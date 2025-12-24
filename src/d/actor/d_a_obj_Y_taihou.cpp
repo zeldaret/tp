@@ -379,7 +379,7 @@ static actor_method_class daObjYtaihou_METHODS = {
     (process_method_func)daObjYtaihou_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Ytaihou = {
+actor_process_profile_definition g_profile_Obj_Ytaihou = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

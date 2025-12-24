@@ -493,7 +493,7 @@ static actor_method_class l_daObj_Lp_Method = {
     (process_method_func)daObj_Lp_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_LP = {
+actor_process_profile_definition g_profile_OBJ_LP = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

@@ -840,7 +840,7 @@ public:
     ~dComIfG_inf_c() {}
     void ct();
     void createBaseCsr();
-    dComIfG_play_c& getPlay() { return play; }
+    dComIfG_play_c& getPlay() { return play; } // fake inline
 
 #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     class baseCsr_c : public mDoGph_gInf_c::csr_c {

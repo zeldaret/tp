@@ -1345,7 +1345,7 @@ static actor_method_class daNpcThe_MethodTable = {
     (process_method_func)daNpcThe_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_THE = {
+actor_process_profile_definition g_profile_NPC_THE = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

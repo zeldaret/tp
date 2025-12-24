@@ -70,12 +70,12 @@ void J3DCalcBBoardMtx(__REGISTER Mtx mtx) {
 	mtx[2][2] = z;
 }
 
-extern J3DTransformInfo const j3dDefaultTransformInfo = {
+J3DTransformInfo const j3dDefaultTransformInfo = {
     {1.0f, 1.0f, 1.0f}, {0, 0, 0}, {0.0f, 0.0f, 0.0f}};
 
-extern Vec const j3dDefaultScale = {1.0f, 1.0f, 1.0f};
+Vec const j3dDefaultScale = {1.0f, 1.0f, 1.0f};
 
-extern Mtx const j3dDefaultMtx = {
+Mtx const j3dDefaultMtx = {
     {1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}};
 
 void J3DCalcYBBoardMtx(Mtx mtx) {
@@ -541,7 +541,7 @@ loop:
 }
 #endif // clang-format on
 
-extern f32 const PSMulUnit01[] = {
+f32 const PSMulUnit01[] = {
     0.0f,
     -1.0f,
 };

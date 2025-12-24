@@ -200,7 +200,7 @@ static actor_method_class l_daKtOnFire_Method = {
     (process_method_func)daKtOnFire_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Tag_KtOnFire = {
+actor_process_profile_definition g_profile_Tag_KtOnFire = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

@@ -691,7 +691,6 @@ void daObj_Kanban2_c::setSmokeEffect(cXyz i_pos) {
     fopAcM_effSmokeSet1(&field_0x9e0, &field_0x9e4, &i_pos, NULL, 0.02 * field_0x600, &tevStr, 1);
 }
 
-/* 80585CB5 0003+00 hio_set None */
 static u8 hio_set;
 
 static daObj_Kanban2_HIO_c l_HIO;
@@ -1791,7 +1790,7 @@ static actor_method_class l_daObj_Kanban2_Method = {
     (process_method_func)daObj_Kanban2_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_KANBAN2 = {
+actor_process_profile_definition g_profile_OBJ_KANBAN2 = {
   fpcLy_CURRENT_e,         // mLayerID
   7,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

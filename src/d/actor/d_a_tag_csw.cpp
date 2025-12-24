@@ -505,7 +505,7 @@ static actor_method_class l_daTagCsw_Method = {
     (process_method_func)daTagCsw_Draw,
 };
 
-extern actor_process_profile_definition g_profile_TAG_CSW = {
+actor_process_profile_definition g_profile_TAG_CSW = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

@@ -972,7 +972,7 @@ static actor_method_class daObjKshtr_METHODS = {
     (process_method_func)daObjKshtr_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Kshutter = {
+actor_process_profile_definition g_profile_Obj_Kshutter = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

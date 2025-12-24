@@ -299,7 +299,7 @@ void daNpcImpal_c::setExpressionTalkAfter() {
 int daNpcImpal_c::step(s16 i_angle, int i_animate) {
     if (mTurnMode == 0) {
         if (i_animate) {
-            if ((s32)fabsf(cM_sht2d((f32)(s16)(i_angle - mCurAngle.y))) > 40) {
+            if ((s32)fabsf(cM_sht2d((s16)(i_angle - mCurAngle.y))) > 40) {
                 setExpression(EXPR_7, -1.0f);
                 setMotion(MOT_6, -1.0f, false);
             }
@@ -1236,7 +1236,7 @@ static actor_method_class daNpcImpal_MethodTable = {
     (process_method_func)daNpcImpal_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_IMPAL = {
+actor_process_profile_definition g_profile_NPC_IMPAL = {
     fpcLy_CURRENT_e,          // mLayerID
     7,                        // mListID
     fpcPi_CURRENT_e,          // mListPrio

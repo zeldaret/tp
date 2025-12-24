@@ -200,7 +200,7 @@ static actor_method_class l_daObj_Rock_Method = {
     (process_method_func)daObj_Rock_Execute, (process_method_func)daObj_Rock_IsDelete,
     (process_method_func)daObj_Rock_Draw};
 
-extern actor_process_profile_definition g_profile_OBJ_ROCK = {
+actor_process_profile_definition g_profile_OBJ_ROCK = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

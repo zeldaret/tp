@@ -417,7 +417,7 @@ static int dScnRoom_Create(scene_class* i_this) {
     return dComLbG_PhaseHandler(&room->field_0x1c4, l_method, i_this);
 }
 
-static leafdraw_method_class l_dScnRoom_Method = {
+static scene_method_class l_dScnRoom_Method = {
     (process_method_func)dScnRoom_Create,  (process_method_func)dScnRoom_Delete,
     (process_method_func)dScnRoom_Execute, (process_method_func)dScnRoom_IsDelete,
     (process_method_func)dScnRoom_Draw,
@@ -433,5 +433,5 @@ scene_process_profile_definition g_profile_ROOM_SCENE = {
     0,                                          // mSizeOther
     0,                                          // mParameters
     &g_fopScn_Method.base,                     // sub_method
-    (process_method_class*)&l_dScnRoom_Method,  // mpMtd
+    &l_dScnRoom_Method,  // mpMtd
 };

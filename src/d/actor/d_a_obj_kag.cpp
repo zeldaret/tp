@@ -767,7 +767,7 @@ static actor_method_class l_daObjKAG_Method = {
     (process_method_func)daObjKAG_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Kag = {
+actor_process_profile_definition g_profile_Obj_Kag = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

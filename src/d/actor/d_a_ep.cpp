@@ -954,7 +954,7 @@ static actor_method_class l_daEp_Method = {
     (process_method_func)daEp_Draw,
 };
 
-extern actor_process_profile_definition g_profile_EP = {
+actor_process_profile_definition g_profile_EP = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

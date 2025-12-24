@@ -156,7 +156,6 @@ dCcD_SrcSph E_DT_n::cc_dt_tongue_src = {
     } // mSphAttr
 };
 
-/* 806B629D 0003+00 data_806B629D None */
 static bool hio_set;
 
 static daE_DT_HIO_c l_HIO;
@@ -2561,7 +2560,7 @@ static actor_method_class l_daE_DT_Method = {
     (process_method_func)daE_DT_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_DT = {
+actor_process_profile_definition g_profile_E_DT = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

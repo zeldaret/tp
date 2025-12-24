@@ -213,7 +213,7 @@ static actor_method_class l_daTag_FWall_Method = {
     (process_method_func)daTag_FWall_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Tag_FWall = {
+actor_process_profile_definition g_profile_Tag_FWall = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

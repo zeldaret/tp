@@ -304,7 +304,7 @@ static actor_method_class l_daObjGraRock_Method = {
     (process_method_func)daObjGraRock_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_GraRock = {
+actor_process_profile_definition g_profile_Obj_GraRock = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

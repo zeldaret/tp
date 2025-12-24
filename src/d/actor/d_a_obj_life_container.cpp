@@ -507,7 +507,7 @@ static actor_method_class l_daObjLife_Method = {
     (process_method_func)daObjLife_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_LifeContainer = {
+actor_process_profile_definition g_profile_Obj_LifeContainer = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

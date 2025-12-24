@@ -747,7 +747,7 @@ static actor_method_class l_daE_TK_Method = {
     (process_method_func)daE_TK_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_TK = {
+actor_process_profile_definition g_profile_E_TK = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

@@ -247,7 +247,7 @@ static actor_method_class daWindStone_METHODS = {
     (process_method_func)daWindStone_draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_WindStone = {
+actor_process_profile_definition g_profile_Obj_WindStone = {
     fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio

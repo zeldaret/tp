@@ -3,13 +3,16 @@
 
 #include "d/d_kankyo_tev_str.h"
 #include "f_pc/f_pc_leaf.h"
+#include "m_Do/m_Do_audio.h"
+#include "JSystem/J3DGraphAnimator/J3DModel.h"
+#include "SSystem/SComponent/c_sxyz.h"
 #include "global.h"
 
 struct actor_method_class {
     /* 0x00 */ leafdraw_method_class base;
     /* 0x14 */ u8 field_0x14[0xC];  // Likely padding
-};
 
+};
 struct actor_process_profile_definition {
     /* 0x00 */ leaf_process_profile_definition base;
     /* 0x24 */ actor_method_class* sub_method;

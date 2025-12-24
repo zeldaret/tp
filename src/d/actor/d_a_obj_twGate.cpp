@@ -219,7 +219,7 @@ static actor_method_class l_daTwGate_Method = {
     (process_method_func)daTwGate_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_TwGate = {
+actor_process_profile_definition g_profile_Obj_TwGate = {
   fpcLy_CURRENT_e,               // mLayerID
   3,                             // mListID
   fpcPi_CURRENT_e,               // mListPrio

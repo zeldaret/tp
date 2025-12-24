@@ -516,7 +516,7 @@ static actor_method_class daSCannonCrs_METHODS = {
     (process_method_func)daSCannonCrs_draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_SCannonCrs = {
+actor_process_profile_definition g_profile_Obj_SCannonCrs = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

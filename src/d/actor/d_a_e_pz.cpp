@@ -182,13 +182,10 @@ void daE_PZ_c::mEntrySUB(bool param_0) {
     }
 }
 
-/* 80761DFD 0003+00 hio_set None */
 static u8 hio_set;
 
-/* 80761E0C 001C+01 data_80761E0C l_HIO */
 static daE_PZ_HIO_c l_HIO;
 
-/* 80761E29 0003+00 data_80761E29 None */
 static u8 lbl_222_bss_70;
 static u8 lbl_222_bss_71;
 
@@ -2655,7 +2652,7 @@ static actor_method_class l_daE_PZ_Method = {
     (process_method_func)daE_PZ_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_PZ = {
+actor_process_profile_definition g_profile_E_PZ = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

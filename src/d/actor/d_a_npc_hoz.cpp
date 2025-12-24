@@ -1667,7 +1667,7 @@ static actor_method_class daNpc_Hoz_MethodTable = {
     (process_method_func)daNpc_Hoz_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_HOZ = {
+actor_process_profile_definition g_profile_NPC_HOZ = {
   fpcLy_CURRENT_e,          // mLayerID
   7,                        // mListID
   fpcPi_CURRENT_e,          // mListPrio

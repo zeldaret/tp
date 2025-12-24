@@ -101,7 +101,7 @@ static actor_method_class daObjProp_METHODS = {
     (process_method_func)daObjProp_draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Prop = {
+actor_process_profile_definition g_profile_Obj_Prop = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

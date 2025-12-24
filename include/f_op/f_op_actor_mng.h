@@ -37,6 +37,8 @@ class J3DModelData;  // placeholder
 class JKRHeap;
 class cM3dGPla;
 
+s8 dComIfGp_getReverb(int roomNo);
+
 struct fopAcM_prmBase_class {
     /* 0x00 */ u32 parameters;
     /* 0x04 */ cXyz position;
@@ -761,8 +763,6 @@ inline s16 fopAcM_toPlayerShapeAngleY(const fopAc_ac_c* i_actor) {
     return fopAcM_toActorShapeAngleY(i_actor, dComIfGp_getPlayer(0));
 }
 
-s8 dComIfGp_getReverb(int roomNo);
-
 inline void fopAcM_seStartCurrent(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
     mDoAud_seStart(sfxID, &actor->current.pos, param_2,
                    dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
@@ -843,7 +843,7 @@ void fopAcM_showAssert_f(const fopAc_ac_c*, const char*, int, const char*, ...);
 #define fopAcM_setWarningMessage(...)
 #endif
 
-int fopAcM_getNameString(const fopAc_ac_c*, char*);
+BOOL fopAcM_getNameString(const fopAc_ac_c*, char*);
 
 class fopAcM_lc_c {
 public:

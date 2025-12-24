@@ -44,7 +44,7 @@ static actor_method_class l_daObjOnsenFire_Method = {
     (process_method_func)daObjOnsenFire_Execute
 };
 
-extern actor_process_profile_definition g_profile_OBJ_ONSEN_FIRE = {
+actor_process_profile_definition g_profile_OBJ_ONSEN_FIRE = {
     fpcLy_CURRENT_e,           // mLayerID         
     3,                         // mListID       
     fpcPi_CURRENT_e,           // mListPrio        

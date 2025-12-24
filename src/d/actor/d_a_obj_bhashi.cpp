@@ -500,7 +500,7 @@ static actor_method_class l_daObjBHASHI_Method = {
     (process_method_func)daObjBHASHI_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_BHASHI = {
+actor_process_profile_definition g_profile_Obj_BHASHI = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

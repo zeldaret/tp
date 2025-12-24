@@ -293,7 +293,7 @@ static actor_method_class l_daObj_Ystone_Method = {
     (process_method_func)daObj_Ystone_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_YSTONE = {
+actor_process_profile_definition g_profile_OBJ_YSTONE = {
     fpcLy_CURRENT_e,
     8,
     fpcPi_CURRENT_e,

@@ -221,7 +221,7 @@ static void* s_npc_sub(void* param_0, void* param_1) {
 }
 
 static void* s_piro_sub(void* param_0, void* param_1) {
-    (void)param_1;  // debug match
+    UNUSED(param_1);
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_NPC_INKO) {
         return param_0;
     }
@@ -239,7 +239,7 @@ static void* s_du_sub(void* param_0, void* param_1) {
 }
 
 static void* s_shop_sub(void* param_0, void* param_1) {
-    (void)param_1;  // debug match
+    UNUSED(param_1);
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_FSHOP &&
         (s32)(fopAcM_GetParam(param_0) & 0xff) < 35)
     {
@@ -249,7 +249,7 @@ static void* s_shop_sub(void* param_0, void* param_1) {
 }
 
 static void* s_koro2ball_sub(void* param_0, void* param_1) {
-    (void)param_1;  // debug match
+    UNUSED(param_1);
     if (fopAcM_IsActor(param_0)) {
         if (fopAcM_GetName(param_0) == PROC_FSHOP && (fopAcM_GetParam(param_0) & 0xff) == 35) {
             return param_0;
@@ -402,7 +402,7 @@ static void henna_shop(npc_henna_class* i_this) {
 }
 
 static void* s_rod_sub(void* param_0, void* param_1) {
-    (void)param_1;  // debug match
+    UNUSED(param_1);
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_MG_ROD) {
         return param_0;
     }
@@ -601,7 +601,7 @@ static void henna_ride(npc_henna_class* i_this) {
                     lookat_pos.y = 0.0f;
                     lookat_pos.z = -100.0f + VREG_F(8);
                     MtxPosition(&lookat_pos, &pos);
-                    pos.y = lrl->field_0x590;
+                    pos.y = lrl->water_surface_y;
                     f32 unkFloat1;
                     if (i_this->mAnmResIndex == 7) {
                         unkFloat1 = 22.0f;
@@ -630,7 +630,7 @@ static void henna_ride(npc_henna_class* i_this) {
         i_this->field_0x70d = 10;
     }
 
-    if ((lrl != NULL && lrl->field_0x146d != 0) || i_this->field_0x7b8 != 0 ||
+    if ((lrl != NULL && lrl->msg_flow_state != 0) || i_this->field_0x7b8 != 0 ||
         dComIfGp_checkPlayerStatus0(0, 0x2000) != 0)
     {
         i_this->field_0x70d = 2;
@@ -2833,7 +2833,7 @@ static actor_method_class l_daNpc_Henna_Method = {
     (process_method_func)daNpc_Henna_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_HENNA = {
+actor_process_profile_definition g_profile_NPC_HENNA = {
     fpcLy_CURRENT_e,          // mLayerID
     7,                        // mListID
     fpcPi_CURRENT_e,          // mListPrio
