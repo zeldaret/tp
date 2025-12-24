@@ -4390,9 +4390,8 @@ bool dCamera_c::lockonCamera(s32 param_0) {
         u.Val(lockon->field_0x34.U() + (ang4 - lockon->field_0x34.U()) * lockon->field_0x58);
         v.Val(lockon->field_0x34.V() + ang5 * 0.05f);
     } else {
-        f32 temp_f31 = fabsf(ang5.Cos());
         r = lockon->field_0x34.R();
-        r = r + (fVar44a - r) * lockon->field_0x54 * temp_f31;
+        r = r + (fVar44a - r) * lockon->field_0x54 * fabsf(ang5.Cos());
         u.Val(lockon->field_0x34.U() + (ang4 - lockon->field_0x34.U()) * lockon->field_0x58);
         v.Val(lockon->field_0x34.V() + ang5 * lockon->field_0x58);
     }
