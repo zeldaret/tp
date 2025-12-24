@@ -175,7 +175,7 @@ static void* s_lure_sub(void* a, void* b) {
             if (rod->kind == 0 &&
                 rod->action == 4 &&
                 rod->field_0x10a9 == 0 &&
-                rod->field_0x100d != 0) {
+                rod->is_hook_in_water != 0) {
                 return rod;
             }
         }
@@ -189,8 +189,8 @@ static void* s_esa_sub(void* a, void* b) {
             dmg_rod_class* rod = (dmg_rod_class*)a;
             if (rod->kind == 1 &&
                 rod->action != 5 &&
-                rod->field_0x100d != 0 &&
-                rod->actor.current.pos.y < rod->field_0x590 - 20.0f) {
+                rod->is_hook_in_water != 0 &&
+                rod->actor.current.pos.y < rod->water_surface_y - 20.0f) {
                 return rod;
             }
         }
@@ -1328,7 +1328,7 @@ static void mf_lure_search(mg_fish_class* i_this) {
     dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByID(i_this->mRodId);
     if (rod == NULL || rod->field_0x1008 != 0) {
         foundLure = true;
-    } else if (rod->field_0x100a != 0 || rod->field_0x100d == 0) {
+    } else if (rod->field_0x100a != 0 || rod->is_hook_in_water == 0) {
         foundLure = true;
     } else if (rod->action != 4) {
         if (rod->action >= 5 &&
@@ -1531,7 +1531,7 @@ static void mf_lure_search(mg_fish_class* i_this) {
             }
         }
 
-        rod->field_0x1410 = 0.0f;
+        rod->camera_morf_rate = 0.0f;
         dKy_Sound_set(i_this->actor.current.pos, 40.0f * i_this->mJointScale,
             fopAcM_GetID(i_this), 5);
         rod->vib_timer = 5;
@@ -1848,7 +1848,7 @@ static void mf_hit(mg_fish_class* i_this) {
         pvVar5->play_cam_timer = 0;
         pvVar5->field_0x14c2 = 0;
         pvVar5->play_cam_fovy = 90.0f;
-        pvVar5->field_0x146d = 0;
+        pvVar5->msg_flow_state = 0;
         pvVar5->field_0x10b0 = 0;
         daPy_py_c* player = daPy_getLinkPlayerActorClass();
         player->onFishingRodGetFish();
@@ -2173,7 +2173,7 @@ static void mf_catch(mg_fish_class* i_this) {
             rod->actor.health = 1;
             rod->play_cam_mode = 11;
             rod->play_cam_timer = 0;
-            rod->field_0x146d = 0;
+            rod->msg_flow_state = 0;
             i_this->field_0x740 = cM_rndF(1000.0f) + 3000.0f;
         }
         break;
@@ -2234,7 +2234,7 @@ static void mf_esa_search(mg_fish_class* i_this) {
 
     if (rod_actor == NULL) {
         flag1 = 1;
-    } else if (rod->field_0x100d == 0) {
+    } else if (rod->is_hook_in_water == 0) {
         flag1 = 1;
     } else if (rod->action == 5) {
         flag1 = 1;
@@ -3575,8 +3575,8 @@ static int daMg_Fish_Execute(mg_fish_class* i_this) {
         rod->actor.current.pos.x = i_this->field_0x638.x;
         rod->actor.current.pos.y = i_this->field_0x638.y;
         rod->actor.current.pos.z = i_this->field_0x638.z;
-        rod->field_0x1000 = 0;
-        rod->field_0xffc = 0;
+        rod->lure_pitch_offset = 0;
+        rod->lure_yaw_offset = 0;
     }
     if (i_this->field_0x659 != 0) {
         fopAc_ac_c* rod = fopAcM_SearchByID(i_this->mRodId);
