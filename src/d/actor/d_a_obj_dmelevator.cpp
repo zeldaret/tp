@@ -589,10 +589,7 @@ int daObjDmElevator_c::demoProc() {
 void daObjDmElevator_c::moveInit() {
     speedF = 0.0f;
     if (field_0x5e0 == 0) {
-        s8 i_reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
-
-        Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_ELEVATOR_START, (Vec*)&eyePos, 0, i_reverb, 1.0,
-                                          1.0, -1.0, -1.0, 0);
+        fopAcM_seStart(this, Z2SE_OBJ_ELEVATOR_START, 0);
     }
 }
 

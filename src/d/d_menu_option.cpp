@@ -899,7 +899,7 @@ void dMenu_Option_c::sound_move() {
                                      -1.0f, 0);
             break;
         }
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(dMo_soundMode[field_0x3e9]);
+        mDoAud_setOutputMode(dMo_soundMode[field_0x3e9]);
         setSoundMode(dMo_soundMode[field_0x3e9]);
         field_0x3ef = SelectType3;
         field_0x3f5 = SelectType2;
@@ -925,7 +925,7 @@ void dMenu_Option_c::sound_move() {
                                      -1.0f, 0);
             break;
         }
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(dMo_soundMode[field_0x3e9]);
+        mDoAud_setOutputMode(dMo_soundMode[field_0x3e9]);
         setSoundMode(dMo_soundMode[field_0x3e9]);
         field_0x3ef = SelectType3;
         field_0x3f5 = SelectType2;
