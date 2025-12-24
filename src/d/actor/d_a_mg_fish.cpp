@@ -1853,11 +1853,11 @@ static void mf_hit(mg_fish_class* i_this) {
         daPy_py_c* player = daPy_getLinkPlayerActorClass();
         player->onFishingRodGetFish();
         if (pvVar5->lure_type == MG_LURE_SP) {
-            u8 bVar7 = g_dComIfG_gameInfo.info.mSavedata.mEvent.getEventReg(0xf11f);
+            u8 bVar7 = dComIfGs_getEventReg(0xf11f);
             if (bVar7 < 0x1f) {
                 bVar7++;
             }
-            g_dComIfG_gameInfo.info.mSavedata.mEvent.setEventReg(0xf11f, bVar7);
+            dComIfGs_setEventReg(0xf11f, bVar7);
         }
     } else if (iVar1 != 0) {
         if (iVar1 == 2) {
@@ -2041,8 +2041,7 @@ static void mf_jump(mg_fish_class* i_this) {
             commonXyz2.z += i_this->actor.current.pos.z;
             commonXyz2.y = 10.0f + i_this->mSurfaceY;
             fopAcM_createItem(&commonXyz2, 0, -1, -1, NULL, NULL, 0);
-            g_dComIfG_gameInfo.info.mSavedata.mEvent.onEventBit(
-                dSv_event_flag_c::saveBitLabels[0x1d6]);
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x1d6]);
         }
         break;
     }
@@ -3859,7 +3858,7 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
     if (phase == cPhs_COMPLEATE_e) {
         s32 params_0 = fopAcM_GetParam(i_this) >> 24;
         if (params_0 != 0 && params_0 != 0xff &&
-            g_dComIfG_gameInfo.info.isSwitch(params_0, fopAcM_GetRoomNo(i_this)))
+            dComIfGs_isSwitch(params_0, fopAcM_GetRoomNo(i_this)))
         {
             return cPhs_ERROR_e;
         }

@@ -150,7 +150,7 @@ void daBmWindow_c::init_modeWait() {
 }
 
 void daBmWindow_c::modeWait() {
-    daPy_py_c* player = (daPy_py_c*)g_dComIfG_gameInfo.play.getPlayerPtr(LINK_PTR);
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getLinkPlayer();
     cXyz cStack_2c;
     cXyz cStack_38;
     cStack_2c = l_check_area[0];

@@ -979,7 +979,6 @@ BOOL daNpc_ykM_c::isDelete() {
     }
 }
 
-// NONMATCHING - m_nextID load issue, regalloc
 void daNpc_ykM_c::reset() {
     csXyz angle;
     int iVar1 = (u8*)&field_0x1588 - (u8*)&mpNextAction;

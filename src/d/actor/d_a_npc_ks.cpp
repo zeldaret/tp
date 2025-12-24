@@ -5811,7 +5811,6 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
     int frame = i_this->model->getFrame();
     int iVar1 = 0;
     s16 sVar1 = 0x1000;
-    s16 range;
 
     i_this->field_0x5fc = 0;
     i_this->field_0xaec = 1;
@@ -5936,7 +5935,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
             }
 
             iVar1 = 1;
-            range = actor->current.angle.y - i_this->target_angle;
+            s16 range = actor->current.angle.y - i_this->target_angle;
             if ((range > 0x3000 || range < -0x3000) && i_this->mode < 22) {
                 anm_init(i_this, 28, 3.0f, 0, 1.0f);
                 i_this->mode = 22;

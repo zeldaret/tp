@@ -2015,7 +2015,7 @@ int daDoor20_c::chkStopOpen() {
         roomNo = door_param2_c::getBRoomNo(this);
     }
     if ((field_0x68c == 0 && frontOption == 3) || (field_0x68c == 1 && backOption == 3)) {
-        if (dComIfGp_event_runCheck() == 0 || (field_0x68d == 0)) {
+        if (dComIfGp_event_runCheck() == FALSE || (field_0x68d == 0)) {
             if (dComIfGp_roomControl_checkRoomDisp(roomNo) &&
                 fopAcM_myRoomSearchEnemy(roomNo) == NULL)
             {
@@ -2024,7 +2024,7 @@ int daDoor20_c::chkStopOpen() {
                     return 0;
                 }
                 if (swBit != 0xff) {
-                    g_dComIfG_gameInfo.info.onSwitch(swBit, roomNo);
+                    dComIfGs_onSwitch(swBit, roomNo);
                 }
                 return 1;
             }

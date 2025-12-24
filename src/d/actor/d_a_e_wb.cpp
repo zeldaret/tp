@@ -3409,7 +3409,6 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
     return return_value;
 }
 
-// NONMATCHING - regalloc / conditional pathing
 static void action(e_wb_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
     cXyz pos1;

@@ -566,7 +566,7 @@ public:
     void setStartStageLayer(s8 layer) { mStartStage.setLayer(layer); }
 
     const char* getNextStageName() { return mNextStage.getName(); }
-    dStage_startStage_c* getNextStartStage() { return &mNextStage; }
+    dStage_startStage_c* getNextStartStage() { return mNextStage.getStartStage(); }
     s8 getNextStageRoomNo() { return mNextStage.getRoomNo(); }
     s8 getNextStageLayer() { return mNextStage.getLayer(); }
     s16 getNextStagePoint() { return mNextStage.getPoint(); }
@@ -2572,7 +2572,7 @@ inline s8 dComIfGp_getNextStageLayer() {
     return g_dComIfG_gameInfo.play.getNextStageLayer();
 }
 
-inline s32 dComIfGp_getNextStageWipe() {
+inline s8 dComIfGp_getNextStageWipe() {
     return g_dComIfG_gameInfo.play.getNextStageWipe();
 }
 
