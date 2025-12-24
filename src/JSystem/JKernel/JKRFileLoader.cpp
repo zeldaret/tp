@@ -1,6 +1,9 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
 #include "JSystem/JKernel/JKRFileLoader.h"
+
+#define MSL_USE_INLINES 1  // needed to inline tolower call. not inlined elsewhere in the repo
+
 #include "string.h"
 #include "ctype.h"
 #include "global.h"
@@ -122,15 +125,7 @@ const char* JKRFileLoader::fetchVolumeName(char* buffer, s32 bufferSize, const c
     path++;
     while (*path != 0 && *path != '/') {
         if (1 < bufferSize) {
-            int lower_char;
-            int ch = (int)*path;
-            if (ch == -1) {
-                lower_char = -1;
-            } else {
-                lower_char = __lower_map[ch & 0xFF];
-            }
-
-            *buffer = lower_char;
+            *buffer = tolower(*path);
             buffer++;
             bufferSize--;
         }
