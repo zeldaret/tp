@@ -1462,25 +1462,61 @@ inline u8 dComIfGs_getSelectItemIndex(int i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getSelectItemIndex(i_no);
 }
 
-//TODO: actual name is unknown
-inline u8 dComIfGs_getOptUnk0() {
-    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getUnk0();
+// Ruby inline names are from TWW debug.
+inline u8 dComIfGs_getOptRuby() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getRuby();
+}
+
+inline void dComIfGs_setOptRuby(u8 i_ruby) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setRuby(i_ruby);
 }
 
 inline u8 dComIfGs_getOptVibration() {
     return g_dComIfG_gameInfo.info.getPlayer().getConfig().getVibration();
 }
 
+inline void dComIfGs_setOptVibration(u8 i_status) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setVibration(i_status);
+}
+
 inline u8 dComIfGs_getOptAttentionType() {
     return g_dComIfG_gameInfo.info.getPlayer().getConfig().getAttentionType();
+}
+
+inline void dComIfGs_setOptAttentionType(u8 i_attentionType) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setAttentionType(i_attentionType);
 }
 
 inline u8 dComIfGs_getOptCameraControl() {
     return g_dComIfG_gameInfo.info.getPlayer().getConfig().getCameraControl();
 }
 
+inline void dComIfGs_setOptCameraControl(u8 i_cameraControl) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setCameraControl(i_cameraControl);
+}
+
 inline u8 dComIfGs_getOptSound() {
     return g_dComIfG_gameInfo.info.getPlayer().getConfig().getSound();
+}
+
+inline void dComIfGs_setOptSound(u8 i_mode) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(i_mode);
+}
+
+inline void dComIfGs_setOptCalValue(s8 i_calValue) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setCalValue(i_calValue);
+}
+
+inline void dComIfGs_setOptCalibrateDist(u16 i_calibrateDist) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setCalibrateDist(i_calibrateDist);
+}
+
+inline u8 dComIfGs_getOptPointer() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getPointer();
+}
+
+inline void dComIfGs_setOptPointer(u8 i_pointer) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setPointer(i_pointer);
 }
 
 inline BOOL dComIfGs_isTbox(int i_no) {
@@ -2034,35 +2070,6 @@ inline void dComIfGs_setLastWarpAcceptStage(s8 param_0) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpAcceptStage(param_0);
 }
 
-//TODO: actual name is unknown
-inline void dComIfGs_setOptUnk0(u8 i_unk0) {
-    g_dComIfG_gameInfo.info.getPlayer().getConfig().setUnk0(i_unk0);
-}
-
-inline void dComIfGs_setOptSound(u8 i_mode) {
-    g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(i_mode);
-}
-
-inline void dComIfGs_setOptVibration(u8 i_status) {
-    g_dComIfG_gameInfo.info.getPlayer().getConfig().setVibration(i_status);
-}
-
-inline void dComIfGs_setOptAttentionType(u8 i_attentionType) {
-    g_dComIfG_gameInfo.info.getPlayer().getConfig().setAttentionType(i_attentionType);
-}
-
-inline void dComIfGs_setOptCameraControl(u8 i_cameraControl) {
-    g_dComIfG_gameInfo.info.getPlayer().getConfig().setCameraControl(i_cameraControl);
-}
-
-inline void dComIfGs_setOptPointer(u8 i_pointer) {
-    g_dComIfG_gameInfo.info.getPlayer().getConfig().setPointer(i_pointer);
-}
-
-inline u8 dComIfGs_getOptPointer() {
-    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getPointer();
-}
-
 inline u8 dComIfGs_getNewFile() {
     return g_dComIfG_gameInfo.info.getNewFile();
 }
@@ -2089,14 +2096,6 @@ inline void dComIfGs_addDeathCount() {
 
 inline u8 dComIfGs_getWalletSize() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getWalletSize();
-}
-
-inline void dComIfGs_setOptCalValue(s8 i_calValue) {
-    g_dComIfG_gameInfo.info.getPlayer().getConfig().setCalValue(i_calValue);
-}
-
-inline void dComIfGs_setOptCalibrateDist(u16 i_calibrateDist) {
-    g_dComIfG_gameInfo.info.getPlayer().getConfig().setCalibrateDist(i_calibrateDist);
 }
 
 inline u16 dComIfGs_getFishNum(u8 param_0) {

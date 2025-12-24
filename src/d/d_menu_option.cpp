@@ -1128,9 +1128,9 @@ void dMenu_Option_c::confirm_close_move() {
                 dComIfGs_setOptAttentionType(field_0x3e4);
 #if VERSION == VERSION_GCN_JPN
                 if (field_0x3e5_JPN == 0) {
-                    dComIfGs_setOptUnk0(1);
+                    dComIfGs_setOptRuby(1);
                 } else {
-                    dComIfGs_setOptUnk0(0);
+                    dComIfGs_setOptRuby(0);
                 }
 #endif
                 if (isRumbleSupported()) {
@@ -2144,7 +2144,7 @@ void dMenu_Option_c::paneResize(u64 i_tag) {
 void dMenu_Option_c::initialize() {
     field_0x3e4 = dComIfGs_getOptAttentionType();
 #if VERSION == VERSION_GCN_JPN
-    if (dComIfGs_getOptUnk0() == 0) {
+    if (dComIfGs_getOptRuby() == 0) {
         field_0x3e5_JPN = 1;
     } else {
         field_0x3e5_JPN = 0;

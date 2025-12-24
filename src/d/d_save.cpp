@@ -973,9 +973,9 @@ void dSv_player_info_c::init() {
 
 void dSv_player_config_c::init() {
 #if VERSION == VERSION_GCN_JPN
-    unk0 = 0;
+    mRuby = 0;
 #else
-    unk0 = 1;
+    mRuby = 1;
 #endif
 
 #if PLATFORM_GCN
