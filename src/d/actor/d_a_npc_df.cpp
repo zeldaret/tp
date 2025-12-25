@@ -252,7 +252,7 @@ static void df_rod(npc_df_class* i_this, df_s* df_p) {
 
                 npc_henna_class* henna_p = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
                 if (henna_p != NULL) {
-                    henna_p->field_0x7b8 = 10;
+                    henna_p->msg_time = 10;
                 }
             } else {
                 df_p->field_0x5c = YREG_F(6) + 0.2f + ((df_p->field_0x6c & 1) - 0.5f) * (YREG_F(7) + 0.2f);

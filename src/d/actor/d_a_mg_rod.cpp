@@ -4961,14 +4961,14 @@ static void play_camera(dmg_rod_class* i_this) {
         if (i_this->play_cam_timer >= 10) {
             if (i_this->msg_flow_state == 0) {
                 i_this->msg_flow_state = 1;
-                if (henna->du_time != 0 && (henna->du_talk_flag == 0 || (i_this->field_0x1472 & 3) == 0)) {
+                if (henna->du_near_time != 0 && (henna->du_talk_flag == 0 || (i_this->field_0x1472 & 3) == 0)) {
                     i_this->msgflow.init(actor, 0x3C3, 0, NULL);
-                    henna->du_time = 0;
+                    henna->du_near_time = 0;
                     henna->du_talk_flag = 1;
-                } else if (henna->field_0x7b8 != 0) {
+                } else if (henna->msg_time != 0) {
                     i_this->msgflow.init(actor, 0x2C9, 0, NULL);
                     henna->blink_time = 50;
-                    henna->field_0x7b8 = 0;
+                    henna->msg_time = 0;
                 } else if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[467])) {
                     if (i_this->field_0x1470 == 0) {
                         sp174.x = -2800.0f;

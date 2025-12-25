@@ -232,7 +232,7 @@ static void* s_du_sub(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_DU &&
         ((npc_du_class*)i_actor)->mPlayerDist < 300.0f)
     {
-        ((npc_henna_class*)i_data)->du_time = 70;
+        ((npc_henna_class*)i_data)->du_near_time = 70;
         return i_actor;
     }
     return NULL;
@@ -263,9 +263,9 @@ static void message_shop(npc_henna_class* i_this) {
     if (range > 0x1800 || range < -0x1800 || (u16)i_this->target_angle < 0x2e00 ||
         (u16)i_this->target_angle > 0xa800 || i_this->dis > 270.0f)
     {
-        i_this->field_0x750 = 1;
+        i_this->talk_time = 1;
     }
-    if (i_this->field_0x750 != 0) {
+    if (i_this->talk_time != 0) {
         fopAcM_OffStatus(&i_this->actor, NULL);
         cLib_offBit<u32>(i_this->actor.attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     } else {
@@ -336,7 +336,7 @@ static void henna_shop(npc_henna_class* i_this) {
     case 11:
         step_tag = 0;
         i_this->field_0x70d = 0;
-        i_this->field_0x709 = 5;
+        i_this->busy_time = 5;
         if (i_this->anm_p->isStop() != 0) {
             if (i_this->res_id == 20) {
                 anm_init(i_this, 19, 0.0f, 2, 1.0f);
@@ -351,7 +351,7 @@ static void henna_shop(npc_henna_class* i_this) {
     case 12: {
         step_tag = 0;
         i_this->field_0x70d = 0;
-        i_this->field_0x709 = 5;
+        i_this->busy_time = 5;
         if (i_this->timer[0] == 0 || i_this->demo_mode != 0) {
             anm_init(i_this, 0x20, 10.0f, 2, 1.0f);
             i_this->mode = 5;
@@ -471,7 +471,7 @@ static void henna_ride(npc_henna_class* i_this) {
         i_this->mode++;
         break;
     case 3:
-        cLib_addCalcAngleS2(&i_this->field_0x690, -0x1f40, 1, 0x800);
+        cLib_addCalcAngleS2(&i_this->rod_curv_z, -0x1f40, 1, 0x800);
         if (i_this->anm_p->isStop()) {
             i_this->mode = 0;
         }
@@ -483,14 +483,14 @@ static void henna_ride(npc_henna_class* i_this) {
         break;
     case 6:
         if (i_this->anm_p->getFrame() <= 12.0f + VREG_F(6)) {
-            cLib_addCalcAngleS2(&i_this->field_0x690, 0, 1, 0x800);
+            cLib_addCalcAngleS2(&i_this->rod_curv_z, 0, 1, 0x800);
         }
         if (i_this->anm_p->isStop()) {
             i_this->mode = 7;
         }
         break;
     case 7:
-        cLib_addCalcAngleS2(&i_this->field_0x690, 0, 1, 0x800);
+        cLib_addCalcAngleS2(&i_this->rod_curv_z, 0, 1, 0x800);
         break;
     case 10:
         anm_init(i_this, 9, 5.0f, 2, 1.0f);
@@ -508,18 +508,18 @@ static void henna_ride(npc_henna_class* i_this) {
     if (lrl != NULL) {
         fopAc_ac_c* fish;
         if (lrl->action == 0) {
-            if (i_this->field_0x710 == 0) {
-                i_this->field_0x710 = cM_rndF(100.0f) + 90.0f;
+            if (i_this->look_time == 0) {
+                i_this->look_time = cM_rndF(100.0f) + 90.0f;
                 cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
                 mae.x = cM_rndFX(200.0f);
                 mae.y = 0.0f;
                 mae.z = 100.0f;
-                MtxPosition(&mae, &i_this->field_0x714);
-                i_this->field_0x714 += actor->current.pos;
+                MtxPosition(&mae, &i_this->target_pos);
+                i_this->target_pos += actor->current.pos;
             } else {
-                i_this->field_0x710--;
+                i_this->look_time--;
             }
-            i_this->look_pos = i_this->field_0x714;
+            i_this->look_pos = i_this->target_pos;
             fish = (fopAc_ac_c*)fpcM_Search(s_fish_sub, i_this);
             if (fish != NULL) {
                 i_this->look_pos = fish->current.pos;
@@ -550,21 +550,21 @@ static void henna_ride(npc_henna_class* i_this) {
                 i_this->mode = 5;
             }
             if (i_this->mode == 7) {
-                i_this->field_0x692 = 1;
+                i_this->rod_hold_flag = 1;
                 if (stick_mag > 0.1f) {
                     if (stick_ang <= 0x3200 && stick_ang >= -0x3200) {
-                        if (i_this->field_0x660 > 0x14 && i_this->res_id != 7) {
+                        if (i_this->paddle_time > 0x14 && i_this->res_id != 7) {
                             anm_init(i_this, 7, 10.0f, 2, 1.0f);
                         }
-                        i_this->field_0x660++;
+                        i_this->paddle_time++;
                     } else if (stick_ang > (s16)(0x6000 + AREG_S(6)) ||
                                (s16)stick_ang < (s16) - (0x6000 + AREG_S(6)))
                     {
-                        if (i_this->field_0x660 > 0x14 && i_this->res_id != 6) {
+                        if (i_this->paddle_time > 0x14 && i_this->res_id != 6) {
                             anm_init(i_this, 6, 10.0f, 2, 1.0f);
                         }
-                        i_this->field_0x660++;
-                        if (i_this->field_0x660 > 0x14) {
+                        i_this->paddle_time++;
+                        if (i_this->paddle_time > 0x14) {
                             cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
                             if ((i_this->counter & 0x80) != 0) {
                                 mae.x = 100.0f;
@@ -582,13 +582,13 @@ static void henna_ride(npc_henna_class* i_this) {
                         if (i_this->res_id != 30) {
                             anm_init(i_this, 30, 10.0f, 2, 1.0f);
                         }
-                        i_this->field_0x660 = 0;
+                        i_this->paddle_time = 0;
                     }
                 } else {
                     if (i_this->res_id != 30) {
                         anm_init(i_this, 30, 10.0f, 2, 1.0f);
                     }
-                    i_this->field_0x660 = 0;
+                    i_this->paddle_time = 0;
                 }
                 if (i_this->res_id == 7 || i_this->res_id == 6) {
                     f32 stickMagAdj = stick_mag * (1.5f + VREG_F(7));
@@ -616,21 +616,21 @@ static void henna_ride(npc_henna_class* i_this) {
         } else {
             if (i_this->mode >= 5 && i_this->mode < 10) {
                 i_this->mode = 2;
-                i_this->field_0x692 = 1;
+                i_this->rod_hold_flag = 1;
             }
-            i_this->field_0x660 = 0;
+            i_this->paddle_time = 0;
         }
     }
 
     if (i_this->res_id == 21 && i_this->anm_p->getFrame() <= 12.0f + VREG_F(6)) {
-        i_this->field_0x692 = 1;
+        i_this->rod_hold_flag = 1;
     }
 
     if (player->checkCanoeRide() == 0) {
         i_this->field_0x70d = 10;
     }
 
-    if ((lrl != NULL && lrl->msg_flow_state != 0) || i_this->field_0x7b8 != 0 ||
+    if ((lrl != NULL && lrl->msg_flow_state != 0) || i_this->msg_time != 0 ||
         dComIfGp_checkPlayerStatus0(0, 0x2000) != 0)
     {
         i_this->field_0x70d = 2;
@@ -679,20 +679,20 @@ static void action(npc_henna_class* i_this) {
     i_this->dis = fopAcM_searchPlayerDistance(actor);
     i_this->target_angle = fopAcM_searchPlayerAngleY(actor);
 
-    if (i_this->field_0x7b8 != 0) {
-        i_this->field_0x7b8 -= 1;
+    if (i_this->msg_time != 0) {
+        i_this->msg_time -= 1;
     }
-    if (i_this->du_time != 0) {
-        i_this->du_time -= 1;
+    if (i_this->du_near_time != 0) {
+        i_this->du_near_time -= 1;
     }
     if (i_this->field_0x7b5 != 0) {
         i_this->field_0x7b5 -= 1;
     }
-    if (i_this->field_0x750 != 0) {
-        i_this->field_0x750 -= 1;
+    if (i_this->talk_time != 0) {
+        i_this->talk_time -= 1;
     }
-    if (i_this->field_0x709 != 0) {
-        i_this->field_0x709 -= 1;
+    if (i_this->busy_time != 0) {
+        i_this->busy_time -= 1;
     }
     fpcM_Search(s_du_sub, i_this);
 
@@ -889,7 +889,7 @@ static void demo_camera(npc_henna_class* i_this) {
             /* dSv_event_flag_c::F_0464 - Fishing Pond - Reserved for fishing */
             if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x1d0])) {
                 i_this->fade_time = 10;
-                i_this->field_0x70b = 0;
+                i_this->fade_type = 0;
                 i_this->no_draw = 1;
             } else {
                 i_this->demo_mode = 0;
@@ -1030,9 +1030,9 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                     i_this->field_0x5be = 1;
                 }
             } else {
-                if (i_this->field_0x7ba != 0) {
-                    i_this->field_0x7ba--;
-                    if (i_this->field_0x7ba == 0) {
+                if (i_this->demo_time != 0) {
+                    i_this->demo_time--;
+                    if (i_this->demo_time == 0) {
                         i_this->demo_mode = 80;
                         i_this->demo_camera_no = 0;
                     }
@@ -1196,7 +1196,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                 }
                 /* dSv_event_flag_c::F_0465 - Fishing Pond - Reserved for fishing */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x1d1])) {
-                    if (i_this->field_0x709 != 0) {
+                    if (i_this->busy_time != 0) {
                         i_this->msg_flow.init(actor, 0x327, 0, NULL);
                         i_this->blink_time = 90;
                     } else {
@@ -1205,7 +1205,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                     i_this->demo_mode = 20;
                     i_this->demo_camera_no = 0;
                 } else {
-                    if (i_this->field_0x709 != 0) {
+                    if (i_this->busy_time != 0) {
                         i_this->msg_flow.init(actor, 0x326, 0, NULL);
                         i_this->blink_time = 90;
                     } else if (i_this->du_talk_ct == 0) {
@@ -2161,7 +2161,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
         dComIfGp_event_reset();
         daPy_getPlayerActorClass()->cancelOriginalDemo();
         i_this->demo_mode = 0;
-        i_this->field_0x750 = 0x14;
+        i_this->talk_time = 0x14;
     }
     if (i_this->demo_mode != 0) {
         i_this->demo_camera_no = i_this->demo_camera_no + 1;
@@ -2205,11 +2205,11 @@ static void message_guide(npc_henna_class* i_this) {
 
             if (i_this->talk_check == 0) {
                 i_this->talk_check = 1;
-                if (i_this->du_time != 0 &&
+                if (i_this->du_near_time != 0 &&
                     (i_this->du_talk_flag == 0 || (i_this->du_talk_ct & 0x3) == 0))
                 {
                     i_this->msg_flow.init(actor, 0x3c3, 0, NULL);
-                    i_this->du_time = 0;
+                    i_this->du_near_time = 0;
                     i_this->du_talk_flag = 1;
                 } else if (i_this->wait_time != 0) {
                     i_this->wait_time = 0;
@@ -2244,10 +2244,10 @@ static void message_guide(npc_henna_class* i_this) {
     }
 }
 
-static void* s_boat_sub(void* actor, void* actor2) {
-    if (fopAc_IsActor(actor)) {
-        if (fopAcM_GetName(actor) == PROC_CANOE) {
-            return actor;
+static void* s_boat_sub(void* i_actor, void* i_data) {
+    if (fopAc_IsActor(i_actor)) {
+        if (fopAcM_GetName(i_actor) == PROC_CANOE) {
+            return i_actor;
         }
     }
     return NULL;
@@ -2325,7 +2325,7 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
     env_control(i_this);
     if (i_this->fade_time != 0) {
         i_this->fade_time -= 1;
-        if (i_this->field_0x70b == 0) {
+        if (i_this->fade_type == 0) {
             i_this->hide_body_flag = 1;
             i_this->rod_draw_flag = 0;
             mDoGph_gInf_c::fadeIn(0.0001f, g_blackColor);
@@ -2356,7 +2356,7 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
         i_this->wait_time--;
     }
 
-    i_this->field_0x692 = 0;
+    i_this->rod_hold_flag = 0;
 
     if (i_this->boat_id == -1) {
         base_process_class* boat = fpcM_Search(s_boat_sub, i_this);
@@ -2461,12 +2461,12 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
 
     i_this->rod_draw_flag = 1;
 
-    if (i_this->field_0x692 != 0) {
+    if (i_this->rod_hold_flag != 0) {
         MTXCopy(model->getAnmMtx(0x11), mDoMtx_stack_c::get());
         mDoMtx_stack_c::transM(5.0f + VREG_F(0), 12.0f + VREG_F(1), 4.0f + VREG_F(2));
         mDoMtx_stack_c::YrotM(VREG_S(0) - 12500);
         mDoMtx_stack_c::XrotM(VREG_S(1) - 20000);
-        mDoMtx_stack_c::ZrotM(i_this->field_0x690);
+        mDoMtx_stack_c::ZrotM(i_this->rod_curv_z);
     } else {
         daCanoe_c* boat = (daCanoe_c*)fopAcM_SearchByID(i_this->boat_id);
         if (boat != NULL) {
@@ -2712,7 +2712,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* actor) {
                     i_this->demo_mode = 0x32;
                     angle = -0x8000;
                     i_this->fade_time = 10;
-                    i_this->field_0x70b = 2;
+                    i_this->fade_type = 2;
                     if (data_80450CA0 != 0) {
                         anm_init(i_this, 0x20, 10.0f, 2, 1.0f);
                         i_this->mode = 5;
@@ -2775,7 +2775,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* actor) {
                     i_this->no_draw = 1;
                 } else {
                     i_this->fade_time = 20;
-                    i_this->field_0x70b = 1;
+                    i_this->fade_type = 1;
                 }
             }
             if (fopAcM_GetRoomNo(actor) == 4 &&
