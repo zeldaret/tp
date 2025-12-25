@@ -614,7 +614,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "Shield"), "f_op/f_op_scene.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_scene_iter.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_scene_mng.cpp"),
-            Object(MatchingFor(ALL_GCN, "Shield"), "f_op/f_op_scene_req.cpp"),
+            Object(MatchingFor(ALL_GCN, ALL_SHIELD), "f_op/f_op_scene_req.cpp"),
             Object(MatchingFor(ALL_GCN, ALL_SHIELD), "f_op/f_op_scene_tag.cpp"),
             Object(MatchingFor(ALL_GCN, ALL_SHIELD), "f_op/f_op_view.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "f_op/f_op_kankyo.cpp"),

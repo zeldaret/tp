@@ -47,8 +47,11 @@ static cPhs__Step fopScnRq_phase_IsDoneOverlap(scene_request_class* i_sceneReq) 
 static BOOL l_fopScnRq_IsUsingOfOverlap;
 
 static cPhs__Step fopScnRq_phase_Done(scene_request_class* i_sceneReq) {
+    
     if (i_sceneReq->create_request.parameters != 1) {
-        scene_class* scene = (scene_class*)fpcM_SearchByID(i_sceneReq->create_request.creating_id);
+        scene_class* scene;
+        UNUSED(scene);
+        scene = (scene_class*)fpcM_SearchByID(i_sceneReq->create_request.creating_id);
         fopScnPause_Disable(scene);
     }
 
@@ -56,16 +59,18 @@ static cPhs__Step fopScnRq_phase_Done(scene_request_class* i_sceneReq) {
     return cPhs_NEXT_e;
 }
 
-static void fopScnRq_Execute(scene_request_class* i_sceneReq) {
-    int phase_state = cPhs_Do(&i_sceneReq->phase_request, i_sceneReq);
+static cPhs__Step fopScnRq_Execute(scene_request_class* i_sceneReq) {
+    cPhs__Step phase_state = (cPhs__Step)cPhs_Do(&i_sceneReq->phase_request, i_sceneReq);
 
     switch (phase_state) {
     case cPhs_NEXT_e:
-        fopScnRq_Execute(i_sceneReq);
+        return fopScnRq_Execute(i_sceneReq);
         break;
     default:
         break;
     }
+
+    return phase_state;
 }
 
 static int fopScnRq_PostMethod(void* i_scene, scene_request_class* i_sceneReq) {
