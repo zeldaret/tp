@@ -765,8 +765,8 @@ static void action(npc_henna_class* i_this) {
     s16 angle = 0;
     s16 angle2 = 0;
 #if VERSION == VERSION_WII_USA_R0
-    s16 unkTarget2Limit = 9000 + BREG_S(0);
-    s16 unkTarget1Limit = 10000 + BREG_S(1);
+    s16 range2 = 9000 + BREG_S(0);
+    s16 range = 10000 + BREG_S(1);
 #else
     s16 range2 = 9000 + BREG_F(0);
     s16 range = 10000 + BREG_F(1);
