@@ -6,6 +6,10 @@
 #define NAN (*(float*) __float_nan)
 #define HUGE_VALF (*(float*) __float_huge)
 
+#if !PLATFORM_GCN
+#define HUGE_VAL (*(double*)__double_huge)
+#endif
+
 #define M_PI 3.14159265358979323846f
 #define M_SQRT3 1.73205f
 
@@ -44,34 +48,65 @@ float sinf(float);
 double sqrt(double);
 double tan(double);
 float tanf(float);
-
-inline float expf(float x) {
-    return exp(x);
-}
-
-inline float ceilf(float num) {
-    return ceil(num);
-}
+double log10(double);
 
 inline double fabs(double f) {
     return __fabs(f);
 }
 
-inline float fabsf(float f) {
-    return (float)fabs((double)f);
+inline long double fabsl(long double x) {
+    return fabs((double)x);
 }
 
-inline float floorf(float num) {
+
+
+MSL_INLINE float acosf(float x) {
+    return acos(x);
+}
+
+MSL_INLINE float atan2f(float y, float x) {
+    return (float)atan2(y, x);
+}
+
+MSL_INLINE float ceilf(float num) {
+    return ceil(num);
+}
+
+MSL_INLINE float cosf(float x) {
+    return cos(x);
+}
+
+MSL_INLINE float expf(float x) {
+    return exp(x);
+}
+
+MSL_INLINE float floorf(float num) {
     return floor(num);
 }
 
-inline float fmodf(float f1, float f2) {
+MSL_INLINE float powf(float x, float y) {
+    return pow(x, y);
+}
+
+MSL_INLINE float sinf(float x) {
+    return sin(x);
+}
+
+MSL_INLINE float fabsf(float f) {
+    return (float)fabs((double)f);
+}
+
+MSL_INLINE float fmodf(float f1, float f2) {
     return fmod(f1, f2);
+}
+
+MSL_INLINE float log10f(float x) {
+    return log10(x);
 }
 
 #include "global.h"
 #if PLATFORM_WII || PLATFORM_SHIELD
-inline float sqrtf(float mag) {
+MSL_INLINE float sqrtf(float mag) {
     return sqrt(mag);
 }
 #else
@@ -87,7 +122,7 @@ inline float sqrtf(float mag) {
 static double _half = 0.5;
 static double _three = 3.0;
 #endif
-inline float sqrtf(float mag) {
+MSL_INLINE float sqrtf(float mag) {
 #ifndef DECOMPCTX
     // part of the same hack, these are defined outside of the function when using decompctx
     static const double _half = 0.5;
@@ -110,14 +145,9 @@ inline float sqrtf(float mag) {
 }
 #endif
 
-inline float atan2f(float y, float x) {
-    return (float)atan2(y, x);
+MSL_INLINE float tanf(float x) {
+    return tan(x);
 }
-
-inline float sinf(float x) { return sin(x); }
-inline float cosf(float x) { return cos(x); }
-inline float tanf(float x) { return tan(x); }
-inline float acosf(float x) { return acos(x); }
 
 #ifdef __cplusplus
 };
