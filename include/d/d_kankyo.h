@@ -461,7 +461,7 @@ public:
     /* 0x12FC */ s8 field_0x12fc;
     /* 0x12FD */ u8 darktime_week;
     /* 0x12FE */ u8 fishing_hole_season;
-    /* 0x1300 */ s16 field_0x1300;
+    /* 0x1300 */ s16 rain_set;
     /* 0x1302 */ s16 field_0x1302;
     /* 0x1304 */ f32 mWaterSurfaceShineRate;
     /* 0x1308 */ u8 light_mask_type;

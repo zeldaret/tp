@@ -8,7 +8,7 @@ u8 data_80450C99;
 u8 data_80450C9A;
 u8 data_80450C9B;
 
-u8 data_80450C9C;
+u8 cDmr_MadInfo;
 u8 data_80450C9D;
 u8 data_80450C9E;
 u8 cDmr_FishingWether;
