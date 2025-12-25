@@ -714,7 +714,7 @@ BOOL daNpcBouS_c::main() {
         (this->*mAction)(NULL);
     }
 
-    if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk() && mItemPartnerId != fpcM_ERROR_PROCESS_ID_e) {
+    if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk() && mItemPartnerId != fpcM_ERROR_PROCESS_ID_e) {
         dComIfGp_event_setItemPartnerId(mItemPartnerId);
         mItemPartnerId = fpcM_ERROR_PROCESS_ID_e;
     }
@@ -1183,7 +1183,7 @@ bool daNpcBouS_c::demo(void* param_1) {
             mMode = 2;
             // fallthrough
         case 2:
-            if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk()) {
+            if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
                 dEvent_manager_c& eventManager = dComIfGp_getEventManager();
                 staffId = eventManager.getMyStaffId(l_myName, NULL, 0);
                 if (staffId != -1) {

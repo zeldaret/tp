@@ -101,9 +101,7 @@ int daTag_KMsg_c::Execute() {
             attention_info.flags = 0;
         }
 
-        // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck()) {
+        if (dComIfGp_event_runCheck()) {
             if (eventInfo.checkCommandTalk()) {
                 u16 iVar10 = 0;
                 switch (getType()) {
@@ -119,7 +117,7 @@ int daTag_KMsg_c::Execute() {
                         }
                         mEventIdx =
                             dComIfGp_getEventManager().getEventIdx(this, l_evtList[iVar10].mEventName, 0xff);
-                        play->getEvent().reset(this);
+                        dComIfGp_getEvent()->reset(this);
                         fopAcM_orderChangeEventId(this, mEventIdx, 1, 0xffff);
                     }
 

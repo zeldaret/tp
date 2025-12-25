@@ -3545,7 +3545,7 @@ static void uki_ready(dmg_rod_class* i_this) {
     cLib_addCalc2(&i_this->field_0xf64, -30.0f + ZREG_F(1), 1.0f, 0.5f + BREG_F(14));
     cLib_addCalc2(&i_this->field_0xf68, -(20.0f + AREG_F(10)), 1.0f, 0.02f * (20.0f + AREG_F(10)));
 
-    if (i_this->timers[0] != 0 || dComIfGp_event_runCheck() != 0 || i_this->play_cam_mode >= 1000 || (henna != NULL && henna->cam_mode != 0) || dComIfGp_checkPlayerStatus0(0, 0x100000)) {
+    if (i_this->timers[0] != 0 || dComIfGp_event_runCheck() || i_this->play_cam_mode >= 1000 || (henna != NULL && henna->cam_mode != 0) || dComIfGp_checkPlayerStatus0(0, 0x100000)) {
         return;
     }
 
@@ -3758,7 +3758,7 @@ static void uki_standby(dmg_rod_class* i_this) {
         Z2GetAudioMgr()->changeFishingBgm(0);
     }
 
-    if (i_this->timers[0] == 0 && (dComIfGp_checkPlayerStatus0(0, 0x100000) || i_this->ccSph.ChkCoHit() || dComIfGp_event_runCheck() != 0 || uki_rod_bg_check(i_this) || (i_this->is_hook_in_water == 0 && player->current.pos.y - actor->current.pos.y > (350.0f + nREG_F(11))) || i_this->field_0x102e != 0)) {
+    if (i_this->timers[0] == 0 && (dComIfGp_checkPlayerStatus0(0, 0x100000) || i_this->ccSph.ChkCoHit() || dComIfGp_event_runCheck() || uki_rod_bg_check(i_this) || (i_this->is_hook_in_water == 0 && player->current.pos.y - actor->current.pos.y > (350.0f + nREG_F(11))) || i_this->field_0x102e != 0)) {
         i_this->play_cam_mode = 90;
     }
 
@@ -4492,7 +4492,7 @@ static void play_camera(dmg_rod_class* i_this) {
     camera_class* sp58;
     switch (i_this->play_cam_mode) {
     case 0:
-        if (dComIfGp_checkPlayerStatus0(0, 0x2000) || dComIfGp_event_runCheck() != 0) {
+        if (dComIfGp_checkPlayerStatus0(0, 0x2000) || dComIfGp_event_runCheck()) {
             i_this->input_cooldown = 20;
         }
 

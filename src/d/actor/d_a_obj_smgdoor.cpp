@@ -319,7 +319,7 @@ void daObjSmgDoor_c::actionWaitEvent() {
 
 void daObjSmgDoor_c::actionEvent() {
     dMeter2Info_onGameStatus(2);
-    dComIfGp_getEvent().setSkipProc(this, eventCallBack, 0);
+    dComIfGp_getEvent()->setSkipProc(this, eventCallBack, 0);
     demoProc();
 }
 

@@ -92,7 +92,7 @@ dDemo_actor_c::~dDemo_actor_c() {
 
     #if DEBUG
     if(dComIfGp_event_getMode() == 0) {
-        g_dComIfG_gameInfo.play.getEvent().setDebugStb(0);
+        g_dComIfG_gameInfo.play.getEvent()->setDebugStb(0);
     }
     #endif
 }

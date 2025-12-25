@@ -141,7 +141,7 @@ void daTag_SSDrink_c::setAttnPos() {
 
 int daTag_SSDrink_c::chkEvent() {
     int retVal = 1;
-    if (!dComIfGp_getEvent().isOrderOK()) {
+    if (!dComIfGp_getEvent()->isOrderOK()) {
         retVal = 0;
         if (eventInfo.checkCommandTalk()) {
             if (!checkProcess(&daTag_SSDrink_c::talk) == 0) {

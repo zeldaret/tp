@@ -74,7 +74,7 @@ void daKiPot_c::modeWait() {
 s32 daKiPot_c::chkEvent() {
     s32 result = 1;
 
-    if (!dComIfGp_getEvent().isOrderOK()) {
+    if (!dComIfGp_getEvent()->isOrderOK()) {
         result = 0;
 
         if (eventInfo.checkCommandCatch()) {

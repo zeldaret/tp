@@ -1038,7 +1038,7 @@ static void demo_camera(b_gm_class* i_this) {
         spBC.set(0.0f, 0.0f, 2418.0f);
         daPy_getPlayerActorClass()->setPlayerPosAndAngle(&spBC, 0x8000, 0);
 
-        dComIfGp_getEvent().startCheckSkipEdge(i_this);
+        dComIfGp_getEvent()->startCheckSkipEdge(i_this);
         
         camera->mCamera.SetTrimSize(3);
         mDoAud_seStart(Z2SE_EN_GO_DEMO_OP, NULL, 0, 0);
@@ -1563,7 +1563,7 @@ static void demo_camera(b_gm_class* i_this) {
     }
 
     if (i_this->mDemoMode != 0 && i_this->mDemoMode < 10) {
-        if (dComIfGp_getEvent().checkSkipEdge()) {
+        if (dComIfGp_getEvent()->checkSkipEdge()) {
             i_this->mMode = 4;
             i_this->mTimers[2] = cM_rndF(100.0f) + 200.0f;
             sp10 = 1;

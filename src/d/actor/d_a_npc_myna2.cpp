@@ -307,7 +307,7 @@ BOOL daNpc_myna2_c::main() {
         attention_info.flags = 0;
     }
 
-    if (!daNpc_myna2_Param_c::m.common.debug_mode_ON && (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent().isOrderOK()))) {
+    if (!daNpc_myna2_Param_c::m.common.debug_mode_ON && (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent()->isOrderOK()))) {
         if (mOrderEvtNo != 0) {
             eventInfo.setArchiveName(l_resNames[l_evtGetParamList[mOrderEvtNo].arcIdx]);
         }
@@ -687,7 +687,7 @@ void daNpc_myna2_c::doNormalAction(int param_0) {
 BOOL daNpc_myna2_c::doEvent() {
     BOOL rv = FALSE;
 
-    if (dComIfGp_event_runCheck() != FALSE) {
+    if (dComIfGp_event_runCheck()) {
         dEvent_manager_c& eventManager = dComIfGp_getEventManager();
 
         if (eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) {
@@ -854,7 +854,7 @@ int daNpc_myna2_c::waitFailure(void* param_0) {
             fopAcM_delete(myna);
         }
     
-        if (dComIfGp_getEvent().isOrderOK()) {
+        if (dComIfGp_getEvent()->isOrderOK()) {
             mOrderEvtNo = 2;
             mOrderNewEvt = 1;
         }
@@ -878,7 +878,7 @@ int daNpc_myna2_c::waitGoal(void* param_0) {
     case 2:
         mSound.playSumomoBgm(0);
 
-        if (!daPy_getPlayerActorClass()->checkCargoCarry() && dComIfGp_getEvent().isOrderOK()) {
+        if (!daPy_getPlayerActorClass()->checkCargoCarry() && dComIfGp_getEvent()->isOrderOK()) {
             if (dComIfGp_getMessageCountNumber() >= 10000 && (!daNpcF_chkEvtBit(0x11E) || dComIfGp_getMessageCountNumber() > dComIfGs_getBalloonScore() || (dComIfGp_getMessageCountNumber() >= 0xF00E))) {
                 mOrderEvtNo = 4;
             } else {

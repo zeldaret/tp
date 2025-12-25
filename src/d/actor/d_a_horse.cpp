@@ -1002,7 +1002,7 @@ int daHorse_c::checkDemoAction() {
         return procMoveInit();
     }
 
-    if (dComIfGp_getEvent().isOrderOK()) {
+    if (dComIfGp_getEvent()->isOrderOK()) {
         return 0;
     }
 
@@ -1200,7 +1200,7 @@ void daHorse_c::setDemoData() {
         offStateFlg0(FLG0_UNK_2000000);
     }
 
-    if (dComIfGp_getEvent().isOrderOK()) {
+    if (dComIfGp_getEvent()->isOrderOK()) {
         u32 unused;
         if (checkHorseDemoMode()) {
             u32 old_demoMode = m_demoMode;

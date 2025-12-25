@@ -1284,7 +1284,7 @@ static void demo_camera(e_fm_class* i_this) {
         i_this->mDemoCamCenter = camera0->lookat.center;
         i_this->field_0x778 = 0.0f;
         camera->mCamera.SetTrimSize(3);
-        dComIfGp_getEvent().startCheckSkipEdge(actor);
+        dComIfGp_getEvent()->startCheckSkipEdge(actor);
     case 11:
         if (i_this->mDemoCamTimer == (s16)(VREG_S(0) + 8)) {
             daPy_getPlayerActorClass()->changeDemoMode(0x19, 0, 0, 0);
@@ -1974,7 +1974,7 @@ static s8 e_fm_start(e_fm_class* i_this) {
     i_this->mDamageInvulnerabilityTimer = 5;
     int var_r26 = 0;
 
-    if (i_this->mDemoCamMode >= 11 && dComIfGp_getEvent().checkSkipEdge()) {
+    if (i_this->mDemoCamMode >= 11 && dComIfGp_getEvent()->checkSkipEdge()) {
         cDmr_SkipInfo = 1;
         i_this->mDemoCamMode = 1000;
         dComIfGp_event_reset();

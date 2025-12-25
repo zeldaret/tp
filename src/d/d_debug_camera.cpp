@@ -707,7 +707,7 @@ int dDbgCamera_c::cmdTool() {
         default:
             return 1;
         }
-    } else if (dComIfGp_event_runCheck() == 0) {
+    } else if (!dComIfGp_event_runCheck()) {
         mIsPlaying = false;
     }
 

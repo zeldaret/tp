@@ -722,7 +722,7 @@ void daNpc_Kkri_c::setCollision() {
     if (!mHide) {
         u32 tg_type = 0xD8FBFDFF;
         u32 tg_sprm = 0x1F;
-        if (dComIfGp_event_runCheck() != 0) {
+        if (dComIfGp_event_runCheck()) {
             tg_type = 0;
             tg_sprm = 0;
         } else if (mTwilight) {

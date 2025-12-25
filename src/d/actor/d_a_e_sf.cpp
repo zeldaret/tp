@@ -847,7 +847,7 @@ static s16 e_sf_sitwait(e_sf_class* i_this) {
             rv = 0xFF;
             i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_SF_V_FIRST_DEMO, -1);
 
-            if (dComIfGp_getEvent().checkSkipEdge() || i_this->mpModelMorf->isStop()) {
+            if (dComIfGp_getEvent()->checkSkipEdge() || i_this->mpModelMorf->isStop()) {
                 i_this->mAction = ACTION_FIGHT_RUN;
                 i_this->mActionPhase = FIGHT_RUN_PHASE_NEG_10;
                 i_this->mTimers[0] = 60;
@@ -1384,7 +1384,7 @@ static void demo_camera(e_sf_class* i_this) {
             i_this->field_0xfda = 0;
             i_this->mDemoCamFovy = 75.0f;
             camera->mCamera.SetTrimSize(3);
-            dComIfGp_getEvent().startCheckSkipEdge(a_this);
+            dComIfGp_getEvent()->startCheckSkipEdge(a_this);
             daPy_getPlayerActorClass()->changeOriginalDemo();
             daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 2, 0);
             // fallthrough

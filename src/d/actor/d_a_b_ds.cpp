@@ -1234,7 +1234,7 @@ void daB_DS_c::executeOpeningDemo() {
         Z2GetAudioMgr()->setDemoName("force_start");
 
         if (mMode == 10) {
-            dComIfGp_getEvent().startCheckSkipEdge(this);
+            dComIfGp_getEvent()->startCheckSkipEdge(this);
 
             sp298.set(mOpPlayerDt[1]);
             daPy_getPlayerActorClass()->changeDemoMode(4, 2, 0, 0);
@@ -1713,7 +1713,7 @@ void daB_DS_c::executeOpeningDemo() {
         }
     }
 
-    if (dComIfGp_getEvent().checkSkipEdge()) {
+    if (dComIfGp_getEvent()->checkSkipEdge()) {
         cDmr_SkipInfo = 1;
         dStage_changeScene(2, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
         dComIfGs_onZoneSwitch(5, fopAcM_GetRoomNo(this));

@@ -1423,7 +1423,7 @@ static void demo_camera(b_bq_class* i_this) {
         i_this->mDemoCamEye = camera0->lookat.eye;
         i_this->mDemoCamCenter = camera0->lookat.center;
 
-        dComIfGp_getEvent().startCheckSkipEdge(a_this);
+        dComIfGp_getEvent()->startCheckSkipEdge(a_this);
         // fallthrough
     case 11:
         if (i_this->mDemoModeTimer == (s16)(VREG_S(0) + 8)) {
@@ -2136,7 +2136,7 @@ static void demo_camera(b_bq_class* i_this) {
     }
 
     if (i_this->mDemoMode >= 11 && i_this->mDemoMode < 20) {
-        if (dComIfGp_getEvent().checkSkipEdge()) {
+        if (dComIfGp_getEvent()->checkSkipEdge()) {
             cDmr_SkipInfo = 20;
             Z2GetAudioMgr()->subBgmStop();
             OS_REPORT("//////////////B_BQ SKIP 11\n");

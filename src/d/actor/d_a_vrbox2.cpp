@@ -23,7 +23,6 @@ static void texScrollCheck(f32& param_0) {
         param_0 -= 1.0f;
 }
 
-// NONMATCHING - reg alloc
 static int daVrbox2_Draw(vrbox2_class* i_this) {
     camera_class* camera_p;
     dKankyo_sunlenz_Packet* lenz_p;

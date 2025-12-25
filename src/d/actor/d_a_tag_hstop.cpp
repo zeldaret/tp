@@ -105,7 +105,7 @@ int daTagHstop_c::execute() {
             m_msgFlow.init(this, (u16)shape_angle.z, 0, NULL);
             field_0x573 = 3;
         } else if (m_msgFlow.doFlow(this, NULL, 0)) {
-            dComIfGp_getEvent().reset();
+            dComIfGp_getEvent()->reset();
             field_0x573 = 0;
 
             s16 arrow_num = dComIfGp_getItemMaxArrowNumCount();

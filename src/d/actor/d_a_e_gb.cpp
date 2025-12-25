@@ -1137,7 +1137,7 @@ static void demo_camera(e_gb_class* i_this) {
             i_this->demoCamStepScale = 0.0;
 
             Z2GetAudioMgr()->setBattleBgmOff(true);
-            dComIfGp_getEvent().startCheckSkipEdge(actor);
+            dComIfGp_getEvent()->startCheckSkipEdge(actor);
             swBit = (fopAcM_GetParam(actor) & 0xFF00) >> 8;
             dComIfGs_onSwitch(swBit, fopAcM_GetRoomNo(actor));
             // fallthrough
@@ -1290,8 +1290,8 @@ static void demo_camera(e_gb_class* i_this) {
         i_this->demoCounter++;
 
         if (i_this->demoMode < 10) {
-            dComIfGp_getEvent().setSkipProc(i_this, dEv_defaultSkipProc, 0);
-            if (dComIfGp_getEvent().checkSkipEdge()) {
+            dComIfGp_getEvent()->setSkipProc(i_this, dEv_defaultSkipProc, 0);
+            if (dComIfGp_getEvent()->checkSkipEdge()) {
                 i_this->demoMode = 100;
                 cMtx_YrotS(*calc_mtx, player->shape_angle.y);
                 work.x = 0.0;

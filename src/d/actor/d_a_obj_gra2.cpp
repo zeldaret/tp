@@ -980,10 +980,6 @@ void daObj_GrA_c::setParam() {
 
 BOOL daObj_GrA_c::checkEvent() {
     BOOL rv = TRUE;
-#if VERSION != VERSION_SHIELD_DEBUG
-    // TODO: gameInfo fake match to force reuse of pointer
-    dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-#endif
     if (dComIfGp_event_runCheck()) {
         rv = FALSE;
         if (eventInfo.checkCommandTalk()) {
@@ -994,11 +990,7 @@ BOOL daObj_GrA_c::checkEvent() {
             }
         } else if (eventInfo.checkCommandDemoAccrpt()) {
             if (dComIfGp_getEventManager().endCheck(mEvtIdx) != 0) {
-#if VERSION != VERSION_SHIELD_DEBUG
-                play->getEvent().reset();
-#else
                 dComIfGp_event_reset();
-#endif
                 field_0x1520 = 0;
                 mEvtIdx = -1;
                 rv = TRUE;

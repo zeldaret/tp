@@ -1107,8 +1107,8 @@ BOOL daNpc_Yelia_c::cutTakeWoodStatue(int i_staffId) {
             Z2GetAudioMgr()->muteSceneBgm(90, 0.0f);
             strcpy(name, l_evtList[EVENT_TAKE_WOODSTATUE].eventName);
             strcat(name, "@");
-            dComIfGp_getEvent().setSkipZev(this, name);
-            dComIfGp_getEvent().onSkipFade();
+            dComIfGp_getEvent()->setSkipZev(this, name);
+            dComIfGp_getEvent()->onSkipFade();
             break;
         }
 
@@ -1455,7 +1455,7 @@ BOOL daNpc_Yelia_c::reminiscence(void* param_0) {
 
     case MODE_RUN:
         field_0xe2d = false;
-        if (dComIfGp_event_runCheck() != FALSE
+        if (dComIfGp_event_runCheck()
             && !strcmp("SMELL_1st", dComIfGp_getEventManager().getRunEventName()))
         {
             dComIfGp_event_setTalkPartner(this);

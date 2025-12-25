@@ -306,7 +306,7 @@ void daObjTobyHouse_c::actionEvent() {
         dComIfGs_offOneZoneSwitch(6, 0xffffffff);
         setAction(ACTION_WAIT);
     } else {
-        dComIfGp_getEvent().setSkipProc(this, eventCallBack, 0);
+        dComIfGp_getEvent()->setSkipProc(this, eventCallBack, 0);
         demoProc();
     }
 }

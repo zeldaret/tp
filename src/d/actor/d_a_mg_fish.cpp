@@ -1842,7 +1842,7 @@ static void mf_hit(mg_fish_class* i_this) {
         i_this->mCurAction = ACTION_MG_FISH_MF_CATCH;
         i_this->mActionPhase = 0;
         g_dComIfG_gameInfo.play.mVibration.StartShock(4, 1, cXyz(0.0f, 1.0f, 0.0f));
-        Z2AudioMgr::getInterface()->changeBgmStatus(4);
+        Z2GetAudioMgr()->changeBgmStatus(4);
         pvVar5->action = 6;
         pvVar5->play_cam_mode = 10;
         pvVar5->play_cam_timer = 0;
@@ -1853,11 +1853,11 @@ static void mf_hit(mg_fish_class* i_this) {
         daPy_py_c* player = daPy_getLinkPlayerActorClass();
         player->onFishingRodGetFish();
         if (pvVar5->lure_type == MG_LURE_SP) {
-            u8 bVar7 = g_dComIfG_gameInfo.info.mSavedata.mEvent.getEventReg(0xf11f);
+            u8 bVar7 = dComIfGs_getEventReg(0xf11f);
             if (bVar7 < 0x1f) {
                 bVar7++;
             }
-            g_dComIfG_gameInfo.info.mSavedata.mEvent.setEventReg(0xf11f, bVar7);
+            dComIfGs_setEventReg(0xf11f, bVar7);
         }
     } else if (iVar1 != 0) {
         if (iVar1 == 2) {
@@ -2015,7 +2015,7 @@ static void mf_jump(mg_fish_class* i_this) {
             fopAcM_effSmokeSet1(&i_this->field_0xc34, &i_this->field_0xc38, &i_this->actor.current.pos,
                 NULL, 0.6f * i_this->mJointScale, &i_this->actor.tevStr, 1);
 
-            Z2AudioMgr::getInterface()->seStart(Z2SE_OBJ_NIOIMASU_BOUND, (Vec*)&i_this->actor.current,
+            Z2GetAudioMgr()->seStart(Z2SE_OBJ_NIOIMASU_BOUND, &i_this->actor.current.pos,
                 0x14, 0,1.0f, 1.0f,
                 -1.0f, -1.0f, 0);
         }
@@ -2041,8 +2041,7 @@ static void mf_jump(mg_fish_class* i_this) {
             commonXyz2.z += i_this->actor.current.pos.z;
             commonXyz2.y = 10.0f + i_this->mSurfaceY;
             fopAcM_createItem(&commonXyz2, 0, -1, -1, NULL, NULL, 0);
-            g_dComIfG_gameInfo.info.mSavedata.mEvent.onEventBit(
-                dSv_event_flag_c::saveBitLabels[0x1d6]);
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x1d6]);
         }
         break;
     }
@@ -2460,7 +2459,7 @@ static s32 mf_esa_catch(mg_fish_class* i_this) {
         position = i_this->actor.current.pos;
         position.y = i_this->mSurfaceY;
         fopKyM_createWpillar(&position, 0.7f, 0);
-        Z2AudioMgr::getInterface()->changeFishingBgm(4);
+        Z2GetAudioMgr()->changeFishingBgm(4);
         i_this->mActionPhase = 1;
         i_this->mBobAmp = 50.0f;
         i_this->mSound.startCreatureSound(Z2SE_AL_FISH_CATCH, 0, -1);
@@ -3859,7 +3858,7 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
     if (phase == cPhs_COMPLEATE_e) {
         s32 params_0 = fopAcM_GetParam(i_this) >> 24;
         if (params_0 != 0 && params_0 != 0xff &&
-            g_dComIfG_gameInfo.info.isSwitch(params_0, fopAcM_GetRoomNo(i_this)))
+            dComIfGs_isSwitch(params_0, fopAcM_GetRoomNo(i_this)))
         {
             return cPhs_ERROR_e;
         }

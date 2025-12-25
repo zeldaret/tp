@@ -218,11 +218,10 @@ void daObjNameplate_c::messageProc() {
         break;
 
     case 1:
-        dComIfG_play_c& play = g_dComIfG_gameInfo.play;
-        if (play.getEvent().runCheck() && eventInfo.checkCommandTalk() != 0 &&
+        if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk() != 0 &&
             mMsgFlow.doFlow(this, NULL, 0) != 0)
         {
-            play.getEvent().reset();
+            dComIfGp_event_reset();
             mShowMessage = 0;
         }
         break;

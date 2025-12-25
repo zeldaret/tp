@@ -360,7 +360,7 @@ void daObjDmElevator_c::actionSwPause() {
     daPy_getPlayerActorClass()->mEndResetFlg1 = daPy_getPlayerActorClass()->mEndResetFlg1 | 0x200;
     field_0x62a += -1;
     if (field_0x62a == 0) {
-        g_dComIfG_gameInfo.play.mEvent.reset();
+        dComIfGp_event_reset();
         actionSwPauseNoneInit();
     }
 }
@@ -589,10 +589,7 @@ int daObjDmElevator_c::demoProc() {
 void daObjDmElevator_c::moveInit() {
     speedF = 0.0f;
     if (field_0x5e0 == 0) {
-        s8 i_reverb = dComIfGp_getReverb(fopAcM_GetRoomNo(this));
-
-        Z2AudioMgr::mAudioMgrPtr->seStart(Z2SE_OBJ_ELEVATOR_START, (Vec*)&eyePos, 0, i_reverb, 1.0,
-                                          1.0, -1.0, -1.0, 0);
+        fopAcM_seStart(this, Z2SE_OBJ_ELEVATOR_START, 0);
     }
 }
 

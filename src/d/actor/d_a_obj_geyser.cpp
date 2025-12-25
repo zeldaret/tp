@@ -138,7 +138,7 @@ static const Vec l_scale[] = {
 };
 
 int daObjGeyser_c::Execute(Mtx** param_0) {
-    if (dComIfGp_event_runCheck() == 0) {
+    if (!dComIfGp_event_runCheck()) {
         f32 range = 5000.0f;
         if (fopAcM_searchPlayerDistance(this) > range) {
             stopEmitterPre00();

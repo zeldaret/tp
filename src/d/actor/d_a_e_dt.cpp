@@ -1933,8 +1933,8 @@ void daE_DT_c::executeOpening() {
     }
 
     camera->Set(mCamCenter, mCamEye, mCamFovy, mCamBank);
-    dComIfGp_getEvent().onSkipFade();
-    dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+    dComIfGp_getEvent()->onSkipFade();
+    dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
 }
 
 void daE_DT_c::calcCamera() {

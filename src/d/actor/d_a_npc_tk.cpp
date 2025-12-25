@@ -1920,7 +1920,7 @@ void daNPC_TK_c::executeBackHanjoDemo() {
 void daNPC_TK_c::executeWolfEvent() {
     mIsExecutingAction = false;
     if (eventInfo.checkCommandDemoAccrpt() != 0) {
-        dComIfGp_getEvent().setSkipProc(this, dEv_defaultSkipProc, 0);
+        dComIfGp_getEvent()->setSkipProc(this, dEv_defaultSkipProc, 0);
         setActionMode(12);
         executePerch();
     } else {
@@ -2896,7 +2896,7 @@ void daNPC_TK_c::action() {
     case 1:
         mIsExecutingAction = false;
         if (eventInfo.checkCommandDemoAccrpt()) {
-            dComIfGp_getEvent().setSkipZev(this, "TAKAYOSE@");
+            dComIfGp_getEvent()->setSkipZev(this, "TAKAYOSE@");
             setActionMode(2);
             executePerch();
         } else {

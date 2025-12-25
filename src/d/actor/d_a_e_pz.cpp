@@ -503,7 +503,7 @@ void daE_PZ_c::executeOpeningDemo() {
         field_0x7d0 = 2;
         setBck(8, 0, 3.0f, -1.0f);
         mpModelMorf->setFrame(0.0f);
-        dComIfGp_getEvent().startCheckSkipEdge(this);
+        dComIfGp_getEvent()->startCheckSkipEdge(this);
         dComIfGs_onSaveDunSwitch(41);
         mMoveMode++;
         break;
@@ -717,7 +717,7 @@ void daE_PZ_c::executeOpeningDemo() {
                 mMoveMode = 130;
             }
 
-            dComIfGp_getEvent().reset(this);
+            dComIfGp_getEvent()->reset(this);
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 3);
         }
         break;
@@ -1146,7 +1146,7 @@ void daE_PZ_c::executeOpeningDemo() {
         camera->mCamera.Set(mDemoCameraCenter, mDemoCameraEye);
     }
 
-    if (((mMoveMode >= 2 && mMoveMode <= 17) || (mMoveMode >= 102 && mMoveMode <= 125)) && dComIfGp_getEvent().checkSkipEdge()) {
+    if (((mMoveMode >= 2 && mMoveMode <= 17) || (mMoveMode >= 102 && mMoveMode <= 125)) && dComIfGp_getEvent()->checkSkipEdge()) {
         cDmr_SkipInfo = 1;
         dStage_changeScene(1, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
         Z2GetAudioMgr()->bgmStreamStop(0x1E);

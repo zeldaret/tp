@@ -62,7 +62,7 @@ int daAlldie_c::actionOrder() {
 
 int daAlldie_c::actionEvent() {
     if (dComIfGp_evmng_endCheck(mEventIdx)) {
-        dComIfGp_getEvent().reset();
+        dComIfGp_getEvent()->reset();
 
         if (mNextEventIdx != -1) {
             mAction = ACT_NEXT;

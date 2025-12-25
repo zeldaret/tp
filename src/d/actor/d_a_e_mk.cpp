@@ -1288,7 +1288,7 @@ static void demo_camera_start(e_mk_class* i_this) {
             i_this->distToCamCenterTarget.y = fabsf(i_this->camCenterTarget.y - i_this->camCenter.y);
             i_this->distToCamCenterTarget.z = fabsf(i_this->camCenterTarget.z - i_this->camCenter.z);
 
-            dComIfGp_getEvent().startCheckSkipEdge(actor);
+            dComIfGp_getEvent()->startCheckSkipEdge(actor);
             // fallthrough
         case 2:
             if (i_this->demoCamCounter == (s16)(8 + VREG_S(0))) {
@@ -1532,7 +1532,7 @@ static void demo_camera_start(e_mk_class* i_this) {
             break;
     }
 
-    if (dComIfGp_getEvent().checkSkipEdge()) {
+    if (dComIfGp_getEvent()->checkSkipEdge()) {
         u8 sw_bit = (fopAcM_GetParam(actor) & 0xff0000) >> 16;
         if (sw_bit != 0xff) {
             dComIfGs_onSwitch(sw_bit, fopAcM_GetRoomNo(actor));
@@ -1850,7 +1850,7 @@ static void demo_camera_end(e_mk_class* i_this) {
             if (i_this->demoCamCounter == 200) {
                 player->changeDemoMode(1, 3, 0, 0);
                 player->changeDemoParam0(3);
-                dComIfGp_getEvent().setPtT(boomerang_p);
+                dComIfGp_getEvent()->setPtT(boomerang_p);
             }
 
             if (i_this->demoCamCounter != (s16)(KREG_S(9) + 250)) {
@@ -2011,7 +2011,7 @@ static void demo_camera_r04(e_mk_class* i_this) {
             i_this->distToCamEyeTarget.y = fabsf(i_this->camEyeTarget.y - i_this->camEye.y) * 0.02f;
             i_this->distToCamEyeTarget.z = fabsf(i_this->camEyeTarget.z - i_this->camEye.z) * 0.02f;
 
-            dComIfGp_getEvent().startCheckSkipEdge(i_this);
+            dComIfGp_getEvent()->startCheckSkipEdge(i_this);
             // fallthrough
         case 2:
             if (i_this->demoCamCounter > 60) {
@@ -2308,7 +2308,7 @@ static void demo_camera(e_mk_class* i_this) {
 
         case e_mk_class::DEMO_MODE_R04:
             demo_camera_r04(i_this);
-            if (dComIfGp_getEvent().checkSkipEdge()) {
+            if (dComIfGp_getEvent()->checkSkipEdge()) {
                 npc_ks_class* monkey_p = (npc_ks_class*)fpcM_Search(s_ks_sub, i_this);
                 if (monkey_p != NULL) {
                     u8 sw_bit = (fopAcM_GetParam(actor) & 0xFF0000) >> 16;

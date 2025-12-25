@@ -3869,10 +3869,9 @@ bool daNpcChat_c::wait(void* param_1) {
                     }
                 }
             } else {
-                dComIfG_play_c& play = g_dComIfG_gameInfo.play; // fakematch
-                if (play.getEvent().runCheck()) {
+                if (dComIfGp_event_runCheck()) {
                     if (eventInfo.checkCommandTalk()) {
-                        if (!play.getEvent().chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
+                        if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                             setAction(&daNpcChat_c::talk);
                         }
                     } else {
@@ -4060,7 +4059,7 @@ bool daNpcChat_c::demo(void* param_1) {
             break;
         
         case 2:
-            if (dComIfGp_event_runCheck() != FALSE) {
+            if (dComIfGp_event_runCheck()) {
                 if (eventInfo.checkCommandTalk() == false) {
                     dEvent_manager_c& eventManager = dComIfGp_getEventManager();
                     s32 staffId = eventManager.getMyStaffId(l_myName, NULL, 0);
