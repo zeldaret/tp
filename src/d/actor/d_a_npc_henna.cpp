@@ -765,11 +765,11 @@ static void action(npc_henna_class* i_this) {
     s16 angle = 0;
     s16 angle2 = 0;
 #if VERSION == VERSION_WII_USA_R0
-    s16 unkTarget2Limit = 9000 + BREG_S(0);
-    s16 unkTarget1Limit = 10000 + BREG_S(1);
+    s16 range = 9000 + BREG_S(0);
+    s16 range2 = 10000 + BREG_S(1);
 #else
-    s16 range2 = 9000 + BREG_F(0);
-    s16 range = 10000 + BREG_F(1);
+    s16 range = 9000 + BREG_F(0);
+    s16 range2 = 10000 + BREG_F(1);
 #endif
     if (i_this->field_0x70d == 10 || (i_this->field_0x70d == 1 && i_this->dis < 700.0f)) {
         if (i_this->field_0x70c != 0) {
@@ -793,16 +793,16 @@ static void action(npc_henna_class* i_this) {
         angle = cM_atan2s(mae.x, mae.z) - actor->shape_angle.y;
         angle2 = -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z));
         if (i_this->field_0x70d == 2) {
-            range = 15000;
+            range2 = 15000;
         } else {
-            range = 0x6000;
+            range2 = 0x6000;
         }
     }
 
-    if (angle > range) {
-        angle = range;
-    } else if (angle < (s16)-range) {
-        angle = -range;
+    if (angle > range2) {
+        angle = range2;
+    } else if (angle < (s16)-range2) {
+        angle = -range2;
     }
 
     if (angle2 > range2) {
