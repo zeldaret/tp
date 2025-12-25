@@ -245,9 +245,9 @@ public:
         return *this;
     }
 
-    T* operator*() const { return this->getObject(); }
+    T* operator*() const { return mTree->getObject(); }
 
-    T* operator->() const { return this->getObject(); }
+    T* operator->() const { return mTree->getObject(); }
 
 private:
     JSUTree<T>* mTree;

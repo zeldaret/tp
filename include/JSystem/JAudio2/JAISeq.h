@@ -52,7 +52,7 @@ public:
     void mixOut_(const JASSoundParams& params, JAISoundActivity activity);
     void JAISeqMgr_mixOut_(const JASSoundParams& params, JAISoundActivity activity);
 
-    JAISeqData& getSeqData() { return inner_.mSeqData; }
+    const JAISeqData& getSeqData() const { return inner_.mSeqData; }
 
     /* 0x0A8 */ TInner inner_;
     /* 0x3A8 */ JAISoundStrategyMgr__unknown<JAISeq>* field_0x3a8;

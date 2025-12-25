@@ -18,7 +18,7 @@ namespace JASBNKParser {
 
     namespace Ver1 {
         struct TOsc {
-            /* 0x00 */ u8 _00[4];
+            /* 0x00 */ u32 id;
             /* 0x04 */ u8 mTarget;
             /* 0x08 */ f32 _08;
             /* 0x0C */ u32 mTableOffset;
@@ -50,7 +50,7 @@ namespace JASBNKParser {
         };
 
         struct TListChunk : TChunk {
-            /* 0x8 */ u32 mCount;
+            /* 0x8 */ u32 count;
             /* 0xC */ u32 mOffsets[0];
         };
 

@@ -22,8 +22,8 @@ public:
     bool alloc(JASHeap*, u32);
     bool allocTail(JASHeap*, u32);
     bool free();
-    u32 getTotalFreeSize();
-    u32 getFreeSize();
+    u32 getTotalFreeSize() const;
+    u32 getFreeSize() const;
     void insertChild(JASHeap*, JASHeap*, void*, u32, bool);
     JASHeap* getTailHeap();
     u32 getTailOffset();
@@ -203,6 +203,7 @@ public:
     }
 
     bool createNewChunk() {
+        bool r27 = 0;
         if (field_0x18 != NULL && field_0x18->isEmpty()) {
             field_0x18->revive();
             return true;
@@ -242,7 +243,7 @@ public:
         while (chunk != NULL) {
             if (chunk->checkArea(ptr)) {
                 chunk->free(ptr);
-
+                bool r26 = false;
                 if (chunk != field_0x18 && chunk->isEmpty()) {
                     MemoryChunk* nextChunk = chunk->getNextChunk();
                     delete chunk;
@@ -283,37 +284,53 @@ template <typename T>
 class JASPoolAllocObject {
 public:
     static void* operator new(size_t n) {
+#if PLATFORM_GCN
         JASMemPool<T>& memPool_ = getMemPool_();
+#endif
         return memPool_.alloc(n);
     }
     static void* operator new(size_t n, void* ptr) {
         return ptr;
     }
     static void operator delete(void* ptr, size_t n) {
+#if PLATFORM_GCN
         JASMemPool<T>& memPool_ = getMemPool_();
+#endif
         memPool_.free(ptr, n);
     }
     static void newMemPool(int param_0) {
+#if PLATFORM_GCN
         JASMemPool<T>& memPool_ = getMemPool_();
+#endif
         memPool_.newMemPool(param_0);
     }
     static u32 getFreeMemCount() {
+#if PLATFORM_GCN
         JASMemPool<T>& memPool_ = getMemPool_();
+#endif
         return memPool_.getFreeMemCount();
     }
     static u32 getTotalMemCount() {
+#if PLATFORM_GCN
         JASMemPool<T>& memPool_ = getMemPool_();
+#endif
         return memPool_.getTotalMemCount();
     }
 
 private:
     // Fakematch? Is memPool_ both an in-function static and an out-of-function static?
     static JASMemPool<T> memPool_;
+#if PLATFORM_GCN
     static JASMemPool<T>& getMemPool_() {
         static JASMemPool<T> memPool_;
         return memPool_;
     }
+#endif
 };
+
+#if !PLATFORM_GCN
+template <typename T> JASMemPool<T> JASPoolAllocObject<T>::memPool_;
+#endif
 
 /**
  * @ingroup jsystem-jaudio
@@ -346,30 +363,42 @@ template <typename T>
 class JASPoolAllocObject_MultiThreaded {
 public:
     static void* operator new(size_t n) {
+#if PLATFORM_GCN
         JASMemPool_MultiThreaded<T>& memPool_ = getMemPool();
+#endif
         return memPool_.alloc(n);
     }
     static void* operator new(size_t n, void* ptr) {
         return ptr;
     }
     static void operator delete(void* ptr, size_t n) {
+#if PLATFORM_GCN
         JASMemPool_MultiThreaded<T>& memPool_ = getMemPool();
+#endif
         memPool_.free(ptr, n);
     }
 
     static void newMemPool(int n) {
+#if PLATFORM_GCN
         JASMemPool_MultiThreaded<T>& memPool_ = getMemPool();
+#endif
         memPool_.newMemPool(n);
     }
 
 private:
     // Fakematch? Is memPool_ both an in-function static and an out-of-function static?
     static JASMemPool_MultiThreaded<T> memPool_;
+#if PLATFORM_GCN
     static JASMemPool_MultiThreaded<T>& getMemPool() {
         static JASMemPool_MultiThreaded<T> memPool_;
         return memPool_;
     }
+#endif
 };
+
+#if !PLATFORM_GCN
+template <typename T> JASMemPool_MultiThreaded<T> JASPoolAllocObject_MultiThreaded<T>::memPool_;
+#endif
 
 extern JKRSolidHeap* JASDram;
 
