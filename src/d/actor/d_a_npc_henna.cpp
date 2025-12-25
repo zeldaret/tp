@@ -220,10 +220,10 @@ static void* s_npc_sub(void* i_actor, void* i_data) {
     return NULL;
 }
 
-static void* s_piro_sub(void* param_0, void* param_1) {
-    UNUSED(param_1);
-    if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_NPC_INKO) {
-        return param_0;
+static void* s_piro_sub(void* i_actor, void* i_data) {
+    UNUSED(i_data);
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_INKO) {
+        return i_actor;
     }
     return NULL;
 }
@@ -238,21 +238,21 @@ static void* s_du_sub(void* i_actor, void* i_data) {
     return NULL;
 }
 
-static void* s_shop_sub(void* param_0, void* param_1) {
-    UNUSED(param_1);
-    if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_FSHOP &&
-        (s32)(fopAcM_GetParam(param_0) & 0xff) < 35)
+static void* s_shop_sub(void* i_actor, void* i_data) {
+    UNUSED(i_data);
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_FSHOP &&
+        (s32)(fopAcM_GetParam(i_actor) & 0xff) < 35)
     {
-        return param_0;
+        return i_actor;
     }
     return NULL;
 }
 
-static void* s_koro2ball_sub(void* param_0, void* param_1) {
-    UNUSED(param_1);
-    if (fopAcM_IsActor(param_0)) {
-        if (fopAcM_GetName(param_0) == PROC_FSHOP && (fopAcM_GetParam(param_0) & 0xff) == 35) {
-            return param_0;
+static void* s_koro2ball_sub(void* i_actor, void* i_data) {
+    UNUSED(i_data);
+    if (fopAcM_IsActor(i_actor)) {
+        if (fopAcM_GetName(i_actor) == PROC_FSHOP && (fopAcM_GetParam(i_actor) & 0xff) == 35) {
+            return i_actor;
         }
     }
     return NULL;
@@ -2627,9 +2627,9 @@ static int useHeapInit(fopAc_ac_c* actor) {
         if (i_this->btk[i] == NULL) {
             return 0;
         }
-        J3DAnmTextureSRTKey* srtKey = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Henna", btk_d[i]);
+        J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Henna", btk_d[i]);
         model = i_this->anm_p->getModel();
-        if (i_this->btk[i]->init(model->getModelData(), srtKey, 1, 0, 1.0f, 0, -1) == 0) {
+        if (i_this->btk[i]->init(model->getModelData(), btk, 1, 0, 1.0f, 0, -1) == 0) {
             return 0;
         }
     }
@@ -2639,9 +2639,9 @@ static int useHeapInit(fopAc_ac_c* actor) {
         if (i_this->btp[i] == NULL) {
             return 0;
         }
-        J3DAnmTexPattern* texPattern = (J3DAnmTexPattern*)dComIfG_getObjectRes("Henna", btp_d[i]);
+        J3DAnmTexPattern* btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("Henna", btp_d[i]);
         model = i_this->anm_p->getModel();
-        if (i_this->btp[i]->init(model->getModelData(), texPattern, 1, 2, 1.0f, 0, -1) ==
+        if (i_this->btp[i]->init(model->getModelData(), btp, 1, 2, 1.0f, 0, -1) ==
             0)
         {
             return 0;
@@ -2653,9 +2653,9 @@ static int useHeapInit(fopAc_ac_c* actor) {
         if (i_this->bck[i] == 0) {
             return 0;
         }
-        J3DAnmTransform* anmTransform =
+        J3DAnmTransform* facebck =
             (J3DAnmTransform*)dComIfG_getObjectRes("Henna", facebck_d[i]);
-        if (i_this->bck[i]->init(anmTransform, 1, 2, 1.0f, 0, -1, false) == 0) {
+        if (i_this->bck[i]->init(facebck, 1, 2, 1.0f, 0, -1, false) == 0) {
             return 0;
         }
     }
