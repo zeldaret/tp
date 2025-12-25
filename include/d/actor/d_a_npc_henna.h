@@ -71,7 +71,7 @@ public:
     /* 0x704 */ s16 field_0x704;
     /* 0x706 */ s16 field_0x706;
     /* 0x708 */ u8 field_0x708;
-    /* 0x709 */ u8 busy_time;
+    /* 0x709 */ u8 wait_time;
     /* 0x70A */ u8 fade_time;
     /* 0x70B */ u8 fade_type;
     /* 0x70C */ s8 field_0x70c;
@@ -112,9 +112,9 @@ public:
     /* 0x7C8 */ u8 field_0x7c8[0x7cc - 0x7c8];
     /* 0x7CC */ u32 field_0x7cc;
     /* 0x7D0 */ u8 field_0x7d0[0x7d4 - 0x7d0];
-    /* 0x7D4 */ u8 wait_time;
+    /* 0x7D4 */ u8 fishing_time;
     /* 0x7D5 */ u8 du_near_time;
-    /* 0x7D6 */ u8 du_talk_flag;
+    /* 0x7D6 */ u8 du_talk_check;
     /* 0x7D7 */ u8 field_0x7d7;
     /* 0x7D8 */ u8 field_0x7d8[0x7e1 - 0x7d8];
     /* 0x7E1 */ s8 ride_flag;
