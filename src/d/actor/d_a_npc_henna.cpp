@@ -2090,7 +2090,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
             }
             dTimer_c* timer = dComIfG_getTimerPtr();
             if (timer != 0 && i_this->msg_flow.doFlow(actor, NULL, 0) != 0) {
-                i_this->demo_mode = 0x48;
+                i_this->demo_mode = 72;
 
                 dComIfG_TimerStart(6, 0);
 
@@ -2735,7 +2735,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* actor) {
         } else {
             dScnKy_env_light_c* kankyo = dKy_getEnvlight();
             if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
-                i_this->action = 0x3c;
+                i_this->action = 60;
                 i_this->demo_mode = 100;
                 c_start = 1;
                 cXyz df_pos;
