@@ -189,7 +189,7 @@ static int dScnPly_Execute(dScnPly_c* i_this) {
     dKy_itudemo_se();
     if (!dComIfGp_isPauseFlag()) {
         dDemo_c::update();
-        dComIfGp_getEvent().Step();
+        dComIfGp_getEvent()->Step();
         dComIfGp_getAttention()->Run();
     }
     return 1;

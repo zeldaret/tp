@@ -218,9 +218,7 @@ void daTagLv7Gate_c::flyAnime() {
 }
 
 int daTagLv7Gate_c::execute() {
-    // TODO: gameInfo fake match to force reuse of pointer
-    dComIfG_play_c& play = g_dComIfG_gameInfo.play;
-    if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk()) {
+    if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
         dEvent_manager_c& evtMgr = dComIfGp_getEventManager();
         s32 cut_index = evtMgr.getMyStaffId(l_arcName, NULL, 0);
         if (cut_index != -1) {
@@ -263,8 +261,7 @@ int daTagLv7Gate_c::execute() {
 
             if (eventInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
                 evtMgr.endCheck(mEvtId)) {
-                // dComIfGp_event_reset();
-                play.getEvent().reset(); // Fakematch
+                dComIfGp_event_reset();
                 mEvtId = -1;
                 fopAcM_delete(this);
             }

@@ -516,7 +516,7 @@ void daSCannon_c::exeModeActionEvt() {
         }
     } else {
         if ((mLayerNo == 3 || mLayerNo == 10) && fopAcM_isSwitch(this, getSw2())) {
-            dComIfGp_getEvent().setSkipProc(this, eventCallBack, 0);
+            dComIfGp_getEvent()->setSkipProc(this, eventCallBack, 0);
         }
         demoExe();
     }

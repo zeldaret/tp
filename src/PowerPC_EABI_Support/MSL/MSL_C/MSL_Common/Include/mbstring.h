@@ -9,6 +9,9 @@ extern "C" {
 
 size_t wcstombs(char* dst, const wchar_t* src, size_t n);
 
+int __mbtowc_noconv(wchar_t*, const char*, size_t);
+int __wctomb_noconv(char*, wchar_t);
+
 #ifdef __cplusplus
 }
 #endif

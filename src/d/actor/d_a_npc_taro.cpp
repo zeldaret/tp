@@ -2608,14 +2608,14 @@ int daNpc_Taro_c::cutNotGonnaLet(int param_1) {
             fopAc_ac_c* actor_p = mActors[0].getActorP();
             JUT_ASSERT(5464, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0);
-            dComIfGp_getEvent().setPt2(actor_p);
+            dComIfGp_getEvent()->setPt2(actor_p);
             break;
         }
         case 7: {
             fopAc_ac_c* actor_p = mActors[2].getActorP();
             JUT_ASSERT(5473, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0);
-            dComIfGp_getEvent().setPt2(this);
+            dComIfGp_getEvent()->setPt2(this);
             break;
         }
         case 9:
@@ -2648,12 +2648,12 @@ int daNpc_Taro_c::cutNotGonnaLet(int param_1) {
         case 21: {
             fopAc_ac_c* actor_p = mActors[0].getActorP();
             JUT_ASSERT(5517, NULL != actor_p);
-            dComIfGp_getEvent().setPt2(actor_p);
+            dComIfGp_getEvent()->setPt2(actor_p);
             break;
         }
         case 22:
             mJntAnm.lookPlayer(0);
-            dComIfGp_getEvent().setPt2(this);
+            dComIfGp_getEvent()->setPt2(this);
             break;
         case 30:
             daNpcT_getPlayerInfoFromPlayerList(7, fopAcM_GetRoomNo(this), &cStack_30, &cStack_50);

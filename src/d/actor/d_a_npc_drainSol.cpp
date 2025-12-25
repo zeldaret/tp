@@ -279,7 +279,7 @@ bool daNpcDrSol_c::wait(void* param_0) {
         mMode = 2;
         break;
     case 2:
-        if (dComIfGp_event_runCheck() != 0 && eventInfo.checkCommandTalk()) {
+        if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk()) {
             if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                 setAction(&daNpcDrSol_c::talk);
             }

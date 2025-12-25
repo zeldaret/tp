@@ -274,7 +274,7 @@ static void message_shop(npc_henna_class* i_this) {
         i_this->actor.attention_info.distances[1] = 4;
         i_this->actor.attention_info.distances[3] = 4;
         i_this->actor.eventInfo.onCondition(1);
-        if (dComIfGp_event_runCheck() != 0 && i_this->cam_mode == 0 &&
+        if (dComIfGp_event_runCheck() && i_this->cam_mode == 0 &&
             i_this->actor.eventInfo.checkCommandTalk() != 0)
         {
             dComIfGp_event_reset();
@@ -450,7 +450,7 @@ static void henna_ride(npc_henna_class* i_this) {
     i_this->field_0x70e = 1300;
     i_this->field_0x720 = player->eyePos;
 
-    if (dComIfGp_checkPlayerStatus0(0, 0x2000) != 0 || dComIfGp_event_runCheck() != 0) {
+    if (dComIfGp_checkPlayerStatus0(0, 0x2000) != 0 || dComIfGp_event_runCheck()) {
         stickX = stickY = 0.0f;
     }
     stickMag = JMAFastSqrt(stickX * stickX + stickY * stickY);
@@ -1015,7 +1015,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
 
     switch (i_this->cam_mode) {
     case 0: {
-        if (dComIfGp_event_runCheck() == FALSE) {
+        if (!dComIfGp_event_runCheck()) {
             if (i_this->field_0x7b5 != 0) {
                 if (i_this->field_0x7b5 == 1 || i_this->field_0x7b5 == 21 ||
                     i_this->field_0x7b5 == 41)
@@ -2197,14 +2197,7 @@ static void message_guide(npc_henna_class* i_this) {
             return;
         }
 
-#if VERSION != VERSION_SHIELD_DEBUG
-        // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck())
-#else
-        if (dComIfGp_event_runCheck())
-#endif
-        {
+        if (dComIfGp_event_runCheck()) {
             if (!actor->eventInfo.checkCommandTalk()) {
                 return;
             }
@@ -2234,11 +2227,7 @@ static void message_guide(npc_henna_class* i_this) {
             }
 
             if (i_this->mMsgFlow.doFlow(actor, NULL, 0) != 0) {
-#if VERSION != VERSION_SHIELD_DEBUG
-                play->getEvent().reset();
-#else
                 dComIfGp_event_reset();
-#endif
                 i_this->mIsTalking = 0;
             }
         } else {

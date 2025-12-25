@@ -705,7 +705,6 @@ void daE_HP_c::executeDown() {
     }
 }
 
-// NONMATCHING - g_dComIfG_gameInfo loading
 void daE_HP_c::executeDead() {
     if (field_0x78d == 0 && field_0x71c == 1) {
         mSound1.startCreatureSound(Z2SE_EN_PO_SOUL_PULLOUT, 0, -1);
@@ -735,21 +734,10 @@ void daE_HP_c::executeDead() {
         movemode++;
     }
     case 1: {
-#if VERSION != VERSION_SHIELD_DEBUG
-        // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck())
-#else
-        if (dComIfGp_event_runCheck())
-#endif
-        {
+        if (dComIfGp_event_runCheck()) {
             if (eventInfo.checkCommandDemoAccrpt()) {
                 if (dComIfGp_getEventManager().endCheck(field_0x778)) {
-#if VERSION != VERSION_SHIELD_DEBUG
-                    play->getEvent().reset();
-#else
                     dComIfGp_event_reset();
-#endif
                 } else if (strcmp(dComIfGp_getEventManager().getRunEventName(),
                                   "DEFAULT_GETITEM") == 0 &&
                            field_0x784 != -1)

@@ -558,7 +558,7 @@ BOOL daNpc_GWolf_c::main() {
         attention_info.flags = 0;
     }
 
-    if (!daNpc_GWolf_Param_c::m.common.debug_mode_ON && (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent().isOrderOK()))) {
+    if (!daNpc_GWolf_Param_c::m.common.debug_mode_ON && (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent()->isOrderOK()))) {
         if (mOrderEvtNo != EVT_NONE) {
             eventInfo.setArchiveName(l_resNames[l_evtGetParamList[mOrderEvtNo].arcIdx]);
         }
@@ -1057,7 +1057,7 @@ void daNpc_GWolf_c::doNormalAction(int param_1) {
 BOOL daNpc_GWolf_c::doEvent() {
     BOOL rv = FALSE;
 
-    if (dComIfGp_event_runCheck() != FALSE) {
+    if (dComIfGp_event_runCheck()) {
         dEvent_manager_c& eventManager = dComIfGp_getEventManager();
 
         if (eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) {
@@ -1636,8 +1636,8 @@ BOOL daNpc_GWolf_c::ECut_meetGWolf(int i_staffId) {
             case 0:
                 setMotion(MOT_WAITSIT, -1.0f, 0);
                 setLookMode(LOOK_PLAYER);
-                dComIfGp_getEvent().setSkipProc(this, callback_proc, 0);
-                dComIfGp_getEvent().onSkipFade();
+                dComIfGp_getEvent()->setSkipProc(this, callback_proc, 0);
+                dComIfGp_getEvent()->onSkipFade();
                 break;
         }
     }

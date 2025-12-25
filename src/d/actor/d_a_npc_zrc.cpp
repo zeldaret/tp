@@ -451,7 +451,7 @@ BOOL daNpc_zrC_c::main() {
     }
 
     if (!daNpc_zrC_Param_c::m.mTest
-        && (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent().isOrderOK())))
+        && (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent()->isOrderOK())))
     {
         if (mOrderEvtNo != EVT_NONE) {
             eventInfo.setArchiveName(l_resNames[l_evtGetParamList[mOrderEvtNo].arcIdx]);
@@ -1099,7 +1099,7 @@ BOOL daNpc_zrC_c::doEvent() {
     BOOL ret = 0;
     int staff_id;
 
-    if (dComIfGp_event_runCheck() != FALSE) {
+    if (dComIfGp_event_runCheck()) {
         event_mgr = &dComIfGp_getEventManager();
         if ((eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) && !mSpeakEvent)
         {
@@ -1118,7 +1118,7 @@ BOOL daNpc_zrC_c::doEvent() {
                                     l_evtNames[l_evtGetParamList[mOrderEvtNo].fileIdx], 2, 0xffff);
                     } else {
                         s16 idx = dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
-                        dComIfGp_getEvent().reset(this);
+                        dComIfGp_getEvent()->reset(this);
                         fopAcM_orderChangeEventId(this, idx, 1, 0xffff);
                         field_0x9ec = true;
                     }

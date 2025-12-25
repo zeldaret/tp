@@ -4661,7 +4661,7 @@ void dScnKy_env_light_c::exeKankyo() {
 
     g_env_light.mColPatMode = g_env_light.mColPatModeGather;
 
-    if (dComIfGp_event_runCheck() == false && g_env_light.mColPatModeGather != 0) {
+    if (dComIfGp_event_runCheck() == FALSE && g_env_light.mColPatModeGather != 0) {
         if (g_env_light.mColPatModeGather >= 3) {
             g_env_light.mColPatModeGather = 0;
         } else {

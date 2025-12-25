@@ -324,7 +324,6 @@ void daObjLv7Brg_c::action() {
     }
 }
 
-// NONMATCHING - small regalloc
 void daObjLv7Brg_c::mode_action() {
     f32 var_f31;
     f32 temp_f30 = field_0xa78;

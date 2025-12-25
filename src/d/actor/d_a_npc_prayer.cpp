@@ -651,7 +651,7 @@ bool daNpcPray_c::demo(void*) {
         mActionMode = 2;
         break;
     case 2:
-        if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk()) {
+        if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
             dEvent_manager_c& evtmgr = dComIfGp_getEventManager();
             const int staffID = evtmgr.getMyStaffId(l_myName, NULL, 0);
             if (staffID != -1) {

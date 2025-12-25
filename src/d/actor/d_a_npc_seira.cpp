@@ -670,7 +670,7 @@ void daNpc_Seira_c::setCollision() {
     cXyz cStack_48;
     f32 cylH, wallR;
     if (!mHide) {
-        if (mTwilight == 1 && dComIfGp_event_runCheck() == FALSE) {
+        if (mTwilight == 1 && !dComIfGp_event_runCheck()) {
             mCyl1.SetCoSPrm(0x69);
         } else {
             mCyl1.SetCoSPrm(0x79);

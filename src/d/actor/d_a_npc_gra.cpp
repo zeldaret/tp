@@ -784,7 +784,7 @@ BOOL daNpc_grA_c::main() {
         attention_info.flags = 0;
     }
     if (GET_HIO(mNpcFParams.debug_mode_ON) == 0 &&
-        (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent().isOrderOK())))
+        (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent()->isOrderOK())))
     {
         u16 j = 1;
         if (mOrderEvtNo != 0) {
@@ -1795,7 +1795,7 @@ enum Event_Cut_Nums {
 BOOL daNpc_grA_c::doEvent() {
     dEvent_manager_c* manager = NULL;
     BOOL ret = FALSE;
-    if (dComIfGp_event_runCheck() != FALSE) {
+    if (dComIfGp_event_runCheck()) {
         manager = &dComIfGp_getEventManager();
         if (field_0x1691 == 0) {
             mOrderNewEvt = 0;
@@ -4024,7 +4024,7 @@ BOOL daNpc_grA_c::talk(void*) {
                     fopAcM_createItemForPresentDemo(&current.pos, sp8, 0, -1, -1, NULL, NULL);
                 if (field_0x1480 != fpcM_ERROR_PROCESS_ID_e) {
                     s16 r25 = dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_GETITEM", 0xff);
-                    dComIfGp_getEvent().reset(this);
+                    dComIfGp_getEvent()->reset(this);
                     fopAcM_orderChangeEventId(this, r25, 1, -1);
                     field_0x9ec = 1;
                     r29 = 1;
@@ -4035,7 +4035,7 @@ BOOL daNpc_grA_c::talk(void*) {
                 }
             } else {
                 if (mType == 0xa && field_0x1486 == 0 && daNpcF_chkEvtBit(0x187)) {
-                    dComIfGp_getEvent().reset(this);
+                    dComIfGp_getEvent()->reset(this);
                     field_0x9ec = 1;
                     mOrderNewEvt = 1;
                     mOrderEvtNo = 0xa;

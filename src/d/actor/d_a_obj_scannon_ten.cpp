@@ -207,7 +207,7 @@ void daObjSCannonTen_c::exeModeActionEvt() {
         dComIfGp_event_reset();
         mMode = MODE_END;
     } else {
-        dComIfGp_getEvent().setSkipProc(this, eventCallBack, 0);
+        dComIfGp_getEvent()->setSkipProc(this, eventCallBack, 0);
         demoExe();
     }
 }

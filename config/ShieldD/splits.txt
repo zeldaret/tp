@@ -4609,7 +4609,7 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/printf.c:
 	.sdata2     start:0x80752ED0 end:0x80752ED8
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c:
-	.sdata      start:0x8074C238 end:0x8074C24C
+	.sdata      start:0x8074C238 end:0x8074C248
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/scanf.c:
 	.text       start:0x80621C6C end:0x80623150
@@ -4890,6 +4890,7 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/target_options.c:
 
 NdevExi2AD/DebuggerDriver.c:
 	.text       start:0x8062ECBC end:0x8062F1EC
+	.sdata      start:0x8074C248 end:0x8074C24C
 	.sbss       start:0x8074D728 end:0x8074D73C
 
 NdevExi2AD/exi2.c:

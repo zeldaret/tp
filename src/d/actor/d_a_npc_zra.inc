@@ -1406,7 +1406,7 @@ BOOL daNpc_zrA_c::ECut_carryWaterfall(int i_staffID) {
     if (event_manager.getIsAddvance(i_staffID)) {
         switch (prm) {
         case 0:
-            dComIfGp_getEvent().setSkipProc(this, dEv_defaultSkipProc, 0);
+            dComIfGp_getEvent()->setSkipProc(this, dEv_defaultSkipProc, 0);
             Z2GetAudioMgr()->subBgmStart(Z2BGM_ZORA_D01);
             break;
 

@@ -747,7 +747,7 @@ void daE_ZH_c::executeStartDemo() {
     switch (mMoveMode) {
         case 0:
             if (startDemoCheck()) {
-                dComIfGp_getEvent().startCheckSkipEdge(this);
+                dComIfGp_getEvent()->startCheckSkipEdge(this);
                 mDemoCamCenter.set(-30.0f, 650.0f, 1955.0f);
                 mDemoCamEye.set(-25.0f, 720.0f, 2330.0f);
                 field_0x794[0] = 60;
@@ -792,7 +792,7 @@ void daE_ZH_c::executeStartDemo() {
     }
 
     if (mMoveMode != 0 && mActionMode != ACTION_EXECUTE_WAIT) {
-        if (dComIfGp_getEvent().checkSkipEdge()) {
+        if (dComIfGp_getEvent()->checkSkipEdge()) {
             fopAcM_onSwitch(this, 0x12);
             dStage_changeScene(2, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
         }
@@ -895,11 +895,11 @@ void daE_ZH_c::executeBallWait() {
             }
 
             dCam_getBody()->StartBlure(100, this, 0.8f, 1.4f);
-            dComIfGp_getEvent().startCheckSkipEdge(this);
+            dComIfGp_getEvent()->startCheckSkipEdge(this);
             mMoveMode++;
             // fallthrough
         case 12:
-            if (dComIfGp_getEvent().checkSkipEdge()) {
+            if (dComIfGp_getEvent()->checkSkipEdge()) {
                 dCam_getBody()->ResetBlure();
                 field_0x794[2] = 2;
                 camera->mCamera.Start();

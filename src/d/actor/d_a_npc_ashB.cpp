@@ -752,7 +752,7 @@ bool daNpcAshB_c::wait(void* param_0) {
             }
         }
 
-        if (dComIfGp_event_runCheck() != false) {
+        if (dComIfGp_event_runCheck()) {
             if (eventInfo.checkCommandTalk()) {
                 if (dComIfGp_event_chkTalkXY()) {
                     if (!dComIfGp_evmng_ChkPresentEnd()) {
@@ -765,7 +765,7 @@ bool daNpcAshB_c::wait(void* param_0) {
                         } else {
                             s16 evt_idx =
                                 dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
-                            dComIfGp_getEvent().reset(this);
+                            dComIfGp_getEvent()->reset(this);
                             fopAcM_orderChangeEventId(this, evt_idx, 1, -1);
                         }
                     }
@@ -878,7 +878,7 @@ bool daNpcAshB_c::talk(void* param_0) {
                     if (mItemPartnerId != 0xffffffff) {
                         s16 evt_idx =
                             dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_GETITEM", 0xff);
-                        dComIfGp_getEvent().reset(this);
+                        dComIfGp_getEvent()->reset(this);
                         fopAcM_orderChangeEventId(this, evt_idx, 1, -1);
                         field_0x9ec = 1;
                         setAction(&daNpcAshB_c::wait);
@@ -939,14 +939,7 @@ bool daNpcAshB_c::demo(void* param_0) {
         // fallthrough
 
     case 2:
-#if VERSION != VERSION_SHIELD_DEBUG
-        // TODO: gameInfo fake match to force reuse of pointer
-        play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck() && !eventInfo.checkCommandTalk())
-#else
-        if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk())
-#endif
-        {
+        if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
             s32 staff_id = evtmgr.getMyStaffId(l_myName, NULL, 0);
             if (staff_id != -1) {
                 mStaffID = staff_id;
@@ -957,13 +950,8 @@ bool daNpcAshB_c::demo(void* param_0) {
                 r26 = TRUE;
             }
 
-            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && evtmgr.endCheck(mEventIdx))
-            {
-#if VERSION != VERSION_SHIELD_DEBUG
-                play->getEvent().reset();
-#else
+            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && evtmgr.endCheck(mEventIdx)) {
                 dComIfGp_event_reset();
-#endif
                 mOrderEvtNo = 0;
                 mEventIdx = -1;
                 setAction(&daNpcAshB_c::wait);
@@ -1113,7 +1101,7 @@ BOOL daNpcAshB_c::main() {
         (this->*mpActionFn)(NULL);
     }
 
-    if (mItemPartnerId != -1 && dComIfGp_event_runCheck() != 0 &&
+    if (mItemPartnerId != -1 && dComIfGp_event_runCheck() &&
         !strcmp(dComIfGp_getEventManager().getRunEventName(), "DEFAULT_GETITEM"))
     {
         dComIfGp_event_setItemPartnerId(mItemPartnerId);

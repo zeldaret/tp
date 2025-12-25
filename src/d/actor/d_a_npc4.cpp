@@ -1308,7 +1308,7 @@ void daNpcF_c::changeEvent(char* i_arcName, char* i_evtName, u16 param_2, u16 pa
     JUT_ASSERT(2887, NULL != i_evtName);
 
     mEventIdx = dComIfGp_getEventManager().getEventIdx(this, i_evtName, 0xFF);
-    dComIfGp_getEvent().reset(this);
+    dComIfGp_getEvent()->reset(this);
     fopAcM_orderChangeEventId(this, mEventIdx, param_2, param_3);
 }
 

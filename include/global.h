@@ -31,6 +31,8 @@
 #define DEBUG 0
 #endif
 
+#define MSL_INLINE inline
+
 #define ARRAY_SIZE(o) (s32)(sizeof(o) / sizeof(o[0]))
 #define ARRAY_SIZEU(o) (sizeof(o) / sizeof(o[0]))
 
@@ -87,11 +89,6 @@ void* __memcpy(void*, const void*, int);
 #define POINTER_ADD(ptr_, offset_) POINTER_ADD_TYPE(__typeof__(ptr_), ptr_, offset_)
 
 // floating-point constants
-#define _HUGE_ENUF 1e+300
-#define INFINITY ((float)(_HUGE_ENUF * _HUGE_ENUF))
-#define HUGE_VAL ((double)INFINITY)
-#define HUGE_VALL ((long double)INFINITY)
-#define DOUBLE_INF HUGE_VAL
 static const float INF = 2000000000.0f;
 
 // hack to make strings with no references compile properly

@@ -22,16 +22,13 @@ int daTag_Lantern_c::Delete() {
 }
 
 int daTag_Lantern_c::Execute() {
-    // TODO: gameInfo fake match to force reuse of pointer
-    dComIfG_play_c& play = g_dComIfG_gameInfo.play;
-
     if (dComIfGp_event_runCheck()) {
         if (eventInfo.checkCommandTalk()) {
             if (!field_0x604) {
                 mMsgFlow.init(this, mFlowIndex, 0, NULL);
                 field_0x604++;
             } else if (field_0x604 == 1 && mMsgFlow.doFlow(this, NULL, 0)) {
-                play.getEvent().reset();
+                dComIfGp_event_reset();
                 field_0x604 = 0;
                 field_0x5f8 = 0;
             }

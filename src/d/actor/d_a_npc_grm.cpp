@@ -392,13 +392,7 @@ void daNpc_grM_c::srchActors() {
 
 BOOL daNpc_grM_c::evtProc() {
     BOOL ret = FALSE;
-#if VERSION != VERSION_SHIELD_DEBUG
-    // TODO: gameInfo fake match to force reuse of pointer
-    dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-    if (play->getEvent().runCheck()) {
-#else
     if (dComIfGp_event_runCheck()) {
-#endif
         if (eventInfo.checkCommandTalk()) {
             if (!checkChangeEvt()) {
                 evtTalk();
@@ -408,11 +402,7 @@ BOOL daNpc_grM_c::evtProc() {
                    dComIfGp_getEventManager().endCheck(mEvtId))
         {
             if (evtEndProc()) {
-#if VERSION != VERSION_SHIELD_DEBUG
-                play->getEvent().reset();
-#else
                 dComIfGp_event_reset();
-#endif
                 mEvtId = -1;
             }
         } else {

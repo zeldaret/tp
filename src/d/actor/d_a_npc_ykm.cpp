@@ -979,7 +979,6 @@ BOOL daNpc_ykM_c::isDelete() {
     }
 }
 
-// NONMATCHING - m_nextID load issue, regalloc
 void daNpc_ykM_c::reset() {
     csXyz angle;
     int iVar1 = (u8*)&field_0x1588 - (u8*)&mpNextAction;
@@ -2553,7 +2552,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 mEventTimer = timer;
                 angleY = fopAcM_searchActorAngleY(player, this);
                 ((daPy_py_c*)daPy_getPlayerActorClass())->setPlayerPosAndAngle(&player->current.pos, angleY, 0);
-                dComIfGp_getEvent().setPt2(this);
+                dComIfGp_getEvent()->setPt2(this);
                 break;
 
             case 2:

@@ -1031,7 +1031,7 @@ void daNpcTkc_c::warpTalk() {
 
                 if (choice == 0) {
                     dCam_getBody()->EndEventCamera(fopAcM_GetID(this));
-                    dComIfGp_getEvent().reset(this);
+                    dComIfGp_getEvent()->reset(this);
                     eventInfo.setArchiveName(l_arcName);
                     dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
                     mEventIdx = dComIfGp_getEventManager().getEventIdx(this, "TKC_WARP", 0xFF);
@@ -1122,7 +1122,7 @@ int daNpcTkc_c::EvCut_TksSecretChild(int i_staffId) {
                 break;
             
             case 2:
-                dComIfGp_getEvent().reset(this);
+                dComIfGp_getEvent()->reset(this);
                 eventInfo.setArchiveName(l_arcName);
                 dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
                 mEventIdx = dComIfGp_getEventManager().getEventIdx(this, "TKS_WARP", 0xFF);

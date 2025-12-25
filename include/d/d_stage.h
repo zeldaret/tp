@@ -1100,7 +1100,7 @@ public:
     static void setZoneNo(int, int);
     static dBgp_c* getBgp(int i_roomNo) {
 #if DEBUG
-        // NONMATCHING
+        // DEBUG NONMATCHING
 #else
         return NULL;
 #endif
@@ -1233,6 +1233,7 @@ public:
     BOOL isEnable() const { return enabled; }
     s8 getWipe() const { return wipe; }
     u8 getWipeSpeed() const { return wipe_speed; }
+    dStage_startStage_c* getStartStage() { return this; }
 
 private:
     s8 enabled;

@@ -2302,7 +2302,7 @@ void daE_YMB_c::executeLakeDemo() {
             break;
 
         case 2:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
             field_0x760 += field_0x762;
             mDemoCamCenter.set(-81000.0f, -17000.0f, 33000.0f);
             sp24.set(0.0f, 0.0f, 1000.0f);
@@ -2320,7 +2320,7 @@ void daE_YMB_c::executeLakeDemo() {
             break;
 
         case 3:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
             cLib_chaseF(&field_0x75c, 300.0f, 10.0f);
             cLib_chaseAngleS(&field_0x762, 0, 0x10);
             field_0x760 += field_0x762;
@@ -2344,7 +2344,7 @@ void daE_YMB_c::executeLakeDemo() {
             break;
 
         case 5:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
 
             if (field_0x6fc != 0) {
                 cXyz sp30(mDemoCamCenter);
@@ -2438,7 +2438,7 @@ void daE_YMB_c::executeStartDemo() {
             break;
 
         case 2:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
             setBoilEffect(0);
             sp34.set(-89100.0f, player->current.pos.y, 39410.0f);
             player->setPlayerPosAndAngle(&sp34, 0x5400, 0);
@@ -2455,7 +2455,7 @@ void daE_YMB_c::executeStartDemo() {
             break;
 
         case 3:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
             setBoilEffect(0);
             sp34.set(current.pos.x, field_0x6cc - 120.0f, current.pos.z);
             cLib_chasePos(&mDemoCamCenter, sp34, 1.5f);
@@ -2471,7 +2471,7 @@ void daE_YMB_c::executeStartDemo() {
             break;
 
         case 4:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
 
             if (field_0x6fc >= 95) {
                 setBoilEffect(1);
@@ -2498,7 +2498,7 @@ void daE_YMB_c::executeStartDemo() {
             break;
 
         case 8:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
 
             if (field_0x6f0 == 0) {
                 if (current.pos.y >= field_0x6cc) {
@@ -2531,7 +2531,7 @@ void daE_YMB_c::executeStartDemo() {
             break;
 
         case 9:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
             mSound.startCreatureSoundLevel(Z2SE_EN_YB_FLY, 0, -1);
             sp34.set(-89000.0f, -18583.0f, 39350.0f);
             cLib_chasePos(&mDemoCamEye, sp34, 10.0f);
@@ -2545,7 +2545,7 @@ void daE_YMB_c::executeStartDemo() {
             break;
 
         case 10:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
             mSound.startCreatureSoundLevel(Z2SE_EN_YB_FLY, 0, -1);
             sp34.set(-89260.0f, -18650.0f, 39500.0f);
             cLib_chasePos(&mDemoCamEye, sp34, 10.0f);
@@ -2559,7 +2559,7 @@ void daE_YMB_c::executeStartDemo() {
             break;
 
         case 11:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
             mSound.startCreatureSoundLevel(Z2SE_EN_YB_FLY, 0, -1);
             setElecEffect2();
 
@@ -2633,7 +2633,7 @@ void daE_YMB_c::executeBattleDemo() {
             break;
 
         case 2:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 3);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 3);
 
             if (mpModelMorf->checkFrame(30.0f)) {
                 dComIfGp_getVibration().StopQuake(31);
@@ -2675,7 +2675,7 @@ void daE_YMB_c::executeBattleDemo() {
             // fallthrough
         case 4:
         case 5:
-            dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 2);
+            dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 2);
             cLib_chaseF(&mDemoCamCenter.y, current.pos.y - 200.0f, 3.0f);
             sp34.set(current.pos.x, mDemoCamCenter.y, current.pos.z);
             cLib_chasePosXZ(&mDemoCamCenter, sp34, 5.0f);

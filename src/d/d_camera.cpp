@@ -1028,7 +1028,7 @@ bool dCamera_c::Run() {
         mCamSetup.mCStick.Shift(mPadID);
     }
 
-    if (dComIfGp_getEvent().runCheck()) {
+    if (dComIfGp_getEvent()->runCheck()) {
         mPadInfo.mMainStick.mLastValue = 0.0f;
         mPadInfo.mMainStick.mLastPosY = 0.0f;
         mPadInfo.mMainStick.mLastPosX = 0.0f;
@@ -1318,7 +1318,7 @@ void dCamera_c::CalcTrimSize() {
     if (mCurState == 1) {
         mCurState = 0;
     } else if (mCurState == 2) {
-        if (dComIfGp_getEvent().isOrderOK()) {
+        if (dComIfGp_getEvent()->isOrderOK()) {
             mCurState = 0;
         }
     }
@@ -1707,7 +1707,7 @@ s32 dCamera_c::nextType(s32 i_curType) {
         dComIfGp_getAttention()->LockSoundOff();
     } else {
         clrFlag(0x40000000);
-        if (dComIfGp_getEvent().runCheck()) {
+        if (dComIfGp_getEvent()->runCheck()) {
             setComStat(4);
             dComIfGp_getAttention()->LockSoundOff();
         }
@@ -9069,7 +9069,7 @@ bool dCamera_c::eventCamera(s32 param_0) {
         pushInfo(mSavedViewStack + 1, 0);
         mEventData.field_0x0 = 0;
         mEventData.field_0xec = NULL;
-        int sp2C = dComIfGp_getEvent().getMapToolId();
+        int sp2C = dComIfGp_getEvent()->getMapToolId();
         if (sp2C != -1) {
             mEventData.field_0xec = dEvt_control_c::searchMapEventData(sp2C);
         }

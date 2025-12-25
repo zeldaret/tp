@@ -727,7 +727,7 @@ bool daNpcImpal_c::wait(void* param_0) {
             }
         }
 
-        if (dComIfGp_event_runCheck() != FALSE) {
+        if (dComIfGp_event_runCheck()) {
             if (eventInfo.checkCommandTalk()) {
                 if (dComIfGp_event_chkTalkXY()) {
                     if (dComIfGp_evmng_ChkPresentEnd() == FALSE) {
@@ -740,7 +740,7 @@ bool daNpcImpal_c::wait(void* param_0) {
                     } else {
                         s16 evt_idx =
                             dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
-                        dComIfGp_getEvent().reset(this);
+                        dComIfGp_getEvent()->reset(this);
                         fopAcM_orderChangeEventId(this, evt_idx, 1, -1);
                     }
                 } else {
@@ -814,7 +814,7 @@ bool daNpcImpal_c::talk(void* param_0) {
                     if (mItemPartnerId != 0xffffffff) {
                         s16 evt_idx =
                             dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_GETITEM", 0xff);
-                        dComIfGp_getEvent().reset(this);
+                        dComIfGp_getEvent()->reset(this);
                         fopAcM_orderChangeEventId(this, evt_idx, 1, -1);
                         field_0x9ec = 1;
                     }
@@ -864,7 +864,7 @@ bool daNpcImpal_c::demo(void* param_0) {
         setMotion(MOT_0, -1.0f, false);
         mMode = 2;
     case 2: {
-        if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk()) {
+        if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
             dEvent_manager_c& event_manager = dComIfGp_getEventManager();
 
             s32 staff_id = dComIfGp_evmng_getMyStaffId(l_myName, NULL, 0);
@@ -975,7 +975,7 @@ BOOL daNpcImpal_c::EvCut_ImpalAppear1(int i_cut_index) {
                 if (mItemPartnerId != 0xffffffff) {
                     s16 evt_idx =
                         dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_GETITEM", 0xff);
-                    dComIfGp_getEvent().reset(this);
+                    dComIfGp_getEvent()->reset(this);
                     fopAcM_orderChangeEventId(this, evt_idx, 1, -1);
                     field_0x9ec = 1;
                     mOrderEvtNo = 2;
@@ -1153,7 +1153,7 @@ BOOL daNpcImpal_c::main() {
         (this->*mpActionFn)(NULL);
     }
 
-    if (mItemPartnerId != -1 && dComIfGp_event_runCheck() != 0 &&
+    if (mItemPartnerId != -1 && dComIfGp_event_runCheck() &&
         !strcmp(dComIfGp_getEventManager().getRunEventName(), "DEFAULT_GETITEM"))
     {
         dComIfGp_event_setItemPartnerId(mItemPartnerId);

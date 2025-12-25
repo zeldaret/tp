@@ -225,9 +225,8 @@ static bool objectSetCheck(room_of_scene_class* i_this) {
 static int dScnRoom_Execute(room_of_scene_class* i_this) {
     int roomNo = fopScnM_GetParam(i_this);
 
-    u32 flag = g_dComIfG_gameInfo.play.getRoomControl()->mStatus[roomNo].mFlag;
-    if (flag & 2) {
-        dComIfGp_roomControl_setStatusFlag(roomNo, flag & ~2);
+    if (dComIfGp_roomControl_checkStatusFlag(roomNo, 2)) {
+        dComIfGp_roomControl_offStatusFlag(roomNo, 2);
         dComIfGp_roomControl_onStatusFlag(roomNo, 1);
     } else if (objectSetCheck(i_this)) {
         if (dComIfGp_roomControl_checkStatusFlag(roomNo, 4)) {

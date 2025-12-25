@@ -1261,7 +1261,7 @@ int daNpc_Uri_c::cutFindWolf(int param_1) {
         case 1:
             fopAc_ac_c* actor = mActorMngr[0].getActorP();
             if (actor) {
-                dComIfGp_getEvent().setPt2(actor);
+                dComIfGp_getEvent()->setPt2(actor);
             }
             break;
         }

@@ -3859,7 +3859,7 @@ int daB_DR_c::execute() {
             fopAc_ac_c* parent;
             if (fopAcM_SearchByID(parentActorID, &parent) != 0 && parent != NULL && parent->argument != 1) {
                 if (dComIfGs_isZoneSwitch(20, fopAcM_GetRoomNo(this))) {
-                    dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+                    dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
                 }
             } else if (!dComIfGs_isZoneSwitch(0, fopAcM_GetRoomNo(this)) && cLib_calcTimer<int>(&mTimer[0]) == 0) {
                 dComIfGs_onZoneSwitch(0, fopAcM_GetRoomNo(this));

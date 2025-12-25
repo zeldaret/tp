@@ -47,7 +47,7 @@ int daTag_EvtMsg_c::Execute() {
     dEvent_manager_c& evt_mng = dComIfGp_getEventManager();
 
     if (home.roomNo == dComIfGp_roomControl_getStayNo()) {
-        if (dComIfGp_event_runCheck() != 0) {
+        if (dComIfGp_event_runCheck()) {
             int staff_id;
             BOOL reset = false;
             if (eventInfo.checkCommandTalk()) {

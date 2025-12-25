@@ -973,18 +973,18 @@ void dSv_player_info_c::init() {
 
 void dSv_player_config_c::init() {
 #if VERSION == VERSION_GCN_JPN
-    unk0 = 0;
+    mRuby = 0;
 #else
-    unk0 = 1;
+    mRuby = 1;
 #endif
 
 #if PLATFORM_GCN
     if (OSGetSoundMode() == OS_SOUND_MODE_MONO) {
         mSoundMode = OS_SOUND_MODE_MONO;
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(OS_SOUND_MODE_MONO);
+        mDoAud_setOutputMode(OS_SOUND_MODE_MONO);
     } else {
         mSoundMode = OS_SOUND_MODE_STEREO;
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(OS_SOUND_MODE_STEREO);
+        mDoAud_setOutputMode(OS_SOUND_MODE_STEREO);
     }
 #endif
 
@@ -1798,13 +1798,13 @@ int dSv_info_c::card_to_memory(char* i_cardPtr, int i_dataNum) {
 
 #if PLATFORM_GCN
     if (OSGetSoundMode() == OS_SOUND_MODE_MONO) {
-        g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(OS_SOUND_MODE_MONO);
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(OS_SOUND_MODE_MONO);
-    } else if (g_dComIfG_gameInfo.info.getPlayer().getConfig().getSound() == 2) {
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(2);
+        dComIfGs_setOptSound(OS_SOUND_MODE_MONO);
+        mDoAud_setOutputMode(OS_SOUND_MODE_MONO);
+    } else if (dComIfGs_getOptSound() == 2) {
+        mDoAud_setOutputMode(2);
     } else {
-        g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(OS_SOUND_MODE_STEREO);
-        Z2AudioMgr::mAudioMgrPtr->setOutputMode(OS_SOUND_MODE_STEREO);
+        dComIfGs_setOptSound(OS_SOUND_MODE_STEREO);
+        mDoAud_setOutputMode(OS_SOUND_MODE_STEREO);
     }
 #endif
 

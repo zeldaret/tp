@@ -963,7 +963,7 @@ bool daNpcAsh_c::demo(void* param_0) {
         // fallthrough
 
     case 2:
-        if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk()) {
+        if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
             dEvent_manager_c& eventManager = dComIfGp_getEventManager();
             s32 staff_id = eventManager.getMyStaffId(l_myName, NULL, 0);
             if (staff_id != -1) {
@@ -1244,7 +1244,7 @@ BOOL daNpcAsh_c::main() {
     if (mpActionFn != NULL) {
         (this->*mpActionFn)(NULL);
     }
-    if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk() && mItemPartnerId != -1) {
+    if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk() && mItemPartnerId != -1) {
         dComIfGp_event_setItemPartnerId(mItemPartnerId);
         mItemPartnerId = -1;
     }

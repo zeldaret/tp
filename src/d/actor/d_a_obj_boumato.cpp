@@ -119,10 +119,9 @@ int daObj_BouMato_c::Execute() {
     if (field_0xa38 == 1 && dVar1 == 0) {
         deleteStuckArrow();
     }
-    dComIfG_play_c& play = g_dComIfG_gameInfo.play;
-    if (play.getEvent().runCheck() && !eventInfo.checkCommandTalk()) {
+    if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
         if (eventInfo.checkCommandDemoAccrpt() && dComIfGp_getEventManager().endCheck(field_0xa30)) {
-            play.getEvent().reset();
+            dComIfGp_event_reset();
             field_0xa30 = -1;
         } else {
             int staffId = dComIfGp_getEventManager().getMyStaffId("BouMato", this, -1);

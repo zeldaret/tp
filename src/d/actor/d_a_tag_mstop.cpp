@@ -126,7 +126,7 @@ int daTagMstop_c::execute() {
     } else if (eventInfo.checkCommandTalk()) {
         if (field_0x56e == 2) {
             if (!midna_p->checkShadowModelDraw() || midna_p->checkShadowReturnEnd()) {
-                dComIfGp_getEvent().reset(this);
+                dComIfGp_getEvent()->reset(this);
                 fopAcM_orderPotentialEvent(this, 0x400, 0x14f, 1);
                 field_0x56e = 3;
             }

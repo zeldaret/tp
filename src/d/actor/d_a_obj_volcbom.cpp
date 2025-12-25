@@ -603,7 +603,7 @@ void daObjVolcBom_c::actionWait() {
     if (dComIfGp_evmng_startCheck(mEventId)) {
         if (strcmp(dComIfGp_getEventManager().getRunEventName(), "PORTAL_WARP_BIGVOLC") == 0) {
             player->onWarpObjDemo();
-            dComIfGp_getEvent().setPt2(this);
+            dComIfGp_getEvent()->setPt2(this);
             mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
             setAction(ACTION_WARP_EVENT);
             demoProc();
@@ -636,7 +636,7 @@ void daObjVolcBom_c::actionOrderATalkEvent() {
     } else {
         if (dComIfGp_evmng_startCheck(mEventId)) {
             player->onWarpObjDemo();
-            dComIfGp_getEvent().setPt2(this);
+            dComIfGp_getEvent()->setPt2(this);
             mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
             setAction(ACTION_WARP_EVENT);
             demoProc();
@@ -668,7 +668,7 @@ void daObjVolcBom_c::actionTalkEvent() {
 
 void daObjVolcBom_c::actionWarpEvent() {
     if (!dComIfGp_evmng_endCheck(mEventId)) {
-        dComIfGp_getEvent().setSkipProc(this, eventCallBack, 0);
+        dComIfGp_getEvent()->setSkipProc(this, eventCallBack, 0);
         demoProc();
     }
 }

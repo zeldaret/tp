@@ -306,10 +306,13 @@ cflags_runtime = [
     "-str reuse,pool,readonly",
     "-common off",
     "-char signed",
-    # "-inline deferred,auto"
+    "-func_align 4",
+    "-DMSL_USE_INLINES=1",
 ]
 
-if config.version not in ["ShieldD", "Shield"]:
+if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "ShieldD", "Shield"]:
+    cflags_runtime.extend(["-ipa file", "-fp_contract off"])
+else:
     cflags_runtime.extend(["-inline deferred,auto"])
 
 cflags_trk = [

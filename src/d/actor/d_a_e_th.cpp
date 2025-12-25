@@ -708,7 +708,7 @@ static void demo_camera(e_th_class* i_this) {
 
         daPy_getPlayerActorClass()->changeOriginalDemo();
         daPy_getPlayerActorClass()->changeDemoMode(1, 0, 0, 0);
-        dComIfGp_getEvent().startCheckSkipEdge(i_this);
+        dComIfGp_getEvent()->startCheckSkipEdge(i_this);
     case 2:
         sp80.set(1.9f, 0.0f, -1127.0f);
         player->setPlayerPosAndAngle(&sp80, -0x8000, 0);
@@ -993,7 +993,7 @@ static void demo_camera(e_th_class* i_this) {
         camera->mCamera.Set(i_this->mDemoCamCenter, i_this->mDemoCamEye, i_this->mDemoCamFovy, 0);
         i_this->mDemoCamTimer++;
 
-        if (i_this->mDemoCamMode >= 2 && i_this->mDemoCamMode < 10 && dComIfGp_getEvent().checkSkipEdge()) {
+        if (i_this->mDemoCamMode >= 2 && i_this->mDemoCamMode < 10 && dComIfGp_getEvent()->checkSkipEdge()) {
             Z2GetAudioMgr()->subBgmStop();
             cDmr_SkipInfo = 30;
             dStage_changeScene(4, 0.0f, 0, fopAcM_GetRoomNo(i_this), 0, -1);
