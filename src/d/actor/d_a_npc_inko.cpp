@@ -335,7 +335,7 @@ static int daNpc_Inko_Execute(npc_inko_class* i_this) {
             flowId = 0x361;
             npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
             if (henna != NULL) {
-                henna->field_0x7ba = 2;
+                henna->demo_time = 2;
             }
         } else {
             static u32 mes_0[] = {

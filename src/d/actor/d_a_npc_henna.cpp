@@ -680,19 +680,19 @@ static void action(npc_henna_class* i_this) {
     i_this->target_angle = fopAcM_searchPlayerAngleY(actor);
 
     if (i_this->msg_time != 0) {
-        i_this->msg_time -= 1;
+        i_this->msg_time--;
     }
     if (i_this->du_near_time != 0) {
-        i_this->du_near_time -= 1;
+        i_this->du_near_time--;
     }
     if (i_this->field_0x7b5 != 0) {
-        i_this->field_0x7b5 -= 1;
+        i_this->field_0x7b5--;
     }
     if (i_this->talk_time != 0) {
-        i_this->talk_time -= 1;
+        i_this->talk_time--;
     }
     if (i_this->busy_time != 0) {
-        i_this->busy_time -= 1;
+        i_this->busy_time--;
     }
     fpcM_Search(s_du_sub, i_this);
 
