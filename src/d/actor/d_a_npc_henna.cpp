@@ -2696,7 +2696,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* actor) {
         c_start = 0;
         if (i_this->arg0 == 1) {
             i_this->field_0x70c = 1;
-            i_this->action = 50;
+            i_this->action = 0x32;
             i_this->timer[5] = cM_rndF(1000.0f) + 1000.0f;
             actor->current.pos.set(-380.0f + TREG_F(10), 0.0f, 450.0f + TREG_F(10));
             actor->old = actor->current;
@@ -2709,7 +2709,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* actor) {
                 i_this->mode = 4;
                 if (data_80450C99 != 0) {
                     data_80450C99 = 0;
-                    i_this->demo_mode = 50;
+                    i_this->demo_mode = 0x32;
                     angle = -0x8000;
                     i_this->fade_time = 10;
                     i_this->fade_type = 2;
@@ -2718,7 +2718,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* actor) {
                         i_this->mode = 5;
                         data_80450CA0 = 0;
                     } else {
-                        i_this->counter = 70;
+                        i_this->counter = 0x46;
                     }
                 }
             }
