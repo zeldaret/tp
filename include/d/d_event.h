@@ -151,20 +151,11 @@ public:
     }
 
     BOOL isOrderOK() {
-        #if VERSION == VERSION_SHIELD_DEBUG
-        BOOL ret = FALSE;
-        BOOL order_ok = TRUE;
-
-        if (mEventStatus != 0 && mEventStatus != 2) {
-            order_ok = FALSE;
-        }
-        if (order_ok && mDebugStb == 0) {
-            ret = TRUE;
-        }
-        return ret;
-        #else
+#if DEBUG
+        return (mEventStatus == 0 || mEventStatus == 2) && !mDebugStb;
+#else
         return mEventStatus == 0 || mEventStatus == 2;
-        #endif
+#endif
     }
 
     fopAc_ac_c* getPt1() { return convPId(mPt1); }

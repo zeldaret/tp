@@ -806,46 +806,46 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                     mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max, &i_actor->cull.box.min);
                 mDoLib_clipper::resetFar();
                 return ret;
-            } else {
-                return mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max, &i_actor->cull.box.min);
             }
-        } else {
-            cull_box* box = &l_cullSizeBox[fopAcM_CULLSIZE_IDX(fopAcM_GetCullSize(i_actor))];
 
-            if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
-                mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-                u32 ret = mDoLib_clipper::clip(mtx_p, &box->max, &box->min);
-                mDoLib_clipper::resetFar();
-                return ret;
-            } else {
-                return mDoLib_clipper::clip(mtx_p, &box->max, &box->min);
-            }
+            return mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max, &i_actor->cull.box.min);
         }
-    } else {
-        if (fopAcM_GetCullSize(i_actor) == fopAc_CULLSPHERE_CUSTOM_e) {
-            if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
-                mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-                u32 ret = mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
-                                               fopAcM_getCullSizeSphereR(i_actor));
-                mDoLib_clipper::resetFar();
-                return ret;
-            } else {
-                return mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
-                                            fopAcM_getCullSizeSphereR(i_actor));
-            }
-        } else {
-            cull_sphere* sphere = &l_cullSizeSphere[fopAcM_CULLSIZE_Q_IDX(fopAcM_GetCullSize(i_actor))];
 
-            if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
-                mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-                u32 ret = mDoLib_clipper::clip(mtx_p, sphere->center, sphere->radius);
-                mDoLib_clipper::resetFar();
-                return ret;
-            } else {
-                mDoLib_clipper::clip(mtx_p, sphere->center, sphere->radius); // !@bug return value unused
-            }
+        cull_box* box = &l_cullSizeBox[fopAcM_CULLSIZE_IDX(fopAcM_GetCullSize(i_actor))];
+
+        if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
+            mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
+            u32 ret = mDoLib_clipper::clip(mtx_p, &box->max, &box->min);
+            mDoLib_clipper::resetFar();
+            return ret;
         }
+
+        return mDoLib_clipper::clip(mtx_p, &box->max, &box->min);
     }
+
+    if (fopAcM_GetCullSize(i_actor) == fopAc_CULLSPHERE_CUSTOM_e) {
+        if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
+            mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
+            u32 ret = mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
+                                           fopAcM_getCullSizeSphereR(i_actor));
+            mDoLib_clipper::resetFar();
+            return ret;
+        }
+
+        return mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
+                                    fopAcM_getCullSizeSphereR(i_actor));
+    }
+
+    cull_sphere* sphere = &l_cullSizeSphere[fopAcM_CULLSIZE_Q_IDX(fopAcM_GetCullSize(i_actor))];
+
+    if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
+        mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
+        u32 ret = mDoLib_clipper::clip(mtx_p, sphere->center, sphere->radius);
+        mDoLib_clipper::resetFar();
+        return ret;
+    }
+
+    return mDoLib_clipper::clip(mtx_p, sphere->center, sphere->radius);
 }
 
 void* event_second_actor(u16 i_flag) {
@@ -2019,7 +2019,7 @@ s32 fopAcM_getWaterStream(cXyz const* pos, cBgS_PolyInfo const& polyinfo, cXyz* 
     }
 
     if (dComIfG_Bgsp().ChkPolySafe(polyinfo)) {
-        if ((u8) dPath_GetPolyRoomPathVec(polyinfo, speed, power)) {
+        if (dPath_GetPolyRoomPathVec(polyinfo, speed, power)) {
             speed->normalizeZP();
             return 1;
         }

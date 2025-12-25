@@ -414,7 +414,7 @@ inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
            i_culltype == fopAc_CULLBOX_CUSTOM_e;
 }
 
-inline const cXyz& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) { // This should be Vec& but GCN inlines break
+inline const cXyz& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
     return i_actor->cull.sphere.center;
 }
 
