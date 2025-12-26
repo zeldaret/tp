@@ -803,7 +803,7 @@ static void damage_check(e_mk_class* i_this) {
                 i_this->invulnerabilityTimer = 20000;
                 Z2GetAudioMgr()->subBgmStop();
 
-#if !DEBUG
+#if PLATFORM_GCN
                 dScnPly_c::nextPauseTimer = 0;
 #endif
             } else {
