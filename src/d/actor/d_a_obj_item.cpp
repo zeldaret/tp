@@ -1167,10 +1167,12 @@ const dCcD_SrcCyl daItem_c::m_cyl_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        10.0f,
-        50.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            10.0f,
+            50.0f,
+        },
+    }
 };
 
 void daItem_c::initSpeed(BOOL i_noTypeChk) {

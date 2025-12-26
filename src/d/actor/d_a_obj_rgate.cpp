@@ -80,10 +80,12 @@ static const dCcD_SrcCyl l_cyl_src = {
         {0x0},                                          // mGObjCo
     },                                                  // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        40.0f,               // mRadius
-        350.0f               // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            40.0f,               // mRadius
+            350.0f               // mHeight
+        }                        // mCyl
+    }                            // mCylAttr
 };
 
 void daObjRgate_c::initBaseMtx() {

@@ -29,7 +29,9 @@ static char* l_resNames[] = {"yel_bag"};
 
 dCcD_SrcCyl daObj_YBag_c::mCcDCyl = {
     daNpcT_c::mCcDObjData,
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    }
 };
 
 static u16 emttrId[4] = {

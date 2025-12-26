@@ -13,10 +13,12 @@ static daTvCdlst_HIO_c l_HIO;
 dCcD_SrcCyl daTvCdlst_c::mCcDCyl = {
     daTvCdlst_c::mCcDObjInfo, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        0.0f, // mRadius
-        0.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            0.0f, // mRadius
+            0.0f // mHeight
+        } // mCyl
+    } // mCylAttr
 };
 
 daTvCdlst_HIO_c::daTvCdlst_HIO_c() {

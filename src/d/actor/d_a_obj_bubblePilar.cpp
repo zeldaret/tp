@@ -20,7 +20,9 @@ const dCcD_SrcGObjInf daBubbPilar_c::mCcDObjInfo = {
 
 dCcD_SrcCyl daBubbPilar_c::mCcDCyl = {
     daBubbPilar_c::mCcDObjInfo,
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    }
 };
 
 daBubbPilar_HIO_c::daBubbPilar_HIO_c() {

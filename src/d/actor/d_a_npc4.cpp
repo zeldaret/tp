@@ -710,10 +710,12 @@ void daNpcF_c::tgHitCallBack(fopAc_ac_c* i_this, dCcD_GObjInf* param_1, fopAc_ac
 dCcD_SrcCyl daNpcF_c::mCcDCyl = {
     daNpcF_c::mCcDObjInfo,
     {
-                {0.0f, 0.0f, 0.0f},  // mCenter
-                0.0f,  // mRadius
-                0.0f  // mHeight
-            }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,  // mRadius
+            0.0f  // mHeight
+        }  // mCyl
+    }
 };
 
 dCcD_SrcSph daNpcF_c::mCcDSph = {

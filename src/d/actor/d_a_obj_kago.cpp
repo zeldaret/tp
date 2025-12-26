@@ -53,10 +53,12 @@ static char* l_resNameList[2] = {
 static dCcD_SrcCyl l_ccDCyl = {
     daNpcT_c::mCcDObjData, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        0.0f, // mRadius
-        0.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            0.0f, // mRadius
+            0.0f // mHeight
+        } // mCyl
+    }
 };
 
 daObj_Kago_c::~daObj_Kago_c() {

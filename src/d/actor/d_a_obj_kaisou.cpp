@@ -106,10 +106,12 @@ void daObjKaisou_c::initCcCylinder() {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            50.0f, // mRadius
-            100.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                50.0f, // mRadius
+                100.0f // mHeight
+            } // mCyl
+        }
     };
     mCyl.Set(ccCylSrc);
     mCyl.SetStts(&mStts);

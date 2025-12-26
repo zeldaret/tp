@@ -125,10 +125,12 @@ static daBmWindow_HIO_c l_HIO;
 dCcD_SrcCyl daBmWindow_c::mCcDCyl = {
     daBmWindow_c::mCcDObjInfo,
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        0.0f, // mRadius
-        0.0f, // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            0.0f, // mRadius
+            0.0f, // mHeight
+        } // mCyl
+    }
 };
 
 void daBmWindow_c::windowProc() {

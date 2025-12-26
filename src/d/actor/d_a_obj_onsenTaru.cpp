@@ -30,10 +30,12 @@ const dCcD_SrcGObjInf daOnsTaru_c::mCcDObjInfo = {
 dCcD_SrcCyl daOnsTaru_c::mCcDCyl = {
     daOnsTaru_c::mCcDObjInfo,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }
 };
 
 void daOnsTaru_c::setBaseMtx() {

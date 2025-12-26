@@ -66,10 +66,12 @@ const dCcD_SrcGObjInf daTurara_c::mCcDObjInfo = {
 dCcD_SrcCyl daTurara_c::mCcDCyl = {
     daTurara_c::mCcDObjInfo, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        0.0f, // mRadius
-        0.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            0.0f, // mRadius
+            0.0f // mHeight
+        } // mCyl
+    }
 };
 
 static u32 const l_bmdIdx[2] = {5, 8};

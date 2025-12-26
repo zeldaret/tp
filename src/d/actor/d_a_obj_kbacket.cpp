@@ -30,10 +30,12 @@ static const dCcD_SrcGObjInf l_ccDObjData = {
 static dCcD_SrcCyl l_ccDCyl = {
     l_ccDObjData,
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        0.0f, // mRadius
-        0.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            0.0f, // mRadius
+            0.0f // mHeight
+        } // mCyl
+    }
 };
 
 static daObj_KBacket_Param_c l_HIO;

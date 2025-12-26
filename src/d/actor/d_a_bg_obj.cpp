@@ -265,10 +265,12 @@ static const dCcD_SrcCyl l_cyl_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        0.0f,
-        0.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            0.0f,
+            0.0f,
+        },
+    }
 };
 
 void daBgObj_c::initAtt() {
