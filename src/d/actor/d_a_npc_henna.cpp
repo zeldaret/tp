@@ -887,7 +887,7 @@ static void demo_camera(npc_henna_class* i_this) {
             daPy_py_c* player = daPy_getPlayerActorClass();
             player->cancelOriginalDemo();
             /* dSv_event_flag_c::F_0464 - Fishing Pond - Reserved for fishing */
-            if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x1d0])) {
+            if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[464])) {
                 i_this->fade_time = 10;
                 i_this->fade_type = 0;
                 i_this->no_draw = 1;
@@ -895,9 +895,9 @@ static void demo_camera(npc_henna_class* i_this) {
                 i_this->demo_mode = 0;
             }
             /* dSv_event_flag_c::F_0463 - Fishing Pond - Reserved for fishing */
-            dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[0x1cf]);
+            dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[463]);
             /* dSv_event_flag_c::F_0464 - Fishing Pond - Reserved for fishing */
-            dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[0x1d0]);
+            dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[464]);
         }
     }
 
@@ -999,7 +999,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
 
     if (!dComIfGp_event_runCheck()
             /* dSv_event_flag_c::F_0465 - Fishing Pond - Reserved for fishing */
-        && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x1d1]))
+        && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[465]))
     {
         i_this->field_0x756++;
         if (i_this->field_0x756 < 200) {
@@ -1189,13 +1189,13 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                 i_this->du_talk_ct++;
             } else {
                 /* dSv_event_flag_c::F_0462 - Fishing Pond - Reserved for fishing */
-                if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x1ce])) {
-                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x1ce]);
+                if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[462])) {
+                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[462]);
                     i_this->demo_mode = 19;
                     break;
                 }
                 /* dSv_event_flag_c::F_0465 - Fishing Pond - Reserved for fishing */
-                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x1d1])) {
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[465])) {
                     if (i_this->wait_time != 0) {
                         i_this->msg_flow.init(actor, 0x327, 0, NULL);
                         i_this->blink_time = 90;
@@ -1251,19 +1251,19 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                 if (i_this->demo_mode == 12) {
                     if (dComIfGs_getRupee() >= 20) {
                         /* dSv_event_flag_c::F_0465 - Fishing Pond - Reserved for fishing */
-                        if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x1d1])) {
+                        if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[465])) {
                             i_this->msg_flow.init(actor, 0x32e, 0, NULL);
                             /* dSv_event_flag_c::F_0465 - Fishing Pond - Reserved for fishing */
-                            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x1d1]);
+                            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[465]);
                             /* dSv_event_flag_c::F_0464 - Fishing Pond - Reserved for fishing */
-                            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x1d0]);
+                            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[464]);
                             data_80450CA0 = 1;
                         } else {
                             i_this->msg_flow.init(actor, 0x32f, 0, NULL);
                         }
-                        dComIfGp_setItemRupeeCount(0xffffffec);
+                        dComIfGp_setItemRupeeCount(-20);
                         /* dSv_event_flag_c::F_0463 - Fishing Pond - Reserved for fishing */
-                        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x1cf]);
+                        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[463]);
                         i_this->field_0x5b6 = 1;
                     } else {
                         i_this->msg_flow.init(actor, 0x332, 0, NULL);
@@ -1314,9 +1314,9 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                     i_this->msg_flow.init(actor, 0x330, 0, NULL);
                     dComIfGp_setItemRupeeCount(-100);
                     /* dSv_event_flag_c::F_0463 - Fishing Pond - Reserved for fishing */
-                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x1cf]);
+                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[463]);
                     /* dSv_event_flag_c::F_0464 - Fishing Pond - Reserved for fishing */
-                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x1d0]);
+                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[464]);
                     data_80450CA0 = 1;
                     i_this->field_0x5b6 = 1;
                 } else {
@@ -1475,7 +1475,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                     break;
                 case 2:
                     /* dSv_event_flag_c::F_0469 - Fishing Pond - Reserved for fishing */
-                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x1d5])) {
+                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[469])) {
                         i_this->msg_flow.init(actor, 0x338, 0, NULL);
                     } else {
                         i_this->msg_flow.init(actor, 0x337, 0, NULL);
@@ -1538,7 +1538,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                 case 0x13:
                     /* dSv_event_flag_c::KORO2_ALLCLEAR - Fishing - After all stages (8-8) of roll
                      * goal game cleared */
-                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x335])) {
+                    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[821])) {
                         i_this->msg_flow.init(actor, 0x366, 0, NULL);
                     } else {
                         dComIfGp_event_offHindFlag(0x80);
@@ -1559,7 +1559,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                     if (dMsgObject_getSelectCursorPos() == 0) {
                         /* dSv_event_flag_c::KORO2_ALLCLEAR - Fishing - After all stages (8-8) of
                          * roll goal game cleared */
-                        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x335])) {
+                        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[821])) {
                             i_this->demo_mode = 77;
                             i_this->demo_camera_no = 0;
                             mDoGph_gInf_c::fadeOut(0.1f, g_blackColor);
@@ -1898,7 +1898,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
         if (i_this->msg_flow.doFlow(actor, NULL, 0) != 0) {
             if (dMsgObject_getSelectCursorPos() == 0) {
                  /* dSv_event_flag_c::KORO2_ALLCLEAR - Fishing - After all stages (8-8) of roll goal game cleared */
-                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x335])) {
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[821])) {
                     i_this->demo_camera_no = 0;
                     i_this->demo_mode = 77;
                     mDoGph_gInf_c::fadeOut(0.1f, g_blackColor);
@@ -1950,19 +1950,19 @@ static void demo_camera_shop(npc_henna_class* i_this) {
         }
         if (i_this->demo_camera_no == 10) {
              /* dSv_event_flag_c::KORO2_ALLCLEAR - Fishing - After all stages (8-8) of roll goal game cleared */
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x335])) {
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[821])) {
                 i_this->msg_flow.init(actor, 0x36f, 0, NULL);
             } else {
                 if ((koro2_ct & 7) == 0x7) {
                     if (koro2_ct == 0x3f) {
                         i_this->msg_flow.init(actor, 0x365, 0, NULL);
                         /* dSv_event_flag_c::KORO2_ALLCLEAR - Fishing - After all stages (8-8) of roll goal game cleared */
-                        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x335]);
+                        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[821]);
                         dComIfGp_setItemRupeeCount(1000);
                     } else if ((koro2_ct & 0x38) == 0) {
                         i_this->msg_flow.init(actor, 0x34f, 0, NULL);
                         /* dSv_event_flag_c::F_0469 - Fishing Pond - Reserved for fishing */
-                        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x1d5]);
+                        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[469]);
                     } else {
                         i_this->msg_flow.init(actor, 0x34f, 0, NULL);
                         dComIfGp_setItemRupeeCount(10);
@@ -2696,7 +2696,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* actor) {
         c_start = 0;
         if (i_this->arg0 == 1) {
             i_this->field_0x70c = 1;
-            i_this->action = 0x32;
+            i_this->action = 50;
             i_this->timer[5] = cM_rndF(1000.0f) + 1000.0f;
             actor->current.pos.set(-380.0f + TREG_F(10), 0.0f, 450.0f + TREG_F(10));
             actor->old = actor->current;
@@ -2709,7 +2709,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* actor) {
                 i_this->mode = 4;
                 if (data_80450C99 != 0) {
                     data_80450C99 = 0;
-                    i_this->demo_mode = 0x32;
+                    i_this->demo_mode = 50;
                     angle = -0x8000;
                     i_this->fade_time = 10;
                     i_this->fade_type = 2;
@@ -2770,7 +2770,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* actor) {
                               NULL, -1);
                 data_80450C99 = 0;
                 /* dSv_event_flag_c::F_0463 - Fishing Pond - Reserved for fishing */
-                if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x1cf])) {
+                if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[463])) {
                     i_this->fade_time = 4;
                     i_this->no_draw = 1;
                 } else {
