@@ -349,11 +349,13 @@ static int daItemShield_Execute(daItemShield_c* i_this) {
 }
 
 static int daItemShield_Delete(daItemShield_c* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "ObjSShield");
     return i_this->_delete();
 }
 
 static int daItemShield_Create(fopAc_ac_c* i_this) {
-    return static_cast<daItemShield_c*>(i_this)->create();
+    fopAcM_RegisterCreateID(daItemShield_c, i_this, "ObjSShield");
+    return a_this->create();
 }
 
 static actor_method_class l_daItemShield_Method = {

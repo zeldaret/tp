@@ -59,17 +59,20 @@ static int daTagWatchGe_Delete(daTagWatchGe_c* i_this) {
 
 int daTagWatchGe_c::create() {
     fopAcM_ct(this, daTagWatchGe_c);
+    OS_REPORT("Tag_WatchGe PARAM %x\n", fopAcM_GetParam(this));
     mGroupNo = fopAcM_GetParam(this);
 
     if (mGroupNo == 0xFF) {
+        OS_REPORT("監視するグェーのグループが指定されてません！");
         return cPhs_ERROR_e;
     } else {
-        field_0x568 = fopAcM_GetParam(this) >> 8;
+        field_0x568 = (fopAcM_GetParam(this) >> 8) & 0xFF;
 
         if (field_0x568 == 0xFF) {
+            OS_REPORT("グェー監視タグのスイッチが指定されてません！");
             return cPhs_ERROR_e;
         }
-        if (dComIfGs_isSwitch(field_0x568,fopAcM_GetRoomNo(this)) != 0) {
+        if (dComIfGs_isSwitch(field_0x568, fopAcM_GetRoomNo(this)) != 0) {
             return cPhs_ERROR_e;
         }
     }
