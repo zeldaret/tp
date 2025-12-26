@@ -1273,7 +1273,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
 }
 
 static void* s_wbstart_sub(void* i_actor, void* i_data) {
-    (void)i_data;
+    UNUSED(i_data);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
         e_wb_class* wb = static_cast<e_wb_class*>(i_actor);
         if (wb->field_0x79d == 0) {
@@ -3114,7 +3114,7 @@ static void wb_c_rd_reset(e_wb_class* i_this) {
 }
 
 static void* s_rddel_sub(void* param_0, void* param_1) {
-    (void)param_1;
+    UNUSED(param_1);
     if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_E_RD) {
         e_rd_class* rd = (e_rd_class*)param_0;
         if (rd->mBossMode == 0) {
@@ -3127,7 +3127,7 @@ static void* s_rddel_sub(void* param_0, void* param_1) {
 static int rd_count;
 
 static void* s_rdcount_sub(void* i_actor, void* i_data) {
-    (void)i_data;
+    UNUSED(i_data);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD) {
         if (((e_rd_class*)i_actor)->mBossMode == 0 &&
             (((e_rd_class*)i_actor)->field_0x5b7 == 1 || ((e_rd_class*)i_actor)->field_0x5b7 == 2))
@@ -3139,7 +3139,7 @@ static void* s_rdcount_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_rddel2_sub(void* i_actor, void* i_data) {
-    (void)i_data;
+    UNUSED(i_data);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD) {
         e_rd_class* rd = ((e_rd_class*)i_actor);
         fopAc_ac_c* r28 = fopAcM_SearchByID(rd->mWbActorID);
@@ -3656,7 +3656,7 @@ static void action(e_wb_class* i_this) {
 }
 
 static void* s_wbZrevise_sub(void* i_actor, void* i_data) {
-    (void)i_data;
+    UNUSED(i_data);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
         e_wb_class* a_this = static_cast<e_wb_class*>(i_actor);
         if (a_this->field_0x79d == 0) {
@@ -3668,7 +3668,7 @@ static void* s_wbZrevise_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_spd0_sub(void* i_actor, void* i_data) {
-    (void)i_data;
+    UNUSED(i_data);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
         e_wb_class* a_this = static_cast<e_wb_class*>(i_actor);
         if (a_this->field_0x79d == 0) {
@@ -3680,7 +3680,7 @@ static void* s_spd0_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_wbdel_sub(void* i_actor, void* i_data) {
-    (void)i_data;
+    UNUSED(i_data);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
         e_wb_class* a_this = static_cast<e_wb_class*>(i_actor);
         if (a_this->field_0x79d == 0) {
@@ -3692,7 +3692,7 @@ static void* s_wbdel_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_rdArrowWait_sub(void* i_actor, void* i_data) {
-    (void)i_data;
+    UNUSED(i_data);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD) {
         e_rd_class* a_this = static_cast<e_rd_class*>(i_actor);
         if (a_this->field_0x5bc == 2 || a_this->field_0x5bc == 3) {
