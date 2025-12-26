@@ -721,7 +721,7 @@ JKRExpHeap* mDoExt_getHostIOHeap() {
 extern u8 lbl_8074C3B9[1];
 #endif
 
-static JKRSolidHeap* mDoExt_createSolidHeap(u32 i_size, JKRHeap* i_heap, u32 i_alignment) {
+JKRSolidHeap* mDoExt_createSolidHeap(u32 i_size, JKRHeap* i_heap, u32 i_alignment) {
     if (i_heap == NULL) {
         i_heap = JKRGetCurrentHeap();
     }

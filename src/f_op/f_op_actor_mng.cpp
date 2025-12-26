@@ -34,6 +34,7 @@ extern u8 HeapAdjustVerbose;
 extern u8 HeapAdjustQuiet;
 extern u8 HeapDummyCreate;
 extern u8 HeapDummyCheck;
+extern int HeapAdjustMargin;
 }  // namespace fopAcM
 
 class l_HIO : public JORReflexible {
@@ -89,6 +90,7 @@ void l_HIO::genMessage(JORMContext* mctx) {
 }
 
 void l_HIO::listenPropertyEvent(const JORPropertyEvent* property) {
+    UNUSED(property);
     JORMContext* mctx = attachJORMContext(8);
     JORReflexible::listenPropertyEvent(property);
 
@@ -102,7 +104,6 @@ void l_HIO::listenPropertyEvent(const JORPropertyEvent* property) {
 
     releaseJORMContext(mctx);
 }
-#endif
 
 void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_filename, int i_line,
                                 const char* i_msg, ...) {
@@ -132,6 +133,7 @@ void fopAcM_showAssert_f(const fopAc_ac_c* i_actor, const char* i_filename, int 
 
     va_end(args);
 }
+#endif
 
 fopAc_ac_c* fopAcM_FastCreate(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_createData,
                               void* i_append) {
@@ -388,31 +390,61 @@ u8 fopAcM::HeapAdjustQuiet;
 u8 fopAcM::HeapDummyCreate;
 
 static bool lbl_8074C4DC;
+static bool lbl_8074C4D9;
 u8 fopAcM::HeapDummyCheck;
+int fopAcM::HeapAdjustMargin = 0x1000;
 
 struct DummyCheckHeap {
-    static JKRHeap* getHeap();
+    JKRHeap* getHeap();
+    void setHeap(JKRHeap* heap);
 
     /* 0x0 */ JKRHeap* dummyHeap;
 };
 
-static DummyCheckHeap* dch;
+static DummyCheckHeap* dch = NULL;
 
 bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback, u32 i_size) {
-    const char* procNameString = fopAcM_getProcNameString(i_actor);
-    JKRSolidHeap* heap00 = NULL;
-
 #if DEBUG
-    if (lbl_8074C4DC != 0 && fopAcM::HeapDummyCheck != 0 && dch != NULL) {
+    s16 procProfName = fopAcM_GetProfName(i_actor);
+
+    char procNameString[16];
+    fopAcM_getNameString(i_actor, procNameString);
+#else
+    const char* procNameString = fopAcM_getProcNameString(i_actor);
+#endif
+    JKRSolidHeap* heap = NULL;
+
+    u32 adjustedHeap;
+    bool result;
+
+    if (DEBUG && fopAcM::HeapDummyCreate && !fopAcM::HeapDummyCheck && dch != NULL) {
         JKRHeap* dummy_heap = dch->getHeap();
         if (dummy_heap != NULL) {
-            JKRSolidHeap* heap = mDoExt_createSolidHeap(-1, dummy_heap, 0x20);
+            heap = mDoExt_createSolidHeap(-1, dummy_heap, 0x20);
             JUT_ASSERT(1211, heap);
+
+            if (fopAcM::HeapAdjustVerbose) {
+                // Attempting registration with max dummy heap.
+                OS_REPORT("ダミーヒープ最大で登録してみます。%08x\n", heap);
+            }
+            result = fopAcM_callCallback(i_actor, i_heapCallback, heap);
+            if (!result) {
+                // Registration failed with max dummy heap.
+                OS_REPORT_ERROR("ダミーヒープ最大で登録失敗。%08x[%s]\n", heap->getFreeSize(),
+                                procNameString);
+            } else if (fopAcM::HeapAdjustVerbose) {
+                // Registration successful with max dummy heap.
+                OS_REPORT("ダミーヒープ最大で登録成功。\n");
+            }
+
+            mDoExt_destroySolidHeap(heap);
+            heap = NULL;
+            dch->setHeap(dummy_heap);
         }
     }
-#endif
 
     if (fopAcM::HeapAdjustVerbose) {
+        // fopAcM_entrySolidHeap Start [%s] Estimated Size=%08x
         OS_REPORT("\x1b[36mfopAcM_entrySolidHeap 開始 [%s] 見積もりサイズ=%08x\n\x1b[m",
                   procNameString, i_size);
     }
@@ -424,102 +456,252 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback
     while (true) {
         if (i_size != 0) {
             if (fopAcM::HeapAdjustVerbose) {
+                // Attempting to allocate with estimated heap size (%08x). [%s]
                 OS_REPORT("見積もりヒープサイズで(%08x)確保してみます。 [%s]\n", i_size,
                           procNameString);
             }
 
-            heap00 = mDoExt_createSolidHeapFromGame(i_size, 0x20);
-            if (heap00 != NULL) {
+            heap = mDoExt_createSolidHeapFromGame(i_size, 0x20);
+            if (heap != NULL) {
                 if (fopAcM::HeapAdjustVerbose) {
-                    OS_REPORT("見積もりヒープサイズで登録してみます。%08x [%s]\n", heap00,
+                    // Attempting registration with estimated heap size. %08x [%s]
+                    OS_REPORT("見積もりヒープサイズで登録してみます。%08x [%s]\n", heap,
                               procNameString);
                 }
 
-                bool status = fopAcM_callCallback(i_actor, i_heapCallback, heap00) != 0;
-                if (!status) {
-                    // "Entry for estimated heap size(%08x) failed. %08x[%s]\n"
-                    OSReport_Error("見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n",
-                                   i_size, heap00->getFreeSize(), procNameString);
-                    mDoExt_destroySolidHeap(heap00);
-                    heap00 = NULL;
+                result = fopAcM_callCallback(i_actor, i_heapCallback, heap);
+                if (!result) {
+                    if (!DEBUG || !fopAcM::HeapAdjustQuiet) {
+                        // Registration failed with estimated heap size (%08x). %08x[%s]
+                        OSReport_Error("見積もりヒープサイズ(%08x)で登録失敗しました。%08x[%s]\n",
+                                        i_size, heap->getFreeSize(), procNameString);
+                    }
+                    mDoExt_destroySolidHeap(heap);
+                    heap = NULL;
+#if PLATFORM_SHIELD
+                } else {
+                    int margin = fopAcM::HeapAdjustMargin;
+                    adjustedHeap = ALIGN_NEXT(heap->getHeapSize() - heap->getFreeSize(), 0x20);
+
+                    if (i_size < adjustedHeap + margin || lbl_8074C4D9) {
+                        if (!fopAcM::HeapAdjustEntry) {
+                            u32 res = mDoExt_adjustSolidHeap(heap);
+                            if (fopAcM::HeapAdjustVerbose) {
+                                // Registration successful with estimated heap size. %08x %08x %08x
+                                OS_REPORT(
+                                    "見積もりヒープサイズで登録成功しました。 %08x %08x %08x\n",
+                                    adjustedHeap, res, i_size);
+                            }
+                            i_actor->heap = heap;
+                            return true;
+                        }
+                    } else {
+                        if (!DEBUG || !fopAcM::HeapAdjustQuiet) {
+                            // Too much free space remaining with estimated heap size. %08x %08x
+                            // [%s]
+                            OSReport_Warning(
+                                "見積もりヒープサイズでは空きが多すぎます。 %08x %08x [%s]\n",
+                                adjustedHeap, i_size, procNameString);
+                        }
+#if DEBUG
+                        // Destroying heap temporarily to obtain exact size
+                        OS_WARNING("正確なサイズを得るために一旦 heap を破棄します\n");
+                        mDoExt_destroySolidHeap(heap);
+                        heap = NULL;
+#endif
+                    }
+#endif
                 }
             } else {
-                // "Could not allocate estimated heap. %08x [%s]\n"
+                // Could not allocate estimated heap. %08x [%s]
                 OSReport_Error("見積もりヒープが確保できませんでした。 %08x [%s]\n", i_size,
-                               procNameString);
+                                procNameString);
             }
         }
 
-        if (heap00 == NULL) {
-            heap00 = mDoExt_createSolidHeapFromGame(0xFFFFFFFF, 0x20);
-            if (heap00 == NULL) {
-                // "Failed to allocate maximum heap size. [%s]\n"
+        if (heap == NULL) {
+            heap = mDoExt_createSolidHeapFromGame(-1, 0x20);
+            if (heap == NULL) {
+                // Allocation failed with max free heap size. [%s]
                 OSReport_Error("最大空きヒープサイズで確保失敗。[%s]\n", procNameString);
                 return false;
             }
+#if DEBUG
+            if (!fopAcM::HeapAdjustQuiet) {
+                // Attempting registration with max heap size. %08x
+                OS_REPORT("最大ヒープサイズで登録してみます。%08x\n", heap);
+            }
+            heap->alloc(16, 16);
 
-            bool status = fopAcM_callCallback(i_actor, i_heapCallback, heap00) != 0;
-            if (!status) {
-                // "Entry failed for maximum heap size. %08x[%s]\n"
-                OSReport_Error("最大空きヒープサイズで登録失敗。%08x[%s]\n", heap00->getFreeSize(),
-                               procNameString);
-                mDoExt_destroySolidHeap(heap00);
+            bool result2 = fopAcM_callCallback(i_actor, i_heapCallback, heap);
+
+            if (!result2) {
+                // Registration failed with max free heap size -16 (1st attempt).
+                OS_REPORT_ERROR("最大空きヒープサイズ-16(1回目)で登録失敗。%08x[%s]\n",
+                                heap->getFreeSize(), procNameString);
+                mDoExt_destroySolidHeap(heap);
+                heap = NULL;
                 return false;
             }
+            u32 prevAlignedHeapSize =
+            ALIGN_PREV(heap->getHeapSize() - heap->getFreeSize() - 1, 0x10);
+            heap->freeAll();
+            
+            bool result3 = fopAcM_callCallback(i_actor, i_heapCallback, heap);
+            if (!result3) {
+                // Registration failed with max free heap size (2nd attempt).
+                OS_REPORT_ERROR("最大空きヒープサイズ(2回目)で登録失敗。%08x[%s]\n",
+                                heap->getFreeSize(), procNameString);
+                mDoExt_destroySolidHeap(heap);
+                heap = NULL;
+                return false;
+            }
+
+            u32 alignedHeapSize = ALIGN_NEXT(heap->getHeapSize() - heap->getFreeSize(), 0x10);
+
+            if (prevAlignedHeapSize > alignedHeapSize + 0x20 ||
+                prevAlignedHeapSize + 0x20 < alignedHeapSize)
+            {
+                // Sizes differ between 1st and 2nd attempts. Registration failed. [%s] 0x%08x
+                // 0x%08x
+                OS_REPORT_ERROR("1回目と2回目でサイズが違います。登録失敗。[%s] 0x%08x 0x%08x\n",
+                                procNameString, prevAlignedHeapSize, alignedHeapSize);
+                mDoExt_destroySolidHeap(heap);
+                heap = NULL;
+                return false;
+            }
+
+            if (!fopAcM::HeapAdjustQuiet) {
+                u32 maxSize =
+                    (prevAlignedHeapSize > alignedHeapSize) ? prevAlignedHeapSize : alignedHeapSize;
+
+                if (!fopAcM::HeapAdjustQuiet) {
+                    // Registration successful with max free heap size. [%s(%d)] 0x%08x 0x%08x
+                    OS_WARNING("最大空きヒープサイズで登録成功。[%s(%d)] 0x%08x 0x%08x\n",
+                               procNameString, procProfName, prevAlignedHeapSize, alignedHeapSize);
+                }
+
+                if (i_size == 0) {
+                    if (!fopAcM::HeapAdjustQuiet) {
+                        // Please set the estimated size value. (0x%08x)
+                        OS_WARNING("見積もりサイズの値を設定してください。(0x%08x)\n", maxSize);
+                    }
+                } else if (i_size != maxSize) {
+                    // Please change the estimated size value. (0x%08x -> 0x%08x) [%s]
+                    OS_REPORT_ERROR("見積もりサイズの値を変更してください。(0x%08x→0x%08x) [%s]\n",
+                                    i_size, maxSize, procNameString);
+                } else if (fopAcM::HeapAdjustVerbose) {
+                    // Matches the estimated size. (0x%08x)
+                    OS_REPORT("見積もりサイズと一致しています。(0x%08x)\n", maxSize);
+                }
+            }
+#else
+            bool result2 = fopAcM_callCallback(i_actor, i_heapCallback, heap);
+            if (!result2) {
+                // "Entry failed for maximum heap size. %08x[%s]\n"
+                OSReport_Error("最大空きヒープサイズで登録失敗。%08x[%s]\n", heap->getFreeSize(),
+                               procNameString);
+                mDoExt_destroySolidHeap(heap);
+                return false;
+            }
+#endif
         }
 
-        if (heap00 == NULL) {
+        if (heap == NULL) {
             break;
         }
 
-        if (fopAcM::HeapAdjustEntry == 0) {
-            mDoExt_adjustSolidHeap(heap00);
-            i_actor->heap = heap00;
+        if (!fopAcM::HeapAdjustEntry) {
+            adjustedHeap = mDoExt_adjustSolidHeap(heap);
+            if (fopAcM::HeapAdjustVerbose) {
+                // Skipping exact size check for speed optimization. %08x
+                OS_REPORT("高速化のためぴったりサイズは調べません。%08x\n", adjustedHeap);
+            }
+            i_actor->heap = heap;
             return true;
         } else {
-            JKRSolidHeap* heap = NULL;
-            u32 heap00Size = heap00->getSize();
-            u32 alignedSize = ALIGN_NEXT(heap00Size - heap00->getFreeSize(), 0x20);
-            if (alignedSize + 0x90 < mDoExt_getGameHeap()->getFreeSize()) {
-                heap = mDoExt_createSolidHeapFromGame(alignedSize, 0x20);
+            JKRSolidHeap* newHeap = NULL;
+            u32 alignedSize = ALIGN_NEXT(heap->getHeapSize() - heap->getFreeSize(), 0x20);
+            u32 adjOffset = 0x80;
+            u32 freeSize = mDoExt_getGameHeap()->getFreeSize();
+
+            if (alignedSize + adjOffset + 0x10 < freeSize) {
+                newHeap = mDoExt_createSolidHeapFromGame(alignedSize, 0x20);
             }
 
-            if (heap != NULL) {
-                if (heap < heap00) {
-                    mDoExt_destroySolidHeap(heap00);
-                    heap00 = NULL;
-                    bool status = fopAcM_callCallback(i_actor, i_heapCallback, heap) != 0;
-                    if (!status) {
-                        // "Entry fails at exact size? (Bug)\n"
-                        OSReport_Error("ぴったりサイズで、登録失敗？(バグ)\n");
-                        mDoExt_destroySolidHeap(heap);
-                        heap = NULL;
+            if (fopAcM::HeapAdjustVerbose) {
+                // Attempting registration with exact size. %08x %08x
+                OS_REPORT("ぴったりサイズで登録してみます。%08x %08x\n", newHeap, alignedSize);
+            }
+
+            if (newHeap != NULL) {
+                if (newHeap < heap) {
+                    if (fopAcM::HeapAdjustVerbose) {
+                        // Exact size heap was allocated at the front.
+                        OS_REPORT("ぴったりサイズヒープは前のほうに確保されました。\n");
                     }
-                } else {
+                    if (fopAcM::HeapAdjustVerbose) {
+                        // Destroying the previous heap first. %08x
+                        OS_REPORT("先にさっきのヒープは破壊しておきます。%08x\n", heap);
+                    }
+
                     mDoExt_destroySolidHeap(heap);
                     heap = NULL;
+
+                    result = fopAcM_callCallback(i_actor, i_heapCallback, newHeap);
+                    JUT_ASSERT(1421, result != NULL);
+
+                    if (!result) {
+                        // Registration failed with exact size? (Bug)
+                        OSReport_Error("ぴったりサイズで、登録失敗？(バグ)\n");
+                        mDoExt_destroySolidHeap(newHeap);
+                        newHeap = NULL;
+                    } else if (fopAcM::HeapAdjustVerbose) {
+                        // Registration successful with exact size.
+                        OS_REPORT("ぴったりサイズで登録成功しました。\n");
+                    }
+                } else {
+                    mDoExt_destroySolidHeap(newHeap);
+                    newHeap = NULL;
+
+                    if (fopAcM::HeapAdjustVerbose) {
+                        // Exact size heap was allocated at the back, so it will not be used.
+                        OS_REPORT(
+                            "ぴったりサイズヒープは後ろのほうに確保されたので採用しません。\n");
+                    }
                 }
+            } else if (fopAcM::HeapAdjustVerbose) {
+                // Could not allocate new exact size heap.
+                OS_REPORT("ぴったりサイズヒープを新たに確保できませんでした。\n");
+            }
+
+            if (newHeap != NULL) {
+                adjustedHeap = mDoExt_adjustSolidHeap(newHeap);
+                if (fopAcM::HeapAdjustVerbose) {
+                    // Using the exact size heap. %08x
+                    OS_REPORT("ぴったりサイズヒープを採用します。%08x\n", adjustedHeap);
+                }
+                i_actor->heap = newHeap;
+                return true;
             }
 
             if (heap != NULL) {
-                mDoExt_adjustSolidHeap(heap);
+                adjustedHeap = mDoExt_adjustSolidHeap(heap);
+                if (fopAcM::HeapAdjustVerbose) {
+                    // Using the previous heap. This is normal. %08x
+                    OS_REPORT("さっきのヒープを採用します。これは正常です。%08x\n", adjustedHeap);
+                }
                 i_actor->heap = heap;
                 return true;
             }
 
-            if (heap00 != NULL) {
-                mDoExt_adjustSolidHeap(heap00);
-                i_actor->heap = heap00;
-                return true;
-            }
-
-            OSReport_Error("ばぐばぐです\n");  // "There's a big bug\n"
-            JUT_ASSERT(0, FALSE);
-            OSReport_Error("緊急回避措置\n");  // "Emergency action\n"
+            OSReport_Error("ばぐばぐです\n");  // It is extremely buggy.
+            JUT_ASSERT(1454, FALSE);
+            OSReport_Error("緊急回避措置\n");  // Emergency evasion measure.
             fopAcM::HeapAdjustEntry = false;
         }
     }
-    // "fopAcM_entrySolidHeap didn't work [%s]\n"
+    // fopAcM_entrySolidHeap failed. [%s]
     OSReport_Error("fopAcM_entrySolidHeap だめでした [%s]\n", procNameString);
     return false;
 }
@@ -529,12 +711,12 @@ bool fopAcM_entrySolidHeap(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback,
     if (i_size & 0x80000000) {
         fopAcM::HeapAdjustUnk = true;
     }
-
+#if DEBUG
     u8 var_r29 = fopAcM::HeapDummyCheck;
     if (i_size & 0x40000000) {
         fopAcM::HeapDummyCheck = true;
     };
-
+#endif
     u8 var_r30 = fopAcM::HeapAdjustEntry;
     if (i_size & 0x20000000) {
         fopAcM::HeapAdjustEntry = false;
@@ -544,7 +726,9 @@ bool fopAcM_entrySolidHeap(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback,
 
     u32 size = i_size & 0xFFFFFF;
     bool result = fopAcM_entrySolidHeap_(i_actor, i_heapCallback, size);
+#if DEBUG
     fopAcM::HeapDummyCheck = var_r29;
+#endif
     fopAcM::HeapAdjustUnk = var_r31;
     fopAcM::HeapAdjustEntry = var_r30;
     return result;
@@ -1112,7 +1296,8 @@ s32 fopAcM_orderMapToolEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_eventID, u16
 
 s32 fopAcM_orderMapToolAutoNextEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_eventID, u16 param_3,
                                      u16 i_flag, u16 param_5) {
-    u32 flag = i_flag | 0x100;
+    u16 flag = i_flag;
+    flag |= 0x100;
     return fopAcM_orderMapToolEvent(i_actor, param_1, i_eventID, param_3, flag, param_5);
 }
 
