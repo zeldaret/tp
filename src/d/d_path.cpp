@@ -63,7 +63,7 @@ dPath* dPath_GetNextRoomPath(dPath const* p_path, int room_no) {
     return &path->m_path[next_id];
 }
 
-u8 dPath_GetPolyRoomPathVec(cBgS_PolyInfo const& poly, cXyz* p_pathVec, int* param_2) {
+int dPath_GetPolyRoomPathVec(cBgS_PolyInfo const& poly, cXyz* p_pathVec, int* param_2) {
     int roomId = dComIfG_Bgsp().GetRoomId(poly);
     int roomPathId = dComIfG_Bgsp().GetRoomPathId(poly);
 
