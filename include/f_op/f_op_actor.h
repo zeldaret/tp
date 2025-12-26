@@ -278,6 +278,7 @@ public:
     fopAc_ac_c();
     ~fopAc_ac_c();
 
+    static u32 getStopStatus() { return stopStatus; }
     static void setStopStatus(u32 status) { stopStatus = status; }
 
     static u32 stopStatus;

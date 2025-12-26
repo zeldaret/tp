@@ -1133,7 +1133,10 @@ public:
     static void setProcID(u32 id) { mProcID = id; }
     static u32 getProcID() { return mProcID; }
     static void setStatusProcID(int i_roomNo, fpc_ProcID i_id) { mStatus[i_roomNo].mProcID = i_id; }
-    static int getStatusProcID(int i_roomNo) { return mStatus[i_roomNo].mProcID; }
+    static int getStatusProcID(int i_roomNo) {
+        JUT_ASSERT(2774, 0 <= i_roomNo && i_roomNo < 64);
+        return mStatus[i_roomNo].mProcID; 
+    }
     static void setRegionNo(int i_roomNo, u8 i_regionNo) { mStatus[i_roomNo].mRegionNo = i_regionNo; }
 
     u8 checkStatusFlag(int i_roomNo, u8 flag) const {

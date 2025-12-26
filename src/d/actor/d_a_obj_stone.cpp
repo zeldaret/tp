@@ -991,8 +991,7 @@ int daObjStone_c::draw() {
 
 int daObjStone_c::_delete() {
     mSound.deleteObject();
-    u16 setid = fopAcM_GetSetId(this);
-    fopAcM_offActor(this, setid);
+    fopAcM_offActor(this, fopAcM_GetSetId(this));
     effect_delete(true);
     dComIfG_resDelete(&mPhase, l_arcName[mStoneType]);
     return 1;

@@ -11,11 +11,13 @@
 #include "f_pc/f_pc_manager.h"
 
 static cPhs__Step fopScnRq_phase_ClearOverlap(scene_request_class* i_sceneReq) {
+    cPhs__Step rv;
     if (fopOvlpM_ClearOfReq() == 1) {
-        return cPhs_NEXT_e;
+        rv = cPhs_NEXT_e;
     } else {
-        return cPhs_INIT_e;
+        rv = cPhs_INIT_e;
     }
+    return rv;
 }
 
 static cPhs__Step fopScnRq_phase_Execute(scene_request_class* i_sceneReq) {
@@ -23,26 +25,31 @@ static cPhs__Step fopScnRq_phase_Execute(scene_request_class* i_sceneReq) {
 }
 
 static cPhs__Step fopScnRq_phase_IsDoingOverlap(scene_request_class* i_sceneReq) {
+    cPhs__Step rv;
     if (fopOvlpM_IsDoingReq() == 1) {
-        return cPhs_NEXT_e;
+        rv = cPhs_NEXT_e;
     } else {
-        return cPhs_INIT_e;
+        rv = cPhs_INIT_e;
     }
+    return rv;
 }
 
 static cPhs__Step fopScnRq_phase_IsDoneOverlap(scene_request_class* i_sceneReq) {
+    cPhs__Step rv;
     if (fopOvlpM_IsDone() == 1) {
-        return cPhs_NEXT_e;
+        rv = cPhs_NEXT_e;
     } else {
-        return cPhs_INIT_e;
+        rv = cPhs_INIT_e;
     }
+    return rv;
 }
 
 static BOOL l_fopScnRq_IsUsingOfOverlap;
 
 static cPhs__Step fopScnRq_phase_Done(scene_request_class* i_sceneReq) {
     if (i_sceneReq->create_request.parameters != 1) {
-        fopScnPause_Disable((scene_class*)fpcEx_SearchByID(i_sceneReq->create_request.creating_id));
+        scene_class* scene = (scene_class*)fpcM_SearchByID(i_sceneReq->create_request.creating_id);
+        fopScnPause_Disable(scene);
     }
 
     l_fopScnRq_IsUsingOfOverlap = FALSE;
@@ -55,6 +62,9 @@ static void fopScnRq_Execute(scene_request_class* i_sceneReq) {
     switch (phase_state) {
     case cPhs_NEXT_e:
         fopScnRq_Execute(i_sceneReq);
+        break;
+    default:
+        break;
     }
 }
 
@@ -77,9 +87,11 @@ static int fopScnRq_Cancel(scene_request_class* i_sceneReq) {
 static scene_request_class* fopScnRq_FadeRequest(s16 i_procname, u16 i_peektime) {
     overlap_request_class* req = NULL;
 
-    if (!l_fopScnRq_IsUsingOfOverlap && (req = fopOvlpM_Request(i_procname, i_peektime), req != NULL))
-    {
-        l_fopScnRq_IsUsingOfOverlap = TRUE;
+    if (!l_fopScnRq_IsUsingOfOverlap) {
+        req = fopOvlpM_Request(i_procname, i_peektime);
+        if (req != NULL) {
+            l_fopScnRq_IsUsingOfOverlap = TRUE;
+        }
     }
 
     return (scene_request_class*)req;
@@ -145,6 +157,6 @@ s32 fopScnRq_ReRequest(fpc_ProcID i_requestId, s16 i_procName, void* i_data) {
     return fpcNdRq_ReRequest(i_requestId, i_procName, i_data);
 }
 
-void fopScnRq_Handler() {
+int fopScnRq_Handler() {
     fpcNdRq_Handler();
 }

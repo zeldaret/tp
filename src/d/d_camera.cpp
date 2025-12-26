@@ -4391,7 +4391,7 @@ bool dCamera_c::lockonCamera(s32 param_0) {
         v.Val(lockon->field_0x34.V() + ang5 * 0.05f);
     } else {
         r = lockon->field_0x34.R();
-        r = r + ((fVar44a - r) * lockon->field_0x54 * fabsf(ang5.Cos()));
+        r = r + (fVar44a - r) * lockon->field_0x54 * fabsf(ang5.Cos());
         u.Val(lockon->field_0x34.U() + (ang4 - lockon->field_0x34.U()) * lockon->field_0x58);
         v.Val(lockon->field_0x34.V() + ang5 * lockon->field_0x58);
     }
@@ -4443,9 +4443,9 @@ bool dCamera_c::lockonCamera(s32 param_0) {
 
     bool bVar3 = false;
     f32 fVar31;
-    if (std::fabsf(fVar47) > 0.05f) {
+    if (fabsf(fVar47) > 0.05f) {
         cSAngle ang = globe2.U() + cSAngle(dCamMath::rationalBezierRatio(fVar47, 0.5f) * 7.5f);
-        fVar31 = std::fabsf(fVar47) - 0.05f;
+        fVar31 = fabsf(fVar47) - 0.05f;
         lockon->field_0x42 = ang;
         lockon->field_0x4c = 0.0f;
         bVar3 = true;
