@@ -689,8 +689,9 @@ void JASAramStream::channelStart() {
 
 void JASAramStream::channelStop(u16 i_directRelease) {
     for (int i = 0; i < mChannelNum; i++) {
-        if (mChannels[i] != NULL) {
-            mChannels[i]->release(i_directRelease);
+        JASChannel* channel = mChannels[i];
+        if (channel != NULL) {
+            channel->release(i_directRelease);
         }
     }
 }

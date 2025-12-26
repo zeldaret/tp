@@ -23,6 +23,7 @@ void JASDrumSet::newPercArray(u8 num, JKRHeap* heap) {
 }
 
 bool JASDrumSet::getParam(int key, int param_1, JASInstParam* param_2) const {
+    UNUSED(param_1);
     JUT_ASSERT(48, key >= 0);
     if (mPercArray == NULL) {
         return false;

@@ -15,6 +15,7 @@ JASSimpleWaveBank::~JASSimpleWaveBank() {
 void JASSimpleWaveBank::setWaveTableSize(u32 size, JKRHeap* heap) {
     delete[] mWaveTable;
     mWaveTable = new (heap, 0) TWaveHandle[size];
+    JUT_ASSERT(29, mWaveTable != 0);
     mWaveTableSize = size;
 }
 
