@@ -779,7 +779,7 @@ public:
     /* 0x04780 */ dAttention_c mAttention;
     /* 0x04C9C */ dVibration_c mVibration;
     /* 0x04D2C */ u8 field_0x4d2c[4];
-    #if PLATFORM_WII
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD
     /* 0x04D38 */ u8 unk_0x4d38[8];
     #endif
     /* 0x04D30 */ JKRArchive* mFieldMapArchive2;

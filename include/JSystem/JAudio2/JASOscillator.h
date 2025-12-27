@@ -64,10 +64,10 @@ struct JASOscillator {
 
     void setDirectRelease(u16 param_0) { mDirectRelease = param_0; }
     void stop() { _1C = 0; }
-	bool isValid() { return mData != NULL; }
-	bool isStop() { return _1C == 0; }
-	bool isRelease() { return _1C == 3 || _1C == 4; }
-	u32 getTarget() { return mData->mTarget; }
+	bool isValid() const { return mData != NULL; }
+	bool isStop() const { return _1C == 0; }
+	bool isRelease() const { return _1C == 3 || _1C == 4; }
+	u32 getTarget() const { return mData->mTarget; }
 
 	/* 0x00 */ const Data* mData;
 	/* 0x04 */ f32 _04;

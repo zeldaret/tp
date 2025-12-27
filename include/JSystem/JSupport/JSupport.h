@@ -10,11 +10,7 @@
 */
 template <typename T>
 T* JSUConvertOffsetToPtr(const void* ptr, uintptr_t offset) {
-    if (offset == 0) {
-        return NULL;
-    } else {
-        return (T*)((intptr_t)ptr + (intptr_t)offset);
-    }
+    return offset == 0 ? NULL : (T*)((intptr_t)ptr + (intptr_t)offset);
 }
 
 /**

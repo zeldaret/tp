@@ -207,7 +207,7 @@ void JAWWindow::TWindowText::drawSelf(f32, f32, Mtx* param_3) {
     MTXConcat(*param_3, mGlobalMtx, stack_48);
     GXLoadPosMtxImm(stack_48, 0);
     field_0xfc.setParentAlpha(mColorAlpha);
-    JUT_ASSERT(209, m_pParent != 0);
+    JUT_ASSERT(209, m_pParent != NULL);
     m_pParent->setMatrix(stack_48);
     m_pParent->onDraw(&field_0xfc);
 }

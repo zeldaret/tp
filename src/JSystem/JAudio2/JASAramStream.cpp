@@ -89,7 +89,7 @@ JASAramStream::JASAramStream() {
 }
 
 void JASAramStream::init(u32 param_0, u32 param_1, StreamCallback i_callback, void* i_callbackData) {
-    JUT_ASSERT(153, sReadBuffer != 0);
+    JUT_ASSERT(153, sReadBuffer != NULL);
     field_0x148 = param_0;
     field_0x14c = param_1;
     field_0x0c8 = 0.0f;
@@ -689,8 +689,9 @@ void JASAramStream::channelStart() {
 
 void JASAramStream::channelStop(u16 i_directRelease) {
     for (int i = 0; i < mChannelNum; i++) {
-        if (mChannels[i] != NULL) {
-            mChannels[i]->release(i_directRelease);
+        JASChannel* channel = mChannels[i];
+        if (channel != NULL) {
+            channel->release(i_directRelease);
         }
     }
 }

@@ -816,6 +816,9 @@ inline void fopAcM_effSmokeSet2(u32* param_0, u32* param_1, cXyz const* param_2,
     fopAcM_effSmokeSet1(param_0, param_1, param_2, param_3, param_4, param_5, 0);
 }
 
+void fopAcM_showAssert_f(const fopAc_ac_c* i_actor, const char* i_filename, int i_line,
+                                const char* i_msg, ...) ;
+
 #define fopAcM_assert(line, actor, COND, msg) \
     (COND) ? (void)0 : (fopAcM_showAssert_f(actor, __FILE__, line, msg));
 

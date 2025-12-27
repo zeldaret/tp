@@ -53,6 +53,7 @@ class JASChannel : public JASPoolAllocObject_MultiThreaded<JASChannel> {
 public:
     typedef void (*Callback)(u32, JASChannel*, JASDsp::TChannel*, void*);
     static const int BUSOUT_CPUCH = 6;
+    static const int OSC_NUM = 2;
 
     enum CallbackType {
         /* 0 */ CB_PLAY,
@@ -62,8 +63,8 @@ public:
     };
 
     enum Status {
-        /* 0 */ STATUS_INACTIVE,
-        /* 1 */ STATUS_ACTIVE,
+        /* 0 */ STATUS_STOP,
+        /* 1 */ STATUS_PLAY,
         /* 2 */ STATUS_RELEASE,
     };
 
@@ -129,7 +130,7 @@ public:
     void setKey(s32 param_0) { mKey = param_0; }
     void setVelocity(u32 param_0) { mVelocity = param_0; }
     void setSkipSamples(u32 param_0) { mSkipSamples = param_0; }
-    bool isDolbyMode() { return mMixConfig[0].whole == 0xffff; }
+    bool isDolbyMode() const { return mMixConfig[0].whole == 0xffff; }
 
     /* 0x00 */ int mStatus;
     /* 0x04 */ bool mPauseFlag;

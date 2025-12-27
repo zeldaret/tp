@@ -374,14 +374,14 @@ void TFactory::destroy(TObject* pObject) {
 }
 
 TParse::TParse(TControl* pControl) : pControl_(pControl) {
-    ASSERT(pControl_ != 0);
+    ASSERT(pControl_ != NULL);
 }
 
 TParse::~TParse() {}
 
 bool TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_out, u32 flags) {
-    ASSERT(ppData_inout != 0);
-    ASSERT(puBlock_out != 0);
+    ASSERT(ppData_inout != NULL);
+    ASSERT(puBlock_out != NULL);
 
     const void* pData = *ppData_inout;
     ASSERT(pData != NULL);
@@ -415,8 +415,8 @@ bool TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_out, u32 f
 }
 
 bool TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 flags) {
-    ASSERT(ppData_inout != 0);
-    ASSERT(puData_out != 0);
+    ASSERT(ppData_inout != NULL);
+    ASSERT(puData_out != NULL);
 
     const void* pData = *ppData_inout;
     ASSERT(pData != NULL);
@@ -425,7 +425,7 @@ bool TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 fla
     *puData_out = blk.get_size();
 
     TControl* pControl = getControl();
-    ASSERT(pControl != 0);
+    ASSERT(pControl != NULL);
 
     if (flags & 0x10) {
         if (pControl->getObject(blk.get_ID(), blk.get_IDSize()) != NULL)

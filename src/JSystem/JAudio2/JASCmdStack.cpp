@@ -18,7 +18,7 @@ bool JASPortCmd::addPortCmdOnce() {
 }
 
 bool JASPortCmd::setPortCmd(Command func, JASPortArgs* args) {
-	JUT_ASSERT(81, func != 0);
+	JUT_ASSERT(81, func != NULL);
 	if (getSupervisor()) {
 		return false;
 	}

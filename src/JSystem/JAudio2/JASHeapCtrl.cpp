@@ -132,8 +132,8 @@ bool JASHeap::free() {
     return true;
 }
 
-u32 JASHeap::getTotalFreeSize() {
-    JASMutexLock lock(&mMutex);
+u32 JASHeap::getTotalFreeSize() const {
+    JASMutexLock lock(const_cast<OSMutex*>(&mMutex));
     u8* r28 = mBase;
     u32 r29 = 0;
     for (JSUTreeIterator<JASHeap> it = mTree.getFirstChild(); it != mTree.getEndChild(); it++) {
@@ -145,8 +145,8 @@ u32 JASHeap::getTotalFreeSize() {
     return r29;
 }
 
-u32 JASHeap::getFreeSize() {
-    JASMutexLock lock(&mMutex);
+u32 JASHeap::getFreeSize() const {
+    JASMutexLock lock(const_cast<OSMutex*>(&mMutex));
     u8* r27 = mBase;
     u32 r29 = 0;
     u32 r28;
@@ -188,6 +188,7 @@ void JASHeap::insertChild(JASHeap* heap, JASHeap* next, void* param_2, u32 param
 }
 
 JASHeap* JASHeap::getTailHeap() {
+    int r30 = 0;
     JSUTreeIterator<JASHeap> it;
     JASMutexLock lock(&mMutex);
     if (!field_0x40) {
@@ -202,15 +203,25 @@ JASHeap* JASHeap::getTailHeap() {
 }
 
 u32 JASHeap::getTailOffset() {
+    u32 offset = 0;
     JASMutexLock lock(&mMutex);
     JASHeap* heap = getTailHeap();
-    u32 offset = !heap ? mSize : heap->mBase - mBase;
+    if (heap == NULL) {
+        offset = mSize;
+    } else {
+        offset = heap->mBase - mBase;
+    }
     return offset;
 }
 
 u32 JASHeap::getCurOffset() {
+    u32 offset = 0;
     JASMutexLock lock(&mMutex);
-    u32 offset = !field_0x40 ? 0 : field_0x40->mBase + field_0x40->mSize - mBase;
+    if (field_0x40 == NULL) {
+        offset = 0;
+    } else {
+        offset = field_0x40->mBase + field_0x40->mSize - mBase;
+    }
     return offset;
 }
 
@@ -251,10 +262,10 @@ void JASGenericMemPool::newMemPool(u32 n, int param_1) {
 }
 
 void* JASGenericMemPool::alloc(u32 param_0) {
-    void* chunk = field_0x0;
-    if (chunk == NULL) {
+    if (field_0x0 == NULL) {
         return NULL;
     }
+    void* chunk = field_0x0;
     field_0x0 = *(void**)chunk;
     freeMemCount--;
     if (usedMemCount < totalMemCount - freeMemCount) {
@@ -264,11 +275,13 @@ void* JASGenericMemPool::alloc(u32 param_0) {
 }
 
 void JASGenericMemPool::free(void* ptr, u32 param_1) {
-    if (ptr != NULL) {
-        *(void**)ptr = field_0x0;
-        field_0x0 = ptr;
-        freeMemCount++;
+    if (!ptr) {
+        return;
     }
+    void* chunk = ptr;
+    *(void**)chunk = field_0x0;
+    field_0x0 = chunk;
+    freeMemCount++;
 }
 
 u32 JASKernel::sAramBase;

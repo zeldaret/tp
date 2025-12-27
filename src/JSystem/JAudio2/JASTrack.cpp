@@ -190,7 +190,7 @@ void JASTrack::stopSeq() {
 }
 
 void JASTrack::start() {
-    JUT_ASSERT(289, mParent != 0);
+    JUT_ASSERT(289, mParent != NULL);
     JUT_ASSERT(290, mStatus == STATUS_FREE);
     mStatus = STATUS_RUN;
 }
@@ -336,18 +336,14 @@ int JASTrack::noteOn(u32 noteid, u32 param_1, u32 param_2) {
 }
 
 int JASTrack::gateOn(u32 param_0, u32 i_velocity, f32 i_time, u32 i_flags) {
+    bool result = true;
     param_0 += getTransposeTotal();
     if (mGateRate != 100) {
         i_time *= mGateRate / 100.0f;
     }
     u32 uvar2 = seqTimeToDspTime(i_time);
     u32 update_timer = (i_flags & 6) ? 0 : uvar2;
-    int uvar7;
-    if (i_flags & 1) {
-        uvar7 = field_0x22b;
-    } else {
-        uvar7 = param_0;
-    }
+    int uvar7 = i_flags & 1 ? field_0x22b : param_0;
     for (u32 i = 0; i < mChannelMgrCount; i++) {
         TChannelMgr* channel_mgr = mChannelMgrs[i];
         if (channel_mgr != NULL) {
@@ -365,14 +361,17 @@ int JASTrack::gateOn(u32 param_0, u32 i_velocity, f32 i_time, u32 i_flags) {
                     channel->setUpdateTimer(update_timer);
                 }
             }
-            if ((i_flags & 1) && channel_mgr->mChannels[0] != NULL) {
-                channel_mgr->mChannels[0]->setKeySweepTarget(param_0 - uvar7, uvar2);
+            if (i_flags & 1) {
+                JASChannel* channel = channel_mgr->mChannels[0];
+                if (channel != NULL) {
+                    channel->setKeySweepTarget(param_0 - uvar7, uvar2);
+                }
             }
         }
     }
-    mFlags.flag4 = (i_flags >> 1) & 1;
+    mFlags.flag4 = (i_flags & 2) ? true : false;
     field_0x22b = param_0;
-    return 1;
+    return result;
 }
 
 int JASTrack::noteOff(u32 noteid, u16 param_1) {
