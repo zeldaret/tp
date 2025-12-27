@@ -95,7 +95,7 @@ JASBasicBank* JASBNKParser::Ver1::createBasicBank(void const* stream, JKRHeap* h
             switch (*data++) {
             case 'Inst': {
                 JASBasicInst* instp = new (heap, 0) JASBasicInst();
-                JUT_ASSERT(187, instp != 0);
+                JUT_ASSERT(187, instp != NULL);
                 u32 count = *data++;
                 for (int j = 0; j < count; j++) {
                     u32 index = *data++;
@@ -127,7 +127,7 @@ JASBasicBank* JASBNKParser::Ver1::createBasicBank(void const* stream, JKRHeap* h
 
             case 'Perc': {
                 JASDrumSet* drump = new (heap, 0) JASDrumSet();
-                JUT_ASSERT(264, drump != 0);
+                JUT_ASSERT(264, drump != NULL);
                 u32 pmap_count = data[1];
                 JUT_ASSERT(268, pmap_count <= 128);
                 u32 count = *data++;

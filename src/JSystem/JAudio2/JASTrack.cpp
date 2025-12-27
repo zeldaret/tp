@@ -190,7 +190,7 @@ void JASTrack::stopSeq() {
 }
 
 void JASTrack::start() {
-    JUT_ASSERT(289, mParent != 0);
+    JUT_ASSERT(289, mParent != NULL);
     JUT_ASSERT(290, mStatus == STATUS_FREE);
     mStatus = STATUS_RUN;
 }
