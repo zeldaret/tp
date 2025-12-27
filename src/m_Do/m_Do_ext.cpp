@@ -831,17 +831,42 @@ u32 mDoExt_adjustSolidHeap(JKRSolidHeap* i_heap) {
         return -1;
     }
 
+    u32 estimatedSize = i_heap->getHeapSize();
     s32 result = i_heap->adjustSize();
     if (result < 0) {
         // "adjustSize failure %08x\n"
         OSReport_Error("adjustSize失敗 %08x\n", i_heap);
         return -1;
     }
+    u32 actualSize = i_heap->getHeapSize();
+
+    #if DEBUG
+    if (lbl_8074C3B9[0]) {
+        // "\x1B[33mSolid heap estimate: %08x actual: %08x\n\x1B[m"
+        OS_REPORT("\x1B[33mソリッドヒープの見積もり %08x 実際 %08x\n\x1B[m", estimatedSize, actualSize);
+
+        if (estimatedSize > 0x400 && estimatedSize > (actualSize + 0x400)) {
+            // "\x1B[33mThe estimate is %x bytes too large (%5.2f times). This could lead to degraded memory efficiency.\n\x1B[m"
+            OS_REPORT("\x1B[33m見積もりが %x バイト大きい(%5.2f倍)です。メモリ効率悪化が懸念されます。\n\x1B[m", estimatedSize - actualSize, (f32)estimatedSize / (f32)actualSize);
+        } else if (estimatedSize >= (actualSize + 0x20)) {
+            // "\x1B[36mThe estimate is %x bytes too large. That's pretty good.\n\x1B[m"
+            OS_REPORT("\x1B[36m見積もりが %x バイト大きいです。だいぶいい感じです。\n\x1B[m", estimatedSize - actualSize);
+        } else {
+            // "\x1B[32mThe estimate is spot on! Perfect.\n\x1B[m"
+            OS_REPORT("\x1B[32m見積もりが、ジャストミート！完璧です。\n\x1B[m");
+        }
+    }
+
+    if (lbl_8074C3B9[0]) {
+        OS_REPORT("JKRSolidHeap::adjustSize %08x (%08x bytes)\n", (u32)i_heap, result);
+    }
+    #endif
 
     // this probably indicates that 0x80 is some constant, maybe from a sizeof(JKRSolidHeap)
     // with alignment?
-    if (result >= (u32)0x80) {
-        result -= 0x80;
+    u32 r25 = 0x80;
+    if (result >= r25) {
+        return result - r25;
     }
 
     return result;

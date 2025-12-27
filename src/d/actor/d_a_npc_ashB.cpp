@@ -943,7 +943,7 @@ bool daNpcAshB_c::demo(void* param_0) {
             s32 staff_id = evtmgr.getMyStaffId(l_myName, NULL, 0);
             if (staff_id != -1) {
                 mStaffID = staff_id;
-                JUT_ASSERT(1523, mEvtSeqList[mOrderEvtNo] != 0);
+                JUT_ASSERT(1523, mEvtSeqList[mOrderEvtNo] != NULL);
                 if ((this->*(mEvtSeqList[mOrderEvtNo]))(staff_id)) {
                     evtmgr.cutEnd(staff_id);
                 }

@@ -377,7 +377,7 @@ if config.version != "ShieldD":
 
 
 if config.version == "ShieldD":
-    cflags_framework.extend(["-O0", "-inline off", "-RTTI on", "-DDEBUG=1", "-DWIDESCREEN_SUPPORT=1"])
+    cflags_framework.extend(["-O0,p", "-inline off", "-RTTI on", "-DDEBUG=1", "-DWIDESCREEN_SUPPORT=1"])
 elif config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield"]:
     cflags_framework.extend(["-ipa file", "-RTTI on", "-DWIDESCREEN_SUPPORT=1"])
 
@@ -385,9 +385,12 @@ if config.version in ["RZDE01_00", "ShieldD"] or args.debug or args.reghio:
     cflags_framework.extend(["-DENABLE_REGHIO=1"])
 
 if config.version != "ShieldD":
-    if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield"]:
+    if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
         # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
         cflags_framework.extend(["-inline noauto", "-O4,s", "-sym on"])
+    elif config.version in ["Shield"]:
+        # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
+        cflags_framework.extend(["-inline noauto", "-O4,p", "-sym on"])
     else:
         cflags_framework.extend(["-inline noauto", "-O3,s", "-sym on", "-str reuse,pool,readonly"])
 
@@ -2101,7 +2104,7 @@ config.libs = [
         ],
     },
     Rel("f_pc_profile_lst", [Object(MatchingFor(ALL_GCN, ALL_SHIELD), "f_pc/f_pc_profile_lst.cpp")]),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_andsw"),
+    ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_andsw"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_bg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_bg_obj"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_dmidna"),
@@ -2139,7 +2142,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mist"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_msg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_push"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_telop"),
+    ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_telop"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tbox"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tbox2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_vrbox"),
@@ -2227,7 +2230,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_hinit"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_hjump"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_hstop"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_lv2prchk"),
+    ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_lv2prchk"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_magne"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mhint"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mstop"),
@@ -2353,7 +2356,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_yh"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_yk"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_ym"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_e_ym_tag"),
+    ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_e_ym_tag"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_ymb"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_yr"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_e_zh"),
@@ -2435,12 +2438,12 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_lf"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_lud"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_midp"),
-    ActorRel(MatchingFor(ALL_GCN, "ShieldD"), "d_a_npc_mk"),
+    ActorRel(MatchingFor(ALL_GCN, ALL_SHIELD), "d_a_npc_mk"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_moi"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_moir"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_myna2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_ne"),
-    ActorRel(MatchingFor(ALL_GCN, "ShieldD"), "d_a_npc_p2"),
+    ActorRel(MatchingFor(ALL_GCN, ALL_SHIELD), "d_a_npc_p2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_pachi_besu"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_pachi_maro"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_npc_pachi_taro"),
@@ -2809,7 +2812,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_startAndGoal"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_swBall"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_swLBall"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_swTime"),
+    ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_swTime"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_Lv6Gate"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_Lv7Gate"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_Lv8Gate"),
@@ -2825,7 +2828,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_guard"),
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_instruction"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_kago_fall"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_lightball"),
+    ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_lightball"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_lv5soup"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mmsg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mwait"),
@@ -2838,7 +2841,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_river_back"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_rmbit_sw"),
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_schedule"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_setBall"),
+    ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_setBall"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_setrestart"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_shop_camera"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_shop_item"),
@@ -2854,7 +2857,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_wljump"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_yami"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_talk"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tboxSw"),
+    ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tboxSw"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_title"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_warp_bug"),
 ]

@@ -117,6 +117,7 @@ int daTitle_c::create() {
     field_0x5f9 = 0;
 
     m2DHeap = JKRExpHeap::create(0x8000, mDoExt_getGameHeap(), false);
+    JUT_ASSERT(345, m2DHeap != NULL);
     loadWait_init();
     g_daTitHIO.field_0x4 = -1;
 

@@ -89,7 +89,7 @@ JASAramStream::JASAramStream() {
 }
 
 void JASAramStream::init(u32 param_0, u32 param_1, StreamCallback i_callback, void* i_callbackData) {
-    JUT_ASSERT(153, sReadBuffer != 0);
+    JUT_ASSERT(153, sReadBuffer != NULL);
     field_0x148 = param_0;
     field_0x14c = param_1;
     field_0x0c8 = 0.0f;

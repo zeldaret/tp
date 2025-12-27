@@ -262,7 +262,7 @@ f64 TFunctionValue_composite::composite_raw(TVector_pointer<TFunctionValue*> con
     }
     TFunctionValue** p = (TFunctionValue**)param_1.begin();
     std::advance(p, index);
-    JUT_ASSERT(0x247, p!=0);
+    JUT_ASSERT(0x247, p!=NULL);
     TFunctionValue* piVar4 = *p;
     return piVar4->getValue(param_3);
 }
@@ -348,7 +348,7 @@ f64 TFunctionValue_composite::composite_add(TVector_pointer<TFunctionValue*> con
     TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
     while (aTStack_18) {
         TFunctionValue* const* p = *aTStack_18;
-        JUT_ASSERT(0x2a1, p!=0);
+        JUT_ASSERT(0x2a1, p!=NULL);
         TFunctionValue* piVar3 = *p;
         dVar4 += piVar3->getValue(param_3);
     }
@@ -368,7 +368,7 @@ f64 TFunctionValue_composite::composite_subtract(TVector_pointer<TFunctionValue*
     f64 dVar4 = pFront->getValue(param_3);
     while (aTStack_18) {
         TFunctionValue* const* p = *aTStack_18;
-        JUT_ASSERT(0x2b5, p!=0);
+        JUT_ASSERT(0x2b5, p!=NULL);
         TFunctionValue* piVar3 = *p;
         dVar4 -= piVar3->getValue(param_3);
     }
@@ -383,7 +383,7 @@ f64 TFunctionValue_composite::composite_multiply(TVector_pointer<TFunctionValue*
     TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
     while (aTStack_18) {
         TFunctionValue* const* p = *aTStack_18;
-        JUT_ASSERT(0x2c5, p!=0);
+        JUT_ASSERT(0x2c5, p!=NULL);
         TFunctionValue* piVar3 = *p;
         dVar4 *= piVar3->getValue(param_3);
     }
@@ -403,7 +403,7 @@ f64 TFunctionValue_composite::composite_divide(TVector_pointer<TFunctionValue*> 
     TValue fData = pFront->getValue(param_3);
     while (aTStack_18) {
         TFunctionValue* const* p = *aTStack_18;
-        JUT_ASSERT(0x2d9, p!=0);
+        JUT_ASSERT(0x2d9, p!=NULL);
         TFunctionValue* piVar3 = *p;
         fData /= piVar3->getValue(param_3);
         JGADGET_ASSERTWARN(0x2db, fData!=TValue(0));
