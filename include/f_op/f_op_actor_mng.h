@@ -845,6 +845,8 @@ void fopAcM_showAssert_f(const fopAc_ac_c*, const char*, int, const char*, ...);
 
 BOOL fopAcM_getNameString(const fopAc_ac_c*, char*);
 
+inline void fopAcM_SetStatusMap(fopAc_ac_c*, u32) {}
+
 class fopAcM_lc_c {
 public:
     fopAcM_lc_c() { mLineCheck.ClrSttsRoofOff(); }
