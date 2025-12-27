@@ -3749,6 +3749,10 @@ inline fopAc_ac_c* dComIfGp_event_getDoorPartner() {
     return g_dComIfG_gameInfo.play.getEvent()->getPtD();
 }
 
+inline void dComIfGp_event_setDoorPartner(void* i_partner) {
+    g_dComIfG_gameInfo.play.getEvent()->setPtD(i_partner);
+}
+
 inline int dComIfGp_evmng_getMyStaffId(const char* i_staffname, fopAc_ac_c* i_actor, int i_tagId) {
     return dComIfGp_getPEvtManager()->getMyStaffId(i_staffname, i_actor, i_tagId);
 }
