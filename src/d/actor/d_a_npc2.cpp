@@ -10,10 +10,12 @@ static s16 daBaseNpc_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1);
 dCcD_SrcCyl daBaseNpc_c::mCcDCyl = {
     daBaseNpc_c::mCcDObj,
     {
+        {
             {0.0f, 0.0f, 0.0f},  // mCenter
             0.0f,  // mRadius
             0.0f  // mHeight
         }  // mCyl
+    }
 };
 
 dCcD_SrcSph daBaseNpc_c::mCcDSph = {

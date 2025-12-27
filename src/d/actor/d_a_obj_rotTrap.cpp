@@ -28,7 +28,9 @@ dCcD_SrcGObjInf const daRotTrap_c::mCcDObjInfo = {
 
 dCcD_SrcCyl daRotTrap_c::mCcDCyl = {
     mCcDObjInfo,
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    }
 };
 
 static Vec atPos[] = {

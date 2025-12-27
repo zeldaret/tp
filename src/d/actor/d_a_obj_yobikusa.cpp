@@ -212,10 +212,12 @@ const static dCcD_SrcCyl ccCylSrc = {
         {0x2},                                                // mGObjCo
     },                                                        // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        30.0f,               // mRadius
-        80.0f                // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            30.0f,               // mRadius
+            80.0f                // mHeight
+        }                        // mCyl
+    }
 };
 
 void daObjYobikusa_c::initCcCylinder() {

@@ -28,10 +28,12 @@ const static dCcD_SrcCyl l_cyl_src = {
         {0x0},                                              // mGObjCo
     },                                                      // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        40.0f,               // mRadius
-        260.0f               // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            40.0f,               // mRadius
+            260.0f               // mHeight
+        }                        // mCyl
+    }
 };
 
 void daObjChest_c::setBaseMtx() {

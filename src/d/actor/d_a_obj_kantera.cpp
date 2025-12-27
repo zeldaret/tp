@@ -23,10 +23,12 @@ const static dCcD_SrcCyl l_cyl_src = {
         {0x0},                                               // mGObjCo
     },                                                       // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        20.0f,               // mRadius
-        40.0f                // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            20.0f,               // mRadius
+            40.0f                // mHeight
+        }                        // mCyl
+    }                            // mCylAttr
 };
 
 static f32 Reflect(cXyz* i_xyz, cBgS_PolyInfo const& param_2, f32 param_3) {

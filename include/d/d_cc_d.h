@@ -103,7 +103,7 @@ struct dCcD_SrcTri {
 
 struct dCcD_SrcCyl {
     /* 0x00 */ dCcD_SrcGObjInf mObjInf;
-    /* 0x30 */ cM3dGCylS mCyl;
+    /* 0x30 */ cCcD_SrcCylAttr mCylAttr;
 };  // Size: 0x44
 
 struct dCcD_SrcCps {
@@ -171,12 +171,13 @@ public:
     void SetMtrl(u8 mtrl) { mMtrl = mtrl; }
     void SetAtSpl(dCcG_At_Spl spl) { mSpl = spl; }
     u8 GetSe() { return mSe; }
-    u8 GetSpl() { return mSpl; }
+    dCcG_At_Spl GetSpl() { return (dCcG_At_Spl)mSpl; }
     u8 GetMtrl() { return mMtrl; }
     u8 GetHitMark() { return mHitMark; }
     void SetRVec(cXyz& vec) { mRVec = vec; }
     void SetHitPos(cXyz& pos) { mHitPos = pos; }
     cXyz* GetHitPosP() { return &mHitPos; }
+    void ClrHit() { dCcD_GAtTgCoCommonBase::ClrActorInfo(); }
 
     // private:
     /* 0x1C */ u8 mSe;
@@ -212,6 +213,7 @@ public:
     void SetHitPos(cXyz& pos) { mHitPos = pos; }
     cXyz* GetHitPosP() { return &mHitPos; }
     u8 GetSe() { return mSe; }
+    void ClrHit() { dCcD_GAtTgCoCommonBase::ClrActorInfo(); }
 
 private:
     /* 0x1C */ u8 mSe;
@@ -231,6 +233,7 @@ class dCcD_GObjCo : public dCcD_GAtTgCoCommonBase {
 public:
     virtual ~dCcD_GObjCo() {}
     void Set(dCcD_SrcGObjCo const& pSrc) { dCcD_GAtTgCoCommonBase::Set(pSrc.mBase); }
+    void ClrHit() { dCcD_GAtTgCoCommonBase::ClrActorInfo(); }
 };  // Size = 0x1C ?
 
 class dCcD_GStts : public cCcD_GStts {
@@ -448,6 +451,9 @@ public:
     void CalcTgVec();
     virtual ~dCcD_Cps() {}
     dCcD_Cps() {}
+    #if DEBUG
+    virtual void Draw(const GXColor& color);
+    #endif
 };  // Size = 0x144
 
 // Triangle
@@ -457,6 +463,9 @@ public:
     cCcD_ShapeAttr* GetShapeAttr();
     virtual ~dCcD_Tri() {}
     dCcD_Tri() {}
+    #if DEBUG
+    virtual void Draw(const GXColor& color);
+    #endif
 };
 
 // Cylinder
@@ -469,6 +478,9 @@ public:
     void MoveCTg(cXyz&);
     virtual ~dCcD_Cyl() {}
     dCcD_Cyl() {}
+    #if DEBUG
+    virtual void Draw(const GXColor& color);
+    #endif
 };  // Size = 0x13C
 
 // Sphere
@@ -480,6 +492,9 @@ public:
     void MoveCAt(cXyz&);
     virtual cCcD_ShapeAttr* GetShapeAttr();
     virtual ~dCcD_Sph() {}
+    #if DEBUG
+    virtual void Draw(const GXColor& color);
+    #endif
 };  // Size = 0x138
 
 dCcD_GObjInf* dCcD_GetGObjInf(cCcD_Obj* param_0);

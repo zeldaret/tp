@@ -1808,10 +1808,12 @@ static int daE_RDB_Create(fopAc_ac_c* actor) {
             {0x0},                                       // mGObjCo
         },                                               // mObjInf
         {
-            {0.0f, 0.0f, 0.0f},  // mCenter
-            100.0f,              // mRadius
-            200.0f               // mHeight
-        }  // mCyl
+            {
+                {0.0f, 0.0f, 0.0f},  // mCenter
+                100.0f,              // mRadius
+                200.0f               // mHeight
+            }  // mCyl
+        }
     };
 
     e_rdb_class* i_this = (e_rdb_class*)actor;

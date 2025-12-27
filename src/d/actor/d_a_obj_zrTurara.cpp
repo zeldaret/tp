@@ -32,7 +32,9 @@ dCcD_SrcGObjInf const daZrTurara_c::mCcDObjInfo = {
 
 dCcD_SrcCyl daZrTurara_c::mCcDCyl = {
     mCcDObjInfo,
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    }
 };
 
 void daZrTurara_c::setBaseMtx() {

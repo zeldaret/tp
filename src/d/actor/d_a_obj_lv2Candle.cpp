@@ -50,7 +50,9 @@ dCcD_SrcGObjInf const daLv2Candle_c::mCcDObjInfo = {
 
 dCcD_SrcCyl daLv2Candle_c::mCcDCyl = {
     daLv2Candle_c::mCcDObjInfo,
-    { {0.0f, 0.0f, 0.0f}, 0, 0}
+    {
+        { {0.0f, 0.0f, 0.0f}, 0, 0}
+    }
 };
 
 static char* l_resNameIdx[3] = {

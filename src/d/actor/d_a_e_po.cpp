@@ -2954,10 +2954,12 @@ static int daE_PO_Create(fopAc_ac_c* i_act_this) {
                 {0x0},                                             // mGObjCo
             },                                                     // mObjInf
             {
-                {0.0f, 0.0f, 0.0f},  // mCenter
-                50.0f,               // mRadius
-                300.0f               // mHeight
-            }  // mCyl
+                {
+                    {0.0f, 0.0f, 0.0f},  // mCenter
+                    50.0f,               // mRadius
+                    300.0f               // mHeight
+                }  // mCyl
+            }
         };
 
         i_this->mCyl.Set(cc_cyl_src);

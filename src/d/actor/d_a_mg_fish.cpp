@@ -3767,10 +3767,12 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
             { 0 }, // mGObjCo
         }, // mObjInf
         {
-            { 0.0f, 0.0f, 0.0f }, // mCenter
-            35.0f, // mRadius
-            35.0f // mHeight
-        } // mCyl
+            {
+                { 0.0f, 0.0f, 0.0f }, // mCenter
+                35.0f, // mRadius
+                35.0f // mHeight
+            } // mCyl
+        }
     };
     static f32 fish_max[11] = {
         0.828f,

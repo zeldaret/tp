@@ -35,7 +35,16 @@ const dCcD_SrcGObjInf daLv6SwGate_c::mCcDObjInfo = {
     {0, {{0, 0, 0}, {0x400, 0x11}, {0x79}}}, {1, 0, 0, 0, 0}, {0xA, 0, 0, 0, 0}, {0}
 };
 
-dCcD_SrcCyl daLv6SwGate_c::mCcDCyl = {mCcDObjInfo};
+dCcD_SrcCyl daLv6SwGate_c::mCcDCyl = {
+    mCcDObjInfo,
+    {
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }  // mCylAttr
+};
 
 static cull_box l_cull_box = {-1200.0f, -300.0f, -100.0f, 1200.0f, 300.0f, 100.0f};
 

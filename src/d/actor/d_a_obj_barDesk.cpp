@@ -21,7 +21,9 @@ dCcD_SrcGObjInf const daBarDesk_c::mCcDObjInfo = {
 
 dCcD_SrcCyl daBarDesk_c::mCcDCyl = {
     mCcDObjInfo,
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    }
 };
 
 daBarDesk_HIO_c::daBarDesk_HIO_c() : field_0x4(10), field_0x5(3) {

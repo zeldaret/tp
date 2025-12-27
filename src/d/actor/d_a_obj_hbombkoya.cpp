@@ -52,10 +52,12 @@ static dCcD_SrcCyl l_cc_cyl_src = {
         {0x0},                                                // mGObjCo
     },                                                        // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        1000.0f,             // mRadius
-        1000.0f              // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            1000.0f,             // mRadius
+            1000.0f              // mHeight
+        }                        // mCyl
+    }                            // mCylAttr
 };
 
 int daObjHBombkoya_c::Create() {

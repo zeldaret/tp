@@ -34,10 +34,12 @@ static dCcD_SrcGObjInf const l_ccDObjData =
 static dCcD_SrcCyl l_ccDCyl = {
     l_ccDObjData, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        0.0f, // mRadius
-        0.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            0.0f, // mRadius
+            0.0f // mHeight
+        } // mCyl
+    }
 };
 
 static dCcD_SrcSph l_ccDSph = {

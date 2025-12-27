@@ -428,10 +428,12 @@ const dCcD_SrcCyl daObjMovebox::Act_c::M_cyl_src = {
         {0},                                      // mGObjCo
     },                                            // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        75.0f,               // mRadius
-        150.0f,              // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            75.0f,               // mRadius
+            150.0f,              // mHeight
+        }  // mCyl
+    }
 };
 
 // __declspec(section ".rodata")

@@ -120,10 +120,12 @@ static dCcD_SrcCyl l_cyl_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        100.0f, // mRadius
-        250.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            100.0f, // mRadius
+            250.0f // mHeight
+        } // mCyl
+    }
 };
 
 int daObjLv7Brg_c::Create() {

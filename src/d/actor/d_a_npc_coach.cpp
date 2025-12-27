@@ -430,7 +430,9 @@ void daNpcCoach_c::initCollision() {
             0,
         },
         {
-            0.0f, 0.0f
+            {
+                0.0f, 0.0f
+            }
         }
     };
 

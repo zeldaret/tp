@@ -3095,10 +3095,12 @@ static cPhs__Step daE_ST_Create(fopAc_ac_c* a_this) {
                 {0x0}, // mGObjCo
             }, // mObjInf
             {
-                {0.0f, 0.0f, 0.0f}, // mCenter
-                30.0f, // mRadius
-                2000.0f // mHeight
-            } // mLineCyl
+                {
+                    {0.0f, 0.0f, 0.0f}, // mCenter
+                    30.0f, // mRadius
+                    2000.0f // mHeight
+                } // mLineCyl
+            }
         };
 
         static dCcD_SrcSph def_sph_src = {

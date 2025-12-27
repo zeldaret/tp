@@ -196,10 +196,12 @@ void daB_GG_c::initCc() {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            130.0f, // mRadius
-            200.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                130.0f, // mRadius
+                200.0f // mHeight
+            } // mCyl
+        } // mCylAttr
     };
 
     const static dCcD_SrcCyl ccHookSrc = {
@@ -210,10 +212,12 @@ void daB_GG_c::initCc() {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            130.0f, // mRadius
-            200.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                130.0f, // mRadius
+                200.0f // mHeight
+            } // mCyl
+        } // mCylAttr
     };
 
     const static dCcD_SrcSph ccShieldSphSrc = {

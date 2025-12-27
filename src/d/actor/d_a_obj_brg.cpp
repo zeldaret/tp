@@ -1429,10 +1429,12 @@ static void CreateInit(fopAc_ac_c* i_this) {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            5.0f, // mRadius
-            1000.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                5.0f, // mRadius
+                1000.0f // mHeight
+            } // mCyl
+        } // mCylAttr
     };
 
     static dCcD_SrcCyl wire_cyl_src = {
@@ -1443,10 +1445,12 @@ static void CreateInit(fopAc_ac_c* i_this) {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            5.0f, // mRadius
-            1000.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                5.0f, // mRadius
+                1000.0f // mHeight
+            } // mCyl
+        } // mCylAttr
     };
 
     br_s* part = a_this->mBr;

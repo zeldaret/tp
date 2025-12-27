@@ -4875,10 +4875,12 @@ static int daB_GND_Create(fopAc_ac_c* a_this) {
                 {0x0}, // mGObjCo
             }, // mObjInf
             {
-                {0.0f, 0.0f, 0.0f}, // mCenter
-                100.0f, // mRadius
-                200.0f // mHeight
-            } // mCyl
+                {
+                    {0.0f, 0.0f, 0.0f}, // mCenter
+                    100.0f, // mRadius
+                    200.0f // mHeight
+                } // mCyl
+            }
         };
 
         for (int i = 0; i < 2; i++) {

@@ -132,10 +132,12 @@ static dCcD_SrcCyl cc_ds_backbone_src = {
         {0},                                      // mGObjCo
     },                                            // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        30.0f,               // mRadius
-        130.0f,              // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            30.0f,               // mRadius
+            130.0f,              // mHeight
+        }                        // mCyl
+    }                            // mCylAttr
 };
 
 static dCcD_SrcCyl cc_ds_hand_at_cyl_src = {
@@ -147,10 +149,12 @@ static dCcD_SrcCyl cc_ds_hand_at_cyl_src = {
         {0},                                             // mGObjCo
     },                                                   // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        30.0f,               // mRadius
-        130.0f,              // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            30.0f,               // mRadius
+            130.0f,              // mHeight
+        }                        // mCyl
+    }                            // mCylAttr
 };
 
 static dCcD_SrcSph cc_ds_breath_at_src = {

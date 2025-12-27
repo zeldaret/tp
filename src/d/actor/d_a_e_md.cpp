@@ -33,10 +33,12 @@ void daE_MD_c::initCcCylinder() {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            60.0f, // mRadius
-            350.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                60.0f, // mRadius
+                350.0f // mHeight
+            } // mCyl
+        }
     };
 
     mCcStts.Init(200, 0xFF, this);

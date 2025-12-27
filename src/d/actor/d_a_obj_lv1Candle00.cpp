@@ -25,7 +25,9 @@ dCcD_SrcGObjInf const daLv1Cdl00_c::mCcDObjInfo = {
 
 dCcD_SrcCyl daLv1Cdl00_c::mCcDCyl = {
     daLv1Cdl00_c::mCcDObjInfo,
-    { {0.0f, 0.0f, 0.0f}, 0, 0}
+    {
+        { {0.0f, 0.0f, 0.0f}, 0, 0}
+    }
 };
 
 daLv1Cdl00_HIO_c::daLv1Cdl00_HIO_c() :

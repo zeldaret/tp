@@ -25,10 +25,12 @@ void daObjHHASHI_c::initCcCylinder() {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            110.0f, // mRadius
-            158.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                110.0f, // mRadius
+                158.0f // mHeight
+            } // mCyl
+        }
     };
 
     mStts.Init(0xff, 0xff, this);

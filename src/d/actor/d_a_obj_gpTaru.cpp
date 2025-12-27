@@ -62,10 +62,12 @@ int daGpTaru_c::CreateHeap() {
 dCcD_SrcCyl daGpTaru_c::mCcDCyl = {
     daGpTaru_c::mCcDObjInfo,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }  // mCylAttr
 };
 
 const dCcD_SrcGObjInf daGpTaru_c::mCcDObjInfo = {

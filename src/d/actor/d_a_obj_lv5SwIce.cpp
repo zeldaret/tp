@@ -80,10 +80,12 @@ const dCcD_SrcGObjInf daLv5SwIce_c::mCcDObjInfo = {
 dCcD_SrcCyl daLv5SwIce_c::mCcDCyl = {
     daLv5SwIce_c::mCcDObjInfo,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }
 };
 
 void daLv5SwIce_c::procMain() {

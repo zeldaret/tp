@@ -24,10 +24,12 @@ static daFireWood_HIO_c l_HIO;
 dCcD_SrcCyl daFireWood_c::mCcDCyl = {
     daFireWood_c::mCcDObjInfo,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }
 };
 
 const dCcD_SrcGObjInf daFireWood_c::mCcDObjInfo = {

@@ -60,10 +60,12 @@ const dCcD_SrcGObjInf daIceWall_c::mCcDObjInfo = {
 dCcD_SrcCyl daIceWall_c::mCcDCyl = {
     daIceWall_c::mCcDObjInfo,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }  // mCylAttr
 };
 
 static const int l_bmdIdx[] = {4, 5};

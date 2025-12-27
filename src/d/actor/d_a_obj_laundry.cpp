@@ -65,10 +65,12 @@ const static dCcD_SrcCyl ccCylSrc = {
         {0x0},                                             // mGObjCo
     },                                                     // mObjInf
     {
-        {0.0f, -80.0f, 0.0f},  // mCenter
-        25.0f,                 // mRadius
-        25.0f                  // mHeight
-    }  // mCyl
+        {
+            {0.0f, -80.0f, 0.0f},  // mCenter
+            25.0f,                 // mRadius
+            25.0f                  // mHeight
+        }  // mCyl
+    }
 };
 
 static f32 dummy(cXyz v) {

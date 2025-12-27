@@ -31,10 +31,12 @@ const dCcD_SrcGObjInf daFireWood2_c::mCcDObjInfo = {
 dCcD_SrcCyl daFireWood2_c::mCcDCyl = {
     daFireWood2_c::mCcDObjInfo,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }
 };
 
 static cull_box l_cull_box = {

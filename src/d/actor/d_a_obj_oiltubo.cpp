@@ -18,10 +18,12 @@ static char* l_bbtkFileName = "x_oiltubo_00b.btk";
 dCcD_SrcCyl daObj_Oiltubo_c::mCcDCyl = {
     daObj_Oiltubo_c::mCcDObjInfo,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }                        // mCyl
+    }
 };
 
 int daObj_Oiltubo_c::create() {

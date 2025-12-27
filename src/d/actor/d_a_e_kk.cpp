@@ -50,10 +50,12 @@ static dCcD_SrcCyl cc_kk_src = {
         {0x0},                                               // mGObjCo
     },                                                       // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        40.0f,               // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            40.0f,               // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }
 };
 
 static dCcD_SrcSph cc_kk_at_src = {

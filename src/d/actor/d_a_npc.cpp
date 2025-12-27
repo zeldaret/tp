@@ -1231,10 +1231,12 @@ void daNpcT_DmgStagger_c::calc(BOOL param_0) {
 dCcD_SrcCyl daNpcT_c::mCcDCyl = {
     daNpcT_c::mCcDObjData,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,  // mRadius
-        0.0f  // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,  // mRadius
+            0.0f  // mHeight
+        }  // mCyl
+    }
 };
 
 dCcD_SrcSph daNpcT_c::mCcDSph = {

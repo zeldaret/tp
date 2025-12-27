@@ -32,10 +32,12 @@ const dCcD_SrcGObjInf daTogeTrap_c::mCcDObjInfo = {
 dCcD_SrcCyl daTogeTrap_c::mCcDCyl = {
     daTogeTrap_c::mCcDObjInfo,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }
 };
 
 void daTogeTrap_c::setBaseMtx() {

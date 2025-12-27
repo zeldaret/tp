@@ -18,7 +18,9 @@
 
 dCcD_SrcCyl daNpc_Kn_c::mCcDCyl = {
     mCcDObjData,
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f},
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f},
+    }
 };
 
 dCcD_SrcSph daNpc_Kn_c::mCcDSph = {

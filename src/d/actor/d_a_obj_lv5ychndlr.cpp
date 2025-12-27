@@ -114,10 +114,12 @@ static dCcD_SrcCyl l_cc_src_shaft_cyl = {
         {0x0},                                               // mGObjCo
     },                                                       // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        50.0f,               // mRadius
-        100.0f               // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            50.0f,               // mRadius
+            100.0f               // mHeight
+        }  // mCyl
+    }  // mCylAttr
 };
 
 static dCcD_SrcCyl l_cc_cyl_src = {
@@ -128,10 +130,12 @@ static dCcD_SrcCyl l_cc_cyl_src = {
         {0x0},                                            // mGObjCo
     },                                                    // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        350.0f,              // mRadius
-        150.0f               // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            350.0f,              // mRadius
+            150.0f               // mHeight
+        }  // mCyl
+    }  // mCylAttr
 };
 
 int daObjYchndlr_c::Create() {

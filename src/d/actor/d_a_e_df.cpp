@@ -61,12 +61,14 @@ void daE_DF_c::initCcCylinder() {
             {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                 // mGObjAt
             {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1},                 // mGObjTg
             {0x0},                                              // mGObjCo
-        },                                                      // mObjInf
-        {
-            {0.0f, 0.0f, 0.0f},  // mCenter
-            150.0f,              // mRadius
-            158.0f               // mHeight
-        }  // mCyl
+        },      
+        {                                                // mObjInf
+            {
+                {0.0f, 0.0f, 0.0f},  // mCenter
+                150.0f,              // mRadius
+                158.0f               // mHeight
+            }  // mCyl
+        }
     };
 
     mStts.Init(0xff, 0xff, this);

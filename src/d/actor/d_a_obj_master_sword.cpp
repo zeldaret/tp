@@ -93,10 +93,12 @@ void daObjMasterSword_c::initCollision() {
             {0},                             // mGObjCo
         },                                   // mObjInf
         {
-            {current.pos.x, current.pos.y, current.pos.z},  // mCenter
-            18.0f,                                          // mRadius
-            180.0f                                          // mHeight
-        }                                                   // mCyl
+            {
+                {current.pos.x, current.pos.y, current.pos.z},  // mCenter
+                18.0f,                                          // mRadius
+                180.0f                                          // mHeight
+            }                                                   // mCyl
+        }
     };
 
     mCcStts.Init(0xFF, 0xFF, this);

@@ -99,10 +99,12 @@ static dCcD_SrcCyl l_cyl_src = {
         {0x0},                                                // mGObjCo
     },                                                        // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        90.0f,               // mRadius
-        170.0f               // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            90.0f,               // mRadius
+            170.0f               // mHeight
+        }  // mCyl
+    }
 };
 
 int daObjSwLight_c::Create() {

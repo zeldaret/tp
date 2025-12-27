@@ -1637,10 +1637,12 @@ static cPhs__Step daE_GB_Create(fopAc_ac_c* actor) {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            30.0f, // mRadius
-            20.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                30.0f, // mRadius
+                20.0f // mHeight
+            } // mCyl
+        }
     };
 
     e_gb_class* i_this = (e_gb_class*)actor;

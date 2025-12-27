@@ -987,10 +987,12 @@ static int daObj_So_Create(fopAc_ac_c* a_this) {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            10.0f, // mRadius
-            120.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                10.0f, // mRadius
+                120.0f // mHeight
+            } // mCyl
+        }
     };
 
     obj_so_class* i_this = (obj_so_class*)a_this;

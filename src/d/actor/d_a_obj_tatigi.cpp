@@ -118,10 +118,12 @@ static int daObj_Tatigi_Create(fopAc_ac_c* a_this) {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            35.0f, // mRadius
-            120.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                35.0f, // mRadius
+                120.0f // mHeight
+            } // mCyl
+        }
     };
 
     obj_tatigi_class* i_this = (obj_tatigi_class*)a_this;
