@@ -1,8 +1,7 @@
-#ifndef BINARY_H
-#define BINARY_H
+#ifndef JGADGET_BINARY_H
+#define JGADGET_BINARY_H
 
 #include "JSystem/JUtility/JUTAssert.h"
-#include "dolphin/types.h"
 #include "JSystem/JGadget/search.h"
 
 namespace JGadget {
@@ -12,8 +11,7 @@ struct TEBit {
     u32 value;
 };
 
-const void* parseVariableUInt_16_32_following(const void* pu16, u32* pu32First, u32* pu32Second,
-                                              TEBit* tebit);
+const void* parseVariableUInt_16_32_following(const void* pu16, u32* pu32First, u32* pu32Second, TEBit* tebit);
 
 inline bool isPower2(unsigned int arg0) {
     return arg0 != 0 && (arg0 & arg0 - 1) == 0;
@@ -56,14 +54,6 @@ struct TParse_header_block {
 
     bool parse(const void* ppData_inout, u32 a2) {
         return parse_next(&ppData_inout, a2);
-    }
-
-    bool checkNext(const void** ptrLocation, u32* headerEnd, u32 idx) {
-        bool checkNext = false;
-        if (parseHeader_next(ptrLocation, headerEnd, idx)) {
-            checkNext = true;
-        }
-        return checkNext;
     }
 };
 
@@ -194,4 +184,4 @@ struct TValueIterator_misaligned : public TValueIterator<TParseValue_misaligned<
 }  // namespace binary
 }  // namespace JGadget
 
-#endif /* BINARY_H */
+#endif /* JGADGET_BINARY_H */

@@ -70,6 +70,10 @@ namespace JUTAssertion {
     inline void showAssert(u32 device, const char* file, int line, const char* msg) {
         showAssert_f(device, file, line, "%s", msg);
     }
+
+    inline void setWarningMessage(u32 device, char* file, int line, const char* msg) {
+        setWarningMessage_f(device, file, line, "%s", msg);
+    }
 };
 
 extern bool sAssertVisible;

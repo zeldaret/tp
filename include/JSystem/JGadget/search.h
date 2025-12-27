@@ -1,15 +1,13 @@
-#ifndef SEARCH_H
-#define SEARCH_H
+#ifndef JGADGET_SEARCH_H
+#define JGADGET_SEARCH_H
 
-#include "dolphin/os.h"
+#include <dolphin/types.h>
 #include <iterator.h>
 #include <functional.h>
 #include <algorithm.h>
 
 namespace JGadget {
-
 namespace search {
-
 template <typename T>
 struct TExpandStride_ {};
 
@@ -18,11 +16,29 @@ struct TExpandStride_<s32> {
     static s32 get(s32 n) { return n << 3; }
 };
 
+struct TPR1IsEqual_string_ {
+    TPR1IsEqual_string_(const char* sz) {
+        string_ = sz;
+    }
+
+    bool operator()(const char* sz) const {
+        bool ret;
+        if (string_ == NULL) {
+            ret = sz == NULL;
+        } else {
+            ret = sz != NULL && strcmp(string_, sz) == 0;
+        }
+        return ret;
+    }
+
+    const char* string_;
+};
+
 }  // namespace search
 
-//! @todo: mangled name isn't correct, fix this
-//! Current: toValueFromIndex<PFdd_d>__7JGadgetFiPCPFdd_dUlRCPFdd_d
-//!  Target: toValueFromIndex<PFdd_d>__7JGadgetFiPCPFdd_dUlRCPFdd_d_RCPFdd_d
+const char* toStringFromIndex(int index, const char* const* pValue, u32 count, const char* fallback);
+int toIndexFromString_linear(const char*, const char* const*, u32, int);
+
 template <typename T>
 inline const T& toValueFromIndex(int idx, const T* pValue, u32 count, const T& fallback) {
     JUT_ASSERT(200, pValue!=NULL);
@@ -32,6 +48,21 @@ inline const T& toValueFromIndex(int idx, const T* pValue, u32 count, const T& f
     } else {
         return pValue[index];
     }
+}
+
+template <typename T, typename Predicate>
+inline int toIndexFromValue_linear_if(Predicate p, const T* pValue, u32 count, int fallback) {
+    JUT_ASSERT(212, pValue!=NULL);
+    
+    const T* first = pValue;
+    const T* last = pValue + count;
+    const T* found = std::find_if(first, last, p);
+
+    if (found == last) {
+        return fallback;
+    }
+
+    return std::distance(first, found);
 }
 
 template <typename Category, typename T, typename Distance, typename Pointer, typename Reference>
@@ -130,4 +161,4 @@ inline Iterator findUpperBound_binary_current(Iterator first, Iterator last, Ite
 
 }  // namespace JGadget
 
-#endif /* SEARCH_H */
+#endif /* JGADGET_SEARCH_H */
