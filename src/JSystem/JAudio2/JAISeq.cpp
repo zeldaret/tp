@@ -73,10 +73,12 @@ void JAISeq::reserveChildTracks_(int param_0) {
                     track->connectChild(j, track2);
                 } else {
                     JUT_WARN(117, "%s", "JASPoolAllocObject::<JASTrack>::operator new failed .\n");
+                    continue;
                 }
             }
         } else {
             JUT_WARN(124, "%s", "JASPoolAllocObject::<JASTrack>::operator new failed .\n");
+            continue;
         }
     }
 }

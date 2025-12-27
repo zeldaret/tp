@@ -29,7 +29,7 @@ public:
     bool getSeqData(int, int, JAISeqData*);
     bool getSeqDataRegion(JAISeqDataRegion*);
 
-    bool isValid() { return field_0x8; }
+    bool isValid() const { return field_0x8; }
 
     /* 0x00 */ u16 field_0x0;
     /* 0x04 */ const u32* field_0x4;

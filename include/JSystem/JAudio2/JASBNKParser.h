@@ -132,7 +132,10 @@ namespace JASBNKParser {
     JASBank* createBank(void const*, JKRHeap*);
     JASBasicBank* createBasicBank(void const*, JKRHeap*);
 
-    inline u32 getBankNumber(const void* param_0) { return ((u32*)param_0)[2]; }
+    inline u32 getBankNumber(const void* param_0) {
+        u32* ptr = (u32*)param_0;
+        return ptr[2];
+    }
 
     extern u32 sUsedHeapSize;
 };
