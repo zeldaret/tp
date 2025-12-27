@@ -10,6 +10,8 @@
 #include "JSystem/JUtility/JUTException.h"
 #include <stdint.h>
 
+void* ARALT_AramStartAdr = (void*)0x90000000;
+
 bool data_804508B0 = 1;
 
 #if DEBUG
@@ -446,6 +448,8 @@ void JKRHeap::state_dump(const JKRHeap::TState& p) const {
     JUT_LOG(1247, "id         : 0x%08x", p.getId());
     JUT_LOG(1248, "used size  : %u", p.getUsedSize());
 }
+
+void* JKRHeap::getAltAramStartAdr() { return ARALT_AramStartAdr; }
 
 s32 JKRHeap::do_changeGroupID(u8 param_0) {
     return 0;

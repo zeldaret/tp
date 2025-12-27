@@ -157,7 +157,7 @@ bool Z2SoundMgr::startSound(JAISoundID soundID, JAISoundHandle* handle, const JG
                     OS_REPORT("[Z2SoundMgr::startSound] FAILED!!! LOAD SEQ_DATA id: %08x\n", *(u32*)&soundID);
 
                     for (JSULink<JAUSeqDataBlock>* link = sectionHeap->getSectionHeapData().seqDataBlocks.getFreeBlocks().getFirst(); link != NULL; link = link->getNext()) {
-                        OS_REPORT("       freeSeqBlock: %d\n", link->getObject()->field_0x14.size);
+                        OS_REPORT("       freeSeqBlock: %d\n", link->getObject()->region.size);
                     }
                 }
 

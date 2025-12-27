@@ -1051,8 +1051,8 @@ config.libs = [
         [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASCalc.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASTaskThread.cpp"),
-            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDvdThread.cpp"),
-            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASCallback.cpp"),
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASDvdThread.cpp"),
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASCallback.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASHeapCtrl.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASResArcLoader.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASProbe.cpp"),
@@ -1084,8 +1084,8 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASOscillator.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASAiCtrl.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASAudioThread.cpp"),
-            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASAudioReseter.cpp"),
-            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDSPChannel.cpp"),
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASAudioReseter.cpp"),
+            Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASDSPChannel.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDSPInterface.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDriverIF.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "JSystem/JAudio2/JASSoundParams.cpp"), # debug weak func order

@@ -111,7 +111,11 @@ public:
     virtual bool isUsingSeqData(const JAISeqDataRegion& seqDataRegion);
     virtual int releaseSeqData(const JAISeqDataRegion& seqDataRegion);
 
-    JAISeCategoryMgr* getCategory(int index) { return &mCategoryMgrs[index]; }
+    JAISeCategoryMgr* getCategory(int categoryIndex) {
+        JUT_ASSERT(222, categoryIndex >= 0);
+        JUT_ASSERT(223, categoryIndex < NUM_CATEGORIES);
+        return &mCategoryMgrs[categoryIndex];
+    }
     JAIAudience* getAudience() { return mAudience; }
     JAIAudience* getAudience(int index) {
         if (index >= 0 && index < NUM_CATEGORIES) {

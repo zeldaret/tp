@@ -65,6 +65,7 @@ public:
 
     bool setErrorFlag(bool errorFlag);
     bool isSubHeap(JKRHeap* heap) const;
+    void* getAltAramStartAdr();
 
     /* vt[03] */ virtual void callAllDisposer();
     /* vt[04] */ virtual u32 getHeapType() = 0;
