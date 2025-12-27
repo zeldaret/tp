@@ -122,7 +122,7 @@ enum fopAc_AttentionFlag_e {
     /* 0x00000040 */ fopAc_AttnFlag_JUEL_e   = (1 << fopAc_attn_JUEL_e),
     /* 0x00000080 */ fopAc_AttnFlag_ETC_e    = (1 << fopAc_attn_ETC_e),
 
-    /* 0x00000100 */fopAc_AttnFlag_CHECK_e  = (1 << fopAc_attn_CHECK_e),
+    /* 0x00000100 */ fopAc_AttnFlag_CHECK_e  = (1 << fopAc_attn_CHECK_e),
 
     /* 0x00200000 */ fopAc_AttnFlag_UNK_0x200000   = 0x200000,
     /* 0x00400000 */ fopAc_AttnFlag_UNK_0x400000   = 0x400000,
