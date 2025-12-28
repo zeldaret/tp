@@ -630,6 +630,11 @@ void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* i_tevstr) {
     }
 }
 
+#if PLATFORM_WII || VERSION == VERSION_SHIELD
+u8 fopAcM::HeapAdjustEntry;
+u8 fopAcM::HeapAdjustUnk;
+#endif
+
 actor_method_class g_fopAc_Method = {
     (process_method_func)fopAc_Create,  (process_method_func)fopAc_Delete,
     (process_method_func)fopAc_Execute, (process_method_func)fopAc_IsDelete,
