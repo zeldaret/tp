@@ -836,6 +836,8 @@ void fopAcM_showAssert_f(const fopAc_ac_c* i_actor, const char* i_filename, int 
 #if DEBUG
 #define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg)                               \
     fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg)
+void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_filename, int i_line,
+                                const char* i_msg, ...);
 #else
 #define fopAcM_setWarningMessage(...)
 #endif

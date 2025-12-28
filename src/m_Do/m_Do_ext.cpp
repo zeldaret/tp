@@ -717,10 +717,6 @@ JKRExpHeap* mDoExt_getHostIOHeap() {
     return HostIOHeap;
 }
 
-#if DEBUG
-extern u8 lbl_8074C3B9[1];
-#endif
-
 JKRSolidHeap* mDoExt_createSolidHeap(u32 i_size, JKRHeap* i_heap, u32 i_alignment) {
     if (i_heap == NULL) {
         i_heap = JKRGetCurrentHeap();
@@ -729,7 +725,7 @@ JKRSolidHeap* mDoExt_createSolidHeap(u32 i_size, JKRHeap* i_heap, u32 i_alignmen
     JKRSolidHeap* createdHeap;
     if (i_size == 0 || i_size == -1) {
         #if DEBUG
-        if (lbl_8074C3B9[0] != 0) {
+        if (mDoExt::HeapAdjustVerbose != 0) {
             OS_REPORT("\x1b[44mmDoExt_createSolidHeap サイズ未設定\n\x1b[m");
             OS_REPORT("最大空き容量確保します %08x\n\x1b[m", i_heap->getFreeSize());
         }
@@ -749,7 +745,7 @@ JKRSolidHeap* mDoExt_createSolidHeap(u32 i_size, JKRHeap* i_heap, u32 i_alignmen
     if (createdHeap != NULL) {
         JKRSetErrorFlag(createdHeap, true);
         #if DEBUG
-        if (lbl_8074C3B9[0] != 0) {
+        if (mDoExt::HeapAdjustVerbose != 0) {
             u32 heapSize = createdHeap->getHeapSize();
             OS_REPORT(
                 "JKRCreateSolidHeap %08x i_size=%08x solidHeapSize=%08x\n",
@@ -841,7 +837,7 @@ u32 mDoExt_adjustSolidHeap(JKRSolidHeap* i_heap) {
     u32 actualSize = i_heap->getHeapSize();
 
     #if DEBUG
-    if (lbl_8074C3B9[0]) {
+    if (mDoExt::HeapAdjustVerbose) {
         // "\x1B[33mSolid heap estimate: %08x actual: %08x\n\x1B[m"
         OS_REPORT("\x1B[33mソリッドヒープの見積もり %08x 実際 %08x\n\x1B[m", estimatedSize, actualSize);
 
@@ -857,7 +853,7 @@ u32 mDoExt_adjustSolidHeap(JKRSolidHeap* i_heap) {
         }
     }
 
-    if (lbl_8074C3B9[0]) {
+    if (mDoExt::HeapAdjustVerbose) {
         OS_REPORT("JKRSolidHeap::adjustSize %08x (%08x bytes)\n", (u32)i_heap, result);
     }
     #endif
