@@ -12,4 +12,8 @@ struct dDvdErrorMsg_c {
     static u8 execute();
 };
 
+struct dConnectErrorMsg_c {
+    static void disable();
+};
+
 #endif /* D_D_ERROR_MSG_H */

@@ -39,6 +39,17 @@ class cM3dGPla;
 
 s8 dComIfGp_getReverb(int roomNo);
 
+namespace fopAcM {
+extern u8 HeapAdjustEntry;
+extern u8 HeapAdjustUnk;
+extern u8 HeapAdjustVerbose;
+extern u8 HeapAdjustQuiet;
+extern u8 HeapDummyCreate;
+extern u8 HeapDummyCheck;
+extern u8 HeapSkipMargin;
+extern int HeapAdjustMargin;
+}  // namespace fopAcM
+
 struct fopAcM_prmBase_class {
     /* 0x00 */ u32 parameters;
     /* 0x04 */ cXyz position;

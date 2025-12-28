@@ -128,10 +128,6 @@ void mDoHIO_updateChild(s8 i_no) {
     mDoHIO_root.updateChild(i_no);
 }
 
-void mDoHIO_update() {
-    mDoHIO_root.update();
-}
-
 void mDoHIO_root_c::updateChild(s8 i_no) {
     mSub.updateChild(i_no);
 }

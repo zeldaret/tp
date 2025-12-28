@@ -111,6 +111,10 @@ fpc_ProcID fop_Timer_create(s16 i_procName, u8 i_mode, u32 i_limitMs, u8 i_type,
     return fpcM_Create(i_procName, i_createFunc, append);
 }
 
+void dummySet() {
+    csXyz().set(0, 0, 0);
+}
+
 fpc_ProcID fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_talkActor, u32 param_2) {
     if (dComIfGp_isHeapLockFlag() == 8) {
         dMeter2Info_getMeterClass()->emphasisButtonDelete();
@@ -250,9 +254,18 @@ f32 dummy() {
     dummyPlane->getHeight();
     dummyPlane->getWidth();
     dummyPlane->setAlpha(0);
+
+#if !PLATFORM_GCN
+    J2DPicture* dummyPicture = NULL;
+    const char* str = NULL;
+    dummyPicture->append(str, 0.0f);
+    dummyPicture->setBlendRatio(0.0f, 0.0f);
+#endif
+
     return 0.5f;
 }
 
+// Wii: NONMATCHING, float regalloc in case 3
 f32 fopMsgM_valueIncrease(int i_max, int i_value, u8 i_mode) {
     if (i_max <= 0) {
         return 1.0f;
