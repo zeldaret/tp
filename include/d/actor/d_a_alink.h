@@ -5249,7 +5249,8 @@ public:
     void setUpperAnimeParam(u16, daAlink_c::daAlink_UPPER, daAlinkHIO_anm_c const*);
     int resetUpperAnime(daAlink_c::daAlink_UPPER, f32);
     void setUnderAnimeMorf(f32);
-    int setUnderAnime(u16, daAlink_c::daAlink_UNDER, f32, f32, s16, f32);
+    int setUnderAnime(u16 i_resID, daAlink_c::daAlink_UNDER i_packIdx, f32 i_speed,
+                      f32 i_startF, s16 i_endF, f32 i_morf);
     int setUnderAnimeParam(u16, daAlink_c::daAlink_UNDER, daAlinkHIO_anm_c const*);
     int resetUnderAnime(daAlink_c::daAlink_UNDER, f32);
     void setOldRootQuaternion(s16, s16, s16);
@@ -5643,33 +5644,33 @@ public:
     BOOL checkNoLandDamageSlidePolygon();
     void checkCutLandDamage();
     BOOL checkCaughtEscapeCutTurn();
-    f32 damageMagnification(int i_checkZoraMag, int);
-    int setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgTimer, int);
-    void setDamagePointNormal(int);
-    void setLandDamagePoint(int);
+    f32 damageMagnification(BOOL i_checkZoraMag, int);
+    int setDamagePoint(int i_dmgAmount, BOOL i_checkZoraMag, BOOL i_setDmgTimer, int);
+    int setDamagePointNormal(int i_dmgAmount);
+    int setLandDamagePoint(int i_dmgAmount);
     cXyz* getDamageVec(dCcD_GObjInf*);
     void setDashDamage();
     static BOOL checkIcePolygonDamage(cBgS_PolyInfo*);
     BOOL checkMagicArmorNoDamage();
     int checkPolyDamage();
-    BOOL checkElecReturnDamage(dCcD_GObjInf&, fopAc_ac_c**);
+    BOOL checkElecReturnDamage(dCcD_GObjInf& i_obj, fopAc_ac_c** o_hitActor);
     void damageTimerCount();
-    bool checkHugeAttack(int) const;
-    bool checkLargeAttack(int) const;
+    bool checkHugeAttack(int i_atSpl) const;
+    bool checkLargeAttack(int i_atSpl) const;
     BOOL checkDamageAction();
-    int procDamageInit(dCcD_GObjInf*, int);
+    int procDamageInit(dCcD_GObjInf* i_tgObj, int);
     int procDamage();
-    int procCoLargeDamageInit(int, int, s16, s16, dCcD_GObjInf*, int);
+    int procCoLargeDamageInit(int i_type, BOOL i_isLargeDmg, s16, s16, dCcD_GObjInf* i_hitObj, int);
     int procCoLargeDamage();
-    int procLargeDamageUpInit(int, int, s16, s16);
+    int procLargeDamageUpInit(int i_type, BOOL i_isLargeDmg, s16, s16);
     int procLargeDamageUp();
-    int procCoLargeDamageWallInit(int, int, s16, s16);
+    int procCoLargeDamageWallInit(int i_type, BOOL i_isLargeDmg, s16, s16);
     int procCoLargeDamageWall();
     int procCoPolyDamageInit();
     int procCoPolyDamage();
     int procLandDamageInit(int);
     int procLandDamage();
-    int procCoElecDamageInit(fopAc_ac_c*, dCcD_GObjInf*, int);
+    int procCoElecDamageInit(fopAc_ac_c* i_tgHitActor, dCcD_GObjInf* i_tgHitObj, int i_atSpl);
     int procCoElecDamage();
     int procStEscapeInit();
     int procStEscape();
@@ -5680,7 +5681,7 @@ public:
     int procScreamWait();
     int procCoSandWallHitInit();
     int procCoSandWallHit();
-    int procCoLavaReturnInit(int);
+    int procCoLavaReturnInit(BOOL i_isSandReturn);
     int procCoLavaReturn();
     int procCoSwimFreezeReturnInit();
     int procCoSwimFreezeReturn();
@@ -7071,7 +7072,7 @@ public:
     }
     virtual cXyz* getKandelaarFlamePos();
     virtual bool checkUseKandelaar(int);
-    virtual void setDkCaught(fopAc_ac_c*);
+    virtual void setDkCaught(fopAc_ac_c* i_dkActor);
     virtual void onPressedDamage(cXyz const&, short);
     virtual bool checkPriActorOwn(fopAc_ac_c const* p_actor) const {
         return field_0x27f4 == p_actor;
@@ -7489,8 +7490,8 @@ public:
         return param_0 + (field_0x33a8 * (param_1 - param_0));
     }
 
-    bool escapeTrigger() {
-        field_0x2fae |= 8;
+    BOOL escapeTrigger() {
+        field_0x2fae |= (u8)8;
         return mItemTrigger & (BTN_A | BTN_B);
     }
 

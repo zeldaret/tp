@@ -356,7 +356,7 @@ inline void dMsgObject_demoMessageGroup() {
 }
 
 inline bool dMsgObject_isTalkNowCheck() {
-    return dMsgObject_getMsgObjectClass()->getStatus() != 1 ? true : false;
+    return dMsgObject_getMsgObjectClass()->getStatus() == 1 ? false : true;
 }
 
 inline bool dMsgObject_isKillMessageFlag() {

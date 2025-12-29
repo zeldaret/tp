@@ -217,7 +217,7 @@ public:
     u32 MskRPrm(u32 mask) { return mRPrm & mask; }
     void OnSPrmBit(u32 flag) { mSPrm |= flag; }
     void OffSPrmBit(u32 flag) { mSPrm &= ~flag; }
-    u32 ChkSPrm(u32 prm) const { return MskSPrm(prm); }
+    u32 ChkSPrm(u32 prm) const { return MskSPrm(prm) != 0; }
 
     void Set(cCcD_SrcObjCommonBase const& src) { mSPrm = src.mSPrm; }
 };

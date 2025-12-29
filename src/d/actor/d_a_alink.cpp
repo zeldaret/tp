@@ -7008,7 +7008,7 @@ void daAlink_c::setUnderAnimeMorf(f32 param_0) {
 }
 
 int daAlink_c::setUnderAnime(u16 i_resID, daAlink_c::daAlink_UNDER i_packIdx, f32 i_speed,
-                                 f32 i_startF, s16 i_endF, f32 i_morf) {
+                             f32 i_startF, s16 i_endF, f32 i_morf) {
     J3DAnmTransform* var_r30 = getAnimeResource(&mUnderAnmHeap[i_packIdx], i_resID, 0x2C00);
     if (var_r30 == NULL) {
         var_r30 = getNowAnmPackUnder(i_packIdx);
