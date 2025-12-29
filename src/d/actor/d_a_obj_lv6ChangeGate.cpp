@@ -37,7 +37,9 @@ const dCcD_SrcGObjInf daLv6ChangeGate_c::mCcDObjInfo = {
 
 dCcD_SrcCyl daLv6ChangeGate_c::mCcDCyl = {
     mCcDObjInfo,
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    }
 };
 
 void daLv6ChangeGate_c::setBaseMtx() {

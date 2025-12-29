@@ -123,10 +123,12 @@ static dCcD_SrcCyl cc_vt_body_src = {
         {0x0},                                               // mGObjCo
     },                                                       // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        150.0f,              // mRadius
-        158.0f               // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            150.0f,              // mRadius
+            158.0f               // mHeight
+        }  // mCyl
+    }
 };
 
 static dCcD_SrcSph cc_vt_attack_src = {

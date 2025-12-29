@@ -316,10 +316,12 @@ static dCcD_SrcCyl cc_cyl_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        50.0f, // mRadius
-        360.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            50.0f, // mRadius
+            360.0f // mHeight
+        } // mCyl
+    }
 };
 
 static int useHeapInit(fopAc_ac_c* i_this) {

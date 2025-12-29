@@ -75,10 +75,12 @@ dCcD_SrcSph daLv6TogeTrap_c::mCcDSph = {
 dCcD_SrcCyl daLv6TogeTrap_c::mCcDCyl = {
     daLv6TogeTrap_c::mCcDObjInfo2,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,  // mRadius
-        0.0f  // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,  // mRadius
+            0.0f  // mHeight
+        }  // mCyl
+    }
 };
 
 static char* l_resNameIdx[3] = {

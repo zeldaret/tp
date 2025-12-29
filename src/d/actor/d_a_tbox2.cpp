@@ -57,10 +57,12 @@ static dCcD_SrcCyl l_cyl_src = {
         {0x0},                                        // mGObjCo
     },                                                // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }                        // mCyl
+    }
 };
 
 int daTbox2_c::Create() {

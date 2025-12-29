@@ -193,10 +193,12 @@ static dCcD_SrcCyl cc_cyl_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        70.0f, // mRadius
-        100.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            70.0f, // mRadius
+            100.0f // mHeight
+        } // mCyl
+    }
 };
 
 int daObjPDtile_c::Create() {

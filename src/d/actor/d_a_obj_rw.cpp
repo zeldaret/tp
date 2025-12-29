@@ -343,10 +343,12 @@ static int daOBJ_RW_Create(fopAc_ac_c* actor) {
                 {0x0}, // mGObjCo
             }, // mObjInf
             {
-                {0.0f, 0.0f, 0.0f}, // mCenter
-                200.0f, // mRadius
-                250.0f // mHeight
-            } // mCyl
+                {
+                    {0.0f, 0.0f, 0.0f}, // mCenter
+                    200.0f, // mRadius
+                    250.0f // mHeight
+                } // mCyl
+            }
         };
 
         i_this->ccStts.Init(0xFF, 0, actor);

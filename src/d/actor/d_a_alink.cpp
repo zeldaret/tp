@@ -1249,10 +1249,12 @@ static dCcD_SrcCyl l_cylSrc = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        35.0f,
-        180.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            35.0f,
+            180.0f,
+        },
+    }
 };
 
 static dCcD_SrcSph l_sphSrc = {
@@ -1276,10 +1278,12 @@ static dCcD_SrcCyl l_atCylSrc = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        180.0f,
-        130.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            180.0f,
+            130.0f,
+        },
+    }
 };
 
 static dCcD_SrcCps l_atCpsSrc = {

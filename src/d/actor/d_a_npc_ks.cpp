@@ -7324,10 +7324,12 @@ static int daNpc_Ks_Create(fopAc_ac_c* actor) {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            30.0f, // mRadius
-            20.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                30.0f, // mRadius
+                20.0f // mHeight
+            } // mCyl
+        }
     };
 
     npc_ks_class* i_this = (npc_ks_class*)actor;

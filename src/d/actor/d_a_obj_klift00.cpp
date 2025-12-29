@@ -96,10 +96,12 @@ static dCcD_SrcCyl l_cc_cyl_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        300.0f, // mRadius
-        100.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            300.0f, // mRadius
+            100.0f // mHeight
+        } // mCyl
+    } // mCylAttr
 };
 
 #if DEBUG

@@ -32,10 +32,12 @@ static const dCcD_SrcCyl l_sph_src = {
         {0x0},                                               // mGObjCo
     },                                                       // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f,                // mHeight
-    }  // mCylAttr
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f,                // mHeight
+        }  // mCylAttr
+    }
 };
 
 static const int l_arcIdx[] = {3, 6, 5, 4};

@@ -17,10 +17,12 @@ static dCcD_SrcCyl l_cylSrc = {
         {0x0},                                           // mGObjCo
     },                                                   // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        30.0f,               // mRadius
-        100.0f               // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            30.0f,               // mRadius
+            100.0f               // mHeight
+        }                        // mCyl
+    }
 };
 
 int daTagSppath_c::create() {

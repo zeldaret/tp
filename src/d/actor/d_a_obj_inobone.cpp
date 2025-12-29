@@ -47,10 +47,12 @@ static const dCcD_SrcCyl l_cyl_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        140.0f, // mRadius
-        70.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            140.0f, // mRadius
+            70.0f // mHeight
+        } // mCyl
+    } // mCylAttr
 };
 
 static const dCcD_SrcCyl l_cyl_src2 = {
@@ -61,10 +63,12 @@ static const dCcD_SrcCyl l_cyl_src2 = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        140.0f, // mRadius
-        70.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            140.0f, // mRadius
+            70.0f // mHeight
+        } // mCyl
+    } // mCylAttr
 };
 
 static void* s_boar_sub(void* i_actor, void* i_data) {

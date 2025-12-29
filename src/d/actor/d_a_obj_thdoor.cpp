@@ -76,10 +76,12 @@ static dCcD_SrcCyl l_cyl_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        37.5f, // mRadius
-        250.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            37.5f, // mRadius
+            250.0f // mHeight
+        } // mCyl
+    }
 };
 
 int daObjThDoor_c::Create() {

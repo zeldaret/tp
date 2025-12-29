@@ -78,8 +78,10 @@ namespace {
             {0},
         },
         {
-            {0.0f, 0.0f, 0.0f}, 50.0f, 300.0f,
-        },
+            {
+                {0.0f, 0.0f, 0.0f}, 50.0f, 300.0f,
+            },
+        }
     };
 
     static dCcD_SrcSph cc_zm_at_src = {

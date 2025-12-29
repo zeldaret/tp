@@ -108,4 +108,11 @@ inline bool cM3d_Cross_CylSph(const cM3dGCyl* cyl, const cM3dGSph* sph, Vec* out
     return cM3d_Cross_CylSph(cyl, sph, out, &sp10);
 }
 
+#ifdef DEBUG
+
+bool cM3d_UpMtx_Base(const Vec& param_1, const Vec& param_2, Mtx param_3);
+bool cM3d_UpMtx(const Vec& param_1, Mtx param_2);
+
+#endif
+
 #endif
