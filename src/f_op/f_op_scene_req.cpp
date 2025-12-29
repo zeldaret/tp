@@ -18,6 +18,7 @@ static cPhs__Step fopScnRq_phase_ClearOverlap(scene_request_class* i_sceneReq) {
         rv = cPhs_INIT_e;
     }
     return rv;
+    UNUSED(i_sceneReq);
 }
 
 static cPhs__Step fopScnRq_phase_Execute(scene_request_class* i_sceneReq) {
@@ -32,6 +33,7 @@ static cPhs__Step fopScnRq_phase_IsDoingOverlap(scene_request_class* i_sceneReq)
         rv = cPhs_INIT_e;
     }
     return rv;
+    UNUSED(i_sceneReq);
 }
 
 static cPhs__Step fopScnRq_phase_IsDoneOverlap(scene_request_class* i_sceneReq) {
@@ -42,6 +44,7 @@ static cPhs__Step fopScnRq_phase_IsDoneOverlap(scene_request_class* i_sceneReq) 
         rv = cPhs_INIT_e;
     }
     return rv;
+    UNUSED(i_sceneReq);
 }
 
 static BOOL l_fopScnRq_IsUsingOfOverlap;
@@ -49,9 +52,8 @@ static BOOL l_fopScnRq_IsUsingOfOverlap;
 static cPhs__Step fopScnRq_phase_Done(scene_request_class* i_sceneReq) {
     
     if (i_sceneReq->create_request.parameters != 1) {
-        scene_class* scene;
-        UNUSED(scene);
-        scene = (scene_class*)fpcM_SearchByID(i_sceneReq->create_request.creating_id);
+        scene_class* scene = (scene_class*)fpcM_SearchByID(i_sceneReq->create_request.creating_id);
+        (void)scene;
         fopScnPause_Disable(scene);
     }
 

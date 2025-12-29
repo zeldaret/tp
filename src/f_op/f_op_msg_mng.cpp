@@ -167,7 +167,7 @@ fpc_ProcID fopMsgM_messageSet(u32 i_msgIdx, u32 param_1) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
 
-    fopAc_ac_c* NULL_ = NULL;
+    fopAc_ac_c* actor = NULL;
     cXyz pos;
     pos.x = pos.y = pos.z = 0.0f;
 
@@ -178,7 +178,7 @@ fpc_ProcID fopMsgM_messageSet(u32 i_msgIdx, u32 param_1) {
             msg->pos.set(pos);
             msg->msg_idx = i_msgIdx;
             msg->field_0xf0 = param_1;
-            msg->talk_actor = NULL_;
+            msg->talk_actor = actor;
             msg->setTalkPartner(NULL);
             msg->setMessageIndex(i_msgIdx, param_1, false);
             return i_msgID;
@@ -186,7 +186,7 @@ fpc_ProcID fopMsgM_messageSet(u32 i_msgIdx, u32 param_1) {
             msg->pos.set(pos);
             msg->msg_idx = i_msgIdx;
             msg->field_0xf0 = param_1;
-            msg->talk_actor = NULL_;
+            msg->talk_actor = actor;
             return i_msgID;
         }
     }

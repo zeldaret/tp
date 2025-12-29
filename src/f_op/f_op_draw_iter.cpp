@@ -7,7 +7,6 @@
 #include "SSystem/SComponent/c_list.h"
 #include "SSystem/SComponent/c_tag.h"
 #include "f_op/f_op_draw_tag.h"
-#include "global.h"
 
 static int l_fopDwTg_id;
 
@@ -35,7 +34,7 @@ create_tag_class* fopDwIt_Begin() {
 }
 
 create_tag_class* fopDwIt_Next(create_tag_class* i_createTag) {
-    UNUSED(&i_createTag);
+    (void)&i_createTag;
     create_tag_class* tag = (create_tag_class*)i_createTag->mpNode.mpNextNode;
 
     if (tag == NULL) {

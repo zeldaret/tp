@@ -80,7 +80,7 @@ void l_HIO::genMessage(JORMContext* mctx) {
 }
 
 void l_HIO::listenPropertyEvent(const JORPropertyEvent* property) {
-    UNUSED(property);
+    (void)property;
     JORMContext* mctx = attachJORMContext(8);
     JORReflexible::listenPropertyEvent(property);
 
@@ -97,28 +97,30 @@ void l_HIO::listenPropertyEvent(const JORPropertyEvent* property) {
 
 void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_filename, int i_line,
                                 const char* i_msg, ...) {
-    UNUSED(i_msg);
+    (void)i_msg;
     va_list args;
     va_start(args, i_msg);
 
     char buf[64];
     const char* name = dStage_getName(fopAcM_GetProfName(i_actor), i_actor->argument);
     snprintf(buf, sizeof(buf), "<%s> %s", name, i_msg);
-    JUTAssertion::setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename, i_line, buf, args); // Namespace issue
+    JUTAssertion::setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename, i_line, buf,
+                                         args);  // Namespace issue
 
     va_end(args);
 }
 
 void fopAcM_showAssert_f(const fopAc_ac_c* i_actor, const char* i_filename, int i_line,
                                 const char* i_msg, ...) {
-    UNUSED(i_msg);
+    (void)i_msg;
     va_list args;
     va_start(args, i_msg);
 
     char buf[64];
     const char* name = dStage_getName(fopAcM_GetProfName(i_actor), i_actor->argument);
     snprintf(buf, sizeof(buf), "<%s> %s", name, i_msg);
-    JUTAssertion::showAssert_f_va(JUTAssertion::getSDevice(), i_filename, i_line, buf, args); // Namespace/Inlining issue
+    JUTAssertion::showAssert_f_va(JUTAssertion::getSDevice(), i_filename, i_line, buf,
+                                  args);  // Namespace/Inlining issue
     OS_PANIC(267, "Halt");
 
     va_end(args);
@@ -475,7 +477,7 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback
                     mDoExt_destroySolidHeap(heap);
                     heap = NULL;
                 }
-#if (PLATFORM_SHIELD || PLATFORM_WII) && VERSION != VERSION_WII_JPN
+#if !PLATFORM_GCN && VERSION != VERSION_WII_JPN
                 else {
                     int margin = fopAcM::HeapAdjustMargin;
                     adjustedHeap = ALIGN_NEXT(heap->getHeapSize() - heap->getFreeSize(), 0x20);
@@ -483,8 +485,6 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback
                     if (i_size < adjustedHeap + margin || fopAcM::HeapSkipMargin) {
 #elif VERSION == VERSION_WII_USA_R2 || VERSION == VERSION_WII_PAL
                     if (i_size < adjustedHeap + margin || fopAcM::HeapAdjustUnk) {
-#elif VERSION == VERSION_WII_USA_R0
-                    if (i_size < adjustedHeap + margin) {
 #else
                     if (i_size < adjustedHeap + margin) {
 #endif
@@ -1629,16 +1629,12 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
     int i;
     
     u32 params = MAKE_ITEM_PARAMS(item_no, i_itemBitNo, unk, param_7);
-    // u32 params = ((item_no & 0xFF) << 0x0 | (i_itemBitNo & 0x7F) << 0x8 | (unk & 0xFF) << 0x10 | (param_7 & 0xF) << 0x18);
-    // u32 params =  (item_no & 0xFF) << 0x0 | (i_itemBitNo & 0xFF) << 0x8 | (unk & 0xFF) << 0x10 | (param_7 & 0xF) << 0x18;
 
     switch (i_itemNo) {
     case fpcNm_ITEM_RECOVERY_FAILY:
         ret = fopAcM_create(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1);
         break;
 #if DEBUG
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wsometimes-uninitialized"
 // Return pointer fopAc_ac_c* is uninitialized for these branches
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
@@ -1655,7 +1651,6 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
         JUT_ASSERT(4153, FALSE);
         break;
-#pragma clang diagnostic pop
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
     case fpcNm_ITEM_UTAWA_HEART:
@@ -1706,8 +1701,6 @@ fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBi
                                 NULL, NULL);
         break;
 #if DEBUG
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wsometimes-uninitialized"
 // Return pointer fopAc_ac_c* is uninitialized for these branches
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
@@ -1724,7 +1717,6 @@ fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBi
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
         JUT_ASSERT(4276, FALSE);
         break;
-#pragma clang diagnostic pop
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
     case fpcNm_ITEM_UTAWA_HEART:
@@ -1774,8 +1766,6 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
                                  NULL, NULL);
         break;
 #if DEBUG
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wsometimes-uninitialized"
 // Return pointer fopAc_ac_c* is uninitialized for these branches
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
@@ -1792,7 +1782,6 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
         JUT_ASSERT(4391, FALSE);
         break;
-#pragma clang diagnostic pop
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
     case fpcNm_ITEM_UTAWA_HEART:
