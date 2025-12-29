@@ -514,10 +514,9 @@ void daAlink_c::setHookshotReadyMaterial() {
 int daAlink_c::initHookshotUpperAnimeSpeed(int param_0) {
     if (checkHookshotWait()) {
         if (param_0) {
-            f32 tmp_0 = 0.0f;
-            mUpperFrameCtrl[2].setRate(tmp_0);
-            mUpperFrameCtrl[2].setFrame(tmp_0);
-            getNowAnmPackUpper(UPPER_2)->setFrame(tmp_0);
+            mUpperFrameCtrl[2].setRate(0.0f);
+            mUpperFrameCtrl[2].setFrame(0.0f);
+            getNowAnmPackUpper(UPPER_2)->setFrame(0.0f);
         } else {
             setWaterInAnmRate(&mUpperFrameCtrl[2], mpHIO->mItem.mHookshot.m.mWaitAnmSpeed);
         }
@@ -531,10 +530,9 @@ int daAlink_c::initHookshotUpperAnimeSpeed(int param_0) {
 void daAlink_c::initHookshotReady() {
     mItemMode = HS_MODE_READY_e;
 
-    f32 tmp_0 = 0.0f;
-    field_0x33e0 = tmp_0;
+    field_0x33e0 = 0.0f;
 
-    dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, 1.0f, tmp_0));
+    dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
 
     mItemVar0.field_0x3018 = 3;
     field_0x3494 = -1.0f;
@@ -589,22 +587,20 @@ int daAlink_c::checkUpperItemActionHookshot() {
                     mNormalSpeed = 0.0f;
                 }
             } else {
-                f32 tmp_0 = 0.0f;
-                mUpperFrameCtrl[2].setRate(tmp_0);
-                mUpperFrameCtrl[2].setFrame(tmp_0);
-                getNowAnmPackUpper(UPPER_2)->setFrame(tmp_0);
+                mUpperFrameCtrl[2].setRate(0.0f);
+                mUpperFrameCtrl[2].setFrame(0.0f);
+                getNowAnmPackUpper(UPPER_2)->setFrame(0.0f);
 
-                mNormalSpeed = tmp_0;
+                mNormalSpeed = 0.0f;
                 onModeFlg(1);
-                mSpeedModifier = tmp_0;
-                mNowAnmPackUpper[2].setRatio(tmp_0);
+                mSpeedModifier = 0.0f;
+                mNowAnmPackUpper[2].setRatio(0.0f);
 
                 setSingleAnimeParam(ANM_HOOKSHOT_SHOOT, &mpHIO->mItem.mHookshot.m.mShootAnm);
             }
 
             if (!checkNoResetFlg3(FLG3_UNK_4)) {
-                f32 tmp_0 = 0.0f;
-                dComIfGp_getVibration().StartQuake(1, 1, cXyz(tmp_0, 1.0f, tmp_0));
+                dComIfGp_getVibration().StartQuake(1, 1, cXyz(0.0f, 1.0f, 0.0f));
                 onNoResetFlg3(FLG3_UNK_4);
             }
 
@@ -784,7 +780,7 @@ void daAlink_c::setHookshotTopPosFly() {
 static cXyz l_hookSnowSandHitScale(0.5f, 0.5f, 0.5f);
 
 void daAlink_c::setHookshotPos() {
-    mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(field_0x30c0));
+    mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(mLeftItemJntNo));
     mDoMtx_stack_c::transM(-2.0f, 1.0f, 1.0f);
     mDoMtx_stack_c::XYZrotM(cM_deg2s(5.7f), cM_deg2s(162.0f), 0);
 
@@ -796,7 +792,7 @@ void daAlink_c::setHookshotPos() {
     }
     var_r27->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(field_0x30c2));
+    mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(mRightItemJntNo));
     mDoMtx_stack_c::transM(-2.0f, 0.0f, 1.0f);
     mDoMtx_stack_c::XYZrotM(cM_deg2s(-78.0f), cM_deg2s(182.0f), cM_deg2s(-99.0f));
 
@@ -1461,7 +1457,7 @@ int daAlink_c::procHookshotFlyInit() {
     commonProcInit(PROC_HOOKSHOT_FLY);
 
     if (!checkNoResetFlg0(FLG0_SWIM_UP)) {
-        onNoResetFlg0(FLG0_UNDERWATER);
+        onNoResetFlg0(FLG0_WATER_IN_MOVE);
     }
 
     daAlink_ANM anm;

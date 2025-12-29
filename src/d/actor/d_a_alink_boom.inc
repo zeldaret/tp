@@ -133,8 +133,7 @@ BOOL daAlink_c::checkBoomerangThrowAnime() const {
 }
 
 void daAlink_c::setBoomerangReadyQuake() {
-    f32 tmp_0 = 0.0f;
-    dComIfGp_getVibration().StartQuake(1, 1, cXyz(tmp_0, 1.0f, tmp_0));
+    dComIfGp_getVibration().StartQuake(1, 1, cXyz(0.0f, 1.0f, 0.0f));
 
     onNoResetFlg3(FLG3_UNK_4);
     mItemVar0.field_0x3018 = mpHIO->mItem.mBoomerang.m.mChargeTime;
@@ -247,8 +246,7 @@ int daAlink_c::returnBoomerang(int param_0) {
         field_0x2f94 = 2;
         onNoResetFlg0(FLG0_UNK_20);
 
-        f32 tmp_0 = 0.0f;
-        dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, 1.0f, tmp_0));
+        dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
         return 1;
     }
 

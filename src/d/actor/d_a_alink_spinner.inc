@@ -159,7 +159,7 @@ int daAlink_c::procSpinnerWaitInit() {
         return 0;
     }
 
-    mRideStatus = 5;
+    mRideStatus = RIDETYPE_SPINNER;
     setBgCheckParam();
     setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, mpHIO->mItem.mBoard.m.mSitAnmSpeed, 4.0f);
     speed.y = 0.0f;
@@ -182,7 +182,7 @@ int daAlink_c::procSpinnerWait() {
     daSpinner_c* spinner = (daSpinner_c*)mRideAcKeep.getActor();
 
     if (spinner == NULL || spinner->getDeleteFlg() || checkWindSpeedOnXZ() ||
-        checkEndResetFlg1(ERFLG1_UNK_1) || checkEndResetFlg0(ERFLG0_UNK_2)) {
+        checkEndResetFlg1(ERFLG1_NS_SCREAM) || checkEndResetFlg0(ERFLG0_FORCE_WOLF_CHANGE)) {
         mNormalSpeed = 0.0f;
         setJumpMode();
         return procFallInit(1, mpHIO->mAutoJump.m.mFallInterpolation);

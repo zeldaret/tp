@@ -301,9 +301,8 @@ int daAlink_c::procHangStartInit() {
     shape_angle.y = field_0x306e + 0x8000;
     current.angle.y = shape_angle.y;
 
-    f32 tmp_0 = 0.0f;
-    mNormalSpeed = tmp_0;
-    speed.y = tmp_0;
+    mNormalSpeed = 0.0f;
+    speed.y = 0.0f;
     dComIfGp_setPlayerStatus0(0, 0x100);
     setHangGroundY();
     return 1;
@@ -415,8 +414,7 @@ int daAlink_c::procHangFallStart() {
     }
 
     if (frame_ctrl->checkPass(5.0f)) {
-        f32 tmp_0 = 0.0f;
-        dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, 1.0f, tmp_0));
+        dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
     }
 
     if (bvar) {
@@ -809,9 +807,8 @@ int daAlink_c::procHangReadyInit() {
     mProcVar2.field_0x300c = field_0x306e + 0x8000;
     field_0x3198 = field_0x2f91;
 
-    f32 tmp_0 = 0.0f;
-    mNormalSpeed = tmp_0;
-    speed.y = tmp_0;
+    mNormalSpeed = 0.0f;
+    speed.y = 0.0f;
     return 1;
 }
 
@@ -851,9 +848,8 @@ int daAlink_c::procHangLeverDownInit() {
     mProcVar2.field_0x300c = field_0x27f4->shape_angle.y + 0x8000;
     field_0x3198 = ANM_CLIMB_JUMP;
 
-    f32 tmp_0 = 0.0f;
-    speed.y = tmp_0;
-    mNormalSpeed = tmp_0;
+    speed.y = 0.0f;
+    mNormalSpeed = 0.0f;
     return 1;
 }
 
@@ -970,9 +966,8 @@ int daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
     field_0x3198 = 0x169;
     deleteEquipItem(TRUE, FALSE);
 
-    f32 tmp_0 = 0.0f;
-    mNormalSpeed = tmp_0;
-    setSpecialGravity(tmp_0, maxFallSpeed, 0);
+    mNormalSpeed = 0.0f;
+    setSpecialGravity(0.0f, maxFallSpeed, 0);
     speed.y = 0.0f;
 
     mProcVar2.field_0x300c = 0;
@@ -985,7 +980,7 @@ int daAlink_c::procBossBodyHangInit(fopAc_ac_c* param_0) {
     field_0x280c.setData(param_0);
     setBossBodyHangPos();
 
-    onEndResetFlg1(ERFLG1_GANON_FINISH);
+    onEndResetFlg1(ERFLG1_SHIELD_BACKBONE);
     return 1;
 }
 
@@ -1146,7 +1141,7 @@ int daAlink_c::procBossBodyHang() {
         }
     }
 
-    onEndResetFlg1(ERFLG1_GANON_FINISH);
+    onEndResetFlg1(ERFLG1_SHIELD_BACKBONE);
     return 1;
 }
 
@@ -1381,10 +1376,9 @@ int daAlink_c::procLadderUpEndInit(int param_0) {
     field_0x2f99 = 14;
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    f32 tmp_0 = 0.0f;
-    speed.y = tmp_0;
-    mNormalSpeed = tmp_0;
-    speedF = tmp_0;
+    speed.y = 0.0f;
+    mNormalSpeed = 0.0f;
+    speedF = 0.0f;
 
     field_0x30a0 = -0x0800;
     field_0x33f4 = -1.0f;
@@ -1992,7 +1986,7 @@ BOOL daAlink_c::checkBgClimbMove(int i_direction) {
 
         if (checkClimbGround(&sp8C, sp98.y)) {
             current.pos = sp8C;
-            onResetFlg0(RFLG0_UNK_40000);
+            onResetFlg0(RFLG0_CLIMB_END_HANG);
             return procHangClimbInit(mpHIO->mWallHang.mWallCatch.m.mClimbAnm.mStartFrame);
         } else {
             current.pos.y -= 30.0f;
@@ -2471,10 +2465,9 @@ int daAlink_c::procClimbToRoofInit() {
     setSingleAnimeBase(ANM_ROOF_UP);
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    f32 tmp_0 = 0.0f;
-    speed.y = tmp_0;
-    mNormalSpeed = tmp_0;
-    speedF = tmp_0;
+    speed.y = 0.0f;
+    mNormalSpeed = 0.0f;
+    speedF = 0.0f;
     field_0x2f99 = 10;
     dComIfGp_setPlayerStatus0(0, 8);
     return 1;
@@ -2634,9 +2627,8 @@ int daAlink_c::procRoofHangStartInit(cBgS_PolyInfo const& param_0, cXyz const& p
     deleteEquipItem(TRUE, FALSE);
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    f32 tmp_0 = 0.0f;
-    mNormalSpeed = tmp_0;
-    speed.y = tmp_0;
+    mNormalSpeed = 0.0f;
+    speed.y = 0.0f;
     field_0x2f99 = 0x50;
     mProcVar0.field_0x3008 = param_2;
     return 1;
@@ -2836,9 +2828,8 @@ int daAlink_c::procRoofHangSideMoveInit() {
                             mpHIO->mRoofHang.m.mHorizMoveInterp);
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    f32 tmp_0 = 0.0f;
-    mNormalSpeed = tmp_0;
-    speed.y = tmp_0;
+    mNormalSpeed = 0.0f;
+    speed.y = 0.0f;
     field_0x3478 = 15.0f;
     field_0x347c = 28.0f;
 
@@ -2901,9 +2892,8 @@ int daAlink_c::procRoofHangTurnInit() {
 
     field_0x2f98 = 4;
     setSpecialGravity(0.0f, maxFallSpeed, 0);
-    f32 tmp_0 = 0.0f;
-    mNormalSpeed = tmp_0;
-    speed.y = tmp_0;
+    mNormalSpeed = 0.0f;
+    speed.y = 0.0f;
     dComIfGp_setPlayerStatus1(0, 0x100000);
     return 1;
 }
@@ -2948,9 +2938,8 @@ int daAlink_c::procRoofSwitchHangInit(fopAc_ac_c* param_0) {
     setSingleAnimeParam(ANM_ROOF_HANG, &mpHIO->mRoofHang.m.mRoofHangAnm);
 
     setSpecialGravity(0.0f, maxFallSpeed, 0);
-    f32 tmp_0 = 0.0f;
-    speed.y = tmp_0;
-    mNormalSpeed = tmp_0;
+    speed.y = 0.0f;
+    mNormalSpeed = 0.0f;
 
     field_0x280c.setData(param_0);
     setRoofHangSwitch();

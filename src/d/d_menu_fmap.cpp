@@ -1020,7 +1020,7 @@ void dMenu_Fmap_c::portal_warp_map_proc() {
                 }
             } else if (mPortalNo == 3) {
                 if ((dMeter2Info_getMapStatus() == 3
-                                && dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 2
+                                && dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == dStage_SaveTbl_FARON
                                 && dComIfGs_isOneZoneSwitch(0xf, -1))
                        /* dSv_event_flag_c::M_018 - Main Event - Brought Kakariko bridge back to original location */
                     || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x33]))

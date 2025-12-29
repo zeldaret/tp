@@ -134,7 +134,7 @@ BOOL daAlink_c::checkGrabSideActor() {
 }
 
 void daAlink_c::setGrabUpperAnime(f32 param_0) {
-    if (param_0 > 0.0f && checkNoResetFlg0(FLG0_UNDERWATER)) {
+    if (param_0 > 0.0f && checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
         if (checkZoraWearAbility()) {
             param_0 *= 1.0f / mpHIO->mItem.mIronBoots.m.mZoraWaterAnmSpeed;
         } else {
@@ -369,7 +369,7 @@ void daAlink_c::setGrabItemPos() {
     if (mEquipItem == 0x102) {
         fopAc_ac_c* sp10 = mItemAcKeep.getActor();
         if (sp10 != NULL) {
-            mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(field_0x30c0));
+            mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(mLeftItemJntNo));
             mDoMtx_stack_c::transM(7.0f, -2.0f, 1.0f);
             mDoMtx_stack_c::XYZrotM(cM_deg2s(71.0f), cM_deg2s(-6.6f), cM_deg2s(3.2f));
             mDoMtx_stack_c::multVecZero(&sp10->current.pos);
@@ -555,7 +555,7 @@ void daAlink_c::setGrabItemThrow() {
         } else {
             f32 var_f31;
             f32 var_f30;
-            if (checkNoResetFlg0(FLG0_UNDERWATER)) {
+            if (checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
                 var_f31 = mpHIO->mItem.mBomb.m.mWaterThrowSpeedH;
                 var_f30 = mpHIO->mItem.mBomb.m.mWaterThrowSpeedV;
             } else {
@@ -779,7 +779,7 @@ int daAlink_c::procGrabUpInit() {
     }
 
     fopAcM_setStageLayer(temp_r30);
-    onResetFlg0(RFLG0_UNK_8000);
+    onResetFlg0(RFLG0_GRAB_UP_START);
     field_0x3478 = 18.0f;
     return 1;
 }
@@ -997,12 +997,12 @@ int daAlink_c::procGrabPut() {
 }
 
 int daAlink_c::procGrabWaitInit() {
-    if (checkEndResetFlg2(ERFLG2_UNK_8)) {
+    if (checkEndResetFlg2(ERFLG2_FORCE_GRAB_REBOUND)) {
         return procGrabReboundInit(1);
     }
 
     BOOL var_r30;
-    if (!checkModeFlg(0x100000) && checkNoResetFlg0(FLG0_UNDERWATER)) {
+    if (!checkModeFlg(0x100000) && checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
         var_r30 = 1;
     } else {
         var_r30 = 0;
@@ -1260,7 +1260,7 @@ int daAlink_c::procPickUp() {
                 checkNextAction(0);
             }
         } else if (temp_r30->checkPass(field_0x3478)) {
-            onResetFlg0(RFLG0_UNK_8000);
+            onResetFlg0(RFLG0_GRAB_UP_START);
 
             if (mProcVar4.field_0x3010 != 0) {
                 mEquipItem = fpcNm_ITEM_KANTERA;
@@ -1277,7 +1277,7 @@ int daAlink_c::procPickUp() {
         mItemAcKeep = mGrabItemAcKeep;
         mGrabItemAcKeep.clearData();
         field_0x2f94 = 3;
-        onResetFlg0(RFLG0_UNK_8000);
+        onResetFlg0(RFLG0_GRAB_UP_START);
     }
 
     return 1;
@@ -1973,7 +1973,7 @@ void daAlink_c::setGoatStopGameFail(fopAc_ac_c* param_0) {
     current.angle.y = shape_angle.y + 0x8000;
 
     if (checkGoatStopGame()) {
-        onNoResetFlg0(FLG0_UNK_200000);
+        onNoResetFlg0(FLG0_GORON_UP_STOP_CANCEL);
     } else {
         if (!checkBootsOrArmorHeavy() && temp_r3 == PROC_OBJ_GRA) {
             setDamagePointNormal(2);

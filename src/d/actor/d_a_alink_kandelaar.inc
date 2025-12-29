@@ -74,7 +74,7 @@ void daAlink_c::checkWaterInKandelaar(f32 param_0) {
 }
 
 void daAlink_c::offKandelaarModel() {
-    offNoResetFlg2(FLG2_UNK_10000001);
+    offNoResetFlg2(daPy_FLG2(FLG2_KANDELAAR_LIGHT_OFF | FLG2_UNK_1));
     mZ2Link.setKanteraState(0);
 }
 
@@ -210,7 +210,7 @@ void daAlink_c::setKandelaarModel() {
     if (!checkNoResetFlg2(FLG2_UNK_1)) {
         onNoResetFlg2(FLG2_UNK_1);
 
-        mDoMtx_multVecZero(mpLinkModel->getAnmMtx(field_0x30c0), &mKandelaarFlamePos);
+        mDoMtx_multVecZero(mpLinkModel->getAnmMtx(mLeftItemJntNo), &mKandelaarFlamePos);
         mKandelaarFlamePos.y -= 30.0f;
 
         field_0x3630 = field_0x3624;
@@ -270,7 +270,7 @@ int daAlink_c::commonKandelaarPour(int param_0) {
         current_anm = mUnderAnmHeap[0].getIdx();
     }
 
-    onNoResetFlg2(FLG2_UNK_10000000);
+    onNoResetFlg2(FLG2_KANDELAAR_LIGHT_OFF);
 
     if (current_anm == getMainBckData(ANM_OIL_BOTTLE_POUR_START)->m_underID) {
         if (checkAnmEnd(frameCtrl_p)) {
@@ -310,7 +310,7 @@ int daAlink_c::commonKandelaarPour(int param_0) {
 
         resetOilBottleModel();
         resetSpecialEvent();
-        offNoResetFlg2(FLG2_UNK_10000000);
+        offNoResetFlg2(FLG2_KANDELAAR_LIGHT_OFF);
         return 1;
     }
 

@@ -3980,6 +3980,15 @@ public:
     size_t makeFileOutData(char*, char*);
     void listenPropertyEvent(const JORPropertyEvent*);
 
+    enum PropertyID_e {
+        PROPERTY_POS_DISP_e        = 0x4000002,
+        PROPERTY_RESET_e           = 0x4000003,
+        PROPERTY_SAVE_FILE_e       = 0x4000004,
+        PROPERTY_LOAD_FILE_e       = 0x4000005,
+        PROPERTY_JUMP_HDIST_DISP_e = 0x4000006,
+        PROPERTY_JUMP_VDIST_DISP_e = 0x4000007,
+    };
+
     /* 0x0008 */ daAlinkHIO_basic_c mBasic;
     /* 0x0094 */ daAlinkHIO_move_c mMove;
     /* 0x0120 */ daAlinkHIO_atnMove_c mAtnMove;
@@ -5104,6 +5113,14 @@ public:
         EFFPROC_SUMOU,
         EFFPROC_NONE,
     };
+    
+    enum daAlink_RIDETYPE {
+        RIDETYPE_HORSE = 1,
+        RIDETYPE_BOAR,
+        RIDETYPE_CANOE,
+        RIDETYPE_BOARD,
+        RIDETYPE_SPINNER,
+    };
 
     class firePointEff_c {
     public:
@@ -5146,7 +5163,7 @@ public:
     s16 getNeckAimAngle(cXyz*, s16*, s16*, s16*, s16*);
     void setEyeMove(cXyz*, s16, s16);
     void setNeckAngle();
-    bool commonLineCheck(cXyz*, cXyz*);
+    bool commonLineCheck(cXyz* i_startPos, cXyz* i_endPos);
     static s16 getMoveBGActorName(cBgS_PolyInfo&, int);
     fopAc_ac_c* checkGoronRide();
     void setMoveSlantAngle();
@@ -5514,12 +5531,12 @@ public:
     bool checkNoSubjectModeCamera();
     bool acceptSubjectModeChange();
     int checkSubjectAction();
-    s16 checkBodyAngleX(s16);
+    s16 checkBodyAngleX(s16 i_angle);
     BOOL setBodyAngleToCamera();
     void setSubjectMode();
     BOOL subjectCancelTrigger();
-    int checkSubjectEnd(int);
-    void searchPeepObj(fopAc_ac_c*, void*);
+    BOOL checkSubjectEnd(BOOL i_isPlaySe);
+    void searchPeepObj(fopAc_ac_c* i_actor, void* i_data);
     int procCoSubjectivityInit();
     int procCoSubjectivity();
     int procCoSwimSubjectivityInit();
@@ -5549,23 +5566,24 @@ public:
     BOOL checkCutTypeNoBlur() const;
     bool checkCutTurnInput() const;
     int getCutTurnDirection() const;
-    void resetCombo(int);
+    void resetCombo(int i_resetRunCut);
     void checkComboCnt();
-    void setCutType(u8);
-    void setCylAtParam(u32, dCcG_At_Spl, u8, u8, int, f32, f32);
+    void setCutType(u8 i_type);
+    void setCylAtParam(u32 i_AtType, dCcG_At_Spl i_spl, u8 i_hitMark, u8 i_AtSe, int i_atp,
+                       f32 i_radius, f32 i_height);
     void setSwordAtParam(dCcG_At_Spl i_spl, u8 i_hitMark, u8 i_AtSe, int i_atp,
-                                        f32 param_4, f32 i_radius);
-    static BOOL notSwordHitVibActor(fopAc_ac_c*);
-    BOOL setSwordHitVibration(dCcD_GObjInf*);
-    BOOL checkAtShieldHit(dCcD_GObjInf&);
-    BOOL checkCutReverseAt(dCcD_GObjInf*);
-    BOOL changeCutReverseProc(daAlink_c::daAlink_ANM);
+                         f32 param_4, f32 i_radius);
+    static BOOL notSwordHitVibActor(fopAc_ac_c* i_actor);
+    BOOL setSwordHitVibration(dCcD_GObjInf* i_gobj);
+    BOOL checkAtShieldHit(dCcD_GObjInf& i_gobj);
+    BOOL checkCutReverseAt(dCcD_GObjInf* i_gobj);
+    BOOL changeCutReverseProc(daAlink_c::daAlink_ANM i_anmID);
     void setCutDash(int, int);
     BOOL checkForceSwordSwing();
     void setComboReserb();
     BOOL checkComboReserb();
     int commonCutAction();
-    void setSwordVoiceSe(u32);
+    void setSwordVoiceSe(u32 i_seID);
     void setSwordChargeVoiceSe();
     void setSwordComboVoice();
     bool checkCutTurnInputTrigger();
@@ -5580,18 +5598,18 @@ public:
     void cancelCutCharge();
     void initCutAtnActorSearch();
     void checkCutAtnActorChange();
-    void setCutJumpSpeed(int);
-    int procCutNormalInit(int);
+    void setCutJumpSpeed(BOOL i_isAirCut);
+    int procCutNormalInit(int i_type);
     int procCutNormal();
-    int procCutFinishInit(int);
+    int procCutFinishInit(int i_type);
     int procCutFinish();
     int procCutFinishJumpUpInit();
     int procCutFinishJumpUp();
     int procCutFinishJumpUpLandInit();
     int procCutFinishJumpUpLand();
-    int procCutReverseInit(daAlink_c::daAlink_ANM);
+    int procCutReverseInit(daAlink_c::daAlink_ANM i_anmID);
     int procCutReverse();
-    int procCutJumpInit(int);
+    int procCutJumpInit(BOOL i_isAirCut);
     int procCutJump();
     int procCutJumpLandInit(int);
     int procCutJumpLand();
@@ -5603,7 +5621,7 @@ public:
     int procCutTurnMove();
     int procCutDownInit();
     int procCutDown();
-    int procCutDownLandInit(fopEn_enemy_c*);
+    int procCutDownLandInit(fopEn_enemy_c* i_enemy);
     int procCutDownLand();
     int procCutHeadInit();
     int procCutHead();
@@ -6998,11 +7016,11 @@ public:
         }
         offModeFlg(MODE_UNK_100);
     }
-    virtual void onSceneChangeArea(u8, u8, fopAc_ac_c*);
-    virtual void onSceneChangeAreaJump(u8 exitID, u8 exitDirection, fopAc_ac_c* scexAc) {
-        mExitID = exitID | 0x8000;
-        mExitDirection = exitDirection;
-        mpScnChg = (daScex_c*)scexAc;
+    virtual void onSceneChangeArea(u8 i_exitID, u8 i_exitDirection, fopAc_ac_c* i_scexAc);
+    virtual void onSceneChangeAreaJump(u8 i_exitID, u8 i_exitDirection, fopAc_ac_c* i_scexAc) {
+        mExitID = i_exitID | 0x8000;
+        mExitDirection = i_exitDirection;
+        mpScnChg = (daScex_c*)i_scexAc;
     }
     virtual void onSceneChangeDead(u8 param_0, int param_1) {
         if (mProcID != PROC_DEAD) {
@@ -7155,8 +7173,9 @@ public:
     }
 
     u32 checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
-    BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(0x16); }
-    BOOL checkFmChainGrabAnime() const { return checkUpperAnime(0x62) || checkUpperAnime(0x2A0); }
+
+    BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_ATDEFS_e); }
+    BOOL checkFmChainGrabAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_CHAIN_e) || checkUpperAnime(dRes_INDEX_ALANM_BCK_WL_CHAIN_e); }
 
     BOOL checkAttentionLock() { return mAttention->Lockon(); }
 
@@ -7164,11 +7183,11 @@ public:
     bool checkUnderAnime(u16 i_idx) const { return mUnderAnmHeap[UNDER_2].getIdx() == i_idx; }
 
     bool checkNoSetUpperAnime() const { return mUpperAnmHeap[UPPER_2].checkNoSetIdx(); }
-    bool checkSwimMoveHandAnime() const { return checkUpperAnime(0x23F); }
-    bool checkZoraSwimDamageAnime() const { return checkUpperAnime(0xBF); }
-    bool checkIronBallWaitAnime() const { return checkUpperAnime(0x19C); }
-    bool checkHorseTurnLAnime() const { return checkUpperAnime(0x24C); }
-    bool checkHorseTurnRAnime() const { return checkUpperAnime(0x24D); }
+    bool checkSwimMoveHandAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_SWIMINGB_e); }
+    bool checkZoraSwimDamageAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_DAMSW_e); }
+    bool checkIronBallWaitAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_IBWAIT_e); }
+    bool checkHorseTurnLAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_TURNLS_e); }
+    bool checkHorseTurnRAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_TURNRS_e); }
     bool checkHorseTurnAnime() const { return checkHorseTurnLAnime() || checkHorseTurnRAnime(); }
     bool checkHookshotShootAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_HSSHOOT_e); }
     bool checkHookshotReadyAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_HSWAIT_e); }
@@ -7176,59 +7195,59 @@ public:
         return checkHookshotReadyAnime() || checkHookshotShootAnime();
     }
     BOOL checkBoomerangReadyAnime() const {
-        return (mEquipItem == fpcNm_ITEM_BOOMERANG || mEquipItem == 0x102) && checkUpperAnime(0x54);
+        return (mEquipItem == fpcNm_ITEM_BOOMERANG || mEquipItem == 0x102) && checkUpperAnime(dRes_ID_ALANM_BCK_BOOMWAIT_e);
     }
-    bool checkDkCaught2Anime() const { return checkUpperAnime(0x262); }
+    bool checkDkCaught2Anime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WAITHDB_e); }
     BOOL checkCopyRodThrowAnime() const {
-        return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(0x53);
+        return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(dRes_INDEX_ALANM_BCK_BOOMTHROW_e);
     }
-    BOOL checkCutDashChargeAnime() const { return checkUpperAnime(0x83); }
+    BOOL checkCutDashChargeAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_CUTDTP_e); }
     BOOL checkBoomerangAnimeAndReturnWait() const { return checkBoomerangAnime(); }
-    BOOL checkTwoHandItemEquipAnime() const { return checkUpperAnime(0x245); }
+    BOOL checkTwoHandItemEquipAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_TAKE_e); }
     BOOL checkBarkAnime() const { return 0; }
-    bool checkWolfGrabAnimeObj() const { return checkUpperAnime(0x2DA); }
-    bool checkWolfGrabAnimeStick() const { return checkUpperAnime(0x2DB); }
+    bool checkWolfGrabAnimeObj() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_WL_PICKUPA_e); }
+    bool checkWolfGrabAnimeStick() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WL_PICKUPB_e); }
     BOOL checkWolfGrabAnime() const { return checkWolfGrabAnimeObj() || checkWolfGrabAnimeStick(); }
     bool checkWolfSwimDashAnime() const { return checkUnderMove0BckNoArcWolf(WANM_SWIM_DASH); }
     bool checkKandelaarSwingAnime() const { return false; }
-    bool checkBowChargeWaitAnime() const { return checkUpperAnime(0xA); }
-    bool checkBowReloadAnime() const { return checkUpperAnime(0x9); }
-    bool checkBowShootAnime() const { return checkUpperAnime(0xC); }
-    bool checkBowWaitAnime() const { return checkUpperAnime(0xD); }
-    BOOL checkGrabUpThrowAnime() const { return checkUpperAnime(0x170); }
+    bool checkBowChargeWaitAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_ARELORDTAME_e); }
+    bool checkBowReloadAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_ARELORD_e); }
+    bool checkBowShootAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_ASHOOT_e); }
+    bool checkBowWaitAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_ASHOOTWAIT_e); }
+    BOOL checkGrabUpThrowAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_GRABTHROW_e); }
     BOOL checkGrabSideThrowAnime() const {
-        return checkUpperAnime(0x51) || mUpperAnmHeap[0].getIdx() == 0x51;
+        return checkUpperAnime(dRes_ID_ALANM_BCK_BOMBTHROW_e) || mUpperAnmHeap[0].getIdx() == dRes_ID_ALANM_BCK_BOMBTHROW_e;
     }
-    BOOL checkGrabHeavyThrowAnime() const { return checkUpperAnime(0x17B); }
-    BOOL checkGrabAnimeUp() const { return checkUpperAnime(0x16C); }
-    BOOL checkGrabAnimeSide() const { return checkUpperAnime(0x50); }
-    BOOL checkGrabAnimeCarry() const { return checkUpperAnime(0x60); }
-    bool checkHorseUnderDashStartAnime() const { return checkUnderAnime(0xDD); }
-    bool checkHorseUnderLashAnime() const { return checkUnderAnime(0x1B3); }
-    bool checkUpperHorseLieAnime() const { return checkUpperAnime(0x265); }
-    bool checkHorseTiredAnime() const { return checkUpperAnime(0x263); }
-    bool checkHorseSwordUpAnime() const { return checkUpperAnime(0xCC); }
-    bool checkHorseUnderItemAnime() const { return checkUnderAnime(0x19); }
+    BOOL checkGrabHeavyThrowAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_HEAVYTHROW_e); }
+    BOOL checkGrabAnimeUp() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_GRABD_e); }
+    BOOL checkGrabAnimeSide() const { return checkUpperAnime(dRes_ID_ALANM_BCK_BOMBD_e); }
+    BOOL checkGrabAnimeCarry() const { return checkUpperAnime(dRes_ID_ALANM_BCK_CARRYD_e); }
+    bool checkHorseUnderDashStartAnime() const { return checkUnderAnime(dRes_ID_ALANM_BCK_DSTARTHS_e); }
+    bool checkHorseUnderLashAnime() const { return checkUnderAnime(dRes_ID_ALANM_BCK_LASHS_e); }
+    bool checkUpperHorseLieAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WAITHLIE_e); }
+    bool checkHorseTiredAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_WAITHDS_e); }
+    bool checkHorseSwordUpAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_DASHHBSUP_e); }
+    bool checkHorseUnderItemAnime() const { return checkUnderAnime(dRes_INDEX_ALANM_BCK_ATH_e); }
     BOOL checkHorseWalkStartAnm() const { return checkUnderMove0BckNoArc(ANM_WSTARTH); }
-    bool checkIronBallPreSwingAnime() const { return checkUpperAnime(0x19A); }
-    bool checkIronBallSwingAnime() const { return checkUpperAnime(0x19B); }
-    bool checkDashDamageAnime() const { return checkUpperAnime(0xAD); }
-    bool checkBoomerangCatchAnime() const { return checkUpperAnime(0x52); }
+    bool checkIronBallPreSwingAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_IBTHROW_e); }
+    bool checkIronBallSwingAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_IBTURN_e); }
+    bool checkDashDamageAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_DAMD_e); }
+    bool checkBoomerangCatchAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_BOOMCATCH_e); }
     BOOL checkCopyRodReadyAnime() const {
-        return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(0x54);
+        return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(dRes_ID_ALANM_BCK_BOOMWAIT_e);
     }
     BOOL checkCanoeFishingWaitAnime() const {
-        return checkUpperAnime(0x5D) || checkUpperAnime(0x260);
+        return checkUpperAnime(dRes_ID_ALANM_BCK_CANOEREELINGR_e) || checkUpperAnime(dRes_ID_ALANM_BCK_WAITFISHR_e);
     }
-    BOOL checkCopyRodControllAnime() const { return checkUpperAnime(0x202); }
-    BOOL checkWolfHeadDamageAnime() const { return checkUpperAnime(0x2A7); }
-    BOOL checkExchangeRodAnime() const { return checkUpperAnime(0x68); }
-    BOOL checkReelAnime() const { return checkUpperAnime(0x1FB); }
+    BOOL checkCopyRodControllAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_RODD_e); }
+    BOOL checkWolfHeadDamageAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_WL_DAM_e); }
+    BOOL checkExchangeRodAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_CHANGEROD_e); }
+    BOOL checkReelAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_REELINGARM_e); }
 
     int checkWolfEyeUp() const { return mWolfEyeUp; }
     void onModeFlg(u32 flag) { mModeFlg |= flag; }
     void offModeFlg(u32 flag) { mModeFlg &= ~flag; }
-    bool swordButton() { return itemButtonCheck(8); }
+    BOOL swordButton() { return itemButtonCheck(BTN_B); }
     daPy_actorKeep_c* getThrowBoomerangAcKeep() { return &mThrowBoomerangAcKeep; }
     int getStartRoomNo() { return fopAcM_GetParam(this) & 0x3F; }
     bool checkFisingRodLure() const { return mEquipItem == 0x105; }
@@ -7236,7 +7255,7 @@ public:
     bool swordTrigger() { return itemTriggerCheck(BTN_B); }
     BOOL grassCancelTrigger() { return itemTriggerCheck(BTN_B); }
     BOOL arrowChangeTrigger() { return itemActionTrigger(); }
-    bool peepSubjectCancelTrigger() { return itemTriggerCheck(0x8); }
+    BOOL peepSubjectCancelTrigger() { return itemTriggerCheck(BTN_B); }
     int getStartMode() { return (fopAcM_GetParam(this) >> 0xC) & 0x1F; }
     bool checkInputOnR() const { return field_0x33ac > 0.05f; }
     static int getSightBti() { return 0x5B; }
@@ -7322,7 +7341,7 @@ public:
     s16 getCameraAngleY() const { return field_0x310c; }
     cXyz* getSubjectEyePos() { return &field_0x3768; }
 
-    u32 checkReinRide() const { return mRideStatus == 1 || mRideStatus == 2; }
+    u32 checkReinRide() const { return mRideStatus == RIDETYPE_HORSE || mRideStatus == RIDETYPE_BOAR; }
     int getGrassHowlEventActor() const { return field_0x3198; }
     MtxP getShieldMtx() const { return mShieldModel->getBaseTRMtx(); }
     MtxP getMagneBootsMtx() { return mMagneBootMtx; }
@@ -7331,7 +7350,7 @@ public:
 
     BOOL checkFishingCastMode() const {
         return (mProcID == PROC_FISHING_CAST && !(mItemAcKeep.getActor() != NULL && mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt())) ||
-               (mProcID != PROC_FISHING_CAST && checkNoResetFlg2(FLG2_UNK_20000000) != 0);
+               (mProcID != PROC_FISHING_CAST && checkNoResetFlg2(FLG2_FISHING_CAST_WAIT) != 0);
     }
 
     BOOL setCanoeCast() {
@@ -7351,11 +7370,11 @@ public:
     void setFishingArm1Angle(const csXyz& i_angle) { mFishingArm1Angle = i_angle; }
     void setFishingArm2Angle(const csXyz& i_angle) { field_0x3160 = i_angle; }
 
-    void endFishingCastWait() { offNoResetFlg2(FLG2_UNK_20000000); }
+    void endFishingCastWait() { offNoResetFlg2(FLG2_FISHING_CAST_WAIT); }
 
     void startFishingCastWait() {
         if (checkFishingRodItem(mEquipItem)) {
-            onNoResetFlg2(FLG2_UNK_20000000);
+            onNoResetFlg2(FLG2_FISHING_CAST_WAIT);
         }
     }
 
@@ -7475,7 +7494,7 @@ public:
         return mItemTrigger & (BTN_A | BTN_B);
     }
 
-    void clearComboReserb() { offNoResetFlg2(FLG2_UNK_2); }
+    void clearComboReserb() { offNoResetFlg2(FLG2_COMBO_RESERB); }
 
     void setDamageColorTime() { mDamageColorTime = 32 - (mDamageTimer % 16); }
 
@@ -7543,8 +7562,8 @@ public:
 
     fopAc_ac_c* getAtnActor() { return mTargetedActor; }
 
-    void itemHitSE(u32 param_1, u32 param_2, Z2SoundObjBase* param_3) {
-        mZ2Link.startHitItemSE(param_1, param_2, param_3, -1.0f);
+    void itemHitSE(u32 i_soundID, u32 i_mapinfo, Z2SoundObjBase* i_other) {
+        mZ2Link.startHitItemSE(i_soundID, i_mapinfo, i_other, -1.0f);
     }
 
     BOOL checkStartFall() { return getStartMode() == 3; }
@@ -7938,6 +7957,7 @@ public:
     } /* 0x03010 */ mProcVar4;
     union {
         s16 field_0x3012;
+        s16 mCutTurnChargeCheckTimer;
     } /* 0x03012 */ mProcVar5;
     /* 0x03014 */ s16 mFallVoiceInit;
     /* 0x03016 */ u8 field_0x3016[2];
@@ -7996,12 +8016,12 @@ public:
     /* 0x030B2 */ s16 field_0x30b2;
     /* 0x030B4 */ u16 field_0x30b4;
     /* 0x030B6 */ u16 field_0x30b6;
-    /* 0x030B8 */ u16 field_0x30b8;
-    /* 0x030BA */ u16 field_0x30ba;
+    /* 0x030B8 */ u16 mLeftHandJntNo;
+    /* 0x030BA */ u16 mRightHandJntNo;
     /* 0x030BC */ u16 field_0x30bc;
     /* 0x030BE */ u16 field_0x30be;
-    /* 0x030C0 */ u16 field_0x30c0;
-    /* 0x030C2 */ u16 field_0x30c2;
+    /* 0x030C0 */ u16 mLeftItemJntNo;
+    /* 0x030C2 */ u16 mRightItemJntNo;
     /* 0x030C4 */ u16 field_0x30c4;
     /* 0x030C6 */ u16 field_0x30c6;
     /* 0x030C8 */ s16 field_0x30c8;
@@ -8245,7 +8265,7 @@ static fopAc_ac_c* daAlink_searchCoach(fopAc_ac_c* param_0, void* param_1);
 
 struct daAlink_cutParamTbl {
     /* 0x0 */ daAlink_c::daAlink_ANM m_anmID;
-    /* 0x4 */ int field_0x4;
+    /* 0x4 */ daAlink_c::daAlink_ANM m_recoilAnmID;
     /* 0x8 */ u8 m_cutType;
     /* 0x9 */ u8 m_atSe;
     /* 0xA */ u8 field_0xa;

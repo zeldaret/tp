@@ -35,7 +35,7 @@ bool daAlink_c::commonMagneLineCheck(cXyz* i_start, cXyz* i_end) {
 }
 
 BOOL daAlink_c::checkBootsMoveAnime(int param_0) {
-    return (checkHeavyStateOn(param_0, 1) && !checkNoResetFlg0(FLG0_UNDERWATER)) ||
+    return (checkHeavyStateOn(param_0, 1) && !checkNoResetFlg0(FLG0_WATER_IN_MOVE)) ||
            checkDkCaught2Anime();
 }
 
@@ -56,7 +56,7 @@ int daAlink_c::setHeavyBoots(int param_0) {
             deleteEquipItem(TRUE, FALSE);
         }
 
-        if (checkNoResetFlg0(FLG0_UNDERWATER) && !dComIfGp_checkPlayerStatus1(0, 0x2000000)) {
+        if (checkNoResetFlg0(FLG0_WATER_IN_MOVE) && !dComIfGp_checkPlayerStatus1(0, 0x2000000)) {
             return procSwimWaitInit(0);
         }
 

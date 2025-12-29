@@ -169,7 +169,7 @@ public:
     void SetHitMark(u8 mark) { mHitMark = mark; }
     void SetSe(u8 se) { mSe = se; }
     void SetMtrl(u8 mtrl) { mMtrl = mtrl; }
-    void SetAtSpl(dCcG_At_Spl spl) { mSpl = spl; }
+    void SetSpl(dCcG_At_Spl spl) { mSpl = spl; }
     u8 GetSe() { return mSe; }
     u8 GetSpl() { return mSpl; }
     u8 GetMtrl() { return mMtrl; }
@@ -328,7 +328,7 @@ public:
     bool ChkAtShieldHit() { return mGObjAt.ChkRPrm(1); }
     cXyz* GetAtVecP() { return mGObjAt.GetVecP(); }
     cXyz* GetTgVecP() { return mGObjTg.GetVecP(); }
-    void SetAtSpl(dCcG_At_Spl spl) { mGObjAt.SetAtSpl(spl); }
+    void SetAtSpl(dCcG_At_Spl spl) { mGObjAt.SetSpl(spl); }
     void SetAtHitCallback(dCcD_HitCallback callback) { mGObjAt.SetHitCallback(callback); }
     void SetTgHitCallback(dCcD_HitCallback callback) { mGObjTg.SetHitCallback(callback); }
     void SetCoHitCallback(dCcD_HitCallback callback) { mGObjCo.SetHitCallback(callback); }

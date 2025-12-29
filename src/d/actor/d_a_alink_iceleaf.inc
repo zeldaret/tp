@@ -82,7 +82,7 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
 
     if (mProcVar0.field_0x3008 != 0) {
         mProcVar0.field_0x3008--;
-        onResetFlg1(RFLG1_UNK_40);
+        onResetFlg1(RFLG1_BOARD_NO_FOOT_ANGLE);
     }
 
     f32 var_f30 = 0.0f;
@@ -380,7 +380,7 @@ int daAlink_c::procBoardWaitInit(fopAc_ac_c* i_board) {
         setCommonBoardAnime(FALSE);
     }
 
-    mRideStatus = 4;
+    mRideStatus = RIDETYPE_BOARD;
     mProcVar5.field_0x3012 = 0;
     mProcVar1.field_0x300a = 0;
     return 1;
@@ -463,7 +463,7 @@ int daAlink_c::procBoardWait() {
 int daAlink_c::procBoardRowInit() {
     commonProcInit(PROC_BOARD_ROW);
     setSingleAnimeBaseSpeed(ANM_RIDE_KICK, getBoardRowAnmSpeed(), mpHIO->mItem.mBoard.m.mPushInterpolation);
-    onResetFlg1(RFLG1_UNK_40);
+    onResetFlg1(RFLG1_BOARD_NO_FOOT_ANGLE);
     mProcVar0.field_0x3008 = 4;
     mProcVar4.field_0x3010 = 1;
     mProcVar5.field_0x3012 = 0;
@@ -476,7 +476,7 @@ int daAlink_c::procBoardRow() {
     }
 
     if (mProcVar4.field_0x3010 != 0) {
-        onResetFlg1(RFLG1_UNK_40);
+        onResetFlg1(RFLG1_BOARD_NO_FOOT_ANGLE);
         mProcVar0.field_0x3008 = 4;
     }
 
@@ -680,14 +680,14 @@ int daAlink_c::procBoardCutTurn() {
     daPy_frameCtrl_c* frame_ctrl = &mUnderFrameCtrl[0];
 
     if (frame_ctrl->getFrame() >= 4.0f && frame_ctrl->getFrame() < 14.0f) {
-        if (!checkNoResetFlg0(FLG0_UNK_40)) {
+        if (!checkNoResetFlg0(FLG0_CUT_AT_FLG)) {
             seStartSwordCut(Z2SE_AL_KAITENGIRI);
         }
 
         onResetFlg0(RFLG0_UNK_2);
         cLib_chaseF(&field_0x347c, field_0x3478, 20.0f);
         field_0xFB8.SetR(field_0x347c);
-        onResetFlg1(RFLG1_UNK_40);
+        onResetFlg1(RFLG1_BOARD_NO_FOOT_ANGLE);
     } else {
         mProcVar5.field_0x3012 = 0;
     }

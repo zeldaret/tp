@@ -103,7 +103,7 @@ BOOL daAlink_c::checkPossibleWaterInMode() const {
 }
 
 void daAlink_c::setWaterInAnmRate(daPy_frameCtrl_c* i_frameCtrl, f32 i_rate) {
-    if (checkNoResetFlg0(FLG0_UNDERWATER)) {
+    if (checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
         if (checkZoraWearAbility()) {
             i_rate *= mpHIO->mItem.mIronBoots.m.mZoraWaterAnmSpeed;
         } else {
@@ -362,7 +362,7 @@ int daAlink_c::checkSwimAction(int param_0) {
         var_f31 = mpHIO->mSwim.m.mStartHeight;
     }
 
-    if (checkNoResetFlg0(FLG0_UNK_80) && !checkNoResetFlg0(FLG0_UNDERWATER) && !checkModeFlg(0x40000) && mProcID != PROC_MAGNE_BOOTS_FLY && ((mProcID != PROC_WOLF_LOCK_ATTACK && mProcID != PROC_WOLF_LOCK_ATTACK_TURN) || mProcVar5.field_0x3012 == 0) && mDemo.getDemoMode() != 0x11) {
+    if (checkNoResetFlg0(FLG0_UNK_80) && !checkNoResetFlg0(FLG0_WATER_IN_MOVE) && !checkModeFlg(0x40000) && mProcID != PROC_MAGNE_BOOTS_FLY && ((mProcID != PROC_WOLF_LOCK_ATTACK && mProcID != PROC_WOLF_LOCK_ATTACK_TURN) || mProcVar5.field_0x3012 == 0) && mDemo.getDemoMode() != 0x11) {
         f32 var_f28;
         f32 var_f29;
         f32 var_f30;
@@ -460,7 +460,7 @@ int daAlink_c::checkSwimAction(int param_0) {
             }
 
             if (checkBootsOrArmorHeavy() || checkPossibleWaterInMode()) {
-                onNoResetFlg0(FLG0_UNDERWATER);
+                onNoResetFlg0(FLG0_WATER_IN_MOVE);
                 return 0;
             }
 
@@ -541,7 +541,7 @@ int daAlink_c::checkSwimUpAction() {
         } else {
             current.pos.y = mLinkAcch.GetGroundH();
             mLinkAcch.SetGroundHit();
-            onNoResetFlg0(FLG0_UNDERWATER);
+            onNoResetFlg0(FLG0_WATER_IN_MOVE);
             procLandInit(0.0f);
             field_0x2f99 = 0x90;
             return 1;
@@ -563,8 +563,8 @@ void daAlink_c::swimOutAfter(int param_0) {
     onEndResetFlg1(ERFLG1_UNK_100);
     mZ2Link.setInWater(false);
 
-    if (checkNoResetFlg0(FLG0_UNDERWATER)) {
-        offNoResetFlg0(FLG0_UNDERWATER);
+    if (checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
+        offNoResetFlg0(FLG0_WATER_IN_MOVE);
     } else {
         field_0x2b98 = 0.0f;
         field_0x2f98 = 4;
@@ -948,8 +948,8 @@ int daAlink_c::procSwimWaitInit(int param_0) {
     daPy_frameCtrl_c* frame_ctrl = mUnderFrameCtrl;
     u32 mode_40000 = checkModeFlg(0x40000);
 
-    if (checkNoResetFlg0(FLG0_UNDERWATER)) {
-        offNoResetFlg0(FLG0_UNDERWATER);
+    if (checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
+        offNoResetFlg0(FLG0_WATER_IN_MOVE);
         current.pos.y += mpHIO->mSwim.m.mStartHeight;
     }
 
@@ -1053,8 +1053,8 @@ int daAlink_c::procSwimMoveInit() {
 
     commonProcInit(PROC_SWIM_MOVE);
 
-    if (checkNoResetFlg0(FLG0_UNDERWATER)) {
-        offNoResetFlg0(FLG0_UNDERWATER);
+    if (checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
+        offNoResetFlg0(FLG0_WATER_IN_MOVE);
     }
 
     if (!mode_40000) {
@@ -1475,8 +1475,8 @@ int daAlink_c::procOctaIealSpitInit() {
     u32 temp_r30 = checkModeFlg(MODE_SWIMMING);
     commonProcInit(PROC_OCTAIEAL_SPIT);
 
-    if (checkNoResetFlg0(FLG0_UNDERWATER)) {
-        offNoResetFlg0(FLG0_UNDERWATER);
+    if (checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
+        offNoResetFlg0(FLG0_WATER_IN_MOVE);
     }
 
     setSingleAnimeBase(ANM_MORPHEEL_SPIT_OUT);

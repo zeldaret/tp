@@ -112,7 +112,7 @@ void daAlink_c::initCanoeRide() {
     mProcVar5.field_0x3012 = 1;
     field_0x3588 = l_waitBaseAnime;
     field_0x384c = (cXyz*)&l_canoeBaseAnime;
-    mRideStatus = 3;
+    mRideStatus = RIDETYPE_CANOE;
     mProcVar4.field_0x3010 = 0;
 }
 
@@ -139,7 +139,7 @@ void daAlink_c::setArmReelAnime() {
     mUpperFrameCtrl[2].setRate(0.0f);
     mNowAnmPackUpper[2].setRatio(1.0f);
     field_0x2f97 = 8;
-    offNoResetFlg1(FLG1_UNK_8000);
+    offNoResetFlg1(FLG1_FISHING_ROD_CASTING_END);
 }
 
 void daAlink_c::setFishingWaitAction() {
@@ -1145,7 +1145,7 @@ int daAlink_c::procCanoeFishingWait() {
     daPy_frameCtrl_c* temp_r28 = &mUnderFrameCtrl[0];
 
     if (mProcVar2.field_0x300c != 0) {
-        if (checkNoResetFlg1(FLG1_UNK_8000)) {
+        if (checkNoResetFlg1(FLG1_FISHING_ROD_CASTING_END)) {
             mProcVar2.field_0x300c = 0;
             setUpperAnimeBase(0x68);
         }
@@ -1198,10 +1198,10 @@ int daAlink_c::procCanoeFishingReel() {
 
     if (checkEndResetFlg0(ERFLG0_FISHING_ROD_GET_FISH)) {
         procCanoeFishingGetInit();
-    } else if (checkEndResetFlg0(ERFLG0_UNK_20000)) {
+    } else if (checkEndResetFlg0(ERFLG0_FISHING_ROD_REEL_END)) {
         resetUpperAnime(UPPER_2, -1.0f);
         procCanoeFishingWaitInit();
-    } else if (checkEndResetFlg0(ERFLG0_UNK_10000)) {
+    } else if (checkEndResetFlg0(ERFLG0_FISHING_HIT)) {
         setUpperAnimeBase(0x17C);
     } else if (checkUpperAnime(0x17C)) {
         if (mUpperFrameCtrl[2].checkAnmEnd()) {
@@ -1266,11 +1266,11 @@ int daAlink_c::procCanoeFishingGet() {
             field_0x2f93 = 0xFE;
         }
     } else if (checkAnmEnd(temp_r30)) {
-        if (checkEndResetFlg0(ERFLG0_UNK_4000000)) {
+        if (checkEndResetFlg0(ERFLG0_FISHING_RELEASE)) {
             setSingleAnimeBaseMorf(ANM_CANOE_RELEASE, 3.0f);
             field_0x2fc8 = 0;
             offModeFlg(0x100);
-        } else if (checkEndResetFlg2(ERFLG2_UNK_1)) {
+        } else if (checkEndResetFlg2(ERFLG2_FISHING_KEEP)) {
             field_0x2fc8 = 0;
             procCanoeFishingWaitInit();
         }
@@ -1633,7 +1633,7 @@ int daAlink_c::procFishingCastInit() {
     mItemVar0.field_0x3018 = 1;
 
     if (checkFishingRodItem(mEquipItem)) {
-        onNoResetFlg2(FLG2_UNK_20000000);
+        onNoResetFlg2(FLG2_FISHING_CAST_WAIT);
     }
 
     return 1;
@@ -1642,12 +1642,12 @@ int daAlink_c::procFishingCastInit() {
 int daAlink_c::procFishingCast() {
     setFishGetFace();
 
-    if (checkEndResetFlg0(ERFLG0_UNK_4000000)) {
+    if (checkEndResetFlg0(ERFLG0_FISHING_RELEASE)) {
         setFaceBasicAnime(ANM_WAIT);
         field_0x2fc8 = 0;
     }
 
-    if (checkEndResetFlg0(ERFLG0_UNK_10000) && mItemMode != 0xFF) {
+    if (checkEndResetFlg0(ERFLG0_FISHING_HIT) && mItemMode != 0xFF) {
         mItemMode = 0xFF;
         dComIfGs_setBaitItem(0xFF);
 
@@ -1658,7 +1658,7 @@ int daAlink_c::procFishingCast() {
         }
     }
 
-    if (!checkNoResetFlg2(FLG2_UNK_20000000)) {
+    if (!checkNoResetFlg2(FLG2_FISHING_CAST_WAIT)) {
         resetUpperAnime(UPPER_2, -1.0f);
         onEndResetFlg0(ERFLG0_UNK_1000);
         return checkWaitAction();

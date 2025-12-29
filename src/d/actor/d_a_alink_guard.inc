@@ -64,7 +64,7 @@ void daAlink_c::stickArrowIncrement(int param_0) {
                                                0.0f);
             }
 
-            onResetFlg0(RFLG0_UNK_1);
+            onResetFlg0(RFLG0_STICK_ARROW_RESET);
         }
     }
 }
@@ -368,7 +368,7 @@ int daAlink_c::procGuardAttackInit() {
     field_0x34d4 = l_rWaitBaseAnime;
     field_0x3588 = l_rWaitBaseAnime;
 
-    setCutType(0x29);
+    setCutType(CUT_TYPE_GUARD_ATTACK);
     setSingleAnimeParam(ANM_SHIELD_ATTACK, &temp_r30->mAttackAnm);
 
     field_0x3478 = temp_r30->mAttackStartFrame;
@@ -391,7 +391,7 @@ int daAlink_c::procGuardAttackInit() {
     setSwordVoiceSe(Z2SE_AL_V_TATE_OSHI);
 
     mGuardAtCps.ResetAtHit();
-    mGuardAtCps.SetAtSe(2);
+    mGuardAtCps.SetAtSe(dCcD_SE_SHIELD_ATTACK);
     mGuardAtCps.SetR(mpHIO->mGuard.m.mAttackRadius);
 
     current.angle.y = shape_angle.y;
@@ -542,7 +542,7 @@ int daAlink_c::procTurnMoveInit(int param_0) {
     f32 temp_f31 = mpHIO->mGuard.mTurnMove.m.mTurnAnm.mSpeed;
     mProcVar1.field_0x300a = mpHIO->mGuard.mTurnMove.m.mMaxTurnSpeed;
 
-    if (checkNoResetFlg0(FLG0_UNDERWATER)) {
+    if (checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
         mProcVar1.field_0x300a = mProcVar1.field_0x300a * mpHIO->mItem.mIronBoots.m.mWaterVelocityX;
     }
 

@@ -12,7 +12,7 @@ static int daAlink_bottleModelCallBack(J3DJoint* i_joint, int param_1);
 
 int daAlink_c::bottleModelCallBack() {
     if (mItemMode != 0) {
-        mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(field_0x30c2));
+        mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(mRightItemJntNo));
         mDoMtx_stack_c::transM(-3.0f, -1.0f, 0.3f);
         mDoMtx_stack_c::XYZrotM(cM_deg2s(102.0f), cM_deg2s(-0.5f), cM_deg2s(-122.0f));
         mDoMtx_copy(mDoMtx_stack_c::get(), mHeldItemModel->getAnmMtx(1));
@@ -583,7 +583,7 @@ int daAlink_c::procBottleSwingInit(fopAc_ac_c* param_0, int param_1) {
         setSingleAnimeParam(ANM_BOTTLE_SCOOP, &mpHIO->mItem.mBottle.m.mScoopAnm);
 
         if (mEquipItem == fpcNm_ITEM_KANTERA) {
-            onNoResetFlg2(FLG2_UNK_10000000);
+            onNoResetFlg2(FLG2_KANDELAAR_LIGHT_OFF);
 
             JPABaseEmitter* emitter_p = dComIfGp_particle_getEmitter(field_0x31c4);
             if (emitter_p != NULL) {

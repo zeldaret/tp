@@ -61,15 +61,15 @@ public:
         HEAP_TYPE_5,
     };
 
-    daPy_anmHeap_c(u32 param_0 = 0);
+    daPy_anmHeap_c(u32 i_bufferSize = 0);
     ~daPy_anmHeap_c();
     void initData();
     void* mallocBuffer();
-    void createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE);
-    void* loadData(u16);
-    void* loadDataIdx(u16);
-    void* loadDataPriIdx(u16);
-    void* loadDataDemoRID(u16, u16);
+    void createHeap(daAlinkHEAP_TYPE i_heapType);
+    void* loadData(u16 i_resId);
+    void* loadDataIdx(u16 i_resId);
+    void* loadDataPriIdx(u16 i_resId);
+    void* loadDataDemoRID(u16 i_resID, u16 i_arcNo);
     JKRHeap* setAnimeHeap();
 
     u16 getIdx() const { return mIdx; }
@@ -328,18 +328,18 @@ public:
 
 public:
     enum daPy_FLG0 {
-        FLG0_UNK_40000000 = 0x40000000,
+        FLG0_HEAVY_STATE = 0x40000000,
         FLG0_EQUIP_HVY_BOOTS = 0x2000000,
         FLG0_PLAYER_NO_DRAW = 0x8000000,
         FLG0_UNK_10000000 = 0x10000000,
         FLG0_UNK_1000000 = 0x1000000,
-        FLG0_UNDERWATER = 0x800000,
+        FLG0_WATER_IN_MOVE = 0x800000,
         FLG0_UNK_400000 = 0x400000,
-        FLG0_UNK_200000 = 0x200000,
+        FLG0_GORON_UP_STOP_CANCEL = 0x200000,
         FLG0_UNK_100000 = 0x100000,
-        FLG0_UNK_80000 = 0x80000,
+        FLG0_FAST_SWORD_CUT = 0x80000,
         FLG0_UNK_40000 = 0x40000,
-        FLG0_DK_CAUGHT = 0x20000,
+        FLG0_DK_CAUGHT2 = 0x20000,
         FLG0_UNK_10000 = 0x10000,
         FLG0_UNK_8000 = 0x8000,
         FLG0_UNK_4000 = 0x4000,
@@ -349,22 +349,17 @@ public:
         FLG0_UNK_400 = 0x400,
         FLG0_SWIM_UP = 0x100,
         FLG0_UNK_80 = 0x80,
-        FLG0_UNK_40 = 0x40,
+        FLG0_CUT_AT_FLG = 0x40,
         FLG0_UNK_20 = 0x20,
         FLG0_UNK_10 = 0x10,
         FLG0_UNK_8 = 0x8,
         FLG0_MIDNA_RIDE = 4,
         FLG0_UNK_2 = 2,
-
-        FLG0_HVY_STATE = FLG0_UNK_40000000 | FLG0_EQUIP_HVY_BOOTS | FLG0_DK_CAUGHT,
-        FLG0_UNK_14000 = 0x14000,
-        FLG0_UNK_10400 = 0x10400,
-        FLG0_UNK_18 = FLG0_UNK_10 | FLG0_UNK_8,
     };
 
     enum daPy_FLG1 {
         FLG1_UNK_80000000 = 0x80000000,
-        FLG1_ICE_FREEZE = 0x40000000,
+        FLG1_FREEZE_DAMAGE = 0x40000000,
         FLG1_UNK_20000000 = 0x20000000,
         FLG1_UNK_10000000 = 0x10000000,
         FLG1_UNK_4000000 = 0x4000000,
@@ -378,7 +373,7 @@ public:
         FLG1_UNK_40000 = 0x40000,
         FLG1_UNK_20000 = 0x20000,
         FLG1_UNK_10000 = 0x10000,
-        FLG1_UNK_8000 = 0x8000,
+        FLG1_FISHING_ROD_CASTING_END = 0x8000,
         FLG1_THROW_DAMAGE = 0x4000,
         FLG1_UNK_2000 = 0x2000,
         FLG1_UNK_1000 = 0x1000,
@@ -393,22 +388,19 @@ public:
         FLG1_UNK_4 = 4,
         FLG1_UNK_2 = 2,
         FLG1_DK_CAUGHT = 1,
-
-        FLG1_UNK_1800 = 0x1800,
-        FLG1_UNK_10100000 = FLG1_UNK_10000000 | FLG1_UNK_100000,
     };
 
     enum daPy_FLG2 {
         FLG2_HORSE_ZELDA = 0x40000000,
-        FLG2_UNK_20000000 = 0x20000000,
-        FLG2_UNK_10000000 = 0x10000000,
+        FLG2_FISHING_CAST_WAIT = 0x20000000,
+        FLG2_KANDELAAR_LIGHT_OFF = 0x10000000,
         FLG2_UNK_4080000 = 0x4080000,
         FLG2_UNK_4000000 = 0x4000000,
         FLG2_UNK_2080000 = 0x2080000,
         FLG2_UNK_2000000 = 0x2000000,
         FLG2_UNK_8000000 = 0x8000000,
-        FLG2_UNK_1000000 = 0x1000000,
-        FLG2_BOAR_SINGLE_BATTLE = 0x800000,
+        FLG2_BOAR_SINGLE_BATTLE_2ND = 0x1000000,
+        FLG2_BOAR_SINGLE_BATTLE_1ST = 0x800000,
         FLG2_STATUS_WINDOW_DRAW = 0x400000,
         FLG2_UNK_280000 = 0x280000,
         FLG2_UNK_200000 = 0x200000,
@@ -417,12 +409,12 @@ public:
         FLG2_FORCE_GAMEOVER = 0x40000,
         FLG2_UNK_20000 = 0x20000,
         FLG2_WOLF_DASH_AUTO_JUMP = 0x10000,
-        FLG2_SCN_CHG_START = 0x8000,
-        FLG2_UNK_4000 = 0x4000,
+        FLG2_SCENE_CHANGE_START = 0x8000,
+        FLG2_FOG_FADE = 0x4000,
         FLG2_UNK_2000 = 0x2000,
         FLG2_PRESSED_DAMAGE = 0x1000,
         FLG2_UNK_800 = 0x800,
-        FLG2_PLAYER_SHADOW = 0x400,
+        FLG2_PLAYER_SHADOW_NO_DRAW = 0x400,
         FLG2_UNK_200 = 0x200,
         FLG2_UNK_100 = 0x100,
         FLG2_UNK_80 = 0x80,
@@ -431,11 +423,8 @@ public:
         FLG2_UNK_10 = 0x10,
         FLG2_UNK_8 = 8,
         FLG2_UNK_4 = 4,
-        FLG2_UNK_2 = 2,
+        FLG2_COMBO_RESERB = 2,
         FLG2_UNK_1 = 1,
-
-        FLG2_UNK_58 = FLG2_WOLF_ENEMY_HANG_BITE | FLG2_UNK_10 | FLG2_UNK_8,
-        FLG2_UNK_10000001 = FLG2_UNK_10000000 | FLG2_UNK_1,
     };
 
     enum daPy_FLG3 {
@@ -460,13 +449,13 @@ public:
         FLG3_UNK_1000 = 0x1000,
         FLG3_UNK_800 = 0x800,
         FLG3_UNK_400 = 0x400,
-        FLG3_UNK_200 = 0x200,
-        FLG3_UNK_100 = 0x100,
-        FLG3_UNK_80 = 0x80,
-        FLG3_UNK_40 = 0x40,
-        FL3_TRANING_CUT_BACK = 0x20,
-        FLG3_UNK_10 = 0x10,
-        FLG3_UNK_8 = 8,
+        FLG3_TRANING_CUT_LARGE_JUMP = 0x200,
+        FLG3_TRANING_CUT_LARGE_TURN = 0x100,
+        FLG3_TRANING_CUT_FAST = 0x80,
+        FLG3_TRANING_CUT_HEAD = 0x40,
+        FLG3_TRANING_CUT_BACK = 0x20,
+        FLG3_TRANING_CUT_DOWN = 0x10,
+        FLG3_TRANING_SHIELD_ATTACK = 8,
         FLG3_UNK_4 = 4,
         FLG3_UNK_1 = 1,
     };
@@ -477,21 +466,21 @@ public:
         ERFLG0_UNK_20000000 = 0x20000000,
         ERFLG0_WOLF_FCHAIN_PULL = 0x10000000,
         ERFLG0_UNK_8000000 = 0x8000000,
-        ERFLG0_UNK_4000000 = 0x4000000,
+        ERFLG0_FISHING_RELEASE = 0x4000000,
         ERFLG0_BOSS_ROOM_WAIT = 0x2000000,
         ERFLG0_ENEMY_DEAD = 0x1000000,
         ERFLG0_UNK_800000 = 0x800000,
         ERFLG0_BEE_FOLLOW = 0x400000,
-        ERFLG0_UNK_200000 = 0x200000,
+        ERFLG0_LEAF_SE = 0x200000,
         ERFLG0_UNK_100000 = 0x100000,
         ERFLG0_SINGLE_BOAR_AVOID = 0x80000,
         ERFLG0_FISHING_ROD_GET_FISH = 0x40000,
-        ERFLG0_UNK_20000 = 0x20000,
-        ERFLG0_UNK_10000 = 0x10000,
+        ERFLG0_FISHING_ROD_REEL_END = 0x20000,
+        ERFLG0_FISHING_HIT = 0x10000,
         ERFLG0_UNK_4000 = 0x4000,
         ERFLG0_UNK_2000 = 0x2000,
         ERFLG0_UNK_1000 = 0x1000,
-        ERFLG0_UNK_400 = 0x400,
+        ERFLG0_NECK_SEARCH_WIDE = 0x400,
         ERFLG0_FORCE_AUTO_JUMP = 0x200,
         ERFLG0_UNK_100 = 0x100,
         ERFLG0_UNK_80 = 0x80,
@@ -500,31 +489,31 @@ public:
         ERFLG0_NOT_HANG = 0x10,
         ERFLG0_UNK_8 = 8,
         ERFLG0_UNK_4 = 4,
-        ERFLG0_UNK_2 = 2,
+        ERFLG0_FORCE_WOLF_CHANGE = 2,
         ERFLG0_UNK_1 = 1,
     };
 
     enum daPy_ERFLG1 {
-        ERFLG1_GANON_FINISH = 0x80000000,
-        ERFLG1_UNK_40000000 = 0x40000000,
-        ERFLG1_UNK_20000000 = 0x20000000,
-        ERFLG1_UNK_10000000 = 0x10000000,
+        ERFLG1_SHIELD_BACKBONE = 0x80000000,
+        ERFLG1_SWORD_TRIGGER_NON = 0x40000000,
+        ERFLG1_CANOE_ITEM_CANCEL = 0x20000000,
+        ERFLG1_DO_PUT_EMPHASYS = 0x10000000,
         ERFLG1_LARGE_DAMAGE_UP_STOP = 0x8000000,
-        ERFLG1_UNK_4000000 = 0x4000000,
-        ERFLG1_UNK_2000000 = 0x2000000,
-        ERFLG1_UNK_1000000 = 0x1000000,
+        ERFLG1_DO_EXCHANGE_PUT_IN = 0x4000000,
+        ERFLG1_CHAIN_PULL_END = 0x2000000,
+        ERFLG1_CHAIN_FORCE_PULL = 0x1000000,
         ERFLG1_UNK_400000 = 0x400000,
         ERFLG1_UNK_200000 = 0x200000,
         ERFLG1_UNK_100000 = 0x100000,
         ERFLG1_UNK_80000 = 0x80000,
         ERFLG1_UNK_40000 = 0x40000,
-        ERFLG1_UNK_20000 = 0x20000,
+        ERFLG1_WATER_DROP = 0x20000,
         ERFLG1_UNK_10000 = 0x10000,
         ERFLG1_UNK_8000 = 0x8000,
         ERFLG1_UNK_4000 = 0x4000,
         ERFLG1_UNK_2000 = 0x2000,
         ERFLG1_UNK_1000 = 0x1000,
-        ERFLG1_UNK_800 = 0x800,
+        ERFLG1_WATERFALL_FRONT_HIT = 0x800,
         ERFLG1_UNK_400 = 0x400,
         ERFLG1_WOLF_EYE_KEEP = 0x200,
         ERFLG1_UNK_100 = 0x100,
@@ -535,7 +524,7 @@ public:
         ERFLG1_UNK_8 = 8,
         ERFLG1_UNK_4 = 4,
         ERFLG1_UNK_2 = 2,
-        ERFLG1_UNK_1 = 1,
+        ERFLG1_NS_SCREAM = 1,
     };
 
     enum daPy_ERFLG2 {
@@ -543,10 +532,10 @@ public:
         ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP = 0x80,
         ERFLG2_UNK_40 = 0x40,
         ERFLG2_UNK_20 = 0x20,
-        ERFLG2_UNK_10 = 0x10,
-        ERFLG2_UNK_8 = 8,
-        ERFLG2_UNK_2 = 2,
-        ERFLG2_UNK_1 = 1,
+        ERFLG2_LIGHT_SWORD_GET_EFFECT = 0x10,
+        ERFLG2_FORCE_GRAB_REBOUND = 8,
+        ERFLG2_FORCE_HORSE_GETOFF = 2,
+        ERFLG2_FISHING_KEEP = 1,
     };
 
     enum daPy_RFLG0 {
@@ -556,20 +545,20 @@ public:
         RFLG0_UNK_10000000 = 0x10000000,
         RFLG0_UNK_8000000 = 0x8000000,
         RFLG0_UNK_4000000 = 0x4000000,
-        RFLG0_UNK_2000000 = 0x2000000,
+        RFLG0_ITEM_SIGHT_BG_HIT = 0x2000000,
         RFLG0_GRAB_PUT_START = 0x400000,
         RFLG0_WOLF_GROWL = 0x200000,
         RFLG0_UNK_80000 = 0x80000,
-        RFLG0_UNK_40000 = 0x40000,
-        RFLG0_UNK_20000 = 0x20000,
-        RFLG0_UNK_10000 = 0x10000,
-        RFLG0_UNK_8000 = 0x8000,
+        RFLG0_CLIMB_END_HANG = 0x40000,
+        RFLG0_WOLF_TAG_LOCK_JUMP_READY = 0x20000,
+        RFLG0_ATTENTION_LOCK = 0x10000,
+        RFLG0_GRAB_UP_START = 0x8000,
         RFLG0_UNK_4000 = 0x4000,
         RFLG0_FRONT_ROLL_CRASH = 0x2000,
         RFLG0_ENEMY_ATTN_LOCK = 0x1000,
         RFLG0_UNK_400 = 0x400,
         RFLG0_COW_GAME_LEASH = 0x200,
-        RFLG0_UNK_100 = 0x100,
+        RFLG0_AUTO_JUMP_START = 0x100,
         RFLG0_UNK_80 = 0x80,
         RFLG0_UNK_40 = 0x40,
         RFLG0_GRAB_UP_END = 0x20,
@@ -577,15 +566,15 @@ public:
         RFLG0_UNK_8 = 0x8,
         RFLG0_GRAB_THROW = 0x4,
         RFLG0_UNK_2 = 0x2,
-        RFLG0_UNK_1 = 0x1,
+        RFLG0_STICK_ARROW_RESET = 0x1,
     };
 
     enum daPy_RFLG1 {
         RFLG1_DAMAGE_IMPACT = 0x400,
-        RFLG1_UNK_200 = 0x200,
-        RFLG1_UNK_100 = 0x100,
-        RFLG1_UNK_80 = 0x80,
-        RFLG1_UNK_40 = 0x40,
+        RFLG0_FISHINGROD_USE_ACCEPT = 0x200,
+        RFLG1_INSECT_RELEASE = 0x100,
+        RFLG0_FISHINGROD_USE_START = 0x80,
+        RFLG1_BOARD_NO_FOOT_ANGLE = 0x40,
         RFLG1_UNK_30 = 0x30,
         RFLG1_UNK_20 = 0x20,
         RFLG1_UNK_10 = 0x10,
@@ -593,8 +582,6 @@ public:
         RFLG1_UNK_4 = 0x4,
         RFLG1_UNK_2 = 0x2,
         RFLG1_WOLF_ATTACK_REVERSE = 0x1,
-
-        RFLG1_UNK_C = 0xC,
     };
 
     enum {
@@ -717,7 +704,7 @@ public:
     const cXyz getLeftHandPos() const { return mLeftHandPos; }
     const cXyz getItemPos() const { return mItemPos; }
     BOOL getDkCaught() const { return checkNoResetFlg1(FLG1_DK_CAUGHT); }
-    BOOL getDkCaught2() const { return checkNoResetFlg0(FLG0_DK_CAUGHT); }
+    BOOL getDkCaught2() const { return checkNoResetFlg0(FLG0_DK_CAUGHT2); }
     BOOL getStCaught() const { return checkNoResetFlg1(FLG1_UNK_80000000); }
 
     /* vt 0X008 */ virtual cXyz* getMidnaAtnPos() const { return NULL; }
@@ -912,64 +899,64 @@ public:
 
     BOOL checkStatusWindowDraw() const { return checkNoResetFlg2(FLG2_STATUS_WINDOW_DRAW); }
     bool checkCargoCarry() const { return mSpecialMode == SMODE_CARGO_CARRY; }
-    BOOL getHeavyStateAndBoots() { return checkNoResetFlg0(FLG0_HVY_STATE); }
+    BOOL getHeavyStateAndBoots() { return checkNoResetFlg0(daPy_FLG0(FLG0_HEAVY_STATE | FLG0_EQUIP_HVY_BOOTS | FLG0_DK_CAUGHT2)); }
     BOOL checkEnemyAttentionLock() const { return checkResetFlg0(RFLG0_ENEMY_ATTN_LOCK); }
-    BOOL getGrabUpStart() const { return checkResetFlg0(RFLG0_UNK_8000); }
+    BOOL getGrabUpStart() const { return checkResetFlg0(RFLG0_GRAB_UP_START); }
     bool checkCanoeSlider() const { return mSpecialMode == 0x2D; }
     bool checkGoatStopGame() const { return mSpecialMode == 0x2A; }
     void onGoatStopGame() { mSpecialMode = 0x2A; }
     u8 getCutType() const { return mCutType; }
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     s16 getDamageWaitTimer() const { return mDamageTimer; }
-    BOOL checkWaterInMove() const { return checkNoResetFlg0(FLG0_UNDERWATER); }
-    BOOL checkSceneChangeAreaStart() const { return checkNoResetFlg2(FLG2_SCN_CHG_START); }
+    BOOL checkWaterInMove() const { return checkNoResetFlg0(FLG0_WATER_IN_MOVE); }
+    BOOL checkSceneChangeAreaStart() const { return checkNoResetFlg2(FLG2_SCENE_CHANGE_START); }
     BOOL checkFrontRollCrash() const { return checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
     BOOL checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
-    BOOL checkFreezeDamage() const { return checkNoResetFlg1(FLG1_ICE_FREEZE); }
-    BOOL checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_UNK_20000); }
+    BOOL checkFreezeDamage() const { return checkNoResetFlg1(FLG1_FREEZE_DAMAGE); }
+    BOOL checkWolfTagLockJumpReady() const { return checkResetFlg0(RFLG0_WOLF_TAG_LOCK_JUMP_READY); }
     BOOL checkDamageImpact() const { return checkResetFlg1(RFLG1_DAMAGE_IMPACT); }
     BOOL getGrabUpEnd() const { return checkResetFlg0(RFLG0_GRAB_UP_END); }
     BOOL getGrabPutStart() const { return checkResetFlg0(RFLG0_GRAB_PUT_START); }
     BOOL checkSwimUp() const { return checkNoResetFlg0(FLG0_SWIM_UP); }
     BOOL checkHorseZelda() const { return checkNoResetFlg2(FLG2_HORSE_ZELDA); }
-    BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
-    BOOL checkBoardNoFootAngle() const { return checkResetFlg1(RFLG1_UNK_40); }
+    BOOL checkSpecialHorseRide() { return checkNoResetFlg2(daPy_FLG2(FLG2_HORSE_ZELDA | FLG2_BOAR_SINGLE_BATTLE_2ND | FLG2_BOAR_SINGLE_BATTLE_1ST)); }
+    BOOL checkBoardNoFootAngle() const { return checkResetFlg1(RFLG1_BOARD_NO_FOOT_ANGLE); }
     BOOL checkGrabThrow() const { return checkResetFlg0(RFLG0_GRAB_THROW); }
     BOOL checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
     BOOL checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
-    BOOL checkAttentionLock() const { return checkResetFlg0(RFLG0_UNK_10000); }
-    BOOL checkFishingRodUseStart() const { return checkResetFlg1(RFLG1_UNK_80); }
-    BOOL checkFishingRodUseAccept() const { return checkResetFlg1(RFLG1_UNK_200); }
+    BOOL checkAttentionLock() const { return checkResetFlg0(RFLG0_ATTENTION_LOCK); }
+    BOOL checkFishingRodUseStart() const { return checkResetFlg1(RFLG0_FISHINGROD_USE_START); }
+    BOOL checkFishingRodUseAccept() const { return checkResetFlg1(RFLG0_FISHINGROD_USE_ACCEPT); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }
     void onForceAutoJump() { onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }
-    void onLeafSe() { onEndResetFlg0(ERFLG0_UNK_200000); }
+    void onLeafSe() { onEndResetFlg0(ERFLG0_LEAF_SE); }
     void onWolfFchainPull() { onEndResetFlg0(ERFLG0_WOLF_FCHAIN_PULL); }
     void onFishingRodGetFish() { onEndResetFlg0(ERFLG0_FISHING_ROD_GET_FISH); }
     void onSingleBoarAvoid() { onEndResetFlg0(ERFLG0_SINGLE_BOAR_AVOID); }
-    void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }
+    void onShieldBackBone() { onEndResetFlg1(ERFLG1_SHIELD_BACKBONE); }
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }
-    void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
-    void onDkCaught2() { onNoResetFlg0(FLG0_DK_CAUGHT); }
-    void onFishingRodCastingEnd() { onNoResetFlg1(FLG1_UNK_8000); }
-    void onFishingRodReelEnd() { onEndResetFlg0(ERFLG0_UNK_20000); }
-    void onFishingHit() { onEndResetFlg0(ERFLG0_UNK_10000); }
-    void onFishingKeep() { onEndResetFlg2(ERFLG2_UNK_1); }
-    void onTraningCutHead() { onNoResetFlg3(FLG3_UNK_40); }
-    void onTraningCutFast() { onNoResetFlg3(FLG3_UNK_80); }
-    void onTraningCutLargeJump() { onNoResetFlg3(FLG3_UNK_200); }
-    void onTraningCutLargeTurn() { onNoResetFlg3(FLG3_UNK_100); }
-    void onTraningCutDown() { onNoResetFlg3(FLG3_UNK_10); }
-    void onTraningShieldAttack() { onNoResetFlg3(FLG3_UNK_8); }
+    void onFogFade() { onNoResetFlg2(FLG2_FOG_FADE); }
+    void onDkCaught2() { onNoResetFlg0(FLG0_DK_CAUGHT2); }
+    void onFishingRodCastingEnd() { onNoResetFlg1(FLG1_FISHING_ROD_CASTING_END); }
+    void onFishingRodReelEnd() { onEndResetFlg0(ERFLG0_FISHING_ROD_REEL_END); }
+    void onFishingHit() { onEndResetFlg0(ERFLG0_FISHING_HIT); }
+    void onFishingKeep() { onEndResetFlg2(ERFLG2_FISHING_KEEP); }
+    void onTraningCutHead() { onNoResetFlg3(FLG3_TRANING_CUT_HEAD); }
+    void onTraningCutFast() { onNoResetFlg3(FLG3_TRANING_CUT_FAST); }
+    void onTraningCutLargeJump() { onNoResetFlg3(FLG3_TRANING_CUT_LARGE_JUMP); }
+    void onTraningCutLargeTurn() { onNoResetFlg3(FLG3_TRANING_CUT_LARGE_TURN); }
+    void onTraningCutDown() { onNoResetFlg3(FLG3_TRANING_CUT_DOWN); }
+    void onTraningShieldAttack() { onNoResetFlg3(FLG3_TRANING_SHIELD_ATTACK); }
 
-    BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
-    BOOL getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
-    BOOL checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
-    BOOL checkBoarSingleBattleSecond() const { return checkNoResetFlg2(FLG2_UNK_1000000); }
+    BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_STICK_ARROW_RESET); }
+    BOOL getCutAtFlg() const { return checkNoResetFlg0(FLG0_CUT_AT_FLG); }
+    BOOL checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE_1ST); }
+    BOOL checkBoarSingleBattleSecond() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE_2ND); }
     BOOL getFootOnGround() const { return checkResetFlg1(daPy_RFLG1(RFLG1_UNK_10 | RFLG1_UNK_20)); }
 
     void offWolfEnemyHangBite() { offNoResetFlg2(FLG2_WOLF_ENEMY_HANG_BITE); }
@@ -978,7 +965,7 @@ public:
     void offHorseZelda() { offNoResetFlg2(FLG2_HORSE_ZELDA); }
     void onHorseZelda() { onNoResetFlg2(FLG2_HORSE_ZELDA); }
 
-    BOOL checkItemSightBgHit() const { return checkResetFlg0(RFLG0_UNK_2000000); }
+    BOOL checkItemSightBgHit() const { return checkResetFlg0(RFLG0_ITEM_SIGHT_BG_HIT); }
 
     void setCanoeSlider() { mSpecialMode = 0x2D; }
     
@@ -1005,7 +992,7 @@ public:
     }
 
     void offGoronUpStopCancel() {
-        offNoResetFlg0(FLG0_UNK_200000);
+        offNoResetFlg0(FLG0_GORON_UP_STOP_CANCEL);
     }
 
     s16 getBodyAngleX() const { return mBodyAngle.x; }
@@ -1057,7 +1044,7 @@ public:
     u32 checkWolf() const { return checkNoResetFlg1(FLG1_IS_WOLF); }
     u32 checkEquipHeavyBoots() const { return checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
     u32 checkMagneBootsOn() const { return checkNoResetFlg0(FLG0_MAGNE_BOOTS_ON); }
-    BOOL checkFastSwordCut() const { return checkNoResetFlg0(FLG0_UNK_80000); }
+    BOOL checkFastSwordCut() const { return checkNoResetFlg0(FLG0_FAST_SWORD_CUT); }
     u32 checkMidnaRide() const { return checkNoResetFlg0(FLG0_MIDNA_RIDE); }
     BOOL checkWolfGrowl() const { return checkResetFlg0(RFLG0_WOLF_GROWL); }
     BOOL checkWolfThreat() const { return checkWolfGrowl(); }
@@ -1072,28 +1059,28 @@ public:
     void onMidnaRide() { onNoResetFlg0(FLG0_MIDNA_RIDE); }
     void offMidnaRide() { offNoResetFlg0(FLG0_MIDNA_RIDE); }
     void onMidnaRideShock() { onEndResetFlg1(ERFLG1_MIDNA_RIDE_SHOCK); }
-    void onPlayerShadowNoDraw() { onNoResetFlg2(FLG2_PLAYER_SHADOW); }
-    void offPlayerShadowNoDraw() { offNoResetFlg2(FLG2_PLAYER_SHADOW); }
-    void onLightSwordGetEffect() { onEndResetFlg2(ERFLG2_UNK_10); }
+    void onPlayerShadowNoDraw() { onNoResetFlg2(FLG2_PLAYER_SHADOW_NO_DRAW); }
+    void offPlayerShadowNoDraw() { offNoResetFlg2(FLG2_PLAYER_SHADOW_NO_DRAW); }
+    void onLightSwordGetEffect() { onEndResetFlg2(ERFLG2_LIGHT_SWORD_GET_EFFECT); }
     void onForceGameOver() { onNoResetFlg2(FLG2_FORCE_GAMEOVER); }
-    void onForceWolfChange() { onEndResetFlg0(ERFLG0_UNK_2); }
-    void onDoPutEmphasys() { onEndResetFlg1(ERFLG1_UNK_10000000); }
-    void onDoExchangePutIn() { onEndResetFlg1(ERFLG1_UNK_4000000); }
-    void onNsScream() { onEndResetFlg1(ERFLG1_UNK_1); }
-    void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1 | ERFLG1_UNK_2)); }
+    void onForceWolfChange() { onEndResetFlg0(ERFLG0_FORCE_WOLF_CHANGE); }
+    void onDoPutEmphasys() { onEndResetFlg1(ERFLG1_DO_PUT_EMPHASYS); }
+    void onDoExchangePutIn() { onEndResetFlg1(ERFLG1_DO_EXCHANGE_PUT_IN); }
+    void onNsScream() { onEndResetFlg1(ERFLG1_NS_SCREAM); }
+    void onNsScreamAnm() { onEndResetFlg1(daPy_ERFLG1(ERFLG1_NS_SCREAM | ERFLG1_UNK_2)); }
     void onLargeDamageUpStop() { onEndResetFlg1(ERFLG1_LARGE_DAMAGE_UP_STOP); }
-    void onTraningCutBack() { onNoResetFlg3(FL3_TRANING_CUT_BACK); }
-    void onNeckSearchWide() { onEndResetFlg0(ERFLG0_UNK_400); }
+    void onTraningCutBack() { onNoResetFlg3(FLG3_TRANING_CUT_BACK); }
+    void onNeckSearchWide() { onEndResetFlg0(ERFLG0_NECK_SEARCH_WIDE); }
     void offPressedDamage() { offNoResetFlg2(FLG2_PRESSED_DAMAGE); }
     void onForceSubjectCancel() { onEndResetFlg0(ERFLG0_FORCE_SUBJECT_CANCEL); }
     void onEnemyDead() { onEndResetFlg0(ERFLG0_ENEMY_DEAD); }
     void offDkCaught() { offNoResetFlg1(FLG1_DK_CAUGHT); }
-    void offDkCaught2() { offNoResetFlg0(FLG0_DK_CAUGHT); }
-    void onWaterFallFrontHit() { onEndResetFlg1(ERFLG1_UNK_800); }
-    void onCanoeItemCancel() { onEndResetFlg1(ERFLG1_UNK_20000000); }
-    void onSwordTriggerNon() { onEndResetFlg1(ERFLG1_UNK_40000000); }
+    void offDkCaught2() { offNoResetFlg0(FLG0_DK_CAUGHT2); }
+    void onWaterFallFrontHit() { onEndResetFlg1(ERFLG1_WATERFALL_FRONT_HIT); }
+    void onCanoeItemCancel() { onEndResetFlg1(ERFLG1_CANOE_ITEM_CANCEL); }
+    void onSwordTriggerNon() { onEndResetFlg1(ERFLG1_SWORD_TRIGGER_NON); }
 
-    u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_UNK_1000000 | FLG2_BOAR_SINGLE_BATTLE)); }
+    u32 checkBoarSingleBattle() const { return checkNoResetFlg2(daPy_FLG2(FLG2_BOAR_SINGLE_BATTLE_2ND | FLG2_BOAR_SINGLE_BATTLE_1ST)); }
     u32 checkWolfDashAutoJump() const { return checkNoResetFlg2(FLG2_WOLF_DASH_AUTO_JUMP); }
 
     void changeOriginalDemo() {
@@ -1180,10 +1167,10 @@ public:
     }
 
     BOOL checkCowGameLash() const { return checkResetFlg0(RFLG0_COW_GAME_LEASH); }
-    BOOL checkClimbEndHang() { return checkResetFlg0(RFLG0_UNK_40000); }
+    BOOL checkClimbEndHang() { return checkResetFlg0(RFLG0_CLIMB_END_HANG); }
 
     void onForceHorseGetOff() {
-        onEndResetFlg2(ERFLG2_UNK_2);
+        onEndResetFlg2(ERFLG2_FORCE_HORSE_GETOFF);
     }
 
     s16 getFishingRodAngleY() const {
@@ -1191,7 +1178,7 @@ public:
     }
 
     void onFishingRelease() {
-        onEndResetFlg0(ERFLG0_UNK_4000000);
+        onEndResetFlg0(ERFLG0_FISHING_RELEASE);
     }
 
     static daMidna_c* m_midnaActor;
@@ -1199,10 +1186,10 @@ public:
     void setGiantPuzzle() { mSpecialMode = SMODE_WOLF_PUZZLE; }
     void setGiantPuzzleEnd() { mSpecialMode = 0; }
 
-    BOOL checkAutoJumpStart() const { return checkResetFlg0(RFLG0_UNK_100); }
+    BOOL checkAutoJumpStart() const { return checkResetFlg0(RFLG0_AUTO_JUMP_START); }
 
     void onForceGrabRebound() {
-        onEndResetFlg2(ERFLG2_UNK_8);
+        onEndResetFlg2(ERFLG2_FORCE_GRAB_REBOUND);
     }
 
     void setSumouReadyAcceptButton() { mSpecialMode = 2; }
@@ -1240,19 +1227,19 @@ public:
     bool checkSumouTackleStagger() const { return mSpecialMode == 0x20; }
     bool checkSumouGraspRelease() const { return mSpecialMode == 0x23; }
 
-    void onHeavyState() { onNoResetFlg0(FLG0_UNK_40000000); }
+    void onHeavyState() { onNoResetFlg0(FLG0_HEAVY_STATE); }
     void onHeavyStateMidnaPanic() {
         onHeavyState();
         onEndResetFlg1(ERFLG1_UNK_40000);
     }
 
-    BOOL checkInsectRelease() { return checkResetFlg1(RFLG1_UNK_100); }
+    BOOL checkInsectRelease() { return checkResetFlg1(RFLG1_INSECT_RELEASE); }
 
-    void onChainForcePull() { onEndResetFlg1(ERFLG1_UNK_1000000); }
-    void onChainPullEnd() { onEndResetFlg1(ERFLG1_UNK_2000000); }
+    void onChainForcePull() { onEndResetFlg1(ERFLG1_CHAIN_FORCE_PULL); }
+    void onChainPullEnd() { onEndResetFlg1(ERFLG1_CHAIN_PULL_END); }
 
-    void onWaterDrop() { onEndResetFlg1(ERFLG1_UNK_20000); }
-    void forceKandelaarLightOff() { onNoResetFlg2(FLG2_UNK_10000000); }
+    void onWaterDrop() { onEndResetFlg1(ERFLG1_WATER_DROP); }
+    void forceKandelaarLightOff() { onNoResetFlg2(FLG2_KANDELAAR_LIGHT_OFF); }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

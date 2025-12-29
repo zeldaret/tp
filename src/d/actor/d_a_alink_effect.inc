@@ -623,11 +623,11 @@ void daAlink_c::setEffect() {
         }
 
         if (checkResetFlg1(RFLG1_UNK_4)) {
-            setFootMark(&mLeftHandPos, field_0x30b8, var_r26);
+            setFootMark(&mLeftHandPos, mLeftHandJntNo, var_r26);
         }
 
         if (checkResetFlg1(RFLG1_UNK_8)) {
-            setFootMark(&mRightHandPos, field_0x30ba, var_r26);
+            setFootMark(&mRightHandPos, mRightHandJntNo, var_r26);
         }
     }
 
@@ -728,7 +728,7 @@ void daAlink_c::setWaterfallEffect(cXyz const* param_0, u32* param_1) {
 
 void daAlink_c::setWaterfallEffect() {
     Vec sp8;
-    if (checkEndResetFlg1(ERFLG1_UNK_800)) {
+    if (checkEndResetFlg1(ERFLG1_WATERFALL_FRONT_HIT)) {
         if (checkWolf()) {
             mDoMtx_multVecZero(mpLinkModel->getAnmMtx(3), &sp8);
             sp8.y += 5.0f;
@@ -745,7 +745,7 @@ void daAlink_c::setWaterfallEffect() {
         setWaterfallEffect((cXyz*)&sp8, &field_0x31d0);
     }
 
-    if (checkEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1000 | ERFLG1_UNK_800))) {
+    if (checkEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_1000 | ERFLG1_WATERFALL_FRONT_HIT))) {
         seStartOnlyReverbLevel(Z2SE_AL_IN_WATER_FALL);
     }
 }
@@ -982,7 +982,7 @@ void daAlink_c::setCutTurnEffect() {
         int sp1C;
         BOOL sp18 = 0;
 
-        if (checkNoResetFlg0(FLG0_UNDERWATER)) {
+        if (checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
             if (checkZoraWearAbility()) {
                 sp28 = effNameWater;
                 sp24 = (JGeometry::TVec3<s16>*)leftRotWater;
@@ -1102,7 +1102,7 @@ void daAlink_c::setBootsLightEffect() {
 void daAlink_c::setLightningSwordEffect() {
     static const u16 effName[] = {0x0A58, 0x0A59, 0x0B9D};
 
-    if (checkEndResetFlg2(ERFLG2_UNK_10)) {
+    if (checkEndResetFlg2(ERFLG2_LIGHT_SWORD_GET_EFFECT)) {
         JPABaseEmitter* emitter = setEmitter(&field_0x3294, 0x8B9E, &current.pos, &shape_angle);
         if (emitter != NULL) {
             emitter->setGlobalRTMatrix(mSwordModel->getBaseTRMtx());
@@ -1349,7 +1349,7 @@ void daAlink_c::setWaterDropEffect() {
     Vec spC;
     int i;
 
-    if (checkEndResetFlg1(daPy_ERFLG1(ERFLG1_UNK_20000 | ERFLG1_UNK_1000 | ERFLG1_UNK_800))) {
+    if (checkEndResetFlg1(daPy_ERFLG1(ERFLG1_WATER_DROP | ERFLG1_UNK_1000 | ERFLG1_WATERFALL_FRONT_HIT))) {
         for (i = 0; i < 2; i++) {
             field_0x32c0[i] = -1;
         }

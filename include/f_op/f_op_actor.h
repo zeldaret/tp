@@ -328,7 +328,7 @@ public:
     cXyz& getDownPos() { return mDownPos; }
     cXyz& getHeadLockPos() { return mHeadLockPos; }
 
-    void onCutDownHitFlg() { mFlags |= fopEn_flag_CutDownHit; }
+    void onCutDownHitFlg() { mFlags |= (u16)fopEn_flag_CutDownHit; }
     void onWolfBiteDamage() { mFlags |= fopEn_flag_WolfBiteDamage; }
     void onWolfDownStartFlg() { mFlags |= (fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart); }
     void onWolfDownPullEndFlg() { mFlags |= fopEn_flag_WolfDownPullEnd; }

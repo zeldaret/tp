@@ -38,8 +38,8 @@ bool daAlink_c::checkSetNpcTks(cXyz* i_basePos, int i_roomNo, int param_2) {
     u32 scene_mode = getLastSceneMode();
 
     if (param_2 != 0 && checkDungeon() &&
-        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17 &&
-        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x18 &&
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != dStage_SaveTbl_LV8 &&
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != dStage_SaveTbl_LV9 &&
         (checkItemGet(fpcNm_ITEM_TKS_LETTER, 1) ||
          (checkItemGet(fpcNm_ITEM_DUNGEON_BACK, 1) && !checkLv7DungeonShop())) &&
         dComIfGs_isDungeonItemWarp())
@@ -72,7 +72,7 @@ bool daAlink_c::checkSetNpcTks(cXyz* i_basePos, int i_roomNo, int param_2) {
 int daAlink_c::checkDemoAction() {
     if (dComIfGp_getEvent()->isOrderOK()) {
         if (!dComIfGp_event_runCheck()) {
-            offNoResetFlg0(FLG0_UNK_200000);
+            offNoResetFlg0(FLG0_GORON_UP_STOP_CANCEL);
         }
         return 0;
     }
@@ -557,9 +557,9 @@ void daAlink_c::setNoDrawSwordShield(int param_0, u16 param_1) {
             }
         } else if (param_0 == 9) {
             if (param_1 == 1) {
-                onNoResetFlg2(FLG2_PLAYER_SHADOW);
+                onNoResetFlg2(FLG2_PLAYER_SHADOW_NO_DRAW);
             } else {
-                offNoResetFlg2(FLG2_PLAYER_SHADOW);
+                offNoResetFlg2(FLG2_PLAYER_SHADOW_NO_DRAW);
             }
         }
     }
@@ -878,7 +878,7 @@ void daAlink_c::resetSpecialEvent() {
 void daAlink_c::endDemoMode() {
     BOOL temp_r30 = checkFlyAtnWait();
     endHighModel();
-    offNoResetFlg0(FLG0_UNK_10400);
+    offNoResetFlg0(daPy_FLG0(FLG0_UNK_10000 | FLG0_UNK_400));
     field_0x06f4 = NULL;
 
     if (field_0x06f8 != NULL) {
@@ -1175,7 +1175,7 @@ void daAlink_c::setDemoRide(u16 param_0) {
             onModeFlg(0x400);
             horse_p->onRideFlg();
             field_0x384c = (cXyz*)&l_horseBaseAnime;
-            mRideStatus = 1;
+            mRideStatus = RIDETYPE_HORSE;
         }
     } else {
         if (horse_p != NULL) {
@@ -1450,7 +1450,7 @@ int daAlink_c::procCoToolDemoInit() {
     field_0x3478 = 0.0f;
     field_0x37c8 = current.pos;
 
-    onEndResetFlg1(ERFLG1_GANON_FINISH);
+    onEndResetFlg1(ERFLG1_SHIELD_BACKBONE);
     return 1;
 }
 
@@ -1458,7 +1458,7 @@ int daAlink_c::procCoToolDemo() {
     dDemo_actor_c* demo_actor_p = dDemo_c::getActor(demoActorID);
     BOOL var_r29 = 0;
 
-    onEndResetFlg1(ERFLG1_GANON_FINISH);
+    onEndResetFlg1(ERFLG1_SHIELD_BACKBONE);
     field_0x3198 = 0;
     mProcVar4.field_0x3010 = 0;
     field_0x2fab = 0;
@@ -3124,7 +3124,7 @@ int daAlink_c::procCoNodInit() {
 
         field_0x2f96 = 4;
         field_0x2f97 = 10;
-        onNoResetFlg1(FLG1_UNK_10100000);
+        onNoResetFlg1(daPy_FLG1(FLG1_UNK_10000000 | FLG1_UNK_100000));
         mProcVar2.field_0x300c = 0;
     }
 
@@ -3155,7 +3155,7 @@ int daAlink_c::procCoEyeAwayInit() {
         setFacePriBck(0x129);
         field_0x2f96 = 4;
         field_0x2f97 = 10;
-        onNoResetFlg1(FLG1_UNK_10100000);
+        onNoResetFlg1(daPy_FLG1(FLG1_UNK_10000000 | FLG1_UNK_100000));
     }
 
     return 1;
@@ -3178,7 +3178,7 @@ int daAlink_c::procCoGlareInit() {
         field_0x3478 = -1.0f;
         field_0x2f96 = 4;
         field_0x2f97 = 10;
-        onNoResetFlg1(FLG1_UNK_10100000);
+        onNoResetFlg1(daPy_FLG1(FLG1_UNK_10000000 | FLG1_UNK_100000));
     }
 
     return 1;
@@ -3537,7 +3537,7 @@ int daAlink_c::procTradeItemOut() {
                             }
 
                             if (mDemo.getParam0() == 2) {
-                                onResetFlg1(RFLG1_UNK_100);
+                                onResetFlg1(RFLG1_INSECT_RELEASE);
                             }
                         }
 
@@ -3729,12 +3729,12 @@ int daAlink_c::procGanonFinishInit() {
     speed.y = 0.0f;
 
     field_0x37c8 = current.pos;
-    onEndResetFlg1(ERFLG1_GANON_FINISH);
+    onEndResetFlg1(ERFLG1_SHIELD_BACKBONE);
     return 1;
 }
 
 int daAlink_c::procGanonFinish() {
-    onEndResetFlg1(ERFLG1_GANON_FINISH);
+    onEndResetFlg1(ERFLG1_SHIELD_BACKBONE);
     current.pos = field_0x37c8;
 
     if (checkAnmEnd(mUnderFrameCtrl)) {
@@ -4025,7 +4025,7 @@ bool daAlink_c::checkAcceptWarp() {
 
     if (mLinkAcch.ChkGroundHit() && !checkModeFlg(MODE_PLAYER_FLY)
         #if VERSION != VERSION_WII_USA_R0
-        && !checkNoResetFlg0(FLG0_UNDERWATER)
+        && !checkNoResetFlg0(FLG0_WATER_IN_MOVE)
         #endif
        )
     {

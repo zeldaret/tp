@@ -1261,6 +1261,33 @@ struct FuncTable {
     dStage_Func function;
 };
 
+enum dStage_SaveTbl {
+    dStage_SaveTbl_ORDON,
+    dStage_SaveTbl_PRISON,
+    dStage_SaveTbl_FARON,
+    dStage_SaveTbl_ELDIN,
+    dStage_SaveTbl_LANAYRU,
+    dStage_SaveTbl_FIELD = 6,
+    dStage_SaveTbl_GROVE,
+    dStage_SaveTbl_SNOWPEAK,
+    dStage_SaveTbl_CASTLE_TOWN,
+    dStage_SaveTbl_DESERT,
+    dStage_SaveTbl_FISHING_POND,
+
+    dStage_SaveTbl_LV1 = 16,
+    dStage_SaveTbl_LV2,
+    dStage_SaveTbl_LV3,
+    dStage_SaveTbl_LV4,
+    dStage_SaveTbl_LV5,
+    dStage_SaveTbl_LV6,
+    dStage_SaveTbl_LV7,
+    dStage_SaveTbl_LV8,
+    dStage_SaveTbl_LV9,
+    dStage_SaveTbl_CAVE1,
+    dStage_SaveTbl_CAVE2,
+    dStage_SaveTbl_GROTTO,
+};
+
 const char* dStage_getName2(s16, s8);
 dStage_objectNameInf* dStage_searchName(const char*);
 static int dStage_stageKeepTresureInit(dStage_dt_c*, void*, int, void*);

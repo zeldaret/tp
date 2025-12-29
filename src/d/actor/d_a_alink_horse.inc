@@ -163,7 +163,7 @@ int daAlink_c::initForceRideBoar() {
     e_wb_actor->current.pos = current.pos;
     e_wb_actor->shape_angle.y = shape_angle.y;
     e_wb_actor->current.angle.y = shape_angle.y;
-    mRideStatus = 2;
+    mRideStatus = RIDETYPE_BOAR;
 
     mRideAcKeep.setData(e_wb_actor);
     field_0x384c = (cXyz*)&l_boarBaseAnime;
@@ -173,7 +173,7 @@ int daAlink_c::initForceRideBoar() {
 
 void daAlink_c::initForceRideHorse() {
     commonInitForceRideRein();
-    mRideStatus = 1;
+    mRideStatus = RIDETYPE_HORSE;
     mRideAcKeep.setData(dComIfGp_getHorseActor());
     field_0x384c = (cXyz*)&l_horseBaseAnime;
     dComIfGp_getHorseActor()->onRideFlg();
@@ -217,7 +217,7 @@ void daAlink_c::rideGetOff() {
     }
 
     mRideStatus = 0;
-    offNoResetFlg1(FLG1_UNK_1800);
+    offNoResetFlg1(daPy_FLG1(FLG1_UNK_1000 | FLG1_UNK_800));
     attention_info.field_0xa = 10;
     shape_angle.x = 0;
     shape_angle.z = 0;
@@ -610,7 +610,7 @@ int daAlink_c::checkHorseSpecialProc() {
         return 0;
     }
 
-    if (checkEndResetFlg2(ERFLG2_UNK_2)) {
+    if (checkEndResetFlg2(ERFLG2_FORCE_HORSE_GETOFF)) {
         current.pos = horse_p->current.pos;
         return procWaitInit();
     }
@@ -1250,7 +1250,7 @@ int daAlink_c::procHorseRideInit() {
         daHorse_c* temp_r26 = (daHorse_c*)field_0x27f4;
         temp_r26->onRideStartFlg();
         var_r28 = temp_r26->getRootMtx();
-        mRideStatus = 1;
+        mRideStatus = RIDETYPE_HORSE;
         var_r27 = &l_localHorseRidePos;
         field_0x384c = &l_horseBaseAnime;
         var_r24 = temp_r26->checkRodeoMode();
@@ -1259,7 +1259,7 @@ int daAlink_c::procHorseRideInit() {
         e_wb_class* temp_r23 = (e_wb_class*)field_0x27f4;
         temp_r23->setPlayerRideNow();
         var_r28 = temp_r23->getRideMtx();
-        mRideStatus = 2;
+        mRideStatus = RIDETYPE_BOAR;
         var_r27 = &l_localBoarRidePos;
         field_0x384c = &l_boarBaseAnime;
         var_r24 = 0;
@@ -2022,17 +2022,17 @@ int daAlink_c::procHorseCut() {
     checkCutTurnCharge();
 
     if (checkAnmEnd(temp_r30)) {
-        if (checkNoResetFlg2(FLG2_UNK_2)) {
+        if (checkNoResetFlg2(FLG2_COMBO_RESERB)) {
             checkCutAction();
         } else {
             resetUpperAnime(UPPER_2, 4.0f);
             procHorseWaitInit();
             field_0x2060->initOldFrameMorf(field_0x3480, 0, 0x23);
         }
-    } else if (temp_r30->getFrame() > field_0x3484 && (checkNoResetFlg2(FLG2_UNK_2) || checkResetFlg0(RFLG0_UNK_40) || spActionButton())) {
+    } else if (temp_r30->getFrame() > field_0x3484 && (checkNoResetFlg2(FLG2_COMBO_RESERB) || checkResetFlg0(RFLG0_UNK_40) || spActionButton())) {
         if (checkResetFlg0(RFLG0_UNK_40)) {
             procHorseCutChargeReadyInit();
-        } else if (checkNoResetFlg2(FLG2_UNK_2)) {
+        } else if (checkNoResetFlg2(FLG2_COMBO_RESERB)) {
             checkCutAction();
         } else {
             if (checkShieldGet()) {
@@ -2056,7 +2056,7 @@ int daAlink_c::procHorseCut() {
         }
         
         if (temp_r30->getFrame() >= field_0x3478 && temp_r30->getFrame() < field_0x347c) {
-            if (!checkNoResetFlg0(FLG0_UNK_40)) {
+            if (!checkNoResetFlg0(FLG0_CUT_AT_FLG)) {
                 seStartSwordCut(Z2SE_AL_SWORD_SWING_S);
             }
             onResetFlg0(RFLG0_UNK_2);
@@ -2130,7 +2130,7 @@ int daAlink_c::procHorseCutTurnInit() {
     }
 
     setSingleAnimeParam(ANM_HORSE_CUT_TURN, &mpHIO->mCut.mHorseCutCharge.m.mSpinAnm);
-    setCutType(43);
+    setCutType(CUT_TYPE_HORSE_TURN);
     setSyncRide(1);
     field_0x3478 = mpHIO->mCut.mHorseCutCharge.m.mSpinAttackRadius;
     setCylAtParam(getSwordAtType(), dCcG_At_Spl_UNK_1, 3, 1, 3, field_0x3478 * 0.5f, 200.0f);
@@ -2168,7 +2168,7 @@ int daAlink_c::procHorseCutTurn() {
         }
 
         if (temp_r30->getFrame() >= mpHIO->mCut.mHorseCutCharge.m.mSpinAttackStartFrame && temp_r30->getFrame() < mpHIO->mCut.mHorseCutCharge.m.mSpinAttackEndFrame) {
-            if (!checkNoResetFlg0(FLG0_UNK_40)) {
+            if (!checkNoResetFlg0(FLG0_CUT_AT_FLG)) {
                 seStartSwordCut(Z2SE_AL_KAITENGIRI);
             }
 

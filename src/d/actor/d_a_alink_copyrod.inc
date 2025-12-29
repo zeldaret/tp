@@ -63,7 +63,7 @@ BOOL daAlink_c::checkCopyRodTopUse() {
     // Event flag 0x2580: Dominion Rod power restored
     return (dComIfGs_isEventBit(0x2580) &&
             !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e != 0)) ||
-           dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x15 ||
+           dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == dStage_SaveTbl_LV6 ||
            checkForestOldCentury();
 }
 
@@ -119,13 +119,13 @@ void daAlink_c::setCopyRodModel() {
 
     mAtCps[0].SetAtSpl(dCcG_At_Spl_UNK_0);
     mAtCps[0].SetAtAtp(0);
-    mAtCps[0].SetAtSe(20);
+    mAtCps[0].SetAtSe(dCcD_SE_COPYROD);
     mAtCps[0].SetAtHitMark(1);
     mAtCps[0].OnAtSetBit();
     mAtCps[0].SetAtHitCallback(NULL);
     mAtCps[0].SetAtMtrl(dCcD_MTRL_NONE);
 
-    mHeldItemModel->setBaseTRMtx(mpLinkModel->getAnmMtx(field_0x30c0));
+    mHeldItemModel->setBaseTRMtx(mpLinkModel->getAnmMtx(mLeftItemJntNo));
     mHeldItemModel->calc();
 }
 
@@ -185,8 +185,7 @@ int daAlink_c::returnCopyRod() {
         onNoResetFlg0(FLG0_UNK_20);
         var_r31 = 1;
 
-        f32 tmp_0 = 0.0f;
-        dComIfGp_getVibration().StartShock(1, 1, cXyz(tmp_0, 1.0f, tmp_0));
+        dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
     } else {
         var_r31 = 0;
     }
