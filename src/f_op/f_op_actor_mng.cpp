@@ -392,15 +392,6 @@ int fopAcM::HeapAdjustMargin =
     0x10000;
 #endif
 
-struct DummyCheckHeap {
-    JKRHeap* getHeap();
-    void setHeap(JKRHeap* heap);
-
-    /* 0x0 */ JKRHeap* dummyHeap;
-};
-
-static DummyCheckHeap* dch = NULL;
-
 bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback, u32 i_size) {
 #if DEBUG
     s16 procProfName = fopAcM_GetProfName(i_actor);

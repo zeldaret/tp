@@ -5,6 +5,9 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include <dolphin/mtx.h>
 
+extern u8 g_printCurrentHeapDebug;
+extern u8 g_printOtherHeapDebug;
+
 void mDoMtx_XYZrotS(Mtx, s16, s16, s16);
 void mDoMtx_XYZrotM(Mtx, s16, s16, s16);
 void mDoMtx_ZXYrotS(Mtx, s16, s16, s16);
