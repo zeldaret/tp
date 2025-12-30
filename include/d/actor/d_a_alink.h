@@ -5709,14 +5709,14 @@ public:
     int procGuardBreak();
     int procTurnMoveInit(int);
     int procTurnMove();
-    void getArrowFlyData(f32*, f32*, int) const;
+    void getArrowFlyData(f32* o_distance, f32* o_speed, BOOL i_forceCharge) const;
     f32 getArrowIncAtR() const;
     s16 getBombArrowFlyExplodeTime() const;
     f32 getArrowIncAtMaxStart() const;
     f32 getArrowIncAtMax() const;
-    BOOL checkBowAndSlingItem(int);
+    BOOL checkBowAndSlingItem(int i_itemNo);
     void setSlingModel();
-    cXyz* checkBowCameraArrowPosP(s16*, s16*);
+    cXyz* checkBowCameraArrowPosP(s16* o_angleX, s16* o_angleY);
     BOOL checkBowReadyAnime() const;
     BOOL checkBowAnime() const;
     void makeArrow();
@@ -7175,8 +7175,8 @@ public:
 
     u32 checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
 
-    BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_ATDEFS_e); }
-    BOOL checkFmChainGrabAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_CHAIN_e) || checkUpperAnime(dRes_INDEX_ALANM_BCK_WL_CHAIN_e); }
+    BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_ATDEFS_e); }
+    BOOL checkFmChainGrabAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_CHAIN_e) || checkUpperAnime(dRes_ID_ALANM_BCK_WL_CHAIN_e); }
 
     BOOL checkAttentionLock() { return mAttention->Lockon(); }
 
@@ -7185,10 +7185,10 @@ public:
 
     bool checkNoSetUpperAnime() const { return mUpperAnmHeap[UPPER_2].checkNoSetIdx(); }
     bool checkSwimMoveHandAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_SWIMINGB_e); }
-    bool checkZoraSwimDamageAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_DAMSW_e); }
-    bool checkIronBallWaitAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_IBWAIT_e); }
-    bool checkHorseTurnLAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_TURNLS_e); }
-    bool checkHorseTurnRAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_TURNRS_e); }
+    bool checkZoraSwimDamageAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_DAMSW_e); }
+    bool checkIronBallWaitAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_IBWAIT_e); }
+    bool checkHorseTurnLAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_TURNLS_e); }
+    bool checkHorseTurnRAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_TURNRS_e); }
     bool checkHorseTurnAnime() const { return checkHorseTurnLAnime() || checkHorseTurnRAnime(); }
     bool checkHookshotShootAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_HSSHOOT_e); }
     bool checkHookshotReadyAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_HSWAIT_e); }
@@ -7200,48 +7200,48 @@ public:
     }
     bool checkDkCaught2Anime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WAITHDB_e); }
     BOOL checkCopyRodThrowAnime() const {
-        return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(dRes_INDEX_ALANM_BCK_BOOMTHROW_e);
+        return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(dRes_ID_ALANM_BCK_BOOMTHROW_e);
     }
-    BOOL checkCutDashChargeAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_CUTDTP_e); }
+    BOOL checkCutDashChargeAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_CUTDTP_e); }
     BOOL checkBoomerangAnimeAndReturnWait() const { return checkBoomerangAnime(); }
-    BOOL checkTwoHandItemEquipAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_TAKE_e); }
+    BOOL checkTwoHandItemEquipAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_TAKE_e); }
     BOOL checkBarkAnime() const { return 0; }
-    bool checkWolfGrabAnimeObj() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_WL_PICKUPA_e); }
+    bool checkWolfGrabAnimeObj() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WL_PICKUPA_e); }
     bool checkWolfGrabAnimeStick() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WL_PICKUPB_e); }
     BOOL checkWolfGrabAnime() const { return checkWolfGrabAnimeObj() || checkWolfGrabAnimeStick(); }
     bool checkWolfSwimDashAnime() const { return checkUnderMove0BckNoArcWolf(WANM_SWIM_DASH); }
     bool checkKandelaarSwingAnime() const { return false; }
-    bool checkBowChargeWaitAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_ARELORDTAME_e); }
-    bool checkBowReloadAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_ARELORD_e); }
-    bool checkBowShootAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_ASHOOT_e); }
-    bool checkBowWaitAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_ASHOOTWAIT_e); }
-    BOOL checkGrabUpThrowAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_GRABTHROW_e); }
+    bool checkBowChargeWaitAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_ARELORDTAME_e); }
+    bool checkBowReloadAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_ARELORD_e); }
+    bool checkBowShootAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_ASHOOT_e); }
+    bool checkBowWaitAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_ASHOOTWAIT_e); }
+    BOOL checkGrabUpThrowAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_GRABTHROW_e); }
     BOOL checkGrabSideThrowAnime() const {
         return checkUpperAnime(dRes_ID_ALANM_BCK_BOMBTHROW_e) || mUpperAnmHeap[0].getIdx() == dRes_ID_ALANM_BCK_BOMBTHROW_e;
     }
     BOOL checkGrabHeavyThrowAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_HEAVYTHROW_e); }
-    BOOL checkGrabAnimeUp() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_GRABD_e); }
+    BOOL checkGrabAnimeUp() const { return checkUpperAnime(dRes_ID_ALANM_BCK_GRABD_e); }
     BOOL checkGrabAnimeSide() const { return checkUpperAnime(dRes_ID_ALANM_BCK_BOMBD_e); }
     BOOL checkGrabAnimeCarry() const { return checkUpperAnime(dRes_ID_ALANM_BCK_CARRYD_e); }
     bool checkHorseUnderDashStartAnime() const { return checkUnderAnime(dRes_ID_ALANM_BCK_DSTARTHS_e); }
     bool checkHorseUnderLashAnime() const { return checkUnderAnime(dRes_ID_ALANM_BCK_LASHS_e); }
     bool checkUpperHorseLieAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WAITHLIE_e); }
-    bool checkHorseTiredAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_WAITHDS_e); }
+    bool checkHorseTiredAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WAITHDS_e); }
     bool checkHorseSwordUpAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_DASHHBSUP_e); }
-    bool checkHorseUnderItemAnime() const { return checkUnderAnime(dRes_INDEX_ALANM_BCK_ATH_e); }
+    bool checkHorseUnderItemAnime() const { return checkUnderAnime(dRes_ID_ALANM_BCK_ATH_e); }
     BOOL checkHorseWalkStartAnm() const { return checkUnderMove0BckNoArc(ANM_WSTARTH); }
-    bool checkIronBallPreSwingAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_IBTHROW_e); }
-    bool checkIronBallSwingAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_IBTURN_e); }
+    bool checkIronBallPreSwingAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_IBTHROW_e); }
+    bool checkIronBallSwingAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_IBTURN_e); }
     bool checkDashDamageAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_DAMD_e); }
-    bool checkBoomerangCatchAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_BOOMCATCH_e); }
+    bool checkBoomerangCatchAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_BOOMCATCH_e); }
     BOOL checkCopyRodReadyAnime() const {
         return mEquipItem == fpcNm_ITEM_COPY_ROD && checkUpperAnime(dRes_ID_ALANM_BCK_BOOMWAIT_e);
     }
     BOOL checkCanoeFishingWaitAnime() const {
         return checkUpperAnime(dRes_ID_ALANM_BCK_CANOEREELINGR_e) || checkUpperAnime(dRes_ID_ALANM_BCK_WAITFISHR_e);
     }
-    BOOL checkCopyRodControllAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_RODD_e); }
-    BOOL checkWolfHeadDamageAnime() const { return checkUpperAnime(dRes_INDEX_ALANM_BCK_WL_DAM_e); }
+    BOOL checkCopyRodControllAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_RODD_e); }
+    BOOL checkWolfHeadDamageAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WL_DAM_e); }
     BOOL checkExchangeRodAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_CHANGEROD_e); }
     BOOL checkReelAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_REELINGARM_e); }
 

@@ -546,7 +546,7 @@ void daAlink_c::setHookshotReadyAnime() {
         speed = mpHIO->mItem.mHookshot.m.mWaitAnmSpeed;
     }
 
-    setUpperAnimeBaseSpeed(dRes_INDEX_ALANM_BCK_HSWAIT_e, speed, 3.0f);
+    setUpperAnimeBaseSpeed(dRes_ID_ALANM_BCK_HSWAIT_e, speed, 3.0f);
     field_0x3020 = 0;
     initHookshotReady();
 }

@@ -245,8 +245,8 @@ cXyz* daAlink_c::getDamageVec(dCcD_GObjInf* i_hitObj) {
 }
 
 void daAlink_c::setDashDamage() {
-    setUpperAnimeParam(dRes_INDEX_ALANM_BCK_DAMD_e, UPPER_2, &mpHIO->mDamage.m.mDashDmgAnm);
-    setFacePriBck(dRes_INDEX_ALANM_BCK_FDAM_e);
+    setUpperAnimeParam(dRes_ID_ALANM_BCK_DAMD_e, UPPER_2, &mpHIO->mDamage.m.mDashDmgAnm);
+    setFacePriBck(dRes_ID_ALANM_BCK_FDAM_e);
     setFacePriTexture(FTANM_UNK_27);
     voiceStart(Z2SE_AL_V_DAMAGE_S);
     seStartOnlyReverb(Z2SE_AL_DAMAGE_NORMAL);
@@ -826,9 +826,9 @@ int daAlink_c::procDamageInit(dCcD_GObjInf* i_tgObj, BOOL param_1) {
     }
 
     if (checkAtnLeftAnime()) {
-        setUnderAnime(dRes_INDEX_ALANM_BCK_ATL_e, UNDER_2, anm_speed, 0.0f, -1, -1.0f);
+        setUnderAnime(dRes_ID_ALANM_BCK_ATL_e, UNDER_2, anm_speed, 0.0f, -1, -1.0f);
     } else if (checkAtnRightAnime()) {
-        setUnderAnime(dRes_INDEX_ALANM_BCK_ATR_e, UNDER_2, anm_speed, 0.0f, -1, -1.0f);
+        setUnderAnime(dRes_ID_ALANM_BCK_ATR_e, UNDER_2, anm_speed, 0.0f, -1, -1.0f);
     }
 
     int direction = getDirectionFromAngle(cM_atan2s(-sp88.x, -sp88.z));

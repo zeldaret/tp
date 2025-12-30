@@ -59,7 +59,7 @@ BOOL daAlink_c::checkSwordEquipAnime() const {
 }
 
 BOOL daAlink_c::checkCutDashAnime() const {
-    return checkUpperAnime(dRes_INDEX_ALANM_BCK_CUTDL_e) || checkUpperAnime(dRes_INDEX_ALANM_BCK_CUTDT_e) || checkUpperAnime(dRes_INDEX_ALANM_BCK_CUTDR_e);
+    return checkUpperAnime(dRes_ID_ALANM_BCK_CUTDL_e) || checkUpperAnime(dRes_ID_ALANM_BCK_CUTDT_e) || checkUpperAnime(dRes_ID_ALANM_BCK_CUTDR_e);
 }
 
 BOOL daAlink_c::checkCutDashEnemyHit(dCcD_GObjInf& obj) {
