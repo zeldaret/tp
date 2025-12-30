@@ -16,13 +16,13 @@ public:
     void setSight();
     void setSightImage(ResTIMG*);
 
-    bool getDrawFlg() { return mDrawFlag; }
+    u8 getDrawFlg() { return mDrawFlag; }
     void onDrawFlg() { mDrawFlag = true; }
     void offDrawFlg() { mDrawFlag = false; }
     void setPos(const cXyz* i_pos) { mPos = *i_pos; }
     cXyz* getPosP() { return &mPos; }
 
-    /* 0x04 */ bool mDrawFlag;
+    /* 0x04 */ u8 mDrawFlag;
     /* 0x05 */ u8 field_0x5[3];
     /* 0x08 */ cXyz mPos;
     /* 0x14 */ Mtx field_0x14;
