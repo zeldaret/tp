@@ -30,6 +30,7 @@
 #include "JSystem/J2DGraph/J2DPictureEx.h" // IWYU pragma: export
 #include "JSystem/J2DGraph/J2DScreen.h" // IWYU pragma: export
 #include "JSystem/J2DGraph/J2DTextBoxEx.h" // IWYU pragma: export
+#include "JSystem/JParticle/JPAEmitter.h" // IWYU pragma: export
 #include "JSystem/JUtility/JUTFont.h" // IWYU pragma: export
 #include "JSystem/JUtility/JUTReport.h" // IWYU pragma: export
 

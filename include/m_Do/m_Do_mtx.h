@@ -142,6 +142,10 @@ inline void mDoMtx_quat(Mtx m, const Quaternion* q) {
     MTXQuat(m, q);
 }
 
+inline void cMtx_identity(Mtx mtx) {
+    mDoMtx_identity(mtx);
+}
+
 inline void cMtx_inverse(const Mtx a, Mtx b) {
     mDoMtx_inverse(a, b);
 }
