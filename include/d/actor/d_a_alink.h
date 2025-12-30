@@ -5699,9 +5699,9 @@ public:
     BOOL checkGuardAccept();
     void setUpperGuardAnime(f32);
     void setShieldGuard();
-    void setGuardSe(dCcD_GObjInf*);
-    void setSmallGuard(dCcD_GObjInf*);
-    int procGuardSlipInit(int, dCcD_GObjInf*);
+    void setGuardSe(dCcD_GObjInf* i_objinf);
+    void setSmallGuard(dCcD_GObjInf* i_objinf);
+    int procGuardSlipInit(int i_atSpl, dCcD_GObjInf* i_objinf);
     int procGuardSlip();
     int procGuardAttackInit();
     int procGuardAttack();

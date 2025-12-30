@@ -412,7 +412,7 @@ public:
     void SetTgHitPos(cXyz& pos) { mGObjTg.SetHitPos(pos); }
     void SetAtHitPos(cXyz& pos) { mGObjAt.SetHitPos(pos); }
     u8 GetTgSe() { return mGObjTg.GetSe(); }
-    u32 GetTgHitObjHitSeID(int i_soundID) { return getHitSeID(GetTgHitObjSe(),i_soundID); }
+    u32 GetTgHitObjHitSeID(BOOL i_isRebound) { return getHitSeID(GetTgHitObjSe(), i_isRebound); }
     cXyz* GetAtHitPosP() { return mGObjAt.GetHitPosP(); }
     cXyz* GetTgHitPosP() { return mGObjTg.GetHitPosP(); }
     cXyz* GetTgRVecP() { return mGObjTg.GetRVecP(); }
