@@ -1140,7 +1140,8 @@ public:
     static void setRegionNo(int i_roomNo, u8 i_regionNo) { mStatus[i_roomNo].mRegionNo = i_regionNo; }
 
     u8 checkStatusFlag(int i_roomNo, u8 flag) const {
-        return cLib_checkBit(mStatus[i_roomNo].mFlag, flag);
+        JUT_ASSERT(2699, 0 <= i_roomNo && i_roomNo < 64);
+        return cLib_checkBit((u8) mStatus[i_roomNo].mFlag, flag);
     }
 
     void onStatusFlag(int i_roomNo, u8 flag) {
