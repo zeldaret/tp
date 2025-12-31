@@ -683,7 +683,11 @@ static BOOL way_check(e_rdy_class* i_this) {
             dBgS_LinChk lin_chk;
             lin_chk.Set(&start, &end, _this);
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
+#if PLATFORM_WII || PLATFORM_GCN
+                angle += 0x1000;
+#else
                 angle += (s16)0x1000;
+#endif
             } else {
                 i_this->mTargetAngleY = angle;
                 return TRUE;
@@ -1165,7 +1169,7 @@ static void e_rdy_bow_run(e_rdy_class* i_this) {
 
     case 1:
         target_speed = run_speed;
-#if PLATFORM_GCN
+#if PLATFORM_GCN || PLATFORM_WII
         target_angle += 0x8000;
 #else
         target_angle += (s16)0x8000;
@@ -1937,7 +1941,7 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
                 break;
             }
         }
-#if PLATFORM_GCN
+#if PLATFORM_GCN || PLATFORM_WII
         target_angle += 0x8000;
 #else
         target_angle += (s16)0x8000;
@@ -2008,7 +2012,7 @@ static void e_rdy_s_damage(e_rdy_class* i_this) {
         if (i_this->field_0xa8e != 0) {
             e_yc_class* kargarok = (e_yc_class*)fopAcM_SearchByID(i_this->mKargarokID);
             if (kargarok != NULL) {
-#if PLATFORM_GCN
+#if PLATFORM_GCN || PLATFORM_WII
                 kargarok->field_0x6b0 &= ~i_this->field_0xa8e;
 #else
                 kargarok->field_0x6b0 &= (s8)~i_this->field_0xa8e;
