@@ -72,10 +72,10 @@ public:
     virtual void draw();
     virtual ~daAlink_sight_c() {}
 
-    bool getLockFlg() { return mLockFlag; }
+    u8 getLockFlg() { return mLockFlag; }
     void offLockFlg() { mLockFlag = false; }
 
-    /* 0x4C */ bool mLockFlag;
+    /* 0x4C */ u8 mLockFlag;
     /* 0x4D */ u8 field_0x4d[3];
     /* 0x50 */ daAlink_lockCursor_c mLockCursor;
 };

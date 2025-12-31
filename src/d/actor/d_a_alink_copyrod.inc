@@ -43,7 +43,7 @@ fopAc_ac_c* daAlink_c::getCopyRodCameraActor() {
     return NULL;
 }
 
-void daAlink_c::initCopyRodUpperAnimeSpeed(int param_0) {
+void daAlink_c::initCopyRodUpperAnimeSpeed(BOOL param_0) {
     if (!checkCopyRodThrowAnime()) {
         if (param_0) {
             mUpperFrameCtrl[2].setRate(0.0f);
@@ -60,11 +60,9 @@ BOOL daAlink_c::checkForestOldCentury() {
 }
 
 BOOL daAlink_c::checkCopyRodTopUse() {
-    // Event flag 0x2580: Dominion Rod power restored
-    return (dComIfGs_isEventBit(0x2580) &&
-            !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e != 0)) ||
-           dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == dStage_SaveTbl_LV6 ||
-           checkForestOldCentury();
+    return (dComIfGs_isEventBit(dSv_event_flag_c::F_0302) && !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e != 0))
+            || dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) == dStage_SaveTbl_LV6
+            || checkForestOldCentury();
 }
 
 BOOL daAlink_c::checkCopyRodAnime() const {
@@ -73,7 +71,7 @@ BOOL daAlink_c::checkCopyRodAnime() const {
 
 void daAlink_c::setCopyRodControllAnime() {
     if (checkNoUpperAnime() && getCopyRodControllActor()) {
-        setUpperAnimeBaseSpeed(0x202, 0.0f, 3.0f);
+        setUpperAnimeBaseSpeed(dRes_ID_ALANM_BCK_RODD_e, 0.0f, 3.0f);
         field_0x2f96 = 2;
         field_0x2f97 = 5;
         field_0x33e8 = 0.0f;
@@ -81,26 +79,26 @@ void daAlink_c::setCopyRodControllAnime() {
 }
 
 void daAlink_c::setCopyRodControllUpperSpeedRate() {
-    f32 var_f31;
+    f32 max_speed;
     if (checkAttentionLock()) {
-        var_f31 = 1.0f;
+        max_speed = 1.0f;
     } else {
         if (mProcID == PROC_STEP_MOVE) {
-            var_f31 = fabsf(field_0x3478 / mpHIO->mMove.m.mMaxSpeed);
+            max_speed = fabsf(field_0x3478 / mpHIO->mMove.m.mMaxSpeed);
         } else {
-            var_f31 = fabsf(mNormalSpeed / mpHIO->mMove.m.mMaxSpeed);
+            max_speed = fabsf(mNormalSpeed / mpHIO->mMove.m.mMaxSpeed);
         }
 
         if (checkHeavyStateOn(1, 1)) {
-            var_f31 *= 1.0f / (mHeavySpeedMultiplier * mHeavySpeedMultiplier);
+            max_speed *= 1.0f / (mHeavySpeedMultiplier * mHeavySpeedMultiplier);
         }
     }
 
-    if (var_f31 > 1.0f) {
-        var_f31 = 1.0f;
+    if (max_speed > 1.0f) {
+        max_speed = 1.0f;
     }
 
-    cLib_chaseF(&field_0x33e8, var_f31, 0.15f);
+    cLib_chaseF(&field_0x33e8, max_speed, 0.15f);
 
     daPy_frameCtrl_c* frame_ctrl = &mUpperFrameCtrl[2];
     frame_ctrl->setFrame(field_0x33e8 * frame_ctrl->getEnd());
@@ -109,9 +107,8 @@ void daAlink_c::setCopyRodControllUpperSpeedRate() {
 
 void daAlink_c::setCopyRodModel() {
     JKRHeap* heap = setItemHeap();
-    J3DModelData* mdl_data = loadAramBmd(0x315, 0x5400);
-    mHeldItemModel = initModel(mdl_data, 0x80000, 0x1000000);
-    field_0x0724 = loadAramItemBrk(0x323, mHeldItemModel);
+    mHeldItemModel = initModel(loadAramBmd(dRes_ID_ALANM_BMD_AL_CROD_e, 0x5400), 0x1000000);
+    field_0x0724 = loadAramItemBrk(dRes_ID_ALANM_BRK_AL_CROD_CHANGE_COLOR_e, mHeldItemModel);
     mDoExt_setCurrentHeap(heap);
 
     field_0x0724->setFrame(0.0f);
@@ -131,13 +128,13 @@ void daAlink_c::setCopyRodModel() {
 
 void daAlink_c::setCopyRodReadyAnime() {
     f32 speed;
-    if (checkAttentionLock()) {
-        speed = mpHIO->mItem.mBoomerang.m.mIdleAnmSpeed;
-    } else {
+    if (!checkAttentionLock()) {
         speed = 0.0f;
+    } else {
+        speed = mpHIO->mItem.mBoomerang.m.mIdleAnmSpeed;
     }
 
-    setUpperAnimeBaseSpeed(0x54, speed, 3.0f);
+    setUpperAnimeBaseSpeed(dRes_ID_ALANM_BCK_BOOMWAIT_e, speed, 3.0f);
 
     if (checkCopyRodTopUse()) {
         seStartSwordCut(Z2SE_AL_COPYROD_READY);
@@ -160,6 +157,7 @@ void daAlink_c::throwCopyRod() {
         onNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER);
         mItemAcKeep.clearData();
     }
+
     dComIfGp_clearPlayerStatus0(0, 0x80);
     mFastShotTime = -1;
     voiceStart(Z2SE_AL_V_ATTACK_S);
@@ -179,19 +177,19 @@ void daAlink_c::throwCopyRod() {
 int daAlink_c::returnCopyRod() {
     offNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER);
 
-    int var_r31;
+    BOOL rt;
     if (mEquipItem == fpcNm_ITEM_COPY_ROD) {
         mItemAcKeep = mCopyRodAcKeep;
         onNoResetFlg0(FLG0_UNK_20);
-        var_r31 = 1;
+        rt = TRUE;
 
-        dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
+        dComIfGp_getVibration().StartShock(VIBMODE_S_POWER1, 1, cXyz(0.0f, 1.0f, 0.0f));
     } else {
-        var_r31 = 0;
+        rt = FALSE;
     }
 
     mCopyRodAcKeep.clearData();
-    return var_r31;
+    return rt;
 }
 
 BOOL daAlink_c::checkUpperItemActionCopyRod() {
@@ -254,7 +252,6 @@ int daAlink_c::checkNextActionCopyRod() {
 void daAlink_c::setCopyRodSight() {
     if (mItemAcKeep.getActor() && !checkCopyRodThrowAnime()) {
         cXyz sight_pos;
-
         checkSightLine(getCopyRodBallDisMax(), &sight_pos);
         mSight.setPos(&sight_pos);
         mSight.onDrawFlg();
@@ -325,20 +322,20 @@ int daAlink_c::procCopyRodMove() {
     }
 
     if (!checkNextAction(0)) {
-        f32 var_f31 = -1.0f;
+        f32 morf = -1.0f;
 
         if (checkZeroSpeedF()) {
             onModeFlg(1);
 
             if (field_0x2f98 != 3) {
                 field_0x2f98 = 3;
-                var_f31 = mpHIO->mBasic.m.mBasicInterpolation;
+                morf = mpHIO->mBasic.m.mBasicInterpolation;
             }
         } else {
             offModeFlg(1);
         }
 
-        setBlendAtnMoveAnime(var_f31);
+        setBlendAtnMoveAnime(morf);
         setBodyAngleXReadyAnime(0);
     }
 
@@ -382,7 +379,7 @@ int daAlink_c::procCopyRodSwing() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
     mProcVar2.field_0x300c = 0;
 
-    if (frameCtrl->checkAnmEnd()) {
+    if (checkAnmEnd(frameCtrl)) {
         setCopyRodControllAnime();
         checkNextAction(0);
     } else if (frameCtrl->getFrame() > field_0x3480 && checkNextAction(1)) {
@@ -412,7 +409,7 @@ int daAlink_c::procCopyRodReviveInit() {
 
     if (mDemo.getParam0() == 0) {
         if (mEquipItem != fpcNm_ITEM_COPY_ROD) {
-            deleteEquipItem(0, 0);
+            deleteEquipItem(FALSE, FALSE);
             mEquipItem = fpcNm_ITEM_COPY_ROD;
             setCopyRodModel();
         }
@@ -427,7 +424,7 @@ int daAlink_c::procCopyRodReviveInit() {
 int daAlink_c::procCopyRodRevive() {
     simpleAnmPlay(field_0x0724);
 
-    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+    if (checkAnmEnd(&mUnderFrameCtrl[0])) {
         dComIfGp_evmng_cutEnd(mAlinkStaffId);
     }
 
