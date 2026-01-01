@@ -5799,8 +5799,8 @@ public:
     int procCopyRodRevive();
     void concatMagneBootMtx();
     void concatMagneBootInvMtx();
-    void multVecMagneBootInvMtx(cXyz*);
-    bool commonMagneLineCheck(cXyz*, cXyz*);
+    void multVecMagneBootInvMtx(cXyz* o_dst);
+    bool commonMagneLineCheck(cXyz* i_start, cXyz* i_end);
     BOOL checkBootsMoveAnime(int);
     int setHeavyBoots(int);
     s16 getMagneBootsLocalAngleY(s16, int);
