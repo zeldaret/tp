@@ -5,11 +5,11 @@
 #include "JSystem/J3DGraphLoader/J3DShapeFactory.h"
 #include "JSystem/J3DGraphLoader/J3DMaterialFactory.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphAnimator/J3DJoint.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "dolphin/os.h"
 #include "global.h"
-
 
 u16 J3DModelLoader::countMaterialNum(const void* stream) {
     const J3DModelFileData* header = (const J3DModelFileData*)stream;

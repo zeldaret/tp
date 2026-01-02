@@ -1,8 +1,11 @@
 #ifndef J3DJOINTTREE_H
 #define J3DJOINTTREE_H
 
-#include "JSystem/J3DGraphAnimator/J3DJoint.h"
+#include "JSystem/J3DGraphBase/J3DTransform.h"
 
+class J3DJoint;
+class J3DMtxBuffer;
+class J3DMtxCalc;
 class JUTNameTab;
 
 /**
