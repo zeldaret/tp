@@ -1,8 +1,11 @@
 #ifndef J3DPACKET_H
 #define J3DPACKET_H
 
+#include "JSystem/J3DAssert.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
+#include "JSystem/J3DGraphBase/J3DEnum.h"
 #include "dolphin/gd/GDBase.h"
+#include "dolphin/mtx.h"
 #include <stdint>
 
 class J3DMatPacket;

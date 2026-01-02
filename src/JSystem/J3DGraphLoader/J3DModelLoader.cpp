@@ -1,5 +1,8 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
+#include "JSystem/J3DGraphAnimator/J3DShapeTable.h"
+#include "JSystem/J3DGraphAnimator/J3DJointTree.h"
+#include "JSystem/J3DGraphAnimator/J3DJoint.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphLoader/J3DJointFactory.h"
 #include "JSystem/J3DGraphLoader/J3DMaterialFactory.h"
@@ -10,7 +13,6 @@
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSupport.h"
-#include "dolphin/os.h"
 
 J3DModelLoader::J3DModelLoader() :
                 mpModelData(NULL),
