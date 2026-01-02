@@ -2121,8 +2121,8 @@ static BOOL body_gake(e_rdy_class* i_this) {
 }
 
 static void e_rdy_damage(e_rdy_class* i_this) {
-    fopEn_enemy_c* a_this = &i_this->actor;
-    fopEn_enemy_c* a_this2 = a_this;
+    fopAc_ac_c* a_this = &i_this->actor;
+    fopEn_enemy_c* e_this = (fopEn_enemy_c*)a_this;
     cXyz vec1, vec2;
     s16 angle_y;
     int check;
@@ -2134,8 +2134,8 @@ static void e_rdy_damage(e_rdy_class* i_this) {
 
     i_this->mTargetEyeScale = 0.0f;
 
-    if (!daPy_py_c::checkNowWolf() && a_this2->checkCutDownHitFlg()) {
-        a_this2->offCutDownHitFlg();
+    if (!daPy_py_c::checkNowWolf() && e_this->checkCutDownHitFlg()) {
+        e_this->offCutDownHitFlg();
         i_this->mMode = 3;
         i_this->mTimer[0] = 100;
         i_this->mTimer[1] = 45;
@@ -2144,7 +2144,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         i_this->mIsDying = true;
         daPy_getPlayerActorClass()->onEnemyDead();
         i_this->field_0xbac = 15 + TREG_S(7);
-        a_this2->offDownFlg();
+        e_this->offDownFlg();
     }
 
     switch (i_this->mMode) {
@@ -2241,7 +2241,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         cLib_addCalcAngleS2(&i_this->field_0xadc.x, -0x4000, 1, BREG_S(4) + 0x300);
         if (i_this->mAcch.ChkGroundHit()) {
             if (a_this->health > 0 && !daPy_py_c::checkNowWolf()) {
-                a_this2->onDownFlg();
+                e_this->onDownFlg();
             }
             dKy_Sound_set(a_this->current.pos, 100, fopAcM_GetID(i_this), 5);
             i_this->field_0xaee = 10;
@@ -2288,7 +2288,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         {
             i_this->field_0xabc = 0.0f;
             i_this->field_0xadc.x = -0x4000;
-            a_this2->offDownFlg();
+            e_this->offDownFlg();
             i_this->mMode = 20;
             if (!i_this->mIsUpsideDown) {
                 anm_init(i_this, ANM_DIEA_UP, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
@@ -2340,7 +2340,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             anm_init(i_this, ANM_WAIT01, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = 5;
             i_this->mMode = 21;
-            a_this2->offDownFlg();
+            e_this->offDownFlg();
         }
         break;
 
@@ -2363,7 +2363,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         break;
 
     case 30:
-        if (!a_this2->checkWolfDownPullFlg()) {
+        if (!e_this->checkWolfDownPullFlg()) {
             i_this->mTimer[1] = 0;
         }
         if (i_this->mTimer[0] == 0) {
@@ -2375,8 +2375,8 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             }
             i_this->mTimer[0] = 10;
         } else if (i_this->mTimer[1] == 1) {
-            a_this2->onWolfDownPullEndFlg();
-            a_this2->offCutDownHitFlg();
+            e_this->onWolfDownPullEndFlg();
+            e_this->offCutDownHitFlg();
             a_this->health = 0;
             i_this->mTimer[0] = 1000;
             i_this->mTimer[1] = 35;
@@ -2386,18 +2386,18 @@ static void e_rdy_damage(e_rdy_class* i_this) {
 
     case 31:
         if (i_this->mTimer[0] == 0) {
-            a_this2->offDownFlg();
+            e_this->offDownFlg();
             i_this->mMode = 20;
             i_this->field_0xbca = 0;
         }
         break;
     }
 
-    if (a_this2->checkDownFlg()) {
+    if (e_this->checkDownFlg()) {
         MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
         vec1.set(BREG_F(0), BREG_F(1), BREG_F(2));
         MtxPosition(&vec1, &vec2);
-        a_this2->setDownPos(&vec2);
+        e_this->setDownPos(&vec2);
         i_this->mCollisionEnabled = false;
     }
 
