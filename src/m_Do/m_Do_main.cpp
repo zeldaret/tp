@@ -864,7 +864,7 @@ void parse_args(int argc, const char* argv[]) {
 
 static u8 mainThreadStack[32768];
 
-static OSThread mainThread;
+OSThread mainThread;
 
 void main(int argc, const char* argv[]) {
     OSThread* current_thread = OSGetCurrentThread();

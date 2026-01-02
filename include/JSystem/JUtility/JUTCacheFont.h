@@ -63,6 +63,14 @@ public:
     static u32 calcCacheSize(u32 param_0, int param_1) { return (ALIGN_NEXT(param_0, 0x20) + 0x40) * param_1; }
     GXTexObj* getTexObj(void* buffer) { return &((TCachePage*)buffer)->mTexObj; }
 
+    u32 getCachePage() const {
+        return mCachePage;
+    }
+
+    int getMaxSheetSize() const {
+        return mMaxSheetSize;
+    }
+
 private:
     /* 0x70 */ u32 mTotalWidSize;
     /* 0x74 */ u32 mTotalGlySize;

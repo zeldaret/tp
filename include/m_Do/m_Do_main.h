@@ -6,6 +6,8 @@
 
 class JKRExpHeap;
 
+extern OSThread mainThread;
+
 void version_check();
 s32 LOAD_COPYDATE(void*);
 

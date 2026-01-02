@@ -116,4 +116,8 @@ inline JKRExpHeap* JKRCreateExpHeap(u32 size, JKRHeap* parent, bool errorFlag) {
     return JKRExpHeap::create(size, parent, errorFlag);
 }
 
+inline void JKRDestroyExpHeap(JKRHeap* heap) {
+    heap->destroy();
+}
+
 #endif /* JKREXPHEAP_H */
