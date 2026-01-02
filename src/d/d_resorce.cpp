@@ -488,7 +488,7 @@ void dRes_info_c::deleteArchiveRes() {
                 if (mArchive->isFileEntry(fileIndex)) {
                     JKRArchive::SDIFileEntry* fileEntry = mArchive->findIdxResource(fileIndex);
                     u32 nameOffset = fileEntry->getNameOffset();
-                    char* fileName = mArchive->mStringTable + nameOffset;
+                    const char* fileName = mArchive->mStringTable + nameOffset;
                     size_t resNameLen = strlen(fileName) - 4;
                     JUT_ASSERT(0x46C, resNameLen <= NAME_MAX);
 

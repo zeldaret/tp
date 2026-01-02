@@ -137,7 +137,7 @@ public:
         return *this;
     }
 
-    T* getObject() { return this->mLink->getObject(); }
+    T* getObject() const { return this->mLink->getObject(); }
 
     bool operator==(JSULink<T> const* other) const { return this->mLink == other; }
     bool operator!=(JSULink<T> const* other) const { return this->mLink != other; }
