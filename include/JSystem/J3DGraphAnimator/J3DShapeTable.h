@@ -1,7 +1,6 @@
 #ifndef J3DSHAPETABLE_H
 #define J3DSHAPETABLE_H
 
-//#include "JSystem/J3DGraphAnimator/J3DJointTree.h"
 #include "JSystem/JUtility/JUTAssert.h"
 
 class J3DVertexData;
