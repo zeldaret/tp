@@ -530,6 +530,6 @@ void MtxPush() {
     MTXCopy(mtx, *calc_mtx);
 }
 
-Mtx* MtxPull() {
-    return calc_mtx--;
+void MtxPull() {
+    calc_mtx--;
 }
