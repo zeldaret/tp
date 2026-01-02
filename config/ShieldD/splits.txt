@@ -3151,7 +3151,7 @@ Z2AudioCSD/Z2AudioCS.cpp:
 
 revolution/gf/GFGeometry.cpp:
 	.text       start:0x804F8AE0 end:0x804F8CB0
-	.sdata      start:0x8074A8B0 end:0x8074A8BC
+	.sdata      start:0x8074A8B0 end:0x8074A8B8
 
 revolution/gf/GFLight.cpp:
 	.text       start:0x804F8CB0 end:0x804F8D20
@@ -3167,7 +3167,7 @@ revolution/gf/GFTev.cpp:
 JSystem/JKernel/JKRHeap.cpp:
 	.text       start:0x804F91A0 end:0x804FB0C0
 	.data       start:0x8070CF60 end:0x8070D2C0
-	.sdata      start:0x8074A8BC end:0x8074A8F8
+	.sdata      start:0x8074A8B8 end:0x8074A8F8
 	.sbss       start:0x8074CE20 end:0x8074CE58
 
 JSystem/JKernel/JKRStdHeap.cpp:
@@ -3294,7 +3294,7 @@ JSystem/JKernel/JKRDvdFile.cpp:
 	.text       start:0x8050B7F0 end:0x8050C090
 	.ctors      start:0x8062F9BC end:0x8062F9C0
 	.data       start:0x8070E8D0 end:0x8070E988
-	.sdata      start:0x8074AAA0 end:0x8074AAC4
+	.sdata      start:0x8074AAA0 end:0x8074AAC0
 	.bss        start:0x807E2000 end:0x807E2018
 
 JSystem/JKernel/JKRRelocation.cpp:
@@ -3304,7 +3304,7 @@ JSystem/JKernel/JKRDvdRipper.cpp:
 	.text       start:0x8050C100 end:0x8050D0B0
 	.ctors      start:0x8062F9C0 end:0x8062F9C4
 	.data       start:0x8070E988 end:0x8070EA10
-	.sdata      start:0x8074AAC4 end:0x8074AAD4
+	.sdata      start:0x8074AAC0 end:0x8074AAD0
 	.sbss       start:0x8074CEF0 end:0x8074CF30
 	.bss        start:0x807E2018 end:0x807E2048
 
@@ -3312,7 +3312,7 @@ JSystem/JKernel/JKRDvdAramRipper.cpp:
 	.text       start:0x8050D0B0 end:0x8050E3E0
 	.ctors      start:0x8062F9C4 end:0x8062F9C8
 	.data       start:0x8070EA10 end:0x8070EA60
-	.sdata      start:0x8074AAD4 end:0x8074AAE0
+	.sdata      start:0x8074AAD0 end:0x8074AAE0
 	.sbss       start:0x8074CF30 end:0x8074CF78
 	.bss        start:0x807E2048 end:0x807E2078
 

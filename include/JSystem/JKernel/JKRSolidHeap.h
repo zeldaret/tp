@@ -59,6 +59,8 @@ public:
     s32 adjustSize(void);
 
     static JKRSolidHeap* create(u32, JKRHeap*, bool);
+
+    static void* getState_(TState* state) { return getState_buf_(state); }
 };
 
 inline JKRSolidHeap* JKRCreateSolidHeap(u32 param_0, JKRHeap* heap, bool param_2) {
