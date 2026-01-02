@@ -13,6 +13,7 @@ struct JASSoundParams;
  */
 struct JASNonCopyable {
     JASNonCopyable() {}
+    ~JASNonCopyable() {}
 
     /* 0x0 */ int field_0x0;
 };  // Size: 0x4
