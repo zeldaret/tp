@@ -343,10 +343,12 @@ static int daOBJ_RW_Create(fopAc_ac_c* actor) {
                 {0x0}, // mGObjCo
             }, // mObjInf
             {
-                {0.0f, 0.0f, 0.0f}, // mCenter
-                200.0f, // mRadius
-                250.0f // mHeight
-            } // mCyl
+                {
+                    {0.0f, 0.0f, 0.0f}, // mCenter
+                    200.0f, // mRadius
+                    250.0f // mHeight
+                } // mCyl
+            }
         };
 
         i_this->ccStts.Init(0xFF, 0, actor);
@@ -392,7 +394,7 @@ static actor_method_class l_daOBJ_RW_Method = {
     (process_method_func)daOBJ_RW_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_RW = {
+actor_process_profile_definition g_profile_OBJ_RW = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

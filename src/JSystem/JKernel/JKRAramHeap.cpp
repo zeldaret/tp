@@ -3,7 +3,7 @@
 #include "JSystem/JKernel/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "global.h"
-#include <limits.h>
+#include <climits.h>
 
 JSUList<JKRAramBlock> JKRAramHeap::sAramList;
 

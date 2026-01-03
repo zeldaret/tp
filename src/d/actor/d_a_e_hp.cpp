@@ -36,9 +36,11 @@ static dCcD_SrcCyl cc_hp_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        50.0f,
-        300.0f,
+        {
+            {0.0f, 0.0f, 0.0f},
+            50.0f,
+            300.0f,
+        }
     }
 };
 
@@ -62,9 +64,11 @@ static dCcD_SrcCyl cc_hp_at_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        50.0f,
-        300.0f,
+        {
+            {0.0f, 0.0f, 0.0f},
+            50.0f,
+            300.0f,
+        }
     }
 };
 }  // namespace
@@ -169,7 +173,6 @@ static bool hio_set;
 static daE_HP_HIO_c l_HIO;
 
 int daE_HP_c::draw() {
-    /* 806EA3E8-806EA3EC 000100 0004+00 1/1 0/0 0/0 .data            particleNmaeDt$4030 */
     static u16 particleNmaeDt[2] = {
         0x8789,
         0x878A,
@@ -706,7 +709,6 @@ void daE_HP_c::executeDown() {
     }
 }
 
-// NONMATCHING - g_dComIfG_gameInfo loading
 void daE_HP_c::executeDead() {
     if (field_0x78d == 0 && field_0x71c == 1) {
         mSound1.startCreatureSound(Z2SE_EN_PO_SOUL_PULLOUT, 0, -1);
@@ -736,21 +738,10 @@ void daE_HP_c::executeDead() {
         movemode++;
     }
     case 1: {
-#if VERSION != VERSION_SHIELD_DEBUG
-        // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck())
-#else
-        if (dComIfGp_event_runCheck())
-#endif
-        {
+        if (dComIfGp_event_runCheck()) {
             if (eventInfo.checkCommandDemoAccrpt()) {
                 if (dComIfGp_getEventManager().endCheck(field_0x778)) {
-#if VERSION != VERSION_SHIELD_DEBUG
-                    play->getEvent().reset();
-#else
                     dComIfGp_event_reset();
-#endif
                 } else if (strcmp(dComIfGp_getEventManager().getRunEventName(),
                                   "DEFAULT_GETITEM") == 0 &&
                            field_0x784 != -1)
@@ -1328,7 +1319,7 @@ static actor_method_class l_daE_HP_Method = {
     (process_method_func)daE_HP_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_HP = {
+actor_process_profile_definition g_profile_E_HP = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

@@ -1,23 +1,16 @@
-#ifndef _STDDEF_H_
-#define _STDDEF_H_
+#ifndef _MSL_STDDEF_H_
+#define _MSL_STDDEF_H_
+
+#include <cstddef.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#if defined __INTELLISENSE__
-typedef unsigned int size_t;
-typedef int ptrdiff_t;
-#else
-typedef unsigned long size_t;
-typedef long ptrdiff_t;
-#endif
-
-#define offsetof(type, member)	((size_t)&(((type*)0)->member))
-
-#ifndef NULL
-#define NULL (0)
-#endif
+namespace std {
+    using ::ptrdiff_t;
+    using ::size_t;
+}
 
 #ifdef __cplusplus
 };

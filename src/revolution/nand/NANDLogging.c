@@ -1,7 +1,7 @@
 #include <revolution/os.h>
 #include <revolution/fs.h>
 #include <revolution/nand.h>
-#include <string.h>
+#include <cstring.h>
 #include <printf.h>
 
 static IOSFd s_fd = -255;

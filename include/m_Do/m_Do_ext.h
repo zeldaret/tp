@@ -21,6 +21,7 @@ namespace mDoExt {
 };
 
 #if DEBUG
+void DummyCheckHeap_init();
 void DummyCheckHeap_create();
 void DummyCheckHeap_destroy();
 #endif
@@ -750,6 +751,7 @@ inline void mDoExt_bckAnmRemove(J3DModelData* i_modelData) {
     i_modelData->getJointNodePointer(0)->setMtxCalc(NULL);
 }
 
+JKRSolidHeap* mDoExt_createSolidHeap(u32 i_size, JKRHeap* i_parent, u32 i_alignment);
 JKRSolidHeap* mDoExt_createSolidHeapFromGame(u32 i_size, u32 i_alignment);
 void mDoExt_destroySolidHeap(JKRSolidHeap* i_heap);
 u32 mDoExt_adjustSolidHeap(JKRSolidHeap* i_heap);

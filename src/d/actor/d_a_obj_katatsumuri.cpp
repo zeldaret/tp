@@ -30,7 +30,6 @@ static u8 const l_kat_itemno[2] = {
 };
 
 void daObjKAT_c::InitCcSph() {
-    /* 80C3C67C-80C3C6BC 000008 0040+00 1/1 0/0 0/0 .rodata          ccSphSrc$3779 */
     const static dCcD_SrcSph ccSphSrc = {
         {
             {0x0, {{0x0, 0x0, 0x0}, {0x14002, 0x11}, 0x0}}, // mObj
@@ -856,7 +855,7 @@ static actor_method_class l_daObjKAT_Method = {
     (process_method_func)daObjKAT_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Kat = {
+actor_process_profile_definition g_profile_Obj_Kat = {
     fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio

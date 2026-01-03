@@ -461,7 +461,7 @@ void daE_FB_c::executeAttack() {
                     }
                 }
 
-                if (dComIfGp_event_runCheck() == FALSE) {
+                if (!dComIfGp_event_runCheck()) {
                     cMtx_YrotS(*calc_mtx, current.angle.y);
                     cMtx_XrotM(*calc_mtx, sp_0x28.x);
                     sp_0x48.x = 0.0f;
@@ -1007,7 +1007,7 @@ static actor_method_class l_daE_FB_Method = {
     (process_method_func)daE_FB_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_FB = {
+actor_process_profile_definition g_profile_E_FB = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

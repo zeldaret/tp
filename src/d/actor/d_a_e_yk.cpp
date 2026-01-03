@@ -158,7 +158,6 @@ static int daE_YK_Draw(e_yk_class* i_this) {
  * Used by the Shadow Keese's wind state to determine if it should be affected
  * by a charged boomerang's wind effect.
  */
- /* 80804B38-80804BB0 0003F8 0078+00 1/1 0/0 0/0 .text            shot_b_sub__FPvPv */
 static void* shot_b_sub(void* i_actor, void* param_1) {
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_BOOMERANG &&
                                 !dComIfGp_checkPlayerStatus0(0,0x80000) &&
@@ -1558,7 +1557,7 @@ static actor_method_class l_daE_YK_Method = {
     (process_method_func)daE_YK_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_YK = {
+actor_process_profile_definition g_profile_E_YK = {
     fpcLy_CURRENT_e,         // mLayerID  
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio 

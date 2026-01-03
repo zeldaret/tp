@@ -242,7 +242,7 @@ actor_method_class l_daObj_Maki_Method = {
     (process_method_func)daObj_Maki_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_MAKI = {
+actor_process_profile_definition g_profile_OBJ_MAKI = {
     fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

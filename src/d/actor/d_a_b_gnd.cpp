@@ -2878,6 +2878,7 @@ static void demo_camera(b_gnd_class* i_this) {
     if (i_this->mDemoCamMode != 0) {
         // fakematch - dComIfGp_getHorseActor() isn't getting inlined for some reason
         horse = (daHorse_c*)g_dComIfG_gameInfo.play.getPlayerPtr(1);
+        // horse = (daHorse_c*)dComIfGp_getHorseActor();
     }
 
     cXyz sp114;
@@ -3483,8 +3484,7 @@ static void demo_camera(b_gnd_class* i_this) {
 
         a_this->current.pos.set(0.0f, 1100.0f, 0.0f);
         a_this->old.pos = a_this->current.pos;
-        a_this->shape_angle.y = -0x2000;
-        a_this->current.angle.y = -0x2000;
+        a_this->current.angle.y = a_this->shape_angle.y = -0x2000;
 
         cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
         sp114.x = -300.0f;
@@ -3653,8 +3653,7 @@ static void demo_camera(b_gnd_class* i_this) {
             player->setPlayerPosAndAngle(&sp108, -0x4802, 0);
             a_this->current.pos.set(-600.0f, 1100.0f, 0.0f);
             a_this->old.pos = a_this->current.pos;
-            a_this->current.angle.y = 0x37FE;
-            a_this->shape_angle.y = 0x37FE;
+            a_this->shape_angle.y = a_this->current.angle.y = 0x37FE;
             sp8 = TRUE;
         }
         break;
@@ -3679,8 +3678,7 @@ static void demo_camera(b_gnd_class* i_this) {
         a_this->current.pos.set(-600.0f, 1100.0f, 0.0f);
 
         a_this->old.pos = a_this->current.pos;
-        a_this->current.angle.y = 0x37FE;
-        a_this->shape_angle.y = 0x37FE;
+        a_this->shape_angle.y = a_this->current.angle.y = 0x37FE;
 
         sp108.set(0.0f, 1100.0f, 0.0f);
         fopAcM_create(PROC_OBJ_GB, 0xF0069600, &sp108, fopAcM_GetRoomNo(a_this), NULL, NULL, -1);
@@ -4877,10 +4875,12 @@ static int daB_GND_Create(fopAc_ac_c* a_this) {
                 {0x0}, // mGObjCo
             }, // mObjInf
             {
-                {0.0f, 0.0f, 0.0f}, // mCenter
-                100.0f, // mRadius
-                200.0f // mHeight
-            } // mCyl
+                {
+                    {0.0f, 0.0f, 0.0f}, // mCenter
+                    100.0f, // mRadius
+                    200.0f // mHeight
+                } // mCyl
+            }
         };
 
         for (int i = 0; i < 2; i++) {
@@ -4956,7 +4956,7 @@ static actor_method_class l_daB_GND_Method = {
     (process_method_func)daB_GND_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_GND = {
+actor_process_profile_definition g_profile_B_GND = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

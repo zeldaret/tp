@@ -18,9 +18,6 @@
 #include <revolution/sc.h>
 #endif
 
-/* 80450BB8 0001+00 data_80450BB8 None */
-/* 80450BB9 0001+00 data_80450BB9 None */
-/* 80450BBA 0002+00 data_80450BBA None */
 bool mDoAud_zelAudio_c::mInitFlag;
 
 bool mDoAud_zelAudio_c::mResetFlag;

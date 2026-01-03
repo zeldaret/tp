@@ -3095,10 +3095,12 @@ static cPhs__Step daE_ST_Create(fopAc_ac_c* a_this) {
                 {0x0}, // mGObjCo
             }, // mObjInf
             {
-                {0.0f, 0.0f, 0.0f}, // mCenter
-                30.0f, // mRadius
-                2000.0f // mHeight
-            } // mLineCyl
+                {
+                    {0.0f, 0.0f, 0.0f}, // mCenter
+                    30.0f, // mRadius
+                    2000.0f // mHeight
+                } // mLineCyl
+            }
         };
 
         static dCcD_SrcSph def_sph_src = {
@@ -3166,7 +3168,7 @@ static actor_method_class l_daE_ST_Method = {
     (process_method_func)daE_ST_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_ST = {
+actor_process_profile_definition g_profile_E_ST = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

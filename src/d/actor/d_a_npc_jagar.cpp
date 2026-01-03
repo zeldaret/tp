@@ -954,7 +954,7 @@ int daNpc_Jagar_c::cutNeedYourHelp(int i_cutIndex) {
     if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
         switch(prm) {
             case 0:
-                dComIfGp_getEvent().setPt2(mActorMngr[0].getActorP());
+                dComIfGp_getEvent()->setPt2(mActorMngr[0].getActorP());
                 break;
 
             case 1:
@@ -964,7 +964,7 @@ int daNpc_Jagar_c::cutNeedYourHelp(int i_cutIndex) {
             case 7: {
                 fopAc_ac_c* iVar6 = mActorMngr[1].getActorP();
                 if (iVar6) {
-                    dComIfGp_getEvent().setPt2(iVar6);
+                    dComIfGp_getEvent()->setPt2(iVar6);
                 }
                 break;
             }
@@ -1170,7 +1170,7 @@ int daNpc_Jagar_c::cutConfidentialConversation(int i_cutIndex) {
                 break;
 
             case 1:
-                dComIfGp_getEvent().setPt2(mActorMngr[1].getActorP());
+                dComIfGp_getEvent()->setPt2(mActorMngr[1].getActorP());
                 break;
 
             case 2:
@@ -1790,7 +1790,7 @@ static actor_method_class daNpc_Jagar_MethodTable = {
     (process_method_func)daNpc_Jagar_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_JAGAR = {
+actor_process_profile_definition g_profile_NPC_JAGAR = {
   fpcLy_CURRENT_e,          // mLayerID
   7,                        // mListID
   fpcPi_CURRENT_e,          // mListPrio

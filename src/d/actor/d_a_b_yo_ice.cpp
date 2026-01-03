@@ -41,10 +41,12 @@ static dCcD_SrcCyl cc_yo_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        40.0f, // mRadius
-        40.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            40.0f, // mRadius
+            40.0f // mHeight
+        } // mCyl
+    } // mCylAttr
 };
 
 static dCcD_SrcCyl cc_yo_iron_src = {
@@ -55,10 +57,12 @@ static dCcD_SrcCyl cc_yo_iron_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        40.0f, // mRadius
-        40.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            40.0f, // mRadius
+            40.0f // mHeight
+        } // mCyl
+    } // mCylAttr
 };
 
 static dCcD_SrcCyl cc_yo_cam_src = {
@@ -69,10 +73,12 @@ static dCcD_SrcCyl cc_yo_cam_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        40.0f, // mRadius
-        40.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            40.0f, // mRadius
+            40.0f // mHeight
+        } // mCyl
+    } // mCylAttr
 };
 
 }  // namespace
@@ -1093,7 +1099,7 @@ static actor_method_class l_daB_YOI_Method = {
     (process_method_func)daB_YOI_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_YOI = {
+actor_process_profile_definition g_profile_B_YOI = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

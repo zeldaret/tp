@@ -132,10 +132,12 @@ static dCcD_SrcCyl cc_ds_backbone_src = {
         {0},                                      // mGObjCo
     },                                            // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        30.0f,               // mRadius
-        130.0f,              // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            30.0f,               // mRadius
+            130.0f,              // mHeight
+        }                        // mCyl
+    }                            // mCylAttr
 };
 
 static dCcD_SrcCyl cc_ds_hand_at_cyl_src = {
@@ -147,10 +149,12 @@ static dCcD_SrcCyl cc_ds_hand_at_cyl_src = {
         {0},                                             // mGObjCo
     },                                                   // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        30.0f,               // mRadius
-        130.0f,              // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            30.0f,               // mRadius
+            130.0f,              // mHeight
+        }                        // mCyl
+    }                            // mCylAttr
 };
 
 static dCcD_SrcSph cc_ds_breath_at_src = {
@@ -203,13 +207,9 @@ static bool hio_set;
 
 static daB_DS_HIO_c l_HIO;
 
-/* 805DDB0C 0002+00 data_805DDB0C handL_ang */
-/* 805DDB0E 0002+00 data_805DDB0E handR_ang */
 static s16 handL_ang;
 static s16 handR_ang;
 
-/* 805DDB10 0002+00 data_805DDB10 handX_ang */
-/* 805DDB12 0002+00 breathTimerBase None */
 static s16 handX_ang;
 static u8 breathTimerBase;
 
@@ -1238,7 +1238,7 @@ void daB_DS_c::executeOpeningDemo() {
         Z2GetAudioMgr()->setDemoName("force_start");
 
         if (mMode == 10) {
-            dComIfGp_getEvent().startCheckSkipEdge(this);
+            dComIfGp_getEvent()->startCheckSkipEdge(this);
 
             sp298.set(mOpPlayerDt[1]);
             daPy_getPlayerActorClass()->changeDemoMode(4, 2, 0, 0);
@@ -1717,7 +1717,7 @@ void daB_DS_c::executeOpeningDemo() {
         }
     }
 
-    if (dComIfGp_getEvent().checkSkipEdge()) {
+    if (dComIfGp_getEvent()->checkSkipEdge()) {
         cDmr_SkipInfo = 1;
         dStage_changeScene(2, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
         dComIfGs_onZoneSwitch(5, fopAcM_GetRoomNo(this));
@@ -5686,7 +5686,7 @@ static actor_method_class l_daB_DS_Method = {
     (process_method_func)daB_DS_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_DS = {
+actor_process_profile_definition g_profile_B_DS = {
     fpcLy_CURRENT_e,
     4,
     fpcPi_CURRENT_e,

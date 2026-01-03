@@ -22,10 +22,14 @@ namespace JASDsp {
  * 
  */
 struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
+    static const int CHANNEL_MGR_MAX = 4;
+    static const int TIMED_PARAMS = 6;
+    static const int OSC_NUM = 2;
+
     enum Status {
         STATUS_FREE,
         STATUS_RUN,
-        STATUS_STOP,
+        STATUS_STOPPED,
     };
 
     struct TChannelMgr : public JASPoolAllocObject_MultiThreaded<TChannelMgr> {
@@ -82,6 +86,11 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     void closeChild(u32);
     JASTrack* openChild(u32);
     void connectBus(int, int);
+    f32 getVolume() const;
+    f32 getPitch() const;
+    f32 getPan() const;
+    f32 getFxmix() const;
+    f32 getDolby() const;
     void setLatestKey(u8);
     JASChannel* channelStart(JASTrack::TChannelMgr*, u32, u32, u32);
     int noteOn(u32, u32, u32);
@@ -115,6 +124,7 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     void setTimebase(u16);
     void updateChannel(JASChannel*, JASDsp::TChannel*);
     JASTrack* getRootTrack();
+    int getChannelCount() const;
     int tickProc();
     int seqMain();
 
@@ -191,7 +201,7 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
             MoveParam_ dolby;
             MoveParam_ distFilter;
         } params;
-        MoveParam_ array[6];
+        MoveParam_ array[TIMED_PARAMS];
     } mMoveParam;
 #else
     /* 0x09C */ union MoveParam_u {
@@ -203,17 +213,17 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
             MoveParam_ dolby;
             MoveParam_ distFilter;
         } params;
-        MoveParam_ array[6];
+        MoveParam_ array[TIMED_PARAMS];
         MoveParam_u() {}
     } mMoveParam;
 #endif
-    /* 0x0e4 */ JASOscillator::Data mOscParam[2];
+    /* 0x0e4 */ JASOscillator::Data mOscParam[OSC_NUM];
     /* 0x114 */ JASOscillator::Point mOscPoint[4];
     /* 0x12C */ JASTrack* mParent;
     /* 0x130 */ JASTrack* mChildren[MAX_CHILDREN];
-    /* 0x170 */ TChannelMgr* mChannelMgrs[4];
+    /* 0x170 */ TChannelMgr* mChannelMgrs[CHANNEL_MGR_MAX];
     /* 0x180 */ TChannelMgr mDefaultChannelMgr;
-    /* 0x1D0 */ int mChannelMgrCount;
+    /* 0x1D0 */ u32 mChannelMgrCount;
     /* 0x1D4 */ const JASDefaultBankTable* mBankTable;
     /* 0x1D8 */ f32 field_0x1d8;
     /* 0x1DC */ f32 field_0x1dc;

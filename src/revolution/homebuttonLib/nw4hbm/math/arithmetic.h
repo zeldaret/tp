@@ -2,7 +2,7 @@
 #define NW4HBM_MATH_ARITHMETIC_H
 
 #include <math.h>
-#include <cmath.h>
+#include <math.h>
 
 #include <revolution/os.h>
 #include <revolution/types.h>

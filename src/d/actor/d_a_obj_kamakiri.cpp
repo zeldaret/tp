@@ -903,7 +903,7 @@ static actor_method_class l_daObjKAM_Method = {
     (process_method_func)daObjKAM_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Kam = {
+actor_process_profile_definition g_profile_Obj_Kam = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

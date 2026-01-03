@@ -834,7 +834,7 @@ static actor_method_class l_daE_YC_Method = {
     (process_method_func)daE_YC_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_YC = {
+actor_process_profile_definition g_profile_E_YC = {
     fpcLy_CURRENT_e,
     4,
     fpcPi_CURRENT_e,

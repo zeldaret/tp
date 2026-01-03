@@ -21,7 +21,9 @@ dCcD_SrcGObjInf const daBarDesk_c::mCcDObjInfo = {
 
 dCcD_SrcCyl daBarDesk_c::mCcDCyl = {
     mCcDObjInfo,
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f}
+    }
 };
 
 daBarDesk_HIO_c::daBarDesk_HIO_c() : field_0x4(10), field_0x5(3) {
@@ -158,7 +160,7 @@ static actor_method_class l_daBarDesk_Method = {
     (process_method_func)daBarDesk_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_BarDesk = {
+actor_process_profile_definition g_profile_Obj_BarDesk = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

@@ -987,10 +987,12 @@ static int daObj_So_Create(fopAc_ac_c* a_this) {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            10.0f, // mRadius
-            120.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                10.0f, // mRadius
+                120.0f // mHeight
+            } // mCyl
+        }
     };
 
     obj_so_class* i_this = (obj_so_class*)a_this;
@@ -1085,7 +1087,7 @@ static actor_method_class l_daObj_So_Method = {
     (process_method_func)daObj_So_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_SO = {
+actor_process_profile_definition g_profile_OBJ_SO = {
   fpcLy_CURRENT_e,        // mLayerID
   2,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

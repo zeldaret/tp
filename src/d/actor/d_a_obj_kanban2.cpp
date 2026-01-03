@@ -11,7 +11,7 @@
 #include "d/actor/d_a_npc_tk.h"
 #include "d/d_s_play.h"
 #include "Z2AudioLib/Z2Instances.h"
-#include <cmath.h>
+#include <math.h>
 
 #define PARTS_ALL 0x3FFFF
 #define PART_TOP_LEFT_UNDER     (1 << 0)
@@ -691,7 +691,6 @@ void daObj_Kanban2_c::setSmokeEffect(cXyz i_pos) {
     fopAcM_effSmokeSet1(&field_0x9e0, &field_0x9e4, &i_pos, NULL, 0.02 * field_0x600, &tevStr, 1);
 }
 
-/* 80585CB5 0003+00 hio_set None */
 static u8 hio_set;
 
 static daObj_Kanban2_HIO_c l_HIO;
@@ -910,7 +909,6 @@ void daObj_Kanban2_c::calcNormalSwing() {
     field_0x626 = sp8;
 }
 
-// NONMATCHING - gameinfo mEvent load, equivalent
 void daObj_Kanban2_c::executeNormal() {
     calcNormalSwing();
     mCcSph.OffAtSetBit();
@@ -954,20 +952,9 @@ void daObj_Kanban2_c::executeNormal() {
         break;
     case 1:
         mInvulnerabilityTimer = 3;
-#if VERSION != VERSION_SHIELD_DEBUG
-        // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck() && eventInfo.checkCommandTalk())
-#else
-        if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk())
-#endif
-        {
+        if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk()) {
             if (mMsgFlow.doFlow(this, NULL, 0)) {
-#if VERSION != VERSION_SHIELD_DEBUG
-                play->getEvent().reset();
-#else
                 dComIfGp_event_reset();
-#endif
                 field_0x9fe = 0;
             }
         } else {
@@ -1791,7 +1778,7 @@ static actor_method_class l_daObj_Kanban2_Method = {
     (process_method_func)daObj_Kanban2_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_KANBAN2 = {
+actor_process_profile_definition g_profile_OBJ_KANBAN2 = {
   fpcLy_CURRENT_e,         // mLayerID
   7,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

@@ -231,8 +231,8 @@ void daE_BG_c::setSparkEffect() {
 
 fopAc_ac_c* daE_BG_c::search_esa() {
     dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD);
-    if (rod != NULL && rod->kind == 1 && rod->action != 5 && rod->field_0x100d != 0 &&
-        rod->actor.current.pos.y < rod->field_0x590 - 20.0f) {
+    if (rod != NULL && rod->kind == 1 && rod->action != 5 && rod->is_hook_in_water != 0 &&
+        rod->actor.current.pos.y < rod->water_surface_y - 20.0f) {
         return &rod->actor;
     } else {
         return NULL;
@@ -1422,7 +1422,7 @@ static actor_method_class l_daE_BG_Method = {
     (process_method_func)daE_BG_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_BG = {
+actor_process_profile_definition g_profile_E_BG = {
     fpcLy_CURRENT_e,        // mLayerID
     7,                      // mListID
     fpcPi_CURRENT_e,        // mListPrio

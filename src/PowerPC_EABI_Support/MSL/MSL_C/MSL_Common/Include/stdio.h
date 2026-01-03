@@ -1,14 +1,30 @@
 #ifndef MSL_STDIO_H_
 #define MSL_STDIO_H_
 
-#include "char_io.h"
-#include "file_io.h"
-#include "printf.h"
-#include "extras.h"
-#include "scanf.h"
+#include <cstdio.h>
+#include <stddef.h>
+#include <stdarg.h>
 
-#define stdin (&__files._stdin)
-#define stdout (&__files._stdout)
-#define stderr (&__files._stderr)
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+namespace std {
+    using ::fputs;
+    using ::fflush;
+    using ::fclose;
+    using ::fprintf;
+    using ::printf;
+    using ::sprintf;
+    using ::snprintf;
+    using ::vsnprintf;
+    using ::vprintf;
+    using ::vswprintf;
+    using ::sscanf;
+}
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif

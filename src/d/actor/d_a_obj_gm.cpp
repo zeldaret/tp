@@ -726,7 +726,7 @@ static actor_method_class l_daObj_Gm_Method = {
     (process_method_func)daObj_Gm_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_GM = {
+actor_process_profile_definition g_profile_OBJ_GM = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

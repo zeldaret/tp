@@ -61,12 +61,14 @@ void daE_DF_c::initCcCylinder() {
             {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                 // mGObjAt
             {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1},                 // mGObjTg
             {0x0},                                              // mGObjCo
-        },                                                      // mObjInf
-        {
-            {0.0f, 0.0f, 0.0f},  // mCenter
-            150.0f,              // mRadius
-            158.0f               // mHeight
-        }  // mCyl
+        },      
+        {                                                // mObjInf
+            {
+                {0.0f, 0.0f, 0.0f},  // mCenter
+                150.0f,              // mRadius
+                158.0f               // mHeight
+            }  // mCyl
+        }
     };
 
     mStts.Init(0xff, 0xff, this);
@@ -714,7 +716,7 @@ static actor_method_class l_daE_DF_Method = {
     (process_method_func)daE_DF_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_DF = {
+actor_process_profile_definition g_profile_E_DF = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

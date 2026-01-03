@@ -1,7 +1,7 @@
 #include "synprivate.h"
 
 
-#include <limits.h>
+#include <climits.h>
 #include <math.h>
 
 #include <revolution/types.h>

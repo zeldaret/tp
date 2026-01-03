@@ -250,10 +250,12 @@ static int daObj_Web1_Create(fopAc_ac_c* i_this) {
             {0},
         },
         {
-            {0.0f, 0.0f, 0.0f},
-            50.0f,
-            2.0f,
-        },
+            {
+                {0.0f, 0.0f, 0.0f},
+                50.0f,
+                2.0f,
+            },
+        }
     };
 
     int phase = dComIfG_resLoad(&_this->mPhase, "Obj_web1");
@@ -313,7 +315,7 @@ static actor_method_class l_daObj_Web1_Method = {
     (process_method_func)daObj_Web1_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_WEB1 = {
+actor_process_profile_definition g_profile_OBJ_WEB1 = {
     fpcLy_CURRENT_e,
     3,
     fpcPi_CURRENT_e,

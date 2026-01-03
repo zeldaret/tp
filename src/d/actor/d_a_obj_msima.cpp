@@ -86,8 +86,6 @@ static void msima_start(obj_msima_class* i_this) {
     i_this->field_0x59a = 0x708;
 }
 
-/* 80C9CEA4 0001+00 data_80C9CEA4 @1009 */
-/* 80C9CEA5 0003+00 data_80C9CEA5 None */
 static bool hio_set;
 
 static daObj_Msima_HIO_c l_HIO;
@@ -514,7 +512,7 @@ static actor_method_class l_daObj_Msima_Method = {
     (process_method_func)daObj_Msima_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_MSIMA = {
+actor_process_profile_definition g_profile_OBJ_MSIMA = {
   fpcLy_CURRENT_e,         // mLayerID
   3,                       // mListID
   fpcPi_CURRENT_e,         // mListPrio

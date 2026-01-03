@@ -264,7 +264,7 @@ static actor_method_class l_daObj_Kita_Method = {
     (process_method_func)daObj_Kita_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_KITA = {
+actor_process_profile_definition g_profile_OBJ_KITA = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

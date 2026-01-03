@@ -1105,7 +1105,7 @@ static void demo_camera(e_rdb_class* i_this) {
         i_this->mDemoCamFovy = 55.0f;
         camera->mCamera.SetTrimSize(3);
         player->changeOriginalDemo();
-        dComIfGp_getEvent().startCheckSkipEdge(i_this);
+        dComIfGp_getEvent()->startCheckSkipEdge(i_this);
         Z2GetAudioMgr()->setDemoName("force_start");
         // [[fallthrough]]
     case 2:
@@ -1352,7 +1352,7 @@ static void demo_camera(e_rdb_class* i_this) {
     }
 
     if (i_this->mDemoMode > 0 && i_this->mDemoMode < 10) {
-        if (dComIfGp_getEvent().checkSkipEdge()) {
+        if (dComIfGp_getEvent()->checkSkipEdge()) {
             sVar1 = 1;
             i_this->mAction = ACTION_WAIT;
             i_this->mMode = 10;
@@ -1808,10 +1808,12 @@ static int daE_RDB_Create(fopAc_ac_c* actor) {
             {0x0},                                       // mGObjCo
         },                                               // mObjInf
         {
-            {0.0f, 0.0f, 0.0f},  // mCenter
-            100.0f,              // mRadius
-            200.0f               // mHeight
-        }  // mCyl
+            {
+                {0.0f, 0.0f, 0.0f},  // mCenter
+                100.0f,              // mRadius
+                200.0f               // mHeight
+            }  // mCyl
+        }
     };
 
     e_rdb_class* i_this = (e_rdb_class*)actor;
@@ -1917,7 +1919,7 @@ static actor_method_class l_daE_RDB_Method = {
     (process_method_func)daE_RDB_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_RDB = {
+actor_process_profile_definition g_profile_E_RDB = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

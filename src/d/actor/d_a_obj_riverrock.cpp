@@ -27,10 +27,12 @@ void daObjRIVERROCK_c::initCcCylinder() {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, -500.0f, 0.0f}, // mCenter
-            1000.0f, // mRadius
-            1000.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, -500.0f, 0.0f}, // mCenter
+                1000.0f, // mRadius
+                1000.0f // mHeight
+            } // mCyl
+        }
     };
 
     mStts.Init(0xff, 0xff, this);
@@ -318,7 +320,7 @@ static actor_method_class l_daObjRIVERROCK_Method = {
     (process_method_func)daObjRIVERROCK_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_RIVERROCK = {
+actor_process_profile_definition g_profile_Obj_RIVERROCK = {
   fpcLy_CURRENT_e,          // mLayerID
   3,                        // mListID
   fpcPi_CURRENT_e,          // mListPrio

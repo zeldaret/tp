@@ -136,10 +136,12 @@ static dCcD_SrcCyl l_cc_cyl_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        120.0f, // mRadius
-        200.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            120.0f, // mRadius
+            200.0f // mHeight
+        } // mCyl
+    }
 };
 
 void daObjYtaihou_c::setNextAngle() {
@@ -379,7 +381,7 @@ static actor_method_class daObjYtaihou_METHODS = {
     (process_method_func)daObjYtaihou_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Ytaihou = {
+actor_process_profile_definition g_profile_Obj_Ytaihou = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

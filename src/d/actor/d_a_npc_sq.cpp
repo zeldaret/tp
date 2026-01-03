@@ -389,7 +389,7 @@ static actor_method_class l_daNpc_Sq_Method = {
     (process_method_func)daNpc_Sq_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_SQ = {
+actor_process_profile_definition g_profile_NPC_SQ = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

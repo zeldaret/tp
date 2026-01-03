@@ -2,7 +2,7 @@
 #define D_MENU_D_MENU_DMAP_MAP_H
 
 #include "d/d_menu_dmap.h"
-#include <cmath.h>
+#include <math.h>
 
 class dMenu_DmapMap_c {
 public:

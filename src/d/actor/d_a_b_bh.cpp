@@ -94,7 +94,6 @@ static int daB_BH_Draw(b_bh_class* i_this) {
     return 1;
 }
 
-/* 805B33ED 0003+00 data_805B33ED None */
 static u8 hio_set;
 
 static daB_BH_HIO_c l_HIO;
@@ -1577,7 +1576,7 @@ static actor_method_class l_daB_BH_Method = {
     (process_method_func)daB_BH_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_BH = {
+actor_process_profile_definition g_profile_B_BH = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

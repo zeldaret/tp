@@ -1534,7 +1534,7 @@ static actor_method_class l_daE_HZELDA_Method = {
     (process_method_func)daE_HZELDA_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_HZELDA = {
+actor_process_profile_definition g_profile_E_HZELDA = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

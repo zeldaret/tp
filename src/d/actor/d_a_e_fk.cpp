@@ -434,10 +434,8 @@ bool daE_FK_c::checkViewArea() {
 }
 
 namespace {
-/* 806BB974 0002+00 data_806BB974 s_HorseAngle__22@unnamed@d_a_e_fk_cpp@ */
 static s16 s_HorseAngle;
 
-/* 806BB976 0002+00 data_806BB976 s_AttackChk__22@unnamed@d_a_e_fk_cpp@ */
 static s16 s_AttackChk;
 }
 
@@ -813,7 +811,7 @@ static actor_method_class l_daE_FK_Method = {
     (process_method_func)daE_FK_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_FK = {
+actor_process_profile_definition g_profile_E_FK = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

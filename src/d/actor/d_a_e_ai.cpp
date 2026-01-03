@@ -79,10 +79,12 @@ void e_ai_class::initCcCylinder() {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            80.0f, // mRadius
-            250.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                80.0f, // mRadius
+                250.0f // mHeight
+            } // mCyl
+        }
     };
 
     m_ccCyl.Set(cc_cyl_src);
@@ -948,7 +950,7 @@ static actor_method_class l_daE_AI_Method = {
     (process_method_func)daE_AI_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_AI = {
+actor_process_profile_definition g_profile_E_AI = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

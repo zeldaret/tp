@@ -690,7 +690,7 @@ static actor_method_class l_daObj_Ito_Method = {
     (process_method_func)daObj_Ito_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_ITO = {
+actor_process_profile_definition g_profile_OBJ_ITO = {
   fpcLy_CURRENT_e,        // mLayerID
   4,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

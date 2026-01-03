@@ -113,10 +113,12 @@ static dCcD_SrcCyl l_cyl_src = {
         {0x0},                                        // mGObjCo
     },                                                // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        15.0f,               // mRadius
-        60.0f                // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            15.0f,               // mRadius
+            60.0f                // mHeight
+        }  // mCyl
+    }
 };
 
 
@@ -1907,7 +1909,7 @@ static actor_method_class daObjBm_METHODS = {
     (process_method_func)daObjBm_MoveBGDraw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_Bemos = {
+actor_process_profile_definition g_profile_Obj_Bemos = {
     fpcLy_CURRENT_e,         // mLayerID
     3,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

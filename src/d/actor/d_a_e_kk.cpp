@@ -50,10 +50,12 @@ static dCcD_SrcCyl cc_kk_src = {
         {0x0},                                               // mGObjCo
     },                                                       // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        40.0f,               // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            40.0f,               // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }
 };
 
 static dCcD_SrcSph cc_kk_at_src = {
@@ -1490,7 +1492,7 @@ static actor_method_class l_daE_KK_Method = {
     (process_method_func)daE_KK_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_KK = {
+actor_process_profile_definition g_profile_E_KK = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

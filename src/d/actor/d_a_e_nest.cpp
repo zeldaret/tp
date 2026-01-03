@@ -1035,10 +1035,12 @@ static cPhs__Step daE_Nest_Create(fopAc_ac_c* i_this) {
                 {0x0}, // mGObjCo
             }, // mObjInf
             {
-                {0.0f, 0.0f, 0.0f}, // mCenter
-                5.0f, // mRadius
-                10.0f // mHeight
-            } // mCcCyl
+                {
+                    {0.0f, 0.0f, 0.0f}, // mCenter
+                    5.0f, // mRadius
+                    10.0f // mHeight
+                } // mCcCyl
+            }
         };
         _this->mCcCyl.Set(cc_cyl_src);
         _this->mCcCyl.SetStts(&_this->mCcStts);
@@ -1071,7 +1073,7 @@ static actor_method_class l_daE_Nest_Method = {
     (process_method_func)daE_Nest_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_NEST = {
+actor_process_profile_definition g_profile_E_NEST = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

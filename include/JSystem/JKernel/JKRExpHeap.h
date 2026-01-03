@@ -63,6 +63,7 @@ protected:
     void joinTwoBlocks(CMemBlock* block);
 
 public:
+    s32 isEmpty();
     s32 getUsedSize(u8 groupId) const;
     s32 getTotalUsedSize(void) const;
     

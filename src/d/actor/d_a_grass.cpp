@@ -400,7 +400,7 @@ static actor_method_class daGrass_METHODS = {
     (process_method_func)daGrass_draw,
 };
 
-extern actor_process_profile_definition g_profile_GRASS = {
+actor_process_profile_definition g_profile_GRASS = {
   fpcLy_CURRENT_e,       // mLayerID
   11,                    // mListID
   fpcPi_CURRENT_e,       // mListPrio

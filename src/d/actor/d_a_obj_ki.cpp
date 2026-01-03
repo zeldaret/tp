@@ -224,7 +224,7 @@ static actor_method_class l_daObj_Ki_Method = {
     (process_method_func)daObj_Ki_Draw,
 };
 
-extern actor_process_profile_definition g_profile_OBJ_KI = {
+actor_process_profile_definition g_profile_OBJ_KI = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,

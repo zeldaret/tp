@@ -65,10 +65,12 @@ static dCcD_SrcCyl l_cyl_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
+        {
             {0.0f, 0.0f, 0.0f}, // mCenter
             60.0f, // mRadius
             300.0f // mHeight
         } // mCyl
+    }
 };
 
 #if DEBUG
@@ -407,7 +409,7 @@ static actor_method_class l_daObjCBlk_Method = {
     (process_method_func)daObjCBlk_Draw,
 };
 
-extern actor_process_profile_definition g_profile_Obj_ChainBlock = {
+actor_process_profile_definition g_profile_Obj_ChainBlock = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

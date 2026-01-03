@@ -274,7 +274,11 @@ struct TLinkList_factory : public TLinkList<T, I> {
 
 template <typename T, int I>
 TLinkList_factory<T, I>::~TLinkList_factory() {
+#ifdef __MWERKS__
     JGADGET_ASSERTWARN(934, empty());
+#else
+    JGADGET_ASSERTWARN(934, this->empty());
+#endif
 }
 
 template <typename T>

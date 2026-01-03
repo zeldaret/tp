@@ -71,6 +71,9 @@ public:
 extern mDoHIO_root_c mDoHIO_root;
 
 void mDoHIO_updateChild(s8 i_no);
+inline void mDoHIO_update() {
+    mDoHIO_root.update();
+};
 void mDoHIO_deleteChild(s8 i_no);
 inline s8 mDoHIO_createChild(const char* i_name, JORReflexible* i_node) {
     return mDoHIO_root.createChild(i_name, i_node);

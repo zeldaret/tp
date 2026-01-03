@@ -18,7 +18,9 @@
 
 dCcD_SrcCyl daNpc_Kn_c::mCcDCyl = {
     mCcDObjData,
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f},
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f},
+    }
 };
 
 dCcD_SrcSph daNpc_Kn_c::mCcDSph = {
@@ -5279,7 +5281,7 @@ static actor_method_class daNpc_Kn_MethodTable = {
     (process_method_func)daNpc_Kn_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_KN = {
+actor_process_profile_definition g_profile_NPC_KN = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

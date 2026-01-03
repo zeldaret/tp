@@ -109,9 +109,6 @@ J2DTextBox::J2DTextBox(J2DPane* p_pane, JSURandomInputStream* p_stream, u32 para
     mTextFontOwned = true;
 }
 
-/* 802FFBC4-802FFC58 2FA504 0094+00 0/0 1/1 0/0 .text
- * __ct__10J2DTextBoxFUxRCQ29JGeometry8TBox2<f>PC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding
- */
 J2DTextBox::J2DTextBox(u64 tag, JGeometry::TBox2<f32> const& bounds, ResFONT const* p_font,
                        char const* string, s16 strLength, J2DTextBoxHBinding hBind,
                        J2DTextBoxVBinding vBind)

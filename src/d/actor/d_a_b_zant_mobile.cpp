@@ -11,7 +11,7 @@
 #include "d/d_cc_uty.h"
 #include "d/actor/d_a_player.h"
 #include "SSystem/SComponent/c_math.h"
-#include <cmath.h>
+#include <math.h>
 
 namespace {
 dCcD_SrcSph cc_zant_src = {
@@ -34,10 +34,12 @@ static dCcD_SrcCyl cc_zant_snort_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        40.0f,
-        40.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            40.0f,
+            40.0f,
+        },
+    }
 };
 }
 
@@ -506,7 +508,7 @@ static actor_method_class l_daB_ZANTZ_Method = {
     (process_method_func)daB_ZANTZ_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_ZANTZ = {
+actor_process_profile_definition g_profile_B_ZANTZ = {
   fpcLy_CURRENT_e,        // mLayerID
   4,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

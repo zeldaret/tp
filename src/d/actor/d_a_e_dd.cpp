@@ -1775,7 +1775,7 @@ static cPhs__Step daE_DD_Create(fopAc_ac_c* a_this) {
     return phase;
 }
 
-extern actor_method_class l_daE_DD_Method = {
+actor_method_class l_daE_DD_Method = {
     (process_method_func)daE_DD_Create,
     (process_method_func)daE_DD_Delete,
     (process_method_func)daE_DD_Execute,
@@ -1783,7 +1783,7 @@ extern actor_method_class l_daE_DD_Method = {
     (process_method_func)daE_DD_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_DD = {
+actor_process_profile_definition g_profile_E_DD = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

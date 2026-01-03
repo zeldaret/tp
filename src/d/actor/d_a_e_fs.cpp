@@ -67,7 +67,6 @@ enum Joint {
 
 namespace {
 
-/* 806BE79E 0002+00 data_806BE79E s_AtCount__22@unnamed@d_a_e_fs_cpp@ */
 static s16 s_AtCount;
 
 }  // namespace
@@ -795,10 +794,12 @@ static cPhs__Step daE_Fs_Create(fopAc_ac_c* i_this) {
                 {0x0}, // mGObjCo
             }, // mObjInf
             {
-                {0.0f, 0.0f, 0.0f}, // mCenter
-                80.0f, // mRadius
-                230.0f // mHeight
-            } // mCyl
+                {
+                    {0.0f, 0.0f, 0.0f}, // mCenter
+                    80.0f, // mRadius
+                    230.0f // mHeight
+                } // mCyl
+            }
         };
 
         static dCcD_SrcSph at_sph_src = {
@@ -850,7 +851,7 @@ static actor_method_class l_daE_Fs_Method = {
     (process_method_func)daE_Fs_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_FS = {
+actor_process_profile_definition g_profile_E_FS = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

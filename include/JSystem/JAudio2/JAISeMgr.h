@@ -69,6 +69,7 @@ public:
 
         return mMaxActiveSe + mMaxInactiveSe;
     }
+    int getMaxInactiveSe() const { return mMaxInactiveSe; }
     int getMaxActiveSe() const { return mMaxActiveSe; }
     void setMaxActiveSe(int num) { mMaxActiveSe = num; }
     void setMaxInactiveSe(int num) { mMaxInactiveSe = num; }
@@ -88,11 +89,11 @@ public:
  * 
  */
 class JAISeMgr : public JASGlobalInstance<JAISeMgr>,
-                 public JAISeqDataUser,
-                 public JAISoundActivity {
+                 public JAISeqDataUser {
 public:
     JAISeMgr(bool setInstance);
     void setCategoryArrangement(const JAISeCategoryArrangement& arrangement);
+    void getCategoryArrangement(JAISeCategoryArrangement*);
     void stop();
     void stopSoundID(JAISoundID id);
     void initParams();
@@ -105,10 +106,16 @@ public:
     bool startSound(JAISoundID id, JAISoundHandle* handle, const JGeometry::TVec3<f32>* posPtr);
     int getNumActiveSe() const;
 
+    /* 0x004 */ JAISoundActivity mSoundActivity;
+
     virtual bool isUsingSeqData(const JAISeqDataRegion& seqDataRegion);
     virtual int releaseSeqData(const JAISeqDataRegion& seqDataRegion);
 
-    JAISeCategoryMgr* getCategory(int index) { return &mCategoryMgrs[index]; }
+    JAISeCategoryMgr* getCategory(int categoryIndex) {
+        JUT_ASSERT(222, categoryIndex >= 0);
+        JUT_ASSERT(223, categoryIndex < NUM_CATEGORIES);
+        return &mCategoryMgrs[categoryIndex];
+    }
     JAIAudience* getAudience() { return mAudience; }
     JAIAudience* getAudience(int index) {
         if (index >= 0 && index < NUM_CATEGORIES) {

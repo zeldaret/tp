@@ -99,12 +99,14 @@ static dCcD_SrcCyl l_cylSrc = {
         {dCcD_SE_STONE, 0x0, 0x0, 0x0, 0x0},                                // mGObjAt
         {dCcD_SE_NONE, 0x5, 0x0, 0x0, 0x3},                                 // mGObjTg
         {0x0},                                                              // mGObjCo
-    },                                                                      // mObjInf
+    },      
+    {                                                                // mObjInf
     {
         {0.0f, 0.0f, 0.0f},  // mCenter
         88.0f,               // mRadius
         392.0f               // mHeight
-    }  // mCyl
+        }  // mCyl
+    }
 };
 
 static dCcD_SrcSph l_sphSrc = {
@@ -1212,7 +1214,7 @@ static actor_method_class l_daCstatue_Method = {
     (process_method_func)daCstatue_Draw,
 };
 
-extern actor_process_profile_definition g_profile_CSTATUE = {
+actor_process_profile_definition g_profile_CSTATUE = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

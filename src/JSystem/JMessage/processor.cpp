@@ -402,9 +402,6 @@ void JMessage::TSequenceProcessor::on_jump(void const* pEntry, char const* pszTe
     do_jump(pEntry, pszText);
 }
 
-/* 802A8690-802A86A0 2A2FD0 0010+00 1/1 0/0 0/0 .text
- * on_branch_register__Q28JMessage18TSequenceProcessorFPFPCQ28JMessage18TSequenceProcessorUl_PCvPCvUl
- */
 void JMessage::TSequenceProcessor::on_branch_register(JMessage::TSequenceProcessor::branchPfn pfn, void const* pTarget, u32 uTarget) {
     JUT_ASSERT(669, eStatus_==STATUS_NORMAL);
 

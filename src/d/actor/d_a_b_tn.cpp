@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_tn.h"
-#include <cmath.h>
+#include <math.h>
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_boomerang.h"
 #include "d/actor/d_a_nbomb.h"
@@ -342,7 +342,6 @@ void daB_TN_c::calcWaistAngle() {
     cLib_addCalcAngleS2(&mWaistAngle, sVar1, 4, 0x1000);
 }
 
-/* 8062F01D 0003+00 data_8062F01D None */
 static u8 hio_set;
 
 static daB_TN_HIO_c l_HIO;
@@ -1818,8 +1817,8 @@ void daB_TN_c::executeRoomDemo() {
     }
 
     camera->mCamera.Set(mCamCenter, mCamEye, mCamFovY, 0);
-    dComIfGp_getEvent().onSkipFade();
-    dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 1);
+    dComIfGp_getEvent()->onSkipFade();
+    dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 1);
 }
 
 void daB_TN_c::executeOpening() {
@@ -2015,8 +2014,8 @@ void daB_TN_c::executeOpening() {
     }
 
     camera->mCamera.Set(mCamCenter, mCamEye, mCamFovY, 0);
-    dComIfGp_getEvent().onSkipFade();
-    dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+    dComIfGp_getEvent()->onSkipFade();
+    dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
 }
 
 void daB_TN_c::executeWaitH() {
@@ -5174,7 +5173,7 @@ static actor_method_class l_daB_TN_Method = {
     (process_method_func)daB_TN_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_TN = {
+actor_process_profile_definition g_profile_B_TN = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

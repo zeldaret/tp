@@ -2814,8 +2814,8 @@ void daB_MGN_c::executeOpening() {
     }
 
     camera->mCamera.Set(mDemoCamCenter, mDemoCamEye, mDemoCamFovy, 0);
-    dComIfGp_getEvent().onSkipFade();
-    dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
+    dComIfGp_getEvent()->onSkipFade();
+    dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 0);
     mSound.startCreatureVoiceLevel(Z2SE_EN_MGN_DEMO_OP, -1);
 }
 
@@ -3584,7 +3584,7 @@ static actor_method_class l_daB_MGN_Method = {
     (process_method_func)daB_MGN_Draw,
 };
 
-extern actor_process_profile_definition g_profile_B_MGN = {
+actor_process_profile_definition g_profile_B_MGN = {
     fpcLy_CURRENT_e,         // mLayerID
     7,                       // mListID
     fpcPi_CURRENT_e,         // mListPrio

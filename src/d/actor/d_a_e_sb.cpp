@@ -92,10 +92,12 @@ void daE_SB_c::initCcCylinder() {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            80.0f, // mRadius
-            130.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                80.0f, // mRadius
+                130.0f // mHeight
+            } // mCyl
+        }
     };
 
     mStts.Init(0xFE, 0xFF, this);
@@ -257,11 +259,8 @@ static u8 hio_set;
 static daE_SB_HIO_c l_HIO;
 
 namespace {
-    /* 80784FC4-80784FC8 000094 0004+00 2/2 0/0 0/0 .bss             s_Bomb__22@unnamed@d_a_e_sb_cpp@ */
     static fopAc_ac_c* s_Bomb;
-    /* 80784FC8-80784FCC 000098 0002+02 3/5 0/0 0/0 .bss s_TargetAngle__22@unnamed@d_a_e_sb_cpp@ */
     static s16 s_TargetAngle;
-    /* 80784FCC-80784FD0 00009C 0004+00 5/7 0/0 0/0 .bss             s_LinkPos__22@unnamed@d_a_e_sb_cpp@ */
     static cXyz* s_LinkPos;
 }
 
@@ -1169,7 +1168,7 @@ static actor_method_class l_daE_SB_Method = {
     (process_method_func)daE_SB_Draw,
 };
 
-extern actor_process_profile_definition g_profile_E_SB = {
+actor_process_profile_definition g_profile_E_SB = {
   fpcLy_CURRENT_e,        // mLayerID
   7,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio

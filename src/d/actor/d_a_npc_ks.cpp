@@ -5811,7 +5811,6 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
     int frame = i_this->model->getFrame();
     int iVar1 = 0;
     s16 sVar1 = 0x1000;
-    s16 range;
 
     i_this->field_0x5fc = 0;
     i_this->field_0xaec = 1;
@@ -5936,7 +5935,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
             }
 
             iVar1 = 1;
-            range = actor->current.angle.y - i_this->target_angle;
+            s16 range = actor->current.angle.y - i_this->target_angle;
             if ((range > 0x3000 || range < -0x3000) && i_this->mode < 22) {
                 anm_init(i_this, 28, 3.0f, 0, 1.0f);
                 i_this->mode = 22;
@@ -6000,9 +5999,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
         fopAcM_OnStatus(actor, 0);
         cLib_onBit<u32>(actor->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         actor->eventInfo.onCondition(dEvtCnd_CANTALK_e);
-        // TODO: gameInfo fake match to force reuse of pointer
-        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck()) {
+        if (dComIfGp_event_runCheck()) {
             if (actor->eventInfo.checkCommandTalk()) {
                 if (i_this->field_0xaee == 0) {
                     i_this->msg_flow.init(actor, 0x74, 0, NULL);
@@ -6010,7 +6007,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
                 }
 
                 if (i_this->msg_flow.doFlow(actor, NULL, 0)) {
-                    play->getEvent().reset();
+                    dComIfGp_event_reset();
                     i_this->field_0xaee = 0;
                 }
             }
@@ -7327,10 +7324,12 @@ static int daNpc_Ks_Create(fopAc_ac_c* actor) {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            30.0f, // mRadius
-            20.0f // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                30.0f, // mRadius
+                20.0f // mHeight
+            } // mCyl
+        }
     };
 
     npc_ks_class* i_this = (npc_ks_class*)actor;
@@ -7465,7 +7464,7 @@ static actor_method_class l_daNpc_Ks_Method = {
     (process_method_func)daNpc_Ks_Draw,
 };
 
-extern actor_process_profile_definition g_profile_NPC_KS = {
+actor_process_profile_definition g_profile_NPC_KS = {
   fpcLy_CURRENT_e,        // mLayerID
   3,                      // mListID
   fpcPi_CURRENT_e,        // mListPrio
