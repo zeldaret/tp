@@ -12,6 +12,8 @@
 // Fixes weak function/RTTI ordering
 #include <math> // IWYU pragma: export
 #include <cstring> // IWYU pragma: export
+#include "Z2AudioLib/Z2AudioArcLoader.h" // IWYU pragma: export
+#include "JSystem/JAudio2/JAUStreamAramMgr.h" // IWYU pragma: export
 #include "JSystem/JKernel/JKRDisposer.h" // IWYU pragma: export
 #include "JSystem/JGadget/linklist.h" // IWYU pragma: export
 #include "JSystem/J3DGraphBase/J3DPacket.h" // IWYU pragma: export
