@@ -1328,7 +1328,7 @@ int daNpc_Taro_c::cutSwdTutorial(int param_1) {
             break;
         }
     }
-    int local_68[2] = {-1, 0xffffffff};
+    int local_68[2] = {-1, -1};
     switch (local_70) {
     case 0:
         mJntAnm.lookPlayer(0);
