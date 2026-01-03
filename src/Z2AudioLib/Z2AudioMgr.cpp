@@ -1,3 +1,5 @@
+#include "d/dolzel.h" // IWYU pragma: keep
+
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
@@ -209,7 +211,7 @@ bool Z2AudioMgr::startSound(JAISoundID soundID, JAISoundHandle* handle,
     return mSoundMgr.startSound(soundID, handle, posPtr);
 }
 
-bool Z2AudioMgr::startLevelSound(JAISoundID soundID, JAISoundHandle* handle,
+inline bool Z2AudioMgr::startLevelSound(JAISoundID soundID, JAISoundHandle* handle,
                                  const JGeometry::TVec3<f32>* posPtr) {
     if (mResettingFlag) {
         return 0;

@@ -1211,7 +1211,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SeMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SeqMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2StatusMgr.cpp"),
-            Object(Equivalent, "Z2AudioLib/Z2SceneMgr.cpp"), # weak func order
+            Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SceneMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2FxLineMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SoundInfo.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2Audience.cpp"),
@@ -1222,7 +1222,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2EnvSeMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2WolfHowlMgr.cpp"),
             Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2SpeechMgr2.cpp"),
-            Object(Equivalent, "Z2AudioLib/Z2AudioMgr.cpp"), # weak func order
+            Object(MatchingFor(ALL_GCN), "Z2AudioLib/Z2AudioMgr.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2DebugSys.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2F1TestWindow.cpp"),
             Object(NonMatching, "Z2AudioLib/Z2SoundPlayer.cpp"),
