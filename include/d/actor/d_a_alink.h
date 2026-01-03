@@ -5233,9 +5233,9 @@ public:
     int setDoubleAnime(f32, f32, f32, daAlink_c::daAlink_ANM, daAlink_c::daAlink_ANM,
                                       int, f32);
     void commonSingleAnime(J3DAnmTransform*, J3DAnmTransform*, f32, f32, s16);
-    void setSingleAnimeBase(daAlink_c::daAlink_ANM anmID);
-    void setSingleAnimeBaseMorf(daAlink_c::daAlink_ANM anmID, f32);
-    void setSingleAnimeBaseSpeed(daAlink_c::daAlink_ANM anmID, f32 speed, f32 morf);
+    int setSingleAnimeBase(daAlink_c::daAlink_ANM anmID);
+    int setSingleAnimeBaseMorf(daAlink_c::daAlink_ANM anmID, f32);
+    int setSingleAnimeBaseSpeed(daAlink_c::daAlink_ANM anmID, f32 speed, f32 morf);
     int setSingleAnime(daAlink_c::daAlink_ANM anmID, f32 rate, f32 start, s16 endF,
                                       f32 morf);
     int setSingleAnimeParam(daAlink_c::daAlink_ANM anmID, daAlinkHIO_anm_c const*);
@@ -7433,8 +7433,6 @@ public:
     }
     bool checkWolfDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
     bool checkWolfLieWaterIn() const { return mWaterY > current.pos.y + 20.5f; }
-
-    BOOL checkPowerGloveGet() { return false; }
 
     J3DModel* initModel(J3DModelData* p_modelData, u32 param_1) {
         return initModel(p_modelData, 0x80000, param_1);

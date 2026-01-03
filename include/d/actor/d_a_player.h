@@ -1150,6 +1150,8 @@ public:
         return dComIfGs_getSelectEquipClothes() == fpcNm_ITEM_ARMOR;
     }
 
+    static BOOL checkPowerGloveGet() { return false; }
+
                                                /* dSv_event_flag_c::M_067 - Main Event - Midna riding / not riding (ON == riding) */
     static BOOL checkFirstMidnaDemo() { return dComIfGs_isEventBit(0xc10); }
     static int checkNowWolfPowerUp() { return checkNowWolfEyeUp(); }

@@ -6753,16 +6753,16 @@ void daAlink_c::commonSingleAnime(J3DAnmTransform* param_0, J3DAnmTransform* par
     field_0x2f8c = 0;
 }
 
-void daAlink_c::setSingleAnimeBase(daAlink_c::daAlink_ANM i_anmID) {
-    setSingleAnime(i_anmID, 1.0f, 0.0f, -1, 3.0f);
+int daAlink_c::setSingleAnimeBase(daAlink_c::daAlink_ANM i_anmID) {
+    return setSingleAnime(i_anmID, 1.0f, 0.0f, -1, 3.0f);
 }
 
-void daAlink_c::setSingleAnimeBaseMorf(daAlink_c::daAlink_ANM i_anmID, f32 param_1) {
-    setSingleAnime(i_anmID, 1.0f, 0.0f, -1, param_1);
+int daAlink_c::setSingleAnimeBaseMorf(daAlink_c::daAlink_ANM i_anmID, f32 param_1) {
+    return setSingleAnime(i_anmID, 1.0f, 0.0f, -1, param_1);
 }
 
-void daAlink_c::setSingleAnimeBaseSpeed(daAlink_c::daAlink_ANM i_anmID, f32 param_1, f32 param_2) {
-    setSingleAnime(i_anmID, param_1, 0.0f, -1, param_2);
+int daAlink_c::setSingleAnimeBaseSpeed(daAlink_c::daAlink_ANM i_anmID, f32 param_1, f32 param_2) {
+    return setSingleAnime(i_anmID, param_1, 0.0f, -1, param_2);
 }
 
 int daAlink_c::setSingleAnime(daAlink_c::daAlink_ANM i_anmID, f32 i_rate, f32 i_start, s16 i_end,

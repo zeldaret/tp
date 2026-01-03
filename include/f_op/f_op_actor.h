@@ -356,10 +356,10 @@ public:
 
     void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
     void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }
-    void setThrowModeCatch() { mThrowMode |= fopEn_throwMode_Catch; }
-    void setThrowModeDash() { mThrowMode |= fopEn_throwMode_Dash; }
-    void setThrowModeThrowRight() { mThrowMode |= fopEn_throwMode_ThrowRight; }
-    void setThrowModeThrowLeft() { mThrowMode |= fopEn_throwMode_ThrowLeft; }
+    void setThrowModeCatch() { mThrowMode |= (u8)fopEn_throwMode_Catch; }
+    void setThrowModeDash() { mThrowMode |= (u8)fopEn_throwMode_Dash; }
+    void setThrowModeThrowRight() { mThrowMode |= (u8)fopEn_throwMode_ThrowRight; }
+    void setThrowModeThrowLeft() { mThrowMode |= (u8)fopEn_throwMode_ThrowLeft; }
     void setDownPos(const cXyz* i_pos) { mDownPos = *i_pos; }
     void setHeadLockPos(const cXyz* i_pos) { mHeadLockPos = *i_pos; }
 

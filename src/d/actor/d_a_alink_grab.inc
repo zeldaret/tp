@@ -8,30 +8,39 @@
 #include "d/actor/d_a_obj_movebox.h"
 #include "d/actor/d_a_obj_gra2.h"
 
-static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor) {
-    if (fopAcM_GetName(p_actor) == PROC_Obj_Carry &&
-        static_cast<daObjCarry_c*>(p_actor)->getType() == daObjCarry_c::TYPE_BALL_S)
+static bool daAlink_checkLightBallA(fopAc_ac_c* i_actor) {
+    daObjCarry_c* carry = (daObjCarry_c*)i_actor;
+
+    if (fopAcM_GetName(carry) == PROC_Obj_Carry &&
+        carry->getType() == daObjCarry_c::TYPE_BALL_S)
     {
         return true;
     }
+
     return false;
 }
 
-static bool daAlink_checkLightBallB(fopAc_ac_c* p_actor) {
-    if (fopAcM_GetName(p_actor) == PROC_Obj_Carry &&
-        static_cast<daObjCarry_c*>(p_actor)->getType() == daObjCarry_c::TYPE_BALL_S_2)
+static bool daAlink_checkLightBallB(fopAc_ac_c* i_actor) {
+    daObjCarry_c* carry = (daObjCarry_c*)i_actor;
+
+    if (fopAcM_GetName(carry) == PROC_Obj_Carry &&
+        carry->getType() == daObjCarry_c::TYPE_BALL_S_2)
     {
         return true;
     }
+
     return false;
 }
 
-static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* p_actor, void* param_1) {
-    if ((daPy_py_c::checkCarryStartLightBallA() && daAlink_checkLightBallA(p_actor)) ||
-        (daPy_py_c::checkCarryStartLightBallB() && daAlink_checkLightBallB(p_actor)))
+static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* i_actor, void* i_data) {
+    UNUSED(i_data);
+
+    if ((daPy_py_c::checkCarryStartLightBallA() && daAlink_checkLightBallA(i_actor)) ||
+        (daPy_py_c::checkCarryStartLightBallB() && daAlink_checkLightBallB(i_actor)))
     {
-        return p_actor;
+        return i_actor;
     }
+
     return NULL;
 }
 
@@ -44,18 +53,18 @@ BOOL daAlink_c::checkGrabLineCheck() {
     return false;
 }
 
-void daAlink_c::setGrabCollisionOffset(f32 param_0, f32 param_1, cBgS_PolyInfo* param_2) {
+void daAlink_c::setGrabCollisionOffset(f32 i_offsetX, f32 i_offsetZ, cBgS_PolyInfo* param_2) {
     if (param_2 != NULL) {
         mPolyInfo4.SetPolyInfo(*param_2);
     } else {
         mPolyInfo4.ClearPi();
     }
 
-    field_0x342c = 0.8f * param_0;
-    field_0x3430 = 0.8f * param_1;
+    field_0x342c = 0.8f * i_offsetX;
+    field_0x3430 = 0.8f * i_offsetZ;
 }
 
-BOOL daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
+BOOL daAlink_c::exchangeGrabActor(fopAc_ac_c* i_actor) {
     fopAc_ac_c* actor = mGrabItemAcKeep.getActor();
     if (actor == NULL) {
         return false;
@@ -70,19 +79,23 @@ BOOL daAlink_c::exchangeGrabActor(fopAc_ac_c* p_actor) {
         actor->current.angle.x = 0;
     }
 
-    setGrabItemActor(p_actor);
+    setGrabItemActor(i_actor);
     return true;
 }
 
-BOOL daAlink_c::setForceGrab(fopAc_ac_c* p_actor, int param_1, int param_2) {
-    if (((param_1 != 0 || !checkEventRun()) && !checkWolf()) &&
-        (((mEquipItem == fpcNm_ITEM_NONE || (param_2 != 0 && checkHookshotItem(mEquipItem)))) &&
-         ((checkModeFlg(MODE_UNK_10000000) &&
-           (checkHorseNoUpperAnime() || checkHorseTurnAnime())) ||
-          param_2 != 0 && checkHookshotAnime())))
+BOOL daAlink_c::setForceGrab(fopAc_ac_c* i_actor, BOOL param_1, BOOL param_2) {
+    if (((param_1 || !checkEventRun()) && !checkWolf())
+        && ((mEquipItem == fpcNm_ITEM_NONE || (param_2 && checkHookshotItem(mEquipItem)))
+            && ((checkModeFlg(MODE_UNK_10000000)
+                && (checkHorseNoUpperAnime() || checkHorseTurnAnime())
+                )
+                || (param_2 && checkHookshotAnime())
+                )
+            )
+        )
     {
         deleteEquipItem(TRUE, FALSE);
-        setGrabItemActor(p_actor);
+        setGrabItemActor(i_actor);
         field_0x33e4 = 38.0f;
         setGrabUpperAnime(mpHIO->mBasic.m.mBasicInterpolation);
         return true;
@@ -117,10 +130,11 @@ BOOL daAlink_c::checkGrabCarryActor() {
 }
 
 BOOL daAlink_c::checkGrabSlowMoveActor() {
-    daObjCarry_c* var_r31 = (daObjCarry_c*)mGrabItemAcKeep.getActor();
-    return var_r31 != NULL &&
-          (fopAcM_CheckCarryType(var_r31, fopAcM_CARRY_HEAVY) ||
-          (fopAcM_GetName(var_r31) == PROC_Obj_Carry && (var_r31->getType() == 1 || var_r31->getType() == 10 || var_r31->getType() == 4)));
+    daObjCarry_c* carry = (daObjCarry_c*)mGrabItemAcKeep.getActor();
+    return carry != NULL &&
+          (fopAcM_CheckCarryType(carry, fopAcM_CARRY_HEAVY) ||
+          (fopAcM_GetName(carry) == PROC_Obj_Carry
+           && (carry->getType() == daObjCarry_c::TYPE_OOTSUBO || carry->getType() == daObjCarry_c::TYPE_AOTSUBO || carry->getType() == daObjCarry_c::TYPE_TARU)));
 }
 
 BOOL daAlink_c::checkGrabHeavyActor() {
@@ -145,15 +159,15 @@ void daAlink_c::setGrabUpperAnime(f32 param_0) {
     field_0x33e8 = 0.0f;
 
     if (checkGrabCarryActor()) {
-        setUpperAnimeBaseSpeed(0x60, 0.0f, param_0);
-        setFacePriBck(0xFA);
-    } else if (checkGrabSideActor() != 0) {
-        setUpperAnimeBaseSpeed(0x50, 0.0f, param_0);
-        setFacePriBck(0x13D);
+        setUpperAnimeBaseSpeed(dRes_ID_ALANM_BCK_CARRYD_e, 0.0f, param_0);
+        setFacePriBck(dRes_ID_ALANM_BCK_FCAT_e);
+    } else if (checkGrabSideActor()) {
+        setUpperAnimeBaseSpeed(dRes_ID_ALANM_BCK_BOMBD_e, 0.0f, param_0);
+        setFacePriBck(dRes_ID_ALANM_BCK_FGRABWAIT_e);
         field_0x33ec = 0.0f;
     } else {
-        setUpperAnimeBaseSpeed(0x16C, 0.0f, param_0);
-        setFacePriBck(0x13D);
+        setUpperAnimeBaseSpeed(dRes_ID_ALANM_BCK_GRABD_e, 0.0f, param_0);
+        setFacePriBck(dRes_ID_ALANM_BCK_FGRABWAIT_e);
         field_0x33ec = 0.0f;
     }
 
@@ -178,14 +192,14 @@ void daAlink_c::setGrabItemPos() {
     static cXyz grabCarryOffset2(-3.0f, 30.0f, -30.0f);
     static cXyz grabCarryOffset3(-4.5f, 26.0f, -33.0f);
 
-    fopAc_ac_c* temp_r3 = mGrabItemAcKeep.getActor();
-    if (temp_r3 != NULL) {
-        daPy_frameCtrl_c* sp1C = &mUnderFrameCtrl[0];
+    fopAc_ac_c* grabActor = mGrabItemAcKeep.getActor();
+    if (grabActor != NULL) {
+        daPy_frameCtrl_c* framectrl = &mUnderFrameCtrl[0];
 
-        s8 sp8 = fopAcM_GetRoomNo(this);
-        temp_r3->tevStr.room_no = sp8;
-        temp_r3->tevStr.YukaCol = tevStr.YukaCol;
-        fopAcM_SetRoomNo(temp_r3, sp8);
+        s8 roomNo = fopAcM_GetRoomNo(this);
+        grabActor->tevStr.room_no = roomNo;
+        grabActor->tevStr.YukaCol = tevStr.YukaCol;
+        fopAcM_SetRoomNo(grabActor, roomNo);
     
         BOOL sp18 = checkGrabCarryActor();
         s16 spE;
@@ -199,26 +213,26 @@ void daAlink_c::setGrabItemPos() {
         }
     
         if (checkGrabSideThrowAnime()) {
-            mDoMtx_multVecZero(mpLinkModel->getAnmMtx(0xA), &temp_r3->current.pos);
-            temp_r3->shape_angle.y = spE;
-            temp_r3->shape_angle.z = spC;
-            temp_r3->shape_angle.x = shape_angle.x;
+            mDoMtx_multVecZero(mpLinkModel->getAnmMtx(0xA), &grabActor->current.pos);
+            grabActor->shape_angle.y = spE;
+            grabActor->shape_angle.z = spC;
+            grabActor->shape_angle.x = shape_angle.x;
         } else if (mProcID == PROC_GRAB_READY || mProcID == PROC_GRAB_MISS || mProcID == PROC_PICK_UP || (mProcID == PROC_WOLF_GRAB_UP && mProcVar3.field_0x300e == 0)) {
             mDoMtx_stack_c::transS(current.pos);
             mDoMtx_stack_c::YrotM((shape_angle.y - mProcVar2.field_0x300c));
-            mDoMtx_stack_c::multVec(&field_0x37c8, &temp_r3->current.pos);
+            mDoMtx_stack_c::multVec(&field_0x37c8, &grabActor->current.pos);
             if (sp18 && mProcID == PROC_GRAB_READY) {
-                cLib_chaseAngleS(&temp_r3->shape_angle.y, spE, 0x1000);
-                temp_r3->current.angle.y = temp_r3->shape_angle.y;
+                cLib_chaseAngleS(&grabActor->shape_angle.y, spE, 0x1000);
+                grabActor->current.angle.y = grabActor->shape_angle.y;
             }
         } else if (checkWolf()) {
             mDoMtx_stack_c::copy(mpLinkModel->getAnmMtx(4));
 
-            if (!fopAcM_CheckCarryType(temp_r3, fopAcM_CARRY_ITEM)) {
+            if (!fopAcM_CheckCarryType(grabActor, fopAcM_CARRY_ITEM)) {
                 mDoMtx_stack_c::transM(78.0f, 42.0f, 0.0f);
                 mDoMtx_stack_c::ZrotM(cM_deg2s(138.0f));
             } else {
-                if (fopAcM_GetName(temp_r3) == PROC_OBJ_FOOD) {
+                if (fopAcM_GetName(grabActor) == PROC_OBJ_FOOD) {
                     mDoMtx_stack_c::transM(32.0f, 7.0f, 0.0f);
                 } else {
                     mDoMtx_stack_c::transM(30.0f, 12.0f, 0.0f);
@@ -227,23 +241,24 @@ void daAlink_c::setGrabItemPos() {
                 mDoMtx_stack_c::XYZrotM(cM_deg2s(132.0f), cM_deg2s(-90.0f), 0);
             }
 
-            mDoMtx_stack_c::multVecZero(&temp_r3->current.pos);
-            mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &temp_r3->shape_angle);
+            mDoMtx_stack_c::multVecZero(&grabActor->current.pos);
+            mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &grabActor->shape_angle);
         } else {
-            BOOL sp14 = fopAcM_GetName(temp_r3) == PROC_NPC_TKJ2;
+            BOOL sp14 = fopAcM_GetName(grabActor) == PROC_NPC_TKJ2;
 
             if (mProcID == PROC_GRAB_UP) {
-                cLib_chaseAngleS(&temp_r3->shape_angle.y, spE, 0x1000);
+                cLib_chaseAngleS(&grabActor->shape_angle.y, spE, 0x1000);
             } else {
-                temp_r3->shape_angle.y = spE;
-                temp_r3->shape_angle.z = spC;
-                temp_r3->shape_angle.x = shape_angle.x;
+                grabActor->shape_angle.y = spE;
+                grabActor->shape_angle.z = spC;
+                grabActor->shape_angle.x = shape_angle.x;
             }
 
             cXyz sp140;
             cXyz sp134;
+            f32 temp_f31;
             if (mProcID == PROC_GRAB_UP) {
-                sp134 = temp_r3->current.pos;
+                sp134 = grabActor->current.pos;
             }
 
             if (sp18) {
@@ -254,16 +269,16 @@ void daAlink_c::setGrabItemPos() {
                 mDoMtx_multVecZero(mFootData2[0].field_0x14[2], &sp128);
                 mDoMtx_multVecZero(mFootData2[1].field_0x14[2], &sp11C);
 
-                temp_r3->current.pos = (sp128 + sp11C) * 0.5f;
+                grabActor->current.pos = (sp128 + sp11C) * 0.5f;
                 mDoMtx_stack_c::ZXYrotS(spA, shape_angle.y, shape_angle.z);
 
                 if (mProcID == PROC_GRAB_UP || mProcID == PROC_GRAB_PUT) {
-                    if (sp1C->getFrame() < field_0x3478) {
-                        f32 temp_f31 = (sp1C->getFrame() - 9.0f) / (field_0x3478 - 9.0f);
+                    if (framectrl->getFrame() < field_0x3478) {
+                        temp_f31 = (framectrl->getFrame() - 9.0f) / (field_0x3478 - 9.0f);
                         sp140 = (grabCarryOffset0 * (1.0f - temp_f31)) + (grabCarryOffset1 * temp_f31);
                         mDoMtx_stack_c::multVec(&sp140, &sp140);
                     } else {
-                        f32 temp_f31 = (sp1C->getFrame() - field_0x3478) / (sp1C->getEnd() - field_0x3478);
+                        temp_f31 = (framectrl->getFrame() - field_0x3478) / (framectrl->getEnd() - field_0x3478);
                         sp140 = (grabCarryOffset1 * (1.0f - temp_f31)) + (grabCarryOffset2 * temp_f31);
                         mDoMtx_stack_c::multVec(&sp140, &sp140);
                     }
@@ -272,12 +287,12 @@ void daAlink_c::setGrabItemPos() {
                     mDoMtx_stack_c::multVec(&sp140, &sp140);
                 }
 
-                temp_r3->current.pos += sp140;
-                temp_r3->shape_angle.x = -spA;
+                grabActor->current.pos += sp140;
+                grabActor->shape_angle.x = -spA;
 
-                temp_r3->current.angle.x = temp_r3->shape_angle.x;
-                temp_r3->current.angle.y = temp_r3->shape_angle.y;
-                temp_r3->current.angle.z = temp_r3->shape_angle.z;
+                grabActor->current.angle.x = grabActor->shape_angle.x;
+                grabActor->current.angle.y = grabActor->shape_angle.y;
+                grabActor->current.angle.z = grabActor->shape_angle.z;
             } else {
                 sp140 = (mLeftHandPos + mRightHandPos) * 0.5f;
                 mDoMtx_stack_c::transS(sp140);
@@ -290,20 +305,20 @@ void daAlink_c::setGrabItemPos() {
                     sp140.y += -15.0f;
                 }
 
-                mDoMtx_stack_c::multVec(&sp140, &temp_r3->current.pos);
+                mDoMtx_stack_c::multVec(&sp140, &grabActor->current.pos);
     
                 if (checkGrabAnimeSide()) {
                     static Vec const localSidePos = {2.3f, -15.5f, 15.6f};
                     mDoMtx_multVec(mpLinkModel->getAnmMtx(0xA), &localSidePos, &sp140);
-                    temp_r3->current.pos = (temp_r3->current.pos * (1.0f - field_0x33e8)) + (sp140 * field_0x33e8);
+                    grabActor->current.pos = (grabActor->current.pos * (1.0f - field_0x33e8)) + (sp140 * field_0x33e8);
                 }
             }
 
             if (checkUnderMove0BckNoArc(ANM_GRAB_UP)) {
-                f32 temp_f31_3 = 1.0f - ((sp1C->getFrame() - sp1C->getStart()) / (sp1C->getEnd() - sp1C->getStart()));
+                temp_f31 = 1.0f - ((framectrl->getFrame() - framectrl->getStart()) / (framectrl->getEnd() - framectrl->getStart()));
 
                 sp140.x = 0.0f;
-                sp140.z = field_0x33e4 * temp_f31_3;
+                sp140.z = field_0x33e4 * temp_f31;
 
                 f32 var_f30;
                 if (sp14) {
@@ -313,18 +328,18 @@ void daAlink_c::setGrabItemPos() {
                 }
 
                 if (mProcID == 0x70) {
-                    sp140.y = temp_f31_3 * (-13.789083f - var_f30);
+                    sp140.y = temp_f31 * (-13.789083f - var_f30);
                 } else {
-                    sp140.y = temp_f31_3 * (-13.825373f - var_f30);
+                    sp140.y = temp_f31 * (-13.825373f - var_f30);
                 }
 
                 mDoMtx_stack_c::multVecSR(&sp140, &sp140);
-                temp_r3->current.pos += sp140;
+                grabActor->current.pos += sp140;
             }
 
             if (mProcID == PROC_GRAB_PUT) {
                 if (checkMagneBootsOn()) {
-                    cXyz sp110 = temp_r3->current.pos - current.pos;
+                    cXyz sp110 = grabActor->current.pos - current.pos;
                     mDoMtx_multVecSR(mMagneBootInvMtx, &sp110, &sp110);
 
                     sp110.y = field_0x598;
@@ -338,29 +353,29 @@ void daAlink_c::setGrabItemPos() {
                     sp104 = sp110 - (sp104 * field_0x598);
 
                     if (grabLineCheck(&sp110, &sp104)) {
-                        if (temp_r3->current.pos.abs(sp110) > mObjLinChk.GetCrossP()->abs(sp110)) {
-                            temp_r3->speedF = 0.0f;
-                            temp_r3->current.pos = mObjLinChk.GetCross();
+                        if (grabActor->current.pos.abs(sp110) > mObjLinChk.GetCrossP()->abs(sp110)) {
+                            grabActor->speedF = 0.0f;
+                            grabActor->current.pos = mObjLinChk.GetCross();
                             freeGrabItem();
                             return;
                         }
                     }
                 } else {
-                    cXyz spF8(temp_r3->current.pos.x, current.pos.y + field_0x598, temp_r3->current.pos.z);
+                    cXyz spF8(grabActor->current.pos.x, current.pos.y + field_0x598, grabActor->current.pos.z);
                     mObjGndChk.SetPos(&spF8);
 
                     f32 temp_f1 = dComIfG_Bgsp().GroundCross(&mObjGndChk);
-                    if (temp_f1 > temp_r3->current.pos.y) {
-                        temp_r3->speedF = 0.0f;
-                        temp_r3->current.pos.y = temp_f1;
+                    if (temp_f1 > grabActor->current.pos.y) {
+                        grabActor->speedF = 0.0f;
+                        grabActor->current.pos.y = temp_f1;
                         freeGrabItem();
                         return;
                     }
                 }
             }
 
-            if (mProcID == PROC_GRAB_UP && mUnderFrameCtrl[0].getFrame() < 6.0f && temp_r3->current.pos.y < sp134.y) {
-                temp_r3->current.pos = sp134;
+            if (mProcID == PROC_GRAB_UP && mUnderFrameCtrl[0].getFrame() < 6.0f && grabActor->current.pos.y < sp134.y) {
+                grabActor->current.pos = sp134;
             }
         }
         return;
@@ -379,41 +394,41 @@ void daAlink_c::setGrabItemPos() {
 }
 
 void daAlink_c::freeGrabItem() {
-    fopAc_ac_c* temp_r3 = mGrabItemAcKeep.getActor();
+    fopAc_ac_c* grabActor = mGrabItemAcKeep.getActor();
 
-    if (temp_r3 != NULL) {
+    if (grabActor != NULL) {
         if (dComIfGp_event_runCheck() || mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e) {
-            fopAcM_OnStatus(temp_r3, 0x800);
+            fopAcM_OnStatus(grabActor, 0x800);
         }
 
-        fopAcM_cancelCarryNow(temp_r3);
+        fopAcM_cancelCarryNow(grabActor);
 
-        temp_r3->shape_angle.z = 0;
-        temp_r3->shape_angle.x = 0;
+        grabActor->shape_angle.z = 0;
+        grabActor->shape_angle.x = 0;
 
         if (checkGrabCarryActor()) {
-            temp_r3->current.angle.z = 0;
-            temp_r3->current.angle.x = 0;
+            grabActor->current.angle.z = 0;
+            grabActor->current.angle.x = 0;
         }
 
         if (checkModeFlg(0x400)) {
             fopAc_ac_c* temp_r3_2 = mRideAcKeep.getActor();
             if (temp_r3_2 != NULL) {
                 if (temp_r3_2->speedF > 0.0f) {
-                    temp_r3->speedF += temp_r3_2->speedF;
+                    grabActor->speedF += temp_r3_2->speedF;
                 }
-                temp_r3->current.angle.y = temp_r3_2->shape_angle.y;
+                grabActor->current.angle.y = temp_r3_2->shape_angle.y;
             }
         } else {
             cXyz sp14(current.pos.x, field_0x34e0.y, current.pos.z);
 
-            if (grabLineCheck(&sp14, &temp_r3->current.pos)) {
-                temp_r3->current.pos = mObjLinChk.GetCross();
+            if (grabLineCheck(&sp14, &grabActor->current.pos)) {
+                grabActor->current.pos = mObjLinChk.GetCross();
 
                 cM3dGPla sp20;
                 dComIfG_Bgsp().GetTriPla(mObjLinChk, &sp20);
                 if (cBgW_CheckBWall(sp20.mNormal.y)) {
-                    temp_r3->current.pos += sp20.mNormal * 10.0f;
+                    grabActor->current.pos += sp20.mNormal * 10.0f;
                 }
             }
         }
@@ -493,15 +508,15 @@ BOOL daAlink_c::checkGrabNotThrow() {
 }
 
 BOOL daAlink_c::checkNextActionGrab() {
-    fopAc_ac_c* temp_r3 = mGrabItemAcKeep.getActor();
-    if (temp_r3 == NULL) {
+    fopAc_ac_c* grabActor = mGrabItemAcKeep.getActor();
+    if (grabActor == NULL) {
         freeGrabItem();
         return 0;
     }
 
     setCarryArmAngle(0.0f, 1.0f);
 
-    if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == fopAc_attn_DOOR_e && fopAcM_CheckStatus(temp_r3, 0x2000000)) {
+    if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == fopAc_attn_DOOR_e && fopAcM_CheckStatus(grabActor, 0x2000000)) {
         setDoStatus(6);
     } else if ((field_0x27f4 == NULL) || !checkGrabTalkActor(field_0x27f4) || !setTalkStatus()) {
         if (checkModeFlg(0x400)) {
@@ -522,7 +537,9 @@ BOOL daAlink_c::checkNextActionGrab() {
         return 1;
     }
 
-    if (doTrigger() || (fopAcM_GetName(temp_r3) == PROC_NBOMB && ((daNbomb_c*)temp_r3)->checkPlayerMake() && (checkSetItemTrigger(0x50) || (((daNbomb_c*)temp_r3)->checkWaterBomb() && checkSetItemTrigger(0x71)) || (!((daNbomb_c*)temp_r3)->checkWaterBomb() && checkSetItemTrigger(0x70))))) {
+    daNbomb_c* var_r28 = (daNbomb_c*)grabActor;
+    if (doTrigger() || (fopAcM_GetName(grabActor) == PROC_NBOMB && var_r28->checkPlayerMake() && (checkSetItemTrigger(0x50) || (var_r28->checkWaterBomb() && checkSetItemTrigger(0x71)) || (!var_r28->checkWaterBomb() && checkSetItemTrigger(0x70))))) {
+        int _; // probably a debug fakematch
         if (dComIfGp_getDoStatus() == 0x14) {
             return procGrabPutInit();
         }
@@ -544,14 +561,14 @@ void daAlink_c::initGrabNextMode() {
 }
 
 void daAlink_c::setGrabItemThrow() {
-    fopAc_ac_c* temp_r3 = mGrabItemAcKeep.getActor();
-    if (temp_r3 != NULL) {
+    fopAc_ac_c* grabActor = mGrabItemAcKeep.getActor();
+    if (grabActor != NULL) {
         cXyz sp14;
-        temp_r3->current.angle.y = shape_angle.y;
+        grabActor->current.angle.y = shape_angle.y;
 
         if (checkWolf()) {
-            temp_r3->speedF = mpHIO->mItem.mBomb.m.mWolfThrowSpeedH;
-            temp_r3->speed.y = mpHIO->mItem.mBomb.m.mWolfThrowSpeedV;
+            grabActor->speedF = mpHIO->mItem.mBomb.m.mWolfThrowSpeedH;
+            grabActor->speed.y = mpHIO->mItem.mBomb.m.mWolfThrowSpeedV;
         } else {
             f32 var_f31;
             f32 var_f30;
@@ -569,33 +586,33 @@ void daAlink_c::setGrabItemThrow() {
                 mDoMtx_stack_c::YrotM(shape_angle.y);
                 mDoMtx_stack_c::multVecSR(&sp14, &sp14);
 
-                temp_r3->speedF = sp14.absXZ();
-                temp_r3->speed.y = sp14.y;
-                temp_r3->current.angle.y = sp14.atan2sX_Z();
+                grabActor->speedF = sp14.absXZ();
+                grabActor->speed.y = sp14.y;
+                grabActor->current.angle.y = sp14.atan2sX_Z();
 
                 sp14.set(0.0f, 15.0f, 90.0f);
                 mDoMtx_stack_c::multVecSR(&sp14, &sp14);
-                temp_r3->current.pos += sp14;
+                grabActor->current.pos += sp14;
             } else {
-                temp_r3->speedF = var_f31;
-                temp_r3->speed.y = var_f30;
-                temp_r3->current.angle.x = getBodyAngleXAtnActor(0);
+                grabActor->speedF = var_f31;
+                grabActor->speed.y = var_f30;
+                grabActor->current.angle.x = getBodyAngleXAtnActor(0);
 
-                temp_r3->current.pos.x += 90.0f * cM_ssin(shape_angle.y);
-                temp_r3->current.pos.y += 15.0f;
-                temp_r3->current.pos.z += 90.0f * cM_scos(shape_angle.y);
+                grabActor->current.pos.x += 90.0f * cM_ssin(shape_angle.y);
+                grabActor->current.pos.y += 15.0f;
+                grabActor->current.pos.z += 90.0f * cM_scos(shape_angle.y);
             }
 
             if (mTargetedActor != NULL && checkGrabSideThrowAnime()) {
-                sp14 = mTargetedActor->eyePos - temp_r3->current.pos;
+                sp14 = mTargetedActor->eyePos - grabActor->current.pos;
                 multVecMagneBootInvMtx(&sp14);
-                temp_r3->current.angle.y = sp14.atan2sX_Z();
-                temp_r3->shape_angle.y = temp_r3->current.angle.y;
+                grabActor->current.angle.y = sp14.atan2sX_Z();
+                grabActor->shape_angle.y = grabActor->current.angle.y;
             }
 
-            if (fopAcM_CheckCarryType(temp_r3, fopAcM_CARRY(fopAcM_CARRY_UNK_40 | fopAcM_CARRY_HEAVY))) {
+            if (fopAcM_CheckCarryType(grabActor, fopAcM_CARRY(fopAcM_CARRY_UNK_40 | fopAcM_CARRY_HEAVY))) {
                 voiceStart(Z2SE_AL_V_THROW_L);
-            } else if (dBomb_c::checkBombActor(temp_r3)) {
+            } else if (dBomb_c::checkBombActor(grabActor)) {
                 voiceStart(Z2SE_AL_V_ATTACK_S);
             } else {
                 voiceStart(Z2SE_AL_V_THROW_S);
@@ -735,7 +752,8 @@ int daAlink_c::procGrabReadyInit() {
 }
 
 int daAlink_c::procGrabReady() {
-    if (mGrabItemAcKeep.getActor() == NULL) {
+    fopAc_ac_c* var_r30 = mGrabItemAcKeep.getActor();
+    if (var_r30 == NULL) {
         return checkNextAction(0);
     }
 
@@ -841,7 +859,9 @@ int daAlink_c::procGrabThrowInit(int param_0) {
             field_0x343c = 5.0f;
         }
 
+        #if PLATFORM_GCN
         onNoResetFlg1(FLG1_UNK_10000000);
+        #endif
         return 1;
     }
 
@@ -1039,7 +1059,8 @@ int daAlink_c::procGrabWaitInit() {
 }
 
 int daAlink_c::procGrabWait() {
-    if (mGrabItemAcKeep.getActor() == NULL) {
+    fopAc_ac_c* temp_r30 = mGrabItemAcKeep.getActor();
+    if (temp_r30 == NULL) {
         if (checkGrabAnime()) {
             resetUpperAnime(UPPER_2, 3.0f);
         }
@@ -1082,7 +1103,8 @@ int daAlink_c::procGrabReboundInit(int param_0) {
 int daAlink_c::procGrabRebound() {
     daPy_frameCtrl_c* temp_r30 = &mUnderFrameCtrl[0];
 
-    if (mGrabItemAcKeep.getActor() == NULL) {
+    fopAc_ac_c* temp_r29 = mGrabItemAcKeep.getActor();
+    if (temp_r29 == NULL) {
         resetUpperAnime(UPPER_2, -1.0f);
         return checkNextAction(0);
     }
@@ -1175,16 +1197,14 @@ int daAlink_c::procInsectCatchInit() {
 int daAlink_c::procInsectCatch() {
     daPy_frameCtrl_c* frame_ctrl = &mUnderFrameCtrl[0];
 
-    if (frame_ctrl->checkAnmEnd()) {
+    if (checkAnmEnd(frame_ctrl)) {
         checkNextAction(0);
-    } else {
-        if (frame_ctrl->checkPass(field_0x3478)) {
-            fopAc_ac_c* actor = field_0x280c.getActor();
-            if (actor != NULL) {
-                fopAcM_setCarryNow(actor, 0);
-            }
+    } else if (frame_ctrl->checkPass(field_0x3478)) {
+        if (field_0x280c.getActor() != NULL) {
+            fopAcM_setCarryNow(field_0x280c.getActor(), 0);
         }
     }
+
     return true;
 }
 
@@ -1213,7 +1233,7 @@ int daAlink_c::procPickUpInit() {
     mProcVar2.field_0x300c = shape_angle.y;
     field_0x37c8 = field_0x27f4->current.pos - field_0x3510;
 
-    mGrabItemAcKeep.getActor();
+    fopAc_ac_c* var_r28 = mGrabItemAcKeep.getActor();
     mNormalSpeed = 0.0f;
 
     if (checkEquipAnime()) {
@@ -1585,7 +1605,7 @@ BOOL daAlink_c::checkPullBehindWall() {
 }
 
 void daAlink_c::offGoatStopGame() {
-    if (mSpecialMode == SMODE_GOAT_STOP) {
+    if (checkGoatStopGame()) {
         mSpecialMode = 0;
     }
 }
@@ -1848,12 +1868,13 @@ int daAlink_c::procPullMoveInit(int param_0) {
     mProcVar5.field_0x3012 = mProcVar0.field_0x3008;
 
     f32 var_f31;
+    int var_r29;
     if (mProcVar0.field_0x3008 != 0) {
         var_f31 = 1.0f;
         setSingleAnimeBase(ANM_PULL_START);
     } else {
         var_f31 = getPushPullAnimeSpeed();
-        setSingleAnimeBaseSpeed(ANM_PULL_LIGHT, var_f31, mpHIO->mPushpull.m.mPullInterpolation);
+        var_r29 = setSingleAnimeBaseSpeed(ANM_PULL_LIGHT, var_f31, mpHIO->mPushpull.m.mPullInterpolation);
     }
 
     mUnderFrameCtrl[0].setRate(var_f31);
@@ -1938,7 +1959,8 @@ int daAlink_c::procPullMove() {
     return 1;
 }
 
-static fopAc_ac_c* daAlink_searchGoat(fopAc_ac_c* i_actor, void*) {
+static fopAc_ac_c* daAlink_searchGoat(fopAc_ac_c* i_actor, void* i_data) {
+    UNUSED(i_data);
     if (fopAcM_GetName(i_actor) == PROC_COW) {
         return i_actor;
     }
@@ -2316,6 +2338,7 @@ int daAlink_c::procGoatCatch() {
 
     setDoStatusEmphasys(0x15);
 
+    daAlink_ANM var_r26;
     int temp_r25 = getDirectionFromShapeAngle();
     if (mNormalSpeed > 1.0f) {
         f32 temp_f30 = temp_r28->getFrame();
@@ -2325,6 +2348,7 @@ int daAlink_c::procGoatCatch() {
     
         field_0x2f9d = 0x60;
     
+        var_r26 = ANM_COW_CATCH;
         if (field_0x3198 > 0) {
             field_0x3198 += 1;
             cLib_chaseF(&mNormalSpeed, 30.0f, 1.0f);
@@ -2347,8 +2371,8 @@ int daAlink_c::procGoatCatch() {
             }
         }
 
-        if (!checkUnderMove0BckNoArc(ANM_COW_CATCH)) {
-            setSingleAnimeBase(ANM_COW_CATCH);
+        if (!checkUnderMove0BckNoArc(var_r26)) {
+            setSingleAnimeBase(var_r26);
             temp_r28->setFrame(temp_f30);
             getNowAnmPackUnder(UNDER_0)->setFrame(temp_f30);
         }
@@ -2360,7 +2384,7 @@ int daAlink_c::procGoatCatch() {
             setSingleAnimeBase(ANM_COW_PRESS);
             voiceStart(Z2SE_AL_V_LIFTUP_L);
         } else if (checkAnmEnd(temp_r28) && checkGoatStopGame()) {
-            dComIfGs_onTmpBit(dSv_event_tmp_flag_c::tempBitLabels[35]);
+            dComIfGs_onTmpBit((u16)dSv_event_tmp_flag_c::tempBitLabels[35]);
         }
 
         field_0x2f99 = 4;
@@ -2375,7 +2399,6 @@ int daAlink_c::procGoatCatch() {
                 mProcVar3.field_0x300e = temp_r25;
             }
 
-            daAlink_ANM var_r26;
             if (mProcVar3.field_0x300e == 2) {
                 if (temp_r27 == PROC_OBJ_GRA) {
                     ((daObj_GrA_c*)temp_r3)->setCrazyThrowLeft();
@@ -2418,7 +2441,8 @@ int daAlink_c::procGoatStrokeInit() {
     static_cast<daCow_c*>(field_0x280c.getActor())->setNaderu();
     mNormalSpeed = 0.0f;
 
-    if ((s16)(fopAcM_searchActorAngleY(field_0x27f4, this) - field_0x27f4->shape_angle.y) > 0) {
+    s16 var_r30 = fopAcM_searchActorAngleY(field_0x27f4, this) - field_0x27f4->shape_angle.y;
+    if (var_r30 > 0) {
         shape_angle.y = field_0x27f4->shape_angle.y - 0x4000;
     } else {
         shape_angle.y = field_0x27f4->shape_angle.y + 0x4000;
@@ -2429,9 +2453,9 @@ int daAlink_c::procGoatStrokeInit() {
     return 1;
 }
 
-
 int daAlink_c::procGoatStroke() {
-    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+    daPy_frameCtrl_c* framectrl = mUnderFrameCtrl;
+    if (checkAnmEnd(mUnderFrameCtrl)) {
         checkNextAction(0);
     }
 
