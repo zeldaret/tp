@@ -10,8 +10,13 @@
 #include "Z2AudioLib/Z2Calc.h" // IWYU pragma: export
 
 // Fixes weak function ordering
+#ifdef __MWERKS__
 #include "cmath.h" // IWYU pragma: export
 #include "string.h" // IWYU pragma: export
+#else
+#include <cmath>
+#include <string>
+#endif
 #include "JSystem/JUtility/JUTGamePad.h" // IWYU pragma: export
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" // IWYU pragma: export
 #include "JSystem/JHostIO/JORReflexible.h" // IWYU pragma: export

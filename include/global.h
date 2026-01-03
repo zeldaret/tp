@@ -45,8 +45,10 @@
 #define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
 
+#ifdef __MWERKS__
 #ifndef decltype
 #define decltype __decltype__
+#endif
 #endif
 
 #define JUT_EXPECT(...)

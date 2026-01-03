@@ -4,7 +4,11 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JGadget/define.h"
 #include "JSystem/JGadget/search.h"
+#ifdef __MWERKS__
 #include <iterator.h>
+#else
+#include <iterator>
+#endif
 
 
 namespace JGadget {
