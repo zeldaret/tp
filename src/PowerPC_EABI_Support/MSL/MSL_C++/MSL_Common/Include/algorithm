@@ -1,9 +1,9 @@
 #ifndef MSL_ALGORITHM_H_
 #define MSL_ALGORITHM_H_
 
-#include <iterator.h>
+#include <iterator>
 #include <string>
-#include <functional.h>
+#include <functional>
 #include "global.h"
 
 namespace std {

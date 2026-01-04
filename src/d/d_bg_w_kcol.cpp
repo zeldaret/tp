@@ -5,7 +5,7 @@
 #include "d/actor/d_a_horse.h"
 #include "d/d_bg_s_cap_poly.h"
 
-#include <algorithm.h>
+#include <algorithm>
 #include <math>
 
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"

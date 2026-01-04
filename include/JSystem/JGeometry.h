@@ -2,14 +2,13 @@
 #define JGEOMETRY_H
 
 #include "dolphin/mtx.h"
-#ifdef __MWERKS__
-#include <math>
-#else
 #include <cmath>
+#include "JSystem/JMath/JMath.h"
+
+#ifndef __MWERKS__
 #include <limits>
 #define FLT_EPSILON std::numeric_limits<float>::epsilon()
 #endif
-#include "JSystem/JMath/JMath.h"
 
 namespace JGeometry {
 

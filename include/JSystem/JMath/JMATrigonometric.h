@@ -2,11 +2,7 @@
 #define JMATRIGONOMETRIC_H
 
 #include "dolphin/types.h"
-#ifdef __MWERKS__
-#include <utility.h>
-#else
 #include <utility>
-#endif
 
 namespace JMath {
 template<typename T>

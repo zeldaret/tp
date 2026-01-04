@@ -2,13 +2,8 @@
 #define STD_VECTOR_H
 
 #include "JSystem/JGadget/std-memory.h"
-#ifdef __MWERKS__
-#include <algorithm.h>
-#include <msl_memory.h>
-#else
 #include <algorithm>
 #include <memory>
-#endif
 #include <stdint.h>
 
 namespace JGadget {

@@ -3,7 +3,7 @@
 
 #include "stdio"
 #include "stdlib"
-#include "algorithm.h"
+#include "algorithm"
 
 namespace std {
 // TODO: where does this go?

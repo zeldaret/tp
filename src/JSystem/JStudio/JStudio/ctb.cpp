@@ -1,9 +1,9 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
 #include "JSystem/JStudio/JStudio/ctb.h"
-#include "iterator.h"
+#include "iterator"
 #include "string"
-#include <algorithm.h>
+#include <algorithm>
 
 JStudio::ctb::TObject::~TObject() {}
 

@@ -3,7 +3,7 @@
 #include "JSystem/JMessage/resource.h"
 #include "JSystem/JGadget/search.h"
 #include "JSystem/JGadget/define.h"
-#include <algorithm.h>
+#include <algorithm>
 #include <string>
 
 u16 JMessage::TResource::toMessageIndex_messageID(u32 uMsgID, u32 upperHalf, bool* pbValid) const {
