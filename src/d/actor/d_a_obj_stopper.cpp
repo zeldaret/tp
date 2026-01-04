@@ -70,18 +70,18 @@ int daObjStopper_c::create() {
     if (!field_0x9fc) {
         field_0x9f8 = home.angle.x;
         field_0x9fa = home.angle.z;
-        home.angle.z = 0;
-        home.angle.x = 0;
-        current.angle.z = 0;
-        current.angle.x = 0;
-        shape_angle.z = 0;
-        shape_angle.x = 0;
+        home.angle.x = home.angle.z = 0;
+        current.angle.x = current.angle.z = 0;
+        shape_angle.x = shape_angle.z = 0;
         field_0x9fc = 1;
     }
-    cPhs__Step phase = (cPhs__Step)MoveBGCreate(NULL, -1, dBgS_MoveBGProc_TypicalRotY, 0x810, NULL);
-    if (phase != cPhs_ERROR_e) {
+    cPhs__Step phase = cPhs_COMPLEATE_e;
+    phase = (cPhs__Step)MoveBGCreate(NULL, -1, dBgS_MoveBGProc_TypicalRotY, 0x810, NULL);
+    if (phase == cPhs_ERROR_e) {
         return phase;
     }
+    OS_REPORT("STOPPER PARAM<0x%x>\n", fopAcM_GetParam(this));
+    return phase;
 }
 
 int daObjStopper_c::Execute(Mtx** param_0) {

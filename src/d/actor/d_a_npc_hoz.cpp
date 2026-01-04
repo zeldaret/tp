@@ -818,6 +818,25 @@ BOOL daNpc_Hoz_c::drawDbgInfo() {
 
 int daNpc_Hoz_c::test(void* i_this) {
     // DEBUG NONMATCHING
+    int r30 = 0;
+    switch (mMode) {
+    case 0:
+    case 1:
+        speedF = 0.0f;
+        speed.setall(0.0f);
+        mMode = 2;
+        // fall-through
+    case 2:
+        // TODO: determine pointer type of field_0xE40
+        mFaceMotionSeqMngr.setNo(field_0xE40, -1.0f, 0, 0);
+        mMotionSeqMngr.setNo(field_0xE40, -1.0f, 0, 0);
+        mJntAnm.lookNone(0);
+        attention_info.flags = 0;
+    case 3:
+    default:
+        break;
+    }
+    return r30;
 }
 
 int daNpc_Hoz_c::selectAction() {

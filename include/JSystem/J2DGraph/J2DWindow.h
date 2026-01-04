@@ -9,9 +9,16 @@ class JUTTexture;
 
 enum J2DTextureBase {
     TEXTUREBASE_0 = 0,
+    TEXTUREBASE_1 = 1,
+    TEXTUREBASE_2 = 2,
+    TEXTUREBASE_3 = 3,
 };
 
 enum J2DWindowMirror {
+    WINDOWMIRROR_39 = 39,
+    WINDOWMIRROR_114 = 114,
+    WINDOWMIRROR_141 = 141,
+    WINDOWMIRROR_216 = 216,
 };
 
 /**
