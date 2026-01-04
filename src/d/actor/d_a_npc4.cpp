@@ -2137,6 +2137,27 @@ static void dummyVirtual() {
     daNpcF_MoveBgActor_c dummy;
 }
 
+// see note in header, this fixes weak function order for daNpcF_MoveBgActor_c functions
+int daNpcF_MoveBgActor_c::MoveBGCreateHeap() {
+    return CreateHeap();
+}
+
+int daNpcF_MoveBgActor_c::MoveBGCreate() {
+    return Create();
+}
+
+int daNpcF_MoveBgActor_c::MoveBGDelete() {
+    return Delete();
+}
+
+int daNpcF_MoveBgActor_c::MoveBGExecute() {
+    return Execute((Mtx**)NULL);
+}
+
+int daNpcF_MoveBgActor_c::MoveBGDraw() {
+    return Draw();
+}
+
 dCcD_SrcGObjInf const daBaseNpc_c::mCcDObj = {
     {0, {{0, 0, 0}, {0x0, 0x0}, {0x79}}},
     {dCcD_SE_NONE, 0, 0, 0, 0},

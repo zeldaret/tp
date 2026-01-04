@@ -755,9 +755,9 @@ config.libs = [
             Object(Equivalent, "d/actor/d_a_alink.cpp"), # weak func order, vtable order
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_itembase.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_no_chg_room.cpp"),
-            Object(Equivalent, "d/actor/d_a_npc.cpp"), # weak func order (daNpcF_MoveBgActor_c::Delete)
+            Object(MatchingFor(ALL_GCN), "d/actor/d_a_npc.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_npc_cd.cpp"),
-            Object(NonMatching, "d/actor/d_a_npc_cd2.cpp"), # stripped vtable order
+            Object(MatchingFor(ALL_GCN), "d/actor/d_a_npc_cd2.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_obj_item.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_insect.cpp"),
             Object(MatchingFor(ALL_GCN), "d/actor/d_a_obj_ss_base.cpp"),
