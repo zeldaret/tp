@@ -108,10 +108,7 @@ public:
         }
     }
 
-    JKRHeap* getParent() {
-        JSUTree<JKRHeap>* parent = mChildTree.getParent();
-        return parent->getObject();
-    }
+    JKRHeap* getParent() { return mChildTree.getParent()->getObject(); }
 
     JSUTree<JKRHeap>& getHeapTree() { return mChildTree; }
     void appendDisposer(JKRDisposer* disposer) { mDisposerList.append(&disposer->mLink); }
@@ -119,7 +116,6 @@ public:
     void lock() const { OSLockMutex(const_cast<OSMutex*>(&mMutex)); }
     void unlock() const { OSUnlockMutex(const_cast<OSMutex*>(&mMutex)); }
     u32 getHeapSize() { return mSize; }
-    u8 getCurrentGroupId() { return 0; }
 
 protected:
     /* 0x00 */  // vtable

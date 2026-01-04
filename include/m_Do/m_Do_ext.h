@@ -148,7 +148,7 @@ STATIC_ASSERT(sizeof(mDoExt_bpkAnm) == 0x18);
 
 class mDoExt_bckAnm : public mDoExt_baseAnm {
 public:
-    mDoExt_bckAnm() { mpMtxCalc = NULL; }
+    mDoExt_bckAnm() { mAnm = NULL; }
     int init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_rate,
                             s16 i_startF, s16 i_endF, bool i_modify);
     void changeBckOnly(J3DAnmTransform* i_bck);
@@ -164,15 +164,15 @@ public:
         i_modelData->getJointNodePointer(0)->setMtxCalc(NULL);
     }
 
-    J3DAnmTransform* getBckAnm() { return mAnm; }
+    J3DAnmTransform* getBckAnm() { return mAnmTransform; }
 
     void removeJoint(J3DModelData* i_modelData, u16 i_idx) {
         i_modelData->getJointNodePointer(i_idx)->setMtxCalc(0);
     }
 
 private:
-    /* 0x14 */ J3DAnmTransform* mAnm;
-    /* 0x18 */ J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>* mpMtxCalc;
+    /* 0x14 */ J3DAnmTransform* mAnmTransform;
+    /* 0x18 */ J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>* mAnm;
 };  // Size: 0x1C
 
 STATIC_ASSERT(sizeof(mDoExt_bckAnm) == 0x1C);
@@ -811,10 +811,8 @@ J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag,
                                   u32 i_differedDlistFlag);
 
 extern u32 aram_cache_size;
+u32 mDoExt_getAraCacheSize();
 void mDoExt_setAraCacheSize(u32 size);
-inline u32 mDoExt_getAraCacheSize() {
-    return aram_cache_size;
-}
 
 int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id);
 void mDoExt_modelEntryDL(J3DModel* i_model);
