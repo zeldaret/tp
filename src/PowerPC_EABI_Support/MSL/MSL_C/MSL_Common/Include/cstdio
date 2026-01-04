@@ -7,7 +7,7 @@
 #include <extras.h>
 #include <scanf.h>
 #include <va_list>
-#include <cstddef.h>
+#include <cstddef>
 
 #define stdin (&__files._stdin)
 #define stdout (&__files._stdout)

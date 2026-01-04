@@ -1,7 +1,7 @@
 #ifndef _MSL_WCTYPE_H
 #define _MSL_WCTYPE_H
 
-#include <cstddef.h>
+#include <cstddef>
 
 #ifdef __cplusplus
 extern "C" {

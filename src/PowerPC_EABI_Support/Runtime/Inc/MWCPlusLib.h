@@ -1,7 +1,7 @@
 #ifndef MWCPLUSLIB_H
 #define MWCPLUSLIB_H
 
-#include <cstddef.h>
+#include <cstddef>
 
 #ifdef __cplusplus
 extern "C" {

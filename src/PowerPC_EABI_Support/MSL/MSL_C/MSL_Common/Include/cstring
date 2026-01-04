@@ -1,7 +1,7 @@
 #ifndef _MSL_CSTRING_H
 #define _MSL_CSTRING_H
 
-#include <cstddef.h>
+#include <cstddef>
 #include <ansi_files.h>
 #include <extras.h>
 
