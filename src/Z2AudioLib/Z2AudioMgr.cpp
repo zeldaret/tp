@@ -211,7 +211,7 @@ bool Z2AudioMgr::startSound(JAISoundID soundID, JAISoundHandle* handle,
     return mSoundMgr.startSound(soundID, handle, posPtr);
 }
 
-inline bool Z2AudioMgr::startLevelSound(JAISoundID soundID, JAISoundHandle* handle,
+bool Z2AudioMgr::startLevelSound(JAISoundID soundID, JAISoundHandle* handle,
                                  const JGeometry::TVec3<f32>* posPtr) {
     if (mResettingFlag) {
         return 0;
