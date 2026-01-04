@@ -3,7 +3,7 @@
 #include "critical_regions.h"
 #include "ctype.h"
 #include "scanf.h"
-#include "cmath.h"
+#include "cmath"
 #include "cstdio.h"
 #include "cstring.h"
 #include "cstdint.h"

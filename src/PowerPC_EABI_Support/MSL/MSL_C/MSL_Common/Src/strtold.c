@@ -4,8 +4,8 @@
 #include "locale.h"
 #include "ctype.h"
 #include "float.h"
-#include "cmath.h"
-#include "climits.h"
+#include "cmath"
+#include "climits"
 #include <errno.h>
 
 extern double nan(const char*);

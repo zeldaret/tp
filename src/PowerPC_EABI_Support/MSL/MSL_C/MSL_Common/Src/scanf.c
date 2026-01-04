@@ -1,6 +1,6 @@
 #include "scanf.h"
 #include <ctype.h>
-#include <cmath.h>
+#include <cmath>
 #include <cstdio.h>
 #include <cstdint.h>
 #include <strtoul.h>

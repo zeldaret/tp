@@ -56,7 +56,7 @@
  */
 
 #include "errno.h"
-#include "cmath.h"
+#include "cmath"
 
 #ifdef __STDC__
 static const double

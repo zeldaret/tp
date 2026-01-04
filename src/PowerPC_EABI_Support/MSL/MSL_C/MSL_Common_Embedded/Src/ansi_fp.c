@@ -1,7 +1,7 @@
 #include "ansi_fp.h"
 #include "ansi_fp.h"
-#include "climits.h"
-#include "cmath.h"
+#include "climits"
+#include "cmath"
 
 static int __count_trailing_zerol(unsigned long x) {
     int result = 0;

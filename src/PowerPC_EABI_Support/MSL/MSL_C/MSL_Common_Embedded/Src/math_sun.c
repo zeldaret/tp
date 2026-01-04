@@ -1,4 +1,4 @@
-#include <cmath.h>
+#include <cmath>
 
 double scalbn(double x, int n) {
     double mant;
