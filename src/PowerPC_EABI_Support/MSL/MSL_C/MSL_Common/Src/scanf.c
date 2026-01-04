@@ -1,7 +1,7 @@
 #include "scanf.h"
 #include <ctype.h>
 #include <cmath>
-#include <cstdio.h>
+#include <cstdio>
 #include <cstdint.h>
 #include <strtoul.h>
 #include <strtold.h>

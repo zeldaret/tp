@@ -1,7 +1,7 @@
 #ifndef MSL_STDIO_H_
 #define MSL_STDIO_H_
 
-#include <cstdio.h>
+#include <cstdio>
 #include <stddef.h>
 #include <stdarg.h>
 

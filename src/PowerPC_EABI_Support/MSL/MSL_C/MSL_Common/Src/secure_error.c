@@ -1,4 +1,4 @@
-#include <cstdio.h>
+#include <cstdio>
 
 typedef void (*constraint_handler_t)(const char*, void*, int);
 
