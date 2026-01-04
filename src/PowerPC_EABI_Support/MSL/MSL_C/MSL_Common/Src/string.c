@@ -1,4 +1,4 @@
-#include "cstring.h"
+#include "cstring"
 #include "global.h"
 
 #define K1 0x80808080

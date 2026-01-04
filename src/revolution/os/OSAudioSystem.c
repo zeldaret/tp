@@ -1,7 +1,7 @@
 #include <revolution.h>
 #include <revolution/os.h>
 
-#include <cstring.h>
+#include <cstring>
 
 #include "__os.h"
 

@@ -2,7 +2,7 @@
 #include <revolution/aralt.h>
 #include "sdk_math.h"
 
-#include <cstring.h>
+#include <cstring>
 
 #include "__ar.h"
 

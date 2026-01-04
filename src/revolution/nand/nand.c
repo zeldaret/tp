@@ -2,7 +2,7 @@
 #include <revolution/fs.h>
 #include <revolution/nand.h>
 
-#include <cstring.h>
+#include <cstring>
 
 static BOOL nandInspectPermission(u8);
 static void nandSplitPerm(u8, u32*, u32*, u32*);

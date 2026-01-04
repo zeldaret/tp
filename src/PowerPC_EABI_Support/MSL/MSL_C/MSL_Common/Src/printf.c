@@ -5,7 +5,7 @@
 #include "scanf.h"
 #include "cmath"
 #include "cstdio.h"
-#include "cstring.h"
+#include "cstring"
 #include "cstdint.h"
 #include "wchar_io.h"
 

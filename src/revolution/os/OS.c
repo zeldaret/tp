@@ -9,7 +9,7 @@
 #include "__os.h"
 #include "__dvd.h"
 
-#include <cstring.h>
+#include <cstring>
 
 #define NOP 0x60000000
 

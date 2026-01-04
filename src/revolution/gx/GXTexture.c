@@ -1,6 +1,6 @@
 #include <revolution/gx.h>
 #include <revolution/os.h>
-#include <cstring.h>
+#include <cstring>
 
 #include "__gx.h"
 
