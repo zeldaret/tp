@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_chkpoint.h"
-#include <math.h>
+#include <math>
 #include "d/actor/d_a_player.h"
 
 int daTag_Chk_c::execute() {

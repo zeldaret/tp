@@ -2,7 +2,7 @@
 #define C_XYZ_H
 
 #include "dolphin/mtx.h"
-#include <math.h>
+#include <math>
 
 struct cXyz : Vec {
     static const cXyz Zero;

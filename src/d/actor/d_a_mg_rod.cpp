@@ -22,7 +22,7 @@
 #include "c/c_damagereaction.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
-#include <math.h>
+#include <math>
 
 class dmg_rod_HIO_c : public JORReflexible {
 public:

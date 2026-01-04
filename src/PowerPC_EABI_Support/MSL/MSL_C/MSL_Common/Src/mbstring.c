@@ -1,6 +1,6 @@
 #include "mbstring.h"
 #include "cstring"
-#include <locale.h>
+#include <locale>
 
 #include "global.h"
 

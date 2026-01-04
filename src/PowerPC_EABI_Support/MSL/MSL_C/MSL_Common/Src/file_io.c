@@ -1,5 +1,5 @@
 #include "file_io.h"
-#include "ctype.h"
+#include "ctype"
 
 int fclose(FILE* file) {
     int flush_result, close_result;

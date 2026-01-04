@@ -4,7 +4,7 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTDirectFile.h"
-#include <math.h>
+#include <math>
 #include <stdio.h>
 #include <stdlib.h>
 #include <dolphin/dolphin.h>

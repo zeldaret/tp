@@ -10,7 +10,7 @@
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
-#include <math.h>
+#include <math>
 #include "string.h"
 #include <stdint.h>
 

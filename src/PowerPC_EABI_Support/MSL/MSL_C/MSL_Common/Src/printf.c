@@ -1,7 +1,7 @@
 #include "printf.h"
 #include "ansi_fp.h"
 #include "critical_regions.h"
-#include "ctype.h"
+#include "ctype"
 #include "scanf.h"
 #include "cmath"
 #include "cstdio"

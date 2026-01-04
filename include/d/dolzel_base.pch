@@ -11,7 +11,7 @@
 
 // Fixes weak function ordering
 #ifdef __MWERKS__
-#include "math.h" // IWYU pragma: export
+#include "math" // IWYU pragma: export
 #include "cstring" // IWYU pragma: export
 #else
 #include <math>

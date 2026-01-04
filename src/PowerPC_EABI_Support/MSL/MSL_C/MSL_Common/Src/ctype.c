@@ -1,5 +1,5 @@
 
-#include "locale.h"
+#include "locale"
 
 #include "global.h"
 
@@ -7,7 +7,7 @@
 #undef MSL_INLINE
 #define MSL_INLINE __declspec(weak)
 
-#include "ctype.h"
+#include "ctype"
 
 #if PLATFORM_GCN
 #define ctrl __control_char

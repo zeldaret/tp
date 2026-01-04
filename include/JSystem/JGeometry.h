@@ -3,7 +3,7 @@
 
 #include "dolphin/mtx.h"
 #ifdef __MWERKS__
-#include <math.h>
+#include <math>
 #else
 #include <cmath>
 #include <limits>

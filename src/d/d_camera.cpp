@@ -3,7 +3,7 @@
 #include "d/d_camera.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
-#include <math.h>
+#include <math>
 #include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_boomerang.h"
 #include "d/actor/d_a_horse.h"
@@ -21,7 +21,7 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
-#include <math.h>
+#include <math>
 
 namespace {
 
