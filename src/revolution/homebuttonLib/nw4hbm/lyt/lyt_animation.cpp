@@ -4,7 +4,7 @@
 #include "layout.h"
 #include "pane.h"
 
-#include "new.h"
+#include "new"
 #include <string>
 
 namespace {
