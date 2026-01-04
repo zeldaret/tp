@@ -3,7 +3,7 @@
 #include "common.h"
 #include "layout.h"
 
-#include <string.h>
+#include <string>
 #include <new.h>
 
 

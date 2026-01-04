@@ -4,7 +4,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JHostIO/JHIRMcc.h"
 #include <revolution/hio2.h>
-#include <string.h>
+#include <string>
 
 void JHIReport(const char* fmt, ...) {}
 

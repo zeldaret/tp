@@ -9,7 +9,7 @@
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dolphin/os.h"
-#include "string.h"
+#include "string"
 
 void* J3DClusterLoaderDataBase::load(const void* i_data) {
     const JUTDataFileHeader* fileHeader = (JUTDataFileHeader*)i_data;

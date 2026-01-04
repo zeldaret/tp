@@ -8,7 +8,7 @@
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JUtility/JUTException.h"
-#include "string.h"
+#include "string"
 #include <dolphin/os.h>
 #include "dolphin/vi.h"
 #include <stdint.h>

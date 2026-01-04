@@ -7,7 +7,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 
 #include "ctype"
-#include "string.h"
+#include "string"
 #include "global.h"
 
 JKRFileCache* JKRFileCache::mount(const char* path, JKRHeap* heap, const char* param_3) {

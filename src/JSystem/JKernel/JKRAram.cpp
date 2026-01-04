@@ -8,7 +8,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "dolphin/ar.h"
 #include <dolphin/os.h>
-#include "string.h"
+#include "string"
 
 static u8* firstSrcData();
 static u8* nextSrcData(u8* param_0);

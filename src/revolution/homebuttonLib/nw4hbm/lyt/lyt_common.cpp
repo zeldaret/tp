@@ -2,7 +2,7 @@
 
 #include "layout.h"
 
-#include <string.h>
+#include <string>
 
 namespace nw4hbm {
     namespace lyt {

@@ -6,7 +6,7 @@
 #include "CharWriter.h"
 #include "Rect.h"
 
-#include <string.h>
+#include <string>
 #include <stdio.h>
 
 #include "TagProcessorBase.h"

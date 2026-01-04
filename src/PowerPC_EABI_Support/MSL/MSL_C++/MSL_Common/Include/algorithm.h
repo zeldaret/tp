@@ -2,7 +2,7 @@
 #define MSL_ALGORITHM_H_
 
 #include <iterator.h>
-#include <string.h>
+#include <string>
 #include <functional.h>
 #include "global.h"
 

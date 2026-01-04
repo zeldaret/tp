@@ -14,7 +14,7 @@
 #include "d/d_s_play.h"
 #include "SSystem/SComponent/c_counter.h"
 #ifdef __MWERKS__
-#include <string.h>
+#include <string>
 #else
 #include <cstring>
 #endif

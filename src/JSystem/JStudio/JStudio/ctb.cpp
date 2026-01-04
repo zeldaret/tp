@@ -2,7 +2,7 @@
 
 #include "JSystem/JStudio/JStudio/ctb.h"
 #include "iterator.h"
-#include "string.h"
+#include "string"
 #include <algorithm.h>
 
 JStudio::ctb::TObject::~TObject() {}

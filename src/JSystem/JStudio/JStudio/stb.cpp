@@ -4,7 +4,7 @@
 #include "JSystem/JStudio/JStudio/jstudio-object.h"
 #include "JSystem/JUtility/JUTException.h"
 #include <algorithm.h>
-#include <string.h>
+#include <string>
 
 namespace JStudio {
 namespace stb {

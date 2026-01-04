@@ -5,7 +5,7 @@
 #include "pane.h"
 
 #include "new.h"
-#include <string.h>
+#include <string>
 
 namespace {
     // pretend this is nw4hbm::lyt

@@ -6,7 +6,7 @@
 #include <printf.h>
 #include <extras.h>
 #include <scanf.h>
-#include <va_list.h>
+#include <va_list>
 #include <cstddef.h>
 
 #define stdin (&__files._stdin)

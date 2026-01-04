@@ -3,7 +3,7 @@
 #include "JSystem/JKernel/JKRArchive.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "ctype"
-#include "string.h"
+#include "string"
 
 u32 JKRArchive::sCurrentDirID;
 
