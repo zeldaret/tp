@@ -1,4 +1,4 @@
-#include <cstdarg.h>
+#include <cstdarg>
 #include <cstdint.h>
 
 #undef __va_arg
