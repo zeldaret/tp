@@ -8,7 +8,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
 #include <math>
-#include "string"
+#include <string>
 
 JKRAramArchive::JKRAramArchive(s32 entryNumber, JKRArchive::EMountDirection mountDirection)
     : JKRArchive(entryNumber, MOUNT_ARAM) {

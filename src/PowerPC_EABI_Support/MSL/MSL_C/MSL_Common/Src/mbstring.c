@@ -1,5 +1,5 @@
 #include "mbstring.h"
-#include "cstring"
+#include <cstring>
 #include <locale>
 
 #include "global.h"

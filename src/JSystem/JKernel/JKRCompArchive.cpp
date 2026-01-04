@@ -11,7 +11,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
 #include <math>
-#include "string"
+#include <string>
 #include <stdint>
 
 JKRCompArchive::JKRCompArchive(s32 entryNum, JKRArchive::EMountDirection eMountDirection)

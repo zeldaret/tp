@@ -2,7 +2,7 @@
 #include <revolution/fs.h>
 #include <revolution/nand.h>
 #include <cstring>
-#include <printf.h>
+#include <cstdio>
 
 static IOSFd s_fd = -255;
 static IOSError s_err = ISFS_ERROR_UNKNOWN;
