@@ -31,7 +31,7 @@ void daAlink_c::cancelSumouMode() {
 }
 
 BOOL daAlink_c::sumouPunchTrigger() {
-    return itemTriggerCheck(BTN_B);
+    return swordTrigger();
 }
 
 void daAlink_c::setSumouPunchStatus() {
@@ -113,8 +113,7 @@ int daAlink_c::procSumouReady() {
 
         if (mSpecialMode == 0x1C || mSpecialMode == 0x1B || mProcVar2.field_0x300c != 0 ||
             mProcVar3.field_0x300e != 0 ||
-            (static_cast<daNpcWrestler_c*>(mCargoCarryAcKeep.getActor())->getWrestlerAction() ==
-                 3 &&
+            (static_cast<daNpcWrestler_c*>(mCargoCarryAcKeep.getActor())->getWrestlerAction() == 3 &&
              !checkZeroSpeedF()))
         {
             procSumouActionInit(mProcVar2.field_0x300c, mProcVar3.field_0x300e, 0);
@@ -126,7 +125,6 @@ int daAlink_c::procSumouReady() {
     return 1;
 }
 
-
 int daAlink_c::procSumouMoveInit() {
     daNpcWrestler_c* wrestler_p = (daNpcWrestler_c*)mCargoCarryAcKeep.getActor();
     commonProcInit(PROC_SUMOU_MOVE);
@@ -136,12 +134,15 @@ int daAlink_c::procSumouMoveInit() {
 
     daAlink_ANM anm;
     if (mSpecialMode == 15 || mSpecialMode == 16) {
-        if (wrestler_p->getWrestlerType() != 0) {
-            anm = ANM_SUMOU_TACKLE_WAIT_GORON;
-        } else {
+        #if VERSION == VERSION_SHIELD_DEBUG  // probably a fakematch
+        if (wrestler_p->getWrestlerType() == 0) {
             anm = ANM_SUMOU_TACKLE_WAIT;
+        } else {
+            anm = ANM_SUMOU_TACKLE_WAIT_GORON;
         }
-
+        #else
+        anm = wrestler_p->getWrestlerType() != 0 ? ANM_SUMOU_TACKLE_WAIT_GORON : ANM_SUMOU_TACKLE_WAIT;
+        #endif
         setSingleAnimeBase(anm);
         mSpeedModifier = 1.0f;
         mSpecialMode = 7;
@@ -150,12 +151,15 @@ int daAlink_c::procSumouMoveInit() {
         field_0x3478 = 5.0f;
         field_0x32cc = Z2SE_AL_V_SUMO_PUSH;
     } else {
-        if (wrestler_p->getWrestlerType() != 0) {
-            anm = ANM_SUMOU_TACKLE_STAGGER_GORON;
-        } else {
+        #if VERSION == VERSION_SHIELD_DEBUG  // probably a fakematch
+        if (wrestler_p->getWrestlerType() == 0) {
             anm = ANM_SUMOU_TACKLE_STAGGER;
+        } else {
+            anm = ANM_SUMOU_TACKLE_STAGGER_GORON;
         }
-
+        #else
+        anm = wrestler_p->getWrestlerType() != 0 ? ANM_SUMOU_TACKLE_STAGGER_GORON : ANM_SUMOU_TACKLE_STAGGER;
+        #endif
         setSingleAnimeBase(anm);
         mSpeedModifier = -1.0f;
         mSpecialMode = 8;
@@ -173,7 +177,6 @@ int daAlink_c::procSumouMoveInit() {
     setFootEffectProcType(5);
     return 1;
 }
-
 
 int daAlink_c::procSumouMove() {
     field_0x2f99 = 4;
@@ -246,11 +249,15 @@ int daAlink_c::procSumouMove() {
 
             if (mSpeedModifier > 0.0f) {
                 daAlink_ANM anm;
-                if (wrestler_p->getWrestlerType() != 0) {
-                    anm = ANM_SUMOU_PULL_BACK_GORON;
-                } else {
+                #if VERSION == VERSION_SHIELD_DEBUG  // probably a fakematch
+                if (wrestler_p->getWrestlerType() == 0) {
                     anm = ANM_SUMOU_PULL_BACK;
+                } else {
+                    anm = ANM_SUMOU_PULL_BACK_GORON;
                 }
+                #else
+                anm = wrestler_p->getWrestlerType() != 0 ? ANM_SUMOU_PULL_BACK_GORON : ANM_SUMOU_PULL_BACK;
+                #endif
 
                 setSingleAnimeBase(anm);
                 mSpecialMode = 0x24;
@@ -310,7 +317,6 @@ int daAlink_c::procSumouMove() {
 
     return 1;
 }
-
 
 int daAlink_c::procSumouSideMoveInit() {
     commonProcInit(PROC_SUMOU_SIDE_MOVE);
@@ -417,13 +423,15 @@ int daAlink_c::procSumouSideMove() {
             mSpeedModifier = 1.0f;
         }
 
+        daPy_frameCtrl_c* framectrl = mUnderFrameCtrl;
+
         if (field_0x2f98 == 3) {
             mSpecialMode = 0x18;
         } else {
             mSpecialMode = 0x17;
         }
 
-        mUnderFrameCtrl[0].setRate(mNormalSpeed / field_0x594);
+        framectrl->setRate(mNormalSpeed / field_0x594);
         initBasAnime();
         field_0x2f9d = 0x60;
     }
@@ -431,8 +439,8 @@ int daAlink_c::procSumouSideMove() {
     return 1;
 }
 
-
-int daAlink_c::procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int unused) {
+int daAlink_c::procSumouActionInit(BOOL i_isDoTrigger, BOOL i_isPunchTrigger, int unused) {
+    UNUSED(unused);
     commonProcInit(PROC_SUMOU_ACTION);
 
     daNpcWrestler_c* wrestler_p = (daNpcWrestler_c*)mCargoCarryAcKeep.getActor();
@@ -444,57 +452,51 @@ int daAlink_c::procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int un
         mSpecialMode = 0x22;
         anm = ANM_SUMOU_PUNCH_SHOCK;
     } else if (mSpecialMode == 0x1C) {
-        i_doTrigger = FALSE;
-        i_punchTrigger = FALSE;
+        i_isDoTrigger = FALSE;
+        i_isPunchTrigger = FALSE;
         mSpecialMode = 0x1E;
 
         if (!checkZeroSpeedF()) {
-            daAlink_ANM var_r0;
             if (field_0x2f98 == 2) {
-                var_r0 = ANM_SUMOU_FIGHT_STEP_LEFT;
+                anm = ANM_SUMOU_FIGHT_STEP_LEFT;
             } else {
-                var_r0 = ANM_SUMOU_FIGHT_STEP_RIGHT;
+                anm = ANM_SUMOU_FIGHT_STEP_RIGHT;
             }
-
-            anm = var_r0;
             mProcVar5.field_0x3012 = 1;
         } else {
             anm = ANM_SUMOU_PUNCH_SHOCK;
         }
     } else if (mSpecialMode == 0x1B) {
-        i_doTrigger = FALSE;
-        i_punchTrigger = FALSE;
+        i_isDoTrigger = FALSE;
+        i_isPunchTrigger = FALSE;
         mSpecialMode = 0x1D;
         anm = ANM_SUMOU_TACKLE_SHOCK;
     } else if (wrestler_action == 2) {
-        if (i_doTrigger) {
+        if (i_isDoTrigger) {
             mSpecialMode = 0x10;
             anm = ANM_SUMOU_DODGE_TACKLE;
-        } else if (i_punchTrigger) {
+        } else if (i_isPunchTrigger) {
             mSpecialMode = 0x15;
             anm = ANM_SUMOU_PUNCH_MISS_SHOCK_RETURN;
         } else {
             mSpecialMode = 0x1E;
 
             if (!checkZeroSpeedF()) {
-                daAlink_ANM var_r0_2;
                 if (field_0x2f98 == 2) {
-                    var_r0_2 = ANM_SUMOU_FIGHT_STEP_LEFT;
+                    anm = ANM_SUMOU_FIGHT_STEP_LEFT;
                 } else {
-                    var_r0_2 = ANM_SUMOU_FIGHT_STEP_RIGHT;
+                    anm = ANM_SUMOU_FIGHT_STEP_RIGHT;
                 }
-
-                anm = var_r0_2;
                 mProcVar5.field_0x3012 = 1;
             } else {
                 anm = ANM_SUMOU_PUNCH_SHOCK;
             }
         }
     } else if (wrestler_action == 3) {
-        if (i_doTrigger) {
+        if (i_isDoTrigger) {
             mSpecialMode = 0x12;
             anm = ANM_SUMOU_TACKLE_SHOCK_RETURN;
-        } else if (i_punchTrigger) {
+        } else if (i_isPunchTrigger) {
             mSpecialMode = 0x14;
             anm = ANM_SUMOU_PUNCH_MISS_SHOCK;
         } else if (!checkZeroSpeedF()) {
@@ -510,7 +512,7 @@ int daAlink_c::procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int un
             anm = ANM_SUMOU_TACKLE_SHOCK;
         }
     } else if (wrestler_action == 1) {
-        if (i_doTrigger) {
+        if (i_isDoTrigger) {
             mSpecialMode = 0x11;
             anm = ANM_SUMOU_TACKLE_MISS;
         } else {
@@ -518,14 +520,14 @@ int daAlink_c::procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int un
             anm = ANM_SUMOU_PUNCH;
         }
     } else if (wrestler_p->getWrestlerType() != 0 && !checkEquipHeavyBoots()) {
-        if (i_doTrigger) {
+        if (i_isDoTrigger) {
             mSpecialMode = 0x12;
             anm = ANM_SUMOU_TACKLE_SHOCK_RETURN;
         } else {
             mSpecialMode = 0x15;
             anm = ANM_SUMOU_PUNCH_MISS_SHOCK_RETURN;
         }
-    } else if (i_doTrigger) {
+    } else if (i_isDoTrigger) {
         mSpecialMode = 0xF;
         if (wrestler_p->getWrestlerType() == 0) {
             anm = ANM_SUMOU_TACKLE;
@@ -549,11 +551,11 @@ int daAlink_c::procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int un
         field_0x2f98 = 3;
         dComIfGp_setAdvanceDirection(4);
         mProcVar4.field_0x3010 = shape_angle.y + 0x2800;
-    } else if (i_doTrigger) {
+    } else if (i_isDoTrigger) {
         setDoStatusEmphasys(0x15);
         mProcVar3.field_0x300e = 0x15;
         field_0x2f98 = 4;
-    } else if (i_punchTrigger) {
+    } else if (i_isPunchTrigger) {
         setSumouPunchStatus();
         mProcVar3.field_0x300e = 0x44;
         field_0x2f98 = 4;
@@ -567,13 +569,13 @@ int daAlink_c::procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int un
         field_0x2f98 = 4;
     }
 
-    f32 var_f31;
+    f32 anm_frame;
     if ((anm == ANM_SUMOU_FIGHT_STEP_RIGHT || anm == ANM_SUMOU_FIGHT_STEP_LEFT) &&
         mUnderAnmHeap[0].getIdx() != (getMainBckData(anm)->m_underID & 0xFFF))
     {
-        var_f31 = mUnderFrameCtrl[0].getFrame();
+        anm_frame = mUnderFrameCtrl[0].getFrame();
     } else {
-        var_f31 = 0.0f;
+        anm_frame = 0.0f;
     }
 
     mProcVar2.field_0x300c = 0;
@@ -587,8 +589,8 @@ int daAlink_c::procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int un
     }
 
     setSingleAnime(anm, 1.0f, 0.0f, end_frame, 3.0f);
-    mUnderFrameCtrl[0].setFrame(var_f31);
-    getNowAnmPackUnder(UNDER_0)->setFrame(var_f31);
+    mUnderFrameCtrl[0].setFrame(anm_frame);
+    getNowAnmPackUnder(UNDER_0)->setFrame(anm_frame);
 
     cLib_addCalcAngleS(&shape_angle.y,
                        cLib_targetAngleY(&current.pos, &mCargoCarryAcKeep.getActor()->current.pos),
@@ -633,7 +635,6 @@ int daAlink_c::procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int un
 
     return 1;
 }
-
 
 int daAlink_c::procSumouAction() {
     field_0x2f99 = 4;
@@ -725,7 +726,6 @@ int daAlink_c::procSumouAction() {
     return 1;
 }
 
-
 int daAlink_c::procSumouStaggerInit() {
     commonProcInit(PROC_SUMOU_STAGGER);
 
@@ -751,7 +751,7 @@ int daAlink_c::procSumouStagger() {
 
     mProcVar0.field_0x3008--;
     if (mSpecialMode == 0x1C || mSpecialMode == 0x21 || mSpecialMode == 0x1B) {
-        procSumouActionInit(0, 0, 0);
+        procSumouActionInit(FALSE, FALSE, 0);
     } else if (mProcVar0.field_0x3008 == 0) {
         procSumouSideMoveInit();
     }
@@ -774,11 +774,16 @@ int daAlink_c::procSumouWinLoseInit() {
         mProcVar2.field_0x300c = 1;
     } else if (mSpecialMode == 0xD) {
         field_0x2f99 = 12;
-        if (wrestler_p->getWrestlerType() != 0) {
-            anm = ANM_SUMOU_WIN_GORON;
-        } else {
+
+        #if VERSION == VERSION_SHIELD_DEBUG  // probably a fakematch
+        if (wrestler_p->getWrestlerType() == 0) {
             anm = ANM_SUMOU_WIN;
+        } else {
+            anm = ANM_SUMOU_WIN_GORON;
         }
+        #else
+        anm = wrestler_p->getWrestlerType() != 0 ? ANM_SUMOU_WIN_GORON : ANM_SUMOU_WIN;
+        #endif
 
         setSingleAnimeBase(anm);
         mProcVar2.field_0x300c = 1;
@@ -796,11 +801,15 @@ int daAlink_c::procSumouWinLoseInit() {
             field_0x32cc = Z2SE_AL_V_SUMO_FALL_LOSE;
         }
 
-        if (wrestler_p->getWrestlerType() != 0) {
-            anm = ANM_SUMOU_LOSE_GORON;
-        } else {
+        #if VERSION == VERSION_SHIELD_DEBUG  // probably a fakematch
+        if (wrestler_p->getWrestlerType() == 0) {
             anm = ANM_SUMOU_LOSE;
+        } else {
+            anm = ANM_SUMOU_LOSE_GORON;
         }
+        #else
+        anm = wrestler_p->getWrestlerType() != 0 ? ANM_SUMOU_LOSE_GORON : ANM_SUMOU_LOSE;
+        #endif
 
         setSingleAnime(anm, 1.0f, start_frame, -1, 3.0f);
         field_0x2f99 = 15;
@@ -817,7 +826,6 @@ int daAlink_c::procSumouWinLoseInit() {
     field_0x33b0 = 20.0f;
     return 1;
 }
-
 
 int daAlink_c::procSumouWinLose() {
     if (mProcVar3.field_0x300e == 0) {
@@ -860,7 +868,6 @@ int daAlink_c::procSumouWinLose() {
     return 1;
 }
 
-
 int daAlink_c::procSumouShikoInit() {
     if (!commonProcInitNotSameProc(PROC_SUMOU_SHIKO)) {
         return 0;
@@ -875,7 +882,7 @@ int daAlink_c::procSumouShikoInit() {
     mSpecialMode = 0;
 
     setFootEffectProcType(5);
-    deleteEquipItem(0, 1);
+    deleteEquipItem(FALSE, TRUE);
     return 1;
 }
 

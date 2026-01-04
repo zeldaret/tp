@@ -169,7 +169,7 @@ public:
     void resetDirectUseItem() { mDirectUseItem = 0; }
     u16 getFloatingFlowID() { return mFloatingFlowID; }
     bool isFloatingMessageWakuVisible() { return mFloatingMessageWakuVisible; }
-    void onBlinkButton(int i_flag) { mBlinkButton |= i_flag; }
+    void onBlinkButton(int i_flag) { mBlinkButton |= (u16)i_flag; }
     bool isBlinkButton(int i_flag) { return (mBlinkButton & (u16)i_flag) != 0 ? true : false; }
     void resetBlinkButton() { mBlinkButton = 0; }
     s16 getFloatingMessageTimer() { return mFloatingMessageTimer; }

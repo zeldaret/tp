@@ -5844,9 +5844,9 @@ public:
     void initGrabNextMode();
     void setGrabItemThrow();
     BOOL checkUpperGrabItemThrow(f32);
-    void putObjLineCheck(dBgS_LinChk&, cXyz*, fopAc_ac_c*);
-    bool grabLineCheck(cXyz*, cXyz*);
-    void setGrabItemActor(fopAc_ac_c*);
+    void putObjLineCheck(dBgS_LinChk& i_linchk, cXyz* i_endpos, fopAc_ac_c* i_objActor);
+    bool grabLineCheck(cXyz* i_start, cXyz* i_end);
+    void setGrabItemActor(fopAc_ac_c* i_actor);
     int procGrabReadyInit();
     int procGrabReady();
     int procGrabUpInit();
@@ -5862,7 +5862,7 @@ public:
     int procGrabRebound();
     int procGrabStandInit();
     int procGrabStand();
-    BOOL checkInsectActorName(fopAc_ac_c*);
+    BOOL checkInsectActorName(fopAc_ac_c* i_insectActor);
     int procInsectCatchInit();
     int procInsectCatch();
     int procPickUpInit();
@@ -5878,15 +5878,15 @@ public:
     int procFmChainUp();
     int procFmChainStrongPullInit();
     int procFmChainStrongPull();
-    void setWallGrabStatus(u8, u8);
+    void setWallGrabStatus(u8 i_status, u8 i_flag);
     int getWallGrabStatus();
     BOOL wallGrabTrigger();
     BOOL wallGrabButton();
-    int setPushPullKeepData(dBgW_Base::PushPullLabel, int);
+    int setPushPullKeepData(dBgW_Base::PushPullLabel i_label, BOOL);
     BOOL checkPushPullTurnBlock();
     BOOL checkPullBehindWall();
     void offGoatStopGame();
-    BOOL checkGoatCatchActor(fopAc_ac_c*);
+    BOOL checkGoatCatchActor(fopAc_ac_c* i_actor);
     f32 getGoatCatchDistance2();
     int endPushPull();
     f32 getPushPullAnimeSpeed();
@@ -5896,10 +5896,10 @@ public:
     int procCoPushMove();
     int procPullMoveInit(int);
     int procPullMove();
-    void setGoatStopGameFail(fopAc_ac_c*);
+    void setGoatStopGameFail(fopAc_ac_c* i_actor);
     int procGoatMoveInit();
     int procGoatMove();
-    int procGoatCatchInit(fopAc_ac_c*, f32);
+    int procGoatCatchInit(fopAc_ac_c* i_actor, f32);
     int procGoatCatch();
     int procGoatStrokeInit();
     int procGoatStroke();
@@ -5915,7 +5915,7 @@ public:
     int procSumouMove();
     int procSumouSideMoveInit();
     int procSumouSideMove();
-    int procSumouActionInit(BOOL i_doTrigger, BOOL i_punchTrigger, int unused);
+    int procSumouActionInit(BOOL i_isDoTrigger, BOOL i_isPunchTrigger, int unused);
     int procSumouAction();
     int procSumouStaggerInit();
     int procSumouStagger();
@@ -6985,14 +6985,14 @@ public:
     virtual void setAnimeFrame(f32);
     virtual BOOL checkWolfLock(fopAc_ac_c*) const;
     virtual bool cancelWolfLock(fopAc_ac_c*);
-    virtual BOOL exchangeGrabActor(fopAc_ac_c*);
-    virtual BOOL setForceGrab(fopAc_ac_c*, int, int);
+    virtual BOOL exchangeGrabActor(fopAc_ac_c* i_actor);
+    virtual BOOL setForceGrab(fopAc_ac_c* i_actor, BOOL, BOOL);
     virtual u32 checkPlayerNoDraw();
     virtual void voiceStart(u32);
     virtual void seStartOnlyReverb(u32);
     virtual void seStartOnlyReverbLevel(u32);
     virtual void setOutPower(f32, short, int);
-    virtual void setGrabCollisionOffset(f32, f32, cBgS_PolyInfo*);
+    virtual void setGrabCollisionOffset(f32 i_offsetX, f32 i_offsetZ, cBgS_PolyInfo*);
     virtual void onFrollCrashFlg(u8, int);
     virtual MtxP getModelJointMtx(u16);
     virtual bool setHookshotCarryOffset(fpc_ProcID, cXyz const*);
@@ -7253,7 +7253,7 @@ public:
     int getStartRoomNo() { return fopAcM_GetParam(this) & 0x3F; }
     bool checkFisingRodLure() const { return mEquipItem == 0x105; }
     BOOL doTrigger() const { return mItemTrigger & BTN_A; }
-    bool swordTrigger() { return itemTriggerCheck(BTN_B); }
+    BOOL swordTrigger() { return itemTriggerCheck(BTN_B); }
     BOOL grassCancelTrigger() { return itemTriggerCheck(BTN_B); }
     BOOL arrowChangeTrigger() { return itemActionTrigger(); }
     BOOL peepSubjectCancelTrigger() { return itemTriggerCheck(BTN_B); }
@@ -7568,7 +7568,7 @@ public:
     BOOL checkStartFall() { return getStartMode() == 3; }
 
     u8 getBStatus() { return dComIfGp_getAStatus(); }
-    void setRStatus(u8 param_0, u8 param_1) { dComIfGp_setRStatus(param_0, param_1); }
+    void setRStatus(u8 i_status, u8 i_flag) { dComIfGp_setRStatus(i_status, i_flag); }
 
     BOOL checkWindSpeedMoveXZ() const { return mWindSpeed.abs2XZ() > 1.0f; }
 
