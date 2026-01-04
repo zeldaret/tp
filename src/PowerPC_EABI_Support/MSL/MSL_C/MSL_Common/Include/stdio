@@ -2,7 +2,7 @@
 #define MSL_STDIO_H_
 
 #include <cstdio>
-#include <stddef.h>
+#include <stddef>
 #include <stdarg>
 
 #ifdef __cplusplus

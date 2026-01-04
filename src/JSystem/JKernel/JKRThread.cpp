@@ -3,7 +3,7 @@
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
-#include <stdio.h>
+#include <stdio>
 #include "global.h"
 #include <stdint.h>
 

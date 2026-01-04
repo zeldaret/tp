@@ -3,8 +3,8 @@
 #include "JSystem/J2DGraph/J2DPrint.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTFont.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio>
+#include <stdlib>
 
 char* J2DPrint::mStrBuff;
 

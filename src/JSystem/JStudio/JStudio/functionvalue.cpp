@@ -6,7 +6,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JGadget/linklist.h"
 #include <math>
-#include <stdlib.h>
+#include <stdlib>
 #include <limits.h>
 
 namespace JStudio {
