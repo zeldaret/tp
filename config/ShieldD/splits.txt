@@ -315,7 +315,7 @@ f_pc/f_pc_layer.cpp:
 f_pc/f_pc_leaf.cpp:
 	.text       start:0x800450A0 end:0x80045330
 	.data       start:0x8066AD78 end:0x8066AD90
-	.sbss       start:0x8074C540 end:0x8074C550
+	.sbss       start:0x8074C540 end:0x8074C548
 
 f_pc/f_pc_layer_iter.cpp:
 	.text       start:0x80045330 end:0x80045560
@@ -336,6 +336,7 @@ f_pc/f_pc_manager.cpp:
 	.text       start:0x800459D0 end:0x80046020
 	.data       start:0x8066ADB0 end:0x8066ADC8
 	.sdata      start:0x8073F9D8 end:0x8073F9E8
+	.sbss       start:0x8074C548 end:0x8074C550
 	.bss        start:0x80782160 end:0x80782208
 
 f_pc/f_pc_method.cpp:

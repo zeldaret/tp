@@ -23,7 +23,7 @@
 
 #define JUT_PANIC_F(LINE, MSG, ...)                                                               \
     JUTAssertion::showAssert_f(JUTAssertion::getSDevice(), __FILE__, LINE, MSG, __VA_ARGS__);        \
-    OSPanic(__FILE__, LINE, MSG, __VA_ARGS__);
+    OSPanic(__FILE__, LINE, "Halt");
 
 #define JUT_WARN_DEVICE(LINE, DEVICE, ...)                                                                        \
     JUTAssertion::setWarningMessage_f(DEVICE, __FILE__, LINE, __VA_ARGS__);    \
