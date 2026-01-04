@@ -2,7 +2,7 @@
 #include <ctype>
 #include <cmath>
 #include <cstdio>
-#include <cstdint.h>
+#include <cstdint>
 #include <strtoul.h>
 #include <strtold.h>
 

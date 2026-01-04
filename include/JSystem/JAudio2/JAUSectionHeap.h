@@ -4,7 +4,7 @@
 #include "JSystem/JAudio2/JAUBankTable.h"
 #include "JSystem/JAudio2/JAUSeqDataBlockMgr.h"
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "bitset.h"
+#include "bitset"
 
 class JAISeqData;
 class JAISeqDataMgr;

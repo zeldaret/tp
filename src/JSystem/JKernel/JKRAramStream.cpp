@@ -4,7 +4,7 @@
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "JSystem/JSupport/JSUFileStream.h"
 #include "JSystem/JUtility/JUTException.h"
-#include <stdint.h>
+#include <stdint>
 
 JKRAramStream* JKRAramStream::sAramStreamObject;
 

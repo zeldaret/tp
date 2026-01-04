@@ -8,7 +8,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
-#include <stdint.h>
+#include <stdint>
 
 void* ARALT_AramStartAdr = (void*)0x90000000;
 

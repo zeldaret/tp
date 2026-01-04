@@ -7,7 +7,7 @@
 #include "JSystem/JGadget/linklist.h"
 #include <math>
 #include <stdlib>
-#include <limits.h>
+#include <limits>
 
 namespace JStudio {
 

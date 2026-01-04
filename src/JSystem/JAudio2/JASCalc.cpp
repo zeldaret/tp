@@ -2,7 +2,7 @@
 
 #include "JSystem/JAudio2/JASCalc.h"
 #include <math>
-#include <limits.h>
+#include <limits>
 
 void JASCalc::imixcopy(const s16* s1, const s16* s2, s16* dst, u32 n) {
     for (n; n != 0; n--) {

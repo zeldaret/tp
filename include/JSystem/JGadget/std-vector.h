@@ -4,7 +4,7 @@
 #include "JSystem/JGadget/std-memory.h"
 #include <algorithm>
 #include <memory>
-#include <stdint.h>
+#include <stdint>
 
 namespace JGadget {
 namespace vector {

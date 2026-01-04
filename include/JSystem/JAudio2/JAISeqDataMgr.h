@@ -2,7 +2,7 @@
 #define JAISEQDATAMGR_H
 
 #include "JSystem/JAudio2/JAISound.h"
-#include <stdint.h>
+#include <stdint>
 
 /**
  * @ingroup jsystem-jaudio

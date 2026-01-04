@@ -6,7 +6,7 @@
 #include "cmath"
 #include "cstdio"
 #include "cstring"
-#include "cstdint.h"
+#include "cstdint"
 #include "wchar_io.h"
 
 #define LDBL_MANT_DIG 53

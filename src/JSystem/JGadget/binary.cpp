@@ -2,7 +2,7 @@
 
 #include "JSystem/JGadget/binary.h"
 #include "JSystem/JGadget/define.h"
-#include <stdint.h>
+#include <stdint>
 
 #if DEBUG
 static void dummyString() {

@@ -9,7 +9,7 @@
 #include <math>
 #include "string"
 #include "global.h"
-#include <stdint.h>
+#include <stdint>
 
 JKRDvdArchive::JKRDvdArchive(s32 entryNum, JKRArchive::EMountDirection mountDirection)
     : JKRArchive(entryNum, MOUNT_DVD) {

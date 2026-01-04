@@ -7,7 +7,7 @@
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "string"
 #include "dolphin/os.h"
-#include <stdint.h>
+#include <stdint>
 
 JASHeap* JASWaveArcLoader::sAramHeap;
 
