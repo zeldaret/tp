@@ -5940,9 +5940,9 @@ public:
     BOOL checkHorseLieAnime() const;
     BOOL checkHorseSubjectivity() const;
     void setHorseSwordUpAnime();
-    void setHorseTurnUpperAnime(int);
+    void setHorseTurnUpperAnime(BOOL i_isTurnL);
     BOOL checkHorseNoUpperAnime() const;
-    void getHorseReinHandPos(cXyz*, cXyz*);
+    void getHorseReinHandPos(cXyz* o_handPosA, cXyz* o_handPosB);
     BOOL checkHorseNotGrab() const;
     void setHorseStirrup();
     void changeBoarRunRide();
@@ -5951,7 +5951,7 @@ public:
     int setSyncBoarRunPos();
     BOOL setSyncRidePos();
     void setHorseTurnAnime();
-    void getBaseHorseAnime(daAlink_c::daAlink_ANM*);
+    void getBaseHorseAnime(daAlink_c::daAlink_ANM* i_anmList);
     int checkHorseSpecialProc();
     BOOL checkHorseServiceWaitAnime();
     int setSyncHorse(int);
@@ -5964,7 +5964,7 @@ public:
     void setHorseSwordUp(int);
     int setRideSubjectAngle(s16);
     void setBodyAngleRideReadyAnime();
-    BOOL checkHorseGetOffWallCheck(cXyz*, cXyz*, s16);
+    BOOL checkHorseGetOffWallCheck(cXyz* i_lineStartPos, cXyz* i_lineEndPos, s16);
     int checkHorseGetOffDirection();
     void boarForceGetOff();
     void horseGetOffEnd();
@@ -5992,7 +5992,7 @@ public:
     int procHorseCutChargeReady();
     int procHorseCutTurnInit();
     int procHorseCutTurn();
-    int procHorseDamageInit(dCcD_GObjInf*);
+    int procHorseDamageInit(dCcD_GObjInf* i_hitObj);
     int procHorseDamage();
     int procHorseBowSubjectInit();
     int procHorseBowSubject();
@@ -6008,7 +6008,7 @@ public:
     int procHorseHookshotSubject();
     int procHorseHookshotMoveInit();
     int procHorseHookshotMove();
-    int procHorseBottleDrinkInit(u16);
+    int procHorseBottleDrinkInit(u16 i_itemNo);
     int procHorseBottleDrink();
     int procHorseKandelaarPourInit();
     int procHorseKandelaarPour();
@@ -6016,7 +6016,7 @@ public:
     int procHorseComeback();
     int procHorseRunInit();
     int procHorseRun();
-    int procHorseHangInit(dCcD_GObjInf*, int);
+    int procHorseHangInit(dCcD_GObjInf* i_hitObj, BOOL i_isPlaySE);
     int procHorseHang();
     int procHorseGetKeyInit();
     int procHorseGetKey();
