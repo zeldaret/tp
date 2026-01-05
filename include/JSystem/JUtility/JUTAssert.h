@@ -78,7 +78,4 @@ namespace JUTAssertion {
     }
 };
 
-
-extern bool sAssertVisible;
-
 #endif /* JUTASSERT_H */

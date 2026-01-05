@@ -100,6 +100,8 @@ public:
 
     ~JSUList() {}
 
+    void initiate() { JSUPtrList::initiate(); }
+
     bool append(JSULink<T>* link) { return this->JSUPtrList::append((JSUPtrLink*)link); }
 
     bool prepend(JSULink<T>* link) { return this->JSUPtrList::prepend((JSUPtrLink*)link); }
