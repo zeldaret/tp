@@ -12,6 +12,11 @@
 // Fixes weak function ordering
 #include <math> // IWYU pragma: export
 #include <cstring> // IWYU pragma: export
+#include "JSystem/JKernel/JKRDisposer.h" // IWYU pragma: export
+#include "JSystem/J3DGraphBase/J3DPacket.h" // IWYU pragma: export
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" // IWYU pragma: export
+#include "JSystem/J3DGraphAnimator/J3DJoint.h" // IWYU pragma: export
+#include "JSystem/J3DGraphAnimator/J3DAnimation.h" // IWYU pragma: export
 #include "JSystem/JUtility/JUTGamePad.h" // IWYU pragma: export
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" // IWYU pragma: export
 #include "JSystem/JHostIO/JORReflexible.h" // IWYU pragma: export

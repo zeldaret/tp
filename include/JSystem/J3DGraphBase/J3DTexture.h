@@ -33,6 +33,7 @@ public:
     }
 
     void setResTIMG(u16 index, const ResTIMG& timg) {
+        JUT_ASSERT_MSG(81, (bool)(index < mNum), "Error : range over.");
         mpRes[index] = timg;
         mpRes[index].imageOffset = ((mpRes[index].imageOffset + (uintptr_t)&timg - (uintptr_t)(mpRes + index)));
         mpRes[index].paletteOffset = ((mpRes[index].paletteOffset + (uintptr_t)&timg - (uintptr_t)(mpRes + index)));

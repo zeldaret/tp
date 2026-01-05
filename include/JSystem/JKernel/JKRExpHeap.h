@@ -63,7 +63,7 @@ protected:
     void joinTwoBlocks(CMemBlock* block);
 
 public:
-    s32 isEmpty();
+    BOOL isEmpty();
     s32 getUsedSize(u8 groupId) const;
     s32 getTotalUsedSize(void) const;
     
@@ -110,10 +110,17 @@ public:
     static JKRExpHeap* createRoot(int maxHeaps, bool errorFlag);
     static JKRExpHeap* create(u32 size, JKRHeap* parent, bool errorFlag);
     static JKRExpHeap* create(void* ptr, u32 size, JKRHeap* parent, bool errorFlag);
+
+    static s32 getUsedSize_(JKRExpHeap* heap) { return heap->mSize - heap->getTotalFreeSize(); }
+    static void* getState_(TState* state) { return getState_buf_(state); }
 };
 
 inline JKRExpHeap* JKRCreateExpHeap(u32 size, JKRHeap* parent, bool errorFlag) {
     return JKRExpHeap::create(size, parent, errorFlag);
+}
+
+inline void JKRDestroyExpHeap(JKRHeap* heap) {
+    heap->destroy();
 }
 
 #endif /* JKREXPHEAP_H */
