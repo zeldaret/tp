@@ -65,7 +65,7 @@ m_Do/m_Do_mtx.cpp:
 	.ctors      start:0x8062F7D0 end:0x8062F7D4
 	.data       start:0x80661ED0 end:0x80661FC0
 	.sdata      start:0x8073F3E8 end:0x8073F3F8
-	.sbss       start:0x8074C3B0 end:0x8074C3BC
+	.sbss       start:0x8074C3B0 end:0x8074C3B8
 	.sdata2     start:0x8074D878 end:0x8074D888
 	.bss        start:0x807558E0 end:0x80755D30
 
@@ -74,7 +74,7 @@ m_Do/m_Do_ext.cpp:
 	.rodata     start:0x8062FA30 end:0x8062FA70
 	.data       start:0x80661FC0 end:0x80663DB0
 	.sdata      start:0x8073F3F8 end:0x8073F600
-	.sbss       start:0x8074C3BC end:0x8074C418
+	.sbss       start:0x8074C3B8 end:0x8074C418
 	.sdata2     start:0x8074D888 end:0x8074D8D0
 	.bss        start:0x80755D30 end:0x80755D90
 

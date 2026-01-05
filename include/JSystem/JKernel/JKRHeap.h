@@ -36,6 +36,7 @@ public:
     };
 
 public:
+    JKRHeap(u32 size, JKRHeap* parent, bool errorFlag);
     JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag);
     virtual ~JKRHeap();
 
@@ -112,6 +113,7 @@ public:
     void lock() { OSLockMutex(&mMutex); }
     void unlock() { OSUnlockMutex(&mMutex); }
     u32 getHeapSize() { return mSize; }
+    u8 getCurrentGroupId() { return 0; }
 
 protected:
     /* 0x00 */  // vtable
@@ -151,9 +153,7 @@ public:
     static u32 getMemorySize(void) { return mMemorySize; }
     static JKRHeap* getRootHeap() { return sRootHeap; }
 
-#if PLATFORM_WII || PLATFORM_SHIELD
     static JKRHeap* getRootHeap2() { return sRootHeap2; }
-#endif
 
     static JKRHeap* getSystemHeap() { return sSystemHeap; }
     static JKRHeap* getCurrentHeap() { return sCurrentHeap; }
@@ -176,9 +176,7 @@ public:
 
     static JKRHeap* sRootHeap;
 
-#if PLATFORM_WII || PLATFORM_SHIELD
     static JKRHeap* sRootHeap2;
-#endif
 
     static JKRHeap* sSystemHeap;
     static JKRHeap* sCurrentHeap;
@@ -241,6 +239,10 @@ inline u32 JKRGetMemBlockSize(JKRHeap* heap, void* block) {
     return JKRHeap::getSize(block, heap);
 }
 
+inline u32 JKRGetFreeSize(JKRHeap* heap) {
+    return heap->getFreeSize();
+}
+
 inline void* JKRAlloc(u32 size, int alignment) {
     return JKRHeap::alloc(size, alignment, NULL);
 }
@@ -261,11 +263,9 @@ inline bool JKRSetErrorFlag(JKRHeap* heap, bool flag) {
     return heap->setErrorFlag(flag);
 }
 
-#if PLATFORM_WII || PLATFORM_SHIELD
 inline JKRHeap* JKRGetRootHeap2() {
     return JKRHeap::getRootHeap2();
 }
-#endif
 
 #if DEBUG
 inline void JKRSetDebugFillNotuse(u8 status) { data_804508B1 = status; }
