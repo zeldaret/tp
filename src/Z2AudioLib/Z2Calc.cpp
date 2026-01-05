@@ -46,7 +46,7 @@ f32 Z2Calc::getRandom(f32 magnitude, f32 exponent, f32 bias) {
     f32 negBias = (1.0f - bias) * -2.0f;
     magnitude *= Z2Calc::getRandom_0_1() < bias ? posBias : negBias;
 
-    f32 exprnd = pow(Z2Calc::getRandom_0_1(), exponent);
+    f32 exprnd = powf(Z2Calc::getRandom_0_1(), exponent);
     return exprnd * magnitude;
 }
 
