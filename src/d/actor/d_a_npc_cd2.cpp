@@ -195,6 +195,53 @@ dCcD_SrcCyl const daNpcCd2_c::m_cylDat = {
     }
 };
 
+static char* const* l_resNameTbl[30] = {
+    l_resMANa,  l_resMADa,  l_resMCNa,  l_resMONa,  l_resMANb,  l_resMANc,  l_resMASa,  l_resMBNa,
+    l_resMANa2, l_resMADa2, l_resMCNa2, l_resMONa2, l_resMANb2, l_resMANc2, l_resMASa2, l_resMBNa2,
+    l_resWANa,  l_resWADa,  l_resMATa,  l_resWCNa,  l_resWONa,  l_resWGNa,  l_resWANb,  l_resWANa2,
+    l_resWADa2, l_resMATa2, l_resWCNa2, l_resWONa2, l_resWGNa2, l_resWANb2,
+};
+
+static anmTblPrm const l_bmdTbl[30] = {
+    l_resMANa[0],  3, l_resMADa[0],  3, l_resMCNa[0],  4, l_resMONa[0],  4, l_resMANb[0],  3,
+    l_resMANc[0],  4, l_resMASa[0],  4, l_resMBNa[0],  4, l_resMANa2[0], 4, l_resMADa2[0], 4,
+    l_resMCNa2[0], 4, l_resMONa2[0], 4, l_resMANb2[0], 3, l_resMANc2[0], 4, l_resMASa2[0], 4,
+    l_resMBNa2[0], 4, l_resWANa[0],  4, l_resWADa[0],  4, l_resMATa[0],  3, l_resWCNa[0],  4,
+    l_resWONa[0],  4, l_resWGNa[0],  4, l_resWANb[0],  4, l_resWANa2[0], 4, l_resWADa2[0], 4,
+    l_resMATa2[0], 3, l_resWCNa2[0], 4, l_resWONa2[0], 4, l_resWGNa2[0], 4, l_resWANb2[0], 4,
+};
+
+static anmTblPrm const l_bmdTWTbl[30] = {
+    l_resMANa[1],  3, l_resMADa[1],  3, l_resMCNa[1],  4, l_resMONa[1],  4, l_resMANb[1],  3,
+    l_resMANc[1],  4, l_resMASa[1],  4, l_resMBNa[1],  4, l_resMANa2[1], 4, l_resMADa2[1], 3,
+    l_resMCNa2[1], 4, l_resMONa2[1], 4, l_resMANb2[1], 3, l_resMANc2[1], 4, l_resMASa2[1], 4,
+    l_resMBNa2[1], 4, l_resWANa[1],  4, l_resWADa[1],  4, l_resMATa[1],  3, l_resWCNa[1],  4,
+    l_resWONa[1],  4, l_resWGNa[1],  4, l_resWANb[1],  4, l_resWANa2[1], 4, l_resWADa2[1], 4,
+    l_resMATa2[1], 3, l_resWCNa2[1], 4, l_resWONa2[1], 4, l_resWGNa2[1], 4, l_resWANb2[1], 4,
+};
+
+static anmTblPrm const l_btpTbl[30] = {
+    l_resMANa[0],  -1, l_resMADa[0],  -1, l_resMCNa[0],  7, l_resMONa[0],  7, l_resMANb[0],  -1,
+    l_resMANc[0],  7, l_resMASa[0],  7, l_resMBNa[0],  7, l_resMANa2[0], 7, l_resMADa2[0], 7,
+    l_resMCNa2[0], 7, l_resMONa2[0], 7, l_resMANb2[0], -1, l_resMANc2[0], 7, l_resMASa2[0], 7,
+    l_resMBNa2[0], 7, l_resWANa[0],  7, l_resWADa[0],  7, l_resMATa[0],  -1, l_resWCNa[0],  7,
+    l_resWONa[0],  7, l_resWGNa[0],  7, l_resWANb[0],  7, l_resWANa2[0], 7, l_resWADa2[0], 7,
+    l_resMATa2[0], -1, l_resWCNa2[0], 7, l_resWONa2[0], 7, l_resWGNa2[0], 7, l_resWANb2[0], 7,
+};
+
+static anmTblPrm const l_btpTWTbl[30] = {
+    l_resMANa[1],  -1, l_resMADa[1],  -1, l_resMCNa[1],  7, l_resMONa[1],  7, l_resMANb[1],  -1,
+    l_resMANc[1],  7, l_resMASa[1],  7, l_resMBNa[1],  7, l_resMANa2[1], 7, l_resMADa2[1], -1,
+    l_resMCNa2[1], 7, l_resMONa2[1], 7, l_resMANb2[1], -1, l_resMANc2[1], 7, l_resMASa2[1], 7,
+    l_resMBNa2[1], 7, l_resWANa[1],  7, l_resWADa[1],  7, l_resMATa[1],  -1, l_resWCNa[1],  7,
+    l_resWONa[1],  7, l_resWGNa[1],  7, l_resWANb[1],  7, l_resWANa2[1], 7, l_resWADa2[1], 7,
+    l_resMATa2[1], -1, l_resWCNa2[1], 7, l_resWONa2[1], 7, l_resWGNa2[1], 7, l_resWANb2[1], 7,
+};
+
+#include "d/actor/d_a_npc_cd2_HIO.inc"
+
+daNpcCd2_HIO_c l_Cd2_HIO;
+
 int daNpcCd2_c::NpcCreate(int param_1) {
     J3DModelData* a_mdlData_p = getNpcMdlDataP(param_1);
     JUT_ASSERT(590, NULL != a_mdlData_p);
@@ -291,51 +338,6 @@ bool daNpcCd2_c::isM_() {
     JUT_ASSERT(738, (a_jntNum == JntM_NUM_e) || (a_jntNum == JntW_NUM_e));
     return a_jntNum == JntM_NUM_e;
 }
-
-static char* const* l_resNameTbl[30] = {
-    l_resMANa,  l_resMADa,  l_resMCNa,  l_resMONa,  l_resMANb,  l_resMANc,  l_resMASa,  l_resMBNa,
-    l_resMANa2, l_resMADa2, l_resMCNa2, l_resMONa2, l_resMANb2, l_resMANc2, l_resMASa2, l_resMBNa2,
-    l_resWANa,  l_resWADa,  l_resMATa,  l_resWCNa,  l_resWONa,  l_resWGNa,  l_resWANb,  l_resWANa2,
-    l_resWADa2, l_resMATa2, l_resWCNa2, l_resWONa2, l_resWGNa2, l_resWANb2,
-};
-
-static anmTblPrm const l_bmdTbl[30] = {
-    l_resMANa[0],  3, l_resMADa[0],  3, l_resMCNa[0],  4, l_resMONa[0],  4, l_resMANb[0],  3,
-    l_resMANc[0],  4, l_resMASa[0],  4, l_resMBNa[0],  4, l_resMANa2[0], 4, l_resMADa2[0], 4,
-    l_resMCNa2[0], 4, l_resMONa2[0], 4, l_resMANb2[0], 3, l_resMANc2[0], 4, l_resMASa2[0], 4,
-    l_resMBNa2[0], 4, l_resWANa[0],  4, l_resWADa[0],  4, l_resMATa[0],  3, l_resWCNa[0],  4,
-    l_resWONa[0],  4, l_resWGNa[0],  4, l_resWANb[0],  4, l_resWANa2[0], 4, l_resWADa2[0], 4,
-    l_resMATa2[0], 3, l_resWCNa2[0], 4, l_resWONa2[0], 4, l_resWGNa2[0], 4, l_resWANb2[0], 4,
-};
-
-static anmTblPrm const l_bmdTWTbl[30] = {
-    l_resMANa[1],  3, l_resMADa[1],  3, l_resMCNa[1],  4, l_resMONa[1],  4, l_resMANb[1],  3,
-    l_resMANc[1],  4, l_resMASa[1],  4, l_resMBNa[1],  4, l_resMANa2[1], 4, l_resMADa2[1], 3,
-    l_resMCNa2[1], 4, l_resMONa2[1], 4, l_resMANb2[1], 3, l_resMANc2[1], 4, l_resMASa2[1], 4,
-    l_resMBNa2[1], 4, l_resWANa[1],  4, l_resWADa[1],  4, l_resMATa[1],  3, l_resWCNa[1],  4,
-    l_resWONa[1],  4, l_resWGNa[1],  4, l_resWANb[1],  4, l_resWANa2[1], 4, l_resWADa2[1], 4,
-    l_resMATa2[1], 3, l_resWCNa2[1], 4, l_resWONa2[1], 4, l_resWGNa2[1], 4, l_resWANb2[1], 4,
-};
-
-static anmTblPrm const l_btpTbl[30] = {
-    l_resMANa[0],  -1, l_resMADa[0],  -1, l_resMCNa[0],  7, l_resMONa[0],  7, l_resMANb[0],  -1,
-    l_resMANc[0],  7, l_resMASa[0],  7, l_resMBNa[0],  7, l_resMANa2[0], 7, l_resMADa2[0], 7,
-    l_resMCNa2[0], 7, l_resMONa2[0], 7, l_resMANb2[0], -1, l_resMANc2[0], 7, l_resMASa2[0], 7,
-    l_resMBNa2[0], 7, l_resWANa[0],  7, l_resWADa[0],  7, l_resMATa[0],  -1, l_resWCNa[0],  7,
-    l_resWONa[0],  7, l_resWGNa[0],  7, l_resWANb[0],  7, l_resWANa2[0], 7, l_resWADa2[0], 7,
-    l_resMATa2[0], -1, l_resWCNa2[0], 7, l_resWONa2[0], 7, l_resWGNa2[0], 7, l_resWANb2[0], 7,
-};
-
-static anmTblPrm const l_btpTWTbl[30] = {
-    l_resMANa[1],  -1, l_resMADa[1],  -1, l_resMCNa[1],  7, l_resMONa[1],  7, l_resMANb[1],  -1,
-    l_resMANc[1],  7, l_resMASa[1],  7, l_resMBNa[1],  7, l_resMANa2[1], 7, l_resMADa2[1], -1,
-    l_resMCNa2[1], 7, l_resMONa2[1], 7, l_resMANb2[1], -1, l_resMANc2[1], 7, l_resMASa2[1], 7,
-    l_resMBNa2[1], 7, l_resWANa[1],  7, l_resWADa[1],  7, l_resMATa[1],  -1, l_resWCNa[1],  7,
-    l_resWONa[1],  7, l_resWGNa[1],  7, l_resWANb[1],  7, l_resWANa2[1], 7, l_resWADa2[1], 7,
-    l_resMATa2[1], -1, l_resWCNa2[1], 7, l_resWONa2[1], 7, l_resWGNa2[1], 7, l_resWANb2[1], 7,
-};
-
-#include "d/actor/d_a_npc_cd2_HIO.inc"
 
 J3DAnmTransform* daNpcCd2_c::getAnmP(int param_1, int param_2) {
     int a_anmNum = param_1;
@@ -596,8 +598,6 @@ J3DAnmTransform* daNpcCd2_c::getAnmP(int param_1, int param_2) {
     }
     return (J3DAnmTransform*)dComIfG_getObjectRes(name, index);
 }
-
-daNpcCd2_HIO_c l_Cd2_HIO;
 
 int daNpcCd2_c::setAttention(int param_1) {
     static cXyz a_eyeOfsTbl[30] = {
