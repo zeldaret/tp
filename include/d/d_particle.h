@@ -211,7 +211,6 @@ public:
         UNUSED(i_emitter);
         dPa_cleanupGX();
     }
-    virtual void execute(JPABaseEmitter*);
     virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
