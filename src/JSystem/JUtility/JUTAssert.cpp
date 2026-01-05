@@ -4,7 +4,7 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
-#include <stdio.h>
+#include <stdio>
 #include <dolphin/vi.h>
 
 bool sAssertVisible = true;

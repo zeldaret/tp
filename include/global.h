@@ -50,8 +50,10 @@
 // Necessary for debug matches.
 #define UNUSED(x) ((void)(x))
 
+#ifdef __MWERKS__
 #ifndef decltype
 #define decltype __decltype__
+#endif
 #endif
 
 #define _SDA_BASE_(dummy) 0

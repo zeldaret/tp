@@ -5,7 +5,7 @@
 #include "JSystem/JAWExtSystem/JAWGraphContext.h"
 #include "JSystem/JAWExtSystem/JAWWindow.h"
 #include "JSystem/JUtility/JUTGamePad.h"
-#include "algorithm.h"
+#include <algorithm>
 
 JGadget::TList<JAWWindow*> JAWExtSystem::sPage[128];
 JAWExtSystem::TSystemInterface JAWExtSystem::sInterface;

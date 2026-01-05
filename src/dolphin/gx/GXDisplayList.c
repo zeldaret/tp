@@ -1,4 +1,4 @@
-#include <cstring.h>
+#include <cstring>
 
 #include <dolphin/gx.h>
 #include <dolphin/os.h>

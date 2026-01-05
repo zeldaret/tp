@@ -1,7 +1,7 @@
 #ifndef MSL_MATH_H_
 #define MSL_MATH_H_
 
-#include <cmath.h>
+#include <cmath>
 
 namespace std {
 template<typename T>

@@ -2,7 +2,7 @@
 #define JPAEMITTER_H
 
 #include <dolphin/gx.h>
-#include <stdint.h>
+#include <stdint>
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAList.h"
 #include "JSystem/JParticle/JPARandom.h"

@@ -10,9 +10,9 @@
 #include "JSystem/JKernel/JKRMemArchive.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
-#include <math.h>
-#include "string.h"
-#include <stdint.h>
+#include <math>
+#include <string>
+#include <stdint>
 
 JKRCompArchive::JKRCompArchive(s32 entryNum, JKRArchive::EMountDirection eMountDirection)
     : JKRArchive(entryNum, MOUNT_COMP) {

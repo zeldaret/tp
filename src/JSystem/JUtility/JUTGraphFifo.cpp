@@ -2,7 +2,7 @@
 
 #include "JSystem/JUtility/JUTGraphFifo.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include "stdint.h"
+#include <stdint>
 
 static bool data_804514B8;
 

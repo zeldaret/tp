@@ -10,7 +10,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_msg_object.h"
 
-#include <math.h>
+#include <math>
 
 #include "d/actor/d_a_balloon_2D.h"
 #include "d/actor/d_a_e_ym.h"

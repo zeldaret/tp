@@ -4,8 +4,8 @@
 
 #define MSL_USE_INLINES 1  // needed to inline tolower call. not inlined elsewhere in the repo
 
-#include "string.h"
-#include "ctype.h"
+#include <string>
+#include <ctype>
 #include "global.h"
 
 JKRFileLoader* JKRFileLoader::sCurrentVolume;

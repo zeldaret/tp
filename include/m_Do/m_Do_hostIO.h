@@ -2,7 +2,7 @@
 #define M_DO_M_DO_HOSTIO_H
 
 #include "JSystem/JHostIO/JORReflexible.h"
-#include <string.h>
+#include <string>
 
 class mDoHIO_child_c {
 public:

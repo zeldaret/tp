@@ -3,7 +3,7 @@
 #include "JSystem/JMessage/processor.h"
 #include "JSystem/JMessage/control.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include <cstdint.h>
+#include <cstdint>
 
 JMessage::TReference::~TReference() {}
 

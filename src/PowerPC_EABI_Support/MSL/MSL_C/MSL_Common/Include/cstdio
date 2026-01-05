@@ -6,8 +6,8 @@
 #include <printf.h>
 #include <extras.h>
 #include <scanf.h>
-#include <va_list.h>
-#include <cstddef.h>
+#include <va_list>
+#include <cstddef>
 
 #define stdin (&__files._stdin)
 #define stdout (&__files._stdout)

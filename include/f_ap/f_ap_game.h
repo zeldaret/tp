@@ -6,7 +6,7 @@
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "CaptureScreen.h"
-#include <string.h>
+#include <string>
 
 void fapGm_After();
 void fapGm_Create();

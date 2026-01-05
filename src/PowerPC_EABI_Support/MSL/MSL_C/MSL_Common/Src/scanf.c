@@ -1,8 +1,8 @@
 #include "scanf.h"
-#include <ctype.h>
-#include <cmath.h>
-#include <cstdio.h>
-#include <cstdint.h>
+#include <ctype>
+#include <cmath>
+#include <cstdio>
+#include <cstdint>
 #include <strtoul.h>
 #include <strtold.h>
 

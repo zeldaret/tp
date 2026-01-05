@@ -33,7 +33,7 @@
 #include "m_Do/m_Do_printf.h"
 #include "m_Do/m_Do_ext2.h"
 #include "SSystem/SComponent/c_counter.h"
-#include <string.h>
+#include <string>
 
 #if PLATFORM_WII || PLATFORM_SHIELD
 #include <revolution/sc.h>

@@ -6,7 +6,7 @@
 
 #include <revolution/tpl.h>
 
-#include <string.h>
+#include <string>
 
 static const GXColorS10 DefaultBlackColor = {0, 0, 0, 0};
 

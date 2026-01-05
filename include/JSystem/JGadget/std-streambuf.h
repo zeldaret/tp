@@ -2,7 +2,7 @@
 #define JGADGET_STD_STREAMBUF_H
 
 #include <dolphin/types.h>
-#include <string.h>
+#include <string>
 
 namespace JGadget {
 template <typename T>

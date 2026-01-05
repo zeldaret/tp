@@ -2,9 +2,9 @@
 #define JGADGET_SEARCH_H
 
 #include <dolphin/types.h>
-#include <iterator.h>
-#include <functional.h>
-#include <algorithm.h>
+#include <iterator>
+#include <functional>
+#include <algorithm>
 
 namespace JGadget {
 namespace search {

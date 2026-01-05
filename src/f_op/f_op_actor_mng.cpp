@@ -22,7 +22,7 @@
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_lib.h"
-#include <cstring.h>
+#include <cstring>
 
 #define MAKE_ITEM_PARAMS(itemNo, itemBitNo, param_2, param_3)                                      \
     ((itemNo & 0xFF) << 0x0 | (itemBitNo & 0xFF) << 0x8 | (param_2 & 0xFF) << 0x10 | (param_3 & 0xF) << 0x18)

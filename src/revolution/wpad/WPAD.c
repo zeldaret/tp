@@ -2,7 +2,7 @@
 #include <revolution/wpad.h>
 #include <revolution/wpad/wud.h>
 
-#include <cstring.h>
+#include <cstring>
 
 #include "__wpad.h"
 

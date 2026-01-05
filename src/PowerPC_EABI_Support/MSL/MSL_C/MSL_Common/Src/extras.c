@@ -1,5 +1,5 @@
 #include "extras.h"
-#include "ctype.h"
+#include <ctype>
 
 int stricmp(const char* str1, const char* str2) {
 	char a_var;

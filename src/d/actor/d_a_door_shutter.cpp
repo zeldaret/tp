@@ -14,7 +14,7 @@
 #include "d/d_msg_object.h"
 #include "d/d_map_path_dmap.h"
 #include "SSystem/SComponent/c_math.h"
-#include "printf.h"
+#include <cstdio>
 
 char* daDoor20_c::getStopBmdName() {
     switch (door_param2_c::getKind(this)) {

@@ -1,7 +1,7 @@
 #ifndef _MSL_STDARG_H_
 #define _MSL_STDARG_H_
 
-#include <cstdarg.h>
+#include <cstdarg>
 
 #ifdef __cplusplus
 extern "C" {

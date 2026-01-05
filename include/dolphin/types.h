@@ -82,7 +82,7 @@ typedef unsigned int uint;
 #define __REGISTER
 #endif
 
-#include <cstddef.h>
+#include <cstddef>
 
 #endif
 #endif

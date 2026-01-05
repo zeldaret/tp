@@ -2,7 +2,7 @@
 
 #include "JSystem/JGadget/std-streambuf.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include <algorithm.h>
+#include <algorithm>
 
 namespace JGadget {
 TStreamBuffer::~TStreamBuffer() {}

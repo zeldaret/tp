@@ -1,8 +1,8 @@
 #include "synprivate.h"
 
 
-#include <climits.h>
-#include <math.h>
+#include <climits>
+#include <math>
 
 #include <revolution/types.h>
 

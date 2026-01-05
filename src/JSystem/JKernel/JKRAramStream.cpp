@@ -4,7 +4,7 @@
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "JSystem/JSupport/JSUFileStream.h"
 #include "JSystem/JUtility/JUTException.h"
-#include <stdint.h>
+#include <stdint>
 
 #if PLATFORM_GCN
 const u32 stack_size = 0xc00;

@@ -5,7 +5,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_door_dbdoor00.h"
-#include "printf.h"
+#include <cstdio>
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_door_param2.h"

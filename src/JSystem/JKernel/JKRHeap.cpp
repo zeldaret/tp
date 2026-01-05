@@ -8,8 +8,8 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
-#include <stdint.h>
-#include <string.h>
+#include <stdint>
+#include <string>
 
 #if DEBUG
 u8 JKRValue_DEBUGFILL_NOTUSE = 0xFD;

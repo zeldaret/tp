@@ -1,4 +1,4 @@
-#include "ctype.h"
+#include <ctype>
 
 const unsigned short __wctype_mapC[256] = {
     ctype_cntrl,

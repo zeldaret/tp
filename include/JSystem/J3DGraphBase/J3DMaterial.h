@@ -4,7 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
-#include <stdint.h>
+#include <stdint>
 
 class J3DJoint;
 class J3DMaterialAnm;

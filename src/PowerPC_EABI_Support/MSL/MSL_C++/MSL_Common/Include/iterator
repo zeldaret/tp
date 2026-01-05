@@ -1,7 +1,7 @@
 #ifndef MSL_ITERATOR_H_
 #define MSL_ITERATOR_H_
 
-#include <stddef.h>
+#include <stddef>
 
 namespace std {
 struct input_iterator_tag {};

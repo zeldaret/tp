@@ -1,11 +1,11 @@
 #include "strtold.h"
-#include "cstdio.h"
+#include <cstdio>
 #include "ansi_fp.h"
-#include "locale.h"
-#include "ctype.h"
+#include <locale>
+#include <ctype>
 #include "float.h"
-#include "cmath.h"
-#include "climits.h"
+#include <cmath>
+#include <climits>
 #include <errno.h>
 
 extern double nan(const char*);

@@ -204,9 +204,11 @@ void* operator new[](size_t size, JKRHeap* heap, int alignment);
 void operator delete(void* ptr);
 void operator delete[](void* ptr);
 
+#ifdef __MWERKS__
 inline void* operator new(size_t size, void* ptr) {
     return ptr;
 }
+#endif
 
 void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment);
 

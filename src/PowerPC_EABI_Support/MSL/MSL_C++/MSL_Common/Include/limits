@@ -1,7 +1,7 @@
 #ifndef _MSL_LIMITS_H
 #define _MSL_LIMITS_H
 
-#include <climits.h>
+#include <climits>
 #include <float.h>
 
 namespace std {

@@ -22,7 +22,7 @@
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_main.h"
 #include "m_Do/m_Do_mtx.h"
-#include <stdio.h>
+#include <stdio>
 
 namespace m_Do_ext {
 u8 CurrentHeapAdjustVerbose;

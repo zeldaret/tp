@@ -3,7 +3,7 @@
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include <string.h>
+#include <string>
 
 J3DSkinNList::J3DSkinNList() {
     field_0x0 = NULL;

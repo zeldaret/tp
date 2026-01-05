@@ -1,12 +1,12 @@
 #include "printf.h"
 #include "ansi_fp.h"
 #include "critical_regions.h"
-#include "ctype.h"
+#include <ctype>
 #include "scanf.h"
-#include "cmath.h"
-#include "cstdio.h"
-#include "cstring.h"
-#include "cstdint.h"
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <cstdint>
 #include "wchar_io.h"
 
 #define LDBL_MANT_DIG 53
