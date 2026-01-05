@@ -276,8 +276,23 @@ void J2DWindow::initinfo2() {
     }
 }
 
-J2DWindowMirror J2DWindow::convertMirror(J2DTextureBase) {
-
+J2DWindowMirror J2DWindow::convertMirror(J2DTextureBase texBase) {
+    J2DWindowMirror winMirror = WINDOWMIRROR_39;
+    switch (texBase) {
+    case TEXTUREBASE_0:
+        winMirror = WINDOWMIRROR_39;
+        break;
+    case TEXTUREBASE_1:
+        winMirror = WINDOWMIRROR_141;
+        break;
+    case TEXTUREBASE_2:
+        winMirror = WINDOWMIRROR_114;
+        break;
+    case TEXTUREBASE_3:
+        winMirror = WINDOWMIRROR_216;
+        break;
+    }
+    return winMirror;
 }
 
 J2DWindow::~J2DWindow() {
