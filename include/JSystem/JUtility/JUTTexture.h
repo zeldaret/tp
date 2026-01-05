@@ -59,14 +59,14 @@ public:
     }
 
     ~JUTTexture();
-    void storeTIMG(ResTIMG const*, JUTPalette*, _GXTlut);
+    void storeTIMG(ResTIMG const*, JUTPalette*, GXTlut);
     void storeTIMG(ResTIMG const*, u8);
     void storeTIMG(ResTIMG const*, JUTPalette*);
     void attachPalette(JUTPalette*);
     void init();
-    void initTexObj(_GXTlut);
+    void initTexObj(GXTlut);
     void initTexObj();
-    void load(_GXTexMapID);
+    void load(GXTexMapID);
 
     const ResTIMG* getTexInfo() const { return mTexInfo; }
     s32 getFormat() const { return mTexInfo->format; }
@@ -74,8 +74,8 @@ public:
     s32 getWidth() const { return mTexInfo->width; }
     s32 getHeight() const { return mTexInfo->height; }
     void setCaptureFlag(bool flag) { mFlags &= 2 | flag; }
-    u8 getCaptureFlag() const { return mFlags & 1; }
-    u8 getEmbPaletteDelFlag() const { return mFlags & 2; }
+    bool getCaptureFlag() const { return mFlags & 1; }
+    bool getEmbPaletteDelFlag() const { return mFlags & 2; }
     void setEmbPaletteDelFlag(bool flag) { mFlags = (mFlags & 1) | (flag << 1);}
     int getTlutName() const { return mTlutName; }
     bool operator==(const JUTTexture& other) {

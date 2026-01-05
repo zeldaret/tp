@@ -210,6 +210,10 @@ inline void* operator new(size_t size, void* ptr) {
 }
 #endif
 
+inline void* operator new[](size_t size, void* ptr) {
+    return ptr;
+}
+
 void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment);
 
 inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) {

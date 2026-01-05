@@ -57,7 +57,7 @@ public:
 
     class JUTExMapFile {
     public:
-        JUTExMapFile(char* path) : mLink(this) { mPath = path; }
+        JUTExMapFile(const char* path) : mLink(this) { mPath = const_cast<char*>(path); }
 
     public:
         /* 0x00 */ char* mPath;
