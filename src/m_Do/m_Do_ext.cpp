@@ -212,26 +212,25 @@ void dummy3(J3DModel* i_model, void* i_bva, bool i_modify) {
 int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_rate,
                         s16 i_startF, s16 i_endF, bool i_modify) {
     JUT_ASSERT(614, (i_modify || isCurrentSolidHeap()) && i_bck != NULL);
-
-    mAnm = i_bck;
+    mAnmTransform = i_bck;
     if (!i_modify) {
-        mpMtxCalc = new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>(mAnm);
-        if (!mpMtxCalc) {
+        mAnm = new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>(mAnmTransform);
+        if (!mAnm) {
             return 0;
         }
     } else {
-        mpMtxCalc->setAnmTransform(mAnm);
+        mAnm->setAnmTransform(mAnmTransform);
     }
     if (i_play) {
-        return initPlay(mAnm->getFrameMax(), i_attr < 0 ? mAnm->getAttribute() : i_attr, i_rate, i_startF, i_endF);
+        return initPlay(mAnmTransform->getFrameMax(), i_attr < 0 ? mAnmTransform->getAttribute() : i_attr, i_rate, i_startF, i_endF);
     }
     return 1;
 }
 
 void mDoExt_bckAnm::changeBckOnly(J3DAnmTransform* i_bck) {
-    mAnm = i_bck;
-    JUT_ASSERT(646, mAnm != NULL);
-    mpMtxCalc->setAnmTransform(mAnm);
+    mAnmTransform = i_bck;
+    JUT_ASSERT(646, mAnm != 0);
+    mAnm->setAnmTransform(mAnmTransform);
 }
 
 void dummy4(J3DModel* i_model, void* i_bxa, bool i_modify) {
@@ -239,13 +238,13 @@ void dummy4(J3DModel* i_model, void* i_bxa, bool i_modify) {
 }
 
 void mDoExt_bckAnm::entry(J3DModelData* i_modelData, f32 i_frame) {
-    mAnm->setFrame(i_frame);
-    i_modelData->getJointNodePointer(0)->setMtxCalc(mpMtxCalc);
+    mAnmTransform->setFrame(i_frame);
+    i_modelData->getJointNodePointer(0)->setMtxCalc(mAnm);
 }
 
 void mDoExt_bckAnm::entryJoint(J3DModelData* i_modelData, u16 i_jntNo, f32 i_frame) {
-    mAnm->setFrame(i_frame);
-    i_modelData->getJointNodePointer(i_jntNo)->setMtxCalc(mpMtxCalc);
+    mAnmTransform->setFrame(i_frame);
+    i_modelData->getJointNodePointer(i_jntNo)->setMtxCalc(mAnm);
 }
 
 int mDoExt_blkAnm::init(J3DDeformData* i_deformData, J3DAnmCluster* i_blk, int i_anmPlay,
@@ -288,19 +287,19 @@ void mDoExt_modelTexturePatch(J3DModelData* i_modelData) {
     }
 }
 
-static void dummy1() {
-    ((J3DDrawPacket*)NULL)->beginPatch();
-    ((J3DTevBlock*)NULL)->patch();
-    ((J3DMaterial*)NULL)->getPEBlock();
-    ((J3DMaterial*)NULL)->getTexGenBlock();
-    ((J3DMaterial*)NULL)->getColorBlock()->patchLight();
-    ((J3DPEBlock*)NULL)->patch();
-    ((J3DDrawPacket*)NULL)->endPatch();
+static void dummy1(J3DModel* model, J3DMaterial* material) {
+    J3DMatPacket* packet = model->getMatPacket(0);
+    packet->beginPatch();
+    material->getTevBlock()->patch();
+    material->getColorBlock()->patchLight();
+    material->getTexGenBlock();
+    material->getPEBlock()->patch();
+    packet->endPatch();
 }
 
 static inline void modelMtxErrorCheck(J3DModel* i_model) {
 #if DEBUG
-    if (i_model->getBaseTRMtx()[0][0] == 3.4028235e38f) {
+    if (i_model->getBaseTRMtx()[0][0] == FLT_MAX) {
         i_model->getBaseTRMtx()[0][0] = 1.0f;
         JUT_WARN(883, "%s", "Model Matrix Not Initialize !\n");
     }
@@ -953,7 +952,7 @@ JKRSolidHeap* mDoExt_createSolidHeapToCurrent(JKRHeap** o_heap, u32 i_size, JKRH
 
 JKRSolidHeap* mDoExt_createSolidHeapToCurrent(u32 i_size, JKRHeap* i_parent, u32 i_alignment) {
     JUT_ASSERT(2427, OSGetCurrentThread() == &mainThread);
-    JUT_ASSERT(2428, mDoExt_SaveCurrentHeap == 0);
+    JUT_ASSERT(2428, mDoExt_SaveCurrentHeap == NULL);
     JKRSolidHeap* heap =
         mDoExt_createSolidHeapToCurrent(&mDoExt_SaveCurrentHeap, i_size, i_parent, i_alignment);
     if (mDoExt::CurrentHeapAdjustVerbose) {
@@ -1046,22 +1045,13 @@ void mDoExt_destroySolidHeap(JKRSolidHeap* i_heap) {
 }
 
 void mDoExt_destroyExpHeap(JKRExpHeap* i_heap) {
-    bool var_r30 = true;
-    bool var_r28;
-#if DEBUG
-    if (i_heap == mDoExt_getCurrentHeap()) {
-        OS_PANIC(2576, "Failed assertion i_heap != mDoExt_getCurrentHeap()");
-        var_r28 = false;
-        if (!var_r28) {
-            var_r30 = false;
-        }
-    }
-#endif
+    ASSERTLINE(2576, i_heap != mDoExt_getCurrentHeap());
     JKRDestroyExpHeap(i_heap);
-    if (g_printOtherHeapDebug) {
-        // "mDoExt_destroyExpHeap Exp heap destruction"
+#if DEBUG
+    if (mDoExt::HeapAdjustVerbose) {
         OS_REPORT("mDoExt_destroyExpHeap Expヒープ破壊 %08x\n", i_heap);
     }
+#endif
 }
 
 JKRHeap* mDoExt_setCurrentHeap(JKRHeap* heap) {
@@ -3862,6 +3852,10 @@ void DummyCheckHeap_check() {
 }
 
 u32 aram_cache_size;
+
+u32 mDoExt_getAraCacheSize() {
+    return aram_cache_size;
+}
 
 void mDoExt_setAraCacheSize(u32 size) {
     aram_cache_size = size;

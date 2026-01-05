@@ -4198,6 +4198,13 @@ inline void dComIfGd_drawListItem3d() {
     g_dComIfG_gameInfo.drawlist.drawXluListItem3d();
 }
 
+# if VERSION > VERSION_GCN_JPN
+inline void dComIfGd_drawListCursor() {
+    g_dComIfG_gameInfo.drawlist.drawOpaListCursor();
+    g_dComIfG_gameInfo.drawlist.drawXluListCursor();
+}
+#endif
+
 inline void dComIfGd_reset() {
     g_dComIfG_gameInfo.drawlist.reset();
 }

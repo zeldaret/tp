@@ -11,6 +11,7 @@ extern OSThread mainThread;
 void version_check();
 s32 LOAD_COPYDATE(void*);
 
+extern OSThread mainThread;
 const int HeapCheckTableNum = 8;
 
 class HeapCheck {

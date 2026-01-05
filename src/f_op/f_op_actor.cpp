@@ -75,7 +75,7 @@ void print_error_check_c::start() {
     mPrintErrors = print_errors;
 
     if (mPrintDisable) {
-        mPrintInit = print_initialized;
+        mPrintInit = __OSReport_disable;
         OSReportDisable();
     } else {
         mPrintInit = -1;
@@ -106,7 +106,7 @@ void print_error_check_c::check() {
     }
 
     if (mPrintInit != -1) {
-        print_initialized = mPrintInit;
+        __OSReport_disable = mPrintInit;
     }
 
     if (mPrintErrors != print_errors) {

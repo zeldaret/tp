@@ -67,7 +67,7 @@ inline JKRSolidHeap* JKRCreateSolidHeap(u32 param_0, JKRHeap* heap, bool param_2
     return JKRSolidHeap::create(param_0, heap, param_2);
 }
 
-inline void JKRDestroySolidHeap(JKRHeap* heap) {
+inline void JKRDestroySolidHeap(JKRSolidHeap* heap) {
     heap->destroy();
 }
 
