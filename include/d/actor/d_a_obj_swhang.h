@@ -76,6 +76,7 @@ public:
     void clrFlag() { mFlags = 0; }
     void onFlag(u16 flag) { mFlags |= flag; }
     u16 checkFlag(u16 flag) { return mFlags & flag; }
+    s16 getAngleY() { return shape_angle.y; }
 
 private:
     /* 0x5B0 */ request_of_phase_process_class mPhase;
