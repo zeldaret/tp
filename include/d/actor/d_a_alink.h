@@ -6214,7 +6214,7 @@ public:
     int procRoofSwitchHangInit(fopAc_ac_c* i_actor);
     int procRoofSwitchHang();
     BOOL checkZoraWearMaskDraw();
-    BOOL checkAcceptUseItemInWater(u16) const;
+    BOOL checkAcceptUseItemInWater(u16 i_itemNo) const;
     void swimDeleteItem();
     bool getZoraSwim() const;
     f32 getSwimFrontMaxSpeed() const;
@@ -6222,7 +6222,7 @@ public:
     void checkOxygenTimer();
     void offOxygenTimer();
     BOOL checkPossibleWaterInMode() const;
-    void setWaterInAnmRate(daPy_frameCtrl_c*, f32);
+    void setWaterInAnmRate(daPy_frameCtrl_c* i_frameCtrl, f32 i_rate);
     void swimBgCheck(f32);
     void setSpeedAndAngleSwim();
     int checkNextActionSwim();
@@ -6250,7 +6250,7 @@ public:
     int procSwimHookshotSubject();
     int procSwimHookshotMoveInit();
     int procSwimHookshotMove();
-    int procSwimDamageInit(dCcD_GObjInf*);
+    int procSwimDamageInit(dCcD_GObjInf* i_hitObj);
     int procSwimDamage();
     int procOctaIealSpitInit();
     int procOctaIealSpit();
@@ -7431,7 +7431,7 @@ public:
     BOOL checkBoarRideOwn(const fopAc_ac_c* i_actorP) const {
         return checkBoarRide() && mRideAcKeep.getActorConst() == i_actorP;
     }
-    bool checkWolfDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
+    u32 checkWolfDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
     bool checkWolfLieWaterIn() const { return mWaterY > current.pos.y + 20.5f; }
 
     J3DModel* initModel(J3DModelData* p_modelData, u32 param_1) {
@@ -7471,7 +7471,7 @@ public:
 
     BOOL checkRideOn() const { return mRideStatus != 0; }
 
-    bool checkSwimDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
+    BOOL checkSwimDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
 
     bool talkTrigger() const { return mItemTrigger & BTN_A; }
     J3DAnmTransform* getNowAnmPackUnder(daAlink_UNDER i_idx) {
