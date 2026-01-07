@@ -2872,15 +2872,15 @@ inline f32 JntTZ(int type, int jnt_no) {
 }
 
 inline s16 JntRX(int type, int jnt_no) {
-    return (type < 16 ? a_jntTbl_M[type].jntPrm[jnt_no].jntR[0] : a_jntTbl_W[type - 16].jntPrm[jnt_no].jntR[0]) * 182.04445f;
+    return DEG2S(type < 16 ? a_jntTbl_M[type].jntPrm[jnt_no].jntR[0] : a_jntTbl_W[type - 16].jntPrm[jnt_no].jntR[0]);
 }
 
 inline s16 JntRY(int type, int jnt_no) {
-    return (type < 16 ? a_jntTbl_M[type].jntPrm[jnt_no].jntR[1] : a_jntTbl_W[type - 16].jntPrm[jnt_no].jntR[1]) * 182.04445f;
+    return DEG2S(type < 16 ? a_jntTbl_M[type].jntPrm[jnt_no].jntR[1] : a_jntTbl_W[type - 16].jntPrm[jnt_no].jntR[1]);
 }
 
 inline s16 JntRZ(int type, int jnt_no) {
-    return (type < 16 ? a_jntTbl_M[type].jntPrm[jnt_no].jntR[2] : a_jntTbl_W[type - 16].jntPrm[jnt_no].jntR[2]) * 182.04445f;
+    return DEG2S(type < 16 ? a_jntTbl_M[type].jntPrm[jnt_no].jntR[2] : a_jntTbl_W[type - 16].jntPrm[jnt_no].jntR[2]);
 }
 
 int daNpcChat_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
