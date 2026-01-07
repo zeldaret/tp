@@ -64,8 +64,9 @@ struct TSinCosTable {
  * @ingroup jsystem-jmath
  * 
  */
+template<int N, typename T>
 struct TAtanTable {
-    f32 table[1025];
+    T table[N + 1];
     u8 pad[0x1C];
 };
 
@@ -75,7 +76,7 @@ struct TAtanTable {
  */
 template<int N, typename T>
 struct TAsinAcosTable {
-    T table[1025];
+    T table[N + 1];
     u8 pad[0x1C];
 
     T acos_(T x) const {
@@ -96,7 +97,7 @@ struct TAsinAcosTable {
 };
 
 extern TSinCosTable<13, f32> sincosTable_;
-extern TAtanTable atanTable_;
+extern TAtanTable<1024, f32> atanTable_;
 extern TAsinAcosTable<1024, f32> asinAcosTable_;
 
 inline f32 acosDegree(f32 x) {

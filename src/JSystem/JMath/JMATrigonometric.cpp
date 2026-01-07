@@ -15,26 +15,32 @@ struct pair {
     A1 a1;
     B1 b1;
     pair() {
-        f32 tmp = 0.0f;
-        a1 = tmp;
-        b1 = tmp;
-        // a1 = A1();
-        // b1 = B1();
+        a1 = A1();
+        b1 = B1();
     }
 };
 }  // namespace std
 
-inline f64 getConst() {
-    return 6.2831854820251465;
-}
+namespace JMath {
+template<typename T>
+struct TAngleConstant_;
+
+template<>
+struct TAngleConstant_<f32> {
+    static f32 RADIAN_DEG180() { return M_PI;}
+    static f32 RADIAN_DEG360() { return M_PI * 2; }
+};
 
 template<int N, typename T>
 struct TSinCosTable {
     std::pair<T, T> table[1 << N];
     TSinCosTable() {
+        init();
+    }
+    void init() {
         for (int i = 0; i < 1 << N; i++) {
-            table[i].a1 = sin((i * getConst()) / (1 << N));
-            table[i].b1 = cos((i * getConst()) / (1 << N));
+            table[i].a1 = sin((i * f64(TAngleConstant_<f32>::RADIAN_DEG360())) / (1 << N));
+            table[i].b1 = cos((i * f64(TAngleConstant_<f32>::RADIAN_DEG360())) / (1 << N));
         }
     }
 };
@@ -43,37 +49,42 @@ inline f64 getConst2() {
     return 9.765625E-4;
 }
 
+template<int N, typename T>
 struct TAtanTable {
-    f32 table[1025];
+    T table[N + 1];
     u8 pad[0x1C];
     TAtanTable() {
-        // (u32) cast needed for cmplwi instead of cmpwi
-        for (int i = 0; i < (u32)1024; i++) {
+        init();
+    }
+    void init() {
+        for (int i = 0; i < u32(N); i++) {
             table[i] = atan(getConst2() * i);
         }
         table[0] = 0.0f;
-        table[1024] = 0.7853982;  // 0.25 * PI
+        table[N] = TAngleConstant_<f32>::RADIAN_DEG180() * 0.25f;  // 0.25 * PI
     }
 };
 
+template<int N, typename T>
 struct TAsinAcosTable {
-    f32 table[1025];
+    T table[N + 1];
     u8 pad[0x1C];
     TAsinAcosTable() {
-        for (int i = 0; i < 1024; i++) {
+        init();
+    }
+    void init() {
+        for (int i = 0; i < N; i++) {
             table[i] = asin(getConst2() * i);
         }
         table[0] = 0.0f;
-        table[1024] = 0.7853982;  // 0.25 * PI
+        table[N] = TAngleConstant_<f32>::RADIAN_DEG180() * 0.25f;  // 0.25 * PI
     }
 };
 
-namespace JMath {
-
 TSinCosTable<13, f32> sincosTable_ ATTRIBUTE_ALIGN(32);
 
-TAtanTable atanTable_ ATTRIBUTE_ALIGN(32);
+TAtanTable<1024, f32> atanTable_ ATTRIBUTE_ALIGN(32);
 
-TAsinAcosTable asinAcosTable_ ATTRIBUTE_ALIGN(32);
+TAsinAcosTable<1024, f32> asinAcosTable_ ATTRIBUTE_ALIGN(32);
 
 }  // namespace JMath
