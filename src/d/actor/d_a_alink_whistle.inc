@@ -11,6 +11,8 @@
 #include "d/actor/d_a_obj_yobikusa.h"
 
 static fopAc_ac_c* daAlink_searchWhistle(fopAc_ac_c* i_actor, void* i_data) {
+    UNUSED(i_data);
+
     if (daAlink_getAlinkActorClass()->getGrassHowlEventActor() == fopAcM_GetName(i_actor)) {
         return i_actor;
     }
@@ -19,6 +21,8 @@ static fopAc_ac_c* daAlink_searchWhistle(fopAc_ac_c* i_actor, void* i_data) {
 }
 
 static fopAc_ac_c* daAlink_searchHawk(fopAc_ac_c* i_actor, void* i_data) {
+    UNUSED(i_data);
+
     if (fopAcM_GetName(i_actor) == PROC_NPC_TK) {
         return i_actor;
     }
@@ -26,7 +30,7 @@ static fopAc_ac_c* daAlink_searchHawk(fopAc_ac_c* i_actor, void* i_data) {
     return NULL;
 }
 
-void daAlink_c::setGrassWhistleModel(int modelType) {
+void daAlink_c::setGrassWhistleModel(int i_modelType) {
     static const char* grassWhistleArcName[] = {
         "J_Tobi",
         "J_Umak",
@@ -38,8 +42,8 @@ void daAlink_c::setGrassWhistleModel(int modelType) {
 
     JKRHeap* prev_heap = setItemHeap();
 
-    J3DModelData* modeldata = (J3DModelData*)dComIfG_getObjectRes(grassWhistleArcName[modelType],
-                                                                  grassWhistleIdx[modelType]);
+    J3DModelData* modeldata = (J3DModelData*)dComIfG_getObjectRes(grassWhistleArcName[i_modelType],
+                                                                  grassWhistleIdx[i_modelType]);
     mHeldItemModel = mDoExt_J3DModel__create(modeldata, 0x80000, 0x11000084);
 
     mDoExt_setCurrentHeap(prev_heap);
@@ -50,7 +54,7 @@ void daAlink_c::setGrassWhistleModel(int modelType) {
 void daAlink_c::setHorseWhistleModel() {
     JKRHeap* prev_heap = setItemHeap();
 
-    mHeldItemModel = initModel(loadAramBmd(0x31A, 0x3000), 0);
+    mHeldItemModel = initModel(loadAramBmd(dRes_ID_ALANM_BMD_AL_PEND_e, 0x3000), 0);
 
     mDoExt_setCurrentHeap(prev_heap);
     mEquipItem = fpcNm_ITEM_HORSE_FLUTE;
@@ -83,11 +87,10 @@ int daAlink_c::procGrassWhistleGetInit() {
     return 1;
 }
 
-
 int daAlink_c::procGrassWhistleGet() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
 
-    if (frameCtrl_p->checkAnmEnd()) {
+    if (checkAnmEnd(frameCtrl_p)) {
         procGrassWhistleWaitInit(mProcVar2.field_0x300c, mProcVar3.field_0x300e,
                                  mProcVar4.field_0x3010, mProcVar5.field_0x3012, &field_0x37c8);
     } else if (mEquipItem == fpcNm_ITEM_NONE && frameCtrl_p->getFrame() >= 9.0f) {
@@ -104,14 +107,14 @@ int daAlink_c::procGrassWhistleGet() {
 
 int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s16 param_3,
                                         cXyz* param_4) {
-    u16 var_r6;
+    u16 hindFlag;
     if (param_0 == 3) {
-        var_r6 = 0xFFFF;
+        hindFlag = 0xFFFF;
     } else {
-        var_r6 = 0xFFF9;
+        hindFlag = 0xFFF9;
     }
 
-    if (!dComIfGp_event_compulsory(this, NULL, var_r6)) {
+    if (!dComIfGp_event_compulsory(this, NULL, hindFlag)) {
         return checkNextAction(0);
     }
 
@@ -166,7 +169,6 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
     dComIfGp_setPlayerStatus1(0, 0x4000000);
     return 1;
 }
-
 
 int daAlink_c::procGrassWhistleWait() {
     if (mProcVar5.field_0x3012 != 0) {
@@ -322,7 +324,7 @@ int daAlink_c::procHawkCatchInit() {
 }
 
 int daAlink_c::procHawkCatch() {
-    if (mUnderFrameCtrl[0].checkAnmEnd()) {
+    if (checkAnmEnd(mUnderFrameCtrl)) {
         dComIfGp_evmng_cutEnd(mAlinkStaffId);
         procHawkSubjectInit();
     }

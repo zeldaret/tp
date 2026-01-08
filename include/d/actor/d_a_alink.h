@@ -6377,7 +6377,7 @@ public:
     int procKandelaarSwing();
     int procKandelaarPourInit();
     int procKandelaarPour();
-    void setGrassWhistleModel(int);
+    void setGrassWhistleModel(int i_modelType);
     void setHorseWhistleModel();
     int procGrassWhistleGetInit();
     int procGrassWhistleGet();
@@ -7105,8 +7105,8 @@ public:
     virtual BOOL checkWolfDownAttackPullOut() const { return mProcID == PROC_WOLF_DOWN_AT_LAND; }
     virtual cXyz* getMidnaAtnPos() const { return (cXyz*)&mMidnaAtnPos; }
     virtual bool checkCopyRodEquip() const { return mEquipItem == fpcNm_ITEM_COPY_ROD; }
-    virtual void setKandelaarMtx(f32 (*)[4], int, int);
-    virtual bool getStickAngleFromPlayerShape(short*) const;
+    virtual void setKandelaarMtx(Mtx i_mtx, int, int);
+    virtual bool getStickAngleFromPlayerShape(s16*) const;
     virtual bool checkSpinnerPathMove();
     virtual bool checkSpinnerTriggerAttack();
     virtual void onSpinnerPathForceRemove();

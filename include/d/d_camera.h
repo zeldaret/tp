@@ -1070,8 +1070,8 @@ public:
         i_info->field_0x1e = param_1;
     }
 
-    void EventFlag(int i_flag) {
-        mEventData.field_0x24 = i_flag;
+    int EventFlag(int i_flag) {
+        return mEventData.field_0x24 = i_flag;
     }
 
     void Att() {
