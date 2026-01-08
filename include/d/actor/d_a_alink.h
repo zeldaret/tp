@@ -5260,9 +5260,9 @@ public:
     void setBlendMoveAnime(f32);
     void setBlendAtnMoveAnime(f32);
     void setBlendAtnBackMoveAnime(f32);
-    void setFaceBck(u16, int, u16);
-    void setFaceBtp(u16, int, u16);
-    void setFaceBtk(u16, int, u16);
+    void setFaceBck(u16 i_resID, int, u16);
+    void setFaceBtp(u16 i_resID, int, u16);
+    void setFaceBtk(u16 i_resID, int, u16);
     daAlink_FTANM setFaceBasicTexture(daAlink_c::daAlink_FTANM);
     void setFaceBasicAnime(daAlink_c::daAlink_ANM);
     void setFacePriTexture(daAlink_c::daAlink_FTANM);
@@ -6414,10 +6414,10 @@ public:
     int procIronBallReturnInit();
     int procIronBallReturn();
     BOOL checkEventRun() const;
-    void createNpcTks(cXyz*, int, u32);
+    void createNpcTks(cXyz* i_basePos, int i_roomNo, u32 i_parameters);
     int checkDemoAction();
-    bool checkDemoMoveMode(u32) const;
-    void setDemoMoveData(u32*, cXyz const*);
+    bool checkDemoMoveMode(u32 i_mode) const;
+    void setDemoMoveData(u32* o_mode, cXyz const* i_goal);
     void setNoDrawSwordShield(int, u16);
     void setDemoData();
     void resetDemoBck();
@@ -6426,27 +6426,28 @@ public:
     void endDemoMode();
     fopAc_ac_c* getDemoLookActor();
     BOOL checkFlyAtnWait();
-    void setGetItemFace(u16);
-    BOOL checkGrabTalkActor(fopAc_ac_c*);
+    void setGetItemFace(u16 i_itemNo);
+    BOOL checkGrabTalkActor(fopAc_ac_c* i_actor);
     int setTalkStartBack(cXyz*);
     void setShapeAngleToTalkActor();
     void setTalkAnime();
     u8 setTradeItemAnime();
     void setTradeItemOutHand();
-    BOOL checkEndMessage(u32);
+    BOOL checkEndMessage(u32 i_msgIdx);
     u8 setDemoRightHandIndex(u16);
     u8 setDemoLeftHandIndex(u16);
     void setDemoRide(u16);
-    void setDemoBodyBck(dDemo_actor_c*, u16);
+    void setDemoBodyBck(dDemo_actor_c* i_demoActor, u16 i_resID);
     static BOOL checkFinalBattle();
-    BOOL checkRestartDead(int, int);
+    BOOL checkRestartDead(int i_dmgAmount, BOOL i_checkZoraMag);
     void setDeadRideSyncPos();
     BOOL checkDeadHP();
     BOOL checkDeadAction(int);
-    void setHighModelBck(mDoExt_bckAnm*, u16);
-    void setHighModelFaceBtk(u16);
-    void setDemoBrk(J3DAnmTevRegKey**, J3DModel*, u16);
-    f32 setStickAnmData(J3DAnmBase*, int, int, u16, int);
+    void setHighModelBck(mDoExt_bckAnm* i_bck, u16 i_resID);
+    void setHighModelFaceBtk(u16 i_resID);
+    void setDemoBrk(J3DAnmTevRegKey** o_ppbrk, J3DModel* i_model, u16 i_resID);
+    f32 setStickAnmData(J3DAnmBase* i_anm, int i_arg1, int i_arg2, u16 i_resID,
+                        int i_stickDirection);
     int procDemoCommon();
     int procCoToolDemoInit();
     int procCoToolDemo();
@@ -6456,7 +6457,7 @@ public:
     int procCoOpenTreasure();
     int procCoUnequipInit();
     int procCoUnequip();
-    void setGetSubBgm(int);
+    void setGetSubBgm(int i_itemNo);
     int procCoGetItemInit();
     int procCoGetItem();
     int procCoTurnBackInit();
@@ -6507,8 +6508,8 @@ public:
     int procLookAroundTurn();
     int procTradeItemOutInit();
     int procTradeItemOut();
-    static BOOL checkLetterItem(int);
-    int procNotUseItemInit(int);
+    static BOOL checkLetterItem(int i_itemNo);
+    int procNotUseItemInit(int i_itemNo);
     int procNotUseItem();
     int procSwordReadyInit();
     int procSwordReady();
@@ -6538,7 +6539,7 @@ public:
     int procCoWarp();
     int commonWaitTurnInit();
     int commonGrabPutInit();
-    int commonLargeDamageUpInit(int, int, s16, s16);
+    int commonLargeDamageUpInit(int i_type, BOOL i_isLargeDmg, s16, s16);
     int commonFallInit(int);
     JPABaseEmitter* setEmitter(u32*, u16, cXyz const*, csXyz const*);
     JPABaseEmitter* setEmitterPolyColor(u32*, u16, cBgS_PolyInfo&, cXyz const*,
@@ -6991,7 +6992,7 @@ public:
     virtual void voiceStart(u32);
     virtual void seStartOnlyReverb(u32);
     virtual void seStartOnlyReverbLevel(u32);
-    virtual void setOutPower(f32, short, int);
+    virtual void setOutPower(f32, s16, int);
     virtual void setGrabCollisionOffset(f32 i_offsetX, f32 i_offsetZ, cBgS_PolyInfo*);
     virtual void onFrollCrashFlg(u8, int);
     virtual MtxP getModelJointMtx(u16);
@@ -7005,12 +7006,12 @@ public:
         return mProcID == PROC_HORSE_BOW_SUBJECT && mProcVar2.field_0x300c != 0;
     }
     virtual void setClothesChange(int);
-    virtual void setPlayerPosAndAngle(cXyz const*, short, int);
+    virtual void setPlayerPosAndAngle(cXyz const*, s16, int);
     virtual void setPlayerPosAndAngle(cXyz const*, csXyz const*);
     virtual void setPlayerPosAndAngle(f32 (*)[4]);
-    virtual bool setThrowDamage(short, f32, f32, int, int, int);
-    virtual bool checkSetNpcTks(cXyz*, int, int);
-    virtual int setRollJump(f32, f32, short);
+    virtual bool setThrowDamage(s16, f32, f32, int, int, int);
+    virtual bool checkSetNpcTks(cXyz* i_basePos, int i_roomNo, int);
+    virtual int setRollJump(f32, f32, s16);
     virtual void cancelDungeonWarpReadyNeck() {
         if (mProcID != PROC_DUNGEON_WARP_READY) {
             return;
@@ -7058,7 +7059,7 @@ public:
         mCargoCarryAcKeep.setData(p_actor);
         mDemo.setDemoMode(1);
     }
-    virtual void setSumouPushBackDirection(short param_0) {
+    virtual void setSumouPushBackDirection(s16 param_0) {
         if (mProcID != PROC_SUMOU_MOVE) {
             return;
         }
@@ -7073,7 +7074,7 @@ public:
     virtual cXyz* getKandelaarFlamePos();
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c* i_dkActor);
-    virtual void onPressedDamage(cXyz const&, short);
+    virtual void onPressedDamage(cXyz const&, s16);
     virtual bool checkPriActorOwn(fopAc_ac_c const* p_actor) const {
         return field_0x27f4 == p_actor;
     }
@@ -7081,7 +7082,7 @@ public:
     virtual bool checkWolfEnemyBiteAllOwn(fopAc_ac_c const* p_actor) const {
         return field_0x281c.getActorConst() == p_actor;
     }
-    virtual void setWolfEnemyHangBiteAngle(short angle) {
+    virtual void setWolfEnemyHangBiteAngle(s16 angle) {
         if (mProcID != PROC_WOLF_ENEMY_HANG_BITE) {
             return;
         }
@@ -7124,7 +7125,7 @@ public:
         return checkUnderMove0BckNoArcWolf(WANM_HOWL_SUCCESS);
     }
     virtual void skipPortalObjWarp();
-    virtual BOOL checkTreasureRupeeReturn(int) const;
+    virtual BOOL checkTreasureRupeeReturn(int i_itemNo) const;
     virtual void cancelGoronThrowEvent();
     virtual cXyz* getHookshotTopPos();
     virtual bool checkHookshotReturnMode() const;
@@ -7266,15 +7267,15 @@ public:
     J3DAnmTransform* getNowAnmPackUpper(daAlink_UPPER param_0) {
         return mNowAnmPackUpper[param_0].getAnmTransform();
     }
-    void setFacePriBck(u16 param_0) { setFaceBck(param_0, 1, 0xFFFF); }
-    void setFacePriBtp(u16 param_0) { setFaceBtp(param_0, 1, 0xFFFF); }
-    void setFacePriBtk(u16 param_0) { setFaceBtk(param_0, 1, 0xFFFF); }
-    void setFaceBasicBck(u16 param_0) { setFaceBck(param_0, 0, 0xFFFF); }
-    void setFaceBasicBtp(u16 param_0) { setFaceBtp(param_0, 0, 0xFFFF); }
-    void setFaceBasicBtk(u16 param_0) { setFaceBtk(param_0, 0, 0xFFFF); }
-    void setFaceDemoBck(u16 param_0) { setFaceBck(param_0, 0, 0); }
-    void setFaceDemoBtp(u16 param_0) { setFaceBtp(param_0, 0, 0); }
-    void setFaceDemoBtk(u16 param_0) { setFaceBtk(param_0, 0, 0); }
+    void setFacePriBck(u16 i_resID) { setFaceBck(i_resID, 1, 0xFFFF); }
+    void setFacePriBtp(u16 i_resID) { setFaceBtp(i_resID, 1, 0xFFFF); }
+    void setFacePriBtk(u16 i_resID) { setFaceBtk(i_resID, 1, 0xFFFF); }
+    void setFaceBasicBck(u16 i_resID) { setFaceBck(i_resID, 0, 0xFFFF); }
+    void setFaceBasicBtp(u16 i_resID) { setFaceBtp(i_resID, 0, 0xFFFF); }
+    void setFaceBasicBtk(u16 i_resID) { setFaceBtk(i_resID, 0, 0xFFFF); }
+    void setFaceDemoBck(u16 i_resID) { setFaceBck(i_resID, 0, 0); }
+    void setFaceDemoBtp(u16 i_resID) { setFaceBtp(i_resID, 0, 0); }
+    void setFaceDemoBtk(u16 i_resID) { setFaceBtk(i_resID, 0, 0); }
 
     void setGrabStatus(u8 i_status, u8 param_1) { setWallGrabStatus(i_status, param_1); }
     void setChainGrabStatus(u8 i_status) { setGrabStatus(i_status, 2); }
@@ -7284,7 +7285,7 @@ public:
         field_0x2844.clearData();
     }
 
-    int checkPlayerDemoMode() const { return mDemo.getDemoType(); }
+    BOOL checkPlayerDemoMode() const { return mDemo.getDemoType() != 0; }
     BOOL checkSpecialDemoMode() const {
         return mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e;
     }

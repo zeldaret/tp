@@ -344,8 +344,9 @@ int daAlink_c::procMagneBootsFly() {
         field_0x3478 = field_0x594;
     }
 
-    // !@bug - If iron boots are unequipped mid-flight, player will still stick to magnetic poly
-    // Fixed in GCN and Wii KOR versions by adding a checkEquipHeavyBoots check
+    /* !@bug - If iron boots are unequipped mid-flight, player will still stick to magnetic poly
+     * Fixed in GCN and Wii KOR versions by adding a checkEquipHeavyBoots check
+     */
     if (dComIfG_Bgsp().ChkPolySafe(mPolyInfo2)
         #if PLATFORM_GCN || VERSION == VERSION_WII_KOR
         && checkEquipHeavyBoots()
