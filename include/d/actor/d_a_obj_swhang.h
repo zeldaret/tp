@@ -65,7 +65,7 @@ public:
     cXyz getHangPos() { return mHangPos; }
 
     void setHangPlayer() { mHangPlayer = 1; }
-    u8 getType() { return mType; }
+    int getType() { return mType; }
     u8 getType_private() { return fopAcM_GetParamBit(this, 28, 4); }
     u8 checkType() { return fopAcM_GetParamBit(this, 25, 1); }
     u8 getSwNo() { return fopAcM_GetParamBit(this, 0, 8); }

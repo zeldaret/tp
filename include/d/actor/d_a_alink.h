@@ -6255,24 +6255,24 @@ public:
     int procOctaIealSpitInit();
     int procOctaIealSpit();
     bool checkSnowCode() const;
-    static bool checkSnowCodePolygon(cBgS_PolyInfo&);
+    static bool checkSnowCodePolygon(cBgS_PolyInfo& i_polyinfo);
     bool checkBoardRestart();
-    int boardCommon(int);
-    void setCommonBoardAnime(int);
+    int boardCommon(BOOL i_canMove);
+    void setCommonBoardAnime(BOOL i_isRideFront);
     int checkNextActionBoard();
     int checkBoardSwordTriggerAction();
-    int commonProcBoardInit(daAlink_c::daAlink_PROC);
+    int commonProcBoardInit(daAlink_c::daAlink_PROC i_procID);
     f32 getBoardRowAnmSpeed();
     void setBoardLandAnime();
     int procBoardRideInit();
     int procBoardRide();
-    int procBoardWaitInit(fopAc_ac_c*);
+    int procBoardWaitInit(fopAc_ac_c* i_boardActor);
     int procBoardWait();
     int procBoardRowInit();
     int procBoardRow();
     int procBoardTurnInit();
     int procBoardTurn();
-    int procBoardJumpInit(f32, int);
+    int procBoardJumpInit(f32 i_jumpSpeed, BOOL i_isNoSpeed);
     int procBoardJump();
     int procBoardSubjectivityInit();
     int procBoardSubjectivity();
@@ -6280,11 +6280,11 @@ public:
     int procBoardCut();
     int procBoardCutTurnInit();
     int procBoardCutTurn();
-    void hookshotAtHitCallBack(dCcD_GObjInf*, fopAc_ac_c*, dCcD_GObjInf*);
+    void hookshotAtHitCallBack(dCcD_GObjInf* i_atObjInf, fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf);
     void resetHookshotMode();
-    BOOL setEnemyBombHookshot(fopAc_ac_c*);
+    BOOL setEnemyBombHookshot(fopAc_ac_c* i_actor);
     bool checkLv7BossRoom();
-    BOOL checkHookshotStickBG(cBgS_PolyInfo&);
+    BOOL checkHookshotStickBG(cBgS_PolyInfo& i_polyinfo);
     void cancelHookshotCarry();
     void changeHookshotDrawModel();
     BOOL checkHookshotRoofLv7Boss();
@@ -6299,7 +6299,7 @@ public:
     bool cancelHookshotMove();
     BOOL checkHookshotReadyMaterialOffMode() const;
     void setHookshotReadyMaterial();
-    int initHookshotUpperAnimeSpeed(int);
+    int initHookshotUpperAnimeSpeed(BOOL);
     void initHookshotReady();
     void setHookshotReadyAnime();
     int checkUpperItemActionHookshot();
@@ -6311,7 +6311,7 @@ public:
     void setHookshotRoofWaitAnime();
     void setHookshotWallWaitAnime();
     void hookshotRoofTurn();
-    void initHookshotRoofWaitActor(fopAc_ac_c*);
+    void initHookshotRoofWaitActor(fopAc_ac_c* i_actor);
     int checkNextHookPoint();
     int checkLandHookshotHang();
     int commonHookshotRoofWait();
@@ -7556,7 +7556,7 @@ public:
 
     cXyz* getIronBallChainPos() const { return mIronBallChainPos; }
     csXyz* getIronBallChainAngle() const { return mIronBallChainAngle; }
-    int getIronBallHandChainNum() const { return mItemMode; }
+    s16 getIronBallHandChainNum() const { return mItemMode; }
     const cXyz& getIronBallChainHandRootPos() const { return mHookshotTopPos; }
 
     fopAc_ac_c* getAtnActor() { return mTargetedActor; }

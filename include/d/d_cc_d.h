@@ -146,7 +146,7 @@ public:
     u32 GetRPrm() const { return mRPrm; }
     u32 MskSPrm(u32 mask) const { return mGFlag & mask; }
     u32 MskRPrm(u32 mask) const { return mRPrm & mask; }
-    bool ChkSPrm(u32 mask) const { return MskSPrm(mask); }
+    bool ChkSPrm(u32 mask) { return MskSPrm(mask); }
     void OnSPrm(u32 flag) { mGFlag |= flag; }
     void OnRPrm(u32 flag) { mRPrm |= flag; }
     void OffSPrm(u32 flag) { mGFlag &= ~flag; }
@@ -308,7 +308,7 @@ public:
 
     void SetAtVec(cXyz& vec) { mGObjAt.SetVec(vec); }
     void SetTgVec(cXyz& vec) { mGObjTg.SetVec(vec); }
-    bool ChkAtNoMass() const { return mGObjAt.ChkSPrm(8); }
+    bool ChkAtNoMass() { return mGObjAt.ChkSPrm(8); }
     void OnAtNoHitMark() { mGObjAt.OnSPrm(2); }
     void OffAtNoHitMark() { mGObjAt.OffSPrm(2); }
     void OnTgNoHitMark() { mGObjTg.OnSPrm(4); }
