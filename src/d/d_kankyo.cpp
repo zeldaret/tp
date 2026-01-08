@@ -1393,7 +1393,7 @@ static void envcolor_init() {
     g_env_light.player_room_no = dComIfGp_roomControl_getStayNo();
     g_env_light.is_blure = 0;
     g_env_light.using_time_control_tag = 0;
-    g_env_light.field_0x1300 = -1;
+    g_env_light.rain_set = -1;
     g_env_light.field_0x1302 = -1;
     g_env_light.mWaterSurfaceShineRate = 1.0f;
 
@@ -11547,8 +11547,8 @@ void dKy_murky_set(J3DMaterial* material_p) {
 
     f32 var_f29 = 1.0f;
 
-    if (g_env_light.field_0x1300 != -1) {
-        tev_kcol.a = g_env_light.field_0x1300 * var_f29;
+    if (g_env_light.rain_set != -1) {
+        tev_kcol.a = g_env_light.rain_set * var_f29;
     }
 
     if (g_env_light.field_0x1302 != -1) {
