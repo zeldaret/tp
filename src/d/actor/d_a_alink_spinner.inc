@@ -84,7 +84,6 @@ bool daAlink_c::checkSpinnerTriggerAttack() {
     return false;
 }
 
-
 void daAlink_c::setSpinnerSyncPos() {
     daSpinner_c* spinner = (daSpinner_c*)mRideAcKeep.getActor();
 
@@ -150,8 +149,8 @@ int daAlink_c::procSpinnerReady() {
     return 1;
 }
 
-void daAlink_c::setSpinnerStatus(u8 status, u8 flag) {
-    dComIfGp_setDoStatus(status, flag);
+void daAlink_c::setSpinnerStatus(u8 i_status, u8 i_flag) {
+    dComIfGp_setDoStatus(i_status, i_flag);
 }
 
 int daAlink_c::procSpinnerWaitInit() {
@@ -177,12 +176,12 @@ int daAlink_c::procSpinnerWaitInit() {
     return 1;
 }
 
-
 int daAlink_c::procSpinnerWait() {
     daSpinner_c* spinner = (daSpinner_c*)mRideAcKeep.getActor();
 
     if (spinner == NULL || spinner->getDeleteFlg() || checkWindSpeedOnXZ() ||
-        checkEndResetFlg1(ERFLG1_NS_SCREAM) || checkEndResetFlg0(ERFLG0_FORCE_WOLF_CHANGE)) {
+        checkEndResetFlg1(ERFLG1_NS_SCREAM) || checkEndResetFlg0(ERFLG0_FORCE_WOLF_CHANGE))
+    {
         mNormalSpeed = 0.0f;
         setJumpMode();
         return procFallInit(1, mpHIO->mAutoJump.m.mFallInterpolation);
@@ -276,7 +275,7 @@ int daAlink_c::procSpinnerWait() {
                                mpHIO->mItem.mBoard.m.mAirborneAnm.mEndFrame, -1.0f);
                 mProcVar4.field_0x3010 = 1;
             }
-        } else if ((field_0x3198 == ANM_RIDE_JUMP_LAND && frameCtrl->checkAnmEnd()) ||
+        } else if ((field_0x3198 == ANM_RIDE_JUMP_LAND && checkAnmEnd(frameCtrl)) ||
                    (field_0x3198 != ANM_RIDE_JUMP_LAND && field_0x3198 != ANM_RIDE_CROUCH)) {
             setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, mpHIO->mItem.mBoard.m.mSitAnmSpeed,
                                     mpHIO->mItem.mBoard.m.mSitInterpolation);
