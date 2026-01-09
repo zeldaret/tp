@@ -152,7 +152,6 @@ public:
     void setSpread(f32 i_spread) { mSpread = i_spread; }
     void setLocalTranslation(const JGeometry::TVec3<f32>& i_trans) { mLocalTrs.set(i_trans); }
     void setLocalRotation(const JGeometry::TVec3<s16>& i_rot) {
-        // wrong conversion factor, bug fix should used S2DEG(x)
         mLocalRot.set(i_rot.x * (360.0f / 0xffff), i_rot.y * (360.0f / 0xffff),
                       i_rot.z * (360.0f / 0xffff));
     }
