@@ -8,11 +8,11 @@
 
 // There are some angles that weren't sign-extended until the shield version
 #if !PLATFORM_SHIELD
-#define ADD_ANGLE_2(x, y) ((x) += (y))
-#define SUB_ANGLE_2(x, y) ((x) -= (y))
+    #define ADD_ANGLE_2(x, y) ((x) += (y))
+    #define SUB_ANGLE_2(x, y) ((x) -= (y))
 #else
-#define ADD_ANGLE_2(x, y) ADD_ANGLE(x, y)
-#define SUB_ANGLE_2(x, y) SUB_ANGLE(x, y)
+    #define ADD_ANGLE_2(x, y) ADD_ANGLE(x, y)
+    #define SUB_ANGLE_2(x, y) SUB_ANGLE(x, y)
 #endif
 
 #define DEG2S_CONSTANT (0x8000 / 180.0f)
