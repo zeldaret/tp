@@ -6541,11 +6541,13 @@ public:
     int commonGrabPutInit();
     int commonLargeDamageUpInit(int i_type, BOOL i_isLargeDmg, s16, s16);
     int commonFallInit(int);
-    JPABaseEmitter* setEmitter(u32*, u16, cXyz const*, csXyz const*);
-    JPABaseEmitter* setEmitterPolyColor(u32*, u16, cBgS_PolyInfo&, cXyz const*,
-                                                       csXyz const*);
-    JPABaseEmitter* setEmitterColor(u32*, u16, cXyz const*, csXyz const*);
-    void stopDrawParticle(u32);
+    JPABaseEmitter* setEmitter(u32* i_emitterId, u16 i_effName, cXyz const* i_pos,
+                               csXyz const* i_rotation);
+    JPABaseEmitter* setEmitterPolyColor(u32* i_emitterId, u16 i_effName, cBgS_PolyInfo& i_polyinfo, cXyz const*,
+                                        csXyz const*);
+    JPABaseEmitter* setEmitterColor(u32* i_emitterId, u16 i_effName, cXyz const* i_pos,
+                                    csXyz const* i_rotation);
+    void stopDrawParticle(u32 i_emitterId);
     void setEffectFrontRollParam();
     void setEffectSlipParam();
     void setEffectRunParam();
@@ -6554,10 +6556,10 @@ public:
     void setEffectSumouParam();
     void setFootEffectProcType(int);
     void setWolfFootOn(int);
-    void setFootMark(cXyz*, u16, int);
+    void setFootMark(cXyz* i_pos, u16 i_mtxNo, int);
     void setEffect();
     void setSumouEffect();
-    void setWaterfallEffect(cXyz const*, u32*);
+    void setWaterfallEffect(const cXyz* i_pos, u32* i_emitterId);
     void setWaterfallEffect();
     void setMagneBootsEffect();
     void setSwordChargeEffect();
@@ -6573,7 +6575,7 @@ public:
     void setWolfSwimEndEffect(JPABaseEmitter**, JPABaseEmitter**);
     void setWolfLockAttackEffect();
     void setWolfJumpAttackEffect();
-    void setWolfBarrierHitEffect(dBgS_LinChk&);
+    void setWolfBarrierHitEffect(dBgS_LinChk& i_linchk);
     void setCutWaterDropEffect();
     void setWaterDropEffect();
     void setSwordUpColorEffect();
@@ -6583,9 +6585,9 @@ public:
     void setRunSplash();
     void resetFairyEffect();
     void setBottleEffect();
-    void clearFirePointDamageEffect(int);
+    void clearFirePointDamageEffect(int i_effNo);
     void initFirePointDamageEffectAll();
-    void initFirePointDamageEffect(cXyz const*, dCcD_GObjInf*);
+    void initFirePointDamageEffect(cXyz const*, dCcD_GObjInf* i_hitObj);
     void setFirePointDamageEffect();
     void setFreezeEffect();
     void setWoodShieldBurnEffect();
@@ -7260,7 +7262,7 @@ public:
     BOOL peepSubjectCancelTrigger() { return itemTriggerCheck(BTN_B); }
     int getStartMode() { return (fopAcM_GetParam(this) >> 0xC) & 0x1F; }
     bool checkInputOnR() const { return field_0x33ac > 0.05f; }
-    static int getSightBti() { return 0x5B; }
+    static u16 getSightBti() { return 0x5B; }
     bool checkBoomerangChargeEndWait() const {
         return mEquipItem != 0x102 && checkBoomerangAnime();
     }
