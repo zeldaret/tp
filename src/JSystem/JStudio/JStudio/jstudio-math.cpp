@@ -3,7 +3,6 @@
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/TPosition3.h"
-#include "SSystem/SComponent/c_angle.h"
 #include <math>
 
 void JStudio::math::getRotation_xyz(MtxP param_1, f32 x, f32 y, f32 z) {

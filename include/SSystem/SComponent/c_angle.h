@@ -22,7 +22,6 @@
 #define S2DEG(x) ((x) * S2DEG_CONSTANT)
 #define S2RAD(x) ((x) * S2RAD_CONSTANT)
 #define RAD2S(x) ((x) * RAD2S_CONSTANT)
-#define m_PI_D 3.141592653589793
 
 class cSAngle {
 private:
