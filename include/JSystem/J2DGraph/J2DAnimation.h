@@ -238,9 +238,15 @@ public:
     virtual ~J2DAnmTextureSRTKey() {}
     virtual void searchUpdateMaterialID(J2DScreen*);
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum / 3; }
-    u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
-    u8 getUpdateTexMtxID(u16 i) const { return mUpdateTexMtxID[i]; }
-    void getTransform(u16 param_1, J3DTextureSRTInfo* param_2) {
+    u16 getUpdateMaterialID(u16 i) const {
+        J3D_PANIC(514, i < mUpdateMaterialNum / 3 && i >= 0, "Error : range over.");
+        return mUpdateMaterialID[i];
+    }
+    u8 getUpdateTexMtxID(u16 i) const {
+        J3D_PANIC(513, i < mUpdateMaterialNum / 3 && i >= 0, "Error : range over.");
+        return mUpdateTexMtxID[i];
+    }
+    void getTransform(u16 param_1, J3DTextureSRTInfo* param_2) const {
         calcTransform(mFrame, param_1, param_2);
     }
 
@@ -302,7 +308,10 @@ public:
     virtual ~J2DAnmTexPattern() { delete[] mTIMGPtrArray; }
     virtual void searchUpdateMaterialID(J2DScreen*);
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
-    u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
+    u16 getUpdateMaterialID(u16 i) const {
+        J3D_PANIC(619, i < mUpdateMaterialNum, "Error : range over.");
+        return mUpdateMaterialID[i];
+    }
     J3DAnmTexPatternFullTable* getAnmTable() const { return mAnmTable; }
 
     /* 0x10 */ u16* mValues;
@@ -350,10 +359,16 @@ public:
     virtual void searchUpdateMaterialID(J2DScreen* pScreen);
 
     u16 getCRegUpdateMaterialNum() const { return mCRegUpdateMaterialNum; }
-    u16 getCRegUpdateMaterialID(u16 i) const { return mCRegUpdateMaterialID[i]; }
+    u16 getCRegUpdateMaterialID(u16 i) const {
+        J3D_PANIC(770, i < mCRegUpdateMaterialNum, "Error : range over.");
+        return mCRegUpdateMaterialID[i];
+    }
 
     u16 getKRegUpdateMaterialNum() const { return mKRegUpdateMaterialNum; }
-    u16 getKRegUpdateMaterialID(u16 i) const { return mKRegUpdateMaterialID[i]; }
+    u16 getKRegUpdateMaterialID(u16 i) const {
+        J3D_PANIC(778, i < mKRegUpdateMaterialNum, "Error : range over.");
+        return mKRegUpdateMaterialID[i];
+    }
 
     J3DAnmCRegKeyTable* getAnmCRegKeyTable() const { return mAnmCRegKeyTable; }
     J3DAnmKRegKeyTable* getAnmKRegKeyTable() const { return mAnmKRegKeyTable; }
@@ -403,7 +418,10 @@ public:
     virtual void searchUpdateMaterialID(J2DScreen*);
     virtual void getColor(u16, _GXColor*) const {}
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
-    u16 getUpdateMaterialID(u16 i) const { return mUpdateMaterialID[i]; }
+    u16 getUpdateMaterialID(u16 i) const {
+        J3D_PANIC(224, i < mUpdateMaterialNum, "Error : range over.");
+        return mUpdateMaterialID[i];
+    }
 
     /* 0x10 */ u16 field_0x10;
     /* 0x12 */ u16 field_0x12;
