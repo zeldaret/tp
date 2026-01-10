@@ -447,6 +447,14 @@ struct TVec2 {
         y += other.y;
     }
 
+    bool equals(const TVec2<T>& other) const {
+        bool result = false;
+        if (this->x == other.x && this->y == other.y) {
+            result = true;
+        }
+        return result;
+    }
+
     bool isAbove(const TVec2<T>& other) const {
         return (x >= other.x) && (y >= other.y) ? true : false;
     }
@@ -461,6 +469,10 @@ struct TVec2 {
 
     f32 length() const {
         return TUtil<f32>::sqrt(squared());
+    }
+
+    bool operator==(const TVec2<T>& other) const {
+        return equals(other);
     }
 
     T x;

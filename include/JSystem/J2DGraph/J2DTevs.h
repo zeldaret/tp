@@ -429,7 +429,7 @@ public:
     }
 
     void setTexSel(u8 param_0) {
-        field_0x7 = (field_0x7 & ~0x0c) | (param_0 * 4);
+        field_0x7 = (field_0x7 & ~0x0c) | (param_0 << 2);
     }
 
     void setRasSel(u8 param_0) {
@@ -634,6 +634,10 @@ public:
     }
 
     u8 getMatSrc() const { return mColorChan & 1; }
+
+    void operator=(const J2DColorChan& other) {
+        mColorChan = other.mColorChan;
+    }
 
 private:
     /* 0x0 */ u16 mColorChan;

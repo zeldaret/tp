@@ -351,6 +351,7 @@ void J2DTevBlock1::shiftDeleteFlag(u8, bool) {
 
 void J2DTevBlock1::setGX() {
     loadTexture(GX_TEXMAP0, 0);
+    (void)bool(mFont);
     GXSetTevOrder(GX_TEVSTAGE0, (GXTexCoordID)mTevOrder[0].getTexCoord(), (GXTexMapID)mTevOrder[0].getTexMap(), (GXChannelID)mTevOrder[0].getColor());
 
     for (int i = 0; i < 4; i++) {
@@ -368,10 +369,10 @@ void J2DTevBlock1::setGX() {
                     GXTevAlphaArg(mTevStage[0].getAlphaD()));
     GXSetTevColorOp(GX_TEVSTAGE0, GXTevOp(mTevStage[0].getCOp()),
                     GXTevBias(mTevStage[0].getCBias()), GXTevScale(mTevStage[0].getCScale()),
-                    mTevStage[0].getCClamp(), GXTevRegID(mTevStage[0].getCReg()));
+                    GXBool(mTevStage[0].getCClamp()), GXTevRegID(mTevStage[0].getCReg()));
     GXSetTevAlphaOp(GX_TEVSTAGE0, (GXTevOp)mTevStage[0].getAOp(),
                     GXTevBias(mTevStage[0].getABias()), GXTevScale(mTevStage[0].getAScale()),
-                    mTevStage[0].getAClamp(), GXTevRegID(mTevStage[0].getAReg()));
+                    GXBool(mTevStage[0].getAClamp()), GXTevRegID(mTevStage[0].getAReg()));
     GXSetTevKColorSel(GX_TEVSTAGE0, mTevKColorSel[0] != 0xff ? GXTevKColorSel(mTevKColorSel[0]) : GX_TEV_KCSEL_1);
     GXSetTevKAlphaSel(GX_TEVSTAGE0, mTevKAlphaSel[0] != 0xff ? GXTevKAlphaSel(mTevKAlphaSel[0]) : GX_TEV_KASEL_1);
     for (int i = 0; i < 4; i++) {
@@ -764,13 +765,15 @@ void J2DTevBlock2::shiftDeleteFlag(u8 param_0, bool param_1) {
         mUndeleteFlag = (mUndeleteFlag & ((1 << param_0) - 1)) | ((mUndeleteFlag & ~((1 << (param_0 + 1)) - 1)) >> 1);
     }
 
-    mUndeleteFlag = (mUndeleteFlag | tmpFlags) & 0xFF;
+    mUndeleteFlag = u8(mUndeleteFlag | tmpFlags);
 }
 
 void J2DTevBlock2::setGX() {
     for (int i = 0; i < 2; i++) {
         loadTexture(GXTexMapID(i), i);
     }
+
+    (void)bool(mFont);
 
     for (int i = 0; i < mTevStageNum; i++) {
         GXSetTevOrder(GXTevStageID(i), (GXTexCoordID)mTevOrder[i].getTexCoord(), (GXTexMapID)mTevOrder[i].getTexMap(), (GXChannelID)mTevOrder[i].getColor());
@@ -792,10 +795,10 @@ void J2DTevBlock2::setGX() {
                         GXTevAlphaArg(mTevStage[i].getAlphaD()));
         GXSetTevColorOp(GXTevStageID(i), GXTevOp(mTevStage[i].getCOp()),
                         GXTevBias(mTevStage[i].getCBias()), GXTevScale(mTevStage[i].getCScale()),
-                        mTevStage[i].getCClamp(), GXTevRegID(mTevStage[i].getCReg()));
+                        GXBool(mTevStage[i].getCClamp()), GXTevRegID(mTevStage[i].getCReg()));
         GXSetTevAlphaOp(GXTevStageID(i), (GXTevOp)mTevStage[i].getAOp(),
                         GXTevBias(mTevStage[i].getABias()), GXTevScale(mTevStage[i].getAScale()),
-                        mTevStage[i].getAClamp(), GXTevRegID(mTevStage[i].getAReg()));
+                        GXBool(mTevStage[i].getAClamp()), GXTevRegID(mTevStage[i].getAReg()));
         GXSetTevKColorSel(GXTevStageID(i), mTevKColorSel[i] != 0xff ? GXTevKColorSel(mTevKColorSel[i]) : GX_TEV_KCSEL_1);
         GXSetTevKAlphaSel(GXTevStageID(i), mTevKAlphaSel[i] != 0xff ? GXTevKAlphaSel(mTevKAlphaSel[i]) : GX_TEV_KASEL_1);
     }
@@ -944,8 +947,9 @@ bool J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
             }
         }
     }
+    JUTTexture* texture;
     if (!mTexture[idx]) {
-        JUTTexture* texture = new JUTTexture(p_timg, local_43);
+        texture = new JUTTexture(p_timg, local_43);
         if (!texture) {
             return false;
         }
@@ -961,7 +965,7 @@ bool J2DTevBlock4::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
         shiftDeleteFlag(param_0, true);
         mUndeleteFlag |= 1 << param_0;
     } else {
-        JUTTexture* texture = mTexture[idx];
+        texture = mTexture[idx];
         if (!p_tlut) {
             texture->storeTIMG(p_timg, local_43);
         } else {
@@ -1038,10 +1042,9 @@ bool J2DTevBlock4::setTexture(u32 param_0, ResTIMG const* p_timg) {
         return false;
     }
 
-    u8 used_tlut;
     u8 tlutid = 0;
     if (p_timg != NULL && p_timg->indexTexture) {
-        used_tlut = 0;
+        u8 used_tlut = 0;
         for (int i = 0; i < 4; i++) {
             if (i != param_0 && mTexture[i] != NULL) {
                 const ResTIMG* timg = mTexture[i]->getTexInfo();
@@ -1214,13 +1217,14 @@ void J2DTevBlock4::shiftDeleteFlag(u8 param_0, bool param_1) {
         mUndeleteFlag = (mUndeleteFlag & ((1 << param_0) - 1)) | ((mUndeleteFlag & ~((1 << (param_0 + 1)) - 1)) >> 1);
     }
 
-    mUndeleteFlag |= tmpFlags;
+    mUndeleteFlag = u8(mUndeleteFlag | tmpFlags);
 }
 
 void J2DTevBlock4::setGX() {
     for (int i = 0; i < 4; i++) {
         loadTexture(GXTexMapID(i), i);
     }
+    (void)bool(mFont);
     for (int i = 0; i < mTevStageNum; i++) {
         GXSetTevOrder(GXTevStageID(i), (GXTexCoordID)mTevOrder[i].getTexCoord(), (GXTexMapID)mTevOrder[i].getTexMap(), (GXChannelID)mTevOrder[i].getColor());
     }
@@ -1239,10 +1243,10 @@ void J2DTevBlock4::setGX() {
                         GXTevAlphaArg(mTevStage[i].getAlphaD()));
         GXSetTevColorOp(GXTevStageID(i), GXTevOp(mTevStage[i].getCOp()),
                         GXTevBias(mTevStage[i].getCBias()), GXTevScale(mTevStage[i].getCScale()),
-                        mTevStage[i].getCClamp(), GXTevRegID(mTevStage[i].getCReg()));
+                        GXBool(mTevStage[i].getCClamp()), GXTevRegID(mTevStage[i].getCReg()));
         GXSetTevAlphaOp(GXTevStageID(i), (GXTevOp)mTevStage[i].getAOp(),
                         GXTevBias(mTevStage[i].getABias()), GXTevScale(mTevStage[i].getAScale()),
-                        mTevStage[i].getAClamp(), GXTevRegID(mTevStage[i].getAReg()));
+                        GXBool(mTevStage[i].getAClamp()), GXTevRegID(mTevStage[i].getAReg()));
         GXSetTevKColorSel(GXTevStageID(i), mTevKColorSel[i] != 0xff ? GXTevKColorSel(mTevKColorSel[i]) : GX_TEV_KCSEL_1);
         GXSetTevKAlphaSel(GXTevStageID(i), mTevKAlphaSel[i] != 0xff ? GXTevKAlphaSel(mTevKAlphaSel[i]) : GX_TEV_KASEL_1);
     }
@@ -1388,8 +1392,9 @@ bool J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
             }
         }
     }
+    JUTTexture* texture;
     if (!mTexture[idx]) {
-        JUTTexture* texture = new JUTTexture(p_timg, local_43);
+        texture = new JUTTexture(p_timg, local_43);
         if (!texture) {
             return false;
         }
@@ -1405,7 +1410,7 @@ bool J2DTevBlock8::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
         shiftDeleteFlag(param_0, true);
         mUndeleteFlag |= 1 << param_0;
     } else {
-        JUTTexture* texture = mTexture[idx];
+        texture = mTexture[idx];
         if (!p_tlut) {
             texture->storeTIMG(p_timg, local_43);
         } else {
@@ -1460,7 +1465,7 @@ bool J2DTevBlock8::insertTexture(u32 param_0, JUTTexture* p_tex) {
             delete mTexture[7];
         }
         
-        mUndeleteFlag &= 0x7F;
+        mUndeleteFlag &= ~0x80;
     }
 
     for (u8 i = 7; i > param_0; i--) {
@@ -1482,10 +1487,9 @@ bool J2DTevBlock8::setTexture(u32 param_0, ResTIMG const* p_timg) {
         return false;
     }
 
-    u8 used_tlut;
     u8 tlutid = 0;
     if (p_timg != NULL && p_timg->indexTexture) {
-        used_tlut = 0;
+        u8 used_tlut = 0;
         for (int i = 0; i < 8; i++) {
             if (i != param_0 && mTexture[i] != NULL) {
                 const ResTIMG* timg = mTexture[i]->getTexInfo();
@@ -1660,6 +1664,7 @@ void J2DTevBlock8::setGX() {
     for (int i = 0; i < 8; i++) {
         loadTexture(GXTexMapID(i), i);
     }
+    (void)bool(mFont);
     for (int i = 0; i < mTevStageNum; i++) {
         GXSetTevOrder(GXTevStageID(i), (GXTexCoordID)mTevOrder[i].getTexCoord(), (GXTexMapID)mTevOrder[i].getTexMap(), (GXChannelID)mTevOrder[i].getColor());
     }
@@ -1678,10 +1683,10 @@ void J2DTevBlock8::setGX() {
                         GXTevAlphaArg(mTevStage[i].getAlphaD()));
         GXSetTevColorOp(GXTevStageID(i), GXTevOp(mTevStage[i].getCOp()),
                         GXTevBias(mTevStage[i].getCBias()), GXTevScale(mTevStage[i].getCScale()),
-                        mTevStage[i].getCClamp(), GXTevRegID(mTevStage[i].getCReg()));
+                        GXBool(mTevStage[i].getCClamp()), GXTevRegID(mTevStage[i].getCReg()));
         GXSetTevAlphaOp(GXTevStageID(i), (GXTevOp)mTevStage[i].getAOp(),
                         GXTevBias(mTevStage[i].getABias()), GXTevScale(mTevStage[i].getAScale()),
-                        mTevStage[i].getAClamp(), GXTevRegID(mTevStage[i].getAReg()));
+                        GXBool(mTevStage[i].getAClamp()), GXTevRegID(mTevStage[i].getAReg()));
         GXSetTevKColorSel(GXTevStageID(i), mTevKColorSel[i] != 0xff ? GXTevKColorSel(mTevKColorSel[i]) : GX_TEV_KCSEL_1);
         GXSetTevKAlphaSel(GXTevStageID(i), mTevKAlphaSel[i] != 0xff ? GXTevKAlphaSel(mTevKAlphaSel[i]) : GX_TEV_KASEL_1);
     }
@@ -1827,8 +1832,9 @@ bool J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette
             }
         }
     }
+    JUTTexture* texture;
     if (!mTexture[idx]) {
-        JUTTexture* texture = new JUTTexture(p_timg, local_43);
+        texture = new JUTTexture(p_timg, local_43);
         if (!texture) {
             return false;
         }
@@ -1844,7 +1850,7 @@ bool J2DTevBlock16::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette
         shiftDeleteFlag(param_0, true);
         mUndeleteFlag |= 1 << param_0;
     } else {
-        JUTTexture* texture = mTexture[idx];
+        texture = mTexture[idx];
         if (!p_tlut) {
             texture->storeTIMG(p_timg, local_43);
         } else {
@@ -1899,7 +1905,7 @@ bool J2DTevBlock16::insertTexture(u32 param_0, JUTTexture* p_tex) {
             delete mTexture[7];
         }
         
-        mUndeleteFlag &= 0x7F;
+        mUndeleteFlag &= ~0x80;
     }
 
     for (u8 i = 7; i > param_0; i--) {
@@ -1921,10 +1927,9 @@ bool J2DTevBlock16::setTexture(u32 param_0, ResTIMG const* p_timg) {
         return false;
     }
 
-    u8 used_tlut;
     u8 tlutid = 0;
     if (p_timg != NULL && p_timg->indexTexture) {
-        used_tlut = 0;
+        u8 used_tlut = 0;
         for (int i = 0; i < 8; i++) {
             if (i != param_0 && mTexture[i] != NULL) {
                 const ResTIMG* timg = mTexture[i]->getTexInfo();
@@ -2099,6 +2104,7 @@ void J2DTevBlock16::setGX() {
     for (int i = 0; i < 8; i++) {
         loadTexture(GXTexMapID(i), i);
     }
+    (void)bool(mFont);
     for (int i = 0; i < mTevStageNum; i++) {
         GXSetTevOrder(GXTevStageID(i), (GXTexCoordID)mTevOrder[i].getTexCoord(), (GXTexMapID)mTevOrder[i].getTexMap(), (GXChannelID)mTevOrder[i].getColor());
     }
@@ -2117,10 +2123,10 @@ void J2DTevBlock16::setGX() {
                         GXTevAlphaArg(mTevStage[i].getAlphaD()));
         GXSetTevColorOp(GXTevStageID(i), GXTevOp(mTevStage[i].getCOp()),
                         GXTevBias(mTevStage[i].getCBias()), GXTevScale(mTevStage[i].getCScale()),
-                        mTevStage[i].getCClamp(), GXTevRegID(mTevStage[i].getCReg()));
+                        GXBool(mTevStage[i].getCClamp()), GXTevRegID(mTevStage[i].getCReg()));
         GXSetTevAlphaOp(GXTevStageID(i), (GXTevOp)mTevStage[i].getAOp(),
                         GXTevBias(mTevStage[i].getABias()), GXTevScale(mTevStage[i].getAScale()),
-                        mTevStage[i].getAClamp(), GXTevRegID(mTevStage[i].getAReg()));
+                        GXBool(mTevStage[i].getAClamp()), GXTevRegID(mTevStage[i].getAReg()));
         GXSetTevKColorSel(GXTevStageID(i), mTevKColorSel[i] != 0xff ? GXTevKColorSel(mTevKColorSel[i]) : GX_TEV_KCSEL_1);
         GXSetTevKAlphaSel(GXTevStageID(i), mTevKAlphaSel[i] != 0xff ? GXTevKAlphaSel(mTevKAlphaSel[i]) : GX_TEV_KASEL_1);
     }
@@ -2182,5 +2188,5 @@ void J2DPEBlock::initialize() {
 void J2DPEBlock::setGX() {
     GXSetAlphaCompare(GXCompare(mAlphaComp.getComp0()), mAlphaComp.getRef0(), GXAlphaOp(mAlphaComp.getOp()), GXCompare(mAlphaComp.getComp1()), mAlphaComp.getRef1());
     GXSetBlendMode(GXBlendMode(mBlend.getType()), GXBlendFactor(mBlend.getSrcFactor()), GXBlendFactor(mBlend.getDstFactor()), GXLogicOp(mBlend.getOp()));
-    GXSetDither(mDither);
+    GXSetDither(GXBool(mDither));
 }

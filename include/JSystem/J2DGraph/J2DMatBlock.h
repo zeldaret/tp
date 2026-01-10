@@ -73,7 +73,7 @@ public:
     virtual u32 getType() = 0;
     virtual u8 getMaxStage() = 0;
     virtual void setTexNo(u32, u16) {}
-    virtual u32 getTexNo(u32) const { return 0xFFFF; }
+    virtual u16 getTexNo(u32) const { return 0xFFFF; }
     virtual void setFontNo(u16) {}
     virtual u16 getFontNo() const { return 0xFFFF; }
     virtual void setTevOrder(u32, J2DTevOrder) {}
@@ -131,7 +131,7 @@ public:
         J3D_PANIC(241, index < 1, "Error : range over.");
         mTexNo[index] = texNo;
     }
-    virtual u32 getTexNo(u32 index) const {
+    virtual u16 getTexNo(u32 index) const {
         J3D_PANIC(242, index < 1, "Error : range over.");
         return mTexNo[index];
     }
@@ -233,7 +233,7 @@ public:
     }
     virtual JUTFont* getFont() { return mFont; }
     virtual void shiftDeleteFlag(u8, bool);
-    virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }
+    virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag = mUndeleteFlag & flag; }
     virtual void setFontUndeleteFlag() { mUndeleteFlag &= 0x7F; }
     virtual ~J2DTevBlock1();
 
@@ -271,7 +271,7 @@ public:
         J3D_PANIC(351, index < 2, "Error : range over.");
         mTexNo[index] = texNo;
     }
-    virtual u32 getTexNo(u32 index) const {
+    virtual u16 getTexNo(u32 index) const {
         J3D_PANIC(352, index < 2, "Error : range over.");
         return mTexNo[index];
     }
@@ -373,7 +373,7 @@ public:
     }
     virtual JUTFont* getFont() { return mFont; }
     virtual void shiftDeleteFlag(u8, bool);
-    virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }
+    virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag = mUndeleteFlag & flag; }
     virtual void setFontUndeleteFlag() { mUndeleteFlag &= 0x7F; }
     virtual ~J2DTevBlock2();
 
@@ -413,7 +413,7 @@ public:
         J3D_PANIC(459, index < 4, "Error : range over.");
         mTexNo[index] = texNo;
     }
-    virtual u32 getTexNo(u32 index) const {
+    virtual u16 getTexNo(u32 index) const {
         J3D_PANIC(460, index < 4, "Error : range over.");
         return mTexNo[index];
     }
@@ -515,7 +515,7 @@ public:
     }
     virtual JUTFont* getFont() { return mFont; }
     virtual void shiftDeleteFlag(u8, bool);
-    virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }
+    virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag = mUndeleteFlag & flag; }
     virtual void setFontUndeleteFlag() { mUndeleteFlag &= 0x7F; }
     virtual ~J2DTevBlock4();
 
@@ -555,7 +555,7 @@ public:
         J3D_PANIC(570, index < 8, "Error : range over.");
         mTexNo[index] = texNo;
     }
-    virtual u32 getTexNo(u32 index) const {
+    virtual u16 getTexNo(u32 index) const {
         J3D_PANIC(571, index < 8, "Error : range over.");
         return mTexNo[index];
     }
@@ -657,7 +657,7 @@ public:
     }
     virtual JUTFont* getFont() { return mFont; }
     virtual void shiftDeleteFlag(u8, bool);
-    virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }
+    virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag = mUndeleteFlag & flag; }
     virtual void setFontUndeleteFlag() { mFontUndeleteFlag = false; }
     virtual ~J2DTevBlock8();
 
@@ -698,7 +698,7 @@ public:
         J3D_PANIC(682, index < 8, "Error : range over.");
         mTexNo[index] = texNo;
     }
-    virtual u32 getTexNo(u32 index) const {
+    virtual u16 getTexNo(u32 index) const {
         J3D_PANIC(683, index < 8, "Error : range over.");
         return mTexNo[index];
     }
@@ -800,7 +800,7 @@ public:
     }
     virtual JUTFont* getFont() { return mFont; }
     virtual void shiftDeleteFlag(u8, bool);
-    virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag &= flag; }
+    virtual void setUndeleteFlag(u8 flag) { mUndeleteFlag = mUndeleteFlag & flag; }
     virtual void setFontUndeleteFlag() { mFontUndeleteFlag = false; }
     virtual ~J2DTevBlock16();
 
@@ -1030,7 +1030,10 @@ public:
 
     u32 getTexGenNum() const { return mTexGenNum; }
     void setTexGenNum(u32 num) { mTexGenNum = num; }
-    void setTexCoord(u32 i, J2DTexCoord coord) { mTexGenCoord[i] = coord; }
+    void setTexCoord(u32 i, J2DTexCoord coord) {
+        J3D_PANIC(101, i < 8, "Error : range over.");
+        mTexGenCoord[i] = coord;
+    }
     void setTexCoord(u32 i, const J2DTexCoord* coord) {
         J3D_PANIC(98, i < 8, "Error : range over.");
         J3D_PANIC(99, coord, "Error : null pointer.");
