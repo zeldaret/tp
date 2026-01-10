@@ -22,6 +22,7 @@
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_mtx.h"
 #include "d/d_s_play.h"
+#include "SSystem/SComponent/c_angle.h"
 
 #define GET_FLAG(mask) (mFlags & (mask))    // cLib_checkBit<u16>(mFlags, (mask))
 
@@ -1242,16 +1243,16 @@ void daCow_c::action_run() {
 
             switch (mAction) {
             case daCow_c::Action_NadeNade:
-                targetAngle -= (s16)0x1000;
+                SUB_ANGLE_2(targetAngle, 0x1000);
                 break;
             case daCow_c::Action_Cry:
-                targetAngle += (s16)0x1000;
+                ADD_ANGLE_2(targetAngle, 0x1000);
                 break;
             case daCow_c::Action_3:
-                targetAngle -= (s16)0x4000;
+                SUB_ANGLE_2(targetAngle, 0x4000);
                 break;
             case daCow_c::Action_4:
-                targetAngle += (s16)0x4000;
+                ADD_ANGLE_2(targetAngle, 0x4000);
                 break;
             case daCow_c::Action_Wait:
                 s16 cowshedAngle = getCowshedAngle();
