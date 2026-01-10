@@ -52,10 +52,7 @@ u32 J2DMaterialFactory::countStages(int param_0) const {
         }
     }
     if ((uVar3 != uVar4 && uVar4 != 0)) {
-        if (uVar3 > uVar4) {
-            return uVar3;
-        }
-        return uVar4;
+        return uVar3 > uVar4 ? uVar3 : uVar4;
     }
     return uVar3;
 }
@@ -67,9 +64,9 @@ J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int index, u32 par
     u32 uVar1 = ((param_2 & 0x1f0000) >> 16);
     u32 r28 = stages > uVar1 ? stages : uVar1;
 
-    u32 r25 = r28 <= 8 ? r28 : 8;
+    u32 r25 = r28 > 8 ? 8 : r28;
 
-    s32 local_3bc = ((param_2 & 0x1000000) != 0);
+    s32 local_3bc = (param_2 & 0x1000000) ? 1 : 0;
     s32 local_3c0 = (param_2 & 0x1f0000) ? local_3bc : 0;
     bool temp = (param_2 & 0x1f0000);
     param_0->mTevBlock = J2DMaterial::createTevBlock((u16)r28, temp);
@@ -201,6 +198,7 @@ u8 J2DMaterialFactory::newColorChanNum(int param_0) const {
 }
 
 J2DColorChan J2DMaterialFactory::newColorChan(int param_0, int param_1) const {
+    int r29 = 0;
     J2DMaterialInitData* iVar2 = &field_0x4[field_0x8[param_0]];
     if (iVar2->field_0xc[param_1] != 0xffff) {
         return J2DColorChan(field_0x18[iVar2->field_0xc[param_1]]);
@@ -209,6 +207,7 @@ J2DColorChan J2DMaterialFactory::newColorChan(int param_0, int param_1) const {
 }
 
 u32 J2DMaterialFactory::newTexGenNum(int param_0) const {
+    int r30 = 0;
     J2DMaterialInitData* iVar2 = &field_0x4[field_0x8[param_0]];
     if (iVar2->field_0x3 != 0xff) {
         return field_0x1c[iVar2->field_0x3];
@@ -235,6 +234,7 @@ J2DTexMtx* J2DMaterialFactory::newTexMtx(int param_0, int param_1) const {
 }
 
 u8 J2DMaterialFactory::newCullMode(int param_0) const {
+    int r30 = 0;
     J2DMaterialInitData* iVar2 = &field_0x4[field_0x8[param_0]];
     if (iVar2->field_0x1 != 0xff) {
         return field_0x30[iVar2->field_0x1];
@@ -312,12 +312,13 @@ J2DTevSwapModeTable J2DMaterialFactory::newTevSwapModeTable(int param_0, int par
 }
 
 u8 J2DMaterialFactory::newIndTexStageNum(int param_0) const {
+    u8 r31 = 0;
     if (field_0xc != NULL) {
         if (field_0xc[param_0].field_0x0 == 1) {
             return field_0xc[param_0].field_0x1;
         }
     }
-    return 0;
+    return r31;
 }
 
 J2DIndTexOrder J2DMaterialFactory::newIndTexOrder(int param_0, int param_1) const {
@@ -373,7 +374,7 @@ J2DBlend J2DMaterialFactory::newBlend(int param_0) const {
     if (iVar2->field_0xe4 != 0xffff) {
         return J2DBlend(field_0x54[iVar2->field_0xe4]);
     }
-    return J2DBlend();
+    return J2DBlend(j2dDefaultBlendInfo);
 }
 
 u8 J2DMaterialFactory::newDither(int param_0) const {

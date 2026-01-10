@@ -76,11 +76,13 @@ void J2DTexGenBlock::setTexMtx(u32 param_0, J2DTexMtx& param_1) {
 
 void J2DTexGenBlock::getTexMtx(u32 param_0, J2DTexMtx& param_1) {
     J3D_PANIC(123, param_0 < 8, "Error : range over.");
-    
-    if (mTexMtx[param_0]) {
-        J2DTexMtxInfo& texMtxInfo = mTexMtx[param_0]->getTexMtxInfo();
-        param_1.setTexMtxInfo(texMtxInfo);
+
+    if (!mTexMtx[param_0]) {
+        return;
     }
+
+    J2DTexMtxInfo& texMtxInfo = mTexMtx[param_0]->getTexMtxInfo();
+    param_1.setTexMtxInfo(texMtxInfo);
 }
 
 JUTTexture* J2DTevBlock::getTexture(u32) {
@@ -483,28 +485,27 @@ bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
         return false;
     }
 
-    JUTTexture* tex;
     u8 tlutid = 0;
-    if (p_timg->indexTexture && p_tlut == NULL) {
-        tex = mTexture[0];
-        if (tex != NULL && tex->getTexInfo() != NULL && tex->getTexInfo()->indexTexture) {
-            int tlutname = tex->getTlutName();
+    if (p_timg->indexTexture && p_tlut == NULL && mTexture[0] != NULL) {
+        const ResTIMG* timg = mTexture[0]->getTexInfo();
+        if (timg != NULL && timg->indexTexture) {
+            int tlutname = mTexture[0]->getTlutName();
             if (tlutname == GX_TLUT0 || tlutname == GX_BIGTLUT0) {
                 tlutid = 1;
             }
         }
     }
 
-    tex = mTexture[texNo];
-    if (tex == NULL) {
-        JUTTexture* newtex = new JUTTexture(p_timg, tlutid);
+    JUTTexture* tex;
+    if (mTexture[texNo] == NULL) {
+        tex = new JUTTexture(p_timg, tlutid);
 
-        if (newtex == NULL) {
+        if (tex == NULL) {
             return false;
         }
 
         if (p_tlut != NULL) {
-            newtex->storeTIMG(p_timg, p_tlut);
+            tex->storeTIMG(p_timg, p_tlut);
         }
 
         if (param_0 == 0) {
@@ -512,10 +513,11 @@ bool J2DTevBlock2::insertTexture(u32 param_0, ResTIMG const* p_timg, JUTPalette*
             mPalette[1] = mPalette[0];
             mTexNo[1] = mTexNo[0];
         }
-        mTexture[param_0] = newtex;
+        mTexture[param_0] = tex;
         shiftDeleteFlag(param_0, true);
         mUndeleteFlag |= (1 << param_0);
     } else {
+        tex = mTexture[texNo];
         if (p_tlut == NULL) {
             tex->storeTIMG(p_timg, tlutid);
         } else {
@@ -604,9 +606,8 @@ bool J2DTevBlock2::setTexture(u32 param_0, ResTIMG const* p_timg) {
             const ResTIMG* timg = mTexture[idx]->getTexInfo();
             if (timg != NULL && timg->indexTexture) {
                 int tlutname = mTexture[idx]->getTlutName();
-                u8 tlut_no = tlutname - (tlutname >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0);
 
-                if (tlut_no == 0) {
+                if (u8(tlutname - (tlutname >= GX_BIGTLUT0 ? GX_BIGTLUT0 : GX_TLUT0)) == 0) {
                     tlutid = 1;
                 }
             }
@@ -2149,13 +2150,13 @@ void J2DTevBlock16::loadTexture(GXTexMapID texmapID, u32 texIndex) {
 void J2DIndBlockFull::initialize() {
     mIndTexStageNum = 0;
     for (int i = 0; i < 4; i++) {
-        mIndTexOrder[i] = j2dDefaultIndTexOrderNull;
+        mIndTexOrder[i].setIndTexOrderInfo(j2dDefaultIndTexOrderNull);
     }
     for (int i = 0; i < 3; i++) {
-        mIndTexMtx[i] = j2dDefaultIndTexMtxInfo;
+        mIndTexMtx[i].setIndTexMtxInfo(j2dDefaultIndTexMtxInfo);
     }
     for (int i = 0; i < 4; i++) {
-        mTexCoordScale[i] = j2dDefaultIndTexCoordScaleInfo;
+        mTexCoordScale[i].setIndTexCoordScaleInfo(j2dDefaultIndTexCoordScaleInfo);
     }
 }
 

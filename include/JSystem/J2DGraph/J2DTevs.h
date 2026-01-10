@@ -103,6 +103,7 @@ public:
         mInfo = info;
         return *this;
     }
+    void setIndTexOrderInfo(const J2DIndTexOrderInfo& info) { mInfo = info; }
     void load(u8);
 
 private:
@@ -147,6 +148,7 @@ public:
         mIndTexMtxInfo = info;
         return *this;
     }
+    void setIndTexMtxInfo(const J2DIndTexMtxInfo& info) { mIndTexMtxInfo = info; }
     void load(u8);
     void load(u32);
     void calc();
@@ -191,6 +193,7 @@ public:
         mInfo = info;
         return *this;
     }
+    void setIndTexCoordScaleInfo(const J2DIndTexCoordScaleInfo& info) { mInfo = info; }
     void load(u8);
 
 private:
