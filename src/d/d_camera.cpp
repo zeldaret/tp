@@ -8498,7 +8498,7 @@ bool dCamera_c::observeCamera(s32 param_0) {
         } else if (mPadInfo.mMainStick.mLastPosX <= -0.75f) {
             sp50 = -1.0f;
         } else {
-            sp50 = dCamMath::rationalBezierRatio(mPadInfo.mMainStick.mLastPosX * 1.3333334f, dVar8);
+            sp50 = dCamMath::rationalBezierRatio(mPadInfo.mMainStick.mLastPosX * (4.0f / 3.0f), dVar8);
         }
 
         if (mPadInfo.mMainStick.mLastPosY >= 0.75f) {
@@ -8506,7 +8506,7 @@ bool dCamera_c::observeCamera(s32 param_0) {
         } else if (mPadInfo.mMainStick.mLastPosY <= -0.75f) {
             sp54 = -1.0f;
         } else {
-            sp54 = dCamMath::rationalBezierRatio(mPadInfo.mMainStick.mLastPosY * 1.3333334f, dVar8);
+            sp54 = dCamMath::rationalBezierRatio(mPadInfo.mMainStick.mLastPosY * (4.0f / 3.0f), dVar8);
         }
 
         if (dComIfGs_getOptCameraControl() != 0) {

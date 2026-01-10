@@ -10,7 +10,7 @@ void J3DUClipper::init() {
 
 void J3DUClipper::calcViewFrustum() {
     static const f32 unused[3] = {0.0f};
-    f32 f0 = tan(0.5f * mFovY * 0.01745329238474369f);
+    f32 f0 = tan(0.5f * mFovY * (M_PI / 180.0f));
     f32 f4 = mNear * f0;
     f32 f5 = mAspect * f4;
     Vec tmp1 = {-f5, -f4, -mNear};

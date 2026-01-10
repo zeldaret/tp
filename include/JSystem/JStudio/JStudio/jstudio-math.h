@@ -4,6 +4,8 @@
 #include "dolphin/mtx.h"
 #include <math>
 
+#define m_PI_D 3.141592653589793
+
 namespace JStudio {
 namespace math {
     void getRotation_xyz(MtxP, f32, f32, f32);
