@@ -57,6 +57,10 @@ BOOL daAlink_c::getE3Zhint() {
 
 #include "d/actor/d_a_alink_HIO.inc"
 
+#if DEBUG
+static int l_debugMode;
+#endif
+
 static const char l_wArcName[] = "Wmdl";
 
 static const char l_bArcName[] = "Bmdl";

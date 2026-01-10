@@ -449,7 +449,7 @@ inline void dMsgObject_endFlowGroup() {
 }
 
 inline void dMsgObject_setSmellType(u8 type) {
-    dMsgObject_c::setSmellType(type);
+    dMsgObject_getMsgObjectClass()->setSmellType(type);
 }
 
 inline u8 dMsgObject_getSelectCursorPos() {
@@ -485,7 +485,7 @@ inline void dMsgObject_setEquipBombInfo() {
 }
 
 inline bool dMsgObject_isHowlHearingMode() {
-    return dMsgObject_c::isHowlHearingMode();
+    return dMsgObject_getMsgObjectClass()->isHowlHearingMode();
 }
 
 inline void dMsgObject_onMsgSend() {

@@ -6599,9 +6599,9 @@ public:
     void onWolfEyeUp();
     void offWolfEyeUp();
     BOOL wolfSenseTrigger();
-    void setWolfSenceStatus(u8);
+    void setWolfSenceStatus(u8 i_status);
     BOOL wolfClawTrigger();
-    void setWolfDigStatus(u8);
+    void setWolfDigStatus(u8 i_flag);
     BOOL checkWolfShapeReverse() const;
     BOOL checkWolfSideStep() const;
     void setWolfTailAngle();
@@ -6609,20 +6609,22 @@ public:
     void setSpeedAndAngleWolf();
     void setSpeedAndAngleWolfAtn();
     BOOL checkWolfAtnWait();
-    BOOL checkUnderMove0BckNoArcWolf(daAlink_c::daAlink_WANM) const;
+    BOOL checkUnderMove0BckNoArcWolf(daAlink_c::daAlink_WANM i_anm) const;
     void setBlendWolfMoveAnime(f32);
     BOOL checkWolfAtnMoveBack(s16);
     void setWolfAtnMoveDirection();
     void setBlendWolfAtnMoveAnime(f32);
     void setBlendWolfAtnBackMoveAnime(f32);
     int setDoubleAnimeWolf(f32, f32, f32, daAlink_c::daAlink_WANM,
-                                          daAlink_c::daAlink_WANM, int, f32);
-    void setSingleAnimeWolfBase(daAlink_c::daAlink_WANM);
-    void setSingleAnimeWolfBaseMorf(daAlink_c::daAlink_WANM, f32);
-    void setSingleAnimeWolfBaseSpeed(daAlink_c::daAlink_WANM, f32, f32);
-    int setSingleAnimeWolf(daAlink_c::daAlink_WANM, f32, f32, s16, f32);
-    void setSingleAnimeWolfParam(daAlink_c::daAlink_WANM, daAlinkHIO_anm_c const*);
-    int checkWolfLandAction(int);
+                           daAlink_c::daAlink_WANM, int, f32);
+    void setSingleAnimeWolfBase(daAlink_c::daAlink_WANM i_anmID);
+    void setSingleAnimeWolfBaseMorf(daAlink_c::daAlink_WANM i_anmID, f32 i_morf);
+    void setSingleAnimeWolfBaseSpeed(daAlink_c::daAlink_WANM i_anmID, f32 i_speed, f32 i_morf);
+    int setSingleAnimeWolf(daAlink_c::daAlink_WANM i_anmID, f32 i_speed, f32 i_start,
+                           s16 i_endFrame, f32 i_morf);
+    void setSingleAnimeWolfParam(daAlink_c::daAlink_WANM i_anmID,
+                                 daAlinkHIO_anm_c const* i_anmData);
+    int checkWolfLandAction(BOOL);
     BOOL checkMidnaUseAbility() const;
     void checkWolfUseAbility();
     int checkWolfGroundSpecialMode();
@@ -6630,7 +6632,7 @@ public:
     BOOL wolfSideBgCheck(s16);
     BOOL checkWolfAttackReverse(int);
     int checkWolfBarrierHitReverse();
-    BOOL checkWolfBarrierWallHit(cBgS_PolyInfo&);
+    BOOL checkWolfBarrierWallHit(cBgS_PolyInfo& i_polyinfo);
     void wolfBgCheck();
     void changeWolfBlendRate(int);
     void setWolfFootMatrix();
@@ -6670,7 +6672,7 @@ public:
     int procWolfHowl();
     int procWolfAutoJumpInit(int);
     int procWolfAutoJump();
-    int procWolfFallInit(int, f32);
+    int procWolfFallInit(int, f32 i_morf);
     int procWolfFall();
     int procWolfLandInit();
     int procWolfLand();
@@ -6684,9 +6686,9 @@ public:
     int procWolfSlipTurn();
     int procWolfSlipTurnLandInit();
     int procWolfSlipTurnLand();
-    int procWolfSlideReadyInit(s16, int);
+    int procWolfSlideReadyInit(s16 i_angle, int);
     int procWolfSlideReady();
-    int procWolfSlideInit(s16, int);
+    int procWolfSlideInit(s16 i_angle, int);
     int procWolfSlide();
     int procWolfSlideLandInit();
     int procWolfSlideLand();
@@ -6697,7 +6699,7 @@ public:
     void setWolfHowlNotHappen(int);
     int procWolfHowlDemoInit();
     int procWolfHowlDemo();
-    fopAc_ac_c* checkWolfRopeHit(dCcD_GObjInf*, cXyz const*, int) const;
+    fopAc_ac_c* checkWolfRopeHit(dCcD_GObjInf* i_collider, cXyz const*, int) const;
     int checkWolfRopeJumpHang();
     f32 getWolfRopeMoveSpeed();
     int setWolfRopePosY();
@@ -6717,9 +6719,9 @@ public:
     int procWolfRopeSubjectivity();
     int getWolfTagJumpTime() const;
     const cXyz* checkMidnaLockJumpPoint() const;
-    int procWolfTagJumpInit(fopAc_ac_c*);
+    int procWolfTagJumpInit(fopAc_ac_c* i_tag);
     int procWolfTagJump();
-    int procWolfTagJumpLandInit(fopAc_ac_c*);
+    int procWolfTagJumpLandInit(fopAc_ac_c* i_tag);
     int procWolfTagJumpLand();
     int procWolfGiantPuzzleInit();
     int procWolfGiantPuzzle();
@@ -6729,10 +6731,10 @@ public:
     int procWolfHangReady();
     int procWolfHangWallCatchInit(int);
     int procWolfHangWallCatch();
-    int procWolfHangFallStartInit(cM3dGPla*);
+    int procWolfHangFallStartInit(cM3dGPla* i_tripla);
     int procWolfHangFallStart();
     void setWolfHeadDamage();
-    int procWolfDamageInit(dCcD_GObjInf*);
+    int procWolfDamageInit(dCcD_GObjInf* i_hitObj);
     int procWolfDamage();
     int procWolfLargeDamageUpInit(int, int, s16, s16);
     int procWolfLargeDamageUp();
@@ -6772,12 +6774,12 @@ public:
     void resetWolfBallGrab();
     void checkWolfLockData();
     fopAc_ac_c* getWolfLockActorEnd();
-    void searchWolfLockEnemy(fopAc_ac_c*, void*);
+    void searchWolfLockEnemy(fopAc_ac_c* i_actor, void* i_data);
     void checkWolfComboCnt();
     BOOL checkWolfAttackAction();
-    void setWolfEnemyThrowUpperAnime(daAlink_c::daAlink_WANM, f32);
-    BOOL setWolfEnemyHangBitePos(fopEn_enemy_c*);
-    void setWolfBiteDamage(fopEn_enemy_c*);
+    void setWolfEnemyThrowUpperAnime(daAlink_c::daAlink_WANM i_anmID, f32);
+    BOOL setWolfEnemyHangBitePos(fopEn_enemy_c* i_enemy);
+    void setWolfBiteDamage(fopEn_enemy_c* i_enemy);
     BOOL checkWolfLockAttackChargeState();
     int procWolfRollAttackChargeInit();
     int procWolfRollAttackCharge();
@@ -6797,7 +6799,7 @@ public:
     int procWolfRollAttack();
     int procWolfDownAttackInit();
     int procWolfDownAttack();
-    int procWolfDownAtLandInit(fopEn_enemy_c*);
+    int procWolfDownAtLandInit(fopEn_enemy_c* i_enemy);
     int procWolfDownAtLand();
     int procWolfDownAtMissLandInit();
     int procWolfDownAtMissLand();
@@ -7212,7 +7214,7 @@ public:
     bool checkWolfGrabAnimeObj() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WL_PICKUPA_e); }
     bool checkWolfGrabAnimeStick() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WL_PICKUPB_e); }
     BOOL checkWolfGrabAnime() const { return checkWolfGrabAnimeObj() || checkWolfGrabAnimeStick(); }
-    bool checkWolfSwimDashAnime() const { return checkUnderMove0BckNoArcWolf(WANM_SWIM_DASH); }
+    BOOL checkWolfSwimDashAnime() const { return checkUnderMove0BckNoArcWolf(WANM_SWIM_DASH); }
     bool checkKandelaarSwingAnime() const { return false; }
     bool checkBowChargeWaitAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_ARELORDTAME_e); }
     bool checkBowReloadAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_ARELORD_e); }
@@ -7291,7 +7293,7 @@ public:
     BOOL checkSpecialDemoMode() const {
         return mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e;
     }
-    static bool checkMidnaChargeAttack() { return dComIfGs_isEventBit(0x501); }
+    static BOOL checkMidnaChargeAttack() { return dComIfGs_isEventBit(0x501); }
     u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
     BOOL checkClimbFall() { return checkLadderFall(); }

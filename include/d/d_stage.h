@@ -1439,7 +1439,7 @@ inline u32 dStage_stagInfo_ChkKeyDisp(stage_stag_info_class* pstag) {
     return pstag->field_0x09 & 1;
 }
 
-inline u8 dStage_stagInfo_GetWolfDashType(stage_stag_info_class* pstag) {
+inline int dStage_stagInfo_GetWolfDashType(stage_stag_info_class* pstag) {
     return (pstag->field_0x09 >> 6) & 3;
 }
 
