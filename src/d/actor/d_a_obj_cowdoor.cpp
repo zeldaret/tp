@@ -85,12 +85,14 @@ static int daCowdoor_Execute(daCowdoor_c* i_this) {
 
 static int daCowdoor_Delete(daCowdoor_c* i_this) {
     fpc_ProcID id = fopAcM_GetID(i_this);
+    (void)"Delete -> Cowdoor(id=%d)\n";
     return i_this->MoveBGDelete();
 }
 
 static int daCowdoor_Create(fopAc_ac_c* i_this) {
     daCowdoor_c* i_cow = static_cast<daCowdoor_c*>(i_this);
     fpc_ProcID id = fopAcM_GetID(i_this);
+    (void)"Create -> Cowdoor(id=%d)\n";
     return i_cow->create();
 }
 
