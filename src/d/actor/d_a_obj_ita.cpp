@@ -218,6 +218,7 @@ int daObjIta_c::Execute(Mtx** mtx) {
     }
 
     daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz& unused_pos = fopAcM_GetPosition(player);
     cXyz& playerSpeed = fopAcM_GetSpeed(player);
 
     if (fopAcM_SearchByName(PROC_E_YMB, (fopAc_ac_c**)&e_ymb) != 0 && e_ymb != NULL) {
@@ -242,7 +243,7 @@ int daObjIta_c::Execute(Mtx** mtx) {
     }
 
     cLib_addCalc(&current.pos.y, field_0x5d4 + (posY + 60.0f + field_0x5a8 * (HREG_F(0) + 5.0f) + cM_ssin(field_0x5cc) * 20.0f), 0.1f, 15.0f, 0.1f);
-    cLib_addCalcAngleS(&shape_angle.x, field_0x5ce.x + (nREG_F(0) + 1.0f) * field_0x5b0 * cM_ssin(field_0x5ca + oREG_F(1) + 0x2000), 2, 0x1000, 1);
+    cLib_addCalcAngleS(&shape_angle.x, field_0x5ce.x + (nREG_F(0) + 1.0f) * field_0x5b0 * cM_ssin(field_0x5ca + oREG_S(1) + 0x2000), 2, 0x1000, 1);
     cLib_addCalcAngleS(&shape_angle.z, field_0x5ce.z + (nREG_F(1) + 1.0f) * field_0x5b0 * cM_ssin(field_0x5cc), 2, 0x1000, 1);
     cLib_addCalc(&field_0x5a4, field_0x5c8, HREG_F(13) + 0.05f, 100.0f, 0.0f);
     cLib_addCalc2(&field_0x5a8, 0.0f, HREG_F(1) + 0.1f, 10.0f);
