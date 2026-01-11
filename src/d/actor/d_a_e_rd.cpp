@@ -355,8 +355,8 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
                     cMtx_XrotM(*calc_mtx, i_this->field_0x9ca);
                 }
 
-                cMtx_YrotM(*calc_mtx, s16(i_this->field_0xae0));
-                cMtx_ZrotM(*calc_mtx, -i_this->field_0xa32[2].x + i_this->field_0xade + i_this->field_0xabc[2]);
+                cMtx_YrotM(*calc_mtx, s16(i_this->field_0xade.y));
+                cMtx_ZrotM(*calc_mtx, -i_this->field_0xa32[2].x + i_this->field_0xade.x + i_this->field_0xabc[2]);
             } else if (jointNo == JNT_KOKAL) {
                 cMtx_YrotM(*calc_mtx, i_this->field_0xaca);
             } else if (jointNo == JNT_SUNEL1) {
@@ -3065,7 +3065,7 @@ static void e_rd_damage(e_rd_class* i_this) {
 
         case 20:
             if (i_this->mpModelMorf->getFrame() >= 35.0f) {
-                i_this->field_0xa18.z = i_this->field_0xa18.x = 0;
+                i_this->field_0xa18.x = i_this->field_0xa18.z = 0;
             }
 
             if (i_this->mpModelMorf->isStop()) {
@@ -5497,11 +5497,11 @@ static void action(e_rd_class* i_this) {
         sp25c.y = 0.0f;
         sp25c.z = 12000.0f;
         MtxPosition(&sp25c, &sp268);
-        i_this->field_0xae6 = -sp268.x;
-        i_this->field_0xae4 = -sp268.z * 1.3f;
+        i_this->field_0xae4.y = -sp268.x;
+        i_this->field_0xae4.x = -sp268.z * 1.3f;
 
-        if (i_this->field_0xae4 > 10000) {
-            i_this->field_0xae4 = 10000;
+        if (i_this->field_0xae4.x > 10000) {
+            i_this->field_0xae4.x = 10000;
         }
     }
 
@@ -5541,9 +5541,9 @@ static void action(e_rd_class* i_this) {
     }
 
     cLib_addCalc0(&i_this->field_0xab8, 1.0f, 100.0f + BREG_F(11));
-    cLib_addCalcAngleS2(&i_this->field_0xae0, i_this->field_0xae6, 2, 0x800);
-    cLib_addCalcAngleS2(&i_this->field_0xade, i_this->field_0xae4, 2, 0x800);
-    i_this->field_0xae6 = i_this->field_0xae4 = 0;
+    cLib_addCalcAngleS2(&i_this->field_0xade.y, i_this->field_0xae4.y, 2, 0x800);
+    cLib_addCalcAngleS2(&i_this->field_0xade.x, i_this->field_0xae4.x, 2, 0x800);
+    i_this->field_0xae4.y = i_this->field_0xae4.x = 0;
     s16 sVar4 = 0;
     s16 sVar5 = 0;
 
