@@ -130,19 +130,16 @@ struct TVec3<s16> {
     }
 };
 
-inline void setTVec3f(const f32* vec_a, f32* vec_b) {
+inline void setTVec3f(const __REGISTER f32* vec_a, __REGISTER f32* vec_b) {
 #ifdef __MWERKS__
-    const __REGISTER f32* v_a = vec_a;
-    __REGISTER f32* v_b = vec_b;
-
     __REGISTER f32 a_x;
     __REGISTER f32 b_x;
 
     asm {
-        psq_l a_x, 0(v_a), 0, 0
-        lfs b_x, 8(v_a)
-        psq_st a_x, 0(v_b), 0, 0
-        stfs b_x, 8(v_b)
+        psq_l a_x, 0(vec_a), 0, 0
+        lfs b_x, 8(vec_a)
+        psq_st a_x, 0(vec_b), 0, 0
+        stfs b_x, 8(vec_b)
     };
 #endif
 }
@@ -247,7 +244,7 @@ struct TVec3<f32> : public Vec {
         return *this;
     }
 
-    inline TVec3<f32> operator+(const TVec3<f32>& b) {
+    inline TVec3<f32> operator+(const TVec3<f32>& b) const {
         TVec3<f32> a = *this;
         a += b;
         return a;
@@ -289,6 +286,11 @@ struct TVec3<f32> : public Vec {
     }
 
     void scale(__REGISTER f32 sc) {
+#if DEBUG
+        x *= sc;
+        y *= sc;
+        z *= sc;
+#else
 #ifdef __MWERKS__
         __REGISTER f32 z;
         __REGISTER f32 x_y;
@@ -303,6 +305,7 @@ struct TVec3<f32> : public Vec {
             ps_muls0 zres,       z, sc
             psq_st   zres,  8(dst),  1, 0
         };
+#endif
 #endif
     }
 
