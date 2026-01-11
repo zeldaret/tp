@@ -8,10 +8,6 @@
 #include "d/actor/d_a_obj_cowdoor.h"
 #include "d/d_procname.h"
 
-static const char* l_arcName = "A_UHDoor";
-static const char* l_bmdName = "A_UHDoor.bmd";
-static const char* l_dzbName = "A_UHDoor.dzb";
-
 void daCowdoor_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
@@ -27,6 +23,10 @@ int daCowdoor_c::Create() {
     return TRUE;
 }
 
+static const char* l_arcName = "A_UHDoor";
+
+static const char* l_bmdName = "A_UHDoor.bmd";
+
 int daCowdoor_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdName);
     JUT_ASSERT(140, modelData != NULL);
@@ -37,6 +37,8 @@ int daCowdoor_c::CreateHeap() {
         return TRUE;
     }
 }
+
+static const char* l_dzbName = "A_UHDoor.dzb";
 
 int daCowdoor_c::create() {
     fopAcM_ct(this, daCowdoor_c);
