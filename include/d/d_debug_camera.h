@@ -13,6 +13,8 @@ enum dDbgCam_KeyAction {
 
 class dDbgCamera_c;
 
+extern dDbgCamera_c dDbgCamera;
+
 class dDbgCamKey_c {
 public:
     dDbgCamKey_c() {}
