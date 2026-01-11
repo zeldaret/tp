@@ -38,6 +38,7 @@ public:
     void* getVtxNBTArray() const { return mVtxNBTArray; }
     u32 getNrmNum() const { return mNrmNum; }
     u32 getVtxNum() const { return mVtxNum; }
+    u32 getColNum() const { return mColNum; }
     GXVtxAttrFmtList* getVtxAttrFmtList() const { return mVtxAttrFmtList; }
     u8 getVtxPosFrac() const { return mVtxPosFrac; }
     u8 getVtxNrmFrac() const { return mVtxNrmFrac; }
