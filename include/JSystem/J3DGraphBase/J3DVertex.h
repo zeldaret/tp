@@ -16,8 +16,10 @@ class J3DVertexBuffer;
 struct J3DVtxColorCalc {
     void calc(J3DModel*);
     virtual void calc(J3DVertexBuffer*);
+    virtual ~J3DVtxColorCalc() {}
 
-    /* 0x0 */ void* vtable;  // inlined vtable?
+    bool checkFlag(u32 flag) { return mFlags & flag ? true : false; }
+
     /* 0x4 */ u32 mFlags;
     /* 0x8 */ J3DAnmVtxColor* mpVtxColor;
 };
@@ -130,12 +132,22 @@ public:
         mVtxNrmArray[1] = temp;
     }
 
+    void swapVtxColArrayPointer() {
+        GXColor* temp = mVtxColArray[0];
+        mVtxColArray[0] = mVtxColArray[1];
+        mVtxColArray[1] = temp;
+    }
+
     void* getVtxPosArrayPointer(int index) {
         return mVtxPosArray[index];
     }
 
     void* getVtxNrmArrayPointer(int index) {
         return mVtxNrmArray[index];
+    }
+
+    GXColor* getVtxColArrayPointer(int index) {
+        return mVtxColArray[index];
     }
 
 private:

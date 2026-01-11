@@ -66,7 +66,7 @@ public:
     J3DFog* getFog() { return mPEBlock->getFog(); }
     J3DTexMtx* getTexMtx(u32 idx) { return mTexGenBlock->getTexMtx(idx); }
     u16 getIndex() { return mIndex; }
-    bool isDrawModeOpaTexEdge() { return (mMaterialMode & 3) == 0; }
+    BOOL isDrawModeOpaTexEdge() { return (mMaterialMode & 3) ? 1 : 0; }
     J3DPEBlock* getPEBlock() { return mPEBlock; }
     void onInvalid() { mInvalid = 1; }
     u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }
