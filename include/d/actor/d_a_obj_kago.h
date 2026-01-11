@@ -34,10 +34,10 @@ public:
     void setHamonPrtcl();
 
     u8 getType() {
-        int iVar1 = fopAcM_GetParam(this) & 0xFF;
-        u8 rv;
+        u8 adj_arg = argument & 0x7F;
+        u8 iVar1 = fopAcM_GetParam(this) & 0xFF;
 
-        switch ((argument & 127)) {
+        switch (adj_arg) {
             case 0:
                 switch (iVar1) {
                     case 0:
