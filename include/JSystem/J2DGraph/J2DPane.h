@@ -174,6 +174,7 @@ public:
     void show() { mVisible = true; }
     void hide() { mVisible = false; }
 
+    bool isInfluencedAlpha() const { return mIsInfluencedAlpha; }
     bool isConnectParent() const { return mConnected; }
 
     u64 getUserInfo() const { return mUserInfoTag; }

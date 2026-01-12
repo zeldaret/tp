@@ -447,6 +447,14 @@ struct TVec2 {
         y += other.y;
     }
 
+    bool equals(const TVec2<T>& other) const {
+        bool result = false;
+        if (this->x == other.x && this->y == other.y) {
+            result = true;
+        }
+        return result;
+    }
+
     bool isAbove(const TVec2<T>& other) const {
         return (x >= other.x) && (y >= other.y) ? true : false;
     }
@@ -461,6 +469,10 @@ struct TVec2 {
 
     f32 length() const {
         return TUtil<f32>::sqrt(squared());
+    }
+
+    bool operator==(const TVec2<T>& other) const {
+        return equals(other);
     }
 
     T x;
@@ -497,6 +509,18 @@ template<> struct TBox<TVec2<f32> > {
         return isValid();
     }
 
+    void absolute() {
+        if (this->isValid()) {
+            return;
+        }
+
+        TBox<TVec2<f32> > box(*this);
+        this->i.setMin(box.i);
+        this->i.setMin(box.f);
+        this->f.setMax(box.i);
+        this->f.setMax(box.f);
+    }
+
     TVec2<f32> i, f;
 };
 
@@ -508,16 +532,6 @@ struct TBox2 : public TBox<TVec2<T> > {
         TBox<TVec2<T> >::f.set(_f);
     }
     TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
-
-    void absolute() {
-        if (!this->isValid()) {
-            TBox2<T> box(*this);
-            this->i.setMin(box.i);
-            this->i.setMin(box.f);
-            this->f.setMax(box.i);
-            this->f.setMax(box.f);
-        }
-    }
 
     void set(const TBox<TVec2<T> >& other) { set(other.i, other.f); }
     void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }
