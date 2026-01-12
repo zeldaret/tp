@@ -5,7 +5,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "global.h"
-#include <stdint>
+#include <stdint.h>
 #include <stdlib>
 
 JKRSolidHeap* JKRSolidHeap::create(u32 size, JKRHeap* heap, bool useErrorHandler) {

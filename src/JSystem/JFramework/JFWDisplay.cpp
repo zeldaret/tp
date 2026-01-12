@@ -9,7 +9,7 @@
 #include "dolphin/gx.h"
 #include <dolphin/vi.h>
 #include "global.h"
-#include <stdint>
+#include <stdint.h>
 
 void JFWDisplay::ctor_subroutine(bool enableAlpha) {
     mEnableAlpha = enableAlpha;

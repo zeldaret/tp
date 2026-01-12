@@ -5,7 +5,7 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include <stdio>
 #include "global.h"
-#include <stdint>
+#include <stdint.h>
 
 JSUList<JKRThread> JKRThread::sThreadList(0);
 

@@ -12,7 +12,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include <cmath>
 #include <string>
-#include <stdint>
+#include <stdint.h>
 
 JKRCompArchive::JKRCompArchive(s32 entryNum, JKRArchive::EMountDirection eMountDirection)
     : JKRArchive(entryNum, MOUNT_COMP) {

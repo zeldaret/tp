@@ -8,7 +8,7 @@
 #include <stdio>
 #include <stdlib>
 #include <dolphin/dolphin.h>
-#include <stdint>
+#include <stdint.h>
 
 OSMessageQueue JUTException::sMessageQueue = {0};
 

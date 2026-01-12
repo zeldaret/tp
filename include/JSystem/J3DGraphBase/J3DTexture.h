@@ -5,7 +5,7 @@
 #include "JSystem/J3DAssert.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "global.h"
-#include <stdint>
+#include <stdint.h>
 
 /**
  * @ingroup jsystem-j3d
