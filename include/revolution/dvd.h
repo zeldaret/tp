@@ -3,6 +3,7 @@
 
 #include <revolution/types.h>
 #include <revolution/esp.h>
+#include "global.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -184,8 +185,6 @@ typedef struct DVDGameTOC {
     u32 numGamePartitions;
     DVDPartitionInfo* partitionInfos;
 } DVDGameTOC;
-
-#define ROUND(n, a) (((u32)(n) + (a)-1) & ~((a)-1))
 
 typedef struct DVDPartitionParams  DVDPartitionParams;
 

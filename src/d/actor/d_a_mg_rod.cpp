@@ -5493,7 +5493,7 @@ static void play_camera_u(dmg_rod_class* i_this) {
         break;
     }
     case 20:
-    case 21:
+    case 21: {
         if (!actor->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(actor, 2, 0xFFFF, 0);
             actor->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
@@ -5647,6 +5647,7 @@ static void play_camera_u(dmg_rod_class* i_this) {
             daAlink_getAlinkActorClass()->changeFishGetFace(0);
         }
         break;
+    }
     case 90:
         sp18 = 1;
         break;
