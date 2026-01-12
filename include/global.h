@@ -140,9 +140,9 @@ static const float INF = 2000000000.0f;
 
 // potential fakematch?
 #if PLATFORM_SHIELD
-    #define UNSET_FLAG(var, flag) (var) &= (u16)~(flag)
+    #define UNSET_FLAG(var, flag, type) (var) &= (type)~(flag)
 #else
-    #define UNSET_FLAG(var, flag) (var) &= ~(flag)
+    #define UNSET_FLAG(var, flag, type) (var) &= ~(flag)
 #endif
 
 #endif

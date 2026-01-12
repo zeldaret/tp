@@ -5,14 +5,17 @@
 
 #define ADD_ANGLE(x, y) ((x) += (s16)(y))
 #define SUB_ANGLE(x, y) ((x) -= (s16)(y))
+#define MULT_ANGLE(x, y) ((x) *= (s16)(y))
 
 // There are some angles that weren't sign-extended until the shield version
 #if !PLATFORM_SHIELD
     #define ADD_ANGLE_2(x, y) ((x) += (y))
     #define SUB_ANGLE_2(x, y) ((x) -= (y))
+    #define MULT_ANGLE_2(x, y) ((x) *= (y))
 #else
     #define ADD_ANGLE_2(x, y) ADD_ANGLE(x, y)
     #define SUB_ANGLE_2(x, y) SUB_ANGLE(x, y)
+    #define MULT_ANGLE_2(x, y) MULT_ANGLE(x, y)
 #endif
 
 #define DEG2S_CONSTANT (0x8000 / 180.0f)
