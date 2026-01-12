@@ -20,7 +20,7 @@ public:
     virtual void listenPropertyEvent(const JORPropertyEvent*);
     virtual void genMessage(JORMContext*);
     #endif
-    virtual ~fapGm_HIO_c();
+    virtual ~fapGm_HIO_c() {}
 
     static void startCpuTimer();
     static void stopCpuTimer(const char*);
@@ -71,8 +71,12 @@ public:
 
     static u8 mParticle254Fix;
 
+    static u8 mCaptureMagnification;
+
     static u8 mCaptureScreenDivH;
     static u8 mCaptureScreenDivV;
+
+    static u8 mPackArchiveMode;
 
     /* 0x04 */ s8 field_0x04;
     /* 0x05 */ u8 field_0x03[3];

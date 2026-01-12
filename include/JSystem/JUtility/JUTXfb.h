@@ -55,9 +55,13 @@ public:
     }
 
     void* getDisplayingXfb() const {
-        if (mDisplayingXfbIndex >= 0)
-            return mBuffer[mDisplayingXfbIndex];
-        return NULL;
+        void* xfb;
+        if (mDisplayingXfbIndex >= 0) {
+            xfb = mBuffer[mDisplayingXfbIndex];
+        } else {
+            xfb = NULL;
+        }
+        return xfb;
     }
 
     void setDisplayingXfbIndex(s16 index) { mDisplayingXfbIndex = index; }
