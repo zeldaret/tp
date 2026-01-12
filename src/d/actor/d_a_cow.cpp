@@ -26,12 +26,6 @@
 
 #define GET_FLAG(mask) (mFlags & (mask))    // cLib_checkBit<u16>(mFlags, (mask))
 
-#if PLATFORM_SHIELD
-#define CLEAR_FLAG(mask) mFlags &= (u16)~(mask)  // cLib_offBit<u16>(mFlags, (mask))
-#else
-#define CLEAR_FLAG(mask) mFlags &= ~(mask)  // cLib_offBit<u16>(mFlags, (mask))
-#endif
-
 #define TICK_TIMER(name)                                                                           \
     if ((name)) {                                                                                  \
         (name)--;                                                                                  \
@@ -87,7 +81,7 @@ int daCow_c::calcRunAnime(int resetRunType) {
         }
         break;
     case daCow_c::RunType_Trot:
-        f32 animationSpeed; // needs bad switch-case initialization in order to match debug
+        f32 animationSpeed; // needs bad switch-case variable initialization in order to match debug
 
         animationSpeed = (speedF * 3.0f) / 25.0f;
         if (animationSpeed > 5.0f) {
@@ -201,7 +195,7 @@ void daCow_c::setCarryStatus() {
     mDoMtx_stack_c::multVec(&daPy_getPlayerActorClass()->current.pos, &carryPosition);
     if (fabsf(carryPosition.x) < xMax && carryPosition.z > 0.0f && carryPosition.z < zMax) {
         // todo: what does this mean
-        attention_info.flags |= fopAc_AttnFlag_CARRY_e;  // in debug this is 0x80
+        attention_info.flags |= fopAc_AttnFlag_CARRY_e;
     }
 }
 
@@ -210,7 +204,7 @@ void daCow_c::setActetcStatus() {
     if (!mNadeNade) {
         playerAngle = fopAcM_seenPlayerAngleY(this);
         if (playerAngle < 0x6000 && playerAngle > 0x2000) {
-            attention_info.flags |= fopAc_AttnFlag_ETC_e;  // in debug this is 0x800
+            attention_info.flags |= fopAc_AttnFlag_ETC_e;
         }
     }
 }
@@ -219,7 +213,7 @@ void daCow_c::setActetcStatus() {
 
 bool daCow_c::checkNadeNadeFinish() {
     if (GET_FLAG(daCow_c::Flag_NaderuFinish)) {
-        CLEAR_FLAG(daCow_c::Flag_NaderuFinish);
+        UNSET_FLAG(mFlags, daCow_c::Flag_NaderuFinish);
         mNadeNade = false;
         return true;
     }
@@ -228,7 +222,7 @@ bool daCow_c::checkNadeNadeFinish() {
 
 bool daCow_c::checkNadeNade() {
     if (GET_FLAG(daCow_c::Flag_Naderu)) {
-        CLEAR_FLAG(daCow_c::Flag_Naderu);
+        UNSET_FLAG(mFlags, daCow_c::Flag_Naderu);
         mNadeNade = true;
         return 1;
     }
@@ -252,13 +246,13 @@ bool daCow_c::checkThrow() {
         if (GET_FLAG(daCow_c::Flag_CrazyBeforeCatch)) {
             setProcess(&daCow_c::action_thrown, false);
             initCrazyBeforeCatch(0);
-            CLEAR_FLAG(daCow_c::Flag_CrazyBeforeCatch);
+            UNSET_FLAG(mFlags, daCow_c::Flag_CrazyBeforeCatch);
             return true;
         }
         if (GET_FLAG(daCow_c::Flag_CrazyCatch)) {
             setProcess(&daCow_c::action_thrown, false);
             initCrazyCatch(0);
-            CLEAR_FLAG(daCow_c::Flag_CrazyCatch);
+            UNSET_FLAG(mFlags, daCow_c::Flag_CrazyCatch);
             return true;
         }
     }
@@ -1883,11 +1877,11 @@ void daCow_c::calcCatchPos(f32 distance, BOOL someBool) {
 
 void daCow_c::executeCrazyWait() {
     if (GET_FLAG(daCow_c::Flag_CrazyReady)) {
-        CLEAR_FLAG(daCow_c::Flag_CrazyReady);
+        UNSET_FLAG(mFlags, daCow_c::Flag_CrazyReady);
     }
     if (GET_FLAG(daCow_c::Flag_CrazyReadyDrawOn)) {
         mDrawOff = false;
-        CLEAR_FLAG(daCow_c::Flag_CrazyReadyDrawOn);
+        UNSET_FLAG(mFlags, daCow_c::Flag_CrazyReadyDrawOn);
     }
     if (GET_FLAG(daCow_c::Flag_CrazyGo)) {
         mCrazy = daCow_c::Crazy_Dash;
@@ -1920,16 +1914,16 @@ void daCow_c::executeCrazyDash() {
             if (GET_FLAG(daCow_c::Flag_CrazyBeforeCatch)) {
                 initCrazyBeforeCatch(0);
                 mPointIndex = 6;
-                CLEAR_FLAG(daCow_c::Flag_CrazyBeforeCatch);
+                UNSET_FLAG(mFlags, daCow_c::Flag_CrazyBeforeCatch);
             } else if (GET_FLAG(daCow_c::Flag_CrazyCatch)) {
                 initCrazyCatch(0);
                 mPointIndex = 6;
-                CLEAR_FLAG(daCow_c::Flag_CrazyCatch);
+                UNSET_FLAG(mFlags, daCow_c::Flag_CrazyCatch);
                 dComIfGp_getVibration().StartShock(VIBMODE_S_POWER8, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
             } else if (GET_FLAG(daCow_c::Flag_CrazyDash)) {
                 initCrazyAttack(0);
                 mPointIndex = 6;
-                CLEAR_FLAG(daCow_c::Flag_CrazyDash);
+                UNSET_FLAG(mFlags, daCow_c::Flag_CrazyDash);
             }
         } else {
             if (mPointIndex == 4) {
@@ -1999,7 +1993,7 @@ void daCow_c::executeCrazyBeforeCatch() {
     calcCatchPos(-220.0f, 1);
     if (GET_FLAG(daCow_c::Flag_CrazyCatch)) {
         initCrazyCatch(0);
-        CLEAR_FLAG(daCow_c::Flag_CrazyCatch);
+        UNSET_FLAG(mFlags, daCow_c::Flag_CrazyCatch);
         dComIfGp_getVibration().StartShock(VIBMODE_S_POWER8, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
     } else if (GET_FLAG(daCow_c::Flag_CrazyDash)) {
         if (!daPy_getPlayerActorClass()->speedF) {
@@ -2007,7 +2001,7 @@ void daCow_c::executeCrazyBeforeCatch() {
         } else {
             initCrazyAttack(1);
         }
-        CLEAR_FLAG(daCow_c::Flag_CrazyDash);
+        UNSET_FLAG(mFlags, daCow_c::Flag_CrazyDash);
     }
 }
 
