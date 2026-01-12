@@ -769,7 +769,7 @@ static void ride_off(e_rd_class* i_this) {
     e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
 
     if (bullbo != NULL) {
-        UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
+        UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be, u16);
         i_this->field_0x9be = 0;
 
         if (bullbo->mActionID != 22 && bullbo->mActionID != 23 && bullbo->mActionID != 24) {
@@ -2677,7 +2677,7 @@ static void e_rd_s_damage(e_rd_class* i_this) {
             if (i_this->field_0x9be != 0) {
                 e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
                 if (bullbo != NULL) {
-                    UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
+                    UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be, u16);
                 }
 
                 i_this->field_0x9be = 0;
@@ -2777,7 +2777,7 @@ static void rd_disappear(e_rd_class* i_this) {
     if (i_this->field_0x9be != 0) {
         e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
         if (bullbo != NULL) {
-            UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
+            UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be, u16);
             if (bullbo->mActionID == 1) {
                 bullbo->mActionID = 0;
             }
@@ -3908,7 +3908,7 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
             i_this->field_0x9bc = 0;
 
             if (daPy_getPlayerActorClass()->checkHorseRide() && bullbo != NULL) {
-                UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
+                UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be, u16);
                 i_this->field_0x9be = 0;
                 bullbo->mActionID = 16;
                 bullbo->mActionMode = 0;
@@ -3976,7 +3976,7 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
             i_this->field_0x9bc = 0;
 
             if (bullbo != NULL) {
-                UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
+                UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be, u16);
                 i_this->field_0x9be = 0;
             }
 
