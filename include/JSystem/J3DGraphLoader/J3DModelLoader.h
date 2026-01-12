@@ -333,6 +333,7 @@ public:
 class J3DModelLoaderDataBase {
 public:
     static J3DModelData* load(void const* i_data, u32 i_flags);
+    static J3DModelData* loadBinaryDisplayList(const void* i_data, u32 flags);
 };
 
 /**

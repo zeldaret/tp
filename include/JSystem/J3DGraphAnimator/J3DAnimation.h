@@ -908,7 +908,7 @@ public:
  */
 class J3DAnmVisibilityFull : public J3DAnmBase {
 public:
-    J3DAnmVisibilityFull() : J3DAnmBase(0) {
+    J3DAnmVisibilityFull() : J3DAnmBase() {
         mUpdateMaterialNum = 0;
         field_0xe = 0;
         mAnmTable = NULL;
