@@ -31,7 +31,7 @@ static const char* l_bmdName = "A_UHDoor.bmd";
 static const char* l_dzbName = "A_UHDoor.dzb";
 
 int daCowdoor_c::CreateHeap() {
-    J3DModelData*modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdName);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdName);
     JUT_ASSERT(140, modelData != NULL);
     field_0x5a8 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (field_0x5a8 == NULL) {
