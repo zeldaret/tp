@@ -337,7 +337,7 @@ void J2DPane::draw(f32 x, f32 y, J2DGrafContext const* p_grafCtx, bool isOrthoGr
         }
 
         for (JSUTreeIterator<J2DPane> iter = mPaneTree.getFirstChild(); iter != mPaneTree.getEndChild(); ++iter) {
-            iter.getObject()->draw(0, 0, p_grafCtx, isOrthoGraf, param_4);
+            iter->draw(0, 0, p_grafCtx, isOrthoGraf, param_4);
         }
     }
 }
@@ -859,42 +859,9 @@ void J2DPane::updateTransform(J2DAnmTransform const* p_anmTransform) {
     }
 }
 
-void J2DPane::drawSelf(f32, f32, f32 (*)[3][4]) {
-    /* empty function */
-}
-
-void J2DPane::rewriteAlpha() {
-    /* empty function */
-}
-
-void J2DPane::setAnimationVF(J2DAnmVisibilityFull* p_visibility) {
-    setAnimation(p_visibility);
-}
-
-void J2DPane::setAnimationVC(J2DAnmVtxColor* p_vtxColor) {
-    setAnimation(p_vtxColor);
-}
-
-void J2DPane::setCullBack(bool cull) {
-    GXCullMode mode;
-
-    if (!cull)
-        mode = GX_CULL_NONE;
-    else
-        mode = GX_CULL_BACK;
-
-    setCullBack(mode);
-}
-
-bool J2DPane::setConnectParent(bool connected) {
-    mConnected = false;
-    return false;
-}
-
-void J2DPane::update() {
-    /* empty function */
-}
-
-void J2DPane::drawSelf(f32, f32) {
-    /* empty function */
+static void dummy(J2DPane* pane) {
+    pane->drawSelf(0.0f, 0.0f);
+    pane->update();
+    pane->setConnectParent(false);
+    pane->setCullBack(false);
 }
