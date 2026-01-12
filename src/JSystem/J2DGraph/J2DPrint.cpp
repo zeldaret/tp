@@ -4,7 +4,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTFont.h"
 #include <cstdio>
-#include <stdlib>
+#include <cstdlib>
 
 char* J2DPrint::mStrBuff;
 
