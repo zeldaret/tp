@@ -138,4 +138,11 @@ static const float INF = 2000000000.0f;
 #define ASM
 #endif
 
+// potential fakematch?
+#if PLATFORM_SHIELD
+    #define UNSET_FLAG(var, flag) (var) &= (u16)~(flag)
+#else
+    #define UNSET_FLAG(var, flag) (var) &= ~(flag)
+#endif
+
 #endif

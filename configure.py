@@ -1084,7 +1084,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASOscillator.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASAiCtrl.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASAudioThread.cpp"),
-            Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASAudioReseter.cpp"),
+            Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASAudioReseter.cpp"),
             Object(MatchingFor(ALL_GCN, "ShieldD"), "JSystem/JAudio2/JASDSPChannel.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDSPInterface.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/JAudio2/JASDriverIF.cpp"),

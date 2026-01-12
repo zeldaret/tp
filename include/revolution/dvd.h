@@ -8,6 +8,9 @@
 extern "C" {
 #endif
 
+#define DVD_DEVICE_CODE_READ (1 << 15)
+#define MAKE_DVD_DEVICE_CODE(x) (DVD_DEVICE_CODE_READ | (x))
+
 #define DVD_ASSERTMSGLINE(line, cond, msg) \
     if (!(cond)) \
         OSPanic(__FILE__, line, msg)

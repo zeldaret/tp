@@ -2260,8 +2260,8 @@ bool dCamera_c::gameOverEvCamera() {
     }
 
     if (!bVar9 && bVar3) {
-        mViewCache.mCenter += mMonitor.field_0x14;
-        mViewCache.mEye += (mMonitor.field_0x14 * 0.98f);
+        mViewCache.mCenter += mMonitor.field_0x14.field_0x0;
+        mViewCache.mEye += (mMonitor.field_0x14.field_0x0 * 0.98f);
     }
 
     mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
