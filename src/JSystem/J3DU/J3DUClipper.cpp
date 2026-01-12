@@ -1,7 +1,7 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
 #include "JSystem/J3DU/J3DUClipper.h"
-#include <math>
+#include <cmath>
 
 void J3DUClipper::init() {
     mNear = 1.0f;
