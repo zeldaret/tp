@@ -5,7 +5,7 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTDirectFile.h"
 #include <cmath>
-#include <stdio>
+#include <cstdio>
 #include <stdlib>
 #include <dolphin/dolphin.h>
 #include <stdint.h>
