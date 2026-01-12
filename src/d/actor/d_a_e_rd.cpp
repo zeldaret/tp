@@ -6001,7 +6001,7 @@ static void demo_camera(e_rd_class* i_this) {
 
                 if (i_this->field_0x12a6 >= 70) {
                     sp44.set(-5182.0f, 2000.0f, 5237.0f);
-                    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp44, 0xFFFFE051, 0);
+                    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp44, -8111, 0);
                 }
 
                 if (i_this->field_0x12a6 == 120 || i_this->field_0x12a6 == 130
@@ -7015,7 +7015,7 @@ static u8 jv_offset[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-static int daE_RD_IsDelete(e_rd_class* i_this) {
+static int daE_RD_IsDelete(e_rd_class*) {
     return 1;
 }
 
@@ -7529,7 +7529,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
         i_this->field_0x1100.Set(at_sph_src);
         i_this->field_0x1100.SetStts(&i_this->mStts);
 
-        i_this->field_0x970 = instanceCount | (u16)(cM_rndF(65535.0f)) & 0xFF00;
+        i_this->field_0x970 = instanceCount | (u16(cM_rndF(65535.0f)) & 0xFF00);
         instanceCount++;
 
         i_this->mSound.init(&a_this->current.pos, &a_this->eyePos, 3, 1);
