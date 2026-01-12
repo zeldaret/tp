@@ -1,7 +1,7 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
 #include "JSystem/JMath/JMATrigonometric.h"
-#include <math>
+#include <cmath>
 #include "global.h"
 
 static f32 dummy() {

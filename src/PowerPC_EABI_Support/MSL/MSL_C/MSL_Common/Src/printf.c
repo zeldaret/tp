@@ -5,7 +5,7 @@
 #include "mbstring.h"
 #include "scanf.h"
 #include "wchar_io.h"
-#include <ctype>
+#include <cctype>
 #include <cmath>
 #include <cstdio>
 #include <cstring>

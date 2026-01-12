@@ -10,7 +10,7 @@
 #include "Z2AudioLib/Z2Calc.h" // IWYU pragma: export
 
 // Fixes weak function/RTTI ordering
-#include <math> // IWYU pragma: export
+#include <cmath> // IWYU pragma: export
 #include <cstring> // IWYU pragma: export
 #include "Z2AudioLib/Z2AudioArcLoader.h" // IWYU pragma: export
 #include "JSystem/JAudio2/JAUStreamAramMgr.h" // IWYU pragma: export

@@ -2,7 +2,7 @@
 #define JMATRIGONOMETRIC_H
 
 #include "dolphin/types.h"
-#include <math>
+#include <cmath>
 #include <utility>
 
 #ifdef __cplusplus

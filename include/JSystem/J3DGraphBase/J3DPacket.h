@@ -6,7 +6,7 @@
 #include "JSystem/J3DGraphBase/J3DEnum.h"
 #include "dolphin/gd/GDBase.h"
 #include "dolphin/mtx.h"
-#include <stdint>
+#include <stdint.h>
 
 class J3DMatPacket;
 

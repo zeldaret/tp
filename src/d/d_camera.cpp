@@ -20,7 +20,7 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
-#include <math>
+#include <cmath>
 
 #if DEBUG
 #include "d/d_debug_pad.h"
