@@ -25,13 +25,6 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_actor_enemy.h"
 
-// potential fakematch?
-#if PLATFORM_SHIELD
-    #define E_RD_UNSET_FLAG(var, flag) (var) &= (u16)~(flag)
-#else
-    #define E_RD_UNSET_FLAG(var, flag) (var) &= ~(flag)
-#endif
-
 class daE_RD_HIO_c : public JORReflexible {
 public:
     daE_RD_HIO_c();
@@ -302,8 +295,7 @@ static fopAc_ac_c* get_pla(fopAc_ac_c* a_this) {
     coach_rd_x_diff = actor->current.pos.x - a_this->current.pos.x;
     coach_rd_z_diff = actor->current.pos.z - a_this->current.pos.z;
     // If the XZ-dist of Link is further than the coach, then focus the coach.
-    if (link_rd_x_diff * link_rd_x_diff + link_rd_z_diff * link_rd_z_diff
-        > coach_rd_x_diff * coach_rd_x_diff + coach_rd_z_diff * coach_rd_z_diff) {
+    if (SQUARE(link_rd_x_diff) + SQUARE(link_rd_z_diff) > SQUARE(coach_rd_x_diff) + SQUARE(coach_rd_z_diff)) {
         return actor;
     }
 
@@ -686,8 +678,7 @@ static dBomb_c* search_bomb(e_rd_class* i_this, int param_1) {
         target_info[i] = NULL;
     }
 
-    // For whatever reason, this function call is missing.
-    // Not sure if it's intentional or not.
+    // For whatever reason, the original devs omitted this function call. Not sure if intentionall or by mistake.
     // In any case, because target_info_count is left at 0 and only incremented
     // in s_b_sub, the entire rest of this function disappears in release asm.
 #if 0
@@ -705,8 +696,8 @@ static dBomb_c* search_bomb(e_rd_class* i_this, int param_1) {
             vec1.z = bomb->current.pos.z - a_this->eyePos.z;
             vec2.x = bomb->current.pos.x - a_this->current.pos.x;
             vec2.z = bomb->current.pos.z - a_this->current.pos.z;
-            f32 dist1 = JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z);
-            f32 dist2 = JMAFastSqrt(vec2.x * vec2.x + vec2.z * vec2.z);
+            f32 dist1 = JMAFastSqrt(SQUARE(vec1.x) + SQUARE(vec1.z));
+            f32 dist2 = JMAFastSqrt(SQUARE(vec2.x) + SQUARE(vec2.z));
             if (dist1 < threshold && !(dist2 > i_this->mPlayerDistance + 30.0f)
                 && (!other_bg_check(i_this, bomb) || !param_1))
             {
@@ -778,7 +769,7 @@ static void ride_off(e_rd_class* i_this) {
     e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
 
     if (bullbo != NULL) {
-        E_RD_UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
+        UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
         i_this->field_0x9be = 0;
 
         if (bullbo->mActionID != 22 && bullbo->mActionID != 23 && bullbo->mActionID != 24) {
@@ -2686,7 +2677,7 @@ static void e_rd_s_damage(e_rd_class* i_this) {
             if (i_this->field_0x9be != 0) {
                 e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
                 if (bullbo != NULL) {
-                    E_RD_UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
+                    UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
                 }
 
                 i_this->field_0x9be = 0;
@@ -2786,7 +2777,7 @@ static void rd_disappear(e_rd_class* i_this) {
     if (i_this->field_0x9be != 0) {
         e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
         if (bullbo != NULL) {
-            E_RD_UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
+            UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
             if (bullbo->mActionID == 1) {
                 bullbo->mActionID = 0;
             }
@@ -3917,7 +3908,7 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
             i_this->field_0x9bc = 0;
 
             if (daPy_getPlayerActorClass()->checkHorseRide() && bullbo != NULL) {
-                E_RD_UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
+                UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
                 i_this->field_0x9be = 0;
                 bullbo->mActionID = 16;
                 bullbo->mActionMode = 0;
@@ -3985,7 +3976,7 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
             i_this->field_0x9bc = 0;
 
             if (bullbo != NULL) {
-                E_RD_UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
+                UNSET_FLAG(bullbo->mStatusFlags, i_this->field_0x9be);
                 i_this->field_0x9be = 0;
             }
 
