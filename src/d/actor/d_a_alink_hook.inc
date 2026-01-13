@@ -1037,7 +1037,7 @@ void daAlink_c::setHookshotPos() {
 
                 cXyz sp170;
                 if (field_0x3828.abs2(mHeldItemRootPos) > 400.0f ||
-                    current.pos.abs2(field_0x3798) > 1.0f || shape_angle.y != field_0x2fe6)
+                    current.pos.abs2(field_0x3798) > 1.0f || shape_angle.y != mPrevAngleY)
                 {
                     field_0x3028 = 1;
                 }
@@ -1217,7 +1217,7 @@ void daAlink_c::hookshotRoofTurn() {
 
         if (checkInputOnR()) {
             int stick_direction = getDirectionFromAngle(mStickAngle);
-            int angle = (int)(1024.0f * field_0x33ac * field_0x33ac);
+            int angle = (int)(1024.0f * mMoveValue * mMoveValue);
 
             if (stick_direction == DIR_LEFT) {
                 shape_angle.y += angle;
@@ -1227,7 +1227,7 @@ void daAlink_c::hookshotRoofTurn() {
             current.angle.y = shape_angle.y;
 
             if (stick_direction == DIR_FORWARD) {
-                current.pos.y += mpHIO->mItem.mHookshot.m.mRoofHangRiseSpeed * field_0x33a8;
+                current.pos.y += mpHIO->mItem.mHookshot.m.mRoofHangRiseSpeed * mStickValue;
                 if (current.pos.y > max_rise_y) {
                     current.pos.y = max_rise_y;
                 } else {
@@ -1235,7 +1235,7 @@ void daAlink_c::hookshotRoofTurn() {
                     is_play_sound = true;
                 }
             } else if (stick_direction == DIR_BACKWARD) {
-                f32 descend_speed = mpHIO->mItem.mHookshot.m.mRoofHangDecendSpeed * field_0x33ac;
+                f32 descend_speed = mpHIO->mItem.mHookshot.m.mRoofHangDecendSpeed * mMoveValue;
                 if (checkBootsOrArmorHeavy()) {
                     descend_speed *= 1.5f;
                 }
@@ -1690,7 +1690,7 @@ int daAlink_c::procHookshotRoofWaitInit(BOOL param_0, fopAc_ac_c* param_1, int p
     mProcVar5.field_0x3012 = param_2;
 
     dComIfGp_setPlayerStatus1(0, 0x10000);
-    field_0x814.SetWeight(255);
+    mCcStts.SetWeight(255);
     return 1;
 }
 
@@ -1777,7 +1777,7 @@ int daAlink_c::procHookshotRoofShootInit(fopAc_ac_c* param_0) {
     dComIfGp_setPlayerStatus1(0, 0x10000);
     dComIfGp_setPlayerStatus0(0, 0x4000);
 
-    field_0x814.SetWeight(255);
+    mCcStts.SetWeight(255);
     mProcVar2.field_0x300c = 0;
     mProcVar3.field_0x300e = mBodyAngle.x;
     return 1;
@@ -1868,7 +1868,7 @@ int daAlink_c::procHookshotRoofBootsInit(fopAc_ac_c* param_0) {
 
     dComIfGp_setPlayerStatus1(0, 0x10000);
 
-    field_0x814.SetWeight(255);
+    mCcStts.SetWeight(255);
     return 1;
 }
 

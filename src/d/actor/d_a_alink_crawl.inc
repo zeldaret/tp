@@ -295,7 +295,7 @@ void daAlink_c::decideCrawlDoStatus() {
 
 BOOL daAlink_c::checkNotCrawlStand(cXyz* param_0) {
     mLinkRoofChk.SetPos(*param_0);
-    if (dComIfG_Bgsp().RoofChk(&mLinkRoofChk) - current.pos.y <= field_0x598) {
+    if (dComIfG_Bgsp().RoofChk(&mLinkRoofChk) - current.pos.y <= mHeight) {
         return TRUE;
     }
 
@@ -375,7 +375,7 @@ void daAlink_c::setCrawlMoveAngle() {
     cXyz sp2C;
     cXyz sp38;
 
-    cLib_addCalcAngleS(&shape_angle.y, field_0x2fe2, mpHIO->mCrouch.m.mCrawlTurnRate,
+    cLib_addCalcAngleS(&shape_angle.y, mMoveAngle, mpHIO->mCrouch.m.mCrawlTurnRate,
                        mpHIO->mCrouch.m.mCrawlTurnMax,
                        mpHIO->mCrouch.m.mCrawlTurnMin);
 

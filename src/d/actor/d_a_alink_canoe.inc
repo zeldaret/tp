@@ -121,10 +121,10 @@ void daAlink_c::initCanoeRide() {
 BOOL daAlink_c::checkCanoeJumpRide() {
     daCanoe_c* canoe = NULL;
 
-    if (field_0x850[0].ChkCoHit()) {
-        canoe = (daCanoe_c*)field_0x850[0].GetCoHitAc();
-    } else if (field_0x850[1].ChkCoHit()) {
-        canoe = (daCanoe_c*)field_0x850[1].GetCoHitAc();
+    if (mTgCyls[0].ChkCoHit()) {
+        canoe = (daCanoe_c*)mTgCyls[0].GetCoHitAc();
+    } else if (mTgCyls[1].ChkCoHit()) {
+        canoe = (daCanoe_c*)mTgCyls[1].GetCoHitAc();
     }
 
     if (speed.y < 0.0f &&
@@ -208,13 +208,13 @@ void daAlink_c::setFishGetFace() {
     if (field_0x2fc8 == 1) {
         setFacePriBck(dRes_ID_ALANM_BCK_FH_e);
     } else if (field_0x2fc8 == 2) {
-        setFacePriTexture(FTANM_UNK_7A);
+        setFacePriTexture(FTANM_I_A);
         setFacePriBck(dRes_ID_ALANM_BCK_FI_e);
     } else if (field_0x2fc8 == 3) {
-        setFacePriTexture(FTANM_UNK_7B);
+        setFacePriTexture(FTANM_J_A);
         setFacePriBck(dRes_ID_ALANM_BCK_FJ_e);
     } else if (field_0x2fc8 == 4) {
-        setFacePriTexture(FTANM_UNK_7C);
+        setFacePriTexture(FTANM_K_A);
         setFacePriBck(dRes_ID_ALANM_BCK_FK_e);
     } else {
         resetFacePriAnime();
@@ -273,7 +273,7 @@ void daAlink_c::setSyncCanoePos() {
             var_f31 = 0.0f;
         } else {
             var_r29 = 0;
-            var_f31 = (s16)(shape_angle.y - field_0x2fe6) * 0.005f;
+            var_f31 = (s16)(shape_angle.y - mPrevAngleY) * 0.005f;
         }
     }
 
@@ -652,7 +652,7 @@ int daAlink_c::procCanoeWait() {
                 field_0x2fde = 0xFF;
 
                 if (mThrowBoomerangAcKeep.getActor() != NULL || mProcVar1.field_0x300a != 0) {
-                    if ((s16)(field_0x2fe2 - shape_angle.y) >= 0) {
+                    if ((s16)(mMoveAngle - shape_angle.y) >= 0) {
                         mProcVar5.field_0x3012 = 1;
                     } else {
                         mProcVar5.field_0x3012 = 0;
@@ -668,7 +668,7 @@ int daAlink_c::procCanoeWait() {
                 } else if (checkInputOnR()) {
                     allUnequip(0);
 
-                    if ((s16)(field_0x2fe2 - shape_angle.y) >= 0) {
+                    if ((s16)(mMoveAngle - shape_angle.y) >= 0) {
                         mProcVar5.field_0x3012 = 1;
                     } else {
                         mProcVar5.field_0x3012 = 0;
@@ -694,7 +694,7 @@ int daAlink_c::procCanoeRowInit(int param_0) {
 
     if (param_0 < 0) {
         if (checkInputOnR()) {
-            s16 sp8 = (s16)(field_0x2fe2 - shape_angle.y);
+            s16 sp8 = (s16)(mMoveAngle - shape_angle.y);
             int temp_r3 = abs(sp8);
 
             BOOL spC;
@@ -839,12 +839,12 @@ int daAlink_c::procCanoeRow() {
             if (mProcVar0.field_0x3008 == 0 || framectrl->getFrame() >= 19.0f) {
                 s16 var_r28;
                 if (checkInputOnR()) {
-                    var_r28 = field_0x2fe2 - shape_angle.y;
+                    var_r28 = mMoveAngle - shape_angle.y;
                     s16 var_r25;
                     if (mProcVar3.field_0x300e == 1) {
-                        var_r25 = field_0x2fe2 + 0x8000;
+                        var_r25 = mMoveAngle + 0x8000;
                     } else {
-                        var_r25 = field_0x2fe2;
+                        var_r25 = mMoveAngle;
                     }
 
                     if (var_r28 == -0x8000 || (var_r28 > 0 && mProcVar5.field_0x3012 == 1) || (var_r28 < 0 && mProcVar5.field_0x3012 == 0)) {
@@ -899,8 +899,8 @@ int daAlink_c::procCanoePaddleShiftInit(int param_0) {
     setSingleAnime(ANM_CANOE_CHANGE_HAND, anm_speed, mpHIO->mCanoe.m.mLeftRightChangeAnm.mStartFrame, mpHIO->mCanoe.m.mLeftRightChangeAnm.mEndFrame, mpHIO->mCanoe.m.mLeftRightChangeAnm.mInterpolation);
 
     if (mProcVar5.field_0x3012 == 1) {
-        field_0x2f92 = 0;
-        field_0x2f93 = 0xFE;
+        mLeftHandIndex = 0;
+        mRightHandIndex = 0xFE;
     }
 
     field_0x3198 = param_0;
@@ -922,12 +922,12 @@ int daAlink_c::procCanoePaddleShift() {
             procCanoeRowInit(field_0x3198);
         } else if (frame_ctrl->checkPass(11)) {
             if (mProcVar5.field_0x3012 == 0) {
-                field_0x2f92 = 0;
-                field_0x2f93 = 0xFE;
+                mLeftHandIndex = 0;
+                mRightHandIndex = 0xFE;
                 mProcVar5.field_0x3012 = 1;
             } else {
-                field_0x2f92 = 0xFE;
-                field_0x2f93 = 5;
+                mLeftHandIndex = 0xFE;
+                mRightHandIndex = 5;
                 mProcVar5.field_0x3012 = 0;
             }
         }
@@ -940,8 +940,8 @@ int daAlink_c::procCanoePaddlePutInit(int param_0) {
     if (checkCanoeSlider() && mEquipItem == 0x10B) {
         if (checkEquipAnime() && checkBowItem(field_0x2fde)) {
             mEquipItem = fpcNm_ITEM_NONE;
-            field_0x2f93 = 0xFE;
-            field_0x2f92 = 0xFE;
+            mRightHandIndex = 0xFE;
+            mLeftHandIndex = 0xFE;
             return procCanoeWaitInit(0);
         }
     }
@@ -958,8 +958,8 @@ int daAlink_c::procCanoePaddlePutInit(int param_0) {
     setSingleAnime(ANM_CANOE_CHANGE_HAND, anm_speed, mpHIO->mCanoe.m.mLeftRightChangeAnm.mStartFrame, mpHIO->mCanoe.m.mLeftRightChangeAnm.mEndFrame, mpHIO->mCanoe.m.mLeftRightChangeAnm.mInterpolation);
 
     if (mProcVar5.field_0x3012 == 1) {
-        field_0x2f92 = 0;
-        field_0x2f93 = 0xFE;
+        mLeftHandIndex = 0;
+        mRightHandIndex = 0xFE;
     }
 
     mProcVar3.field_0x300e = param_0;
@@ -983,8 +983,8 @@ int daAlink_c::procCanoePaddlePut() {
     if (mUpperAnmHeap[0].getIdx() == getMainBckData(ANM_CANOE_CHANGE_HAND)->m_upperID) {
         if (mUpperFrameCtrl[0].checkPass(11)) {
             setSingleAnimeBaseSpeed(ANM_CANOE_PADDLE_TO_ROD, -1.0f, 3.0f);
-            field_0x2f92 = 0;
-            field_0x2f93 = 0xFE;
+            mLeftHandIndex = 0;
+            mRightHandIndex = 0xFE;
         }
     } else {
         daPy_frameCtrl_c* framectrl = &mUnderFrameCtrl[0];
@@ -1004,13 +1004,13 @@ int daAlink_c::procCanoePaddlePut() {
         } else if (framectrl->getFrame() < 5.0f) {
             if (mItemAcKeep.getActor() != NULL) {
                 mEquipItem = 0x105;
-                field_0x2f93 = 5;
+                mRightHandIndex = 5;
             } else {
                 mEquipItem = fpcNm_ITEM_NONE;
-                field_0x2f93 = 0xFE;
+                mRightHandIndex = 0xFE;
             }
 
-            field_0x2f92 = 0xFE;
+            mLeftHandIndex = 0xFE;
         }
     }
 
@@ -1045,11 +1045,11 @@ int daAlink_c::procCanoePaddleGrab() {
             getNowAnmPackUpper(UPPER_0)->setFrame(11.0f);
 
             if (mProcVar5.field_0x3012 == 1) {
-                field_0x2f92 = 0;
-                field_0x2f93 = 0xFE;
+                mLeftHandIndex = 0;
+                mRightHandIndex = 0xFE;
             } else {
-                field_0x2f92 = 0xFE;
-                field_0x2f93 = 5;
+                mLeftHandIndex = 0xFE;
+                mRightHandIndex = 5;
             }
         } else if (framectrl->getFrame() >= 5.0f) {
             if (checkFisingRodLure()) {
@@ -1058,7 +1058,7 @@ int daAlink_c::procCanoePaddleGrab() {
                 deleteEquipItem(FALSE, FALSE);
             }
 
-            field_0x2f92 = 0xFE;
+            mLeftHandIndex = 0xFE;
 
             if (field_0x2fde == 0xFF) {
                 mEquipItem = 0x10B;
@@ -1179,7 +1179,7 @@ int daAlink_c::procCanoeFishingWait() {
                 var_r27 = -0x3800;
             }
 
-            daPy_addCalcShort(&mBodyAngle.y, var_r27, 5, field_0x33a8 * 1024.0f, 1);
+            daPy_addCalcShort(&mBodyAngle.y, var_r27, 5, mStickValue * 1024.0f, 1);
         }
 
         f32 frame = (1.0f - ((mBodyAngle.y + 0x4000) / 32768.0f)) * framectrl0->getEnd();
@@ -1274,10 +1274,10 @@ int daAlink_c::procCanoeFishingGet() {
             procCanoeFishingWaitInit();
         } else if (framectrl->getFrame() >= 65.0f) {
             mItemVar0.field_0x3018 = 1;
-            field_0x2f92 = 4;
-            field_0x2f93 = 5;
+            mLeftHandIndex = 4;
+            mRightHandIndex = 5;
         } else if (framectrl->getFrame() >= 29.0f) {
-            field_0x2f93 = 0xFE;
+            mRightHandIndex = 0xFE;
         }
     } else if (checkAnmEnd(framectrl)) {
         if (checkEndResetFlg0(ERFLG0_FISHING_RELEASE)) {
@@ -1289,7 +1289,7 @@ int daAlink_c::procCanoeFishingGet() {
             procCanoeFishingWaitInit();
         }
     } else if (framectrl->checkPass(field_0x3478)) {
-        field_0x2f93 = 5;
+        mRightHandIndex = 5;
     } else if (framectrl->checkPass(field_0x347c)) {
         onModeFlg(0x100);
     }
@@ -1681,7 +1681,7 @@ int daAlink_c::procFishingCast() {
     }
 
     if (checkInputOnR()) {
-        cLib_addCalcAngleS(&shape_angle.y, field_0x2fe2, mpHIO->mMove.m.mTurnAngleRate, mpHIO->mMove.m.mMaxTurnAngle, mpHIO->mMove.m.mMinTurnAngle);
+        cLib_addCalcAngleS(&shape_angle.y, mMoveAngle, mpHIO->mMove.m.mTurnAngleRate, mpHIO->mMove.m.mMaxTurnAngle, mpHIO->mMove.m.mMinTurnAngle);
         current.angle.y = shape_angle.y;
     }
 

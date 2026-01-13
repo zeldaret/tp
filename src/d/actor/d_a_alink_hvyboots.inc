@@ -186,7 +186,7 @@ void daAlink_c::setMagneBootsMtx(cBgS_PolyInfo* i_polyinfo, int param_1) {
             s16 angle = sp40.atan2sX_Z();
             shape_angle.y += angle;
             current.angle.y += angle;
-            field_0x2fe6 += angle;
+            mPrevAngleY += angle;
             field_0x310c += angle;
         }
     }
@@ -286,8 +286,8 @@ int daAlink_c::procBootsEquip() {
         onModeFlg(4);
         checkNextAction(1);
     } else if (frameCtrl_p->getFrame() >= 5.0f) {
-        field_0x2f92 = 1;
-        field_0x2f93 = 6;
+        mLeftHandIndex = 1;
+        mRightHandIndex = 6;
     }
 
     return 1;
@@ -332,7 +332,7 @@ int daAlink_c::procMagneBootsFlyInit() {
     }
 
     field_0x3478 = 0.0f;
-    field_0x594 = mpHIO->mItem.mIronBoots.m.mMaxMagneFlySpeed;
+    mMaxSpeed = mpHIO->mItem.mIronBoots.m.mMaxMagneFlySpeed;
     mProcVar2.field_0x300c = 0;
     voiceStart(Z2SE_AL_V_MAGNET_CAUGHT);
     return 1;
@@ -340,8 +340,8 @@ int daAlink_c::procMagneBootsFlyInit() {
 
 int daAlink_c::procMagneBootsFly() {
     field_0x3478 += mpHIO->mItem.mIronBoots.m.mMagneFlyAccelRate;
-    if (field_0x3478 > field_0x594) {
-        field_0x3478 = field_0x594;
+    if (field_0x3478 > mMaxSpeed) {
+        field_0x3478 = mMaxSpeed;
     }
 
     /* !@bug - If iron boots are unequipped mid-flight, player will still stick to magnetic poly

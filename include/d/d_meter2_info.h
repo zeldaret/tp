@@ -33,6 +33,18 @@ enum dMeter2Info_warpStatus {
     /* 0x3 */ WARP_STATUS_DECIDED_e = 3,
 };
 
+enum dMeter2Info_UseButton {
+    METER2_USEBUTTON_A = 0x1,
+    METER2_USEBUTTON_B = 0x2,
+    METER2_USEBUTTON_X = 0x4,
+    METER2_USEBUTTON_Y = 0x8,
+    METER2_USEBUTTON_C = 0x10,
+
+    METER2_USEBUTTON_R = 0x40,
+
+    METER2_USEBUTTON_Z = 0x800,
+};
+
 class dMeter2Info_c {
 public:
     class WarpInfo_c {
@@ -193,7 +205,7 @@ public:
     void set2DHeight(f32 i_height) { m2DHeight = i_height; }
     void set2DPosH(f32 i_posH) { m2DPosH = i_posH; }
     void set2DPosV(f32 i_posV) { m2DPosV = i_posV; }
-    void onUseButton(int i_button) { mUseButton |= i_button; }
+    void onUseButton(int i_button) { mUseButton |= (u16)i_button; }
     f32 get2DWidth() { return m2DWidth; }
     f32 get2DHeight() { return m2DHeight; }
     u8 getTableMapRegionNo() { return mTableMapRegionNo; }

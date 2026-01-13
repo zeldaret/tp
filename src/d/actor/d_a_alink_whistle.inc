@@ -72,7 +72,7 @@ int daAlink_c::procGrassWhistleGetInit() {
     field_0x2f98 = 4;
 
     setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &mpHIO->mItem.mBottle.m.mSwingDownAnm);
-    field_0x2f92 = 0xFE;
+    mLeftHandIndex = 0xFE;
     field_0x280c.setData(field_0x27f4);
 
     daObjYobikusa_c* yobikusa_p = (daObjYobikusa_c*)field_0x27f4;
@@ -218,7 +218,7 @@ int daAlink_c::procGrassWhistleWait() {
                     return procWaitInit();
                 }
 
-                setFaceBasicTexture(FTANM_UNK_0);
+                setFaceBasicTexture(FTANM_0);
                 mProcVar5.field_0x3012 = 1;
                 return 1;
             }

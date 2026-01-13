@@ -92,10 +92,10 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
 
     s16 var_r24;
     if (checkInputOnR() && i_canMove) {
-        var_r24 = 1024.0f * field_0x33ac * cM_ssin(mStickAngle);
+        var_r24 = 1024.0f * mMoveValue * cM_ssin(mStickAngle);
 
         if (temp_r26 > 0x6000 && field_0x2f8c == 0xB && mProcID == PROC_BOARD_WAIT) {
-            f32 temp_f29 = field_0x33ac * cM_scos((0x8000 - temp_r26) * 2);
+            f32 temp_f29 = mMoveValue * cM_scos((0x8000 - temp_r26) * 2);
             f32 speed_step = temp_f29;
 
             if (speed_step < 0.15f) {
@@ -180,8 +180,8 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
                     f32 temp_f26 = (var_f31 * cM_scos(var_r27)) + (mNormalSpeed * cM_scos(shape_angle.y));
 
                     mNormalSpeed = JMAFastSqrt((temp_f27 * temp_f27) + (temp_f26 * temp_f26));
-                    if (mNormalSpeed > field_0x594) {
-                        mNormalSpeed = field_0x594;
+                    if (mNormalSpeed > mMaxSpeed) {
+                        mNormalSpeed = mMaxSpeed;
                     }
 
                     if (mNormalSpeed > 0.1f) {
@@ -205,8 +205,8 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
                 setCommonBoardAnime(FALSE);
             }
 
-            if (mNormalSpeed > (0.7f * field_0x594)) {
-                cLib_chaseF(&mNormalSpeed, 0.7f * field_0x594, 1.5f);
+            if (mNormalSpeed > (0.7f * mMaxSpeed)) {
+                cLib_chaseF(&mNormalSpeed, 0.7f * mMaxSpeed, 1.5f);
             }
         }
     
@@ -386,7 +386,7 @@ int daAlink_c::procBoardWaitInit(fopAc_ac_c* i_boardActor) {
             mNormalSpeed = 0.0f;
         }
 
-        field_0x594 = mpHIO->mItem.mBoard.m.mMaxSpeed;
+        mMaxSpeed = mpHIO->mItem.mBoard.m.mMaxSpeed;
         mProcVar2.field_0x300c = 0;
         mProcVar3.field_0x300e = 0;
         setCommonBoardAnime(FALSE);
@@ -689,7 +689,7 @@ int daAlink_c::procBoardCutTurn() {
 
         onResetFlg0(RFLG0_UNK_2);
         cLib_chaseF(&field_0x347c, field_0x3478, 20.0f);
-        field_0xFB8.SetR(field_0x347c);
+        mAtSph.SetR(field_0x347c);
         onResetFlg1(RFLG1_BOARD_NO_FOOT_ANGLE);
     } else {
         mProcVar5.field_0x3012 = 0;

@@ -595,10 +595,10 @@ static void action(e_mm_mt_class* i_this) {
                 fopAc_ac_c* local_a4 = at_power_check(&i_this->m_atInfo);
 
                 if (i_this->m_atInfo.mHitType == 1) {
-                    if (daPy_getPlayerActorClass()->getCutType() == 8 ||
-                        daPy_getPlayerActorClass()->getCutType() == 9 ||
-                        daPy_getPlayerActorClass()->getCutType() == 23 ||
-                        daPy_getPlayerActorClass()->getCutType() == 24) {
+                    if (daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_TURN_RIGHT ||
+                        daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_UNK_9 ||
+                        daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT ||
+                        daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT) {
                         actor->speedF = cM_rndF(10.0f) + 40.0f +  TREG_F(16);
                         i_this->m_spin = (s16)(cM_rndF(2000.0f) + 5500.0f);
                         i_this->field_0x69C = (s16)(cM_rndF(1000.0f) + 5000.0f);

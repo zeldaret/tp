@@ -83,7 +83,7 @@ int daAlink_c::checkDemoAction() {
         offNoResetFlg0(FLG0_UNK_400);
     }
 
-    if (demoMode != daPy_demo_c::DEMO_SUMOU_SHIKO_e && mSpecialMode == 1) {
+    if (demoMode != daPy_demo_c::DEMO_SUMOU_SHIKO_e && mMode == 1) {
         return procSumouReadyInit();
     }
 
@@ -486,7 +486,7 @@ void daAlink_c::setDemoMoveData(u32* o_mode, cXyz const* i_goal) {
     cXyz sp20;
     sp20 = *i_goal - current.pos;
 
-    f32 spC = fabsf(mNormalSpeed) / field_0x594;
+    f32 spC = fabsf(mNormalSpeed) / mMaxSpeed;
 
     f32 temp_f30;
     f32 temp_f29;
@@ -780,7 +780,7 @@ void daAlink_c::setDemoData() {
                 if (demo_mode == daPy_demo_c::DEMO_UNK_4_e) {
                     mNormalSpeed = 0.0f;
                     speedF = 0.0f;
-                    field_0x814.ClrCcMove();
+                    mCcStts.ClrCcMove();
                     setPlayerPosAndAngle(pos_p, angle, 0);
                     mDemo.setMoveAngle(angle);
                 } else if (checkDemoMoveMode(demo_mode)) {
@@ -823,11 +823,11 @@ void daAlink_c::setDemoData() {
             if (prm2 != 0) {
                 if (!checkWolf()) {
                     if (prm2 == 1) {
-                        setFacePriTexture(FTANM_UNK_0);
+                        setFacePriTexture(FTANM_0);
                         setFacePriBck(dRes_ID_ALANM_BCK_FTURNBACK_e);
                     } else if (prm2 == 2) {
                         setFacePriBtp(dRes_ID_ALANM_BTP_FMABA03_e);
-                        field_0x2154->setFrame(field_0x2154->getFrameMax());
+                        mpFaceBtp->setFrame(mpFaceBtp->getFrameMax());
 
                         setFacePriBtk(dRes_ID_ALANM_BTK_FMABA03_e);
                         mpFaceBtk->setFrame(mpFaceBtk->getFrameMax());
@@ -944,9 +944,9 @@ void daAlink_c::endDemoMode() {
                    checkMagneBootsOn())
         {
             if (isDemoTypeStart && (mProcID == PROC_MOVE || mProcID == PROC_WOLF_MOVE)) {
-                field_0x33a8 = mDoCPd_c::getStickValue(PAD_1);
+                mStickValue = mDoCPd_c::getStickValue(PAD_1);
                 mStickAngle = mDoCPd_c::getStickAngle(PAD_1) + 0x8000;
-                field_0x2fe2 = mStickAngle + dCam_getControledAngleY(dComIfGp_getCamera(field_0x317c));
+                mMoveAngle = mStickAngle + dCam_getControledAngleY(dComIfGp_getCamera(field_0x317c));
                 mNormalSpeed = speedF;
                 commonCheckNextAction(0);
             } else if (mProcID == PROC_HAWK_CATCH || mProcID == PROC_HAWK_SUBJECT) {
@@ -1014,7 +1014,7 @@ void daAlink_c::setGetItemFace(u16 i_itemNo) {
     {
         setFaceBasicBck(dRes_ID_ALANM_BCK_FI_e);
     } else if (i_itemNo == fpcNm_ITEM_DUNGEON_EXIT || i_itemNo == fpcNm_ITEM_LV7_DUNGEON_EXIT) {
-        setFaceBasicTexture(FTANM_UNK_7C);
+        setFaceBasicTexture(FTANM_K_A);
         setFaceBasicBck(dRes_ID_ALANM_BCK_FK_e);
     } else if (i_itemNo == fpcNm_ITEM_TOMATO_PUREE || i_itemNo == fpcNm_ITEM_TASTE) {
         setFaceBasicBck(dRes_ID_ALANM_BCK_FJ_e);
@@ -1117,9 +1117,9 @@ void daAlink_c::setTradeItemOutHand() {
     daPy_frameCtrl_c* frame_ctrl = mUnderFrameCtrl;
 
     if (frame_ctrl->getFrame() >= 59.0f) {
-        field_0x2f92 = 4;
+        mLeftHandIndex = 4;
     } else if (frame_ctrl->getFrame() >= 20.0f) {
-        field_0x2f92 = 0;
+        mLeftHandIndex = 0;
     }
 }
 
@@ -1278,7 +1278,7 @@ BOOL daAlink_c::checkDeadAction(int param_0) {
                     poly_exitId = 0x3F;
                 }
 
-                if (((poly_exitId != 0x3F || mExitID != 0x3F) && field_0x3174 == 5 && field_0x33c8 - current.pos.y > 500.0f) || ((mExitID & 0x8000) && checkModeFlg(2))) {
+                if (((poly_exitId != 0x3F || mExitID != 0x3F) && mGroundCode == 5 && field_0x33c8 - current.pos.y > 500.0f) || ((mExitID & 0x8000) && checkModeFlg(2))) {
                     onNoResetFlg2(FLG2_FORCE_GAMEOVER);
                     return procCoDeadInit(0);
                 }
@@ -1515,9 +1515,9 @@ int daAlink_c::procCoToolDemo() {
 
                 if (arg0 == 0) {
                     if (arg1 == 5) {
-                        field_0x2f93 = setDemoRightHandIndex(resID);
+                        mRightHandIndex = setDemoRightHandIndex(resID);
                     } else if (arg1 == 6) {
-                        field_0x2f92 = setDemoLeftHandIndex(resID);
+                        mLeftHandIndex = setDemoLeftHandIndex(resID);
                     } else if (arg1 == 9) {
                         if (resID == 1 && mpDemoFCBlendModel != NULL && mpDemoFCTongueModel != NULL) {
                             onNoResetFlg1(FLG1_UNK_10);
@@ -1605,7 +1605,7 @@ int daAlink_c::procCoToolDemo() {
                             if (mpDemoHLTmpBck != NULL && spC == 0) {
                                 mpDemoHLTmpBck->setFrame(anm_frame);
                             }
-                        } else if (arg2 == 4 && field_0x2f92 == 0xFB) {
+                        } else if (arg2 == 4 && mLeftHandIndex == 0xFB) {
                             setDemoBrk(&field_0x06f8, mpDemoHLTmpModel, resID);
                             if (field_0x06f8 != NULL && spC == 0) {
                                 field_0x06f8->setFrame(anm_frame);
@@ -1621,7 +1621,7 @@ int daAlink_c::procCoToolDemo() {
                         }
                     } else if (arg1 == 9) {
                         if (arg2 == 2) {
-                            setStickAnmData(field_0x2164.getBckAnm(), arg1, arg2, resID, stickDirection);
+                            setStickAnmData(mFaceBck.getBckAnm(), arg1, arg2, resID, stickDirection);
 
                             if (mpDemoFCTmpBck != NULL && spC == 0) {
                                 mpDemoFCTmpBck->setFrame(anm_frame);
@@ -1633,10 +1633,10 @@ int daAlink_c::procCoToolDemo() {
                                 mpFaceBtk->setFrame(anm_frame);
                             }
                         } else if (arg2 == 5) {
-                            setStickAnmData(field_0x2154, arg1, arg2, resID, stickDirection);
+                            setStickAnmData(mpFaceBtp, arg1, arg2, resID, stickDirection);
 
-                            if (field_0x2154 != NULL && spC == 0) {
-                                field_0x2154->setFrame(anm_frame);
+                            if (mpFaceBtp != NULL && spC == 0) {
+                                mpFaceBtp->setFrame(anm_frame);
                             }
                         } else if (arg2 == 7) {
                             J3DAnmCluster* blk_p = (J3DAnmCluster*)dComIfG_getObjectIDRes(
@@ -2602,8 +2602,8 @@ int daAlink_c::procCoTurnBack() {
     } else if (mProcVar2.field_0x300c != 0) {
         dComIfGp_evmng_cutEnd(mAlinkStaffId);
     } else if (!checkWolf() && frameCtrl_p->getFrame() >= 29.0f) {
-        field_0x2f92 = 1;
-        field_0x2f93 = 6;
+        mLeftHandIndex = 1;
+        mRightHandIndex = 6;
     }
 
     return 1;
@@ -2678,9 +2678,9 @@ int daAlink_c::procDoorOpen() {
     if (field_0x3198 == 0) {
         if (mProcVar2.field_0x300c == 0 && mProcVar4.field_0x3010 != 0) {
             if (frameCtrl_p->getFrame() >= 9.0f && frameCtrl_p->getFrame() < field_0x347c) {
-                field_0x2f92 = 3;
+                mLeftHandIndex = 3;
             } else {
-                field_0x2f92 = 4;
+                mLeftHandIndex = 4;
             }
         } else if (frameCtrl_p->checkPass(18.0f) && mProcVar3.field_0x300e != 0) {
             voiceStart(Z2SE_AL_V_PUSH_ROCK);
@@ -2824,12 +2824,12 @@ void daAlink_c::setMonkeyMoveAnime() {
     daPy_frameCtrl_c* frame_ctrl = mUnderFrameCtrl;
 
     if (mDemo.getParam0() == 0) {
-        field_0x2f92 = 0xFE;
-        field_0x2f93 = 0xFE;
+        mLeftHandIndex = 0xFE;
+        mRightHandIndex = 0xFE;
         frame_ctrl->setFrame(0.0f);
     } else {
-        field_0x2f92 = 2;
-        field_0x2f93 = 5;
+        mLeftHandIndex = 2;
+        mRightHandIndex = 5;
         frame_ctrl->setFrame(1.0f);
     }
 
@@ -2921,12 +2921,12 @@ int daAlink_c::procCoDeadInit(int param_0) {
         if (checkWolf()) {
             if (checkModeFlg(0x40000)) {
                 setSingleAnimeWolfBase(WANM_SWIM_DIE);
-                setFaceBasicTexture(FTANM_UNK_9D);
+                setFaceBasicTexture(FTANM_WL_SWIMDIEA);
                 dComIfGp_setPlayerStatus0(0, 0x100000);
                 voiceStart(Z2SE_WL_V_DIE_WATER);
             } else {
                 setSingleAnimeWolfBase(WANM_DIE);
-                setFaceBasicTexture(FTANM_UNK_9C);
+                setFaceBasicTexture(FTANM_WL_DIE);
                 voiceStart(Z2SE_WL_V_DIE);
             }
         } else {
@@ -3093,7 +3093,7 @@ int daAlink_c::procCoLookAroundInit() {
 
     if (checkWolf()) {
         setSingleAnimeWolfBase(WANM_ENTRANCE);
-        setFaceBasicTexture(FTANM_UNK_A0);
+        setFaceBasicTexture(FTANM_WL_ENTRANCE);
         field_0x3588 = l_wolfBaseAnime;
         voiceStart(Z2SE_WL_V_ENTRANCE);
     } else {
@@ -3236,8 +3236,8 @@ int daAlink_c::procHandPatInit() {
     }
 
     setSingleAnime(ANM_COW_THROW_LEFT, 1.0f, 50.0f, -1, 3.0f);
-    field_0x2f92 = 0xFE;
-    field_0x2f93 = 0xFE;
+    mLeftHandIndex = 0xFE;
+    mRightHandIndex = 0xFE;
     field_0x2f99 = 13;
     field_0x3588.set(-l_halfAtnWaitBaseAnime.x, l_halfAtnWaitBaseAnime.y,
                      -l_halfAtnWaitBaseAnime.z);
@@ -3271,13 +3271,13 @@ int daAlink_c::procHandPat() {
             setSingleAnimeBase(ANM_WAIT_B_TO_A);
             mProcVar2.field_0x300c = 1;
             shape_angle.y += 0x8000;
-            field_0x2fe6 = shape_angle.y;
+            mPrevAngleY = shape_angle.y;
             current.angle.y = shape_angle.y;
             setOldRootQuaternion(0, -0x8000, 0);
             field_0x2f99 = 0x30;
         } else if (frameCtrl_p->getFrame() >= 81.0f) {
-            field_0x2f92 = 1;
-            field_0x2f93 = 6;
+            mLeftHandIndex = 1;
+            mRightHandIndex = 6;
         }
     }
 
@@ -3295,7 +3295,7 @@ int daAlink_c::procCoFogDeadInit() {
     if (mLinkAcch.ChkGroundHit()) {
         if (checkWolf()) {
             setSingleAnimeWolfBase(WANM_DIE);
-            setFaceBasicTexture(FTANM_UNK_9C);
+            setFaceBasicTexture(FTANM_WL_DIE);
             voiceStart(Z2SE_WL_V_DIE);
         } else {
             setSingleAnimeBase(ANM_DIE);
@@ -3327,7 +3327,7 @@ int daAlink_c::procCoFogDead() {
 
         if (checkWolf()) {
             setSingleAnimeWolfBase(WANM_DIE);
-            setFaceBasicTexture(FTANM_UNK_9C);
+            setFaceBasicTexture(FTANM_WL_DIE);
             voiceStart(Z2SE_WL_V_DIE);
         } else {
             setSingleAnimeBase(ANM_DIE);
@@ -3372,11 +3372,11 @@ int daAlink_c::procCoNodInit() {
         if (mDemo.getParam0() == 1) {
             setUpperAnimeBase(dRes_ID_ALANM_BCK_UNAZUKU_e);
             setFacePriBck(dRes_INDEX_ALANM_BCK_FUNAZUKU_e);
-            setFacePriTexture(FTANM_UNK_8A);
+            setFacePriTexture(FTANM_UNAZUKU);
         } else {
             setUpperAnimeBase(dRes_ID_ALANM_BCK_DEMOTALKA_e);
             setUpperAnimeBase(dRes_ID_ALANM_BCK_DEMOTALKA_e);
-            setFacePriTexture(FTANM_UNK_75);
+            setFacePriTexture(FTANM_DEMOTALKA);
         }
 
         field_0x2f96 = 4;
@@ -3408,7 +3408,7 @@ int daAlink_c::procCoEyeAwayInit() {
 
     if (!checkWolf()) {
         setUpperAnimeBase(dRes_ID_ALANM_BCK_DEMOTALKC_e);
-        setFacePriTexture(FTANM_UNK_77);
+        setFacePriTexture(FTANM_DEMOTALKC);
         setFacePriBck(dRes_ID_ALANM_BCK_FDEMOTALKC_e);
         field_0x2f96 = 4;
         field_0x2f97 = 10;
@@ -3429,7 +3429,7 @@ int daAlink_c::procCoGlareInit() {
         setUpperAnimeBase(dRes_ID_ALANM_BCK_DEMOTALKB_e);
         mUpperFrameCtrl[2].setAttribute(2);
         mUpperFrameCtrl[2].setLoop(45);
-        setFacePriTexture(FTANM_UNK_76);
+        setFacePriTexture(FTANM_DEMOTALKB);
         setFacePriBck(dRes_ID_ALANM_BCK_FDEMOTALKB_e);
         mProcVar2.field_0x300c = 0;
         field_0x3478 = -1.0f;
@@ -3601,7 +3601,7 @@ int daAlink_c::procWolfSnowEscape() {
     if (checkAnmEnd(frameCtrl_p)) {
         setOldRootQuaternion(0, -0x8000, 0);
         shape_angle.y += 0x8000;
-        field_0x2fe6 = shape_angle.y;
+        mPrevAngleY = shape_angle.y;
         current.angle.y = shape_angle.y;
 
         if (mProcVar2.field_0x300c == 0) {
@@ -4042,7 +4042,7 @@ int daAlink_c::procMasterSwordStick() {
         setSingleAnimeBaseMorf(ANM_DEMO_MASTER_SWORD_WAIT, -1.0f);
         dComIfGp_evmng_cutEnd(mAlinkStaffId);
     } else if (frame_ctrl->getFrame() >= 32.0f) {
-        field_0x2f93 = 5;
+        mRightHandIndex = 5;
     }
 
     return 1;
@@ -4066,7 +4066,7 @@ int daAlink_c::procMasterSwordPull() {
     if (checkAnmEnd(frame_ctrl)) {
         dComIfGp_evmng_cutEnd(mAlinkStaffId);
     } else if (frame_ctrl->getFrame() >= 36.0f) {
-        field_0x2f93 = 10;
+        mRightHandIndex = 10;
     } else if (frame_ctrl->getFrame() >= 9.0f) {
         mProcVar4.field_0x3010 = 0;
     } else if (frame_ctrl->getFrame() >= 1.0f) {
@@ -4604,7 +4604,7 @@ int daAlink_c::procCoWarp() {
             if (mProcVar2.field_0x300c != 0) {
                 if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_45_e) {
                     if (mProcVar1.field_0x300a != 0) {
-                        if (field_0x3174 == 4) {
+                        if (mGroundCode == 4) {
                             dComIfGp_setNextStage(dComIfGp_getStartStageName(), mProcVar4.field_0x3010,
                                                   fopAcM_GetRoomNo(this), -1, 0.0f, 5, 1, 0,
                                                   shape_angle.y, 1, 0);

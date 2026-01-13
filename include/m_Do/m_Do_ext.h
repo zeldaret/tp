@@ -475,6 +475,8 @@ struct mDoExt_MtxCalcAnmBlendTbl
     mDoExt_MtxCalcAnmBlendTbl(int num, mDoExt_AnmRatioPack* anmRatio) {
         mNum = num;
         mAnmRatio = anmRatio;
+
+        f32 var_f31 = 0.0f;
         for (int i = 0; i < mNum; i++) {
             if (!mAnmRatio[i].getAnmTransform()) {
                 mAnmRatio[i].setRatio(0.0f);

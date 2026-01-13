@@ -330,19 +330,19 @@ void daAlink_c::initKandelaarSwing() {
     }
 
     voiceStart(Z2SE_AL_V_SWING_BOTTLE);
-    field_0xFB8.ResetAtHit();
+    mAtSph.ResetAtHit();
 
     if (!checkEventRun()) {
         dComIfGp_setItemOilCount(-mpHIO->mItem.mLantern.m.mShakeOilLoss);
     }
 
-    field_0xFB8.OffAtSetBit();
-    field_0xFB8.SetR(50.0f);
-    field_0xFB8.SetAtType(AT_TYPE_LANTERN_SWING);
-    field_0xFB8.SetAtHitMark(0);
-    field_0xFB8.SetAtSe(dCcD_SE_NONE);
-    field_0xFB8.SetAtAtp(0);
-    field_0xFB8.SetAtMtrl(dCcD_MTRL_FIRE);
+    mAtSph.OffAtSetBit();
+    mAtSph.SetR(50.0f);
+    mAtSph.SetAtType(AT_TYPE_LANTERN_SWING);
+    mAtSph.SetAtHitMark(0);
+    mAtSph.SetAtSe(dCcD_SE_NONE);
+    mAtSph.SetAtAtp(0);
+    mAtSph.SetAtMtrl(dCcD_MTRL_FIRE);
 }
 
 int daAlink_c::procKandelaarSwingInit() {

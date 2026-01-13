@@ -224,7 +224,7 @@ int dDemo_actor_c::getDemoIDData(int* o_arg0, int* o_arg1, int* o_arg2, u16* o_r
 }
 
 #if DEBUG
-s16 dDemo_c::m_branchNum = 0;
+u16 dDemo_c::m_branchNum = 0;
 #endif
 
 static void* dDemo_getJaiPointer(char const* arcName, u32 anmID, int param_2, u16* param_3) {

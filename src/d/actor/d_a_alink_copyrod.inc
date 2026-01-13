@@ -89,7 +89,7 @@ void daAlink_c::setCopyRodControllUpperSpeedRate() {
             max_speed = fabsf(mNormalSpeed / mpHIO->mMove.m.mMaxSpeed);
         }
 
-        if (checkHeavyStateOn(1, 1)) {
+        if (checkHeavyStateOn(TRUE, TRUE)) {
             max_speed *= 1.0f / (mHeavySpeedMultiplier * mHeavySpeedMultiplier);
         }
     }

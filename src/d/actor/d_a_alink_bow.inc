@@ -234,7 +234,7 @@ void daAlink_c::setBowReadyAnime() {
 
 void daAlink_c::setBowReloadAnime() {
     setUpperAnimeParam(dRes_ID_ALANM_BCK_ARELORD_e, UPPER_2, &mpHIO->mItem.mBow.m.mLoadAnm);
-    setFacePriTexture(FTANM_UNK_8);
+    setFacePriTexture(FTANM_FINISHA);
     setFacePriBck(dRes_ID_ALANM_BCK_FARELORD_e);
 
     if (mEquipItem == fpcNm_ITEM_PACHINKO) {
@@ -359,7 +359,7 @@ BOOL daAlink_c::checkUpperItemActionBow() {
     } else if (checkBowReloadAnime()) {
         if (checkAnmEnd(frameCtrl_p)) {
             setUpperAnimeBaseSpeed(dRes_ID_ALANM_BCK_ARELORDTAME_e, 0.0f, -1.0f);
-            setFacePriTexture(FTANM_UNK_9);
+            setFacePriTexture(FTANM_ARELORD);
             setFacePriBck(dRes_ID_ALANM_BCK_FARELORDTAME_e);
 
             if (mEquipItem != fpcNm_ITEM_PACHINKO) {

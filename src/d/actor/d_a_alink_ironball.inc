@@ -114,12 +114,12 @@ void daAlink_c::setIronBallModel() {
 
     mpHookChain->setUserArea((uintptr_t)this);
 
-    field_0xFB8.SetAtType(AT_TYPE_IRON_BALL);
-    field_0xFB8.SetAtHitMark(3);
-    field_0xFB8.SetAtSe(dCcD_SE_HAMMER);
-    field_0xFB8.SetAtAtp(2);
-    field_0xFB8.SetAtMtrl(dCcD_MTRL_NONE);
-    field_0xFB8.SetR(mpHIO->mItem.mIronBall.m.mAttackRadius);
+    mAtSph.SetAtType(AT_TYPE_IRON_BALL);
+    mAtSph.SetAtHitMark(3);
+    mAtSph.SetAtSe(dCcD_SE_HAMMER);
+    mAtSph.SetAtAtp(2);
+    mAtSph.SetAtMtrl(dCcD_MTRL_NONE);
+    mAtSph.SetR(mpHIO->mItem.mIronBall.m.mAttackRadius);
 
     csXyz* var_r28 = mIronBallChainAngle;
     for (int i = 0; i < 102; i++, var_r28++) {
@@ -449,8 +449,8 @@ BOOL daAlink_c::checkIronBallReturnChange() {
     if (mProcID != PROC_IRON_BALL_THROW ||
         (!(mBodyAngle.x > 0x400) && mIronBallBgChkPos.y < (current.pos.y - 200.0f)) ||
         (mBodyAngle.x > 0x400 && mItemMode == 0x64) ||
-        (field_0xFB8.ChkAtHit() && field_0xFB8.GetAtHitGObj() != NULL &&
-         static_cast<dCcD_GObjInf*>(field_0xFB8.GetAtHitGObj())->ChkTgIronBallRebound()))
+        (mAtSph.ChkAtHit() && mAtSph.GetAtHitGObj() != NULL &&
+         static_cast<dCcD_GObjInf*>(mAtSph.GetAtHitGObj())->ChkTgIronBallRebound()))
     {
         setIronBallReturn(0);
         return true;
@@ -496,7 +496,7 @@ void daAlink_c::setIronBallPos() {
     cXyz spC4;
     cXyz spB8;
 
-    if (field_0xFB8.ChkAtHit()) {
+    if (mAtSph.ChkAtHit()) {
         dComIfGp_getVibration().StartShock(3, 1, cXyz(0.0f, 1.0f, 0.0f));
     }
 
@@ -818,9 +818,9 @@ void daAlink_c::setIronBallReadyAnime() {
     mNowAnmPackUpper[2].setRatio(0.0f);
     voiceStart(Z2SE_AL_V_SWING_IB);
 
-    field_0xFB8.OffAtSetBit();
-    field_0xFB8.ResetAtHit();
-    field_0xFB8.SetAtAtp(2);
+    mAtSph.OffAtSetBit();
+    mAtSph.ResetAtHit();
+    mAtSph.SetAtAtp(2);
 
     field_0x301e = 10;
     field_0x3020 = 0;
@@ -993,7 +993,7 @@ int daAlink_c::procIronBallThrowInit() {
 
     voiceStart(Z2SE_AL_V_THROW_IB);
     seStartOnlyReverb(Z2SE_AL_IB_THROW);
-    field_0xFB8.SetAtAtp(3);
+    mAtSph.SetAtAtp(3);
     return 1;
 }
 
@@ -1030,8 +1030,8 @@ int daAlink_c::procIronBallThrow() {
         }
     } else if (mProcVar2.field_0x300c != 0) {
         if (framectrl->getFrame() >= 5.0f) {
-            field_0x2f92 = 0xFE;
-            field_0x2f93 = 0xFE;
+            mLeftHandIndex = 0xFE;
+            mRightHandIndex = 0xFE;
         }
     }
 

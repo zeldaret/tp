@@ -351,7 +351,7 @@ int daAlink_c::procGuardSlip() {
     }
 
     if (cLib_chaseF(&mNormalSpeed, 0.0f, speed_step) != 0 && checkAnmEnd(&mUnderFrameCtrl[0])) {
-        field_0x814.SetTgApid(0);
+        mCcStts.SetTgApid(0);
 
         if (!checkGuardActionChange()) {
             onEndResetFlg1(ERFLG1_UNK_20);
@@ -389,7 +389,7 @@ int daAlink_c::procGuardAttackInit() {
     field_0x347c = params->mAttackEndFrame;
     field_0x3480 = params->mSpeed;
 
-    if (checkHeavyStateOn(1, 1)) {
+    if (checkHeavyStateOn(TRUE, TRUE)) {
         field_0x3480 *= mHeavySpeedMultiplier;
     }
 
@@ -544,7 +544,7 @@ int daAlink_c::procTurnMoveInit(int param_0) {
     } else if (param_0 == 3) {
         anm = ANM_SIDE_ROLL_RIGHT;
     } else if (checkInputOnR()) {
-        if ((s16)(field_0x2fe2 - shape_angle.y) >= 0) {
+        if ((s16)(mMoveAngle - shape_angle.y) >= 0) {
             anm = ANM_SIDE_ROLL_LEFT;
         } else {
             anm = ANM_SIDE_ROLL_RIGHT;

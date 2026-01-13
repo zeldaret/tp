@@ -64,7 +64,7 @@ void daAlink_c::onPressedDamage(const cXyz& param_0, s16 param_1) {
 }
 
 BOOL daAlink_c::checkNoLandDamageSlidePolygon() {
-    if (field_0x2fbb == 3) {
+    if (mGndPolyAtt0 == 3) {
         return true;
     }
 
@@ -247,7 +247,7 @@ cXyz* daAlink_c::getDamageVec(dCcD_GObjInf* i_hitObj) {
 void daAlink_c::setDashDamage() {
     setUpperAnimeParam(dRes_ID_ALANM_BCK_DAMD_e, UPPER_2, &mpHIO->mDamage.m.mDashDmgAnm);
     setFacePriBck(dRes_ID_ALANM_BCK_FDAM_e);
-    setFacePriTexture(FTANM_UNK_27);
+    setFacePriTexture(FTANM_B_A);
     voiceStart(Z2SE_AL_V_DAMAGE_S);
     seStartOnlyReverb(Z2SE_AL_DAMAGE_NORMAL);
     freeGrabItem();
@@ -477,14 +477,14 @@ BOOL daAlink_c::checkDamageAction() {
 
     dCcD_GObjInf* var_r29 = NULL;
     for (int i = 0; i < 3; i++) {
-        if (field_0x850[i].ChkTgHit() && (field_0x2fb8 == 0 || (1 << i) == 0)) {
-            var_r29 = &field_0x850[i];
+        if (mTgCyls[i].ChkTgHit() && (field_0x2fb8 == 0 || (1 << i) == 0)) {
+            var_r29 = &mTgCyls[i];
             break;
         }
     }
 
     if (var_r29 == NULL && checkWolf()) {
-        var_r29 = &field_0xFB8;
+        var_r29 = &mAtSph;
     }
 
     if (checkEndResetFlg1(ERFLG1_UNK_8000) && checkWolf()) {
@@ -568,7 +568,7 @@ BOOL daAlink_c::checkDamageAction() {
         onResetFlg1(RFLG1_UNK_2);
         dComIfGp_getVibration().StartShock(VIBMODE_S_POWER4, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
 
-        var_r29 = field_0x850;
+        var_r29 = mTgCyls;
         if (checkModeFlg(0x4000000)) {
             if (checkWolf()) {
                 setWolfHeadDamage();
@@ -595,7 +595,7 @@ BOOL daAlink_c::checkDamageAction() {
             at_spl = tghit_gobj->GetAtSpl();
             at_mtrl = tghit_gobj->GetAtMtrl();
         } else {
-            at_spl = field_0x814.GetAtSpl();
+            at_spl = mCcStts.GetAtSpl();
             at_mtrl = dCcD_MTRL_NONE;
         }
     
@@ -645,7 +645,7 @@ BOOL daAlink_c::checkDamageAction() {
                 }
             }
         } else {
-            int dmg = field_0x814.GetDmg();
+            int dmg = mCcStts.GetDmg();
             if (var_r29->ChkTgHit() && tghit_gobj != NULL && tghit_gobj->GetAtType() == AT_TYPE_BOMB) {
                 if (checkNoResetFlg3(FLG3_UNK_40000000)) {
                     dmg = 1;
@@ -739,7 +739,7 @@ BOOL daAlink_c::checkDamageAction() {
             } else if (!armor_no_dmg || at_mtrl == dCcD_MTRL_ICE) {
                 if (checkDashAnime() && at_mtrl != dCcD_MTRL_ICE) {
                     setDashDamage();
-                } else if (mProcID == PROC_WOLF_MOVE && at_mtrl != dCcD_MTRL_ICE && mNormalSpeed > field_0x594 * 0.7f) {
+                } else if (mProcID == PROC_WOLF_MOVE && at_mtrl != dCcD_MTRL_ICE && mNormalSpeed > mMaxSpeed * 0.7f) {
                     setWolfHeadDamage();
                 } else if (checkWolf()) {
                     return procWolfDamageInit(var_r29);
@@ -765,8 +765,8 @@ BOOL daAlink_c::checkDamageAction() {
         }
     }
 
-    field_0x814.ClrTg();
-    field_0x814.ClrAt();
+    mCcStts.ClrTg();
+    mCcStts.ClrAt();
     return checkWolfBarrierHitReverse();
 }
 
@@ -1055,7 +1055,7 @@ int daAlink_c::procCoLargeDamageInit(int i_type, BOOL i_isLargeDmg, s16 param_2,
         field_0x3478 = wolfDmgParams->mBounceSpeed;
         field_0x347c = wolfDmgParams->mDeceleration;
         setSingleAnimeWolfBaseMorf((daAlink_c::daAlink_WANM)field_0x3198, wolfDmgParams->mDamageInterp);
-        setFaceBasicTexture(FTANM_UNK_91);
+        setFaceBasicTexture(FTANM_WL_B_A);
     } else {
         if (i_isLargeDmg) {
             dmgParams = &mpHIO->mDamage.mDamLarge.m;
@@ -1374,8 +1374,8 @@ int daAlink_c::procLargeDamageUp() {
         }
     } else {
         if (framectrl->getFrame() > field_0x3480) {
-            field_0x2f92 = 1;
-            field_0x2f93 = 6;
+            mLeftHandIndex = 1;
+            mRightHandIndex = 6;
         }
 
         if (checkAnmEnd(framectrl)) {
@@ -1455,7 +1455,7 @@ int daAlink_c::procCoLargeDamageWallInit(int i_type, BOOL i_isLargeDmg, s16 para
             field_0x3080 = -temp_r29;
         }
 
-        setFaceBasicTexture(FTANM_UNK_91);
+        setFaceBasicTexture(FTANM_WL_B_A);
     } else {
         const daAlinkHIO_damLaHu_c1* dmgParams;
         if (i_isLargeDmg) {
@@ -1669,7 +1669,7 @@ int daAlink_c::procCoElecDamageInit(fopAc_ac_c* i_tgHitActor, dCcD_GObjInf* i_tg
     if (checkWolf()) {
         voiceStart(Z2SE_WL_V_DAMAGE_ELEC);
         setSingleAnimeWolfBase(wolf_anm);
-        setFaceBasicTexture(FTANM_UNK_91);
+        setFaceBasicTexture(FTANM_WL_B_A);
     } else {
         voiceStart(Z2SE_AL_V_DAMAGE_ELEC);
         setSingleAnimeBase(anm);
@@ -1777,7 +1777,7 @@ int daAlink_c::procDkCaughtInit(fpc_ProcID param_0) {
         field_0x3478 = temp_r3->home.pos.abs(current.pos);
     }
 
-    field_0x594 = 13.0f;
+    mMaxSpeed = 13.0f;
     return 1;
 }
 
@@ -1810,12 +1810,12 @@ int daAlink_c::procDkCaught() {
         }
 
         if (checkZeroSpeedF()) {
-            current.angle.y = field_0x2fe2;
+            current.angle.y = mMoveAngle;
         }
 
         s16 temp_r28 = current.angle.y;
-        cLib_addCalcAngleS(&current.angle.y, field_0x2fe2, mpHIO->mAtnMove.m.mTurnAngleRate, mpHIO->mAtnMove.m.mMaxTurnAngle, mpHIO->mAtnMove.m.mMinTurnAngle);
-        var_f30 = mpHIO->mAtnMove.m.mAcceleration * field_0x33a8 * cM_scos((current.angle.y - temp_r28));
+        cLib_addCalcAngleS(&current.angle.y, mMoveAngle, mpHIO->mAtnMove.m.mTurnAngleRate, mpHIO->mAtnMove.m.mMaxTurnAngle, mpHIO->mAtnMove.m.mMinTurnAngle);
+        var_f30 = mpHIO->mAtnMove.m.mAcceleration * mStickValue * cM_scos((current.angle.y - temp_r28));
     } else {
         var_f30 = 0.0f;
     }
@@ -1936,7 +1936,7 @@ int daAlink_c::procCoLavaReturnInit(BOOL i_isSandReturn) {
 
     if (checkWolf()) {
         setSingleAnimeWolfBase(WANM_SWIM_DROWN);
-        setFaceBasicTexture(FTANM_UNK_9E);
+        setFaceBasicTexture(FTANM_WL_SWIMDIEP);
 
         if (i_isSandReturn) {
             voiceStart(Z2SE_WL_V_FALL_QUICKSAND);
@@ -1947,7 +1947,7 @@ int daAlink_c::procCoLavaReturnInit(BOOL i_isSandReturn) {
         setSingleAnimeBase(ANM_SWIM_DROWN);
 
         if (mEquipItem == 0x103) {
-            field_0x2f92 = 100;
+            mLeftHandIndex = 100;
         }
 
         if (i_isSandReturn) {
@@ -1959,7 +1959,7 @@ int daAlink_c::procCoLavaReturnInit(BOOL i_isSandReturn) {
 
     if (i_isSandReturn) {
         seStartOnlyReverb(Z2SE_AL_SINK_SAND_PITFALL);
-        field_0x2fbd = 0xFF;
+        mGndPolyAtt1 = 0xFF;
         offModeFlg(0x40000);
 
         field_0x2060->getOldFrameTransInfo(0)->mTranslate.y += field_0x3458;
@@ -2016,7 +2016,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
         setSingleAnimeWolfBaseSpeed(WANM_SWIM_WAIT, mpHIO->mWolf.mWlDamage.mNormal.m.mIceDamageAnmSpeed, 10.0f);
         mUnderFrameCtrl[0].setEnd(3);
         mUnderFrameCtrl[0].setAttribute(0);
-        setFaceBasicTexture(FTANM_UNK_90);
+        setFaceBasicTexture(FTANM_WL_DAM);
         mMidnaAnm = 1;
         var_f31 = mpHIO->mWolf.mWlSwim.m.mStartHeight;
     } else {

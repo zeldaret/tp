@@ -1115,8 +1115,8 @@ void daB_MGN_c::damage_check() {
                     dComIfGs_onOneZoneSwitch(6, fopAcM_GetRoomNo(this));
                 }
     
-                if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) && player->getCutType() != 44 &&
-                    player->getCutType() != 45 && player->onWolfEnemyHangBite(this))
+                if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) && player->getCutType() != daPy_py_c::CUT_TYPE_WOLF_B_LEFT &&
+                    player->getCutType() != daPy_py_c::CUT_TYPE_WOLF_B_RIGHT && player->onWolfEnemyHangBite(this))
                 {
                     setActionMode(ACTION_DOWN_BITE_DAMAGE_e, 0);
                     return;

@@ -176,7 +176,7 @@ static void damage_check(e_bu_class* i_this) {
                 if (i_this->atInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
                     actor->speedF = 0.0f;
                     i_this->head_rot_y = i_this->atInfo.mHitDirection.y;
-                } else if (player->getCutType() == 10 && player->checkCutJumpCancelTurn()) {
+                } else if (player->getCutType() == daPy_py_c::CUT_TYPE_JUMP && player->checkCutJumpCancelTurn()) {
                     i_this->invulnerabilityTimer = NREG_S(7) + 3;
                     actor->speedF = 0.0f;
                 } else {

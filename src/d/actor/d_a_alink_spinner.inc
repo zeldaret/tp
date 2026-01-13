@@ -199,7 +199,7 @@ int daAlink_c::procSpinnerWait() {
             spinner->setMove(mNormalSpeed, getSpinnerRideMoveTime());
         } else if (checkInputOnR()) {
             int direction = getDirectionFromAngle(mStickAngle);
-            s16 angle = field_0x33ac * 384.0f * field_0x33ac;
+            s16 angle = mMoveValue * 384.0f * mMoveValue;
 
             if (direction == DIR_LEFT) {
                 shape_angle.y += angle;

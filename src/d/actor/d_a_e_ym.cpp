@@ -2994,7 +2994,7 @@ void daE_YM_c::checkFrinedSamePos() {
 
 void daE_YM_c::action() {
     int reg_r27 = 0; // set but not used
-    if (daPy_getPlayerActorClass()->getCutType() == 0x36) {
+    if (daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_WOLF_LOCK) {
         reg_r27 = 1;
         field_0x700 = 0;
     }

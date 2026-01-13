@@ -1389,10 +1389,10 @@ int daAlink_c::procHorseRide() {
 
     if (field_0x2fc0 == 2) {
         if (framectrl->getFrame() >= 25.0f) {
-            field_0x2f93 = 5;
+            mRightHandIndex = 5;
             field_0x2fab = 0x13;
         } else if (framectrl->getFrame() >= 14.0f) {
-            field_0x2f92 = 4;
+            mLeftHandIndex = 4;
         }
 
         if (horse->checkRodeoMode()) {
@@ -1410,10 +1410,10 @@ int daAlink_c::procHorseRide() {
         }
     } else {
         if (framectrl->getFrame() >= 46.0f) {
-            field_0x2f92 = 4;
+            mLeftHandIndex = 4;
 
             if (!checkBoarRide() || field_0x2fc0 == 0 || framectrl->getFrame() >= 53.0f) {
-                field_0x2f93 = 5;
+                mRightHandIndex = 5;
                 field_0x2fab = 0x13;
             } else {
                 field_0x2fab = 3;
@@ -1432,10 +1432,10 @@ int daAlink_c::procHorseRide() {
 
                 if (field_0x2fc0 == 0) {
                     if (framectrl->getFrame() >= 41.0f && checkHorseRide()) {
-                        field_0x2f92 = 4;
+                        mLeftHandIndex = 4;
                     }
                 } else if (framectrl->getFrame() >= 38.0f && checkHorseRide()) {
-                    field_0x2f93 = 5;
+                    mRightHandIndex = 5;
                     field_0x2fab |= (u8)0x10;
                 }
             }
@@ -1470,8 +1470,8 @@ int daAlink_c::procHorseRide() {
             temp_r28->mTranslate.z += l_boarBaseAnime.z;
         }
 
-        field_0x2f92 = 4;
-        field_0x2f93 = 5;
+        mLeftHandIndex = 4;
+        mRightHandIndex = 5;
         field_0x2fab = 0x13;
 
         if (field_0x2fc0 == 2) {
@@ -1956,36 +1956,36 @@ int daAlink_c::procHorseCutInit() {
 
     static daAlink_cutHorseParamTbl const cutParamTable[] = {
         {
-            daAlink_c::FTANM_UNK_20,
+            daAlink_c::FTANM_CUTHLA,
             dRes_ID_ALANM_BCK_CUTHLA_e,
             dRes_ID_ALANM_BCK_FCUTHLA_e,
             0x00,
             0x0E,
-            CUT_TYPE_HORSE_UNK_22,
+            CUT_TYPE_HORSE_LEFT_A,
         },
         {
-            daAlink_c::FTANM_UNK_21,
+            daAlink_c::FTANM_CUTHLB,
             dRes_ID_ALANM_BCK_CUTHLB_e,
             dRes_ID_ALANM_BCK_FCUTHLB_e,
             0x00,
             0x13,
-            CUT_TYPE_HORSE_UNK_23,
+            CUT_TYPE_HORSE_LEFT_B,
         },
         {
-            daAlink_c::FTANM_UNK_22,
+            daAlink_c::FTANM_CUTHRA,
             dRes_ID_ALANM_BCK_CUTHRA_e,
             dRes_ID_ALANM_BCK_FCUTHRA_e,
             0x00,
             0x13,
-            CUT_TYPE_HORSE_UNK_2A,
+            CUT_TYPE_HORSE_RIGHT_A,
         },
         {
-            daAlink_c::FTANM_UNK_23,
+            daAlink_c::FTANM_CUTHRB,
             dRes_ID_ALANM_BCK_CUTHRB_e,
             dRes_ID_ALANM_BCK_FCUTHRB_e,
             0x00,
             0x00,
-            CUT_TYPE_HORSE_UNK_2A,
+            CUT_TYPE_HORSE_RIGHT_A,
         },
     };
 
@@ -2237,7 +2237,7 @@ int daAlink_c::procHorseDamageInit(dCcD_GObjInf* i_hitObj) {
     }
 
     setFacePriBck(dRes_ID_ALANM_BCK_FB_e);
-    setFacePriTexture(FTANM_UNK_27);
+    setFacePriTexture(FTANM_B_A);
     voiceStart(Z2SE_AL_V_DAMAGE_S);
     seStartOnlyReverb(Z2SE_AL_DAMAGE_NORMAL);
     
@@ -2656,7 +2656,7 @@ int daAlink_c::procHorseComeback() {
     } else if (frameCtrl_p->getFrame() >= 78.0f) {
         field_0x2fab |= (u8)2;
     } else if (frameCtrl_p->getFrame() >= 75.0f) {
-        field_0x2f93 = 5;
+        mRightHandIndex = 5;
         field_0x2fab |= (u8)0x10;
     } else if (frameCtrl_p->getFrame() >= 68.0f) {
         field_0x2fab |= (u8)1;
@@ -2731,9 +2731,9 @@ int daAlink_c::procHorseRun() {
             s16 temp_r26 = mProcVar5.field_0x3012;
 
             if (direction == DIR_LEFT && !horse->checkRodeoLeft()) {
-                mProcVar5.field_0x3012 -= (600.0f + (256.0f * field_0x33a8));
+                mProcVar5.field_0x3012 -= (600.0f + (256.0f * mStickValue));
             } else if (direction == DIR_RIGHT && horse->checkRodeoLeft()) {
-                mProcVar5.field_0x3012 += (600.0f + (256.0f * field_0x33a8));
+                mProcVar5.field_0x3012 += (600.0f + (256.0f * mStickValue));
             }
 
             if (temp_r26 * mProcVar5.field_0x3012 <= 0) {
@@ -2876,13 +2876,13 @@ int daAlink_c::procHorseGetKey() {
     if (checkAnmEnd(frameCtrl_p)) {
         dComIfGp_evmng_cutEnd(mAlinkStaffId);
     } else if (frameCtrl_p->getFrame() >= 34.0f) {
-        field_0x2f92 = 254;
-        field_0x2f93 = 254;
+        mLeftHandIndex = 254;
+        mRightHandIndex = 254;
         mProcVar2.field_0x300c = 1;
     } else if (frameCtrl_p->getFrame() >= 12.0f) {
-        field_0x2f92 = 2;
+        mLeftHandIndex = 2;
     } else if (frameCtrl_p->getFrame() >= 5.0f) {
-        field_0x2f92 = 3;
+        mLeftHandIndex = 3;
     }
 
     return 1;
@@ -2952,8 +2952,8 @@ int daAlink_c::procBoarRun() {
         }
     } else if (mProcVar2.field_0x300c == 0) {
         if (mUnderFrameCtrl[0].getFrame() >= 14.0f) {
-            field_0x2f92 = 0xFE;
-            field_0x2f93 = 0xFE;
+            mLeftHandIndex = 0xFE;
+            mRightHandIndex = 0xFE;
             mProcVar2.field_0x300c = 1;
         }
     }

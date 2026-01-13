@@ -69,7 +69,7 @@ s16 daAlink_c::checkBodyAngleX(s16 i_angle) {
     }
 
     Vec sp2C = { 0.0f, 0.0f, 0.0f };
-    f32 var_f31 = 0.5f * field_0x598;
+    f32 var_f31 = 0.5f * mHeight;
     sp2C.y = var_f31;
 
     cXyz backbone1_pos;
@@ -106,7 +106,7 @@ BOOL daAlink_c::setBodyAngleToCamera() {
 
         s16 sp8;
         if (checkInputOnR()) {
-            f32 var_f31 = 512.0f * field_0x33ac * field_0x33ac;
+            f32 var_f31 = 512.0f * mMoveValue * mMoveValue;
             if (checkWolfEyeUp()) {
                 var_f31 *= 0.6f;
             }
@@ -197,7 +197,7 @@ int daAlink_c::procCoSubjectivityInit() {
     mNormalSpeed = 0.0f;
 
     setSubjectMode();
-    field_0x2fe6 = shape_angle.y;
+    mPrevAngleY = shape_angle.y;
 
     if (checkWolf()) {
         setSingleAnimeWolfBaseSpeed(WANM_WAIT, 0.0f, 3.0f);

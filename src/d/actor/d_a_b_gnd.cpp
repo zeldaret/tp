@@ -3300,8 +3300,8 @@ static void demo_camera(b_gnd_class* i_this) {
         sp114.y = 0.0f;
         sp114.z = 135.0f;
         MtxPosition(&sp114, &sp108);
-        a_this->current.pos.x = sp108.x + player->field_0x5f8.x;
-        a_this->current.pos.z = sp108.z + player->field_0x5f8.z;
+        a_this->current.pos.x = sp108.x + player->mViewerCurrentPos.x;
+        a_this->current.pos.z = sp108.z + player->mViewerCurrentPos.z;
         a_this->current.angle.y = player->shape_angle.y + 0x8000;
 
         spF0 = a_this->current.pos + ((*player->getViewerCurrentPosP() - a_this->current.pos) * 0.5f);

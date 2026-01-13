@@ -105,7 +105,7 @@ BOOL daAlink_c::setForceGrab(fopAc_ac_c* i_actor, BOOL param_1, BOOL param_2) {
 }
 
 f32 daAlink_c::getGrabThrowRate() {
-    if (checkHeavyStateOn(1, 1)) {
+    if (checkHeavyStateOn(TRUE, TRUE)) {
         return 0.6f * mHeavySpeedMultiplier;
     }
 
@@ -342,7 +342,7 @@ void daAlink_c::setGrabItemPos() {
                     cXyz sp110 = grabActor->current.pos - current.pos;
                     mDoMtx_multVecSR(mMagneBootInvMtx, &sp110, &sp110);
 
-                    sp110.y = field_0x598;
+                    sp110.y = mHeight;
                     mDoMtx_multVecSR(mMagneBootMtx, &sp110, &sp110);
 
                     sp110 += current.pos;
@@ -350,7 +350,7 @@ void daAlink_c::setGrabItemPos() {
                     cXyz sp104;
                     mDoMtx_multVecSR(mMagneBootMtx, &cXyz::BaseY, &sp104);
 
-                    sp104 = sp110 - (sp104 * field_0x598);
+                    sp104 = sp110 - (sp104 * mHeight);
 
                     if (grabLineCheck(&sp110, &sp104)) {
                         if (grabActor->current.pos.abs(sp110) > mObjLinChk.GetCrossP()->abs(sp110)) {
@@ -361,7 +361,7 @@ void daAlink_c::setGrabItemPos() {
                         }
                     }
                 } else {
-                    cXyz spF8(grabActor->current.pos.x, current.pos.y + field_0x598, grabActor->current.pos.z);
+                    cXyz spF8(grabActor->current.pos.x, current.pos.y + mHeight, grabActor->current.pos.z);
                     mObjGndChk.SetPos(&spF8);
 
                     f32 ground_y = dComIfG_Bgsp().GroundCross(&mObjGndChk);
@@ -464,7 +464,7 @@ void daAlink_c::setGrabUpperSpeedRate() {
             var_f31 = fabsf(mNormalSpeed / mpHIO->mMove.m.mMaxSpeed);
         }
 
-        if (checkHeavyStateOn(1, 1)) {
+        if (checkHeavyStateOn(TRUE, TRUE)) {
             var_f31 *= 1.0f / (mHeavySpeedMultiplier * mHeavySpeedMultiplier);
         }
     }
@@ -521,7 +521,7 @@ BOOL daAlink_c::checkNextActionGrab() {
     } else if ((field_0x27f4 == NULL) || !checkGrabTalkActor(field_0x27f4) || !setTalkStatus()) {
         if (checkModeFlg(0x400)) {
             setDoStatus(0x13);
-        } else if ((!checkAttentionState() && field_0x33a8 <= getGrabThrowRate()) || checkGrabNotThrow()) {
+        } else if ((!checkAttentionState() && mStickValue <= getGrabThrowRate()) || checkGrabNotThrow()) {
             setDoStatus(0x14);
         } else {
             setDoStatus(0x13);
@@ -1374,11 +1374,11 @@ int daAlink_c::procPickPut() {
 }
 
 BOOL daAlink_c::checkSetChainPullAnime(s16 param_0) {
-    return checkInputOnR() && checkFmChainGrabAnime() && (field_0x3400 != 0.0f || field_0x3404 != 0.0f) && (checkBossRoom() || abs((s16)(field_0x2fe2 - param_0)) >= 0x3800);
+    return checkInputOnR() && checkFmChainGrabAnime() && (field_0x3400 != 0.0f || field_0x3404 != 0.0f) && (checkBossRoom() || abs((s16)(mMoveAngle - param_0)) >= 0x3800);
 }
 
 s16 daAlink_c::getChainStickAngleY(s16 param_0) const {
-    s16 angle = field_0x2fe2 - param_0;
+    s16 angle = mMoveAngle - param_0;
 
     if (angle >= 0x3800 && angle < 0x7F80) {
         return param_0 + 0x7F80;
@@ -1386,7 +1386,7 @@ s16 daAlink_c::getChainStickAngleY(s16 param_0) const {
         return param_0 - 0x7F80;
     }
 
-    return field_0x2fe2;
+    return mMoveAngle;
 }
 
 u8 daAlink_c::checkChainEmphasys() {
@@ -1482,11 +1482,11 @@ int daAlink_c::procFmChainUp() {
             field_0x2844.setData(temp_r28);
         }
     } else if (framectrl->getFrame() >= 9.0f) {
-        field_0x2f92 = 3;
-        field_0x2f93 = 9;
+        mLeftHandIndex = 3;
+        mRightHandIndex = 9;
     } else {
-        field_0x2f92 = 0xFE;
-        field_0x2f93 = 0xFE;
+        mLeftHandIndex = 0xFE;
+        mRightHandIndex = 0xFE;
     }
 
     return 1;
@@ -1613,7 +1613,7 @@ BOOL daAlink_c::checkPullBehindWall() {
 
 void daAlink_c::offGoatStopGame() {
     if (checkGoatStopGame()) {
-        mSpecialMode = 0;
+        mMode = 0;
     }
 }
 
@@ -1625,10 +1625,10 @@ BOOL daAlink_c::checkGoatCatchActor(fopAc_ac_c* i_actor) {
 
 f32 daAlink_c::getGoatCatchDistance2() {
     if (fopAcM_GetName(field_0x27f4) == PROC_B_MGN) {
-        return 1000000.0f;
+        return SQUARE(1000.0f);
     }
 
-    return 90000.0f;
+    return SQUARE(300.0f);
 }
 
 int daAlink_c::endPushPull() {
@@ -2029,7 +2029,7 @@ int daAlink_c::procGoatMoveInit() {
     field_0x37c8 = current.pos;
     field_0x2f98 = 3;
     current.angle.y = shape_angle.y + -0x4000;
-    field_0x594 = mpHIO->mAtnMove.m.mMaxSpeed;
+    mMaxSpeed = mpHIO->mAtnMove.m.mMaxSpeed;
 
     setSingleAnimeBase(ANM_ATN_COW);
     mProcVar2.field_0x300c = 0;
@@ -2094,15 +2094,15 @@ int daAlink_c::procGoatMove() {
         if (sp14.z < 250.0f) {
             return procGoatCatchInit(temp_r3, sp8.x);
         }
-    } else if (field_0x850[0].ChkCoHit() && field_0x850[0].GetCoHitAc() == temp_r3 && sp14.z > -50.0f) {
+    } else if (mTgCyls[0].ChkCoHit() && mTgCyls[0].GetCoHitAc() == temp_r3 && sp14.z > -50.0f) {
         setGoatStopGameFail(temp_r3);
         return 1;
     }
 
     f32 var_f31;
-    int temp_r27 = abs(field_0x2fe2);
-    if (checkInputOnR() && temp_r27 > 0x800 && temp_r27 < 0x7800 && (fabsf(sp8.x) < 250.0f || (sp8.x > 0.0f && field_0x2fe2 < 0) || (sp8.x < 0.0f && field_0x2fe2 > 0))) {
-        if (abs((s16)(field_0x2fe2 - current.angle.y)) > 0x4000) {
+    int temp_r27 = abs(mMoveAngle);
+    if (checkInputOnR() && temp_r27 > 0x800 && temp_r27 < 0x7800 && (fabsf(sp8.x) < 250.0f || (sp8.x > 0.0f && mMoveAngle < 0) || (sp8.x < 0.0f && mMoveAngle > 0))) {
+        if (abs((s16)(mMoveAngle - current.angle.y)) > 0x4000) {
             current.angle.y += 0x8000;
             mNormalSpeed *= -1.0f;
 
@@ -2113,8 +2113,8 @@ int daAlink_c::procGoatMove() {
             }
         }
 
-        if (field_0x33a8 > (0.3f * (1.0f - fabsf(mNormalSpeed / field_0x594)))) {
-            var_f31 = mpHIO->mAtnMove.m.mAcceleration * field_0x33a8;
+        if (mStickValue > (0.3f * (1.0f - fabsf(mNormalSpeed / mMaxSpeed)))) {
+            var_f31 = mpHIO->mAtnMove.m.mAcceleration * mStickValue;
         } else {
             var_f31 = 0.0f;
         }
@@ -2149,7 +2149,7 @@ int daAlink_c::procGoatMove() {
             framectrl->setLoop(framectrl->getStart());
         }
     
-        framectrl->setRate(var_f30 * (mNormalSpeed / field_0x594));
+        framectrl->setRate(var_f30 * (mNormalSpeed / mMaxSpeed));
         initBasAnime();
     }
 
@@ -2281,13 +2281,13 @@ int daAlink_c::procGoatCatch() {
             onEndResetFlg0(ERFLG0_UNK_8000000);
 
             if (framectrl->getFrame() >= 81.0f) {
-                field_0x2f92 = 1;
-                field_0x2f93 = 6;
+                mLeftHandIndex = 1;
+                mRightHandIndex = 6;
             } else if (framectrl->getFrame() >= 39.0f) {
                 onModeFlg(0x100);
             } else if (framectrl->getFrame() >= 32.0f) {
-                field_0x2f92 = 0xFE;
-                field_0x2f93 = 0xFE;
+                mLeftHandIndex = 0xFE;
+                mRightHandIndex = 0xFE;
                 field_0x3478 = 1.0f;
             }
 
@@ -2487,7 +2487,7 @@ int daAlink_c::procGoronMoveInit() {
     mNormalSpeed = 0.0f;
     field_0x2f98 = 3;
     current.angle.y = shape_angle.y + -0x4000;
-    field_0x594 = mpHIO->mAtnMove.m.mMaxSpeed;
+    mMaxSpeed = mpHIO->mAtnMove.m.mMaxSpeed;
     setSingleAnimeBase(ANM_ATN_RIGHT);
     mProcVar2.field_0x300c = 1;
     mProcVar3.field_0x300e = 0;
@@ -2514,7 +2514,7 @@ int daAlink_c::procGoronMove() {
         return procBootsEquipInit();
     }
 
-    int temp_r28 = cLib_distanceAngleS(field_0x2fe2, shape_angle.y);
+    int temp_r28 = cLib_distanceAngleS(mMoveAngle, shape_angle.y);
 
     if (mAttention->getActionBtnB() != NULL && mAttention->getActionBtnB()->mType == fopAc_attn_CARRY_e) {
         setDoStatus(0x91);
@@ -2536,7 +2536,7 @@ int daAlink_c::procGoronMove() {
 
     f32 var_f31;
     if (checkInputOnR() && temp_r28 > 0x800 && temp_r28 < 0x7800) {
-        if (abs((s16)(field_0x2fe2 - current.angle.y)) > 0x4000) {
+        if (abs((s16)(mMoveAngle - current.angle.y)) > 0x4000) {
             current.angle.y += 0x8000;
             mNormalSpeed *= -1.0f;
 
@@ -2547,8 +2547,8 @@ int daAlink_c::procGoronMove() {
             }
         }
 
-        if (field_0x33a8 > (0.3f * (1.0f - fabsf(mNormalSpeed / field_0x594)))) {
-            var_f31 = mpHIO->mAtnMove.m.mAcceleration * field_0x33a8;
+        if (mStickValue > (0.3f * (1.0f - fabsf(mNormalSpeed / mMaxSpeed)))) {
+            var_f31 = mpHIO->mAtnMove.m.mAcceleration * mStickValue;
         } else {
             var_f31 = 0.0f;
         }
@@ -2582,7 +2582,7 @@ int daAlink_c::procGoronMove() {
             framectrl->setLoop(framectrl->getStart());
         }
 
-        framectrl->setRate(var_f30 * (mNormalSpeed / field_0x594));
+        framectrl->setRate(var_f30 * (mNormalSpeed / mMaxSpeed));
         initBasAnime();
     }
 

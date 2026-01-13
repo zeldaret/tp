@@ -431,7 +431,7 @@ int daAlink_c::procBottleOpenInit(u16 i_itemNo) {
     dCam_getBody()->StartEventCamera(0x12, fopAcM_GetID(this), "Type", 1, &field_0x3194, 0);
     mProcVar2.field_0x300c = 0;
 
-    field_0x27c8.initialize(current.pos.y + field_0x598);
+    field_0x27c8.initialize(current.pos.y + mHeight);
 
     if (i_itemNo == fpcNm_ITEM_WATER_BOTTLE) {
         setCylAtParam(AT_TYPE_LANTERN_SWING, dCcG_At_Spl_UNK_0, 0, dCcD_SE_NONE, 0, 30.0f, 30.0f);
@@ -487,7 +487,7 @@ int daAlink_c::procBottleOpen() {
                 }
             }
         } else if (frameCtrl_p->getFrame() >= 18.0f) {
-            field_0x2f93 = 5;
+            mRightHandIndex = 5;
         }
     } else {
         if (checkAnmEnd(frameCtrl_p) && mProcVar0.field_0x3008 != 0) {
@@ -701,7 +701,7 @@ int daAlink_c::procBottleGetInit(BOOL param_0) {
         setSingleAnime(ANM_BOTTLE_GET, mpHIO->mItem.mBottle.m.mGetAnm.mSpeed, 40.0f,
                        mpHIO->mItem.mBottle.m.mGetAnm.mEndFrame,
                        mpHIO->mItem.mBottle.m.mGetAnm.mInterpolation);
-        field_0x2f93 = 0xFE;
+        mRightHandIndex = 0xFE;
 
         if (isPrevPickUp) {
             execItemGet(fpcNm_ITEM_KANTERA);
@@ -740,7 +740,7 @@ int daAlink_c::procBottleGetInit(BOOL param_0) {
     dCam_getBody()->StartEventCamera(0x12, id, "Type", 1, &field_0x3194, 0);
 
     if (mEquipItem == fpcNm_ITEM_FAIRY_DROP || mEquipItem == fpcNm_ITEM_CHUCHU_RARE || mEquipItem == fpcNm_ITEM_WORM) {
-        setFaceBasicTexture(FTANM_UNK_48);
+        setFaceBasicTexture(FTANM_I_BINGET);
         setFaceBasicBck(dRes_ID_ALANM_BCK_FI_e);
     } else if (mEquipItem == fpcNm_ITEM_UGLY_SOUP) {
         setFaceBasicBck(dRes_ID_ALANM_BCK_FJ_e);
@@ -766,12 +766,12 @@ int daAlink_c::procBottleGet() {
 
         resetSpecialEvent();
     } else if (frameCtrl->getFrame() >= 37.0f) {
-        field_0x2f93 = 0xFE;
+        mRightHandIndex = 0xFE;
     } else if (frameCtrl->getFrame() >= 15.0f) {
         mItemMode = 0;
     } else if (frameCtrl->getFrame() >= 5.0f) {
         mHeldItemModel->getModelData()->getMaterialNodePointer(0)->getShape()->show();
-        field_0x2f93 = 5;
+        mRightHandIndex = 5;
         mItemMode = 1;
     }
 

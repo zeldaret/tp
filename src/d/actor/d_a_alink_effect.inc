@@ -568,7 +568,7 @@ void daAlink_c::setEffect() {
             (field_0x2f9d & 0x20) ? &sp88 : NULL, (field_0x2f9d & 0x40) ? &sp94 : NULL,
             &current.angle, NULL, fopAcM_GetRoomNo(this), field_0x3420, temp_f30);
 
-        if (checkBoardRide() && temp_f30 > 3.0f && field_0x2fbb == 0xD) {
+        if (checkBoardRide() && temp_f30 > 3.0f && mGndPolyAtt0 == 0xD) {
             JPABaseEmitter* sp38 = setEmitterPolyColor(&field_0x31c0, dPa_RM(ID_ZI_S_LK_SB_A), mLinkAcch.m_gnd,
                                                        &current.pos, &shape_angle);
             if (sp38 != NULL) {
@@ -608,7 +608,7 @@ void daAlink_c::setEffect() {
         (field_0x2fc4 != 0 || (mSinkShapeOffset < 0.0f && mSinkShapeOffset >= -15.0f)))
     {
         if (mSinkShapeOffset < 0.0f && mSinkShapeOffset >= -15.0f) {
-            if (field_0x2fbb == 3) {
+            if (mGndPolyAtt0 == 3) {
                 var_r26 = 1;
             } else {
                 var_r26 = 2;
@@ -1578,7 +1578,7 @@ void daAlink_c::setRunSplash() {
 
     if (mProcID == PROC_MOVE && checkNoResetFlg0(FLG0_UNK_80) && checkDashAnime()) {
         f32 temp_f31 = mWaterY - current.pos.y;
-        if (temp_f31 >= mpHIO->mBasic.m.mWaterSurfaceEffectHeight && temp_f31 < field_0x598 && dKy_pol_efftype_get(&mLinkAcch.m_wtr) == 2) {
+        if (temp_f31 >= mpHIO->mBasic.m.mWaterSurfaceEffectHeight && temp_f31 < mHeight && dKy_pol_efftype_get(&mLinkAcch.m_wtr) == 2) {
             cXyz pos(current.pos.x, mWaterY, current.pos.z);
 
             emitter = setEmitterPolyColor(&field_0x31f8, ID_ZI_J_DASHWTRA_A, mLinkAcch.m_wtr, &pos, &current.angle);
@@ -2226,7 +2226,7 @@ BOOL daAlink_sight_c::create() {
 
 void daAlink_sight_c::draw() {
     if (mLockFlag) {
-        mLockCursor.setPos(field_0x14[0][3], field_0x14[1][3]);
+        mLockCursor.setPos(mProjMtx[0][3], mProjMtx[1][3]);
         mLockCursor.draw();
     } else {
         daPy_sightPacket_c::draw();
