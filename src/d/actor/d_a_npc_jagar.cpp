@@ -576,7 +576,7 @@ void daNpc_Jagar_c::setParam() {
         uVar7 |= fopAc_AttnFlag_UNK_0x800000;
         field_0xfec = getActorDistance(daPy_getPlayerActorClass(), 
                     daNpcT_getDistTableIdx(field_0xff0, field_0xff4), 
-                    attention_info.distances[1]);
+                    attention_info.distances[fopAc_attn_TALK_e]);
         if (field_0xfec < 4) {
             g_meter2_info.mBlinkButton |= 1;
         }

@@ -134,7 +134,7 @@ static void e_mm_mt_normal(e_mm_mt_class* i_this) {
             fopAcM_SetGroup(actor, 3);
             fopAcM_OffStatus(actor, 0);
             actor->attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
-            actor->attention_info.distances[2] = 0;
+            actor->attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             fopAcM_OnStatus(actor, 0x400);
             s16 actor_angle = player->shape_angle.y + 0x4000;
             s16 angle = actor->shape_angle.y - actor_angle;
@@ -372,7 +372,7 @@ static void e_mm_mt_drop(e_mm_mt_class* i_this) {
         i_this->enemy.attention_info.position = i_this->enemy.current.pos;
         cLib_addCalcAngleS2(&i_this->m_rotation.z, (TREG_S(6)+0x10000)-0x8000, 1, 0x1000);
         cLib_onBit<u32>(i_this->enemy.attention_info.flags, fopAc_AttnFlag_CARRY_e);
-        i_this->enemy.attention_info.distances[4] = 7;
+        i_this->enemy.attention_info.distances[fopAc_attn_CARRY_e] = 7;
         i_this->m_rotation.y += i_this->m_spin;
         if (i_this->enemy.speedF >= 20.0f) {
             i_this->m_sphere.OnAtSetBit();

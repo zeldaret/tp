@@ -5237,7 +5237,7 @@ static void action(e_rd_class* i_this) {
 
 
     if (i_this->field_0x9bc == 0) {
-        a_this->attention_info.distances[2] = 3;
+        a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 3;
         if (i_this->field_0x9ec) {
             cMtx_YrotS(*calc_mtx, i_this->field_0xa0c.y);
             if (i_this->field_0xaf0 == 0) {

@@ -3072,9 +3072,12 @@ void daNpcChat_c::setParam() {
         attention_info.flags = 0;
     } else {
         if (mTalkIconType == 0) {
-            attention_info.flags = 0xC0000A;
+            attention_info.flags =
+                fopAc_AttnFlag_TALK_e | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_UNK_0x400000 |
+                fopAc_AttnFlag_UNK_0x800000;
         } else {
-            attention_info.flags = fopAc_AttnFlag_UNK_0x400000 | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
+            attention_info.flags =
+                fopAc_AttnFlag_TALK_e | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_UNK_0x400000;
         }
     }
 

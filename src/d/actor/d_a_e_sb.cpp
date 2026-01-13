@@ -1115,7 +1115,7 @@ cPhs__Step daE_SB_c::Create() {
         }
 
         attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-        attention_info.distances[2] = 0x24;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 0x24;
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, 0.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);

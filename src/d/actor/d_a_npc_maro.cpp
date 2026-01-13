@@ -669,9 +669,9 @@ void daNpc_Maro_c::setParam() {
         }
     }
 
-    attention_info.distances[0] = daNpcT_getDistTableIdx(sVar8, sVar7);
-    attention_info.distances[1] = attention_info.distances[0];
-    attention_info.distances[3] = daNpcT_getDistTableIdx(sVar10, sVar9);
+    attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(sVar8, sVar7);
+    attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+    attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(sVar10, sVar9);
 
     attention_info.flags = uVar7;
     scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale,
