@@ -45,7 +45,7 @@ public:
     J3DShape* getShapeNodePointer(u16 idx) const { return mShapeTable.getShapeNodePointer(idx); }
     J3DJoint* getJointNodePointer(u16 idx) const { return mJointTree.getJointNodePointer(idx); }
     J3DJointTree& getJointTree() { return mJointTree; }
-    J3DModelHierarchy const* getHierarchy() { return mJointTree.getHierarchy(); }
+    const J3DModelHierarchy* getHierarchy() const { return mJointTree.getHierarchy(); }
     void setHierarchy(J3DModelHierarchy* hierarchy) { mJointTree.setHierarchy(hierarchy); }
     void setBasicMtxCalc(J3DMtxCalc* calc) { mJointTree.setBasicMtxCalc(calc); }
     JUTNameTab* getJointName() const { return mJointTree.getJointName(); }

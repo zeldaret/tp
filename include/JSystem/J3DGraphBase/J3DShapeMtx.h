@@ -12,34 +12,6 @@ class J3DTexGenBlock;
  * @ingroup jsystem-j3d
  * 
  */
-class J3DTexMtxObj {
-public:
-    Mtx& getMtx(u16 idx) {
-        J3D_ASSERT_RANGE(275, idx < mTexMtxNum);
-        return mpTexMtx[idx];
-    }
-
-    void setMtx(u16 idx, const Mtx mtx) {
-        J3D_ASSERT_RANGE(288, idx < mTexMtxNum);
-        MTXCopy(mtx, mpTexMtx[idx]);
-    }
-
-    Mtx44& getEffectMtx(u16 idx) {
-        J3D_ASSERT_RANGE(293, idx < mTexMtxNum);
-        return mpEffectMtx[idx];
-    }
-
-    u16 getNumTexMtx() const { return mTexMtxNum; }
-
-    /* 0x00 */ Mtx* mpTexMtx;
-    /* 0x04 */ Mtx44* mpEffectMtx;
-    /* 0x08 */ u16 mTexMtxNum;
-};
-
-/**
- * @ingroup jsystem-j3d
- * 
- */
 class J3DDifferedTexMtx {
 public:
     static void loadExecute(f32 const (*)[4]);

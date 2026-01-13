@@ -49,7 +49,7 @@ public:
     virtual void calc(J3DMtxBuffer*, Vec const&, f32 const (&)[3][4]);
     virtual ~J3DJointTree() {}
 
-    J3DModelHierarchy const* getHierarchy() { return mHierarchy; }
+    const J3DModelHierarchy* getHierarchy() const { return mHierarchy; }
     void setHierarchy(J3DModelHierarchy* hierarchy) { mHierarchy = hierarchy; }
     void setBasicMtxCalc(J3DMtxCalc* calc) { mBasicMtxCalc = calc; }
     u16 getWEvlpMtxNum() const { return mWEvlpMtxNum; }
