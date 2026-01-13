@@ -2132,7 +2132,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_allmato"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_camera"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_chkpoint"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_event"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_event"), # TODO: this is part of Rframework in ShieldD
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evt"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evtarea"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evtmsg"),
