@@ -11,7 +11,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_meter2_info.h"
 #include "SSystem/SComponent/c_math.h"
-#include "printf.h"
+#include <cstdio>
 
 u32 knob_param_c::getDoorModel(fopAc_ac_c* i_this) {
     return fopAcM_GetParamBit(i_this, 5, 3);

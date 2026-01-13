@@ -100,6 +100,8 @@ public:
 
     ~JSUList() {}
 
+    void initiate() { JSUPtrList::initiate(); }
+
     bool append(JSULink<T>* link) { return this->JSUPtrList::append((JSUPtrLink*)link); }
 
     bool prepend(JSULink<T>* link) { return this->JSUPtrList::prepend((JSUPtrLink*)link); }
@@ -137,7 +139,7 @@ public:
         return *this;
     }
 
-    T* getObject() { return this->mLink->getObject(); }
+    T* getObject() const { return this->mLink->getObject(); }
 
     bool operator==(JSULink<T> const* other) const { return this->mLink == other; }
     bool operator!=(JSULink<T> const* other) const { return this->mLink != other; }

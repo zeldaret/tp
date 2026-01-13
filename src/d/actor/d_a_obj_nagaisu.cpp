@@ -58,10 +58,12 @@ const dCcD_SrcCyl daObjIsuChild_c::s_CcDCyl = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        0.0f,
-        0.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            0.0f,
+            0.0f,
+        },
+    }
 };
 
 int daObjNagaisu_c::create() {

@@ -35,10 +35,12 @@ void daObjTHASHI_c::initCcCylinder() {
             {0x0}, // mGObjCo
         }, // mObjInf
         {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            110.f + nREG_F(17), // mRadius
-            130.f + nREG_F(16) // mHeight
-        } // mCyl
+            {
+                {0.0f, 0.0f, 0.0f}, // mCenter
+                110.f + nREG_F(17), // mRadius
+                130.f + nREG_F(16) // mHeight
+            } // mCyl
+        } // mCylAttr
     };
     unk13C8.Init(0xff, 0xff, this);
     unk1A58.Set(ccCylSrc);

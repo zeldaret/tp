@@ -4,14 +4,17 @@
 #include "JSystem/JKernel/JKRDisposer.h"
 #include <dolphin/os.h>
 #include "global.h"
+#include <new>
 
 class JKRHeap;
 typedef void (*JKRErrorHandler)(void*, u32, int);
 
-extern bool data_804508B0;
-extern u8 data_804508B1;
-extern u8 data_804508B2;
-extern u8 data_804508B3;
+extern u8 JKRValue_DEBUGFILL_NOTUSE;
+extern u8 JKRValue_DEBUGFILL_NEW;
+extern u8 JKRValue_DEBUGFILL_DELETE;
+
+extern s32 fillcheck_dispcount;
+extern bool data_8074A8D0_debug;
 
 /**
  * @ingroup jsystem-jkernel
@@ -19,6 +22,9 @@ extern u8 data_804508B3;
  */
 class JKRHeap : public JKRDisposer {
 public:
+    typedef void (*JKRAllocCallback)(u32, int, JKRHeap*, void*);
+    typedef void (*JKRFreeCallback)(void*, JKRHeap*);
+
     class TState {
     public:
         /* 0x00 */ u32 mUsedSize;
@@ -36,6 +42,7 @@ public:
     };
 
 public:
+    JKRHeap(u32 size, JKRHeap* parent, bool errorFlag);
     JKRHeap(void* data, u32 size, JKRHeap* parent, bool errorFlag);
     virtual ~JKRHeap();
 
@@ -53,6 +60,7 @@ public:
     void* getMaxFreeBlock();
     s32 getTotalFreeSize();
     s32 changeGroupID(u8 newGroupId);
+    u8 getCurrentGroupId();
     u32 getMaxAllocatableSize(int alignment);
 
     JKRHeap* find(void* ptr) const;
@@ -95,22 +103,19 @@ public:
     void* getEndAddr() { return (void*)mEnd; }
     u32 getSize() const { return mSize; }
     bool getErrorFlag() const { return mErrorFlag; }
-    void callErrorHandler(JKRHeap* heap, u32 size, int alignment) {
+    void callErrorHandler(void* heap, u32 size, int alignment) {
         if (mErrorHandler) {
             (*mErrorHandler)(heap, size, alignment);
         }
     }
 
-    JKRHeap* getParent() const {
-        JSUTree<JKRHeap>* parent = mChildTree.getParent();
-        return parent->getObject();
-    }
+    JKRHeap* getParent() { return mChildTree.getParent()->getObject(); }
 
     JSUTree<JKRHeap>& getHeapTree() { return mChildTree; }
     void appendDisposer(JKRDisposer* disposer) { mDisposerList.append(&disposer->mLink); }
     void removeDisposer(JKRDisposer* disposer) { mDisposerList.remove(&disposer->mLink); }
-    void lock() { OSLockMutex(&mMutex); }
-    void unlock() { OSUnlockMutex(&mMutex); }
+    void lock() const { OSLockMutex(const_cast<OSMutex*>(&mMutex)); }
+    void unlock() const { OSUnlockMutex(const_cast<OSMutex*>(&mMutex)); }
     u32 getHeapSize() { return mSize; }
 
 protected:
@@ -131,6 +136,7 @@ protected:
 
 public:
     static bool initArena(char** memory, u32* size, int maxHeaps);
+    static bool initArena2(char** memory, u32* size, int maxHeaps);
     static void* alloc(u32 size, int alignment, JKRHeap* heap);
     static void free(void* ptr, JKRHeap* heap);
     static s32 resize(void* ptr, u32 size, JKRHeap* heap);
@@ -142,8 +148,11 @@ public:
     static bool checkMemoryFilled(void* src, u32 size, u8 value);
 
     static JKRErrorHandler setErrorHandler(JKRErrorHandler errorHandler);
+    static void fillMemory(u8*, u32, u8);
+    static bool checkMemoryFilled(u8*, u32, u8);
 
-    static void setDefaultDebugFill(bool status) { data_804508B0 = status; }
+    static bool isDefaultDebugFill() { return sDefaultFillFlag; }
+    static void setDefaultDebugFill(bool status) { sDefaultFillFlag = status; }
     static void* getCodeStart(void) { return mCodeStart; }
     static void* getCodeEnd(void) { return mCodeEnd; }
     static void* getUserRamStart(void) { return mUserRamStart; }
@@ -151,9 +160,7 @@ public:
     static u32 getMemorySize(void) { return mMemorySize; }
     static JKRHeap* getRootHeap() { return sRootHeap; }
 
-#if PLATFORM_WII || PLATFORM_SHIELD
     static JKRHeap* getRootHeap2() { return sRootHeap2; }
-#endif
 
     static JKRHeap* getSystemHeap() { return sSystemHeap; }
     static JKRHeap* getCurrentHeap() { return sCurrentHeap; }
@@ -166,19 +173,20 @@ public:
         state->mCheckCode = checkCode;
     }
     static void* getState_buf_(TState* state) { return &state->mBuf; }
-    static void* getState_(TState* state) { return getState_buf_(state); }
 
     static void* mCodeStart;
     static void* mCodeEnd;
     static void* mUserRamStart;
     static void* mUserRamEnd;
     static u32 mMemorySize;
+    static JKRAllocCallback sAllocCallback;
+    static JKRFreeCallback sFreeCallback;
+
+    static bool sDefaultFillFlag;
 
     static JKRHeap* sRootHeap;
 
-#if PLATFORM_WII || PLATFORM_SHIELD
     static JKRHeap* sRootHeap2;
-#endif
 
     static JKRHeap* sSystemHeap;
     static JKRHeap* sCurrentHeap;
@@ -197,10 +205,6 @@ void* operator new[](size_t size, JKRHeap* heap, int alignment);
 void operator delete(void* ptr);
 void operator delete[](void* ptr);
 
-inline void* operator new(size_t size, void* ptr) {
-    return ptr;
-}
-
 void JKRDefaultMemoryErrorRoutine(void* heap, u32 size, int alignment);
 
 inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) {
@@ -208,8 +212,7 @@ inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) {
 }
 
 inline void* JKRAllocFromSysHeap(u32 size, int alignment) {
-    JKRHeap* systemHeap = JKRHeap::getSystemHeap();
-    return systemHeap->alloc(size, alignment);
+    return JKRHeap::getSystemHeap()->alloc(size, alignment);
 }
 
 inline void JKRFreeToHeap(JKRHeap* heap, void* ptr) {
@@ -217,12 +220,15 @@ inline void JKRFreeToHeap(JKRHeap* heap, void* ptr) {
 }
 
 inline void JKRFreeToSysHeap(void* ptr) {
-    JKRHeap* systemHeap = JKRHeap::getSystemHeap();
-    systemHeap->free(ptr);
+    JKRHeap::getSystemHeap()->free(ptr);
 }
 
 inline void JKRFree(void* ptr) {
     JKRHeap::free(ptr, NULL);
+}
+
+inline void JKRFillMemory(u8* dst, u32 size, u8 val) {
+    JKRHeap::fillMemory(dst, size, val);
 }
 
 inline JKRHeap* JKRGetSystemHeap() {
@@ -239,6 +245,10 @@ inline JKRHeap* JKRSetCurrentHeap(JKRHeap* heap) {
 
 inline u32 JKRGetMemBlockSize(JKRHeap* heap, void* block) {
     return JKRHeap::getSize(block, heap);
+}
+
+inline u32 JKRGetFreeSize(JKRHeap* heap) {
+    return heap->getFreeSize();
 }
 
 inline void* JKRAlloc(u32 size, int alignment) {
@@ -261,16 +271,14 @@ inline bool JKRSetErrorFlag(JKRHeap* heap, bool flag) {
     return heap->setErrorFlag(flag);
 }
 
-#if PLATFORM_WII || PLATFORM_SHIELD
 inline JKRHeap* JKRGetRootHeap2() {
     return JKRHeap::getRootHeap2();
 }
-#endif
 
 #if DEBUG
-inline void JKRSetDebugFillNotuse(u8 status) { data_804508B1 = status; }
-inline void JKRSetDebugFillNew(u8 status) { data_804508B2 = status; }
-inline void JKRSetDebugFillDelete(u8 status) { data_804508B3 = status; }
+inline void JKRSetDebugFillNotuse(u8 status) { JKRValue_DEBUGFILL_NOTUSE = status; }
+inline void JKRSetDebugFillNew(u8 status) { JKRValue_DEBUGFILL_NEW = status; }
+inline void JKRSetDebugFillDelete(u8 status) { JKRValue_DEBUGFILL_DELETE = status; }
 #endif
 
 #endif /* JKRHEAP_H */

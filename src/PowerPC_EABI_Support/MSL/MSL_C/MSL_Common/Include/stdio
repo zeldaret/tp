@@ -1,9 +1,9 @@
 #ifndef MSL_STDIO_H_
 #define MSL_STDIO_H_
 
-#include <cstdio.h>
-#include <stddef.h>
-#include <stdarg.h>
+#include <cstdio>
+#include <stddef>
+#include <stdarg>
 
 #ifdef __cplusplus
 extern "C" {

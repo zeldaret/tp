@@ -75,7 +75,7 @@ void print_error_check_c::start() {
     mPrintErrors = print_errors;
 
     if (mPrintDisable) {
-        mPrintInit = print_initialized;
+        mPrintInit = __OSReport_disable;
         OSReportDisable();
     } else {
         mPrintInit = -1;
@@ -106,7 +106,7 @@ void print_error_check_c::check() {
     }
 
     if (mPrintInit != -1) {
-        print_initialized = mPrintInit;
+        __OSReport_disable = mPrintInit;
     }
 
     if (mPrintErrors != print_errors) {
@@ -155,7 +155,7 @@ print_error_check_c::param_s print_error_check_c::sDRAW = {
 class fopac_HIO_c : public JORReflexible {
 public:
     fopac_HIO_c();
-    ~fopac_HIO_c();
+    virtual ~fopac_HIO_c();
 
     void genMessage(JORMContext*);
 
@@ -168,7 +168,6 @@ public:
     /* 0x0C */ u8 mBBtnInfoDisp;
 };
 
-fopac_HIO_c::~fopac_HIO_c() {}
 
 fopac_HIO_c::fopac_HIO_c() {
     mId = -1;
@@ -177,6 +176,8 @@ fopac_HIO_c::fopac_HIO_c() {
     mActorNum = 0;
     mBBtnInfoDisp = false;
 }
+
+fopac_HIO_c::~fopac_HIO_c() {}
 
 static fopac_HIO_c l_HIO;
 
@@ -433,6 +434,7 @@ static int fopAc_Delete(void* i_this) {
     return ret;
 }
 
+// Wii: NONMATCHING, minor temp regalloc
 static int fopAc_Create(void* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     int ret;
@@ -627,6 +629,11 @@ void fopEn_enemy_c::drawBallModel(dKy_tevstr_c* i_tevstr) {
         }
     }
 }
+
+#if PLATFORM_WII || VERSION == VERSION_SHIELD
+u8 fopAcM::HeapAdjustEntry;
+u8 fopAcM::HeapAdjustUnk;
+#endif
 
 actor_method_class g_fopAc_Method = {
     (process_method_func)fopAc_Create,  (process_method_func)fopAc_Delete,

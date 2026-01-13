@@ -1,7 +1,7 @@
 #ifndef MSL_STDINT_H_
 #define MSL_STDINT_H_
 
-#include <cstdint.h>
+#include <cstdint>
 
 #ifdef __cplusplus
     using std::uint8_t;

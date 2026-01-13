@@ -42,7 +42,9 @@ public:
         return --mCount;
     }
 
+#ifdef __MWERKS__
     static const int NAME_MAX = 9;
+#endif
 
 private:
     /* 0x00 */ char mArchiveName[11];
@@ -128,11 +130,9 @@ public:
         return getResInfo(i_arcName, mStageInfo, ARRAY_SIZEU(mStageInfo));
     }
     
-    #if DEBUG
     void dumpTag() {
         // TODO
     }
-    #endif
 
     /* 0x0000 */ dRes_info_c mObjectInfo[128];
     /* 0x1200 */ dRes_info_c mStageInfo[64];

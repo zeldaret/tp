@@ -2,8 +2,13 @@
 #define JGEOMETRY_H
 
 #include "dolphin/mtx.h"
-#include <math.h>
+#include <cmath>
 #include "JSystem/JMath/JMath.h"
+
+#ifndef __MWERKS__
+#include <limits>
+#define FLT_EPSILON std::numeric_limits<float>::epsilon()
+#endif
 
 namespace JGeometry {
 
@@ -119,25 +124,22 @@ struct TVec3<s16> {
     }
 
     void set(s16 x_, s16 y_, s16 z_) {
-        x = x_;
-        y = y_;
-        z = z_;
+        x = (s16)x_;
+        y = (s16)y_;
+        z = (s16)z_;
     }
 };
 
-inline void setTVec3f(const f32* vec_a, f32* vec_b) {
+inline void setTVec3f(const __REGISTER f32* vec_a, __REGISTER f32* vec_b) {
 #ifdef __MWERKS__
-    const __REGISTER f32* v_a = vec_a;
-    __REGISTER f32* v_b = vec_b;
-
     __REGISTER f32 a_x;
     __REGISTER f32 b_x;
 
     asm {
-        psq_l a_x, 0(v_a), 0, 0
-        lfs b_x, 8(v_a)
-        psq_st a_x, 0(v_b), 0, 0
-        stfs b_x, 8(v_b)
+        psq_l a_x, 0(vec_a), 0, 0
+        lfs b_x, 8(vec_a)
+        psq_st a_x, 0(vec_b), 0, 0
+        stfs b_x, 8(vec_b)
     };
 #endif
 }
@@ -175,17 +177,17 @@ inline void mulInternal(__REGISTER const f32* a, __REGISTER const f32* b, __REGI
 
 template <>
 struct TVec3<f32> : public Vec {
-    inline TVec3(const Vec& i_vec) {
+    TVec3(const Vec& i_vec) {
         setTVec3f(&i_vec.x, &x);
     }
 
-    inline TVec3(const TVec3<f32>& i_vec) {
+    TVec3(const TVec3<f32>& i_vec) {
         setTVec3f(&i_vec.x, &x);
     }
 
     template<class U>
     TVec3(U x, U y, U z) {
-        set(x, y, z);
+        set((U)x, (U)y, (U)z);
     }
 
     TVec3() {}
@@ -195,9 +197,9 @@ struct TVec3<f32> : public Vec {
 
     template<class U>
     void set(const TVec3<U>& other) {
-        x = other.x;
-        y = other.y;
-        z = other.z;
+        x = (U)other.x;
+        y = (U)other.y;
+        z = (U)other.z;
     }
 
     void set(const Vec& other) {
@@ -208,9 +210,9 @@ struct TVec3<f32> : public Vec {
 
     template<class U>
     void set(U x_, U y_, U z_) {
-        x = x_;
-        y = y_;
-        z = z_;
+        x = (U)x_;
+        y = (U)y_;
+        z = (U)z_;
     }
 
     inline void add(const TVec3<f32>& b) {
@@ -242,7 +244,7 @@ struct TVec3<f32> : public Vec {
         return *this;
     }
 
-    inline TVec3<f32> operator+(const TVec3<f32>& b) {
+    inline TVec3<f32> operator+(const TVec3<f32>& b) const {
         TVec3<f32> a = *this;
         a += b;
         return a;
@@ -284,6 +286,11 @@ struct TVec3<f32> : public Vec {
     }
 
     void scale(__REGISTER f32 sc) {
+#if DEBUG
+        x *= sc;
+        y *= sc;
+        z *= sc;
+#else
 #ifdef __MWERKS__
         __REGISTER f32 z;
         __REGISTER f32 x_y;
@@ -298,6 +305,7 @@ struct TVec3<f32> : public Vec {
             ps_muls0 zres,       z, sc
             psq_st   zres,  8(dst),  1, 0
         };
+#endif
 #endif
     }
 
@@ -359,9 +367,9 @@ struct TVec3<f32> : public Vec {
     }
 
     void cross(const TVec3<f32>& a, const TVec3<f32>& b) {
-        VECCrossProduct(a, b, *this);
+        PSVECCrossProduct(&a, &b, this);
     }
-    
+
     f32 setLength(f32 len) {
         f32 sq = squared();
         if (sq <= TUtil<f32>::epsilon()) {
@@ -442,6 +450,14 @@ struct TVec2 {
         y += other.y;
     }
 
+    bool equals(const TVec2<T>& other) const {
+        bool result = false;
+        if (this->x == other.x && this->y == other.y) {
+            result = true;
+        }
+        return result;
+    }
+
     bool isAbove(const TVec2<T>& other) const {
         return (x >= other.x) && (y >= other.y) ? true : false;
     }
@@ -456,6 +472,10 @@ struct TVec2 {
 
     f32 length() const {
         return TUtil<f32>::sqrt(squared());
+    }
+
+    bool operator==(const TVec2<T>& other) const {
+        return equals(other);
     }
 
     T x;
@@ -492,6 +512,18 @@ template<> struct TBox<TVec2<f32> > {
         return isValid();
     }
 
+    void absolute() {
+        if (this->isValid()) {
+            return;
+        }
+
+        TBox<TVec2<f32> > box(*this);
+        this->i.setMin(box.i);
+        this->i.setMin(box.f);
+        this->f.setMax(box.i);
+        this->f.setMax(box.f);
+    }
+
     TVec2<f32> i, f;
 };
 
@@ -503,16 +535,6 @@ struct TBox2 : public TBox<TVec2<T> > {
         TBox<TVec2<T> >::f.set(_f);
     }
     TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
-
-    void absolute() {
-        if (!this->isValid()) {
-            TBox2<T> box(*this);
-            this->i.setMin(box.i);
-            this->i.setMin(box.f);
-            this->f.setMax(box.i);
-            this->f.setMax(box.f);
-        }
-    }
 
     void set(const TBox<TVec2<T> >& other) { set(other.i, other.f); }
     void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }

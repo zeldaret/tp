@@ -2,7 +2,7 @@
 
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include <string.h>
+#include <string>
 #include <stdint.h>
 #include <dolphin/gx.h>
 

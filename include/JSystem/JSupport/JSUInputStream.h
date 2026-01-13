@@ -89,6 +89,14 @@ public:
         return *this;
     }
 
+    s32 read(bool& val) {
+        return read(&val, sizeof(bool));
+    }
+
+    s32 read(u8& val) {
+        return read(&val, sizeof(u8));
+    }
+
     s32 read(u32& param_0) {
         return read(&param_0, 4);
     }

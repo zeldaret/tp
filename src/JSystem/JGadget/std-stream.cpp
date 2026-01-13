@@ -2,7 +2,7 @@
 
 #include "JSystem/JGadget/std-stream.h"
 #include "JSystem/JGadget/define.h"
-#include <ctype.h>
+#include <cctype>
 #include <float.h>
 
 namespace JGadget {

@@ -2,7 +2,7 @@
 #define JUTDIRECTPRINT_H
 
 #include "JSystem/JUtility/TColor.h"
-#include <stdarg.h>
+#include <cstdarg>
 
 /**
 * @ingroup jsystem-jutility

@@ -3,8 +3,8 @@
 #include "JSystem/JStudio/JStudio/stb.h"
 #include "JSystem/JStudio/JStudio/jstudio-object.h"
 #include "JSystem/JUtility/JUTException.h"
-#include <algorithm.h>
-#include <string.h>
+#include <algorithm>
+#include <string>
 
 namespace JStudio {
 namespace stb {

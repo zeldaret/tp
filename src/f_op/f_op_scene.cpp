@@ -19,7 +19,8 @@ static int fopScn_Execute(scene_class* i_this) {
 }
 
 static int fopScn_IsDelete(void* i_this) {
-    return fpcMtd_IsDelete((process_method_class*)static_cast<scene_class*>(i_this)->submethod, i_this);
+    int ret = fpcMtd_IsDelete((process_method_class*)((scene_class*) i_this)->submethod, i_this);
+    return ret;
 }
 
 static int fopScn_Delete(void* i_this) {
@@ -53,7 +54,7 @@ static int fopScn_Create(void* i_this) {
     }
 
 
-    ret = fpcMtd_Create((process_method_class*)scene->submethod, i_this);
+    ret = fpcMtd_Create((process_method_class*)scene->submethod, scene);
     return ret;
 }
 

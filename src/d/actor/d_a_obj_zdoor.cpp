@@ -155,10 +155,12 @@ static dCcD_SrcCyl l_cyl_src = {
         {0x0},                                               // mGObjCo
     },                                                       // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        35.0f,               // mRadius
-        400.0f               // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            35.0f,               // mRadius
+            400.0f               // mHeight
+        }                        // mCyl
+    }                            // mCylAttr
 };
 
 static dCcD_SrcCyl l_cyl_src2 = {
@@ -169,10 +171,12 @@ static dCcD_SrcCyl l_cyl_src2 = {
         {0x0},                                       // mGObjCo
     },                                               // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        80.0f,               // mRadius
-        400.0f               // mHeight
-    }                        // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            80.0f,               // mRadius
+            400.0f               // mHeight
+        }                        // mCyl
+    }                            // mCylAttr
 };
 
 void daZdoor_c::init_cyl() {

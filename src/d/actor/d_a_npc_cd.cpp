@@ -165,12 +165,14 @@ dCcD_SrcCyl const daNpcCd_c::m_cylDat = {
         {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},      // mGObjAt
         {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0},        // mGObjTg
         {0x0},                                   // mGObjCo
-    },                                           // mObjInf
-    {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,                // mRadius
-        0.0f                 // mHeight
-    }  // mCyl
+    },
+    {                                          // mObjInf
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,                // mRadius
+            0.0f                 // mHeight
+        }  // mCyl
+    }
 };
 
 int daNpcCd_c::NpcCreate(int param_1) {

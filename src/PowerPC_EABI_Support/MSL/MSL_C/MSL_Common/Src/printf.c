@@ -1,13 +1,15 @@
 #include "printf.h"
 #include "ansi_fp.h"
 #include "critical_regions.h"
-#include "ctype.h"
+#include "direct_io.h"
+#include "mbstring.h"
 #include "scanf.h"
-#include "cmath.h"
-#include "cstdio.h"
-#include "cstring.h"
-#include "cstdint.h"
 #include "wchar_io.h"
+#include <cctype>
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <cstdint>
 
 #define LDBL_MANT_DIG 53
 
@@ -19,8 +21,7 @@
 #define TARGET_FLOAT_MANT_BITS (TARGET_FLOAT_MANT_DIG - TARGET_FLOAT_IMPLICIT_J_BIT)
 #define TARGET_FLOAT_EXP_BITS (TARGET_FLOAT_BITS - TARGET_FLOAT_MANT_BITS - 1)
 
-#define PTRDIFF __typeof__((char*)0 - (char*)0)
-typedef PTRDIFF ptrdiff_t;
+extern void __msl_runtime_constraint_violation_s(const char* msg, void* ptr, int error);
 
 enum justification_options { left_justification, right_justification, zero_fill };
 

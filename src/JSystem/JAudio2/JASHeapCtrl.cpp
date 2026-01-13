@@ -323,9 +323,9 @@ JASHeap* JASKernel::getAramHeap() {
 }
 
 u32 JASKernel::getAramFreeSize() {
-    audioAramHeap.getFreeSize();
+    return audioAramHeap.getFreeSize();
 }
 
 u32 JASKernel::getAramSize() {
-    audioAramHeap.getSize();
+    return audioAramHeap.getSize();
 }

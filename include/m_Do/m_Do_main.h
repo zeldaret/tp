@@ -6,9 +6,12 @@
 
 class JKRExpHeap;
 
+extern OSThread mainThread;
+
 void version_check();
 s32 LOAD_COPYDATE(void*);
 
+extern OSThread mainThread;
 const int HeapCheckTableNum = 8;
 
 class HeapCheck {
@@ -62,12 +65,10 @@ private:
 };
 
 struct mDoMain {
-#if DEBUG
     static int argument;
     static int e3menu_no;
     static u32 archiveHeapSize;
     static u32 gameHeapSize;
-#endif
 
     static char COPYDATE_STRING[18];
     static u32 memMargin;

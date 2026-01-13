@@ -1,4 +1,4 @@
-#include <cstdio.h>
+#include <cstdio>
 #include <revolution.h>
 #include <revolution/os.h>
 

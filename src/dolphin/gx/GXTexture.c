@@ -1,6 +1,6 @@
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
-#include <cstring.h>
+#include <cstring>
 
 #include "__gx.h"
 

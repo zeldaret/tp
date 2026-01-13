@@ -1512,10 +1512,12 @@ static dCcD_SrcCyl l_cylSrc = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        35.0f,
-        180.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            35.0f,
+            180.0f,
+        },
+    }
 };
 
 static dCcD_SrcSph l_sphSrc = {
@@ -1539,10 +1541,12 @@ static dCcD_SrcCyl l_atCylSrc = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        180.0f,
-        130.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            180.0f,
+            130.0f,
+        },
+    }
 };
 
 static dCcD_SrcCps l_atCpsSrc = {
@@ -3144,11 +3148,7 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
     s16 sp18;
     s16 sp16 = mPrevAngleY + mBodyAngle.y;
     if ((mProcID == PROC_GOAT_CATCH && mProcVar1.field_0x300a == 0) || (mProcID == PROC_HAND_PAT && mProcVar2.field_0x300c == 0)) {
-#if VERSION == VERSION_SHIELD_DEBUG
-        sp16 += (s16)0x8000;
-#else
-        sp16 -= (s16)0x8000;
-#endif
+        ADD_ANGLE_2(sp16, 0x8000);
     }
 
     cXyz sp28 = eyePos - field_0x34e0;

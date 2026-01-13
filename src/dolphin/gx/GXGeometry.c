@@ -1,4 +1,4 @@
-#include <cstddef.h>
+#include <cstddef>
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
 

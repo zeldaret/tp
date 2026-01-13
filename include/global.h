@@ -50,8 +50,10 @@
 // Necessary for debug matches.
 #define UNUSED(x) ((void)(x))
 
+#ifdef __MWERKS__
 #ifndef decltype
 #define decltype __decltype__
+#endif
 #endif
 
 #define _SDA_BASE_(dummy) 0
@@ -134,6 +136,13 @@ static const float INF = 2000000000.0f;
 #define ASM asm
 #else
 #define ASM
+#endif
+
+// potential fakematch?
+#if PLATFORM_SHIELD
+    #define UNSET_FLAG(var, flag, type) (var) &= (type)~(flag)
+#else
+    #define UNSET_FLAG(var, flag, type) (var) &= ~(flag)
 #endif
 
 #endif

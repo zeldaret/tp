@@ -56,12 +56,9 @@ public:
     J3DIndBlock* getIndBlock() { return mIndBlock; }
     J3DJoint* getJoint() { return mJoint; }
     J3DMaterialAnm* getMaterialAnm() {
-        if ((uintptr_t)mMaterialAnm < 0xC0000000) {
-            return mMaterialAnm;
-        } else {
-            return NULL;
-        }
+        return (uintptr_t)mMaterialAnm < 0xC0000000 ? mMaterialAnm : NULL;
     }
+    u32 getMaterialMode() { return mMaterialMode; }
     J3DNBTScale* getNBTScale() { return mTexGenBlock->getNBTScale(); }
     u16 getTexNo(u32 idx) { return mTevBlock->getTexNo(idx); }
     J3DGXColor* getTevKColor(u32 param_0) { return mTevBlock->getTevKColor(param_0); }
@@ -69,7 +66,7 @@ public:
     J3DFog* getFog() { return mPEBlock->getFog(); }
     J3DTexMtx* getTexMtx(u32 idx) { return mTexGenBlock->getTexMtx(idx); }
     u16 getIndex() { return mIndex; }
-    bool isDrawModeOpaTexEdge() { return (mMaterialMode & 3) == 0; }
+    BOOL isDrawModeOpaTexEdge() { return (mMaterialMode & 3) ? 1 : 0; }
     J3DPEBlock* getPEBlock() { return mPEBlock; }
     void onInvalid() { mInvalid = 1; }
     u32 getTexGenNum() const { return mTexGenBlock->getTexGenNum(); }

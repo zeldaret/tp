@@ -1,6 +1,6 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
-#include <algorithm.h>
+#include <algorithm>
 
 static void dummy() {
     u32 a = 0;

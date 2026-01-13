@@ -34,7 +34,9 @@ create_tag_class* fopDwIt_Begin() {
 }
 
 create_tag_class* fopDwIt_Next(create_tag_class* i_createTag) {
+    (void)&i_createTag;
     create_tag_class* tag = (create_tag_class*)i_createTag->mpNode.mpNextNode;
+
     if (tag == NULL) {
         return fopDwIt_GetTag();
     }

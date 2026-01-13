@@ -3,6 +3,7 @@
 
 #include "JSystem/J2DGraph/J2DPicture.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J3DGraphBase/J3DSys.h"
 #include "SSystem/SComponent/c_m3d_g_pla.h"
 #include "f_op/f_op_view.h"
 #include "m_Do/m_Do_ext.h"
@@ -483,6 +484,10 @@ public:
     void drawOpaList3Dlast() { drawOpaDrawList(mDrawBuffers[DB_LIST_3D_LAST]); }
     void drawOpaListFilter() { drawOpaDrawList(mDrawBuffers[DB_LIST_FILTER]); }
     void drawOpaListP0() { drawOpaDrawList(mDrawBuffers[DB_LIST_P0]); }
+#if VERSION > VERSION_GCN_JPN
+    void drawOpaListCursor() { drawOpaDrawList(mDrawBuffers[DB_LIST_CURSOR]); }
+    void drawXluListCursor() { drawXluDrawList(mDrawBuffers[DB_LIST_CURSOR]); }
+#endif
     void draw2DOpa() { draw(mp2DOpaDrawLists, mp2DOpaStart); }
     void draw2DOpaTop() { draw(mp2DOpaTopDrawLists, mp2DOpaTopStart); }
     void draw2DXlu() { draw(mp2DXluDrawLists, mp2DXluStart); }

@@ -116,10 +116,12 @@ const dCcD_SrcGObjInf daTaFence_c::mCcDObjInfo = {
 dCcD_SrcCyl daTaFence_c::mCcDCyl = {
     daTaFence_c::mCcDObjInfo,
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        0.0f,  // mRadius
-        0.0f  // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,  // mRadius
+            0.0f  // mHeight
+        }  // mCyl
+    }
 };
 
 int daTaFence_c::create() {
@@ -351,7 +353,7 @@ void daTaFence_c::init_modeMove() {
 
 void daTaFence_c::modeMove() {
     cLib_chaseF(&speedF, mFallSpeed, mFallSpeed / 30.0f);
-    if (cLib_addCalcAngleS(&shape_angle.x, field_0x1384, 1, (182.04445f * fopAcM_GetSpeedF(this)), 1) == 0) {
+    if (cLib_addCalcAngleS(&shape_angle.x, field_0x1384, 1, DEG2S(fopAcM_GetSpeedF(this)), 1) == 0) {
         init_modeMoveEnd();
     }
 }

@@ -17,7 +17,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "JSystem/JAudio2/JAUSectionHeap.h"
-#include <math.h>
+#include <cmath>
 
 enum Joint {
     /* 0x00 */ JNT_CENTER,
@@ -128,12 +128,14 @@ dCcD_SrcCyl cc_zant_roll_src = {
         {dCcD_SE_METAL, 0x0, 0x6, 0x0, 0x0},                 // mGObjAt
         {dCcD_SE_NONE, 0x2, 0x0, 0x0, 0x303},                 // mGObjTg
         {0x0},                                              // mGObjCo
-    },                                                      // mObjInf
-    {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        40.0f,              // mRadius
-        40.0f                // mHeight
-    }                        // mCyl
+    },     
+    {                                                 // mObjInf
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            40.0f,              // mRadius
+            40.0f                // mHeight
+        }                        // mCyl
+    }
 };
 
 dCcD_SrcSph cc_zant_foot_src = {

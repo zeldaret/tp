@@ -1,4 +1,5 @@
-#include "cstring.h"
+#include "mem_funcs.h"
+#include <cstring>
 
 void* memmove(void* dst, const void* src, size_t n) {
     const char* csrc;

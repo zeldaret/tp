@@ -79,8 +79,6 @@ public:
     virtual void executeAfter(JPABaseEmitter*) {}
     virtual void draw(JPABaseEmitter*) {}
     virtual void drawAfter(JPABaseEmitter*) {}
-    
-    //~JPAEmitterCallBack();
 };
 
 enum {
@@ -153,41 +151,26 @@ public:
     void setAwayFromAxisSpeed(f32 i_speed) { mAwayFromAxisSpeed = i_speed; }
     void setSpread(f32 i_spread) { mSpread = i_spread; }
     void setLocalTranslation(const JGeometry::TVec3<f32>& i_trans) { mLocalTrs.set(i_trans); }
-    void setLocalRotation(const JGeometry::TVec3<s16>& i_rot) { mLocalRot.set(i_rot.x * 0.005493248f, i_rot.y * 0.005493248f, i_rot.z * 0.005493248f); }
+    void setLocalRotation(const JGeometry::TVec3<s16>& i_rot) {
+        mLocalRot.set(i_rot.x * (360.0f / 0xffff), i_rot.y * (360.0f / 0xffff),
+                      i_rot.z * (360.0f / 0xffff));
+    }
     void setRateStep(u8 i_step) { mRateStep = i_step; }
 
     void setGlobalParticleHeightScale(f32 height) {
         mGlobalPScl.y = height;
     }
     void setGlobalParticleScale(const JGeometry::TVec3<f32>& scale) {
-        mGlobalPScl.set(scale.x, scale.y);
+        mGlobalPScl.set((f32)scale.x, (f32)scale.y);
     }
     void setGlobalParticleScale(f32 scaleX, f32 scaleY) {
         mGlobalPScl.set(scaleX, scaleY);
     }
     void getGlobalParticleScale(JGeometry::TVec3<f32>& scale) const {
-        //TODO: Possible fakematch. Debug and Wii indicate TVec3::set, but using it breaks regalloc
-        //      in dPa_gen_b_light8PcallBack::draw on GCN (where the call to set would normally be
-        //      inlined).
-#if PLATFORM_GCN
-        scale.x = mGlobalPScl.x;
-        scale.y = mGlobalPScl.y;
-        scale.z = 1.0f;
-#else
         scale.set(mGlobalPScl.x, mGlobalPScl.y, 1.0f);
-#endif
     }
     void getGlobalParticleScale(JGeometry::TVec3<f32>* scale) const {
-        //TODO: Possible fakematch. Debug and Wii indicate TVec3::set, but using it breaks regalloc
-        //      in dPa_gen_b_light8PcallBack::draw on GCN (where the call to set would normally be
-        //      inlined).
-#if PLATFORM_GCN
-        scale->x = mGlobalPScl.x;
-        scale->y = mGlobalPScl.y;
-        scale->z = 1.0f;
-#else
         scale->set(mGlobalPScl.x, mGlobalPScl.y, 1.0f);
-#endif
     }
     void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
         mGlobalScl.set(scale);

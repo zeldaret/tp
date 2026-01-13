@@ -1,7 +1,7 @@
 #ifndef MSL_STRING_H_
 #define MSL_STRING_H_
 
-#include <cstring.h>
+#include <cstring>
 
 namespace std {
 using ::memcpy;

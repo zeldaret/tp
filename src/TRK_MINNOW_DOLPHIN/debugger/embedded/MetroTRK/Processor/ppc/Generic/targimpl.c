@@ -1,7 +1,7 @@
 #include "TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
 #include <stdint.h>
-#include <cstring.h>
+#include <cstring>
 
 typedef struct memRange {
     u8* start;

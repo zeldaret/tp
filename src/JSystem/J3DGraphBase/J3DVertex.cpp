@@ -4,7 +4,7 @@
 #include "JSystem/J3DGraphAnimator/J3DJointTree.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include <string.h>
+#include <string>
 
 J3DVertexData::J3DVertexData() {
     mVtxNum = 0;
@@ -208,6 +208,10 @@ s32 J3DVertexBuffer::allocTransformedVtxNrmArray() {
     }
 
     return kJ3DError_Success;
+}
+
+static void dummy(J3DVertexData* vertexData) {
+    vertexData->getColNum();
 }
 
 J3DDrawMtxData::J3DDrawMtxData() {

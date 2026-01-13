@@ -1,6 +1,6 @@
 #include "alloc.h"
 #include "critical_regions.h"
-#include <cstring.h>
+#include <cstring>
 
 #include "global.h"
 

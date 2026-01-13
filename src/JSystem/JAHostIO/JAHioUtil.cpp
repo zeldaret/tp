@@ -1,7 +1,7 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
 #include "JSystem/JAHostIO/JAHioUtil.h"
-#include "stdio.h"
+#include <cstdio>
 
 char JAHioUtil::mStringBuffer[256];
 

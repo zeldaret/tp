@@ -26,7 +26,9 @@ dCcD_SrcCyl const daGraveStone_c::mCcDCyl = {
         {0, 0, 0, 0, 0},
         {0},
     },
-    {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f},
+    {
+        {{0.0f, 0.0f, 0.0f}, 0.0f, 0.0f},
+    },
 };
 
 void daGraveStone_c::setBaseMtx() {

@@ -28,28 +28,40 @@ public:
     static void destroyManager();
     void initiate(u16, u16, JKRHeap*, JUTXfb::EXfbNumber);
 
-    s32 getBufferNum() const { return mBufferNum; }
+    s32 getBufferNum() { return mBufferNum; }
     s16 getDrawnXfbIndex() const { return mDrawnXfbIndex; }
     s16 getDrawingXfbIndex() const { return mDrawingXfbIndex; }
     s16 getDisplayingXfbIndex() const { return mDisplayingXfbIndex; }
     s32 getSDrawingFlag() const { return mSDrawingFlag; }
 
     void* getDrawnXfb() const {
-        if (mDrawnXfbIndex >= 0)
-            return mBuffer[mDrawnXfbIndex];
-        return NULL;
+        void* result;
+        if (mDrawnXfbIndex >= 0) {
+            result = mBuffer[mDrawnXfbIndex];
+        } else {
+            result = NULL;
+        }
+        return result;
     }
 
     void* getDrawingXfb() const {
-        if (mDrawingXfbIndex >= 0)
-            return mBuffer[mDrawingXfbIndex];
-        return NULL;
+        void* result;
+        if (mDrawingXfbIndex >= 0) {
+            result = mBuffer[mDrawingXfbIndex];
+        } else {
+            result = NULL;
+        }
+        return result;
     }
 
     void* getDisplayingXfb() const {
-        if (mDisplayingXfbIndex >= 0)
-            return mBuffer[mDisplayingXfbIndex];
-        return NULL;
+        void* xfb;
+        if (mDisplayingXfbIndex >= 0) {
+            xfb = mBuffer[mDisplayingXfbIndex];
+        } else {
+            xfb = NULL;
+        }
+        return xfb;
     }
 
     void setDisplayingXfbIndex(s16 index) { mDisplayingXfbIndex = index; }

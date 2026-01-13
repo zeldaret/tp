@@ -1,7 +1,7 @@
 #ifndef NW4HBM_SND_CHANNEL_H
 #define NW4HBM_SND_CHANNEL_H
 
-#include <climits.h>  // USHRT_MAX
+#include <climits>  // USHRT_MAX
 
 #include <revolution/types.h>
 

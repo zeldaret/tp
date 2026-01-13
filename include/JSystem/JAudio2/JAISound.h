@@ -349,7 +349,7 @@ public:
         return audible_ != NULL;
     }
 
-    JAISoundFader& getFader() { return fader_; }
+    JAISoundFader* getFader() const { return (JAISoundFader*)&fader_; }
     void fadeIn(u32 maxSteps) { fader_.fadeInFromOut(maxSteps); }
     void fadeOut(u32 maxSteps) { fader_.fadeOut(maxSteps); }
 

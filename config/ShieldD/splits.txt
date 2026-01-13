@@ -17,7 +17,7 @@ m_Do/m_Do_main.cpp:
 	.text       start:0x80006880 end:0x8000AF00
 	.ctors      start:0x8062F7C4 end:0x8062F7C8
 	.data       start:0x8065FFA0 end:0x80660CF8
-	.sdata      start:0x8073F140 end:0x8073F264
+	.sdata      start:0x8073F140 end:0x8073F260
 	.sbss       start:0x8074C260 end:0x8074C298
 	.sdata2     start:0x8074D740 end:0x8074D768
 	.bss        start:0x80753500 end:0x80753980
@@ -25,8 +25,8 @@ m_Do/m_Do_main.cpp:
 m_Do/m_Do_printf.cpp:
 	.text       start:0x8000AF00 end:0x8000B8A0
 	.data       start:0x80660CF8 end:0x80660DE8
-	.sdata      start:0x8073F264 end:0x8073F268
-	.sbss       start:0x8074C298 end:0x8074C2C4
+	.sdata      start:0x8073F260 end:0x8073F268
+	.sbss       start:0x8074C298 end:0x8074C2C0
 	.bss        start:0x80753980 end:0x807541A0
 
 m_Do/m_Do_audio.cpp:
@@ -35,7 +35,7 @@ m_Do/m_Do_audio.cpp:
 	.rodata     start:0x8062FA20 end:0x8062FA30
 	.data       start:0x80660DE8 end:0x80661190
 	.sdata      start:0x8073F268 end:0x8073F2F0
-	.sbss       start:0x8074C2C4 end:0x8074C310
+	.sbss       start:0x8074C2C0 end:0x8074C310
 	.bss        start:0x807541A0 end:0x80755570
 
 m_Do/m_Do_controller_pad.cpp:
@@ -65,7 +65,7 @@ m_Do/m_Do_mtx.cpp:
 	.ctors      start:0x8062F7D0 end:0x8062F7D4
 	.data       start:0x80661ED0 end:0x80661FC0
 	.sdata      start:0x8073F3E8 end:0x8073F3F8
-	.sbss       start:0x8074C3B0 end:0x8074C3BC
+	.sbss       start:0x8074C3B0 end:0x8074C3B8
 	.sdata2     start:0x8074D878 end:0x8074D888
 	.bss        start:0x807558E0 end:0x80755D30
 
@@ -74,7 +74,7 @@ m_Do/m_Do_ext.cpp:
 	.rodata     start:0x8062FA30 end:0x8062FA70
 	.data       start:0x80661FC0 end:0x80663DB0
 	.sdata      start:0x8073F3F8 end:0x8073F600
-	.sbss       start:0x8074C3BC end:0x8074C418
+	.sbss       start:0x8074C3B8 end:0x8074C418
 	.sdata2     start:0x8074D888 end:0x8074D8D0
 	.bss        start:0x80755D30 end:0x80755D90
 
@@ -131,14 +131,14 @@ m_Do/m_Do_MemCardRWmng.cpp:
 m_Do/m_Do_machine_exception.cpp:
 	.text       start:0x8002EEA0 end:0x8002F3A0
 	.data       start:0x80664C90 end:0x80664E98
-	.sbss       start:0x8074C450 end:0x8074C464
+	.sbss       start:0x8074C450 end:0x8074C458
 
 c/c_damagereaction.cpp:
 	.text       start:0x8002F3A0 end:0x8002FAF0
 	.ctors      start:0x8062F7E4 end:0x8062F7E8
 	.data       start:0x80664E98 end:0x80664F00
 	.sdata      start:0x8073F688 end:0x8073F698
-	.sbss       start:0x8074C464 end:0x8074C46C
+	.sbss       start:0x8074C458 end:0x8074C468
 	.sdata2     start:0x8074D908 end:0x8074D920
 	.bss        start:0x807762A0 end:0x807762B0
 
@@ -146,15 +146,15 @@ c/c_dylink.cpp:
 	.text       start:0x8002FAF0 end:0x80030690
 	.rodata     start:0x8062FA70 end:0x806311D0
 	.data       start:0x80664F00 end:0x80667F90
-	.sdata      start:0x8073F698 end:0x8073F6EC
-	.sbss       start:0x8074C46C end:0x8074C47C
+	.sdata      start:0x8073F698 end:0x8073F6E8
+	.sbss       start:0x8074C468 end:0x8074C47C
 	.bss        start:0x807762B0 end:0x80776F20
 
 f_ap/f_ap_game.cpp:
 	.text       start:0x80030690 end:0x80034CB0
 	.ctors      start:0x8062F7E8 end:0x8062F7EC
 	.data       start:0x80667F90 end:0x80669130
-	.sdata      start:0x8073F6EC end:0x8073F850
+	.sdata      start:0x8073F6E8 end:0x8073F850
 	.sbss       start:0x8074C47C end:0x8074C4A0
 	.sdata2     start:0x8074D920 end:0x8074D950
 	.bss        start:0x80776F20 end:0x8077EF68
@@ -315,7 +315,7 @@ f_pc/f_pc_layer.cpp:
 f_pc/f_pc_leaf.cpp:
 	.text       start:0x800450A0 end:0x80045330
 	.data       start:0x8066AD78 end:0x8066AD90
-	.sbss       start:0x8074C540 end:0x8074C550
+	.sbss       start:0x8074C540 end:0x8074C548
 
 f_pc/f_pc_layer_iter.cpp:
 	.text       start:0x80045330 end:0x80045560
@@ -336,6 +336,7 @@ f_pc/f_pc_manager.cpp:
 	.text       start:0x800459D0 end:0x80046020
 	.data       start:0x8066ADB0 end:0x8066ADC8
 	.sdata      start:0x8073F9D8 end:0x8073F9E8
+	.sbss       start:0x8074C548 end:0x8074C550
 	.bss        start:0x80782160 end:0x80782208
 
 f_pc/f_pc_method.cpp:
@@ -3151,7 +3152,7 @@ Z2AudioCSD/Z2AudioCS.cpp:
 
 revolution/gf/GFGeometry.cpp:
 	.text       start:0x804F8AE0 end:0x804F8CB0
-	.sdata      start:0x8074A8B0 end:0x8074A8BC
+	.sdata      start:0x8074A8B0 end:0x8074A8B8
 
 revolution/gf/GFLight.cpp:
 	.text       start:0x804F8CB0 end:0x804F8D20
@@ -3167,7 +3168,7 @@ revolution/gf/GFTev.cpp:
 JSystem/JKernel/JKRHeap.cpp:
 	.text       start:0x804F91A0 end:0x804FB0C0
 	.data       start:0x8070CF60 end:0x8070D2C0
-	.sdata      start:0x8074A8BC end:0x8074A8F8
+	.sdata      start:0x8074A8B8 end:0x8074A8F8
 	.sbss       start:0x8074CE20 end:0x8074CE58
 
 JSystem/JKernel/JKRStdHeap.cpp:
@@ -3294,7 +3295,7 @@ JSystem/JKernel/JKRDvdFile.cpp:
 	.text       start:0x8050B7F0 end:0x8050C090
 	.ctors      start:0x8062F9BC end:0x8062F9C0
 	.data       start:0x8070E8D0 end:0x8070E988
-	.sdata      start:0x8074AAA0 end:0x8074AAC4
+	.sdata      start:0x8074AAA0 end:0x8074AAC0
 	.bss        start:0x807E2000 end:0x807E2018
 
 JSystem/JKernel/JKRRelocation.cpp:
@@ -3304,7 +3305,7 @@ JSystem/JKernel/JKRDvdRipper.cpp:
 	.text       start:0x8050C100 end:0x8050D0B0
 	.ctors      start:0x8062F9C0 end:0x8062F9C4
 	.data       start:0x8070E988 end:0x8070EA10
-	.sdata      start:0x8074AAC4 end:0x8074AAD4
+	.sdata      start:0x8074AAC0 end:0x8074AAD0
 	.sbss       start:0x8074CEF0 end:0x8074CF30
 	.bss        start:0x807E2018 end:0x807E2048
 
@@ -3312,7 +3313,7 @@ JSystem/JKernel/JKRDvdAramRipper.cpp:
 	.text       start:0x8050D0B0 end:0x8050E3E0
 	.ctors      start:0x8062F9C4 end:0x8062F9C8
 	.data       start:0x8070EA10 end:0x8070EA60
-	.sdata      start:0x8074AAD4 end:0x8074AAE0
+	.sdata      start:0x8074AAD0 end:0x8074AAE0
 	.sbss       start:0x8074CF30 end:0x8074CF78
 	.bss        start:0x807E2048 end:0x807E2078
 

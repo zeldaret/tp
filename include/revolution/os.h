@@ -1,7 +1,7 @@
 #ifndef _REVOLUTION_OS_H_
 #define _REVOLUTION_OS_H_
 
-#include <cstdio.h>
+#include <cstdio>
 
 #include <revolution/types.h>
 #include <revolution/gx/GXStruct.h>

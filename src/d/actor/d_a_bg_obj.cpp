@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_bg_obj.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include <stdio.h>
+#include <cstdio>
 #include "dolphin/os.h"
 #include "d/actor/d_a_set_bgobj.h"
 #include "d/d_s_play.h"
@@ -265,10 +265,12 @@ static const dCcD_SrcCyl l_cyl_src = {
         {0},
     },
     {
-        {0.0f, 0.0f, 0.0f},
-        0.0f,
-        0.0f,
-    },
+        {
+            {0.0f, 0.0f, 0.0f},
+            0.0f,
+            0.0f,
+        },
+    }
 };
 
 void daBgObj_c::initAtt() {

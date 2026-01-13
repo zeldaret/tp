@@ -5,12 +5,6 @@
 #include <dolphin/mtx.h>
 #include "JSystem/J3DAssert.h"
 
-// Perhaps move to a new J3DEnum.h?
-enum J3DError {
-    kJ3DError_Success = 0,
-    kJ3DError_Alloc = 4,
-};
-
 enum J3DSysDrawBuf {
     /* 0x0 */ J3DSysDrawBuf_Opa,
     /* 0x1 */ J3DSysDrawBuf_Xlu,
@@ -139,7 +133,10 @@ struct J3DSys {
 
     J3DMtxCalc * getCurrentMtxCalc() const { return mCurrentMtxCalc; }
 
-    void setTexture(J3DTexture* pTex) { mTexture = pTex; }
+    void setTexture(J3DTexture* pTex) {
+        JUT_ASSERT_MSG(220, pTex != NULL, "Error : null pointer.");
+        mTexture = pTex;
+    }
     J3DTexture* getTexture() { return mTexture; }
 
     void setNBTScale(Vec* scale) { mNBTScale = scale; }

@@ -113,10 +113,12 @@ static dCcD_SrcCyl l_cyl_src = {
         {0x0},                                        // mGObjCo
     },                                                // mObjInf
     {
-        {0.0f, 0.0f, 0.0f},  // mCenter
-        15.0f,               // mRadius
-        60.0f                // mHeight
-    }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            15.0f,               // mRadius
+            60.0f                // mHeight
+        }  // mCyl
+    }
 };
 
 
@@ -1115,8 +1117,9 @@ dBgS_WtrChk daObjBm_c::Bgc_c::M_wrt_work;
 
 dBgS_ObjLinChk daObjBm_c::Bgc_c::M_wall_work[23];
 
-static dBgS_ObjGndChk dummy_touch_work() {
+void daObjBm_c::Bgc_c::chk_wall_touch(const fopAc_ac_c*, const daObjBm_c::BgcSrc_c*, short) {
     static dBgS_ObjLinChk touch_work;
+    const static float bgc_add = 10.0f;
 }
 
 static f32 dummy_rodata_5158() {
@@ -1820,7 +1823,7 @@ void daObjBm_c::debugDraw() {
     }
 
     if (CHECK_DRAW) {
-        mpBgW->CalcPlane();
+        mpBgW->DebugDraw();
     }
 }
 #endif

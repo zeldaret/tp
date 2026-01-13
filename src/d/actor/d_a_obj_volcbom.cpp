@@ -79,10 +79,12 @@ static dCcD_SrcCyl l_cyl_src = {
         {0x0}, // mGObjCo
     }, // mObjInf
     {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        350.0f, // mRadius
-        1500.0f // mHeight
-    } // mCyl
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            350.0f, // mRadius
+            1500.0f // mHeight
+        } // mCyl
+    }
 };
 
 int daObjVolcBom_c::Create() {

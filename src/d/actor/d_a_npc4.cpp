@@ -710,10 +710,12 @@ void daNpcF_c::tgHitCallBack(fopAc_ac_c* i_this, dCcD_GObjInf* param_1, fopAc_ac
 dCcD_SrcCyl daNpcF_c::mCcDCyl = {
     daNpcF_c::mCcDObjInfo,
     {
-                {0.0f, 0.0f, 0.0f},  // mCenter
-                0.0f,  // mRadius
-                0.0f  // mHeight
-            }  // mCyl
+        {
+            {0.0f, 0.0f, 0.0f},  // mCenter
+            0.0f,  // mRadius
+            0.0f  // mHeight
+        }  // mCyl
+    }
 };
 
 dCcD_SrcSph daNpcF_c::mCcDSph = {
@@ -2133,6 +2135,27 @@ void daNpcF_clearMessageTmpBit() {
 // TODO: dummy to generate weak functions, proper fix later
 static void dummyVirtual() {
     daNpcF_MoveBgActor_c dummy;
+}
+
+// see note in header, this fixes weak function order for daNpcF_MoveBgActor_c functions
+int daNpcF_MoveBgActor_c::MoveBGCreateHeap() {
+    return CreateHeap();
+}
+
+int daNpcF_MoveBgActor_c::MoveBGCreate() {
+    return Create();
+}
+
+int daNpcF_MoveBgActor_c::MoveBGDelete() {
+    return Delete();
+}
+
+int daNpcF_MoveBgActor_c::MoveBGExecute() {
+    return Execute((Mtx**)NULL);
+}
+
+int daNpcF_MoveBgActor_c::MoveBGDraw() {
+    return Draw();
 }
 
 dCcD_SrcGObjInf const daBaseNpc_c::mCcDObj = {

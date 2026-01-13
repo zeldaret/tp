@@ -23,7 +23,7 @@
 
 #define JUT_PANIC_F(LINE, MSG, ...)                                                               \
     JUTAssertion::showAssert_f(JUTAssertion::getSDevice(), __FILE__, LINE, MSG, __VA_ARGS__);        \
-    OSPanic(__FILE__, LINE, MSG, __VA_ARGS__);
+    OSPanic(__FILE__, LINE, "Halt");
 
 #define JUT_WARN_DEVICE(LINE, DEVICE, ...)                                                                        \
     JUTAssertion::setWarningMessage_f(DEVICE, __FILE__, LINE, __VA_ARGS__);    \
@@ -63,10 +63,12 @@ namespace JUTAssertion {
 
     u32 getSDevice();
     void showAssert_f(u32 device, const char* file, int line, const char* msg, ...);
+    void showAssert_f_va(u32 device, const char* file, int line, const char* msg, va_list args);
     void setWarningMessage_f(u32 device, char * file, int line, const char * fmt, ...);
+    void setWarningMessage_f_va(u32 device, const char* file, int line, const char* msg, va_list args);
     void setLogMessage_f(u32 device, char* file, int line, const char* fmt, ...);
     void setConfirmMessage(u32 param_1, char* file, int line, bool param_4, const char* msg);
-
+    
     inline void showAssert(u32 device, const char* file, int line, const char* msg) {
         showAssert_f(device, file, line, "%s", msg);
     }
@@ -75,7 +77,5 @@ namespace JUTAssertion {
         setWarningMessage_f(device, file, line, "%s", msg);
     }
 };
-
-extern bool sAssertVisible;
 
 #endif /* JUTASSERT_H */

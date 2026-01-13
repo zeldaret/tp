@@ -3,8 +3,8 @@
 #include "common.h"
 #include "layout.h"
 
-#include <string.h>
-#include <new.h>
+#include <string>
+#include <new>
 
 
 namespace nw4hbm {

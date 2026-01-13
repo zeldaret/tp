@@ -1,7 +1,7 @@
 #ifndef MSL_TYPE_TRAITS_H_
 #define MSL_TYPE_TRAITS_H_
 
-#include <stddef.h>
+#include <stddef>
 
 namespace std {
     // helper class
