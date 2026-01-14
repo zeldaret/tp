@@ -162,7 +162,7 @@ BOOL daAlink_c::subjectCancelTrigger() {
 }
 
 BOOL daAlink_c::checkSubjectEnd(BOOL i_isPlaySe) {
-    setDoStatus(0x12);
+    setDoStatus(BUTTON_STATUS_BACK);
 
     if (checkEventRun() || checkEquipAnime() || doTrigger() || checkSetItemTrigger(fpcNm_ITEM_HAWK_EYE) || subjectCancelTrigger() || checkEndResetFlg0(ERFLG0_FORCE_SUBJECT_CANCEL) || dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x2000)) {
         if (i_isPlaySe) {

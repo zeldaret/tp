@@ -435,7 +435,7 @@ int daAlink_c::procBoardWait() {
             return procBoardCutInit();
         } else if (mProcVar5.field_0x3012 == 0) {
             if (!checkModeFlg(2) && mProcID != PROC_BOARD_ROW) {
-                setDoStatus(0xA);
+                setDoStatus(BUTTON_STATUS_CROUCH);
 
                 if (doButton()) {
                     f32 blend_ratio;
@@ -452,7 +452,7 @@ int daAlink_c::procBoardWait() {
             }
         } else if (mProcVar5.field_0x3012 != 0) {
             if (mNormalSpeed > 15.0f) {
-                setDoStatus(0x19);
+                setDoStatus(BUTTON_STATUS_JUMP);
             }
 
             if (!doButton()) {

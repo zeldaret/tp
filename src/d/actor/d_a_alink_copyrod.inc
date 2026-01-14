@@ -284,7 +284,7 @@ int daAlink_c::procCopyRodSubject() {
     }
 
     if (checkCopyRodReadyAnime()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     setShapeAngleToAtnActor(0);

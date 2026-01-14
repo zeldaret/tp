@@ -913,7 +913,7 @@ int daAlink_c::procIronBallSubjectInit() {
 
 int daAlink_c::procIronBallSubject() {
     if (checkIronBallAnime()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     setShapeAngleToAtnActor(0);
@@ -944,7 +944,7 @@ int daAlink_c::procIronBallMoveInit() {
 
 int daAlink_c::procIronBallMove() {
     if (checkIronBallAnime()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     setShapeAngleToAtnActor(0);

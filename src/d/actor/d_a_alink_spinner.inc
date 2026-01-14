@@ -225,10 +225,10 @@ int daAlink_c::procSpinnerWait() {
 
         if (spinner->checkPathMoveNow() == NULL) {
             seStartOnlyReverbLevel(Z2SE_AL_SPINNER_RIDE);
-            setSpinnerStatus(ACTION_STR_ATTACK, ACTION_FLG_DEFAULT);
+            setSpinnerStatus(BUTTON_STATUS_ATTACK, BUTTON_STATUS_FLAG_NONE);
         } else {
             seStartOnlyReverbLevel(Z2SE_AL_SPINNER_RAIL);
-            setSpinnerStatus(ACTION_STR_JUMP2, ACTION_FLG_DEFAULT);
+            setSpinnerStatus(BUTTON_STATUS_UNK_101, BUTTON_STATUS_FLAG_NONE);
         }
 
         mNormalSpeed = spinner->speedF;
@@ -236,7 +236,7 @@ int daAlink_c::procSpinnerWait() {
 
         if (spinner->checkSpinnerTagIntoIncRot()) {
             mProcVar5.field_0x3012 = 1;
-            setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_CONTINUATION);
+            setSpinnerStatus(BUTTON_STATUS_SPIN, BUTTON_STATUS_FLAG_CONTINUATION);
 
             if (field_0x3198 != ANM_RIDE_KICK && field_0x2060->getOldFrameRate() < 0.01f) {
                 setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, mpHIO->mItem.mBoard.m.mSitAnmSpeed,
@@ -246,9 +246,9 @@ int daAlink_c::procSpinnerWait() {
             }
         } else if (spinner->checkSpinnerTagInto()) {
             if (mProcVar5.field_0x3012 != 0) {
-                setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_CONTINUATION);
+                setSpinnerStatus(BUTTON_STATUS_SPIN, BUTTON_STATUS_FLAG_CONTINUATION);
             } else {
-                setSpinnerStatus(ACTION_STR_SPIN, ACTION_FLG_DEFAULT);
+                setSpinnerStatus(BUTTON_STATUS_SPIN, BUTTON_STATUS_FLAG_NONE);
             }
 
             if ((field_0x3198 == ANM_RIDE_KICK && field_0x2060->getOldFrameRate() < 0.01f) ||

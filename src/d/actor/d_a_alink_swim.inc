@@ -185,19 +185,19 @@ void daAlink_c::swimBgCheck(f32 param_0) {
 }
 
 void daAlink_c::setSpeedAndAngleSwim() {
-    if (!checkBootsOrArmorHeavy() && dComIfGp_getDoStatus() == 0 && (!checkHookshotAnime() || (checkHookshotItem(mEquipItem) && (mItemMode == 0 || mItemMode == 1)))) {
+    if (!checkBootsOrArmorHeavy() && dComIfGp_getDoStatus() == BUTTON_STATUS_NONE && (!checkHookshotAnime() || (checkHookshotItem(mEquipItem) && (mItemMode == 0 || mItemMode == 1)))) {
         if (checkZoraWearAbility()) {
             if (checkNoResetFlg0(FLG0_SWIM_UP)) {
                 if (field_0x2fcd == 0) {
-                    setDoStatus(0x41);
+                    setDoStatus(BUTTON_STATUS_DIVE);
                 }
             } else {
-                setDoStatus(0x4C);
+                setDoStatus(BUTTON_STATUS_SWIM);
             }
         } else if (!checkNoResetFlg0(FLG0_SWIM_UP)) {
-            setDoStatus(0x97);
+            setDoStatus(BUTTON_STATUS_UNK_151);
         } else if (mProcID == PROC_SWIM_MOVE && checkUnderMove0BckNoArc(ANM_SWIM_A) && field_0x30d0 == 0 && field_0x30d2 == 0) {
-            setDoStatus(9);
+            setDoStatus(BUTTON_STATUS_DASH);
         }
     }
 
@@ -326,7 +326,7 @@ int daAlink_c::checkNextActionSwim() {
     if (mAttList != NULL && mAttList->mType == fopAc_attn_ETC_e && checkNoResetFlg0(FLG0_SWIM_UP) &&
         fopAcM_GetName(field_0x27f4) == PROC_CANOE)
     {
-        setDoStatus(0x17);
+        setDoStatus(BUTTON_STATUS_GET_ON);
 
         if (doTrigger()) {
             return procCanoeRideInit();
@@ -762,7 +762,7 @@ void daAlink_c::setSwimMoveAnime() {
         anm = ANM_SWIM_WAIT;
         mMaxSpeed = mpHIO->mSwim.m.mUnderwaterFallMaxSpeed;
         if (mEquipItem != fpcNm_ITEM_NONE && !checkHookshotAnime()) {
-            setDoStatus(4);
+            setDoStatus(BUTTON_STATUS_PUT_AWAY);
         }
     }
 
@@ -854,11 +854,11 @@ void daAlink_c::setSwimMoveAnime() {
 }
 
 bool daAlink_c::checkSwimButtonAccept() {
-    return dComIfGp_getDoStatus() == 0x41 || dComIfGp_getDoStatus() == 0x4C;
+    return dComIfGp_getDoStatus() == BUTTON_STATUS_DIVE || dComIfGp_getDoStatus() == BUTTON_STATUS_SWIM;
 }
 
 bool daAlink_c::checkUpSwimButtonAccept() {
-    return dComIfGp_getDoStatus() == 0x97;
+    return dComIfGp_getDoStatus() == BUTTON_STATUS_UNK_151;
 }
 
 BOOL daAlink_c::checkSwimButtonMove() {
@@ -1015,7 +1015,7 @@ int daAlink_c::procSwimWait() {
     setSwimUpDownOffset();
 
     if (checkEquipHeavyBoots() && mEquipItem != fpcNm_ITEM_NONE) {
-        setDoStatus(0x4);
+        setDoStatus(BUTTON_STATUS_PUT_AWAY);
     }
 
     if (checkSwimUpAction()) {
@@ -1115,7 +1115,7 @@ int daAlink_c::procSwimMove() {
 
     if (checkSwimButtonAccept() && doTrigger() && !getZoraSwim()) {
         procSwimDiveInit();
-    } else if (dComIfGp_getDoStatus() == 9 && doTrigger()) {
+    } else if (dComIfGp_getDoStatus() == BUTTON_STATUS_DASH && doTrigger()) {
         onNoResetFlg1(FLG1_DASH_MODE);
         field_0x30d0 = mpHIO->mSwim.m.field_0x5c;
         setSingleAnimeParam(ANM_SWIM_DASH, &mpHIO->mSwim.m.mDashAnm);
@@ -1159,7 +1159,7 @@ int daAlink_c::procSwimDive() {
     daPy_frameCtrl_c* frame_ctrl = mUnderFrameCtrl;
 
     if (mProcVar2.field_0x300c == 0) {
-        setDoStatus(0x4C);
+        setDoStatus(BUTTON_STATUS_SWIM);
     } else if (checkNoResetFlg0(FLG0_SWIM_UP) && frame_ctrl->getFrame() > 20.0f) {
         offNoResetFlg0(FLG0_SWIM_UP);
         mZ2Link.setInWater(true);
@@ -1245,7 +1245,7 @@ int daAlink_c::procSwimHookshotSubject() {
     mMaxSpeed = getSwimFrontMaxSpeed();
 
     if (checkHookshotWait()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     setShapeAngleToAtnActor(0);
@@ -1319,7 +1319,7 @@ int daAlink_c::procSwimHookshotMove() {
     cancelHookshotMove();
 
     if (checkHookshotWait() && !checkZoraWearAbility()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     if (mItemVar0.field_0x3018 == 0) {

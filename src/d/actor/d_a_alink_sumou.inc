@@ -35,7 +35,7 @@ BOOL daAlink_c::sumouPunchTrigger() {
 }
 
 void daAlink_c::setSumouPunchStatus() {
-    setBStatus(ACTION_STR_SLAP);
+    setBStatus(BUTTON_STATUS_SLAP);
 }
 
 int daAlink_c::procSumouReadyInit() {
@@ -70,7 +70,7 @@ int daAlink_c::procSumouReady() {
 
     if (mMode == 2 || mMode == 3 || mMode == 4) {
         setSumouPunchStatus();
-        setDoStatusEmphasys(0x15);
+        setDoStatusEmphasys(BUTTON_STATUS_GRAB);
         dComIfGp_setAdvanceDirection(5);
 
         if (doTrigger()) {
@@ -328,7 +328,7 @@ int daAlink_c::procSumouSideMoveInit() {
 
     field_0x3198 = 0x141;
     setSumouPunchStatus();
-    setDoStatusEmphasys(0x15);
+    setDoStatusEmphasys(BUTTON_STATUS_GRAB);
     dComIfGp_setAdvanceDirection(5);
 
     field_0x2f99 = 12;
@@ -368,7 +368,7 @@ int daAlink_c::procSumouSideMove() {
     }
 
     setSumouPunchStatus();
-    setDoStatusEmphasys(0x15);
+    setDoStatusEmphasys(BUTTON_STATUS_GRAB);
     dComIfGp_setAdvanceDirection(5);
 
     f32 var_f1;
@@ -552,7 +552,7 @@ int daAlink_c::procSumouActionInit(BOOL i_isDoTrigger, BOOL i_isPunchTrigger, in
         dComIfGp_setAdvanceDirection(4);
         mProcVar4.field_0x3010 = shape_angle.y + 0x2800;
     } else if (i_isDoTrigger) {
-        setDoStatusEmphasys(0x15);
+        setDoStatusEmphasys(BUTTON_STATUS_GRAB);
         mProcVar3.field_0x300e = 0x15;
         field_0x2f98 = 4;
     } else if (i_isPunchTrigger) {
@@ -687,7 +687,7 @@ int daAlink_c::procSumouAction() {
         }
 
         if (mProcVar3.field_0x300e == 0x15) {
-            setDoStatusEmphasys(0x15);
+            setDoStatusEmphasys(BUTTON_STATUS_GRAB);
         } else if (mProcVar3.field_0x300e == 0x44) {
             setSumouPunchStatus();
         }

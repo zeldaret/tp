@@ -626,14 +626,14 @@ int daAlink_c::procCanoeWait() {
         if (checkNoUpperAnime()) {
             if (mNormalSpeed < 3.0f && !checkFisingRodLure() && !checkCanoeSlider()) {
                 if (!setTalkStatus() && !checkStageName("F_SP127")) {
-                    setDoStatusEmphasys(0x16);
+                    setDoStatusEmphasys(BUTTON_STATUS_GET_OFF);
                 }
 
                 if (orderTalk(0) != 0) {
                     return 1;
                 }
 
-                if (doTrigger() && dComIfGp_getDoStatus() == 0x16) {
+                if (doTrigger() && dComIfGp_getDoStatus() == BUTTON_STATUS_GET_OFF) {
                     if (mEquipItem == 0x10B) {
                         return procCanoePaddlePutInit(1);
                     }
@@ -1345,7 +1345,7 @@ int daAlink_c::procCanoeBowSubjectInit() {
 }
 
 int daAlink_c::procCanoeBowSubject() {
-    setDoStatus(0x12);
+    setDoStatus(BUTTON_STATUS_BACK);
 
     s16 prev_shapeangle = shape_angle.y;
     s16 prev_angle = current.angle.y;
@@ -1374,7 +1374,7 @@ int daAlink_c::procCanoeBowMoveInit() {
 }
 
 int daAlink_c::procCanoeBowMove() {
-    setDoStatus(0x12);
+    setDoStatus(BUTTON_STATUS_BACK);
 
     if (canoeCommon()) {
         return 1;
@@ -1435,7 +1435,7 @@ int daAlink_c::procCanoeBoomerangSubject() {
     }
 
     if (checkBoomerangReadyAnime()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     s16 prev_shapeangle = shape_angle.y;
@@ -1475,7 +1475,7 @@ int daAlink_c::procCanoeBoomerangMove() {
     }
 
     if (checkBoomerangReadyAnime()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     if (canoeCommon()) {
@@ -1502,7 +1502,7 @@ int daAlink_c::procCanoeHookshotSubjectInit() {
 
 int daAlink_c::procCanoeHookshotSubject() {
     if (checkHookshotWait()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     s16 prev_shapeangle = shape_angle.y;
@@ -1540,7 +1540,7 @@ int daAlink_c::procCanoeHookshotMove() {
     cancelHookshotMove();
 
     if (checkHookshotWait()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     if (canoeCommon()) {

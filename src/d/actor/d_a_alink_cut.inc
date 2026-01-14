@@ -521,8 +521,8 @@ int daAlink_c::commonCutAction() {
         resetCombo(TRUE);
     }
 
-    if (dComIfGp_getDoStatus() == 4) {
-        setDoStatus(0);
+    if (dComIfGp_getDoStatus() == BUTTON_STATUS_PUT_AWAY) {
+        setDoStatus(BUTTON_STATUS_NONE);
     }
 
     mComboCutCount++;
@@ -1923,11 +1923,11 @@ int daAlink_c::procCutTurnMove() {
 
     if (mProcVar2.field_0x300c != 0) {
         if (checkDownAttackState() && !var_r4) {
-            setDoStatusEmphasys(0x30);
+            setDoStatusEmphasys(BUTTON_STATUS_FINISH);
         } else if (checkCutHeadState() && !var_r4) {
-            setDoStatusEmphasys(0x77);
+            setDoStatusEmphasys(BUTTON_STATUS_HELM_SPLITTER);
         } else {
-            setDoStatus(0x86);
+            setDoStatus(BUTTON_STATUS_UNK_134);
         }
     } else {
         field_0x307e = mpHIO->mCut.m.mComboDuration;
@@ -2338,11 +2338,11 @@ int daAlink_c::procCutLargeJumpCharge() {
     }
 
     if (checkDownAttackState()) {
-        setDoStatusEmphasys(0x30);
+        setDoStatusEmphasys(BUTTON_STATUS_FINISH);
     } else if (checkCutHeadState()) {
-        setDoStatusEmphasys(0x77);
+        setDoStatusEmphasys(BUTTON_STATUS_HELM_SPLITTER);
     } else {
-        setDoStatus(0x86);
+        setDoStatus(BUTTON_STATUS_UNK_134);
     }
 
     setSwordChargeVoiceSe();

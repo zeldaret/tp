@@ -453,9 +453,9 @@ int daAlink_c::procGuardAttack() {
 
     if (var_r29) {
         if (checkCutHeadState()) {
-            setDoStatusEmphasys(0x77);
+            setDoStatusEmphasys(BUTTON_STATUS_HELM_SPLITTER);
         } else {
-            setDoStatus(0x86);
+            setDoStatus(BUTTON_STATUS_UNK_134);
         }
     }
 

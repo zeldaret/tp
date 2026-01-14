@@ -224,10 +224,10 @@ int daAlink_c::procGrassWhistleWait() {
             }
         }
 
-        setGrassCancelStatus(0);
+        setGrassCancelStatus(BUTTON_STATUS_NONE);
     } else if (checkAnmEnd(&mUpperFrameCtrl[2])) {
-        setGrassCancelStatus(0x12);
-        setDoStatus(0x2C);
+        setGrassCancelStatus(BUTTON_STATUS_BACK);
+        setDoStatus(BUTTON_STATUS_BLOW);
 
         if (mProcVar2.field_0x300c == 3 || doTrigger()) {
             setSingleAnimeBaseMorf(ANM_GRASS_WHISTLE_PLAY, 0.0f);
@@ -258,7 +258,7 @@ int daAlink_c::procGrassWhistleWait() {
         }
     } else {
         #if VERSION != VERSION_SHIELD_DEBUG
-        setGrassCancelStatus(0);
+        setGrassCancelStatus(BUTTON_STATUS_NONE);
         #endif
     }
 
@@ -282,13 +282,13 @@ int daAlink_c::procCoHorseCallWaitInit(int param_0) {
         setSingleAnimeBaseSpeed(ANM_WAIT, mpHIO->mMove.m.mWaitAnmSpeed, 3.0f);
     }
 
-    setGrassCancelStatus(0);
+    setGrassCancelStatus(BUTTON_STATUS_NONE);
     dComIfGp_setPlayerStatus1(0, 0x4000000);
     return 1;
 }
 
 int daAlink_c::procCoHorseCallWait() {
-    setGrassCancelStatus(0);
+    setGrassCancelStatus(BUTTON_STATUS_NONE);
 
     mProcVar4.field_0x3010--;
     if (mProcVar4.field_0x3010 > 2 && dComIfGp_getHorseActor() != NULL) {
@@ -362,8 +362,8 @@ int daAlink_c::procHawkSubject() {
         dComIfGp_evmng_cutEnd(mAlinkStaffId);
     } else {
         fopAc_ac_c* temp_r29 = field_0x280c.getActor();
-        setGrassCancelStatus(0x12);
-        setDoStatus(0x31);
+        setGrassCancelStatus(BUTTON_STATUS_BACK);
+        setDoStatus(BUTTON_STATUS_SET_FREE);
 
         if (doTrigger()) {
             mProcVar2.field_0x300c = 2;

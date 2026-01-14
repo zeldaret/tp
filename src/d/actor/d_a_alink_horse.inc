@@ -553,9 +553,9 @@ void daAlink_c::getBaseHorseAnime(daAlink_c::daAlink_ANM* i_anmList) {
     if (checkHorseNoUpperAnime() || checkUpperHorseLieAnime()) {
         if (!dComIfGp_checkPlayerStatus0(0, 0x2000)) {
             if (checkShieldGet()) {
-                setRStatus(0xB);
+                setRStatus(BUTTON_STATUS_DEFEND);
             } else {
-                setRStatus(0x3E);
+                setRStatus(BUTTON_STATUS_COVER);
             }
 
             if (spActionButton()) {
@@ -703,7 +703,7 @@ int daAlink_c::setSyncHorse(int param_0) {
     {
         if (checkCowGame()) {
             if (checkHorseNoUpperAnime()) {
-                setDoStatus(40);
+                setDoStatus(BUTTON_STATUS_WHOOP);
 
                 if (doTrigger()) {
                     onResetFlg0(RFLG0_COW_GAME_LEASH);
@@ -714,7 +714,7 @@ int daAlink_c::setSyncHorse(int param_0) {
                 }
             }
         } else if (checkHorseDashAccept()) {
-            setDoStatus(9);
+            setDoStatus(BUTTON_STATUS_DASH);
 
             if (doTrigger()) {
                 field_0x3004 = mpHIO->mHorse.m.mWalkOutProhibitionTime;
@@ -848,7 +848,7 @@ int daAlink_c::setSyncBoar(int param_0) {
     }
 
     if (param_0 && boar->getWaitRollAngle() == 0 && checkHorseNoUpperAnime()) {
-        setDoStatus(9);
+        setDoStatus(BUTTON_STATUS_DASH);
         if (doTrigger()) {
             changeBoarRunRide();
         }
@@ -890,7 +890,7 @@ int daAlink_c::setSyncBoar(int param_0) {
 }
 
 int daAlink_c::setSyncRide(int param_0) {
-    if (param_0 && mMidnaTalkDelayTimer == 0 && dComIfGp_getDoStatus() == 0 &&
+    if (param_0 && mMidnaTalkDelayTimer == 0 && dComIfGp_getDoStatus() == BUTTON_STATUS_NONE &&
         (!checkHorseRide() || dComIfGp_getHorseActor()->getAnmIdx(0) != 7))
     {
         param_0 = TRUE;
@@ -1207,24 +1207,24 @@ int daAlink_c::checkHorseGetOffAndSetDoStatus() {
     if (!(fabsf(mRideAcKeep.getActor()->speedF) < 30.0f) || !setTalkStatus()) {
         if (checkHorseLieAnime()) {
             if (!checkSpecialHorseRide()) {
-                setDoStatus(0x32);
+                setDoStatus(BUTTON_STATUS_DISMOUNT);
             } else {
-                setDoStatus(0x8C);
+                setDoStatus(BUTTON_STATUS_UNK_140);
             }
         } else if ((checkHorseNoUpperAnime() || checkEquipAnime()) && mMidnaTalkDelayTimer == 0 && !checkInputOnR() && isGetOff) {
             if (mEquipItem == fpcNm_ITEM_NONE) {
                 off_direction = checkHorseGetOffDirection();
                 if ((off_direction != DIR_LEFT || (checkHorseRide() && horse->checkEnemySearch())) && field_0x2fb4 == 0) {
                     if (!checkSpecialHorseRide()) {
-                        setDoStatus(0x32);
+                        setDoStatus(BUTTON_STATUS_DISMOUNT);
                     } else {
-                        setDoStatus(0x8C);
+                        setDoStatus(BUTTON_STATUS_UNK_140);
                     }
                 }
             } else if (checkHorseRide() && !checkSpecialHorseRide() && field_0x2fb4 == 0 && horse->checkEnemySearch()) {
-                setDoStatus(0x32);
+                setDoStatus(BUTTON_STATUS_DISMOUNT);
             } else {
-                setDoStatus(4);
+                setDoStatus(BUTTON_STATUS_PUT_AWAY);
             }
         }
     }
@@ -1235,7 +1235,7 @@ int daAlink_c::checkHorseGetOffAndSetDoStatus() {
 int daAlink_c::setHorseGetOff(int param_0) {
     daHorse_c* horse_p = dComIfGp_getHorseActor();
 
-    if (dComIfGp_getDoStatus() == 0x32 && doTrigger()) {
+    if (dComIfGp_getDoStatus() == BUTTON_STATUS_DISMOUNT && doTrigger()) {
         if ((checkHorseRide() && horse_p->checkEnemySearch()) || checkHorseLieAnime()) {
             resetUpperAnime(UPPER_2, -1.0f);
             procBackJumpInit(0);
@@ -1702,10 +1702,10 @@ int daAlink_c::procHorseWait() {
                 f32 dist_xz2 = boar->current.pos.abs2XZ(current.pos);
 
                 if (temp_r28 > 0x800 && temp_r28 < 0x5000 && dist_xz2 < SQUARE(600.0f)) {
-                    setBStatus(0x2E);
+                    setBStatus(BUTTON_STATUS_CUT);
                 } else if (checkEndResetFlg0(ERFLG0_SINGLE_BOAR_AVOID)) {
-                    set3DStatus(0x2D, 5);
-                    setBStatus(0x2E);
+                    set3DStatus(BUTTON_STATUS_DODGE, 5);
+                    setBStatus(BUTTON_STATUS_CUT);
                 }
             }
         }
@@ -1748,9 +1748,9 @@ int daAlink_c::procHorseTurn() {
 
         if (checkHorseNoUpperAnime()) {
             if (checkShieldGet()) {
-                setRStatus(0xB);
+                setRStatus(BUTTON_STATUS_DEFEND);
             } else {
-                setRStatus(0x3E);
+                setRStatus(BUTTON_STATUS_COVER);
             }
 
             if (spActionButton()) {
@@ -1786,7 +1786,7 @@ int daAlink_c::procHorseTurn() {
                 return procCoLargeDamageInit(-4, TRUE, 0, 0, NULL, 0);
             }
         } else if (spActionButton() && !checkSpecialHorseRide()) {
-            setDoStatus(0x32);
+            setDoStatus(BUTTON_STATUS_DISMOUNT);
 
             if (doTrigger()) {
                 resetUpperAnime(UPPER_2, -1.0f);
@@ -2055,9 +2055,9 @@ int daAlink_c::procHorseCut() {
             checkCutAction();
         } else {
             if (checkShieldGet()) {
-                setRStatus(0xB);
+                setRStatus(BUTTON_STATUS_DEFEND);
             } else {
-                setRStatus(0x3E);
+                setRStatus(BUTTON_STATUS_COVER);
             }
 
             resetUpperAnime(UPPER_2, -1.0f);
@@ -2067,11 +2067,11 @@ int daAlink_c::procHorseCut() {
     } else {
         if (framectrl->getFrame() > field_0x3484) {
             if (checkShieldGet()) {
-                setRStatus(0xB);
+                setRStatus(BUTTON_STATUS_DEFEND);
             } else {
-                setRStatus(0x3E);
+                setRStatus(BUTTON_STATUS_COVER);
             }
-            resetCombo(1);
+            resetCombo(TRUE);
         }
         
         if (framectrl->getFrame() >= field_0x3478 && framectrl->getFrame() < field_0x347c) {
@@ -2283,7 +2283,7 @@ int daAlink_c::procHorseBowSubjectInit() {
 }
 
 int daAlink_c::procHorseBowSubject() {
-    setDoStatus(0x12);
+    setDoStatus(BUTTON_STATUS_BACK);
 
     if (!setSyncRidePos()) {
         return 1;
@@ -2314,7 +2314,7 @@ int daAlink_c::procHorseBowMoveInit() {
 }
 
 int daAlink_c::procHorseBowMove() {
-    setDoStatus(0x12);
+    setDoStatus(BUTTON_STATUS_BACK);
 
     if (!setSyncRidePos()) {
         return 1;
@@ -2389,7 +2389,7 @@ int daAlink_c::procHorseBoomerangSubject() {
     }
 
     if (checkBoomerangReadyAnime()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     if (!setSyncRidePos()) {
@@ -2431,7 +2431,7 @@ int daAlink_c::procHorseBoomerangMove() {
     }
 
     if (checkBoomerangReadyAnime()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     if (!setSyncRidePos()) {
@@ -2470,7 +2470,7 @@ int daAlink_c::procHorseHookshotSubjectInit() {
 
 int daAlink_c::procHorseHookshotSubject() {
     if (checkHookshotWait()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     if (!setSyncRidePos()) {
@@ -2510,7 +2510,7 @@ int daAlink_c::procHorseHookshotMove() {
     cancelHookshotMove();
 
     if (checkHookshotWait()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     if (!setSyncRidePos()) {
@@ -2712,7 +2712,7 @@ int daAlink_c::procHorseRun() {
             }
 
             if (mProcVar2.field_0x300c == 0) {
-                set3DStatus(0x7A, 4);
+                set3DStatus(BUTTON_STATUS_HOLD_ON, 4);
             }
         } else {
             if (mProcVar3.field_0x300e != 0) {
@@ -2722,7 +2722,7 @@ int daAlink_c::procHorseRun() {
             }
 
             if (mProcVar2.field_0x300c == 0) {
-                set3DStatus(0x7A, 1);
+                set3DStatus(BUTTON_STATUS_HOLD_ON, 1);
             }
         }
 
@@ -2765,7 +2765,7 @@ int daAlink_c::procHorseRun() {
             }
         }
     } else if (horse->getRodeoPointCnt() && horse->checkTurnStand()) {
-        setDoStatus(0x6F);
+        setDoStatus(BUTTON_STATUS_SEIZE);
 
         if (doTrigger()) {
             field_0x32cc = 1;

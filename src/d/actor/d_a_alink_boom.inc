@@ -357,7 +357,7 @@ void daAlink_c::setBoomerangSight() {
 
         daBoomerang_c* boomerang = (daBoomerang_c*)mItemAcKeep.getActor();
         if (boomerang->getLockReserve() || (check_line && !boomerang->getLockCntMax())) {
-            setItemActionButtonStatus(0x10);
+            setItemActionButtonStatus(BUTTON_STATUS_LOCK);
             itemActionTrigger();
         }
     }
@@ -384,7 +384,7 @@ int daAlink_c::procBoomerangSubject() {
     }
 
     if (checkBoomerangReadyAnime()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     setShapeAngleToAtnActor(0);

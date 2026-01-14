@@ -193,7 +193,7 @@ int daAlink_c::changeHangEndProc() {
         return procLandInit(0.0f);
     }
 
-    setDoStatus(0x33);
+    setDoStatus(BUTTON_STATUS_DROP_DOWN);
 
     if (doTrigger()) {
         speed.y = 0.0f;
@@ -988,7 +988,7 @@ int daAlink_c::procBossBodyHang() {
         }
     } else {
         if (boss->checkDownFlg() && mProcVar2.field_0x300c != 0) {
-            setDoStatusEmphasys(0x30);
+            setDoStatusEmphasys(BUTTON_STATUS_FINISH);
         }
 
         daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
@@ -1028,13 +1028,13 @@ int daAlink_c::procBossBodyHang() {
         }
 
         if (mProcVar2.field_0x300c != 0 &&
-            ((dComIfGp_getDoStatus() == 0x30 && doTrigger()) || swordSwingTrigger()))
+            ((dComIfGp_getDoStatus() == BUTTON_STATUS_FINISH && doTrigger()) || swordSwingTrigger()))
         {
             if (mEquipItem != 0x103) {
                 setSwordModel();
             }
 
-            if (dComIfGp_getDoStatus() == 0x30 && doTrigger()) {
+            if (dComIfGp_getDoStatus() == BUTTON_STATUS_FINISH && doTrigger()) {
                 if (field_0x32cc != 0) {
                     setSingleAnimeBaseMorf(ANM_DRAGON_CUT_FINAL, 3.0f);
                 } else {
@@ -1281,7 +1281,7 @@ int daAlink_c::setMoveBGLadderCorrect() {
 }
 
 int daAlink_c::checkLadderFall() {
-    setDoStatus(0x33);
+    setDoStatus(BUTTON_STATUS_DROP_DOWN);
 
     if (doTrigger()) {
         field_0x2f99 = 0;
@@ -2532,7 +2532,7 @@ int daAlink_c::commonRoofHangProc() {
         dComIfG_Bgsp().MoveBgTransPos(mPolyInfo2, true, &current.pos, &current.angle, &shape_angle);
     }
 
-    setDoStatus(0x33);
+    setDoStatus(BUTTON_STATUS_DROP_DOWN);
 
     if (doTrigger()) {
         return procFallInit(1, mpHIO->mAutoJump.m.mFallInterpolation);
@@ -2945,7 +2945,7 @@ int daAlink_c::procRoofSwitchHang() {
                                 mpHIO->mRoofHang.m.mStandbyInterp);
         mProcVar2.field_0x300c = 1;
     } else if (mProcVar2.field_0x300c != 0) {
-        setDoStatus(0x33);
+        setDoStatus(BUTTON_STATUS_DROP_DOWN);
 
         if (doTrigger()) {
             procFallInit(1, mpHIO->mAutoJump.m.mFallInterpolation);

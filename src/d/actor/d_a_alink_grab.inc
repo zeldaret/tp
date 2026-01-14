@@ -517,18 +517,18 @@ BOOL daAlink_c::checkNextActionGrab() {
     setCarryArmAngle(0.0f, 1.0f);
 
     if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == fopAc_attn_DOOR_e && fopAcM_CheckStatus(grabActor, fopAcM_STATUS_UNK_0x2000000)) {
-        setDoStatus(6);
+        setDoStatus(BUTTON_STATUS_OPEN);
     } else if ((field_0x27f4 == NULL) || !checkGrabTalkActor(field_0x27f4) || !setTalkStatus()) {
         if (checkModeFlg(0x400)) {
-            setDoStatus(0x13);
+            setDoStatus(BUTTON_STATUS_THROW);
         } else if ((!checkAttentionState() && mStickValue <= getGrabThrowRate()) || checkGrabNotThrow()) {
-            setDoStatus(0x14);
+            setDoStatus(BUTTON_STATUS_PLACE);
         } else {
-            setDoStatus(0x13);
+            setDoStatus(BUTTON_STATUS_THROW);
         }
     }
 
-    if (doTrigger() && dComIfGp_getDoStatus() == 6) {
+    if (doTrigger() && dComIfGp_getDoStatus() == BUTTON_STATUS_OPEN) {
         fopAcM_orderDoorEvent(this, field_0x27f4, 0, 0);
         return 1;
     }
@@ -546,11 +546,11 @@ BOOL daAlink_c::checkNextActionGrab() {
         )
     {
         int _; // probably a debug fakematch
-        if (dComIfGp_getDoStatus() == 0x14) {
+        if (dComIfGp_getDoStatus() == BUTTON_STATUS_PLACE) {
             return procGrabPutInit();
         }
 
-        if (dComIfGp_getDoStatus() == 0x13) {
+        if (dComIfGp_getDoStatus() == BUTTON_STATUS_THROW) {
             return procGrabThrowInit(0);
         }
     }
@@ -1366,7 +1366,7 @@ int daAlink_c::procPickPut() {
         } else {
             field_0x3198 = 0;
             itemActor->speedF = 0.0f;
-            deleteEquipItem(0, 0);
+            deleteEquipItem(FALSE, FALSE);
         }
     }
 
@@ -1392,10 +1392,10 @@ s16 daAlink_c::getChainStickAngleY(s16 param_0) const {
 u8 daAlink_c::checkChainEmphasys() {
     fopAc_ac_c* temp_r3 = field_0x2844.getActor();
     if (temp_r3 != NULL && fopAcM_GetName(temp_r3) == PROC_Obj_SwChain && !((daObjSwChain_c*)temp_r3)->checkDispEmphasis()) {
-        return 0;
+        return BUTTON_STATUS_FLAG_NONE;
     }
 
-    return 2;
+    return BUTTON_STATUS_FLAG_EMPHASIS;
 }
 
 BOOL daAlink_c::searchFmChainPos() {
@@ -1465,7 +1465,7 @@ int daAlink_c::procFmChainUpInit() {
 int daAlink_c::procFmChainUp() {
     daPy_frameCtrl_c* framectrl = &mUnderFrameCtrl[0];
 
-    setGrabStatus(0x96, 2);
+    setGrabStatus(BUTTON_STATUS_UNK_150, BUTTON_STATUS_FLAG_EMPHASIS);
     setShapeAngleToAtnActor(0);
 
     if (checkAnmEnd(framectrl) || (checkInputOnR() && framectrl->getFrame() > mpHIO->mItem.mFmChain.m.mGripAnm.mCancelFrame)) {
@@ -1505,7 +1505,7 @@ int daAlink_c::procFmChainStrongPullInit() {
 }
 
 int daAlink_c::procFmChainStrongPull() {
-    setGrabStatus(0x96, 2);
+    setGrabStatus(BUTTON_STATUS_UNK_150, BUTTON_STATUS_FLAG_EMPHASIS);
 
     if (checkAnmEnd(&mUnderFrameCtrl[0])) {
         if (mDemo.getDemoMode() == daPy_demo_c::DEMO_FM_CHAIN_STRONG_PULL_e) {
@@ -1691,7 +1691,7 @@ int daAlink_c::procCoPushPullWaitInit(int param_0) {
 
 int daAlink_c::procCoPushPullWait() {
     if (mProcVar4.field_0x3010 == 0) {
-        setWallGrabStatus(0x15, 2);
+        setWallGrabStatus(BUTTON_STATUS_GRAB, BUTTON_STATUS_FLAG_EMPHASIS);
     }
 
     setFrontWallType();
@@ -1788,7 +1788,7 @@ int daAlink_c::procCoPushMove() {
             setPushPullKeepData(dBgW::PPLABEL_PUSH, 0);
         }
     } else {
-        setWallGrabStatus(0x15, 2);
+        setWallGrabStatus(BUTTON_STATUS_GRAB, BUTTON_STATUS_FLAG_EMPHASIS);
 
         if (framectrl->checkPass(0.0f) || field_0x3198 != 0 || mProcVar5.field_0x3012 != 0) {
             if (!checkNoResetFlg0(FLG0_PUSH_PULL_KEEP)) {
@@ -1895,7 +1895,7 @@ int daAlink_c::procPullMoveInit(int param_0) {
 }
 
 int daAlink_c::procPullMove() {
-    setWallGrabStatus(0x15, 2);
+    setWallGrabStatus(BUTTON_STATUS_GRAB, BUTTON_STATUS_FLAG_EMPHASIS);
 
     int direction = getDirectionFromShapeAngle();
     int var_r30 = 0x160;
@@ -2073,7 +2073,7 @@ int daAlink_c::procGoatMove() {
                 }
 
                 if (sp14.z < 600.0f) {
-                    setDoStatusEmphasys(0x15);
+                    setDoStatusEmphasys(BUTTON_STATUS_GRAB);
                 }
             }
         } else if (sp14.z < -100.0f) {
@@ -2090,7 +2090,7 @@ int daAlink_c::procGoatMove() {
     mDoMtx_stack_c::YrotS(-shape_angle.y);
     mDoMtx_stack_c::multVecSR(&sp8, &sp8);
 
-    if (dComIfGp_getDoStatus() == 0x15 && mProcVar3.field_0x300e != 0) {
+    if (dComIfGp_getDoStatus() == BUTTON_STATUS_GRAB && mProcVar3.field_0x300e != 0) {
         if (sp14.z < 250.0f) {
             return procGoatCatchInit(temp_r3, sp8.x);
         }
@@ -2169,7 +2169,7 @@ int daAlink_c::procGoatCatchInit(fopAc_ac_c* i_actor, f32 param_1) {
 
         cXyz spC(sp18.x - (var_f31 * cM_ssin(temp_r28)), sp18.y, sp18.z - (var_f31 * cM_scos(temp_r28)));
         if (fopAcM_lc_c::lineCheck(&sp18, &spC, i_actor)) {
-            setDoStatus(0);
+            setDoStatus(BUTTON_STATUS_NONE);
             return 0;
         }
     
@@ -2342,7 +2342,7 @@ int daAlink_c::procGoatCatch() {
         return 1;
     }
 
-    setDoStatusEmphasys(0x15);
+    setDoStatusEmphasys(BUTTON_STATUS_GRAB);
 
     daAlink_ANM anm;
     int direction = getDirectionFromShapeAngle();
@@ -2517,7 +2517,7 @@ int daAlink_c::procGoronMove() {
     int temp_r28 = cLib_distanceAngleS(mMoveAngle, shape_angle.y);
 
     if (mAttention->getActionBtnB() != NULL && mAttention->getActionBtnB()->mType == fopAc_attn_CARRY_e) {
-        setDoStatus(0x91);
+        setDoStatus(BUTTON_STATUS_UNK_145);
 
         if (doTrigger()) {
             mProcVar3.field_0x300e = 1;

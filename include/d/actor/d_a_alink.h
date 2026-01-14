@@ -7182,18 +7182,18 @@ public:
         return 0;
     }
     virtual cXyz* getMagneBootsTopVec() { return &mMagneBootsTopVec; }
-    virtual void setCargoCarry(fopAc_ac_c* p_actor) {
+    virtual void setCargoCarry(fopAc_ac_c* i_actor) {
         mMode = SMODE_CARGO_CARRY;
-        mCargoCarryAcKeep.setData(p_actor);
+        mCargoCarryAcKeep.setData(i_actor);
     }
-    virtual void setGoronSideMove(fopAc_ac_c* p_actor) {
+    virtual void setGoronSideMove(fopAc_ac_c* i_actor) {
         mMode = SMODE_GORON_THROW;
-        mCargoCarryAcKeep.setData(p_actor);
+        mCargoCarryAcKeep.setData(i_actor);
     }
-    virtual void setSumouReady(fopAc_ac_c* p_actor) {
+    virtual void setSumouReady(fopAc_ac_c* i_actor) {
         mMode = SMODE_SUMO_READY;
-        mCargoCarryAcKeep.setData(p_actor);
-        mDemo.setDemoMode(1);
+        mCargoCarryAcKeep.setData(i_actor);
+        mDemo.setDemoMode(daPy_demo_c::DEMO_UNK_1_e);
     }
     virtual void setSumouPushBackDirection(s16 param_0) {
         if (mProcID != PROC_SUMOU_MOVE) {
@@ -7211,18 +7211,18 @@ public:
     virtual bool checkUseKandelaar(int);
     virtual void setDkCaught(fopAc_ac_c* i_dkActor);
     virtual void onPressedDamage(cXyz const&, s16);
-    virtual bool checkPriActorOwn(fopAc_ac_c const* p_actor) const {
-        return field_0x27f4 == p_actor;
+    virtual bool checkPriActorOwn(fopAc_ac_c const* i_actor) const {
+        return field_0x27f4 == i_actor;
     }
-    virtual bool onWolfEnemyBiteAll(fopAc_ac_c*, daPy_FLG2);
-    virtual bool checkWolfEnemyBiteAllOwn(fopAc_ac_c const* p_actor) const {
-        return field_0x281c.getActorConst() == p_actor;
+    virtual bool onWolfEnemyBiteAll(fopAc_ac_c* i_enemy, daPy_py_c::daPy_FLG2 i_flag);
+    virtual bool checkWolfEnemyBiteAllOwn(fopAc_ac_c const* i_actor) const {
+        return field_0x281c.getActorConst() == i_actor;
     }
-    virtual void setWolfEnemyHangBiteAngle(s16 angle) {
+    virtual void setWolfEnemyHangBiteAngle(s16 i_angle) {
         if (mProcID != PROC_WOLF_ENEMY_HANG_BITE) {
             return;
         }
-        mProcVar4.field_0x3010 = angle;
+        mProcVar4.field_0x3010 = i_angle;
     }
     virtual void setSumouGraspCancelCount(int param_0) {
         if (mProcID != PROC_SUMOU_MOVE) {
@@ -7290,10 +7290,10 @@ public:
     virtual bool checkDragonHangRide() const {
         return mProcID == PROC_BOSS_BODY_HANG && field_0x32cc != 0;
     }
-    virtual void playerStartCollisionSE(u32 param_0, u32 param_1) {
-        mZ2Link.startCollisionSE(param_0, param_1);
+    virtual void playerStartCollisionSE(u32 i_hitID, u32 i_mapinfo) {
+        mZ2Link.startCollisionSE(i_hitID, i_mapinfo);
     }
-    virtual void changeDragonActor(fopAc_ac_c*);
+    virtual void changeDragonActor(fopAc_ac_c* i_actor);
     virtual u8 getClothesChangeWaitTimer() const { return mClothesChangeWaitTimer; }
     virtual u8 getShieldChangeWaitTimer() const { return mShieldChangeWaitTimer; }
     virtual BOOL checkBootsOrArmorHeavy() const;
@@ -7303,15 +7303,15 @@ public:
 
     static BOOL checkDebugMoveInput();
 
-    u32 checkModeFlg(u32 pFlag) const { return mModeFlg & pFlag; }
+    u32 checkModeFlg(u32 i_flag) const { return mModeFlg & i_flag; }
 
     BOOL checkSmallUpperGuardAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_ATDEFS_e); }
     BOOL checkFmChainGrabAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_CHAIN_e) || checkUpperAnime(dRes_ID_ALANM_BCK_WL_CHAIN_e); }
 
     BOOL checkAttentionLock() { return mAttention->Lockon(); }
 
-    bool checkUpperAnime(u16 i_idx) const { return mUpperAnmHeap[UPPER_2].getIdx() == i_idx; }
-    bool checkUnderAnime(u16 i_idx) const { return mUnderAnmHeap[UNDER_2].getIdx() == i_idx; }
+    bool checkUpperAnime(u16 i_resIdx) const { return mUpperAnmHeap[UPPER_2].getIdx() == i_resIdx; }
+    bool checkUnderAnime(u16 i_resIdx) const { return mUnderAnmHeap[UNDER_2].getIdx() == i_resIdx; }
 
     bool checkNoSetUpperAnime() const { return mUpperAnmHeap[UPPER_2].checkNoSetIdx(); }
     bool checkSwimMoveHandAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_SWIMINGB_e); }
@@ -7335,7 +7335,7 @@ public:
     BOOL checkCutDashChargeAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_CUTDTP_e); }
     BOOL checkBoomerangAnimeAndReturnWait() const { return checkBoomerangAnime(); }
     BOOL checkTwoHandItemEquipAnime() const { return checkUpperAnime(dRes_ID_ALANM_BCK_TAKE_e); }
-    BOOL checkBarkAnime() const { return 0; }
+    BOOL checkBarkAnime() const { return FALSE; }
     bool checkWolfGrabAnimeObj() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WL_PICKUPA_e); }
     bool checkWolfGrabAnimeStick() const { return checkUpperAnime(dRes_ID_ALANM_BCK_WL_PICKUPB_e); }
     BOOL checkWolfGrabAnime() const { return checkWolfGrabAnimeObj() || checkWolfGrabAnimeStick(); }
@@ -7406,8 +7406,8 @@ public:
     void setFaceDemoBtp(u16 i_resIdx) { setFaceBtp(i_resIdx, FALSE, 0); }
     void setFaceDemoBtk(u16 i_resIdx) { setFaceBtk(i_resIdx, FALSE, 0); }
 
-    void setGrabStatus(u8 i_status, u8 param_1) { setWallGrabStatus(i_status, param_1); }
-    void setChainGrabStatus(u8 i_status) { setGrabStatus(i_status, 2); }
+    void setGrabStatus(u8 i_status, u8 i_flag) { setWallGrabStatus(i_status, i_flag); }
+    void setChainGrabStatus(u8 i_status) { setGrabStatus(i_status, BUTTON_STATUS_FLAG_EMPHASIS); }
 
     void cancelFmChainGrabFromOut() {
         field_0x2fa3 = 0;
@@ -7524,12 +7524,12 @@ public:
     }
 
     bool checkFisingRodJewl() const {
-        return (mEquipItem == 0x5C || mEquipItem == 0x5F) || mEquipItem == 0x5E;
+        return (mEquipItem == fpcNm_ITEM_JEWEL_ROD || mEquipItem == fpcNm_ITEM_JEWEL_WORM_ROD) || mEquipItem == fpcNm_ITEM_JEWEL_BEE_ROD;
     }
 
-    bool checkFisingRodWorm() const { return mItemMode == 0x74; }
+    bool checkFisingRodWorm() const { return mItemMode == fpcNm_ITEM_WORM; }
 
-    bool checkFisingRodBee() const { return mItemMode == 0x76; }
+    bool checkFisingRodBee() const { return mItemMode == fpcNm_ITEM_BEE_CHILD; }
 
     void fishingCastWaitAnimeStart() {
         if (mProcID == PROC_FISHING_CAST) {
@@ -7555,11 +7555,11 @@ public:
     f32 getCopyRodBallDisFlyMax() const { return mSearchBallScale; }
 
     void clearIronBallActor() { field_0x173c.SetActor(this); }
-    BOOL checkCanoeRideOwn(const fopAc_ac_c* param_0) const {
-        return checkCanoeRide() && mRideAcKeep.getActorConst() == param_0;
+    BOOL checkCanoeRideOwn(const fopAc_ac_c* i_actor) const {
+        return checkCanoeRide() && mRideAcKeep.getActorConst() == i_actor;
     }
-    BOOL checkBoarRideOwn(const fopAc_ac_c* i_actorP) const {
-        return checkBoarRide() && mRideAcKeep.getActorConst() == i_actorP;
+    BOOL checkBoarRideOwn(const fopAc_ac_c* i_actor) const {
+        return checkBoarRide() && mRideAcKeep.getActorConst() == i_actor;
     }
     u32 checkWolfDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
     bool checkWolfLieWaterIn() const { return mWaterY > current.pos.y + 20.5f; }
@@ -7608,9 +7608,9 @@ public:
         return mNowAnmPackUnder[i_idx].getAnmTransform();
     }
     BOOL doButton() const { return mItemButton & BTN_A; }
-    void setGrassCancelStatus(u8 param_0) { setBStatus(param_0); }
+    void setGrassCancelStatus(u8 i_status) { setBStatus(i_status); }
 
-    void seStartSystem(u32 i_seID) { mDoAud_seStart(i_seID, NULL, 0, 0); }
+    void seStartSystem(u32 i_soundID) { mDoAud_seStart(i_soundID, NULL, 0, 0); }
     bool checkIronBallEquip() const { return mEquipItem == fpcNm_ITEM_IRONBALL; }
     BOOL checkFishingRodEquip() const { return checkFishingRodItem(mEquipItem); }
 
@@ -7730,8 +7730,8 @@ public:
         return mDemo.getDemoMode() == 14 && mDemo.getParam0() == 2;
     }
 
-    bool checkSpinnerRideOwn(const fopAc_ac_c* param_0) {
-        return checkSpinnerRide() && mRideAcKeep.getActorConst() == param_0;
+    bool checkSpinnerRideOwn(const fopAc_ac_c* i_actor) {
+        return checkSpinnerRide() && mRideAcKeep.getActorConst() == i_actor;
     }
 
     BOOL checkSpinnerReady() const { return mProcID == PROC_SPINNER_READY; }
@@ -8388,9 +8388,9 @@ public:
     /* 0x03850 */ daAlink_procFunc mpProcFunc;
 };  // Size: 0x385C
 
-static bool daAlink_checkLightBallA(fopAc_ac_c* p_actor);
-static bool daAlink_checkLightBallB(fopAc_ac_c* p_actor);
-static fopAc_ac_c* daAlink_searchCoach(fopAc_ac_c* param_0, void* param_1);
+static bool daAlink_checkLightBallA(fopAc_ac_c* i_actor);
+static bool daAlink_checkLightBallB(fopAc_ac_c* i_actor);
+static fopAc_ac_c* daAlink_searchCoach(fopAc_ac_c* i_actor, void* param_1);
 
 struct daAlink_cutParamTbl {
     /* 0x0 */ daAlink_c::daAlink_ANM m_anmID;
@@ -8414,10 +8414,10 @@ struct daAlink_cutHorseParamTbl {
 inline BOOL dComIfGs_isTransformLV(int i_no);
 inline BOOL dComIfGs_isEventBit(const u16);
 
-static fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* param_0, void* param_1);
-static fopAc_ac_c* daAlink_searchCanoe(fopAc_ac_c* param_0, void* param_1);
-static void* daAlink_searchBoar(fopAc_ac_c* param_0, void* param_1);
-static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* p_actor, void* param_1);
+static fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* i_actor, void* i_data);
+static fopAc_ac_c* daAlink_searchCanoe(fopAc_ac_c* i_actor, void* i_data);
+static void* daAlink_searchBoar(fopAc_ac_c* i_actor, void* i_data);
+static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* i_actor, void* i_data);
 
 inline daAlink_c* daAlink_getAlinkActorClass() {
     return (daAlink_c*)dComIfGp_getLinkPlayer();

@@ -558,7 +558,7 @@ BOOL daAlink_c::wolfClawTrigger() {
 }
 
 void daAlink_c::setWolfDigStatus(u8 i_flag) {
-    dComIfGp_setYStatus(13, i_flag);
+    dComIfGp_setYStatus(BUTTON_STATUS_DIG, i_flag);
 }
 
 BOOL daAlink_c::checkWolfShapeReverse() const {
@@ -4391,7 +4391,7 @@ int daAlink_c::procWolfRopeMove() {
             return 1;
         }
     } else if (mTargetedActor != NULL) {
-        setDoStatus(0x8B);
+        setDoStatus(BUTTON_STATUS_UNK_139);
 
         if (doTrigger()) {
             return procWolfJumpAttackInit(1);
@@ -4623,7 +4623,7 @@ int daAlink_c::procWolfRopeHang() {
 
     f32 temp_f31 = framectrl->getFrame();
     if (mProcVar3.field_0x300e == 0 || temp_f31 < 22.0f) {
-        setDoStatus(0x33);
+        setDoStatus(BUTTON_STATUS_DROP_DOWN);
 
         if (doTrigger()) {
             rope->setCoCancelTimer();
@@ -5079,7 +5079,7 @@ int daAlink_c::procWolfTagJump() {
             }
 
             field_0x3738 = *tag->getLockPos();
-            setDoStatus(0x93);
+            setDoStatus(BUTTON_STATUS_UNK_147);
 
             cLib_addCalcAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &field_0x3738), 2, 0x2000, 0x800);
             current.angle.y = shape_angle.y;
@@ -5191,7 +5191,7 @@ int daAlink_c::procWolfTagJumpLand() {
         field_0x3738 = *wljump_p->getLockPos();
 
         if (frameCtrl_p->getFrame() > mpHIO->mWolf.mWlPoint.m.mTagLandingAnm.mCancelFrame) {
-            setDoStatus(0x93);
+            setDoStatus(BUTTON_STATUS_UNK_147);
 
             if (doTrigger()) {
                 return procWolfTagJumpInit(field_0x280c.getActor());
@@ -5270,7 +5270,7 @@ int daAlink_c::procWolfGiantPuzzle() {
     if (!checkNoResetFlg0(FLG0_UNK_4000) && mProcVar2.field_0x300c == shape_angle.y &&
         mMode != 0x28 && checkZeroSpeedF())
     {
-        setDoStatusEmphasys(0x1C);
+        setDoStatusEmphasys(BUTTON_STATUS_SPEAK);
 
         if (doTrigger()) {
             fopAc_ac_c* giant_p = (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchGiantTalk, NULL);
@@ -5341,7 +5341,7 @@ int daAlink_c::changeWolfHangEndProc() {
     if (current.pos.y < (field_0x33d8 + var_f1) - 1.0f) {
         return procWolfLandInit();
     } else {
-        setDoStatus(0x33);
+        setDoStatus(BUTTON_STATUS_DROP_DOWN);
 
         if (doTrigger()) {
             current.pos.x -= cM_ssin(shape_angle.y) * 50.0f;
@@ -6483,7 +6483,7 @@ int daAlink_c::decideDoStatusSwimWolf() {
     }
 
     if (field_0x27f4 != NULL && fopAcM_GetName(field_0x27f4) == PROC_Obj_Drop) {
-        setDoStatus(0x39);
+        setDoStatus(BUTTON_STATUS_UNK_57);
         if (doTrigger()) {
             fopAcM_setCarryNow(field_0x27f4, 0);
             onResetFlg0(RFLG0_GRAB_UP_START);
@@ -6491,7 +6491,7 @@ int daAlink_c::decideDoStatusSwimWolf() {
     } else if (checkNoResetFlg0(FLG0_SWIM_UP) && field_0x30d2 == 0 && !checkWolfSwimDashAnime() &&
                mProcID == PROC_WOLF_SWIM_MOVE)
     {
-        setDoStatus(9);
+        setDoStatus(BUTTON_STATUS_DASH);
 
         if (doTrigger()) {
             onNoResetFlg1(FLG1_DASH_MODE);
@@ -8667,7 +8667,7 @@ int daAlink_c::procWolfChainUp() {
     daPy_frameCtrl_c* frameCtrl = mUnderFrameCtrl;
 
     #if PLATFORM_GCN
-    setWallGrabStatus(0x96, 2);
+    setWallGrabStatus(BUTTON_STATUS_UNK_150, BUTTON_STATUS_FLAG_EMPHASIS);
     #endif
 
     if (checkAnmEnd(frameCtrl) ||

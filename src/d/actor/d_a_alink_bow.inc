@@ -159,7 +159,7 @@ void daAlink_c::changeArrowType() {
         return;
     }
 
-    setItemActionButtonStatus(0x11);
+    setItemActionButtonStatus(BUTTON_STATUS_SWITCH);
 
     if (arrowChangeTrigger()) {
         if (mEquipItem == fpcNm_ITEM_HAWK_ARROW) {
@@ -569,7 +569,7 @@ int daAlink_c::procBowSubjectInit() {
 }
 
 int daAlink_c::procBowSubject() {
-    setDoStatus(0x12);
+    setDoStatus(BUTTON_STATUS_BACK);
     if (!checkNextAction(0) && setBodyAngleToCamera()) {
         setBowSight();
     }

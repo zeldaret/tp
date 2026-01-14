@@ -1397,7 +1397,7 @@ int daAlink_c::procHookshotSubjectInit() {
 
 int daAlink_c::procHookshotSubject() {
     if (checkHookshotWait()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     setShapeAngleToAtnActor(0);
@@ -1720,7 +1720,7 @@ int daAlink_c::procHookshotRoofWait() {
     }
 
     if (!checkHookshotRoofLv7Boss() || !checkBootsOrArmorHeavy()) {
-        setDoStatusEmphasys(1);
+        setDoStatusEmphasys(BUTTON_STATUS_LET_GO);
 
         if (doTrigger()) {
             return procFallInit(1, 5.0f);
@@ -1785,7 +1785,7 @@ int daAlink_c::procHookshotRoofShootInit(fopAc_ac_c* param_0) {
 
 int daAlink_c::procHookshotRoofShoot() {
     if (checkHookshotWait()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     if (commonHookshotRoofWait()) {
@@ -1878,7 +1878,7 @@ int daAlink_c::procHookshotRoofBoots() {
     }
 
     if (!checkHookshotRoofLv7Boss() || !checkBootsOrArmorHeavy()) {
-        setDoStatusEmphasys(1);
+        setDoStatusEmphasys(BUTTON_STATUS_LET_GO);
 
         if (doTrigger()) {
             return procFallInit(1, 5.0f);
@@ -1984,7 +1984,7 @@ int daAlink_c::procHookshotWallWait() {
         return 1;
     }
 
-    setDoStatusEmphasys(1);
+    setDoStatusEmphasys(BUTTON_STATUS_LET_GO);
 
     if (doTrigger()) {
         return procFallInit(1, 5.0f);
@@ -2042,7 +2042,7 @@ int daAlink_c::procHookshotWallShootInit() {
 
 int daAlink_c::procHookshotWallShoot() {
     if (checkHookshotWait()) {
-        setDoStatus(0x12);
+        setDoStatus(BUTTON_STATUS_BACK);
     }
 
     if (commonHookshotWallWait()) {
