@@ -2129,7 +2129,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_scene_exit"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_set_bgobj"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_swhit0"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_allmato"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_allmato"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_camera"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_chkpoint"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_event"), # TODO: this is part of Rframework in ShieldD
