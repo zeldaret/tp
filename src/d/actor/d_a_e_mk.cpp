@@ -2886,7 +2886,7 @@ static int daE_MK_Create(fopAc_ac_c* i_actor) {
         mk->sound.init(&i_actor->current.pos, &i_actor->eyePos, 3, 1);
         mk->atInfo.mpSound = &mk->sound;
 
-        i_actor->attention_info.distances[2] = 4;
+        i_actor->attention_info.distances[fopAc_attn_BATTLE_e] = 4;
 
         mk->stts.Init(0xFF, 0, i_actor);
         mk->tgSph.Set(cc_sph_src);

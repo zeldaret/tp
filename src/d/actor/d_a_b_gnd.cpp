@@ -4787,7 +4787,7 @@ static int daB_GND_Create(fopAc_ac_c* a_this) {
             l_HIO.no = mDoHIO_CREATE_CHILD("ガノンドロフ", &l_HIO);
         }
 
-        a_this->attention_info.distances[2] = 36;
+        a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 36;
 
         fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -400.0f, -200.0f, -400.0f);

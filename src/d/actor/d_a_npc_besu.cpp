@@ -1049,9 +1049,9 @@ void daNpc_Besu_c::setParam() {
         }
     }
 
-    attention_info.distances[0] = daNpcT_getDistTableIdx(att_dist, att_ang);
-    attention_info.distances[1] = attention_info.distances[0];
-    attention_info.distances[3] = daNpcT_getDistTableIdx(talk_dist, talk_ang);
+    attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(att_dist, att_ang);
+    attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+    attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_dist, talk_ang);
     attention_info.flags = att_flags;
 
     scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale,

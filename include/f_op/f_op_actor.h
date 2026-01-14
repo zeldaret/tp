@@ -91,38 +91,47 @@ enum fopAc_attention_type {
     /* 0x2 */ fopAc_attn_BATTLE_e,
 
 #if !PLATFORM_GCN
-    fopAc_attn_UNK_3,
-    fopAc_attn_UNK_4,
-    fopAc_attn_UNK_5,
+    /* 0x3 */ fopAc_attn_UNK_3,
+    /* 0x4 */ fopAc_attn_UNK_4,
+    /* 0x5 */ fopAc_attn_UNK_5,
 #endif
 
-    /* 0x3 */ fopAc_attn_SPEAK_e,
-    /* 0x4 */ fopAc_attn_CARRY_e,
-    /* 0x5 */ fopAc_attn_DOOR_e,
-    /* 0x6 */ fopAc_attn_JUEL_e,
+    /* 0x3 (0x6) */ fopAc_attn_SPEAK_e,
+    /* 0x4 (0x7) */ fopAc_attn_CARRY_e,
+    /* 0x5 (0x8) */ fopAc_attn_DOOR_e,
+    /* 0x6 (0x9) */ fopAc_attn_JUEL_e,
 
 #if !PLATFORM_GCN
-    fopAc_attn_UNK_10,
+    /* 0xA */ fopAc_attn_UNK_10,
 #endif
 
-    /* 0x7 */ fopAc_attn_ETC_e,
-    /* 0x8 */ fopAc_attn_CHECK_e,
+    /* 0x7 (0xB) */ fopAc_attn_ETC_e,
+    /* 0x8 (0xC) */ fopAc_attn_CHECK_e,
 
     fopAc_attn_MAX_e,
 };
 
 enum fopAc_AttentionFlag_e {
-    /* 0x00000001 */ fopAc_AttnFlag_LOCK_e   = (1 << fopAc_attn_LOCK_e),
-    /* 0x00000002 */ fopAc_AttnFlag_TALK_e   = (1 << fopAc_attn_TALK_e),
-    /* 0x00000004 */ fopAc_AttnFlag_BATTLE_e = (1 << fopAc_attn_BATTLE_e),
+    /* 0x00000001 */ fopAc_AttnFlag_LOCK_e      = (1 << fopAc_attn_LOCK_e),
+    /* 0x00000002 */ fopAc_AttnFlag_TALK_e      = (1 << fopAc_attn_TALK_e),
+    /* 0x00000004 */ fopAc_AttnFlag_BATTLE_e    = (1 << fopAc_attn_BATTLE_e),
 
-    /* 0x00000008 */ fopAc_AttnFlag_SPEAK_e  = (1 << fopAc_attn_SPEAK_e),
-    /* 0x00000010 */ fopAc_AttnFlag_CARRY_e  = (1 << fopAc_attn_CARRY_e),
-    /* 0x00000020 */ fopAc_AttnFlag_DOOR_e   = (1 << fopAc_attn_DOOR_e),
-    /* 0x00000040 */ fopAc_AttnFlag_JUEL_e   = (1 << fopAc_attn_JUEL_e),
-    /* 0x00000080 */ fopAc_AttnFlag_ETC_e    = (1 << fopAc_attn_ETC_e),
+#if !PLATFORM_GCN
+    /* 0x00000008 */ fopAc_AttnFlag_UNK_3_e     = (1 << fopAc_attn_UNK_3),
+    /* 0x00000010 */ fopAc_AttnFlag_UNK_4_e     = (1 << fopAc_attn_UNK_4),
+    /* 0x00000020 */ fopAc_AttnFlag_UNK_5_e     = (1 << fopAc_attn_UNK_5),
+#endif
 
-    /* 0x00000100 */ fopAc_AttnFlag_CHECK_e  = (1 << fopAc_attn_CHECK_e),
+    /* 0x00000008 (0x00000040) */ fopAc_AttnFlag_SPEAK_e    = (1 << fopAc_attn_SPEAK_e),
+    /* 0x00000010 (0x00000080) */ fopAc_AttnFlag_CARRY_e    = (1 << fopAc_attn_CARRY_e),
+    /* 0x00000020 (0x00000100) */ fopAc_AttnFlag_DOOR_e     = (1 << fopAc_attn_DOOR_e),
+    /* 0x00000040 (0x00000200) */ fopAc_AttnFlag_JUEL_e     = (1 << fopAc_attn_JUEL_e),
+#if !PLATFORM_GCN
+    /* 0x00000400 */ fopAc_AttnFlag_UNK_10_e                = (1 << fopAc_attn_UNK_10),
+#endif
+    /* 0x00000080 (0x00000800) */ fopAc_AttnFlag_ETC_e      = (1 << fopAc_attn_ETC_e),
+
+    /* 0x00000100 (0x00001000) */ fopAc_AttnFlag_CHECK_e    = (1 << fopAc_attn_CHECK_e),
 
     /* 0x00200000 */ fopAc_AttnFlag_UNK_0x200000   = 0x200000,
     /* 0x00400000 */ fopAc_AttnFlag_UNK_0x400000   = 0x400000,

@@ -1278,7 +1278,7 @@ int daE_TT_c::create() {
                 l_HIO.id = mDoHIO_CREATE_CHILD("テクタイト", &l_HIO);  // Tektite
             }
 
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
             fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
             fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);

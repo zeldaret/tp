@@ -953,9 +953,9 @@ void daObj_GrA_c::setParam() {
     } else if (mMode == 1) {
         if (checkProcess(&daObj_GrA_c::standWaitJump)) {
             attnSttsOn(1, 1);
-            attention_info.distances[0] = getDistTableIdx(6, 6);
-            attention_info.distances[1] = attention_info.distances[0];
-            attention_info.distances[3] = getDistTableIdx(4, 6);
+            attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(6, 6);
+            attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+            attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(4, 6);
         } else {
             attention_info.flags = 0;
         }

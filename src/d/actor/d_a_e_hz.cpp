@@ -1634,7 +1634,7 @@ void daE_HZ_c::action() {
         setActionMode(ACTION_WATER_DEATH);
     }
 
-    attention_info.flags = 4;
+    attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     field_0x566 = 1;
 
     switch (mAction) {
