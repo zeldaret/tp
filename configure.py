@@ -2140,7 +2140,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_kmsg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_lantern"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mist"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_msg"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_msg"), # TODO: this is part of Rframework in ShieldD
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_push"),
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_telop"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tbox"),
