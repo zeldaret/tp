@@ -2138,7 +2138,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evtmsg"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_howl"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_kmsg"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_lantern"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_lantern"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mist"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_msg"), # TODO: this is part of Rframework in ShieldD
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_push"),
