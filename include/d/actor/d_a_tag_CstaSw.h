@@ -14,7 +14,7 @@ public:
     int Draw();
     int Delete();
 
-    u8 getSw() { return fopAcM_GetParamBit(this, 0, 8); }
+    u32 getSw() { return fopAcM_GetParamBit(this, 0, 8); }
 
 private:
     /* 0x568 */ u8 mSwitch;
@@ -29,7 +29,7 @@ public:
 
     void genMessage(JORMContext*);
 
-    u8 unk_0x4;
+    u8 show_range;
 };
 
 #endif /* D_A_TAG_CSTASW_H */
