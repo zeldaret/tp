@@ -2136,7 +2136,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evt"), # debug extra weak fns
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evtarea"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evtmsg"), # debug weak func order
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_howl"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_howl"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_kmsg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_lantern"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mist"), # debug weak func order
