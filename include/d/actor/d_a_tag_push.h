@@ -14,14 +14,14 @@ public:
     int isDelete();
     int chkPointInArea(cXyz);
 
-    int getId() {
+    u32 getId() {
         u16 id = (fopAcM_GetParam(this) & 0xFF000000) >> 24;
-        return (id == 0xFF) ? -1 : id;
+        return id == 0xFF ? -1 : id;
     }
 
     u8 getBitSW() { return fopAcM_GetParam(this) & 0xFF; }
 
-    u8 getBitSW2() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
+    u8 getBitSW2() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
 
     u32 getFlowNodeNo() {
         if (home.angle.x != 0xFFFF) {
