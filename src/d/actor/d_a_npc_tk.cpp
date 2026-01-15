@@ -3136,7 +3136,7 @@ int daNPC_TK_c::_delete() {
 }
 
 static int daNPC_TK_Delete(daNPC_TK_c* i_this) {
-    UNUSED(("Delete -> NPC_TK(id=%d)\n", fopAcM_GetID(i_this)));
+    fopAcM_RegisterDeleteID (i_this, "NPC_TK");
     return i_this->_delete();
 }
 
