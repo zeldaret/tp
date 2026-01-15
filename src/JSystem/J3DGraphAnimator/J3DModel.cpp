@@ -148,8 +148,8 @@ s32 J3DModel::createMatPacket(J3DModelData* pModelData, u32 mdlFlags) {
         } else {
             if (pModelData->getModelDataType() == 1) {
                 if (mdlFlags & J3DMdlFlag_UseSingleDL) {
-                    matPacket->mpDisplayListObj = materialNode->getSharedDisplayListObj();
-                    matPacket->setDisplayListObj(matPacket->mpDisplayListObj);
+                    J3DDisplayListObj* dlobj = materialNode->getSharedDisplayListObj();
+                    matPacket->setDisplayListObj(dlobj);
                 } else {
                     J3DDisplayListObj* dlobj = materialNode->getSharedDisplayListObj();
                     ret = dlobj->single_To_Double();

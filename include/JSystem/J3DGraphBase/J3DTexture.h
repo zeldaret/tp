@@ -18,7 +18,9 @@ private:
     /* 0x4 */ ResTIMG* mpRes;
 
 public:
-    J3DTexture(u16 num, ResTIMG* res) : mNum(num), unk_0x2(0), mpRes(res) {}
+    J3DTexture(u16 num, ResTIMG* res) : mNum(num), unk_0x2(0), mpRes(res) {
+        J3D_ASSERT_NULLPTR(52, res && num);
+    }
 
     void loadGX(u16, GXTexMapID) const;
     void entryNum(u16);

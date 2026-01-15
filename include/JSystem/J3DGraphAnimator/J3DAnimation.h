@@ -693,6 +693,17 @@ public:
     virtual s32 getKind() const { return 7; }
     virtual void getColor(u8, u16, GXColor*) const {}
 
+    u16 getAnmTableNum(u8 idx) {
+        J3D_ASSERT_RANGE(1333, idx < 2);
+        return mAnmTableNum[idx];
+    }
+
+    J3DAnmVtxColorIndexData* getAnmVtxColorIndexData(u8 p1, u16 p2) {
+        J3D_ASSERT_RANGE(1339, p1 < 2);
+        J3D_ASSERT_RANGE(1340, p2 < mAnmTableNum[p1]);
+        return mAnmVtxColorIndexData[p1] + p2;
+    }
+
     /* 0x0C */ u16 mAnmTableNum[2];
     /* 0x10 */ J3DAnmVtxColorIndexData* mAnmVtxColorIndexData[2];
 };  // Size: 0x18
@@ -897,7 +908,7 @@ public:
  */
 class J3DAnmVisibilityFull : public J3DAnmBase {
 public:
-    J3DAnmVisibilityFull() : J3DAnmBase(0) {
+    J3DAnmVisibilityFull() : J3DAnmBase() {
         mUpdateMaterialNum = 0;
         field_0xe = 0;
         mAnmTable = NULL;
