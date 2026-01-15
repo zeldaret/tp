@@ -2777,7 +2777,7 @@ BOOL daNpcChat_c::CreateHeap() {
 }
 
 int daNpcChat_c::Delete() {
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_CHAT");
     this->~daNpcChat_c();
     return 1;
 }

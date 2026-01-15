@@ -431,7 +431,7 @@ int daNpc_ykW_c::CreateHeap() {
 
 int daNpc_ykW_c::Delete() {
     OS_REPORT("|%06d:%x|daNpc_ykW_c -> Delete\n", g_Counter.mCounter0, this);
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_YKW");
     this->~daNpc_ykW_c();
     return 1;
 }

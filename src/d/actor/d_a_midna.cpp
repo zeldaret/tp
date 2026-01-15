@@ -664,9 +664,8 @@ cPhs__Step daMidna_c::create() {
 }
 
 static cPhs__Step daMidna_Create(fopAc_ac_c* i_this) {
-    daMidna_c* actor = (daMidna_c*)i_this;
-    fpc_ProcID id = fopAcM_GetID(i_this);
-    return actor->create();
+    fopAcM_RegisterCreateID(daMidna_c, i_this, "MIDNA");
+    return a_this->create();
 }
 
 void daMidna_c::allAnimePlay() {
@@ -3578,7 +3577,7 @@ daMidna_c::~daMidna_c() {
 }
 
 static int daMidna_Delete(daMidna_c* i_this) {
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "MIDNA");
     i_this->~daMidna_c();
     return 1;
 }

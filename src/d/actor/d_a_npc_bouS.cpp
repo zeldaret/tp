@@ -416,7 +416,7 @@ int daNpcBouS_c::CreateHeap() {
 }
 
 int daNpcBouS_c::Delete() {
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_BOU_S");
     this->~daNpcBouS_c();
     return 1;
 }

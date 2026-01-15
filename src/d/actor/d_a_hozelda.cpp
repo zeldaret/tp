@@ -242,8 +242,7 @@ int daHoZelda_c::create() {
 }
 
 static int daHoZelda_Create(fopAc_ac_c* i_this) {
-    daHoZelda_c* a_this = (daHoZelda_c*)i_this;
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterCreateID(daHoZelda_c, i_this, "HOZELDA");
     return a_this->create();
 }
 
@@ -269,7 +268,7 @@ daHoZelda_c::~daHoZelda_c() {
 }
 
 static int daHoZelda_Delete(daHoZelda_c* i_this) {
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "HOZELDA");
     i_this->~daHoZelda_c();
     return 1;
 }

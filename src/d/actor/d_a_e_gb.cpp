@@ -1544,10 +1544,8 @@ static int daE_GB_IsDelete(e_gb_class* i_this) {
 }
 
 static int daE_GB_Delete(e_gb_class* i_this) {
-    "Delete -> E_GB(id=%d)\n";
-
     fopEn_enemy_c* actor = &i_this->actor;
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_GB");
 
     dComIfG_resDelete(&i_this->phase, "E_gb");
     if (i_this->hioInit != 0) {

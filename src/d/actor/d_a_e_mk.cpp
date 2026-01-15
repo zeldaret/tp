@@ -2774,7 +2774,7 @@ static int daE_MK_IsDelete(e_mk_class* i_this) {
 
 static int daE_MK_Delete(e_mk_class* i_this) {
     fopEn_enemy_c* actor = (fopEn_enemy_c*)&i_this->actor;
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_MK");
 
     dComIfG_resDelete(&i_this->phase, "E_mk");
     if (i_this->hioInit != 0) {

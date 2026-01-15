@@ -1283,7 +1283,7 @@ int daE_BG_c::_delete() {
 }
 
 static int daE_BG_Delete(daE_BG_c* i_this) {
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_BG");
     return i_this->_delete();
 }
 

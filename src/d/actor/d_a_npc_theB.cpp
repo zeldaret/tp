@@ -326,7 +326,7 @@ int daNpcTheB_c::CreateHeap() {
 }
 
 int daNpcTheB_c::Delete() {
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_THEB");
     this->~daNpcTheB_c();
     return 1;
 }

@@ -5470,7 +5470,7 @@ static int daE_WB_IsDelete(e_wb_class* i_this) {
 
 static int daE_WB_Delete(e_wb_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    fpc_ProcID unused = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_WB");
     dComIfG_resDelete(&i_this->mPhase, i_this->mResName);
     if (i_this->field_0x17e0 != 0) {
         hio_set = false;

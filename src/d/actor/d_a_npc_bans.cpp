@@ -517,7 +517,7 @@ int daNpc_Bans_c::CreateHeap() {
 
 int daNpc_Bans_c::Delete() {
     OS_REPORT("|%06d:%x|daNpc_Bans_c -> Delete\n", g_Counter.mCounter0, this);
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_BANS");
     this->~daNpc_Bans_c();
     return 1;
 }

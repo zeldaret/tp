@@ -1407,6 +1407,7 @@ static int daObj_Brg_IsDelete(obj_brg_class* i_this) {
 }
 
 static int daObj_Brg_Delete(obj_brg_class* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "Obj_Brg");
     dComIfG_resDelete(&i_this->mPhase, "Obj_brg");
 
     if (i_this->mpBgW != NULL) {
@@ -1600,7 +1601,7 @@ static int CallbackCreateHeap(fopAc_ac_c* i_this) {
         }
     }
 
-    OS_REPORT("BGSV SET 1! \n");
+    OS_REPORT("BGSV SET 1!\n");
 
     a_this->mpBgW = new dBgWSv();
     if (a_this->mpBgW == NULL) {
@@ -1631,14 +1632,13 @@ static int CallbackCreateHeap(fopAc_ac_c* i_this) {
 }
 
 static int daObj_Brg_Create(fopAc_ac_c* i_this) {
-    obj_brg_class* a_this = (obj_brg_class*)i_this;
     int phase_state;
     dPath* path;
     dPnt* pnt;
     int sp54;
     br_s* part;
     int loop, sp60, brno, iter;
-    int fop_id = fopAcM_GetID(i_this);
+    fopAcM_RegisterCreateID(obj_brg_class, i_this, "Obj_Brg");
     fopAcM_ct(i_this, obj_brg_class);
 
     phase_state = dComIfG_resLoad(&a_this->mPhase, "Obj_brg");

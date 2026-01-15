@@ -1393,7 +1393,7 @@ static int daE_HM_IsDelete(daE_HM_c* i_this) {
 }
 
 static int daE_HM_Delete(daE_HM_c* i_this) {
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_HM");
     return i_this->Delete();
 }
 

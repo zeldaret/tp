@@ -1341,6 +1341,7 @@ daBoomerang_c::~daBoomerang_c() {
 }
 
 static int daBoomerang_Delete(daBoomerang_c* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "Boomerang");
     i_this->~daBoomerang_c();
     return 1;
 }

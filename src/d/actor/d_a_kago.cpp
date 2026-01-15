@@ -3712,7 +3712,7 @@ int daKago_c::_delete() {
 }
 
 static int daKago_Delete(daKago_c* i_this) {
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "Kago");
     return i_this->_delete();
 }
 

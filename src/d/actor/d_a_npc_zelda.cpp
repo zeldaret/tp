@@ -285,7 +285,7 @@ int daNpc_Zelda_c::CreateHeap() {
 
 int daNpc_Zelda_c::Delete() {
     OS_REPORT("|%06d:%x|daNpc_Zelda_c -> Delete\n", g_Counter.mCounter0, this);
-    fpc_ProcID unusedId = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_ZELDA");
     this->~daNpc_Zelda_c();
     return 1;
 }

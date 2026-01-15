@@ -1299,7 +1299,7 @@ static int daE_YG_IsDelete(e_yg_class* i_this) {
 
 static int daE_YG_Delete(e_yg_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_YG");
 
     dComIfG_resDelete(&i_this->mPhase, "E_YG");
 
