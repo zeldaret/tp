@@ -664,7 +664,8 @@ cPhs__Step daMidna_c::create() {
 }
 
 static cPhs__Step daMidna_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daMidna_c, i_this, "MIDNA");
+    daMidna_c* a_this = (daMidna_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "MIDNA");
     return a_this->create();
 }
 

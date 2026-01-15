@@ -1180,14 +1180,14 @@ static int daObjSwChain_Execute(daObjSwChain_c* i_this) {
 }
 
 static int daObjSwChain_Delete(daObjSwChain_c* i_this) {
-    fpc_ProcID unused = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "SwChain");
     return i_this->_delete();
 }
 
-static int daObjSwChain_Create(fopAc_ac_c* a_this) {
-    daObjSwChain_c* i_this = (daObjSwChain_c*)a_this;
-    fpc_ProcID unused = fopAcM_GetID(a_this);
-    return i_this->create1st();
+static int daObjSwChain_Create(fopAc_ac_c* i_this) {
+    daObjSwChain_c* a_this = (daObjSwChain_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "SwChain");
+    return a_this->create1st();
 }
 
 static actor_method_class l_daObjSwChain_Method = {

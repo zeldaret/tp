@@ -88,7 +88,8 @@ static int daCowdoor_Delete(daCowdoor_c* i_this) {
 }
 
 static int daCowdoor_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daCowdoor_c, i_this, "Cowdoor");
+    daCowdoor_c* a_this = (daCowdoor_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "Cowdoor");
     return a_this->create();
 }
 

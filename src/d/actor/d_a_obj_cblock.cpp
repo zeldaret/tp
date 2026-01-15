@@ -379,7 +379,8 @@ static int daObjCBlk_Delete(daObjCBlk_c* i_this) {
 }
 
 static int daObjCBlk_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daObjCBlk_c, i_this, "ChainBlock");
+    daObjCBlk_c* a_this = (daObjCBlk_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "ChainBlock");
     return a_this->create();
 }
 

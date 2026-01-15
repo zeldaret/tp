@@ -1632,13 +1632,14 @@ static int CallbackCreateHeap(fopAc_ac_c* i_this) {
 }
 
 static int daObj_Brg_Create(fopAc_ac_c* i_this) {
+    obj_brg_class* a_this = (obj_brg_class*)i_this;
     int phase_state;
     dPath* path;
     dPnt* pnt;
     int sp54;
     br_s* part;
     int loop, sp60, brno, iter;
-    fopAcM_RegisterCreateID(obj_brg_class, i_this, "Obj_Brg");
+    fopAcM_RegisterCreateID(i_this, "Obj_Brg");
     fopAcM_ct(i_this, obj_brg_class);
 
     phase_state = dComIfG_resLoad(&a_this->mPhase, "Obj_brg");

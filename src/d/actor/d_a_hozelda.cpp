@@ -242,7 +242,8 @@ int daHoZelda_c::create() {
 }
 
 static int daHoZelda_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daHoZelda_c, i_this, "HOZELDA");
+    daHoZelda_c* a_this = (daHoZelda_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "HOZELDA");
     return a_this->create();
 }
 

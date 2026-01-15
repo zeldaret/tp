@@ -12,26 +12,23 @@
 #include "f_pc/f_pc_manager.h"
 #include "m_Do/m_Do_hostIO.h"
 
-#define fopAcM_ct(ptr, ClassName)                                                          \
-    if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) {                                            \
-        new (ptr) ClassName();                                                                     \
-        fopAcM_OnCondition(ptr, fopAcCnd_INIT_e);                                                  \
+#define fopAcM_ct(ptr, ClassName)                                           \
+    if (!fopAcM_CheckCondition(ptr, fopAcCnd_INIT_e)) {                     \
+        new (ptr) ClassName();                                              \
+        fopAcM_OnCondition(ptr, fopAcCnd_INIT_e);                           \
     }
 
-#define fopAcM_RegisterDeleteID(i_this, actor_name_str)                                            \
-    const fpc_ProcID procID = fopAcM_GetID(i_this);                                                \
-    "Delete -> " actor_name_str "(id=%d)\n"
+#define fopAcM_RegisterDeleteID(i_this, actor_name_str)                     \
+    ("Delete -> " actor_name_str "(id=%d)\n", fopAcM_GetID(i_this))
 
-#define fopAcM_RegisterCreateID(actor_class, i_this, actor_name_str)                               \
-    actor_class* a_this = static_cast<actor_class*>(i_this);                                       \
-    const fpc_ProcID procID = fopAcM_GetID(i_this);                                                \
-    "Create -> " actor_name_str "(id=%d)\n"
+#define fopAcM_RegisterCreateID(i_this, actor_name_str)                     \
+    ("Create -> " actor_name_str "(id=%d)\n", fopAcM_GetID(i_this))
 
-#define fopAcM_RegisterDelete(i_this, actor_name_str) "Delete -> " actor_name_str "\n"
+#define fopAcM_RegisterDelete(i_this, actor_name_str)                       \
+    ("Delete -> " actor_name_str "\n")
 
-#define fopAcM_RegisterCreate(actor_class, i_this, actor_name_str)                                 \
-    static_cast<actor_class*>(i_this);                                                             \
-    "Create -> " actor_name_str "\n"
+#define fopAcM_RegisterCreate(i_this, actor_name_str)                       \
+    ("Create -> " actor_name_str "\n")
 
 class J3DModelData;  // placeholder
 class JKRHeap;

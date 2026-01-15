@@ -791,7 +791,8 @@ int daHorse_c::create() {
 }
 
 static int daHorse_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daHorse_c, i_this, "HORSE");
+    daHorse_c* a_this = (daHorse_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "HORSE");
     return a_this->create();
 }
 

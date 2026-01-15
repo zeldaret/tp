@@ -167,7 +167,8 @@ int daCanoe_c::create() {
 }
 
 static int daCanoe_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daCanoe_c, i_this, "Canoe");
+    daCanoe_c* a_this = (daCanoe_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "Canoe");
     return a_this->create();
 }
 

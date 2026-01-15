@@ -1399,7 +1399,7 @@ static int daE_SM2_IsDelete(e_sm2_class* i_this) {
 
 static int daE_SM2_Delete(e_sm2_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
-    fpc_ProcID id = fopAcM_GetID(&i_this->enemy);
+    fopAcM_RegisterDeleteID(&i_this->enemy, "E_SM2");
 
     #if DEBUG
     l_HIO.removeHIO(i_this->enemy);

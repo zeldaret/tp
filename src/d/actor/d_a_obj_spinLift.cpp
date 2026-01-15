@@ -262,14 +262,14 @@ static int daSpinLift_Execute(daSpinLift_c* i_this) {
 }
 
 static int daSpinLift_Delete(daSpinLift_c* i_this) {
-    fpc_ProcID proc_id = fopAcM_GetID(i_this);
+    fopAcM_RegisterCreateID(i_this, "daSpinLift");
     return i_this->MoveBGDelete();
 }
 
-static int daSpinLift_Create(fopAc_ac_c* a_this) {
-    daSpinLift_c* i_this = (daSpinLift_c*)a_this;
-    fpc_ProcID proc_id = fopAcM_GetID(a_this);
-    return i_this->create();
+static int daSpinLift_Create(fopAc_ac_c* i_this) {
+    daSpinLift_c* a_this = (daSpinLift_c*)i_this;
+    fopAcM_RegisterDeleteID(i_this, "daSpinLift");
+    return a_this->create();
 }
 
 static actor_method_class l_daSpinLift_Method = {

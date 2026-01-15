@@ -990,7 +990,7 @@ static int daE_BU_IsDelete(e_bu_class* i_this) {
 
 static int daE_BU_Delete(e_bu_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
-    fpc_ProcID id = fopAcM_GetID(actor);
+    fopAcM_RegisterDeleteID(actor, "E_BU");
     dComIfG_resDelete(&i_this->phase, "E_BU");
 
     if (i_this->HIOInit != 0) {

@@ -705,7 +705,8 @@ int daE_DF_c::Create() {
 }
 
 static int daE_DF_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daE_DF_c, i_this, "E_DF");
+    daE_DF_c* a_this = (daE_DF_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "E_DF");
     return a_this->Create();
 }
 
