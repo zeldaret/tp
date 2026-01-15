@@ -1351,7 +1351,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DGrafContext.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTevs.cpp"),
-            Object(Equivalent, "JSystem/J2DGraph/J2DMaterial.cpp"), # weak func order
+            Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DMaterial.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DMatBlock.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DMaterialFactory.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPrint.cpp"),
