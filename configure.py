@@ -2131,7 +2131,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_swhit0"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_allmato"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_camera"), # debug extra weak fns
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_chkpoint"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_chkpoint"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_event"), # TODO: this is part of Rframework in ShieldD
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evt"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_evtarea"),
