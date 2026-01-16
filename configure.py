@@ -2233,7 +2233,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_lv2prchk"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_magne"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mhint"), # debug weak func order
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mstop"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_mstop"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_spring"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_statue_evt"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_ykgr"),
