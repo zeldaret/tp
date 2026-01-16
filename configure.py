@@ -2815,7 +2815,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_swTime"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_Lv6Gate"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_Lv7Gate"), # debug weak func order
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_Lv8Gate"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_Lv8Gate"), # debug .data + weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_TWgate"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_lv6CstaSw"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_assistance"),
