@@ -163,7 +163,7 @@ int daObjFallObj_c::Execute(Mtx** i_mtx) {
         check1 = 1;
     }
     if (check1 && dVar12 - KREG_F(4) < dVar13) {
-        check2 = 1;#
+        check2 = 1;
     }
     if (check2 && dVar14 < 2150.0f - KREG_F(5)) {
         check3 = 1;
