@@ -613,13 +613,13 @@ int daE_OC_c::getCutType() {
         case daPy_py_c::CUT_TYPE_NM_STAB:
         case daPy_py_c::CUT_TYPE_NM_RIGHT:
         case daPy_py_c::CUT_TYPE_FINISH_STAB:
-        case daPy_py_c::CUT_TYPE_DASH_UNK_26:
+        case daPy_py_c::CUT_TYPE_DASH_RIGHT:
         case daPy_py_c::CUT_TYPE_NM_VERTICAL:
             return 0;
         case daPy_py_c::CUT_TYPE_COMBO_STAB:
-        case daPy_py_c::CUT_TYPE_HORSE_UNK_22:
-        case daPy_py_c::CUT_TYPE_HORSE_UNK_23:
-        case daPy_py_c::CUT_TYPE_DASH_UNK_25:
+        case daPy_py_c::CUT_TYPE_HORSE_LEFT_A:
+        case daPy_py_c::CUT_TYPE_HORSE_LEFT_B:
+        case daPy_py_c::CUT_TYPE_DASH_LEFT:
         case daPy_py_c::CUT_TYPE_NM_LEFT:
             return 1;
         default:

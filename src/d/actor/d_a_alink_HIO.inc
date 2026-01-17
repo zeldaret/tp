@@ -12,124 +12,132 @@
 static void daAlinkHIO_setAnmGenMessage(daAlinkHIO_anm_c* i_anmP, JORMContext* ctx, char* param_3,
                                         f32 param_4, int param_5) {
     size_t sVar1;
-    char acStack_94[100];
+    char labelbuf[100];
 
     sVar1 = strlen(param_3);
-    sprintf(acStack_94, param_3);
+    sprintf(labelbuf, param_3);
 
     // A Speed
-    sprintf(acStack_94 + sVar1, "Ａ速度");
-    ctx->genSlider(acStack_94, &i_anmP->mSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    sprintf(labelbuf + sVar1, "Ａ速度");
+    ctx->genSlider(labelbuf, &i_anmP->mSpeed, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     // Starting F
-    sprintf(acStack_94 + sVar1, "開始Ｆ");
-    ctx->genSlider(acStack_94, &i_anmP->mStartFrame, 0.0f, param_4, 0, NULL, 0xffff, 0xffff, 0x200,
+    sprintf(labelbuf + sVar1, "開始Ｆ");
+    ctx->genSlider(labelbuf, &i_anmP->mStartFrame, 0.0f, param_4, 0, NULL, 0xffff, 0xffff, 0x200,
                    0x18);
 
     // Ending F
-    sprintf(acStack_94 + sVar1, "終了Ｆ");
-    ctx->genSlider(acStack_94, &i_anmP->mEndFrame, 0, param_4, 0, NULL, 0xffff, 0xffff, 0x200,
+    sprintf(labelbuf + sVar1, "終了Ｆ");
+    ctx->genSlider(labelbuf, &i_anmP->mEndFrame, 0, param_4, 0, NULL, 0xffff, 0xffff, 0x200,
                    0x18);
 
     if (param_5 != 0) {
-        sprintf(acStack_94 + sVar1, "ＣＦ");
-        ctx->genSlider(acStack_94, &i_anmP->mCancelFrame, -1.0f, param_4 + 1.0f, 0, NULL, 0xffff,
+        sprintf(labelbuf + sVar1, "ＣＦ");
+        ctx->genSlider(labelbuf, &i_anmP->mCancelFrame, -1.0f, param_4 + 1.0f, 0, NULL, 0xffff,
                        0xffff, 0x200, 0x18);
     }
 
     // Interpolation
-    sprintf(acStack_94 + sVar1, "補間");
-    ctx->genSlider(acStack_94, &i_anmP->mInterpolation, 0.0f, 20.0f, 0, NULL, 0xffff, 0xffff, 0x200,
+    sprintf(labelbuf + sVar1, "補間");
+    ctx->genSlider(labelbuf, &i_anmP->mInterpolation, 0.0f, 20.0f, 0, NULL, 0xffff, 0xffff, 0x200,
                    0x18);
 }
 
 static void daAlinkHIO_setReverseAnmGenMessage(daAlinkHIO_anm_c* i_anmP, JORMContext* ctx,
                                                char* param_3, f32 param_4, int param_5) {
     size_t sVar1;
-    char acStack_94[100];
+    char labelbuf[100];
 
     sVar1 = strlen(param_3);
-    sprintf(acStack_94, param_3);
+    sprintf(labelbuf, param_3);
 
     // A Speed
-    sprintf(acStack_94 + sVar1, "Ａ速度");
-    ctx->genSlider(acStack_94, &i_anmP->mSpeed, -10.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    sprintf(labelbuf + sVar1, "Ａ速度");
+    ctx->genSlider(labelbuf, &i_anmP->mSpeed, -10.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 
     // Starting F
-    sprintf(acStack_94 + sVar1, "開始Ｆ");
-    ctx->genSlider(acStack_94, &i_anmP->mEndFrame, 0, param_4, 0, NULL, 0xffff, 0xffff, 0x200,
+    sprintf(labelbuf + sVar1, "開始Ｆ");
+    ctx->genSlider(labelbuf, &i_anmP->mEndFrame, 0, param_4, 0, NULL, 0xffff, 0xffff, 0x200,
                    0x18);
 
     // Ending F
-    sprintf(acStack_94 + sVar1, "終了Ｆ");
-    ctx->genSlider(acStack_94, &i_anmP->mStartFrame, 0.0f, param_4, 0, NULL, 0xffff, 0xffff, 0x200,
+    sprintf(labelbuf + sVar1, "終了Ｆ");
+    ctx->genSlider(labelbuf, &i_anmP->mStartFrame, 0.0f, param_4, 0, NULL, 0xffff, 0xffff, 0x200,
                    0x18);
 
     if (param_5 != 0) {
-        sprintf(acStack_94 + sVar1, "ＣＦ");
-        ctx->genSlider(acStack_94, &i_anmP->mCancelFrame, -1.0f, param_4 + 1.0f, 0, NULL, 0xffff,
+        sprintf(labelbuf + sVar1, "ＣＦ");
+        ctx->genSlider(labelbuf, &i_anmP->mCancelFrame, -1.0f, param_4 + 1.0f, 0, NULL, 0xffff,
                        0xffff, 0x200, 0x18);
     }
 
     // Interpolation
-    sprintf(acStack_94 + sVar1, "補間");
-    ctx->genSlider(acStack_94, &i_anmP->mInterpolation, 0.0f, 20.0f, 0, NULL, 0xffff, 0xffff, 0x200,
+    sprintf(labelbuf + sVar1, "補間");
+    ctx->genSlider(labelbuf, &i_anmP->mInterpolation, 0.0f, 20.0f, 0, NULL, 0xffff, 0xffff, 0x200,
                    0x18);
 }
 
-// DEBUG NONMATCHING - regalloc + extra mr instruction
-void daAlinkHIO_data_c::setStructData(char* param_1) {
-    u8* pfVar2;
-    u8* pfVar4;
+void daAlinkHIO_data_c::setStructData(char* o_data) {
+    int i, j;
+    s16* ps16data;
+    f32* pf32data;
+    daAlinkHIO_anm_c* panmdata;
+    u8* pu8data;
 
-    sprintf(param_1 + strlen(param_1), m_name_string);
-    pfVar2 = (u8*)mp_data;
+    // open struct data string
+    sprintf(o_data + strlen(o_data), m_name_string);
+    panmdata = (daAlinkHIO_anm_c*)mp_data;
 
-    for (int i = 0; i < m_anm_num; i++) {
-        sprintf(param_1 + strlen(param_1), "\t{\n");
-        pfVar4 = pfVar2;
+    // create daAlinkHIO_anm_c data string
+    for (i = 0; i < m_anm_num; i++) {
+        sprintf(o_data + strlen(o_data), "\t{\n");
 
-        for (int i = 0; i < 2; i++) {
-            sprintf(param_1 + strlen(param_1), "\t\t%d,\n", *(s16*)pfVar4);
-            pfVar4 += 2;
+        ps16data = (s16*)panmdata;
+        for (j = 0; j < 2; j++) {
+            sprintf(o_data + strlen(o_data), "\t\t%d,\n", *ps16data);
+            ps16data++;
         }
 
-        pfVar4 = pfVar2;
-
-        for (int i = 0; i < 4; i++) {
-            sprintf(param_1 + strlen(param_1), "\t\t%ff,\n", *(f32*)pfVar4);
-            pfVar4 += 4;
+        pf32data = (f32*)ps16data;
+        for (j = 0; j < 4; j++) {
+            sprintf(o_data + strlen(o_data), "\t\t%ff,\n", *pf32data);
+            pf32data++;
         }
 
-        pfVar2 += 0x14;
-        sprintf(param_1 + strlen(param_1), "\t},\n");
+        panmdata++;
+        sprintf(o_data + strlen(o_data), "\t},\n");
     }
 
-    pfVar4 = pfVar2;
-
-    for (int i = 0; i < m_u8_num; i++) {
-        sprintf(param_1 + strlen(param_1), "\t%d,\n", *(u8*)pfVar2);
-        pfVar2++;
+    // create u8 data string
+    pu8data = (u8*)panmdata;
+    for (i = 0; i < m_u8_num; i++) {
+        sprintf(o_data + strlen(o_data), "\t%d,\n", *pu8data);
+        pu8data++;
     }
 
-    for (int i = 0; i < m_s16_num; i++) {
-        sprintf(param_1 + strlen(param_1), "\t%d,\n", *(s16*)pfVar2);
-        pfVar2 += 2;
+    // create s16 data string
+    ps16data = (s16*)pu8data;
+    for (i = 0; i < m_s16_num; i++) {
+        sprintf(o_data + strlen(o_data), "\t%d,\n", *ps16data);
+        ps16data++;
     }
 
-    for (int i = 0; i < m_f32_num; i++) {
-        sprintf(param_1 + strlen(param_1), "\t%ff,\n", *(f32*)pfVar2);
-        pfVar2 += 4;
+    // create f32 data string
+    pf32data = (f32*)ps16data;
+    for (i = 0; i < m_f32_num; i++) {
+        sprintf(o_data + strlen(o_data), "\t%ff,\n", *pf32data);
+        pf32data++;
     }
 
-    sprintf(param_1 + strlen(param_1), "};\n\n");
+    // close struct data string
+    sprintf(o_data + strlen(o_data), "};\n\n");
 }
 
 daAlinkHIO_data_c* l_HIO_before;
 daAlinkHIO_data_c* l_HIO_top;
 
 void daAlinkHIO_data_c::checkDataSize() {
-    u32 dataSize = (m_u8_num + m_anm_num * 0x14) + (m_s16_num * 2) + (m_f32_num * 4);
+    u32 dataSize = (m_u8_num + m_anm_num * sizeof(daAlinkHIO_anm_c)) + (m_s16_num * sizeof(s16)) + (m_f32_num * sizeof(f32));
     JUT_ASSERT(188, dataSize == m_len);
 
     if (l_HIO_before != NULL) {
@@ -146,49 +154,65 @@ void daAlinkHIO_data_c::baseCopy() {
     cLib_memCpy(mp_data, mp_src_data, m_len);
 }
 
-// DEBUG NONMATCHING
 void daAlinkHIO_data_c::update() {
+    int i, j;
+    s16* ps16data;
+    u8* pu8data;
+    f32* pf32data;
+    daAlinkHIO_anm_c* panmdata;
+
     baseCopy();
+
     JORMContext* ctx = attachJORMContext(8);
     ctx->startUpdateNode(this);
-    u8* local_20 = (u8*)mp_data;
 
-    for (int i = 0; i < m_anm_num; i++) {
-        ctx->updateSlider(2, (s16*)local_20, 0, 0, 0);
+    panmdata = (daAlinkHIO_anm_c*)mp_data;
+    for (i = 0; i < m_anm_num; i++) {
+        ps16data = (s16*)panmdata;
+        ctx->updateSlider(2, ps16data, 0, 0, 0);
+        ps16data++;
+        ps16data++;
 
-        for (int j = 0; j < 4; local_20 += 4, j++) {
-            ctx->updateSlider(2, (f32*)local_20, 0.0f, 0.0f, 0);
+        pf32data = (f32*)ps16data;
+        for (j = 0; j < 4; j++) {
+            ctx->updateSlider(2, pf32data, 0.0f, 0.0f, 0);
+            pf32data++;
         }
+
+        panmdata++;
     }
 
-    for (int i = 0; i < f14; i++) {
-        ctx->updateCheckBox(2, local_20, 1, 0);
+    pu8data = (u8*)panmdata;
+    for (i = 0; i < f14; i++) {
+        ctx->updateCheckBox(2, pu8data, 1, 0);
+        pu8data++;
     }
 
-    for (int i = 0; i < f18; i++) {
-        ctx->updateComboBox(2, local_20, 0);
-        // local_20++;
+    for (i = 0; i < f18; i++) {
+        ctx->updateComboBox(2, pu8data, 0);
+        pu8data++;
     }
 
-    for (int i = 0; i < (m_u8_num - f14 + f18); i++) {
-        // local_20++;
+    int spC = m_u8_num - (f14 + f18);
+    for (i = 0; i < spC; i++) {
+        pu8data++;
     }
 
-    int iVar1 = f1c;
-    int iVar3 = m_s16_num;
-
-    for (int i = 0; i < iVar3 - iVar1; i++) {
-        ctx->updateSlider(2, (s16*)local_20, 0, 0, 0);
-        // local_20 += 2;
+    ps16data = (s16*)pu8data;
+    int sp8 = m_s16_num - f1c;
+    for (i = 0; i < sp8; i++) {
+        ctx->updateSlider(2, ps16data, 0, 0, 0);
+        ps16data++;
     }
 
-    for (int i = 0; i < f1c; i++) {
-        // local_20 += 2;
+    for (i = 0; i < f1c; i++) {
+        ps16data++;
     }
 
-    for (int i = 0; i < m_f32_num; i++) {
-        ctx->updateSlider(2, (f32*)local_20, 0.0f, 0.0f, 0);
-        // local_20 += 4;
+    pf32data = (f32*)ps16data;
+    for (i = 0; i < m_f32_num; i++) {
+        ctx->updateSlider(2, pf32data, 0.0f, 0.0f, 0);
+        pf32data++;
     }
 
     ctx->endUpdateNode();
@@ -5812,9 +5836,9 @@ void daAlinkHIO_c::jumpStateUpdate(const cXyz* param_0, const cXyz* param_1, f32
     JORMContext* ctx = attachJORMContext(8);
     ctx->startUpdateNode(this);
     sprintf(buf, "水平距離 %-8.3f", JMAFastSqrt(xDiff * xDiff + zDiff * zDiff));
-    ctx->updateLabel(2, 0x4000006, buf);
+    ctx->updateLabel(2, PROPERTY_JUMP_HDIST_DISP_e, buf);
     sprintf(buf, "最頂点   %-8.3f", param_2);
-    ctx->updateLabel(2, 0x4000007, buf);
+    ctx->updateLabel(2, PROPERTY_JUMP_VDIST_DISP_e, buf);
     ctx->endUpdateNode();
     releaseJORMContext(ctx);
 }
@@ -5823,15 +5847,15 @@ void daAlinkHIO_c::genMessage(JORMContext* ctx) {
     // ------ Info Display ------
     ctx->genLabel("------情報表示------", 0x4000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Horizontal Distance
-    ctx->genLabel("水平距離", 0x4000006, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("水平距離", PROPERTY_JUMP_HDIST_DISP_e, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Vertical Distance
-    ctx->genLabel("最頂点", 0x4000007, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    // Reset
-    ctx->genButton("位置", 0x4000002, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("最頂点", PROPERTY_JUMP_VDIST_DISP_e, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    // Position
+    ctx->genButton("位置", PROPERTY_POS_DISP_e, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Save to File
-    ctx->genButton("ファイルに保存", 0x4000004, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("ファイルに保存", PROPERTY_SAVE_FILE_e, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Load File
-    ctx->genButton("ファイル読込", 0x4000005, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genButton("ファイル読込", PROPERTY_LOAD_FILE_e, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
     // Basic
     ctx->genNode("基本", &mBasic, 0, 0);
     // Move
@@ -5880,51 +5904,49 @@ void daAlinkHIO_c::genMessage(JORMContext* ctx) {
     ctx->genNode("狼", &mWolf, 0, 0);
 }
 
-void daAlinkHIO_c::readFileData(char* param_0) {
-    int src;
+void daAlinkHIO_c::readFileData(char* o_fileData) {
+    int position;
     daAlinkHIO_data_c* top;
-    src = 0;
 
+    position = 0;
     for (top = l_HIO_top; top != NULL; top = top->mpNext) {
-        cLib_memCpy(top->mp_src_data, param_0 + src, top->m_len);
+        cLib_memCpy(top->mp_src_data, o_fileData + position, top->m_len);
         top->update();
-        src += top->m_len;
+        position += top->m_len;
     }
 }
 
-size_t daAlinkHIO_c::makeFileOutData(char* param_0, char* param_1) {
-    size_t sVar1;
-    int iVar2;
+size_t daAlinkHIO_c::makeFileOutData(char* o_fileData, char* o_structData) {
+    int position;
     daAlinkHIO_data_c* top;
-    iVar2 = 0;
 
+    position = 0;
     for (top = l_HIO_top; top != NULL; top = top->mpNext) {
-        cLib_memCpy(param_0 + iVar2, top->mp_data, top->m_len);
-        iVar2 += top->m_len;
+        cLib_memCpy(o_fileData + position, top->mp_data, top->m_len);
+        position += top->m_len;
     }
 
-    param_0[iVar2] = 10;
-    iVar2++;
+    o_fileData[position] = '\n';
+    position++;
     top = l_HIO_top;
-    *param_1 = 0;
+    *o_structData = 0;
 
     for (; top != NULL; top = top->mpNext) {
-        top->setStructData(param_1);
+        top->setStructData(o_structData);
     }
 
-    cLib_memCpy(param_0 + iVar2, param_1, strlen(param_1));
-    return iVar2 + strlen(param_1);
+    cLib_memCpy(o_fileData + position, o_structData, strlen(o_structData));
+    return position + strlen(o_structData);
 }
 
 void daAlinkHIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     JORReflexible::listenPropertyEvent(event);
-    JORFile aJStack_168;
+    JORFile file;
 
     switch ((u32)event->id) {
-    case 0x4000002: {
-        OS_REPORT("X = %f, Y = %f, Z = %f,\n", player->current.pos.x, player->current.pos.y,
-                  player->current.pos.z);
+    case PROPERTY_POS_DISP_e: {
+        OS_REPORT("X = %f, Y = %f, Z = %f,\n", player->current.pos.x, player->current.pos.y, player->current.pos.z);
         OS_REPORT("SHAPE_ANGLE = %x, %d\n", player->shape_angle.y, player->shape_angle.y);
         OS_REPORT("CURRENT_ANGLE = %x, %d\n", player->current.angle.y, player->current.angle.y);
 
@@ -5934,60 +5956,58 @@ void daAlinkHIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
                   dComIfG_play_c::getLayerNo(0));
         break;
     }
-    case 0x4000004: {
-        if (aJStack_168.open(6, "すべてのファイル(*.*)\0*.*\0", 0, 0, 0) != 0) {
-            char* buffer1 = new (0x20) char[0x10000];
-            char* buffer2 = new (0x20) char[0x10000];
+    case PROPERTY_SAVE_FILE_e: {
+        if (file.open(6, "すべてのファイル(*.*)\0*.*\0", NULL, NULL, NULL)) {
+            char* fileData = new (0x20) char[0x10000];
+            char* structData = new (0x20) char[0x10000];
 
-            if (buffer1 != NULL && buffer2 != NULL) {
-                size_t uVar5 = makeFileOutData(buffer1, buffer2);
-                aJStack_168.writeData(buffer1, uVar5);
+            if (fileData != NULL && structData != NULL) {
+                size_t dataSize = makeFileOutData(fileData, structData);
+                file.writeData(fileData, dataSize);
 
                 // Write area %x\n
-                OS_REPORT("書き込み領域%x\n", uVar5);
+                OS_REPORT("書き込み領域%x\n", dataSize);
 
-                if (uVar5 > 0x20000) {
+                if (dataSize > 0x20000) {
                     // Memory corruption has occurred!!!!!
                     OS_REPORT("メモリ破壊が起こりました！！！！！\n");
                 }
 
-                delete[] buffer1;
-                delete[] buffer2;
-
+                delete[] fileData;
+                delete[] structData;
             } else {
-                if (buffer1 != NULL) {
-                    delete[] buffer1;
+                if (fileData != NULL) {
+                    delete[] fileData;
                 }
 
-                if (buffer2 != NULL) {
-                    delete[] buffer2;
+                if (structData != NULL) {
+                    delete[] structData;
                 }
 
                 // Could not secure the write area
                 OS_REPORT("書き込み用領域確保できませんでした\n");
             }
-
-            aJStack_168.close();
+            file.close();
         } else {
             // Cannot open file
             OS_REPORT("ファイルが開けません\n");
         }
         break;
     }
-    case 0x4000005: {
-        if (aJStack_168.open(1, "すべてのファイル(*.*)\0*.*\0", (char*)0x0, (char*)0x0, (char*)0x0) != 0) {
-            char* buffer1 = new (0x20) char[0x10000];
+    case PROPERTY_LOAD_FILE_e: {
+        if (file.open(1, "すべてのファイル(*.*)\0*.*\0", NULL, NULL, NULL)) {
+            char* fileData = new (0x20) char[0x10000];
 
-            if (buffer1 != NULL) {
-                aJStack_168.readData(buffer1, 0);
-                readFileData(buffer1);
-                delete[] buffer1;
+            if (fileData != NULL) {
+                file.readData(fileData, 0);
+                readFileData(fileData);
+                delete[] fileData;
             } else {
                 // Could not secure the read area
                 OS_REPORT("読み込み用領域確保できませんでした\n");
             }
 
-            aJStack_168.close();
+            file.close();
         } else {
             // The file cannot be opened
             OS_REPORT("ファイルが開けません\n");

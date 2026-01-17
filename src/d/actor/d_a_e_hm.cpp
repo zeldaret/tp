@@ -1301,7 +1301,7 @@ int daE_HM_c::Execute() {
     cXyz bindEffectSize(1.0f, 1.0f, 1.0f);
 
     u32 cutType = daPy_getPlayerActorClass()->getCutType();
-    if (cutType == 0x36 && mSph.ChkAtSet() != 0) {
+    if (cutType == daPy_py_c::CUT_TYPE_WOLF_LOCK && mSph.ChkAtSet() != 0) {
         mSph.OffAtSetBit();
         field_0x5ac = 1;
     } else if (field_0x5ac != 0) {

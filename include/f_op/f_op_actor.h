@@ -164,6 +164,7 @@ enum dEvt_Condition_e {
     dEvtCnd_CANDEMO_e = 0x0002,
     dEvtCnd_CANDOOR_e = 0x0004,
     dEvtCnd_CANGETITEM_e = 0x0008,
+    dEvtCnd_10_e = 0x0010,
     dEvtCnd_CANTALKITEM_e = 0x0020,
     dEvtCnd_40_e = 0x0040,
     dEvtCnd_DUMMY = 0x8000,
@@ -337,10 +338,10 @@ public:
     cXyz& getDownPos() { return mDownPos; }
     cXyz& getHeadLockPos() { return mHeadLockPos; }
 
-    void onCutDownHitFlg() { mFlags |= fopEn_flag_CutDownHit; }
-    void onWolfBiteDamage() { mFlags |= fopEn_flag_WolfBiteDamage; }
-    void onWolfDownStartFlg() { mFlags |= (fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart); }
-    void onWolfDownPullEndFlg() { mFlags |= fopEn_flag_WolfDownPullEnd; }
+    void onCutDownHitFlg() { mFlags |= (u16)fopEn_flag_CutDownHit; }
+    void onWolfBiteDamage() { mFlags |= (u16)fopEn_flag_WolfBiteDamage; }
+    void onWolfDownStartFlg() { mFlags |= (u16)(fopEn_flag_WolfDownPull | fopEn_flag_WolfDownStart); }
+    void onWolfDownPullEndFlg() { mFlags |= (u16)fopEn_flag_WolfDownPullEnd; }
     void onWolfNoLock() { mFlags |= (u16)fopEn_flag_WolfNoLock; }
     void onDownFlg() { mFlags |= (u16)fopEn_flag_Down; }
     void onHeadLockFlg() { mFlags |= (u16)fopEn_flag_HeadLock; }
@@ -365,10 +366,10 @@ public:
 
     void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
     void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }
-    void setThrowModeCatch() { mThrowMode |= fopEn_throwMode_Catch; }
-    void setThrowModeDash() { mThrowMode |= fopEn_throwMode_Dash; }
-    void setThrowModeThrowRight() { mThrowMode |= fopEn_throwMode_ThrowRight; }
-    void setThrowModeThrowLeft() { mThrowMode |= fopEn_throwMode_ThrowLeft; }
+    void setThrowModeCatch() { mThrowMode |= (u8)fopEn_throwMode_Catch; }
+    void setThrowModeDash() { mThrowMode |= (u8)fopEn_throwMode_Dash; }
+    void setThrowModeThrowRight() { mThrowMode |= (u8)fopEn_throwMode_ThrowRight; }
+    void setThrowModeThrowLeft() { mThrowMode |= (u8)fopEn_throwMode_ThrowLeft; }
     void setDownPos(const cXyz* i_pos) { mDownPos = *i_pos; }
     void setHeadLockPos(const cXyz* i_pos) { mHeadLockPos = *i_pos; }
 

@@ -607,7 +607,7 @@ void daE_SB_c::ActionCheck() {
         if ( (s16) (shape_angle.y - tgt_ang) > -0x3000 && (s16) (shape_angle.y - tgt_ang) < 0x3000) {
             if (temp_r27 > 1U) {
                 Hit();
-            } else if (temp_r29 == 1 || temp_r29 == 10 || temp_r29 == 0x29 || dComIfGp_checkPlayerStatus0(0, 0x4000U)) {
+            } else if (temp_r29 == daPy_py_c::CUT_TYPE_NM_VERTICAL || temp_r29 == daPy_py_c::CUT_TYPE_JUMP || temp_r29 == daPy_py_c::CUT_TYPE_GUARD_ATTACK || dComIfGp_checkPlayerStatus0(0, 0x4000U)) {
                 Hanekaeri();
             } else {
                 Hit();
