@@ -2622,7 +2622,7 @@ static void lure_catch(dmg_rod_class* i_this) {
         }
 
         if (henna != NULL && sp8 == 2) {
-            henna->move_mode = 10;
+            henna->mode = 10;
         }
 
         daAlink_getAlinkActorClass()->changeFishGetFace(sp8);
@@ -2859,8 +2859,8 @@ static void lure_heart(dmg_rod_class* i_this) {
 
         dComIfGp_setMesgBgmOn();
         if (henna != NULL) {
-            henna->move_mode = 10;
-            henna->field_0x688 = 1;
+            henna->mode = 10;
+            henna->bck_no = 1;
         }
     }
 
@@ -2874,7 +2874,7 @@ static void lure_heart(dmg_rod_class* i_this) {
         }
 
         if (i_this->play_cam_timer == 90 && henna != NULL) {
-            henna->field_0x688 = 0;
+            henna->bck_no = 0;
         }
 
         if (i_this->msgflow.doFlow(actor, NULL, 0)) {
@@ -3545,7 +3545,7 @@ static void uki_ready(dmg_rod_class* i_this) {
     cLib_addCalc2(&i_this->field_0xf64, -30.0f + ZREG_F(1), 1.0f, 0.5f + BREG_F(14));
     cLib_addCalc2(&i_this->field_0xf68, -(20.0f + AREG_F(10)), 1.0f, 0.02f * (20.0f + AREG_F(10)));
 
-    if (i_this->timers[0] != 0 || dComIfGp_event_runCheck() || i_this->play_cam_mode >= 1000 || (henna != NULL && henna->cam_mode != 0) || dComIfGp_checkPlayerStatus0(0, 0x100000)) {
+    if (i_this->timers[0] != 0 || dComIfGp_event_runCheck() || i_this->play_cam_mode >= 1000 || (henna != NULL && henna->demo_mode != 0) || dComIfGp_checkPlayerStatus0(0, 0x100000)) {
         return;
     }
 
@@ -4010,7 +4010,7 @@ static void uki_catch(dmg_rod_class* i_this) {
                 }
 
                 if (henna != NULL) {
-                    henna->move_mode = 30;
+                    henna->mode = 30;
                 }
             } else if (mgfish->mCaughtType == MG_CATCH_SP) {
                 i_this->msgflow.init(actor, 0x1397, 0, NULL);
@@ -4961,14 +4961,14 @@ static void play_camera(dmg_rod_class* i_this) {
         if (i_this->play_cam_timer >= 10) {
             if (i_this->msg_flow_state == 0) {
                 i_this->msg_flow_state = 1;
-                if (henna->field_0x7d5 != 0 && (henna->field_0x7d6 == 0 || (i_this->field_0x1472 & 3) == 0)) {
+                if (henna->du_near_time != 0 && (henna->du_talk_check == 0 || (i_this->field_0x1472 & 3) == 0)) {
                     i_this->msgflow.init(actor, 0x3C3, 0, NULL);
-                    henna->field_0x7d5 = 0;
-                    henna->field_0x7d6 = 1;
-                } else if (henna->field_0x7b8 != 0) {
+                    henna->du_near_time = 0;
+                    henna->du_talk_check = 1;
+                } else if (henna->msg_time != 0) {
                     i_this->msgflow.init(actor, 0x2C9, 0, NULL);
-                    henna->field_0x6ba = 50;
-                    henna->field_0x7b8 = 0;
+                    henna->blink_time = 50;
+                    henna->msg_time = 0;
                 } else if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[467])) {
                     if (i_this->field_0x1470 == 0) {
                         sp174.x = -2800.0f;
@@ -5673,7 +5673,7 @@ static void play_camera_u(dmg_rod_class* i_this) {
             camera->mCamera.SetTrimSize(0);
 
             if (dMsgObject_getSelectCursorPos() != 0) {
-                henna->cam_mode = 300;
+                henna->demo_mode = 300;
             }
         }
         break;
@@ -5759,7 +5759,7 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
     }
 
     henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
-    if (henna != NULL && henna->field_0x734 != 0) {
+    if (henna != NULL && henna->no_draw != 0) {
         henna = NULL;
     }
 
