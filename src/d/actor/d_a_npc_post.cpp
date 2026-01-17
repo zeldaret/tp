@@ -536,13 +536,7 @@ int daNpc_Post_c::Draw() {
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
-    return draw(
-#if DEBUG
-        chkAction(&daNpc_Post_c::test),
-#else
-        0,
-#endif
-        0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
+    return draw(NpcT_CHK_ACTION(daNpc_Post_c), FALSE, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
 int daNpc_Post_c::createHeapCallBack(fopAc_ac_c* i_this) {

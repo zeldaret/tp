@@ -771,14 +771,7 @@ int daNpc_ykM_c::Draw() {
         mdlData_p->getMaterialNodePointer(3)->getShape()->hide();
     }
 
-    rv = draw(
-        #if DEBUG
-        chkAction(&daNpc_ykM_c::test),
-        #else
-        FALSE,
-        #endif
-        FALSE, mRealShadowSize, NULL, 0.0f, FALSE, field_0x1581 == 1, FALSE
-    );
+    rv = draw(NpcT_CHK_ACTION(daNpc_ykM_c), FALSE, mRealShadowSize, NULL, 0.0f, FALSE, field_0x1581 == 1, FALSE);
 
     if (field_0x157a != 0) {
         mdlData_p->getMaterialNodePointer(3)->getShape()->show();

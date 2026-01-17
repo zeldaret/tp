@@ -724,13 +724,7 @@ int daNpc_Kn_c::Draw() {
     tevcolor.g = 0;
     tevcolor.b = 0;
     tevcolor.a = s16(mpHIO->m.alpha);
-    return draw(
-#if DEBUG
-        chkAction(&daNpc_Kn_c::test),
-#else
-        FALSE,
-#endif
-        FALSE, mpHIO->m.common.real_shadow_size, &tevcolor, 0.0f, TRUE, FALSE, FALSE);
+    return draw(NpcT_CHK_ACTION(daNpc_Kn_c), FALSE, mpHIO->m.common.real_shadow_size, &tevcolor, 0.0f, TRUE, FALSE, FALSE);
 }
 
 int daNpc_Kn_c::createHeapCallBack(fopAc_ac_c* i_this) {
@@ -1362,12 +1356,8 @@ void daNpc_Kn_c::drawOtherMdl() {
         if (cM3d_IsZero(col_strength) == false) {
             mTevStr.TevColor.r = col_strength * 20.0f;
         }
-    } else {
-#if DEBUG
-        if (chkAction(&daNpc_Kn_c::test)) {
-            mTevStr.TevColor.g = 20;
-        }
-#endif
+    } else if (NpcT_CHK_ACTION(daNpc_Kn_c)) {
+        mTevStr.TevColor.g = 20;
     }
 
     g_env_light.settingTevStruct(0, &current.pos, &mTevStr);
