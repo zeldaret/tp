@@ -349,9 +349,7 @@ int daNpcRafrel_c::CreateHeap() {
 }
 
 int daNpcRafrel_c::Delete() {
-    "Delete -> NPC_RAFREL(id=%d)\n";
-    
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_RAFREL");
     this->~daNpcRafrel_c();
     return 1;
 }

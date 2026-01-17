@@ -901,7 +901,7 @@ int daNpc_Pachi_Taro_c::CreateHeap() {
 
 int daNpc_Pachi_Taro_c::Delete() {
     OS_REPORT("|%06d:%x|daNpc_Pachi_Taro_c -> Delete\n", g_Counter.mCounter0, this);
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_TARO");
     this->~daNpc_Pachi_Taro_c();
     return 1;
 }

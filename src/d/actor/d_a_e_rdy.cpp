@@ -4758,7 +4758,7 @@ static int daE_RDY_IsDelete(e_rdy_class* i_this) {
 
 static int daE_RDY_Delete(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
-    fpc_ProcID unused = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_RDY");
     dComIfG_resDelete(&i_this->mPhase, i_this->mpArcName);
 
     if (i_this->mHIOInit) {

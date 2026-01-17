@@ -1409,7 +1409,7 @@ static int daB_BH_IsDelete(b_bh_class* i_this) {
 
 static int daB_BH_Delete(b_bh_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    fpc_ProcID id = fopAcM_GetID(a_this);
+    fopAcM_RegisterDeleteID(a_this, "B_BH");
     
     dComIfG_resDelete(&i_this->mPhase, "B_BH");
     if (i_this->mInitHIO) {

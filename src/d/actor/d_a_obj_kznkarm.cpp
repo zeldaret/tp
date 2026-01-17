@@ -439,7 +439,8 @@ inline int daObjKznkarm_c::create() {
 }
 
 static int daObjKznkarm_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daObjKznkarm_c, i_this, "KznkArm");
+    daObjKznkarm_c* a_this = (daObjKznkarm_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "KznkArm");
     return a_this->create();
 }
 

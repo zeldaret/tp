@@ -221,13 +221,6 @@ void daObjCBlk_c::block_mode_proc_call() {
     (this->*(l_func[field_0xc1e]))();
 }
 
-#if DEBUG
-static void dummy5() {
-    OS_REPORT("Delete -> ChainBlock(id=%d)\n");
-    OS_REPORT("Create -> ChainBlock(id=%d)\n");
-}
-#endif
-
 void daObjCBlk_c::initWait() {
     field_0xc1f = 0;
 }
@@ -381,14 +374,14 @@ static int daObjCBlk_Execute(daObjCBlk_c* i_this) {
 }
 
 static int daObjCBlk_Delete(daObjCBlk_c* i_this) {
-    fpc_ProcID unusedId = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "ChainBlock");
     return i_this->MoveBGDelete();
 }
 
 static int daObjCBlk_Create(fopAc_ac_c* i_this) {
-    daObjCBlk_c* cblock = static_cast<daObjCBlk_c*>(i_this);
-    fpc_ProcID unusedId = fopAcM_GetID(i_this);
-    return cblock->create();
+    daObjCBlk_c* a_this = (daObjCBlk_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "ChainBlock");
+    return a_this->create();
 }
 
 #if DEBUG

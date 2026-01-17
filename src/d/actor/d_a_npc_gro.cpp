@@ -518,7 +518,7 @@ int daNpc_grO_c::CreateHeap() {
 }
 
 int daNpc_grO_c::Delete() {
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_GRO");
     this->~daNpc_grO_c();
     return 1;
 }

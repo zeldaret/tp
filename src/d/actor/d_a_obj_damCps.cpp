@@ -188,7 +188,8 @@ static int daObjDamCps_Delete(daObjDamCps_c* i_this) {
 }
 
 static int daObjDamCps_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daObjDamCps_c, i_this, "DamCps");
+    daObjDamCps_c* a_this = (daObjDamCps_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "DamCps");
     return a_this->create();
 }
 

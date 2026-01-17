@@ -370,8 +370,9 @@ static int daObjMHole_Delete(daObjMHole_c* i_this) {
 }
 
 static int daObjMHole_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daObjMHole_c,i_this, "MHole");
-    return static_cast<daObjMHole_c*>(i_this)->create();
+    daObjMHole_c* a_this = (daObjMHole_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "MHole");
+    return a_this->create();
 }
 
 static actor_method_class l_daObjMHole_Method = {

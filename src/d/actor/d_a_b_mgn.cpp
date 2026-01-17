@@ -3379,13 +3379,9 @@ int daB_MGN_c::_delete() {
 }
 
 static int daB_MGN_Delete(daB_MGN_c* i_this) {
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "B_MGN");
     return i_this->_delete();
 }
-
-#if DEBUG
-char* const unused = "Delete -> B_MGN(id=%d)\n";
-#endif
 
 int daB_MGN_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_mgn", BMDR_MGN);

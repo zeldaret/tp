@@ -129,7 +129,8 @@ int daObjKUW_c::CreateHeap() {
 }
 
 static int daObjKUW_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daObjKUW_c, i_this, "Obj_Kuw");
+    daObjKUW_c* a_this = (daObjKUW_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "Obj_Kuw");
     return a_this->create();
 }
 

@@ -619,7 +619,7 @@ static int daE_MB_IsDelete(e_mb_class* i_this) {
 
 static int daE_MB_Delete(e_mb_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    fpc_ProcID id = fopAcM_GetID(a_this);
+    fopAcM_RegisterDeleteID(a_this, "E_MB");
 
     dComIfG_resDelete(&i_this->mPhase, "E_mb");
     

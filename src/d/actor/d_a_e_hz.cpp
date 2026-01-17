@@ -1870,7 +1870,7 @@ int daE_HZ_c::_delete() {
 }
 
 static int daE_HZ_Delete(daE_HZ_c* i_this) {
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_HZ");
     return i_this->_delete();
 }
 
