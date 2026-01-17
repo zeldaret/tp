@@ -748,11 +748,7 @@ int daNpc_Fairy_c::Draw() {
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
-    #if DEBUG
-    return draw(chkAction(&daNpc_Fairy_c::test), TRUE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
-    #else
-    return draw(FALSE, TRUE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
-    #endif
+    return draw(NpcT_CHK_ACTION(daNpc_Fairy_c), TRUE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
 }
 
 void daNpc_Fairy_c::drawOtherMdl() {
