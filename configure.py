@@ -2826,7 +2826,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_firewall"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN, ALL_WII, "Shield"), "d_a_tag_gra"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_guard"), # debug weak func order
-    ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_instruction"),
+    ActorRel(MatchingFor(ALL_GCN, ALL_WII, "Shield"), "d_a_tag_instruction"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_kago_fall"),
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_lightball"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_lv5soup"),
