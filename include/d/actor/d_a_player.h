@@ -336,7 +336,7 @@ public:
         FLG0_FAST_SWORD_CUT = 0x80000,
         FLG0_UNK_40000 = 0x40000,
         FLG0_DK_CAUGHT2 = 0x20000,
-        FLG0_UNK_10000 = 0x10000,
+        FLG0_DEMO_STREAM_ACCEPT = 0x10000,
         FLG0_UNK_8000 = 0x8000,
         FLG0_UNK_4000 = 0x4000,
         FLG0_UNK_2000 = 0x2000,
@@ -951,6 +951,8 @@ public:
     void onTraningCutLargeTurn() { onNoResetFlg3(FLG3_TRANING_CUT_LARGE_TURN); }
     void onTraningCutDown() { onNoResetFlg3(FLG3_TRANING_CUT_DOWN); }
     void onTraningShieldAttack() { onNoResetFlg3(FLG3_TRANING_SHIELD_ATTACK); }
+    void onDemoStreamAccept() { onNoResetFlg0(FLG0_DEMO_STREAM_ACCEPT); }
+    void offDemoStreamAccept() { offNoResetFlg0(FLG0_DEMO_STREAM_ACCEPT); }
 
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_STICK_ARROW_RESET); }
     BOOL getCutAtFlg() const { return checkNoResetFlg0(FLG0_CUT_AT_FLG); }
