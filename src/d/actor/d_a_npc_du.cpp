@@ -584,7 +584,7 @@ static int daNpc_Du_IsDelete(npc_du_class* i_this) {
 
 static int daNpc_Du_Delete(npc_du_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "Npc_Du");
 
     dComIfG_resDelete(&i_this->mPhase, "Npc_Du");
 

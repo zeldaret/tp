@@ -170,7 +170,8 @@ static int daObjIta_Delete(daObjIta_c* i_this) {
 }
 
 static int daObjIta_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daObjIta_c, i_this, "Obj_Ita");
+    daObjIta_c* a_this = (daObjIta_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "Obj_Ita");
     return a_this->create();
 }
 

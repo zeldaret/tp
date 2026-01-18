@@ -182,6 +182,7 @@ int daTagWaterFall_c::_delete() {
 }
 
 static int daTagWaterFall_Delete(daTagWaterFall_c* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "Tag_WaterFall");
     return i_this->_delete();
 }
 

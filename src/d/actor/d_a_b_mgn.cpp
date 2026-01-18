@@ -1115,8 +1115,8 @@ void daB_MGN_c::damage_check() {
                     dComIfGs_onOneZoneSwitch(6, fopAcM_GetRoomNo(this));
                 }
     
-                if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) && player->getCutType() != 44 &&
-                    player->getCutType() != 45 && player->onWolfEnemyHangBite(this))
+                if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) && player->getCutType() != daPy_py_c::CUT_TYPE_WOLF_B_LEFT &&
+                    player->getCutType() != daPy_py_c::CUT_TYPE_WOLF_B_RIGHT && player->onWolfEnemyHangBite(this))
                 {
                     setActionMode(ACTION_DOWN_BITE_DAMAGE_e, 0);
                     return;
@@ -3379,13 +3379,9 @@ int daB_MGN_c::_delete() {
 }
 
 static int daB_MGN_Delete(daB_MGN_c* i_this) {
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "B_MGN");
     return i_this->_delete();
 }
-
-#if DEBUG
-char* const unused = "Delete -> B_MGN(id=%d)\n";
-#endif
 
 int daB_MGN_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_mgn", BMDR_MGN);

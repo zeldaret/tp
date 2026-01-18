@@ -251,7 +251,7 @@ int daNpcTkj_c::CreateHeap() {
 
 int daNpcTkj_c::Delete() {
     OS_REPORT("|%06d:%x|daNpcTkj_c -> Delete\n", g_Counter.mCounter0, this);
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_TKJ");
     this->~daNpcTkj_c();
     return 1;
 }

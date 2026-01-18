@@ -373,9 +373,10 @@ int daObjItaRope_c::create() {
     return rv;
 }
 
-static int daObjItaRope_Create(fopAc_ac_c* i_actor) {
-    fopAcM_RegisterCreateID(daObjItaRope_c, i_actor, "Obj_ItaRope");
-    return static_cast<daObjItaRope_c*>(i_actor)->create();
+static int daObjItaRope_Create(fopAc_ac_c* i_this) {
+    daObjItaRope_c* a_this = (daObjItaRope_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "Obj_ItaRope");
+    return a_this->create();
 }
 
 static actor_method_class l_daObjItaRope_Method = {

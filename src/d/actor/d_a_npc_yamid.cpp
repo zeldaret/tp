@@ -297,7 +297,7 @@ int daNpc_yamiD_c::CreateHeap() {
 
 int daNpc_yamiD_c::Delete() {
     OS_REPORT("|%06d:%x|daNpc_yamiD_c -> Delete\n", g_Counter.mCounter0, this);
-    fpc_ProcID reg_r30 = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_YAMID");
     this->~daNpc_yamiD_c();
     return 1;
 }

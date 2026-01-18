@@ -1109,7 +1109,7 @@ static int daE_SH_IsDelete(e_sh_class* i_this) {
 
 static int daE_SH_Delete(e_sh_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->enemy;
-    fpc_ProcID unusedId = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_SH");
 
     dComIfG_resDelete(&i_this->mPhase, "E_sh");
 

@@ -750,13 +750,9 @@ int daNpc_ykM_c::CreateHeap() {
 
 int daNpc_ykM_c::Delete() {
     OS_REPORT("|%06d:%x|daNpc_ykM_c -> Delete\n", g_Counter.mCounter0, this);
-    fpc_ProcID unusedId = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_YKM");
     this->~daNpc_ykM_c();
     return 1;
-}
-
-static void dummy_string() {
-    OS_REPORT("Delete -> NPC_YKM(id=%d)\n", 0);
 }
 
 int daNpc_ykM_c::Execute() {

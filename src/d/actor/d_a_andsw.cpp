@@ -99,7 +99,8 @@ static int daAndsw_Delete(daAndsw_c* i_this) {
 }
 
 static int daAndsw_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daAndsw_c, i_this, "Andsw");
+    daAndsw_c* a_this = (daAndsw_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "Andsw");
     return a_this->create();
 }
 

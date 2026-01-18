@@ -428,7 +428,8 @@ static int daPoFire_Delete(daPoFire_c* i_this) {
 }
 
 static int daPoFire_Create(fopAc_ac_c* i_this) {
-    fopAcM_RegisterCreateID(daPoFire_c, i_this, "daPoFire");
+    daPoFire_c* a_this = (daPoFire_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "daPoFire");
     return a_this->create();
 }
 

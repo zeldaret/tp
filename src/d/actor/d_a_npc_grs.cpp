@@ -259,7 +259,7 @@ int daNpc_grS_c::CreateHeap() {
 }
 
 int daNpc_grS_c::Delete() {
-    fpc_ProcID unusedId = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_GRS");
     this->~daNpc_grS_c();
     return 1;
 }

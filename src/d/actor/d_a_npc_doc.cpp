@@ -259,7 +259,7 @@ int daNpc_Doc_c::CreateHeap() {
 
 int daNpc_Doc_c::Delete() {
     OS_REPORT("|%06d:%x|daNpc_Doc_c -> Delete\n", g_Counter.mCounter0, this);
-    fpc_ProcID id = fopAcM_GetID(this);
+    fopAcM_RegisterDeleteID(this, "NPC_DOC");
     this->~daNpc_Doc_c();
     return 1;
 }

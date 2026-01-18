@@ -171,7 +171,7 @@ int daE_TT_c::getCutType() {
     case daPy_py_c::CUT_TYPE_NM_VERTICAL:
     case daPy_py_c::CUT_TYPE_NM_STAB:
     case daPy_py_c::CUT_TYPE_NM_RIGHT:
-    case daPy_py_c::CUT_TYPE_DASH_UNK_26:
+    case daPy_py_c::CUT_TYPE_DASH_RIGHT:
         return 0;
 
     default:

@@ -196,13 +196,13 @@ static int daWtGate_Execute(daWtGate_c* i_this) {
 }
 
 static int daWtGate_Delete(daWtGate_c* i_this) {
-    const fpc_ProcID procID = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "daWtGate");
     return i_this->MoveBGDelete();
 }
 
 static int daWtGate_Create(fopAc_ac_c* i_this) {
     daWtGate_c* const waterGate = static_cast<daWtGate_c*>(i_this);
-    const fpc_ProcID procID = fopAcM_GetID(i_this);
+    fopAcM_RegisterCreateID(i_this, "daWtGate");
     return waterGate->create();
 }
 

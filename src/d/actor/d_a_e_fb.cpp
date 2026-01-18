@@ -817,12 +817,6 @@ void daE_FB_c::dead_eff_set() {
     }
 }
 
-#if DEBUG
-static char* dummy_117771() {
-    return "Delete -> E_FB(id=%d)\n";
-}
-#endif
-
 int daE_FB_c::execute() {
     if (field_0x69c != 0) {
         --field_0x69c;
@@ -869,7 +863,7 @@ int daE_FB_c::_delete() {
 }
 
 static int daE_FB_Delete(daE_FB_c* i_this) {
-    int id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_FB");
     return static_cast<daE_FB_c*>(i_this)->_delete();
 }
 

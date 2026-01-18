@@ -188,7 +188,7 @@ void daTagKagoFall_c::actionWaitFall() {
         if (dComIfGs_getLife() == 0) {
             player->onSceneChangeAreaJump(mExitID, -1, NULL);
 
-            if (player->checkNoResetFlg2(daPy_py_c::FLG2_SCN_CHG_START) && !mPlayedSceneChangeSfx)
+            if (player->checkNoResetFlg2(daPy_py_c::FLG2_SCENE_CHANGE_START) && !mPlayedSceneChangeSfx)
             {
                 Z2GetAudioMgr()->seStart(Z2SE_FORCE_BACK, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                 player->voiceStart(Z2SE_WL_V_FALL_TO_RESTART);

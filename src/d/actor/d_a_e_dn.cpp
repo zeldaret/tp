@@ -3282,7 +3282,7 @@ static int daE_DN_IsDelete(e_dn_class* i_this) {
 
 static int daE_DN_Delete(e_dn_class* i_this) {
     fopEn_enemy_c* actor = (fopEn_enemy_c*)&i_this->actor;
-    fpc_ProcID no = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "E_DN");
 
     dComIfG_resDelete(&i_this->phase, "E_dn");
 
