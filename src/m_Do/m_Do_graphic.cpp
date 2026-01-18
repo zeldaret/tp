@@ -2105,6 +2105,10 @@ int mDoGph_Painter() {
 mDoGph_HIO_c mDoGph_HIO;
 #endif
 
+static void dummy() {
+    OS_REPORT("mDoGph_Create():Initial of Graphic \n");
+}
+
 int mDoGph_Create() {
     JKRSolidHeap* heap = mDoExt_createSolidHeapToCurrent(0, NULL, 0);
     mDoGph_gInf_c::create();

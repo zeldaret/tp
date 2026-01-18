@@ -805,7 +805,7 @@ void parse_args(int argc, const char* argv[]) {
             dStage_roomControl_c::onNoArcBank();
             OS_REPORT("\x1b[33mアーカイブバンクを無効にしました\n\x1b[m");
         } else if (strcmp(argv[i], "--particle254") == 0) {
-            // data_8074c494 = 1;
+            fapGm_HIO_c::mParticle254Fix = 1;
             OSReport_Warning("パーティクル２５４固定にしました\n");
         } else if (strncmp(argv[i], "--menu=", sizeof("--menu=") - 1) == 0) {
             char* var_r27 = strchr(argv[i] + 7, ',');
@@ -822,15 +822,15 @@ void parse_args(int argc, const char* argv[]) {
                     if (spC != NULL) {
                         *spC = 0;
                         spC++;
-                        sscanf(spC, "%d", dScnMenu_c::cursolPoint);
+                        sscanf(spC, "%d", &dScnMenu_c::cursolPoint);
                         dScnMenu_c::m_error_flags |= (u8)8;
                     }
 
-                    sscanf(var_r26, "%d", dScnMenu_c::cursolLayer);
+                    sscanf(var_r26, "%d", &dScnMenu_c::cursolLayer);
                     dScnMenu_c::m_error_flags |= (u8)4;
                 }
 
-                sscanf(var_r27, "%d", dScnMenu_c::cursolRoomNo);
+                sscanf(var_r27, "%d", &dScnMenu_c::cursolRoomNo);
                 dScnMenu_c::m_error_flags |= (u8)2;
             }
 
