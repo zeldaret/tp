@@ -718,7 +718,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_acch.cpp"),
             Object(MatchingFor(ALL_WII), "d/d_bg_s_capt_poly.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bg_s_chk.cpp"),
-            Object(NonMatching, "d/d_bg_s_func.cpp"),
+            Object(MatchingFor("ShieldD"), "d/d_bg_s_func.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_gnd_chk.cpp"), # debug weak func order
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_grp_pass_chk.cpp"), # debug weak func order
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_lin_chk.cpp"),
