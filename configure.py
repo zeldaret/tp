@@ -2840,7 +2840,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_ret_room"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_river_back"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_rmbit_sw"), # debug weak func order
-    ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_schedule"),
+    ActorRel(MatchingFor(ALL_GCN, ALL_WII, "Shield"), "d_a_tag_schedule"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN, "Shield"), "d_a_tag_setBall"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_setrestart"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_shop_camera"),
