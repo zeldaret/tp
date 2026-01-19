@@ -181,21 +181,21 @@ void daNpc_Kn_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
 void daNpc_Kn_HIO_c::genMessage(JORMContext* ctext) {
     daNpcT_cmnGenMessage(ctext, &m.common);
     // alpha
-    ctext->genSlider("アルファ        ", &m.alpha, 0, 0xFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("攻撃され待ち時間    ", &m.attack_wait_time, 0, 10000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("追い討ち待ち時間", &m.followup_wait_time, 0, 10000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("小滑り距離      ", &m.small_slide_distance, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("大滑り距離      ", &m.big_slide_distance, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("ワープ距離      ", &m.warp_distance, 0.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("攻撃吹飛び速度横", &m.attack_disappear_speed_h, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("攻撃吹飛び速度縦", &m.attack_disappear_speed_v, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("回転分割数      ", &m.rotation_num, 0, 100, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("回転角速度      ", &m.rotation_speed, 0, 0x7FFF, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("攻撃開始最小時間", &m.attack_start_min_time, 0, 10000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("攻撃開始時間幅  ", &m.attack_start_time_range, 0, 10000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("移動速度        ", &m.move_speed, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("アルファ        ", &m.alpha, 0, 0xFF);
+    ctext->genSlider("攻撃され待ち時間    ", &m.attack_wait_time, 0, 10000);
+    ctext->genSlider("追い討ち待ち時間", &m.followup_wait_time, 0, 10000);
+    ctext->genSlider("小滑り距離      ", &m.small_slide_distance, 0.0f, 1000.0f);
+    ctext->genSlider("大滑り距離      ", &m.big_slide_distance, 0.0f, 1000.0f);
+    ctext->genSlider("ワープ距離      ", &m.warp_distance, 0.0f, 10000.0f);
+    ctext->genSlider("攻撃吹飛び速度横", &m.attack_disappear_speed_h, 0.0f, 1000.0f);
+    ctext->genSlider("攻撃吹飛び速度縦", &m.attack_disappear_speed_v, 0.0f, 1000.0f);
+    ctext->genSlider("回転分割数      ", &m.rotation_num, 0, 100);
+    ctext->genSlider("回転角速度      ", &m.rotation_speed, 0, 0x7FFF);
+    ctext->genSlider("攻撃開始最小時間", &m.attack_start_min_time, 0, 10000);
+    ctext->genSlider("攻撃開始時間幅  ", &m.attack_start_time_range, 0, 10000);
+    ctext->genSlider("移動速度        ", &m.move_speed, 0.0f, 1000.0f);
     // export file:
-    ctext->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctext->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 

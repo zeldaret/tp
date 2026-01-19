@@ -49,12 +49,12 @@ daE_MB_HIO_c::daE_MB_HIO_c() {
 
 #if DEBUG
 void daE_MB_HIO_c::genMessage(JORMContext* ctx) {
-    ctx->genLabel("  ボス戦ブーメラン猿", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("基本サイズ", &base_size, 0.0f, 5.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("振り子速度", &swing_speed, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("振り子下弦", &swing_descend, 0.5f, 2.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("軌道修正", &swing_correction, -500.0f, 2000.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("再出現時間（およそ）", &reappear_time, 0.0f, 300.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+    ctx->genLabel("  ボス戦ブーメラン猿", 0x80000001);
+    ctx->genSlider("基本サイズ", &base_size, 0.0f, 5.0f);
+    ctx->genSlider("振り子速度", &swing_speed, 0.0f, 1000.0f);
+    ctx->genSlider("振り子下弦", &swing_descend, 0.5f, 2.0f);
+    ctx->genSlider("軌道修正", &swing_correction, -500.0f, 2000.0f);
+    ctx->genSlider("再出現時間（およそ）", &reappear_time, 0.0f, 300.0f);
 }
 #endif
 

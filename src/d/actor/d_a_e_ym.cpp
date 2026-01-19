@@ -63,20 +63,20 @@ daE_YM_HIO_c::daE_YM_HIO_c() {
 #if DEBUG
 void daE_YM_HIO_c::genMessage(JORMContext* ctext) {
     // 'yami mushi', a.k.a. dark insect
-    ctext->genLabel("  闇虫", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genLabel("  闇虫", 0x80000001);
     // basic size
-    ctext->genSlider("基本サイズ", &mModelSize, 0.0f, 5.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctext->genSlider("放電無敵延長時間", &mElectricInvincibilityTimeExtension, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("基本サイズ", &mModelSize, 0.0f, 5.0f);
+    ctext->genSlider("放電無敵延長時間", &mElectricInvincibilityTimeExtension, 0.0f, 100.0f);
     // hovering speed
-    ctext->genSlider("徘徊速度", &mMoveSpeed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("徘徊速度", &mMoveSpeed, 0.0f, 100.0f);
     // surprising distance
-    ctext->genSlider("びっくり距離", &mSurpriseDistance, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("びっくり距離", &mSurpriseDistance, 0.0f, 1000.0f);
     // movement radius
-    ctext->genSlider("移動半径", &mMoveRange, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("移動半径", &mMoveRange, 0.0f, 1000.0f);
     // flight speed
-    ctext->genSlider("飛行移動速度", &mFlyMoveSpeed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("飛行移動速度", &mFlyMoveSpeed, 0.0f, 100.0f);
     // flight attack speed
-    ctext->genSlider("飛行攻撃速度", &mFlyAttackSpeed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("飛行攻撃速度", &mFlyAttackSpeed, 0.0f, 100.0f);
 }
 #endif
 

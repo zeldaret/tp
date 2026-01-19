@@ -1869,23 +1869,23 @@ flagFile_c::~flagFile_c() {
 }
 
 void flagFile_c::genMessage(JORMContext* mctx) {
-    mctx->genLabel("-", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genLabel("- フラグデータのデバッグ用一時セーブ", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genLabel("-", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genButton(" 読込 ", 101, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genLabel("-", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genLabel("-", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    mctx->genLabel("-", 0);
+    mctx->genLabel("- フラグデータのデバッグ用一時セーブ", 0);
+    mctx->genLabel("-", 0);
+    mctx->genButton(" 読込 ", 101);
+    mctx->genLabel("-", 0);
+    mctx->genLabel("-", 0);
 
     if (fopScnM_SearchByID(dStage_roomControl_c::getProcID()) != NULL) {
-        mctx->genLabel("- セーブ要素", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-        mctx->genCheckBox(" ステージ名", &m_flags, FLAG_SCENE_e, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-        mctx->genCheckBox(" セーブ領域", &m_flags, FLAG_SAVE_e, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-        mctx->genCheckBox(" セーブ作業領域", &m_flags, FLAG_MEM_e, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-        mctx->genCheckBox(" ダンジョンセーブ", &m_flags, FLAG_DAN_e, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-        mctx->genLabel("-", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-        mctx->genButton(" 書出 ", 102, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-        mctx->genLabel("-", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-        mctx->genLabel("-", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+        mctx->genLabel("- セーブ要素", 0);
+        mctx->genCheckBox(" ステージ名", &m_flags, FLAG_SCENE_e);
+        mctx->genCheckBox(" セーブ領域", &m_flags, FLAG_SAVE_e);
+        mctx->genCheckBox(" セーブ作業領域", &m_flags, FLAG_MEM_e);
+        mctx->genCheckBox(" ダンジョンセーブ", &m_flags, FLAG_DAN_e);
+        mctx->genLabel("-", 0);
+        mctx->genButton(" 書出 ", 102);
+        mctx->genLabel("-", 0);
+        mctx->genLabel("-", 0);
     }
 }
 

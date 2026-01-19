@@ -26,7 +26,7 @@ daWtGate_HIO_c::daWtGate_HIO_c() {
 #if DEBUG
 void daWtGate_HIO_c::genMessage(JORMContext* ctx) {
     // "Maximum speed"
-    ctx->genSlider("最大速度", &mMaxSpeed, 0.1, 500.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("最大速度", &mMaxSpeed, 0.1, 500.0);
 }
 #endif
 

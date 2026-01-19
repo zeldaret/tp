@@ -65,7 +65,7 @@ daNpc_Zelda_HIO_c::daNpc_Zelda_HIO_c() {
 void daNpc_Zelda_HIO_c::genMessage(JORMContext* ctx) {
     daNpcT_cmnGenMessage(ctx, &m.common);
     ctx->genButton
-              ("ファイル書き出し",0x40000002,0,NULL,0xffff,0xffff,0x200,0x18);
+              ("ファイル書き出し",0x40000002);
 }
 
 void daNpc_Zelda_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {

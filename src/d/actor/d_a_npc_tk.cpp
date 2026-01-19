@@ -78,7 +78,7 @@ void daNPC_TK_HIO_c::genMessage(JORMContext* context) {
     context->genSlider("旋回下降時間", &field_0x1c, 0.0f, 200.0f);
     context->genSlider("旋回下降速度", &field_0x20, 0.0f, 200.0f);
     context->genSlider("旋回飛行速度", &field_0x24, 0.0f, 200.0f);
-    context->genCheckBox("パス開始点ランダム", &field_0x3c, 1, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genCheckBox("パス開始点ランダム", &field_0x3c, 0x1);
     context->genLabel("  ", 0x80000001);
     context->genLabel("  ", 0x80000001);
     context->genLabel("↓極秘！！獲物ゲット時", 0x80000001);

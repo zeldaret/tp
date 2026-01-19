@@ -296,23 +296,23 @@ void daNpc_ykM_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
 
 void daNpc_ykM_HIO_c::genMessage(JORMContext* ctx) {
     daNpcT_cmnGenMessage(ctx, &m.common);
-    ctx->genSlider("ステップの速さ  ", &m.step_speed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("注目距離        ", &m.attention_dist, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("会話距離        ", &m.conversation_dist, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("飛び出し速度    ", &m.jump_speed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("飛び出し角度    ", &m.push_out_angle, 0.0f, 90.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("飛ばしフレ－ム  ", &m.skip_frame, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("飛ばし速度      ", &m.fly_speed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("飛ばし角度      ", &m.fly_angle, 0.0f, 90.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("ジャンプ初速    ", &m.jump_init_speed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("滑り加速        ", &m.slide_acceleration, 0.0f, 8.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("滑り速度        ", &m.slide_speed, 0.0f, 128.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("ウエイト時間    ", &m.wait_time, 0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("走り速度        ", &m.run_speed, 0.0f, 64.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("競争パラメ－タａ", &m.competition_prm_a, -100.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("競争パラメ－タｂ", &m.competition_prm_b, 1.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("競争パラメ－タｃ", &m.competition_prm_c, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("ステップの速さ  ", &m.step_speed, 0.0f, 100.0f);
+    ctx->genSlider("注目距離        ", &m.attention_dist, 0.0f, 10000.0f);
+    ctx->genSlider("会話距離        ", &m.conversation_dist, 0.0f, 10000.0f);
+    ctx->genSlider("飛び出し速度    ", &m.jump_speed, 0.0f, 100.0f);
+    ctx->genSlider("飛び出し角度    ", &m.push_out_angle, 0.0f, 90.0f);
+    ctx->genSlider("飛ばしフレ－ム  ", &m.skip_frame, 0.0f, 100.0f);
+    ctx->genSlider("飛ばし速度      ", &m.fly_speed, 0.0f, 100.0f);
+    ctx->genSlider("飛ばし角度      ", &m.fly_angle, 0.0f, 90.0f);
+    ctx->genSlider("ジャンプ初速    ", &m.jump_init_speed, 0.0f, 100.0f);
+    ctx->genSlider("滑り加速        ", &m.slide_acceleration, 0.0f, 8.0f);
+    ctx->genSlider("滑り速度        ", &m.slide_speed, 0.0f, 128.0f);
+    ctx->genSlider("ウエイト時間    ", &m.wait_time, 0.0f, 10000.0f);
+    ctx->genSlider("走り速度        ", &m.run_speed, 0.0f, 64.0f);
+    ctx->genSlider("競争パラメ－タａ", &m.competition_prm_a, -100.0f, 100.0f);
+    ctx->genSlider("競争パラメ－タｂ", &m.competition_prm_b, 1.0f, 100.0f);
+    ctx->genSlider("競争パラメ－タｃ", &m.competition_prm_c, 0.0f, 10.0f);
+    ctx->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 

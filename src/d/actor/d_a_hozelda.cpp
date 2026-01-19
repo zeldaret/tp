@@ -14,11 +14,11 @@ static const char l_arcName[] = "HoZelda";
 
 #if DEBUG
 void daHoZelda_hio_c::genMessage(JORMContext* context) {
-    context->genSlider("弓サーチＹ角度", &m.bow_search_y_angle, 0, 0x7fff, 0, NULL, -1, -1, 0x200, 0x18);
-    context->genSlider("弓開始角度", &m.bow_start_angle, 0, 0x7fff, 0, NULL, -1, -1, 0x200, 0x18);
-    context->genSlider("弓開始距離", &m.bow_start_distance, 0.0f, 10000.0f, 0, NULL, -1, -1, 0x200, 0x18);
-    context->genSlider("弓終了角度", &m.bow_end_angle, 0, 0x7fff, 0, NULL, -1, -1, 0x200, 0x18);
-    context->genSlider("弓終了距離", &m.bow_end_distance, 0.0f, 10000.0f, 0, NULL, -1, -1, 0x200, 0x18);
+    context->genSlider("弓サーチＹ角度", &m.bow_search_y_angle, 0, 0x7fff);
+    context->genSlider("弓開始角度", &m.bow_start_angle, 0, 0x7fff);
+    context->genSlider("弓開始距離", &m.bow_start_distance, 0.0f, 10000.0f);
+    context->genSlider("弓終了角度", &m.bow_end_angle, 0, 0x7fff);
+    context->genSlider("弓終了距離", &m.bow_end_distance, 0.0f, 10000.0f);
 }
 #endif
 

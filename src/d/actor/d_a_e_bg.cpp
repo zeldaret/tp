@@ -30,17 +30,14 @@ daE_BG_HIO_c::daE_BG_HIO_c() {
 #if DEBUG
 void daE_BG_HIO_c::genMessage(JORMContext* ctx) {
     // "Bomb fish"
-    ctx->genLabel("爆弾魚", 0x80000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("追跡速度", &mTrackingSpeed, 0.0, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("突進速度", &mRushSpeed, 0.0, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("プレイヤーサーチ距離", &mPlayerSearchDistance, 0.0, 2000.0f, 0, NULL, 0xffff,
-                   0xffff, 0x200, 0x18);
-    ctx->genSlider("攻撃行動範囲", &mAttackRange, 0.0, 2000.0f, 0, NULL, 0xffff, 0xffff, 0x200,
-                   0x18);
-    ctx->genSlider("遊泳行動範囲", &mSwimRange, 0.0, 2000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("突進前待機距離", &mWaitDistanceBeforeCharging, 0.0, 1000.0f, 0, NULL, 0xffff,
-                   0xffff, 0x200, 0x18);
-    ctx->genSlider("湧き出し時間", &mJumpTime, 0.0, 1000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("爆弾魚", 0x80000001);
+    ctx->genSlider("追跡速度", &mTrackingSpeed, 0.0, 100.0f);
+    ctx->genSlider("突進速度", &mRushSpeed, 0.0, 100.0f);
+    ctx->genSlider("プレイヤーサーチ距離", &mPlayerSearchDistance, 0.0, 2000.0f);
+    ctx->genSlider("攻撃行動範囲", &mAttackRange, 0.0, 2000.0f);
+    ctx->genSlider("遊泳行動範囲", &mSwimRange, 0.0, 2000.0f);
+    ctx->genSlider("突進前待機距離", &mWaitDistanceBeforeCharging, 0.0, 1000.0f);
+    ctx->genSlider("湧き出し時間", &mJumpTime, 0.0, 1000.0f);
 }
 #endif
 

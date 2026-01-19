@@ -16,8 +16,8 @@ daAndsw_HIO_c::daAndsw_HIO_c() {
 }
 
 void daAndsw_HIO_c::genMessage(JORMContext* ctx) {
-    ctx->genLabel("ＳＷ監視", 0, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genCheckBox("ＳＷ状態出力", &field_0x6, 0x01, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+    ctx->genLabel("ＳＷ監視", 0);
+    ctx->genCheckBox("ＳＷ状態出力", &field_0x6, 0x01);
 }
 #endif
 

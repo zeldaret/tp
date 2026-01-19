@@ -363,9 +363,9 @@ void daNpc_Besu_HIO_c::genMessage(JORMContext* ctx) {
     // NONMATCHING
     daNpcT_cmnGenMessage(ctx, &m.common);
     // animation playback speed:
-    ctx->genSlider("アニメ再生速度  ", &m.field_0x8c, -0.0f, 16.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctx->genSlider("アニメ再生速度  ", &m.field_0x8c, -0.0f, 16.0f);
     // export file:
-    ctx->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 

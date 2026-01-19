@@ -31,7 +31,7 @@ daTwGate_HIO_c::daTwGate_HIO_c() {
 #if DEBUG
 void daTwGate_HIO_c::genMessage(JORMContext* ctx) {
     // Range
-    ctx->genSlider("範囲", &mRange, 0.0f, 500000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("範囲", &mRange, 0.0f, 500000.0f);
 }
 #endif
 
