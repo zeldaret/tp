@@ -103,18 +103,19 @@ m_Do/m_Do_Reset.cpp:
 	.text       start:0x8002BAE0 end:0x8002BE60
 	.data       start:0x806641F0 end:0x80664238
 	.sdata      start:0x8073F628 end:0x8073F630
-	.sbss       start:0x8074C428 end:0x8074C434
+	.sbss       start:0x8074C428 end:0x8074C430
 
 m_Do/m_Do_dvd_thread.cpp:
 	.text       start:0x8002BE60 end:0x8002D590
 	.ctors      start:0x8062F7DC end:0x8062F7E0
 	.data       start:0x80664238 end:0x80664A10
 	.sdata      start:0x8073F630 end:0x8073F688
-	.sbss       start:0x8074C434 end:0x8074C450
+	.sbss       start:0x8074C430 end:0x8074C448
 	.bss        start:0x80756800 end:0x80758B80
 
 m_Do/m_Do_DVDError.cpp:
 	.text       start:0x8002D590 end:0x8002D740
+	.sbss       start:0x8074C448 end:0x8074C450
 	.bss        start:0x80758B80 end:0x8075AEE0
 
 m_Do/m_Do_MemCard.cpp:

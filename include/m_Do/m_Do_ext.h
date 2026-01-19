@@ -599,7 +599,7 @@ private:
     /* 0x38 */ mDoExt_3Dline_c* mpLines;
 };
 
-class mDoExt_3DlineMat2_c : public mDoExt_3DlineMat_c {
+class mDoExt_3DlineMat2_c : public mDoExt_3DlineMat1_c {
 public:
     int getMaterialID() { return 2; }
     void setMaterial();

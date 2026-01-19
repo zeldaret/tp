@@ -22,7 +22,7 @@ d/d_home_button.cpp:
 d/d_cursor_mng.cpp:
 	.text       start:0x800073D4 end:0x8000820C
 	.data       start:0x803E0978 end:0x803E0AA0
-	.sdata      start:0x8051D5A8 end:0x8051D5E4
+	.sdata      start:0x8051D5A8 end:0x8051D5E0
 	.sbss       start:0x80520728 end:0x80520740
 	.sdata2     start:0x805219F8 end:0x80521A10
 
@@ -31,15 +31,15 @@ m_Do/m_Do_main.cpp:
 	.ctors      start:0x803B8C84 end:0x803B8C88
 	.data       start:0x803E0AA0 end:0x803E0DB8
 	.bss        start:0x80431040 end:0x804314A0
-	.sdata      start:0x8051D5E4 end:0x8051D660
-	.sbss       start:0x80520740 end:0x80520768
+	.sdata      start:0x8051D5E0 end:0x8051D660
+	.sbss       start:0x80520740 end:0x80520760
 	.sdata2     start:0x80521A10 end:0x80521A28
 
 m_Do/m_Do_printf.cpp:
 	.text       start:0x80009024 end:0x8000973C
 	.data       start:0x803E0DB8 end:0x803E0E70
 	.bss        start:0x804314A0 end:0x80431CA0
-	.sbss       start:0x80520768 end:0x80520784
+	.sbss       start:0x80520760 end:0x80520780
 
 m_Do/m_Do_audio.cpp:
 	.text       start:0x8000973C end:0x8000A0E0
@@ -47,7 +47,7 @@ m_Do/m_Do_audio.cpp:
 	.data       start:0x803E0E70 end:0x803E10E8
 	.bss        start:0x80431CA0 end:0x80433058
 	.sdata      start:0x8051D660 end:0x8051D6CC
-	.sbss       start:0x80520784 end:0x805207D4
+	.sbss       start:0x80520780 end:0x805207D4
 
 m_Do/m_Do_controller_pad.cpp:
 	.text       start:0x8000A0E0 end:0x8000A4F0
@@ -74,7 +74,7 @@ m_Do/m_Do_machine.cpp:
 	.text       start:0x80011B60 end:0x80012854
 	.data       start:0x803E1100 end:0x803E1468
 	.sdata      start:0x8051D710 end:0x8051D740
-	.sbss       start:0x80520844 end:0x80520878
+	.sbss       start:0x80520844 end:0x80520870
 	.sdata2     start:0x80521BC0 end:0x80521BC8
 
 m_Do/m_Do_mtx.cpp:
@@ -83,6 +83,7 @@ m_Do/m_Do_mtx.cpp:
 	.data       start:0x803E1468 end:0x803E1500
 	.bss        start:0x8043AB08 end:0x8043AF70
 	.sdata      start:0x8051D740 end:0x8051D750
+	.sbss       start:0x80520870 end:0x80520878
 	.sdata2     start:0x80521BC8 end:0x80521BD8
 
 m_Do/m_Do_ext.cpp:
@@ -103,7 +104,7 @@ m_Do/m_Do_lib.cpp:
 
 m_Do/m_Do_Reset.cpp:
 	.text       start:0x8001AAB0 end:0x8001ACE0
-	.sbss       start:0x805208D0 end:0x805208E8
+	.sbss       start:0x805208D0 end:0x805208D8
 
 m_Do/m_Do_dvd_thread.cpp:
 	.text       start:0x8001ACE0 end:0x8001B9FC
@@ -111,10 +112,12 @@ m_Do/m_Do_dvd_thread.cpp:
 	.data       start:0x803E1D10 end:0x803E2058
 	.bss        start:0x8043AFE0 end:0x8043D360
 	.sdata      start:0x8051D810 end:0x8051D858
+	.sbss       start:0x805208D8 end:0x805208E0
 
 m_Do/m_Do_DVDError.cpp:
 	.text       start:0x8001B9FC end:0x8001BB68
 	.bss        start:0x8043D360 end:0x8043F6C0
+	.sbss       start:0x805208E0 end:0x805208E8
 
 m_Do/m_Do_MemCard.cpp:
 	.text       start:0x8001BB68 end:0x8001CEC0
