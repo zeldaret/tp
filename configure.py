@@ -730,7 +730,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, ALL_SHIELD), "d/d_bg_s_wtr_chk.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_base.cpp"),
-            Object(NonMatching, "d/d_bg_w_deform.cpp"),
+            Object(MatchingFor("ShieldD"), "d/d_bg_w_deform.cpp"),
             Object(NonMatching, "d/d_bg_w_hf.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_kcol.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_sv.cpp"),
