@@ -24,7 +24,7 @@ private:
 class daLv6CstaSw_HIO_c : public mDoHIO_entry_c {
 public:
     daLv6CstaSw_HIO_c();
-    virtual ~daLv6CstaSw_HIO_c();
+    virtual ~daLv6CstaSw_HIO_c() {}
 
     void genMessage(JORMContext*);
 

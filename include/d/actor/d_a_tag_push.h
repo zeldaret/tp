@@ -14,7 +14,7 @@ public:
     int isDelete();
     int chkPointInArea(cXyz);
 
-    u32 getId() {
+    int getId() {
         u16 id = (fopAcM_GetParam(this) & 0xFF000000) >> 24;
         return id == 0xFF ? -1 : id;
     }

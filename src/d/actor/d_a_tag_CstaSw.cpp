@@ -121,8 +121,6 @@ static int daTagCstaSw_Create(fopAc_ac_c* i_this) {
     return cstaSw->create();
 }
 
-daTagCstaSw_HIO_c::~daTagCstaSw_HIO_c() {}
-
 static actor_method_class l_daTagCstaSw_Method = {
     (process_method_func)daTagCstaSw_Create,  (process_method_func)daTagCstaSw_Delete,
     (process_method_func)daTagCstaSw_Execute, (process_method_func)NULL,

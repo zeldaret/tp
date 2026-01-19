@@ -121,8 +121,6 @@ static int daLv6CstaSw_Create(fopAc_ac_c* i_this) {
     return cStaSw->create();
 }
 
-daLv6CstaSw_HIO_c::~daLv6CstaSw_HIO_c() {}
-
 static actor_method_class l_daLv6CstaSw_Method = {
     (process_method_func)daLv6CstaSw_Create,  (process_method_func)daLv6CstaSw_Delete,
     (process_method_func)daLv6CstaSw_Execute, (process_method_func)NULL,
