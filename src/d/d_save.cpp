@@ -1035,15 +1035,15 @@ u8 dSv_player_config_c::getPalLanguage() const {
 #if VERSION == VERSION_GCN_PAL
     switch (OSGetLanguage()) {
     case 0:
-        return LANGAUGE_ENGLISH;
+        return LANGUAGE_ENGLISH;
     case 1:
-        return LANGAUGE_GERMAN;
+        return LANGUAGE_GERMAN;
     case 2:
-        return LANGAUGE_FRENCH;
+        return LANGUAGE_FRENCH;
     case 3:
-        return LANGAUGE_SPANISH;
+        return LANGUAGE_SPANISH;
     case 4:
-        return LANGAUGE_ITALIAN;
+        return LANGUAGE_ITALIAN;
     }
 #elif VERSION >= VERSION_WII_USA_R0
     switch (SCGetLanguage()) {

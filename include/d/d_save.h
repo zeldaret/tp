@@ -523,11 +523,11 @@ public:
     void setPointer(bool i_mPointer) { mPointer = i_mPointer; }
 
     enum dSv_config_language {
-        LANGAUGE_ENGLISH,
-        LANGAUGE_GERMAN,
-        LANGAUGE_FRENCH,
-        LANGAUGE_SPANISH,
-        LANGAUGE_ITALIAN,
+        LANGUAGE_ENGLISH,
+        LANGUAGE_GERMAN,
+        LANGUAGE_FRENCH,
+        LANGUAGE_SPANISH,
+        LANGUAGE_ITALIAN,
     };
 
 private:
