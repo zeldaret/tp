@@ -360,7 +360,6 @@ void daNpc_Besu_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
 }
 
 void daNpc_Besu_HIO_c::genMessage(JORMContext* ctx) {
-    // NONMATCHING
     daNpcT_cmnGenMessage(ctx, &m.common);
     // animation playback speed:
     ctx->genSlider("アニメ再生速度  ", &m.field_0x8c, -0.0f, 16.0f);
