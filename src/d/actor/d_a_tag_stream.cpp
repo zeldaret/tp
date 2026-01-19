@@ -104,6 +104,7 @@ static int daTagStream_Execute(daTagStream_c* i_this) {
 }
 
 static int daTagStream_Draw(daTagStream_c* i_this) {
+#if DEBUG
     if (UREG_S(9) != 0 && i_this->checkStreamOn()) {
         cXyz vertices[8];
         vertices[0].set(-i_this->scale.x, i_this->scale.y, -i_this->scale.z);
@@ -126,6 +127,7 @@ static int daTagStream_Draw(daTagStream_c* i_this) {
 
         dDbVw_drawCube8pXlu(vertices, color);
     }
+#endif
 
     return 1;
 }
