@@ -2845,7 +2845,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_setrestart"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_shop_camera"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_shop_item"), # debug weak func order
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_smk_emt"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_smk_emt"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_spinner"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_sppath"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_ss_drink"),
