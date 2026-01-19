@@ -423,13 +423,7 @@ int daNpc_Hoz_c::Draw() {
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
-    return draw(
-#if DEBUG
-        chkAction(&daNpc_Hoz_c::test),
-#else
-        FALSE,
-#endif
-        FALSE, mpHIO->m.common.real_shadow_size, NULL, 100.0f, FALSE, FALSE, FALSE
+    return draw(NpcT_CHK_ACTION(daNpc_Hoz_c), FALSE, mpHIO->m.common.real_shadow_size, NULL, 100.0f, FALSE, FALSE, FALSE
     );
 }
 

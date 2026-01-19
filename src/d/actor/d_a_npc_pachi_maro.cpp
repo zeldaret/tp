@@ -666,15 +666,7 @@ int daNpc_Pachi_Maro_c::Draw() {
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
-    return draw(
-#if DEBUG
-        chkAction(&daNpc_Pachi_Maro_c::test),
-#else
-        FALSE,
-#endif
-        FALSE,
-        mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE
-    );
+    return draw(NpcT_CHK_ACTION(daNpc_Pachi_Maro_c), FALSE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
 }
 
 int daNpc_Pachi_Maro_c::createHeapCallBack(fopAc_ac_c* i_this) {
