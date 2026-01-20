@@ -91,7 +91,7 @@ void daNpc_Maro_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
             len = 0;
             daNpcT_cmnListenPropertyEvent(msg_buffer, &len, &m.common);
             // Interval between interactions
-            sprintf(msg_buffer + len, "%d,   \t//  ちょっかい間隔\n", m.choccai_interval);
+            sprintf(msg_buffer + len, "%d,   \t//  ちょっかい間隔\n", m.tease_interval);
             len = strlen(msg_buffer);
             aJStack_910.writeData(msg_buffer, len);
             aJStack_910.close();
@@ -106,9 +106,9 @@ void daNpc_Maro_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
 void daNpc_Maro_HIO_c::genMessage(JORMContext* ctx) {
     daNpcT_cmnGenMessage(ctx, &m.common);
     // teasing interval
-    ctx->genSlider("ちょっかい間隔  ", &m.choccai_interval, 1, 0x400, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctx->genSlider("ちょっかい間隔  ", &m.tease_interval, 1, 0x400);
     // export file:
-    ctx->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 

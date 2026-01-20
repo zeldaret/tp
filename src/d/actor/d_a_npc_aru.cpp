@@ -232,14 +232,14 @@ void daNpc_Aru_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
 
 void daNpc_Aru_HIO_c::genMessage(JORMContext* ctx) {
     daNpcT_cmnGenMessage(ctx, &m.common);
-    ctx->genSlider("警戒範囲        ", &m.warning_range, 0.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctx->genSlider("走る速度        ", &m.run_speed, 0.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctx->genSlider("歩く速度        ", &m.walk_speed, 0.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctx->genSlider("旋回禁止時間    ", &m.no_turn_time, 0, 10000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctx->genSlider("避け時間        ", &m.avoid_time, 0, 10000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    ctx->genSlider("前方視界        ", &m.forward_visibility, 0.0f, 180.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctx->genSlider("警戒範囲        ", &m.warning_range, 0.0f, 10000.0f);
+    ctx->genSlider("走る速度        ", &m.run_speed, 0.0f, 10000.0f);
+    ctx->genSlider("歩く速度        ", &m.walk_speed, 0.0f, 10000.0f);
+    ctx->genSlider("旋回禁止時間    ", &m.no_turn_time, 0, 10000);
+    ctx->genSlider("避け時間        ", &m.avoid_time, 0, 10000);
+    ctx->genSlider("前方視界        ", &m.forward_visibility, 0.0f, 180.0f);
     // export file:
-    ctx->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 

@@ -7,7 +7,7 @@
 
 struct daNpc_Maro_HIOParam {
     /* 0x00 */ daNpcT_HIOParam common;
-    /* 0x8C */ s16 choccai_interval;
+    /* 0x8C */ s16 tease_interval;
 };
 
 class daNpc_Maro_Param_c {
