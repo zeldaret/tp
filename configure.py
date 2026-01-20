@@ -2072,14 +2072,14 @@ config.libs = [
         ],
     },
     {
-        "lib": "NdevExi2AD",
+        "lib": "NdevExi2A",
         "mw_version": MWVersion(config.version),
         "cflags": cflags_dolphin,
         "progress_category": "sdk",
         "host": False,
         "objects": [
-            Object(NonMatching, "NdevExi2AD/DebuggerDriver.c"),
-            Object(NonMatching, "NdevExi2AD/exi2.c"),
+            Object(NonMatching, "NdevExi2A/DebuggerDriver.c"),
+            Object(NonMatching, "NdevExi2A/exi2.c"),
         ],
     },
     {

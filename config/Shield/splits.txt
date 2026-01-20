@@ -4350,105 +4350,105 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/w_sqrt.
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/extras.c:
 	.text       start:0x80488908 end:0x804889AC
 
-TRK_Hollywood_Revolution/metrotrk/targsupp.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s:
 	.text       start:0x804889AC end:0x804889CC
 
-TRK_Hollywood_Revolution/metrotrk/custconn/cc_gdev.c:
+TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/cc_gdev.c:
 	.text       start:0x804889CC end:0x80488C44
 	.sbss       start:0x80509BA8 end:0x80509BB0
 	.bss        start:0x805E6730 end:0x805E6C50
 
-TRK_Hollywood_Revolution/metrotrk/custconn/MWCriticalSection_gc.c:
+TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c:
 	.text       start:0x80488C44 end:0x80488C80
 
-TRK_Hollywood_Revolution/metrotrk/custconn/CircleBuffer.c:
+TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/common/CircleBuffer.c:
 	.text       start:0x80488C80 end:0x80488EBC
 
-TRK_Hollywood_Revolution/metrotrk/flush_cache.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c:
 	.text       start:0x80488EBC end:0x80488EF4
 
-TRK_Hollywood_Revolution/metrotrk/main_TRK.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/main_TRK.c:
 	.text       start:0x80488EF4 end:0x80488F30
 	.sbss       start:0x80509BB0 end:0x80509BB8
 
-TRK_Hollywood_Revolution/metrotrk/mainloop.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/mainloop.c:
 	.text       start:0x80488F30 end:0x8048901C
 
-TRK_Hollywood_Revolution/metrotrk/mem_TRK.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
 	.text       start:0x8048901C end:0x80489280
 
-TRK_Hollywood_Revolution/metrotrk/dispatch.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/dispatch.c:
 	.text       start:0x80489280 end:0x804893A0
 	.data       start:0x80504848 end:0x805048B8
 
-TRK_Hollywood_Revolution/metrotrk/dolphin_trk.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
 	.text       start:0x804893A0 end:0x804896C4
 	.data       start:0x805048B8 end:0x805048F8
 	.sbss       start:0x80509BB8 end:0x80509BC4
 
-TRK_Hollywood_Revolution/metrotrk/dolphin_trk_glue.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c:
 	.text       start:0x804896C4 end:0x80489A60
 	.data       start:0x805048F8 end:0x805049E0
 	.sbss       start:0x80509BC4 end:0x80509BC8
 	.sdata2     start:0x8050EFB0 end:0x8050EFB4
 	.bss        start:0x805E6C50 end:0x805E6C78
 
-TRK_Hollywood_Revolution/metrotrk/notify.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/notify.c:
 	.text       start:0x80489A60 end:0x80489AF0
 
-TRK_Hollywood_Revolution/metrotrk/nubevent.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/nubevent.c:
 	.text       start:0x80489AF0 end:0x80489C8C
 	.data       start:0x805049E0 end:0x80504A00
 	.bss        start:0x805E6C78 end:0x805E6CA0
 
-TRK_Hollywood_Revolution/metrotrk/nubinit.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/nubinit.c:
 	.text       start:0x80489C8C end:0x80489DDC
 	.data       start:0x80504A00 end:0x80504A20
 	.sbss       start:0x80509BC8 end:0x80509BD0
 
-TRK_Hollywood_Revolution/metrotrk/serpoll.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/serpoll.c:
 	.text       start:0x80489DDC end:0x80489F24
 	.sbss       start:0x80509BD0 end:0x80509BD8
 
-TRK_Hollywood_Revolution/metrotrk/string_TRK.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/string_TRK.c:
 	.text       start:0x80489F24 end:0x80489F40
 
-TRK_Hollywood_Revolution/metrotrk/support.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/support.c:
 	.text       start:0x80489F40 end:0x8048A564
 	.data       start:0x80504A20 end:0x80504A68
 
-TRK_Hollywood_Revolution/metrotrk/targcont.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/targcont.c:
 	.text       start:0x8048A564 end:0x8048A598
 
-TRK_Hollywood_Revolution/metrotrk/mpc_7xx_603e.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
 	.text       start:0x8048A598 end:0x8048A8C0
 
-TRK_Hollywood_Revolution/metrotrk/msg.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/msg.c:
 	.text       start:0x8048A8C0 end:0x8048A924
 	.data       start:0x80504A68 end:0x80504A90
 	.sbss       start:0x80509BD8 end:0x80509BE0
 
-TRK_Hollywood_Revolution/metrotrk/msgbuf.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/msgbuf.c:
 	.text       start:0x8048A924 end:0x8048B130
 	.data       start:0x80504A90 end:0x80504AB8
 	.bss        start:0x805E6CA0 end:0x805E8648
 
-TRK_Hollywood_Revolution/metrotrk/msghndlr.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/msghndlr.c:
 	.text       start:0x8048B130 end:0x8048C0B4
 	.data       start:0x80504AB8 end:0x80504B20
 	.sbss       start:0x80509BE0 end:0x80509BE8
 
-TRK_Hollywood_Revolution/metrotrk/mslsupp.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Export/mslsupp.c:
 	.text       start:0x8048C0B4 end:0x8048C240
 
-TRK_Hollywood_Revolution/metrotrk/targimpl.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
 	.text       start:0x8048C240 end:0x8048DA64
 	.rodata     start:0x804AF690 end:0x804AF718
 	.data       start:0x80504B20 end:0x80504B30
 	.sbss       start:0x80509BE8 end:0x80509BF8
 	.bss        start:0x805E8648 end:0x805E8BF0
 
-TRK_Hollywood_Revolution/metrotrk/target_options.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/target_options.c:
 	.text       start:0x8048DA64 end:0x8048DA74
 
 NdevExi2A/DebuggerDriver.c:
