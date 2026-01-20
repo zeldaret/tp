@@ -2037,7 +2037,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/common/CircleBuffer.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c", extra_cflags=["-sdata 8"]),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/common/MWTrace.c"),
-            Object(NonMatching, "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/cc_gdev.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/cc_gdev.c", extra_cflags=["-sdata 8"]),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c"),
         ],
     },

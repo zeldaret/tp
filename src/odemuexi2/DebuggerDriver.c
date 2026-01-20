@@ -1,8 +1,6 @@
 #include <dolphin/exi.h>
 #include <dolphin/os.h>
 
-typedef void (*MTRCallbackType)(int);
-
 static MTRCallbackType MTRCallback;
 
 static void (*DBGCallback)(u32, OSContext*);
