@@ -2653,7 +2653,7 @@ JSystem/JKernel/JKRDecomp.cpp:
 	.text       start:0x802D9E08 end:0x802DA4EC
 	.data       start:0x804137A0 end:0x804137B0
 	.bss        start:0x804A8F18 end:0x804A8F58
-	.sbss       start:0x80521270 end:0x8052127C
+	.sbss       start:0x80521270 end:0x80521278
 
 JSystem/JSupport/JSUList.cpp:
 	.text       start:0x802DA4EC end:0x802DA92C
@@ -2681,7 +2681,7 @@ JSystem/JGadget/std-vector.cpp:
 
 JSystem/JUtility/JUTCacheFont.cpp:
 	.text       start:0x802DB7C4 end:0x802DC684
-	.data       start:0x80413818 end:0x80413908
+	.data       start:0x80413818 end:0x804138D8
 	.sdata2     start:0x80525F30 end:0x80525F38
 
 JSystem/JUtility/JUTResource.cpp:
@@ -2693,6 +2693,7 @@ JSystem/JUtility/JUTTexture.cpp:
 
 JSystem/JUtility/JUTPalette.cpp:
 	.text       start:0x802DCE18 end:0x802DCF04
+	.data       start:0x804138D8 end:0x80413908
 
 JSystem/JUtility/JUTNameTab.cpp:
 	.text       start:0x802DCF04 end:0x802DD0F4
@@ -2701,16 +2702,16 @@ JSystem/JUtility/JUTNameTab.cpp:
 JSystem/JUtility/JUTGraphFifo.cpp:
 	.text       start:0x802DD0F4 end:0x802DD284
 	.data       start:0x80413918 end:0x80413928
-	.sbss       start:0x8052127C end:0x80521288
+	.sbss       start:0x80521278 end:0x80521288
 
 JSystem/JUtility/JUTFont.cpp:
 	.text       start:0x802DD284 end:0x802DD4FC
-	.data       start:0x80413928 end:0x804139A4
+	.data       start:0x80413928 end:0x80413970
 
 JSystem/JUtility/JUTResFont.cpp:
 	.text       start:0x802DD4FC end:0x802DE60C
 	.rodata     start:0x803DAA78 end:0x803DAB60
-	.data       start:0x804139A4 end:0x804139F0
+	.data       start:0x80413970 end:0x804139F0
 	.sdata2     start:0x80525F50 end:0x80525F68
 
 JSystem/JUtility/JUTFontData_Ascfont_fix12.cpp:
@@ -2718,7 +2719,7 @@ JSystem/JUtility/JUTFontData_Ascfont_fix12.cpp:
 
 JSystem/JUtility/JUTDbPrint.cpp:
 	.text       start:0x802DE60C end:0x802DEB68
-	.sbss       start:0x80521288 end:0x80521298
+	.sbss       start:0x80521288 end:0x80521290
 	.sdata2     start:0x80525F68 end:0x80525F78
 
 JSystem/JUtility/JUTGamePad.cpp:
@@ -2726,8 +2727,8 @@ JSystem/JUtility/JUTGamePad.cpp:
 	.ctors      start:0x803B8E00 end:0x803B8E04
 	.data       start:0x804139F0 end:0x80413A20
 	.bss        start:0x804A8F58 end:0x804A90F8
-	.sdata      start:0x805201D0 end:0x80520228
-	.sbss       start:0x80521298 end:0x805212C8
+	.sdata      start:0x805201D0 end:0x805201E8
+	.sbss       start:0x80521290 end:0x805212C8
 	.sdata2     start:0x80525F78 end:0x80525F98
 
 JSystem/JUtility/JUTException.cpp:
@@ -2735,17 +2736,20 @@ JSystem/JUtility/JUTException.cpp:
 	.ctors      start:0x803B8E04 end:0x803B8E08
 	.data       start:0x80413A20 end:0x80413F58
 	.bss        start:0x804A90F8 end:0x804A9570
+	.sdata      start:0x805201E8 end:0x80520218
 	.sbss       start:0x805212C8 end:0x805212F0
 	.sdata2     start:0x80525F98 end:0x80525FA8
 
 JSystem/JUtility/JUTDirectPrint.cpp:
 	.text       start:0x802E21E0 end:0x802E28C0
 	.data       start:0x80413F58 end:0x80414220
+	.sdata      start:0x80520218 end:0x80520220
 	.sbss       start:0x805212F0 end:0x805212F8
 	.sdata2     start:0x80525FA8 end:0x80526000
 
 JSystem/JUtility/JUTAssert.cpp:
 	.text       start:0x802E28C0 end:0x802E2B9C
+	.sdata      start:0x80520220 end:0x80520228
 	.sbss       start:0x805212F8 end:0x80521300
 	.sdata2     start:0x80526000 end:0x80526018
 
@@ -2760,18 +2764,19 @@ JSystem/JUtility/JUTXfb.cpp:
 
 JSystem/JUtility/JUTFader.cpp:
 	.text       start:0x802E33AC end:0x802E36C0
-	.data       start:0x80414230 end:0x80414254
+	.data       start:0x80414230 end:0x80414248
 	.sdata2     start:0x80526018 end:0x80526020
 
 JSystem/JUtility/JUTProcBar.cpp:
 	.text       start:0x802E36C0 end:0x802E4E70
-	.sdata      start:0x80520228 end:0x80520298
+	.sdata      start:0x80520228 end:0x80520230
 	.sbss       start:0x80521320 end:0x80521330
 	.sdata2     start:0x80526020 end:0x80526060
 
 JSystem/JUtility/JUTConsole.cpp:
 	.text       start:0x802E4E70 end:0x802E618C
-	.data       start:0x80414254 end:0x80414260
+	.data       start:0x80414248 end:0x80414260
+	.sdata      start:0x80520230 end:0x80520238
 	.sbss       start:0x80521330 end:0x80521340
 	.sdata2     start:0x80526060 end:0x80526090
 
@@ -2838,6 +2843,7 @@ JSystem/J2DGraph/J2DPicture.cpp:
 JSystem/J2DGraph/J2DTextBox.cpp:
 	.text       start:0x802FC6C4 end:0x802FDBB4
 	.data       start:0x80414AD8 end:0x80414B98
+	.sdata      start:0x80520238 end:0x80520240
 	.sdata2     start:0x805261C8 end:0x805261E8
 
 JSystem/J2DGraph/J2DWindowEx.cpp:
@@ -2856,6 +2862,7 @@ JSystem/J2DGraph/J2DTextBoxEx.cpp:
 	.text       start:0x80303B14 end:0x80305358
 	.rodata     start:0x803DEE08 end:0x803DEE40
 	.data       start:0x80414DB8 end:0x80414E78
+	.sdata      start:0x80520240 end:0x80520248
 	.sdata2     start:0x80526220 end:0x80526240
 
 JSystem/J2DGraph/J2DAnmLoader.cpp:
@@ -2874,6 +2881,7 @@ JSystem/J2DGraph/J2DManage.cpp:
 JSystem/J3DGraphBase/J3DGD.cpp:
 	.text       start:0x80309580 end:0x8030AE48
 	.data       start:0x80414FA8 end:0x80415050
+	.sdata      start:0x80520248 end:0x80520298
 	.sdata2     start:0x80526278 end:0x805262B8
 
 JSystem/J3DGraphBase/J3DSys.cpp:
