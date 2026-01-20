@@ -87,7 +87,7 @@ daNpcAshB_HIO_c::daNpcAshB_HIO_c() {
 
 void daNpcAshB_HIO_c::genMessage(JORMContext* ctext) {
     // Post-conversation follow-up distance
-    ctext->genSlider("会話後追従距離", &m.field_0x6c, 0.0f, 2000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("会話後追従距離", &m.field_0x6c, 0.0f, 2000.0f);
     daNpcF_commonGenMessage(ctext, &m.common);
 }
 #endif

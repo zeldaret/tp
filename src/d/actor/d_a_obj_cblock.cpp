@@ -92,11 +92,11 @@ static f32 dummy1() {
 
 void daObjCBlk_HIO_c::genMessage(JORMContext* ctx) {
     // "Chained block"
-    ctx->genLabel("チェーン付きブロック", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("重力", &mGravity, -10.0f, -0.1f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("移動時間", &mTravelTime, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("タメ時間", &mWaitTime, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("移動距離", &mTravelDist, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("チェーン付きブロック", 0);
+    ctx->genSlider("重力", &mGravity, -10.0f, -0.1f);
+    ctx->genSlider("移動時間", &mTravelTime, 0.0f, 100.0f);
+    ctx->genSlider("タメ時間", &mWaitTime, 0.0f, 10.0f);
+    ctx->genSlider("移動距離", &mTravelDist, 0.0f, 100.0f);
 }
 
 static daObjCBlk_HIO_c l_HIO;

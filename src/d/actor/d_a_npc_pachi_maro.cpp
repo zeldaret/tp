@@ -359,7 +359,7 @@ void daNpc_Pachi_Maro_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) 
 
 void daNpc_Pachi_Maro_HIO_c::genMessage(JORMContext* ctx) {
     daNpcT_cmnGenMessage(ctx, &m.common);
-    ctx->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 

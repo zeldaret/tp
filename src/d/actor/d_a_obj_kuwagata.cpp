@@ -32,11 +32,9 @@ daObj_KuwHIO_c::daObj_KuwHIO_c() {
 
 #if DEBUG
 void daObj_KuwHIO_c::genMessage(JORMContext* ctx) {
-    ctx->genLabel("黄金蟲(カブト)", 0x80000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("モデルスケール(オス)", &mMaleModelScale, 0.1f, 4.0f, 0, NULL, 0xffff, 0xffff,
-                   0x200, 0x18);
-    ctx->genSlider("モデルスケール(メス)", &mFemaleModelScale, 0.1f, 4.0f, 0, NULL, 0xffff, 0xffff,
-                   0x200, 0x18);
+    ctx->genLabel("黄金蟲(カブト)", 0x80000001);
+    ctx->genSlider("モデルスケール(オス)", &mMaleModelScale, 0.1f, 4.0f);
+    ctx->genSlider("モデルスケール(メス)", &mFemaleModelScale, 0.1f, 4.0f);
 }
 #endif
 

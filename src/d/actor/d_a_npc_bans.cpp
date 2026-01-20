@@ -168,8 +168,8 @@ void daNpc_Bans_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
 
 void daNpc_Bans_HIO_c::genMessage(JORMContext* ctx) {
     daNpcT_cmnGenMessage(ctx, &m.common);
-    ctx->genSlider("走り速度        ", &m.run_spd, 0.0f, 32.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("走り速度        ", &m.run_spd, 0.0f, 32.0f);
+    ctx->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 

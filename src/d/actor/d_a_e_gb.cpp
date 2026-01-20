@@ -60,15 +60,15 @@ daE_GB_HIO_c::daE_GB_HIO_c() {
 
 #if DEBUG
 void daE_GB_HIO_c::genMessage(JORMContext* ctx) {
-    ctx->genLabel("  デカババ　　", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genLabel("　　　大幅なサイズ変更は姿勢生成に影響があるので注意　　　", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("顔サイズ", &face_size, 0.0f, 5.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("花サイズ", &flower_size, 0.0f, 5.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("茎サイズ", &stem_size, 0.0f, 5.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("攻撃頻度", &attack_frequency, 0, 30000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("攻撃速度", &attack_spd, 0.0f, 200.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("攻後距離", &attack_range, 0, 30, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("攻後停間", &post_attack_pause_timer, 0, 200, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("  デカババ　　", 0x80000001);
+    ctx->genLabel("　　　大幅なサイズ変更は姿勢生成に影響があるので注意　　　", 0x80000001);
+    ctx->genSlider("顔サイズ", &face_size, 0.0f, 5.0f);
+    ctx->genSlider("花サイズ", &flower_size, 0.0f, 5.0f);
+    ctx->genSlider("茎サイズ", &stem_size, 0.0f, 5.0f);
+    ctx->genSlider("攻撃頻度", &attack_frequency, 0, 30000);
+    ctx->genSlider("攻撃速度", &attack_spd, 0.0f, 200.0f);
+    ctx->genSlider("攻後距離", &attack_range, 0, 30);
+    ctx->genSlider("攻後停間", &post_attack_pause_timer, 0, 200);
 }
 #endif
 

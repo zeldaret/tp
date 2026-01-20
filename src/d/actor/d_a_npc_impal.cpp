@@ -85,7 +85,7 @@ daNpcImpal_HIO_c::daNpcImpal_HIO_c() {
 
 void daNpcImpal_HIO_c::genMessage(JORMContext* ctext) {
     // Ancient Document Demo Start Distance:
-    ctext->genSlider("古文書デモ開始距離", &m.demo_start_dist, 0.0f, 5000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("古文書デモ開始距離", &m.demo_start_dist, 0.0f, 5000.0f);
     daNpcF_commonGenMessage(ctext, &m.common);
 }
 #endif

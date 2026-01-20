@@ -32,11 +32,11 @@ daSpinLift_HIO_c::daSpinLift_HIO_c() {
 #if DEBUG
 void daSpinLift_HIO_c::genMessage(JORMContext* ctx) {
     // === Ascent ===
-    ctx->genLabel("\n=== 上昇 ===", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("\n=== 上昇 ===", 0);
     // Initial Speed
-    ctx->genSlider("初速", &mInitialSpeed, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("初速", &mInitialSpeed, 0.0f, 100.0f);
     // Vibration
-    ctx->startComboBox("振動", &mVibration, 0, NULL, 0xffff, 0xffff, 0x100, 0x1a);
+    ctx->startComboBox("振動", &mVibration);
     // Strength 1 - 8
     ctx->genComboBoxItem("強さ１", 1);
     ctx->genComboBoxItem("強さ２", 2);

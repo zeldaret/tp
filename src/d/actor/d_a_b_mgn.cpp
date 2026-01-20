@@ -197,14 +197,14 @@ daB_MGN_HIO_c::daB_MGN_HIO_c() {
 
 #if DEBUG
 void daB_MGN_HIO_c::genMessage(JORMContext* ctx) {
-    ctx->genLabel("  豚ガノン", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("基本サイズ", &base_size, 0.0f, 5.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("ダッシュ速度", &dash_speed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("旋回速度", &turn_speed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("ダッシュアニメ", &dash_anim, 0.0f, 10.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("宝石R", &jewel_R, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("宝石G", &jewel_G, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("宝石B", &jewel_B, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genLabel("  豚ガノン", 0x80000001);
+    ctx->genSlider("基本サイズ", &base_size, 0.0f, 5.0f);
+    ctx->genSlider("ダッシュ速度", &dash_speed, 0.0f, 100.0f);
+    ctx->genSlider("旋回速度", &turn_speed, 0.0f, 100.0f);
+    ctx->genSlider("ダッシュアニメ", &dash_anim, 0.0f, 10.0f);
+    ctx->genSlider("宝石R", &jewel_R, 0.0f, 100.0f);
+    ctx->genSlider("宝石G", &jewel_G, 0.0f, 100.0f);
+    ctx->genSlider("宝石B", &jewel_B, 0.0f, 100.0f);
 }
 #endif
 

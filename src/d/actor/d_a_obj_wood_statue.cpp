@@ -22,11 +22,10 @@ public:
 
     void genMessage(JORMContext* context) {
         // Wooden Statue
-        context->genLabel("木彫りの像", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+        context->genLabel("木彫りの像", 0);
 
         // Respawn timer
-        context->genSlider("全滅後の出現タイマー", &mRespawnTimer, 0, 200, 0, NULL, 0xffff, 0xffff,
-                           0x200, 0x18);
+        context->genSlider("全滅後の出現タイマー", &mRespawnTimer, 0, 200);
     }
 
     u8 mRespawnTimer;

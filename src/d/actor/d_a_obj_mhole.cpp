@@ -49,16 +49,16 @@ daObjMHole_HIO_c::daObjMHole_HIO_c() {
 }
 
 void daObjMHole_HIO_c::genMessage(JORMContext* mctx) {
-    mctx->genLabel("マグネホール", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genCheckBox("スケール調整ＯＮ", &scale_adjust_on, 0x1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genSlider("Ｘスケール", &scale.x, 0.1f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 24);
-    mctx->genSlider("Ｙスケール", &scale.y, 0.1f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 24);
-    mctx->genSlider("Ｚスケール", &scale.z, 0.1f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 24);
-    mctx->genCheckBox("当たり表示", &collision_display, 0x1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genCheckBox("アングル", &angle, 0x1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genSlider("Ｘ", &angl.x, -0x7FFF, 0x7FFF, 0, NULL, 0xffff, 0xffff, 0x200, 24);
-    mctx->genSlider("Ｙ", &angl.y, -0x7FFF, 0x7FFF, 0, NULL, 0xffff, 0xffff, 0x200, 24);
-    mctx->genSlider("Ｚ", &angl.z, -0x7FFF, 0x7FFF, 0, NULL, 0xffff, 0xffff, 0x200, 24);
+    mctx->genLabel("マグネホール", 0);
+    mctx->genCheckBox("スケール調整ＯＮ", &scale_adjust_on, 0x1);
+    mctx->genSlider("Ｘスケール", &scale.x, 0.1f, 10.0f);
+    mctx->genSlider("Ｙスケール", &scale.y, 0.1f, 10.0f);
+    mctx->genSlider("Ｚスケール", &scale.z, 0.1f, 10.0f);
+    mctx->genCheckBox("当たり表示", &collision_display, 0x1);
+    mctx->genCheckBox("アングル", &angle, 0x1);
+    mctx->genSlider("Ｘ", &angl.x, -0x7FFF, 0x7FFF);
+    mctx->genSlider("Ｙ", &angl.y, -0x7FFF, 0x7FFF);
+    mctx->genSlider("Ｚ", &angl.z, -0x7FFF, 0x7FFF);
 }
 #endif
 

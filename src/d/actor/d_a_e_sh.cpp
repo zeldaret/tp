@@ -46,16 +46,16 @@ daE_SH_HIO_c::daE_SH_HIO_c() {
 #if DEBUG
 void daE_SH_HIO_c::genMessage(JORMContext* ctx) {
     // "Stalhound"
-    ctx->genLabel("  スタルハウンド", 0x80000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("基本サイズ", &mBaseSize, 0.0f, 3.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("歩き速度", &mWalkSpeed, 0.0f, 60.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("走り速度", &mRunSpeed, 0.0f, 60.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("チェック１", &mCheck1, 0.0f, 2000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("チェック２", &mCheck2, 0.0f, 2000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("チェック３", &mCheck3, 0.0f, 2000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("チェック４", &mCheck4, 0.0f, 2000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("チェック５", &mCheck5, 0.0f, 2000.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genCheckBox("時間無視", &mIgnoreTime, 1, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("  スタルハウンド", 0x80000001);
+    ctx->genSlider("基本サイズ", &mBaseSize, 0.0f, 3.0f);
+    ctx->genSlider("歩き速度", &mWalkSpeed, 0.0f, 60.0f);
+    ctx->genSlider("走り速度", &mRunSpeed, 0.0f, 60.0f);
+    ctx->genSlider("チェック１", &mCheck1, 0.0f, 2000.0f);
+    ctx->genSlider("チェック２", &mCheck2, 0.0f, 2000.0f);
+    ctx->genSlider("チェック３", &mCheck3, 0.0f, 2000.0f);
+    ctx->genSlider("チェック４", &mCheck4, 0.0f, 2000.0f);
+    ctx->genSlider("チェック５", &mCheck5, 0.0f, 2000.0f);
+    ctx->genCheckBox("時間無視", &mIgnoreTime, 0x1);
 }
 #endif
 

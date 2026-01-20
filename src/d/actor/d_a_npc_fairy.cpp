@@ -219,9 +219,9 @@ void daNpc_Fairy_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
 
 void daNpc_Fairy_HIO_c::genMessage(JORMContext* ctx) {
     daNpcT_cmnGenMessage(ctx, &m.common);
-    ctx->genSlider("残留思念の幅", &m.spirit_width, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("残留思念の高さ", &m.spirit_height, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("残留思念の幅", &m.spirit_width, 0.0f, 1000.0f);
+    ctx->genSlider("残留思念の高さ", &m.spirit_height, 0.0f, 1000.0f);
+    ctx->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 

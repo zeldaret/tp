@@ -107,15 +107,15 @@ void daNpc_Toby_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
 void daNpc_Toby_HIO_c::genMessage(JORMContext* ctext) {
     daNpcT_cmnGenMessage(ctext, &m.common);
     // Performance speed:
-    ctext->genSlider("演奏速度        ", &m.performance_speed, 1.0f, 16.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("演奏速度        ", &m.performance_speed, 1.0f, 16.0f);
     // playing speed up:
-    ctext->genSlider("演奏加速        ", &m.speedup_performance, 0.0f, 16.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("演奏加速        ", &m.speedup_performance, 0.0f, 16.0f);
     // playing initial velocity:
-    ctext->genSlider("演奏初速        ", &m.init_play_speed, 1.0f, 16.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("演奏初速        ", &m.init_play_speed, 1.0f, 16.0f);
     // switching speed:
-    ctext->genSlider("切り替え速度    ", &m.switching_speed, 0.0f, 16.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("切り替え速度    ", &m.switching_speed, 0.0f, 16.0f);
     // export file:
-    ctext->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctext->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 

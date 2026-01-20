@@ -161,17 +161,17 @@ void daNpc_Jagar_HIO_c::genMessage(JORMContext* ctext) {
     // TODO.
     daNpcT_cmnGenMessage(ctext, &m.common);
     // pumpkin monitoring distance
-    ctext->genSlider("かぼちゃ監視距離", &m.pumpkin_watch_range, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("かぼちゃ監視距離", &m.pumpkin_watch_range, 0.0f, 1000.0f);
     // pumpkin watch height
-    ctext->genSlider("かぼちゃ監視高さ", &m.pumpkin_watch_Ymax, -10000.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("かぼちゃ監視高さ", &m.pumpkin_watch_Ymax, -10000.0f, 10000.0f);
     // "Pumpkin monitoring is low"?
-    ctext->genSlider("かぼちゃ監視低さ", &m.pumpkin_watch_Ymin, -10000.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("かぼちゃ監視低さ", &m.pumpkin_watch_Ymin, -10000.0f, 10000.0f);
     // running speed
-    ctext->genSlider("走る速度        ", &m.running_speed, 0.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("走る速度        ", &m.running_speed, 0.0f, 10000.0f);
     // hidden state release dist
-    ctext->genSlider("隠れ状態解除距離", &m.hidden_state_release_dist, 0.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("隠れ状態解除距離", &m.hidden_state_release_dist, 0.0f, 10000.0f);
     // export file:
-    ctext->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctext->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 

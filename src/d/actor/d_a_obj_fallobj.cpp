@@ -31,15 +31,15 @@ daObjFallObj_HIO_c::daObjFallObj_HIO_c() {
 
 void daObjFallObj_HIO_c::genMessage(JORMContext* ctx) {
     // Falling Object
-    ctx->genLabel("落下ＯＢＪ", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genLabel("落下ＯＢＪ", 0);
     // Movement Shake
-    ctx->genSlider("移動時揺れ", &mMovementShake, 0, 1000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("移動時揺れ", &mMovementShake, 0, 1000);
     // Static Shake
-    ctx->genSlider("静止時揺れ", &mStaticShake, 0, 1000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genSlider("静止時揺れ", &mStaticShake, 0, 1000);
     // No Fall
-    ctx->genCheckBox("落下しない", &mNoFall, 1, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genCheckBox("落下しない", &mNoFall, 0x1);
     // Check Display
-    ctx->genCheckBox("チェック表示", &mCheckDisplay, 1, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    ctx->genCheckBox("チェック表示", &mCheckDisplay, 0x1);
 }
 
 static daObjFallObj_HIO_c l_HIO;

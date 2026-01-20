@@ -102,14 +102,14 @@ dMf_HIO_c::dMf_HIO_c() {
 
 #if DEBUG
 void dMf_HIO_c::genMessage(JORMContext* mctx) {
-    mctx->genLabel("\n■枠BTKアニメフレーム", 0, 0, NULL, -1, -1, 512, 24);
-    mctx->genSlider("フレーム数", &mBackAnimeStep, 0.0, 10.0, 0, NULL, -1, -1, 512, 24);
-    mctx->genLabel("\n■枠の明度", 0, 0, NULL, -1, -1, 512, 24);
-    mctx->genSlider("アルファ", &mBaseBackAlpha, 0, 255, 0, NULL, -1, -1, 512, 24);
-    mctx->genLabel("\n■もやもやBTKアニメフレーム", 0, 0, NULL, -1, -1, 512, 24);
-    mctx->genSlider("フレーム数", &mTopAnimeStep, 0.0, 10.0, 0, NULL, -1, -1, 512, 24);
-    mctx->genLabel("\n■もやもやの明度", 0, 0, NULL, -1, -1, 512, 24);
-    mctx->genSlider("アルファ", &mMoyaAlpha, 0, 255, 0, NULL, -1, -1, 512, 24);
+    mctx->genLabel("\n■枠BTKアニメフレーム", 0);
+    mctx->genSlider("フレーム数", &mBackAnimeStep, 0.0, 10.0);
+    mctx->genLabel("\n■枠の明度", 0);
+    mctx->genSlider("アルファ", &mBaseBackAlpha, 0, 255);
+    mctx->genLabel("\n■もやもやBTKアニメフレーム", 0);
+    mctx->genSlider("フレーム数", &mTopAnimeStep, 0.0, 10.0);
+    mctx->genLabel("\n■もやもやの明度", 0);
+    mctx->genSlider("アルファ", &mMoyaAlpha, 0, 255);
 }
 #endif
 

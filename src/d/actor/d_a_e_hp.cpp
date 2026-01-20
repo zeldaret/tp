@@ -85,15 +85,12 @@ daE_HP_HIO_c::daE_HP_HIO_c() {
 #if DEBUG
 void daE_HP_HIO_c::genMessage(JORMContext* ctx) {
     // General-purpose Poe
-    ctx->genLabel("汎用ポゥ", 0x80000001, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("モデルサイズ", &modelSize, 0.0, 10.0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("攻撃終了後待ち時間", &waitTimeAfterAttack, 0, 1000, 0, NULL, 0xffff, 0xffff,
-                   0x200, 0x18);
-    ctx->genSlider("復活時間", &resurrectionTime, 0, 1000, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
-    ctx->genSlider("接近後攻撃しない時間", &attackDelayOnApproach, 0, 0xfe, 0, NULL, 0xffff, 0xffff,
-                   0x200, 0x18);
-    ctx->genCheckBox("範囲表示(FINALでは不可)", &rangeDisplay, 1, 0, NULL, 0xffff, 0xffff, 0x200,
-                     0x18);
+    ctx->genLabel("汎用ポゥ", 0x80000001);
+    ctx->genSlider("モデルサイズ", &modelSize, 0.0, 10.0);
+    ctx->genSlider("攻撃終了後待ち時間", &waitTimeAfterAttack, 0, 1000);
+    ctx->genSlider("復活時間", &resurrectionTime, 0, 1000);
+    ctx->genSlider("接近後攻撃しない時間", &attackDelayOnApproach, 0, 0xfe);
+    ctx->genCheckBox("範囲表示(FINALでは不可)", &rangeDisplay, 0x1);
 }
 #endif
 

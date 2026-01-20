@@ -194,9 +194,9 @@ void daNpc_Post_HIO_c::listenPropertyEvent(const JORPropertyEvent* evt) {
 
 void daNpc_Post_HIO_c::genMessage(JORMContext* ctx) {
     daNpcT_cmnGenMessage(ctx, &m.common);
-    ctx->genSlider("走り速度        ", &m.run_spd, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genSlider("頷き間隔        ", &m.nod_interval, 0, 1000, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
-    ctx->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    ctx->genSlider("走り速度        ", &m.run_spd, 0.0f, 100.0f);
+    ctx->genSlider("頷き間隔        ", &m.nod_interval, 0, 1000);
+    ctx->genButton("ファイル書き出し", 0x40000002);
 }
 #endif
 
