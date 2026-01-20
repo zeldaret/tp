@@ -6,6 +6,7 @@
 
 // Fixes weak .data
 #include <cmath> // IWYU pragma: export
+#include <limits> // IWYU pragma: export
 #include "JSystem/J3DGraphBase/J3DMatBlock.h" // IWYU pragma: export
 #include "Z2AudioLib/Z2Calc.h" // IWYU pragma: export
 
