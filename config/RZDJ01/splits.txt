@@ -3976,7 +3976,7 @@ PowerPC_EABI_Support/Runtime/Src/Gecko_ExceptionPPC.cp:
 	.text       start:0x803AAEBC end:0x803AAF20
 	.bss        start:0x80518BF8 end:0x80518C08
 
-PowerPC_EABI_Support/Runtime/Src/GCN_Mem_Alloc.cpp:
+PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c:
 	.text       start:0x803AAF20 end:0x803AAFD8
 	.rodata     start:0x803DD6F8 end:0x803DD768
 

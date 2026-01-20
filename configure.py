@@ -1908,7 +1908,6 @@ config.libs = [
         "progress_category": "sdk",
         "host": False,
         "objects": [
-            Object(NonMatching, "PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/__mem.c"),
             Object(MatchingFor(ALL_GCN, "Shield"), "PowerPC_EABI_Support/Runtime/Src/__va_arg.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c"),
@@ -1918,7 +1917,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/runtime.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/Gecko_ExceptionPPC.cp"),
-            Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/GCN_Mem_Alloc.c", extra_cflags=["-str reuse,nopool,readonly"]),
+            Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c", extra_cflags=["-str reuse,nopool,readonly"]),
         ],
     },
     {

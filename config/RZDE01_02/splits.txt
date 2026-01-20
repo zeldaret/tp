@@ -3969,7 +3969,7 @@ PowerPC_EABI_Support/Runtime/Src/runtime.c:
 	.text       start:0x803A8AF8 end:0x803A9394
 	.rodata     start:0x803DF720 end:0x803DF738
 
-PowerPC_EABI_Support/Runtime/Src/GCN_Mem_Alloc.cpp:
+PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c:
 	.rodata     start:0x803DF738 end:0x803DF7A8
 
 PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp:
