@@ -888,7 +888,7 @@ void daAlink_c::resetSpecialEvent() {
 void daAlink_c::endDemoMode() {
     BOOL flyAtnWait = checkFlyAtnWait();
     endHighModel();
-    offNoResetFlg0(daPy_FLG0(FLG0_UNK_10000 | FLG0_UNK_400));
+    offNoResetFlg0(daPy_FLG0(FLG0_DEMO_STREAM_ACCEPT | FLG0_UNK_400));
     field_0x06f4 = NULL;
 
     if (field_0x06f8 != NULL) {

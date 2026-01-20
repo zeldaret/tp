@@ -5275,7 +5275,7 @@ void daAlink_c::setIceSlipSpeed() {
 
 void daAlink_c::setPolygonSpeed() {
     offNoResetFlg3(daPy_FLG3(FLG3_UNK_1000 | FLG3_UNK_2000));
-    if ((!checkEventRun() || checkNoResetFlg0(daPy_FLG0(FLG0_UNK_10000 | FLG0_UNK_4000))) && !checkMagneBootsOn()) {
+    if ((!checkEventRun() || checkNoResetFlg0(daPy_FLG0(FLG0_DEMO_STREAM_ACCEPT | FLG0_UNK_4000))) && !checkMagneBootsOn()) {
         cM3dGPla tripla;
         if (checkNoResetFlg3(FLG3_MIDNA_TALK_POLY_SPEED)) {
             offNoResetFlg3(FLG3_MIDNA_TALK_POLY_SPEED);
@@ -13097,7 +13097,7 @@ void daAlink_c::posMove() {
                 current.pos.x += mWindSpeed.x;
                 current.pos.z += mWindSpeed.z;
             }
-        } else if (checkNoResetFlg0(daPy_FLG0(FLG0_UNK_10000 | FLG0_UNK_4000))) {
+        } else if (checkNoResetFlg0(daPy_FLG0(FLG0_DEMO_STREAM_ACCEPT | FLG0_UNK_4000))) {
             current.pos += field_0x3594;
         }
     } else if (checkOctaIealSpecialCollect()) {
