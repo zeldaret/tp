@@ -319,19 +319,19 @@ static void mDoMemCdRWm_BuildHeader(mDoMemCdRWm_HeaderData* header) {
 
 #if VERSION == VERSION_GCN_PAL
     switch (dComIfGs_getPalLanguage()) {
-    case dSv_player_config_c::LANGAUGE_ENGLISH:
+    case dSv_player_config_c::LANGUAGE_ENGLISH:
         snprintf(header->mComment, sizeof(header->mComment), "%d/%d Save Data", time.mon + 1, time.mday);
         break;
-    case dSv_player_config_c::LANGAUGE_GERMAN:
+    case dSv_player_config_c::LANGUAGE_GERMAN:
         snprintf(header->mComment, sizeof(header->mComment), "%d/%d Spielstand", time.mday, time.mon + 1);
         break;
-    case dSv_player_config_c::LANGAUGE_FRENCH:
+    case dSv_player_config_c::LANGUAGE_FRENCH:
         snprintf(header->mComment, sizeof(header->mComment), "Donn%ces de jeu %d/%d", 0xE9, time.mday, time.mon + 1);
         break;
-    case dSv_player_config_c::LANGAUGE_SPANISH:
+    case dSv_player_config_c::LANGUAGE_SPANISH:
         snprintf(header->mComment, sizeof(header->mComment), "Datos guardados el %d/%d", time.mday, time.mon + 1);
         break;
-    case dSv_player_config_c::LANGAUGE_ITALIAN:
+    case dSv_player_config_c::LANGUAGE_ITALIAN:
         snprintf(header->mComment, sizeof(header->mComment), "Dati salvati: %d/%d", time.mday, time.mon + 1);
         break;
     }
