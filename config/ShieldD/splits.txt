@@ -3451,7 +3451,7 @@ JSystem/JUtility/JUTResFont.cpp:
 
 JSystem/JUtility/JUTDbPrint.cpp:
 	.text       start:0x8051C3E0 end:0x8051CB70
-	.sbss       start:0x8074CF90 end:0x8074CF9C
+	.sbss       start:0x8074CF90 end:0x8074CF98
 	.sdata2     start:0x80752718 end:0x80752728
 
 JSystem/JUtility/JUTGamePad.cpp:
@@ -3459,7 +3459,7 @@ JSystem/JUtility/JUTGamePad.cpp:
 	.ctors      start:0x8062F9C8 end:0x8062F9CC
 	.data       start:0x8070FC90 end:0x8070FD50
 	.sdata      start:0x8074ADA8 end:0x8074ADD8
-	.sbss       start:0x8074CF9C end:0x8074CFD0
+	.sbss       start:0x8074CF98 end:0x8074CFD0
 	.sdata2     start:0x80752728 end:0x80752748
 	.bss        start:0x807E20B8 end:0x807E2258
 
