@@ -502,7 +502,7 @@ static int daE_TK2_Create(fopAc_ac_c* i_this) {
     fopAcM_ct(i_this, e_tk2_class);
     e_tk2_class* a_this = static_cast<e_tk2_class*>(i_this);
 
-    cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "E_tk2");
+    cPhs_Step phase = dComIfG_resLoad(&a_this->mPhaseReq, "E_tk2");
     if (phase == cPhs_COMPLEATE_e) {
         a_this->mArg0 = fopAcM_GetParamBit(a_this, 0, 8);
         a_this->mArg1 = fopAcM_GetParamBit(a_this, 8, 4);

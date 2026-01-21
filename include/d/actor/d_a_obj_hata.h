@@ -19,7 +19,7 @@ public:
     daObjHata_c();
     virtual ~daObjHata_c();
     int createHeap();
-    cPhs__Step create();
+    cPhs_Step create();
     int Delete();
     int draw();
     int execute();
