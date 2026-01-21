@@ -19,7 +19,7 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_ext.h"
 #include "m_Do/m_Do_mtx.h"
-#include "dolphin/types.h"
+#include <dolphin/types.h>
 
 daObj_Maki_HIO_c::daObj_Maki_HIO_c() {
     field_0x4 = -1;

@@ -1,7 +1,7 @@
 #ifndef D_JCAM_EDITOR_H
 #define D_JCAM_EDITOR_H
 
-#include "dolphin/mtx.h"
+#include <dolphin/mtx.h>
 
 namespace JStage {
     class TSystem;
