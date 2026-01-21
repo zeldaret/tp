@@ -716,9 +716,9 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bg_plc.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_s.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_acch.cpp"),
-            Object(NonMatching, "d/d_bg_s_capt_poly.cpp"),
+            Object(MatchingFor(ALL_WII), "d/d_bg_s_capt_poly.cpp"),
             Object(MatchingFor(ALL_GCN, "Shield"), "d/d_bg_s_chk.cpp"),
-            Object(NonMatching, "d/d_bg_s_func.cpp"),
+            Object(MatchingFor("ShieldD"), "d/d_bg_s_func.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_gnd_chk.cpp"), # debug weak func order
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_grp_pass_chk.cpp"), # debug weak func order
             Object(MatchingFor(ALL_GCN), "d/d_bg_s_lin_chk.cpp"),
@@ -730,7 +730,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN, ALL_SHIELD), "d/d_bg_s_wtr_chk.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_base.cpp"),
-            Object(NonMatching, "d/d_bg_w_deform.cpp"),
+            Object(MatchingFor("ShieldD"), "d/d_bg_w_deform.cpp"),
             Object(NonMatching, "d/d_bg_w_hf.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_kcol.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_bg_w_sv.cpp"),
