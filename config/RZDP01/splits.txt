@@ -2450,7 +2450,7 @@ revolution/homebuttonLib/nw4hbm/lyt/lyt_textBox.cpp:
 	.text       start:0x802C4594 end:0x802C5BC4
 	.ctors      start:0x803B9254 end:0x803B9258
 	.data       start:0x80412070 end:0x804120E8
-	.sdata      start:0x80520910 end:0x80520920
+	.sdata      start:0x80520910 end:0x80520918
 	.sbss       start:0x805218B8 end:0x805218C0
 	.sdata2     start:0x80526638 end:0x80526650
 
@@ -2510,7 +2510,7 @@ revolution/homebuttonLib/nw4hbm/ut/ut_ResFontBase.cpp:
 
 revolution/homebuttonLib/nw4hbm/ut/ut_TagProcessorBase.cpp:
 	.text       start:0x802CABC8 end:0x802CB388
-	.data       start:0x80413400 end:0x80413458
+	.data       start:0x80413400 end:0x80413428
 	.sdata2     start:0x805266A8 end:0x805266B0
 
 revolution/homebuttonLib/nw4hbm/ut/ut_TextWriterBase.cpp:
@@ -2522,13 +2522,14 @@ revolution/homebuttonLib/nw4hbm/ut/ut_TextWriterBase.cpp:
 
 JSystem/JKernel/JKRHeap.cpp:
 	.text       start:0x802CCDB4 end:0x802CD9EC
-	.data       start:0x80413458 end:0x804134B8
-	.sdata      start:0x80520920 end:0x80520950
+	.data       start:0x80413428 end:0x804134B8
+	.sdata      start:0x80520918 end:0x80520928
 	.sbss       start:0x805218E0 end:0x80521910
 
 JSystem/JKernel/JKRExpHeap.cpp:
 	.text       start:0x802CD9EC end:0x802CF5B4
 	.data       start:0x804134B8 end:0x80413860
+	.sdata      start:0x80520928 end:0x80520948
 	.sbss       start:0x80521910 end:0x80521928
 	.sdata2     start:0x805266C8 end:0x805266D8
 
@@ -2548,17 +2549,18 @@ JSystem/JKernel/JKRDisposer.cpp:
 JSystem/JKernel/JKRThread.cpp:
 	.text       start:0x802D0094 end:0x802D0D9C
 	.ctors      start:0x803B9260 end:0x803B9264
-	.data       start:0x80413A88 end:0x80413BC4
+	.data       start:0x80413A88 end:0x80413B98
 	.bss        start:0x804A9680 end:0x804A96D0
+	.sdata      start:0x80520948 end:0x80520950
 	.sbss       start:0x80521928 end:0x80521948
 	.sdata2     start:0x805266F0 end:0x80526700
 
 JSystem/JKernel/JKRAram.cpp:
 	.text       start:0x802D0D9C end:0x802D1BBC
 	.ctors      start:0x803B9264 end:0x803B9268
-	.data       start:0x80413BC4 end:0x80413BD8
+	.data       start:0x80413B98 end:0x80413BD8
 	.bss        start:0x804A96D0 end:0x804A9730
-	.sdata      start:0x80520950 end:0x8052096C
+	.sdata      start:0x80520950 end:0x80520958
 	.sbss       start:0x80521948 end:0x80521988
 
 JSystem/JKernel/JKRAramHeap.cpp:
@@ -2574,12 +2576,12 @@ JSystem/JKernel/JKRAramBlock.cpp:
 JSystem/JKernel/JKRAramPiece.cpp:
 	.text       start:0x802D2358 end:0x802D28D4
 	.ctors      start:0x803B926C end:0x803B9270
-	.data       start:0x80413BF8 end:0x80413C8C
+	.data       start:0x80413BF8 end:0x80413C60
 	.bss        start:0x804A9748 end:0x804A9778
 
 JSystem/JKernel/JKRAramStream.cpp:
 	.text       start:0x802D28D4 end:0x802D2E4C
-	.data       start:0x80413C8C end:0x80413CA0
+	.data       start:0x80413C60 end:0x80413CA0
 	.bss        start:0x804A9778 end:0x804A97A8
 	.sbss       start:0x80521988 end:0x80521998
 
@@ -2588,6 +2590,7 @@ JSystem/JKernel/JKRFileLoader.cpp:
 	.ctors      start:0x803B9270 end:0x803B9274
 	.data       start:0x80413CA0 end:0x80413CE0
 	.bss        start:0x804A97A8 end:0x804A97C0
+	.sdata      start:0x80520958 end:0x80520960
 	.sbss       start:0x80521998 end:0x805219A0
 
 JSystem/JKernel/JKRFileFinder.cpp:
@@ -2597,10 +2600,11 @@ JSystem/JKernel/JKRFileFinder.cpp:
 JSystem/JKernel/JKRFileCache.cpp:
 	.text       start:0x802D3750 end:0x802D44E8
 	.data       start:0x80413D10 end:0x80413D60
+	.sdata      start:0x80520960 end:0x80520968
 
 JSystem/JKernel/JKRArchivePub.cpp:
 	.text       start:0x802D44E8 end:0x802D4FD8
-	.data       start:0x80413D60 end:0x80413DD4
+	.data       start:0x80413D60 end:0x80413DB0
 
 JSystem/JKernel/JKRArchivePri.cpp:
 	.text       start:0x802D4FD8 end:0x802D5728
@@ -2608,19 +2612,19 @@ JSystem/JKernel/JKRArchivePri.cpp:
 
 JSystem/JKernel/JKRMemArchive.cpp:
 	.text       start:0x802D5728 end:0x802D5DD8
-	.data       start:0x80413DD4 end:0x80413E50
+	.data       start:0x80413DB0 end:0x80413E28
 
 JSystem/JKernel/JKRAramArchive.cpp:
 	.text       start:0x802D5DD8 end:0x802D6A00
-	.data       start:0x80413E50 end:0x80413EA0
+	.data       start:0x80413E28 end:0x80413EA0
 
 JSystem/JKernel/JKRDvdArchive.cpp:
 	.text       start:0x802D6A00 end:0x802D754C
-	.data       start:0x80413EA0 end:0x80413F98
+	.data       start:0x80413EA0 end:0x80413F60
 
 JSystem/JKernel/JKRCompArchive.cpp:
 	.text       start:0x802D754C end:0x802D8214
-	.data       start:0x80413F98 end:0x80414010
+	.data       start:0x80413F60 end:0x80413FE8
 
 JSystem/JKernel/JKRFile.cpp:
 	.text       start:0x802D8214 end:0x802D8280
@@ -2628,7 +2632,7 @@ JSystem/JKernel/JKRFile.cpp:
 JSystem/JKernel/JKRDvdFile.cpp:
 	.text       start:0x802D8280 end:0x802D88AC
 	.ctors      start:0x803B9274 end:0x803B9278
-	.data       start:0x80414010 end:0x80414058
+	.data       start:0x80413FE8 end:0x80414058
 	.bss        start:0x804A97C0 end:0x804A97D8
 
 JSystem/JKernel/JKRDvdRipper.cpp:
@@ -2636,7 +2640,7 @@ JSystem/JKernel/JKRDvdRipper.cpp:
 	.ctors      start:0x803B9278 end:0x803B927C
 	.data       start:0x80414058 end:0x804140B0
 	.bss        start:0x804A97D8 end:0x804A9808
-	.sdata      start:0x8052096C end:0x80520974
+	.sdata      start:0x80520968 end:0x80520974
 	.sbss       start:0x805219A8 end:0x805219E8
 
 JSystem/JKernel/JKRDvdAramRipper.cpp:

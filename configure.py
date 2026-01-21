@@ -397,6 +397,13 @@ if config.version != "ShieldD":
 if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
     cflags_framework.extend(["-DSDK_SEP2006"])
 
+cflags_jsystem = [
+    *cflags_framework
+]
+
+if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
+    cflags_jsystem.extend(["-RTTI off"])
+
 
 # REL flags
 cflags_rel = [
@@ -505,7 +512,7 @@ def JSystemLib(lib_name: str, objects: List[Object], progress_category: str="thi
     return {
         "lib": lib_name,
         "mw_version": MWVersion(config.version),
-        "cflags": [*cflags_framework],
+        "cflags": [*cflags_jsystem],
         "progress_category": progress_category,
         "objects": objects,
     }
