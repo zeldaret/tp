@@ -50,6 +50,8 @@ void JUTGamePad::initList() {
 
 u32 JUTGamePad::sSuppressPadReset;
 
+u8 data_8074CFA4_debug;
+
 s32 JUTGamePad::sAnalogMode;
 
 BOOL JUTGamePad::init() {
@@ -110,11 +112,9 @@ u32 JUTGamePad::read() {
                 reset_mask |= bittest;
             }
         } else {
-            /*
-            if (!lbl_8074CFA4) {
+            if (data_8074CFA4_debug) {
                 OS_REPORT("game pad read error (%d)\n", mPadStatus[i].err);
             }
-            */
             mPadButton[i].mTrigger = 0;
             mPadButton[i].mRelease = 0;
             mPadButton[i].mRepeat = 0;

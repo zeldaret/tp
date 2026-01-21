@@ -13,11 +13,9 @@
 struct CallbackObject {
     /* 0x00 */ JUTExceptionUserCallback callback;
     /* 0x04 */ u16 error;
-    /* 0x06 */ u16 pad_0x06;
     /* 0x08 */ OSContext* context;
     /* 0x0C */ int param_3;
     /* 0x10 */ int param_4;
-    /* 0x14 */
 };
 
 OSMessageQueue JUTException::sMessageQueue = {0};
