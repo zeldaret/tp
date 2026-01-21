@@ -174,7 +174,7 @@ public:
     void setTimeMs(s32 i_time) { mTimeMs = i_time; }
     s32 getTimeMs() { return mTimeMs; }
     u8 getNowCount() { return mNowCount; }
-    int getMaxCount() { return mMaxCount; }
+    u8 getMaxCount() { return mMaxCount; }
     void setScopeZoomPointer(u8 param_0) { mScopeZoomPointer = param_0; }
     u8 getItemExplainWindowStatus() { return mItemExplainWindowStatus; }
     void setItemExplainWindowStatus(u8 i_value) { mItemExplainWindowStatus = i_value; }
@@ -671,7 +671,7 @@ inline u8 dMeter2Info_getNowCount() {
     return g_meter2_info.getNowCount();
 }
 
-inline int dMeter2Info_getMaxCount() {
+inline u8 dMeter2Info_getMaxCount() {
     return g_meter2_info.getMaxCount();
 }
 

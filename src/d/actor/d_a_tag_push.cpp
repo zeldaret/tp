@@ -154,7 +154,7 @@ static int daTag_Push_Draw(void* i_this) {
     return static_cast<daTag_Push_c*>(i_this)->Draw();
 }
 
-static int daTag_Push_IsDelete(void* i_this) {
+static int daTag_Push_IsDelete(void*) {
     return 1;
 }
 

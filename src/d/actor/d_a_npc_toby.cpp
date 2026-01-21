@@ -2007,7 +2007,7 @@ int daNpc_Toby_c::walk(void*) {
     return 1;
 }
 
-int daNpc_Toby_c::play(void* param_0) {
+int daNpc_Toby_c::play(void*) {
     daObj_AutoMata_c* actor_p = (daObj_AutoMata_c*) mActorMngr[1].getActorP();
     int reg_r29 = 1;
     if (actor_p != NULL) {
@@ -2192,7 +2192,7 @@ static int daNpc_Toby_Draw(void* i_this) {
     return static_cast<daNpc_Toby_c*>(i_this)->Draw();
 }
 
-static int daNpc_Toby_IsDelete(void* i_this) {
+static int daNpc_Toby_IsDelete(void*) {
     return true;
 }
 
