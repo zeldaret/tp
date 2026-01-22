@@ -156,7 +156,7 @@ f_ap/f_ap_game.cpp:
 	.ctors      start:0x8062F7E8 end:0x8062F7EC
 	.data       start:0x80667F90 end:0x80669130
 	.sdata      start:0x8073F6E8 end:0x8073F850
-	.sbss       start:0x8074C47C end:0x8074C4A0
+	.sbss       start:0x8074C47C end:0x8074C498
 	.sdata2     start:0x8074D920 end:0x8074D950
 	.bss        start:0x80776F20 end:0x8077EF68
 
@@ -165,7 +165,7 @@ f_op/f_op_actor.cpp:
 	.ctors      start:0x8062F7EC end:0x8062F7F0
 	.data       start:0x80669130 end:0x80669848
 	.sdata      start:0x8073F850 end:0x8073F8B8
-	.sbss       start:0x8074C4A0 end:0x8074C4E0
+	.sbss       start:0x8074C498 end:0x8074C4D8
 	.sdata2     start:0x8074D950 end:0x8074D998
 	.bss        start:0x8077EF68 end:0x8077EF78
 
@@ -185,7 +185,7 @@ f_op/f_op_actor_mng.cpp:
 	.rodata     start:0x806311D0 end:0x80631200
 	.data       start:0x80669848 end:0x8066AA10
 	.sdata      start:0x8073F8B8 end:0x8073F970
-	.sbss       start:0x8074C4E0 end:0x8074C4F8
+	.sbss       start:0x8074C4D8 end:0x8074C4F8
 	.sdata2     start:0x8074D998 end:0x8074D9F0
 	.bss        start:0x8077EF88 end:0x8077F148
 

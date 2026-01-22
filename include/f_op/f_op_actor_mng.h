@@ -545,10 +545,6 @@ fpc_ProcID fopAcM_create(s16 i_procName, u16 i_setId, u32 i_parameters, const cX
 fpc_ProcID fopAcM_create(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
                          const csXyz* i_angle, const cXyz* i_scale, s8 i_argument);
 
-inline fpc_ProcID fopAcM_create(s16 i_procName, createFunc i_createFunc, void* params) {
-    return fpcM_Create(i_procName, i_createFunc, params);
-}
-
 inline fpc_ProcID fopAcM_Create(s16 i_procName, createFunc i_createFunc, void* params) {
     return fpcM_Create(i_procName, i_createFunc,params);
 }
