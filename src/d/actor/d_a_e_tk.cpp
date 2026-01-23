@@ -81,11 +81,11 @@ static void anm_init(e_tk_class* i_this, int i_index, f32 i_morf, u8 i_attr, f32
 }
 
 static int daE_TK_Draw(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
     J3DModel* model = i_this->mpMorf->getModel();
 
-    g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
-    g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
+    g_env_light.settingTevStruct(0, &actor->current.pos, &actor->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &actor->tevStr);
     i_this->mpMorf->entryDL();
     return 1;
 }
@@ -112,12 +112,12 @@ static int other_bg_check(e_tk_class* i_this, fopAc_ac_c* i_ac) {
 }
 
 static int pl_y_check(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
-#if DEBUG  // TODO: Debug Fakematch. On retail, a_this is accessed before the gameInfo.
+    fopAc_ac_c* actor = i_this;
+#if DEBUG  // TODO: Debug Fakematch. On retail, actor is accessed before the gameInfo.
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    if (a_this->current.pos.y - player->current.pos.y > 130.0f) {
+    if (actor->current.pos.y - player->current.pos.y > 130.0f) {
 #else
-    if (a_this->current.pos.y - dComIfGp_getPlayer(0)->current.pos.y > 130.0f) {
+    if (actor->current.pos.y - dComIfGp_getPlayer(0)->current.pos.y > 130.0f) {
 #endif
         return 0;
     } else {
@@ -126,11 +126,11 @@ static int pl_y_check(e_tk_class* i_this) {
 }
 
 static int pl_check(e_tk_class* i_this, f32 i_limit, s16 i_max_diff) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     if (i_this->mPlayerDistanceLimit < i_limit) {
-        s16 diff = a_this->shape_angle.y - i_this->mPlayerAngleY;
+        s16 diff = actor->shape_angle.y - i_this->mPlayerAngleY;
         if (diff < i_max_diff && diff > (s16)-i_max_diff && !other_bg_check(i_this, player)) {
             return 1;
         }
@@ -140,7 +140,7 @@ static int pl_check(e_tk_class* i_this, f32 i_limit, s16 i_max_diff) {
 }
 
 static void damage_check(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     if (i_this->mInvincibilityTimer == 0) {
@@ -161,7 +161,7 @@ static void damage_check(e_tk_class* i_this) {
                 i_this->mMode = MODE_TK_KYORO2;
                 i_this->mActionTimer[0] = 50;
             } else {
-                cc_at_check(a_this, &i_this->mAtInfo);
+                cc_at_check(actor, &i_this->mAtInfo);
                 if (i_this->mAtInfo.mHitType == HIT_TYPE_STUN) {
                     i_this->mAction = ACT_TK_S_DAMAGE;
                 } else {
@@ -171,8 +171,8 @@ static void damage_check(e_tk_class* i_this) {
             }
         }
 
-        if (a_this->health <= 1) {
-            a_this->health = 0;
+        if (actor->health <= 1) {
+            actor->health = 0;
             i_this->mSph.SetTgHitMark(CcG_Tg_UNK_MARK_3);
         }
     }
@@ -206,7 +206,7 @@ static int way_bg_check(e_tk_class* i_this, f32 i_limit) {
 }
 
 static void e_tk_wait_0(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     cXyz src_pos;
     f32 speed_mul = 1.0f;
@@ -222,14 +222,14 @@ static void e_tk_wait_0(e_tk_class* i_this) {
 
     case MODE_TK_APPEAR:
         if (i_this->mActionTimer[0] == 0) {
-            src_pos = a_this->home.pos - a_this->current.pos;
+            src_pos = actor->home.pos - actor->current.pos;
             i_this->mSomeAngle = cM_atan2s(src_pos.x, src_pos.z) + (s16)cM_rndFX(8000.0f);
             i_this->mActionTimer[0] = cM_rndF(30.0f) + 30.0f;
         }
 
         if (i_this->mActionTimer[2] == 0 && way_bg_check(i_this, 200.0f)) {
             i_this->mActionTimer[2] = 40;
-            src_pos = a_this->home.pos - a_this->current.pos;
+            src_pos = actor->home.pos - actor->current.pos;
             i_this->mSomeAngle = cM_atan2s(src_pos.x, src_pos.z) + (s16)cM_rndFX(2000.0f);
             i_this->mActionTimer[0] = cM_rndF(30.0f) + 30.0f;
         }
@@ -247,20 +247,20 @@ static void e_tk_wait_0(e_tk_class* i_this) {
         break;
     }
 
-    cLib_addCalcAngleS2(&a_this->shape_angle.y, i_this->mSomeAngle, 0x10, 0x400);
-    cLib_addCalcAngleS2(&a_this->shape_angle.x, 0, 0x10, 0x400);
-    cLib_addCalc2(&a_this->speedF, l_HIO.mSwimSpeedModifier * speed_mul, 1.0f, speed_step);
-    cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
+    cLib_addCalcAngleS2(&actor->shape_angle.y, i_this->mSomeAngle, 0x10, 0x400);
+    cLib_addCalcAngleS2(&actor->shape_angle.x, 0, 0x10, 0x400);
+    cLib_addCalc2(&actor->speedF, l_HIO.mSwimSpeedModifier * speed_mul, 1.0f, speed_step);
+    cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
 
     src_pos.x = 0.0f;
     src_pos.y = 0.0f;
-    src_pos.z = a_this->speedF;
-    MtxPosition(&src_pos, &a_this->speed);
-    a_this->current.pos += a_this->speed;
+    src_pos.z = actor->speedF;
+    MtxPosition(&src_pos, &actor->speed);
+    actor->current.pos += actor->speed;
 }
 
 static void e_tk_find(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     cXyz local_58;
     f32 speed_target = 0.0f;
@@ -350,20 +350,20 @@ static void e_tk_find(e_tk_class* i_this) {
         break;
     }
 
-    cLib_addCalcAngleS2(&a_this->shape_angle.y, i_this->mPlayerAngleY, 4, 0x800);
-    cLib_addCalc2(&a_this->speedF, l_HIO.mFleeSpeedModifier * speed_target, 1.0f, speed_step);
-    cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
+    cLib_addCalcAngleS2(&actor->shape_angle.y, i_this->mPlayerAngleY, 4, 0x800);
+    cLib_addCalc2(&actor->speedF, l_HIO.mFleeSpeedModifier * speed_target, 1.0f, speed_step);
+    cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
 
     local_58.x = 0.0f;
     local_58.y = 0.0f;
-    local_58.z = a_this->speedF;
-    MtxPosition(&local_58, &a_this->speed);
-    a_this->current.pos += a_this->speed;
-    cLib_addCalcAngleS2(&a_this->shape_angle.x, 0, 4, 0x400);
+    local_58.z = actor->speedF;
+    MtxPosition(&local_58, &actor->speed);
+    actor->current.pos += actor->speed;
+    cLib_addCalcAngleS2(&actor->shape_angle.x, 0, 4, 0x400);
 }
 
 static void e_tk_attack(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     switch (i_this->mMode) {
     case MODE_TK_NONE:
@@ -375,8 +375,8 @@ static void e_tk_attack(e_tk_class* i_this) {
         if (pl_y_check(i_this)) {
             if ((int)i_this->mpMorf->getFrame() == 24) {
                 i_this->mBallID =
-                    fopAcM_createChild(PROC_E_TK_BALL, fopAcM_GetID(a_this), 0, &a_this->eyePos,
-                                       fopAcM_GetRoomNo(a_this), &a_this->shape_angle, 0, -1, 0);
+                    fopAcM_createChild(PROC_E_TK_BALL, fopAcM_GetID(actor), 0, &actor->eyePos,
+                                       fopAcM_GetRoomNo(actor), &actor->shape_angle, 0, -1, 0);
             }
             if ((int)i_this->mpMorf->getFrame() == 28) {
                 i_this->mTKBallSpawned = true;
@@ -401,11 +401,11 @@ static void e_tk_attack(e_tk_class* i_this) {
         break;
     }
 
-    cLib_addCalcAngleS2(&a_this->shape_angle.y, i_this->mPlayerAngleY, 4, 0x800);
+    cLib_addCalcAngleS2(&actor->shape_angle.y, i_this->mPlayerAngleY, 4, 0x800);
 }
 
 static void e_tk_pathswim(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     cXyz local_50;
     cXyz _unk1;
@@ -441,7 +441,7 @@ static void e_tk_pathswim(e_tk_class* i_this) {
     }
 
     case MODE_TK_ATTACK:
-        local_50 = i_this->mPos - a_this->current.pos;
+        local_50 = i_this->mPos - actor->current.pos;
         if (JMAFastSqrt(local_50.x * local_50.x + local_50.z * local_50.z) < 100.0f) {
             dPnt* point = &i_this->mpPath->m_points[i_this->mPathID];
             if (point->mArg0 != 0x2) {
@@ -474,19 +474,19 @@ static void e_tk_pathswim(e_tk_class* i_this) {
         break;
     }
 
-    cLib_addCalcAngleS2(&a_this->shape_angle.y, i_this->mSomeAngle, 8, 0x400);
-    cLib_addCalc2(&a_this->speedF, l_HIO.mSwimSpeedModifier * speed_target, 1.0f, speed_step);
-    cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
+    cLib_addCalcAngleS2(&actor->shape_angle.y, i_this->mSomeAngle, 8, 0x400);
+    cLib_addCalc2(&actor->speedF, l_HIO.mSwimSpeedModifier * speed_target, 1.0f, speed_step);
+    cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
 
     local_50.x = 0.0f;
     local_50.y = 0.0f;
-    local_50.z = a_this->speedF;
-    MtxPosition(&local_50, &a_this->speed);
-    a_this->current.pos += a_this->speed;
+    local_50.z = actor->speedF;
+    MtxPosition(&local_50, &actor->speed);
+    actor->current.pos += actor->speed;
 }
 
 static void e_tk_s_damage(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     switch (i_this->mMode) {
     case MODE_TK_NONE:
@@ -504,7 +504,7 @@ static void e_tk_s_damage(e_tk_class* i_this) {
 }
 
 static void e_tk_damage(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     i_this->mInvincibilityTimer = 6;
     i_this->mAttentionOFF = true;
@@ -517,21 +517,21 @@ static void e_tk_damage(e_tk_class* i_this) {
 
     case MODE_TK_APPEAR:
         if (i_this->mpMorf->isStop()) {
-            fopAcM_createDisappear(a_this, &a_this->eyePos, 10, 0, 0x11);
-            fopAcM_delete(a_this);
+            fopAcM_createDisappear(actor, &actor->eyePos, 10, 0, 0x11);
+            fopAcM_delete(actor);
         }
         break;
     }
 }
 
 static void action(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     cXyz _unk1;
     cXyz _unk2;
 
-    i_this->mPlayerAngleY = fopAcM_searchPlayerAngleY(a_this);
-    i_this->mPlayerDistanceLimit = fopAcM_searchPlayerDistance(a_this);
+    i_this->mPlayerAngleY = fopAcM_searchPlayerAngleY(actor);
+    i_this->mPlayerDistanceLimit = fopAcM_searchPlayerDistance(actor);
     damage_check(i_this);
 
     s8 link_search_flag = false;
@@ -564,26 +564,26 @@ static void action(e_tk_class* i_this) {
         i_this->mSound.setLinkSearch(false);
     }
 
-    if (a_this->speedF < 2.0f) {
-        cXyz this_pos = a_this->current.pos;
+    if (actor->speedF < 2.0f) {
+        cXyz this_pos = actor->current.pos;
         f32 emit_rate = 0.05f + KREG_F(3);
         fopAcM_effHamonSet(&i_this->mHamonSet, &this_pos, 2.3f + KREG_F(2), emit_rate);
     }
 }
 
 static int daE_TK_Execute(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     cXyz cStack_94;
     cXyz cStack_a0;
 
     if (i_this->mExecuteState == 0x00) {
         dBgS_ObjGndChk_Spl ground_check;
-        cStack_94 = a_this->current.pos;
+        cStack_94 = actor->current.pos;
         cStack_94.y += 200.0f;
         ground_check.SetPos(&cStack_94);
         f32 ground_cross = dComIfG_Bgsp().GroundCross(&ground_check);
-        a_this->current.pos.y = ground_cross + KREG_F(17);
+        actor->current.pos.y = ground_cross + KREG_F(17);
     }
     i_this->mLifetime++;
     i_this->mAttentionOFF = false;
@@ -601,20 +601,20 @@ static int daE_TK_Execute(e_tk_class* i_this) {
     action(i_this);
     i_this->mAcch.CrrPos(dComIfG_Bgsp());
 
-    mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y, a_this->current.pos.z);
-    mDoMtx_stack_c::YrotM(a_this->shape_angle.y);
-    mDoMtx_stack_c::XrotM(a_this->shape_angle.x);
+    mDoMtx_stack_c::transS(actor->current.pos.x, actor->current.pos.y, actor->current.pos.z);
+    mDoMtx_stack_c::YrotM(actor->shape_angle.y);
+    mDoMtx_stack_c::XrotM(actor->shape_angle.x);
     mDoMtx_stack_c::scaleM(l_HIO.mBaseSize, l_HIO.mBaseSize, l_HIO.mBaseSize);
 
     J3DModel* model = i_this->mpMorf->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
+    i_this->mpMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
 
     if (i_this->mpMorf->checkFrame(6.0f) &&
         (i_this->mAnim == ANM_TK_APPEAR || i_this->mAnim == ANM_TK_HIDE))
     {
-        fopKyM_createWpillar(&a_this->current.pos, 2.3f + KREG_F(6), 0);
+        fopKyM_createWpillar(&actor->current.pos, 2.3f + KREG_F(6), 0);
     }
 
     if (i_this->mAnim == ANM_TK_SWIM) {
@@ -658,31 +658,31 @@ static int daE_TK_Execute(e_tk_class* i_this) {
     MTXCopy(model->getAnmMtx(3), *calc_mtx);
 
     cStack_94.set(0.0f, 0.0f, 0.0f);
-    MtxPosition(&cStack_94, &a_this->eyePos);
+    MtxPosition(&cStack_94, &actor->eyePos);
 
-    a_this->attention_info.position = a_this->eyePos;
-    a_this->attention_info.position.y = a_this->attention_info.position.y + l_HIO.mBaseSize * 35.0f;
+    actor->attention_info.position = actor->eyePos;
+    actor->attention_info.position.y = actor->attention_info.position.y + l_HIO.mBaseSize * 35.0f;
 
     if (i_this->mTKBallSpawned) {
         e_tk_ball_class* ball_actor =
             static_cast<e_tk_ball_class*>(fopAcM_SearchByID(i_this->mBallID));
         if (ball_actor != NULL) {
-            ball_actor->current.pos = a_this->eyePos;
+            ball_actor->current.pos = actor->eyePos;
             ball_actor->mSuspended = false;
         }
 
         cXyz scale(2.0f + TREG_F(8), 2.0f + TREG_F(8), 2.0f + TREG_F(8));
-        dComIfGp_particle_set(0x819B, &a_this->eyePos, &a_this->shape_angle, &scale);
-        dComIfGp_particle_set(0x819C, &a_this->eyePos, &a_this->shape_angle, &scale);
+        dComIfGp_particle_set(0x819B, &actor->eyePos, &actor->shape_angle, &scale);
+        dComIfGp_particle_set(0x819C, &actor->eyePos, &actor->shape_angle, &scale);
         i_this->mTKBallSpawned = false;
     }
 
     if (i_this->mAttentionOFF) {
-        fopAcM_OffStatus(a_this, 0);
-        a_this->attention_info.flags = 0;
+        fopAcM_OffStatus(actor, 0);
+        actor->attention_info.flags = 0;
     } else {
-        fopAcM_OnStatus(a_this, 0);
-        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
+        fopAcM_OnStatus(actor, 0);
+        actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     }
 
     MTXCopy(model->getAnmMtx(2), *calc_mtx);
@@ -702,7 +702,7 @@ static int daE_TK_IsDelete(e_tk_class* i_this) {
 }
 
 static int daE_TK_Delete(e_tk_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     fopAcM_RegisterDeleteID(i_this, "E_TK");
 
@@ -711,14 +711,14 @@ static int daE_TK_Delete(e_tk_class* i_this) {
         hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.mNo);
     }
-    if (a_this->heap != NULL) {
+    if (actor->heap != NULL) {
         i_this->mpMorf->stopZelAnime();
     }
     return 1;
 }
 
-static int useHeapInit(fopAc_ac_c* a_this) {
-    e_tk_class* i_this = static_cast<e_tk_class*>(a_this);
+static int useHeapInit(fopAc_ac_c* actor) {
+    e_tk_class* i_this = static_cast<e_tk_class*>(actor);
 
     i_this->mpMorf =
         new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_tk", 0xE), NULL, NULL,
@@ -732,21 +732,21 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     return 1;
 }
 
-static int daE_TK_Create(fopAc_ac_c* a_this) {
-    e_tk_class* i_this = (e_tk_class*)a_this;
+static int daE_TK_Create(fopAc_ac_c* actor) {
+    e_tk_class* i_this = (e_tk_class*)actor;
     fopAcM_ct(i_this, e_tk_class);
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhaseReq, "E_tk");
     if (phase == cPhs_COMPLEATE_e) {
-        OS_REPORT("E_tk PARAM %x\n", fopAcM_GetParam(a_this));
-        i_this->mArg0 = (fopAcM_GetParam(a_this) & 0xFF) >> 0;
-        i_this->mArg1 = (fopAcM_GetParam(a_this) & 0xF00) >> 8;
-        i_this->mArg2 = (fopAcM_GetParam(a_this) & 0xF000) >> 12;
-        i_this->mParamPathIdx = (fopAcM_GetParam(a_this) & 0xFF0000) >> 16;
+        OS_REPORT("E_tk PARAM %x\n", fopAcM_GetParam(actor));
+        i_this->mArg0 = (fopAcM_GetParam(actor) & 0xFF) >> 0;
+        i_this->mArg1 = (fopAcM_GetParam(actor) & 0xF00) >> 8;
+        i_this->mArg2 = (fopAcM_GetParam(actor) & 0xF000) >> 12;
+        i_this->mParamPathIdx = (fopAcM_GetParam(actor) & 0xFF0000) >> 16;
 
         OS_REPORT("E_tk//////////////E_TK SET 1 !!\n");
 
-        if (!fopAcM_entrySolidHeap(a_this, useHeapInit, 0x1e20)) {
+        if (!fopAcM_entrySolidHeap(actor, useHeapInit, 0x1e20)) {
             OS_REPORT("//////////////E_TK SET NON !!\n");
             return cPhs_ERROR_e;
         }
@@ -754,7 +754,7 @@ static int daE_TK_Create(fopAc_ac_c* a_this) {
         OS_REPORT("//////////////E_TK SET 2 !!\n");
 
         if (i_this->mParamPathIdx != 0xff) {
-            i_this->mpPath = dPath_GetRoomPath(i_this->mParamPathIdx, fopAcM_GetRoomNo(a_this));
+            i_this->mpPath = dPath_GetRoomPath(i_this->mParamPathIdx, fopAcM_GetRoomNo(actor));
             if (i_this->mpPath == NULL) {
                 OS_REPORT("//////////////E_TK NON PATH !!!\n");
                 return cPhs_ERROR_e;
@@ -768,14 +768,14 @@ static int daE_TK_Create(fopAc_ac_c* a_this) {
             hio_set = true;
             l_HIO.mNo = mDoHIO_CREATE_CHILD("たどぽーる", &l_HIO);  // "Tadpole"
         }
-        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
+        actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
-        fopAcM_SetMtx(a_this, i_this->mpMorf->getModel()->getBaseTRMtx());
-        fopAcM_SetMin(a_this, -100.0f, -100.0f, -100.0f);
-        fopAcM_SetMax(a_this, 100.0f, 100.0f, 100.0f);
+        fopAcM_SetMtx(actor, i_this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMin(actor, -100.0f, -100.0f, -100.0f);
+        fopAcM_SetMax(actor, 100.0f, 100.0f, 100.0f);
 
-        a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 0x04;
-        a_this->field_0x560 = a_this->health = 10;
+        actor->attention_info.distances[fopAc_attn_BATTLE_e] = 0x04;
+        actor->field_0x560 = actor->health = 10;
 
         static dCcD_SrcSph cc_sph_src = {
             {
@@ -789,15 +789,15 @@ static int daE_TK_Create(fopAc_ac_c* a_this) {
             }  // mSphAttr
         };
 
-        i_this->mStts.Init(100, 0, a_this);
+        i_this->mStts.Init(100, 0, actor);
         i_this->mSph.Set(cc_sph_src);
         i_this->mSph.SetStts(&i_this->mStts);
 
-        i_this->mAcch.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(a_this), a_this, 1,
-                          &i_this->mAcchCir, fopAcM_GetSpeed_p(a_this), NULL, NULL);
+        i_this->mAcch.Set(fopAcM_GetPosition_p(actor), fopAcM_GetOldPosition_p(actor), actor, 1,
+                          &i_this->mAcchCir, fopAcM_GetSpeed_p(actor), NULL, NULL);
 
         i_this->mAcchCir.SetWall(-50.0f, 60.0f);
-        i_this->mSound.init(&a_this->current.pos, &a_this->eyePos, 0x3, 0x1);
+        i_this->mSound.init(&actor->current.pos, &actor->eyePos, 0x3, 0x1);
         i_this->mSound.setEnemyName("E_tk");
         i_this->mAtInfo.mpSound = &i_this->mSound;
         i_this->mExecuteState = 0x14;

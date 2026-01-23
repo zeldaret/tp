@@ -31,10 +31,10 @@ static int daE_TK_BALL_Draw(e_tk_ball_class* i_this) {
         return 1;
     }
 
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
-    g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
-    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &a_this->tevStr);
+    g_env_light.settingTevStruct(0, &actor->current.pos, &actor->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &actor->tevStr);
     mDoExt_modelUpdateDL(i_this->mpModel);
     return 1;
 }
@@ -74,13 +74,13 @@ static int simple_bg_check(e_tk_ball_class* i_this) {
 }
 
 static void impact_eff_set(e_tk_ball_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
-    cXyz pos = a_this->current.pos;
+    fopAc_ac_c* actor = i_this;
+    cXyz pos = actor->current.pos;
     pos.y += i_this->mArcHeight;
 
     cXyz scale(2.0f + TREG_F(8), 2.0f + TREG_F(8), 2.0f + TREG_F(8));
 
-    csXyz rotation = a_this->current.angle;
+    csXyz rotation = actor->current.angle;
     ADD_ANGLE(rotation.y, 0x8000);
 
     if (i_this->mType == TYPE_TK_BALL_WATER) {
@@ -198,50 +198,50 @@ static void e_tk_ball_move(e_tk_ball_class* i_this) {
 }
 
 static void e_tk_ball_return(e_tk_ball_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     cXyz _unk1;
     cXyz _unk2;
 
     switch (i_this->mMode) {
     case MODE_TK_BALL_INIT:
-        a_this->current.pos += a_this->speed;
+        actor->current.pos += actor->speed;
         if (i_this->mActionTimer[1] == 0) {
             i_this->mTgSph.SetTgHitMark(CcG_Tg_UNK_MARK_0);
         }
         break;
     }
 
-    cXyz new_center = a_this->current.pos;
+    cXyz new_center = actor->current.pos;
     new_center.y += i_this->mArcHeight;
     i_this->mAtSph.MoveCAt(new_center);
     dComIfG_Ccsp()->Set(&i_this->mAtSph);
 
     if (i_this->mActionTimer[1] == 0 && (simple_bg_check(i_this) || i_this->mAtSph.ChkAtHit())) {
         impact_eff_set(i_this);
-        fopAcM_delete(a_this);
+        fopAcM_delete(actor);
     }
 }
 
 static void e_tk_ball_drop(e_tk_ball_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     cXyz _unk1;
     cXyz _unk2;
 
     switch (i_this->mMode) {
     case MODE_TK_BALL_INIT:
-        a_this->current.pos += a_this->speed;
-        a_this->speed.y -= 2.0f;
-        if (a_this->speed.y < -50.0f) {
-            a_this->speed.y = -50.0f;
+        actor->current.pos += actor->speed;
+        actor->speed.y -= 2.0f;
+        if (actor->speed.y < -50.0f) {
+            actor->speed.y = -50.0f;
         }
         break;
     }
 
     if (simple_bg_check(i_this) || i_this->mActionTimer[0] == 0) {
         impact_eff_set(i_this);
-        fopAcM_delete(a_this);
+        fopAcM_delete(actor);
     }
 }
 
@@ -318,7 +318,7 @@ static int daE_TK_BALL_Execute(e_tk_ball_class* i_this) {
         return 1;
     }
 
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
 
     cXyz _unk1;
     cXyz _unk2;
@@ -335,18 +335,18 @@ static int daE_TK_BALL_Execute(e_tk_ball_class* i_this) {
 
     action(i_this);
 
-    ADD_ANGLE(a_this->shape_angle.y, 0x1000);
-    ADD_ANGLE(a_this->shape_angle.x, 0xE00);
+    ADD_ANGLE(actor->shape_angle.y, 0x1000);
+    ADD_ANGLE(actor->shape_angle.x, 0xE00);
 
-    mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y + i_this->mArcHeight,
-                           a_this->current.pos.z);
-    mDoMtx_stack_c::YrotM(a_this->shape_angle.y);
-    mDoMtx_stack_c::XrotM(a_this->shape_angle.x);
+    mDoMtx_stack_c::transS(actor->current.pos.x, actor->current.pos.y + i_this->mArcHeight,
+                           actor->current.pos.z);
+    mDoMtx_stack_c::YrotM(actor->shape_angle.y);
+    mDoMtx_stack_c::XrotM(actor->shape_angle.x);
     f32 scale = 2.0f + TREG_F(8);
     mDoMtx_stack_c::scaleM(scale, scale, scale);
     i_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    i_this->mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
+    i_this->mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
     return 1;
 }
 
@@ -355,32 +355,32 @@ static int daE_TK_BALL_IsDelete(e_tk_ball_class* i_this) {
 }
 
 static int daE_TK_BALL_Delete(e_tk_ball_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* actor = i_this;
     fopAcM_RegisterDeleteID(i_this, "E_TK_BALL");
     if (i_this->mType == TYPE_TK_BALL_WATER) {
         dComIfG_resDelete(&i_this->mPhaseReq, "E_tk");
     } else {
         dComIfG_resDelete(&i_this->mPhaseReq, "E_tk2");
     }
-    if (a_this->heap != NULL) {
+    if (actor->heap != NULL) {
         i_this->mSound.deleteObject();
     }
     return 1;
 }
 
 static int useHeapInit(fopAc_ac_c* i_this) {
-    e_tk_ball_class* a_this = static_cast<e_tk_ball_class*>(i_this);
+    e_tk_ball_class* actor = static_cast<e_tk_ball_class*>(i_this);
     J3DModelData* modelData;
 
-    if (a_this->mType == TYPE_TK_BALL_WATER) {
+    if (actor->mType == TYPE_TK_BALL_WATER) {
         modelData = (J3DModelData*)dComIfG_getObjectRes("E_tk", 0xD);
     } else {
         modelData = (J3DModelData*)dComIfG_getObjectRes("E_tk2", 0xD);
     }
     JUT_ASSERT(679, modelData != 0);
-    a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    actor->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 
-    if (a_this->mpModel == NULL) {
+    if (actor->mpModel == NULL) {
         return 0;
     } else {
         return 1;
@@ -388,29 +388,29 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 }
 
 static int daE_TK_BALL_Create(fopAc_ac_c* i_this) {
-    e_tk_ball_class* a_this = (e_tk_ball_class*)i_this;
-    fopAcM_ct(a_this, e_tk_ball_class);
+    e_tk_ball_class* actor = (e_tk_ball_class*)i_this;
+    fopAcM_ct(actor, e_tk_ball_class);
 
-    a_this->mType = fopAcM_GetParam(i_this);
-    if (a_this->mType == TYPE_TK_BALL_UNK) {
-        a_this->mType = TYPE_TK_BALL_WATER;
+    actor->mType = fopAcM_GetParam(i_this);
+    if (actor->mType == TYPE_TK_BALL_UNK) {
+        actor->mType = TYPE_TK_BALL_WATER;
     }
 
     cPhs__Step phase;
     u32 size;
-    if (a_this->mType == TYPE_TK_BALL_WATER) {
-        phase = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "E_tk");
+    if (actor->mType == TYPE_TK_BALL_WATER) {
+        phase = (cPhs__Step)dComIfG_resLoad(&actor->mPhaseReq, "E_tk");
         size = 0x820;
     } else {
-        phase = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, "E_tk2");
+        phase = (cPhs__Step)dComIfG_resLoad(&actor->mPhaseReq, "E_tk2");
         size = 0xEE0;
     }
 
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("E_tk_BALL PARAM %x\n", fopAcM_GetParam(i_this));
-        a_this->mArg1 = (fopAcM_GetParam(i_this) & 0xFF00) >> 8;
-        if (a_this->mArg1 == 0xff) {
-            a_this->mArg1 = 0x00;
+        actor->mArg1 = (fopAcM_GetParam(i_this) & 0xFF00) >> 8;
+        if (actor->mArg1 == 0xff) {
+            actor->mArg1 = 0x00;
         }
 
         OS_REPORT("E_tk_BALL//////////////E_TK_BALL SET 1 !!\n");
@@ -446,26 +446,26 @@ static int daE_TK_BALL_Create(fopAc_ac_c* i_this) {
             }  // mSphAttr
         };
 
-        fopAcM_SetMtx(i_this, a_this->mpModel->getBaseTRMtx());
-        a_this->mStts.Init(0xff, 0, i_this);
-        a_this->mAtSph.Set(at_sph_src);
-        a_this->mAtSph.SetStts(&a_this->mStts);
-        if (a_this->mType == TYPE_TK_BALL_FIRE) {
-            a_this->mAtSph.SetAtType(AT_TYPE_100);
-            a_this->mAtSph.SetAtMtrl(dCcD_MTRL_FIRE);
+        fopAcM_SetMtx(i_this, actor->mpModel->getBaseTRMtx());
+        actor->mStts.Init(0xff, 0, i_this);
+        actor->mAtSph.Set(at_sph_src);
+        actor->mAtSph.SetStts(&actor->mStts);
+        if (actor->mType == TYPE_TK_BALL_FIRE) {
+            actor->mAtSph.SetAtType(AT_TYPE_100);
+            actor->mAtSph.SetAtMtrl(dCcD_MTRL_FIRE);
         }
 
-        a_this->mTgSph.Set(tg_sph_src);
-        a_this->mTgSph.SetStts(&a_this->mStts);
+        actor->mTgSph.Set(tg_sph_src);
+        actor->mTgSph.SetStts(&actor->mStts);
 
-        a_this->mSound.init(&i_this->current.pos, 1);
+        actor->mSound.init(&i_this->current.pos, 1);
         i_this->shape_angle.y = cM_rndFX(32768.0f);
         i_this->shape_angle.x = cM_rndFX(32768.0f);
-        a_this->mSuspended = true;
+        actor->mSuspended = true;
 
         mDoMtx_stack_c::scaleS(0.0f, 0.0f, 0.0f);
-        a_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
-        daE_TK_BALL_Execute(a_this);
+        actor->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+        daE_TK_BALL_Execute(actor);
     }
     return phase;
 }
