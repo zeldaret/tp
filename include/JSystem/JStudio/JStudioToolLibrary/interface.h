@@ -23,7 +23,10 @@ namespace JStudioToolLibrary {
 
         TPad();
 
-        void setPad(const JUTGamePad*);
+        void setPad(const JUTGamePad* pPad) {
+            pPad_ = pPad;
+        }
+
         bool isEnabled() const;
         void getData(TData*) const;
         f32 getAnalog_triggerR() const;

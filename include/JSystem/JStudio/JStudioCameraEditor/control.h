@@ -132,20 +132,33 @@ namespace JStudioCameraEditor {
 
         TControl();
 
-        void jstudio_setSecondPerFrame(double);
-        void show_setRender(J2DOrthoGraph*, JUTFont*);
-        void interface_setPad(const JUTGamePad*);
-        void jstudio_setAdaptor(JStudio::TAdaptor_camera*);
-        bool isEnabled() const;
+        void jstudio_setSecondPerFrame(double param_0) {
+            oJSTControl_.setSecondPerFrame(param_0);
+        }
+    
+        void show_setRender(J2DOrthoGraph* pOrthoGraph, JUTFont* pFont) {
+            field_0x3cc.setRender(pOrthoGraph);
+            oPrint_.setFont(pFont);
+        }
+
+        void interface_setPad(const JUTGamePad* pPad) {
+            oPad_.setPad(pPad);
+        }
+    
+        void jstudio_setAdaptor(JStudio::TAdaptor_camera* pAdaptor) {
+            field_0x608.setAdaptor(pAdaptor);
+        }
+
+        bool isEnabled() const { return bEnabled_; }
 
         virtual void listenPropertyEvent(const JORPropertyEvent*);
         virtual void genMessage(JORMContext*);
 
         virtual int JORAct(u32, const char*);
         virtual ~TControl();
-        virtual void update(const Mtx);
+        virtual void update();
         virtual void show2D();
-        virtual void show3D();
+        virtual void show3D(const Mtx);
         virtual int command(TECommand, const char*);
 
         /* 0x018 */ JStudioToolLibrary::TConsole field_0x18;
@@ -196,7 +209,6 @@ namespace JStudioCameraEditor {
         /* 0x4CC */ JStudioToolLibrary::TColor_variable field_0x4cc;
         /* 0x4E0 */ u8 field_0x4E0[0x4F8 - 0x4E0];
         /* 0x4F8 */ JStudio::TControl oJSTControl_;
-        /* 0x604 */ u8 field_0x604[0x608 - 0x604];
         /* 0x608 */ JStudio::TObject_camera field_0x608;
         /* 0x640 */ u8 field_0x640;
     };

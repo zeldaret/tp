@@ -27,7 +27,10 @@ namespace JStudioToolLibrary {
     struct TDrawPrimitive2D {
         TDrawPrimitive2D();
 
-        void setRender(J2DOrthoGraph*);
+        void setRender(J2DOrthoGraph* pOrthoGraph) {
+            pOrthoGraph_ = pOrthoGraph;
+        }
+
         void fillRectangle(int, int, int, int);
         void setColor(const JUtility::TColor&);
         void prepare();
@@ -74,7 +77,11 @@ namespace JStudioToolLibrary {
 
         int getY() const;
         int getX() const;
-        void setFont(JUTFont*);
+    
+        void setFont(JUTFont* pFont) {
+            pFont_ = pFont;
+        }
+    
         void setColor(const JUtility::TColor&);
         void locate(int, int);
         void prepare();
