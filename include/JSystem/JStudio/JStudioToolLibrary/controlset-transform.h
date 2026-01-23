@@ -44,7 +44,7 @@ namespace JStudioToolLibrary_JStudio {
         void control_reply_origin_reset(const JORPropertyEvent*, TControlSet_transform*, const JStudioToolLibrary::TControlSet::TControl&);
         void control_update_origin_reset(TControlSet_transform*, const JStudioToolLibrary::TControlSet::TControl&);
 
-        /* 0x14 */ bool enabled_;
+        /* 0x14 */ bool bEnabled_;
         /* 0x18 */ TControl* pControl_;
         /* 0x1C */ Vec field_0x1c;
         /* 0x28 */ f32 field_0x28;

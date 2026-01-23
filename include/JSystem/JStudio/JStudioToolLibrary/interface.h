@@ -9,16 +9,16 @@ namespace JStudioToolLibrary {
             TData();
             void reset();
 
-            /* 0x00 */ int button_;
-            /* 0x04 */ int buttonTrigger_;
-            /* 0x08 */ int buttonRelease_;
-            /* 0x0C */ int buttonRepeat_;
-            /* 0x10 */ f32 analogMainStickX_;
-            /* 0x14 */ f32 analogMainStickY_;
-            /* 0x18 */ f32 analogSubStickX_;
-            /* 0x1C */ f32 analogSubStickY_;
-            /* 0x20 */ f32 analogTriggerL_;
-            /* 0x24 */ f32 analogTriggerR_;
+            /* 0x00 */ int iButton_;
+            /* 0x04 */ int iButtonTrigger_;
+            /* 0x08 */ int iButtonRelease_;
+            /* 0x0C */ int iButtonRepeat_;
+            /* 0x10 */ f32 fAnalogMainStickX_;
+            /* 0x14 */ f32 fAnalogMainStickY_;
+            /* 0x18 */ f32 fAnalogSubStickX_;
+            /* 0x1C */ f32 fAnalogSubStickY_;
+            /* 0x20 */ f32 fAnalogTriggerL_;
+            /* 0x24 */ f32 fAnalogTriggerR_;
         };
 
         TPad();

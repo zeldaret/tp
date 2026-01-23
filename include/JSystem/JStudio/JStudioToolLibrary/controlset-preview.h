@@ -68,12 +68,12 @@ namespace JStudioToolLibrary {
 
         /* 0x14 */ u8 field_0x14;
         /* 0x18 */ int field_0x18;
-        /* 0x1C */ u32 time_;
+        /* 0x1C */ u32 uTime_;
         /* 0x20 */ u32 field_0x20;
         /* 0x24 */ int field_0x24;
         /* 0x28 */ u32 field_0x28;
-        /* 0x2C */ int timeStep_;
-        /* 0x30 */ u8 timeEnd_;
+        /* 0x2C */ int iTimeStep_;
+        /* 0x30 */ u8 bTimeEnd_;
         /* 0x34 */ TAdaptor* pAdaptor_;
     };
 }

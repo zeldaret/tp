@@ -2,12 +2,10 @@
 #define D_JCAM_EDITOR_H
 
 #include <dolphin/mtx.h>
+#include "JSystem/JStudio/JStudioCameraEditor/control.h"
 
 namespace JStage {
     class TSystem;
-}
-namespace JStudioCameraEditor {
-    class TControl;
 }
 
 class JKRExpHeap;

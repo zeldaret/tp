@@ -18,10 +18,10 @@ namespace JStudioToolLibrary {
         int getWidth() const;
         int getHeight() const;
 
-        /* 0x00 */ int left_;
-        /* 0x04 */ int top_;
-        /* 0x08 */ int right_;
-        /* 0x0C */ int bottom_;
+        /* 0x00 */ int iLeft_;
+        /* 0x04 */ int iTop_;
+        /* 0x08 */ int iRight_;
+        /* 0x0C */ int iBottom_;
     };
 
     struct TDrawPrimitive2D {
@@ -65,8 +65,8 @@ namespace JStudioToolLibrary {
         void drawGrid_xz(uint);
         void drawGrid_yz(uint);
 
-        /* 0x0 */ f32 lineWidth_;
-        /* 0x4 */ GXColor color_;
+        /* 0x0 */ f32 fLineWidth_;
+        /* 0x4 */ GXColor oColor_;
     };
 
     struct TPrint {
@@ -91,8 +91,8 @@ namespace JStudioToolLibrary {
         /* 0x00 */ JUTFont* pFont_;
         /* 0x04 */ int field_0x4;
         /* 0x08 */ int field_0x8;
-        /* 0x0C */ int x_;
-        /* 0x10 */ int y_;
+        /* 0x0C */ int iX_;
+        /* 0x10 */ int iY_;
     };
 
     struct TColor_variable {
@@ -110,8 +110,8 @@ namespace JStudioToolLibrary {
         void update();
         void updateValue_(u8*, int*);
 
-        /* 0x00 */ JUtility::TColor color_;
-        /* 0x04 */ TVelocity velocity_;
+        /* 0x00 */ JUtility::TColor oColor_;
+        /* 0x04 */ TVelocity oVelocity_;
     };
 }
 

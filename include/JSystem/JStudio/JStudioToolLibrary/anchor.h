@@ -18,8 +18,8 @@ namespace JStudioToolLibrary {
         int getX() const;
         int getY() const;
 
-        /* 0x0 */ int x_;
-        /* 0x4 */ int y_;
+        /* 0x0 */ int iX_;
+        /* 0x4 */ int iY_;
     };
 
     struct TAnchor_corner {
@@ -31,8 +31,8 @@ namespace JStudioToolLibrary {
         TEAnchor getAnchor() const;
         TPoint* getAnchorPosition() const;
 
-        /* 0x0 */ TEAnchor anchor_;
-        /* 0x4 */ TPoint anchorPosition_;
+        /* 0x0 */ TEAnchor eAnchor_;
+        /* 0x4 */ TPoint oAnchorPosition_;
     };
 }
 

@@ -21,7 +21,7 @@ namespace JStudioToolLibrary {
             int getID(const TControlSet&) const;
             void setStyle(TControlSet*, u32) const;
 
-            /* 0x00 */ char* label_;
+            /* 0x00 */ char* szLabel_;
             /* 0x04 */ void* pfnGenerate_;
             /* 0x08 */ void* pfnReply_;
             /* 0x0C */ void* pfnUpdate_;
@@ -54,7 +54,7 @@ namespace JStudioToolLibrary {
 
         /* 0x00 */ TConsole* pConsole_;
         /* 0x04 */ TControl* paoControl_;
-        /* 0x08 */ u32 number_;
+        /* 0x08 */ u32 uNumber_;
         /* 0x0C */ u32 field_0xc;
         /* 0x10 */ u32 field_0x10;
     };
