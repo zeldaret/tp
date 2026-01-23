@@ -38,7 +38,7 @@ struct TAdaptor_object_ {
     void adaptor_object_begin_() { pJSGObject_->JSGFEnableFlag(1); }
     void adaptor_object_end_() { pJSGObject_->JSGFDisableFlag(1); }
 
-    #if PLATFORM_SHIELD
+    #if VERSION == VERSION_SHIELD_DEBUG
     /* 0x0 */ const JStudio::TAdaptor* pAdaptor_;
     #endif
     /* 0x0 */ JStage::TSystem const* pJSGSystem_;
