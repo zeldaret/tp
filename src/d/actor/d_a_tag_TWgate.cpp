@@ -357,7 +357,7 @@ void daTagTWGate_c::executeDemoFilone3() {
         }
 
         switch (*cutName) {
-        case 0x30303031:
+        case 0x30303031: {
             int modelSts = downloadModels();
             if (modelSts == 1) {
                 eventManager.cutEnd(staffId);
@@ -366,6 +366,7 @@ void daTagTWGate_c::executeDemoFilone3() {
                                       l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
             }
             break;
+        }
         case 0x30303032:
             if (dComIfGp_getEvent()->checkSkipEdge()) {
                 dComIfGp_getEvent()->onSkipFade();
