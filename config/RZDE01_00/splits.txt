@@ -341,7 +341,7 @@ f_pc/f_pc_node_req.cpp:
 f_pc/f_pc_priority.cpp:
 	.text       start:0x80027DFC end:0x80028140
 	.bss        start:0x804813F0 end:0x80481400
-	.sdata      start:0x805378D0 end:0x80537908
+	.sdata      start:0x805378D0 end:0x805378D8
 
 f_pc/f_pc_profile.cpp:
 	.text       start:0x80028140 end:0x80028150
@@ -381,7 +381,7 @@ d/d_stage.cpp:
 	.ctors      start:0x803CE268 end:0x803CE26C
 	.data       start:0x803FA5A8 end:0x803FDE58
 	.bss        start:0x80481400 end:0x804928C8
-	.sdata      start:0x80537908 end:0x8053793C
+	.sdata      start:0x805378D8 end:0x80537920
 	.sbss       start:0x8053A988 end:0x8053A9B0
 	.sdata2     start:0x8053BD28 end:0x8053BD38
 
@@ -389,7 +389,7 @@ d/d_map.cpp:
 	.text       start:0x8002CC88 end:0x8002F3F4
 	.rodata     start:0x803CFC30 end:0x803CFD10
 	.data       start:0x803FDE58 end:0x803FE258
-	.sdata      start:0x8053793C end:0x80537ACC
+	.sdata      start:0x80537920 end:0x80537ACC
 	.sbss       start:0x8053A9B0 end:0x8053A9B8
 	.sdata2     start:0x8053BD38 end:0x8053BD98
 

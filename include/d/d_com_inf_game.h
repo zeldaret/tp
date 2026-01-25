@@ -447,7 +447,7 @@ public:
 
     dMsgObject_c* getMsgObjectClass() { return mItemInfo.mMsgObjectClass; }
     dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
-    dStage_dt_c& getStage() { return mStageData; }
+    dStage_stageDt_c& getStage() { return mStageData; }
     dEvt_control_c* getEvent() { return &mEvent; }
     daHorse_c* getHorseActor() { return (daHorse_c*)mPlayerPtr[1]; }
     J2DGrafContext* getCurrentGrafPort() { return (J2DGrafContext*)mCurrentGrafPort; }
@@ -2108,7 +2108,7 @@ inline u32 dComIfGs_getTurnRestartParam() {
     return g_dComIfG_gameInfo.info.getTurnRestart().getParam();
 }
 
-inline cXyz& dComIfGs_getTurnRestartPos() {
+inline const cXyz& dComIfGs_getTurnRestartPos() {
     return g_dComIfG_gameInfo.info.getTurnRestart().getPos();
 }
 
@@ -2124,7 +2124,7 @@ inline u32 dComIfGs_getRestartRoomParam() {
     return g_dComIfG_gameInfo.info.getRestart().getRoomParam();
 }
 
-inline cXyz& dComIfGs_getRestartRoomPos() {
+inline const cXyz& dComIfGs_getRestartRoomPos() {
     return g_dComIfG_gameInfo.info.getRestart().getRoomPos();
 }
 
@@ -3029,7 +3029,7 @@ inline void dComIfGp_setItem(u8 slot, u8 i_no) {
     g_dComIfG_gameInfo.play.setItem(slot, i_no);
 }
 
-inline dStage_dt_c* dComIfGp_getStage() {
+inline dStage_stageDt_c* dComIfGp_getStage() {
     return &g_dComIfG_gameInfo.play.getStage();
 }
 
