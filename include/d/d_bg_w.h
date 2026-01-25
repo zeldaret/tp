@@ -228,6 +228,7 @@ public:
     void ClrNoCalcVtx() { mFlags &= ~NO_CALC_VTX_e; }
     void SetBaseMtxP(MtxP mtx) { pm_base = mtx; }
     void SetNoCalcVtx() { mFlags |= NO_CALC_VTX_e; }
+    cBgD_t* GetBgd() const { return pm_bgd; }
 
 public:
     /* 0x18 */ MtxP pm_base;  // Model Matrix
