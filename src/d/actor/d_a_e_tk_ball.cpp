@@ -396,13 +396,13 @@ static int daE_TK_BALL_Create(fopAc_ac_c* i_this) {
         actor->mType = TYPE_TK_BALL_WATER;
     }
 
-    cPhs__Step phase;
+    cPhs_Step phase;
     u32 size;
     if (actor->mType == TYPE_TK_BALL_WATER) {
-        phase = (cPhs__Step)dComIfG_resLoad(&actor->mPhaseReq, "E_tk");
+        phase = dComIfG_resLoad(&actor->mPhaseReq, "E_tk");
         size = 0x820;
     } else {
-        phase = (cPhs__Step)dComIfG_resLoad(&actor->mPhaseReq, "E_tk2");
+        phase = dComIfG_resLoad(&actor->mPhaseReq, "E_tk2");
         size = 0xEE0;
     }
 
@@ -446,40 +446,13 @@ static int daE_TK_BALL_Create(fopAc_ac_c* i_this) {
             }  // mSphAttr
         };
 
-    fopAcM_ct(i_this, e_tk_ball_class);
-    e_tk_ball_class* a_this = static_cast<e_tk_ball_class*>(i_this);
-
-    a_this->mType = fopAcM_GetParam(a_this);
-    if (a_this->mType == TYPE_TK_BALL_UNK) {
-        a_this->mType = TYPE_TK_BALL_WATER;
-    }
-
-    cPhs_Step phase;
-    u32 size;
-    if (a_this->mType == TYPE_TK_BALL_WATER) {
-        phase = dComIfG_resLoad(&a_this->mPhaseReq, "E_tk");
-        size = 0x820;
-    } else {
-        phase = dComIfG_resLoad(&a_this->mPhaseReq, "E_tk2");
-        size = 0xEE0;
-    }
-
-    if (phase == cPhs_COMPLEATE_e) {
-        a_this->mArg1 = fopAcM_GetParamBit(i_this, 8, 8);
-        if (a_this->mArg1 == 0xff) {
-            a_this->mArg1 = 0x00;
-        }
-
-        if (!fopAcM_entrySolidHeap(i_this, useHeapInit, size)) {
-            return cPhs_ERROR_e;
-        }
-        fopAcM_SetMtx(a_this, a_this->mpModel->getBaseTRMtx());
-        a_this->mStts.Init(0xff, 0, a_this);
-        a_this->mAtSph.Set(at_sph_src);
-        a_this->mAtSph.SetStts(&a_this->mStts);
-        if (a_this->mType == TYPE_TK_BALL_FIRE) {
-            a_this->mAtSph.SetAtType(AT_TYPE_100);
-            a_this->mAtSph.SetAtMtrl(dCcD_MTRL_FIRE);
+        fopAcM_SetMtx(i_this, actor->mpModel->getBaseTRMtx());
+        actor->mStts.Init(0xff, 0, i_this);
+        actor->mAtSph.Set(at_sph_src);
+        actor->mAtSph.SetStts(&actor->mStts);
+        if (actor->mType == TYPE_TK_BALL_FIRE) {
+            actor->mAtSph.SetAtType(AT_TYPE_100);
+            actor->mAtSph.SetAtMtrl(dCcD_MTRL_FIRE);
         }
 
         actor->mTgSph.Set(tg_sph_src);

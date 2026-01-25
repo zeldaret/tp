@@ -548,7 +548,7 @@ static int daE_TK2_Create(fopAc_ac_c* actor) {
     e_tk2_class* i_this = (e_tk2_class*)actor;
     fopAcM_ct(i_this, e_tk2_class);
 
-    cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhaseReq, "E_tk2");
+    cPhs_Step phase = dComIfG_resLoad(&i_this->mPhaseReq, "E_tk2");
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("E_tk2 PARAM %x\n", fopAcM_GetParam(actor));
         i_this->mArg0 = (fopAcM_GetParam(actor) & 0xFF) >> 0;
@@ -591,48 +591,19 @@ static int daE_TK2_Create(fopAc_ac_c* actor) {
             }  // mSphAttr
         };
 
-    fopAcM_ct(i_this, e_tk2_class);
-    e_tk2_class* a_this = static_cast<e_tk2_class*>(i_this);
+        i_this->mStts.Init(100, 0, actor);
+        i_this->mSph.Set(cc_sph_src);
+        i_this->mSph.SetStts(&i_this->mStts);
 
-    cPhs_Step phase = dComIfG_resLoad(&a_this->mPhaseReq, "E_tk2");
-    if (phase == cPhs_COMPLEATE_e) {
-        a_this->mArg0 = fopAcM_GetParamBit(a_this, 0, 8);
-        a_this->mArg1 = fopAcM_GetParamBit(a_this, 8, 4);
-        a_this->mArg2 = fopAcM_GetParamBit(a_this, 12, 4);
+        i_this->mAcch.Set(fopAcM_GetPosition_p(actor), fopAcM_GetOldPosition_p(actor), actor, 1,
+                          &i_this->mAcchCir, fopAcM_GetSpeed_p(actor), NULL, NULL);
 
-        if (!fopAcM_entrySolidHeap(a_this, useHeapInit, 0x23a0)) {
-            return cPhs_ERROR_e;
-        }
-
-        if (hio_set == false) {
-            a_this->mInitHIO = true;
-            hio_set = true;
-            l_HIO.field_0x04 = -1;
-        }
-
-        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
-
-        fopAcM_SetMtx(a_this, a_this->mpMorf->getModel()->getBaseTRMtx());
-        fopAcM_SetMin(a_this, -100.0f, -100.0f, -100.0f);
-        fopAcM_SetMax(a_this, 100.0f, 100.0f, 100.0f);
-
-        a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 0x04;
-        a_this->health = 0;
-        a_this->field_0x560 = 0;
-
-        a_this->mStts.Init(100, 0, a_this);
-        a_this->mSph.Set(cc_sph_src);
-        a_this->mSph.SetStts(&a_this->mStts);
-
-        a_this->mAcch.Set(&i_this->current.pos, &a_this->old.pos, a_this, 1, &a_this->mAcchCir,
-                          fopAcM_GetSpeed_p(a_this), NULL, NULL);
-
-        a_this->mAcchCir.SetWall(-50.0f, 60.0f);
-        a_this->mSound.init(&a_this->current.pos, &a_this->eyePos, 0x3, 0x1);
-        a_this->mSound.setEnemyName("E_tk2");
-        a_this->mAtInfo.mpSound = &a_this->mSound;
-        a_this->mExecuteState = 0x14;
-        daE_TK2_Execute(a_this);
+        i_this->mAcchCir.SetWall(-50.0f, 60.0f);
+        i_this->mSound.init(&actor->current.pos, &actor->eyePos, 0x3, 0x1);
+        i_this->mSound.setEnemyName("E_tk2");
+        i_this->mAtInfo.mpSound = &i_this->mSound;
+        i_this->mExecuteState = 0x14;
+        daE_TK2_Execute(i_this);
     }
     return phase;
 }
