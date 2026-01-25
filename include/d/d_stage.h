@@ -1539,11 +1539,11 @@ inline u16 dStage_FileList_dt_GetMsg(dStage_FileList_dt_c* p_fList) {
     return p_fList->mMsg;
 }
 
-inline f32 dStage_FileList2_dt_GetLeftRmX(dStage_FileList2_dt_c* p_fList2) {
+inline f32 dStage_FileList2_dt_GetLeftRmX(const dStage_FileList2_dt_c* p_fList2) {
     return p_fList2->mLeftRmX;
 }
 
-inline f32 dStage_FileList2_dt_GetRightRmX(dStage_FileList2_dt_c* p_fList2) {
+inline f32 dStage_FileList2_dt_GetRightRmX(const dStage_FileList2_dt_c* p_fList2) {
     return p_fList2->mRightRmX;
 }
 
