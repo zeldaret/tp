@@ -1,5 +1,6 @@
 #include <dolphin/exi.h>
 #include <dolphin/os.h>
+#include <odemuexi2/DebuggerDriver.h>
 
 static MTRCallbackType MTRCallback;
 

@@ -4222,11 +4222,11 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wstring.c:
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wchar_io.c:
 	.text       start:0x804847F0 end:0x8048486C
 
-PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/SRC/uart_console_io_gcn.c:
+PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/uart_console_io_gcn.c:
 	.text       start:0x8048486C end:0x80484944
 	.sbss       start:0x80509B90 end:0x80509B98
 
-PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/SRC/abort_exit_ppc_eabi.c:
+PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/abort_exit_ppc_eabi.c:
 	.text       start:0x80484944 end:0x80484978
 	.sbss       start:0x80509B98 end:0x80509BA0
 
