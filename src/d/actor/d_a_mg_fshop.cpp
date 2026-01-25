@@ -581,8 +581,12 @@ static void weed_control(fshop_class* i_this, fs_weed_s* i_weed) {
     local_84.y = 0.0f;
     local_84.z = i_weed->field_0xb4 * 5.0f;
 
-    f32 reg_f31, reg_f30, reg_f29, reg_f28, reg_f27, reg_f26;
-    reg_f29 = i_weed->field_0xb8 + 0.5f;
+    f32 reg_f29 = i_weed->field_0xb8 + 0.5f;
+    f32 reg_f28;
+    f32 reg_f27;
+    f32 reg_f26;
+    f32 reg_f31;
+    f32 reg_f30;
     i_weed->field_0xbc += (s16)(i_weed->field_0xb8 * 600.0f + 200.0f);
     cLib_addCalc0(&i_weed->field_0xb8, 0.05f, 0.02f);
 
