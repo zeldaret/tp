@@ -396,13 +396,13 @@ static int daE_TK_BALL_Create(fopAc_ac_c* i_this) {
         actor->mType = TYPE_TK_BALL_WATER;
     }
 
-    cPhs__Step phase;
+    cPhs_Step phase;
     u32 size;
     if (actor->mType == TYPE_TK_BALL_WATER) {
-        phase = (cPhs__Step)dComIfG_resLoad(&actor->mPhaseReq, "E_tk");
+        phase = dComIfG_resLoad(&actor->mPhaseReq, "E_tk");
         size = 0x820;
     } else {
-        phase = (cPhs__Step)dComIfG_resLoad(&actor->mPhaseReq, "E_tk2");
+        phase = dComIfG_resLoad(&actor->mPhaseReq, "E_tk2");
         size = 0xEE0;
     }
 

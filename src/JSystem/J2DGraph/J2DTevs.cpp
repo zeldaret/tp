@@ -7,7 +7,7 @@
 #include "JSystem/J2DGraph/J2DTevs.h"
 #include "JSystem/J2DGraph/J2DMaterial.h"
 #include <cmath>
-#include "dolphin/gx.h"
+#include <dolphin/gx.h>
 
 void J2DTexMtx::load(u32 mtxIdx) {
     GXLoadTexMtxImm(mTexMtx, mtxIdx * 3 + GX_TEXMTX0, (GXTexMtxType)mInfo.mTexMtxType);

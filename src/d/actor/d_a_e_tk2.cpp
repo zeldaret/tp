@@ -548,7 +548,7 @@ static int daE_TK2_Create(fopAc_ac_c* actor) {
     e_tk2_class* i_this = (e_tk2_class*)actor;
     fopAcM_ct(i_this, e_tk2_class);
 
-    cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhaseReq, "E_tk2");
+    cPhs_Step phase = dComIfG_resLoad(&i_this->mPhaseReq, "E_tk2");
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("E_tk2 PARAM %x\n", fopAcM_GetParam(actor));
         i_this->mArg0 = (fopAcM_GetParam(actor) & 0xFF) >> 0;
