@@ -82,7 +82,13 @@ static cXyz BallStartPos;
 
 static cXyz BallEndPos;
 
-static J3DModel* ArcIX_A_crwaku_model[1];
+static J3DModel* ArcIX_A_crwaku_model;
+
+#if DEBUG
+    #define CRWAKU_MODEL(ptr) (ptr)->mpA_crwaku_model
+#else
+    #define CRWAKU_MODEL(ptr) ArcIX_A_crwaku_model
+#endif
 
 static void koro2_draw(fshop_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
@@ -91,8 +97,8 @@ static void koro2_draw(fshop_class* i_this) {
         dComIfGd_setListBG();
     }
 
-    g_env_light.setLightTevColorType_MAJI(ArcIX_A_crwaku_model[0], &actor->tevStr);
-    mDoExt_modelUpdateDL(ArcIX_A_crwaku_model[0]);
+    g_env_light.setLightTevColorType_MAJI(CRWAKU_MODEL(i_this), &actor->tevStr);
+    mDoExt_modelUpdateDL(CRWAKU_MODEL(i_this));
 
     for (int i = 0; i < ARRAY_SIZE(i_this->mKoro2); i++) {
         if (i_this->mKoro2[i].model != NULL) {
@@ -336,7 +342,7 @@ static int daFshop_Draw(fshop_class* i_this) {
             {0x64, 0x96, 0x14, 0xFF},
             {0x96, 0x14, 0x14, 0xFF},
         };
-        i_this->mRod[i].line_mat.update(8, rod_color[i], &actor->tevStr);
+        i_this->mRod[i].line_mat.update(8, rod_color[i], &i_this->actor.tevStr);
         dComIfGd_set3DlineMat(&i_this->mRod[i].line_mat);
 
         for (int j = 0; j < 6; j++) {
@@ -350,7 +356,7 @@ static int daFshop_Draw(fshop_class* i_this) {
     }
 
     static GXColor l_color = {0x32, 0x64, 0x1E, 0xFF};
-    i_this->field_0x3f88.update(15, TREG_F(11) + 1.2f, l_color, 2, &actor->tevStr);
+    i_this->field_0x3f88.update(15, TREG_F(11) + 1.2f, l_color, 2, &i_this->actor.tevStr);
     dComIfGd_set3DlineMat(&i_this->field_0x3f88);
 
     g_env_light.setLightTevColorType_MAJI(i_this->canoeModel, &actor->tevStr);
@@ -401,8 +407,8 @@ static void lure_set(fshop_class* i_this) {
             pLure->field_0x3c = cM_rndF(1000.0f) + 500.0f;
         }
 
-        pLure->field_0x34 += 4000;
-        pLure->field_0x36 += 4000;
+        pLure->field_0x34 += (s16) 4000;
+        pLure->field_0x36 += (s16) 4000;
         pLure->field_0x32 = pLure->field_0x3c * cM_ssin(pLure->field_0x36);
         pLure->field_0x30 = pLure->field_0x38 * cM_ssin(pLure->field_0x34);
 
@@ -426,21 +432,21 @@ static void lure_set(fshop_class* i_this) {
         mDoMtx_stack_c::ZrotM(pLure->field_0x32);
         mDoMtx_stack_c::XrotM(pLure->field_0x30);
         mDoMtx_stack_c::transM(0.0f, -fVar2, 0.0f);
-        mDoMtx_stack_c::YrotM(pLure->field_0x0e);
-        mDoMtx_stack_c::XrotM(pLure->field_0x0c);
-        mDoMtx_stack_c::ZrotM(pLure->field_0x10);
+        mDoMtx_stack_c::YrotM(pLure->field_0x0c.y);
+        mDoMtx_stack_c::XrotM(pLure->field_0x0c.x);
+        mDoMtx_stack_c::ZrotM(pLure->field_0x0c.z);
         mDoMtx_stack_c::scaleM(pLure->field_0x2c, pLure->field_0x2c, pLure->field_0x28);
-        mDoMtx_stack_c::transM(0.0f, 0.0f, 0.0f);
+        mDoMtx_stack_c::transM(0.0f, 0.0f, AREG_F(18));
         pLure->model->setBaseTRMtx(mDoMtx_stack_c::get());
 
         if (pLure->field_0x24 != 3) {
             mDoMtx_stack_c::push();
-            mDoMtx_stack_c::transM(0.0f, hook_1_offy[pLure->field_0x24], 1.0f);
+            mDoMtx_stack_c::transM(ZREG_F(0), hook_1_offy[pLure->field_0x24] + ZREG_F(1), 1.0f + ZREG_F(2));
             mDoMtx_stack_c::XrotM(-10000);
             pLure->hookModel[0]->setBaseTRMtx(mDoMtx_stack_c::get());
             mDoMtx_stack_c::pop();
-            mDoMtx_stack_c::transM(0.0f, hook_2_offy[pLure->field_0x24],
-                                   hook_2_offz[pLure->field_0x24]);
+            mDoMtx_stack_c::transM(ZREG_F(3), hook_2_offy[pLure->field_0x24] + ZREG_F(4),
+                                   hook_2_offz[pLure->field_0x24] + ZREG_F(5));
             mDoMtx_stack_c::XrotM(0x4000);
             pLure->hookModel[1]->setBaseTRMtx(mDoMtx_stack_c::get());
         }
@@ -453,27 +459,27 @@ static void rod_set(fshop_class* i_this) {
     for (int i = 0; i < 3; i++, pRod++) {
         mDoMtx_stack_c::transS(pRod->field_0x00.x, pRod->field_0x00.y, pRod->field_0x00.z);
         if (i == 0) {
-            mDoMtx_stack_c::YrotM(-12000.0f);
+            mDoMtx_stack_c::YrotM(KREG_S(0) - 12000);
         } else if (i == 1) {
-            mDoMtx_stack_c::YrotM(-9000.0f);
+            mDoMtx_stack_c::YrotM(KREG_S(0) - 9000);
         } else {
-            mDoMtx_stack_c::YrotM(-16000.0f);
+            mDoMtx_stack_c::YrotM(KREG_S(0) - 16000);
         }
-        mDoMtx_stack_c::XrotM(1300);
-        mDoMtx_stack_c::YrotM(0);
+        mDoMtx_stack_c::XrotM(KREG_S(1) + 1300);
+        mDoMtx_stack_c::YrotM(s16(KREG_S(2)));
         pRod->model->setBaseTRMtx(mDoMtx_stack_c::get());
 
         cXyz* local_64 = pRod->line_mat.getPos(0);
         if (pRod->field_0x4c == 0) {
-            mDoMtx_stack_c::transM(0.0f, 15.0f, 0.0f);
+            mDoMtx_stack_c::transM(0.0f, 15.0f + BREG_F(1), 0.0f);
         } else {
-            mDoMtx_stack_c::transM(0.0f, 15.0f, -0.8f);
+            mDoMtx_stack_c::transM(0.0f, 15.0f + BREG_F(1), -0.8f);
         }
 
         cXyz cStack_1c;
         cXyz cStack_28;
-        cXyz local_34;
-        for (int j = 0; j < 8; j++) {
+        cXyz vec_0x4c;
+        for (int j = 0; j < 8; j++, local_64++) {
             mDoMtx_stack_c::multVecZero(local_64);
             if (j == 0) {
                 cStack_1c = *local_64;
@@ -481,16 +487,15 @@ static void rod_set(fshop_class* i_this) {
                 cStack_28 = *local_64;
             }
             mDoMtx_stack_c::transM(0.0f, pRod->field_0x54, 0.0f);
-            local_64++;
         }
 
         static f32 guide_p[6] = {0.0f, 0.1f, 0.22f, 0.36f, 0.52f, 0.7f};
         static f32 guide_s[6] = {0.5f, 0.5f, 0.55f, 0.6f, 0.65f, 0.8f};
         for (int j = 0; j < 6; j++) {
-            cXyz local_34 = cStack_28 + (cStack_1c - cStack_28) * guide_p[j];
-            mDoMtx_stack_c::transS(local_34.x, local_34.y, local_34.z);
+            vec_0x4c = cStack_28 + (cStack_1c - cStack_28) * guide_p[j];
+            mDoMtx_stack_c::transS(vec_0x4c.x, vec_0x4c.y, vec_0x4c.z);
             mDoMtx_stack_c::scaleM(guide_s[j], guide_s[j], guide_s[j]);
-            mDoMtx_stack_c::transM(0.0f, 4.0f, 0.0f);
+            mDoMtx_stack_c::transM(VREG_F(0), 4.0f + VREG_F(1), VREG_F(2));
             mDoMtx_stack_c::YrotM(0x4000);
             pRod->ringModel[j]->setBaseTRMtx(mDoMtx_stack_c::get());
         }
@@ -498,22 +503,23 @@ static void rod_set(fshop_class* i_this) {
 }
 
 static void* s_fish_sub(void* i_actor, void* i_data) {
-    mg_fish_class* fish = (mg_fish_class*)i_actor;
-    fs_weed_s* weed = (fs_weed_s*)i_data;
+    (void) i_data;
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_MG_FISH) {
+        if (((mg_fish_class*)i_actor)->actor.speedF > 0.1f) {
+            fs_weed_s* weed = (fs_weed_s*)i_data;
+            f32 x_dist = ((mg_fish_class*)i_actor)->actor.current.pos.x - weed->field_0x00[0].x;
+            f32 y_dist = ((mg_fish_class*)i_actor)->actor.current.pos.y - weed->field_0x00[0].y;
+            f32 z_dist = ((mg_fish_class*)i_actor)->actor.current.pos.z - weed->field_0x00[0].z;
 
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_MG_FISH && fish->actor.speedF > 0.1f) {
-        f32 x_dist = fish->actor.current.pos.x - weed->field_0x00[0].x;
-        f32 y_dist = fish->actor.current.pos.y - weed->field_0x00[0].y;
-        f32 z_dist = fish->actor.current.pos.z - weed->field_0x00[0].z;
+            f32 dVar3 = ((mg_fish_class*)i_actor)->mJointScale;
+            if (dVar3 > 0.7f) {
+                dVar3 = 0.7f;
+            }
 
-        f32 dVar3 = fish->mJointScale;
-        if (dVar3 > 0.7f) {
-            dVar3 = 0.7f;
-        }
-
-        if (fabsf(y_dist) < 60.0f * weed->field_0xb4 && JMAFastSqrt(SQUARE(x_dist) + SQUARE(z_dist)) < dVar3 * 35.0f) {
-            cLib_addCalc2(&weed->field_0xb8, dVar3, 0.1f, 0.05f);
-            return i_actor;
+            if (fabsf(y_dist) < (60.0f + AREG_F(14)) * weed->field_0xb4 && JMAFastSqrt(SQUARE(x_dist) + SQUARE(z_dist)) < dVar3 * 35.0f) {
+                cLib_addCalc2(&weed->field_0xb8, dVar3, 0.1f, 0.05f);
+                return i_actor;
+            }
         }
     }
 
@@ -525,6 +531,7 @@ static void tsubo_set(fshop_class* i_this) {
     fs_tsubo_s* pTsubo = i_this->mTsubo;
 
     cXyz local_40;
+    f32 reg_f31 = 1.0f;
     s16 xrot;
     s16 zrot;
     for (int i = 0; i < 2; i++, pTsubo++) {
@@ -550,20 +557,21 @@ static void tsubo_set(fshop_class* i_this) {
         xrot = cM_ssin(pTsubo->field_0x20) * pTsubo->field_0x1c;
         zrot = cM_ssin(pTsubo->field_0x22) * pTsubo->field_0x1c;
         pTsubo->field_0x20 += pTsubo->field_0x24;
-        pTsubo->field_0x22 += pTsubo->field_0x24 + 700;
-        cLib_addCalcAngleS2(&pTsubo->field_0x24, 9000, 1, 200);
+        ADD_ANGLE_2(pTsubo->field_0x22, pTsubo->field_0x24 + 700);
+        cLib_addCalcAngleS2(&pTsubo->field_0x24, 9000 + TREG_S(8), 1, 200);
 
         mDoMtx_stack_c::transS(pTsubo->field_0x00.x, pTsubo->field_0x00.y, pTsubo->field_0x00.z);
         mDoMtx_stack_c::XrotM(xrot);
         mDoMtx_stack_c::ZrotM(zrot);
-        mDoMtx_stack_c::scaleM(1.0f, 1.0f, 1.0f);
+        mDoMtx_stack_c::scaleM(reg_f31, reg_f31, reg_f31);
         pTsubo->model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-        cLib_addCalc0(&pTsubo->field_0x1c, 1.0f, 50.0f);
+        cLib_addCalc0(&pTsubo->field_0x1c, 1.0f, 50.0f + TREG_F(18));
     }
 }
 
 static void weed_control(fshop_class* i_this, fs_weed_s* i_weed) {
+    UNUSED(i_this);
     int i;
     cXyz local_84;
     cXyz local_90;
@@ -573,18 +581,19 @@ static void weed_control(fshop_class* i_this, fs_weed_s* i_weed) {
     local_84.y = 0.0f;
     local_84.z = i_weed->field_0xb4 * 5.0f;
 
-    f32 dVar11 = i_weed->field_0xb8 + 0.5f;
+    f32 reg_f31, reg_f30, reg_f29, reg_f28, reg_f27, reg_f26;
+    reg_f29 = i_weed->field_0xb8 + 0.5f;
     i_weed->field_0xbc += (s16)(i_weed->field_0xb8 * 600.0f + 200.0f);
     cLib_addCalc0(&i_weed->field_0xb8, 0.05f, 0.02f);
 
     for (i = 1; i < 15; i++, pfVar7++) {
-        f32 dVar10 = dVar11 * cM_ssin(i_weed->field_0xbc + i * -5000);
-        f32 dVar8 = cM_ssin(i_weed->field_0xbc + i * -5500);
-        f32 dVar4 = dVar10 + (pfVar7[0].x - pfVar7[-1].x);
-        f32 dVar12 = (pfVar7[0].y - pfVar7[-1].y) + 3.0f;
-        f32 dVar6 = dVar11 * dVar8 + (pfVar7[0].z - pfVar7[-1].z);
-        cMtx_XrotS(*calc_mtx, -cM_atan2s(dVar12, dVar6));
-        cMtx_YrotM(*calc_mtx, (s16)cM_atan2s(dVar4, JMAFastSqrt(SQUARE(dVar12) + SQUARE(dVar6))));
+        reg_f27 = reg_f29 * cM_ssin(i_weed->field_0xbc + i * (AREG_S(7)-5000));
+        reg_f26 = reg_f29 * cM_ssin(i_weed->field_0xbc + i * (AREG_S(8)-5500));
+        reg_f28 = reg_f27 + (pfVar7[0].x - pfVar7[-1].x);
+        reg_f31 = (pfVar7[0].y - pfVar7[-1].y) + 3.0f + KREG_F(7);
+        reg_f30 = reg_f26 + (pfVar7[0].z - pfVar7[-1].z);
+        cMtx_XrotS(*calc_mtx, -cM_atan2s(reg_f31, reg_f30));
+        cMtx_YrotM(*calc_mtx, (s16)cM_atan2s(reg_f28, JMAFastSqrt(SQUARE(reg_f31) + SQUARE(reg_f30))));
         MtxPosition(&local_84, &local_90);
 
         pfVar7[0].x = pfVar7[-1].x + local_90.x;
@@ -666,16 +675,18 @@ static void koro2_mtx_set(fshop_class* i_this) {
 }
 
 static void* s_sel_sub(void* i_actor, void* i_data) {
+    (void) i_data;
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_FSHOP) {
         if (((fshop_class*)i_actor)->field_0x400e == (u8)((((fshop_class*)i_data)->field_0x400c & 7) + 1)) {
             return i_actor;
         }
     }
-        
+
     return NULL;
 }
 
 static void* s_ball_sub(void* i_actor, void* i_data) {
+    UNUSED(i_data);
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_FSHOP && (fopAcM_GetParam(i_actor) & 0xFF) == 0x23) {
         return i_actor;
     }
@@ -1141,7 +1152,7 @@ static int koro2_heapinit(fopAc_ac_c* actor) {
 
     i_this->koro2WakuBgw->SetCrrFunc(dBgS_MoveBGProc_Typical);
     i_this->koro2WakuBgw->SetRideCallback(ride_call_back);
-    i_this->mpA_crwaku_model = ArcIX_A_crwaku_model[0];
+    i_this->mpA_crwaku_model = ArcIX_A_crwaku_model;
 
     int part_no = 0;
     int flag567 = actor->field_0x567 & 8;
@@ -1261,8 +1272,8 @@ static int useHeapInit(fopAc_ac_c* actor) {
 
         if (i >= 32 && i <= 33) {
             i_this->mLure[i].field_0x24 = 3;
-            i_this->mLure[i].field_0x0c = JREG_S(4) - 0x4000;
-            i_this->mLure[i].field_0x0e = cM_rndFX2(32768.0f);
+            i_this->mLure[i].field_0x0c.x = JREG_S(4) - 0x4000;
+            i_this->mLure[i].field_0x0c.y = cM_rndFX2(32768.0f);
             i_this->mLure[i].field_0x28 = 1.2f + JREG_F(0);
             i_this->mLure[i].field_0x2c = 1.2f + JREG_F(0);
             i_this->mLure[i].field_0x00.y += 13.0f;
@@ -1277,8 +1288,8 @@ static int useHeapInit(fopAc_ac_c* actor) {
                 }
             }
 
-            i_this->mLure[i].field_0x0c = JREG_S(3) + 0x4000;
-            i_this->mLure[i].field_0x0e = cM_rndFX2(65536.0f);
+            i_this->mLure[i].field_0x0c.x = JREG_S(3) + 0x4000;
+            i_this->mLure[i].field_0x0c.y = cM_rndFX2(65536.0f);
             i_this->mLure[i].field_0x28 = 0.8f + JREG_F(0) + cM_rndFX2(0.1f);
 
             if (i_this->mLure[i].field_0x24 == 2) {
@@ -1432,13 +1443,13 @@ static int useHeapInit(fopAc_ac_c* actor) {
         return 0;
     }
 
-    #if !PLATFORM_SHIELD
+#if !PLATFORM_SHIELD
     i_this->field_0x4020.y = cM_rndFX(2000.0f) + -16384.0f;
 
     modelData = dComIfG_getObjectRes("Fshop", 16);
     JUT_ASSERT(3069, modelData != NULL);
-    ArcIX_A_crwaku_model[0] = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
-    if (ArcIX_A_crwaku_model[0] == NULL) {
+    ArcIX_A_crwaku_model = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+    if (ArcIX_A_crwaku_model == NULL) {
         return 0;
     }
 
@@ -1472,13 +1483,13 @@ static int useHeapInit(fopAc_ac_c* actor) {
             }
         }
     }
-    #endif
+#endif
 
-    #if PLATFORM_SHIELD
+#if PLATFORM_SHIELD
     if (!koro2_heapinit(actor)) {
         return 0;
     }
-    #endif
+#endif
 
     if ((int)dComIfGs_getEventReg(0xF47F) >= 10) {
         modelData = dComIfG_getObjectRes("Fshop", 0x11);

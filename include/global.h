@@ -145,4 +145,11 @@ static const float INF = 2000000000.0f;
     #define UNSET_FLAG(var, flag, type) (var) &= ~(flag)
 #endif
 
+// potential fakematch?
+#if DEBUG
+#define FABSF fabsf
+#else
+#define FABSF std::fabsf
+#endif
+
 #endif
