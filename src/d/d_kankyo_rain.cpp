@@ -5693,8 +5693,8 @@ void dKyr_mud_draw(Mtx drawMtx, u8** tex) {
         j3dSys.reinitGX();
         f32 var_f31 = 255.0f;
 
-        if (g_env_light.field_0x1300 != -1) {
-            spC = g_env_light.field_0x1300;
+        if (g_env_light.rain_set != -1) {
+            spC = g_env_light.rain_set;
         }
     
         sp50.r = 1.3f * g_env_light.bg_amb_col[1].r;
