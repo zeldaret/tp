@@ -70,7 +70,6 @@ int JUTCacheFont::getMemorySize(ResFONT const* p_font, u16* o_widCount, u32* o_w
     u32 totalGlySize = 0;
     u32 totalMapSize = 0;
     u32 maxGlyTexSize = 0;
-    u32 glyTexSize;
 
     u8* fontInf = (u8*)p_font->data;
     for (int i = 0; i < p_font->numBlocks; i++) {
@@ -83,10 +82,9 @@ int JUTCacheFont::getMemorySize(ResFONT const* p_font, u16* o_widCount, u32* o_w
             break;
         case 'GLY1':
             totalGlySize += ((BlockHeader*)fontInf)->size;
-            glyTexSize = ((ResFONT::GLY1*)fontInf)->textureSize;
             glyBlockCount++;
-            if (glyTexSize > maxGlyTexSize) {
-                maxGlyTexSize = glyTexSize;
+            if (((ResFONT::GLY1*)fontInf)->textureSize > maxGlyTexSize) {
+                maxGlyTexSize = ((ResFONT::GLY1*)fontInf)->textureSize;
             }
             break;
         case 'MAP1':
@@ -183,7 +181,7 @@ bool JUTCacheFont::allocArea(void* cacheBuffer, u32 param_1, JKRHeap* heap) {
     }
 
     if (mGly1BlockNum != 0) {
-        field_0x80 = new (heap, 0) ResFONT::GLY1[mGly1BlockNum];
+        field_0x80 = new (heap, 0) u8[mGly1BlockNum * sizeof(ResFONT::GLY1)];
         if (field_0x80 == NULL) {
             return false;
         }
@@ -345,7 +343,11 @@ void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo* param_0,
     prepend(pGylphCacheInfo);
     int iVar3 = pGylphCacheInfo->field_0x16 * pGylphCacheInfo->field_0x18;
     int iVar2 = *r30 / iVar3;
+#if PLATFORM_SHIELD
+    pGylphCacheInfo->field_0x8 += (u16)(iVar2 * iVar3);
+#else
     pGylphCacheInfo->field_0x8 += iVar2 * iVar3;
+#endif
     u16 local_30 = pGylphCacheInfo->field_0x8 + iVar3 - 1;
     pGylphCacheInfo->field_0xa = pGylphCacheInfo->field_0xa < local_30 ? pGylphCacheInfo->field_0xa : local_30;
     *param_3 = iVar2;

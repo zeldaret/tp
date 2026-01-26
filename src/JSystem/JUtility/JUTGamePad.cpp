@@ -394,23 +394,23 @@ u32 JUTGamePad::CStick::getButton(u32 buttons) {
     u32 button = buttons & 0xF;
 
     if (-sReleasePoint < mPosX && mPosX < sReleasePoint) {
-        button = button & ~0x3;
+        button &= ~0x3;
     } else if (mPosX <= -sPressPoint) {
-        button = (button & ~0x2);
-        button |= 1;
+        button &= ~0x2;
+        button |= 0x1;
     } else if (mPosX >= sPressPoint) {
-        button = (button & ~0x1);
-        button |= 2;
+        button &= ~0x1;
+        button |= 0x2;
     }
 
     if (-sReleasePoint < mPosY && mPosY < sReleasePoint) {
-        button = button & ~0xC;
+        button &= ~0xC;
     } else if (mPosY <= -sPressPoint) {
-        button = (button & ~0x8);
-        button |= 4;
+        button &= ~0x8;
+        button |= 0x4;
     } else if (mPosY >= sPressPoint) {
-        button = (button & ~0x4);
-        button |= 8;
+        button &= ~0x4;
+        button |= 0x8;
     }
 
     return button;
@@ -481,7 +481,7 @@ void JUTGamePad::CRumble::update(s16 port) {
         return;
     } else {
         bool enabled = getNumBit(mPattern, mFrame % mFrameCount);
-        u8 status = mStatus[port] != false;
+        u32 status = mStatus[port] != false;
 
         if (enabled && !status) {
             startMotor(port);

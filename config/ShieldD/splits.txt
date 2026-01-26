@@ -3322,7 +3322,7 @@ JSystem/JKernel/JKRDecomp.cpp:
 	.text       start:0x8050E3E0 end:0x8050EE10
 	.data       start:0x8070EA60 end:0x8070EAB8
 	.sdata      start:0x8074AAE0 end:0x8074AAF0
-	.sbss       start:0x8074CF78 end:0x8074CF84
+	.sbss       start:0x8074CF78 end:0x8074CF80
 	.bss        start:0x807E2078 end:0x807E20B8
 
 JSystem/JSupport/JSUList.cpp:
@@ -3435,7 +3435,7 @@ JSystem/JUtility/JUTGraphFifo.cpp:
 	.text       start:0x8051A690 end:0x8051A8B0
 	.data       start:0x8070FB18 end:0x8070FB38
 	.sdata      start:0x8074AD88 end:0x8074AD90
-	.sbss       start:0x8074CF84 end:0x8074CF90
+	.sbss       start:0x8074CF80 end:0x8074CF90
 
 JSystem/JUtility/JUTFont.cpp:
 	.text       start:0x8051A8B0 end:0x8051AC40
