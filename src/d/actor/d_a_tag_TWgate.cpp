@@ -356,9 +356,16 @@ void daTagTWGate_c::executeDemoFilone3() {
             }
         }
 
+#ifndef __MWERKS__
+        int modelSts;
+#endif
         switch (*cutName) {
-        case 0x30303031: {
+        case 0x30303031:
+#ifndef __MWERKS__
+            modelSts = downloadModels();
+#else
             int modelSts = downloadModels();
+#endif
             if (modelSts == 1) {
                 eventManager.cutEnd(staffId);
             } else if (modelSts == -1) {
@@ -366,7 +373,6 @@ void daTagTWGate_c::executeDemoFilone3() {
                                       l_zevParamTbl[mType].mRoomNo, l_zevParamTbl[mType].mLayer);
             }
             break;
-        }
         case 0x30303032:
             if (dComIfGp_getEvent()->checkSkipEdge()) {
                 dComIfGp_getEvent()->onSkipFade();
