@@ -993,7 +993,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
 
     s16 unkShort1;
     u32 unkIntArr1[8];
-    s8 unkBool1 = false; // although acts as a bool, needs to be signed
+    s8 unkBool1 = false;
 
     if (!dComIfGp_event_runCheck()
             /* dSv_event_flag_c::F_0465 - Fishing Pond - Reserved for fishing */
@@ -2587,8 +2587,8 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
     return 1;
 }
 
-static bool daNpc_Henna_IsDelete(npc_henna_class*) {
-    return true;
+static int daNpc_Henna_IsDelete(npc_henna_class*) {
+    return 1;
 }
 
 static int daNpc_Henna_Delete(npc_henna_class* i_this) {

@@ -267,9 +267,9 @@ static J3DModel** koro2_union_model[6] = {
 #endif
 
 #if PLATFORM_SHIELD
-    #define CRWAKU_MODEL(ptr) (ptr)->mpA_crwaku_model
+    #define GET_CRWAKU_MODEL(ptr) (ptr)->mpA_crwaku_model
 #else
-    #define CRWAKU_MODEL(ptr) ArcIX_A_crwaku_model
+    #define GET_CRWAKU_MODEL(ptr) ArcIX_A_crwaku_model
 #endif
 
 static void koro2_draw(fshop_class* i_this) {
@@ -279,8 +279,8 @@ static void koro2_draw(fshop_class* i_this) {
         dComIfGd_setListBG();
     }
 
-    g_env_light.setLightTevColorType_MAJI(CRWAKU_MODEL(i_this), &actor->tevStr);
-    mDoExt_modelUpdateDL(CRWAKU_MODEL(i_this));
+    g_env_light.setLightTevColorType_MAJI(GET_CRWAKU_MODEL(i_this), &actor->tevStr);
+    mDoExt_modelUpdateDL(GET_CRWAKU_MODEL(i_this));
 
     for (int i = 0; i < ARRAY_SIZE(i_this->mKoro2); i++) {
         if (i_this->mKoro2[i].model != NULL) {
@@ -1164,7 +1164,7 @@ static int koro2_heapinit(fopAc_ac_c* actor) {
         0x09, 0x08, 0x0B, 0x0A, 0x0C, 0x0D, 0x0F, 0x0E,
     };
 
-    fshop_class* i_this = (fshop_class*)actor; // sp_0x4c
+    fshop_class* i_this = (fshop_class*)actor;
 
     i_this->koro2WakuBgw = new dBgW();
     if (i_this->koro2WakuBgw == NULL) {
@@ -1179,7 +1179,7 @@ static int koro2_heapinit(fopAc_ac_c* actor) {
     i_this->koro2WakuBgw->SetRideCallback(ride_call_back);
 #if PLATFORM_SHIELD
     i_this->field_0x4020.y = -16384.0f + cM_rndFX(2000.0f);
-    J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("Fshop", 16); // sp_0x48
+    J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("Fshop", 16);
     JUT_ASSERT(2554, modelData != NULL);
     i_this->mpA_crwaku_model = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
     if (i_this->mpA_crwaku_model == NULL) {
@@ -1642,12 +1642,12 @@ static int daFshop_Create(fopAc_ac_c* actor) {
         OS_REPORT("FSHOP//////////////FSHOP SET 1 !!\n");
 
 #if PLATFORM_SHIELD
-    #define FSHOP_HEAP_VAL 0x522E0
+    #define HEAP_SIZE 0x522E0
 #else
-    #define FSHOP_HEAP_VAL 0x5B000
+    #define HEAP_SIZE 0x5B000
 #endif
 
-        if (!fopAcM_entrySolidHeap(actor, useHeapInit, FSHOP_HEAP_VAL)) {
+        if (!fopAcM_entrySolidHeap(actor, useHeapInit, HEAP_SIZE)) {
             OS_REPORT("//////////////FSHOP SET NON !!\n");
             return cPhs_ERROR_e;
         }
