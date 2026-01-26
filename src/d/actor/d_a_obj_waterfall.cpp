@@ -4,11 +4,18 @@
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
+#if DEBUG
+#include "d/d_debug_viewer.h"
+#endif
+
 #include "d/actor/d_a_obj_waterfall.h"
 #include "d/actor/d_a_arrow.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_bomb.h"
 #include "SSystem/SComponent/c_math.h"
+#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
+#include "m_Do/m_Do_mtx.h"
 
 #define MAX_TARGET_INFO_COUNT 10
 
@@ -18,17 +25,86 @@ static int daObjWaterFall_Delete(daObjWaterFall_c* i_this);
 static int daObjWaterFall_Create(fopAc_ac_c* i_this);
 
 static fopAc_ac_c* target_info[MAX_TARGET_INFO_COUNT];
+static int target_info_count;
 
-static s32 target_info_count;
+const char* l_arcName = "sample";
+
+#if DEBUG
+static cull_box l_cull_box = {
+    {-200.0f, -100.0f, -200.0f},
+    {200.0f, 100.0f, 200.0f}
+};
+
+static dCcD_SrcTri l_tri_src = {
+    {
+        {0, {{0, 0, 0}, {0x6002, 0x11}, 0}},
+        {dCcD_SE_NONE, 0, 0, 0, {0}},
+        {dCcD_SE_NONE, 0, 0, 0, {0x84}},
+        {0},
+    },
+    {
+        {
+            {0.0f, 0.0f, 0.0f},
+            {0.0f, 0.0f, 0.0f},
+            {0.0f, 0.0f, 0.0f},
+        },
+    },
+};
+#endif
+
+static dCcD_SrcCyl l_cyl_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x2, 0x10}, 0x119}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x84}, // mGObjTg
+        {0x2}, // mGObjCo
+    }, // mObjInf
+    {
+        {
+            {0.0f, 0.0f, 0.0f}, // mCenter
+            0.0f, // mRadius
+            0.0f // mHeight
+        } // mCyl
+    }
+};
+
+#if DEBUG
+class daObjWaterFall_HIO_c : public mDoHIO_entry_c {
+public:
+    daObjWaterFall_HIO_c();
+    ~daObjWaterFall_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x08 */ f32 mPushPlayerOutMagnitudeHuman;
+    /* 0x0C */ f32 mPushPlayerOutMagnitudeWolf;
+};
+
+static daObjWaterFall_HIO_c l_HIO;
+
+daObjWaterFall_HIO_c::daObjWaterFall_HIO_c() {
+    mPushPlayerOutMagnitudeHuman = 10.0f;
+    mPushPlayerOutMagnitudeWolf = 25.0f;
+}
+
+void daObjWaterFall_HIO_c::genMessage(JORMContext* mctx) {
+    /* Waterfall */
+    mctx->genLabel("滝", 0);
+    // Pushing force ・ human
+    mctx->genSlider("押す力・人間", &mPushPlayerOutMagnitudeHuman, 0.0f, 100.0f);
+    mctx->genSlider("押す力・狼", &mPushPlayerOutMagnitudeWolf, 0.0f, 100.0f);
+}
+
+#endif
 
 static void* s_b_sub(void* param_0, void* unused) {
-    if(fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_NBOMB) {
-        dBomb_c* foundBomb = static_cast<dBomb_c*>(param_0);
-        if(!foundBomb->checkWaterBomb(foundBomb) && fopAcM_GetParam(foundBomb) != dBomb_c::PRM_NORMAL_BOMB_EXPLODE) {
-            const u32 idx = target_info_count;  //  Regalloc issues if this isn't done
+    #define BOMB_ACTOR static_cast<dBomb_c*>(param_0)
+    UNUSED(unused);
 
+    if(fopAcM_IsActor(param_0) && dBomb_c::checkBombActor(BOMB_ACTOR)) {
+        if(!dBomb_c::checkWaterBomb(BOMB_ACTOR) && !BOMB_ACTOR->checkStateExplode()) {
             if(target_info_count < MAX_TARGET_INFO_COUNT) {
-                target_info[idx] = foundBomb;
+                target_info[target_info_count] = BOMB_ACTOR;
                 target_info_count++;
             }
         }
@@ -37,12 +113,11 @@ static void* s_b_sub(void* param_0, void* unused) {
 }
 
 static void* s_a_sub(void* param_0, void* unused) {
+    UNUSED(unused);
+
     if(fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_ARROW) {
-        const u32 idx = target_info_count;  //  Regalloc issues if this isn't done
-        
         if(target_info_count < MAX_TARGET_INFO_COUNT) {
-            daArrow_c* arrow_0 = static_cast<daArrow_c*>(param_0);
-            target_info[idx] = arrow_0;
+            target_info[target_info_count] = static_cast<daArrow_c*>(param_0);
             target_info_count++;
         }
     }
@@ -50,10 +125,10 @@ static void* s_a_sub(void* param_0, void* unused) {
 }
 
 void daObjWaterFall_c::search_bomb() {
-    if(checkFallOut() != TRUE) {
+    if(checkFallOut() == 0) {
         //  Get rid of previously found arrow or bomb processes populating target_info
         target_info_count = 0;
-        for(u32 i = 0; i < MAX_TARGET_INFO_COUNT; i++) {
+        for(int i = 0; i < MAX_TARGET_INFO_COUNT; i++) {
             target_info[i] = NULL;
         }
 
@@ -76,8 +151,8 @@ void daObjWaterFall_c::search_bomb() {
                 mDoMtx_stack_c::multVec(&vectorToCurrentBombPos, &vectorToCurrentBombPos);
 
                 bool bombPassedZOriginPrevAndCurrentBombPosAreWithinXYBounds = (
-                    (vectorToOldBombPos.z * vectorToCurrentBombPos.z) < 0.0f && 
-                    (vectorToOldBombPos.x > -scale.x * 50.0f && vectorToOldBombPos.x < scale.x * 50.0f) && 
+                    (vectorToOldBombPos.z * vectorToCurrentBombPos.z) < 0.0f &&
+                    (vectorToOldBombPos.x > -scale.x * 50.0f && vectorToOldBombPos.x < scale.x * 50.0f) &&
                     (vectorToCurrentBombPos.x > -scale.x * 50.0f && vectorToCurrentBombPos.x < scale.x * 50.0f) &&
                     (vectorToOldBombPos.y > 0.0f && vectorToOldBombPos.y < scale.y * 100.0f) &&
                     (vectorToCurrentBombPos.y > 0.0f && vectorToCurrentBombPos.y < scale.y * 100.0f)
@@ -98,12 +173,12 @@ void daObjWaterFall_c::search_bomb() {
 
 void daObjWaterFall_c::search_arrow() {
     //  Some waterfalls (e.g. in the Lakebed Temple) allow arrows to fly through them
-    if(getType() == ALLOW_ARROWS_e || checkFallOut() == TRUE)
+    if(getType() == ALLOW_ARROWS_e || checkFallOut())
         return;
 
     //  Get rid of previously found arrow or bomb processes populating target_info
     target_info_count = 0;
-    for(u32 i = 0; i < MAX_TARGET_INFO_COUNT; i++) {
+    for(int i = 0; i < MAX_TARGET_INFO_COUNT; i++) {
         target_info[i] = NULL;
     }
 
@@ -126,8 +201,8 @@ void daObjWaterFall_c::search_arrow() {
             mDoMtx_stack_c::multVec(&vectorToCurrentArrowPos, &vectorToCurrentArrowPos);
 
             bool arrowPassedZOriginPrevAndCurrentArrowPosAreWithinXYBounds = (
-                (vectorToOldArrowPos.z * vectorToCurrentArrowPos.z) < 0.0f && 
-                (vectorToOldArrowPos.x > -scale.x * 50.0f && vectorToOldArrowPos.x < scale.x * 50.0f) && 
+                (vectorToOldArrowPos.z * vectorToCurrentArrowPos.z) < 0.0f &&
+                (vectorToOldArrowPos.x > -scale.x * 50.0f && vectorToOldArrowPos.x < scale.x * 50.0f) &&
                 (vectorToCurrentArrowPos.x > -scale.x * 50.0f && vectorToCurrentArrowPos.x < scale.x * 50.0f) &&
                 (vectorToOldArrowPos.y > 0.0f && vectorToOldArrowPos.y < scale.y * 100.0f) &&
                 (vectorToCurrentArrowPos.y > 0.0f && vectorToCurrentArrowPos.y < scale.y * 100.0f)
@@ -150,30 +225,9 @@ void daObjWaterFall_c::initBaseMtx() {
 }
 
 void daObjWaterFall_c::setBaseMtx() {
-    cXyz* pos = fopAcM_GetPosition_p(this);
-    PSMTXTrans(mDoMtx_stack_c::get(), pos->x, pos->y, pos->z);
-
-    csXyz* shapeAngle = fopAcM_GetShapeAngle_p(this);
-    mDoMtx_stack_c::ZXYrotM(shapeAngle->x, shapeAngle->y, shapeAngle->z);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
 }
-
-static const char* l_arcName = "sample";
-
-static dCcD_SrcCyl l_cyl_src = {
-    {
-        {0x0, {{0x0, 0x0, 0x0}, {0x2, 0x10}, 0x119}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x84}, // mGObjTg
-        {0x2}, // mGObjCo
-    }, // mObjInf
-    {
-        {
-            {0.0f, 0.0f, 0.0f}, // mCenter
-            0.0f, // mRadius
-            0.0f // mHeight
-        } // mCyl
-    }
-};
 
 cPhs_Step daObjWaterFall_c::Create() {
     initBaseMtx();
@@ -190,10 +244,10 @@ cPhs_Step daObjWaterFall_c::Create() {
 
     mCylCollider.OnCoNoCamHit();
 
-    //  If a waterfall process is not a circular cylinder (i.e. scale.x != scale.z), the circular cylindrical collider 
-    //      is oscillated in order to approximate the elliptical shape of the process.
+    //  If a waterfall process is not a circular cylinder (i.e. scale.x != scale.z), the circular cylindrical collider
+    //      is oscillated in order to approximate an elliptical shape
     //
-    //  The member variable speedF (inherited from fopAc_ac_c) is used to control the speed of oscillation
+    //  speedF is used to control the speed of oscillation
     //
     //  This effect can be observed at the largest waterfall in Zora's Domain
     if(scale.x > scale.z) {
@@ -210,8 +264,8 @@ cPhs_Step daObjWaterFall_c::Create() {
     mDoMtx_stack_c::transS(home.pos);
     mDoMtx_stack_c::YrotM(home.angle.y);
 
-    PSMTXMultVec(mDoMtx_stack_c::get(), &mCylColliderCenterOscillationTargets[0], &mCylColliderCenterOscillationTargets[0]);
-    PSMTXMultVec(mDoMtx_stack_c::get(), &mCylColliderCenterOscillationTargets[1], &mCylColliderCenterOscillationTargets[1]);
+    mDoMtx_stack_c::multVec(&mCylColliderCenterOscillationTargets[0], &mCylColliderCenterOscillationTargets[0]);
+    mDoMtx_stack_c::multVec(&mCylColliderCenterOscillationTargets[1], &mCylColliderCenterOscillationTargets[1]);
 
     mCylColliderCenter = mCylColliderCenterOscillationTargets[0];
     mCylColliderCenterQuantizedOscillation = 1;
@@ -219,38 +273,17 @@ cPhs_Step daObjWaterFall_c::Create() {
     return cPhs_LOADING_e;
 }
 
-static actor_method_class l_daObjWaterFall_Method = {
-    (process_method_func)daObjWaterFall_Create,
-    (process_method_func)daObjWaterFall_Delete,
-    (process_method_func)daObjWaterFall_Execute,
-    NULL,
-    (process_method_func)daObjWaterFall_Draw,
-};
-
-actor_process_profile_definition g_profile_Obj_WaterFall = {
-  fpcLy_CURRENT_e,          // mLayerID
-  7,                        // mListID
-  fpcPi_CURRENT_e,          // mListPrio
-  PROC_Obj_WaterFall,       // mProcName
-  &g_fpcLf_Method.base,    // sub_method
-  sizeof(daObjWaterFall_c), // mSize
-  0,                        // mSizeOther
-  0,                        // mParameters
-  &g_fopAc_Method.base,     // sub_method
-  543,                      // mPriority
-  &l_daObjWaterFall_Method, // sub_method
-  0x00040100,               // mStatus
-  fopAc_ACTOR_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e,   // cullType
-};
-
 cPhs_Step daObjWaterFall_c::create() {
     fopAcM_ct(this, daObjWaterFall_c);
 
     if(Create() == cPhs_INIT_e) {
         return cPhs_ERROR_e;
     }
-    
+
+    #if DEBUG
+    l_HIO.entryHIO("滝"); // "Waterfall"
+    #endif
+
     return cPhs_COMPLEATE_e;
 }
 
@@ -278,32 +311,39 @@ int daObjWaterFall_c::execute() {
 
 void daObjWaterFall_c::push_player() {
     daPy_py_c* const player = daPy_getPlayerActorClass();
-    
+
+    #if DEBUG
+    f32 outMagnitude = l_HIO.mPushPlayerOutMagnitudeHuman;
+    #else
     f32 outMagnitude = 10.0f;
-    if(daPy_getLinkPlayerActorClass()->checkWolf())
+    #endif
+
+    if(player->checkNowWolf()) {
+        #if DEBUG
+        outMagnitude = l_HIO.mPushPlayerOutMagnitudeWolf;
+        #else
         outMagnitude = 25.0f;
+        #endif
+    }
 
     if(scale.x == scale.z) {
-        // Waterfall is a circular cylinder 
-        const f32 distToPlayer = fopAcM_searchPlayerDistanceXZ(this);
-
-        if(distToPlayer < scale.x * 50.0f) {
+        // Waterfall is a circular cylinder
+        if(fopAcM_searchPlayerDistanceXZ(this) < scale.x * 50.0f) {
             cXyz vectorToPlayer = player->current.pos - current.pos;
-            s16 outAngle = cM_atan2s(vectorToPlayer.x, vectorToPlayer.z);
-            player->setOutPower(outMagnitude,outAngle,FALSE);
+            player->setOutPower(outMagnitude, cM_atan2s(vectorToPlayer.x, vectorToPlayer.z) , FALSE);
         }
     }
     else {
         // Waterfall is an elliptic cylinder
         cXyz vectorToPlayer = player->current.pos - current.pos;
 
-        mDoMtx_YrotS(mDoMtx_stack_c::get(), -current.angle.y);
-        PSMTXMultVec(mDoMtx_stack_c::get(), &vectorToPlayer, &vectorToPlayer);
+        mDoMtx_stack_c::YrotS(-current.angle.y);
+        mDoMtx_stack_c::multVec(&vectorToPlayer, &vectorToPlayer);
 
         if((vectorToPlayer.x > -scale.x * 50.0f && vectorToPlayer.x < scale.x * 50.0f) &&
         vectorToPlayer.y > -10.0f && vectorToPlayer.y < scale.y * 100.0f) {
             if(vectorToPlayer.z >= scale.z * 10.0f && vectorToPlayer.z < scale.z * 60.0f) {
-                player->setOutPower(outMagnitude, current.angle.y, FALSE); 
+                player->setOutPower(outMagnitude, current.angle.y, FALSE);
             }
             else if(vectorToPlayer.z < scale.z * -10.0f && vectorToPlayer.z > scale.z * -60.0f) {
                  player->setOutPower(outMagnitude, (current.angle.y + (1 << 16)) - 0x8000, FALSE);
@@ -318,6 +358,11 @@ int daObjWaterFall_c::draw() {
 
 int daObjWaterFall_c::_delete() {
     dComIfG_resDelete(&mPhase, l_arcName);
+
+    #if DEBUG
+    l_HIO.removeHIO();
+    #endif
+
     return 1;
 }
 
@@ -330,9 +375,37 @@ static int daObjWaterFall_Execute(daObjWaterFall_c* i_this) {
 }
 
 static int daObjWaterFall_Delete(daObjWaterFall_c* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "WaterFall");
     return i_this->_delete();
 }
 
 static int daObjWaterFall_Create(fopAc_ac_c* i_this) {
-    return static_cast<daObjWaterFall_c*>(i_this)->create();
+    daObjWaterFall_c* const actor = static_cast<daObjWaterFall_c*>(i_this);
+    fopAcM_RegisterCreateID(i_this, "WaterFall");
+    return actor->create();
 }
+
+static actor_method_class l_daObjWaterFall_Method = {
+    (process_method_func)daObjWaterFall_Create,
+    (process_method_func)daObjWaterFall_Delete,
+    (process_method_func)daObjWaterFall_Execute,
+    NULL,
+    (process_method_func)daObjWaterFall_Draw,
+};
+
+actor_process_profile_definition g_profile_Obj_WaterFall = {
+  fpcLy_CURRENT_e,          // mLayerID
+  7,                        // mListID
+  fpcPi_CURRENT_e,          // mListPrio
+  PROC_Obj_WaterFall,       // mProcName
+  &g_fpcLf_Method.base,    // sub_method
+  sizeof(daObjWaterFall_c), // mSize
+  0,                        // mSizeOther
+  0,                        // mParameters
+  &g_fopAc_Method.base,     // sub_method
+  543,                      // mPriority
+  &l_daObjWaterFall_Method, // sub_method
+  0x00040100,               // mStatus
+  fopAc_ACTOR_e,            // mActorType
+  fopAc_CULLBOX_CUSTOM_e,   // cullType
+};
