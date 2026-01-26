@@ -1899,6 +1899,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
                 Z2GetAudioMgr()->subBgmStart(Z2BGM_FISHING_BARE);
             }
         }
+        int _; // forces b asm in dbg
         break;
     }
     case 74: {
@@ -1943,6 +1944,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
         if (fshop != NULL) {
             fshop->field_0x0572 = 0;
         }
+        int _; // forces b asm in dbg
         break;
     }
     case 76: {
@@ -2086,6 +2088,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
         if (koro_shop != NULL) {
             koro_shop->field_0x0572 = 1;
         }
+        int _; // forces b asm in dbg
         break;
     }
     case 79: {
