@@ -2077,8 +2077,9 @@ config.libs = [
     },
     {
         "lib": "NdevExi2A",
+        # TODO: not sure about the compiler version + flags here
         "mw_version": MWVersion(config.version),
-        "cflags": cflags_dolphin,
+        "cflags": cflags_framework,
         "progress_category": "sdk",
         "host": False,
         "objects": [
