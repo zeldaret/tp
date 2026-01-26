@@ -825,9 +825,9 @@ static int ball_wall_check(fshop_class* i_this) {
 }
 
 #if DEBUG
-    #define DBG_TRIGZ_PAD1() mDoCPd_c::getTrigZ(PAD_1)
+    #define DEBUG_CHECK_PAD_TRIG_Z 1
 #else
-    #define DBG_TRIGZ_PAD1() 0
+    #define DEBUG_CHECK_PAD_TRIG_Z 0
 #endif
 
 static int daFshop_Execute(fshop_class* i_this) {
@@ -940,7 +940,11 @@ static int daFshop_Execute(fshop_class* i_this) {
             } else {
                 if (actor->field_0x567 == 0) {
                     local_cc = BallEndPos - actor->current.pos;
-                    if (local_cc.abs() < 65.0f + hREG_F(16) || DBG_TRIGZ_PAD1()) {
+                    if (local_cc.abs() < 65.0f + hREG_F(16)
+#if DEBUG_CHECK_PAD_TRIG_Z
+                    || mDoCPd_c::getTrigZ(PAD_1)
+#endif
+                    ) {
                         npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
                         if (henna != NULL) {
                             BOOL bVar5 = FALSE;
@@ -951,9 +955,11 @@ static int daFshop_Execute(fshop_class* i_this) {
                                 }
                             }
 
-                            if (DBG_TRIGZ_PAD1()) {
+#if DEBUG_CHECK_PAD_TRIG_Z
+                            if (mDoCPd_c::getTrigZ(PAD_1)) {
                                 bVar5 = FALSE;
                             }
+#endif
 
                             if (bVar5) {
                                 henna->actor.health = 3;
