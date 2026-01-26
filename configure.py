@@ -2524,7 +2524,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_bombf"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_boumato"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_brg"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_bsGate"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_bsGate"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_bubblePilar"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_catdoor"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_cb"),
@@ -2626,12 +2626,12 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lp"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv1Candle00"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv1Candle01"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3Candle"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3Water"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3Water2"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3WaterB"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3saka00"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3waterEff"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3Candle"),    # debug weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3Water"),     # debug weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3Water2"),    # debug weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3WaterB"),    # debug weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3saka00"),    # debug weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv3waterEff"),  # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv4CandleDemoTag"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv4CandleTag"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_lv4EdShutter"),
@@ -2757,7 +2757,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_swpush2"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_swspinner"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_swturn"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_syRock"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_syRock"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_szbridge"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_taFence"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_table"),
@@ -2789,8 +2789,8 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_warp_kbrg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_warp_obrg"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_waterGate"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_waterPillar"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_waterfall"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_waterPillar"),  # debug weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_obj_waterfall"),    # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_wchain"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_wdStick"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_web0"),

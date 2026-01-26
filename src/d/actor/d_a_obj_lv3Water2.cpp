@@ -1,12 +1,13 @@
 /**
  * @file d_a_obj_lv3Water2.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv3Water2.h"
 #include "d/d_com_inf_game.h"
+#include "f_ap/f_ap_game.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_graphic.h"
 
@@ -39,35 +40,6 @@ void daLv3Water2_HIO_c::genMessage(JORMContext* ctx) {
 #endif
 
 static char* l_resNameIdx[] = {"Kr03wat04"};
-
-static actionFunc l_mode_func[] = {
-    &daLv3Water2_c::mode_proc_wait, &daLv3Water2_c::mode_proc_levelCtrl 
-};
-
-static actor_method_class l_daLv3Water2_Method = {
-    (process_method_func)daLv3Water2_Create,
-    (process_method_func)daLv3Water2_Delete,
-    (process_method_func)daLv3Water2_Execute,
-    0,
-    (process_method_func)daLv3Water2_Draw,
-};
-
-actor_process_profile_definition g_profile_Obj_Lv3Water2 = {
-  fpcLy_CURRENT_e,        // mLayerID
-  3,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_Obj_Lv3Water2,     // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daLv3Water2_c),  // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  617,                    // mPriority
-  &l_daLv3Water2_Method,  // sub_method
-  0x00040000,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
 
 void daLv3Water2_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
@@ -105,16 +77,16 @@ cPhs_Step daLv3Water2_c::create() {
         if(MoveBGCreate(l_resNameIdx[mResourceIndex], l_dzbIdx[mResourceIndex], NULL, 0x2D00, NULL) == cPhs_ERROR_e)
             return cPhs_ERROR_e;
 
-        mEastSwInitialStatus = fopAcM_isSwitch(this, getParamSw1());
-        mWestSwInitialStatus = fopAcM_isSwitch(this, getParamSw2());
+        mEastSwInitialState = fopAcM_isSwitch(this, getParamSw1());
+        mWestSwInitialState = fopAcM_isSwitch(this, getParamSw2());
 
         setBaseMtx();
         fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
 
-        if(mEastSwInitialStatus)
+        if(mEastSwInitialState)
             current.pos.y = home.pos.y + getParamLevel1() * 5.0f;
 
-        if(mWestSwInitialStatus)
+        if(mWestSwInitialState)
             current.pos.y = home.pos.y + getParamLevel1() * 5.0f + getParamLevel1() * 5.0f;
 
         mMode = WAIT;
@@ -128,13 +100,17 @@ cPhs_Step daLv3Water2_c::create() {
     return resPhase;
 }
 
+static actionFunc l_mode_func[] = {
+    &daLv3Water2_c::mode_proc_wait, &daLv3Water2_c::mode_proc_levelCtrl
+};
+
 int daLv3Water2_c::Execute(Mtx** i_mtx) {
     mWaterSurfaceRefractionAnm.play();
 
     eventUpdate();
 
-    mEastSwCurrentStatus = fopAcM_isSwitch(this, getParamSw1());
-    mWestSwCurrentStatus = fopAcM_isSwitch(this, getParamSw2());
+    mEastSwCurrentState = fopAcM_isSwitch(this, getParamSw1());
+    mWestSwCurrentState = fopAcM_isSwitch(this, getParamSw2());
 
     (this->*l_mode_func[mMode])();
 
@@ -159,13 +135,13 @@ int daLv3Water2_c::Execute(Mtx** i_mtx) {
 }
 
 void daLv3Water2_c::mode_proc_wait() {
-    if(mEastSwInitialStatus != mEastSwCurrentStatus) {
+    if(mEastSwInitialState != mEastSwCurrentState) {
         if(getParamEvent() != 0xFF)
             orderEvent(getParamEvent(), 0xFF, 1);
         else
             eventStart();
     }
-    else if(mWestSwInitialStatus != mWestSwCurrentStatus) {
+    else if(mWestSwInitialState != mWestSwCurrentState) {
         if(getParamEvent2() != 0xFF)
             orderEvent(getParamEvent2(), 0xFF, 1);
         else
@@ -183,43 +159,62 @@ void daLv3Water2_c::mode_init_levelCtrl() {
 void daLv3Water2_c::mode_proc_levelCtrl() {
     if(mLevelControlWaitFrames) {
         mLevelControlWaitFrames--;
+        return;
     }
-    else {
-        f32 currentRatio = fopMsgM_valueIncrease(mWaterLvFrame, mCurrentWaterLvFrame, mFullRatio);
 
-        if(!mEastSwInitialStatus)
-            currentRatio = 1.0f - currentRatio;
+    f32 ratioOfWaterLevelFramesAdvancedToTarget = fopMsgM_valueIncrease(mWaterLvFrame, mCurrentWaterLvFrame, mEventActivatorSwitchState);
 
-        mCurrentWaterLvFrame++;
-
-        if(mCurrentWaterLvFrame >= mWaterLvFrame) {
-            currentRatio = mFullRatio;
-            mMode = WAIT;
-        }
-
-        current.pos.y = mWaterLv * currentRatio + mBaseYPos;
+    if(!mEastSwInitialState) {
+        // Water level should lower, invert the ratio so that it goes (1.0f -> 0.0f)
+        ratioOfWaterLevelFramesAdvancedToTarget = 1.0f - ratioOfWaterLevelFramesAdvancedToTarget;
     }
+
+    mCurrentWaterLvFrame++;
+
+    if(mCurrentWaterLvFrame >= mWaterLvFrame) {
+        ratioOfWaterLevelFramesAdvancedToTarget = mEventActivatorSwitchState;
+        mMode = WAIT;
+    }
+
+    current.pos.y = mWaterLv * ratioOfWaterLevelFramesAdvancedToTarget + mBaseYPos;
 }
 
 int daLv3Water2_c::Draw() {
+    J3DTexMtxInfo* texMtxInfo;
+    J3DModelData* modelData;
+    J3DMaterial* btkMaterial;
+
     g_env_light.settingTevStruct(16, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
-    J3DModelData* modelData = mpModel->getModelData();
+    modelData = mpModel->getModelData();
     mWaterSurfaceRefractionAnm.entry(modelData);
-    J3DMaterial* const btkMaterial = modelData->getMaterialNodePointer(0);
+    btkMaterial = modelData->getMaterialNodePointer(0);
 
     dComIfGd_setListInvisisble();
 
     if(btkMaterial->getTexGenBlock()->getTexMtx(0)) {
-        J3DTexMtxInfo* texMtxInfo = &btkMaterial->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
+        texMtxInfo = &btkMaterial->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
         if(texMtxInfo) {
             Mtx lightProjMtx;
             C_MTXLightPerspective(lightProjMtx, dComIfGd_getView()->fovy, dComIfGd_getView()->aspect, 1.0f, 1.0f, -0.01f, 0);
 
             #if WIDESCREEN_SUPPORT
             mDoGph_gInf_c::setWideZoomLightProjection(lightProjMtx);
-            /* TODO: Handle screen capture perspective calculations */
+            #endif
+
+            #if DEBUG
+            if(fapGm_HIO_c::isCaptureScreen()) {
+                    Mtx44 screenCaptureMtx;
+                    MTXCopy(lightProjMtx, screenCaptureMtx);
+
+                    screenCaptureMtx[2][3] = -2.0f;
+                    CPerspDivider perspectiveDivider(screenCaptureMtx, fapGm_HIO_c::getCaptureScreenDivH(), fapGm_HIO_c::getCaptureScreenDivV());
+                    perspectiveDivider.divide(screenCaptureMtx, fapGm_HIO_c::getCaptureScreenNumH(), fapGm_HIO_c::getCaptureScreenNumV());
+                    screenCaptureMtx[2][3] = 0.0f;
+
+                    MTXCopy(screenCaptureMtx, lightProjMtx);
+                }
             #endif
 
             texMtxInfo->setEffectMtx(lightProjMtx);
@@ -245,19 +240,20 @@ int daLv3Water2_c::Delete() {
 }
 
 bool daLv3Water2_c::eventStart() {
-    if(mEastSwInitialStatus != mEastSwCurrentStatus) {
+    // Check which switch initiated the event
+    if(mEastSwInitialState != mEastSwCurrentState) {
         mWaterLv = getParamLevel1() * 5.0f;
         mWaterLvFrame = static_cast<u8>(getParamFrame1());
-        mFullRatio = mEastSwCurrentStatus;
-        mEastSwInitialStatus = mEastSwCurrentStatus;
+        mEventActivatorSwitchState = mEastSwCurrentState;
+        mEastSwInitialState = mEastSwCurrentState;
 
         mDoAud_seStart(Z2SE_ENV_FILL_UP_LV3WTR1, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
     else {
         mWaterLv = getParamLevel1() * 5.0f;
         mWaterLvFrame = static_cast<u8>(getParamFrame2());
-        mFullRatio = mWestSwCurrentStatus;
-        mWestSwInitialStatus = mWestSwCurrentStatus;
+        mEventActivatorSwitchState = mWestSwCurrentState;
+        mWestSwInitialState = mWestSwCurrentState;
 
         mDoAud_seStart(Z2SE_ENV_FILL_UP_LV3WTR2, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
@@ -278,12 +274,37 @@ static int daLv3Water2_Execute(daLv3Water2_c* i_this) {
 }
 
 static int daLv3Water2_Delete(daLv3Water2_c* i_this) {
-    const fpc_ProcID procID = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "daLv3Water2");
     return i_this->MoveBGDelete();
 }
 
 static int daLv3Water2_Create(fopAc_ac_c* i_this) {
-    daLv3Water2_c* const lv3Water2 = static_cast<daLv3Water2_c*>(i_this);
-    const fpc_ProcID procID = fopAcM_GetID(i_this);
-    return lv3Water2->create();
+    daLv3Water2_c* const actor = static_cast<daLv3Water2_c*>(i_this);
+    fopAcM_RegisterCreateID(i_this, "daLv3Water2");
+    return actor->create();
 }
+
+static actor_method_class l_daLv3Water2_Method = {
+    (process_method_func)daLv3Water2_Create,
+    (process_method_func)daLv3Water2_Delete,
+    (process_method_func)daLv3Water2_Execute,
+    0,
+    (process_method_func)daLv3Water2_Draw,
+};
+
+actor_process_profile_definition g_profile_Obj_Lv3Water2 = {
+  fpcLy_CURRENT_e,        // mLayerID
+  3,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_Obj_Lv3Water2,     // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daLv3Water2_c),  // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  617,                    // mPriority
+  &l_daLv3Water2_Method,  // sub_method
+  0x00040000,             // mStatus
+  fopAc_ACTOR_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};
