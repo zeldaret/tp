@@ -66,6 +66,10 @@ JUTConsole::JUTConsole(unsigned int param_0, unsigned int maxLines, bool param_2
     field_0x64 = 8;
 }
 
+static void dummystring1() {
+    UNUSED("console != 0");
+}
+
 JUTConsole::~JUTConsole() {
     JUT_ASSERT(154, JUTConsoleManager::getManager());
     JUTConsoleManager::getManager()->removeConsole(this);
@@ -336,6 +340,15 @@ void JUTConsole::dumpToTerminal(unsigned int param_0) {
     };
 
     OS_REPORT(":::dump of console[%x] END----------------------------\n", this);
+}
+
+static void dummyStrings2()
+{
+    UNUSED("console != this && console != 0");
+    UNUSED("\n:::dump of console[%x]----------------\n");
+    UNUSED(":::dump of console[%x] END------------\n");
+    UNUSED("sManager == 0");
+    UNUSED("consoleManager != 0 && sManager == consoleManager");
 }
 
 void JUTConsole::scroll(int scrollAmnt) {
