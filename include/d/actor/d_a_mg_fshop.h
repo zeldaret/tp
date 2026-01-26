@@ -111,8 +111,9 @@ public:
     /* 0x40B4 */ dBgS_ObjAcch ballAcch;
     /* 0x428C */ u8 field_0x428c;
     /* 0x428D */ u8 field_0x428d;
-#if DEBUG
-    u8 unk_dbg_padding[0xC];
+#if PLATFORM_SHIELD
+    u8 unk_dbg_padding[0x6];
+    J3DModel* dbg_models[2];
 #endif
     /* 0x4290 */ fs_koro2_s mKoro2[100];
     /* 0x6B30 */ J3DModel* canoeModel;

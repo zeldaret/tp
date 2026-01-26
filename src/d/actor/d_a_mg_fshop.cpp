@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_mg_fshop.h"
 #include "d/actor/d_a_npc_henna.h"
-#include "d/actor/d_a_mg_rod.h"
+#include "d/actor/d_a_mg_fish.h"
 #include "d/actor/d_a_player.h"
 #include "f_op/f_op_camera_mng.h"
 #include "d/d_timer.h"
@@ -31,84 +31,6 @@ enum koro2_parts {
     KORO2_PART_SLOPE_L,
     KORO2_PART_SLOPE_R,
 };
-
-static void ride_call_back(dBgW* i_bgw, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rideActor) {
-    if (i_rideActor->field_0x567 == 0) {
-        i_rideActor->field_0x567 = 1;
-        ((fshop_class*)i_rideActor)->field_0x428c = 0;
-    }
-}
-
-static int Reel_CallBack(J3DJoint* i_joint, int param_1) {
-    J3DJoint* var_r27;
-
-    if (param_1 == 0) {
-        var_r27 = i_joint;
-        int jnt_no = var_r27->getJntNo();
-        J3DModel* model = j3dSys.getModel();
-        fs_rod_s* rod = (fs_rod_s*)model->getUserArea();
-        MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
-        cMtx_XrotM(*calc_mtx, rod->rot_x);
-        model->setAnmMtx(jnt_no, *calc_mtx);
-        MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
-    }
-
-    return 1;
-}
-
-static int frog_CallBack(J3DJoint* i_joint, int param_1) {
-    fs_lure_s* lure;
-    J3DJoint* var_r27;
-
-    if (param_1 == 0) {
-        var_r27 = i_joint;
-        int jnt_no = var_r27->getJntNo();
-        J3DModel* model = j3dSys.getModel();
-        lure = (fs_lure_s*)model->getUserArea();
-
-        if (jnt_no == 1) {
-            MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
-            cMtx_YrotM(*calc_mtx, JREG_S(7) + -8800);
-            MtxScale(JREG_F(10) + 2.0f, JREG_F(11) + 1.0f, JREG_F(12) + 1.5f, 1);
-            model->setAnmMtx(jnt_no, *calc_mtx);
-            MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
-        }
-    }
-
-    return 1;
-}
-
-static cXyz BallStartPos;
-
-static cXyz BallEndPos;
-
-static J3DModel* ArcIX_A_crwaku_model;
-
-#if DEBUG
-    #define CRWAKU_MODEL(ptr) (ptr)->mpA_crwaku_model
-#else
-    #define CRWAKU_MODEL(ptr) ArcIX_A_crwaku_model
-#endif
-
-static void koro2_draw(fshop_class* i_this) {
-    fopAc_ac_c* actor = &i_this->actor;
-
-    if (actor->scale.x > 5.0f) {
-        dComIfGd_setListBG();
-    }
-
-    g_env_light.setLightTevColorType_MAJI(CRWAKU_MODEL(i_this), &actor->tevStr);
-    mDoExt_modelUpdateDL(CRWAKU_MODEL(i_this));
-
-    for (int i = 0; i < ARRAY_SIZE(i_this->mKoro2); i++) {
-        if (i_this->mKoro2[i].model != NULL) {
-            g_env_light.setLightTevColorType_MAJI(i_this->mKoro2[i].model, &actor->tevStr);
-            mDoExt_modelUpdateDL(i_this->mKoro2[i].model);
-        }
-    }
-
-    dComIfGd_setList();
-}
 
 /**
  * Koro2 (Rollgoal) map data works as a 15x15 grid
@@ -273,6 +195,59 @@ static s8* koro2_map_d[8] = {
     koro2_map_LV5, koro2_map_LV6, koro2_map_LV7, koro2_map_LV8,
 };
 
+static void ride_call_back(dBgW*, fopAc_ac_c*, fopAc_ac_c* i_rideActor) {
+    if (i_rideActor->field_0x567 == 0) {
+        i_rideActor->field_0x567 = 1;
+        ((fshop_class*)i_rideActor)->field_0x428c = 0;
+    }
+}
+
+static int Reel_CallBack(J3DJoint* i_joint, int param_1) {
+    J3DJoint* var_r27;
+
+    if (param_1 == 0) {
+        var_r27 = i_joint;
+        int jnt_no = var_r27->getJntNo();
+        J3DModel* model = j3dSys.getModel();
+        fs_rod_s* rod = (fs_rod_s*)model->getUserArea();
+        MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
+        cMtx_XrotM(*calc_mtx, rod->rot_x);
+        model->setAnmMtx(jnt_no, *calc_mtx);
+        MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
+    }
+
+    return 1;
+}
+
+static int frog_CallBack(J3DJoint* i_joint, int param_1) {
+    fs_lure_s* lure;
+    J3DJoint* var_r27;
+
+    if (param_1 == 0) {
+        var_r27 = i_joint;
+        int jnt_no = var_r27->getJntNo();
+        J3DModel* model = j3dSys.getModel();
+        lure = (fs_lure_s*)model->getUserArea();
+
+        if (jnt_no == 1) {
+            MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
+            cMtx_YrotM(*calc_mtx, JREG_S(7) + -8800);
+            MtxScale(JREG_F(10) + 2.0f, JREG_F(11) + 1.0f, JREG_F(12) + 1.5f, 1);
+            model->setAnmMtx(jnt_no, *calc_mtx);
+            MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
+        }
+    }
+
+    return 1;
+}
+
+static cXyz BallStartPos;
+
+static cXyz BallEndPos;
+
+#if !PLATFORM_SHIELD
+static J3DModel* ArcIX_A_crwaku_model;
+
 static J3DModel* ArcIX_A_crstart_model[1];
 
 static J3DModel* ArcIX_A_crgoal_model[1];
@@ -289,6 +264,33 @@ static J3DModel** koro2_union_model[6] = {
     ArcIX_A_crstart_model,   ArcIX_A_crgoal_model,    ArcIX_A_crbox_model,
     ArcIX_A_crcurve_a_model, ArcIX_A_crcurve_b_model, ArcIX_A_crsaka_model,
 };
+#endif
+
+#if PLATFORM_SHIELD
+    #define CRWAKU_MODEL(ptr) (ptr)->mpA_crwaku_model
+#else
+    #define CRWAKU_MODEL(ptr) ArcIX_A_crwaku_model
+#endif
+
+static void koro2_draw(fshop_class* i_this) {
+    fopAc_ac_c* actor = &i_this->actor;
+
+    if (actor->scale.x > 5.0f) {
+        dComIfGd_setListBG();
+    }
+
+    g_env_light.setLightTevColorType_MAJI(CRWAKU_MODEL(i_this), &actor->tevStr);
+    mDoExt_modelUpdateDL(CRWAKU_MODEL(i_this));
+
+    for (int i = 0; i < ARRAY_SIZE(i_this->mKoro2); i++) {
+        if (i_this->mKoro2[i].model != NULL) {
+            g_env_light.setLightTevColorType_MAJI(i_this->mKoro2[i].model, &actor->tevStr);
+            mDoExt_modelUpdateDL(i_this->mKoro2[i].model);
+        }
+    }
+
+    dComIfGd_setList();
+}
 
 static int daFshop_Draw(fshop_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
@@ -708,16 +710,15 @@ static void koro2_game(fshop_class* i_this) {
     switch (i_this->field_0x4010) {
     case 0:
         i_this->field_0x4014.x = 284.0f;
-        i_this->field_0x4014.y = 87.8f;
+        i_this->field_0x4014.y = 87.8f + VREG_F(8);
         i_this->field_0x4014.z = 432.0;
-        i_this->field_0x4020.z = 0;
-        i_this->field_0x4020.x = 0;
+        i_this->field_0x4020.x = i_this->field_0x4020.z = 0;
         break;
     case 1:
-        i_this->field_0x4014.x = 204.0f;
-        i_this->field_0x4014.y = -1352.2f;
-        i_this->field_0x4014.z = 430.0;
-        i_this->field_0x4020.y = -0x4000;
+        i_this->field_0x4014.x = 204.0f + YREG_F(8);
+        i_this->field_0x4014.y = 147.8f + YREG_F(9) - 1500.0f;
+        i_this->field_0x4014.z = 430.0f + YREG_F(10);
+        i_this->field_0x4020.y = YREG_S(0) - 0x4000;
 
         cLib_addCalcAngleS2(&i_this->field_0x4020.x, 0, 2, 0x200);
         cLib_addCalcAngleS2(&i_this->field_0x4020.z, 0, 2, 0x200);
@@ -730,53 +731,52 @@ static void koro2_game(fshop_class* i_this) {
                 (mDoCPd_c::getSubStickX(PAD_1) <= -0.8f && old_stick_x > -0.8f))
             {
                 if (mDoCPd_c::getSubStickX(PAD_1) > 0.0f) {
-                    i_this->field_0x4062 += 0x4000;
+                    i_this->field_0x4062 += (s16) 0x4000;
                 } else {
-                    i_this->field_0x4062 += -0x4000;
+                    i_this->field_0x4062 += (s16) -0x4000;
                 }
             }
 
             old_stick_x = mDoCPd_c::getSubStickX(PAD_1);
             cLib_addCalcAngleS2(&i_this->field_0x4060, i_this->field_0x4062, 4, 0x1000);
-            mDoMtx_YrotS(*calc_mtx, -i_this->field_0x4060);
+            cMtx_YrotS(*calc_mtx, -i_this->field_0x4060);
 
             sp5C.x = mDoCPd_c::getStickX3D(PAD_1);
             sp5C.y = 0.0f;
             sp5C.z = mDoCPd_c::getStickY(PAD_1);
             MtxPosition(&sp5C, &sp68);
 
-            f32 var_f2 = sp68.x;
-            f32 var_f3 = sp68.z;
+            f32 reg_f31 = sp68.x;
+            f32 reg_f30 = sp68.z;
 
-            f32 var_f31 = var_f2;;
-            if (var_f2 > 0.15f) {
-                var_f31-= 0.15f;
-            } else if (var_f2 < -0.15f) {
-                var_f31 += 0.15f;
+            if (reg_f31 > 0.15f) {
+                reg_f31 -= 0.15f;
+            } else if (reg_f31 < -0.15f) {
+                reg_f31 += 0.15f;
             } else {
-                var_f31 = 0.0f;
+                reg_f31 = 0.0f;
             }
 
-            if (var_f3 > 0.15f) {
-                var_f3 -= 0.15f;
-            } else if (var_f3 < -0.15f) {
-                var_f3 += 0.15f;
+            if (reg_f30 > 0.15f) {
+                reg_f30 -= 0.15f;
+            } else if (reg_f30 < -0.15f) {
+                reg_f30 += 0.15f;
             } else {
-                var_f3 = 0.0f;
+                reg_f30 = 0.0f;
             }
 
-            cLib_addCalcAngleS2(&i_this->field_0x4020.x, var_f3 * -6000.0f, 4, 0x200);
-            cLib_addCalcAngleS2(&i_this->field_0x4020.z, var_f31 * -6000.0f, 4, 0x200);
+            cLib_addCalcAngleS2(&i_this->field_0x4020.x, reg_f30 * (-6000.0f + JREG_F(7)), 4, 0x200);
+            cLib_addCalcAngleS2(&i_this->field_0x4020.z, reg_f31 * (-6000.0f + JREG_F(8)), 4, 0x200);
         }
         break;
     }
 
-    i_this->field_0x4008 = (fshop_class*)fpcM_Search(s_sel_sub, i_this);
+    i_this->field_0x4008 = (fshop_class*)fpcM_Search(s_sel_sub, actor);
     if (i_this->field_0x4008 != NULL) {
         stage_copy(i_this->field_0x4008, i_this);
         i_this->field_0x4008->field_0x400d = 0;
 
-        fshop_class* ball_p = (fshop_class*)fpcM_Search(s_ball_sub, i_this);
+        fshop_class* ball_p = (fshop_class*)fpcM_Search(s_ball_sub, actor);
         if (ball_p != NULL) {
             ball_p->field_0x4008 = i_this->field_0x4008;
         }
@@ -824,6 +824,12 @@ static int ball_wall_check(fshop_class* i_this) {
     return 0;
 }
 
+#if DEBUG
+    #define DBG_TRIGZ_PAD1() mDoCPd_c::getTrigZ(PAD_1)
+#else
+    #define DBG_TRIGZ_PAD1() 0
+#endif
+
 static int daFshop_Execute(fshop_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* pPlayer = dComIfGp_getPlayer(0);
@@ -853,13 +859,13 @@ static int daFshop_Execute(fshop_class* i_this) {
         switch (i_this->field_0x0572) {
         case 0:
             actor->current.pos = BallStartPos;
-            actor->current.pos.y += 4.0f;
+            actor->current.pos.y += 4.0f + XREG_F(7);
             actor->old.pos = actor->current.pos;
             i_this->field_0x428d = 10;
             break;
         case 1:
             actor->current.pos = BallStartPos;
-            actor->current.pos.y += 4.0f;
+            actor->current.pos.y += 4.0f + XREG_F(7);
             actor->old.pos = actor->current.pos;
             actor->speed.zero();
 
@@ -908,7 +914,7 @@ static int daFshop_Execute(fshop_class* i_this) {
             if (actor->current.pos.y < -2500.0f) {
                 actor->field_0x567 = 1;
             }
-            
+
             npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
             if (henna != NULL && henna->field_0x7b9 != 0 && (actor->field_0x567 == 1 || dTimer_getRestTimeMs() == 0)) {
                 BOOL bVar5 = FALSE;
@@ -926,7 +932,7 @@ static int daFshop_Execute(fshop_class* i_this) {
                 } else {
                     henna->actor.health = 2;
                 }
-                
+
                 henna->cam_mode = 73;
                 henna->field_0x754 = 0;
                 henna->field_0x7b9 = 0;
@@ -934,7 +940,7 @@ static int daFshop_Execute(fshop_class* i_this) {
             } else {
                 if (actor->field_0x567 == 0) {
                     local_cc = BallEndPos - actor->current.pos;
-                    if (local_cc.abs() < 65.0f) {
+                    if (local_cc.abs() < 65.0f + hREG_F(16) || DBG_TRIGZ_PAD1()) {
                         npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
                         if (henna != NULL) {
                             BOOL bVar5 = FALSE;
@@ -943,6 +949,10 @@ static int daFshop_Execute(fshop_class* i_this) {
                                     bVar5 = TRUE;
                                     break;
                                 }
+                            }
+
+                            if (DBG_TRIGZ_PAD1()) {
+                                bVar5 = FALSE;
                             }
 
                             if (bVar5) {
@@ -975,13 +985,16 @@ static int daFshop_Execute(fshop_class* i_this) {
                 i_this->field_0x428c++;
 
                 dBgS_GndChk adStack_b4;
-                cXyz local_e4 = actor->current.pos;
+                cXyz local_e4;
+                local_e4 = actor->current.pos;
                 local_e4.y += 10.0f;
                 local_e4.z += 1.0f;
                 adStack_b4.SetPos(&local_e4);
                 local_e4.y = dComIfG_Bgsp().GroundCross(&adStack_b4);
-                s16 local_160 = -cM_atan2s(local_e4.y - actor->current.pos.y,
-                                           local_e4.z - actor->current.pos.z);
+                f32 reg_f29;
+                f32 reg_f31 = local_e4.y - actor->current.pos.y;
+                f32 reg_f28 = local_e4.z - actor->current.pos.z;
+                s16 local_160 = -cM_atan2s(reg_f31, reg_f28);
                 if (local_160 > 0x3000) {
                     local_160 = 0x3000;
                 } else if (local_160 < -0x3000) {
@@ -992,8 +1005,9 @@ static int daFshop_Execute(fshop_class* i_this) {
                 local_e4.x += 1.0f;
                 adStack_b4.SetPos(&local_e4);
                 local_e4.y = dComIfG_Bgsp().GroundCross(&adStack_b4);
-                s16 local_162 = (s16)cM_atan2s(local_e4.y - actor->current.pos.y,
-                                               local_e4.x - actor->current.pos.x);
+                reg_f31 = local_e4.y - actor->current.pos.y;
+                reg_f29 = local_e4.x - actor->current.pos.x;
+                s16 local_162 = (s16)cM_atan2s(reg_f31, reg_f29);
                 if (local_162 > 0x3000) {
                     local_162 = 0x3000;
                 } else if (local_162 < -0x3000) {
@@ -1003,7 +1017,7 @@ static int daFshop_Execute(fshop_class* i_this) {
                 cMtx_XrotS(*calc_mtx, local_160);
                 cMtx_ZrotM(*calc_mtx, local_162);
                 local_cc.x = 0.0f;
-                local_cc.y = 30.0f;
+                local_cc.y = 30.0f + AREG_F(13);
                 local_cc.z = 0.0f;
                 MtxPosition(&local_cc, &local_d8);
 
@@ -1016,7 +1030,7 @@ static int daFshop_Execute(fshop_class* i_this) {
                                actor->current.pos.z);
         mDoMtx_stack_c::scaleM(actor->scale.x, actor->scale.x,
                                actor->scale.x);
-        mDoMtx_stack_c::transM(0.0f, 190.0f * actor->scale.x, 0.0f);
+        mDoMtx_stack_c::transM(0.0f, (190.0f + hREG_F(11)) * actor->scale.x, 0.0f);
         local_cc = pmVar11->lookat.eye - actor->current.pos;
         mDoMtx_stack_c::YrotM(cM_atan2s(local_cc.x, local_cc.z));
         mDoMtx_stack_c::XrotM(-cM_atan2s(local_cc.y, JMAFastSqrt((local_cc.x * local_cc.x + local_cc.z * local_cc.z))));
@@ -1028,17 +1042,19 @@ static int daFshop_Execute(fshop_class* i_this) {
         tsubo_set(i_this);
 
         fs_weed_s* pWeed = i_this->mWeed;
+        cXyz* local_148;
         for (int i = 0; i < 60; i++, pWeed++) {
             weed_control(i_this, pWeed);
-            cXyz* local_148 = i_this->field_0x3f88.getPos(i);
+            local_148 = i_this->field_0x3f88.getPos(i);
             for (int local_150 = 0; local_150 < 15; local_150++, local_148++) {
                 *local_148 = pWeed->field_0x00[local_150];
             }
             fpcM_Search(s_fish_sub, pWeed);
         }
 
-        cXyz cStack_f0(-720.0f, 30.0f, 70.0f);
-        cXyz cStack_fc(0.5f, 0.5f, 0.5f);
+        cXyz cStack_f0(-720.0f, 30.0f + KREG_F(14), 70.0f);
+        f32 reg_f30 = 0.5f + KREG_F(15);
+        cXyz cStack_fc(reg_f30, reg_f30, reg_f30);
         for (int i = 0; i < 2; i++) {
             if (i == 0) {
                 cStack_f0.z = -30.0f;
@@ -1050,20 +1066,20 @@ static int daFshop_Execute(fshop_class* i_this) {
         }
 
         if (daPy_getPlayerActorClass()->checkFrontRollCrash()) {
-            i_this->field_0x6b34 = 30;
+            i_this->field_0x6b34 = 30 + JREG_S(3);
         }
 
-        s16 iVar6 = i_this->field_0x6b34 * cM_ssin(i_this->field_0x6b34 * 5000) * 30.0f;
+        s16 iVar6 = i_this->field_0x6b34 * cM_ssin(i_this->field_0x6b34 * 5000) * (30.0f + JREG_F(17));
         if (i_this->field_0x6b34 != 0) {
             i_this->field_0x6b34--;
         }
 
-        mDoMtx_stack_c::transS(-450.0f, 25.0f, -250.0f);
+        mDoMtx_stack_c::transS(-450.0f + NREG_F(7), 25.0f + NREG_F(8), -250.0f + NREG_F(9));
         mDoMtx_stack_c::YrotM(0x4000);
-        mDoMtx_stack_c::ZrotM(iVar6 + 2000);
+        mDoMtx_stack_c::ZrotM(2000 + NREG_S(8) + iVar6);
         i_this->canoeModel->setBaseTRMtx(mDoMtx_stack_c::get());
-        mDoMtx_stack_c::transS(-450.0f, 0.0f, -250.0f);
-        mDoMtx_stack_c::scaleM(4.0f, 1.5f, 1.0f);
+        mDoMtx_stack_c::transS(-450.0f + NREG_F(13), 0.0f, -250.0f + NREG_F(14));
+        mDoMtx_stack_c::scaleM(4.0f + NREG_F(15), 1.5f + NREG_F(16), 1.0f + NREG_F(17));
         MTXCopy(mDoMtx_stack_c::get(), i_this->field_0x6b38);
 
         i_this->tableBgw->Move();
@@ -1077,17 +1093,17 @@ static int daFshop_Execute(fshop_class* i_this) {
             i_this->field_0x4000 = cM_rndF(600.0f) + 1300.0f;
         }
 
-        i_this->field_0x3ff8 += 4000;
-        i_this->field_0x3ffa += 4000;
+        i_this->field_0x3ff8 += (s16) 4000;
+        i_this->field_0x3ffa += (s16) 4000;
         s16 iVar10 = i_this->field_0x4000 * cM_ssin(i_this->field_0x3ffa);
         s16 iVar11 = i_this->field_0x3ffc * cM_ssin(i_this->field_0x3ff8);
         cLib_addCalc0(&i_this->field_0x3ffc, 1.0f, 40.0f);
         cLib_addCalc0(&i_this->field_0x4000, 1.0f, 40.0f);
 
-        mDoMtx_stack_c::transS(325.0f, 140.0f, 237.0f);
-        mDoMtx_stack_c::XrotM((s16)iVar10);
-        mDoMtx_stack_c::ZrotM(iVar11 + 15000);
-        mDoMtx_stack_c::transM(-10.0f, -7.0f, 0.0f);
+        mDoMtx_stack_c::transS(325.0f + AREG_F(17), 140.0f + AREG_F(18), 237.0f + AREG_F(19));
+        mDoMtx_stack_c::XrotM(iVar10 + YREG_S(7));
+        mDoMtx_stack_c::ZrotM(iVar11 + 15000 + YREG_S(9));
+        mDoMtx_stack_c::transM(-10.0f + AREG_F(14), -7.0f + AREG_F(15), 0.0f + AREG_F(16));
         i_this->hatModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
         koro2_game(i_this);
@@ -1096,13 +1112,13 @@ static int daFshop_Execute(fshop_class* i_this) {
     return 1;
 }
 
-static int daFshop_IsDelete(fshop_class* i_this) {
+static int daFshop_IsDelete(fshop_class*) {
     return 1;
 }
 
 static int daFshop_Delete(fshop_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
-    fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "Fshop");
 
     if (i_this->field_0x6b7c != 0) {
         J3DModelData* pModelData = (J3DModelData*) dComIfG_getObjectRes("Fshop", 5);
@@ -1127,6 +1143,12 @@ static int daFshop_Delete(fshop_class* i_this) {
 }
 
 static int koro2_heapinit(fopAc_ac_c* actor) {
+#if PLATFORM_SHIELD
+    static int sg_bmd[2] = {
+        0x0F, 0x0D,
+    };
+#endif
+
     static int koro2_bmd[15] = {
         0x0A, 0x0B, 0x0B, 0x0B, 0x0B, 0x0F, 0x0D, 0x0C,
         0x0C, 0x0C, 0x0C, 0x0E, 0x0E, 0x0E, 0x0E,
@@ -1137,29 +1159,49 @@ static int koro2_heapinit(fopAc_ac_c* actor) {
         0x21, 0x21, 0x21, 0x23, 0x23, 0x23, 0x23,
     };
 
-    static u8 pande_d[16] = {
+    static s8 pande_d[16] = {
         0x00, 0x01, 0x03, 0x02, 0x05, 0x04, 0x06, 0x07,
         0x09, 0x08, 0x0B, 0x0A, 0x0C, 0x0D, 0x0F, 0x0E,
     };
 
-    fshop_class* i_this = (fshop_class*)actor;
+    fshop_class* i_this = (fshop_class*)actor; // sp_0x4c
 
     i_this->koro2WakuBgw = new dBgW();
     if (i_this->koro2WakuBgw == NULL) {
         return 0;
     }
 
-    cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("Fshop", 37);
-    if (i_this->koro2WakuBgw->Set(dzb, 1, &i_this->field_0x4030) == 1) {
+    if (i_this->koro2WakuBgw->Set((cBgD_t*)dComIfG_getObjectRes("Fshop", 37), 1, &i_this->field_0x4030) == 1) {
         return 0;
     }
 
     i_this->koro2WakuBgw->SetCrrFunc(dBgS_MoveBGProc_Typical);
     i_this->koro2WakuBgw->SetRideCallback(ride_call_back);
+#if PLATFORM_SHIELD
+    i_this->field_0x4020.y = -16384.0f + cM_rndFX(2000.0f);
+    J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("Fshop", 16); // sp_0x48
+    JUT_ASSERT(2554, modelData != NULL);
+    i_this->mpA_crwaku_model = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
+    if (i_this->mpA_crwaku_model == NULL) {
+        return FALSE;
+    }
+
+    for (int sp_0x44 = 0; sp_0x44 < 2; ++sp_0x44) {
+        modelData = (J3DModelData*) dComIfG_getObjectRes("Fshop", sg_bmd[sp_0x44]);
+        JUT_ASSERT(2571, modelData != NULL);
+        i_this->dbg_models[sp_0x44] = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
+        if (i_this->dbg_models[sp_0x44] == NULL) {
+            return FALSE;
+        }
+    }
+#else
     i_this->mpA_crwaku_model = ArcIX_A_crwaku_model;
+#endif
 
     int part_no = 0;
-    int flag567 = actor->field_0x567 & 8;
+    int index;
+    int sp_0x38 = actor->field_0x567 & 0x7;
+    int sp_0x34 = actor->field_0x567 & 0x8;
     int crstart_model_idx = 0;
     int crgoal_model_idx = 0;
     int crbox_model_idx = 0;
@@ -1167,13 +1209,13 @@ static int koro2_heapinit(fopAc_ac_c* actor) {
     int crcurve_b_model_idx = 0;
     int crcurve_c_model_idx = 0;
 
-    s8* mapData = koro2_map_d[actor->field_0x567 & 7];
+    s8* mapData = koro2_map_d[sp_0x38];
 
     for (int column = 0; column < 9; column++) {
         for (int row = 0; row < 15; row++) {
-            int index = (row * 9) + column;
+            index = (row * 9) + column;
             if (mapData[index] != 0) {
-                if (flag567) {
+                if (sp_0x34) {
                     i_this->mKoro2[part_no].part_id = pande_d[mapData[index]];
                     i_this->mKoro2[part_no].pos.x = 2.5f * (8 - column);
                 } else {
@@ -1181,7 +1223,7 @@ static int koro2_heapinit(fopAc_ac_c* actor) {
                     i_this->mKoro2[part_no].pos.x = 2.5f * column;
                 }
 
-                i_this->mKoro2[part_no].pos.y = 2.0f;
+                i_this->mKoro2[part_no].pos.y = 2.0f + VREG_F(1);
                 i_this->mKoro2[part_no].pos.z = 2.5f * row;
 
                 if (i_this->mKoro2[part_no].part_id == KORO2_PART_START) {
@@ -1215,7 +1257,12 @@ static int koro2_heapinit(fopAc_ac_c* actor) {
                 } else if (i_this->mKoro2[part_no].part_id == KORO2_PART_SLOPE_R) {
                     i_this->mKoro2[part_no].rot_y = 0x4000;
                 }
-                
+
+#if PLATFORM_SHIELD
+                modelData = (J3DModelData*) dComIfG_getObjectRes("Fshop", koro2_bmd[i_this->mKoro2[part_no].part_id - 1]);
+                JUT_ASSERT(2704, modelData != NULL);
+                i_this->mKoro2[part_no].model = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
+#else
                 if (koro2_bmd[i_this->mKoro2[part_no].part_id - 1] == 10) {
                     i_this->mKoro2[part_no].model = ArcIX_A_crbox_model[crbox_model_idx];
                     crbox_model_idx++;
@@ -1235,18 +1282,19 @@ static int koro2_heapinit(fopAc_ac_c* actor) {
                     i_this->mKoro2[part_no].model = ArcIX_A_crsaka_model[crcurve_c_model_idx];
                     crcurve_c_model_idx++;
                 }
-                
+#endif
+
                 if (i_this->mKoro2[part_no].model == NULL) {
                     return 0;
                 }
-                
+
                 i_this->mKoro2[part_no].bgw = new dBgW();
                 if (i_this->mKoro2[part_no].bgw == NULL) {
                     return 0;
                 }
 
-                cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("Fshop",koro2_dzb[i_this->mKoro2[part_no].part_id - 1]);
-                if (i_this->mKoro2[part_no].bgw->Set(dzb, 1, &i_this->mKoro2[part_no].bgMtx) == 1) {
+                if (i_this->mKoro2[part_no].bgw->Set((cBgD_t*)dComIfG_getObjectRes("Fshop",koro2_dzb[i_this->mKoro2[part_no].part_id - 1]),
+                    1, &i_this->mKoro2[part_no].bgMtx) == 1) {
                     return 0;
                 }
 
@@ -1442,7 +1490,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
 
     modelData = dComIfG_getObjectRes("Fshop", 0x15);
     JUT_ASSERT(3069, modelData != NULL);
-    i_this->hatModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+    i_this->hatModel = mDoExt_J3DModel__create((J3DModelData*)modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
     if (i_this->hatModel == NULL) {
         return 0;
     }
@@ -1452,7 +1500,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
 
     modelData = dComIfG_getObjectRes("Fshop", 16);
     JUT_ASSERT(3069, modelData != NULL);
-    ArcIX_A_crwaku_model = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+    ArcIX_A_crwaku_model = mDoExt_J3DModel__create((J3DModelData*)modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
     if (ArcIX_A_crwaku_model == NULL) {
         return 0;
     }
@@ -1487,9 +1535,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
             }
         }
     }
-#endif
-
-#if PLATFORM_SHIELD
+#else
     if (!koro2_heapinit(actor)) {
         return 0;
     }
@@ -1522,7 +1568,7 @@ static int BalluseHeapInit(fopAc_ac_c* actor) {
 
 static int daFshop_Create(fopAc_ac_c* actor) {
     fshop_class* i_this = (fshop_class*)actor;
-    fopAcM_ct(actor, fshop_class);
+    fopAcM_ct(&i_this->actor, fshop_class);
 
     int phase_state = dComIfG_resLoad(&i_this->mPhase, "Fshop");
     if (phase_state == cPhs_COMPLEATE_e) {
@@ -1543,7 +1589,20 @@ static int daFshop_Create(fopAc_ac_c* actor) {
             i_this->field_0x400e = (fopAcM_GetParam(actor) & 0xFF) - 100;
             actor->field_0x567 = ((i_this->field_0x400e - 1) | (dComIfGs_getEventReg(0xF63F) & 8));
 
-            u32 heapsizes[] = {
+            u32 heapsizes[] =
+#if PLATFORM_SHIELD
+            {
+                0x171C0,
+                0x18EF0,
+                0x20970,
+                0x28E40,
+                0x14F50,
+                0x19FA0,
+                0xF250,
+                0x1BF50,
+            };
+#else
+            {
                 0x84A0,
                 0x9AC0,
                 0xB440,
@@ -1553,24 +1612,27 @@ static int daFshop_Create(fopAc_ac_c* actor) {
                 0x64E0,
                 0xA9E0,
             };
+#endif
 
             if (!fopAcM_entrySolidHeap(actor, koro2_heapinit, heapsizes[i_this->field_0x400e - 1])) {
                 OS_REPORT("//////////////FSHOP KORO222 SET NON !!\n");
                 return cPhs_ERROR_e;
             }
 
-            if (i_this->koro2WakuBgw != NULL && dComIfG_Bgsp().Regist(i_this->koro2WakuBgw, actor)) {
+            if (i_this->koro2WakuBgw != NULL && dComIfG_Bgsp().Regist(i_this->koro2WakuBgw, &i_this->actor)) {
                 return cPhs_ERROR_e;
             }
 
             for (int i = 0; i < 100; i++) {
-                if (i_this->mKoro2[i].bgw != NULL && dComIfG_Bgsp().Regist(i_this->mKoro2[i].bgw, actor)) {
+                if (i_this->mKoro2[i].bgw != NULL && dComIfG_Bgsp().Regist(i_this->mKoro2[i].bgw, &i_this->actor)) {
                     return cPhs_ERROR_e;
                 }
             }
 
             i_this->field_0x428d = 30;
+#if !PLATFORM_SHIELD
             i_this->field_0x400d = 1;
+#endif
             return phase_state;
         }
 
@@ -1579,14 +1641,20 @@ static int daFshop_Create(fopAc_ac_c* actor) {
 
         OS_REPORT("FSHOP//////////////FSHOP SET 1 !!\n");
 
-        if (!fopAcM_entrySolidHeap(actor, useHeapInit, 0x5B000)) {
+#if PLATFORM_SHIELD
+    #define FSHOP_HEAP_VAL 0x522E0
+#else
+    #define FSHOP_HEAP_VAL 0x5B000
+#endif
+
+        if (!fopAcM_entrySolidHeap(actor, useHeapInit, FSHOP_HEAP_VAL)) {
             OS_REPORT("//////////////FSHOP SET NON !!\n");
             return cPhs_ERROR_e;
         }
 
         OS_REPORT("//////////////FSHOP SET 2 !!\n");
 
-        if (i_this->tableBgw != NULL && dComIfG_Bgsp().Regist(i_this->tableBgw, actor)) {
+        if (i_this->tableBgw != NULL && dComIfG_Bgsp().Regist(i_this->tableBgw, &i_this->actor)) {
             return cPhs_ERROR_e;
         }
 
@@ -1627,21 +1695,25 @@ static int daFshop_Create(fopAc_ac_c* actor) {
     
         fopAcM_createChild(PROC_FSHOP, fopAcM_GetID(actor), 0xFFFFFF23, &actor->current.pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1, NULL);
 
-        u8 sp10 = 1;
-        #if VERSION == VERSION_GCN_PAL || VERSION == VERSION_WII_PAL
+        u8 sp10;
+#if VERSION == VERSION_GCN_PAL || VERSION == VERSION_WII_PAL
         if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGUAGE_ENGLISH) {
             sp10 = 2;
         } else {
             sp10 = 0;
         }
-        #elif PLATFORM_SHIELD
+#elif PLATFORM_SHIELD
         if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGUAGE_GERMAN) {
             sp10 = 2;
         } else {
             sp10 = 0;
         }
-        #endif
+#else
+        sp10 = 1;
+#endif
 
+        u32 parameters;
+        int sp24;
         for (int i = 0; i <= 3; i++) {
             static u16 check_kind[] = {
                 0xF57F,
@@ -1650,7 +1722,6 @@ static int daFshop_Create(fopAc_ac_c* actor) {
                 0xF27F,
             };
 
-            int sp24;
             if (sp10 == 1) {
 #if VERSION == VERSION_GCN_JPN
                 sp24 = dComIfGs_getEventReg(check_kind[i]);
@@ -1662,7 +1733,7 @@ static int daFshop_Create(fopAc_ac_c* actor) {
             }
 
             if (sp24 >= 10) {
-                u32 parameters = (sp24 << 8) | 0xFFFF0000 | i;
+                parameters = (sp24 << 8) | 0xFFFF0000 | i;
                 fopAcM_create(PROC_MG_FISH, parameters, &actor->current.pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1);
             }
         }
