@@ -904,54 +904,59 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
             if ((length = file.fgets(buffer, ARRAY_SIZEU(buffer))) <= 4) {
                 break;
             }
-            if (length >= 28 && buffer[28] == '4') {
-                u32 addr = ((buffer[18] - '0') << 28) | strtol(buffer + 19, NULL, 16);
-				int size = strtol(buffer + 11, NULL, 16);
-				if ((addr <= address && address < addr + size)) {
-                    if (out_addr) {
-                        *out_addr = addr;
-                    }
-                    
-                    if (out_size) {
-                        *out_size = size;
-                    }
+            if (length >= 28) {
+                u32 addr;
+                if (buffer[28] == '4') {
+                    addr = ((buffer[18] - '0') << 28) | strtol(buffer + 19, NULL, 16);
+                    int size = strtol(buffer + 11, NULL, 16);
+                    if ((addr <= address && address < addr + size)) {
+                        if (out_addr) {
+                            *out_addr = addr;
+                        }
 
-                    if (out_line) {
-                        const u8* src = (const u8*)&buffer[0x1e];
-                        u8* dst       = (u8*)out_line;
-						u32 i         = 0;
+                        if (out_size) {
+                            *out_size = size;
+                        }
 
-						for (i = 0; i < line_length - 1; ++src) {
-                            if (((u8)*src) < (u32)' ' && *src != (u32)'\t') {
-                                break;
+                        if (out_line) {
+                            const u8* src = (const u8*)&buffer[30];
+                            u8* dst = (u8*)out_line;
+                            u32 i = 0;
+
+                            for (i = 0; i < line_length - 1; src++) {
+                                if ((u8)*src < (u32)' ' && *src != (u32)'\t') {
+                                    break;
+                                }
+                                if ((*src == ' ' || *src == (u32)'\t') && (i != 0)) {
+                                    if (dst[-1] != ' ') {
+                                        *dst = ' ';
+                                        dst++;
+                                        i++;
+                                    }
+                                } else {
+                                    *dst++ = *src;
+                                    i++;
+                                }
                             }
-                            if ((*src == ' ' || *src == (u32)'\t') && (i != 0)) {
-								if (dst[-1] != ' ') {
-									*dst = ' ';
-									dst++;
-									i++;
-								}
-							} else {
-								*dst++ = *src;
-								i++;
-							}
-						}
-						if (i != 0 && dst[-1] == ' ') {
-							dst--;
-							i--;
-						}
-						*dst = 0;
-						if (print) {
-							if (begin_with_newline) {
-								sConsole->print("\n");
-							}
-							sConsole->print_f("  [%08X]: .%s [%08X: %XH]\n  %s\n", address, section_name, addr, size, out_line);
-							begin_with_newline = false;
-						}
-					}
-					result = true;
-					break;
-				}
+                            if (i != 0 && dst[-1] == ' ') {
+                                dst--;
+                                i--;
+                            }
+                            (void)*src;  // needed to match debug
+                            *dst = 0;
+                            if (print) {
+                                if (begin_with_newline) {
+                                    sConsole->print("\n");
+                                }
+                                sConsole->print_f("  [%08X]: .%s [%08X: %XH]\n  %s\n", address,
+                                                  section_name, addr, size, out_line);
+                                begin_with_newline = false;
+                            }
+                        }
+                        result = true;
+                        break;
+                    }
+                }
             }
         } while (true);
 
@@ -968,7 +973,7 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
 }
 
 void JUTException::createConsole(void* console_buffer, u32 console_buffer_size) {
-    if (!console_buffer || !console_buffer_size) {
+    if (!console_buffer || console_buffer_size == 0) {
         return;
     }
 
