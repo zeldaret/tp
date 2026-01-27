@@ -149,7 +149,7 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const {
             s32 yFactor = 0;
             u8* linePtr;
 
-            do {
+            while (true) {
                 linePtr = getLinePtr(curLine);
                 u8 sp9 = linePtr[-1];
                 if (sp9 == 0) {
@@ -169,7 +169,7 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const {
                 if (yFactor >= mHeight || curLine == field_0x34) {
                     break;
                 }
-            } while (true);
+            }
 
             if (spA4 != 0) {
                 f32 f31 = mPositionX;
@@ -455,8 +455,9 @@ void JUTConsoleManager::drawDirect(bool waitRetrace) const {
             s32 interrupt_status = OSEnableInterrupts();
             u32 retrace_count = VIGetRetraceCount();
             u32 new_count;
-            do {
-            } while (retrace_count == VIGetRetraceCount());
+            while (retrace_count == VIGetRetraceCount()){
+                // nop
+            }
             OSRestoreInterrupts(interrupt_status);
         }
         mDirectConsole->doDraw(JUTConsole::CONSOLE_TYPE_2);

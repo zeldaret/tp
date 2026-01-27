@@ -30,8 +30,9 @@ bool JUTGraphFifo::mGpStatus[5];
 JUTGraphFifo::~JUTGraphFifo() {
     sCurrentFifo->save();
 
-    do {
-    } while (isGPActive());
+    while (isGPActive()) {
+        // nop
+    }
 
     if (sCurrentFifo == this) {
         sCurrentFifo = NULL;

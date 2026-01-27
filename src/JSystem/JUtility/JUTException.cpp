@@ -688,7 +688,7 @@ void JUTException::printContext(OSError error, OSContext* context, u32 dsisr, u3
 
         int down = 0;
         int up = 0;
-        do {
+        while (true) {
             readPad(&trigger, &button);
 
             bool draw = false;
@@ -725,7 +725,7 @@ void JUTException::printContext(OSError error, OSContext* context, u32 dsisr, u3
             }
 
             waitTime(30);
-        } while (true);
+        } 
     }
 
     while (true) {

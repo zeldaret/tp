@@ -112,8 +112,9 @@ void showAssert_f_va(u32 device, const char* file, int line, const char* msg, va
             OSEnableInterrupts();
 
             u32 retrace_count = VIGetRetraceCount();
-            do {
-            } while (retrace_count == VIGetRetraceCount());
+            while (retrace_count == VIGetRetraceCount()){
+                // nop
+            }
 
             // busy loop for 2 seconds
             OSTime var1 = OSGetTime();
