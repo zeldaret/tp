@@ -1,8 +1,8 @@
-#include <dolphin/exi.h>
-#include <dolphin/os.h>
-#include <NdevExi2A/DebuggerDriver.h>
+#include "NdevExi2A/DebuggerDriver.h"
 
 #include "NdevExi2A/exi2.h"
+#include <dolphin/exi.h>
+#include <dolphin/os.h>
 
 static s32 __DBRecvDataSize;
 static u32 __DBRecvMail;
