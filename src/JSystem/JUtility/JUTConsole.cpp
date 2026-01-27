@@ -254,7 +254,7 @@ void JUTConsole::print(char const* str) {
                     field_0x3c++;
                     field_0x3c++;
                 } else {
-                    *dst++ = 0;
+                    *dst++ = '\0';
                     field_0x3c++;
                 }
             } else {
