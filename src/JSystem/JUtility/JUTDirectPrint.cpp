@@ -160,7 +160,11 @@ void JUTDirectPrint::printSub(u16 position_x, u16 position_y, char const* format
         for (; 0 < buffer_length; buffer_length--, ptr++) {
             int codepoint = sAsciiTable[*ptr & 0x7f];
             if (codepoint == 0xfe) {
+#if PLATFORM_SHIELD
                 position_y += (u16)7;
+#else
+                position_y += 7;
+#endif
                 position_x = x;
             } else if (codepoint == 0xfd) {
                 position_x = position_x + 0x30 - ((position_x - x + 0x2f) % 0x30);
@@ -168,7 +172,11 @@ void JUTDirectPrint::printSub(u16 position_x, u16 position_y, char const* format
                 if (codepoint != 0xff) {
                     drawChar(position_x, position_y, codepoint);
                 }
+#if PLATFORM_SHIELD
                 position_x += (u16)6;
+#else
+                position_x += 6;
+#endif
             }
         }
     }
