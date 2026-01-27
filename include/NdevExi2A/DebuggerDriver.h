@@ -1,12 +1,12 @@
 #ifndef NDEVEXI2A_DEBUGGERDRIVER_H
 #define NDEVEXI2A_DEBUGGERDRIVER_H
 
+#include <dolphin/os.h>
 #include "types.h"
 
 typedef void (*MtrCallback)(s32, OSContext*);
 typedef void (*IntrCallback)(s16, OSContext*);
 
-#include <revolution/os.h>
 #include <NdevExi2A/DebuggerDriver.h>
 
 static u32 ODEMUGetSize(u32 mail);

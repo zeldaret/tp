@@ -1,7 +1,7 @@
 #ifndef _MSL_COMMON_WSCANF_H
 #define _MSL_COMMON_WSCANF_H
 
-#include "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include/wstring.h"
+#include <wstring.h>
 #include <cstddef>
 
 #ifdef __cplusplus

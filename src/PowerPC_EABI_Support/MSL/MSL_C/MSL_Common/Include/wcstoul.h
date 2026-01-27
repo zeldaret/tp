@@ -1,7 +1,7 @@
 #ifndef _MSL_COMMON_WCSTOUL_H
 #define _MSL_COMMON_WCSTOUL_H
 
-#include "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include/wstring.h"
+#include <wstring.h>
 
 #ifdef __cplusplus
 extern "C" {

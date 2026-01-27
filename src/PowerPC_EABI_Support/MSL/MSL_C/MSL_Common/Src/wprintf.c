@@ -1,17 +1,16 @@
-#include "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include/wprintf.h"
+#include <wprintf.h>
 
-#include "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include/wmem.h"
-#include "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include/wscanf.h"
+#include <ansi_fp.h>
+#include <mbstring.h>
+#include <wmem.h>
+#include <wscanf.h>
+#include <cmath>
+#include <cstdint>
+#include <cstring>
+#include <locale>
 #include <cstdarg>
 #include <cstddef>
 #include <va_list>
-
-#include "ansi_fp.h"
-#include "cmath"
-#include "cstdint"
-#include "cstring"
-#include "locale"
-#include "mbstring.h"
 
 #define LDBL_MANT_DIG 53
 

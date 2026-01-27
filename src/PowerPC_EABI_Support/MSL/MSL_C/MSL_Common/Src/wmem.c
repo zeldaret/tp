@@ -1,4 +1,5 @@
-#include "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include/wmem.h"
+#include <wmem.h>
+
 #include <cstddef>
 #include <cstring>
 

@@ -1,5 +1,5 @@
-#include "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include/wscanf.h"
-#include "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Include/wstring.h"
+#include <wscanf.h>
+#include <wstring.h>
 
 wchar_t __wStringRead(wString* src, wchar_t param_1, wchar_t param_2) {
     switch (param_2) {
