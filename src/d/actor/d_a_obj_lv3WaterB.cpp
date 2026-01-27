@@ -3,18 +3,18 @@
  * Morpheel Arena Water
  */
 
- #include "d/dolzel_rel.h" // IWYU pragma: keep
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
- #include "d/actor/d_a_obj_lv3WaterB.h"
- #include "JSystem/J3DGraphBase/J3DMaterial.h"
- #include "d/d_bg_w.h"
- #include "d/d_com_inf_game.h"
- #include "d/d_s_play.h"
+#include "d/actor/d_a_obj_lv3WaterB.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "d/d_bg_w.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_s_play.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
 
 static int daObj_Lv3waterB_Draw(obj_lv3WaterB_class* i_this) {
-    obj_lv3WaterB_class* const actor = i_this;
+    fopAc_ac_c* const actor = i_this;
 
     g_env_light.settingTevStruct(0x10, &actor->current.pos, &actor->tevStr);
     g_env_light.setLightTevColorType_MAJI(i_this->mpBWaterModel, &actor->tevStr);
@@ -52,7 +52,7 @@ static int daObj_Lv3waterB_Draw(obj_lv3WaterB_class* i_this) {
 }
 
 static void action(obj_lv3WaterB_class* i_this) {
-    obj_lv3WaterB_class* const actor = i_this;
+    fopAc_ac_c* const actor = i_this;
 
     switch (i_this->mAction) {
     case LV3WATERB_ACT_WAIT:
@@ -92,7 +92,7 @@ static void action(obj_lv3WaterB_class* i_this) {
 }
 
 static int daObj_Lv3waterB_Execute(obj_lv3WaterB_class* i_this) {
-    obj_lv3WaterB_class* const actor = i_this; // Needed for debug matching
+    fopAc_ac_c* const actor = i_this;
 
     action(i_this);
     return 1;
@@ -103,7 +103,7 @@ static int daObj_Lv3waterB_IsDelete(obj_lv3WaterB_class* i_this) {
 }
 
 static int daObj_Lv3waterB_Delete(obj_lv3WaterB_class* i_this) {
-    obj_lv3WaterB_class* const actor = i_this; // Needed for debug matching
+    fopAc_ac_c* const actor = i_this;
     fopAcM_RegisterDeleteID(i_this, "Obj_Lv3waterB");
 
     dComIfG_resDelete(&i_this->mBWaterPhase, "L3_bwater");

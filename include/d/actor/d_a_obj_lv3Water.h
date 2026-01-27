@@ -53,13 +53,13 @@ private:
     /* 0x5E0 */ mDoExt_btkAnm mBtk2;
     /* 0x5F8 */ u8 mMode;
     /* 0x5F9 */ u8 mType;
-    /* 0x5FC */ f32 mWaterLevelIncreaseAmount;
+    /* 0x5FC */ f32 mWaterLv;               // Amount that the water's y coodinate should increase
     /* 0x600 */ u8 mCurrentWaterLvFrame;    // Number of frames that the water level has been changing
     /* 0x601 */ u8 mWaterLvFrame;           // Number of frames that should be taken for the water level to change
-    /* 0x602 */ u8 mSwitchInitialState;
-    /* 0x603 */ u8 mSwitchCurrentState;
-    /* 0x604 */ u8 mLevelControlWaitFrames;
-    /* 0x605 */ u8 mSwitchStateAfterEvent;
+    /* 0x602 */ u8 mSwInitialState;
+    /* 0x603 */ u8 mSwCurrentState;
+    /* 0x604 */ u8 mLvControlWaitFrames;
+    /* 0x605 */ u8 mSwStatePostEvent;       // Only when true (i.e event initiated water raising instead of lowering) should anything be drawn
     /* 0x608 */ u32 mEmitterIDs[8];
 };
 

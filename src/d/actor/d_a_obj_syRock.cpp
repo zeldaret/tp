@@ -20,18 +20,18 @@ public:
     void genMessage(JORMContext*);
 
     /* 0x04 */ f32 mShakeAmplitude;
-    /* 0x08 */ f32 mShakeXOscillationAngleQuantum;
-    /* 0x0C */ f32 mShakeZOscillationAngleQuantum;
+    /* 0x08 */ f32 mShakeXOscAngQuantum;
+    /* 0x0C */ f32 mShakeZOscAngQuantum;
     /* 0x10 */ f32 mShakeDampingScale;
-    /* 0x14 */ f32 mShakeMaxDecayStep;
-    /* 0x18 */ f32 mShakeMinDecayStep;
+    /* 0x14 */ f32 mShakeMaxDecay;
+    /* 0x18 */ f32 mShakeMinDecay;
     /* 0x1C */ f32 mFallAcceleration;
     /* 0x20 */ f32 mMaxFallSpeed;
     /* 0x24 */ u8 mWaitFrames;
-    /* 0x25 */ u8 mVibrationModePower;
-    /* 0x28 */ f32 mEffectScale;
+    /* 0x25 */ u8 mVibModePower;
+    /* 0x28 */ f32 mEffScale;
     /* 0x2C */ f32 mFallWaterBouyancy;
-    /* 0x30 */ f32 mMaxHorizontalDistanceToWaterPillar;
+    /* 0x30 */ f32 mRange; // Maximum horizontal distance a d_a_obj_waterPillar instance may be from the current syRock instance in order for the two to be associated
 };
 
 static daSyRock_HIO_c l_HIO;
@@ -40,18 +40,18 @@ dCcD_SrcCyl daSyRock_c::mCcDCyl = {mCcDObjInfo};
 
 daSyRock_HIO_c::daSyRock_HIO_c() {
     mShakeAmplitude = 450.0f;
-    mShakeXOscillationAngleQuantum = 90.0f;
-    mShakeZOscillationAngleQuantum = 45.0f;
+    mShakeXOscAngQuantum = 90.0f;
+    mShakeZOscAngQuantum = 45.0f;
     mShakeDampingScale = 1.0f / 20.0f;
-    mShakeMaxDecayStep = 5.0f;
-    mShakeMinDecayStep = 1.0f / 10.0f;
+    mShakeMaxDecay = 5.0f;
+    mShakeMinDecay = 1.0f / 10.0f;
     mFallAcceleration = 10.0f;
     mMaxFallSpeed = 200.0f;
     mWaitFrames = 30;
-    mEffectScale = 4.0f;
-    mVibrationModePower = VIBMODE_S_POWER4;
+    mEffScale = 4.0f;
+    mVibModePower = VIBMODE_S_POWER4;
     mFallWaterBouyancy = 3.0f;
-    mMaxHorizontalDistanceToWaterPillar = 5.0f;
+    mRange = 5.0f;
 }
 
 #if DEBUG
@@ -65,25 +65,25 @@ void daSyRock_HIO_c::genMessage(JORMContext* mctx) {
     // Maximum fall speed
     mctx->genSlider("最大落下速度", &mMaxFallSpeed, 0.1f, 500.0f);
     // Effect scale
-    mctx->genSlider("eff scale", &mEffectScale, 0.1f, 20.0f);
+    mctx->genSlider("eff scale", &mEffScale, 0.1f, 20.0f);
 
     /* ==== Shaking ==== */
     mctx->genLabel("\n==== 揺れ ====", 0);
     // Shaking intensity
     mctx->genSlider("揺れ強さ", &mShakeAmplitude, 0.0f, 10000.0f);
     // Z Amplitude
-    mctx->genSlider("振幅Ｚ", &mShakeZOscillationAngleQuantum, 0.0f, 180.0f);
+    mctx->genSlider("振幅Ｚ", &mShakeZOscAngQuantum, 0.0f, 180.0f);
     // X Amplitude
-    mctx->genSlider("振幅Ｘ", &mShakeXOscillationAngleQuantum, 0.0f, 180.0f);
+    mctx->genSlider("振幅Ｘ", &mShakeXOscAngQuantum, 0.0f, 180.0f);
     // Shake damping
     mctx->genSlider("揺れ減衰", &mShakeDampingScale, 0.0f, 1.0f);
     // Maximum damping amount
-    mctx->genSlider("最大減衰量", &mShakeMaxDecayStep, 0.0f, 100.0f);
+    mctx->genSlider("最大減衰量", &mShakeMaxDecay, 0.0f, 100.0f);
     // Minimum damping amount
-    mctx->genSlider("最小減衰量", &mShakeMinDecayStep, 0.0f, 100.0f);
+    mctx->genSlider("最小減衰量", &mShakeMinDecay, 0.0f, 100.0f);
 
     /* Vibration */
-    mctx->startComboBox("振動", &mVibrationModePower);
+    mctx->startComboBox("振動", &mVibModePower);
     // Strength 1
     mctx->genComboBoxItem("強さ１", VIBMODE_S_POWER1);
     // Strength 2
@@ -105,7 +105,7 @@ void daSyRock_HIO_c::genMessage(JORMContext* mctx) {
     /* ==== For Testing Purposes ==== */
     mctx->genLabel("\n==== テスト用 ====", 0);
     // Range
-    mctx->genSlider("renge", &mMaxHorizontalDistanceToWaterPillar, 0.1f, 20.0f);
+    mctx->genSlider("renge", &mRange, 0.1f, 20.0f);
     // Sink speed
     mctx->genSlider("sink speed", &mFallWaterBouyancy, 0.1f, 20.0f);
 }
@@ -114,8 +114,8 @@ void daSyRock_HIO_c::genMessage(JORMContext* mctx) {
 void daSyRock_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(0, shape_angle.y, shape_angle.z);
-    mDoMtx_stack_c::ZXYrotM(mShakeXZAngleOffset.x, mShakeXZAngleOffset.y, mShakeXZAngleOffset.z);
-    mDoMtx_stack_c::transM(mUnderwaterRotatedStalactiteOffset.x, mUnderwaterRotatedStalactiteOffset.y, mUnderwaterRotatedStalactiteOffset.z);
+    mDoMtx_stack_c::ZXYrotM(mShakeAngOffset.x, mShakeAngOffset.y, mShakeAngOffset.z);
+    mDoMtx_stack_c::transM(mUnderwaterOffset.x, mUnderwaterOffset.y, mUnderwaterOffset.z);
 
     mpModels[mIsUnbroken]->setBaseScale(scale);
 
@@ -181,32 +181,32 @@ cPhs_Step daSyRock_c::create() {
                     NULL, NULL);
         mAcch.SetWaterCheckOffset(10000.0f);
 
-        mShakeOscillationAngleStep = 0;
+        mShakeOscAngStep = 0;
 
-        mShakeXZAngleOffset.x = 0;
-        mShakeXZAngleOffset.y = 0;
-        mShakeXZAngleOffset.z = 0;
+        mShakeAngOffset.x = 0;
+        mShakeAngOffset.y = 0;
+        mShakeAngOffset.z = 0;
 
         mShakeAmplitude = 0.0f;
-        mShakeZOscillationAngleQuantum = 0.0f;
-        mShakeXOscillationAngleQuantum = 0.0f;
+        mShakeZOscAngQuantum = 0.0f;
+        mShakeXOscAngQuantum = 0.0f;
 
         mShakeDampingScale =  0.0f;
-        mShakeMaxDecayStep = 0.0f;
-        mShakeMinDecayStep = 0.0f;
+        mShakeMaxDecay = 0.0f;
+        mShakeMinDecay = 0.0f;
 
-        mUnderwaterRotatedStalactiteOffset.x = 0.0f;
-        mUnderwaterRotatedStalactiteOffset.y = 0.0f;
-        mUnderwaterRotatedStalactiteOffset.z = 0.0f;
+        mUnderwaterOffset.x = 0.0f;
+        mUnderwaterOffset.y = 0.0f;
+        mUnderwaterOffset.z = 0.0f;
 
         mStts.Init(0xFF, 0xFF, this);
-        mUnbrokenCylinderCollider.Set(mCcDCyl);
-        mUnbrokenCylinderCollider.SetStts(&mStts);
-        mUnbrokenCylinderCollider.OffAtSetBit();
+        mUnbrokenCollider.Set(mCcDCyl);
+        mUnbrokenCollider.SetStts(&mStts);
+        mUnbrokenCollider.OffAtSetBit();
 
         if(fopAcM_isSwitch(this, getSwBit1())) {
             mIsUnbroken = false;
-            mUnbrokenCylinderCollider.OffCoSetBit();
+            mUnbrokenCollider.OffCoSetBit();
             if(mpBrokenCollision && mpBrokenCollision->ChkUsed()) {
                 dComIfG_Bgsp().Release(mpBrokenCollision);
                 mpBrokenCollision->Move();
@@ -226,7 +226,7 @@ cPhs_Step daSyRock_c::create() {
                 mpBrokenCollision->Move();
             }
 
-            mDropAutomaticallySwitchNo = getSwBit2();
+            mAutoDropSwNo = getSwBit2();
             init_modeWait();
 
         }
@@ -259,7 +259,7 @@ void daSyRock_c::setFallStat() {
 
         if(mAcch.ChkWaterHit()) {
             if(mAcch.m_wtr.GetHeight() - mAcch.GetGroundH() >= 200.0f) {
-                mUnderwaterRotatedStalactiteOffset.x = 150.0f;
+                mUnderwaterOffset.x = 150.0f;
                 shape_angle.z = 0x4000;
             }
             current.pos.y = mAcch.GetGroundH();
@@ -279,7 +279,7 @@ int daSyRock_c::Execute(Mtx** i_mtx) {
 
     *i_mtx = &mpModels[mIsUnbroken]->getBaseTRMtx();
 
-    mInWaterPreviousFrame = mAcch.ChkWaterIn() != false;
+    mInWaterPrevFrame = mAcch.ChkWaterIn() != false;
     setBaseMtx();
 
     return 1;
@@ -294,22 +294,22 @@ void daSyRock_c::move() {
     (this->*mode_proc[mMode])();
 
 
-    mShakeXZAngleOffset.x = mShakeAmplitude * cM_ssin(mShakeOscillationAngleStep * cM_deg2s(mShakeXOscillationAngleQuantum));
-    mShakeXZAngleOffset.z = mShakeAmplitude * cM_scos(mShakeOscillationAngleStep * cM_deg2s(mShakeZOscillationAngleQuantum));
+    mShakeAngOffset.x = mShakeAmplitude * cM_ssin(mShakeOscAngStep * cM_deg2s(mShakeXOscAngQuantum));
+    mShakeAngOffset.z = mShakeAmplitude * cM_scos(mShakeOscAngStep * cM_deg2s(mShakeZOscAngQuantum));
 
-    cLib_addCalc(&mShakeAmplitude, 0.0f, mShakeDampingScale, mShakeMaxDecayStep, mShakeMinDecayStep);
+    cLib_addCalc(&mShakeAmplitude, 0.0f, mShakeDampingScale, mShakeMaxDecay, mShakeMinDecay);
 
-    mShakeOscillationAngleStep++;
+    mShakeOscAngStep++;
 
-    mUnbrokenCylinderCollider.SetR(150.0f + oREG_F(0));
-    mUnbrokenCylinderCollider.SetH(680.0f + oREG_F(1));
+    mUnbrokenCollider.SetR(150.0f + oREG_F(0));
+    mUnbrokenCollider.SetH(680.0f + oREG_F(1));
 
     cXyz currentPos = current.pos;
     currentPos.y -= 250.0f + oREG_F(2);
 
-    mUnbrokenCylinderCollider.SetC(currentPos);
+    mUnbrokenCollider.SetC(currentPos);
 
-    dComIfG_Ccsp()->Set(&mUnbrokenCylinderCollider);
+    dComIfG_Ccsp()->Set(&mUnbrokenCollider);
 }
 
 void daSyRock_c::init_modeWait() {
@@ -317,7 +317,7 @@ void daSyRock_c::init_modeWait() {
 }
 
 void daSyRock_c::modeWait() {
-    if(mDropAutomaticallySwitchNo != 0xFF && fopAcM_isSwitch(this, mDropAutomaticallySwitchNo)) {
+    if(mAutoDropSwNo != 0xFF && fopAcM_isSwitch(this, mAutoDropSwNo)) {
         field_0x779 = 0;
         if(getEvetID() != 0xFF) {
             orderEvent(getEvetID(), 0xFF, 1);
@@ -327,8 +327,8 @@ void daSyRock_c::modeWait() {
         return;
     }
 
-    if(mUnbrokenCylinderCollider.ChkTgHit()) {
-        dCcD_GObjInf* tgHitGObj = mUnbrokenCylinderCollider.GetTgHitGObj();
+    if(mUnbrokenCollider.ChkTgHit()) {
+        dCcD_GObjInf* tgHitGObj = mUnbrokenCollider.GetTgHitGObj();
         if(tgHitGObj->GetAtType() == AT_TYPE_BOMB) {
             field_0x779 = 0;
             if(getEvetID() != 0xFF)
@@ -337,7 +337,7 @@ void daSyRock_c::modeWait() {
                 eventStart();
             }
         }
-        mUnbrokenCylinderCollider.ClrTgHit();
+        mUnbrokenCollider.ClrTgHit();
     }
 }
 
@@ -353,8 +353,8 @@ void daSyRock_c::init_modeDropInit() {
     mDoAud_seStart(Z2SE_OBJ_STALAC_BREAK, &current.pos, 0,
                    dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 
-    mUnbrokenCylinderCollider.OffCoSetBit();
-    mUnbrokenCylinderCollider.OffTgSetBit();
+    mUnbrokenCollider.OffCoSetBit();
+    mUnbrokenCollider.OffTgSetBit();
 
     mWaitFrames = 0;
 
@@ -378,7 +378,7 @@ void* daSyRock_c::searchWaterPillar(void* i_proc, void* i_this) {
         const cXyz vectorFromWaterPillar = syRock->current.pos - wtPillar->current.pos;
         const f32 horizontalDistanceToWaterPillar = vectorFromWaterPillar.absXZ();
 
-        if(horizontalDistanceToWaterPillar <= l_HIO.mMaxHorizontalDistanceToWaterPillar)
+        if(horizontalDistanceToWaterPillar <= l_HIO.mRange)
             return wtPillar;
         else
             return NULL;
@@ -402,7 +402,7 @@ void daSyRock_c::init_modeDrop() {
 
     const cXyz particlePos = current.pos;
     dComIfGp_particle_set(0x8616, &particlePos, NULL, NULL);
-    mUnbrokenCylinderCollider.OnAtSetBit();
+    mUnbrokenCollider.OnAtSetBit();
     mMode = MODE_DROP;
 }
 
@@ -417,7 +417,7 @@ void daSyRock_c::init_modeSink() {
     speed.y = cLib_minMaxLimit(speed.y, -15.0f - oREG_F(7), 13.0f + oREG_F(8));
 
     if(!mpWaterPillar)
-        mUnderwaterRotatedStalactiteOffset.x = 150.0f;
+        mUnderwaterOffset.x = 150.0f;
 
     mMode = MODE_SINK;
 }
@@ -444,13 +444,13 @@ void daSyRock_c::init_modeMove() {
     mpWaterPillar->onRockFlag();
 
     mShakeAmplitude = l_HIO.mShakeAmplitude;
-    mShakeZOscillationAngleQuantum = l_HIO.mShakeZOscillationAngleQuantum;
-    mShakeXOscillationAngleQuantum = l_HIO.mShakeXOscillationAngleQuantum;
+    mShakeZOscAngQuantum = l_HIO.mShakeZOscAngQuantum;
+    mShakeXOscAngQuantum = l_HIO.mShakeXOscAngQuantum;
     mShakeDampingScale = l_HIO.mShakeDampingScale;
-    mShakeMaxDecayStep = l_HIO.mShakeMaxDecayStep;
-    mShakeMinDecayStep = l_HIO.mShakeMinDecayStep;
+    mShakeMaxDecay = l_HIO.mShakeMaxDecay;
+    mShakeMinDecay = l_HIO.mShakeMinDecay;
 
-    mUnbrokenCylinderCollider.OffAtSetBit();
+    mUnbrokenCollider.OffAtSetBit();
 
     fopAcM_onSwitch(this, getSwBit1());
 
@@ -465,11 +465,11 @@ void daSyRock_c::modeMove() {
 
     if(mpWaterPillar->isRockYure()) {
         mShakeAmplitude = l_HIO.mShakeAmplitude;
-        mShakeZOscillationAngleQuantum = l_HIO.mShakeZOscillationAngleQuantum;
-        mShakeXOscillationAngleQuantum = l_HIO.mShakeXOscillationAngleQuantum;
+        mShakeZOscAngQuantum = l_HIO.mShakeZOscAngQuantum;
+        mShakeXOscAngQuantum = l_HIO.mShakeXOscAngQuantum;
         mShakeDampingScale = l_HIO.mShakeDampingScale;
-        mShakeMaxDecayStep = l_HIO.mShakeMaxDecayStep;
-        mShakeMinDecayStep = l_HIO.mShakeMinDecayStep;
+        mShakeMaxDecay = l_HIO.mShakeMaxDecay;
+        mShakeMinDecay = l_HIO.mShakeMinDecay;
 
         mpWaterPillar->clearRockYure();
     }
@@ -500,11 +500,11 @@ void daSyRock_c::bgCheck() {
             if(chkWaterLineIn())
                 init_modeSink();
 
-            if(inWater && !mInWaterPreviousFrame) {
+            if(inWater && !mInWaterPrevFrame) {
                 cXyz currentRockPos(current.pos);
                 currentRockPos.y = waterHeight;
 
-                fopKyM_createWpillar(&currentRockPos, l_HIO.mEffectScale, 3);
+                fopKyM_createWpillar(&currentRockPos, l_HIO.mEffScale, 3);
 
                 if(verticalSpeed < -15.0f)
                     fopAcM_seStart(this, Z2SE_OBJ_FALL_WATER_M, 0);
@@ -520,7 +520,7 @@ void daSyRock_c::bgCheck() {
     if(hitGround) {
         if(!hitWater && !mpWaterPillar) {
             mDoAud_seStart(Z2SE_OBJ_STALAC_LAND, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
-            daObjEff::Act_c::make_land_smoke(&current.pos, l_HIO.mEffectScale);
+            daObjEff::Act_c::make_land_smoke(&current.pos, l_HIO.mEffScale);
         }
 
         if(mpWaterPillar)
@@ -532,13 +532,13 @@ void daSyRock_c::bgCheck() {
 
 void daSyRock_c::init_modeDropEnd() {
     if(!mAcch.ChkWaterIn()) {
-        dComIfGp_getVibration().StartShock(l_HIO.mVibrationModePower, 0xF, cXyz(0.0f, 1.0f, 0.0f));
+        dComIfGp_getVibration().StartShock(l_HIO.mVibModePower, 0xF, cXyz(0.0f, 1.0f, 0.0f));
     }
 
     if(mpBgW)
         dComIfG_Bgsp().Regist(mpBgW, this);
 
-    mUnbrokenCylinderCollider.OffAtSetBit();
+    mUnbrokenCollider.OffAtSetBit();
 
     fopAcM_onSwitch(this, getSwBit1());
 

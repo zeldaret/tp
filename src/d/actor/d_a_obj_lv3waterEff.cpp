@@ -82,13 +82,13 @@ static int daObjWaterEff_Execute(daObjWaterEff_c* i_this) {
 }
 
 static int daObjWaterEff_Delete(daObjWaterEff_c* i_this) {
-    const fpc_ProcID id = fopAcM_GetID(i_this); // Needed for debug data
+    const fpc_ProcID id = fopAcM_GetID(i_this);
     return i_this->_delete();
 }
 
 static int daObjWaterEff_Create(fopAc_ac_c* i_this) {
     daObjWaterEff_c* const actor = static_cast<daObjWaterEff_c*>(i_this);
-    const fpc_ProcID id = fopAcM_GetID(i_this); // Needed for debug data
+    const fpc_ProcID id = fopAcM_GetID(i_this);
     return actor->create();
 }
 

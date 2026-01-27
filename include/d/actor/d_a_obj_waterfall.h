@@ -30,9 +30,9 @@ private:
     /* 0x574 */ dCcD_Stts mCylColliderStts;
     /* 0x5B0 */ dCcD_Tri mUnusedTriCollider[2];
     /* 0x868 */ dCcD_Cyl mCylCollider;
-    /* 0x9A4 */ cXyz mCylColliderCenterOscillationTargets[2];
-    /* 0x9BC */ cXyz mCylColliderCenter;
-    /* 0x9C8 */ s8 mCylColliderCenterQuantizedOscillation;
+    /* 0x9A4 */ cXyz mColOscPosTargets[2];
+    /* 0x9BC */ cXyz mColCenter;
+    /* 0x9C8 */ s8 mColOscDir;
 
     enum Type_e {
         ALLOW_ARROWS_e

@@ -33,7 +33,7 @@ daObjLv3saka_HIO_c::daObjLv3saka_HIO_c() {
 }
 
 void daObjLv3saka_HIO_c::genMessage(JORMContext* mctx) {
-    /* Water Makes Surface Slippery */
+    /* Flowing Water Slippery Surface */
     mctx->genLabel("水が流れると滑る", 0);
     mctx->genCheckBox("チェック描画", &field_0x0C, 0x1);
 }
@@ -97,7 +97,7 @@ int daObjLv3saka_c::create1st() {
         }
 
         #if DEBUG
-        l_HIO.entryHIO("水が流れると滑る"); // "Water makes surface slippery"
+        l_HIO.entryHIO("水が流れると滑る"); // "Flowing water slippery surface"
         #endif
     }
     return phase;

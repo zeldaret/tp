@@ -50,20 +50,20 @@ private:
     /* 0x5B8 */ request_of_phase_process_class mPhase;
     /* 0x5C0 */ J3DModel* mpModels[2];
     /* 0x5C8 */ u8 mMode;
-    /* 0x5C9 */ u8 mDropAutomaticallySwitchNo;
+    /* 0x5C9 */ u8 mAutoDropSwNo;
     /* 0x5CC */ dCcD_Stts mStts;
-    /* 0x608 */ dCcD_Cyl mUnbrokenCylinderCollider; // Collider used to check for bomb/bomb arrow for breaking stalactite
+    /* 0x608 */ dCcD_Cyl mUnbrokenCollider; // Collider used to check for bomb/bomb arrow for breaking stalactite
     /* 0x744 */ u8 mWaitFrames;
-    /* 0x748 */ u32 mShakeOscillationAngleStep;
-    /* 0x74C */ csXyz mShakeXZAngleOffset;
+    /* 0x748 */ u32 mShakeOscAngStep;
+    /* 0x74C */ csXyz mShakeAngOffset; // Y component is always 0
     /* 0x754 */ f32 mShakeAmplitude;
-    /* 0x758 */ f32 mShakeXOscillationAngleQuantum;
-    /* 0x75C */ f32 mShakeZOscillationAngleQuantum;
+    /* 0x758 */ f32 mShakeXOscAngQuantum;
+    /* 0x75C */ f32 mShakeZOscAngQuantum;
     /* 0x760 */ f32 mShakeDampingScale;
-    /* 0x764 */ f32 mShakeMaxDecayStep;
-    /* 0x768 */ f32 mShakeMinDecayStep;
-    /* 0x76C */ cXyz mUnderwaterRotatedStalactiteOffset;
-    /* 0x778 */ u8 mInWaterPreviousFrame;
+    /* 0x764 */ f32 mShakeMaxDecay;
+    /* 0x768 */ f32 mShakeMinDecay;
+    /* 0x76C */ cXyz mUnderwaterOffset;
+    /* 0x778 */ u8 mInWaterPrevFrame;
     /* 0x779 */ u8 field_0x779; // Redundant variable, thus left unnamed
     /* 0x77C */ dBgS_AcchCir mAcchCir;
     /* 0x7BC */ dBgS_ObjAcch mAcch;

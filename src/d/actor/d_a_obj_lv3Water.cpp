@@ -162,21 +162,21 @@ int daLv3Water_c::create() {
             return cPhs_ERROR_e;
         }
 
-        mWaterLevelIncreaseAmount = getParam(12, 12);
-        mSwitchInitialState = fopAcM_isSwitch(this, getParam(0, 8));
-        mSwitchStateAfterEvent = true;
+        mWaterLv = getParam(12, 12);
+        mSwInitialState = fopAcM_isSwitch(this, getParam(0, 8));
+        mSwStatePostEvent = true;
 
         if (mType == 1 || mType == 10 || mType == 15 || mType == 17 || mType == 19 || mType == 20) {
-            if (!mSwitchInitialState) {
+            if (!mSwInitialState) {
                 if (mpBgW != NULL) {
                     dComIfG_Bgsp().Release(mpBgW);
                 }
-                mSwitchStateAfterEvent = false; // Water is not raised upon creation, ensure it is drawn accordingly
+                mSwStatePostEvent = false; // Water is not raised upon creation, ensure it is drawn accordingly
             } else if (mType == 1) {
-                current.pos.y = home.pos.y + mWaterLevelIncreaseAmount;
+                current.pos.y = home.pos.y + mWaterLv;
             }
-        } else if (mSwitchInitialState) {
-            current.pos.y = home.pos.y + mWaterLevelIncreaseAmount;
+        } else if (mSwInitialState) {
+            current.pos.y = home.pos.y + mWaterLv;
         }
 
         fopAcM_SetMtx(this, mpModel1->getBaseTRMtx());
@@ -204,7 +204,7 @@ int daLv3Water_c::Execute(Mtx** i_mtx) {
     }
 
     eventUpdate();
-    mSwitchCurrentState = fopAcM_isSwitch(this, getParam(0, 8));
+    mSwCurrentState = fopAcM_isSwitch(this, getParam(0, 8));
     (this->*l_mode_func[mMode])();
     effectSet();
     *i_mtx = &mpModel1->getBaseTRMtx();
@@ -224,7 +224,7 @@ void daLv3Water_c::effectSet() {
         }
         break;
     case 9:
-        if (mSwitchInitialState) {
+        if (mSwInitialState) {
             mEmitterIDs[0] =
                 dComIfGp_particle_set(mEmitterIDs[0], 0X8AB4, &current.pos, NULL, NULL);
             mEmitterIDs[1] =
@@ -262,7 +262,7 @@ void daLv3Water_c::effectSet() {
         }
         break;
     case 17:
-        if (mSwitchInitialState) {
+        if (mSwInitialState) {
             mEmitterIDs[0] =
                 dComIfGp_particle_set(mEmitterIDs[0], 0X8AC4, &current.pos, NULL, NULL);
             mEmitterIDs[1] =
@@ -274,7 +274,7 @@ void daLv3Water_c::effectSet() {
         }
         break;
     case 16:
-        if (mSwitchInitialState) {
+        if (mSwInitialState) {
             mEmitterIDs[0] =
                 dComIfGp_particle_set(mEmitterIDs[0], 0X8AC8, &current.pos, NULL, NULL);
             mEmitterIDs[1] =
@@ -289,7 +289,7 @@ void daLv3Water_c::effectSet() {
 
 void daLv3Water_c::mode_proc_wait() {
     // Only change the water level when the pull switch is activated (i.e. its initial state differs from its current state)
-    if (mSwitchInitialState != mSwitchCurrentState) {
+    if (mSwInitialState != mSwCurrentState) {
         if (getParamEvent() != 0xFF) {
             orderEvent(getParamEvent(), 0xFF, 1);
         } else {
@@ -300,7 +300,7 @@ void daLv3Water_c::mode_proc_wait() {
 
 void daLv3Water_c::mode_init_levelCtrl() {
     mCurrentWaterLvFrame = 0;
-    mLevelControlWaitFrames = l_HIO.mLevelControlWaitFrames;
+    mLvControlWaitFrames = l_HIO.mLevelControlWaitFrames;
 
     if (mType == 9) {
         mDoAud_seStart(Z2SE_ENV_FILL_UP_LV3WTR3, &current.pos, 0,
@@ -313,23 +313,23 @@ void daLv3Water_c::mode_init_levelCtrl() {
 void daLv3Water_c::mode_proc_levelCtrl() {
     f32 ratioOfWaterLevelFramesAdvancedToTarget;
 
-    if (mLevelControlWaitFrames != 0) {
-        mLevelControlWaitFrames--;
+    if (mLvControlWaitFrames != 0) {
+        mLvControlWaitFrames--;
     } else {
-        ratioOfWaterLevelFramesAdvancedToTarget = fopMsgM_valueIncrease(mWaterLvFrame, mCurrentWaterLvFrame, mSwitchInitialState);
+        ratioOfWaterLevelFramesAdvancedToTarget = fopMsgM_valueIncrease(mWaterLvFrame, mCurrentWaterLvFrame, mSwInitialState);
 
-        if (!mSwitchInitialState) {
+        if (!mSwInitialState) {
             // Water level should lower, invert the ratio so that it goes (1.0f -> 0.0f)
             ratioOfWaterLevelFramesAdvancedToTarget = 1.0f - ratioOfWaterLevelFramesAdvancedToTarget;
         }
 
         mCurrentWaterLvFrame++;
         if (mCurrentWaterLvFrame >= mWaterLvFrame) {
-            ratioOfWaterLevelFramesAdvancedToTarget = mSwitchInitialState;
+            ratioOfWaterLevelFramesAdvancedToTarget = mSwInitialState;
             mMode = WAIT;
         }
 
-        current.pos.y = mWaterLevelIncreaseAmount * ratioOfWaterLevelFramesAdvancedToTarget + home.pos.y;
+        current.pos.y = mWaterLv * ratioOfWaterLevelFramesAdvancedToTarget + home.pos.y;
     }
 }
 
@@ -339,7 +339,7 @@ int daLv3Water_c::Draw() {
     J3DModelData* modelData;
 
     // Only draw if the water is raised
-    if (!mSwitchStateAfterEvent)
+    if (!mSwStatePostEvent)
         return 0;
 
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
@@ -416,16 +416,16 @@ int daLv3Water_c::Delete() {
 
 bool daLv3Water_c::eventStart() {
     mWaterLvFrame = getParam(24, 8);
-    mSwitchInitialState = mSwitchCurrentState; // Ensure the water raise event isn't activated again
+    mSwInitialState = mSwCurrentState; // Ensure the water raise event isn't activated again
 
     if (mType == 1 || mType == 10 || mType == 15 || mType == 17 || mType == 19 || mType == 20) {
         if (mpBgW != NULL) {
             dComIfG_Bgsp().Regist(mpBgW, this);
         }
         if (mType == 1) {
-            current.pos.y = home.pos.y + mWaterLevelIncreaseAmount;
+            current.pos.y = home.pos.y + mWaterLv;
         }
-        mSwitchStateAfterEvent = mSwitchCurrentState;
+        mSwStatePostEvent = mSwCurrentState;
         mMode = WAIT;
     } else {
         mode_init_levelCtrl();
@@ -443,7 +443,7 @@ static int daLv3Water_Execute(daLv3Water_c* i_this) {
 }
 
 static int daLv3Water_Delete(daLv3Water_c* i_this) {
-    fopAcM_RegisterDeleteID(i_this, "daTreeSh"); //! @note Suggests opy-and-pasting from d_a_obj_treesh
+    fopAcM_RegisterDeleteID(i_this, "daTreeSh"); //! @note Suggests copy-and-pasting from d_a_obj_treesh
     return i_this->MoveBGDelete();
 }
 

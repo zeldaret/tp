@@ -24,7 +24,7 @@ static int daObjWaterFall_Execute(daObjWaterFall_c* i_this);
 static int daObjWaterFall_Delete(daObjWaterFall_c* i_this);
 static int daObjWaterFall_Create(fopAc_ac_c* i_this);
 
-static fopAc_ac_c* target_info[MAX_TARGET_INFO_COUNT];
+static fopAc_ac_c* target_info[MAX_TARGET_INFO_COUNT]; // Mutually exclusive list of bomb/arrow actors to be potentially deleted
 static int target_info_count;
 
 const char* l_arcName = "sample";
@@ -76,23 +76,24 @@ public:
 
     void genMessage(JORMContext*);
 
-    /* 0x08 */ f32 mPushPlayerOutMagnitudeHuman;
-    /* 0x0C */ f32 mPushPlayerOutMagnitudeWolf;
+    /* 0x08 */ f32 mPushStrengthHuman;
+    /* 0x0C */ f32 mPushStrengthWolf;
 };
 
 static daObjWaterFall_HIO_c l_HIO;
 
 daObjWaterFall_HIO_c::daObjWaterFall_HIO_c() {
-    mPushPlayerOutMagnitudeHuman = 10.0f;
-    mPushPlayerOutMagnitudeWolf = 25.0f;
+    mPushStrengthHuman = 10.0f;
+    mPushStrengthWolf = 25.0f;
 }
 
 void daObjWaterFall_HIO_c::genMessage(JORMContext* mctx) {
     /* Waterfall */
     mctx->genLabel("滝", 0);
     // Pushing force ・ human
-    mctx->genSlider("押す力・人間", &mPushPlayerOutMagnitudeHuman, 0.0f, 100.0f);
-    mctx->genSlider("押す力・狼", &mPushPlayerOutMagnitudeWolf, 0.0f, 100.0f);
+    mctx->genSlider("押す力・人間", &mPushStrengthHuman, 0.0f, 100.0f);
+    // Pushing force ・ wolf
+    mctx->genSlider("押す力・狼", &mPushStrengthWolf, 0.0f, 100.0f);
 }
 
 #endif
@@ -125,7 +126,7 @@ static void* s_a_sub(void* param_0, void* unused) {
 }
 
 void daObjWaterFall_c::search_bomb() {
-    if(checkFallOut() == 0) {
+    if(!checkFallOut()) {
         //  Get rid of previously found arrow or bomb processes populating target_info
         target_info_count = 0;
         for(int i = 0; i < MAX_TARGET_INFO_COUNT; i++) {
@@ -150,7 +151,8 @@ void daObjWaterFall_c::search_bomb() {
                 mDoMtx_stack_c::multVec(&vectorToOldBombPos, &vectorToOldBombPos);
                 mDoMtx_stack_c::multVec(&vectorToCurrentBombPos, &vectorToCurrentBombPos);
 
-                bool bombPassedZOriginPrevAndCurrentBombPosAreWithinXYBounds = (
+                // Bomb's Z position passed that of waterfall, and was within X,Y bounds both in the previous frame and current frame
+                bool multiFrameDeleteCondition = (
                     (vectorToOldBombPos.z * vectorToCurrentBombPos.z) < 0.0f &&
                     (vectorToOldBombPos.x > -scale.x * 50.0f && vectorToOldBombPos.x < scale.x * 50.0f) &&
                     (vectorToCurrentBombPos.x > -scale.x * 50.0f && vectorToCurrentBombPos.x < scale.x * 50.0f) &&
@@ -158,13 +160,14 @@ void daObjWaterFall_c::search_bomb() {
                     (vectorToCurrentBombPos.y > 0.0f && vectorToCurrentBombPos.y < scale.y * 100.0f)
                 );
 
-                bool currentBombPosIsWithinXYZBounds = (
+                // Bomb is within X,Y,Z bounds in the current frame
+                bool currentFrameDeleteCondition = (
                     (vectorToCurrentBombPos.x > -scale.x * 50.0f && vectorToCurrentBombPos.x < scale.x * 50.0f) &&
                     (vectorToCurrentBombPos.y > 0.0f && vectorToCurrentBombPos.y < scale.y * 100.0f) &&
                     (vectorToCurrentBombPos.z > -scale.z * 50.0f && vectorToCurrentBombPos.z < scale.z * 50.0f)
                 );
 
-                if(bombPassedZOriginPrevAndCurrentBombPosAreWithinXYBounds || currentBombPosIsWithinXYZBounds)
+                if(multiFrameDeleteCondition || currentFrameDeleteCondition)
                     fopAcM_delete(bomb);
             }
         }
@@ -200,7 +203,8 @@ void daObjWaterFall_c::search_arrow() {
             mDoMtx_stack_c::multVec(&vectorToOldArrowPos, &vectorToOldArrowPos);
             mDoMtx_stack_c::multVec(&vectorToCurrentArrowPos, &vectorToCurrentArrowPos);
 
-            bool arrowPassedZOriginPrevAndCurrentArrowPosAreWithinXYBounds = (
+            // Arrow's Z position passed that of waterfall, and was within X,Y bounds both in the previous frame and current frame
+            bool multiFrameDeleteCondition = (
                 (vectorToOldArrowPos.z * vectorToCurrentArrowPos.z) < 0.0f &&
                 (vectorToOldArrowPos.x > -scale.x * 50.0f && vectorToOldArrowPos.x < scale.x * 50.0f) &&
                 (vectorToCurrentArrowPos.x > -scale.x * 50.0f && vectorToCurrentArrowPos.x < scale.x * 50.0f) &&
@@ -208,13 +212,14 @@ void daObjWaterFall_c::search_arrow() {
                 (vectorToCurrentArrowPos.y > 0.0f && vectorToCurrentArrowPos.y < scale.y * 100.0f)
             );
 
-            bool currentArrowPosIsWithinXYZBounds = (
+            // Arrow is within X,Y,Z bounds in the current frame
+            bool currentFrameDeleteCondition = (
                 (vectorToCurrentArrowPos.x > -scale.x * 50.0f && vectorToCurrentArrowPos.x < scale.x * 50.0f) &&
                 (vectorToCurrentArrowPos.y > 0.0f && vectorToCurrentArrowPos.y < scale.y * 100.0f) &&
                 (vectorToCurrentArrowPos.z > -scale.z * 50.0f && vectorToCurrentArrowPos.z < scale.z * 50.0f)
             );
 
-            if(arrowPassedZOriginPrevAndCurrentArrowPosAreWithinXYBounds || currentArrowPosIsWithinXYZBounds)
+            if(multiFrameDeleteCondition || currentFrameDeleteCondition)
                 fopAcM_delete(arrow);
         }
     }
@@ -251,24 +256,25 @@ cPhs_Step daObjWaterFall_c::Create() {
     //
     //  This effect can be observed at the largest waterfall in Zora's Domain
     if(scale.x > scale.z) {
-        mCylColliderCenterOscillationTargets[0].set((scale.x * -50.0f) + (scale.z * 50.0f), 0.0f,0.0f);
-        mCylColliderCenterOscillationTargets[1].set((scale.x * 50.0f) - (scale.z * 50.0f), 0.0f,0.0f);
+        mColOscPosTargets[0].set((scale.x * -50.0f) + (scale.z * 50.0f), 0.0f,0.0f);
+        mColOscPosTargets[1].set((scale.x * 50.0f) - (scale.z * 50.0f), 0.0f,0.0f);
         speedF = ((scale.x * 100.0f) - (scale.z * 100.0f)) / 10.0f;
     }
     else {
-        mCylColliderCenterOscillationTargets[0].set(0.0f, 0.0f,(scale.z * -50.0f) + (scale.x * 50.0f));
-        mCylColliderCenterOscillationTargets[1].set(0.0f, 0.0f,(scale.z * 50.0f) - (scale.x * 50.0f));
+        // Oscillation position targets are <0, 0, 0> if scale.x == scale.z
+        mColOscPosTargets[0].set(0.0f, 0.0f,(scale.z * -50.0f) + (scale.x * 50.0f));
+        mColOscPosTargets[1].set(0.0f, 0.0f,(scale.z * 50.0f) - (scale.x * 50.0f));
         speedF = ((scale.z * 100.0f) - (scale.x * 100.0f)) / 10.0f;
     }
 
     mDoMtx_stack_c::transS(home.pos);
     mDoMtx_stack_c::YrotM(home.angle.y);
 
-    mDoMtx_stack_c::multVec(&mCylColliderCenterOscillationTargets[0], &mCylColliderCenterOscillationTargets[0]);
-    mDoMtx_stack_c::multVec(&mCylColliderCenterOscillationTargets[1], &mCylColliderCenterOscillationTargets[1]);
+    mDoMtx_stack_c::multVec(&mColOscPosTargets[0], &mColOscPosTargets[0]);
+    mDoMtx_stack_c::multVec(&mColOscPosTargets[1], &mColOscPosTargets[1]);
 
-    mCylColliderCenter = mCylColliderCenterOscillationTargets[0];
-    mCylColliderCenterQuantizedOscillation = 1;
+    mColCenter = mColOscPosTargets[0];
+    mColOscDir = 1; // Move collider toward mColOscPosTargets[1]
 
     return cPhs_LOADING_e;
 }
@@ -295,15 +301,15 @@ int daObjWaterFall_c::execute() {
     search_bomb();
     search_arrow();
 
-    if(mCylColliderCenterQuantizedOscillation > 0) {
-        if(cLib_chasePosXZ(&mCylColliderCenter, mCylColliderCenterOscillationTargets[1], speedF))
-            mCylColliderCenterQuantizedOscillation = -1;
+    if(mColOscDir > 0) {
+        if(cLib_chasePosXZ(&mColCenter, mColOscPosTargets[1], speedF))
+            mColOscDir = -1; // Move collider toward mColOscPosTargets[0]
     }
-    else if(cLib_chasePosXZ(&mCylColliderCenter, mCylColliderCenterOscillationTargets[0], speedF)) {
-        mCylColliderCenterQuantizedOscillation = 1;
+    else if(cLib_chasePosXZ(&mColCenter, mColOscPosTargets[0], speedF)) {
+        mColOscDir = 1; // Move collider toward mColOscPosTargets[1]
     }
 
-    mCylCollider.SetC(mCylColliderCenter);
+    mCylCollider.SetC(mColCenter);
     dComIfG_Ccsp()->Set(&mCylCollider);
 
     return 1;
@@ -313,14 +319,14 @@ void daObjWaterFall_c::push_player() {
     daPy_py_c* const player = daPy_getPlayerActorClass();
 
     #if DEBUG
-    f32 outMagnitude = l_HIO.mPushPlayerOutMagnitudeHuman;
+    f32 outMagnitude = l_HIO.mPushStrengthHuman;
     #else
     f32 outMagnitude = 10.0f;
     #endif
 
     if(player->checkNowWolf()) {
         #if DEBUG
-        outMagnitude = l_HIO.mPushPlayerOutMagnitudeWolf;
+        outMagnitude = l_HIO.mPushStrengthWolf;
         #else
         outMagnitude = 25.0f;
         #endif
