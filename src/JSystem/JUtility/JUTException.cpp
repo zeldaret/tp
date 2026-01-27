@@ -900,7 +900,7 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
 
         
         int length;
-        do {
+        while (true) {
             if ((length = file.fgets(buffer, ARRAY_SIZEU(buffer))) <= 4) {
                 break;
             }
@@ -958,7 +958,7 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
                     }
                 }
             }
-        } while (true);
+        }
 
         if (result || (section_id >= 0 && section_id == section_idx)) {
             if (print && begin_with_newline) {
