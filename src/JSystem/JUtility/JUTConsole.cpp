@@ -229,48 +229,48 @@ void JUTConsole::print(char const* str) {
     }
 
     if (mOutput & 1) {
-        u8* r29 = const_cast<u8*>((const u8*)str);
-        u8* r28 = (u8*)getLinePtr(field_0x38) + field_0x3c;
-        while (*r29) {
+        u8* src = (u8*)const_cast<char*>(str); // needs to be non-const to match debug
+        u8* dst = (u8*)getLinePtr(field_0x38) + field_0x3c;
+        while (*src != 0) {
             if (field_0x6a && field_0x34 == nextIndex(field_0x38)) {
                 break;
             }
-            if (*r29 == '\n') {
-                r29++;
+            if (*src == '\n') {
+                src++;
                 field_0x3c = field_0x20;
-            } else if (*r29 == '\t') {
-                r29++;
+            } else if (*src == '\t') {
+                src++;
                 while (field_0x3c < field_0x20) {
-                    *r28++ = ' ';
+                    *dst++ = ' ';
                     field_0x3c++;
                     if (field_0x3c % field_0x64 == 0) {
                         break;
                     }
                 }
-            } else if (mFont && mFont->isLeadByte(*r29)) {
+            } else if (mFont && mFont->isLeadByte(*src)) {
                 if (field_0x3c + 1 < field_0x20) {
-                    *r28++ = *r29++;
-                    *r28++ = *r29++;
+                    *dst++ = *src++;
+                    *dst++ = *src++;
                     field_0x3c++;
                     field_0x3c++;
                 } else {
-                    *r28++ = 0;
+                    *dst++ = 0;
                     field_0x3c++;
                 }
             } else {
-                *r28++ = *r29++;
+                *dst++ = *src++;
                 field_0x3c++;
             }
 
             if (field_0x3c < field_0x20) {
                 continue;
             }
-            *r28 = 0;
+            *dst = '\0';
             field_0x38 = nextIndex(field_0x38);
             field_0x3c = 0;
             setLineAttr(field_0x38, 0xff);
-            r28 = getLinePtr(field_0x38);
-            *r28 = 0;
+            dst = getLinePtr(field_0x38);
+            *dst = '\0';
             int local_28 = diffIndex(field_0x30, field_0x38);
             if (local_28 == mHeight) {
                 field_0x30 = nextIndex(field_0x30);
@@ -286,7 +286,7 @@ void JUTConsole::print(char const* str) {
                 break;
             }
         }
-        *r28 = 0;
+        *dst = '\0';
     }
 }
 
