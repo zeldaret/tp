@@ -139,7 +139,7 @@ int daE_OC_c::ctrlJoint(J3DJoint* i_joint, J3DModel* param_1) {
         mDoMtx_stack_c::YrotM(field_0x6d0);
     }
     param_1->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
-    mDoMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+    cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
     return 1;
 }
 
@@ -1487,22 +1487,26 @@ void daE_OC_c::executeAttack() {
             current.pos.x += (my_float - field_0x6a0) * cM_ssin(shape_angle.y);
             current.pos.z += (my_float - field_0x6a0) * cM_scos(shape_angle.y);
             field_0x6a0 = my_float;
-            if (mpMorf->isStop()) {
-                setBck(0x1c, 2, 5.0f, 1.0f);
-                mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
-                if (field_0x6e3) {
-                    setActionMode(E_OC_ACTION_MOVE_OUT, 0);
-                } else {
-                    if (field_0x6ca && fopAcM_searchPlayerDistance(this) < 500.0f) {
-                        if (abs(shape_angle.y - fopAcM_searchPlayerAngleY(this)) < 0x1000) {
-                            mOcState = 0;
-                            break;
-                        }
-                    }
+            if (!mpMorf->isStop()) {
+                break;
+            }
 
-                    setActionMode(E_OC_ACTION_FIND, 0);
+            setBck(0x1c, 2, 5.0f, 1.0f);
+            mSound.startCreatureVoice(Z2SE_EN_OC_V_WAIT_ST, -1);
+            if (field_0x6e3) {
+                setActionMode(E_OC_ACTION_MOVE_OUT, 0);
+                break;
+            }
+
+            if (field_0x6ca && fopAcM_searchPlayerDistance(this) < 500.0f) {
+                if (abs(shape_angle.y - fopAcM_searchPlayerAngleY(this)) < 0x1000) {
+                    mOcState = 0;
+                    break;
                 }
             }
+
+            setActionMode(E_OC_ACTION_FIND, 0);
+            int _; // forces b in dbg asm
             break;
         }
     }
