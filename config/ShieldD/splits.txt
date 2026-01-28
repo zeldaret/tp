@@ -4890,12 +4890,12 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/target_options.c:
 	.text       start:0x8062ECAC end:0x8062ECBC
 
-NdevExi2AD/DebuggerDriver.c:
+NdevExi2A/DebuggerDriver.c:
 	.text       start:0x8062ECBC end:0x8062F1EC
 	.sdata      start:0x8074C248 end:0x8074C24C
 	.sbss       start:0x8074D728 end:0x8074D73C
 
-NdevExi2AD/exi2.c:
+NdevExi2A/exi2.c:
 	.text       start:0x8062F1EC end:0x8062F7C0
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s:

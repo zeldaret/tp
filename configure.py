@@ -48,9 +48,29 @@ VERSIONS = [
 # Versions to disable until properly configured
 DISABLED_VERSIONS = [
     7,  # Wii KOR
-    8,  # Wii USA Kiosk Demo
     9,  # Wii PAL Kiosk Demo
     11, # Shield Production
+]
+
+GCN_VERSIONS = [
+    "GZ2E01", # GCN USA
+    "GZ2P01", # GCN PAL
+    "GZ2J01", # GCN JPN
+]
+
+WII_VERSIONS = [
+    "RZDE01_00", # Wii USA Rev 0
+    "RZDE01_02", # Wii USA Rev 2
+    "RZDP01",    # Wii PAL
+    "RZDJ01",    # Wii JPN
+    "RZDK01",    # Wii KOR
+    "DZDE01",    # Wii USA Kiosk Demo
+    "DZDP01",    # Wii PAL Kiosk Demo
+]
+SHIELD_VERSIONS = [
+    "Shield",    # Shield
+    "ShieldP",   # Shield Production
+    "ShieldD",   # Shield Debug
 ]
 
 parser = argparse.ArgumentParser()
@@ -263,7 +283,7 @@ cflags_base = [
     "-D__GEKKO__",
 ]
 
-if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield", "ShieldD"]:
+if config.version in WII_VERSIONS or config.version in SHIELD_VERSIONS:
     cflags_base.extend(["-enc SJIS"])
 else:
     cflags_base.extend(["-multibyte"])
@@ -310,7 +330,7 @@ cflags_runtime = [
     "-DMSL_USE_INLINES=1",
 ]
 
-if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "ShieldD", "Shield"]:
+if config.version in WII_VERSIONS or config.version in SHIELD_VERSIONS:
     cflags_runtime.extend(["-ipa file", "-fp_contract off"])
 else:
     cflags_runtime.extend(["-inline deferred,auto"])
@@ -378,14 +398,14 @@ if config.version != "ShieldD":
 
 if config.version == "ShieldD":
     cflags_framework.extend(["-O0,p", "-inline off", "-RTTI on", "-DDEBUG=1", "-DWIDESCREEN_SUPPORT=1"])
-elif config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "Shield"]:
+elif config.version in WII_VERSIONS or config.version in SHIELD_VERSIONS:
     cflags_framework.extend(["-ipa file", "-RTTI on", "-DWIDESCREEN_SUPPORT=1"])
 
 if config.version in ["RZDE01_00", "ShieldD"] or args.debug or args.reghio:
     cflags_framework.extend(["-DENABLE_REGHIO=1"])
 
 if config.version != "ShieldD":
-    if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
+    if config.version in WII_VERSIONS:
         # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
         cflags_framework.extend(["-inline noauto", "-O4,s", "-sym on"])
     elif config.version in ["Shield"]:
@@ -394,14 +414,14 @@ if config.version != "ShieldD":
     else:
         cflags_framework.extend(["-inline noauto", "-O3,s", "-sym on", "-str reuse,pool,readonly"])
 
-if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
+if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "DZDE01"]:
     cflags_framework.extend(["-DSDK_SEP2006"])
 
 cflags_jsystem = [
     *cflags_framework
 ]
 
-if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
+if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01", "DZDE01"]:
     cflags_jsystem.extend(["-RTTI off"])
 
 
@@ -422,27 +442,21 @@ cflags_dolzel_rel = [
 
 def MWVersion(cfg_version: str | None) -> str:
     match cfg_version:
-        case "GZ2E01":
+        case "GZ2E01" | "GZ2P01" | "GZ2J01":
             return "GC/2.7"
-        case "GZ2P01":
-            return "GC/2.7"
-        case "GZ2J01":
-            return "GC/2.7"
-        case "RZDE01_00" | "RZDE01_02" | "RZDP01" | "RZDJ01":
+        case "RZDE01_00" | "RZDE01_02" | "RZDP01" | "RZDJ01" | "DZDE01":
             # NOTE: we use a modified version of GC/3.0a3 to be able to handle multi-char constants.
             # This was probably a change made in some compiler version in the early days of transitioning GC to Wii development,
             # but we don't have that version. GC/3.0a3 appears to have the best overall codegen of any available GC/Wii compiler
             # However GC/3.0a5 is required for the linker version, GC/3.0a3 won't work.
             return "GC/3.0a3p1"
-        case "ShieldD":
-            return "Wii/1.0"
-        case "Shield":
+        case "ShieldD" | "Shield":
             return "Wii/1.0"
         case _:
             return "GC/2.7"
 
 # Wii versions specifically need linker GC/3.0a5
-if config.version in ["RZDE01_00", "RZDE01_02", "RZDP01", "RZDJ01"]:
+if config.version in WII_VERSIONS:
     config.linker_version = "GC/3.0a5"
 else:
     config.linker_version = MWVersion(config.version)
@@ -1908,7 +1922,6 @@ config.libs = [
         "progress_category": "sdk",
         "host": False,
         "objects": [
-            Object(NonMatching, "PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/__mem.c"),
             Object(MatchingFor(ALL_GCN, "Shield"), "PowerPC_EABI_Support/Runtime/Src/__va_arg.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c"),
@@ -1918,7 +1931,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/runtime.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/Gecko_ExceptionPPC.cp"),
-            Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/GCN_Mem_Alloc.c", extra_cflags=["-str reuse,nopool,readonly"]),
+            Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c", extra_cflags=["-str reuse,nopool,readonly"]),
         ],
     },
     {
@@ -1946,7 +1959,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mbstring.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mem.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/mem_funcs.c"),
-            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/math_api.c"),
+            Object(MatchingFor("Shield"), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/math_api.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/misc_io.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/printf.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/scanf.c"),
@@ -1954,11 +1967,15 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/signal.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/string.c"),
             Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtold.c"),
-            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wctype.c"),
+            Object(MatchingFor("Shield"), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wcstoul.c"),
+            Object(MatchingFor("Shield"), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wctype.c"),
+            Object(MatchingFor("Shield"), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wmem.c"),
+            Object(MatchingFor("Shield"), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wprintf.c"),
+            Object(MatchingFor("Shield"), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wscanf.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/strtoul.c"),
             Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wstring.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/wchar_io.c"),
-            Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/secure_error.c"),
+            Object(MatchingFor("Shield"), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/secure_error.c"),
             Object(NonMatching, "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/math_double.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/uart_console_io_gcn.c"),
             Object(MatchingFor(ALL_GCN), "PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Math/Double_precision/e_acos.c"),
@@ -2038,7 +2055,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/common/CircleBuffer.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c", extra_cflags=["-sdata 8"]),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/common/MWTrace.c"),
-            Object(NonMatching, "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/cc_gdev.c"),
+            Object(NonMatching, "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/cc_gdev.c", extra_cflags=["-sdata 8"]),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c"),
         ],
     },
@@ -2073,14 +2090,15 @@ config.libs = [
         ],
     },
     {
-        "lib": "NdevExi2AD",
+        "lib": "NdevExi2A",
+        # TODO: not sure about the compiler version + flags here
         "mw_version": MWVersion(config.version),
-        "cflags": cflags_dolphin,
+        "cflags": cflags_framework,
         "progress_category": "sdk",
         "host": False,
         "objects": [
-            Object(NonMatching, "NdevExi2AD/DebuggerDriver.c"),
-            Object(NonMatching, "NdevExi2AD/exi2.c"),
+            Object(NonMatching, "NdevExi2A/DebuggerDriver.c"),
+            Object(NonMatching, "NdevExi2A/exi2.c"),
         ],
     },
     {
