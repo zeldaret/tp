@@ -3969,7 +3969,7 @@ PowerPC_EABI_Support/Runtime/Src/runtime.c:
 	.text       start:0x803A8AF8 end:0x803A9394
 	.rodata     start:0x803DF720 end:0x803DF738
 
-PowerPC_EABI_Support/Runtime/Src/GCN_Mem_Alloc.cpp:
+PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c:
 	.rodata     start:0x803DF738 end:0x803DF7A8
 
 PowerPC_EABI_Support/Runtime/Src/__init_cpp_exceptions.cpp:
@@ -4116,7 +4116,7 @@ PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/abort_exit_ppc_eabi.c:
 	.text       start:0x803AE9B4 end:0x803AE9E8
 	.sbss       start:0x80521988 end:0x80521990
 
-PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/math_sun.c:
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src/math_sun.c:
 	extab       start:0x80006680 end:0x80006688
 	extabindex  start:0x800068E0 end:0x800068EC
 	.text       start:0x803AE9E8 end:0x803AEA28
