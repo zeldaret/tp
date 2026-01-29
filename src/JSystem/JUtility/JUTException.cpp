@@ -973,7 +973,7 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
 }
 
 void JUTException::createConsole(void* console_buffer, u32 console_buffer_size) {
-    if (!console_buffer || console_buffer_size == 0) {
+    if (console_buffer == NULL || console_buffer_size == 0) {
         return;
     }
 
