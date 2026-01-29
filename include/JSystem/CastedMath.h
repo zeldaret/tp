@@ -33,7 +33,7 @@
 #define MULT_S32(x, y) MULT_VAR_CAST(x, y, s32)
 #define MULT_U32(x, y) MULT_VAR_CAST(x, y, u32)
 
-#define ADD_ANGLE  ADD_S16
+#define ADD_ANGLE(x, y)  ADD_S16(x, y)
 #define SUB_ANGLE  SUB_S16
 #define MULT_ANGLE MULT_S16
 
