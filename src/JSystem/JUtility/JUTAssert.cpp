@@ -112,8 +112,9 @@ void showAssert_f_va(u32 device, const char* file, int line, const char* msg, va
             OSEnableInterrupts();
 
             u32 retrace_count = VIGetRetraceCount();
-            do {
-            } while (retrace_count == VIGetRetraceCount());
+            while (retrace_count == VIGetRetraceCount()){
+                // nop
+            }
 
             // busy loop for 2 seconds
             OSTime var1 = OSGetTime();
@@ -124,6 +125,8 @@ void showAssert_f_va(u32 device, const char* file, int line, const char* msg, va
 }
 
 void showAssert_f(u32 device, const char* file, int line, const char* msg, ...) {
+    UNUSED(msg);
+
     va_list args;
     va_start(args, msg);
     showAssert_f_va(device, file, line, msg, args);
@@ -154,6 +157,8 @@ void setWarningMessage_f_va(u32 device, const char* file, int line, const char* 
 }
 
 void setWarningMessage_f(u32 device, char* file, int line, const char* msg, ...) {
+    UNUSED(msg);
+
     va_list args;
     va_start(args, msg);
     setWarningMessage_f_va(device, file, line, msg, args);
@@ -184,6 +189,8 @@ void setLogMessage_f_va(u32 device, const char* file, int line, const char* msg,
 }
 
 void setLogMessage_f(u32 device, char* file, int line, const char* msg, ...) {
+    UNUSED(msg);
+    
     va_list args;
     va_start(args, msg);
     setLogMessage_f_va(device, file, line, msg, args);
