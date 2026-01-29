@@ -406,10 +406,6 @@ static int phase_2(room_of_scene_class* i_this) {
     return cPhs_NEXT_e;
 }
 
-void dStage_roomControl_c::setZoneNo(int i_roomNo, int i_zoneNo) {
-    mStatus[i_roomNo].mZoneNo = i_zoneNo;
-}
-
 static int phase_3(room_of_scene_class* i_this) {
     if (objectSetCheck(i_this)) {
         return cPhs_NEXT_e;

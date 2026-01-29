@@ -784,7 +784,7 @@ void dMenu_ItemExplain_c::setNumber() {
     }
 }
 
-bool dMenu_ItemExplain_c::getWarpMarkFlag() {
+u8 dMenu_ItemExplain_c::getWarpMarkFlag() {
     if (dStage_stagInfo_GetUpButton(dComIfGp_getStageStagInfo()) == 1) {
         return dComIfGs_getWarpMarkFlag();
     }
