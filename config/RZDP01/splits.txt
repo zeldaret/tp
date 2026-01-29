@@ -3976,7 +3976,7 @@ PowerPC_EABI_Support/Runtime/Src/Gecko_ExceptionPPC.cp:
 	.text       start:0x803A9888 end:0x803A98EC
 	.bss        start:0x8051B678 end:0x8051B688
 
-PowerPC_EABI_Support/Runtime/Src/GCN_Mem_Alloc.c:
+PowerPC_EABI_Support/Runtime/Src/GCN_mem_alloc.c:
 	.text       start:0x803A98EC end:0x803A99A4
 	.rodata     start:0x803E0458 end:0x803E04C8
 
@@ -4113,7 +4113,7 @@ PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/abort_exit_ppc_eabi.c:
 	.text       start:0x803AEE38 end:0x803AEE6C
 	.sbss       start:0x80522148 end:0x80522150
 
-PowerPC_EABI_Support/MSL/MSL_C/PPC_EABI/Src/math_sun.c:
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common_Embedded/Src/math_sun.c:
 	extab       start:0x80006680 end:0x80006688
 	extabindex  start:0x800068E0 end:0x800068EC
 	.text       start:0x803AEE6C end:0x803AEEAC
