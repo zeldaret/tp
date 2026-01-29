@@ -11370,7 +11370,7 @@ void dKy_bg_MAxx_proc(void* bg_model_p) {
                                                       camera_p->aspect, 0.49f, -0.49f, 0.5f, 0.5f);
                             }
 
-                            #if !PLATFORM_GCN
+                            #if WIDESCREEN_SUPPORT
                             mDoGph_gInf_c::setWideZoomLightProjection(sp1D8);
                             #endif
                             tex_mtx_inf->setEffectMtx(sp1D8);
@@ -11493,7 +11493,7 @@ void dKy_bg_MAxx_proc(void* bg_model_p) {
                                     Mtx sp178;
                                     C_MTXLightPerspective(sp1A8, var_f28 * 2.8f, 1.0f, 0.5f, 0.5f,
                                                           0.0f, 0.0f);
-                                    #if !PLATFORM_GCN
+                                    #if WIDESCREEN_SUPPORT
                                     mDoGph_gInf_c::setWideZoomLightProjection(sp1A8);
                                     #endif
                                     spFC.x = spF0.x;
@@ -11533,7 +11533,7 @@ void dKy_bg_MAxx_proc(void* bg_model_p) {
                                 Mtx sp148;
                                 Mtx sp118;
                                 C_MTXLightPerspective(sp148, 170.0f, 1.0f, 1.5f, 1.5f, 0.0f, 0.0f);
-                                #if !PLATFORM_GCN
+                                #if WIDESCREEN_SUPPORT
                                 mDoGph_gInf_c::setWideZoomLightProjection(sp148);
                                 #endif
                                 spD8.x = player_p->current.pos.x;
