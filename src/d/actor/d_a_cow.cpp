@@ -2174,11 +2174,11 @@ void daCow_c::executeCrazyThrow() {
 
             if (mAction != daCow_c::Action_Wait) {
                 setBck(daCow_c::Animation_DownR, J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f);
-                mSavedAngle.y -= (s16)0x7000;
+                SUB_ANGLE(mSavedAngle.y, 0x7000);
                 mThrowIntensity = -1000;
             } else {
                 setBck(daCow_c::Animation_DownL, J3DFrameCtrl::EMode_LOOP, 0.0f, 1.0f);
-                mSavedAngle.y += (s16)0x7000;
+                ADD_ANGLE(mSavedAngle.y, 0x7000);
                 mThrowIntensity = 1000;
             }
         }

@@ -1939,7 +1939,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         } else if (a_this->speedF < 1.0f) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mActionMode = 6;
-            i_this->mTargetFacingAngle += (s16)0x8000;
+            ADD_ANGLE(i_this->mTargetFacingAngle, 0x8000);
         }
         break;
     case 6:
@@ -2201,7 +2201,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
         } else if (a_this->speedF < 1.0f) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mActionMode = 6;
-            i_this->mTargetFacingAngle += (s16)0x8000;
+            ADD_ANGLE(i_this->mTargetFacingAngle, 0x8000);
         }
     } break;
 
@@ -2374,7 +2374,7 @@ static void e_wb_a_run(e_wb_class* i_this) {
 
         if (i_this->field_0x698[0] == 0) {
             i_this->field_0x698[0] = cM_rndF(30.0f) + 10.0f;
-            i_this->mTargetFacingAngle += (s16)cM_rndFX(10000.0f);
+            ADD_ANGLE(i_this->mTargetFacingAngle, cM_rndFX(10000.0f));
         }
 
         if (i_this->field_0x698[1] == 1 || i_this->mSpeedCapTimer == 2) {
@@ -2457,7 +2457,7 @@ static int e_wb_damage(e_wb_class* i_this) {
         i_this->mActionMode = 1;
         a_this->speedF = -15.0f + YREG_F(0);
         a_this->speed.y = 50.0f + YREG_F(1) + cM_rndF(20.0f);
-        a_this->current.angle.y += (s16)cM_rndFX(3000.0f);
+        ADD_ANGLE(a_this->current.angle.y, cM_rndFX(3000.0f));
         i_this->mStatusFlags |= (u16)0x40;
         break;
         
@@ -2778,7 +2778,7 @@ static void damage_check(e_wb_class* i_this) {
             if (!daAlink_getAlinkActorClass()->checkBoarRideOwn(a_this) && 
                 i_this->field_0x6a0 == 0 && a_this->speedF < 1.0f &&
                 fopAcM_GetName(hit_actor) == PROC_ALINK) {
-                i_this->field_0x6ba += (s16)2;
+                ADD_ANGLE(i_this->field_0x6ba, 2);
                 if (i_this->field_0x6ba >= 150) {
                     i_this->field_0x692 = i_this->mActionID;
                     i_this->mActionID = ACT_S_DAMAGE;
@@ -2823,10 +2823,10 @@ static void damage_check(e_wb_class* i_this) {
                             
                             if (angle < 0) {
                                 i_this->field_0x5de = 0x1000;
-                                a_this->current.angle.y += (s16)0x800;
+                                ADD_ANGLE(a_this->current.angle.y, 0x800);
                             } else {
                                 i_this->field_0x5de = -0x1000;
-                                a_this->current.angle.y -= (s16)0x800;
+                                SUB_ANGLE(a_this->current.angle.y, 0x800);
                             }
                         }
                     }
@@ -3341,11 +3341,11 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
         i_this->mTargetFacingAngle = cM_atan2s(sp94.x, sp94.z);
 
         if (rider && rider->mAnmID == 0x27) {
-            i_this->mTargetFacingAngle += static_cast<s16>(
-                (BREG_F(16) + 5000.0f) * cM_ssin(i_this->field_0x68e * (BREG_S(7) + 1000)));
+            ADD_ANGLE(i_this->mTargetFacingAngle,
+                      (BREG_F(16) + 5000.0f) * cM_ssin(i_this->field_0x68e * (BREG_S(7) + 1000)));
             turn_speed = 0x400;
         } else if (wall_check != 0) {
-            i_this->mTargetFacingAngle += (s16)((BREG_S(8) + -8000) * wall_check);
+            ADD_ANGLE(i_this->mTargetFacingAngle, (BREG_S(8) + -8000) * wall_check);
         }
 
         cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetFacingAngle, 8, turn_speed);

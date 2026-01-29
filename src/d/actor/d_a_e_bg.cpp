@@ -1227,11 +1227,11 @@ int daE_BG_c::execute() {
         mIsBomb = true;
 
         if (field_0x694 < 30) {
-            field_0x698 += (s16)0x1000;
+            ADD_ANGLE(field_0x698, 0x1000);
         } else if (field_0x694 < 45) {
-            field_0x698 += (s16)0x800;
+            ADD_ANGLE(field_0x698, 0x800);
         } else {
-            field_0x698 += (s16)0x300;
+            ADD_ANGLE(field_0x698, 0x300);
         }
 
         if (field_0x694 == 0) {

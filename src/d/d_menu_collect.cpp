@@ -2266,7 +2266,7 @@ void dMenu_Collect3D_c::_move(u8 param_0, u8 param_1) {
     toItem3Dpos(linkPos.x, posY, posZ, &itemPos);
     if (param_0 == 0 && param_1 == 0) {
         f32 temp = 450.0f;
-        mLinkAngle += (s16)temp;
+        ADD_ANGLE(mLinkAngle, temp);
     } else {
         s16 target = mIsWolf != 0 ? (s16)-0x510C : (s16)-0x5B1C;
         cLib_addCalcAngleS(&mLinkAngle, target, 4, 0x800, 0x80);

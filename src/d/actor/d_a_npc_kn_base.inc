@@ -1033,7 +1033,7 @@ BOOL daNpc_Kn_c::turn(s16 i_angle, int i_count, int i_direction) {
     }
 
     int offset = angle_diff * cM_ssin((s16)mTurnAmount);
-    mTurnAmount += (s16)(16384.0f / mTurnCount);
+    ADD_ANGLE(mTurnAmount, 16384.0f / mTurnCount);
 
     if ((u16)mTurnAmount < 0x4000) {
         mCurAngle.y = mStartAngle + offset;

@@ -170,11 +170,11 @@ static int daObj_Ihasi_Create(fopAc_ac_c* i_actor) {
             fopAcM_create(PROC_E_S1, param1, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
 
             pos.set(35250.0f, -300.0f, -43500.0f);
-            angle.y += (s16)0x5555;
+            ADD_ANGLE(angle.y, 0x5555);
             fopAcM_create(PROC_E_S1, param1, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
 
             pos.set(34250.0f, -300.0f, -43500.0f);
-            angle.y += (s16)0x5555;
+            ADD_ANGLE(angle.y, 0x5555);
             fopAcM_create(PROC_E_S1, param1, &pos, fopAcM_GetRoomNo(i_actor), &angle, NULL, -1);
 
             return cPhs_ERROR_e;

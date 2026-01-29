@@ -938,9 +938,9 @@ void dMenu_Fmap2DBack_c::scrollCalc(f32 param_0) {
 }
 
 void dMenu_Fmap2DBack_c::mapBlink(s16* param_0) {
-    *param_0 += (s16)1;
+    ADD_S16(*param_0, 1);
     if (*param_0 >= 30) {
-        *param_0 -= (s16)30;
+        SUB_S16(*param_0, 30);
     }
 }
 
