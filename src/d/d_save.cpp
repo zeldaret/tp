@@ -1793,7 +1793,8 @@ int dSv_info_c::card_to_memory(char* i_cardPtr, int i_dataNum) {
     i_cardPtr = i_cardPtr + i_dataNum * QUEST_LOG_SIZE;
     char* var_r30 = i_cardPtr;
 
-    memcpy(dComIfGs_getSaveData(), i_cardPtr, sizeof(dSv_save_c));
+    dSv_save_c* pSave = dComIfGs_getSaveData();
+    memcpy(pSave, i_cardPtr, sizeof(dSv_save_c));
     i_cardPtr += sizeof(dSv_save_c);
 
 #if PLATFORM_GCN
@@ -1846,7 +1847,8 @@ int dSv_info_c::initdata_to_card(char* i_cardPtr, int i_dataNum) {
     save.init();
     save.getPlayer().getPlayerInfo().setPlayerName("");
     save.getPlayer().getPlayerInfo().setHorseName("");
-    memcpy(i_cardPtr, &save, sizeof(dSv_save_c));
+    dSv_save_c* pSave = &save;
+    memcpy(i_cardPtr, pSave, sizeof(dSv_save_c));
     i_cardPtr += sizeof(dSv_save_c);
 
     if (i_cardPtr - var_r30 > (QUEST_LOG_SIZE - 8)) {

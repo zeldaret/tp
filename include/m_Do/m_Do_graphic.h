@@ -56,6 +56,7 @@ public:
     class csr_c {
     public:
         virtual ~csr_c() {}
+        virtual void draw(f32, f32) = 0;
         virtual bool isPointer();
 
         static void particleExecute();
