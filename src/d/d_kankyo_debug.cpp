@@ -55,9 +55,9 @@ static void add_update_proc(u8* mode, s16* param_1, s16* param_2, s16* param_3) 
             }
         }
 
-        *param_1 += (s16)value;
-        *param_2 += (s16)value;
-        *param_3 += (s16)value;
+        ADD_S16(*param_1, value);
+        ADD_S16(*param_2, value);
+        ADD_S16(*param_3, value);
         *mode = 0;
 
         g_kankyoHIO.light.dKankyo_lightHIOInfoUpDateF();

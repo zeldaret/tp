@@ -1038,7 +1038,7 @@ static BOOL way_check(e_rd_class* i_this) {
             dBgS_LinChk lin_chk;
             lin_chk.Set(&start, &end, a_this);
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                sVar1 += (s16) 0x1000;
+                ADD_ANGLE(sVar1, 0x1000);
             } else {
                 i_this->field_0x5cc = sVar1;
                 return TRUE;
@@ -2879,10 +2879,10 @@ static void e_rd_damage(e_rd_class* i_this) {
                     OS_REPORT("              ..KADO KABE ..%x\n", kado_kabe);
                     if (kado_kabe == 2) {
                         i_this->field_0x9f6 = 0x1000;
-                        i_this->field_0xa0c.y += (s16) (TREG_S(8) - 7000);
+                        ADD_ANGLE(i_this->field_0xa0c.y, TREG_S(8) - 7000);
                     } else {
                         i_this->field_0x9f6 = -0x1000;
-                        i_this->field_0xa0c.y += (s16) -(TREG_S(8) - 7000);
+                        ADD_ANGLE(i_this->field_0xa0c.y, -(TREG_S(8) - 7000));
                     }
 
                     i_this->field_0xab8 = 8000.0f + BREG_F(10);
@@ -3163,7 +3163,7 @@ static s16 gake_check(e_rd_class* i_this, f32 param_2) {
             }
         }
 
-        sVar1 += (s16) 0x1000;
+        ADD_ANGLE(sVar1, 0x1000);
     }
 
     return a_this->shape_angle.y;
@@ -5322,7 +5322,8 @@ static void action(e_rd_class* i_this) {
             sp25c.x = 10.0f;
             MtxPosition(&sp25c, &sp268);
             sp25c = sp268 - i_this->field_0x9b0;
-            a_this->current.angle.x += (s16)-cM_atan2s(sp25c.y, JMAFastSqrt(sp25c.x * sp25c.x + sp25c.z * sp25c.z));
+            ADD_ANGLE(a_this->current.angle.x,
+                      -cM_atan2s(sp25c.y, JMAFastSqrt(sp25c.x * sp25c.x + sp25c.z * sp25c.z)));
             a_this->shape_angle.x = a_this->current.angle.x;
 
             if (i_this->field_0x9be == 1) {
@@ -6857,8 +6858,8 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
                 // NOT Hyrule Field
                 if (strcmp(dComIfGp_getStartStageName(), "F_SP121") != 0 && i_this->field_0x1296 == 0) {
-                    local_148.x += (s16)(cM_rndFX(200.0f) + -500.0f);
-                    local_148.y += (s16)cM_rndFX(100.0f);
+                    ADD_ANGLE(local_148.x, cM_rndFX(200.0f) + -500.0f);
+                    ADD_ANGLE(local_148.y, cM_rndFX(100.0f));
                 }
             }
 
@@ -6912,8 +6913,8 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 } else {
                     i_this->field_0x71c[i] += i_this->field_0x7c4[i];
                     i_this->field_0x7c4[i].y -= 3.0f;
-                    i_this->field_0x86c[i].y += (s16) 0x900;
-                    i_this->field_0x86c[i].x += (s16) 0xB00;
+                    ADD_ANGLE(i_this->field_0x86c[i].y, 0x900);
+                    ADD_ANGLE(i_this->field_0x86c[i].x, 0xB00);
 
                     mDoMtx_stack_c::transS(i_this->field_0x71c[i].x, i_this->field_0x71c[i].y, i_this->field_0x71c[i].z);
                     mDoMtx_stack_c::YrotM(i_this->field_0x86c[i].y);
@@ -6951,8 +6952,8 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 cMtx_XrotM(*calc_mtx, 0x7FFF);
                 cMtx_ZrotM(*calc_mtx, i_this->field_0x6bc.z);
                 MtxTrans(-(BREG_F(5) + 80.0f), -(BREG_F(6) + 50.0f), -(BREG_F(7) + 0.0f), 1);
-                i_this->field_0x6bc.y += (s16) 0x200;
-                i_this->field_0x6bc.z += (s16) 0xF00;
+                ADD_ANGLE(i_this->field_0x6bc.y, 0x200);
+                ADD_ANGLE(i_this->field_0x6bc.z, 0xF00);
             }
 
             i_this->mpMorfHornAnm->getModel()->setBaseTRMtx(*calc_mtx);
@@ -7073,7 +7074,7 @@ static void ride_game_actor_set(e_rd_class* i_this) {
             gnd_chk.SetPos(&i_pos);
             i_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
             i_angle = player->shape_angle;
-            i_angle.y += (s16) 0x4000;
+            ADD_ANGLE(i_angle.y, 0x4000);
             i_parameters = 0x80000005;
         } else if (i_this->mBossMode == 2) {
             i_pos.set(34789.0f, -290.0f, -36177.0f);

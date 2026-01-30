@@ -396,9 +396,9 @@ static void e_gb_damage(e_gb_class* i_this) {
         case 0:
             i_this->mode = 1;
             if ((s16)(i_this->angleYTarget - actor->current.angle.y) < 0) {
-                actor->current.angle.y += (s16)(KREG_S(6) + 0x2000);
+                ADD_ANGLE(actor->current.angle.y, KREG_S(6) + 0x2000);
             } else {
-                actor->current.angle.y -= (s16)(KREG_S(6) + 0x2000);
+                SUB_ANGLE(actor->current.angle.y, KREG_S(6) + 0x2000);
             }
 
             cMtx_YrotS(*calc_mtx, actor->current.angle.y);
@@ -871,7 +871,7 @@ static void action(e_gb_class* i_this) {
             i_this->xRot = i_this->field_0x94c * cM_scos((s16)i_this->field_0x94a);
         }
 
-        i_this->field_0x94a += (s16)(10000 + VREG_S(2));
+        ADD_ANGLE(i_this->field_0x94a, 10000 + VREG_S(2));
         cLib_addCalc0(&i_this->field_0x94c, 1.0f, VREG_F(2) + 150.0f);
     } else {
         i_this->xRot = 0;
@@ -1449,7 +1449,7 @@ static int daE_GB_Execute(e_gb_class* i_this) {
         if (i_this->field_0x670 == 1) {
             i_this->keyPos.y += i_this->field_0x680;
             i_this->field_0x680 -= 3.0f;
-            i_this->keyXRot += (s16)-0xC00;
+            ADD_ANGLE(i_this->keyXRot, -0xC00);
 
             if (i_this->keyPos.y < actor->home.pos.y) {
                 i_this->keyXRot = 0;

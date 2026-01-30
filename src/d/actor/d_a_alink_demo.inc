@@ -4148,7 +4148,7 @@ int daAlink_c::procDungeonWarpInit() {
 }
 
 int daAlink_c::procDungeonWarp() {
-    mProcVar2.field_0x300c += (s16)0x200;
+    ADD_ANGLE(mProcVar2.field_0x300c, 0x200);
 
     if (mProcVar2.field_0x300c > 0x4000) {
         mProcVar2.field_0x300c = 0x4000;
@@ -4157,7 +4157,7 @@ int daAlink_c::procDungeonWarp() {
     }
 
     f32 sin = cM_ssin(mProcVar2.field_0x300c);
-    shape_angle.y += (s16)(14336.0f * sin);
+    ADD_ANGLE(shape_angle.y, 0x3800 * sin);
     mProcVar3.field_0x300e = 8.0f * sin + 24.0f * (1.0f - scale.x);
 
     if (mProcVar5.field_0x3012 != 0) {
@@ -4256,7 +4256,7 @@ int daAlink_c::procDungeonWarpSceneStart() {
     }
 
     f32 sin = cM_ssin(mProcVar2.field_0x300c);
-    shape_angle.y += (s16)(sin * 14336.0f);
+    ADD_ANGLE(shape_angle.y, sin * (f32)0x3800);
     mProcVar3.field_0x300e = (sin * 8.0f) + ((1.0f - scale.x) * 24.0f);
     return 1;
 }

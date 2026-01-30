@@ -148,7 +148,7 @@ static void fr_normal(fr_class* i_this) {
     cXyz sp0c;
     switch (i_this->field_0x5d4) {
         case 0:
-            i_this->field_0x5d4 += (s16)1;
+            ADD_S16(i_this->field_0x5d4, 1);
             anm_init(i_this, 11, 5.0f, 2, cM_rndF(0.3f) + 0.8f);
             i_this->field_0x5dc[0] = cM_rndF(50.0f) + 20.0f;
             i_this->speedF = 0.0f;
@@ -200,7 +200,7 @@ static void fr_away(fr_class* i_this) {
     cXyz sp08;
     switch (i_this->field_0x5d4) {
         case 0:
-            i_this->field_0x5d4 += (s16)1;
+            ADD_S16(i_this->field_0x5d4, 1);
             i_this->speedF = 0.0f;
             anm_init(i_this, 7, 3.0f, 0, 4.0f);
             break;

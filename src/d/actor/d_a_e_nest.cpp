@@ -416,7 +416,7 @@ static void e_nest_drop(e_nest_class* i_this) {
         if (wall_angle != 0x23) {
             s16 angle_delta = i_this->current.angle.y - wall_angle;
             i_this->mSpin = angle_delta * -0.3f;
-            i_this->current.angle.y += (s16)(0x8000 - (angle_delta << 1));
+            ADD_ANGLE(i_this->current.angle.y, 0x8000 - (angle_delta << 1));
             i_this->speedF *= 0.5f;
             i_this->mTimers[1] = 10;
             i_this->mSound.startSound(Z2SE_OBJ_HACHINOSU_BOUND, 0, -1);

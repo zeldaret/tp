@@ -233,7 +233,7 @@ void daObjKAT_c::WallWalk() {
             field_0x7c2.x = cM_atan2s(unkXyzP2->z, unkXyzP2->y);
             field_0x7f6 = cM_atan2s(unkXyzP2->x, unkXyzP2->z);
         } else {
-            field_0x7e0 += (s16)0x100;
+            ADD_ANGLE(field_0x7e0, 0x100);
         }
     }
 
@@ -702,7 +702,7 @@ int daObjKAT_c::create() {
         field_0x808 = fopAcM_GetParam(this) & 0xf;
         if (field_0x808 == 2) {
             field_0x56c = 0;
-            shape_angle.x += (s16)-0x2000;
+            ADD_ANGLE(shape_angle.x, -0x2000);
             fopAcM_OnStatus(this, 0x4000);
         } else {
             mDraw = true;

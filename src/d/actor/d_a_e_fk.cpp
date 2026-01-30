@@ -613,7 +613,7 @@ void daE_FK_c::At_Check(int i_sphIdx) {
         }
 
         if ((s16)mAtInfo.mAttackPower > 0) {
-            health -= (s16)mAtInfo.mAttackPower;
+            SUB_S16(health, mAtInfo.mAttackPower);
         }
 
         int unk_r29 = 0;

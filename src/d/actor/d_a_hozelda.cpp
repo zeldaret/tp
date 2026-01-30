@@ -825,8 +825,8 @@ void daHoZelda_c::setNeckAngle() {
         angle_x_target = var_r27;
         angle_y_target = var_r26;
 
-        var_r27 += (s16)(spA - spE);
-        var_r26 += (s16)(sp8 - spC);
+        ADD_ANGLE(var_r27, spA - spE);
+        ADD_ANGLE(var_r26, sp8 - spC);
     }
 
     daPy_addCalcShort(&mNeckAngle.x, angle_x_target, 3, 0x1000, 0x100);

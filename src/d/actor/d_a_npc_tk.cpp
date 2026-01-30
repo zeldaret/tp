@@ -1128,8 +1128,8 @@ void daNPC_TK_c::executeAway() {
 }
 
 void daNPC_TK_c::setCarryActorMtx() {
-    field_0x6a8 += (s16)0x6bc;
-    field_0x6a6 = cM_ssin(field_0x6a8) * 2048.0f + 4096.0f;
+    ADD_ANGLE(field_0x6a8, 0x6bc);
+    field_0x6a6 = cM_ssin(field_0x6a8) * (f32)0x800 + (f32)0x1000;
     if (field_0x634 == NULL) {
         return;
     }
@@ -1310,8 +1310,7 @@ void daNPC_TK_c::executeBack() {
 
             shape_angle.y += field_0x69e;
             current.angle.y = shape_angle.y;
-
-            shape_angle.x -= (s16)(0x300 + nREG_S(0));
+            SUB_ANGLE(shape_angle.x, 0x300 + nREG_S(0));
 
             if (shape_angle.x < -0x3000) {
                 shape_angle.x = -0x3000;

@@ -7,6 +7,7 @@
 #include "JSystem/JKernel/JKRAram.h"
 #include <dolphin/gx.h>
 #include <stdint.h>
+#include "JSystem/CastedMath.h"
 
 JUTCacheFont::JUTCacheFont(ResFONT const* p_fontRes, u32 cacheSize, JKRHeap* p_heap) {
     initialize_state();
@@ -343,11 +344,7 @@ void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo* param_0,
     prepend(pGylphCacheInfo);
     int iVar3 = pGylphCacheInfo->field_0x16 * pGylphCacheInfo->field_0x18;
     int iVar2 = *r30 / iVar3;
-#if PLATFORM_SHIELD
-    pGylphCacheInfo->field_0x8 += (u16)(iVar2 * iVar3);
-#else
-    pGylphCacheInfo->field_0x8 += iVar2 * iVar3;
-#endif
+    ADD_U16_2(pGylphCacheInfo->field_0x8, iVar2 * iVar3);
     u16 local_30 = pGylphCacheInfo->field_0x8 + iVar3 - 1;
     pGylphCacheInfo->field_0xa = pGylphCacheInfo->field_0xa < local_30 ? pGylphCacheInfo->field_0xa : local_30;
     *param_3 = iVar2;

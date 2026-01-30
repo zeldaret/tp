@@ -236,7 +236,7 @@ static void obj_hb_drop(obj_hb_class* i_this) {
                 if (wall_angle != 35) {
                     s16 angle_delta = a_this->current.angle.y - wall_angle;
                     i_this->field_0x690 = angle_delta * (WREG_F(6) + -0.3f);
-                    a_this->current.angle.y += (s16)(0x8000 - (angle_delta << 1));
+                    ADD_ANGLE(a_this->current.angle.y, 0x8000 - (angle_delta << 1));
                     a_this->speedF *= AREG_F(4) + 0.5f;
                     i_this->mTimers[0] = 10;
                     i_this->mSound.startCollisionSE(Z2SE_HIT_SWORD, 41);
@@ -369,8 +369,8 @@ static void obj_hb_float(obj_hb_class* i_this) {
     i_this->field_0x676.x = i_this->field_0x694 * cM_ssin(i_this->field_0x650 * (WREG_S(3) + 1000));
     i_this->field_0x676.z = i_this->field_0x694 * cM_ssin(i_this->field_0x650 * (WREG_S(4) + 1100));
     cLib_addCalc2(&i_this->field_0x694, 500.0f, 0.1f, 30.0f);
-    i_this->field_0x676.x += (s16)(i_this->field_0x698 * cM_ssin(i_this->field_0x650 * (WREG_S(7) + 4000)));
-    a_this->shape_angle.z += (s16)(i_this->field_0x698 * cM_ssin(i_this->field_0x650 * (WREG_S(8) + 4200)));
+    ADD_ANGLE(i_this->field_0x676.x, i_this->field_0x698 * cM_ssin(i_this->field_0x650 * (WREG_S(7) + 4000)));
+    ADD_ANGLE(a_this->shape_angle.z, i_this->field_0x698 * cM_ssin(i_this->field_0x650 * (WREG_S(8) + 4200)));
     cLib_addCalc2(&i_this->field_0x698, 0.0f, 0.1f, 30.0f);
     i_this->field_0x676.y += i_this->field_0x690;
 
