@@ -1037,22 +1037,6 @@ extern GXColor g_clearColor;
 extern GXColor g_whiteColor;
 extern GXColor g_saftyWhiteColor;
 
-BOOL dComIfGp_checkItemGet(u8 i_itemNo, int param_1);
-void dComIfG_get_timelayer(int* o_layer);
-int dComIfG_changeOpeningScene(scene_class* i_scene, s16 i_procName);
-BOOL dComIfG_resetToOpening(scene_class* i_scene);
-int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcName);
-int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resName, JKRHeap* i_heap);
-int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* i_resName);
-s8 dComIfGp_getReverb(int i_roomNo);
-int dComIfGd_setSimpleShadow(cXyz* i_pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 i_angle,
-                             f32 param_5, _GXTexObj* i_tex);
-bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle);
-stage_camera_class* dComIfGp_getRoomCamera(int i_roomNo);
-stage_arrow_class* dComIfGp_getRoomArrow(int i_roomNo);
-void dComIfGp_setNextStage(char const* i_stage, s16 i_point, s8 i_roomNo, s8 i_layer, f32 i_lastSpeed,
-                           u32 i_lastMode, int, s8 i_wipe, s16 i_lastAngle, int param_9, int i_wipeSpeedT);
-void dComIfGp_setNextStage(char const* i_stage, s16 i_point, s8 i_roomNo, s8 i_layer);
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no);
 void dComIfGs_onStageSwitch(int i_stageNo, int i_no);
 void dComIfGs_offStageSwitch(int i_stageNo, int i_no);
@@ -1103,36 +1087,10 @@ void dComIfGs_setSelectItemIndex(int i_no, u8 item_index);
 void dComIfGs_setMixItemIndex(int i_no, u8 item_index);
 u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx);
 u8 dComIfGs_getMixItemIndex(int i_no);
-void dComIfGp_setSelectItem(int index);
-u8 dComIfGp_getSelectItem(int index);
-void dComIfGp_mapShow();
-void dComIfGp_mapHide();
-bool dComIfGp_checkMapShow();
-s32 dComIfGp_setHeapLockFlag(u8 flag);
-s32 dComIfGp_offHeapLockFlag(int flag);
-void dComIfGp_createSubExpHeap2D();
-void dComIfGp_destroySubExpHeap2D();
-int dComIfGp_checkEmptySubHeap2D();
-int dComIfGp_searchUseSubHeap2D(int flag);
-JKRExpHeap* dComIfGp_getSubHeap2D(int flag);
 u8 dComIfGs_checkGetInsectNum();
 u8 dComIfGs_checkGetItem(u8 i_itemNo);
 u8 dComIfGs_getBottleMax();
-s16 dComIfGp_getSelectItemNum(int index);
-int dComIfGp_getSelectItemMaxNum(int index);
-void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num);
-void dComIfGp_addSelectItemNum(int index, s16 num);
-int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
-                       f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8,
-                       dKy_tevstr_c* param_9, s16 param_10, f32 param_11, _GXTexObj* param_12);
 void dComIfGs_gameStart();
-void dComIfG_playerStatusD();
-void dComIfG_playerStatusD_pre_clear();
-u32 dComIfG_getTrigA(u32 i_padNo);
-void dComIfGp_calcNowRegion();
-u8 dComIfG_getNowCalcRegion();
-bool dComIfGp_isLightDropMapVisible();
-u8 dComIfGp_getNowLevel();
 void dComIfGs_setSelectEquipClothes(u8 i_itemNo);
 void dComIfGs_setSelectEquipSword(u8 i_itemNo);
 void dComIfGs_setSelectEquipShield(u8 i_itemNo);
@@ -1146,18 +1104,6 @@ s16 dComIfGs_getWarpPlayerAngleY();
 s8 dComIfGs_getWarpRoomNo();
 u8 dComIfGs_getWarpMarkFlag();
 void dComIfGs_setWarpMarkFlag(u8);
-void* dComIfG_getStageRes(char const* i_resName);
-void* dComIfG_getOldStageRes(char const* i_resName);
-char* dComIfG_getRoomArcName(int roomNo);
-void dComIfGp_ret_wp_set(s8);
-void dComIfGp_world_dark_set(u8);
-u8 dComIfGp_world_dark_get();
-int dComIfG_TimerStart(int i_mode, s16 i_time);
-int dComIfG_TimerStop(int);
-int dComIfG_TimerReStart(int);
-int dComIfG_TimerEnd(int i_mode, int param_1);
-int dComIfG_TimerDeleteCheck(int);
-int dComIfG_TimerDeleteRequest(int i_mode);
 BOOL dComIfGs_Wolf_Change_Check();
 void dComIfGs_PolyDamageOff_Set(s8 i_setting);
 s8 dComIfGs_PolyDamageOff_Check();
@@ -1165,21 +1111,74 @@ void dComIfGs_shake_kandelaar();
 int dComIfGs_shake_kandelaar_check();
 BOOL dComIfGs_wolfeye_effect_check();
 void dComIfGs_Grass_hide_Set(s8);
-void dComIfGp_TargetWarpPt_set(u8);
-void dComIfGp_SelectWarpPt_set(u8);
-u8 dComIfGp_TargetWarpPt_get();
-u8 dComIfGp_SelectWarpPt_get();
-BOOL dComIfGp_TransportWarp_check();
-int dComLbG_PhaseHandler(request_of_phase_process_class*, request_of_phase_process_fn*, void*);
 void dComIfGs_onVisitedRoom(int i_roomNo);
 void dComIfGs_offVisitedRoom(int i_roomNo);
 BOOL dComIfGs_isVisitedRoom(int i_roomNo);
 void dComIfGs_staffroll_next_go();
 u8 dComIfGs_staffroll_next_go_check();
 
-inline void dComIfG_ct() {
-    g_dComIfG_gameInfo.ct();
-}
+BOOL dComIfGp_checkItemGet(u8 i_itemNo, int param_1);
+s8 dComIfGp_getReverb(int i_roomNo);
+bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_angle);
+stage_camera_class* dComIfGp_getRoomCamera(int i_roomNo);
+stage_arrow_class* dComIfGp_getRoomArrow(int i_roomNo);
+void dComIfGp_setNextStage(char const* i_stage, s16 i_point, s8 i_roomNo, s8 i_layer, f32 i_lastSpeed,
+                           u32 i_lastMode, int, s8 i_wipe, s16 i_lastAngle, int param_9, int i_wipeSpeedT);
+void dComIfGp_setNextStage(char const* i_stage, s16 i_point, s8 i_roomNo, s8 i_layer);
+void dComIfGp_setSelectItem(int index);
+u8 dComIfGp_getSelectItem(int index);
+void dComIfGp_mapShow();
+void dComIfGp_mapHide();
+bool dComIfGp_checkMapShow();
+s32 dComIfGp_setHeapLockFlag(u8 flag);
+s32 dComIfGp_offHeapLockFlag(int flag);
+void dComIfGp_createSubExpHeap2D();
+void dComIfGp_destroySubExpHeap2D();
+int dComIfGp_checkEmptySubHeap2D();
+int dComIfGp_searchUseSubHeap2D(int flag);
+JKRExpHeap* dComIfGp_getSubHeap2D(int flag);
+s16 dComIfGp_getSelectItemNum(int index);
+int dComIfGp_getSelectItemMaxNum(int index);
+void dComIfGp_setSelectItemNum(int i_selItemIdx, s16 i_num);
+void dComIfGp_addSelectItemNum(int index, s16 num);
+void dComIfGp_calcNowRegion();
+bool dComIfGp_isLightDropMapVisible();
+u8 dComIfGp_getNowLevel();
+void dComIfGp_ret_wp_set(s8);
+void dComIfGp_world_dark_set(u8);
+u8 dComIfGp_world_dark_get();
+void dComIfGp_TargetWarpPt_set(u8);
+void dComIfGp_SelectWarpPt_set(u8);
+u8 dComIfGp_TargetWarpPt_get();
+u8 dComIfGp_SelectWarpPt_get();
+BOOL dComIfGp_TransportWarp_check();
+
+void dComIfG_get_timelayer(int* o_layer);
+int dComIfG_changeOpeningScene(scene_class* i_scene, s16 i_procName);
+BOOL dComIfG_resetToOpening(scene_class* i_scene);
+int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcName);
+int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resName, JKRHeap* i_heap);
+int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* i_resName);
+void dComIfG_playerStatusD();
+void dComIfG_playerStatusD_pre_clear();
+u32 dComIfG_getTrigA(u32 i_padNo);
+u8 dComIfG_getNowCalcRegion();
+void* dComIfG_getStageRes(char const* i_resName);
+void* dComIfG_getOldStageRes(char const* i_resName);
+char* dComIfG_getRoomArcName(int roomNo);
+int dComIfG_TimerStart(int i_mode, s16 i_time);
+int dComIfG_TimerStop(int);
+int dComIfG_TimerReStart(int);
+int dComIfG_TimerEnd(int i_mode, int param_1);
+int dComIfG_TimerDeleteCheck(int);
+int dComIfG_TimerDeleteRequest(int i_mode);
+int dComLbG_PhaseHandler(request_of_phase_process_class*, request_of_phase_process_fn*, void*);
+
+int dComIfGd_setSimpleShadow(cXyz* i_pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3, s16 i_angle,
+                             f32 param_5, _GXTexObj* i_tex);
+int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
+                       f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8,
+                       dKy_tevstr_c* param_9, s16 param_10, f32 param_11, _GXTexObj* param_12);
 
 inline dSv_info_c* dComIfGs_getSaveInfo() {
     return &g_dComIfG_gameInfo.info;
@@ -1547,6 +1546,10 @@ inline u8 dComIfGs_getPachinkoNum() {
 
 inline void dComIfGs_setPachinkoNum(u8 i_num) {
     g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setPachinkoNum(i_num);
+}
+
+inline u8 dComIfGs_getPachinkoMax() {
+    return 50;
 }
 
 inline void dComIfGs_setBombNum(u8 i_num) {
@@ -2287,16 +2290,12 @@ inline void dComIfGs_setInitDataToCard(u8* i_saveData, int i_dataNum) {
     g_dComIfG_gameInfo.info.initdata_to_card((char*)i_saveData, i_dataNum);
 }
 
-inline dBgS& dComIfG_Bgsp() {
-    return g_dComIfG_gameInfo.play.mBgs;
+inline u8 dComIfGs_getWolfAbility(int i_idx) {
+    return g_dComIfG_gameInfo.play.getWolfAbility(i_idx);
 }
 
-inline dCcS* dComIfG_Ccsp() {
-    return &g_dComIfG_gameInfo.play.mCcs;
-}
-
-inline dCcS& dComIfG_Ccsp2() {
-    return g_dComIfG_gameInfo.play.mCcs;
+inline s8 dComIfGs_Grass_hide_Check() {
+    return g_dComIfG_gameInfo.field_0x1ddfc;
 }
 
 inline dStage_startStage_c* dComIfGp_getStartStage() {
@@ -2640,6 +2639,14 @@ inline dEvent_manager_c* dComIfGp_getPEvtManager() {
     return &g_dComIfG_gameInfo.play.getEvtManager();
 }
 
+inline int dComIfGp_evmng_cameraPlay() {
+    return dComIfGp_getPEvtManager()->cameraPlay();
+}
+
+inline int dComIfGp_evmng_startDemo(int i_mapToolId) {
+    return dComIfGp_getPEvtManager()->setStartDemo(i_mapToolId);
+}
+
 inline void dComIfGp_evmng_create() {
     g_dComIfG_gameInfo.play.getEvtManager().create();
 }
@@ -2681,8 +2688,92 @@ inline BOOL dComIfGp_evmng_endCheck(const char* i_eventname) {
     return g_dComIfG_gameInfo.play.getEvtManager().endCheckOld(i_eventname);
 }
 
+inline int dComIfGp_evmng_getMyStaffId(const char* i_staffname, fopAc_ac_c* i_actor, int i_tagId) {
+    return dComIfGp_getPEvtManager()->getMyStaffId(i_staffname, i_actor, i_tagId);
+}
+
+inline int dComIfGp_evmng_getIsAddvance(int i_staffId) {
+    return dComIfGp_getPEvtManager()->getIsAddvance(i_staffId);
+}
+
+inline int dComIfGp_evmng_getMyActIdx(int i_staffId, char** i_actions, int i_actionNum, BOOL param_3, BOOL param_4) {
+    return dComIfGp_getPEvtManager()->getMyActIdx(i_staffId, i_actions, i_actionNum, param_3, param_4);
+}
+
+inline f32* dComIfGp_evmng_getMyFloatP(int i_staffId, char* i_dataname) {
+    return (f32*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_FLOAT);
+}
+
+inline cXyz* dComIfGp_evmng_getMyXyzP(int i_staffId, char* i_dataname) {
+    return (cXyz*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_VEC);
+}
+
+inline int* dComIfGp_evmng_getMyIntegerP(int i_staffId, char* i_dataname) {
+    return (int*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_INT);
+}
+
+inline char* dComIfGp_evmng_getMyStringP(int i_staffId, char* i_dataname) {
+    return (char*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_STRING);
+}
+
+inline int dComIfGp_evmng_getMySubstanceNum(int i_staffId, char* i_dataname) {
+    return dComIfGp_getPEvtManager()->getMySubstanceNum(i_staffId, i_dataname);
+}
+
+inline void dComIfGp_evmng_cutEnd(int i_staffId) {
+    dComIfGp_getPEvtManager()->cutEnd(i_staffId);
+}
+
+inline void dComIfGp_evmng_setGoal(cXyz* i_pos) {
+    dComIfGp_getPEvtManager()->setGoal(i_pos);
+}
+
+inline cXyz* dComIfGp_evmng_getGoal() {
+    return dComIfGp_getPEvtManager()->getGoal();
+}
+
+inline BOOL dComIfGp_evmng_ChkPresentEnd() {
+    return dComIfGp_getPEvtManager()->ChkPresentEnd();
+}
+
+inline int dComIfGp_evmng_checkStartDemo() {
+    return dComIfGp_getPEvtManager()->checkStartDemo();
+}
+
 inline dAttention_c* dComIfGp_getAttention() {
     return g_dComIfG_gameInfo.play.getAttention();
+}
+
+inline fopAc_ac_c* dComIfGp_att_getZHint() {
+    return dComIfGp_getAttention()->getZHintTarget();
+}
+
+inline int dComIfGp_att_ZHintRequest(fopAc_ac_c* param_1, int param_2) {
+    return dComIfGp_getAttention()->ZHintRequest(param_1, param_2);
+}
+
+inline fopAc_ac_c* dComIfGp_att_getCatghTarget() {
+    return dComIfGp_getAttention()->getCatghTarget();
+}
+
+inline u8 dComIfGp_att_getCatchChgItem() {
+    return dComIfGp_getAttention()->getCatchChgItem();
+}
+
+inline void dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist,
+                                      f32 i_upDist, f32 i_downDist, s16 i_angle, int param_5) {
+    dComIfGp_getAttention()->CatchRequest(param_0, param_1, i_horizontalDist, i_upDist, i_downDist,
+                                         i_angle, param_5);
+}
+
+inline fopAc_ac_c* dComIfGp_att_getLookTarget() {
+    return dComIfGp_getAttention()->getLookTarget();
+}
+
+inline void dComIfGp_att_LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, f32 i_upDist,
+                                     f32 i_downDist, s16 i_angle, int param_5) {
+    dComIfGp_getAttention()->LookRequest(param_0, i_horizontalDist, i_upDist, i_downDist, i_angle,
+                                        param_5);
 }
 
 inline dVibration_c& dComIfGp_getVibration() {
@@ -3115,6 +3206,31 @@ inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos,
         i_envColor, i_particleScale, 1.0f);
 }
 
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
+                                 const dKy_tevstr_c* param_3) {
+    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, NULL, NULL, 0xFF, NULL, -1, NULL,
+                                 NULL, NULL);
+}
+
+inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos,
+                                             const csXyz* i_rotation, const cXyz* i_scale) {
+    return dComIfGp_particle_set(i_resID, i_pos, NULL, i_rotation, i_scale, 255, NULL, -1, NULL,
+                                 NULL, NULL);
+}
+
+inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos,
+                                             const dKy_tevstr_c* param_2, const csXyz* i_rotation,
+                                             const cXyz* i_scale) {
+    return dComIfGp_particle_set(i_resID, i_pos, param_2, i_rotation, i_scale, 255, NULL, -1, NULL,
+                                 NULL, NULL);
+}
+
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
+                                 const csXyz* param_3, const cXyz* param_4) {
+    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, param_4, 0xFF, NULL, -1, NULL,
+                                 NULL, NULL);
+}
+
 inline u32 dComIfGp_particle_setColor(u32 param_0, u16 param_1, const cXyz* i_pos,
                                       const dKy_tevstr_c* param_3, const GXColor* param_4,
                                       const GXColor* param_5, f32 param_6, u8 param_7,
@@ -3135,6 +3251,14 @@ inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* i_pos
     return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_0, i_pos, param_2, param_7,
                                                             param_8, param_6, param_9, param_10,
                                                             param_3, param_4, param_11, param_5);
+}
+
+inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* i_pos,
+                                                  const dKy_tevstr_c* param_2,
+                                                  const GXColor* param_3, const GXColor* param_4,
+                                                  f32 param_5, u8 param_6) {
+    return dComIfGp_particle_setColor(param_0, i_pos, param_2, param_3, param_4, param_5, param_6,
+                                      NULL, NULL, NULL, -1, NULL);
 }
 
 inline dSmplMdl_draw_c* dComIfGp_getSimpleModel() {
@@ -3862,10 +3986,6 @@ inline void dComIfGp_setSubHeapLockFlag(int idx, u8 status) {
     g_dComIfG_gameInfo.play.setSubHeapLockFlag(idx, status);
 }
 
-inline u8 dComIfGs_getWolfAbility(int i_idx) {
-    return g_dComIfG_gameInfo.play.getWolfAbility(i_idx);
-}
-
 inline u8 dComIfGp_getNeedLightDropNum() {
     return g_dComIfG_gameInfo.play.getNeedLightDropNum();
 }
@@ -4097,6 +4217,22 @@ inline void dComIfGp_entrySimpleModel(J3DModel* model, int roomNo) {
     g_dComIfG_gameInfo.play.entrySimpleModel(model, roomNo);
 }
 
+inline void dComIfG_ct() {
+    g_dComIfG_gameInfo.ct();
+}
+
+inline dBgS& dComIfG_Bgsp() {
+    return g_dComIfG_gameInfo.play.mBgs;
+}
+
+inline dCcS* dComIfG_Ccsp() {
+    return &g_dComIfG_gameInfo.play.mCcs;
+}
+
+inline dCcS& dComIfG_Ccsp2() {
+    return g_dComIfG_gameInfo.play.mCcs;
+}
+
 inline void dComIfG_setTimerNowTimeMs(int time) {
     g_dComIfG_gameInfo.play.setTimerNowTimeMs(time);
 }
@@ -4135,14 +4271,6 @@ inline void dComIfG_setTimerPtr(dTimer_c* i_ptr) {
 
 inline dTimer_c* dComIfG_getTimerPtr() {
     return g_dComIfG_gameInfo.play.getTimerPtr();
-}
-
-inline void dComIfG_setBrightness(u8 brightness) {
-    g_dComIfG_gameInfo.mFadeBrightness = brightness;
-}
-
-inline BOOL dComIfG_isDebugMode() {
-    return g_dComIfG_gameInfo.mIsDebugMode;
 }
 
 /**
@@ -4219,149 +4347,24 @@ inline void* dComIfG_getObjectIDRes(const char* i_arcName, u16 i_resID) {
     return g_dComIfG_gameInfo.mResControl.getObjectIDRes(i_arcName, i_resID);
 }
 
-inline u8 dComIfG_getBrightness() {
-    return g_dComIfG_gameInfo.mFadeBrightness;
-}
-
 inline int dComIfG_getObjctResName2Index(const char* i_arcName, const char* i_resName) {
     return g_dComIfG_gameInfo.mResControl.getObjectResName2Index(i_arcName, i_resName);
 }
 
+inline u8 dComIfG_getBrightness() {
+    return g_dComIfG_gameInfo.mFadeBrightness;
+}
+
+inline void dComIfG_setBrightness(u8 brightness) {
+    g_dComIfG_gameInfo.mFadeBrightness = brightness;
+}
+
+inline BOOL dComIfG_isDebugMode() {
+    return g_dComIfG_gameInfo.mIsDebugMode;
+}
+
 inline u32 dComIfG_getTrigB(u32 i_padNo) {
     return mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_B;
-}
-
-inline u8 dComIfGs_getPachinkoMax() {
-    return 50;
-}
-
-inline s8 dComIfGs_Grass_hide_Check() {
-    return g_dComIfG_gameInfo.field_0x1ddfc;
-}
-
-inline u8 dComIfGp_att_getCatchChgItem() {
-    return dComIfGp_getAttention()->getCatchChgItem();
-}
-
-inline fopAc_ac_c* dComIfGp_att_getCatghTarget() {
-    return dComIfGp_getAttention()->getCatghTarget();
-}
-
-inline fopAc_ac_c* dComIfGp_att_getZHint() {
-    return dComIfGp_getAttention()->getZHintTarget();
-}
-
-inline int dComIfGp_att_ZHintRequest(fopAc_ac_c* param_1, int param_2) {
-    return dComIfGp_getAttention()->ZHintRequest(param_1, param_2);
-}
-
-inline void dComIfGp_att_LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, f32 i_upDist,
-                                     f32 i_downDist, s16 i_angle, int param_5) {
-    dComIfGp_getAttention()->LookRequest(param_0, i_horizontalDist, i_upDist, i_downDist, i_angle,
-                                        param_5);
-}
-
-inline void dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist,
-                                      f32 i_upDist, f32 i_downDist, s16 i_angle, int param_5) {
-    dComIfGp_getAttention()->CatchRequest(param_0, param_1, i_horizontalDist, i_upDist, i_downDist,
-                                         i_angle, param_5);
-}
-
-inline fopAc_ac_c* dComIfGp_att_getLookTarget() {
-    return dComIfGp_getAttention()->getLookTarget();
-}
-
-inline void dComIfGp_evmng_cutEnd(int i_staffId) {
-    dComIfGp_getPEvtManager()->cutEnd(i_staffId);
-}
-
-inline cXyz* dComIfGp_evmng_getGoal() {
-    return dComIfGp_getPEvtManager()->getGoal();
-}
-
-inline int dComIfGp_evmng_cameraPlay() {
-    return dComIfGp_getPEvtManager()->cameraPlay();
-}
-
-inline int dComIfGp_evmng_startDemo(int i_mapToolId) {
-    return dComIfGp_getPEvtManager()->setStartDemo(i_mapToolId);
-}
-
-inline int dComIfGp_evmng_getMyStaffId(const char* i_staffname, fopAc_ac_c* i_actor, int i_tagId) {
-    return dComIfGp_getPEvtManager()->getMyStaffId(i_staffname, i_actor, i_tagId);
-}
-
-inline int dComIfGp_evmng_getMyActIdx(int i_staffId, char** i_actions, int i_actionNum, BOOL param_3, BOOL param_4) {
-    return dComIfGp_getPEvtManager()->getMyActIdx(i_staffId, i_actions, i_actionNum, param_3, param_4);
-}
-
-inline int dComIfGp_evmng_getIsAddvance(int i_staffId) {
-    return dComIfGp_getPEvtManager()->getIsAddvance(i_staffId);
-}
-
-inline int* dComIfGp_evmng_getMyIntegerP(int i_staffId, char* i_dataname) {
-    return (int*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_INT);
-}
-
-inline char* dComIfGp_evmng_getMyStringP(int i_staffId, char* i_dataname) {
-    return (char*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_STRING);
-}
-
-inline f32* dComIfGp_evmng_getMyFloatP(int i_staffId, char* i_dataname) {
-    return (f32*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_FLOAT);
-}
-
-inline cXyz* dComIfGp_evmng_getMyXyzP(int i_staffId, char* i_dataname) {
-    return (cXyz*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_VEC);
-}
-
-inline int dComIfGp_evmng_getMySubstanceNum(int i_staffId, char* i_dataname) {
-    return dComIfGp_getPEvtManager()->getMySubstanceNum(i_staffId, i_dataname);
-}
-
-inline void dComIfGp_evmng_setGoal(cXyz* i_pos) {
-    dComIfGp_getPEvtManager()->setGoal(i_pos);
-}
-
-inline BOOL dComIfGp_evmng_ChkPresentEnd() {
-    return dComIfGp_getPEvtManager()->ChkPresentEnd();
-}
-
-inline int dComIfGp_evmng_checkStartDemo() {
-    return dComIfGp_getPEvtManager()->checkStartDemo();
-}
-
-inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
-                                 const dKy_tevstr_c* param_3) {
-    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, NULL, NULL, 0xFF, NULL, -1, NULL,
-                                 NULL, NULL);
-}
-
-inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos,
-                                             const csXyz* i_rotation, const cXyz* i_scale) {
-    return dComIfGp_particle_set(i_resID, i_pos, NULL, i_rotation, i_scale, 255, NULL, -1, NULL,
-                                 NULL, NULL);
-}
-
-inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos,
-                                             const dKy_tevstr_c* param_2, const csXyz* i_rotation,
-                                             const cXyz* i_scale) {
-    return dComIfGp_particle_set(i_resID, i_pos, param_2, i_rotation, i_scale, 255, NULL, -1, NULL,
-                                 NULL, NULL);
-}
-
-inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
-                                 const csXyz* param_3, const cXyz* param_4) {
-    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, param_4, 0xFF, NULL, -1, NULL,
-                                 NULL, NULL);
-}
-
-inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* i_pos,
-                                                  const dKy_tevstr_c* param_2,
-                                                  const GXColor* param_3, const GXColor* param_4,
-                                                  f32 param_5, u8 param_6) {
-    return dComIfGp_particle_setColor(param_0, i_pos, param_2, param_3, param_4, param_5, param_6,
-                                      NULL, NULL, NULL, -1, NULL);
 }
 
 inline int dComIfGd_setRealShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3,
