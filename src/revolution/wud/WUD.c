@@ -1,7 +1,9 @@
-#include <revolution/os.h>
-#include <revolution/wpad/wud.h>
+#include <revolution/wud/WUD.h>
 
+#include <revolution/os.h>
+#include <revolution/wud/debug_msg.h>
 #include "__wud.h"
+#include "types.h"
 
 wud_cb_st __rvl_wudcb;
 
@@ -60,4 +62,12 @@ u16 WUDiGetQueueSizeForHandle(u8 dev_handle) {
 
 u16 WUDiGetNotAckNumForHandle(u8 dev_handle) {
     return _dev_handle_notack_num[dev_handle];
+}
+
+BOOL WUDStartSyncSimple(void) {
+    // NONMATCHING
+}
+
+BOOL WUDStartFastSyncSimple(void) {
+    // NONMATCHING
 }

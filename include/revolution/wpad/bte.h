@@ -2,6 +2,7 @@
 #define CONTEXT_BTE_H
 
 #include <stdint.h>
+#include "types.h"
 
 // taken from https://github.com/doldecomp/sdk_2009-12-11/blob/main/include/context_bte.h
 
@@ -1040,5 +1041,26 @@ struct small_dev_info
     LINK_KEY    linkKey;        // size 0x10, offset 0x20
     char        __pad1[0x10];
 }; // size 0x40
+
+typedef struct {
+    BD_ADDR bd_addr;
+    u8 bd_name[64];
+    u8 link_key[16];
+} SCBtCmpDevInfoSingle;
+
+typedef struct {
+    BD_ADDR bd_addr;
+    u8 bd_name[64];
+} SCBtDeviceInfoSingle;
+
+typedef struct {
+    u8 num;
+    SCBtCmpDevInfoSingle info[6];
+} SCBtCmpDevInfoArray;
+
+typedef struct {
+    u8 num;
+    SCBtDeviceInfoSingle info[16];
+} SCBtDeviceInfoArray;
 
 #endif // CONTEXT_BTE_H
