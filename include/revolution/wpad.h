@@ -246,6 +246,17 @@ typedef struct WPADCLStatus {
 #define WPAD_MOTOR_STOP    0
 #define WPAD_MOTOR_RUMBLE  1
 
+typedef u32 WPADDpdCommand;
+enum WPADDpdCommand_et
+{
+    WPAD_DPD_DISABLE	= 0x00,
+
+    // the command here is actually the data format
+    WPAD_DPD_BASIC		= 0x01,
+    WPAD_DPD_STANDARD	= 0x03,
+    WPAD_DPD_EXTENDED	= 0x05,
+};
+
 s32 WPADProbe(s32 chan, u32* devType);
 u8 WPADGetRadioSensitivity(s32 chan);
 BOOL WPADSetAcceptConnection(u8 accept);
