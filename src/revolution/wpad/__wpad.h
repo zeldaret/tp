@@ -512,6 +512,9 @@ void WPADiRecvCallback(u8 dev_handle, u8* p_rpt, u16);
 void WPADiCreateKey(s32 chan);
 void WPADiDecode(s32 chan, void* p_buf, u16 len, u16 offset);
 
+/* wpad_debug_msg.c */
+void DEBUGPrint(const char* fmt, ...);
+
 #ifdef __cplusplus
 }
 #endif
