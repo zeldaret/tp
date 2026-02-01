@@ -357,7 +357,7 @@ void getExtConfig(s32 chan, s32 result) {
             DEBUGPrint("LR:  L = %d,  R = %d\n", p_wpd->extConf.cl.triggerL, p_wpd->extConf.cl.triggerR);
             break;
         }
-        p_wpd->isSetStickOrigin = 0;
+        p_wpd->calibrated = 0;
     }
 
     if (p_wpd->cmdBlkCallback) {
@@ -532,7 +532,7 @@ void __a1_20_status_report(u8 chan, u8* data) {
 
             cmdQueue = &p_wpd->extCmdQueue;
 
-            p_wpd->isSetStickOrigin = 0;
+            p_wpd->calibrated = 0;
             p_wpd->devType = WPAD_DEV_INITIALIZING;
             p_wpd->devMode = 0;
 
@@ -701,7 +701,7 @@ void __a1_22_ack(u8 chan, u8* data) {
         DEBUGPrint("ack error --> report ID = %d, error code = %d\n", type, err);
     }
 
-    if (p_wpd->cmdId == type) {
+    if (p_wpd->lastReportId == type) {
         if (p_wpd->cmdBlkCallback) {
             p_wpd->cmdBlkCallback(chan, status);
             p_wpd->cmdBlkCallback = NULL;
@@ -837,8 +837,8 @@ void __a1_32_data_type(u8 chan, u8* data) {
 
             p_fsStat->base.button |= (u16)(((u16)(~data[HID_IDX_BYTE14]) << 13) & (u16)0x6000);
 
-            if (!p_cb->isSetStickOrigin) {
-                p_cb->isSetStickOrigin = 1;
+            if (!p_cb->calibrated) {
+                p_cb->calibrated = 1;
                 p_cb->extConf.fs.stick.x = p_fsStat->fsStickX;
                 p_cb->extConf.fs.stick.y = p_fsStat->fsStickY;
             }
@@ -918,8 +918,8 @@ void __a1_32_data_type(u8 chan, u8* data) {
                 break;
             }
 
-            if (!p_cb->isSetStickOrigin) {
-                p_cb->isSetStickOrigin = 1;
+            if (!p_cb->calibrated) {
+                p_cb->calibrated = 1;
                 p_cb->extConf.cl.lstk.x = p_clStat->clLStickX;
                 p_cb->extConf.cl.lstk.y = p_clStat->clLStickY;
                 p_cb->extConf.cl.rstk.x = p_clStat->clRStickX;
@@ -1098,8 +1098,8 @@ void __a1_35_data_type(u8 chan, u8* data) {
 
             p_fsStat->base.button |= (u16)(((u16)(~data[HID_IDX_BYTE17]) << 13) & (u16)0x6000);
 
-            if (!p_cb->isSetStickOrigin) {
-                p_cb->isSetStickOrigin = 1;
+            if (!p_cb->calibrated) {
+                p_cb->calibrated = 1;
                 p_cb->extConf.fs.stick.x = p_fsStat->fsStickX;
                 p_cb->extConf.fs.stick.y = p_fsStat->fsStickY;
             }
@@ -1178,8 +1178,8 @@ void __a1_35_data_type(u8 chan, u8* data) {
                 break;
             }
 
-            if (!p_cb->isSetStickOrigin) {
-                p_cb->isSetStickOrigin = 1;
+            if (!p_cb->calibrated) {
+                p_cb->calibrated = 1;
                 p_cb->extConf.cl.lstk.x = p_clStat->clLStickX;
                 p_cb->extConf.cl.lstk.y = p_clStat->clLStickY;
                 p_cb->extConf.cl.rstk.x = p_clStat->clRStickX;
@@ -1321,8 +1321,8 @@ void __a1_37_data_type(u8 chan, u8* data) {
 
             p_fsStat->base.button |= (u16)(((u16)(~data[HID_IDX_BYTE27]) << 13) & (u16)0x6000);
 
-            if (!p_cb->isSetStickOrigin) {
-                p_cb->isSetStickOrigin = 1;
+            if (!p_cb->calibrated) {
+                p_cb->calibrated = 1;
                 p_cb->extConf.fs.stick.x = p_fsStat->fsStickX;
                 p_cb->extConf.fs.stick.y = p_fsStat->fsStickY;
             }
@@ -1399,8 +1399,8 @@ void __a1_37_data_type(u8 chan, u8* data) {
                 break;
             }
 
-            if (!p_cb->isSetStickOrigin) {
-                p_cb->isSetStickOrigin = 1;
+            if (!p_cb->calibrated) {
+                p_cb->calibrated = 1;
                 p_cb->extConf.cl.lstk.x = p_clStat->clLStickX;
                 p_cb->extConf.cl.lstk.y = p_clStat->clLStickY;
                 p_cb->extConf.cl.rstk.x = p_clStat->clRStickX;

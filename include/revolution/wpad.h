@@ -214,6 +214,94 @@ typedef struct WPADCLStatus {
     /* 0x35 */ u8 clTriggerR;
 } WPADCLStatus;
 
+#if SDK_AUG2010
+typedef struct WPADBKStatus {
+    /* 0x00 */ u16 button;
+    /* 0x02 */ s16 accX;
+    /* 0x04 */ s16 accY;
+    /* 0x06 */ s16 accZ;
+    /* 0x08 */ DPDObject obj[WPAD_DPD_MAX_OBJECTS];
+    /* 0x28 */ u8 dev;
+    /* 0x29 */ s8 err;
+    /* 0x2a */ u8 bulk[21];
+    /* 0x3f */ u8 padding[1];
+} WPADBKStatus;
+
+typedef struct WPADTRStatus {
+    /* 0x00 */ u16 button;
+    /* 0x02 */ s16 accX;
+    /* 0x04 */ s16 accY;
+    /* 0x06 */ s16 accZ;
+    /* 0x08 */ DPDObject obj[WPAD_DPD_MAX_OBJECTS];
+    /* 0x28 */ u8 dev;
+    /* 0x29 */ s8 err;
+    /* 0x2a */ u16 trButton;
+    /* 0x2c */ u8 brake;
+    /* 0x2d */ u8 mascon;
+} WPADTRStatus;
+
+typedef struct WPADVSStatus {
+    /* 0x00 */ u16 button;
+    /* 0x02 */ s16 accX;
+    /* 0x04 */ s16 accY;
+    /* 0x06 */ s16 accZ;
+    /* 0x08 */ DPDObject obj[WPAD_DPD_MAX_OBJECTS];
+    /* 0x28 */ u8 dev;
+    /* 0x29 */ s8 err;
+    /* 0x2a */ u16 at_0x2a[5];
+    /* 0x34 */ u8 at_0x34;
+    /* 0x36 */ u16 at_0x36[5];
+    /* 0x40 */ u8 at_0x40;
+    /* 0x42 */ u16 at_0x42;
+    /* 0x44 */ u8 at_0x44;
+} WPADVSStatus;
+
+typedef struct WPADMPStatus {
+    /* 0x00 */ u16 button;
+    /* 0x02 */ s16 accX;
+    /* 0x04 */ s16 accY;
+    /* 0x06 */ s16 accZ;
+    /* 0x08 */ DPDObject obj[WPAD_DPD_MAX_OBJECTS];
+    /* 0x28 */ u8 dev;
+    /* 0x29 */ s8 err;
+    union {
+        struct {
+            /* 0x00 */ s16 fsAccX;
+            /* 0x02 */ s16 fsAccY;
+            /* 0x04 */ s16 fsAccZ;
+            /* 0x06 */ s8 fsStickX;
+            /* 0x07 */ s8 fsStickY;
+        } fs;
+        struct {
+            /* 0x00 */ u16 clButton;
+            /* 0x02 */ s16 clLStickX;
+            /* 0x04 */ s16 clLStickY;
+            /* 0x06 */ s16 clRStickX;
+            /* 0x08 */ s16 clRStickY;
+            /* 0x0a */ u8 clTriggerL;
+            /* 0x0b */ u8 clTriggerR;
+        } cl;
+    } ext;
+    /* 0x36 */ u8 stat;
+    /* 0x38 */ s16 pitch;
+    /* 0x3a */ s16 yaw;
+    /* 0x3c */ s16 roll;
+} WPADMPStatus;
+
+typedef struct WPADBLStatus {
+    /* 0x00 */ u16 button;
+    /* 0x02 */ s16 accX;
+    /* 0x04 */ s16 accY;
+    /* 0x06 */ s16 accZ;
+    /* 0x08 */ DPDObject obj[WPAD_DPD_MAX_OBJECTS];
+    /* 0x28 */ u8 dev;
+    /* 0x29 */ s8 err;
+    /* 0x2a */ u16 press[4];
+    /* 0x32 */ s8 temp;
+    /* 0x33 */ u8 battery;
+} WPADBLStatus;
+#endif
+
 #define WPAD_FMT_CORE_BTN              0
 #define WPAD_FMT_CORE_BTN_ACC          1
 #define WPAD_FMT_CORE_BTN_ACC_DPD      2
