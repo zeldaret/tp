@@ -3584,7 +3584,7 @@ revolution/wpad/WPADHIDParser.c:
 	.text       start:0x8036C9A0 end:0x8037123C
 	.data       start:0x80428768 end:0x80428BC8
 	.bss        start:0x804E3CE8 end:0x804E3D00
-	.sbss       start:0x80522060 end:0x80522070
+	.sbss       start:0x80522060 end:0x80522068
 	.sdata2     start:0x80526E18 end:0x80526E40
 
 revolution/wpad/WPADMem.c:
@@ -3592,10 +3592,12 @@ revolution/wpad/WPADMem.c:
 
 revolution/wpad/WPADEncrypt.c:
 	.text       start:0x8037123C end:0x80371AD4
-	.data       start:0x80428BC8 end:0x80429548
+	.data       start:0x80428BC8 end:0x804294F8
+	.sbss       start:0x80522068 end:0x80522070
 
 revolution/kpad/KPAD.c:
 	.text       start:0x80371B24 end:0x80374858
+	.data       start:0x804294F8 end:0x80429548
 	.bss        start:0x804E3D50 end:0x804E4D60
 	.sdata      start:0x80520D68 end:0x80520DD8
 	.sbss       start:0x80522070 end:0x805220A8

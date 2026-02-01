@@ -507,8 +507,8 @@ void WPADiConnCallback(u8 dev_handle, u8 open);
 void WPADiRecvCallback(u8 dev_handle, u8* p_rpt, u16);
 
 /* WPADEncrypt.c */
-void WPADiCreateKey(s32);
-void WPADiDecode(s32, void*, u16, u16);
+void WPADiCreateKey(s32 chan);
+void WPADiDecode(s32 chan, void* p_buf, u16 len, u16 offset);
 
 #ifdef __cplusplus
 }
