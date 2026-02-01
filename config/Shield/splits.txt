@@ -3723,7 +3723,7 @@ revolution/wpad/WPADMem.c:
 revolution/wpad/lint.c:
 	.text       start:0x8043CE50 end:0x8043D6C0
 
-revolution/wpad/WUD.c:
+revolution/wud/WUD.c:
 	.text       start:0x8043D6C0 end:0x80442DE0
 	.data       start:0x804FD9C8 end:0x804FDD10
 	.sdata      start:0x80508790 end:0x805087A0

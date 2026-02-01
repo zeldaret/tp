@@ -4485,7 +4485,7 @@ revolution/wpad/WPAD.c:
 	.sdata2     start:0x80752E78 end:0x80752E80
 	.bss        start:0x8080DC20 end:0x8080DC40
 
-revolution/wpad/WUD.c:
+revolution/wud/WUD.c:
 	.text       start:0x80619BD0 end:0x80619DD0
 	.bss        start:0x8080DC40 end:0x8080E3D0
 
