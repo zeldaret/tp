@@ -1854,7 +1854,17 @@ config.libs = [
         "wpad",
         [
             Object(NonMatching, "revolution/wpad/WPAD.c"),
-            Object(NonMatching, "revolution/wpad/WUD.c"),
+            Object(NonMatching, "revolution/wpad/WPADEncrypt.c"),
+            Object(NonMatching, "revolution/wpad/WPADHIDParser.c"),
+            Object(NonMatching, "revolution/wpad/WPADMem.c"),
+        ]
+    ),
+    RevolutionLib(
+        "wud",
+        [
+            Object(NonMatching, "revolution/wud/WUD.c"),
+            Object(NonMatching, "revolution/wud/WUDHidHost.c"),
+            Object(NonMatching, "revolution/wud/debug_msg.c"),
         ],
     ),
     RevolutionLib(

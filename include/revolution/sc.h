@@ -3,6 +3,7 @@
 
 #include <revolution/os.h>
 #include <revolution/nand.h>
+#include <revolution/wpad/bte.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -128,6 +129,12 @@ u8 SCGetProgressiveMode(void);
 u8 SCGetScreenSaverMode(void);
 u8 SCGetSoundMode(void);
 u32 SCGetCounterBias(void);
+u8 SCGetWpadSensorBarPosition(void);
+u8 SCGetWpadMotorMode(void);
+u8 SCGetWpadSpeakerVolume(void);
+u8 SCGetBtDpdSensibility(void);
+BOOL SCSetWpadSpeakerVolume(u8 volume);
+BOOL SCSetWpadMotorMode(u8 mode);
 
 // scapi_prdinfo
 BOOL SCGetProductAreaString(char* buf, u32 bufSize);
@@ -144,6 +151,8 @@ BOOL SCFindU8Item(u8* data, SCItemID id);
 BOOL SCFindS8Item(s8* data, SCItemID id);
 BOOL SCFindU32Item(u32* data, SCItemID id);
 BOOL SCReplaceU8Item(u8 data, SCItemID id);
+void SCFlushAsync(SCFlushCallback callback);
+BOOL SCSetBtDeviceInfoArray(const SCBtDeviceInfoArray*);
 u32 SCCheckStatus(void);
 s32 SCReloadConfFileAsync(u8* bufp, u32 bufSize, SCReloadConfFileCallback callback);
 

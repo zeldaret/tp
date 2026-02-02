@@ -109,6 +109,7 @@ u8 __gUnknown800030E3 AT_ADDRESS(OS_BASE_CACHED | 0x30E3);
 u32 OSGetConsoleType(void);
 void OSInit(void);
 void OSRegisterVersion(const char* id);
+const char* OSGetAppGamename(void);
 
 void* OSGetArenaHi(void);
 void* OSGetArenaLo(void);
