@@ -11,6 +11,13 @@ extern "C" {
 
 typedef u8 SCType;
 
+typedef enum {
+    SC_STATUS_OK,
+    SC_STATUS_BUSY,
+    SC_STATUS_FATAL,
+    SC_STATUS_PARSE,
+} SCStatus;
+
 typedef struct {
     u8 mode;
     u8 led;
@@ -108,6 +115,57 @@ typedef struct {
     u32 flushSize;
 } SCControl;
 
+#define SC_MAX_DEV_ENTRY_FOR_STD 10
+#define SC_MAX_DEV_ENTRY_FOR_SMP 6
+#define SC_MAX_DEV_ENTRY (SC_MAX_DEV_ENTRY_FOR_STD + SC_MAX_DEV_ENTRY_FOR_SMP)
+
+typedef struct {
+    BD_ADDR bd_addr;
+    u8 bd_name[64];
+    u8 link_key[16];
+} SCBtCmpDevInfoSingle;
+
+typedef struct {
+    BD_ADDR bd_addr;
+    u8 bd_name[64];
+} SCBtDeviceInfoSingle;
+
+typedef struct {
+    u8 num;
+    SCBtCmpDevInfoSingle info[6];
+} SCBtCmpDevInfoArray;
+
+typedef struct SCDevInfo {
+    char devName[20];  // at 0x0
+    char at_0x14[1];
+    char UNK_0x15[0xB];
+    LINK_KEY linkKey;  // at 0x20
+    char UNK_0x30[0x10];
+} SCDevInfo;
+
+typedef struct SCBtDeviceInfo {
+    BD_ADDR addr;    // at 0x0
+    SCDevInfo info;  // at 0x6
+} SCBtDeviceInfo;
+
+typedef struct SCBtDeviceInfoArray {
+    /* 0x000 */ u8 num;
+
+    union {
+        struct {
+#if SDK_AUG2010
+            /* 0x001 */ SCBtDeviceInfo regist[SC_MAX_DEV_ENTRY_FOR_STD];
+            /* 0x2BD */ SCBtDeviceInfo active[SC_MAX_DEV_ENTRY_FOR_SMP];
+#else
+            /* 0x001 */ SCBtDeviceInfo regist[SC_MAX_DEV_ENTRY];
+#endif
+        };
+    };
+#if SDK_AUG2010
+    SCBtDeviceInfoSingle info[16];
+#endif
+} SCBtDeviceInfoArray;
+
 #define SC_LANG_JAPANESE 0u
 #define SC_LANG_ENGLISH 1u
 #define SC_LANG_GERMAN 2u
@@ -152,6 +210,7 @@ BOOL SCFindS8Item(s8* data, SCItemID id);
 BOOL SCFindU32Item(u32* data, SCItemID id);
 BOOL SCReplaceU8Item(u8 data, SCItemID id);
 void SCFlushAsync(SCFlushCallback callback);
+BOOL SCGetBtDeviceInfoArray(SCBtDeviceInfoArray*);
 BOOL SCSetBtDeviceInfoArray(const SCBtDeviceInfoArray*);
 u32 SCCheckStatus(void);
 s32 SCReloadConfFileAsync(u8* bufp, u32 bufSize, SCReloadConfFileCallback callback);

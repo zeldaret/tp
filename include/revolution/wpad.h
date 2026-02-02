@@ -135,7 +135,7 @@ typedef void (*WPADInitFunc)(void);
 typedef void (*WPADCallback)(s32 chan, s32 result);
 typedef void (*WPADExtensionCallback)(s32 chan, s32 devType);
 typedef void* (*WPADAlloc)(u32 size);
-typedef u8 (*WPADFree)(void* ptr);
+typedef BOOL (*WPADFree)(void* ptr);
 typedef void (*WPADSyncDeviceCallback)(s32 result, s32 num);
 typedef void (*WPADSamplingCallback)(s32 chan);
 typedef void (*WPADConnectCallback)(s32 chan, s32 result);
