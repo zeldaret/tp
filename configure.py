@@ -1863,8 +1863,8 @@ config.libs = [
         "wud",
         [
             Object(NonMatching, "revolution/wud/WUD.c"),
-            Object(NonMatching, "revolution/wud/WUDHidHost.c"),
-            Object(NonMatching, "revolution/wud/debug_msg.c"),
+            Object(MatchingFor(ALL_WII), "revolution/wud/WUDHidHost.c"),
+            Object(MatchingFor(ALL_WII), "revolution/wud/debug_msg.c"),
         ],
     ),
     RevolutionLib(
