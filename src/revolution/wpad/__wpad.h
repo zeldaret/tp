@@ -380,7 +380,9 @@ typedef struct WPADDevConfig {
     /* 0x26 */ WPADAcc acc_1g;
     /* 0x2C */ u8 motor;
     /* 0x2D */ u8 volume;
+#if SDK_AUG2010
     /* 0x2E */ u8 unk_0x2e[0x30 - 0x2e];
+#endif
 } WPADDevConfig;
 
 typedef struct WPADStick {
@@ -419,7 +421,11 @@ typedef struct WPADExtConfig {
     /* 0x00 */ union {
         WPADFsConfig fs;
         WPADClConfig cl;
+#if SDK_AUG2010
         u8 bytes[0x1c];
+#else
+        u8 bytes[0x18];
+#endif
     };
 #if SDK_AUG2010
     struct WPADMplsConfig {
@@ -533,36 +539,40 @@ typedef struct WPADControlBlock {
     /* 0x8C4 */ u16 packetCnt;
     /* 0x8C6 */ u8 disconnect;
     /* 0x8C7 */ u8 lastReportId;
-    /* 0xb80 */ WPADCallback getInfoCB;
-    /* 0xb84 */ u8 getInfoBusy;
-    /* 0xb85 */ u8 extState;
-    /* 0xb86 */ u8 savePower;
-    /* 0xb87 */ u8 blcBattery;
-    /* 0xb88 */ u8 savedDevType; // maybe?
-    /* 0xb89 */ u8 extWasDisconnected;
-    /* 0xb8a */ s16 reconnectExtMs;
-    /* 0xb8c */ WPADMemBlock memBlock;
-    /* 0xba0 */ WPADCallback controlMplsCB;
-    /* 0xba4 */ u8 parseMPBuf;
-    /* 0xba5 */ u8 certProbeByte;
-    /* 0xba6 */ u8 dpdBusy;
-    /* 0xba7 */ u8 interleaveFlags;
-    /* 0xba8 */ u32 mplsCBReadAddress;
-    /* 0xbac */ u8 mplsCBState;
-    /* 0xbad */ u8 mplsUptimeMs;
-    /* 0xbae */ s8 certMayVerifyByCalibBlock;
-    /* 0xbaf */ u8 unk_0xbaf[0xbb1 - 0xbaf]; /* unknown (can't be alignment) */
-    /* 0xbb1 */ u8 certProbeStartingValue;
-    /* 0xbb2 */ u16 lastMplsCalibID;
-    /* 0xbb4 */ u32 lastMplsCalibCRC;
-    /* 0xbb8 */ u8 noParseExtCount;
-    /* 0xbb9 */ s8 extErr;
-    /* 0xbba */ u8 extDataLength;
-    /* 0xbbb */ u8 extDevType;
-    /* 0xbbc */ u8 currPwmDuty;
-    /* 0xbbd */ u8 pendingPwmDuty;
-    /* 0xbbe */ u8 unk_0xbbe[0xbc0 - 0xbbe]; /* unknown (can't be alignment) */
-    /* 0xbc0 */ u8 extDataBuf[32];
+#if SDK_AUG2010
+    /* 0xB80 */ WPADCallback getInfoCB;
+    /* 0xB84 */ u8 getInfoBusy;
+    /* 0xB85 */ u8 extState;
+    /* 0xB86 */ u8 savePower;
+    /* 0xB87 */ u8 blcBattery;
+    /* 0xB88 */ u8 savedDevType; // maybe?
+    /* 0xB89 */ u8 extWasDisconnected;
+    /* 0xB8A */ s16 reconnectExtMs;
+    /* 0xB8C */ WPADMemBlock memBlock;
+    /* 0xBA0 */ WPADCallback controlMplsCB;
+    /* 0xBA4 */ u8 parseMPBuf;
+    /* 0xBA5 */ u8 certProbeByte;
+    /* 0xBA6 */ u8 dpdBusy;
+    /* 0xBA7 */ u8 interleaveFlags;
+    /* 0xBA8 */ u32 mplsCBReadAddress;
+    /* 0xBAC */ u8 mplsCBState;
+    /* 0xBAD */ u8 mplsUptimeMs;
+    /* 0xBAE */ s8 certMayVerifyByCalibBlock;
+    /* 0xBAF */ u8 unk_0xbaf[0xbb1 - 0xbaf]; /* unknown (can't be alignment) */
+    /* 0xBB1 */ u8 certProbeStartingValue;
+    /* 0xBB2 */ u16 lastMplsCalibID;
+    /* 0xBB4 */ u32 lastMplsCalibCRC;
+    /* 0xBB8 */ u8 noParseExtCount;
+    /* 0xBB9 */ s8 extErr;
+    /* 0xBBA */ u8 extDataLength;
+    /* 0xBBB */ u8 extDevType;
+    /* 0xBBC */ u8 currPwmDuty;
+    /* 0xBBD */ u8 pendingPwmDuty;
+    /* 0xBBE */ u8 unk_0xbbe[0xbc0 - 0xbbe]; /* unknown (can't be alignment) */
+    /* 0xBC0 */ u8 extDataBuf[32];
+#else
+    /* 0x8C8 */ u8 extDataBuf[0x8e0 - 0x8c8];
+#endif
 } WPADControlBlock;
 
 typedef struct WPADMEMControlBlock {
@@ -609,7 +619,7 @@ u32 WPADGetLatestIndexInBuf(s32 chan, void* buf);
 void WPADiExcludeButton(s32 chan);
 s32 WPADiGetStatus(s32 chan);
 
-void WPADiShutdown(BOOL exec);
+void WPADiShutdown();
 void WPADiDisconnect(s32 chan, BOOL polite);
 
 BOOL WPADiSendSetPort(WPADCmdQueue* queue, u8 pattern, WPADCallback callback);

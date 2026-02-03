@@ -1,11 +1,12 @@
 #include <revolution/wpad.h>
 #include <revolution/wpad/__wpad.h>
 
-#include <revolution/wud/WUD.h>
+#include <revolution/wud.h>
 #include <revolution/dvd.h>
 #include <revolution/sc.h>
 #include <revolution/vi.h>
 #include <revolution/wpad/bte.h>
+#include <revolution/wud/__wud.h>
 #include <cstdio>
 #include <cstring>
 
@@ -14,7 +15,11 @@ extern volatile BOOL __OSIsReturnToIdle;
 //TODO: this apparently should be aligned to 32 bytes, but
 //      adding ATTRIBUTE_ALIGN breaks codegen in WPADInit
 WPADControlBlock _wpd[WPAD_MAX_CONTROLLERS];
+#if SDK_AUG2010
+WPADControlBlock* __rvl_p_wpadcb[WPAD_MAX_CONTROLLERS];
+#else
 WPADControlBlock* _wpdcb[WPAD_MAX_CONTROLLERS];
+#endif
 
 u8 _sleepTime;
 u8 _dpdSensitivity;
@@ -89,7 +94,7 @@ BOOL OnShutdown(BOOL final, u32 event) {
                     _shutdown = TRUE;
                     WUDSetVisibility(0, 0);
                     for (i = 10; i < 14; i++) {
-                        memset(&_scArray.info[i], 0, sizeof(_scArray.info[i]));
+                        memset(&_scArray.regist[i], 0, sizeof(_scArray.regist[i]));
                     }
                     OSCancelAlarm(&_managerAlarm);
                     WUDSetHidRecvCallback(NULL);
@@ -1030,7 +1035,7 @@ s32 WPADiRetrieveChannel(u8 dev_handle) {
     devAddr = _WUDGetDevAddr(dev_handle);
 
     for (i = 0; i < WPAD_MAX_CONTROLLERS; i++) {
-        if (!memcmp(_scArray.info[i + 10].bd_addr, devAddr, 6)) {
+        if (!memcmp(_scArray.regist[i + 10].addr, devAddr, 6)) {
             if (_chan_active_state[i] == 0) {
                 _chan_active_state[i] = 1;
                 return i;
@@ -1040,7 +1045,7 @@ s32 WPADiRetrieveChannel(u8 dev_handle) {
     for (i = 0; i < WPAD_MAX_CONTROLLERS; i++) {
         if (_chan_active_state[i] == 0) {
             _chan_active_state[i] = 1;
-            memcpy(_scArray.info[i + 10].bd_addr, devAddr, 6);
+            memcpy(_scArray.regist[i + 10].addr, devAddr, 6);
             _scFlush = 1;
             return i;
         }
@@ -1319,8 +1324,7 @@ u8 WPADGetSensorBarPosition() {
 }
 
 void WPADDisconnect(s32 chan) {
-    WPADControlBlock* p_wpd = _wpdcb[chan];
-    memset(&_scArray.info[chan + 10], 0, sizeof(SCBtDeviceInfoSingle));
+    memset(&_scArray.regist[chan + 10], 0, sizeof(SCBtDeviceInfo));
     _scFlush = 1;
     WPADiDisconnect(chan, TRUE);
 }
@@ -2523,17 +2527,17 @@ void __WPADShutdown() {
     WUDSetVisibility(0, 0);
 
     for (i = 10; i < 14; i++) {
-        memset(&_scArray.info[i], 0, sizeof(SCBtDeviceInfoSingle));
+        memset(&_scArray.regist[i], 0, sizeof(SCBtDeviceInfo));
     }
 
     WPADiShutdown(FALSE);
     OSRestoreInterrupts(enable);
 }
 
-void WPADiShutdown(BOOL exec) {
+void WPADiShutdown() {
     OSCancelAlarm(&_managerAlarm);
     WUDSetHidRecvCallback(NULL);
-    WUDShutdown(exec);
+    WUDShutdown();
 }
 
 BOOL WPADCancelSyncDevice() {

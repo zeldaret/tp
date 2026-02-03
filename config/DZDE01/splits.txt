@@ -3411,7 +3411,7 @@ revolution/wud/WUD.c:
 	.data       start:0x80403678 end:0x80404440
 	.bss        start:0x804BE680 end:0x804C03E0
 	.sdata      start:0x804FA7E8 end:0x804FA7F0
-	.sbss       start:0x804FBA38 end:0x804FBA5C
+	.sbss       start:0x804FBA38 end:0x804FBA58
 	.sdata2     start:0x805005B8 end:0x805005C0
 
 revolution/wud/WUDHidHost.c:
@@ -3444,7 +3444,7 @@ revolution/bte/uusb_ppc.c:
 	.data       start:0x80404878 end:0x804055C0
 	.bss        start:0x804E8F00 end:0x804EAF60
 	.sdata      start:0x804FA7F0 end:0x804FA810
-	.sbss       start:0x804FBA5C end:0x804FBA70
+	.sbss       start:0x804FBA58 end:0x804FBA70
 
 revolution/bte/bta_dm_cfg.c:
 	.rodata     start:0x803BB9B0 end:0x803BBA40

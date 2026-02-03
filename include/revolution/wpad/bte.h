@@ -596,13 +596,19 @@ typedef union
 typedef void (tBTA_DM_SEC_CBACK)(tBTA_DM_SEC_EVT event, tBTA_DM_SEC *p_data);
 
 /* Search callback events */
-#define BTA_DM_INQ_RES_EVT              0       /* Inquiry result for a peer device. */
-#define BTA_DM_INQ_CMPL_EVT             1       /* Inquiry complete. */
-#define BTA_DM_DISC_RES_EVT             2       /* Discovery result for a peer device. */
-#define BTA_DM_DISC_BLE_RES_EVT         3       /* Discovery result for BLE GATT based service on a peer device. */
-#define BTA_DM_DISC_CMPL_EVT            4       /* Discovery complete. */
-#define BTA_DM_DI_DISC_CMPL_EVT         5       /* Discovery complete. */
-#define BTA_DM_SEARCH_CANCEL_CMPL_EVT   6       /* Search cancelled */
+enum BTA_DM_State_e {
+    BTA_DM_INQ_RES_EVT,             /* Inquiry result for a peer device. */
+    BTA_DM_INQ_CMPL_EVT,            /* Inquiry complete. */
+    BTA_DM_DISC_RES_EVT,            /* Discovery result for a peer device. */
+#if SDK_AUG2010
+    BTA_DM_DISC_BLE_RES_EVT,        /* Discovery result for BLE GATT based service on a peer device. */
+#endif
+    BTA_DM_DISC_CMPL_EVT,           /* Discovery complete. */
+#if SDK_AUG2010
+    BTA_DM_DI_DISC_CMPL_EVT,        /* Discovery complete. */
+#endif
+    BTA_DM_SEARCH_CANCEL_CMPL_EVT,  /* Search cancelled */
+};
 
 typedef UINT8 tBTA_DM_SEARCH_EVT;
 
@@ -1027,40 +1033,5 @@ void BTA_DmSendHciReset(void);
 void BTA_HhGetAclQueueInfo(void);
 void BTA_Init(void);
 void BTA_CleanUp(void (*p_cb)(tBTA_STATUS status)); // probably
-
-// ---
-/* muff1n: I wrote this definition myself
- * TODO: would this be part of BLE or WUD?
- */
-
-struct small_dev_info
-{
-    char        devName[20];    // size 0x14? offset 0x00 // might be 0x13?
-    char        at_0x14[1];     // size 0x??, offset 0x14?
-    char        __pad0[0x20 - (0x14 + 0x01)];
-    LINK_KEY    linkKey;        // size 0x10, offset 0x20
-    char        __pad1[0x10];
-}; // size 0x40
-
-typedef struct {
-    BD_ADDR bd_addr;
-    u8 bd_name[64];
-    u8 link_key[16];
-} SCBtCmpDevInfoSingle;
-
-typedef struct {
-    BD_ADDR bd_addr;
-    u8 bd_name[64];
-} SCBtDeviceInfoSingle;
-
-typedef struct {
-    u8 num;
-    SCBtCmpDevInfoSingle info[6];
-} SCBtCmpDevInfoArray;
-
-typedef struct {
-    u8 num;
-    SCBtDeviceInfoSingle info[16];
-} SCBtDeviceInfoArray;
 
 #endif // CONTEXT_BTE_H

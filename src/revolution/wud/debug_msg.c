@@ -1,6 +1,8 @@
-#include <revolution/wud/debug_msg.h>
+#include <revolution/wud.h>
+
+#include <va_list>
 
 void WUD_DEBUGPrint(const char* msg, ...) {
-    // NONMATCHING
+    va_list list;
 }
 
