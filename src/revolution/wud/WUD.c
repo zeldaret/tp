@@ -2830,32 +2830,31 @@ BD_ADDR_PTR _WUDGetDevAddr(UINT8 handle) {
     return pAddr;
 }
 
-u16 _WUDGetQueuedSize(s8 handle) {
+u16 _WUDGetQueuedSize(s8 dev_handle) {
     u16 queuedSize;
-    BOOL enabled = OSDisableInterrupts();
+    BOOL intrStatus = OSDisableInterrupts();
 
-    if (0 <= handle && handle < WUD_MAX_DEV_ENTRY) {
-        queuedSize = WUDiGetQueueSizeForHandle(handle);
-
+    if (dev_handle >= 0 && dev_handle < WUD_MAX_DEV_ENTRY) {
+        queuedSize = WUDiGetQueueSizeForHandle(dev_handle);
     } else {
         queuedSize = 0;
     }
 
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts(intrStatus);
     return queuedSize;
 }
 
-u16 _WUDGetNotAckedSize(s8 handle) {
+u16 _WUDGetNotAckedSize(s8 dev_handle) {
     u16 notAckedSize;
-    BOOL enabled = OSDisableInterrupts();
+    BOOL intrStatus = OSDisableInterrupts();
 
-    if (0 <= handle && handle < WUD_MAX_DEV_ENTRY) {
-        notAckedSize = WUDiGetNotAckNumForHandle(handle);
+    if (dev_handle >= 0 && dev_handle < WUD_MAX_DEV_ENTRY) {
+        notAckedSize = WUDiGetNotAckNumForHandle(dev_handle);
     } else {
         notAckedSize = 0;
     }
 
-    OSRestoreInterrupts(enabled);
+    OSRestoreInterrupts(intrStatus);
     return notAckedSize;
 }
 
@@ -2869,11 +2868,21 @@ u8 _WUDGetLinkNumber(void) {
     return num;
 }
 
+// not sure if this is a fakematch or an actual version difference of some kind
+#if SDK_AUG2010
+inline u16 WUDiGetQueueSizeForHandle(u8 dev_handle) {
+#else
 inline u16 WUDiGetQueueSizeForHandle(u32 dev_handle) {
+#endif
     return _dev_handle_queue_size[dev_handle];
 }
 
+// see comment for WUDiGetQueueSizeForHandle
+#if SDK_AUG2010
+inline u16 WUDiGetNotAckNumForHandle(u8 dev_handle) {
+#else
 inline u16 WUDiGetNotAckNumForHandle(u32 dev_handle) {
+#endif
     return _dev_handle_notack_num[dev_handle];
 }
 

@@ -139,8 +139,8 @@ WUDDevInfo* WUDiGetRemoveStdDevice(void);
 void WUDiMoveTopOfDisconnectedStdDevice(WUDDevInfo* pInfo);
 
 BD_ADDR_PTR _WUDGetDevAddr(UINT8 handle);
-u16 _WUDGetQueuedSize(s8 handle);
-u16 _WUDGetNotAckedSize(s8 handle);
+u16 _WUDGetQueuedSize(s8 dev_handle);
+u16 _WUDGetNotAckedSize(s8 dev_handle);
 u8 _WUDGetLinkNumber(void);
 
 #ifdef __cplusplus

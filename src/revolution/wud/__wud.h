@@ -216,8 +216,13 @@ extern BD_ADDR_PTR _dev_handle_to_bda[WUD_MAX_DEV_ENTRY];
 extern u16 _dev_handle_queue_size[WUD_MAX_DEV_ENTRY];
 extern u16 _dev_handle_notack_num[WUD_MAX_DEV_ENTRY];
 
+#if SDK_AUG2010
+u16 WUDiGetQueueSizeForHandle(u8 dev_handle);
+u16 WUDiGetNotAckNumForHandle(u8 dev_handle);
+#else
 u16 WUDiGetQueueSizeForHandle(u32 dev_handle);
 u16 WUDiGetNotAckNumForHandle(u32 dev_handle);
+#endif
 
 /* wud/WUDHidHost.c */
 void WUDHidHostCallback(tBTA_HH_EVT event, tBTA_HH *p_data);
