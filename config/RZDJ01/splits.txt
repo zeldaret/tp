@@ -417,14 +417,16 @@ d/d_bomb.cpp:
 
 d/d_lib.cpp:
 	.text       start:0x800369E0 end:0x800372B0
-	.data       start:0x803E75F0 end:0x803E76B8
-	.sdata      start:0x8051BA30 end:0x8051BA50
-	.sbss       start:0x8051E8A8 end:0x8051E8C8
+	.data       start:0x803E75F0 end:0x803E7648
+	.sdata      start:0x8051BA30 end:0x8051BA40
+	.sbss       start:0x8051E8A8 end:0x8051E8C0
 	.sdata2     start:0x8051FC98 end:0x8051FCA0
 
 d/d_save.cpp:
 	.text       start:0x800372B0 end:0x8003A278
 	.rodata     start:0x803BC210 end:0x803BC9F0
+	.data       start:0x803E7648 end:0x803E76B8
+	.sdata      start:0x8051BA40 end:0x8051BA50
 	.sdata2     start:0x8051FCA0 end:0x8051FCA8
 
 d/d_save_init.cpp:
@@ -440,6 +442,7 @@ d/d_a_obj.cpp:
 	.text       start:0x8003B088 end:0x8003B92C
 	.rodata     start:0x803BC9F0 end:0x803BCA00
 	.bss        start:0x804961E8 end:0x80496248
+	.sbss       start:0x8051E8C0 end:0x8051E8C8
 	.sdata2     start:0x8051FCC8 end:0x8051FCE0
 
 d/d_a_itembase_static.cpp:
