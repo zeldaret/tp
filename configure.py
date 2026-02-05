@@ -472,12 +472,12 @@ def DolphinLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
-def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+def RevolutionLib(lib_name: str, objects: List[Object], extra_cflags=[]) -> Dict[str, Any]:
     if config.version == "ShieldD":
         return {
             "lib": lib_name,
             "mw_version": "Wii/1.0",
-            "cflags": [*cflags_revolution_debug, "-DSDK_AUG2010"],
+            "cflags": [*cflags_revolution_debug, "-DSDK_AUG2010", *extra_cflags],
             "progress_category": "sdk",
             "objects": objects,
         }
@@ -485,7 +485,7 @@ def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         return {
             "lib": lib_name,
             "mw_version": "Wii/1.0",
-            "cflags": [*cflags_revolution_retail, "-DSDK_AUG2010"],
+            "cflags": [*cflags_revolution_retail, "-DSDK_AUG2010", *extra_cflags],
             "progress_category": "sdk",
             "objects": objects,
         }
@@ -493,7 +493,7 @@ def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         return {
             "lib": lib_name,
             "mw_version": "GC/3.0a3",
-            "cflags": [*cflags_revolution_retail, "-DSDK_SEP2006", "-DNW4HBM_DEBUG"],
+            "cflags": [*cflags_revolution_retail, "-DSDK_SEP2006", "-DNW4HBM_DEBUG", *extra_cflags],
             "progress_category": "sdk",
             "objects": objects,
         }
@@ -501,7 +501,7 @@ def RevolutionLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         return {
             "lib": lib_name,
             "mw_version": "GC/3.0a3",
-            "cflags": [*cflags_revolution_retail, "-DSDK_SEP2006"],
+            "cflags": [*cflags_revolution_retail, "-DSDK_SEP2006", *extra_cflags],
             "progress_category": "sdk",
             "objects": objects,
         }
@@ -1866,6 +1866,13 @@ config.libs = [
             Object(MatchingFor(ALL_WII), "revolution/wud/WUDHidHost.c"),
             Object(MatchingFor(ALL_WII), "revolution/wud/debug_msg.c"),
         ],
+    ),
+    RevolutionLib(
+        "kpad",
+        [
+            Object(NonMatching, "revolution/kpad/KPAD.c"),
+        ],
+        extra_cflags=["-O4,s"]
     ),
     RevolutionLib(
         "euart",

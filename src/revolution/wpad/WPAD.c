@@ -1445,7 +1445,7 @@ void WPADSetAutoSamplingBuf(s32 chan, void* buf, u32 cnt) {
     OSRestoreInterrupts(enabled);
 }
 
-u32 WPADGetLatestIndexInBuf(s32 chan, void* buf) {
+u32 WPADGetLatestIndexInBuf(s32 chan) {
     BOOL enable;
     u32 idx;
 

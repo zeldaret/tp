@@ -71,6 +71,9 @@ extern "C" {
 #define WPAD_DEV_NONE               253 // sort of like WPAD_ENODEV (see __wpadAbortInitExtension in WPADHIDParser.c)
 #define WPAD_DEV_INITIALIZING       255 // see __a1_20_status_report
 
+#define WPAD_SENSOR_BAR_POS_BOTTOM 0
+#define WPAD_SENSOR_BAR_POS_TOP 1
+
 enum WPADResult_et {
     WPAD_ERR_OK = 0,
 
@@ -103,6 +106,14 @@ enum WPADResult_et {
 #define WPAD_CEBADE     (WPAD_EBADE + 0)
 
 #define WPAD_DPD_MAX_OBJECTS 4
+#define WPAD_DPD_IMG_RESO_WX 1024
+#define WPAD_DPD_IMG_RESO_WY 768
+
+#define WPAD_STATE_DISABLED     0
+#define WPAD_STATE_ENABLING     1
+#define WPAD_STATE_ENABLED      2
+#define WPAD_STATE_SETUP        3
+#define WPAD_STATE_DISABLING    4
 
 #define WPAD_CHAN0          0
 #define WPAD_CHAN1          1
@@ -382,6 +393,7 @@ void WPADGetAccGravityUnit(s32 chan, u32 type, WPADAcc* acc);
 
 BOOL WPADIsDpdEnabled(s32 chan);
 s32 WPADControlDpd(s32 chan, u32 command, WPADCallback callback);
+u32 WPADGetLatestIndexInBuf(s32 chan);
 u32 WPADGetDataFormat(s32 chan);
 s32 WPADSetDataFormat(s32 chan, u32 fmt);
 void WPADSetAutoSleepTime(u8 minute);
