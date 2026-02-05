@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <dolphin/os.h>
 #include "global.h"
-#include "JSystem/CastedMath.h"
+#include "angle_utils.h"
 
 JUTDirectPrint* JUTDirectPrint::sDirectPrint;
 

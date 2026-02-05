@@ -2,7 +2,7 @@
 #define C_ANGLE_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "JSystem/CastedMath.h"
+#include "angle_utils.h"
 
 
 #define DEG2S_CONSTANT (0x8000 / 180.0f)

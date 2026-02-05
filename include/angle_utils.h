@@ -1,5 +1,5 @@
-#ifndef _CASTED_MATH_H_
-#define _CASTED_MATH_H_
+#ifndef _ANGLE_UTILS_H_
+#define _ANGLE_UTILS_H_
 
 #include "global.h"
 #include "types.h"
@@ -86,4 +86,4 @@
 #define SUB_ANGLE_2  SUB_S16_2
 #define MULT_ANGLE_2 MULT_S16_2
 
-#endif // !_CASTED_MATH_H_
+#endif // !_ANGLE_UTILS_H_
