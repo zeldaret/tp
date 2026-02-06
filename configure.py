@@ -1917,6 +1917,12 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "tpl",
+        [
+            Object(Matching, "revolution/tpl/TPL.c"),
+        ],
+    ),
+    RevolutionLib(
         "gd",
         [
             Object(NonMatching, "revolution/gd/GDBase.c"),
