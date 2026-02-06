@@ -434,14 +434,15 @@ d/d_save_init.cpp:
 
 d/d_jnt_col.cpp:
 	.text       start:0x8003A3CC end:0x8003B1D8
-	.data       start:0x803EA4E0 end:0x803EA5F8
-	.sdata      start:0x8051E4D8 end:0x8051E508
+	.data       start:0x803EA4E0 end:0x803EA528
+	.sdata      start:0x8051E4D8 end:0x8051E4F0
 	.sdata2     start:0x805225E8 end:0x80522608
 
 d/d_a_obj.cpp:
 	.text       start:0x8003B1D8 end:0x8003BA7C
 	.rodata     start:0x803BB3B0 end:0x803BB3C0
 	.bss        start:0x80498C60 end:0x80498CC0
+	.sdata      start:0x8051E4F0 end:0x8051E4F8
 	.sbss       start:0x80521200 end:0x80521208
 	.sdata2     start:0x80522608 end:0x80522620
 
@@ -455,6 +456,8 @@ d/d_a_item_static.cpp:
 d/d_a_shop_item_static.cpp:
 	.text       start:0x8003BC08 end:0x8003BC70
 	.rodata     start:0x803BB3F8 end:0x803BB848
+	.data       start:0x803EA528 end:0x803EA5F8
+	.sdata      start:0x8051E4F8 end:0x8051E508
 
 d/d_a_horse_static.cpp:
 	.text       start:0x8003BC70 end:0x8003BDC8
