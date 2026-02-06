@@ -3441,16 +3441,16 @@ revolution/ax/AXCL.c:
 	.text       start:0x80369114 end:0x80369144
 	.sbss       start:0x8053B7B0 end:0x8053B7B8
 
-revolution/ax/AXFXReverbHi.c:
+revolution/axfx/AXFXReverbHi.c:
 	.text       start:0x80369144 end:0x803691D0
 	.sdata2     start:0x80540560 end:0x80540568
 
-revolution/ax/AXFXReverbHiExp.c:
+revolution/axfx/AXFXReverbHiExp.c:
 	.text       start:0x803691D0 end:0x80369FA8
 	.data       start:0x8043FD60 end:0x8043FF00
 	.sdata2     start:0x80540568 end:0x805405A8
 
-revolution/ax/AXFXHooks.c:
+revolution/axfx/AXFXHooks.c:
 	.text       start:0x80369FA8 end:0x80369FE0
 	.sdata      start:0x8053A418 end:0x8053A420
 

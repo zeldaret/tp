@@ -1772,6 +1772,14 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "axfx",
+        [
+            Object(Matching, "revolution/axfx/AXFXHooks.c"),
+            Object(Matching, "revolution/axfx/AXFXReverbHi.c"),
+            Object(Matching, "revolution/axfx/AXFXReverbHiExp.c"),
+        ],
+    ),
+    RevolutionLib(
         "dsp",
         [
             Object(NonMatching, "revolution/dsp/dsp.c"),
