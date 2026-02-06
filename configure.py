@@ -1861,10 +1861,10 @@ config.libs = [
     RevolutionLib(
         "ipc",
         [
-            Object(NonMatching, "revolution/ipc/ipcMain.c"),
-            Object(NonMatching, "revolution/ipc/ipcclt.c"),
-            Object(NonMatching, "revolution/ipc/memory.c"),
-            Object(NonMatching, "revolution/ipc/ipcProfile.c"),
+            Object(Matching, "revolution/ipc/ipcMain.c"),
+            Object(MatchingFor(ALL_WII, ALL_DEMO, "Shield"), "revolution/ipc/ipcclt.c"), # strnlen issue in ShieldD
+            Object(Matching, "revolution/ipc/memory.c"),
+            Object(Matching, "revolution/ipc/ipcProfile.c"),
         ],
     ),
     RevolutionLib(

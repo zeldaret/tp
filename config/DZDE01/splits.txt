@@ -3313,7 +3313,7 @@ revolution/sc/scsystem.c:
 	.data       start:0x80401E40 end:0x80401FC0
 	.bss        start:0x804B1DE0 end:0x804B9F80
 	.sdata      start:0x804FA640 end:0x804FA718
-	.sbss       start:0x804FB91C end:0x804FB934
+	.sbss       start:0x804FB91C end:0x804FB930
 
 revolution/sc/scapi.c:
 	.text       start:0x8033D99C end:0x8033DD18
@@ -3330,7 +3330,7 @@ revolution/wenc/wenc.c:
 
 revolution/ipc/ipcMain.c:
 	.text       start:0x8033E1E0 end:0x8033E264
-	.sbss       start:0x804FB934 end:0x804FB948
+	.sbss       start:0x804FB930 end:0x804FB948
 
 revolution/ipc/ipcclt.c:
 	.text       start:0x8033E264 end:0x8033F964
