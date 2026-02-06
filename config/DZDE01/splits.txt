@@ -347,7 +347,7 @@ f_pc/f_pc_priority.cpp:
 
 f_pc/f_pc_profile.cpp:
 	.text       start:0x800298EC end:0x800298FC
-	.sbss       start:0x804FAB30 end:0x804FAB40
+	.sbss       start:0x804FAB30 end:0x804FAB38
 
 f_pc/f_pc_searcher.cpp:
 	.text       start:0x800298FC end:0x8002992C
@@ -384,7 +384,7 @@ d/d_stage.cpp:
 	.data       start:0x803C2138 end:0x803C59E8
 	.bss        start:0x80442E48 end:0x80454310
 	.sdata      start:0x804F7BF8 end:0x804F7C2C
-	.sbss       start:0x804FAB40 end:0x804FAB60
+	.sbss       start:0x804FAB38 end:0x804FAB60
 	.sdata2     start:0x804FBE90 end:0x804FBEA0
 
 d/d_map.cpp:
