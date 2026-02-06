@@ -1780,6 +1780,15 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "axfx",
+        [
+            Object(Matching, "revolution/mem/mem_heapCommon.c"),
+            Object(Matching, "revolution/mem/mem_expHeap.c"),
+            Object(Matching, "revolution/mem/mem_allocator.c"),
+            Object(Matching, "revolution/mem/mem_list.c"),
+        ],
+    ),
+    RevolutionLib(
         "dsp",
         [
             Object(NonMatching, "revolution/dsp/dsp.c"),
