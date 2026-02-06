@@ -1838,6 +1838,12 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "arc",
+        [
+            Object(Matching, "revolution/arc/arc.c"),
+        ],
+    ),
+    RevolutionLib(
         "esp",
         [
             Object(NonMatching, "revolution/esp/esp.c"),
