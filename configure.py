@@ -1765,6 +1765,13 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "ax",
+        [
+            Object(Matching, "revolution/ax/AXAux.c"),
+            Object(Matching, "revolution/ax/AXCL.c"),
+        ],
+    ),
+    RevolutionLib(
         "dsp",
         [
             Object(NonMatching, "revolution/dsp/dsp.c"),
