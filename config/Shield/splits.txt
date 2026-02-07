@@ -416,7 +416,7 @@ d/d_lib.cpp:
 	.text       start:0x8003A8D0 end:0x8003B1D0
 	.data       start:0x804B88A0 end:0x804B88F8
 	.sdata      start:0x80505150 end:0x80505160
-	.sbss       start:0x80508C00 end:0x80508C20
+	.sbss       start:0x80508C00 end:0x80508C18
 
 d/d_save.cpp:
 	.text       start:0x8003B1D0 end:0x8003FC50
@@ -438,6 +438,7 @@ d/d_a_obj.cpp:
 	.text       start:0x80040C40 end:0x80041890
 	.rodata     start:0x804907F0 end:0x80490800
 	.sdata      start:0x80505190 end:0x80505198
+	.sbss       start:0x80508C18 end:0x80508C20
 	.sdata2     start:0x8050A068 end:0x8050A080
 	.bss        start:0x8056EE10 end:0x8056EE40
 
