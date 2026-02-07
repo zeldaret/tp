@@ -1876,8 +1876,8 @@ config.libs = [
     RevolutionLib(
         "pad",
         [
-            Object(NonMatching, "revolution/pad/Padclamp.c"),
-            Object(NonMatching, "revolution/pad/Pad.c"),
+            Object(MatchingFor("ShieldD"), "revolution/pad/Padclamp.c"), # sqrtf issue on retail versions
+            Object(Matching, "revolution/pad/Pad.c"),
         ],
     ),
     RevolutionLib(
