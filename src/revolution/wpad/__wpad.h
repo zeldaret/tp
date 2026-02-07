@@ -268,15 +268,6 @@ extern "C" {
 #define WPAD_NZFILTER_MPLS  3
 #define WPAD_MAX_NZFILTERS  4
 
-#define WPAD_DPD_IMG_RESO_WX 1024
-#define WPAD_DPD_IMG_RESO_WY 768
-
-#define WPAD_STATE_DISABLED     0
-#define WPAD_STATE_ENABLING     1
-#define WPAD_STATE_ENABLED      2
-#define WPAD_STATE_SETUP        3
-#define WPAD_STATE_DISABLING    4
-
 #define WPAD_BATTERY_LEVEL_CRITICAL 0
 #define WPAD_BATTERY_LEVEL_LOW      1
 #define WPAD_BATTERY_LEVEL_MEDIUM   2
@@ -285,9 +276,6 @@ extern "C" {
 
 #define WPAD_RADIO_QUALITY_GOOD  0  // 80+
 #define WPAD_RADIO_QUALITY_BAD   1  // 80-
-
-#define WPAD_SENSOR_BAR_POS_BOTTOM 0
-#define WPAD_SENSOR_BAR_POS_TOP 1
 
 #define WPAD_RX_DATASIZE 96
 #define WPAD_COMMAND_CMD_MAX_LEN 24
@@ -615,7 +603,6 @@ BOOL WPADiSendReadData(WPADCmdQueue* queue, void* p_buf, u16 len, u32 addr, WPAD
 BOOL WPADiSendWriteData(WPADCmdQueue* queue, void* p_buf, u16 len, u32 addr, WPADCallback callback);
 
 void WPADiCopyOut(s32 chan);
-u32 WPADGetLatestIndexInBuf(s32 chan, void* buf);
 void WPADiExcludeButton(s32 chan);
 s32 WPADiGetStatus(s32 chan);
 
