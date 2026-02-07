@@ -3763,7 +3763,7 @@ revolution/usb/usb.c:
 	.text       start:0x8044B0D0 end:0x8044C620
 	.data       start:0x804FDE88 end:0x804FE6B8
 	.sdata      start:0x80508828 end:0x80508838
-	.sbss       start:0x80509B28 end:0x80509B3C
+	.sbss       start:0x80509B28 end:0x80509B38
 
 revolution/bte/gki_buffer.c:
 	.text       start:0x8044C620 end:0x8044DAC0
@@ -3786,7 +3786,7 @@ revolution/bte/hcisu_h2.c:
 revolution/bte/uusb_ppc.c:
 	.text       start:0x8044EA20 end:0x8044F6A0
 	.sdata      start:0x80508838 end:0x80508848
-	.sbss       start:0x80509B3C end:0x80509B50
+	.sbss       start:0x80509B38 end:0x80509B50
 	.bss        start:0x805DA1C0 end:0x805DC220
 
 revolution/bte/bta_dm_cfg.c:

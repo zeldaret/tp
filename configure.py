@@ -1881,6 +1881,12 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "usb",
+        [
+            Object(Matching, "revolution/usb/usb.c"),
+        ],
+    ),
+    RevolutionLib(
         "gd",
         [
             Object(NonMatching, "revolution/gd/GDBase.c"),
