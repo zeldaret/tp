@@ -8,7 +8,7 @@
 #include "global.h"
 
 #if PLATFORM_WII
-#include "m_Do/m_Re_controller_pad.h"
+#include "m_Re/m_Re_controller_pad.h"
 #endif
 
 void cAPICPad_recalibrate() {

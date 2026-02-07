@@ -1,4 +1,4 @@
-#include "m_Do/m_Re_controller_pad.h"
+#include "m_Re/m_Re_controller_pad.h"
 #include "Z2AudioLib/Z2AudioCS.h"
 
 mReCPd::Pad mReCPd::m_pad[4];

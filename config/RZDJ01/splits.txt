@@ -54,7 +54,7 @@ m_Do/m_Do_controller_pad.cpp:
 	.bss        start:0x80430ED8 end:0x80430FE8
 	.sdata2     start:0x8051F8A8 end:0x8051F8C0
 
-m_Do/m_Re_controller_pad.cpp:
+m_Re/m_Re_controller_pad.cpp:
 	.text       start:0x8000A4F0 end:0x8000DF0C
 	.rodata     start:0x803BA900 end:0x803BA950
 	.data       start:0x803DF0A8 end:0x803DF0C0
