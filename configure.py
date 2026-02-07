@@ -1964,7 +1964,7 @@ config.libs = [
             Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_ResFont.cpp"),
             Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_ResFontBase.cpp"),
             Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_TagProcessorBase.cpp"),
-            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_TextWriterBase.cpp"),
+            Object(MatchingFor("RZDE01_02", "RZDP01", "RZDJ01"), "revolution/homebuttonLib/nw4hbm/ut/ut_TextWriterBase.cpp"), # RZDE01_00 func order
 
             Object(NonMatching, "revolution/homebuttonLib/HBMBase.cpp"),
             Object(NonMatching, "revolution/homebuttonLib/HBMAnmController.cpp"),
