@@ -1623,7 +1623,7 @@ JSystem/JParticle/JPAResource.cpp:
 JSystem/JParticle/JPABaseShape.cpp:
 	.text       start:0x8025F128 end:0x80262534
 	.data       start:0x80409080 end:0x80409228
-	.sdata      start:0x80520310 end:0x80520320
+	.sdata      start:0x80520310 end:0x80520318
 	.sdata2     start:0x805258C8 end:0x80525900
 
 JSystem/JParticle/JPAExtraShape.cpp:
@@ -1870,6 +1870,7 @@ JSystem/JAudio2/JASSeqParser.cpp:
 	.text       start:0x80279A98 end:0x8027B794
 	.ctors      start:0x803B91E8 end:0x803B91EC
 	.data       start:0x8040A5B0 end:0x8040BEE0
+	.sdata      start:0x80520318 end:0x80520320
 	.sbss       start:0x805216F8 end:0x80521708
 	.sdata2     start:0x80525BD8 end:0x80525C10
 
