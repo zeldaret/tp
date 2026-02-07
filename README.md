@@ -14,6 +14,7 @@
 [RZDE01_02]: https://decomp.dev/zeldaret/tp/RZDE01_02.svg?mode=shield&label=RZDE01_02
 [RZDP01]: https://decomp.dev/zeldaret/tp/RZDP01.svg?mode=shield&label=RZDP01
 [RZDJ01]: https://decomp.dev/zeldaret/tp/RZDJ01.svg?mode=shield&label=RZDJ01
+[DZDE01]: https://decomp.dev/zeldaret/tp/DZDE01.svg?mode=shield&label=DZDE01
 [Shield]: https://decomp.dev/zeldaret/tp/Shield.svg?mode=shield&label=Shield -->
 [ShieldD]: https://decomp.dev/zeldaret/tp/ShieldD.svg?mode=shield&label=ShieldD
 [progress]: https://decomp.dev/zeldaret/tp
@@ -40,6 +41,7 @@ The project can target the following supported versions:
 - `RZDE01_02`: Wii - North America (Rev 2)
 - `RZDP01`: Wii - Europe/Australia
 - `RZDJ01`: Wii - Japan
+- `DZDE01`: Wii - North America (Kiosk Demo) 
 - `Shield`: Nvidia Shield - China
 - `ShieldD`: Nvidia Shield - China (Debug Version)
 
