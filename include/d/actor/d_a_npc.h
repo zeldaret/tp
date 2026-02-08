@@ -169,7 +169,7 @@ public:
     int chkPassed1(cXyz, int);
     int chkPassed2(cXyz, cXyz*, int, int);
 #if DEBUG
-    int drawDbgInfo(f32, int);
+    void drawDbgInfo(f32, int);
 #endif
 
     daNpcT_Path_c() {

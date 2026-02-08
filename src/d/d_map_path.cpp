@@ -94,10 +94,12 @@ void dMpath_HIO_n::hioList_c::update(JORMContext* mctx) {
 
 u32 dMpath_HIO_n::hioList_c::addString(char* param_1, u32 param_2, u32 param_3) const {
     // DEBUG NONMATCHING
+    return param_2;
 }
 
 u32 dMpath_HIO_n::hioList_c::addStringBinary(char* param_1, u32 param_2, u32 param_3) const {
     // DEBUG NONMATCHING
+    return param_2;
 }
 
 BOOL dMpath_HIO_file_base_c::writeHostioTextFile(const char* param_1) {
