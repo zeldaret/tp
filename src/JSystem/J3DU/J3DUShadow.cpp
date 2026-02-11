@@ -6,14 +6,12 @@
 #include "JSystem/JMath/JMath.h"
 #include "JSystem/JUtility/JUTTexture.h"
 
-void dummy() {
+void J3DUShadow_dummy(JUTTexture* tex, JGeometry::TVec3<f32>* vec) {
     JMAAbs(0.0f);
     JMathInlineVEC::C_VECDotProduct(NULL, NULL);
-    JGeometry::TVec3<f32>* vec;
     vec->dot(*vec);
     vec->length();
 
-    JUTTexture* tex;
     tex->getCaptureFlag();
     tex->getFormat();
     JMath::fastSqrt<f32>(0.0f);

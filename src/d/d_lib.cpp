@@ -16,8 +16,7 @@
 #include "f_op/f_op_actor.h"
 #include "m_Do/m_Do_controller_pad.h"
 
-static void dummy1(mDoExt_btkAnm* btk) {
-    cXyz pos;
+static void dummy1(mDoExt_btkAnm* btk, cXyz& pos) {
     GXColor color;
     OS_REPORT("d_lib.cpp");
     OS_REPORT("brk != 0");
