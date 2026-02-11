@@ -477,9 +477,9 @@ public:
         }
     }
     char* getPlayerName() const { return const_cast<char*>(mPlayerName); }
-    void setPlayerName(const char* i_name) { strcpy((char*)mPlayerName, i_name); }
-    char* getHorseName() { return mHorseName; }
-    void setHorseName(const char* i_name) { strcpy((char*)mHorseName, i_name); }
+    void setPlayerName(const char* i_name) { strcpy(mPlayerName, i_name); }
+    char* getHorseName() const { return const_cast<char*>(mHorseName); }
+    void setHorseName(const char* i_name) { strcpy(mHorseName, i_name); }
     u8 getClearCount() const { return mClearCount; }
 
 private:
@@ -508,7 +508,7 @@ public:
     // Ruby inline names are from TWW debug.
     u8 getRuby() { return mRuby; }
     void setRuby(u8 i_ruby) { mRuby = i_ruby; }
-    u8 getAttentionType() { return mAttentionType; }
+    u8 getAttentionType() const { return mAttentionType; }
     void setAttentionType(u8 i_mAttentionType) { mAttentionType = i_mAttentionType; }
     u16 getCalibrateDist() { return mCalibrateDist; }
     void setCalibrateDist(u16 i_mCalibrateDist) { mCalibrateDist = i_mCalibrateDist; }
@@ -742,7 +742,6 @@ public:
 private:
     /* 0x00 */ s8 mStageNo;
     /* 0x01 */ u8 unk1;
-    /* 0x02 */ u8 unk2[2];
     /* 0x04 */ u32 mSwitch[2];
     /* 0x0C */ u32 mItem[4];
     /* 0x1C */ s16 unk28[16];
@@ -924,7 +923,7 @@ public:
 
     flagFile_c();
     ~flagFile_c();
-    BOOL check_flag(u16);
+    BOOL check_flag(u16 i_flag) { return (m_flags & i_flag) != 0; }
 
     virtual void listenPropertyEvent(const JORPropertyEvent*);
     virtual void genMessage(JORMContext*);
