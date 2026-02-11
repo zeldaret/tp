@@ -1765,6 +1765,30 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "ax",
+        [
+            Object(Matching, "revolution/ax/AXAux.c"),
+            Object(Matching, "revolution/ax/AXCL.c"),
+        ],
+    ),
+    RevolutionLib(
+        "axfx",
+        [
+            Object(Matching, "revolution/axfx/AXFXHooks.c"),
+            Object(Matching, "revolution/axfx/AXFXReverbHi.c"),
+            Object(Matching, "revolution/axfx/AXFXReverbHiExp.c"),
+        ],
+    ),
+    RevolutionLib(
+        "axfx",
+        [
+            Object(Matching, "revolution/mem/mem_heapCommon.c"),
+            Object(Matching, "revolution/mem/mem_expHeap.c"),
+            Object(Matching, "revolution/mem/mem_allocator.c"),
+            Object(Matching, "revolution/mem/mem_list.c"),
+        ],
+    ),
+    RevolutionLib(
         "dsp",
         [
             Object(NonMatching, "revolution/dsp/dsp.c"),
@@ -1823,6 +1847,12 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "arc",
+        [
+            Object(Matching, "revolution/arc/arc.c"),
+        ],
+    ),
+    RevolutionLib(
         "esp",
         [
             Object(NonMatching, "revolution/esp/esp.c"),
@@ -1831,10 +1861,10 @@ config.libs = [
     RevolutionLib(
         "ipc",
         [
-            Object(NonMatching, "revolution/ipc/ipcMain.c"),
-            Object(NonMatching, "revolution/ipc/ipcclt.c"),
-            Object(NonMatching, "revolution/ipc/memory.c"),
-            Object(NonMatching, "revolution/ipc/ipcProfile.c"),
+            Object(Matching, "revolution/ipc/ipcMain.c"),
+            Object(MatchingFor(ALL_WII, ALL_DEMO, "Shield"), "revolution/ipc/ipcclt.c"), # strnlen issue in ShieldD
+            Object(Matching, "revolution/ipc/memory.c"),
+            Object(Matching, "revolution/ipc/ipcProfile.c"),
         ],
     ),
     RevolutionLib(
@@ -1846,8 +1876,8 @@ config.libs = [
     RevolutionLib(
         "pad",
         [
-            Object(NonMatching, "revolution/pad/Padclamp.c"),
-            Object(NonMatching, "revolution/pad/Pad.c"),
+            Object(MatchingFor("ShieldD"), "revolution/pad/Padclamp.c"), # sqrtf issue on retail versions
+            Object(Matching, "revolution/pad/Pad.c"),
         ],
     ),
     RevolutionLib(
@@ -1884,6 +1914,12 @@ config.libs = [
         "usb",
         [
             Object(Matching, "revolution/usb/usb.c"),
+        ],
+    ),
+    RevolutionLib(
+        "tpl",
+        [
+            Object(Matching, "revolution/tpl/TPL.c"),
         ],
     ),
     RevolutionLib(
@@ -1928,7 +1964,7 @@ config.libs = [
             Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_ResFont.cpp"),
             Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_ResFontBase.cpp"),
             Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_TagProcessorBase.cpp"),
-            Object(NonMatching, "revolution/homebuttonLib/nw4hbm/ut/ut_TextWriterBase.cpp"),
+            Object(MatchingFor("RZDE01_02", "RZDP01", "RZDJ01"), "revolution/homebuttonLib/nw4hbm/ut/ut_TextWriterBase.cpp"), # RZDE01_00 func order
 
             Object(NonMatching, "revolution/homebuttonLib/HBMBase.cpp"),
             Object(NonMatching, "revolution/homebuttonLib/HBMAnmController.cpp"),

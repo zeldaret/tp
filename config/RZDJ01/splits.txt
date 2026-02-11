@@ -3402,16 +3402,16 @@ revolution/ax/AXCL.c:
 	.text       start:0x80355604 end:0x80355634
 	.sbss       start:0x8051F618 end:0x8051F620
 
-revolution/ax/AXFXReverbHi.c:
+revolution/axfx/AXFXReverbHi.c:
 	.text       start:0x80355634 end:0x803556C0
 	.sdata2     start:0x80524438 end:0x80524440
 
-revolution/ax/AXFXReverbHiExp.c:
+revolution/axfx/AXFXReverbHiExp.c:
 	.text       start:0x803556C0 end:0x80356498
 	.data       start:0x804250C0 end:0x80425260
 	.sdata2     start:0x80524440 end:0x80524480
 
-revolution/ax/AXFXHooks.c:
+revolution/axfx/AXFXHooks.c:
 	.text       start:0x80356498 end:0x803564D0
 	.sdata      start:0x8051E298 end:0x8051E2A0
 
@@ -3522,7 +3522,7 @@ revolution/sc/scsystem.c:
 	.data       start:0x80425820 end:0x804259A0
 	.bss        start:0x804D5A40 end:0x804DDBE0
 	.sdata      start:0x8051E300 end:0x8051E3D8
-	.sbss       start:0x8051F65C end:0x8051F674
+	.sbss       start:0x8051F65C end:0x8051F670
 
 revolution/sc/scapi.c:
 	.text       start:0x80361624 end:0x80361A04
@@ -3544,7 +3544,7 @@ revolution/arc/arc.c:
 
 revolution/ipc/ipcMain.c:
 	.text       start:0x803623D8 end:0x8036245C
-	.sbss       start:0x8051F674 end:0x8051F688
+	.sbss       start:0x8051F670 end:0x8051F688
 
 revolution/ipc/ipcclt.c:
 	.text       start:0x8036245C end:0x80363B5C
