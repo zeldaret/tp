@@ -2100,7 +2100,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c"),
-            Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s"),
+            Object(MatchingFor(ALL_GCN, ALL_WII, ALL_DEMO), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s"), # Shield has different symbol name for TRKInterruptHandler
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/main_TRK.c"),
             Object(MatchingFor(ALL_GCN), "TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c"),
