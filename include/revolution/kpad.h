@@ -71,10 +71,21 @@ typedef struct KPADStatus {
     /* 0x4C */ f32 dist_vec;
     /* 0x50 */ f32 dist_speed;
     /* 0x54 */ Vec2 acc_vertical;
+#if PLATFORM_SHIELD
+    /* 0x5C */ u8 dev_type;
+    /* 0x5D */ s8 wpad_err;
+    /* 0x5E */ s8 dpd_valid_fg;
+    /* 0x5F */ u8 data_format;
+    /* 0x60 */ KPADEXStatus ex_status;
+    /* 0x84 */ u8 unk_shield_0x86[0xf0 - 0x84];
+#else
     /* 0x5C */ u32 dev_type;
     /* 0x60 */ KPADEXStatus ex_status;
     /* 0x84 */ s8 dpd_valid_fg;
     /* 0x85 */ s8 wpad_err;
+#endif
+#if PLATFORM_SHIELD
+#endif
 } KPADStatus; // size 0x88
 
 typedef struct KPADUnifiedWpadStatus {

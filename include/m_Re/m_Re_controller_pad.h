@@ -4,6 +4,12 @@
 #include <revolution/mtx.h>
 #include <revolution/kpad.h>
 
+#if PLATFORM_SHIELD
+#define RECPD_SAMPLING_BUF_COUNT 16
+#else
+#define RECPD_SAMPLING_BUF_COUNT 10
+#endif
+
 class mReCPd {
 public:
     struct Pad {
@@ -22,17 +28,18 @@ public:
             /* 0xB50 */ u8 field_0xb50;
             /* 0xB51 */ u8 field_0xb51;
             /* 0xB54 */ f32 field_0xb54;
-            /* 0xB58 */ u8 field_0xB58[0xB68 - 0xB58];
+            /* 0xB58 */ Vec field_0xb58;
+            /* 0xB64 */ u32 field_0xb64;
             /* 0xB68 */ Mtx field_0xb68;
             /* 0xB98 */ f32 field_0xb98;
             /* 0xB9C */ int field_0xb9c;
             /* 0xBA0 */ f32 field_0xba0;
             /* 0xBA4 */ f32 field_0xba4;
-            /* 0xBA8 */ u8 field_0xBA8[0xBAC - 0xBA8];
+            /* 0xBA8 */ u8 field_0xba8[0xBAC - 0xBA8];
             /* 0xBAC */ int field_0xbac;
             /* 0xBB0 */ f32 field_0xbb0;
             /* 0xBB4 */ f32 field_0xbb4;
-            /* 0xBB8 */ u8 field_0xBB8[0xBBC - 0xBB8];
+            /* 0xBB8 */ u8 field_0xbb8[0xBBC - 0xBB8];
             /* 0xBBC */ int field_0xbbc;
             /* 0xBC0 */ int field_0xbc0;
         };
@@ -52,27 +59,29 @@ public:
         void calcDpdPlayCirPos();
         void calcDpdPlayBoxPos();
 
-        /* 0x0000 */ u32 field_0x0;
-        /* 0x0004 */ KPADStatus field_0x4[10];
+        /* 0x0000 */ int field_0x0;
+#if PLATFORM_SHIELD
+        /* 0x0004 */ u8 unk_shield_0x04[0x8 - 0x4];
+#endif
+        /* 0x0004 */ KPADStatus field_0x4[RECPD_SAMPLING_BUF_COUNT];
         /* 0x0554 */ int field_0x554;
+#if PLATFORM_SHIELD
+        /* 0x0558 */ u8 unk_shield_0x558[0x55c - 0x558];
+#endif
         /* 0x0558 */ KPADStatus field_0x558;
         /* 0x05E0 */ Acc m_remAcc;
         /* 0x11A4 */ Acc m_FSAcc;
-        /* 0x1D68 */ f32 m_stick3D;
-        /* 0x1D6C */ f32 field_0x1d6c;
+        /* 0x1D68 */ Vec2 m_stick3D;
         /* 0x1D70 */ f32 m_stickValue;
         /* 0x1D74 */ s16 m_stickAngle;
         /* 0x1D76 */ s16 m_stick3DAngle;
         /* 0x1D78 */ Vec2 field_0x1d78;
         /* 0x1D80 */ Vec2 field_0x1d80;
-        /* 0x1D88 */ f32 field_0x1d88;
-        /* 0x1D8C */ f32 field_0x1d8c;
-        /* 0x1D90 */ f32 field_0x1d90;
-        /* 0x1D94 */ f32 field_0x1d94;
+        /* 0x1D88 */ Vec2 m_dpd_2d_pos;
+        /* 0x1D90 */ Vec2 m_dpd_ratio_pos;
         /* 0x1D98 */ f32 field_0x1d98;
         /* 0x1D9C */ f32 field_0x1d9c;
-        /* 0x1DA0 */ f32 field_0x1da0;
-        /* 0x1DA4 */ f32 field_0x1da4;
+        /* 0x1DA0 */ Vec2 m_dpd_play_box_pos;
         /* 0x1DA8 */ Vec2 field_0x1da8;
         /* 0x1DB0 */ Vec2 field_0x1db0;
         /* 0x1DB8 */ f32 field_0x1db8;
@@ -84,7 +93,7 @@ public:
         /* 0x1DD0 */ int field_0x1dd0;
         /* 0x1DD4 */ u8 field_0x1dd4;
         /* 0x1DD8 */ int field_0x1dd8;
-        /* 0x1DDC */ u8 field_0x1ddc;
+        /* 0x1DDC */ bool field_0x1ddc;
         /* 0x1DDD */ u8 field_0x1ddd;
         /* 0x1DE0 */ int field_0x1de0;
         /* 0x1DE4 */ int field_0x1de4;
@@ -92,7 +101,7 @@ public:
         /* 0x1DEC */ int field_0x1dec;
         /* 0x1DF0 */ u8 field_0x1df0;
         /* 0x1DF4 */ int field_0x1df4;
-        /* 0x1DF8 */ u32 field_0x1df8;
+        /* 0x1DF8 */ u32 dev_type;
         /* 0x1DFC */ u32 field_0x1dfc;
         /* 0x1E00 */ int field_0x1e00;
         /* 0x1E04 */ u8 field_0x1e04;
@@ -118,29 +127,29 @@ public:
     static void stopMoterWave(int);
     static void updateMoterWave();
     static void stopMoter();
-    static void getLowBat(u32);
-    static void setLowBat(u32, int);
-    static void onLowBatChk(u32);
-    static void procNoData(u32);
+    static BOOL getLowBat(u32 chan);
+    static void setLowBat(u32 chan, BOOL low_bat);
+    static void onLowBatChk(u32 chan);
+    static void procNoData(u32 chan);
     static void read();
-    static void calibrateDist(int);
-    static void getDpd2DPos(u32);
-    static void getDpdRatioPos(u32);
-    static void getDpdRatioBoxPos(u32);
-    static void chkDpdOk(u32);
-    static void chkDpdValid(u32);
-    static void chkDpdPosIn(u32);
-    static void getKPADAcc(u32, Vec*, int);
-    static void getAngleXy(u32);
-    static void getAngleZy(u32);
-    static void getKPADAccValue(u32, int);
-    static void getKPADAccValueMax(u32);
-    static void getKPADAccSpeed(u32, int);
-    static void getKPADAccSpeedMax(u32);
-    static void getKPADFsAccValue(u32, int);
-    static void getKPADFsAccValueMax(u32);
-    static s16 getFSStickAngle3DRev(u32);
-    static void calcUnderVec(Pad::Acc*, f32);
+    static f32 calibrateDist(int);
+    static Vec2& getDpd2DPos(u32 chan);
+    static Vec2& getDpdRatioPos(u32 chan);
+    static Vec2& getDpdPlayBoxPos(u32 chan);
+    static BOOL chkDpdOk(u32 chan);
+    static BOOL chkDpdValid(u32 chan);
+    static BOOL chkDpdPosIn(u32 chan);
+    static void getKPADAcc(u32 chan, Vec*, int);
+    static s16 getAngleXy(u32 chan);
+    static s16 getAngleZy(u32 chan);
+    static f32 getKPADAccValue(u32 chan, int);
+    static f32 getKPADAccValueMax(u32 chan);
+    static f32 getKPADAccSpeed(u32 chan, int);
+    static f32 getKPADAccSpeedMax(u32 chan);
+    static f32 getKPADFSAccValue(u32 chan, int);
+    static f32 getKPADFSAccValueMax(u32 chan);
+    static s16 getFSStickAngle3DRev(u32 chan);
+    static void calcUnderVec(Pad::Acc* acc_p, f32);
 
     static u32 getHoldB(u32);
     static u32 getHoldMinus(u32);
@@ -178,8 +187,9 @@ public:
     static u32 getTrigUp(u32 i_pad) { return getTrig(i_pad) & WPAD_BUTTON_UP; }
     static u32 getTrigStart(u32 i_pad) { return getTrig(i_pad) & WPAD_BUTTON_PLUS; }
 
-    static WPADInfo m_pad_info[4];
-    static Pad m_pad[4];
+    static WPADInfo m_pad_info[WPAD_MAX_CONTROLLERS];
+    static Pad m_pad[WPAD_MAX_CONTROLLERS];
+    static motorWave_t m_motorWave[WPAD_MAX_CONTROLLERS];
     static int m_cal_value;
 };
 
