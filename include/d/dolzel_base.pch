@@ -18,15 +18,13 @@
 #include "JSystem/JKernel/JKRDisposer.h" // IWYU pragma: export
 #include "JSystem/JGadget/linklist.h" // IWYU pragma: export
 #include "JSystem/J3DGraphBase/J3DPacket.h" // IWYU pragma: export
-#include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h" // IWYU pragma: export
 #include "JSystem/J3DGraphAnimator/J3DShapeTable.h" // IWYU pragma: export
-#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" // IWYU pragma: export
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h" // IWYU pragma: export
+#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" // IWYU pragma: export
+#include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h" // IWYU pragma: export
 #include "JSystem/J3DGraphAnimator/J3DJoint.h" // IWYU pragma: export
 #include "JSystem/JUtility/JUTGamePad.h" // IWYU pragma: export
 #include "JSystem/J3DGraphBase/J3DSys.h" // IWYU pragma: export
-#include "JSystem/J3DGraphAnimator/J3DMaterialAttach.h" // IWYU pragma: export
-#include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h" // IWYU pragma: export
 #include "JSystem/JHostIO/JHICommonMem.h" // IWYU pragma: export
 #include "JSystem/JHostIO/JORReflexible.h" // IWYU pragma: export
 #include "SSystem/SComponent/c_m3d_g_sph.h" // IWYU pragma: export

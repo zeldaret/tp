@@ -7,15 +7,13 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 
-// NONMATCHING
 void dBgp_c::material_c::draw() {
-    material_c* material;
+    material_c* material = this;
     do {
-        drawSimple();
-    } while ((material = getNext()) != NULL);
+        material->drawSimple();
+    } while ((material = material->getNext()) != NULL);
 }
 
-// NONMATCHING - regalloc
 void dBgp_c::modelMaterial_c::drawSimple() {
     if (mpMaterial->getInvalid()) {
         OSReport_Warning("Share Material Nothing !!\n");
@@ -33,7 +31,7 @@ void dBgp_c::modelMaterial_c::drawSimple() {
     int spC = 0;
     void* vatCmd = NULL;
 
-    if (getMaterial()->getShape()->checkFlag(1)) {
+    if (modelMaterial->getMaterial()->getShape()->checkFlag(1)) {
         modelMaterial = modelMaterial->getChild();
     }
 
@@ -106,7 +104,7 @@ void dBgp_c::modelMaterial_c::set(J3DModelData* i_modelData, J3DMaterial* i_mate
 
 void dBgp_c::model_c::create(J3DModelData* i_modelData, Mtx i_mtx) {
     const void* binary = i_modelData->getBinary();
-    
+
     mId = *(u32*)((char*)binary + 0x1C);
     if (mId != 0xFFFF) {
         addShare(mId);
@@ -230,7 +228,7 @@ void dBgp_c::share_c::set(u16 i_id) {
     if (mCount++ == 0) {
         mStatus = 1;
         mId = i_id;
-        
+
         int rt = dComIfG_setObjectRes(getArcName(), 0, (JKRHeap*)NULL);
         JUT_ASSERT(446, rt != 0);
     }
@@ -295,7 +293,7 @@ int dBgp_c::share_c::execute() {
         for (u16 i = 0; i < mModelData->getMaterialNum(); i++) {
             J3DMaterial* material = mModelData->getMaterialNodePointer(i);
             mMaterial[i].set(mModelData, material, cMtx_getIdentity());
-            
+
             J3DShape* shape = material->getShape();
             shape->hide();
 
