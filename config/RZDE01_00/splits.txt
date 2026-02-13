@@ -46,19 +46,19 @@ m_Do/m_Do_audio.cpp:
 	.data       start:0x803F5BE0 end:0x803F5E58
 	.bss        start:0x8044A6A0 end:0x8044BA50
 	.sdata      start:0x805375C0 end:0x8053762C
-	.sbss       start:0x8053A780 end:0x8053A7D4
+	.sbss       start:0x8053A780 end:0x8053A7D0
 
 m_Do/m_Do_controller_pad.cpp:
 	.text       start:0x80009F54 end:0x8000A364
 	.bss        start:0x8044BA50 end:0x8044BB60
 	.sdata2     start:0x8053BA28 end:0x8053BA40
 
-m_Do/m_Re_controller_pad.cpp:
+m_Re/m_Re_controller_pad.cpp:
 	.text       start:0x8000A364 end:0x8000DD80
 	.rodata     start:0x803CE400 end:0x803CE450
 	.data       start:0x803F5E58 end:0x803F5E70
 	.bss        start:0x8044BB60 end:0x80453410
-	.sbss       start:0x8053A7D4 end:0x8053A7E0
+	.sbss       start:0x8053A7D0 end:0x8053A7E0
 	.sdata2     start:0x8053BA40 end:0x8053BAE8
 
 m_Do/m_Do_graphic.cpp:

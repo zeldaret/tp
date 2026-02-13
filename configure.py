@@ -587,7 +587,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_printf.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_audio.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_controller_pad.cpp"),
-            Object(NonMatching, "m_Do/m_Re_controller_pad.cpp"),
+            Object(NonMatching, "m_Re/m_Re_controller_pad.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_graphic.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_machine.cpp"),
             Object(MatchingFor(ALL_GCN), "m_Do/m_Do_mtx.cpp"),
