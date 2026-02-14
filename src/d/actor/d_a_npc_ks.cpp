@@ -2018,7 +2018,7 @@ static void npc_ks_hang(npc_ks_class* i_this) {
     s16 sVar2 = i_this->field_0x602;
     cLib_addCalcAngleS2(&i_this->field_0x602, i_this->field_0x60c * cM_ssin(i_this->field_0x5fa), 4, 0x1000);
     i_this->field_0x604 = i_this->field_0x602 - sVar2;
-    i_this->field_0x5fa += (s16) 0x800;
+    ADD_ANGLE(i_this->field_0x5fa, 0x800);
     actor->current.angle.z = -(i_this->field_0x602 / 4);
 
     if (i_this->mode != 4) {
@@ -5916,7 +5916,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
             if (i_this->timer[2] != 0) {
                 i_this->search_time = 10;
                 i_this->find_pos.set(-37799.0f, 815.0f, -22323.0f);
-                i_this->current_angle.y -= (s16) 0x3000;
+                SUB_ANGLE(i_this->current_angle.y, 0x3000);
                 sVar1 = 0x800;
             }
 

@@ -366,7 +366,7 @@ static void chain_control_01(obj_key_class* i_this) {
     }
 
     cXyz sp88;
-    i_this->field_0x612 += (s16)3000;
+    ADD_ANGLE(i_this->field_0x612, 3000);
     i_this->field_0x614 += i_this->field_0x616;
     cMtx_YrotS(*calc_mtx, i_this->field_0x614);
 
@@ -454,7 +454,7 @@ static void chain_control_01(obj_key_class* i_this) {
         MtxTrans(i_this->key_s.pos[i].x, i_this->key_s.pos[i].y, i_this->key_s.pos[i].z, 0);
         cMtx_XrotM(*calc_mtx, i_this->key_s.angle[i].x);
         cMtx_YrotM(*calc_mtx, i_this->key_s.angle[i].y);
-        spA += (s16)(TREG_S(8) + 0x4000);
+        ADD_ANGLE(spA, TREG_S(8) + 0x4000);
 
         if (i == 1) {
             var_f28 = actor->scale.x;
