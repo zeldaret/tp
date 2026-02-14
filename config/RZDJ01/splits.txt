@@ -4337,7 +4337,7 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/target_options.c:
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c:
 	.text       start:0x803B96A8 end:0x803B96F0
 
-TRK_MINNOW_DOLPHIN/gamedev/cust_connection/cc/exi2/GCN/EXI2_DDH_GCN/main.c:
+TRK_MINNOW_DOLPHIN/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c:
 	.text       start:0x803B96F0 end:0x803B99B0
 	.bss        start:0x8051AF00 end:0x8051B41C
 	.sbss       start:0x8051F808 end:0x8051F810
