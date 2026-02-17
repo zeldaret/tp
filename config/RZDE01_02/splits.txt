@@ -2310,40 +2310,40 @@ Z2AudioLib/Z2AudioMgr.cpp:
 	.sbss       start:0x80521088 end:0x80521090
 	.sdata2     start:0x80525CE8 end:0x80525CF0
 
-Z2AudioLib/SpkSpeakerCtrl.cpp:
+Z2AudioCS/SpkSpeakerCtrl.cpp:
 	.text       start:0x802AFB48 end:0x802B04DC
 	.ctors      start:0x803B8DBC end:0x803B8DC0
 	.bss        start:0x804A8A18 end:0x804A8B38
 	.sbss       start:0x80521090 end:0x80521098
 
-Z2AudioLib/SpkSystem.cpp:
+Z2AudioCS/SpkSystem.cpp:
 	.text       start:0x802B04DC end:0x802B07AC
 	.ctors      start:0x803B8DC0 end:0x803B8DC4
 	.bss        start:0x804A8B38 end:0x804A8B58
-	.sbss       start:0x80521098 end:0x805210AC
+	.sbss       start:0x80521098 end:0x805210A8
 
-Z2AudioLib/SpkMixingBuffer.cpp:
+Z2AudioCS/SpkMixingBuffer.cpp:
 	.text       start:0x802B07AC end:0x802B08F8
 	.sdata2     start:0x80525CF0 end:0x80525CF8
 
-Z2AudioLib/SpkWave.cpp:
+Z2AudioCS/SpkWave.cpp:
 	.text       start:0x802B08F8 end:0x802B0A3C
 
-Z2AudioLib/SpkTable.cpp:
+Z2AudioCS/SpkTable.cpp:
 	.text       start:0x802B0A3C end:0x802B0AC0
 
-Z2AudioLib/SpkData.cpp:
+Z2AudioCS/SpkData.cpp:
 	.text       start:0x802B0AC0 end:0x802B0BA8
 
-Z2AudioLib/SpkSound.cpp:
+Z2AudioCS/SpkSound.cpp:
 	.text       start:0x802B0BA8 end:0x802B17B4
 	.ctors      start:0x803B8DC4 end:0x803B8DC8
 	.bss        start:0x804A8B58 end:0x804A8B68
 	.sdata2     start:0x80525CF8 end:0x80525D20
 
-Z2AudioLib/Z2AudioCS.cpp:
+Z2AudioCS/Z2AudioCS.cpp:
 	.text       start:0x802B17B4 end:0x802B1A74
-	.sbss       start:0x805210AC end:0x805210B0
+	.sbss       start:0x805210A8 end:0x805210B0
 	.sdata2     start:0x80525D20 end:0x80525D28
 
 revolution/gf/GFGeometry.cpp:

@@ -3,7 +3,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "SSystem/SComponent/c_m3d.h"
-#include "Z2AudioLib/Z2AudioCS.h"
+#include "Z2AudioCS/Z2AudioCS.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_Reset.h"
