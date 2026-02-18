@@ -69,6 +69,8 @@ public:
     };
 
     static void entryBaseCsr(csr_c*);
+    static void releaseCsr(void);
+    static void entryCsr(csr_c*);
     #endif
 
     static void create();

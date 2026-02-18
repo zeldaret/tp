@@ -670,6 +670,14 @@ void mDoGph_gInf_c::entryBaseCsr(mDoGph_gInf_c::csr_c* i_entry) {
     m_baseCsr = i_entry;
     m_csr = i_entry;
 }
+
+void mDoGph_gInf_c::entryCsr(mDoGph_gInf_c::csr_c* i_csr) {
+    m_csr = i_csr;
+}
+
+void mDoGph_gInf_c::releaseCsr(void) {
+    m_csr = m_baseCsr;
+}
 #endif
 
 void mDoGph_BlankingON() {}
