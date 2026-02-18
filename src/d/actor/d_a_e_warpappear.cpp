@@ -36,27 +36,27 @@ static void* s_s1_sub(void* i_actor, void* i_data) {
         ns->mAction = 20;
         ns->mMode = 0;
 
-        f32 fVar1 = -15336.0f;
-        f32 fVar2 = -671.0f;
-        fVar1 -= ns->home.pos.x;
-        fVar2 -= ns->home.pos.z;
-        if (SQUARE(fVar1) + SQUARE(fVar2) < 40000.0f) {
+        f32 x = -15336.0f;
+        f32 z = -671.0f;
+        x -= ns->home.pos.x;
+        z -= ns->home.pos.z;
+        if (SQUARE(x) + SQUARE(z) < 40000.0f) {
             master_ns[0] = ns;
         }
 
-        fVar1 = -16552.0f;
-        fVar2 = -144.0f;
-        fVar1 -= ns->home.pos.x;
-        fVar2 -= ns->home.pos.z;
-        if (SQUARE(fVar1) + SQUARE(fVar2) < 40000.0f) {
+        x = -16552.0f;
+        z = -144.0f;
+        x -= ns->home.pos.x;
+        z -= ns->home.pos.z;
+        if (SQUARE(x) + SQUARE(z) < 40000.0f) {
             master_ns[1] = ns;
         }
 
-        fVar1 = -14796.0f;
-        fVar2 = 382.0f;
-        fVar1 -= ns->home.pos.x;
-        fVar2 -= ns->home.pos.z;
-        if (SQUARE(fVar1) + SQUARE(fVar2) < 40000.0f) {
+        x = -14796.0f;
+        z = 382.0f;
+        x -= ns->home.pos.x;
+        z -= ns->home.pos.z;
+        if (SQUARE(x) + SQUARE(z) < 40000.0f) {
             master_ns[2] = ns;
         }
     }
@@ -193,9 +193,9 @@ static void* s_s1start_sub(void* i_actor, void* i_data) {
 static void action(e_warpappear_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     fopAc_ac_c* pla = dComIfGp_getPlayer(0);
-    f32 fVar1 = -15200.0f - pla->current.pos.x;
-    f32 fVar2 = -35.0f - pla->current.pos.z;
-    fVar1 = JMAFastSqrt(SQUARE(fVar1) + SQUARE(fVar2));
+    f32 dx = -15200.0f - pla->current.pos.x;
+    f32 dz = -35.0f - pla->current.pos.z;
+    dx = JMAFastSqrt(SQUARE(dx) + SQUARE(dz));
     s8 bVar1 = false;
 
     switch (i_this->action) {
@@ -216,7 +216,7 @@ static void action(e_warpappear_class* i_this) {
 
         } else if (i_this->type == 255) {
             fpcM_Search(s_s1_sub, i_this);
-            if (fVar1 < 950.0f) {
+            if (dx < 950.0f) {
                 i_this->demo_mode = 1;
                 i_this->action = 1;
             }
