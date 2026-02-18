@@ -200,7 +200,7 @@ static void action(e_warpappear_class* i_this) {
 
     switch (i_this->action) {
     case 0:
-        if (i_this->type == 53) {
+        if (i_this->arg0 == 0x35) {
             if (i_this->target_info_count == 0) {
                 entry_no = 0;
                 fpcM_Search(s_s1entry_sub, i_this);
@@ -214,7 +214,7 @@ static void action(e_warpappear_class* i_this) {
                 i_this->demo_mode = 20;
             }
 
-        } else if (i_this->type == 255) {
+        } else if (i_this->arg0 == 0xFF) {
             fpcM_Search(s_s1_sub, i_this);
             if (dx < 950.0f) {
                 i_this->demo_mode = 1;
@@ -859,9 +859,9 @@ static int daE_Warpappear_Create(fopAc_ac_c* actor) {
         OS_REPORT("E_Warpappear PARAM %x\n", fopAcM_GetParam(i_this));
         OS_REPORT("E_Warpappear YP %d\n", i_this->home.pos.y);
 
-        i_this->type = fopAcM_GetParam(i_this);
-        if (i_this->type != 53) {
-            if (i_this->type == 0xff) {
+        i_this->arg0 = fopAcM_GetParam(i_this);
+        if (i_this->arg0 != 0x35) {
+            if (i_this->arg0 == 0xFF) {
                     /* dSv_event_flag_c::F_0053 - Faron Woods - Saw night stalker appearance cutscene */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x97])) {
                     return cPhs_ERROR_e;

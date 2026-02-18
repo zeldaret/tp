@@ -16,7 +16,7 @@
 class e_warpappear_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class phase;
-    /* 0x570 */ u8 type;
+    /* 0x570 */ u8 arg0;
     /* 0x574 */ J3DModel* model;
     /* 0x578 */ mDoExt_btkAnm* btk;
     /* 0x57c */ mDoExt_brkAnm* anm_p[2];
