@@ -137,7 +137,7 @@ public:
     u32 readIdxResource(void*, u32, u32);
     u32 readResource(void*, u32, u16);
     u32 countResource(void) const;
-    u32 getFileAttribute(u32) const;
+    u8 getFileAttribute(u32) const;
 
     SDIFileEntry* findNameResource(const char*) const;
     bool isSameName(CArcName&, u32, u16) const;
@@ -171,7 +171,7 @@ public:
     u32 countFile() const { return mArcInfoBlock->num_file_entries; }
     s32 countDirectory() const { return mArcInfoBlock->num_nodes; }
     u8 getMountMode() const { return mMountMode; }
-    bool isFileEntry(u32 param_0) {
+    bool isFileEntry(u32 param_0) const {
         return getFileAttribute(param_0) & 1;
     }
 

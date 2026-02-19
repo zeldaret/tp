@@ -536,7 +536,7 @@ public:
     virtual ~J3DAnmTransformKey() {}
     virtual s32 getKind() const { return 8; }
     virtual void getTransform(u16 jointNo, J3DTransformInfo* pTransform) const {
-        calcTransform(mFrame, jointNo, pTransform);
+        calcTransform(getFrame(), jointNo, pTransform);
     }
 
     /* 0x20 */ int mDecShift;

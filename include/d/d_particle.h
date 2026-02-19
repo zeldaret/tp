@@ -425,6 +425,7 @@ public:
     JKRSolidHeap* getHeap() { return mHeap; }
     JKRExpHeap* getResHeap() { return m_resHeap; }
     JKRSolidHeap* getSceneHeap() { return mSceneHeap; }
+    void* getSceneRes() { return m_sceneRes; }
 
     void levelAllForceOnEventMove() { field_0x210.allForceOnEventMove(); }
 

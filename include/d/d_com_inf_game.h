@@ -4285,7 +4285,8 @@ inline int dComIfG_setObjectRes(const char* i_arcName, u8 i_mountDirection, JKRH
     return g_dComIfG_gameInfo.mResControl.setObjectRes(i_arcName, i_mountDirection, i_heap);
 }
 
-inline int dComIfG_setObjectRes(const char* i_arcName, void* i_archiveRes, u32 i_bufferSize) {
+inline int dComIfG_setObjectRes(const char* i_arcName, void* i_archiveRes, u32 i_bufferSize, JKRHeap* i_heap) {
+    UNUSED(i_heap);
     return g_dComIfG_gameInfo.mResControl.setObjectRes(i_arcName, i_archiveRes, i_bufferSize, NULL);
 }
 

@@ -503,7 +503,7 @@ d/d_demo.cpp:
 	.text       start:0x800799C0 end:0x8007EE80
 	.data       start:0x80675EB0 end:0x80676A10
 	.sdata      start:0x80740B68 end:0x80740C68
-	.sbss       start:0x8074C668 end:0x8074C6C8
+	.sbss       start:0x8074C668 end:0x8074C6C0
 	.sdata2     start:0x8074DC18 end:0x8074DC58
 	.bss        start:0x807B2B78 end:0x807B2B98
 
@@ -515,6 +515,7 @@ d/d_resorce.cpp:
 	.rodata     start:0x806336B0 end:0x80633728
 	.data       start:0x80676A10 end:0x806773B0
 	.sdata      start:0x80740C68 end:0x80740CD8
+	.sbss       start:0x8074C6C0 end:0x8074C6C8
 	.sdata2     start:0x8074DC58 end:0x8074DC70
 
 d/d_map_path.cpp:
