@@ -276,7 +276,7 @@ public:
             cXyz cStack_50 = *mAttnPosP - param_1;
             sVar3 += cM_atan2s(cStack_50.x,  cStack_50.z);
             sVar3 -= param_2;
-            SUB_ANGLE(sVar3, field_0x150.y - param_2);
+            ANGLE_SUB(sVar3, field_0x150.y - param_2);
             sVar3 += param_5;
         }
         if (param_3) {

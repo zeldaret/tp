@@ -1402,19 +1402,19 @@ int daNpc_Aru_c::duck(int param_1) {
 
             switch (field_0xfca) {
                 case 1:
-                    SUB_ANGLE(sVar1, 0x1000);
+                    ANGLE_SUB(sVar1, 0x1000);
                     break;
 
                 case 7:
-                    ADD_ANGLE(sVar1, 0x1000);
+                    ANGLE_ADD(sVar1, 0x1000);
                     break;
 
                 case 2:
-                    SUB_ANGLE(sVar1, 0x4000);
+                    ANGLE_SUB(sVar1, 0x4000);
                     break;
 
                 case 6:
-                    ADD_ANGLE(sVar1, 0x4000);
+                    ANGLE_ADD(sVar1, 0x4000);
                     break;
             }
 

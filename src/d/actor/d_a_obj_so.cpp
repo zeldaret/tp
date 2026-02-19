@@ -502,8 +502,8 @@ static void part_move(obj_so_class* i_this) {
                         i_this->field_0x8f0[i].z *= 0.5f;
 
                         if (i >= 2) {
-                            ADD_ANGLE(i_this->field_0xa28[i].x, cM_rndFX(i_this->field_0x8f0[i].y * 400.0f));
-                            ADD_ANGLE(i_this->field_0xbc8[i], cM_rndFX(i_this->field_0x8f0[i].y * 200.0f));
+                            ANGLE_ADD(i_this->field_0xa28[i].x, cM_rndFX(i_this->field_0x8f0[i].y * 400.0f));
+                            ANGLE_ADD(i_this->field_0xbc8[i], cM_rndFX(i_this->field_0x8f0[i].y * 200.0f));
                         }
                     } else {
                         i_this->field_0x8f0[i].y = -10.0f;

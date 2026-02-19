@@ -2675,7 +2675,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
 
                 if (rv != 0) {
                     angleY = fopAcM_searchActorAngleY(this, player);
-                    ADD_ANGLE(angleY, 0x4000);
+                    ANGLE_ADD(angleY, 0x4000);
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&player->current.pos, angleY, 0);
                     field_0x1580 = 1;
                 }

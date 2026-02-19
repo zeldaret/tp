@@ -1774,9 +1774,9 @@ void daAlink_c::wolfBgCheck() {
         if (field_0x2fa6 == 0 && !checkEndResetFlg1(ERFLG1_UNK_200000)) {
             s16 var_r27 = field_0x3092 - shape_angle.y;
             if (var_r27 <= 0) {
-                ADD_ANGLE(var_r27, 0x4000);
+                ANGLE_ADD(var_r27, 0x4000);
             } else {
-                SUB_ANGLE(var_r27, 0x4000);
+                ANGLE_SUB(var_r27, 0x4000);
             }
 
             mPrevAngleY += var_r27;

@@ -60,8 +60,8 @@ int daObjProp_c::draw() {
 }
 
 int daObjProp_c::execute() {
-    static const s16 ADD_ANGLE[] = {0x1800, -0x1800};
-    shape_angle.y += ADD_ANGLE[mArg];
+    static const s16 ANGLE_ADD[] = {0x1800, -0x1800};
+    shape_angle.y += ANGLE_ADD[mArg];
     setModelMtx();
     return 1;
 }

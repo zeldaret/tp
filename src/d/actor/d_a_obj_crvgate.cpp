@@ -170,7 +170,7 @@ void daObjCRVGATE_c::actionDemoEvent() {
         }
     } else {
         cLib_chaseAngleS(&mDoorOpenAngle.x, 0x4000, mMoveAngle.z);
-        ADD_ANGLE(mMoveAngle.z, 0x300);
+        ANGLE_ADD(mMoveAngle.z, 0x300);
         if (mDoorOpenAngle.x == 0x4000) {
             mEventID = 3;
             camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
@@ -223,7 +223,7 @@ int daObjCRVGATE_c::CheckVec() {
 }
 
 void daObjCRVGATE_c::KeyVib() {
-    SUB_ANGLE(mMoveAngle.x, 0x21);
+    ANGLE_SUB(mMoveAngle.x, 0x21);
     mMoveAngle.z += mMoveAngle.x;
     cLib_chaseAngleS(&mMoveAngle.y, 0, 0x150);
 
@@ -248,7 +248,7 @@ void daObjCRVGATE_c::KeyVib() {
 }
 
 void daObjCRVGATE_c::DoorVib() {
-    SUB_ANGLE(mDoorVib.y, KREG_S(1) + 0x100);
+    ANGLE_SUB(mDoorVib.y, KREG_S(1) + 0x100);
     mDoorVib.z += mDoorVib.y;
     cLib_chaseAngleS(&mDoorVib.x, 0, 0x40);
 

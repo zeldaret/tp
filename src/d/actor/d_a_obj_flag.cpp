@@ -106,7 +106,7 @@ void daObjFlag_c::calcJointAngle() {
     } else {
         param_0->mJoint1.z = (attr().field_0x0e * cM_ssin(param_0->mRv));
     }
-    ADD_ANGLE(param_0->mRv, param_1 * attr().field_0x30);
+    ANGLE_ADD(param_0->mRv, param_1 * attr().field_0x30);
 }
 
 void daObjFlag_c::calcAngleSwingX(FlagJoint_c* param_0, f32 param_1) {

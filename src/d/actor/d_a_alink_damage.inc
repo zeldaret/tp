@@ -45,11 +45,11 @@ void daAlink_c::freezeTimerDamage() {
     }
 
     if (escapeTrigger()) {
-        SUB_S16(mProcVar0.field_0x3008, 2);
+        S16_SUB(mProcVar0.field_0x3008, 2);
     }
 
     if (checkInputOnR() && abs((s16)(mStickAngle - mPrevStickAngle)) > 0x1000) {
-        SUB_S16(mProcVar0.field_0x3008, 2);
+        S16_SUB(mProcVar0.field_0x3008, 2);
     }
 
     if (mProcVar0.field_0x3008 < 0) {
@@ -504,7 +504,7 @@ BOOL daAlink_c::checkDamageAction() {
             poly_dmg_flags = 0;
         }
     } else if (mIceDamageWaitTimer > 3) {
-        SUB_S16(mIceDamageWaitTimer, 3);
+        S16_SUB(mIceDamageWaitTimer, 3);
     } else {
         mIceDamageWaitTimer = 0;
     }
@@ -1656,7 +1656,7 @@ int daAlink_c::procCoElecDamageInit(fopAc_ac_c* i_tgHitActor, dCcD_GObjInf* i_tg
 
             if (getZoraSwim()) {
                 current.pos.y += 50.0f;
-                ADD_ANGLE(field_0x3080, 0x4000);
+                ANGLE_ADD(field_0x3080, 0x4000);
             }
         }
     }

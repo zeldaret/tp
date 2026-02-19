@@ -615,7 +615,7 @@ static void npc_ne_away(npc_ne_class* i_this) {
             way_check(i_this, i_this->mTargetAngleY);
         }
         if (i_this->mTimers[0] == 0) {
-            ADD_ANGLE(i_this->mTargetAngleY, cM_rndFX(4000.0f));
+            ANGLE_ADD(i_this->mTargetAngleY, cM_rndFX(4000.0f));
             i_this->mTimers[0] = cM_rndF(25.0f) + 20.0f;
         }
         if (i_this->mDistToTarget > 400.0f && i_this->mTimers[2] == 0) {

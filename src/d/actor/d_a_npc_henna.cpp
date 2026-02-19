@@ -826,7 +826,7 @@ static void action(npc_henna_class* i_this) {
         i_this->field_0x6b6 = i_this->field_0x6b0 * (TREG_F(3) + -0.65f);
     }
 
-    ADD_ANGLE(i_this->field_0x6b6, (0.15f + TREG_F(13)) * fabsf(i_this->field_0x6ac));
+    ANGLE_ADD(i_this->field_0x6b6, (0.15f + TREG_F(13)) * fabsf(i_this->field_0x6ac));
     s16 sp_0x8 = 0; // unused
 }
 

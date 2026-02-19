@@ -1835,8 +1835,8 @@ int daAlink_c::setMoveBGClimbCorrect() {
 
         current.pos.x = mLinkLinChk.GetCross().x;
         current.pos.z = mLinkLinChk.GetCross().z;
-        ADD_ANGLE(current.angle.y, shape_angle.y - temp_r28);
-        ADD_ANGLE(field_0x308c, temp_r28 - shape_angle.y);
+        ANGLE_ADD(current.angle.y, shape_angle.y - temp_r28);
+        ANGLE_ADD(field_0x308c, temp_r28 - shape_angle.y);
 
         mPolyInfo1.SetPolyInfo(mLinkLinChk);
     }

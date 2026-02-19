@@ -681,7 +681,7 @@ static int npc_ks_ori(npc_ks_class* i_this) {
             if (i_this->timer[0] == 1) {
                 anm_init(i_this, 32, 2.0f, 0, 1.0f);
                 if (fopAcM_GetRoomNo(actor) == 11) {
-                    ADD_ANGLE_2(actor->current.angle.y, 0x1600);
+                    ANGLE_ADD_2(actor->current.angle.y, 0x1600);
                 }
             }
 
@@ -829,7 +829,7 @@ static int npc_ks_ori2(npc_ks_class* i_this) {
             break;
 
         case 2:
-            ADD_ANGLE_2(sVar1, -0x8000);
+            ANGLE_ADD_2(sVar1, -0x8000);
             if (i_this->timer[0] == 0) {
                 if (cage_p->partBreak()) {
                     anm_init(i_this, 22, 5.0f, 2, 1.0f);
@@ -901,7 +901,7 @@ static int npc_ks_ori2(npc_ks_class* i_this) {
         case 6:
             i_this->field_0x5fc = 0;
             fVar1 = -20.0f;
-            ADD_ANGLE_2(sVar1, 0x2000);
+            ANGLE_ADD_2(sVar1, 0x2000);
             if (i_this->model->isStop()) {
                 anm_init(i_this, 33, 1.0f, 0, 1.0f);
                 actor->speedF = 40.0f;
@@ -916,7 +916,7 @@ static int npc_ks_ori2(npc_ks_class* i_this) {
 
         case 7:
             i_this->field_0x5fc = 0;
-            ADD_ANGLE_2(sVar1, 0x4000);
+            ANGLE_ADD_2(sVar1, 0x4000);
             actor->gravity = -5.0f;
             break;
 
@@ -2018,7 +2018,7 @@ static void npc_ks_hang(npc_ks_class* i_this) {
     s16 sVar2 = i_this->field_0x602;
     cLib_addCalcAngleS2(&i_this->field_0x602, i_this->field_0x60c * cM_ssin(i_this->field_0x5fa), 4, 0x1000);
     i_this->field_0x604 = i_this->field_0x602 - sVar2;
-    ADD_ANGLE(i_this->field_0x5fa, 0x800);
+    ANGLE_ADD(i_this->field_0x5fa, 0x800);
     actor->current.angle.z = -(i_this->field_0x602 / 4);
 
     if (i_this->mode != 4) {
@@ -2162,7 +2162,7 @@ static void npc_ks_hang_s(npc_ks_class* i_this) {
     s16 sVar2 = i_this->field_0x602;
     cLib_addCalcAngleS2(&i_this->field_0x602, i_this->field_0x60c * cM_ssin(i_this->field_0x5fa), 4, 0x1000);
     i_this->field_0x604 = i_this->field_0x602 - sVar2;
-    ADD_ANGLE_2(i_this->field_0x5fa, 0x800);
+    ANGLE_ADD_2(i_this->field_0x5fa, 0x800);
     actor->current.angle.z = -(i_this->field_0x602 / 4);
 
     if (i_this->field_0x620 != 2) {
@@ -2242,7 +2242,7 @@ static void npc_ks_e_hang(npc_ks_class* i_this) {
 
     actor->current.pos = sw_p->field_0x920[i_this->field_0x630];
     cLib_addCalcAngleS2(&i_this->field_0x602, i_this->field_0x60c * cM_ssin(i_this->field_0x5fa), 4, 0x1000);
-    ADD_ANGLE_2(i_this->field_0x5fa, 0x800);
+    ANGLE_ADD_2(i_this->field_0x5fa, 0x800);
     actor->current.angle.z = -(i_this->field_0x602 / 4);
     cLib_addCalc0(&i_this->field_0x60c, 0.5f, 100.0f + TREG_F(3));
 }
@@ -3877,7 +3877,7 @@ static int npc_ks_option(npc_ks_class* i_this) {
 
         case 30:
             target_speed = l_HIO.holding_speed_h;
-            ADD_ANGLE_2(i_this->current_angle.y, 0x8000);
+            ANGLE_ADD_2(i_this->current_angle.y, 0x8000);
             if (fVar2 > 400.0f) {
                 i_this->mode = 31;
                 anm_init(i_this, 51, 5.0f, 2, 1.0f);
@@ -3898,7 +3898,7 @@ static int npc_ks_option(npc_ks_class* i_this) {
             anm_init(i_this, 39, 5.0f, 2, 1.0f);
             i_this->mode = 41;
             i_this->timer[0] = cM_rndF(80.0f) + 100.0f;
-            ADD_ANGLE_2(i_this->current_angle.y, 0x8000);
+            ANGLE_ADD_2(i_this->current_angle.y, 0x8000);
             break;
 
         case 41:
@@ -5865,7 +5865,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
                 if (i_this->path_no == 0) {
                     anm_init(i_this, 45, 3.0f, 0, 1.0f);
                     i_this->mode = 3;
-                    ADD_ANGLE_2(i_this->current_angle.y, 0x8000);
+                    ANGLE_ADD_2(i_this->current_angle.y, 0x8000);
                     actor->speedF = 0.0f;
                 } else {
                     i_this->mode = 1;
@@ -5878,7 +5878,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
 
         case 3:
             if (i_this->model->isStop()) {
-                ADD_ANGLE_2(i_this->current_angle.y, 0x8000);
+                ANGLE_ADD_2(i_this->current_angle.y, 0x8000);
                 i_this->mode = 1;
             }
             break;
@@ -5916,7 +5916,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
             if (i_this->timer[2] != 0) {
                 i_this->search_time = 10;
                 i_this->find_pos.set(-37799.0f, 815.0f, -22323.0f);
-                SUB_ANGLE(i_this->current_angle.y, 0x3000);
+                ANGLE_SUB(i_this->current_angle.y, 0x3000);
                 sVar1 = 0x800;
             }
 

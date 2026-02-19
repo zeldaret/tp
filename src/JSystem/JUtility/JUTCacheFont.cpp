@@ -344,7 +344,7 @@ void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo* param_0,
     prepend(pGylphCacheInfo);
     int iVar3 = pGylphCacheInfo->field_0x16 * pGylphCacheInfo->field_0x18;
     int iVar2 = *r30 / iVar3;
-    ADD_U16_2(pGylphCacheInfo->field_0x8, iVar2 * iVar3);
+    U16_ADD_2(pGylphCacheInfo->field_0x8, iVar2 * iVar3);
     u16 local_30 = pGylphCacheInfo->field_0x8 + iVar3 - 1;
     pGylphCacheInfo->field_0xa = pGylphCacheInfo->field_0xa < local_30 ? pGylphCacheInfo->field_0xa : local_30;
     *param_3 = iVar2;

@@ -2668,9 +2668,9 @@ int daHorse_c::setLegAngle(f32 param_0, int param_1, int param_2, s16* param_3) 
         sp8C = *sp18 - *sp1C;
         sp80 = *sp14 - *sp18;
 
-        ADD_ANGLE(param_3[i], cM_atan2s(spA4.y, spA4.z) - cM_atan2s(sp8C.y, sp8C.z));
+        ANGLE_ADD(param_3[i], cM_atan2s(spA4.y, spA4.z) - cM_atan2s(sp8C.y, sp8C.z));
         // i don't like this, but it matches debug and release, param_3[i+1] does not match debug
-        ADD_ANGLE((param_3 + 1)[i], cM_atan2s(sp98.y, sp98.z) - cM_atan2s(sp80.y, sp80.z));
+        ANGLE_ADD((param_3 + 1)[i], cM_atan2s(sp98.y, sp98.z) - cM_atan2s(sp80.y, sp80.z));
 
         if (i == 0) {
             spC0[3].y += param_0 * var_f27;
@@ -3813,7 +3813,7 @@ int daHorse_c::procTurnInit(int param_0) {
     field_0x171e = shape_angle.y + 0x8000;
 
     if (!dComIfGp_event_runCheck() && !checkStateFlg0(FLG0_UNK_4000000)) {
-        ADD_ANGLE(field_0x170a, (f32)0x8000);
+        ANGLE_ADD(field_0x170a, (f32)0x8000);
     } else if (checkStateFlg0(FLG0_UNK_4000000)) {
         field_0x171e = shape_angle.y;
     }
@@ -3949,7 +3949,7 @@ int daHorse_c::procTurn() {
                             break;
                         }
 
-                        ADD_ANGLE(shape_angle.y, 0x2000);
+                        ANGLE_ADD(shape_angle.y, 0x2000);
                         current.angle.y = shape_angle.y;
                     }
 
@@ -4344,7 +4344,7 @@ int daHorse_c::execute() {
                         current.pos -= *m_cc_stts.GetCCMoveP();
                         break;
                     }
-                    ADD_ANGLE(shape_angle.y, 0x2000);
+                    ANGLE_ADD(shape_angle.y, 0x2000);
                     current.angle.y = shape_angle.y;
                 }
 

@@ -411,11 +411,11 @@ void daObj_ItaMato_c::setSwayParam(fopAc_ac_c* i_actor) {
             case 6:
             case 7:
                 if (mCutType == 3) {
-                    SUB_ANGLE(field_0xa02, 0x4000);
+                    ANGLE_SUB(field_0xa02, 0x4000);
                 }
                 
                 if (mCutType == 4) {
-                    ADD_ANGLE(field_0xa02, 0x4000);
+                    ANGLE_ADD(field_0xa02, 0x4000);
                 }
 
                 fVar1 = 0.6f;

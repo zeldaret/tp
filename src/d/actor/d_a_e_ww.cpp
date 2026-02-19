@@ -320,9 +320,9 @@ void daE_WW_c::damage_check() {
             mAtInfo.mpCollider = var_r29;
             if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_IRON_BALL) != 0) {
                 if (fopAcM_GetName(dCc_GetAc(mAtInfo.mpCollider->GetAc())) == PROC_Obj_Carry) {
-                    ADD_S16(health, 150);
+                    S16_ADD(health, 150);
                 } else if (dComIfGp_checkPlayerStatus0(0, 0x400) != 0) {
-                    ADD_S16(health, 180);
+                    S16_ADD(health, 180);
                 } else {
                     health = 0;
                 }

@@ -1135,11 +1135,11 @@ void daAlink_c::boarForceGetOff() {
 
 void daAlink_c::horseGetOffEnd() {
     if (field_0x2fc0 == 0) {
-        SUB_ANGLE(shape_angle.y, 0x4000);
+        ANGLE_SUB(shape_angle.y, 0x4000);
         setOldRootQuaternion(0, 0x4000, 0);
         mDoMtx_stack_c::YrotS(-0x4000);
     } else {
-        ADD_ANGLE(shape_angle.y, 0x4000);
+        ANGLE_ADD(shape_angle.y, 0x4000);
         setOldRootQuaternion(0, -0x4000, 0);
         mDoMtx_stack_c::YrotS(0x4000);
     }
@@ -1587,7 +1587,7 @@ int daAlink_c::procHorseGetOff() {
     if (rideActor != NULL) {
         current.pos += rideActor->current.pos - field_0x37d4;
         field_0x37d4 = rideActor->current.pos;
-        ADD_ANGLE(shape_angle.y, mProcVar3.field_0x300e - rideActor->shape_angle.y);
+        ANGLE_ADD(shape_angle.y, mProcVar3.field_0x300e - rideActor->shape_angle.y);
         mProcVar3.field_0x300e = rideActor->shape_angle.y;
     }
 
@@ -2706,9 +2706,9 @@ int daAlink_c::procHorseRun() {
 
         if (horse->checkRodeoLeft()) {
             if (mProcVar3.field_0x300e != 0) {
-                SUB_S16(mProcVar5.field_0x3012, 150);
+                S16_SUB(mProcVar5.field_0x3012, 150);
             } else {
-                SUB_S16(mProcVar5.field_0x3012, 600);
+                S16_SUB(mProcVar5.field_0x3012, 600);
             }
 
             if (mProcVar2.field_0x300c == 0) {
@@ -2716,9 +2716,9 @@ int daAlink_c::procHorseRun() {
             }
         } else {
             if (mProcVar3.field_0x300e != 0) {
-                ADD_S16(mProcVar5.field_0x3012, 150);
+                S16_ADD(mProcVar5.field_0x3012, 150);
             } else {
-                ADD_S16(mProcVar5.field_0x3012, 600);
+                S16_ADD(mProcVar5.field_0x3012, 600);
             }
 
             if (mProcVar2.field_0x300c == 0) {

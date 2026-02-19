@@ -492,10 +492,10 @@ void daAlink_c::setCarryArmAngle(f32 param_0, f32 param_1) {
         field_0x3136[1].set(0, 0, temp_r29 - (3500.0f * param_1));
     
         if (param_1 < 0.0f) {
-            ADD_ANGLE(field_0x312a[0].z, 2500.0f * param_1);
-            ADD_ANGLE(field_0x3136[0].y, 2000.0f * param_1);
+            ANGLE_ADD(field_0x312a[0].z, 2500.0f * param_1);
+            ANGLE_ADD(field_0x3136[0].y, 2000.0f * param_1);
         } else {
-            ADD_ANGLE(field_0x3136[0].y, 4000.0f * param_1);
+            ANGLE_ADD(field_0x3136[0].y, 4000.0f * param_1);
         }
     } else if (checkGrabRooster()) {
         field_0x3136[0].y = -5000.0f * param_1;

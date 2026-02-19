@@ -875,7 +875,7 @@ BOOL daAlink_c::checkSwimNeckUpDown() const {
 }
 
 void daAlink_c::setSwimUpDownOffset() {
-    ADD_ANGLE(mProcVar2.field_0x300c, (cM_rndF(0.3f) + 0.85f) * 2330.0f);
+    ANGLE_ADD(mProcVar2.field_0x300c, (cM_rndF(0.3f) + 0.85f) * 2330.0f);
 
     f32 var_f1;
     if (checkWolf()) {

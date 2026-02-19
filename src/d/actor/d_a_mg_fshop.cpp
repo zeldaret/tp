@@ -409,8 +409,8 @@ static void lure_set(fshop_class* i_this) {
             pLure->field_0x3c = cM_rndF(1000.0f) + 500.0f;
         }
 
-        ADD_ANGLE(pLure->field_0x34, 4000);
-        ADD_ANGLE(pLure->field_0x36, 4000);
+        ANGLE_ADD(pLure->field_0x34, 4000);
+        ANGLE_ADD(pLure->field_0x36, 4000);
         pLure->field_0x32 = pLure->field_0x3c * cM_ssin(pLure->field_0x36);
         pLure->field_0x30 = pLure->field_0x38 * cM_ssin(pLure->field_0x34);
 
@@ -559,7 +559,7 @@ static void tsubo_set(fshop_class* i_this) {
         xrot = cM_ssin(pTsubo->field_0x20) * pTsubo->field_0x1c;
         zrot = cM_ssin(pTsubo->field_0x22) * pTsubo->field_0x1c;
         pTsubo->field_0x20 += pTsubo->field_0x24;
-        ADD_ANGLE_2(pTsubo->field_0x22, pTsubo->field_0x24 + 700);
+        ANGLE_ADD_2(pTsubo->field_0x22, pTsubo->field_0x24 + 700);
         cLib_addCalcAngleS2(&pTsubo->field_0x24, 9000 + TREG_S(8), 1, 200);
 
         mDoMtx_stack_c::transS(pTsubo->field_0x00.x, pTsubo->field_0x00.y, pTsubo->field_0x00.z);
@@ -589,7 +589,7 @@ static void weed_control(fshop_class* i_this, fs_weed_s* i_weed) {
     f32 reg_f26;
     f32 reg_f31;
     f32 reg_f30;
-    ADD_ANGLE(i_weed->field_0xbc, i_weed->field_0xb8 * 600.0f + 200.0f);
+    ANGLE_ADD(i_weed->field_0xbc, i_weed->field_0xb8 * 600.0f + 200.0f);
     cLib_addCalc0(&i_weed->field_0xb8, 0.05f, 0.02f);
 
     for (i = 1; i < 15; i++, pfVar7++) {
@@ -731,9 +731,9 @@ static void koro2_game(fshop_class* i_this) {
                 (mDoCPd_c::getSubStickX(PAD_1) <= -0.8f && old_stick_x > -0.8f))
             {
                 if (mDoCPd_c::getSubStickX(PAD_1) > 0.0f) {
-                    ADD_ANGLE(i_this->field_0x4062, 0x4000);
+                    ANGLE_ADD(i_this->field_0x4062, 0x4000);
                 } else {
-                    ADD_ANGLE(i_this->field_0x4062, -0x4000);
+                    ANGLE_ADD(i_this->field_0x4062, -0x4000);
                 }
             }
 
@@ -1099,8 +1099,8 @@ static int daFshop_Execute(fshop_class* i_this) {
             i_this->field_0x4000 = cM_rndF(600.0f) + 1300.0f;
         }
 
-        ADD_ANGLE(i_this->field_0x3ff8, 4000);
-        ADD_ANGLE(i_this->field_0x3ffa, 4000);
+        ANGLE_ADD(i_this->field_0x3ff8, 4000);
+        ANGLE_ADD(i_this->field_0x3ffa, 4000);
         s16 iVar10 = i_this->field_0x4000 * cM_ssin(i_this->field_0x3ffa);
         s16 iVar11 = i_this->field_0x3ffc * cM_ssin(i_this->field_0x3ff8);
         cLib_addCalc0(&i_this->field_0x3ffc, 1.0f, 40.0f);

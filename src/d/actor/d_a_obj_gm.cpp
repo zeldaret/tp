@@ -437,7 +437,7 @@ static void drop(obj_gm_class* i_this) {
         i_this->mTimers[0] = 10;
         s16 wallAngle = wall_angle_get(i_this);
         if (a_this->speedF > 5.0f && wallAngle != 35) {
-            ADD_ANGLE(i_this->field_0x720, 0x8000 - ((s16)(i_this->field_0x720 - wallAngle) << 1));
+            ANGLE_ADD(i_this->field_0x720, 0x8000 - ((s16)(i_this->field_0x720 - wallAngle) << 1));
 
             i_this->field_0x722 *= -1;
             i_this->mTimers[0] = 10;

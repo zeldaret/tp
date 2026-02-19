@@ -1271,9 +1271,9 @@ void daE_VA_c::onRopeCutStatus(int param_0, int param_1, int param_2) {
 }
 
 void daE_VA_c::setVibRope(f32 param_0, f32 param_1) {
-    ADD_ANGLE(field_0x1336, param_1 * 7168.0f);
-    ADD_ANGLE(field_0x122c.y, param_0 * cM_ssin(field_0x1336));
-    ADD_ANGLE(field_0x123e, param_0 * 50.0f * cM_ssin(field_0x1336));
+    ANGLE_ADD(field_0x1336, param_1 * 7168.0f);
+    ANGLE_ADD(field_0x122c.y, param_0 * cM_ssin(field_0x1336));
+    ANGLE_ADD(field_0x123e, param_0 * 50.0f * cM_ssin(field_0x1336));
 }
 
 static s16 TAG_VIB_ANGLE[] = {

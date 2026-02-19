@@ -425,7 +425,7 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
         sp08 *= -1;
     }
 
-    MULT_ANGLE(sp08, -4000 + VREG_S(5));
+    ANGLE_MULT(sp08, -4000 + VREG_S(5));
     spFC.x = 0.0f;
     spFC.y = 0.0f;
     spFC.z = i_this->field_0x394c;

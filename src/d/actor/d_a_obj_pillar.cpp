@@ -428,7 +428,7 @@ int daPillar_c::Execute(Mtx** param_0) {
     }
 
     if (shape_angle.x != 0) {
-        ADD_ANGLE(mRotY, mShakeData.mSpeedY + (0x300 / shape_angle.x));
+        ANGLE_ADD(mRotY, mShakeData.mSpeedY + (0x300 / shape_angle.x));
     }
 
     *param_0 = &mBgMtx;

@@ -284,9 +284,9 @@ int daObj_KBacket_c::Execute() {
                 if (field_0x9f4 == 0 && mObjAcch.ChkWallHit() != 0) {
                     if (getWallAngle(current.angle.y, &wallAngle) != 0) {
                         current.angle.y = wallAngle;
-                        ADD_ANGLE(current.angle.y, cM_rndFX(2000.0f));
+                        ANGLE_ADD(current.angle.y, cM_rndFX(2000.0f));
                     } else {
-                        ADD_ANGLE(current.angle.y, cM_rndFX(2000.0f));
+                        ANGLE_ADD(current.angle.y, cM_rndFX(2000.0f));
                         current.angle.y += -0x8000;
                     }
 
@@ -340,7 +340,7 @@ int daObj_KBacket_c::Execute() {
                             wallAngleDiff = current.angle.y;
                         }
 
-                        ADD_ANGLE(current.angle.y, (s16)cM_rndFX(1000.0f) + (0x8000 - wallAngleDiff * 2));
+                        ANGLE_ADD(current.angle.y, (s16)cM_rndFX(1000.0f) + (0x8000 - wallAngleDiff * 2));
                         speedF *= 0.5f;
 
                         field_0xa47 = 0;
@@ -416,7 +416,7 @@ int daObj_KBacket_c::Execute() {
         }
 
         shape_angle.x = field_0xa10 * cM_ssin(field_0xa14 * 1000);
-        ADD_ANGLE(shape_angle.z, field_0xa10 * cM_scos(field_0xa14 * 1000));
+        ANGLE_ADD(shape_angle.z, field_0xa10 * cM_scos(field_0xa14 * 1000));
         cLib_chaseAngleS(&field_0x9ec.y, 0, 10);
         shape_angle.y += field_0x9ec.y;
 

@@ -1077,7 +1077,7 @@ void dEvDtStaff_c::specialProcDirector() {
                 }
 
                 #if DEBUG
-                ADD_S16(data->unk2, event_debug_evdt_sound_adjust());
+                S16_ADD(data->unk2, event_debug_evdt_sound_adjust());
                 #endif
             } else {
                 data->unk2 = 0;

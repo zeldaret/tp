@@ -373,13 +373,13 @@ static void e_bi_ex(e_bi_class* i_this) {
     if (i_this->ignition_time != 0) {
         i_this->ignition_time--;
         i_this->sound.startCreatureSoundLevel(Z2SE_OBJ_BOMB_IGNITION, 0, -1);
-        ADD_ANGLE(i_this->field_0x696, 0x1100);
+        ANGLE_ADD(i_this->field_0x696, 0x1100);
 
         if (i_this->ignition_time < 45) {
-            ADD_ANGLE(i_this->field_0x696, 0x1100);
+            ANGLE_ADD(i_this->field_0x696, 0x1100);
 
             if (i_this->ignition_time < 30) {
-                ADD_ANGLE(i_this->field_0x696, 0x1100);
+                ANGLE_ADD(i_this->field_0x696, 0x1100);
             }
         }
 

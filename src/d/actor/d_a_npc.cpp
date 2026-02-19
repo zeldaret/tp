@@ -2435,7 +2435,7 @@ BOOL daNpcT_c::turn(s16 i_angle, int i_count, int i_direction) {
     }
 
     s16 turn = angle_diff * cM_ssin((s16)mTurnAmount);
-    ADD_ANGLE(mTurnAmount, 0x4000 / mTurnCount);
+    ANGLE_ADD(mTurnAmount, 0x4000 / mTurnCount);
 
     if ((u16)mTurnAmount < 0x4000) {
         mCurAngle.y = mStartAngle + turn;
@@ -2645,7 +2645,7 @@ void daNpcT_c::setHitodamaPrtcl() {
     field_0xe00.y = cM_ssin(field_0xe18) * 4.0f;
     field_0xe00.z = field_0xe00.x * -cM_ssin(shape_angle.y);
     field_0xe00.x = field_0xe00.x * cM_scos(shape_angle.y);
-    ADD_ANGLE(field_0xe1a, 0x400);
+    ANGLE_ADD(field_0xe1a, 0x400);
 
     pos.x = eyePos.x + field_0xe00.x + field_0xe0c.x;
     pos.y = eyePos.y + field_0xe00.y + field_0xe0c.y;

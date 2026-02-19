@@ -463,7 +463,7 @@ void daE_HZ_c::executeWait() {
     case 4:
         target = home.pos.y + 30.0f;
         if (cLib_chaseF(&current.pos.y, target, 5.0f)) {
-            ADD_ANGLE(field_0x6b4, 0x800);
+            ANGLE_ADD(field_0x6b4, 0x800);
             current.pos.y += cM_ssin(field_0x6b4) * 1.5f;
             cLib_chaseAngleS(&shape_angle.y, mPlayerAngleY, 0x400);
         }
@@ -896,7 +896,7 @@ void daE_HZ_c::executeWind() {
         }
 
         current.pos.y += frame;
-        SUB_ANGLE(shape_angle.y, 0x7D0);
+        ANGLE_SUB(shape_angle.y, 0x7D0);
 
         if (mpMorfSO->checkFrame(field_0x6cc) || mpBoomerangActor == NULL ||
             mpBoomerangActor->getReturnFlg())
@@ -962,7 +962,7 @@ void daE_HZ_c::executeWind() {
             return;
         }
 
-        ADD_ANGLE(field_0x6b2, 0x800);
+        ANGLE_ADD(field_0x6b2, 0x800);
         linChk.Set(&current.pos, &position, NULL);
         if (!dComIfG_Bgsp().LineCross(&linChk)) {
             cLib_chaseF(&current.pos.x, position.x + field_0x678.x * cM_ssin(field_0x6b2), 50.0f);
@@ -991,7 +991,7 @@ void daE_HZ_c::executeWind() {
             cLib_chaseAngleS(&shape_angle.x, -0x8000, 0x400);
         }
 
-        SUB_ANGLE(shape_angle.y, l_HIO.reeling_rotation_speed);
+        ANGLE_SUB(shape_angle.y, l_HIO.reeling_rotation_speed);
         break;
 
     case 4:
@@ -1277,7 +1277,7 @@ void daE_HZ_c::executeWindChance() {
         }
 
         end = mpBoomerangActor->current.pos;
-        ADD_ANGLE(field_0x6b6, 0x800);
+        ANGLE_ADD(field_0x6b6, 0x800);
         start = current.pos;
         start.y += 50.0f;
         linChk.Set(&start, &end, NULL);
@@ -1296,7 +1296,7 @@ void daE_HZ_c::executeWindChance() {
         }
 
         shape_angle.y -= field_0x6b2;
-        ADD_ANGLE(field_0x6b4, 0x1000);
+        ANGLE_ADD(field_0x6b4, 0x1000);
         shape_angle.x = (s16)(cM_scos(field_0x6b4) * 6144.0f);
         break;
         
@@ -1307,12 +1307,12 @@ void daE_HZ_c::executeWindChance() {
         cLib_chaseAngleS(&field_0x6b2, 0, 0x100);
         cLib_chaseAngleS(&field_0x6b6, 0, 0x200);
         shape_angle.y -= field_0x6b2;
-        ADD_ANGLE(field_0x6b4, 0x1000);
+        ANGLE_ADD(field_0x6b4, 0x1000);
         shape_angle.x = (s16)(field_0x6b6 * cM_scos(field_0x6b4));
         
         if (mWaitTimer == 0) {
             if (mPiyoriTimer != 0) {
-                ADD_S16(mPiyoriTimer, 20);
+                S16_ADD(mPiyoriTimer, 20);
             }
 
             setActionMode(ACTION_CHANCE);
