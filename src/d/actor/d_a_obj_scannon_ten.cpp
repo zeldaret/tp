@@ -17,8 +17,9 @@ static char* l_staffName = "SCanTen";
 static char* l_eventName = "SKY_CANNON_TEN_FIRE";
 
 static int eventCallBack(void* i_proc, int param_1) {
-    if (i_proc != NULL) {
-        ((daObjSCannonTen_c*)i_proc)->changeScene();
+    daObjSCannonTen_c* proc = (daObjSCannonTen_c*)i_proc;
+    if (proc != NULL) {
+        proc->changeScene();
     }
 
     return 1;
@@ -146,6 +147,22 @@ int daObjSCannonTen_c::execute() {
     return 1;
 }
 
+const daObjSCannonTen_c::ExeProc daObjSCannonTen_c::s_exeProc[] = {
+    &daObjSCannonTen_c::exeModeWait,
+    &daObjSCannonTen_c::exeModeOrderEvt,
+    &daObjSCannonTen_c::exeModeActionEvt,
+    &daObjSCannonTen_c::exeModeEnd,
+};
+
+const daObjSCannonTen_c::ExeProc daObjSCannonTen_c::s_demoExeProc[][2] = {
+    {&daObjSCannonTen_c::demoInitLinkIn, &daObjSCannonTen_c::demoExeLinkIn},
+    {&daObjSCannonTen_c::demoInitSet, &daObjSCannonTen_c::demoExeSet},
+    {&daObjSCannonTen_c::demoInitMove, &daObjSCannonTen_c::demoExeMove},
+    {&daObjSCannonTen_c::demoInitFire, &daObjSCannonTen_c::demoExeFire},
+    {&daObjSCannonTen_c::demoInitFireEnd, &daObjSCannonTen_c::demoExeFireEnd},
+    {&daObjSCannonTen_c::demoInitFinish, &daObjSCannonTen_c::demoExeFinish},
+};
+
 void daObjSCannonTen_c::middleExe() {
     if (s_exeProc[mMode] != NULL) {
         (this->*s_exeProc[mMode])();
@@ -157,10 +174,10 @@ void daObjSCannonTen_c::middleExe() {
 }
 
 void daObjSCannonTen_c::exeModeWait() {
-    if (!(DEBUG && aREG_F(0) != 0.0f) && fopAcM_checkHookCarryNow(this) &&
+    if (!(DEBUG && aREG_F(0)) && fopAcM_checkHookCarryNow(this) &&
         dComIfGp_checkPlayerStatus1(0, 0x10)) {
         eventInfo.setArchiveName(l_arcName);
-        mEvtIdx = dComIfGp_getEventManager().getEventIdx(this, l_eventName, 0xFF);
+        mEvtIdx = (s16)dComIfGp_getEventManager().getEventIdx(this, l_eventName, 0xFF);
 #if DEBUG
         if (mEvtIdx == -1) {
             // "××××××××××××× Sky Cannon (City in the Sky) d_a_obj_scannon_ten.cpp: Failed to get event\n"
@@ -185,22 +202,6 @@ void daObjSCannonTen_c::exeModeOrderEvt() {
         eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
-
-void (daObjSCannonTen_c::*daObjSCannonTen_c::s_exeProc[])() = {
-    &daObjSCannonTen_c::exeModeWait,
-    &daObjSCannonTen_c::exeModeOrderEvt,
-    &daObjSCannonTen_c::exeModeActionEvt,
-    &daObjSCannonTen_c::exeModeEnd,
-};
-
-void (daObjSCannonTen_c::*daObjSCannonTen_c::s_demoExeProc[][2])() = {
-    {&daObjSCannonTen_c::demoInitLinkIn, &daObjSCannonTen_c::demoExeLinkIn},
-    {&daObjSCannonTen_c::demoInitSet, &daObjSCannonTen_c::demoExeSet},
-    {&daObjSCannonTen_c::demoInitMove, &daObjSCannonTen_c::demoExeMove},
-    {&daObjSCannonTen_c::demoInitFire, &daObjSCannonTen_c::demoExeFire},
-    {&daObjSCannonTen_c::demoInitFireEnd, &daObjSCannonTen_c::demoExeFireEnd},
-    {&daObjSCannonTen_c::demoInitFinish, &daObjSCannonTen_c::demoExeFinish},
-};
 
 void daObjSCannonTen_c::exeModeActionEvt() {
     if (dComIfGp_evmng_endCheck(mEvtIdx) != 0) {
@@ -322,7 +323,7 @@ void daObjSCannonTen_c::demoInitFinish() {
     if (joint_p == NULL) {
         // "××××××Sky Cannon—The head joint is missing!!!! ××××××"
         OS_REPORT("______________________××××××天空砲台　頭部分のジョイントがありません！！！！ ××××××____________\n");
-        JUT_ASSERT(1351, FALSE);
+        JUT_ASSERT(867, FALSE);
     }
 #endif
 
@@ -367,7 +368,8 @@ void daObjSCannonTen_c::changeScene() {
 
     fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x80);
 
-    dStage_changeScene(1, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
+    const int a_exit_id = 1;
+    dStage_changeScene(a_exit_id, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
 }
 
 void daObjSCannonTen_c::initEmtSmoke() {
