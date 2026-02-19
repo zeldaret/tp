@@ -8,7 +8,7 @@
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
-#include "m_Do/m_Re_controller_pad.h"
+#include "m_Re/m_Re_controller_pad.h"
 
 int SECallback(int param_0, int param_1) {
     if (param_0 == 5) {

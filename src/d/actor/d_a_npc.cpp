@@ -752,7 +752,7 @@ int daNpcT_Path_c::chkPassed2(cXyz i_pnt, cXyz* param_2, int i_num, int param_4)
 }
 
 #if DEBUG
-int daNpcT_Path_c::drawDbgInfo(f32 param_0, int param_1) {
+void daNpcT_Path_c::drawDbgInfo(f32 param_0, int param_1) {
     GXColor green = {0x80, 0xff, 0x80, 0xff};
     GXColor blue = {0x80, 0x80, 0xff, 0xff};
     GXColor red = {0xff, 0x80, 0x80, 0xff};
