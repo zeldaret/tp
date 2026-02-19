@@ -751,8 +751,11 @@ void daNpc_Pachi_Maro_c::setParam() {
     u32 flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     s16 talk_distance = mpHIO->m.common.talk_distance;
     s16 talk_angle = mpHIO->m.common.talk_angle;
+    s16 attn_dist = mpHIO->m.common.attention_distance;
+    s16 attn_angle = mpHIO->m.common.attention_angle;
 
-    attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(mpHIO->m.common.attention_distance, mpHIO->m.common.attention_angle);
+    attention_info.distances[fopAc_attn_LOCK_e] =
+        daNpcT_getDistTableIdx(attn_dist, attn_angle);
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_distance, talk_angle);
     attention_info.flags = flags;
@@ -1092,11 +1095,9 @@ int daNpc_Pachi_Maro_c::wait(void* param_1) {
                         srchPlayerActor();
                     }
                 }
-            
-                switch (mJntAnm.getMode()) {
-                    case 0:
-                    default:
-                        break;
+
+                if (mJntAnm.getMode() == 0) {
+                    (s32)mType;
                 }
             }
             break;
@@ -1197,18 +1198,26 @@ BOOL daNpc_Pachi_Maro_c::cutTutrialBegin(int i_staffId) {
 
 BOOL daNpc_Pachi_Maro_c::_cutTutrialBegin_Init(int const& i_cutId) {
     switch (i_cutId) {
-        default:
-            return TRUE;
+    case 10:
+        break;
+    default:
+        break;
     }
+
+    return TRUE;
 }
 
 BOOL daNpc_Pachi_Maro_c::_cutTutrialBegin_Main(int const& i_cutId) {
     BOOL rv = FALSE;
 
     switch (i_cutId) {
-        default:
-            return rv;;
+    case 10:
+        break;
+    default:
+        break;
     }
+
+    return rv;
 }
 
 BOOL daNpc_Pachi_Maro_c::cutTutrialBegin_Skip(int i_staffId) {
@@ -1229,18 +1238,26 @@ BOOL daNpc_Pachi_Maro_c::cutTutrialBegin_Skip(int i_staffId) {
 
 BOOL daNpc_Pachi_Maro_c::_cutTutrialBegin_Skip_Init(int const& i_cutId) {
     switch (i_cutId) {
-        default:
-            return TRUE;
+    case 10:
+        break;
+    default:
+        break;
     }
+
+    return TRUE;
 }
 
 BOOL daNpc_Pachi_Maro_c::_cutTutrialBegin_Skip_Main(int const& i_cutId) {
     BOOL rv = FALSE;
 
     switch (i_cutId) {
-        default:
-            return rv;
+    case 10:
+    break;
+    default:
+        break;
     }
+
+    return rv;
 }
 
 BOOL daNpc_Pachi_Maro_c::cutTutrialClear(int i_staffId) {
@@ -1564,9 +1581,12 @@ BOOL daNpc_Pachi_Maro_c::cutTutrialContinue(int i_staffId) {
 
 BOOL daNpc_Pachi_Maro_c::_cutTutrialContinue_Init(int const& i_cutId) {
     switch (i_cutId) {
-        default:
-            return TRUE;
+    case 10:
+        break;
+    default:
+        break;
     }
+    return TRUE;
 }
 
 BOOL daNpc_Pachi_Maro_c::_cutTutrialContinue_Main(int const& i_cutId) {
