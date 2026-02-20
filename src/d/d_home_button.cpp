@@ -2,7 +2,7 @@
 
 #include "d/d_home_button.h"
 #include "JSystem/JFramework/JFWDisplay.h"
-#include "Z2AudioLib/Z2AudioCS.h"
+#include "Z2AudioCS/Z2AudioCS.h"
 #include "Z2AudioLib/Z2AudioMgr.h"
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_Reset.h"

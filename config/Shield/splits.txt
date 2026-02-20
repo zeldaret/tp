@@ -2371,7 +2371,7 @@ Z2AudioCS/SpkSpeakerCtrl.cpp:
 Z2AudioCS/SpkSystem.cpp:
 	.text       start:0x8035F630 end:0x8035F960
 	.ctors      start:0x8048E680 end:0x8048E684
-	.sbss       start:0x805091A0 end:0x805091B4
+	.sbss       start:0x805091A0 end:0x805091B0
 	.bss        start:0x8057EE78 end:0x8057EE98
 
 Z2AudioCS/SpkMixingBuffer.cpp:
@@ -2395,7 +2395,7 @@ Z2AudioCS/SpkSound.cpp:
 
 Z2AudioCS/Z2AudioCS.cpp:
 	.text       start:0x80360870 end:0x80360E90
-	.sbss       start:0x805091B4 end:0x805091B8
+	.sbss       start:0x805091B0 end:0x805091B8
 	.sdata2     start:0x8050DF18 end:0x8050DF20
 
 revolution/gf/GFGeometry.cpp:

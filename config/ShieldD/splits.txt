@@ -3102,41 +3102,41 @@ Z2AudioLib/Z2TrackView.cpp:
 	.sdata      start:0x8074A770 end:0x8074A7A0
 	.sdata2     start:0x80752600 end:0x80752610
 
-Z2AudioCSD/SpkSpeakerCtrl.cpp:
+Z2AudioCS/SpkSpeakerCtrl.cpp:
 	.text       start:0x804F4030 end:0x804F4CC0
 	.ctors      start:0x8062F99C end:0x8062F9A0
 	.sbss       start:0x8074CE00 end:0x8074CE08
 	.bss        start:0x807E1D70 end:0x807E1E90
 
-Z2AudioCSD/SpkSystem.cpp:
+Z2AudioCS/SpkSystem.cpp:
 	.text       start:0x804F4CC0 end:0x804F5860
 	.ctors      start:0x8062F9A0 end:0x8062F9A4
 	.data       start:0x8070CA20 end:0x8070CAE8
 	.sdata      start:0x8074A7A0 end:0x8074A7D0
-	.sbss       start:0x8074CE08 end:0x8074CE1C
+	.sbss       start:0x8074CE08 end:0x8074CE18
 	.sdata2     start:0x80752610 end:0x80752618
 	.bss        start:0x807E1E90 end:0x807E1EB0
 
-Z2AudioCSD/SpkMixingBuffer.cpp:
+Z2AudioCS/SpkMixingBuffer.cpp:
 	.text       start:0x804F5860 end:0x804F5DB0
 	.data       start:0x8070CAE8 end:0x8070CB60
 	.sdata      start:0x8074A7D0 end:0x8074A7E8
 	.sdata2     start:0x80752618 end:0x80752620
 
-Z2AudioCSD/SpkWave.cpp:
+Z2AudioCS/SpkWave.cpp:
 	.text       start:0x804F5DB0 end:0x804F6400
 	.data       start:0x8070CB60 end:0x8070CBA0
 	.sdata      start:0x8074A7E8 end:0x8074A800
 
-Z2AudioCSD/SpkTable.cpp:
+Z2AudioCS/SpkTable.cpp:
 	.text       start:0x804F6400 end:0x804F6530
 
-Z2AudioCSD/SpkData.cpp:
+Z2AudioCS/SpkData.cpp:
 	.text       start:0x804F6530 end:0x804F68D0
 	.data       start:0x8070CBA0 end:0x8070CC00
 	.sdata      start:0x8074A800 end:0x8074A830
 
-Z2AudioCSD/SpkSound.cpp:
+Z2AudioCS/SpkSound.cpp:
 	.text       start:0x804F68D0 end:0x804F8240
 	.ctors      start:0x8062F9A4 end:0x8062F9A8
 	.data       start:0x8070CC00 end:0x8070CDF0
@@ -3144,11 +3144,11 @@ Z2AudioCSD/SpkSound.cpp:
 	.sdata2     start:0x80752620 end:0x80752648
 	.bss        start:0x807E1EB0 end:0x807E1EC0
 
-Z2AudioCSD/Z2AudioCS.cpp:
+Z2AudioCS/Z2AudioCS.cpp:
 	.text       start:0x804F8240 end:0x804F8AE0
 	.data       start:0x8070CDF0 end:0x8070CEF8
 	.sdata      start:0x8074A878 end:0x8074A8B0
-	.sbss       start:0x8074CE1C end:0x8074CE20
+	.sbss       start:0x8074CE18 end:0x8074CE20
 	.sdata2     start:0x80752648 end:0x80752650
 
 revolution/gf/GFGeometry.cpp:
