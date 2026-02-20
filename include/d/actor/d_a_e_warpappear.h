@@ -22,8 +22,8 @@ public:
     /* 0x57c */ mDoExt_brkAnm* anm_p[2];
     /* 0x584 */ int field_0x584;
     /* 0x588 */ u8 field_0x588[0x58c - 0x588];
-    /* 0x58C */ u32 particle1;
-    /* 0x590 */ u32 particle2;
+    /* 0x58C */ u32 portal_app_b;
+    /* 0x590 */ u32 portal_app_c;
     /* 0x594 */ s16 counter;
     /* 0x596 */ s16 action;
     /* 0x598 */ s16 field_0x598;

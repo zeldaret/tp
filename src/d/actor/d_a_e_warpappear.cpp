@@ -40,7 +40,7 @@ static void* s_s1_sub(void* i_actor, void* i_data) {
         f32 z = -671.0f;
         x -= ns->home.pos.x;
         z -= ns->home.pos.z;
-        if (SQUARE(x) + SQUARE(z) < 40000.0f) {
+        if (SQUARE(x) + SQUARE(z) < SQUARE(200.0f)) {
             master_ns[0] = ns;
         }
 
@@ -48,7 +48,7 @@ static void* s_s1_sub(void* i_actor, void* i_data) {
         z = -144.0f;
         x -= ns->home.pos.x;
         z -= ns->home.pos.z;
-        if (SQUARE(x) + SQUARE(z) < 40000.0f) {
+        if (SQUARE(x) + SQUARE(z) < SQUARE(200.0f)) {
             master_ns[1] = ns;
         }
 
@@ -56,7 +56,7 @@ static void* s_s1_sub(void* i_actor, void* i_data) {
         z = 382.0f;
         x -= ns->home.pos.x;
         z -= ns->home.pos.z;
-        if (SQUARE(x) + SQUARE(z) < 40000.0f) {
+        if (SQUARE(x) + SQUARE(z) < SQUARE(200.0f)) {
             master_ns[2] = ns;
         }
     }
@@ -256,21 +256,39 @@ static void action(e_warpappear_class* i_this) {
         cXyz sc(i_this->scale.x, i_this->scale.x, i_this->scale.x);
         if (i_this->field_0x598 == 0) {
             i_this->field_0x598++;
-            dComIfGp_particle_set(0x84a4, &actor->current.pos, NULL, &sc);
+            dComIfGp_particle_set(dPa_RM(ID_ZI_S_PORTAL_APP_A01), &actor->current.pos, NULL, &sc);
         }
 
-        i_this->particle1 =
-            dComIfGp_particle_set(i_this->particle1, 0x84a6, &actor->current.pos, NULL, &sc);
-        i_this->particle2 =
-            dComIfGp_particle_set(i_this->particle2, 0x84a7, &actor->current.pos, NULL, &sc);
+        i_this->portal_app_b =
+            dComIfGp_particle_set(i_this->portal_app_b, dPa_RM(ID_ZI_S_PORTAL_APP_B), &actor->current.pos, NULL, &sc);
+        i_this->portal_app_c =
+            dComIfGp_particle_set(i_this->portal_app_c, dPa_RM(ID_ZI_S_PORTAL_APP_C), &actor->current.pos, NULL, &sc);
     }
 }
 
 static void demo_camera(e_warpappear_class* i_this) {
     static u16 w_id[20] = {
-        0x850D, 0x850E, 0x850F, 0x8510, 0x8511, 0x8512, 0x8513, 0x8514, 0x8515, 0x8516,
-        0x8517, 0x8518, 0x8519, 0x851A, 0x851B, 0x851C, 0x851D, 0x851E, 0x851F, 0x8520,
-    };
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_B001),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_B002),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_B003),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_B004),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_B005),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_B006),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_B007),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_B008),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C001),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C002),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C003),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C004),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C005),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C006),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C007),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C008),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C009),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C010),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C011),
+    dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_C012),
+};
 
     daPy_py_c* pla = (daPy_py_c*)dComIfGp_getPlayer(0);
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
@@ -651,7 +669,7 @@ static void demo_camera(e_warpappear_class* i_this) {
             sp54.set(34800.0f, i_this->field_0x5ec + -300.0f, -26735.0f);
 
             ihasi->mParticleKey =
-                dComIfGp_particle_set(ihasi->mParticleKey, 0x8521, &sp54, 0, 0);
+                dComIfGp_particle_set(ihasi->mParticleKey, dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_D001), &sp54, 0, 0);
             if (ihasi->mpBtkAnm->getFrame() >= 140.0f) {
                 cLib_addCalc2(&i_this->field_0x5ec, -1000.0f, 1.0f, 16.166668f);
             }
@@ -659,7 +677,7 @@ static void demo_camera(e_warpappear_class* i_this) {
             if (i_this->demo_timer == 180) {
                 sp54 = i_this->field_0x5b0;
                 cXyz sc(i_this->scale.x, i_this->scale.x, i_this->scale.x);
-                dComIfGp_particle_set(0x850c, &sp54, NULL, &sc);
+                dComIfGp_particle_set(dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_A001), &sp54, NULL, &sc);
                 sp54.set(34800.0f, -300.0f, -26735.0f);
 
                 for (int i = 0; i < 20; i++) {
@@ -696,8 +714,8 @@ static void demo_camera(e_warpappear_class* i_this) {
             i_this->field_0x5a4.set(37592.0f, 1256.0f, -24152.0f);
             sp54.set(34800.0f, 5700.0f, -26735.0f);
             cXyz sc(i_this->scale.x, i_this->scale.x, i_this->scale.x);
-            dComIfGp_particle_set(0x8522, &sp54, NULL, &sc);
-            dComIfGp_particle_set(0x8523, &sp54, NULL, &sc);
+            dComIfGp_particle_set(dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_E001), &sp54, NULL, &sc);
+            dComIfGp_particle_set(dPa_RM(ID_ZI_S_BAJYOHASHI_WARPDEMO_E002), &sp54, NULL, &sc);
             i_this->field_0x5f8 = 0.0f;
             ew_s1angy = 0;
         }
