@@ -689,17 +689,17 @@ static void __THPDecompressYUV(void* tileY, void* tileU, void* tileV) {
     if (__THPInfo->xPixelSize == 512 && targetY == 448) {
         while (currentY < targetY) {
             __THPDecompressiMCURow512x448();
-            currentY += (u16)16;
+            U16_ADD(currentY, 16);
         }
     } else if (__THPInfo->xPixelSize == 640 && targetY == 480) {
         while (currentY < targetY) {
             __THPDecompressiMCURow640x480();
-            currentY += (u16)16;
+            U16_ADD(currentY, 16);
         }
     } else {
         while (currentY < targetY) {
             __THPDecompressiMCURowNxN();
-            currentY += (u16)16;
+            U16_ADD(currentY, 16);
         }
     }
 

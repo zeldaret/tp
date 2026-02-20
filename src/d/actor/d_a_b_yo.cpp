@@ -1334,7 +1334,7 @@ void daB_YO_c::calcFreeMove(f32 param_0) {
 }
 
 void daB_YO_c::setReflectAngle() {
-    current.angle.y += (s16)cM_rndFX(4000.0f);
+    ANGLE_ADD(current.angle.y, cM_rndFX(4000.0f));
     s16 angle_diff = current.angle.y - mWallAngle;
     if (abs(angle_diff) > 0x4800) {
         current.angle.y = mWallAngle * 2 - (current.angle.y + 0x8000);

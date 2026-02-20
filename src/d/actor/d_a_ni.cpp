@@ -1243,7 +1243,7 @@ static void play_camera(ni_class* i_this) {
             temp = i_this->mPadSubStickX;
 
             temp *= TREG_F(3) + 5000.0f;
-            i_this->field_0xaf4 += (s16)temp;
+            S16_ADD(i_this->field_0xaf4, temp);
             i_this->field_0xafc += i_this->mPadSubStickY * (TREG_F(7) + -25.0f);
 
             if (i_this->field_0xafc > (TREG_F(8) + 800.0f)) {

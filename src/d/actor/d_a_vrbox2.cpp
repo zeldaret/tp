@@ -195,7 +195,7 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
             mDoMtx_stack_c::ZrotM(-mangZ);
             sun2_model_p->setBaseTRMtx(mDoMtx_stack_c::get());
             mDoExt_modelUpdateDL(sun2_model_p);
-            mangZ += (s16)(483.0f + cM_rndF(100.0f));
+            ANGLE_ADD(mangZ, 483.0f + cM_rndF(100.0f));
         }
     }
 

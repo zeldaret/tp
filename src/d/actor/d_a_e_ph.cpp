@@ -617,9 +617,9 @@ void daE_PH_c::StopAction() {
     switch (mCAction) {
     case 0:
         if (mAnmID == ANM_HANG_WAIT || mAnmID == ANM_HANG_START) {
-            mHeadRotX += (s16)(field_0x612 + 0x1000);
+            ANGLE_ADD(mHeadRotX, field_0x612 + 0x1000);
         } else {
-            mHeadRotX += (s16)(field_0x612 + 0x500);
+            ANGLE_ADD(mHeadRotX, field_0x612 + 0x500);
         }
 
         mSound.startCreatureSoundLevel(Z2SE_EN_PH_PROPELLER, field_0x612 + 0x500, -1);

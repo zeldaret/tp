@@ -1135,11 +1135,11 @@ void daAlink_c::boarForceGetOff() {
 
 void daAlink_c::horseGetOffEnd() {
     if (field_0x2fc0 == 0) {
-        shape_angle.y -= (s16)0x4000;
+        ANGLE_SUB(shape_angle.y, 0x4000);
         setOldRootQuaternion(0, 0x4000, 0);
         mDoMtx_stack_c::YrotS(-0x4000);
     } else {
-        shape_angle.y += (s16)0x4000;
+        ANGLE_ADD(shape_angle.y, 0x4000);
         setOldRootQuaternion(0, -0x4000, 0);
         mDoMtx_stack_c::YrotS(0x4000);
     }
@@ -1587,7 +1587,7 @@ int daAlink_c::procHorseGetOff() {
     if (rideActor != NULL) {
         current.pos += rideActor->current.pos - field_0x37d4;
         field_0x37d4 = rideActor->current.pos;
-        shape_angle.y += (s16)(mProcVar3.field_0x300e - rideActor->shape_angle.y);
+        ANGLE_ADD(shape_angle.y, mProcVar3.field_0x300e - rideActor->shape_angle.y);
         mProcVar3.field_0x300e = rideActor->shape_angle.y;
     }
 
@@ -2706,9 +2706,9 @@ int daAlink_c::procHorseRun() {
 
         if (horse->checkRodeoLeft()) {
             if (mProcVar3.field_0x300e != 0) {
-                mProcVar5.field_0x3012 -= (s16)150;
+                S16_SUB(mProcVar5.field_0x3012, 150);
             } else {
-                mProcVar5.field_0x3012 -= (s16)600;
+                S16_SUB(mProcVar5.field_0x3012, 600);
             }
 
             if (mProcVar2.field_0x300c == 0) {
@@ -2716,9 +2716,9 @@ int daAlink_c::procHorseRun() {
             }
         } else {
             if (mProcVar3.field_0x300e != 0) {
-                mProcVar5.field_0x3012 += (s16)150;
+                S16_ADD(mProcVar5.field_0x3012, 150);
             } else {
-                mProcVar5.field_0x3012 += (s16)600;
+                S16_ADD(mProcVar5.field_0x3012, 600);
             }
 
             if (mProcVar2.field_0x300c == 0) {
@@ -2744,7 +2744,7 @@ int daAlink_c::procHorseRun() {
         daPy_frameCtrl_c* framectrl = &mUnderFrameCtrl[0];
         f32 temp_f31 = framectrl->getFrame() / framectrl->getEnd();
     
-        mProcVar4.field_0x3010 = (field_0x3478 * (1.0f + cM_fsin((M_PI*2) * (temp_f31 - 0.69999999f)))) + (4000.0f * (1.0f - fabsf(0.000099999997f * mProcVar5.field_0x3012)));
+        mProcVar4.field_0x3010 = (field_0x3478 * (1.0f + cM_fsin((M_PI*2) * (temp_f31 - 0.7f)))) + (4000.0f * (1.0f - fabsf(0.0001f * mProcVar5.field_0x3012)));
         field_0x3088 = field_0x3478 * (1.0f + cM_fsin((M_PI*2) * (temp_f31 - 1.0f)));
     
         if (framectrl->checkPass(0.0f)) {

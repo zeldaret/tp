@@ -298,9 +298,9 @@ int daObj_Kago_c::Execute() {
                 if (field_0xb48 == 0 && mObjAcch.ChkWallHit() != 0) {
                     if (getWallAngle(current.angle.y, &sVar2)) {
                         current.angle.y = sVar2;
-                        current.angle.y += (s16)cM_rndFX(2000.0f);
+                        ANGLE_ADD(current.angle.y, cM_rndFX(2000.0f));
                     } else {
-                        current.angle.y += (s16)cM_rndFX(2000.0f);
+                        ANGLE_ADD(current.angle.y, cM_rndFX(2000.0f));
                         current.angle.y += -0x8000;
                     }
 

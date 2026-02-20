@@ -540,7 +540,7 @@ void dKy_twi_wolflight_set(int light_id) {
     }
     #endif
 
-    angle_x += (s16)6000;
+    ANGLE_ADD(angle_x, 6000);
     kankyo->field_0x0c18[light_id].mAngleX = cM_sht2d(-angle_x);
     kankyo->field_0x0c18[light_id].mAngleY = cM_sht2d(-angle_y) + 90.0f;
 }
@@ -9820,9 +9820,9 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
     for (i = 1; i < 3; i++) {
         if (sp58[i] < 100000000.0f) {
             temp_f28 = parcent_tabel[spD][i];
-            sp48.r += (s16)(sp70[i].r * temp_f28);
-            sp48.g += (s16)(sp70[i].g * temp_f28);
-            sp48.b += (s16)(sp70[i].b * temp_f28);
+            S16_ADD(sp48.r, sp70[i].r * temp_f28);
+            S16_ADD(sp48.g, sp70[i].g * temp_f28);
+            S16_ADD(sp48.b, sp70[i].b * temp_f28);
         }
     }
 

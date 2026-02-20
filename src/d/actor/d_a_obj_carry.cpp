@@ -3917,8 +3917,8 @@ void daObjCarry_c::calc_rot_axis_tsubo() {
             mDoMtx_stack_c::YrotS(current.angle.y);
             mDoMtx_stack_c::multVec(&mRotAxis, &mRotAxis);
         }
-
-        mRotation += (s16)(((0.5f * field_0xd70) + data().m_urnRotateFactor) * (std::fabs(speedF) + std::fabs(speed.y)));
+        ANGLE_ADD(mRotation, ((0.5f * field_0xd70) + data().m_urnRotateFactor) *
+                                 (std::fabs(speedF) + std::fabs(speed.y)));
         break;
     case 3:
         sp20 = current.pos - old.pos;
@@ -3930,8 +3930,8 @@ void daObjCarry_c::calc_rot_axis_tsubo() {
                 mDoMtx_stack_c::multVec(&mRotAxis, &mRotAxis);
             }
         }
-
-        mRotation += (s16)(((0.5f * field_0xd70) + data().m_urnRotateFactor) * (std::fabs(speedF) + std::fabs(speed.y)));
+        ANGLE_ADD(mRotation, ((0.5f * field_0xd70) + data().m_urnRotateFactor) *
+                                 (std::fabs(speedF) + std::fabs(speed.y)));
         break;
     }
 }
@@ -3951,7 +3951,7 @@ void daObjCarry_c::calc_rot_axis_kibako() {
         cXyz sp8 = current.pos - old.pos;
 
         if (mMode == MODE_DROP) {
-            mRotation += (s16)(speedF * ((field_0xd70 * 0.5f) + data().m_urnRotateFactor));
+            ANGLE_ADD(mRotation, speedF * ((field_0xd70 * 0.5f) + data().m_urnRotateFactor));
         } else {
             mRotation = 0;
         }
@@ -3984,7 +3984,8 @@ void daObjCarry_c::calc_rot_axis_bokkuri() {
                 mDoMtx_stack_c::multVec(&mRotAxis, &mRotAxis);
             }
 
-            mRotation += (s16)(((0.5f * field_0xd70) + data().m_urnRotateFactor) * (std::fabs(speedF) + std::fabs(speed.y)));
+            ANGLE_ADD(mRotation, ((0.5f * field_0xd70) + data().m_urnRotateFactor) *
+                                     (std::fabs(speedF) + std::fabs(speed.y)));
         }
     } else if (mMode == MODE_WALK || mMode == MODE_WAIT) {
         mRotAxis = cXyz::Zero;

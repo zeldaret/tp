@@ -840,9 +840,9 @@ void daB_MGN_c::checkDownBeforeBG() {
         s16 var_r28 = (s16)cM_atan2s(var_r29->x, var_r29->z);
         if (abs((s16)(var_r28 - shape_angle.y)) > 0x5000) {
             if ((s16)(var_r28 - shape_angle.y) != 0) {
-                field_0xa92 -= (s16)0x300;
+                ANGLE_SUB(field_0xa92, 0x300);
             } else {
-                field_0xa92 += (s16)0x300;
+                ANGLE_ADD(field_0xa92, 0x300);
             }
         }
     }
@@ -1546,9 +1546,9 @@ void daB_MGN_c::executeDash() {
                         }
     
                         if ((s16)(mAcchCir.GetWallAngleY() - shape_angle.y) < 0) {
-                            shape_angle.y += (s16) 0x100;
+                            ANGLE_ADD(shape_angle.y, 0x100);
                         } else {
-                            shape_angle.y += (s16) -0x100;
+                            ANGLE_ADD(shape_angle.y, -0x100);
                         }
     
                         current.angle.y = shape_angle.y;

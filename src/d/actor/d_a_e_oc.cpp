@@ -714,17 +714,17 @@ void daE_OC_c::damage_check() {
     } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_IRON_BALL)) {
         my_val = 5;
         if (dComIfGp_checkPlayerStatus0(0,0x400)) {
-            health += (s16) 140;
+            S16_ADD(health, 140);
         } else {
-            health += (s16) 80;
+            S16_ADD(health, 80);
         }
     } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
         my_val = 4;
     } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_40)) {
-        health += (s16) 10;
+        S16_ADD(health, 10);
     } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_SLINGSHOT)) {
         if (mName == "E_OC") {
-            health -= (s16) 5;
+            S16_SUB(health, 5);
             if (health < 0) {
                 health = 0;
                 mSound.startCollisionSE(0x40007,0x20);

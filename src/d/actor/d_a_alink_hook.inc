@@ -732,7 +732,7 @@ int daAlink_c::setHookshotHangMoveBGCollect() {
         mDoMtx_stack_c::multVec(&field_0x37c8, &mIronBallBgChkPos);
 
         current.pos += mIronBallBgChkPos - sp28;
-        shape_angle.y += (s16)(mProcVar0.field_0x3008 - carry_actor->shape_angle.y);
+        ANGLE_ADD(shape_angle.y, mProcVar0.field_0x3008 - carry_actor->shape_angle.y);
         current.angle.y = shape_angle.y;
         mProcVar0.field_0x3008 = carry_actor->shape_angle.y;
     } else if (dComIfG_Bgsp().ChkPolySafe(*polyinfo)) {

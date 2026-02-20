@@ -330,7 +330,7 @@ int daAlink_c::procGuardSlip() {
     setShapeAngleToAtnActor(0);
 
     if (mProcVar1.field_0x300a != 0) {
-        mProcVar1.field_0x300a -= (s16)1;
+        S16_SUB(mProcVar1.field_0x300a, 1);
         mBodyAngle.y += mProcVar2.field_0x300c;
         mBodyAngle.x += mProcVar3.field_0x300e;
     }

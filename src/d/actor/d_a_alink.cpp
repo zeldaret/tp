@@ -2812,10 +2812,10 @@ void daAlink_c::setHairAngle(cXyz* param_0, f32 param_1, f32 param_2) {
 
     var_f31 = 0.15f + (0.85f * var_f31);
 
-    field_0x3070 += (s16)(1000.0f + cM_rndF(500.0f) + (var_f31 * (3000.0f + cM_rndF(1000.0f))));
-    field_0x3072 += (s16)(1000.0f + cM_rndF(500.0f) + (var_f31 * (3000.0f + cM_rndF(1000.0f))));
-    field_0x3074 += (s16)(1000.0f + cM_rndF(500.0f) + (var_f31 * (5000.0f + cM_rndF(1500.0f))));
-    field_0x3076 += (s16)(1000.0f + cM_rndF(500.0f) + (var_f31 * (5000.0f + cM_rndF(1500.0f))));
+    ANGLE_ADD(field_0x3070, 1000.0f + cM_rndF(500.0f) + (var_f31 * (3000.0f + cM_rndF(1000.0f))));
+    ANGLE_ADD(field_0x3072, 1000.0f + cM_rndF(500.0f) + (var_f31 * (3000.0f + cM_rndF(1000.0f))));
+    ANGLE_ADD(field_0x3074, 1000.0f + cM_rndF(500.0f) + (var_f31 * (5000.0f + cM_rndF(1500.0f))));
+    ANGLE_ADD(field_0x3076, 1000.0f + cM_rndF(500.0f) + (var_f31 * (5000.0f + cM_rndF(1500.0f))));
 
     temp_f27 = 1.0f / temp_f27;
     param_0->x *= temp_f27;
@@ -3148,7 +3148,7 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
     s16 sp18;
     s16 sp16 = mPrevAngleY + mBodyAngle.y;
     if ((mProcID == PROC_GOAT_CATCH && mProcVar1.field_0x300a == 0) || (mProcID == PROC_HAND_PAT && mProcVar2.field_0x300c == 0)) {
-        ADD_ANGLE_2(sp16, 0x8000);
+        ANGLE_ADD_2(sp16, 0x8000);
     }
 
     cXyz sp28 = eyePos - field_0x34e0;
@@ -3233,8 +3233,8 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
             *param_4 = sp8;
         }
 
-        *param_3 += (s16)(sp10 - temp_r24);
-        *param_4 += (s16)(spE - var_r28);
+        ANGLE_ADD(*param_3, sp10 - temp_r24);
+        ANGLE_ADD(*param_4, spE - var_r28);
 
         if (checkEndResetFlg0(ERFLG0_UNK_4000)) {
             *param_3 = (sp10 + 0x8000) - sp14;
@@ -3302,7 +3302,7 @@ void daAlink_c::setEyeMove(cXyz* param_0, s16 param_1, s16 param_2) {
                 field_0x341c = 0.0f;
             } else {
                 s16 temp_r29_2 = cM_atan2s(field_0x3418, field_0x341c);
-                temp_r29_2 += (s16)(((int)cM_rndF(3.0f) << 13) + 0x6000);
+                ANGLE_ADD(temp_r29_2, ((int)cM_rndF(3.0f) << 13) + 0x6000);
 
                 field_0x3418 = cM_ssin(temp_r29_2);
                 field_0x341c = cM_scos(temp_r29_2);
@@ -3929,9 +3929,9 @@ void daAlink_c::footBgCheck() {
 
             if ((sp10 * var_r29->field_0x6) < 0 && abs(sp10 - var_r29->field_0x6) >= 0x8000) {
                 if (sp10 >= 0) {
-                    sp10 -= (s16)0x4000;
+                    ANGLE_SUB(sp10, 0x4000);
                 } else {
-                    sp10 += (s16)0x4000;
+                    ANGLE_ADD(sp10, 0x4000);
                 }
             }
 
