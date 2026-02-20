@@ -26,7 +26,8 @@ struct J3DModelFileData {
     /* 0x04 */ u32 mMagic2;
     /* 0x08 */ u8 field_0x08[4];
     /* 0x0C */ u32 mBlockNum;
-    /* 0x10 */ u8 field_0x10[0x10];
+    /* 0x10 */ u8 field_0x10[0x1C - 0x10];
+    /* 0x1C */ int field_0x1c;
     /* 0x20 */ J3DModelBlock mBlocks[1];
 };
 
