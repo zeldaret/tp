@@ -419,8 +419,8 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
 
 static int nodeCallBack_B(J3DJoint* i_joint, int param_2) {
     if (param_2 == 0) {
-        J3DJoint* my_joint = i_joint;
-        int jointNo = my_joint->getJntNo();
+        J3DJoint* joint = i_joint;
+        int jointNo = joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
         e_rd_class* i_this = (e_rd_class*)model->getUserArea();
         fopEn_enemy_c* enemy = &i_this->enemy;
@@ -504,15 +504,15 @@ static int daE_RD_Draw(e_rd_class* i_this) {
     }
 
     if (i_this->weapon_type == 1) {
-        g_env_light.setLightTevColorType_MAJI(i_this->field_0x694, &enemy->tevStr);
-        mDoExt_modelUpdateDL(i_this->field_0x694);
+        g_env_light.setLightTevColorType_MAJI(i_this->arrow, &enemy->tevStr);
+        mDoExt_modelUpdateDL(i_this->arrow);
     } else if (i_this->weapon_type >= 2) {
         g_env_light.setLightTevColorType_MAJI(i_this->mpMorfBowAnm->getModel(), &enemy->tevStr);
         i_this->mpMorfBowAnm->entryDL();
 
         if (i_this->field_0x9a2 != 0) {
-            g_env_light.setLightTevColorType_MAJI(i_this->field_0x694, &enemy->tevStr);
-            mDoExt_modelUpdateDL(i_this->field_0x694);
+            g_env_light.setLightTevColorType_MAJI(i_this->arrow, &enemy->tevStr);
+            mDoExt_modelUpdateDL(i_this->arrow);
         }
     }
 
@@ -545,7 +545,7 @@ static int daE_RD_Draw(e_rd_class* i_this) {
         }
     }
 
-    if (i_this->field_0x9bc != 2) {
+    if (i_this->ride_mode != 2) {
         cXyz pos;
         pos.set(enemy->current.pos.x, enemy->current.pos.y + 100.0f, enemy->current.pos.z);
         i_this->shadow_key = dComIfGd_setShadow(i_this->shadow_key, 1, model, &pos,
@@ -554,13 +554,13 @@ static int daE_RD_Draw(e_rd_class* i_this) {
                                                 &i_this->enemy.tevStr, 0, 1.0f,
                                                 dDlst_shadowControl_c::getSimpleTex());
         if (i_this->weapon_type == 1) {
-            dComIfGd_addRealShadow(i_this->shadow_key, i_this->field_0x694);
+            dComIfGd_addRealShadow(i_this->shadow_key, i_this->arrow);
         }
     }
 
     if (i_this->arg1 == 14) {
-        if (i_this->mBlureRate > 2) {
-            mDoGph_gInf_c::setBlureRate(i_this->mBlureRate);
+        if (i_this->blurRate > 2) {
+            mDoGph_gInf_c::setBlureRate(i_this->blurRate);
             mDoGph_gInf_c::onBlure();
         } else {
             mDoGph_gInf_c::offBlure();
@@ -769,8 +769,8 @@ static void ride_off(e_rd_class* i_this) {
     e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
 
     if (boar != NULL) {
-        UNSET_FLAG(boar->mStatusFlags, i_this->field_0x9be, u16);
-        i_this->field_0x9be = 0;
+        UNSET_FLAG(boar->mStatusFlags, i_this->boar_stand, u16);
+        i_this->boar_stand = 0;
 
         if (boar->mActionID != 22 && boar->mActionID != 23 && boar->mActionID != 24) {
             if (boar->mActionID == 1) {
@@ -799,7 +799,7 @@ static void ride_off(e_rd_class* i_this) {
         i_this->boar_id = -1;
     }
 
-    i_this->field_0x9bc = 0;
+    i_this->ride_mode = 0;
     if (i_this->mpMorfBowAnm != NULL) {
         i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0,
                                     1.0f, 1.0f, 0.0f, -1.0f);
@@ -841,7 +841,7 @@ static fpc_ProcID search_wb(e_rd_class* i_this, s16 param_2) {
     }
 
     fpcM_Search(s_wb_sub, i_this);
-    f32 fVar1 = 100.0f;
+    f32 dist = 100.0f;
 
     f32 fVar2 = 1500.0f;
     // Hyrule Field - Bridge of Eldin
@@ -850,30 +850,30 @@ static fpc_ProcID search_wb(e_rd_class* i_this, s16 param_2) {
     }
 
     if (target_info_count != 0) {
-        cXyz sp54, sp60;
-        fopAc_ac_c* bullbo;
+        cXyz vec, sp60;
+        fopAc_ac_c* actor;
         int i = 0;
         while (i < target_info_count) {
-            bullbo = (fopAc_ac_c*)target_info[i];
-            sp54.x = bullbo->current.pos.x - enemy->eyePos.x;
-            sp54.y = (bullbo->current.pos.y + 50.0f) - enemy->eyePos.y;
-            sp54.z = bullbo->current.pos.z - enemy->eyePos.z;
-            if (JMAFastSqrt(sp54.x * sp54.x + sp54.z * sp54.z) < fVar1) {
+            actor = (fopAc_ac_c*)target_info[i];
+            vec.x = actor->current.pos.x - enemy->eyePos.x;
+            vec.y = (actor->current.pos.y + 50.0f) - enemy->eyePos.y;
+            vec.z = actor->current.pos.z - enemy->eyePos.z;
+            if (JMAFastSqrt(SQUARE(vec.x) + SQUARE(vec.z)) < dist) {
                 if (param_2 == 1) {
-                    return fopAcM_GetID(bullbo);
+                    return fopAcM_GetID(actor);
                 }
 
-                s16 sVar1 = enemy->shape_angle.y - cM_atan2s(sp54.x, sp54.z);
-                if (sVar1 < param_2 && sVar1 > (s16)-param_2 && !other_bg_check(i_this, bullbo)) {
-                    return fopAcM_GetID(bullbo);
+                s16 range = enemy->shape_angle.y - cM_atan2s(vec.x, vec.z);
+                if (range < param_2 && range > (s16)-param_2 && !other_bg_check(i_this, actor)) {
+                    return fopAcM_GetID(actor);
                 }
             }
 
             i++;
             if (i == target_info_count) {
                 i = 0;
-                fVar1 += 100.0f;
-                if (fVar1 > fVar2) {
+                dist += 100.0f;
+                if (dist > fVar2) {
                     return -1;
                 }
             }
@@ -912,10 +912,10 @@ static void wb_check(e_rd_class* i_this, s16 param_2) {
 
             if ((boar->mStatusFlags & 1) == 0) {
                 boar->mStatusFlags |= (u16) 1;
-                i_this->field_0x9be = 1;
+                i_this->boar_stand = 1;
             } else if ((boar->mStatusFlags & 2) == 0) {
                 boar->mStatusFlags |= (u16) 2;
-                i_this->field_0x9be = 2;
+                i_this->boar_stand = 2;
             }
         }
     }
@@ -928,12 +928,12 @@ static BOOL wb_init_ride(e_rd_class* i_this) {
     if (boar != NULL) {
         i_this->action = ACTION_WB_RIDE;
         i_this->mode = 0;
-        i_this->field_0x9bc = 2;
-        i_this->field_0x9be = i_this->arg0;
+        i_this->ride_mode = 2;
+        i_this->boar_stand = i_this->arg0;
         boar->mStatusFlags |= (s8)i_this->arg0;
         boar->mActionID = 1;
 
-        if (i_this->weapon_type != 0 && i_this->field_0x9be == 1) {
+        if (i_this->weapon_type != 0 && i_this->boar_stand == 1) {
             i_this->field_0x5bd = 1;
         }
 
@@ -1077,7 +1077,7 @@ static BOOL path_check(e_rd_class* i_this) {
 
     f32 x, y, z;
     f32 dist = 100.0f;
-    bool bVar1 = false;
+    bool found = false;
     f32 reg_f27; // unused
     for (int i = 0; i < 100;) {
         points = i_this->path->m_points;
@@ -1088,13 +1088,13 @@ static BOOL path_check(e_rd_class* i_this) {
                 z = enemy->current.pos.z - points->m_position.z;
                 if (JMAFastSqrt(x * x + y * y + z * z) < dist) {
                     i_this->field_0xb00 = j;
-                    bVar1 = true;
+                    found = true;
                     break;
                 }
             }
         }
 
-        if (bVar1) {
+        if (found) {
             break;
         }
 
@@ -1102,14 +1102,14 @@ static BOOL path_check(e_rd_class* i_this) {
         reg_f27 = dist += 50.0f;
     }
 
-    if (!bVar1) {
+    if (!found) {
         return FALSE;
     }
 
     if (cM_rndF(1.0f) < 0.5f) {
-        i_this->field_0xb01 = 1;
+        i_this->path_dir = 1; // forward
     } else {
-        i_this->field_0xb01 = 0xFF;
+        i_this->path_dir = 0xFF; // backward
     }
 
     return TRUE;
@@ -1982,7 +1982,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                     cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
                     mae.x = 100.0f;
                     mae.y = 0.0f;
-                    if (i_this->field_0x9be == 1) {
+                    if (i_this->boar_stand == 1) {
                         mae.z = TREG_F(0) + 20.0f;
                     } else {
                         mae.z = TREG_F(10) + -120.0f;
@@ -2019,7 +2019,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                     mae.x = -100.0f;
                 }
                 mae.y = 0.0f;
-                if (i_this->field_0x9be == 1) {
+                if (i_this->boar_stand == 1) {
                     mae.z = TREG_F(0) + 20.0f;
                 } else {
                     mae.z = TREG_F(10) + -120.0f;
@@ -2035,7 +2035,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
 
                 if (mae.abs() < TREG_F(19) + 230.0f) {
                     i_this->mode = 4;
-                    if (i_this->field_0x9be == 1) {
+                    if (i_this->boar_stand == 1) {
                         anm_init(i_this, BCK_RD_ARMAMENT, 2.0f, 0, 1.0f);
                     } else {
                         anm_init(i_this, BCK_RD_WAIT01, 5.0f, 2, 1.0f);
@@ -2048,7 +2048,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
                 mae.x = 0.0f;
                 mae.y = 0.0f;
-                if (i_this->field_0x9be == 1) {
+                if (i_this->boar_stand == 1) {
                     mae.z = 20.0f;
                 } else {
                     mae.z = -20.0f;
@@ -2059,7 +2059,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 mae = i_this->field_0x5c0 - enemy->current.pos;
                 cLib_addCalcAngleS2(&enemy->current.angle.y, (s16)cM_atan2s(mae.x, mae.z), 2, 0x1000);
 
-                if (i_this->weapon_type != 0 && i_this->field_0x9be == 1) {
+                if (i_this->weapon_type != 0 && i_this->boar_stand == 1) {
                     if ((int)i_this->anm_p->getFrame() == 11) {
                         i_this->field_0x5bd = 1;
                     }
@@ -2080,7 +2080,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 if (i_this->anm_p->isStop()) {
                     i_this->mode = 6;
                     anm_init(i_this, BCK_RD_JUMP_B, 10.0f, 0, 1.0f);
-                    i_this->field_0x9bc = 1;
+                    i_this->ride_mode = 1;
                     i_this->field_0x9c4 = 30.0f;
                     i_this->timer[3] = 20;
                 }
@@ -2214,7 +2214,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
     switch (i_this->mode) {
         case 0:
             if ((boar->mStatusFlags & 4) != 0) {
-                if (i_this->field_0x9be == 1) {
+                if (i_this->boar_stand == 1) {
                     if (boar->field_0x6d0 < 0) {
                         anm_init(i_this, BCK_RD_RSTEP_L, 10.0f, 2, 1.0f);
                     } else {
@@ -2225,7 +2225,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 }
             } else {
                 if ((boar->mStatusFlags & 8) != 0) {
-                    if (i_this->field_0x9be == 1) {
+                    if (i_this->boar_stand == 1) {
                         anm_init(i_this, BCK_RD_RDAMAGE, 3.0f, 0, 1.0f);
                     } else {
                         anm_init(i_this, BCK_RD_RDAMAGE_BACK, 3.0f, 0, 1.0f);
@@ -2234,14 +2234,14 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     i_this->timer[1] = cM_rndF(50.0f) + 50.0f;
                 } else {
                     if ((boar->mStatusFlags & 16) != 0) {
-                        if (i_this->field_0x9be == 1) {
+                        if (i_this->boar_stand == 1) {
                             anm_init(i_this, BCK_RD_RRUN, 5.0f, 2, 1.0f);
                         } else {
                             anm_init(i_this, BCK_RD_RRUN_BACK, 5.0f, 2, 1.0f);
                         }
                     } else {
                         if ((boar->mStatusFlags & 32) != 0) {
-                            if (i_this->field_0x9be == 1) {
+                            if (i_this->boar_stand == 1) {
                                 anm_init(i_this, BCK_RD_RWAIT, 5.0f, 2, 1.0f);
                             } else {
                                 anm_init(i_this, BCK_RD_RWAIT_BACK, 5.0f, 2, 1.0f);
@@ -2253,7 +2253,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
             i_this->anm_p->setPlaySpeed(boar->mpModelMorf->getPlaySpeed());
 
-            if (i_this->field_0x9be == 1) {
+            if (i_this->boar_stand == 1) {
                 i_this->field_0x9c8 = 2;
             } else {
                 i_this->field_0x9c8 = 1;
@@ -2288,7 +2288,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
         case 11:
             if (player_dist > 800.0f + TREG_F(10)) {
                 i_this->mode = 0;
-                if (i_this->field_0x9be == 1) {
+                if (i_this->boar_stand == 1) {
                     anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
                 } else {
                     anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
@@ -2311,7 +2311,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
             i_this->field_0x9ab = 1;
             if (player_dist > 800.0f + TREG_F(10)) {
                 i_this->mode = 0;
-                if (i_this->field_0x9be == 1) {
+                if (i_this->boar_stand == 1) {
                     anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
                 } else {
                     anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
@@ -2336,7 +2336,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
             }
 
             if (i_this->anm_p->isStop()) {
-                if (i_this->field_0x9be == 1) {
+                if (i_this->boar_stand == 1) {
                     anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
                 } else {
                     anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
@@ -2391,7 +2391,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                                                 0, 5.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mode = 30;
 
-                if (i_this->field_0x9bc == 2 && i_this->field_0x5bb != 0) {
+                if (i_this->ride_mode == 2 && i_this->field_0x5bb != 0) {
                     i_this->timer[1] = cM_rndF(30.0f) + 20.0f;
                 } else {
                     i_this->timer[1] = cM_rndF(50.0f) + 30.0f;
@@ -2409,7 +2409,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
         case 50:
             if (i_this->timer[3] == 0) {
                 i_this->mode = 0;
-                if (i_this->field_0x9be == 1) {
+                if (i_this->boar_stand == 1) {
                     anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
                 } else {
                     anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
@@ -2418,7 +2418,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
             }
     }
 
-    if (i_this->field_0x9be == 2 && i_this->anm == BCK_RD_RRUN_BACK) {
+    if (i_this->boar_stand == 2 && i_this->anm == BCK_RD_RRUN_BACK) {
         i_this->sound.startCreatureVoiceLevel(Z2SE_EN_RD_V_RIDING_YELL, -1);
     }
 }
@@ -2674,13 +2674,13 @@ static void e_rd_s_damage(e_rd_class* i_this) {
             i_this->mode = 1;
             i_this->timer[0] = 10;
             
-            if (i_this->field_0x9be != 0) {
+            if (i_this->boar_stand != 0) {
                 e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
                 if (boar != NULL) {
-                    UNSET_FLAG(boar->mStatusFlags, i_this->field_0x9be, u16);
+                    UNSET_FLAG(boar->mStatusFlags, i_this->boar_stand, u16);
                 }
 
-                i_this->field_0x9be = 0;
+                i_this->boar_stand = 0;
                 i_this->boar_id = -1;
             }
             break;
@@ -2692,9 +2692,9 @@ static void e_rd_s_damage(e_rd_class* i_this) {
 
             if (i_this->anm_p->isStop()) {
                 fopAc_ac_c* actor;
-                if (i_this->field_0x974 == 7) {
+                if (i_this->prev_action == 7) {
                     i_this->action = ACTION_BOW2;
-                } else if (i_this->field_0x974 == 26) {
+                } else if (i_this->prev_action == 26) {
                     i_this->action = ACTION_BOW3;
                 } else if (!other_bg_check(i_this, actor = dComIfGp_getPlayer(0))) {
                     i_this->action = ACTION_FIGHT_RUN;
@@ -2725,7 +2725,7 @@ static int kado_check(e_rd_class* i_this) {
     cXyz mae, start, ato;
     BOOL rt = FALSE;
 
-    cMtx_YrotS(*calc_mtx, i_this->field_0xa0c.y);
+    cMtx_YrotS(*calc_mtx, i_this->jump_angle.y);
     for (int i = 0; i < 2; i++) {
         start = enemy->current.pos;
         start.y += 100.0f + JREG_F(0);
@@ -2774,10 +2774,10 @@ static void rd_disappear(e_rd_class* i_this) {
         dComIfGs_onSwitch(bitsw, fopAcM_GetRoomNo(enemy));
     }
 
-    if (i_this->field_0x9be != 0) {
+    if (i_this->boar_stand != 0) {
         e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
         if (boar != NULL) {
-            UNSET_FLAG(boar->mStatusFlags, i_this->field_0x9be, u16);
+            UNSET_FLAG(boar->mStatusFlags, i_this->boar_stand, u16);
             if (boar->mActionID == 1) {
                 boar->mActionID = 0;
             }
@@ -2848,7 +2848,7 @@ static void e_rd_damage(e_rd_class* i_this) {
         enemy->offDownFlg();
     }
 
-    s16 sVar1;
+    s16 angle;
     switch (i_this->mode) {
         case 0:
             anm_init(i_this, BCK_RD_DIEB, 3.0f, 0, 1.0f);
@@ -2879,10 +2879,10 @@ static void e_rd_damage(e_rd_class* i_this) {
                     OS_REPORT("              ..KADO KABE ..%x\n", kado_kabe);
                     if (kado_kabe == 2) {
                         i_this->field_0x9f6 = 0x1000;
-                        ANGLE_ADD(i_this->field_0xa0c.y, TREG_S(8) - 7000);
+                        ANGLE_ADD(i_this->jump_angle.y, TREG_S(8) - 7000);
                     } else {
                         i_this->field_0x9f6 = -0x1000;
-                        ANGLE_ADD(i_this->field_0xa0c.y, -(TREG_S(8) - 7000));
+                        ANGLE_ADD(i_this->jump_angle.y, -(TREG_S(8) - 7000));
                     }
 
                     i_this->field_0xab8 = 8000.0f + BREG_F(10);
@@ -2895,17 +2895,17 @@ static void e_rd_damage(e_rd_class* i_this) {
                 i_this->mode = 10;
                 actor->speed.y = 0.0f;
                 i_this->jump_z *= 0.2f;
-                ANGLE_ADD_2(i_this->field_0xa0c.y, 0x8000);
+                ANGLE_ADD_2(i_this->jump_angle.y, 0x8000);
                 i_this->field_0xaf0 = 5 + BREG_S(7);
                 i_this->field_0xa24 = 100.0f + BREG_F(4);
                 i_this->field_0xa2c = 100.0f + BREG_F(5);
                 i_this->field_0x9f6 = 0;
             } else {
-                cLib_addCalcAngleS2(&i_this->field_0xa0c.x, -0x4000, 1, 0x300 + BREG_S(4));
+                cLib_addCalcAngleS2(&i_this->jump_angle.x, -0x4000, 1, 0x300 + BREG_S(4));
                 actor->current.angle.y += i_this->field_0x9f6;
                 actor->shape_angle.y = actor->current.angle.y;
 
-                if (i_this->field_0xa0c.x <= -0x3000 && i_this->ObjAcch.ChkGroundHit()) {
+                if (i_this->jump_angle.x <= -0x3000 && i_this->ObjAcch.ChkGroundHit()) {
                     i_this->field_0xa1e = 10;
 
                     if (i_this->field_0x1294 != 0) {
@@ -2918,14 +2918,14 @@ static void e_rd_damage(e_rd_class* i_this) {
 
                     if (i_this->field_0xa1f == 0) {
                         anm_init(i_this, BCK_RD_DIEA, 3.0f, 0, 1.0f);
-                        sVar1 = (s16) i_this->field_0xa0c.y;
+                        angle = (s16) i_this->jump_angle.y;
                     } else {
-                        sVar1 = i_this->field_0xa0c.y + 0x8000;
+                        angle = i_this->jump_angle.y + 0x8000;
                     }
 
-                    actor->current.angle.y = sVar1;
+                    actor->current.angle.y = angle;
 
-                    if (i_this->field_0x9f8 != 0) {
+                    if (i_this->damage_flag != 0) {
                         i_this->jump_z = 0.0f;
                         i_this->field_0xab8 = 2000.0f + BREG_F(12);
                     } else {
@@ -2952,7 +2952,7 @@ static void e_rd_damage(e_rd_class* i_this) {
         case 2:
             actor->current.angle.y += i_this->field_0x9f6;
             actor->shape_angle.y = actor->current.angle.y;
-            cLib_addCalcAngleS2(&i_this->field_0xa0c.x, -0x4000, 1, 0x300 + BREG_S(4));
+            cLib_addCalcAngleS2(&i_this->jump_angle.x, -0x4000, 1, 0x300 + BREG_S(4));
 
             if (i_this->ObjAcch.ChkGroundHit()) {
                 if (actor->health > 0 && daPy_py_c::checkNowWolf() == 0) {
@@ -2969,17 +2969,17 @@ static void e_rd_damage(e_rd_class* i_this) {
                 }
 
                 i_this->jump_z = 0.0f;
-                i_this->field_0xa0c.x = -0x4000;
+                i_this->jump_angle.x = -0x4000;
 
                 if (i_this->field_0xa1f == 0) {
-                    sVar1 = s16(i_this->field_0xa0c.y);
+                    angle = s16(i_this->jump_angle.y);
                     for (int i = 0; i < 4; i++) {
                         i_this->field_0xad2[i] = cM_rndF(10.0f);
                     }
                 } else {
-                    sVar1 = i_this->field_0xa0c.y + 0x8000;
+                    angle = i_this->jump_angle.y + 0x8000;
                 }
-                actor->current.angle.y = sVar1;
+                actor->current.angle.y = angle;
 
                 if (daPy_py_c::checkNowWolf() != 0) {
                     i_this->timer[0] = 80;
@@ -2998,7 +2998,7 @@ static void e_rd_damage(e_rd_class* i_this) {
         case 3:
             if (body_gake(i_this)) {
                 i_this->jump_z = -20.0f + VREG_F(8);
-                i_this->field_0xa0c.x -= s16(0x300 + VREG_S(7));
+                i_this->jump_angle.x -= s16(0x300 + VREG_S(7));
             } else {
                 i_this->jump_z = 0.0f;
             }
@@ -3009,7 +3009,7 @@ static void e_rd_damage(e_rd_class* i_this) {
             }
 
             if (daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_DOWN && i_this->timer[0] == 0) {
-                i_this->field_0xa0c.x = -0x4000;
+                i_this->jump_angle.x = -0x4000;
                 enemy->offDownFlg();
                 i_this->mode = 20;
 
@@ -3023,9 +3023,9 @@ static void e_rd_damage(e_rd_class* i_this) {
 
         case 10:
             if (i_this->field_0xaf0 != 0) {
-                cLib_addCalcAngleS2(&i_this->field_0xa0c.x, 0, 1, 0x300 + BREG_S(4));
+                cLib_addCalcAngleS2(&i_this->jump_angle.x, 0, 1, 0x300 + BREG_S(4));
             } else {
-                cLib_addCalcAngleS2(&i_this->field_0xa0c.x, -0x4000, 1, 0x800 + BREG_S(5));
+                cLib_addCalcAngleS2(&i_this->jump_angle.x, -0x4000, 1, 0x800 + BREG_S(5));
                 if (i_this->ObjAcch.ChkGroundHit()) {
                     i_this->mode = 2;
                     if (i_this->field_0xa1f == 0) {
@@ -3043,12 +3043,12 @@ static void e_rd_damage(e_rd_class* i_this) {
                     actor->speed.y = 20.0f + TREG_F(6);
 
                     if (i_this->field_0xa1f == 0) {
-                        sVar1 = s16(i_this->field_0xa0c.y);
+                        angle = s16(i_this->jump_angle.y);
                     } else {
-                        sVar1 = i_this->field_0xa0c.y + 0x8000;
+                        angle = i_this->jump_angle.y + 0x8000;
                     }
 
-                    actor->current.angle.y = sVar1;
+                    actor->current.angle.y = angle;
                     i_this->field_0xab8 = 8000.0f + BREG_F(12);
                 }
             }
@@ -3060,7 +3060,7 @@ static void e_rd_damage(e_rd_class* i_this) {
             }
 
             if (i_this->anm_p->isStop()) {
-                i_this->field_0xa0c.x = i_this->field_0xa0c.y = 0;
+                i_this->jump_angle.x = i_this->jump_angle.y = 0;
                 anm_init(i_this, BCK_RD_WAIT01, 0.0f, 2, 1.0f);
                 i_this->timer[0] = 5;
                 i_this->mode = 21;
@@ -3244,8 +3244,8 @@ static void e_rd_drop(e_rd_class* i_this) {
 
             if (move_gake_check(i_this, KREG_F(6) + 30.0f)) {
                 i_this->mode = 3;
-                i_this->field_0xa0c.y = enemy->shape_angle.y + 0x8000;
-                i_this->field_0xa0c.x = 0;
+                i_this->jump_angle.y = enemy->shape_angle.y + 0x8000;
+                i_this->jump_angle.x = 0;
                 i_this->anm_p->setPlaySpeed(0.3f);
                 i_this->field_0xaf8 = 0;
                 i_this->timer[0] = 20;
@@ -3262,19 +3262,19 @@ static void e_rd_drop(e_rd_class* i_this) {
 
             speed = 3.0f;
             
-            if (i_this->field_0xa0c.x > -0x4000) {
+            if (i_this->jump_angle.x > -0x4000) {
                 enemy->speed.y = 0.0f;
                 i_this->sound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
             } else {
-                if (i_this->field_0xa0c.x > -0x6800) {
-                    enemy->speed.y = -fabsf(cM_scos(i_this->field_0xa0c.x) * (TREG_F(8) + 70.0f));
+                if (i_this->jump_angle.x > -0x6800) {
+                    enemy->speed.y = -fabsf(cM_scos(i_this->jump_angle.x) * (TREG_F(8) + 70.0f));
                     i_this->sound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_FALLING, -1);
                 } else {
                     i_this->sound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_FALLING, -1);
                 }
             }
 
-            cLib_addCalcAngleS2(&i_this->field_0xa0c.x, -0x7000, 2, i_this->field_0xaf8);
+            cLib_addCalcAngleS2(&i_this->jump_angle.x, -0x7000, 2, i_this->field_0xaf8);
             cLib_addCalcAngleS2(&i_this->field_0xaf8, 0x800, 1, 0x50);
             i_this->field_0x9ab = 2;
 
@@ -3286,7 +3286,7 @@ static void e_rd_drop(e_rd_class* i_this) {
                     i_this->field_0xaf2 = 0;
                 } else {
                     enemy->current.pos.y = i_this->ObjAcch.GetGroundH() + 100.0f + KREG_F(17);
-                    i_this->field_0xa0c.x = -0x4000;
+                    i_this->jump_angle.x = -0x4000;
                     i_this->action = ACTION_DAMAGE;
                     i_this->mode = 0;
                     i_this->jump_z = 0.0f;
@@ -3365,7 +3365,7 @@ static void e_rd_stand(e_rd_class* i_this) {
     if ((i_this->counter & 7) == 0 && fopAcM_GetRoomNo(enemy) == 0) {
         if (S_find != 0) {
             wb_check(i_this, angle);
-            if (i_this->field_0x9be != 0) {
+            if (i_this->boar_stand != 0) {
                 return;
             }
         }
@@ -3676,7 +3676,7 @@ static void e_rd_excite(e_rd_class* i_this) {
 
         case 3:
             if (i_this->timer[0] == 0) {
-                i_this->action = i_this->field_0x974;
+                i_this->action = i_this->prev_action;
                 if (i_this->action == ACTION_STAND) {
                     i_this->action = ACTION_NORMAL;
                 }
@@ -3712,13 +3712,13 @@ static void e_rd_water(e_rd_class* i_this) {
 
             i_this->timer[0] = 60;
             i_this->field_0x9f0 = i_this->jump_z = enemy->speedF = 0.0f;
-            cXyz sp28 = enemy->current.pos;
-            sp28.y = i_this->waterY;
+            cXyz yogan = enemy->current.pos;
+            yogan.y = i_this->waterY;
             if (i_this->mode == 0) {
-                fopKyM_createWpillar(&sp28, 1.5f, 0);
+                fopKyM_createWpillar(&yogan, 1.5f, 0);
             } else {
                 OS_REPORT("      RD YOGAN  \n");
-                fopKyM_createMpillar(&sp28, 1.0f);
+                fopKyM_createMpillar(&yogan, 1.0f);
             }
 
             i_this->mode = 10;
@@ -3728,7 +3728,7 @@ static void e_rd_water(e_rd_class* i_this) {
         case 10:
             enemy->speed.y = 0.0f;
             cLib_addCalc2(&enemy->current.pos.y, i_this->waterY, 0.5f, 5.0f);
-            cLib_addCalcAngleS2(&i_this->field_0xa0c.x, -0x4000, 4, 0x400 + BREG_S(4));
+            cLib_addCalcAngleS2(&i_this->jump_angle.x, -0x4000, 4, 0x400 + BREG_S(4));
 
             if (i_this->timer[0] == 0) {
                 rd_disappear(i_this);
@@ -3905,11 +3905,11 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
         case 0:
             anm_init(i_this, BCK_RD_RRUN02_BACK, 1.0f, 0, 1.0f);
             i_this->mode++;
-            i_this->field_0x9bc = 0;
+            i_this->ride_mode = 0;
 
             if (daPy_getPlayerActorClass()->checkHorseRide() && boar != NULL) {
-                UNSET_FLAG(boar->mStatusFlags, i_this->field_0x9be, u16);
-                i_this->field_0x9be = 0;
+                UNSET_FLAG(boar->mStatusFlags, i_this->boar_stand, u16);
+                i_this->boar_stand = 0;
                 boar->mActionID = 16;
                 boar->mActionMode = 0;
                 boar->field_0x169e = 10;
@@ -3920,9 +3920,9 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
             i_this->jump_z = 70.0f + KREG_F(8);
 
             if (fopAcM_searchPlayerAngleY(enemy) < 0) {
-                i_this->field_0xa0c.y = 0x4000;
+                i_this->jump_angle.y = 0x4000;
             } else {
-                i_this->field_0xa0c.y = -0x4000;
+                i_this->jump_angle.y = -0x4000;
             }
 
             i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_DEATH, -1);
@@ -3973,17 +3973,17 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
         case 10:
             anm_init(i_this, BCK_RD_RSHOOT, 2.0f, 0, 1.0f);
             i_this->mode = 11;
-            i_this->field_0x9bc = 0;
+            i_this->ride_mode = 0;
 
             if (boar != NULL) {
-                UNSET_FLAG(boar->mStatusFlags, i_this->field_0x9be, u16);
-                i_this->field_0x9be = 0;
+                UNSET_FLAG(boar->mStatusFlags, i_this->boar_stand, u16);
+                i_this->boar_stand = 0;
             }
 
             enemy->speedF = 0.0f;
             enemy->speed.y = 50.0f + KREG_F(7);
             i_this->jump_z = 60.0f + KREG_F(8);
-            i_this->field_0xa0c.y = 0x4000;
+            i_this->jump_angle.y = 0x4000;
 
             i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_DEATH, -1);
             break;
@@ -4077,11 +4077,11 @@ static void wolfkick_damage(e_rd_class* i_this) {
 
     i_this->action = ACTION_DAMAGE;
     i_this->mode = 0;
-    i_this->field_0xa0c.y = pla->shape_angle.y + 0x8000;
+    i_this->jump_angle.y = pla->shape_angle.y + 0x8000;
     enemy->speed.y = l_HIO.wolf_falling_power_y;
     i_this->jump_z = -l_HIO.wolf_falling_power_z;
     i_this->sound.startCollisionSE(Z2SE_HIT_WOOD_WEAPON, 31);
-    i_this->field_0x9f8 = 1;
+    i_this->damage_flag = 1;
     i_this->damage_timer = 1000;
 }
 
@@ -4092,7 +4092,7 @@ static void big_damage(e_rd_class* i_this) {
     i_this->mode = 0;
     enemy->speed.y = l_HIO.jump_y + 2.0f;
 
-    if (i_this->field_0x9bc == 2) {
+    if (i_this->ride_mode == 2) {
         fopAc_ac_c* actor = fopAcM_SearchByID(i_this->boar_id);
         if (actor != NULL && actor->speedF >= 20.0f) {
             i_this->jump_z = actor->speedF;
@@ -4103,9 +4103,9 @@ static void big_damage(e_rd_class* i_this) {
             i_this->jump_z = -l_HIO.jump_z_suspended;
         }
 
-        i_this->field_0xa0c.y = enemy->shape_angle.y + (s16)cM_rndFX(3000.0f);
+        i_this->jump_angle.y = enemy->shape_angle.y + (s16)cM_rndFX(3000.0f);
     } else {
-        i_this->field_0xa0c.y = i_this->AtInfo.mHitDirection.y;
+        i_this->jump_angle.y = i_this->AtInfo.mHitDirection.y;
         i_this->jump_z = -l_HIO.jump_z;
     }
 
@@ -4116,7 +4116,7 @@ static void big_damage(e_rd_class* i_this) {
         OS_REPORT("SPIN CUT L HIT !!\n");
         i_this->field_0x9f6 = -(cM_rndFX(2000.0f) + 4000.0f);
     } else {
-        if (i_this->field_0x9bc != 0) {
+        if (i_this->ride_mode != 0) {
             i_this->field_0x9f6 = cM_rndFX(3000.0f);
         } else {
             if (fopAcM_GetName(i_this->AtInfo.mpActor) == PROC_E_WB) {
@@ -4129,7 +4129,7 @@ static void big_damage(e_rd_class* i_this) {
         }
     }
 
-    i_this->field_0x9f8 = 0;
+    i_this->damage_flag = 0;
     i_this->damage_timer = 1000;
 
 }
@@ -4138,7 +4138,7 @@ static void small_damage(e_rd_class* i_this, int param_2) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
 
     if (i_this->action != ACTION_S_DAMAGE) {
-        i_this->field_0x974 = i_this->action;
+        i_this->prev_action = i_this->action;
     }
 
     i_this->action = ACTION_S_DAMAGE;
@@ -4200,7 +4200,7 @@ static void damage_check(e_rd_class* i_this) {
     fopAc_ac_c* actor = fopAcM_SearchByID(i_this->boar_id);
     e_wb_class* boar = (e_wb_class*)actor;
 
-    if (i_this->field_0x9bc == 2 && boar != NULL && (boar->mStatusFlags & 0xC0) != 0) {
+    if (i_this->ride_mode == 2 && boar != NULL && (boar->mStatusFlags & 0xC0) != 0) {
         if (i_this->action == ACTION_IKKI2_END) {
             i_this->mode = 10;
         } else {
@@ -4209,10 +4209,10 @@ static void damage_check(e_rd_class* i_this) {
             i_this->damage_timer = 1000;
 
             if ((boar->mStatusFlags & 0x80) != 0) {
-                i_this->field_0xa0c.y = enemy->shape_angle.y + 0x8000 + (s16)cM_rndFX(3000.0f);
+                i_this->jump_angle.y = enemy->shape_angle.y + 0x8000 + (s16)cM_rndFX(3000.0f);
                 i_this->field_0x9f6 = (s16)cM_rndFX(1000.0f);
             } else {
-                i_this->field_0xa0c.y = enemy->shape_angle.y + (s16)cM_rndFX(8000.0f);
+                i_this->jump_angle.y = enemy->shape_angle.y + (s16)cM_rndFX(8000.0f);
                 i_this->field_0x9f6 = (s16)cM_rndFX(3000.0f);
             }
 
@@ -4316,7 +4316,7 @@ static void damage_check(e_rd_class* i_this) {
                         i_this->timer[1] = 1;
                     }
 
-                    if (i_this->field_0x9bc == 2 && i_this->AtInfo.mAttackPower <= 10) {
+                    if (i_this->ride_mode == 2 && i_this->AtInfo.mAttackPower <= 10) {
                         if (fpcM_Search(s_boom_sub, i_this) != NULL) {
                             return;
                         }
@@ -4338,7 +4338,7 @@ static void damage_check(e_rd_class* i_this) {
 
                     if (i_this->AtInfo.mHitType == 15) {
                         enemy->health = 0;
-                        if (i_this->field_0x9bc == 0) {
+                        if (i_this->ride_mode == 0) {
                             i_this->action = ACTION_A_DAMAGE;
                             i_this->mode = 0;
                             i_this->sound.startCreatureVoice(Z2SE_EN_RD_V_DAMAGE, -1);
@@ -4369,7 +4369,7 @@ static void damage_check(e_rd_class* i_this) {
                         i_this->AtInfo.mAttackPower = 20;
                     }
 
-                    if (enemy->health <= 0 || i_this->AtInfo.mHitStatus != 0 || i_this->field_0x9bc != 0) {
+                    if (enemy->health <= 0 || i_this->AtInfo.mHitStatus != 0 || i_this->ride_mode != 0) {
                         if (pla->getCutType() == daPy_py_c::CUT_TYPE_JUMP && pla->checkCutJumpCancelTurn()) {
                             small_damage(i_this, i);
                             i_this->damage_timer = 3 + NREG_S(7);
@@ -4469,7 +4469,7 @@ static void damage_check(e_rd_class* i_this) {
                                 break;  
                             }
 
-                            if (i_this->field_0x9bc != 0 && i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
+                            if (i_this->ride_mode != 0 && i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
                                 i_this->damage_timer = 20;
                                 if (i_this->action == ACTION_WB_RUN) {
                                     anm_init(i_this, BCK_RD_RRUN02_BACK, 5.0f, 2, 1.0f);
@@ -4648,7 +4648,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
     if (fabsf(i_this->ObjAcch.GetGroundH() - enemy->home.pos.y) > 10.0f) {
         i_this->action = ACTION_DAMAGE;
         i_this->mode = 0;
-        i_this->field_0xa0c.y = s16(enemy->shape_angle.y);
+        i_this->jump_angle.y = s16(enemy->shape_angle.y);
         enemy->speed.y = 20.0f;
         i_this->jump_z = -20.0f;
         i_this->damage_timer = 1000;
@@ -4699,16 +4699,16 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
             i_this->angleY = cM_atan2s(vec.x, vec.z);
 
             if (vec.abs() < 50.0f) {
-                i_this->field_0xb00 += i_this->field_0xb01;
+                i_this->field_0xb00 += i_this->path_dir;
                 if (i_this->field_0xb00 >= (i_this->path->m_num & 0xFF)) {
                     if (dPath_ChkClose(i_this->path)) {
                         i_this->field_0xb00 = 0;
                     } else {
-                        i_this->field_0xb01 = 0xFF;
+                        i_this->path_dir = 0xFF;
                         i_this->field_0xb00 = i_this->path->m_num - 2;
                     }
                 } else if (i_this->field_0xb00 < 0) {
-                    i_this->field_0xb01 = 1;
+                    i_this->path_dir = 1;
                     i_this->field_0xb00 = 1;
                 }
 
@@ -5181,7 +5181,7 @@ static void action(e_rd_class* i_this) {
         if (!pl_check(i_this, 500.0f, 0x7FFF)) {
             mae = sound->position - enemy->current.pos;
             if (mae.abs() < sound->field_0xc * 120) {
-                i_this->field_0x974 = i_this->action;
+                i_this->prev_action = i_this->action;
                 i_this->action = ACTION_EXCITE;
                 i_this->mode = 0;
                 S_find_pos = sound->position;
@@ -5236,10 +5236,10 @@ static void action(e_rd_class* i_this) {
     cLib_addCalcAngleS2(&enemy->shape_angle.z, enemy->current.angle.z, 2, 0x1000);
 
 
-    if (i_this->field_0x9bc == 0) {
+    if (i_this->ride_mode == 0) {
         enemy->attention_info.distances[fopAc_attn_BATTLE_e] = 3;
         if (i_this->jump_z) {
-            cMtx_YrotS(*calc_mtx, i_this->field_0xa0c.y);
+            cMtx_YrotS(*calc_mtx, i_this->jump_angle.y);
             if (i_this->field_0xaf0 == 0) {
                 mae.z = i_this->jump_z;
             } else {
@@ -5302,7 +5302,7 @@ static void action(e_rd_class* i_this) {
         }
 
         e_wb_class* boar = (e_wb_class*)actor;
-        if (i_this->field_0x9be == 1) {
+        if (i_this->boar_stand == 1) {
             MTXCopy(boar->mpModelMorf->getModel()->getAnmMtx(boar->field_0x688 + 15), *calc_mtx);
         } else {
             MTXCopy(boar->mpModelMorf->getModel()->getAnmMtx(boar->field_0x688 + 16), *calc_mtx);
@@ -5315,7 +5315,7 @@ static void action(e_rd_class* i_this) {
         }
         MtxPosition(&mae, &i_this->field_0x9b0);
 
-        if (i_this->field_0x9bc == 2) {
+        if (i_this->ride_mode == 2) {
             enemy->current.pos = i_this->field_0x9b0;
             enemy->shape_angle = enemy->current.angle = actor->shape_angle;
 
@@ -5326,7 +5326,7 @@ static void action(e_rd_class* i_this) {
                       -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z)));
             enemy->shape_angle.x = enemy->current.angle.x;
 
-            if (i_this->field_0x9be == 1) {
+            if (i_this->boar_stand == 1) {
                 boar->field_0x1434 = fopAcM_GetID(i_this);
             }
         } else {
@@ -5341,7 +5341,7 @@ static void action(e_rd_class* i_this) {
             enemy->current.pos += ato;
             mae = i_this->field_0x9b0 - enemy->current.pos;
             if (mae.abs() < 30.0f || i_this->timer[3] == 0) {
-                i_this->field_0x9bc = 2;
+                i_this->ride_mode = 2;
             }
 
             cLib_addCalcAngleS2(&enemy->current.angle.y, actor->shape_angle.y, 4, 0x800);
@@ -5380,7 +5380,7 @@ static void action(e_rd_class* i_this) {
         ato2 = actor->eyePos;
     }
 
-    if (i_this->field_0x9bc == 2) {
+    if (i_this->ride_mode == 2) {
         sp_0x24 = 0x1000;
     }
 
@@ -5455,7 +5455,7 @@ static void action(e_rd_class* i_this) {
     }
 
     if (i_this->jump_z) {
-        sp_0x2a = i_this->field_0xa0c.y - enemy->shape_angle.y;
+        sp_0x2a = i_this->jump_angle.y - enemy->shape_angle.y;
         i_this->field_0xa74[3].y = -sp_0x2a + 0x4000;
         if (i_this->field_0xa74[3].y > 0x1770) {
             i_this->field_0xa74[3].y = 6000;
@@ -5541,7 +5541,7 @@ static void action(e_rd_class* i_this) {
 
     if (i_this->field_0xa1e != 0) {
         i_this->field_0xa1e--;
-        if (i_this->field_0xa0c.x != 0) {
+        if (i_this->jump_angle.x != 0) {
             Vec sp280;
             cXyz sp28c, sp298;
             dBgS_GndChk gnd_chk;
@@ -5807,21 +5807,21 @@ static void* s_lv9arrow_sub2(void* i_actor, void* i_data) {
 }
 
 static void cam_3d_morf(e_rd_class* i_this, f32 param_2) {
-    cLib_addCalc2(&i_this->mDemoCamCenter.x, i_this->field_0x12cc.x, param_2, i_this->field_0x12e4.x * i_this->field_0x130c);
-    cLib_addCalc2(&i_this->mDemoCamCenter.y, i_this->field_0x12cc.y, param_2, i_this->field_0x12e4.y * i_this->field_0x130c);
-    cLib_addCalc2(&i_this->mDemoCamCenter.z, i_this->field_0x12cc.z, param_2, i_this->field_0x12e4.z * i_this->field_0x130c);
-    cLib_addCalc2(&i_this->mDemoCamEye.x, i_this->field_0x12c0.x, param_2, i_this->field_0x12d8.x * i_this->field_0x130c);
-    cLib_addCalc2(&i_this->mDemoCamEye.y, i_this->field_0x12c0.y, param_2, i_this->field_0x12d8.y * i_this->field_0x130c);
-    cLib_addCalc2(&i_this->mDemoCamEye.z, i_this->field_0x12c0.z, param_2, i_this->field_0x12d8.z * i_this->field_0x130c);
+    cLib_addCalc2(&i_this->demo_cam_center.x, i_this->field_0x12cc.x, param_2, i_this->field_0x12e4.x * i_this->field_0x130c);
+    cLib_addCalc2(&i_this->demo_cam_center.y, i_this->field_0x12cc.y, param_2, i_this->field_0x12e4.y * i_this->field_0x130c);
+    cLib_addCalc2(&i_this->demo_cam_center.z, i_this->field_0x12cc.z, param_2, i_this->field_0x12e4.z * i_this->field_0x130c);
+    cLib_addCalc2(&i_this->demo_cam_eye.x, i_this->field_0x12c0.x, param_2, i_this->field_0x12d8.x * i_this->field_0x130c);
+    cLib_addCalc2(&i_this->demo_cam_eye.y, i_this->field_0x12c0.y, param_2, i_this->field_0x12d8.y * i_this->field_0x130c);
+    cLib_addCalc2(&i_this->demo_cam_eye.z, i_this->field_0x12c0.z, param_2, i_this->field_0x12d8.z * i_this->field_0x130c);
 }
 
 static void cam_spd_set(e_rd_class* i_this) {
-    i_this->field_0x12d8.x = fabsf(i_this->field_0x12c0.x - i_this->mDemoCamEye.x);
-    i_this->field_0x12d8.y = fabsf(i_this->field_0x12c0.y - i_this->mDemoCamEye.y);
-    i_this->field_0x12d8.z = fabsf(i_this->field_0x12c0.z - i_this->mDemoCamEye.z);
-    i_this->field_0x12e4.x = fabsf(i_this->field_0x12cc.x - i_this->mDemoCamCenter.x);
-    i_this->field_0x12e4.y = fabsf(i_this->field_0x12cc.y - i_this->mDemoCamCenter.y);
-    i_this->field_0x12e4.z = fabsf(i_this->field_0x12cc.z - i_this->mDemoCamCenter.z);
+    i_this->field_0x12d8.x = fabsf(i_this->field_0x12c0.x - i_this->demo_cam_eye.x);
+    i_this->field_0x12d8.y = fabsf(i_this->field_0x12c0.y - i_this->demo_cam_eye.y);
+    i_this->field_0x12d8.z = fabsf(i_this->field_0x12c0.z - i_this->demo_cam_eye.z);
+    i_this->field_0x12e4.x = fabsf(i_this->field_0x12cc.x - i_this->demo_cam_center.x);
+    i_this->field_0x12e4.y = fabsf(i_this->field_0x12cc.y - i_this->demo_cam_center.y);
+    i_this->field_0x12e4.z = fabsf(i_this->field_0x12cc.z - i_this->demo_cam_center.z);
     i_this->field_0x130c = 0.0f;
 }
 
@@ -5848,11 +5848,11 @@ static void demo_camera(e_rd_class* i_this) {
             camera->mCamera.Stop();
             i_this->demo_mode = 2;
             i_this->demo_timer = 0;
-            i_this->mDemoCamZoom = 55.0f;
+            i_this->demo_cam_zoom = 55.0f;
             camera->mCamera.SetTrimSize(3);
 
-            i_this->mDemoCamCenter = enemy->current.pos;
-            i_this->mDemoCamCenter.y = enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5);
+            i_this->demo_cam_center = enemy->current.pos;
+            i_this->demo_cam_center.y = enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5);
             i_this->field_0x1300 = 2000.0f;
             enemy->current.angle.y = i_this->target_angle;
             // fallthrough
@@ -5863,9 +5863,9 @@ static void demo_camera(e_rd_class* i_this) {
                 mae.x = 0.0f;
                 mae.y = TREG_F(3);
                 mae.z = i_this->field_0x1300;
-                mDoMtx_stack_c::multVec(&mae, &i_this->mDemoCamEye);
-                i_this->mDemoCamEye += enemy->current.pos;
-                cLib_addCalc2(&i_this->mDemoCamCenter.y, enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5), 0.1f, 20.0f);
+                mDoMtx_stack_c::multVec(&mae, &i_this->demo_cam_eye);
+                i_this->demo_cam_eye += enemy->current.pos;
+                cLib_addCalc2(&i_this->demo_cam_center.y, enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5), 0.1f, 20.0f);
                 cLib_addCalc2(&i_this->field_0x1300, 400.0f, 0.5f, 150.0f);
             } else if (desert_substage == 124) {
                 // main Gerudo Desert
@@ -5878,17 +5878,17 @@ static void demo_camera(e_rd_class* i_this) {
                 fpcM_Search(s_wb_sub2, i_this);
 
                 if (target_info[0] != NULL && target_info[1] != NULL) {
-                    i_this->mDemoCamCenter = target_info[0]->current.pos + ((target_info[1]->current.pos - target_info[0]->current.pos) * 0.5f);
-                    i_this->mDemoCamCenter.y += 200.0f + BREG_F(7);
+                    i_this->demo_cam_center = target_info[0]->current.pos + ((target_info[1]->current.pos - target_info[0]->current.pos) * 0.5f);
+                    i_this->demo_cam_center.y += 200.0f + BREG_F(7);
 
                     if (i_this->demo_timer == 85) {
-                        i_this->mDemoCamEye = i_this->mDemoCamCenter;
-                        i_this->mDemoCamEye.y += 100.0f + VREG_F(8);
-                        i_this->mDemoCamEye.z += 900.0f + VREG_F(9);
+                        i_this->demo_cam_eye = i_this->demo_cam_center;
+                        i_this->demo_cam_eye.y += 100.0f + VREG_F(8);
+                        i_this->demo_cam_eye.z += 900.0f + VREG_F(9);
                     } else {
-                        cLib_addCalc2(&i_this->mDemoCamEye.x, i_this->mDemoCamCenter.x, 0.2f, 100.0f);
-                        cLib_addCalc2(&i_this->mDemoCamEye.y, i_this->mDemoCamCenter.y + 100.0f + VREG_F(8), 0.2f, 100.0f);
-                        cLib_addCalc2(&i_this->mDemoCamEye.z, i_this->mDemoCamCenter.z + 900.0f + VREG_F(9), 0.2f, 100.0f);
+                        cLib_addCalc2(&i_this->demo_cam_eye.x, i_this->demo_cam_center.x, 0.2f, 100.0f);
+                        cLib_addCalc2(&i_this->demo_cam_eye.y, i_this->demo_cam_center.y + 100.0f + VREG_F(8), 0.2f, 100.0f);
+                        cLib_addCalc2(&i_this->demo_cam_eye.z, i_this->demo_cam_center.z + 900.0f + VREG_F(9), 0.2f, 100.0f);
                     }
                 }
 
@@ -5910,13 +5910,13 @@ static void demo_camera(e_rd_class* i_this) {
             camera->mCamera.Stop();
             i_this->demo_mode = 11;
             i_this->demo_timer = 0;
-            i_this->mDemoCamZoom = 55.0f;
+            i_this->demo_cam_zoom = 55.0f;
             dComIfGp_offCameraAttentionStatus(0, 8);
             camera->mCamera.SetTrimSize(3);
 
-            i_this->mDemoCamCenter = enemy->current.pos;
-            i_this->mDemoCamCenter.y = (enemy->eyePos.y - 80.0f) + 60.0f + TREG_F(5);
-            i_this->mDemoCamEye = camera0->lookat.eye;
+            i_this->demo_cam_center = enemy->current.pos;
+            i_this->demo_cam_center.y = (enemy->eyePos.y - 80.0f) + 60.0f + TREG_F(5);
+            i_this->demo_cam_eye = camera0->lookat.eye;
             enemy->current.angle.y = i_this->target_angle;
             i_this->field_0x1300 = 2000.0f;
             // fallthrough
@@ -5934,15 +5934,15 @@ static void demo_camera(e_rd_class* i_this) {
             cLib_addCalc2(&i_this->field_0x1300, 400.0f, 0.5f, 150.0f);
 
             if (i_this->demo_timer < 20) {
-                i_this->mDemoCamEye = ato;
+                i_this->demo_cam_eye = ato;
             } else {
-                cLib_addCalc2(&i_this->mDemoCamEye.x, ato.x, 0.1f, 10.0f);
-                cLib_addCalc2(&i_this->mDemoCamEye.z, ato.z, 0.1f, 10.0f);
+                cLib_addCalc2(&i_this->demo_cam_eye.x, ato.x, 0.1f, 10.0f);
+                cLib_addCalc2(&i_this->demo_cam_eye.z, ato.z, 0.1f, 10.0f);
             }
 
-            cLib_addCalc2(&i_this->mDemoCamCenter.x, enemy->eyePos.x, 0.1f, 10.0f);
-            cLib_addCalc2(&i_this->mDemoCamCenter.z, enemy->eyePos.z, 0.1f, 10.0f);
-            cLib_addCalc2(&i_this->mDemoCamCenter.y, enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5), 0.1f, 100.0f);
+            cLib_addCalc2(&i_this->demo_cam_center.x, enemy->eyePos.x, 0.1f, 10.0f);
+            cLib_addCalc2(&i_this->demo_cam_center.z, enemy->eyePos.z, 0.1f, 10.0f);
+            cLib_addCalc2(&i_this->demo_cam_center.y, enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5), 0.1f, 100.0f);
 
             if (i_this->demo_timer == s16(100 + KREG_S(8))) {
                 bVar1 = true;
@@ -5966,11 +5966,11 @@ static void demo_camera(e_rd_class* i_this) {
             camera->mCamera.Stop();
             i_this->demo_mode = 21;
             i_this->demo_timer = 0;
-            i_this->mDemoCamZoom = 55.0f;
+            i_this->demo_cam_zoom = 55.0f;
             camera->mCamera.SetTrimSize(3);
 
-            i_this->mDemoCamCenter = camera0->lookat.center;
-            i_this->mDemoCamEye = camera0->lookat.eye;
+            i_this->demo_cam_center = camera0->lookat.center;
+            i_this->demo_cam_eye = camera0->lookat.eye;
             i_this->field_0x12cc.set(-7875.0f, 2125.0f, 7895.0f);
             i_this->field_0x12c0.set(-7527.0f, 2084.0f, 7552.0f);
             cam_spd_set(i_this);
@@ -6011,9 +6011,9 @@ static void demo_camera(e_rd_class* i_this) {
                 }
 
                 if (i_this->demo_timer > 160) {
-                    cLib_addCalc2(&i_this->mDemoCamZoom, 55.0f, 0.05f, 0.5f);
+                    cLib_addCalc2(&i_this->demo_cam_zoom, 55.0f, 0.05f, 0.5f);
                 } else {
-                    cLib_addCalc2(&i_this->mDemoCamZoom, 45.0f, 0.05f, 0.5f);
+                    cLib_addCalc2(&i_this->demo_cam_zoom, 45.0f, 0.05f, 0.5f);
                 }
 
                 if (i_this->demo_timer == 180) {
@@ -6031,7 +6031,7 @@ static void demo_camera(e_rd_class* i_this) {
         case 23:
             cam_3d_morf(i_this, BREG_F(17) + 0.2f);
             cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.15f, 1.0f, BREG_F(17) + 0.005f);
-            cLib_addCalc2(&i_this->mDemoCamZoom, 55.0f, 0.1f, 0.5f);
+            cLib_addCalc2(&i_this->demo_cam_zoom, 55.0f, 0.1f, 0.5f);
 
             if (i_this->demo_timer == 13) {
                 fpcM_Search(s_lv9dn_sub2,i_this);
@@ -6042,9 +6042,9 @@ static void demo_camera(e_rd_class* i_this) {
             }
 
             if (i_this->demo_timer == 55) {
-                i_this->mDemoCamCenter.set(-8330.0f, 4359.0f, 8449.0f);
-                i_this->mDemoCamEye.set(-8183.0f, 4264.0f, 7991.0f);
-                i_this->mDemoCamZoom = 55.0f;
+                i_this->demo_cam_center.set(-8330.0f, 4359.0f, 8449.0f);
+                i_this->demo_cam_eye.set(-8183.0f, 4264.0f, 7991.0f);
+                i_this->demo_cam_zoom = 55.0f;
                 i_this->demo_mode = 23;
                 i_this->demo_timer = 0;
             }
@@ -6058,16 +6058,16 @@ static void demo_camera(e_rd_class* i_this) {
             }
 
             if (i_this->demo_timer < 40) {
-                i_this->mDemoCamEye.y += 2.0f;
+                i_this->demo_cam_eye.y += 2.0f;
             }
 
             if (i_this->demo_timer == 40) {
-                i_this->mDemoCamCenter.set(-8033.0f, 4259.0f, 8143.0f);
-                i_this->mDemoCamEye.set(-8337.0f, 4488.0f, 8451.0f);
+                i_this->demo_cam_center.set(-8033.0f, 4259.0f, 8143.0f);
+                i_this->demo_cam_eye.set(-8337.0f, 4488.0f, 8451.0f);
             }
 
             if (i_this->demo_timer >= 40) {
-                cLib_addCalc2(&i_this->mDemoCamZoom, 30.0f, 0.05f, 0.5f);
+                cLib_addCalc2(&i_this->demo_cam_zoom, 30.0f, 0.05f, 0.5f);
             }
 
             if (i_this->demo_timer == 110) {
@@ -6085,7 +6085,7 @@ static void demo_camera(e_rd_class* i_this) {
             i_this->attack_range = 0.0f;
 
             if (i_this->demo_timer >= 4) {
-                i_this->mBlureRate = 200 + VREG_S(7);
+                i_this->blurRate = 200 + VREG_S(7);
                 sVar1 = cM_scos(i_this->demo_timer * 0x500) * 2500.0f;
                 i_this->field_0x130c = 0.03f + BREG_F(16);
                 cam_3d_morf(i_this, 0.5f + BREG_F(17));
@@ -6111,7 +6111,7 @@ static void demo_camera(e_rd_class* i_this) {
                     i_this->demo_mode = 25;
                     i_this->demo_timer = 0;
                     Z2GetAudioMgr()->seStart(Z2SE_AL_FISHING_HIT, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                    i_this->mBlureRate = 0;
+                    i_this->blurRate = 0;
                 }
             }
             break;
@@ -6119,9 +6119,9 @@ static void demo_camera(e_rd_class* i_this) {
         case 26:
             if (i_this->demo_timer == 40) {
                 mDoGph_gInf_c::fadeIn(0.5f, g_blackColor);
-                i_this->mDemoCamZoom = 55.0f;
-                i_this->mDemoCamCenter.set(-5197.0f, 1712.0f, 5039.0f);
-                i_this->mDemoCamEye.set(-5215.0f, 2108.0f, 5327.0f);
+                i_this->demo_cam_zoom = 55.0f;
+                i_this->demo_cam_center.set(-5197.0f, 1712.0f, 5039.0f);
+                i_this->demo_cam_eye.set(-5215.0f, 2108.0f, 5327.0f);
                 i_this->field_0x12cc.set(-5025.0f, 2270.0f, 4909.0f);
                 i_this->field_0x12c0.set(-5215.0f, 2108.0f, 5327.0f);
                 cam_spd_set(i_this);
@@ -6140,8 +6140,8 @@ static void demo_camera(e_rd_class* i_this) {
             cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.5f, 1.0f, BREG_F(17) + 0.01f);
 
             if (i_this->demo_timer == 55) {
-                i_this->mDemoCamCenter.set(-5529.0f, 2457.0f, 5589.0f);
-                i_this->mDemoCamEye.set(-5232.0f, 2201.0f, 5295.0f);
+                i_this->demo_cam_center.set(-5529.0f, 2457.0f, 5589.0f);
+                i_this->demo_cam_eye.set(-5232.0f, 2201.0f, 5295.0f);
                 i_this->field_0x12cc.set(-5580.0f, 2188.0f, 5640.0f);
                 i_this->field_0x12c0.set(-5232.0f, 2201.0f, 5295.0f);
                 cam_spd_set(i_this);
@@ -6166,9 +6166,9 @@ static void demo_camera(e_rd_class* i_this) {
             }
 
             if (i_this->demo_timer < 100) {
-                cLib_addCalc2(&i_this->mDemoCamZoom, 25.0f, 0.2f, 1.0f);
+                cLib_addCalc2(&i_this->demo_cam_zoom, 25.0f, 0.2f, 1.0f);
             } else if (i_this->demo_timer >= 120) {
-                cLib_addCalc2(&i_this->mDemoCamZoom, 55.0f, 0.05f, 0.4f);
+                cLib_addCalc2(&i_this->demo_cam_zoom, 55.0f, 0.05f, 0.4f);
                 cam_3d_morf(i_this, BREG_F(17) + 0.2f);
                 cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.1f, 1.0f, BREG_F(17) + 0.01f);
 
@@ -6212,9 +6212,9 @@ static void demo_camera(e_rd_class* i_this) {
                 }
 
                 target = actor->current.pos;
-                cLib_addCalc2(&i_this->mDemoCamCenter.x, target.x, 0.2f, i_this->field_0x130c * 100.0f);
-                cLib_addCalc2(&i_this->mDemoCamCenter.y, target.y + BREG_F(13), 0.2f, i_this->field_0x130c * 100.0f);
-                cLib_addCalc2(&i_this->mDemoCamCenter.z, target.z, 0.2f, i_this->field_0x130c * 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_center.x, target.x, 0.2f, i_this->field_0x130c * 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_center.y, target.y + BREG_F(13), 0.2f, i_this->field_0x130c * 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_center.z, target.z, 0.2f, i_this->field_0x130c * 100.0f);
 
                 cLib_addCalc2(&i_this->field_0x130c, 1.0f, 1.0f, 0.03f);
 
@@ -6224,9 +6224,9 @@ static void demo_camera(e_rd_class* i_this) {
                     }
 
                     if (i_this->demo_timer < 135) {
-                        cLib_addCalc2(&i_this->mDemoCamZoom, 20.0f, 0.2f, 1.0f);
+                        cLib_addCalc2(&i_this->demo_cam_zoom, 20.0f, 0.2f, 1.0f);
                     } else {
-                        cLib_addCalc2(&i_this->mDemoCamZoom, 55.0f, 0.1f, 0.5f);
+                        cLib_addCalc2(&i_this->demo_cam_zoom, 55.0f, 0.1f, 0.5f);
                     }
                 }
 
@@ -6239,20 +6239,20 @@ static void demo_camera(e_rd_class* i_this) {
             break;
 
         case 30:
-            i_this->mDemoCamZoom = 55.0f;
-            i_this->mDemoCamEye.set(-3963.0f, 147.0f, 8094.0f);
+            i_this->demo_cam_zoom = 55.0f;
+            i_this->demo_cam_eye.set(-3963.0f, 147.0f, 8094.0f);
             target = actor->current.pos;
 
             if (i_this->demo_timer == 0) {
-                i_this->mDemoCamCenter = target;
+                i_this->demo_cam_center = target;
             } else {
-                cLib_addCalc2(&i_this->mDemoCamCenter.x, target.x, 0.2f, 100.0f);
-                cLib_addCalc2(&i_this->mDemoCamCenter.y, target.y, 0.2f, 100.0f);
-                cLib_addCalc2(&i_this->mDemoCamCenter.z, target.z, 0.2f, 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_center.x, target.x, 0.2f, 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_center.y, target.y, 0.2f, 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_center.z, target.z, 0.2f, 100.0f);
 
                 if (i_this->demo_timer == 140) {
                     i_this->field_0x12cc.set(-4080.0f, 134.0f, 8190.0f);
-                    i_this->field_0x12c0 = i_this->mDemoCamEye;
+                    i_this->field_0x12c0 = i_this->demo_cam_eye;
                     cam_spd_set(i_this);
                     i_this->demo_mode = 30;
                     i_this->demo_timer = 0;
@@ -6265,8 +6265,8 @@ static void demo_camera(e_rd_class* i_this) {
             cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.1f, 1.0f, BREG_F(17) + 0.002f);
 
             if (i_this->demo_timer == 70) {
-                i_this->mDemoCamCenter.set(-4527.0f, 143.0f, 8305.0f);
-                i_this->mDemoCamEye.set(-4676.0f, 161.0f, 8282.0f);
+                i_this->demo_cam_center.set(-4527.0f, 143.0f, 8305.0f);
+                i_this->demo_cam_eye.set(-4676.0f, 161.0f, 8282.0f);
                 i_this->field_0x12cc.set(-4552.0f, 143.0f, 8461.0f);
                 i_this->field_0x12c0.set(-4701.0f, 161.0f, 8438.0f);
                 cam_spd_set(i_this);
@@ -6284,16 +6284,16 @@ static void demo_camera(e_rd_class* i_this) {
             if (i_this->demo_timer == 70) {
                 i_this->demo_mode = 32;
                 i_this->demo_timer = 0;
-                i_this->mDemoCamCenter.set(-5275.0f, 2327.0f, 5812.0f);
-                i_this->mDemoCamEye.set(-5367.0f, 2689.0f, 5495.0f);
-                i_this->mDemoCamZoom = 30.0f;
+                i_this->demo_cam_center.set(-5275.0f, 2327.0f, 5812.0f);
+                i_this->demo_cam_eye.set(-5367.0f, 2689.0f, 5495.0f);
+                i_this->demo_cam_zoom = 30.0f;
             }
             break;
 
         case 33:
             if (i_this->demo_timer == 60) {
-                i_this->mDemoCamCenter.set(-3906.0f, 42.0f, 8198.0f);
-                i_this->mDemoCamEye.set(-4274.0f, 272.0f, 7969.0f);
+                i_this->demo_cam_center.set(-3906.0f, 42.0f, 8198.0f);
+                i_this->demo_cam_eye.set(-4274.0f, 272.0f, 7969.0f);
                 i_this->demo_mode = 33;
                 i_this->demo_timer = 0;
                 dComIfGs_onTmpBit((u16) dSv_event_tmp_flag_c::tempBitLabels[0x75]);
@@ -6306,20 +6306,20 @@ static void demo_camera(e_rd_class* i_this) {
             }
 
             if (i_this->demo_timer == 70) {
-                i_this->mDemoCamCenter.set(-5712.0f, 2308.0f, 5828.0f);
-                i_this->mDemoCamEye.set(-5286.0f, 2104.0f, 5957.0f);
-                i_this->mDemoCamZoom = 45.0f;
+                i_this->demo_cam_center.set(-5712.0f, 2308.0f, 5828.0f);
+                i_this->demo_cam_eye.set(-5286.0f, 2104.0f, 5957.0f);
+                i_this->demo_cam_zoom = 45.0f;
                 i_this->demo_mode = 34;
                 i_this->demo_timer = 0;
             }
             break;
 
         case 35:
-            cLib_addCalc2(&i_this->mDemoCamZoom, 40.0f, 0.05f, 0.02f);
+            cLib_addCalc2(&i_this->demo_cam_zoom, 40.0f, 0.05f, 0.02f);
             if (i_this->demo_timer == 80) {
-                i_this->mDemoCamCenter.set(-4712.0f, 870.0f, 7432.0f);
-                i_this->mDemoCamEye.set(-4852.0f, 1171.0f, 7072.0f);
-                i_this->mDemoCamZoom = 55.0f;
+                i_this->demo_cam_center.set(-4712.0f, 870.0f, 7432.0f);
+                i_this->demo_cam_eye.set(-4852.0f, 1171.0f, 7072.0f);
+                i_this->demo_cam_zoom = 55.0f;
                 i_this->demo_mode = 35;
                 i_this->demo_timer = 0;
                 /* Hyrule Castle - Resistance leaves Flag*/
@@ -6348,9 +6348,9 @@ static void demo_camera(e_rd_class* i_this) {
 
     if (i_this->demo_mode > 0) {
         cXyz center, eye;
-        center = i_this->mDemoCamCenter;
-        eye = i_this->mDemoCamEye;
-        camera->mCamera.Set(center, eye, sVar1, i_this->mDemoCamZoom);
+        center = i_this->demo_cam_center;
+        eye = i_this->demo_cam_eye;
+        camera->mCamera.Set(center, eye, sVar1, i_this->demo_cam_zoom);
         i_this->demo_timer++;
     }
 }
@@ -6435,14 +6435,14 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     i_this->field_0x9ad = 1;
     action(i_this);
 
-    if (i_this->field_0x9bc != 0) {
+    if (i_this->ride_mode != 0) {
         i_this->field_0x9ad = 0;
     }
 
-    if (i_this->field_0x9bc != 2 && i_this->field_0xaf0 == 0 && i_this->action != ACTION_IKKI_END) {
+    if (i_this->ride_mode != 2 && i_this->field_0xaf0 == 0 && i_this->action != ACTION_IKKI_END) {
         ato.set(0.0f, 0.0f, 0.0f);
         if (i_this->jump_z) {
-            cMtx_YrotS(*calc_mtx, i_this->field_0xa0c.y);
+            cMtx_YrotS(*calc_mtx, i_this->jump_angle.y);
             mae.x = 0.0f;
             mae.y = TREG_F(8);
             mae.z = i_this->field_0xaec;
@@ -6452,7 +6452,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             cLib_addCalc0(&i_this->field_0xaec, 1.0f, TREG_F(17) + 5.0f);
         }
 
-        if (i_this->anm == BCK_RD_DIEB && i_this->field_0xa0c.x != 0 && i_this->field_0xa1f == 0) {
+        if (i_this->anm == BCK_RD_DIEB && i_this->jump_angle.x != 0 && i_this->field_0xa1f == 0) {
             ato.y += KREG_F(0) + -20.0f;
         }
 
@@ -6475,7 +6475,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 i_this->mode = 0;
                 enemy->speed.y = 0.0f;
                 i_this->jump_z = -1.0f;
-                i_this->field_0xa0c.x = -0x3000;
+                i_this->jump_angle.x = -0x3000;
                 i_this->damage_timer = 1000;
                 enemy->health = 0;
             }
@@ -6494,9 +6494,9 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         mDoMtx_stack_c::transS(enemy->current.pos.x, enemy->current.pos.y + i_this->field_0x9c0, enemy->current.pos.z);
         mDoMtx_stack_c::XrotM((s16) i_this->field_0xa12.x);
         mDoMtx_stack_c::ZrotM((s16) i_this->field_0xa12.z);
-        mDoMtx_stack_c::YrotM((s16) i_this->field_0xa0c.y);
-        mDoMtx_stack_c::XrotM((s16) i_this->field_0xa0c.x);
-        mDoMtx_stack_c::YrotM(-i_this->field_0xa0c.y);
+        mDoMtx_stack_c::YrotM((s16) i_this->jump_angle.y);
+        mDoMtx_stack_c::XrotM((s16) i_this->jump_angle.x);
+        mDoMtx_stack_c::YrotM(-i_this->jump_angle.y);
         mDoMtx_stack_c::YrotM((s16) enemy->shape_angle.y);
         mDoMtx_stack_c::XrotM((s16) enemy->shape_angle.x);
         mDoMtx_stack_c::ZrotM(enemy->shape_angle.z);
@@ -6650,7 +6650,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             i_this->cc_sph[0].SetR(35.0f);
         }
 
-        if (i_this->field_0x9bc == 2) {
+        if (i_this->ride_mode == 2) {
             enemy->attention_info.position = enemy->current.pos;
             enemy->attention_info.position.y += 190.0f + JREG_F(8);
 
@@ -6704,7 +6704,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
             dComIfG_Ccsp()->Set(&i_this->cc_sph[i]);
 
-            if (i_this->actor_set == 1 && i_this->field_0x9bc == 2) {
+            if (i_this->actor_set == 1 && i_this->ride_mode == 2) {
                 i_this->cc_sph[i].OnTgNoHitMark();
             } else {
                 i_this->cc_sph[i].OffTgNoHitMark();
@@ -6740,7 +6740,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             MtxTrans(-30.0f, -50.0f, 20.0f, 1);
         }
 
-        i_this->field_0x694->setBaseTRMtx(*calc_mtx);
+        i_this->arrow->setBaseTRMtx(*calc_mtx);
 
         if (i_this->field_0x9ab != 0) {
             if (daPy_getPlayerActorClass()->checkHorseRide() || daPy_getPlayerActorClass()->checkBoarRide()) {
@@ -6797,10 +6797,10 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
         if (i_this->field_0x9a2 != 0) {
             MTXCopy(i_this->anm_p->getModel()->getAnmMtx(24), *calc_mtx);
-            i_this->field_0x694->setBaseTRMtx(*calc_mtx);
+            i_this->arrow->setBaseTRMtx(*calc_mtx);
 
             if (i_this->weapon_type >= 3) {
-                if (i_this->field_0x9bc != 2 || i_this->timer[1] <= 18) {
+                if (i_this->ride_mode != 2 || i_this->timer[1] <= 18) {
                     fire_eff_set(i_this);
                 }
             } else {
@@ -6808,7 +6808,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             }
         }
 
-        if (i_this->arrow_flag != 0) {
+        if (i_this->arrow_flag) {
             if (i_this->weapon_type == 3) {
                 i_this->sound.startCreatureSound(Z2SE_OBJ_ARROW_SHOT_FIRE, 0, -1);
             } else {
@@ -6846,7 +6846,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 mae.y -= 30.0f;
                 angl.y = cM_atan2s(mae.x, mae.z);
 
-                if (i_this->field_0x9bc == 2 && !pl_pass_check(i_this, YREG_F(18))) {
+                if (i_this->ride_mode == 2 && !pl_pass_check(i_this, YREG_F(18))) {
                     s16 sVar3 = cM_rndF(1000.0f) + 2000.0f;
                     if (cM_rndF(1.0f) < 0.5f) {
                         sVar3 *= -1;
@@ -6893,9 +6893,9 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         14, 19,
     };
     static u16 eno[3] = {
-        0x828C,
-        0x828D,
-        0x828E,
+        dPa_RM(ID_ZM_S_RB_BREAKARMOR00),
+        dPa_RM(ID_ZM_S_RB_BREAKARMOR01),
+        dPa_RM(ID_ZM_S_RB_BREAKARMOR02),
     };
 
     if (i_this->actor_set != 0) {
@@ -6926,7 +6926,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                     i_this->armor_boss_part[i]->setBaseTRMtx(mDoMtx_stack_c::get());
 
                     for (int j = 0; j < 3; j++) {
-                        i_this->field_0x8c0[i][j] = dComIfGp_particle_set(i_this->field_0x8c0[i][j], eno[j],
+                        i_this->armor_break_eff[i][j] = dComIfGp_particle_set(i_this->armor_break_eff[i][j], eno[j],
                                                                           &i_this->field_0x71c[i], NULL, NULL);
                     }
 
@@ -6946,8 +6946,8 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 i_this->field_0x6a4 += i_this->field_0x6b0;
                 i_this->field_0x6b0.y -= 5.0f;
                 MtxTrans(i_this->field_0x6a4.x, i_this->field_0x6a4.y, i_this->field_0x6a4.z, 0);
-                f32 fVar4 = l_HIO.leader_size_ratio * ( l_HIO.model_size * enemy->scale.x);
-                MtxScale(fVar4, fVar4, fVar4, 1);
+                f32 scale = l_HIO.leader_size_ratio * ( l_HIO.model_size * enemy->scale.x);
+                MtxScale(scale, scale, scale, 1);
                 MtxTrans(BREG_F(5) + 80.0f, BREG_F(6) + 50.0f, BREG_F(7), 1);
                 cMtx_YrotM(*calc_mtx, i_this->field_0x6bc.y);
                 cMtx_XrotM(*calc_mtx, 0x7FFF);
@@ -6960,7 +6960,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             i_this->mpMorfHornAnm->getModel()->setBaseTRMtx(*calc_mtx);
         }
 
-        if (i_this->run_flag != 0) {
+        if (i_this->run_flag) {
             i_this->run_flag = 0;
             if (i_this->field_0x680 == 0) {
                 int anm_no = i_this->anm;
@@ -6988,7 +6988,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
     }
 
-    if (i_this->actor_set == 0 && i_this->field_0x9bc == 0) {
+    if (i_this->actor_set == 0 && i_this->ride_mode == 0) {
         fopAc_ac_c* player = dComIfGp_getPlayer(0);
         MTXCopy(i_this->anm_p->getModel()->getAnmMtx(11), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&ato);
@@ -7022,16 +7022,16 @@ static int daE_RD_IsDelete(e_rd_class*) {
 }
 
 static int daE_RD_Delete(e_rd_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
+    fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
     fopAcM_RegisterDeleteID(i_this, "E_RD");
 
-    dComIfG_resDelete(&i_this->mPhase, i_this->resName);
-    if (i_this->field_0x125c != 0) {
+    dComIfG_resDelete(&i_this->phase, i_this->resName);
+    if (i_this->hio_set != 0) {
         hio_set = 0;
         mDoHIO_DELETE_CHILD(l_HIO.field_0x4);
     }
 
-    if (a_this->heap != NULL) {
+    if (enemy->heap != NULL) {
         i_this->anm_p->stopZelAnime();
     }
 
@@ -7044,7 +7044,7 @@ static void ride_game_actor_set(e_rd_class* i_this) {
     cXyz mae, ato;
     csXyz angl;
 
-    OS_REPORT("E3 2005 ACTOR SET %d\n", i_this->mBossMode);
+    OS_REPORT("E3 2005 ACTOR SET %d\n", i_this->actor_set);
     static cXyz set_pos[6] = {
         cXyz(0.0f, 1500.0f, 2500.0f),
         cXyz(800.0f, 1500.0f, -4800.0f),
@@ -7221,12 +7221,12 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
             JUT_ASSERT(10762, modelData != NULL);
 
-            i_this->field_0x694 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-            if (i_this->field_0x694 == NULL) {
+            i_this->arrow = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            if (i_this->arrow == NULL) {
                 return 0;
             }
 
-            i_this->field_0x694->setBaseTRMtx(mDoMtx_stack_c::get());
+            i_this->arrow->setBaseTRMtx(mDoMtx_stack_c::get());
         } else if (i_this->weapon_type >= 2) {
             i_this->mpMorfBowAnm = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->resName, BMDR_RD_BOW), NULL, NULL,
                                                        (J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, BCK_RD_BOW_SHOOT), 0, 1.0f,
@@ -7253,12 +7253,12 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
             JUT_ASSERT(10810, modelData != NULL);
 
-            i_this->field_0x694 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-            if (i_this->field_0x694 == NULL) {
+            i_this->arrow = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            if (i_this->arrow == NULL) {
                 return 0;
             }
 
-            i_this->field_0x694->setBaseTRMtx(mDoMtx_stack_c::get());
+            i_this->arrow->setBaseTRMtx(mDoMtx_stack_c::get());
         }
 
         modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->resName, BMDR_RD_EYE);
@@ -7304,7 +7304,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
         i_this->resName = "E_RD";
     }
 
-    cPhs_Step phase_state = dComIfG_resLoad(&i_this->mPhase, i_this->resName);
+    cPhs_Step phase_state = dComIfG_resLoad(&i_this->phase, i_this->resName);
     if (phase_state == cPhs_COMPLEATE_e) {
         if (strcmp(dComIfGp_getStartStageName(), "F_SP124") == 0) {
             // Gerudo Desert
@@ -7480,7 +7480,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
         }
 
         if (hio_set == 0) {
-            i_this->field_0x125c = 1;
+            i_this->hio_set = 1;
             hio_set = 1;
             // "rider"
             l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("ライダー", &l_HIO);

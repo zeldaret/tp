@@ -22,7 +22,7 @@ public:
     e_rd_class();
 
     /* 0x0000 */ fopEn_enemy_c enemy;
-    /* 0x05AC */ request_of_phase_process_class mPhase;
+    /* 0x05AC */ request_of_phase_process_class phase;
     /* 0x05B4 */ s16 mode;
     /* 0x05B6 */ u8 arg0;
     /* 0x05B7 */ u8 arg1;
@@ -40,7 +40,7 @@ public:
     /* 0x067C */ int anm;
     /* 0x0680 */ int field_0x680;
     /* 0x0684 */ dJntCol_c mJntCol;
-    /* 0x0694 */ J3DModel* field_0x694;
+    /* 0x0694 */ J3DModel* arrow;
     /* 0x0698 */ mDoExt_McaMorfSO* mpMorfBowAnm;
     /* 0x069C */ mDoExt_McaMorf* mpMorfHornAnm;
     /* 0x06A0 */ s8 field_0x6a0;
@@ -57,12 +57,12 @@ public:
     /* 0x071C */ cXyz field_0x71c[14];
     /* 0x07C4 */ cXyz field_0x7c4[14];
     /* 0x086C */ csXyz field_0x86c[14];
-    /* 0x08C0 */ u32 field_0x8c0[14][3];
+    /* 0x08C0 */ u32 armor_break_eff[14][3];
     /* 0x0968 */ s8 field_0x968;
     /* 0x096C */ f32 field_0x96c;
     /* 0x0970 */ s16 counter;
     /* 0x0972 */ s16 action;
-    /* 0x0974 */ s16 field_0x974;
+    /* 0x0974 */ s16 prev_action;
     /* 0x0978 */ f32 dis;
     /* 0x097C */ s16 target_angle;
     /* 0x0980 */ f32 attack_range;
@@ -87,9 +87,9 @@ public:
     /* 0x09AC */ s8 field_0x9ac;
     /* 0x09AD */ s8 field_0x9ad;
     /* 0x09B0 */ cXyz field_0x9b0;
-    /* 0x09BC */ s8 field_0x9bc;
+    /* 0x09BC */ s8 ride_mode;
     /* 0x09BD */ s8 field_0x9bd;
-    /* 0x09BE */ s8 field_0x9be;
+    /* 0x09BE */ s8 boar_stand;
     /* 0x09BF */ u8 field_0x9bf;
     /* 0x09C0 */ f32 field_0x9c0;
     /* 0x09C4 */ f32 field_0x9c4;
@@ -105,10 +105,10 @@ public:
     /* 0x09F0 */ f32 field_0x9f0;
     /* 0x09F4 */ s16 field_0x9f4;
     /* 0x09F6 */ s16 field_0x9f6;
-    /* 0x09F8 */ s8 field_0x9f8;
+    /* 0x09F8 */ s8 damage_flag;
     /* 0x09FC */ cXyz field_0x9fc; // unused, dbg offset 0xa34
     /* 0x0A08 */ u8 field_0xa08[0x0A0C - 0x0A08];
-    /* 0x0A0C */ csXyz field_0xa0c;
+    /* 0x0A0C */ csXyz jump_angle;
     /* 0x0A12 */ csXyz field_0xa12;
     /* 0x0A18 */ csXyz field_0xa18;
     /* 0x0A1E */ s8 field_0xa1e;
@@ -141,14 +141,14 @@ public:
     /* 0x0AFB */ s8 field_0xafb;
     /* 0x0AFC */ dPath* path;
     /* 0x0B00 */ s8 field_0xb00;
-    /* 0x0B01 */ s8 field_0xb01;
+    /* 0x0B01 */ s8 path_dir;
     /* 0x0B04 */ dBgS_AcchCir AcchCir;
     /* 0x0B44 */ dBgS_ObjAcch ObjAcch;
     /* 0x0D1C */ dCcD_Stts mStts;
     /* 0x0D58 */ dCcD_Sph cc_sph[3];
     /* 0x1100 */ dCcD_Sph at_sph;
     /* 0x1238 */ dCcU_AtInfo AtInfo;
-    /* 0x125C */ u8 field_0x125c;
+    /* 0x125C */ u8 hio_set;
     /* 0x125D */ s8 field_0x125d;
     /* 0x1260 */ u32 field_0x1260;
     /* 0x1264 */ u32 field_0x1264;
@@ -168,8 +168,8 @@ public:
     /* 0x12A0 */ int sw;
     /* 0x12A4 */ s16 demo_mode;
     /* 0x12A6 */ s16 demo_timer;
-    /* 0x12A8 */ cXyz mDemoCamEye;
-    /* 0x12B4 */ cXyz mDemoCamCenter;
+    /* 0x12A8 */ cXyz demo_cam_eye;
+    /* 0x12B4 */ cXyz demo_cam_center;
     /* 0x12C0 */ cXyz field_0x12c0;
     /* 0x12CC */ cXyz field_0x12cc;
     /* 0x12D8 */ cXyz field_0x12d8;
@@ -177,11 +177,11 @@ public:
     /* 0x12F0 */ cXyz field_0x12f0;
     /* 0x12FC */ u8 field_0x12fc[0x1300 - 0x12fc];
     /* 0x1300 */ f32 field_0x1300;
-    /* 0x1304 */ u8 mBlureRate;
-    /* 0x1308 */ f32 mDemoCamZoom;
+    /* 0x1304 */ u8 blurRate;
+    /* 0x1308 */ f32 demo_cam_zoom;
     /* 0x130C */ f32 field_0x130c;
     /* 0x1310 */ u8 field_0x1310[0x131c - 0x1310];
-    /* 0x131C */ dMsgFlow_c mMsgFlow;
+    /* 0x131C */ dMsgFlow_c MsgFlow;
 };
 
 STATIC_ASSERT(sizeof(e_rd_class) == 0x1368);

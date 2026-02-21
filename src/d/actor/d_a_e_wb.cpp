@@ -397,7 +397,7 @@ static int daE_WB_Draw(e_wb_class* i_this) {
         e_rd_class* pfVar4 = (e_rd_class*)fopAcM_SearchByID(i_this->field_0x1434);
 
         if ((i_this->mStatusFlags & 1) != 0) {
-            if (pfVar4 && pfVar4->field_0x9bc == 2) {
+            if (pfVar4 && pfVar4->ride_mode == 2) {
                 if (i_this->field_0x7a2 == 0) {
                     model = pfVar4->anm_p->getModel();
                     cVar7 = 1;
@@ -3869,7 +3869,7 @@ static void demo_camera(e_wb_class* i_this) {
         i_this->field_0x1714 = 55.0f + KREG_F(7);
         i_this->field_0x16a0 = 0;
         s16 sp16 = local_194->enemy.shape_angle.y +
-                   (local_194->field_0xa0c.y - local_194->enemy.shape_angle.y) / 2;
+                   (local_194->jump_angle.y - local_194->enemy.shape_angle.y) / 2;
         mDoMtx_stack_c::YrotS(sp16);
         local_3c.x = NREG_F(0);
         local_3c.y = NREG_F(1) + 500.0f;
