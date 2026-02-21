@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_shad.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -13,16 +13,16 @@
 #include <cstring>
 
 const daNpcShad_HIOParam daNpcShad_Param_c::m = {
-    35.0f,      // attention_offset 
+    35.0f,      // attention_offset
     -3.0f,      // gravity
-    1.0f,       // scale 
+    1.0f,       // scale
     400.0f,     // real_shadow_size
     255.0f,     // weight
     200.0f,     // height
     35.0f,      // knee_length
     30.0f,      // width
-    0.0f,       // body_angleX_max 
-    0.0f,       // body_angleX_min 
+    0.0f,       // body_angleX_max
+    0.0f,       // body_angleX_min
     45.0f,       // body_angleY_max
     -45.0f,       // body_angleY_min
     30.0f,      // head_angleX_max
@@ -390,7 +390,7 @@ cPhs_Step daNpcShad_c::Create() {
                     return cPhs_ERROR_e;
                 }
 
-                fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+                fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
                 mMode = 2;
             }
         }
@@ -626,7 +626,7 @@ int daNpcShad_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
     if (param_2 == 0) {
         J3DModel* model = j3dSys.getModel();
         daNpcShad_c* i_this = (daNpcShad_c*)model->getUserArea();
-        
+
         if (i_this != NULL) {
             i_this->ctrlJoint(i_joint, model);
         }
@@ -739,7 +739,7 @@ bool daNpcShad_c::setExpressionBtp(int i_idx) {
         if (i_idx == 0) {
             mAnmFlags |= ANM_FLAG_800;
         }
-            
+
         return true;
     }
 
@@ -834,7 +834,7 @@ void daNpcShad_c::reset() {
     mMotionMorfOverride = 0.0f;
 
     if (isSneaking()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
     }
 
     setWaitAction();
@@ -1055,7 +1055,7 @@ inline void daNpcShad_c::lookat() {
         mLookat.setAttnPos(NULL);
     }
 
-    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max, 0.0f, 0.0f, 0.0f, 0.0f, head_angleX_min, head_angleX_max, 
+    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max, 0.0f, 0.0f, 0.0f, 0.0f, head_angleX_min, head_angleX_max,
                      head_angleY_min, head_angleY_max, mCurAngle.y, spf0);
     mLookat.calc(this, model->getBaseTRMtx(), (csXyz**)local_fc, iVar1, sVar1, FALSE);
 }
@@ -1533,7 +1533,7 @@ bool daNpcShad_c::talk(void* param_1) {
             JUT_ASSERT(2042, FALSE);
             break;
     }
-    
+
     return rv;
 }
 
@@ -1857,7 +1857,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
                 actor = NULL;
                 fopAcM_SearchByName(PROC_CSTAF, (fopAc_ac_c**)&actor);
                 if (actor != NULL) {
-                    fopAcM_OnStatus(actor, fopAcM_STATUS_UNK_0x800);
+                    fopAcM_OnStatus(actor, fopAcStts_UNK_0x800);
                 }
 
                 dComIfGp_getEvent()->startCheckSkipEdge(this);
@@ -1993,7 +1993,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
 
         case '0010':
             return TRUE;
-            
+
         default:
             JUT_ASSERT(2540, FALSE);
             break;
@@ -2303,7 +2303,7 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
 
             if (pos2 != NULL) {
                 step(cLib_targetAngleY(&current.pos, pos2), -1, 15.0f);
-                
+
                 if (pos2->x > current.pos.x) {
                     speedF = 0.0f;
                     setMotion(MOT_WAIT_A, -1.0f, FALSE);
@@ -2617,7 +2617,7 @@ inline void daNpcShad_c::setAttnPos() {
     mDoMtx_stack_c::copy(mAnm_p->getModel()->getAnmMtx(JNT_BACKBONE2));
     mDoMtx_stack_c::multVecZero(&sp58);
     sp58.y = current.pos.y;
-    
+
     field_0xcb0.SetC(sp58);
     field_0xcb0.SetH(mpHIO->m.common.height);
 

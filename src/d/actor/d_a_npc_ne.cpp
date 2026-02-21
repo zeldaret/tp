@@ -133,7 +133,7 @@ static int daNpc_Ne_Draw(npc_ne_class* i_this) {
     if (daPy_py_c::linkGrabSubjectNoDraw(i_this)) {
         return 1;
     }
-    
+
     J3DModel* model = i_this->mpMorf->getModel();
     if (i_this->mResName == "Npc_net") {
         if (!dComIfGs_wolfeye_effect_check()) {
@@ -219,7 +219,7 @@ static int way_bg_check(npc_ne_class* i_this, s16 i_angle) {
             return 1;
         }
     }
-    
+
     mDoMtx_YrotS(*calc_mtx, _this->current.angle.y + i_angle);
     vec3.set(0.0f, 150.0f, 150.0f);
     MtxPosition(&vec3, &vec2);
@@ -373,7 +373,7 @@ static fopAc_ac_c* search_bird(npc_ne_class* i_this) {
                     }
                 }
             }
-            
+
             i++;
             if (i == target_info_count) {
                 i = 0;
@@ -645,7 +645,7 @@ static void npc_ne_away(npc_ne_class* i_this) {
         }
         i_this->mBackboneTargetAngleY = ang_y;
     }
-    
+
     i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
 }
 
@@ -825,7 +825,7 @@ static void npc_ne_tame(npc_ne_class* i_this) {
                 i_this->mMode++;
                 i_this->mSound.startSound(Z2SE_CAT_CRY_FAMILIER, 0, -1);
                 // fallthrough
-            
+
             case 6:
                 i_this->mTargetAngleY = i_this->mAngleToPlayer;
                 angle_max_step = 0xa00;
@@ -839,7 +839,7 @@ static void npc_ne_tame(npc_ne_class* i_this) {
                     i_this->mMode = 1;
                 }
                 break;
-            
+
             case 7:
                 i_this->mAnmSpeed = 1.0f;
                 anm_init(i_this, npc_ne_class::ANM_RUN, 3.0f, 2, i_this->mAnmSpeed);
@@ -853,7 +853,7 @@ static void npc_ne_tame(npc_ne_class* i_this) {
                 cLib_addCalc2(&i_this->mAnmSpeed, 1.5f, 1.0f, 0.1f);
                 cLib_addCalc2(&_this->speedF, i_this->mAnmSpeed * l_HIO.mRunSpeed,
                               1.0f, 0.5f * l_HIO.mRunSpeed);
-                
+
                 if (i_this->mCounter & 1) {
                     ivar7 = way_bg_check(i_this, 0);
                 }
@@ -861,7 +861,7 @@ static void npc_ne_tame(npc_ne_class* i_this) {
                 {
                     i_this->mTargetAngleY =
                         i_this->mAngleToPlayer + 0x8000 + (s16)cM_rndFX(4000.0f);
-                    way_check(i_this, i_this->mTargetAngleY);    
+                    way_check(i_this, i_this->mTargetAngleY);
                 }
 
                 if (i_this->mDistToTarget > dist3 + 40.0f) {
@@ -870,13 +870,13 @@ static void npc_ne_tame(npc_ne_class* i_this) {
                     i_this->mMode = 1;
                 }
                 break;
-            
+
             case 10:
             case 11:
                 i_this->mTargetAngleY = i_this->mAngleToPlayer;
                 cLib_addCalc0(&_this->speedF, 1.0f, 3.0f);
                 angle_diff = _this->current.angle.y - i_this->mTargetAngleY;
-                
+
                 if (i_this->mMode == 10) {
                     if (angle_diff > 0x400 || angle_diff < -0x400) {
                         i_this->mAnmSpeed = 1.0f;
@@ -1003,7 +1003,7 @@ static void npc_ne_bird(npc_ne_class* i_this) {
         i_this->mMode++;
         i_this->mDistScale = cM_rndFX(0.2f) + 1.0f;
         // fallthrough
-    
+
     case 1:
         max_angle_step = 0x400;
         i_this->mTailTargetAngle = -15000;
@@ -1635,7 +1635,7 @@ static BOOL npc_ne_home(npc_ne_class* i_this) {
     s16 prev_ang_y = i_this->current.angle.y;
     cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 2, i_this->mAngleYStep);
     cLib_addCalc2(&i_this->mAngleYStep, 5000.0f, 1.0f, 200.0f);
-    
+
     f32 ang_z = i_this->speedF * (i_this->current.angle.y - prev_ang_y) * -0.5f;
     if (ang_z > 4000.0f) {
         ang_z = 4000.0f;
@@ -1643,7 +1643,7 @@ static BOOL npc_ne_home(npc_ne_class* i_this) {
         ang_z = -4000.0f;
     }
     i_this->current.angle.z = ang_z;
-    
+
     if (i_this->mAngleYStep > 1000.0f) {
         f32 ang_y = i_this->speedF * (i_this->current.angle.y - prev_ang_y) * 0.1f;
         if (ang_y > 5000.0f) {
@@ -2140,7 +2140,7 @@ static void npc_ne_dish(npc_ne_class* i_this) {
         if (!dComIfGs_isEventBit(0x1001)) {
             i_this->current.pos.y = 20000.0f;
             i_this->speed.y = 0.0f;
-            fopAcM_OffStatus(i_this, fopAcStts_CULL_e);
+            fopAcM_OffStatus(i_this, fopAcStts_CULL);
         }
         break;
     }
@@ -2638,7 +2638,7 @@ static void demo_camera(npc_ne_class* i_this) {
     case 2:
         daPy_getPlayerActorClass()->setPlayerPosAndAngle(&player->current.pos,
                                                          i_this->mAngleToPlayer + 0x8000, 0);
-        
+
         center = _this->current.pos;
         eye = _this->current.pos;
         eye.y += 200.0f;
@@ -2702,7 +2702,7 @@ static void demo_camera(npc_ne_class* i_this) {
     case 11:
         daPy_getPlayerActorClass()->setPlayerPosAndAngle(&player->current.pos,
                                                          i_this->mAngleToPlayer + 0x8000, 0);
-        
+
         mDoMtx_YrotS(*calc_mtx, _this->current.angle.y);
 
         if (i_this->mMode >= 13) {
@@ -2838,7 +2838,7 @@ static void demo_camera(npc_ne_class* i_this) {
         }
 
         i_this->mDemoCounter++;
-        
+
         if (i_this->mDemoMode < 10 && i_this->mAction != npc_ne_class::ACT_HOME) {
             i_this->mDemoMode = 100;
         }
@@ -3114,7 +3114,7 @@ static cPhs_Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
         _this->mPathIndex = (u8)(fopAcM_GetParam(_this) >> 0x10);
         _this->mIsGengle = (u8)(fopAcM_GetParam(_this) >> 0x18);
 
-        if (_this->mIsGengle == 1 
+        if (_this->mIsGengle == 1
                 /* dSv_event_flag_c::F_0457 - Castle Town - Revived cat */
             && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[457])) {
             return cPhs_ERROR_e;
@@ -3159,7 +3159,7 @@ static cPhs_Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
             } else if (_this->mBehavior == npc_ne_class::BHV_DISH) {
                 _this->mAction = npc_ne_class::ACT_DISH;
                 _this->mDishPos = i_this->current.pos;
-                fopAcM_OnStatus(i_this, fopAcStts_NOPAUSE_e);
+                fopAcM_OnStatus(i_this, fopAcStts_NOPAUSE);
             }
         }
 
@@ -3169,7 +3169,7 @@ static cPhs_Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x04 = -1;
         }
 
-        fopAcM_OnStatus(i_this, fopAcStts_CULL_e);
+        fopAcM_OnStatus(i_this, fopAcStts_CULL);
         fopAcM_OnCarryType(i_this, fopAcM_CARRY_TYPE_8);
         i_this->attention_info.flags = 0;
         i_this->attention_info.distances[fopAc_attn_CARRY_e] = 7;

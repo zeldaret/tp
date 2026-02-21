@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_moir.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -43,7 +43,7 @@ enum MoiR1_RES_File_ID {
 };
 
 enum MoiR2_RES_File_ID {
-    /* BCK */ 
+    /* BCK */
     /* 0x04 */ BCK_MOIR_DRIVEAWAY = 0x4,
     /* 0x05 */ BCK_MOIR_F_DRIVEAWAY,
     /* 0x06 */ BCK_MOIR_F_FUE,
@@ -311,7 +311,7 @@ cPhs_Step daNpcMoiR_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
         mMode = MODE_2;
     }
 
@@ -941,7 +941,7 @@ void daNpcMoiR_c::lookat() {
     switch (mLookMode) {
         case LOOK_NONE:
             break;
-            
+
         case LOOK_RESET:
             bVar1 = TRUE;
             break;
@@ -982,7 +982,7 @@ void daNpcMoiR_c::lookat() {
         mLookat.setAttnPos(0);
     }
 
-    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max, 0.0f, 0.0f, 0.0f, 0.0f, 
+    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max, 0.0f, 0.0f, 0.0f, 0.0f,
                         head_angleX_min, head_angleX_max, head_angleY_min, head_angleY_max, mCurAngle.y, spd0);
     mLookat.calc(this, model->getBaseTRMtx(), local_dc, bVar1, sVar1, FALSE);
 }
@@ -1986,7 +1986,7 @@ void daNpcMoiR_c::setAttnPos() {
     sp58.y = current.pos.y;
     field_0xca0.SetC(sp58);
     field_0xca0.SetH(mpHIO->m.common.height);
-    
+
     f32 fVar1;
     if (mMode == MODE_SIT) {
         fVar1 = 40.0f;

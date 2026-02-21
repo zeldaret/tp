@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_kag.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -223,7 +223,7 @@ void daObjKAG_c::fly() {
         if (field_0x85a == 0) {
             if (flamePos != NULL && current.pos.absXZ(*flamePos) < 1800.0f) {
                 field_0x84e = cLib_targetAngleY(&current.pos, flamePos) + cM_rndFX(8192.0f);
-                
+
                 if (current.pos.absXZ(*flamePos) < 200.0f) {
                     field_0x85a = cM_rndF(4.0f) + 4.0f;
                 } else {
@@ -381,7 +381,7 @@ void daObjKAG_c::walk() {
 void daObjKAG_c::bin_wait() {
     if (field_0x83c == 0) {
         mpModelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kag", BCK_KAG_FLY), J3DFrameCtrl::EMode_LOOP, 5.0f, 0.0f, 0.0f, -1.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
         mDraw = false;
         gravity = 0.0f;
         maxFallSpeed = 0.0f;
@@ -448,7 +448,7 @@ void daObjKAG_c::hook() {
             kag_setParticle();
         }
 
-        if (!fopAcM_CheckStatus(this, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+        if (!fopAcM_CheckStatus(this, fopAcStts_HOOK_CARRY_NOW)) {
             setAction(&daObjKAG_c::fly);
         }
 
@@ -459,7 +459,7 @@ void daObjKAG_c::hook() {
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
             cM3dGPla plane;
             cXyz spbc;
-            
+
             dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
             cXyz* pcVar1 = plane.GetNP();
             spbc = lin_chk.GetCross();
@@ -648,7 +648,7 @@ cPhs_Step daObjKAG_c::create() {
     cPhs_Step phase = dComIfG_resLoad(&mPhase, "I_Kag");
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("KAG PARAM %x\n", fopAcM_GetParam(this));
-        
+
         field_0x85e = fopAcM_GetParam(this) & 3;
         if (field_0x85e == 3) {
             field_0x85e = 0;

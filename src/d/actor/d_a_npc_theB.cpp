@@ -146,7 +146,7 @@ daNpcTheB_HIO_c::daNpcTheB_HIO_c() {
 
 void daNpcTheB_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
     char buffer[2000];
-    
+
     JORReflexible::listenPropertyEvent(event);
 
     JORFile jorFile;
@@ -283,7 +283,7 @@ cPhs_Step daNpcTheB_c::create() {
     }
 
     return phase;
-    
+
 }
 
 int daNpcTheB_c::CreateHeap() {
@@ -614,7 +614,7 @@ bool daNpcTheB_c::setExpressionAnm(int i_idx, bool i_modify) {
     }
 
     bool res = false;
-    
+
     switch (i_idx) {
         case ANM_NONE:
             res = setExpressionBtp(EXPR_BTP_THEB);
@@ -730,11 +730,11 @@ void daNpcTheB_c::setMotionAnm(int i_idx, f32 i_morf) {
         case ANM_WHIP:
         case ANM_WHIP_B:
             break;
-            
+
         case ANM_SIT_B:
             setExpressionAnm(ANM_FH_TALK_B, true);
             break;
-        
+
         case ANM_BEND_WAIT:
             setExpressionAnm(ANM_FH_BEND_WAIT, true);
             break;
@@ -774,7 +774,7 @@ void daNpcTheB_c::reset() {
     initialize();
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP123") == 0) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
     }
 
     mpMatAnm->initialize();
@@ -880,7 +880,7 @@ BOOL daNpcTheB_c::doEvent() {
     e_wb_class* wb_p;
     BOOL rv = FALSE;
     s32 staffId;
-    
+
     if (dComIfGp_event_runCheck()) {
         if (eventInfo.checkCommandTalk()) {
             if (chkAction(&daNpcTheB_c::talk)) {
@@ -890,7 +890,7 @@ BOOL daNpcTheB_c::doEvent() {
 
                 fopAc_ac_c* actor_p = fopAcM_SearchByID(parentActorID);
                 if (actor_p != NULL) {
-                    fopAcM_OnStatus(actor_p, fopAcM_STATUS_UNK_0x800);
+                    fopAcM_OnStatus(actor_p, fopAcStts_UNK_0x800);
                 }
             }
 
@@ -901,10 +901,10 @@ BOOL daNpcTheB_c::doEvent() {
             if (staffId != -1) {
                 mStaffID = staffId;
                 JUT_ASSERT(1357, NULL != mEvtSeqList[mOrderEvtNo]);
-                
+
                 actor_p = fopAcM_SearchByID(parentActorID);
                 if (actor_p != NULL) {
-                    fopAcM_OnStatus(actor_p, fopAcM_STATUS_UNK_0x800);
+                    fopAcM_OnStatus(actor_p, fopAcStts_UNK_0x800);
                 }
 
                 if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {
@@ -931,7 +931,7 @@ BOOL daNpcTheB_c::doEvent() {
                     default:
                         break;
                 }
-                
+
                 dComIfGp_event_reset();
                 mOrderEvtNo = EVT_NONE;
                 mEventIdx = -1;
@@ -970,7 +970,7 @@ void daNpcTheB_c::lookat() {
     switch (mLookMode) {
         case LOOK_NONE:
             break;
-        
+
         case LOOK_RESET:
         case LOOK_PLAYER:
             player = daPy_getPlayerActorClass();
@@ -1054,7 +1054,7 @@ int daNpcTheB_c::wait(void* param_1) {
             mTurnMode = 0;
             mMode = 2;
             break;
-        
+
         case 2: {
             bool bVar1 = mActorMngrs[0].getActorP() != NULL;
 
@@ -1138,11 +1138,11 @@ int daNpcTheB_c::talk(void* param_1) {
             mTurnMode = 0;
             mMode = 2;
             break;
-        
+
         case 2:
             if (talkProc(NULL, TRUE, NULL)) {
                 field_0x9ec = false;
-                
+
                 if (!field_0x9ec) {
                     dComIfGp_event_reset();
                 }

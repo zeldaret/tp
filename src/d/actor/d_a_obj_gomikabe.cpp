@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_gomikabe.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -123,7 +123,7 @@ void daObjGOMIKABE_c::BreakSet() {
     field_0x5a2++;
     mAction++;
     Z2GetAudioMgr()->seStart(Z2SE_OBJ_G_KABE_BRK, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
+    fopAcM_OffStatus(this, fopAcStts_CULL);
     if (mpBgW != NULL && mpBgW->ChkUsed()) {
         dComIfG_Bgsp().Release(mpBgW);
     }
@@ -135,7 +135,7 @@ void daObjGOMIKABE_c::getWaterStream(cXyz& param_1, cXyz& param_2, f32 i_scale) 
     int local_58 = 0;
     s32 res = fopAcM_getWaterStream(&param_1, mGndChk, &local_48, &local_58, 0);
     cXyz local_54(local_58 * local_48.x, local_58 * local_48.y, local_58 * local_48.z);
-    
+
     if (res != 0) {
         cLib_addCalc2(&param_2.x, local_54.x * 0.7f, 0.5f, i_scale);
         cLib_addCalc2(&param_2.z, local_54.z * 0.7f, 0.5f, i_scale);

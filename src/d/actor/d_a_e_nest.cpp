@@ -4,7 +4,7 @@
  */
 
  #include "d/dolzel_rel.h" // IWYU pragma: keep
- 
+
 #include "d/d_s_play.h"
 #include "d/actor/d_a_e_nest.h"
 #include "d/actor/d_a_npc_tk.h"
@@ -57,7 +57,7 @@ static void hahen_normal(e_nest_class* i_this, nest_hahen_s* i_debris) {
     fopAc_ac_c* a_this = static_cast<fopAc_ac_c*>(i_this);
     dBgS_LinChk lin_chk;
     dBgS_ObjGndChk_Spl gnd_chk;
-    
+
     i_debris->mCounter++;
     if (i_debris->mTimer != 0) {
         i_debris->mTimer--;
@@ -189,7 +189,7 @@ static int daE_Nest_Draw(e_nest_class* i_this) {
             cXyz vec;
             f32 scale = l_HIO.mScale * i_this->scale.x;
             vec.set(i_this->current.pos.x, i_this->current.pos.y + 50.0f, i_this->current.pos.z);
-            i_this->mShadowKey = 
+            i_this->mShadowKey =
                 dComIfGd_setShadow(i_this->mShadowKey, 1, i_this->mpModel, &vec, scale * 500.0f,
                                    0.0f, i_this->current.pos.y, i_this->mAcch.GetGroundH(),
                                    i_this->mAcch.m_gnd, &i_this->tevStr, 0, 1.0f,
@@ -437,7 +437,7 @@ static s8 e_nest_carry(e_nest_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     a_this->speed.y = 0.0f;
     s8 ret = true;
-    
+
     switch (i_this->mMode) {
     case 0: {
         cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
@@ -538,7 +538,7 @@ static void e_nest_float(e_nest_class* i_this) {
     if (i_this->current.pos.y + 60.0f > vec.y) {
         fopAcM_effHamonSet(&i_this->mRippleKey, &vec, i_this->scale.x, 0.05f);
     }
-    
+
     cLib_addCalc2(&i_this->current.pos.y, i_this->mWaterHeight - 40.0f +
                   i_this->mBob * 0.004f * cM_ssin(i_this->mFrame * 900), 0.1f, 10.0f);
     i_this->mRotation.x = i_this->mBob * cM_ssin(i_this->mFrame * 1000);
@@ -787,7 +787,7 @@ static void* shot_b_sub(void* i_actor, void* i_data) {
 static void demo_camera(e_nest_class* i_this) {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     s8 end_demo = false;
-    
+
     switch (i_this->mDemoStage) {
     case 0:
         break;
@@ -883,7 +883,7 @@ static int daE_Nest_Execute(e_nest_class* i_this) {
         i_this->mBreakStage = 2;
         i_this->mAction = e_nest_class::ACT_DEBRIS;
         i_this->mMode = 0;
-        fopAcM_OffStatus(i_this, fopAcStts_CULL_e);
+        fopAcM_OffStatus(i_this, fopAcStts_CULL);
         nest_hahen_s* debris = i_this->mDebris;
         for (int i = 0; i < 5; i++, debris++) {
             debris->mActive = true;
@@ -923,7 +923,7 @@ static int daE_Nest_IsDelete(e_nest_class* param_0) {
 
 static int daE_Nest_Delete(e_nest_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "E_nest");
-    
+
     if (i_this->mHIOInit) {
         hio_set = false;
     }
@@ -956,7 +956,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     _this->mSound.init(&_this->current.pos, 1);
     _this->mBeeSound.init(&_this->current.pos, 2);
-    
+
     return 1;
 }
 
@@ -995,7 +995,7 @@ static cPhs_Step daE_Nest_Create(fopAc_ac_c* i_this) {
             _this->mParamScale = 10;
         }
         _this->scale.x = _this->mParamScale * 0.1f;
-        
+
         _this->mRotation.y = _this->current.angle.y;
 
         if (_this->mBrokenSwitch != 0xff
@@ -1059,7 +1059,7 @@ static cPhs_Step daE_Nest_Create(fopAc_ac_c* i_this) {
                                _this->mParam1 | 0xff000000, &_this->current.pos,
                                fopAcM_GetRoomNo(_this), NULL, NULL, -1, NULL);
         }
-        
+
         mtx_cc_set(_this);
         _this->mHitActorID = -1;
     }

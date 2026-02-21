@@ -978,7 +978,7 @@ static s16 hang_set(do_class* i_this) {
     cXyz vec1, vec2, vec3[2];
     vec1 = _this->old.pos - _this->current.pos;
     cMtx_YrotS(*calc_mtx, cM_atan2s(vec1.x, vec1.z));
-    
+
     vec1.x = 0.0f;
     vec1.y = 0.0f;
     vec1.z = -100.0f;
@@ -1198,7 +1198,7 @@ case1and2:
         i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
         cLib_addCalc2(&i_this->speedF, i_this->mAnmSpeed * l_HIO.mRunSpeed, 1.0f,
                       0.2f * l_HIO.mRunSpeed);
-        
+
         vec = food->current.pos - i_this->current.pos;
         angle_step = 0x1000;
         if (vec.abs() < 120.0f * i_this->mScale.z) {
@@ -1412,7 +1412,7 @@ static void do_help(do_class* i_this) {
     }
 
     cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 2.0f);
-    
+
     if (!daPy_getLinkPlayerActorClass()->checkCanoeRide() && i_this->mDistFromPlayer < 200.0f) {
         i_this->mAction = ACT_WAIT_1;
         i_this->mMode = 0;
@@ -1492,7 +1492,7 @@ static s8 do_boat(do_class* i_this) {
                       fabsf(i_this->field_0x698.x) + 2.0f);
         cLib_addCalc2(&i_this->current.pos.z, i_this->field_0x68c.z, 1.0f,
                       fabsf(i_this->field_0x698.z) + 2.0f);
-        
+
         if (_this->speed.y <= -80.0f) {
             _this->speed.y = -80.0f;
         }
@@ -1699,7 +1699,7 @@ static s8 do_carry(do_class* i_this) {
     i_this->mCcDisableTimer = 5;
     _this->speed.y = 0.0f;
     _this->speedF = 0.0f;
-    
+
     switch (i_this->mMode) {
     case 0:
         anm_init(i_this, ANM_TO_CARRY_B, 1.0f, 0,
@@ -1726,7 +1726,7 @@ static s8 do_carry(do_class* i_this) {
     if (!fopAcM_checkCarryNow(_this)) {
         i_this->mAction = ACT_WAIT_1;
         i_this->mMode = 0;
-        
+
         dBgS_GndChk gnd_chk;
         cXyz vec = _this->current.pos;
         vec.y += 50.0f;
@@ -2266,7 +2266,7 @@ static int daDo_Execute(do_class* i_this) {
     MtxPosition(&vec, &i_this->eyePos);
     i_this->attention_info.position = i_this->eyePos;
     i_this->attention_info.position.y += i_this->mScale.y * 16.0f;
-    
+
     vec.set(-15.0f, -15.0f, 0.0f);
     MtxPosition(&vec, &center);
     if (i_this->mCcDisableTimer != 0) {
@@ -2300,7 +2300,7 @@ static int daDo_Execute(do_class* i_this) {
             MtxTrans(20.0f, -24.0f, 0.0f, 1);
             vec.set(0.0f, 0.0f, 0.0f);
             MtxPosition(&vec, &item->current.pos);
-            
+
             item->shape_angle = i_this->shape_angle;
             item->current.angle = item->shape_angle;
             item->speed.zero();
@@ -2431,7 +2431,7 @@ static cPhs_Step daDo_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x04 = -1;
         }
 
-        fopAcM_OnStatus(i_this, fopAcStts_CULL_e);
+        fopAcM_OnStatus(i_this, fopAcStts_CULL);
         fopAcM_OnCarryType(i_this, fopAcM_CARRY_TYPE_8);
         i_this->attention_info.flags = 0;
         i_this->attention_info.distances[fopAc_attn_CARRY_e] = 7;
@@ -2482,7 +2482,7 @@ static cPhs_Step daDo_Create(fopAc_ac_c* i_this) {
             noFallCheck = true;
             _this->mParam2 = 200;
         }
-        
+
         _this->mItemActorID = -1;
         daDo_Execute(_this);
     }

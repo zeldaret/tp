@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_swpush.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -264,7 +264,7 @@ cPhs_Step daObjSwpush::Act_c::Mthd_Create() {
                 field_0x5e4 = 0;
                 field_0x5f2 = 0;
                 field_0x5f3 = 0;
-                
+
                 set_btp_frame();
 
                 bool is_toggle = cLib_checkBit<int>(attr().flags, FLAG_IS_TOGGLE);
@@ -272,7 +272,7 @@ cPhs_Step daObjSwpush::Act_c::Mthd_Create() {
                 bool flg20 = cLib_checkBit<int>(attr().flags, FLAG_UNK20);
                 bool is_sw = is_switch();
                 bool is_sw2 = is_switch2();
-                
+
                 if ((is_toggle || (!is_sw && !on_is_up) || (is_sw && on_is_up)) && (!flg20 || !is_sw2)) {
                     mTargetHFrac = 1.0f;
                     mCurHFrac = 1.0f;
@@ -334,7 +334,7 @@ void daObjSwpush::Act_c::set_btp_frame() {
 
 void daObjSwpush::Act_c::rideCB(dBgW* i_bgw, fopAc_ac_c* i_ac, fopAc_ac_c* i_pt) {
     Act_c* i_this = (Act_c*)i_ac;
-    if (fopAcM_CheckStatus(i_pt, fopAcStts_FREEZE_e)) {
+    if (fopAcM_CheckStatus(i_pt, fopAcStts_FREEZE)) {
         static cXyz no_push_vec[4] = {
             cXyz(-1.0f, 0.0f, -1.0f),
             cXyz(-1.0f, 0.0f, 1.0f),
@@ -388,7 +388,7 @@ void daObjSwpush::Act_c::rideCB(dBgW* i_bgw, fopAc_ac_c* i_ac, fopAc_ac_c* i_pt)
                     if (is_player) {
                         i_this->mVibTimer = 4;
                     }
-                    
+
                     if (is_player) {
                         if (((daPy_py_c*)i_pt)->checkEquipHeavyBoots()) {
                             i_this->mHeavyRiding = true;
@@ -442,7 +442,7 @@ void daObjSwpush::Act_c::calc_top_pos() {
     } else {
         field_0x5e8 = field_0x5dc;
     }
-    
+
     mTopPos = (1.0f - field_0x5e8) * -35.5f;
 
     if (mTopPos < field_0x5d8) {
@@ -659,7 +659,7 @@ void daObjSwpush::Act_c::mode_l_u() {
         } else if (strcmp(dComIfGp_getStartStageName(), "D_MN11") == 0 || strcmp(dComIfGp_getStartStageName(), "D_MN06") == 0) {
             fopAcM_seStart(this, Z2SE_OBJ_LV3_FLR_SW_OFF, 0);
         }
-        
+
         mode_upper_init();
     }
 }
@@ -799,7 +799,7 @@ int daObjSwpush::Act_c::Mthd_Execute() {
     mpBgW->CopyBackVtx();
     cBgD_Vtx_t* vtx_tbl = mpBgW->GetVtxTbl();
     int i_max = mpBgW->GetVtxNum();
-    
+
     for (int i = 0; i < 4; i++) {
         JUT_ASSERT(1552, M_op_vtx[i] < i_max);
 
@@ -852,11 +852,11 @@ namespace {
     int Mthd_IsDelete(void* i_this) {
         return 1;
     }
-    
+
     static actor_method_class Mthd_Table = {
-        (process_method_func)Mthd_Create, 
-        (process_method_func)Mthd_Delete, 
-        (process_method_func)Mthd_Execute, 
+        (process_method_func)Mthd_Create,
+        (process_method_func)Mthd_Delete,
+        (process_method_func)Mthd_Execute,
         (process_method_func)Mthd_IsDelete,
         (process_method_func)Mthd_Draw,
     };

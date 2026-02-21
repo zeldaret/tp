@@ -180,11 +180,11 @@ void daE_FZ_c::damage_check() {
     if (field_0x712 == 0) {
       pos.set(dComIfGp_getPlayer(0)->current.pos);
       mStts.Move();
-      
+
       if (field_0x714 == 3) {
         if (mTgCoSph.ChkTgHit()) {
           mAtInfo.mpCollider = mTgCoSph.GetTgHitObj();
-          
+
           if (mTgCoSph.GetTgHitObj()->ChkAtType(AT_TYPE_IRON_BALL)) {
             deadnextSet(false);
           }
@@ -192,7 +192,7 @@ void daE_FZ_c::damage_check() {
       } else {
         if (mTgCoSph.ChkTgHit()) {
           mAtInfo.mpCollider = mTgCoSph.GetTgHitObj();
-          
+
           if (mTgCoSph.GetTgHitObj()->ChkAtType(AT_TYPE_40) || mTgCoSph.GetTgHitObj()->ChkAtType(AT_TYPE_BOOMERANG)) {
             current.angle.y = fopAcM_searchPlayerAngleY(this) + 32768;
             f32 tmp_l_hio = l_HIO.field_0x28;
@@ -205,7 +205,7 @@ void daE_FZ_c::damage_check() {
 
           pos2 = current.pos - *mTgCoSph.GetTgHitPosP();
           pos3.set(*mTgCoSph.GetTgHitPosP());
-          
+
           s_pos.x = 0;
           s_pos.y = pos2.atan2sX_Z();
           s_pos.z = 0;
@@ -223,13 +223,13 @@ void daE_FZ_c::damage_check() {
 
           cXyz cStack_54(l_HIO.field_0x0c, l_HIO.field_0x0c, l_HIO.field_0x0c);
           dComIfGp_particle_set(0x85ba, &current.pos, &shape_angle, &cStack_54);
-              
+
           if (mTgCoSph.GetTgHitObj()->ChkAtType(AT_TYPE_HOOKSHOT)) {
             health -= 20;
 
             if (1 < health) {
               current.angle.y = fopAcM_searchPlayerAngleY(this) + 32768;
-              
+
               f32 tmp_l_hio = l_HIO.field_0x28;
               speedF = tmp_l_hio;
               field_0x6fc = tmp_l_hio;
@@ -278,8 +278,8 @@ void daE_FZ_c::damage_check() {
           }
 
           deadnextSet(true);
-          return;     
-        } else {        
+          return;
+        } else {
           if (mObjAcch.ChkGroundHit() && mTgCoSph.ChkCoHit()) {
             fopAc_ac_c* co_hit_actor = mTgCoSph.GetCoHitAc();
 
@@ -310,7 +310,7 @@ void daE_FZ_c::damage_check() {
               }
             }
           }
-          
+
           if (mAtSph.ChkAtHit()) {
             fopAc_ac_c* player = dComIfGp_getPlayer(0);
             fopAc_ac_c* at_hit_actor = mAtSph.GetAtHitAc();
@@ -325,7 +325,7 @@ void daE_FZ_c::damage_check() {
                 speedF = l_hio_28;
                 field_0x6fc = l_hio_28;
                 setActionMode(ACT_DAMAGE,1);
-                
+
               } else {
                 if (mActionMode != ACT_DAMAGE) {
                   field_0x712 = 10;
@@ -345,7 +345,7 @@ void daE_FZ_c::damage_check() {
 bool daE_FZ_c::way_gake_check() {
     cXyz pos;
     dBgS_GndChk gnd_chk;
-    
+
     if (mObjAcch.ChkWallHit()) {
         return false;
     }
@@ -361,7 +361,7 @@ bool daE_FZ_c::way_gake_check() {
     field_0x6dc += current.pos;
     field_0x6e8.set(field_0x6dc);
     gnd_chk.SetPos(&field_0x6e8);
-    
+
     field_0x6e8.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
     if (field_0x6e8.y == -G_CM3D_F_INF) {
         field_0x6e8.y = current.pos.y;
@@ -378,19 +378,19 @@ void daE_FZ_c::executeWait() {
   cXyz pos2;
   s16 angle;
   f32 tmp = l_HIO.field_0x14;
-  
+
   switch (mActionPhase) {
   case 0:
     if (fopAcM_wayBgCheck(this,200.0f,50.0f)) {
       angle = cM_rndFX(10000.0f) + 32768.0f;
     } else {
-      
+
       pos2.x = home.pos.x + cM_rndFX(l_HIO.field_0x10);
       pos2.y = home.pos.y;
       pos2.z = home.pos.z + cM_rndFX(l_HIO.field_0x10);
-      
+
       pos = pos2 - current.pos;
-      
+
       angle = pos.atan2sX_Z() - current.angle.y;
 
       if (angle > 12288) {
@@ -424,21 +424,21 @@ void daE_FZ_c::executeWait() {
 
     if (mObjAcch.ChkGroundHit() && dComIfG_Bgsp().GetPolyAtt0(mObjAcch.m_gnd) == 8) {
         angle = shape_angle.y - mAngleFromPlayer;
-    
+
         if (abs(angle) < 512 && field_0x710 == 0) {
           cLib_addCalc0(&speedF, 0.1f, 0.1f);
-        }  
+        }
     } else {
         cLib_addCalc0(&speedF,0.1f,l_HIO.field_0x2c);
     }
-    
+
     if (field_0x710 == 0 && speedF < 0.2f) {
       angle = shape_angle.y - mAngleFromPlayer;
 
       if (abs(angle) < 512) {
         current.angle.y = shape_angle.y;
         setActionMode(ACT_MOVE,0);
-      } 
+      }
     }
   }
 
@@ -456,11 +456,11 @@ void daE_FZ_c::executeMove() {
     switch (mActionPhase) {
         case 0:
             field_0x710 = l_HIO.field_0x08 + cM_rndFX(l_HIO.field_0x34);
-            mActionPhase = 1; 
+            mActionPhase = 1;
         case 1:
             cLib_addCalcAngleS2(&current.angle.y,mAngleFromPlayer,8,256);
             cLib_addCalc2(&speedF,l_HIO.field_0x1c,1.0f,3.0f);
-            
+
             if (fopAcM_wayBgCheck(this, 200.0f,50.0f) != 0 || field_0x710 == 0) {
                 setActionMode(ACT_WAIT,0);
             }
@@ -470,7 +470,7 @@ void daE_FZ_c::executeMove() {
                 setActionMode(ACT_WAIT,0);
             } else {
                 shape_angle.y = current.angle.y;
-                
+
                 if (fopAcM_searchPlayerDistance(this) <= l_HIO.field_0x14) {
                     setActionMode(ACT_ATTACK,0);
                 }
@@ -520,7 +520,7 @@ void daE_FZ_c::executeDamage() {
     fopAcM_delete(this);
     break;
   case 1:
-    tmp = l_HIO.field_0x28; 
+    tmp = l_HIO.field_0x28;
     speedF = tmp;
     field_0x6fc = tmp;
   case 5:
@@ -577,10 +577,10 @@ void daE_FZ_c::executeDamage() {
       s16 value = 4096.0f - (4096.0f / field_0x6fc) * (field_0x6fc - speedF);
       shape_angle.y += value;
     }
-    
+
     cLib_addCalcAngleS2(&current.angle.y,mAngleFromPlayer,1,512);
     cLib_addCalc0(&speedF,0.1f,0.1f);
-    
+
     if (mObjAcch.ChkWallHit()) {
       mLastWallHitAngle = mAcchCir.GetWallAngleY();
       setReflectAngle();
@@ -603,7 +603,7 @@ void daE_FZ_c::executeDamage() {
 void daE_FZ_c::executeRollMove() {
     if (fopAcM_SearchByID(fopAcM_GetLinkId(this),&mpBlizzetaActor) == 0 || !mpBlizzetaActor) return;
     u32 model_no = static_cast<daB_YO_c*>(mpBlizzetaActor)->getModelNo();
-    
+
     if (model_no < 4 || 6 < model_no) {
         fopAcM_delete(this);
         return;
@@ -645,7 +645,7 @@ void daE_FZ_c::executeRollMove() {
     case 2:
         cLib_chaseF(&mRadiusBase,1.0,0.1);
         cLib_chaseAngleS(&field_0x704,512,16);
-        
+
         if (mObjAcch.ChkWallHit() || !mObjAcch.ChkGroundHit()) {
             setActionMode(ACT_DAMAGE,0);
             mCreature.startCreatureSound(Z2SE_EN_FZ_DEATH,0,-1);
@@ -812,7 +812,7 @@ void daE_FZ_c::cc_set() {
     mTgCoSph.SetR(mRadiusBase * 60.0f);
 
     dComIfG_Ccsp()->Set(&mTgCoSph);
-    
+
     mDoMtx_stack_c::copy(mpModel->getBaseTRMtx());
 
     pos.set(0.0f,25.0f,0.0f);
@@ -940,7 +940,7 @@ s32 daE_FZ_c::create() {
 
     attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     attention_info.distances[fopAc_attn_BATTLE_e] = 69;
-    
+
     fopAcM_SetMtx(this,mpModel->getBaseTRMtx());
     fopAcM_SetMin(this,-200.0f,-200.0f,-200.0f);
     fopAcM_SetMax(this,200.0f,200.0f,200.0f);
@@ -951,22 +951,22 @@ s32 daE_FZ_c::create() {
 
     field_0x714 = fopAcM_GetParam(this);
     field_0x715 = fopAcM_GetParam(this) >> 8;
-    
+
     if (field_0x714 == 255)
         field_0x714 = 0;
-    
+
     if (field_0x714 == 1 || field_0x714 == 3) {
       speed.y = cM_rndFX(10.0f) + 30.0f;
       f32 rng = cM_rndFX(1.0f);
       speedF = rng + 4.0f;
       field_0x6fc = rng + 4.0f;
       if (field_0x714 == 1) {
-        fopAcM_OnStatus(this,fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OnStatus(this,fopAcStts_UNK_0x4000);
       }
     }
 
     mObjAcch.Set(fopAcM_GetPosition_p(this),fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), 0, 0);
-    
+
     if (field_0x714 == 3) {
       mAcchCir.SetWall(35.0f,70.0f);
     }
@@ -992,13 +992,13 @@ s32 daE_FZ_c::create() {
 
     shape_angle.z = 0;
     shape_angle.x = 0;
-    
+
     s16 random = cM_rndFX(10000.0f);
     shape_angle.y = random;
     current.angle.y = random;
 
     field_0x670.set(current.pos);
-    
+
     for (int i = 0; i < 4; i++) {
       field_0x67c[i].set(current.pos);
     }

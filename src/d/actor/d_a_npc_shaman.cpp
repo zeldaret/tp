@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_shaman.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -18,7 +18,7 @@ void daNpc_Sha_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
     char buffer[2000];
 
     JORReflexible::listenPropertyEvent(event);
-    
+
     JORFile jorFile;
     int len;
 
@@ -255,7 +255,7 @@ cPhs_Step daNpc_Sha_c::create() {
         }
 
         OS_REPORT("\n");
-        
+
         static int const heapSize[3] = {
             0x3AF0, 0x3AF0, 0x3AF0,
         };
@@ -274,7 +274,7 @@ cPhs_Step daNpc_Sha_c::create() {
         #endif
 
         reset();
-        
+
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),
                   fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mCcStts.Init(mpHIO->m.common.weight, 0, this);
@@ -369,7 +369,7 @@ u8 daNpc_Sha_c::getType() {
     switch (param) {
         case 0:
             return 0;
-        
+
         case 1:
             return 1;
 
@@ -476,7 +476,7 @@ BOOL daNpc_Sha_c::checkChangeEvt() {
         switch (mType) {
             case 0:
                 break;
-            
+
             case 1:
                 if (field_0xfa0 == 0) {
                     mEvtNo = 2;
@@ -504,7 +504,7 @@ void daNpc_Sha_c::setAfterTalkMotion() {
         case 2:
             idx = 8;
             break;
-        
+
         case 3:
             idx = 5;
             break;
@@ -593,10 +593,10 @@ void daNpc_Sha_c::action() {
 }
 
 void daNpc_Sha_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw) {
@@ -610,7 +610,7 @@ void daNpc_Sha_c::setAttnPos() {
 
     mStagger.calc(FALSE);
     f32 rad = cM_s2rad((s16)(mCurAngle.y - field_0xd7e.y));
-    
+
     mJntAnm.setParam(this, mpMorf[0]->getModel(), &pos, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
                      mpHIO->m.common.body_angleX_min, mpHIO->m.common.body_angleX_max, mpHIO->m.common.body_angleY_min, mpHIO->m.common.body_angleY_max,
                      mpHIO->m.common.head_angleX_min, mpHIO->m.common.head_angleX_max, mpHIO->m.common.head_angleY_min, mpHIO->m.common.head_angleY_max,
@@ -897,7 +897,7 @@ int daNpc_Sha_c::cutPerformAugury(int i_staffId) {
                 dComIfGp_event_offHindFlag(128);
                 initTalk(0x772, NULL);
                 break;
-            
+
             case 5:
                 dComIfGp_event_offHindFlag(128);
                 initTalk(0x773, NULL);
@@ -955,7 +955,7 @@ int daNpc_Sha_c::cutPerformAugury(int i_staffId) {
                                 setTempBit(mSceneChangeNoTableIx);
                             }
                         }
-                        
+
                         if (mSceneChangeNoTableIx == -2) {
                             mEvtNo = 3;
                             evtChange();
@@ -979,7 +979,7 @@ int daNpc_Sha_c::cutPerformAugury(int i_staffId) {
                 }
             }
             break;
-        
+
         case 2:
         case 6:
         case 7:

@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_bhashi.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -160,7 +160,7 @@ void daObjBHASHI_c::Obj_Damage() {
             s16 rot_y = cLib_targetAngleY(&current.pos, tg_hit_pos);
             if (fopAcM_GetName(tg_hit_obj) == PROC_B_MGN) {
                 field_0x5a8++;
-                
+
                 fpc_ProcID tg_hit_id = fopAcM_GetID(tg_hit_obj);
                 fopAc_ac_c* mgn_p;
                 if (fopAcM_SearchByName(PROC_B_MGN, &mgn_p) && mgn_p != NULL) {
@@ -184,7 +184,7 @@ void daObjBHASHI_c::Obj_Damage() {
             }
 
             mCcCyl.ResetTgHit();
-            fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
+            fopAcM_OffStatus(this, fopAcStts_CULL);
         }
     }
 }
@@ -207,7 +207,7 @@ void daObjBHASHI_c::Obj_Damage(cXyz param_0) {
     dComIfGp_particle_set(dPa_RM(ID_ZI_S_LV9PILLAR_BREAK_C), &eff_pos, &tevStr, &eff_rot, NULL);
     dComIfGp_particle_set(dPa_RM(ID_ZI_S_LV9PILLAR_BREAK_D), &eff_pos, &tevStr, &eff_rot, NULL);
 
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
+    fopAcM_OffStatus(this, fopAcStts_CULL);
 }
 
 Hahen_c::Hahen_c() {
@@ -308,7 +308,7 @@ void Hahen_c::Roll_Set(cXyz* i_pos, f32 param_1, s16 i_no) {
     f32 speed_x = (-1.0f + nREG_F(12)) * param_1 * cM_ssin(angle);
     f32 temp_f31 = scale.abs();
     temp_f31 = 3.0f / temp_f31;
-    
+
     f32 speed_y = temp_f30 - 9.0f;
     f32 speed_z = (-1.0f + nREG_F(13)) * param_1 * cM_scos(angle);
 

@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_ykm.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -1008,7 +1008,7 @@ void daNpc_ykM_c::reset() {
 
         case TYPE_3:
             mHide = true;
-            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
             break;
 
         case TYPE_4:
@@ -1017,13 +1017,13 @@ void daNpc_ykM_c::reset() {
 
         case TYPE_5:
             mHide = true;
-            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
             eventInfo.setIdx(1);
             break;
 
         case TYPE_6:
             mHide = true;
-            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
             eventInfo.setIdx(2);
             break;
     }
@@ -1095,15 +1095,15 @@ void daNpc_ykM_c::setParam() {
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(mpHIO->m.common.knee_length);
 
-    fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x100);
+    fopAcM_OnStatus(this, fopAcStts_CULL);
     mRealShadowSize = mpHIO->m.common.real_shadow_size;
 
     if (field_0x157b != 0) {
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
+        fopAcM_OffStatus(this, fopAcStts_CULL);
     }
 
     if (mType == TYPE_3) {
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
+        fopAcM_OffStatus(this, fopAcStts_CULL);
         mRealShadowSize = 1800.0f;
     }
 
@@ -1140,7 +1140,7 @@ BOOL daNpc_ykM_c::checkChangeEvt() {
                     return TRUE;
                 }
 
-                if (!daNpcT_chkEvtBit(3) /* dSv_event_flag_c::TEST_003 - Snowpeak Ruins - Handed over tomato puree */ 
+                if (!daNpcT_chkEvtBit(3) /* dSv_event_flag_c::TEST_003 - Snowpeak Ruins - Handed over tomato puree */
                     && checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1)) {
                     mEvtNo = EVENT_GET_TOMATOPUREE;
                     evtChange();
@@ -1320,10 +1320,10 @@ void daNpc_ykM_c::action() {
 }
 
 void daNpc_ykM_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw) {
@@ -1990,7 +1990,7 @@ int daNpc_ykM_c::cutMeetingAgain(int i_cutIndex) {
     int prm = -1;
     int timer = 0;
     int unusedInt1 = 0;
-    
+
     piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
         prm = *piVar1;
@@ -2533,7 +2533,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_WAIT_X, 0.0f, FALSE, 0);
                 mJntAnm.lookNone(1);
                 mHide = false;
-                fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
+                fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
                 break;
 
             case 1:
@@ -2667,7 +2667,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                         }
                     }
                 }
-                
+
                 if (rv == 0 && field_0xe58.ChkCoHit()) {
                     if (daPy_getPlayerActorClass() == field_0xe58.GetCoHitAc()) {
                         rv = 1;
@@ -3086,7 +3086,7 @@ int daNpc_ykM_c::cutHug(int i_cutIndex) {
 void daNpc_ykM_c::setDialogueMotion() {
     int uVar1 = field_0x154c;
     uVar1 >>= 1;
-    
+
     if (0.5f < cM_rnd()) {
         int dummy; // force r31 to be used for stack pointer instead of r1
         if (cM_rnd() - 0.5f < 0.0f) {
@@ -3629,7 +3629,7 @@ BOOL daNpc_ykM_c::talk(void* param_1) {
                     mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
                     mMotionSeqMngr.setNo(MOTION_WAIT_A, -1.0f, FALSE, 0);
 
-                    if (daNpcT_chkEvtBit(10) /* dSv_event_flag_c::F_0006 - Snowpeak Ruins - First conversation with Yeto in kitchen */ 
+                    if (daNpcT_chkEvtBit(10) /* dSv_event_flag_c::F_0006 - Snowpeak Ruins - First conversation with Yeto in kitchen */
                         && !chkContinueAttnPlayer()) {
                         field_0x157f = 1;
                     }

@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_kakashi.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -197,8 +197,8 @@ int daNpc_Kakashi_c::create() {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
-        
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+
         mSound.init(&current.pos, 3);
 
 #if DEBUG
@@ -209,7 +209,7 @@ int daNpc_Kakashi_c::create() {
         reset();
 
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
-    
+
         mCcStts.Init(mpHIO->m.common.weight, 0, this);
         for (int i = 0; i < 3; i++) {
             mCcSph[i].Set(mCcDSph);
@@ -463,7 +463,7 @@ BOOL daNpc_Kakashi_c::checkChangeEvt() {
         case 3:
         case 4:
             break;
-        }        
+        }
     }
 
     return 0;

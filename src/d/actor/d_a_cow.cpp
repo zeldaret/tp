@@ -965,7 +965,7 @@ void daCow_c::checkBeforeBg() {
     if (cLib_calcTimer(&mTimer6)) {
         return;
     }
-    
+
     s16 sVar2;
     if (planeTri[1] && planeTri[2]) {
         switch (mAction) {
@@ -1893,7 +1893,7 @@ void daCow_c::executeCrazyWait() {
 
         mAcchCir.SetWall(100.0f, 110.0f);
         mTimer1 = 30;
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
+        fopAcM_OffStatus(this, fopAcStts_CULL);
     }
 }
 
@@ -2392,7 +2392,7 @@ void daCow_c::executeCrazyBack() {
         }
         break;
     case daCow_c::Action_4:
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x100);
+        fopAcM_OnStatus(this, fopAcStts_CULL);
         if (fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e)) {
             fopAcM_delete(this);
         }
@@ -2464,19 +2464,19 @@ void daCow_c::action_crazy() {
 
         dComIfGoat_SetThrow(this);
         mMode = daCow_c::Mode_1;
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x100);
+        fopAcM_OnStatus(this, fopAcStts_CULL);
         break;
     case daCow_c::Mode_1:
         TICK_TIMER(mForgetCowPTimer);
         TICK_TIMER(mTimer1);
 
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
         if (dComIfGp_event_runCheck() &&
             strcmp(dComIfGp_getEventManager().getRunEventName(), "WILDGOAT") &&
             strcmp(dComIfGp_getEventManager().getRunEventName(), "WILDGOAT_SUCCESS") &&
             strcmp(dComIfGp_getEventManager().getRunEventName(), "WILDGOAT_FAILURE"))
         {
-            fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x4000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x4000);
         }
 
         switch (mCrazy) {
@@ -2684,7 +2684,7 @@ void daCow_c::action_wolf() {
     s16 aruAngle = cLib_targetAngleY(&current.pos, &aru->current.pos);
     s16 sp14;
     s16 ang2;
-    
+
     switch (mMode) {
     case daCow_c::Mode_0:
         mMode = daCow_c::Mode_1;
@@ -2693,7 +2693,7 @@ void daCow_c::action_wolf() {
         attention_info.flags |= fopAc_AttnFlag_LOCK_e;
         mSound.startCreatureVoice(Z2SE_GOAT_V_ANGRY, -1);
         mTimer10 = cM_rndF(90.0f) + 90.0f;
-        
+
         break;
     case daCow_c::Mode_1:
         sp14 = 0;
@@ -2807,7 +2807,7 @@ void daCow_c::action_damage() {
         mChangeRedTev = 0;
         speedF = 0.0f;
         break;
-        
+
     case daCow_c::Mode_1:
         setRedTev();
         if (mpMorf->isStop()) {
@@ -3050,7 +3050,7 @@ bool daCow_c::initialize() {
         mPrm0 = 4;
         setCowInCage();
     }
-    
+
     u8 prm1;
     switch (mPrm0) {
     case 3: {

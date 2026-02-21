@@ -1,6 +1,6 @@
 /**
  * @file d_a_e_rd.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -657,7 +657,7 @@ static s8 data_80519230;
 
 static void* s_b_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && dBomb_c::checkBombActor((fopAc_ac_c*)i_actor) && 
+    if (fopAcM_IsActor(i_actor) && dBomb_c::checkBombActor((fopAc_ac_c*)i_actor) &&
         !((dBomb_c*)i_actor)->checkStateExplode() && target_info_count < 10) {
         target_info[target_info_count] = (fopAc_ac_c*)i_actor;
         target_info_count++;
@@ -3797,7 +3797,7 @@ static void e_rd_ikki2_start(e_rd_class* i_this) {
             anm_init(i_this, e_rdb_class::BCK_RB_ROP_DEMO2_WAIT, 1.0f, 2, 1.0f);
             i_this->mode++;
             break;
-            
+
         case 2:
             anm_init(i_this, e_rdb_class::BCK_RB_ROP_DEMO2_EXCITE, 5.0f, 0, 1.0f);
             i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_DEMO_EXCITE, -1);
@@ -4467,7 +4467,7 @@ static void damage_check(e_rd_class* i_this) {
                                     i_this->action = ACTION_WB_RUN;
                                     i_this->mode = 0;
                                 }
-                                break;  
+                                break;
                             }
 
                             if (i_this->ride_mode != 0 && i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
@@ -4518,7 +4518,7 @@ static void* s_other_sub(void* i_actor, void* i_data) {
 static void* s_ep_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    
+
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_Lv1Cdl00) {
         if (!fopAcM_isSwitch((fopAc_ac_c*)i_actor, fopAcM_GetParam(i_actor) & 0xFF)) {
             f32 x, z;
@@ -5275,7 +5275,7 @@ static void action(e_rd_class* i_this) {
         }
 
         cLib_addCalc0(&i_this->field_0x9c0, 1.0f, 3.0f);
-        
+
         if (i_this->field_0x9f0 > 0.1f) {
             mae.x = 0.0f;
             mae.y = 0.0f;
@@ -5735,7 +5735,7 @@ static void* s_lv9dn_sub2(void* i_actor, void* i_data) {
         ((e_dn_class*)i_actor)->status = 1;
         ((e_dn_class*)i_actor)->mode = 0;
     }
-    
+
     return NULL;
 }
 
@@ -6567,7 +6567,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             i_this->field_0x6d0 = 1.0f;
             MTXCopy(model->getAnmMtx(13), *calc_mtx);
             camera_class* camera = (camera_class*) dComIfGp_getCamera(0);
-            
+
             static f32 time_scale[25] = {
                 1.2f, 1.2f, 1.1f, 1.0f,
                 0.8f, 0.6f, 0.4f, 0.2f,
@@ -7161,12 +7161,12 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         }
 
         static int boss_part_bmd[14] = {
-            e_rdb_class::BMDR_SHOULDERL_ARMOR, e_rdb_class::BMDR_LEGR_ARMOR, 
-            e_rdb_class::BMDR_SHOULDERR_ARMOR, e_rdb_class::BMDR_LEGL_ARMOR, 
-            e_rdb_class::BMDR_MUNE2_ARMOR, e_rdb_class::BMDR_SENA2_ARMOR, 
-            e_rdb_class::BMDR_ARML_ARMOR, e_rdb_class::BMDR_ARML2_ARMOR, 
-            e_rdb_class::BMDR_FACE_ARMOR, e_rdb_class::BMDR_ARMR_ARMOR, 
-            e_rdb_class::BMDR_ARMR2_ARMOR, e_rdb_class::BMDR_SENA_ARMOR, 
+            e_rdb_class::BMDR_SHOULDERL_ARMOR, e_rdb_class::BMDR_LEGR_ARMOR,
+            e_rdb_class::BMDR_SHOULDERR_ARMOR, e_rdb_class::BMDR_LEGL_ARMOR,
+            e_rdb_class::BMDR_MUNE2_ARMOR, e_rdb_class::BMDR_SENA2_ARMOR,
+            e_rdb_class::BMDR_ARML_ARMOR, e_rdb_class::BMDR_ARML2_ARMOR,
+            e_rdb_class::BMDR_FACE_ARMOR, e_rdb_class::BMDR_ARMR_ARMOR,
+            e_rdb_class::BMDR_ARMR2_ARMOR, e_rdb_class::BMDR_SENA_ARMOR,
             e_rdb_class::BMDR_HEAD_ARMOR, e_rdb_class::BMDR_MUNE_ARMOR,
         };
         static int ikki2_boss_part_bmd[2] = {

@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_maro.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -1032,9 +1032,9 @@ void daNpc_Maro_c::action() {
 }
 
 void daNpc_Maro_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
     }
     if (checkHide() || mNoDraw) {
         attention_info.flags = 0;
@@ -2632,7 +2632,7 @@ int daNpc_Maro_c::cutMarosWhisper(int arg0) {
                 actor_p = mActorMngr[0].getActorP();
                 JUT_ASSERT(4088, NULL != actor_p);
                 angle_y = fopAcM_searchActorAngleY(daPy_getPlayerActorClass(), actor_p);
-                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&daPy_getPlayerActorClass()->current.pos, 
+                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&daPy_getPlayerActorClass()->current.pos,
                                                                 angle_y, 0);
                 break;
             }

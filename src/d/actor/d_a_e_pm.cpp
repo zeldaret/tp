@@ -547,16 +547,16 @@ void daE_PM_c::Ap_StartAction() {
         mParticleKey = dComIfGp_particle_set(mParticleKey, 0x880C, &current.pos, &tevStr,
                                              &current.angle, &scale, 0xff, NULL, -1,
                                              NULL, NULL, NULL);
-        
+
         if (mAnm == ANM_APPEAR02 && mpMorf->isStop()) {
             SetAnm(ANM_WAIT01, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mCreatureSound.startCreatureVoice(Z2SE_EN_PM_V_LAUGH, -1);
         }
-        
+
         if (mCamCenter.y >= current.pos.y) {
             mCamCenterTarget.y = current.pos.y;
         }
-        
+
         if (mAcch.ChkGroundHit() && mTimer[0] == 0) {
             SetAnm(ANM_APPEAR02, J3DFrameCtrl::EMode_NONE, 5.0f, 1.0f);
             mTargetHeadAngleX = 0x2000;
@@ -572,7 +572,7 @@ void daE_PM_c::Ap_StartAction() {
             cLib_offsetPos(&mCamEyeTarget, &eye, shape_angle.y, &offset);
             mCamCenterTarget.y = current.pos.y + 100.0f;
         }
-        
+
         if (mCamCenterTarget.y <= mAcch.GetGroundH() + 100.0f) {
             mCamCenterTarget.y = mAcch.GetGroundH() + 100.0f;
         }
@@ -626,7 +626,7 @@ void daE_PM_c::Ap_CreateAction() {
 
     case 1:
         mCreatureSound.startCreatureSoundLevel(Z2SE_EN_PM_TRUMPET, 0, -1);
-        
+
         if (mTimer[0] == 2 && mAnm == ANM_FOGBLOW_LP) {
             vec2.set(500.0f, 150.0f, 0.0f);
             mCamCenter.set(-11239.0f, 1850.0f, 16932.0f);
@@ -720,13 +720,13 @@ void daE_PM_c::Ap_EscapeAction() {
         mBossLightOn = true;
         mTargetHeadAngleX = s_TargetAngle;
         cLib_addCalcAngleS2(&mHeadAngleZ, -0x500, 4, 0x600);
-        
+
         if (mTimer[0] == 0) {
             SetAnm(ANM_RUN, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mMode++;
             mTargetSpeed = 13.0f;
         }
-        
+
         mDoorAction = 0;
         break;
 
@@ -736,11 +736,11 @@ void daE_PM_c::Ap_EscapeAction() {
         } else {
             mCreatureSound.startCreatureSound(Z2SE_EN_PM_FN_R, 0, -1);
         }
-        
+
         point.set(mPoint.x, mPoint.y, mPoint.z);
         mTargetAngleY = cLib_targetAngleY(&current.pos, &point);
         cLib_addCalc2(&speedF, mTargetSpeed, 0.05f, 10.0f);
-        
+
         if (mPointIndex == 7 && mDoorAction == 0) {
             mCamCenter = *s_LinkPos;
             mCamCenter.y += 200.0f;
@@ -865,7 +865,7 @@ void daE_PM_c::DemoBeforeEscape() {
         MtxPosition(&vec2, &vec2);
         mParticleKey = dComIfGp_particle_set(mParticleKey, 0x880C, &vec2, &tevStr, &current.angle,
                                              &scale, 0xff, NULL, -1, NULL, NULL, NULL);
-        
+
         if (mpMorf->isStop()) {
             if (mSwBit != 0xff && !dComIfGs_isSwitch(mSwBit, fopAcM_GetRoomNo(this))) {
                 dComIfGs_onSwitch(mSwBit, fopAcM_GetRoomNo(this));
@@ -2070,7 +2070,7 @@ int daE_PM_c::Execute() {
     }
 
     Yazirushi();
-    
+
     if (mStage == 4) {
         BossAction();
     } else if (mStage == 0) {
@@ -2145,7 +2145,7 @@ void daE_PM_c::StartAction() {
                 mMode++;
                 mTimer[0] = 240;
             }
-            
+
         } else if (mStage == 4) {
             SearchNearP();
             mCcStts.Init(0xFA, 0xFF, this);
@@ -2221,7 +2221,7 @@ void daE_PM_c::StartAction() {
                 pos.set(current.pos.x, 1900.0f, current.pos.z);
                 SetStopCam(pos, 500.0f, 0.0f, s_TargetAngle);
                 mCamEye = mCamEyeTarget;
-                fopAcM_OffStatus(this, fopAcStts_CULL_e);
+                fopAcM_OffStatus(this, fopAcStts_CULL);
             } else {
                 pos.set(current.pos.x, current.pos.y + 80.0f, current.pos.z);
                 mTargetAngleY = shape_angle.y;
@@ -2624,7 +2624,7 @@ int daE_PM_c::Draw() {
 
 int daE_PM_c::Delete() {
     dComIfG_resDelete(&mPhase, "E_PM");
-    
+
     if (mHIOInit) {
         hio_set = false;
     }
@@ -2765,7 +2765,7 @@ void daE_PM_c::SkipChk() {
         }
 
         if (mSecondEncounter) {
-            fopAcM_OffStatus(this, fopAcStts_CULL_e);
+            fopAcM_OffStatus(this, fopAcStts_CULL);
             SetReleaseCam();
             mDoorAction = 1;
             mDemoMode = 0;

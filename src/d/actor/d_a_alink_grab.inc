@@ -200,7 +200,7 @@ void daAlink_c::setGrabItemPos() {
         grabActor->tevStr.room_no = roomNo;
         grabActor->tevStr.YukaCol = tevStr.YukaCol;
         fopAcM_SetRoomNo(grabActor, roomNo);
-    
+
         BOOL isGrabCarryActor = checkGrabCarryActor();
         s16 spE;
         s16 spC;
@@ -211,7 +211,7 @@ void daAlink_c::setGrabItemPos() {
             spE = shape_angle.y;
             spC = (field_0x2fee + field_0x3082);
         }
-    
+
         if (checkGrabSideThrowAnime()) {
             mDoMtx_multVecZero(mpLinkModel->getAnmMtx(10), &grabActor->current.pos);
             grabActor->shape_angle.y = spE;
@@ -306,7 +306,7 @@ void daAlink_c::setGrabItemPos() {
                 }
 
                 mDoMtx_stack_c::multVec(&sp140, &grabActor->current.pos);
-    
+
                 if (checkGrabAnimeSide()) {
                     static Vec const localSidePos = {2.3f, -15.5f, 15.6f};
                     mDoMtx_multVec(mpLinkModel->getAnmMtx(10), &localSidePos, &sp140);
@@ -398,7 +398,7 @@ void daAlink_c::freeGrabItem() {
 
     if (grabActor != NULL) {
         if (dComIfGp_event_runCheck() || mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e) {
-            fopAcM_OnStatus(grabActor, fopAcM_STATUS_UNK_0x800);
+            fopAcM_OnStatus(grabActor, fopAcStts_UNK_0x800);
         }
 
         fopAcM_cancelCarryNow(grabActor);
@@ -474,7 +474,7 @@ void daAlink_c::setGrabUpperSpeedRate() {
     }
 
     cLib_chaseF(&field_0x33e8, var_f31, 0.15f);
-    
+
     daPy_frameCtrl_c* framectrl = &mUpperFrameCtrl[2];
     framectrl->setFrame(field_0x33e8 * framectrl->getEnd());
     getNowAnmPackUpper(UPPER_2)->setFrame(framectrl->getFrame());
@@ -490,7 +490,7 @@ void daAlink_c::setCarryArmAngle(f32 param_0, f32 param_1) {
 
         field_0x312a[1].set(0, temp_r29 + (2000.0f * param_1), temp_r29 + (2000.0f * param_1));
         field_0x3136[1].set(0, 0, temp_r29 - (3500.0f * param_1));
-    
+
         if (param_1 < 0.0f) {
             ANGLE_ADD(field_0x312a[0].z, 2500.0f * param_1);
             ANGLE_ADD(field_0x3136[0].y, 2000.0f * param_1);
@@ -516,7 +516,7 @@ BOOL daAlink_c::checkNextActionGrab() {
 
     setCarryArmAngle(0.0f, 1.0f);
 
-    if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == fopAc_attn_DOOR_e && fopAcM_CheckStatus(grabActor, fopAcM_STATUS_UNK_0x2000000)) {
+    if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == fopAc_attn_DOOR_e && fopAcM_CheckStatus(grabActor, fopAcStts_UNK_0x2000000)) {
         setDoStatus(BUTTON_STATUS_OPEN);
     } else if ((field_0x27f4 == NULL) || !checkGrabTalkActor(field_0x27f4) || !setTalkStatus()) {
         if (checkModeFlg(0x400)) {
@@ -1703,7 +1703,7 @@ int daAlink_c::procCoPushPullWait() {
 
             f32 temp_f31 = cLib_addCalc(&current.pos.x, field_0x37c8.x, 0.5f, 10.0f, 1.0f);
             temp_f31 += cLib_addCalc(&current.pos.z, field_0x37c8.z, 0.5f, 10.0f, 1.0f);
-    
+
             if (temp_r28 == 0 && temp_f31 < 5.0f && checkNoUpperAnime()) {
                 current.pos.x = field_0x37c8.x;
                 current.pos.z = field_0x37c8.z;
@@ -2148,7 +2148,7 @@ int daAlink_c::procGoatMove() {
             var_f30 = 1.0f;
             framectrl->setLoop(framectrl->getStart());
         }
-    
+
         framectrl->setRate(var_f30 * (mNormalSpeed / mMaxSpeed));
         initBasAnime();
     }
@@ -2172,13 +2172,13 @@ int daAlink_c::procGoatCatchInit(fopAc_ac_c* i_actor, f32 param_1) {
             setDoStatus(BUTTON_STATUS_NONE);
             return 0;
         }
-    
+
         deleteEquipItem(TRUE, FALSE);
 
         if (!dComIfGp_event_compulsory(this, NULL, 0xFFEF)) {
             return 0;
         }
-    
+
         mDemo.setSpecialDemoType();
         i_actor->actor_status |= 0x800;
     }
@@ -2351,9 +2351,9 @@ int daAlink_c::procGoatCatch() {
         if (checkAnmEnd(framectrl)) {
             setSingleAnimeBase(ANM_COW_CATCH);
         }
-    
+
         field_0x2f9d = 0x60;
-    
+
         anm = ANM_COW_CATCH;
         if (field_0x3198 > 0) {
             field_0x3198 += 1;

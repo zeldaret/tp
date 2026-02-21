@@ -1,6 +1,6 @@
 /**
  * @file d_a_e_mf.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -243,13 +243,13 @@ static int daE_MF_Draw(e_mf_class* i_this) {
 
     cXyz sp50;
     sp50.set(a_this->current.pos.x, a_this->current.pos.y + 50.0f, a_this->current.pos.z);
-    i_this->mShadowKey = dComIfGd_setShadow(i_this->mShadowKey, 1, model, &sp50, 1150.0f, 0.0f, 
-                                            a_this->current.pos.y, i_this->mObjAcch.GetGroundH(), 
-                                            i_this->mObjAcch.m_gnd, &a_this->tevStr, 0, 1.0f, 
+    i_this->mShadowKey = dComIfGd_setShadow(i_this->mShadowKey, 1, model, &sp50, 1150.0f, 0.0f,
+                                            a_this->current.pos.y, i_this->mObjAcch.GetGroundH(),
+                                            i_this->mObjAcch.m_gnd, &a_this->tevStr, 0, 1.0f,
                                             dDlst_shadowControl_c::getSimpleTex());
     dComIfGd_addRealShadow(i_this->mShadowKey, i_this->mpAxeModel);
     dComIfGd_addRealShadow(i_this->mShadowKey, i_this->mpShieldModel);
-    
+
     return 1;
 }
 
@@ -402,7 +402,7 @@ static int pl_check(e_mf_class* i_this, f32 param_2, s16 param_3) {
             return 1;
         }
     }
-        
+
     for (int i = 0; i <= 2; i++) {
         if (i_this->field_0xa7c[i].ChkCoHit() != 0) {
             if (player == dCc_GetAc(i_this->field_0xa7c[i].GetCoHitObj()->GetAc())) {
@@ -410,7 +410,7 @@ static int pl_check(e_mf_class* i_this, f32 param_2, s16 param_3) {
             }
         }
     }
-    
+
     return 0;
 }
 
@@ -690,7 +690,7 @@ static void e_mf_bomb_action(e_mf_class* i_this) {
                 i_this->field_0x5b4 = 5;
                 anm_init(i_this, ANM_WAIT_01, 5.0f, 2, 1.0f);
             }
-            
+
             break;
 
         case 5:
@@ -807,7 +807,7 @@ static void e_mf_normal(e_mf_class* i_this) {
 
             cLib_addCalcAngleS2(&i_this->field_0x806, sVar2, 2, 0x400);
 
-            if (i_this->field_0x6c0[0] == 0 || 
+            if (i_this->field_0x6c0[0] == 0 ||
                 (i_this->field_0x6c0[1] == 0 && (fopAcM_wayBgCheck(a_this, 200.0f, 50.0f) || move_gake_check(i_this, 200.0f, 0)))) {
                 i_this->field_0x5b4 = 2;
                 i_this->field_0x6c0[0] = cM_rndF(100.0f) + 50.0f;
@@ -1132,8 +1132,8 @@ static void e_mf_fight_run(e_mf_class* i_this) {
         }
     } else {
         if ((sVar3 == 2 || dComIfGp_checkPlayerStatus1(0, 0x2000000) != 0) || (((i_this->mXAngleToPlayer < 0x1000 && i_this->mXAngleToPlayer > -0x1000) || sVar3 != 0) && player_way_check(i_this))) {
-            if ((sVar3 != 0 || (i_this->mPlayerDistance < l_HIO.battle_init_range && 
-                ((daPy_getPlayerActorClass()->getCutAtFlg() != 0 || daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_JUMP) || 
+            if ((sVar3 != 0 || (i_this->mPlayerDistance < l_HIO.battle_init_range &&
+                ((daPy_getPlayerActorClass()->getCutAtFlg() != 0 || daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_JUMP) ||
                 ((i_this->field_0x6ac & 48) != 0 && daPy_getPlayerActorClass()->getCutType() == daPy_py_c::CUT_TYPE_GUARD_ATTACK)))) && i_this->field_0x72c < 1.0f) {
                 i_this->mAction = 7;
                 if (cc_pl_cut_bit_get() == 0x100) {
@@ -1199,7 +1199,7 @@ static void e_mf_fight_run(e_mf_class* i_this) {
 
 static void e_mf_jump(e_mf_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
-    
+
     i_this->field_0x6d4 = 1;
     switch (i_this->field_0x5b4) {
         case 0:
@@ -1358,7 +1358,7 @@ static fopAc_ac_c* at_hit_check(e_mf_class* i_this) {
     if (i_this->field_0x5b4 >= 10) {
         return NULL;
     }
-    
+
     if (i_this->field_0xe24.ChkAtHit() != 0) {
         return dCc_GetAc(i_this->field_0xe24.GetAtHitObj()->GetAc());
     }
@@ -2501,7 +2501,7 @@ static void action(e_mf_class* i_this) {
             sp240.z = 15000.0f;
         }
         MtxPosition(&sp240, &sp24c);
-        
+
         i_this->field_0x784[0].y = sp24c.x;
         i_this->field_0x784[0].x = sp24c.z;
         i_this->field_0x784[1].y = sp24c.x;
@@ -2564,7 +2564,7 @@ static void action(e_mf_class* i_this) {
         MtxPosition(&sp240, &sp24c);
         i_this->field_0x816.y = -sp24c.x;
         i_this->field_0x816.x = -sp24c.z * 1.3f;
-        
+
         if (i_this->field_0x816.x > 10000) {
             i_this->field_0x816.x = 10000;
         }
@@ -2779,12 +2779,12 @@ int c_start;
 static int daE_MF_Execute(e_mf_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     f32 fVar1 = 0.0f;
-    
+
     if (i_this->field_0x728 != 0) {
         return 1;
     }
 
-    if (c_start == 0 && dComIfGp_event_runCheck() && 
+    if (c_start == 0 && dComIfGp_event_runCheck() &&
         (fopAcM_getTalkEventPartner((fopAc_ac_c*)daPy_getLinkPlayerActorClass()) == daPy_py_c::getMidnaActor() || daPy_getPlayerActorClass()->eventInfo.checkCommandDoor())) {
         return 1;
     }
@@ -2908,7 +2908,7 @@ static int daE_MF_Execute(e_mf_class* i_this) {
     } else {
         i_this->field_0xa7c[0].SetR(50.0f);
     }
-    
+
     a_this->attention_info.position = a_this->eyePos;
     a_this->attention_info.position.y += 70.0f;
 
@@ -2959,7 +2959,7 @@ static int daE_MF_Execute(e_mf_class* i_this) {
             i_this->field_0xe24.SetAtSpl((dCcG_At_Spl)0);
         }
     }
-    
+
     MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(12), *calc_mtx);
     i_this->mpShieldModel->setBaseTRMtx(*calc_mtx);
 
@@ -3181,7 +3181,7 @@ static cPhs_Step daE_MF_Create(fopAc_ac_c* a_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_0x100);
+        fopAcM_OnStatus(a_this, fopAcStts_CULL);
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -200.0f, -200.0f, -200.0f);
@@ -3249,7 +3249,7 @@ static cPhs_Step daE_MF_Create(fopAc_ac_c* a_this) {
         i_this->mAtInfo.mpSound = &i_this->mSound;
 
         if (strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0) {
-            fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_0x4000);
+            fopAcM_OnStatus(a_this, fopAcStts_UNK_0x4000);
         }
 
         c_start = 1;

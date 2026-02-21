@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_kshutter.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -204,7 +204,7 @@ int daObjKshtr_c::Create() {
     }
 
     if (mType == TYPE_V_SHUTTER) {
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
+        fopAcM_OffStatus(this, fopAcStts_CULL);
     }
 
     initBaseMtx();
@@ -633,7 +633,7 @@ BOOL daObjKshtr_c::openProc() {
 
         default:
             return openProc_type2();
-        
+
         case TYPE_L3BOSS:
             return openProc_typeL3Boss();
 
@@ -734,7 +734,7 @@ BOOL daObjKshtr_c::demoJail1() {
                 mDemoMode = 2;
             }
             break;
-        
+
         case 2:
             anmInit();
             mDoAud_seStart(Z2SE_OBJ_WOOD_DOOR_ROLLOPEN2, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
@@ -750,7 +750,7 @@ BOOL daObjKshtr_c::demoJail1() {
                 mDemoMode = 4;
             }
             break;
-        
+
         case 4:
             break;
     }
@@ -776,7 +776,7 @@ BOOL daObjKshtr_c::demoJail2() {
                 mDemoMode = 2;
             }
             break;
-        
+
         case 2:
             speedF = 0.0f;
             mDemoMode = 3;
@@ -804,7 +804,7 @@ BOOL daObjKshtr_c::demoJail11() {
             mDoAud_seStart(Z2SE_OBJ_WOOD_DOOR_ROLLOPEN2, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
             offDzb();
             break;
-        
+
         case 1:
             if (mpBckAnm->play()) {
                 mDemoMode = 2;

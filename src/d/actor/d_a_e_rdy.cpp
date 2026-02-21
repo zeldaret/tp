@@ -1,6 +1,6 @@
 /**
  * @file d_a_e_rdy.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -154,7 +154,7 @@ enum Animation {
     /* 0x4C */ ANM_WAIT01,
     /* 0x4D */ ANM_WALK,
 };
-  
+
 enum Joint {
     /* 0x00 */ JNT_KOSI,
     /* 0x01 */ JNT_HIP1,
@@ -383,7 +383,7 @@ static int daE_RDY_Draw(e_rdy_class* i_this) {
         && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[239])) {
         return 1;
     }
-    
+
     if (i_this->mKargarokDeleteTimer != 0) {
         return 1;
     }
@@ -522,7 +522,7 @@ static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
             vec2.z = bomb->current.pos.z - a_this->current.pos.z;
             f32 dist1 = JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z);
             f32 dist2 = JMAFastSqrt(vec2.x * vec2.x + vec2.z * vec2.z);
-            
+
             if (dist1 < threshold && !(dist2 > i_this->mPlayerDist + 30.0f)
                 && (!other_bg_check(i_this, bomb) || !param_1))
             {
@@ -530,7 +530,7 @@ static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
                     f32 abs_res = fabsf(50.0f + bomb->current.pos.y - a_this->eyePos.y);
                     if (abs_res <= 300.0f) {
                         s16 ang_y = a_this->shape_angle.y - cM_atan2s(vec1.x, vec1.z);
-                        
+
                         if (ang_y < 0) {
                             ang_y = (-1 * ang_y);
                         }
@@ -1791,7 +1791,7 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
         i_this->mKargarokID = fopAcM_GetID((e_yc_class*)fopAcM_SearchByName(PROC_E_YC));
         return;
     }
-    
+
     if (i_this->field_0xa6e != 0) {
         return;
     }
@@ -2029,7 +2029,7 @@ static void e_rdy_s_damage(e_rdy_class* i_this) {
             i_this->mMode = 0;
         }
     }
-    
+
     cLib_addCalc0(&a_this->speedF, 1.0f, 3.0f);
 }
 
@@ -2039,7 +2039,7 @@ static int kado_check(e_rdy_class* i_this) {
     cXyz vec1, vec2, vec3;
     int ret = 0;
     cMtx_YrotS(*calc_mtx, i_this->field_0xadc.y);
-    
+
     static int kado_bit[2] = {1, 2};
     static f32 kado_check_x[2] = {80.0f, -80.0f};
 
@@ -2057,7 +2057,7 @@ static int kado_check(e_rdy_class* i_this) {
         vec1.x = kado_check_x[i] * (1.0f + JREG_F(6));
         MtxPosition(&vec1, &vec3);
         vec3 += vec2;
-        
+
         lin_chk.Set(&vec2, &vec3, _this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
             ret |= kado_bit[i];
@@ -2912,7 +2912,7 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
     case 0: {
         anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
-        
+
         dPnt* point = i_this->mpPath->m_points;
         point += i_this->mPathIndex;
 
@@ -4795,7 +4795,7 @@ static dJntColData_c jc_data[11] = {
 
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_rdy_class* _this = (e_rdy_class*)i_this;
-    
+
     _this->mpMorf = new mDoExt_McaMorfSO(
         (J3DModelData*)dComIfG_getObjectRes(_this->mpArcName, 81), NULL, NULL,
         (J3DAnmTransform*)dComIfG_getObjectRes(_this->mpArcName, 76),
@@ -4920,7 +4920,7 @@ static cPhs_Step daE_RDY_Create(fopAc_ac_c* i_this) {
             } else {
                 _this->mAction = ACT_BOW2;
             }
-            fopAcM_OffStatus(i_this, fopAcStts_CULL_e);
+            fopAcM_OffStatus(i_this, fopAcStts_CULL);
             _this->field_0x5b8 = 3;
         } else if (_this->field_0x5b8 == 11) {
             _this->mAction = ACT_BOW_IKKI2;
@@ -4960,7 +4960,7 @@ static cPhs_Step daE_RDY_Create(fopAc_ac_c* i_this) {
 
         OS_REPORT("E_RDY DEMO SW %x\n", _this->mSwBit2);
 
-        fopAcM_OnStatus(i_this, fopAcStts_CULL_e);
+        fopAcM_OnStatus(i_this, fopAcStts_CULL);
         i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         u8 path_id = i_this->home.angle.x & 0xff;

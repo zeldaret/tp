@@ -244,7 +244,7 @@ static int fopAc_Draw(void* i_this) {
     if (!dComIfGp_isPauseFlag()) {
         int var_r28 = dComIfGp_event_moveApproval(actor);
         if ((var_r28 == 2 || (!fopAcM_CheckStatus(actor, fopAc_ac_c::getStopStatus()) &&
-            (!fopAcM_CheckStatus(actor, fopAcStts_CULL_e) || !fopAcM_cullingCheck(actor)))) &&
+            (!fopAcM_CheckStatus(actor, fopAcStts_CULL) || !fopAcM_cullingCheck(actor)))) &&
             !fopAcM_CheckStatus(actor, 0x21000000))
         {
             fopAcM_OffCondition(actor, fopAcCnd_NODRAW_e);
@@ -268,7 +268,7 @@ static int fopAc_Draw(void* i_this) {
             fopAcM_OnCondition(actor, fopAcCnd_NODRAW_e);
         }
 
-        fopAcM_OffStatus(actor, fopAcStts_NODRAW_e);
+        fopAcM_OffStatus(actor, fopAcStts_NODRAW);
     }
 
     #if DEBUG
@@ -325,7 +325,7 @@ static int fopAc_Execute(void* i_this) {
         if (!fopAcM_CheckStatus(actor, 0x20000000) &&
             (move == 2 ||
                 (move != 0 && !fopAcM_CheckStatus(actor, fopAc_ac_c::getStopStatus()) &&
-                (!fopAcM_CheckStatus(actor, fopAcStts_NOEXEC_e) || !fopAcM_CheckCondition(actor, fopAcCnd_NODRAW_e)))))
+                (!fopAcM_CheckStatus(actor, fopAcStts_NOEXEC) || !fopAcM_CheckCondition(actor, fopAcCnd_NODRAW_e)))))
         {
             fopAcM_OffCondition(actor, fopAcCnd_NOEXEC_e);
             actor->old = actor->current;
@@ -385,7 +385,7 @@ static int fopAc_IsDelete(void* i_this) {
     #endif
 
     ret = fpcMtd_IsDelete((process_method_class*)actor->sub_method, actor);
-    
+
     #if DEBUG
     }
     #endif
@@ -407,7 +407,7 @@ static int fopAc_Delete(void* i_this) {
     #endif
 
     ret = fpcMtd_Delete((process_method_class*)actor->sub_method, actor);
-    
+
     #if DEBUG
     }
     #endif
@@ -533,13 +533,13 @@ static int fopAc_Create(void* i_this) {
     #endif
 
     ret = fpcMtd_Create((process_method_class*)actor->sub_method, actor);
-    
+
     #if DEBUG
     }
 
     fopAcM_assert(1113, actor, fopAcM_CheckCondition(actor, fopAcCnd_INIT_e), "fopAcM_ct No Call !!");
     #endif
-    
+
     if (ret == cPhs_COMPLEATE_e) {
         fopDwTg_ToDrawQ(&actor->draw_tag, fpcM_DrawPriority(actor));
     } else if (ret == cPhs_ERROR_e) {

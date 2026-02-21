@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_gnd.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -39,9 +39,9 @@ static daNpcT_motionAnmData_c l_motionAnmData[1] = {
 };
 
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[4] = {
-    {0, -1, 0}, 
-    {-1, 0, 0}, 
-    {-1, 0, 0}, 
+    {0, -1, 0},
+    {-1, 0, 0},
+    {-1, 0, 0},
     {-1, 0, 0},
 };
 
@@ -139,7 +139,7 @@ int daNpc_Gnd_c::create() {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
         mSound.init(&current.pos, &eyePos, 3, 1);
 #if DEBUG
         mpHIO = &l_HIO;
@@ -514,7 +514,7 @@ bool daNpc_Gnd_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int p
     } bpkAnmData[] = {
         {0x0E, 1},
     };
-    
+
     J3DAnmTevRegKey* brk = NULL;
     J3DAnmColor* bpk = NULL;
 

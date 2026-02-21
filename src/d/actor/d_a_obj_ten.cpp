@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_ten.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -270,9 +270,9 @@ void daObjTEN_c::MoveAction() {
     linkchk.SetObj();
     cXyz cStack_c8;
     cXyz cStack_d4;
-    
+
     switch (field_0x5e9) {
-    case 0: 
+    case 0:
         {
             J3DAnmTransform* anmTransform = (J3DAnmTransform*)dComIfG_getObjectRes("I_Ten", 6);
             mMorf->setAnm(anmTransform, 2, 5.0f, 0.0f, 0.0f, -1.0f);
@@ -300,7 +300,7 @@ void daObjTEN_c::MoveAction() {
             speed.y = 5.0f;
         }
         break;
-    case 2: 
+    case 2:
         {
             cXyz local_e0;
             cXyz* flamePos = player->getKandelaarFlamePos();
@@ -703,7 +703,7 @@ int daObjTEN_c::create() {
         if (field_0x624 == 2) {
             field_0x56c = 0;
             shape_angle.x -= 0x2000;
-            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
         } else {
             mDraw = true;
         }

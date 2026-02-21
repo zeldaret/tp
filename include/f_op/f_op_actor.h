@@ -28,13 +28,35 @@ struct actor_process_profile_definition2 {
 };
 
 enum fopAc_Status_e {
-    fopAcStts_NOEXEC_e = 0x00000080,
-    fopAcStts_CULL_e = 0x00000100,
-    fopAcStts_FREEZE_e = 0x00000400,
-    fopAcStts_CARRY_e = 0x00002000,
-    fopAcStts_NOPAUSE_e = 0x00020000,
-    fopAcStts_NODRAW_e = 0x01000000,
-    fopAcStts_BOSS_e = 0x04000000,
+    fopAcStts_UNK_0x1           = 1 << 0,
+    fopAcStts_UNK_0x2           = 1 << 1,
+    fopAcStts_UNK_0x4           = 1 << 2,
+    fopAcStts_UNK_0x8           = 1 << 3,
+    fopAcStts_UNK_0x10          = 1 << 4,
+    fopAcStts_UNK_0x20          = 1 << 5,
+    fopAcStts_UNK_0x40          = 1 << 6,
+    fopAcStts_NOEXEC            = 1 << 7,
+    fopAcStts_CULL              = 1 << 8,
+    fopAcStts_UNK_0x200         = 1 << 9,
+    fopAcStts_FREEZE            = 1 << 10,
+    fopAcStts_UNK_0x800         = 1 << 11,
+    fopAcStts_UNK_0x1000        = 1 << 12,
+    fopAcStts_CARRY_NOW         = 1 << 13,
+    fopAcStts_UNK_0x4000        = 1 << 14,
+    fopAcStts_UNK_0x8000        = 1 << 15,
+    fopAcStts_UNK_0x10000       = 1 << 16,
+    fopAcStts_NOPAUSE           = 1 << 17,
+    fopAcStts_UNK_0x40000       = 1 << 18,
+    fopAcStts_UNK_0x80000       = 1 << 19,
+    fopAcStts_HOOK_CARRY_NOW    = 1 << 20,
+    fopAcStts_UNK_0x200000      = 1 << 21,
+    fopAcStts_UNK_0x400000      = 1 << 22,
+    fopAcStts_UNK_0x800000      = 1 << 23,
+    fopAcStts_NODRAW            = 1 << 24,
+    fopAcStts_UNK_0x2000000     = 1 << 25,
+    fopAcStts_BOSS              = 1 << 26,
+    fopAcStts_UNK_0x8000000     = 1 << 27,
+    fopAcStts_HAWK_CARRY_NOW    = 1 << 31,
 };
 
 enum fopAc_Group_e {
@@ -307,7 +329,7 @@ public:
         fopEn_flag_WolfDownPullEnd = 0x20,
         fopEn_flag_WolfBiteDamage  = 0x40,
         fopEn_flag_HeadLock        = 0x80,
-        
+
         fopEn_flag_WolfNoLock      = 0x200,
     };
 

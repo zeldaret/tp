@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_gra2.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -397,7 +397,7 @@ int daObj_GrA_c::CreateHeap() {
     field_0x83c = l_entryJntNoList;
     setFaceAnm(22, false, 0.0f);
     setBaseAnm(17, 0.0f);
-    
+
     return 1;
 }
 
@@ -487,7 +487,7 @@ int daObj_GrA_c::jointCtrl(J3DJoint* i_joint, J3DModel* param_2) {
             switch (jointNo) {
                 case 1:
                     break;
-                    
+
                 case 3:
                     mDoMtx_stack_c::ZXYrotM(field_0x9bc);
                     break;
@@ -667,7 +667,7 @@ int daObj_GrA_c::init() {
     attention_info.distances[fopAc_attn_CARRY_e] = 40;
     attention_info.distances[fopAc_attn_BATTLE_e] = 22;
     mAcchCir.SetWall(mpHIO->m.mWallH, mpHIO->m.mWallR);
-    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, 
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
               fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
     mCcStts.Init(mpHIO->m.mWeight, 0, this);
     field_0xf50.Set(mCcDCyl);
@@ -704,7 +704,7 @@ int daObj_GrA_c::init() {
     setRoomNo();
 
     if (mMode == 2) {
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000);
     }
 
     field_0x1528.setPathInfo(getPathNo(), fopAcM_GetRoomNo(this), 1);
@@ -1019,7 +1019,7 @@ void daObj_GrA_c::mainProc() {
             if (mMode == 0) {
                 if ((home.pos - current.pos).absXZ() > getSrchCircleR()) {
                     cXyz sp3c(0.0f, 0.0f, getSrchCircleR());
-                    cLib_offsetPos(&current.pos, &home.pos, 
+                    cLib_offsetPos(&current.pos, &home.pos,
                                    cLib_targetAngleY(&home.pos, &current.pos), &sp3c);
                 }
             }
@@ -1453,7 +1453,7 @@ int daObj_GrA_c::talk(void* param_1) {
                         setBaseMotion(0, mpHIO->m.field_0x0c);
                         setFaceMotion(0, -1.0f);
                     }
-                    
+
                     return 0;
                 }
 
@@ -1642,10 +1642,10 @@ int daObj_GrA_c::setPrtcl() {
 
         for (int i = 0; i < 3; i++) {
             if (i == 0) {
-                field_0x2020[i] = dComIfGp_particle_set(field_0x2020[i], l_prticles_id[i], &sp28, &tevStr, &current.angle, 
+                field_0x2020[i] = dComIfGp_particle_set(field_0x2020[i], l_prticles_id[i], &sp28, &tevStr, &current.angle,
                                                         &sp34, 0xFF, NULL, -1, NULL, NULL, NULL);
             } else {
-                field_0x2020[i] = dComIfGp_particle_setPolyColor(field_0x2020[i], l_prticles_id[i], mAcch.m_gnd, &sp28, 
+                field_0x2020[i] = dComIfGp_particle_setPolyColor(field_0x2020[i], l_prticles_id[i], mAcch.m_gnd, &sp28,
                                                                     &tevStr, &current.angle, &sp34, 0, NULL, -1, NULL);
             }
 
@@ -1783,7 +1783,7 @@ int daObj_GrA_c::base013(int param_1) {
     } else if (field_0x201c < 10) {
         field_0x201c++;
     }
-    
+
     if (field_0x2010 != field_0x842 && field_0x201c < 10) {
         mSound.startCreatureSound(Z2SE_GORON_ROLLING, cLib_minMaxLimit(fabsf(mpModelMorf->getPlaySpeed()) * 20.0f, 1.0f, 127.0f), -1);
         field_0x2010 = field_0x842;

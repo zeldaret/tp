@@ -171,7 +171,7 @@ void daNPC_TK_c::setActionMode(int param_0) {
         field_0x694 = 0;
         field_0x6c5 = 0;
         current.angle.y = shape_angle.y;
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
     }
 }
 
@@ -567,7 +567,7 @@ bool daNPC_TK_c::executePerchDemo(int param_0) {
             }
 
             current.pos.y = current.pos.y + field_0x67c;
-            
+
             dPnt* pnt = dPath_GetPnt(mpPath1, mPathStep2);
             pathPos = pnt->m_position;
             cLib_addCalcAngleS(&current.angle.y, cLib_targetAngleY(&current.pos, &pathPos), 0x20,
@@ -1536,7 +1536,7 @@ void daNPC_TK_c::executeAttackLink() {
         field_0x694 = 1;
         setBck(8, 2, 10.0f, 1.0f);
         mSound.startCreatureVoice(Z2SE_HAWK_V_TAKE_OFF, -1);
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000);
         field_0x6b4 = 0x1e;
         break;
     }
@@ -1641,8 +1641,8 @@ void daNPC_TK_c::executeAttackLink() {
         cLib_chaseF(&speed.y, targetSpeedY, 1.0f);
         cLib_chaseF(&speedF, 30.0f, 3.0f);
         if (field_0x6b0 == 0) {
-            if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW) ||
-                dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_UNK_0x100) ||
+            if (dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW) ||
+                dComIfGp_checkPlayerStatus0(0, fopAcStts_CULL) ||
                 daPy_getPlayerActorClass()->checkWolfTagLockJumpReady())
             {
                 field_0x6b0 = 10;

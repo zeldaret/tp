@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_taro.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -473,8 +473,8 @@ void* daNpc_Taro_c::srchArrow(void* param_1, void* param_2) {
 
 void* daNpc_Taro_c::srchNpc(void* param_1, void* param_2) {
     if (mFindCount < 50 && param_1 != NULL && param_1 != param_2) {
-        if (fopAcM_IsExecuting(fopAcM_GetID(param_1)) && 
-        (fopAcM_GetGroup((fopAc_ac_c*)param_1) == 4 || 
+        if (fopAcM_IsExecuting(fopAcM_GetID(param_1)) &&
+        (fopAcM_GetGroup((fopAc_ac_c*)param_1) == 4 ||
         (fopAcM_GetName(param_1) == PROC_TAG_EVTAREA && ((daTag_EvtArea_c*)param_1)->getType() == 15))) {
             mFindActorPtrs[mFindCount] = (fopAc_ac_c*)param_1;
             mFindCount++;
@@ -944,7 +944,7 @@ void daNpc_Taro_c::action() {
             setAction(mAction);
         }
     }
-    
+
     daTag_Push_c* pushTag = (daTag_Push_c*)field_0xba0.getActorP();
     if (pushTag != NULL) {
         switch (pushTag->getId()) {
@@ -959,9 +959,9 @@ void daNpc_Taro_c::action() {
 }
 
 void daNpc_Taro_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
     }
     if (checkHide() || mNoDraw) {
         attention_info.flags = 0;
@@ -1116,7 +1116,7 @@ BOOL daNpc_Taro_c::selectAction() {
         mAction = &daNpc_Taro_c::nurse;
         break;
     case TYPE_15:
-        // daNpcKakashi_chkSwdTutorialStage itself doesn't match when it returns bool 
+        // daNpcKakashi_chkSwdTutorialStage itself doesn't match when it returns bool
         if ((u8)daNpcKakashi_chkSwdTutorialStage()) {
             mAction = &daNpc_Taro_c::swdTutorial;
         } else {
@@ -1915,10 +1915,10 @@ int daNpc_Taro_c::cutGiveMeWoodSwd(int param_1) {
     case 4:
     case 5:
     case 6:
-    case 8: 
+    case 8:
     {
         switch(prm) {
-        case 5: 
+        case 5:
         case 8: {
             fopAc_ac_c* actor_p = mActors[2].getActorP();
             JUT_ASSERT(4405, NULL != actor_p);
@@ -1993,7 +1993,7 @@ int daNpc_Taro_c::cutGetWoodSwd(int param_1) {
     if (pTimer != NULL) {
         timer = *pTimer;
     }
-    
+
     int* pSend = dComIfGp_evmng_getMyIntegerP(param_1, "send");
     if (pSend != NULL) {
         send = *pSend;
@@ -2272,7 +2272,7 @@ int daNpc_Taro_c::cutCacaricoConversation(int param_1) {
     }
 
     int msgNos[2] = {-1, -1};
-    
+
     switch (prm) {
     case 0:
         mJntAnm.lookPlayer(0);
@@ -2512,7 +2512,7 @@ int daNpc_Taro_c::cutCaution(int param_1) {
         }
         break;
     }
-   
+
     return rv;
 }
 
@@ -3261,7 +3261,7 @@ int daNpc_Taro_c::practice(void* param_0) {
         break;
     }
 
-    
+
     return 1;
 }
 

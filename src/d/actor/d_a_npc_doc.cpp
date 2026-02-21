@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_doc.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -193,7 +193,7 @@ int daNpc_Doc_c::create() {
         #endif
 
         reset();
-        
+
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),
                   fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mCcStts.Init(mpHIO->m.common.weight, 0, this);
@@ -385,7 +385,7 @@ void daNpc_Doc_c::setParam() {
     if (daPy_py_c::checkNowWolf()) {
         attn_flags |= fopAc_AttnFlag_UNK_0x800000;
     }
-    
+
     attention_info.flags = attn_flags;
 
     scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale, mpHIO->m.common.scale);
@@ -508,10 +508,10 @@ void daNpc_Doc_c::beforeMove() {
         }
     }
 
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw) {
@@ -524,7 +524,7 @@ void daNpc_Doc_c::setAttnPos() {
 
     mStagger.calc(FALSE);
     f32 rad = cM_s2rad((s16)(mCurAngle.y - field_0xd7e.y));
-    
+
     mJntAnm.setParam(this, mpMorf[0]->getModel(), &pos, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
                      mpHIO->m.common.body_angleX_min, mpHIO->m.common.body_angleX_max, mpHIO->m.common.body_angleY_min, mpHIO->m.common.body_angleY_max,
                      mpHIO->m.common.head_angleX_min, mpHIO->m.common.head_angleX_max, mpHIO->m.common.head_angleY_min, mpHIO->m.common.head_angleY_max,

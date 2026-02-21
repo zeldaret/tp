@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_kolinb.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -322,11 +322,11 @@ cPhs_Step daNpc_Kolinb_c::create() {
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),
                   fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mCcStts.Init(mpHIO->m.common.weight, 0, this);
-        
+
         field_0xe44.Set(mCcDCyl);
         field_0xe44.SetStts(&mCcStts);
         field_0xe44.SetTgHitCallback(tgHitCallBack);
-        
+
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
@@ -432,7 +432,7 @@ u8 daNpc_Kolinb_c::getType() {
     switch (fopAcM_GetParam(this) & 0xFF) {
         case 0:
             return 0;
-        
+
         case 1:
             return 1;
 
@@ -573,10 +573,10 @@ void daNpc_Kolinb_c::action() {
 }
 
 void daNpc_Kolinb_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw) {
@@ -636,7 +636,7 @@ BOOL daNpc_Kolinb_c::chkAction(actionFunc action) {
 
 int daNpc_Kolinb_c::setAction(actionFunc action) {
     mMode = 3;
-    
+
     if (mAction) {
         (this->*mAction)(NULL);
     }

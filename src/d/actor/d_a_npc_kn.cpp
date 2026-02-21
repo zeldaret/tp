@@ -564,7 +564,7 @@ int daNpc_Kn_c::create() {
         J3DModelData* model_data = mpModelMorf[0]->getModel()->getModelData();
         fopAcM_SetMtx(this, mpModelMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
 
         mSound.init(&current.pos, &eyePos, 3, 1);
         dKy_tevstr_init(&mTevStr, fopAcM_GetRoomNo(this), 0xFF);
@@ -2617,7 +2617,7 @@ int daNpc_Kn_c::teach06_superJumpWaitDivide(void* param_0) {
         if (mCylCc.ChkTgHit()) {
             if (cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP || cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH) {
                 mActionMode = 16;
-                
+
                 daNpc_Kn_c* parent_p = (daNpc_Kn_c*)fpcM_SearchByID(parentActorID);
                 if (parent_p != NULL) {
                     parent_p->setTalkFlag(2);
@@ -2996,7 +2996,7 @@ int daNpc_Kn_c::teach07_superTurnAttackWaitDivide(void* param_0) {
         if (mCylCc.ChkTgHit()) {
             if (cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT || cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT) {
                 mActionMode = 22;
-                
+
                 daNpc_Kn_c* parent_p = (daNpc_Kn_c*)fpcM_SearchByID(parentActorID);
                 if (parent_p != NULL) {
                     parent_p->setTalkFlag(2);
@@ -3473,11 +3473,11 @@ int daNpc_Kn_c::ECut_thirdSkillGet(int i_idx) {
 
     if (event_manager->getIsAddvance(i_idx)) {
         switch (prm) {
-        case 0: 
+        case 0:
             daNpcT_offTmpBit(0xB);
             daNpcT_offTmpBit(0xC);
             break;
-        case 4: 
+        case 4:
             mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
             if (mMotionSeqMngr.getNo() == 0x13) {
                 mMotionSeqMngr.setNo(0x16, -1.0f, 0, 0);
@@ -3485,7 +3485,7 @@ int daNpc_Kn_c::ECut_thirdSkillGet(int i_idx) {
                 mMotionSeqMngr.setNo(0x10, -1.0f, 0, 0);
             }
             break;
-        case 6: 
+        case 6:
             mJntAnm.lookNone(0);
             break;
         case 10: {
@@ -3522,7 +3522,7 @@ int daNpc_Kn_c::ECut_thirdSkillGet(int i_idx) {
         }
     }
     switch (prm) {
-    case 0: 
+    case 0:
         if (speed.y <= 0.0f && mAcch.ChkGroundHit()) {
             speedF = 0.0f;
             speed.zero();
@@ -3538,7 +3538,7 @@ int daNpc_Kn_c::ECut_thirdSkillGet(int i_idx) {
             rt = 1;
         }
         break;
-    case 2: 
+    case 2:
         if (mMotionSeqMngr.getNo() == 0x13 || mMotionSeqMngr.getNo() == 0xF) {
             if (mMotionSeqMngr.getStepNo() > 0) {
                 rt = 1;
@@ -3547,12 +3547,12 @@ int daNpc_Kn_c::ECut_thirdSkillGet(int i_idx) {
             }
         }
         break;
-    case 4: 
+    case 4:
         if ((mMotionSeqMngr.getNo() == 0x16 || mMotionSeqMngr.getNo() == 0x10) && mMotionSeqMngr.getStepNo() > 0) {
             rt = 1;
         }
         break;
-    case 6: 
+    case 6:
         if (mCurAngle.y != fopAcM_searchPlayerAngleY(this)) {
             if (step(fopAcM_searchPlayerAngleY(this), 1, 0x20, 20, 0)) {
                 rt = 1;
@@ -3609,10 +3609,10 @@ int daNpc_Kn_c::ECut_fourthSkillExplain(int i_idx) {
 
     if (event_manager->getIsAddvance(i_idx)) {
         switch (prm) {
-        case 0: 
+        case 0:
             mActionMode = 9;
             break;
-        case 4: 
+        case 4:
             mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
             if (mMotionSeqMngr.getNo() == 0x13) {
                 mMotionSeqMngr.setNo(0x16, -1.0f, 0, 0);
@@ -3620,10 +3620,10 @@ int daNpc_Kn_c::ECut_fourthSkillExplain(int i_idx) {
                 mMotionSeqMngr.setNo(16, -1.0f, 0, 0);
             }
             break;
-        case 6: 
+        case 6:
             mJntAnm.lookPlayer(0);
             break;
-        case 10: 
+        case 10:
             mStepMode = 2;
             initTalk(0x2EF, NULL);
             break;
@@ -3633,7 +3633,7 @@ int daNpc_Kn_c::ECut_fourthSkillExplain(int i_idx) {
         case 65: {
             setPos(home.pos);
             setAngle(home.angle.y);
-    
+
             cXyz sp64(-10.0f, 0.0f, 375.0f);
             mDoMtx_stack_c::transS(home.pos);
             mDoMtx_stack_c::YrotM(home.angle.y);
@@ -3786,7 +3786,7 @@ int daNpc_Kn_c::ECut_fourthSkillExplain(int i_idx) {
             rt = 1;
         }
         break;
-    default: 
+    default:
         rt = 1;
         break;
     }
@@ -3948,7 +3948,7 @@ int daNpc_Kn_c::ECut_fifthSkillExplain(int i_idx) {
         switch (prm) {
         case 0:
             break;
-        case 4: 
+        case 4:
             mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
             if (mMotionSeqMngr.getNo() == 0x13) {
                 mMotionSeqMngr.setNo(0x16, -1.0f, 0, 0);
@@ -3956,10 +3956,10 @@ int daNpc_Kn_c::ECut_fifthSkillExplain(int i_idx) {
                 mMotionSeqMngr.setNo(16, -1.0f, 0, 0);
             }
             break;
-        case 6: 
+        case 6:
             mJntAnm.lookPlayer(0);
             break;
-        case 10: 
+        case 10:
             mStepMode = 2;
             initTalk(0x2E7, NULL);
             break;
@@ -3978,7 +3978,7 @@ int daNpc_Kn_c::ECut_fifthSkillExplain(int i_idx) {
 
             setPos(home.pos);
             setAngle(home.angle.y);
-    
+
             cXyz sp64(0.0f, 0.0f, 375.0f);
             mDoMtx_stack_c::transS(home.pos);
             mDoMtx_stack_c::YrotM(home.angle.y);
@@ -4120,7 +4120,7 @@ int daNpc_Kn_c::ECut_fifthSkillExplain(int i_idx) {
             mActionMode = 12;
         }
         break;
-    default: 
+    default:
         rt = 1;
         break;
     }
@@ -4282,7 +4282,7 @@ int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
         switch (prm) {
         case 0:
             break;
-        case 4: 
+        case 4:
             mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
             if (mMotionSeqMngr.getNo() == 0x13) {
                 mMotionSeqMngr.setNo(0x16, -1.0f, 0, 0);
@@ -4290,10 +4290,10 @@ int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
                 mMotionSeqMngr.setNo(16, -1.0f, 0, 0);
             }
             break;
-        case 6: 
+        case 6:
             mJntAnm.lookPlayer(0);
             break;
-        case 10: 
+        case 10:
             mStepMode = 2;
             initTalk(0x2F8, NULL);
             break;
@@ -4303,7 +4303,7 @@ int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
         case 65: {
             setPos(home.pos);
             setAngle(home.angle.y);
-    
+
             cXyz sp64(0.0f, 0.0f, 375.0f);
             mDoMtx_stack_c::transS(home.pos);
             mDoMtx_stack_c::YrotM(home.angle.y);
@@ -4454,7 +4454,7 @@ int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
             mActionMode = 13;
         }
         break;
-    default: 
+    default:
         rt = 1;
         break;
     }
@@ -4620,7 +4620,7 @@ int daNpc_Kn_c::ECut_seventhSkillExplain(int i_idx) {
         switch (prm) {
         case 0:
             break;
-        case 4: 
+        case 4:
             mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
             if (mMotionSeqMngr.getNo() == 0x13) {
                 mMotionSeqMngr.setNo(0x16, -1.0f, 0, 0);
@@ -4628,10 +4628,10 @@ int daNpc_Kn_c::ECut_seventhSkillExplain(int i_idx) {
                 mMotionSeqMngr.setNo(16, -1.0f, 0, 0);
             }
             break;
-        case 6: 
+        case 6:
             mJntAnm.lookPlayer(0);
             break;
-        case 10: 
+        case 10:
             mStepMode = 2;
             initTalk(0x300, NULL);
             break;
@@ -4640,7 +4640,7 @@ int daNpc_Kn_c::ECut_seventhSkillExplain(int i_idx) {
 
             setPos(home.pos);
             setAngle(home.angle.y);
-    
+
             cXyz sp64(0.0f, 0.0f, 375.0f);
             mDoMtx_stack_c::transS(home.pos);
             mDoMtx_stack_c::YrotM(home.angle.y);
@@ -4786,7 +4786,7 @@ int daNpc_Kn_c::ECut_seventhSkillExplain(int i_idx) {
             mActionMode = 19;
         }
         break;
-    default: 
+    default:
         rt = 1;
         break;
     }

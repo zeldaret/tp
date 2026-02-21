@@ -1,6 +1,6 @@
 /**
  * @file d_a_e_zh.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -231,7 +231,7 @@ int daE_ZH_c::draw() {
     #if DEBUG
     mBgc.DrawWall(dComIfG_Bgsp());
     #endif
-    
+
     if (arg0 == 1) {
         g_env_light.settingTevStruct(8, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mEntranceModel, &tevStr);
@@ -256,7 +256,7 @@ int daE_ZH_c::draw() {
     }
 
     J3DModel* model = mpModelMorf->getModel();
-    
+
     g_env_light.settingTevStruct(8, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
@@ -288,7 +288,7 @@ static int daE_ZH_Draw(daE_ZH_c* i_this) {
 }
 
 void daE_ZH_c::setBck(int i_anm, u8 i_attr, f32 i_morf, f32 i_rate) {
-    mpModelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_ZH", i_anm), i_attr, i_morf, 
+    mpModelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_ZH", i_anm), i_attr, i_morf,
                         i_rate, 0.0f, -1.0f);
     mAnm = i_anm;
 }
@@ -638,7 +638,7 @@ struct eff_dt {
 void daE_ZH_c::mStartParticleSet() {
     static eff_dt const START_EFF_DT[11] = {
         {ZL2_HAHEN_1, 0, 7}, {ZL2_SMOKE00_1, 0, 7}, {ZL2_HAHEN_2, 0, 9}, {ZL2_SMOKE00_2, 0, 9},
-        {ZL2_HAHEN_3, 0, 16}, {ZL2_SMOKE00_3, 0, 16}, {ZL2_HAHEN_4, 0, 4}, {ZL2_SMOKE00_4, 0, 4}, 
+        {ZL2_HAHEN_3, 0, 16}, {ZL2_SMOKE00_3, 0, 16}, {ZL2_HAHEN_4, 0, 4}, {ZL2_SMOKE00_4, 0, 4},
         {ZL2_SMOKE00_5, 0, 5}, {ZL2_HAHEN_5, 0, 5}, {ZL2_SMOKE00_6, 0, 5},
     };
 
@@ -699,7 +699,7 @@ void daE_ZH_c::damage_check() {
         local_28.y = sp20.atan2sX_Z();
         local_28.z = 0;
 
-        if (mActionMode != ACTION_EXECUTE_DEAD_STOP && mActionMode != ACTION_EXECUTE_DAMAGE && mActionMode != ACTION_EXECUTE_OPEN_START && 
+        if (mActionMode != ACTION_EXECUTE_DEAD_STOP && mActionMode != ACTION_EXECUTE_DAMAGE && mActionMode != ACTION_EXECUTE_OPEN_START &&
             !mAtInfo.mpCollider->ChkAtType(AT_TYPE_SLINGSHOT) && mAnm != BCK_ZH_OPEN && mAnm != BCK_ZH_START) {
             dComIfGp_setHitMark(1, this, &sp20, &local_28, NULL, 0);
             cc_at_check(this, &mAtInfo);
@@ -773,7 +773,7 @@ void daE_ZH_c::executeStartDemo() {
             fVar1 = cLib_addCalcPos(&mDemoCamCenter, sp48, 0.7f, ZREG_F(10) + 10.0f, ZREG_F(11) + 2.0f);
             sp48.set(-15.0f, 350.0f, -3620.0f);
             fVar2 = cLib_addCalcPos(&mDemoCamEye, sp48, 0.7f, ZREG_F(10) + 10.0f, ZREG_F(11) + 2.0f);
-            
+
             if (fVar1 > 4.0f || fVar2 > 4.0f) {
                 break;
             }
@@ -790,7 +790,7 @@ void daE_ZH_c::executeStartDemo() {
                 camera->mCamera.SetTrimSize(0);
                 dComIfGp_event_reset();
                 fopAcM_onSwitch(this, 0x12);
-                fopAcM_OffStatus(this , fopAcM_STATUS_UNK_0x4000);
+                fopAcM_OffStatus(this , fopAcStts_UNK_0x4000);
                 setActionMode(ACTION_EXECUTE_WAIT, 1);
             }
             break;
@@ -982,7 +982,7 @@ void daE_ZH_c::executeOpenStart() {
                 setActionMode(ACTION_EXECUTE_FLY_DELETE, 0);
                 break;
             }
-            
+
             field_0x794[0] = BREG_S(8) + 6 & 0xFF;
             mMoveMode = 1;
             break;
@@ -1123,7 +1123,7 @@ void daE_ZH_c::executeSearchMove() {
     cXyz ato;
 
     ato.y = mS_Ball->current.pos.y + 600.0f;
-    
+
     if (mBgc.GetGroundH() != -G_CM3D_F_INF && mBgc.GetGroundH() + 500.0f > ato.y) {
         ato.y = mBgc.GetGroundH() + 500.0f;
     }
@@ -1322,7 +1322,7 @@ void daE_ZH_c::executeCatchMove() {
                     field_0xddc[i] = dComIfGp_particle_set(field_0xddc[i], effId[i], &field_0x668, NULL, NULL);
                 }
 
-                field_0xde8 = dComIfGp_particle_setPolyColor(field_0xde8, effId[3], mBgc.m_gnd, &field_0x668, &tevStr, 
+                field_0xde8 = dComIfGp_particle_setPolyColor(field_0xde8, effId[3], mBgc.m_gnd, &field_0x668, &tevStr,
                                                              &shape_angle, &sp54, 0, NULL, -1, NULL);
 
                 if (mAnm == BCK_ZH_CATCH02) {
@@ -1493,7 +1493,7 @@ void daE_ZH_c::executeCatchFlyMove() {
 
         case 5:
             if (!mColorSet(false, 5.0f, 5.0f)) break;
-            
+
             setActionMode(ACTION_EXECUTE_WAIT, 0);
             // fallthrough
         case 12:
@@ -1933,7 +1933,7 @@ void daE_ZH_c::action() {
     if (mActionMode != ACTION_EXECUTE_SEARCH_MOVE && mActionMode != ACTION_EXECUTE_CATCH_MOVE && mActionMode != ACTION_EXECUTE_CATCH_FLY_MOVE) {
         Z2GetAudioMgr()->changeBgmStatus(99);
     }
-    
+
     if (NREG_S(0) != 0) {
         OS_REPORT("\n\n\n");
         OS_REPORT("mActionMode %d\n", mActionMode);
@@ -2131,7 +2131,7 @@ int daE_ZH_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_ZH", BMDV_ZH);
     JUT_ASSERT(3305, modelData != NULL);
 
-    mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_ZH", BCK_ZH_WAIT01), 
+    mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_ZH", BCK_ZH_WAIT01),
                                        2, 1.0f, 0, -1, &mSound, 0, 0x31000284);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
         return 0;
@@ -2142,8 +2142,8 @@ int daE_ZH_c::CreateHeap() {
         return 0;
     }
 
-    if (!mpBtkAnm->init(mpModelMorf->getModel()->getModelData(), 
-                        (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("E_ZH", BTK_ZH_LOOP), 1, 2, 
+    if (!mpBtkAnm->init(mpModelMorf->getModel()->getModelData(),
+                        (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("E_ZH", BTK_ZH_LOOP), 1, 2,
                         1.0f, 0, -1)) {
         return 0;
     }
@@ -2289,7 +2289,7 @@ cPhs_Step daE_ZH_c::create() {
                         attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
                         if (fopAcM_GetRoomNo(this) == 0x33 && !fopAcM_isSwitch(this, 18)) {
-                            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+                            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
                             setActionMode(ACTION_EXECUTE_START_DEMO, 0);
                         } else {
                             setActionMode(ACTION_EXECUTE_WAIT, 1);

@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_crvfence.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -139,7 +139,7 @@ void daObjCRVFENCE_c::BrokenAction() {
 
             field_0x5a0 = 1;
             break;
-        
+
         case 1:
             if (field_0x5ee == 0) {
                 FenceMove(field_0x5ee, &field_0x5dc, &field_0x5e8, &field_0x5d0, field_0x5f0);
@@ -173,7 +173,7 @@ void daObjCRVFENCE_c::NormalAction() {
     if (!field_0x5f4) {
         e_wb_class* wb_p = (e_wb_class*)fpcM_Search(s_obj_sub, this);
         if (wb_p != NULL && wb_p->mActionID == ACT_PL_RIDE2) {
-            fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
+            fopAcM_OffStatus(this, fopAcStts_CULL);
             fopAcM_seStartCurrent(this, Z2SE_OBJ_SAKU_BREAK, 0);
             cXyz sp5c(fopAcM_GetPosition(&wb_p->mEnemy));
             Mtx mtx;
@@ -275,7 +275,7 @@ void daObjCRVFENCE_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(field_0x5c4);
     mDoMtx_stack_c::scaleM(1.0f, 1.2f, 1.0f);
     field_0x660->setBaseTRMtx(mDoMtx_stack_c::get());
-    
+
     mDoMtx_stack_c::transS(field_0x5d0);
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::ZXYrotM(field_0x5e8);

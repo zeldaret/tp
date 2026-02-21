@@ -1,6 +1,6 @@
 /**
  * @file d_a_e_bg.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -328,7 +328,7 @@ void daE_BG_c::executeSwim() {
                         setActionMode(2, 0);
                         return;
                     }
-                } else if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+                } else if (dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW)) {
                     setActionMode(2, 0);
                     return;
                 }
@@ -446,7 +446,7 @@ void daE_BG_c::executeAttack() {
                 return;
             }
         } else {
-            if (!dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+            if (!dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW)) {
                 setActionMode(1, 0);
                 return;
             }
@@ -471,7 +471,7 @@ void daE_BG_c::executeAttack() {
         cLib_chaseF(&speedF, l_HIO.mTrackingSpeed * cM_scos(shape_angle.x), 1.0f);
         cLib_chaseF(&speed.y, l_HIO.mTrackingSpeed * cM_ssin(shape_angle.x), 1.0f);
 
-        if (!dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+        if (!dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW)) {
             if (daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
                 mMoveMode = 1;
                 field_0x69a = cM_rndFX(8192.0f);
@@ -542,7 +542,7 @@ void daE_BG_c::executeAttack() {
             field_0x6ae = 0;
         }
 
-        if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+        if (dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW)) {
             mMoveMode = 0;
             break;
         }
@@ -583,7 +583,7 @@ void daE_BG_c::executeAttack() {
         cLib_chaseF(&speedF, 0.0f, 1.0f);
         cLib_chaseF(&speed.y, 0.0f, 1.0f);
 
-        if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+        if (dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW)) {
             mMoveMode = 0;
         } else {
             if (field_0x68f == 0) {

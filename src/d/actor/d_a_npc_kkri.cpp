@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_kkri.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -300,7 +300,7 @@ daNpc_Kkri_c::~daNpc_Kkri_c() {
     if (mpMorf[0] != NULL) {
         mpMorf[0]->stopZelAnime();
     }
-    
+
 #if DEBUG
     if (mpHIO != NULL) {
         mpHIO->removeHIO();
@@ -677,10 +677,10 @@ void daNpc_Kkri_c::action() {
 }
 
 void daNpc_Kkri_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw) {
@@ -1107,7 +1107,7 @@ int daNpc_Kkri_c::fearWait(void*) {
             } else {
                 mFindCount = 0;
                 fopAcM_Search(srchYm, this);
-                
+
                 int alive_ym_cnt = 0;
                 for (int i = 0; i < mFindCount; i++) {
                     if (mFindActorPtrs[i]->health > 0) {

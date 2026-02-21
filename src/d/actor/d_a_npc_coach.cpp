@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_coach.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -410,7 +410,7 @@ void daNpcCoach_c::initCoachPosition(Vec& i_pos, SVec& i_angle) {
     work.set(mChCoach.field_0x5e0.x, mChCoach.field_0x5e0.y + 500.0f, mChCoach.field_0x5e0.z);
 
     if (fopAcM_gc_c::gndCheck(&work)) {
-        mChCoach.field_0x5e0.y = fopAcM_gc_c::getGroundY(); 
+        mChCoach.field_0x5e0.y = fopAcM_gc_c::getGroundY();
     }
 }
 
@@ -749,7 +749,7 @@ int daNpcCoach_c::createHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_HARNESS);
-    
+
     JUT_ASSERT(2762, modelData != NULL);
 
     mChHarness.mHarnessModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -775,9 +775,9 @@ int daNpcCoach_c::createHeap() {
 
         JUT_ASSERT(2782, FALSE);
     }
-   
+
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_COACH);
-    
+
     JUT_ASSERT(2787, modelData != NULL);
 
     mChCoach.mCoachModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -807,7 +807,7 @@ int daNpcCoach_c::createHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_YELIA);
-    
+
     JUT_ASSERT(2816, modelData != NULL);
 
     mChYelia.mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, BCK_YELIA_WAIT),
@@ -948,7 +948,7 @@ void daNpcCoach_c::checkCoachDamage() {
     ((daCoach2D_c*)fpcM_SearchByID(field_0x2554))->setHitCount((mTotalDmgRecv / (attr().damage_durability / 20)));
 
     if (mTotalDmgRecv >= attr().damage_durability) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
         mChHorse.field_0x784 = 0.0f;
 
         daNpcTheB_c* telmaB_p = (daNpcTheB_c*)fpcM_SearchByID(parentActorID);
@@ -1472,7 +1472,7 @@ void daNpcCoach_c::calcHarnessMotion() {
 void daNpcCoach_c::calcFrontWheelRotate() {
     if (speedF != 0.0f) {
         f32 fVar1 = mChHarness.field_0x6ec.absXZ(mChHarness.field_0x6e0);
-        int dist_ang = cLib_distanceAngleS(mChHarness.field_0x700.y, 
+        int dist_ang = cLib_distanceAngleS(mChHarness.field_0x700.y,
                                            cLib_targetAngleY(&mChHarness.field_0x6ec, &mChHarness.field_0x6e0));
         f32 fVar2 = (dist_ang < 0x4000) ? fVar1 / 345.5751953125f : -(fVar1 / 345.5751953125f);
 
@@ -1612,9 +1612,9 @@ void daNpcCoach_c::setHorseAnm(int i_index) {
     if (mChHorse.field_0x788 != i_index) {
         mChHorse.field_0x788 = i_index;
 
-        J3DAnmTransform* anm = (J3DAnmTransform*)(l_horseAnmParam[i_index].field_0x0 >= 0 ? 
+        J3DAnmTransform* anm = (J3DAnmTransform*)(l_horseAnmParam[i_index].field_0x0 >= 0 ?
                                  dComIfG_getObjectRes(l_arcName, l_horseAnmParam[i_index].field_0x0) : NULL);
-        J3DAnmTransform* anm_2 = l_horseAnmParam[i_index].field_0xc >= 0 ? 
+        J3DAnmTransform* anm_2 = l_horseAnmParam[i_index].field_0xc >= 0 ?
                                  (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, l_horseAnmParam[i_index].field_0xc) : NULL;
 
         f32 frame = mChHorse.mpModelMorf->getFrame();
@@ -2027,7 +2027,7 @@ cPhs_Step daNpcCoach_c::create() {
 
 void daNpcCoach_c::create_init() {
     if (strcmp(dComIfGp_getStartStageName(), "F_SP123") == 0) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
     }
 
     fopAcM_setStageLayer(this);

@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_toby.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -760,7 +760,7 @@ int daNpc_Toby_c::evtCutProc() {
         }
 
         return TRUE;
-    } 
+    }
 
     return FALSE;
 }
@@ -797,9 +797,9 @@ void daNpc_Toby_c::action() {
 }
 
 void daNpc_Toby_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw) {
@@ -1072,7 +1072,7 @@ int daNpc_Toby_c::cutTobyHouseFire(int arg0) {
         retval = 1;
         break;
 
-    case 3: 
+    case 3:
         if (mMotionSeqMngr.getNo() != 19) {
             mpMorf[0]->setPlaySpeed(mPlaySpeed);
             mBckAnm.setPlaySpeed(mPlaySpeed);
@@ -1084,7 +1084,7 @@ int daNpc_Toby_c::cutTobyHouseFire(int arg0) {
         action();
         break;
 
-    case 4: 
+    case 4:
         if (cLib_calcTimer(&mEventTimer) == 0) {
             retval = 1;
         }
@@ -1381,15 +1381,15 @@ int daNpc_Toby_c::cutRepairSCannon(int arg0) {
                     mHide = 0;
                     mMotionSeqMngr.setNo(0x15, 0.0f, 0, 0);
                     break;
-                case 1:   
+                case 1:
                     mHide = 0;
                     mMotionSeqMngr.setNo(0x16, 0.0f, 0, 0);
                     break;
-                case 2:   
+                case 2:
                     mHide = 0;
                     mMotionSeqMngr.setNo(0x17, 0.0f, 0, 0);
                     break;
-                default:  
+                default:
                     mHide = 1;
                     break;
                 }

@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_batta.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -316,7 +316,7 @@ void daObjBATTA_c::bin_wait() {
     if (field_0x9e8 == 0) {
         J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("Bat", 8);
         mpMorf->setAnm(anm, 2, 4.0f, 1.0f, 0.0f, -1.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
         mDraw = false;
         gravity = 0.0f;
         maxFallSpeed = 0.0f;
@@ -386,7 +386,7 @@ void daObjBATTA_c::hook() {
             batta_setParticle();
         }
 
-        if (!fopAcM_CheckStatus(this, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+        if (!fopAcM_CheckStatus(this, fopAcStts_HOOK_CARRY_NOW)) {
             setAction(&daObjBATTA_c::wait);
         }
     }
@@ -476,7 +476,7 @@ void daObjBATTA_c::action() {
 void daObjBATTA_c::hit_check() {
     dCcU_AtInfo info;
     mStts.Move();
-    
+
     if (mSph.ChkTgHit()) {
         info.mpCollider = mSph.GetTgHitObj();
         if (info.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
@@ -497,7 +497,7 @@ int daObjBATTA_c::execute() {
         batta_setParticle();
         return 1;
     }
-    
+
     if (field_0x9f2 != 0) {
         field_0x9f2--;
     }
@@ -592,21 +592,21 @@ int daObjBATTA_c::create() {
         if (field_0x9f0 == 3) {
             field_0x9f0 = 0;
         }
-        
+
         mSex = (fopAcM_GetParam(this) & 0x10) >> 4;
         if (mSex != 0) {
             scale.setall(l_HIO.mModelScaleFemale);
         } else {
             scale.setall(l_HIO.mModelScaleMale);
         }
-        
+
         if (uVar9 == 15) {
             uVar9 = 0;
         }
-        
+
         setItemNo(l_batta_sex[mSex]);
         setSaveBitNo(l_musiya_num[mSex]);
-        
+
         if (field_0x9f0 != 2) {
             if (uVar9 != 0) {
                 if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_MALE]]) || !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[l_musiya_num[SEX_FEMALE]])) {
@@ -629,9 +629,9 @@ int daObjBATTA_c::create() {
                 }
             }
         }
-        
+
         mParticleScale = 0.0f;
-        
+
         OS_REPORT("/////////////////// BATTA ////////////////////////\n");
 
         if (!fopAcM_entrySolidHeap(this, useHeapInit, 0xb00)) {
@@ -639,32 +639,32 @@ int daObjBATTA_c::create() {
         }
 
         OS_REPORT("/////////////////// BATTA SET OK /////////////////\n");
-        
+
         if (!hio_set) {
             hio_set = true;
             mIsHIOOwner = true;
             // Golden Bugs
             l_HIO.mId = mDoHIO_CREATE_CHILD("黄金蟲(バッタ)", &l_HIO);
         }
-        
+
         J3DModel* model = mpMorf->getModel();
         fopAcM_SetMtx(this, model->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);
         fopAcM_SetMax(this, 50.0f, 50.0f, 50.0f);
-        
+
         attention_info.flags = 0;
         health = 10;
         field_0x560 = 10;
-        
+
         mCreature.init(&current.pos, &eyePos, 3, 1);
-        
+
         if (field_0x9f0 == 0) {
             attention_info.distances[fopAc_attn_CARRY_e] = 0x5d;
             mStts.Init(100, 0, this);
             mSph.Set(cc_sph_src);
             mSph.SetStts(&mStts);
         }
-        
+
         if (field_0x9f0 == 2) {
             setAction(&daObjBATTA_c::bin_wait);
         } else {
@@ -676,7 +676,7 @@ int daObjBATTA_c::create() {
             current.angle.y = cM_rndFX(32768.0f);
             setAction(&daObjBATTA_c::wait);
         }
-        
+
         daObjBATTA_Execute(this);
     }
     return rv;

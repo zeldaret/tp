@@ -1,6 +1,6 @@
 /**
  * @file d_a_obj_tombo.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -595,7 +595,7 @@ bool daObjTOMBO_c::CreateChk() {
             if (dMenu_Insect_c::isCatchNotGiveInsect(l_tom_itemno[mSex])) {
                 return 0;
             }
-            
+
             if ((mSex == SEX_MALE &&
                     !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[l_musiya_num[mSex]])) ||
                 (mSex == SEX_FEMALE &&
@@ -617,7 +617,7 @@ int daObjTOMBO_c::create() {
         if (field_0x75c == 2) {
             field_0x56c = 0;
             shape_angle.x -= 0x2000;
-            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
         } else {
             mDraw = true;
         }

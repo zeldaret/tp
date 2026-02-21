@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_zelRo.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -178,7 +178,7 @@ cPhs_Step daNpc_ZelRo_c::create() {
 
         OS_REPORT("\t(%s:%d) flowNo:%d, PathNo:%02x<%08x> ", fopAcM_getProcNameString(this), mType, mFlowNodeNo,
                   (getPath() >> 32) & 0xFF, fopAcM_GetParam(this));
-        
+
         if (isDelete()) {
             OS_REPORT("===>isDelete:TRUE\n");
             return cPhs_ERROR_e;
@@ -189,7 +189,7 @@ cPhs_Step daNpc_ZelRo_c::create() {
 
         fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
 
         mSound.init(&current.pos, &eyePos, 3, 1);
 
@@ -269,7 +269,7 @@ int daNpc_ZelRo_c::Execute() {
 
 int daNpc_ZelRo_c::Draw() {
     J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
-    
+
     if (mpMatAnm[0] != NULL) {
         mdlData_p->getMaterialNodePointer(getEyeballLMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
@@ -498,7 +498,7 @@ void daNpc_ZelRo_c::beforeMove() {
 
 void daNpc_ZelRo_c::setAttnPos() {
     cXyz sp48(10.0f, -30.0f, 0.0f);
-    
+
     mStagger.calc(FALSE);
     mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp48, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
                      mpHIO->m.common.body_angleX_min, mpHIO->m.common.body_angleX_max,
@@ -633,7 +633,7 @@ int daNpc_ZelRo_c::talk(void* param_1) {
                     bVar1 = true;
                 }
             }
-        
+
             if (bVar1 && talkProc(NULL, FALSE, NULL, FALSE)) {
                 mPlayerActorMngr.entry(daPy_getPlayerActorClass());
                 dComIfGp_event_reset();
