@@ -4325,7 +4325,7 @@ static void damage_check(e_rd_class* i_this) {
                     }
 
                     s16 cur_health = enemy->health; // unused
-                    OS_REPORT(" HIT AT  %d\n", i_this->mAtInfo.mAttackPower);
+                    OS_REPORT(" HIT AT  %d\n", i_this->AtInfo.mAttackPower);
                     if (i_this->one_hit_kill != 0 && (i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_SLINGSHOT) || 
                         (i_this->AtInfo.mHitType != 1 && i_this->AtInfo.mHitType != 16 && i_this->AtInfo.mHitType != 2))) {
                         i_this->damage_timer = 1000;
