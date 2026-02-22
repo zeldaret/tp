@@ -41,7 +41,7 @@ public:
     /* 0x0680 */ int field_0x680;
     /* 0x0684 */ dJntCol_c mJntCol;
     /* 0x0694 */ J3DModel* arrow;
-    /* 0x0698 */ mDoExt_McaMorfSO* mpMorfBowAnm;
+    /* 0x0698 */ mDoExt_McaMorfSO* bow_anm;
     /* 0x069C */ mDoExt_McaMorf* mpMorfHornAnm;
     /* 0x06A0 */ s8 field_0x6a0;
     /* 0x06A4 */ cXyz field_0x6a4;

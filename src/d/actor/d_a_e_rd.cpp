@@ -56,7 +56,7 @@ public:
     /* 0x39 */ u8 invulnerable;             // 不死身              (Invulnerability)
     /* 0x3A */ u8 eye_polygon;              // 目ポリゴン          (Eye polygon)
     /* 0x3B */ u8 one_hit_kill;             // 一撃必殺            (One hit kill)
-    /* 0x3C */ f32 field_0x3c;              // 一騎（ダ）サイズ     (One-man army (Da) size)
+    /* 0x3C */ f32 ikki_boss_size;              // 一騎（ダ）サイズ     (One-man army (Da) size)
     /* 0x40 */ f32 jump_g;                  // 飛びＧ              (Jump G)
     /* 0x44 */ f32 jump_z;                  // 飛びＺ              (Jump Z)
     /* 0x48 */ f32 jump_z_suspended;        // 飛びＺ（騎乗停止）   (Jump Z (Stop riding))
@@ -138,7 +138,7 @@ enum E_RD_RES_FILE_ID {
     /* 0x4A */ BMDR_RD_EYE,
 };
 
-enum Action_e {
+enum Action {
     /* 0x00 */ ACTION_NORMAL        = 0,
     /* 0x03 */ ACTION_FIGHT_RUN     = 3,
     /* 0x04 */ ACTION_FIGHT         = 4,
@@ -221,7 +221,7 @@ daE_RD_HIO_c::daE_RD_HIO_c() {
     invulnerable = 0;
     eye_polygon = 1;
     one_hit_kill = 0;
-    field_0x3c = 75.0f;
+    ikki_boss_size = 75.0f;
     jump_z_suspended = 5.0f;
     jump_z = 10.0f;
     jump_y = 33.0f;
@@ -507,8 +507,8 @@ static int daE_RD_Draw(e_rd_class* i_this) {
         g_env_light.setLightTevColorType_MAJI(i_this->arrow, &enemy->tevStr);
         mDoExt_modelUpdateDL(i_this->arrow);
     } else if (i_this->weapon_type >= 2) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mpMorfBowAnm->getModel(), &enemy->tevStr);
-        i_this->mpMorfBowAnm->entryDL();
+        g_env_light.setLightTevColorType_MAJI(i_this->bow_anm->getModel(), &enemy->tevStr);
+        i_this->bow_anm->entryDL();
 
         if (i_this->field_0x9a2 != 0) {
             g_env_light.setLightTevColorType_MAJI(i_this->arrow, &enemy->tevStr);
@@ -800,10 +800,10 @@ static void ride_off(e_rd_class* i_this) {
     }
 
     i_this->ride_mode = 0;
-    if (i_this->mpMorfBowAnm != NULL) {
-        i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0,
+    if (i_this->bow_anm != NULL) {
+        i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0,
                                     1.0f, 1.0f, 0.0f, -1.0f);
-        i_this->mpMorfBowAnm->setFrame(10.0f);
+        i_this->bow_anm->setFrame(10.0f);
     }
 
     enemy->home.pos = enemy->current.pos;
@@ -1637,7 +1637,7 @@ static void e_rd_bow(e_rd_class* i_this) {
     switch (i_this->mode) {
         case 0:
             anm_init(i_this, BCK_RD_SHOOT_READY, 5.0f, 0, 1.0f);
-            i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 7),
+            i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 7),
                                          0, 5.0f, 0.9f + TREG_F(3), 0.0f, -1.0f);
             i_this->mode = 1;
             enemy->speedF = 0.0f;
@@ -1665,7 +1665,7 @@ static void e_rd_bow(e_rd_class* i_this) {
             if (i_this->timer[0] == 0) {
                 if (i_this->field_0x9a4 == 0 && !dMsgObject_isTalkNowCheck()) {
                     anm_init(i_this, BCK_RD_SHOOT, 1.0f, 0, 1.0f);
-                    i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                    i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                     i_this->mode = 3;
                 } else {
                     i_this->action = ACTION_BOW_RUN;
@@ -1745,7 +1745,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
 
         case 2:
             anm_init(i_this, BCK_RD_SHOOT_READY, 5.0f, 0, 1.0f);
-            i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 7),
+            i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 7),
                                          0, 5.0f, 0.9f + TREG_F(3), 0.0f, -1.0f);
             i_this->mode = 3;
             enemy->speedF = 0.0f;
@@ -1778,7 +1778,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
 
                 if (!dMsgObject_isTalkNowCheck() && i_this->field_0x9a4 == 0) {
                     anm_init(i_this, BCK_RD_SHOOT, 1.0f, 0, 1.0f);
-                    i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                    i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                     i_this->mode = 5;
                 }
             }
@@ -1823,7 +1823,7 @@ static void e_rd_bow_ikki(e_rd_class* i_this) {
     switch (i_this->mode) {
         case 0:
             anm_init(i_this, BCK_RD_SHOOT_READY, 5.0f, 0, 1.0f);
-            i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 7),
+            i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 7),
                                          0, 5.0f, 0.9f + TREG_F(3), 0.0f, -1.0f);
             i_this->mode = 1;
             enemy->speedF = 0.0f;
@@ -1847,7 +1847,7 @@ static void e_rd_bow_ikki(e_rd_class* i_this) {
         case 2:
             if (i_this->timer[0] == 0 && i_this->field_0x9a4 == 0) {
                 anm_init(i_this, BCK_RD_SHOOT, 1.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mode = 3;
             }
 
@@ -2202,8 +2202,8 @@ static void e_rd_wb_run(e_rd_class* i_this) {
         anm_init(i_this, BCK_RD_RRUN02_BACK, 5.0f, 2, 1.0f);
         i_this->mode = 40;
 
-        if (i_this->mpMorfBowAnm != NULL) {
-            i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, BCK_RD_BOW_SHOOT),
+        if (i_this->bow_anm != NULL) {
+            i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, BCK_RD_BOW_SHOOT),
                                          0, 1.0f, 1.0f, 0.0f, -1.0f);
         }
     }
@@ -2274,7 +2274,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 } else {
                     if (i_this->timer[1] == 0 && i_this->weapon_type >= 2) {
                         anm_init(i_this, BCK_RD_RSHOOT_READY, 5.0f, 0, 1.0f);
-                        i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, BCK_RD_BOW_RREADY), 0, 5.0f, 1.0f, 0.0f, -1.0f);
+                        i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, BCK_RD_BOW_RREADY), 0, 5.0f, 1.0f, 0.0f, -1.0f);
                         i_this->mode = 30;
                     }
                 }
@@ -2366,7 +2366,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
             if (i_this->timer[1] == 0 && i_this->dis < l_HIO.mounted_launch_distance
                 && i_this->field_0x9a4 == 0 && !dComIfGp_event_runCheck()) {
                 anm_init(i_this, BCK_RD_RSHOOT, 1.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10),
+                i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10),
                                                 0, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mode = 32;
             }
@@ -2387,7 +2387,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
             if (i_this->anm_p->isStop()) {
                 anm_init(i_this, BCK_RD_RSHOOT_READY, 5.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 8),
+                i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 8),
                                                 0, 5.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mode = 30;
 
@@ -3436,7 +3436,7 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
         case 10:
             if (i_this->timer[0] == 0) {
                 anm_init(i_this, BCK_RD_SHOOT_READY, 5.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 7),
+                i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 7),
                 0, 5.0f, 0.9f + TREG_F(3), 0.0f, -1.0f);
                 i_this->mode = 11;
                 enemy->speedF = 0.0f;
@@ -3465,7 +3465,7 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
             
             if (i_this->timer[0] == 0 && !dMsgObject_isTalkNowCheck() && i_this->field_0x9a4 == 0) {
                 anm_init(i_this, BCK_RD_SHOOT, 1.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mode = 13;
             }
 
@@ -4490,8 +4490,8 @@ static void damage_check(e_rd_class* i_this) {
                     }
 
                     enemy->speedF = 0.0f;
-                    if (i_this->mpMorfBowAnm != NULL) {
-                        i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                    if (i_this->bow_anm != NULL) {
+                        i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                     }
                     break;
             }
@@ -4583,7 +4583,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
         case 10:
             if (i_this->anm_p->isStop()) {
                 anm_init(i_this, BCK_RD_SHOOT_READY, 5.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 7),
+                i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 7),
                                              0, 5.0f, 0.9f + TREG_F(3), 0.0f, -1.0f);
                 i_this->mode = 11;
                 enemy->speedF = 0.0f;
@@ -4613,7 +4613,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
 
             if (i_this->timer[0] == 0 && i_this->field_0x9a4 == 0) {
                 anm_init(i_this, BCK_RD_SHOOT, 1.0f, 0, 1.0f);
-                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mode = 13;
             }
 
@@ -4998,8 +4998,8 @@ static void action(e_rd_class* i_this) {
 
     if (desert_substage != 0) {
         if (i_this->field_0x9a0 == 0) {
-            dScnKy_env_light_c* env_light_p = dKy_getEnvlight();
-            int timeH = env_light_p->daytime / 15.0f;
+            dScnKy_env_light_c* kankyo = dKy_getEnvlight();
+            int timeH = kankyo->daytime / 15.0f;
             if (timeH >= 6 && timeH <= 17) {
                 i_this->attack_range = 10000.0f;
             }
@@ -5008,9 +5008,9 @@ static void action(e_rd_class* i_this) {
         }
     }
 
-    s16 sp_0x2c = i_this->action;
+    s16 curr_action = i_this->action;
     damage_check(i_this);
-    if (sp_0x2c == ACTION_WB_SEARCH && i_this->action != ACTION_WB_SEARCH) {
+    if (curr_action == ACTION_WB_SEARCH && i_this->action != ACTION_WB_SEARCH) {
         e_wb_class* bullbo_p = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
         if (bullbo_p != NULL && bullbo_p->mActionID == 1) {
             bullbo_p->mActionID = 0;
@@ -6501,11 +6501,11 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         mDoMtx_stack_c::XrotM((s16) enemy->shape_angle.x);
         mDoMtx_stack_c::ZrotM(enemy->shape_angle.z);
 
-        f32 fVar1 = l_HIO.model_size * enemy->scale.x;
+        f32 scale = l_HIO.model_size * enemy->scale.x;
         if (i_this->actor_set != 0) {
-            fVar1 *= l_HIO.leader_size_ratio;
+            scale *= l_HIO.leader_size_ratio;
         }
-        mDoMtx_stack_c::scaleM(fVar1, fVar1, fVar1);
+        mDoMtx_stack_c::scaleM(scale, scale, scale);
 
         J3DModel* my_model_p = i_this->anm_p->getModel();
         my_model_p->setBaseTRMtx(mDoMtx_stack_c::get());
@@ -6579,22 +6579,22 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
             for (int i = 0; i < 2; i++) {
                 MtxPush();
-                s16 sVar2, sVar1;
+                s16 x, y;
                 if (i == 0) {
                     mae.set(38.0f, 0.0f, 0.0f);
                     MtxPosition(&mae, &ato);
                     mae = camera->lookat.eye - ato;
 
-                    sVar1 = cM_atan2s(mae.x, mae.z);
-                    sVar2 = -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z));
-                    fVar1 = mae.abs() * (0.001f + JREG_F(8));
-                    if (fVar1 > 2.0f + JREG_F(17)) {
-                        fVar1 = 2.0f + JREG_F(17);
+                    y = cM_atan2s(mae.x, mae.z);
+                    x = -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z));
+                    scale = mae.abs() * (0.001f + JREG_F(8));
+                    if (scale > 2.0f + JREG_F(17)) {
+                        scale = 2.0f + JREG_F(17);
                     }
 
-                    dScnKy_env_light_c* env_light = dKy_getEnvlight();
-                    int my_scale = env_light->daytime / 15.0f;
-                    fVar1 *= i_this->field_0x6cc * time_scale[my_scale];
+                    dScnKy_env_light_c* kankyo = dKy_getEnvlight();
+                    int timeH = kankyo->daytime / 15.0f;
+                    scale *= i_this->field_0x6cc * time_scale[timeH];
                     mae.set(38.0f, 0.0f, 6.0f);
                 } else {
                     mae.set(38.0f, 0.0f, -6.0f);
@@ -6602,9 +6602,9 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
                 MtxPosition(&mae, &ato);
                 MtxTrans(ato.x, ato.y, ato.z, 0);
-                cMtx_YrotM(*calc_mtx, sVar1);
-                cMtx_XrotM(*calc_mtx, sVar2);
-                MtxScale(fVar1, fVar1, fVar1, 1);
+                cMtx_YrotM(*calc_mtx, y);
+                cMtx_XrotM(*calc_mtx, x);
+                MtxScale(scale, scale, scale, 1);
 
                 i_this->eye_model[i]->setBaseTRMtx(*calc_mtx);
                 MtxPull();
@@ -6663,24 +6663,24 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
 
         if (i_this->actor_set != 0) {
-            f32 fVar2 = 60.0f;
-            f32 fVar1 = 0.0f;
+            f32 rad = 60.0f;
+            f32 size = 0.0f;
             if (i_this->actor_set == 2) {
-                fVar2 = 90.0f;
-                fVar1 = l_HIO.field_0x3c;
+                rad = 90.0f;
+                size = l_HIO.ikki_boss_size;
             }
 
             mae.set(ZREG_F(0), ZREG_F(1), ZREG_F(2));
             MTXCopy(model->getAnmMtx(2), *calc_mtx);
             MtxPosition(&mae, &ato);
             i_this->cc_sph[2].SetC(ato + cr);
-            i_this->cc_sph[2].SetR((fVar2 + ZREG_F(3)) + fVar1);
+            i_this->cc_sph[2].SetR((rad + ZREG_F(3)) + size);
 
             mae.set(ZREG_F(4), ZREG_F(5), ZREG_F(6));
             MTXCopy(model->getAnmMtx(22), *calc_mtx);
             MtxPosition(&mae, &ato);
             i_this->cc_sph[1].SetC(ato + cr);
-            i_this->cc_sph[1].SetR(fVar2 + ZREG_F(7));
+            i_this->cc_sph[1].SetR(rad + ZREG_F(7));
         } else {
             mae.set(BREG_F(14), BREG_F(15), BREG_F(16));
             MTXCopy(model->getAnmMtx(12), *calc_mtx);
@@ -6780,7 +6780,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
         i_this->field_0x9a8 = i_this->bow_shake_timer * cM_ssin(i_this->bow_shake_timer * (TREG_S(9) + 0x7800)) * (TREG_F(5) + 100.0f);
 
-        model = i_this->mpMorfBowAnm->getModel();
+        model = i_this->bow_anm->getModel();
         if (i_this->field_0x5bd == 0) {
             model->setBaseTRMtx(i_this->anm_p->getModel()->getAnmMtx(19));
         } else {
@@ -6792,8 +6792,8 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             model->setBaseTRMtx(*calc_mtx);
         }
 
-        i_this->mpMorfBowAnm->play(0, 0);
-        i_this->mpMorfBowAnm->modelCalc();
+        i_this->bow_anm->play(0, 0);
+        i_this->bow_anm->modelCalc();
 
         if (i_this->field_0x9a2 != 0) {
             MTXCopy(i_this->anm_p->getModel()->getAnmMtx(24), *calc_mtx);
@@ -7228,14 +7228,14 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
             i_this->arrow->setBaseTRMtx(mDoMtx_stack_c::get());
         } else if (i_this->weapon_type >= 2) {
-            i_this->mpMorfBowAnm = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->resName, BMDR_RD_BOW), NULL, NULL,
+            i_this->bow_anm = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->resName, BMDR_RD_BOW), NULL, NULL,
                                                        (J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, BCK_RD_BOW_SHOOT), 0, 1.0f,
                                                        0, -1, NULL, 0x80000, 0x11000084);
-            if (i_this->mpMorfBowAnm == NULL || i_this->mpMorfBowAnm->getModel() == NULL) {
+            if (i_this->bow_anm == NULL || i_this->bow_anm->getModel() == NULL) {
                 return 0;
             }
 
-            model2 = i_this->mpMorfBowAnm->getModel();
+            model2 = i_this->bow_anm->getModel();
             model2->setUserArea((uintptr_t)i_this);
             model2->setBaseTRMtx(mDoMtx_stack_c::get());
 
