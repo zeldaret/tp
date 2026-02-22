@@ -811,12 +811,12 @@ static void ride_off(e_rd_class* i_this) {
 
 static void* s_wb_sub(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
-        e_wb_class* wild_boar_p = (e_wb_class*) i_actor;
+        e_wb_class* boar = (e_wb_class*) i_actor;
         e_rd_class* i_this = (e_rd_class*)i_data;
-        if (wild_boar_p->mActionID != ACTION_DROP && wild_boar_p->mActionID != ACTION_DAMAGE
-            && wild_boar_p->mActionID != ACTION_A_DAMAGE && wild_boar_p->mActionID != ACTION_STAND) {
-            if (i_this->actor_set == wild_boar_p->field_0x79d &&
-                (data_80519230 != 0 || (wild_boar_p->mStatusFlags & 3) != 3) && target_info_count < 10) {
+        if (boar->mActionID != ACTION_DROP && boar->mActionID != ACTION_DAMAGE
+            && boar->mActionID != ACTION_A_DAMAGE && boar->mActionID != ACTION_STAND) {
+            if (i_this->actor_set == boar->field_0x79d &&
+                (data_80519230 != 0 || (boar->mStatusFlags & 3) != 3) && target_info_count < 10) {
                 target_info[target_info_count] = (fopAc_ac_c*)i_actor;
                 target_info_count++;
             }
@@ -4038,8 +4038,8 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
                     anm_init(i_this, e_rdb_class::BCK_RB_RWAIT, 10.0f, 2, 1.0f);
                 }
             } else {
-                e_rdb_class* king_bulblin = (e_rdb_class*)fpcM_Search(s_rdb_sub, i_this);
-                if (king_bulblin != NULL && king_bulblin->mDemoMode == 14) {
+                e_rdb_class* rdb = (e_rdb_class*)fpcM_Search(s_rdb_sub, i_this);
+                if (rdb != NULL && rdb->mDemoMode == 14) {
                     anm_init(i_this, e_rdb_class::BCK_RB_RNEIGH, 3.0f, 0, 1.0f);
                     boar->mActionMode++;
                     i_this->mode = 4;
@@ -5011,9 +5011,9 @@ static void action(e_rd_class* i_this) {
     s16 curr_action = i_this->action;
     damage_check(i_this);
     if (curr_action == ACTION_WB_SEARCH && i_this->action != ACTION_WB_SEARCH) {
-        e_wb_class* bullbo_p = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
-        if (bullbo_p != NULL && bullbo_p->mActionID == 1) {
-            bullbo_p->mActionID = 0;
+        e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
+        if (boar != NULL && boar->mActionID == 1) {
+            boar->mActionID = 0;
         }
     }
 
