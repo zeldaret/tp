@@ -276,7 +276,7 @@ void daE_RD_HIO_c::genMessage(JORMContext* ctext) {
     // one-hit kill
     ctext->genCheckBox("一撃必殺", &one_hit_kill, 0x1);
     // ikki (da) size
-    ctext->genSlider("一騎（ダ）サイズ", &field_0x3c, 0.0f, 150.0f);
+    ctext->genSlider("一騎（ダ）サイズ", &ikki_boss_size, 0.0f, 150.0f);
 }
 #endif
 
