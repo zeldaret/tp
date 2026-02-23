@@ -6,7 +6,7 @@
 #include <dolphin/mtx.h>
 #include "global.h"
 
-class J3DTransformInfo;
+struct J3DTransformInfo;
 
 struct JUTDataBlockHeader {
     /* 0x0 */ u32 mType;

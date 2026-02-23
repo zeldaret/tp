@@ -221,7 +221,7 @@ private:
     /* 0x14 */ J3DAnmCluster* mpAnm;
 };
 
-class J3DTransformInfo;
+struct J3DTransformInfo;
 
 class mDoExt_AnmRatioPack {
 public:
