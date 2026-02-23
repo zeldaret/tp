@@ -7,8 +7,8 @@
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
-template<> SpkSystem* JASGlobalInstance<SpkSystem>::sInstance;
-template<> SpkSoundHolder* JASGlobalInstance<SpkSoundHolder>::sInstance;
+template<> SpkSystem* JASGlobalInstance<SpkSystem>::sInstance JAS_GLOBAL_INSTANCE_INIT;
+template<> SpkSoundHolder* JASGlobalInstance<SpkSoundHolder>::sInstance JAS_GLOBAL_INSTANCE_INIT;
 
 const static s32 cConfigVolumeMax = 15;
 
