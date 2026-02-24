@@ -962,7 +962,7 @@ static BOOL pl_check(e_rd_class* i_this, f32 range, s16 angle) {
     }
 
     if (i_this->dis < range) {
-        s16 target = enemy->shape_angle.y - i_this->target_ya;
+        s16 target = enemy->shape_angle.y - i_this->angleY;
         if (target < angle && target > (s16)-angle && !other_bg_check(i_this, actor)) {
             return TRUE;
         }
@@ -1017,7 +1017,7 @@ static BOOL way_check(e_rd_class* i_this) {
     if (strcmp(dComIfGp_getStartStageName(), "F_SP128") == 0 && enemy->current.pos.z < -8400.0f) {
         mae.x = enemy->home.pos.x - enemy->current.pos.x;
         mae.z = enemy->home.pos.z - enemy->current.pos.z;
-        i_this->angleY = cM_atan2s(mae.x, mae.z);
+        i_this->target_ya = cM_atan2s(mae.x, mae.z);
         return TRUE;
     }
 
@@ -1040,7 +1040,7 @@ static BOOL way_check(e_rd_class* i_this) {
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                 ANGLE_ADD(angle, 0x1000);
             } else {
-                i_this->angleY = angle;
+                i_this->target_ya = angle;
                 return TRUE;
             }
         }
@@ -1191,7 +1191,7 @@ static void e_rd_normal(e_rd_class* i_this) {
         case 4:
             i_this->field_0x9c8 = 0xFF;
             if (i_this->timer[0] == 0) {
-                i_this->angleY = enemy->current.angle.y + 0x8000 + (s16)cM_rndFX(4000.0f);
+                i_this->target_ya = enemy->current.angle.y + 0x8000 + (s16)cM_rndFX(4000.0f);
                 anm_init(i_this, BCK_RD_WALK, 10.0f, 2, 1.0f);
                 i_this->mode = 3;
                 i_this->timer[0] = cM_rndF(100.0f) + 100.0f;
@@ -1199,8 +1199,8 @@ static void e_rd_normal(e_rd_class* i_this) {
     }
 
     if (speed) {
-        cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 8, 0x400);
-        s16 range = enemy->current.angle.y - i_this->angleY;
+        cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 8, 0x400);
+        s16 range = enemy->current.angle.y - i_this->target_ya;
         if (range > 0x400 || range < -0x400) {
             speed = 0.0f;
         }
@@ -1353,8 +1353,8 @@ static void e_rd_fight_run(e_rd_class* i_this) {
         }
 
         if (i_this->mode >= 0) {
-            cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 4, 0x800);
-            s16 range = enemy->current.angle.y - i_this->target_ya;
+            cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 4, 0x800);
+            s16 range = enemy->current.angle.y - i_this->angleY;
             if (range > 0x400 || range < -0x400) {
                 speed = 0.0f;
             }
@@ -1365,7 +1365,7 @@ static void e_rd_fight_run(e_rd_class* i_this) {
         if (!attack_flag) {
             i_this->action = ACTION_NORMAL;
             if (i_this->mode == 5) {
-                i_this->angleY = enemy->current.angle.y + 0x8000 + (s16)cM_rndFX(4000.0f);
+                i_this->target_ya = enemy->current.angle.y + 0x8000 + (s16)cM_rndFX(4000.0f);
                 anm_init(i_this, BCK_RD_WALK, 10.0f, 2, 1.0f);
                 i_this->mode = 3;
                 i_this->timer[0] = cM_rndF(100.0f) + 100.0f;
@@ -1447,7 +1447,7 @@ static void e_rd_fight(e_rd_class* i_this) {
 
         case 1: {
             if (i_this->timer[1] != 0) {
-                cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 4, 0x800);
+                cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 4, 0x800);
             }
 
             if (frame == 30) {
@@ -1700,7 +1700,7 @@ static void e_rd_bow(e_rd_class* i_this) {
             break;
     }
 
-    cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 4, 0x1000);
+    cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 4, 0x1000);
 }
 
 static void* s_command3_sub(void* i_actor, void* i_data) {
@@ -1811,7 +1811,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
             break;
     }
 
-    cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 4, 0x1000);
+    cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 4, 0x1000);
     return rt;
 }
 
@@ -2003,7 +2003,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                     }
 
                     mae = ato - enemy->current.pos;
-                    i_this->angleY = (s16) cM_atan2s(mae.x, mae.z);
+                    i_this->target_ya = (s16) cM_atan2s(mae.x, mae.z);
                     i_this->mode = 3;
                     anm_init(i_this, BCK_RD_RUN, 5.0f, 2, 1.5f);
                 }
@@ -2028,8 +2028,8 @@ static void e_rd_wb_search(e_rd_class* i_this) {
 
                 ato += actor->current.pos;
                 mae = ato - enemy->current.pos;
-                i_this->angleY = (s16) cM_atan2s(mae.x, mae.z);
-                cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 2, 0x400);
+                i_this->target_ya = (s16) cM_atan2s(mae.x, mae.z);
+                cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 2, 0x400);
                 mae = ato - enemy->current.pos;
                 mae.y = 0.0f;
 
@@ -2260,7 +2260,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 if (i_this->weapon_type == 1 && actor->speedF > 10.0f) {
                     if (player_dist < TREG_F(11) + 850.0f && player_dist < TREG_F(11) + 750.0f
                         && i_this->timer[2] == 0) {
-                        s16 range = enemy->shape_angle.y - i_this->target_ya;
+                        s16 range = enemy->shape_angle.y - i_this->angleY;
                         if (range > 0x1000 && range < 0x4000) {
                             i_this->mode = 10;
                         } else if (range < -0x1000 && range > -0x4000) {
@@ -2600,7 +2600,7 @@ static void e_rd_bomb_action(e_rd_class* i_this) {
         case 2:
             if (bomb->speedF < 0.1f && !bomb->checkStateCarry()) {
                 if (JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) < 250.0f) {
-                    range = i_this->target_ya - enemy->shape_angle.y;
+                    range = i_this->angleY - enemy->shape_angle.y;
                     if (range < 0x4000 && range > -0x4000) {
                         i_this->mode = 5;
                         break;
@@ -2617,7 +2617,7 @@ static void e_rd_bomb_action(e_rd_class* i_this) {
             break;
 
         case 3:
-            angle = i_this->target_ya;
+            angle = i_this->angleY;
             if (JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) < 500.0f) {
                 i_this->mode = 0;
             }
@@ -2637,7 +2637,7 @@ static void e_rd_bomb_action(e_rd_class* i_this) {
 
         case 6:
             i_this->field_0x9ad = 0;
-            angle = i_this->target_ya;
+            angle = i_this->angleY;
             if ((int)i_this->anm_p->getFrame() <= 10) {
                 cMtx_YrotS(*calc_mtx, angle);
                 mae.x = TREG_F(15) + -30.0f;
@@ -3218,12 +3218,12 @@ static void e_rd_drop(e_rd_class* i_this) {
                 i_this->mode = 2;
 
                 if (i_this->demo_mode != 0) {
-                    i_this->angleY = i_this->target_ya;
+                    i_this->target_ya = i_this->angleY;
                 } else if (strcmp(dComIfGp_getStartStageName(), "F_SP128") == 0) {
                     // Hidden Village
-                    i_this->angleY = enemy->home.angle.y;
+                    i_this->target_ya = enemy->home.angle.y;
                 } else {
-                    i_this->angleY = gake_check(i_this, 200.0f);
+                    i_this->target_ya = gake_check(i_this, 200.0f);
                 }
 
                 fpcM_Search(s_bikkuri_sub, i_this);
@@ -3234,7 +3234,7 @@ static void e_rd_drop(e_rd_class* i_this) {
         case 2:
             i_this->sound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
             speed = 4.0f;
-            cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 8, 0x400);
+            cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 8, 0x400);
 
             if (i_this->timer[0] == 0) {
                 i_this->action = ACTION_A_DAMAGE;
@@ -3488,7 +3488,7 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
     }
 
     if (bVar1) {
-        cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 4, 0x1000);
+        cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 4, 0x1000);
     }
 
     if (i_this->dis < 500.0f) {
@@ -3623,7 +3623,7 @@ static void e_rd_commander(e_rd_class* i_this) {
         }
 
         if (bVar2) {
-            cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 2, 0x800);
+            cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 2, 0x800);
         }
     }
 }
@@ -3638,7 +3638,7 @@ static void e_rd_excite(e_rd_class* i_this) {
             anm_init(i_this, BCK_RD_WAIT01, 4.0f, 2, 1.0f);
             i_this->mode = 1;
             i_this->timer[0] = cM_rndF(20.0f) + 20.0f;
-            i_this->angleY = enemy->current.angle.y;
+            i_this->target_ya = enemy->current.angle.y;
             i_this->field_0x5c0 = S_find_pos;
             break;
 
@@ -3658,7 +3658,7 @@ static void e_rd_excite(e_rd_class* i_this) {
                 }
 
                 sp40 = i_this->field_0x5c0 - enemy->current.pos;
-                i_this->angleY = (s16) cM_atan2s(sp40.x, sp40.z);
+                i_this->target_ya = (s16) cM_atan2s(sp40.x, sp40.z);
             }
             break;
 
@@ -3686,8 +3686,8 @@ static void e_rd_excite(e_rd_class* i_this) {
             break;
     }
 
-    cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 2, 0x800);
-    s16 range = enemy->current.angle.y - i_this->angleY;
+    cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 2, 0x800);
+    s16 range = enemy->current.angle.y - i_this->target_ya;
     if (range > 0x400 || range < -0x400) {
         speed = 0.0f;
     }
@@ -4146,7 +4146,7 @@ static void small_damage(e_rd_class* i_this, int param_2) {
     i_this->sound.startCreatureVoice(Z2SE_EN_RD_V_DAMAGE, -1);
 
     if (param_2 == 0) {
-        s16 range = enemy->shape_angle.y - i_this->target_ya;
+        s16 range = enemy->shape_angle.y - i_this->angleY;
         if (range < -0x4000 || range > 0x4000) {
                 anm_init(i_this, BCK_RD_DAMAGE_W, 2.0f, 0, 1.0f);
             } else if (range < 0) {
@@ -4239,7 +4239,7 @@ static void damage_check(e_rd_class* i_this) {
                 i_this->damage_timer = 6;
                 i_this->AtInfo.mpCollider = i_this->cc_sph[i].GetTgHitObj();
                 if (i_this->actor_set == 3) {
-                    s16 range = enemy->shape_angle.y - i_this->target_ya;
+                    s16 range = enemy->shape_angle.y - i_this->angleY;
                     at_power_check(&i_this->AtInfo);
                     if (i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_ARROW) || i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_BOMB)) {
                         u16 uVar1;
@@ -4282,7 +4282,7 @@ static void damage_check(e_rd_class* i_this) {
                         cXyz mae, ato;
                         cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
 
-                        s16 angle_diff = enemy->shape_angle.y - i_this->target_ya;
+                        s16 angle_diff = enemy->shape_angle.y - i_this->angleY;
                         if (angle_diff < 0) {
                             mae.set(100.0f, nREG_F(9) + 150.0f, nREG_F(10) + 400.0f);
                         } else {
@@ -4452,7 +4452,7 @@ static void damage_check(e_rd_class* i_this) {
                                     i_this->timer[3] = cM_rndF(100.0f) + 200.0f;
                                     int anm_no = i_this->anm;
 
-                                    s16 angle_diff = enemy->shape_angle.y - i_this->target_ya;
+                                    s16 angle_diff = enemy->shape_angle.y - i_this->angleY;
                                     if (angle_diff < 0) {
                                         anm_init(i_this, e_rdb_class::BCK_RB_RDAMAGEL, 2.0f, 0, 1.0f);
                                     } else {
@@ -4669,7 +4669,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
     }
 
     if (rt != 0) {
-        cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 4, 0x1000);
+        cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 4, 0x1000);
     }
 
     return rt;
@@ -4696,7 +4696,7 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
         case 1:
             speed = l_HIO.movement_speed;
             vec = i_this->field_0x5c0 - enemy->current.pos;
-            i_this->angleY = cM_atan2s(vec.x, vec.z);
+            i_this->target_ya = cM_atan2s(vec.x, vec.z);
 
             if (vec.abs() < 50.0f) {
                 i_this->field_0xb00 += i_this->path_dir;
@@ -4734,7 +4734,7 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
             break;
 
         case 11:
-            cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 2, 0x800);
+            cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 2, 0x800);
             if (i_this->anm_p->isStop()) {
                 i_this->action = ACTION_FIGHT_RUN;
                 i_this->mode = -10;
@@ -4744,8 +4744,8 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
     }
 
     if (speed) {
-        cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 8, 0x400);
-        s16 range = enemy->current.angle.y - i_this->angleY;
+        cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 8, 0x400);
+        s16 range = enemy->current.angle.y - i_this->target_ya;
         if (range > 0x400 || range < -0x400) {
             speed = 0.0f;
         }
@@ -4850,7 +4850,7 @@ static void e_rd_sleep(e_rd_class* i_this) {
             break;
 
         case 11:
-            cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->target_ya, 2, 0x800);
+            cLib_addCalcAngleS2(&enemy->current.angle.y, i_this->angleY, 2, 0x800);
 
             if (i_this->anm_p->isStop()) {
                 i_this->action = ACTION_FIGHT_RUN;
@@ -4926,7 +4926,7 @@ static void e_rd_tag(e_rd_class* i_this) {
         fpcM_Search(s_tag_sub, i_this);
 
         if (rd_count < 6) {
-            csXyz angl(0, i_this->target_ya, 0);
+            csXyz angl(0, i_this->angleY, 0);
             cXyz pos;
             pos.x = cM_rndFX(200.0f) + enemy->home.pos.x;
             pos.y = enemy->home.pos.y;
@@ -4988,11 +4988,11 @@ static void action(e_rd_class* i_this) {
             i_this->dis -= BREG_F(17) + 100.0f;
         }
 
-        i_this->target_ya = fopAcM_searchPlayerAngleY(enemy);
+        i_this->angleY = fopAcM_searchPlayerAngleY(enemy);
     } else {
         mae = actor->current.pos - enemy->current.pos;
         i_this->dis = mae.abs();
-        i_this->target_ya = cM_atan2s(mae.x, mae.z);
+        i_this->angleY = cM_atan2s(mae.x, mae.z);
         i_this->attack_range = NREG_F(7) + 10000.0f;
     }
 
@@ -5766,7 +5766,7 @@ static void* s_lv9rd_sub2(void* i_actor, void* i_data) {
         ((e_rd_class*)i_actor)->mode = 2;
         anm_init((e_rd_class*)i_actor, BCK_RD_FURA2, 2.0f, 2, 1.0f);
         ((e_rd_class*)i_actor)->timer[0] = 1000;
-        ((e_rd_class*)i_actor)->angleY = ((fopEn_enemy_c*)i_actor)->home.angle.y;
+        ((e_rd_class*)i_actor)->target_ya = ((fopEn_enemy_c*)i_actor)->home.angle.y;
         dComIfGp_setHitMark(1, ((fopEn_enemy_c*)i_actor), &((fopEn_enemy_c*)i_actor)->eyePos, NULL, NULL, 0);
         ((e_rd_class*)i_actor)->sound.startCollisionSE(Z2SE_HIT_WOOD_WEAPON, 31);
         return i_actor;
@@ -5854,7 +5854,7 @@ static void demo_camera(e_rd_class* i_this) {
             i_this->demo_cam_center = enemy->current.pos;
             i_this->demo_cam_center.y = enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5);
             i_this->field_0x1300 = 2000.0f;
-            enemy->current.angle.y = i_this->target_ya;
+            enemy->current.angle.y = i_this->angleY;
             // fallthrough
         case 3:
             if (i_this->demo_timer < 85) {
@@ -5917,7 +5917,7 @@ static void demo_camera(e_rd_class* i_this) {
             i_this->demo_cam_center = enemy->current.pos;
             i_this->demo_cam_center.y = (enemy->eyePos.y - 80.0f) + 60.0f + TREG_F(5);
             i_this->demo_cam_eye = camera0->lookat.eye;
-            enemy->current.angle.y = i_this->target_ya;
+            enemy->current.angle.y = i_this->angleY;
             i_this->field_0x1300 = 2000.0f;
             // fallthrough
         case 12:
@@ -6965,7 +6965,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             if (i_this->field_0x680 == 0) {
                 int anm_no = i_this->anm;
                 if (anm_no == e_rdb_class::BCK_RB_RRUN) {
-                    s16 run_range = enemy->shape_angle.y - i_this->target_ya;
+                    s16 run_range = enemy->shape_angle.y - i_this->angleY;
                     if (run_range < 0) {
                         anm_init(i_this, e_rdb_class::BCK_RB_RPLAY_RUNR, 2.0f, 0, 1.0f);
                     } else {

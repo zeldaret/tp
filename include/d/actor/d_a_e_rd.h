@@ -33,7 +33,7 @@ public:
     /* 0x05BC */ u8 weapon_type;
     /* 0x05BD */ s8 field_0x5bd;
     /* 0x05C0 */ cXyz field_0x5c0;
-    /* 0x05CC */ s16 angleY;
+    /* 0x05CC */ s16 target_ya;
     /* 0x05D0 */ mDoExt_McaMorfSO* anm_p;
     /* 0x05D4 */ Z2CreatureEnemy sound;
     /* 0x0678 */ char* resName;
@@ -64,7 +64,7 @@ public:
     /* 0x0972 */ s16 action;
     /* 0x0974 */ s16 prev_action;
     /* 0x0978 */ f32 dis;
-    /* 0x097C */ s16 target_ya;
+    /* 0x097C */ s16 angleY;
     /* 0x0980 */ f32 attack_range;
     /* 0x0984 */ f32 waterY;
     /* 0x0988 */ u32 shadow_key;
