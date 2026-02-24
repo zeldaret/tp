@@ -64,7 +64,7 @@ public:
     /* 0x0972 */ s16 action;
     /* 0x0974 */ s16 prev_action;
     /* 0x0978 */ f32 dis;
-    /* 0x097C */ s16 target_angle;
+    /* 0x097C */ s16 target_ya;
     /* 0x0980 */ f32 attack_range;
     /* 0x0984 */ f32 waterY;
     /* 0x0988 */ u32 shadow_key;
