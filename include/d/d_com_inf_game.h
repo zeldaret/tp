@@ -951,7 +951,7 @@ public:
     dComIfG_inf_c() { this->ct(); }
     ~dComIfG_inf_c() {}
     void ct();
-    void createBaseCsr();
+    static void createBaseCsr();
 
 #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     class baseCsr_c : public mDoGph_gInf_c::csr_c {

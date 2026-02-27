@@ -184,6 +184,7 @@ u8 SCGetEuRgb60Mode(void);
 BOOL SCGetIdleMode(SCIdleModeInfo* data);
 u8 SCGetLanguage(void);
 u8 SCGetProgressiveMode(void);
+void SCSetProgressiveMode(u8 mode);
 u8 SCGetScreenSaverMode(void);
 u8 SCGetSoundMode(void);
 u32 SCGetCounterBias(void);
