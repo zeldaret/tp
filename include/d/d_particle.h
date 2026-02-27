@@ -6,7 +6,7 @@
 #include "JSystem/JParticle/JPAEmitter.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "d/d_particle_name.h"
-#include "d/d_kankyo.h"
+#include "d/d_kankyo_tev_str.h"
 
 void dPa_cleanupGX();
 

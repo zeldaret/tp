@@ -281,9 +281,14 @@ void daAlink_c::setHorseSwordUpAnime() {
 
 void daAlink_c::setHorseTurnUpperAnime(BOOL i_isTurnL) {
     if (checkHorseNoUpperAnime() || (!i_isTurnL && checkHorseTurnRAnime()) ||
-        (i_isTurnL == TRUE && checkHorseTurnLAnime()))
-    {
-        setUpperAnimeBaseMorf(!i_isTurnL ? (u16)dRes_ID_ALANM_BCK_TURNLS_e : (u16)dRes_ID_ALANM_BCK_TURNRS_e, 4.0f);
+        (i_isTurnL == TRUE && checkHorseTurnLAnime())) {
+        u16 anmResIdx;
+        if (i_isTurnL == FALSE) {
+            anmResIdx = (u16)dRes_ID_ALANM_BCK_TURNLS_e;
+        } else {
+            anmResIdx = (u16)dRes_ID_ALANM_BCK_TURNRS_e;
+        }
+        setUpperAnimeBaseMorf(anmResIdx, 4.0f);
     }
 }
 
@@ -1095,7 +1100,11 @@ int daAlink_c::checkHorseGetOffDirection() {
     lin_end_pos.set(ride_actor_p->current.pos.x + cM_ssin(var_r28) * 125.0f, lin_start_pos.y,
                     ride_actor_p->current.pos.z + cM_scos(var_r28) * 125.0f);
 
+#if PLATFORM_SHIELD
+    f32 check_y[3];
+#else
     f32 check_y[3] = {0.0f, 0.0f, 0.0f};
+#endif
     check_y[0] = current.pos.y;
     check_y[1] = ride_actor_p->current.pos.y + (current.pos.y - ride_actor_p->current.pos.y) * 0.5f;
 
@@ -1103,8 +1112,7 @@ int daAlink_c::checkHorseGetOffDirection() {
     check_y[2] = var_f31;
 
     int check_no;
-    int i;
-    for (i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++) {
         for (check_no = 0; check_no < 3; check_no++) {
             lin_start_pos.y = check_y[check_no];
             lin_end_pos.y = lin_start_pos.y;
@@ -1123,7 +1131,7 @@ int daAlink_c::checkHorseGetOffDirection() {
 
         lin_end_pos.x = lin_start_pos.x * 2.0f - lin_end_pos.x;
         lin_end_pos.z = lin_start_pos.z * 2.0f - lin_end_pos.z;
-        var_r28 += 0x8000;
+        ANGLE_ADD_2(var_r28, 0x8000);
     }
 
     return 2;
@@ -1319,7 +1327,7 @@ int daAlink_c::procHorseRideInit() {
             }
             field_0x2fc0 = 1;
         }
-    
+
         if (mDemo.getDemoMode() != daPy_demo_c::DEMO_UNK_7_e) {
             setOldRootQuaternion(0, (s16)(shape_angle.y - field_0x27f4->shape_angle.y), 0);
         }
@@ -1670,7 +1678,8 @@ int daAlink_c::procHorseWaitInit() {
     initServiceWaitTime();
     checkHorseGetOffAndSetDoStatus();
 
-    setSyncRide((!checkHorseNoUpperAnime() && !checkEquipAnime()) || checkInputOnR() || !checkHorseGetOff() || checkHorseGetOffDirection() == 2);
+    setSyncRide(!((checkHorseNoUpperAnime() || checkEquipAnime()) && !checkInputOnR() &&
+                        checkHorseGetOff() && checkHorseGetOffDirection() != 2));
     field_0x33f0 = 0.0f;
     return 1;
 }

@@ -268,10 +268,10 @@ int daAlink_c::checkDemoAction() {
         }
 
         // TODO: reconcile
-        #if VERSION == VERSION_SHIELD_DEBUG
-        int type = prm0 - 20;
-        if (type >= 0 && type < 6) {
-            return procCutFinishInit(type);
+        #if VERSION == VERSION_SHIELD_DEBUG || 1
+        prm0 -= 20;
+        if (prm0 >= 0 && prm0 < 6) {
+            return procCutFinishInit(prm0);
         } else {
             return procCutTurnInit(1, 1);
         }
@@ -364,7 +364,13 @@ int daAlink_c::checkDemoAction() {
         return procCutLargeJumpChargeInit();
     } else if (demoMode == daPy_demo_c::DEMO_UNK_73_e) {
         onNoResetFlg0(FLG0_UNK_100000);
-        return procSideRollInit(mDemo.getParam0() ? 3 : 2);
+        int temp;
+        if (!mDemo.getParam0()) {
+            temp = 2;
+        } else {
+            temp = 3;
+        }
+        return procSideRollInit(temp);
     } else if (demoMode == daPy_demo_c::DEMO_UNK_16_e) {
         onNoResetFlg0(FLG0_UNK_100000);
         if (checkWolf()) {
@@ -584,6 +590,7 @@ void daAlink_c::setDemoData() {
         if (mMidnaTalkDelayTimer != 0) {
             mMidnaTalkDelayTimer--;
         }
+        (void)0;
     } else {
         dDemo_actor_c* demo_actor_p = dDemo_c::getActor(demoActorID);
         cXyz* pos_p = NULL;
@@ -763,6 +770,7 @@ void daAlink_c::setDemoData() {
                     dComIfGp_evmng_cutEnd(mAlinkStaffId);
                 }
             }
+            (void)0;
         } else {
             if (mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_TOOL_e || (mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SYSTEM_e && mAlinkStaffId != -1)) {
                 if (prm0_p != NULL) {
@@ -1093,7 +1101,7 @@ void daAlink_c::setTalkAnime() {
     }
 }
 
-u8 daAlink_c::setTradeItemAnime() {
+bool daAlink_c::setTradeItemAnime() {
     setSingleAnimeBase(ANM_TRADE_ITEM_PULL_OUT);
     offModeFlg(0x100);
 
@@ -1110,7 +1118,7 @@ u8 daAlink_c::setTradeItemAnime() {
     }
 
     keepItemData();
-    return 1;
+    return true;
 }
 
 void daAlink_c::setTradeItemOutHand() {
@@ -1146,7 +1154,7 @@ u8 daAlink_c::setDemoRightHandIndex(u16 param_0) {
         mProcVar4.field_0x3010 = 1;
         return 6;
     } else if (param_0 == 0xFC) {
-        field_0x2fab |= 0x10;
+        field_0x2fab |= (u8)0x10;
         return 5;
     } else if (param_0 == 0xFB) {
         if (mpDemoHRTmpModel != NULL) {
@@ -1169,7 +1177,7 @@ u8 daAlink_c::setDemoLeftHandIndex(u16 param_0) {
         }
         return 0;
     } else if (param_0 == 0xFC) {
-        field_0x2fab |= 0x8;
+        field_0x2fab |= (u8)0x8;
         return 0;
     } else if (param_0 == 0xFB) {
         if (mpDemoHLTmpModel != NULL) {
@@ -1527,11 +1535,11 @@ int daAlink_c::procCoToolDemo() {
                         }
                     } else if (arg1 == 7) {
                         if (resID == 1) {
-                            field_0x2fab |= 2;
+                            field_0x2fab |= (u8)0x2;
                         }
                     } else if (arg1 == 8) {
                         if (resID == 1) {
-                            field_0x2fab |= 1;
+                            field_0x2fab |= (u8)0x1;
                         }
                     } else if (arg1 == 0) {
                         if (arg2 == 1) {
@@ -2042,7 +2050,11 @@ void daAlink_c::setGetSubBgm(int i_itemNo) {
         /* fpcNm_ITEM_RED_BOTTLE        */ SETYPE_ITEM_GET_MINI,
         /* fpcNm_ITEM_GREEN_BOTTLE      */ SETYPE_ITEM_GET_MINI,
         /* fpcNm_ITEM_BLUE_BOTTLE       */ SETYPE_ITEM_GET_MINI,
+#if PLATFORM_SHIELD
+        /* fpcNm_ITEM_MILK_BOTTLE       */ SETYPE_ITEM_GET,
+#else
         /* fpcNm_ITEM_MILK_BOTTLE       */ SETYPE_ITEM_GET_MINI,
+#endif
         /* fpcNm_ITEM_HALF_MILK_BOTTLE  */ SETYPE_ITEM_GET,
         /* fpcNm_ITEM_OIL_BOTTLE        */ SETYPE_ITEM_GET_MINI,
         /* fpcNm_ITEM_WATER_BOTTLE      */ SETYPE_NONE,
@@ -2217,6 +2229,8 @@ void daAlink_c::setGetSubBgm(int i_itemNo) {
 }
 
 BOOL daAlink_c::checkTreasureRupeeReturn(int i_itemNo) const {
+    static const int dummy = 0;
+
     if (i_itemNo == fpcNm_ITEM_LINKS_SAVINGS) {
         i_itemNo = fpcNm_ITEM_PURPLE_RUPEE;
     }
@@ -3244,7 +3258,7 @@ int daAlink_c::procHandPatInit() {
     mNormalSpeed = 0.0f;
 
     setOldRootQuaternion(0, -0x8000, 0);
-    shape_angle.y += 0x8000;
+    ANGLE_ADD_2(shape_angle.y, 0x8000);
     mProcVar2.field_0x300c = 0;
     mProcVar3.field_0x300e = 0;
     return 1;
@@ -3270,7 +3284,7 @@ int daAlink_c::procHandPat() {
         if (checkAnmEnd(frameCtrl_p)) {
             setSingleAnimeBase(ANM_WAIT_B_TO_A);
             mProcVar2.field_0x300c = 1;
-            shape_angle.y += 0x8000;
+            ANGLE_ADD_2(shape_angle.y, 0x8000);
             mPrevAngleY = shape_angle.y;
             current.angle.y = shape_angle.y;
             setOldRootQuaternion(0, -0x8000, 0);
@@ -3335,11 +3349,12 @@ int daAlink_c::procCoFogDead() {
         }
     }
 
+    int roomNo;
     if (mProcVar0.field_0x3008 > 0) {
         mProcVar0.field_0x3008--;
     } else if (mProcVar0.field_0x3008 == 0) {
-        if (dStage_changeScene(daTagMist_c::getPlayerNo(), 0.0f, 5, fopAcM_GetRoomNo(this),
-                               shape_angle.y, -1))
+        roomNo = fopAcM_GetRoomNo(this);
+        if (dStage_changeScene(daTagMist_c::getPlayerNo(), 0.0f, 5, roomNo, shape_angle.y, -1))
         {
             seStartSystem(Z2SE_FORCE_BACK);
             mProcVar0.field_0x3008--;
@@ -3600,7 +3615,7 @@ int daAlink_c::procWolfSnowEscape() {
 
     if (checkAnmEnd(frameCtrl_p)) {
         setOldRootQuaternion(0, -0x8000, 0);
-        shape_angle.y += 0x8000;
+        ANGLE_ADD_2(shape_angle.y, 0x8000);
         mPrevAngleY = shape_angle.y;
         current.angle.y = shape_angle.y;
 
@@ -4216,7 +4231,7 @@ int daAlink_c::procDungeonWarpSceneStartInit() {
     #endif
 
     current.pos.y += 120.0f;
-    shape_angle.y += 0x7F7A;
+    ANGLE_ADD_2(shape_angle.y, 0x7F7A);
 
     scale.set(0.0f, 1.5f, 0.0f);
     mpLinkModel->setBaseScale(scale);
@@ -4247,7 +4262,7 @@ int daAlink_c::procDungeonWarpSceneStart() {
     if (!var_r31) {
         current.pos.y -= 5.0f;
     } else {
-        mProcVar2.field_0x300c -= 0x200;
+        ANGLE_SUB_2(mProcVar2.field_0x300c, 0x200);
         if (mProcVar2.field_0x300c < 0) {
             return checkNextAction(0);
         }
@@ -4336,7 +4351,7 @@ void daAlink_c::skipPortalObjWarp() {
     if (checkNoResetFlg3(FLG3_WARP_OBJ_DEMO) &&
         (dComIfGp_TargetWarpPt_get() == 9 && dComIfGp_TransportWarp_check()))
     {
-        dStage_changeScene(2, 0.0f, 0, fopAcM_GetRoomNo(this), shape_angle.y, -1);
+        dStage_changeScene(2, 0.0f, 0, (int)fopAcM_GetRoomNo(this), shape_angle.y, -1);
     } else {
         dComIfGs_setTurnRestart(dMeter2Info_getWarpPos(), dMeter2Info_getWarpPlayerNo(),
                                 dMeter2Info_getWarpRoomNo(), setParamData(dMeter2Info_getWarpRoomNo(), 0, 0xCA, 0));
@@ -4605,8 +4620,9 @@ int daAlink_c::procCoWarp() {
                 if (mDemo.getDemoMode() == daPy_demo_c::DEMO_UNK_45_e) {
                     if (mProcVar1.field_0x300a != 0) {
                         if (mGroundCode == 4) {
-                            dComIfGp_setNextStage(dComIfGp_getStartStageName(), mProcVar4.field_0x3010,
-                                                  fopAcM_GetRoomNo(this), -1, 0.0f, 5, 1, 0,
+                            dComIfGp_setNextStage(dComIfGp_getStartStageName(),
+                                                  mProcVar4.field_0x3010,
+                                                  (int)fopAcM_GetRoomNo(this), -1, 0.0f, 5, 1, 0,
                                                   shape_angle.y, 1, 0);
                             changeOriginalDemo();
                             changeDemoMode(1, 0, 0, 0);
