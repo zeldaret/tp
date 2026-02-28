@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_damCps.h"
+#include "d/d_priority.h"
 
 #if DEBUG
 #include "d/d_debug_viewer.h"
@@ -210,13 +211,13 @@ actor_process_profile_definition g_profile_Obj_DamCps = {
     0,                      // mSizeOther
     0,                      // mParameters
     &g_fopAc_Method.base,   // sub_method
-    629,                    // mPriority
+    PRIO_Obj_DamCps,                    // mPriority
 #if DEBUG
     &l_daObjDamCps_Method,  // sub_method
 #else
     NULL,  // sub_method
 #endif
-    0x00040100,              // mStatus
+    fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,              // mStatus
     fopAc_ACTOR_e,           // mActorType
     fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

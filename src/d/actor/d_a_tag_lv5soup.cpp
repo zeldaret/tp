@@ -86,7 +86,7 @@ actor_process_profile_definition g_profile_TAG_LV5SOUP = {
     fpcLy_CURRENT_e,
     7,
     fpcPi_CURRENT_e,
-    0x122,
+    PROC_TAG_SSDRINK,
     &g_fpcLf_Method.base,
     sizeof(daTag_Lv5Soup_c),
     0,
