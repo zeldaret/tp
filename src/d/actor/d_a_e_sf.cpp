@@ -1793,7 +1793,7 @@ static cPhs_Step daE_SF_Create(fopAc_ac_c* a_this) {
             l_HIO.id = -1;
         }
 
-        fopAcM_OnStatus(a_this, fopAcStts_CULL);
+        fopAcM_OnStatus(a_this, fopAcStts_CULL_e);
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());

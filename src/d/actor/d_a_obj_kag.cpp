@@ -381,7 +381,7 @@ void daObjKAG_c::walk() {
 void daObjKAG_c::bin_wait() {
     if (field_0x83c == 0) {
         mpModelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kag", BCK_KAG_FLY), J3DFrameCtrl::EMode_LOOP, 5.0f, 0.0f, 0.0f, -1.0f);
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         mDraw = false;
         gravity = 0.0f;
         maxFallSpeed = 0.0f;
@@ -448,7 +448,7 @@ void daObjKAG_c::hook() {
             kag_setParticle();
         }
 
-        if (!fopAcM_CheckStatus(this, fopAcStts_HOOK_CARRY_NOW)) {
+        if (!fopAcM_CheckStatus(this, fopAcStts_HOOK_CARRY_NOW_e)) {
             setAction(&daObjKAG_c::fly);
         }
 

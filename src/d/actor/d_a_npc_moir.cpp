@@ -311,7 +311,7 @@ cPhs_Step daNpcMoiR_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         mMode = MODE_2;
     }
 

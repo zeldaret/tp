@@ -2431,7 +2431,7 @@ static cPhs_Step daDo_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x04 = -1;
         }
 
-        fopAcM_OnStatus(i_this, fopAcStts_CULL);
+        fopAcM_OnStatus(i_this, fopAcStts_CULL_e);
         fopAcM_OnCarryType(i_this, fopAcM_CARRY_TYPE_8);
         i_this->attention_info.flags = 0;
         i_this->attention_info.distances[fopAc_attn_CARRY_e] = 7;

@@ -19,7 +19,7 @@ static int daE_MM_MT_Draw(e_mm_mt_class* i_this) {
 
     cXyz local_18(i_this->enemy.current.pos.x, i_this->enemy.current.pos.y + 100, i_this->enemy.current.pos.z);
 
-    if (!fopAcM_CheckStatus(actor, fopAcStts_CARRY_NOW)) {
+    if (!fopAcM_CheckStatus(actor, fopAcStts_CARRY_NOW_e)) {
         i_this->m_shadowKey = dComIfGd_setShadow(
             i_this->m_shadowKey, 1, i_this->mp_model, &local_18, 700.0f, 0.0f,
             i_this->enemy.current.pos.y, i_this->m_acch.GetGroundH(), i_this->m_acch.m_gnd,
@@ -713,7 +713,7 @@ static int daE_MM_MT_Execute(e_mm_mt_class* i_this) {
         i_this->m_invulnerabilityTimer--;
     }
     action(i_this);
-    fopAcM_OffStatus(actor, fopAcStts_UNK_0x200);
+    fopAcM_OffStatus(actor, fopAcStts_UNK_0x200_e);
     i_this->m_sound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
     return true;
 }

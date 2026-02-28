@@ -3402,7 +3402,7 @@ static cPhs_Step daE_DN_Create(fopAc_ac_c* actor) {
             l_HIO.no = mDoHIO_CREATE_CHILD("リザードマン", &l_HIO);
         }
 
-        fopAcM_OnStatus(actor, fopAcStts_CULL);
+        fopAcM_OnStatus(actor, fopAcStts_CULL_e);
         actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(actor, i_this->anm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(actor, -200.0f, -200.0f, -200.0f);
@@ -3472,7 +3472,7 @@ static cPhs_Step daE_DN_Create(fopAc_ac_c* actor) {
         if ((i_this->arg0 == 13 || i_this->arg0 == 14) || (i_this->arg0 == 15 || i_this->arg0 == 16)) {
             i_this->status = 1;
             i_this->action = ACTION_REG;
-            fopAcM_OnStatus(actor, fopAcStts_UNK_0x4000);
+            fopAcM_OnStatus(actor, fopAcStts_UNK_0x4000_e);
             i_this->acchcir.SetWall(80.0f, 2.0f);
         }
 

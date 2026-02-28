@@ -184,7 +184,7 @@ void daObjBHASHI_c::Obj_Damage() {
             }
 
             mCcCyl.ResetTgHit();
-            fopAcM_OffStatus(this, fopAcStts_CULL);
+            fopAcM_OffStatus(this, fopAcStts_CULL_e);
         }
     }
 }
@@ -207,7 +207,7 @@ void daObjBHASHI_c::Obj_Damage(cXyz param_0) {
     dComIfGp_particle_set(dPa_RM(ID_ZI_S_LV9PILLAR_BREAK_C), &eff_pos, &tevStr, &eff_rot, NULL);
     dComIfGp_particle_set(dPa_RM(ID_ZI_S_LV9PILLAR_BREAK_D), &eff_pos, &tevStr, &eff_rot, NULL);
 
-    fopAcM_OffStatus(this, fopAcStts_CULL);
+    fopAcM_OffStatus(this, fopAcStts_CULL_e);
 }
 
 Hahen_c::Hahen_c() {

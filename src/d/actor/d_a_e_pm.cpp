@@ -2221,7 +2221,7 @@ void daE_PM_c::StartAction() {
                 pos.set(current.pos.x, 1900.0f, current.pos.z);
                 SetStopCam(pos, 500.0f, 0.0f, s_TargetAngle);
                 mCamEye = mCamEyeTarget;
-                fopAcM_OffStatus(this, fopAcStts_CULL);
+                fopAcM_OffStatus(this, fopAcStts_CULL_e);
             } else {
                 pos.set(current.pos.x, current.pos.y + 80.0f, current.pos.z);
                 mTargetAngleY = shape_angle.y;
@@ -2765,7 +2765,7 @@ void daE_PM_c::SkipChk() {
         }
 
         if (mSecondEncounter) {
-            fopAcM_OffStatus(this, fopAcStts_CULL);
+            fopAcM_OffStatus(this, fopAcStts_CULL_e);
             SetReleaseCam();
             mDoorAction = 1;
             mDemoMode = 0;

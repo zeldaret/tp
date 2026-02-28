@@ -709,7 +709,7 @@ void daSCannon_c::changeScene() {
             dComIfGp_getVibration().StopQuake(0x1F);
         }
 
-        fopAcM_OnStatus(this, fopAcStts_NOEXEC);
+        fopAcM_OnStatus(this, fopAcStts_NOEXEC_e);
 
         if (field_0x619 == 0) {
             field_0x619 = 1;

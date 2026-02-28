@@ -653,14 +653,14 @@ void daNpc_ykW_c::reset() {
         }
 
         mHide = true;
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
 
         break;
     case 5:
     case 6:
         eventInfo.setIdx(1);
         mHide = true;
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
 
         break;
     default:
@@ -737,7 +737,7 @@ void daNpc_ykW_c::setParam() {
     mRealShadowSize = mpHIO->m.common.real_shadow_size;
 
     if (field_0xf80 == 4) {
-        fopAcM_OffStatus(this, fopAcStts_CULL);
+        fopAcM_OffStatus(this, fopAcStts_CULL_e);
         mRealShadowSize = 1500.0f;
     }
 
@@ -878,9 +878,9 @@ void daNpc_ykW_c::action() {
 }
 
 void daNpc_ykW_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000_e);
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
     }
     if (checkHide() || mNoDraw != 0) {
         attention_info.flags = 0;
@@ -1586,7 +1586,7 @@ BOOL daNpc_ykW_c::cutLv5DungeonClear(int param_0) {
 
             mHide = false;
 
-            fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000_e);
 
             newPlayerPos.setall(0.0f);
 
@@ -1784,7 +1784,7 @@ BOOL daNpc_ykW_c::cutLv5DungeonClear(int param_0) {
                 mFindCount = 0;
                 fpcM_Search(srchItemHeart, this);
                 for (unkInt1 = 0; unkInt1 < mFindCount; unkInt1++) {
-                    fopAcM_OffStatus(mFindActorPtrs[unkInt1], fopAcStts_UNK_0x4000);
+                    fopAcM_OffStatus(mFindActorPtrs[unkInt1], fopAcStts_UNK_0x4000_e);
                 }
             }
         }
@@ -1825,7 +1825,7 @@ BOOL daNpc_ykW_c::cutLv5DungeonClear(int param_0) {
                                              &unkXyz1, &unkFloat2, &unkFloat3, -1, NULL, NULL);
             if (unkActor1 != NULL) {
                 mDoAud_seStart(Z2SE_OBJ_YO_HEART_S, &itemPos, 0, 0);
-                fopAcM_OnStatus(unkActor1, fopAcStts_UNK_0x4000);
+                fopAcM_OnStatus(unkActor1, fopAcStts_UNK_0x4000_e);
             }
             mEventTimer = (int)(unkFloat1 * 1.8000001f) + 6;
             field_0x1038++;
@@ -2296,7 +2296,7 @@ int daNpc_ykW_c::cutHug(int param_0) {
                                           &heartScale, &heartSpeed, &heartSpeedY, -1, 0, 0);
             if (itemActor != NULL) {
                 mDoAud_seStart(Z2SE_OBJ_YO_HEART_S, &heartPos, 0, 0);
-                fopAcM_OnStatus(itemActor, fopAcStts_UNK_0x4000);
+                fopAcM_OnStatus(itemActor, fopAcStts_UNK_0x4000_e);
             }
 
             mEventTimer = timer;
@@ -2401,7 +2401,7 @@ int daNpc_ykW_c::wait(void* param_0) {
     case 2:
         if (field_0x106f != 0) {
             mHide = true;
-            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
             if (putUtuwaHeart(0, 0.0f, 0.0f, 0x5000, 0)) {
                 fopAcM_delete(this);
             }

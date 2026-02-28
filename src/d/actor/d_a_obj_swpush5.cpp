@@ -16,7 +16,7 @@ static void rideCallBack(dBgW* i_bgw, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rideA
     daObjSw5_c* i_this = (daObjSw5_c*)i_bgActor;
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (i_this->checkPushable() && fopAcM_CheckStatus(i_rideActor, fopAcStts_FREEZE) && fopAcM_GetName(i_rideActor) == PROC_ALINK) {
+    if (i_this->checkPushable() && fopAcM_CheckStatus(i_rideActor, fopAcStts_FREEZE_e) && fopAcM_GetName(i_rideActor) == PROC_ALINK) {
         static cXyz l_push_check_pos[4] = {
             cXyz(-50.0f, 0.0f, -50.0f),
             cXyz(50.0f, 0.0f, -50.0f),

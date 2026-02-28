@@ -1008,7 +1008,7 @@ void daNpc_ykM_c::reset() {
 
         case TYPE_3:
             mHide = true;
-            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
             break;
 
         case TYPE_4:
@@ -1017,13 +1017,13 @@ void daNpc_ykM_c::reset() {
 
         case TYPE_5:
             mHide = true;
-            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
             eventInfo.setIdx(1);
             break;
 
         case TYPE_6:
             mHide = true;
-            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
             eventInfo.setIdx(2);
             break;
     }
@@ -1095,15 +1095,15 @@ void daNpc_ykM_c::setParam() {
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(mpHIO->m.common.knee_length);
 
-    fopAcM_OnStatus(this, fopAcStts_CULL);
+    fopAcM_OnStatus(this, fopAcStts_CULL_e);
     mRealShadowSize = mpHIO->m.common.real_shadow_size;
 
     if (field_0x157b != 0) {
-        fopAcM_OffStatus(this, fopAcStts_CULL);
+        fopAcM_OffStatus(this, fopAcStts_CULL_e);
     }
 
     if (mType == TYPE_3) {
-        fopAcM_OffStatus(this, fopAcStts_CULL);
+        fopAcM_OffStatus(this, fopAcStts_CULL_e);
         mRealShadowSize = 1800.0f;
     }
 
@@ -1320,10 +1320,10 @@ void daNpc_ykM_c::action() {
 }
 
 void daNpc_ykM_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000_e);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
     }
 
     if (checkHide() || mNoDraw) {
@@ -2533,7 +2533,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_WAIT_X, 0.0f, FALSE, 0);
                 mJntAnm.lookNone(1);
                 mHide = false;
-                fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
+                fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000_e);
                 break;
 
             case 1:

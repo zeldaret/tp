@@ -142,7 +142,7 @@ inline u32 fopAcM_CheckStatus(fopAc_ac_c* i_actor, u32 actor_status) {
 }
 
 inline u32 fopAcM_checkCarryNow(fopAc_ac_c* i_actor) {
-    return i_actor->actor_status & fopAcStts_CARRY_NOW;
+    return i_actor->actor_status & fopAcStts_CARRY_NOW_e;
 }
 
 inline u32 fopAcM_checkHawkCarryNow(fopAc_ac_c* actor) {
@@ -166,7 +166,7 @@ inline u32 fopAcM_CheckCarryType(const fopAc_ac_c* actor, fopAcM_CARRY type) {
 }
 
 inline u32 fopAcM_checkHookCarryNow(fopAc_ac_c* i_actor) {
-    return fopAcM_CheckStatus(i_actor, fopAcStts_HOOK_CARRY_NOW);
+    return fopAcM_CheckStatus(i_actor, fopAcStts_HOOK_CARRY_NOW_e);
 }
 
 inline u32 fopAcM_GetParam(const void* i_actor) {
@@ -262,19 +262,19 @@ inline void fopAcM_SetRoomNo(fopAc_ac_c* actor, s8 roomNo) {
 }
 
 inline void fopAcM_setHookCarryNow(fopAc_ac_c* actor) {
-    fopAcM_OnStatus(actor, fopAcStts_HOOK_CARRY_NOW);
+    fopAcM_OnStatus(actor, fopAcStts_HOOK_CARRY_NOW_e);
 }
 
 inline void fopAcM_cancelHookCarryNow(fopAc_ac_c* actor) {
-    fopAcM_OffStatus(actor, fopAcStts_HOOK_CARRY_NOW);
+    fopAcM_OffStatus(actor, fopAcStts_HOOK_CARRY_NOW_e);
 }
 
 inline void fopAcM_setHawkCarryNow(fopAc_ac_c* actor) {
-    fopAcM_OnStatus(actor, fopAcStts_HAWK_CARRY_NOW);
+    fopAcM_OnStatus(actor, fopAcStts_HAWK_CARRY_NOW_e);
 }
 
 inline void fopAcM_cancelHawkCarryNow(fopAc_ac_c* actor) {
-    fopAcM_OffStatus(actor, fopAcStts_HAWK_CARRY_NOW);
+    fopAcM_OffStatus(actor, fopAcStts_HAWK_CARRY_NOW_e);
 }
 
 inline s8 fopAcM_GetHomeRoomNo(const fopAc_ac_c* i_actor) {

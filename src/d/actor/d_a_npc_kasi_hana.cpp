@@ -382,7 +382,7 @@ BOOL daNpcKasi_Mng_c::createHearts() {
                                            &i_scale, &i_speedF, &i_speedY, -1, 0, NULL);
             if (heart_p != NULL) {
                 Z2GetAudioMgr()->seStart(Z2SE_GIRLS_HEART, &i_pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-                fopAcM_OnStatus(heart_p, fopAcStts_UNK_0x4000);
+                fopAcM_OnStatus(heart_p, fopAcStts_UNK_0x4000_e);
             }
         }
     }
@@ -393,34 +393,34 @@ BOOL daNpcKasi_Mng_c::createHearts() {
 void daNpcKasi_Mng_c::allDemoMove() {
     daNpcKasiHana_c* hana_p = (daNpcKasiHana_c*)mHanaActorMngr.getActorP();
     if (hana_p != NULL) {
-        fopAcM_OnStatus(hana_p, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(hana_p, fopAcStts_UNK_0x4000_e);
     }
 
     daNpcKasiKyu_c* kyu_p = (daNpcKasiKyu_c*)mKyuActorMngr.getActorP();
     if (kyu_p != NULL) {
-        fopAcM_OnStatus(kyu_p, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(kyu_p, fopAcStts_UNK_0x4000_e);
     }
 
     daNpcKasiMich_c* mich_p = (daNpcKasiMich_c*)mMichActorMngr.getActorP();
     if (mich_p != NULL) {
-        fopAcM_OnStatus(mich_p, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(mich_p, fopAcStts_UNK_0x4000_e);
     }
 }
 
 void daNpcKasi_Mng_c::allDemoNotMove() {
     daNpcKasiHana_c* hana_p = (daNpcKasiHana_c*)mHanaActorMngr.getActorP();
     if (hana_p != NULL) {
-        fopAcM_OffStatus(hana_p, fopAcStts_UNK_0x4000);
+        fopAcM_OffStatus(hana_p, fopAcStts_UNK_0x4000_e);
     }
 
     daNpcKasiKyu_c* kyu_p = (daNpcKasiKyu_c*)mKyuActorMngr.getActorP();
     if (kyu_p != NULL) {
-        fopAcM_OffStatus(kyu_p, fopAcStts_UNK_0x4000);
+        fopAcM_OffStatus(kyu_p, fopAcStts_UNK_0x4000_e);
     }
 
     daNpcKasiMich_c* mich_p = (daNpcKasiMich_c*)mMichActorMngr.getActorP();
     if (mich_p != NULL) {
-        fopAcM_OffStatus(mich_p, fopAcStts_UNK_0x4000);
+        fopAcM_OffStatus(mich_p, fopAcStts_UNK_0x4000_e);
     }
 }
 
@@ -938,7 +938,7 @@ void daNpcKasiHana_c::reset() {
         mPath.setPathInfo(getRailNo(), fopAcM_GetRoomNo(this), 0);
         mPath.setIdx(6);
     } else if (mType == TYPE_CHEER) {
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
     }
 
     field_0x1441 = 0;

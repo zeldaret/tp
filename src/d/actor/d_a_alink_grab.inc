@@ -398,7 +398,7 @@ void daAlink_c::freeGrabItem() {
 
     if (grabActor != NULL) {
         if (dComIfGp_event_runCheck() || mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e) {
-            fopAcM_OnStatus(grabActor, fopAcStts_UNK_0x800);
+            fopAcM_OnStatus(grabActor, fopAcStts_UNK_0x800_e);
         }
 
         fopAcM_cancelCarryNow(grabActor);
@@ -516,7 +516,7 @@ BOOL daAlink_c::checkNextActionGrab() {
 
     setCarryArmAngle(0.0f, 1.0f);
 
-    if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == fopAc_attn_DOOR_e && fopAcM_CheckStatus(grabActor, fopAcStts_UNK_0x2000000)) {
+    if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == fopAc_attn_DOOR_e && fopAcM_CheckStatus(grabActor, fopAcStts_UNK_0x2000000_e)) {
         setDoStatus(BUTTON_STATUS_OPEN);
     } else if ((field_0x27f4 == NULL) || !checkGrabTalkActor(field_0x27f4) || !setTalkStatus()) {
         if (checkModeFlg(0x400)) {

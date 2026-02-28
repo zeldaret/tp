@@ -883,7 +883,7 @@ static int daE_Nest_Execute(e_nest_class* i_this) {
         i_this->mBreakStage = 2;
         i_this->mAction = e_nest_class::ACT_DEBRIS;
         i_this->mMode = 0;
-        fopAcM_OffStatus(i_this, fopAcStts_CULL);
+        fopAcM_OffStatus(i_this, fopAcStts_CULL_e);
         nest_hahen_s* debris = i_this->mDebris;
         for (int i = 0; i < 5; i++, debris++) {
             debris->mActive = true;

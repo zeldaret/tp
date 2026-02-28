@@ -1603,7 +1603,7 @@ void daE_SM_c::CoreAction() {
             }
 
             field_0xa60.CrrPos(dComIfG_Bgsp());
-            fopAcM_OffStatus(this, fopAcStts_CULL);
+            fopAcM_OffStatus(this, fopAcStts_CULL_e);
         }
     }
 
@@ -1674,7 +1674,7 @@ int daE_SM_c::Execute() {
         field_0x6d6--;
     }
 
-    fopAcM_OnStatus(this, fopAcStts_CULL);
+    fopAcM_OnStatus(this, fopAcStts_CULL_e);
     Action();
     CoreAction();
     cXyz i_effSize(1.0f, 1.0f, 1.0f);

@@ -777,7 +777,7 @@ static void action(npc_tkj2_class* i_this) {
         i_this->field_0xa8c = 1;
     }
 
-    if (fopAcM_CheckStatus(a_this, fopAcStts_HOOK_CARRY_NOW)) {
+    if (fopAcM_CheckStatus(a_this, fopAcStts_HOOK_CARRY_NOW_e)) {
         i_this->field_0x5ea = 1;
     } else if (i_this->field_0x5ea != 0) {
         i_this->field_0x5ea = 0;

@@ -3036,7 +3036,7 @@ BOOL daNpcChat_c::appearCheck() {
                     if (iVar1 == mTalkMemberNum) {
                         for (int i = 0; i < mTalkMemberNum; i++) {
                             mTalkMembers[i]->offHide();
-                            fopAcM_OffStatus(mTalkMembers[i], fopAcStts_UNK_0x8000000);
+                            fopAcM_OffStatus(mTalkMembers[i], fopAcStts_UNK_0x8000000_e);
                         }
                     }
                 }
@@ -3053,7 +3053,7 @@ BOOL daNpcChat_c::appearCheck() {
                 if (iVar2 == mTalkMemberNum) {
                     for (int i = 0; i < mTalkMemberNum; i++) {
                         mTalkMembers[i]->onHide();
-                        fopAcM_OnStatus(mTalkMembers[i], fopAcStts_UNK_0x8000000);
+                        fopAcM_OnStatus(mTalkMembers[i], fopAcStts_UNK_0x8000000_e);
                     }
                 }
             }
@@ -3588,7 +3588,7 @@ void daNpcChat_c::reset() {
         mHide = false;
     } else {
         mHide = true;
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
     }
 
     setAction(&daNpcChat_c::wait);

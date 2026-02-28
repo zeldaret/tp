@@ -170,7 +170,7 @@ cPhs_Step daNpc_zanB_c::create() {
         J3DModelData* mdlData_p = mpMorf[0]->getModel()->getModelData();
         fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
         #if DEBUG

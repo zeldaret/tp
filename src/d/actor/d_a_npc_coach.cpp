@@ -948,7 +948,7 @@ void daNpcCoach_c::checkCoachDamage() {
     ((daCoach2D_c*)fpcM_SearchByID(field_0x2554))->setHitCount((mTotalDmgRecv / (attr().damage_durability / 20)));
 
     if (mTotalDmgRecv >= attr().damage_durability) {
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         mChHorse.field_0x784 = 0.0f;
 
         daNpcTheB_c* telmaB_p = (daNpcTheB_c*)fpcM_SearchByID(parentActorID);
@@ -2027,7 +2027,7 @@ cPhs_Step daNpcCoach_c::create() {
 
 void daNpcCoach_c::create_init() {
     if (strcmp(dComIfGp_getStartStageName(), "F_SP123") == 0) {
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
     }
 
     fopAcM_setStageLayer(this);

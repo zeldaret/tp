@@ -775,7 +775,7 @@ int daObjKAM_c::create() {
         if (field_0x9c0 == 2) {
             field_0x56c = 0;
             ANGLE_SUB(shape_angle.x, 0x2000);
-            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         } else {
             mDraw = true;
         }

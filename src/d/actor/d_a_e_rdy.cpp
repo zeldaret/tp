@@ -4920,7 +4920,7 @@ static cPhs_Step daE_RDY_Create(fopAc_ac_c* i_this) {
             } else {
                 _this->mAction = ACT_BOW2;
             }
-            fopAcM_OffStatus(i_this, fopAcStts_CULL);
+            fopAcM_OffStatus(i_this, fopAcStts_CULL_e);
             _this->field_0x5b8 = 3;
         } else if (_this->field_0x5b8 == 11) {
             _this->mAction = ACT_BOW_IKKI2;
@@ -4960,7 +4960,7 @@ static cPhs_Step daE_RDY_Create(fopAc_ac_c* i_this) {
 
         OS_REPORT("E_RDY DEMO SW %x\n", _this->mSwBit2);
 
-        fopAcM_OnStatus(i_this, fopAcStts_CULL);
+        fopAcM_OnStatus(i_this, fopAcStts_CULL_e);
         i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         u8 path_id = i_this->home.angle.x & 0xff;

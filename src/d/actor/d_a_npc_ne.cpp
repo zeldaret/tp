@@ -2140,7 +2140,7 @@ static void npc_ne_dish(npc_ne_class* i_this) {
         if (!dComIfGs_isEventBit(0x1001)) {
             i_this->current.pos.y = 20000.0f;
             i_this->speed.y = 0.0f;
-            fopAcM_OffStatus(i_this, fopAcStts_CULL);
+            fopAcM_OffStatus(i_this, fopAcStts_CULL_e);
         }
         break;
     }
@@ -3159,7 +3159,7 @@ static cPhs_Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
             } else if (_this->mBehavior == npc_ne_class::BHV_DISH) {
                 _this->mAction = npc_ne_class::ACT_DISH;
                 _this->mDishPos = i_this->current.pos;
-                fopAcM_OnStatus(i_this, fopAcStts_NOPAUSE);
+                fopAcM_OnStatus(i_this, fopAcStts_NOPAUSE_e);
             }
         }
 
@@ -3169,7 +3169,7 @@ static cPhs_Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x04 = -1;
         }
 
-        fopAcM_OnStatus(i_this, fopAcStts_CULL);
+        fopAcM_OnStatus(i_this, fopAcStts_CULL_e);
         fopAcM_OnCarryType(i_this, fopAcM_CARRY_TYPE_8);
         i_this->attention_info.flags = 0;
         i_this->attention_info.distances[fopAc_attn_CARRY_e] = 7;

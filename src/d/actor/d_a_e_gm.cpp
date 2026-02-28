@@ -828,7 +828,7 @@ void daE_GM_c::hook() {
     } else if (mMode == -1) {
         field_0xa72 = 10;
         mSph.SetTgType(0xD8FBFDFF);
-    } else if (!fopAcM_CheckStatus(this, fopAcStts_HOOK_CARRY_NOW)) {
+    } else if (!fopAcM_CheckStatus(this, fopAcStts_HOOK_CARRY_NOW_e)) {
         setAction(&daE_GM_c::core_escape);
     }
 }
@@ -1037,7 +1037,7 @@ void daE_GM_c::core_wait() {
         field_0xa71 = false;
         current.angle.y = cLib_targetAngleY(&player->current.pos, &current.pos);
         fopAcM_SetCullSize(this, 7);
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x80000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
         mSph.SetTgType(0xD8FBFDFF);
         mMode++;
     } else if (mMode != -1) {
@@ -1777,8 +1777,8 @@ cPhs_Step daE_GM_c::create() {
 
         if (mType == TYPE_NORMAL) {
             mSound.init(&current.pos, NULL, 2, 1);
-            fopAcM_OnStatus(this, fopAcStts_UNK_0x10000);
-            fopAcM_OffStatus(this, fopAcStts_UNK_0x4000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x10000_e);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
             setAction(&daE_GM_c::normal_wait);
         } else if (mType == TYPE_GOMA) {
             mSound.init(&current.pos, &eyePos, 3, 1);
@@ -1794,7 +1794,7 @@ cPhs_Step daE_GM_c::create() {
             setAction(&daE_GM_c::core_wait);
         } else {
             mSound.init(&current.pos, NULL, 2, 1);
-            fopAcM_OnStatus(this, fopAcStts_UNK_0x10000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x10000_e);
             field_0xa50 = hREG_F(7) + 0.1f;
             field_0xa66 = cM_rndFX(100.0f) + 1000.0f;
             field_0xa64 = field_0xa66;

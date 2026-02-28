@@ -119,7 +119,7 @@ inline daObjKznkarm_Attr_c* daObjKznkarm_c::attr() const {
 
 void daObjKznkarm_c::initBroken() {
     mMode = MODE_BROKEN_e;
-    fopAcM_OffStatus(this, fopAcStts_NOEXEC);
+    fopAcM_OffStatus(this, fopAcStts_NOEXEC_e);
     daObjKazeNeko_c* kazeNeko = (daObjKazeNeko_c*)fpcM_SearchByID(parentActorID);
     if (kazeNeko != NULL) {
         kazeNeko->getFirstVec(&speed, fopAcM_GetParam(this));
@@ -170,7 +170,7 @@ void daObjKznkarm_c::executeBroken() {
 
 void daObjKznkarm_c::initCarry() {
     mMode = MODE_CARRY_e;
-    fopAcM_OffStatus(this, fopAcStts_NOEXEC);
+    fopAcM_OffStatus(this, fopAcStts_NOEXEC_e);
     cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     field_0x7ae = 0;
     field_0x7af = 0;
@@ -203,7 +203,7 @@ void daObjKznkarm_c::executeCarry() {
 
 void daObjKznkarm_c::initThrow() {
     mMode = MODE_THROW_e;
-    fopAcM_OffStatus(this, fopAcStts_NOEXEC);
+    fopAcM_OffStatus(this, fopAcStts_NOEXEC_e);
     speed.zero();
     if (speedF > 1.0f) {
         daPy_py_c* player = daPy_getPlayerActorClass();
@@ -294,7 +294,7 @@ void daObjKznkarm_c::executeThrow() {
 
 void daObjKznkarm_c::initStay() {
     mMode = MODE_STAY_e;
-    fopAcM_OnStatus(this, fopAcStts_NOEXEC);
+    fopAcM_OnStatus(this, fopAcStts_NOEXEC_e);
     cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     speedF = 0.0f;
     field_0x7a8 = getGroundSlope(shape_angle.y) - 0x4000;

@@ -64,9 +64,9 @@ int daObj_GrA_c::waitDemo(void* param_1) {
                 } else {
                     #if DEBUG
                     if (mpHIO->m.field_0x8a) {
-                        fopAcM_OffStatus(this, fopAcStts_CULL);
+                        fopAcM_OffStatus(this, fopAcStts_CULL_e);
                     } else {
-                        fopAcM_OnStatus(this, fopAcStts_CULL);
+                        fopAcM_OnStatus(this, fopAcStts_CULL_e);
                     }
                     #endif
 
@@ -80,7 +80,7 @@ int daObj_GrA_c::waitDemo(void* param_1) {
 
         case 2:
             #if DEBUG
-            fopAcM_OnStatus(this, fopAcStts_CULL);
+            fopAcM_OnStatus(this, fopAcStts_CULL_e);
             #endif
             break;
     }
@@ -150,7 +150,7 @@ int daObj_GrA_c::startDemo(void* param_1) {
                     player->changeOriginalDemo();
                     gra_p->field_0x204c.entry(this);
                     gra_p->setProcess(&daObj_GrA_c::soldierDemo);
-                    fopAcM_OnStatus(gra_p, fopAcStts_UNK_0x8000);
+                    fopAcM_OnStatus(gra_p, fopAcStts_UNK_0x8000_e);
                     field_0x2056 = 0;
                     dComIfGp_getEvent()->setSkipProc(this, skipCallBack, 0);
                     dComIfGp_getEvent()->onSkipFade();

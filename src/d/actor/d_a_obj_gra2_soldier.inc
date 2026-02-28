@@ -1397,7 +1397,7 @@ int daObj_GrA_c::thrown(void* param_1) {
 
     switch (field_0xa7c) {
         case 0:
-            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
             field_0x1ff0 = 1;
             mDemoCamMode = 0;
             field_0x209c = 1;

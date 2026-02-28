@@ -334,7 +334,7 @@ void daObjSwpush::Act_c::set_btp_frame() {
 
 void daObjSwpush::Act_c::rideCB(dBgW* i_bgw, fopAc_ac_c* i_ac, fopAc_ac_c* i_pt) {
     Act_c* i_this = (Act_c*)i_ac;
-    if (fopAcM_CheckStatus(i_pt, fopAcStts_FREEZE)) {
+    if (fopAcM_CheckStatus(i_pt, fopAcStts_FREEZE_e)) {
         static cXyz no_push_vec[4] = {
             cXyz(-1.0f, 0.0f, -1.0f),
             cXyz(-1.0f, 0.0f, 1.0f),

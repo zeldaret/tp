@@ -330,7 +330,7 @@ void daObjSCannonTen_c::demoInitFinish() {
 
     mDoAud_seStart(Z2SE_AL_V_CANON_JUMP, NULL, 0, 0);
     initEmtLine();
-    fopAcM_OffStatus(this, fopAcStts_NOEXEC);
+    fopAcM_OffStatus(this, fopAcStts_NOEXEC_e);
 
     int* timer_p = dComIfGp_evmng_getMyIntegerP(mStaffId, "Timer");
     if (timer_p != NULL) {
@@ -367,7 +367,7 @@ void daObjSCannonTen_c::changeScene() {
         dComIfGp_getVibration().StopQuake(0x1F);
     }
 
-    fopAcM_OnStatus(this, fopAcStts_NOEXEC);
+    fopAcM_OnStatus(this, fopAcStts_NOEXEC_e);
 
     const int a_exit_id = 1;
     dStage_changeScene(a_exit_id, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);

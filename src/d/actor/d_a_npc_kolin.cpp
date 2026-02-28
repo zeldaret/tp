@@ -795,7 +795,7 @@ void daNpc_Kolin_c::setParam() {
     attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
     if (mType == 4) {
-        fopAcM_OffStatus(this, fopAcStts_CULL);
+        fopAcM_OffStatus(this, fopAcStts_CULL_e);
     }
 
     scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale, mpHIO->m.common.scale);
@@ -973,10 +973,10 @@ void daNpc_Kolin_c::action() {
 }
 
 void daNpc_Kolin_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000_e);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
     }
 
     if (checkHide() || mNoDraw) {

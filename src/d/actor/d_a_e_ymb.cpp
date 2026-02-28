@@ -2055,7 +2055,7 @@ void daE_YMB_c::setCreateDrop() {
         mDoMtx_stack_c::multVecZero(&sp1c);
         drop->setPos(sp1c);
         drop->setAppear();
-        fopAcM_OnStatus(drop, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(drop, fopAcStts_UNK_0x4000_e);
     }
 
     field_0x721 = 1;

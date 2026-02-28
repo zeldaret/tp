@@ -204,7 +204,7 @@ int daNpcRafrel_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         mType = 2;
     }
 
@@ -617,7 +617,7 @@ void daNpcRafrel_c::reset() {
     }
 
     if (isSneaking()) {
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
     }
 
     setWaitAction();

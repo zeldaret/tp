@@ -774,7 +774,7 @@ void daNpcTheB_c::reset() {
     initialize();
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP123") == 0) {
-        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
     }
 
     mpMatAnm->initialize();
@@ -890,7 +890,7 @@ BOOL daNpcTheB_c::doEvent() {
 
                 fopAc_ac_c* actor_p = fopAcM_SearchByID(parentActorID);
                 if (actor_p != NULL) {
-                    fopAcM_OnStatus(actor_p, fopAcStts_UNK_0x800);
+                    fopAcM_OnStatus(actor_p, fopAcStts_UNK_0x800_e);
                 }
             }
 
@@ -904,7 +904,7 @@ BOOL daNpcTheB_c::doEvent() {
 
                 actor_p = fopAcM_SearchByID(parentActorID);
                 if (actor_p != NULL) {
-                    fopAcM_OnStatus(actor_p, fopAcStts_UNK_0x800);
+                    fopAcM_OnStatus(actor_p, fopAcStts_UNK_0x800_e);
                 }
 
                 if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {

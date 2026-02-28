@@ -787,7 +787,7 @@ static int daE_BI_Execute(e_bi_class* i_this) {
     actor->attention_info.position.y += KREG_F(3) + 45.0f;
 
     f32 center = 0.0f;
-    if (dComIfGp_checkPlayerStatus0(0, fopAcStts_UNK_0x80000)) {
+    if (dComIfGp_checkPlayerStatus0(0, fopAcStts_UNK_0x80000_e)) {
         center = 100.0f;
     }
 
