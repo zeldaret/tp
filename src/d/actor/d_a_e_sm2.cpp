@@ -12,6 +12,7 @@
 #include "SSystem/SComponent/c_counter.h"
 #include "f_op/f_op_actor_enemy.h"
 #include "f_op/f_op_camera_mng.h"
+#include <cstring>
 
 class daE_SM2_HIO_c : public fOpAcm_HIO_entry_c {
 public:

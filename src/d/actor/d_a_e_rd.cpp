@@ -24,6 +24,7 @@
 #include "d/actor/d_a_npc_tk.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_actor_enemy.h"
+#include <cstring>
 
 class daE_RD_HIO_c : public JORReflexible {
 public:

@@ -17,6 +17,7 @@
 #include "d/actor/d_grass.h"
 #include "d/actor/d_flower.h"
 #include <cstdio>
+#include <cstring>
 
 s16 const daObjMovebox::Act_c::M_dir_base[4] = {
     0x0000,

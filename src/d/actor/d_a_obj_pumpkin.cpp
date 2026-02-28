@@ -14,6 +14,7 @@
 #if DEBUG
 #include "SSystem/SComponent/c_counter.h"
 #include "JSystem/JHostIO/JORFile.h"
+#include <cstring>
 #endif
 
 const daObj_Pumpkin_HIOParam daObj_Pumpkin_Param_c::m = {

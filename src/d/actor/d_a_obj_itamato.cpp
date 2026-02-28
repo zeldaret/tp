@@ -9,6 +9,7 @@
 #include "d/d_cc_d.h"
 #include "d/actor/d_a_npc.h"
 #include "JSystem/JHostIO/JORFile.h"
+#include <cstring>
 
 struct daObj_ItaMato_HIOParam {
     /* 0x00 */ f32 attn_offset;

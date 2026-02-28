@@ -18,6 +18,7 @@
 #include "d/d_meter2_info.h"
 #include "d/d_timer.h"
 #include "d/d_tresure.h"
+#include <cstring>
 
 
 enum ykM_RES_File_ID {

@@ -18,6 +18,7 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "JSystem/JAudio2/JAUSectionHeap.h"
 #include <cmath>
+#include <cstring>
 
 #define ANM_HS_BACK_WALK           6
 #define ANM_HS_WALK_START          7

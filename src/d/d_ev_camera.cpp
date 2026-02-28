@@ -11,6 +11,7 @@
 #include "m_Do/m_Do_lib.h"
 #include "d/d_drawlist.h"
 #include "d/actor/d_a_alink.h"
+#include <cstring>
 
 namespace {
     static bool isStageEvent(int param_0) {

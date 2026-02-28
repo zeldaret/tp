@@ -12,6 +12,7 @@
 #include "d/actor/d_a_tag_evtarea.h"
 #include "d/d_debug_viewer.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include <cstring>
 
 enum post_RES_File_ID {
     /* BCK */

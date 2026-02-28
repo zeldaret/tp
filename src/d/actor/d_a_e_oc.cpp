@@ -14,6 +14,7 @@
 #include "d/d_cc_uty.h"
 #include "f_op/f_op_actor_enemy.h"
 #include "f_op/f_op_camera_mng.h"
+#include <cstring>
 
 
 enum OC_ACTIONS {

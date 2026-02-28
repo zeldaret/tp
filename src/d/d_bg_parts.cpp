@@ -6,6 +6,7 @@
 #include "f_op/f_op_camera_mng.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
+#include <cstring>
 
 void dBgp_c::material_c::draw() {
     material_c* material = this;

@@ -21,6 +21,7 @@
 #include "d/actor/d_a_npc_zra.h"
 #include "d/actor/d_a_obj_tks.h"
 #include "d/actor/d_a_npc_tkc.h"
+#include <cstring>
 
 BOOL daAlink_c::checkEventRun() const {
     return dComIfGp_event_runCheck() || checkPlayerDemoMode();

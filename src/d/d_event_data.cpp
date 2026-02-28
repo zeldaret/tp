@@ -13,6 +13,7 @@
 #include "d/d_msg_object.h"
 #include "m_Do/m_Do_graphic.h"
 #include "SSystem/SComponent/c_counter.h"
+#include <cstring>
 
 inline BOOL dEvDtFlagCheck(int i_flag) {
     return dComIfGp_getEventManager().getFlags().flagCheck(i_flag);

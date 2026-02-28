@@ -14,6 +14,7 @@
 #include "d/d_bomb.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_camera_mng.h"
+#include <cstring>
 
 static bool hio_set;
 

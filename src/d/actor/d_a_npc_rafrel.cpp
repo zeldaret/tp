@@ -8,6 +8,7 @@
 #include "d/actor/d_a_npc_rafrel.h"
 #include "d/actor/d_a_npc.h"
 #include "d/d_debug_viewer.h"
+#include <cstring>
 
 static daNpc_GetParam2 l_bckGetParamList[29] = {
     {-1, 2, 0},

@@ -18,6 +18,7 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "res/Object/Always.h"
+#include <cstring>
 
 
 class daE_WB_HIO_c : public JORReflexible {

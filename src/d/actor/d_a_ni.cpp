@@ -13,6 +13,7 @@
 #include "c/c_damagereaction.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_camera_mng.h"
+#include <cstring>
 
 enum Joint {
     /* 0x0 */ JNT_WAIST,

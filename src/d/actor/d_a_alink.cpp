@@ -52,6 +52,7 @@
 #include "d/d_s_play.h"
 
 #include "res/Object/Alink.h"
+#include <cstring>
 
 static int daAlink_Create(fopAc_ac_c* i_this);
 static int daAlink_Delete(daAlink_c* i_this);

@@ -16,6 +16,7 @@
 #endif
 #include "d/d_s_play.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include <cstring>
 
 enum Action_e {
     /* 0x0 */ ACTION_SW_WAIT_e,

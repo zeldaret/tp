@@ -5,6 +5,7 @@
 #include "JSystem/JAudio2/JASCriticalSection.h"
 #include <revolution/os.h>
 #include <revolution/wpad.h>
+#include <cstring>
 
 OSAlarm sSpeakerAlarm;
 SpeakerInfo sSpeakerInfo[WPAD_MAX_CONTROLLERS];

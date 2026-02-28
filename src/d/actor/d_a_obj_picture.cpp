@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_picture.h"
+#include <cstring>
 
 static int daObjPicture_c_createHeap(fopAc_ac_c* i_this) {
     return ((daObjPicture_c*)i_this)->createHeap();

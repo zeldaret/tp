@@ -13,6 +13,7 @@
 #include "d/d_s_play.h"
 #include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_lib.h"
+#include <cstring>
 
 static u8 hio_set;
 

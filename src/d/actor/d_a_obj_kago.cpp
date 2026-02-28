@@ -13,6 +13,7 @@
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
+#include <cstring>
 
 daObj_Kago_HIOParam const daObj_Kago_Param_c::m = {
     0.0f,

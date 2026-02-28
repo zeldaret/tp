@@ -12,6 +12,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_map_path.h"
 #include "m_Do/m_Do_lib.h"
+#include <cstring>
 
 void dMpath_n::dTexObjAggregate_c::create() {
     static int const data[7] = {

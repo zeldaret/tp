@@ -11,6 +11,7 @@
 #include "d/actor/d_a_obj_carry.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_bg_w.h"
+#include <cstring>
 
 #define ACTION_WAIT 0
 #define ACTION_SWON 1

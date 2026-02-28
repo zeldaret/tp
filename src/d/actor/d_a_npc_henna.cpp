@@ -12,6 +12,7 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "c/c_damagereaction.h"
 #include <cmath>
+#include <cstring>
 #include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_canoe.h"
 #include "d/actor/d_a_mg_fshop.h"

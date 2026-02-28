@@ -9,6 +9,7 @@
 #include "JSystem/JHostIO/JORFile.h"
 #include "d/d_debug_viewer.h"
 #include "d/actor/d_a_npc_pachi_taro.h"
+#include <cstring>
 
 enum Maro_RES_File_ID {
     /* BCK */

@@ -14,6 +14,7 @@
 #include "d/d_save_init.h"
 #include "f_op/f_op_scene_mng.h"
 #include <cstdio>
+#include <cstring>
 
 #if PLATFORM_WII || PLATFORM_SHIELD
 #include <revolution/sc.h>

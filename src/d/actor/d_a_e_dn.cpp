@@ -13,6 +13,7 @@
 #include "d/actor/d_a_horse.h"
 #include "f_op/f_op_actor_enemy.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include <cstring>
 
 class daE_DN_HIO_c : public JORReflexible {
 public:

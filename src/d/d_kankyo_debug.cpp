@@ -7,6 +7,7 @@
 #include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
+#include <cstring>
 
 static void add_update_proc(u8* mode, s16* param_1, s16* param_2, s16* param_3) {
     int value;

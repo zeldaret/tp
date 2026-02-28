@@ -13,6 +13,7 @@
 #include "d/actor/d_a_obj_smallkey.h"
 #include "f_op/f_op_actor_enemy.h"
 #include "f_op/f_op_camera_mng.h"
+#include <cstring>
 
 enum Head_Action {
     /* 0x0 */ HEAD_ACTION_WAIT,

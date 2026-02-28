@@ -10,6 +10,7 @@
 #include "d/d_msg_flow.h"
 #include "d/d_particle_copoly.h"
 #include "global.h"
+#include <cstring>
 
 struct daNpc_GetParam1 {  // name unknown
     /* 0x0 */ int fileIdx;

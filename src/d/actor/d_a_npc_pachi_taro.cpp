@@ -13,6 +13,7 @@
 #include "d/actor/d_a_npc_pachi_maro.h"
 #include "d/actor/d_a_npc_pachi_besu.h"
 #include "d/d_debug_viewer.h"
+#include <cstring>
 
 enum Taro_RES_File_ID {
     /* BMDR */

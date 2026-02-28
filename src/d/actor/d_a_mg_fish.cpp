@@ -22,6 +22,7 @@
 #include "d/d_s_play.h"
 #include "d/d_vibration.h"
 #include "f_op/f_op_kankyo_mng.h"
+#include <cstring>
 
 #define ANM_MG_FISH_MOUTH_CLOSE     4
 #define ANM_MG_FISH_MOUTH_OPEN      5

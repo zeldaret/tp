@@ -6,6 +6,7 @@
 #include "SSystem/SComponent/c_lib.h"
 #include "f_op/f_op_overlap_mng.h"
 #include <dolphin/gf.h>
+#include <cstring>
 
 #include "d/d_camera.h"
 #include "f_op/f_op_camera_mng.h"

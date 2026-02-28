@@ -6,6 +6,7 @@
 #include "JSystem/JHostIO/JORFile.h"
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
+#include <cstring>
 
 #if DEBUG
 

@@ -12,6 +12,7 @@
 #include "SSystem/SComponent/c_m3d_g_cyl.h"
 #include "d/d_debug_viewer.h"
 #include "f_op/f_op_actor_mng.h"
+#include <cstring>
 
 #if DEBUG
 dJntCol_HIO_c l_HIO;

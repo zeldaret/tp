@@ -16,6 +16,7 @@
 #include "d/actor/d_a_e_oc.h"
 #include "d/actor/d_a_e_db.h"
 #include "SSystem/SComponent/c_counter.h"
+#include <cstring>
 
 class daObj_Key_HIO_c : public JORReflexible{
 public:

@@ -11,6 +11,7 @@
 #include "d/d_debug_viewer.h"
 #include "d/actor/d_a_tag_push.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include <cstring>
 
 enum grO_RES_File_ID {
     /* BCK */

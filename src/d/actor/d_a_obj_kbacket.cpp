@@ -11,6 +11,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
+#include <cstring>
 
 static s32 l_bmdData[4] = { 8, 0, 9, 0 };
 
