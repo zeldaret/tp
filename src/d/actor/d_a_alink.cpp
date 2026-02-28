@@ -4640,7 +4640,7 @@ void daAlink_c::playerInit() {
     }
 }
 
-void dummy(fopAc_ac_c* i_this) {
+static void dummy(fopAc_ac_c* i_this) {
     fopAcM_RegisterCreateID(i_this, "ALINK");
 }
 
