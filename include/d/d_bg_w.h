@@ -11,7 +11,7 @@ class cBgS_GrpPassChk;
 class cBgS_PolyPassChk;
 class fopAc_ac_c;
 struct cBgD_Vtx_t;
-struct dBgS_CaptPoly;
+class dBgS_CaptPoly;
 
 class cBgW_TriElm {
 public:
