@@ -955,5 +955,5 @@ scene_process_profile_definition g_profile_LOGO_SCENE = {
     0,
     &g_fopScn_Method.base,
     &l_dScnLogo_Method,
-    NULL,
+    0,
 };
