@@ -180,18 +180,18 @@ static actor_method_class daObjL4DigSand_METHODS = {
 };
 
 actor_process_profile_definition g_profile_Obj_Lv4DigSand = {
-  fpcLy_CURRENT_e,          // mLayerID
-  3,                        // mListID
-  fpcPi_CURRENT_e,          // mListPrio
-  PROC_Obj_Lv4DigSand,      // mProcName
-  &g_fpcLf_Method.base,    // sub_method
-  sizeof(daObjL4DigSand_c), // mSize
-  0,                        // mSizeOther
-  0,                        // mParameters
-  &g_fopAc_Method.base,     // sub_method
-  551,                      // mPriority
-  &daObjL4DigSand_METHODS,  // sub_method
-  0x00044100,               // mStatus
-  fopAc_ACTOR_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e,   // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 3,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_Obj_Lv4DigSand,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daObjL4DigSand_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_Obj_Lv4DigSand,
+    /* Actor SubMtd */ &daObjL4DigSand_METHODS,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

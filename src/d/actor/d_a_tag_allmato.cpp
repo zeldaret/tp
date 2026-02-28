@@ -593,18 +593,18 @@ static actor_method_class daTag_AllMato_MethodTable = {
 };
 
 actor_process_profile_definition g_profile_TAG_ALLMATO = {
-    fpcLy_CURRENT_e,                // mLayerID
-    10,                              // mListID
-    fpcPi_CURRENT_e,                // mListPri
-    PROC_TAG_ALLMATO,               // mProcName
-    &g_fpcLf_Method.base,          // sub_method
-    sizeof(daTag_AllMato_c),     // mSize
-    0,                              // mSizeOther
-    0,                              // mParameters
-    &g_fopAc_Method.base,           // sub_method
-    288,                             // mPriority
-    &daTag_AllMato_MethodTable,  // sub_method
-    0x44000,                        // mStatus
-    fopAc_ACTOR_e,                              // mActorType
-    fopAc_CULLBOX_CUSTOM_e,         // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 10,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_TAG_ALLMATO,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daTag_AllMato_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_TAG_ALLMATO,
+    /* Actor SubMtd */ &daTag_AllMato_MethodTable,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

@@ -816,20 +816,20 @@ static actor_method_class l_daE_Bee_Method = {
 };
 
 actor_process_profile_definition g_profile_E_BEE = {
-    fpcLy_CURRENT_e,
-    7,
-    fpcPi_CURRENT_e,
-    PROC_E_BEE,
-    &g_fpcLf_Method.base,
-    sizeof(e_bee_class),
-    0,
-    0,
-    &g_fopAc_Method.base,
-    0xB7,
-    &l_daE_Bee_Method,
-    0x44000,
-    fopAc_ACTOR_e,
-    fopAc_CULLBOX_CUSTOM_e,
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_E_BEE,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(e_bee_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_E_BEE,
+    /* Actor SubMtd */ &l_daE_Bee_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };
 
 AUDIO_INSTANCES;

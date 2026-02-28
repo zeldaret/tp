@@ -719,18 +719,18 @@ static actor_method_class l_daOBJ_HB_Method = {
 };
 
 actor_process_profile_definition g_profile_OBJ_HB = {
-  fpcLy_CURRENT_e,       // mLayerID
-  8,                     // mListID
-  fpcPi_CURRENT_e,       // mListPrio
-  PROC_OBJ_HB,           // mProcName
-  &g_fpcLf_Method.base, // sub_method
-  sizeof(obj_hb_class),  // mSize
-  0,                     // mSizeOther
-  0,                     // mParameters
-  &g_fopAc_Method.base,  // sub_method
-  705,                   // mPriority
-  &l_daOBJ_HB_Method,    // sub_method
-  0x00040100,            // mStatus
-  fopAc_ACTOR_e,         // mActorType
-  fopAc_CULLBOX_0_e,     // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 8,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_OBJ_HB,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(obj_hb_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_OBJ_HB,
+    /* Actor SubMtd */ &l_daOBJ_HB_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };

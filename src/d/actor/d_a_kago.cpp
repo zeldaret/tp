@@ -3898,18 +3898,18 @@ static actor_method_class l_daKago_Method = {
 };
 
 actor_process_profile_definition g_profile_KAGO = {
-    fpcLy_CURRENT_e,        // mLayerID
-    4,                      // mListID
-    fpcPi_CURRENT_e,        // mListPrio
-    PROC_KAGO,              // mProcName
-    &g_fpcLf_Method.base,  // sub_method
-    sizeof(daKago_c),       // mSize
-    0,                      // mSizeOther
-    0,                      // mParameters
-    &g_fopAc_Method.base,   // sub_method
-    693,                    // mPriority
-    &l_daKago_Method,       // sub_method
-    0x00044000,             // mStatus
-    fopAc_NPC_e,            // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 4,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_KAGO,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daKago_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_KAGO,
+    /* Actor SubMtd */ &l_daKago_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_NPC_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

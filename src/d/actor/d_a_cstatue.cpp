@@ -1215,20 +1215,20 @@ static actor_method_class l_daCstatue_Method = {
 };
 
 actor_process_profile_definition g_profile_CSTATUE = {
-    fpcLy_CURRENT_e,         // mLayerID
-    7,                       // mListID
-    fpcPi_CURRENT_e,         // mListPrio
-    PROC_CSTATUE,            // mProcName
-    &g_fpcLf_Method.base,    // sub_method
-    0x00000B2C,              // mSize
-    0,                       // mSizeOther
-    0,                       // mParameters
-    &g_fopAc_Method.base,    // sub_method
-    271,                     // mPriority
-    &l_daCstatue_Method,     // sub_method
-    0x00060520,              // mStatus
-    fopAc_ENV_e,             // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_CSTATUE,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ 0x00000B2C,
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_CSTATUE,
+    /* Actor SubMtd */ &l_daCstatue_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e | fopAcStts_FREEZE_e | fopAcStts_CULL_e | fopAcStts_UNK_0x20_e,
+    /* Group        */ fopAc_ENV_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };
 
 AUDIO_INSTANCES;

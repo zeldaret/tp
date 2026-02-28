@@ -5687,20 +5687,20 @@ static actor_method_class l_daB_DS_Method = {
 };
 
 actor_process_profile_definition g_profile_B_DS = {
-    fpcLy_CURRENT_e,
-    4,
-    fpcPi_CURRENT_e,
-    PROC_B_DS,
-    &g_fpcLf_Method.base,
-    sizeof(daB_DS_c),
-    0,
-    0,
-    &g_fopAc_Method.base,
-    0xDC,
-    &l_daB_DS_Method,
-    0x4040000,
-    fopAc_ENEMY_e,
-    fopAc_CULLBOX_CUSTOM_e,
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 4,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_B_DS,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daB_DS_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_B_DS,
+    /* Actor SubMtd */ &l_daB_DS_Method,
+    /* Status       */ fopAcStts_BOSS_e | fopAcStts_UNK_0x40000_e,
+    /* Group        */ fopAc_ENEMY_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };
 
 AUDIO_INSTANCES;

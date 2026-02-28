@@ -738,27 +738,27 @@ static scene_method_class l_dScnPly_Method = {
 };
 
 scene_process_profile_definition g_profile_PLAY_SCENE = {
-    fpcLy_ROOT_e,                              // mLayerID
-    1,                                         // mListID
-    fpcPi_CURRENT_e,                           // mListPrio
-    PROC_PLAY_SCENE,                           // mProcName
-    &g_fpcNd_Method.base,                     // sub_method
-    sizeof(dScnPly_c),                         // mSize
-    0,                                         // mSizeOther
-    0,                                         // mParameters
-    &g_fopScn_Method.base,                    // sub_method
-    &l_dScnPly_Method,  // mpMtd
+    /* Layer ID     */ fpcLy_ROOT_e,
+    /* List ID      */ 1,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_PLAY_SCENE,
+    /* Proc SubMtd  */ &g_fpcNd_Method.base,
+    /* Size         */ sizeof(dScnPly_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopScn_Method.base,
+    /* Scene SubMtd */ &l_dScnPly_Method,
 };
 
 scene_process_profile_definition g_profile_OPENING_SCENE = {
-    fpcLy_ROOT_e,                              // mLayerID
-    1,                                         // mListID
-    fpcPi_CURRENT_e,                           // mListPrio
-    PROC_OPENING_SCENE,                        // mProcName
-    &g_fpcNd_Method.base,                     // sub_method
-    sizeof(dScnPly_c),                         // mSize
-    0,                                         // mSizeOther
-    0,                                         // mParameters
-    &g_fopScn_Method.base,                    // sub_method
-    &l_dScnPly_Method,  // mpMtd
+    /* Layer ID     */ fpcLy_ROOT_e,
+    /* List ID      */ 1,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_OPENING_SCENE,
+    /* Proc SubMtd  */ &g_fpcNd_Method.base,
+    /* Size         */ sizeof(dScnPly_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopScn_Method.base,
+    /* Scene SubMtd */ &l_dScnPly_Method,
 };

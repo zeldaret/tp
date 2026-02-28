@@ -1815,20 +1815,20 @@ static actor_method_class daMyna_MethodTable = {
 };
 
 actor_process_profile_definition g_profile_MYNA = {
-    fpcLy_CURRENT_e,
-    7,
-    fpcPi_CURRENT_e,
-    PROC_MYNA,
-    &g_fpcLf_Method.base,
-    sizeof(daMyna_c),
-    0,
-    0,
-    &g_fopAc_Method.base,
-    0x0130,
-    &daMyna_MethodTable,
-    0x40000,
-    0,
-    fopAc_CULLBOX_0_e
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_MYNA,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daMyna_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_MYNA,
+    /* Actor SubMtd */ &daMyna_MethodTable,
+    /* Status       */ fopAcStts_UNK_0x40000_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };
 
 AUDIO_INSTANCES;

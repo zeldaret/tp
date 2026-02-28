@@ -133,15 +133,15 @@ static leafdraw_method_class l_dkWpillar_Method = {
 };
 
 kankyo_process_profile_definition g_profile_WPILLAR = {
-    fpcLy_CURRENT_e,
-    9,
-    fpcPi_CURRENT_e,
-    PROC_WPILLAR,
-    &g_fpcLf_Method.base,
-    sizeof(dkWpillar_c),
-    0,
-    0,
-    &g_fopKy_Method,
-    759,
-    &l_dkWpillar_Method,
+    /* Layer ID      */ fpcLy_CURRENT_e,
+    /* List ID       */ 9,
+    /* List Prio     */ fpcPi_CURRENT_e,
+    /* Proc Name     */ PROC_WPILLAR,
+    /* Proc SubMtd   */ &g_fpcLf_Method.base,
+    /* Size          */ sizeof(dkWpillar_c),
+    /* Size Other    */ 0,
+    /* Parameters    */ 0,
+    /* Leaf SubMtd   */ &g_fopKy_Method,
+    /* Priority      */ PRIO_WPILLAR,
+    /* Kankyo SubMtd */ &l_dkWpillar_Method,
 };

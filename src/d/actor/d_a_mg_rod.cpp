@@ -6412,20 +6412,20 @@ static actor_method_class l_dmg_rod_Method = {
 };
 
 actor_process_profile_definition g_profile_MG_ROD = {
-  fpcLy_CURRENT_e,            // mLayerID
-  8,                          // mListID
-  fpcPi_CURRENT_e,            // mListPrio
-  PROC_MG_ROD,                // mProcName
-  &g_fpcLf_Method.base,      // sub_method
-  sizeof(dmg_rod_class),      // mSize
-  0,                          // mSizeOther
-  0,                          // mParameters
-  &g_fopAc_Method.base,       // sub_method
-  438,                        // mPriority
-  &l_dmg_rod_Method,          // sub_method
-  0x00060000,                 // mStatus
-  fopAc_ACTOR_e,              // mActorType
-  fopAc_CULLBOX_0_e,          // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 8,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_MG_ROD,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(dmg_rod_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_MG_ROD,
+    /* Actor SubMtd */ &l_dmg_rod_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };
 
 AUDIO_INSTANCES

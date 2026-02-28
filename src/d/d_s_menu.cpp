@@ -2005,28 +2005,28 @@ static scene_method_class l_dScnMenu_Method = {
 };
 
 scene_process_profile_definition g_profile_MENU_SCENE = {
-    fpcLy_ROOT_e,                               // mLayerID
-    1,                                          // mListID
-    fpcPi_CURRENT_e,                            // mListPrio
-    PROC_MENU_SCENE,                            // mProcName
-    &g_fpcNd_Method.base,                      // sub_method
-    sizeof(dScnMenu_c),                         // mSize
-    0,                                          // mSizeOther
-    0,                                          // mParameters
-    &g_fopScn_Method.base,                     // sub_method
-    &l_dScnMenu_Method,  // mpMtd
+    /* Layer ID     */ fpcLy_ROOT_e,
+    /* List ID      */ 1,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_MENU_SCENE,
+    /* Proc SubMtd  */ &g_fpcNd_Method.base,
+    /* Size         */ sizeof(dScnMenu_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopScn_Method.base,
+    /* Scene SubMtd */ &l_dScnMenu_Method,
 };
 #else
 scene_process_profile_definition g_profile_MENU_SCENE = {
-    fpcLy_ROOT_e,           // mLayerID
-    1,                      // mListID
-    fpcPi_CURRENT_e,        // mListPrio
-    PROC_MENU_SCENE,        // mProcName
-    &g_fpcNd_Method.base,  // sub_method
-    0,                      // mSize
-    0,                      // mSizeOther      
-    0,                      // mParameters      
-    &g_fopScn_Method.base, // sub_method
-    NULL,                   // mpMtd
+    /* Layer ID     */ fpcLy_ROOT_e,
+    /* List ID      */ 1,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_MENU_SCENE,
+    /* Proc SubMtd  */ &g_fpcNd_Method.base,
+    /* Size         */ 0,
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopScn_Method.base,
+    /* Scene SubMtd */ NULL,
 };
 #endif

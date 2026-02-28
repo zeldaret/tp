@@ -489,18 +489,18 @@ static actor_method_class l_daNpc_Inko_Method = {
 };
 
 actor_process_profile_definition g_profile_NPC_INKO = {
-  fpcLy_CURRENT_e,        // mLayerID
-  8,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_INKO,          // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(npc_inko_class), // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  704,                    // mPriority
-  &l_daNpc_Inko_Method,   // sub_method
-  0x00040100,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 8,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_NPC_INKO,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(npc_inko_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_NPC_INKO,
+    /* Actor SubMtd */ &l_daNpc_Inko_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

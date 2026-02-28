@@ -2845,20 +2845,20 @@ static actor_method_class l_daNpc_Henna_Method = {
 };
 
 actor_process_profile_definition g_profile_NPC_HENNA = {
-    fpcLy_CURRENT_e,          // mLayerID
-    7,                        // mListID
-    fpcPi_CURRENT_e,          // mListPrio
-    PROC_NPC_HENNA,           // mProcName
-    &g_fpcLf_Method.base,     // sub_method
-    sizeof(npc_henna_class),  // mSize
-    0,                        // mSizeOther
-    0,                        // mParameters
-    &g_fopAc_Method.base,     // sub_method
-    342,                      // mPriority
-    &l_daNpc_Henna_Method,    // sub_method
-    0x00044000,               // mStatus
-    fopAc_NPC_e,              // mActorType
-    fopAc_CULLBOX_0_e,        // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_NPC_HENNA,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(npc_henna_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_NPC_HENNA,
+    /* Actor SubMtd */ &l_daNpc_Henna_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_NPC_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };
 
 AUDIO_INSTANCES

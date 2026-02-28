@@ -4061,20 +4061,20 @@ static actor_method_class l_daMg_Fish_Method = {
 };
 
 actor_process_profile_definition g_profile_MG_FISH = {
-    (uint)fpcLy_CURRENT_e,  // mLayerID
-    7,                      // mListID
-    fpcPi_CURRENT_e,        // mListPrio
-    PROC_MG_FISH,           // mProcName
-    &g_fpcLf_Method.base,   // sub_method
-    sizeof(mg_fish_class),  // mSize
-    0,                      // mSizeOther
-    0,                      // mParameters
-    &g_fopAc_Method.base,   // sub_method
-    720,                    // mPriority
-    &l_daMg_Fish_Method,    // sub_method
-    0x00040100,             // mStatus
-    fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // cullType
+    /* Layer ID     */ (uint)fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_MG_FISH,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(mg_fish_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_MG_FISH,
+    /* Actor SubMtd */ &l_daMg_Fish_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };
 
 AUDIO_INSTANCES

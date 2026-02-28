@@ -422,18 +422,18 @@ static actor_method_class l_daNpc_Df_Method = {
 };
 
 actor_process_profile_definition g_profile_NPC_DF = {
-  fpcLy_CURRENT_e,        // mLayerID
-  9,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_DF,            // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(npc_df_class),   // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  439,                    // mPriority
-  &l_daNpc_Df_Method,     // sub_method
-  0x00040000,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 9,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_NPC_DF,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(npc_df_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_NPC_DF,
+    /* Actor SubMtd */ &l_daNpc_Df_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

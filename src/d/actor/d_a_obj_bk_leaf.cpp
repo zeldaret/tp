@@ -159,17 +159,19 @@ static actor_method_class l_daBkLeaf_Method = {
     (process_method_func)daBkLeaf_Draw,
 };
 
-actor_process_profile_definition g_profile_Obj_BkLeaf = {fpcLy_CURRENT_e,
-                                                                7,
-                                                                fpcPi_CURRENT_e,
-                                                                PROC_Obj_BkLeaf,
-                                                                &g_fpcLf_Method.base,
-                                                                sizeof(daBkLeaf_c),
-                                                                0,
-                                                                0,
-                                                                &g_fopAc_Method.base,
-                                                                0xFC,
-                                                                &l_daBkLeaf_Method,
-                                                                0x40100,
-                                                                0,
-                                                                fopAc_CULLBOX_CUSTOM_e};
+actor_process_profile_definition g_profile_Obj_BkLeaf = {
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_Obj_BkLeaf,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daBkLeaf_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_Obj_BkLeaf,
+    /* Actor SubMtd */ &l_daBkLeaf_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
+};

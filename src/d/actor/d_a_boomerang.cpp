@@ -1498,20 +1498,20 @@ static actor_method_class l_daBoomerang_Method = {
 };
 
 actor_process_profile_definition g_profile_BOOMERANG = {
-  fpcLy_CURRENT_e,       // mLayerID
-  6,                     // mListID
-  fpcPi_CURRENT_e,       // mListPrio
-  PROC_BOOMERANG,        // mProcName
-  &g_fpcLf_Method.base, // sub_method
-  sizeof(daBoomerang_c),            // mSize
-  0,                     // mSizeOther
-  0,                     // mParameters
-  &g_fopAc_Method.base,  // sub_method
-  686,                   // mPriority
-  &l_daBoomerang_Method, // sub_method
-  0x00060000,            // mStatus
-  fopAc_UNK_GROUP_5_e,   // mActorType
-  fopAc_CULLBOX_0_e,     // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 6,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_BOOMERANG,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daBoomerang_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_BOOMERANG,
+    /* Actor SubMtd */ &l_daBoomerang_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
+    /* Group        */ fopAc_UNK_GROUP_5_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };
 
 AUDIO_INSTANCES;

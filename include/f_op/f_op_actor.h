@@ -56,6 +56,9 @@ enum fopAc_Status_e {
     fopAcStts_UNK_0x2000000_e     = 1 << 25,
     fopAcStts_BOSS_e              = 1 << 26,
     fopAcStts_UNK_0x8000000_e     = 1 << 27,
+    fopAcStts_UNK_0x10000000_e    = 1 << 28,
+    fopAcStts_UNK_0x20000000_e    = 1 << 29,
+    fopAcStts_UNK_0x40000000_e    = 1 << 30,
     fopAcStts_HAWK_CARRY_NOW_e    = 1 << 31,
 };
 

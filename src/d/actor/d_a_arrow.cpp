@@ -1221,18 +1221,18 @@ static actor_method_class l_daArrowMethodTable = {
 };
 
 actor_process_profile_definition g_profile_ARROW = {
-  fpcLy_CURRENT_e,        // mLayerID
-  9,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_ARROW,             // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daArrow_c),      // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  750,                    // mPriority
-  &l_daArrowMethodTable,  // sub_method
-  0x00060000,             // mStatus
-  fopAc_UNK_GROUP_5_e,    // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 9,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_ARROW,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daArrow_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_ARROW,
+    /* Actor SubMtd */ &l_daArrowMethodTable,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
+    /* Group        */ fopAc_UNK_GROUP_5_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

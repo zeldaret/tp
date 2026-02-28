@@ -7,6 +7,7 @@
 #include "f_pc/f_pc_method.h"
 #include "f_pc/f_pc_profile.h"
 #include "d/d_procname.h"
+#include "d/d_priority.h"
 
 typedef struct leafdraw_method_class {
     /* 0x00 */ process_method_class base;

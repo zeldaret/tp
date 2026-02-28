@@ -1779,20 +1779,20 @@ static actor_method_class l_daObj_Kanban2_Method = {
 };
 
 actor_process_profile_definition g_profile_OBJ_KANBAN2 = {
-  fpcLy_CURRENT_e,         // mLayerID
-  7,                       // mListID
-  fpcPi_CURRENT_e,         // mListPrio
-  PROC_OBJ_KANBAN2,        // mProcName
-  &g_fpcLf_Method.base,   // sub_method
-  sizeof(daObj_Kanban2_c), // mSize
-  0,                       // mSizeOther
-  0,                       // mParameters
-  &g_fopAc_Method.base,    // sub_method
-  63,                      // mPriority
-  &l_daObj_Kanban2_Method, // sub_method
-  0x00044100,              // mStatus
-  fopAc_ENV_e,             // mActorType
-  fopAc_CULLBOX_0_e,       // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_OBJ_KANBAN2,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daObj_Kanban2_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_OBJ_KANBAN2,
+    /* Actor SubMtd */ &l_daObj_Kanban2_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ENV_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };
 
 AUDIO_INSTANCES

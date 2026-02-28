@@ -1634,15 +1634,15 @@ static leafdraw_method_class l_dTimer_Method = {
 };
 
 msg_process_profile_definition g_profile_TIMER = {
-    fpcLy_CURRENT_e,
-    12,
-    fpcPi_CURRENT_e,
-    PROC_TIMER,
-    &g_fpcLf_Method.base,
-    sizeof(dTimer_c),
-    0,
-    0,
-    &g_fopMsg_Method,
-    768,
-    &l_dTimer_Method,
+    /* Layer ID    */ fpcLy_CURRENT_e,
+    /* List ID     */ 12,
+    /* List Prio   */ fpcPi_CURRENT_e,
+    /* Proc Name   */ PROC_TIMER,
+    /* Proc SubMtd */ &g_fpcLf_Method.base,
+    /* Size        */ sizeof(dTimer_c),
+    /* Size Other  */ 0,
+    /* Parameters  */ 0,
+    /* Leaf SubMtd */ &g_fopMsg_Method,
+    /* Priority    */ PRIO_TIMER,
+    /* Msg SubMtd  */ &l_dTimer_Method,
 };

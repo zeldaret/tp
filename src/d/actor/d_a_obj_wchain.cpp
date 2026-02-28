@@ -384,18 +384,18 @@ static actor_method_class l_daObjWchain_Method = {
 };
 
 actor_process_profile_definition g_profile_Obj_Wchain = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_Obj_Wchain,        // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  0x000007BC,             // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  247,                    // mPriority
-  &l_daObjWchain_Method,  // sub_method
-  0x00060100,             // mStatus
-  fopAc_ENV_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_Obj_Wchain,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ 0x000007BC,
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_Obj_Wchain,
+    /* Actor SubMtd */ &l_daObjWchain_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ENV_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

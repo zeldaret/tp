@@ -95,18 +95,18 @@ static actor_method_class l_daTagWatchGe_Method = {
 };
 
 actor_process_profile_definition g_profile_Tag_WatchGe = {
-    fpcLy_CURRENT_e,         // mLayerID  
-    7,                       // mListID
-    fpcPi_CURRENT_e,         // mListPrio 
-    PROC_Tag_WatchGe,        // mProcName               
-    &g_fpcLf_Method.base,   // sub_method                    
-    sizeof(daTagWatchGe_c),  // mSize                      
-    0,                       // mSizeOther
-    0,                       // mParameters       
-    &g_fopAc_Method.base,    // sub_method                   
-    193,                     // mPriority    
-    &l_daTagWatchGe_Method,  // sub_method                     
-    0x44000,                 // mStatus          
-    fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLBOX_0_e,       // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_Tag_WatchGe,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daTagWatchGe_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_Tag_WatchGe,
+    /* Actor SubMtd */ &l_daTagWatchGe_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };

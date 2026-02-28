@@ -1773,20 +1773,20 @@ static actor_method_class l_daFshop_Method = {
 };
 
 actor_process_profile_definition g_profile_FSHOP = {
-  fpcLy_CURRENT_e,       // mLayerID
-  7,                     // mListID
-  fpcPi_CURRENT_e,       // mListPrio
-  PROC_FSHOP,            // mProcName
-  &g_fpcLf_Method.base, // sub_method
-  0x00006B80,            // mSize
-  0,                     // mSizeOther
-  0,                     // mParameters
-  &g_fopAc_Method.base,  // sub_method
-  721,                   // mPriority
-  &l_daFshop_Method,     // sub_method
-  0x00044000,            // mStatus
-  fopAc_ACTOR_e,         // mActorType
-  fopAc_CULLBOX_0_e,     // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_FSHOP,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ 0x00006B80,
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_FSHOP,
+    /* Actor SubMtd */ &l_daFshop_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };
 
 AUDIO_INSTANCES;

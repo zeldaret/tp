@@ -2463,15 +2463,15 @@ static leafdraw_method_class l_dMsgObject_Method = {
 };
 
 msg_process_profile_definition g_profile_MSG_OBJECT = {
-  fpcLy_CURRENT_e,        // mLayerID
-  12,                     // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_MSG_OBJECT,        // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(dMsgObject_c),   // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopMsg_Method,       // sub_method
-  770,                    // mPriority
-  &l_dMsgObject_Method,   // sub_method
+    /* Layer ID    */ fpcLy_CURRENT_e,
+    /* List ID     */ 12,
+    /* List Prio   */ fpcPi_CURRENT_e,
+    /* Proc Name   */ PROC_MSG_OBJECT,
+    /* Proc SubMtd */ &g_fpcLf_Method.base,
+    /* Size        */ sizeof(dMsgObject_c),
+    /* Size Other  */ 0,
+    /* Parameters  */ 0,
+    /* Leaf SubMtd */ &g_fopMsg_Method,
+    /* Priority    */ PRIO_MSG_OBJECT,
+    /* Msg SubMtd  */ &l_dMsgObject_Method,
 };

@@ -1904,20 +1904,20 @@ static actor_method_class daTbox_METHODS = {
 };
 
 actor_process_profile_definition g_profile_TBOX = {
-    fpcLy_CURRENT_e,
-    4,
-    fpcPi_CURRENT_e,
-    PROC_TBOX,
-    &g_fpcLf_Method.base,
-    sizeof(daTbox_c),
-    0,
-    0,
-    &g_fopAc_Method.base,
-    0x10c,
-    &daTbox_METHODS,
-    0x44100,
-    fopAc_ACTOR_e,
-    fopAc_CULLBOX_CUSTOM_e,
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 4,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_TBOX,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daTbox_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_TBOX,
+    /* Actor SubMtd */ &daTbox_METHODS,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };
 
 AUDIO_INSTANCES

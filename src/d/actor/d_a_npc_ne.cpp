@@ -3256,20 +3256,20 @@ static actor_method_class l_daNpc_Ne_Method = {
 };
 
 actor_process_profile_definition g_profile_NPC_NE = {
-    fpcLy_CURRENT_e,
-    7,
-    fpcPi_CURRENT_e,
-    PROC_NPC_NE,
-    &g_fpcLf_Method.base,
-    sizeof(npc_ne_class),
-    0,
-    0,
-    &g_fopAc_Method.base,
-    0x2BC,
-    &l_daNpc_Ne_Method,
-    0x8044000,
-    fopAc_NPC_e,
-    fopAc_CULLBOX_0_e,
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_NPC_NE,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(npc_ne_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_NPC_NE,
+    /* Actor SubMtd */ &l_daNpc_Ne_Method,
+    /* Status       */ fopAcStts_UNK_0x8000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_NPC_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };
 
 AUDIO_INSTANCES;

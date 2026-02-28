@@ -184,18 +184,18 @@ static actor_method_class daObjLv3saka_METHODS = {
     (process_method_func)daObjLv3saka_MoveBGDraw};
 
 actor_process_profile_definition g_profile_Obj_Lv3R10Saka = {
-    fpcLy_CURRENT_e,         // mLayerID
-    3,                       // mListID
-    fpcPi_CURRENT_e,         // mListPrio
-    PROC_Obj_Lv3R10Saka,     // mProcName
-    &g_fpcLf_Method.base,   // sub_method
-    sizeof(daObjLv3saka_c),  // mSize
-    0,                       // mSizeOther
-    0,                       // mParameters
-    &g_fopAc_Method.base,    // sub_method
-    528,                     // mPriority
-    &daObjLv3saka_METHODS,   // sub_method
-    0x40100,                 // mStatus
-    fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 3,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_Obj_Lv3R10Saka,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daObjLv3saka_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_Obj_Lv3R10Saka,
+    /* Actor SubMtd */ &daObjLv3saka_METHODS,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

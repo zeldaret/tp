@@ -3085,15 +3085,15 @@ static leafdraw_method_class l_dMeter2_Method = {
 };
 
 msg_process_profile_definition g_profile_METER2 = {
-    fpcLy_CURRENT_e,
-    12,
-    fpcPi_CURRENT_e,
-    PROC_METER2,
-    &g_fpcLf_Method.base,
-    sizeof(dMeter2_c),
-    0,
-    0,
-    &g_fopMsg_Method,
-    0x0301,
-    &l_dMeter2_Method,
+    /* Layer ID    */ fpcLy_CURRENT_e,
+    /* List ID     */ 12,
+    /* List Prio   */ fpcPi_CURRENT_e,
+    /* Proc Name   */ PROC_METER2,
+    /* Proc SubMtd */ &g_fpcLf_Method.base,
+    /* Size        */ sizeof(dMeter2_c),
+    /* Size Other  */ 0,
+    /* Parameters  */ 0,
+    /* Leaf SubMtd */ &g_fopMsg_Method,
+    /* Priority    */ PRIO_METER2,
+    /* Msg SubMtd  */ &l_dMeter2_Method,
 };

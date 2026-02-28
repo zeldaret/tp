@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h"  // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_damCps.h"
-#include "d/d_priority.h"
 
 #if DEBUG
 #include "d/d_debug_viewer.h"
@@ -202,22 +201,22 @@ static actor_method_class l_daObjDamCps_Method = {
 #endif
 
 actor_process_profile_definition g_profile_Obj_DamCps = {
-    fpcLy_CURRENT_e,        // mLayerID
-    7,                      // mListID
-    fpcPi_CURRENT_e,        // mListPrio
-    PROC_Obj_DamCps,        // mProcName
-    &g_fpcLf_Method.base,   // sub_method
-    sizeof(daObjDamCps_c),  // mSize
-    0,                      // mSizeOther
-    0,                      // mParameters
-    &g_fopAc_Method.base,   // sub_method
-    PRIO_Obj_DamCps,                    // mPriority
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_Obj_DamCps,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daObjDamCps_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_Obj_DamCps,
 #if DEBUG
-    &l_daObjDamCps_Method,  // sub_method
+    /* Actor SubMtd */ &l_daObjDamCps_Method,
 #else
-    NULL,  // sub_method
+    /* Actor SubMtd */ NULL,
 #endif
-    fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,              // mStatus
-    fopAc_ACTOR_e,           // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // cullType
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

@@ -401,20 +401,20 @@ static actor_method_class daGrass_METHODS = {
 };
 
 actor_process_profile_definition g_profile_GRASS = {
-  fpcLy_CURRENT_e,       // mLayerID
-  11,                    // mListID
-  fpcPi_CURRENT_e,       // mListPrio
-  PROC_GRASS,            // mProcName
-  &g_fpcLf_Method.base, // sub_method
-  0x00000570,            // mSize
-  0,                     // mSizeOther
-  0,                     // mParameters
-  &g_fopAc_Method.base,  // sub_method
-  8,                     // mPriority
-  &daGrass_METHODS,      // sub_method
-  0x00060000,            // mStatus
-  fopAc_ACTOR_e,         // mActorType
-  fopAc_CULLBOX_0_e,     // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 11,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_GRASS,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ 0x00000570,
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_GRASS,
+    /* Actor SubMtd */ &daGrass_METHODS,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };
 
 AUDIO_INSTANCES;

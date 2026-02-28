@@ -499,15 +499,15 @@ static leafdraw_method_class l_dGameover_Method = {
 };
 
 msg_process_profile_definition g_profile_GAMEOVER = {
-    fpcLy_CURRENT_e,
-    0x0C,
-    fpcPi_CURRENT_e,
-    PROC_GAMEOVER,
-    &g_fpcLf_Method.base,
-    sizeof(dGameover_c),
-    0,
-    0,
-    &g_fopMsg_Method,
-    0x303,
-    &l_dGameover_Method,
+    /* Layer ID    */ fpcLy_CURRENT_e,
+    /* List ID     */ 0x0C,
+    /* List Prio   */ fpcPi_CURRENT_e,
+    /* Proc Name   */ PROC_GAMEOVER,
+    /* Proc SubMtd */ &g_fpcLf_Method.base,
+    /* Size        */ sizeof(dGameover_c),
+    /* Size Other  */ 0,
+    /* Parameters  */ 0,
+    /* Leaf SubMtd */ &g_fopMsg_Method,
+    /* Priority    */ PRIO_GAMEOVER,
+    /* Msg SubMtd  */ &l_dGameover_Method,
 };

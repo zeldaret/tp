@@ -813,20 +813,20 @@ static actor_method_class l_daE_MK_BO_Method = {
 };
 
 actor_process_profile_definition g_profile_E_MK_BO = {
-  fpcLy_CURRENT_e,       // mLayerID
-  8,                     // mListID
-  fpcPi_CURRENT_e,       // mListPrio
-  PROC_E_MK_BO,          // mProcName
-  &g_fpcLf_Method.base, // sub_method
-  sizeof(e_mk_bo_class), // mSize
-  0,                     // mSizeOther
-  0,                     // mParameters
-  &g_fopAc_Method.base,  // sub_method
-  166,                   // mPriority
-  &l_daE_MK_BO_Method,   // sub_method
-  0x00044100,            // mStatus
-  fopAc_ENEMY_e,         // mActorType
-  fopAc_CULLBOX_0_e,     // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 8,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ PROC_E_MK_BO,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(e_mk_bo_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Priority     */ PRIO_E_MK_BO,
+    /* Actor SubMtd */ &l_daE_MK_BO_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ENEMY_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };
 
 AUDIO_INSTANCES
