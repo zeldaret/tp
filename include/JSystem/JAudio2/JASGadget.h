@@ -2,7 +2,7 @@
 #define JASGADGET_H
 
 #include "JSystem/JUtility/JUTAssert.h"
-#include <string>
+#include <cstring>
 
 #ifdef __MWERKS__
 #define JAS_GLOBAL_INSTANCE_INIT
