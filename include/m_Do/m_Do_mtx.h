@@ -3,7 +3,7 @@
 
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include <dolphin/mtx.h>
+#include <mtx.h>
 
 extern u8 g_printCurrentHeapDebug;
 extern u8 g_printOtherHeapDebug;

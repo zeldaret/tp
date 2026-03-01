@@ -1,8 +1,8 @@
 #ifndef D_D_PATH_H
 #define D_D_PATH_H
 
-#include <dolphin/types.h>
-#include <dolphin/mtx.h>
+#include <types.h>
+#include <mtx.h>
 
 class cBgS_PolyInfo;
 struct cXyz;

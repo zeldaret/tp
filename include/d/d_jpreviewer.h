@@ -1,7 +1,7 @@
 #ifndef D_JPREVIEWER_H
 #define D_JPREVIEWER_H
 
-#include <dolphin/mtx.h>
+#include <mtx.h>
 #include "JSystem/JStudio/JStudio_JPreviewer/control.h"
 
 namespace JStudio {

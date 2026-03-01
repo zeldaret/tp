@@ -3,7 +3,7 @@
 
 #include "d/d_bg_w_base.h"
 #include "JSystem/JHostIO/JORReflexible.h"
-#include <dolphin/os.h>
+#include <os.h>
 #include "global.h"
 
 class dBgW;
