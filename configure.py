@@ -354,6 +354,7 @@ cflags_trk = [
     "-char signed",
     "-sdata 0",
     "-sdata2 0",
+    "-i libs/dolphin/include",  # TRK always built against dolphin headers
 ]
 
 # Dolphin library flags
@@ -374,7 +375,6 @@ cflags_revolution_base = [
     "-sym on",
     "-inline auto",
     "-ipa file",
-    "-i include/revolution",
     "-D__REVOLUTION_SDK__",
 ]
 
