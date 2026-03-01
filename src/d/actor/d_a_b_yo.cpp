@@ -23,6 +23,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include <cstring>
 
 class daB_YO_HIO_c {
 public:

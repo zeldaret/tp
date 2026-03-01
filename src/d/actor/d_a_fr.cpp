@@ -14,6 +14,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
 #include "f_op/f_op_kankyo_mng.h"
+#include <cstring>
 
 class daFr_HIO_c : public JORReflexible {
 public:

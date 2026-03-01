@@ -12,6 +12,7 @@
 #include "d/d_meter2_info.h"
 #include "d/d_pane_class_alpha.h"
 #include <cstdio>
+#include <cstring>
 
 dFile_info_c::dFile_info_c(JKRArchive* i_archive, u8 param_1) {
     mArchive = i_archive;

@@ -6,7 +6,7 @@
 
 class J3DModelData;
 class J3DMaterialTable;
-class J3DModelHierarchy;
+struct J3DModelHierarchy;
 
 /**
  * @ingroup jsystem-j3d

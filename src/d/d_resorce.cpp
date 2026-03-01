@@ -17,6 +17,7 @@
 #include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_graphic.h"
 #include <cstdio>
+#include <cstring>
 
 dRes_info_c::dRes_info_c() {
     mCount = 0;

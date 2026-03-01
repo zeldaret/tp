@@ -10,6 +10,7 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include <cstdio>
+#include <cstring>
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_item.h"

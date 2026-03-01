@@ -14,6 +14,7 @@
 #include "d/d_path.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_camera_mng.h"
+#include <cstring>
 
 static void ride_call_back(dBgW* i_bgw, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rideActor) {
     obj_brg_class* a_this = (obj_brg_class*)i_bgActor;

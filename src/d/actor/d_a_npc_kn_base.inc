@@ -1,6 +1,7 @@
 #include "d/actor/d_a_npc_kn.h"
 #include "d/d_msg_object.h"
 #include "d/d_k_wmark.h"
+#include <cstring>
 
 void daNpc_Kn_c::tgHitCallBack(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf,
                                fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf) {

@@ -14,6 +14,7 @@
 #if DEBUG
 #include "JSystem/JHostIO/JORFile.h"
 #include "d/d_debug_viewer.h"
+#include <cstring>
 #endif
 
 dCcD_SrcCyl daNpc_Kn_c::mCcDCyl = {

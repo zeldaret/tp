@@ -129,19 +129,21 @@ int daSyRock_c::CreateHeap() {
     JUT_ASSERT(271, modelData != NULL);
     mpModels[0] = mDoExt_J3DModel__create(modelData, 1 << 19, 0x11000084);
 
-    if(!mpModels[0])
+    if (!mpModels[0]) {
         return 0;
+    }
 
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("syourock", 5));
     JUT_ASSERT(282, modelData != NULL);
     mpModels[1] = mDoExt_J3DModel__create(modelData, 1 << 19, 0x11000084);
 
-    if(!mpModels[1])
+    if (!mpModels[1]) {
         return 0;
+    }
 
     mpBrokenCollision = new dBgW;
 
-    if(!mpBrokenCollision || mpBrokenCollision->Set(static_cast<cBgD_t*>(dComIfG_getObjectRes("syourock", 9)), 1, &mBgMtx)) {
+    if (!mpBrokenCollision || mpBrokenCollision->Set(static_cast<cBgD_t*>(dComIfG_getObjectRes("syourock", 9)), 1, &mBgMtx)) {
         mpBrokenCollision = NULL;
         return 0;
     }
@@ -160,18 +162,21 @@ cPhs_Step daSyRock_c::create() {
     fopAcM_ct(this, daSyRock_c);
 
     // Check if an associated water pillar should be searched for
-    if(getArg0() == TRUE) {
+    if (getArg0() == TRUE) {
         mpWaterPillar = static_cast<daWtPillar_c*>(fopAcM_Search(searchWaterPillar, this));
 
-        if(!mpWaterPillar)
+        if (!mpWaterPillar) {
             return cPhs_INIT_e;
+        }
     }
 
+    cPhs_Step bgCreatePhaseProcess;
+
     const cPhs_Step requestedPhaseProcess = static_cast<cPhs_Step>(dComIfG_resLoad(&mPhase, "syourock"));
-    if(requestedPhaseProcess == cPhs_COMPLEATE_e) {
-        const cPhs_Step bgCreatePhaseProcess = static_cast<cPhs_Step>(MoveBGCreate("syourock", 0x8, dBgS_MoveBGProc_TypicalRotY, 0x2100, NULL));
-        if(bgCreatePhaseProcess == cPhs_ERROR_e)
+    if (requestedPhaseProcess == cPhs_COMPLEATE_e) {
+        if (MoveBGCreate("syourock", 0x8, dBgS_MoveBGProc_TypicalRotY, 0x2100, NULL) == cPhs_ERROR_e) {
             return cPhs_ERROR_e;
+        }
 
         mAcchCir.SetWall(150.0f, 150.0f);
         mAcch.Set(fopAcM_GetPosition_p(this),
@@ -204,24 +209,23 @@ cPhs_Step daSyRock_c::create() {
         mUnbrokenCollider.SetStts(&mStts);
         mUnbrokenCollider.OffAtSetBit();
 
-        if(fopAcM_isSwitch(this, getSwBit1())) {
+        if (fopAcM_isSwitch(this, getSwBit1())) {
             mIsUnbroken = false;
             mUnbrokenCollider.OffCoSetBit();
-            if(mpBrokenCollision && mpBrokenCollision->ChkUsed()) {
+            if (mpBrokenCollision && mpBrokenCollision->ChkUsed()) {
                 dComIfG_Bgsp().Release(mpBrokenCollision);
                 mpBrokenCollision->Move();
             }
 
             // Snap already broken stalactite to its appropriate location and set its mode accordingly
             setFallStat();
-        }
-        else {
+        } else {
             mIsUnbroken = true;
 
-            if(mpBgW)
+            if (mpBgW)
                 dComIfG_Bgsp().Release(mpBgW);
 
-            if(mpBrokenCollision) {
+            if (mpBrokenCollision) {
                 dComIfG_Bgsp().Regist(mpBrokenCollision, this);
                 mpBrokenCollision->Move();
             }
@@ -246,25 +250,23 @@ cPhs_Step daSyRock_c::create() {
 
 void daSyRock_c::setFallStat() {
     mpWaterPillar = static_cast<daWtPillar_c*>(fopAcM_Search(searchWaterPillar, this));
-    if(mpWaterPillar) {
+    if (mpWaterPillar) {
         OS_REPORT("== 下に水柱あり ==\n"); // "== Water pillar below =="
 
         mpWaterPillar->onRockFlag();
         mMode = MODE_MOVE;
-    }
-    else {
+    } else {
         OS_REPORT("== 下に水柱無し ==\n"); // "== No water pillar below =="
 
         mAcch.CrrPos(dComIfG_Bgsp());
 
-        if(mAcch.ChkWaterHit()) {
-            if(mAcch.m_wtr.GetHeight() - mAcch.GetGroundH() >= 200.0f) {
+        if (mAcch.ChkWaterHit()) {
+            if (mAcch.m_wtr.GetHeight() - mAcch.GetGroundH() >= 200.0f) {
                 mUnderwaterOffset.x = 150.0f;
                 shape_angle.z = 0x4000;
             }
             current.pos.y = mAcch.GetGroundH();
-        }
-        else {
+        } else {
             current.pos.y = mAcch.GetGroundH();
         }
 
@@ -317,9 +319,9 @@ void daSyRock_c::init_modeWait() {
 }
 
 void daSyRock_c::modeWait() {
-    if(mAutoDropSwNo != 0xFF && fopAcM_isSwitch(this, mAutoDropSwNo)) {
+    if (mAutoDropSwNo != 0xFF && fopAcM_isSwitch(this, mAutoDropSwNo)) {
         field_0x779 = 0;
-        if(getEvetID() != 0xFF) {
+        if (getEvetID() != 0xFF) {
             orderEvent(getEvetID(), 0xFF, 1);
         } else {
             eventStart();
@@ -327,13 +329,13 @@ void daSyRock_c::modeWait() {
         return;
     }
 
-    if(mUnbrokenCollider.ChkTgHit()) {
+    if (mUnbrokenCollider.ChkTgHit()) {
         dCcD_GObjInf* tgHitGObj = mUnbrokenCollider.GetTgHitGObj();
-        if(tgHitGObj->GetAtType() == AT_TYPE_BOMB) {
+        if (tgHitGObj->GetAtType() == AT_TYPE_BOMB) {
             field_0x779 = 0;
-            if(getEvetID() != 0xFF)
+            if (getEvetID() != 0xFF) {
                 orderEvent(getEvetID(), 0xFF, 1);
-            else {
+            } else {
                 eventStart();
             }
         }
@@ -343,8 +345,9 @@ void daSyRock_c::modeWait() {
 
 bool daSyRock_c::eventStart() {
     // field_0x779 is always 0 when eventStart() is called (see modeWait())
-    if(!field_0x779)
+    if (!field_0x779) {
         init_modeDropInit();
+    }
 
     return true;
 }
@@ -364,24 +367,26 @@ void daSyRock_c::init_modeDropInit() {
 }
 
 void daSyRock_c::modeDropInit() {
-    if(mWaitFrames)
+    if (mWaitFrames) {
         mWaitFrames--;
-    else
+    } else {
         init_modeDrop();
+    }
 }
 
 void* daSyRock_c::searchWaterPillar(void* i_proc, void* i_this) {
     daSyRock_c* const syRock = static_cast<daSyRock_c*>(i_this);
     daWtPillar_c* const wtPillar = static_cast<daWtPillar_c*>(i_proc);
 
-    if(wtPillar && fopAcM_IsActor(wtPillar) && fopAcM_GetProfName(wtPillar) == PROC_Obj_WaterPillar) {
+    if (wtPillar && fopAcM_IsActor(wtPillar) && fopAcM_GetProfName(wtPillar) == PROC_Obj_WaterPillar) {
         const cXyz vectorFromWaterPillar = syRock->current.pos - wtPillar->current.pos;
         const f32 horizontalDistanceToWaterPillar = vectorFromWaterPillar.absXZ();
 
-        if(horizontalDistanceToWaterPillar <= l_HIO.mRange)
+        if (horizontalDistanceToWaterPillar <= l_HIO.mRange) {
             return wtPillar;
-        else
+        } else {
             return NULL;
+        }
     }
     return NULL;
 }
@@ -391,7 +396,7 @@ void daSyRock_c::init_modeDrop() {
     fopAcM_SetMaxFallSpeed(this, -l_HIO.mMaxFallSpeed);
     fopAcM_SetSpeedF(this, 0.0f);
 
-    if(mpBrokenCollision) {
+    if (mpBrokenCollision) {
         dComIfG_Bgsp().Release(mpBrokenCollision);
         mpBrokenCollision->Move();
     }
@@ -416,15 +421,17 @@ void daSyRock_c::init_modeSink() {
     fopAcM_SetGravity(this, -l_HIO.mFallAcceleration + l_HIO.mFallWaterBouyancy);
     speed.y = cLib_minMaxLimit(speed.y, -15.0f - oREG_F(7), 13.0f + oREG_F(8));
 
-    if(!mpWaterPillar)
+    if (!mpWaterPillar) {
         mUnderwaterOffset.x = 150.0f;
+    }
 
     mMode = MODE_SINK;
 }
 
 void daSyRock_c::modeSink() {
-    if(!mpWaterPillar)
+    if (!mpWaterPillar) {
         cLib_addCalcAngleS(&shape_angle.z, 0x4000, 1, 0x444, 1);
+    }
 
     speed.y = cLib_minMaxLimit(speed.y, -15.0f - oREG_F(7), 13.0f + oREG_F(8));
 
@@ -438,8 +445,9 @@ void daSyRock_c::init_modeMove() {
     mDoAud_seStart(Z2SE_OBJ_STALAC_LAND_WATER, &current.pos, 0,
                    dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 
-    if(mpBgW)
+    if (mpBgW) {
         dComIfG_Bgsp().Regist(mpBgW, this);
+    }
 
     mpWaterPillar->onRockFlag();
 
@@ -463,7 +471,7 @@ void daSyRock_c::modeMove() {
     current.pos = mpWaterPillar->getPos();
     current.pos.y -= 50.0f;
 
-    if(mpWaterPillar->isRockYure()) {
+    if (mpWaterPillar->isRockYure()) {
         mShakeAmplitude = l_HIO.mShakeAmplitude;
         mShakeZOscAngQuantum = l_HIO.mShakeZOscAngQuantum;
         mShakeXOscAngQuantum = l_HIO.mShakeXOscAngQuantum;
@@ -486,57 +494,63 @@ void daSyRock_c::bgCheck() {
     const bool inWater = mAcch.ChkWaterIn();
     bool inWaterPillar = false;
 
-    if(mMode == MODE_DROP) {
-        if(mpWaterPillar) {
+    if (mMode == MODE_DROP) {
+        if (mpWaterPillar) {
             const f32 pillarTop = mpWaterPillar->getPillarHeight() + mpWaterPillar->current.pos.y - 50.0f;
-            if(pillarTop >= current.pos.y)
+            if (pillarTop >= current.pos.y) {
                 inWaterPillar = true;
+            }
         }
 
         const f32 waterHeight = mAcch.m_wtr.GetHeight();
-        if(hitWater) {
+        if (hitWater) {
             const f32 verticalSpeed = speed.y;
 
-            if(chkWaterLineIn())
+            if (chkWaterLineIn()) {
                 init_modeSink();
+            }
 
-            if(inWater && !mInWaterPrevFrame) {
+            if (inWater && !mInWaterPrevFrame) {
                 cXyz currentRockPos(current.pos);
                 currentRockPos.y = waterHeight;
 
                 fopKyM_createWpillar(&currentRockPos, l_HIO.mEffScale, 3);
 
-                if(verticalSpeed < -15.0f)
+                if (verticalSpeed < -15.0f) {
                     fopAcM_seStart(this, Z2SE_OBJ_FALL_WATER_M, 0);
-                else
+                } else {
                     mDoAud_seStart(Z2SE_OBJ_STALAC_LAND_WATER, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+                }
             }
         }
 
-        if(inWaterPillar)
+        if (inWaterPillar) {
             init_modeMove();
+        }
     }
 
-    if(hitGround) {
-        if(!hitWater && !mpWaterPillar) {
+    if (hitGround) {
+        if (!hitWater && !mpWaterPillar) {
             mDoAud_seStart(Z2SE_OBJ_STALAC_LAND, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
             daObjEff::Act_c::make_land_smoke(&current.pos, l_HIO.mEffScale);
         }
 
-        if(mpWaterPillar)
+        if (mpWaterPillar) {
             init_modeMove();
-        else
+        } else {
             init_modeDropEnd();
+        }
     }
 }
 
 void daSyRock_c::init_modeDropEnd() {
-    if(!mAcch.ChkWaterIn()) {
+    if (!mAcch.ChkWaterIn()) {
         dComIfGp_getVibration().StartShock(l_HIO.mVibModePower, 0xF, cXyz(0.0f, 1.0f, 0.0f));
     }
 
-    if(mpBgW)
+    if (mpBgW) {
         dComIfG_Bgsp().Regist(mpBgW, this);
+    }
 
     mUnbrokenCollider.OffAtSetBit();
 
@@ -563,10 +577,11 @@ int daSyRock_c::Draw() {
 int daSyRock_c::Delete() {
     dComIfG_resDelete(&mPhase, "syourock");
 
-    if(mpBrokenCollision && mpBrokenCollision->ChkUsed())
+    if (mpBrokenCollision && mpBrokenCollision->ChkUsed()) {
         dComIfG_Bgsp().Release(mpBrokenCollision);
+    }
 
-    #if DEBUG
+#if DEBUG
     l_HIO.removeHIO();
     #endif
 
@@ -575,7 +590,6 @@ int daSyRock_c::Delete() {
 
 static int daSyRock_Draw(daSyRock_c* i_this) {
     return i_this->MoveBGDraw();
-    return 1;
 }
 
 static int daSyRock_Execute(daSyRock_c* i_this) {

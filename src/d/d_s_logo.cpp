@@ -17,6 +17,7 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
+#include <cstring>
 #include "m_Do/m_Do_main.h"
 #include "JSystem/JUtility/JUTConsole.h"
 

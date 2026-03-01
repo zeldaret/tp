@@ -31,6 +31,7 @@
 #include "d/d_meter2_info.h"
 #include "d/d_s_play.h"
 #include "DynamicLink.h"
+#include <cstring>
 
 #if PLATFORM_WII || PLATFORM_SHIELD
 #include <revolution/sc.h>

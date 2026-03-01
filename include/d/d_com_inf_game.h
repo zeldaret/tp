@@ -15,6 +15,7 @@
 #include "global.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
+#include <cstring>
 
 enum dComIfG_ButtonStatus {
     /* 0x00 */ BUTTON_STATUS_NONE,
@@ -2763,10 +2764,10 @@ inline u8 dComIfGp_att_getCatchChgItem() {
     return dComIfGp_getAttention()->getCatchChgItem();
 }
 
-inline void dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist,
+inline int dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist,
                                       f32 i_upDist, f32 i_downDist, s16 i_angle, int param_5) {
-    dComIfGp_getAttention()->CatchRequest(param_0, param_1, i_horizontalDist, i_upDist, i_downDist,
-                                         i_angle, param_5);
+    return dComIfGp_getAttention()->CatchRequest(param_0, param_1, i_horizontalDist, i_upDist,
+                                                 i_downDist, i_angle, param_5);
 }
 
 inline fopAc_ac_c* dComIfGp_att_getLookTarget() {

@@ -25,6 +25,7 @@
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
 #include <cstdlib>
+#include <cstring>
 
 static void GxXFog_set();
 

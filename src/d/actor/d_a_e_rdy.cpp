@@ -19,6 +19,7 @@
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_actor_enemy.h"
 #include "m_Do/m_Do_graphic.h"
+#include <cstring>
 
 class daE_RDY_HIO_c : public JORReflexible {
 public:

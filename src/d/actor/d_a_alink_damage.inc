@@ -1805,7 +1805,7 @@ int daAlink_c::procDkCaught() {
     f32 var_f30;
     if (checkInputOnR()) {
         if (getDirectionFromCurrentAngle() == DIR_BACKWARD) {
-            current.angle.y += 0x8000;
+            ANGLE_ADD_2(current.angle.y, 0x8000);
             mNormalSpeed *= -1.0f;
         }
 

@@ -11,6 +11,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
+#include <cstring>
 
 static s32 l_bmdData[4] = { 8, 0, 9, 0 };
 
@@ -21,7 +22,7 @@ const daObj_KBacket_HIOParam daObj_KBacket_Param_c::m = {
 };
 
 static const dCcD_SrcGObjInf l_ccDObjData = {
-    {0x0, {{0x0, 0x0, 0x0}, {(s32)0xd8fbfdff, 0x0}, 0x79}}, // mObj
+    {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x0}, 0x79}}, // mObj
     {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
     {dCcD_SE_STONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
     {0x0}, // mGObjCo

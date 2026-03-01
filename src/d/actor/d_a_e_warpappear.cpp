@@ -10,6 +10,7 @@
 #include "d/actor/d_a_horse.h"
 #include "d/actor/d_a_obj_ihasi.h"
 #include "f_op/f_op_camera_mng.h"
+#include <cstring>
 
 static int daE_Warpappear_Draw(e_warpappear_class* i_this) {
     int sw = (fopAcM_GetParam(i_this) >> 8) & 0xFF;

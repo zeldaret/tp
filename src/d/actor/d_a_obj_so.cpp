@@ -15,6 +15,7 @@
 #include "d/d_cc_uty.h"
 #include "d/d_s_play.h"
 #include "f_op/f_op_camera_mng.h"
+#include <cstring>
 
 daObj_So_HIO_c::daObj_So_HIO_c() {
     field_0x4 = -1;

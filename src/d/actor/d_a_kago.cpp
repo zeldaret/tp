@@ -11,6 +11,7 @@
 #include "d/d_msg_object.h"
 
 #include <cmath>
+#include <cstring>
 
 #include "d/actor/d_a_balloon_2D.h"
 #include "d/actor/d_a_e_ym.h"

@@ -18,6 +18,7 @@
 #include "f_op/f_op_kankyo_mng.h"
 #include "c/c_damagereaction.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include <cstring>
 
 static home_path_pnt home_path[38] = {
     {0, {561.0f, 87.0f, -1110.0f}},

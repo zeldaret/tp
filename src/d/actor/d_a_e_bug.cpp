@@ -10,6 +10,7 @@
 #include "d/d_path.h"
 #include "d/actor/d_a_nbomb.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include <cstring>
 
 enum E_bug_RES_File_ID {
     /* BMDG */

@@ -12,6 +12,7 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_actor_enemy.h"
 #include "f_op/f_op_camera_mng.h"
+#include <cstring>
 
 class daB_GG_HIO_c : public JORReflexible {
 public:

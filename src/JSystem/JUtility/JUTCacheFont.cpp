@@ -7,6 +7,7 @@
 #include "JSystem/JKernel/JKRAram.h"
 #include <dolphin/gx.h>
 #include <stdint.h>
+#include <cstring>
 #include "angle_utils.h"
 
 JUTCacheFont::JUTCacheFont(ResFONT const* p_fontRes, u32 cacheSize, JKRHeap* p_heap) {

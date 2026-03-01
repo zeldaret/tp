@@ -2,6 +2,7 @@
 #define D_D_JNT_COL_H
 
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 #include "SSystem/SComponent/c_m3d_g_lin.h"
 #include "SSystem/SComponent/c_sxyz.h"
 
@@ -33,7 +34,7 @@ public:
     bool checkShieldType(int i) { return getType(i) == 3; }
 
     s8 getType(int i) { return mData[i].mType; }
-    int getJntNum(int i) { return mData[i].mJntNum; }
+    int getJntNum(int i) { return (s16)mData[i].mJntNum; }
 
     /* 0x00 */ const dJntColData_c* mData;
     /* 0x04 */ J3DModel* mModel;

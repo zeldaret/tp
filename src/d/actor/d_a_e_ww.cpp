@@ -11,6 +11,7 @@
 #include "d/d_cc_uty.h"
 #include "f_op/f_op_actor_enemy.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include <cstring>
 
 enum E_ww_RES_File_ID {
     /* BCK */

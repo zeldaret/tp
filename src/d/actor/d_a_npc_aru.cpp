@@ -17,6 +17,7 @@
 #if DEBUG
 #include "JSystem/JHostIO/JORFile.h"
 #include "d/d_debug_viewer.h"
+#include <cstring>
 #endif
 
 enum Aru_RES_File_ID {

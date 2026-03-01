@@ -21,6 +21,7 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_s_play.h"
 #include "f_op/f_op_camera_mng.h"
+#include <cstring>
 
 class daNpc_Ks_HIO_c : public JORReflexible {
 public:
@@ -1874,7 +1875,6 @@ static void npc_ks_hang(npc_ks_class* i_this) {
         start_pya = i_this->target_angle;
     }
 
-    s16 sVar1;
     switch (i_this->mode) {
         case 0:
             i_this->timer[0] = 0;
@@ -1925,11 +1925,13 @@ static void npc_ks_hang(npc_ks_class* i_this) {
                 anm_init(i_this, 24, 3.0f, 2, 1.0f);
             }
 
-            sVar1 = start_pya - sw_p->actor.current.angle.y;
-            if (sVar1 < 0x4000 && sVar1 > -0x4000) {
-                actor->home.angle.y = sw_p->actor.current.angle.y + 0x8000;
-            } else {
-                actor->home.angle.y = sw_p->actor.current.angle.y;
+            {
+                s16 sVar1 = start_pya - sw_p->actor.current.angle.y;
+                if (sVar1 < 0x4000 && sVar1 > -0x4000) {
+                    actor->home.angle.y = sw_p->actor.current.angle.y + 0x8000;
+                } else {
+                    actor->home.angle.y = sw_p->actor.current.angle.y;
+                }
             }
             break;
 
@@ -2059,7 +2061,6 @@ static void npc_ks_hang_s(npc_ks_class* i_this) {
     cXyz mae, ato;
     cLib_addCalcAngleS2(&actor->current.angle.y, actor->home.angle.y + 0x4000, 2, 0x800);
 
-    s16 sVar1;
     switch (i_this->mode) {
         case 0:
             int asdf;
@@ -2108,11 +2109,13 @@ static void npc_ks_hang_s(npc_ks_class* i_this) {
                 anm_init(i_this, 24, 3.0f, 2, 1.0f);
             }
 
-            sVar1 = i_this->target_angle - sw_p->actor.current.angle.y;
-            if (sVar1 < 0x4000 && sVar1 > -0x4000) {
-                actor->home.angle.y = sw_p->actor.current.angle.y + 0x8000;
-            } else {
-                actor->home.angle.y = sw_p->actor.current.angle.y;
+            {
+                s16 sVar1 = i_this->target_angle - sw_p->actor.current.angle.y;
+                if (sVar1 < 0x4000 && sVar1 > -0x4000) {
+                    actor->home.angle.y = sw_p->actor.current.angle.y + 0x8000;
+                } else {
+                    actor->home.angle.y = sw_p->actor.current.angle.y;
+                }
             }
             break;
 
@@ -2211,7 +2214,7 @@ static void npc_ks_e_hang(npc_ks_class* i_this) {
             break;
 
         case 3:
-            if (i_this->field_0x5fa == s16(YREG_S(7) - 0x3800)) {
+            if (i_this->field_0x5fa == s16(YREG_S(7) + 0xC800)) {
                 actor->health = 10;
                 i_this->mode = 20;
                 i_this->timer[0] = 0;

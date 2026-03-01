@@ -68,7 +68,7 @@ public:
     } id_;
 };
 
-class JASTrack;
+struct JASTrack;
 
 /**
  * @ingroup jsystem-jaudio

@@ -12,6 +12,7 @@
 #include "f_op/f_op_camera_mng.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
+#include <cstring>
 
 static int daVrbox2_color_set(vrbox2_class* param_0);
 

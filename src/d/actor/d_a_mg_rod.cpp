@@ -23,6 +23,7 @@
 #include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include <cmath>
+#include <cstring>
 
 class dmg_rod_HIO_c : public JORReflexible {
 public:

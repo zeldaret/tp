@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <dolphin/dolphin.h>
 #include <stdint.h>
+#include <cstring>
 
 struct CallbackObject {
     /* 0x00 */ JUTExceptionUserCallback callback;

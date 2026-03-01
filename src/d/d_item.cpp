@@ -8,6 +8,7 @@
 #include "d/d_item.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
+#include <cstring>
 
 static void (*item_func_ptr[256])() = {
     item_func_HEART,

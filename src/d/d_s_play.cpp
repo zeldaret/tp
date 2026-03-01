@@ -46,6 +46,7 @@
 #include "d/d_a_obj.h"
 #include "d/d_debug_viewer.h"
 #endif
+#include <cstring>
 
 #if PLATFORM_WII
 #include "d/d_cursor_mng.h"

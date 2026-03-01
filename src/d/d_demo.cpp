@@ -9,6 +9,7 @@
 #include "d/actor/d_a_movie_player.h"
 #include "JSystem/JGadget/pointer.h"
 #include "JSystem/JGadget/define.h"
+#include <cstring>
 
 s16 dDemo_c::m_branchId = -1;
 
