@@ -2413,7 +2413,7 @@ static void e_wb_s_damage(e_wb_class* i_this) {
     case 1:
         if (i_this->anm_p->isStop()) {
             if ((i_this->StatusFlag & 3) != 0) {
-                i_this->action = i_this->old_action;
+                i_this->action = i_this->ride_action;
                 if (i_this->action == ACT_WAIT2) {
                     i_this->action = ACT_C_F_RUN;
                 } else if (i_this->action == ACT_C_F_RUN) {
@@ -2779,7 +2779,7 @@ static void damage_check(e_wb_class* i_this) {
                 fopAcM_GetName(hit_actor) == PROC_ALINK) {
                 ANGLE_ADD(i_this->field_0x6ba, 2);
                 if (i_this->field_0x6ba >= 150) {
-                    i_this->old_action = i_this->action;
+                    i_this->ride_action = i_this->action;
                     i_this->action = ACT_S_DAMAGE;
                     i_this->mode = 0;
                     i_this->field_0x6a0 = 20;
@@ -2854,7 +2854,7 @@ static void damage_check(e_wb_class* i_this) {
 
                     if ((i_this->StatusFlag & 3) != 0) {
                         if (i_this->field_0x13c0.mAttackPower < 30) {
-                            i_this->old_action = i_this->action;
+                            i_this->ride_action = i_this->action;
                             i_this->action = ACT_S_DAMAGE;
                         } else {
                             i_this->action = ACT_LR_DAMAGE;

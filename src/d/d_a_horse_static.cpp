@@ -26,7 +26,7 @@ void e_wb_class::getOff() {
     if (!checkDownDamage() || action == ACT_PL_RIDE_NOW) {
         action = 0;
     } else {
-        old_action = 0;
+        ride_action = 0;
     }
 
     mode = 0;
@@ -46,7 +46,7 @@ void e_wb_class::setRunRideMode() {
     if (action == ACT_PL_RIDE) {
         mode = 0;
         action = ACT_S_DAMAGE;
-        old_action = 0x65;
+        ride_action = ACT_PL_RIDE;
     }
 }
 

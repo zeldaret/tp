@@ -117,7 +117,7 @@ public:
     /* 0x068C */ s8 mPathInitialized;  ///< @brief Flag indicating if path has been initialized.
     /* 0x068E */ s16 field_0x68e;
     /* 0x0690 */ s16 action;  ///< @brief High-level action ID.
-    /* 0x0692 */ s16 old_action;
+    /* 0x0692 */ s16 ride_action;
     /* 0x0694 */ int shadow_key;     ///< @brief Shadow drawing key.
     /* 0x0698 */ s16 timer[4];
     /* 0x06A0 */ s16 field_0x6a0;
