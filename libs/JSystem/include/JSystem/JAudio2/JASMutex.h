@@ -1,7 +1,7 @@
 #ifndef JASMUTEX_H
 #define JASMUTEX_H
 
-#include <dolphin/os.h>
+#include <os.h>
 
 /**
  * @ingroup jsystem-jaudio

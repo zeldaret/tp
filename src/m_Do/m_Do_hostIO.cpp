@@ -1,6 +1,6 @@
 #include "m_Do/m_Do_hostIO.h"
 #include "JSystem/JHostIO/JORServer.h"
-#include <dolphin/dolphin.h>
+#include <dolphin.h>
 
 #if DEBUG
 

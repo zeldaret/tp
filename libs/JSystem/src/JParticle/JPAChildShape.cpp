@@ -3,8 +3,8 @@
 #include "JSystem/JParticle/JPAChildShape.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAEmitter.h"
-#include <dolphin/gx.h>
-#include <dolphin/os.h>
+#include <gx.h>
+#include <os.h>
 
 void JPARegistChildPrmEnv(JPAEmitterWorkData* work) {
     JPAChildShape* csp = work->mpRes->getCsp();

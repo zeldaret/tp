@@ -1,8 +1,8 @@
 #ifndef J3DGD_H
 #define J3DGD_H
 
-#include <dolphin/gx.h>
-#include <dolphin/gd.h>
+#include <gx.h>
+#include <gd.h>
 
 inline void J3DGDWrite_u8(u8 data) {
     __GDWrite(data);

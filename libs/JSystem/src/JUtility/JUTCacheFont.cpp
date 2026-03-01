@@ -5,7 +5,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JKernel/JKRAram.h"
-#include <dolphin/gx.h>
+#include <gx.h>
 #include <stdint.h>
 #include <cstring>
 #include "angle_utils.h"

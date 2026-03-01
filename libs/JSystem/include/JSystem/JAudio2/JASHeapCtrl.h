@@ -4,8 +4,8 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include <dolphin/os.h>
-#include <dolphin/os.h>
+#include <os.h>
+#include <os.h>
 
 struct JASDisposer;
 class JKRHeap;

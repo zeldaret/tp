@@ -1,7 +1,7 @@
 #ifndef TCOLOR_H
 #define TCOLOR_H
 
-#include <dolphin/gx.h>
+#include <gx.h>
 
 namespace JUtility {
     

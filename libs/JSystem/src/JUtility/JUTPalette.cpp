@@ -1,8 +1,8 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
 #include "JSystem/JUtility/JUTPalette.h"
-#include <dolphin/gx.h>
-#include <dolphin/os.h>
+#include <gx.h>
+#include <os.h>
 
 void JUTPalette::storeTLUT(GXTlut param_0, ResTLUT* tlut) {
     if (tlut == NULL) {

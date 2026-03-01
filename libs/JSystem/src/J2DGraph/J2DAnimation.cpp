@@ -6,7 +6,7 @@
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/JUtility/JUTResource.h"
-#include <dolphin/os.h>
+#include <os.h>
 
 template<typename T>
 f32 J2DGetKeyFrameInterpolation(f32 param_0, J3DAnmKeyTableBase* param_1, T* param_2) {

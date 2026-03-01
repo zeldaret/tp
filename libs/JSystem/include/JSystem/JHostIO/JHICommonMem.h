@@ -1,7 +1,7 @@
 #ifndef JHICOMMONMEM_H
 #define JHICOMMONMEM_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 inline u32 JHIhtonl(u32 v) {
 #if __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__

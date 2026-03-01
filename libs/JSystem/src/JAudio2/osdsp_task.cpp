@@ -2,8 +2,8 @@
 
 #include "JSystem/JAudio2/osdsp_task.h"
 #include "JSystem/JAudio2/dspproc.h"
-#include <dolphin/dsp.h>
-#include <dolphin/os.h>
+#include <dsp.h>
+#include <os.h>
 
 extern DSPTaskInfo* __DSP_first_task;
 extern DSPTaskInfo* __DSP_curr_task;

@@ -1,7 +1,7 @@
 #ifndef JPAPARTICLE_H
 #define JPAPARTICLE_H
 
-#include <dolphin/gx.h>
+#include <gx.h>
 #include "JSystem/JGeometry.h"
 
 class JKRHeap;

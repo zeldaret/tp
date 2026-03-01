@@ -1,7 +1,7 @@
 #ifndef JAUAUDIBLEPARAM_H
 #define JAUAUDIBLEPARAM_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 /**
  * @ingroup jsystem-jaudio

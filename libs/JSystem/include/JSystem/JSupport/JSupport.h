@@ -1,7 +1,7 @@
 #ifndef JSUPPORT_H
 #define JSUPPORT_H
 
-#include <dolphin/dolphin.h>
+#include <dolphin.h>
 #include <stdint.h>
 
 /**

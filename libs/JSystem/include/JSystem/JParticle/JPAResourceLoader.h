@@ -1,7 +1,7 @@
 #ifndef JPARESOURCELOADER_H
 #define JPARESOURCELOADER_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 class JPAResourceManager;
 

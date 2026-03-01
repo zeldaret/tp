@@ -6,7 +6,7 @@
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include <dolphin/os.h>
+#include <os.h>
 #include <cstring>
 #include "global.h"
 

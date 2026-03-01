@@ -1,7 +1,7 @@
 #ifndef JASTRACKPORT_H
 #define JASTRACKPORT_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 /**
  * @ingroup jsystem-jaudio

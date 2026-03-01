@@ -3,7 +3,7 @@
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/mem_TRK.h"
 #include "TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.h"
 #include "TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.h"
-#include <dolphin/ar.h>
+#include <ar.h>
 #include "global.h"
 
 extern u32 _db_stack_addr;

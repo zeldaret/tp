@@ -4,7 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "JSystem/J3DAssert.h"
 #include "JSystem/J3DGraphBase/J3DFifo.h"
-#include <dolphin/mtx.h>
+#include <mtx.h>
 
 class J3DShapeMtx;
 

@@ -1,7 +1,7 @@
 #ifndef JGADGET_SEARCH_H
 #define JGADGET_SEARCH_H
 
-#include <dolphin/types.h>
+#include <types.h>
 #include <iterator>
 #include <functional>
 #include <algorithm>

@@ -4,7 +4,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include <cstring>
 #include <stdint.h>
-#include <dolphin/gx.h>
+#include <gx.h>
 
 u32 J3DShapeDraw::countVertex(u32 stride) {
     u32 count = 0;

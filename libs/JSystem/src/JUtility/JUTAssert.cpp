@@ -5,7 +5,7 @@
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include <cstdio>
-#include <dolphin/vi.h>
+#include <vi.h>
 
 namespace JUTAssertion {
 

@@ -1,7 +1,7 @@
 #ifndef J3DTRANSFORM_H
 #define J3DTRANSFORM_H
 
-#include <dolphin/mtx.h>
+#include <mtx.h>
 
 struct J3DTextureSRTInfo;
 

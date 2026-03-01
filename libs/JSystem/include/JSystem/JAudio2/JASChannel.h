@@ -6,7 +6,7 @@
 #include "JSystem/JAudio2/JASOscillator.h"
 #include "JSystem/JAudio2/JASSoundParams.h"
 #include "JSystem/JAudio2/JASWaveInfo.h"
-#include <dolphin/os.h>
+#include <os.h>
 
 struct JASDSPChannel;
 

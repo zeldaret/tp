@@ -4,7 +4,7 @@
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JStudio/JStudio/object-id.h"
 #include "JSystem/JStudio/JStudio/stb-data-parse.h"
-#include <dolphin/os.h>
+#include <os.h>
 #include <cstdint>
 
 namespace JStudio {

@@ -1,7 +1,7 @@
 #ifndef JPACHILDSHAPE_H
 #define JPACHILDSHAPE_H
 
-#include <dolphin/gx.h>
+#include <gx.h>
 
 struct JPAEmitterWorkData;
 class JPABaseParticle;

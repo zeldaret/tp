@@ -1,7 +1,7 @@
 #ifndef JHIHIOASYNC_H
 #define JHIHIOASYNC_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 struct JHIContext;
 

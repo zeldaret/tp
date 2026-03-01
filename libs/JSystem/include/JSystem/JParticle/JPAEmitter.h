@@ -1,7 +1,7 @@
 #ifndef JPAEMITTER_H
 #define JPAEMITTER_H
 
-#include <dolphin/gx.h>
+#include <gx.h>
 #include <stdint.h>
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAList.h"

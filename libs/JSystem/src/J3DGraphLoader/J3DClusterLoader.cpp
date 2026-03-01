@@ -8,7 +8,7 @@
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JKernel/JKRHeap.h"
-#include <dolphin/os.h>
+#include <os.h>
 #include <cstring>
 
 void* J3DClusterLoaderDataBase::load(const void* i_data) {

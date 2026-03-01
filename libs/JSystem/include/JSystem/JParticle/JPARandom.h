@@ -1,7 +1,7 @@
 #ifndef JPARANDOM_H
 #define JPARANDOM_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 /**
  * @ingroup jsystem-jparticle

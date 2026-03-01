@@ -9,7 +9,7 @@
 #include "f_pc/f_pc_manager.h"
 #include "f_pc/f_pc_debug_sv.h"
 #include "SSystem/SComponent/c_phase.h"
-#include <dolphin/dolphin.h>
+#include <dolphin.h>
 
 typedef struct standard_create_request_class {
     /* 0x00 */ create_request base;

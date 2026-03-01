@@ -1,7 +1,7 @@
 #ifndef JPARESOURCE_H
 #define JPARESOURCE_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 class JKRHeap;
 struct JPAEmitterWorkData;

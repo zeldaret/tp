@@ -1,7 +1,7 @@
 #ifndef JORREFLEXIBLE_H
 #define JORREFLEXIBLE_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 class JORReflexible;
 

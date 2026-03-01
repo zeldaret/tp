@@ -1,7 +1,7 @@
 #ifndef JMATRIGONOMETRIC_H
 #define JMATRIGONOMETRIC_H
 
-#include <dolphin/types.h>
+#include <types.h>
 #include <cmath>
 #include <utility>
 

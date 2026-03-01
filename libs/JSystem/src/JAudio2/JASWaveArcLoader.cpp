@@ -6,7 +6,7 @@
 #include "JSystem/JAudio2/JASMutex.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include <cstring>
-#include <dolphin/os.h>
+#include <os.h>
 #include <stdint.h>
 
 JASHeap* JASWaveArcLoader::sAramHeap;

@@ -7,7 +7,7 @@
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
-#include <dolphin/dolphin.h>
+#include <dolphin.h>
 #include <stdint.h>
 #include <cstring>
 

@@ -1,7 +1,7 @@
 #ifndef JMESSAGE_H
 #define JMESSAGE_H
 
-#include <dolphin/dolphin.h>
+#include <dolphin.h>
 
 // Struct definitions might be wrong
 typedef struct bmg_header_t {

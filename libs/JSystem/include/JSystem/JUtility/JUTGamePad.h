@@ -3,7 +3,7 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include <dolphin/dolphin.h>
+#include <dolphin.h>
 
 typedef void (*callbackFn)(int, void*);
 

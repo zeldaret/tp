@@ -6,7 +6,7 @@
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JUtility/JUTResource.h"
 #include <cstring>
-#include <dolphin/types.h>
+#include <types.h>
 
 J2DMaterialFactory::J2DMaterialFactory(J2DMaterialBlock const& param_0) {
     field_0x0 = param_0.field_0x8;

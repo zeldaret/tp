@@ -1,8 +1,8 @@
 #ifndef J3DVERTEX_H
 #define J3DVERTEX_H
 
-#include <dolphin/gx.h>
-#include <dolphin/mtx.h>
+#include <gx.h>
+#include <mtx.h>
 
 typedef struct _GXColor GXColor;
 class J3DModel;

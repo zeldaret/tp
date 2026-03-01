@@ -1,8 +1,8 @@
 #ifndef J2DTEVS_H
 #define J2DTEVS_H
 
-#include <dolphin/gx.h>
-#include <dolphin/mtx.h>
+#include <gx.h>
+#include <mtx.h>
 #include "global.h"
 
 /**

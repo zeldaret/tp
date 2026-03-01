@@ -2,7 +2,7 @@
 #define JASRESARCLOADER_H
 
 #include "JSystem/JKernel/JKRArchive.h"
-#include <dolphin/os.h>
+#include <os.h>
 
 namespace JASResArcLoader {
     size_t getResSize(JKRArchive const*, u16);

@@ -1,8 +1,8 @@
 #ifndef J3DTEVS_H
 #define J3DTEVS_H
 
-#include <dolphin/types.h>
-#include <dolphin/gx.h>
+#include <types.h>
+#include <gx.h>
 #include "JSystem/J3DGraphBase/J3DGD.h"
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 

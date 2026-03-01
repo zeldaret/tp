@@ -1,6 +1,6 @@
 #include "TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
-#include <dolphin/amc/AmcExi2Comm.h>
+#include <amc/AmcExi2Comm.h>
 
 #define DDH_ERR_NOT_INITIALIZED -0x2711
 #define DDH_ERR_ALREADY_INITIALIZED -0x2715

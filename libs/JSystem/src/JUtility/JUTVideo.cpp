@@ -3,8 +3,8 @@
 #include "JSystem/JUtility/JUTVideo.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTXfb.h"
-#include <dolphin/gx.h>
-#include <dolphin/vi.h>
+#include <gx.h>
+#include <vi.h>
 
 JUTVideo* JUTVideo::sManager;
 

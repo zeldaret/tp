@@ -1,4 +1,4 @@
-#include <dolphin/dolphin.h>
+#include <dolphin.h>
 
 u8 Hu_IsStub() {
     return 0;

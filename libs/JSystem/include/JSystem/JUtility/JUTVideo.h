@@ -1,9 +1,9 @@
 #ifndef JUTVIDEO_H
 #define JUTVIDEO_H
 
-#include <dolphin/gx.h>
-#include <dolphin/os.h>
-#include <dolphin/os.h>
+#include <gx.h>
+#include <os.h>
+#include <os.h>
 
 typedef u8 (*Pattern)[2];
 

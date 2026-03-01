@@ -1,7 +1,7 @@
 #ifndef JASCALC_H
 #define JASCALC_H
 
-#include <dolphin/types.h>
+#include <types.h>
 #include <limits>
 
 /**

@@ -1,8 +1,8 @@
 #ifndef J3DSYS_H
 #define J3DSYS_H
 
-#include <dolphin/gx.h>
-#include <dolphin/mtx.h>
+#include <gx.h>
+#include <mtx.h>
 #include "JSystem/J3DAssert.h"
 
 enum J3DSysDrawBuf {

@@ -1,8 +1,8 @@
 #ifndef J3DFIFO_H
 #define J3DFIFO_H
 
-#include <dolphin/gx.h>
-#include <dolphin/gd.h>
+#include <gx.h>
+#include <gd.h>
 
 inline void J3DFifoLoadBPCmd(u32 regval) {
     GXCmd1u8(GX_LOAD_BP_REG);

@@ -14,8 +14,8 @@
 #include "JSystem/JAudio2/JASLfo.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include <dolphin/ai.h>
-#include <dolphin/os.h>
+#include <ai.h>
+#include <os.h>
 #include <stdint.h>
 
 s16* JASDriver::sDmaDacBuffer[3];

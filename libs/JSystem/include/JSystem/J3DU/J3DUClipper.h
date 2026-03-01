@@ -1,7 +1,7 @@
 #ifndef J3DUCLIPPER_H
 #define J3DUCLIPPER_H
 
-#include <dolphin/mtx.h>
+#include <mtx.h>
 
 /**
  * @ingroup jsystem-j3d

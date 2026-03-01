@@ -6,7 +6,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTVideo.h"
-#include <dolphin/vi.h>
+#include <vi.h>
 #include <cstdio>
 #include "global.h"
 

@@ -3,7 +3,7 @@
 
 #include "JSystem/JAudio2/JASTaskThread.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include <dolphin/dvd.h>
+#include <dvd.h>
 
 class JASChannel;
 

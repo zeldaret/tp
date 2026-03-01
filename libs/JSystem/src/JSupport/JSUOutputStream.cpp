@@ -2,7 +2,7 @@
 
 #include "JSystem/JSupport/JSUOutputStream.h"
 #include "JSystem/JSupport/JSURandomOutputStream.h"
-#include <dolphin/dolphin.h>
+#include <dolphin.h>
 #include <cstring>
 
 JSUOutputStream::~JSUOutputStream() {

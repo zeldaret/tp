@@ -3,7 +3,7 @@
 
 #include "JSystem/J3DAssert.h"
 #include "JSystem/JUtility/JUTNameTab.h"
-#include <dolphin/mtx.h>
+#include <mtx.h>
 #include "global.h"
 
 struct J3DTransformInfo;

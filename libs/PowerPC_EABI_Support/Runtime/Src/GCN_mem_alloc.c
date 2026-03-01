@@ -3,7 +3,7 @@
  * Description:
  */
 
-#include <dolphin/os.h>
+#include <os.h>
 
 inline static void InitDefaultHeap(void) {
 	void* arenaLo;

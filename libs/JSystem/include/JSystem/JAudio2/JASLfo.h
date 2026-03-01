@@ -1,7 +1,7 @@
 #ifndef JASLFO_H
 #define JASLFO_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 /**
  * @ingroup jsystem-jaudio

@@ -1,7 +1,7 @@
 #ifndef JGADGET_DEFINE_H
 #define JGADGET_DEFINE_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 #ifdef __cplusplus
 extern "C" {

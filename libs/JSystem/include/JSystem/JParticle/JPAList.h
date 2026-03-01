@@ -1,7 +1,7 @@
 #ifndef JPALIST_H
 #define JPALIST_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 /**
  * @ingroup jsystem-jparticle

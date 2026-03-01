@@ -1,9 +1,9 @@
 #ifndef J3DSTRUCT_H
 #define J3DSTRUCT_H
 
-#include <dolphin/gx.h>
-#include <dolphin/mtx.h>
-#include <dolphin/mtx.h>
+#include <gx.h>
+#include <mtx.h>
+#include <mtx.h>
 #include "global.h"
 
 /**

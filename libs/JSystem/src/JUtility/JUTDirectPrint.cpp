@@ -2,7 +2,7 @@
 
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include <cstdio>
-#include <dolphin/os.h>
+#include <os.h>
 #include "global.h"
 #include "angle_utils.h"
 

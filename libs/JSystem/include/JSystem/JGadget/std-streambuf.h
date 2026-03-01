@@ -1,7 +1,7 @@
 #ifndef JGADGET_STD_STREAMBUF_H
 #define JGADGET_STD_STREAMBUF_H
 
-#include <dolphin/types.h>
+#include <types.h>
 #include <cstring>
 
 namespace JGadget {

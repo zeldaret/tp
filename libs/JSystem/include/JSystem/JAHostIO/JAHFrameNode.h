@@ -1,7 +1,7 @@
 #ifndef JAHFRAMENODE_H
 #define JAHFRAMENODE_H
 
-#include <dolphin/types.h>
+#include <types.h>
 #include "JSystem/JAHostIO/JAHioNode.h"
 
 class JAHVirtualNode;

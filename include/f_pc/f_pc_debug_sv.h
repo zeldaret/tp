@@ -2,7 +2,7 @@
 #ifndef F_PC_DEBUG_SV_H_
 #define F_PC_DEBUG_SV_H_
 
-#include <dolphin/dolphin.h>
+#include <dolphin.h>
 
 #if DEBUG
 

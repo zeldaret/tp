@@ -1,7 +1,7 @@
 #ifndef JSTUDIOCAMERAEDITOR_CSB_H
 #define JSTUDIOCAMERAEDITOR_CSB_H
 
-#include <dolphin/mtx.h>
+#include <mtx.h>
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JGadget/std-vector.h"
 #include "JSystem/JStudio/JStudio/functionvalue.h"

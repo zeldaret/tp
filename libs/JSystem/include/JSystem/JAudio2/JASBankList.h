@@ -1,7 +1,7 @@
 #ifndef JASBANKLIST_H
 #define JASBANKLIST_H
 
-#include <dolphin/types.h>
+#include <types.h>
 
 class JASBank;
 

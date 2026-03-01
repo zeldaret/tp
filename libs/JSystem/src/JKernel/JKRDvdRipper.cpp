@@ -9,8 +9,8 @@
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JUtility/JUTException.h"
 #include <cstring>
-#include <dolphin/os.h>
-#include <dolphin/vi.h>
+#include <os.h>
+#include <vi.h>
 #include <stdint.h>
 
 static int JKRDecompressFromDVD(JKRDvdFile*, void*, u32, u32, u32, u32, u32*);

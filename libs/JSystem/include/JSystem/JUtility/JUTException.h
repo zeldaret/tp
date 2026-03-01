@@ -4,8 +4,8 @@
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include <cstdarg>
-#include <dolphin/gx.h>
-#include <dolphin/os.h>
+#include <gx.h>
+#include <os.h>
 #include "global.h"
 
 typedef struct _GXRenderModeObj GXRenderModeObj;

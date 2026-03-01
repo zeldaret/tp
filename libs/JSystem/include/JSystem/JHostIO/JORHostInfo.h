@@ -1,7 +1,7 @@
 #ifndef JORHOSTINFO_H
 #define JORHOSTINFO_H
 
-#include <dolphin/dolphin.h>
+#include <dolphin.h>
 
 #define HOSTINFO_REQ_COMPUTER_NAME 0
 #define HOSTINFO_REQ_USERNAME      1

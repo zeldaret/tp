@@ -7,9 +7,9 @@
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JSupport/JSUFileStream.h"
-#include <dolphin/os.h>
-#include <dolphin/os.h>
-#include <dolphin/vi.h>
+#include <os.h>
+#include <os.h>
+#include <vi.h>
 #include "global.h"
 #include <cstring>
 

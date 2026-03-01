@@ -2,7 +2,7 @@
 #define JKRHEAP_H
 
 #include "JSystem/JKernel/JKRDisposer.h"
-#include <dolphin/os.h>
+#include <os.h>
 #include "global.h"
 #include <new>
 #include <cstdint>
