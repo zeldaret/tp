@@ -1,6 +1,7 @@
 #include <revolution/wpad.h>
-#include <revolution/wpad/__wpad.h>
 #include <cstring>
+
+#include "__wpad.h"
 
 extern void DEBUGPrint(const char*, ...);
 

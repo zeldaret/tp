@@ -6,8 +6,13 @@
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTException.h"
-#include <ar.h>
-#include <os.h>
+#ifdef __REVOLUTION_SDK__
+#include <revolution/aralt.h>
+#include <revolution/os.h>
+#else
+#include <dolphin/ar.h>
+#include <dolphin/os.h>
+#endif
 #include <cstring>
 
 #if PLATFORM_GCN

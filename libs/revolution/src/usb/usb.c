@@ -1,5 +1,4 @@
 #include <revolution/usb.h>
-#include <revolution/usb/__usb.h>
 
 #include <private/iosrestypes.h>
 #include <private/iostypes.h>
@@ -9,6 +8,8 @@
 #include <revolution/os/OSInterrupt.h>
 #include <cstdio>
 #include <cstring>
+
+#include "__usb.h"
 
 #if SDK_AUG2010
 #define IPC_ARENA_SIZE 0x4000

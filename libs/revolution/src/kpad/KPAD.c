@@ -1,11 +1,12 @@
 #include <revolution/kpad.h>
-#include <revolution/kpad/__kpad.h>
 
 #include <revolution/mtx.h>
 #include "types.h"
 #include <cmath>
 #include <cstdio>
 #include <cstring>
+
+#include "__kpad.h"
 
 static const char* __KPADVersion = "<< RVL_SDK - KPAD \trelease build: Oct  4 2006 11:56:50 (0x4199_60726) >>";
 

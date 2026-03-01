@@ -354,7 +354,6 @@ cflags_trk = [
     "-char signed",
     "-sdata 0",
     "-sdata2 0",
-    "-i libs/dolphin/include",  # TRK always built against dolphin headers
 ]
 
 # Dolphin library flags

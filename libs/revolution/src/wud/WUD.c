@@ -1,5 +1,4 @@
 #include <revolution/wud.h>
-#include <revolution/wud/__wud.h>
 
 #include <cstddef>
 #include <cstdio>
@@ -9,6 +8,8 @@
 #include <revolution/sc.h>
 #include <revolution/wpad.h>
 #include <revolution/wpad/bte.h>
+
+#include "__wud.h"
 
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
 #define MIN(a, b) ((a) < (b) ? (a) : (b))

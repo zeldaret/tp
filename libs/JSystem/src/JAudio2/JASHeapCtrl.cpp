@@ -6,7 +6,12 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
-#include <ar.h>
+
+#ifdef __REVOLUTION_SDK__
+#include <revolution/aralt.h>
+#else
+#include <dolphin/ar.h>
+#endif
 
 JASHeap::JASHeap(JASDisposer* disposer) : mTree(this) {
     mDisposer = disposer;

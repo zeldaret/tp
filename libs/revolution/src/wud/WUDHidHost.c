@@ -1,8 +1,9 @@
 #include <revolution/wud.h>
-#include <revolution/wud/__wud.h>
 #include <revolution/wpad/bte.h>
 #include <revolution/os/OSInterrupt.h>
 #include <cstring>
+
+#include "__wud.h"
 
 #define DEBUGPrint WUD_DEBUGPrint
 

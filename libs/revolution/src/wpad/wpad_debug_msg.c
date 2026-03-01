@@ -1,4 +1,4 @@
-#include <revolution/wpad/__wpad.h>
+#include "__wpad.h"
 
 void DEBUGPrint(const char* fmt, ...) {
     // NONMATCHING

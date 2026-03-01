@@ -1,5 +1,4 @@
 #include <cstdlib>
-#include <revolution/dolphin.h>
 #include <revolution/card.h>
 
 #include "__card.h"

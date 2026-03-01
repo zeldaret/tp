@@ -1,14 +1,15 @@
 #include <revolution/wpad.h>
-#include <revolution/wpad/__wpad.h>
 
 #include <revolution/wud.h>
 #include <revolution/dvd.h>
 #include <revolution/sc.h>
 #include <revolution/vi.h>
 #include <revolution/wpad/bte.h>
-#include <revolution/wud/__wud.h>
 #include <cstdio>
 #include <cstring>
+
+#include "__wpad.h"
+#include "__wud.h"
 
 extern volatile BOOL __OSIsReturnToIdle;
 

@@ -2,9 +2,13 @@
 #define JKRARAMPIECE_H
 
 #include "JSystem/JSupport/JSUList.h"
-#include <ar.h>
-#include <os.h>
-#include <os.h>
+#ifdef __REVOLUTION_SDK__
+#include <revolution/aralt.h>
+#include <revolution/os.h>
+#else
+#include <dolphin/ar.h>
+#include <dolphin/os.h>
+#endif
 
 class JKRAramBlock;
 class JKRDecompCommand;

@@ -5,7 +5,7 @@
 #include <cstring>
 
 #include "__si.h"
-#include "revolution/vi/__vi.h"
+#include "__vi.h"
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
