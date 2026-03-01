@@ -1,7 +1,11 @@
 #include "JSystem/JSystem.h" // IWYU pragma: keep
 
 #include "JSystem/JUtility/JUTResFont.h"
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 #include "global.h"
 
 u8 const JUTResFONT_Ascfont_fix12[] ATTRIBUTE_ALIGN(32) = {

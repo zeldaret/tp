@@ -1,7 +1,11 @@
 #ifndef JORHOSTINFO_H
 #define JORHOSTINFO_H
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 
 #define HOSTINFO_REQ_COMPUTER_NAME 0
 #define HOSTINFO_REQ_USERNAME      1

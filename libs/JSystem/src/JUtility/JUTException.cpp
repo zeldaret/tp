@@ -7,7 +7,11 @@
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 #include <stdint.h>
 #include <cstring>
 

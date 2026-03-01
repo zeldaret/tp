@@ -2,7 +2,11 @@
 
 #include "JSystem/JSupport/JSUOutputStream.h"
 #include "JSystem/JSupport/JSURandomOutputStream.h"
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 #include <cstring>
 
 JSUOutputStream::~JSUOutputStream() {

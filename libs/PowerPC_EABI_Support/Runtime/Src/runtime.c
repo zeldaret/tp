@@ -1,4 +1,8 @@
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {

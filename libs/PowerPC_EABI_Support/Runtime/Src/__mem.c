@@ -1,4 +1,8 @@
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 
 __declspec(section ".init") void* memcpy(void* dst, const void* src, size_t n) {
     const unsigned char* s;

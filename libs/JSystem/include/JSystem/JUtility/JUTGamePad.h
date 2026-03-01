@@ -3,7 +3,11 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 #include "JSystem/JUtility/JUTAssert.h"
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 
 typedef void (*callbackFn)(int, void*);
 

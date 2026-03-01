@@ -2,7 +2,11 @@
 
 #include "JSystem/JHostIO/JHICommonMem.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 
 int JHIMemBuf::create() {
     int rt = 1;

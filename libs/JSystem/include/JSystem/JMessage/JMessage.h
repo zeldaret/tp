@@ -1,7 +1,11 @@
 #ifndef JMESSAGE_H
 #define JMESSAGE_H
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 
 // Struct definitions might be wrong
 typedef struct bmg_header_t {

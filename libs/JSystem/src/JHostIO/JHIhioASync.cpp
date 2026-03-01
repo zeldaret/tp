@@ -2,7 +2,11 @@
 
 #include "JSystem/JHostIO/JHIMccBuf.h"
 #include "JSystem/JHostIO/JHIRMcc.h"
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 #include "global.h"
 
 u32 gsEnableHostio;

@@ -2,7 +2,11 @@
 
 #include "JSystem/JHostIO/JORFile.h"
 #include "JSystem/JHostIO/JORServer.h"
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 
 JORFile::JORFile()
 : mHandle(0),

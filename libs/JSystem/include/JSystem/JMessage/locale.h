@@ -1,7 +1,11 @@
 #ifndef JMESSAGE_LOCALE_H
 #define JMESSAGE_LOCALE_H
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 
 namespace JMessage {
 

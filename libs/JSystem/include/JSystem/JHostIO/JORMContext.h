@@ -1,7 +1,11 @@
 #ifndef JORMCONTEXT_H
 #define JORMCONTEXT_H
 
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 #include <stdint.h>
 #include "JSystem/JHostIO/JORReflexible.h"
 #include "JSystem/JSupport/JSUMemoryStream.h"

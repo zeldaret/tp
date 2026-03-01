@@ -2,7 +2,11 @@
 
 #include "JSystem/JSupport/JSUInputStream.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 
 JSUInputStream::~JSUInputStream() {
     if (!isGood()) {

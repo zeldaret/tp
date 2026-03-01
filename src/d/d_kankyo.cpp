@@ -1,7 +1,11 @@
 #include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_kankyo.h"
+#ifdef __REVOLUTION_SDK__
+#include <revolution.h>
+#else
 #include <dolphin.h>
+#endif
 #include <gf/GFPixel.h>
 
 #include "JSystem/JHostIO/JORFile.h"
