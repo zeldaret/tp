@@ -17,7 +17,7 @@ int daObjDigpl_c::create() {
     mSwitch = fopAcM_GetParam(this) & 0xFF;
 
     if (mType == 5) {
-        fopAcM_OffStatus(this, 0x80);
+        fopAcM_OffStatus(this, fopAcStts_NOEXEC_e);
         mpDigPoints =
             dPath_GetRoomPath((fopAcM_GetParam(this) >> 0x14) & 0xFF, fopAcM_GetRoomNo(this));
     }

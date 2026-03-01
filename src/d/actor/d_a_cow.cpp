@@ -3030,7 +3030,7 @@ bool daCow_c::initialize() {
     }
 
     fopAcM_setCullSizeBox(this, -100.0f, -100.0f, -200.0f, 100.0f, 250.0f, 200.0f);
-    fopAcM_OnStatus(this, 0x8000000);
+    fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
 
     mAcch.CrrPos(dComIfG_Bgsp());
 

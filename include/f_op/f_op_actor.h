@@ -39,11 +39,11 @@ enum fopAc_Status_e {
     fopAcStts_CULL_e              = 1 << 8,
     fopAcStts_UNK_0x200_e         = 1 << 9,
     fopAcStts_FREEZE_e            = 1 << 10,
-    fopAcStts_UNK_0x800_e         = 1 << 11,
-    fopAcStts_UNK_0x1000_e        = 1 << 12,
+    fopAcStts_STAFF_EXTRA_e       = 1 << 11,    // Actor is an extra participant of an active staff. Usually handled automatically via an "ALL" staff, but can be manually set/unset by an actor?
+    fopAcStts_STAFF_SHUTTER_e     = 1 << 12,    // Actor is a primary participant of an active "SHUTTER_DOOR" staff
     fopAcStts_CARRY_NOW_e         = 1 << 13,
     fopAcStts_UNK_0x4000_e        = 1 << 14,
-    fopAcStts_UNK_0x8000_e        = 1 << 15,
+    fopAcStts_STAFF_PRIMARY_e     = 1 << 15,    // Actor is a primary participant of an active staff
     fopAcStts_UNK_0x10000_e       = 1 << 16,
     fopAcStts_NOPAUSE_e           = 1 << 17,
     fopAcStts_UNK_0x40000_e       = 1 << 18,

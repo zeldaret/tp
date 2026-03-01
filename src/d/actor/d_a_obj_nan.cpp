@@ -313,7 +313,7 @@ void daObjNAN_c::walk() {
 
 void daObjNAN_c::bin_wait() {
     if (field_0x7d0 == 0) {
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         mDraw = false;
         field_0x7d0++;
     } else if (field_0x7d0 != -1 && field_0x56c != 0) {
@@ -406,7 +406,7 @@ void daObjNAN_c::hook() {
         if (mDraw) {
             nan_setParticle();
         }
-        if (!fopAcM_CheckStatus(this, 0x100000)) {
+        if (!fopAcM_CheckStatus(this, fopAcStts_HOOK_CARRY_NOW_e)) {
             setAction(&daObjNAN_c::drop);
         }
         dBgS_LinChk linkChk;

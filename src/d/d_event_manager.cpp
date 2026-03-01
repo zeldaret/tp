@@ -495,19 +495,19 @@ void dEvent_manager_c::remove() {
 }
 
 static void* extraOnObjectCallBack(fopAc_ac_c* actor, void* data) {
-    fopAcM_OnStatus(actor, fopAcStts_UNK_0x800_e);
+    fopAcM_OnStatus(actor, fopAcStts_STAFF_EXTRA_e);
     return NULL;
 }
 
 static void* extraOffObjectCallBack(fopAc_ac_c* actor, void* data) {
-    fopAcM_OffStatus(actor, fopAcStts_UNK_0x800_e);
+    fopAcM_OffStatus(actor, fopAcStts_STAFF_EXTRA_e);
     return NULL;
 }
 
 static void* allOffObjectCallBack(fopAc_ac_c* actor, void* data) {
     fopAc_ac_c* spC = (fopAc_ac_c*)data;
 
-    fopAcM_OffStatus(actor, fopAcStts_UNK_0x8000_e | fopAcStts_UNK_0x1000_e);
+    fopAcM_OffStatus(actor, fopAcStts_STAFF_PRIMARY_e | fopAcStts_STAFF_SHUTTER_e);
     return NULL;
 }
 
@@ -542,7 +542,7 @@ void dEvent_manager_c::startProc(dEvDtEvent_c* event) {
             }
 
             if (event_actor_p != NULL) {
-                fopAcM_OnStatus(event_actor_p, fopAcStts_UNK_0x8000_e);
+                fopAcM_OnStatus(event_actor_p, fopAcStts_STAFF_PRIMARY_e);
                 // "event manager: C:Staff ON %s!!"
                 OS_REPORT("\x1B[34m%06d: event manager: Ｃ：スタッフ　ON　%s!!\n\x1B[m", g_Counter.mCounter0, dStage_getName(fopAcM_GetProfName(event_actor_p), -1));
             } else {
@@ -1300,7 +1300,7 @@ void dEvent_manager_c::issueStaff(const char* staffname) {
         char nameBuf[32];
         strcpy(nameBuf, staffname);
         fopAc_ac_c* actor = fopAcM_searchFromName4Event(nameBuf, -1);
-        fopAcM_OnStatus(actor, fopAcStts_UNK_0x800_e);
+        fopAcM_OnStatus(actor, fopAcStts_STAFF_EXTRA_e);
     }
 }
 
@@ -1311,7 +1311,7 @@ void dEvent_manager_c::cancelStaff(const char* staffname) {
         char nameBuf[32];
         strcpy(nameBuf, staffname);
         fopAc_ac_c* actor = fopAcM_searchFromName4Event(nameBuf, -1);
-        fopAcM_OffStatus(actor, fopAcStts_UNK_0x800_e);
+        fopAcM_OffStatus(actor, fopAcStts_STAFF_EXTRA_e);
     }
 }
 
@@ -1422,9 +1422,9 @@ fopAc_ac_c* dEvent_manager_c::specialCast(const char* staffname, BOOL param_1) {
 
     if (shutterActor != NULL) {
         if (param_1) {
-            fopAcM_OnStatus(shutterActor, 0x1000);
+            fopAcM_OnStatus(shutterActor, fopAcStts_STAFF_SHUTTER_e);
         } else {
-            fopAcM_OffStatus(shutterActor, 0x1000);
+            fopAcM_OffStatus(shutterActor, fopAcStts_STAFF_SHUTTER_e);
         }
     }
 

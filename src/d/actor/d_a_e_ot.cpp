@@ -787,7 +787,7 @@ cPhs_Step daE_OT_c::create() {
 
         switch (mDemoMode) {
         case 3:
-            fopAcM_OnStatus(this, 0x8000);
+            fopAcM_OnStatus(this, fopAcStts_STAFF_PRIMARY_e);
             // fallthrough
 
         case 0:

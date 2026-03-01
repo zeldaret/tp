@@ -800,7 +800,7 @@ void daE_GE_c::executeDown() {
         mSphere.OffTgSetBit();
         mSphere2.OffTgSetBit();
 #endif
-        fopAcM_OffStatus(this, 0x20);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x20_e);
         field_0xb9e = 0;
         attention_info.flags = 0;
         bckSet(4, 3.0f, 2, 1.0f);

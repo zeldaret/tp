@@ -1951,7 +1951,7 @@ fpc_ProcID fopAcM_createDisappear(const fopAc_ac_c* i_actor, const cXyz* i_pos, 
 }
 
 void fopAcM_setCarryNow(fopAc_ac_c* i_actor, int param_1) {
-    i_actor->actor_status |= 0x2000;
+    i_actor->actor_status |= fopAcStts_CARRY_NOW_e;
 
     if (param_1 != 0) {
         fopAcM_setStageLayer(i_actor);
@@ -1961,7 +1961,7 @@ void fopAcM_setCarryNow(fopAc_ac_c* i_actor, int param_1) {
 
 void fopAcM_cancelCarryNow(fopAc_ac_c* i_actor) {
     if (fopAcM_checkCarryNow(i_actor)) {
-        i_actor->actor_status &= ~0x2000;
+        i_actor->actor_status &= ~fopAcStts_CARRY_NOW_e;
 
         if (fopAcM_GetHomeRoomNo(i_actor) != -1 &&
             fopScnM_SearchByID(dStage_roomControl_c::getStatusProcID(fopAcM_GetRoomNo(i_actor))) !=
@@ -1973,8 +1973,8 @@ void fopAcM_cancelCarryNow(fopAc_ac_c* i_actor) {
         i_actor->shape_angle.z = 0;
         i_actor->shape_angle.x = 0;
 
-        if (dComIfGp_event_runCheck() && fopAcM_GetGroup(i_actor) != 2) {
-            i_actor->actor_status |= 0x800;
+        if (dComIfGp_event_runCheck() && fopAcM_GetGroup(i_actor) != fopAc_ENEMY_e) {
+            i_actor->actor_status |= fopAcStts_STAFF_EXTRA_e;
         }
     }
 }

@@ -1624,7 +1624,7 @@ int daAlink_c::procCoElecDamageInit(fopAc_ac_c* i_tgHitActor, dCcD_GObjInf* i_tg
     }
 
     if (i_tgHitActor != NULL) {
-        i_tgHitActor->actor_status |= 0x800;
+        i_tgHitActor->actor_status |= fopAcStts_STAFF_EXTRA_e;
     }
 
     commonProcInit(PROC_ELEC_DAMAGE);

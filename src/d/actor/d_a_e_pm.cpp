@@ -1294,7 +1294,7 @@ void daE_PM_c::DemoBossStart2() {
             vec1.set(current.pos.x, 1900.0f, current.pos.z);
             SetStopCam(vec1, 500.0f, 0.0f, s_TargetAngle);
             mCamEye.set(mCamEyeTarget);
-            actor_status &= ~0x100;
+            actor_status &= ~fopAcStts_CULL_e;
         }
         if (mSecondEncounter) {
             player->mDemo.setDemoType(daPy_demo_c::DEMO_TYPE_ORIGINAL_e);

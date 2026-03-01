@@ -358,7 +358,7 @@ int daCstatue_c::create() {
             mControlDistanceOffset = JMAFastSqrt(4825.0f);
             mTargetFrame = 21.0f;
         } else {
-            fopAcM_OffStatus(this, 0x100);
+            fopAcM_OffStatus(this, fopAcStts_CULL_e);
             mCyl1.SetR(300.0f);
             mCyl1.SetH(600.0f);
             mAcchCir[0].SetWall(30.01f, 300.0f);
@@ -1156,10 +1156,10 @@ int daCstatue_c::execute() {
                           fopAcM_GetRoomNo(this), 1.0f, speedF);
     if (fopAcM_checkCarryNow(this)) {
         onStateFlg0(daCstatue_FLG0_2);
-        fopAcM_OffStatus(this, 0x400);
+        fopAcM_OffStatus(this, fopAcStts_FREEZE_e);
     } else {
         offStateFlg0(daCstatue_FLG0_2);
-        fopAcM_OnStatus(this, 0x400);
+        fopAcM_OnStatus(this, fopAcStts_FREEZE_e);
     }
     if (mParam2 != 0x3f) {
         dTres_c::setIconPositionOfCstatue(mParam2, &current.pos);

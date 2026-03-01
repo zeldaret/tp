@@ -406,7 +406,7 @@ actor_process_profile_definition g_profile_GRASS = {
     /* List Prio    */ fpcPi_CURRENT_e,
     /* Proc Name    */ PROC_GRASS,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
-    /* Size         */ 0x00000570,
+    /* Size         */ sizeof(daGrass_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,

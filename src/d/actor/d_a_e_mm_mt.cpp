@@ -44,7 +44,7 @@ static bool e_mm_hookCheck(e_mm_mt_class* i_this) {
 
     if (i_this->m_sphere.ChkTgHit()
         && i_this->m_sphere.GetTgHitObj()->ChkAtType(AT_TYPE_HOOKSHOT)
-        || fopAcM_CheckStatus(actor, 0x100000)) {
+        || fopAcM_CheckStatus(actor, fopAcStts_HOOK_CARRY_NOW_e)) {
         i_this->field_0x69C = 0.0f;
         i_this->field_0x68A[0] = true;
         cXyz local_24 = i_this->enemy.current.pos;
@@ -117,7 +117,7 @@ static void e_mm_mt_normal(e_mm_mt_class* i_this) {
         if (actor->argument != 1
             && ((i_this->m_sphere.ChkTgHit()
             && i_this->m_sphere.GetTgHitObj()->ChkAtType(AT_TYPE_HOOKSHOT))
-            || fopAcM_CheckStatus(actor, 0x100000))) {
+            || fopAcM_CheckStatus(actor, fopAcStts_HOOK_CARRY_NOW_e))) {
                 helmasaur->field_0xb99 |= 4;
         }
         if (!helmasaur->field_0x672) {
@@ -135,7 +135,7 @@ static void e_mm_mt_normal(e_mm_mt_class* i_this) {
             fopAcM_OffStatus(actor, 0);
             actor->attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             actor->attention_info.distances[fopAc_attn_BATTLE_e] = 0;
-            fopAcM_OnStatus(actor, 0x400);
+            fopAcM_OnStatus(actor, fopAcStts_FREEZE_e);
             s16 actor_angle = player->shape_angle.y + 0x4000;
             s16 angle = actor->shape_angle.y - actor_angle;
             if (angle > 0x4000 || angle < -0x4000) {
@@ -399,7 +399,7 @@ static void e_mm_mt_drop(e_mm_mt_class* i_this) {
             i_this->m_sphere.OffAtSetBit();
             return;
         }
-        if (fopAcM_CheckStatus(actor, 0x200) && !i_this->m_invulnerabilityTimer) {
+        if (fopAcM_CheckStatus(actor, fopAcStts_UNK_0x200_e) && !i_this->m_invulnerabilityTimer) {
             i_this->m_action = 1;
             i_this->m_mode = -10;
             i_this->field_0x68A[0] = false;

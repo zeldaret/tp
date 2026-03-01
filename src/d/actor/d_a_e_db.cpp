@@ -1752,7 +1752,7 @@ static void action(e_db_class* i_this) {
         spA = TRUE;
         actor->field_0x566 = 1;
         sound_pl_search = TRUE;
-        fopAcM_OffStatus(actor, 0x10000);
+        fopAcM_OffStatus(actor, fopAcStts_UNK_0x10000_e);
         break;
     case ACTION_E_DEAD:
         e_db_e_dead(i_this);

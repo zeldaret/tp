@@ -133,7 +133,7 @@ void daObjCRVGATE_c::actionWaitEvent() {
 
         Z2GetAudioMgr()->seStart(Z2SE_OBJ_CRVN_GATE_OPEN, &mPos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 
-        fopAcM_OffStatus(this, 0x100);
+        fopAcM_OffStatus(this, fopAcStts_CULL_e);
     } else {
         if (checkOpen() != 0) {
             eventInfo.onCondition(4);

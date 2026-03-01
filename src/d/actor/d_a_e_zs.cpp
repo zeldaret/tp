@@ -221,13 +221,13 @@ void daE_ZS_c::executeAppear() {
                 if (field_0x65c > -2.0f) {
                     field_0x65c = 0.0f;
                     offWolfNoLock();
-                    fopAcM_OnStatus(this, 0x200000);
+                    fopAcM_OnStatus(this, fopAcStts_UNK_0x200000_e);
                     setActionMode(1, 0);
                 }
             } else {
                 if (mpMorf->isStop()) {
                     offWolfNoLock();
-                    fopAcM_OnStatus(this, 0x200000);
+                    fopAcM_OnStatus(this, fopAcStts_UNK_0x200000_e);
                     setActionMode(1, 0);
                 }
             }
@@ -348,7 +348,7 @@ void daE_ZS_c::executeDrive() {
             }
 
             onWolfNoLock();
-            fopAcM_OffStatus(this, 0x200000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x200000_e);
             mSound.startCreatureSound(Z2SE_EN_ZS_DISAPPEAR, 0, -1);
             field_0x673 = 1;
             mCyl.OffTgSetBit();

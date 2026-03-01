@@ -1280,7 +1280,7 @@ int daE_PH_c::create() {
 
         l_HIO.mSpeed = mMoveSpeed;
         mCamAction = 0;
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         daE_PH_Execute(this);
     }
 

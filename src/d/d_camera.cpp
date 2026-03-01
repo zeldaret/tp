@@ -54,10 +54,10 @@ static void hideActor(fopAc_ac_c* actor) {
         daPy_py_c* player = (daPy_py_c*)actor;
         if (player->checkHorseRide()) {
             daHorse_c* horse = dComIfGp_getHorseActor();
-            fopAcM_OnStatus(horse, 0x1000000);
+            fopAcM_OnStatus(horse, fopAcStts_NODRAW_e);
         }
     } else {
-        fopAcM_OnStatus(actor, 0x1000000);
+        fopAcM_OnStatus(actor, fopAcStts_NODRAW_e);
     }
 }
 

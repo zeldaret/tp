@@ -527,18 +527,18 @@ void daB_DR_c::mStatusONOFF(int i_status) {
         attention_info.distances[fopAc_attn_BATTLE_e] = 0;
         attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         fopAcM_OffStatus(this, 0);
-        fopAcM_OffStatus(this, 0x200000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x200000_e);
         return;
     case 1:
         attention_info.distances[fopAc_attn_BATTLE_e] = 85;
         attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
         fopAcM_OnStatus(this, 0);
-        fopAcM_OnStatus(this, 0x200000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x200000_e);
         return;
     case 2:
         attention_info.distances[fopAc_attn_BATTLE_e] = 60;
         fopAcM_OnStatus(this, 0);
-        fopAcM_OffStatus(this, 0x200000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x200000_e);
         attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
         return;
     }    
@@ -988,7 +988,7 @@ void daB_DR_c::tail_hit_check() {
     if (health > 0) {
         daPy_getPlayerActorClass()->onBossRoomWait();
 
-        if (fopAcM_CheckStatus(this, 0x200000) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_TAIL_HIT && field_0x7d1 != 2) {
+        if (fopAcM_CheckStatus(this, fopAcStts_UNK_0x200000_e) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_TAIL_HIT && field_0x7d1 != 2) {
             if (mTailCc.ChkTgHit()) {
                 speedF = 0.0f;
                 dComIfGs_onZoneSwitch(21, fopAcM_GetRoomNo(this));
@@ -1004,7 +1004,7 @@ void daB_DR_c::week_hit_check() {
     if (mWeekCc.ChkTgSet()) {
         daPy_getPlayerActorClass()->onBossRoomWait();
 
-        if (health > 0 && fopAcM_CheckStatus(this, 0x200000) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_WEEK_HIT && field_0x7d1 == 2) {
+        if (health > 0 && fopAcM_CheckStatus(this, fopAcStts_UNK_0x200000_e) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_WEEK_HIT && field_0x7d1 == 2) {
             if (mWeekCc.ChkTgHit() && mWeekCc.GetTgHitObj()->ChkAtType(AT_TYPE_HOOKSHOT)) {
                 speedF = 0.0f;
                 Z2GetAudioMgr()->changeBgmStatus(2);
@@ -4085,7 +4085,7 @@ int daB_DR_c::create() {
                 mSound.init(&current.pos, &eyePos, 3, 1);
                 mColliderStts.Init(0x19, NULL, this);
 
-                fopAcM_OnStatus(this, 0x4000);
+                fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
 
                 if (arg0 == 0x14) {
                     setActionMode(0xF, 0);

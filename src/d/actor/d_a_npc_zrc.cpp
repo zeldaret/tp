@@ -913,7 +913,7 @@ void daNpc_zrC_c::reset() {
     speed.setall(0.0f);
     setLookMode(LOOK_NONE);
     if (mType == 1) {
-        fopAcM_OffStatus(this, 0x100);
+        fopAcM_OffStatus(this, fopAcStts_CULL_e);
     } else if (mType == 2) {
         setExpression(EXPR_PRAY, -1.0f);
         setMotion(2, -1.0f, FALSE);

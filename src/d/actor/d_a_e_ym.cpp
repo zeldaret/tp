@@ -711,7 +711,7 @@ void daE_YM_c::executeWait() {
                             field_0x6f0 = 0x14;
                             mMode = 3;
                             field_0x6a6 = 0;
-                            fopAcM_OnStatus(this, 0x4000);
+                            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
                         }
                     }
             }
@@ -857,7 +857,7 @@ void daE_YM_c::executeEscape() {
         }
     }
     if (!dComIfGp_event_runCheck()) {
-        fopAcM_OffStatus(this, 0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
     }
     switch (mMode) {
         case 0:
@@ -2245,7 +2245,7 @@ bool daE_YM_c::checkRailDig() {
             field_0x6f0 = 0x14;
             mMode = 3;
             mAcchCir.SetWall(40.0f, 60.0f);
-            fopAcM_OnStatus(this, 0x4000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
             return true;
         }
     }

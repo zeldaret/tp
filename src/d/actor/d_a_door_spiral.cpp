@@ -637,7 +637,7 @@ void daSpiral_c::setPartner() {
     JUT_ASSERT(1065, actor);
 
     dComIfGp_event_setDoorPartner(actor);
-    fopAcM_OnStatus(actor, 0x8000);
+    fopAcM_OnStatus(actor, fopAcStts_STAFF_PRIMARY_e);
 }
 
 void daSpiral_c::clrPartner() {

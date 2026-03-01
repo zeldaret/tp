@@ -1665,7 +1665,7 @@ void daNpc_zrA_c::reset() {
     speed.setall(0.0f);
 
     if ((mType == TYPE_SWIM && mPath.getPathInfo() != NULL) || mType == TYPE_WATERFALL) {
-        fopAcM_OnStatus(this, 0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
     }
 
     mBtkID = 0;

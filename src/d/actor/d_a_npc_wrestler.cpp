@@ -5226,7 +5226,7 @@ actor_process_profile_definition g_profile_NPC_WRESTLER = {
     /* List Prio    */ fpcPi_CURRENT_e,
     /* Proc Name    */ PROC_NPC_WRESTLER,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
-    /* Size         */ 0xEA0,
+    /* Size         */ sizeof(daNpcWrestler_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,

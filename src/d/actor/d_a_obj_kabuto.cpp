@@ -733,7 +733,7 @@ cPhs_Step daObjKABUTO_c::create() {
         if (mLocation == LOC_UNK_2) {
             field_0x56c = 0;
             shape_angle.x -= 0x2000;
-            fopAcM_OnStatus(this, 0x4000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         } else {
             mDraw = true;
             attention_info.distances[fopAc_attn_CARRY_e] = 0x5D;

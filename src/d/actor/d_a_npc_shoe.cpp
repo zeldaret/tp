@@ -227,9 +227,9 @@ int daNpcShoe_c::Delete() {
 
 int daNpcShoe_c::Execute() {
     if (field_0xe1b != 0) {
-        fopAcM_OnStatus(this, 0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
     } else {
-        fopAcM_OffStatus(this, 0x8000000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000_e);
     }
 
     if (fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e)) {

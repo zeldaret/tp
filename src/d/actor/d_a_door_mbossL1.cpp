@@ -953,7 +953,7 @@ int daMBdoorL1_c::openInit() {
                 }
             }
         }
-        if (fopAcM_CheckStatus(this, 0x1000)) {
+        if (fopAcM_CheckStatus(this, fopAcStts_STAFF_SHUTTER_e)) {
             fopAcM_onSwitch(this, swBit3);
         }
         field_0x5e1 = 1;
@@ -1598,7 +1598,7 @@ int daMBdoorL1_c::actionOpen() {
 }
 
 int daMBdoorL1_c::actionInit() {
-    if (fopAcM_CheckStatus(this, 0x1000)) {
+    if (fopAcM_CheckStatus(this, fopAcStts_STAFF_SHUTTER_e)) {
         setAction(ACTION_START_DEMO);
         actionStartDemo();
     } else {
@@ -1623,7 +1623,7 @@ int daMBdoorL1_c::actionInit() {
 int daMBdoorL1_c::actionStartDemo() {
     field_0x5e8 = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
     demoProc();
-    if (!fopAcM_CheckStatus(this, 0x1000)) {
+    if (!fopAcM_CheckStatus(this, fopAcStts_STAFF_SHUTTER_e)) {
         setAction(ACTION_CLOSE_WAIT);
     }
     return 1;

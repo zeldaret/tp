@@ -1492,7 +1492,7 @@ int daDoor20_c::drawCheck(int param_1) {
 
 int daDoor20_c::checkExecute() {
     field_0x68c = frontCheck();
-    if (fopAcM_CheckStatus(this, 0x1000)) {
+    if (fopAcM_CheckStatus(this, fopAcStts_STAFF_SHUTTER_e)) {
         return 1;
     }
     if (eventInfo.checkCommandDemoAccrpt() || eventInfo.checkCommandDoor()) {

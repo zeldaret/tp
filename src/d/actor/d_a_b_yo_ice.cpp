@@ -175,7 +175,7 @@ void daB_YOI_c::setOperate(int param_0) {
         setActionMode(ACT_RISE_UP, 1);
         break;
     case 3:
-        fopAcM_OffStatus(this, 0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
         setActionMode(ACT_RISE_UP, 8);
         break;
     case 4:
@@ -207,7 +207,7 @@ void daB_YOI_c::setOperate(int param_0) {
         setActionMode(ACT_DAMAGE, 0);
         break;
     case 10:
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         setActionMode(ACT_DEATH, 0);
         break;
     }
@@ -1069,7 +1069,7 @@ cPhs_Step daB_YOI_c::create() {
             setActionMode(ACT_FIRST, 0);
             break;
         case 1:
-            fopAcM_OffStatus(this, 0x4000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
             setActionMode(ACT_RISE_UP, 9);
             break;
         case 2:

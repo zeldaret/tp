@@ -506,7 +506,7 @@ void daObjDmElevator_c::actionEvent() {
 }
 
 void daObjDmElevator_c::actionStartEvent() {
-    if ( fopAcM_CheckStatus(this, 0x1000) != 0) {
+    if ( fopAcM_CheckStatus(this, fopAcStts_STAFF_SHUTTER_e) != 0) {
         demoProc();
     } else {
         mAction = 0;

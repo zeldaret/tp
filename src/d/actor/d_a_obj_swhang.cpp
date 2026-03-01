@@ -134,7 +134,7 @@ int daObjSwHang_c::Create() {
     case TYPE_3:
     case TYPE_4:
         mCcSph.Set(l_sph_src2);
-        fopAcM_OnStatus(this, 0x200000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x200000_e);
         break;
     }
     mCcSph.SetStts(&mCcStts);

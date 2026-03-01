@@ -1133,7 +1133,7 @@ int dEvt_control_c::Step() {
 
 int dEvt_control_c::moveApproval(void* param_0) {
     fopAc_ac_c* actor = (fopAc_ac_c*)param_0;
-    if (fopAcM_CheckStatus(actor, 0x20000)) {
+    if (fopAcM_CheckStatus(actor, fopAcStts_NOPAUSE_e)) {
         return 2;
     }
 
@@ -1163,11 +1163,11 @@ int dEvt_control_c::moveApproval(void* param_0) {
         break;
     }
 
-    if (fopAcM_CheckStatus(actor, 0x8000)) {
+    if (fopAcM_CheckStatus(actor, fopAcStts_STAFF_PRIMARY_e)) {
         return 2;
     }
 
-    if (fopAcM_CheckStatus(actor, 0x800)) {
+    if (fopAcM_CheckStatus(actor, fopAcStts_STAFF_EXTRA_e)) {
         return 1;
     }
 
@@ -1176,7 +1176,7 @@ int dEvt_control_c::moveApproval(void* param_0) {
         return 0;
     }
 
-    if (mMode == dEvt_mode_TALK_e && fopAcM_CheckStatus(actor, 0x40)) {
+    if (mMode == dEvt_mode_TALK_e && fopAcM_CheckStatus(actor, fopAcStts_UNK_0x40_e)) {
         return 1;
     }
 
@@ -1184,15 +1184,15 @@ int dEvt_control_c::moveApproval(void* param_0) {
         return 1;
     }
 
-    if ((getMode() == 3 || getMode() == dEvt_mode_TALK_e) && fopAcM_CheckStatus(actor, 0x4000000)) {
+    if ((getMode() == 3 || getMode() == dEvt_mode_TALK_e) && fopAcM_CheckStatus(actor, fopAcStts_BOSS_e)) {
         return 0;
     }
 
-    if (fopAcM_CheckStatus(actor, 0x4000)) {
+    if (fopAcM_CheckStatus(actor, fopAcStts_UNK_0x4000_e)) {
         return 1;
     }
 
-    if (fopAcM_CheckStatus(actor, 0x2000)) {
+    if (fopAcM_CheckStatus(actor, fopAcStts_CARRY_NOW_e)) {
         return 1;
     }
 

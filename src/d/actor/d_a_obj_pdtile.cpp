@@ -315,7 +315,7 @@ int daObjPDtile_c::Execute(Mtx** param_1) {
                 }
                 if (mType == TYPE_2 || mType == TYPE_4) {
                     field_0x610 = 4;
-                    fopAcM_OnStatus(this, 0x4000);
+                    fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
                 }
             } else {
                 field_0x7b8 = 0;

@@ -335,7 +335,7 @@ int daObjYobikusa_c::execute() {
               (!dComIfGp_event_runCheck() || eventInfo.checkCommandTalk())))
         {
             mpActiveModel = mpModelTypeA;
-            fopAcM_OnStatus(this, 0x80);
+            fopAcM_OnStatus(this, fopAcStts_NOEXEC_e);
         } else {
             return TRUE;
         }
@@ -344,7 +344,7 @@ int daObjYobikusa_c::execute() {
     if (mCcCyl.ChkTgHit()) {
         mpActiveModel = mpModelTypeB;
 
-        fopAcM_OffStatus(this, 0x80);
+        fopAcM_OffStatus(this, fopAcStts_NOEXEC_e);
         cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
         if (getType() == CALL_TYPE_FLY) {

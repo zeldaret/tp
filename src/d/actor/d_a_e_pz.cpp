@@ -220,7 +220,7 @@ void daE_PZ_c::mEnemyScaleSet() {
         for (int i = 0; i < 25; i++) {
             fopAc_ac_c* spC;
             if (field_0x7dc[i] != 0 && fopAcM_SearchByID(field_0x7dc[i], &spC) && spC != NULL) {
-                fopAcM_OnStatus(spC, 0x4000);
+                fopAcM_OnStatus(spC, fopAcStts_UNK_0x4000_e);
 
                 if (field_0x7d8 == 2 && field_0x843 == 0) {
                     Z2GetAudioMgr()->seStart(Z2SE_EN_PZ_DKBB_VANISH, &spC->current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
@@ -783,7 +783,7 @@ void daE_PZ_c::executeOpeningDemo() {
 
         for (int i = 0; i < 25; i++) {
             if (field_0x7dc[i] != 0 && fopAcM_SearchByID(field_0x7dc[i], &parent) && parent != NULL) {
-                fopAcM_OnStatus(parent, 0x4000);
+                fopAcM_OnStatus(parent, fopAcStts_UNK_0x4000_e);
             }
         }
 
@@ -829,7 +829,7 @@ void daE_PZ_c::executeOpeningDemo() {
 
         for (int i = 0; i < 25; i++) {
             if (field_0x7dc[i] != 0 && fopAcM_SearchByID(field_0x7dc[i], &parent) && parent != NULL) {
-                fopAcM_OnStatus(parent, 0x4000);
+                fopAcM_OnStatus(parent, fopAcStts_UNK_0x4000_e);
             }
         }
 
@@ -854,7 +854,7 @@ void daE_PZ_c::executeOpeningDemo() {
 
         for (int i = 0; i < 25; i++) {
             if (field_0x7dc[i] != 0 && fopAcM_SearchByID(field_0x7dc[i], &parent) && parent != NULL) {
-                fopAcM_OffStatus(parent, 0x4000);
+                fopAcM_OffStatus(parent, fopAcStts_UNK_0x4000_e);
             }
         }
 
@@ -2619,7 +2619,7 @@ int daE_PZ_c::create() {
             } else if (arg0 != 30 && arg0 != 40) {
                 if (arg0 == 22 || arg0 == 23) {
                     arg0 -= 2;
-                    fopAcM_OnStatus(this, 0x4000);
+                    fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
                 }
                 field_0x7c8 = 1.0f;
                 setActionMode(6, 0);

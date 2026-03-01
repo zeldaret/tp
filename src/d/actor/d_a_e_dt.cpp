@@ -767,7 +767,7 @@ static void* s_demo_otama(void* i_proc, void* i_this) {
         && fopAcM_GetName(i_proc) == PROC_E_OT)
     {
         daE_OT_c* otama = static_cast<daE_OT_c*>(i_proc);
-        fopAcM_OffStatus(otama, 0x8000);
+        fopAcM_OffStatus(otama, fopAcStts_STAFF_PRIMARY_e);
     }
     return NULL;
 }

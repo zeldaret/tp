@@ -344,14 +344,14 @@ int daObjSwBallC_c::calcLightBallScale() {
     int uVar3 = 0;
     fopAc_ac_c* ball = (fopAc_ac_c*)fpcM_Search(s_ballA_sub, this);
     if (ball != NULL) {
-        fopAcM_OnStatus(ball, 0x800);
+        fopAcM_OnStatus(ball, fopAcStts_STAFF_EXTRA_e);
         uVar3 = cLib_chaseF(&ball->scale.x, 0.0f, 0.05f);
         ball->scale.y = ball->scale.x;
         ball->scale.z = ball->scale.x;
     }
     ball = (fopAc_ac_c*)fpcM_Search(s_ballB_sub, this);
     if (ball != NULL) {
-        fopAcM_OnStatus(ball, 0x800);
+        fopAcM_OnStatus(ball, fopAcStts_STAFF_EXTRA_e);
         uVar3 &= cLib_chaseF(&ball->scale.x, 0.0f, 0.05f);
         ball->scale.y = ball->scale.x;
         ball->scale.z = ball->scale.x;

@@ -352,7 +352,7 @@ bool daE_OctBg_c::checkCoreFishAttack() {
     if (fopAcM_SearchByID(fopAcM_GetLinkId(this), &actor) == 0 || actor == NULL) {
         return false;
     }
-    if (fopAcM_CheckStatus(actor, 0x100000) == 0) {
+    if (fopAcM_CheckStatus(actor, fopAcStts_HOOK_CARRY_NOW_e) == 0) {
         return false;
     }
     return true;

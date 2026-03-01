@@ -3631,7 +3631,7 @@ BOOL daNpc_grA_c::waitSpaWater(void*) {
         if (field_0xC98.ChkTgHit()) {
             daOnsTaru_c* hit = (daOnsTaru_c*)field_0xC98.GetTgHitAc();
             if (fopAcM_GetName(hit) == 0x16c) {
-                fopAcM_OnStatus(hit, 0x4000);
+                fopAcM_OnStatus(hit, fopAcStts_UNK_0x4000_e);
                 if (hit->getTempStat()) {
                     mOrderEvtNo = 7;
                 } else {

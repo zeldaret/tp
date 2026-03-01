@@ -2548,7 +2548,7 @@ void daB_MGN_c::executeOpening() {
             return;
         }
 
-        fopAcM_OffStatus(this, 0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
 
         player->changeOriginalDemo();
         player->setPlayerPosAndAngle(&pos, 0, 0);

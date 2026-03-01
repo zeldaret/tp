@@ -1690,7 +1690,7 @@ void daB_TN_c::executeRoomDemo() {
         }
 
         mBlendStatus = 0;
-        fopAcM_OffStatus(this, 0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
 
         camera->mCamera.Stop();
         camera->mCamera.SetTrimSize(3);
@@ -5147,7 +5147,7 @@ int daB_TN_c::create() {
                     }
                 }
 
-                fopAcM_OffStatus(this, 0x4000);
+                fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
                 setActionMode(ACT_WAITH, ACTION2_0_e);
             }
 

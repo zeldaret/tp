@@ -49,7 +49,7 @@ void daNbomb_c::tgHitCallback(dCcD_GObjInf* i_hitObj) {
         {
             procBoomerangMoveInit(i_hitObj);
         }
-    } else if (i_hitObj->ChkAtType(AT_TYPE_HOOKSHOT) && fopAcM_CheckStatus(this, 0x80000)) {
+    } else if (i_hitObj->ChkAtType(AT_TYPE_HOOKSHOT) && fopAcM_CheckStatus(this, fopAcStts_UNK_0x80000_e)) {
         if (fopAcM_checkCarryNow(this)) {
             fopAcM_cancelCarryNow(this);
         }
@@ -350,7 +350,7 @@ int daNbomb_c::create() {
         mDoMtx_stack_c::transS(current.pos);
 
         if (!checkStateFlg0(FLG0_INSECT_BOMB)) {
-            fopAcM_OnStatus(this, 0x80000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
         }
 
         mDoMtx_stack_c::ZXYrotM(0, shape_angle.y, shape_angle.z);
@@ -607,7 +607,7 @@ void daNbomb_c::setHitPolygon(BOOL param_0) {
 }
 
 BOOL daNbomb_c::procExplodeInit() {
-    fopAcM_OnStatus(this, 0x20000);
+    fopAcM_OnStatus(this, fopAcStts_NOPAUSE_e);
     daAlink_c* player = daAlink_getAlinkActorClass();
 
     scale.x = player->getBombEffScale();

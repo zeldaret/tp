@@ -771,7 +771,7 @@ void daB_YO_c::executeOpening() {
             return;
         }
         Z2GetAudioMgr()->seStart(Z2SE_EN_YO_DEMO_OP1, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-        fopAcM_OffStatus(this, 0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
         field_0xfb5 = 3;
         setBck(ANM_WAIT_A, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
         mMode = 1;
@@ -2164,7 +2164,7 @@ void daB_YO_c::executeDemoRevival() {
                                                       &current.pos, fopAcM_GetRoomNo(this),
                                                       &shape_angle, NULL, -1, NULL);
                 } else {
-                    fopAcM_OnStatus(icicle, 0x4000);
+                    fopAcM_OnStatus(icicle, fopAcStts_UNK_0x4000_e);
                 }
                 field_0xfb0++;
             }
@@ -2184,7 +2184,7 @@ void daB_YO_c::executeDemoRevival() {
                 if (mIcicleID[i] != -1) {
                     fopAcM_SearchByID(mIcicleID[i], (fopAc_ac_c**)&icicle);
                     if (icicle != NULL) {
-                        fopAcM_OffStatus(icicle, 0x4000);
+                        fopAcM_OffStatus(icicle, fopAcStts_UNK_0x4000_e);
                     }
                 }
             }
@@ -2292,7 +2292,7 @@ void daB_YO_c::executeDeath() {
             eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         gravity = 0.0f;
         speed.y = 0.0f;
         camera->mCamera.Stop();
@@ -3388,7 +3388,7 @@ cPhs_Step daB_YO_c::create() {
                 g_env_light.mColpatWeather = 2;
                 g_env_light.wether_pat0 = 2;
                 g_env_light.wether_pat1 = 2;
-                fopAcM_OffStatus(this, 0x4000);
+                fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
             
             } else {
                 mRoomType = 0;

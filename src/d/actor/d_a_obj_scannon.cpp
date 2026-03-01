@@ -626,7 +626,7 @@ void daSCannon_c::demoInitFinish() {
 #endif
 
     fopAcM_seStartCurrent(this, Z2SE_OBJ_BOMB_EXPLODE, 0);
-    fopAcM_OffStatus(this, 0x80);
+    fopAcM_OffStatus(this, fopAcStts_NOEXEC_e);
 
     dComIfGp_getVibration().StopQuake(0x1F);
     dComIfGp_getVibration().StartShock(8, 0x1F, cXyz(0.0f, 1.0f, 0.0f));

@@ -727,7 +727,7 @@ inline int daObjKAT_c::create() {
         if (field_0x808 == 2) {
             field_0x56c = 0;
             ANGLE_ADD(shape_angle.x, -0x2000);
-            fopAcM_OnStatus(this, 0x4000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         } else {
             mDraw = true;
         }

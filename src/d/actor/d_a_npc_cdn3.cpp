@@ -1510,7 +1510,7 @@ void daNpcCdn3_c::create_init() {
     }
 
     if (isInShop()) {
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
     }
 
     if (m_path.setPath(getPathID(), fopAcM_GetRoomNo(this), 1, &current.pos, false)) {
@@ -1589,9 +1589,9 @@ int daNpcCdn3_c::execute() {
     mAcchCir.SetWallR(Cd2_HIO_chkWallR(m_type));
     checkTimeSchedule();
     if (field_0xb95 != 0) {
-        fopAcM_OnStatus(this, 0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
     } else {
-        fopAcM_OffStatus(this, 0x8000000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000_e);
     }
     if (field_0xb95 != 0) {
         if (!mIsDarkWorld && daPy_py_c::checkNowWolf()) {

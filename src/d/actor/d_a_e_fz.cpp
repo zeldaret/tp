@@ -669,7 +669,7 @@ void daE_FZ_c::action() {
     int i;
 
     if (field_0x714 == 1 && mObjAcch.ChkGroundHit()) {
-        fopAcM_OffStatus(this, 0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
         field_0x714 = 0;
     }
 

@@ -1069,7 +1069,7 @@ int daObjCarry_c::Create() {
     }
 
     if (checkCarryHookshot()) {
-        fopAcM_OnStatus(this, 0x80000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
         mCyl.SetTgType(mCyl.GetTgType() | 0x4000);
     }
 
@@ -1238,7 +1238,7 @@ int daObjCarry_c::CreateInit_LightBall() {
     mSound.init(&current.pos, 1);
 
     if (dComIfGp_roomControl_getStayNo()) {
-        fopAcM_OnStatus(this, 0x2000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x2000000_e);
     }
 
     mDalkmistInf.mPos = current.pos;
@@ -1246,7 +1246,7 @@ int daObjCarry_c::CreateInit_LightBall() {
 
     dKy_dalkmist_inf_set(&mDalkmistInf);
     field_0xe0c = 1;
-    fopAcM_OnStatus(this, 0x20000);
+    fopAcM_OnStatus(this, fopAcStts_NOPAUSE_e);
 
     mCyl.SetTgSe(9);
     mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_2);
@@ -1868,9 +1868,9 @@ int daObjCarry_c::execute() {
     field_0xdec = current.pos;
 
     if (fopAcM_checkCarryNow(this)) {
-        fopAcM_OffStatus(this, 0x400);
+        fopAcM_OffStatus(this, fopAcStts_FREEZE_e);
     } else {
-        fopAcM_OnStatus(this, 0x400);
+        fopAcM_OnStatus(this, fopAcStts_FREEZE_e);
     }
 
     return 1;
@@ -3058,7 +3058,7 @@ void daObjCarry_c::mode_init_fit() {
     mCyl.OnCoSPrmBit(0x10);
 
     cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
-    fopAcM_OffStatus(this, 0x80000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x80000_e);
     field_0xda8 = 0;
 
     speedF = 0.0f;

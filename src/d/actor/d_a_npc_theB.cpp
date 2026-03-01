@@ -890,7 +890,7 @@ BOOL daNpcTheB_c::doEvent() {
 
                 fopAc_ac_c* actor_p = fopAcM_SearchByID(parentActorID);
                 if (actor_p != NULL) {
-                    fopAcM_OnStatus(actor_p, fopAcStts_UNK_0x800_e);
+                    fopAcM_OnStatus(actor_p, fopAcStts_STAFF_EXTRA_e);
                 }
             }
 
@@ -904,7 +904,7 @@ BOOL daNpcTheB_c::doEvent() {
 
                 actor_p = fopAcM_SearchByID(parentActorID);
                 if (actor_p != NULL) {
-                    fopAcM_OnStatus(actor_p, fopAcStts_UNK_0x800_e);
+                    fopAcM_OnStatus(actor_p, fopAcStts_STAFF_EXTRA_e);
                 }
 
                 if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {

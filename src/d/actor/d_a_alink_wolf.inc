@@ -8699,7 +8699,7 @@ int daAlink_c::procWolfGanonCatchInit() {
     }
 
     mDemo.setSpecialDemoType();
-    field_0x27f4->actor_status |= 0x800;
+    field_0x27f4->actor_status |= fopAcStts_STAFF_EXTRA_e;
 
     commonProcInit(PROC_WOLF_GANON_CATCH);
     field_0x280c.setData(field_0x27f4);

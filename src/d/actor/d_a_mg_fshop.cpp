@@ -1778,7 +1778,7 @@ actor_process_profile_definition g_profile_FSHOP = {
     /* List Prio    */ fpcPi_CURRENT_e,
     /* Proc Name    */ PROC_FSHOP,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
-    /* Size         */ 0x00006B80,
+    /* Size         */ sizeof(fshop_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,

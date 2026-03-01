@@ -503,9 +503,9 @@ void daNpc_Kyury_c::action() {
 }
 
 void daNpc_Kyury_c::beforeMove() {
-    fopAcM_OffStatus(this, 0x8000000);
+    fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000_e);
     if (checkHide()) {
-        fopAcM_OnStatus(this, 0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
     }
 
     if (checkHide() || mNoDraw != 0) {

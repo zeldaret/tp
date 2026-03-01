@@ -146,7 +146,7 @@ inline u32 fopAcM_checkCarryNow(fopAc_ac_c* i_actor) {
 }
 
 inline u32 fopAcM_checkHawkCarryNow(fopAc_ac_c* actor) {
-    return fopAcM_CheckStatus(actor, 0x80000000);
+    return fopAcM_CheckStatus(actor, fopAcStts_HAWK_CARRY_NOW_e);
 }
 
 enum fopAcM_CARRY {

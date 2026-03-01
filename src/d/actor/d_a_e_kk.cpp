@@ -465,7 +465,7 @@ void daE_KK_c::executeIcicleWait() {
             field_0x67d = 0;
             field_0x76c = 0;
             nextActionCheck();
-            fopAcM_OffStatus(this, 0x4000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
         }
     }
 }
@@ -1448,7 +1448,7 @@ int daE_KK_c::create() {
             if (field_0x679 != 3) {
                 setActionMode(0, 0);
             } else {
-                fopAcM_OnStatus(this, 0x4000);
+                fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
                 field_0x67d = 1;
                 s16 player_angle = fopAcM_searchPlayerAngleY(this);
                 shape_angle.y = player_angle;

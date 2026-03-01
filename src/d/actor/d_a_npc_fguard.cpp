@@ -162,9 +162,9 @@ int daNpcFgd_c::execute() {
     mAcchCir.SetWallR(Cd2_HIO_chkWallR(m_type));
 
     if (mFlag) {
-        fopAcM_OffStatus(this, 0x8000000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000_e);
     } else {
-        fopAcM_OnStatus(this, 0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
         return 1;
     }
 

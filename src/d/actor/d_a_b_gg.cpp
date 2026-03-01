@@ -1191,8 +1191,8 @@ void daB_GG_c::Md_DemoAction() {
         } else if (mpModelMorf->getFrame() > 18.0f && mAnm == BCK_GGB_TAKE_OFF) {
             var_r29 = 1;
         } else if (mAnm == BCK_GGB_WAIT_B && mTimers[0] == 0) {
-            fopAcM_OffStatus(this, 0x200000);
-            fopAcM_OnStatus(this, 0x80000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x200000_e);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
             SetAnm(BCK_GGB_TAKE_OFF, 0, 5.0f, 1.0f);
 
             mSound.startCreatureVoice(Z2SE_EN_GG_V_TAKE_OFF, -1);
@@ -1802,7 +1802,7 @@ void daB_GG_c::F_AttackAction() {
             speedF = field_0x5bc;
             field_0x5c0 = (100.0f + (s_LinkPos->y - current.pos.y)) / ((0.9f * var_f31) / speedF);
             speed.y = field_0x5c0;
-            fopAcM_OffStatus(this, 0x80000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x80000_e);
         }
         break;
     case 1: {
@@ -1842,7 +1842,7 @@ void daB_GG_c::F_AttackAction() {
             }
         } else if (current.pos.y - field_0x648 > 500.0f || (field_0x650 == current.pos.y - field_0x648 && mAnm == BCK_GGA_ATTACK_4)) {
             mCcHookCyl.OnTgSetBit();
-            fopAcM_OnStatus(this, 0x80000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
 
             if (field_0x5b6 != 0) {
                 SetAnm(BCK_GGA_ATTACK_2, 2, 5.0f, 1.0f);
@@ -1887,8 +1887,8 @@ void daB_GG_c::F_AttackAction() {
             mCcHookCyl.OnTgSetBit();
             SetAnm(BCK_GGA_PREPARATION, 2, 5.0f, 1.0f);
 
-            fopAcM_OffStatus(this, 0x200000);
-            fopAcM_OnStatus(this, 0x80000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x200000_e);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
 
             if (field_0x6ba != 0) {
                 mTimers[0] = l_HIO.fly_attack_wait_time * 0.5f;
@@ -2002,8 +2002,8 @@ void daB_GG_c::F_DamageAction() {
         if (mTimers[0] == 1 && mAnm == BCK_GGA_PULL) {
             mMode++;
             fopAcM_cancelHookCarryNow(this);
-            fopAcM_OffStatus(this, 0x80000);
-            fopAcM_OnStatus(this, 0x200000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x80000_e);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x200000_e);
             mTimers[0] = 5;
         }
         break;
@@ -2031,8 +2031,8 @@ void daB_GG_c::F_DamageAction() {
             s_M_Action = 0;
             s_W_Action = 0;
 
-            fopAcM_OffStatus(this, 0x80000);
-            fopAcM_OnStatus(this, 0x200000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x80000_e);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x200000_e);
         } else {
             cXyz* hookshot_top = player->getHookshotTopPos();
             cXyz sp24(0.0f, 0.0f, 0.0f);
@@ -2046,8 +2046,8 @@ void daB_GG_c::F_DamageAction() {
 
             if (mAcch.ChkWallHit() && mTimers[0] == 0) {
                 SetAction(ACTION_FLY, SUBACT_MOVE, 0);
-                fopAcM_OffStatus(this, 0x200000);
-                fopAcM_OnStatus(this, 0x80000);
+                fopAcM_OffStatus(this, fopAcStts_UNK_0x200000_e);
+                fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
 
                 SetAnm(BCK_GGA_WAIT, 2, 5.0f + BREG_F(12), 1.0f);
 
@@ -2084,8 +2084,8 @@ void daB_GG_c::F_DamageAction() {
             }
         } else if (current.pos.y < (field_0x648 - 50.0f)) {
             SetAction(ACTION_FLY, SUBACT_MOVE, 0);
-            fopAcM_OffStatus(this, 0x200000);
-            fopAcM_OnStatus(this, 0x80000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x200000_e);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
 
             SetAnm(BCK_GGA_WAIT, 2, 5.0f + BREG_F(12), 1.0f);
 
@@ -2546,8 +2546,8 @@ void daB_GG_c::G_MoveAction() {
                 mTimers[1] = 0;
                 gravity = 0.0f;
 
-                fopAcM_OffStatus(this, 0x200000);
-                fopAcM_OnStatus(this, 0x80000);
+                fopAcM_OffStatus(this, fopAcStts_UNK_0x200000_e);
+                fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
 
                 SetAnm(BCK_GGA_WAIT, 2, 5.0f, 1.0f);
 
@@ -2576,8 +2576,8 @@ void daB_GG_c::FallChk() {
     if (current.pos.y < (field_0x648 - 10.0f) && field_0x5b6 != 0) {
         if (!mAcch.ChkGroundHit()) {
             SetAction(ACTION_FLY, SUBACT_MOVE, 0);
-            fopAcM_OffStatus(this, 0x200000);
-            fopAcM_OnStatus(this, 0x80000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x200000_e);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
 
             SetAnm(BCK_GGA_WAIT, 2, 5.0f + BREG_F(12), 1.0f);
 
@@ -2615,8 +2615,8 @@ void daB_GG_c::FallChk() {
     } else if (current.pos.y < (field_0x648 - 10.0f)) {
         SpeedClear();
         SetAction(ACTION_FLY, SUBACT_MOVE, 0);
-        fopAcM_OffStatus(this, 0x200000);
-        fopAcM_OnStatus(this, 0x80000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x200000_e);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
 
         SetAnm(BCK_GGA_WAIT, 2, 5.0f + BREG_F(12), 1.0f);
 
@@ -4409,7 +4409,7 @@ int daB_GG_c::Create() {
             mMode = 0;
 
             SetAnm(BCK_GG_WAIT, 2, 5.0f, 1.0f);
-            fopAcM_OnStatus(this, 0x200000);
+            fopAcM_OnStatus(this, fopAcStts_UNK_0x200000_e);
 
             if (-G_CM3D_F_INF != mAcch.GetGroundH()) {
                 current.pos.y = mAcch.GetGroundH();

@@ -889,7 +889,7 @@ void daE_SW_c::executeHook() {
             cLib_addCalcAngleS(&shape_angle.y, (s16)(field_0x6cc + field_0x6a4), 4, 0x1000, 0x100);
             current.angle.y = shape_angle.y;
 
-            if (!fopAcM_CheckStatus(this, 0x100000)) {
+            if (!fopAcM_CheckStatus(this, fopAcStts_HOOK_CARRY_NOW_e)) {
                 setActionMode(7, 10);
             }
             break;
@@ -2600,7 +2600,7 @@ void daE_SW_c::d_hook() {
             cLib_addCalcAngleS(&shape_angle.y, (s16)(field_0x6cc + field_0x6a4), 4, 0x1000, 0x100);
             current.angle.y = shape_angle.y;
 
-            if (!fopAcM_CheckStatus(this, 0x100000)) {
+            if (!fopAcM_CheckStatus(this, fopAcStts_HOOK_CARRY_NOW_e)) {
                 speed.y = 20.0f;
                 speedF = -10.0f;
                 gravity = -5.0f;

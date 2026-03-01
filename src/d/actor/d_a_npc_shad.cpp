@@ -1857,7 +1857,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
                 actor = NULL;
                 fopAcM_SearchByName(PROC_CSTAF, (fopAc_ac_c**)&actor);
                 if (actor != NULL) {
-                    fopAcM_OnStatus(actor, fopAcStts_UNK_0x800_e);
+                    fopAcM_OnStatus(actor, fopAcStts_STAFF_EXTRA_e);
                 }
 
                 dComIfGp_getEvent()->startCheckSkipEdge(this);

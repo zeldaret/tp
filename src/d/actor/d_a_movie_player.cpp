@@ -4208,7 +4208,7 @@ actor_process_profile_definition g_profile_MOVIE_PLAYER = {
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
     /* Priority     */ PRIO_MOVIE_PLAYER,
     /* Actor SubMtd */ &daMP_METHODS,
-    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e | fopAcStts_UNK_0x8000_e | fopAcStts_UNK_0x4000_e,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e | fopAcStts_STAFF_PRIMARY_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,
     /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

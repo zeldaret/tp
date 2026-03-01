@@ -697,7 +697,7 @@ int daE_DF_c::Create() {
             }
         }
 
-        fopAcM_OffStatus(this, 0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
         daE_DF_Execute(this);
     }
 

@@ -150,7 +150,7 @@ int daObj_GrA_c::startDemo(void* param_1) {
                     player->changeOriginalDemo();
                     gra_p->field_0x204c.entry(this);
                     gra_p->setProcess(&daObj_GrA_c::soldierDemo);
-                    fopAcM_OnStatus(gra_p, fopAcStts_UNK_0x8000_e);
+                    fopAcM_OnStatus(gra_p, fopAcStts_STAFF_PRIMARY_e);
                     field_0x2056 = 0;
                     dComIfGp_getEvent()->setSkipProc(this, skipCallBack, 0);
                     dComIfGp_getEvent()->onSkipFade();

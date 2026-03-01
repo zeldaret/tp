@@ -1282,7 +1282,7 @@ void daB_DS_c::executeOpeningDemo() {
 
         dComIfGp_event_reset();
         dComIfGs_onZoneSwitch(0, fopAcM_GetRoomNo(this));
-        fopAcM_OffStatus(this, 0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
         mMode++;
         // fallthrough
     }
@@ -5492,7 +5492,7 @@ cPhs_Step daB_DS_c::create() {
                 mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
                           &mAcchCir, fopAcM_GetSpeed_p(this), NULL, NULL);
                 mAcch.CrrPos(dComIfG_Bgsp());
-                fopAcM_OnStatus(this, 0x4000);
+                fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
             }
 
             setActionMode(8, 0);
@@ -5603,7 +5603,7 @@ cPhs_Step daB_DS_c::create() {
                     fopAcM_onSwitch(this, bitSw);
                 }
 
-                fopAcM_OnStatus(this, 0x4000);
+                fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
 
                 if (cDmr_SkipInfo == 0 && !dComIfGs_isZoneSwitch(5, fopAcM_GetRoomNo(this))) {
                     mDrawZant = false;

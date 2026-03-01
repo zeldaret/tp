@@ -7243,7 +7243,7 @@ static BOOL start_check(npc_ks_class* i_this) {
             break;
 
         case 20:
-            fopAcM_OnStatus(actor, 0x20000);
+            fopAcM_OnStatus(actor, fopAcStts_NOPAUSE_e);
             i_this->action = 300;
             i_this->field_0xc17 = 1;
             iVar2 = 1;

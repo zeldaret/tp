@@ -1521,7 +1521,7 @@ static void demo_camera_start(e_mk_class* i_this) {
                 i_this->camCenter = player->current.pos;
                 i_this->camCenter.y += 100.0f;
                 i_this->demoMode = e_mk_class::DEMO_MODE_FINISH;
-                fopAcM_OffStatus(actor, 0x4000);
+                fopAcM_OffStatus(actor, fopAcStts_UNK_0x4000_e);
                 Z2GetAudioMgr()->subBgmStart(Z2BGM_BOOMERAMG_MONKEY);
             }
 

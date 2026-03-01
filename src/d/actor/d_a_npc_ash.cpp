@@ -240,7 +240,7 @@ cPhs_Step daNpcAsh_c::Create() {
         if (dComIfGs_isSaveSwitch(0x14)) {
             return cPhs_ERROR_e;
         }
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
         mType = TYPE_CASTLE;
     }
 
@@ -592,7 +592,7 @@ void daNpcAsh_c::reset() {
     }
 
     if (isSneaking()) {
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
     }
 
     if (mType == TYPE_BAR) {

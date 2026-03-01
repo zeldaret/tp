@@ -991,12 +991,12 @@ void daAlink_c::setHookshotPos() {
                     mHookshotTopPos = field_0x381c;
 
                     targetAc_p = mHookTargetAcKeep.getActor();
-                    if (targetAc_p != NULL && (targetAc_p->actor_status & 0x280000)) {
+                    if (targetAc_p != NULL && (targetAc_p->actor_status & (fopAcStts_UNK_0x200000_e | fopAcStts_UNK_0x80000_e))) {
                         mHookTargetAcKeep.setData(targetAc_p);
                         mIronBallCenterPos = mHookshotTopPos - targetAc_p->current.pos;
                         setHookshotCatchNow();
 
-                        if (targetAc_p->actor_status & 0x200000) {
+                        if (targetAc_p->actor_status & fopAcStts_UNK_0x200000_e) {
                             mItemMode = 5;
                             field_0x316c.set(field_0x301c, field_0x301e, 0);
                             mDoMtx_stack_c::ZrotS(-targetAc_p->shape_angle.z);

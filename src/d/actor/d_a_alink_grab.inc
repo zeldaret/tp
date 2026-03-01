@@ -398,7 +398,7 @@ void daAlink_c::freeGrabItem() {
 
     if (grabActor != NULL) {
         if (dComIfGp_event_runCheck() || mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e) {
-            fopAcM_OnStatus(grabActor, fopAcStts_UNK_0x800_e);
+            fopAcM_OnStatus(grabActor, fopAcStts_STAFF_EXTRA_e);
         }
 
         fopAcM_cancelCarryNow(grabActor);
@@ -2180,7 +2180,7 @@ int daAlink_c::procGoatCatchInit(fopAc_ac_c* i_actor, f32 param_1) {
         }
 
         mDemo.setSpecialDemoType();
-        i_actor->actor_status |= 0x800;
+        i_actor->actor_status |= fopAcStts_STAFF_EXTRA_e;
     }
 
     commonProcInit(PROC_GOAT_CATCH);

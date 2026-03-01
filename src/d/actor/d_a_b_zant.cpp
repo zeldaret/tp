@@ -379,7 +379,7 @@ void daB_ZANT_c::setDamageSe(dCcD_Sph* i_hitSph, int i_dmgAmount) {
     BOOL var_r29;
     u8 at_se = ((dCcD_GObjInf*)mAtInfo.mpCollider)->GetAtSe();
 
-    if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) && !fopAcM_CheckStatus(this, 0x280000)) {
+    if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) && !fopAcM_CheckStatus(this, fopAcStts_UNK_0x200000_e | fopAcStts_UNK_0x80000_e)) {
         var_r29 = 1;
     } else {
         var_r29 = 0;
@@ -1343,7 +1343,7 @@ void daB_ZANT_c::executeOpening() {
         }
 
         Z2GetAudioMgr()->setDemoName("force_start");
-        fopAcM_OffStatus(this, 0x4000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
         
         sp34.set(0.0f, 0.0f, -700.0f);
         player->setPlayerPosAndAngle(&sp34, 0, 0);
@@ -1886,7 +1886,7 @@ void daB_ZANT_c::executeHook() {
             setBck(BCK_ZAN_HOOK_WAIT, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
         }
     case 3:
-        if (!fopAcM_CheckStatus(this, 0x100000)) {
+        if (!fopAcM_CheckStatus(this, fopAcStts_HOOK_CARRY_NOW_e)) {
             setTgHitBit(TRUE);
             setCoHitBit(TRUE);
             setActionMode(ACT_SWIM, 10);
@@ -4589,7 +4589,7 @@ void daB_ZANT_c::initNextRoom() {
     fopAcM_SearchByID(mMobileIDs[0], &pmobile);
 
     if (mFightPhase == PHASE_OI) {
-        fopAcM_OnStatus(this, 0x80000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
 
         if (pmobile == NULL) {
             cXyz pos(0.0f, -3300.0f, 0.0f);
@@ -4600,7 +4600,7 @@ void daB_ZANT_c::initNextRoom() {
             mCorrectMobileNo = 0;
         }
     } else {
-        fopAcM_OffStatus(this, 0x80000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x80000_e);
 
         if (pmobile != NULL) {
             fopAcM_delete(pmobile);

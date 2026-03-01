@@ -1129,7 +1129,7 @@ void daE_OC_c::executeFind() {
     f32 pl_dist = fopAcM_searchPlayerDistance(this);
     if (mOcState < 3 || !setWatchMode()) {
         if (field_0x6b4 == 2 && !dComIfGp_event_runCheck()) {
-            fopAcM_OffStatus(this, 0x4000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
             field_0x6b4 = 0;
         }
 
@@ -2593,7 +2593,7 @@ int daE_OC_c::execute() {
             camera->mCamera.Start();
             camera->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
-            fopAcM_OffStatus(this, 0x4000);
+            fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
             fopAc_ac_c* search_actor = (fopAc_ac_c*)fpcM_Search(s_demo_oc, this);
             if (search_actor) {
                 fopAcM_OffStatus(search_actor, 0x4000);
@@ -2758,7 +2758,7 @@ cPhs_Step daE_OC_c::create() {
             if (mName == "E_OC") {
                 mSphs_at[0].SetAtAtp(1);
                 mSphs_at[1].SetAtAtp(1);
-                fopAcM_OnStatus(this, 0x10000);
+                fopAcM_OnStatus(this, fopAcStts_UNK_0x10000_e);
             } else {
                 mSphs_at[0].SetAtAtp(2);
                 mSphs_at[1].SetAtAtp(2);
@@ -2785,7 +2785,7 @@ cPhs_Step daE_OC_c::create() {
                     setActionMode(E_OC_ACTION_DEMO_CHILD, 0);
                     break;
                 default:
-                    fopAcM_OffStatus(this, 0x4000);
+                    fopAcM_OffStatus(this, fopAcStts_UNK_0x4000_e);
                     break;
             }
 

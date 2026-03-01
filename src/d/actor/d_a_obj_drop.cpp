@@ -489,7 +489,7 @@ int daObjDrop_c::actionCompleateDemo() {
             u8 need_num = dComIfGp_getNeedLightDropNum();
             u8 num = dComIfGs_getLightDropNum(dComIfGp_getStartStageDarkArea());
             if (need_num == num) {
-                fopAcM_OnStatus(this, 0x4000);
+                fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
                 dComIfGs_onSaveSwitch(13);
             }
         } else if (timer == 1) {
