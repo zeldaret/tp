@@ -126,7 +126,7 @@ static int hit_check(obj_lp_class* i_this, wd_ss* WdSs) {
             cLib_addCalc2(&WdSs->field_0x10.y, WdSs->field_0x4.y + fVar8 * -0.5f, 0.5f, 3.0f);
             cLib_addCalc2(&WdSs->field_0x28.x, fVar8, 0.1f, fVar8 * 0.5f);
             cLib_addCalcAngleS2(&WdSs->field_0x34, cM_atan2s(sp6c.x, sp6c.z), 0x20, 0x400);
-            cLib_addCalcAngleS2(&WdSs->field_0x36, 0xfffff060, 0x20, 0x400);
+            cLib_addCalcAngleS2(&WdSs->field_0x36, -4000, 0x20, 0x400);
             rv = 1;
         }
     }

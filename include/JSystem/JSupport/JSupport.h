@@ -20,7 +20,7 @@ T* JSUConvertOffsetToPtr(const void* ptr, uintptr_t offset) {
 template <typename T>
 T* JSUConvertOffsetToPtr(const void* ptr, const void* offset) {
     T* ret;
-    if (offset == NULL) {
+    if (offset == 0) {
         ret = NULL;
     } else {
         ret = (T*)((intptr_t)ptr + (intptr_t)offset);
