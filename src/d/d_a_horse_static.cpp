@@ -35,11 +35,11 @@ void e_wb_class::getOff() {
 }
 
 BOOL e_wb_class::checkDownDamage() {
-    return action != ACT_PL_RIDE && action != 0x66 && action != ACT_S_DAMAGE;
+    return action != ACT_PL_RIDE && action != ACT_PL_RIDE2 && action != ACT_S_DAMAGE;
 }
 
 BOOL e_wb_class::checkNormalRideMode() const {
-    return action != 0x66 || mode < 1;
+    return action != ACT_PL_RIDE2 || mode < 1;
 }
 
 void e_wb_class::setRunRideMode() {
