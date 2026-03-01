@@ -9,6 +9,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 
 u32 JORMessageBox(const char* message, const char* title, u32 style);
+int JORShellExecute(const char* param_0, const char* param_1, const char* param_2, const char* param_3, int param_4);
 
 struct JOREventCallbackListNode {
     JOREventCallbackListNode(u32, u32, bool);

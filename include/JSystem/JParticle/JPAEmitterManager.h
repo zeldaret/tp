@@ -39,6 +39,7 @@ public:
         return pResMgrAry[res_mgr_id];
     }
     int getEmitterNumber() const { return emtrNum - mFreeEmtrList.getNumLinks(); }
+    int getParticleNumber() const { return ptclNum - mPtclPool.getNum(); }
 
 public:
     /* 0x00 */ JSUList<JPABaseEmitter>* pEmtrUseList;

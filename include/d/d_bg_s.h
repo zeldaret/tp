@@ -195,6 +195,8 @@ public:
 
     void ChkDeleteActorRegist(fopAc_ac_c*);
 
+    void Draw();
+
 #if DEBUG
     /* 0x1404 */ u8 field_0x1404[0x1408 - 0x1404];
     /* 0x1408 */ dBgS_HIO m_hio;

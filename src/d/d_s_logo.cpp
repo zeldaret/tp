@@ -24,14 +24,14 @@
 #include <revolution/os.h>
 #include <revolution/sc.h>
 #include "m_Do/m_Do_Reset.h"
+
+#include "res/Object/LogoUsWii.h"
 #endif
 
 #if PLATFORM_WII || VERSION == VERSION_SHIELD
 #include "m_Re/m_Re_controller_pad.h"
 #include "d/d_cursor_mng.h"
 #include "d/d_home_button.h"
-
-#include "res/Object/LogoUsWii.h"
 
 struct homeBtnData {
     /* 0x0 */ int region;

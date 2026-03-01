@@ -26,8 +26,8 @@ public:
 
     void show3D(Mtx);
     void show2D();
-    void create(JStudio::TControl* pControl, const JUTGamePad& pad);
-    void remove();
+    static void create(JStudio::TControl* pControl, const JUTGamePad& pad);
+    static void remove();
     void update();
 
     static dJprev_c* get() { return m_myObj; }
