@@ -5,48 +5,48 @@
 #include "d/actor/d_a_tag_hstop.h"
 
 BOOL e_wb_class::checkWait() {
-    return mActionMode == 0x2A;
+    return mode == 0x2A;
 }
 
 void e_wb_class::setPlayerRideNow() {
-    mActionID = ACT_PL_RIDE_NOW;
-    mActionMode = 0;
-    mStatusFlags |= u16(3);
+    action = ACT_PL_RIDE_NOW;
+    mode = 0;
+    StatusFlag |= u16(3);
 }
 
 void e_wb_class::setPlayerRide() {
-    mActionID = ACT_PL_RIDE;
-    mActionMode = 0;
-    mStatusFlags |= u16(3);
+    action = ACT_PL_RIDE;
+    mode = 0;
+    StatusFlag |= u16(3);
 
-    mZ2Ride.setLinkRiding(true);
+    creature.setLinkRiding(true);
 }
 
 void e_wb_class::getOff() {
-    if (!checkDownDamage() || mActionID == ACT_PL_RIDE_NOW) {
-        mActionID = 0;
+    if (!checkDownDamage() || action == ACT_PL_RIDE_NOW) {
+        action = 0;
     } else {
-        field_0x692 = 0;
+        old_action = 0;
     }
 
-    mActionMode = 0;
-    mStatusFlags &= u16(~3);
-    mZ2Ride.setLinkRiding(false);
+    mode = 0;
+    StatusFlag &= u16(~3);
+    creature.setLinkRiding(false);
 }
 
 BOOL e_wb_class::checkDownDamage() {
-    return mActionID != ACT_PL_RIDE && mActionID != 0x66 && mActionID != ACT_S_DAMAGE;
+    return action != ACT_PL_RIDE && action != 0x66 && action != ACT_S_DAMAGE;
 }
 
 BOOL e_wb_class::checkNormalRideMode() const {
-    return mActionID != 0x66 || mActionMode < 1;
+    return action != 0x66 || mode < 1;
 }
 
 void e_wb_class::setRunRideMode() {
-    if (mActionID == ACT_PL_RIDE) {
-        mActionMode = 0;
-        mActionID = ACT_S_DAMAGE;
-        field_0x692 = 0x65;
+    if (action == ACT_PL_RIDE) {
+        mode = 0;
+        action = ACT_S_DAMAGE;
+        old_action = 0x65;
     }
 }
 

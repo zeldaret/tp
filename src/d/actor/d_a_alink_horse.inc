@@ -480,7 +480,7 @@ int daAlink_c::setSyncBoarPos() {
 
 int daAlink_c::setSyncBoarRunPos() {
     e_wb_class* boar = (e_wb_class*)mRideAcKeep.getActor();
-    fopAc_ac_c* boar_actor = &boar->mEnemy;
+    fopAc_ac_c* boar_actor = &boar->enemy;
 
     if (boar == NULL || boar->checkDownDamage()) {
         boarForceGetOff();

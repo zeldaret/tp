@@ -2174,7 +2174,7 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
                     } else {
                         boar->action = 8;
                         i_this->action = ACTION_WB_RUN;
-                        boar->field_0x79c = 10;
+                        boar->wait_timer = 10;
                         Z2GetAudioMgr()->subBgmStart(Z2BGM_HORSE_BATTLE);
                     }
                 } else {
@@ -2232,7 +2232,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
         case 0:
             if ((boar->StatusFlag & 4) != 0) {
                 if (i_this->boar_stand == 1) {
-                    if (boar->field_0x6d0 < 0) {
+                    if (boar->range < 0) {
                         anm_init(i_this, BCK_RD_RSTEP_L, 10.0f, 2, 1.0f);
                     } else {
                         anm_init(i_this, BCK_RD_RSTEP_R, 10.0f, 2, 1.0f);
@@ -3929,7 +3929,7 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
                 i_this->boar_stand = 0;
                 boar->action = 16;
                 boar->mode = 0;
-                boar->field_0x169e = 10;
+                boar->demo_mode = 10;
             }
 
             enemy->speedF = 0.0f;
@@ -3976,7 +3976,7 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
                 i_this->mode = 1;
                 boar->action = 18;
                 boar->mode = 0;
-                boar->field_0x169e = 90;
+                boar->demo_mode = 90;
                 mDoAud_bgmStop(30);
             }
             break;
@@ -4270,7 +4270,7 @@ static void damage_check(e_rd_class* i_this) {
                                 i_this->mode = 0;
                                 i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_DAMAGE_L, -1);
                             } else {
-                                boar->field_0x169e = 25;
+                                boar->demo_mode = 25;
                                 anm_init(i_this, e_rdb_class::BCK_RB_RDAMAGEB, 2.0f, 0, 1.0f);
                                 i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_DAMAGE, -1);
                             }
@@ -4293,7 +4293,7 @@ static void damage_check(e_rd_class* i_this) {
                         dComIfGp_setHitMark(uVar1, enemy, &ato, NULL, &sc, 0);
                     } else if (i_this->AtInfo.mHitType == 1) {
                         anm_init(i_this, e_rdb_class::BCK_RB_RGUARD_F, 2.0f, 0, 1.0f);
-                        boar->field_0x169e = 25;
+                        boar->demo_mode = 25;
                         dScnPly_c::setPauseTimer(0);
 
                         cXyz mae, ato;
@@ -4400,7 +4400,7 @@ static void damage_check(e_rd_class* i_this) {
                                         /* dSv_event_flag_c::M_055 - Main Event - Did damage at least once during joust/one-on-one battle */
                                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x58]);
                                         part_break(i_this);
-                                        boar->field_0x169e = 20;
+                                        boar->demo_mode = 20;
                                         dScnPly_c::setPauseTimer(0);
                                     }
 
@@ -5851,8 +5851,8 @@ static void demo_camera(e_rd_class* i_this) {
     fopAc_ac_c* actor = taka;
     cXyz mae, ato, sp50, target;
     bool sp_0x9 = true; // unused
-    s8 bVar1 = false;
-    s16 sVar1 = 0;
+    s8 demo_set = false;
+    s16 bank = 0;
 
     switch (i_this->demo_mode + 1) {
         case 2:
@@ -5910,10 +5910,10 @@ static void demo_camera(e_rd_class* i_this) {
                 }
 
                 if (i_this->demo_timer == 220) {
-                    bVar1 = true;
+                    demo_set = true;
                 }
             } else if (i_this->demo_timer == 140) {
-                bVar1 = true;
+                demo_set = true;
             }
             break;
 
@@ -5962,7 +5962,7 @@ static void demo_camera(e_rd_class* i_this) {
             cLib_addCalc2(&i_this->demo_cam_center.y, enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5), 0.1f, 100.0f);
 
             if (i_this->demo_timer == s16(100 + KREG_S(8))) {
-                bVar1 = true;
+                demo_set = true;
             }
             break;
 
@@ -6103,7 +6103,7 @@ static void demo_camera(e_rd_class* i_this) {
 
             if (i_this->demo_timer >= 4) {
                 i_this->blurRate = 200 + VREG_S(7);
-                sVar1 = cM_scos(i_this->demo_timer * 0x500) * 2500.0f;
+                bank = cM_scos(i_this->demo_timer * 0x500) * 2500.0f;
                 i_this->field_0x130c = 0.03f + BREG_F(16);
                 cam_3d_morf(i_this, 0.5f + BREG_F(17));
 
@@ -6346,7 +6346,7 @@ static void demo_camera(e_rd_class* i_this) {
 
         case 36:
             if (i_this->demo_timer == 120) {
-                bVar1 = true;
+                demo_set = true;
                 int bitsw = (fopAcM_GetParam(enemy) & 0xFF000000) >> 24;
                 if (bitsw != 0xFF) {
                     dComIfGs_onSwitch(bitsw, fopAcM_GetRoomNo(enemy));
@@ -6355,7 +6355,7 @@ static void demo_camera(e_rd_class* i_this) {
             break;
     }
 
-    if (bVar1) {
+    if (demo_set) {
         camera->mCamera.Start();
         camera->mCamera.SetTrimSize(0);
         dComIfGp_event_reset();
@@ -6367,7 +6367,7 @@ static void demo_camera(e_rd_class* i_this) {
         cXyz center, eye;
         center = i_this->demo_cam_center;
         eye = i_this->demo_cam_eye;
-        camera->mCamera.Set(center, eye, sVar1, i_this->demo_cam_zoom);
+        camera->mCamera.Set(center, eye, bank, i_this->demo_cam_zoom);
         i_this->demo_timer++;
     }
 }
