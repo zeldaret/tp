@@ -1574,7 +1574,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
             mae.y = 0.0;
 
             if (mae.abs() < 800.0f) {
-                if (i_this->lap_cnt >= 4 && cM_rndF(1.0f) < 0.05f) {
+                if (i_this->lap_num >= 4 && cM_rndF(1.0f) < 0.05f) {
                     i_this->path_dir = cM_rndF(6.0f) + 1.0f;
                 }
 
@@ -1737,7 +1737,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
                 if (lbl_244_bss_45 == 1) {
                     mae.z = cM_rndF(3000.0f) + 12000.0f;
                     MtxPosition(&mae, &ato);
-                } else if (i_this->lap_cnt >= 4) {
+                } else if (i_this->lap_num >= 4) {
                     mae.z = cM_rndF(1000.0f) + 9000.0f;
                     MtxPosition(&mae, &ato);
                     ato.x += 28108.0f;
@@ -1892,7 +1892,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         }
         f32 fVar2;
         f32 fVar1;
-        if (i_this->lap_cnt == 0) {
+        if (i_this->lap_num == 0) {
             fVar2 = l_HIO.mSearchIgnoreDistance2;
             fVar1 = l_HIO.mGuidanceDisplayDistance2;
         } else {
@@ -2144,7 +2144,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
 
         f32 ignore_dist;
         f32 guidance_dist;
-        if (i_this->lap_cnt == 0) {
+        if (i_this->lap_num == 0) {
             ignore_dist = l_HIO.mSearchIgnoreDistance2;
             guidance_dist = l_HIO.mGuidanceDisplayDistance2;
         } else {
@@ -2179,7 +2179,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
         mae = i_this->eye - actor->current.pos;
         i_this->mTargetFacingAngle = (s16)cM_atan2s(mae.x, mae.z);
 
-        if (i_this->lap_cnt >= 2) {
+        if (i_this->lap_num >= 2) {
             i_this->mTargetFacingAngle +=
                 (s16)(cM_ssin(i_this->field_0x68e * (0x320 + KREG_S(4))) * (2500.0f + BREG_F(16)));
         }
@@ -5782,7 +5782,7 @@ static int daE_WB_Create(fopAc_ac_c* i_this) {
             c_start = 0;
 
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[88])) {
-                actor->lap_cnt = 1;
+                actor->lap_num = 1;
             }
         }
     }

@@ -146,7 +146,7 @@ public:
     /* 0x079A */ s16 mBodyTiltAngle;  ///< @brief Body tilt angle based on turning.
     /* 0x079C */ u8 wait_timer;
     /* 0x079D */ s8 field_0x79d;
-    /* 0x079E */ s8 lap_cnt;  ///< @brief Lap or progress count affecting path generation.
+    /* 0x079E */ s8 lap_num;  ///< @brief Lap or progress count affecting path generation.
     /* 0x079F */ s8 mPathAdjustCounter;  ///< @brief Counter for periodic path adjustment.
     /* 0x07A0 */ s16 field_0x7a0;
     /* 0x07A2 */ s8 kiba;
