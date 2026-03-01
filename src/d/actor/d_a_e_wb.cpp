@@ -4729,7 +4729,7 @@ static void demo_camera(e_wb_class* i_this) {
                     i_this->demo_cam_eye = enemy->current.pos;
                     i_this->demo_cam_eye.x += 300.0f + VREG_F(8);
                     i_this->demo_cam_eye.y += 150.0f + VREG_F(9);
-                    i_this->demo_cam_eye.z -= 1400.0f + VREG_F(d10);
+                    i_this->demo_cam_eye.z -= 1400.0f + VREG_F(10);
                 }
             } else {
                 i_this->demo_cam_eye = enemy->current.pos;
