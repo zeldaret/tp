@@ -13,6 +13,10 @@ public:
     static void entry(dEyeHL_c*);
     static void remove(dEyeHL_c*);
 
+    static void create() {
+        JUT_ASSERT(51, m_obj == NULL);
+    }
+
     static dEyeHL_c* m_obj;
 };
 

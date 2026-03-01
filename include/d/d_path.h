@@ -25,6 +25,13 @@ struct dPath {
     /* 0x8 */ dPnt* m_points;
 };
 
+#if VERSION == VERSION_SHIELD_DEBUG
+void dPath_Move();
+void dPath_Draw();
+void dPath_Dt();
+void dPath_Ct();
+#endif
+
 inline BOOL dPath_ChkClose(const dPath* i_path) { return i_path->m_closed & 1; }
 
 dPath* dPath_GetRoomPath(int path_index, int room_no);
