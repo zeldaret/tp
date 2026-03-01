@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_EXI_H_
 #define _DOLPHIN_EXI_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/exi.h>
-#else
 #include <dolphin/os.h>
 
 #ifdef __cplusplus
@@ -103,5 +100,4 @@ char* EXIGetTypeString(u32 type);
 }
 #endif
 
-#endif
 #endif

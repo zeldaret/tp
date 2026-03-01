@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_OSRTC_H_
 #define _DOLPHIN_OSRTC_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/os/OSRtc.h>
-#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -84,5 +81,4 @@ void OSSetWirelessID(s32 chan, u16 id);
 }
 #endif
 
-#endif
 #endif // _DOLPHIN_OSRTC_H_

@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_OSERROR_H_
 #define _DOLPHIN_OSERROR_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/os/OSError.h>
-#else
 #include <dolphin/os/OSContext.h>
 
 #ifdef __cplusplus
@@ -38,5 +35,4 @@ extern OSErrorHandler __OSErrorTable[17];
 }
 #endif
 
-#endif
 #endif

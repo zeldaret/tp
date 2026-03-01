@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_SP_H_
 #define _DOLPHIN_SP_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/sp.h>
-#else
 #include <dolphin/types.h>
 #include <dolphin/ax.h>
 
@@ -40,5 +37,4 @@ void SPPrepareEnd(SPSoundEntry* sound, AXVPB* axvpb);
 }
 #endif
 
-#endif
 #endif

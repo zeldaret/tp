@@ -3,9 +3,6 @@
 
 #include <cstdio>
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/os.h>
-#else
 #include <dolphin/types.h>
 #include <dolphin/gx/GXStruct.h>
 void OSReportInit(void);
@@ -353,5 +350,4 @@ static inline void OSInitFastCast(void) {
 }
 #endif
 
-#endif
 #endif

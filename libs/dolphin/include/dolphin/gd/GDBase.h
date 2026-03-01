@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GD_BASE_H
 #define _DOLPHIN_GD_BASE_H
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gd/GDBase.h>
-#else
 #include <dolphin/types.h>
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXCommandList.h>
@@ -151,5 +148,4 @@ static inline u32 GDGetGDLObjOffset(const GDLObj* dl) {
 }
 #endif
 
-#endif
 #endif

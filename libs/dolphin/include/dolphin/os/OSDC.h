@@ -1,10 +1,6 @@
 #ifndef _DOLPHIN_OSDC_H_
 #define _DOLPHIN_OSDC_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/os/OSDC.h>
-#else
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -24,5 +20,4 @@ void DCBlockInvalidate(void* addr);
 }
 #endif
 
-#endif
 #endif

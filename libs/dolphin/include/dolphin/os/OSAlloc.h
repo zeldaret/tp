@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_OSALLOC_H_
 #define _DOLPHIN_OSALLOC_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/os/OSAlloc.h>
-#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -34,5 +31,4 @@ void OSVisitAllocated(void (*visitor)(void*, u32));
 }
 #endif
 
-#endif
 #endif

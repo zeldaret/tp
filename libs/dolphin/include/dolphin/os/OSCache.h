@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_OSCACHE_H_
 #define _DOLPHIN_OSCACHE_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/os/OSCache.h>
-#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -38,5 +35,4 @@ void __OSCacheInit(void);
 }
 #endif
 
-#endif
 #endif

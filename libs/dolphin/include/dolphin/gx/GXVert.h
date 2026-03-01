@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GX_GXVERT_H_
 #define _DOLPHIN_GX_GXVERT_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gx/GXVert.h>
-#else
 #include <dolphin/types.h>
 #include <dolphin/os.h>
 
@@ -140,5 +137,4 @@ FUNC_1PARAM(GXMatrixIndex, u8)
 }
 #endif
 
-#endif
 #endif

@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GD_FILE_H
 #define _DOLPHIN_GD_FILE_H
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gd/GDFile.h>
-#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -31,5 +28,4 @@ s32 GDReadDLFile(const char* fName, u32* numDLs, u32* numPLs, GDGList** DLDescAr
 }
 #endif
 
-#endif
 #endif

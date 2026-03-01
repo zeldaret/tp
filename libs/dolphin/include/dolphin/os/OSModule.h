@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_OSMODULE_H_
 #define _DOLPHIN_OSMODULE_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/os/OSModule.h>
-#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -117,5 +114,4 @@ void OSNotifyUnlink(OSModuleInfo* module);
 }
 #endif
 
-#endif
 #endif

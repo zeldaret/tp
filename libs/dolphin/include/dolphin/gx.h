@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GX_H_
 #define _DOLPHIN_GX_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gx.h>
-#else
 #include <dolphin/gx/GXStruct.h>
 #include <dolphin/gx/GXTransform.h>
 #include <dolphin/gx/GXTev.h>
@@ -40,5 +37,4 @@ void GXSetDrawSync(u16 token);
 }
 #endif
 
-#endif
 #endif

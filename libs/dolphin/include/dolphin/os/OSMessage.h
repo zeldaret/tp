@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_OSMESSAGE_H_
 #define _DOLPHIN_OSMESSAGE_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/os/OSMessage.h>
-#else
 #include <dolphin/os/OSThread.h>
 
 #ifdef __cplusplus
@@ -33,5 +30,4 @@ int OSJamMessage(OSMessageQueue* mq, void* msg, s32 flags);
 }
 #endif
 
-#endif
 #endif // _DOLPHIN_OSMESSAGE_H_

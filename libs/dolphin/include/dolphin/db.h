@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_DB_H_
 #define _DOLPHIN_DB_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/db.h>
-#else
 #include <dolphin/types.h>
 #include <dolphin/db/DBInterface.h>
 
@@ -22,5 +19,4 @@ u32 DBRead(u8*, u32);
 }
 #endif
 
-#endif
 #endif // _DOLPHIN_DB_H_

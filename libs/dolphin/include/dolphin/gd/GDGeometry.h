@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GD_GEOMETRY_H_
 #define _DOLPHIN_GD_GEOMETRY_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gd/GDGeometry.h>
-#else
 #include <dolphin/gx/GXStruct.h>
 
 #ifdef __cplusplus
@@ -524,5 +521,4 @@ void GDSetCoPlanar(u8 enable);
 }
 #endif
 
-#endif
 #endif

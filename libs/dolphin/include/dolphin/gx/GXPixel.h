@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GX_GXPIXEL_H_
 #define _DOLPHIN_GX_GXPIXEL_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gx/GXPixel.h>
-#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
 
@@ -30,5 +27,4 @@ void GXSetFogColor(GXColor color);
 }
 #endif
 
-#endif
 #endif

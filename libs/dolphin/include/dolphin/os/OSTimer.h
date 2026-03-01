@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_OSTIMER_H_
 #define _DOLPHIN_OSTIMER_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/os/OSTimer.h>
-#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -21,5 +18,4 @@ void OSStopTimer(void);
 }
 #endif
 
-#endif
 #endif // _DOLPHIN_OSTIMER_H_

@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GX_GXMANAGE_H_
 #define _DOLPHIN_GX_GXMANAGE_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gx/GXManage.h>
-#else
 #include <dolphin/gx/GXFifo.h>
 
 #ifdef __cplusplus
@@ -36,5 +33,4 @@ GXDrawDoneCallback GXSetDrawDoneCallback(GXDrawDoneCallback cb);
 }
 #endif
 
-#endif
 #endif

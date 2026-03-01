@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_MTX_H_
 #define _DOLPHIN_MTX_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/mtx.h>
-#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -383,5 +380,4 @@ void C_QUATCompA(const Quaternion* qprev, const Quaternion* q, const Quaternion*
 }
 #endif
 
-#endif
 #endif

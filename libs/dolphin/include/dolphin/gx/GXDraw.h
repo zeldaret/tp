@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GX_GXDRAW_H_
 #define _DOLPHIN_GX_GXDRAW_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gx/GXDraw.h>
-#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -24,5 +21,4 @@ u32 GXGenNormalTable(u8 depth, f32* table);
 }
 #endif
 
-#endif
 #endif

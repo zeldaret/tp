@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_OSFONT_H_
 #define _DOLPHIN_OSFONT_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/os/OSFont.h>
-#else
 #include <dolphin/types.h>
 #include <dolphin/os/OSUtf.h>
 
@@ -58,5 +55,4 @@ int OSSetFontWidth(int fixed);
 }
 #endif
 
-#endif
 #endif

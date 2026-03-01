@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GX_GXFIFO_H_
 #define _DOLPHIN_GX_GXFIFO_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gx/GXFifo.h>
-#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/os/OSThread.h>
 
@@ -46,5 +43,4 @@ void GXRestoreWriteGatherPipe(void);
 }
 #endif
 
-#endif
 #endif

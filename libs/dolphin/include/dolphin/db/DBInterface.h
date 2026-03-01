@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_DBINTERFACE_H_
 #define _DOLPHIN_DBINTERFACE_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/db/DBInterface.h>
-#else
 #include <dolphin/os.h>
 
 #ifdef __cplusplus
@@ -31,5 +28,4 @@ void __DBSetPresent(u32 value);
 }
 #endif
 
-#endif
 #endif

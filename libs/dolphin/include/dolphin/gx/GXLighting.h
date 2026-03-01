@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GX_GXLIGHTING_H_
 #define _DOLPHIN_GX_GXLIGHTING_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gx/GXLighting.h>
-#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
 
@@ -32,5 +29,4 @@ void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorS
 }
 #endif
 
-#endif
 #endif

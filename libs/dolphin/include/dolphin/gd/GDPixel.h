@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_GD_PIXEL_H
 #define _DOLPHIN_GD_PIXEL_H
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/gd/GDPixel.h>
-#else
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
 
@@ -95,5 +92,4 @@ void GDSetDrawSync(u16 token);
 }
 #endif
 
-#endif
 #endif

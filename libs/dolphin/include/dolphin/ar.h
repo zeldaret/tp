@@ -1,9 +1,6 @@
 #ifndef _DOLPHIN_AR_H_
 #define _DOLPHIN_AR_H_
 
-#ifdef __REVOLUTION_SDK__
-#include <revolution/aralt.h>
-#else
 #include <dolphin/types.h>
 
 #ifdef __cplusplus
@@ -74,5 +71,4 @@ void __ARClearInterrupt(void);
 }
 #endif
 
-#endif
 #endif
