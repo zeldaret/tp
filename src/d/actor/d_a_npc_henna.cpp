@@ -277,7 +277,7 @@ static void message_shop(npc_henna_class* i_this) {
         i_this->field_0x750 = 1;
     }
     if (i_this->field_0x750 != 0) {
-        fopAcM_OffStatus(actor, NULL);
+        fopAcM_OffStatus(actor, 0);
         cLib_offBit<u32>(actor->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     } else {
         fopAcM_OnStatus(actor, 0);
@@ -2498,7 +2498,7 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
                     mDoMtx_stack_c::transS(-460.0f + AREG_F(0), 51.0f + AREG_F(1),
                                            -240.0f + AREG_F(2));
                     mDoMtx_stack_c::YrotM(-17729 + AREG_S(0));
-                    mDoMtx_stack_c::XrotM(AREG_S(1) - 0x8107);
+                    mDoMtx_stack_c::XrotM((s16)(AREG_S(1) - 0x8107));
                     mDoMtx_stack_c::ZrotM(AREG_S(2) + 2000 + sp_0xe);
                 } else {
                     mDoMtx_stack_c::transS(-790.0f + AREG_F(0), 153.0f + AREG_F(1),

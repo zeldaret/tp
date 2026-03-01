@@ -517,7 +517,7 @@ void daKago_c::demo_skip(int i_parameter) {
     switch (i_parameter) {
     case 0:
         mDemoMode = 2;
-        field_0x74c = NULL;
+        field_0x74c = 0;
         break;
     case 1:
         field_0x728 = 0;
@@ -531,7 +531,7 @@ void daKago_c::demo_skip(int i_parameter) {
         /* dSv_event_flag_c::M_051 - Main Event - Shadow Kargorok (?) (Large) event complete (Horse grass appears in various places) */
         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[84]);
         mDemoMode = 7;
-        field_0x74c = NULL;
+        field_0x74c = 0;
         break;
     case 4:
         setSceneChange(0);
@@ -3723,7 +3723,7 @@ int daKago_c::ctrlJoint(J3DJoint* i_joint, J3DModel* param_1) {
 }
 
 int daKago_c::JointCallBack(J3DJoint* i_joint, int param_1) {
-    if (param_1 == NULL) {
+    if (param_1 == 0) {
         J3DModel* model = j3dSys.getModel();
         daKago_c* kago = (daKago_c*)model->getUserArea();
         if (kago != NULL) {
