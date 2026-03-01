@@ -770,7 +770,7 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
 #if PLATFORM_GCN
             (i_this->dash_timer & 0x7) == 0
 #else
-            (i_this->field_0x1432 & 0xf) == 0
+            (i_this->dash_timer & 0xf) == 0
 #endif
         )
         {
