@@ -5,6 +5,7 @@
 #include <dolphin/os.h>
 #include "global.h"
 #include <new>
+#include <cstdint>
 
 class JKRHeap;
 typedef void (*JKRErrorHandler)(void*, u32, int);
@@ -66,7 +67,7 @@ public:
     JKRHeap* find(void* ptr) const;
     JKRHeap* findAllHeap(void* ptr) const;
 
-    void dispose_subroutine(u32 start, u32 end);
+    void dispose_subroutine(uintptr_t start, uintptr_t end);
     bool dispose(void* ptr, u32 size);
     void dispose(void* begin, void* end);
     void dispose();
