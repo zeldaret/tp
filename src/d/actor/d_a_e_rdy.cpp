@@ -3790,6 +3790,7 @@ static void* s_adel_sub(void* i_proc, void* i_this) {
     return NULL;
 }
 
+// DEBUG NONMATCHING: regalloc hell
 static void demo_camera(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
@@ -4238,7 +4239,7 @@ static void demo_camera(e_rdy_class* i_this) {
     }
 
     if (cVar12 != 0) {
-        fopAc_ac_c* a_arr = (fopAc_ac_c*) fopAcM_SearchByName(fpcNm_E_ARROW_e);
+        fopAc_ac_c* a_arr = (fopAc_ac_c*)fopAcM_SearchByName(fpcNm_E_ARROW_e);
         if (a_arr != NULL) {
             e_arrow_class* arrow = (e_arrow_class*) a_arr;
             if (cVar12 == 3) {
@@ -4285,7 +4286,7 @@ static void demo_camera(e_rdy_class* i_this) {
             vec2.set(-93666.0f, -5951.0f, 39000.0f);
             player->setPlayerPosAndAngle(&vec2, 0, 0);
             fpcM_Search(s_adel_sub, i_this);
-#if VERSION != VERSION_SHIELD_DEBUG
+#if PLATFORM_GCN
             i_this->mMode = 2;
             anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
 #endif
