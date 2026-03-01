@@ -6,12 +6,12 @@
 #include "SSystem/SComponent/c_phase.h"
 
 void cPhs_Reset(request_of_phase_process_class* phase) {
-    phase->id = cPhs_INIT_e;
+    phase->id = 0;
 }
 
 void cPhs_Set(request_of_phase_process_class* phase, cPhs__Handler* handlerTbl) {
     phase->mpHandlerTable = handlerTbl;
-    phase->id = cPhs_INIT_e;
+    phase->id = 0;
 }
 
 void cPhs_UnCompleate(request_of_phase_process_class* phase) {
