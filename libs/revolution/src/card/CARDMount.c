@@ -1,5 +1,5 @@
-#include <dolphin/card.h>
-#include <dolphin/exi.h>
+#include <revolution/card.h>
+#include <revolution/exi.h>
 
 #include "os/__os.h"
 #include "__card.h"

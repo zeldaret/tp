@@ -1,4 +1,4 @@
-#include <dolphin/card.h>
+#include <revolution/card.h>
 
 #include "os/__os.h"
 #include "__card.h"
