@@ -141,7 +141,7 @@ s8 dScnPly_c::calcPauseTimer() {
     }
 }
 
-#if ENABLE_REGHIO
+#if DEBUG
 dScnPly_reg_childHIO_c::dScnPly_reg_childHIO_c() {
     for (int i = 0; i < 30; i++) {
         mFloatReg[i] = 0.0f;

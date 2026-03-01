@@ -1405,7 +1405,7 @@ void dScnLogo_c::dvdDataLoad() {
     mpMain2DCommand = onMemMount(MAIN2D_PATH);
 
 #if VERSION == VERSION_GCN_JPN
-    mpFontResCommand = onMemMount("/res/Fontjp/fontres.arc");
+    mpFontResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fontjp/fontres.arc", 1, JKRArchive::MOUNT_MEM, NULL);
     mpRubyResCommand = onMemMount("/res/Fontjp/rubyres.arc");
 #elif VERSION == VERSION_GCN_PAL
     mpFontResCommand = onMemMount("/res/Fonteu/fontres.arc");
