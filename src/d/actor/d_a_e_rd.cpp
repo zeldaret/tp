@@ -204,6 +204,22 @@ enum Joint {
     /* 0x19 */ JNT_YUBIR,
 };
 
+#define WEAPON_TYPE_NONE 0      // No weapon (unarmed)
+#define WEAPON_TYPE_CLUB 1      // Club / mace
+#define WEAPON_TYPE_BOW 2       // Bow (normal arrows)
+#define WEAPON_TYPE_FIRE_BOW 3  // Bow (fire arrows)
+#define WEAPON_TYPE_BARROW 4    // Bow (bomb arrows)
+
+#define RIDE_TYPE_OFF 0   // On foot (not riding)
+#define RIDE_TYPE_INIT 1  // Riding (transition to boar)
+#define RIDE_TYPE_RIDE 2  // Rided (actively riding boar)
+
+#define ACTOR_SET_NONE 0
+#define ACTOR_SET_E3_2005 1         // Eldin Field
+#define ACTOR_SET_CAVALRY_BATTLE 2  // Eldin Bridge
+#define ACTOR_SET_COACH_GAME 3      // Lake Hylia Bridge
+#define ACTOR_SET_LV9 4             // Hyrule Castle
+
 daE_RD_HIO_c::daE_RD_HIO_c() {
     field_0x4 = -1;
     model_size = 1.2f;
@@ -305,7 +321,7 @@ static fopAc_ac_c* get_pla(fopAc_ac_c* actor) {
 
 static void anm_init(e_rd_class* i_this, int i_no, f32 i_morf, u8 i_mode, f32 i_speed) {
     if (i_this->field_0x680 == 0) {
-        if (i_this->actor_set != 0) {
+        if (i_this->actor_set != ACTOR_SET_NONE) {
             if (i_no < 73) {
                 i_this->anm_p->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_rdb", i_no),
                                             i_mode, i_morf, i_speed, 0.0f, -1.0f);
@@ -325,7 +341,7 @@ static void anm_init(e_rd_class* i_this, int i_no, f32 i_morf, u8 i_mode, f32 i_
 
 static void horn_anm_init(e_rd_class* i_this, int i_anmID, f32 i_morf, u8 i_mode, f32 i_speed) {
     if (i_this->field_0x6a0 != 0) {
-        i_this->mpMorfHornAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_rdb", i_anmID),
+        i_this->horn_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_rdb", i_anmID),
                                       i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
     }
 }
@@ -475,7 +491,7 @@ static int daE_RD_Draw(e_rd_class* i_this) {
     g_env_light.settingTevStruct(0, &enemy->current.pos, &enemy->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &enemy->tevStr);
 
-    if (i_this->actor_set == 0 && i_this->field_0x968 != 0) {
+    if (i_this->actor_set == ACTOR_SET_NONE && i_this->field_0x968 != 0) {
         model_data = model->getModelData();
         for (u16 i = 0; i < model_data->getMaterialNum(); i++) {
             J3DMaterial* mat_node_p = model_data->getMaterialNodePointer(i);
@@ -485,7 +501,7 @@ static int daE_RD_Draw(e_rd_class* i_this) {
         }
     }
 
-    if (i_this->actor_set == 3) {
+    if (i_this->actor_set == ACTOR_SET_COACH_GAME) {
         J3DShape* shape = model->getModelData()->getMaterialNodePointer(3)->getShape();
         if (shape != NULL) {
             shape->hide();
@@ -494,7 +510,7 @@ static int daE_RD_Draw(e_rd_class* i_this) {
 
     i_this->anm_p->entryDL();
 
-    if (i_this->actor_set == 0 && i_this->field_0x968 != 0) {
+    if (i_this->actor_set == ACTOR_SET_NONE && i_this->field_0x968 != 0) {
         J3DModelData* modelData = model->getModelData();
         for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
             matNode_p = modelData->getMaterialNodePointer(i);
@@ -504,20 +520,20 @@ static int daE_RD_Draw(e_rd_class* i_this) {
         }
     }
 
-    if (i_this->weapon_type == 1) {
-        g_env_light.setLightTevColorType_MAJI(i_this->arrow, &enemy->tevStr);
-        mDoExt_modelUpdateDL(i_this->arrow);
-    } else if (i_this->weapon_type >= 2) {
+    if (i_this->weapon_type == WEAPON_TYPE_CLUB) {
+        g_env_light.setLightTevColorType_MAJI(i_this->arrow_model, &enemy->tevStr);
+        mDoExt_modelUpdateDL(i_this->arrow_model);
+    } else if (i_this->weapon_type >= WEAPON_TYPE_BOW) {
         g_env_light.setLightTevColorType_MAJI(i_this->bow_anm->getModel(), &enemy->tevStr);
         i_this->bow_anm->entryDL();
 
-        if (i_this->field_0x9a2 != 0) {
-            g_env_light.setLightTevColorType_MAJI(i_this->arrow, &enemy->tevStr);
-            mDoExt_modelUpdateDL(i_this->arrow);
+        if (i_this->arrow_draw != 0) {
+            g_env_light.setLightTevColorType_MAJI(i_this->arrow_model, &enemy->tevStr);
+            mDoExt_modelUpdateDL(i_this->arrow_model);
         }
     }
 
-    if (i_this->actor_set != 0) {
+    if (i_this->actor_set != ACTOR_SET_NONE) {
         for (int i = 0; i < 14; i++) {
             if (i_this->armor_boss_part[i] != NULL) {
                 g_env_light.setLightTevColorType_MAJI(i_this->armor_boss_part[i], &enemy->tevStr);
@@ -526,8 +542,8 @@ static int daE_RD_Draw(e_rd_class* i_this) {
         }
 
         if (i_this->field_0x6a0 != 0) {
-            g_env_light.setLightTevColorType_MAJI(i_this->mpMorfHornAnm->getModel(), &enemy->tevStr);
-            i_this->mpMorfHornAnm->entryDL();
+            g_env_light.setLightTevColorType_MAJI(i_this->horn_anm->getModel(), &enemy->tevStr);
+            i_this->horn_anm->entryDL();
         }
     }
 
@@ -546,16 +562,16 @@ static int daE_RD_Draw(e_rd_class* i_this) {
         }
     }
 
-    if (i_this->ride_mode != 2) {
+    if (i_this->ride_type != RIDE_TYPE_RIDE) {
         cXyz pos;
         pos.set(enemy->current.pos.x, enemy->current.pos.y + 100.0f, enemy->current.pos.z);
         i_this->shadow_key = dComIfGd_setShadow(i_this->shadow_key, 1, model, &pos,
                                                 1200.0f + BREG_F(19), 0.0f, enemy->current.pos.y,
-                                                i_this->ObjAcch.GetGroundH(), i_this->ObjAcch.m_gnd,
+                                                i_this->Bgc.GetGroundH(), i_this->Bgc.m_gnd,
                                                 &i_this->enemy.tevStr, 0, 1.0f,
                                                 dDlst_shadowControl_c::getSimpleTex());
-        if (i_this->weapon_type == 1) {
-            dComIfGd_addRealShadow(i_this->shadow_key, i_this->arrow);
+        if (i_this->weapon_type == WEAPON_TYPE_CLUB) {
+            dComIfGd_addRealShadow(i_this->shadow_key, i_this->arrow_model);
         }
     }
 
@@ -594,22 +610,22 @@ static BOOL other_bg_check(e_rd_class* i_this, fopAc_ac_c* i_other) {
 }
 
 static BOOL otoCheck(fopAc_ac_c* i_actor, f32 param_2) {
-    SND_INFLUENCE* sound = dKy_Sound_get();
+    SND_INFLUENCE* oto = dKy_Sound_get();
     fpc_ProcID uVar1;
 
-    if (sound->actor_id != fpcM_ERROR_PROCESS_ID_e && sound->actor_id != fopAcM_GetID(i_actor)) {
-        cXyz sp8c = sound->position - i_actor->current.pos;
+    if (oto->actor_id != fpcM_ERROR_PROCESS_ID_e && oto->actor_id != fopAcM_GetID(i_actor)) {
+        cXyz sp8c = oto->position - i_actor->current.pos;
         if (sp8c.abs() < param_2) {
             dBgS_LinChk lin_chk;
             cXyz start, end;
-            end = sound->position;
+            end = oto->position;
             end.y += 100.0f;
             start = i_actor->current.pos;
             start.y += 100.0f;
             lin_chk.Set(&start, &end, i_actor);
 
             if (!dComIfG_Bgsp().LineCross(&lin_chk)) {
-                return sound->field_0xc;
+                return oto->field_0xc;
             }
         }
     }
@@ -619,11 +635,11 @@ static BOOL otoCheck(fopAc_ac_c* i_actor, f32 param_2) {
 
 static BOOL pl_pass_check(e_rd_class* i_this, f32 param_2) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
-    fopAc_ac_c* actor = get_pla(enemy);
+    fopAc_ac_c* pl = get_pla(enemy);
     cXyz mae, ato;
 
-    mae = enemy->current.pos - actor->current.pos;
-    cMtx_YrotS(*calc_mtx, -(actor->shape_angle.y));
+    mae = enemy->current.pos - pl->current.pos;
+    cMtx_YrotS(*calc_mtx, -(pl->shape_angle.y));
     MtxPosition(&mae, &ato);
 
     if (ato.z > param_2) {
@@ -770,29 +786,29 @@ static void ride_off(e_rd_class* i_this) {
     e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
 
     if (boar != NULL) {
-        UNSET_FLAG(boar->mStatusFlags, i_this->boar_stand, u16);
+        UNSET_FLAG(boar->StatusFlag, i_this->boar_stand, u16);
         i_this->boar_stand = 0;
 
-        if (boar->mActionID != 22 && boar->mActionID != 23 && boar->mActionID != 24) {
-            if (boar->mActionID == 1) {
-                if ((boar->mStatusFlags & 3) != 0) {
-                    boar->mActionID = 6;
+        if (boar->action != 22 && boar->action != 23 && boar->action != 24) {
+            if (boar->action == 1) {
+                if ((boar->StatusFlag & 3) != 0) {
+                    boar->action = 6;
                 } else {
-                    boar->mActionID = 0;
+                    boar->action = 0;
                 }
 
-                boar->mActionMode = 0;
-            } else if (boar->mActionID == 21) {
-                boar->mActionMode = 0;
-            } else if ((boar->mStatusFlags & 1) == 0) {
-                if (boar->mActionID == 6 && (boar->mActionMode == 2 || boar->mActionMode == 3)) {
-                    boar->mActionMode = 1;
+                boar->mode = 0;
+            } else if (boar->action == 21) {
+                boar->mode = 0;
+            } else if ((boar->StatusFlag & 1) == 0) {
+                if (boar->action == 6 && (boar->mode == 2 || boar->mode == 3)) {
+                    boar->mode = 1;
                 } else {
-                    boar->mActionMode = 0;
+                    boar->mode = 0;
                 }
 
-                boar->mActionID = 7;
-                boar->field_0x698[1] = cM_rndF(30.0f) + 80.0f;
+                boar->action = 7;
+                boar->timer[1] = cM_rndF(30.0f) + 80.0f;
             }
         }
 
@@ -800,7 +816,7 @@ static void ride_off(e_rd_class* i_this) {
         i_this->boar_id = -1;
     }
 
-    i_this->ride_mode = 0;
+    i_this->ride_type = RIDE_TYPE_OFF;
     if (i_this->bow_anm != NULL) {
         i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 10), 0,
                                     1.0f, 1.0f, 0.0f, -1.0f);
@@ -814,10 +830,10 @@ static void* s_wb_sub(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
         e_wb_class* boar = (e_wb_class*) i_actor;
         e_rd_class* i_this = (e_rd_class*)i_data;
-        if (boar->mActionID != ACTION_DROP && boar->mActionID != ACTION_DAMAGE
-            && boar->mActionID != ACTION_A_DAMAGE && boar->mActionID != ACTION_STAND) {
+        if (boar->action != ACTION_DROP && boar->action != ACTION_DAMAGE
+            && boar->action != ACTION_A_DAMAGE && boar->action != ACTION_STAND) {
             if (i_this->actor_set == boar->field_0x79d &&
-                (data_80519230 != 0 || (boar->mStatusFlags & 3) != 3) && target_info_count < 10) {
+                (data_80519230 != 0 || (boar->StatusFlag & 3) != 3) && target_info_count < 10) {
                 target_info[target_info_count] = (fopAc_ac_c*)i_actor;
                 target_info_count++;
             }
@@ -899,11 +915,11 @@ static void wb_check(e_rd_class* i_this, s16 param_2) {
         boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
         if (boar != NULL) {
             if (desert_substage != 0) {
-                if (i_this->weapon_type != 1) {
-                    if ((boar->mStatusFlags & 1) == 0) {
+                if (i_this->weapon_type != WEAPON_TYPE_CLUB) {
+                    if ((boar->StatusFlag & 1) == 0) {
                         return;
                     }
-                } else if ((boar->mStatusFlags & 1) != 0) {
+                } else if ((boar->StatusFlag & 1) != 0) {
                     return;
                 }
             }
@@ -911,11 +927,11 @@ static void wb_check(e_rd_class* i_this, s16 param_2) {
             i_this->action = ACTION_WB_SEARCH;
             i_this->mode = 0;
 
-            if ((boar->mStatusFlags & 1) == 0) {
-                boar->mStatusFlags |= (u16) 1;
+            if ((boar->StatusFlag & 1) == 0) {
+                boar->StatusFlag |= (u16) 1;
                 i_this->boar_stand = 1;
-            } else if ((boar->mStatusFlags & 2) == 0) {
-                boar->mStatusFlags |= (u16) 2;
+            } else if ((boar->StatusFlag & 2) == 0) {
+                boar->StatusFlag |= (u16) 2;
                 i_this->boar_stand = 2;
             }
         }
@@ -929,12 +945,12 @@ static BOOL wb_init_ride(e_rd_class* i_this) {
     if (boar != NULL) {
         i_this->action = ACTION_WB_RIDE;
         i_this->mode = 0;
-        i_this->ride_mode = 2;
+        i_this->ride_type = RIDE_TYPE_RIDE;
         i_this->boar_stand = i_this->arg0;
-        boar->mStatusFlags |= (s8)i_this->arg0;
-        boar->mActionID = 1;
+        boar->StatusFlag |= (s8)i_this->arg0;
+        boar->action = 1;
 
-        if (i_this->weapon_type != 0 && i_this->boar_stand == 1) {
+        if (i_this->weapon_type != WEAPON_TYPE_NONE && i_this->boar_stand == 1) {
             i_this->field_0x5bd = 1;
         }
 
@@ -947,14 +963,14 @@ static BOOL wb_init_ride(e_rd_class* i_this) {
 
 static BOOL pl_check(e_rd_class* i_this, f32 range, s16 angle) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
-    fopAc_ac_c* actor = get_pla(enemy);
+    fopAc_ac_c* pl = get_pla(enemy);
 
     if ((desert_substage == 0 && dComIfGp_event_runCheck())) {
         return FALSE;
     }
 
     // Hidden Village
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP128") == 0 && actor->current.pos.z < -9800.0f) {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP128") == 0 && pl->current.pos.z < -9800.0f) {
         return FALSE;
     }
 
@@ -964,7 +980,7 @@ static BOOL pl_check(e_rd_class* i_this, f32 range, s16 angle) {
 
     if (i_this->dis < range) {
         s16 target = enemy->shape_angle.y - i_this->angleY;
-        if (target < angle && target > (s16)-angle && !other_bg_check(i_this, actor)) {
+        if (target < angle && target > (s16)-angle && !other_bg_check(i_this, pl)) {
             return TRUE;
         }
 
@@ -1224,11 +1240,11 @@ static void e_rd_normal(e_rd_class* i_this) {
             wb_check(i_this, angle);
         } else {
             if (pl_check(i_this, range, angle)) {
-                if (i_this->weapon_type == 1) {
+                if (i_this->weapon_type == WEAPON_TYPE_CLUB) {
                     i_this->action = ACTION_FIGHT_RUN;
                     i_this->mode = -10;
                     i_this->timer[0] = 60;
-                } else if (i_this->weapon_type >= 2) {
+                } else if (i_this->weapon_type >= WEAPON_TYPE_BOW) {
                     i_this->action = ACTION_BOW_RUN;
                     i_this->mode = -10;
                 }
@@ -1264,8 +1280,8 @@ static void e_rd_fight_run(e_rd_class* i_this) {
         dash_speed = l_HIO.dash_speed;
     }
 
-    if (i_this->weapon_type != 1) {
-        if (i_this->weapon_type >= 2) {
+    if (i_this->weapon_type != WEAPON_TYPE_CLUB) {
+        if (i_this->weapon_type >= WEAPON_TYPE_BOW) {
             i_this->action = ACTION_BOW_RUN;
         } else {
             i_this->action = ACTION_NORMAL;
@@ -1583,7 +1599,7 @@ static void e_rd_bow_run(e_rd_class* i_this) {
         case 1:
             speed = dash_speed;
             ANGLE_ADD_2(target_angle, 0x8000);
-            if (i_this->dis > l_HIO.attack_range || i_this->timer[0] == 0 || i_this->ObjAcch.ChkWallHit() || move_gake_check(i_this, 100.0f)) {
+            if (i_this->dis > l_HIO.attack_range || i_this->timer[0] == 0 || i_this->Bgc.ChkWallHit() || move_gake_check(i_this, 100.0f)) {
                 bVar1 = 1;
             }
 
@@ -1647,7 +1663,7 @@ static void e_rd_bow(e_rd_class* i_this) {
         case 1:
             i_this->field_0x9c8 = 4;
             if (frame >= 10) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
             }
 
             if (frame == 20) {
@@ -1674,12 +1690,12 @@ static void e_rd_bow(e_rd_class* i_this) {
                 }
             }
 
-            i_this->field_0x9a2 = 1;
+            i_this->arrow_draw = TRUE;
             break;
 
         case 3:
             if (frame <= 3 + XREG_S(5)) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
                 i_this->field_0x9c8 = 4;
             }
 
@@ -1755,7 +1771,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
         case 3:
             i_this->field_0x9c8 = 4;
             if (frame >= 10) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
             }
 
             if (frame == 20) {
@@ -1784,12 +1800,12 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
                 }
             }
 
-            i_this->field_0x9a2 = 1;
+            i_this->arrow_draw = TRUE;
             break;
 
         case 5:
             if (frame <= 3 + XREG_S(5)) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
                 i_this->field_0x9c8 = 4;
             }
 
@@ -1832,7 +1848,7 @@ static void e_rd_bow_ikki(e_rd_class* i_this) {
 
         case 1:
             if (frame >= 10) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
             }
 
             if (frame == 20) {
@@ -1852,16 +1868,16 @@ static void e_rd_bow_ikki(e_rd_class* i_this) {
                 i_this->mode = 3;
             }
 
-            i_this->field_0x9a2 = 1;
+            i_this->arrow_draw = TRUE;
             break;
 
         case 3:
             if (frame <= 3 + XREG_S(5)) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
             }
 
             if (frame == 2 + XREG_S(7)) {
-                i_this->arrow_flag = 1;
+                i_this->arrow_flag = TRUE;
             }
 
             if (i_this->anm_p->isStop()) {
@@ -1898,7 +1914,7 @@ static void e_rd_avoid(e_rd_class* i_this) {
             break;
 
         case 2:
-            if (i_this->ObjAcch.ChkGroundHit()) {
+            if (i_this->Bgc.ChkGroundHit()) {
                 i_this->anm_p->setPlaySpeed(1.0f);
                 i_this->mode = 3;
             }
@@ -1924,7 +1940,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
     if (actor == NULL) {
         bVar1 = 1;
     } else {
-        if (boar->mActionID == 22 || boar->mActionID == 21 || boar->mActionID == 23 || boar->mActionID == 24) {
+        if (boar->action == 22 || boar->action == 21 || boar->action == 23 || boar->action == 24) {
             bVar1 = 1;
         } else if (i_this->mode <= 3) {
             for (int i = 0; i <= 2; i++) {
@@ -1937,7 +1953,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 }
             }
 
-            if (i_this->ObjAcch.ChkWallHit()) {
+            if (i_this->Bgc.ChkWallHit()) {
                 bVar1 = 1;
             }
         }
@@ -1948,9 +1964,9 @@ static void e_rd_wb_search(e_rd_class* i_this) {
         i_this->mode = 0;
         ride_off(i_this);
     } else {
-        if (i_this->mode >= 2 && boar->mActionID != 1) {
-            boar->mActionID = 1;
-            boar->mActionMode = 0;
+        if (i_this->mode >= 2 && boar->action != 1) {
+            boar->action = 1;
+            boar->mode = 0;
         }
 
         switch (i_this->mode) {
@@ -2060,7 +2076,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 mae = i_this->field_0x5c0 - enemy->current.pos;
                 cLib_addCalcAngleS2(&enemy->current.angle.y, (s16)cM_atan2s(mae.x, mae.z), 2, 0x1000);
 
-                if (i_this->weapon_type != 0 && i_this->boar_stand == 1) {
+                if (i_this->weapon_type != WEAPON_TYPE_NONE && i_this->boar_stand == 1) {
                     if ((int)i_this->anm_p->getFrame() == 11) {
                         i_this->field_0x5bd = 1;
                     }
@@ -2081,7 +2097,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 if (i_this->anm_p->isStop()) {
                     i_this->mode = 6;
                     anm_init(i_this, BCK_RD_JUMP_B, 10.0f, 0, 1.0f);
-                    i_this->ride_mode = 1;
+                    i_this->ride_type = RIDE_TYPE_INIT;
                     i_this->field_0x9c4 = 30.0f;
                     i_this->timer[3] = 20;
                 }
@@ -2091,8 +2107,8 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 if (i_this->field_0x9c0 <= 0.0f) {
                     i_this->action = ACTION_WB_RIDE;
                     i_this->mode = 0;
-                    boar->mActionID = 4;
-                    boar->mActionMode = 0;
+                    boar->action = 4;
+                    boar->mode = 0;
                 }
         }
 
@@ -2114,10 +2130,10 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
     }
 
     e_wb_class* boar = (e_wb_class*) actor;
-    if ((boar->mStatusFlags & 3) == 0) {
+    if ((boar->StatusFlag & 3) == 0) {
         OS_REPORT("......BOSS DL !!!!\n");
-        if (boar->mActionID == 1) {
-            boar->mActionID = 0;
+        if (boar->action == 1) {
+            boar->action = 0;
         }
         fopAcM_delete(enemy);
         return;
@@ -2126,44 +2142,44 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
     switch (i_this->mode) {
         case 0: {
             i_this->mode = 1;
-            if (i_this->actor_set == 0) {
+            if (i_this->actor_set == ACTOR_SET_NONE) {
                 anm_init(i_this, BCK_RD_JUMP_C, 1.0f, 0, 1.0f);
             }
         }
         // fallthrough
         case 1: {
-            if (i_this->anm_p->isStop() || i_this->actor_set != 0) {
-                if (i_this->actor_set != 0) {
-                    boar->mActionMode = 0;
+            if (i_this->anm_p->isStop() || i_this->actor_set != ACTOR_SET_NONE) {
+                if (i_this->actor_set != ACTOR_SET_NONE) {
+                    boar->mode = 0;
                     i_this->mode = 0;
 
-                    if (i_this->actor_set == 3) {
-                        boar->mActionID = 17;
+                    if (i_this->actor_set == ACTOR_SET_COACH_GAME) {
+                        boar->action = 17;
                         // Hyrule Field
                         if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0) {
-                            boar->mActionMode = -100;
+                            boar->mode = -100;
                             i_this->action = ACTION_IKKI2_START;
                         } else {
                             i_this->action = ACTION_WB_RUN;
                         }
-                    } else if (i_this->actor_set == 2) {
-                        boar->mActionID = 15;
+                    } else if (i_this->actor_set == ACTOR_SET_CAVALRY_BATTLE) {
+                        boar->action = 15;
                         i_this->action = ACTION_WB_RUN;
-                    } else if (i_this->actor_set == 4) {
-                        boar->mActionID = 19;
+                    } else if (i_this->actor_set == ACTOR_SET_LV9) {
+                        boar->action = 19;
                         i_this->action = ACTION_LV9_END;
                     } else if (cDmr_SkipInfo == 0) {
                         i_this->action = ACTION_KIBA_START;
-                        boar->mActionID = 30;
+                        boar->action = 30;
                     } else {
-                        boar->mActionID = 8;
+                        boar->action = 8;
                         i_this->action = ACTION_WB_RUN;
                         boar->field_0x79c = 10;
                         Z2GetAudioMgr()->subBgmStart(Z2BGM_HORSE_BATTLE);
                     }
                 } else {
-                    boar->mActionID = 6;
-                    boar->mActionMode = 0;
+                    boar->action = 6;
+                    boar->mode = 0;
                     i_this->action = ACTION_WB_RUN;
                     i_this->mode = 0;
                 }
@@ -2187,7 +2203,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
         fopAcM_setStageLayer(enemy);
     }
 
-    if ((boar->mStatusFlags & 3) == 0) {
+    if ((boar->StatusFlag & 3) == 0) {
         fopAcM_delete(enemy);
         return;
     }
@@ -2199,7 +2215,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
         }
     }
 
-    if ((boar->mStatusFlags & 1) == 0 && boar->mActionID == ACTION_BOW2 && i_this->mode != 40) {
+    if ((boar->StatusFlag & 1) == 0 && boar->action == ACTION_BOW2 && i_this->mode != 40) {
         anm_init(i_this, BCK_RD_RRUN02_BACK, 5.0f, 2, 1.0f);
         i_this->mode = 40;
 
@@ -2214,7 +2230,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
     switch (i_this->mode) {
         case 0:
-            if ((boar->mStatusFlags & 4) != 0) {
+            if ((boar->StatusFlag & 4) != 0) {
                 if (i_this->boar_stand == 1) {
                     if (boar->field_0x6d0 < 0) {
                         anm_init(i_this, BCK_RD_RSTEP_L, 10.0f, 2, 1.0f);
@@ -2225,7 +2241,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     anm_init(i_this, BCK_RD_RSTEP_BACK, 10.0f, 2, 1.0f);
                 }
             } else {
-                if ((boar->mStatusFlags & 8) != 0) {
+                if ((boar->StatusFlag & 8) != 0) {
                     if (i_this->boar_stand == 1) {
                         anm_init(i_this, BCK_RD_RDAMAGE, 3.0f, 0, 1.0f);
                     } else {
@@ -2234,14 +2250,14 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
                     i_this->timer[1] = cM_rndF(50.0f) + 50.0f;
                 } else {
-                    if ((boar->mStatusFlags & 16) != 0) {
+                    if ((boar->StatusFlag & 16) != 0) {
                         if (i_this->boar_stand == 1) {
                             anm_init(i_this, BCK_RD_RRUN, 5.0f, 2, 1.0f);
                         } else {
                             anm_init(i_this, BCK_RD_RRUN_BACK, 5.0f, 2, 1.0f);
                         }
                     } else {
-                        if ((boar->mStatusFlags & 32) != 0) {
+                        if ((boar->StatusFlag & 32) != 0) {
                             if (i_this->boar_stand == 1) {
                                 anm_init(i_this, BCK_RD_RWAIT, 5.0f, 2, 1.0f);
                             } else {
@@ -2252,13 +2268,13 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 }
             }
 
-            i_this->anm_p->setPlaySpeed(boar->mpModelMorf->getPlaySpeed());
+            i_this->anm_p->setPlaySpeed(boar->anm_p->getPlaySpeed());
 
             if (i_this->boar_stand == 1) {
                 i_this->field_0x9c8 = 2;
             } else {
                 i_this->field_0x9c8 = 1;
-                if (i_this->weapon_type == 1 && actor->speedF > 10.0f) {
+                if (i_this->weapon_type == WEAPON_TYPE_CLUB && actor->speedF > 10.0f) {
                     if (player_dist < TREG_F(11) + 850.0f && player_dist < TREG_F(11) + 750.0f
                         && i_this->timer[2] == 0) {
                         s16 range = enemy->shape_angle.y - i_this->angleY;
@@ -2273,7 +2289,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                         }
                     }
                 } else {
-                    if (i_this->timer[1] == 0 && i_this->weapon_type >= 2) {
+                    if (i_this->timer[1] == 0 && i_this->weapon_type >= WEAPON_TYPE_BOW) {
                         anm_init(i_this, BCK_RD_RSHOOT_READY, 5.0f, 0, 1.0f);
                         i_this->bow_anm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, BCK_RD_BOW_RREADY), 0, 5.0f, 1.0f, 0.0f, -1.0f);
                         i_this->mode = 30;
@@ -2359,7 +2375,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 anm_init(i_this, BCK_RD_RSHOOT_WAIT, 4.0f, 2, 1.0f);
             }
 
-            i_this->field_0x9a2 = 1;
+            i_this->arrow_draw = 1;
             break;
 
         case 31:
@@ -2372,16 +2388,16 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 i_this->mode = 32;
             }
 
-            i_this->field_0x9a2 = 1;
+            i_this->arrow_draw = TRUE;
             break;
 
         case 32:
             if (frame <= 3 + XREG_S(5)) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
             }
 
             if (frame == 2 + XREG_S(7)) {
-                i_this->arrow_flag = 1;
+                i_this->arrow_flag = TRUE;
             }
 
             i_this->field_0x9c8 = 3;
@@ -2392,7 +2408,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                                                 0, 5.0f, 1.0f, 0.0f, -1.0f);
                 i_this->mode = 30;
 
-                if (i_this->ride_mode == 2 && i_this->field_0x5bb != 0) {
+                if (i_this->ride_type == RIDE_TYPE_RIDE && i_this->field_0x5bb != 0) {
                     i_this->timer[1] = cM_rndF(30.0f) + 20.0f;
                 } else {
                     i_this->timer[1] = cM_rndF(50.0f) + 30.0f;
@@ -2401,7 +2417,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
             break;
 
         case 40:
-            if (boar->mActionID != 7) {
+            if (boar->action != 7) {
                 i_this->mode = 0;
                 anm_init(i_this, BCK_RD_RWAIT_BACK, 5.0f, 2, 1.0f);
             }
@@ -2429,7 +2445,7 @@ static void* s_wbrun_sub(void* i_actor, void* i_data) {
         e_wb_class* boar = (e_wb_class*)i_actor;
         fopAc_ac_c* actor = (fopAc_ac_c*)i_data;
         if (boar->field_0x79d == 0) {
-            cXyz sp24(boar->mEnemy.current.pos - actor->current.pos);
+            cXyz sp24(boar->enemy.current.pos - actor->current.pos);
             if (sp24.abs() > KREG_F(11) + 7000.0f) {
                 return i_actor;
             }
@@ -2446,7 +2462,7 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
     dAttention_c* attention;
 
     if (actor != NULL) {
-        if (i_this->actor_set == 2 || i_this->actor_set == 3) {
+        if (i_this->actor_set == ACTOR_SET_CAVALRY_BATTLE || i_this->actor_set == ACTOR_SET_COACH_GAME) {
             fopAcM_OffStatus(enemy, 0);
             enemy->attention_info.flags = 0;
         }
@@ -2461,13 +2477,13 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
 
         switch (i_this->mode) {
             case 0: {
-                if ((boar->mStatusFlags & 0x400) != 0) {
+                if ((boar->StatusFlag & 0x400) != 0) {
                     anm_init(i_this, e_rdb_class::BCK_RB_RSTARTLOOP, 10.0f, 2, 1.0f);
-                } else if ((boar->mStatusFlags & 0x800) != 0) {
+                } else if ((boar->StatusFlag & 0x800) != 0) {
                     anm_init(i_this, e_rdb_class::BCK_RB_RSTART, 10.0f, 2, 1.0f);
                 }
 
-                i_this->anm_p->setPlaySpeed(boar->mpModelMorf->getPlaySpeed());
+                i_this->anm_p->setPlaySpeed(boar->anm_p->getPlaySpeed());
                 break;
             }
         }
@@ -2515,7 +2531,7 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
         }
 
         // check if we need to jump a fence
-        if ((boar->mStatusFlags & 0x100) != 0) {
+        if ((boar->StatusFlag & 0x100) != 0) {
             i_this->action = ACTION_WB_BJUMP;
             i_this->mode = 0;
         }
@@ -2553,7 +2569,7 @@ static void e_rd_wb_bjump(e_rd_class* i_this) {
                 break;
 
             case 2:
-                if ((boar->mStatusFlags & 0x200) != 0) {
+                if ((boar->StatusFlag & 0x200) != 0) {
                     anm_init(i_this, BCK_RD_RUN02, 2.0f, 0, 1.0f);
                     i_this->mode = 3;
                 }
@@ -2678,7 +2694,7 @@ static void e_rd_s_damage(e_rd_class* i_this) {
             if (i_this->boar_stand != 0) {
                 e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
                 if (boar != NULL) {
-                    UNSET_FLAG(boar->mStatusFlags, i_this->boar_stand, u16);
+                    UNSET_FLAG(boar->StatusFlag, i_this->boar_stand, u16);
                 }
 
                 i_this->boar_stand = 0;
@@ -2693,9 +2709,9 @@ static void e_rd_s_damage(e_rd_class* i_this) {
 
             if (i_this->anm_p->isStop()) {
                 fopAc_ac_c* actor;
-                if (i_this->prev_action == 7) {
+                if (i_this->old_action == 7) {
                     i_this->action = ACTION_BOW2;
-                } else if (i_this->prev_action == 26) {
+                } else if (i_this->old_action == 26) {
                     i_this->action = ACTION_BOW3;
                 } else if (!other_bg_check(i_this, actor = dComIfGp_getPlayer(0))) {
                     i_this->action = ACTION_FIGHT_RUN;
@@ -2778,9 +2794,9 @@ static void rd_disappear(e_rd_class* i_this) {
     if (i_this->boar_stand != 0) {
         e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
         if (boar != NULL) {
-            UNSET_FLAG(boar->mStatusFlags, i_this->boar_stand, u16);
-            if (boar->mActionID == 1) {
-                boar->mActionID = 0;
+            UNSET_FLAG(boar->StatusFlag, i_this->boar_stand, u16);
+            if (boar->action == 1) {
+                boar->action = 0;
             }
         }
     }
@@ -2874,7 +2890,7 @@ static void e_rd_damage(e_rd_class* i_this) {
             break;
 
         case 1:
-            if (i_this->ObjAcch.ChkWallHit() != 0 && i_this->timer[0] == 0) {
+            if (i_this->Bgc.ChkWallHit() != 0 && i_this->timer[0] == 0) {
                 int kado_kabe;
                 if ((kado_kabe = kado_check(i_this)) != 0) {
                     OS_REPORT("              ..KADO KABE ..%x\n", kado_kabe);
@@ -2906,7 +2922,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                 actor->current.angle.y += i_this->field_0x9f6;
                 actor->shape_angle.y = actor->current.angle.y;
 
-                if (i_this->jump_angle.x <= -0x3000 && i_this->ObjAcch.ChkGroundHit()) {
+                if (i_this->jump_angle.x <= -0x3000 && i_this->Bgc.ChkGroundHit()) {
                     i_this->field_0xa1e = 10;
 
                     if (i_this->field_0x1294 != 0) {
@@ -2955,7 +2971,7 @@ static void e_rd_damage(e_rd_class* i_this) {
             actor->shape_angle.y = actor->current.angle.y;
             cLib_addCalcAngleS2(&i_this->jump_angle.x, -0x4000, 1, 0x300 + BREG_S(4));
 
-            if (i_this->ObjAcch.ChkGroundHit()) {
+            if (i_this->Bgc.ChkGroundHit()) {
                 if (actor->health > 0 && daPy_py_c::checkNowWolf() == 0) {
                     enemy->onDownFlg();
                 }
@@ -3027,7 +3043,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                 cLib_addCalcAngleS2(&i_this->jump_angle.x, 0, 1, 0x300 + BREG_S(4));
             } else {
                 cLib_addCalcAngleS2(&i_this->jump_angle.x, -0x4000, 1, 0x800 + BREG_S(5));
-                if (i_this->ObjAcch.ChkGroundHit()) {
+                if (i_this->Bgc.ChkGroundHit()) {
                     i_this->mode = 2;
                     if (i_this->field_0xa1f == 0) {
                         anm_init(i_this, BCK_RD_DIEA, 3.0f, 0, 1.0f);
@@ -3279,14 +3295,14 @@ static void e_rd_drop(e_rd_class* i_this) {
             cLib_addCalcAngleS2(&i_this->field_0xaf8, 0x800, 1, 0x50);
             i_this->field_0x9ab = 2;
 
-            if (i_this->timer[0] == 0 && enemy->current.pos.y <= i_this->ObjAcch.GetGroundH() + 100.0f + KREG_F(17)) {
+            if (i_this->timer[0] == 0 && enemy->current.pos.y <= i_this->Bgc.GetGroundH() + 100.0f + KREG_F(17)) {
                 if (i_this->arg1 == 13 || i_this->arg1 == 14) {
                     i_this->action = ACTION_REG;
                     i_this->mode = 1;
                     i_this->field_0xafb = 1;
                     i_this->field_0xaf2 = 0;
                 } else {
-                    enemy->current.pos.y = i_this->ObjAcch.GetGroundH() + 100.0f + KREG_F(17);
+                    enemy->current.pos.y = i_this->Bgc.GetGroundH() + 100.0f + KREG_F(17);
                     i_this->jump_angle.x = -0x4000;
                     i_this->action = ACTION_DAMAGE;
                     i_this->mode = 0;
@@ -3380,7 +3396,7 @@ static void e_rd_stand(e_rd_class* i_this) {
         return;
     }
 
-    if (((i_this->counter & 7) == 0 || search_check) && pl_check(i_this, range, angle) && i_this->weapon_type == 1) {
+    if (((i_this->counter & 7) == 0 || search_check) && pl_check(i_this, range, angle) && i_this->weapon_type == WEAPON_TYPE_CLUB) {
         OS_REPORT(" <<<<<<<<<<<<<< RD RIDE 4\n");
         i_this->action = ACTION_FIGHT_RUN;
         i_this->mode = -10;
@@ -3447,7 +3463,7 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
         case 11:
             i_this->field_0x9c8 = 4;
             if (frame >= 10) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
             }
 
             if (frame == 20) {
@@ -3470,17 +3486,17 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
                 i_this->mode = 13;
             }
 
-            i_this->field_0x9a2 = 1;
+            i_this->arrow_draw = TRUE;
             break;
 
         case 13:
             if (frame <= 3 + XREG_S(5)) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
                 i_this->field_0x9c8 = 4;
             }
 
             if (frame == 2 + XREG_S(7)) {
-                i_this->arrow_flag = 1;
+                i_this->arrow_flag = TRUE;
             }
 
             if (i_this->anm_p->isStop()) {
@@ -3677,7 +3693,7 @@ static void e_rd_excite(e_rd_class* i_this) {
 
         case 3:
             if (i_this->timer[0] == 0) {
-                i_this->action = i_this->prev_action;
+                i_this->action = i_this->old_action;
                 if (i_this->action == ACTION_STAND) {
                     i_this->action = ACTION_NORMAL;
                 }
@@ -3830,7 +3846,7 @@ static void e_rd_kiba_end(e_rd_class* i_this) {
             anm_init(i_this, BCK_RD_RSHOOT_WAIT, 1.0f, 0, 1.0f);
             i_this->mode++;
             i_this->timer[0] = 14;
-            boar->field_0x7a2 = 1;
+            boar->kiba = 1;
             break;
 
         case 1:
@@ -3868,7 +3884,7 @@ static void e_rd_kiba_end(e_rd_class* i_this) {
 
         case 3:
             if (i_this->timer[0] == 0) {
-                boar->field_0x7a2 = 0;
+                boar->kiba = 0;
             }
 
             if (i_this->anm_p->isStop()) {
@@ -3883,7 +3899,7 @@ static void e_rd_kiba_end(e_rd_class* i_this) {
                 i_this->field_0x9c8 = 1;
             }
 
-            if ((boar->mStatusFlags & 0x100) != 0) {
+            if ((boar->StatusFlag & 0x100) != 0) {
                 i_this->action = ACTION_WB_BJUMP;
                 i_this->mode = 0;
                 i_this->timer[1] = 2000;
@@ -3900,19 +3916,19 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
     fopAcM_OffStatus(enemy, 0);
     enemy->attention_info.flags = 0;
     i_this->damage_timer = 10;
-    boar->field_0x1434 = fopAcM_GetID(i_this);
+    boar->rd_id = fopAcM_GetID(i_this);
 
     switch (i_this->mode) {
         case 0:
             anm_init(i_this, BCK_RD_RRUN02_BACK, 1.0f, 0, 1.0f);
             i_this->mode++;
-            i_this->ride_mode = 0;
+            i_this->ride_type = RIDE_TYPE_OFF;
 
             if (daPy_getPlayerActorClass()->checkHorseRide() && boar != NULL) {
-                UNSET_FLAG(boar->mStatusFlags, i_this->boar_stand, u16);
+                UNSET_FLAG(boar->StatusFlag, i_this->boar_stand, u16);
                 i_this->boar_stand = 0;
-                boar->mActionID = 16;
-                boar->mActionMode = 0;
+                boar->action = 16;
+                boar->mode = 0;
                 boar->field_0x169e = 10;
             }
 
@@ -3951,15 +3967,15 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
     fopAcM_OffStatus(enemy, 0);
     enemy->attention_info.flags = 0;
     i_this->damage_timer = 10;
-    boar->field_0x1434 = fopAcM_GetID(i_this);
+    boar->rd_id = fopAcM_GetID(i_this);
 
     switch (i_this->mode) {
         case 0:
             if (daPy_getPlayerActorClass()->checkHorseRide()) {
                 anm_init(i_this, BCK_RD_RRUN_BACK, 0.0f, 0, 1.0f);
                 i_this->mode = 1;
-                boar->mActionID = 18;
-                boar->mActionMode = 0;
+                boar->action = 18;
+                boar->mode = 0;
                 boar->field_0x169e = 90;
                 mDoAud_bgmStop(30);
             }
@@ -3974,10 +3990,10 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
         case 10:
             anm_init(i_this, BCK_RD_RSHOOT, 2.0f, 0, 1.0f);
             i_this->mode = 11;
-            i_this->ride_mode = 0;
+            i_this->ride_type = RIDE_TYPE_OFF;
 
             if (boar != NULL) {
-                UNSET_FLAG(boar->mStatusFlags, i_this->boar_stand, u16);
+                UNSET_FLAG(boar->StatusFlag, i_this->boar_stand, u16);
                 i_this->boar_stand = 0;
             }
 
@@ -4019,14 +4035,14 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
             break;
 
         case 1:
-            if ((boar->mStatusFlags & 8) != 0) {
+            if ((boar->StatusFlag & 8) != 0) {
                 anm_init(i_this, e_rdb_class::BCK_RB_RWAIT, 10.0f, 2, 1.0f);
                 i_this->mode = 2;
             }
             break;
 
         case 2:
-            if ((boar->mStatusFlags & 8) != 0) {
+            if ((boar->StatusFlag & 8) != 0) {
                 anm_init(i_this, e_rdb_class::BCK_RB_LV9_END03, 5.0f, 0, 1.0f);
                 i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_LV9_END03, -1);
                 i_this->mode = 3;
@@ -4042,7 +4058,7 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
                 e_rdb_class* rdb = (e_rdb_class*)fpcM_Search(s_rdb_sub, i_this);
                 if (rdb != NULL && rdb->mDemoMode == 14) {
                     anm_init(i_this, e_rdb_class::BCK_RB_RNEIGH, 3.0f, 0, 1.0f);
-                    boar->mActionMode++;
+                    boar->mode++;
                     i_this->mode = 4;
                 }
             }
@@ -4093,7 +4109,7 @@ static void big_damage(e_rd_class* i_this) {
     i_this->mode = 0;
     enemy->speed.y = l_HIO.jump_y + 2.0f;
 
-    if (i_this->ride_mode == 2) {
+    if (i_this->ride_type == RIDE_TYPE_RIDE) {
         fopAc_ac_c* actor = fopAcM_SearchByID(i_this->boar_id);
         if (actor != NULL && actor->speedF >= 20.0f) {
             i_this->jump_z = actor->speedF;
@@ -4117,7 +4133,7 @@ static void big_damage(e_rd_class* i_this) {
         OS_REPORT("SPIN CUT L HIT !!\n");
         i_this->field_0x9f6 = -(cM_rndFX(2000.0f) + 4000.0f);
     } else {
-        if (i_this->ride_mode != 0) {
+        if (i_this->ride_type != RIDE_TYPE_OFF) {
             i_this->field_0x9f6 = cM_rndFX(3000.0f);
         } else {
             if (fopAcM_GetName(i_this->AtInfo.mpActor) == PROC_E_WB) {
@@ -4139,7 +4155,7 @@ static void small_damage(e_rd_class* i_this, int param_2) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
 
     if (i_this->action != ACTION_S_DAMAGE) {
-        i_this->prev_action = i_this->action;
+        i_this->old_action = i_this->action;
     }
 
     i_this->action = ACTION_S_DAMAGE;
@@ -4168,8 +4184,8 @@ static void part_break(e_rd_class* i_this) {
     cXyz unused_vec_0, unused_vec_1;
 
     for (int i = 0; i < 14; i++) {
-        if (i_this->field_0x70c[i] == 0) {
-            i_this->field_0x70c[i] = 1;
+        if (i_this->part[i] == 0) {
+            i_this->part[i] = 1;
             i_this->sound.startCreatureSound(Z2SE_EN_RDB_BREAK_ARMOR, 0, -1);
 
             cXyz sp54 = i_this->field_0x71c[i] - enemy->current.pos;
@@ -4182,14 +4198,14 @@ static void part_break(e_rd_class* i_this) {
             i_this->field_0x86c[i].y = cM_rndF(65536.0f);
             i_this->field_0x86c[i].x = cM_rndF(65536.0f);
 
-            u16 uVar1;
+            u16 hit;
             if (i_this->AtInfo.mHitStatus != 0) {
-                uVar1 = 3;
+                hit = 3;
             } else {
-                uVar1 = 1;
+                hit = 1;
             }
 
-            dComIfGp_setHitMark(uVar1, enemy, &i_this->field_0x71c[i], &enemy->shape_angle, NULL, 0);
+            dComIfGp_setHitMark(hit, enemy, &i_this->field_0x71c[i], &enemy->shape_angle, NULL, 0);
             return;
         }
     }
@@ -4201,7 +4217,7 @@ static void damage_check(e_rd_class* i_this) {
     fopAc_ac_c* actor = fopAcM_SearchByID(i_this->boar_id);
     e_wb_class* boar = (e_wb_class*)actor;
 
-    if (i_this->ride_mode == 2 && boar != NULL && (boar->mStatusFlags & 0xC0) != 0) {
+    if (i_this->ride_type == RIDE_TYPE_RIDE && boar != NULL && (boar->StatusFlag & 0xC0) != 0) {
         if (i_this->action == ACTION_IKKI2_END) {
             i_this->mode = 10;
         } else {
@@ -4209,7 +4225,7 @@ static void damage_check(e_rd_class* i_this) {
             i_this->mode = 0;
             i_this->damage_timer = 1000;
 
-            if ((boar->mStatusFlags & 0x80) != 0) {
+            if ((boar->StatusFlag & 0x80) != 0) {
                 i_this->jump_angle.y = enemy->shape_angle.y + 0x8000 + (s16)cM_rndFX(3000.0f);
                 i_this->field_0x9f6 = (s16)cM_rndFX(1000.0f);
             } else {
@@ -4227,7 +4243,7 @@ static void damage_check(e_rd_class* i_this) {
     i_this->mStts.Move();
 
     if (i_this->damage_timer == 0) {
-        if (i_this->actor_set != 0
+        if (i_this->actor_set != ACTOR_SET_NONE
 #if DEBUG
             || l_HIO.invulnerable
 #endif
@@ -4239,7 +4255,7 @@ static void damage_check(e_rd_class* i_this) {
             if (i_this->cc_sph[i].ChkTgHit() != 0) {
                 i_this->damage_timer = 6;
                 i_this->AtInfo.mpCollider = i_this->cc_sph[i].GetTgHitObj();
-                if (i_this->actor_set == 3) {
+                if (i_this->actor_set == ACTOR_SET_COACH_GAME) {
                     s16 range = enemy->shape_angle.y - i_this->angleY;
                     at_power_check(&i_this->AtInfo);
                     if (i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_ARROW) || i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_BOMB)) {
@@ -4247,8 +4263,8 @@ static void damage_check(e_rd_class* i_this) {
                         if (dComIfGp_getHorseActor()->speedF > 20.0f || range > 0x7800 || range < -0x7800) {
                             cc_at_check(enemy, &i_this->AtInfo);
                             dScnPly_c::setPauseTimer(0);
-                            boar->mLapCount++;
-                            if (boar->mLapCount >= 3) {
+                            boar->lap_num++;
+                            if (boar->lap_num >= 3) {
                                 mDoAud_bgmStop(30);
                                 i_this->action = ACTION_IKKI2_END;
                                 i_this->mode = 0;
@@ -4260,7 +4276,7 @@ static void damage_check(e_rd_class* i_this) {
                             }
 
                             uVar1 = 3;
-                            boar->field_0x698[3] = 100;
+                            boar->timer[3] = 100;
                             dComIfGs_onSaveDunSwitch(7);
                         } else {
                             uVar1 = 2;
@@ -4317,7 +4333,7 @@ static void damage_check(e_rd_class* i_this) {
                         i_this->timer[1] = 1;
                     }
 
-                    if (i_this->ride_mode == 2 && i_this->AtInfo.mAttackPower <= 10) {
+                    if (i_this->ride_type == RIDE_TYPE_RIDE && i_this->AtInfo.mAttackPower <= 10) {
                         if (fpcM_Search(s_boom_sub, i_this) != NULL) {
                             return;
                         }
@@ -4339,7 +4355,7 @@ static void damage_check(e_rd_class* i_this) {
 
                     if (i_this->AtInfo.mHitType == 15) {
                         enemy->health = 0;
-                        if (i_this->ride_mode == 0) {
+                        if (i_this->ride_type == RIDE_TYPE_OFF) {
                             i_this->action = ACTION_A_DAMAGE;
                             i_this->mode = 0;
                             i_this->sound.startCreatureVoice(Z2SE_EN_RD_V_DAMAGE, -1);
@@ -4370,16 +4386,16 @@ static void damage_check(e_rd_class* i_this) {
                         i_this->AtInfo.mAttackPower = 20;
                     }
 
-                    if (enemy->health <= 0 || i_this->AtInfo.mHitStatus != 0 || i_this->ride_mode != 0) {
+                    if (enemy->health <= 0 || i_this->AtInfo.mHitStatus != 0 || i_this->ride_type != RIDE_TYPE_OFF) {
                         if (pla->getCutType() == daPy_py_c::CUT_TYPE_JUMP && pla->checkCutJumpCancelTurn()) {
                             small_damage(i_this, i);
                             i_this->damage_timer = 3 + NREG_S(7);
                         } else {
-                            if (i_this->actor_set != 0 && boar != NULL) {
+                            if (i_this->actor_set != ACTOR_SET_NONE && boar != NULL) {
                                 i_this->damage_timer = 20;
-                                if (i_this->actor_set == 2) {
-                                    boar->mLapCount++;
-                                    if (boar->mLapCount == 1) {
+                                if (i_this->actor_set == ACTOR_SET_CAVALRY_BATTLE) {
+                                    boar->lap_num++;
+                                    if (boar->lap_num == 1) {
                                         enemy->health = 0;
                                         /* dSv_event_flag_c::M_055 - Main Event - Did damage at least once during joust/one-on-one battle */
                                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x58]);
@@ -4388,7 +4404,7 @@ static void damage_check(e_rd_class* i_this) {
                                         dScnPly_c::setPauseTimer(0);
                                     }
 
-                                    if (l_HIO.one_hit_kill != 0 || boar->mLapCount >= 2) {
+                                    if (l_HIO.one_hit_kill != 0 || boar->lap_num >= 2) {
                                         mDoAud_bgmStop(30);
                                         i_this->action = ACTION_IKKI_END;
                                         i_this->mode = 0;
@@ -4413,30 +4429,30 @@ static void damage_check(e_rd_class* i_this) {
                                     return;
                                 }
 
-                                boar->mLapCount++;
+                                boar->lap_num++;
                                 boar->mPathAdjustCounter++;
                                 part_break(i_this);
-                                if (boar->mLapCount == 1 || boar->mLapCount == 2 || boar->mLapCount == 3 ||
-                                    boar->mLapCount == 4 || boar->mLapCount == 6) {
+                                if (boar->lap_num == 1 || boar->lap_num == 2 || boar->lap_num == 3 ||
+                                    boar->lap_num == 4 || boar->lap_num == 6) {
                                     part_break(i_this);
                                 }
 
-                                s8 life = 8 - boar->mLapCount;
+                                s8 life = 8 - boar->lap_num;
                                 if (life > 8) {
                                     life = 8;
                                 }
                                 dComIfGs_BossLife_public_Set(life);
 
-                                if (boar->mLapCount == 5) {
+                                if (boar->lap_num == 5) {
                                     Z2GetAudioMgr()->changeSubBgmStatus(2);
                                 }
 
-                                if (boar->mLapCount >= 8) {
+                                if (boar->lap_num >= 8) {
                                     i_this->action = ACTION_KIBA_END;
                                     i_this->mode = 0;
                                     mDoAud_seStart(Z2SE_EN_RDB_V_FAINT, 0, 0, 0);
-                                    boar->mActionID = 31;
-                                    boar->mActionMode = 0;
+                                    boar->action = 31;
+                                    boar->mode = 0;
                                     mDoAud_bgmStop(30);
                                     return;
                                 }
@@ -4470,7 +4486,7 @@ static void damage_check(e_rd_class* i_this) {
                                 break;  
                             }
 
-                            if (i_this->ride_mode != 0 && i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
+                            if (i_this->ride_type != RIDE_TYPE_OFF && i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
                                 i_this->damage_timer = 20;
                                 if (i_this->action == ACTION_WB_RUN) {
                                     anm_init(i_this, BCK_RD_RRUN02_BACK, 5.0f, 2, 1.0f);
@@ -4595,7 +4611,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
             i_this->field_0x9c8 = 4;
 
             if (frame >= 10) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
             }
 
             if (frame == 20) {
@@ -4618,12 +4634,12 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
                 i_this->mode = 13;
             }
 
-            i_this->field_0x9a2 = 1;
+            i_this->arrow_draw = TRUE;
             break;
 
         case 13:
             if (frame <= 3 + XREG_S(5)) {
-                i_this->field_0x9a2 = 1;
+                i_this->arrow_draw = TRUE;
                 i_this->field_0x9c8 = 4;
             }
 
@@ -4646,7 +4662,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
             break;
     }
 
-    if (fabsf(i_this->ObjAcch.GetGroundH() - enemy->home.pos.y) > 10.0f) {
+    if (fabsf(i_this->Bgc.GetGroundH() - enemy->home.pos.y) > 10.0f) {
         i_this->action = ACTION_DAMAGE;
         i_this->mode = 0;
         i_this->jump_angle.y = s16(enemy->shape_angle.y);
@@ -5013,8 +5029,8 @@ static void action(e_rd_class* i_this) {
     damage_check(i_this);
     if (curr_action == ACTION_WB_SEARCH && i_this->action != ACTION_WB_SEARCH) {
         e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
-        if (boar != NULL && boar->mActionID == 1) {
-            boar->mActionID = 0;
+        if (boar != NULL && boar->action == 1) {
+            boar->action = 0;
         }
     }
 
@@ -5074,7 +5090,7 @@ static void action(e_rd_class* i_this) {
             break;
 
         case ACTION_WB_RUN:
-            if (i_this->actor_set != 0) {
+            if (i_this->actor_set != ACTOR_SET_NONE) {
                 e_rd_wb_run_B(i_this);
             } else {
                 e_rd_wb_run(i_this);
@@ -5182,7 +5198,7 @@ static void action(e_rd_class* i_this) {
         if (!pl_check(i_this, 500.0f, 0x7FFF)) {
             mae = sound->position - enemy->current.pos;
             if (mae.abs() < sound->field_0xc * 120) {
-                i_this->prev_action = i_this->action;
+                i_this->old_action = i_this->action;
                 i_this->action = ACTION_EXCITE;
                 i_this->mode = 0;
                 S_find_pos = sound->position;
@@ -5237,7 +5253,7 @@ static void action(e_rd_class* i_this) {
     cLib_addCalcAngleS2(&enemy->shape_angle.z, enemy->current.angle.z, 2, 0x1000);
 
 
-    if (i_this->ride_mode == 0) {
+    if (i_this->ride_type == RIDE_TYPE_OFF) {
         enemy->attention_info.distances[fopAc_attn_BATTLE_e] = 3;
         if (i_this->jump_z) {
             cMtx_YrotS(*calc_mtx, i_this->jump_angle.y);
@@ -5304,19 +5320,19 @@ static void action(e_rd_class* i_this) {
 
         e_wb_class* boar = (e_wb_class*)actor;
         if (i_this->boar_stand == 1) {
-            MTXCopy(boar->mpModelMorf->getModel()->getAnmMtx(boar->field_0x688 + 15), *calc_mtx);
+            MTXCopy(boar->anm_p->getModel()->getAnmMtx(boar->field_0x688 + 15), *calc_mtx);
         } else {
-            MTXCopy(boar->mpModelMorf->getModel()->getAnmMtx(boar->field_0x688 + 16), *calc_mtx);
+            MTXCopy(boar->anm_p->getModel()->getAnmMtx(boar->field_0x688 + 16), *calc_mtx);
         }
 
-        if (i_this->actor_set != 0) {
+        if (i_this->actor_set != ACTOR_SET_NONE) {
             mae.set(0.0f, BREG_F(4) + -65.0f, 0.0f);
         } else {
             mae.set(0.0f, BREG_F(4) + -45.0f, 0.0f);
         }
         MtxPosition(&mae, &i_this->field_0x9b0);
 
-        if (i_this->ride_mode == 2) {
+        if (i_this->ride_type == RIDE_TYPE_RIDE) {
             enemy->current.pos = i_this->field_0x9b0;
             enemy->shape_angle = enemy->current.angle = actor->shape_angle;
 
@@ -5328,7 +5344,7 @@ static void action(e_rd_class* i_this) {
             enemy->shape_angle.x = enemy->current.angle.x;
 
             if (i_this->boar_stand == 1) {
-                boar->field_0x1434 = fopAcM_GetID(i_this);
+                boar->rd_id = fopAcM_GetID(i_this);
             }
         } else {
             mae = i_this->field_0x9b0 - enemy->current.pos;
@@ -5342,7 +5358,7 @@ static void action(e_rd_class* i_this) {
             enemy->current.pos += ato;
             mae = i_this->field_0x9b0 - enemy->current.pos;
             if (mae.abs() < 30.0f || i_this->timer[3] == 0) {
-                i_this->ride_mode = 2;
+                i_this->ride_type = RIDE_TYPE_RIDE;
             }
 
             cLib_addCalcAngleS2(&enemy->current.angle.y, actor->shape_angle.y, 4, 0x800);
@@ -5381,7 +5397,7 @@ static void action(e_rd_class* i_this) {
         ato2 = actor->eyePos;
     }
 
-    if (i_this->ride_mode == 2) {
+    if (i_this->ride_type == RIDE_TYPE_RIDE) {
         sp_0x24 = 0x1000;
     }
 
@@ -5450,7 +5466,7 @@ static void action(e_rd_class* i_this) {
         i_this->field_0xa28 += s16(4000 + BREG_S(1));
     }
 
-    if (enemy->speed.y < 0.0f && i_this->ObjAcch.ChkGroundHit()) {
+    if (enemy->speed.y < 0.0f && i_this->Bgc.ChkGroundHit()) {
         cLib_addCalc0(&i_this->field_0xa2c, 1.0f, 30.0f);
         cLib_addCalc0(&i_this->field_0xa24, 1.0f, 30.0f);
     }
@@ -5668,7 +5684,7 @@ static void fire_eff_set(e_rd_class* i_this) {
     u16 uVar1[2];
     f32 scale;
 
-    if (i_this->weapon_type == 4) {
+    if (i_this->weapon_type == WEAPON_TYPE_BARROW) {
         iVar1 = 2;
         uVar1[0] = 0x1DF;
         uVar1[1] = 0x1DE;
@@ -6383,7 +6399,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
     i_this->counter++;
 
-    if (i_this->actor_set == 0) {
+    if (i_this->actor_set == ACTOR_SET_NONE) {
         i_this->field_0x1297 = i_this->field_0x1298;
     } else {
         fopAc_ac_c* pla = dComIfGp_getPlayer(0);
@@ -6432,15 +6448,15 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         i_this->look_timer--;
     }
 
-    i_this->field_0x9a2 = 0;
+    i_this->arrow_draw = FALSE;
     i_this->field_0x9ad = 1;
     action(i_this);
 
-    if (i_this->ride_mode != 0) {
+    if (i_this->ride_type != RIDE_TYPE_OFF) {
         i_this->field_0x9ad = 0;
     }
 
-    if (i_this->ride_mode != 2 && i_this->field_0xaf0 == 0 && i_this->action != ACTION_IKKI_END) {
+    if (i_this->ride_type != RIDE_TYPE_RIDE && i_this->field_0xaf0 == 0 && i_this->action != ACTION_IKKI_END) {
         ato.set(0.0f, 0.0f, 0.0f);
         if (i_this->jump_z) {
             cMtx_YrotS(*calc_mtx, i_this->jump_angle.y);
@@ -6459,14 +6475,14 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
         enemy->current.pos += ato;
         enemy->old.pos += ato;
-        i_this->ObjAcch.CrrPos(dComIfG_Bgsp());
+        i_this->Bgc.CrrPos(dComIfG_Bgsp());
         enemy->current.pos -= ato;
         enemy->old.pos -= ato;
 
-        if (!i_this->ObjAcch.ChkGroundHit()) {
+        if (!i_this->Bgc.ChkGroundHit()) {
             if (enemy->speed.y < -10.0f) {
                 i_this->field_0xaf2++;
-                if (i_this->field_0xaf2 == 20 && i_this->actor_set == 0) {
+                if (i_this->field_0xaf2 == 20 && i_this->actor_set == ACTOR_SET_NONE) {
                     i_this->sound.startCreatureVoice(Z2SE_EN_RD_V_DEATH, -1);
                 }
             }
@@ -6486,7 +6502,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
         i_this->field_0x1294 = 0;
 
-        if (i_this->ObjAcch.GetGroundH() != -G_CM3D_F_INF && i_this->ObjAcch.ChkWaterHit() && i_this->ObjAcch.m_wtr.GetHeight() > enemy->current.pos.y) {
+        if (i_this->Bgc.GetGroundH() != -G_CM3D_F_INF && i_this->Bgc.ChkWaterHit() && i_this->Bgc.m_wtr.GetHeight() > enemy->current.pos.y) {
             i_this->field_0x1294 = 1;
         }
     }
@@ -6503,7 +6519,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         mDoMtx_stack_c::ZrotM(enemy->shape_angle.z);
 
         f32 scale = l_HIO.model_size * enemy->scale.x;
-        if (i_this->actor_set != 0) {
+        if (i_this->actor_set != ACTOR_SET_NONE) {
             scale *= l_HIO.leader_size_ratio;
         }
         mDoMtx_stack_c::scaleM(scale, scale, scale);
@@ -6534,7 +6550,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             }
         }
 
-        if (i_this->actor_set != 0) {
+        if (i_this->actor_set != ACTOR_SET_NONE) {
             if (i_this->anm == e_rdb_class::BCK_RB_RCOMEON) {
                 if (i_this->anm_p->checkFrame(30.0f)) {
                     i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_LAUGH, -1);
@@ -6633,7 +6649,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             cr.set(-20000.0f, 200000.0f, 30000.0f);
         }
 
-        if (i_this->actor_set != 0) {
+        if (i_this->actor_set != ACTOR_SET_NONE) {
             MTXCopy(model->getAnmMtx(AREG_S(9) + 6), *calc_mtx);
         } else {
             MTXCopy(model->getAnmMtx(13), *calc_mtx);
@@ -6651,11 +6667,11 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             i_this->cc_sph[0].SetR(35.0f);
         }
 
-        if (i_this->ride_mode == 2) {
+        if (i_this->ride_type == RIDE_TYPE_RIDE) {
             enemy->attention_info.position = enemy->current.pos;
             enemy->attention_info.position.y += 190.0f + JREG_F(8);
 
-            if (i_this->actor_set != 0) {
+            if (i_this->actor_set != ACTOR_SET_NONE) {
                 enemy->attention_info.position.y += 120.0f + JREG_F(9);
             }
         } else {
@@ -6663,10 +6679,10 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             enemy->attention_info.position.y += 30.0f;
         }
 
-        if (i_this->actor_set != 0) {
+        if (i_this->actor_set != ACTOR_SET_NONE) {
             f32 rad = 60.0f;
             f32 size = 0.0f;
-            if (i_this->actor_set == 2) {
+            if (i_this->actor_set == ACTOR_SET_CAVALRY_BATTLE) {
                 rad = 90.0f;
                 size = l_HIO.ikki_boss_size;
             }
@@ -6705,13 +6721,13 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
             dComIfG_Ccsp()->Set(&i_this->cc_sph[i]);
 
-            if (i_this->actor_set == 1 && i_this->ride_mode == 2) {
+            if (i_this->actor_set == ACTOR_SET_E3_2005 && i_this->ride_type == RIDE_TYPE_RIDE) {
                 i_this->cc_sph[i].OnTgNoHitMark();
             } else {
                 i_this->cc_sph[i].OffTgNoHitMark();
             }
 
-            if (i_this->actor_set == 3) {
+            if (i_this->actor_set == ACTOR_SET_COACH_GAME) {
                 for (int j = 0; j <= 2; j++) {
                     i_this->cc_sph[j].SetTgType(0x2022);
                     i_this->cc_sph[j].OnTgNoHitMark();
@@ -6730,7 +6746,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         i_this->field_0x9ab = 0;
     }
 
-    if (i_this->weapon_type == 1) {
+    if (i_this->weapon_type == WEAPON_TYPE_CLUB) {
         if (i_this->field_0x5bd == 0) {
             MTXCopy(i_this->anm_p->getModel()->getAnmMtx(24), *calc_mtx);
         } else {
@@ -6741,7 +6757,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             MtxTrans(-30.0f, -50.0f, 20.0f, 1);
         }
 
-        i_this->arrow->setBaseTRMtx(*calc_mtx);
+        i_this->arrow_model->setBaseTRMtx(*calc_mtx);
 
         if (i_this->field_0x9ab != 0) {
             if (daPy_getPlayerActorClass()->checkHorseRide() || daPy_getPlayerActorClass()->checkBoarRide()) {
@@ -6772,7 +6788,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         dComIfG_Ccsp()->Set(&i_this->at_sph);
     }
 
-    if (i_this->weapon_type >= 2) {
+    if (i_this->weapon_type >= WEAPON_TYPE_BOW) {
         J3DModel* model = i_this->anm_p->getModel();
 
         if (i_this->bow_shake_timer != 0) {
@@ -6796,12 +6812,12 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         i_this->bow_anm->play(0, 0);
         i_this->bow_anm->modelCalc();
 
-        if (i_this->field_0x9a2 != 0) {
+        if (i_this->arrow_draw != 0) {
             MTXCopy(i_this->anm_p->getModel()->getAnmMtx(24), *calc_mtx);
-            i_this->arrow->setBaseTRMtx(*calc_mtx);
+            i_this->arrow_model->setBaseTRMtx(*calc_mtx);
 
-            if (i_this->weapon_type >= 3) {
-                if (i_this->ride_mode != 2 || i_this->timer[1] <= 18) {
+            if (i_this->weapon_type >= WEAPON_TYPE_FIRE_BOW) {
+                if (i_this->ride_type != RIDE_TYPE_RIDE || i_this->timer[1] <= 18) {
                     fire_eff_set(i_this);
                 }
             } else {
@@ -6810,7 +6826,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
 
         if (i_this->arrow_flag) {
-            if (i_this->weapon_type == 3) {
+            if (i_this->weapon_type == WEAPON_TYPE_FIRE_BOW) {
                 i_this->sound.startCreatureSound(Z2SE_OBJ_ARROW_SHOT_FIRE, 0, -1);
             } else {
                 i_this->sound.startCreatureSound(Z2SE_OBJ_ARROW_SHOT_NORMAL, 0, -1);
@@ -6847,7 +6863,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 mae.y -= 30.0f;
                 angl.y = cM_atan2s(mae.x, mae.z);
 
-                if (i_this->ride_mode == 2 && !pl_pass_check(i_this, YREG_F(18))) {
+                if (i_this->ride_type == RIDE_TYPE_RIDE && !pl_pass_check(i_this, YREG_F(18))) {
                     s16 sVar3 = cM_rndF(1000.0f) + 2000.0f;
                     if (cM_rndF(1.0f) < 0.5f) {
                         sVar3 *= -1;
@@ -6866,9 +6882,9 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             }
 
             angl.z = 0;
-            if (i_this->weapon_type == 3) {
+            if (i_this->weapon_type == WEAPON_TYPE_FIRE_BOW) {
                 parameter |= 1;
-            } else if (i_this->weapon_type == 4) {
+            } else if (i_this->weapon_type == WEAPON_TYPE_BARROW) {
                 parameter |= 2;
             }
 
@@ -6899,11 +6915,11 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         dPa_RM(ID_ZM_S_RB_BREAKARMOR02),
     };
 
-    if (i_this->actor_set != 0) {
+    if (i_this->actor_set != ACTOR_SET_NONE) {
         for (int i = 0; i < 14; i++) {
             if (i_this->armor_boss_part[i] != NULL) {
-                if (i_this->field_0x70c[i] == 0) {
-                    if (i_this->actor_set == 3) {
+                if (i_this->part[i] == 0) {
+                    if (i_this->actor_set == ACTOR_SET_COACH_GAME) {
                         MTXCopy(i_this->anm_p->getModel()->getAnmMtx(ikki2_boss_part_idx[i]), *calc_mtx);
                     } else {
                         MTXCopy(i_this->anm_p->getModel()->getAnmMtx(boss_part_idx[i]), *calc_mtx);
@@ -6958,7 +6974,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 ANGLE_ADD(i_this->field_0x6bc.z, 0xF00);
             }
 
-            i_this->mpMorfHornAnm->getModel()->setBaseTRMtx(*calc_mtx);
+            i_this->horn_anm->getModel()->setBaseTRMtx(*calc_mtx);
         }
 
         if (i_this->run_flag) {
@@ -6984,12 +7000,12 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
 
         if (i_this->field_0x6a0 != 0) {
-            i_this->mpMorfHornAnm->play(NULL, 0, 0);
-            i_this->mpMorfHornAnm->modelCalc();
+            i_this->horn_anm->play(NULL, 0, 0);
+            i_this->horn_anm->modelCalc();
         }
     }
 
-    if (i_this->actor_set == 0 && i_this->ride_mode == 0) {
+    if (i_this->actor_set == ACTOR_SET_NONE && i_this->ride_type == RIDE_TYPE_OFF) {
         fopAc_ac_c* player = dComIfGp_getPlayer(0);
         MTXCopy(i_this->anm_p->getModel()->getAnmMtx(11), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&ato);
@@ -7040,7 +7056,7 @@ static int daE_RD_Delete(e_rd_class* i_this) {
 }
 
 static void ride_game_actor_set(e_rd_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
+    fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
     fopAc_ac_c* pla = dComIfGp_getPlayer(0);
     cXyz mae, ato;
     csXyz angl;
@@ -7058,12 +7074,12 @@ static void ride_game_actor_set(e_rd_class* i_this) {
     dBgS_GndChk gnd_chk;
     u32 parameter;
     int num = 6;
-    if (i_this->actor_set >= 2) {
+    if (i_this->actor_set >= ACTOR_SET_CAVALRY_BATTLE) {
         num = 1;
     }
 
     for (int i = 0; i < num; i++) {
-        if (i_this->actor_set == 1) {
+        if (i_this->actor_set == ACTOR_SET_E3_2005) {
             cMtx_YrotS(*calc_mtx, pla->shape_angle.y);
             mae = set_pos[i];
 
@@ -7078,30 +7094,30 @@ static void ride_game_actor_set(e_rd_class* i_this) {
             angl = pla->shape_angle;
             ANGLE_ADD(angl.y, 0x4000);
             parameter = 0x80000005;
-        } else if (i_this->actor_set == 2) {
+        } else if (i_this->actor_set == ACTOR_SET_CAVALRY_BATTLE) {
             ato.set(34789.0f, -290.0f, -36177.0f);
             angl.set(0, 0, 0);
             parameter = 0x80000007;
-        } else if (i_this->actor_set == 3) {
+        } else if (i_this->actor_set == ACTOR_SET_COACH_GAME) {
             ato.set(-93620.0f, -5750.0f, 49650.0f);
             angl.set(0, -0x8000, 0);
             parameter = 0x80000008;
-        } else if (i_this->actor_set == 4) {
-            ato = a_this->home.pos;
-            angl = a_this->home.angle;
+        } else if (i_this->actor_set == ACTOR_SET_LV9) {
+            ato = enemy->home.pos;
+            angl = enemy->home.angle;
             parameter = 0x80000009;
         }
 
         if (i == 0) {
-            a_this->home.pos = ato;
-            a_this->current.pos = a_this->home.pos;
-            a_this->old.pos = a_this->home.pos;
+            enemy->home.pos = ato;
+            enemy->current.pos = enemy->home.pos;
+            enemy->old.pos = enemy->home.pos;
         } else {
             angl = pla->shape_angle;
             parameter = (i << 8 | 0x80000006);
         }
 
-        fopAcM_create(PROC_E_WB, parameter, &ato, fopAcM_GetRoomNo(a_this), &angl, NULL, -1);
+        fopAcM_create(PROC_E_WB, parameter, &ato, fopAcM_GetRoomNo(enemy), &angl, NULL, -1);
     }
 }
 
@@ -7135,7 +7151,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     J3DModelData* modelData;
     J3DModel* model;
 
-    if (i_this->actor_set != 0) {
+    if (i_this->actor_set != ACTOR_SET_NONE) {
         i_this->anm_p = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BMDR_RB), NULL, NULL,
                                                    (J3DAnmTransform*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BCK_RB_RWAIT), 2, 1.0f,
                                                    0, -1, &i_this->sound, 0x80000, 0x11000084);
@@ -7150,10 +7166,10 @@ static int useHeapInit(fopAc_ac_c* a_this) {
             model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack_B);
         }
 
-        if (i_this->actor_set == 1) {
-            i_this->mpMorfHornAnm = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BMDR_RB_HORN), 
+        if (i_this->actor_set == ACTOR_SET_E3_2005) {
+            i_this->horn_anm = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BMDR_RB_HORN), 
                                                        NULL, NULL, NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
-            if (i_this->mpMorfHornAnm == NULL || i_this->mpMorfHornAnm->getModel() == NULL) {
+            if (i_this->horn_anm == NULL || i_this->horn_anm->getModel() == NULL) {
                 return 0;
             }
 
@@ -7174,7 +7190,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         };
 
         for (int i = 0; i < 14; i++) {
-            if (i_this->actor_set == 3) {
+            if (i_this->actor_set == ACTOR_SET_COACH_GAME) {
                 if (i < 2) {
                     modelData = (J3DModelData*)dComIfG_getObjectRes("E_rdb", ikki2_boss_part_bmd[i]);
                     JUT_ASSERT(10672, modelData != NULL);
@@ -7183,9 +7199,9 @@ static int useHeapInit(fopAc_ac_c* a_this) {
                         return 0;
                     }
                 } else {
-                    i_this->field_0x70c[i] = 1;
+                    i_this->part[i] = 1;
                 }
-            } else if (i_this->actor_set == 1 || i == 13) {
+            } else if (i_this->actor_set == ACTOR_SET_E3_2005 || i == 13) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes("E_rdb", boss_part_bmd[i]);
                 JUT_ASSERT(10687, modelData != NULL);
                 i_this->armor_boss_part[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -7193,7 +7209,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
                     return 0;
                 }
             } else {
-                i_this->field_0x70c[i] = 1;
+                i_this->part[i] = 1;
             }
         }
     } else {
@@ -7204,16 +7220,16 @@ static int useHeapInit(fopAc_ac_c* a_this) {
             return 0;
         }
 
-        J3DModel* model2 = i_this->anm_p->getModel();
-        model2->setUserArea((uintptr_t)i_this);
+        J3DModel* bow_model = i_this->anm_p->getModel();
+        bow_model->setUserArea((uintptr_t)i_this);
         mDoMtx_stack_c::scaleS(0.0f, 0.0f, 0.0f);
-        model2->setBaseTRMtx(mDoMtx_stack_c::get());
+        bow_model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-        for (u16 i = 0; i < model2->getModelData()->getJointNum(); i++) {
-            model2->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
+        for (u16 i = 0; i < bow_model->getModelData()->getJointNum(); i++) {
+            bow_model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
         }
 
-        if (i_this->weapon_type == 1) {
+        if (i_this->weapon_type == WEAPON_TYPE_CLUB) {
             if (boss != NULL) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->resName, BMDR_RD_CLUBB);
             } else {
@@ -7222,13 +7238,13 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
             JUT_ASSERT(10762, modelData != NULL);
 
-            i_this->arrow = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-            if (i_this->arrow == NULL) {
+            i_this->arrow_model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            if (i_this->arrow_model == NULL) {
                 return 0;
             }
 
-            i_this->arrow->setBaseTRMtx(mDoMtx_stack_c::get());
-        } else if (i_this->weapon_type >= 2) {
+            i_this->arrow_model->setBaseTRMtx(mDoMtx_stack_c::get());
+        } else if (i_this->weapon_type >= WEAPON_TYPE_BOW) {
             i_this->bow_anm = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->resName, BMDR_RD_BOW), NULL, NULL,
                                                        (J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, BCK_RD_BOW_SHOOT), 0, 1.0f,
                                                        0, -1, NULL, 0x80000, 0x11000084);
@@ -7236,17 +7252,17 @@ static int useHeapInit(fopAc_ac_c* a_this) {
                 return 0;
             }
 
-            model2 = i_this->bow_anm->getModel();
-            model2->setUserArea((uintptr_t)i_this);
-            model2->setBaseTRMtx(mDoMtx_stack_c::get());
+            bow_model = i_this->bow_anm->getModel();
+            bow_model->setUserArea((uintptr_t)i_this);
+            bow_model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-            for (u16 i = 0; i < model2->getModelData()->getJointNum(); i++) {
+            for (u16 i = 0; i < bow_model->getModelData()->getJointNum(); i++) {
                 if (i == 2 || i == 3) {
-                    model2->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack_bow);
+                    bow_model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack_bow);
                 }
             }
 
-            if (i_this->weapon_type == 4) {
+            if (i_this->weapon_type == WEAPON_TYPE_BARROW) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->resName, BMDR_RD_BARROW);
             } else {
                 modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->resName, BMDR_RD_ARROW);
@@ -7254,12 +7270,12 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
             JUT_ASSERT(10810, modelData != NULL);
 
-            i_this->arrow = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-            if (i_this->arrow == NULL) {
+            i_this->arrow_model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            if (i_this->arrow_model == NULL) {
                 return 0;
             }
 
-            i_this->arrow->setBaseTRMtx(mDoMtx_stack_c::get());
+            i_this->arrow_model->setBaseTRMtx(mDoMtx_stack_c::get());
         }
 
         modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->resName, BMDR_RD_EYE);
@@ -7291,13 +7307,13 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
 
     if (((i_this->arg0 == 4 || i_this->arg0 == 5) || i_this->arg0 == 11) || i_this->arg0 == 12) {
         if (i_this->arg0 == 4) {
-            i_this->actor_set = 1;
+            i_this->actor_set = ACTOR_SET_E3_2005;
         } else if (i_this->arg0 == 5) {
-            i_this->actor_set = 2;
+            i_this->actor_set = ACTOR_SET_CAVALRY_BATTLE;
         } else if (i_this->arg0 == 11) {
-            i_this->actor_set = 3;
+            i_this->actor_set = ACTOR_SET_COACH_GAME;
         } else if (i_this->arg0 == 12) {
-            i_this->actor_set = 4;
+            i_this->actor_set = ACTOR_SET_LV9;
         }
 
         i_this->resName = "E_rdb";
@@ -7331,17 +7347,17 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             return cPhs_ERROR_e;
         }
 
-        if (i_this->actor_set != 0) {
+        if (i_this->actor_set != ACTOR_SET_NONE) {
             boss = i_this;
             i_this->arg0 = 1;
         }
 
         i_this->weapon_type = (fopAcM_GetParam(actor) & 0xF00) >> 8;
         if (i_this->weapon_type == 15) {
-            i_this->weapon_type = 0;
+            i_this->weapon_type = WEAPON_TYPE_NONE;
         }
 
-        if (i_this->weapon_type >= 4) {
+        if (i_this->weapon_type >= WEAPON_TYPE_BARROW) {
             return cPhs_ERROR_e;
         }
 
@@ -7441,7 +7457,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             i_this->yagura_timer = 200;
         }
 
-        if (i_this->weapon_type == 1 && i_this->arg0 == 0) {
+        if (i_this->weapon_type == WEAPON_TYPE_CLUB && i_this->arg0 == 0) {
             i_this->action = ACTION_STAND;
             i_this->mode = 0;
         }
@@ -7461,11 +7477,11 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
         = actor->home.angle.x = actor->current.angle.x = actor->shape_angle.x = 0;
 
         u32 size;
-        if (i_this->actor_set == 1) {
+        if (i_this->actor_set == ACTOR_SET_E3_2005) {
             size = 0xAD60;
-        } else if (i_this->actor_set == 2) {
+        } else if (i_this->actor_set == ACTOR_SET_CAVALRY_BATTLE) {
             size = 0x3C00;
-        } else if (i_this->actor_set == 3) {
+        } else if (i_this->actor_set == ACTOR_SET_COACH_GAME) {
             size = 0x4400;
         } else {
             size = 0x4FF0;
@@ -7476,7 +7492,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             return cPhs_ERROR_e;
         }
 
-        if (i_this->actor_set != 0) {
+        if (i_this->actor_set != ACTOR_SET_NONE) {
             ride_game_actor_set(i_this);
         }
 
@@ -7490,7 +7506,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
         fopAcM_SetMtx(actor, i_this->anm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(actor, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(actor, 200.0f, 200.0f, 200.0f);
-        i_this->ObjAcch.Set(fopAcM_GetPosition_p(actor), fopAcM_GetOldPosition_p(actor), actor, 1,
+        i_this->Bgc.Set(fopAcM_GetPosition_p(actor), fopAcM_GetOldPosition_p(actor), actor, 1,
                              &i_this->AcchCir, fopAcM_GetSpeed_p(actor), NULL, NULL);
         i_this->AcchCir.SetWall(50.0f, 50.0f);
 
@@ -7513,7 +7529,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             i_this->cc_sph[i].Set(cc_sph_src);
             i_this->cc_sph[i].SetStts(&i_this->mStts);
 
-            if (i_this->actor_set != 0) {
+            if (i_this->actor_set != ACTOR_SET_NONE) {
                 i_this->cc_sph[i].SetTgType(0xD8FAFD3F);
             }
         }
@@ -7537,7 +7553,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
 
         i_this->sound.init(&actor->current.pos, &actor->eyePos, 3, 1);
 
-        if (i_this->actor_set != 0) {
+        if (i_this->actor_set != ACTOR_SET_NONE) {
             i_this->sound.setEnemyName("E_rdb");
         } else {
             i_this->sound.setEnemyName("E_rd");
@@ -7561,7 +7577,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
                 // Lake Hylia or Hyrule Field
                 fopAcM_OffStatus(actor, fopAcM_STATUS_UNK_0x4000);
             }
-        } else if (i_this->actor_set != 4) {
+        } else if (i_this->actor_set != ACTOR_SET_LV9) {
             fopAcM_OffStatus(actor, fopAcM_STATUS_UNK_0x4000);
         }
 

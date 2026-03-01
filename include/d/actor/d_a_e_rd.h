@@ -40,9 +40,9 @@ public:
     /* 0x067C */ int anm;
     /* 0x0680 */ int field_0x680;
     /* 0x0684 */ dJntCol_c mJntCol;
-    /* 0x0694 */ J3DModel* arrow;
+    /* 0x0694 */ J3DModel* arrow_model;
     /* 0x0698 */ mDoExt_McaMorfSO* bow_anm;
-    /* 0x069C */ mDoExt_McaMorf* mpMorfHornAnm;
+    /* 0x069C */ mDoExt_McaMorf* horn_anm;
     /* 0x06A0 */ s8 field_0x6a0;
     /* 0x06A4 */ cXyz field_0x6a4;
     /* 0x06B0 */ cXyz field_0x6b0;
@@ -53,7 +53,7 @@ public:
     /* 0x06CC */ f32 field_0x6cc;
     /* 0x06D0 */ f32 field_0x6d0;
     /* 0x06D4 */ J3DModel* armor_boss_part[14];
-    /* 0x070C */ s8 field_0x70c[14];
+    /* 0x070C */ s8 part[14];
     /* 0x071C */ cXyz field_0x71c[14];
     /* 0x07C4 */ cXyz field_0x7c4[14];
     /* 0x086C */ csXyz field_0x86c[14];
@@ -62,7 +62,7 @@ public:
     /* 0x096C */ f32 field_0x96c;
     /* 0x0970 */ s16 counter;
     /* 0x0972 */ s16 action;
-    /* 0x0974 */ s16 prev_action;
+    /* 0x0974 */ s16 old_action;
     /* 0x0978 */ f32 dis;
     /* 0x097C */ s16 angleY;
     /* 0x0980 */ f32 attack_range;
@@ -76,7 +76,7 @@ public:
     /* 0x099E */ s16 attack_timer;
     /* 0x09A0 */ s8 field_0x9a0;
     /* 0x09A1 */ s8 look_timer;
-    /* 0x09A2 */ s8 field_0x9a2;
+    /* 0x09A2 */ s8 arrow_draw;
     /* 0x09A3 */ s8 arrow_flag;
     /* 0x09A4 */ s8 field_0x9a4;
     /* 0x09A5 */ u8 field_0x9a5;
@@ -87,7 +87,7 @@ public:
     /* 0x09AC */ s8 field_0x9ac;
     /* 0x09AD */ s8 field_0x9ad;
     /* 0x09B0 */ cXyz field_0x9b0;
-    /* 0x09BC */ s8 ride_mode;
+    /* 0x09BC */ s8 ride_type;
     /* 0x09BD */ s8 field_0x9bd;
     /* 0x09BE */ s8 boar_stand;
     /* 0x09BF */ u8 field_0x9bf;
@@ -143,7 +143,7 @@ public:
     /* 0x0B00 */ s8 field_0xb00;
     /* 0x0B01 */ s8 path_dir;
     /* 0x0B04 */ dBgS_AcchCir AcchCir;
-    /* 0x0B44 */ dBgS_ObjAcch ObjAcch;
+    /* 0x0B44 */ dBgS_ObjAcch Bgc;
     /* 0x0D1C */ dCcD_Stts mStts;
     /* 0x0D58 */ dCcD_Sph cc_sph[3];
     /* 0x1100 */ dCcD_Sph at_sph;
@@ -162,7 +162,7 @@ public:
     /* 0x1297 */ s8 field_0x1297;
     /* 0x1298 */ s8 field_0x1298;
     /* 0x1299 */ u8 field_0x1299;
-    /* 0x129A */ s8 actor_set; // 1: Eldin Field, 2 Eldin Bridge, 3 Lake Hylia Bridge, 4 ???
+    /* 0x129A */ s8 actor_set;
     /* 0x129B */ u8 field_0x129b;
     /* 0x129C */ s8 field_0x129c;
     /* 0x12A0 */ int sw;
