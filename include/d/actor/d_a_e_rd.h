@@ -31,7 +31,7 @@ public:
     /* 0x05BA */ u8 field_0x5ba;
     /* 0x05BB */ u8 field_0x5bb;
     /* 0x05BC */ u8 weapon_type;
-    /* 0x05BD */ s8 field_0x5bd;
+    /* 0x05BD */ s8 armament_flag;
     /* 0x05C0 */ cXyz field_0x5c0;
     /* 0x05CC */ s16 target_ya;
     /* 0x05D0 */ mDoExt_McaMorfSO* anm_p;
@@ -43,7 +43,7 @@ public:
     /* 0x0694 */ J3DModel* arrow_model;
     /* 0x0698 */ mDoExt_McaMorfSO* bow_anm;
     /* 0x069C */ mDoExt_McaMorf* horn_anm;
-    /* 0x06A0 */ s8 field_0x6a0;
+    /* 0x06A0 */ s8 horn_type;
     /* 0x06A4 */ cXyz field_0x6a4;
     /* 0x06B0 */ cXyz field_0x6b0;
     /* 0x06BC */ csXyz field_0x6bc;

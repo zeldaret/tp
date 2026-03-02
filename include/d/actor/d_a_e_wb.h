@@ -81,7 +81,7 @@ public:
 
     MtxP getRideMtx() { return anm_p->getModel()->getAnmMtx(15); }
     f32 nowAnimeFrame() const { return anm_p->getFrame(); }
-    s16 getWaitRollAngle() const { return mWaitRollAngle; }
+    s16 getWaitRollAngle() const { return wait_roll_angle; }
     BOOL checkGetOff() const { return enemy.speedF < 3.0f; }
     f32 rideSpeedRate() const { return enemy.speedF / mSpeedRate; }
     f32 getAnimeFrameRate() { return anm_p->getFrame() / anm_p->getEndFrame(); }
@@ -107,15 +107,15 @@ public:
     /* 0x05C0 */ u8 field_0x5c0;
     /* 0x05C4 */ cXyz eye;
     /* 0x05D0 */ cXyz field_0x5d0;
-    /* 0x05DC */ s16 mTargetFacingAngle;  ///< @brief Target facing angle for turning towards path point.
+    /* 0x05DC */ s16 target_ya;  ///< @brief Target facing angle for turning towards path point.
     /* 0x05DE */ s16 field_0x5de;
     /* 0x05E0 */ mDoExt_McaMorfSO* anm_p;  ///< @brief Pointer to model morph animator.
-    /* 0x05E4 */ f32 mPlaySpeed;                 ///< @brief Animation playback speed.
+    /* 0x05E4 */ f32 anm_spd;                 ///< @brief Animation playback speed.
     /* 0x05E8 */ int anmID;                     ///< @brief Current animation ID.
     /* 0x05EC */ Z2CreatureRide creature;         ///< @brief Z2 sound creature for ride effects.
     /* 0x0688 */ int field_0x688;
     /* 0x068C */ s8 mPathInitialized;  ///< @brief Flag indicating if path has been initialized.
-    /* 0x068E */ s16 field_0x68e;
+    /* 0x068E */ s16 counter;
     /* 0x0690 */ s16 action;  ///< @brief High-level action ID.
     /* 0x0692 */ s16 ride_action;
     /* 0x0694 */ int shadow_key;     ///< @brief Shadow drawing key.
@@ -145,16 +145,16 @@ public:
     /* 0x06EC */ csXyz field_0x6ec[0x1d];
     /* 0x079A */ s16 mBodyTiltAngle;  ///< @brief Body tilt angle based on turning.
     /* 0x079C */ u8 wait_timer;
-    /* 0x079D */ s8 field_0x79d;
+    /* 0x079D */ s8 leader;
     /* 0x079E */ s8 lap_num;  ///< @brief Lap or progress count affecting path generation.
-    /* 0x079F */ s8 mPathAdjustCounter;  ///< @brief Counter for periodic path adjustment.
+    /* 0x079F */ s8 path_adjust_count;  ///< @brief Counter for periodic path adjustment.
     /* 0x07A0 */ s16 field_0x7a0;
     /* 0x07A2 */ s8 kiba;
     /* 0x07A4 */ s16 field_0x7a4;
     /* 0x07A6 */ s8 field_0x7a6;
     /* 0x07A7 */ s8 field_0x7a7;
     /* 0x07A8 */ f32 pass;
-    /* 0x07AC */ dBgS_AcchCir field_0x7ac;
+    /* 0x07AC */ dBgS_AcchCir AcchCir;
     /* 0x07EC */ dBgS_ObjAcch Bgc;
     /* 0x09C4 */ dCcD_Stts mStts;
     /* 0x0A00 */ dCcD_Sph cc_sph[7];
@@ -177,7 +177,7 @@ public:
     /* 0x142C */ u8 movement_type;    ///< @brief Type of movement (1 for normal, 2 for faster).
     /* 0x142D */ u8 collision_flg;  ///< @brief Flags for collision states.
     /* 0x142E */ u8 mLandingFlag;     ///< @brief Flag for landing after jump.
-    /* 0x142F */ s8 mSpeedCapTimer;   ///< @brief Timer to cap speed at 30.
+    /* 0x142F */ s8 gake_flg;   ///< @brief Timer to cap speed at 30.
     /* 0x1430 */ s8 field_0x1430;
     /* 0x1432 */ s16 dash_timer;
     /* 0x1434 */ fpc_ProcID rd_id;  // Rider actor ID? ///< @brief Process ID of rider actor.
@@ -185,7 +185,7 @@ public:
     /* 0x1450 */ himo_s field_0x1450[2];
     /* 0x15D0 */ mDoExt_3DlineMat1_c field_0x15d0[2];
     /* 0x1648 */ mDoExt_3DlineMat1_c field_0x1648;
-    /* 0x1684 */ f32 anm_spd;  ///< @brief Duration or timer for animation.
+    /* 0x1684 */ f32 anm_time;  ///< @brief Duration or timer for animation.
     /* 0x1688 */ s16 field_0x1688;
     /* 0x168A */ s16 field_0x168a;
     /* 0x168C */ f32 field_0x168c;
@@ -210,14 +210,14 @@ public:
     /* 0x171C */ f32 field_0x171c;
     /* 0x1720 */ s8 field_0x1720;
     /* 0x1721 */ s8 field_0x1721;
-    /* 0x1722 */ s8 field_0x1722;
+    /* 0x1722 */ s8 saku_burn;
     /* 0x1723 */ u8 field_0x1723[0x17c4 - 0x1723];
     /* 0x17C4 */ u32 anm_se_eff;
     /* 0x17C8 */ u8 field_0x17c8[0x17D0 - 0x17C8];
     /* 0x17D0 */ u32 jump_wtra[4];
     /* 0x17E0 */ u8 field_0x17e0;
     /* 0x17E1 */ u8 field_0x17e1;
-    /* 0x17E2 */ s16 mWaitRollAngle;  ///< @brief Roll angle during wait state.
+    /* 0x17E2 */ s16 wait_roll_angle;  ///< @brief Roll angle during wait state.
     /* 0x17E4 */ u8 field_0x17e4[0x17e8 - 0x17e4];
     /* 0x17E8 */ f32 mSpeedRate;  ///< @brief Speed rate for riding calculations.
 };
