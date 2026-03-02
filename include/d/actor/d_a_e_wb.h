@@ -112,7 +112,7 @@ public:
     /* 0x05E0 */ mDoExt_McaMorfSO* anm_p;  ///< @brief Pointer to model morph animator.
     /* 0x05E4 */ f32 anm_spd;                 ///< @brief Animation playback speed.
     /* 0x05E8 */ int anmID;                     ///< @brief Current animation ID.
-    /* 0x05EC */ Z2CreatureRide creature;         ///< @brief Z2 sound creature for ride effects.
+    /* 0x05EC */ Z2CreatureRide sound;         ///< @brief Z2 sound creature for ride effects.
     /* 0x0688 */ int field_0x688;
     /* 0x068C */ s8 mPathInitialized;  ///< @brief Flag indicating if path has been initialized.
     /* 0x068E */ s16 counter;

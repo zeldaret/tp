@@ -60,15 +60,15 @@ STATIC_ASSERT(sizeof(daE_WB_HIO_c) == 0x5C);
 static u8 const lit_3882[12] = {0};
 #endif
 
-#define LEADER_NONE       0  // Normal boar, no boss rider (WB)
-#define LEADER_B_WAIT     1  // Boss Bulblin on boar, waiting
-#define LEADER_B_IKKI     2  // Boss Bulblin cavalry battle 1
-#define LEADER_B_IKKI2    3  // Boss Bulblin cavalry battle 2 
-#define LEADER_B_LV9      4  // Boss Bulblin  Hyrule Castle 
+#define LEADER_NONE       0  // Normal boar, no King bulblin
+#define LEADER_B_WAIT     1  // Boss on boar, waiting
+#define LEADER_B_IKKI     2  // King bulblin cavalry battle 1
+#define LEADER_B_IKKI2    3  // King bulblin cavalry battle 2 
+#define LEADER_B_LV9      4  // King bulblin  Hyrule Castle 
 
 #define GAKE_FLG_NONE     0   // No cliff detected
 #define GAKE_FLG_GAKE     1   // Cliff/drop ahead
-#define GAKE_FLG_TURN     2   // Near race turn (IKKI checkpoint)
+#define GAKE_FLG_TURN     2   // Near race turn 
 #define GAKE_FLG_WRONG_DIR -1  // Near checkpoint but facing wrong direction
 
 daE_WB_HIO_c::daE_WB_HIO_c() {
@@ -178,7 +178,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
 }
 
 static s8 lbl_244_bss_45;
-static s8 lbl_244_bss_46;
+static s8 S_ikki;
 static s8 lbl_244_bss_47;
 static bool hio_set;
 
@@ -565,7 +565,7 @@ static s8 gake_check(e_wb_class* i_this) {
     static f32 chk_x[4] = {14257.0f, 34775.0f, -22864.0f, -11627.0f};
     static f32 chk_z[4] = {20075.0f, -16467.0f, 9823.0f, 22601.0f};
 
-    if (lbl_244_bss_46 != 0) {
+    if (S_ikki != 0) {
         if (!daAlink_getAlinkActorClass()->checkBoarRideOwn(actor) &&
             actor->current.pos.y < -5000.0f)
         {
@@ -724,7 +724,7 @@ static void e_wb_wait(e_wb_class* i_this) {
     case 1:
         if (actor->speedF > 15.0f) {
             i_this->movement_type = 2;
-            i_this->creature.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
+            i_this->sound.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
         } else {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mode = 2;
@@ -1131,7 +1131,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
                 i_this->anm_p->setFrame(cM_rndF(10.0f));
                 i_this->mode = 2;
                 i_this->StatusFlag |= (u16)0x10;
-                i_this->creature.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
+                i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             }
             break;
         case 1:
@@ -1146,7 +1146,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
                 anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
                 i_this->mode = 2;
                 i_this->StatusFlag |= (u16)0x10;
-                i_this->creature.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
+                i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             }
             break;
         case 2:
@@ -1242,7 +1242,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
         case ACT_RIDE:
             if (actor->speedF > 15.0f) {
                 i_this->movement_type = 2;
-                i_this->creature.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
+                i_this->sound.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
             }
 
             if (actor->speedF < 1.0f) {
@@ -1303,7 +1303,7 @@ static void e_wb_b_wait(e_wb_class* i_this) {
         } else if (dist < 2000.0f) {
             i_this->action = ACT_B_RUN;
             i_this->mode = 0;
-            i_this->creature.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
         }
         break;
     case 2:
@@ -1452,7 +1452,7 @@ static void e_wb_b_run2(e_wb_class* i_this) {
             i_this->mode = 2;
         } else {
             i_this->mode = 0;
-            i_this->creature.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
         }
     }
 
@@ -1497,7 +1497,7 @@ static void e_wb_b_wait2(e_wb_class* i_this) {
         if (dist < 4000.0f) {
             i_this->action = ACT_B_RUN;
             i_this->mode = 0;
-            i_this->creature.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
         }
         break;
     }
@@ -1550,7 +1550,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
             i_this->mode = 2;
             i_this->StatusFlag |= (u16)0x10;
-            i_this->creature.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
+            i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
 
             if (i_this->mPathInitialized != 0) {
                 cXyz dist_to_point;
@@ -1833,8 +1833,8 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         if (frame >= 112) {
             if (frame == 112) {
                 i_this->StatusFlag |= (u16)0x10;
-                i_this->creature.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
-                i_this->creature.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
+                i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
+                i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
                 i_this->anm_time = 40.0f;
             }
             speed = l_HIO.mSingleRiderSpeed;
@@ -1882,7 +1882,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
             i_this->mode = 4;
             i_this->StatusFlag |= (u8)0x10;
-            i_this->creature.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
+            i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             i_this->acceleration = 0;
         }
         break;
@@ -1945,7 +1945,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
     case 5:
         if (actor->speedF > 15.0f) {
             i_this->movement_type = 2;
-            i_this->creature.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
+            i_this->sound.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
         } else if (actor->speedF < 1.0f) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mode = 6;
@@ -2131,7 +2131,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
             i_this->mode = 4;
             i_this->StatusFlag |= (u8)0x10;
-            i_this->creature.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
+            i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             i_this->acceleration = 0.0f;
         }
     } break;
@@ -2207,7 +2207,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
     case 5: {
         if (actor->speedF > 15.0f) {
             i_this->movement_type = 2;
-            i_this->creature.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
+            i_this->sound.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
         } else if (actor->speedF < 1.0f) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mode = 6;
@@ -2270,7 +2270,7 @@ static void e_wb_b_ikki2_end(e_wb_class* i_this) {
             i_this->action = ACT_BG_DAMAGE;
             i_this->mode = 0;
             i_this->anm_time = 50.0f;
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
             dComIfGp_getVibration().StartShock(8, 0x4f, cXyz(0.0f, 1.0f, 0.0f));
             i_this->mLandingFlag = 1;
         }
@@ -2389,7 +2389,7 @@ static void e_wb_a_run(e_wb_class* i_this) {
 
         if (i_this->timer[1] == 1 || i_this->gake_flg == GAKE_FLG_TURN) {
             i_this->action = ACT_LR_DAMAGE;
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
             i_this->mode = 0;
         }
     default:
@@ -2739,7 +2739,7 @@ static void e_wb_kiba_end(e_wb_class* i_this) {
             a_this->speed.y = 55.0f + WREG_F(1);
             anm_init(i_this, 0x18, 2.0f, 0, 1.0f);
             i_this->mode = 2;
-            i_this->creature.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
             i_this->StatusFlag |= (u16)0x100;
         }
         break;
@@ -2813,8 +2813,8 @@ static void damage_check(e_wb_class* i_this) {
             }
 
             if (i_this->leader >= LEADER_B_IKKI && actor->speedF >= 30.0f) {
-                i_this->creature.startCreatureVoice(Z2SE_EN_RDB_V_RUNDOWN, -1);
-                i_this->creature.startCreatureSound(Z2SE_EN_BB_RUNDOWN, 0, -1);
+                i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_RUNDOWN, -1);
+                i_this->sound.startCreatureSound(Z2SE_EN_BB_RUNDOWN, 0, -1);
 
                 e_rd_class* rider = (e_rd_class*)fopAcM_SearchByID(i_this->rd_id);
                 rider->damage_timer = 20;
@@ -2857,7 +2857,7 @@ static void damage_check(e_wb_class* i_this) {
                 if (i_this->leader != 0 || (daPy_getPlayerActorClass()->checkHorseRide() &&
                         (i_this->StatusFlag & 3) != 0)) {
                     if (i_this->leader != 0) {
-                        def_se_set(&i_this->creature, i_this->field_0x13c0.mpCollider, 0x28, NULL);
+                        def_se_set(&i_this->sound, i_this->field_0x13c0.mpCollider, 0x28, NULL);
                     }
                 } else {
                     at_power_check(&i_this->field_0x13c0);
@@ -3251,7 +3251,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
             i_this->anm_p->setFrame(cM_rndF(10.0f));
             i_this->mode = 12;
             i_this->StatusFlag |= (u16)0x10;
-            i_this->creature.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
+            i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
         }
     } break;
 
@@ -3266,7 +3266,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
             i_this->mode = 12;
             i_this->StatusFlag |= (u8)0x10;
-            i_this->creature.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
+            i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
         }
     } break;
     case 12: {
@@ -3385,7 +3385,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
         {
             if (actor->speedF > 15.0f) {
                 i_this->movement_type = 2;
-                i_this->creature.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
+                i_this->sound.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
             } else {
                 anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
                 i_this->mode = 22;
@@ -3430,7 +3430,7 @@ static void action(e_wb_class* i_this) {
     fopEn_enemy_c* enemy = actor;
     enemy->offDownFlg();
 
-    if (lbl_244_bss_45 != 0 || lbl_244_bss_46 != 0) {
+    if (lbl_244_bss_45 != 0 || S_ikki != 0) {
         i_this->gake_flg = gake_check(i_this);
     }
 
@@ -3616,15 +3616,15 @@ static void action(e_wb_class* i_this) {
         // Bulblin Camp
         (strcmp(dComIfGp_getStartStageName(), "F_SP118") == 0 ||
         // Gerudo Desert
-        strcmp(dComIfGp_getStartStageName(), "F_SP124") == 0 || lbl_244_bss_46 != 0 ||
+        strcmp(dComIfGp_getStartStageName(), "F_SP124") == 0 || S_ikki != 0 ||
         // Hyrule Castle
         strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0))
     {
-        int target_angle = abs((s16)(cLib_targetAngleY(&actor->attention_info.position,
+        int range = abs((s16)(cLib_targetAngleY(&actor->attention_info.position,
                                                        &dComIfGp_getPlayer(0)->current.pos) -
                                      actor->shape_angle.y));
 
-        if (target_angle < 0x6000 && target_angle > 0x3000) {
+        if (range < 0x6000 && range > 0x3000) {
             actor->attention_info.flags |= fopAc_AttnFlag_ETC_e;
         } else {
             actor->attention_info.flags &= ~fopAc_AttnFlag_ETC_e;
@@ -3961,6 +3961,7 @@ static void demo_camera(e_wb_class* i_this) {
         if (i_this->demo_timer == 90) {
             Z2GetAudioMgr()->bgmStreamPrepare(0x2000010);
             Z2GetAudioMgr()->bgmStreamPlay();
+            /*Horseback battle clear*/
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[85]);
             dComIfGp_setNextStage("F_SP102", 0x14, 0, 8);
         }
@@ -4265,7 +4266,7 @@ static void demo_camera(e_wb_class* i_this) {
             i_this->mode = 0;
             i_this->demo_cam_ctr.set(-8416.0f, 345.0f, 6.0f);
             i_this->demo_cam_eye.set(-8994.0f, 326.0f, 400.0f);
-            i_this->creature.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
             rider->timer[3] = 700;
         }
     } break;
@@ -4477,7 +4478,7 @@ static void demo_camera(e_wb_class* i_this) {
         if (i_this->demo_timer == 312) {
             i_this->action = 24;
             i_this->mode = 0;
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
             cXyz pos(enemy->current.pos);
             pos.y += 150.0f;
             dComIfGp_setHitMark(3, 0, &pos, &enemy->shape_angle, 0, 0);
@@ -5006,7 +5007,7 @@ static void anm_se_eff_set(e_wb_class* i_this) {
 
     if (i_this->anmID == 12 || i_this->anmID == 13) {
         if (i_this->anm_p->checkFrame(9.0f)) {
-            i_this->creature.startCreatureSound(Z2SE_CM_BODYFALL_L, 0, -1);
+            i_this->sound.startCreatureSound(Z2SE_CM_BODYFALL_L, 0, -1);
             i_this->field_0x1721 = 1;
         }
     } else if (i_this->anmID == 38) {
@@ -5028,70 +5029,70 @@ static void anm_se_eff_set(e_wb_class* i_this) {
         }
     } else if (i_this->anmID == 5) {
         if (i_this->anm_p->checkFrame(1.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_CRASH, -1);
-            i_this->creature.startCreatureSound(Z2SE_EN_WB_RUNDOWN, 0, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_CRASH, -1);
+            i_this->sound.startCreatureSound(Z2SE_EN_WB_RUNDOWN, 0, -1);
         } else if (i_this->anm_p->checkFrame(15.0f)) {
-            i_this->creature.startCreatureSound(Z2SE_CM_BODYFALL_L, 0, -1);
+            i_this->sound.startCreatureSound(Z2SE_CM_BODYFALL_L, 0, -1);
         }
     } else if (i_this->anmID == 6) {
         if (i_this->anm_p->checkFrame(2.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_UP, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_UP, -1);
         }
     } else if (i_this->anmID == 7) {
         if (i_this->anm_p->checkFrame(18.0f) || i_this->anm_p->checkFrame(40.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
         }
     } else if (i_this->anmID == 8) {
         if (i_this->anm_p->checkFrame(4.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_INANAKI_DMG, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_INANAKI_DMG, -1);
         }
     } else if (i_this->anmID == 12) {
         if (i_this->anm_p->checkFrame(1.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_DOWN, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DOWN, -1);
         }
     } else if (i_this->anmID == 13) {
         if (i_this->anm_p->checkFrame(1.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_DOWN, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DOWN, -1);
         }
     } else if (i_this->anmID == 16) {
         if (i_this->anm_p->checkFrame(12.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
         }
     } else if (i_this->anmID == 17) {
         if (i_this->anm_p->checkFrame(16.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
         }
     } else if (i_this->anmID == 9) {
         if (i_this->anm_p->checkFrame(1.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
         }
     } else if (i_this->anmID == 27) {
         if (i_this->anm_p->checkFrame(14.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_INANAKI, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_INANAKI, -1);
         }
     } else if (i_this->anmID == 31) {
         if (i_this->anm_p->checkFrame(2.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_RIDE, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_RIDE, -1);
         }
     } else if (i_this->anmID == 32 || i_this->anmID == 33) {
         if (i_this->anm_p->checkFrame(7.5f) || i_this->anm_p->checkFrame(12.5f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
         }
     } else if (i_this->anmID == 34) {
         if (i_this->anm_p->checkFrame(3.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
         }
     } else if (i_this->anmID == 40) {
         if (i_this->anm_p->checkFrame(6.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
         }
     } else if (i_this->anmID == 42) {
         if (i_this->anm_p->checkFrame(11.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
         }
     } else if (i_this->anmID == 43) {
         if (i_this->anm_p->checkFrame(25.0f)) {
-            i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
+            i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_BREATH, -1);
         }
     }
 
@@ -5099,19 +5100,19 @@ static void anm_se_eff_set(e_wb_class* i_this) {
     if (i_this->leader != 0) {
         if (i_this->anmID == 32 || i_this->anmID == 33) {
             if (i_this->anm_p->checkFrame(4.0f)) {
-                i_this->creature.startCreatureVoice(Z2SE_EN_BB_V_BREATH, -1);
+                i_this->sound.startCreatureVoice(Z2SE_EN_BB_V_BREATH, -1);
             }
         } else if (i_this->anmID == 43) {
             if (i_this->anm_p->checkFrame(14.0f)) {
-                i_this->creature.startCreatureVoice(Z2SE_EN_BB_V_BREATH, -1);
+                i_this->sound.startCreatureVoice(Z2SE_EN_BB_V_BREATH, -1);
             }
         } else if (i_this->anmID == 42) {
             if (i_this->anm_p->checkFrame(6.0f)) {
-                i_this->creature.startCreatureVoice(Z2SE_EN_BB_V_BREATH, -1);
+                i_this->sound.startCreatureVoice(Z2SE_EN_BB_V_BREATH, -1);
             }
         } else if (i_this->anmID == 27) {
             if (i_this->anm_p->checkFrame(17.0f)) {
-                i_this->creature.startCreatureVoice(Z2SE_EN_BB_V_INANAKI, -1);
+                i_this->sound.startCreatureVoice(Z2SE_EN_BB_V_INANAKI, -1);
             }
         }
     }
@@ -5126,7 +5127,7 @@ static f32 dummy(){return 35.f;}
 static int daE_WB_Execute(e_wb_class* i_this) {
     if (c_start == 0) {
         if (dComIfGp_event_runCheck()) {
-            if (lbl_244_bss_46 != 0 || cDmrNowMidnaTalk()) {
+            if (S_ikki != 0 || cDmrNowMidnaTalk()) {
                 return 1;
             }
         }
@@ -5210,7 +5211,7 @@ static int daE_WB_Execute(e_wb_class* i_this) {
                     i_this->action = ACT_BG_DAMAGE;
                     i_this->mode = 0;
                     i_this->anm_time = 50.0f;
-                    i_this->creature.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
+                    i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
                 } else {
                     if (i_this->action != ACT_PL_RIDE2) {
                         if (i_this->action == ACT_C_F_RUN) {
@@ -5381,7 +5382,7 @@ static int daE_WB_Execute(e_wb_class* i_this) {
                     
                     if (hit_actor != NULL) {
                         if (fopAcM_GetName(hit_actor) == PROC_E_RD) {
-                            i_this->creature.startCreatureSound(Z2SE_EN_WB_RUNDOWN, 0, -1);
+                            i_this->sound.startCreatureSound(Z2SE_EN_WB_RUNDOWN, 0, -1);
                         } else if (fopAcM_GetName(hit_actor) == PROC_ALINK) {
                             if (daPy_getPlayerActorClass()->checkPlayerGuard()) {
                                 dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
@@ -5486,7 +5487,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
     i_this->anm_p =
         new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->resName, 0x2e), NULL,
                              NULL, (J3DAnmTransform*)dComIfG_getObjectRes(i_this->resName, 0x28),
-                             0, 1.0f, 0, -1, &i_this->creature, 0x80000, 0x11000084);
+                             0, 1.0f, 0, -1, &i_this->sound, 0x80000, 0x11000084);
 
     if (i_this->anm_p == NULL || i_this->anm_p->getModel() == NULL) {
         return 0;
@@ -5564,7 +5565,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
     }
 
     int phase_state = dComIfG_resLoad(&i_this->mPhase, i_this->resName);
-    lbl_244_bss_47 = lbl_244_bss_45 = lbl_244_bss_46 = 0;
+    lbl_244_bss_47 = lbl_244_bss_45 = S_ikki = 0;
 
     // Title Screen
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP102")) {
@@ -5573,7 +5574,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
 
     // Hyrule Field, Bridge of Eldin area
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") && fopAcM_GetRoomNo(actor) == 0) {
-        lbl_244_bss_46 = 1;
+        S_ikki = 1;
     }
 
     if (phase_state == cPhs_COMPLEATE_e) {
@@ -5758,8 +5759,8 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
 
             i_this->field_0x1438[1] = i_this->field_0x1438[0] = actor->current.pos;
 
-            i_this->creature.init(&actor->current.pos, &actor->eyePos, 6, 1);
-            i_this->field_0x13c0.mpSound = &i_this->creature;
+            i_this->sound.init(&actor->current.pos, &actor->eyePos, 6, 1);
+            i_this->field_0x13c0.mpSound = &i_this->sound;
 
             // Bulblin Camp
             if (!strcmp(dComIfGp_getStartStageName(), "F_SP118")) {

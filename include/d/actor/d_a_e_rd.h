@@ -32,7 +32,7 @@ public:
     /* 0x05BB */ u8 field_0x5bb;
     /* 0x05BC */ u8 weapon_type;
     /* 0x05BD */ s8 armament_flag;
-    /* 0x05C0 */ cXyz field_0x5c0;
+    /* 0x05C0 */ cXyz find_pos;
     /* 0x05CC */ s16 target_ya;
     /* 0x05D0 */ mDoExt_McaMorfSO* anm_p;
     /* 0x05D4 */ Z2CreatureEnemy sound;
@@ -43,7 +43,7 @@ public:
     /* 0x0694 */ J3DModel* arrow_model;
     /* 0x0698 */ mDoExt_McaMorfSO* bow_anm;
     /* 0x069C */ mDoExt_McaMorf* horn_anm;
-    /* 0x06A0 */ s8 horn_type;
+    /* 0x06A0 */ s8 horn_mode;
     /* 0x06A4 */ cXyz field_0x6a4;
     /* 0x06B0 */ cXyz field_0x6b0;
     /* 0x06BC */ csXyz field_0x6bc;
@@ -53,10 +53,10 @@ public:
     /* 0x06CC */ f32 field_0x6cc;
     /* 0x06D0 */ f32 field_0x6d0;
     /* 0x06D4 */ J3DModel* armor_boss_part[14];
-    /* 0x070C */ s8 part[14];
-    /* 0x071C */ cXyz field_0x71c[14];
-    /* 0x07C4 */ cXyz field_0x7c4[14];
-    /* 0x086C */ csXyz field_0x86c[14];
+    /* 0x070C */ s8 part_break[14];
+    /* 0x071C */ cXyz part_pos[14];
+    /* 0x07C4 */ cXyz part_spd[14];
+    /* 0x086C */ csXyz part_angle[14];
     /* 0x08C0 */ u32 armor_break_eff[14][3];
     /* 0x0968 */ s8 field_0x968;
     /* 0x096C */ f32 field_0x96c;
@@ -87,18 +87,18 @@ public:
     /* 0x09AC */ s8 field_0x9ac;
     /* 0x09AD */ s8 field_0x9ad;
     /* 0x09B0 */ cXyz field_0x9b0;
-    /* 0x09BC */ s8 ride_type;
+    /* 0x09BC */ s8 ride_mode;
     /* 0x09BD */ s8 field_0x9bd;
     /* 0x09BE */ s8 boar_stand;
     /* 0x09BF */ u8 field_0x9bf;
-    /* 0x09C0 */ f32 field_0x9c0;
-    /* 0x09C4 */ f32 field_0x9c4;
-    /* 0x09C8 */ s8 field_0x9c8;
+    /* 0x09C0 */ f32 mount_jump_y;
+    /* 0x09C4 */ f32 mount_jump_speed;
+    /* 0x09C8 */ s8 aim_type;
     /* 0x09C9 */ u8 field_0x9c9;
-    /* 0x09CA */ s16 field_0x9ca;
-    /* 0x09CC */ s16 field_0x9cc;
-    /* 0x09CE */ s16 field_0x9ce;
-    /* 0x09D0 */ s16 field_0x9d0;
+    /* 0x09CA */ s16 aim_angle_y;
+    /* 0x09CC */ s16 aim_angle_x;
+    /* 0x09CE */ s16 head_angle_y;
+    /* 0x09D0 */ s16 head_shake;
     /* 0x09D4 */ cXyz eye;
     /* 0x09E0 */ cXyz field_0x9e0; // unused, dbg offset 0xa18
     /* 0x09EC */ f32 jump_z;
@@ -140,7 +140,7 @@ public:
     /* 0x0AFA */ s8 field_0xafa;
     /* 0x0AFB */ s8 field_0xafb;
     /* 0x0AFC */ dPath* path;
-    /* 0x0B00 */ s8 field_0xb00;
+    /* 0x0B00 */ s8 jyunkai_no;
     /* 0x0B01 */ s8 path_dir;
     /* 0x0B04 */ dBgS_AcchCir AcchCir;
     /* 0x0B44 */ dBgS_ObjAcch Bgc;

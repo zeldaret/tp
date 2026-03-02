@@ -19,7 +19,7 @@ void e_wb_class::setPlayerRide() {
     mode = 0;
     StatusFlag |= u16(3);
 
-    creature.setLinkRiding(true);
+    sound.setLinkRiding(true);
 }
 
 void e_wb_class::getOff() {
@@ -31,7 +31,7 @@ void e_wb_class::getOff() {
 
     mode = 0;
     StatusFlag &= u16(~3);
-    creature.setLinkRiding(false);
+    sound.setLinkRiding(false);
 }
 
 BOOL e_wb_class::checkDownDamage() {
