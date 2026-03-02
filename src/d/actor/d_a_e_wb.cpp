@@ -178,7 +178,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
 }
 
 static s8 lbl_244_bss_45;
-static s8 S_ikki;
+static s8 lbl_244_bss_46;
 static s8 lbl_244_bss_47;
 static bool hio_set;
 
@@ -565,7 +565,7 @@ static s8 gake_check(e_wb_class* i_this) {
     static f32 chk_x[4] = {14257.0f, 34775.0f, -22864.0f, -11627.0f};
     static f32 chk_z[4] = {20075.0f, -16467.0f, 9823.0f, 22601.0f};
 
-    if (S_ikki != 0) {
+    if (lbl_244_bss_46 != 0) {
         if (!daAlink_getAlinkActorClass()->checkBoarRideOwn(actor) &&
             actor->current.pos.y < -5000.0f)
         {
@@ -3430,7 +3430,7 @@ static void action(e_wb_class* i_this) {
     fopEn_enemy_c* enemy = actor;
     enemy->offDownFlg();
 
-    if (lbl_244_bss_45 != 0 || S_ikki != 0) {
+    if (lbl_244_bss_45 != 0 || lbl_244_bss_46 != 0) {
         i_this->gake_flg = gake_check(i_this);
     }
 
@@ -3616,7 +3616,7 @@ static void action(e_wb_class* i_this) {
         // Bulblin Camp
         (strcmp(dComIfGp_getStartStageName(), "F_SP118") == 0 ||
         // Gerudo Desert
-        strcmp(dComIfGp_getStartStageName(), "F_SP124") == 0 || S_ikki != 0 ||
+        strcmp(dComIfGp_getStartStageName(), "F_SP124") == 0 || lbl_244_bss_46 != 0 ||
         // Hyrule Castle
         strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0))
     {
@@ -5127,7 +5127,7 @@ static f32 dummy(){return 35.f;}
 static int daE_WB_Execute(e_wb_class* i_this) {
     if (c_start == 0) {
         if (dComIfGp_event_runCheck()) {
-            if (S_ikki != 0 || cDmrNowMidnaTalk()) {
+            if (lbl_244_bss_46 != 0 || cDmrNowMidnaTalk()) {
                 return 1;
             }
         }
@@ -5565,7 +5565,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
     }
 
     int phase_state = dComIfG_resLoad(&i_this->mPhase, i_this->resName);
-    lbl_244_bss_47 = lbl_244_bss_45 = S_ikki = 0;
+    lbl_244_bss_47 = lbl_244_bss_45 = lbl_244_bss_46 = 0;
 
     // Title Screen
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP102")) {
@@ -5574,7 +5574,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
 
     // Hyrule Field, Bridge of Eldin area
     if (!strcmp(dComIfGp_getStartStageName(), "F_SP121") && fopAcM_GetRoomNo(actor) == 0) {
-        S_ikki = 1;
+        lbl_244_bss_46 = 1;
     }
 
     if (phase_state == cPhs_COMPLEATE_e) {
