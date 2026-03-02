@@ -96,6 +96,8 @@ enum fopAc_Cull_e {
     fopAc_CULLBOX_14_e,
 #endif
     fopAc_CULLBOX_CUSTOM_e,
+    fopAc_CULLBOX_MAX_e = fopAc_CULLBOX_CUSTOM_e,
+
     fopAc_CULLSPHERE_0_e,
     fopAc_CULLSPHERE_1_e,
     fopAc_CULLSPHERE_2_e,
@@ -108,6 +110,7 @@ enum fopAc_Cull_e {
     fopAc_CULLSPHERE_8_e,
 #endif
     fopAc_CULLSPHERE_CUSTOM_e,
+    fopAc_CULLSPHERE_MAX_e = fopAc_CULLSPHERE_CUSTOM_e - fopAc_CULLSPHERE_0_e,
 };
 
 enum fopAc_attention_type {
@@ -224,7 +227,7 @@ public:
     BOOL chkCondition(u16 condition) { return (mCondition & condition) == condition; }
 
     void suspendProc(void* actor) {
-        if (field_0x10 != NULL) {
+        if (field_0x10 != 0) {
             field_0x14(actor);
         }
     }

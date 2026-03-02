@@ -8,7 +8,7 @@
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "SSystem/SComponent/c_API_controller_pad.h"
-#include <dolphin/gx.h>
+#include <gx.h>
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_DVDError.h"
 #include "m_Do/m_Do_ext.h"
@@ -99,7 +99,7 @@ void mDoRst_reset(int reset, u32 resetCode, int forceMenu) {
 }
 
 void checkDiskCallback(s32 result, DVDCommandBlock* block) {
-    block->userData = (void*)result;
+    block->userData = (void*)(intptr_t)result;
 }
 
 void mDoRst_resetCallBack(int port, void*) {

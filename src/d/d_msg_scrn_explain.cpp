@@ -82,7 +82,7 @@ dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* i_stick, u8 param_1, bool i_isUs
         JUT_ASSERT(119, fg != false);
         dPaneClass_showNullPane(mpTxScreen);
 
-        mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3line', 0, NULL);
+        mpTm_c[0] = new CPaneMgr(mpTxScreen, MULTI_CHAR('mg_3line'), 0, NULL);
         JUT_ASSERT(124, mpTm_c[0] != NULL);
 
         mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3_s', 0, NULL);
@@ -91,9 +91,9 @@ dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* i_stick, u8 param_1, bool i_isUs
         mpTmr_c[0] = NULL;
         mpTmr_c[1] = NULL;
 
-        mpTxScreen->search('n_3line')->show();
-        mpTxScreen->search('n_3fline')->hide();
-        mpTxScreen->search('n_e4line')->hide();
+        mpTxScreen->search(MULTI_CHAR('n_3line'))->show();
+        mpTxScreen->search(MULTI_CHAR('n_3fline'))->hide();
+        mpTxScreen->search(MULTI_CHAR('n_e4line'))->hide();
 
 #if VERSION == VERSION_GCN_JPN
         field_0x50 = 0.0f;
@@ -107,36 +107,36 @@ dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* i_stick, u8 param_1, bool i_isUs
         JUT_ASSERT(153, fg != false);
         dPaneClass_showNullPane(mpTxScreen);
 
-        mpScreen->search('n_all')->scale(g_MsgObject_HIO_c.mBoxTalkScaleX,
+        mpScreen->search(MULTI_CHAR('n_all'))->scale(g_MsgObject_HIO_c.mBoxTalkScaleX,
                                          g_MsgObject_HIO_c.mBoxTalkScaleY);
 #if VERSION == VERSION_GCN_JPN
         field_0x50 = 0.0f;
 
         if (dComIfGs_getOptRuby() == 0) {
-            mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3flin', 0, NULL);
-            mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3f_s', 0, NULL);
+            mpTm_c[0] = new CPaneMgr(mpTxScreen, MULTI_CHAR('mg_3flin'), 0, NULL);
+            mpTm_c[1] = new CPaneMgr(mpTxScreen, MULTI_CHAR('t3f_s'), 0, NULL);
 
-            mpTmr_c[0] = new CPaneMgr(mpTxScreen, 'mg_3f', 0, NULL);
-            mpTmr_c[1] = new CPaneMgr(mpTxScreen, 'mg_3f_s', 0, NULL);
+            mpTmr_c[0] = new CPaneMgr(mpTxScreen, MULTI_CHAR('mg_3f'), 0, NULL);
+            mpTmr_c[1] = new CPaneMgr(mpTxScreen, MULTI_CHAR('mg_3f_s'), 0, NULL);
 
-            mpTxScreen->search('n_3line')->hide();
-            mpTxScreen->search('n_3fline')->show();
-            mpTxScreen->search('n_e4line')->hide();
+            mpTxScreen->search(MULTI_CHAR('n_3line'))->hide();
+            mpTxScreen->search(MULTI_CHAR('n_3fline'))->show();
+            mpTxScreen->search(MULTI_CHAR('n_e4line'))->hide();
         } else {
-            mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3line', 0, NULL);
+            mpTm_c[0] = new CPaneMgr(mpTxScreen, MULTI_CHAR('mg_3line'), 0, NULL);
             mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3_s', 0, NULL);
 
             mpTmr_c[0] = NULL;
             mpTmr_c[1] = NULL;
 
-            mpTxScreen->search('n_3line')->show();
-            mpTxScreen->search('n_3fline')->hide();
-            mpTxScreen->search('n_e4line')->hide();
+            mpTxScreen->search(MULTI_CHAR('n_3line'))->show();
+            mpTxScreen->search(MULTI_CHAR('n_3fline'))->hide();
+            mpTxScreen->search(MULTI_CHAR('n_e4line'))->hide();
         }
 #else
         field_0x50 = -10.0f;
 
-        mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_e4lin', 0, NULL);
+        mpTm_c[0] = new CPaneMgr(mpTxScreen, MULTI_CHAR('mg_e4lin'), 0, NULL);
         JUT_ASSERT(162, mpTm_c[0] != NULL);
 
         mpTm_c[1] = new CPaneMgr(mpTxScreen, 't4_s', 0, NULL);
@@ -145,9 +145,9 @@ dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* i_stick, u8 param_1, bool i_isUs
         mpTmr_c[0] = NULL;
         mpTmr_c[1] = NULL;
 
-        mpTxScreen->search('n_3line')->hide();
-        mpTxScreen->search('n_3fline')->hide();
-        mpTxScreen->search('n_e4line')->show();
+        mpTxScreen->search(MULTI_CHAR('n_3line'))->hide();
+        mpTxScreen->search(MULTI_CHAR('n_3fline'))->hide();
+        mpTxScreen->search(MULTI_CHAR('n_e4line'))->show();
 #endif
 
         if (param_1 == 2 || param_1 == 4) {
@@ -178,17 +178,17 @@ dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* i_stick, u8 param_1, bool i_isUs
         }
     }
 
-    mpScreen->search('mg_null')->move(
-        g_MsgObject_HIO_c.mTextPosX + mpScreen->search('mg_null')->getBounds().i.x,
-        g_MsgObject_HIO_c.mTextPosY + mpScreen->search('mg_null')->getBounds().i.y);
+    mpScreen->search(MULTI_CHAR('mg_null'))->move(
+        g_MsgObject_HIO_c.mTextPosX + mpScreen->search(MULTI_CHAR('mg_null'))->getBounds().i.x,
+        g_MsgObject_HIO_c.mTextPosY + mpScreen->search(MULTI_CHAR('mg_null'))->getBounds().i.y);
 
-    mpArw_c = new CPaneMgr(mpScreen, 'set_ya_n', 0, NULL);
+    mpArw_c = new CPaneMgr(mpScreen, MULTI_CHAR('set_ya_n'), 0, NULL);
     JUT_ASSERT(241, mpArw_c != NULL);
 
-    mpMg_c[0] = new CPaneMgr(mpScreen, 'mg_null', 0, NULL);
+    mpMg_c[0] = new CPaneMgr(mpScreen, MULTI_CHAR('mg_null'), 0, NULL);
     JUT_ASSERT(244, mpMg_c[0] != NULL);
 
-    mpMg_c[1] = new CPaneMgr(mpTxScreen, 'mg_null', 0, NULL);
+    mpMg_c[1] = new CPaneMgr(mpTxScreen, MULTI_CHAR('mg_null'), 0, NULL);
     JUT_ASSERT(247, mpMg_c[1] != NULL);
 
     mpRoot_c[0] = new CPaneMgr(mpScreen, 'ROOT', 2, NULL);
@@ -296,7 +296,7 @@ void dMsgScrnExplain_c::move() {
         (this->*init_process[mStatus])();
     }
 
-    mpScreen->search('n_all')->scale(g_MsgObject_HIO_c.mBoxTalkScaleX,
+    mpScreen->search(MULTI_CHAR('n_all'))->scale(g_MsgObject_HIO_c.mBoxTalkScaleX,
                                      g_MsgObject_HIO_c.mBoxTalkScaleY);
 }
 

@@ -1552,7 +1552,7 @@ u8 data_8074C56A_debug;
 u8 data_8074C56B_debug;
 u8 data_8074C56C_debug;
 
-u32 dStage_roomControl_c::mProcID;
+fpc_ProcID dStage_roomControl_c::mProcID;
 
 s8 dStage_roomControl_c::mStayNo;
 
@@ -2456,10 +2456,10 @@ static int dStage_elstInfoInit(dStage_dt_c* i_stage, void* i_data, int param_2, 
 }
 
 static void dKankyo_create() {
-    fopKyM_fastCreate(PROC_KANKYO, NULL, NULL, NULL, NULL);
-    fopKyM_fastCreate(PROC_KYEFF, NULL, NULL, NULL, NULL);
-    fopKyM_fastCreate(PROC_KYEFF2, NULL, NULL, NULL, NULL);
-    fopKyM_fastCreate(PROC_ENVSE, NULL, NULL, NULL, NULL);
+    fopKyM_fastCreate(PROC_KANKYO, 0, NULL, NULL, NULL);
+    fopKyM_fastCreate(PROC_KYEFF, 0, NULL, NULL, NULL);
+    fopKyM_fastCreate(PROC_KYEFF2, 0, NULL, NULL, NULL);
+    fopKyM_fastCreate(PROC_ENVSE, 0, NULL, NULL, NULL);
 }
 
 static void layerMemoryInfoLoader(void* i_data, dStage_dt_c* i_stage, int param_2) {
@@ -2485,7 +2485,7 @@ static void dStage_dt_c_stageInitLoader(void* i_data, dStage_dt_c* i_stage) {
 }
 
 #if DEBUG
-static void dStage_DebugDisp() {
+void dStage_DebugDisp() {
     if (data_8074C569_debug) {
         JUTReport(30, 270, "envLayerSet: EnvRoom None");
     }
@@ -2710,7 +2710,7 @@ void dStage_Create() {
         JUT_ASSERT(4517, status);
     }
 
-    *dStage_roomControl_c::getDemoArcName() = NULL;
+    *dStage_roomControl_c::getDemoArcName() = 0;
     dKankyo_create();
 
     if (dComIfG_getStageRes("vrbox_sora.bmd")) {
@@ -2725,7 +2725,7 @@ void dStage_Delete() {
     OS_REPORT("dStage_Delete\n");
 
     char* demoArcName = dStage_roomControl_c::getDemoArcName();
-    if (*demoArcName != NULL) {
+    if (*demoArcName != '\0') {
         dComIfG_deleteObjectResMain(demoArcName);
     }
 

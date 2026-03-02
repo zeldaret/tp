@@ -857,7 +857,7 @@ BOOL cCc_Check() {
     BOOL rt = TRUE;
     for (int i = 0; i < ARRAY_SIZEU(DynamicNameTable); i++) {
         uintptr_t ptr = (uintptr_t)DMC[i];
-        if (ptr != NULL) {
+        if (ptr != 0) {
             u32 ptr_hi_byte = ptr >> 0x18;
             if (ptr_hi_byte < 0x80 || ptr_hi_byte > 0x83) {
                 // "cCc_Check invalid pointer detected"
@@ -1022,7 +1022,7 @@ int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 i_ProfName) {
         (request_of_phase_process_fn)cDylPhs::phase_03
     };
 
-    if (i_phase->id == cPhs_NEXT_e) {
+    if (i_phase->id == 2) {
         return cPhs_COMPLEATE_e;
     }
 
@@ -1030,11 +1030,11 @@ int cDylPhs::Link(request_of_phase_process_class* i_phase, s16 i_ProfName) {
 }
 
 int cDylPhs::Unlink(request_of_phase_process_class* i_phase, s16 i_ProfName) {
-    JUT_ASSERT(460, i_phase->id != cPhs_LOADING_e);
+    JUT_ASSERT(460, i_phase->id != 1);
 
-    if (i_phase->id == cPhs_NEXT_e) {
+    if (i_phase->id == 2) {
         int ret = cDyl_Unlink(i_ProfName);
-        i_phase->id = cPhs_INIT_e;
+        i_phase->id = 0;
         return ret;
     }
 

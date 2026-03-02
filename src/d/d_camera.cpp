@@ -10131,7 +10131,7 @@ bool dCamera_c::eventCamera(s32 param_0) {
         }
 
         int* sp90_i;
-        if (getEvStringData(sp90, "Trim", "DEFAULT") != NULL) {
+        if (getEvStringData(sp90, "Trim", "DEFAULT") != false) {
             sp90_i = (int*)sp90;
             if (*sp90_i == 'STAN') {
                 mEventData.field_0x1c = 0;
@@ -11212,7 +11212,7 @@ camera_process_profile_definition g_profile_CAMERA = {
     /* List Prio          */ fpcPi_CURRENT_e,
     /* Proc Name          */ PROC_CAMERA,
     /* Proc SubMtd        */ &g_fpcLf_Method.base,
-    /* Size               */ sizeof(dCamera_c),
+    /* Size               */ sizeof(camera_class),
     /* Size Other         */ 0,
     /* Parameters         */ 0,
     /* View Leaf SubMtd   */ &g_fopVw_Method,
@@ -11233,7 +11233,7 @@ camera_process_profile_definition g_profile_CAMERA2 = {
     /* List Prio          */ fpcPi_CURRENT_e,
     /* Proc Name          */ PROC_CAMERA2,
     /* Proc SubMtd        */ &g_fpcLf_Method.base,
-    /* Size               */ sizeof(dCamera_c),
+    /* Size               */ sizeof(camera_class),
     /* Size Other         */ 0,
     /* Parameters         */ 0,
     /* View Leaf SubMtd   */ &g_fopVw_Method,
