@@ -409,7 +409,7 @@ static int daE_WB_Draw(e_wb_class* i_this) {
         e_rd_class* pfVar4 = (e_rd_class*)fopAcM_SearchByID(i_this->rd_id);
 
         if ((i_this->StatusFlag & 1) != 0) {
-            if (pfVar4 && pfVar4->ride_type == 2) {
+            if (pfVar4 && pfVar4->ride_mode == 2) {
                 if (i_this->kiba == 0) {
                     model = pfVar4->anm_p->getModel();
                     cVar7 = 1;
