@@ -524,7 +524,11 @@ static u8 __THPReadHuffmanTableSpecification() {
     __THPHuffmanCodeTab = (u16*)((u32)__THPWorkArea + 256 + 1);
     length = (u16)((__THPInfo->c)[0] << 8 | (__THPInfo->c)[1]);
     __THPInfo->c += 2;
+#if PLATFORM_SHIELD
+    length -= (u16)2;
+#else
     length -= 2;
+#endif
 
     for (;;) {
         i = (*(__THPInfo->c)++);
@@ -543,8 +547,12 @@ static u8 __THPReadHuffmanTableSpecification() {
         __THPHuffGenerateSizeTable();
         __THPHuffGenerateCodeTable();
         __THPHuffGenerateDecoderTables(tab_index);
-        __THPInfo->validHuffmanTabs |= 1 << tab_index;
-        length -= 17 + num_Vij;
+#if PLATFORM_SHIELD
+        __THPInfo->validHuffmanTabs |= (u8)(1 << tab_index);
+#else
+        __THPInfo->validHuffmanTabs |= (1 << tab_index);
+#endif
+        U16_SUB_2(length, (17 + num_Vij));
 
         if (length == 0) {
             break;
@@ -1627,7 +1635,7 @@ static void __THPHuffDecodeDCTCompY(__REGISTER THPFileInfo* info, THPCoeff* bloc
             }
 
             if (__cntlzw((u32)diff) > 32 - t) {
-                diff += ((0xFFFFFFFF << t) + 1);
+                S16_ADD_2(diff, (0xFFFFFFFF << t) + 1);
             }
         };
 
@@ -2331,7 +2339,7 @@ static void __THPHuffDecodeDCTCompU(__REGISTER THPFileInfo* info, THPCoeff* bloc
         ASSERTLINE(5070, info->cnt <=33);
 
         if (__cntlzw((u32)diff) > 32 - t) {
-            diff += ((0xFFFFFFFF << t) + 1);
+            S16_ADD_2(diff, (0xFFFFFFFF << t) + 1);
         }
     }
 
@@ -2475,7 +2483,7 @@ static void __THPHuffDecodeDCTCompV(__REGISTER THPFileInfo* info, THPCoeff* bloc
         ASSERTLINE(5255, info->cnt <=33);
 
         if (__cntlzw((u32)diff) > 32 - t) {
-            diff += ((0xFFFFFFFF << t) + 1);
+            S16_ADD_2(diff, (0xFFFFFFFF << t) + 1);
         }
     }
 
