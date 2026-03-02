@@ -198,7 +198,13 @@ inline int daYkgr_c::_execute() {
     if (m_alpha_flag == 0) {
         if (m_alpha > 0) {
             if (m_alpha > l_HIO.field_0xc) {
-                m_alpha = m_alpha - l_HIO.field_0xc;
+                // this doesn't feel right but it looks an awful lot
+                // like the cast only exists in Shield+ShieldD
+#if PLATFORM_SHIELD
+                m_alpha -= (u8)l_HIO.field_0xc;
+#else
+                m_alpha -= l_HIO.field_0xc;
+#endif
             } else {
                 m_alpha = 0;
             }
@@ -206,7 +212,11 @@ inline int daYkgr_c::_execute() {
     } else {
         if (m_alpha < 0xff) {
             if (m_alpha < 0xff - l_HIO.field_0xc) {
-                m_alpha = m_alpha + l_HIO.field_0xc;
+#if PLATFORM_SHIELD
+                m_alpha += (u8)l_HIO.field_0xc;
+#else
+                m_alpha += l_HIO.field_0xc;
+#endif
             } else {
                 m_alpha = 0xff;
             }
@@ -235,10 +245,12 @@ void daYkgr_c::set_mtx() {
     MTXCopy(mDoMtx_stack_c::get(), field_0x570);
 }
 
-inline int daYkgr_c::_draw() {
-    bool rv;
+// typically we would expect an int return type, but debug seems to indicate this returns a bool
+inline bool daYkgr_c::_draw() {
     f32 alpha = 255.0f;
     if (strcmp(dComIfGp_getStartStageName(), "D_MN04A") == 0) {
+        int dummy; // force stack pointer into r31 on debug
+
         alpha = dComIfGs_BossLife_public_Get() / 100.0f;
         m_alpha = alpha * 255.0f;
         if (m_alpha == 0) {
@@ -246,7 +258,7 @@ inline int daYkgr_c::_draw() {
         }
     }
     if (m_alpha == 0) {
-        rv = true;
+        return true;
     } else {
         set_mtx();
         if  (m_emitter != NULL) {
@@ -258,9 +270,8 @@ inline int daYkgr_c::_draw() {
                 m_emitter->setGlobalAlpha(m_alpha);
             }
         }
-        rv = true;
+        return true;
     }
-    return rv;
 }
 
 static int daYkgrDraw(void* i_this) {
