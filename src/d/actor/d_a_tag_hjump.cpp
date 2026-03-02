@@ -26,6 +26,11 @@ static char const l_arcName[] = "Hfence";
 #if DEBUG
 daTagHjump_HIO_c l_HIO;
 
+daTagHjump_HIO_c::daTagHjump_HIO_c() {
+    height = 350.0f;
+    depth = 400.0f;
+}
+
 void daTagHjump_HIO_c::genMessage(JORMContext* ctx) {
     ctx->genSlider("高さ", &height, 0.0f, 500.0f);
     ctx->genSlider("奥行き", &depth, 0.0f, 1000.0f);
@@ -107,11 +112,6 @@ int daTagHjump_c::create() {
 
     field_0x5b4 = current.pos.y + scale.y;
     return phase;
-}
-
-daTagHjump_HIO_c::daTagHjump_HIO_c() {
-    height = 350.0f;
-    depth = 400.0f;
 }
 
 static int daTagHjump_Create(fopAc_ac_c* i_this) {
