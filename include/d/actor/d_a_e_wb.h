@@ -57,7 +57,7 @@ enum daE_WB_ACT {
 };
 
 struct himo_s {
-    /* 0x0 */ cXyz field_0x0[16];
+    /* 0x0 */ cXyz node[16];
 };
 
 
@@ -97,13 +97,13 @@ public:
 
 public:
     /* 0x0000 */ fopEn_enemy_c enemy;                   ///< @brief Base enemy class instance.
-    /* 0x05AC */ request_of_phase_process_class mPhase;  ///< @brief Phase process request handler.
+    /* 0x05AC */ request_of_phase_process_class phase;  ///< @brief Phase process request handler.
     /* 0x05B4 */ s16 mode;  ///< @brief Current sub-action mode within the run action.
     /* 0x05B8 */ char* resName;   ///< @brief Resource name for loading models/animations.
     /* 0x05BC */ u8 arg0;        ///< @brief Creation parameter 1.
     /* 0x05BD */ u8 arg1;       ///< @brief Creation parameter 2.
     /* 0x05BE */ u8 field_0x5be;
-    /* 0x05BF */ bool field_0x5bf;
+    /* 0x05BF */ bool no_draw;
     /* 0x05C0 */ u8 field_0x5c0;
     /* 0x05C4 */ cXyz eye;
     /* 0x05D0 */ cXyz field_0x5d0;
@@ -120,11 +120,11 @@ public:
     /* 0x0692 */ s16 ride_action;
     /* 0x0694 */ int shadow_key;     ///< @brief Shadow drawing key.
     /* 0x0698 */ s16 timer[4];
-    /* 0x06A0 */ s16 field_0x6a0;
+    /* 0x06A0 */ s16 wait_timer;
     /* 0x06A2 */ u8 field_0x6a2[0x6ae - 0x6a2];
-    /* 0x06AE */ csXyz field_0x6ae;
-    /* 0x06B4 */ csXyz field_0x6b4;
-    /* 0x06BA */ s16 field_0x6ba;
+    /* 0x06AE */ csXyz damage_rot_angl;
+    /* 0x06B4 */ csXyz damage_rot_spd;
+    /* 0x06BA */ s16 damage_timer;
     /* 0x06BC */ u8 field_0x6bc;
     /* 0x06BD */ s8 pursuit_flg;   ///< @brief Flag indicating pursuit mode.
     /* 0x06BE */ u16 StatusFlag;  ///< @brief Bitfield for various status flags.
@@ -143,12 +143,12 @@ public:
     /* 0x06E4 */ s8 field_0x6e4;
     /* 0x06E5 */ u8 field_0x6e5[0x6ec - 0x6e5];
     /* 0x06EC */ csXyz field_0x6ec[0x1d];
-    /* 0x079A */ s16 mBodyTiltAngle;  ///< @brief Body tilt angle based on turning.
-    /* 0x079C */ u8 wait_timer;
+    /* 0x079A */ s16 body_angle;  ///< @brief Body tilt angle based on turning.
+    /* 0x079C */ u8 start_timer;
     /* 0x079D */ s8 leader;
     /* 0x079E */ s8 lap_num;  ///< @brief Lap or progress count affecting path generation.
     /* 0x079F */ s8 path_adjust_count;  ///< @brief Counter for periodic path adjustment.
-    /* 0x07A0 */ s16 field_0x7a0;
+    /* 0x07A0 */ s16 dodge_angle;
     /* 0x07A2 */ s8 kiba;
     /* 0x07A4 */ s16 field_0x7a4;
     /* 0x07A6 */ s8 field_0x7a6;
@@ -156,10 +156,10 @@ public:
     /* 0x07A8 */ f32 pass;
     /* 0x07AC */ dBgS_AcchCir AcchCir;
     /* 0x07EC */ dBgS_ObjAcch Bgc;
-    /* 0x09C4 */ dCcD_Stts mStts;
+    /* 0x09C4 */ dCcD_Stts Stts;
     /* 0x0A00 */ dCcD_Sph cc_sph[7];
     /* 0x1288 */ dCcD_Sph at_sph;
-    /* 0x13C0 */ dCcU_AtInfo field_0x13c0;
+    /* 0x13C0 */ dCcU_AtInfo at_info;
     /* 0x13E4 */ u8 field_0x13e4;
     /* 0x13E8 */ u32 field_0x13e8[2];
     /* 0x13F0 */ u32 field_0x13f0;
@@ -178,17 +178,17 @@ public:
     /* 0x142D */ u8 collision_flg;  ///< @brief Flags for collision states.
     /* 0x142E */ u8 mLandingFlag;     ///< @brief Flag for landing after jump.
     /* 0x142F */ s8 gake_flg;   ///< @brief Timer to cap speed at 30.
-    /* 0x1430 */ s8 field_0x1430;
+    /* 0x1430 */ s8 demo_stop;
     /* 0x1432 */ s16 dash_timer;
     /* 0x1434 */ fpc_ProcID rd_id;  // Rider actor ID? ///< @brief Process ID of rider actor.
-    /* 0x1438 */ cXyz field_0x1438[2];
-    /* 0x1450 */ himo_s field_0x1450[2];
-    /* 0x15D0 */ mDoExt_3DlineMat1_c field_0x15d0[2];
-    /* 0x1648 */ mDoExt_3DlineMat1_c field_0x1648;
+    /* 0x1438 */ cXyz rein_hand_pos[2];
+    /* 0x1450 */ himo_s himo[2];
+    /* 0x15D0 */ mDoExt_3DlineMat1_c himo_mat[2];
+    /* 0x1648 */ mDoExt_3DlineMat1_c himo_tex;
     /* 0x1684 */ f32 anm_time;  ///< @brief Duration or timer for animation.
     /* 0x1688 */ s16 field_0x1688;
     /* 0x168A */ s16 field_0x168a;
-    /* 0x168C */ f32 field_0x168c;
+    /* 0x168C */ f32 rein_spd;
     /* 0x1690 */ f32 acceleration;
     /* 0x1694 */ u8 field_0x1694[0x169e - 0x1694];
     /* 0x169E */ s16 demo_mode;
