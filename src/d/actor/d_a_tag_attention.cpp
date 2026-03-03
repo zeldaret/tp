@@ -13,6 +13,11 @@
 #if DEBUG
 daAttp_HIO_c l_HIO;
 
+daAttp_HIO_c::daAttp_HIO_c() {
+    type_spec = 0;
+    dist_max = dist_max_release = dist_adjust = upper_y = lower_y = 0.0f;
+}
+
 void daAttp_HIO_c::genMessage(JORMContext* ctx) {
     static const char* l_type_name[37] = {
         "注目なし - ダミー",       // No focus - dummy
@@ -258,11 +263,6 @@ int daAttp_c::_delete() {
     return 1;
 }
 
-daAttp_HIO_c::daAttp_HIO_c() {
-    type_spec = 0;
-    dist_max = dist_max_release = dist_adjust = upper_y = lower_y = 0.0f;
-}
-
 static int daAttp_Draw(daAttp_c* i_this) {
     return i_this->draw();
 }
@@ -273,13 +273,13 @@ static int daAttp_Execute(daAttp_c* i_this) {
 }
 
 static int daAttp_Delete(daAttp_c* i_this) {
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterDeleteID(i_this, "Attp");
     return i_this->_delete();
 }
 
 static int daAttp_Create(fopAc_ac_c* i_this) {
     daAttp_c* attp = static_cast<daAttp_c*>(i_this);
-    fpc_ProcID id = fopAcM_GetID(i_this);
+    fopAcM_RegisterCreateID(i_this, "Attp");
     return attp->create();
 }
 
