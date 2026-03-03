@@ -136,9 +136,11 @@ u16 daTag_Cam_c::getAreaNoChk() {
     return home.angle.z & 0x200;
 }
 
+#if PLATFORM_GCN
 static u8 const lit_3874[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+#endif
 
 int daTag_Cam_c::create() {
     fopAcM_ct(this, daTag_Cam_c);
