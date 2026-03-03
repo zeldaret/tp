@@ -209,7 +209,6 @@ int daSpiral_c::create() {
     return cPhs_COMPLEATE_e;
 }
 
-// DEBUG NONMATCHING - regalloc
 int daSpiral_c::CreateHeap() {
     J3DModelData* modelData = getModelData();
     JUT_ASSERT(338, modelData != NULL);
@@ -223,35 +222,38 @@ int daSpiral_c::CreateHeap() {
         return 0;
     }
 
-    cBgD_t* bgd = (cBgD_t*)dComIfG_getObjectRes(getAlwaysArcName(), getSpiralDzbName(mType));
-    JUT_ASSERT(356, bgd != NULL);
-    bool spiral_rt = mpSpiralDzb->Set(bgd, 1, &mSpiralBgMtx);
-    if (spiral_rt == true) {
-        return 0;
+    {
+        cBgD_t* bgd = (cBgD_t*)dComIfG_getObjectRes(getAlwaysArcName(), getSpiralDzbName(mType));
+        JUT_ASSERT(356, bgd != NULL);
+        bool spiral_rt = mpSpiralDzb->Set(bgd, 1, &mSpiralBgMtx);
+        if (spiral_rt == true) {
+            return 0;
+        }
+
+        mDoorDarkDzb = new dBgW();
+        if (mDoorDarkDzb == NULL) {
+            return 0;
+        }
     }
 
-    mDoorDarkDzb = new dBgW();
-    if (mDoorDarkDzb == NULL) {
-        return 0;
-    }
+    {
+        cBgD_t* bgd = (cBgD_t*)dComIfG_getObjectRes(getAlwaysArcName(), getDzb());
+        JUT_ASSERT(375, bgd != NULL);
 
-    bgd = (cBgD_t*)dComIfG_getObjectRes(getAlwaysArcName(), getDzb());
-    JUT_ASSERT(375, bgd != NULL);
+        cXyz dzb_pos(l_dzb_offset);
+        mDoMtx_stack_c::YrotS(home.angle.y);
+        mDoMtx_stack_c::multVec(&dzb_pos, &dzb_pos);
+        mDoMtx_stack_c::transS(current.pos.x + dzb_pos.x, current.pos.y + dzb_pos.y, current.pos.z + dzb_pos.z);
+        mDoMtx_stack_c::YrotM(home.angle.y);
+        cMtx_copy(mDoMtx_stack_c::get(), mDoorDarkBgMtx);
 
-    cXyz dzb_pos(l_dzb_offset);
-    mDoMtx_stack_c::YrotS(home.angle.y);
-    mDoMtx_stack_c::multVec(&dzb_pos, &dzb_pos);
-    mDoMtx_stack_c::transS(current.pos.x + dzb_pos.x, current.pos.y + dzb_pos.y, current.pos.z + dzb_pos.z);
-    mDoMtx_stack_c::YrotM(home.angle.y);
-    cMtx_copy(mDoMtx_stack_c::get(), mDoorDarkBgMtx);
-
-    bool dark_rt = mDoorDarkDzb->Set(bgd, 1, &mDoorDarkBgMtx);
-    if (dark_rt == true) {
-        return 0;
+        bool dark_rt = mDoorDarkDzb->Set(bgd, 1, &mDoorDarkBgMtx);
+        if (dark_rt == true) {
+            return 0;
+        }
     }
 
     if (checkMakeStop() && !mStop.create(this)) {
-        int _;
         return 0;
     }
 
@@ -805,11 +807,8 @@ BOOL daSpiral_c::drawCheck(int) {
 }
 
 #if DEBUG
-// DEBUG NONMATCHING - stack
 void daSpiral_c::debugDraw() {
-    GXColor spC = {0xFF, 0xFF, 0xFF, 0xFF};
-    GXColor sp8 = spC;
-    GXColor color = sp8;
+    GXColor color = (GXColor){0xFF, 0xFF, 0xFF, 0xFF};
 
     cXyz sp68[4];
     cXyz sp38[4];
@@ -843,7 +842,7 @@ void daSpiral_c::debugDraw() {
     }
 
     if (KREG_S(9) == 1000) {
-        dDbVw_drawQuadOpa(sp68, spC, TRUE);
+        dDbVw_drawQuadOpa(sp68, color, TRUE);
         dDbVw_drawSphereXlu(current.pos, 30.0f, color, TRUE);
     }
 
