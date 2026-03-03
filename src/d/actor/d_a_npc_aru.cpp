@@ -1258,6 +1258,7 @@ void daNpc_Aru_c::adjustMoveDir() {
         }
     }
 
+    s16 sVar4;
     if (bVar1[1] != 0 && bVar1[2] != 0) {
         mTimer = mpHIO->m.no_turn_time;
 
@@ -1294,7 +1295,7 @@ void daNpc_Aru_c::adjustMoveDir() {
                 field_0xfca = 2;
             }
         } else {
-            s16 sVar4 = sVar3[0] - mCurAngle.y;
+            sVar4 = sVar3[0] - mCurAngle.y;
 
             if (abs(sVar4) > 0x7800) {
                 if (mActorDirection == 1 || mActorDirection == 2 || mActorDirection == 3) {
