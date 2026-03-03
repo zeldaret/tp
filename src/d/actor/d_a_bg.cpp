@@ -42,9 +42,11 @@ static int createMatAnm(J3DModelData* i_modelData, u16 i_materialID) {
     return 1;
 }
 
+#if PLATFORM_GCN
 static u8 const lit_3756[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
+#endif
 
 int daBg_btkAnm_c::create(J3DModelData* i_modelData, J3DAnmTextureSRTKey* i_btk, int i_anmPlay) {
     mpBtk = new mDoExt_btkAnm();
@@ -243,6 +245,12 @@ int daBg_c::createHeap() {
     return 1;
 }
 
+#if DEBUG
+static void dummy() {
+    GXColor color = {0xC0, 0x00, 0x00, 0x00};
+}
+#endif
+
 daBg_c::~daBg_c() {
     int roomNo = fopAcM_GetParam(this);
 
@@ -252,7 +260,7 @@ daBg_c::~daBg_c() {
     }
 
     if (heap != NULL && mpBgW != NULL) {
-        dComIfG_Bgsp().Release((dBgW_Base*)mpBgW);
+        dComIfG_Bgsp().Release(mpBgW);
         dStage_roomControl_c::setBgW(roomNo, NULL);
     }
 
