@@ -7036,9 +7036,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     return 1;
 }
 
-static u8 jv_offset[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+static Vec jv_offset = {0.0f, 0.0f, 0.0f};
 
 static int daE_RD_IsDelete(e_rd_class*) {
     return 1;
@@ -7436,8 +7434,8 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             }
         } else if (i_this->arg0 == 7) {
             i_this->action = ACTION_NORMAL;
-            u8 path_no = actor->home.angle.x & 0xFF;
-            if ((u32)(path_no) != 0xFF) {
+            u32 path_no = actor->home.angle.x & 0xFF;
+            if (path_no != 0xFF) {
                 i_this->ppd = dPath_GetRoomPath(path_no, fopAcM_GetRoomNo(actor));
                 OS_REPORT("//////////////E_RD PPD %x!!\n", i_this->ppd);
                 if (i_this->ppd == NULL) {

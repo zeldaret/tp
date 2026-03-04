@@ -5,8 +5,8 @@
  
  #include "d/dolzel_rel.h" // IWYU pragma: keep
  #include "d/actor/d_a_e_rdb.h"
- #include "d/actor/d_a_obj_crtgate.h"
- #include "d/actor/d_a_obj_crtsteel.h"
+ #include "d/actor/d_a_obj_crvgate.h"
+ #include "d/actor/d_a_obj_crvsteel.h"
  #include "d/d_msg_object.h"
 #include "d/actor/d_a_e_wb.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -3538,7 +3538,7 @@ static void action(e_wb_class* i_this) {
     case ACT_PL_RIDE2:
         e_wb_pl_ride(i_this);
         break;
-    case ACT_Crt_WAIT:
+    case ACT_CRT_WAIT:
         e_wb_crt_wait(i_this);
     }
 
@@ -4575,10 +4575,10 @@ static void demo_camera(e_wb_class* i_this) {
         }
     } break;
     case 62: {
-        daObjCrtSTEEL_c* crtSteel = (daObjCrtSTEEL_c*)fopAcM_SearchByName(PROC_Obj_CrtSTEEL);
+        daObjCRVSTEEL_c* crtSteel = (daObjCRVSTEEL_c*)fopAcM_SearchByName(PROC_Obj_CRVSTEEL);
         if (i_this->demo_timer == (s16)(20 + AREG_S(4))) {
             crtSteel->OpenSet(20.0f + AREG_F(3), 350.0f + AREG_F(4));
-            Z2GetAudioMgr()->seStart(Z2SE_OBJ_CrtN_URA_GATE, &crtSteel->current.pos, 0, 0, 1.0f,
+            Z2GetAudioMgr()->seStart(Z2SE_OBJ_CRVN_URA_GATE, &crtSteel->current.pos, 0, 0, 1.0f,
                                      1.0f, -1.0f, -1.0f, 0);
         }
 
@@ -4690,7 +4690,7 @@ static void demo_camera(e_wb_class* i_this) {
         ato.set(1800.0f, pla->current.pos.y, -192.0f);
         pla->setPlayerPosAndAngle(&ato, 0, 0);
         if (i_this->demo_timer == (s16)(2 + VREG_S(1))) {
-            daObjCrtGATE_c* crtGate = (daObjCrtGATE_c*)fopAcM_SearchByName(PROC_Obj_CrtGATE);
+            daObjCRVGATE_c* crtGate = (daObjCRVGATE_c*)fopAcM_SearchByName(PROC_Obj_CRVGATE);
             crtGate->SetB_Close();
         }
 
@@ -5765,7 +5765,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
                 if (fopAcM_GetRoomNo(actor) == 1) {
                     actor->current.pos.set(1500.0f, 0.0f, 1100.0f);
                     actor->current.angle.y = 0x2000;
-                    i_this->action = ACT_Crt_WAIT;
+                    i_this->action = ACT_CRT_WAIT;
                     i_this->field_0x1720 = 1;
                 } else {
                     if (fopAcM_GetRoomNo(actor) == 2) {
