@@ -525,8 +525,8 @@ def RevolutionLib(lib_name: str, objects: List[Object], extra_cflags=[]) -> Dict
 
 # Helper function for REL script objects
 def Rel(lib_name: str, objects: List[Object], isInDol=False) -> Dict[str, Any]:
-    if (config.version == "ShieldD" or config.version == "Shield") and isInDol:
-        # For Shield version, some RELs were moved into the DOL
+    if (config.version == "ShieldD") and isInDol:
+        # For Shield Debug version, some RELs were moved into the DOL
         return {
             "lib": lib_name,
             "mw_version": MWVersion(config.version),
@@ -2329,7 +2329,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_swpush5"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_obj_yobikusa"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_scene_exit2"),
-    ActorRel(MatchingFor(ALL_GCN), "d_a_shop_item"),
+    ActorRel(MatchingFor(ALL_GCN), "d_a_shop_item", [], True),
     ActorRel(MatchingFor(ALL_GCN), "d_a_sq"),
     ActorRel(MatchingFor(ALL_GCN), "d_a_swc00", [], True),
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_CstaSw"), # debug weak func order
@@ -2953,7 +2953,7 @@ config.libs = [
     ActorRel(MatchingFor(ALL_GCN, ALL_WII, "Shield"), "d_a_tag_setBall"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_setrestart"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_shop_camera"), # debug weak func order
-    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_shop_item", [], True), # debug weak func order
+    ActorRel(MatchingFor(ALL_GCN), "d_a_tag_shop_item"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_smk_emt"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_spinner"), # debug weak func order
     ActorRel(MatchingFor(ALL_GCN), "d_a_tag_sppath"), # debug weak func order

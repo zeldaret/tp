@@ -67,12 +67,7 @@ public:
         
     }
 
-    void setBlackColor(u64 i_tag, JUtility::TColor i_color) {
-        J2DPicture* picture = getPicture(i_tag);
-        JUT_ASSERT(1570, picture != NULL);
-
-        picture->setBlack(i_color);
-    }
+    void setBlackColor(u64 i_tag, JUtility::TColor i_color);
 
     class anm_c {
     public:
