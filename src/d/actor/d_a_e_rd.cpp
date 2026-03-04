@@ -791,12 +791,12 @@ static void ride_off(e_rd_class* i_this) {
     e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
 
     if (boar != NULL) {
-        UNSET_FLAG(boar->StatusFlag, i_this->boar_stand, u16);
+        UNSET_FLAG(boar->status_flag, i_this->boar_stand, u16);
         i_this->boar_stand = 0;
 
         if (boar->action != 22 && boar->action != 23 && boar->action != 24) {
             if (boar->action == 1) {
-                if ((boar->StatusFlag & 3) != 0) {
+                if ((boar->status_flag & 3) != 0) {
                     boar->action = 6;
                 } else {
                     boar->action = 0;
@@ -805,7 +805,7 @@ static void ride_off(e_rd_class* i_this) {
                 boar->mode = 0;
             } else if (boar->action == 21) {
                 boar->mode = 0;
-            } else if ((boar->StatusFlag & 1) == 0) {
+            } else if ((boar->status_flag & 1) == 0) {
                 if (boar->action == 6 && (boar->mode == 2 || boar->mode == 3)) {
                     boar->mode = 1;
                 } else {
@@ -838,7 +838,7 @@ static void* s_wb_sub(void* i_actor, void* i_data) {
         if (boar->action != ACTION_DROP && boar->action != ACTION_DAMAGE
             && boar->action != ACTION_A_DAMAGE && boar->action != ACTION_STAND) {
             if (i_this->actor_set == boar->leader &&
-                (data_80519230 != 0 || (boar->StatusFlag & 3) != 3) && target_info_count < 10) {
+                (data_80519230 != 0 || (boar->status_flag & 3) != 3) && target_info_count < 10) {
                 target_info[target_info_count] = (fopAc_ac_c*)i_actor;
                 target_info_count++;
             }
@@ -921,10 +921,10 @@ static void wb_check(e_rd_class* i_this, s16 param_2) {
         if (boar != NULL) {
             if (desert_substage != 0) {
                 if (i_this->weapon_type != WEAPON_TYPE_CLUB) {
-                    if ((boar->StatusFlag & 1) == 0) {
+                    if ((boar->status_flag & 1) == 0) {
                         return;
                     }
-                } else if ((boar->StatusFlag & 1) != 0) {
+                } else if ((boar->status_flag & 1) != 0) {
                     return;
                 }
             }
@@ -932,11 +932,11 @@ static void wb_check(e_rd_class* i_this, s16 param_2) {
             i_this->action = ACTION_WB_SEARCH;
             i_this->mode = 0;
 
-            if ((boar->StatusFlag & 1) == 0) {
-                boar->StatusFlag |= (u16) 1;
+            if ((boar->status_flag & 1) == 0) {
+                boar->status_flag |= (u16) 1;
                 i_this->boar_stand = 1;
-            } else if ((boar->StatusFlag & 2) == 0) {
-                boar->StatusFlag |= (u16) 2;
+            } else if ((boar->status_flag & 2) == 0) {
+                boar->status_flag |= (u16) 2;
                 i_this->boar_stand = 2;
             }
         }
@@ -952,7 +952,7 @@ static BOOL wb_init_ride(e_rd_class* i_this) {
         i_this->mode = 0;
         i_this->ride_mode = RIDE_MODE_RIDE;
         i_this->boar_stand = i_this->arg0;
-        boar->StatusFlag |= (s8)i_this->arg0;
+        boar->status_flag |= (s8)i_this->arg0;
         boar->action = 1;
 
         if (i_this->weapon_type != WEAPON_TYPE_NONE && i_this->boar_stand == 1) {
@@ -2135,7 +2135,7 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
     }
 
     e_wb_class* boar = (e_wb_class*) actor;
-    if ((boar->StatusFlag & 3) == 0) {
+    if ((boar->status_flag & 3) == 0) {
         OS_REPORT("......BOSS DL !!!!\n");
         if (boar->action == 1) {
             boar->action = 0;
@@ -2208,7 +2208,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
         fopAcM_setStageLayer(enemy);
     }
 
-    if ((boar->StatusFlag & 3) == 0) {
+    if ((boar->status_flag & 3) == 0) {
         fopAcM_delete(enemy);
         return;
     }
@@ -2220,7 +2220,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
         }
     }
 
-    if ((boar->StatusFlag & 1) == 0 && boar->action == ACTION_BOW2 && i_this->mode != 40) {
+    if ((boar->status_flag & 1) == 0 && boar->action == ACTION_BOW2 && i_this->mode != 40) {
         anm_init(i_this, BCK_RD_RRUN02_BACK, 5.0f, 2, 1.0f);
         i_this->mode = 40;
 
@@ -2235,7 +2235,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
     switch (i_this->mode) {
         case 0:
-            if ((boar->StatusFlag & 4) != 0) {
+            if ((boar->status_flag & 4) != 0) {
                 if (i_this->boar_stand == 1) {
                     if (boar->range < 0) {
                         anm_init(i_this, BCK_RD_RSTEP_L, 10.0f, 2, 1.0f);
@@ -2246,7 +2246,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     anm_init(i_this, BCK_RD_RSTEP_BACK, 10.0f, 2, 1.0f);
                 }
             } else {
-                if ((boar->StatusFlag & 8) != 0) {
+                if ((boar->status_flag & 8) != 0) {
                     if (i_this->boar_stand == 1) {
                         anm_init(i_this, BCK_RD_RDAMAGE, 3.0f, 0, 1.0f);
                     } else {
@@ -2255,14 +2255,14 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
                     i_this->timer[1] = cM_rndF(50.0f) + 50.0f;
                 } else {
-                    if ((boar->StatusFlag & 16) != 0) {
+                    if ((boar->status_flag & 16) != 0) {
                         if (i_this->boar_stand == 1) {
                             anm_init(i_this, BCK_RD_RRUN, 5.0f, 2, 1.0f);
                         } else {
                             anm_init(i_this, BCK_RD_RRUN_BACK, 5.0f, 2, 1.0f);
                         }
                     } else {
-                        if ((boar->StatusFlag & 32) != 0) {
+                        if ((boar->status_flag & 32) != 0) {
                             if (i_this->boar_stand == 1) {
                                 anm_init(i_this, BCK_RD_RWAIT, 5.0f, 2, 1.0f);
                             } else {
@@ -2482,9 +2482,9 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
 
         switch (i_this->mode) {
             case 0: {
-                if ((boar->StatusFlag & 0x400) != 0) {
+                if ((boar->status_flag & 0x400) != 0) {
                     anm_init(i_this, e_rdb_class::BCK_RB_RSTARTLOOP, 10.0f, 2, 1.0f);
-                } else if ((boar->StatusFlag & 0x800) != 0) {
+                } else if ((boar->status_flag & 0x800) != 0) {
                     anm_init(i_this, e_rdb_class::BCK_RB_RSTART, 10.0f, 2, 1.0f);
                 }
 
@@ -2536,7 +2536,7 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
         }
 
         // check if we need to jump a fence
-        if ((boar->StatusFlag & 0x100) != 0) {
+        if ((boar->status_flag & 0x100) != 0) {
             i_this->action = ACTION_WB_BJUMP;
             i_this->mode = 0;
         }
@@ -2574,7 +2574,7 @@ static void e_rd_wb_bjump(e_rd_class* i_this) {
                 break;
 
             case 2:
-                if ((boar->StatusFlag & 0x200) != 0) {
+                if ((boar->status_flag & 0x200) != 0) {
                     anm_init(i_this, BCK_RD_RUN02, 2.0f, 0, 1.0f);
                     i_this->mode = 3;
                 }
@@ -2699,7 +2699,7 @@ static void e_rd_s_damage(e_rd_class* i_this) {
             if (i_this->boar_stand != 0) {
                 e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
                 if (boar != NULL) {
-                    UNSET_FLAG(boar->StatusFlag, i_this->boar_stand, u16);
+                    UNSET_FLAG(boar->status_flag, i_this->boar_stand, u16);
                 }
 
                 i_this->boar_stand = 0;
@@ -2799,7 +2799,7 @@ static void rd_disappear(e_rd_class* i_this) {
     if (i_this->boar_stand != 0) {
         e_wb_class* boar = (e_wb_class*)fopAcM_SearchByID(i_this->boar_id);
         if (boar != NULL) {
-            UNSET_FLAG(boar->StatusFlag, i_this->boar_stand, u16);
+            UNSET_FLAG(boar->status_flag, i_this->boar_stand, u16);
             if (boar->action == 1) {
                 boar->action = 0;
             }
@@ -3904,7 +3904,7 @@ static void e_rd_kiba_end(e_rd_class* i_this) {
                 i_this->aim_type = 1;
             }
 
-            if ((boar->StatusFlag & 0x100) != 0) {
+            if ((boar->status_flag & 0x100) != 0) {
                 i_this->action = ACTION_WB_BJUMP;
                 i_this->mode = 0;
                 i_this->timer[1] = 2000;
@@ -3930,7 +3930,7 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
             i_this->ride_mode = RIDE_MODE_OFF;
 
             if (daPy_getPlayerActorClass()->checkHorseRide() && boar != NULL) {
-                UNSET_FLAG(boar->StatusFlag, i_this->boar_stand, u16);
+                UNSET_FLAG(boar->status_flag, i_this->boar_stand, u16);
                 i_this->boar_stand = 0;
                 boar->action = 16;
                 boar->mode = 0;
@@ -3998,7 +3998,7 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
             i_this->ride_mode = RIDE_MODE_OFF;
 
             if (boar != NULL) {
-                UNSET_FLAG(boar->StatusFlag, i_this->boar_stand, u16);
+                UNSET_FLAG(boar->status_flag, i_this->boar_stand, u16);
                 i_this->boar_stand = 0;
             }
 
@@ -4040,14 +4040,14 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
             break;
 
         case 1:
-            if ((boar->StatusFlag & 8) != 0) {
+            if ((boar->status_flag & 8) != 0) {
                 anm_init(i_this, e_rdb_class::BCK_RB_RWAIT, 10.0f, 2, 1.0f);
                 i_this->mode = 2;
             }
             break;
 
         case 2:
-            if ((boar->StatusFlag & 8) != 0) {
+            if ((boar->status_flag & 8) != 0) {
                 anm_init(i_this, e_rdb_class::BCK_RB_LV9_END03, 5.0f, 0, 1.0f);
                 i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_LV9_END03, -1);
                 i_this->mode = 3;
@@ -4222,7 +4222,7 @@ static void damage_check(e_rd_class* i_this) {
     fopAc_ac_c* actor = fopAcM_SearchByID(i_this->boar_id);
     e_wb_class* boar = (e_wb_class*)actor;
 
-    if (i_this->ride_mode == RIDE_MODE_RIDE && boar != NULL && (boar->StatusFlag & 0xC0) != 0) {
+    if (i_this->ride_mode == RIDE_MODE_RIDE && boar != NULL && (boar->status_flag & 0xC0) != 0) {
         if (i_this->action == ACTION_IKKI2_END) {
             i_this->mode = 10;
         } else {
@@ -4230,7 +4230,7 @@ static void damage_check(e_rd_class* i_this) {
             i_this->mode = 0;
             i_this->damage_timer = 1000;
 
-            if ((boar->StatusFlag & 0x80) != 0) {
+            if ((boar->status_flag & 0x80) != 0) {
                 i_this->jump_angle.y = enemy->shape_angle.y + 0x8000 + (s16)cM_rndFX(3000.0f);
                 i_this->field_0x9f6 = (s16)cM_rndFX(1000.0f);
             } else {
@@ -5829,21 +5829,21 @@ static void* s_lv9arrow_sub2(void* i_actor, void* i_data) {
 }
 
 static void cam_3d_morf(e_rd_class* i_this, f32 i_scale) {
-    cLib_addCalc2(&i_this->demo_cam_ctr.x, i_this->demo_cam_target.x, i_scale, i_this->demo_cam_way_max_spd.x * i_this->demo_cam_morf);
-    cLib_addCalc2(&i_this->demo_cam_ctr.y, i_this->demo_cam_target.y, i_scale, i_this->demo_cam_way_max_spd.y * i_this->demo_cam_morf);
-    cLib_addCalc2(&i_this->demo_cam_ctr.z, i_this->demo_cam_target.z, i_scale, i_this->demo_cam_way_max_spd.z * i_this->demo_cam_morf);
-    cLib_addCalc2(&i_this->demo_cam_eye.x, i_this->demo_cam_way.x, i_scale, i_this->demo_cam_eye_max_spd.x * i_this->demo_cam_morf);
-    cLib_addCalc2(&i_this->demo_cam_eye.y, i_this->demo_cam_way.y, i_scale, i_this->demo_cam_eye_max_spd.y * i_this->demo_cam_morf);
-    cLib_addCalc2(&i_this->demo_cam_eye.z, i_this->demo_cam_way.z, i_scale, i_this->demo_cam_eye_max_spd.z * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_ctr.x, i_this->demo_cam_target.x, i_scale, i_this->demo_cam_way_spd.x * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_ctr.y, i_this->demo_cam_target.y, i_scale, i_this->demo_cam_way_spd.y * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_ctr.z, i_this->demo_cam_target.z, i_scale, i_this->demo_cam_way_spd.z * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_eye.x, i_this->demo_cam_way.x, i_scale, i_this->demo_cam_eye_spd.x * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_eye.y, i_this->demo_cam_way.y, i_scale, i_this->demo_cam_eye_spd.y * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_eye.z, i_this->demo_cam_way.z, i_scale, i_this->demo_cam_eye_spd.z * i_this->demo_cam_morf);
 }
 
 static void cam_spd_set(e_rd_class* i_this) {
-    i_this->demo_cam_eye_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_eye.x);
-    i_this->demo_cam_eye_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_eye.y);
-    i_this->demo_cam_eye_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_eye.z);
-    i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_ctr.x);
-    i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_ctr.y);
-    i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_ctr.z);
+    i_this->demo_cam_eye_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_eye.x);
+    i_this->demo_cam_eye_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_eye.y);
+    i_this->demo_cam_eye_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_eye.z);
+    i_this->demo_cam_way_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_ctr.x);
+    i_this->demo_cam_way_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_ctr.y);
+    i_this->demo_cam_way_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_ctr.z);
     i_this->demo_cam_morf = 0.0f;
 }
 
@@ -5996,7 +5996,7 @@ static void demo_camera(e_rd_class* i_this) {
             i_this->demo_cam_target.set(-7875.0f, 2125.0f, 7895.0f);
             i_this->demo_cam_way.set(-7527.0f, 2084.0f, 7552.0f);
             cam_spd_set(i_this);
-            i_this->demo_cam_way_max_spd *= 2.0f;
+            i_this->demo_cam_way_spd *= 2.0f;
             i_this->field_0x12f0 = pla->current.pos;
             i_this->field_0x12f0.y = 2000.0f;
 

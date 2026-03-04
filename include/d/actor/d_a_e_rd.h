@@ -172,8 +172,8 @@ public:
     /* 0x12B4 */ cXyz demo_cam_ctr;
     /* 0x12C0 */ cXyz demo_cam_way;
     /* 0x12CC */ cXyz demo_cam_target;
-    /* 0x12D8 */ cXyz demo_cam_eye_max_spd;
-    /* 0x12E4 */ cXyz demo_cam_way_max_spd;
+    /* 0x12D8 */ cXyz demo_cam_eye_spd;
+    /* 0x12E4 */ cXyz demo_cam_way_spd;
     /* 0x12F0 */ cXyz field_0x12f0;
     /* 0x12FC */ u8 field_0x12fc[0x1300 - 0x12fc];
     /* 0x1300 */ f32 demo_cam_eye_z;

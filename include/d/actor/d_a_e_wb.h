@@ -122,12 +122,12 @@ public:
     /* 0x0698 */ s16 timer[4];
     /* 0x06A0 */ s16 wait_timer;
     /* 0x06A2 */ u8 field_0x6a2[0x6ae - 0x6a2];
-    /* 0x06AE */ csXyz damage_rot_angl;
-    /* 0x06B4 */ csXyz damage_rot_spd;
+    /* 0x06AE */ csXyz rotation;
+    /* 0x06B4 */ csXyz rotation_spd;
     /* 0x06BA */ s16 damage_timer;
     /* 0x06BC */ u8 field_0x6bc;
     /* 0x06BD */ s8 pursuit_flg;   ///< @brief Flag indicating pursuit mode.
-    /* 0x06BE */ u16 StatusFlag;  ///< @brief Bitfield for various status flags.
+    /* 0x06BE */ u16 status_flag;  ///< @brief Bitfield for various status flags.
     /* 0x06C0 */ s8 field_0x6c0;
     /* 0x06C4 */ f32 x_check;
     /* 0x06C8 */ int path_no;  ///< @brief Current index in the path points array.
@@ -194,13 +194,13 @@ public:
     /* 0x169E */ s16 demo_mode;
     /* 0x16A0 */ s16 demo_timer;
     /* 0x16A4 */ cXyz demo_cam_eye;
-    /* 0x16B0 */ cXyz field_0x16b0;
+    /* 0x16B0 */ cXyz demo_cam_eye_work;
     /* 0x16BC */ cXyz demo_cam_ctr;
-    /* 0x16C8 */ cXyz field_0x16c8;
+    /* 0x16C8 */ cXyz demo_cam_ctr_work;
     /* 0x16D4 */ cXyz demo_cam_target;
     /* 0x16E0 */ cXyz demo_cam_way;
-    /* 0x16EC */ cXyz demo_cam_eye_max_spd;
-    /* 0x16F8 */ cXyz demo_cam_way_max_spd;
+    /* 0x16EC */ cXyz demo_cam_eye_spd;
+    /* 0x16F8 */ cXyz demo_cam_way_spd;
     /* 0x1704 */ s16 demo_cam_ya;
     /* 0x1708 */ f32 demo_cam_eye_z;
     /* 0x170C */ f32 demo_cam_eye_x;

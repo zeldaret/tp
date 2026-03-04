@@ -11,13 +11,13 @@ BOOL e_wb_class::checkWait() {
 void e_wb_class::setPlayerRideNow() {
     action = ACT_PL_RIDE_NOW;
     mode = 0;
-    StatusFlag |= u16(3);
+    status_flag |= u16(3);
 }
 
 void e_wb_class::setPlayerRide() {
     action = ACT_PL_RIDE;
     mode = 0;
-    StatusFlag |= u16(3);
+    status_flag |= u16(3);
 
     sound.setLinkRiding(true);
 }
@@ -30,7 +30,7 @@ void e_wb_class::getOff() {
     }
 
     mode = 0;
-    StatusFlag &= u16(~3);
+    status_flag &= u16(~3);
     sound.setLinkRiding(false);
 }
 
