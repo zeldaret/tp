@@ -291,9 +291,9 @@ static void rod_control(dmg_rod_class* i_this) {
     s16 segPitch, segYaw, rodPitchAdj, rodRollAdj;
 
     f32 var_f31;
-    f32 var_f29;
     f32 var_f26;
     f32 var_f30;
+    f32 var_f29;
     f32 var_f25;
 
     rodJointPos = i_this->mg_rod.field_0x0;
@@ -4228,7 +4228,9 @@ static void uki_main(dmg_rod_class* i_this) {
         break;
     }
 
-    if (i_this->rod_substick_y <= -0.5f && (i_this->rod_substick_y - i_this->prev_rod_substick_y) <= -0.5f && i_this->action == ACTION_UKI_STANDBY) {
+    if (i_this->rod_substick_y <= -0.5f &&
+        i_this->rod_substick_y - i_this->prev_rod_substick_y <= -0.5f &&
+        i_this->action == ACTION_UKI_STANDBY) {
         if (i_this->is_hook_in_water != 0) {
             daAlink_getAlinkActorClass()->seStartOnlyReverb(Z2SE_AL_ROD_SWING_LURE);
         }
@@ -4376,7 +4378,7 @@ static void uki_main(dmg_rod_class* i_this) {
     mDoMtx_stack_c::XrotM(spC);
     mDoMtx_stack_c::scaleM(l_HIO.field_0xc, l_HIO.field_0xc, l_HIO.field_0xc);
     mDoMtx_stack_c::transM(0.0f, 0.0f, l_HIO.field_0x10);
-    mDoMtx_stack_c::XrotM(XREG_S(8));
+    mDoMtx_stack_c::XrotM((s16)XREG_S(8));
     i_this->uki_model->setBaseTRMtx(mDoMtx_stack_c::get());
 
     mDoMtx_stack_c::transM(0.0f, 0.0f, l_HIO.field_0x14);
@@ -4491,6 +4493,8 @@ static void play_camera(dmg_rod_class* i_this) {
     f32 sp60;
     f32 sp5C;
     camera_class* sp58;
+    // debug indicates these case bodies are likely unscoped despite containing declarations
+    // (due to extra an b instruction at the end)
     switch (i_this->play_cam_mode) {
     case 0:
         if (dComIfGp_checkPlayerStatus0(0, 0x2000) || dComIfGp_event_runCheck()) {
@@ -4522,7 +4526,7 @@ static void play_camera(dmg_rod_class* i_this) {
             }
         }
         break;
-    case 1: {
+    case 1:
         i_this->play_cam_mode = 2;
         camera->mCamera.Stop();
         i_this->play_cam_timer = 0;
@@ -4540,8 +4544,7 @@ static void play_camera(dmg_rod_class* i_this) {
         camera->mCamera.SetTrimSize(1);
         i_this->play_cam_fovy = 55.0f;
         /* fallthrough */
-    }
-    case 2: {
+    case 2:
         sp70 = 1;
         sp6C = 0.3f + NREG_F(3);
         sp68 = i_this->field_0x1420;
@@ -4605,8 +4608,7 @@ static void play_camera(dmg_rod_class* i_this) {
         i_this->field_0x141a = i_this->field_0x1418 - daAlink_getAlinkActorClass()->getFishingRodAngleY();
         i_this->field_0x140c = i_this->play_cam_fovy;
         break;
-    }
-    case 5: {
+    case 5:
         sp70 = 1;
         cLib_addCalc2(&i_this->field_0x141c, 400.0f + BREG_F(7), 0.1f, (20.0f + YREG_F(8)) * i_this->camera_morf_rate);
 
@@ -4735,8 +4737,7 @@ static void play_camera(dmg_rod_class* i_this) {
             }
         }
         break;
-    }
-    case 10: {
+    case 10:
         cMtx_YrotS(*calc_mtx, player->shape_angle.y);
         sp174.x = (25.0f + (100.0f + DREG_F(0))) - 50.0f;
         sp174.y = (10.0f + DREG_F(1)) - 10.0f;
@@ -4783,7 +4784,6 @@ static void play_camera(dmg_rod_class* i_this) {
         }
         i_this->field_0xf78 = 0.05f;
         break;
-    }
     case 11:
         cLib_addCalc2(&i_this->play_cam_fovy, 55.0f + DREG_F(6), 0.05f, 1.0f);
 
@@ -5314,10 +5314,12 @@ static void play_camera_u(dmg_rod_class* i_this) {
     int sp14 = 0;
 
     f32 var_f31;
+    // debug indicates these case bodies are likely unscoped despite containing declarations
+    // (due to extra an b instruction at the end)
     switch (i_this->play_cam_mode) {
     case 0:
         break;
-    case 1: {
+    case 1:
         i_this->play_cam_mode = 2;
         camera->mCamera.Stop();
         i_this->play_cam_timer = 0;
@@ -5330,7 +5332,6 @@ static void play_camera_u(dmg_rod_class* i_this) {
         i_this->play_cam_eye = sp10->view.lookat.eye;
         i_this->play_cam_center = sp10->view.lookat.center;
         i_this->camera_morf_rate = 1000.0f;
-    }
         /* fallthrough */
     case 2:
         sp14 = 1;
@@ -5493,8 +5494,9 @@ static void play_camera_u(dmg_rod_class* i_this) {
         cLib_addCalc2(&i_this->play_cam_fovy, 55.0f, 0.1f, 10.0f);
         break;
     }
+    // debug indicates this case body is unscoped despite containing declarations
     case 20:
-    case 21: {
+    case 21:
         if (!actor->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(actor, 2, 0xFFFF, 0);
             actor->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
@@ -5647,8 +5649,8 @@ static void play_camera_u(dmg_rod_class* i_this) {
             i_this->field_0xf64 = -30.0f;
             daAlink_getAlinkActorClass()->changeFishGetFace(0);
         }
+        (void)0;
         break;
-    }
     case 90:
         sp18 = 1;
         break;
