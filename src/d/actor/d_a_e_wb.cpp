@@ -184,7 +184,7 @@ static bool hio_set;
 
 static daE_WB_HIO_c l_HIO;
 
-static void himo_control1(e_wb_class* i_this, cXyz* i_pos, int himo_no, s8 param_3) {
+static void himo_control1(e_wb_class* i_this, cXyz* i_pos, int i_no, s8 param_3) {
     fopEn_enemy_c* enemy = &i_this->enemy;
     cXyz mae, ato;
 
@@ -192,7 +192,7 @@ static void himo_control1(e_wb_class* i_this, cXyz* i_pos, int himo_no, s8 param
     s16 rx;
     s16 ry;
 
-    cXyz* nodes = i_this->himo[himo_no].node;
+    cXyz* nodes = i_this->himo[i_no].node;
     cXyz* node = nodes;
     *node = *i_pos;
 
@@ -201,7 +201,7 @@ static void himo_control1(e_wb_class* i_this, cXyz* i_pos, int himo_no, s8 param
     cMtx_XrotM(*calc_mtx, enemy->shape_angle.x);
 
     mae.x = 20.0f + YREG_F(17);
-    if (himo_no == 0) {
+    if (i_no == 0) {
         mae.x *= -1.0f;
     }
     mae.y = 0.0f;
@@ -223,7 +223,7 @@ static void himo_control1(e_wb_class* i_this, cXyz* i_pos, int himo_no, s8 param
         mae.x = i_this->anm_time * (0.1f + YREG_F(9));
     }
 
-    if (himo_no == 0) {
+    if (i_no == 0) {
         mae.x *= -1.0f;
     }
     mae.y = 0.0f;
@@ -271,7 +271,7 @@ static void himo_control1(e_wb_class* i_this, cXyz* i_pos, int himo_no, s8 param
     }
 }
 
-static void himo_control2(e_wb_class* i_this, cXyz* i_pos, int himo_no, s8 param_3) {
+static void himo_control2(e_wb_class* i_this, cXyz* i_pos, int i_no, s8 param_3) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     cXyz mae;
     cXyz ato;
@@ -279,7 +279,7 @@ static void himo_control2(e_wb_class* i_this, cXyz* i_pos, int himo_no, s8 param
     int i;
     s16 rx;
     s16 ry;
-    himo_s* himo = &i_this->himo[himo_no];
+    himo_s* himo = &i_this->himo[i_no];
     cXyz* node = &himo->node[15];
     *node = *i_pos;
 
@@ -311,13 +311,13 @@ static void himo_control2(e_wb_class* i_this, cXyz* i_pos, int himo_no, s8 param
     }
 
     node = himo->node;
-    cXyz* himo_pos = i_this->himo_mat[himo_no].getPos(0);
+    cXyz* himo_pos = i_this->himo_mat[i_no].getPos(0);
     for (i = 0; i < 16; i++, himo_pos++, node++) {
         *himo_pos = *node;
     }
 
     himo_pos = i_this->himo_tex.getPos(0);
-    himo_pos[himo_no] = i_this->himo[himo_no].node[15];
+    himo_pos[i_no] = i_this->himo[i_no].node[15];
 }
 
 static int e_wb_lr_wall_check(e_wb_class* i_this) {
@@ -385,8 +385,8 @@ static int daE_WB_Draw(e_wb_class* i_this) {
     g_env_light.setLightTevColorType_MAJI(model, &actor->tevStr);
     i_this->anm_p->entryDL();
 
-    cXyz cStack_54;
-    cStack_54.set(actor->current.pos.x, actor->current.pos.y + 100.0f + BREG_F(0x12),
+    cXyz pos;
+    pos.set(actor->current.pos.x, actor->current.pos.y + 100.0f + BREG_F(0x12),
                   actor->current.pos.z);
 
     if (i_this->leader != 0) {
@@ -397,7 +397,7 @@ static int daE_WB_Draw(e_wb_class* i_this) {
 
 
     i_this->shadow_key =
-        dComIfGd_setShadow(i_this->shadow_key, 1, model, &cStack_54, size, 0.0f,
+        dComIfGd_setShadow(i_this->shadow_key, 1, model, &pos, size, 0.0f,
                            actor->current.pos.y, i_this->Bgc.GetGroundH(), i_this->Bgc.m_gnd,
                            &i_this->enemy.tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
 
@@ -674,12 +674,12 @@ static int e_wb_saku_check_sub(e_wb_class* i_this, s16 yaa) {
     cXyz start;
     cXyz ato;
 
-    f32 iVar2 = (i_this->counter & 7) * 400.0f;
+    f32 za = (i_this->counter & 7) * 400.0f;
 
     cMtx_YrotS(*calc_mtx, actor->shape_angle.y + yaa);
     mae.x = 0.0f;
     mae.y = 2000.0f;
-    mae.z = iVar2;
+    mae.z = za;
     MtxPosition(&mae, &start);
     start += actor->current.pos;
     gnd_chk.SetPos(&start);
@@ -828,22 +828,22 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
             }
         }
 
-        s16 angle_y = dCam_getControledAngleY(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0))) +
+        s16 angle = dCam_getControledAngleY(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0))) +
                       0x10000 + stick_angle - 0x8000;
         int dir = 0;
-        s16 yaa = angle_y - actor->current.angle.y;
+        s16 ya = angle - actor->current.angle.y;
 
-        if (i_this->action == 101) {
-            if (abs(yaa) > 0x6000) {
+        if (i_this->action == ACT_PL_RIDE) {
+            if (abs(ya) > 0x6000) {
                 dir = 1;
-            } else if (yaa >= 0x2000) {
+            } else if (ya >= 0x2000) {
                 dir = 2;
-            } else if (yaa <= -0x2000) {
+            } else if (ya <= -0x2000) {
                 dir = 3;
             }
-        } else if (yaa >= 0x2000) {
+        } else if (ya >= 0x2000) {
             dir = 2;
-        } else if (yaa <= -0x2000) {
+        } else if (ya <= -0x2000) {
             dir = 3;
         }
 
@@ -881,7 +881,7 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
             s16 curr_angle_y = actor->current.angle.y;
 
             if (i_this->action == ACT_PL_RIDE) {
-                cLib_addCalcAngleS2(&actor->current.angle.y, angle_y, 4, 0x1F4);
+                cLib_addCalcAngleS2(&actor->current.angle.y, angle, 4, 0x1F4);
                 i_this->turn_step = 0;
             } else {
                 s16 target_turn = 0;
@@ -1005,7 +1005,7 @@ static void e_wb_f_wait(e_wb_class* i_this) {
         cLib_addCalcAngleS2(&actor->current.angle.y, target_angle, 8, 0x200);
         i_this->range = target_angle - actor->current.angle.y;
 
-        if (i_this->range < 2048 && i_this->range > -0x800) {
+        if (i_this->range < 0x800 && i_this->range > -0x800) {
             if (i_this->gake_flg > GAKE_FLG_NONE) {
                 if (i_this->anmID != 42) {
                     anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
@@ -1028,7 +1028,7 @@ static void e_wb_f_wait(e_wb_class* i_this) {
         cLib_addCalcAngleS2(&actor->current.angle.y, target_angle, 8, 0x200);
         i_this->range = target_angle - actor->current.angle.y;
 
-        if (i_this->range < 2048 && i_this->range > -0x800) {
+        if (i_this->range < 0x800 && i_this->range > -0x800) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mode = 11;
         }
@@ -1309,7 +1309,7 @@ static void e_wb_b_wait(e_wb_class* i_this) {
     case 2:
         cLib_addCalcAngleS2(&actor->current.angle.y, target_angle, 8, 0x200);
         i_this->range = target_angle - actor->current.angle.y;
-        if (i_this->range < 2048 && i_this->range > -0x800) {
+        if (i_this->range < 0x800 && i_this->range > -0x800) {
             if (i_this->gake_flg > GAKE_FLG_NONE) {
                 if (i_this->anmID != 42) {
                     anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
@@ -1486,7 +1486,7 @@ static void e_wb_b_wait2(e_wb_class* i_this) {
     case 1:
         cLib_addCalcAngleS2(&actor->current.angle.y, i_this->target_ya, 8, 0x200);
         i_this->range = i_this->target_ya - actor->current.angle.y;
-        if (i_this->range < 2048 && i_this->range > -0x800) {
+        if (i_this->range < 0x800 && i_this->range > -0x800) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mode = 2;
         } else if (i_this->anmID != 40) {
@@ -1955,7 +1955,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
     case 6:
         angle = 0x200;
         i_this->range = i_this->target_ya - actor->current.angle.y;
-        if (i_this->range < 2048 && i_this->range > -0x800) {
+        if (i_this->range < 0x800 && i_this->range > -0x800) {
             i_this->mode = 2;
             i_this->path_no = 1 - i_this->path_no;
         } else if (i_this->anmID != 40) {
@@ -2369,7 +2369,7 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
 static void e_wb_a_run(e_wb_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     cXyz sp18, spC;
-    s16 curr_angle_y = actor->current.angle.y;
+    s16 angle = actor->current.angle.y;
     s16 ya;
 
     switch (i_this->mode) {
@@ -2395,7 +2395,7 @@ static void e_wb_a_run(e_wb_class* i_this) {
     default:
         cLib_addCalcAngleS2(&actor->current.angle.y, i_this->target_ya, 8, 0x800);
         cLib_addCalc2(&actor->speedF, l_HIO.max_speed * 1.2f, 1.0f, 2.0f);
-        ya = (TREG_S(7) - 8) * (actor->current.angle.y - curr_angle_y);
+        ya = (TREG_S(7) - 8) * (actor->current.angle.y - angle);
         cLib_addCalcAngleS2(&i_this->body_angle, ya, 8, 0x200);
     }
 }
@@ -3699,24 +3699,24 @@ static void* s_rdArrowWait_sub(void* i_actor, void* i_data) {
 }
 
 static void cam_3d_morf(e_wb_class* i_this, f32 i_scale) {
-    cLib_addCalc2(&i_this->demo_cam_ctr.x, i_this->field_0x16e0.x, i_scale,
-                  i_this->field_0x16f8.x * i_this->demo_morf);
-    cLib_addCalc2(&i_this->demo_cam_ctr.y, i_this->field_0x16e0.y, i_scale,
-                  i_this->field_0x16f8.y * i_this->demo_morf);
-    cLib_addCalc2(&i_this->demo_cam_ctr.z, i_this->field_0x16e0.z, i_scale,
-                  i_this->field_0x16f8.z * i_this->demo_morf);
-    cLib_addCalc2(&i_this->demo_cam_eye.x, i_this->field_0x16d4.x, i_scale,
-                  i_this->field_0x16ec.x * i_this->demo_morf);
-    cLib_addCalc2(&i_this->demo_cam_eye.y, i_this->field_0x16d4.y, i_scale,
-                  i_this->field_0x16ec.y * i_this->demo_morf);
-    cLib_addCalc2(&i_this->demo_cam_eye.z, i_this->field_0x16d4.z, i_scale,
-                  i_this->field_0x16ec.z * i_this->demo_morf);
+    cLib_addCalc2(&i_this->demo_cam_ctr.x, i_this->demo_cam_way.x, i_scale,
+                  i_this->demo_cam_way_max_spd.x * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_ctr.y, i_this->demo_cam_way.y, i_scale,
+                  i_this->demo_cam_way_max_spd.y * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_ctr.z, i_this->demo_cam_way.z, i_scale,
+                  i_this->demo_cam_way_max_spd.z * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_eye.x, i_this->demo_cam_target.x, i_scale,
+                  i_this->demo_cam_eye_max_spd.x * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_eye.y, i_this->demo_cam_target.y, i_scale,
+                  i_this->demo_cam_eye_max_spd.y * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_eye.z, i_this->demo_cam_target.z, i_scale,
+                  i_this->demo_cam_eye_max_spd.z * i_this->demo_cam_morf);
 }
 
 static void demo_camera(e_wb_class* i_this) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)i_this;
-    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* camera0 = dComIfGp_getCamera(0);
+    camera_class* cam = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_class* cam0 = dComIfGp_getCamera(0);
     daPy_py_c* pla = (daPy_py_c*)dComIfGp_getPlayer(0);
     daHorse_c* horse;
     e_rd_class* rider;
@@ -3735,18 +3735,18 @@ static void demo_camera(e_wb_class* i_this) {
             enemy->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        camera->mCamera.Stop();
+        cam->mCamera.Stop();
         i_this->demo_mode = 2;
         i_this->demo_timer = 0;
         i_this->demo_cam_zoom = 55.0f;
         i_this->demo_timer = 0;
-        i_this->field_0x1708 = 800.0f + ZREG_F(1);
-        camera->mCamera.SetTrimSize(3);
+        i_this->demo_cam_eye_z = 800.0f + ZREG_F(1);
+        cam->mCamera.SetTrimSize(3);
         enemy->current.pos.set(34800.0f, -66.0f, -604.0f);
         enemy->current.angle.y = 0x8000;
         enemy->shape_angle = enemy->current.angle;
         enemy->old = enemy->current;
-        i_this->demo_cam_angle = 0x2000 + XREG_S(0);
+        i_this->demo_cam_ya = 0x2000 + XREG_S(0);
         daPy_getPlayerActorClass()->changeOriginalDemo();
         horse->changeOriginalDemo();
         fpcM_Search(s_wbdel_sub, i_this);
@@ -3761,14 +3761,14 @@ static void demo_camera(e_wb_class* i_this) {
             ato.set(34900.0f, -280.0f, -18048.0f);
             horse->changeDemoPos0(&ato);
         }
-        cLib_addCalc2(&i_this->field_0x1708, 1200.0f + ZREG_F(3), 0.05f, 3.0f);
-        mDoMtx_stack_c::YrotS(enemy->shape_angle.y + i_this->demo_cam_angle);
+        cLib_addCalc2(&i_this->demo_cam_eye_z, 1200.0f + ZREG_F(3), 0.05f, 3.0f);
+        mDoMtx_stack_c::YrotS(enemy->shape_angle.y + i_this->demo_cam_ya);
         mae.x = 0.0f;
         mae.y = 300.0f + ZREG_F(0);
-        mae.z = i_this->field_0x1708;
+        mae.z = i_this->demo_cam_eye_z;
         mDoMtx_stack_c::multVec(&mae, &i_this->demo_cam_eye);
         i_this->demo_cam_eye += enemy->current.pos;
-        cLib_addCalcAngleS2(&i_this->demo_cam_angle, 0x7800, 0x20, 0xa0);
+        cLib_addCalcAngleS2(&i_this->demo_cam_ya, 0x7800, 0x20, 0xa0);
         if (i_this->demo_timer == 0) {
             i_this->demo_cam_ctr = enemy->current.pos;
             i_this->demo_cam_ctr.y += 400.0f + ZREG_F(2);
@@ -3782,20 +3782,20 @@ static void demo_camera(e_wb_class* i_this) {
         if (i_this->demo_timer == 220) {
             i_this->demo_mode = 3;
             i_this->demo_timer = 0;
-            i_this->field_0x1708 = 1100.0f + ZREG_F(9);
-            i_this->demo_cam_angle = 0x1000 + XREG_S(8);
+            i_this->demo_cam_eye_z = 1100.0f + ZREG_F(9);
+            i_this->demo_cam_ya = 0x1000 + XREG_S(8);
         }
     } break;
     case 3: {
-        mDoMtx_stack_c::YrotS(pla->shape_angle.y + i_this->demo_cam_angle);
+        mDoMtx_stack_c::YrotS(pla->shape_angle.y + i_this->demo_cam_ya);
         mae.x = 0.0f;
         mae.y = 0.0f + ZREG_F(10);
-        mae.z = i_this->field_0x1708;
+        mae.z = i_this->demo_cam_eye_z;
         mDoMtx_stack_c::multVec(&mae, &i_this->demo_cam_eye);
         i_this->demo_cam_eye += pla->current.pos;
         i_this->demo_cam_ctr = pla->current.pos;
         i_this->demo_cam_ctr.y += ZREG_F(11) - 50.0f;
-        cLib_addCalc2(&i_this->field_0x1708, 500.0f, 0.05f, 10.0f);
+        cLib_addCalc2(&i_this->demo_cam_eye_z, 500.0f, 0.05f, 10.0f);
         if (i_this->demo_timer != 70) {
             break;
         }
@@ -3804,11 +3804,11 @@ static void demo_camera(e_wb_class* i_this) {
     }
         // fallthrough
     case 4: {
-        i_this->field_0x1708 = 1200.0f + ZREG_F(3);
+        i_this->demo_cam_eye_z = 1200.0f + ZREG_F(3);
         mDoMtx_stack_c::YrotS(enemy->shape_angle.y - 0x7800);
         mae.x = 0.0f;
         mae.y = 300.0f + ZREG_F(0);
-        mae.z = i_this->field_0x1708;
+        mae.z = i_this->demo_cam_eye_z;
         mDoMtx_stack_c::multVec(&mae, &i_this->demo_cam_eye);
         i_this->demo_cam_eye.x += enemy->current.pos.x;
         i_this->demo_cam_eye.y += -300.0f;
@@ -3827,17 +3827,17 @@ static void demo_camera(e_wb_class* i_this) {
 
         i_this->demo_mode = 5;
         i_this->demo_timer = 0;
-        i_this->field_0x1708 = 350.0f + ZREG_F(9);
-        i_this->field_0x170c = 50.0f;
+        i_this->demo_cam_eye_z = 350.0f + ZREG_F(9);
+        i_this->demo_cam_eye_x = 50.0f;
     }
         // fallthrough
     case 5:
     case 6: {
-        i_this->demo_cam_angle = 0x7800 + XREG_S(3);
-        mDoMtx_stack_c::YrotS(pla->shape_angle.y + i_this->demo_cam_angle);
-        mae.x = i_this->field_0x170c;
+        i_this->demo_cam_ya = 0x7800 + XREG_S(3);
+        mDoMtx_stack_c::YrotS(pla->shape_angle.y + i_this->demo_cam_ya);
+        mae.x = i_this->demo_cam_eye_x;
         mae.y = 0.0f;
-        mae.z = i_this->field_0x1708;
+        mae.z = i_this->demo_cam_eye_z;
         mDoMtx_stack_c::multVec(&mae, &i_this->demo_cam_eye);
         i_this->demo_cam_eye.x += pla->current.pos.x;
         i_this->demo_cam_eye.z += pla->current.pos.z;
@@ -3854,8 +3854,8 @@ static void demo_camera(e_wb_class* i_this) {
             }
             cLib_addCalc2(&i_this->demo_cam_ctr.y, dVar13, 0.2f + ZREG_F(12), 30.0f + ZREG_F(13));
         }
-        cLib_addCalc2(&i_this->field_0x1708, 800.0f, 0.05f, 5.0f);
-        cLib_addCalc2(&i_this->field_0x170c, -50.0f, 0.05f, 1.2f);
+        cLib_addCalc2(&i_this->demo_cam_eye_z, 800.0f, 0.05f, 5.0f);
+        cLib_addCalc2(&i_this->demo_cam_eye_x, -50.0f, 0.05f, 1.2f);
         if (i_this->demo_mode == 5 && pla->current.pos.z < -14500.0f + KREG_F(12)) {
             horse->changeDemoMode(7, 0);
             horse->onDemoJumpDistance(600.0f + BREG_F(18), 100.0f + BREG_F(19));
@@ -3872,8 +3872,8 @@ static void demo_camera(e_wb_class* i_this) {
             enemy->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        camera->mCamera.Stop();
-        camera->mCamera.SetTrimSize(3);
+        cam->mCamera.Stop();
+        cam->mCamera.SetTrimSize(3);
         i_this->demo_mode = 11;
         i_this->demo_timer = 0;
         i_this->demo_cam_zoom = 55.0f + KREG_F(7);
@@ -3886,7 +3886,7 @@ static void demo_camera(e_wb_class* i_this) {
         mae.z = NREG_F(2) - 500.0f;
         mDoMtx_stack_c::multVec(&mae, &i_this->demo_cam_eye);
         i_this->demo_cam_eye += rider->enemy.current.pos;
-        i_this->demo_morf = 10.0f;
+        i_this->demo_cam_morf = 10.0f;
         i_this->demo_cam_ctr = rider->enemy.current.pos;
         i_this->demo_cam_ctr.y += 200.0f + KREG_F(11);
         daPy_getPlayerActorClass()->changeOriginalDemo();
@@ -3894,13 +3894,13 @@ static void demo_camera(e_wb_class* i_this) {
     }
         // fallthrough
     case 11: {
-        cLib_addCalc2(&i_this->demo_morf, 1000.0f, 1.0f, 100.0f + KREG_F(10));
+        cLib_addCalc2(&i_this->demo_cam_morf, 1000.0f, 1.0f, 100.0f + KREG_F(10));
         cLib_addCalc2(&i_this->demo_cam_ctr.x, rider->enemy.current.pos.x, 0.5f + KREG_F(8),
-                      i_this->demo_morf);
+                      i_this->demo_cam_morf);
         cLib_addCalc2(&i_this->demo_cam_ctr.y, rider->enemy.current.pos.y + 200.0f + KREG_F(11),
-                      0.5f + KREG_F(8), i_this->demo_morf);
+                      0.5f + KREG_F(8), i_this->demo_cam_morf);
         cLib_addCalc2(&i_this->demo_cam_ctr.z, rider->enemy.current.pos.z, 0.5f + KREG_F(8),
-                      i_this->demo_morf);
+                      i_this->demo_cam_morf);
         cLib_addCalc2(&i_this->demo_cam_eye.x, rider->enemy.current.pos.x, 0.05f,
                       12.0f + NREG_F(3));
         if (i_this->demo_timer == 40) {
@@ -3949,8 +3949,8 @@ static void demo_camera(e_wb_class* i_this) {
         }
 
         if (!daPy_getPlayerActorClass()->checkHorseRide()) {
-            camera->mCamera.Start();
-            camera->mCamera.SetTrimSize(0);
+            cam->mCamera.Start();
+            cam->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
             i_this->demo_mode = 0;
@@ -3972,8 +3972,8 @@ static void demo_camera(e_wb_class* i_this) {
             enemy->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        camera->mCamera.Stop();
-        camera->mCamera.SetTrimSize(3);
+        cam->mCamera.Stop();
+        cam->mCamera.SetTrimSize(3);
         i_this->demo_mode = 21;
         i_this->demo_timer = 0;
         i_this->demo_cam_zoom = 55.0f;
@@ -3984,7 +3984,7 @@ static void demo_camera(e_wb_class* i_this) {
         mae.z = 0.0f + ZREG_F(10);
         mDoMtx_stack_c::multVec(&mae, &i_this->demo_cam_eye);
         i_this->demo_cam_eye += pla->current.pos;
-        i_this->demo_morf = 0;
+        i_this->demo_cam_morf = 0;
         i_this->demo_cam_ctr = enemy->current.pos;
         i_this->demo_cam_ctr.y += 300.0f + ZREG_F(11);
         horse->changeOriginalDemo();
@@ -4004,8 +4004,8 @@ static void demo_camera(e_wb_class* i_this) {
                       100.0f);
         cLib_addCalc2(&i_this->demo_cam_ctr.z, enemy->current.pos.z, 0.8f, 100.0f);
         if (i_this->demo_timer == (s16)(20 + ZREG_S(8))) {
-            camera->mCamera.Start();
-            camera->mCamera.SetTrimSize(0);
+            cam->mCamera.Start();
+            cam->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             i_this->demo_mode = 0;
         }
@@ -4017,8 +4017,8 @@ static void demo_camera(e_wb_class* i_this) {
             enemy->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        camera->mCamera.Stop();
-        camera->mCamera.SetTrimSize(3);
+        cam->mCamera.Stop();
+        cam->mCamera.SetTrimSize(3);
         i_this->demo_mode = 26;
         i_this->demo_timer = 0;
         i_this->demo_cam_zoom = 55.0f;
@@ -4027,15 +4027,15 @@ static void demo_camera(e_wb_class* i_this) {
         horse->changeDemoMode(6, 0);
         s16 angleDiff = enemy->shape_angle.y - fopAcM_searchPlayerAngleY(enemy);
         if (angleDiff < 0) {
-            i_this->field_0x170c = 200.0f;
+            i_this->demo_cam_eye_x = 200.0f;
         } else {
-            i_this->field_0x170c = -200.0f;
+            i_this->demo_cam_eye_x = -200.0f;
         }
     }
     // fallthrough
     case 26: {
         mDoMtx_stack_c::YrotS(enemy->shape_angle.y);
-        mae.x = i_this->field_0x170c;
+        mae.x = i_this->demo_cam_eye_x;
         mae.y = 300.0f + ZREG_F(9);
         mae.z = 300.0f + ZREG_F(10);
         mDoMtx_stack_c::multVec(&mae, &i_this->demo_cam_eye);
@@ -4051,10 +4051,10 @@ static void demo_camera(e_wb_class* i_this) {
             i_this->demo_cam_eye += pla->current.pos;
             i_this->demo_cam_ctr = pla->current.pos;
             i_this->demo_cam_ctr.y += 120.0f;
-            camera->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye,
+            cam->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye,
                                      i_this->demo_cam_zoom, 0);
-            camera->mCamera.Start();
-            camera->mCamera.SetTrimSize(0);
+            cam->mCamera.Start();
+            cam->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             i_this->demo_mode = 0;
         }
@@ -4065,23 +4065,23 @@ static void demo_camera(e_wb_class* i_this) {
             enemy->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        camera->mCamera.Stop();
-        camera->mCamera.SetTrimSize(3);
+        cam->mCamera.Stop();
+        cam->mCamera.SetTrimSize(3);
         i_this->demo_mode = 31;
         i_this->demo_timer = 0;
         i_this->demo_cam_zoom = 55.0f;
         i_this->demo_timer = 0;
-        i_this->demo_morf = 0;
+        i_this->demo_cam_morf = 0;
         i_this->demo_cam_ctr.set(-8592.0f, 342.0f, -139.0f);
         i_this->demo_cam_eye.set(-8844.0f, 317.0f, 512.0f);
-        i_this->field_0x16e0.set(-8416.0f, 345.0f, 6.0f);
-        i_this->field_0x16d4.set(-8994.0f, 326.0f, 400.0f);
-        i_this->field_0x16ec.x = fabsf(i_this->field_0x16d4.x - i_this->demo_cam_eye.x);
-        i_this->field_0x16ec.y = fabsf(i_this->field_0x16d4.y - i_this->demo_cam_eye.y);
-        i_this->field_0x16ec.z = fabsf(i_this->field_0x16d4.z - i_this->demo_cam_eye.z);
-        i_this->field_0x16f8.x = fabsf(i_this->field_0x16e0.x - i_this->demo_cam_ctr.x);
-        i_this->field_0x16f8.y = fabsf(i_this->field_0x16e0.y - i_this->demo_cam_ctr.y);
-        i_this->field_0x16f8.z = fabsf(i_this->field_0x16e0.z - i_this->demo_cam_ctr.z);
+        i_this->demo_cam_way.set(-8416.0f, 345.0f, 6.0f);
+        i_this->demo_cam_target.set(-8994.0f, 326.0f, 400.0f);
+        i_this->demo_cam_eye_max_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_eye.x);
+        i_this->demo_cam_eye_max_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_eye.y);
+        i_this->demo_cam_eye_max_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_eye.z);
+        i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_ctr.x);
+        i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_ctr.y);
+        i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_ctr.z);
         daPy_getPlayerActorClass()->changeOriginalDemo();
         horse->changeOriginalDemo();
         ato.set(-10775.0f + ZREG_F(0) + 350.0f, 60.0f, 75.0f);
@@ -4097,7 +4097,7 @@ static void demo_camera(e_wb_class* i_this) {
     case 31: {
         if (i_this->demo_timer > 50 + JREG_S(3)) {
             cam_3d_morf(i_this, 0.1f);
-            cLib_addCalc2(&i_this->demo_morf, 0.02f, 1.0f, 0.001f);
+            cLib_addCalc2(&i_this->demo_cam_morf, 0.02f, 1.0f, 0.001f);
         }
         if (i_this->demo_timer == 40 + JREG_S(0)) {
             horse->changeDemoMode(8, 0);
@@ -4129,7 +4129,7 @@ static void demo_camera(e_wb_class* i_this) {
         i_this->demo_mode = 33;
         i_this->demo_timer = 0;
         i_this->demo_cam_zoom = 85.0f;
-        i_this->demo_morf = 0;
+        i_this->demo_cam_morf = 0;
         dKy_change_colpat(5);
     }
         // fallthrough
@@ -4147,32 +4147,32 @@ static void demo_camera(e_wb_class* i_this) {
         if (i_this->demo_timer == 95) {
             i_this->demo_mode = 34;
             i_this->demo_timer = 0;
-            i_this->field_0x16d4.set(700.0f, 100.0f, 0.0f);
-            i_this->field_0x16e0.set(-10.0f, 350.0f, 80.0f);
-            i_this->field_0x16ec.x = fabsf(i_this->field_0x16d4.x - i_this->field_0x16b0.x);
-            i_this->field_0x16ec.y = fabsf(i_this->field_0x16d4.y - i_this->field_0x16b0.y);
-            i_this->field_0x16ec.z = fabsf(i_this->field_0x16d4.z - i_this->field_0x16b0.z);
-            i_this->field_0x16f8.x = fabsf(i_this->field_0x16e0.x - i_this->field_0x16c8.x);
-            i_this->field_0x16f8.y = fabsf(i_this->field_0x16e0.y - i_this->field_0x16c8.y);
-            i_this->field_0x16f8.z = fabsf(i_this->field_0x16e0.z - i_this->field_0x16c8.z);
-            i_this->demo_morf = 0;
+            i_this->demo_cam_target.set(700.0f, 100.0f, 0.0f);
+            i_this->demo_cam_way.set(-10.0f, 350.0f, 80.0f);
+            i_this->demo_cam_eye_max_spd.x = fabsf(i_this->demo_cam_target.x - i_this->field_0x16b0.x);
+            i_this->demo_cam_eye_max_spd.y = fabsf(i_this->demo_cam_target.y - i_this->field_0x16b0.y);
+            i_this->demo_cam_eye_max_spd.z = fabsf(i_this->demo_cam_target.z - i_this->field_0x16b0.z);
+            i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->field_0x16c8.x);
+            i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->field_0x16c8.y);
+            i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->field_0x16c8.z);
+            i_this->demo_cam_morf = 0;
         }
     } break;
     case 34: {
         cLib_addCalc2(&i_this->demo_cam_zoom, 55.0f, 0.05f, 0.3f);
-        cLib_addCalc2(&i_this->field_0x16c8.x, i_this->field_0x16e0.x, 0.05f,
-                      i_this->field_0x16f8.x * i_this->demo_morf);
-        cLib_addCalc2(&i_this->field_0x16c8.y, i_this->field_0x16e0.y, 0.05f,
-                      i_this->field_0x16f8.y * i_this->demo_morf);
-        cLib_addCalc2(&i_this->field_0x16c8.z, i_this->field_0x16e0.z, 0.05f,
-                      i_this->field_0x16f8.z * i_this->demo_morf);
-        cLib_addCalc2(&i_this->field_0x16b0.x, i_this->field_0x16d4.x, 0.05f,
-                      (i_this->field_0x16ec.x * i_this->demo_morf));
-        cLib_addCalc2(&i_this->field_0x16b0.y, i_this->field_0x16d4.y, 0.05f,
-                      (i_this->field_0x16ec.y * i_this->demo_morf));
-        cLib_addCalc2(&i_this->field_0x16b0.z, i_this->field_0x16d4.z, 0.05f,
-                      (i_this->field_0x16ec.z * i_this->demo_morf));
-        cLib_addCalc2(&i_this->demo_morf, 0.01f, 1.0f, 0.0005f);
+        cLib_addCalc2(&i_this->field_0x16c8.x, i_this->demo_cam_way.x, 0.05f,
+                      i_this->demo_cam_way_max_spd.x * i_this->demo_cam_morf);
+        cLib_addCalc2(&i_this->field_0x16c8.y, i_this->demo_cam_way.y, 0.05f,
+                      i_this->demo_cam_way_max_spd.y * i_this->demo_cam_morf);
+        cLib_addCalc2(&i_this->field_0x16c8.z, i_this->demo_cam_way.z, 0.05f,
+                      i_this->demo_cam_way_max_spd.z * i_this->demo_cam_morf);
+        cLib_addCalc2(&i_this->field_0x16b0.x, i_this->demo_cam_target.x, 0.05f,
+                      (i_this->demo_cam_eye_max_spd.x * i_this->demo_cam_morf));
+        cLib_addCalc2(&i_this->field_0x16b0.y, i_this->demo_cam_target.y, 0.05f,
+                      (i_this->demo_cam_eye_max_spd.y * i_this->demo_cam_morf));
+        cLib_addCalc2(&i_this->field_0x16b0.z, i_this->demo_cam_target.z, 0.05f,
+                      (i_this->demo_cam_eye_max_spd.z * i_this->demo_cam_morf));
+        cLib_addCalc2(&i_this->demo_cam_morf, 0.01f, 1.0f, 0.0005f);
         cMtx_YrotS(*calc_mtx, enemy->shape_angle.y);
         MtxPosition(&i_this->field_0x16b0, &i_this->demo_cam_eye);
         i_this->demo_cam_eye += enemy->current.pos;
@@ -4220,15 +4220,15 @@ static void demo_camera(e_wb_class* i_this) {
         fpcM_Search(s_wbstart_sub, i_this);
         i_this->demo_cam_ctr.set(-12800.0f, 153.0f, 51.0f);
         i_this->demo_cam_eye.set(-12022.0f, 82.0f, 51.0f);
-        i_this->field_0x16e0.set(-13168.0f, 163.0f, -200.0f);
-        i_this->field_0x16d4.set(-12500.0f, 83.0f, -593.0f);
-        i_this->field_0x16ec.x = fabsf(i_this->field_0x16d4.x - i_this->demo_cam_eye.x);
-        i_this->field_0x16ec.y = fabsf(i_this->field_0x16d4.y - i_this->demo_cam_eye.y);
-        i_this->field_0x16ec.z = fabsf(i_this->field_0x16d4.z - i_this->demo_cam_eye.z);
-        i_this->field_0x16f8.x = fabsf(i_this->field_0x16e0.x - i_this->demo_cam_ctr.x);
-        i_this->field_0x16f8.y = fabsf(i_this->field_0x16e0.y - i_this->demo_cam_ctr.y);
-        i_this->field_0x16f8.z = fabsf(i_this->field_0x16e0.z - i_this->demo_cam_ctr.z);
-        i_this->demo_morf = 0;
+        i_this->demo_cam_way.set(-13168.0f, 163.0f, -200.0f);
+        i_this->demo_cam_target.set(-12500.0f, 83.0f, -593.0f);
+        i_this->demo_cam_eye_max_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_eye.x);
+        i_this->demo_cam_eye_max_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_eye.y);
+        i_this->demo_cam_eye_max_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_eye.z);
+        i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_ctr.x);
+        i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_ctr.y);
+        i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_ctr.z);
+        i_this->demo_cam_morf = 0;
     }
         // fallthrough
     case 37: {
@@ -4240,7 +4240,7 @@ static void demo_camera(e_wb_class* i_this) {
         }
         if (i_this->demo_timer > (s16)(165 + BREG_S(6))) {
             cam_3d_morf(i_this, 0.1f + BREG_F(17));
-            cLib_addCalc2(&i_this->demo_morf, 0.01f + BREG_F(18), 1.0f, 0.00015f + BREG_F(19));
+            cLib_addCalc2(&i_this->demo_cam_morf, 0.01f + BREG_F(18), 1.0f, 0.00015f + BREG_F(19));
         }
         if (i_this->demo_timer == 245) {
             dComIfGp_getVibration().StartQuake(4 + TREG_S(5), 0x1f, cXyz(0.0f, 1.0f, 0.0f));
@@ -4272,9 +4272,9 @@ static void demo_camera(e_wb_class* i_this) {
     } break;
     case 38: {
         if (i_this->demo_timer == 50) {
-            camera->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
-            camera->mCamera.Start();
-            camera->mCamera.SetTrimSize(0);
+            cam->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
+            cam->mCamera.Start();
+            cam->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
             horse->cancelOriginalDemo();
@@ -4289,22 +4289,22 @@ static void demo_camera(e_wb_class* i_this) {
             enemy->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        camera->mCamera.Stop();
-        camera->mCamera.SetTrimSize(3);
+        cam->mCamera.Stop();
+        cam->mCamera.SetTrimSize(3);
         i_this->demo_mode = 41;
         i_this->demo_cam_zoom = 55.0f;
         i_this->demo_timer = 0;
-        i_this->demo_morf = 0;
+        i_this->demo_cam_morf = 0;
         i_this->demo_cam_ctr.set(36156.0f, 985.0f, -16931.0f);
         i_this->demo_cam_eye.set(36496.0f, 1358.0f, -17344.0f);
-        i_this->field_0x16e0.set(36453.0f, 1116.0f, -16995.0f);
-        i_this->field_0x16d4.set(35835.0f, 955.0f, -16867.0f);
-        i_this->field_0x16ec.x = fabsf(i_this->field_0x16d4.x - i_this->demo_cam_eye.x) * 0.3f;
-        i_this->field_0x16ec.y = fabsf(i_this->field_0x16d4.y - i_this->demo_cam_eye.y) * 0.3f;
-        i_this->field_0x16ec.z = fabsf(i_this->field_0x16d4.z - i_this->demo_cam_eye.z) * 0.3f;
-        i_this->field_0x16f8.x = fabsf(i_this->field_0x16e0.x - i_this->demo_cam_ctr.x);
-        i_this->field_0x16f8.y = fabsf(i_this->field_0x16e0.y - i_this->demo_cam_ctr.y);
-        i_this->field_0x16f8.z = fabsf(i_this->field_0x16e0.z - i_this->demo_cam_ctr.z);
+        i_this->demo_cam_way.set(36453.0f, 1116.0f, -16995.0f);
+        i_this->demo_cam_target.set(35835.0f, 955.0f, -16867.0f);
+        i_this->demo_cam_eye_max_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_eye.x) * 0.3f;
+        i_this->demo_cam_eye_max_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_eye.y) * 0.3f;
+        i_this->demo_cam_eye_max_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_eye.z) * 0.3f;
+        i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_ctr.x);
+        i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_ctr.y);
+        i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_ctr.z);
         daPy_getPlayerActorClass()->changeOriginalDemo();
         horse->changeOriginalDemo();
         ato.set(34800.0f, -300.0f, -15200.0f);
@@ -4324,23 +4324,23 @@ static void demo_camera(e_wb_class* i_this) {
 
         if (i_this->demo_timer > (70 + JREG_S(3))) {
             cam_3d_morf(i_this, 0.2f);
-            cLib_addCalc2(&i_this->demo_morf, 0.2f, 1.0f, 0.01f);
+            cLib_addCalc2(&i_this->demo_cam_morf, 0.2f, 1.0f, 0.01f);
             if (i_this->demo_timer == (150 + JREG_S(4))) {
                 i_this->demo_cam_ctr.set(35528.0f, 316.0f, -16987.0f);
                 i_this->demo_cam_eye.set(35059.0f, -128.0f, -16992.0f);
-                i_this->field_0x16ec.set(0.0f, 0.0f, 0.0f);
-                i_this->field_0x16e0.set(34973.0f, -148.0f, -16346.0f);
-                i_this->field_0x16f8.x = fabsf(i_this->field_0x16e0.x - i_this->demo_cam_ctr.x);
-                i_this->field_0x16f8.y = fabsf(i_this->field_0x16e0.y - i_this->demo_cam_ctr.y);
-                i_this->field_0x16f8.z = fabsf(i_this->field_0x16e0.z - i_this->demo_cam_ctr.z);
-                i_this->demo_morf = 0;
+                i_this->demo_cam_eye_max_spd.set(0.0f, 0.0f, 0.0f);
+                i_this->demo_cam_way.set(34973.0f, -148.0f, -16346.0f);
+                i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_ctr.x);
+                i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_ctr.y);
+                i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_ctr.z);
+                i_this->demo_cam_morf = 0;
                 i_this->demo_mode = 42;
                 i_this->demo_timer = 0;
             }
         }
     } break;
     case 42: {
-        i_this->demo_morf = 0.075f + JREG_F(7);
+        i_this->demo_cam_morf = 0.075f + JREG_F(7);
         cam_3d_morf(i_this, 0.5f);
         if (i_this->demo_timer == 20 + JREG_S(5)) {
             i_this->saku_burn = 1;
@@ -4358,7 +4358,7 @@ static void demo_camera(e_wb_class* i_this) {
         if (i_this->demo_timer == 83) {
             i_this->demo_cam_ctr.set(34800.0f, 15.7f, -16820.0f);
             i_this->demo_cam_eye.set(34800.0f, 10.0f, -16170.0f);
-            i_this->demo_morf = 0;
+            i_this->demo_cam_morf = 0;
             i_this->demo_cam_zoom = 55.0f;
             i_this->demo_mode = 43;
             i_this->demo_timer = 0;
@@ -4377,14 +4377,14 @@ static void demo_camera(e_wb_class* i_this) {
             if (i_this->demo_timer == 130) {
                 i_this->demo_cam_ctr.set(34843.0f, -92.7f, -35956.0f);
                 i_this->demo_cam_eye.set(35167.0f, -202.0f, -35403.0f);
-                i_this->field_0x16e0.set(34740.0f, -92.7f, -35966.0f);
-                i_this->field_0x16d4.set(34320.0, -202.0, -35490.0);
-                i_this->field_0x16ec.x = fabsf(i_this->field_0x16d4.x - i_this->demo_cam_eye.x);
-                i_this->field_0x16ec.y = fabsf(i_this->field_0x16d4.y - i_this->demo_cam_eye.y);
-                i_this->field_0x16ec.z = fabsf(i_this->field_0x16d4.z - i_this->demo_cam_eye.z);
-                i_this->field_0x16f8.x = fabsf(i_this->field_0x16e0.x - i_this->demo_cam_ctr.x);
-                i_this->field_0x16f8.y = fabsf(i_this->field_0x16e0.y - i_this->demo_cam_ctr.y);
-                i_this->field_0x16f8.z = fabsf(i_this->field_0x16e0.z - i_this->demo_cam_ctr.z);
+                i_this->demo_cam_way.set(34740.0f, -92.7f, -35966.0f);
+                i_this->demo_cam_target.set(34320.0, -202.0, -35490.0);
+                i_this->demo_cam_eye_max_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_eye.x);
+                i_this->demo_cam_eye_max_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_eye.y);
+                i_this->demo_cam_eye_max_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_eye.z);
+                i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_ctr.x);
+                i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_ctr.y);
+                i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_ctr.z);
                 i_this->demo_cam_zoom = 55.0f;
                 i_this->demo_mode = 44;
                 i_this->demo_timer = 0;
@@ -4394,7 +4394,7 @@ static void demo_camera(e_wb_class* i_this) {
     } break;
     case 44: {
         cam_3d_morf(i_this, 0.05f);
-        cLib_addCalc2(&i_this->demo_morf, 0.005f, 1.0f, 0.0002f);
+        cLib_addCalc2(&i_this->demo_cam_morf, 0.005f, 1.0f, 0.0002f);
         if (i_this->demo_timer == 170) {
             i_this->mode++;
         }
@@ -4404,9 +4404,9 @@ static void demo_camera(e_wb_class* i_this) {
             horse->setHorsePosAndAngle(&ato, horse->shape_angle.y);
         }
         if (i_this->demo_timer == 306 + NREG_S(6)) {
-            camera->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
-            camera->mCamera.Start();
-            camera->mCamera.SetTrimSize(0);
+            cam->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
+            cam->mCamera.Start();
+            cam->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
             horse->cancelOriginalDemo();
@@ -4420,12 +4420,12 @@ static void demo_camera(e_wb_class* i_this) {
             boss->enemy.eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        camera->mCamera.Stop();
-        camera->mCamera.SetTrimSize(3);
+        cam->mCamera.Stop();
+        cam->mCamera.SetTrimSize(3);
         i_this->demo_mode = 51;
         i_this->demo_cam_zoom = 55.0f;
         i_this->demo_timer = 0;
-        i_this->demo_morf = 0;
+        i_this->demo_cam_morf = 0;
         i_this->demo_cam_ctr.set(1679.0, 100.0, 852.0);
         i_this->demo_cam_eye.set(1873.0, 64.0, 527.0);
         daPy_getPlayerActorClass()->changeOriginalDemo();
@@ -4486,15 +4486,15 @@ static void demo_camera(e_wb_class* i_this) {
         if (i_this->demo_timer == 315) {
             i_this->demo_cam_ctr.set(1717.0f, 96.0f, 910.0f);
             i_this->demo_cam_eye.set(2226.0f, 56.0f, 751.0f);
-            i_this->field_0x16e0.set(1780.0f, 92.0f, 967.0f);
-            i_this->field_0x16d4.set(1988.0f, 69.0f, 475.0f);
-            i_this->field_0x16ec.x = fabsf(i_this->field_0x16d4.x - i_this->demo_cam_eye.x);
-            i_this->field_0x16ec.y = fabsf(i_this->field_0x16d4.y - i_this->demo_cam_eye.y);
-            i_this->field_0x16ec.z = fabsf(i_this->field_0x16d4.z - i_this->demo_cam_eye.z);
-            i_this->field_0x16f8.x = fabsf(i_this->field_0x16e0.x - i_this->demo_cam_ctr.x);
-            i_this->field_0x16f8.y = fabsf(i_this->field_0x16e0.y - i_this->demo_cam_ctr.y);
-            i_this->field_0x16f8.z = fabsf(i_this->field_0x16e0.z - i_this->demo_cam_ctr.z);
-            i_this->demo_morf = 0;
+            i_this->demo_cam_way.set(1780.0f, 92.0f, 967.0f);
+            i_this->demo_cam_target.set(1988.0f, 69.0f, 475.0f);
+            i_this->demo_cam_eye_max_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_eye.x);
+            i_this->demo_cam_eye_max_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_eye.y);
+            i_this->demo_cam_eye_max_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_eye.z);
+            i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_ctr.x);
+            i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_ctr.y);
+            i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_ctr.z);
+            i_this->demo_cam_morf = 0;
             pla->setPlayerPosAndAngle(&pla->current.pos, pla->shape_angle.y - 4000, 0);
         }
         if (i_this->demo_timer == 345) {
@@ -4512,13 +4512,13 @@ static void demo_camera(e_wb_class* i_this) {
 
         if (i_this->demo_timer >= 378) {
             cam_3d_morf(i_this, 0.1f + BREG_F(17));
-            cLib_addCalc2(&i_this->demo_morf, 0.05f + BREG_F(18), 1.0f, 0.001f + BREG_F(19));
+            cLib_addCalc2(&i_this->demo_cam_morf, 0.05f + BREG_F(18), 1.0f, 0.001f + BREG_F(19));
         }
 
         if (i_this->demo_timer >= 490) {
-            camera->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
-            camera->mCamera.Start();
-            camera->mCamera.SetTrimSize(0);
+            cam->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
+            cam->mCamera.Start();
+            cam->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
             i_this->demo_mode = 0;
@@ -4532,12 +4532,12 @@ static void demo_camera(e_wb_class* i_this) {
             boss->enemy.eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        camera->mCamera.Stop();
-        camera->mCamera.SetTrimSize(3);
+        cam->mCamera.Stop();
+        cam->mCamera.SetTrimSize(3);
         i_this->demo_mode = 61;
         i_this->demo_cam_zoom = 55.0f;
         i_this->demo_timer = 0;
-        i_this->demo_morf = 0;
+        i_this->demo_cam_morf = 0;
         i_this->demo_cam_ctr.set(2297.0f, 81.0f, 1668.0f);
         i_this->demo_cam_eye.set(2285.0f, 95.0f, 1988.0f);
         boss->enemy.current.pos.set(2341.0f, 1.0f, 1292.0f);
@@ -4596,15 +4596,15 @@ static void demo_camera(e_wb_class* i_this) {
         }
         boss->mMode = 10;
         boss->field_0x680 = 0;
-        i_this->field_0x16e0.set(2834.0f, 490.0f, 1584.0f);
-        i_this->field_0x16d4.set(1978.0f, 87.0f, 1225.0f);
-        i_this->field_0x16ec.x = fabsf(i_this->field_0x16d4.x - i_this->demo_cam_eye.x);
-        i_this->field_0x16ec.y = fabsf(i_this->field_0x16d4.y - i_this->demo_cam_eye.y);
-        i_this->field_0x16ec.z = fabsf(i_this->field_0x16d4.z - i_this->demo_cam_eye.z);
-        i_this->field_0x16f8.x = fabsf(i_this->field_0x16e0.x - i_this->demo_cam_ctr.x);
-        i_this->field_0x16f8.y = fabsf(i_this->field_0x16e0.y - i_this->demo_cam_ctr.y);
-        i_this->field_0x16f8.z = fabsf(i_this->field_0x16e0.z - i_this->demo_cam_ctr.z);
-        i_this->demo_morf = 0;
+        i_this->demo_cam_way.set(2834.0f, 490.0f, 1584.0f);
+        i_this->demo_cam_target.set(1978.0f, 87.0f, 1225.0f);
+        i_this->demo_cam_eye_max_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_eye.x);
+        i_this->demo_cam_eye_max_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_eye.y);
+        i_this->demo_cam_eye_max_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_eye.z);
+        i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_ctr.x);
+        i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_ctr.y);
+        i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_ctr.z);
+        i_this->demo_cam_morf = 0;
         i_this->demo_mode = 63;
         i_this->demo_timer = 0;
         // fallthrough
@@ -4621,7 +4621,7 @@ static void demo_camera(e_wb_class* i_this) {
 
         if (i_this->demo_timer > 60) {
             cam_3d_morf(i_this, 0.05f + BREG_F(17));
-            cLib_addCalc2(&i_this->demo_morf, 0.05f + BREG_F(18), 1.0f, 0.0002f + BREG_F(19));
+            cLib_addCalc2(&i_this->demo_cam_morf, 0.05f + BREG_F(18), 1.0f, 0.0002f + BREG_F(19));
         }
 
         if (i_this->demo_timer == 110) {
@@ -4634,15 +4634,15 @@ static void demo_camera(e_wb_class* i_this) {
 
         i_this->demo_cam_ctr.set(1425.0f, 259.0f, 1583.0f);
         i_this->demo_cam_eye.set(2265.0f, 127.0f, 1011.0f);
-        i_this->field_0x16e0.set(1267.0f, 259.0f, 821.0f);
-        i_this->field_0x16d4.set(2265.0f, 127.0f, 1011.0f);
-        i_this->field_0x16ec.x = fabsf(i_this->field_0x16d4.x - i_this->demo_cam_eye.x);
-        i_this->field_0x16ec.y = fabsf(i_this->field_0x16d4.y - i_this->demo_cam_eye.y);
-        i_this->field_0x16ec.z = fabsf(i_this->field_0x16d4.z - i_this->demo_cam_eye.z);
-        i_this->field_0x16f8.x = fabsf(i_this->field_0x16e0.x - i_this->demo_cam_ctr.x);
-        i_this->field_0x16f8.y = fabsf(i_this->field_0x16e0.y - i_this->demo_cam_ctr.y);
-        i_this->field_0x16f8.z = fabsf(i_this->field_0x16e0.z - i_this->demo_cam_ctr.z);
-        i_this->demo_morf = 0;
+        i_this->demo_cam_way.set(1267.0f, 259.0f, 821.0f);
+        i_this->demo_cam_target.set(2265.0f, 127.0f, 1011.0f);
+        i_this->demo_cam_eye_max_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_eye.x);
+        i_this->demo_cam_eye_max_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_eye.y);
+        i_this->demo_cam_eye_max_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_eye.z);
+        i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_ctr.x);
+        i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_ctr.y);
+        i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_ctr.z);
+        i_this->demo_cam_morf = 0;
         i_this->demo_cam_zoom = 60.0f;
         i_this->demo_mode = 64;
         i_this->demo_timer = 0;
@@ -4652,7 +4652,7 @@ static void demo_camera(e_wb_class* i_this) {
     case 64: {
         if (i_this->demo_timer > 60) {
             cam_3d_morf(i_this, 0.05f + BREG_F(17));
-            cLib_addCalc2(&i_this->demo_morf, 0.05f + BREG_F(18), 1.0f, 0.0002f + BREG_F(19));
+            cLib_addCalc2(&i_this->demo_cam_morf, 0.05f + BREG_F(18), 1.0f, 0.0002f + BREG_F(19));
         }
 
         if (i_this->demo_timer == 170) {
@@ -4660,9 +4660,9 @@ static void demo_camera(e_wb_class* i_this) {
         }
 
         if (i_this->demo_timer == 250) {
-            camera->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
-            camera->mCamera.Start();
-            camera->mCamera.SetTrimSize(0);
+            cam->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
+            cam->mCamera.Start();
+            cam->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
             i_this->demo_mode = 0;
@@ -4674,12 +4674,12 @@ static void demo_camera(e_wb_class* i_this) {
             boss->enemy.eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        camera->mCamera.Stop();
-        camera->mCamera.SetTrimSize(3);
+        cam->mCamera.Stop();
+        cam->mCamera.SetTrimSize(3);
         i_this->demo_mode = 71;
         i_this->demo_cam_zoom = 55.0f;
         i_this->demo_timer = 0;
-        i_this->demo_morf = 0;
+        i_this->demo_cam_morf = 0;
         i_this->demo_cam_ctr.set(1895.0, 159.0, -129.0);
         i_this->demo_cam_eye.set(1984.0, 151.0, 158.0);
         daPy_getPlayerActorClass()->changeOriginalDemo();
@@ -4700,9 +4700,9 @@ static void demo_camera(e_wb_class* i_this) {
         }
 
         if (i_this->demo_timer == 73) {
-            camera->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
-            camera->mCamera.Start();
-            camera->mCamera.SetTrimSize(0);
+            cam->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
+            cam->mCamera.Start();
+            cam->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
             i_this->demo_mode = 0;
@@ -4715,12 +4715,12 @@ static void demo_camera(e_wb_class* i_this) {
             return;
         }
 
-        camera->mCamera.Stop();
-        camera->mCamera.SetTrimSize(3);
+        cam->mCamera.Stop();
+        cam->mCamera.SetTrimSize(3);
         i_this->demo_mode = 81;
         i_this->demo_cam_zoom = 55.0f;
         i_this->demo_timer = 0;
-        i_this->demo_morf = 0.0f;
+        i_this->demo_cam_morf = 0.0f;
         enemy->current.pos.x = 1800.0f;
         enemy->current.pos.z = 0.0f;
         i_this->demo_cam_ctr.set(1631.0f, 195.0f, -224.0f);
@@ -4760,13 +4760,13 @@ static void demo_camera(e_wb_class* i_this) {
             enemy->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
-        camera->mCamera.Stop();
-        camera->mCamera.SetTrimSize(3);
+        cam->mCamera.Stop();
+        cam->mCamera.SetTrimSize(3);
         i_this->demo_mode = 91;
         i_this->demo_timer = 0;
         i_this->demo_cam_zoom = 55.0f + KREG_F(7);
         i_this->demo_timer = 0;
-        i_this->demo_morf = 0;
+        i_this->demo_cam_morf = 0;
         daPy_getPlayerActorClass()->changeOriginalDemo();
         horse->changeOriginalDemo();
         enemy->current.pos.set(-93640.0f, enemy->current.pos.y, 44000.0f);
@@ -4798,8 +4798,8 @@ static void demo_camera(e_wb_class* i_this) {
 
         i_this->field_0x171c = 23.0f + JREG_F(7);
         if (!daPy_getPlayerActorClass()->checkHorseRide()) {
-            camera->mCamera.Start();
-            camera->mCamera.SetTrimSize(0);
+            cam->mCamera.Start();
+            cam->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
             i_this->demo_mode = 0;
@@ -4825,14 +4825,14 @@ static void demo_camera(e_wb_class* i_this) {
         // fallthrough
     case 93: {
         if (rider != NULL) {
-            cLib_addCalc2(&i_this->demo_morf, 1000.0f, 1.0f, 100.0f + KREG_F(10));
+            cLib_addCalc2(&i_this->demo_cam_morf, 1000.0f, 1.0f, 100.0f + KREG_F(10));
             cLib_addCalc2(&i_this->demo_cam_ctr.x, rider->enemy.current.pos.x, 0.5f + KREG_F(8),
-                          i_this->demo_morf);
+                          i_this->demo_cam_morf);
             cLib_addCalc2(&i_this->demo_cam_ctr.y,
                           rider->enemy.current.pos.y + 100.0f + KREG_F(11), 0.5f + KREG_F(8),
-                          i_this->demo_morf);
+                          i_this->demo_cam_morf);
             cLib_addCalc2(&i_this->demo_cam_ctr.z, rider->enemy.current.pos.z, 0.5f + KREG_F(8),
-                          i_this->demo_morf);
+                          i_this->demo_cam_morf);
             cLib_addCalc2(&i_this->demo_cam_eye.x, rider->enemy.current.pos.x - 10.0f, 0.05f,
                           12.0f + NREG_F(3));
             if (i_this->demo_timer >= 40) {
@@ -4952,7 +4952,7 @@ static void demo_camera(e_wb_class* i_this) {
                         (i_this->field_0x171c * cM_scos(i_this->demo_timer * 0x2100));
             cLib_addCalc0(&i_this->field_0x171c, 1.0f, 1.5f + BREG_F(5));
         }
-        camera->mCamera.Set(center, eye, bank, i_this->demo_cam_zoom);
+        cam->mCamera.Set(center, eye, bank, i_this->demo_cam_zoom);
         i_this->demo_timer++;
         if (i_this->demo_timer > 10000) {
             i_this->demo_timer = 10000;
@@ -4988,9 +4988,9 @@ static void demo_camera(e_wb_class* i_this) {
                     boss->field_0xfcf = 0;
                     boss->field_0x6e0 = 0;
                     boss->field_0x6d8 = 3;
-                    camera->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
-                    camera->mCamera.Start();
-                    camera->mCamera.SetTrimSize(0);
+                    cam->mCamera.Reset(i_this->demo_cam_ctr, i_this->demo_cam_eye);
+                    cam->mCamera.Start();
+                    cam->mCamera.SetTrimSize(0);
                     dComIfGp_event_reset();
                     daPy_getPlayerActorClass()->cancelOriginalDemo();
                     i_this->demo_mode = 0;

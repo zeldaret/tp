@@ -5828,35 +5828,35 @@ static void* s_lv9arrow_sub2(void* i_actor, void* i_data) {
     return NULL;
 }
 
-static void cam_3d_morf(e_rd_class* i_this, f32 param_2) {
-    cLib_addCalc2(&i_this->demo_cam_center.x, i_this->field_0x12cc.x, param_2, i_this->field_0x12e4.x * i_this->field_0x130c);
-    cLib_addCalc2(&i_this->demo_cam_center.y, i_this->field_0x12cc.y, param_2, i_this->field_0x12e4.y * i_this->field_0x130c);
-    cLib_addCalc2(&i_this->demo_cam_center.z, i_this->field_0x12cc.z, param_2, i_this->field_0x12e4.z * i_this->field_0x130c);
-    cLib_addCalc2(&i_this->demo_cam_eye.x, i_this->field_0x12c0.x, param_2, i_this->field_0x12d8.x * i_this->field_0x130c);
-    cLib_addCalc2(&i_this->demo_cam_eye.y, i_this->field_0x12c0.y, param_2, i_this->field_0x12d8.y * i_this->field_0x130c);
-    cLib_addCalc2(&i_this->demo_cam_eye.z, i_this->field_0x12c0.z, param_2, i_this->field_0x12d8.z * i_this->field_0x130c);
+static void cam_3d_morf(e_rd_class* i_this, f32 i_scale) {
+    cLib_addCalc2(&i_this->demo_cam_ctr.x, i_this->demo_cam_target.x, i_scale, i_this->demo_cam_way_max_spd.x * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_ctr.y, i_this->demo_cam_target.y, i_scale, i_this->demo_cam_way_max_spd.y * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_ctr.z, i_this->demo_cam_target.z, i_scale, i_this->demo_cam_way_max_spd.z * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_eye.x, i_this->demo_cam_way.x, i_scale, i_this->demo_cam_eye_max_spd.x * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_eye.y, i_this->demo_cam_way.y, i_scale, i_this->demo_cam_eye_max_spd.y * i_this->demo_cam_morf);
+    cLib_addCalc2(&i_this->demo_cam_eye.z, i_this->demo_cam_way.z, i_scale, i_this->demo_cam_eye_max_spd.z * i_this->demo_cam_morf);
 }
 
 static void cam_spd_set(e_rd_class* i_this) {
-    i_this->field_0x12d8.x = fabsf(i_this->field_0x12c0.x - i_this->demo_cam_eye.x);
-    i_this->field_0x12d8.y = fabsf(i_this->field_0x12c0.y - i_this->demo_cam_eye.y);
-    i_this->field_0x12d8.z = fabsf(i_this->field_0x12c0.z - i_this->demo_cam_eye.z);
-    i_this->field_0x12e4.x = fabsf(i_this->field_0x12cc.x - i_this->demo_cam_center.x);
-    i_this->field_0x12e4.y = fabsf(i_this->field_0x12cc.y - i_this->demo_cam_center.y);
-    i_this->field_0x12e4.z = fabsf(i_this->field_0x12cc.z - i_this->demo_cam_center.z);
-    i_this->field_0x130c = 0.0f;
+    i_this->demo_cam_eye_max_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_eye.x);
+    i_this->demo_cam_eye_max_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_eye.y);
+    i_this->demo_cam_eye_max_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_eye.z);
+    i_this->demo_cam_way_max_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_ctr.x);
+    i_this->demo_cam_way_max_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_ctr.y);
+    i_this->demo_cam_way_max_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_ctr.z);
+    i_this->demo_cam_morf = 0.0f;
 }
 
 static void demo_camera(e_rd_class* i_this) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
     daPy_py_c* pla = (daPy_py_c*)dComIfGp_getPlayer(0);
-    camera_class* camera = (camera_class*) dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* camera0 = (camera_class*) dComIfGp_getCamera(0);
+    camera_class* cam = (camera_class*) dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_class* cam0 = (camera_class*) dComIfGp_getCamera(0);
     daNPC_TK_c* taka = (daNPC_TK_c*) fopAcM_SearchByName(PROC_NPC_TK);
     fopAc_ac_c* actor = taka;
     cXyz mae, ato, sp50, target;
     bool sp_0x9 = true; // unused
-    s8 demo_set = false;
+    s8 demo_set = FALSE;
     s16 bank = 0;
 
     switch (i_this->demo_mode + 1) {
@@ -5867,15 +5867,15 @@ static void demo_camera(e_rd_class* i_this) {
                 return;
             }
 
-            camera->mCamera.Stop();
+            cam->mCamera.Stop();
             i_this->demo_mode = 2;
             i_this->demo_timer = 0;
             i_this->demo_cam_zoom = 55.0f;
-            camera->mCamera.SetTrimSize(3);
+            cam->mCamera.SetTrimSize(3);
 
-            i_this->demo_cam_center = enemy->current.pos;
-            i_this->demo_cam_center.y = enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5);
-            i_this->field_0x1300 = 2000.0f;
+            i_this->demo_cam_ctr = enemy->current.pos;
+            i_this->demo_cam_ctr.y = enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5);
+            i_this->demo_cam_eye_z = 2000.0f;
             enemy->current.angle.y = i_this->angleY;
             // fallthrough
         case 3:
@@ -5884,11 +5884,11 @@ static void demo_camera(e_rd_class* i_this) {
                 mDoMtx_stack_c::XrotM(0x640);
                 mae.x = 0.0f;
                 mae.y = TREG_F(3);
-                mae.z = i_this->field_0x1300;
+                mae.z = i_this->demo_cam_eye_z;
                 mDoMtx_stack_c::multVec(&mae, &i_this->demo_cam_eye);
                 i_this->demo_cam_eye += enemy->current.pos;
-                cLib_addCalc2(&i_this->demo_cam_center.y, enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5), 0.1f, 20.0f);
-                cLib_addCalc2(&i_this->field_0x1300, 400.0f, 0.5f, 150.0f);
+                cLib_addCalc2(&i_this->demo_cam_ctr.y, enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5), 0.1f, 20.0f);
+                cLib_addCalc2(&i_this->demo_cam_eye_z, 400.0f, 0.5f, 150.0f);
             } else if (desert_substage == 124) {
                 // main Gerudo Desert
                 lbl_70_bss_AE = true;
@@ -5900,17 +5900,17 @@ static void demo_camera(e_rd_class* i_this) {
                 fpcM_Search(s_wb_sub2, i_this);
 
                 if (target_info[0] != NULL && target_info[1] != NULL) {
-                    i_this->demo_cam_center = target_info[0]->current.pos + ((target_info[1]->current.pos - target_info[0]->current.pos) * 0.5f);
-                    i_this->demo_cam_center.y += 200.0f + BREG_F(7);
+                    i_this->demo_cam_ctr = target_info[0]->current.pos + ((target_info[1]->current.pos - target_info[0]->current.pos) * 0.5f);
+                    i_this->demo_cam_ctr.y += 200.0f + BREG_F(7);
 
                     if (i_this->demo_timer == 85) {
-                        i_this->demo_cam_eye = i_this->demo_cam_center;
+                        i_this->demo_cam_eye = i_this->demo_cam_ctr;
                         i_this->demo_cam_eye.y += 100.0f + VREG_F(8);
                         i_this->demo_cam_eye.z += 900.0f + VREG_F(9);
                     } else {
-                        cLib_addCalc2(&i_this->demo_cam_eye.x, i_this->demo_cam_center.x, 0.2f, 100.0f);
-                        cLib_addCalc2(&i_this->demo_cam_eye.y, i_this->demo_cam_center.y + 100.0f + VREG_F(8), 0.2f, 100.0f);
-                        cLib_addCalc2(&i_this->demo_cam_eye.z, i_this->demo_cam_center.z + 900.0f + VREG_F(9), 0.2f, 100.0f);
+                        cLib_addCalc2(&i_this->demo_cam_eye.x, i_this->demo_cam_ctr.x, 0.2f, 100.0f);
+                        cLib_addCalc2(&i_this->demo_cam_eye.y, i_this->demo_cam_ctr.y + 100.0f + VREG_F(8), 0.2f, 100.0f);
+                        cLib_addCalc2(&i_this->demo_cam_eye.z, i_this->demo_cam_ctr.z + 900.0f + VREG_F(9), 0.2f, 100.0f);
                     }
                 }
 
@@ -5929,31 +5929,31 @@ static void demo_camera(e_rd_class* i_this) {
                 return;
             }
 
-            camera->mCamera.Stop();
+            cam->mCamera.Stop();
             i_this->demo_mode = 11;
             i_this->demo_timer = 0;
             i_this->demo_cam_zoom = 55.0f;
             dComIfGp_offCameraAttentionStatus(0, 8);
-            camera->mCamera.SetTrimSize(3);
+            cam->mCamera.SetTrimSize(3);
 
-            i_this->demo_cam_center = enemy->current.pos;
-            i_this->demo_cam_center.y = (enemy->eyePos.y - 80.0f) + 60.0f + TREG_F(5);
-            i_this->demo_cam_eye = camera0->lookat.eye;
+            i_this->demo_cam_ctr = enemy->current.pos;
+            i_this->demo_cam_ctr.y = (enemy->eyePos.y - 80.0f) + 60.0f + TREG_F(5);
+            i_this->demo_cam_eye = cam0->lookat.eye;
             enemy->current.angle.y = i_this->angleY;
-            i_this->field_0x1300 = 2000.0f;
+            i_this->demo_cam_eye_z = 2000.0f;
             // fallthrough
         case 12:
             mDoMtx_stack_c::YrotS(s16(enemy->current.angle.y));
             mDoMtx_stack_c::XrotM(0x640);
             mae.x = 0.0f;
             mae.y = TREG_F(3);
-            mae.z = i_this->field_0x1300;
+            mae.z = i_this->demo_cam_eye_z;
             mDoMtx_stack_c::multVec(&mae, &ato);
             ato.x += enemy->current.pos.x;
             ato.z += enemy->current.pos.z;
             ato.y += enemy->home.pos.y;
 
-            cLib_addCalc2(&i_this->field_0x1300, 400.0f, 0.5f, 150.0f);
+            cLib_addCalc2(&i_this->demo_cam_eye_z, 400.0f, 0.5f, 150.0f);
 
             if (i_this->demo_timer < 20) {
                 i_this->demo_cam_eye = ato;
@@ -5962,9 +5962,9 @@ static void demo_camera(e_rd_class* i_this) {
                 cLib_addCalc2(&i_this->demo_cam_eye.z, ato.z, 0.1f, 10.0f);
             }
 
-            cLib_addCalc2(&i_this->demo_cam_center.x, enemy->eyePos.x, 0.1f, 10.0f);
-            cLib_addCalc2(&i_this->demo_cam_center.z, enemy->eyePos.z, 0.1f, 10.0f);
-            cLib_addCalc2(&i_this->demo_cam_center.y, enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5), 0.1f, 100.0f);
+            cLib_addCalc2(&i_this->demo_cam_ctr.x, enemy->eyePos.x, 0.1f, 10.0f);
+            cLib_addCalc2(&i_this->demo_cam_ctr.z, enemy->eyePos.z, 0.1f, 10.0f);
+            cLib_addCalc2(&i_this->demo_cam_ctr.y, enemy->eyePos.y - 80.0f + 60.0f + TREG_F(5), 0.1f, 100.0f);
 
             if (i_this->demo_timer == s16(100 + KREG_S(8))) {
                 demo_set = true;
@@ -5985,18 +5985,18 @@ static void demo_camera(e_rd_class* i_this) {
                 return;
             }
 
-            camera->mCamera.Stop();
+            cam->mCamera.Stop();
             i_this->demo_mode = 21;
             i_this->demo_timer = 0;
             i_this->demo_cam_zoom = 55.0f;
-            camera->mCamera.SetTrimSize(3);
+            cam->mCamera.SetTrimSize(3);
 
-            i_this->demo_cam_center = camera0->lookat.center;
-            i_this->demo_cam_eye = camera0->lookat.eye;
-            i_this->field_0x12cc.set(-7875.0f, 2125.0f, 7895.0f);
-            i_this->field_0x12c0.set(-7527.0f, 2084.0f, 7552.0f);
+            i_this->demo_cam_ctr = cam0->lookat.center;
+            i_this->demo_cam_eye = cam0->lookat.eye;
+            i_this->demo_cam_target.set(-7875.0f, 2125.0f, 7895.0f);
+            i_this->demo_cam_way.set(-7527.0f, 2084.0f, 7552.0f);
             cam_spd_set(i_this);
-            i_this->field_0x12e4 *= 2.0f;
+            i_this->demo_cam_way_max_spd *= 2.0f;
             i_this->field_0x12f0 = pla->current.pos;
             i_this->field_0x12f0.y = 2000.0f;
 
@@ -6016,7 +6016,7 @@ static void demo_camera(e_rd_class* i_this) {
                 }
 
                 cam_3d_morf(i_this, BREG_F(17) + 0.2f);
-                cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.1f, 1.0f, BREG_F(17) + 0.002f);
+                cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.1f, 1.0f, BREG_F(17) + 0.002f);
 
                 if (i_this->demo_timer == 70) {
                     dComIfGs_onSwitch(75, fopAcM_GetRoomNo(enemy));
@@ -6024,7 +6024,7 @@ static void demo_camera(e_rd_class* i_this) {
 
                 if (i_this->demo_timer >= 70) {
                     ato.set(-5182.0f, 2000.0f, 5237.0f);
-                    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&ato, -8111, 0);
+                    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&ato,0xE051, 0);
                 }
 
                 if (i_this->demo_timer == 120 || i_this->demo_timer == 130
@@ -6039,8 +6039,8 @@ static void demo_camera(e_rd_class* i_this) {
                 }
 
                 if (i_this->demo_timer == 180) {
-                    i_this->field_0x12cc.set(-7241.0f, 4310.0f, 7269.0f);
-                    i_this->field_0x12c0.set(-6913.0f, 4139.0f, 6948.0f);
+                    i_this->demo_cam_target.set(-7241.0f, 4310.0f, 7269.0f);
+                    i_this->demo_cam_way.set(-6913.0f, 4139.0f, 6948.0f);
                     cam_spd_set(i_this);
                     i_this->demo_mode = 22;
                     i_this->demo_timer = 0;
@@ -6052,7 +6052,7 @@ static void demo_camera(e_rd_class* i_this) {
 
         case 23:
             cam_3d_morf(i_this, BREG_F(17) + 0.2f);
-            cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.15f, 1.0f, BREG_F(17) + 0.005f);
+            cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.15f, 1.0f, BREG_F(17) + 0.005f);
             cLib_addCalc2(&i_this->demo_cam_zoom, 55.0f, 0.1f, 0.5f);
 
             if (i_this->demo_timer == 13) {
@@ -6064,7 +6064,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
 
             if (i_this->demo_timer == 55) {
-                i_this->demo_cam_center.set(-8330.0f, 4359.0f, 8449.0f);
+                i_this->demo_cam_ctr.set(-8330.0f, 4359.0f, 8449.0f);
                 i_this->demo_cam_eye.set(-8183.0f, 4264.0f, 7991.0f);
                 i_this->demo_cam_zoom = 55.0f;
                 i_this->demo_mode = 23;
@@ -6084,7 +6084,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
 
             if (i_this->demo_timer == 40) {
-                i_this->demo_cam_center.set(-8033.0f, 4259.0f, 8143.0f);
+                i_this->demo_cam_ctr.set(-8033.0f, 4259.0f, 8143.0f);
                 i_this->demo_cam_eye.set(-8337.0f, 4488.0f, 8451.0f);
             }
 
@@ -6096,8 +6096,8 @@ static void demo_camera(e_rd_class* i_this) {
                 i_this->field_0x9a4 = 0;
                 i_this->demo_mode = 24;
                 i_this->demo_timer = 0;
-                i_this->field_0x12cc.set(-4910.0f, 2012.0f, 4976.0f);
-                i_this->field_0x12c0.set(-5235.0f, 2179.0f, 5302.0f);
+                i_this->demo_cam_target.set(-4910.0f, 2012.0f, 4976.0f);
+                i_this->demo_cam_way.set(-5235.0f, 2179.0f, 5302.0f);
                 cam_spd_set(i_this);
             }
             break;
@@ -6109,7 +6109,7 @@ static void demo_camera(e_rd_class* i_this) {
             if (i_this->demo_timer >= 4) {
                 i_this->blurRate = 200 + VREG_S(7);
                 bank = cM_scos(i_this->demo_timer * 0x500) * 2500.0f;
-                i_this->field_0x130c = 0.03f + BREG_F(16);
+                i_this->demo_cam_morf = 0.03f + BREG_F(16);
                 cam_3d_morf(i_this, 0.5f + BREG_F(17));
 
                 if (i_this->demo_timer == 4) {
@@ -6142,10 +6142,10 @@ static void demo_camera(e_rd_class* i_this) {
             if (i_this->demo_timer == 40) {
                 mDoGph_gInf_c::fadeIn(0.5f, g_blackColor);
                 i_this->demo_cam_zoom = 55.0f;
-                i_this->demo_cam_center.set(-5197.0f, 1712.0f, 5039.0f);
+                i_this->demo_cam_ctr.set(-5197.0f, 1712.0f, 5039.0f);
                 i_this->demo_cam_eye.set(-5215.0f, 2108.0f, 5327.0f);
-                i_this->field_0x12cc.set(-5025.0f, 2270.0f, 4909.0f);
-                i_this->field_0x12c0.set(-5215.0f, 2108.0f, 5327.0f);
+                i_this->demo_cam_target.set(-5025.0f, 2270.0f, 4909.0f);
+                i_this->demo_cam_way.set(-5215.0f, 2108.0f, 5327.0f);
                 cam_spd_set(i_this);
                 fpcM_Search(s_lv9arrow_sub2, i_this);
             }
@@ -6159,13 +6159,13 @@ static void demo_camera(e_rd_class* i_this) {
 
         case 27:
             cam_3d_morf(i_this, BREG_F(17) + 0.2f);
-            cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.5f, 1.0f, BREG_F(17) + 0.01f);
+            cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.5f, 1.0f, BREG_F(17) + 0.01f);
 
             if (i_this->demo_timer == 55) {
-                i_this->demo_cam_center.set(-5529.0f, 2457.0f, 5589.0f);
+                i_this->demo_cam_ctr.set(-5529.0f, 2457.0f, 5589.0f);
                 i_this->demo_cam_eye.set(-5232.0f, 2201.0f, 5295.0f);
-                i_this->field_0x12cc.set(-5580.0f, 2188.0f, 5640.0f);
-                i_this->field_0x12c0.set(-5232.0f, 2201.0f, 5295.0f);
+                i_this->demo_cam_target.set(-5580.0f, 2188.0f, 5640.0f);
+                i_this->demo_cam_way.set(-5232.0f, 2201.0f, 5295.0f);
                 cam_spd_set(i_this);
                 i_this->demo_mode = 27;
                 i_this->demo_timer = 0;
@@ -6192,7 +6192,7 @@ static void demo_camera(e_rd_class* i_this) {
             } else if (i_this->demo_timer >= 120) {
                 cLib_addCalc2(&i_this->demo_cam_zoom, 55.0f, 0.05f, 0.4f);
                 cam_3d_morf(i_this, BREG_F(17) + 0.2f);
-                cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.1f, 1.0f, BREG_F(17) + 0.01f);
+                cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.1f, 1.0f, BREG_F(17) + 0.01f);
 
                 if (i_this->demo_timer == 177) {
                     ato.set(-5821.0f, 2000.0f, 5850.0f);
@@ -6212,8 +6212,8 @@ static void demo_camera(e_rd_class* i_this) {
 
             i_this->demo_mode = 28;
             i_this->demo_timer = 0;
-            i_this->field_0x12cc.set(-5406.0f, 2168.0f, 5468.0f);
-            i_this->field_0x12c0.set(-5058.0f, 2181.0f, 5124.0f);
+            i_this->demo_cam_target.set(-5406.0f, 2168.0f, 5468.0f);
+            i_this->demo_cam_way.set(-5058.0f, 2181.0f, 5124.0f);
             cam_spd_set(i_this);
             // fallthrough
         case 29:
@@ -6223,22 +6223,22 @@ static void demo_camera(e_rd_class* i_this) {
 
             if (i_this->demo_timer < 25) {
                 cam_3d_morf(i_this, BREG_F(17) + 0.2f);
-                cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.2f, 1.0f, BREG_F(17) + 0.01f);
+                cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.2f, 1.0f, BREG_F(17) + 0.01f);
 
                 if (i_this->demo_timer == 23) {
                     taka->setResistanceDemo();
                 }
             } else {
                 if (i_this->demo_timer == 25) {
-                    i_this->field_0x130c = 0.0f;
+                    i_this->demo_cam_morf = 0.0f;
                 }
 
                 target = actor->current.pos;
-                cLib_addCalc2(&i_this->demo_cam_center.x, target.x, 0.2f, i_this->field_0x130c * 100.0f);
-                cLib_addCalc2(&i_this->demo_cam_center.y, target.y + BREG_F(13), 0.2f, i_this->field_0x130c * 100.0f);
-                cLib_addCalc2(&i_this->demo_cam_center.z, target.z, 0.2f, i_this->field_0x130c * 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_ctr.x, target.x, 0.2f, i_this->demo_cam_morf * 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_ctr.y, target.y + BREG_F(13), 0.2f, i_this->demo_cam_morf * 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_ctr.z, target.z, 0.2f, i_this->demo_cam_morf * 100.0f);
 
-                cLib_addCalc2(&i_this->field_0x130c, 1.0f, 1.0f, 0.03f);
+                cLib_addCalc2(&i_this->demo_cam_morf, 1.0f, 1.0f, 0.03f);
 
                 if (i_this->demo_timer >= 55) {
                     if (i_this->demo_timer == 110) {
@@ -6266,15 +6266,15 @@ static void demo_camera(e_rd_class* i_this) {
             target = actor->current.pos;
 
             if (i_this->demo_timer == 0) {
-                i_this->demo_cam_center = target;
+                i_this->demo_cam_ctr = target;
             } else {
-                cLib_addCalc2(&i_this->demo_cam_center.x, target.x, 0.2f, 100.0f);
-                cLib_addCalc2(&i_this->demo_cam_center.y, target.y, 0.2f, 100.0f);
-                cLib_addCalc2(&i_this->demo_cam_center.z, target.z, 0.2f, 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_ctr.x, target.x, 0.2f, 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_ctr.y, target.y, 0.2f, 100.0f);
+                cLib_addCalc2(&i_this->demo_cam_ctr.z, target.z, 0.2f, 100.0f);
 
                 if (i_this->demo_timer == 140) {
-                    i_this->field_0x12cc.set(-4080.0f, 134.0f, 8190.0f);
-                    i_this->field_0x12c0 = i_this->demo_cam_eye;
+                    i_this->demo_cam_target.set(-4080.0f, 134.0f, 8190.0f);
+                    i_this->demo_cam_way = i_this->demo_cam_eye;
                     cam_spd_set(i_this);
                     i_this->demo_mode = 30;
                     i_this->demo_timer = 0;
@@ -6284,13 +6284,13 @@ static void demo_camera(e_rd_class* i_this) {
 
         case 31:
             cam_3d_morf(i_this, BREG_F(17) + 0.1f);
-            cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.1f, 1.0f, BREG_F(17) + 0.002f);
+            cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.1f, 1.0f, BREG_F(17) + 0.002f);
 
             if (i_this->demo_timer == 70) {
-                i_this->demo_cam_center.set(-4527.0f, 143.0f, 8305.0f);
+                i_this->demo_cam_ctr.set(-4527.0f, 143.0f, 8305.0f);
                 i_this->demo_cam_eye.set(-4676.0f, 161.0f, 8282.0f);
-                i_this->field_0x12cc.set(-4552.0f, 143.0f, 8461.0f);
-                i_this->field_0x12c0.set(-4701.0f, 161.0f, 8438.0f);
+                i_this->demo_cam_target.set(-4552.0f, 143.0f, 8461.0f);
+                i_this->demo_cam_way.set(-4701.0f, 161.0f, 8438.0f);
                 cam_spd_set(i_this);
                 i_this->demo_mode = 31;
                 i_this->demo_timer = 0;
@@ -6301,12 +6301,12 @@ static void demo_camera(e_rd_class* i_this) {
 
         case 32:
             cam_3d_morf(i_this, BREG_F(17) + 0.05f);
-            cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.05f, 1.0f, BREG_F(17) + 0.001f);
+            cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.05f, 1.0f, BREG_F(17) + 0.001f);
 
             if (i_this->demo_timer == 70) {
                 i_this->demo_mode = 32;
                 i_this->demo_timer = 0;
-                i_this->demo_cam_center.set(-5275.0f, 2327.0f, 5812.0f);
+                i_this->demo_cam_ctr.set(-5275.0f, 2327.0f, 5812.0f);
                 i_this->demo_cam_eye.set(-5367.0f, 2689.0f, 5495.0f);
                 i_this->demo_cam_zoom = 30.0f;
             }
@@ -6314,7 +6314,7 @@ static void demo_camera(e_rd_class* i_this) {
 
         case 33:
             if (i_this->demo_timer == 60) {
-                i_this->demo_cam_center.set(-3906.0f, 42.0f, 8198.0f);
+                i_this->demo_cam_ctr.set(-3906.0f, 42.0f, 8198.0f);
                 i_this->demo_cam_eye.set(-4274.0f, 272.0f, 7969.0f);
                 i_this->demo_mode = 33;
                 i_this->demo_timer = 0;
@@ -6329,7 +6329,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
 
             if (i_this->demo_timer == 70) {
-                i_this->demo_cam_center.set(-5712.0f, 2308.0f, 5828.0f);
+                i_this->demo_cam_ctr.set(-5712.0f, 2308.0f, 5828.0f);
                 i_this->demo_cam_eye.set(-5286.0f, 2104.0f, 5957.0f);
                 i_this->demo_cam_zoom = 45.0f;
                 i_this->demo_mode = 34;
@@ -6340,7 +6340,7 @@ static void demo_camera(e_rd_class* i_this) {
         case 35:
             cLib_addCalc2(&i_this->demo_cam_zoom, 40.0f, 0.05f, 0.02f);
             if (i_this->demo_timer == 80) {
-                i_this->demo_cam_center.set(-4712.0f, 870.0f, 7432.0f);
+                i_this->demo_cam_ctr.set(-4712.0f, 870.0f, 7432.0f);
                 i_this->demo_cam_eye.set(-4852.0f, 1171.0f, 7072.0f);
                 i_this->demo_cam_zoom = 55.0f;
                 i_this->demo_mode = 35;
@@ -6362,8 +6362,8 @@ static void demo_camera(e_rd_class* i_this) {
     }
 
     if (demo_set) {
-        camera->mCamera.Start();
-        camera->mCamera.SetTrimSize(0);
+        cam->mCamera.Start();
+        cam->mCamera.SetTrimSize(0);
         dComIfGp_event_reset();
         daPy_getPlayerActorClass()->cancelOriginalDemo();
         i_this->demo_mode = -1;
@@ -6371,9 +6371,9 @@ static void demo_camera(e_rd_class* i_this) {
 
     if (i_this->demo_mode > 0) {
         cXyz center, eye;
-        center = i_this->demo_cam_center;
+        center = i_this->demo_cam_ctr;
         eye = i_this->demo_cam_eye;
-        camera->mCamera.Set(center, eye, bank, i_this->demo_cam_zoom);
+        cam->mCamera.Set(center, eye, bank, i_this->demo_cam_zoom);
         i_this->demo_timer++;
     }
 }
