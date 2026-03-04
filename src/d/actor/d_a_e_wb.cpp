@@ -850,7 +850,7 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
         if (i_this->gake_flg == GAKE_FLG_TURN) {
             if (actor->speedF < 0.1f) {
                 if (dir == 0) {
-                    speed = 0.0;
+                    speed = 0.0f;
                 }
             } else {
                 dir = 1;
@@ -864,7 +864,7 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
                     actor->speedF = l_HIO.mPlayerMountedMaxSpeed;
                 }
             }
-        } else if (i_this->gake_flg == GAKE_FLG_WRONG_DIR && dir == 1) {
+        } else if (i_this->gake_flg < 0 && dir == 1) {
             speed = 0.0f;
         }
 
@@ -3144,7 +3144,7 @@ static void* s_rddel2_sub(void* i_actor, void* i_data) {
     return NULL;
 }
 
-static void e_wb_crt_wait(e_wb_class* i_this) {
+static void e_wb_crv_wait(e_wb_class* i_this) {
     fopEn_enemy_c* enemy = &i_this->enemy;
     cXyz unused, unused2;
     fopAc_ac_c* pla = dComIfGp_getPlayer(0);
@@ -3539,7 +3539,7 @@ static void action(e_wb_class* i_this) {
         e_wb_pl_ride(i_this);
         break;
     case ACT_CRT_WAIT:
-        e_wb_crt_wait(i_this);
+        e_wb_crv_wait(i_this);
     }
 
     if (actor->speedF > 10.0f) {
@@ -5616,7 +5616,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
 
             OS_REPORT(" C_RD RESET  00\n");
         } else if (i_this->arg0 == 9) {
-            i_this->leader = LEADER_NONE;
+            i_this->leader = LEADER_B_LV9;
             i_this->action = ACT_B_LV9_END;
             i_this->mode = 0;
         }

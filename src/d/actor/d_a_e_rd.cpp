@@ -668,7 +668,7 @@ static cXyz S_find_pos;
 
 static u8 desert_substage;
 
-static u8 ikki;
+static u8 data_80519201;
 
 static fopAc_ac_c* target_info[10];
 
@@ -1421,7 +1421,7 @@ static void e_rd_fight_run(e_rd_class* i_this) {
             }
         }
 
-        if (i_this->action == ACTION_FIGHT_RUN && i_this->aim_type != -1) {
+        if (i_this->action == ACTION_FIGHT_RUN && i_this->aim_type >=0) {
             i_this->aim_type = 1;
         }
     }
@@ -2179,7 +2179,7 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
                     } else {
                         boar->action = 8;
                         i_this->action = ACTION_WB_RUN;
-                        boar->wait_timer = 10;
+                        boar->start_timer = 10;
                         Z2GetAudioMgr()->subBgmStart(Z2BGM_HORSE_BATTLE);
                     }
                 } else {
@@ -5095,7 +5095,7 @@ static void action(e_rd_class* i_this) {
             break;
 
         case ACTION_WB_RUN:
-            if (i_this->actor_set != ACTOR_SET_NONE) {
+            if (i_this->actor_set != 0) {
                 e_rd_wb_run_B(i_this);
             } else {
                 e_rd_wb_run(i_this);
@@ -5243,7 +5243,7 @@ static void action(e_rd_class* i_this) {
         i_this->sound.setLinkSearch(false);
     }
 
-    if (cVar1 != 0) {
+    if (cVar1) {
         if (desert_substage != 0) {
             if (!dComIfGp_event_runCheck() && i_this->yagura_timer == 0 && i_this->dis > 700.0f && i_this->field_0x5bb != 0) {
                 fopAcM_delete(enemy);
@@ -5258,7 +5258,7 @@ static void action(e_rd_class* i_this) {
     cLib_addCalcAngleS2(&enemy->shape_angle.z, enemy->current.angle.z, 2, 0x1000);
 
 
-    if (i_this->ride_mode == RIDE_MODE_OFF) {
+    if (i_this->ride_mode == 0) {
         enemy->attention_info.distances[fopAc_attn_BATTLE_e] = 3;
         if (i_this->jump_z) {
             cMtx_YrotS(*calc_mtx, i_this->jump_angle.y);
@@ -5330,14 +5330,14 @@ static void action(e_rd_class* i_this) {
             MTXCopy(boar->anm_p->getModel()->getAnmMtx(boar->field_0x688 + 16), *calc_mtx);
         }
 
-        if (i_this->actor_set != ACTOR_SET_NONE) {
+        if (i_this->actor_set != 0) {
             mae.set(0.0f, BREG_F(4) + -65.0f, 0.0f);
         } else {
             mae.set(0.0f, BREG_F(4) + -45.0f, 0.0f);
         }
         MtxPosition(&mae, &i_this->center_body);
 
-        if (i_this->ride_mode == RIDE_MODE_RIDE) {
+        if (i_this->ride_mode == 2) {
             enemy->current.pos = i_this->center_body;
             enemy->shape_angle = enemy->current.angle = actor->shape_angle;
 
@@ -5363,7 +5363,7 @@ static void action(e_rd_class* i_this) {
             enemy->current.pos += ato;
             mae = i_this->center_body - enemy->current.pos;
             if (mae.abs() < 30.0f || i_this->timer[3] == 0) {
-                i_this->ride_mode = RIDE_MODE_RIDE;
+                i_this->ride_mode = 2;
             }
 
             cLib_addCalcAngleS2(&enemy->current.angle.y, actor->shape_angle.y, 4, 0x800);
@@ -5396,13 +5396,13 @@ static void action(e_rd_class* i_this) {
         i_this->aim_type = 2;
         sp_0x24 = KREG_S(7) + 0x800;
     } else if (i_this->aim_type >= 11) {
-        i_this->aim_type -= (s8)10;
+        i_this->aim_type -= (s8) 10;
         ato2 = i_this->eye;
     } else {
         ato2 = actor->eyePos;
     }
 
-    if (i_this->ride_mode == RIDE_MODE_RIDE) {
+    if (i_this->ride_mode == 2) {
         sp_0x24 = 0x1000;
     }
 
@@ -5424,7 +5424,8 @@ static void action(e_rd_class* i_this) {
                 sp_0x28 = -sp_0x26;
             }
 
-            cLib_addCalcAngleS2(&i_this->aim_angle_y, sp_0x2a, 2, sp_0x24);
+            cLib_addCalcAngleS2(&i_this->aim_angle_y
+, sp_0x2a, 2, sp_0x24);
         } else if (i_this->aim_type == 5) {
             if ((i_this->counter & 15) == 0 && cM_rndF2(1.0f) < 0.3f) {
                 i_this->head_shake = cM_rndFX2(2000.0f);
@@ -5440,7 +5441,8 @@ static void action(e_rd_class* i_this) {
                 i_this->field_0x9a4 = 1;
             }
 
-            cLib_addCalcAngleS2(&i_this->aim_angle_y, sp_0x2a / 2, 2, 0x1000);
+            cLib_addCalcAngleS2(&i_this->aim_angle_y
+, sp_0x2a / 2, 2, 0x1000);
             sp_0x28 = -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z));
             if (sp_0x28 > 0x2AF8) {
                 sp_0x28 = 11000;
@@ -5558,82 +5560,82 @@ static void action(e_rd_class* i_this) {
     cLib_addCalcAngleS2(&i_this->field_0xade.y, i_this->field_0xae4.y, 2, 0x800);
     cLib_addCalcAngleS2(&i_this->field_0xade.x, i_this->field_0xae4.x, 2, 0x800);
     i_this->field_0xae4.y = i_this->field_0xae4.x = 0;
-    s16 range = 0;
+    s16 sVar4 = 0;
     s16 sVar5 = 0;
 
     if (i_this->jump_timer != 0) {
         i_this->jump_timer--;
         if (i_this->jump_angle.x != 0) {
-            Vec pos;
-            cXyz ato, sp298;
+            Vec sp280;
+            cXyz sp28c, sp298;
             dBgS_GndChk gnd_chk;
-            f32 z = 75.0f;
+            f32 fVar2 = 75.0f;
 
             MTXCopy(i_this->anm_p->getModel()->getAnmMtx(1), *calc_mtx);
             mae.set(0.0f, 0.0f, 0.0f);
-            MtxPosition(&mae, &ato);
-            ato.y += 100.0f;
-            ato.y += 100.0f;
-            gnd_chk.SetPos(&ato);
-            ato.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+            MtxPosition(&mae, &sp28c);
+            sp28c.y += 100.0f;
+            sp28c.y += 100.0f;
+            gnd_chk.SetPos(&sp28c);
+            sp28c.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-            if (ato.y != -G_CM3D_F_INF) {
-                pos.x = ato.x;
-                pos.y = ato.y + 100.0f;
-                pos.z = ato.z + z;
-                gnd_chk.SetPos(&pos);
-                pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+            if (sp28c.y != -G_CM3D_F_INF) {
+                sp280.x = sp28c.x;
+                sp280.y = sp28c.y + 100.0f;
+                sp280.z = sp28c.z + fVar2;
+                gnd_chk.SetPos(&sp280);
+                sp280.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
                 f32 x, y, z;
-                if (pos.y != -G_CM3D_F_INF) {
-                    y = pos.y - ato.y;
-                    z = pos.z - ato.z;
+                if (sp280.y != -G_CM3D_F_INF) {
+                    y = sp280.y - sp28c.y;
+                    z = sp280.z - sp28c.z;
                     sVar5 = -cM_atan2s(y, z);
                     if (sVar5 > 0x3000 || sVar5 < -0x3000) {
                         sVar5 = 0;
                     }
                 }
 
-                pos.x = ato.x + z;
-                pos.y = ato.y + 100.0f;
-                pos.z = ato.z;
-                gnd_chk.SetPos(&pos);
-                pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+                sp280.x = sp28c.x + fVar2;
+                sp280.y = sp28c.y + 100.0f;
+                sp280.z = sp28c.z;
+                gnd_chk.SetPos(&sp280);
+                sp280.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-                if (pos.y != -G_CM3D_F_INF) {
-                    y = pos.y - ato.y;
-                    x = pos.x - ato.x;
-                    range = (s16) cM_atan2s(y, x);
-                    if (range > 0x3000 || range < -0x3000) {
-                        range = 0;
+                if (sp280.y != -G_CM3D_F_INF) {
+                    y = sp280.y - sp28c.y;
+                    x = sp280.x - sp28c.x;
+                    sVar4 = (s16) cM_atan2s(y, x);
+                    if (sVar4 > 0x3000 || sVar4 < -0x3000) {
+                        sVar4 = 0;
                     }
                 }
             }
 
             dBgS_LinChk lin_chk;
-            cXyz mae, start, end;
+            cXyz sp2a4, start, end;
 
             start = enemy->current.pos;
             start.y += JREG_F(5) + 30.0f;
             J3DModel* model = i_this->anm_p->getModel();
-            mae.set(0.0f, 0.0f, 0.0f);
+            sp2a4.set(0.0f, 0.0f, 0.0f);
             MTXCopy(model->getAnmMtx(BREG_S(8) + 13), *calc_mtx);
-            MtxPosition(&mae, &end);
+            MtxPosition(&sp2a4, &end);
             end.y += JREG_F(6) + 30.0f;
 
             lin_chk.Set(&start, &end, enemy);
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                mae = start - end;
-                cMtx_YrotS(*calc_mtx, cM_atan2s(mae.x, mae.z));
-                mae.x = 0.0f;
-                mae.y = 0.0f;
-                mae.z = TREG_F(11) + 50.0f;
-                MtxPosition(&mae, &ato);
+                sp2a4 = start - end;
+                cMtx_YrotS(*calc_mtx, cM_atan2s(sp2a4.x, sp2a4.z));
+                sp2a4.x = 0.0f;
+                sp2a4.y = 0.0f;
+                sp2a4.z = TREG_F(11) + 50.0f;
+                MtxPosition(&sp2a4, &ato);
                 enemy->current.pos += ato;
             }
 
             i_this->field_0xa18.x = sVar5;
-            i_this->field_0xa18.z = range;
+            i_this->field_0xa18.z = sVar4;
         }
     }
 
@@ -5668,7 +5670,7 @@ static void action(e_rd_class* i_this) {
             cXyz sc(scale, scale, scale);
             csXyz rot(0, 0, 0);
             for (int i = 0; i < 3; i++) {
-                i_this->enemy_downWtrA[i] = dComIfGp_particle_set(i_this->enemy_downWtrA[i], w_eff_name[i], &ato, &enemy->tevStr, 
+                i_this->w_eff_id[i] = dComIfGp_particle_set(i_this->w_eff_id[i], w_eff_name[i], &ato, &enemy->tevStr, 
                                                                 &rot, &sc, 0xFF, 0, -1, NULL, NULL, NULL);
             }
         } else {
@@ -5681,6 +5683,7 @@ static void action(e_rd_class* i_this) {
     cXyz size(1.3f, 1.3f, 1.3f);
     setMidnaBindEffect(enemy, &i_this->sound, &enemy->eyePos, &size);
 }
+
 
 static void fire_eff_set(e_rd_class* i_this) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
@@ -5715,10 +5718,10 @@ static void fire_eff_set(e_rd_class* i_this) {
 
     cXyz sc(scale, scale, scale);
     for (int i = 0 ; i < iVar1; i++) {
-        i_this->fire_eff[i] = dComIfGp_particle_set(i_this->fire_eff[i], uVar1[i], &ato, &enemy->shape_angle, &sc);
+        i_this->fire_eff_id[i] = dComIfGp_particle_set(i_this->fire_eff_id[i], uVar1[i], &ato, &enemy->shape_angle, &sc);
 
         if (i == 0) {
-            JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->fire_eff[i]);
+            JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->fire_eff_id[i]);
             if (emitter != NULL) {
                 emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
                 emitter->setUserWork((uintptr_t)&i_this->field_0x1288);
@@ -6382,7 +6385,7 @@ static int c_start;
 
 static int daE_RD_Execute(e_rd_class* i_this) {
     if (c_start == 0 && dComIfGp_event_runCheck()) {
-        if (ikki != 0) {
+        if (data_80519201 != 0) {
             return 1;
         }
 
@@ -7036,7 +7039,9 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     return 1;
 }
 
-static Vec jv_offset = {0.0f, 0.0f, 0.0f};
+static u8 jv_offset[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
 
 static int daE_RD_IsDelete(e_rd_class*) {
     return 1;
@@ -7587,9 +7592,9 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && fopAcM_GetRoomNo(actor) == 0) {
             // Hyrule Field - Bridge of Eldin
-            ikki = TRUE;
+            data_80519201 = TRUE;
         } else {
-            ikki = FALSE;
+            data_80519201 = FALSE;
         }
 
         c_start = 1;
