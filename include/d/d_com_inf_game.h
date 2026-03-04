@@ -950,7 +950,7 @@ public:
 
 class dComIfG_inf_c {
 public:
-#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+#if PLATFORM_WII || PLATFORM_SHIELD
     class baseCsr_c : public mDoGph_gInf_c::csr_c {
     public:
         class navi_c {
@@ -1010,7 +1010,7 @@ public:
     ~dComIfG_inf_c() {}
     void ct();
 
-#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+#if PLATFORM_WII || PLATFORM_SHIELD
     static void createBaseCsr();
 
     static baseCsr_c* getBaseCsr() {
@@ -1038,7 +1038,7 @@ public:
     #endif
 
     static __d_timer_info_c dComIfG_mTimerInfo;
-    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+    #if PLATFORM_WII || PLATFORM_SHIELD
     static baseCsr_c* m_baseCsr;
     #endif
 };  // Size: 0x1DE10

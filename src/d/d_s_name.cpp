@@ -168,7 +168,7 @@ void dScnName_c::setView() {
     cMtx_concatProjView(camera->view.projMtx, camera->view.viewMtx, camera->view.projViewMtx);
 }
 
-#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+#if PLATFORM_WII || PLATFORM_SHIELD
 static void setBaseCsrColor(int i_no) {
     static const GXColor l_csrColor[] = {
         {255, 0, 0 , 0},
@@ -256,7 +256,7 @@ dScnName_c::~dScnName_c() {
     dComIfG_deleteObjectResMain("fileSel");
     mHeap->destroy();
 
-    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
+    #if PLATFORM_WII || PLATFORM_SHIELD
     dComIfG_inf_c::baseCsr_c* baseCsr = dComIfG_inf_c::getBaseCsr();
     JUT_ASSERT(870, baseCsr != NULL);
     baseCsr->onNavi();
