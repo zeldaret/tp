@@ -430,7 +430,7 @@ void daE_BG_c::executeAttack() {
     s16 unkShort1;
     cXyz unkXyz1;
 
-    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
     cXyz playerPos = daPy_getPlayerActorClass()->current.pos;
 

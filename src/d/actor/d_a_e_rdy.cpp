@@ -3793,8 +3793,8 @@ static void* s_adel_sub(void* i_proc, void* i_this) {
 static void demo_camera(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    camera_class* player_camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* player_camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera = dComIfGp_getCamera(0);
     cXyz vec1, vec2, vec3, vec4, vec5;
     u8 unused_u8 = 1;
     (void) unused_u8;

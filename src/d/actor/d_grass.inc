@@ -611,7 +611,7 @@ void dGrass_packet_c::draw() {
             f32 temp1 = 0.001953125f; // fakematch
 
 #if DEBUG
-            camera_class* sp34 = dComIfGp_getCamera(0);
+            camera_process_class* sp34 = dComIfGp_getCamera(0);
             int sp30 = 0;
             if (dCam_getBody() != NULL &&
                 (dCam_getBody()->Mode() == 7 || dCam_getBody()->Mode() == 8) &&

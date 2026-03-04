@@ -1040,7 +1040,7 @@ static int ni_play(ni_class* i_this) {
     sp78.y = 0.0f;
     sp78.z = -i_this->mPadMainStickY;
 
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
     sp84 = camera->lookat.center - camera->lookat.eye;
 
     cMtx_YrotS(*calc_mtx, cM_atan2s(-sp84.x, -sp84.z));
@@ -1159,7 +1159,7 @@ static int ni_play(ni_class* i_this) {
 static void play_camera(ni_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera0 = (camera_class*)dComIfGp_getCamera(0);
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     cXyz sp1D8;

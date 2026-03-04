@@ -91,7 +91,7 @@ static void dKyr_set_btitex(GXTexObj* i_obj, ResTIMG* i_img) {
 void dKyr_lenzflare_move() {
     dKankyo_sun_Packet* sun_packet = g_env_light.mpSunPacket;
     dKankyo_sunlenz_Packet* lenz_packet = g_env_light.mpSunLenzPacket;
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
 
     cXyz eyeVect;
     cXyz field_0x3c;
@@ -149,8 +149,8 @@ static BOOL dKyr_moon_arrival_check() {
 void dKyr_sun_move() {
     dKankyo_sun_Packet* sun_packet = g_env_light.mpSunPacket;
     dKankyo_sunlenz_Packet* lenz_packet = g_env_light.mpSunLenzPacket;
-    camera_class* camera_p2 = dComIfGp_getCamera(0);
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera_p2 = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
     cXyz lightDir;
 
     f32 pulse_pos;
@@ -443,7 +443,7 @@ static void rain_bg_chk(dKankyo_rain_Packet* i_packet, int i_idx) {
 }
 
 static BOOL overhead_bg_chk() {
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
     BOOL chk = false;
 
     dBgS_ObjGndChk_All gndchk;
@@ -473,7 +473,7 @@ static BOOL overhead_bg_chk() {
 }
 
 static BOOL forward_overhead_bg_chk(cXyz* ppos, f32 dist) {
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
     BOOL chk = FALSE;
 
     dBgS_ObjGndChk_All gndchk;
@@ -952,7 +952,7 @@ void dKyr_housi_move() {
             dBgS_CamGndChk_Wtr sp90;
 
             cXyz sp48;
-            camera_class* cam_p = dComIfGp_getCamera(0);
+            camera_process_class* cam_p = dComIfGp_getCamera(0);
             sp48 = cam_p->lookat.eye;
             sp48.y += 100000.0f;
 
@@ -3439,7 +3439,7 @@ void dKyr_drawHousi(Mtx drawMtx, u8** tex) {
                 GXColor sp1C = {0x32, 0x32, 0x32, 0xFF};
                 GXColor sp18 = {0xFF, 0xD7, 0xF0, 0xFF};
 
-                camera_class* cam_p = dComIfGp_getCamera(0);
+                camera_process_class* cam_p = dComIfGp_getCamera(0);
                 if (g_env_light.fishing_hole_season == 3) {
                     sp1C.r = 0x78;
                     sp1C.g = 0x0A;
@@ -4396,7 +4396,7 @@ void drawCloudShadow(Mtx drawMtx, u8** tex) {
 
             ResTIMG* fb_timg = mDoGph_gInf_c::getFrameBufferTimg();
             dDlst_window_c* window = dComIfGp_getWindow(0);
-            camera_class* window_cam = dComIfGp_getCamera(window->getCameraID());
+            camera_process_class* window_cam = dComIfGp_getCamera(window->getCameraID());
             dKyr_set_btitex_common(&fb_texobj, fb_timg, GX_TEXMAP0);
 
             f32 scale = 0.49f;
@@ -4534,7 +4534,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
     dKankyo_vrkumo_Packet* vrkumo_packet = g_env_light.mpVrkumoPacket;
     camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
-    camera_class* camera2 = (camera_class*)dComIfGp_getCamera(0);
+    camera_process_class* camera2 = (camera_process_class*)dComIfGp_getCamera(0);
 
     Mtx camMtx;
     Mtx rotMtx;
@@ -5375,7 +5375,7 @@ void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
 
     ResTIMG* fb_timg = mDoGph_gInf_c::getFrameBufferTimg();
     dDlst_window_c* window = dComIfGp_getWindow(0);
-    camera_class* window_cam = dComIfGp_getCamera(window->getCameraID());
+    camera_process_class* window_cam = dComIfGp_getCamera(window->getCameraID());
     dKyr_set_btitex_common(&fb_texobj, fb_timg, GX_TEXMAP0);
 
     f32 scale = 0.49f;

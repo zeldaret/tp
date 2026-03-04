@@ -43,7 +43,7 @@ int dThunder_c::draw() {
     static cXyz l_offsetPos(0.0f, 40.0f, -250.0f);
     static cXyz l_scale(1.0f, 1.0f, 1.0f);
 
-    camera_class* camera_p = dComIfGp_getCamera(0);
+    camera_process_class* camera_p = dComIfGp_getCamera(0);
 
     mDoMtx_stack_c::transS(mThunderPos.x, mThunderPos.y, mThunderPos.z);
     mDoMtx_stack_c::YrotM(field_0x168);
@@ -141,7 +141,7 @@ static int dThunder_Create(kankyo_class* i_this) {
 
 int dThunder_c::create() {
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
-    camera_class* camera_p = dComIfGp_getCamera(0);
+    camera_process_class* camera_p = dComIfGp_getCamera(0);
     cXyz spB8;
     cXyz spC4;
     cXyz spD0;

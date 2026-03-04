@@ -650,7 +650,7 @@ static cXyz create_pos[15] = {
 };
 
 void daE_WW_c::executeMaster() {
-    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz sp48 = daPy_getPlayerActorClass()->current.pos;
     f32 temp_f30 = sp48.absXZ(current.pos);
     cXyz sp3C;
@@ -1055,7 +1055,7 @@ void daE_WW_c::executeAttack() {
 
 bool daE_WW_c::checkAttackStart() {
     if (field_0x734 == 0) {
-        camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+        camera_process_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
         s16 temp_r28 = (fopCamM_GetAngleY(camera) + 0x8000) - fopAcM_searchPlayerAngleY(this);
         cXyz sp14 = daPy_getPlayerActorClass()->current.pos;
 

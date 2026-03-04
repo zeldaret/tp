@@ -1996,8 +1996,8 @@ static void* s_hasidel_sub(void* i_this, void* i_data) {
 static void demo_camera(b_ob_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* camera0 = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera0 = dComIfGp_getCamera(0);
 
     cXyz sp58;
     cXyz sp64;

@@ -708,7 +708,7 @@ BOOL daNbomb_c::procExplodeInit() {
 }
 
 BOOL daNbomb_c::procExplode() {
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
     f32 dist_scale = 0.0f;
 
     mLightInfluence.mPow = mExplosionStrength * 1500.0f;

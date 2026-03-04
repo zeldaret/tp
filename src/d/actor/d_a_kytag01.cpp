@@ -111,7 +111,7 @@ static int daKytag01_Draw(kytag01_class* i_this) {
 
 static int daKytag01_Execute(kytag01_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     if ((a_this->argument & 0xFF) == 2) {

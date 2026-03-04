@@ -494,7 +494,7 @@ void dKy_pos2_get_angle(cXyz* pos1_p, cXyz* pos2_p, s16* pitch_p, s16* yaw_p) {
 
 void dKy_twi_wolflight_set(int light_id) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-    camera_class* camera_p = dComIfGp_getCamera(0);
+    camera_process_class* camera_p = dComIfGp_getCamera(0);
     cXyz vectle;
 
     if (camera_p == NULL) {
@@ -1633,7 +1633,7 @@ void dScnKy_env_light_c::setDaytime() {
 }
 
 void dScnKy_env_light_c::setSunpos() {
-    camera_class* camera_p = dComIfGp_getCamera(0);
+    camera_process_class* camera_p = dComIfGp_getCamera(0);
     cXyz pos;
     f32 parcent;
     f32 sun_angle;
@@ -1930,7 +1930,7 @@ void dScnKy_env_light_c::setLight_palno_get(u8* prev_envr_id_p, u8* next_envr_id
         // use a specific palette for rollgoal (camera eye gets set below 0.0)
         else if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0)
         {
-            camera_class* camera_p = dComIfGp_getCamera(0);
+            camera_process_class* camera_p = dComIfGp_getCamera(0);
 
             if (camera_p != NULL && camera_p->lookat.eye.y < 0.0f) {
                 psel_idx = envr_p->pselect_id[10];
@@ -2146,7 +2146,7 @@ void dScnKy_env_light_c::setLight_palno_get(u8* prev_envr_id_p, u8* next_envr_id
         // use a specific palette for rollgoal (camera eye gets set below 0.0)
         else if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0)
         {
-            camera_class* camera_p = dComIfGp_getCamera(0);
+            camera_process_class* camera_p = dComIfGp_getCamera(0);
 
             if (camera_p != NULL && camera_p->lookat.eye.y < 0.0f) {
                 pselect_p = &g_env_light.stage_pselect_info[envr_p->pselect_id[10]];
@@ -2257,7 +2257,7 @@ void dScnKy_env_light_c::setLight() {
     u8* init_timer = &g_env_light.light_init_timer;
     int i;
     f32 sp8C;
-    camera_class* camera_p = dComIfGp_getCamera(0);
+    camera_process_class* camera_p = dComIfGp_getCamera(0);
 
     GXColorS10 add_col;
     add_col.r = 0;
@@ -3868,7 +3868,7 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
         fog_far = 30000.0f;
 
         for (int i = 0; i < 6; i++) {
-            camera_class* sp30 = dComIfGp_getCamera(0);
+            camera_process_class* sp30 = dComIfGp_getCamera(0);
             J3DLightInfo& temp_r31 = *tevstr_p->mLights[i].getLightInfo();
 
             if (i == 0) {
@@ -8642,7 +8642,7 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
 
 void dKy_setLight_nowroom(char room_no) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     MtxPtr var_r28 = j3dSys.getViewMtx();
 
@@ -11592,7 +11592,7 @@ void dKy_bg_MAxx_proc(void* bg_model_p) {
                 f32 temp_f29;
                 f32 temp_f31;
                 cXyz spB4;
-                camera_class* camera_p = dComIfGp_getCamera(0);
+                camera_process_class* camera_p = dComIfGp_getCamera(0);
                 J3DGXColor sp10;
 
                 cXyz spA8;

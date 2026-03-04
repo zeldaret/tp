@@ -220,8 +220,8 @@ static void e_po_opening(e_po_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
 
     fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
-    camera_class* camera1 =
-        static_cast<camera_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
+    camera_process_class* camera1 =
+        static_cast<camera_process_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
     camera_class* camera2 = static_cast<camera_class*>(dComIfGp_getCamera(0));
     cXyz temp_vec;
 
@@ -839,8 +839,8 @@ static void e_po_dead(e_po_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
 
     daPy_py_c* player_p = (daPy_py_c*)dComIfGp_getPlayer(0);
-    camera_class* camera_player =
-        static_cast<camera_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
+    camera_process_class* camera_player =
+        static_cast<camera_process_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
     camera_class* camera = static_cast<camera_class*>(dComIfGp_getCamera(0));
     dBgS_LinChk lin_chk;
     cXyz scale(1.0f, 1.0f, 1.0f);
@@ -1326,8 +1326,8 @@ static void e_po_limbering(e_po_class* i_this) {
 
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
     fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
-    camera_class* camera_player =
-        static_cast<camera_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
+    camera_process_class* camera_player =
+        static_cast<camera_process_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
     camera_class* camera = static_cast<camera_class*>(dComIfGp_getCamera(0));
 
     switch (i_this->mType) {
@@ -1703,8 +1703,8 @@ static void e_po_holl_demo(e_po_class* i_this) {
 
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
     daPy_py_c* player_p = (daPy_py_c*)dComIfGp_getPlayer(0);
-    camera_class* camera_player = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera_player = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera = dComIfGp_getCamera(0);
 
     cXyz scale(1.0f, 1.0f, 1.0f);
     u32 param = 7;

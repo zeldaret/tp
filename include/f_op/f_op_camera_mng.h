@@ -10,7 +10,7 @@ struct fopCamM_prm_class {
     /* 0x00 */ fopAcM_prmBase_class base;
 };  // Size: 0x18
 
-class camera_process_class : public view_class {
+class camera_class : public view_class {
 public:
     /* 0x210 */ create_tag_class create_tag;
     /* 0x224 */ leafdraw_method_class* submethod;
@@ -23,7 +23,7 @@ public:
     /* 0x238 */ int field_0x238;
 };
 
-class camera_class : public camera_process_class {
+class camera_process_class : public camera_class {
 public:
     /* 0x23C */ int field_0x23c;
     /* 0x240 */ request_of_phase_process_class phase_request;

@@ -92,7 +92,7 @@ void daPPolamp_c::setPclModelMtx() {
     Vec local_2c = {0.0f, -45.0f, 0.0f};
     cMtx_multVec(mModel1->getBaseTRMtx(), &local_2c, &local_20);
     mDoMtx_stack_c::transS(local_20.x, local_20.y, local_20.z);
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
     if (camera != NULL) {
         cXyz cStack_38 = camera->lookat.eye - current.pos;
         mDoMtx_stack_c::YrotM(cStack_38.atan2sX_Z());

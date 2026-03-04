@@ -1033,7 +1033,7 @@ static void npc_ks_home(npc_ks_class* i_this) {
             i_this->path_no = 0;
             i_this->field_0xaec = 1;
             if (fopAcM_CheckCondition(actor, 4) != 0) {
-                camera_class* camera = dComIfGp_getCamera(0);
+                camera_process_class* camera = dComIfGp_getCamera(0);
                 mae.x = camera->lookat.eye.x - camera->lookat.center.x;
                 mae.z = camera->lookat.eye.z - camera->lookat.center.z;
                 cMtx_YrotS(*calc_mtx, cM_atan2s(mae.x, mae.z));
@@ -1802,7 +1802,7 @@ static void hang_end_check(npc_ks_class* i_this) {
             i_this->field_0xaec = 1;
             actor->current.angle.x = 0;
             if (fopAcM_CheckCondition(actor, 4) != 0) {
-                camera_class* camera = dComIfGp_getCamera(0);
+                camera_process_class* camera = dComIfGp_getCamera(0);
                 if (checkDoorDemo()) {
                     cMtx_YrotS(*calc_mtx, player->shape_angle.y + 0x8000);
                 } else {
@@ -2537,8 +2537,8 @@ static void* s_fsdown_sub(void* i_actor, void* i_data) {
 static void demo_camera(npc_ks_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* unused_cam_p = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* unused_cam_p = dComIfGp_getCamera(0);
     obj_sw_class* sw_p = i_this->child_no;
     fopAc_ac_c* base_sw_p = &sw_p->actor;
     cXyz mae, ato;

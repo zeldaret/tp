@@ -513,7 +513,7 @@ static void daKytag06_type_07_Execute(kytag06_class* i_this) {
     cXyz spX;
     f32 current_time = dComIfGs_getTime();
     dScnKy_env_light_c* env_light = dKy_getEnvlight();
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
 
     if (i_this->field_0x574 == 0) {
         if (current_time > 285.0f || current_time < 82.5f) {
@@ -711,7 +711,7 @@ static void daKytag06_type_10_Execute(kytag06_class* i_this) {
         }
 
         dKyw_evt_wind_set_go();
-        camera_class* camera = dComIfGp_getCamera(0);
+        camera_process_class* camera = dComIfGp_getCamera(0);
 
         cXyz eye(camera->lookat.eye);
 
@@ -865,7 +865,7 @@ static int daKytag06_Execute(kytag06_class* i_this) {
 
     switch (i_this->mType) {
     case 1: {
-        camera_class* camera = dComIfGp_getCamera(0);
+        camera_process_class* camera = dComIfGp_getCamera(0);
 
         if (i_this->mpPath != NULL) {
             int target1 = 0;

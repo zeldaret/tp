@@ -213,7 +213,7 @@ static int land_check(bd_class* i_this) {
     }
 
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
     cXyz sp30;
     sp30 = camera->lookat.center - camera->lookat.eye;
     s16 spA = cM_atan2s(sp30.x, sp30.z);

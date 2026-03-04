@@ -126,8 +126,8 @@ static void cam_3d_morf(npc_sq_class* i_this, f32 i_scale) {
 
 static void demo_camera(npc_sq_class* i_this) {
     fopAc_ac_c* _this = static_cast<fopAc_ac_c*>(i_this);
-    camera_class* player_camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* player_camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera = dComIfGp_getCamera(0);
     cXyz vec;
     s8 end = 0;
 

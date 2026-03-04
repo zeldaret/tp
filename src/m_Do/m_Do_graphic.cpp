@@ -814,7 +814,7 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
 
             if (dCam_getBody()->Mode() != 4 && dCam_getBody()->Mode() != 7) {
                 int cam_id = dComIfGp_getPlayerCameraID(0);
-                camera_class* temp_r4 = dComIfGp_getCamera(cam_id);
+                camera_process_class* temp_r4 = dComIfGp_getCamera(cam_id);
                 dAttention_c* attention = dComIfGp_getAttention();
 
                 f32 var_f30;
@@ -1564,7 +1564,7 @@ int mDoGph_Painter() {
     if (dComIfGp_getWindowNum() != 0) {
         dDlst_window_c* window_p = dComIfGp_getWindow(0);
         int camera_id = window_p->getCameraID();
-        camera_class* camera_p = dComIfGp_getCamera(camera_id);
+        camera_process_class* camera_p = dComIfGp_getCamera(camera_id);
 
         if (camera_p != NULL) {
             #if DEBUG

@@ -454,8 +454,8 @@ void daE_PZ_c::executeOpeningDemo() {
         cXyz(15.0f, 285.0f, -760.0f),
     };
 
-    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* camera0 = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera0 = dComIfGp_getCamera(0);
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
 
     cXyz sp120;
@@ -1550,8 +1550,8 @@ void daE_PZ_c::executeDamage() {
 }
 
 void daE_PZ_c::executeDead() {
-    camera_class* sp1C = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* sp18 = dComIfGp_getCamera(0);
+    camera_process_class* sp1C = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* sp18 = dComIfGp_getCamera(0);
     fopAc_ac_c* sp14 = dComIfGp_getPlayer(0);
     cXyz sp68;
     cXyz sp5C;

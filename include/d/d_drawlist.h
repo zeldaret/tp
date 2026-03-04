@@ -67,6 +67,13 @@ public:
         
     }
 
+    void setBlackColor(u64 i_tag, JUtility::TColor i_color) {
+        J2DPicture* picture = getPicture(i_tag);
+        JUT_ASSERT(1570, picture != NULL);
+
+        picture->setBlack(i_color);
+    }
+
     class anm_c {
     public:
         inline anm_c() {
@@ -325,7 +332,7 @@ public:
 private:
     /* 0x00 */ view_port_class mViewport;
     /* 0x28 */ s8 mCameraID;
-    /* 0x29 */ s8 mMode;
+    /* 0x29 */ u8 mMode;
 };
 
 STATIC_ASSERT(sizeof(dDlst_window_c) == 0x2C);

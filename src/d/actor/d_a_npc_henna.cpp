@@ -152,7 +152,7 @@ static int daNpc_Henna_Draw(npc_henna_class* i_this) {
 
     g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
     if (i_this->field_0x694 == 0) {
-        camera_class* camera = dComIfGp_getCamera(0);
+        camera_process_class* camera = dComIfGp_getCamera(0);
         f32 lookOffsetX = camera->lookat.eye.x - a_this->current.pos.x;
         f32 lookOffsetY = camera->lookat.eye.y - a_this->current.pos.y;
         f32 lookOffsetZ = camera->lookat.eye.z - a_this->current.pos.z;
@@ -658,7 +658,7 @@ static void henna_ride(npc_henna_class* i_this) {
         }
 
         if (dComIfGp_checkPlayerStatus0(0, 0x2000) != 0) {
-            camera_class* camera = dComIfGp_getCamera(0);
+            camera_process_class* camera = dComIfGp_getCamera(0);
 
             cXyz vecToPlayer;
             vecToPlayer = actor->eyePos - camera->lookat.eye;
@@ -848,11 +848,11 @@ static void cam_3d_morf(npc_henna_class* i_this, f32 param_1) {
 
 static void demo_camera(npc_henna_class* i_this) {
     fopAc_ac_c* actor = &i_this->actor;
-    camera_class* camera;
+    camera_process_class* camera;
 
     fopAc_ac_c* unused1 = dComIfGp_getPlayer(0);
     camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* unused2 = dComIfGp_getCamera(0);
+    camera_process_class* unused2 = dComIfGp_getCamera(0);
 
     cXyz unkXyz;
     cXyz unkXyz2; // unused
@@ -923,7 +923,7 @@ static int zoom_check(npc_henna_class* i_this, cXyz* target, s16 tolerance) {
     // unused assignments are needed for debug match
     fopAc_ac_c* a_this = &i_this->actor;
     fopAc_ac_c* unusedPlayer = (fopAc_ac_c*)dComIfGp_getPlayer(0);
-    camera_class* unusedCamera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* unusedCamera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
     camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
 
@@ -984,8 +984,8 @@ static void demo_camera_shop(npc_henna_class* i_this) {
 
     fopAc_ac_c* actor = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    camera_class* playerCamera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* playerCamera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera = dComIfGp_getCamera(0);
 
     cXyz unkXyz_78;
     cXyz unkXyz_6c;
@@ -2272,7 +2272,7 @@ static void env_control(npc_henna_class* i_this) {
     cXyz mae;
     cXyz ato;
     dScnKy_env_light_c* env = dKy_getEnvlight();
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
 
     mae.x = -2591.0f - player->current.pos.x;
     mae.z = -6742.0f - player->current.pos.z;
@@ -2532,7 +2532,7 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
     i_this->field_0x694 = 0;
 
     if (i_this->field_0x7e1 == 0) {
-        camera_class* camera = dComIfGp_getCamera(0);
+        camera_process_class* camera = dComIfGp_getCamera(0);
 
         lookat_pos.x = camera->lookat.center.x - camera->lookat.eye.x;
         lookat_pos.z = camera->lookat.center.z - camera->lookat.eye.z;

@@ -530,7 +530,7 @@ static void wether_move_rain() {
         }
         break;
     case TRUE:
-        camera_class* cam = dComIfGp_getCamera(0);
+        camera_process_class* cam = dComIfGp_getCamera(0);
         dKyr_rain_move();
 
         if (g_env_light.mSnowCount == 0 && cam != NULL) {

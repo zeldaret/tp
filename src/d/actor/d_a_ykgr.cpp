@@ -220,7 +220,7 @@ static int daYkgrExecute(void* i_this) {
 }
 
 void daYkgr_c::set_mtx() {
-    camera_class* iVar1 = dComIfGp_getCamera(0);
+    camera_process_class* iVar1 = dComIfGp_getCamera(0);
     cXyz local_28;
     cXyz* r29 = fopCamM_GetEye_p(iVar1);
     current.pos = *r29;

@@ -5829,7 +5829,7 @@ static void cam_spd_set(e_rd_class* i_this) {
 static void demo_camera(e_rd_class* i_this) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
     daPy_py_c* pla = (daPy_py_c*)dComIfGp_getPlayer(0);
-    camera_class* camera = (camera_class*) dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera = (camera_process_class*) dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera0 = (camera_class*) dComIfGp_getCamera(0);
     daNPC_TK_c* taka = (daNPC_TK_c*) fopAcM_SearchByName(PROC_NPC_TK);
     fopAc_ac_c* actor = taka;

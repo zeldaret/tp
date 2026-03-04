@@ -105,7 +105,7 @@ static dPath* set_path_info(fopAc_ac_c* i_actor) {
 }
 
 static void getSound_pos(fopAc_ac_c* i_actor) {
-    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz eye = camera->mCamera.Eye();
     cXyz sp28;
 

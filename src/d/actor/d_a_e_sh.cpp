@@ -1003,7 +1003,7 @@ static int daE_SH_Execute(e_sh_class* i_this) {
 
     MTXCopy(model->getAnmMtx(13), *calc_mtx);
 
-    camera_class* camera = dComIfGp_getCamera(0);
+    camera_process_class* camera = dComIfGp_getCamera(0);
 
     s16 rotX;
     s16 rotY;
