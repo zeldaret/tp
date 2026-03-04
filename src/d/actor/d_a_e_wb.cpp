@@ -259,7 +259,7 @@ static void himo_control1(e_wb_class* i_this, cXyz* i_pos, int i_no, s8 param_3)
         z = ato4.z + (sp3C.z + ((node[0].z - node[-1].z) + (ato2.z * r)));
 
         ry = (s16)cM_atan2s(x, z);
-        rx = -cM_atan2s(y, JMAFastSqrt(x * x + z * z));
+        rx = -cM_atan2s(y, JMAFastSqrt(SQUARE(x) + SQUARE(z)));
 
         cMtx_YrotS(*calc_mtx, ry);
         cMtx_XrotM(*calc_mtx, rx);
@@ -299,7 +299,7 @@ static void himo_control2(e_wb_class* i_this, cXyz* i_pos, int i_no, s8 param_3)
         y = node[0].y - node[1].y;
         z = node[0].z - node[1].z;
         ry = (s16)cM_atan2s(x, z);
-        rx = -cM_atan2s(y, JMAFastSqrt((x * x) + (z * z)));
+        rx = -cM_atan2s(y, JMAFastSqrt(SQUARE(x) + SQUARE(z)));
 
         cMtx_YrotS(*calc_mtx, ry);
         cMtx_XrotM(*calc_mtx, rx);
@@ -578,7 +578,7 @@ static s8 gake_check(e_wb_class* i_this) {
             mae.x = nREG_F(3) + chk_x[i] - actor->current.pos.x;
             mae.z = nREG_F(4) + chk_z[i] - actor->current.pos.z;
             s16 range = cM_atan2s(mae.x, mae.z) - actor->shape_angle.y;
-            if (JMAFastSqrt(mae.x * mae.x + mae.z * mae.z) < nREG_F(8) + 2000.0f) {
+           if (JMAFastSqrt(SQUARE(mae.x) + SQUARE(mae.z)) < nREG_F(8) + 2000.0f) {
                 if (range < 0x4000 && range > -0x4000) {
                     return GAKE_FLG_TURN;
                 }
@@ -3194,16 +3194,16 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
     f32 x = -46137.0f - actor->current.pos.x;
     f32 z = 81549.0f - actor->current.pos.z;
 
-    if (JMAFastSqrt(x * x + z * z) < KREG_F(7) + 5000.0f) {
-        far_from_point = true;
+    if (JMAFastSqrt(SQUARE(x) + SQUARE(z)) < KREG_F(7) + 5000.0f) {
+    far_from_point = true;
     } else {
-        x = -7650.0f - actor->current.pos.x;
-        z = 56877.0f - actor->current.pos.z;
+    x = -7650.0f - actor->current.pos.x;
+    z = 56877.0f - actor->current.pos.z;
 
-        if (JMAFastSqrt(x * x + z * z) < KREG_F(7) + 5000.0f) {
-            far_from_point = true;
-        }
+    if (JMAFastSqrt(SQUARE(x) + SQUARE(z)) < KREG_F(7) + 5000.0f) {
+        far_from_point = true;
     }
+}
 
     wall_check = e_wb_lr_wall_check(i_this);
 
@@ -3214,7 +3214,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
     }
 
     s16 angle = actor->current.angle.y;
-    s16 turn_speed = 0x200;
+    s16 yaa = 0x200;
     s16 ya;
     dBgS_LinChk lin_chk;
 
@@ -3332,7 +3332,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
 
         start = i_this->eye - actor->current.pos;
 
-        f32 dist = JMAFastSqrt(start.x * start.x + start.z * start.z);
+        f32 dist = JMAFastSqrt(SQUARE(start.x) + SQUARE(start.z));
 
         if (dist < 500.0f) {
             speed = l_HIO.normal_speed_vi;
@@ -3347,18 +3347,18 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
             rv = 1;
         }
 
-        turn_speed = 0x200;
+        yaa = 0x200;
         i_this->target_ya = cM_atan2s(start.x, start.z);
 
         if (rider && rider->anm == 39) {
             ANGLE_ADD(i_this->target_ya,
                       (BREG_F(16) + 5000.0f) * cM_ssin(i_this->counter * (BREG_S(7) + 0x3E8)));
-            turn_speed = 0x400;
+            yaa = 0x400;
         } else if (wall_check != 0) {
             ANGLE_ADD(i_this->target_ya, (BREG_S(8) + -0x1F40) * wall_check);
         }
 
-        cLib_addCalcAngleS2(&actor->current.angle.y, i_this->target_ya, 8, turn_speed);
+        cLib_addCalcAngleS2(&actor->current.angle.y, i_this->target_ya, 8, yaa);
         f32 anim_spd = actor->speedF / 40.0f;
 
         if (anim_spd < 1.0f) {
@@ -3400,7 +3400,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
         start.z = 52319.0f - coach->current.pos.z;
 
         if (coach->speedF < 1.0f ||
-            JMAFastSqrt(start.x * start.x + start.z * start.z) < 1500.0f)
+            JMAFastSqrt(SQUARE(start.x) + SQUARE(start.z)) < 1500.0f)
         {
             start = coach->current.pos - actor->current.pos;
 
@@ -4850,8 +4850,7 @@ static void demo_camera(e_wb_class* i_this) {
                 }
                 mae = pla->eyePos - i_this->eye;
                 cMtx_YrotS(*calc_mtx, cM_atan2s(mae.x, mae.z));
-                cMtx_XrotM(*calc_mtx, -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x +
-                                                                         mae.z * mae.z)));
+                cMtx_XrotM(*calc_mtx, -cM_atan2s(mae.y, JMAFastSqrt(SQUARE(mae.x) + SQUARE(mae.z))));
                 mae.x = 0.0f;
                 mae.y = 0.0f;
                 mae.z = 30.0f + VREG_F(11);
@@ -4888,8 +4887,7 @@ static void demo_camera(e_wb_class* i_this) {
             i_this->eye = pla->eyePos;
         } else {
             cMtx_YrotS(*calc_mtx, cM_atan2s(mae.x, mae.z));
-            cMtx_XrotM(*calc_mtx, -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x +
-                                                                     mae.z * mae.z)));
+            cMtx_XrotM(*calc_mtx, -cM_atan2s(mae.y, JMAFastSqrt(SQUARE(mae.x) + SQUARE(mae.z))));
             mae.x = 0.0f;
             mae.y = 0.0f;
             mae.z = 30.0f + VREG_F(11);

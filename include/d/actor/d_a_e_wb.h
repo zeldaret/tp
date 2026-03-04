@@ -177,7 +177,7 @@ public:
     /* 0x142C */ u8 movement_type;    ///< @brief Type of movement (1 for normal, 2 for faster).
     /* 0x142D */ u8 collision_flg;  ///< @brief Flags for collision states.
     /* 0x142E */ u8 mLandingFlag;     ///< @brief Flag for landing after jump.
-    /* 0x142F */ s8 gake_flg;   ///< @brief Timer to cap speed at 30.
+    /* 0x142F */ s8 gake_flg;   
     /* 0x1430 */ s8 demo_stop;
     /* 0x1432 */ s16 dash_timer;
     /* 0x1434 */ fpc_ProcID rd_id;  // Rider actor ID? ///< @brief Process ID of rider actor.
