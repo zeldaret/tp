@@ -2346,12 +2346,12 @@ static void action(npc_ne_class* i_this) {
             if (i_this->mDistToTarget > 700.0f && fopAcM_CheckCondition(_this, 4)
                                              && player->speedF > 2.0f) {
                 camera_process_class* camera = dComIfGp_getCamera(0);
-                vec1.x = camera->lookat.eye.x - camera->lookat.center.x;
-                vec1.z = camera->lookat.eye.z - camera->lookat.center.z;
+                vec1.x = camera->view.lookat.eye.x - camera->view.lookat.center.x;
+                vec1.z = camera->view.lookat.eye.z - camera->view.lookat.center.z;
                 mDoMtx_YrotS(*calc_mtx, cM_atan2s(vec1.x, vec1.z));
                 vec1.set(0.0f, -50.0f, 100.0f);
                 MtxPosition(&vec1, &vec2);
-                vec2 += camera->lookat.eye;
+                vec2 += camera->view.lookat.eye;
                 dBgS_ObjGndChk_Spl gnd_chk_spl;
                 gnd_chk_spl.SetPos(&vec2);
                 f32 cross = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);

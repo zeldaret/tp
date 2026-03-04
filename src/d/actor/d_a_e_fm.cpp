@@ -1280,8 +1280,8 @@ static void demo_camera(e_fm_class* i_this) {
         daPy_getPlayerActorClass()->changeOriginalDemo();
 
         i_this->mDemoCamFovy = 50.0f;
-        i_this->mDemoCamEye = camera0->lookat.eye;
-        i_this->mDemoCamCenter = camera0->lookat.center;
+        i_this->mDemoCamEye = camera0->view.lookat.eye;
+        i_this->mDemoCamCenter = camera0->view.lookat.center;
         i_this->field_0x778 = 0.0f;
         camera->mCamera.SetTrimSize(3);
         dComIfGp_getEvent()->startCheckSkipEdge(actor);

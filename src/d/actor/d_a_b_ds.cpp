@@ -2961,8 +2961,8 @@ bool daB_DS_c::mChkScreenIn() {
     camera_process_class* camera = dComIfGp_getCamera(0);
     cXyz vec1, vec2;
 
-    vec2 = camera->lookat.eye - camera->lookat.center;
-    vec1 = camera->lookat.eye - current.pos;
+    vec2 = camera->view.lookat.eye - camera->view.lookat.center;
+    vec1 = camera->view.lookat.eye - current.pos;
     return abs((s16)(vec1.atan2sX_Z() - vec2.atan2sX_Z())) < 0x3000;
 }
 

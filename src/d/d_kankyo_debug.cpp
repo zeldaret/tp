@@ -946,7 +946,7 @@ void dKydb_dungeonlight_draw() {
             if ((g_kankyoHIO.dungeonLight.field_0x8 - 1) == i) {
                 g_env_light.dungeonlight[i].mPosition = player->current.pos;
             } else if (g_kankyoHIO.dungeonLight.field_0x8 == i + 160) {
-                g_env_light.dungeonlight[i].mPosition = camera->lookat.center;
+                g_env_light.dungeonlight[i].mPosition = camera->view.lookat.center;
             }
         }
     }

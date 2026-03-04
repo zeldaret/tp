@@ -153,9 +153,9 @@ static int daNpc_Henna_Draw(npc_henna_class* i_this) {
     g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
     if (i_this->field_0x694 == 0) {
         camera_process_class* camera = dComIfGp_getCamera(0);
-        f32 lookOffsetX = camera->lookat.eye.x - a_this->current.pos.x;
-        f32 lookOffsetY = camera->lookat.eye.y - a_this->current.pos.y;
-        f32 lookOffsetZ = camera->lookat.eye.z - a_this->current.pos.z;
+        f32 lookOffsetX = camera->view.lookat.eye.x - a_this->current.pos.x;
+        f32 lookOffsetY = camera->view.lookat.eye.y - a_this->current.pos.y;
+        f32 lookOffsetZ = camera->view.lookat.eye.z - a_this->current.pos.z;
         if (lookOffsetY > 190.0f + JREG_F(16) || lookOffsetY < 0.0f ||
             lookOffsetX * lookOffsetX + lookOffsetZ * lookOffsetZ > 700.0f + JREG_F(17))
         {
@@ -661,8 +661,8 @@ static void henna_ride(npc_henna_class* i_this) {
             camera_process_class* camera = dComIfGp_getCamera(0);
 
             cXyz vecToPlayer;
-            vecToPlayer = actor->eyePos - camera->lookat.eye;
-            lookat_pos = camera->lookat.center - camera->lookat.eye;
+            vecToPlayer = actor->eyePos - camera->view.lookat.eye;
+            lookat_pos = camera->view.lookat.center - camera->view.lookat.eye;
 
             s16 reg_r27 = (s16)cM_atan2s(lookat_pos.x, lookat_pos.z);
             s16 sp_0x8 = (s16)cM_atan2s(vecToPlayer.x, vecToPlayer.z);
@@ -930,9 +930,9 @@ static int zoom_check(npc_henna_class* i_this, cXyz* target, s16 tolerance) {
     cXyz target_pos;
     cXyz lookat_pos;
 
-    target_pos = *target - camera->lookat.eye;
+    target_pos = *target - camera->view.lookat.eye;
     if (JMAFastSqrt(target_pos.x * target_pos.x + target_pos.z * target_pos.z) < 300.0f + XREG_F(10)) {
-        lookat_pos = camera->lookat.center - camera->lookat.eye;
+        lookat_pos = camera->view.lookat.center - camera->view.lookat.eye;
         s16 lookat_angle = (s16)cM_atan2s(lookat_pos.x, lookat_pos.z);
         s16 target_angle = (s16)cM_atan2s(target_pos.x, target_pos.z);
         lookat_angle -= target_angle;
@@ -1407,14 +1407,14 @@ static void demo_camera_shop(npc_henna_class* i_this) {
         i_this->field_0x7bc = 50.0f;
         playerCamera->mCamera.SetTrimSize(1);
         daPy_getPlayerActorClass()->onPlayerNoDraw();
-        unkXyz_78 = camera->lookat.center - camera->lookat.eye;
+        unkXyz_78 = camera->view.lookat.center - camera->view.lookat.eye;
         i_this->field_0x758 = (s16) cM_atan2s(unkXyz_78.x, unkXyz_78.z);
         i_this->field_0x75c = -cM_atan2s(
             unkXyz_78.y, JMAFastSqrt(unkXyz_78.x * unkXyz_78.x + unkXyz_78.z * unkXyz_78.z));
         i_this->field_0x7c4 = unkXyz_78.abs();
     }
     case 41: {
-        i_this->field_0x760 = camera->lookat.eye;
+        i_this->field_0x760 = camera->view.lookat.eye;
         cMtx_YrotS(*calc_mtx, i_this->field_0x758);
         cMtx_XrotM(*calc_mtx, i_this->field_0x75c);
         unkXyz_78.x = 0.0f;
@@ -1422,7 +1422,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
         unkXyz_78.z = i_this->field_0x7c4;
         MtxPosition(&unkXyz_78, &i_this->field_0x76c);
         i_this->field_0x76c += i_this->field_0x760;
-        unkXyz_78 = i_this->field_0x7a8 - camera->lookat.eye;
+        unkXyz_78 = i_this->field_0x7a8 - camera->view.lookat.eye;
         if (i_this->field_0x7b4 != 8 && i_this->field_0x7b4 != 7) {
             cLib_addCalcAngleS2(&i_this->field_0x758, cM_atan2s(unkXyz_78.x, unkXyz_78.z), 8,
                                 0x800);
@@ -2534,12 +2534,12 @@ static int daNpc_Henna_Execute(npc_henna_class* i_this) {
     if (i_this->field_0x7e1 == 0) {
         camera_process_class* camera = dComIfGp_getCamera(0);
 
-        lookat_pos.x = camera->lookat.center.x - camera->lookat.eye.x;
-        lookat_pos.z = camera->lookat.center.z - camera->lookat.eye.z;
+        lookat_pos.x = camera->view.lookat.center.x - camera->view.lookat.eye.x;
+        lookat_pos.z = camera->view.lookat.center.z - camera->view.lookat.eye.z;
         s16 camera_rot = cM_atan2s(lookat_pos.x, lookat_pos.z);
 
-        lookat_pos.x = actor->current.pos.x - camera->lookat.eye.x;
-        lookat_pos.z = actor->current.pos.z - camera->lookat.eye.z;
+        lookat_pos.x = actor->current.pos.x - camera->view.lookat.eye.x;
+        lookat_pos.z = actor->current.pos.z - camera->view.lookat.eye.z;
 
         s16 angle_diff = cM_atan2s(lookat_pos.x, lookat_pos.z) - camera_rot;
         if (i_this->cam_mode == 0 && (angle_diff > 0x4000 || angle_diff < -0x4000) &&

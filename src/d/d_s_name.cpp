@@ -119,7 +119,7 @@ s32 dScnName_c::create() {
         dComIfGp_setPlayer(0, NULL);
         dComIfGd_setWindow(window);
         dComIfGd_setViewport(viewport);
-        dComIfGd_setView(&mCamera);
+        dComIfGd_setView(&mCamera.view);
         mDoGph_gInf_c::offAutoForcus();
         setView();
 
@@ -155,17 +155,17 @@ void dScnName_c::setView() {
     view_port_class* viewport = window->getViewPort();
     camera_class* camera = &mCamera;
 
-    C_MTXPerspective(camera->projMtx, camera->fovy, camera->aspect, camera->near,
-                     camera->far);
-    mDoMtx_lookAt(camera->viewMtx, &camera->lookat.eye, &camera->lookat.center,
-                  camera->bank);
-    cMtx_inverse(camera->viewMtx, camera->invViewMtx);
-    MTXCopy(camera->viewMtx, camera->viewMtxNoTrans);
-    camera->viewMtxNoTrans[0][3] = 0.0f;
-    camera->viewMtxNoTrans[1][3] = 0.0f;
-    camera->viewMtxNoTrans[2][3] = 0.0f;
-    j3dSys.setViewMtx(camera->viewMtx);
-    cMtx_concatProjView(camera->projMtx, camera->viewMtx, camera->projViewMtx);
+    C_MTXPerspective(camera->view.projMtx, camera->view.fovy, camera->view.aspect, camera->view.near,
+                     camera->view.far);
+    mDoMtx_lookAt(camera->view.viewMtx, &camera->view.lookat.eye, &camera->view.lookat.center,
+                  camera->view.bank);
+    cMtx_inverse(camera->view.viewMtx, camera->view.invViewMtx);
+    MTXCopy(camera->view.viewMtx, camera->view.viewMtxNoTrans);
+    camera->view.viewMtxNoTrans[0][3] = 0.0f;
+    camera->view.viewMtxNoTrans[1][3] = 0.0f;
+    camera->view.viewMtxNoTrans[2][3] = 0.0f;
+    j3dSys.setViewMtx(camera->view.viewMtx);
+    cMtx_concatProjView(camera->view.projMtx, camera->view.viewMtx, camera->view.projViewMtx);
 }
 
 #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG

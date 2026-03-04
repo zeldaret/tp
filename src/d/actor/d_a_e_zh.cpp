@@ -322,8 +322,8 @@ bool daE_ZH_c::startDemoCheck() {
     if (!eventInfo.checkCommandDemoAccrpt()) {
         fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
         eventInfo.onCondition(dEvtCnd_CANDEMO_e);
-        mDemoCamEye = camera2->lookat.eye;
-        mDemoCamCenter = camera2->lookat.center;
+        mDemoCamEye = camera2->view.lookat.eye;
+        mDemoCamCenter = camera2->view.lookat.center;
         return false;
     }
 

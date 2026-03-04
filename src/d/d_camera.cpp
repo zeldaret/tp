@@ -10988,24 +10988,24 @@ static int camera_draw(camera_process_class* i_this) {
 
     int trim_height = body->TrimHeight();
     window->setScissor(0.0f, trim_height, FB_WIDTH, FB_HEIGHT - trim_height * 2.0f);
-    C_MTXPerspective(process->projMtx, process->fovy, process->aspect, process->near, process->far);
-    mDoMtx_lookAt(process->viewMtx, &process->lookat.eye, &process->lookat.center,
-                  &process->lookat.up, process->bank);
+    C_MTXPerspective(process->view.projMtx, process->view.fovy, process->view.aspect, process->view.near, process->view.far);
+    mDoMtx_lookAt(process->view.viewMtx, &process->view.lookat.eye, &process->view.lookat.center,
+                  &process->view.lookat.up, process->view.bank);
 
 #if WIDESCREEN_SUPPORT
-    mDoGph_gInf_c::setWideZoomProjection(process->projMtx);
+    mDoGph_gInf_c::setWideZoomProjection(process->view.projMtx);
 #endif
 
-    j3dSys.setViewMtx(process->viewMtx);
-    cMtx_inverse(process->viewMtx, process->invViewMtx);
+    j3dSys.setViewMtx(process->view.viewMtx);
+    cMtx_inverse(process->view.viewMtx, process->view.invViewMtx);
 
-    Z2GetAudience()->setAudioCamera(process->viewMtx, process->lookat.eye, process->lookat.center,
-                                    process->fovy, process->aspect, getComStat(0x80), camera_id,
+    Z2GetAudience()->setAudioCamera(process->view.viewMtx, process->view.lookat.eye, process->view.lookat.center,
+                                    process->view.fovy, process->view.aspect, getComStat(0x80), camera_id,
                                     false);
 
     dBgS_GndChk gndchk;
     gndchk.OnWaterGrp();
-    gndchk.SetPos(&process->lookat.eye);
+    gndchk.SetPos(&process->view.lookat.eye);
 
     f32 cross = dComIfG_Bgsp().GroundCross(&gndchk);
     if (cross != -G_CM3D_F_INF) {
@@ -11017,20 +11017,20 @@ static int camera_draw(camera_process_class* i_this) {
 
         mDoAud_setCameraGroupInfo(dComIfG_Bgsp().GetGrpSoundId(gndchk));
         Vec spDC;
-        spDC.x = process->lookat.eye.x;
+        spDC.x = process->view.lookat.eye.x;
         spDC.y = cross;
-        spDC.z = process->lookat.eye.z;
+        spDC.z = process->view.lookat.eye.z;
 
         Z2AudioMgr::getInterface()->setCameraPolygonPos(&spDC);
     } else {
         Z2AudioMgr::getInterface()->setCameraPolygonPos(NULL);
     }
 
-    MTXCopy(process->viewMtx, process->viewMtxNoTrans);
-    process->viewMtxNoTrans[0][3] = 0.0f;
-    process->viewMtxNoTrans[1][3] = 0.0f;
-    process->viewMtxNoTrans[2][3] = 0.0f;
-    cMtx_concatProjView(process->projMtx, process->viewMtx, process->projViewMtx);
+    MTXCopy(process->view.viewMtx, process->view.viewMtxNoTrans);
+    process->view.viewMtxNoTrans[0][3] = 0.0f;
+    process->view.viewMtxNoTrans[1][3] = 0.0f;
+    process->view.viewMtxNoTrans[2][3] = 0.0f;
+    cMtx_concatProjView(process->view.projMtx, process->view.viewMtx, process->view.projViewMtx);
 
     body->Draw();
     return 1;

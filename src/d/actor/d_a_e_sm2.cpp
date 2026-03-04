@@ -1364,9 +1364,9 @@ static int daE_SM2_Execute(e_sm2_class* i_this) {
 
         i_this->field_0x83e--;
 
-        start.x = camera->lookat.eye.x;
-        start.y = camera->lookat.eye.y;
-        start.z = camera->lookat.eye.z;
+        start.x = camera->view.lookat.eye.x;
+        start.y = camera->view.lookat.eye.y;
+        start.z = camera->view.lookat.eye.z;
 
         end = actor->current.pos;
         end.y += 20.0f;

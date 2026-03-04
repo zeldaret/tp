@@ -86,8 +86,8 @@ void daDr_c::wait() {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
             eventInfo.onCondition(2);
 
-            mDemoCamEye = camera0->lookat.eye;
-            mDemoCamCenter = camera0->lookat.center;
+            mDemoCamEye = camera0->view.lookat.eye;
+            mDemoCamCenter = camera0->view.lookat.center;
         }
     }
 }

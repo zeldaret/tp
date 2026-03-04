@@ -5917,7 +5917,7 @@ static void demo_camera(e_rd_class* i_this) {
 
             i_this->demo_cam_center = enemy->current.pos;
             i_this->demo_cam_center.y = (enemy->eyePos.y - 80.0f) + 60.0f + TREG_F(5);
-            i_this->demo_cam_eye = camera0->lookat.eye;
+            i_this->demo_cam_eye = camera0->view.lookat.eye;
             enemy->current.angle.y = i_this->angleY;
             i_this->field_0x1300 = 2000.0f;
             // fallthrough
@@ -5970,8 +5970,8 @@ static void demo_camera(e_rd_class* i_this) {
             i_this->demo_cam_zoom = 55.0f;
             camera->mCamera.SetTrimSize(3);
 
-            i_this->demo_cam_center = camera0->lookat.center;
-            i_this->demo_cam_eye = camera0->lookat.eye;
+            i_this->demo_cam_center = camera0->view.lookat.center;
+            i_this->demo_cam_eye = camera0->view.lookat.eye;
             i_this->field_0x12cc.set(-7875.0f, 2125.0f, 7895.0f);
             i_this->field_0x12c0.set(-7527.0f, 2084.0f, 7552.0f);
             cam_spd_set(i_this);
@@ -6584,7 +6584,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 if (i == 0) {
                     mae.set(38.0f, 0.0f, 0.0f);
                     MtxPosition(&mae, &ato);
-                    mae = camera->lookat.eye - ato;
+                    mae = camera->view.lookat.eye - ato;
 
                     y = cM_atan2s(mae.x, mae.z);
                     x = -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z));

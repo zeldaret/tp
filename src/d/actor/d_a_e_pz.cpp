@@ -479,8 +479,8 @@ void daE_PZ_c::executeOpeningDemo() {
         if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
             eventInfo.onCondition(2);
-            mDemoCameraEye = camera0->lookat.eye;
-            mDemoCameraCenter = camera0->lookat.center;
+            mDemoCameraEye = camera0->view.lookat.eye;
+            mDemoCameraCenter = camera0->view.lookat.center;
             break;
         }
 
@@ -1577,8 +1577,8 @@ void daE_PZ_c::executeDead() {
         if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
             eventInfo.onCondition(2);
-            mDemoCameraEye = sp18->lookat.eye;
-            mDemoCameraCenter = sp18->lookat.center;
+            mDemoCameraEye = sp18->view.lookat.eye;
+            mDemoCameraCenter = sp18->view.lookat.center;
 
             speedF = 0.0f;
             mCylCollider.ClrTgHit();

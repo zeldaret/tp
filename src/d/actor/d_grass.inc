@@ -617,7 +617,7 @@ void dGrass_packet_c::draw() {
                 (dCam_getBody()->Mode() == 7 || dCam_getBody()->Mode() == 8) &&
                 sp34 != NULL &&
                 dCam_getBody()->V() < -750.0f &&
-                var_r29->m_pos.abs(sp34->lookat.eye) < 200.0f) {
+                var_r29->m_pos.abs(sp34->view.lookat.eye) < 200.0f) {
                 sp30 = 1;
             }
 #endif

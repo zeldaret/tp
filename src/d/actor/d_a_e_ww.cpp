@@ -1880,7 +1880,7 @@ void daE_WW_c::action() {
 
     if (field_0x75d) {
         dBgS_LinChk lin_chk;
-        lin_chk.Set(&dComIfGp_getCamera(0)->lookat.eye, &attention_info.position, this);
+        lin_chk.Set(&dComIfGp_getCamera(0)->view.lookat.eye, &attention_info.position, this);
 
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
             attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;

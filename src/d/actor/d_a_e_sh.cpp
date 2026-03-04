@@ -1014,7 +1014,7 @@ static int daE_SH_Execute(e_sh_class* i_this) {
         if (i == 0) {
             unkXyz1.set(15.0f + TREG_F(0), 3.5f + TREG_F(1), TREG_F(2));
             MtxPosition(&unkXyz1, &unkXyz2);
-            unkXyz1 = camera->lookat.eye - unkXyz2;
+            unkXyz1 = camera->view.lookat.eye - unkXyz2;
             rotY = cM_atan2s(unkXyz1.x, unkXyz1.z);
             rotX = -cM_atan2s(unkXyz1.y, JMAFastSqrt(unkXyz1.x * unkXyz1.x + unkXyz1.z * unkXyz1.z));
 

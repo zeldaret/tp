@@ -1420,8 +1420,8 @@ static void demo_camera(b_bq_class* i_this) {
 
         daPy_getPlayerActorClass()->changeOriginalDemo();
 
-        i_this->mDemoCamEye = camera0->lookat.eye;
-        i_this->mDemoCamCenter = camera0->lookat.center;
+        i_this->mDemoCamEye = camera0->view.lookat.eye;
+        i_this->mDemoCamCenter = camera0->view.lookat.center;
 
         dComIfGp_getEvent()->startCheckSkipEdge(a_this);
         // fallthrough

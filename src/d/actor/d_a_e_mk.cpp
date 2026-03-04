@@ -1279,8 +1279,8 @@ static void demo_camera_start(e_mk_class* i_this) {
             daPy_getPlayerActorClass()->changeOriginalDemo();
             Z2GetAudioMgr()->bgmStreamPrepare(0x200000D);
 
-            i_this->camEye = camera2->lookat.eye;
-            i_this->camCenter = camera2->lookat.center;
+            i_this->camEye = camera2->view.lookat.eye;
+            i_this->camCenter = camera2->view.lookat.center;
             i_this->camEyeTarget.set(-271.0f, 4559.0f, -7241.0f);
             i_this->camCenterTarget.set(-70.0f, 4378.0f, -6233.0f);
 

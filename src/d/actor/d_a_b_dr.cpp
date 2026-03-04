@@ -3031,8 +3031,8 @@ bool daB_DR_c::startDemoCheck() {
     if (!eventInfo.checkCommandDemoAccrpt()) {
         fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
         eventInfo.onCondition(2);
-        mDemoCamEye = camera0->lookat.eye;
-        mDemoCamCenter = camera0->lookat.center;
+        mDemoCamEye = camera0->view.lookat.eye;
+        mDemoCamCenter = camera0->view.lookat.center;
         return false;
     } else {
         camera->mCamera.Stop();
@@ -3399,7 +3399,7 @@ void daB_DR_c::executeParts() {
         mTimer[0] = 50;
         ANGLE_ADD(current.angle.x, cM_rndFX(16384.0f));
 
-        mae = camera->lookat.center - current.pos;
+        mae = camera->view.lookat.center - current.pos;
         current.angle.y = mae.atan2sX_Z();
         ANGLE_ADD(current.angle.y, cM_rndFX(16384.0f));
 

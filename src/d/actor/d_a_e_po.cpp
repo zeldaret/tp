@@ -2741,7 +2741,7 @@ static int daE_PO_Execute(e_po_class* i_this) {
     if (i_this->field_0x800) {
         MTXTrans(mDoMtx_stack_c::now, i_this->field_0x794.x, i_this->field_0x794.y,
                  i_this->field_0x794.z);
-        local_4c = dComIfGp_getCamera(0)->lookat.eye - i_this->field_0x794;
+        local_4c = dComIfGp_getCamera(0)->view.lookat.eye - i_this->field_0x794;
         mDoMtx_stack_c::YrotM((int)local_4c.atan2sX_Z());
         mDoMtx_stack_c::XrotM((int)local_4c.atan2sY_XZ());
         mDoMtx_stack_c::scaleM(l_HIO.mModelSize, l_HIO.mModelSize, l_HIO.mModelSize);

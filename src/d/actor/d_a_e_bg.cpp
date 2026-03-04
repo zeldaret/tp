@@ -1099,7 +1099,7 @@ void daE_BG_c::action() {
     mCreatureSound.setLinkSearch(isAttacking);
     if (mActionMode != 0 && mActionMode != 3) {
         dBgS_LinChk linChk;
-        linChk.Set(&dComIfGp_getCamera(0)->lookat.eye, &attention_info.position, this);
+        linChk.Set(&dComIfGp_getCamera(0)->view.lookat.eye, &attention_info.position, this);
         if (dComIfG_Bgsp().LineCross(&linChk)) {
             attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         } else {
