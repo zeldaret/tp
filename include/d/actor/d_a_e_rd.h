@@ -28,7 +28,7 @@ public:
     /* 0x05B7 */ u8 arg1;
     /* 0x05B8 */ u8 arg2;
     /* 0x05B9 */ u8 field_0x5b9;
-    /* 0x05BA */ u8 field_0x5ba;
+    /* 0x05BA */ u8 scene_no;
     /* 0x05BB */ u8 field_0x5bb;
     /* 0x05BC */ u8 weapon_type;
     /* 0x05BD */ s8 armament_flag;
@@ -44,9 +44,9 @@ public:
     /* 0x0698 */ mDoExt_McaMorfSO* bow_anm;
     /* 0x069C */ mDoExt_McaMorf* horn_anm;
     /* 0x06A0 */ s8 horn_mode;
-    /* 0x06A4 */ cXyz field_0x6a4;
-    /* 0x06B0 */ cXyz field_0x6b0;
-    /* 0x06BC */ csXyz field_0x6bc;
+    /* 0x06A4 */ cXyz horn_pos;
+    /* 0x06B0 */ cXyz horn_spd;
+    /* 0x06BC */ csXyz horn_rot;
     /* 0x06C2 */ s8 run_flag;
     /* 0x06C3 */ u8 field_0x6c3;
     /* 0x06C4 */ J3DModel* eye_model[2];
@@ -86,7 +86,7 @@ public:
     /* 0x09AB */ s8 field_0x9ab;
     /* 0x09AC */ s8 field_0x9ac;
     /* 0x09AD */ s8 field_0x9ad;
-    /* 0x09B0 */ cXyz field_0x9b0;
+    /* 0x09B0 */ cXyz center_body;
     /* 0x09BC */ s8 ride_mode;
     /* 0x09BD */ s8 field_0x9bd;
     /* 0x09BE */ s8 boar_stand;
@@ -111,7 +111,7 @@ public:
     /* 0x0A0C */ csXyz jump_angle;
     /* 0x0A12 */ csXyz field_0xa12;
     /* 0x0A18 */ csXyz field_0xa18;
-    /* 0x0A1E */ s8 field_0xa1e;
+    /* 0x0A1E */ s8 jump_timer;
     /* 0x0A1F */ s8 field_0xa1f;
     /* 0x0A20 */ u32 field_0xa20;
     /* 0x0A24 */ f32 field_0xa24;
@@ -139,7 +139,7 @@ public:
     /* 0x0AF8 */ s16 field_0xaf8;
     /* 0x0AFA */ s8 field_0xafa;
     /* 0x0AFB */ s8 field_0xafb;
-    /* 0x0AFC */ dPath* path;
+    /* 0x0AFC */ dPath* ppd;
     /* 0x0B00 */ s8 jyunkai_no;
     /* 0x0B01 */ s8 path_dir;
     /* 0x0B04 */ dBgS_AcchCir AcchCir;
@@ -164,7 +164,7 @@ public:
     /* 0x1299 */ u8 field_0x1299;
     /* 0x129A */ s8 actor_set;
     /* 0x129B */ u8 field_0x129b;
-    /* 0x129C */ s8 field_0x129c;
+    /* 0x129C */ s8 horn_timer;
     /* 0x12A0 */ int sw;
     /* 0x12A4 */ s16 demo_mode;
     /* 0x12A6 */ s16 demo_timer;

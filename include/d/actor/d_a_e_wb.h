@@ -114,7 +114,7 @@ public:
     /* 0x05E8 */ int anmID;                     ///< @brief Current animation ID.
     /* 0x05EC */ Z2CreatureRide sound;         ///< @brief Z2 sound creature for ride effects.
     /* 0x0688 */ int field_0x688;
-    /* 0x068C */ s8 mPathInitialized;  ///< @brief Flag indicating if path has been initialized.
+    /* 0x068C */ s8 path_set;  ///< @brief Flag indicating if path has been initialized.
     /* 0x068E */ s16 counter;
     /* 0x0690 */ s16 action;  ///< @brief High-level action ID.
     /* 0x0692 */ s16 ride_action;
@@ -130,8 +130,8 @@ public:
     /* 0x06BE */ u16 status_flag;  ///< @brief Bitfield for various status flags.
     /* 0x06C0 */ s8 field_0x6c0;
     /* 0x06C4 */ f32 x_check;
-    /* 0x06C8 */ int path_no;  ///< @brief Current index in the path points array.
-    /* 0x06CC */ int path_dir;     ///< @brief Direction to iterate path points (+1 or -1).
+    /* 0x06C8 */ int path_ten;  ///< @brief Current index in the path points array.
+    /* 0x06CC */ int dir;     ///< @brief Direction to iterate path points (+1 or -1).
     /* 0x06D0 */ s16 range;
     /* 0x06D2 */ s16 turn_step;  ///< @brief Step value for turning angle adjustment.
     /* 0x06D4 */ s16 field_0x6d4;
@@ -142,7 +142,7 @@ public:
     /* 0x06DE */ csXyz field_0x6de;
     /* 0x06E4 */ s8 field_0x6e4;
     /* 0x06E5 */ u8 field_0x6e5[0x6ec - 0x6e5];
-    /* 0x06EC */ csXyz field_0x6ec[0x1d];
+    /* 0x06EC */ csXyz field_0x6ec[29];
     /* 0x079A */ s16 body_angle;  ///< @brief Body tilt angle based on turning.
     /* 0x079C */ u8 start_timer;
     /* 0x079D */ s8 leader;
@@ -173,10 +173,10 @@ public:
     /* 0x1414 */ u32 field_0x1414;
     /* 0x1418 */ u32 field_0x1418;
     /* 0x141C */ u32 field_0x141c;
-    /* 0x1420 */ u32 enemy_wtra[3];
+    /* 0x1420 */ u32 w_eff_id[3];
     /* 0x142C */ u8 movement_type;    ///< @brief Type of movement (1 for normal, 2 for faster).
     /* 0x142D */ u8 collision_flg;  ///< @brief Flags for collision states.
-    /* 0x142E */ u8 mLandingFlag;     ///< @brief Flag for landing after jump.
+    /* 0x142E */ u8 landing_flag;     ///< @brief Flag for landing after jump.
     /* 0x142F */ s8 gake_flg;   
     /* 0x1430 */ s8 demo_stop;
     /* 0x1432 */ s16 dash_timer;
@@ -214,7 +214,7 @@ public:
     /* 0x1723 */ u8 field_0x1723[0x17c4 - 0x1723];
     /* 0x17C4 */ u32 anm_se_eff;
     /* 0x17C8 */ u8 field_0x17c8[0x17D0 - 0x17C8];
-    /* 0x17D0 */ u32 jump_wtra[4];
+    /* 0x17D0 */ u32 w_eff_id2[4];
     /* 0x17E0 */ u8 field_0x17e0;
     /* 0x17E1 */ u8 field_0x17e1;
     /* 0x17E2 */ s16 wait_roll_angle;  ///< @brief Roll angle during wait state.

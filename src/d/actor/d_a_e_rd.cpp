@@ -668,7 +668,7 @@ static cXyz S_find_pos;
 
 static u8 desert_substage;
 
-static u8 data_80519201;
+static u8 ikki;
 
 static fopAc_ac_c* target_info[10];
 
@@ -1082,8 +1082,8 @@ static BOOL path_check(e_rd_class* i_this) {
     start = enemy->current.pos;
     start.y += WREG_F(0) + 10.0f;
 
-    dPnt* points = i_this->path->m_points;
-    for (int i = 0; i < i_this->path->m_num; i++, points++) {
+    dPnt* points = i_this->ppd->m_points;
+    for (int i = 0; i < i_this->ppd->m_num; i++, points++) {
         if (i < 0xFF) {
             end.x = points->m_position.x;
             end.y = points->m_position.y + 10.0f + WREG_F(1);
@@ -1102,8 +1102,8 @@ static BOOL path_check(e_rd_class* i_this) {
     bool found = false;
     f32 reg_f27; // unused
     for (int i = 0; i < 100;) {
-        points = i_this->path->m_points;
-        for (int j = 0; j < i_this->path->m_num; j++, points++) {
+        points = i_this->ppd->m_points;
+        for (int j = 0; j < i_this->ppd->m_num; j++, points++) {
             if (j < 0xFF && check_index[j] != 0) {
                 x = enemy->current.pos.x - points->m_position.x;
                 y = enemy->current.pos.y - points->m_position.y;
@@ -1177,7 +1177,7 @@ static void e_rd_normal(e_rd_class* i_this) {
 
         case 2:
             if (i_this->timer[0] == 0) {
-                if (i_this->path != NULL && path_check(i_this)) {
+                if (i_this->ppd != NULL && path_check(i_this)) {
                     i_this->action = ACTION_JYUNKAI;
                     i_this->mode = 0;
                     return;
@@ -2885,7 +2885,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                 daPy_getPlayerActorClass()->onEnemyDead();
 
                 if (desert_substage != 0) {
-                    i_this->field_0x5ba = 0;
+                    i_this->scene_no = 0;
                 }
             } else {
                 i_this->sound.startCreatureVoice(Z2SE_EN_RD_V_DAMAGE, -1);
@@ -2928,7 +2928,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                 actor->shape_angle.y = actor->current.angle.y;
 
                 if (i_this->jump_angle.x <= -0x3000 && i_this->Bgc.ChkGroundHit()) {
-                    i_this->field_0xa1e = 10;
+                    i_this->jump_timer = 10;
 
                     if (i_this->field_0x1294 != 0) {
                         i_this->sound.startCreatureSound(Z2SE_CM_BODYFALL_ASASE_M, 0, -1);
@@ -2982,7 +2982,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                 }
 
                 dKy_Sound_set(actor->current.pos, 100, fopAcM_GetID(i_this), 5);
-                i_this->field_0xa1e = 10;
+                i_this->jump_timer = 10;
 
                 if (i_this->field_0xa1f == 0) {
                     anm_init(i_this, BCK_RD_DIEA, 3.0f, 0, 1.0f);
@@ -3335,7 +3335,7 @@ static void e_rd_a_damage(e_rd_class* i_this) {
             i_this->timer[0] = 80;
 
             if (desert_substage != 0) {
-                i_this->field_0x5ba = 0;
+                i_this->scene_no = 0;
             }
 
             dKy_Sound_set(enemy->current.pos, 100, fopAcM_GetID(i_this), 5);
@@ -3861,13 +3861,13 @@ static void e_rd_kiba_end(e_rd_class* i_this) {
                 mae.x = BREG_F(8) + 40.0f;
                 mae.y = BREG_F(9) + 20.0f;
                 mae.z = BREG_F(10) + 57.0f;
-                MtxPosition(&mae, &i_this->field_0x6b0);
-                i_this->field_0x6bc.y = enemy->shape_angle.y + BREG_S(0);
+                MtxPosition(&mae, &i_this->horn_spd);
+                i_this->horn_rot.y = enemy->shape_angle.y + BREG_S(0);
                 mae.x = BREG_F(11) + 80.0f;
                 mae.y = BREG_F(12);
                 mae.z = BREG_F(13);
                 MtxPosition(&mae, &ato);
-                i_this->field_0x6a4 += ato;
+                i_this->horn_pos += ato;
                 i_this->horn_mode = HORN_MODE_SHOOT;
             }
 
@@ -4324,7 +4324,7 @@ static void damage_check(e_rd_class* i_this) {
                     return;
                 }
 
-                i_this->field_0x129c = 3;
+                i_this->horn_timer = 3;
 
                 if (i_this->AtInfo.mpCollider->ChkAtType(AT_TYPE_10000000)) {
                     wolfkick_damage(i_this);
@@ -4708,7 +4708,7 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
         case 0: {
             anm_init(i_this, BCK_RD_WALK, 10.0f, 2, 1.0f);
             i_this->mode = 1;
-            dPnt* pnt_p = i_this->path->m_points;
+            dPnt* pnt_p = i_this->ppd->m_points;
             pnt_p += i_this->jyunkai_no;
             i_this->find_pos.x = pnt_p->m_position.x;
             i_this->find_pos.y = pnt_p->m_position.y;
@@ -4722,12 +4722,12 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
 
             if (vec.abs() < 50.0f) {
                 i_this->jyunkai_no += i_this->path_dir;
-                if (i_this->jyunkai_no >= (i_this->path->m_num & 0xFF)) {
-                    if (dPath_ChkClose(i_this->path)) {
+                if (i_this->jyunkai_no >= (i_this->ppd->m_num & 0xFF)) {
+                    if (dPath_ChkClose(i_this->ppd)) {
                         i_this->jyunkai_no = 0;
                     } else {
                         i_this->path_dir = 0xFF;
-                        i_this->jyunkai_no = i_this->path->m_num - 2;
+                        i_this->jyunkai_no = i_this->ppd->m_num - 2;
                     }
                 } else if (i_this->jyunkai_no < 0) {
                     i_this->path_dir = 1;
@@ -4923,7 +4923,7 @@ static int rd_count;
 
 static void* s_tag_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD && ((e_rd_class*)i_actor)->field_0x5ba != 0) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD && ((e_rd_class*)i_actor)->scene_no != 0) {
         rd_count++;
     }
 
@@ -5039,7 +5039,7 @@ static void action(e_rd_class* i_this) {
         }
     }
 
-    u8 cVar1 = i_this->field_0x5ba;
+    u8 cVar1 = i_this->scene_no;
     s8 cVar2 = 0;
     s8 bVar1 = 1;
     s8 cVar3 = 0;
@@ -5243,7 +5243,7 @@ static void action(e_rd_class* i_this) {
         i_this->sound.setLinkSearch(false);
     }
 
-    if (cVar1) {
+    if (cVar1 != 0) {
         if (desert_substage != 0) {
             if (!dComIfGp_event_runCheck() && i_this->yagura_timer == 0 && i_this->dis > 700.0f && i_this->field_0x5bb != 0) {
                 fopAcM_delete(enemy);
@@ -5335,15 +5335,15 @@ static void action(e_rd_class* i_this) {
         } else {
             mae.set(0.0f, BREG_F(4) + -45.0f, 0.0f);
         }
-        MtxPosition(&mae, &i_this->field_0x9b0);
+        MtxPosition(&mae, &i_this->center_body);
 
         if (i_this->ride_mode == RIDE_MODE_RIDE) {
-            enemy->current.pos = i_this->field_0x9b0;
+            enemy->current.pos = i_this->center_body;
             enemy->shape_angle = enemy->current.angle = actor->shape_angle;
 
             mae.x = 10.0f;
             MtxPosition(&mae, &ato);
-            mae = ato - i_this->field_0x9b0;
+            mae = ato - i_this->center_body;
             ANGLE_ADD(enemy->current.angle.x,
                       -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z)));
             enemy->shape_angle.x = enemy->current.angle.x;
@@ -5352,7 +5352,7 @@ static void action(e_rd_class* i_this) {
                 boar->rd_id = fopAcM_GetID(i_this);
             }
         } else {
-            mae = i_this->field_0x9b0 - enemy->current.pos;
+            mae = i_this->center_body - enemy->current.pos;
             cMtx_YrotS(*calc_mtx, cM_atan2s(mae.x, mae.z));
             cMtx_XrotM(*calc_mtx, -cM_atan2s(mae.y, JMAFastSqrt(mae.x * mae.x + mae.z * mae.z)));
             mae.x = 0.0f;
@@ -5361,7 +5361,7 @@ static void action(e_rd_class* i_this) {
             MtxPosition(&mae, &ato);
 
             enemy->current.pos += ato;
-            mae = i_this->field_0x9b0 - enemy->current.pos;
+            mae = i_this->center_body - enemy->current.pos;
             if (mae.abs() < 30.0f || i_this->timer[3] == 0) {
                 i_this->ride_mode = RIDE_MODE_RIDE;
             }
@@ -5561,13 +5561,13 @@ static void action(e_rd_class* i_this) {
     s16 range = 0;
     s16 sVar5 = 0;
 
-    if (i_this->field_0xa1e != 0) {
-        i_this->field_0xa1e--;
+    if (i_this->jump_timer != 0) {
+        i_this->jump_timer--;
         if (i_this->jump_angle.x != 0) {
             Vec pos;
             cXyz ato, sp298;
             dBgS_GndChk gnd_chk;
-            f32 fVar2 = 75.0f;
+            f32 z = 75.0f;
 
             MTXCopy(i_this->anm_p->getModel()->getAnmMtx(1), *calc_mtx);
             mae.set(0.0f, 0.0f, 0.0f);
@@ -5580,7 +5580,7 @@ static void action(e_rd_class* i_this) {
             if (ato.y != -G_CM3D_F_INF) {
                 pos.x = ato.x;
                 pos.y = ato.y + 100.0f;
-                pos.z = ato.z + fVar2;
+                pos.z = ato.z + z;
                 gnd_chk.SetPos(&pos);
                 pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
@@ -5594,7 +5594,7 @@ static void action(e_rd_class* i_this) {
                     }
                 }
 
-                pos.x = ato.x + fVar2;
+                pos.x = ato.x + z;
                 pos.y = ato.y + 100.0f;
                 pos.z = ato.z;
                 gnd_chk.SetPos(&pos);
@@ -5611,24 +5611,24 @@ static void action(e_rd_class* i_this) {
             }
 
             dBgS_LinChk lin_chk;
-            cXyz sp2a4, start, end;
+            cXyz mae, start, end;
 
             start = enemy->current.pos;
             start.y += JREG_F(5) + 30.0f;
             J3DModel* model = i_this->anm_p->getModel();
-            sp2a4.set(0.0f, 0.0f, 0.0f);
+            mae.set(0.0f, 0.0f, 0.0f);
             MTXCopy(model->getAnmMtx(BREG_S(8) + 13), *calc_mtx);
-            MtxPosition(&sp2a4, &end);
+            MtxPosition(&mae, &end);
             end.y += JREG_F(6) + 30.0f;
 
             lin_chk.Set(&start, &end, enemy);
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                sp2a4 = start - end;
-                cMtx_YrotS(*calc_mtx, cM_atan2s(sp2a4.x, sp2a4.z));
-                sp2a4.x = 0.0f;
-                sp2a4.y = 0.0f;
-                sp2a4.z = TREG_F(11) + 50.0f;
-                MtxPosition(&sp2a4, &ato);
+                mae = start - end;
+                cMtx_YrotS(*calc_mtx, cM_atan2s(mae.x, mae.z));
+                mae.x = 0.0f;
+                mae.y = 0.0f;
+                mae.z = TREG_F(11) + 50.0f;
+                MtxPosition(&mae, &ato);
                 enemy->current.pos += ato;
             }
 
@@ -5640,9 +5640,9 @@ static void action(e_rd_class* i_this) {
     cLib_addCalcAngleS2(&i_this->field_0xa12.x, i_this->field_0xa18.x, 1, 0x400);
     cLib_addCalcAngleS2(&i_this->field_0xa12.z, i_this->field_0xa18.z, 1, 0x400);
 
-    if (i_this->field_0x129c != 0) {
-        i_this->field_0x129c--;
-        if (i_this->field_0x129c == 0) {
+    if (i_this->horn_timer != 0) {
+        i_this->horn_timer--;
+        if (i_this->horn_timer == 0) {
             dComIfGp_particle_set(ID_ZI_J_TUBA00, &enemy->eyePos, &enemy->shape_angle, NULL);
         }
     }
@@ -6382,7 +6382,7 @@ static int c_start;
 
 static int daE_RD_Execute(e_rd_class* i_this) {
     if (c_start == 0 && dComIfGp_event_runCheck()) {
-        if (data_80519201 != 0) {
+        if (ikki != 0) {
             return 1;
         }
 
@@ -6964,20 +6964,20 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             if (i_this->horn_mode == HORN_MODE_PLAY) {
                 MTXCopy(i_this->anm_p->getModel()->getAnmMtx(YREG_S(3) + 15), *calc_mtx);
                 mae.set(0.0f, 0.0f, 0.0f);
-                MtxPosition(&mae, &i_this->field_0x6a4);
+                MtxPosition(&mae, &i_this->horn_pos);
             } else {
-                i_this->field_0x6a4 += i_this->field_0x6b0;
-                i_this->field_0x6b0.y -= 5.0f;
-                MtxTrans(i_this->field_0x6a4.x, i_this->field_0x6a4.y, i_this->field_0x6a4.z, 0);
+                i_this->horn_pos += i_this->horn_spd;
+                i_this->horn_spd.y -= 5.0f;
+                MtxTrans(i_this->horn_pos.x, i_this->horn_pos.y, i_this->horn_pos.z, 0);
                 f32 scale = l_HIO.leader_size_ratio * ( l_HIO.model_size * enemy->scale.x);
                 MtxScale(scale, scale, scale, 1);
                 MtxTrans(BREG_F(5) + 80.0f, BREG_F(6) + 50.0f, BREG_F(7), 1);
-                cMtx_YrotM(*calc_mtx, i_this->field_0x6bc.y);
+                cMtx_YrotM(*calc_mtx, i_this->horn_rot.y);
                 cMtx_XrotM(*calc_mtx, 0x7FFF);
-                cMtx_ZrotM(*calc_mtx, i_this->field_0x6bc.z);
+                cMtx_ZrotM(*calc_mtx, i_this->horn_rot.z);
                 MtxTrans(-(BREG_F(5) + 80.0f), -(BREG_F(6) + 50.0f), -(BREG_F(7) + 0.0f), 1);
-                ANGLE_ADD(i_this->field_0x6bc.y, 0x200);
-                ANGLE_ADD(i_this->field_0x6bc.z, 0xF00);
+                ANGLE_ADD(i_this->horn_rot.y, 0x200);
+                ANGLE_ADD(i_this->horn_rot.z, 0xF00);
             }
 
             i_this->horn_anm->getModel()->setBaseTRMtx(*calc_mtx);
@@ -7012,12 +7012,12 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     }
 
     if (i_this->actor_set == ACTOR_SET_NONE && i_this->ride_mode == RIDE_MODE_OFF) {
-        fopAc_ac_c* player = dComIfGp_getPlayer(0);
+        fopAc_ac_c* pla = dComIfGp_getPlayer(0);
         MTXCopy(i_this->anm_p->getModel()->getAnmMtx(11), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&ato);
-        mae = player->current.pos - ato;
-        s16 atan_val = cM_atan2s(mae.x, mae.z);
-        cMtx_YrotS(*calc_mtx, atan_val);
+        mae = pla->current.pos - ato;
+        s16 ya = cM_atan2s(mae.x, mae.z);
+        cMtx_YrotS(*calc_mtx, ya);
         mae.x = 0.0f;
         mae.y = 0.0f;
         mae.z = (BREG_F(12) + 40.0f) - 30.0f;
@@ -7026,9 +7026,9 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         i_this->enemy.setDownPos(&ato2);
     }
 
-    cXyz spd4(enemy->eyePos);
-    spd4.y += NREG_F(7) + 130.0f;
-    i_this->enemy.setHeadLockPos(&spd4);
+    cXyz eye(enemy->eyePos);
+    eye.y += NREG_F(7) + 130.0f;
+    i_this->enemy.setHeadLockPos(&eye);
     demo_camera(i_this);
     i_this->field_0x5bb = 1;
     enemy->attention_info.flags |= fopAc_AttnFlag_UNK_0x200000;
@@ -7367,12 +7367,12 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             return cPhs_ERROR_e;
         }
 
-        i_this->field_0x5ba = (fopAcM_GetParam(actor) & 0xFF0000) >> 16;
-        if (i_this->field_0x5ba == 0xFF) {
-            i_this->field_0x5ba = 0;
+        i_this->scene_no = (fopAcM_GetParam(actor) & 0xFF0000) >> 16;
+        if (i_this->scene_no == 0xFF) {
+            i_this->scene_no = 0;
         }
 
-        if (i_this->field_0x5ba == 2) {
+        if (i_this->scene_no == 2) {
             fopAcM_setStageLayer(actor);
         }
 
@@ -7438,15 +7438,15 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             i_this->action = ACTION_NORMAL;
             u8 path_no = actor->home.angle.x & 0xFF;
             if ((u32)(path_no) != 0xFF) {
-                i_this->path = dPath_GetRoomPath(path_no, fopAcM_GetRoomNo(actor));
-                OS_REPORT("//////////////E_RD PPD %x!!\n", i_this->path);
-                if (i_this->path == NULL) {
+                i_this->ppd = dPath_GetRoomPath(path_no, fopAcM_GetRoomNo(actor));
+                OS_REPORT("//////////////E_RD PPD %x!!\n", i_this->ppd);
+                if (i_this->ppd == NULL) {
                     OS_REPORT("......RD   NONONONONONO PATH !!!!\n");
                     return cPhs_ERROR_e;
                 }
 
-                dPnt* pnt_p = i_this->path->m_points;
-                OS_REPORT("//////////////E_RD P0.y %f\n", pnt_p->m_position.y);
+                dPnt* pnt = i_this->ppd->m_points;
+                OS_REPORT("//////////////E_RD P0.y %f\n", pnt->m_position.y);
             }
         } else if (i_this->arg0 == 8) {
             i_this->action = ACTION_SLEEP;
@@ -7589,9 +7589,9 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && fopAcM_GetRoomNo(actor) == 0) {
             // Hyrule Field - Bridge of Eldin
-            data_80519201 = 1;
+            ikki = TRUE;
         } else {
-            data_80519201 = 0;
+            ikki = FALSE;
         }
 
         c_start = 1;
